@@ -1,157 +1,76 @@
-Reya Dawnbringer=Vuela.  (Esta criatura no puede ser bloqueada excepto por criaturas que tengan la habilidad de volar o alcance.)  
-Al comienzo de tu mantenimiento, puedes regresar al juego una carta objetivo de criatura de tu cementerio.
-Kamahl, Pit Fighter=Prisa.  (Esta criatura puede atacar y {T} tan pronto como entre bajo tu control.) 
-{T}: Kamahl, luchador del foso hace 3 puntos de dano a la criatura o jugador objetivo.
+Reya Dawnbringer=Vuela.  (Esta criatura no puede ser bloqueada excepto por criaturas que tengan la habilidad de volar o alcance.) -- Al comienzo de tu mantenimiento, puedes regresar al juego una carta objetivo de criatura de tu cementerio.
+Kamahl, Pit Fighter=Prisa.  (Esta criatura puede atacar y {T} tan pronto como entre bajo tu control.) -- {T}: Kamahl, luchador del foso hace 3 puntos de dano a la criatura o jugador objetivo.
 Mirri, Cat Warrior=Dana primero, cruza bosques, vigilancia.  (Esta criatura hace dano de combate antes que las criaturas sin la habilidad de danar primero, es imbloqueable mientras el jugador defensor controle un bosque, y no se gira al atacar.) 
-Arcanis the Omnipotent={T}: Roba tres cartas.
-{2}{U}{U}: Regresa a Arcanis el omnipotente a la mano de su propietario.
-Phage the Untouchable=Cuando Phage la Intocable entre en juego, si no la jugaste de tu mano, pierdes el juego. 
-Siempre que Phage haga dano de combate a una criatura, destruye esa criatura. No puede ser regenerada. 
-Siempre que Phage haga dano de combate a un jugador, ese jugador pierde el juego.
-Forbidding Watchtower=El Atalaya prohibitoria entra en juego girada.
-{T}: Agrega {W} a tu reserva de mana.
-{1}{W}: El Atalaya prohibitoria se convierte en una criatura Soldado blanca 1/5 hasta el final del turno. Sigue siendo una tierra.
-Treetop Village=La Aldea en las copas entra en juego girada.
-{T}: Agrega {G} a tu reserva de mana.
-{1}{G}: La Aldea en las copas se convierte en una criatura Simio verde 3/3 con la habilidad de arrollar hasta el final del turno. Sigue siendo una tierra.  (Si fuera a hacer suficiente dano de combate a sus bloqueadores como para destruirlos, puedes hacer que le haga el resto del dano al jugador defensor.) 
+Arcanis the Omnipotent={T}: Roba tres cartas. -- {2}{U}{U}: Regresa a Arcanis el omnipotente a la mano de su propietario.
+Phage the Untouchable=Cuando Phage la Intocable entre en juego, si no la jugaste de tu mano, pierdes el juego. -- Siempre que Phage haga dano de combate a una criatura, destruye esa criatura. No puede ser regenerada. -- Siempre que Phage haga dano de combate a un jugador, ese jugador pierde el juego.
+Forbidding Watchtower=El Atalaya prohibitoria entra en juego girada. -- {T}: Agrega {W} a tu reserva de mana. -- {1}{W}: El Atalaya prohibitoria se convierte en una criatura Soldado blanca 1/5 hasta el final del turno. Sigue siendo una tierra.
+Treetop Village=La Aldea en las copas entra en juego girada. -- {T}: Agrega {G} a tu reserva de mana. -- {1}{G}: La Aldea en las copas se convierte en una criatura Simio verde 3/3 con la habilidad de arrollar hasta el final del turno. Sigue siendo una tierra.  (Si fuera a hacer suficiente dano de combate a sus bloqueadores como para destruirlos, puedes hacer que le haga el resto del dano al jugador defensor.) 
 Squee, Goblin Nabob=Al comienzo de tu mantenimiento, puedes regresar a Squee, trasgo nabab de tu cementerio a tu mano.
 Jayemdae Tome={4}, {T}: Roba una carta.
-Rhox=Puedes hacer que el Rhox haga su dano de combate al jugador defensor como si no hubiera sido bloqueado.
-{2}{G}: Regenera al Rhox.  (La proxima vez que esta criatura fuera a ser destruida este turno, no lo es. En vez de eso, girala, remueve todo el dano de ella y remuevela del combate.) 
-Ascendant Evincar=Vuela.  (Esta criatura no puede ser bloqueada excepto por criaturas que tengan la habilidad de volar o alcance.)  
-Las otras criaturas negras obtienen +1/+1. 
-Las criaturas que no sean negras obtienen -1/-1.
-Faerie Conclave=El Conclave de hadas entra en juego girado.
-{T}: Agrega {U} a tu reserva de mana.
-{1}{U}: El Conclave de hadas se convierte en una criatura Hada azul 2/1 con la habilidad de volar hasta el final del turno. Sigue siendo una tierra.  (No puede ser bloqueada excepto por criaturas que tengan la habilidad de volar o alcance.) 
-Platinum Angel=Vuela.  (Esta criatura no puede ser bloqueada excepto por criaturas que tengan la habilidad de volar o alcance.)  
-Tu no puedes perder el juego y tus oponentes no pueden ganar el juego.
-Razormane Masticore=Dana primero.  (Esta criatura hace dano de combate antes que las criaturas sin la habilidad de danar primero.) 
-Al comienzo de tu mantenimiento, sacrifica la Masticore melena de navajas a menos que descartes una carta.
-Al comienzo de tu paso de robar, puedes hacer que la Masticore melena de navajas le haga 3 puntos de dano a la criatura objetivo.
+Rhox=Puedes hacer que el Rhox haga su dano de combate al jugador defensor como si no hubiera sido bloqueado. -- {2}{G}: Regenera al Rhox.  (La proxima vez que esta criatura fuera a ser destruida este turno, no lo es. En vez de eso, girala, remueve todo el dano de ella y remuevela del combate.) 
+Ascendant Evincar=Vuela.  (Esta criatura no puede ser bloqueada excepto por criaturas que tengan la habilidad de volar o alcance.) -- Las otras criaturas negras obtienen +1/+1. -- Las criaturas que no sean negras obtienen -1/-1.
+Faerie Conclave=El Conclave de hadas entra en juego girado. -- {T}: Agrega {U} a tu reserva de mana. --{1}{U}: El Conclave de hadas se convierte en una criatura Hada azul 2/1 con la habilidad de volar hasta el final del turno. Sigue siendo una tierra.  (No puede ser bloqueada excepto por criaturas que tengan la habilidad de volar o alcance.) 
+Platinum Angel=Vuela.  (Esta criatura no puede ser bloqueada excepto por criaturas que tengan la habilidad de volar o alcance.) -- Tu no puedes perder el juego y tus oponentes no pueden ganar el juego.
+Razormane Masticore=Dana primero.  (Esta criatura hace dano de combate antes que las criaturas sin la habilidad de danar primero.) -- Al comienzo de tu mantenimiento, sacrifica la Masticore melena de navajas a menos que descartes una carta. -- Al comienzo de tu paso de robar, puedes hacer que la Masticore melena de navajas le haga 3 puntos de dano a la criatura objetivo.
 March of the Machines=Cada artefacto que no sea criatura es una criatura artefacto con fuerza y resistencia iguales a su coste de mana convertido. (El equipo que sea una criatura no puede equipar a otras criaturas.)
-Spawning Pool=El Estanque de desove entra en juego girado.
-{T}: Agrega {B} a tu reserva de mana.
-{1}{B}: El Estanque de desove se convierte en una criatura Esqueleto negra 1/1 con “{B}: Regenera esta criatura” hasta el final del turno. Sigue siendo una tierra.  (Si se regenera, la proxima vez que fuera a ser destruida este turno, no lo es. En vez de eso, girala, remueve todo el dano de ella y remuevela del combate.) 
-Ghitu Encampment=El Campamento ghitu entra en juego girado.
-{T}: Agrega {R} a tu reserva de mana.
-{1}{R}: El Campamento ghitu se convierte en una criatura Guerrero roja 2/1 con la habilidad de danar primero hasta el final del turno. Sigue siendo una tierra.  (Hace dano de combate antes que las criaturas sin la habilidad de danar primero.) 
+Spawning Pool=El Estanque de desove entra en juego girado. -- {T}: Agrega {B} a tu reserva de mana. -- {1}{B}: El Estanque de desove se convierte en una criatura Esqueleto negra 1/1 con “{B}: Regenera esta criatura” hasta el final del turno. Sigue siendo una tierra.  (Si se regenera, la proxima vez que fuera a ser destruida este turno, no lo es. En vez de eso, girala, remueve todo el dano de ella y remuevela del combate.) 
+Ghitu Encampment=El Campamento ghitu entra en juego girado. -- {T}: Agrega {R} a tu reserva de mana. -- {1}{R}: El Campamento ghitu se convierte en una criatura Guerrero roja 2/1 con la habilidad de danar primero hasta el final del turno. Sigue siendo una tierra.  (Hace dano de combate antes que las criaturas sin la habilidad de danar primero.) 
 Mimeofacture=Reproducir {3}{U}  (Cuando juegues este hechizo, copialo por cada vez que pagaste su coste de reproducir. Puedes elegir nuevos objetivos para la copia.) 
 Elige un permanente objetivo que controle un oponente. Busca en la biblioteca de ese jugador una carta con el mismo nombre y ponla en juego bajo tu control. Luego ese jugador baraja su biblioteca.
 Streetbreaker Wurm=
-Giant Solifuge= ({RG} puede pagarse con {R} o con {G}.) 
-Arrolla, prisa.
-El Solifugo gigante no puede ser objetivo de hechizos o habilidades.
-Sacred Mesa=Al comienzo de tu mantenimiento, sacrifica la Meseta sagrada a menos que sacrifiques un Pegaso.
-{1}{W}: Pon en juego una ficha de criatura Pegaso blanca 1/1 con la habilidad de volar.
-Valor=Dana primero.
-Mientras el Valor este en tu cementerio y controles una llanura, las criaturas que controlas tienen la habilidad de danar primero.
-Chronatog Totem={T}: Agrega {U} a tu reserva de mana.
-{1}{U}: El Totem de cronatog es una criatura artefacto Atog azul 1/2 hasta el final del turno.
-{0}: El Totem de cronatog obtiene +3/+3 hasta el final del turno. Saltate tu siguiente turno. Juega esta habilidad solo una vez cada turno y solo si el Totem de cronatog es una criatura.
-Dandan=El Dandân no puede atacar a menos que el jugador defensor controle una isla.
-Cuando no controles una isla, sacrifica el Dandân.
+Giant Solifuge= ({RG} puede pagarse con {R} o con {G}.) -- Arrolla, prisa.  -- El Solifugo gigante no puede ser objetivo de hechizos o habilidades. -- Sacred Mesa=Al comienzo de tu mantenimiento, sacrifica la Meseta sagrada a menos que sacrifiques un Pegaso. -- {1}{W}: Pon en juego una ficha de criatura Pegaso blanca 1/1 con la habilidad de volar.
+Valor=Dana primero. -- Mientras el Valor este en tu cementerio y controles una llanura, las criaturas que controlas tienen la habilidad de danar primero.
+Chronatog Totem={T}: Agrega {U} a tu reserva de mana. -- {1}{U}: El Totem de cronatog es una criatura artefacto Atog azul 1/2 hasta el final del turno. -- {0}: El Totem de cronatog obtiene +3/+3 hasta el final del turno. Saltate tu siguiente turno. Juega esta habilidad solo una vez cada turno y solo si el Totem de cronatog es una criatura.
+Dandan=El Dandân no puede atacar a menos que el jugador defensor controle una isla. -- Cuando no controles una isla, sacrifica el Dandân.
 Tendrils of Corruption=Los Zarcillos de corrupcion hacen X puntos de dano a la criatura objetivo y tu ganas X vidas, donde X es el numero de pantanos que controlas.
 Disintegrate=Desintegrar hace X puntos de dano a la criatura o jugador objetivo. Esa criatura no puede ser regenerada este turno. Si la criatura fuera a ir a un cementerio este turno, en vez de eso, remuevela del juego.
-Stormscape Familiar=Vuela.
-Te cuesta {1} menos jugar los hechizos blancos y los negros.
-Sengir Autocrat=Cuando el Autocrata de Sengir entre en juego, pon en juego tres fichas de criatura Siervo 0/1.
-Cuando el Autocrata de Sengir deje el juego, remueve del juego todas las fichas de Siervo.
-Celestial Dawn=Las tierras que controlas son llanuras.
-Las cartas que no sean tierras de las cuales seas propietario y que no estan en juego, los hechizos que controlas y los permanentes que no sean tierras que controlas son blancos.
-Puedes usar mana blanco como si fuera mana de cualquier color. Puedes usar otro mana solo como si fuera mana incoloro.
+Stormscape Familiar=Vuela. -- Te cuesta {1} menos jugar los hechizos blancos y los negros.
+Sengir Autocrat=Cuando el Autocrata de Sengir entre en juego, pon en juego tres fichas de criatura Siervo 0/1. -- Cuando el Autocrata de Sengir deje el juego, remueve del juego todas las fichas de Siervo.
+Celestial Dawn=Las tierras que controlas son llanuras. -- Las cartas que no sean tierras de las cuales seas propietario y que no estan en juego, los hechizos que controlas y los permanentes que no sean tierras que controlas son blancos. --Puedes usar mana blanco como si fuera mana de cualquier color. Puedes usar otro mana solo como si fuera mana incoloro.
 Lord of Atlantis=Todos los otros Tritones obtienen +1/+1 y tienen la habilidad de cruzar islas.
-Savage Thallid=Al comienzo de tu mantenimiento, pon un contador de espora sobre el Talido salvaje.
-Remover tres contadores de espora del Talido salvaje: Pon en juego una ficha de criatura Saprolin verde 1/1.
-Sacrificar un Saprolin: Regenera el Hongo objetivo.
-Soul Collector=Vuela.
-Siempre que una criatura que haya recibido dano del Coleccionista de almas este turno vaya a un cementerio, regresa al juego esa carta bajo tu control.
-Metamorfosis {B}{B}{B}  (Puedes jugar esta carta boca abajo como una criatura 2/2 pagando {3}. Ponla boca arriba en cualquier momento pagando su coste de metamorfosis.) 
+Savage Thallid=Al comienzo de tu mantenimiento, pon un contador de espora sobre el Talido salvaje. -- Remover tres contadores de espora del Talido salvaje: Pon en juego una ficha de criatura Saprolin verde 1/1. -- Sacrificar un Saprolin: Regenera el Hongo objetivo.
+Soul Collector=Vuela. -- Siempre que una criatura que haya recibido dano del Coleccionista de almas este turno vaya a un cementerio, regresa al juego esa carta bajo tu control. -- Metamorfosis {B}{B}{B}  (Puedes jugar esta carta boca abajo como una criatura 2/2 pagando {3}. Ponla boca arriba en cualquier momento pagando su coste de metamorfosis.) 
 Akroma, Angel of Wrath=Vuela, dana primero, vigilancia, arrolla, prisa, proteccion contra negro, proteccion contra rojo.
-Orgg=Arrolla.
-El Orgg no puede atacar si el jugador defensor controla una criatura enderezada con fuerza de 3 o mas.
-El Orgg no puede bloquear a criaturas con fuerza de 3 o mas.
+Orgg=Arrolla. -- El Orgg no puede atacar si el jugador defensor controla una criatura enderezada con fuerza de 3 o mas. -- El Orgg no puede bloquear a criaturas con fuerza de 3 o mas.
 Essence Sliver=Siempre que un Fragmentado haga dano, su controlador gana esa cantidad de vida.
 Watcher Sliver=Todos los Fragmentados obtienen +0/+2.
-Scragnoth=El Scragnot no puede ser contrarrestado.
-Proteccion contra azul.
-Whispers of the Muse=Recuperar {5}. (Puedes pagar {5} adicionales en cuanto juegues este hechizo.) Si lo haces, pon esta carta en tu mano en cuanto se resuelve.) 
-Roba una carta.
-Foriysian Interceptor=Destello  (Puedes jugar este hechizo en cualquier momento en que pudieras jugar un instantaneo.) 
-Defensor.
-El Interceptor foriysiano puede bloquear una criatura adicional.
+Scragnoth=El Scragnot no puede ser contrarrestado. -- Proteccion contra azul.
+Whispers of the Muse=Recuperar {5}. (Puedes pagar {5} adicionales en cuanto juegues este hechizo.) Si lo haces, pon esta carta en tu mano en cuanto se resuelve.)  -- Roba una carta.
+Foriysian Interceptor=Destello  (Puedes jugar este hechizo en cualquier momento en que pudieras jugar un instantaneo.) -- Defensor. -- El Interceptor foriysiano puede bloquear una criatura adicional.
 Flowstone Channeler={1}{R}, {T}, descartar una carta: La criatura objetivo obtiene +1/-1 y gana la habilidad de prisa hasta el final del turno.
-Temporal Isolation=Destello  (Puedes jugar este hechizo en cualquier momento en que pudieras jugar un instantaneo.) 
-Encantar criatura.
-La criatura encantada tiene la habilidad de desvanecerse.  (Solo puede bloquear o ser bloqueada por criaturas con la habilidad de desvanecerse.) 
-Preven todo el dano que fuera a ser hecho por la criatura encantada.
-Swamp Mosquito=Vuela.
-Siempre que el Mosquito de la cienaga ataque y no sea bloqueado, el jugador defensor obtiene un contador de veneno.  (Un jugador con diez o mas contadores de veneno pierde el juego.) 
+Temporal Isolation=Destello  (Puedes jugar este hechizo en cualquier momento en que pudieras jugar un instantaneo.) -- Encantar criatura. -- La criatura encantada tiene la habilidad de desvanecerse.  (Solo puede bloquear o ser bloqueada por criaturas con la habilidad de desvanecerse.) -- Preven todo el dano que fuera a ser hecho por la criatura encantada.
+Swamp Mosquito=Vuela. -- Siempre que el Mosquito de la cienaga ataque y no sea bloqueado, el jugador defensor obtiene un contador de veneno.  (Un jugador con diez o mas contadores de veneno pierde el juego.) 
 Pull from Eternity=Pon la carta boca arriba objetivo que esta removida del juego en el cementerio de su propietario.
-Mana Skimmer=Vuela.
-Siempre que el Deslizador de mana haga dano a un jugador, gira la tierra objetivo que controla ese jugador. Esa tierra no se endereza durante el proximo paso de enderezar de su controlador.
-Wall of Roots=Defensor.
-Poner un contador -0/-1 sobre el Muro de raices: Agrega {G} a tu reserva de mana. Juega esta habilidad solo una vez cada turno.
+Mana Skimmer=Vuela. -- Siempre que el Deslizador de mana haga dano a un jugador, gira la tierra objetivo que controla ese jugador. Esa tierra no se endereza durante el proximo paso de enderezar de su controlador.
+Wall of Roots=Defensor. -- Poner un contador -0/-1 sobre el Muro de raices: Agrega {G} a tu reserva de mana. Juega esta habilidad solo una vez cada turno.
 Kobold Taskmaster=Los otros kobolds que controlas obtienen +1/+0.
 Auratog=Sacrificar un encantamiento: El Auratog obtiene +2/+2 hasta el final del turno.
-Crookclaw Transmuter=Destello  (Puedes jugar este hechizo en cualquier momento en que pudieras jugar un instantaneo.) 
-Vuela.
-Cuando el Transmutador garracurva entre en juego, intercambia la fuerza con la resistencia de la criatura objetivo hasta el final del turno.
-Arcane Spyglass={2}, {T}, sacrificar una tierra: Roba una carta y pon un contador de carga sobre el Catalejo arcano.
-Remover tres contadores de carga del Catalejo arcano: Roba una carta.
-Witch-Maw Nephilim=Siempre que juegues un hechizo, puedes poner dos contadores +1/+1 sobre el Nefilim devorabrujas.
-Siempre que el Nefilim devorabrujas ataque, gana la habilidad de arrollar hasta el final del turno si su fuerza es 10 o mas.
+Crookclaw Transmuter=Destello  (Puedes jugar este hechizo en cualquier momento en que pudieras jugar un instantaneo.) -- Vuela. -- Cuando el Transmutador garracurva entre en juego, intercambia la fuerza con la resistencia de la criatura objetivo hasta el final del turno.
+Arcane Spyglass={2}, {T}, sacrificar una tierra: Roba una carta y pon un contador de carga sobre el Catalejo arcano. -- Remover tres contadores de carga del Catalejo arcano: Roba una carta.
+Witch-Maw Nephilim=Siempre que juegues un hechizo, puedes poner dos contadores +1/+1 sobre el Nefilim devorabrujas. -- Siempre que el Nefilim devorabrujas ataque, gana la habilidad de arrollar hasta el final del turno si su fuerza es 10 o mas.
 Dune-Brood Nephilim=Siempre que el Nefilim progenie de arena haga dano de combate a un jugador, pon en juego una ficha de criatura Arena incolora 1/1 por cada tierra que controles.
 Ink-Treader Nephilim=Siempre que un jugador juegue un hechizo instantaneo o conjuro, si el Nefilim pisada oscura es el unico objetivo de ese hechizo, copia el hechizo para cada otra criatura que ese hechizo podria hacer objetivo. Cada copia hace objetivo a cada una de esas otras criaturas.
 Yore-Tiller Nephilim=Siempre que el Nefilim vastago de antano ataque, regresa la carta de criatura objetivo de tu cementerio al juego girada y atacando.
-Glint-Eye Nephilim=Siempre que el Nefilim ojo iluminado haga dano de combate a un jugador, roba ese mismo numero de cartas.
-{1}, descartar una carta: El Nefilim ojo iluminado obtiene +1/+1 hasta el final del turno.
-Sword of the Paruns=Mientras la criatura equipada este girada, las criaturas giradas que controlas obtienen +2/+0.
-Mientras la criatura equipada este enderezada, las criaturas enderezadas que controlas obtienen +0/+2.
-{3}: Gira o endereza la criatura equipada.
-Equipar {3}.
-Mizzium Transreliquat={3}: El Transrelicario Mizzium se convierte en una copia del artefacto objetivo hasta el final del turno.
-{1}{U}{R}: El Transrelicario Mizzium se convierte en una copia del artefacto objetivo y gana esta habilidad.
-Wildsize=La criatura objetivo obtiene +2/+2 y gana la habilidad de arrollar hasta el final del turno.
-Roba una carta.
-Gruul War Plow=Las criaturas que controlas tienen la habilidad de arrollar.
-{1}{R}{G}: El Arado de guerra gruul se convierte en una criatura artefacto Destructor 4/4 hasta el final del turno.
+Glint-Eye Nephilim=Siempre que el Nefilim ojo iluminado haga dano de combate a un jugador, roba ese mismo numero de cartas. -- {1}, descartar una carta: El Nefilim ojo iluminado obtiene +1/+1 hasta el final del turno.
+Sword of the Paruns=Mientras la criatura equipada este girada, las criaturas giradas que controlas obtienen +2/+0. -- Mientras la criatura equipada este enderezada, las criaturas enderezadas que controlas obtienen +0/+2. -- {3}: Gira o endereza la criatura equipada. -- Equipar {3}.
+Mizzium Transreliquat={3}: El Transrelicario Mizzium se convierte en una copia del artefacto objetivo hasta el final del turno. -- {1}{U}{R}: El Transrelicario Mizzium se convierte en una copia del artefacto objetivo y gana esta habilidad.
+Wildsize=La criatura objetivo obtiene +2/+2 y gana la habilidad de arrollar hasta el final del turno. -- Roba una carta.
+Gruul War Plow=Las criaturas que controlas tienen la habilidad de arrollar. -- {1}{R}{G}: El Arado de guerra gruul se convierte en una criatura artefacto Destructor 4/4 hasta el final del turno.
 Poisonbelly Ogre=Siempre que otra criatura entre en juego, su controlador pierde 1 vida.
-Demonfire=El Fuego demoniaco hace X puntos de dano a la criatura o jugador objetivo. Si una criatura que recibio dano de esta manera fuera a ir a un cementerio este turno, en vez de eso, remuevela del juego.
- Temerario  — Si no tienes cartas en la mano, el Fuego demoniaco no puede ser contrarrestado por hechizos o habilidades y el dano no puede ser prevenido.
-Freewind Equenaut=Vuela.
-Mientras la Equinauta errante este encantada, tiene “{T}: La Equinauta errante hace 2 puntos de dano a la criatura atacante o bloqueadora objetivo.”
-Psychic Possession=Encantar oponente.
-Saltate tu paso de robar.
-Siempre que el oponente encantado robe una carta, puedes robar una carta.
-Cackling Flames=Las Llamas carcajeantes hacen 3 puntos de dano a la criatura o jugador objetivo.
- Temerario  — Si no tienes cartas en tu mano, en vez de eso, las Llamas carcajeantes hacen 5 puntos de dano a esa criatura o jugador.
-Trial/Error=Regresa todas las criaturas bloqueando a o bloqueadas por la criatura objetivo a la mano de su propietario.
-//
-Error
-{U}{B}
-Instantaneo
-Contrarresta el hechizo multicolor objetivo.
-Mistral Charger=Vuela.
-Sporeback Troll=Injertar 2  (Esta criatura entra en juego con dos contadores +1/+1 sobre ella. Siempre que otra criatura entre en juego, puedes mover un contador +1/+1 de esta criatura a esa.) 
-{1}{G}: Regenera la criatura objetivo con un contador +1/+1 sobre ella.
-Flash Foliage=Pon en juego una ficha de criatura Saprolin verde 1/1 bloqueando a la criatura objetivo que te esta atacando.
-Roba una carta.
-Court Hussar=Vigilancia.
-Cuando el Husar de la corte entre en juego, mira las tres primeras cartas de tu biblioteca, luego pon una de ellas en tu mano y el resto en el fondo de tu biblioteca en cualquier orden.
-Cuando el Husar de la corte entre en juego, sacrificalo a menos que se haya usado {W} para jugarlo.
-Haazda Shield Mate=Al comienzo de tu mantenimiento, sacrifica el Escudero asistente haazda a menos que pagues {W}{W}.
-{W}: La proxima vez que una fuente de tu eleccion fuera a hacerte dano este turno, preven ese dano.
-Ratcatcher=Inspirar temor.
-Al comienzo de tu mantenimiento, puedes buscar en tu biblioteca una carta de Rata, mostrarla y ponerla en tu mano. Si lo haces, baraja tu biblioteca.
-Safe Haven={2}, {T}: Remueve del juego la criatura objetivo que controlas.
-Al comienzo de tu mantenimiento, puedes sacrificar el Refugio seguro. Si lo haces, regresa al juego bajo el control de su propietario cada carta removida del juego con el Refugio seguro.
-Utvara Scalper=Vuela.
-El Cazacabelleras de Utvara ataca cada turno si puede.
-Biomantic Mastery= ({GU} puede pagarse con {G} o con {U}.) 
-Roba una carta por cada criatura que controla el jugador objetivo, luego roba una carta por cada criatura que controla otro jugador objetivo.
-Evil Eye of Orms-by-Gore=Las criaturas que controlas que no sean Ojos no pueden atacar.
-El Ojo malefico de Orms-by-Gore no puede ser bloqueado excepto por Muros.
+Demonfire=El Fuego demoniaco hace X puntos de dano a la criatura o jugador objetivo. Si una criatura que recibio dano de esta manera fuera a ir a un cementerio este turno, en vez de eso, remuevela del juego. -- Temerario  — Si no tienes cartas en la mano, el Fuego demoniaco no puede ser contrarrestado por hechizos o habilidades y el dano no puede ser prevenido.
+Freewind Equenaut=Vuela. -- Mientras la Equinauta errante este encantada, tiene “{T}: La Equinauta errante hace 2 puntos de dano a la criatura atacante o bloqueadora objetivo.”
+Psychic Possession=Encantar oponente. -- Saltate tu paso de robar. -- Siempre que el oponente encantado robe una carta, puedes robar una carta.
+Cackling Flames=Las Llamas carcajeantes hacen 3 puntos de dano a la criatura o jugador objetivo. -- Temerario  — Si no tienes cartas en tu mano, en vez de eso, las Llamas carcajeantes hacen 5 puntos de dano a esa criatura o jugador.
+Trial/Error=Regresa todas las criaturas bloqueando a o bloqueadas por la criatura objetivo a la mano de su propietario. -- // Error -- U}{B} Instantaneo -- Contrarresta el hechizo multicolor objetivo.
+Mistral Charger=Vuela. -- Sporeback Troll=Injertar 2  (Esta criatura entra en juego con dos contadores +1/+1 sobre ella. Siempre que otra criatura entre en juego, puedes mover un contador +1/+1 de esta criatura a esa.) -- {1}{G}: Regenera la criatura objetivo con un contador +1/+1 sobre ella.
+Flash Foliage=Pon en juego una ficha de criatura Saprolin verde 1/1 bloqueando a la criatura objetivo que te esta atacando. --Roba una carta.
+Court Hussar=Vigilancia. -- Cuando el Husar de la corte entre en juego, mira las tres primeras cartas de tu biblioteca, luego pon una de ellas en tu mano y el resto en el fondo de tu biblioteca en cualquier orden. -- Cuando el Husar de la corte entre en juego, sacrificalo a menos que se haya usado {W} para jugarlo.
+Haazda Shield Mate=Al comienzo de tu mantenimiento, sacrifica el Escudero asistente haazda a menos que pagues {W}{W}. -- {W}: La proxima vez que una fuente de tu eleccion fuera a hacerte dano este turno, preven ese dano.
+Ratcatcher=Inspirar temor. -- Al comienzo de tu mantenimiento, puedes buscar en tu biblioteca una carta de Rata, mostrarla y ponerla en tu mano. Si lo haces, baraja tu biblioteca.
+Safe Haven={2}, {T}: Remueve del juego la criatura objetivo que controlas. -- Al comienzo de tu mantenimiento, puedes sacrificar el Refugio seguro. Si lo haces, regresa al juego bajo el control de su propietario cada carta removida del juego con el Refugio seguro.
+Utvara Scalper=Vuela. --El Cazacabelleras de Utvara ataca cada turno si puede.
+Biomantic Mastery= ({GU} puede pagarse con {G} o con {U}.) -- Roba una carta por cada criatura que controla el jugador objetivo, luego roba una carta por cada criatura que controla otro jugador objetivo.
+Evil Eye of Orms-by-Gore=Las criaturas que controlas que no sean Ojos no pueden atacar. -- El Ojo malefico de Orms-by-Gore no puede ser bloqueado excepto por Muros.
 Pillar of the Paruns={T}: Agrega un mana de cualquier color a tu reserva de mana. Usa este mana solo para jugar un hechizo multicolor.
 Goblin Snowman=Siempre que el Muneco de nieve trasgo bloquee, preven todo el dano de combate que el fuera a hacer y recibir este turno.
 {T}: El Muneco de nieve trasgo hace 1 punto de dano a la criatura objetivo que esta bloqueando.
@@ -1745,27 +1664,21 @@ Equipar {2}.
 Adarkar Wastes={T}: Agrega {1} a tu reserva de mana.
 {T}: Agrega {W} o {U} a tu reserva de mana. Los Yermos de Adarkar te hacen 1 punto de dano.
 Air Elemental=Vuela.  (Esta criatura no puede ser bloqueada excepto por criaturas que tengan la habilidad de volar o alcance.) 
-Angel of Mercy=Vuela.  (Esta criatura no puede ser bloqueada excepto por criaturas que tengan la habilidad de volar o alcance.)  
-Cuando el Angel de piedad entre en juego, gana 3 vidas.
+Angel of Mercy=Vuela. (Esta criatura no puede ser bloqueada excepto por criaturas que tengan la habilidad de volar o alcance.) -- Cuando el Angel de piedad entre en juego, gana 3 vidas.
 Angel's Feather=Siempre que un jugador juegue un hechizo blanco, puedes ganar una vida.
-Aven Cloudchaser=Vuela.  (Esta criatura no puede ser bloqueada excepto por criaturas que tengan la habilidad de volar o alcance.)  
-Cuando el Cazanubes aven entre en juego, destruye el encantamiento objetivo.
-Snapping Drake=Vuela.  (Esta criatura no puede ser bloqueada excepto por criaturas que tengan la habilidad de volar o alcance.) 
-Aven Windreader=Vuela.  (Esta criatura no puede ser bloqueada excepto por criaturas que tengan la habilidad de volar o alcance.)  
-{1}{U}: El jugador objetivo muestra la primera carta de su biblioteca.
+Aven Cloudchaser=Vuela. (Esta criatura no puede ser bloqueada excepto por criaturas que tengan la habilidad de volar o alcance.) -- Cuando el Cazanubes aven entre en juego, destruye el encantamiento objetivo.
+Snapping Drake=Vuela. (Esta criatura no puede ser bloqueada excepto por criaturas que tengan la habilidad de volar o alcance.) 
+Aven Windreader=Vuela. (Esta criatura no puede ser bloqueada excepto por criaturas que tengan la habilidad de volar o alcance.) -- {1}{U}: El jugador objetivo muestra la primera carta de su biblioteca.
 Ballista Squad={X}{W}, {T}: La Escuadra de ballesta hace X puntos de dano a la criatura atacante o bloqueadora objetivo.
-Battlefield Forge={T}: Agrega {1} a tu reserva de mana.
-{T}: Agrega {R} o {W} a tu reserva de mana. La Forja del campo de batalla te hace 1 punto de dano.
+Battlefield Forge={T}: Agrega {1} a tu reserva de mana. -- {T}: Agrega {R} o {W} a tu reserva de mana. La Forja del campo de batalla te hace 1 punto de dano.
 Crucible of Worlds=Puedes jugar cartas de tierra de tu cementerio.
 Blaze=La Llamarada hace X puntos de dano a la criatura o jugador objetivo.
 Dusk Imp=Vuela.  (Esta criatura no puede ser bloqueada excepto por criaturas que tengan la habilidad de volar o alcance.) 
 Bog Wraith=Cruza pantanos.  (Esta criatura es imbloqueable mientras el jugador defensor controle un pantano.) 
 Boomerang=Regresa el permanente objetivo a la mano de su propietario.
 Bottle Gnomes=Sacrificar los Gnomos frasco: Ganas 3 vidas.
-Brushland={T}: Agrega {1} a tu reserva de mana.
-{T}: Agrega {G} o {W} a tu reserva de mana. Los Matorrales te hacen 1 punto de dano.
-Caves of Koilos={T}: Agrega {1} a tu reserva de mana.
-{T}: Agrega {W} o {B} a tu reserva de mana. Las Cuevas de Koilos te hacen 1 punto de dano.
+Brushland={T}: Agrega {1} a tu reserva de mana. -- {T}: Agrega {G} o {W} a tu reserva de mana. Los Matorrales te hacen 1 punto de dano.
+Caves of Koilos={T}: Agrega {1} a tu reserva de mana. -- {T}: Agrega {W} o {B} a tu reserva de mana. Las Cuevas de Koilos te hacen 1 punto de dano.
 Clone=En cuanto el Clon entre en juego, puedes elegir una criatura en juego. Si lo haces, el Clon entra en juego como una copia de esa criatura.
 Coat of Arms=Cada criatura obtiene +1/+1 por cada otra criatura que haya en juego que comparta un tipo de criatura con ella.  (Por ejemplo, si hay un Guerrero trasgo, un Explorador trasgo y un Trasgo zombie en juego, cada uno obtiene +2/+2.) 
 Consume Spirit=Usa solo mana negro para pagar X.
@@ -2039,12 +1952,11 @@ La criatura encantada obtiene +1/+1 y no puede ser bloqueada excepto por criatur
 Underground River={T}: Agrega {1} a tu reserva de mana.
 {T}: Agrega {U} o {B} a tu reserva de mana. El Rio subterraneo te hace 1 punto de dano.
 Underworld Dreams=Siempre que un oponente robe una carta, los Suenos del infierno le hacen 1 punto de dano.
-Unholy Strength=Encantar criatura.  (Haz objetivo a una criatura al jugarlo. Esta carta entra en juego anexada a esa criatura.) 
-La criatura encantada obtiene +2/+1.
+Unholy Strength=Encantar criatura.  (Haz objetivo a una criatura al jugarlo. Esta carta entra en juego anexada a esa criatura.) -- La criatura encantada obtiene +2/+1.
 Venerable Monk=Cuando el Monje venerable entre en juego, gana 2 vidas.
 Verdant Force=Al comienzo de cada mantenimiento, pon en juego bajo tu control una ficha de criatura Saprolin verde 1/1.
 Gaea's Herald=Los hechizos de criatura no pueden ser contrarrestados.
-Youthful Knight=Dana primero.  (Esta criatura hace dano de combate antes que las criaturas sin la habilidad de danar primero.) 
+Youthful Knight=Dana primero. (Esta criatura hace dano de combate antes que las criaturas sin la habilidad de danar primero.) 
 Viridian Shaman=Cuando la Chaman viridiana entre en juego destruye el artefacto objetivo.
 Warrior's Honor=Las criaturas que controles obtienen +1/+1 hasta el final del turno.
 Loyal Sentry=Cuando el Centinela leal bloquee a una criatura, destruye esa criatura y al Centinela leal.
@@ -2318,8 +2230,7 @@ Stronghold Discipline=Cada jugador pierde 1 vida por cada criatura que controle.
 Terror=Destruye la criatura objetivo que no sea negra o artefacto. No puede ser regenerada.
 Afflict=La criatura objetivo obtiene -1/-1 hasta el final del turno.
 Roba una carta.
-Serra's Embrace=Encantar criatura.  (Haz objetivo a una criatura al jugarlo. Esta carta entra en juego anexada a esa criatura.) 
-La criatura encantada obtiene +2/+2 y tiene la habilidad de volar y vigilancia.  (No puede ser bloqueada excepto por criaturas que tengan la habilidad de volar o alcance, y no se gira al atacar.) 
+Serra's Embrace=Encantar criatura.  (Haz objetivo a una criatura al jugarlo. Esta carta entra en juego anexada a esa criatura.) -- La criatura encantada obtiene +2/+2 y tiene la habilidad de volar y vigilancia.  (No puede ser bloqueada excepto por criaturas que tengan la habilidad de volar o alcance, y no se gira al atacar.) 
 Sylvan Basilisk=Siempre que el Basilisco silvano sea bloqueado por una criatura, destruye esa criatura.
 Dross Crocodile=
 Sage Owl=Vuela.  (Esta criatura no puede ser bloqueada excepto por criaturas que tengan la habilidad de volar o alcance.)  
@@ -2483,9 +2394,7 @@ Roba una carta.
 Primal Rage=Las criaturas que controlas tienen la habilidad de arrollar.  (Si una criatura que controles fuera a hacer suficiente dano de combate a sus bloqueadores como para destruirlos, puedes hacer que le haga el resto del dano al jugador defensor.) 
 Mantis Engine={2}: El Motor de mantis gana la habilidad de volar hasta el final del turno.  (No puede ser bloqueada excepto por criaturas que tengan la habilidad de volar o alcance.) 
 {2}: El Motor de mantis gana la habilidad de danar primero hasta el final del turno.  (Hace dano de combate antes que las criaturas sin la habilidad de danar primero.) 
-Voice of All=Vuela.  (Esta criatura no puede ser bloqueada excepto por criaturas que tengan la habilidad de volar o alcance.)  
-En cuanto la Voz de todos entre en juego, elige un color. 
-La Voz de todos tiene proteccion contra el color elegido.  (No puede ser bloqueada, hecha objetivo, recibir dano de o estar encantada por nada del color elegido.) 
+Voice of All=Vuela. (Esta criatura no puede ser bloqueada excepto por criaturas que tengan la habilidad de volar o alcance.) -- En cuanto la Voz de todos entre en juego, elige un color. -- La Voz de todos tiene proteccion contra el color elegido. (No puede ser bloqueada, hecha objetivo, recibir dano de o estar encantada por nada del color elegido.) 
 Rule of Law=Ningun jugador puede jugar mas de un hechizo cada turno.
 Spitting Earth=La Sacudida telurica hace una cantidad de dano igual al numero de montanas que controles a la criatura objetivo.
 Burrenton Forge-Tender=Proteccion contra rojo.
@@ -3656,41 +3565,17 @@ Siempre que otro Espantapajaros entre en juego bajo tu control, destruye el perm
 Strip Bare=Destruye todos los equipos y auras anexados a la criatura objetivo.
 Toil to Renown=Ganas 1 vida por cada artefacto, criatura y tierra girada que controles.
 Rosheen Meanderer={T}: Agrega {4} a tu reserva de mana. Usa este mana solo en costes que contengan {X}.
-Goldenglow Moth=Vuela.
-Siempre que la Polilla brillo dorado bloquee, puedes ganar 4 vidas.
+Goldenglow Moth=Vuela. -- Siempre que la Polilla brillo dorado bloquee, puedes ganar 4 vidas.
 Oracle of Nectars={X}, {T}: Ganas X vidas.
-Ajani Goldmane=+1: Gana 2 vidas.
--1: Pon un contador +1/+1 sobre cada criatura que controlas. Esas criaturas ganan la habilidad de vigilancia hasta el final del turno.
--6: Pon en juego una ficha de criatura Avatar blanca con “La fuerza y la resistencia de esta criatura son iguales a tu total de vidas”.
-Jace Beleren=+2: Cada jugador roba una carta.
--1: El jugador objetivo roba una carta.
--10: El jugador objetivo pone las primeras veinte cartas de su biblioteca en su cementerio.
-Liliana Vess=+1: El jugador objetivo descarta una carta.
--2: Busca una carta en tu biblioteca, luego barajala y pon esa carta en su parte superior.
--8: Pon en juego bajo tu control todas las cartas de criatura de todos los cementerios.
-Chandra Nalaar=+1: Chandra Nalaar hace 1 punto de dano al jugador objetivo.
--X: Chandra Nalaar hace X puntos de dano a la criatura objetivo.
--8: Chandra Nalaar hace 10 puntos de dano al jugador objetivo y a cada criatura que controla.
-Garruk Wildspeaker=+1: Endereza dos tierras objetivo.
--1: Pon en juego una ficha de criatura Bestia verde 3/3.
--4: Las criaturas que controlas obtienen +3/+3 y ganan la habilidad de arrollar hasta el final del turno.
-Tears of Rage=Juega las Lagrimas de ira solo durante tu paso de declarar atacantes.
-Las criaturas atacantes que controles obtienen +X/+0 hasta el final del turno, donde X es el numero de criaturas atacantes. Sacrifica esas criaturas al final del turno.
-Spawning Pit=Sacrificar una criatura: Pon un contador de carga sobre el Pozo de desove.
-{1}, remover dos contadores de carga del Pozo de desove: Pon en juego una ficha de criatura Engendro artefacto 2/2.
-Bomb Squad={T}: Pon un contador de mecha sobre la criatura objetivo.
-Al comienzo de tu mantenimiento, pon un contador de mecha sobre cada criatura que tenga un contador de mecha sobre ella.
-Siempre que una criatura tenga cuatro o mas contadores de mecha sobre ella, remueve todos los contadores de mecha de ella y destruyela. Esa criatura hace 4 puntos de dano a su controlador.
-Gallantry=La criatura objetivo bloqueadora obtiene +4/+4 hasta el final del turno.
-Roba una carta.
+Tears of Rage=Juega las Lagrimas de ira solo durante tu paso de declarar atacantes. -- Las criaturas atacantes que controles obtienen +X/+0 hasta el final del turno, donde X es el numero de criaturas atacantes. Sacrifica esas criaturas al final del turno.
+Spawning Pit=Sacrificar una criatura: Pon un contador de carga sobre el Pozo de desove. -- {1}, remover dos contadores de carga del Pozo de desove: Pon en juego una ficha de criatura Engendro artefacto 2/2.
+Bomb Squad={T}: Pon un contador de mecha sobre la criatura objetivo. -- Al comienzo de tu mantenimiento, pon un contador de mecha sobre cada criatura que tenga un contador de mecha sobre ella. -- Siempre que una criatura tenga cuatro o mas contadores de mecha sobre ella, remueve todos los contadores de mecha de ella y destruyela. Esa criatura hace 4 puntos de dano a su controlador.
+Gallantry=La criatura objetivo bloqueadora obtiene +4/+4 hasta el final del turno. -- Roba una carta.
 Hallow=Preven todo el dano que el hechizo objetivo fuera a hacer este turno. Ganas vida igual a la cantidad de dano prevenido de esta manera.
 Blessed Orator=Las demas criaturas que controles obtienen +0/+1.
-Pilgrim of Virtue=Proteccion contra negro.
-{W}, sacrificar el Peregrino de virtud: La siguiente vez que una fuente negra de tu eleccion fuera a hacer dano este turno, preven ese dano.
-Pilgrim of Justice=Proteccion contra rojo.
-{W}, sacrificar el Peregrino de justicia: La siguiente vez que una fuente roja de tu eleccion fuera a hacer dano este turno, preven ese dano.
-Aven Archer=Vuela.
-{2}{W}, {T}: El Arquero aven hace 2 puntos de dano a la criatura objetivo atacante o bloqueadora.
+Pilgrim of Virtue=Proteccion contra negro. -- {W}, sacrificar el Peregrino de virtud: La siguiente vez que una fuente negra de tu eleccion fuera a hacer dano este turno, preven ese dano.
+Pilgrim of Justice=Proteccion contra rojo. -- {W}, sacrificar el Peregrino de justicia: La siguiente vez que una fuente roja de tu eleccion fuera a hacer dano este turno, preven ese dano.
+Aven Archer=Vuela. -- {2}{W}, {T}: El Arquero aven hace 2 puntos de dano a la criatura objetivo atacante o bloqueadora.
 Hallowed Healer={T}: Preven los siguientes 2 puntos de dano que se le fuera a hacer a la criatura o jugador objetivo este turno.
 Umbral — {T}: Preven los siguientes 4 puntos de dano que se le fuera a hacer a la criatura o jugador objetivo este turno.  (Juega esta habilidad solo si hay siete o mas cartas en tu cementerio.) 
 Aven Cloudchaser=Vuela.
@@ -4696,7 +4581,7 @@ Equipar {1}  ({1}: Anexa este equipo a la criatura objetivo que controles. Juega
 Dross Crocodile=
 Rain of Rust=Elige uno: Destruye el artefacto objetivo; o destruye la tierra objetivo.
 Entrelazar {3}{R}  (Si pagas el coste de entrelazar, juega ambas opciones.) 
-Skyhunter Skirmisher=Vuela, dana dos veces.
+Skyhunter Skirmisher=Vuela. -- Dana dos veces. (Esta criatura dana primero y tambien hace dano de combate normal.)
 All Suns' Dawn=Por cada color, regresa hasta una carta objetivo de ese color de tu cementerio a tu mano. Luego remueve del juego el Amanecer de todos los soles.
 Dawn's Reflection=Siempre que se gire la tierra encantada para obtener mana, su controlador agrega dos mana de cualquier combinacion de color a su reserva de mana.
 Condescend=Contrarresta el hechizo objetivo a menos que su controlador pague {X}.
@@ -4725,12 +4610,11 @@ Fold into AEther=Contrarresta el hechizo objetivo. Si lo haces, el controlador d
 Krark-Clan Ironworks=Sacrificar un artefacto: Agrega {2} a tu reserva de mana.
 Blinkmoth Infusion=Afinidad por artefactos.  (Este hechizo te cuesta {1} menos para jugarlo por cada artefacto que controles.) 
 Endereza todos los artefactos.
-Plunge into Darkness=Elige uno: Sacrifica cualquier numero de criaturas, luego ganas 3 vidas por cada criatura sacrificada; o paga X vidas, luego mira las primeras X cartas de la parte superior de tu biblioteca, pon una de esas cartas en tu mano, y remueve el resto del juego.
-Entrelazar {B}  (Si pagas el coste de entrelazar, juega ambas opciones.) 
+Plunge into Darkness=Elige uno: Sacrifica cualquier numero de criaturas, luego ganas 3 vidas por cada criatura sacrificada; o paga X vidas, luego mira las primeras X cartas de la parte superior de tu biblioteca, pon una de esas cartas en tu mano, y remueve el resto del juego. -- Entrelazar {B}  (Si pagas el coste de entrelazar, juega ambas opciones.) 
 Demon's Horn=Siempre que un jugador juegue un hechizo negro, puedes ganar una vida.
 Dragon's Claw=Siempre que un jugador juegue un hechizo rojo, puedes ganar una vida.
 Wurm's Tooth=Siempre que un jugador juegue un hechizo verde, puedes ganar una vida.
-Angel's Feather=Siempre que un jugador juegue un hechizo blanco, puedes ganar una vida.
+Angel's Feather=Siempre que un jugador lance un hechizo blanco, puedes ganar una vida.
 Arcbound Wanderer=Modular—Estallido solar  (Esto entra en juego con un contador +1/+1 sobre el por cada color de mana usado para pagar su coste. Cuando sea puesto en un cementerio, puedes poner sus contadores +1/+1 sobre la criatura artefacto objetivo.) 
 Granulate=Destruye cada artefacto que no sea tierra con coste de mana convertido de 4 o menos.
 Leonin Squire=Cuando el Escudero leonino entre en juego, regresa la carta de artefacto objetivo con coste de mana convertido de 1 o menos de tu cementerio a tu mano.
@@ -5674,8 +5558,7 @@ Gravedigger=Cuando el Sepulturero entre en juego, puedes regresar la carta objet
 Grizzly Bears=
 Hill Giant=
 Holy Day=Preven todo el dano de combate que se fuera a hacer este turno.
-Holy Strength=Encantar criatura  (Haz objetivo a una criatura al jugarlo. Esta carta entra en juego anexada a esa criatura.) 
-La criatura encantada obtiene +1/+2.
+Holy Strength=Encantar criatura  (Haz objetivo a una criatura al jugarlo. Esta carta entra en juego anexada a esa criatura.) -- La criatura encantada obtiene +1/+2.
 Honor Guard={W}: El Guardia de honor obtiene +0/+1 hasta el final del turno.
 Horned Turtle=
 Howling Mine=Al inicio del paso de robar de cada jugador, si la Mina aullante esta enderezada, ese jugador roba una carta.
@@ -5756,8 +5639,7 @@ Samite Healer={T}: Preven el siguiente 1 punto de dano que se le fuera a hacer a
 Savannah Lions=
 Scathe Zombies=
 Sea Monster=El Engendro marino no puede atacar a menos que el jugador defensor controle una isla.
-Serra Angel=Vuela.  (Esta criatura no puede ser bloqueada excepto por criaturas que tengan la habilidad de volar.) 
-Vigilancia.  (Esta criatura no se gira al atacar.) 
+Serra Angel=Vuela. (Esta criatura no puede ser bloqueada excepto por criaturas que tengan la habilidad de volar.) -- Vigilancia.  (Esta criatura no se gira al atacar.) 
 Shatter=Destruye el artefacto objetivo.
 Dream Prowler=El Rondador onirico es imbloqueable mientras ataque solo.
 Shivan Dragon=Vuela.  (Esta criatura no puede ser bloqueada excepto por criaturas que tengan la habilidad de volar.) 
@@ -6860,9 +6742,7 @@ Debtors' Knell= ({WB} puede pagarse con {W} o con {B}.)
 Al comienzo de tu mantenimiento, pon en juego bajo tu control la carta de criatura objetivo en un cementerio.
 Conjurer's Ban=Nombra una carta. Hasta tu proximo turno, la carta nombrada no puede jugarse.
 Roba una carta.
-Djinn Illuminatus= ({UR} puede pagarse con {U} o con {R}.) 
-Vuela.
-Cada hechizo instantaneo o conjuro que juegues tienen la habilidad de reproducir. Su coste de reproducir es igual a su coste de mana.  (Cuando lo juegues, copialo por cada vez que pagaste su coste de reproducir. Puedes elegir nuevos objetivos para la copia.) 
+Djinn Illuminatus= ({UR} puede pagarse con {U} o con {R}.) --Vuela. -- Cada hechizo instantaneo o conjuro que juegues tienen la habilidad de reproducir. Su coste de reproducir es igual a su coste de mana.  (Cuando lo juegues, copialo por cada vez que pagaste su coste de reproducir. Puedes elegir nuevos objetivos para la copia.) 
 Rumbling Slum=Al comienzo de tu mantenimiento, el Distrito retumbante hace 1 punto de dano a cada jugador.
 Rabble-Rouser=Sed de sangre 1  (Si un oponente recibio dano este turno, esta criatura entra en juego con un contador +1/+1 sobre ella.) 
 {R}, {T}: Las criaturas atacantes obtienen +X/+0 hasta el final del turno, donde X es la fuerza del Agitador.
@@ -6916,23 +6796,12 @@ Siege of Towers=Reproducir {1}{R}  (Cuando juegues este hechizo, copialo por cad
 La montana objetivo se convierte en una criatura 3/1. Sigue siendo una tierra.
 Ogre Savant=Cuando el Sabio ogro entre en juego, si se uso {U} para jugarlo, regresa la criatura objetivo a la mano de su propietario.
 Earth Surge=Cada tierra obtiene +2/+2 mientras sea una criatura.
-Chandra Nalaar=+1: Chandra Nalaar hace 1 punto de dano al jugador objetivo.
--X: Chandra Nalaar hace X puntos de dano a la criatura objetivo.
--8: Chandra Nalaar hace 10 puntos de dano al jugador objetivo y a cada criatura que controla.
-Garruk Wildspeaker=+1: Endereza dos tierras objetivo.
--1: Pon en juego una ficha de criatura Bestia verde 3/3.
--4: Las criaturas que controlas obtienen +3/+3 y ganan la habilidad de arrollar hasta el final del turno.
-Liliana Vess=+1: El jugador objetivo descarta una carta.
--2: Busca una carta en tu biblioteca, luego barajala y pon esa carta en su parte superior.
--8: Pon en juego bajo tu control todas las cartas de criatura de todos los cementerios.
-Jace Beleren=+2: Cada jugador roba una carta.
--1: El jugador objetivo roba una carta.
--10: El jugador objetivo pone las primeras veinte cartas de su biblioteca en su cementerio.
-Ajani Goldmane=+1: Gana 2 vidas.
--1: Pon un contador +1/+1 sobre cada criatura que controlas. Esas criaturas ganan la habilidad de vigilancia hasta el final del turno.
--6: Pon en juego una ficha de criatura Avatar blanca con “La fuerza y la resistencia de esta criatura son iguales a tu total de vidas”.
-Heartlash Cinder=Prisa.
- Croma  — Cuando el Ceniciento corazon de latigo entre en juego, obtiene +X/+0 hasta el final del turno, donde X es la cantidad de simbolos de mana rojo en los costes de mana de los permanentes que controlas.
+Chandra Nalaar=[+1]: Chandra Nalaar hace 1 punto de dano al jugador objetivo. -- [-X]: Chandra Nalaar hace X puntos de dano a la criatura objetivo. -- [-8]: Chandra Nalaar hace 10 puntos de dano al jugador objetivo y a cada criatura que controla.
+Garruk Wildspeaker=[+1]: Endereza dos tierras objetivo. -- [-1]: Pon en juego una ficha de criatura Bestia verde 3/3. -- [-4]: Las criaturas que controlas obtienen +3/+3 y ganan la habilidad de arrollar hasta el final del turno.
+Liliana Vess=[+1]: El jugador objetivo descarta una carta. -- [-2]: Busca una carta en tu biblioteca, luego barajala y pon esa carta en su parte superior. -- [-8]: Pon en juego bajo tu control todas las cartas de criatura de todos los cementerios.
+Jace Beleren=[+2]: Cada jugador roba una carta. -- [-1]: El jugador objetivo roba una carta. -- [-10]: El jugador objetivo pone las primeras veinte cartas de su biblioteca en su cementerio.
+Ajani Goldmane=[+1]: Gana 2 vidas. -- [-1]: Pon un contador +1/+1 sobre cada criatura que controlas. Esas criaturas ganan la habilidad de vigilancia hasta el final del turno. -- [-6]: Pon en juego una ficha de criatura Avatar blanca con “La fuerza y la resistencia de esta criatura son iguales a tu total de vidas”.
+Heartlash Cinder=Prisa. -- Croma  — Cuando el Ceniciento corazon de latigo entre en juego, obtiene +X/+0 hasta el final del turno, donde X es la cantidad de simbolos de mana rojo en los costes de mana de los permanentes que controlas.
 Inundate=Regresa todas las criaturas que no sean azules a las manos de sus propietarios.
 Marshdrinker Giant=Cuando el Gigante bebecienagas entre en juego, destruye la isla o pantano objetivo que controla un oponente.
 Soul Snuffers=Cuando los Apagadores de almas entren en juego, pon un contador -1/-1 sobre cada criatura.
@@ -7000,24 +6869,16 @@ Al comienzo de tu paso de robar, roba una carta.
 Gift of the Deity=Encantar criatura.
 Mientras la criatura encantada sea negra, obtiene +1/+1 y tiene la habilidad de toque mortal.  (Siempre que haga dano a una criatura, destruye esa criatura.) 
 Mientras la criatura encantada sea verde, obtiene +1/+1 y todas las criaturas que puedan bloquearla lo hacen.
-Dominus of Fealty=Vuela.
-Al comienzo de tu mantenimiento, puedes ganar el control del permanente objetivo hasta el final del turno. Si lo haces, enderezalo y gana la habilidad de prisa hasta el final del turno.
-Edge of the Divinity=Encantar criatura.
-Mientras la criatura encantada sea blanca, obtiene +1/+2.
-Mientras la criatura encantada sea negra, obtiene +2/+1.
-Merrow Bonegnawer={T}: El jugador objetivo remueve del juego una carta de su cementerio. 
-Siempre que juegues un hechizo negro, puedes enderezar el Roehuesos merrow.
+Dominus of Fealty=Vuela. -- Al comienzo de tu mantenimiento, puedes ganar el control del permanente objetivo hasta el final del turno. Si lo haces, enderezalo y gana la habilidad de prisa hasta el final del turno.
+Edge of the Divinity=Encantar criatura. -- Mientras la criatura encantada sea blanca, obtiene +1/+2. -- Mientras la criatura encantada sea negra, obtiene +2/+1.
+Merrow Bonegnawer={T}: El jugador objetivo remueve del juego una carta de su cementerio. -- Siempre que juegues un hechizo negro, puedes enderezar el Roehuesos merrow.
 Duskdale Wurm=Arrolla.
 Battlegate Mimic=Siempre que juegues un hechizo que sea tanto rojo como blanco el Mimico del portal se convierte en 4/2 y gana la habilidad de danar primero hasta el final del turno.
-Spirit of the Hearth=Vuela.
-No puedes ser objetivo de hechizos o habilidades que controlen tus oponentes.
-Scourge of the Nobilis=Encantar criatura.
-Mientras la criatura encantada sea roja, obtiene +1/+1 y tiene “{RW}: Esta criatura obtiene +1/+0 hasta el final del turno”.
-Mientras la criatura encantada sea blanca, obtiene +1/+1 y tiene la habilidad de vinculo vital.  (Siempre que haga dano, su controlador gana esa cantidad de vida.) 
+Spirit of the Hearth=Vuela. -- No puedes ser objetivo de hechizos o habilidades que controlen tus oponentes.
+Scourge of the Nobilis=Encantar criatura. -- Mientras la criatura encantada sea roja, obtiene +1/+1 y tiene “{RW}: Esta criatura obtiene +1/+0 hasta el final del turno”. -- Mientras la criatura encantada sea blanca, obtiene +1/+1 y tiene la habilidad de vinculo vital.  (Siempre que haga dano, su controlador gana esa cantidad de vida.) 
 Noggle Ransacker=Cuando el Saqueador noggle entre en juego, cada jugador roba dos cartas, luego descarta una carta al azar.
 Canker Abomination=En cuanto la Abominacion gangrenosa entre en juego, elige un oponente. La Abominacion gangrenosa entra en juego con un contador -1/-1 sobre ella por cada criatura que controle ese jugador.
-Puncture Blast=Debilitar.  (Esta fuente hace dano a las criaturas en forma de contadores -1/-1.) 
-La Rafaga punzante hace 3 puntos de dano a la criatura o jugador objetivo.
+Puncture Blast=Debilitar.  (Esta fuente hace dano a las criaturas en forma de contadores -1/-1.) -- La Rafaga punzante hace 3 puntos de dano a la criatura o jugador objetivo.
 Spitemare=Siempre que la Yegua del rencor reciba dano, hace esa misma cantidad de dano a la criatura o jugador objetivo.
 Gilder Bairn={2}{GU}, {Q}: Por cada contador sobre el permanente objetivo por otro de esos contadores sobre ese permanente.  ({Q} es el simbolo de enderezar.) 
 Impelled Giant=Arrolla.
@@ -7219,38 +7080,26 @@ Desenterrar {2}{R}.  ({2}{R}: Regresa esta carta de tu cementerio al juego. Gana
 Archdemon of Unx=Vuela, arrolla.
 Al comienzo de tu mantenimiento, sacrifica una criatura que no sea Zombie y luego pon en juego una ficha de criatura Zombie negra 2/2.
 Dreg Reaver=
-Ajani Vengeant=+1: El permanente objetivo no se endereza durante el proximo paso de enderezar de su controlador.
--2: Ajani Vengativo hace 3 puntos de dano a la criatura o jugador objetivo y tu ganas 3 vidas.
--7: Destruye todas las tierras que controla el jugador objetivo.
+Ajani Vengeant=[+1]: El permanente objetivo no se endereza durante el proximo paso de enderezar de su controlador. -- [-2]: Ajani Vengativo hace 3 puntos de dano a la criatura o jugador objetivo y tu ganas 3 vidas. -- [-7]: Destruye todas las tierras que controla el jugador objetivo.
 Scourglass={T}, sacrificar el Reloj depurador: Destruye todos los permanentes excepto los artefactos y las tierras. Juega esta habilidad solo durante tu mantenimiento.
-Elspeth, Knight-Errant=+1: Pon en juego una ficha de criatura Soldado blanca 1/1.
-+1: La criatura objetivo obtiene +3/+3 y gana la habilidad de volar hasta el final del turno.
--8: Por el resto del juego los artefactos, criaturas, encantamiento y tierras que controlas son indestructibles.
+Elspeth, Knight-Errant=[+1]: Pon en juego una ficha de criatura Soldado blanca 1/1. -- [+1]: La criatura objetivo obtiene +3/+3 y gana la habilidad de volar hasta el final del turno. -- [-8]: Por el resto del juego los artefactos, criaturas, encantamiento y tierras que controlas son indestructibles.
 Sprouting Thrinax=Cuando el Thrinax germinante vaya a un cementerio desde el juego, pon en juego tres fichas de criatura Saprolin verdes 1/1.
-Sigil of Distinction=El Sello de distincion entra en juego con X contadores de carga sobre el.
-La criatura equipada obtiene +1/+1 por cada contador de carga sobre el Sello de distincion.
+Sigil of Distinction=El Sello de distincion entra en juego con X contadores de carga sobre el. -- La criatura equipada obtiene +1/+1 por cada contador de carga sobre el Sello de distincion.
 Equipar—Remover un contador de carga del Sello de distincion.
-Grixis Battlemage={U}, {T}: Roba una carta, luego descarta una carta.
-{R}, {T}: La criatura objetivo no puede bloquear este turno.
-Qasali Ambusher=Alcance.
-Si una criatura te esta atacando y controlas un bosque y una llanura, puedes jugar el Acechador qasali sin pagar su coste de mana como si tuviera la habilidad de destello.
+Grixis Battlemage={U}, {T}: Roba una carta, luego descarta una carta. -- {R}, {T}: La criatura objetivo no puede bloquear este turno.
+Qasali Ambusher=Alcance. -- Si una criatura te esta atacando y controlas un bosque y una llanura, puedes jugar el Acechador qasali sin pagar su coste de mana como si tuviera la habilidad de destello.
 Thunder-Thrash Elder=Devorar 3.  (En cuanto esto entra en juego puedes sacrificar cualquier cantidad de criaturas. Esta criatura entra en juego con el triple de esa cantidad de contadores +1/+1 sobre ella.) 
 Fleshbag Marauder=Cuando el Merodeador bolsa de carne entre en juego, cada jugador sacrifica una criatura.
-Esper Battlemage={W}, {T}: Preven los siguientes 2 puntos de dano que se te fueran a hacer este turno.
-{B}, {T}: La criatura objetivo obtiene -1/-1 hasta el final del turno.
+Esper Battlemage={W}, {T}: Preven los siguientes 2 puntos de dano que se te fueran a hacer este turno. -- {B}, {T}: La criatura objetivo obtiene -1/-1 hasta el final del turno.
 Hissing Iguanar=Siempre que otra criatura vaya a un cementerio desde el juego, puedes hacer que el Iguanar siseante le haga 1 punto de dano al jugador objetivo.
 Kresh the Bloodbraided=Siempre que otra criatura vaya a un cementerio desde el juego, puedes poner X contadores +1/+1 sobre Kresh Trenzas Sangrientas, donde X es la fuerza de esa criatura.
-Savage Lands=Las Tierras salvajes entran en juego giradas.
-{T}: Agrega {B}, {R}, o {G} a tu reserva de mana.
-Sharding Sphinx=Vuela.
-Siempre que una criatura artefacto que controles haga dano de combate a un jugador, puedes poner en juego una ficha de criatura artefacto Toptero azul 1/1 con la habilidad de volar.
-Kederekt Leviathan=Cuando el Leviatan de Kederekt entre en juego, regresa todos los otros permanentes que no sean tierras a las manos de sus propietarios.
-Desenterrar {6}{U}.  ({6}{U}: Regresa esta carta de tu cementerio al juego. Gana la habilidad de prisa. Remuevela del juego al final del turno o si fuera a dejar el juego. Desentierra solo como un conjuro.) 
+Savage Lands=Las Tierras salvajes entran en juego giradas. -- {T}: Agrega {B}, {R}, o {G} a tu reserva de mana.
+Sharding Sphinx=Vuela. -- Siempre que una criatura artefacto que controles haga dano de combate a un jugador, puedes poner en juego una ficha de criatura artefacto Toptero azul 1/1 con la habilidad de volar.
+Kederekt Leviathan=Cuando el Leviatan de Kederekt entre en juego, regresa todos los otros permanentes que no sean tierras a las manos de sus propietarios. -- Desenterrar {6}{U}.  ({6}{U}: Regresa esta carta de tu cementerio al juego. Gana la habilidad de prisa. Remuevela del juego al final del turno o si fuera a dejar el juego. Desentierra solo como un conjuro.) 
 Ooze Garden={1}{G}, sacrificar una criatura que no sea Cieno: Pon en juego una ficha de criatura Cieno verde X/X, donde X es la fuerza de la criatura sacrificada. Juega esta habilidad solo cuando puedas jugar un conjuro.
 Obelisk of Grixis={T}: Agrega {U}, {B}, o {R} a tu reserva de mana.
 Filigree Sages={2}{U}: Endereza el artefacto objetivo.
-Volcanic Submersion=Destruye el artefacto o tierra objetivo.
-Ciclo {2}.  ({2}, descartar esta carta: Roba una carta.) 
+Volcanic Submersion=Destruye el artefacto o tierra objetivo. -- Ciclo {2}.  ({2}, descartar esta carta: Roba una carta.) 
 Naturalize=Destruye el artefacto o encantamiento objetivo.
 Obelisk of Jund={T}: Agrega {B}, {R}, o {G} a tu reserva de mana.
 Blister Beetle=Cuando el Escarabajo acido entre en juego, la criatura objetivo obtiene -1/-1 hasta el final del turno.
@@ -7264,9 +7113,7 @@ Druid of the Anima={T}: Agrega {R}, {G}, o {W} a tu reserva de mana.
 Obelisk of Esper={T}: Agrega {W}, {U}, o {B} a tu reserva de mana.
 Oblivion Ring=Cuando el Anillo del olvido entre en juego, remueve del juego otro permanente objetivo que no sea tierra. 
 Cuando el Anillo del olvido salga del juego, regresa al juego la carta removida bajo el control de su propietario.
-Tezzeret the Seeker=+1: Endereza hasta dos artefactos objetivo.
--X: Busca en tu biblioteca una carta de artefacto con coste de mana convertido de X o menos y ponla en juego. Luego baraja tu biblioteca.
--5: Los artefactos que controlas se convierten en criaturas artefacto 5/5 hasta el final del turno.
+Tezzeret the Seeker=[+1]: Endereza hasta dos artefactos objetivo. -- [-X]: Busca en tu biblioteca una carta de artefacto con coste de mana convertido de X o menos y ponla en juego. Luego baraja tu biblioteca. [-5]: Los artefactos que controlas se convierten en criaturas artefacto 5/5 hasta el final del turno.
 Ad Nauseam=Muestra la primera carta de tu biblioteca y ponla en tu mano. Pierdes una cantidad de vida igual a su coste de mana convertido. Puedes repetir este proceso tantas veces como quieras.
 Spearbreaker Behemoth=El Behemot rompelanzas es indestructible.
 {1}: La criatura objetivo con fuerza de 5 o mas es indestructible este turno.
@@ -7311,25 +7158,15 @@ Bone Splinters=Como coste adicional para jugar las Astillas oseas, sacrifica una
 Destruye la criatura objetivo.
 Predator Dragon=Vuela, prisa.
 Devorar 2.  (En cuanto esto entra en juego puedes sacrificar cualquier cantidad de criaturas. Esta criatura entra en juego con el doble de esa cantidad de contadores +1/+1 sobre ella.) 
-Feral Hydra=La Hidra feral entra en juego con X contadores +1/+1 sobre ella.
-{3}: Pon un contador +1/+1 sobre la Hidra feral. Cualquier jugador puede jugar esta habilidad.
-Mycoloth=Devorar 2.  (En cuanto esto entra en juego puedes sacrificar cualquier cantidad de criaturas. Esta criatura entra en juego con el doble de esa cantidad de contadores +1/+1 sobre ella.) 
-Al comienzo de tu mantenimiento, pon en juego una ficha de criatura Saprolin verde 1/1 por cada contador +1/+1 sobre el Micolot.
+Feral Hydra=La Hidra feral entra en juego con X contadores +1/+1 sobre ella. -- {3}: Pon un contador +1/+1 sobre la Hidra feral. Cualquier jugador puede jugar esta habilidad.
+Mycoloth=Devorar 2.  (En cuanto esto entra en juego puedes sacrificar cualquier cantidad de criaturas. Esta criatura entra en juego con el doble de esa cantidad de contadores +1/+1 sobre ella.) -- Al comienzo de tu mantenimiento, pon en juego una ficha de criatura Saprolin verde 1/1 por cada contador +1/+1 sobre el Micolot.
 Kiss of the Amesha=El jugador objetivo gana 7 vidas y roba dos cartas.
-Sarkhan Vol=+1: Las criaturas que controlas obtienen +1/+1 y ganan la habilidad de prisa hasta el final del turno.
--2: Gana el control de la criatura objetivo hasta el final del turno. Endereza esa criatura. Gana la habilidad de prisa hasta el final del turno.
--6: Pon en juego cinco fichas de criatura Dragon rojas 4/4 con la habilidad de volar.
-Resounding Silence=Remueve del juego la criatura atacante objetivo.
-Ciclo {5}{G}{W}{U}.  ({5}{G}{W}{U}, descartar esta carta: Roba una carta.) 
-Cuando uses la habilidad de ciclo del Silencio resonante, remueve del juego hasta dos criaturas atacantes objetivo.
-Algae Gharial=Velo.
-Siempre que otra criatura vaya a un cementerio desde el juego, puedes poner un contador +1/+1 sobre el Gavial de algas.
-Scavenger Drake=Vuela.
-Siempre que otra criatura vaya a un cementerio desde el juego, puedes poner un contador +1/+1 sobre el Draco carronero.
-Rockslide Elemental=Dana primero.
-Siempre que otra criatura vaya a un cementerio desde el juego, puedes poner un contador +1/+1 sobre el Elemental de la avalancha.
-Wild Nacatl=La Nacatl salvaje obtiene +1/+1 mientras controles una montana.
-La Nacatl salvaje obtiene +1/+1 mientras controles una llanura.
+Sarkhan Vol=[+1]: Las criaturas que controlas obtienen +1/+1 y ganan la habilidad de prisa hasta el final del turno. [-2]: Gana el control de la criatura objetivo hasta el final del turno. Endereza esa criatura. Gana la habilidad de prisa hasta el final del turno. -- [-6]: Pon en juego cinco fichas de criatura Dragon rojas 4/4 con la habilidad de volar.
+Resounding Silence=Remueve del juego la criatura atacante objetivo. -- Ciclo {5}{G}{W}{U}.  ({5}{G}{W}{U}, descartar esta carta: Roba una carta.) --Cuando uses la habilidad de ciclo del Silencio resonante, remueve del juego hasta dos criaturas atacantes objetivo.
+Algae Gharial=Velo. -- Siempre que otra criatura vaya a un cementerio desde el juego, puedes poner un contador +1/+1 sobre el Gavial de algas.
+Scavenger Drake=Vuela. -- Siempre que otra criatura vaya a un cementerio desde el juego, puedes poner un contador +1/+1 sobre el Draco carronero.
+Rockslide Elemental=Dana primero. -- Siempre que otra criatura vaya a un cementerio desde el juego, puedes poner un contador +1/+1 sobre el Elemental de la avalancha.
+Wild Nacatl=La Nacatl salvaje obtiene +1/+1 mientras controles una montana. -- La Nacatl salvaje obtiene +1/+1 mientras controles una llanura.
 Cavern Thoctar={1}{R}: El Thoctar de caverna obtiene +1/+0 hasta el final del turno.
 Topan Ascetic=Girar una criatura enderezada que controlas: El Asceta topano obtiene +1/+1 hasta el final del turno.
 Angelsong=Preven todo el dano de combate que se fuera a hacer este turno.
@@ -7673,9 +7510,7 @@ Nacatl Hunt-Pride=Vigilancia.
 {G}, {T}: La criatura objetivo bloquea este turno si puede.
 Nacatl Outlander=Proteccion contra azul.
 Nacatl Savage=Proteccion contra artefactos.
-Nicol Bolas, Planeswalker=+3: Destruye el permanente objetivo que no sea criatura.
--2: Gana el control de la criatura objetivo.
--9: Nicol Bolas, planeswalker hace 7 puntos de dano al jugador objetivo. Ese jugador descarta siete cartas y luego sacrifica siete permanentes.
+Nicol Bolas, Planeswalker=[+3]: Destruye el permanente objetivo que no sea criatura. -- [-2]: Gana el control de la criatura objetivo. -- [-9]: Nicol Bolas, planeswalker hace 7 puntos de dano al jugador objetivo. Ese jugador descarta siete cartas y luego sacrifica siete permanentes.
 Noble Hierarch=Exaltado.  (Siempre que una criatura que controles ataque sola, esa criatura obtiene +1/+1 hasta el final del turno.) 
 {T}: Agrega {G}, {W}, o {U} a tu reserva de mana.
 Nyxathid=En cuanto el Nyxathid entre en juego, elige un oponente.
@@ -7688,27 +7523,17 @@ Obelisk of Alara={1}{W}, {T}: Ganas 5 vidas.
 Paleoloth=Siempre que otra criatura con fuerza de 5 o mas entre en juego bajo tu control, puedes regresar la carta de criatura objetivo de tu cementerio a tu mano.
 Paragon of the Amesha=Dana primero.
 {W}{U}{B}{R}{G}: Hasta el final del turno, el Ejemplar de los Amesha se convierte en un Angel, obtiene +3/+3 y gana las habilidades de volar y vinculo vital.
-Parasitic Strix=Vuela.
-Cuando el Strix parasitario entre en juego, si controlas un permanente negro, el jugador objetivo pierde 2 vidas y tu ganas 2 vidas.
+Parasitic Strix=Vuela. -- Cuando el Strix parasitario entre en juego, si controlas un permanente negro, el jugador objetivo pierde 2 vidas y tu ganas 2 vidas.
 Path to Exile=Remueve del juego la criatura objetivo. Su controlador puede buscar en su biblioteca una carta de tierra basica, ponerla en juego girada y luego barajar su biblioteca.
-Pestilent Kathari=Vuela.
-Toque mortal.  (Siempre que esta criatura haga dano a una criatura, destruye esa criatura.) 
-{2}{R}: El Kathari pestilente gana la habilidad de danar primero hasta el final del turno.
-Progenitus=Proteccion contra todo.
-Si Progenitus fuera a ir a un cementerio desde cualquier lugar, en vez de eso, muestra a Progenitus y barajalo en la biblioteca de su propietario.
+Pestilent Kathari=Vuela. -- Toque mortal.  (Siempre que esta criatura haga dano a una criatura, destruye esa criatura.) -- {2}{R}: El Kathari pestilente gana la habilidad de danar primero hasta el final del turno.
+Progenitus=Proteccion contra todo. -- Si Progenitus fuera a ir a un cementerio desde cualquier lugar, en vez de eso, muestra a Progenitus y barajalo en la biblioteca de su propietario.
 Quenchable Fire=El Fuego extinguible hace 3 puntos de dano al jugador objetivo. Le hace 3 puntos de dano adicionales a ese jugador al comienzo de tu proximo mantenimiento a menos que pague {U} antes de ese paso.
-Rakka Mar=Prisa.
-{R}, {T}: Pon en juego una ficha de criatura Elemental roja 3/1 con la habilidad de prisa.
-Reliquary Tower=Tu mano no tiene tamano maximo.
-{T}: Agrega {1} a tu reserva de mana.
-Rhox Bodyguard=Exaltado.  (Siempre que una criatura que controles ataque sola, esa criatura obtiene +1/+1 hasta el final del turno.) 
-Cuando la Guardaespaldas rhox entre en juego, gana 3 vidas.
+Rakka Mar=Prisa. -- {R}, {T}: Pon en juego una ficha de criatura Elemental roja 3/1 con la habilidad de prisa.
+Reliquary Tower=Tu mano no tiene tamano maximo. -- {T}: Agrega {1} a tu reserva de mana.
+Rhox Bodyguard=Exaltado.  (Siempre que una criatura que controles ataque sola, esa criatura obtiene +1/+1 hasta el final del turno.) -- Cuando la Guardaespaldas rhox entre en juego, gana 3 vidas.
 Rhox Meditant=Cuando la Meditante rhox entre en juego, si controlas un permanente verde, roba una carta.
-Rotting Rats=Cuando las Ratas putridas entren en juego, cada jugador descarta una carta.
-Desenterrar {1}{B}.  ({1}{B}: Regresa esta carta de tu cementerio al juego. Gana la habilidad de prisa. Remuevela del juego al final del turno o si fuera a dejar el juego. Desentierra solo como un conjuro.) 
-Rupture Spire=La Torre de la ruptura entra en juego girada.
-Cuando la Torre de la ruptura entre en juego, sacrificala a menos que pagues {1}.
-{T}: Agrega un mana de cualquier color a tu reserva de mana.
+Rotting Rats=Cuando las Ratas putridas entren en juego, cada jugador descarta una carta. -- Desenterrar {1}{B}.  ({1}{B}: Regresa esta carta de tu cementerio al juego. Gana la habilidad de prisa. Remuevela del juego al final del turno o si fuera a dejar el juego. Desentierra solo como un conjuro.) 
+Rupture Spire=La Torre de la ruptura entra en juego girada. -- Cuando la Torre de la ruptura entre en juego, sacrificala a menos que pagues {1}. -- {T}: Agrega un mana de cualquier color a tu reserva de mana.
 Sacellum Archers={R}{W}, {T}: Los Arqueros de Sacellum hacen 2 puntos de dano a la criatura atacante o bloqueadora objetivo.
 Salvage Slasher=El Acuchillador del botin obtiene +1/+0 por cada carta de artefacto en tu cementerio.
 Scarland Thrinax=Sacrificar una criatura: Pon un contador +1/+1 sobre el Thrinax marcatierra.
@@ -7718,55 +7543,99 @@ Scepter of Fugue={1}{B}, {T}: El jugador objetivo descarta una carta. Juega esta
 Scepter of Insight={3}{U}, {T}: Roba una carta.
 Scornful AEther-Lich={W}{B}: El Liche etereo desdenoso gana las habilidades de inspirar temor y vigilancia hasta el final del turno.
 Sedraxis Alchemist=Cuando el Alquimista de Sedraxis entre en juego, si controlas un permanente azul, regresa el permanente objetivo que no sea tierra a la mano de su propietario.
-Shambling Remains=Los Restos tambaleantes no pueden bloquear.
-Desenterrar {B}{R}.  ({B}{R}: Regresa esta carta de tu cementerio al juego. Gana la habilidad de prisa. Remuevela del juego al final del turno o si fuera a dejar el juego. Desentierra solo como un conjuro.) 
+Shambling Remains=Los Restos tambaleantes no pueden bloquear. -- Desenterrar {B}{R}.  ({B}{R}: Regresa esta carta de tu cementerio al juego. Gana la habilidad de prisa. Remuevela del juego al final del turno o si fuera a dejar el juego. Desentierra solo como un conjuro.) 
 Shard Convergence=Busca en tu biblioteca una carta de llanura, una carta de isla, una carta de pantano y una carta de montana. Muestra esas cartas y ponlas en tu mano. Luego baraja tu biblioteca.
 Sigil of the Empty Throne=Siempre que juegues un hechizo de encantamiento, pon en juego una ficha de criatura Angel blanca 4/4 con la habilidad de volar.
-Skyward Eye Prophets=Vigilancia.
-{T}: Muestra la primera carta de tu biblioteca. Si es una carta de tierra, ponla en juego. Si no, ponla en tu mano.
+Skyward Eye Prophets=Vigilancia. -- {T}: Muestra la primera carta de tu biblioteca. Si es una carta de tierra, ponla en juego. Si no, ponla en tu mano.
 Sludge Strider=Siempre que otro artefacto entre en juego bajo tu control u otro artefacto que controles deje el juego, puedes pagar {1}. Si lo haces, el jugador objetivo pierde 1 vida y tu ganas 1 vida.
 Soul's Majesty=Roba una cantidad de cartas igual a la fuerza de la criatura objetivo que controlas.
-Sphinx Summoner=Vuela.
-Cuando la Esfinge invocadora entre en juego, puedes buscar en tu biblioteca una carta de criatura artefacto, mostrarla y ponerla en tu mano. Si lo haces, baraja tu biblioteca.
+Sphinx Summoner=Vuela. -- Cuando la Esfinge invocadora entre en juego, puedes buscar en tu biblioteca una carta de criatura artefacto, mostrarla y ponerla en tu mano. Si lo haces, baraja tu biblioteca.
 Spore Burst= Dominio  — Pon en juego una ficha de criatura Saprolin verde 1/1 por cada tipo de tierra basica entre las tierras que controlas.
 Suicidal Charge=Sacrificar la Carga suicida: Las criaturas que controlan tus oponentes obtienen -1/-1 hasta el final del turno. Esas criaturas atacan este turno si pueden.
-Sylvan Bounty=El jugador objetivo gana 8 vidas.
-Ciclo de tierra basica {1}{G}.  ({1}{G}, descartar esta carta: Busca en tu biblioteca una carta de tierra basica, muestrala y ponla en tu mano. Luego baraja tu biblioteca.) 
+Sylvan Bounty=El jugador objetivo gana 8 vidas. -- Ciclo de tierra basica {1}{G}.  ({1}{G}, descartar esta carta: Busca en tu biblioteca una carta de tierra basica, muestrala y ponla en tu mano. Luego baraja tu biblioteca.) 
 Telemin Performance=El oponente objetivo muestra cartas de la parte superior de su biblioteca hasta que muestre una carta de criatura. Ese jugador pone en su cementerio todas las cartas que no sean de criatura mostradas de esta manera, luego tu pones en juego bajo tu control la carta de criatura.
-Thornling={G}: El Espinoide gana la habilidad de prisa hasta el final del turno.
-{G}: El Espinoide gana la habilidad de arrollar hasta el final del turno.
-{G}: El Espinoide es indestructible este turno
-{1}: El Espinoide obtiene +1/-1 hasta el final del turno.
-{1}: El Espinoide obtiene -1/+1 hasta el final del turno.
+Thornling={G}: El Espinoide gana la habilidad de prisa hasta el final del turno. -- {G}: El Espinoide gana la habilidad de arrollar hasta el final del turno. -- {G}: El Espinoide es indestructible este turno -- {1}: El Espinoide obtiene +1/-1 hasta el final del turno. -- {1}: El Espinoide obtiene -1/+1 hasta el final del turno.
 Toxic Iguanar=El Iguanar toxico tiene toque mortal mientras controles un permanente verde.  (Siempre que haga dano a una criatura, destruye esa criatura.) 
-Traumatic Visions=Contrarresta el hechizo objetivo.
-Ciclo de tierra basica {1}{U}.  ({1}{U}, descartar esta carta: Busca en tu biblioteca una carta de tierra basica, muestrala y ponla en tu mano. Luego baraja tu biblioteca.) 
+Traumatic Visions=Contrarresta el hechizo objetivo. -- Ciclo de tierra basica {1}{U}.  ({1}{U}, descartar esta carta: Busca en tu biblioteca una carta de tierra basica, muestrala y ponla en tu mano. Luego baraja tu biblioteca.) 
 Tukatongue Thallid=Cuando el Talido tukatong vaya a un cementerio desde el juego, pon en juego una ficha de criatura Saprolin verde 1/1.
-Unstable Frontier={T}: Agrega {1} a tu reserva de mana.
-{T}: La tierra objetivo que controlas es del tipo de tierra basica de tu eleccion hasta el final del turno.
+Unstable Frontier={T}: Agrega {1} a tu reserva de mana. -- {T}: La tierra objetivo que controlas es del tipo de tierra basica de tu eleccion hasta el final del turno.
 Unsummon=Regresa la criatura objetivo a la mano de su propietario.
 Vagrant Plowbeasts={1}: Regenera la criatura objetivo con fuerza de 5 o mas.
 Valeron Outlander=Proteccion contra negro.
 Valiant Guard=
 Vectis Agents={U}{B}: Los Agentes de Vectis obtienen -2/-0 hasta el final del turno y son imbloqueables este turno.
 Vedalken Outlander=Proteccion contra rojo.
-Viashino Slaughtermaster=Danar dos veces
-{B}{G}: El Maestro de masacre viashino obtiene +1/+1 hasta el final del turno. Juega esta habilidad solo una vez cada turno.
+Viashino Slaughtermaster=Danar dos veces. -- {B}{G}: El Maestro de masacre viashino obtiene +1/+1 hasta el final del turno. Juega esta habilidad solo una vez cada turno.
 View from Above=La criatura objetivo gana la habilidad de volar hasta el final del turno. Si controlas un permanente blanco, regresa Vista superior a la mano de su propietario.
 Voices from the Void= Dominio  — El jugador objetivo descarta una carta por cada tipo de tierra basica entre las tierras que controlas.
-Volcanic Fallout=La Repercusion volcanica no puede ser contrarrestada.
-La Repercusion volcanica hace 2 puntos de dano a cada criatura y a cada jugador.
-Voracious Dragon=Vuela.
-Devorar 1.  (En cuanto esto entra en juego puedes sacrificar cualquier cantidad de criaturas. Esta criatura entra en juego con esa cantidad de contadores +1/+1 sobre ella.) 
-Cuando el Dragon voraz entre en juego, hace dano a la criatura o jugador objetivo igual al doble del numero de Trasgos que devoro.
-Wall of Reverence=Defensor, vuela.
-Al final de tu turno, puedes ganar vidas igual a la fuerza de la criatura objetivo que controlas.
+Volcanic Fallout=La Repercusion volcanica no puede ser contrarrestada. -- La Repercusion volcanica hace 2 puntos de dano a cada criatura y a cada jugador.
+Voracious Dragon=Vuela. -- Devorar 1.  (En cuanto esto entra en juego puedes sacrificar cualquier cantidad de criaturas. Esta criatura entra en juego con esa cantidad de contadores +1/+1 sobre ella.) -- Cuando el Dragon voraz entre en juego, hace dano a la criatura o jugador objetivo igual al doble del numero de Trasgos que devoro.
+Wall of Reverence=Defensor, vuela.-  Al final de tu turno, puedes ganar vidas igual a la fuerza de la criatura objetivo que controlas.
 Wandering Goblins= Dominio  — {3}: Los Trasgos errantes obtienen +1/+0 hasta el final del turno por cada tipo de tierra basica entre las tierras que controlas.
 Wild Leotau=Al comienzo de tu mantenimiento, sacrifica el Leotau salvaje a menos que pagues {G}.
-Worldheart Phoenix=Vuela.
-Puedes jugar el Fenix nucleo del mundo desde tu cementerio pagando {W}{U}{B}{R}{G} en vez de pagar su coste de mana. Si lo haces, entra en juego con dos contadores +1/+1 sobre el.
+Worldheart Phoenix=Vuela. -- Puedes jugar el Fenix nucleo del mundo desde tu cementerio pagando {W}{U}{B}{R}{G} en vez de pagar su coste de mana. Si lo haces, entra en juego con dos contadores +1/+1 sobre el.
 Worldly Counsel= Dominio  — Mira las primeras X cartas de tu biblioteca, donde X es el numero de tipos de tierra basica que haya entre las tierras que controles. Pon una de esas cartas en tu mano y el resto en la parte inferior de tu biblioteca en cualquier orden.
 Wretched Banquet=Destruye la criatura objetivo si tiene la menor fuerza o esta empatada por la menor fuerza entre las criaturas en juego.
-Yoke of the Damned=Encantar criatura.
-Cuando una criatura vaya a un cementerio desde el juego, destruye la criatura encantada.
+Yoke of the Damned=Encantar criatura. -- Cuando una criatura vaya a un cementerio desde el juego, destruye la criatura encantada.
 Zombie Outlander=Proteccion contra verde.
+Baloth Woodcrasher=Aterrizaje - Siempre que una criatura entre al campo de batalla bajo tu control, el Baloth aplastamadera obtiene +4/+4 y gana la habilidad de arrollar hasta el final del turno.
+Yavimaya Wurm=Arrolla
+Timbermaw Larva=Siempre que la Larva masticamadera ataque, obtiene +1/+1 hasta el final del turno por cada bosque que controles.
+Sylvan Ranger=Cuando el Guardabosque silvano entre al campo de batalla, puedes buscar en tu biblioteca una carta de tierra basica, mostrarla, ponerla en tu mano y luego barajar tu biblioteca.
+Primal Bellow=La criatura objetivo obtiene +1/+1 hasta el final del turno por cada bosque que controles.
+Greater Basilisk=Toque mortal. (Cualquier cantidad de daño que esto haga a una criatura es suficiente para destruirla.)
+Grazing Gladehart=Aterrizaje - Siempre que una tierra entre al campo de batalla bajo tu control, puedes ganar 2 vidas.
+Garruk's Companion=Arrolla. (Si esta criatura fuera a asignar suficiente dano a sus bloqueadores como para destruirlos, puedes hacer que le asigne el resto del daño al jugador o planeswalker defensor.)
+Fog=Preven todo el dano de combate que fuera a hacerse este turno.
+Ezuri's Archers=Alcance. (Esta criatura puede bloquear criaturas con la habilidad de volar.) -- Siempre que los Arqueros de Ezuri bloqueen a una criatura con la habilidad de volar, los Arqueros de Ezuri obtienen +3/+0 hasta el final del turno.
+Arbor Elf=/T/: Endereza el bosque objetivo.
+Dread Statuary=/T/: Agrega a tu reserva de mana.-- {4} : Los Monumentos pavorosos son una criatura artefacto Golem 4/2 hasta el final del turno. Sigue siendo una tierra.
+Ondu Giant=Cuando el Gigante de Ondu entre al campo de batalla, puedes buscar en tu biblioteca una carta de tierra básica, ponerla en el campo de batalla girada y luego barajar tu biblioteca.
+Harrow=Como coste adicional para jugar el Gradar, sacrifica una tierra. Busca en tu biblioteca hasta dos cartas de tierra basica y pon las en juego. Luego baraja tu biblioteca.
+Garruk's Packleader=Siempre que otra criatura con fuerza de 3 o más entre al campo de batalla bajo tu control, puedes robar una carta.
+Terra Stomper=El Aplastatierra no puede ser contrarrestado. -- Arrolla.
+Honor of the Pure=Las criaturas blancas que controlas obtienen +1/+1.
+Luminarch Ascension=Al comienzo del paso final de cada oponente, si no perdiste vidas este turno, puedes poner un contador de busqueda sobre el Ascenso del luminarca. (El dano causa perdida de vidas.) -- {1}{W}: Pon en el campo de batalla una ficha de criatura Angel blanca 4/4 con la habilidad de volar. Activa esta habilidad sólo si el Ascenso del luminarca tiene cuatro o mas contadores de busqueda sobre el.
+Nissa Revane=[+1]: Busca en tu biblioteca una carta llamada Elegido de Nissa y ponla en el campo de batalla. Luego baraja tu biblioteca. -- [+1]: Ganas 2 vidas por cada Elfo que controles. -- [-7]: Busca en tu biblioteca cualquier cantidad de cartas de criatura Elfo y ponlas en el campo de batalla. Luego baraja tu biblioteca.
+Chandra Ablaze=[+1]: Descarta una carta. Si se descarta una carta roja de esta manera, Chandra en llamas hace 4 puntos de daño a la criatura o jugador objetivo. -- [-2]: Cada jugador descarta su mano, luego roba tres cartas. -- [-7]: Lanza cualquier cantidad de cartas de instantáneo o conjuro de tu cementerio sin pagar su coste de maná.
+Gideon Jura=[+2]: Durante el próximo turno del oponente objetivo, las criaturas que controla ese jugador atacan a Gideon Jura si pueden. -- [-2]: Destruye la criatura objetivo girada. -- [0]: Hasta el final del turno, Gideon Jura es una criatura Soldado Humano 6/6 que sigue siendo un planeswalker. Prevén todo el daño que se le fuera a hacer a él este turno.
+Jace, the Mind Sculptor=[+2]: Mira la primera carta de la biblioteca del jugador objetivo. Puedes poner esa carta en el fondo de la biblioteca de ese jugador. -- [0]: Roba tres cartas, luego pon dos cartas de tu mano en la parte superior de tu biblioteca en cualquier orden. -- [-1]: Regresa la criatura objetivo a la mano de su propietario. -- [-12]: Exilia todas las cartas de la biblioteca del jugador objetivo, luego ese jugador bajara su mano en su biblioteca.
+Koth of the Hammer=[+1]: Endereza la montaña objetivo. Se convierte en una criatura Elemental roja 4/4 hasta el final del turno. Sigue siendo una tierra. -- [-2]: Agrega a tu reserva de maná por cada montaña que controlas. -- [-5]: Obtienes un emblema con “Las montañas que controlas tienen ‘{T}: Esta tierra hace 1 punto de daño a la criatura o jugador objetivo’”.
+Elspeth Tirel=[+2]: Ganas 1 vida por cada criatura que controlas. -- [-2]: Pon en el campo de batalla tres fichas de criatura Soldado blancas 1/1. -- [-5]: Destruye todos los otros permanentes excepto tierras y fichas.
+Sorin Markov=[+2]: Sorin Markov hace 2 puntos de daño a la criatura o jugador objetivo y tú ganas 2 vidas. -- [-3]: El total de vidas del oponente objetivo es 10. -- [-7]: Tú controlas el próximo turno del jugador objetivo.
+Tezzeret, Agent of Bolas=[+1]: Mira las primeras cinco cartas de tu biblioteca. Puees mostrar una carta de artefacto que se encuentre entre ellas y ponerla en tu mano. Pon el resto en la parte inferior de tu biblioteca en cualquier orden. -- [-1]: El artefacto objetivo es una criatura artefacto 5/5. -- [-4]: El jugador objetivo pierde X vidas y tú ganas X vidas, donde X es el doble del número de artefactos que controlas.
+Venser, the Sojourner=[+2]: Exilia el permanente objetivo del cual eres propietario. Regrésala al campo de batalla bajo tu control al comienzo del próximo paso final. -- [-1]: Las criaturas son imbloqueables este turno. -- [-8]: Obtienes un emblema con “Siempre que lances un hechizo, exilia el permanente objetivo”.
+Pelakka Wurm=Arrolla. -- Cuando la Sierpe de Pelakka entre al campo de batalla, ganas 7 vidas. -- Cuando la Sierpe de Pelakka vaya a un cementerio desde el campo de batalla, roba una carta.
+Leatherback Baloth=
+Overwhelming Stampede=Hasta el final del turno, las criaturas que controlas ganan la habilidad de arrollar y obtienen +X/+X, donde X es la mayor fuerza entre las criaturas que controlas.
+Khalni Garden=Los Jardines de Khalni entran al campo de batalla girados. -- Cuando los Jardines de Khalni entren al campo de batalla, pon en el campo de batalla una ficha de criatura Planta verde 0/1. -- {T}: Agrega {G} a tu reserva de mana.
+Kozilek's Predator=Cuando el Depredador de Kozilek entre al campo de batalla, pon en el campo de batalla dos fichas de criatura Engendro Eldrazi incoloras 0/1. Tienen "Sacrificar esta criatura: Agrega {1} a tu reserva de mana".
+Nest Invader=Cuando el Invasor del nido entre al campo de batalla, pon en el campo de batalla una ficha de criatura Engendro Eldrazi incolora 0/1. Tiene "Sacrificar esta criatura: Agrega {1} a tu reserva de mana".
+Strength of the Tajuru=Multiestimulo {1} . (Puedes pagar {1} adicional tantas veces como quieras mientras lanzas este hechizo.) -- Elige una criatura objetivo, luego elige otra criatura objetivo por cada vez que la Fuerza de los Tajuru fue estimulada. Pon X contadores +1/+1 sobre cada una de ellas.
+Bellowing Tanglewurm=Intimidar. (Esta criatura no puede ser bloqueada excepto por criaturas artefacto y/o criaturas que compartan un color con ella.) -- Las otras criaturas verdes que controlas tienen la habilidad de intimidar.
+Molder Beast=Arrolla. -- Siempre que un artefacto vaya a un cementerio desde el campo de batalla, la Bestia enmohecedora obtiene +2/+0 hasta el final del turno.
+Territorial Baloth=Aterrizaje - Siempre que una tierra entre al campo de batalla bajo tu control, el Baloth territorial obtiene +2/+2 hasta el final del turno.
+Harbor Serpent=Cruza islas. (Esta criatura es imbloqueable mientras el jugador defensor controle una isla.) -- La Serpiente de puerto no puede atacar a menos que haya cinco o mas islas en el campo de batalla.
+Hornet Sting=La Picadura de avispa hace 1 punto de dano a la criatura o jugador objetivo.
+Howling Banshee=Vuela. -- Cuando la Banshee aulladora entre al campo de batalla, cada jugador pierde 3 vidas.
+Kazandu Tuskcaller=Subir de nivel {1}{G}. ({1}{G}: Pon un contador de nivel sobre esto. Sube de nivel solo como un conjuro.) -- [Nivel 2-5]: {T}: Pon en el campo de batalla una ficha de criatura Elefante verde 3/3. [1/1] -- [Nivel 6+]: {T}: Pon en el campo de batalla dos fichas de criatura Elefante verdes 3/3. [1/1]
+Lightning Bolt=El Relampago hace 3 puntos de dano a la criatura o jugador objetivo.
+Magma Phoenix=Vuela. -- Cuando el Fenix de magma vaya a un cementerio desde el campo de batalla, hace 3 puntos de dano a cada criatura y a cada jugador. -- {3}{R}{R}: Regresa el Fenix de magma de tu cementerio a tu mano.
+Manic Vandal=Cuando el Vandalo maniatico entre al campo de batalla, destruye el artefacto objetivo.
+Nature's Spiral=Regresa el permanente objetivo de tu cementerio a tu mano. (Una carta de permanente es una carta de artefacto, criatura, encantamiento, tierra o planeswalker.)
+Nether Horror=
+Quag Sickness=Encantar criatura. -- La criatura encantada obtiene -1/-1 por cada pantano que controlas.
+Rotting Legion=La Legion putrida entra al campo de batalla girada.
+Sacred Wolf=El Lobo sagrado no puede ser objetivo de hechizos o habilidades que controlen tus oponentes.
+Safe Passage=Preven todo el daño que se te fuera a hacer a ti y a las criaturas que controlas este turno.
+Siege Mastodon=
+Tireless Missionaries=Cuando los Misioneros incansables entren al campo de batalla, ganas 3 vidas.
+Tome Scour=El jugador objetivo pone las primeras cinco cartas de su biblioteca en su cementerio.
+Vastwood Zendikon=Encantar Tierra. -- La Tierra encantada es una criatura Elemental verde 6/4. Sigue siendo una tierra. -- Cundo la tierra encantada vaya a un cementerio, regresa esa carta a la mano de su propietario.
+Acidic Slime=Toque mortal. (Las criaturas que reciben dano de esta criatura son destruidas. Puedes dividir el dano de combate de esta criatura entre las criaturas que la bloquean o que ella bloquea.) -- Cuando el Fango acido entre al campo de batalla, destruye el artefacto, encantamiento o tierra objetivo.
+Brindle Boar=Sacrificar el Jabalí moteado: Gana 4 vidas.
+Duress=El oponente objetivo muestra su mano. Elige una carta que no sea criatura ni tierra de ellas. Ese jugador se descarta de esa carta.
+Earth Servant=El Sirviente de tierra obtiene +0/+1 por cada montana que controlas.
+Fiery Hellhound={R}: El Perro infernal ardiente obtiene +1/+0 hasta el final del turno
+Awakener Druid=Cuando el Druida despertador entre al campo de batalla, el bosque objetivo es una criatura Pueblo-arboreo verde 4/5 mientras el Druida despertador este en el campo de batalla. Sigue siendo una tierra.
+Groundswell=La criatura objetivo obtiene +2/+2 hasta el final del turno. -- Aterrizaje - Si una tierra entro al campo de batalla bajo tu control este turno, en vez de eso, esa criatura obtiene +4/+4 hasta el final del turno.

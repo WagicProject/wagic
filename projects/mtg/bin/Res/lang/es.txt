@@ -11,6 +11,13 @@
 
 
 #####################
+#Modo historia      #
+#####################
+
+Game Manual=Manual del juego
+01.Where it all begins=01.Donde comienza todo
+
+#####################
 #Interfaz de usuario#
 #####################
 
@@ -43,6 +50,9 @@ Deck Editor=Editor de Mazo
 Shop=Tienda
 Options=Opciones
 Exit=Salir
+Trophy Room=Sala de Trofeo
+%s: %i cards (%i) (%i unique)=%s: %i cartas (%i) (%i unicas)
+%i cards (%i unique)=%i cartas (%i unicas)
 
 # Number of cards display:
 %s: %i cards (%i)=%s: %i cartas (%i)
@@ -50,8 +60,8 @@ Database: %i cards=Base de Datos: %i cartas
 
 
 #Texto Rotativo:
-You have a %i%% victory ratio with Deck%i=Tienes un %i%% de victorias con el Deck%i
-You have played %i games with Deck%i= Has jugado %i Juegos con el Deck%1
+You have a %i%% victory ratio with "%s"=Tienes un %i%% de victorias con el Mazo: "%s"
+You have played %i games with "%s"= Has jugado %i Juegos con el Mazo: "%s"
 You have played a total of %i games= Has Jugado un Total de %i Juegos
 Unlock the difficult mode for more challenging duels!=Desbloquea el modo Dificil para duelos mas competitivos 
 Interested in playing Momir Basic? You'll have to unlock it first :)=Estas interesado en jugar Momir Basico? Primero deberas desbloquearlo :)
@@ -76,15 +86,19 @@ Test Suite=Modo de prueba
 #Tipos de Juego
 Momir Basic=Momir Basico
 Classic=Clasico
+Story=Historia
 Random 1 Color=Aleatorio de 1 color
 Random 2 Colors=Aleatorio de 2 colores
 
 #ELIGE UN MAZO
 Choose a Deck=Elige un Mazo
 Create your Deck!=Crea tu Mazo!
+New Deck...=Nuevo Mazo...
+Main Menu=Menu Principal
 Premade G/R=Mazo muestra Verde/Rojo
 NO DECK AVAILABLE,=NO HAY MAZO DISPONIBLE,
 PRESS CIRCLE TO GO TO THE DECK EDITOR!=PRESIONA CIRCULO PARA IR AL EDITOR DEL MAZO!
+
 
 #Elige un Oponente
 Choose Opponent=Elige un Oponente
@@ -129,8 +143,10 @@ Cleanup=Limpieza
 
 #Interrupciones
 Interrupt?=Interrupcion:
-X Interrupt - 0 No - [] No to All=X Si - O No - [] No a Todo
-X Interrupt - 0 No=X Si - O No
+#X Interrupt - 0 No - [] No to All=X Si - O No - [] No a Todo
+#X Interrupt - 0 No=X Si - O No
+: Interrupt=: Interrumpir
+: No To All=: No A Todo
 
 #Stack
 Deals %i damage to=Hace %i a
@@ -138,6 +154,20 @@ is exiled=es Exiliado
 Player %i draws %i card=Jugador %i roba %i cartas
 goes to graveyard=Va al cementerio
 %s goes to graveyard=%s Va al cementerio
+Fetch=Buscar
+Becomes golem artifact creature=Convertir en Criatura Artefacto Golem
+Put in Play=Poner en Juego
+Create beast=Crear Bestia
+Create Damaged Garruk=Hacer Daño al Garruk
+Bury=Enterrar
+quest Counter=Contador de Busqueda
+%i/%i Counter:%i=Contador %i/%i: %i
+%i/%i counters: %i=contadores %i/%i: %i
+%i/%i Counter =Contador %i/%i
+Turn:%i=Turno:%i
+No Bushwhacker=No Guerrillero
+Persistence=Persistencia
+First strike damage=En primer lugar el daño de golpe
 
 
 #Habilidades: 
@@ -150,7 +180,7 @@ Cycling=Ciclar
 Damage=Dano
 Deathtouch=Toquemortal
 Destroy=Destruir
-
+Draw=Robar
 Equip=Equipar
 Fizzle=Chisporrotear
 Life=Vida
@@ -168,6 +198,85 @@ black=negro
 green=verde
 red=rojo
  mana= mana
+Trample=Arrolla
+Forestwalk=Cruza Bosques
+Islandwalk=Cruza Islas
+Mountainwalk=Cruza Montes
+Swampwalk=Cruza Pantanos
+Plainswalk=Cruza Llanuras
+Flying=Vuela
+First strike=Dana Primero
+Double strike=Dana dos Veces
+Flash=Destello
+Haste=Prisa
+Lifelink=Vinculo Vital
+Reach=Alcance
+Shroud=Velo
+Banding=Agrupa
+Defender=Defensor
+Protection from green=Proteccion contra Verde
+Protection from blue=Proteccion contra Azul
+Protection from red=Proteccion contra Rojo
+Protection from black=Proteccion contra Negro
+Protection from white=Proteccion contra Blanco
+Unblockable=Inbloqueable
+Wither=Debilitar
+Persist=Persistir
+Retrace=Desandar
+Exalted=Exaltado
+Nofizzle=Incontrarrestable
+Shadow=Se Desvanece
+Reachshadow=Anti-Se Desvanece
+Cloud=Solo le Bloquean Criaturas Voladoras
+Cantattack=Puede atacar solo si...
+Mustattack=Ataca cada turno
+Cantblock=No puede Bloquear
+Doesnotuntap=No se Endereza
+Opponentshroud=Velo para Oponentes
+Intimidate=Intimidar
+Oneblocker=Solo admite un Bloqueador
+Infect=Infectar
+Poisontoxic=Venenotoxico
+Poisontwotoxic=Veneno2toxico
+Poisonthreetoxic=Veneno3toxico
+Phantom=Fantasma
+Wilting=Marchitamiento
+Changeling=Cambiaformas
+Absorb=Absorben
+Treason=Traicion
+Unearth=Desenterrar
+Cantlose=No puede perder
+Cantlifelose=No puede perder vida
+Cantmilllose=No puede perder millones
+Cantcreaturecast=No pueden atacar criaturas
+Cantspellcast=No puede lanzar hechizos
+Onlyonecast=Solo una carta
+Storm=Tormenta
+Bothcantcast=Ambos no pueden lanzar
+Bothnocreature=Sin criaturas los dos
+Oneboth=Uno de los dos
+Affinityartifacts=Afinidad artefactos
+Affinityplains=Afinidad llanuras
+Affinityforests=Afinidad bosques
+Affinityislands=Afinidad islas
+Affinitymountains=Afinidad montagnas
+Affinityswamps=Afinidad pantanos
+Affinitygreencreatures=Afinidad criaturas verdes
+Cantwin=No puede ganar
+Nomaxhand=Ninguna mano maxima
+Leyline=Linea Mistca
+Playershroud=Mazo del jugador
+Controllershroud=Mazo del controlador
+Sunburst=Explosion solar
+Flanking=Flanqueando
+Exiledeath=Exilio de muerte
+Foresthome=No puede atacar sin bosques
+Islandhome=No puede atacar sin islas
+Swamphome=No puede atacar sin pantanos
+Plainshome=No puede atacar sin llanuras
+Mountainhome=No puede atacar sin montagnas
+Horsemanship=Equitacion
+Cantregen=No se puede regenerar
 
 # Other:
 sacrifice=Sacrificar
@@ -183,9 +292,11 @@ Miller Bonus=Bunos de Molino
 Victory=Victoria!!
 Task: %s=Tarea: %s
 Credits per minute: %i=Creditos por Minuto: %i
-Game length: %i seconds=Duracion del Juego: %i Segundos
+Game length: %i turns (%i seconds)=Duracion del Juego: %i Turnos (%i segundos)
 Congratulations! You earn %i credits=Felicidades! Ganaste %i creditos
 You have been defeated=Has sido derrotado
+There's more!=Hay mas!
+Mods, additional cards, updates and more at:=Mods, cartas adicioanles, actualizacines y mas en:
 Player %i wins (%i)=El jugador %i gana (%i)
 Please check your deck (not enough cards?)=Por favor Revisa Tu Mazo (No tiene suficientes Cartas)
 Please support this project !=Por favor, Apoya este proyecto!
@@ -204,8 +315,16 @@ AN ERROR OCCURRED, CHECK FILE NAMES=HA OCURRIDO UN ERROR, REVISA EL NOMBRE DE LO
 ##########################
 
 #Menu del Editor
+Choose Deck To Edit=Elige un Mazo
 --NEW--=-- Nuevo --
 Save=Guardar
+Filter by...=Filtrar por...
+Filter By...=Filtrar Por...
+Switch Decks=Cambiar Mazos
+Rename Deck=Renombrar Mazo
+Save & Quit Editor=Guarda y Sale
+Save As AI Deck=Guardar como Mazo IA
+Quit Editor=Salir del Editor
 Save & Rename=Renombrar y Guardar
 Switch decks without saving=Cancelar y cambiar de Mazo
 *Complete collection & reset*=*Completar coleccion y reiniciar*
@@ -213,9 +332,12 @@ Rename deck=Renombrar Mazo
 
 
 # Infonmacion - Flechas:
-Prev.=Previa
-card=Carta
+Prev. edition=Edicion anterior
+Next edition=Siguiente edicion
+Prev.=Anterior
 Next=Siguiente
+card=Carta
+cards=cartas
 Next color=Color siguiente
 Prev. color=Color anterior
 
@@ -233,7 +355,7 @@ Toggle Images=Imagenes Si/No
 Use SQUARE to view your deck,=Usa CUADRO para ver tu Mazo,
 Use SQUARE to view collection,=Usa CUADRO para ver tu Coleccion,
 Press L/R to cycle through=Presiona L/R para Ver todas 
-deck statistics.=las Estadisticas del Deck.
+deck statistics.=las Estadisticas del Mazo.
 
 #OTROS
 Collection=Coleccion
@@ -241,8 +363,10 @@ Deck: Mazo
 No Card= Sin Cartas
 Your Deck: %i cards=Tu mazo: %i cartas
 menu=MENU
+filter=Filtro
 in: collection=COLECCION
 in: deck= MAZO
+
 
 
 
@@ -317,12 +441,101 @@ Victory ratio: %i%%=Porcentaje de Victorias: %i%%
 ##########################
 # SHOP                   #
 ##########################
-credits: %i=Creditos: %i
-[]:other cards=[]:Otras Cartas
-See available tasks=Ver tareas Disponibles
+Credits: %i=Creditos: %i
+: Other cards=: Otras Cartas
+Check task board=Ver tareas Disponibles
 *Steal 1,000 credits*=*Roba 1.000 Creditos*
+Ask about...=Preguntar por...
+Return to shop=Volver a la Tienda
+Add Filter=Crear Filtro
+Clear=Borrar
+Done=Hecho
 
 
+##########################
+# FILTRO:                #
+##########################
+Cards...=Cartas...
+Type=Tipo
+Subtype=Subtipo
+Rarity=Rareza
+Mana Cost=Coste de Mana
+Basic Ability=Habilidad Basica
+Mana Ability=Habilidad de Mana
+Power=Potencia
+Toughness=Resistencia
+First Letter=Primera Letra
+Remove=Borrar
+Filter:=Filtro:
+
+#Filtro Habilidad de Mana
+White mana abiltity=Habilidad de Mana Blanco
+Blue mana abiltity=Habilidad de Mana Azul
+Black mana abiltity=Habilidad de Mana Negro
+Red mana abiltity=Habilidad de Mana Rojo
+Green mana abiltity=Habilidad de Mana Verde
+Colorless mana abiltity=Habilidad de Mana Incoloro
+
+#Filtro Potencia
+0 power=potencia 0
+1 power=potencia 1
+2 power=potencia 2
+3 power=potencia 3
+4 power=potencia 4
+5 power=potencia 5
+6 power=potencia 6
+7 power=potencia 7
+8 power=potencia 8
+9 power=potencia 9
+10 power=potencia 10
+11 power=potencia 11
+12 power=potencia 12
+13 power=potencia 13
+
+#Filtro Resistencia
+0 toughness=resistencia 0
+1 toughness=resistencia 1
+2 toughness=resistencia 2
+3 toughness=resistencia 3
+4 toughness=resistencia 4
+5 toughness=resistencia 5
+6 toughness=resistencia 6
+7 toughness=resistencia 7
+8 toughness=resistencia 8
+9 toughness=resistencia 9
+10 toughness=resistencia 10
+11 toughness=resistencia 11
+12 toughness=resistencia 12
+13 toughness=resistencia 13
+
+#Filtro Primera Letra
+Letter A=Letra A
+Letter B=Letra B
+Letter C=Letra C
+Letter D=Letra D
+Letter E=Letra E
+Letter F=Letra F
+Letter G=Letra G
+Letter H=Letra H
+Letter I=Letra I
+Letter J=Letra J
+Letter K=Letra K
+Letter L=Letra L
+Letter M=Letra M
+Letter N=Letra N
+Letter O=Letra O
+Letter P=Letra P
+Letter Q=Letra Q
+Letter R=Letra R
+Letter S=Letra S
+Letter T=Letra T
+Letter U=Letra U
+Letter V=Letra V
+Letter W=Letra W
+Letter X=Letra X
+Letter Y=Letra Y
+Letter Z=Letra Z
+Digit=Numero
 
 ##########################
 # TASKS:                 #
@@ -362,16 +575,20 @@ Selective disaster (%i)=Desastre Selectivo (%i)
 ##########################
 
 # Opciones:
+General Options=Opciones Generales
 Settings=Opciones
 Music volume=Volumen de Musica
 SFX volume=Volumen de Sonido
 Max=Max
 Mute=Silencio
 Difficulty=Dificultad
+Economic Difficuly=Dificultad Economica
 Normal=Normal
 Hard=Medio
 Harder=Dificil
 Evil=Mortal
+Luck=Azar
+Easy=Facil
 Display InGame extra information=Informacion adicional durante el Juego
 Enable cheat mode=Activar Modo Trampas
 Seconds to pause for an Interrupt=Pausa de interrupcion en Seg.
@@ -393,8 +610,10 @@ Mana display=Mostrar Mana
 Eye candy=Efecto
 Simple=Simple
 Both=Ambos
+No Glitter=Sin Brillo
 Reverse left and right triggers=Invetir gatillos R/L
-Disable card image loading=Desactivar Carga de las imagenes.
+Disable card image=Desactivar la imagen de la carta
+Disable screen transitions=Desactivar transiciones de pantalla
 
 #Usuario
 User=Usuario
@@ -408,6 +627,35 @@ Default=Predeterminado
 New Profile=Nuevo Perfil
 Use this Profile=Utilizar este perfil
 Use this Theme=Utilizar este Tema
+
+#Avanzado
+Advanced=Avanzado
+Advanced Options=Opciones Avanzadas
+The following options require a restart.=Las siguientes opciones requieren reiniciar el sistema.
+Minimum Card Grade=Mínimo grado de tarjetas
+Phase Skip Automation=Saltar la fase de automatizacion
+First Turn Player=Primer Jugador de Turno
+Opponent=Oponente
+Full=Completo
+Safe=Prudente
+Off=Desactivado
+
+#Teclado
+Key Bindings=Teclas
+New binding...=Nuevas Teclas...
+Delete this binding=Borrar esta Tecla
+Right trigger=Disparador Derecho
+Left trigger=Dispardor Izquierdo
+Cross=Cruz
+Square=Cuadrado
+Triangle=Triangulo
+Circle=Circulo
+Down=Abajo
+Up=Arriba
+Left=Izquierda
+Right=Derecha
+Select=Select
+Start=Start
 
 #Creditos
 Credits=Creditos
@@ -460,9 +708,14 @@ Toughest: %i (%s)=Resistencia: %i (%s)
 ##########################
 
 %s Common=%s Comun
-%s Uncommon=%s No comun
+%s Uncommon=%s Infrecuente
 %s Rare=%s Rara
 %s Mythic=%s Mitica
+Mythic=Mitica
+Rare=Rara
+Uncommon=Infrecuente
+Common=Comun
+Special Rarity=Rareza Especial
 
 ######################
 # Cartas:Tipos       #
@@ -474,16 +727,37 @@ creature=Criatura
 enchantment=Encantamiento
 instant=instantaneo
 land=tierra
+Artifact=Artefacto
+Artifact Creature=Criatura Artfacto
+Creature=Criatura
+Enchantment=Encantamiento
+Instant=Instantaneo
+Land=Tierra
 
 #Planos
 Planeswalker=Caminante de planos
 sorcery=Conjuro
+Sorcery=Conjuro
 Tribal=Tribal
 # Supertypes (rule 204.4a)
 Basic=Basica
 Legendary=Legendaria
 Snow=Nevada
 World=Mundo
+
+######################
+# Cartas:Colores     #
+######################
+White=Blanco
+Blue=Azul
+Black=Negro
+Red=Rojo
+Green=Verde
+Exclusively White=Exclusivamente Blanco
+Exclusively Blue=Exclusivamente Azul
+Exclusively Black=Exclusivamente Negro
+Exclusively Red=Exclusivamente Rojo
+Exclusively Green=Exclusivamente Verde
 
 ######################
 # Cartas:SubTipos    #
@@ -502,17 +776,199 @@ Shrine=Altar
 
 # Land subtypes (rule 204.3h)
 Desert=Desierto
-Forest=Bosque
-Island=Isla
+#Forest=Bosque
+#Island=Isla
 Lair=Guarida
 Locus=Local
 Mine=Mina
-Mountain=Monte
-Plains=Llanura
+#Mountain=Monte
+#Plains=Llanura
 Power-Plant=Planta de Poder
-Swamp=Pantano
+#Swamp=Pantano
 Tower=Torre
 Urza's=Urzas
+
+#Otros Subtipos
+Advisor=Asesor
+Ally=Aliado
+Antelope=Antilope
+Ape=Mono
+Archer=Arquero
+Archon=Arconte
+Artificer=Artificiero
+Assassin=Asesino
+Aurochs=Bisonte
+Badger=Tejon
+Badlands=Tierra Inhospitas
+Barbarian=Barbaro
+Basilisk=Basilisco
+Bat=Murcielago
+Bear=Oso
+Beast=Bestia
+Berserker=Rabioso
+Bird=Ave
+Boar=Jabali
+Bringer=Adalid
+Brushwagg=Yerbamala
+Caltrops=Cebos
+Camel=Camello
+Carrier=Portador
+Cat=Gato
+Centaur=Centauro
+Cephalid=Cefalido
+Cleric=Clerigo
+Colony=Colonia
+Construct=Constructor
+Crab=Cangrejo
+Crocodile=Cocodrilo
+Crosswinds=Vientos Cruzados
+Cyclops=Ciclope
+Dauthi=Dauti
+Demon=Demonio
+Devil=Diablo
+Dismiss=Descartar
+Drake=Draco
+Drone=Zangano
+Druid=Druida
+Dryad=Driada
+Duress=Coaccion
+Dwarf=Enano
+Efreet=Efrit
+Eight-and-a-half-tails=Ocho-colas-y-media
+Elder=Anciano
+Elephant=Elefante
+Elf=Elfo
+Elk=Alce
+Everglades=Marisma
+Eye=Ojo
+Faerie=Hada
+Fish=Pez
+Fox=Zorro
+Frog=Rana
+Fungus=Hongos
+Gargoyle=Gargola
+Giant=Gigante
+Gnome=Gnomo
+Goat=Cabra
+Goblin=Trasgo
+Gorgon=Gorgona
+Grasslands=Pradera
+Griffin=Grifo
+Hag=Bruja
+Harpy=Arpia
+Hellion=Infernal
+Hippo=Hipopotamo
+Homarid=Homarido
+Homunculus=Homunculo
+Hornet=Avispa
+Horse=Caballo
+Hound=Sabueso
+Human=Humano
+Hydra=Hidra
+Hyena=Hiena
+Illusion=Ilusion
+Imp=Diablillo
+Incarnation=Encarnacion
+Insect=Insecto
+Jellyfish=Medusa
+Knight=Caballero
+Leech=Sanguijuela
+Level=Nivel
+Levelup=SubeNivel
+Lizard=Lagarto
+Manticore=Manticora
+Melfolk=Triton
+Mercenary=Mercenario
+Merfolk=Triton
+Minion=Lacayo
+Minotaur=Minotaurio
+Mongoose=Mangosta
+Monk=Monje
+Moonfolk=Pueblo Lunar
+Mutant==Mutante
+Mystic=Mistico
+Nautilus=Nautilo
+Nephilim=Nefilin
+Nightstalker=Cazador Nocturno
+Nomad=Nomada
+Octopus=Pulpo
+Ogre=Ogro
+Ooce=Cieno
+Ooze=Cieno
+Orc=Orco
+Ouphe=Oufe
+Ox=Buey
+Pegasus=Pegaso
+Pentavus=Pentavo
+Pest=Plaga
+Phoenix=Fenix
+Phyresis=Piresis
+Pirate=Pirata
+Plain=Llanura
+Plant=Planta
+Rabbit=Conejo
+Rat=Rata
+Rebel=Rebelde
+Regress=Regresion
+Reinforcements=Refuerzos
+Rhino=Rinoceronte
+Rigger=Aparejador
+Rogue=Picaro
+Roots=Raices
+Salamander=Salamandra
+Saproling=Saprolin
+Satyr=Satiro
+Scarecrow=Espantapajaros
+Scorpion=Escorpion
+Scout=Explorador
+Serpent=Serpiente
+Shackles=Grilletes
+Shade=Sombra
+Shaman=Chaman
+Shapeshifter=Metamorfo
+Sheep=Oveja
+Skeleton=Esqueleto
+Slith=Slit
+Sliver=Fragmentado
+Sluggishness=Flojera
+Snake=Serpiente
+Soldier=Soldado
+Spawn=Engendro
+Specter=Espectro
+Spellshaper=Cambiahechizos
+Sphinx=Esfinge
+Spider=Arana
+Spike=Descarga
+Spirit=Espiritu
+Sponge=Esponja
+Squid=Calamar
+Squirrel=Ardilla
+Stasis=Estasis
+Steadfastness=Tenacidad
+Stonehands=Manos de Piedra
+Thalakos=Talakos
+Thopter=Toptero
+Thumbscrews=Empulgueras
+Tombspawn=Tumba de Spawn
+Treefolk=Pueblo Arboreo
+Troll=Trol
+Turtle=Tortuga
+Unicorn=Unicornio
+Vampiere=Vampiro
+Verdigris=Moho
+Wall=Muro
+Warrior=Guerrero
+Weakness=Debilidad
+Weird=Extrano
+Whale=Orca
+Wizard=Hechicero
+Wolf=Lobo
+Wolverine=Gloton
+Worm=Gusano
+Wraith=Aparicion
+Wurm=Sierpe
+Zombie=Zombi
+
 
 # Planeswalker subtypes (rule 204.3i)
 
@@ -4774,11 +5230,6 @@ Shattering Spree=Reguero de ruptura
 Siege of Towers=Asedio de las torres
 Ogre Savant=Sabio ogro
 Earth Surge=Oleada de tierra
-Chandra Nalaar=Chandra Nalaar
-Garruk Wildspeaker=Garruk Portavoz Salvaje
-Liliana Vess=Liliana Vess
-Jace Beleren=Jace Beleren
-Ajani Goldmane=Ajani Melena Dorada
 Heartlash Cinder=Ceniciento corazon de latigo
 Inundate=Inundar
 Marshdrinker Giant=Gigante bebecienagas
@@ -5241,6 +5692,7 @@ Goblin Outlander=Forastero trasgo
 Goblin Razerunners=Arrasadores trasgos
 Grixis Illusionist=Ilusionista de Grixis
 Grixis Slavedriver=Esclavizador de Grixis
+Groundswell=Suelo de Fondo
 Gwafa Hazid, Profiteer=Gwafa Hazid, ventajista
 Hellkite Hatchling=Cria de engendro
 Hellspark Elemental=Elemental de chispa infernal
@@ -5271,7 +5723,7 @@ Molten Frame=Fundir el marco
 Nacatl Hunt-Pride=Manada de caza Nacatl
 Nacatl Outlander=Forastero Nacatl
 Nacatl Savage=Nacatl indomito
-Nicol Bolas, Planeswalker=Nicol Bolas, planeswalker
+Nicol Bolas, Planeswalker=Nicol Bolas, Planeswalker
 Noble Hierarch=Jerarca noble
 Nyxathid=Nyxathid
 Obelisk of Alara=Obelisco de Alara
@@ -5332,4 +5784,59 @@ Worldly Counsel=Consejo mundano
 Wretched Banquet=Banquete cruel
 Yoke of the Damned=Yugo de los condenados
 Zombie Outlander=Forastero zombie
-
+Baloth Woodcrasher=Baloth aplastamadera
+Awakener Druid=Druida Despertador
+Arbor Elf=Elfo Enramado
+Fog=Niebla
+Yavimaya Wurm=Sierpe de Yavimaya
+Timbermaw Larva=Larva masticamadera
+Sylvan Ranger=Guardabosque silvano
+Primal Bellow=Clamor primordial
+Greater Basilisk=Basilisco superior
+Grazing Gladehart=Venado del claro
+Garruk's Companion=Companero de Garruk
+Ezuri's Archers=Arqueros de Ezuri
+Dread Statuary=Monumentos pavorosos
+Ondu Giant=Gigante de Ondu
+Harrow=Gradar
+Vastwood Gorger=Insaciable del Bosque Extenso
+Garruk's Packleader=Lider de manada de Garruk
+Kozilek's Predator=Depredador de Kozilek
+Nest Invader=Invasor del nido
+Khalni Garden=Jardines de Khalni
+Strength of the Tajuru=Fuerza de los Tajuru
+Terra Stomper=Aplastatierra
+Honor of the Pure=El honor de los puros
+Luminarch Ascension=Ascenso del luminarca
+Chandra Ablaze=Chandra en Llamas
+Jace, the Mind Sculptor=Jace, el escultor mental
+Koth of the Hammer=Koth del Martillo
+Tezzeret, Agent of Bolas=Tezzeret, agente de Nicol Bolas
+Venser, the Sojourner=Venser, el Transeunte
+Pelakka Wurm=Sierpe de Pelakka
+Leatherback Baloth=Baloth lomo de cuero
+Overwhelming Stampede=Estampida abrumadora
+Bellowing Tanglewurm=Sierpemarana rugiente
+Molder Beast=Bestia enmohecedora
+Territorial Baloth=Baloth territorial
+Harbor Serpent=Serpiente de puerto
+Hornet Sting=Picadura de avispa
+Howling Banshee=Banshee aulladora
+Kazandu Tuskcaller=Llamacolmillos de Kazandu
+Lightning Bolt=Relampago
+Magma Phoenix=Fenix de magma
+Manic Vandal=Vandalo maniatico
+Nature's Spiral=Espiral de la naturaleza
+Nether Horror=Horror del submundo
+Quag Sickness=Nauseas del lodazal
+Rotting Legion=Legion putrida
+Sacred Wolf=Lobo sagrado
+Safe Passage=Pasaje seguro
+Siege Mastodon=Mastodonte de asedio
+Tireless Missionaries=Misioneros incansables
+Tome Scour=Depuracion del tomo
+Vastwood Zendikon=Zendikon del Bosque Extenso
+Acidic Slime=Fango acido
+Brindle Boar=Jabali moteado
+Earth Servant=Sirviente de tierra
+Fiery Hellhound=Perro infernal ardiente
