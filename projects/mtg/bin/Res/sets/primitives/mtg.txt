@@ -1352,8 +1352,8 @@ type=Sorcery
 [/card]
 [card]
 name=Altar of Dementia
-auto={0}:name(player = opponent) && sacrifice notatarget(creature|mybattlefield) && dynamicability[mytgt powerdeplete targetopponent]
-auto={0}:name(player = you) && sacrifice notatarget(creature|mybattlefield) && dynamicability[mytgt powerdeplete targetopponent]
+auto={0}:notatarget(creature|mybattlefield) dynamicability<!mytgt powerdeplete targetopponent!> sacrifice
+auto={0}:notatarget(creature|mybattlefield) dynamicability<!mytgt powerdeplete targetcontroller!> sacrifice
 text=Sacrifice a creature: Target player puts a number of cards equal to the sacrificed creature's power from the top of his or her library into his or her graveyard.
 mana={2}
 type=Artifact
@@ -6105,8 +6105,8 @@ toughness=2
 [/card]
 [card]
 name=Bleak Coven Vampires
-auto=aslongas(artifact|myBattlefield) life:-4 opponent >2 oneshot 
-auto=aslongas(artifact|myBattlefield) life:4 controller >2 oneshot 
+auto=aslongas(artifact|myBattlefield) life:4 controller >2 oneshot
+auto=aslongas(artifact|myBattlefield) life:-4 target(player) >2 oneshot
 text=Metalcraft - When Bleak Coven Vampires enters the battlefield, if you control three or more artifacts, target player loses 4 life and you gain 4 life.
 mana={3}{B}{B}
 type=Creature
@@ -8136,8 +8136,8 @@ type=Instant
 [card]
 name=Brigid, Hero of Kinsbaile
 abilities=first strike
-auto={T}:damage:2 all(creature[attacking;blocking]|opponentBattlefield)
-auto={T}:damage:2 all(creature[attacking;blocking]|myBattlefield)
+auto={T}:name(opponent) && damage:2 all(creature[attacking;blocking]|opponentBattlefield)
+auto={T}:name(you) && damage:2 all(creature[attacking;blocking]|myBattlefield)
 text=First strike -- {T}: Brigid, Hero of Kinsbaile deals 2 damage to each attacking or blocking creature target player controls.
 mana={2}{W}{W}
 type=Legendary Creature
@@ -16426,7 +16426,7 @@ type=Sorcery
 [/card]
 [card]
 name=Dong Zhou, the Tyrant
-auto=target(creature) dynamicability<!mytgt powerstrike targetcontroller!>
+auto=target(creature|opponentBattlefield) dynamicability<!mytgt powerstrike targetcontroller!>
 text=When Dong Zhou, the Tyrant enters the battlefield, target creature an opponent controls deals damage equal to its power to that player.
 mana={4}{R}
 type=Legendary Creature
@@ -27912,8 +27912,8 @@ toughness=1
 [/card]
 [card]
 name=Hagra Diabolist
-auto=may foreach(ally|myBattlefield) life:-1 opponent
-auto=@movedTo(other ally|myBattlefield):foreach(ally|myBattlefield) life:-1 opponent
+auto=may foreach(ally|myBattlefield) life:-1 target(player)
+auto=@movedTo(other ally|myBattlefield):foreach(ally|myBattlefield) life:-1 target(player)
 text=Whenever Hagra Diabolist or another Ally enters the battlefield under your control, you may have target player lose life equal to the number of Allies you control.
 mana={4}{B}
 type=Creature
@@ -37019,7 +37019,7 @@ toughness=6
 [/card]
 [card]
 name=Lobotomy
-target=*[-basic]|opponenthand
+target=*[-basic]|hand
 auto=moveTo(exile)
 auto=all(*[share!name!]|targetcontrollerhand) moveto(exile)
 auto=all(*[share!name!]|targetcontrollerlibrary) moveto(exile)
@@ -48880,8 +48880,7 @@ subtype=Arcane
 [/card]
 [card]
 name=Quill-Slinger Boggart
-auto=@movedTo(kithkin|mystack) from(myhand):may life:-1 target(player)
-auto=@movedTo(kithkin|opponentstack) from(opponenthand):may life:-1 target(player)
+auto=@movedTo(kithkin|stack) from(hand):may life:-1 target(player)
 text=Whenever a player casts a Kithkin spell, you may have target player lose 1 life.
 mana={3}{B}
 type=Creature
@@ -58696,7 +58695,7 @@ type=Land
 [/card]
 [card]
 name=Smoldering Tar
-auto=@each my upkeep:life:-1 opponent
+auto=@each my upkeep:life:-1 target(player)
 auto={S}:damage:4 target(creature) asSorcery
 text=At the beginning of your upkeep, target player loses 1 life. -- Sacrifice Smoldering Tar: Smoldering Tar deals 4 damage to target creature. Activate this ability only any time you could cast a sorcery.
 mana={2}{B}{R}
@@ -61329,9 +61328,9 @@ toughness=4
 [card]
 name=Starlit Sanctum
 auto={T}:Add{1}
-auto={W}{T}:notatarget(creature|mybattlefield) dynamicability<!mytgt toughnesslifegain targetcontroller!> sacrifice 
-auto={B}{T}:name(opponent loses life) && notatarget(creature|mybattlefield) dynamicability<!mytgt toughnesslifeloss targetopponent!> sacrifice
-auto={B}{T}:name(you lose life) && notatarget(creature|mybattlefield) dynamicability<!mytgt toughnesslifeloss targetcontroller!> sacrifice
+auto={W}{T}:notatarget(creature[cleric]|mybattlefield) dynamicability<!mytgt toughnesslifegain targetcontroller!> sacrifice 
+auto={B}{T}:notatarget(creature[cleric]|mybattlefield) dynamicability<!mytgt powerlifeloss targetopponent!> sacrifice
+auto={B}{T}:notatarget(creature[cleric]|mybattlefield) dynamicability<!mytgt powerlifeloss targetcontroller!> sacrifice
 text={T}: Add {1} to your mana pool. -- {W}, {T}, Sacrifice a Cleric creature: You gain life equal to the sacrificed creature's toughness. -- {B}, {T}, Sacrifice a Cleric creature: Target player loses life equal to the sacrificed creature's power.
 type=Land
 [/card]
@@ -64700,7 +64699,7 @@ type=Land
 [card]
 name=Tendrils of Agony
 abilities=storm
-auto=life:-2 opponent
+auto=life:-2 target(player)
 auto=life:2 controller
 text=Target player loses 2 life and you gain 2 life. -- Storm (When you cast this spell, copy it for each spell cast before it this turn. You may choose new targets for the copies.)
 mana={2}{B}{B}
@@ -66773,8 +66772,8 @@ toughness=5
 [/card]
 [card]
 name=Tormod's Crypt
-auto={T}{S}:moveTo(exile) all(*|opponentgraveyard)
-auto={T}{S}:moveTo(exile) all(*|mygraveyard)
+auto={T}{S}:name(opponent's graveyard) && moveTo(exile) all(*|opponentgraveyard)
+auto={T}{S}:name(my graveyard) && moveTo(exile) all(*|mygraveyard)
 text={T}, Sacrifice Tormod's Crypt: Exile all cards from target player's graveyard.
 mana={0}
 type=Artifact
@@ -74433,7 +74432,7 @@ toughness=2
 [card]
 name=Xira Arien
 abilities=flying
-auto={B}{R}{G}{T}:draw:1
+auto={B}{R}{G}{T}:draw:1 target(player)
 text=Flying -- {B}{R}{G}, {T}: Target player draws a card.
 mana={B}{R}{G}
 type=Legendary Creature
@@ -74510,8 +74509,8 @@ type=Land
 [card]
 name=Yavimaya Dryad
 abilities=forestwalk
-auto=may moveTo(myBattlefield) target(forest|mylibrary) && tap
-auto=may moveTo(opponentBattlefield) target(forest|mylibrary) && tap
+auto=may name(my battlefield) && moveTo(myBattlefield) target(forest|mylibrary) && tap
+auto=may name(opponent's battlefield) && moveTo(opponentBattlefield) target(forest|mylibrary) && tap
 text=Forestwalk -- When Yavimaya Dryad enters the battlefield, you may search your library for a Forest card and put it onto the battlefield tapped under target player's control. If you do, shuffle your library.
 mana={1}{G}{G}
 type=Creature
