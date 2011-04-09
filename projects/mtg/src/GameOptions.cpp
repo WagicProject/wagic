@@ -567,7 +567,9 @@ GameOption& GameSettings::operator[](int optionID)
 
 GameOption* GameSettings::get(int optionID)
 {
+#ifdef DEBUG
     string option_name = Options::getName(optionID);
+#endif
 
     if (optionID < 0)
         return &invalid_option;
