@@ -5378,6 +5378,12 @@ power=*
 toughness=*
 [/card]
 [card]
+name=Dueling Grounds
+text=No more than one creature can attack each turn. -- No more than one creature can block each turn.
+mana={1}{G}{W}
+type=Enchantment
+[/card]
+[card]
 name=Deus of Calamity
 text=Trample -- Whenever Deus of Calamity deals 6 or more damage to an opponent, destroy target land that player controls.
 mana={RG}{RG}{RG}{RG}{RG}

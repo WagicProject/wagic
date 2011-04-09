@@ -214,7 +214,7 @@ type=Instant
 [card]
 name=Abomination
 auto=@blocking(this) from(creature[green;white]):all(trigger[from]) phaseaction[combatends] destroy
-auto=@blocked(this) from(creature[green;white]):all(trigger[from]) phaseaction[combatends] destroy
+auto=@blocking(creature[green;white]) from(this):all(trigger[to]) phaseaction[combatends] destroy
 text=Whenever Abomination blocks or becomes blocked by a green or white creature, destroy that creature at end of combat.
 mana={3}{B}{B}
 type=Creature
@@ -833,7 +833,7 @@ type=Sorcery
 [/card]
 [card]
 name=Aisling Leprechaun
-auto=@blocked(this) from(creature):all(trigger[from]) transforms((,green)) forever
+auto=@blocking(creature) from(this):all(trigger[to]) transforms((,green)) forever
 auto=@blocking(this) from(creature):all(trigger[from]) transforms((,green)) forever
 text=Whenever Aisling Leprechaun blocks or becomes blocked by a creature, that creature becomes green. (This effect lasts indefinitely.)
 mana={G}
@@ -4864,7 +4864,7 @@ toughness=2
 [card]
 name=Basalt Golem
 auto=cantbeblockedby(creature[artifact])
-auto=@blocked(this) from(creature):all(trigger[from]) phaseaction[combatends] sacrifice && phaseaction[combatends] token(Wall,Artifact Creature Wall,0/2,defender) opponent
+auto=@blocking(creature) from(this):all(trigger[to]) phaseaction[combatends] sacrifice && phaseaction[combatends] token(Wall,Artifact Creature Wall,0/2,defender) opponent
 text=Basalt Golem can't be blocked by artifact creatures. -- Whenever Basalt Golem becomes blocked by a creature, that creature's controller sacrifices it at end of combat. If the player does, he or she puts a 0/2 colorless Wall artifact creature token with defender onto the battlefield.
 mana={5}
 type=Artifact Creature
@@ -5294,7 +5294,7 @@ type=Instant
 name=Beastmaster's Magemark
 target=creature
 auto=lord(creature[enchanted]|myBattlefield) 1/1
-auto=@blocked(creature[enchanted]|myBattlefield):all(trigger[to]) 1/1 ueot
+auto=@blocking(creature) from(creature[enchanted]|myBattlefield):all(trigger[from]) 1/1 ueot
 text=Enchant creature -- Creatures you control that are enchanted get +1/+1. -- Whenever a creature you control that's enchanted becomes blocked, it gets +1/+1 until end of turn for each creature blocking it.
 mana={2}{G}
 type=Enchantment
@@ -7220,7 +7220,7 @@ toughness=1
 name=Boggart Mob
 auto=aslongas(other goblin|mybattlefield) choice notatarget(other goblin|mybattlefield) (blink)forsrc oneshot
 auto=choice sacrifice
-auto=@combatdamaged(player) from(this):may token(Goblin Rogue,Creature Goblin Rogue,1/1,black)
+auto=@combatdamaged(player) from(goblin|mybattlefield):may token(Goblin Rogue,Creature Goblin Rogue,1/1,black)
 text=Champion a Goblin (When this enters the battlefield, sacrifice it unless you exile another Goblin you control. When this leaves the battlefield, that card returns to the battlefield.) -- Whenever a Goblin you control deals combat damage to a player, you may put a 1/1 black Goblin Rogue creature token onto the battlefield.
 mana={3}{B}
 type=Creature
@@ -8390,8 +8390,8 @@ type=Land
 [/card]
 [card]
 name=Brushwagg
-auto=@blocking(this):2/2 ueot
-auto=@blocked(this):2/2 ueot
+auto=@blocking(this):-2/2 ueot
+auto=@blocked(this):-2/2 ueot
 text=Whenever Brushwagg blocks or becomes blocked, it gets -2/+2 until end of turn.
 mana={1}{G}{G}
 type=Creature
@@ -14610,8 +14610,8 @@ toughness=6
 [/card]
 [card]
 name=Deathgazer
-auto=@blocking(this) from(creature):all(trigger[from]) phaseaction[combatends] destroy
-auto=@blocked(this) from(creature):all(trigger[from]) phaseaction[combatends] destroy
+auto=@blocking(this) from(creature[-black]):all(trigger[from]) phaseaction[combatends] destroy
+auto=@blocking(creature[-black]) from(this):all(trigger[to]) phaseaction[combatends] destroy
 text=Whenever Deathgazer blocks or becomes blocked by a nonblack creature, destroy that creature at end of combat.
 mana={3}{B}
 type=Creature
@@ -16978,7 +16978,7 @@ toughness=9
 [card]
 name=Dread Specter
 auto=@blocking(this) from(creature[-black]):all(trigger[from]) phaseaction[combatends] destroy
-auto=@blocked(this) from(creature[-black]):all(trigger[from]) phaseaction[combatends] destroy
+auto=@blocking(creature[-black]) from(this):all(trigger[to]) phaseaction[combatends] destroy
 text=Whenever Dread Specter blocks or becomes blocked by a nonblack creature, destroy that creature at end of combat.
 mana={3}{B}
 type=Creature
@@ -17008,8 +17008,8 @@ name=Dread Wight
 auto=lord(creature[counter{0/0.1.Paralyzation}]) doesnotuntap
 auto=@blocking(this) from(creature):all(trigger[from]) phaseaction[combatends] tap oneshot
 auto=@blocking(this) from(creature):all(trigger[from]) phaseaction[combatends] counter(0/0,1,Paralyzation) oneshot
-auto=@blocked(this) from(creature):all(trigger[from]) phaseaction[combatends] tap oneshot
-auto=@blocked(this) from(creature):all(trigger[from]) phaseaction[combatends] counter(0/0,1,Paralyzation) oneshot
+auto=@blocking(creature) from(this):all(trigger[to]) phaseaction[combatends] tap oneshot
+auto=@blocking(creature) from(this):all(trigger[to]) phaseaction[combatends] counter(0/0,1,Paralyzation) oneshot
 auto=lord(creature[counter{0/0.1.Paralyzation}]) {4}:counter(0/0,-1,Paralyzation)
 text=At end of combat, put a paralyzation counter on all creatures blocking or blocked by Dread Wight and tap those creatures. They gain "If this creature has a paralyzation counter on it, it doesn't untap during its controller's untap step" and "{4}: Remove a paralyzation counter from this creature."
 mana={3}{B}{B}
@@ -17038,7 +17038,7 @@ toughness=1
 [card]
 name=Dream Fighter
 auto=@blocking(this) from(creature):all(trigger[from]) phaseout && all(this) phaseout
-auto=@blocked(this) from(creature):all(trigger[from]) phaseout && all(this) phaseout
+auto=@blocking(creature) from(this):all(trigger[to]) phaseout && all(this) phaseout
 text=Whenever Dream Fighter blocks or becomes blocked by a creature, Dream Fighter and that creature phase out. (While they're phased out, they're treated as though they don't exist. Each one phases in before its controller untaps during his or her next untap step.)
 mana={2}{U}
 type=Creature
@@ -17589,14 +17589,6 @@ type=Creature
 subtype=Dryad
 power=2
 toughness=1
-[/card]
-[card]
-name=Dueling Grounds
-auto=aslongas(creature[attacking]|battlefield) lord(creature[-attacking]|battlefield) cantattack
-auto=aslongas(creature[blocking]|battlefield) lord(creature[-blocking]|battlefield) cantblock
-text=No more than one creature can attack each turn. -- No more than one creature can block each turn.
-mana={1}{G}{W}
-type=Enchantment
 [/card]
 [card]
 name=Duergar Assailant
@@ -18622,7 +18614,7 @@ type=Sorcery
 [/card]
 [card]
 name=Elven Warhounds
-auto=@blocked(this) from(creature):all(trigger[from]) moveto(ownerlibrary)
+auto=@blocking(creature) from(this):all(trigger[to]) moveto(ownerlibrary)
 text=Whenever Elven Warhounds becomes blocked by a creature, put that creature on top of its owner's library.
 mana={3}{G}
 type=Creature
@@ -19442,7 +19434,7 @@ type=Instant
 [card]
 name=Engulfing Slagwurm
 auto=@blocking(this) from(creature):all(trigger[from]) dynamicability<!mytgt toughnesslifegain srccontroller!> destroy
-auto=@blocked(this) from(creature):all(trigger[from]) dynamicability<!mytgt toughnesslifegain srccontroller!> destroy
+auto=@blocking(creature) from(this):all(trigger[to]) dynamicability<!mytgt toughnesslifegain srccontroller!> destroy
 text=Whenever Engulfing Slagwurm blocks or becomes blocked by a creature, destroy that creature. You gain life equal to that creature's toughness.
 mana={5}{G}{G}
 type=Creature
@@ -20081,7 +20073,7 @@ toughness=6
 [card]
 name=Evil Eye of Urborg
 auto=lord(creature[-eye]|myBattlefield) cantattack
-auto=@blocked(this) from(creature):all(trigger[from]) destroy
+auto=@blocking(creature) from(this):all(trigger[to]) destroy
 text=Non-Eye creatures you control can't attack. -- Whenever Evil Eye of Urborg becomes blocked by a creature, destroy that creature.
 mana={4}{B}
 type=Creature
@@ -27046,8 +27038,8 @@ toughness=4
 [/card]
 [card]
 name=Greater Werewolf
-auto=@blocking(this) from(creature[-black]):all(trigger[from]) phaseaction[combatends] counter(-0/-2,1) oneshot
-auto=@blocked(this) from(creature[-black]):all(trigger[from]) phaseaction[combatends] counter(-0/-2,1) oneshot
+auto=@blocking(this) from(creature):all(trigger[from]) phaseaction[combatends] counter(-0/-2,1) oneshot
+auto=@blocking(creature) from(this):all(trigger[to]) phaseaction[combatends] counter(-0/-2,1) oneshot
 text=At end of combat, put a -0/-2 counter on all creatures blocking or blocked by Greater Werewolf.
 mana={4}{B}
 type=Creature
@@ -30456,7 +30448,7 @@ toughness=4
 [card]
 name=Ib Halfheart, Goblin Tactician
 auto=@blocked(other goblin|mybattlefield) from(creature):all(trigger[to]) sacrifice
-auto=@blocked(other goblin|mybattlefield) from(creature):all(trigger[from]) damage:4
+auto=@blocking(creature) from(other goblin|mybattlefield):all(trigger[to]) damage:4
 auto={S(mountain|mybattlefield)}{S(mountain|mybattlefield)}:token(Goblin,Creature Goblin,1/1,red)*2
 text=Whenever another Goblin you control becomes blocked, sacrifice it. If you do, it deals 4 damage to each creature blocking it. -- Sacrifice two Mountains: Put two 1/1 red Goblin creature tokens onto the battlefield.
 mana={3}{R}
@@ -31147,7 +31139,7 @@ type=Instant
 [/card]
 [card]
 name=Inferno Elemental
-auto=@blocked(this) from(creature):all(trigger[from]) damage:3
+auto=@blocking(creature) from(this):all(trigger[to]) damage:3
 auto=@blocking(this) from(creature):all(trigger[from]) damage:3
 text=Whenever Inferno Elemental blocks or becomes blocked by a creature, Inferno Elemental deals 3 damage to that creature.
 mana={4}{R}{R}
@@ -32556,7 +32548,7 @@ toughness=3
 [card]
 name=Joven's Ferrets
 auto=@attacking(this):0/2 ueot
-auto=@blocked(this) from(creature):all(trigger[from]) phaseaction[combatends] tap && all(trigger[from]) phaseaction[combatends] frozen
+auto=@blocking(creature) from(this):all(trigger[to]) phaseaction[combatends] tap && all(trigger[to]) phaseaction[combatends] frozen
 text=Whenever Joven's Ferrets attacks, it gets +0/+2 until end of turn. -- At end of combat, tap all creatures that blocked Joven's Ferrets this turn. They don't untap during their controller's next untap step.
 mana={G}
 type=Creature
@@ -36660,7 +36652,7 @@ type=Enchantment
 [/card]
 [card]
 name=Lim-Dul's Cohort
-auto=@blocked(this) from(creature):all(trigger[from]) cantregen ueot
+auto=@blocking(creature) from(this):all(trigger[to]) cantregen ueot
 auto=@blocking(this) from(creature):all(trigger[from]) cantregen ueot
 text=Whenever Lim-Dul's Cohort blocks or becomes blocked by a creature, that creature can't be regenerated this turn.
 mana={1}{B}{B}
@@ -44063,7 +44055,7 @@ toughness=3
 [/card]
 [card]
 name=Ogre Leadfoot
-auto=@blocked(this) from(creature[artifact]):all(trigger[from]) destroy
+auto=@blocking(creature[artifact]) from(this):all(trigger[to]) destroy
 text=Whenever Ogre Leadfoot becomes blocked by an artifact creature, destroy that creature.
 mana={4}{R}
 type=Creature
@@ -46681,7 +46673,7 @@ toughness=2
 [/card]
 [card]
 name=Phyrexian Reaper
-auto=@blocked(this) from(creature[green]):all(trigger[from]) bury
+auto=@blocking(creature[green]) from(this):all(trigger[to]) bury
 text=Whenever Phyrexian Reaper becomes blocked by a green creature, destroy that creature. It can't be regenerated.
 mana={4}{B}
 type=Creature
@@ -46699,7 +46691,7 @@ type=Enchantment
 [card]
 name=Phyrexian Slayer
 abilities=flying
-auto=@blocked(this) from(creature[white]):all(trigger[from]) bury
+auto=@blocking(creature[white]) from(this):all(trigger[to]) bury
 text=Flying -- Whenever Phyrexian Slayer becomes blocked by a white creature, destroy that creature. It can't be regenerated.
 mana={3}{B}
 type=Creature
@@ -48751,7 +48743,7 @@ toughness=2
 [/card]
 [card]
 name=Quagmire Lamprey
-auto=@blocked(this) from(creature):all(trigger[from]) counter(-1/-1,1)
+auto=@blocking(creature) from(this):all(trigger[to]) counter(-1/-1,1)
 text=Whenever Quagmire Lamprey becomes blocked by a creature, put a -1/-1 counter on that creature.
 mana={2}{B}
 type=Creature
@@ -53804,8 +53796,8 @@ toughness=1
 [/card]
 [card]
 name=Sawtooth Ogre
-auto=@blocking(this) from(creature[-black]):all(trigger[from]) phaseaction[combatends] damage:1 oneshot
-auto=@blocked(this) from(creature[-black]):all(trigger[from]) phaseaction[combatends] damage:1 oneshot
+auto=@blocking(this) from(creature):all(trigger[from]) phaseaction[combatends] damage:1 oneshot
+auto=@blocking(creature) from(this):all(trigger[to]) phaseaction[combatends] damage:1 oneshot
 text=Whenever Sawtooth Ogre blocks or becomes blocked by a creature, Sawtooth Ogre deals 1 damage to that creature at end of combat.
 mana={2}{R}{R}
 type=Creature
@@ -63406,7 +63398,7 @@ toughness=2
 [/card]
 [card]
 name=Sylvan Basilisk
-auto=@blocked(this) from(creature):all(trigger[from]) destroy
+auto=@blocking(creature) from(this):all(trigger[to]) destroy
 text=Whenever Sylvan Basilisk becomes blocked by a creature, destroy that creature.
 mana={3}{G}{G}
 type=Creature
@@ -63880,7 +63872,7 @@ toughness=5
 [card]
 name=Talruum Champion
 abilities=first strike
-auto=@blocked(this) from(creature):all(trigger[from]) -first strike ueot
+auto=@blocking(creature) from(this):all(trigger[to]) -first strike ueot
 auto=@blocking(this) from(creature):all(trigger[from]) -first strike ueot
 text=First strike -- Whenever Talruum Champion blocks or becomes blocked by a creature, that creature loses first strike until end of turn.
 mana={4}{R}
@@ -63955,7 +63947,7 @@ type=Instant
 [card]
 name=Tangle Asp
 auto=@blocking(this) from(creature):all(trigger[from]) phaseaction[combatends] destroy
-auto=@blocked(this) from(creature):all(trigger[from]) phaseaction[combatends] destroy
+auto=@blocking(creature) from(this):all(trigger[to]) phaseaction[combatends] destroy
 text=Whenever Tangle Asp blocks or becomes blocked by a creature, destroy that creature at end of combat.
 mana={1}{G}
 type=Creature
@@ -64467,7 +64459,7 @@ toughness=1
 [/card]
 [card]
 name=Tel-Jilad Wolf
-auto=@blocked(this) from(creature[artifact]):all(trigger[from]) 3/3 ueot
+auto=@blocking(creature[artifact]) from(this):all(trigger[from]) 3/3 ueot
 text=Whenever Tel-Jilad Wolf becomes blocked by an artifact creature, Tel-Jilad Wolf gets +3/+3 until end of turn.
 mana={2}{G}
 type=Creature
@@ -66531,7 +66523,7 @@ toughness=4
 [/card]
 [card]
 name=Tolarian Entrancer
-auto=@blocked(this) from(creature):all(trigger[from]) phaseaction[combatends] moveto(mybattlefield)
+auto=@blocking(creature) from(this):all(trigger[to]) phaseaction[combatends] moveto(mybattlefield)
 text=Whenever Tolarian Entrancer becomes blocked by a creature, gain control of that creature at end of combat.
 mana={1}{U}
 type=Creature
@@ -69648,8 +69640,8 @@ toughness=2
 [card]
 name=Venom
 target=creature
-auto=@blocking(mytgt) from(creature):all(trigger[from]) phaseaction[combatends] destroy
-auto=@blocked(mytgt) from(creature):all(trigger[from]) phaseaction[combatends] destroy
+auto=@blocking(mytgt) from(creature[-wall]):all(trigger[from]) phaseaction[combatends] destroy
+auto=@blocking(creature[-wall]) from(mytgt):all(trigger[to]) phaseaction[combatends] destroy
 text=Enchant creature -- Whenever enchanted creature blocks or becomes blocked by a non-Wall creature, destroy the other creature at end of combat.
 mana={1}{G}{G}
 type=Enchantment
@@ -72576,7 +72568,7 @@ toughness=1
 [/card]
 [card]
 name=Weirding Shaman
-auto={3}{B}{S(goblin|myBattlefield)}:token(Goblin Rogue,Creature goblin,1/1,black)*2
+auto={3}{B}{S(goblin|myBattlefield)}:token(Goblin Rogue,Creature Goblin Rogue,1/1,black)*2
 text={3}{B}, Sacrifice a Goblin: Put two 1/1 black Goblin Rogue creature tokens onto the battlefield.
 mana={1}{B}
 type=Creature
@@ -73774,7 +73766,7 @@ type=Instant
 [card]
 name=Witherscale Wurm
 auto=@blocking(this) from(creature):all(trigger[from]) wither ueot
-auto=@blocked(this) from(creature):all(trigger[from]) wither ueot
+auto=@blocking(creature) from(this):all(trigger[to]) wither ueot
 auto=@damaged(player) from(this):thisforeach(counter{-1/-1.1}) counter(-1/-1,-1)
 text=Whenever Witherscale Wurm blocks or becomes blocked by a creature, that creature gains wither until end of turn. (It deals damage to creatures in the form of -1/-1 counters.) -- Whenever Witherscale Wurm deals damage to an opponent, remove all -1/-1 counters from it.
 mana={4}{G}{G}
