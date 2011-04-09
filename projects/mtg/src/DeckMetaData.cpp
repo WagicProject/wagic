@@ -4,6 +4,7 @@
 #include "DeckStats.h"
 #include "MTGDeck.h"
 #include "utils.h"
+#include "Translate.h"
 
 //Possible improvements:
 //Merge this with DeckStats
@@ -174,9 +175,9 @@ string DeckMetaData::getStatsSummary()
     LoadStats();
 
     ostringstream statsSummary;
-    statsSummary << "Difficulty: " << getDifficultyString() << endl
-                    << "Victory %: " << getVictoryPercentage() << endl
-                    << "Games Played: " << getGamesPlayed() << endl;
+    statsSummary << _("Difficulty: ") << _(getDifficultyString()) << endl
+                    << _("Victory %: ") << getVictoryPercentage() << endl
+                    << _("Games Played: ") << getGamesPlayed() << endl;
 
     return statsSummary.str();
 }

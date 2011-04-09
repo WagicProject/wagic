@@ -248,7 +248,7 @@ void DeckMenu::Render()
                         renderer->RenderQuad(quad.get(), avatarX, avatarY);
                 }
                 // fill in the description part of the screen
-				string text = wordWrap(currentMenuItem->desc, descWidth, mainFont->mFontID );
+				string text = wordWrap(_(currentMenuItem->desc), descWidth, mainFont->mFontID );
                 mainFont->DrawString(text.c_str(), descX, descY);
                 mFont->SetColor(ARGB(255,255,255,255));
                 
@@ -257,7 +257,7 @@ void DeckMenu::Render()
                 if (currentMenuItem->meta)
                 {
                     ostringstream oss;
-                    oss << "Deck: " << currentMenuItem->meta->getName() << endl;
+                    oss << _("Deck: ") << currentMenuItem->meta->getName() << endl;
                     oss << currentMenuItem->meta->getStatsSummary();
 
                     mainFont->DrawString(oss.str(), statsX, statsY);

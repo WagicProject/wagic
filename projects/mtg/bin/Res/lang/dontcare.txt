@@ -2,3 +2,4 @@
 #Before you Add/Remove a text from this file, be sure to understand why it has been put here!
 # For example, card names should not be in this file, BUT card names followed by a stupid space caracter should be
 =
+deck3=
