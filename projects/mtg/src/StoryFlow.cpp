@@ -527,6 +527,11 @@ void StoryDialog::Render()
 
 void StoryDialog::ButtonPressed(int controllerid, int controlid)
 {
+    if ( controlid == kInfoMenuID )
+        return;
+    if ( controlid == kCancelMenuID )
+        return;
+
     mParent->gotoPage(((StoryChoice *) mObjects[controlid])->pageId);
 }
 
