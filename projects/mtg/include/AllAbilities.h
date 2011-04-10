@@ -2720,7 +2720,7 @@ public:
     {
         tc = _tc;
         tc->targetter = NULL;
-        includeSelf = NULL;
+        includeSelf = 0;
         aType = MTGAbility::STANDARD_TEACH;
     }
 

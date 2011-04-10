@@ -832,7 +832,7 @@ int AAMorph::resolve()
         _target->morphed = false;
         _target->isMorphed = false;
         _target->turningOver = true;
-        af.getAbilities(&currentAbilities, NULL, _target,NULL);
+        af.getAbilities(&currentAbilities, NULL, _target, 0);
         for (size_t i = 0; i < currentAbilities.size(); ++i)
         {
             MTGAbility * a = currentAbilities[i];
@@ -2327,7 +2327,7 @@ ATransformer::ATransformer(int id, MTGCardInstance * source, MTGCardInstance * t
                 for (unsigned int k = 0 ; k < newAbilitiesList.size();k++)
                 {
                     AbilityFactory af;
-                    MTGAbility * aNew = af.parseMagicLine(newAbilitiesList[k],NULL, NULL, _target);
+                    MTGAbility * aNew = af.parseMagicLine(newAbilitiesList[k], 0, NULL, _target);
                     aNew->isClone = 1;
                     GenericTargetAbility * gta = dynamic_cast<GenericTargetAbility*> (aNew);
                     if (gta)
@@ -2506,14 +2506,14 @@ int AForeverTransformer::addToGame()
         {
             _target->basicAbilities[*it]++;
         }
-        if(newAbilityFound)
+        if (newAbilityFound)
         {
                 for (unsigned int k = 0 ; k < newAbilitiesList.size();k++)
                 {
                     AbilityFactory af;
-                    MTGAbility * aNew = af.parseMagicLine(newAbilitiesList[k],NULL, NULL, _target);
+                    MTGAbility * aNew = af.parseMagicLine(newAbilitiesList[k], 0, NULL, _target);
                     aNew->isClone = 1;
-                    
+
                     GenericTargetAbility * gta = dynamic_cast<GenericTargetAbility*> (aNew);
                     if (gta)
                     {

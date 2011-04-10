@@ -372,9 +372,7 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
 void MTGAllCards::initCounters()
 {
     for (int i = 0; i < Constants::MTG_NB_COLORS; i++)
-    {
-        colorsCount[i] = NULL;
-    }
+        colorsCount[i] = 0;
 }
 
 void MTGAllCards::init()

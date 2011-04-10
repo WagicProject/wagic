@@ -128,7 +128,7 @@ void MTGCardInstance::initMTGCI()
     isRedAndWhite = 0;
     isLeveler = 0;
     enchanted = false;
-    CDenchanted = NULL;
+    CDenchanted = 0;
     CDdamaged = 0;
     blinked = false;
     isExtraCostTarget = false;
@@ -140,7 +140,7 @@ void MTGCardInstance::initMTGCI()
     didattacked = 0;
     didblocked = 0;
     notblocked = 0;
-    sunburst = NULL;
+    sunburst = 0;
     equipment = 0;
     auras = 0;
     damageToOpponent = false;

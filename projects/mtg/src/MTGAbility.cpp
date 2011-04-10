@@ -1137,7 +1137,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     {
         SAFE_DELETE(tc);
         vector<string> multiEffects = split(s,'&');
-        MultiAbility * multi = NEW MultiAbility(id, card, target, NULL, NULL);
+        MultiAbility * multi = NEW MultiAbility(id, card, target, NULL, 0);
         for(unsigned int i = 0;i < multiEffects.size();i++)
         {
             if(!multiEffects[i].empty())
@@ -1782,7 +1782,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             else
             {
                 tokenId = 0;
-                ATokenCreator * tok = NEW ATokenCreator(id, card,target, NULL, "ID NOT FOUND", "ERROR ID", NULL, NULL, "", 0, NULL);
+                ATokenCreator * tok = NEW ATokenCreator(id, card, target, NULL, "ID NOT FOUND", "ERROR ID", 0, 0, "", 0, NULL);
                 return tok;
             }
         }

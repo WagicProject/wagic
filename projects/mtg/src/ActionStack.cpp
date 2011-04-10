@@ -935,8 +935,8 @@ void ActionStack::Update(float dt)
 					//this prevents you from "running out of time" while deciding.
 					//before this int was added, it was possible to run out of time if you had 10 stack actions
 					//and set the timer to 4 secs. BUG FIX //http://code.google.com/p/wagic/issues/detail?id=464
-					extraTime = count(NULL,NOT_RESOLVED,NULL);
-					if(extraTime == 0)
+					extraTime = count(0, NOT_RESOLVED, 0);
+					if (extraTime == 0)
 						extraTime = 1;//we never want this int to be 0.
             if (timer < 0)
 							timer = options[Options::INTERRUPT_SECONDS].number * extraTime;
