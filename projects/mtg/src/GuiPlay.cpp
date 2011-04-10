@@ -3,12 +3,14 @@
 #include "CardSelectorSingleton.h"
 #include "GameApp.h"
 #include "GuiPlay.h"
+#include "Subtypes.h"
 #include "Trash.h"
 
 #define CARD_WIDTH (31)
 
 const float GuiPlay::HORZWIDTH = 300.0f;
 const float GuiPlay::VERTHEIGHT = 80.0f;
+
 
 void GuiPlay::CardStack::reset(unsigned total, float x, float y)
 {
@@ -177,7 +179,7 @@ GuiPlay::~GuiPlay()
 
 bool isSpell(CardView* c)
 {
-    return c->card->isSpell() && !c->card->isCreature() && !c->card->hasType("Planeswalker");
+    return c->card->isSpell() && !c->card->isCreature() && !c->card->hasType(Subtypes::TYPE_PLANESWALKER);
 }
 void GuiPlay::Replace()
 {
@@ -189,7 +191,7 @@ void GuiPlay::Replace()
     for (iterator it = cards.begin(); it != end_spells; ++it)
         if (!(*it)->card->target)
         {
-            if(!(*it)->card->hasSubtype("aura") && !(*it)->card->hasType("Planeswalker"))
+            if(!(*it)->card->hasSubtype(Subtypes::TYPE_AURA) && !(*it)->card->hasType(Subtypes::TYPE_PLANESWALKER))
             {
                 if (game->players[0] == (*it)->card->controller())
                     ++selfSpellsN;
@@ -210,7 +212,7 @@ void GuiPlay::Replace()
             else
                 ++opponentCreaturesN;
         }
-        else if ((*it)->card->isLand() || (*it)->card->hasType("Planeswalker"))
+        else if ((*it)->card->isLand() || (*it)->card->hasType(Subtypes::TYPE_PLANESWALKER))
         {
             if (game->players[0] == (*it)->card->controller())
                 ++selfLandsN;
@@ -225,7 +227,7 @@ void GuiPlay::Replace()
     for (iterator it = cards.begin(); it != end_spells; ++it)
         if (!(*it)->card->target)
         {
-            if(!(*it)->card->hasSubtype("aura") && !(*it)->card->hasType("Planeswalker"))
+            if(!(*it)->card->hasSubtype(Subtypes::TYPE_AURA) && !(*it)->card->hasType(Subtypes::TYPE_PLANESWALKER))
             {
                 if (game->players[0] == (*it)->card->controller())
                     selfSpells.Enstack(*it);
@@ -268,7 +270,7 @@ void GuiPlay::Replace()
     //rerun the iter reattaching planes walkers to the back of the lands.
     for (iterator it = end_spells; it != cards.end(); ++it)
     {
-        if ((*it)->card->hasType("Planeswalker"))
+        if ((*it)->card->hasType(Subtypes::TYPE_PLANESWALKER))
         {
             if (game->players[0] == (*it)->card->controller())
                 selfLands.Enstack(*it);
@@ -297,7 +299,7 @@ void GuiPlay::Render()
             else
                 opponentCreatures.Render(*it, cards.begin(), end_spells);
         }
-        else if(!(*it)->card->hasType("Planeswalker"))
+        else if(!(*it)->card->hasType(Subtypes::TYPE_PLANESWALKER))
         {
             if (!(*it)->card->target)
             {

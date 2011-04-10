@@ -767,12 +767,12 @@ int AANewTarget::resolve()
 
         MTGCardInstance * refreshed = source->controller()->game->putInZone(_target,_target->currentZone,source->controller()->game->battlefield);
         Spell * reUp = NEW Spell(refreshed);
-        if(reUp->source->hasSubtype("aura"))
+        if(reUp->source->hasSubtype(Subtypes::TYPE_AURA))
         {
             reUp->source->target = source;
             reUp->resolve();
         }
-        if(_target->hasSubtype("equipment"))
+        if(_target->hasSubtype(Subtypes::TYPE_EQUIPMENT))
         {
             reUp->resolve();
             GameObserver * g = g->GetInstance();
@@ -3189,7 +3189,7 @@ void ABlink::Update(float dt)
         }
         Spell * spell = NEW Spell(Blinker);
         spell->source->counters->init();
-        if(spell->source->hasSubtype("aura") && !blinkhand)
+        if(spell->source->hasSubtype(Subtypes::TYPE_AURA) && !blinkhand)
         {
             TargetChooserFactory tcf;
             TargetChooser * tc = tcf.createTargetChooser(spell->source->spellTargetType,spell->source);
@@ -3223,7 +3223,7 @@ void ABlink::Update(float dt)
         }
         spell->source->power = spell->source->origpower;
         spell->source->toughness = spell->source->origtoughness;
-        if(!spell->source->hasSubtype("aura"))
+        if(!spell->source->hasSubtype(Subtypes::TYPE_AURA))
         {
             spell->resolve();
             if(stored)
@@ -3288,7 +3288,7 @@ void ABlink::resolveBlink()
             }
             Spell * spell = NEW Spell(Blinker);
             spell->source->counters->init();
-            if(spell->source->hasSubtype("aura") && !blinkhand)
+            if(spell->source->hasSubtype(Subtypes::TYPE_AURA) && !blinkhand)
             {
                 TargetChooserFactory tcf;
                 TargetChooser * tc = tcf.createTargetChooser(spell->source->spellTargetType,spell->source);

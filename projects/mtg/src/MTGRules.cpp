@@ -38,7 +38,7 @@ int MTGPutInPlayRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
     if(!allowedToCast(card,player))
         return 0;
 
-    if (card->hasType("land"))
+    if (card->isLand())
     {
         if (currentPlayer->game->playRestrictions->canPutIntoZone(card, currentPlayer->game->inPlay) == PlayRestriction::CANT_PLAY)
             return 0;
@@ -49,7 +49,7 @@ int MTGPutInPlayRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
             return 1;
         }
     }
-    else if ((card->hasType("instant")) || card->has(Constants::FLASH)
+    else if ((card->hasType(Subtypes::TYPE_INSTANT)) || card->has(Constants::FLASH)
         || (player == currentPlayer && !game->isInterrupting
         && (game->currentGamePhase == Constants::MTG_PHASE_FIRSTMAIN
         || game->currentGamePhase == Constants::MTG_PHASE_SECONDMAIN))
@@ -127,7 +127,7 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card)
     ManaCost * spellCost = previousManaPool->Diff(player->getManaPool());
 
     delete previousManaPool;
-    if (card->hasType("land"))
+    if (card->isLand())
     {
         MTGCardInstance * copy = player->game->putInZone(card, player->game->hand, player->game->temp);
         Spell * spell = NEW Spell(0,copy,NULL,NULL, payResult);
@@ -224,7 +224,7 @@ int MTGAlternativeCostRule::isReactingToClick(MTGCardInstance * card, ManaCost *
     if(!allowedToAltCast(card,player))
         return 0;
 
-    if (card->hasType("land"))
+    if (card->isLand())
     {
         if (currentPlayer->game->playRestrictions->canPutIntoZone(card, currentPlayer->game->inPlay) == PlayRestriction::CANT_PLAY)
             return 0;
@@ -234,7 +234,7 @@ int MTGAlternativeCostRule::isReactingToClick(MTGCardInstance * card, ManaCost *
             )
             return 1;
     }
-    else if ((card->hasType("instant")) || card->has(Constants::FLASH) 
+    else if ((card->hasType(Subtypes::TYPE_INSTANT)) || card->has(Constants::FLASH) 
         || (player == currentPlayer && !game->isInterrupting
         && (game->currentGamePhase == Constants::MTG_PHASE_FIRSTMAIN
         || game->currentGamePhase == Constants::MTG_PHASE_SECONDMAIN))
@@ -295,7 +295,7 @@ int MTGAlternativeCostRule::reactToClick(MTGCardInstance * card, ManaCost *alter
 
     card->alternateCostPaid[alternateCostType] = 1;
 
-    if (card->hasType("land"))
+    if (card->isLand())
     {
         MTGCardInstance * copy = player->game->putInZone(card, card->currentZone, player->game->temp);
         Spell * spell = NEW Spell(0,copy,NULL,NULL, alternateCostType);
@@ -642,7 +642,7 @@ int MTGMorphCostRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
     if(!allowedToAltCast(card,player))
         return 0;
     //note lands can morph too, this is different from other cost types.
-    if ((card->hasType("instant")) || card->has(Constants::FLASH) || (player == currentPlayer
+    if ((card->hasType(Subtypes::TYPE_INSTANT)) || card->has(Constants::FLASH) || (player == currentPlayer
         && !game->isInterrupting
         && (game->currentGamePhase == Constants::MTG_PHASE_FIRSTMAIN
         || game->currentGamePhase == Constants::MTG_PHASE_SECONDMAIN))
@@ -1571,7 +1571,7 @@ int MTGPlaneWalkerRule::canBeInList(MTGCardInstance * card)
 {
     if(card->isPhased)
         return 0;
-    if (card->hasType("Planeswalker") && game->isInPlay(card))
+    if (card->hasType(Subtypes::TYPE_PLANESWALKER) && game->isInPlay(card))
     {
         return 1;
     }

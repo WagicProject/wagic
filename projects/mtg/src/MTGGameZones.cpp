@@ -5,6 +5,7 @@
 #include "GameOptions.h"
 #include "WEvent.h"
 #include "MTGDeck.h"
+#include "Subtypes.h"
 
 #if defined (WIN32) || defined (LINUX)
 #include <time.h>
@@ -133,7 +134,7 @@ void MTGPlayerCards::OptimizedHand(Player * who,int amount, int lands, int creat
         {
             MTGCardInstance * _card = z->cards[j];
             //-------------
-            if (_card->hasType("Land") && optimizedland < lands)
+            if (_card->isLand() && optimizedland < lands)
             {
                 card = _card;
                 if (card)
@@ -143,8 +144,8 @@ void MTGPlayerCards::OptimizedHand(Player * who,int amount, int lands, int creat
                 }
             }
             //----------------first try to optimize a few cards that cost 2 or less.
-            if (_card->getManaCost()->getConvertedCost() <= 2 && optimizedothercards < othercards && !_card->hasType("Land")
-                            && !_card->hasType("Creature"))
+            if (_card->getManaCost()->getConvertedCost() <= 2 && optimizedothercards < othercards && !_card->isLand()
+                            && !_card->isCreature())
             {
                 card = _card;
                 if (card)
@@ -153,7 +154,7 @@ void MTGPlayerCards::OptimizedHand(Player * who,int amount, int lands, int creat
                     optimizedothercards += 1;
                 }
             }
-            if (_card->getManaCost()->getConvertedCost() <= 2 && optimizedcreatures < creatures && _card->hasType("Creature"))
+            if (_card->getManaCost()->getConvertedCost() <= 2 && optimizedcreatures < creatures && _card->isCreature())
             {
                 card = _card;
                 if (card)
@@ -168,8 +169,8 @@ void MTGPlayerCards::OptimizedHand(Player * who,int amount, int lands, int creat
         {
             MTGCardInstance * _card = z->cards[k];
 
-            if (_card->getManaCost()->getConvertedCost() <= 3 && optimizedothercards < othercards && (!_card->hasType("Land")
-                            || _card->hasType("Creature")))
+            if (_card->getManaCost()->getConvertedCost() <= 3 && optimizedothercards < othercards && (!_card->isLand()
+                            || _card->isCreature()))
             {
                 card = _card;
                 if (card)
@@ -178,8 +179,8 @@ void MTGPlayerCards::OptimizedHand(Player * who,int amount, int lands, int creat
                     optimizedothercards += 1;
                 }
             }
-            if (_card->getManaCost()->getConvertedCost() <= 3 && optimizedcreatures < creatures && (_card->hasType("Creature")
-                            || !_card->hasType("Land")))
+            if (_card->getManaCost()->getConvertedCost() <= 3 && optimizedcreatures < creatures && (_card->isCreature()
+                            || !_card->isLand()))
             {
                 card = _card;
                 if (card)
@@ -478,15 +479,17 @@ MTGCardInstance * MTGGameZone::hasCard(MTGCardInstance * card)
 int MTGGameZone::countByType(const char * value)
 {
     int result = 0;
+    int subTypeId = Subtypes::subtypesList->find(value);
     for (int i = 0; i < (nb_cards); i++)
     {
-        if (cards[i]->hasType(value))
+        if (cards[i]->hasType(subTypeId))
         {
             result++;
         }
     }
     return result;
 }
+
 int MTGGameZone::countByCanTarget(TargetChooser * tc)
 {
 if(!tc)

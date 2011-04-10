@@ -427,7 +427,7 @@ int AIAction::getEfficiency()
     {
         MTGCardInstance * _target = (MTGCardInstance *) (a->target);
         //nothing huge here, just ensuring that Ai makes his noncreature becomers into creatures during first main, so it can actually use them in combat.
-        if (_target && !_target->hasType("Creature") && g->getCurrentGamePhase() == Constants::MTG_PHASE_FIRSTMAIN)
+        if (_target && !_target->isCreature() && g->getCurrentGamePhase() == Constants::MTG_PHASE_FIRSTMAIN)
         {
             efficiency = 100;
         }

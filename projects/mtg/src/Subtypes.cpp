@@ -15,6 +15,9 @@ Subtypes::Subtypes()
     find("Land");
     find("Artifact");
     find("Legendary");
+    find("Equipment");
+    find("Aura");
+    find("Planeswalker");
 }
 
 int Subtypes::find(string value, bool forceAdd)
@@ -27,12 +30,6 @@ int Subtypes::find(string value, bool forceAdd)
     values[value] = id;
     valuesById.push_back(value);
     return id;
-}
-
-int Subtypes::find(const char * subtype, bool forceAdd)
-{
-    string value = subtype;
-    return find(value, forceAdd);
 }
 
 string Subtypes::find(unsigned int id)

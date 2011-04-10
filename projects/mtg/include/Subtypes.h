@@ -19,7 +19,10 @@ public:
         TYPE_LAND = 5,
         TYPE_ARTIFACT = 6,
         TYPE_LEGENDARY = 7,
-        LAST_TYPE = TYPE_LEGENDARY,
+        TYPE_EQUIPMENT = 8,
+        TYPE_AURA = 9,
+        TYPE_PLANESWALKER = 10,
+        LAST_TYPE = TYPE_PLANESWALKER,
     };
 
 protected:
@@ -28,7 +31,6 @@ protected:
 public:
     static Subtypes * subtypesList;
     Subtypes();
-    int find(const char * subtype, bool forceAdd = true);
     int find(string subtype, bool forceAdd = true);
     string find(unsigned int id);
 };

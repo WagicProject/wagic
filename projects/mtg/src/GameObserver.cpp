@@ -6,6 +6,7 @@
 #include "Damage.h"
 #include "Rules.h"
 #include "ExtraCost.h"
+#include "Subtypes.h"
 #include <JLogger.h>
 #include <JRenderer.h>
 
@@ -13,7 +14,6 @@ GameObserver * GameObserver::mInstance = NULL;
 
 GameObserver* GameObserver::GetInstance()
 {
-
     return mInstance;
 }
 
@@ -296,7 +296,7 @@ void GameObserver::startGame(Rules * rules)
                 for (int j = 0; j < z->nb_cards; j++)
                 {
                     MTGCardInstance * _card = z->cards[j];
-                    if (_card->hasType("land"))
+                    if (_card->isLand())
                     {
                         card = _card;
                         j = z->nb_cards;
@@ -403,12 +403,12 @@ void GameObserver::gameStateBasedEffects()
             ///////////////////////////////////////////////////////
             //Remove auras that don't have a valid target anymore//
             ///////////////////////////////////////////////////////
-            if (card->target && !isInPlay(card->target) && !card->hasType("equipment"))
+            if (card->target && !isInPlay(card->target) && !card->hasType(Subtypes::TYPE_EQUIPMENT))
             {
                 players[i]->game->putInGraveyard(card);
             }
             card->enchanted = false;
-            if (card->target && isInPlay(card->target) && !card->hasType("equipment") && card->hasSubtype("aura"))
+            if (card->target && isInPlay(card->target) && !card->hasType(Subtypes::TYPE_EQUIPMENT) && card->hasSubtype(Subtypes::TYPE_AURA))
             {
                 card->target->enchanted = true;
             }
@@ -455,7 +455,7 @@ void GameObserver::gameStateBasedEffects()
                 if(card->view)
                 card->view->alpha = 255;
             }
-            if (card->target && isInPlay(card->target) && (card->hasSubtype("equipment") || card->hasSubtype("aura")))
+            if (card->target && isInPlay(card->target) && (card->hasSubtype(Subtypes::TYPE_EQUIPMENT) || card->hasSubtype(Subtypes::TYPE_AURA)))
             {
                 card->isPhased = card->target->isPhased;
                 card->phasedTurn = card->target->phasedTurn;
@@ -681,7 +681,7 @@ void GameObserver::enchantmentStatus()
         for (int k = zone->nb_cards - 1; k >= 0; k--)
         {
             MTGCardInstance * card = zone->cards[k];
-            if (card && !card->hasType("equipment") && !card->hasSubtype("aura"))
+            if (card && !card->hasType(Subtypes::TYPE_EQUIPMENT) && !card->hasSubtype(Subtypes::TYPE_AURA))
             {
                 card->enchanted = false;
                 card->auras = 0;
@@ -690,7 +690,7 @@ void GameObserver::enchantmentStatus()
         for (int j = zone->nb_cards - 1; j >= 0; j--)
         {
             MTGCardInstance * card = zone->cards[j];
-            if (card->target && isInPlay(card->target) && !card->hasType("equipment") && card->hasSubtype("aura"))
+            if (card->target && isInPlay(card->target) && !card->hasType(Subtypes::TYPE_EQUIPMENT) && card->hasSubtype(Subtypes::TYPE_AURA))
             {
                 card->target->enchanted = true;
                 card->target->auras += 1;

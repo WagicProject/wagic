@@ -1214,7 +1214,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
                 oneShot = 1;
             if (activated)
                 oneShot = 1;
-            if (card->hasType("sorcery") || card->hasType("instant"))
+            if (card->hasType(Subtypes::TYPE_SORCERY) || card->hasType(Subtypes::TYPE_INSTANT))
                 oneShot = 1;
             if (a->oneShot)
                 oneShot = 1;
@@ -1304,7 +1304,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
                 oneShot = 1;
             if (a->oneShot)
                 oneShot = 1;
-            if (card->hasType("sorcery") || card->hasType("instant"))
+            if (card->hasType(Subtypes::TYPE_SORCERY) || card->hasType(Subtypes::TYPE_INSTANT))
                 oneShot = 1;
             found = s.find("while ");
             if (found != string::npos)
@@ -1868,7 +1868,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
 
         //hack for http://code.google.com/p/wagic/issues/detail?id=120
         //We assume that auras don't move their own target...
-        if (card->hasType("aura"))
+        if (card->hasType(Subtypes::TYPE_AURA))
             target = card;
 
         MTGAbility * a = NEW AAMover(id, card, target, szone);
@@ -2300,7 +2300,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
                 t = spell->getNextTarget();
             if (!activated)
             {
-                if (card->hasType("instant") || card->hasType("sorcery") || forceUEOT)
+                if (card->hasType(Subtypes::TYPE_INSTANT) || card->hasType(Subtypes::TYPE_SORCERY) || forceUEOT)
                 {
                     return NEW AInstantCastRestrictionUEOT(id, card, t, castTargets, value, modifyExisting, kMaxCastZones[i], who);
                 }
@@ -2608,7 +2608,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     {
         if (!activated)
         {
-            if (card->hasType("instant") || card->hasType("sorcery") || forceUEOT)
+            if (card->hasType(Subtypes::TYPE_INSTANT) || card->hasType(Subtypes::TYPE_SORCERY) || forceUEOT)
             {
                 return NEW AInstantPowerToughnessModifierUntilEOT(id, card, target, wppt);
             }
@@ -2647,7 +2647,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         fromTc->setAllZones();
         if (!activated)
         {
-            if (card->hasType("instant") || card->hasType("sorcery") || forceUEOT)
+            if (card->hasType(Subtypes::TYPE_INSTANT) || card->hasType(Subtypes::TYPE_SORCERY) || forceUEOT)
             {
                 return NULL; //TODO
             }
@@ -2668,7 +2668,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         fromTc->setAllZones();
         if (!activated)
         {
-            if (card->hasType("instant") || card->hasType("sorcery") || forceUEOT)
+            if (card->hasType(Subtypes::TYPE_INSTANT) || card->hasType(Subtypes::TYPE_SORCERY) || forceUEOT)
             {
                 return NULL; //TODO
             }
@@ -2690,7 +2690,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         //default target zone to opponentbattlefield here?
         if (!activated)
         {
-            if (card->hasType("instant") || card->hasType("sorcery") || forceUEOT)
+            if (card->hasType(Subtypes::TYPE_INSTANT) || card->hasType(Subtypes::TYPE_SORCERY) || forceUEOT)
             {
                 return NULL; //TODO
             }
@@ -2797,7 +2797,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             }
             if (!activated)
             {
-                if (card->hasType("instant") || card->hasType("sorcery") || forceUEOT)
+                if (card->hasType(Subtypes::TYPE_INSTANT) || card->hasType(Subtypes::TYPE_SORCERY) || forceUEOT)
                 {
                     return NEW AInstantBasicAbilityModifierUntilEOT(id, card, target, j, modifier);
                 }
@@ -3073,7 +3073,7 @@ int AbilityFactory::getAbilities(vector<MTGAbility *> * v, Spell * spell, MTGCar
             magicText.append(faceupC);
 
         }
-        else if(card && card->hasType("equipment") && card->target)
+        else if(card && card->hasType(Subtypes::TYPE_EQUIPMENT) && card->target)
         {
             magicText = card->model->data->magicText;
             string equipText = card->magicTexts["skill"];
@@ -3451,7 +3451,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
                 for (int j = inplay->nb_cards - 1; j >= 0; j--)
                 {
                     MTGCardInstance * card = inplay->cards[j];
-                    if (card->owner == player && card->hasType("artifact"))
+                    if (card->owner == player && card->hasType(Subtypes::TYPE_ARTIFACT))
                     {
                         player->game->putInZone(card, inplay, player->game->hand);
                     }
@@ -3780,7 +3780,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
     if(card->previous && card->previous->previous && card->previous->previous->suspended)
         card->basicAbilities[Constants::HASTE] = 1;
 
-    if (card->hasType("instant") || card->hasType("sorcery"))
+    if (card->hasType(Subtypes::TYPE_INSTANT) || card->hasType(Subtypes::TYPE_SORCERY))
     {
         MTGPlayerCards * zones = card->controller()->game;
         if (card->alternateCostPaid[ManaCost::MANA_PAID_WITH_BUYBACK] > 0)

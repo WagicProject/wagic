@@ -11,6 +11,7 @@ The Action Stack contains all information for Game Events that can be interrupte
 #include "GameOptions.h"
 #include "ManaCost.h"
 #include "MTGAbility.h"
+#include "Subtypes.h"
 #include "TargetChooser.h"
 #include "Translate.h"
 #include "WResourceManager.h"
@@ -289,7 +290,7 @@ Spell::~Spell()
 int Spell::resolve()
 {
     GameObserver * game = GameObserver::GetInstance();
-    if (!source->hasType("instant") && !source->hasType("sorcery"))
+    if (!source->hasType(Subtypes::TYPE_INSTANT) && !source->hasType(Subtypes::TYPE_SORCERY))
     {
         Player * p = source->controller();
         int castMethod = source->castMethod;

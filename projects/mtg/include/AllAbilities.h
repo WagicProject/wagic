@@ -15,6 +15,7 @@
 #include "WEvent.h"
 #include "GuiStatic.h"
 #include "GameObserver.h"
+#include "Subtypes.h"
 #include "ThisDescriptor.h"
 #include <JGui.h>
 #include <hge/hgeparticle.h>
@@ -130,7 +131,7 @@ public:
             intValue = 0;
             intValue = target->thatmuch;
             int checkagain = 0;
-            if(target->hasSubtype("aura") || target->hasSubtype("equipment"))
+            if(target->hasSubtype(Subtypes::TYPE_AURA) || target->hasSubtype(Subtypes::TYPE_EQUIPMENT))
             {
             if(target->target)
             {
@@ -2727,7 +2728,7 @@ public:
     {
         if(card->isPhased || source->isPhased)
             return 0;
-        if ((tc->source->hasSubtype("aura") || tc->source->hasSubtype("equipment") || tc->source->hasSubtype("instant")
+        if ((tc->source->hasSubtype(Subtypes::TYPE_AURA) || tc->source->hasSubtype(Subtypes::TYPE_EQUIPMENT) || tc->source->hasSubtype("instant")
                 || tc->source->hasSubtype("sorcery")) && tc->canTarget(card) && card == tc->source->target && card != tc->source) return 1;
         return 0;
     }
@@ -2759,7 +2760,7 @@ public:
     {
         MTGAbility * a = ability->clone();
 
-        if (a->source->hasSubtype("aura") || a->source->hasSubtype("equipment") || a->source->hasSubtype("instant")
+        if (a->source->hasSubtype(Subtypes::TYPE_AURA) || a->source->hasSubtype(Subtypes::TYPE_EQUIPMENT) || a->source->hasSubtype("instant")
                 || a->source->hasSubtype("sorcery"))
         {
             a->target = a->source->target;
