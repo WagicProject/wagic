@@ -12,6 +12,8 @@
 #include "SimpleMenu.h"
 #include "MTGAbility.h"
 
+#include <set>
+
 class GuiLayer;
 class Targetable;
 class WEvent;
@@ -49,6 +51,7 @@ public:
 protected:
     ActionElement * currentWaitingAction;
     int cantCancel;
+    std::set<ActionElement*> mReactions;
 };
 
 #endif

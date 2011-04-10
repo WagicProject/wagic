@@ -242,7 +242,11 @@ int ActionLayer::isReactingToClick(MTGCardInstance * card)
     for (int i = 0; i < mCount; i++)
     {
         ActionElement * currentAction = (ActionElement *) mObjects[i];
-        result += currentAction->isReactingToClick(card);
+        if (currentAction->isReactingToClick(card))
+        {
+            ++result;
+            mReactions.insert(currentAction);
+        }
     }
 
     return result;
@@ -256,13 +260,22 @@ int ActionLayer::reactToClick(MTGCardInstance * card)
     if (ae)
         return reactToClick(ae, card);
 
-    for (int i = 0; i < mCount; i++)
+    std::set<ActionElement*>::const_iterator iter = mReactions.begin();
+    std::set<ActionElement*>::const_iterator end = mReactions.end();
+    for (; iter !=end; ++iter)
     {
-        ActionElement * currentAction = (ActionElement *) mObjects[i];
-        result += reactToClick(currentAction, card);
+        result += reactToClick(*iter, card);
         if (result)
-            return result;
+            break;
     }
+
+#ifdef WIN32
+	// if we hit this, then something strange has happened with the click logic - reactToClick()
+	// should never be called if isReactingToClick() previously didn't have an object return true
+    assert(!mReactions.empty());
+#endif
+
+    mReactions.clear();
     return result;
 }
 
