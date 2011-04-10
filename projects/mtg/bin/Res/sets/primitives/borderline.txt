@@ -648,6 +648,7 @@ auto=2/2
 auto=teach(creature) protection from(black)
 auto=teach(creature) protection from(green)
 auto=@combatdamaged(player) from(mytgt): discard:1 opponent
+auto={2}:equip
 text=Equipped creature gets +2/+2 and has protection from black and from green. -- Whenever equipped creature deals combat damage to a player, that player discards a card and you untap all lands you control. -- Equip {2}
 mana={3}
 type=Artifact
@@ -746,5 +747,22 @@ auto=discard:3 controller
 auto=discard:3 opponent
 text=Each player discards three cards.
 mana={2}{B}
+type=Sorcery
+[/card]
+[card]
+name=Fugue
+target=player
+auto=discard:3
+text=Target player discards three cards.
+mana={3}{B}{B}
+type=Sorcery
+[/card]
+[card]
+name=Forget
+target=player
+auto=discard:2
+auto=draw:2
+text=Target player discards two cards, then draws as many cards as he or she discarded this way.
+mana={U}{U}
 type=Sorcery
 [/card]
