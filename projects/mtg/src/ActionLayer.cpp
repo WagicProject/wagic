@@ -20,6 +20,7 @@ MTGAbility* ActionLayer::getAbility(int type)
 
 int ActionLayer::moveToGarbage(ActionElement * e)
 {
+    mReactions.erase(e);
     int i = getIndexOf(e);
     if (i != -1)
     {
