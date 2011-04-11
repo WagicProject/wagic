@@ -250,7 +250,7 @@ typedef enum Buttons
     JGE_BTN_NEXT,    // Right trigger
     JGE_BTN_FULLSCREEN,    // Switch to fullscreen (obviously, PC only)
 
-    JGE_BTN_MAX = JGE_BTN_NEXT + 1
+    JGE_BTN_MAX = JGE_BTN_FULLSCREEN + 1
   } JButton;
 
 

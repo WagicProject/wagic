@@ -118,7 +118,11 @@ void JGE::HoldKey_NoRepeat(const LocalKeySym sym)
   else for (keycodes_it it = rng.first; it != rng.second; ++it)
     {
 #if defined (WIN32) || defined (LINUX)
-      if (JGE_BTN_FULLSCREEN == it->second) JGEToggleFullscreen();
+      if (JGE_BTN_FULLSCREEN == it->second)
+      {
+          JGEToggleFullscreen();
+          return;
+      }
 #endif
       keyBuffer.push(triplet(*it, true));
       if (!held(it->second))
