@@ -1,13 +1,6 @@
 #LANG:Espanol
 #Traduccion de Wagic The Homebrew 10.0.0 al Espanol por Inquisidor 
-#Renombra este archivo a "_lang.txt" o substituye spa por _lang en el nombre del archivo para disfrutar de Wagic en Espa~o
-#Note to translators:
-# - Cards' names and types are translated here (see bottom of the file)
-# - Cards' rules text is translated in a separate file: Res\lang\es_cards.txt
-# - Translations are case sensitive
-# - Limitation: Special characters that are not in the limited 128 ASCII
-#     set can not be used, the game won't display them.
-# - DO NOT TRANSLATE ANYTHING in the _cards.dat files.
+#Continuación del trabajo de Inquisidor adaptandolo para la versión 15.x
 
 
 #####################
@@ -50,13 +43,14 @@ Deck Editor=Editor de Mazo
 Shop=Tienda
 Options=Opciones
 Exit=Salir
-Trophy Room=Sala de Trofeo
-%s: %i cards (%i) (%i unique)=%s: %i cartas (%i) (%i unicas)
-%i cards (%i unique)=%i cartas (%i unicas)
+
 
 # Number of cards display:
 %s: %i cards (%i)=%s: %i cartas (%i)
 Database: %i cards=Base de Datos: %i cartas
+Trophy Room=Sala de Trofeo
+%s: %i cards (%i) (%i unique)=%s: %i cartas -- Total:(%i) (%i unicas)
+%i cards (%i unique)=%i cartas (%i unicas)
 
 
 #Texto Rotativo:
@@ -82,7 +76,6 @@ These stats will be updated next time you run Wagic=Esta configuracion sera apli
 Demo=Demo
 Test Suite=Modo de prueba
 
-
 #Tipos de Juego
 Momir Basic=Momir Basico
 Classic=Clasico
@@ -107,7 +100,9 @@ Choose Opponent=Elige un Oponente
 Random=Aleatorio
 Evil Twin=Gemelo Malvado
 LOADING DECKS=Cargando Mazos
-
+Can you defeat yourself?=Puedes ganarte a ti mismo?
+Choose a different player deck=Elige un Mazo Diferente
+Detailed Info=Inforacion del Mazo
 
 
 
@@ -328,7 +323,6 @@ Quit Editor=Salir del Editor
 Save & Rename=Renombrar y Guardar
 Switch decks without saving=Cancelar y cambiar de Mazo
 *Complete collection & reset*=*Completar coleccion y reiniciar*
-Rename deck=Renombrar Mazo
 
 
 # Infonmacion - Flechas:
@@ -359,13 +353,14 @@ deck statistics.=las Estadisticas del Mazo.
 
 #OTROS
 Collection=Coleccion
-Deck: Mazo
+Deck=Mazo
 No Card= Sin Cartas
 Your Deck: %i cards=Tu mazo: %i cartas
 menu=MENU
 filter=Filtro
 in: collection=COLECCION
 in: deck= MAZO
+
 
 
 
@@ -441,15 +436,23 @@ Victory ratio: %i%%=Porcentaje de Victorias: %i%%
 ##########################
 # SHOP                   #
 ##########################
-Credits: %i=Creditos: %i
+#Credits: %i=Creditos: %i
+Credits: =Creditos: 
+%s & %s (15 Cards)=%s & %s (15 Cartas)
+%s Booster (15 Cards)=Sobre de %s (15 Cartas)
+??? Pack (15-30 cards) =Pack de ??? (15-30 Cartas)
+%s (%i)=%s (%i)
 : Other cards=: Otras Cartas
 Check task board=Ver tareas Disponibles
 *Steal 1,000 credits*=*Roba 1.000 Creditos*
+Steal 1,000 credits=Roba 1.000 Creditos
 Ask about...=Preguntar por...
 Return to shop=Volver a la Tienda
 Add Filter=Crear Filtro
 Clear=Borrar
 Done=Hecho
+SOLD OUT=AGOTADO
+Sold Out=Agotado
 
 
 ##########################
@@ -544,6 +547,7 @@ Digit=Numero
 Task Board=Pizarra de Tareas
 There are no tasks that need to be done. Come again tomorrow.=No hay Tareas por hacer. Regresa Despues
 Days left: %i=Dias restantes: %i
+Days Left: %i=Dias Restantes: %i
 Reward: %i=Recompensa: %i
 You have to defeat %s before it causes too much harm.=Vence a %s Antes de que sea tarde
 Please defeat %s as soon as possible.=Por favor Vence a %s Lo mas pronto posible.
@@ -557,8 +561,8 @@ Defeat %s and make sure it doesn't take more than %i turns.=Vence a %s y que no 
 Defeat %s, in a duel no longer than %i turns.=Vence a  %s en maximo %i turnos.
 Delay %s for %i turns=Deten a %s por %i turnos.
 Defeat %s before turn %i=Vence a %s Antes del Turno %i
-Defeat any opponent, having at least %i lives in the end.=Vence a cualquier oponente con al menos %i vidas al final.
-Win flawlessly (%i lives)=Gana invicto (%i vidas)
+Defeat any opponent, having at least %i life in the end.=Vence a cualquier oponente con al menos %i vidas al final.
+Win flawlessly (%i life)=Gana invicto (%i vidas)
 Reach Invulnerability (%i lives)=Alcanza la invulnerabilidad (%i vidas)
 Reach Immortality! (%i lives)=Alcanza la Inmortalidad! (%i vidas)
 Bury %i %s cards to your opponent's graveyard and defeat him.=Entierra %i cartas de %s en su cementerio y luego vencelo.
@@ -567,7 +571,8 @@ Evaporation (%i)=Evaporacion (%i)
 Bring the order (%i)=Regresa el Orden (%i)
 Exorcism (%i)=Exorcismo (%i)
 Dusk (%i)=Obscuridad (%i)
-Selective disaster (%i)=Desastre Selectivo (%i)
+Selective disaster (%i)=Desastre Selectivo (%i).
+Win a game with at least %i black cards in your hand.=Gana el juego con al menos %i cartas negras en la mano.
 
 
 ##########################

@@ -1,0 +1,441 @@
+#LANG:Serbian
+
+#Note to translators:
+# - Cards' names and types are translated here (see bottom of the file)
+# - Cards' rules text is translated in a separate file: Res\lang\de_cards.txt
+# - Translations are case sensitive
+# - Limitation: Special characters that are not in the limited 128 ASCII
+#     set can not be used, the game won't display them.
+# - DO NOT TRANSLATE ANYTHING in the _cards.dat files.
+
+
+##########################
+# USER INTERFACE:        #
+##########################
+
+Yes=Da
+No=Ne
+Player=Igrac
+
+Save & Back to Main Menu=Sacuvaj i Vrati Se u Glavni Meni
+Back to Main Menu=Nazad u Glavni Meni
+Back to main menu=Nazad u Glavni Meni
+
+# Simple Pad:
+Cancel=Ponisti
+Spacebar=Razmak
+Del=Del
+Caps=Velika Slova
+Confirm=Potvrdi
+
+
+##########################
+# MAIN MENU              #
+##########################
+
+# Engine initialization:
+LOADING SET: %s=UCITAVANJE SETA: %s
+
+# Main menu:
+Play=Igraj
+Deck Editor=Editor Spila
+Shop=Prodavnica
+Options=Opcije
+Exit=Izadji
+Trophy Room=||TROFEJI||
+%i cards (%i unique)=%i karti (%i unikata)
+------- Deck Summary -----= STATISTIKE O SPILU
+Filter By...=Filtriraj po...
+You have a %i%% victory ratio with "%s"=Imate %i%% prosek pobeda sa "%s"
+Other cards=Ostale karte
+Ask about...=Pitaj u vezi...
+Check task board=Proveri zadatke
+Add filter=Dodaj Filter
+Clear=Ocisti listu
+Done=Gotovo
+
+# Number of cards display:
+%s: %i cards (%i)=%s: %i Karti (%i)
+Database: %i cards=Baza Podataka: %i Karti
+
+# Scrolling messages:
+You have a %i%% victory ratio with Deck%i=Imate prosek od %i%% pobeda sa Deck%i
+You have played %i games with Deck%i=Igrali ste %i partija sa Deck%i
+You have played a total of %i games=Igrali ste ukupno %i partija
+Unlock the difficult mode for more challenging duels!=Okljucajte teski mod za jos teze borbe!
+Interested in playing Momir Basic? You'll have to unlock it first :)=Zainteresovani da igrate Momir Basic? Morate prvo da ga otkljucate :)
+You haven't unlocked the random deck mode yet=Niste jos otkljucali nasumicni mod
+You haven't unlocked the evil twin mode yet=Niste jos otkljucali mod zlog blizanca
+You have unlocked %i expansions out of %i=Otkljucali ste %i nastavaka od %i
+You have a total of %i cards in your collection=Imate ukupno %i karata u vasoj kolekciji
+The cards in your collection have an average value of %i credits=Karte u vasoj kolekciji su u prosecnoj vrednosti od oko %i para
+The shopkeeper would buy your entire collection for around %i credits=Prodavac bi hteo da kupi sve vase karte za oko %i
+You currently have %i credits=Trenutno imate %i para
+More cards and mods at http://wololo.net/wagic=Jos karti i modova na http://wololo.net/wagic
+These stats will be updated next time you run Wagic=Ove statistike ce se azurirati sledeci put kad ukljucite Wagic
+
+# Number of players menu:
+1 Player=1 Igrac
+2 Players=2 Igraca
+Demo=Demo
+Test Suite=Isprobaj
+
+# Game type menu:
+Classic=Klasicna Partija
+Story=Prica
+Momir Basic=Momir Basic
+Random 1 Color=1 nasimicna boja
+Random 2 Colors=2 nasumicne boje
+
+# Player deck menu:
+Choose a Deck=Izaberi Spil
+Create your Deck!=Napravi svoj spil!
+Premade G/R=Osnovni G/R Spil
+NO DECK AVAILABLE,=NEMATE NIJEDAN SPIL
+PRESS CIRCLE TO GO TO THE DECK EDITOR!=PRITISNI KRUG DA IDES U EDITOR SPILA
+
+# Opponent deck menu:
+Choose Opponent=Izaberi Protivnika
+(easy)=(Lako)
+(hard)=(Tesko)
+Random=Narumicno
+Evil Twin=Zli Blizanac
+LOADING DECKS=UCITAVANJE SPILOVA
+
+
+##########################
+# DUEL                   #
+##########################
+
+# Players:
+Player 1=1. Igrac
+Player 2=2. Igrac 
+
+# Turns & Priority:
+your turn=Tvoj Potez
+opponent's turn=Protivnicki Potez
+opponent plays=Protivnik Igra
+you play=Ti Igras
+
+# Phases & Steps:
+Untap=Ukloni Mane
+Upkeep=Pauza
+Draw=Vuci Kartu
+Main phase 1=1. Glavna Faza
+Combat begins=Napad Pocinje
+Attackers=Napad
+Blockers=Bokiranje
+Combat damage=Odsteta
+Combat ends=Kraj Napada
+Main phase 2=2. Glavna Faza
+End=Kraj
+Cleanup=Ciscenje
+
+# Interrupts:
+Interrupt?=Prekini?
+X Interrupt - 0 No - [] No to All=X Prekini - 0 Ne - [] Ne za sve.
+X Interrupt - 0 No=X Prekini - 0 Ne
+
+# Stack:
+Deals %i damage to=Oslabljuje Protivnika za: %i
+is exiled=je proteran
+Player %i draws %i card=1. Igrac %i vuce %i kartu
+goes to graveyard=ide na groblje
+%s goes to graveyard=%s ide na groblje
+
+# Abilities:
+Ability=Sposobnost
+Attacker=Napadac
+Blocker=Bloker
+Copy=Klon
+Cycling=vozi se
+Damage=Odsteta
+Deathtouch=dodir smrti
+Destroy=Unistiti
+Draw=Vuci kartu
+Equip=Pojacaj
+Fizzle=Fizzle
+Life=Zivot
+Momir=Momir
+Move=Pomeri
+Put into play=stavi u igru
+# Regenerate gets its translation from the card of the same name
+Tap=Uzmi Manu
+# Untap gets its translation from the phase of the same name
+
+# Abilities (special cases):
+Add =Dodaj
+white=Belo
+blue=Plavo
+black=Crno
+green=Zeleno
+red=Crveno
+ mana= Mana
+
+# Other:
+sacrifice=Zrtvuj
+
+# End of Match / Victory screen:
+Difficulty Bonus=Bonus za teskocu
+'Live dangerously and you live right' Bonus='Zivi opasno i ziveces na pravi nacin' Bonus
+Life Delta Bonus=Bonus za preostali zivot
+'Decree of Theophilus' Bonus='Dokument Teofila' Bonus
+Miller Bonus=Miler Bonus
+'Fast and Furious' Bonus='Brz i Opak' Bonus
+Victory=Pobeda
+Task: %s=Zadatak: %s
+Credits per minute: %i=Para po minuti : %i
+Game length: %i seconds=Trajanje igre: %i sekundi
+Congratulations! You earn %i credits=Cestitam! Zaradili ste %i para
+You have been defeated=Prazeni ste
+Player %i wins (%i)=Igrac %i je pobedio (%i)
+Please check your deck (not enough cards?)=Bitte Proverite spil, mozda nema dovoljno karti ?!
+Please support this project!=Molimo vas podrzite ovaj projekat!
+Wagic is free, open source, and developed on the little free time I have=Wagic je besplatan i open source projekat, napravio sam ga u nesto malo slobodnog vremena
+If you enjoy this game, please consider donating a few bucks=Ako uzivate u ovoj igri molimo vas da malo i donirate
+(Seriously, donate or I'll kill this cute little bunny)=(Ozbiljno donirajte ili cu ubiti ovog malog zeca!)
+Thanks in advance for your support.=Hvala za vosu podrsku unapred.
+
+# Error Messages:
+AN ERROR OCCURRED, CHECK FILE NAMES=DESILA SE GRESKA PROVERITE IMENA PODATAKA
+
+##########################
+# DECK EDITOR            #
+##########################
+
+# Deck editor menu:
+--NEW--=--NOVO--
+Save=Sacuvaj
+Save & Rename=Sacuvaj i Promeni Naziv
+Switch decks without saving=Promeni spil i ne sacuvaj podatke
+*Complete collection & reset*=*Upotpuni Kolekciju i resetuj*
+Rename deck=Promeni Naziv
+
+# Info layer - directional keys:
+Prev. color=Prethodna Boja
+Next color=Sledeca Boja
+Prev.=Predhodno
+Next=Sledece
+card=Karta
+cards=Karte
+
+# Info layer - symbol keys:
+Toggle Images=Vrti Slike
+View Collection=Gledaj u kolekciji
+View Deck=Gledaj u spilu
+Add card=Dodaj kartu
+Remove card=Izbaci kartu
+Sell card=Prodaj kartu
+
+# Info layer - explanations:
+Use SQUARE to view collection,=Koristite KOCKU da gledate kolekciju
+Use SQUARE to view your deck,=Koristite KOCKU da gledate svoj spil,
+Press L/R to cycle through=Pritisnite L/R da prolazite kroz
+deck statistics.=Statistike o spilu.
+
+# Other strings:
+Collection=Kolekcija
+Deck=Spil
+No Card=Nama karte
+Your Deck: %i cards=Dein Deck: %i Karten
+menu=Menue
+in: collection=U: kolekciji
+in: deck=u: spilu
+
+# Statistics - page 1:
+Statistics Summary=Osnovna statistika
+Lands=Zemlje
+Creatures=Stvorenja
+Spells=Magije
+Instants=Instantne Magije
+Enchantments=Cari
+Sorceries=Vradzbine
+Average converted mana cost=Prosecna cena preobradjene mane
+Probabilities=Verovatnoce
+No land in 1st hand=Nemate zemlju u prvoj ruci
+No land in 9 cards=Nemate zemlju u 9 karata
+No creatures in 1st hand=Nemate Stvorenja u prvoj ruci
+Playgame statistics=Statistike o Partijama
+Games played=Partije odigrane
+Victory ratio=Prosek pobeda
+Total price (credits)=Ukupna cena (Para)
+
+# Statistics - page 2:
+Mana cost detail=Cena mane
+Card counts per mana cost:=Cena broja karata po mani:
+Average converted mana cost: %2.2f=Prosecna cena preobradjene mane: %2.2f
+C=C
+C - Converted mana cost. Cards with cost>%i are included in the last row.=C - Cena preobradjene mane. Karte sa cenom >%i su ukljucene u poslednji red.
+# - Total number of cards with given cost=# - Ukupan broj karti sa datom cenom
+
+# Statistics - page 3:
+Mana cost detail - Creatures=Detalji o ceni mane - Stvorenja
+Creature counts per mana cost:=Broj stvorenja po ceni mane:
+
+# Statistics - page 4:
+Mana cost detail - Spells=Detalji o ceni mane - Magije
+Non-creature spell counts per mana cost:=Cena mane po magiji bez stvorenja:
+
+# Statistics - page 5:
+Mana production=Stvaranje mane
+Counts of manasources per type and color:=Broj izvora mane po vrsti:
+BL=OZ
+BL - Basic lands=OZ - Osnovna Zemlja
+NB=PZ
+NB - Non-basic lands=PZ - Posebna Zemlja
+O=O
+O - Other (non-land) manasources=O - Ostalo (nije zemlja)
+T=U
+T - Totals=U - Ukupno
+
+# Statistics - page 6:
+Mana production - in mana symbols=Pravljenje mane - u mana simbolima
+Total colored manasymbols in lands' production:=Ukupan broj simbola u zemljama:
+
+# Statistics - page 7:
+Mana cost per color=Cena Mane po Boji
+Total colored manasymbols in cards' casting costs:=Ukupno obojeni mana simbola u ceni magija karata:
+
+# Statistics - page 8:
+No lands in first n cards:=Nema zemalja u prvih n karata:
+No creatures in first n cards:=Nema stvorenja u prvih n karata:
+
+# Statistics - page 9:
+Victory statistics=Statistike o pobedama
+Victories against AI:=Pobede protiv CPU Igraca:
+Games played: %i=Partije odigrana: %i
+Victory ratio: %i%%=Prosek Pobede: %i%% 
+
+
+##########################
+# SHOP                   #
+##########################
+
+Credits: = Pare:
+:other cards=:ostale karte
+See available tasks=Pogledaj Zadatke
+*Steal 1,000 credits*=*Stehle 1.000 Credits*
+
+
+##########################
+# TASKS:                 #
+##########################
+
+Task Board=Tabla sa zadatcima
+There are no tasks that need to be done. Come again tomorrow.=Nema zadataka. Vrati se ponovo sutra.
+Days left: %i=Ostalo dana: %i
+Reward: %i=Nagrada: %i
+You have to defeat %s before it causes too much harm.=Moras da pobedis %s pre nego sto napravi veliku stetu.
+Please defeat %s as soon as possible.=Molim te pobedi %s sto pre.
+Defeat %s=Pobedi %s
+Defeat %s in a way it won't forget. Bring it to %i life.=Pobedi %s da to ne zaboravi! Nek mu ostane %i zivota.
+Slaughter %s! Beat it to %i life or less.=Unisti %s! Nek mu ostane %i zivota ili manje.
+Slaughter %s (%i lives)=Unisti %s (%i Zivota)
+Defeat %s after keeping it occupied for %i turns.=Pobedi %s nakon sto ga zamajavas %i poteza.
+Defeat %s, but play with it for %i turns first.=Pobedi %s, ali zamajavaj ga prvo %i poteza.
+Defeat %s and make sure it doesn't take more than %i turns.=Pobedi %s nemoj da traje vise od %i poteza.
+Defeat %s, in a duel no longer than %i turns.=Pobedi %s u ne vise od %i poteza.
+Delay %s for %i turns=zamajavaj %s za %i poteza.
+Defeat %s before turn %i=Pobedi %s preo %i poteza
+Defeat any opponent, having at least %i lives in the end.=Pobedi bilo kog protivnika tako da ti ostane %i zivota na kraju.
+Win flawlessly (%i lives)=Besprekorno pobedi (%i Leben)
+Reach Invulnerability (%i lives)=Postigni neunistivost (%i Zivota)
+Reach Immortality! (%i lives)=Postigni besmrtnost! (%i Zivota)
+Bury %i %s cards to your opponent's graveyard and defeat him.=Pokopaj %i %s karti tvog protivnika i pobedi ga.
+Tame the nature (%i)=Pokori prirodu (%i)
+Evaporation (%i)=Isparavanje (%i)
+Bring the order (%i)=Uspostavi red (%i)
+Exorcism (%i)=Gatanje (%i)
+Dusk (%i)=Summrak (%i)
+Selective disaster (%i)=Selektivna katastrofa (%i)
+
+
+##########################
+# OPTIONS                #
+##########################
+
+# Options tab:
+Settings=Podesavanja
+General Options=Osnovno
+Music volume=Jacina Muzike
+Mute=Iskljuci
+Max=Maksimum
+SFX volume=Jacina Zvucnih Efekata
+Difficulty=Tezina Igre
+Normal=Normalna
+Hard=teska
+Harder=teza
+Evil=ZLA
+Display InGame extra information=Prikazi dodatnu informaciju
+Enable cheat mode=Ukljuci hackove
+Seconds to pause for an Interrupt=Pauza za prekidanje
+Interrupt my abilities=Prekini moje sposobnosti
+Interrupt my spells=Prekini moje magije
+Interrupt opponent's end of turn=Prekini kraj poteza protivnika
+
+# Game tab:
+Game=Igra
+Interface Options=Opcije Prikaza terena
+Language=Jezik
+Closed hand=Zatvorena Ruka
+visible=Vidljiva
+invisible=nevidljiva
+Hand direction=Ruka usmerena...
+horizontal=horizontalno
+vertical=vertikalno
+Mana display=Prikaz mane
+Simple=Prosto
+Eye candy=Dosta efekata
+Both=Obe opcije
+Reverse left and right triggers=Zameni funkciju L i R
+Disable card image loading=Onesposobi slike karata
+User=Korisnik
+User Options=Opcije korisnika
+Credits: %i=Para: %i
+Cards: %i=Karte: %i
+Sets: %i (of %i)=Setovi: %i (od %i)
+Theme: %s=Tema: %s
+Artist: %s=Napravio: %s
+Default=Standardno
+New Profile=Novi Profil
+Use this Profile=Koristo ovaj profil
+Use this Theme=Koristi ovu temu
+
+# Credits tab:
+Credits=Napravili su...
+
+##########################
+# TROPHY ROOM:           #
+##########################
+
+Achievements=Postignuca
+Difficulty Modes=Modovi tezine
+Achieved a 66% victory ratio.=Postigao procenat pobede od 66%.
+Momir Mode=Mod Momira
+Won with exactly 8 lands.=Pobedio sa 8 zemalja.
+Evil Twin Mode=Mod zlog blizanca
+Won with same army size.=Pobedio sa armijom iste velicine
+Random Deck Mode=Nasimican Mod
+Won against a higher difficulty.=Pobedio protiv vece tezine
+Valuable Collection=Vredna kolekcija
+Collection valued over 10,000c.=Vrednost kolekcije preko 10,000 para.
+Collection Info=Informacije o kolekciji
+Card Spoiler=O kartama
+%i locked sets remain.=Preostalo je %i zakljucanih Setova.
+Unlocked all %i sets.=Otkljucao svih %i setova.
+
+Back to Trophies=Nazad u trofeje
+
+Booster=Buster
+Cards=Karte
+
+Details=Detalji
+Collection Stats=Statistika kolekcije
+Total Value: %ic=Ukupna vrednost: %ic
+Total Cards (including duplicates): %i=Ukupno karata (i duplikati): %i
+Unique Cards: %i=Posebne karte (i duplikati): %i
+Most Duplicates: %i (%s)=Najvise duplikata: %i (%s)
+Favorite Set: %s=Omiljeni set: %s
+Highest Mana Cost: %i (%s)=Najvisa cena mane: %i (%s)
+Most Powerful: %i (%s)=Najmozniji: %i (%s)
+Toughest: %i (%s)=Najjaci: %i (%s)
