@@ -1,6 +1,5 @@
-wagic (0.14.1maemo0) unstable; urgency=low
+wagic (0.15.1maemo0) unstable; urgency=low
 
-  * Fixed crashes in the touch interface
-  * Changed the installation mechanism to be able to work while the FAT partition is mounted
-  * wagic 0.14.1
- -- Xawotihs <xawotihs@gmail.com>  Wed, 29 Dec 2010 14:11:42 +0200
+  * Added touch support in settings
+  * wagic 0.15.1
+ -- Xawotihs <xawotihs@gmail.com>  Mon, 11 Apr 2011 14:11:42 +0200
