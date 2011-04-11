@@ -646,11 +646,9 @@ bool JGEToggleFullscreen()
         gDisplayMode = DisplayMode_lowRes;
 
     int width = 0, height = 0;
-    RECT workArea;
-    // get the useable screen area (ie not including the windows taskbar, etc
-    SystemParametersInfo( SPI_GETWORKAREA, 0, (PVOID)&workArea, 0);
-    int actualScreenWidth = workArea.right - workArea.left;
-    int actualScreenHeight = workArea.bottom - workArea.top;
+
+    int actualScreenWidth = ::GetSystemMetrics(SM_CXSCREEN);
+    int actualScreenHeight = ::GetSystemMetrics(SM_CYSCREEN);
 
     switch (gDisplayMode)
     {
@@ -671,16 +669,23 @@ bool JGEToggleFullscreen()
         break;
     }
 
-    int x = workArea.left + ((actualScreenWidth - width) / 2);
-    int y = workArea.top + ((actualScreenHeight - height) / 2);
-    
-    DWORD dwStyle;
-    DWORD dwExStyle = WS_EX_APPWINDOW;
-    if (gDisplayMode != DisplayMode_fullscreen)
+    DWORD dwExStyle = GetWindowLong(hWnd, GWL_EXSTYLE);
+    DWORD dwStyle = GetWindowLong(hWnd, GWL_STYLE);
+
+    if (gDisplayMode == DisplayMode_fullscreen)
     {
-        dwStyle |= WS_OVERLAPPED | WS_CAPTION | WS_MINIMIZEBOX | WS_SIZEBOX | WS_MAXIMIZEBOX | WS_SYSMENU;
-        dwExStyle |= WS_EX_WINDOWEDGE;
+        dwExStyle &= ~(WS_EX_DLGMODALFRAME | WS_EX_CLIENTEDGE | WS_EX_STATICEDGE);
+        dwStyle &= ~(WS_CAPTION | WS_THICKFRAME | WS_MINIMIZE | WS_MAXIMIZE | WS_SYSMENU);
     }
+    else
+    {
+        dwExStyle |= WS_EX_APPWINDOW | WS_EX_WINDOWEDGE;
+        dwStyle |= WS_OVERLAPPEDWINDOW;
+    }
+
+
+    int x = (actualScreenWidth - width) / 2;
+    int y = (actualScreenHeight - height) / 2;
 
     RECT windowRect;
     windowRect.left = x;
@@ -689,9 +694,28 @@ bool JGEToggleFullscreen()
     windowRect.right = windowRect.left + width;		
     windowRect.bottom = windowRect.top + height;
 
-    AdjustWindowRectEx(&windowRect, dwStyle, FALSE, dwExStyle);	
-        
-    SetWindowPos(hWnd, NULL, windowRect.left, windowRect.top, windowRect.right - windowRect.left, windowRect.bottom - windowRect.top, 0);
+    AdjustWindowRectEx(&windowRect, dwStyle, FALSE, dwExStyle);
+
+    DEVMODE dmScreenSettings;								// Device Mode
+    memset(&dmScreenSettings,0,sizeof(dmScreenSettings));	// Makes Sure Memory's Cleared
+    dmScreenSettings.dmSize=sizeof(dmScreenSettings);		// Size Of The Devmode Structure
+    dmScreenSettings.dmPelsWidth	= width;	            // Selected Screen Width
+    dmScreenSettings.dmPelsHeight	= height;	            // Selected Screen Height
+    dmScreenSettings.dmBitsPerPel	= 32;					// Selected Bits Per Pixel
+    dmScreenSettings.dmFields=DM_BITSPERPEL|DM_PELSWIDTH|DM_PELSHEIGHT;
+
+    // Try To Set Selected Mode And Get Results.  NOTE: CDS_FULLSCREEN Gets Rid Of Start Bar.
+    LONG result = ChangeDisplaySettings(&dmScreenSettings, gDisplayMode == DisplayMode_fullscreen ? CDS_FULLSCREEN : 0);
+
+    SetWindowLong(hWnd,
+        GWL_EXSTYLE,
+        dwExStyle);
+    SetWindowLong(hWnd,
+        GWL_STYLE,
+        dwStyle);
+
+    SetWindowPos(hWnd, NULL, windowRect.left, windowRect.top, windowRect.right - windowRect.left, windowRect.bottom - windowRect.top, SWP_NOZORDER | SWP_FRAMECHANGED);
+
     ReSizeGLScene(width, height);
 
     return true;
