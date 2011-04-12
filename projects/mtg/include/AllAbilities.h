@@ -75,6 +75,10 @@ public:
         {
             intValue = target->equipment;
         }
+        else if (s == "colors")
+        {
+            intValue = target->countColors();
+        }
         else if (s == "auras")
         {
             intValue = target->auras;
@@ -106,6 +110,7 @@ public:
                 for (int k = 0; k < 4; k++)
                 {
                     MTGGameZone * zone = zones[k];
+                    if(tc->targetsZone(zone,target))
                     intValue += zone->countByCanTarget(tc);
                 }
             }
@@ -368,182 +373,29 @@ public:
     }
 };
 
-class TrCardAttackedNotBlocked: public TriggeredAbility
+class TrCombatTrigger: public TriggeredAbility
 {
 public:
-    TargetChooser * tc;
-    TrCardAttackedNotBlocked(int id, MTGCardInstance * source, TargetChooser * tc) :
-        TriggeredAbility(id, source), tc(tc)
-    {
-    }
-
-    int resolve()
-    {
-        return 0; //This is a trigger, this function should not be called
-    }
-
-    int triggerOnEvent(WEvent * event)
-    {
-        if(source->isPhased) return 0;
-        WEventCardAttackedNotBlocked * e = dynamic_cast<WEventCardAttackedNotBlocked *> (event);
-        if (!e) return 0;
-        if (e->card->didattacked < 1) return 0;
-        if (e->card->blocked) return 0;
-        if (!tc->canTarget(e->card)) return 0;
-        return 1;
-    }
-
-    ~TrCardAttackedNotBlocked()
-    {
-        SAFE_DELETE(tc);
-    }
-
-    TrCardAttackedNotBlocked * clone() const
-    {
-        TrCardAttackedNotBlocked * a = NEW TrCardAttackedNotBlocked(*this);
-        a->isClone = 1;
-        return a;
-    }
-};
-
-class TrCardAttackedBlocked: public TriggeredAbility
-{
-public:
-    TargetChooser * tc;
-    TargetChooser * fromTc;
-    bool limitOnceATurn;
-    int triggeredTurn;
-    TrCardAttackedBlocked(int id, MTGCardInstance * source, TargetChooser * tc, TargetChooser * fromTc = NULL,bool limitOnceATurn = false) :
-    TriggeredAbility(id, source), tc(tc), fromTc(fromTc),limitOnceATurn(limitOnceATurn)
-    {
-        triggeredTurn = -1;
-    }
-
-    int resolve()
-    {
-        return 0; //This is a trigger, this function should not be called
-    }
-
-    int triggerOnEvent(WEvent * event)
-    {
-        if(source->isPhased) return 0;
-        WEventCardAttackedBlocked * e = dynamic_cast<WEventCardAttackedBlocked *> (event);
-        if (!e) return 0;
-        GameObserver * g = GameObserver::GetInstance();
-        if (limitOnceATurn && triggeredTurn == g->turn)
-            return 0;
-        if (e->card->didattacked < 1) return 0;
-        if (!e->card->blocked) return 0;
-        if (fromTc && !fromTc->canTarget(e->card->getNextOpponent())) return 0;
-        if (!tc->canTarget(e->card)) return 0;
-        triggeredTurn = g->turn;
-        return 1;
-    }
-
-    ~TrCardAttackedBlocked()
-    {
-        SAFE_DELETE(tc);
-        SAFE_DELETE(fromTc);
-    }
-
-    TrCardAttackedBlocked * clone() const
-    {
-        TrCardAttackedBlocked * a = NEW TrCardAttackedBlocked(*this);
-        a->isClone = 1;
-        return a;
-    }
-};
-
-class TrCardAttacked: public TriggeredAbility
-{
-public:
-    TargetChooser * tc;
+    TargetChooser * tc;//source(card)
+    TargetChooser * fromTc;//from(card)
+    bool once;//can only activate one time ever.
+    bool activeTrigger;
+    bool limitOnceATurn;//can activate one time per turn
+    int triggeredTurn;//the turn it last activated
     bool sourceUntapped;
     bool opponentPoisoned;
-    TrCardAttacked(int id, MTGCardInstance * source, TargetChooser * tc,bool sourceUntapped,bool opponentPoisoned) :
-        TriggeredAbility(id, source), tc(tc), sourceUntapped(sourceUntapped),opponentPoisoned(opponentPoisoned)
-    {
-    }
-
-    int resolve()
-    {
-        return 0; //This is a trigger, this function should not be called
-    }
-
-    int triggerOnEvent(WEvent * event)
-    {
-        if(source->isPhased) return 0;
-        WEventCardAttacked * e = dynamic_cast<WEventCardAttacked *> (event);
-        if (!e) return 0;
-        if (sourceUntapped  && source->isTapped() == 1)
-        return 0;
-        if (e->card->didattacked < 1) return 0;
-        if (!tc->canTarget(e->card)) return 0;
-        if (opponentPoisoned && !source->controller()->opponent()->isPoisoned) return 0;
-        return 1;
-    }
-
-    ~TrCardAttacked()
-    {
-        SAFE_DELETE(tc);
-    }
-
-    TrCardAttacked * clone() const
-    {
-        TrCardAttacked * a = NEW TrCardAttacked(*this);
-        a->isClone = 1;
-        return a;
-    }
-};
-
-class TrCardAttackedAlone: public TriggeredAbility
-{
-public:
-    TargetChooser * tc;
-    TrCardAttackedAlone(int id, MTGCardInstance * source, TargetChooser * tc) :
-        TriggeredAbility(id, source), tc(tc)
-    {
-    }
-
-    int resolve()
-    {
-        return 0; //This is a trigger, this function should not be called
-    }
-
-    int triggerOnEvent(WEvent * event)
-    {
-        if(source->isPhased) return 0;
-        WEventCardAttackedAlone * e = dynamic_cast<WEventCardAttackedAlone *> (event);
-        if (!e) return 0;
-        if (e->card->didattacked < 1) return 0;
-        if (!tc->canTarget(e->card)) return 0;
-        return 1;
-    }
-
-    ~TrCardAttackedAlone()
-    {
-        SAFE_DELETE(tc);
-    }
-
-    TrCardAttackedAlone * clone() const
-    {
-        TrCardAttackedAlone * a = NEW TrCardAttackedAlone(*this);
-        a->isClone = 1;
-        return a;
-    }
-};
-
-class TrCardBlocked: public TriggeredAbility
-{
-public:
-    TargetChooser * tc;
-    TargetChooser * fromTc;
-    bool once;
-    bool activeTrigger;
-    bool limitOnceATurn;
-    int triggeredTurn;
-    TrCardBlocked(int id, MTGCardInstance * source, TargetChooser * tc, TargetChooser * fromTc = NULL,bool once = false,bool limitOnceATurn = false) :
-    TriggeredAbility(id, source), tc(tc), fromTc(fromTc), once(once),limitOnceATurn(limitOnceATurn)
+    //trigger types
+    bool attackingTrigger;
+    bool attackedAloneTrigger;
+    bool notBlockedTrigger;
+    bool attackBlockedTrigger;
+    bool blockingTrigger;
+    TrCombatTrigger(int id, MTGCardInstance * source, TargetChooser * tc,TargetChooser * fromTc = NULL,
+    bool once = false,bool limitOnceATurn = false,bool sourceUntapped = false,bool opponentPoisoned = false,
+    bool attackingTrigger = false,bool attackedAloneTrigger = false,bool notBlockedTrigger = false,bool attackBlockedTrigger = false,bool blockingTrigger = false) :
+    TriggeredAbility(id, source),tc(tc), fromTc(fromTc), once(once),limitOnceATurn(limitOnceATurn),sourceUntapped(sourceUntapped),opponentPoisoned(opponentPoisoned),
+    attackingTrigger(attackingTrigger),attackedAloneTrigger(attackedAloneTrigger),notBlockedTrigger(notBlockedTrigger),
+    attackBlockedTrigger(attackBlockedTrigger),blockingTrigger(blockingTrigger)
     {
         activeTrigger = true;
         triggeredTurn = -1;
@@ -556,31 +408,103 @@ public:
 
     int triggerOnEvent(WEvent * event)
     {
-        if(source->isPhased) return 0;
-        WEventCardBlocked * e = dynamic_cast<WEventCardBlocked *> (event);
-        if (!e) return 0;
+        //general restrictions
+        if(source->isPhased) 
+            return 0;
+        if (opponentPoisoned && !source->controller()->opponent()->isPoisoned) 
+            return 0;
+        if (sourceUntapped  && source->isTapped() == 1)
+            return 0;
+        if (limitOnceATurn && triggeredTurn == game->turn)
+            return 0;
         if(activeTrigger == false)
             return 0;
-        GameObserver * g = GameObserver::GetInstance();
-        if (limitOnceATurn && triggeredTurn == g->turn)
-            return 0;
-        if (fromTc && !fromTc->canTarget(e->card->getNextOpponent())) return 0;
-        if (!tc->canTarget(e->card)) return 0;
-        if(once  && activeTrigger )
+        //the follow cases are not "else'd" on purpose, triggers which are conjoined such as
+        //"whenever this card attacks, or attacks and is not blocked, are supposed to gernerally
+        //trigger only once MTG rule 509.a-d, from either/or..not else'ing the statements and
+        //listing them in order allows just that, a return on an event before hitting the 
+        //next trigger condiational.
+        //when triggers are not conjoined you can simply add another combat trigger to the card as normal.
+        //an attacking creature can not also be a blocking creature.
+        WEventCardAttacked * attacked = dynamic_cast<WEventCardAttacked *> (event);
+        //event when a card was declared an attacker.
+        if (attacked && attackingTrigger && !attacked->card->didblocked)
+        {
+            if (!attacked->card->didattacked) 
+                return 0;
+            if (!tc->canTarget(attacked->card)) 
+                return 0;
+            return returnResult();
+        }
+        WEventCardAttackedAlone * attackedAlone = dynamic_cast<WEventCardAttackedAlone *> (event);
+        //event when a card was declared an attacker, and attacked alone.
+        if (attackedAlone && attackedAloneTrigger && !attackedAlone->card->didblocked)
+        {
+            if (!attackedAlone->card->didattacked) 
+                return 0;
+            if (!tc->canTarget(attackedAlone->card)) 
+                return 0;
+            return returnResult();
+        }
+        WEventCardBlocked * blocked = dynamic_cast<WEventCardBlocked *> (event);
+        //event when a card was declared a blocker.
+        if (blocked && blockingTrigger && !blocked->card->didattacked)
+        {
+            if(!blocked->card->didblocked)
+                return 0;
+            if (fromTc && !fromTc->canTarget(blocked->opponent)) 
+                return 0;
+            if (!tc->canTarget(blocked->card)) 
+                return 0;
+            return returnResult();
+        }
+        WEventCardAttackedNotBlocked * notblocked = dynamic_cast<WEventCardAttackedNotBlocked *> (event);
+        //event when a card was declared an attacker, but the attack was not blocked.
+        if (notblocked && notBlockedTrigger && !notblocked->card->didblocked)
+        {
+            if (!notblocked->card->didattacked) 
+                return 0;
+            if (notblocked->card->blocked) 
+                return 0;
+            if (!tc->canTarget(notblocked->card))
+                return 0;
+            return returnResult();
+        }
+        WEventCardAttackedBlocked * attackblocked = dynamic_cast<WEventCardAttackedBlocked *> (event);
+        //event when a card was declared an attacker, then it became "blocked".
+        if (attackblocked && attackBlockedTrigger && !attackblocked->card->didblocked)
+        {
+            if (!attackblocked->card->didattacked) 
+                return 0;
+            if (!attackblocked->card->blocked) 
+                return 0;
+            if (fromTc && !fromTc->canTarget(attackblocked->opponent)) 
+                return 0;
+            if (!tc->canTarget(attackblocked->card)) 
+                return 0;
+            return returnResult();
+        }
+        //default return is 0 || not triggered.
+        return 0;
+    }
+    
+    int returnResult()
+    {
+        if(once && activeTrigger )
             activeTrigger = false;
-        triggeredTurn = g->turn;
+        triggeredTurn = game->turn;
         return 1;
     }
-
-    ~TrCardBlocked()
+    
+    ~TrCombatTrigger()
     {
         SAFE_DELETE(tc);
         SAFE_DELETE(fromTc);
     }
 
-    TrCardBlocked * clone() const
+    TrCombatTrigger * clone() const
     {
-        TrCardBlocked * a = NEW TrCardBlocked(*this);
+        TrCombatTrigger * a = NEW TrCombatTrigger(*this);
         a->isClone = 1;
         return a;
     }
@@ -1027,12 +951,10 @@ public:
 class GenericActivatedAbility: public ActivatedAbility, public NestedAbility
 {
 public:
-    int limitPerTurn;
-    string limit;
-    int counters;
     MTGGameZone * activeZone;
+    string newName;
 
-    GenericActivatedAbility(int _id, MTGCardInstance * card, MTGAbility * a, ManaCost * _cost, int _tap = 0, string limit = "",
+    GenericActivatedAbility(string newName,int _id, MTGCardInstance * card, MTGAbility * a, ManaCost * _cost, int _tap = 0, string limit = "",
             int restrictions = 0, MTGGameZone * dest = NULL);
     int resolve();
     const char * getMenuText();
@@ -1158,8 +1080,9 @@ public:
     string limit;
     int counters;
     MTGGameZone * activeZone;
+    string newName;
 
-    GenericTargetAbility(int _id, MTGCardInstance * _source, TargetChooser * _tc, MTGAbility * a, ManaCost * _cost = NULL,
+    GenericTargetAbility(string newName,int _id, MTGCardInstance * _source, TargetChooser * _tc, MTGAbility * a, ManaCost * _cost = NULL,
             int _tap = 0, string limit = "", int restrictions = 0, MTGGameZone * dest = NULL);
     const char * getMenuText();
     ~GenericTargetAbility();
@@ -1355,45 +1278,6 @@ public:
     int resolve();
     const char * getMenuText();
     AAWinGame * clone() const;
-};
-
-
-//naming an ability line-------------------------------------------------------------------------
-class ANamer: public ActivatedAbility
-{
-public:
-    string name;
-    ANamer(int _id, MTGCardInstance * _source, ManaCost * _cost, string sname, int _doTap) :
-        ActivatedAbility(_id, _source, _cost, 0, _doTap)
-    {
-        name = sname;
-    }
-    int resolve()
-    {
-        return 0;
-    }
-    const char * getMenuText()
-    {
-        sprintf(menuText, "%s", name.c_str());
-        return menuText;
-    }
-    virtual ostream& toString(ostream& out) const
-    {
-        out << "ANamer ::: name" << name << " (";
-        return ActivatedAbility::toString(out) << ")";
-    }
-    ANamer * clone() const
-    {
-        ANamer * a = NEW ANamer(*this);
-        a->isClone = 1;
-        return a;
-    }
-    ~ANamer()
-    {
-        if (!isClone)
-        {
-        }
-    }
 };
 
 /*Changes one of the basic abilities of target
@@ -1901,12 +1785,30 @@ class APowerToughnessModifier: public MTGAbility
 {
 public:
     WParsedPT * wppt;
-    APowerToughnessModifier(int id, MTGCardInstance * _source, MTGCardInstance * _target, WParsedPT * wppt) :
-        MTGAbility(id, _source, _target), wppt(wppt)
+    string PT;
+    bool nonstatic;
+    APowerToughnessModifier(int id, MTGCardInstance * _source, MTGCardInstance * _target, WParsedPT * wppt,string PT,bool nonstatic) :
+        MTGAbility(id, _source, _target), wppt(wppt),PT(PT),nonstatic(nonstatic)
     {
         aType = MTGAbility::STANDARD_PUMP;
     }
-
+    
+        void Update(float dt)
+        {
+        if(!nonstatic)
+        return;
+            ((MTGCardInstance *) target)->power -= wppt->power.getValue();
+            ((MTGCardInstance *) target)->addToToughness(-wppt->toughness.getValue());
+            if(PT.size())
+            {
+                SAFE_DELETE(wppt);
+                wppt = NEW WParsedPT(PT,NULL,(MTGCardInstance *) target);
+            }
+            MTGCardInstance * _target = (MTGCardInstance *) target;
+            _target->power += wppt->power.getValue();
+            _target->addToToughness(wppt->toughness.getValue());
+        }
+        
     int addToGame()
     {
         MTGCardInstance * _target = (MTGCardInstance *) target;
@@ -3932,7 +3834,10 @@ public:
     list<int> colors;
     list<int> oldcolors;
     list<int> oldtypes;
+    vector<int> dontremove;
+    bool addNewColors;
     bool remove;
+    bool removeTypes;
     string menu;
     string newpower;
     bool newpowerfound;
@@ -3943,9 +3848,9 @@ public:
     map<Damageable *, vector<MTGAbility *> > newAbilities;
     vector<string> newAbilitiesList;
     bool newAbilityFound;
+    bool aForever;
 
-
-    ATransformer(int id, MTGCardInstance * source, MTGCardInstance * target, string stypes, string sabilities,string newpower,bool newpowerfound,string newtoughness,bool newtoughnessfound,vector<string> newAbilitiesList,bool newAbilityFound = false);
+    ATransformer(int id, MTGCardInstance * source, MTGCardInstance * target, string stypes, string sabilities,string newpower,bool newpowerfound,string newtoughness,bool newtoughnessfound,vector<string> newAbilitiesList,bool newAbilityFound = false,bool aForever = false);
     int addToGame();
     int destroy();
     const char * getMenuText();
@@ -3953,34 +3858,8 @@ public:
     ~ATransformer();
 };
 
-//transforms forever class
-class AForeverTransformer: public MTGAbility
-{
-public:
-    list<int> abilities;
-    list<int> types;
-    list<int> colors;
-    string menu;
-    string newpower;
-    bool newpowerfound;
-    int oldpower;
-    string newtoughness;
-    bool newtoughnessfound;
-    int oldtoughness;
-    bool remove;
-    vector<string> newAbilitiesList;
-    map<Damageable *, vector<MTGAbility *> > newAbilities;
-    bool newAbilityFound;
-
-    AForeverTransformer(int id, MTGCardInstance * source, MTGCardInstance * target, string stypes, string sabilities,string newpower = "",bool newpowerfound = false,string newtoughness = "",bool newtoughnessfound = false,vector<string>newAbilitiesList = vector<string>(),bool newAbilityFound = false);
-    int addToGame();
-    const char * getMenuText();
-    AForeverTransformer * clone() const;
-    ~AForeverTransformer();
-};
-
-//Adds types/abilities/changes color to a card (until end of turn)
-class ATransformerUEOT: public InstantAbility
+//Adds types/abilities/changes color to a card (generally until end of turn)
+class ATransformerInstant: public InstantAbility
 {
 public:
     ATransformer * ability;
@@ -3991,32 +3870,13 @@ public:
     vector<string> newAbilitiesList;
     map<Damageable *, vector<MTGAbility *> > newAbilities;
     bool newAbilityFound;
+    bool aForever;
 
-    ATransformerUEOT(int id, MTGCardInstance * source, MTGCardInstance * target, string types = "", string abilities = "",string newpower = "",bool newpowerfound = false,string newtoughness = "",bool newtoughnessfound = false,vector<string>newAbilitiesList = vector<string>(),bool newAbilityFound = false);
+    ATransformerInstant(int id, MTGCardInstance * source, MTGCardInstance * target, string types = "", string abilities = "",string newpower = "",bool newpowerfound = false,string newtoughness = "",bool newtoughnessfound = false,vector<string>newAbilitiesList = vector<string>(),bool newAbilityFound = false,bool aForever = false);
     int resolve();
     const char * getMenuText();
-    ATransformerUEOT * clone() const;
-    ~ATransformerUEOT();
-};
-
-//transforms forever
-class ATransformerFOREVER: public InstantAbility
-{
-public:
-    AForeverTransformer * ability;
-    string newpower;
-    bool newpowerfound;
-    string newtoughness;
-    bool newtoughnessfound;
-    vector<string> newAbilitiesList;
-    map<Damageable *, vector<MTGAbility *> > newAbilities;
-    bool newAbilityFound;
-    
-    ATransformerFOREVER(int id, MTGCardInstance * source, MTGCardInstance * target, string types, string abilities,string newpower = "",bool newpowerfound = false,string newtoughness = "",bool newtoughnessfound = false,vector<string>newAbilitiesList = vector<string>(),bool newAbilityFound = false);
-    int resolve();
-    const char * getMenuText();
-    ATransformerFOREVER * clone() const;
-    ~ATransformerFOREVER();
+    ATransformerInstant * clone() const;
+    ~ATransformerInstant();
 };
 
 //switch p/t ueot
@@ -4029,38 +3889,6 @@ public:
     const char * getMenuText();
     ASwapPTUEOT * clone() const;
     ~ASwapPTUEOT();
-};
-
-//becomes ability
-//Adds types/abilities/P/T to a card (aura)
-class ABecomes: public MTGAbility
-{
-public:
-    list<int> abilities;
-    list<int> types;
-    list<int> colors;
-    WParsedPT * wppt;
-    string menu;
-    ABecomes(int id, MTGCardInstance * source, MTGCardInstance * target, string stypes, WParsedPT * wppt, string sabilities);
-    int addToGame();
-    int destroy();
-    const char * getMenuText();
-    ABecomes * clone() const;
-    ~ABecomes();
-
-};
-
-//Adds types/abilities/P/T to a card (until end of turn)
-class ABecomesUEOT: public InstantAbility
-{
-public:
-    ABecomes * ability;
-    ABecomesUEOT(int id, MTGCardInstance * source, MTGCardInstance * target, string types, WParsedPT * wpt, string abilities);
-    int resolve();
-    const char * getMenuText();
-    ABecomesUEOT * clone() const;
-    ~ABecomesUEOT();
-
 };
 
 class APreventDamageTypes: public MTGAbility

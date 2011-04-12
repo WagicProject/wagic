@@ -22,165 +22,189 @@ const string kMaxCastKeywords[] = { "maxplay(", "maxcast("};
 const int kMaxCastZones[] = { MTGGameZone::BATTLEFIELD, MTGGameZone::STACK};
 const size_t kMaxCastKeywordsCount = 2;
 
-int MTGAbility::allowedToCast(MTGCardInstance * card,Player * player)
+int MTGAbility::parseCastRestrictions(MTGCardInstance * card,Player * player,string restrictions,string otherRestrictions)
 {
+    restrictions.append(otherRestrictions);
+    //we can do this becuase the function calls send them seperately, so one will always be empty
+    vector <string> restriction = split(restrictions, ',');
+    AbilityFactory af;
     int cPhase = game->getCurrentGamePhase();
-    int restrictions = 0;
-    restrictions = card->getRestrictions();
-
-    int vamps = 0;
-    int playercreatures = 0;
-    int opponentcreatures = 0;
-
-    switch (restrictions)
+    for(unsigned int i = 0;i < restriction.size();i++)
     {
-    case PLAYER_TURN_ONLY:
-        if (player != game->currentPlayer)
-            return 0;
-        break;
-    case OPPONENT_TURN_ONLY:
-        if (player == game->currentPlayer)
-            return 0;
-        break;
-    case AS_SORCERY:
-        if (player != game->currentPlayer)
-            return 0;
-        if (cPhase != Constants::MTG_PHASE_FIRSTMAIN && cPhase != Constants::MTG_PHASE_SECONDMAIN)
-            return 0;
-        break;
-    case VAMPIRES:
-        vamps = player->game->inPlay->countByType("vampire");
-        if(vamps < 2)
-            return 0;
-        break;
-    case LESS_CREATURES:
+        int checkPhaseBased = af.parseRestriction(restriction[i]);
+        switch (checkPhaseBased)
+        {
+        case PLAYER_TURN_ONLY:
+            if (player != game->currentPlayer)
+                return 0;
+            break;
+        case OPPONENT_TURN_ONLY:
+            if (player == game->currentPlayer)
+                return 0;
+            break;
+        case AS_SORCERY:
+            if (player != game->currentPlayer)
+                return 0;
+            if (cPhase != Constants::MTG_PHASE_FIRSTMAIN && cPhase != Constants::MTG_PHASE_SECONDMAIN)
+                return 0;
+            break;
+        }
+        if (checkPhaseBased >= MY_BEFORE_BEGIN && checkPhaseBased <= MY_AFTER_EOT)
+        {
+            if (player != game->currentPlayer)
+                return 0;
+            if (cPhase != checkPhaseBased - MY_BEFORE_BEGIN + Constants::MTG_PHASE_BEFORE_BEGIN)
+                return 0;
+        }
+        if (checkPhaseBased >= OPPONENT_BEFORE_BEGIN && checkPhaseBased <= OPPONENT_AFTER_EOT)
+        {
+            if (player == game->currentPlayer)
+                return 0;
+            if (cPhase != checkPhaseBased - OPPONENT_BEFORE_BEGIN + Constants::MTG_PHASE_BEFORE_BEGIN)
+                return 0;
+        }
+        if (checkPhaseBased >= BEFORE_BEGIN && checkPhaseBased <= AFTER_EOT)
+        {
+            if (cPhase != checkPhaseBased - BEFORE_BEGIN + Constants::MTG_PHASE_BEFORE_BEGIN)
+                return 0;
+        }
+        size_t typeRelated = restriction[i].find("typemin:");
+        size_t check = NULL;
+        if(typeRelated != string::npos)
+        {
+            bool less = false;
+            bool more = false;
+            int mytypemin = 0;
+            int opponenttypemin = 0;
+            int min = 0;
+            int opponentmin = 0;
+            string type = "*";
+            string opponenttype = "*";
 
-        playercreatures = player->game->inPlay->countByType("creature");
-        opponentcreatures = player->opponent()->game->inPlay->countByType("creature");
-        if(playercreatures > opponentcreatures)
-            return 0;
-        break;
-    case SNOW_LAND_INPLAY:
-        if(!player->game->inPlay->hasPrimaryType("snow","land"))
-            return 0;
-        break;
-    case CASTED_A_SPELL:
-        if(player->game->stack->seenThisTurn("*", Constants::CAST_ALL) < 1)
-            return 0;
-        break;
-    case ONE_OF_AKIND:
-        if(player->game->inPlay->hasName(card->name))
-            return 0;
-        break;
-    case  FOURTHTURN:
-        if(game->turn <= 7)
-            return 0;
-        break;
-    case BEFORECOMBATDAMAGE:
-        if(cPhase > Constants::MTG_PHASE_COMBATBLOCKERS)
-            return 0;
-        break;
-    case AFTERCOMBAT:
-        if(cPhase < Constants::MTG_PHASE_COMBATBLOCKERS)
-            return 0;
-        break;   
-    case DURINGCOMBAT:
-        if(cPhase < Constants::MTG_PHASE_COMBATBEGIN ||cPhase > Constants::MTG_PHASE_COMBATEND )
-            return 0;
-        break;   
-    }
+            check = restriction[i].find("mytypemin:");
+            if( check != string::npos)
+            {
+                size_t start = restriction[i].find(":", check);
+                size_t end = restriction[i].find(" ", check);
+                size_t lesser = restriction[i].find(":less",check);
+                size_t morer = restriction[i].find(":more",check);
+                if(lesser != string::npos)
+                {
+                    less = true;
+                }
+                else if(morer != string::npos)
+                {
+                    more = true;
+                }
+                else
+                {
+                    min = atoi(restriction[i].substr(start + 1, end - start - 1).c_str());
+                }
+                size_t found = restriction[i].find("type(");
+                if (found != string::npos)
+                {
+                    end = restriction[i].find(")", found);
+                    type = restriction[i].substr(found + 5, end - found - 5).c_str();
+                }
+                mytypemin = card->controller()->game->inPlay->countByType(type.c_str());
+                if(mytypemin < min && less == false && more == false)
+                    return 0;
+            }
+            check = restriction[i].find("opponenttypemin:");
+            if( check != string::npos)
+            {
+                size_t start = restriction[i].find(":", check);
+                size_t end = restriction[i].find(" ", check);
+                opponentmin = atoi(restriction[i].substr(start + 1, end - start - 1).c_str());
 
-    if (restrictions >= MY_BEFORE_BEGIN && restrictions <= MY_AFTER_EOT)
-    {
-        if (player != game->currentPlayer)
-            return 0;
-        if (cPhase != restrictions - MY_BEFORE_BEGIN + Constants::MTG_PHASE_BEFORE_BEGIN)
-            return 0;
-    }
-
-    if (restrictions >= OPPONENT_BEFORE_BEGIN && restrictions <= OPPONENT_AFTER_EOT)
-    {
-        if (player == game->currentPlayer)
-            return 0;
-        if (cPhase != restrictions - OPPONENT_BEFORE_BEGIN + Constants::MTG_PHASE_BEFORE_BEGIN)
-            return 0;
-    }
-
-    if (restrictions >= BEFORE_BEGIN && restrictions <= AFTER_EOT)
-    {
-        if (cPhase != restrictions - BEFORE_BEGIN + Constants::MTG_PHASE_BEFORE_BEGIN)
-            return 0;
+                size_t found = restriction[i].find("opponenttype(");
+                if (found != string::npos)
+                {
+                    end = restriction[i].find(")", found);
+                    opponenttype = restriction[i].substr(found + 13, end - found - 13).c_str();
+                }
+                opponenttypemin = card->controller()->opponent()->game->inPlay->countByType(opponenttype.c_str());
+                if(opponenttypemin < opponentmin && less == false && more == false)
+                    return 0;
+            }
+            if(less  && more == false && opponenttypemin <= mytypemin)
+                return 0;
+            if(less == false && more  && opponenttypemin >= mytypemin)
+                return 0;
+        }
+        check = restriction[i].find("turn:");
+        if(check != string::npos)
+        {
+            int Turn = 0;
+            size_t start = restriction[i].find(":", check);
+            size_t end = restriction[i].find(" ", check);
+            Turn = atoi(restriction[i].substr(start + 1, end - start - 1).c_str());
+            if(game->turn < Turn)
+                return 0;
+        }
+        check = restriction[i].find("casted a spell");
+        if(check != string::npos)
+        {
+            if(player->game->stack->seenThisTurn("*", Constants::CAST_ALL) < 1)
+                return 0;
+        }
+        check = restriction[i].find("one of a kind");
+        if(check != string::npos)
+        {
+            if(player->game->inPlay->hasName(card->name))
+                return 0;
+        }
+        check = restriction[i].find("before battle damage");
+        if(check != string::npos)
+        {
+            if(cPhase > Constants::MTG_PHASE_COMBATBLOCKERS)
+                return 0;
+        }
+        check = restriction[i].find("after battle");
+        if(check != string::npos)
+        {
+            if(cPhase < Constants::MTG_PHASE_COMBATBLOCKERS)
+                return 0;
+        }
+        check = restriction[i].find("during battle");
+        if(check != string::npos)
+        {
+            if(cPhase < Constants::MTG_PHASE_COMBATBEGIN ||cPhase > Constants::MTG_PHASE_COMBATEND )
+                return 0;
+        }
+        check = restriction[i].find("control snow land");
+        if(check != string::npos)
+        {
+            if(!player->game->inPlay->hasPrimaryType("snow","land"))
+                return 0;
+        }
+        check = restriction[i].find("control two or more vampires");
+        if(check != string::npos)
+        {
+            restriction.push_back("mytypemin:2 type(vampire)");
+        }
+        check = restriction[i].find("control less creatures");
+        if(check != string::npos)
+        {
+            restriction.push_back("mytypemin:less type(creature)");
+        }
+        check = restriction[i].find("fourth turn");
+        if(check != string::npos)
+        {
+            restriction.push_back("turn:4");
+        }
     }
     return 1;
 }
 
+int MTGAbility::allowedToCast(MTGCardInstance * card,Player * player)
+{
+    return parseCastRestrictions(card,player,card->restriction,"");
+}
+
 int MTGAbility::allowedToAltCast(MTGCardInstance * card,Player * player)
 {
-    int cPhase = game->getCurrentGamePhase();
-    string restrictions = "";
-    restrictions = card->otherrestriction;
-    static bool less = false;
-    static bool more = false;
-    int mytypemin = 0;
-    int opponenttypemin = 0;
-    int min = 0;
-    int opponentmin = 0;
-    string type = "*";
-    string opponenttype = "*";
-
-    size_t check = restrictions.find("mytypemin:");
-    if( check != string::npos)
-    {
-        size_t start = restrictions.find(":", check);
-        size_t end = restrictions.find(" ", check);
-        size_t lesser = restrictions.find(":less",check);
-        size_t morer = restrictions.find(":more",check);
-        if(lesser != string::npos)
-        {
-            less = true;
-        }
-        else if(morer != string::npos)
-        {
-            more = true;
-        }
-        else
-        {
-            min = atoi(restrictions.substr(start + 1, end - start - 1).c_str());
-        }
-
-
-        size_t found = restrictions.find("type(");
-        if (found != string::npos)
-        {
-            end = restrictions.find(")", found);
-            type = restrictions.substr(found + 5, end - found - 5).c_str();
-        }
-        mytypemin = card->controller()->game->inPlay->countByType(type.c_str());
-        if(mytypemin < min && less == false && more == false)
-            return 0;
-    }
-    check = restrictions.find("opponenttypemin:");
-    if( check != string::npos)
-    {
-        size_t start = restrictions.find(":", check);
-        size_t end = restrictions.find(" ", check);
-        opponentmin = atoi(restrictions.substr(start + 1, end - start - 1).c_str());
-
-        size_t found = restrictions.find("opponenttype(");
-        if (found != string::npos)
-        {
-            end = restrictions.find(")", found);
-            opponenttype = restrictions.substr(found + 13, end - found - 13).c_str();
-        }
-        opponenttypemin = card->controller()->opponent()->game->inPlay->countByType(opponenttype.c_str());
-        if(opponenttypemin < opponentmin && less == false && more == false)
-            return 0;
-    }
-    if(less  && more == false && opponenttypemin <= mytypemin)
-        return 0;
-    if(less == false && more  && opponenttypemin >= mytypemin)
-        return 0;
-    return 1;
+       return parseCastRestrictions(card,player,"",card->otherrestriction);
 }
 
 int AbilityFactory::countCards(TargetChooser * tc, Player * player, int option)
@@ -447,89 +471,61 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string magicText, int 
 
         return NEW TrCardTappedformana(id, card, tc, true);
     }
-
-    //Card is attacking
-    found = s.find("attacking(");
-    if (found != string::npos)
-    {
-        size_t end = s.find(")");
-        string starget = s.substr(found + 10, end - found - 10);
-        TargetChooserFactory tcf;
-        TargetChooser *tc = tcf.createTargetChooser(starget, card);
-        tc->targetter = NULL;
-
-        return NEW TrCardAttacked(id, card, tc,sourceUntapped,opponentPoisoned);
-    }
-    //Card is attacking alone
-    found = s.find("attackedalone(");
-    if (found != string::npos)
-    {
-        size_t end = s.find(")");
-        string starget = s.substr(found + 14, end - found - 14);
-        TargetChooserFactory tcf;
-        TargetChooser *tc = tcf.createTargetChooser(starget, card);
-        tc->targetter = NULL;
-
-        return NEW TrCardAttackedAlone(id, card, tc);
-    }
-
-    //Card card attacked and is not blocked
-    found = s.find("notblocked(");
-    if (found != string::npos)
-    {
-        size_t end = s.find(")");
-        string starget = s.substr(found + 11, end - found - 11);
-        TargetChooserFactory tcf;
-        TargetChooser *tc = tcf.createTargetChooser(starget, card);
-        tc->targetter = NULL;
-
-        return NEW TrCardAttackedNotBlocked(id, card, tc);
-    }
-
+    
+//CombatTrigger
     //Card card attacked and is blocked
-    found = s.find("blocked(");
+    found = s.find("combat(");
     if (found != string::npos)
     {
-        size_t end = s.find(")");
-        string starget = s.substr(found + 8, end - found - 8);
-        TargetChooserFactory tcf;
-        TargetChooser *tc = tcf.createTargetChooser(starget, card);
-        tc->targetter = NULL;
-        found = s.find("from(");
-
+        size_t end = s.find(")",found);
+        string combatTrigger = s.substr(found + 7, end - found - 7);
+        //find combat traits, only trigger types, the general restrictions are found earlier.
+        bool attackingTrigger = false;
+        bool attackedAloneTrigger = false;
+        bool notBlockedTrigger = false;
+        bool attackBlockedTrigger = false;
+        bool blockingTrigger = false;
+        vector <string> combatTriggerVector = split(combatTrigger, ',');
+        for (unsigned int i = 0 ; i < combatTriggerVector.size() ; i++)
+        { 
+            if(combatTriggerVector[i] == "attacking")
+                attackingTrigger = true;
+            if(combatTriggerVector[i] == "attackedalone")
+                attackedAloneTrigger = true;
+            if(combatTriggerVector[i] == "notblocked")
+                notBlockedTrigger = true;
+            if(combatTriggerVector[i] == "blocked")
+                attackBlockedTrigger = true;
+            if(combatTriggerVector[i] == "blocking")
+                blockingTrigger = true;
+        }  
+        //build triggers TCs
+        TargetChooser *tc = NULL;
         TargetChooser *fromTc = NULL;
-        if (found != string::npos)
+        TargetChooserFactory tcf;
+        string starget;
+        string ftarget;
+        size_t sourceCard = s.find("source(");
+        if (sourceCard != string::npos)
         {
-            end = s.find(")", found);
-            starget = s.substr(found + 5, end - found - 5);
-            fromTc = tcf.createTargetChooser(starget, card);
+            size_t sEnd = s.find(")",sourceCard);
+            starget = s.substr(sourceCard + 7, sEnd - sourceCard - 7);
+            tc = tcf.createTargetChooser(starget, card);
+            tc->targetter = NULL;
+        }
+        size_t From = s.find("from(");
+        if (From != string::npos)
+        {
+            size_t fromEnd = s.find(")", From);
+            ftarget = s.substr(From + 5, fromEnd - From - 5);
+            fromTc = tcf.createTargetChooser(ftarget, card);
             fromTc->targetter = NULL;
         }
-
-        return NEW TrCardAttackedBlocked(id, card, tc, fromTc,limitOnceATurn);
-    }
-
-    //Card card is a blocker
-    found = s.find("blocking(");
-    if (found != string::npos)
-    {
-        size_t end = s.find(")");
-        string starget = s.substr(found + 9, end - found - 9);
-        TargetChooserFactory tcf;
-        TargetChooser *tc = tcf.createTargetChooser(starget, card);
-        tc->targetter = NULL;
-        found = s.find("from(");
-
-        TargetChooser *fromTc = NULL;
-        if (found != string::npos)
-        {
-            end = s.find(")", found);
-            starget = s.substr(found + 5, end - found - 5);
-            fromTc = tcf.createTargetChooser(starget, card);
-            fromTc->targetter = NULL;
-        }
-
-        return NEW TrCardBlocked(id, card, tc, fromTc,once,limitOnceATurn);
+        if(tc)//a source( is required, from( is optional.
+            return NEW TrCombatTrigger(id, card, tc, fromTc,once,limitOnceATurn,sourceUntapped,opponentPoisoned,
+            attackingTrigger,attackedAloneTrigger,notBlockedTrigger,attackBlockedTrigger,blockingTrigger);
+        else
+            return NULL;
     }
 
     //Card card is drawn
@@ -884,6 +880,13 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
 
     TargetChooser * tc = NULL;
     string sWithoutTc = s;
+    string newName = "";
+    found = sWithoutTc.find("name(");
+    if (found != string::npos)
+    {
+        size_t end = sWithoutTc.find(")", found);
+        newName = sWithoutTc.substr(found + 5, end - found - 5);
+    }
     //Target Abilities
     found = s.find("target(");
     if (found != string::npos)
@@ -950,8 +953,8 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
                 return ae;
             }
             if (tc)
-                return NEW GenericTargetAbility(id, card, tc, a, cost, doTap, limit, restrictions, dest);
-            return NEW GenericActivatedAbility(id, card, a, cost, doTap, limit, restrictions, dest);
+                return NEW GenericTargetAbility(newName,id, card, tc, a, cost, doTap, limit, restrictions, dest);
+            return NEW GenericActivatedAbility(newName,id, card, a, cost, doTap, limit, restrictions, dest);
         }
         SAFE_DELETE(cost);
     }
@@ -1011,11 +1014,12 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             return NULL;
 
         if (tc)
-            a1 = NEW GenericTargetAbility(id, card, tc, a1);
+            a1 = NEW GenericTargetAbility(newName,id, card, tc, a1);
         else
-            a1 = NEW GenericActivatedAbility(id, card, a1, NULL);
+            a1 = NEW GenericActivatedAbility(newName,id, card, a1, NULL);
         return NEW MayAbility(id, a1, card);
     }
+
     //When...comes into play, choose one...
     found = s.find("choice ");
     if (found == 0)
@@ -1026,9 +1030,9 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             return NULL;
 
         if (tc)
-            a1 = NEW GenericTargetAbility(id, card, tc, a1);
+            a1 = NEW GenericTargetAbility(newName,id, card, tc, a1);
         else
-            a1 = NEW GenericActivatedAbility(id, card, a1, NULL);
+            a1 = NEW GenericActivatedAbility(newName,id, card, a1, NULL);
         return NEW MayAbility(id, a1, card, true);
     }
     
@@ -1386,7 +1390,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             DebugTrace("ABILITYFACTORY Error parsing: " << s);
             return NULL;
         }
-        a = NEW GenericTargetAbility(id, card, tc, a);
+        a = NEW GenericTargetAbility(newName,id, card, tc, a);
         return NEW MayAbility(id, a, card, true);
     }
 
@@ -1830,18 +1834,6 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         tok->forceDestroy = 1;
         return tok;  
     }
-
-    //name an ability line
-    found = s.find("name(");
-    if (found != string::npos)
-    {
-        size_t end = s.find(")", found);
-        string sname = s.substr(found + 5, end - found - 5);
-
-        ANamer * tok = NEW ANamer(id, card, NULL, sname, 0);
-        return tok;
-    }
-//living weapon
 
     //Equipment
     found = s.find("equip");
@@ -2298,15 +2290,12 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             Targetable * t = NULL;
             if (spell)
                 t = spell->getNextTarget();
-            if (!activated)
+            if (card->hasType(Subtypes::TYPE_INSTANT) || card->hasType(Subtypes::TYPE_SORCERY) || forceUEOT)
             {
-                if (card->hasType(Subtypes::TYPE_INSTANT) || card->hasType(Subtypes::TYPE_SORCERY) || forceUEOT)
-                {
-                    return NEW AInstantCastRestrictionUEOT(id, card, t, castTargets, value, modifyExisting, kMaxCastZones[i], who);
-                }
-                return NEW ACastRestriction(id, card, t, castTargets, value, modifyExisting, kMaxCastZones[i], who);
+                return NEW AInstantCastRestrictionUEOT(id, card, t, castTargets, value, modifyExisting, kMaxCastZones[i], who);
             }
-            return NULL; //TODO NEW ACastRestrictionUntilEndOfTurn(id, card, t, value, modifyExisting, kMaxCastZones[i], who);
+            return NEW ACastRestriction(id, card, t, castTargets, value, modifyExisting, kMaxCastZones[i], who);
+            //TODO NEW ACastRestrictionUntilEndOfTurn(id, card, t, value, modifyExisting, kMaxCastZones[i], who);
         }
     }
 
@@ -2437,6 +2426,8 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         string stypes = s.substr(found + 8, end - found - 8);
         WParsedPT * pt = NULL;
         string sabilities;
+        string newPower = "";
+        string newToughness = "";
         if (end != real_end)
         {
             int previous = end + 1;
@@ -2444,27 +2435,41 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             if (end == string::npos)
                 end = real_end;
             string temp = s.substr(previous, end - previous);
-            pt = NEW WParsedPT(temp, spell, card);
-            if (!pt->ok)
+            size_t seperator = temp.find("/");
+            if(seperator != string::npos)
             {
-                SAFE_DELETE(pt);
+                newPower = temp.substr(0,seperator);
+                newToughness = temp.substr(seperator + 1);
+            }
+            else
+            {
                 sabilities = temp;
             }
         }
-        if (pt && end != real_end)
+        if ((newPower.length() || newToughness.length()) && end != real_end)
         {
             sabilities = s.substr(end + 1, real_end - end - 1);
         }
         MTGAbility * ab;
-        if (forceUEOT)
+        bool foreverEffect = false;
+        if (forceFOREVER)
         {
-            ab = NEW ABecomesUEOT(id, card, target, stypes, pt, sabilities);
+        foreverEffect = true;
+        }
+        if (oneShot || forceUEOT)
+        {
+            ab = NEW ATransformerInstant(id, card, target, stypes, sabilities,newPower,true,newToughness,true,vector<string>(),false,foreverEffect);
+        }
+        else if(foreverEffect)
+        {
+        ab = NEW ATransformerInstant(id, card, target, stypes, sabilities,newPower,true,newToughness,true,vector<string>(),false,foreverEffect);
         }
         else
         {
-            ab = NEW ABecomes(id, card, target, stypes, pt, sabilities);
+            ab = NEW ATransformer(id, card, target, stypes, sabilities,newPower,true,newToughness,true,vector<string>(),false,foreverEffect);
         }
         return ab;
+        
     }
 
     //bloodthirst
@@ -2587,13 +2592,18 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             }
         }
         MTGAbility * a;
+        bool foreverEffect = false;
         if (forceFOREVER)
         {
-            a = NEW ATransformerFOREVER(id, card, target, stypes, sabilities,newpower,newpowerfound,newtoughness,newtoughnessfound,newAbilitiesList,newAbilityFound);
+        foreverEffect = true;
         }
-        else if (forceUEOT)
+        if (oneShot || forceUEOT)
         {
-            a = NEW ATransformerUEOT(id, card, target, stypes, sabilities,newpower,newpowerfound,newtoughness,newtoughnessfound,newAbilitiesList,newAbilityFound);
+            a = NEW ATransformerInstant(id, card, target, stypes, sabilities,newpower,newpowerfound,newtoughness,newtoughnessfound,newAbilitiesList,newAbilityFound,foreverEffect);
+        }
+        else if(foreverEffect)
+        {
+        a = NEW ATransformerInstant(id, card, target, stypes, sabilities,newpower,newpowerfound,newtoughness,newtoughnessfound,newAbilitiesList,newAbilityFound,foreverEffect);
         }
         else
         {
@@ -2604,15 +2614,18 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     
     //Change Power/Toughness
     WParsedPT * wppt = NEW WParsedPT(s, spell, card);
+    bool nonstatic = false;
     if (wppt->ok)
     {
+        if(s.find("nonstatic") != string::npos)
+            nonstatic = true;
         if (!activated)
         {
             if (card->hasType(Subtypes::TYPE_INSTANT) || card->hasType(Subtypes::TYPE_SORCERY) || forceUEOT)
             {
                 return NEW AInstantPowerToughnessModifierUntilEOT(id, card, target, wppt);
             }
-            return NEW APowerToughnessModifier(id, card, target, wppt);
+            return NEW APowerToughnessModifier(id, card, target, wppt,s,nonstatic);
         }
         return NEW APowerToughnessModifierUntilEndOfTurn(id, card, target, wppt);
     }
@@ -2631,6 +2644,8 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             t = spell->getNextTarget();
         MTGAbility * a = NEW AManaProducer(id, card, t, output, NULL, doTap, who);
         a->oneShot = 1;
+        if(newName.size())
+        ((AManaProducer*)a)->menutext = newName;
         return a;
     }
 
@@ -3941,9 +3956,10 @@ NestedAbility::NestedAbility(MTGAbility * _ability)
 
 //
 
-ActivatedAbility::ActivatedAbility(int id, MTGCardInstance * card, ManaCost * _cost, int restrictions, int tap) :
-    MTGAbility(id, card), restrictions(restrictions), needsTapping(tap)
+ActivatedAbility::ActivatedAbility(int id, MTGCardInstance * card, ManaCost * _cost, int restrictions, int tap,string limit) :
+    MTGAbility(id, card), restrictions(restrictions), needsTapping(tap),limit(limit)
 {
+    counters = 0;
     cost = _cost;
     abilityCost = 0;
 }
@@ -3951,7 +3967,8 @@ ActivatedAbility::ActivatedAbility(int id, MTGCardInstance * card, ManaCost * _c
 int ActivatedAbility::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
 {        
     if(card->isPhased)
-        return 0;        
+        return 0;
+        
     Player * player = game->currentlyActing();
     int cPhase = game->getCurrentGamePhase();
     switch (restrictions)
@@ -3992,7 +4009,20 @@ int ActivatedAbility::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
         if (cPhase != restrictions - BEFORE_BEGIN + Constants::MTG_PHASE_BEFORE_BEGIN)
             return 0;
     }
-
+    limitPerTurn = 0;
+    if(limit.size())
+    {
+        WParsedInt * value = NEW WParsedInt(limit.c_str(),NULL,source);
+        limitPerTurn = value->getValue();
+        delete value;
+        //only run this check if we have a valid limit string.
+        //limits on uses are based on when the ability is used, not when it is resolved
+        //incrementing of counters directly after the fireability()
+        //as ability limits are supposed to count the use regaurdless of the ability actually
+        //resolving. this check was previously located in genericactivated, and incrementing was handled in the resolve.
+        if (limitPerTurn && counters >= limitPerTurn)
+            return 0;
+    }
     if (card == source && source->controller() == player && (!needsTapping || (!source->isTapped()
                     && !source->hasSummoningSickness())))
     {
@@ -4032,7 +4062,7 @@ int ActivatedAbility::reactToClick(MTGCardInstance * card)
     if (needsTapping && source->isInPlay())
         source->tap();
     fireAbility();
-
+    counters++;
     return 1;
 
 }

@@ -486,7 +486,7 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                     size_t start = attribute.find("share!");
                     size_t end = attribute.rfind("!");
                     string CDtype = attribute.substr(start + 6,end - start);
-                    if(card->isSpell() && card->backupTargets[0]->typeAsTarget() == TARGET_STACKACTION)
+                    if( card && card->isSpell() && card->backupTargets[0]->typeAsTarget() == TARGET_STACKACTION)
                     {
                     //spells always store their targets in :targets[]
                     //however they are all erased as the spell resolves
@@ -518,7 +518,7 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                     }
                     else if( CDtype.find("types") != string::npos )
                     {
-                        if(card->target)
+                        if(card && card->target)
                         {
                             cd->types = card->target->types;
                             //remove main types because we only care about subtypes here.
@@ -1134,6 +1134,14 @@ bool TargetZoneChooser::canTarget(Targetable * target,bool withoutProtections)
 
 bool TargetZoneChooser::targetsZone(MTGGameZone * z)
 {
+    for (int i = 0; i < nbzones; i++)
+        if (MTGGameZone::intToZone(zones[i], source) == z) return true;
+    return false;
+}
+bool TargetZoneChooser::targetsZone(MTGGameZone * z,MTGCardInstance * mSource)
+{
+if(mSource)
+source = mSource;
     for (int i = 0; i < nbzones; i++)
         if (MTGGameZone::intToZone(zones[i], source) == z) return true;
     return false;

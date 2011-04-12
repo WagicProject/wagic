@@ -1296,6 +1296,7 @@ int AIPlayerBaka::computeActions()
 {
     GameObserver * g = GameObserver::GetInstance();
     Player * p = g->currentPlayer;
+    Player * currentP = g->currentlyActing();
     if (!(g->currentlyActing() == this))
         return 0;
     if (g->mLayers->actionLayer()->menuObject)
@@ -1315,7 +1316,19 @@ int AIPlayerBaka::computeActions()
     {//is already looking kick me out of this function!
         return 0;
     } 
-    if ((interruptIfICan() || g->isInterrupting == this) && p != this && g->mLayers->stackLayer()->count(0, NOT_RESOLVED) == 1) 
+    Interruptible * action = g->mLayers->stackLayer()->getAt(-1);
+    Spell * spell = (Spell *) action;
+    Player * lastStackActionController = NULL;
+    if(spell && spell->type == ACTION_SPELL)
+      lastStackActionController = spell->source->controller();           
+    if ((interruptIfICan() || g->isInterrupting == this) 
+        //i can interupt or am interupting
+        && p != this 
+        //and its not my turn
+        && this == currentP 
+        //and i am the currentlyActivePlayer
+        && ((lastStackActionController && lastStackActionController != this) || (g->mLayers->stackLayer()->count(0, NOT_RESOLVED) == 0)))
+        //am im not interupting my own spell, or the stack contains nothing.
     {
         findingCard = true;
         CardDescriptor cd;
@@ -1504,7 +1517,7 @@ int AIPlayerBaka::Act(float dt)
         DebugTrace("Cannot interrupt");
         return 0;
     }
-    if (clickstream.empty())
+    if (clickstream.empty() && g->currentlyActing() == this)//computeActions only when i have priority
         computeActions();
     if (clickstream.empty())
     {

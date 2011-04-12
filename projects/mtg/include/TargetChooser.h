@@ -51,6 +51,10 @@ public:
     {
         return false;
     }
+    virtual bool targetsZone(MTGGameZone * z,MTGCardInstance * mSource)
+    {
+        return false;
+    }
     ;
     int ForceTargetListReady();
     int targetsReadyCheck();
@@ -100,6 +104,7 @@ public:
     int nbzones;
     int init(int * _zones, int _nbzones);
     bool targetsZone(MTGGameZone * z);
+    bool targetsZone(MTGGameZone * z,MTGCardInstance * mSource);
     bool withoutProtections;
     TargetZoneChooser(MTGCardInstance * card = NULL, int _maxtargets = 1, bool other = false);
     TargetZoneChooser(int * _zones, int _nbzones, MTGCardInstance * card = NULL, int _maxtargets = 1, bool other = false);

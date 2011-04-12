@@ -87,7 +87,44 @@ int LifeCost::doPay()
         tc->initTargets();
     return 1;
 }
+//life or Mana cost
+LifeorManaCost * LifeorManaCost::clone() const
+{
+    LifeorManaCost * ec = NEW LifeorManaCost(*this);
+    if (tc)
+        ec->tc = tc->clone();
+    return ec;
+}
 
+LifeorManaCost::LifeorManaCost(TargetChooser *_tc,string manaType) :
+    ExtraCost("Phyrexian Mana", _tc),manaType(manaType)
+{
+}
+
+int LifeorManaCost::doPay()
+{
+    if (!target)
+        return 0;
+
+    MTGCardInstance * _target = (MTGCardInstance *) target;
+    string buildType ="{";
+    buildType.append(manaType);
+    buildType.append("}");
+    ManaCost * newCost = ManaCost::parseManaCost(buildType);
+    if(_target->controller()->getManaPool()->canAfford(newCost))
+    {
+        _target->controller()->getManaPool()->pay(newCost);
+    }
+    else
+    {
+        _target->controller()->loseLife(2);
+    }
+    SAFE_DELETE(newCost);
+    target = NULL;
+    if (tc)
+        tc->initTargets();
+    return 1;
+}
 //discard a card at random as a cost
 //DiscardRandom cost
 DiscardRandomCost * DiscardRandomCost::clone() const

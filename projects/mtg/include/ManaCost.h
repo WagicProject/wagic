@@ -45,6 +45,7 @@ public:
     ManaCost * Retrace;
     ManaCost * morph;
     ManaCost * suspend;
+    string alternativeName;
     static ManaCost * parseManaCost(string value, ManaCost * _manacost = NULL, MTGCardInstance * c = NULL);
     virtual void init();
     void x();

@@ -246,7 +246,6 @@ void CardGui::Render()
             mFont->SetScale(1);
         }
     }
-
     if (tc && !tc->canTarget(card))
     {
         if (!shadow)

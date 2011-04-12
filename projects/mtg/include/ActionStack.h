@@ -213,6 +213,7 @@ public:
 
     int setIsInterrupting(Player * player);
     int count( int type = 0 , int state = 0 , int display = -1);
+    int getActionElementFromCard(MTGCardInstance * card);
     Interruptible * getPrevious(Interruptible * next, int type = 0, int state = 0 , int display = -1);
     int getPreviousIndex(Interruptible * next, int type = 0, int state = 0 , int display = -1);
     Interruptible * getNext(Interruptible * previous, int type = 0, int state = 0 , int display = -1);

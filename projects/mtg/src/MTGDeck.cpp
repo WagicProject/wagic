@@ -141,7 +141,6 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
         {
             string value = val;
             primitive->setOtherRestrictions(value);
-
         }
         else
         {
@@ -150,6 +149,12 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
                 string value = val;
                 std::transform(value.begin(), value.end(), value.begin(), ::tolower);
                 cost->alternative = ManaCost::parseManaCost(value);
+                size_t name = value.find("name(");
+                if(name != string::npos)
+                {
+                size_t endName = value.find(")",name);
+                cost->alternative->alternativeName = value.substr(name + 5,endName - name - 5);
+                }
             }
         }
         break;
@@ -222,55 +227,8 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
         {
             if (!primitive) primitive = NEW CardPrimitive();
             string value = val;
-            primitive->setRestrictions(CardPrimitive::NO_RESTRICTION);
-            primitive->hasRestriction = false;
-            if (value.find("control two or more vampires") != string::npos)
-                primitive->setRestrictions(CardPrimitive::VAMPIRES);
-            if (value.find("control less creatures") != string::npos)
-                primitive->setRestrictions(CardPrimitive::LESS_CREATURES);
-            if (value.find("control snow land") != string::npos)
-                primitive->setRestrictions(CardPrimitive::SNOW_LAND_INPLAY);
-            if (value.find("casted a spell") != string::npos)
-                primitive->setRestrictions(CardPrimitive::CASTED_A_SPELL);
-            if (value.find("one of a kind") != string::npos)
-                primitive->setRestrictions(CardPrimitive::ONE_OF_AKIND);
-            if (value.find("fourth turn") != string::npos)
-                primitive->setRestrictions(CardPrimitive::FOURTHTURN);
-            if (value.find("before battle damage") != string::npos)
-                primitive->setRestrictions(CardPrimitive::BEFORECOMBATDAMAGE);
-            if (value.find("after battle") != string::npos)
-                primitive->setRestrictions(CardPrimitive::AFTERCOMBAT);
-            if (value.find("during battle") != string::npos)
-                primitive->setRestrictions(CardPrimitive::DURINGCOMBAT);
-            if (value.find("myturnonly") != string::npos)
-                primitive->setRestrictions(CardPrimitive::PLAYER_TURN_ONLY);
-            if (value.find("opponentturnonly") != string::npos)
-                primitive->setRestrictions(CardPrimitive::OPPONENT_TURN_ONLY);
-            if (value.find("assorcery") != string::npos)
-                primitive->setRestrictions(CardPrimitive::AS_SORCERY);
-            string types[] = { "my", "opponent", "" };
-            int starts[] = { CardPrimitive::MY_BEFORE_BEGIN, CardPrimitive::OPPONENT_BEFORE_BEGIN, CardPrimitive::BEFORE_BEGIN };
-            for (int j = 0; j < 3; ++j)
-            {
-                size_t found = value.find(types[j]);
-                if (found != string::npos)
-                {
-                    for (int i = 0; i < Constants::NB_MTG_PHASES; i++)
-                    {
-                        string toFind = types[j];
-                        toFind.append(Constants::MTGPhaseCodeNames[i]).append("only");
-                        found = value.find(toFind);
-                        if (found != string::npos)
-                        {
-                            if(primitive->hasRestriction == false)
-                            {
-                                primitive->setRestrictions(starts[j] + i);
-                                primitive->hasRestriction = true;
-                            }
-                        }
-                    }
-                }
-            }
+            primitive->setRestrictions(value);
+            primitive->hasRestriction = true;
         }
         else if ('e' == key[1] && 't' == key[2])
         { //retrace

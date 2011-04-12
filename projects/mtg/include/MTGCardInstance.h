@@ -185,8 +185,8 @@ class MTGCardInstance: public CardPrimitive, public MTGCard, public Damageable {
 	void eventattacked();
 	void eventattackedAlone();
 	void eventattackednotblocked();
-	void eventattackedblocked();
-	void eventblocked();
+	void eventattackedblocked(MTGCardInstance * opponent);
+	void eventblocked(MTGCardInstance * opponent);
 
   int isInPlay();
   JSample * getSample();

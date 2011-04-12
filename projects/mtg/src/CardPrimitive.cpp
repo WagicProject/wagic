@@ -23,6 +23,8 @@ CardPrimitive::CardPrimitive(CardPrimitive * source)
     for (int i = 0; i < Constants::MTG_NB_COLORS; ++i)
         colors[i] = source->colors[i];
     manaCost.copy(source->getManaCost());
+    if(source->getManaCost()->alternative)
+    manaCost.alternative->alternativeName = source->getManaCost()->alternative->alternativeName;
 
     text = source->text;
     setName(source->name);
@@ -87,13 +89,13 @@ bool CardPrimitive::isSpell()
     return (!isCreature() && !isLand());
 }
 
-void CardPrimitive::setRestrictions(int _restriction)
+void CardPrimitive::setRestrictions(string _restriction)
 {
     restriction = _restriction;
 }
-int CardPrimitive::getRestrictions()
+void CardPrimitive::getRestrictions()
 {
-    return restriction;
+    restriction;
 }
 
 void CardPrimitive::setOtherRestrictions(string _restriction)

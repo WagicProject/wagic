@@ -360,19 +360,19 @@ void MTGCardInstance::eventattackednotblocked()
 }
 
 //sets card as attacked and sends events
-void MTGCardInstance::eventattackedblocked()
+void MTGCardInstance::eventattackedblocked(MTGCardInstance * opponent)
 {
     didattacked = 1;
-    WEvent * e = NEW WEventCardAttackedBlocked(this);
+    WEvent * e = NEW WEventCardAttackedBlocked(this,opponent);
     GameObserver * game = GameObserver::GetInstance();
     game->receiveEvent(e);
 }
 
 //sets card as blocking and sends events
-void MTGCardInstance::eventblocked()
+void MTGCardInstance::eventblocked(MTGCardInstance * opponent)
 {
     didblocked = 1;
-    WEvent * e = NEW WEventCardBlocked(this);
+    WEvent * e = NEW WEventCardBlocked(this,opponent);
     GameObserver * game = GameObserver::GetInstance();
     game->receiveEvent(e);
 }
@@ -439,10 +439,13 @@ int MTGCardInstance::triggerRegenerate()
         return 0;
     regenerateTokens--;
     tap();
-    life = toughness;
-    initAttackersDefensers();
-    if (life < 1)
-        return 0; //regeneration didn't work (wither ?)
+    if(isCreature())
+    {
+        life = toughness;
+        initAttackersDefensers();
+        if (life < 1)
+            return 0; //regeneration didn't work (wither ?)
+    }
     return 1;
 }
 
@@ -452,7 +455,7 @@ int MTGCardInstance::initAttackersDefensers()
     setDefenser(NULL);
     banding = NULL;
     blockers.clear();
-    blocked = false;
+    blocked = 0;
     didattacked = 0;
     didblocked = 0;
     return 1;
@@ -1049,8 +1052,11 @@ JSample * MTGCardInstance::getSample()
         }
     }
 
-    string type = Subtypes::subtypesList->find(types[0]);
-    type = type + ".wav";
+    string type = "";
+    if(!types.size())
+        return NULL;   
+    type = Subtypes::subtypesList->find(types[0]);
+    type.append(".wav");
     js = WResourceManager::Instance()->RetrieveSample(type);
     if (js)
     {

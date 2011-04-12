@@ -18,6 +18,50 @@ public:
     OtherAbilitiesEventReceiver(int _id);
     OtherAbilitiesEventReceiver * clone() const;
 };
+
+class MTGEventBonus: public MTGAbility
+{
+public:
+    int textAlpha;
+    string text;
+    int army[2];
+    bool army1[2];
+    bool army2[2];
+    bool army3[2];
+    int toys[2];
+    bool toybonusgranted[2];
+    int chain[2];
+    int highestChain[2];
+    bool beastbonusgranted[2];
+    int beast[2];
+    bool zombiebonusgranted[2];
+    int zombie[2];
+    bool knightbonusgranted[2];
+    int knight[2];
+    bool insectbonusgranted[2];
+    int insect[2];
+    bool elementalbonusgranted[2];
+    int elemental[2];
+    bool vampirebonusgranted[2];
+    int vampire[2];
+    bool clericbonusgranted[2];
+    int cleric[2];
+    bool elfbonusgranted[2];
+    int elf[2];
+    bool Angelbonusgranted[2];
+    int Angel[2];
+    bool dragonbonusgranted[2];
+    int dragon[2];
+
+    int receiveEvent(WEvent * event);
+    void grantAward(string awardName,int amount);
+    int testDestroy();
+    void Update(float dt);
+    void Render();
+    MTGEventBonus(int _id);
+    virtual MTGEventBonus * clone() const;
+};
+
 class MTGPutInPlayRule: public MTGAbility
 {
 public:
@@ -38,7 +82,7 @@ class MTGAlternativeCostRule: public MTGAbility
 protected:
     int isReactingToClick(MTGCardInstance * card, ManaCost * mana, ManaCost *alternateManaCost);
     int reactToClick(MTGCardInstance * card, ManaCost * alternateManaCost, int paymentType = ManaCost::MANA_PAID);
-
+    string alternativeName;
 public:
     int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
     int reactToClick(MTGCardInstance * card);
@@ -48,6 +92,8 @@ public:
     MTGAlternativeCostRule(int _id);
     const char * getMenuText()
     {
+        if(alternativeName.size())
+            return alternativeName.c_str();
         return "Pay Alternative Cost";
     }
     virtual MTGAlternativeCostRule * clone() const;

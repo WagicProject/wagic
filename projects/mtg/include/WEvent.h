@@ -145,13 +145,15 @@ struct WEventCardAttackedNotBlocked : public WEventCardUpdate {
 
 //event when card attacks but is blocked.
 struct WEventCardAttackedBlocked : public WEventCardUpdate {
-  WEventCardAttackedBlocked(MTGCardInstance * card);
+  WEventCardAttackedBlocked(MTGCardInstance * card,MTGCardInstance * opponent);
+  MTGCardInstance * opponent;
 	virtual Targetable * getTarget(int target);
 };
 
 //event when card blocked.
 struct WEventCardBlocked : public WEventCardUpdate {
-  WEventCardBlocked(MTGCardInstance * card);
+  WEventCardBlocked(MTGCardInstance * card,MTGCardInstance * opponent);
+  MTGCardInstance * opponent;
 	virtual Targetable * getTarget(int target);
 };
 

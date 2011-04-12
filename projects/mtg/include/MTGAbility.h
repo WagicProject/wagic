@@ -98,17 +98,10 @@ class MTGAbility: public ActionElement{
     CLEANUP = 56,
     AFTER_EOT = 57,
      
-    VAMPIRES = 60,
-    LESS_CREATURES = 61,
-    SNOW_LAND_INPLAY =62,
-    CASTED_A_SPELL = 63,
-    ONE_OF_AKIND = 64,
-    FOURTHTURN = 65,
-    BEFORECOMBATDAMAGE = 66,
-    AFTERCOMBAT = 67,
-    DURINGCOMBAT = 68,
-    OPPONENT_TURN_ONLY = 69,
+    OPPONENT_TURN_ONLY = 60,
+
  };
+ int parseCastRestrictions(MTGCardInstance * card,Player * player,string restrictions,string otherRestrictions);
  int allowedToCast(MTGCardInstance * card,Player * player);
  int allowedToAltCast(MTGCardInstance * card,Player * player);
  int oneShot;
@@ -260,9 +253,20 @@ class ActivatedAbility:public MTGAbility{
    };
    ManaCost * abilityCost;
   int restrictions;
+  int limitPerTurn;
+  string limit;
+  int counters;
   int needsTapping;
-  ActivatedAbility(int id, MTGCardInstance * card,ManaCost * _cost = NULL, int _restrictions = NO_RESTRICTION,int tap = 1);
+  ActivatedAbility(int id, MTGCardInstance * card,ManaCost * _cost = NULL, int _restrictions = NO_RESTRICTION,int tap = 1,string limit = "");
   virtual ~ActivatedAbility();
+  virtual void Update(float dt)
+  {
+      if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_AFTER_EOT)
+      {
+          counters = 0;
+      }
+      return MTGAbility::Update(dt);
+  }
   virtual int reactToClick(MTGCardInstance * card);
   virtual int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
   virtual int reactToTargetClick(Targetable * object);
@@ -371,11 +375,11 @@ class AbilityFactory{
      string storedString;
      int countCards(TargetChooser * tc, Player * player = NULL, int option = 0);
   TriggeredAbility * parseTrigger(string s, string magicText, int id, Spell * spell, MTGCardInstance *card, Targetable * target);
-  int parseRestriction(string s);
   MTGAbility * getAlternateCost( string s, int id, Spell *spell, MTGCardInstance *card );
   MTGAbility * getManaReduxAbility(string s, int id, Spell *spell, MTGCardInstance *card, MTGCardInstance *target);
   
 public:
+  int parseRestriction(string s);
   Counter * parseCounter(string s, MTGCardInstance * target, Spell * spell = NULL);
   int parsePowerToughness(string s, int *power, int *toughness);	
   int getAbilities(vector<MTGAbility *> * v, Spell * spell, MTGCardInstance * card = NULL, int id = 0,MTGGameZone * dest = NULL);
@@ -421,10 +425,10 @@ class AManaProducer: public ActivatedAbilityTP{
  protected:
 
   
-  string menutext;
   Player * controller;
 
  public:
+   string menutext;
    ManaCost * output;
    int tap;
    AManaProducer(int id, MTGCardInstance * card, Targetable * t, ManaCost * _output, ManaCost * _cost = NULL, int doTap = 0, int who = TargetChooser::UNSET );

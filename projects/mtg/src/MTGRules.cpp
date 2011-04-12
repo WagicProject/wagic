@@ -5,7 +5,284 @@
 #include "Translate.h"
 #include "Subtypes.h"
 #include "GameOptions.h"
+#include "Credits.h"
 
+MTGEventBonus::MTGEventBonus(int _id) :
+MTGAbility(_id,NULL)
+{
+    textAlpha = 0;
+    text = "";
+    for(int i = 0;i < 2;i++)
+    {
+        chain[i] = 0;
+        highestChain[i] = 0;
+        //-----------
+        army[i] = 0;
+        army1[i] = false;
+        army2[i] = false;
+        army3[i] = false;
+        //--------
+
+        toybonusgranted[i] = false;
+        toys[i] = 0;
+        beastbonusgranted[i] = false;
+        beast[i] = 0;
+        zombiebonusgranted[i] = false;
+        zombie[i] = 0;
+        knightbonusgranted[i] = false;
+        knight[i] = 0;
+        insectbonusgranted[i] = false;
+        insect[i] = 0;
+        elementalbonusgranted[i] = false;
+        elemental[i] = 0;
+        vampirebonusgranted[i] = false;
+        vampire[i] = 0;
+        clericbonusgranted[i] = false;
+        cleric[i] = 0;
+        elfbonusgranted[i] = false;
+        elf[i] = 0;
+        Angelbonusgranted[i] = false;
+        Angel[i] = 0;
+        dragonbonusgranted[i] = false;
+        dragon[i] = 0;
+    
+    }
+}
+int MTGEventBonus::receiveEvent(WEvent * event)
+{
+    Player * player = game->currentlyActing();
+    Player * currentPlayer = game->currentPlayer;
+    //bonus for chain chain casting without tapping for mana or being interupted;
+    //note gaining mana from other sources is still possible.
+    //only spells going to the stack are counted.
+    if (WEventCardTappedForMana* e = dynamic_cast<WEventCardTappedForMana*>(event))
+    {
+        if(e)
+        {
+            if(chain[currentPlayer->getId()]/5 > 0)
+            {
+                text = "Chain Broken!";
+                textAlpha = 255;
+            }
+            chain[currentPlayer->getId()] = 0;
+        }
+    }
+    if (event->type == WEvent::CHANGE_ZONE && !currentPlayer->isAI())
+    {
+        WEventZoneChange * e = (WEventZoneChange *) event;
+        if (e->to == currentPlayer->game->stack)
+        {
+            chain[currentPlayer->getId()]++;
+            if(chain[currentPlayer->getId()] > highestChain[currentPlayer->getId()])
+                highestChain[currentPlayer->getId()] = chain[currentPlayer->getId()];
+            if(chain[currentPlayer->getId()] > 4)
+            {
+
+                if(highestChain[currentPlayer->getId()] > 14)
+                {
+                    char buffer3[20];
+                    sprintf(buffer3,"Killer!-Combo %i",chain[currentPlayer->getId()]);
+                    grantAward(buffer3,100);
+                    //increase the chains bonus by 100 for every card after playing a chain of 15 in a match.
+                    //this is almost impossible would require superior draw and mana production.
+                }
+                else if(highestChain[currentPlayer->getId()] > 9)
+                {
+                    char buffer2[30];
+                    sprintf(buffer2,"Abundant Resources-Combo %i",chain[currentPlayer->getId()]);
+                    grantAward(buffer2,50);
+                    //increase the chains bonus by 50 for every card after playing a chain of 10 in a match.
+                    //this is extremely hard to do. would require a very well built deck an an abundence of mana
+                    //to spend in a single go combined with decent card drawing.
+                }
+                else if(highestChain[currentPlayer->getId()] > 4)
+                {
+                    char buffer[20];
+                    sprintf(buffer,"Chained-Combo %i",chain[currentPlayer->getId()]);
+                    grantAward(buffer,chain[currentPlayer->getId()]);
+                    //gain credits for every card played after you played a chain of 5
+                    //during the match. this would require a very decent hand to do
+                    //and good mana production.
+                }
+            }
+        }
+        //end of chain bonuses
+        //==========================
+        //creatures entering play consecutively will allow you a chance 
+        //to gain a bonus for maintaining force sizes, it will trigger every 10th
+        //creature which enters play consecutively.
+        if (e->to == currentPlayer->game->inPlay && !currentPlayer->isAI())
+        {
+            if(e->card->hasType(Subtypes::TYPE_CREATURE))
+                army[currentPlayer->getId()]++;
+            else
+                army[currentPlayer->getId()] = 0;
+            if(army[currentPlayer->getId()] > 9)
+            {
+                //this might seem easy at first glance, but you have to both maintain a high
+                //creature count, and triggers when 10 or more enter consecutively. if any thing else
+                //enters play the count is reset.
+                army[currentPlayer->getId()] = 0;
+                int forceSize = currentPlayer->inPlay()->countByType("creature");
+                if(forceSize > 40 && !army3[currentPlayer->getId()])
+                {
+                    grantAward("Malignant Conqueror Bonus!",1000);
+                    army3[currentPlayer->getId()] = true;
+                }
+                else if(forceSize > 19 && !army2[currentPlayer->getId()])
+                {
+                    grantAward("Extreme Infantry Bonus!",500);
+                    army2[currentPlayer->getId()] = true;
+                }
+                else if(forceSize > 9 && !army1[currentPlayer->getId()])
+                {
+                    grantAward("Deadly Force Bonus!",250);
+                    army1[currentPlayer->getId()] = true;
+                }
+            }
+            //////bonus for having a LOT of specific type.
+            //not else'd becuase it is possible for a card to contain
+            //more then one of the types, and for more then one to trigger.
+            if(e->card->hasType(Subtypes::TYPE_ARTIFACT))
+                toys[currentPlayer->getId()]++;
+            if(e->card->isCreature())
+            {
+                if(e->card->hasType("beast"))
+                    beast[currentPlayer->getId()]++;
+                if(e->card->hasType("vampire"))
+                    vampire[currentPlayer->getId()]++;
+                if(e->card->hasType("insect"))
+                    insect[currentPlayer->getId()]++;
+                if(e->card->hasType("elemental"))
+                    elemental[currentPlayer->getId()]++;
+                if(e->card->hasType("zombie"))
+                    zombie[currentPlayer->getId()]++;
+                if(e->card->hasType("soldier")||e->card->hasType("knight")||e->card->hasType("warrior"))
+                    knight[currentPlayer->getId()]++;
+                if(e->card->hasType("cleric")||e->card->hasType("shaman")||e->card->hasType("druid"))
+                    cleric[currentPlayer->getId()]++;
+                if(e->card->hasType("elf"))
+                    elf[currentPlayer->getId()]++;
+                if(e->card->hasType("angel")||e->card->hasType("spirit"))
+                    Angel[currentPlayer->getId()]++;
+                if(e->card->hasType("dragon")||e->card->hasType("wurm")||e->card->hasType("drake")||e->card->hasType("snake")||e->card->hasType("hydra"))
+                    dragon[currentPlayer->getId()]++;
+            }
+            if(toys[currentPlayer->getId()] > 30 && !toybonusgranted[currentPlayer->getId()])
+            {
+                grantAward("Toy Collector!",300);
+                toybonusgranted[currentPlayer->getId()] = true;
+            }
+            if(beast[currentPlayer->getId()] > 30 && !beastbonusgranted[currentPlayer->getId()])
+            {
+                grantAward("Beast Tamer!",300);
+                beastbonusgranted[currentPlayer->getId()] = true;
+            }
+            if(vampire[currentPlayer->getId()] > 30 && !vampirebonusgranted[currentPlayer->getId()])
+            {
+                grantAward("Vampire King!",300);
+                vampirebonusgranted[currentPlayer->getId()] = true;
+            }
+            if(insect[currentPlayer->getId()] > 30 && !insectbonusgranted[currentPlayer->getId()])
+            {
+                grantAward("Lord of Swarms!",300);
+                insectbonusgranted[currentPlayer->getId()] = true;
+            }
+            if(elemental[currentPlayer->getId()] > 30 && !elementalbonusgranted[currentPlayer->getId()])
+            {
+                grantAward("Master of Elements!",300);
+                elementalbonusgranted[currentPlayer->getId()] = true;
+            }
+            if(zombie[currentPlayer->getId()] > 30 && !zombiebonusgranted[currentPlayer->getId()])
+            {
+                grantAward("Zombie Apocalypse!",300);
+                zombiebonusgranted[currentPlayer->getId()] = true;
+            }
+            if(knight[currentPlayer->getId()] > 30 && !knightbonusgranted[currentPlayer->getId()])
+            {
+                grantAward("Sword And Shield!",300);
+                knightbonusgranted[currentPlayer->getId()] = true;
+            }
+            if(cleric[currentPlayer->getId()] > 30 && !clericbonusgranted[currentPlayer->getId()])
+            {
+                grantAward("Medic!",300);
+                clericbonusgranted[currentPlayer->getId()] = true;
+            }
+
+            if(elf[currentPlayer->getId()] > 30 && !elfbonusgranted[currentPlayer->getId()])
+            {
+                grantAward("The Promenade!",300);
+                elfbonusgranted[currentPlayer->getId()] = true;
+            }
+            if(Angel[currentPlayer->getId()] > 30 && !Angelbonusgranted[currentPlayer->getId()])
+            {
+                grantAward("Heavenly Host!",300);
+                Angelbonusgranted[currentPlayer->getId()] = true;
+            }
+            if(dragon[currentPlayer->getId()] > 30 && !dragonbonusgranted[currentPlayer->getId()])
+            {
+                grantAward("Teeth And Scales!",300);
+                dragonbonusgranted[currentPlayer->getId()] = true;
+            }
+        }
+    }
+    //bonus for dealing 100+ damage from a single source
+    WEventDamage * damageEvent = dynamic_cast<WEventDamage *> (event);
+    if(damageEvent && !currentPlayer->isAI())
+    {
+        MTGCardInstance * damageSource = (MTGCardInstance*)damageEvent->getTarget(damageEvent->TARGET_FROM);
+        if(damageSource && damageSource->controller() == currentPlayer && damageEvent->damage->damage > 99)
+            grantAward("Overkill!",500);
+    }
+    return 1;
+}
+
+void MTGEventBonus::grantAward(string awardName,int amount)
+{
+    JSample * sample = WResourceManager::Instance()->RetrieveSample("bonus.wav");
+    if (sample)
+    {
+        JSoundSystem::GetInstance()->PlaySample(sample);
+    }
+    text = awardName;
+    textAlpha = 255;
+    Credits::addCreditBonus(amount);
+}
+
+int MTGEventBonus::testDestroy()
+{
+    return 0;
+}
+
+void MTGEventBonus::Update(float dt)
+{
+    if (textAlpha)
+    {
+        textAlpha -= static_cast<int> (200 * dt);
+        if (textAlpha < 0)
+            textAlpha = 0;
+    }
+    MTGAbility::Update(dt);
+}
+
+void MTGEventBonus::Render()
+{
+    if (!textAlpha)
+        return;
+    WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::OPTION_FONT/*MENU_FONT*/);
+    mFont->SetScale(2 - (float) textAlpha / 130);
+    mFont->SetColor(ARGB(255,255,255,255));
+    mFont->DrawString(text.c_str(), SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, JGETEXT_CENTER);
+}
+
+MTGEventBonus * MTGEventBonus::clone() const
+{
+    MTGEventBonus * a = NEW MTGEventBonus(*this);
+    a->isClone = 1;
+    return a;
+}
+
+//
 MTGPutInPlayRule::MTGPutInPlayRule(int _id) :
 MTGAbility(_id, NULL)
 {
@@ -64,8 +341,6 @@ int MTGPutInPlayRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
 #ifdef WIN32
         cost->Dump();
 #endif
-        if(!cost->getConvertedCost() && card->getManaCost()->suspend)
-            return 0;
         //cost of card.
         if (playerMana->canAfford(cost))
         {
@@ -218,11 +493,11 @@ int MTGAlternativeCostRule::isReactingToClick(MTGCardInstance * card, ManaCost *
 
     if (!alternateManaCost)
         return 0;
-
-    if(!allowedToCast(card,player))
-        return 0;
     if(!allowedToAltCast(card,player))
         return 0;
+        card->getManaCost()->alternativeName;
+    if(card->model->data->getManaCost()->alternative && card->model->data->getManaCost()->alternative->alternativeName.size())
+        alternativeName = card->model->data->getManaCost()->alternative->alternativeName;
 
     if (card->isLand())
     {
@@ -368,9 +643,9 @@ MTGAlternativeCostRule(_id)
 int MTGBuyBackRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
 {
     Player * player = game->currentlyActing();
-    if(!allowedToCast(card,player))
-        return 0;
     if (!player->game->hand->hasCard(card))
+        return 0;
+    if(!allowedToCast(card,player))
         return 0;
     return MTGAlternativeCostRule::isReactingToClick( card, mana, card->getManaCost()->BuyBack );
 }
@@ -636,8 +911,6 @@ int MTGMorphCostRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
     if (!player->game->hand->hasCard(card))
         return 0;
     if (!card->getManaCost()->morph)
-        return 0;
-    if(!allowedToCast(card,player))
         return 0;
     if(!allowedToAltCast(card,player))
         return 0;
@@ -919,6 +1192,15 @@ int MTGCombatTriggersRule::receiveEvent(WEvent *e)
     }
     if (dynamic_cast<WEventBlockersChosen*>(e))
     {
+        MTGGameZone* opponentZone = game->currentPlayer->opponent()->game->inPlay;
+        for (int i = 0; i < opponentZone->nb_cards; i++)
+        {
+            MTGCardInstance* card = opponentZone->cards[i];
+            if (card && card->didblocked)
+            {
+                card->eventblocked(card->getNextOpponent());
+            }
+        }
         Player * p = game->currentPlayer;
         MTGGameZone * z = p->game->inPlay;
         for (int i = 0; i < z->nb_cards; i++)
@@ -927,21 +1209,18 @@ int MTGCombatTriggersRule::receiveEvent(WEvent *e)
             if (card && card->isAttacker() && !card->blocked)
             {
                 card->eventattackednotblocked();
-                card->notblocked += 1;
+                card->notblocked = 1;
             }
             if (card && card->isAttacker() && card->blocked)
             {
-                card->eventattackedblocked();
-            }
-        }
 
-        MTGGameZone* opponentZone = game->currentPlayer->opponent()->game->inPlay;
-        for (int i = 0; i < opponentZone->nb_cards; i++)
-        {
-            MTGCardInstance* card = opponentZone->cards[i];
-            if (card && card->didblocked > 0)
-            {
-                card->eventblocked();
+                MTGCardInstance * opponent = card->getNextOpponent();
+                while (opponent)
+                {
+                    card->eventattackedblocked(opponent);
+                    opponent = card->getNextOpponent(opponent);
+                }
+
             }
         }
     }

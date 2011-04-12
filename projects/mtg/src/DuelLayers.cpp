@@ -23,6 +23,7 @@ void DuelLayers::init()
     action = NEW ActionLayer();
     action->Add(NEW MTGGamePhase(action->getMaxId()));
     //Add Magic Specific Rules
+    action->Add(NEW MTGEventBonus(-1));
     action->Add(NEW MTGPutInPlayRule(-1));
     action->Add(NEW MTGAlternativeCostRule(-1));
     action->Add(NEW MTGBuyBackRule(-1));

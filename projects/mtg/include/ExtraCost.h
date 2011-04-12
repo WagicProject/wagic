@@ -61,7 +61,14 @@ public:
   virtual int doPay();
   virtual LifeCost * clone() const;
 };
-
+//pyrhaixa mana
+class LifeorManaCost: public ExtraCost{
+public:
+    LifeorManaCost(TargetChooser *_tc = NULL,string manaType = "");
+    string manaType;
+    virtual int doPay();
+    virtual LifeorManaCost * clone() const;
+};
 //Discard a random card cost 
 class DiscardRandomCost: public ExtraCost{
 public:

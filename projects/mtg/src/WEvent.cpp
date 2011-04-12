@@ -67,13 +67,13 @@ WEventCardAttackedNotBlocked::WEventCardAttackedNotBlocked(MTGCardInstance * car
 {
 }
 
-WEventCardAttackedBlocked::WEventCardAttackedBlocked(MTGCardInstance * card) :
-    WEventCardUpdate(card)
+WEventCardAttackedBlocked::WEventCardAttackedBlocked(MTGCardInstance * card,MTGCardInstance * opponent) :
+    WEventCardUpdate(card),opponent(opponent)
 {
 }
 
-WEventCardBlocked::WEventCardBlocked(MTGCardInstance * card) :
-    WEventCardUpdate(card)
+WEventCardBlocked::WEventCardBlocked(MTGCardInstance * card,MTGCardInstance * opponent) :
+    WEventCardUpdate(card),opponent(opponent)
 {
 }
 
@@ -235,7 +235,7 @@ Targetable * WEventCardAttackedBlocked::getTarget(int target)
     case TARGET_TO:
         return card;
     case TARGET_FROM:
-        return card->getNextOpponent();
+        return opponent;
     }
     return NULL;
 }
@@ -247,7 +247,7 @@ Targetable * WEventCardBlocked::getTarget(int target)
     case TARGET_TO:
         return card;
     case TARGET_FROM:
-        return card->getNextOpponent();
+        return opponent;
     }
     return NULL;
 }

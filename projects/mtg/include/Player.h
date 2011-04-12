@@ -34,7 +34,6 @@ public:
     string deckFileSmall;
     string deckName;
     string phaseRing;
-
     Player(string deckFile, string deckFileSmall, MTGDeck * deck = NULL);
     virtual ~Player();
 

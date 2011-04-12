@@ -144,6 +144,15 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
                         tc = tcf.createTargetChooser("creature|myBattlefield", c);
                         manaCost->addExtraCost(NEW Ninja(tc));
                         break;
+                    case 'p' :
+                        {
+                            SAFE_DELETE(tc);
+                            size_t start = value.find("(");
+                            size_t end = value.rfind(")");
+                            string manaType = value.substr(start + 1, end - start - 1);
+                            manaCost->addExtraCost(NEW LifeorManaCost(NULL,manaType));
+                            break;
+                        }
                     case 'c': //Counters
                     {
                         size_t counter_start = value.find("(");

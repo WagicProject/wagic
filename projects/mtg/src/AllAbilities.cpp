@@ -4,9 +4,9 @@
 //Activated Abilities
 
 //Generic Activated Abilities
-GenericActivatedAbility::GenericActivatedAbility(int _id, MTGCardInstance * card, MTGAbility * a, ManaCost * _cost, int _tap,
+GenericActivatedAbility::GenericActivatedAbility(string newName,int _id, MTGCardInstance * card, MTGAbility * a, ManaCost * _cost, int _tap,
         string limit, int restrictions, MTGGameZone * dest) :
-    ActivatedAbility(_id, card, _cost, restrictions, _tap), NestedAbility(a), limit(limit), activeZone(dest)
+    ActivatedAbility(_id, card, _cost, restrictions, _tap,limit), NestedAbility(a), activeZone(dest),newName(newName)
 {
     counters = 0;
     target = ability->target;
@@ -14,7 +14,6 @@ GenericActivatedAbility::GenericActivatedAbility(int _id, MTGCardInstance * card
 
 int GenericActivatedAbility::resolve()
 {
-    counters++;
     ManaCost * diff = abilityCost->Diff(cost);
     source->X = diff->hasX();
     source->XX = source->X/2;
@@ -28,6 +27,8 @@ int GenericActivatedAbility::resolve()
 
 const char * GenericActivatedAbility::getMenuText()
 {
+if(newName.size())
+return newName.c_str();
     if (ability)
         return ability->getMenuText();
     return "Error";
@@ -37,24 +38,11 @@ int GenericActivatedAbility::isReactingToClick(MTGCardInstance * card, ManaCost 
 {
     if (dynamic_cast<AAMorph*> (ability) && !card->isMorphed && !card->morphed && card->turningOver)
         return 0;
-    limitPerTurn = 0;
-    if(limit.size())
-    {
-        WParsedInt * value = NEW WParsedInt(limit.c_str(),NULL,source);
-        limitPerTurn = value->getValue();
-        delete value;
-    }
-    if (limitPerTurn && counters >= limitPerTurn)
-        return 0;
     return ActivatedAbility::isReactingToClick(card, mana);
 }
 
 void GenericActivatedAbility::Update(float dt)
 {
-    if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_AFTER_EOT)
-    {
-        counters = 0;
-    }
     ActivatedAbility::Update(dt);
 }
 
@@ -486,15 +474,12 @@ int AAFizzler::resolve()
     if(!target && !_target)
     {
         //if we hit this condiational its because Ai was targetting.
-        target = source->target;
-        Interruptible * laststackitem = game->mLayers->stackLayer()->getAt(-2);
-        //fizzle the spell that was played directly before this counterspell
-        //ai will tend to respond to you extremely quick.
-        if (laststackitem && laststackitem->type == ACTION_SPELL)
-        {
-            Spell * spell = (Spell*) laststackitem;
-            _target = spell;
-        }
+        Interruptible * targetCard = game->mLayers->stackLayer()->getAt(game->mLayers->stackLayer()->getActionElementFromCard(source->target));
+        if (source->target && source->target->has(Constants::NOFIZZLE))
+            return 0;
+        _target = (Spell *) targetCard;
+        game->mLayers->stackLayer()->Fizzle(_target);
+        return 1;
     }
     if (target && _target->source->has(Constants::NOFIZZLE))
         return 0;
@@ -1065,7 +1050,12 @@ int AADynamic::resolve()
     {
         while (_target->typeAsTarget() == TARGET_CARD && ((MTGCardInstance *)_target)->next)
             _target = ((MTGCardInstance *)_target)->next;
-
+        if(sourceamount < 0)
+            sourceamount = 0;
+        if(targetamount < 0)
+            targetamount = 0;
+        //set values less then 0 to 0, it was reported that negitive numbers such as a creature who get -3/-3 having the power become
+        //negitive, if then used as the amount, would cuase weird side effects on resolves.
         switch(effect)
         {
         case 0://deal damage
@@ -1468,8 +1458,6 @@ AACloner * AACloner::clone() const
 AACloner::~AACloner()
 {
 }
-
-
 
 // Cast/Play Restriction modifier
 ACastRestriction::ACastRestriction(int _id, MTGCardInstance * card, Targetable * _target, TargetChooser * _restrictionsScope, WParsedInt * _value, bool _modifyExisting, int _zoneId, int who) :
@@ -2012,9 +2000,9 @@ MultiAbility::~MultiAbility()
 }
 
 //Generic Target Ability
-GenericTargetAbility::GenericTargetAbility(int _id, MTGCardInstance * _source, TargetChooser * _tc, MTGAbility * a,
+GenericTargetAbility::GenericTargetAbility(string newName,int _id, MTGCardInstance * _source, TargetChooser * _tc, MTGAbility * a,
         ManaCost * _cost, int _tap, string limit, int restrictions, MTGGameZone * dest) :
-    TargetAbility(_id, _source, _tc, _cost, restrictions, _tap), limit(limit), activeZone(dest)
+    TargetAbility(_id, _source, _tc, _cost, restrictions, _tap), limit(limit), activeZone(dest),newName(newName)
 {
     ability = a;
     MTGAbility * core = AbilityFactory::getCoreAbility(a);
@@ -2027,6 +2015,8 @@ const char * GenericTargetAbility::getMenuText()
 {
     if (!ability)
         return "Error";
+    if (newName.size())
+        return newName.c_str();
 
     MTGAbility * core = AbilityFactory::getCoreAbility(ability);
     if (AAMover * move = dynamic_cast<AAMover *>(core))
@@ -2229,16 +2219,23 @@ AAlterCost::~AAlterCost()
 }
 
 // ATransformer
-ATransformer::ATransformer(int id, MTGCardInstance * source, MTGCardInstance * target, string stypes, string sabilities,string newpower,bool newpowerfound,string newtoughness,bool newtoughnessfound,vector<string> newAbilitiesList,bool newAbilityFound) :
-    MTGAbility(id, source, target),newpower(newpower),newpowerfound(newpowerfound),newtoughness(newtoughness),newtoughnessfound(newtoughnessfound),newAbilitiesList(newAbilitiesList),newAbilityFound(newAbilityFound)
+ATransformer::ATransformer(int id, MTGCardInstance * source, MTGCardInstance * target, string stypes, string sabilities,string newpower,bool newpowerfound,string newtoughness,bool newtoughnessfound,vector<string> newAbilitiesList,bool newAbilityFound,bool aForever) :
+    MTGAbility(id, source, target),newpower(newpower),newpowerfound(newpowerfound),newtoughness(newtoughness),newtoughnessfound(newtoughnessfound),newAbilitiesList(newAbilitiesList),newAbilityFound(newAbilityFound),aForever(aForever)
 {
 
     PopulateAbilityIndexVector(abilities, sabilities);
     PopulateColorIndexVector(colors, sabilities);
-        
+    
+    addNewColors = false;
+    if(sabilities.find("newcolors") != string::npos)
+    addNewColors = true;
+    //this subkeyword adds a color without removing the existing colors.
     remove = false;
     if (stypes == "removesubtypes")
         remove = true;
+    removeTypes = false;
+    if (stypes == "removetypes")
+        removeTypes = true;
     if (stypes == "allsubtypes" || stypes == "removesubtypes")
     {
         for (int i = Subtypes::LAST_TYPE + 1;; i++)
@@ -2272,7 +2269,20 @@ ATransformer::ATransformer(int id, MTGCardInstance * source, MTGCardInstance * t
 
     int ATransformer::addToGame()
     {
-        MTGCardInstance * _target = (MTGCardInstance *) target;
+        MTGCardInstance * _target = NULL;
+         Interruptible * action = (Interruptible *) target;
+        if (action->type == ACTION_SPELL && action->state == NOT_RESOLVED)
+        {
+            Spell * spell = (Spell *) action;
+            _target = spell->source;
+            aForever = true;
+            //when targeting the stack, set the effect to forever, incase the person does not use it
+            //otherwise we will end up with a null pointer on the destroy.
+        }
+        else
+        {
+            _target = (MTGCardInstance *) target;
+        }
         if (_target)
         {
             while (_target->next)
@@ -2297,18 +2307,43 @@ ATransformer::ATransformer(int id, MTGCardInstance * source, MTGCardInstance * t
             list<int>::iterator it;
             for (it = colors.begin(); it != colors.end(); it++)
             {
-                _target->setColor(0, 1);
+                if(!addNewColors)
+                    _target->setColor(0, 1);
             }
 
             for (it = types.begin(); it != types.end(); it++)
             {
-                if (remove )
+                if (removeTypes)
+                {
+                    //remove the main types from a card, ie: hidden enchantment cycle.
+                    _target->removeType(0,1);
+                    _target->removeType(1,1);
+                    _target->removeType(2,1);
+                    _target->removeType(3,1);
+                    _target->removeType(4,1);
+                    _target->removeType(5,1);
+                    _target->removeType(6,1);
+                    _target->removeType(7,1);
+                }
+                if (remove)
                 {
                     _target->removeType(*it);
                 }
                 else
                 {
-                    _target->addType(*it);
+                    if(_target->hasSubtype(*it))
+                    {
+                        //we generally don't want to give a creature type creature again
+                        //all it does is create a sloppy mess of the subtype line on alternative quads
+                        //also creates instances where a card gained a type from an ability like this one
+                        //then loses the type through another ability, when this effect is destroyed the creature regains
+                        //the type, which is wrong.
+                        dontremove.push_back(*it);
+                    }
+                    else
+                    {
+                        _target->addType(*it);
+                    }
                 }
             }
             for (it = colors.begin(); it != colors.end(); it++)
@@ -2372,15 +2407,17 @@ ATransformer::ATransformer(int id, MTGCardInstance * source, MTGCardInstance * t
                 oldtoughness = _target->toughness;
                 _target->addToToughness(val->getValue());
                 _target->addToToughness(-oldtoughness);
+                _target->life = _target->toughness;
                 delete val;
             }
-
         }
         return MTGAbility::addToGame();
     }
 
 int ATransformer::destroy()
 {
+    if(aForever)
+        return 0;
     MTGCardInstance * _target = (MTGCardInstance *) target;
     if (_target)
     {
@@ -2389,8 +2426,18 @@ int ATransformer::destroy()
         list<int>::iterator it;
         for (it = types.begin(); it != types.end(); it++)
         {
-            if (remove == false)
-                _target->removeType(*it);
+            if (!remove)
+            {
+                bool removing = true;
+                for(unsigned int k = 0;k < dontremove.size();k++)
+                {
+                    if(dontremove[k] == *it)
+                        removing = false;
+                }
+                if(removing)
+                    _target->removeType(*it);
+            }
+            //iterators annoy me :/
         }
         for (it = colors.begin(); it != colors.end(); it++)
         {
@@ -2404,7 +2451,7 @@ int ATransformer::destroy()
         {
             _target->setColor(*it);
         }
-        if (remove )
+        if (remove)
         {
             for (it = oldtypes.begin(); it != oldtypes.end(); it++)
             {
@@ -2453,196 +2500,35 @@ ATransformer::~ATransformer()
 {
 }
 
-// AForeverTransformer
-AForeverTransformer::AForeverTransformer(int id, MTGCardInstance * source, MTGCardInstance * target, string stypes,
-        string sabilities,string newpower,bool newpowerfound, string newtoughness,bool newtoughnessfound,vector<string> newAbilitiesList,bool newAbilityFound) :
-    MTGAbility(id, source, target),newpower(newpower),newpowerfound(newpowerfound),newtoughness(newtoughness),newtoughnessfound(newtoughnessfound),newAbilitiesList(newAbilitiesList),newAbilityFound(newAbilityFound)
+//ATransformerInstant
+ATransformerInstant::ATransformerInstant(int id, MTGCardInstance * source, MTGCardInstance * target, string types, string abilities,string newpower,bool newpowerfound,string newtoughness,bool newtoughnessfound,vector<string>newAbilitiesList,bool newAbilityFound,bool aForever) :
+    InstantAbility(id, source, target),newpower(newpower),newpowerfound(newpowerfound),newtoughness(newtoughness),newtoughnessfound(newtoughnessfound),newAbilitiesList(newAbilitiesList),newAbilityFound(newAbilityFound),aForever(aForever)
 {
-    aType = MTGAbility::STANDARD_BECOMES;
-
-    PopulateAbilityIndexVector(abilities, sabilities);
-    PopulateColorIndexVector(colors, sabilities);
-    PopulateSubtypesIndexVector(types, stypes);
-    menu = stypes;
-    
-    remove = false;
-    if (stypes == "removetypes")
-        remove = true;
-}
-
-int AForeverTransformer::addToGame()
-{
-    MTGCardInstance * _target = (MTGCardInstance *) target;
-    if (_target)
-    {
-        while (_target->next)
-            _target = _target->next;
-        list<int>::iterator it;
-        for (it = colors.begin(); it != colors.end(); it++)
-        {
-            _target->setColor(0, 1);
-        }
-        for (it = types.begin(); it != types.end(); it++)
-        {
-            if(remove)
-            {
-            _target->removeType(0,1);
-            _target->removeType(1,1);
-            _target->removeType(2,1);
-            _target->removeType(3,1);
-            _target->removeType(4,1);
-            _target->removeType(5,1);
-            _target->removeType(6,1);
-            _target->removeType(7,1);
-            }
-            else
-                _target->addType(*it);
-        }
-        for (it = colors.begin(); it != colors.end(); it++)
-        {
-            _target->setColor(*it);
-        }
-        for (it = abilities.begin(); it != abilities.end(); it++)
-        {
-            _target->basicAbilities[*it]++;
-        }
-        if (newAbilityFound)
-        {
-                for (unsigned int k = 0 ; k < newAbilitiesList.size();k++)
-                {
-                    AbilityFactory af;
-                    MTGAbility * aNew = af.parseMagicLine(newAbilitiesList[k], 0, NULL, _target);
-                    aNew->isClone = 1;
-
-                    GenericTargetAbility * gta = dynamic_cast<GenericTargetAbility*> (aNew);
-                    if (gta)
-                    {
-                        ((GenericTargetAbility *)aNew)->source = _target;
-                        ((GenericTargetAbility *)aNew)->ability->source = _target;
-                    }
-                    GenericActivatedAbility * gaa = dynamic_cast<GenericActivatedAbility*> (aNew);
-                    if (gaa)
-                    {
-                        ((GenericActivatedAbility *)aNew)->source = _target;
-                        ((GenericActivatedAbility *)aNew)->ability->source = _target;
-                    }
-                    if (MultiAbility * abi = dynamic_cast<MultiAbility*>(aNew))
-                    {
-                        ((MultiAbility *)aNew)->source = _target;
-                        ((MultiAbility *)aNew)->abilities[0]->source = _target;
-                    }
-                    aNew->target = _target;
-                    aNew->source = (MTGCardInstance *) _target;
-                    if(aNew->oneShot)
-                    {
-                    aNew->resolve();
-                    delete aNew;
-                    }
-                    else
-                    aNew->addToGame();
-                    newAbilities[_target].push_back(aNew);
-                }
-        }
-        if(newpowerfound )
-        {
-        WParsedInt * val = NEW WParsedInt(newpower,NULL, source);
-            oldpower = _target->power -= oldpower;
-            _target->power += val->getValue();
-            _target->power -= oldpower;
-            delete val;
-        }
-        if(newtoughnessfound )
-        {
-        WParsedInt * val = NEW WParsedInt(newtoughness,NULL, source);
-            oldtoughness = _target->toughness;
-            _target->addToToughness(val->getValue());
-            _target->addToToughness(-oldtoughness);
-            delete val;
-        }
-    }
-    return MTGAbility::addToGame();
-}
-
-const char * AForeverTransformer::getMenuText()
-{
-    string s = menu;
-    sprintf(menuText, "Becomes %s", s.c_str());
-    return menuText;
-}
-
-AForeverTransformer * AForeverTransformer::clone() const
-{
-    AForeverTransformer * a = NEW AForeverTransformer(*this);
-    a->isClone = 1;
-    return a;
-}
-AForeverTransformer::~AForeverTransformer()
-{
-}
-
-//ATransformerUEOT
-ATransformerUEOT::ATransformerUEOT(int id, MTGCardInstance * source, MTGCardInstance * target, string types, string abilities,string newpower,bool newpowerfound,string newtoughness,bool newtoughnessfound,vector<string>newAbilitiesList,bool newAbilityFound) :
-    InstantAbility(id, source, target),newpower(newpower),newpowerfound(newpowerfound),newtoughness(newtoughness),newtoughnessfound(newtoughnessfound),newAbilitiesList(newAbilitiesList),newAbilityFound(newAbilityFound)
-{
-    ability = NEW ATransformer(id, source, target, types, abilities,newpower,newpowerfound,newtoughness,newtoughnessfound,newAbilitiesList,newAbilityFound);
+    ability = NEW ATransformer(id, source, target, types, abilities,newpower,newpowerfound,newtoughness,newtoughnessfound,newAbilitiesList,newAbilityFound,aForever);
     aType = MTGAbility::STANDARD_BECOMES;
 }
 
-int ATransformerUEOT::resolve()
+int ATransformerInstant::resolve()
 {
     ATransformer * a = ability->clone();
     GenericInstantAbility * wrapper = NEW GenericInstantAbility(1, source, (Damageable *) (this->target), a);
     wrapper->addToGame();
     return 1;
 }
-const char * ATransformerUEOT::getMenuText()
+const char * ATransformerInstant::getMenuText()
 {
     return ability->getMenuText();
 }
 
-ATransformerUEOT * ATransformerUEOT::clone() const
+ATransformerInstant * ATransformerInstant::clone() const
 {
-    ATransformerUEOT * a = NEW ATransformerUEOT(*this);
+    ATransformerInstant * a = NEW ATransformerInstant(*this);
     a->ability = this->ability->clone();
     a->isClone = 1;
     return a;
 }
 
-ATransformerUEOT::~ATransformerUEOT()
-{
-    SAFE_DELETE(ability);
-}
-
-// ATransformerFOREVER
-ATransformerFOREVER::ATransformerFOREVER(int id, MTGCardInstance * source, MTGCardInstance * target, string types, string abilities,string newpower,bool newpowerfound,string newtoughness,bool newtoughnessfound,vector<string>newAbilitiesList,bool newAbilityFound) :
-    InstantAbility(id, source, target),newpower(newpower),newpowerfound(newpowerfound),newtoughness(newtoughness),newtoughnessfound(newtoughnessfound),newAbilitiesList(newAbilitiesList),newAbilityFound(newAbilityFound)
-{
-    ability = NEW AForeverTransformer(id, source, target, types, abilities,newpower,newpowerfound,newtoughness,newtoughnessfound,newAbilitiesList,newAbilityFound);
-    aType = MTGAbility::STANDARD_BECOMES;
-}
-
-int ATransformerFOREVER::resolve()
-{
-    AForeverTransformer * a = ability->clone();
-    GenericInstantAbility * wrapper = NEW GenericInstantAbility(1, source, (Damageable *) (this->target), a);
-    wrapper->addToGame();
-    return 1;
-}
-
-const char * ATransformerFOREVER::getMenuText()
-{
-    return ability->getMenuText();
-}
-
-ATransformerFOREVER * ATransformerFOREVER::clone() const
-{
-    ATransformerFOREVER * a = NEW ATransformerFOREVER(*this);
-    a->ability = this->ability->clone();
-    a->isClone = 1;
-    return a;
-}
-
-ATransformerFOREVER::~ATransformerFOREVER()
+ATransformerInstant::~ATransformerInstant()
 {
     SAFE_DELETE(ability);
 }
@@ -2676,122 +2562,6 @@ ASwapPTUEOT * ASwapPTUEOT::clone() const
 }
 
 ASwapPTUEOT::~ASwapPTUEOT()
-{
-    SAFE_DELETE(ability);
-}
-
-// ABecomes
-ABecomes::ABecomes(int id, MTGCardInstance * source, MTGCardInstance * target, string stypes, WParsedPT * wppt, string sabilities) :
-    MTGAbility(id, source, target), wppt(wppt)
-{
-
-    aType = MTGAbility::STANDARD_BECOMES;
-
-    PopulateAbilityIndexVector(abilities, sabilities);
-    PopulateColorIndexVector(colors, sabilities);
-    PopulateSubtypesIndexVector(types, stypes);
-    menu = stypes;
-
-}
-int ABecomes::addToGame()
-{
-    MTGCardInstance * _target = (MTGCardInstance *) target;
-    list<int>::iterator it;
-    for (it = types.begin(); it != types.end(); it++)
-    {
-        _target->addType(*it);
-    }
-    for (it = colors.begin(); it != colors.end(); it++)
-    {
-        _target->setColor(*it);
-    }
-    for (it = abilities.begin(); it != abilities.end(); it++)
-    {
-        _target->basicAbilities[*it]++;
-    }
-
-    if (wppt)
-    {
-        _target->power = wppt->power.getValue();
-        _target->toughness = wppt->toughness.getValue();
-        _target->life = _target->toughness;
-    }
-    return MTGAbility::addToGame();
-}
-
-int ABecomes::destroy()
-{
-    MTGCardInstance * _target = (MTGCardInstance *) target;
-    list<int>::iterator it;
-    for (it = types.begin(); it != types.end(); it++)
-    {
-        _target->removeType(*it);
-    }
-    for (it = colors.begin(); it != colors.end(); it++)
-    {
-        _target->removeColor(*it);
-    }
-    for (it = abilities.begin(); it != abilities.end(); it++)
-    {
-        _target->basicAbilities[*it]--;
-    }
-    return 1;
-}
-
-const char * ABecomes::getMenuText()
-{
-    string s = menu;
-    sprintf(menuText, "Becomes %s", s.c_str());
-    return menuText;
-}
-
-ABecomes * ABecomes::clone() const
-{
-    ABecomes * a = NEW ABecomes(*this);
-    if (a->wppt)
-        a->wppt = NEW WParsedPT(*(a->wppt));
-    a->isClone = 1;
-    return a;
-}
-
-ABecomes::~ABecomes()
-{
-    SAFE_DELETE (wppt);
-}
-
-//  ABecomes
-
-// ABecomesUEOT
-ABecomesUEOT::ABecomesUEOT(int id, MTGCardInstance * source, MTGCardInstance * target, string types, WParsedPT * wpt,
-        string abilities) :
-    InstantAbility(id, source, target)
-{
-    ability = NEW ABecomes(id, source, target, types, wpt, abilities);
-    aType = MTGAbility::STANDARD_BECOMES;
-}
-
-int ABecomesUEOT::resolve()
-{
-    ABecomes * a = ability->clone();
-    GenericInstantAbility * wrapper = NEW GenericInstantAbility(1, source, (Damageable *) (this->target), a);
-    wrapper->addToGame();
-    return 1;
-}
-
-const char * ABecomesUEOT::getMenuText()
-{
-    return ability->getMenuText();
-}
-
-ABecomesUEOT * ABecomesUEOT::clone() const
-{
-    ABecomesUEOT * a = NEW ABecomesUEOT(*this);
-    a->ability = this->ability->clone();
-    a->isClone = 1;
-    return a;
-}
-
-ABecomesUEOT::~ABecomesUEOT()
 {
     SAFE_DELETE(ability);
 }
