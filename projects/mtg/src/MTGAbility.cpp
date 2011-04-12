@@ -148,6 +148,22 @@ int MTGAbility::parseCastRestrictions(MTGCardInstance * card,Player * player,str
             if(player->game->stack->seenThisTurn("*", Constants::CAST_ALL) < 1)
                 return 0;
         }
+        check = restriction[i].find("casted(");
+        if(check != string::npos)
+        {
+            size_t end = restriction[i].find(")",check);
+            string tc = restriction[i].substr(check + 7,end - check - 7);
+            if(tc.find("|mystack") != string::npos)
+            {
+                if(player->game->stack->seenThisTurn(tc, Constants::CAST_ALL) < 1)
+                    return 0;
+            }
+            if(tc.find("|opponentstack") != string::npos)
+            {
+                if(player->opponent()->game->stack->seenThisTurn(tc, Constants::CAST_ALL) < 1)
+                    return 0;
+            }
+        }
         check = restriction[i].find("one of a kind");
         if(check != string::npos)
         {
