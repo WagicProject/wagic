@@ -9920,7 +9920,7 @@ type=Enchantment
 [/card]
 [card]
 name=Centaur Omenreader
-auto=this(tapped) lord(*|myhand) altercost( colorless, -1 ) ueot
+auto=this(tapped) lord(*|myhand) altercost( colorless, -2 ) ueot
 auto=@untapped(this):all(*|myhand) moveto(myhand)
 text=As long as Centaur Omenreader is tapped, creature spells you cast cost {2} less to cast.
 mana={3}{G}
