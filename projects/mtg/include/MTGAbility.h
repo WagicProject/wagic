@@ -254,9 +254,9 @@ class ActivatedAbility:public MTGAbility{
    ManaCost * abilityCost;
   int restrictions;
   int limitPerTurn;
-  string limit;
   int counters;
   int needsTapping;
+  string limit;
   ActivatedAbility(int id, MTGCardInstance * card,ManaCost * _cost = NULL, int _restrictions = NO_RESTRICTION,int tap = 1,string limit = "");
   virtual ~ActivatedAbility();
   virtual void Update(float dt)
