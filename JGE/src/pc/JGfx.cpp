@@ -822,7 +822,7 @@ void JRenderer::BeginScene()
 #ifdef WIN32
   float scaleH = mActualHeight/SCREEN_HEIGHT_F;
   float scaleW = mActualWidth/SCREEN_WIDTH_F;
-  glScalef(scaleW,scaleW,1.f);
+  glScalef(scaleW,scaleH,1.f);
 #endif
   checkGlError();
 }

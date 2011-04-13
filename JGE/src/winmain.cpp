@@ -145,6 +145,8 @@ enum eDisplayMode
 
 unsigned int gDisplayMode = DisplayMode_lowRes;
 
+const float kActualRatio((GLfloat)SCREEN_WIDTH / (GLfloat)SCREEN_HEIGHT);
+
 DWORD	lastTickCount;
 
 BOOL	g_keys[256];
@@ -209,16 +211,33 @@ GLvoid ReSizeGLScene(GLsizei width, GLsizei height)		// Resize And Initialize Th
     JRenderer::GetInstance()->SetActualWidth(static_cast<float>(width));
     JRenderer::GetInstance()->SetActualHeight(static_cast<float>(height));
 
+    GLsizei adjustedWidth(width);
+    GLsizei adjustedHeight(height);
+    GLint x(0);
+    GLint y(0);
+
+    if ((GLfloat)width / (GLfloat)height < kActualRatio)
+    {
+        adjustedHeight = (GLsizei)(width / kActualRatio);
+        y = -(adjustedHeight - height) / 2;
+    }
+    else
+    {
+        adjustedWidth = (GLsizei)(height * kActualRatio);
+        x = -(adjustedWidth - width) / 2;
+    }
+
+    glViewport(x, y, adjustedWidth, adjustedHeight);
     glScissor(0, 0, width, height);
-    glViewport (0, 0, width, height);	// Reset The Current Viewport
+
     glMatrixMode (GL_PROJECTION);										// Select The Projection Matrix
     glLoadIdentity ();													// Reset The Projection Matrix
 
-    gluOrtho2D(0.0f, (float) width-1.0f, 0.0f, (float) height -1.0f);
+    gluOrtho2D(0.0f, (float) width - 1.0f, 0.0f, (float) height - 1.0f);
 
     glMatrixMode (GL_MODELVIEW);										// Select The Modelview Matrix
-    glLoadIdentity ();													// Reset The Modelview Matrix
-
+    glLoadIdentity();													// Reset The Modelview Matrix
+    
     glDisable (GL_DEPTH_TEST);
 }
 
