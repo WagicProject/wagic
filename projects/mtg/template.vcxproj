@@ -436,6 +436,7 @@
     <ClInclude Include="include\AIPlayer.h" />
     <ClInclude Include="include\AIStats.h" />
     <ClInclude Include="include\AllAbilities.h" />
+    <ClInclude Include="include\CacheEngine.h" />
     <ClInclude Include="include\CardDescriptor.h" />
     <ClInclude Include="include\CardDisplay.h" />
     <ClInclude Include="include\CardEffect.h" />
