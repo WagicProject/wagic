@@ -1438,8 +1438,7 @@ type=Sorcery
 [/card]
 [card]
 name=Amphibious Kavu
-auto=@combat(blocking,blocked,turnlimited) source(this) from(creature[blue]):3/3 ueot
-auto=@combat(blocking,blocked,turnlimited) source(this) from(creature[black]):3/3 ueot
+auto=@combat(blocking,blocked,turnlimited) source(this) from(creature[blue;black]):3/3 ueot
 text=Whenever Amphibious Kavu blocks or becomes blocked by one or more blue and/or black creatures, Amphibious Kavu gets +3/+3 until end of turn.
 mana={2}{G}
 type=Creature
@@ -6533,7 +6532,7 @@ name=Blood Frenzy
 target=creature[attacking;blocking]
 restriction=before battle damage
 auto=4/0
-auto=treason
+auto=transforms((,newability[phaseaction[endofturn] destroy]))
 text=Cast Blood Frenzy only before the combat damage step. -- Target attacking or blocking creature gets +4/+0 until end of turn. Destroy that creature at the beginning of the next end step.
 mana={1}{R}
 type=Instant
@@ -8283,7 +8282,7 @@ type=Sorcery
 [card]
 name=Brood of Cockroaches
 auto=@movedTo(mygraveyard) from(this|battlefield):phaseaction[endofturn] life:-1 controller
-auto=@movedTo(mygraveyard) from(this|battlefield):phaseaction[endofturn] moveTo(mybattlefield)
+auto=@movedTo(mygraveyard) from(this|battlefield):phaseaction[endofturn] moveTo(myhand)
 text=When Brood of Cockroaches is put into your graveyard from the battlefield, at the beginning of the next end step, you lose 1 life and return Brood of Cockroaches to your hand.
 mana={1}{B}
 type=Creature
@@ -9842,7 +9841,7 @@ type=Instant
 [/card]
 [card]
 name=Celestial Sword
-auto={3}{T}:target(creature|mybattlefield) 3/3 ueot && phaseaction[endofturn] bury
+auto={3}{T}:target(creature|mybattlefield) transforms((,newability[phaseaction[endofturn] bury],newability[3/3])) ueot
 text={3}, {T}: Target creature you control gets +3/+3 until end of turn. Destroy it at the beginning of the next end step. A creature destroyed this way can't be regenerated.
 mana={6}
 type=Artifact
@@ -10792,7 +10791,7 @@ toughness=1
 [/card]
 [card]
 name=Goatnapper
-auto=choice target(goat) moveto(mybattlefield) && transforms((,haste,newability[untap],newability[phaseaction[endofturn] moveto(ownerbattlefield)])) ueot
+auto=choice target(goat) moveto(mybattlefield) && untap && transforms((,haste,newability[phaseaction[endofturn] moveto(ownerbattlefield)])) ueot
 text=When Goatnapper enters the battlefield, untap target Goat and gain control of it until end of turn. It gains haste until end of turn.
 mana={2}{R}
 type=Creature
@@ -16087,6 +16086,7 @@ type=Instant
 [card]
 name=Disintegrate
 target=creature,player
+auto=cantregen
 auto=exiledeath
 auto=thisforeach(x) damage:1
 text=Disintegrate deals X damage to target creature or player. That creature can't be regenerated this turn. If the creature would be put into a graveyard this turn, exile it instead.
@@ -19415,7 +19415,7 @@ type=Artifact
 name=Engulfing Flames
 target=creature
 auto=damage:1
-auto=cantregenerate
+auto=cantregen
 flashback={3}{R}
 text=Engulfing Flames deals 1 damage to target creature. It can't be regenerated this turn. -- Flashback {3}{R} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={R}
@@ -29257,7 +29257,7 @@ type=Enchantment
 [/card]
 [card]
 name=Hidden Spider
-auto=@movedto(creature[reach]|opponentstack) from(opponenthand) once:transforms((removetypes)) forever && transforms((Spider Creature,setpower=3,settoughness=5,reach)) forever
+auto=@movedto(creature[flying]|opponentstack) from(opponenthand) once:transforms((removetypes)) forever && transforms((Spider Creature,setpower=3,settoughness=5,reach)) forever
 text=When an opponent casts a creature spell with flying, if Hidden Spider is an enchantment, Hidden Spider becomes a 3/5 Spider creature with reach. (It can block creatures with flying.)
 mana={G}
 type=Enchantment
@@ -36672,7 +36672,7 @@ toughness=4
 [card]
 name=Lingering Death
 target=creature
-auto=@each targetController upkeep:sacrifice(mytgt)
+auto=@each targetController endofturn:sacrifice(mytgt)
 text=Enchant creature -- At the beginning of the end step of enchanted creature's controller, that player sacrifices that creature.
 mana={1}{B}
 type=Enchantment
@@ -40514,7 +40514,7 @@ toughness=4
 [/card]
 [card]
 name=Mogg Cannon
-auto={T}:1/0 target(creature) && flying && phaseaction[endofturn] destroy
+auto={T}:target(creature|mybattlefield) transforms((,newability[phaseaction[endofturn] destroy],flying,newability[1/0])) ueot
 text={T}: Target creature you control gets +1/+0 and gains flying until end of turn. Destroy that creature at the beginning of the next end step.
 mana={2}
 type=Artifact
@@ -43092,6 +43092,7 @@ toughness=2
 [/card]
 [card]
 name=Nihilith
+abilities=fear
 autoexile=@movedto(*|opponentgraveyard) suspended:may counter(0/0,-1,Time)
 text=Fear (This creature can't be blocked except by artifact creatures and/or black creatures.) -- Suspend 7 - {1}{B} (Rather than cast this card from your hand, you may pay {1}{B} and exile it with seven time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost. It has haste.) -- Whenever a card is put into an opponent's graveyard from anywhere, if Nihilith is suspended, you may remove a time counter from Nihilith.
 mana={4}{B}{B}
@@ -48329,7 +48330,7 @@ toughness=1
 [/card]
 [card]
 name=Puffer Extract
-auto={X}{T}:thisforeach(X) 1/1 target(creature|mybattlefield) && phaseaction[endofturn] destroy
+auto={X}{T}:thisforeach(X) 1/1 target(creature|mybattlefield) && transforms((,newability[phaseaction[endofturn] destroy])) ueot
 text={X}, {T}: Target creature you control gets +X/+X until end of turn. Destroy it at the beginning of the next end step.
 mana={5}
 type=Artifact
@@ -58930,10 +58931,7 @@ toughness=3
 [/card]
 [card]
 name=Sokenzan Spellblade
-auto=rampage(1/1,0)
-auto=rampage(-1/-1,1)
-auto=lord(sokenzan spellblade[blocking]|mybattlefield) 1/1
-auto=lord(other sokenzan spellblade[blocking]|mybattlefield) -1/-1
+auto=bushido(1/1)
 auto={1}{R}:foreach(*|myhand) 1/0
 text=Bushido 1 (When this blocks or becomes blocked, it gets +1/+1 until end of turn.) -- {1}{R}: Sokenzan Spellblade gets +X/+0 until end of turn, where X is the number of cards in your hand.
 mana={4}{R}
@@ -59186,7 +59184,7 @@ toughness=2
 [/card]
 [card]
 name=Somber Hoverguard
-abilities=affinityartifacts
+abilities=affinityartifacts,flying
 text=Affinity for artifacts (This spell costs {1} less to cast for each artifact you control.) -- Flying
 mana={5}{U}
 type=Creature
@@ -64425,7 +64423,7 @@ toughness=1
 [/card]
 [card]
 name=Tel-Jilad Wolf
-auto=@combat(blocked) source(this) from(creature[artifact]):all(trigger[from]) 3/3 ueot
+auto=@combat(blocked) source(this) from(creature[artifact]):all(trigger[to]) 3/3 ueot
 text=Whenever Tel-Jilad Wolf becomes blocked by an artifact creature, Tel-Jilad Wolf gets +3/+3 until end of turn.
 mana={2}{G}
 type=Creature
@@ -66467,7 +66465,7 @@ type=Sorcery
 name=Tolaria West
 auto=tap
 auto={T}:Add{U}
-autohand={1}{U}{U}{discard(this|myhand)}:moveTo(myhand) target(*[manacost=0;land]|mylibrary) asSorcery
+autohand={1}{U}{U}{discard(this|myhand)}:moveTo(myhand) target(*[manacost=0]|mylibrary) asSorcery
 text=Tolaria West enters the battlefield tapped. -- {T}: Add {U} to your mana pool. -- Transmute {1}{U}{U} ({1}{U}{U}, Discard this card: Search your library for a card with converted mana cost 0, reveal it, and put it into your hand. Then shuffle your library. Transmute only as a sorcery.)
 type=Land
 [/card]
