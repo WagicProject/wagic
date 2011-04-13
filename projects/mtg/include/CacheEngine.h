@@ -51,8 +51,10 @@ public:
     template <class T>
     static void Create(WCache<WCachedTexture,JTexture>& inCache)
     {
-        LOG("Creating ThreadedCardRetriever");
+        LOG("Creating Card Retriever instance");
         sInstance = NEW T(inCache);
+        ThreadedCardRetriever* test = dynamic_cast<ThreadedCardRetriever*>(sInstance);
+        sIsThreaded = (test != NULL);
     }
 
     static CardRetrieverBase* Instance()
@@ -65,11 +67,18 @@ public:
         SAFE_DELETE(sInstance);
     }
 
+    static bool IsThreaded()
+    {
+        return sIsThreaded;
+    }
+
 
     static CardRetrieverBase* sInstance;
+    static bool sIsThreaded;
 };
 
 CardRetrieverBase* CacheEngine::sInstance = NULL;
+bool CacheEngine::sIsThreaded = false;
 
 /*
 **
