@@ -1350,8 +1350,8 @@ type=Sorcery
 [/card]
 [card]
 name=Altar of Dementia
-auto={0}:notatarget(creature|mybattlefield) dynamicability<!mytgt powerdeplete targetopponent!> sacrifice
-auto={0}:notatarget(creature|mybattlefield) dynamicability<!mytgt powerdeplete targetcontroller!> sacrifice
+auto={0}:name(opponent) notatarget(creature|mybattlefield) dynamicability<!mytgt powerdeplete targetopponent!> sacrifice
+auto={0}:name(you) notatarget(creature|mybattlefield) dynamicability<!mytgt powerdeplete targetcontroller!> sacrifice
 text=Sacrifice a creature: Target player puts a number of cards equal to the sacrificed creature's power from the top of his or her library into his or her graveyard.
 mana={2}
 type=Artifact
@@ -5762,7 +5762,7 @@ subtype=Aura
 [card]
 name=Bitterblossom
 auto=@each my upkeep:life:-1 controller
-auto=@each my upkeep:token(Faerie,creature faerie Rogue ,1/1,flying black)
+auto=@each my upkeep:token(Faerie,creature faerie rogue,1/1,flying black)
 text=At the beginning of your upkeep, you lose 1 life and put a 1/1 black Faerie Rogue creature token with flying onto the battlefield.
 mana={1}{B}
 type=Tribal Enchantment
@@ -6426,7 +6426,7 @@ toughness=1
 [card]
 name=Blitz Hellion
 abilities=trample,haste
-auto=@each my endofturn:moveto(myLibrary) && shuffle
+auto=@each endofturn:moveto(ownerLibrary) && shuffle
 text=Trample, haste -- At the beginning of the end step, Blitz Hellion's owner shuffles it into his or her library.
 mana={3}{R}{G}
 type=Creature
@@ -11767,7 +11767,7 @@ toughness=3
 [card]
 name=Cockatrice
 abilities=flying
-alias=1238
+auto=@combat(blocking,blocked) source(this) from(creature[-wall]):all(trigger[from]) phaseaction[combatends] destroy
 text=Flying -- Whenever Cockatrice blocks or becomes blocked by a non-Wall creature, destroy that creature at end of combat.
 mana={3}{G}{G}
 type=Creature
@@ -19654,8 +19654,8 @@ toughness=4
 [/card]
 [card]
 name=Ersatz Gnomes
-auto={t}:target(*|stack) transforms((,artifact))
-auto={t}:target(*|battlefield) transforms((,artifact)) ueot
+auto={T}:name(spell) target(*|stack) transforms((,artifact)) forever
+auto={T}:name(permanent) target(*|battlefield) transforms((,artifact)) ueot
 text={T}: Target spell is colorless. -- {T}: Target permanent becomes colorless until end of turn.
 mana={3}
 type=Artifact Creature
@@ -25149,7 +25149,7 @@ auto={T}:add{U}
 auto={T}:add{B}
 auto={T}:add{R}
 auto={T}:add{G}
-auto=@each my endofturn:aslongas(artifact|mybattlefield) sacrifice <1
+auto=@each endofturn:aslongas(artifact|mybattlefield) sacrifice <1
 text=At the beginning of the end step, if you control no artifacts, sacrifice Glimmervoid. -- {T}: Add one mana of any color to your mana pool.
 type=Land
 [/card]
@@ -25240,7 +25240,7 @@ toughness=3
 [card]
 name=Glitterfang
 abilities=haste
-auto=@next endofturn:moveto(ownerhand)
+auto=@each endofturn:moveto(ownerhand) all(this)
 text=Haste -- At the beginning of the end step, return Glitterfang to its owner's hand.
 mana={R}
 type=Creature
@@ -25897,7 +25897,7 @@ toughness=2
 [card]
 name=Goblin Pyromancer
 auto=lord(goblin) 3/0 ueot
-auto=@next my endofturn:destroy all(goblin)
+auto=@each endofturn:destroy all(goblin)
 text=When Goblin Pyromancer enters the battlefield, Goblin creatures get +3/+0 until end of turn. -- At the beginning of the end step, destroy all Goblins.
 mana={3}{R}
 type=Creature
@@ -28909,8 +28909,7 @@ toughness=1
 [/card]
 [card]
 name=Hell's Thunder
-abilities=flying,haste
-auto=@each endofturn:moveTo(ownergraveyard)
+abilities=flying,haste,treason
 autograveyard={4}{R}:moveto(mybattlefield) && transforms((,unearth,haste)) asSorcery forever
 text=Flying, haste -- At the beginning of the end step, sacrifice Hell's Thunder. -- Unearth {4}{R} ({4}{R}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
 mana={1}{R}{R}
@@ -28999,8 +28998,7 @@ toughness=8
 [/card]
 [card]
 name=Hellspark Elemental
-abilities=trample,haste
-auto=@each endofturn:moveTo(ownergraveyard)
+abilities=trample,haste,treason
 autograveyard={1}{R}:moveto(mybattlefield) && transforms((,unearth,haste)) asSorcery forever
 text=Trample, haste -- At the beginning of the end step, sacrifice Hellspark Elemental. -- Unearth {1}{R} ({1}{R}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
 mana={1}{R}
@@ -31093,7 +31091,8 @@ toughness=2
 [/card]
 [card]
 name=Infernal Medusa
-alias=1267
+auto=@combat(blocking) source(this) from(creature):all(trigger[from]) phaseaction[combatends] destroy
+auto=@combat(blocked) source(this) from(creature[-wall]):all(trigger[from]) phaseaction[combatends] destroy
 text=Whenever Infernal Medusa blocks a creature, destroy that creature at end of combat. -- Whenever Infernal Medusa becomes blocked by a non-Wall creature, destroy that creature at end of combat.
 mana={3}{B}{B}
 type=Creature
@@ -38622,7 +38621,7 @@ type=Enchantment
 name=Mark of Fury
 target=creature
 auto=haste
-auto=@next endofturn:moveTo(ownerhand) all(this)
+auto=@each endofturn:moveTo(ownerhand) all(this)
 text=Enchant creature -- Enchanted creature has haste. -- At the beginning of the end step, return Mark of Fury to its owner's hand.
 mana={R}
 type=Enchantment
@@ -40317,7 +40316,7 @@ type=Sorcery
 name=Mist Dragon
 auto={0}:flying
 auto={0}:-flying
-auto={4}{U}{U}:phaseout
+auto={3}{U}{U}:phaseout
 text={0}: Mist Dragon gains flying. (This effect lasts indefinitely.) -- {0}: Mist Dragon loses flying. (This effect lasts indefinitely.) -- {3}{U}{U}: Mist Dragon phases out. (While it's phased out, it's treated as though it doesn't exist. It phases in before you untap during your next untap step.)
 mana={4}{U}{U}
 type=Creature
@@ -46050,7 +46049,7 @@ toughness=1
 [/card]
 [card]
 name=Pestilence
-auto=@next endofturn:aslongas(creature|battlefield) sacrifice <1
+auto=@each endofturn:aslongas(creature|battlefield) sacrifice <1
 auto={b}:damage:1 all(creature,player)
 text=At the beginning of the end step, if no creatures are on the battlefield, sacrifice Pestilence. -- {B}: Pestilence deals 1 damage to each creature and each player.
 mana={2}{B}{B}
@@ -48649,7 +48648,7 @@ type=Sorcery
 [card]
 name=Pyrohemia
 auto={R}:damage:1 all(creature,player)
-auto=@next endofturn:aslongas(creature|battlefield) sacrifice <1
+auto=@each endofturn:aslongas(creature|battlefield) sacrifice <1
 text=At the beginning of the end step, if no creatures are on the battlefield, sacrifice Pyrohemia. -- {R}: Pyrohemia deals 1 damage to each creature and each player.
 mana={2}{R}{R}
 type=Enchantment
@@ -59728,8 +59727,7 @@ type=Sorcery
 [/card]
 [card]
 name=Spark Elemental
-abilities=trample,haste
-auto=@next endofturn:bury
+abilities=trample,haste,treason
 text=Trample, haste (If this creature would deal enough damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player or planeswalker. This creature can attack and {T} as soon as it comes under your control.) -- At the beginning of the end step, sacrifice Spark Elemental.
 mana={R}
 type=Creature
@@ -61290,9 +61288,9 @@ toughness=4
 [card]
 name=Starlit Sanctum
 auto={T}:Add{1}
-auto={W}{T}:notatarget(creature[cleric]|mybattlefield) dynamicability<!mytgt toughnesslifegain targetcontroller!> sacrifice 
-auto={B}{T}:notatarget(creature[cleric]|mybattlefield) dynamicability<!mytgt powerlifeloss targetopponent!> sacrifice
-auto={B}{T}:notatarget(creature[cleric]|mybattlefield) dynamicability<!mytgt powerlifeloss targetcontroller!> sacrifice
+auto={W}{T}:name(you gain life) notatarget(creature[cleric]|mybattlefield) dynamicability<!mytgt toughnesslifegain targetcontroller!> sacrifice 
+auto={B}{T}:name(opponent loses life) notatarget(creature[cleric]|mybattlefield) dynamicability<!mytgt powerlifeloss targetopponent!> sacrifice
+auto={B}{T}:name(you lose life) notatarget(creature[cleric]|mybattlefield) dynamicability<!mytgt powerlifeloss targetcontroller!> sacrifice
 text={T}: Add {1} to your mana pool. -- {W}, {T}, Sacrifice a Cleric creature: You gain life equal to the sacrificed creature's toughness. -- {B}, {T}, Sacrifice a Cleric creature: Target player loses life equal to the sacrificed creature's power.
 type=Land
 [/card]
@@ -61560,7 +61558,7 @@ type=Sorcery
 [card]
 name=Stenchskipper
 abilities=flying
-auto=@next endofturn:aslongas(goblin|mybattlefield) moveTo(mygraveyard) <1
+auto=@each endofturn:aslongas(goblin|mybattlefield) sacrifice <1
 text=Flying -- At the beginning of the end step, if you control no Goblins, sacrifice Stenchskipper.
 mana={3}{B}
 type=Creature
@@ -64270,7 +64268,7 @@ type=Enchantment
 [/card]
 [card]
 name=Teferi's Curse
-target=artifaxct,creature
+target=artifact,creature
 auto=phasing
 text=Enchant artifact or creature -- Enchanted permanent has phasing. (It phases in or out before its controller untaps during each of his or her untap steps. While it's phased out, it's treated as though it doesn't exist.)
 mana={1}{U}
@@ -65234,7 +65232,7 @@ type=Sorcery
 [/card]
 [card]
 name=Thicket Basilisk
-alias=1267
+auto=@combat(blocking,blocked) source(this) from(creature[-wall]):all(trigger[from]) phaseaction[combatends] destroy
 text=Whenever Thicket Basilisk blocks or becomes blocked by a non-Wall creature, destroy that creature at end of combat.
 mana={3}{G}{G}
 type=Creature
@@ -65607,8 +65605,8 @@ auto={T}:add{U}
 auto={T}:add{B}
 auto={T}:add{R}
 auto={T}:add{G}
-auto=@each my endofturn:aslongas(creature|mybattlefield) sacrifice <1
-text=At the end of each turn, if you control no creatures, sacrifice Thran Quarry. {T}: Add one mana of any color to your mana pool.
+auto=@each endofturn:aslongas(creature|mybattlefield) sacrifice <1
+text=At the beginning of the end step, if you control no creatures, sacrifice Thran Quarry. -- {T}: Add one mana of any color to your mana pool.
 type=Land
 [/card]
 [card]
@@ -70006,7 +70004,7 @@ toughness=1
 [card]
 name=Viashino Cutthroat
 abilities=haste
-auto=@each my end:moveTo(myhand)
+auto=@each endofturn:moveTo(ownerhand)
 text=Haste -- At the beginning of the end step, return Viashino Cutthroat to its owner's hand.
 mana={2}{R}{R}
 type=Creature
@@ -70057,7 +70055,7 @@ toughness=3
 [card]
 name=Viashino Sandscout
 abilities=haste
-auto=@next end step:moveTo(hand)
+auto=@each endofturn:moveTo(ownerhand)
 text=Haste (This creature can attack and {T} as soon as it comes under your control.) -- At the beginning of the end step, return Viashino Sandscout to its owner's hand. (Return it only if it's on the battlefield.)
 mana={1}{R}
 type=Creature
@@ -70068,7 +70066,7 @@ toughness=1
 [card]
 name=Viashino Sandstalker
 abilities=haste
-auto=@each my end:moveTo(myhand)
+auto=@each endofturn:moveTo(ownerhand)
 text=Haste (This creature can attack the turn it comes under your control.) -- At the beginning of the end step, return Viashino Sandstalker to its owner's hand. (Return it only if it's on the battlefield.)
 mana={1}{R}{R}
 type=Creature
@@ -73708,7 +73706,7 @@ type=Instant
 [card]
 name=Withering Wisps
 auto={B}:damage:1 all(creature,player) limit:type:swamp[snow]:mybattlefield
-auto=@next endofturn:aslongas(creature|battlefield) sacrifice <1
+auto=@each endofturn:aslongas(creature|battlefield) sacrifice <1
 text=At the beginning of the end step, if no creatures are on the battlefield, sacrifice Withering Wisps. -- {B}: Withering Wisps deals 1 damage to each creature and each player. Activate this ability no more times each turn than the number of snow Swamps you control.
 mana={1}{B}{B}
 type=Enchantment
