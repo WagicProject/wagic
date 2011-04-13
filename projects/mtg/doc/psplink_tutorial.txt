@@ -1,0 +1,76 @@
+How to debug using PSPLink + GDB on Windows
+
+Setup 
+------
+
+1) copy the /pspsdk/psplink/psp/oe/psplink/ folder to your psp unit into PSP/GAME/PSPLINK/
+2) get yourself a HEN installed so that PSPLINK will run - I personally downgraded to 6.20 & installed the TN-HEN.
+3) get & install the latest libusb drivers (http://sourceforge.net/projects/libusb-win32/files/libusb-win32-releases/),
+I'm using currently v1.2.2.  Note: DON'T use the ones that are in the drivers subfolder in the pspsdk package, as
+they're old and definitely don't work with newer OS version (ie Win7).
+4) (specific to wagic debugging) make sure that a copy of wagic.prx and wagic.elf are copied into your
+wagic's /bin/ folder!
+
+Connecting
+----------
+
+1) Open up a command window, and type 'cd <path_to_wagic's_bin_folder>' to change your current root location.
+2) Type usbhostfs_pc <enter>, you should get the following:
+
+D:\dev\wagic\projects\mtg\bin>usbhostfs_pc
+USBHostFS (c) TyRaNiD 2k6
+Built Mar 26 2009 16:26:00 - $Revision: 2368 $
+sh>
+
+3) type pwd <enter>, and confirm that the system points to your /bin/ folder, ie:
+
+sh> pwd
+/cygdrive/d/dev/wagic/projects/mtg/bin
+sh>
+
+4) On your PSP, launch your HEN (if you haven't already), and launch the PSPLINK util (3.0 OE version). Tether your psp via USB
+to your computer if you haven't already done so.  You should see the command window indicate 'Connected to device';
+if it doesn't, check your usb lib driver installation.
+
+5) Open a second command window, and run the command 'pspsh'.  You should see it prompt you with 'host0:/> in your
+new window; in the other command window, it'll show something like 'Accepting async connection (x) from 127.0.0.1'.
+This window is your psp control window, for lack of a better term.  If you run 'ls', you should see it list all the files
+local to your wagic's /bin/ folder. 
+
+At this point, you can run your local drive's copy of wagic simply by running './wagic.prx' in this window; 
+in our case, since we're starting a debug session, simply run 'debug ./wagic.prx'.  You'll get something like this:
+
+host0:/> debug ./wagic.prx
+PSPLink USB GDBServer (c) 2k7 TyRaNiD
+host0:/> Loaded host0:/wagic.prx - UID 0x0489641B, Entry 0x088040AC
+
+Debugging
+---------
+
+6a) debugging with GDB, console style...  (I personally recommend using an IDE as described in 6b), but your choice)
+
+
+Open a third console window - this one will be used to run GDB for debugging.  In this console window, run:
+'cd <path_to_wagic's_bin_folder>'
+psp-gdb wagic.elf    (yes, note that we call out the elf file here, not the prx.)
+
+You should now be prompted with a (gdb) prompt.  Now run the following to start a remote debug session:
+
+(gdb) target remote :10001
+
+This should prompt another 'Accepting async connection (1) from 127.0.0.1 in the usbhostfs_pc window.
+
+You're now ready to start debugging.  Type 'c' or 'continue' to start the execution of the program.
+
+
+6b) debugging with an IDE
+There might be other IDEs that support GDB, but this is the only one that I managed to get working in short order. (Eclipse was too problematic, although I hear others have made it work.)
+
+- Download & install Code::Blocks for your platform.
+
+Follow the following tutorial on how to set up Code::Blocks to debug with the psp toolkit.
+
+http://reizencroft.wordpress.com/psp-homebrew-dev/compile-debug-cb/
+
+*Note:  line 12 of the debugging section has a typo - the port should be 10001, not 1001.
+
