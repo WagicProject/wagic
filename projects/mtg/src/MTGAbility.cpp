@@ -139,7 +139,7 @@ int MTGAbility::parseCastRestrictions(MTGCardInstance * card,Player * player,str
             size_t start = restriction[i].find(":", check);
             size_t end = restriction[i].find(" ", check);
             Turn = atoi(restriction[i].substr(start + 1, end - start - 1).c_str());
-            if(game->turn < Turn)
+            if(game->turn < Turn-1)
                 return 0;
         }
         check = restriction[i].find("casted a spell");
