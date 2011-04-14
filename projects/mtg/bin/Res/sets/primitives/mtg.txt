@@ -29633,7 +29633,7 @@ subtype=Shrine
 [/card]
 [card]
 name=Honden of Life's Web
-auto=@each my upkeep:foreach(shrine|mybattlefield) token(Spirit,Creature Spirit,1/1)*1
+auto=@each my upkeep:token(Spirit,Creature Spirit,1/1)*type:shrine
 text=At the beginning of your upkeep, put a 1/1 colorless Spirit creature token onto the battlefield for each Shrine you control.
 mana={4}{G}
 type=Legendary Enchantment
