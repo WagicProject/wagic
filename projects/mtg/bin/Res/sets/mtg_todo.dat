@@ -118,24 +118,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Abyssal Nightstalker
-text=Whenever Abyssal Nightstalker attacks and isn't blocked, defending player discards a card.
-mana={3}{B}
-type=Creature
-subtype=Nightstalker
-power=2
-toughness=2
-[/card]
-[card]
-name=Abyssal Specter
-text=Flying -- Whenever Abyssal Specter deals damage to a player, that player discards a card.
-mana={2}{B}{B}
-type=Creature
-subtype=Specter
-power=2
-toughness=3
-[/card]
-[card]
 name=Academy Rector
 text=When Academy Rector is put into a graveyard from the battlefield, you may exile it. If you do, search your library for an enchantment card and put that card onto the battlefield. Then shuffle your library.
 mana={3}{W}
@@ -381,15 +363,6 @@ name=All Suns' Dawn
 text=For each color, return up to one target card of that color from your graveyard to your hand. Exile All Suns' Dawn.
 mana={4}{G}
 type=Sorcery
-[/card]
-[card]
-name=Alley Grifters
-text=Whenever Alley Grifters becomes blocked, defending player discards a card.
-mana={1}{B}{B}
-type=Creature
-subtype=Human Mercenary
-power=2
-toughness=2
 [/card]
 [card]
 name=Alluring Scent
@@ -840,15 +813,6 @@ power=3
 toughness=1
 [/card]
 [card]
-name=Ashen-Skin Zubera
-text=When Ashen-Skin Zubera is put into a graveyard from the battlefield, target opponent discards a card for each Zubera put into a graveyard from the battlefield this turn.
-mana={1}{B}
-type=Creature
-subtype=Zubera Spirit
-power=1
-toughness=2
-[/card]
-[card]
 name=Ashes of the Fallen
 text=As Ashes of the Fallen enters the battlefield, choose a creature type. -- Each creature card in your graveyard has the chosen creature type in addition to its other types.
 mana={2}
@@ -859,15 +823,6 @@ name=Ashes to Ashes
 text=Exile two target nonartifact creatures. Ashes to Ashes deals 5 damage to you.
 mana={1}{B}{B}
 type=Sorcery
-[/card]
-[card]
-name=Ashling the Pilgrim
-text={1}{R}: Put a +1/+1 counter on Ashling the Pilgrim. If this is the third time this ability has resolved this turn, remove all +1/+1 counters from Ashling the Pilgrim, and it deals that much damage to each creature and each player.
-mana={1}{R}
-type=Legendary Creature
-subtype=Elemental Shaman
-power=1
-toughness=1
 [/card]
 [card]
 name=Ashling's Prerogative
@@ -1688,12 +1643,6 @@ power=2
 toughness=4
 [/card]
 [card]
-name=Bereavement
-text=Whenever a green creature is put into a graveyard from the battlefield, its controller discards a card.
-mana={1}{B}
-type=Enchantment
-[/card]
-[card]
 name=Berserk
 text=Cast Berserk only before the combat damage step. -- Target creature gains trample and gets +X/+0 until end of turn, where X is its power. At the beginning of the next end step, destroy that creature if it attacked this turn.
 mana={G}
@@ -1802,15 +1751,6 @@ type=Instant
 subtype=Arcane
 [/card]
 [card]
-name=Blazing Specter
-text=Flying, haste -- Whenever Blazing Specter deals combat damage to a player, that player discards a card.
-mana={2}{B}{R}
-type=Creature
-subtype=Specter
-power=2
-toughness=2
-[/card]
-[card]
 name=Blazing Torch
 text=Equipped creature can't be blocked by Vampires or Zombies. -- Equipped creature has "{T}, Sacrifice Blazing Torch: Blazing Torch deals 2 damage to target creature or player." -- Equip {1}
 mana={1}
@@ -1823,16 +1763,6 @@ text=Target creature you control gains protection from the color of your choice 
 mana={W}
 type=Instant
 subtype=Arcane
-[/card]
-[card]
-name=Blightning
-target=player
-auto=damage:3
-auto=discard:2
-####The card should not cause random discard!
-text=Blightning deals 3 damage to target player. That player discards two cards.
-mana={1}{B}{R}
-type=Sorcery
 [/card]
 [card]
 name=Blind Fury
@@ -2673,15 +2603,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Cabal Inquisitor
-text=Threshold - {1}{B}, {T}, Exile two cards from your graveyard: Target player discards a card. Activate this ability only any time you could cast a sorcery, and only if seven or more cards are in your graveyard.
-mana={1}{B}
-type=Creature
-subtype=Human Minion
-power=1
-toughness=1
-[/card]
-[card]
 name=Cabal Interrogator
 text={X}{B}, {T}: Target player reveals X cards from his or her hand and you choose one of them. That player discards that card. Activate this ability only any time you could cast a sorcery.
 mana={1}{B}
@@ -2697,28 +2618,10 @@ mana={1}{B}{B}
 type=Enchantment
 [/card]
 [card]
-name=Cabal Slaver
-text=Whenever a Goblin deals combat damage to a player, that player discards a card.
-mana={2}{B}
-type=Creature
-subtype=Human Cleric
-power=2
-toughness=1
-[/card]
-[card]
 name=Cabal Therapy
 text=Name a nonland card. Target player reveals his or her hand and discards all cards with that name. -- Flashback - Sacrifice a creature. (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={B}
 type=Sorcery
-[/card]
-[card]
-name=Cackling Fiend
-text=When Cackling Fiend enters the battlefield, each opponent discards a card.
-mana={2}{B}{B}
-type=Creature
-subtype=Zombie
-power=2
-toughness=1
 [/card]
 [card]
 name=Calciform Pools
@@ -2989,15 +2892,6 @@ text=Enchant creature -- When enchanted creature is put into a graveyard, draw t
 mana={2}{B}
 type=Enchantment
 subtype=Aura
-[/card]
-[card]
-name=Cat Burglar
-text={2}{B}, {T}: Target player discards a card. Activate this ability only any time you could cast a sorcery.
-mana={3}{B}
-type=Creature
-subtype=Kor Rogue Minion
-power=2
-toughness=2
 [/card]
 [card]
 name=Cataclysm
@@ -3362,15 +3256,6 @@ mana={1}{B}
 type=Instant
 [/card]
 [card]
-name=Chilling Apparition
-text={B}: Regenerate Chilling Apparition. -- Whenever Chilling Apparition deals combat damage to a player, that player discards a card.
-mana={2}{B}
-type=Creature
-subtype=Spirit
-power=1
-toughness=1
-[/card]
-[card]
 name=Chilling Shade
 text=Flying -- {S}i}: Chilling Shade gets +1/+1 until end of turn. ({S}i} can be paid with one mana from a snow permanent.)
 mana={2}{B}
@@ -3529,24 +3414,6 @@ mana={1}{R}
 type=Creature
 subtype=Salamander
 power=1
-toughness=2
-[/card]
-[card]
-name=Cinder Seer
-text={2}{R}, {T}: Reveal any number of red cards in your hand. Cinder Seer deals X damage to target creature or player, where X is the number of cards revealed this way.
-mana={3}{R}
-type=Creature
-subtype=Human Wizard
-power=1
-toughness=1
-[/card]
-[card]
-name=Cinderhaze Wretch
-text={T}: Target player discards a card. Activate this ability only during your turn. -- Put a -1/-1 counter on Cinderhaze Wretch: Untap Cinderhaze Wretch.
-mana={4}{B}
-type=Creature
-subtype=Elemental Shaman
-power=3
 toughness=2
 [/card]
 [card]
@@ -4131,15 +3998,6 @@ mana={1}{B}{R}
 type=Enchantment
 [/card]
 [card]
-name=Corrupt Court Official
-text=When Corrupt Court Official enters the battlefield, target opponent discards a card.
-mana={1}{B}
-type=Creature
-subtype=Human Advisor
-power=1
-toughness=1
-[/card]
-[card]
 name=Corrupted Zendikon
 text=Enchant land -- Enchanted land is a 3/3 black Ooze creature. It's still a land. -- When enchanted land is put into a graveyard, return that card to its owner's hand.
 mana={1}{B}
@@ -4524,12 +4382,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Cryptwailing
-text={1}, Exile two creature cards from your graveyard: Target player discards a card. Activate this ability only any time you could cast a sorcery.
-mana={3}{B}
-type=Enchantment
-[/card]
-[card]
 name=Crystal Ball
 text={1}, {T}: Scry 2.
 mana={3}
@@ -4600,15 +4452,6 @@ type=Creature
 subtype=Giant
 power=4
 toughness=4
-[/card]
-[card]
-name=Cunning Lethemancer
-text=At the beginning of your upkeep, each player discards a card.
-mana={2}{B}
-type=Creature
-subtype=Human Wizard
-power=2
-toughness=2
 [/card]
 [card]
 name=Cunning Wish
@@ -5060,12 +4903,6 @@ mana={1}{B}{B}
 type=Enchantment
 [/card]
 [card]
-name=Deception
-text=Target opponent discards two cards.
-mana={2}{B}
-type=Sorcery
-[/card]
-[card]
 name=Decimate
 text=Destroy target artifact, target creature, target enchantment, and target land.
 mana={2}{R}{G}
@@ -5198,12 +5035,6 @@ mana={1}
 type=Artifact
 [/card]
 [card]
-name=Delirium Skeins
-text=Each player discards three cards.
-mana={2}{B}
-type=Sorcery
-[/card]
-[card]
 name=Dementia Sliver
 text=All Slivers have "{T}: Name a card. Target opponent reveals a card at random from his or her hand. If it's the named card, that player discards it. Activate this ability only during your turn."
 mana={3}{U}{B}
@@ -5295,12 +5126,6 @@ type=Creature
 subtype=Human Wizard
 power=2
 toughness=3
-[/card]
-[card]
-name=Desecrated Earth
-text=Destroy target land. Its controller discards a card.
-mana={4}{B}
-type=Sorcery
 [/card]
 [card]
 name=Desecrator Hag
@@ -5507,30 +5332,12 @@ mana={2}{U}{U}
 type=Sorcery
 [/card]
 [card]
-name=Dimir Cutpurse
-text=Whenever Dimir Cutpurse deals combat damage to a player, that player discards a card and you draw a card.
-mana={1}{U}{B}
-type=Creature
-subtype=Spirit
-power=2
-toughness=2
-[/card]
-[card]
 name=Dimir Doppelganger
 text={1}{U}{B}: Exile target creature card from a graveyard. Dimir Doppelganger becomes a copy of that card and gains this ability.
 mana={1}{U}{B}
 type=Creature
 subtype=Shapeshifter
 power=0
-toughness=2
-[/card]
-[card]
-name=Dimir Guildmage
-text=({(u/b)} can be paid with either {U} or {B}.) -- {3}{U}: Target player draws a card. Activate this ability only any time you could cast a sorcery. -- {3}{B}: Target player discards a card. Activate this ability only any time you could cast a sorcery.
-mana={UB}{UB}
-type=Creature
-subtype=Human Wizard
-power=2
 toughness=2
 [/card]
 [card]
@@ -5600,12 +5407,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Dismal Failure
-text=Counter target spell. Its controller discards a card.
-mana={2}{U}{U}
-type=Instant
-[/card]
-[card]
 name=Dismantle
 text=Destroy target artifact. If that artifact had counters on it, put that many +1/+1 counters or charge counters on an artifact you control.
 mana={2}{R}
@@ -5622,12 +5423,6 @@ name=Disrupt
 text=Counter target instant or sorcery spell unless its controller pays {1}. -- Draw a card.
 mana={U}
 type=Instant
-[/card]
-[card]
-name=Disrupting Scepter
-text={3}, {T}: Target player discards a card. Activate this ability only during your turn.
-mana={3}
-type=Artifact
 [/card]
 [card]
 name=Disrupting Shoal
@@ -6222,15 +6017,6 @@ mana={1}{G}{G}
 type=Instant
 [/card]
 [card]
-name=Earsplitting Rats
-text=When Earsplitting Rats enters the battlefield, each player discards a card. -- Discard a card: Regenerate Earsplitting Rats.
-mana={3}{B}
-type=Creature
-subtype=Rat
-power=2
-toughness=1
-[/card]
-[card]
 name=Earthlink
 text=At the beginning of your upkeep, sacrifice Earthlink unless you pay {2}. -- Whenever a creature is put into a graveyard from the battlefield, that creature's controller sacrifices a land.
 mana={3}{B}{R}{G}
@@ -6685,15 +6471,6 @@ name=Entangling Trap
 text=Whenever you clash, tap target creature an opponent controls. If you won, that creature doesn't untap during its controller's next untap step. (This ability triggers after the clash ends.)
 mana={1}{W}
 type=Enchantment
-[/card]
-[card]
-name=Entropic Specter
-text=Flying -- As Entropic Specter enters the battlefield, choose an opponent. -- Entropic Specter's power and toughness are each equal to the number of cards in the chosen player's hand. -- Whenever Entropic Specter deals damage to a player, that player discards a card.
-mana={3}{B}{B}
-type=Creature
-subtype=Specter Spirit
-power=*
-toughness=*
 [/card]
 [card]
 name=Eon Hub
@@ -7310,15 +7087,6 @@ text=Enchant creature -- Whenever enchanted creature attacks and isn't blocked, 
 mana={2}{W}
 type=Enchantment
 subtype=Aura
-[/card]
-[card]
-name=Farrelite Priest
-text={1}: Add {W} to your mana pool. If this ability has been activated four or more times this turn, sacrifice Farrelite Priest at the beginning of the next end step.
-mana={1}{W}{W}
-type=Creature
-subtype=Human Cleric
-power=1
-toughness=3
 [/card]
 [card]
 name=Fasting
@@ -7995,15 +7763,6 @@ mana={4}{R}
 type=Instant
 [/card]
 [card]
-name=Forget
-target=player
-auto=discard:2
-auto=draw:2
-text=Target player discards two cards, then draws as many cards as he or she discarded this way.
-mana={U}{U}
-type=Sorcery
-[/card]
-[card]
 name=Forgotten Harvest
 text=At the beginning of your upkeep, you may exile a land card from your graveyard. If you do, put a +1/+1 counter on target creature.
 mana={1}{G}
@@ -8216,12 +7975,6 @@ mana={2}{U}{U}
 type=Instant
 [/card]
 [card]
-name=Fugue
-text=Target player discards three cards.
-mana={3}{B}{B}
-type=Sorcery
-[/card]
-[card]
 name=Fumarole
 text=As an additional cost to cast Fumarole, pay 3 life. -- Destroy target creature and target land.
 mana={3}{B}{R}
@@ -8254,15 +8007,6 @@ toughness=*
 name=Fungal Reaches
 text={T}: Add {1} to your mana pool. -- {1}, {T}: Put a storage counter on Fungal Reaches. -- {1}, Remove X storage counters from Fungal Reaches: Add X mana in any combination of {R} and/or {G} to your mana pool.
 type=Land
-[/card]
-[card]
-name=Fungal Shambler
-text=Trample -- Whenever Fungal Shambler deals damage to an opponent, you draw a card and that opponent discards a card.
-mana={4}{G}{U}{B}
-type=Creature
-subtype=Fungus Beast
-power=6
-toughness=4
 [/card]
 [card]
 name=Furnace of Rath
@@ -8857,12 +8601,6 @@ type=Creature
 subtype=Zombie Minion
 power=2
 toughness=2
-[/card]
-[card]
-name=Gloomlance
-text=Destroy target creature. If that creature was green or white, its controller discards a card.
-mana={3}{B}{B}
-type=Sorcery
 [/card]
 [card]
 name=Glory of Warfare
@@ -9731,15 +9469,6 @@ power=5
 toughness=4
 [/card]
 [card]
-name=Guul Draz Specter
-text=Flying -- Guul Draz Specter gets +3/+3 as long as an opponent has no cards in hand. -- Whenever Guul Draz Specter deals combat damage to a player, that player discards a card.
-mana={2}{B}{B}
-type=Creature
-subtype=Specter
-power=2
-toughness=2
-[/card]
-[card]
 name=Gwyllion Hedge-Mage
 text=When Gwyllion Hedge-Mage enters the battlefield, if you control two or more Plains, you may put a 1/1 white Kithkin Soldier creature token onto the battlefield. -- When Gwyllion Hedge-Mage enters the battlefield, if you control two or more Swamps, you may put a -1/-1 counter on target creature.
 mana={2}{WB}
@@ -10052,15 +9781,6 @@ mana={3}{B}{B}
 type=Sorcery
 [/card]
 [card]
-name=Headhunter
-text=Whenever Headhunter deals combat damage to a player, that player discards a card. -- Morph {B} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
-mana={1}{B}
-type=Creature
-subtype=Human Cleric
-power=1
-toughness=1
-[/card]
-[card]
 name=Heart Wolf
 text=First strike -- {T}: Target Dwarf creature gets +2/+0 and gains first strike until end of turn. When that creature leaves the battlefield this turn, sacrifice Heart Wolf. Activate this ability only during combat.
 mana={3}{R}
@@ -10179,6 +9899,10 @@ type=Artifact
 [/card]
 [card]
 name=Helm of the Ghastlord
+target=creature
+auto=teach(creature[blue]) 1/1
+auto=teach(creature[black]) 1/1
+auto=@damaged(opponent) from(
 text=Enchant creature -- As long as enchanted creature is blue, it gets +1/+1 and has "Whenever this creature deals damage to an opponent, draw a card." -- As long as enchanted creature is black, it gets +1/+1 and has "Whenever this creature deals damage to an opponent, that player discards a card."
 mana={3}{UB}
 type=Enchantment
@@ -10453,13 +10177,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Honden of Night's Reach
-text=At the beginning of your upkeep, target opponent discards a card for each Shrine you control.
-mana={3}{B}
-type=Legendary Enchantment
-subtype=Shrine
-[/card]
-[card]
 name=Honorable Passage
 text=The next time a source of your choice would deal damage to target creature or player this turn, prevent that damage. If damage from a red source is prevented this way, Honorable Passage deals that much damage to the source's controller.
 mana={1}{W}
@@ -10492,12 +10209,6 @@ text=If you control a Swamp, destroy target nonblack creature. -- Splice onto Ar
 mana={1}{B}{B}
 type=Instant
 subtype=Arcane
-[/card]
-[card]
-name=Horrifying Revelation
-text=Target player discards a card, then puts the top card of his or her library into his or her graveyard.
-mana={B}
-type=Sorcery
 [/card]
 [card]
 name=Hostility
@@ -10637,12 +10348,6 @@ name=Hypergenesis
 text=Hypergenesis is green. -- Suspend 3 - {1}{G}{G} (Rather than cast this card from your hand, pay {1}{G}{G} and exile it with three time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.) -- Starting with you, each player may put an artifact, creature, enchantment, or land card from his or her hand onto the battlefield. Repeat this process until no one puts a card onto the battlefield.
 mana={0}
 color=green
-type=Sorcery
-[/card]
-[card]
-name=Hypnotic Cloud
-text=Kicker {4} (You may pay an additional {4} as you cast this spell.) -- Target player discards a card. If Hypnotic Cloud was kicked, that player discards three cards instead.
-mana={1}{B}
 type=Sorcery
 [/card]
 [card]
@@ -11158,15 +10863,6 @@ power=4
 toughness=4
 [/card]
 [card]
-name=Initiates of the Ebon Hand
-text={1}: Add {B} to your mana pool. If this ability has been activated four or more times this turn, sacrifice Initiates of the Ebon Hand at the beginning of the next end step.
-mana={B}
-type=Creature
-subtype=Cleric
-power=1
-toughness=1
-[/card]
-[card]
 name=Ink Dissolver
 text=Kinship - At the beginning of your upkeep, you may look at the top card of your library. If it shares a creature type with Ink Dissolver, you may reveal it. If you do, each opponent puts the top three cards of his or her library into his or her graveyard.
 mana={1}{U}
@@ -11201,15 +10897,6 @@ type=Creature
 subtype=Merfolk Wizard
 power=1
 toughness=1
-[/card]
-[card]
-name=Inner-Flame Igniter
-text={2}{R}: Creatures you control get +1/+0 until end of turn. If this is the third time this ability has resolved this turn, creatures you control gain first strike until end of turn.
-mana={2}{R}
-type=Creature
-subtype=Elemental Warrior
-power=2
-toughness=2
 [/card]
 [card]
 name=Innocent Blood
@@ -11971,15 +11658,6 @@ power=4
 toughness=6
 [/card]
 [card]
-name=Kemuri-Onna
-text=When Kemuri-Onna enters the battlefield, target player discards a card. -- Whenever you cast a Spirit or Arcane spell, you may return Kemuri-Onna to its owner's hand.
-mana={4}{B}
-type=Creature
-subtype=Spirit
-power=3
-toughness=3
-[/card]
-[card]
 name=Kentaro, the Smiling Cat
 text=Bushido 1 (When this blocks or becomes blocked, it gets +1/+1 until end of turn.) -- You may pay {X} rather than pay the mana cost for Samurai spells you cast, where X is that spell's converted mana cost.
 mana={1}{W}
@@ -12639,12 +12317,6 @@ mana={1}{U}
 type=Instant
 [/card]
 [card]
-name=Larceny
-text=Whenever a creature you control deals combat damage to a player, that player discards a card.
-mana={3}{B}{B}
-type=Enchantment
-[/card]
-[card]
 name=Lash Out
 text=Lash Out deals 3 damage to target creature. Clash with an opponent. If you win, Lash Out deals 3 damage to that creature's controller. (Each clashing player reveals the top card of his or her library, then puts that card on the top or bottom. A player wins if his or her card had a higher converted mana cost.)
 mana={1}{R}
@@ -13003,16 +12675,6 @@ mana={3}{B}{B}
 type=Planeswalker
 subtype=Liliana
 loyalty=5
-[/card]
-[card]
-name=Liliana's Specter
-abilities=flying
-text=Flying -- When Liliana's Specter enters the battlefield, each opponent discards a card.
-mana={1}{B}{B}
-type=Creature
-subtype=Specter
-power=2
-toughness=1
 [/card]
 [card]
 name=Lilting Refrain
@@ -13864,15 +13526,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Marsh Crocodile
-text=When Marsh Crocodile enters the battlefield, return a blue or black creature you control to its owner's hand. -- When Marsh Crocodile enters the battlefield, each player discards a card.
-mana={2}{U}{B}
-type=Creature
-subtype=Crocodile
-power=4
-toughness=4
-[/card]
-[card]
 name=Marshal's Anthem
 text=Multikicker {1}{W} (You may pay an additional {1}{W} any number of times as you cast this spell.) -- Creatures you control get +1/+1. -- When Marshal's Anthem enters the battlefield, return up to X target creature cards from your graveyard to the battlefield, where X is the number of times Marshal's Anthem was kicked.
 mana={2}{W}{W}
@@ -14456,33 +14109,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Mind Peel
-text=Buyback {2}{B}{B} (You may pay an additional {2}{B}{B} as you cast this spell. If you do, put this card into your hand as it resolves.) -- Target player discards a card.
-mana={B}
-type=Sorcery
-[/card]
-[card]
-name=Mind Ravel
-target=player
-auto=discard:1
-auto=@next upkeep:draw:1 controller
-text=Target player discards a card. -- Draw a card at the beginning of the next turn's upkeep.
-mana={2}{B}
-type=Sorcery
-[/card]
-[card]
-name=Mind Rot
-text=Target player discards two cards.
-mana={2}{B}
-type=Sorcery
-[/card]
-[card]
-name=Mind Sludge
-text=Target player discards a card for each Swamp you control.
-mana={4}{B}
-type=Sorcery
-[/card]
-[card]
 name=Mind Swords
 text=If you control a Swamp, you may sacrifice a creature rather than pay Mind Swords's mana cost. -- Each player exiles two cards from his or her hand.
 mana={1}{B}
@@ -14538,15 +14164,6 @@ type=Instant
 subtype=Trap
 [/card]
 [card]
-name=Mindlash Sliver
-text=All Slivers have "{1}, Sacrifice this permanent: Each player discards a card."
-mana={B}
-type=Creature
-subtype=Sliver
-power=1
-toughness=1
-[/card]
-[card]
 name=Mindleech Mass
 text=Trample -- Whenever Mindleech Mass deals combat damage to a player, you may look at that player's hand. If you do, you may cast a nonland card in it without paying that card's mana cost.
 mana={5}{U}{B}{B}
@@ -14595,15 +14212,6 @@ auto=@each my upleep:aslongas(-*|myhand):draw:1 controller
 text=At the beginning of your upkeep, draw a card if you had no cards in hand at the beginning of this turn. If you had a card in hand, Mindstorm Crown deals 1 damage to you.
 mana={3}
 type=Artifact
-[/card]
-[card]
-name=Mindwarper
-text=Mindwarper enters the battlefield with three +1/+1 counters on it. -- {2}{B}, Remove a +1/+1 counter from Mindwarper: Target player discards a card. Activate this ability only any time you could cast a sorcery.
-mana={2}{B}{B}
-type=Creature
-subtype=Spirit
-power=0
-toughness=0
 [/card]
 [card]
 name=Minion Reflector
@@ -15589,18 +15197,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Necrogen Mists
-text=At the beginning of each player's upkeep, that player discards a card.
-mana={2}{B}
-type=Enchantment
-[/card]
-[card]
-name=Necrogen Spellbomb
-text={B}, Sacrifice Necrogen Spellbomb: Target player discards a card. -- {1}, Sacrifice Necrogen Spellbomb: Draw a card.
-mana={1}
-type=Artifact
-[/card]
-[card]
 name=Necrologia
 text=Cast Necrologia only during your end step. -- As an additional cost to cast Necrologia, pay X life. -- Draw X cards.
 mana={3}{B}{B}
@@ -15803,15 +15399,6 @@ name=New Frontiers
 text=Each player may search his or her library for up to X basic land cards and put them onto the battlefield tapped. Then each player who searched his or her library this way shuffles it.
 mana={X}{G}
 type=Sorcery
-[/card]
-[card]
-name=Nezumi Bone-Reader
-text={B}, Sacrifice a creature: Target player discards a card. Activate this ability only any time you could cast a sorcery.
-mana={1}{B}
-type=Creature
-subtype=Rat Shaman
-power=1
-toughness=1
 [/card]
 [card]
 name=Nezumi Graverobber
@@ -16109,15 +15696,6 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-name=Noxious Toad
-text=When Noxious Toad is put into a graveyard from the battlefield, each opponent discards a card.
-mana={2}{B}
-type=Creature
-subtype=Frog
-power=1
-toughness=1
-[/card]
-[card]
 name=Noxious Vapors
 text=Each player reveals his or her hand and chooses one card of each color from it, then discards all other nonland cards.
 mana={1}{B}{B}
@@ -16317,15 +15895,6 @@ name=Odds // Ends (Odds)
 text=Flip a coin. If it comes up heads, counter target instant or sorcery spell. If it comes up tails, copy that spell and you may choose new targets for the copy.
 mana={U}{R}
 type=Instant
-[/card]
-[card]
-name=Odylic Wraith
-text=Swampwalk -- Whenever Odylic Wraith deals damage to a player, that player discards a card.
-mana={3}{B}
-type=Creature
-subtype=Wraith
-power=2
-toughness=2
 [/card]
 [card]
 name=Offering to Asha
@@ -16652,15 +16221,6 @@ type=Creature
 subtype=Kithkin Cleric
 power=1
 toughness=4
-[/card]
-[card]
-name=Order of Yawgmoth
-text=Fear (This creature can't be blocked except by artifact creatures and/or black creatures.) -- Whenever Order of Yawgmoth deals damage to a player, that player discards a card.
-mana={2}{B}{B}
-type=Creature
-subtype=Zombie Knight
-power=2
-toughness=2
 [/card]
 [card]
 name=Orim's Thunder
@@ -18931,23 +18491,6 @@ power=1
 toughness=2
 [/card]
 [card]
-name=Raven's Crime
-abilities=retrace
-target=player
-text=Target player discards a card. -- Retrace (You may cast this card from your graveyard by discarding a land card in addition to paying its other costs.)
-mana={B}
-type=Sorcery
-[/card]
-[card]
-name=Ravenous Rats
-text=When Ravenous Rats enters the battlefield, target opponent discards a card.
-mana={1}{B}
-type=Creature
-subtype=Rat
-power=1
-toughness=1
-[/card]
-[card]
 name=Ravenous Trap
 text=If an opponent had three or more cards put into his or her graveyard from anywhere this turn, you may pay {0} rather than pay Ravenous Trap's mana cost. -- Exile all cards from target player's graveyard.
 mana={2}{B}{B}
@@ -19150,12 +18693,6 @@ auto=lord(creature[black]) {S(land|myinplay)}:-cantattack
 text=Black creatures can't attack unless their controller sacrifices a land for each black creature he or she controls that's attacking.
 mana={2}{G}{W}
 type=Enchantment
-[/card]
-[card]
-name=Recoil
-text=Return target permanent to its owner's hand. Then that player discards a card.
-mana={1}{U}{B}
-type=Instant
 [/card]
 [card]
 name=Recoup
@@ -19747,15 +19284,6 @@ power=0
 toughness=3
 [/card]
 [card]
-name=Riptide Pilferer
-text=Whenever Riptide Pilferer deals combat damage to a player, that player discards a card. -- Morph {U} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
-mana={1}{U}
-type=Creature
-subtype=Merfolk Rogue
-power=1
-toughness=1
-[/card]
-[card]
 name=Riptide Replicator
 text=As Riptide Replicator enters the battlefield, choose a color and a creature type. -- Riptide Replicator enters the battlefield with X charge counters on it. -- {4}, {T}: Put an X/X creature token of the chosen color and type onto the battlefield, where X is the number of charge counters on Riptide Replicator.
 mana={X}{4}
@@ -19898,11 +19426,6 @@ name=River's Grasp
 text=If {U} was spent to cast River's Grasp, return up to one target creature to its owner's hand. If {B} was spent to cast River's Grasp, target player reveals his or her hand, you choose a nonland card from it, then that player discards that card. (Do both if {U}{B} was spent.)
 mana={3}{UB}
 type=Sorcery
-[/card]
-[card]
-name=Rix Maadi, Dungeon Palace
-text={T}: Add {1} to your mana pool. -- {1}{B}{R}, {T}: Each player discards a card. Activate this ability only any time you could cast a sorcery.
-type=Land
 [/card]
 [card]
 name=Roar of Jukai
@@ -20078,15 +19601,6 @@ type=Creature
 subtype=Zombie Giant
 power=3
 toughness=3
-[/card]
-[card]
-name=Rotting Rats
-text=When Rotting Rats enters the battlefield, each player discards a card. -- Unearth {1}{B} ({1}{B}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
-mana={1}{B}
-type=Creature
-subtype=Zombie Rat
-power=1
-toughness=1
 [/card]
 [card]
 name=Rough // Tumble (Rough)
@@ -20784,12 +20298,6 @@ mana={1}{B}
 type=Instant
 [/card]
 [card]
-name=Scepter of Fugue
-text={1}{B}, {T}: Target player discards a card. Activate this ability only during your turn.
-mana={B}{B}
-type=Artifact
-[/card]
-[card]
 name=Schismotivate
 text=Target creature gets +4/+0 until end of turn. Another target creature gets -4/-0 until end of turn.
 mana={1}{U}{R}
@@ -20842,15 +20350,6 @@ text=Enchant creature -- Enchanted creature gets -1/-1. -- When enchanted creatu
 mana={1}{B}{B}
 type=Enchantment
 subtype=Aura
-[/card]
-[card]
-name=Screeching Buzzard
-text=Flying -- When Screeching Buzzard is put into a graveyard from the battlefield, each opponent discards a card.
-mana={3}{B}
-type=Creature
-subtype=Bird
-power=2
-toughness=2
 [/card]
 [card]
 name=Screeching Griffin
@@ -21023,15 +20522,6 @@ mana={3}{U}
 type=Creature
 subtype=Spirit
 power=2
-toughness=2
-[/card]
-[card]
-name=Sedraxis Specter
-text=Flying -- Whenever Sedraxis Specter deals combat damage to a player, that player discards a card. -- Unearth {1}{B} ({1}{B}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
-mana={U}{B}{R}
-type=Creature
-subtype=Specter
-power=3
 toughness=2
 [/card]
 [card]
@@ -21236,15 +20726,6 @@ name=Serum Powder
 text={T}: Add {1} to your mana pool. -- Any time you could mulligan and Serum Powder is in your hand, you may exile all the cards from your hand, then draw that many cards. (You can do this in addition to taking mulligans.)
 mana={3}
 type=Artifact
-[/card]
-[card]
-name=Serum Raker
-text=Flying -- When Serum Raker is put into a graveyard from the battlefield, each player discards a card.
-mana={2}{U}{U}
-type=Creature
-subtype=Drake
-power=3
-toughness=2
 [/card]
 [card]
 name=Serum Visions
@@ -21659,15 +21140,6 @@ power=2
 toughness=1
 [/card]
 [card]
-name=Shrieking Specter
-text=Flying -- Whenever Shrieking Specter attacks, defending player discards a card.
-mana={5}{B}
-type=Creature
-subtype=Specter
-power=2
-toughness=2
-[/card]
-[card]
 name=Shriveling Rot
 text=Choose one - Until end of turn, whenever a creature is dealt damage, destroy it; or until end of turn, whenever a creature is put into a graveyard from the battlefield, that creature's controller loses life equal to its toughness. -- Entwine {2}{B} (Choose both if you pay the entwine cost.)
 mana={2}{B}{B}
@@ -22007,12 +21479,6 @@ type=Creature
 subtype=Beast
 power=5
 toughness=5
-[/card]
-[card]
-name=Skull Fracture
-text=Target player discards a card. -- Flashback {3}{B} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
-mana={B}
-type=Sorcery
 [/card]
 [card]
 name=Skullmulcher
@@ -22531,15 +21997,6 @@ mana={2}{R}
 type=Instant
 [/card]
 [card]
-name=Soulbright Flamekin
-text={2}: Target creature gains trample until end of turn. If this is the third time this ability has resolved this turn, you may add {R}{R}{R}{R}{R}{R}{R}{R} to your mana pool.
-mana={1}{R}
-type=Creature
-subtype=Elemental Shaman
-power=2
-toughness=1
-[/card]
-[card]
 name=Soulgorger Orgg
 text=Trample -- When Soulgorger Orgg enters the battlefield, you lose all but 1 life. -- When Soulgorger Orgg leaves the battlefield, you gain life equal to the life you lost when it entered the battlefield.
 mana={3}{R}{R}
@@ -22587,13 +22044,6 @@ type=Creature
 subtype=Human Wizard
 power=1
 toughness=1
-[/card]
-[card]
-name=Specter's Shroud
-text=Equipped creature gets +1/+0. -- Whenever equipped creature deals combat damage to a player, that player discards a card. -- Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery. This card enters the battlefield unattached and stays on the battlefield if the creature leaves.)
-mana={2}
-type=Artifact
-subtype=Equipment
 [/card]
 [card]
 name=Spectral Searchlight
@@ -23571,15 +23021,6 @@ mana={1}{R}
 type=Sorcery
 [/card]
 [card]
-name=Stronghold Rats
-text=Shadow (This creature can block or be blocked by only creatures with shadow.) -- Whenever Stronghold Rats deals combat damage to a player, each player discards a card.
-mana={2}{B}
-type=Creature
-subtype=Rat
-power=2
-toughness=1
-[/card]
-[card]
 name=Struggle for Sanity
 text=Target opponent reveals his or her hand. That player exiles a card from it, then you exile a card from it. Repeat this process until all cards in that hand have been exiled. That player returns the cards he or she exiled this way to his or her hand and puts the rest into his or her graveyard.
 mana={2}{B}{B}
@@ -23615,12 +23056,6 @@ text=Enchant creature -- When Stupefying Touch enters the battlefield, draw a ca
 mana={1}{U}
 type=Enchantment
 subtype=Aura
-[/card]
-[card]
-name=Stupor
-text=Target opponent discards a card at random, then discards a card.
-mana={2}{B}
-type=Sorcery
 [/card]
 [card]
 name=Sudden Spoiling
@@ -23921,12 +23356,6 @@ power=2
 toughness=6
 [/card]
 [card]
-name=Sword of Feast and Famine
-text=Equipped creature gets +2/+2 and has protection from black and from green. -- Whenever equipped creature deals combat damage to a player, that player discards a card and you untap all lands you control. -- Equip {2}
-mana={3}
-type=Artifact
-[/card]
-[card]
 name=Sword of the Ages
 text=Sword of the Ages enters the battlefield tapped. -- {T}, Exile Sword of the Ages and any number of creatures you control: the Ages deals X damage to target creature or player, where X is the total power of the creatures exiled this way.
 mana={6}
@@ -24009,12 +23438,6 @@ type=Creature
 subtype=Vedalken Artificer
 power=1
 toughness=2
-[/card]
-[card]
-name=Syphon Mind
-text=Each other player discards a card. You draw a card for each card discarded this way.
-mana={3}{B}
-type=Sorcery
 [/card]
 [card]
 name=Tablet of Epityr
@@ -25561,12 +24984,6 @@ mana={1}{U}{B}
 type=Enchantment
 [/card]
 [card]
-name=Unhinge
-text=Target player discards a card. -- Draw a card.
-mana={2}{B}
-type=Sorcery
-[/card]
-[card]
 name=Unholy Citadel
 text=Black legendary creatures you control have "bands with other legendary creatures." (Any legendary creatures can attack in a band as long as at least one has "bands with other legendary creatures." Bands are blocked as a group. If at least two legendary creatures you control, one of which has "bands with other legendary creatures," are blocking or being blocked by the same creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
 type=Land
@@ -26131,15 +25548,6 @@ type=Instant
 subtype=Arcane
 [/card]
 [card]
-name=Vodalian Hypnotist
-text={2}{B}, {T}: Target player discards a card. Activate this ability only any time you could cast a sorcery.
-mana={1}{U}
-type=Creature
-subtype=Merfolk Wizard
-power=1
-toughness=1
-[/card]
-[card]
 name=Vodalian Mage
 text={U}, {T}: Counter target spell unless its controller pays {1}.
 mana={2}{U}
@@ -26360,15 +25768,6 @@ type=Creature
 subtype=Wall
 power=0
 toughness=5
-[/card]
-[card]
-name=Wall of Distortion
-text=Defender (This creature can't attack.) -- {2}{B}, {T}: Target player discards a card. Activate this ability only any time you could cast a sorcery.
-mana={2}{B}{B}
-type=Creature
-subtype=Wall
-power=1
-toughness=3
 [/card]
 [card]
 name=Wall of Dust
@@ -26740,15 +26139,6 @@ mana={3}{B}{B}
 type=Creature
 subtype=Human Soldier Assassin
 power=3
-toughness=2
-[/card]
-[card]
-name=Wei Night Raiders
-text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.) -- Whenever Wei Night Raiders deals damage to an opponent, that player discards a card.
-mana={2}{B}{B}
-type=Creature
-subtype=Human Soldier
-power=2
 toughness=2
 [/card]
 [card]
@@ -27586,15 +26976,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Zhang Liao, Hero of Hefei
-text=Whenever Zhang Liao, Hero of Hefei deals damage to an opponent, that opponent discards a card.
-mana={4}{B}{B}
-type=Legendary Creature
-subtype=Human Soldier
-power=3
-toughness=3
-[/card]
-[card]
 name=Zombie Boa
 text={1}{B}: Choose a color. Whenever Zombie Boa becomes blocked by a creature of that color this turn, destroy that creature. Activate this ability only any time you could cast a sorcery.
 mana={4}{B}
@@ -27654,13 +27035,4 @@ name=Zur's Weirding
 text=Players play with their hands revealed. -- If a player would draw a card, he or she reveals it instead. Then any other player may pay 2 life. If a player does, put that card into its owner's graveyard. Otherwise, that player draws a card.
 mana={3}{U}
 type=Enchantment
-[/card]
-[card]
-name=Zuran Enchanter
-text={2}{B}, {T}: Target player discards a card. Activate this ability only during your turn.
-mana={1}{U}
-type=Creature
-subtype=Human Wizard
-power=1
-toughness=1
 [/card]
