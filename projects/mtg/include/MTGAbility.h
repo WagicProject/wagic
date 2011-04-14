@@ -257,7 +257,11 @@ class ActivatedAbility:public MTGAbility{
   int counters;
   int needsTapping;
   string limit;
-  ActivatedAbility(int id, MTGCardInstance * card,ManaCost * _cost = NULL, int _restrictions = NO_RESTRICTION,int tap = 1,string limit = "");
+  MTGAbility * sideEffect;
+  MTGAbility * sa;
+  string usesBeforeSideEffects;
+  int uses;
+  ActivatedAbility(int id, MTGCardInstance * card,ManaCost * _cost = NULL, int _restrictions = NO_RESTRICTION,int tap = 1,string limit = "",MTGAbility * sideEffect = NULL,string usesBeforeSideEffects = "");
   virtual ~ActivatedAbility();
   virtual void Update(float dt)
   {

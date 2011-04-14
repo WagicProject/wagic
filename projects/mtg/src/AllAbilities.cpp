@@ -5,8 +5,8 @@
 
 //Generic Activated Abilities
 GenericActivatedAbility::GenericActivatedAbility(string newName,int _id, MTGCardInstance * card, MTGAbility * a, ManaCost * _cost, int _tap,
-        string limit, int restrictions, MTGGameZone * dest) :
-    ActivatedAbility(_id, card, _cost, restrictions, _tap,limit), NestedAbility(a), activeZone(dest),newName(newName)
+        string limit,MTGAbility * sideEffects,string usesBeforeSideEffects, int restrictions, MTGGameZone * dest) :
+    ActivatedAbility(_id, card, _cost, restrictions, _tap,limit,sideEffects,usesBeforeSideEffects), NestedAbility(a), activeZone(dest),newName(newName)
 {
     counters = 0;
     target = ability->target;
@@ -1089,14 +1089,14 @@ int AADynamic::resolve()
                     activateStored();
                 if(tosrc == false)
                 {
-                    AInstantPowerToughnessModifierUntilEOT * a = NEW AInstantPowerToughnessModifierUntilEOT(this->GetId(), source, (MTGCardInstance*)_target,NEW WParsedPT(sourceamount,0));
+                    PTInstant * a = NEW PTInstant(this->GetId(), source, (MTGCardInstance*)_target,NEW WParsedPT(sourceamount,0));
                     GenericInstantAbility * wrapper = NEW GenericInstantAbility(1, source,(MTGCardInstance*)_target, a);
                     wrapper->addToGame();
                     return 1;
                 }
                 else
                 {
-                    AInstantPowerToughnessModifierUntilEOT * a = NEW AInstantPowerToughnessModifierUntilEOT(this->GetId(), source, OriginalSrc,NEW WParsedPT(sourceamount,0));
+                    PTInstant * a = NEW PTInstant(this->GetId(), source, OriginalSrc,NEW WParsedPT(sourceamount,0));
                     GenericInstantAbility * wrapper = NEW GenericInstantAbility(1, source,OriginalSrc, a);
                     wrapper->addToGame();
                     return 1;
@@ -1109,14 +1109,14 @@ int AADynamic::resolve()
                     activateStored();
                 if(tosrc == false)
                 {
-                    AInstantPowerToughnessModifierUntilEOT * a = NEW AInstantPowerToughnessModifierUntilEOT(this->GetId(), source, (MTGCardInstance*)_target,NEW WParsedPT(0,sourceamount));
+                    PTInstant * a = NEW PTInstant(this->GetId(), source, (MTGCardInstance*)_target,NEW WParsedPT(0,sourceamount));
                     GenericInstantAbility * wrapper = NEW GenericInstantAbility(1, source,(MTGCardInstance*)_target, a);
                     wrapper->addToGame();
                     return 1;
                 }
                 else
                 {
-                    AInstantPowerToughnessModifierUntilEOT * a = NEW AInstantPowerToughnessModifierUntilEOT(this->GetId(), source, OriginalSrc,NEW WParsedPT(0,sourceamount));
+                    PTInstant * a = NEW PTInstant(this->GetId(), source, OriginalSrc,NEW WParsedPT(0,sourceamount));
                     GenericInstantAbility * wrapper = NEW GenericInstantAbility(1, source,OriginalSrc, a);
                     wrapper->addToGame();
                     return 1;
@@ -1129,14 +1129,14 @@ int AADynamic::resolve()
                     activateStored();
                 if(tosrc == false)
                 {
-                    AInstantPowerToughnessModifierUntilEOT * a = NEW AInstantPowerToughnessModifierUntilEOT(this->GetId(), source, (MTGCardInstance*)_target,NEW WParsedPT(sourceamount,sourceamount));
+                    PTInstant * a = NEW PTInstant(this->GetId(), source, (MTGCardInstance*)_target,NEW WParsedPT(sourceamount,sourceamount));
                     GenericInstantAbility * wrapper = NEW GenericInstantAbility(1, source,(MTGCardInstance*)_target, a);
                     wrapper->addToGame();
                     return 1;
                 }
                 else
                 {
-                    AInstantPowerToughnessModifierUntilEOT * a = NEW AInstantPowerToughnessModifierUntilEOT(this->GetId(), source, OriginalSrc,NEW WParsedPT(sourceamount,sourceamount));
+                    PTInstant * a = NEW PTInstant(this->GetId(), source, OriginalSrc,NEW WParsedPT(sourceamount,sourceamount));
                     GenericInstantAbility * wrapper = NEW GenericInstantAbility(1, source,OriginalSrc, a);
                     wrapper->addToGame();
                     return 1;
@@ -2001,7 +2001,7 @@ MultiAbility::~MultiAbility()
 
 //Generic Target Ability
 GenericTargetAbility::GenericTargetAbility(string newName,int _id, MTGCardInstance * _source, TargetChooser * _tc, MTGAbility * a,
-        ManaCost * _cost, int _tap, string limit, int restrictions, MTGGameZone * dest) :
+        ManaCost * _cost, int _tap, string limit,MTGAbility * sideEffects,string usesBeforeSideEffects, int restrictions, MTGGameZone * dest) :
     TargetAbility(_id, _source, _tc, _cost, restrictions, _tap), limit(limit), activeZone(dest),newName(newName)
 {
     ability = a;
@@ -2532,6 +2532,38 @@ ATransformerInstant::~ATransformerInstant()
 {
     SAFE_DELETE(ability);
 }
+//P/t ueot
+PTInstant::PTInstant(int id, MTGCardInstance * source, MTGCardInstance * target, WParsedPT * wppt,string s,bool nonstatic) :
+InstantAbility(id, source, target), wppt(wppt),s(s),nonstatic(nonstatic)
+{
+    ability = NEW APowerToughnessModifier(id, source, target, wppt,s,nonstatic);
+    aType = MTGAbility::STANDARD_PUMP;
+}
+
+int PTInstant::resolve()
+{
+    APowerToughnessModifier * a = ability->clone();
+    GenericInstantAbility * wrapper = NEW GenericInstantAbility(1, source, (Damageable *) (this->target), a);
+    wrapper->addToGame();
+    return 1;
+}
+const char * PTInstant::getMenuText()
+{
+    return ability->getMenuText();
+}
+
+PTInstant * PTInstant::clone() const
+{
+    PTInstant * a = NEW PTInstant(*this);
+    a->ability = this->ability->clone();
+    a->isClone = 1;
+    return a;
+}
+
+PTInstant::~PTInstant()
+{
+    SAFE_DELETE(ability);
+}
 
 // ASwapPTUEOT
 ASwapPTUEOT::ASwapPTUEOT(int id, MTGCardInstance * source, MTGCardInstance * target) :
@@ -2830,33 +2862,58 @@ AUpkeep::~AUpkeep()
 }
 
 //A Phase based Action
-APhaseAction::APhaseAction(int _id, MTGCardInstance * card, MTGCardInstance * target, MTGAbility * a, int _tap, int restrictions, int _phase,bool forcedestroy,bool next) :
-MTGAbility(_id, card), NestedAbility(a), phase(_phase),forcedestroy(forcedestroy),next(next)
+APhaseAction::APhaseAction(int _id, MTGCardInstance * card, MTGCardInstance * target, string sAbility, int _tap, int restrictions, int _phase,bool forcedestroy,bool next,bool myturn,bool opponentturn) :
+MTGAbility(_id, card),sAbility(sAbility), phase(_phase),forcedestroy(forcedestroy),next(next),myturn(myturn),opponentturn(opponentturn)
 {
+    abilityId = _id;
     abilityOwner = card->controller();
+    psMenuText = "";
+    AbilityFactory af;
+    ability = af.parseMagicLine(sAbility, abilityId, NULL, NULL);
+    if(ability)
+        psMenuText = ability->getMenuText();
+    else
+        psMenuText = sAbility.c_str();
+    delete (ability);
 }
 
 void APhaseAction::Update(float dt)
 {
     if (newPhase != currentPhase)
     {
-        if(newPhase == phase && next )
+        if((myturn && game->currentPlayer == source->controller())|| 
+            (opponentturn && game->currentPlayer != source->controller())/*||*/
+            /*(myturn && opponentturn)*/)
         {
-            MTGCardInstance * _target = (MTGCardInstance *) target;
-            if (_target)
+            if(newPhase == phase && next )
             {
-                while (_target->next)
-                    _target = _target->next;
+                MTGCardInstance * _target = (MTGCardInstance *) target;
+                if (_target)
+                {
+                    while (_target->next)
+                        _target = _target->next;
+                }
+                if(!sAbility.size())
+                {
+                    this->forceDestroy = 1;
+                    return;
+                }
+                AbilityFactory af;
+                MTGAbility * ability = af.parseMagicLine(sAbility, abilityId, NULL, _target);
+
+                MTGAbility * a = ability->clone();
+                a->target = _target;
+                a->resolve();
+                delete (a);
+                delete (ability);
+                if(this->oneShot)
+                {
+                    this->forceDestroy = 1;
+                }
             }
-            ability->target = _target;
-            ability->source = _target;
-            ability->oneShot = 1;
-            ability->resolve();
-            this->forceDestroy = 1;
-            removeAbility();
+            else if(newPhase == phase && next == false)
+                next = true;
         }
-        else if(newPhase == phase && next == false)
-            next = true;
     }
     MTGAbility::Update(dt);
 }
@@ -2868,7 +2925,10 @@ int APhaseAction::resolve()
 
 const char * APhaseAction::getMenuText()
 {
-    return ability->getMenuText();
+    if(psMenuText.size())
+    return psMenuText.c_str();
+    else
+    return "Phase Based Action";
 }
 
 APhaseAction * APhaseAction::clone() const
@@ -2879,23 +2939,18 @@ APhaseAction * APhaseAction::clone() const
     a->isClone = 1;
     return a;
 }
-int APhaseAction::removeAbility()
-{
-    if (!isClone)
-        SAFE_DELETE(ability);
-    return 1;
-}
 
 APhaseAction::~APhaseAction()
 {
+
 }
 
 // the main ability
-APhaseActionGeneric::APhaseActionGeneric(int _id, MTGCardInstance * card, MTGCardInstance * target, MTGAbility * a, int _tap, int restrictions, int _phase,bool forcedestroy,bool next) :
+APhaseActionGeneric::APhaseActionGeneric(int _id, MTGCardInstance * card, MTGCardInstance * target, string sAbility, int _tap, int restrictions, int _phase,bool forcedestroy,bool next,bool myturn,bool opponentturn) :
     InstantAbility(_id, source, target)
 {
     MTGCardInstance * _target = target;
-    ability = NEW APhaseAction(_id, card,_target, a,_tap, restrictions, _phase,forcedestroy,next);
+    ability = NEW APhaseAction(_id, card,_target, sAbility,_tap, restrictions, _phase,forcedestroy,next,myturn,opponentturn);
 }
 
 int APhaseActionGeneric::resolve()

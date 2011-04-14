@@ -186,7 +186,10 @@ ostream& StackAbility::toString(ostream& out) const
 const string StackAbility::getDisplayName() const
 {
     std::ostringstream stream;
+    if(ability->source)
     stream << "StackAbility.  (Source: " << ability->source->getDisplayName() << ")";
+    else
+    stream << "StackAbility.  (Source: " << ability->getMenuText() << ")";
 
     return stream.str();
 }

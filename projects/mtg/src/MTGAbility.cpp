@@ -929,7 +929,23 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         if (doTap || cost)
         {
             string s1 = sWithoutTc.substr(delimiter + 2);
-
+            //grabbing the sideffect string and amount before parsing abilities.
+            //side effect ei:dragond whelp.
+            MTGAbility * sideEffect = NULL;
+            string usesBeforeSideEffect = "";
+            size_t limiteffect_str = s1.find("limit^");
+            if (limiteffect_str != string::npos)
+            {
+            size_t end = s1.rfind("^");
+            string sideEffectStr = s1.substr(limiteffect_str + 6,end - limiteffect_str - 6);
+            s1.erase(limiteffect_str,end - limiteffect_str);
+            end = s1.find("^");
+            usesBeforeSideEffect = s1.substr(end+1);
+            s1.erase(end-1);
+            sideEffect = parseMagicLine(sideEffectStr, id, spell, card, 1);
+            }
+            
+            
             MTGAbility * a = parseMagicLine(s1, id, spell, card, 1);
             if (!a)
             {
@@ -955,7 +971,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             {
                 limit = sWithoutTc.substr(limit_str + 6);
             }
-
+            
             AEquip *ae = dynamic_cast<AEquip*> (a);
             if (ae)
             {
@@ -969,8 +985,8 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
                 return ae;
             }
             if (tc)
-                return NEW GenericTargetAbility(newName,id, card, tc, a, cost, doTap, limit, restrictions, dest);
-            return NEW GenericActivatedAbility(newName,id, card, a, cost, doTap, limit, restrictions, dest);
+                return NEW GenericTargetAbility(newName,id, card, tc, a, cost, doTap, limit,sideEffect,usesBeforeSideEffect, restrictions, dest);
+            return NEW GenericActivatedAbility(newName,id, card, a, cost, doTap, limit,sideEffect,usesBeforeSideEffect,restrictions, dest);
         }
         SAFE_DELETE(cost);
     }
@@ -1136,19 +1152,12 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             next = false;
         }
         string sAbility = s.substr(end + 1);
-        MTGAbility * a = parseMagicLine(sAbility, id, spell, card);
-
-        if (!a)
-        {
-            DebugTrace("MTGABILITY: Parsing Error: " << s);
-            return NULL;
-        }
         MTGCardInstance * _target = NULL;
         if (spell)
             _target = spell->getNextCardTarget();
         if(!_target)
             _target = target;
-          return NEW APhaseActionGeneric(id, card,_target, a, doTap, restrictions, phase,sourceinPlay,next);
+          return NEW APhaseActionGeneric(id, card,_target,sAbility, doTap, restrictions, phase,sourceinPlay,next);
     }
     
     //Multiple abilities for ONE cost
@@ -1594,6 +1603,15 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
                     phase = i;
                 }
             }
+            bool opponentturn = true,myturn = true;
+            if(s1.find("my") != string::npos)
+            {
+                opponentturn = false;
+            }
+            if(s1.find("opponent") != string::npos)
+            {
+                myturn = false;
+            }
         if (s1.find("combatends") != string::npos)
         {
             phase = Constants::MTG_PHASE_COMBATEND;
@@ -1621,19 +1639,12 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             next = false;
         }
         string sAbility = s.substr(end + 1);
-        MTGAbility * a = parseMagicLine(sAbility, id, spell, card);
-
-        if (!a)
-        {
-            DebugTrace("MTGABILITY: Parsing Error: " << s);
-            return NULL;
-        }
         MTGCardInstance * _target = NULL;
         if (spell)
             _target = spell->getNextCardTarget();
         if(!_target)
             _target = target;
-          return NEW APhaseActionGeneric(id, card,_target, a, doTap, restrictions, phase,sourceinPlay,next);
+          return NEW APhaseActionGeneric(id, card,_target, sAbility, doTap, restrictions, phase,sourceinPlay,next,myturn,opponentturn);
     }
     
    //Upkeep Cost
@@ -2639,11 +2650,11 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         {
             if (card->hasType(Subtypes::TYPE_INSTANT) || card->hasType(Subtypes::TYPE_SORCERY) || forceUEOT)
             {
-                return NEW AInstantPowerToughnessModifierUntilEOT(id, card, target, wppt);
+                return NEW PTInstant(id, card, target, wppt,s,nonstatic);
             }
             return NEW APowerToughnessModifier(id, card, target, wppt,s,nonstatic);
         }
-        return NEW APowerToughnessModifierUntilEndOfTurn(id, card, target, wppt);
+        return NEW PTInstant(id, card, target, wppt,s,nonstatic);
     }
     else
     {
@@ -2952,11 +2963,11 @@ int AbilityFactory::abilityEfficiency(MTGAbility * a, Player * p, int mode, Targ
         return BAKA_EFFECT_GOOD;
     if (dynamic_cast<ABushidoAbility *> (a))
         return BAKA_EFFECT_GOOD;
-    if (AInstantPowerToughnessModifierUntilEOT * abi = dynamic_cast<AInstantPowerToughnessModifierUntilEOT *>(a))
+    if (PTInstant * abi = dynamic_cast<PTInstant *>(a))
         return (abi->wppt->power.getValue() >= 0 && abi->wppt->toughness.getValue() >= 0) ? BAKA_EFFECT_GOOD : BAKA_EFFECT_BAD;
     if (APowerToughnessModifier * abi = dynamic_cast<APowerToughnessModifier *>(a))
         return (abi->wppt->power.getValue() >= 0 && abi->wppt->toughness.getValue() >= 0) ? BAKA_EFFECT_GOOD : BAKA_EFFECT_BAD;
-    if (APowerToughnessModifierUntilEndOfTurn * abi = dynamic_cast<APowerToughnessModifierUntilEndOfTurn *>(a))
+    if (PTInstant * abi = dynamic_cast<PTInstant *>(a))
         return abilityEfficiency(abi->ability, p, mode, tc);
 
     if (dynamic_cast<ACantBeBlockedBy *> (a))
@@ -3318,11 +3329,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
             Spell * starget = spell->getNextSpellTarget();
             starget->source->setColor(Constants::MTG_COLOR_BLACK, 1);
         }
-        break;
-    }
-    case 1284: //Dragon Whelp
-    {
-        game->addObserver(NEW ADragonWhelp(_id, card));
         break;
     }
 
@@ -3972,12 +3978,13 @@ NestedAbility::NestedAbility(MTGAbility * _ability)
 
 //
 
-ActivatedAbility::ActivatedAbility(int id, MTGCardInstance * card, ManaCost * _cost, int restrictions, int tap,string limit) :
-    MTGAbility(id, card), restrictions(restrictions), needsTapping(tap),limit(limit)
+ActivatedAbility::ActivatedAbility(int id, MTGCardInstance * card, ManaCost * _cost, int restrictions, int tap,string limit,MTGAbility * sideEffect,string usesBeforeSideEffects) :
+    MTGAbility(id, card), restrictions(restrictions), needsTapping(tap),limit(limit),sideEffect(sideEffect),usesBeforeSideEffects(usesBeforeSideEffects)
 {
     counters = 0;
     cost = _cost;
     abilityCost = 0;
+    sa = NULL;
 }
 
 int ActivatedAbility::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
@@ -4077,8 +4084,31 @@ int ActivatedAbility::reactToClick(MTGCardInstance * card)
     }
     if (needsTapping && source->isInPlay())
         source->tap();
-    fireAbility();
     counters++;
+    if(sideEffect && usesBeforeSideEffects.size())
+    {
+        WParsedInt * use = NEW WParsedInt(usesBeforeSideEffects.c_str(),NULL,source);
+        uses = use->getValue();
+        delete use;
+        if(counters == uses)
+        {
+            sa = sideEffect->clone();
+            sa->target = this->target;
+            sa->source = this->source;
+            if(sa->oneShot)
+            {
+                sa->fireAbility();
+            }
+            else
+            {
+                GenericInstantAbility * wrapper = NEW GenericInstantAbility(1, source, (Damageable *) (this->target), sa);
+                wrapper->addToGame();
+            }
+        }
+
+    }
+
+    fireAbility();
     return 1;
 
 }
@@ -4107,7 +4137,7 @@ int ActivatedAbility::reactToTargetClick(Targetable * object)
     AManaProducer * amp = dynamic_cast<AManaProducer *> (this);
     if(amp)
     {
-    needsTapping = amp->tap;
+        needsTapping = amp->tap;
     }
     if (needsTapping && source->isInPlay())
     {
@@ -4121,8 +4151,53 @@ int ActivatedAbility::reactToTargetClick(Targetable * object)
     }
     if (amp)
     {
+        counters++;
+        if(sideEffect && usesBeforeSideEffects.size())
+        {
+            WParsedInt * use = NEW WParsedInt(usesBeforeSideEffects.c_str(),NULL,source);
+            uses = use->getValue();
+            delete use;
+            if(counters == uses)
+            {
+                sa = sideEffect->clone();
+                sa->target = this->target;
+                sa->source = this->source;
+                if(sa->oneShot)
+                {
+                    sa->fireAbility();
+                }
+                else
+                {
+                    GenericInstantAbility * wrapper = NEW GenericInstantAbility(1, source, (Damageable *) (this->target), sa);
+                    wrapper->addToGame();
+                }
+            }
+
+        }
         this->resolve();
         return 1;
+    }
+    counters++;
+    if(sideEffect && usesBeforeSideEffects.size())
+    {
+        WParsedInt * use = NEW WParsedInt(usesBeforeSideEffects.c_str(),NULL,source);
+        uses = use->getValue();
+        delete use;
+        if(counters == uses)
+        {
+            sa = sideEffect->clone();
+            sa->target = this->target;
+            sa->source = this->source;
+            if(sa->oneShot)
+            {
+                sa->fireAbility();
+            }
+            else
+            {
+                GenericInstantAbility * wrapper = NEW GenericInstantAbility(1, source, (Damageable *) (this->target), sa);
+                wrapper->addToGame();
+            }
+        }
     }
     fireAbility();
     return 1;
@@ -4136,6 +4211,8 @@ ActivatedAbility::~ActivatedAbility()
     // Erwan 2004/04/25
     //if (!isClone){
     SAFE_DELETE(abilityCost);
+    SAFE_DELETE(sideEffect);
+    SAFE_DELETE(sa);
     //}
 }
 

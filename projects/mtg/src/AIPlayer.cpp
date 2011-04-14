@@ -386,25 +386,32 @@ int AIAction::getEfficiency()
 				break;
 		}
     case MTGAbility::STANDARD_PUMP:
-    {
-        MTGCardInstance * _target = (MTGCardInstance *) (a->target);
-			 efficiency = 0;
-        if (!target && !dynamic_cast<ALord*> (a))
-            break;
+        {
+            MTGCardInstance * _target = (MTGCardInstance *) (a->target);
+            efficiency = 0;
+            if(!target && !dynamic_cast<ALord*> (a) && (((MTGCardInstance *)a->source)->hasSubtype(Subtypes::TYPE_AURA) || ((MTGCardInstance *)a->source)->hasSubtype(Subtypes::TYPE_EQUIPMENT)))
+            {
+                if(((MTGCardInstance *)a->source)->target)
+                    _target = ((MTGCardInstance *)a->source)->target;
+                target = (MTGCardInstance *)a->source;
+            }
+            if (!target && !dynamic_cast<ALord*> (a))
+                break;
             if(dynamic_cast<ALord*> (a) && !target)
             {
-             target = a->source;
+                target = a->source;
             }
-            
+
 				AbilityFactory af;
         int suggestion = af.abilityEfficiency(a, p, MODE_ABILITY);
         //i do not set a starting eff. on this ability, this allows Ai to sometimes randomly do it as it normally does.
-        if (g->getCurrentGamePhase() == Constants::MTG_PHASE_COMBATBLOCKERS)
+        int currentPhase = g->getCurrentGamePhase();
+        if ((currentPhase == Constants::MTG_PHASE_COMBATBLOCKERS) || (currentPhase == Constants::MTG_PHASE_COMBATATTACKERS))
         {
-					if (suggestion == BAKA_EFFECT_GOOD && target->controller()->isAI())
-					{
+            if (suggestion == BAKA_EFFECT_GOOD && target->controller()->isAI())
+            {
                 if ((_target->defenser || _target->blockers.size()) && ((_target->power < _target->getNextOpponent()->toughness
-                        || _target->toughness < _target->getNextOpponent()->power) || (_target->has(Constants::TRAMPLE))))
+                    || _target->toughness < _target->getNextOpponent()->power) || (_target->has(Constants::TRAMPLE))))
                 {
                     //this pump is based on a start eff. of 20 multiplied by how good the creature is.
                     efficiency = 20 * _target->DangerRanking();
@@ -413,13 +420,14 @@ int AIAction::getEfficiency()
                 {
                     //this means im heading directly for the player, pump this creature as much as possible.
                     efficiency = 100;
+                    if(_target->power > 50)
+                        efficiency -= _target->power;//we don't need to go overboard. better to not put all your eggs in a single basket.
                 }
-					}
-					if (suggestion == BAKA_EFFECT_BAD && !target->controller()->isAI())
-					{
-                    efficiency = 100;
-					}
-
+            }
+        }
+        if (suggestion == BAKA_EFFECT_BAD && !target->controller()->isAI())
+        {
+            efficiency = 100;
         }
         break;
     }
@@ -736,7 +744,8 @@ int AIPlayer::selectAbility()
         int chance = 1;
         if (!forceBestAbilityUse)
             chance = 1 + WRand() % 100;
-        if (action.getEfficiency() >= chance)
+        int actionScore = action.getEfficiency();
+        if (actionScore >= chance)
         {
             if (!clickstream.size())
             {
@@ -1464,9 +1473,13 @@ int AIPlayerBaka::computeActions()
         switch (currentGamePhase)
         {
         case Constants::MTG_PHASE_COMBATBLOCKERS:
-            chooseBlockers();
-            break;
+            {
+                chooseBlockers();
+                selectAbility();
+                break;
+            }
         default:
+            selectAbility();
             break;
         }
         return 1;

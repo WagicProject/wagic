@@ -954,7 +954,7 @@ public:
     MTGGameZone * activeZone;
     string newName;
 
-    GenericActivatedAbility(string newName,int _id, MTGCardInstance * card, MTGAbility * a, ManaCost * _cost, int _tap = 0, string limit = "",
+    GenericActivatedAbility(string newName,int _id, MTGCardInstance * card, MTGAbility * a, ManaCost * _cost, int _tap = 0, string limit = "",MTGAbility * sideEffects = NULL,string usesBeforeSideEffects = "",
             int restrictions = 0, MTGGameZone * dest = NULL);
     int resolve();
     const char * getMenuText();
@@ -1083,7 +1083,7 @@ public:
     string newName;
 
     GenericTargetAbility(string newName,int _id, MTGCardInstance * _source, TargetChooser * _tc, MTGAbility * a, ManaCost * _cost = NULL,
-            int _tap = 0, string limit = "", int restrictions = 0, MTGGameZone * dest = NULL);
+            int _tap = 0, string limit = "",MTGAbility * sideEffects = NULL,string usesBeforeSideEffects = "", int restrictions = 0, MTGGameZone * dest = NULL);
     const char * getMenuText();
     ~GenericTargetAbility();
     GenericTargetAbility * clone() const;
@@ -1802,7 +1802,7 @@ public:
             if(PT.size())
             {
                 SAFE_DELETE(wppt);
-                wppt = NEW WParsedPT(PT,NULL,(MTGCardInstance *) target);
+                wppt = NEW WParsedPT(PT,NULL,(MTGCardInstance *) source);
             }
             MTGCardInstance * _target = (MTGCardInstance *) target;
             _target->power += wppt->power.getValue();
@@ -1827,7 +1827,16 @@ public:
         ((MTGCardInstance *) target)->addToToughness(-wppt->toughness.getValue());
         return 1;
     }
-
+    const char * getMenuText()
+    {                
+        if(PT.size())
+        {
+            SAFE_DELETE(wppt);
+            wppt = NEW WParsedPT(PT,NULL,(MTGCardInstance *) source);
+        }
+        sprintf(menuText, "%i/%i", wppt->power.getValue(), wppt->toughness.getValue());
+        return menuText;
+    }
     APowerToughnessModifier * clone() const
     {
         APowerToughnessModifier * a = NEW APowerToughnessModifier(*this);
@@ -1841,132 +1850,6 @@ public:
         delete (wppt);
     }
 
-};
-
-//Alteration of Power and toughness until end of turn (instant)
-class AInstantPowerToughnessModifierUntilEOT: public InstantAbility
-{
-public:
-    WParsedPT * wppt;
-    string s;
-    AInstantPowerToughnessModifierUntilEOT(int _id, MTGCardInstance * _source, MTGCardInstance * _target, WParsedPT * wppt) :
-        InstantAbility(_id, _source, _target), wppt(wppt)
-    {
-        aType = MTGAbility::STANDARD_PUMP;
-        }
-
-        int resolve()
-        {
-            ((MTGCardInstance *) target)->power += wppt->power.getValue();
-            ((MTGCardInstance *) target)->addToToughness(wppt->toughness.getValue());
-            if(((MTGCardInstance *) target)->has(Constants::INDESTRUCTIBLE) && wppt->toughness.getValue() < 0 && ((MTGCardInstance *) target)->toughness <= 0)
-            {
-                ((MTGCardInstance *) target)->controller()->game->putInGraveyard(((MTGCardInstance *) target));
-            }
-            return 1;
-        }
-
-        int destroy()
-    {
-        ((MTGCardInstance *) target)->power -= wppt->power.getValue();
-        ((MTGCardInstance *) target)->addToToughness(-wppt->toughness.getValue());
-        return 1;
-    }
-
-    const char * getMenuText()
-    {
-        sprintf(menuText, "%i/%i", wppt->power.getValue(), wppt->toughness.getValue());
-        return menuText;
-    }
-
-    AInstantPowerToughnessModifierUntilEOT * clone() const
-    {
-        AInstantPowerToughnessModifierUntilEOT * a = NEW AInstantPowerToughnessModifierUntilEOT(*this);
-        a->wppt = NEW WParsedPT(*(a->wppt));
-        a->isClone = 1;
-        return a;
-    }
-
-    ~AInstantPowerToughnessModifierUntilEOT()
-    {
-        delete wppt;
-    }
-};
-
-//Alteration of Power and Toughness until end of turn (Aura)
-class APowerToughnessModifierUntilEndOfTurn: public ActivatedAbility
-{
-public:
-    AInstantPowerToughnessModifierUntilEOT * ability;
-    int counters;
-    int maxcounters;
-    APowerToughnessModifierUntilEndOfTurn(int id, MTGCardInstance * _source, MTGCardInstance * _target, WParsedPT * wppt,
-            ManaCost * _cost = NULL, int _maxcounters = 0) :
-        ActivatedAbility(id, _source, _cost, 0, 0), maxcounters(_maxcounters)
-    {
-        counters = 0;
-        target = _target;
-        ability = NEW AInstantPowerToughnessModifierUntilEOT(id, _source, _target, wppt);
-        aType = MTGAbility::STANDARD_PUMP;
-    }
-
-    int isReactingToClick(MTGCardInstance * card, ManaCost * cost = NULL)
-    {
-        //The upper level "GenericTargetAbility" takes care of the click so we always return 0 here
-        return 0;
-    }
-
-    void Update(float dt)
-    {
-        if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_AFTER_EOT)
-        {
-            counters = 0;
-        }
-        ActivatedAbility::Update(dt);
-    }
-
-    int fireAbility()
-    {
-        return resolve();
-    }
-
-    const char * getMenuText()
-    {
-        return ability->getMenuText();
-    }
-
-    /* int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL){
-     if (!ActivatedAbility::isReactingToClick(card,mana)) return 0;
-     return (!maxcounters || (counters < maxcounters));
-     }*/
-
-    int resolve()
-    {
-        MTGAbility * a = ability->clone();
-        a->target = target;
-        a->addToGame();
-        counters++;
-        return 1;
-    }
-
-    int addToGame()
-    {
-        resolve();
-        return ActivatedAbility::addToGame();
-    }
-
-    APowerToughnessModifierUntilEndOfTurn * clone() const
-    {
-        APowerToughnessModifierUntilEndOfTurn * a = NEW APowerToughnessModifierUntilEndOfTurn(*this);
-        a->isClone = 1;
-        return a;
-    }
-
-    ~APowerToughnessModifierUntilEndOfTurn()
-    {
-        if (!isClone)
-        SAFE_DELETE(ability);
-    }
 };
 
 class GenericInstantAbility: public InstantAbility, public NestedAbility
@@ -3879,6 +3762,22 @@ public:
     ~ATransformerInstant();
 };
 
+//Adds types/abilities/changes color to a card (generally until end of turn)
+class PTInstant: public InstantAbility
+{
+public:
+    APowerToughnessModifier * ability;
+    WParsedPT * wppt;
+    string s;
+    bool nonstatic;
+    WParsedPT * newWppt;
+    PTInstant(int id, MTGCardInstance * source, MTGCardInstance * target, WParsedPT * wppt,string s = "",bool nonstatic = false);
+    int resolve();
+    const char * getMenuText();
+    PTInstant * clone() const;
+    ~PTInstant();
+};
+
 //switch p/t ueot
 class ASwapPTUEOT: public InstantAbility
 {
@@ -3960,19 +3859,24 @@ public:
 };
 
 //phase based actions
-class APhaseAction: public MTGAbility, public NestedAbility
+class APhaseAction: public MTGAbility
 {
 public:
+    string psMenuText;
+    int abilityId;
+    string sAbility;
     int phase;
+    MTGAbility * ability;
     bool forcedestroy;
     bool next;
+    bool myturn;
+    bool opponentturn;
     Player * abilityOwner;
 
-    APhaseAction(int _id, MTGCardInstance * card, MTGCardInstance * target, MTGAbility * a, int _tap = 0, int restrictions = 0, int _phase =
-        Constants::MTG_PHASE_UPKEEP,bool forcedestroy = false,bool next = true);
+    APhaseAction(int _id, MTGCardInstance * card, MTGCardInstance * target, string sAbility, int _tap = 0, int restrictions = 0, int _phase =
+        Constants::MTG_PHASE_UPKEEP,bool forcedestroy = false,bool next = true,bool myturn = true,bool opponentturn = true);
     void Update(float dt);
     int resolve();
-    int removeAbility();
     const char * getMenuText();
     APhaseAction * clone() const;
     ~APhaseAction();
@@ -3982,9 +3886,10 @@ public:
 class APhaseActionGeneric: public InstantAbility
 {
 public:
+    string sAbility;
     APhaseAction * ability;
-    APhaseActionGeneric(int _id, MTGCardInstance * card, MTGCardInstance * target, MTGAbility * a, int _tap = 0, int restrictions = 0, int _phase =
-            Constants::MTG_PHASE_UPKEEP,bool forcedestroy = false,bool next = true);
+    APhaseActionGeneric(int _id, MTGCardInstance * card, MTGCardInstance * target, string sAbility, int _tap = 0, int restrictions = 0, int _phase =
+            Constants::MTG_PHASE_UPKEEP,bool forcedestroy = false,bool next = true,bool myturn = false,bool opponentturn = false);
     int resolve();
     const char * getMenuText();
     APhaseActionGeneric * clone() const;
@@ -4826,44 +4731,6 @@ public:
     AAspectOfWolf * clone() const
     {
         AAspectOfWolf * a = NEW AAspectOfWolf(*this);
-        a->isClone = 1;
-        return a;
-    }
-};
-
-//1284 Dragon Whelp
-class ADragonWhelp: public APowerToughnessModifierUntilEndOfTurn
-{
-public:
-    ADragonWhelp(int id, MTGCardInstance * card) :
-        APowerToughnessModifierUntilEndOfTurn(id, card, card, NEW WParsedPT(1, 0), NEW ManaCost())
-    {
-        cost->add(Constants::MTG_COLOR_RED, 1);
-    }
-
-    int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL)
-    {
-        if (!ActivatedAbility::isReactingToClick(card, mana)) return 0;
-        return (!maxcounters || (counters < maxcounters));
-    }
-
-    void Update(float dt)
-    {
-        if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_AFTER_EOT && counters > 3)
-        {
-            source->controller()->game->putInGraveyard(source);
-        }
-        APowerToughnessModifierUntilEndOfTurn::Update(dt);
-    }
-
-    virtual ostream& toString(ostream& out) const
-    {
-        out << "ADragonWhelp ::: (";
-        return APowerToughnessModifierUntilEndOfTurn::toString(out) << ")";
-    }
-    ADragonWhelp * clone() const
-    {
-        ADragonWhelp * a = NEW ADragonWhelp(*this);
         a->isClone = 1;
         return a;
     }
