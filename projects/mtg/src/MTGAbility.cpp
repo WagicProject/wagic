@@ -1033,6 +1033,8 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             return parseMagicLine(s1, id, spell, card);
         }
         DebugTrace("INFO parseMagicLine: Alternative Cost was not fulfilled for " << s);
+        if(tc)
+        SAFE_DELETE(tc);
         return NULL;
     }
     
