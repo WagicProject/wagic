@@ -5595,7 +5595,7 @@ toughness=4
 name=Bestial Fury
 target=creature
 auto=@next upkeep:draw:1 controller
-auto=@combat(blocked) source(mytgt):4/0 ueot&& trample ueot
+auto=@combat(blocked,turnlimited) source(mytgt):4/0 ueot && trample ueot
 text=Enchant creature -- When Bestial Fury enters the battlefield, draw a card at the beginning of the next turn's upkeep. -- Whenever enchanted creature becomes blocked, it gets +4/+0 and gains trample until end of turn.
 mana={2}{R}
 type=Enchantment
@@ -10172,7 +10172,7 @@ toughness=2
 [/card]
 [card]
 name=Chambered Nautilus
-auto=@combat(blocked) source(this):may draw:1 controller
+auto=@combat(blocked,turnlimited) source(this):may draw:1 controller
 text=Whenever Chambered Nautilus becomes blocked, you may draw a card.
 mana={2}{U}
 type=Creature
@@ -12500,7 +12500,7 @@ toughness=2
 [card]
 name=Corrupt Official
 auto={2}{B}:regenerate
-auto=@combat(blocked) source(this):discard:1 opponent
+auto=@combat(blocked,turnlimited) source(this):discard:1 opponent
 text={2}{B}: Regenerate Corrupt Official. -- Whenever Corrupt Official becomes blocked, defending player discards a card at random.
 mana={4}{B}
 type=Creature
@@ -14598,7 +14598,7 @@ toughness=6
 [/card]
 [card]
 name=Deathcoil Wurm
-auto=@combat(blocked) source(this):may name(assign combat damage to defending player) thisforeach(power>=1) damage:1 opponent && fog from(this)
+auto=@combat(blocked,turnlimited) source(this):may name(assign combat damage to defending player) thisforeach(power>=1) damage:1 opponent && fog from(this)
 text=You may have Deathcoil Wurm assign its combat damage as though it weren't blocked.
 mana={6}{G}{G}
 type=Creature
@@ -15131,7 +15131,7 @@ toughness=1
 [/card]
 [card]
 name=Deepwood Tantiv
-auto=@combat(blocked) source(this):life:2 conroller
+auto=@combat(blocked,turnlimited) source(this):life:2 conroller
 text=Whenever Deepwood Tantiv becomes blocked, you gain 2 life.
 mana={4}{G}
 type=Creature
@@ -15141,7 +15141,7 @@ toughness=4
 [/card]
 [card]
 name=Deepwood Wolverine
-auto=@combat(blocked) source(this):2/0 ueot
+auto=@combat(blocked,turnlimited) source(this):2/0 ueot
 text=Whenever Deepwood Wolverine becomes blocked, it gets +2/+0 until end of turn.
 mana={G}
 type=Creature
@@ -17148,7 +17148,7 @@ toughness=3
 [/card]
 [card]
 name=Drelnoch
-auto=@combat(blocked) source(this):may draw:2 controller
+auto=@combat(blocked,turnlimited) source(this):may draw:2 controller
 text=Whenever Drelnoch becomes blocked, you may draw two cards.
 mana={4}{U}
 type=Creature
@@ -17742,7 +17742,7 @@ toughness=1
 [/card]
 [card]
 name=Duskworker
-auto=@combat(blocked) source(this):all(this) regenerate
+auto=@combat(blocked,turnlimited) source(this):all(this) regenerate
 auto={3}:1/0
 text=Whenever Duskworker becomes blocked, regenerate it. -- {3}: Duskworker gets +1/+0 until end of turn.
 mana={4}
@@ -17789,7 +17789,7 @@ type=Enchantment
 [/card]
 [card]
 name=Dwarven Berserker
-auto=@combat(blocked) source(this):all(this) 3/0 ueot && all(this) trample ueot
+auto=@combat(blocked,turnlimited) source(this):all(this) 3/0 ueot && all(this) trample ueot
 text=Whenever Dwarven Berserker becomes blocked, it gets +3/+0 and gains trample until end of turn.
 mana={1}{R}
 type=Creature
@@ -19693,7 +19693,7 @@ type=Enchantment
 [card]
 name=Escaped Null
 abilities=lifelink
-auto=@combat(blocking,blocked) source(this):5/0 ueot
+auto=@combat(blocking,blocked,turnlimited) source(this):5/0 ueot
 text=Lifelink -- Whenever Escaped Null blocks or becomes blocked, it gets +5/+0 until end of turn.
 mana={3}{B}
 type=Creature
@@ -21218,7 +21218,7 @@ toughness=1
 [card]
 name=Ferocity
 target=creature
-auto=@combat(blocking,blocked) source(mytgt):may counter(1/1,1)
+auto=@combat(blocking,blocked,turnlimited) source(mytgt):may counter(1/1,1)
 text=Enchant creature -- Whenever enchanted creature blocks or becomes blocked, you may put a +1/+1 counter on it.
 mana={1}{G}
 type=Enchantment
@@ -22516,7 +22516,7 @@ subtype=Aura
 [/card]
 [card]
 name=Flint Golem
-auto=@combat(blocked) source(this):deplete:3 opponent
+auto=@combat(blocked,turnlimited) source(this):deplete:3 opponent
 text=Whenever Flint Golem becomes blocked, defending player puts the top three cards of his or her library into his or her graveyard.
 mana={4}
 type=Artifact Creature
@@ -24910,7 +24910,7 @@ subtype=Aura
 [card]
 name=Gift of the Woods
 target=creature
-auto=@combat(blocking,blocked) source(mytgt):0/3 ueot && life:1 controller
+auto=@combat(blocking,blocked,turnlimited) source(mytgt):0/3 ueot && life:1 controller
 text=Enchant creature -- Whenever enchanted creature blocks or becomes blocked, it gets +0/+3 until end of turn and you gain 1 life.
 mana={G}
 type=Enchantment
@@ -25516,7 +25516,7 @@ toughness=1
 [/card]
 [card]
 name=Goblin Cadets
-auto=@combat(blocking,blocked) source(this):removefromcombat && moveTo(opponentbattlefield)
+auto=@combat(blocking,blocked,turnlimited) source(this):removefromcombat && moveTo(opponentbattlefield)
 text=Whenever Goblin Cadets blocks or becomes blocked, target opponent gains control of it. (This removes Goblin Cadets from combat.)
 mana={R}
 type=Creature
@@ -26119,7 +26119,7 @@ toughness=1
 [/card]
 [card]
 name=Goblin Swine-Rider
-auto=@combat(blocked) source(this):damage:2 all(creature[attacking;blocking])
+auto=@combat(blocked,turnlimited) source(this):damage:2 all(creature[attacking;blocking])
 text=Whenever Goblin Swine-Rider becomes blocked, it deals 2 damage to each attacking creature and each blocking creature.
 mana={R}
 type=Creature
@@ -27398,7 +27398,7 @@ type=Sorcery
 [/card]
 [card]
 name=Groffskithur
-auto=@combat(blocked) source(this):may moveTo(myhand) target(groffskithur|mygraveyard)
+auto=@combat(blocked,turnlimited) source(this):may moveTo(myhand) target(groffskithur|mygraveyard)
 text=Whenever Groffskithur becomes blocked, you may return target card named Groffskithur from your graveyard to your hand.
 mana={5}{G}
 type=Creature
@@ -27726,7 +27726,7 @@ toughness=1
 name=Gustcloak Cavalier
 abilities=flanking
 auto=@combat(attacking) source(this):may tap target(creature)
-auto=@combat(blocked) source(this):may name(untap it and remove it from combat) untap && removefromcombat
+auto=@combat(blocked,turnlimited) source(this):may name(untap it and remove it from combat) untap && removefromcombat
 text=Flanking (Whenever a creature without flanking blocks this creature, the blocking creature gets -1/-1 until end of turn.) -- Whenever Gustcloak Cavalier attacks, you may tap target creature. -- Whenever Gustcloak Cavalier becomes blocked, you may untap Gustcloak Cavalier and remove it from combat.
 mana={3}{W}{W}
 type=Creature
@@ -27737,7 +27737,7 @@ toughness=2
 [card]
 name=Gustcloak Harrier
 abilities=flying
-auto=@combat(blocked) source(this):may name(untap it and remove it from combat) untap && removefromcombat
+auto=@combat(blocked,turnlimited) source(this):may name(untap it and remove it from combat) untap && removefromcombat
 text=Flying -- Whenever Gustcloak Harrier becomes blocked, you may untap it and remove it from combat.
 mana={1}{W}{W}
 type=Creature
@@ -27747,7 +27747,7 @@ toughness=2
 [/card]
 [card]
 name=Gustcloak Runner
-auto=@combat(blocked) source(this):may name(untap it and remove it from combat) untap && removefromcombat
+auto=@combat(blocked,turnlimited) source(this):may name(untap it and remove it from combat) untap && removefromcombat
 text=Whenever Gustcloak Runner becomes blocked, you may untap it and remove it from combat.
 mana={W}
 type=Creature
@@ -27758,7 +27758,7 @@ toughness=1
 [card]
 name=Gustcloak Savior
 abilities=flying
-auto=@combat(blocked) source(creature|myBattlefield):may name(untap it and remove it from combat) all(trigger[to]) untap && all(trigger[to]) removefromcombat
+auto=@combat(blocked,turnlimited) source(creature|myBattlefield):may name(untap it and remove it from combat) all(trigger[to]) untap && all(trigger[to]) removefromcombat
 text=Flying -- Whenever a creature you control becomes blocked, you may untap that creature and remove it from combat.
 mana={4}{W}
 type=Creature
@@ -27768,7 +27768,7 @@ toughness=4
 [/card]
 [card]
 name=Gustcloak Sentinel
-auto=@combat(blocked) source(this):may name(untap it and remove it from combat) untap && removefromcombat
+auto=@combat(blocked,turnlimited) source(this):may name(untap it and remove it from combat) untap && removefromcombat
 text=Whenever Gustcloak Sentinel becomes blocked, you may untap it and remove it from combat.
 mana={2}{W}{W}
 type=Creature
@@ -27779,7 +27779,7 @@ toughness=3
 [card]
 name=Gustcloak Skirmisher
 abilities=flying
-auto=@combat(blocked) source(this):may name(untap it and remove it from combat) untap && removefromcombat
+auto=@combat(blocked,turnlimited) source(this):may name(untap it and remove it from combat) untap && removefromcombat
 text=Flying -- Whenever Gustcloak Skirmisher becomes blocked, you may untap it and remove it from combat.
 mana={3}{W}
 type=Creature
@@ -29230,7 +29230,7 @@ type=Land
 [/card]
 [card]
 name=Hidden Ancients
-auto=@movedto(creature|opponentstack) from(opponenthand) once:transforms((removetypes)) forever && transforms((Treefolk Creature,setpower=5,settoughness=5)) forever
+auto=@movedto(enchantment|opponentstack) from(opponenthand) once:transforms((removetypes)) forever && transforms((Treefolk Creature,setpower=5,settoughness=5)) forever
 text=When an opponent casts an enchantment spell, if Hidden Ancients is an enchantment, Hidden Ancients becomes a 5/5 Treefolk creature.
 mana={1}{G}
 type=Enchantment
@@ -29633,7 +29633,7 @@ subtype=Shrine
 [/card]
 [card]
 name=Honden of Life's Web
-auto=@each my upkeep:token(Spirit,Creature Spirit,1/1)*type:shrine
+auto=@each my upkeep:foreach(shrine|mybattlefield) token(Spirit,Creature Spirit,1/1)*1
 text=At the beginning of your upkeep, put a 1/1 colorless Spirit creature token onto the battlefield for each Shrine you control.
 mana={4}{G}
 type=Legendary Enchantment
@@ -30663,7 +30663,7 @@ toughness=1
 [/card]
 [card]
 name=Ignoble Soldier
-auto=@combat(blocked) source(this):fog from(this)
+auto=@combat(blocked,turnlimited) source(this):fog from(this)
 text=Whenever Ignoble Soldier becomes blocked, prevent all combat damage that would be dealt by it this turn.
 mana={2}{W}
 type=Creature
@@ -33333,7 +33333,7 @@ toughness=4
 [/card]
 [card]
 name=Karplusan Wolverine
-auto=@combat(blocked) source(this):may damage:1 target(creature,player)
+auto=@combat(blocked,turnlimited) source(this):may damage:1 target(creature,player)
 text=Whenever Karplusan Wolverine becomes blocked, you may have it deal 1 damage to target creature or player.
 mana={R}
 type=Snow Creature
@@ -35425,7 +35425,7 @@ toughness=4
 [/card]
 [card]
 name=Laccolith Grunt
-auto=@combat(blocked) source(this):may name(assign combat damage to a creature) target(creature) dynamicability<!powerstrike!> && fog from(this)
+auto=@combat(blocked,turnlimited) source(this):may name(assign combat damage to a creature) target(creature) dynamicability<!powerstrike!> && fog from(this)
 text=Whenever Laccolith Grunt becomes blocked, you may have it deal damage equal to its power to target creature. If you do, Laccolith Grunt assigns no combat damage this turn.
 mana={2}{R}
 type=Creature
@@ -35435,7 +35435,7 @@ toughness=2
 [/card]
 [card]
 name=Laccolith Titan
-auto=@combat(blocked) source(this):may name(assign combat damage to a creature) target(creature) dynamicability<!powerstrike!> && fog from(this)
+auto=@combat(blocked,turnlimited) source(this):may name(assign combat damage to a creature) target(creature) dynamicability<!powerstrike!> && fog from(this)
 text=Whenever Laccolith Titan becomes blocked, you may have it deal damage equal to its power to target creature. If you do, Laccolith Titan assigns no combat damage this turn.
 mana={5}{R}{R}
 type=Creature
@@ -35445,7 +35445,7 @@ toughness=6
 [/card]
 [card]
 name=Laccolith Warrior
-auto=@combat(blocked) source(this):may name(assign combat damage to a creature) target(creature) dynamicability<!powerstrike!> && fog from(this)
+auto=@combat(blocked,turnlimited) source(this):may name(assign combat damage to a creature) target(creature) dynamicability<!powerstrike!> && fog from(this)
 text=Whenever Laccolith Warrior becomes blocked, you may have it deal damage equal to its power to target creature. If you do, Laccolith Warrior assigns no combat damage this turn.
 mana={2}{R}{R}
 type=Creature
@@ -35455,7 +35455,7 @@ toughness=3
 [/card]
 [card]
 name=Laccolith Whelp
-auto=@combat(blocked) source(this):may name(assign combat damage to a creature) target(creature) dynamicability<!powerstrike!> && fog from(this)
+auto=@combat(blocked,turnlimited) source(this):may name(assign combat damage to a creature) target(creature) dynamicability<!powerstrike!> && fog from(this)
 text=Whenever Laccolith Whelp becomes blocked, you may have it deal damage equal to its power to target creature. If you do, Laccolith Whelp assigns no combat damage this turn.
 mana={R}
 type=Creature
@@ -36039,7 +36039,7 @@ toughness=2
 [/card]
 [card]
 name=Leery Fogbeast
-auto=@combat(blocked) source(this):fog
+auto=@combat(blocked,turnlimited) source(this):fog
 text=Whenever Leery Fogbeast becomes blocked, prevent all combat damage that would be dealt this turn.
 mana={2}{G}
 type=Creature
@@ -36689,7 +36689,7 @@ toughness=1
 name=Lim-Dul's Paladin
 abilities=trample
 auto=upcostmulti[{discard(*|myhand)} sacrifice && draw:1 controller
-auto=@combat(blocked) source(this):6/3 ueot
+auto=@combat(blocked,turnlimited) source(this):6/3 ueot
 auto=@combat(notblocked) source(this):preventAllCombatDamage from(this) ueot && life:-4 opponent
 text=Trample -- At the beginning of your upkeep, sacrifice Lim-Dul's Paladin unless you discard a card. If you sacrifice it this way, draw a card. -- Whenever Lim-Dul's Paladin becomes blocked, it gets +6/+3 until end of turn. -- Whenever Lim-Dul's Paladin attacks and isn't blocked, it assigns no combat damage this turn and defending player loses 4 life.
 mana={2}{B}{R}
@@ -37100,7 +37100,7 @@ toughness=1
 [/card]
 [card]
 name=Lone Wolf
-auto=@combat(blocked) source(this):may name(assign combat damage to defending player) thisforeach(power>=1) damage:1 opponent && fog from(this)
+auto=@combat(blocked,turnlimited) source(this):may name(assign combat damage to defending player) thisforeach(power>=1) damage:1 opponent && fog from(this)
 text=You may have Lone Wolf assign its combat damage as though it weren't blocked.
 mana={2}{G}
 type=Creature
@@ -42438,7 +42438,7 @@ type=Sorcery
 [/card]
 [card]
 name=Nature's Will
-auto=@damaged(player) from(creature|myBattlefield):tap all(land|opponentBattlefield) && untap all(land|myBattlefield)
+auto=@combatdamaged(player) from(creature|myBattlefield):tap all(land|opponentBattlefield) && untap all(land|myBattlefield)
 text=Whenever one or more creatures you control deal combat damage to a player, tap all lands that player controls and untap all lands you control.
 mana={2}{G}{G}
 type=Enchantment
@@ -43562,7 +43562,7 @@ toughness=3
 [/card]
 [card]
 name=Norwood Warrior
-auto=@combat(blocked) source(this):1/1 ueot
+auto=@combat(blocked,turnlimited) source(this):1/1 ueot
 text=Whenever Norwood Warrior becomes blocked, it gets +1/+1 until end of turn.
 mana={2}{G}
 type=Creature
@@ -47514,7 +47514,7 @@ subtype=Aura
 [/card]
 [card]
 name=Port Inspector
-auto=@combat(blocked) source(this):name(look at opponents hand) target(*|opponenthand) 0/0 ueot
+auto=@combat(blocked,turnlimited) source(this):name(look at opponents hand) target(*|opponenthand) 0/0 ueot
 text=Whenever Port Inspector becomes blocked, you may look at defending player's hand.
 mana={1}{U}
 type=Creature
@@ -47768,7 +47768,7 @@ type=Sorcery
 [card]
 name=Pretender's Claim
 target=creature
-auto=@combat(blocked) source(mytgt):tap all(land|opponentbattlefield)
+auto=@combat(blocked,turnlimited) source(mytgt):tap all(land|opponentbattlefield)
 text=Enchant creature -- Whenever enchanted creature becomes blocked, tap all lands defending player controls.
 mana={1}{B}
 type=Enchantment
@@ -47794,7 +47794,7 @@ toughness=1
 [/card]
 [card]
 name=Pride of Lions
-auto=@combat(blocked) source(this):may name(assign combat damage to defending player) thisforeach(power>=1) damage:1 opponent && fog from(this)
+auto=@combat(blocked,turnlimited) source(this):may name(assign combat damage to defending player) thisforeach(power>=1) damage:1 opponent && fog from(this)
 text=You may have Pride of Lions assign its combat damage as though it weren't blocked.
 mana={3}{G}{G}
 type=Creature
@@ -50079,7 +50079,7 @@ type=Artifact
 [/card]
 [card]
 name=Razorclaw Bear
-auto=@combat(blocked) source(this):2/2 ueot
+auto=@combat(blocked,turnlimited) source(this):2/2 ueot
 text=Whenever Razorclaw Bear becomes blocked, it gets +2/+2 until end of turn.
 mana={2}{G}{G}
 type=Creature
@@ -51365,7 +51365,7 @@ toughness=6
 [card]
 name=Rhox
 auto={g}{2}:regenerate
-auto=@combat(blocked) source(this):may name(assign combat damage to defending player) thisforeach(power>=1) damage:1 opponent && fog from(this)
+auto=@combat(blocked,turnlimited) source(this):may name(assign combat damage to defending player) thisforeach(power>=1) damage:1 opponent && fog from(this)
 text=You may have Rhox assign its combat damage as though it weren't blocked. -- {2}{G}: Regenerate Rhox. (The next time this creature would be destroyed this turn, it isn't. Instead tap it, remove all damage from it, and remove it from combat.)
 mana={4}{G}{G}
 type=Creature
@@ -53009,7 +53009,7 @@ type=Sorcery
 [/card]
 [card]
 name=Sacred Prey
-auto=@combat(blocked) source(this):life:1 controller
+auto=@combat(blocked,turnlimited) source(this):life:1 controller
 text=Whenever Sacred Prey becomes blocked, you gain 1 life.
 mana={G}
 type=Creature
@@ -53557,7 +53557,7 @@ type=Land
 [/card]
 [card]
 name=Saprazzan Heir
-auto=@combat(blocked) source(this):may draw:3 controller
+auto=@combat(blocked,turnlimited) source(this):may draw:3 controller
 text=Whenever Saprazzan Heir becomes blocked, you may draw three cards.
 mana={1}{U}
 type=Creature
@@ -53590,7 +53590,7 @@ toughness=5
 [/card]
 [card]
 name=Saprazzan Raider
-auto=@combat(blocked) source(this):moveTo(myhand) all(this)
+auto=@combat(blocked,turnlimited) source(this):moveTo(myhand) all(this)
 text=When Saprazzan Raider becomes blocked, return it to its owner's hand.
 mana={2}{U}
 type=Creature
@@ -56986,7 +56986,7 @@ type=Instant
 [/card]
 [card]
 name=Silkenfist Fighter
-auto=@combat(blocked) source(this):untap
+auto=@combat(blocked,turnlimited) source(this):untap
 text=Whenever Silkenfist Fighter becomes blocked, untap it.
 mana={1}{W}
 type=Creature
@@ -56996,7 +56996,7 @@ toughness=3
 [/card]
 [card]
 name=Silkenfist Order
-auto=@combat(blocked) source(this):untap
+auto=@combat(blocked,turnlimited) source(this):untap
 text=Whenever Silkenfist Order becomes blocked, untap it.
 mana={3}{W}{W}
 type=Creature
@@ -58275,7 +58275,7 @@ subtype=Equipment
 [/card]
 [card]
 name=Slashing Tiger
-auto=@combat(blocked) source(this):2/2 ueot
+auto=@combat(blocked,turnlimited) source(this):2/2 ueot
 text=Whenever Slashing Tiger becomes blocked, it gets +2/+2 until end of turn.
 mana={2}{G}{G}
 type=Creature
@@ -58537,7 +58537,7 @@ toughness=1
 [/card]
 [card]
 name=Slith Strider
-auto=@combat(blocked) source(this):draw:1 controller
+auto=@combat(blocked,turnlimited) source(this):draw:1 controller
 auto=@damaged(player) from(this):counter(1/1,1)
 text=Whenever Slith Strider becomes blocked, draw a card. -- Whenever Slith Strider deals combat damage to a player, put a +1/+1 counter on it.
 mana={1}{U}{U}
@@ -58843,7 +58843,7 @@ toughness=1
 [/card]
 [card]
 name=Snorting Gahr
-auto=@combat(blocked) source(this):2/2 ueot
+auto=@combat(blocked,turnlimited) source(this):2/2 ueot
 text=Whenever Snorting Gahr becomes blocked, it gets +2/+2 until end of turn.
 mana={2}{G}{G}
 type=Creature
@@ -65374,7 +65374,7 @@ toughness=0
 [/card]
 [card]
 name=Thorn Elemental
-auto=@combat(blocked) source(this):may name(assign combat damage to defending player) thisforeach(power>=1) damage:1 opponent && fog from(this)
+auto=@combat(blocked,turnlimited) source(this):may name(assign combat damage to defending player) thisforeach(power>=1) damage:1 opponent && fog from(this)
 text=You may have Thorn Elemental assign its combat damage as though it weren't blocked.
 mana={5}{G}{G}
 type=Creature
@@ -66786,7 +66786,7 @@ type=Artifact
 [card]
 name=Tornado Elemental
 auto=damage:6 all(creature[flying])
-auto=@combat(blocked) source(this):may name(assign combat damage to defending player) thisforeach(power>=1) damage:1 opponent && fog from(this)
+auto=@combat(blocked,turnlimited) source(this):may name(assign combat damage to defending player) thisforeach(power>=1) damage:1 opponent && fog from(this)
 text=When Tornado Elemental enters the battlefield, it deals 6 damage to each creature with flying. -- You may have Tornado Elemental assign its combat damage as though it weren't blocked.
 mana={5}{G}{G}
 type=Creature
@@ -67142,7 +67142,7 @@ toughness=3
 [/card]
 [card]
 name=Trained Cheetah
-auto=@combat(blocked) source(this):1/1 ueot
+auto=@combat(blocked,turnlimited) source(this):1/1 ueot
 text=Whenever Trained Cheetah becomes blocked, it gets +1/+1 until end of turn.
 mana={2}{G}
 type=Creature
@@ -67859,7 +67859,7 @@ toughness=2
 name=True Conviction
 auto=lord(creature|myBattlefield) double strike
 auto=lord(creature|myBattlefield) lifelink
-text=Creatures you control have doublestrike and lifelink.
+text=Creatures you control have double strike and lifelink.
 mana={3}{W}{W}{W}
 type=Enchantment
 [/card]
@@ -68585,7 +68585,7 @@ abilities=trample
 auto=aslongas(other treefolk|mybattlefield) choice notatarget(other treefolk|mybattlefield) (blink)forsrc oneshot
 auto=aslongas(other warrior|mybattlefield) choice notatarget(other warrior|mybattlefield) (blink)forsrc oneshot
 auto=choice sacrifice
-auto=@combat(blocked) source(creature|mybattlefield):all(trigger[to]) 0/5 ueot
+auto=@combat(blocked,turnlimited) source(creature|mybattlefield):all(trigger[to]) 0/5 ueot
 text=Trample -- Champion a Treefolk or Warrior (When this enters the battlefield, sacrifice it unless you exile another Treefolk or Warrior you control. When this leaves the battlefield, that card returns to the battlefield.) -- Whenever a creature you control becomes blocked, it gets +0/+5 until end of turn.
 mana={3}{G}
 type=Creature
@@ -69459,7 +69459,7 @@ toughness=4
 [/card]
 [card]
 name=Vedalken Ghoul
-auto=@combat(blocked) source(this):life:-4 opponent
+auto=@combat(blocked,turnlimited) source(this):life:-4 opponent
 text=Whenever Vedalken Ghoul becomes blocked, defending player loses 4 life.
 mana={U}{B}
 type=Creature
@@ -73846,7 +73846,7 @@ type=Instant
 [/card]
 [card]
 name=Wolf Pack
-auto=@combat(blocked) source(this):may name(assign combat damage to defending player) thisforeach(power>=1) damage:1 opponent && fog from(this)
+auto=@combat(blocked,turnlimited) source(this):may name(assign combat damage to defending player) thisforeach(power>=1) damage:1 opponent && fog from(this)
 text=You may have Wolf Pack assign its combat damage as though it weren't blocked.
 mana={6}{G}{G}
 type=Creature
