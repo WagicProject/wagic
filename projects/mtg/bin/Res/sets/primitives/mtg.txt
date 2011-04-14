@@ -2037,9 +2037,8 @@ toughness=2
 [card]
 name=Angry Mob
 abilities=trample
-auto=foreach(swamp|opponentBattlefield) 1/1 ueot
-auto=@movedto(swamp|opponentBattlefield):-1/-1 ueot
-auto=@each my beginofturn:foreach(swamp|opponentBattlefield) 1/1 ueot oneshot
+auto=phaseaction[my untap] type:swamp:opponentbattlefield/type:swamp:opponentbattlefield ueot nonstatic
+auto=type:swamp:opponentbattlefield/type:swamp:opponentbattlefield ueot nonstatic
 text=Trample -- As long as it's your turn, Angry Mob's power and toughness are each equal to 2 plus the number of Swamps your opponents control. As long as it's not your turn, Angry Mob's power and toughness are each 2.
 mana={2}{W}{W}
 type=Creature
@@ -2400,10 +2399,10 @@ toughness=5
 [card]
 name=Arbor Elf
 auto={t}:untap target(forest)
-text={t}:untap target forest.
-mana={g}
-type=creature
-subtype=elf druid
+text={T}: Untap target Forest.
+mana={G}
+type=Creature
+subtype=Elf Druid
 power=1
 toughness=1
 [/card]
@@ -3298,6 +3297,16 @@ mana={1}{BR}{BR}{BR}
 type=Creature
 subtype=Elemental Knight
 power=4
+toughness=1
+[/card]
+[card]
+name=Ashling the Pilgrim
+auto={1}{r}:counter(1/1,1) limit^thisforeach(counter{1/1.1}) damage:1 all(creature) && thisforeach(counter{1/1.1}) damage:1 all(player) && removeallcounters(1/1)^3
+text={1}{R}: Put a +1/+1 counter on Ashling the Pilgrim. If this is the third time this ability has resolved this turn, remove all +1/+1 counters from Ashling the Pilgrim, and it deals that much damage to each creature and each player.
+mana={1}{R}
+type=Legendary Creature
+subtype=Elemental Shaman
+power=1
 toughness=1
 [/card]
 [card]
@@ -16732,7 +16741,7 @@ toughness=6
 [card]
 name=Dragon Whelp
 abilities=flying
-alias=1284
+auto={r}:+1/0 ueot limit^phaseaction[endofturn] sacrifice^4
 text=Flying -- {R}: Dragon Whelp gets +1/+0 until end of turn. If this ability has been activated four or more times this turn, sacrifice Dragon Whelp at the beginning of the next end step.
 mana={2}{R}{R}
 type=Creature
@@ -20800,6 +20809,16 @@ text=Enchant land -- Enchanted land has "At the beginning of your upkeep, you ma
 mana={W}{W}{W}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+name=Farrelite Priest
+auto={1}:add{w} limit^phaseaction[endofturn] sacrifice^4
+text={1}: Add {W} to your mana pool. If this ability has been activated four or more times this turn, sacrifice Farrelite Priest at the beginning of the next end step.
+mana={1}{W}{W}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=3
 [/card]
 [card]
 name=Farrel's Zealot
@@ -31229,6 +31248,16 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Initiates of the Ebon Hand
+auto={1}:add{b} limit^phaseaction[endofturn] sacrifice^4
+text={1}: Add {B} to your mana pool. If this ability has been activated four or more times this turn, sacrifice Initiates of the Ebon Hand at the beginning of the next end step.
+mana={B}
+type=Creature
+subtype=Cleric
+power=1
+toughness=1
+[/card]
+[card]
 name=Inkfathom Infiltrator
 abilities=unblockable,cantblock
 text=Inkfathom Infiltrator can't block and is unblockable.
@@ -31310,6 +31339,16 @@ text=When Inner-Flame Acolyte enters the battlefield, target creature gets +2/+0
 mana={1}{R}{R}
 type=Creature
 subtype=Elemental Shaman
+power=2
+toughness=2
+[/card]
+[card]
+name=Inner-Flame Igniter
+auto={2}{r}:all(creature|mybattlefield) 1/0 ueot limit^all(creature|mybattlefield) first strike ueot^3
+text={2}{R}: Creatures you control get +1/+0 until end of turn. If this is the third time this ability has resolved this turn, creatures you control gain first strike until end of turn.
+mana={2}{R}
+type=Creature
+subtype=Elemental Warrior
 power=2
 toughness=2
 [/card]
@@ -59579,6 +59618,16 @@ power=4
 toughness=5
 [/card]
 [card]
+name=Soulbright Flamekin
+auto={2}:target(creature) trample ueot limit^add{R}{R}{R}{R}{R}{R}{R}{R} ^3
+text={2}: Target creature gains trample until end of turn. If this is the third time this ability has resolved this turn, you may add {R}{R}{R}{R}{R}{R}{R}{R} to your mana pool.
+mana={1}{R}
+type=Creature
+subtype=Elemental Shaman
+power=2
+toughness=1
+[/card]
+[card]
 name=Soulcatcher
 abilities=flying
 auto=@movedTo(graveyard) from(creature[flying]|battlefield):counter(1/1)
@@ -65982,7 +66031,7 @@ type=Enchantment
 name=Tidal Kraken
 abilities=unblockable
 text=Tidal Kraken is unblockable.
-mana={5}{u}{u}{u}
+mana={5}{U}{U}{U}
 type=Creature
 subtype=Kraken
 power=6
