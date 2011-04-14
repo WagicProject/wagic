@@ -40581,8 +40581,8 @@ toughness=1
 [/card]
 [card]
 name=Mogg Flunkies
-auto=this(attacking) aslongas(creature[attacking]|myBattlefield) removefromcombat <2
-auto=this(blocking) aslongas(creature[blocking]|myBattlefield) removefromcombat <2
+auto=@combat(attackedalone) source(this):all(this) removefromcombat
+auto=@combat(blocking) source(this): aslongas(creature[blocking]|mybattlefield) all(this) removefromcombat <2
 text=Mogg Flunkies can't attack or block alone.
 mana={1}{R}
 type=Creature
