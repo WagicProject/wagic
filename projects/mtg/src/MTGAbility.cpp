@@ -4087,27 +4087,8 @@ int ActivatedAbility::reactToClick(MTGCardInstance * card)
     counters++;
     if(sideEffect && usesBeforeSideEffects.size())
     {
-        WParsedInt * use = NEW WParsedInt(usesBeforeSideEffects.c_str(),NULL,source);
-        uses = use->getValue();
-        delete use;
-        if(counters == uses)
-        {
-            sa = sideEffect->clone();
-            sa->target = this->target;
-            sa->source = this->source;
-            if(sa->oneShot)
-            {
-                sa->fireAbility();
-            }
-            else
-            {
-                GenericInstantAbility * wrapper = NEW GenericInstantAbility(1, source, (Damageable *) (this->target), sa);
-                wrapper->addToGame();
-            }
-        }
-
+        activeSideEffect();
     }
-
     fireAbility();
     return 1;
 
@@ -4154,25 +4135,7 @@ int ActivatedAbility::reactToTargetClick(Targetable * object)
         counters++;
         if(sideEffect && usesBeforeSideEffects.size())
         {
-            WParsedInt * use = NEW WParsedInt(usesBeforeSideEffects.c_str(),NULL,source);
-            uses = use->getValue();
-            delete use;
-            if(counters == uses)
-            {
-                sa = sideEffect->clone();
-                sa->target = this->target;
-                sa->source = this->source;
-                if(sa->oneShot)
-                {
-                    sa->fireAbility();
-                }
-                else
-                {
-                    GenericInstantAbility * wrapper = NEW GenericInstantAbility(1, source, (Damageable *) (this->target), sa);
-                    wrapper->addToGame();
-                }
-            }
-
+            activeSideEffect();
         }
         this->resolve();
         return 1;
@@ -4180,28 +4143,34 @@ int ActivatedAbility::reactToTargetClick(Targetable * object)
     counters++;
     if(sideEffect && usesBeforeSideEffects.size())
     {
-        WParsedInt * use = NEW WParsedInt(usesBeforeSideEffects.c_str(),NULL,source);
-        uses = use->getValue();
-        delete use;
-        if(counters == uses)
-        {
-            sa = sideEffect->clone();
-            sa->target = this->target;
-            sa->source = this->source;
-            if(sa->oneShot)
-            {
-                sa->fireAbility();
-            }
-            else
-            {
-                GenericInstantAbility * wrapper = NEW GenericInstantAbility(1, source, (Damageable *) (this->target), sa);
-                wrapper->addToGame();
-            }
-        }
+        activeSideEffect();
     }
     fireAbility();
     return 1;
 
+}
+
+void ActivatedAbility::activeSideEffect()
+{
+    WParsedInt * use = NEW WParsedInt(usesBeforeSideEffects.c_str(),NULL,source);
+    uses = use->getValue();
+    delete use;
+    if(counters == uses)
+    {
+        sa = sideEffect->clone();
+        sa->target = this->target;
+        sa->source = this->source;
+        if(sa->oneShot)
+        {
+            sa->fireAbility();
+        }
+        else
+        {
+            GenericInstantAbility * wrapper = NEW GenericInstantAbility(1, source, (Damageable *) (this->target), sa);
+            wrapper->addToGame();
+        }
+    }
+    return;
 }
 
 ActivatedAbility::~ActivatedAbility()
