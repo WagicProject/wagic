@@ -1817,7 +1817,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
                 return tok;
             }
         }
-
+        size_t realEnd = s.find(")", found);
         end = s.find(",", found);
         string sname = s.substr(found + 6, end - found - 6);
         size_t previous = end + 1;
@@ -1825,6 +1825,8 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         string stypes = s.substr(previous, end - previous);
         previous = end + 1;
         end = s.find(",", previous);
+        if(end == string::npos)
+        end = realEnd;
         string spt = s.substr(previous, end - previous);
         int value = 0;
         int power, toughness;

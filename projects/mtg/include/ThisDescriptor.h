@@ -98,6 +98,13 @@ class ThisAttacked:public ThisDescriptor{
 	ThisAttacked(int attack);
 };
 
+class ThisBlocked:public ThisDescriptor{
+ public:
+    virtual int match(MTGCardInstance * card);
+
+	ThisBlocked(int block);
+};
+
 class ThisNotBlocked:public ThisDescriptor{
  public:
     virtual int match(MTGCardInstance * card);

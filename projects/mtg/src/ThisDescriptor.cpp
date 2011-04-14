@@ -214,7 +214,19 @@ ThisDescriptor * ThisDescriptorFactory::createThisDescriptor(string s)
         }
         return NULL;
     }
-
+    //whenever this creature blocks do effect
+    found = s.find("blocking");
+    if (found != string::npos)
+    {
+        ThisBlocked * td = NEW ThisBlocked(criterion);
+        if (td)
+        {
+            td->comparisonMode = mode;
+            return td;
+        }
+        return NULL;
+    }
+    
     //whenever this creature attacks do effect
     found = s.find("notblocked");
     if (found != string::npos)
@@ -442,6 +454,18 @@ int ThisAttacked::match(MTGCardInstance * card)
 {
 
     return matchValue(card->didattacked);
+}
+
+ThisBlocked::ThisBlocked(int block)
+{
+
+    comparisonCriterion = block;
+}
+
+int ThisBlocked::match(MTGCardInstance * card)
+{
+
+    return matchValue(card->didblocked);
 }
 
 ThisNotBlocked::ThisNotBlocked(int unblocked)
