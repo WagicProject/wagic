@@ -72604,7 +72604,7 @@ type=Artifact
 [card]
 name=Welkin Guide
 abilities=flying
-auto=2/2 && flying target(creature) ueot
+auto=target(creature) 2/2 ueot && flying ueot
 text=Flying -- When Welkin Guide enters the battlefield, target creature gets +2/+2 and gains flying until end of turn.
 mana={4}{W}
 type=Creature
