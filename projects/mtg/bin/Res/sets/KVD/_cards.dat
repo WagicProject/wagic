@@ -1,0 +1,405 @@
+[meta]
+author=Wagic Team
+block=Duel
+year=2011
+[/meta]
+[card]
+primitive=Alaborn Cavalier
+id=243435
+rarity=U
+[/card]
+[card]
+primitive=Armillary Sphere
+id=222720
+rarity=C
+[/card]
+[card]
+primitive=Benalish Lancer
+id=243429
+rarity=C
+[/card]
+[card]
+primitive=Bloodmark Mentor
+id=243467
+rarity=U
+[/card]
+[card]
+primitive=Bogardan Hellkite
+id=243464
+rarity=M
+[/card]
+[card]
+primitive=Bogardan Rager
+id=243475
+rarity=C
+[/card]
+[card]
+primitive=Breath of Darigaaz
+id=243482
+rarity=U
+[/card]
+[card]
+primitive=Captive Flame
+id=243485
+rarity=U
+[/card]
+[card]
+primitive=Caravan Escort
+id=243418
+rarity=C
+[/card]
+[card]
+primitive=Cinder Wall
+id=243466
+rarity=C
+[/card]
+[card]
+primitive=Claws of Valakut
+id=243489
+rarity=C
+[/card]
+[card]
+primitive=Cone of Flame
+id=243492
+rarity=U
+[/card]
+[card]
+primitive=Dragon Fodder
+id=243468
+rarity=C
+[/card]
+[card]
+primitive=Dragon Claw
+id=243481
+rarity=U
+[/card]
+[card]
+primitive=Dragonspeaker Shaman
+id=243471
+rarity=U
+[/card]
+[card]
+primitive=Edge of Autumn
+id=243442
+rarity=C
+[/card]
+[card]
+primitive=Fiery Fall
+id=243493
+rarity=C
+[/card]
+[card]
+primitive=Fire-Belly Changeling
+id=243469
+rarity=C
+[/card]
+[card]
+primitive=Forest
+id=243461
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=243460
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=243462
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=243463
+rarity=L
+[/card]
+[card]
+primitive=Ghostfire
+id=243486
+rarity=C
+[/card]
+[card]
+primitive=Grasslands
+id=243452
+rarity=L
+[/card]
+[card]
+primitive=Griffin Guide
+id=243450
+rarity=U
+[/card]
+[card]
+primitive=Harm's Way
+id=243440
+rarity=U
+[/card]
+[card]
+primitive=Henge Guardian
+id=243473
+rarity=U
+[/card]
+[card]
+primitive=Hero's Reunion
+id=243446
+rarity=U
+[/card]
+[card]
+primitive=Jaws of Stone
+id=243494
+rarity=U
+[/card]
+[card]
+primitive=Juniper Order Ranger
+id=243438
+rarity=U
+[/card]
+[card]
+primitive=Kabira Vindicator
+id=243433
+rarity=U
+[/card]
+[card]
+primitive=Kilnmouth Dragon
+id=243477
+rarity=R
+[/card]
+[card]
+primitive=Kinsbaile Cavalier
+id=243434
+rarity=R
+[/card]
+[card]
+primitive=Knight Exemplar
+id=243431
+rarity=R
+[/card]
+[card]
+primitive=Knight of Cliffhaven
+id=243421
+rarity=C
+[/card]
+[card]
+primitive=Knight of Meadowgrain
+id=243422
+rarity=U
+[/card]
+[card]
+primitive=Knight of the Reliquary
+id=243416
+rarity=M
+[/card]
+[card]
+primitive=Knight of the White Orchid
+id=243423
+rarity=R
+[/card]
+[card]
+primitive=Knotvine Paladin
+id=243427
+rarity=R
+[/card]
+[card]
+primitive=Leonin Skyhunter
+id=243424
+rarity=U
+[/card]
+[card]
+primitive=Lionheart Maverick
+id=243420
+rarity=C
+[/card]
+[card]
+primitive=Loxodon Warhammer
+id=243448
+rarity=R
+[/card]
+[card]
+primitive=Mighty Leap
+id=243443
+rarity=C
+[/card]
+[card]
+primitive=Mordant Dragon
+id=243476
+rarity=R
+[/card]
+[card]
+primitive=Mountain
+id=243496
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=243495
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=243497
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=243498
+rarity=L
+[/card]
+[card]
+primitive=Mudbutton Torchrunner
+id=243470
+rarity=C
+[/card]
+[card]
+primitive=Oblivion Ring
+id=243451
+rarity=C
+[/card]
+[card]
+primitive=Paladin of Prahv
+id=243439
+rarity=U
+[/card]
+[card]
+primitive=Plains
+id=243457
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=243456
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=243458
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=243459
+rarity=L
+[/card]
+[card]
+primitive=Plover Knights
+id=243437
+rarity=C
+[/card]
+[card]
+primitive=Punishing Fire
+id=243483
+rarity=U
+[/card]
+[card]
+primitive=Reciprocate
+id=243441
+rarity=U
+[/card]
+[card]
+primitive=Reprisal
+id=243444
+rarity=U
+[/card]
+[card]
+primitive=Seething Song
+id=243487
+rarity=C
+[/card]
+[card]
+primitive=Seismic Strike
+id=243488
+rarity=C
+[/card]
+[card]
+primitive=Sejiri Steppe
+id=243453
+rarity=C
+[/card]
+[card]
+primitive=Selesnya Sanctuary
+id=243454
+rarity=C
+[/card]
+[card]
+primitive=Shivan Hellkite
+id=243478
+rarity=R
+[/card]
+[card]
+primitive=Shiv's Embrace
+id=243491
+rarity=U
+[/card]
+[card]
+primitive=Sigil Blessing
+id=243447
+rarity=C
+[/card]
+[card]
+primitive=Silver Knight
+id=243425
+rarity=U
+[/card]
+[card]
+primitive=Skirk Prospector
+id=243465
+rarity=C
+[/card]
+[card]
+primitive=Skyhunter Patrol
+id=243436
+rarity=C
+[/card]
+[card]
+primitive=Spidersilk Armor
+id=243449
+rarity=C
+[/card]
+[card]
+primitive=Spitting Earth
+id=243484
+rarity=C
+[/card]
+[card]
+primitive=Steward of Valeron
+id=243428
+rarity=C
+[/card]
+[card]
+primitive=Temporary Insanity
+id=243490
+rarity=U
+[/card]
+[card]
+primitive=Test of Faith
+id=243445
+rarity=U
+[/card]
+[card]
+primitive=Thunder Dragon
+id=243479
+rarity=R
+[/card]
+[card]
+primitive=Treetop Village
+id=243455
+rarity=U
+[/card]
+[card]
+primitive=Voracious Dragon
+id=243474
+rarity=R
+[/card]
+[card]
+primitive=White Knight
+id=243426
+rarity=U
+[/card]
+[card]
+primitive=Wilt-Leaf Cavaliers
+id=243432
+rarity=U
+[/card]
+[card]
+primitive=Zhalfirin Commander
+id=243430
+rarity=U
+[/card]
