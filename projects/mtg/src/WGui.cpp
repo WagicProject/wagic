@@ -912,6 +912,7 @@ bool WGuiMenu::CheckUserInput(JButton key)
         {
             setSelected(n);
             mEngine->LeftClickedProcessed();
+            if (sync) syncMove();
             return true;
         }
     }
