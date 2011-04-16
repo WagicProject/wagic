@@ -4,13 +4,11 @@ if grep -q /home/user/MyDocs /proc/mounts; then
 # FAT partition mounted
   mkdir -p /home/user/MyDocs/wagic
   mkdir -p /home/user/MyDocs/wagic/Res
-# Size used on the FAT partition
-  usedSize=`du -s /home/user/MyDocs/wagic/Res | awk '{print $1}'`
 # Size needed on the FAT partition
   dirSize=`du -s /home/user/wagic/Res | awk '{print $1}'`
 # Size available on the FAT partition
   avaSize=`df | grep /dev/mmcblk0p1 | awk '{print $4}'`
-  if [ $usedSize -lt 100 ]
+  if [ /home/user/wagic/Res/sets/primitives/mtg.txt -nt /home/user/MyDocs/wagic/Res/sets/primitives/mtg.txt ];
     then if [ $avaSize -gt $dirSize ]
     then
       echo "Copying resources on the FAT partition to ease customization"

@@ -1,5 +1,5 @@
-wagic (0.15.1maemo0) unstable; urgency=low
+wagic (0.15.1maemo1) unstable; urgency=low
 
-  * Added touch support in settings
-  * wagic 0.15.1
- -- Xawotihs <xawotihs@gmail.com>  Mon, 11 Apr 2011 14:11:42 +0200
+  * Fixed upgrade problem causing the multi-land per turn bug
+  * Fixed shop card display problem when using touch interface
+ -- Xawotihs <xawotihs@gmail.com>  Mon, 16 Apr 2011 14:11:42 +0200
