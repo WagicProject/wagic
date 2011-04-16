@@ -897,38 +897,38 @@ int AADynamic::resolve()
         source = (MTGCardInstance * )_target;
     switch(who)
     {
-    case 1://each other, both take the effect
+    case DYNAMIC_ABILITY_WHO_EACHOTHER://each other, both take the effect
         eachother = true;
         break;
-    case 2:
+    case DYNAMIC_ABILITY_WHO_ITSELF:
         source = ((MTGCardInstance *) _target);
         _target = _target;
         break;
-    case 3:
+    case DYNAMIC_ABILITY_WHO_TARGETCONTROLLER:
         _target = _target;
         secondaryTarget = ((MTGCardInstance *) _target)->controller();
         break;
-    case 4:
+    case DYNAMIC_ABILITY_WHO_TARGETOPPONENT:
         _target = _target;
         secondaryTarget = ((MTGCardInstance *) _target)->controller()->opponent();
         break;
-    case 5:
+    case DYNAMIC_ABILITY_WHO_TOSOURCE:
         tosrc = true;
         break;
-    case 6:
+    case DYNAMIC_ABILITY_WHO_SOURCECONTROLLER:
         _target = _target;
         secondaryTarget = ((MTGCardInstance *) OriginalSrc)->controller();
         break;
-    case 7:
+    case DYNAMIC_ABILITY_WHO_SOURCEOPPONENT:
         secondaryTarget = OriginalSrc->controller()->opponent();
         break;
     default:
         _target = _target;
         break;
     }
-    if(amountsource == 3)
+    if(amountsource == DYNAMIC_MYSELF_AMOUNT)
         _target = OriginalSrc->controller();//looking at controller for amount
-    if(amountsource == 4)
+    if(amountsource == DYNAMIC_MYFOE_AMOUNT)
         _target = OriginalSrc->controller()->opponent();//looking at controllers opponent for amount
     if(!_target)
         return 0;
@@ -941,25 +941,25 @@ int AADynamic::resolve()
     int colored = 0;
     switch(type)
     {
-    case 0:
+    case DYNAMIC_ABILITY_TYPE_POWER:
         sourceamount = ((MTGCardInstance *) source)->power;
         targetamount = ((MTGCardInstance *) _target)->power;
         if(eachother )
             sourceamount = ((MTGCardInstance *) source)->power;
         break;
-    case 1:
+    case DYNAMIC_ABILITY_TYPE_TOUGHNESS:
         sourceamount = ((MTGCardInstance *) source)->toughness;
         targetamount = ((MTGCardInstance *) _target)->toughness;
         if(eachother )
             sourceamount = ((MTGCardInstance *) source)->toughness;
         break;
-    case 2:
+    case DYNAMIC_ABILITY_TYPE_MANACOST:
         if(amountsource == 1)
             sourceamount = ((MTGCardInstance *) source)->getManaCost()->getConvertedCost();
         else
             sourceamount = ((MTGCardInstance *) _target)->getManaCost()->getConvertedCost();
         break;
-    case 3:
+    case DYNAMIC_ABILITY_TYPE_COLORS:
         for (int i = Constants::MTG_COLOR_GREEN; i <= Constants::MTG_COLOR_WHITE; ++i)
         {
             if (amountsource == 1 && ((MTGCardInstance *)source)->hasColor(i))
@@ -970,7 +970,7 @@ int AADynamic::resolve()
         }
         sourceamount = colored;
         break;
-    case 4:
+    case DYNAMIC_ABILITY_TYPE_AGE:
         {
             Counter * targetCounter = NULL;
             if(amountsource == 2)
@@ -991,7 +991,7 @@ int AADynamic::resolve()
             }
             break;
         }
-    case 5:
+    case DYNAMIC_ABILITY_TYPE_CHARGE:
         {
             Counter * targetCounter = NULL;
             if(amountsource == 2)
@@ -1012,7 +1012,7 @@ int AADynamic::resolve()
             }
             break;
         }
-    case 6:
+    case DYNAMIC_ABILITY_TYPE_ONEONECOUNTERS:
         {
             Counter * targetCounter = NULL;
             if(amountsource == 2)
@@ -1033,7 +1033,7 @@ int AADynamic::resolve()
             }
             break;
         }
-    case 7:
+    case DYNAMIC_ABILITY_TYPE_THATMUCH:
         {
             sourceamount = _target->thatmuch;
             break;
@@ -1058,32 +1058,41 @@ int AADynamic::resolve()
         //negitive, if then used as the amount, would cuase weird side effects on resolves.
         switch(effect)
         {
-        case 0://deal damage
+        case DYNAMIC_ABILITY_EFFECT_STRIKE://deal damage
             if(storedAbility)
                 activateStored();
             if(tosrc == false)
+            {
                 game->mLayers->stackLayer()->addDamage((MTGCardInstance *)source, _target, sourceamount);
+                game->mLayers->stackLayer()->resolve();
+            }
             else
+            {
                 game->mLayers->stackLayer()->addDamage((MTGCardInstance *)source, OriginalSrc, sourceamount);
+                game->mLayers->stackLayer()->resolve();
+            }
             if(eachother )
             {
                 game->mLayers->stackLayer()->addDamage((MTGCardInstance *)_target, source, targetamount);
+                game->mLayers->stackLayer()->resolve();
             }
             return 1;
             break;
-        case 1://draw cards
+        case DYNAMIC_ABILITY_EFFECT_DRAW://draw cards
             if(storedAbility)
                 activateStored();
             game->mLayers->stackLayer()->addDraw((Player *)_target,sourceamount);
+            game->mLayers->stackLayer()->resolve();
             return 1;
             break;
-        case 2://gain life
+        case DYNAMIC_ABILITY_EFFECT_LIFEGAIN://gain life
             if(storedAbility)
                 activateStored();
             game->mLayers->stackLayer()->addLife(_target,sourceamount);
+            game->mLayers->stackLayer()->resolve();
             return 1;
             break;
-        case 3://pump power
+        case DYNAMIC_ABILITY_EFFECT_PUMPPOWER://pump power
             {
                 if(storedAbility)
                     activateStored();
@@ -1103,7 +1112,7 @@ int AADynamic::resolve()
                 }
                 break;
             }
-        case 4://pump toughness
+        case DYNAMIC_ABILITY_EFFECT_PUMPTOUGHNESS://pump toughness
             {
                 if(storedAbility)
                     activateStored();
@@ -1123,7 +1132,7 @@ int AADynamic::resolve()
                 }
                 break;
             }
-        case 5://pump both
+        case DYNAMIC_ABILITY_EFFECT_PUMPBOTH://pump both
             {
                 if(storedAbility)
                     activateStored();
@@ -1143,13 +1152,15 @@ int AADynamic::resolve()
                 }
                 break;
             }
-        case 6://lose life
+        case DYNAMIC_ABILITY_EFFECT_LIFELOSS://lose life
             if(storedAbility)
                 activateStored();
-            game->mLayers->stackLayer()->addLife(_target,(sourceamount * -1));
+                game->mLayers->stackLayer()->addLife(_target,(sourceamount * -1));
+                game->mLayers->stackLayer()->resolve();
+            
             return 1;
             break;
-        case 7://deplete cards
+        case DYNAMIC_ABILITY_EFFECT_DEPLETE://deplete cards
             {
                 if(storedAbility)
                     activateStored();
@@ -1163,7 +1174,7 @@ int AADynamic::resolve()
                 return 1;
                 break;
             }
-        case 8:
+        case DYNAMIC_ABILITY_EFFECT_COUNTERSONEONE:
             {
                 if(_target->typeAsTarget() != TARGET_CARD)
                     _target = OriginalSrc;

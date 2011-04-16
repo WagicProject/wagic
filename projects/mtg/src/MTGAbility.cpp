@@ -815,6 +815,9 @@ int AbilityFactory::parseRestriction(string s)
 // When abilities encapsulate each other, gets the deepest one (it is the one likely to have the most relevant information)
 MTGAbility * AbilityFactory::getCoreAbility(MTGAbility * a)
 {
+    if (AForeach * fea = dynamic_cast<AForeach*>(a))
+        return fea->ability;
+        
     GenericTargetAbility * gta = dynamic_cast<GenericTargetAbility*> (a);
     if (gta)
         return getCoreAbility(gta->ability);
@@ -1441,147 +1444,147 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         size_t abilityamountsource = s1.find("source");
         if (abilityamountsource != string::npos)
         {
-            amountsource = 1;
+            amountsource = AADynamic::DYNAMIC_SOURCE_AMOUNT;
         }
         abilityamountsource = s1.find("mytgt");
         if (abilityamountsource != string::npos)
         {
-            amountsource = 2;
+            amountsource = AADynamic::DYNAMIC_MYTGT_AMOUNT;
         }
         abilityamountsource = s1.find("myself");
         if (abilityamountsource != string::npos)
         {
-            amountsource = 3;
+            amountsource = AADynamic::DYNAMIC_MYSELF_AMOUNT;
         }
         abilityamountsource = s1.find("myfoe");
         if (abilityamountsource != string::npos)
         {
-            amountsource = 4;
+            amountsource = AADynamic::DYNAMIC_MYFOE_AMOUNT;
         }
         //what will be main variable used or type
         size_t abilitytype = s1.find("power");
         if (abilitytype != string::npos)
         {
-            type = 0;
+            type = AADynamic::DYNAMIC_ABILITY_TYPE_POWER;
         }
         abilitytype = s1.find("toughness");
         if (abilitytype != string::npos)
         {
-            type = 1;
+            type = AADynamic::DYNAMIC_ABILITY_TYPE_TOUGHNESS;
         }
         abilitytype = s1.find("manacost");
         if (abilitytype != string::npos)
         {
-            type = 2;
+            type = AADynamic::DYNAMIC_ABILITY_TYPE_MANACOST;
         }
         abilitytype = s1.find("colors");
         if (abilitytype != string::npos)
         {
-            type = 3;
+            type = AADynamic::DYNAMIC_ABILITY_TYPE_COLORS;
         }
         abilitytype = s1.find("age");
         if (abilitytype != string::npos)
         {
-            type = 4;
+            type = AADynamic::DYNAMIC_ABILITY_TYPE_AGE;
         }
         abilitytype = s1.find("charge");
         if (abilitytype != string::npos)
         {
-            type = 5;
+            type = AADynamic::DYNAMIC_ABILITY_TYPE_CHARGE;
         }
 
         abilitytype = s1.find("oneonecounters");
         if (abilitytype != string::npos)
         {
-            type = 6;
+            type = AADynamic::DYNAMIC_ABILITY_TYPE_ONEONECOUNTERS;
         }
         abilitytype = s1.find("thatmuch");
         if (abilitytype != string::npos)
         {
-            type = 7;
+            type = AADynamic::DYNAMIC_ABILITY_TYPE_THATMUCH;
         }
         //what the effect will be
         size_t abilityeffect = s1.find("strike");
         if (abilityeffect != string::npos)
         {
-            effect = 0;
+            effect = AADynamic::DYNAMIC_ABILITY_EFFECT_STRIKE;
         }
         abilityeffect = s1.find("draw");
         if (abilityeffect != string::npos)
         {
-            effect = 1;
+            effect = AADynamic::DYNAMIC_ABILITY_EFFECT_DRAW;
         }
         abilityeffect = s1.find("lifeloss");
         if (abilityeffect != string::npos)
         {
-            effect = 6;
+            effect = AADynamic::DYNAMIC_ABILITY_EFFECT_LIFELOSS;
         }
         abilityeffect = s1.find("lifegain");
         if (abilityeffect != string::npos)
         {
-            effect = 2;
+            effect = AADynamic::DYNAMIC_ABILITY_EFFECT_LIFEGAIN;
         }
         abilityeffect = s1.find("pumppow");
         if (abilityeffect != string::npos)
         {
-            effect = 3;
+            effect = AADynamic::DYNAMIC_ABILITY_EFFECT_PUMPPOWER;
         }
         abilityeffect = s1.find("pumptough");
         if (abilityeffect != string::npos)
         {
-            effect = 4;
+            effect = AADynamic::DYNAMIC_ABILITY_EFFECT_PUMPTOUGHNESS;
         }
         abilityeffect = s1.find("pumpboth");
         if (abilityeffect != string::npos)
         {
-            effect = 5;
+            effect = AADynamic::DYNAMIC_ABILITY_EFFECT_PUMPBOTH;
         }
         abilityeffect = s1.find("deplete");
         if (abilityeffect != string::npos)
         {
-            effect = 7;
+            effect = AADynamic::DYNAMIC_ABILITY_EFFECT_DEPLETE;
         }
         abilityeffect = s1.find("countersoneone");
         if (abilityeffect != string::npos)
         {
-            effect = 8;
+            effect = AADynamic::DYNAMIC_ABILITY_EFFECT_COUNTERSONEONE;
         }
         //what the target will be
         size_t abilitywho = s1.find("eachother");
         if (abilitywho != string::npos)
         {
-            who = 1;
+            who = AADynamic::DYNAMIC_ABILITY_WHO_EACHOTHER;
         }
         abilitywho = s1.find("itself");
         if (abilitywho != string::npos)
         {
-            who = 2;
+            who = AADynamic::DYNAMIC_ABILITY_WHO_ITSELF;
         }
         abilitywho = s1.find("targetcontroller");
         if (abilitywho != string::npos)
         {
-            who = 3;
+            who = AADynamic::DYNAMIC_ABILITY_WHO_TARGETCONTROLLER;
         }
 
         abilitywho = s1.find("targetopponent");
         if (abilitywho != string::npos)
         {
-            who = 4;
+            who = AADynamic::DYNAMIC_ABILITY_WHO_TARGETOPPONENT;
         }
         abilitywho = s1.find("tosrc");
         if (abilitywho != string::npos)
         {
-            who = 5;
+            who = AADynamic::DYNAMIC_ABILITY_WHO_TOSOURCE;
         }
         abilitywho = s1.find("srccontroller");
         if (abilitywho != string::npos)
         {
-            who = 6;
+            who = AADynamic::DYNAMIC_ABILITY_WHO_SOURCECONTROLLER;
         }
         abilitywho = s1.find("srcopponent");
         if (abilitywho != string::npos)
         {
-            who = 7;
+            who = AADynamic::DYNAMIC_ABILITY_WHO_SOURCEOPPONENT;
         }
         string sAbility = s.substr(end + 1);
         MTGAbility * stored = NULL;
@@ -4087,6 +4090,39 @@ int ActivatedAbility::reactToClick(MTGCardInstance * card)
         SAFE_DELETE(abilityCost);
         abilityCost = previousManaPool->Diff(player->getManaPool());
         delete previousManaPool;
+    }
+    MTGAbility * fmp = NULL;
+    if(GenericActivatedAbility * gaa = dynamic_cast<GenericActivatedAbility*>(this))
+    {
+    AForeach * fea = dynamic_cast<AForeach*>(gaa->ability);
+        if(fea)
+            fmp = fea->ability;
+            }
+        //taking foreach manaproducers off the stack and sending tapped for mana events.
+    AManaProducer * amp = dynamic_cast<AManaProducer *> (fmp);
+    if(amp)
+    {
+        needsTapping = amp->tap;
+    }
+    if (needsTapping && source->isInPlay())
+    {
+        if (amp)
+        {
+            GameObserver *g = GameObserver::GetInstance();
+            WEvent * e = NEW WEventCardTappedForMana(source, 0, 1);
+            g->receiveEvent(e);
+        }
+        source->tap();
+    }
+    if (amp)
+    {
+        counters++;
+        if(sideEffect && usesBeforeSideEffects.size())
+        {
+            activeSideEffect();
+        }
+        this->resolve();
+        return 1;
     }
     if (needsTapping && source->isInPlay())
         source->tap();
