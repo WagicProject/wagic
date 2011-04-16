@@ -3772,8 +3772,8 @@ type=Artifact
 [card]
 name=Avenging Angel
 auto=flying
-auto=@movedTo(graveyard) from(this|battlefield):moveto(mylibrary) all(trigger[from])
-text=Flying -- When Avenging Angel is put into a graveyard from the battlefield, shuffle Avenging Angel into its owner's library.
+auto=@movedTo(graveyard) from(this|battlefield):may all(trigger[from]) moveto(ownerlibrary)
+text=Flying -- When Avenging Angel is put into a graveyard from the battlefield, you may put Avenging Angel on top of its owner's library.
 mana={3}{W}{W}
 type=Creature
 subtype=Angel
