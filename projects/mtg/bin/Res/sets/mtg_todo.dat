@@ -681,15 +681,6 @@ mana={2}{U}
 type=Enchantment
 [/card]
 [card]
-name=Arctic Merfolk
-text=Kicker - Return a creature you control to its owner's hand. (You may return a creature you control to its owner's hand in addition to any other costs as you cast this spell.) -- If Arctic Merfolk was kicked, it enters the battlefield with a +1/+1 counter on it.
-mana={1}{U}
-type=Creature
-subtype=Merfolk
-power=1
-toughness=1
-[/card]
-[card]
 name=Arcum Dagsson
 text={T}: Target artifact creature's controller sacrifices it. That player may search his or her library for a noncreature artifact card, put it onto the battlefield, then shuffle his or her library.
 mana={3}{U}
@@ -1326,15 +1317,6 @@ mana={X}{R}
 type=Sorcery
 [/card]
 [card]
-name=Banshee
-text={X}, {T}: Banshee deals half X damage, rounded down, to target creature or player, and half X damage, rounded up, to you.
-mana={2}{B}{B}
-type=Creature
-subtype=Spirit
-power=0
-toughness=1
-[/card]
-[card]
 name=Bant Charm
 text=Choose one - Destroy target artifact; or put target creature on the bottom of its owner's library; or counter target instant spell.
 mana={G}{W}{U}
@@ -1848,12 +1830,6 @@ name=Blood Oath
 text=Choose a card type. Target opponent reveals his or her hand. Blood Oath deals 3 damage to that player for each card of the chosen type revealed this way. (The card types are artifact, creature, enchantment, instant, land, planeswalker, sorcery, and tribal.)
 mana={3}{R}
 type=Instant
-[/card]
-[card]
-name=Blood Tribute
-text=Kicker - Tap an untapped Vampire you control. (You may tap a Vampire you control in addition to any other costs as you cast this spell.) -- Target opponent loses half his or her life, rounded up. If Blood Tribute was kicked, you gain life equal to the life lost this way.
-mana={4}{B}{B}
-type=Sorcery
 [/card]
 [card]
 name=Blood of the Martyr
@@ -2898,15 +2874,6 @@ name=Cataclysm
 text=Each player chooses from the permanents he or she controls an artifact, a creature, an enchantment, and a land, then sacrifices the rest.
 mana={2}{W}{W}
 type=Sorcery
-[/card]
-[card]
-name=Catacomb Dragon
-text=Flying -- Whenever Catacomb Dragon becomes blocked by a nonartifact, non-Dragon creature, that creature gets -X/-0 until end of turn, where X is half the creature's power, rounded down.
-mana={4}{B}{B}
-type=Creature
-subtype=Dragon
-power=4
-toughness=4
 [/card]
 [card]
 name=Catalyst Stone
@@ -4267,12 +4234,6 @@ auto={0}:may moveTo(myBattlefield) target(land|mygraveyard) limit:1 myTurnOnly
 text=You may play land cards from your graveyard.
 mana={3}
 type=Artifact
-[/card]
-[card]
-name=Cruel Bargain
-text=Draw four cards. You lose half your life, rounded up.
-mana={B}{B}{B}
-type=Sorcery
 [/card]
 [card]
 name=Cruel Deceiver
@@ -5943,16 +5904,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Dwarven Landslide
-target=land
-auto=destroy
-kicker={2}{R}{S(land|myBattlefield)}
-auto=kicker destroy target(land)
-text=Kicker - {2}{R}, Sacrifice a land. (You may pay {2}{R} and sacrifice a land in addition to any other costs as you cast this spell.) -- Destroy target land. If Dwarven Landslide was kicked, destroy another target land.
-mana={3}{R}
-type=Sorcery
-[/card]
-[card]
 name=Dwarven Recruiter
 text=When Dwarven Recruiter enters the battlefield, search your library for any number of Dwarf cards and reveal those cards. Shuffle your library, then put them on top of it in any order.
 mana={2}{R}
@@ -6078,15 +6029,6 @@ type=Creature
 subtype=Avatar
 power=5
 toughness=5
-[/card]
-[card]
-name=Ebonblade Reaper
-text=Whenever Ebonblade Reaper attacks, you lose half your life, rounded up. -- Whenever Ebonblade Reaper deals combat damage to a player, that player loses half his or her life, rounded up. -- Morph {3}{B}{B} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
-mana={2}{B}
-type=Creature
-subtype=Human Cleric
-power=1
-toughness=1
 [/card]
 [card]
 name=Ebony Charm
@@ -6657,12 +6599,6 @@ type=Instant
 name=Eternal Dominion
 text=Search target opponent's library for an artifact, creature, enchantment, or land card. Put that card onto the battlefield under your control. Then that player shuffles his or her library. -- Epic (For the rest of the game, you can't cast spells. At the beginning of each of your upkeeps, copy this spell except for its epic ability. You may choose a new target for the copy.)
 mana={7}{U}{U}{U}
-type=Sorcery
-[/card]
-[card]
-name=Eternal Flame
-text=Eternal Flame deals X damage to target opponent, where X is the number of Mountains you control. It deals half X damage, rounded up, to you.
-mana={2}{R}{R}
 type=Sorcery
 [/card]
 [card]
@@ -7597,15 +7533,6 @@ auto=lord(creature[green]) {S(land|myBattlefield)}:-cantattack
 text=Green creatures can't attack unless their controller sacrifices a land for each green creature he or she controls that's attacking.
 mana={2}{U}{B}
 type=Enchantment
-[/card]
-[card]
-name=Floodgate
-text=Defender (This creature can't attack.) -- When Floodgate has flying, sacrifice it. -- When Floodgate leaves the battlefield, it deals damage equal to half the number of Islands you control, rounded down, to each nonblue creature without flying.
-mana={3}{U}
-type=Creature
-subtype=Wall
-power=0
-toughness=5
 [/card]
 [card]
 name=Floodwater Dam
@@ -9806,15 +9733,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Heartless Hidetsugu
-text={T}: Heartless Hidetsugu deals damage to each player equal to half that player's life total, rounded down.
-mana={3}{R}{R}
-type=Legendary Creature
-subtype=Ogre Shaman
-power=4
-toughness=3
-[/card]
-[card]
 name=Heartseeker
 text=Equipped creature gets +2/+1 and has "{T}, Unattach Heartseeker: Destroy target creature." -- Equip {5} ({5}: Attach to target creature you control. Equip only as a sorcery. This card enters the battlefield unattached and stays on the battlefield if the creature leaves.)
 mana={4}
@@ -10742,12 +10660,6 @@ text=Enchant creature -- Enchanted creature gets +2/-1. -- When enchanted creatu
 mana={1}{R}
 type=Enchantment
 subtype=Aura
-[/card]
-[card]
-name=Infernal Contract
-text=Draw four cards. You lose half your life, rounded up.
-mana={B}{B}{B}
-type=Sorcery
 [/card]
 [card]
 name=Infernal Darkness
@@ -13146,12 +13058,6 @@ name=Magistrate's Scepter
 text={4}, {T}: Put a charge counter on Magistrate's Scepter. -- {T}, Remove three charge counters from Magistrate's Scepter: Take an extra turn after this one.
 mana={3}
 type=Artifact
-[/card]
-[card]
-name=Magma Burst
-text=Kicker - Sacrifice two lands. (You may sacrifice two lands in addition to any other costs as you cast this spell.) -- Magma Burst deals 3 damage to target creature or player. If Magma Burst was kicked, it deals 3 damage to another target creature or player.
-mana={3}{R}
-type=Instant
 [/card]
 [card]
 name=Magma Jet
@@ -17048,15 +16954,7 @@ subtype=Horror
 power=2
 toughness=1
 [/card]
-[card]
-name=Phyrexian Scuta
-text=Kicker - Pay 3 life. (You may pay 3 life in addition to any other costs as you cast this spell.) -- If Phyrexian Scuta was kicked, it enters the battlefield with two +1/+1 counters on it.
-mana={3}{B}
-type=Creature
-subtype=Zombie
-power=3
-toughness=3
-[/card]
+
 [card]
 name=Phyrexian Snowcrusher
 text=Phyrexian Snowcrusher attacks each turn if able. -- {1}{S}i}: Phyrexian Snowcrusher gets +1/+0 until end of turn. ({S}i} can be paid with one mana from a snow permanent.)
@@ -17570,12 +17468,7 @@ subtype=Elf Shaman
 power=2
 toughness=2
 [/card]
-[card]
-name=Primal Growth
-text=Kicker - Sacrifice a creature. (You may sacrifice a creature in addition to any other costs as you cast this spell.) -- Search your library for a basic land card, put that card onto the battlefield, then shuffle your library. If Primal Growth was kicked, instead search your library for two basic land cards, put them onto the battlefield, then shuffle your library.
-mana={2}{G}
-type=Sorcery
-[/card]
+
 [card]
 name=Primal Whisperer
 text=Primal Whisperer gets +2/+2 for each face-down creature on the battlefield. -- Morph {3}{G} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
@@ -18301,13 +18194,6 @@ name=Quiet Speculation
 text=Search target player's library for up to three cards with flashback and put them into that player's graveyard. Then the player shuffles his or her library.
 mana={1}{U}
 type=Sorcery
-[/card]
-[card]
-name=Quietus Spike
-text=Equipped creature has deathtouch. -- Whenever equipped creature deals combat damage to a player, that player loses half his or her life, rounded up. -- Equip {3}
-mana={3}
-type=Artifact
-subtype=Equipment
 [/card]
 [card]
 name=Quillspike
@@ -19783,12 +19669,7 @@ text=Draw cards equal to the highest converted mana cost among permanents you co
 mana={4}{U}
 type=Sorcery
 [/card]
-[card]
-name=Rushing River
-text=Kicker - Sacrifice a land. (You may sacrifice a land in addition to any other costs as you cast this spell.) -- Return target nonland permanent to its owner's hand. If Rushing River was kicked, return another target nonland permanent to its owner's hand.
-mana={2}{U}
-type=Instant
-[/card]
+
 [card]
 name=Rushing-Tide Zubera
 text=When Rushing-Tide Zubera is put into a graveyard from the battlefield, if 4 or more damage was dealt to it this turn, draw three cards.

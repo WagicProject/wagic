@@ -1068,7 +1068,7 @@ toughness=4
 [/card]
 [card]
 name=Alabaster Leech
-auto=lord(*[white]|myhand) altercost( white, +1 )
+auto=lord(*[white]|myhand) altercost(white, +1)
 text=White spells you cast cost {W} more to cast.
 mana={W}
 type=Creature
@@ -1799,7 +1799,7 @@ type=Land
 [/card]
 [card]
 name=Andradite Leech
-auto=lord(*[black]|myhand) altercost( black, +1 )
+auto=lord(*[black]|myhand) altercost(black,+1)
 auto={B}:1/1
 text=Black spells you cast cost {B} more to cast. -- {B}: Andradite Leech gets +1/+1 until end of turn.
 mana={2}{B}
@@ -2748,6 +2748,17 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Arctic Merfolk
+auto=alternative counter(1/1,1) all(this)
+text=Kicker - Return a creature you control to its owner's hand. (You may return a creature you control to its owner's hand in addition to any other costs as you cast this spell.) -- If Arctic Merfolk was kicked, it enters the battlefield with a +1/+1 counter on it.
+mana={1}{U}
+other={1}{u}{h(creature|mybattlefield)} name(Pay Kicker)
+type=Creature
+subtype=Merfolk
+power=1
+toughness=1
+[/card]
+[card]
 name=Arctic Nishoba
 abilities=trample
 auto=cumulativeupcost[{GW}] sacrifice
@@ -3347,7 +3358,7 @@ subtype=Aura
 [card]
 name=Aspect of Wolf
 target=creature
-alias=1235
+auto=halfdowntype:forest:mybattlefield/halfuptype:forest:mybattlefield nonstatic
 text=Enchant creature -- Enchanted creature gets +X/+Y, where X is half the number of Forests you control, rounded down, and Y is half the number of Forests you control, rounded up.
 mana={1}{G}
 type=Enchantment
@@ -3520,8 +3531,8 @@ subtype=Aura
 [/card]
 [card]
 name=Aura of Silence
-auto=lord(artifact[-land]|opponenthand) altercost( colorless, +2 )
-auto=lord(enchantment|opponenthand) altercost( colorless, +2 )
+auto=lord(artifact|opponenthand) altercost(colorless, +2)
+auto=lord(enchantment|opponenthand) altercost(colorless, +2)
 auto={S}:destroy target(artifact,enchantment)
 text=Artifact and enchantment spells your opponents cast cost {2} more to cast. -- Sacrifice Aura of Silence: Destroy target artifact or enchantment.
 mana={1}{W}{W}
@@ -4379,8 +4390,8 @@ toughness=2
 [/card]
 [card]
 name=Ballyrush Banneret
-auto=lord(kithkin|myhand) altercost( colorless, -1 )
-auto=lord(soldier|myhand) altercost( colorless, -1 )
+auto=lord(kithkin|myhand) altercost(colorless, -1)
+auto=lord(soldier|myhand) altercost(colorless,-1)
 text=Kithkin spells and Soldier spells you cast cost {1} less to cast.
 mana={1}{W}
 type=Creature
@@ -4547,6 +4558,16 @@ mana={GU}{W}
 type=Creature
 subtype=Human Soldier
 power=2
+toughness=1
+[/card]
+[card]
+name=Banshee
+text={X}, {T}: Banshee deals half X damage, rounded down, to target creature or player, and half X damage, rounded up, to you.
+auto={x}{t}:target(creature,player) damage:halfdownX && damage:halfup controller
+mana={2}{B}{B}
+type=Creature
+subtype=Spirit
+power=0
 toughness=1
 [/card]
 [card]
@@ -6656,6 +6677,15 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Blood Tribute
+text=Kicker - Tap an untapped Vampire you control. (You may tap a Vampire you control in addition to any other costs as you cast this spell.) -- Target opponent loses half his or her life, rounded up. If Blood Tribute was kicked, you gain life equal to the life lost this way.
+auto=life:-halfupopponentlifetotal opponent
+auto=life:opponentlifetotal controller
+mana={4}{B}{B}
+other={4}{b}{b}{t(vampire|mybattlefield)} name(Pay Kicker)
+type=Sorcery
+[/card]
+[card]
 name=Blood Tyrant
 abilities=flying,trample
 auto=@each my upkeep:life:-1 opponent && life:-1 controller
@@ -7627,8 +7657,8 @@ type=Sorcery
 [/card]
 [card]
 name=Bosk Banneret
-auto=lord(treefolk|myhand) altercost( colorless, -1 )
-auto=lord(shaman|myhand) altercost( colorless, -1 )
+auto=lord(treefolk|myhand) altercost(colorless,-1)
+auto=lord(shaman|myhand) altercost(colorless, -1)
 text=Treefolk spells and Shaman spells you cast cost {1} less to cast.
 mana={1}{G}
 type=Creature
@@ -8120,8 +8150,8 @@ type=Enchantment
 [/card]
 [card]
 name=Brighthearth Banneret
-auto=lord(elemental|myhand) altercost( colorless, -1 )
-auto=lord(warrior|myhand) altercost( colorless, -1 )
+auto=lord(elemental|myhand) altercost(colorless, -1)
+auto=lord(warrior|myhand) altercost(colorless, -1)
 autohand={1}{R}{discard(this|myhand)}:counter(1/1,1) target(creature)
 text=Elemental spells and Warrior spells you cast cost {1} less to cast. -- Reinforce 1 - {1}{R} ({1}{R}, Discard this card: Put a +1/+1 counter on target creature.)
 mana={1}{R}
@@ -9472,6 +9502,17 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Catacomb Dragon
+abilities=flying
+auto=@combat(blocked) source(this) from(creature[-artifact;-black]):all(trigger[from]) -halfdownpower/0 ueot
+text=Flying -- Whenever Catacomb Dragon becomes blocked by a nonartifact, non-Dragon creature, that creature gets -X/-0 until end of turn, where X is half the creature's power, rounded down.
+mana={4}{B}{B}
+type=Creature
+subtype=Dragon
+power=4
+toughness=4
+[/card]
+[card]
 name=Catalog
 auto=draw:2
 auto=reject target(*|myhand)
@@ -9928,7 +9969,7 @@ type=Enchantment
 [/card]
 [card]
 name=Centaur Omenreader
-auto=this(tapped) lord(*|myhand) altercost( colorless, -2 ) ueot
+auto=this(tapped) lord(*|myhand) altercost(colorless, -2) ueot
 auto=@untapped(this):all(*|myhand) moveto(myhand)
 text=As long as Centaur Omenreader is tapped, creature spells you cast cost {2} less to cast.
 mana={3}{G}
@@ -10569,8 +10610,8 @@ toughness=1
 [/card]
 [card]
 name=Chill
-auto=lord(*[red]|myhand) altercost( colorless, +2 )
-auto=lord(*[red]|opponenthand) altercost( colorless, +2 )
+auto=lord(*[red]|myhand) altercost(colorless, +2)
+auto=lord(*[red]|opponenthand) altercost(colorless, +2)
 text=Red spells cost {2} more to cast.
 mana={1}{U}
 type=Enchantment
@@ -11457,11 +11498,11 @@ auto=choice name(Creature) counter(0/0,1,CloudKeyC) all(this)
 auto=choice name(Enchantment) counter(0/0,1,CloudKeyE) all(this)
 auto=choice name(Instant) counter(0/0,1,CloudKeyI) all(this)
 auto=choice name(Sorcery) counter(0/0,1,CloudKeyS) all(this)
-auto=this(counter{0/0.1.CloudKeyA}) lord(Artifact|myhand) altercost( colorless, -1 )
-auto=this(counter{0/0.1.CloudKeyC}) lord(Creature|myhand) altercost( colorless, -1 )
-auto=this(counter{0/0.1.CloudKeyE}) lord(Enchantment|myhand) altercost( colorless, -1 )
-auto=this(counter{0/0.1.CloudKeyI}) lord(Instant|myhand) altercost( colorless, -1 )
-auto=this(counter{0/0.1.CloudKeyS}) lord(Sorcery|myhand) altercost( colorless, -1 )
+auto=this(counter{0/0.1.CloudKeyA}) lord(Artifact|myhand) altercost(colorless,-1)
+auto=this(counter{0/0.1.CloudKeyC}) lord(Creature|myhand) altercost(colorless,-1)
+auto=this(counter{0/0.1.CloudKeyE}) lord(Enchantment|myhand) altercost(colorless,-1)
+auto=this(counter{0/0.1.CloudKeyI}) lord(Instant|myhand) altercost(colorless,-1)
+auto=this(counter{0/0.1.CloudKeyS}) lord(Sorcery|myhand) altercost(colorless,-1)
 text=As Cloud Key enters the battlefield, choose artifact, creature, enchantment, instant, or sorcery. -- Spells you cast of the chosen type cost {1} less to cast.
 mana={3}
 type=Artifact
@@ -13218,6 +13259,14 @@ power=4
 toughness=5
 [/card]
 [card]
+name=Cruel Bargain
+text=Draw four cards. You lose half your life, rounded up.
+auto=draw:4
+auto=life:-halfuplifetotal
+mana={B}{B}{B}
+type=Sorcery
+[/card]
+[card]
 name=Cruel Revival
 target=creature[-zombie]
 auto=bury
@@ -14283,7 +14332,7 @@ toughness=1
 [/card]
 [card]
 name=Daru Warchief
-auto=lord(soldier|myhand) altercost( colorless, -1 )
+auto=lord(soldier|myhand) altercost(colorless, -1)
 auto=lord(soldier|myBattlefield) 1/2
 text=Soldier spells you cast cost {1} less to cast. -- Soldier creatures you control get +1/+2.
 mana={2}{W}{W}
@@ -15487,7 +15536,7 @@ toughness=1
 [/card]
 [card]
 name=Derelor
-auto=lord(*[black]|myhand) altercost( black, +1 )
+auto=lord(*[black]|myhand) altercost(black, +1)
 text=Black spells you cast cost {B} more to cast.
 mana={3}{B}
 type=Creature
@@ -16810,7 +16859,7 @@ toughness=2
 [/card]
 [card]
 name=Dragonspeaker Shaman
-auto=lord(dragon|myhand) altercost( colorless, -2 )
+auto=lord(dragon|myhand) altercost(colorless,-2)
 text=Dragon spells you cast cost {2} less to cast.
 mana={1}{R}{R}
 type=Creature
@@ -17840,6 +17889,16 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Dwarven Landslide
+target=land
+auto=destroy
+other={4}{R}{R}{S(land|myBattlefield)} name(Pay Kicker)
+auto=alternative destroy target(land)
+text=Kicker - {2}{R}, Sacrifice a land. (You may pay {2}{R} and sacrifice a land in addition to any other costs as you cast this spell.) -- Destroy target land. If Dwarven Landslide was kicked, destroy another target land.
+mana={3}{R}
+type=Sorcery
+[/card]
+[card]
 name=Dwarven Lieutenant
 auto={1}{R}:1/0 target(dwarf)
 text={1}{R}: Target Dwarf creature gets +1/+0 until end of turn.
@@ -18122,6 +18181,19 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Ebonblade Reaper
+auto=@combat(attacking) source(this):life:-halfuplifetotal controller
+auto=@combatdamaged(opponent) from(this):life:-halfupopponentlifetotal opponent
+facedown={3}
+autofacedown={3}{b}{b}:morph
+text=Whenever Ebonblade Reaper attacks, you lose half your life, rounded up. -- Whenever Ebonblade Reaper deals combat damage to a player, that player loses half his or her life, rounded up. -- Morph {3}{B}{B} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
+mana={2}{B}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=1
+[/card]
+[card]
 name=Ebon Drake
 abilities=flying
 auto=@movedTo(*|mystack) from(myhand):life:-1 controller
@@ -18232,8 +18304,8 @@ type=Instant
 [/card]
 [card]
 name=Edgewalker
-auto=lord(cleric|myhand) altercost( white, -1 )
-auto=lord(cleric|myhand) altercost( black, -1 )
+auto=lord(cleric|myhand) altercost(white,-1)
+auto=lord(cleric|myhand) altercost(black, -1)
 text=Cleric spells you cast cost {W}{B} less to cast. This effect reduces only the amount of colored mana you pay. (For example, if you cast a Cleric spell with mana cost {1}{W}, it costs {1} to cast.)
 mana={1}{W}{B}
 type=Creature
@@ -19053,7 +19125,7 @@ toughness=1
 [/card]
 [card]
 name=Emerald Medallion
-auto=lord(*[green]|myhand) altercost( colorless, -1 )
+auto=lord(*[green]|myhand) altercost(colorless,-1)
 text=Green spells you cast cost {1} less to cast.
 mana={2}
 type=Artifact
@@ -19880,6 +19952,14 @@ power=5
 toughness=5
 [/card]
 [card]
+name=Eternal Flame
+text=Eternal Flame deals X damage to target opponent, where X is the number of Mountains you control. It deals half X damage, rounded up, to you.
+auto=damage:type:mountain:mybattlefield opponent
+auto=damage:halfuptype:mountain:mybattlefield controller
+mana={2}{R}{R}
+type=Sorcery
+[/card]
+[card]
 name=Eternal Warrior
 target=creature
 auto=vigilance
@@ -19986,7 +20066,7 @@ type=Artifact
 [/card]
 [card]
 name=Etherium Sculptor
-auto=lord(artifact|myhand) altercost( colorless, -1 )
+auto=lord(artifact|myhand) altercost(colorless,-1)
 text=Artifact spells you cast cost {1} less to cast.
 mana={1}{U}
 type=Artifact Creature
@@ -20413,7 +20493,7 @@ type=Artifact
 [/card]
 [card]
 name=Eye of Ugin
-auto=lord(eldrazi[-white;-blue;-black;-red;-green]|myhand) altercost( colorless, -2 )
+auto=lord(eldrazi[-white;-blue;-black;-red;-green]|myhand) altercost(colorless,-2)
 auto={7}{T}:moveTo(myhand) target(creature[-white;-blue;-black;-red;-green]|myLibrary)
 text=Colorless Eldrazi spells you cast cost {2} less to cast. -- {7}, {T}: Search your library for a colorless creature card, reveal it, and put it into your hand. Then shuffle your library.
 type=Legendary Land
@@ -21226,8 +21306,7 @@ subtype=Aura
 [/card]
 [card]
 name=Feroz's Ban
-auto=lord(creature|myhand) altercost( colorless, +2 )
-auto=lord(creature|opponenthand) altercost( colorless, +2 )
+auto=lord(creature|hand) altercost(colorless,+2)
 text=Creature spells cost {2} more to cast.
 mana={6}
 type=Artifact
@@ -22565,6 +22644,18 @@ mana={U}
 type=Enchantment
 [/card]
 [card]
+name=Floodgate
+text=Defender (This creature can't attack.) -- When Floodgate has flying, sacrifice it. -- When Floodgate leaves the battlefield, it deals damage equal to half the number of Islands you control, rounded down, to each nonblue creature without flying.
+auto=aslongas(floodgate[flying]|mybattlefield) all(this) sacrifice while >0
+auto=@movedto(nonbattlezone) from(this|mybattlefield):damage:halfdowntype:island:mybattlefield all(creature[-blue;-flying])
+mana={3}{U}
+type=Creature
+subtype=Wall
+abilities=defender
+power=0
+toughness=5
+[/card]
+[card]
 name=Flood Plain
 auto=tap
 auto={T}{S}:moveTo(myBattlefield) target(plains,island|myLibrary)
@@ -23430,8 +23521,8 @@ toughness=2
 [card]
 name=Frogtosser Banneret
 abilities=haste
-auto=lord(goblin|myhand) altercost( colorless, -1 )
-auto=lord(rogue|myhand) altercost( colorless, -1 )
+auto=lord(goblin|myhand) altercost(colorless,-1)
+auto=lord(rogue|myhand) altercost(colorless,-1)
 text=Haste -- Goblin spells and Rogue spells you cast cost {1} less to cast.
 mana={1}{B}
 type=Creature
@@ -25355,8 +25446,8 @@ toughness=3
 [/card]
 [card]
 name=Glowrider
-auto=lord(*[-creature;-land]|myhand) altercost( colorless, +1 )
-auto=lord(*[-creature;-land]|opponenthand) altercost( colorless, +1 )
+auto=lord(*[-creature]|myhand) altercost(colorless,+1)
+auto=lord(*[-creature]|opponenthand) altercost(colorless, +1)
 text=Noncreature spells cost {1} more to cast.
 mana={2}{W}
 type=Creature
@@ -26218,7 +26309,7 @@ toughness=3
 [/card]
 [card]
 name=Goblin Warchief
-auto=lord(goblin|myhand) altercost( colorless, -1 )
+auto=lord(goblin|myhand) altercost(colorless,-1)
 auto=lord(goblin|myBattlefield) haste
 text=Goblin spells you cast cost {1} less to cast. -- Goblin creatures you control have haste.
 mana={1}{R}{R}
@@ -26650,9 +26741,9 @@ type=Artifact
 [/card]
 [card]
 name=Grand Arbiter Augustin IV
-auto=lord(*[white]|myhand) altercost( colorless, -1 )
-auto=lord(*[blue]|myhand) altercost( colorless, -1 )
-auto=lord(*[-land]|opponenthand) altercost( colorless, +1 )
+auto=lord(*[white]|myhand) altercost(colorless,-1)
+auto=lord(*[blue]|myhand) altercost(colorless,-1)
+auto=lord(*|opponenthand) altercost( colorless,+1)
 text=White spells you cast cost {1} less to cast. -- Blue spells you cast cost {1} less to cast. -- Spells your opponents cast cost {1} more to cast.
 mana={2}{W}{U}
 type=Legendary Creature
@@ -28655,6 +28746,16 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Heartless Hidetsugu
+text={T}: Heartless Hidetsugu deals damage to each player equal to half that player's life total, rounded down.
+auto={t}:damage:halfdownlifetotal controller && damage:halfdownopponentlifetotal opponent
+mana={3}{R}{R}
+type=Legendary Creature
+subtype=Ogre Shaman
+power=4
+toughness=3
+[/card]
+[card]
 name=Heartmender
 abilities=persist
 auto=@each my upkeep:all(creature|mybattlefield) counter(-1/-1,-1)
@@ -29028,8 +29129,7 @@ toughness=1
 [/card]
 [card]
 name=Helm of Awakening
-auto=lord(*|myhand) altercost( colorless, -1 )
-auto=lord(*|opponenthand) altercost( colorless, -1 )
+auto=lord(*|hand) altercost(colorless,-1)
 text=Spells cost {1} less to cast.
 mana={2}
 type=Artifact
@@ -29321,8 +29421,7 @@ type=Land
 [/card]
 [card]
 name=High Seas
-auto=lord(creature[red;green]|myhand) altercost( colorless, +1 )
-auto=lord(creature[red;green]|opponenthand) altercost( colorless, +1 )
+auto=lord(creature[red;green]|hand) altercost(colorless,+1)
 text=Red creature spells and green creature spells cost {1} more to cast.
 mana={2}{U}
 type=Enchantment
@@ -31109,6 +31208,14 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Infernal Contract
+text=Draw four cards. You lose half your life, rounded up.
+auto=draw:4
+auto=life:-halfuplifetotal controller
+mana={B}{B}{B}
+type=Sorcery
+[/card]
+[card]
 name=Infernal Medusa
 auto=@combat(blocking) source(this) from(creature):all(trigger[from]) phaseaction[combatends] destroy
 auto=@combat(blocked) source(this) from(creature[-wall]):all(trigger[from]) phaseaction[combatends] destroy
@@ -31676,8 +31783,7 @@ toughness=2
 [/card]
 [card]
 name=Irini Sengir
-auto=lord(enchantment[white;green]|myhand) altercost( colorless, +1 )
-auto=lord(enchantment[white;green]|opponenthand) altercost( colorless, +1 )
+auto=lord(enchantment[white;green]|hand) altercost(colorless,+1)
 text=White enchantment spells and green enchantment spells cost {2} more to cast.
 mana={2}{B}{B}
 type=Legendary Creature
@@ -32074,7 +32180,7 @@ type=Artifact
 [/card]
 [card]
 name=Jade Leech
-auto=lord(*[green]|myhand) altercost( green, +1 )
+auto=lord(*[green]|myhand) altercost(green,+1)
 text=Green spells you cast cost {G} more to cast.
 mana={2}{G}{G}
 type=Creature
@@ -32267,7 +32373,7 @@ toughness=1
 [/card]
 [card]
 name=Jet Medallion
-auto=lord(*[black]|myhand) altercost( colorless, -1 )
+auto=lord(*[black]|myhand) altercost(colorless,-1)
 text=Black spells you cast cost {1} less to cast.
 mana={2}
 type=Artifact
@@ -35138,7 +35244,7 @@ toughness=5
 [card]
 name=Krosan Warchief
 auto={1}{G}:regenerate target(beast)
-auto=lord(beast|myhand) altercost( colorless, -1 )
+auto=lord(beast|myhand) altercost(colorless,-1)
 text=Beast spells you cast cost {1} less to cast. -- {1}{G}: Regenerate target Beast.
 mana={2}{G}
 type=Creature
@@ -37068,8 +37174,7 @@ toughness=1
 [/card]
 [card]
 name=Lodestone Golem
-auto=lord(*[-artifact;-land]|myhand) altercost( colorless, +1 )
-auto=lord(*[-artifact;-land]|opponenthand) altercost( colorless, +1 )
+auto=lord(*[-artifact]|hand) altercost(colorless,+1)
 text=Nonartifact spells cost {1} more to cast.
 mana={4}
 type=Artifact Creature
@@ -37128,7 +37233,7 @@ toughness=2
 [/card]
 [card]
 name=Long-Forgotten Gohei
-auto=lord(arcane|myhand) altercost( colorless, -1 )
+auto=lord(arcane|myhand) altercost(colorless,-1)
 auto=lord(spirit|myBattlefield) 1/1
 text=Arcane spells you cast cost {1} less to cast. -- Spirit creatures you control get +1/+1.
 mana={3}
@@ -37969,6 +38074,16 @@ mana={2}{R}
 type=Enchantment
 [/card]
 [card]
+name=Magma Burst
+target=creature,player
+auto=damage:3
+auto=alternative damage:3 target(other creature,player)
+text=Kicker - Sacrifice two lands. (You may sacrifice two lands in addition to any other costs as you cast this spell.) -- Magma Burst deals 3 damage to target creature or player. If Magma Burst was kicked, it deals 3 damage to another target creature or player.
+mana={3}{R}
+other={3}{r}{s(land|mybattlefield)}{s(land|mybattlefield)} name(Pay Kicker)
+type=Instant
+[/card]
+[card]
 name=Magma Giant
 auto=damage:2 all(creature,player)
 text=When Magma Giant enters the battlefield, it deals 2 damage to each creature and each player.
@@ -38290,8 +38405,8 @@ type=Sorcery
 [/card]
 [card]
 name=Mana Matrix
-auto=lord(instant|myhand) altercost( colorless, -2 )
-auto=lord(enchantment|myhand) altercost( colorless, -2 )
+auto=lord(instant|myhand) altercost(colorless,-2)
+auto=lord(enchantment|myhand) altercost(colorless,-2)
 text=Instant and enchantment spells you cast cost up to {2} less to cast.
 mana={6}
 type=Artifact
@@ -43047,7 +43162,7 @@ toughness=1
 [/card]
 [card]
 name=Nightscape Familiar
-auto=lord(*[blue;red]|myhand) altercost( colorless, -1 )
+auto=lord(*[blue;red]|myhand) altercost(colorless,-1)
 auto={1}{B}:regenerate
 text=Blue spells and red spells you cast cost {1} less to cast. -- {1}{B}: Regenerate Nightscape Familiar.
 mana={1}{B}
@@ -45717,7 +45832,7 @@ toughness=4
 [/card]
 [card]
 name=Pearl Medallion
-auto=lord(*[white]|myhand) altercost( colorless, -1 )
+auto=lord(*[white]|myhand) altercost(colorless,-1)
 text=White spells you cast cost {1} less to cast.
 mana={2}
 type=Artifact
@@ -46701,6 +46816,17 @@ mana={B}
 type=Enchantment
 [/card]
 [card]
+name=Phyrexian Scuta
+text=Kicker - Pay 3 life. (You may pay 3 life in addition to any other costs as you cast this spell.) -- If Phyrexian Scuta was kicked, it enters the battlefield with two +1/+1 counters on it.
+auto=alternative counter(1/1,2) all(this)
+other={3}{b}{l}{l}{l} name(Pay Kicker)
+mana={3}{B}
+type=Creature
+subtype=Zombie
+power=3
+toughness=3
+[/card]
+[card]
 name=Phyrexian Slayer
 abilities=flying
 auto=@combat(blocked) source(this) from(creature[white]):all(trigger[from]) bury
@@ -47200,7 +47326,7 @@ type=Sorcery
 [/card]
 [card]
 name=Planar Gate
-auto=lord(creature|myhand) altercost( colorless, -2 )
+auto=lord(creature|myhand) altercost(colorless,-2)
 text=Creature spells you cast cost up to {2} less to cast.
 mana={6}
 type=Artifact
@@ -47879,6 +48005,16 @@ text=Enchant creature -- Enchanted creature has trample.
 mana={G}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+name=Primal Growth
+target=land[basic]|mylibrary
+auto=moveto(mybattlefield)
+auto=alternative target(land[basic]|mylibrary) moveto(mybattlefield)
+text=Kicker - Sacrifice a creature. (You may sacrifice a creature in addition to any other costs as you cast this spell.) -- Search your library for a basic land card, put that card onto the battlefield, then shuffle your library. If Primal Growth was kicked, instead search your library for two basic land cards, put them onto the battlefield, then shuffle your library.
+mana={2}{G}
+other={2}{g}{s(creature|mybattlefield)} name(Pay Kicker)
+type=Sorcery
 [/card]
 [card]
 name=Primal Order
@@ -48881,6 +49017,15 @@ text=Destroy target enchantment.
 mana={W}
 type=Instant
 subtype=Arcane
+[/card]
+[card]
+name=Quietus Spike
+text=Equipped creature has deathtouch. -- Whenever equipped creature deals combat damage to a player, that player loses half his or her life, rounded up. -- Equip {3}
+mana={3}
+auto=teach(creature) deathtouch
+auto=@combatdamaged(opponent) from(mytgt):life:-halfupopponentlifetotal opponent
+type=Artifact
+subtype=Equipment
 [/card]
 [card]
 name=Quill-Slinger Boggart
@@ -52573,7 +52718,7 @@ toughness=2
 [card]
 name=Ruby Leech
 abilities=first strike
-auto=lord(*[red]|myhand) altercost( red, +1 )
+auto=lord(*[red]|myhand) altercost(red,+1)
 text=First strike -- Red spells you cast cost {R} more to cast.
 mana={1}{R}
 type=Creature
@@ -52583,7 +52728,7 @@ toughness=2
 [/card]
 [card]
 name=Ruby Medallion
-auto=lord(*[red]|myhand) altercost( colorless, -1 )
+auto=lord(*[red]|myhand) altercost(colorless,-1)
 text=Red spells you cast cost {1} less to cast.
 mana={2}
 type=Artifact
@@ -52730,6 +52875,16 @@ auto=damage:p all(player)
 text=Sacrifice a creature. Rupture deals damage equal to that creature's power to each creature without flying and each player.
 mana={2}{R}
 type=Sorcery
+[/card]
+[card]
+name=Rushing River
+target=*[-land]|battlefield
+auto=moveto(ownerhand)
+auto=alternative target(*[-land]|battlefield) moveto(ownerhand)
+text=Kicker - Sacrifice a land. (You may sacrifice a land in addition to any other costs as you cast this spell.) -- Return target nonland permanent to its owner's hand. If Rushing River was kicked, return another target nonland permanent to its owner's hand.
+mana={2}{U}
+other={2}{u}{S(land|mybattlefield)} name(Pay Kicker)
+type=Instant
 [/card]
 [card]
 name=Rushwood Dryad
@@ -53511,7 +53666,7 @@ toughness=1
 [card]
 name=Sapphire Leech
 abilities=flying
-auto=lord(*[blue]|myhand) altercost( blue, +1 )
+auto=lord(*[blue]|myhand) altercost(blue,+1)
 text=Flying -- Blue spells you cast cost {U} more to cast.
 mana={1}{U}
 type=Creature
@@ -53521,7 +53676,7 @@ toughness=2
 [/card]
 [card]
 name=Sapphire Medallion
-auto=lord(*[blue]|myhand) altercost( colorless, -1 )
+auto=lord(*[blue]|myhand) altercost(colorless,-1)
 text=Blue spells you cast cost {1} less to cast.
 mana={2}
 type=Artifact
@@ -55226,20 +55381,20 @@ auto=choice name(Sorcery) moveTo(myexile) notatarget(sorcery|myhand) && counter(
 auto=choice name(Tribal Instant) moveTo(myexile) notatarget(instant[tribal]|myhand) && counter(0/0,1,TribalInstant) all(this)
 auto=choice name(Tribal Sorcery) moveTo(myexile) notatarget(sorcery[tribal]|myhand) && counter(0/0,1,TribalSorcery) all(this)
 auto=choice name(cancel) 0/0
-auto=this(counter{0/0.1.Artifact}) lord(artifact[-land]|myhand) altercost( colorless, -2 )
-auto=this(counter{0/0.1.ArtifactCreature}) lord(artifact[-creature;-land]|myhand) altercost( colorless, -2 )
-auto=this(counter{0/0.1.ArtifactCreature}) lord(creature[-artifact]|myhand) altercost( colorless, -2 )
-auto=this(counter{0/0.1.ArtifactCreature}) lord(creature[artifact]|myhand) altercost( colorless, -2 )
-auto=this(counter{0/0.1.Creature}) lord(creature|myhand) altercost( colorless, -2 )
-auto=this(counter{0/0.1.Enchantment}) lord(enchantment|myhand) altercost( colorless, -2 )
-auto=this(counter{0/0.1.Instant}) lord(instant|myhand) altercost( colorless, -2 )
+auto=this(counter{0/0.1.Artifact}) lord(artifact|myhand) altercost(colorless,-2)
+auto=this(counter{0/0.1.ArtifactCreature}) lord(artifact[-creature]|myhand) altercost(colorless,-2)
+auto=this(counter{0/0.1.ArtifactCreature}) lord(creature[-artifact]|myhand) altercost(colorless,-2)
+auto=this(counter{0/0.1.ArtifactCreature}) lord(creature[artifact]|myhand) altercost(colorless,-2 )
+auto=this(counter{0/0.1.Creature}) lord(creature|myhand) altercost(colorless,-2)
+auto=this(counter{0/0.1.Enchantment}) lord(enchantment|myhand) altercost(colorless,-2)
+auto=this(counter{0/0.1.Instant}) lord(instant|myhand) altercost(colorless,-2)
 auto=this(counter{0/0.1.Sorcery}) lord(sorcery|myhand) altercost( colorless, -2 )
-auto=this(counter{0/0.1.TribalInstant}) lord(tribal[-instant]|myhand) altercost( colorless, -2 )
-auto=this(counter{0/0.1.TribalInstant}) lord(instant[-tribal]|myhand) altercost( colorless, -2 )
-auto=this(counter{0/0.1.TribalInstant}) lord(instant[tribal]|myhand) altercost( colorless, -2 )
-auto=this(counter{0/0.1.TribalSorcery}) lord(tribal[-sorcery]|myhand) altercost( colorless, -2 )
-auto=this(counter{0/0.1.TribalSorcery}) lord(sorcery[-tribal]|myhand) altercost( colorless, -2 )
-auto=this(counter{0/0.1.TribalSorcery}) lord(sorcery[tribal]|myhand) altercost( colorless, -2 )
+auto=this(counter{0/0.1.TribalInstant}) lord(tribal[-instant]|myhand) altercost(colorless,-2)
+auto=this(counter{0/0.1.TribalInstant}) lord(instant[-tribal]|myhand) altercost(colorless,-2)
+auto=this(counter{0/0.1.TribalInstant}) lord(instant[tribal]|myhand) altercost(colorless,-2 )
+auto=this(counter{0/0.1.TribalSorcery}) lord(tribal[-sorcery]|myhand) altercost(colorless,-2)
+auto=this(counter{0/0.1.TribalSorcery}) lord(sorcery[-tribal]|myhand) altercost(colorless,-2)
+auto=this(counter{0/0.1.TribalSorcery}) lord(sorcery[tribal]|myhand) altercost(colorless,-2)
 text=Imprint - When Semblance Anvil enters the battlefield, you may exile a nonland card from your hand. -- Spells you cast that share a card type with the exiled card cost {2} less to cast.
 mana={3}
 type=Artifact
@@ -60049,8 +60204,7 @@ type=Enchantment
 [/card]
 [card]
 name=Sphere of Resistance
-auto=lord(*[-land]|myhand) altercost( colorless, +1 )
-auto=lord(*[-land]|opponenthand) altercost( colorless, +1 )
+auto=lord(*|hand) altercost(colorless,+1)
 text=Spells cost {1} more to cast.
 mana={2}
 type=Artifact
@@ -61038,8 +61192,7 @@ type=Artifact
 [card]
 name=Squeeze
 text=Sorcery spells cost {3} more to cast.
-auto=lord(sorcery|myhand) altercost( colorless, +3 )
-auto=lord(sorcery|opponenthand) altercost( colorless, +3 )
+auto=lord(sorcery|hand) altercost(colorless,+3)
 mana={3}{U}
 type=Enchantment
 [/card]
@@ -61725,7 +61878,7 @@ toughness=2
 [/card]
 [card]
 name=Stinkdrinker Daredevil
-auto=lord(giant|myhand) altercost( colorless, -2 )
+auto=lord(giant|myhand) altercost(colorless,-2)
 text=Giant spells you cast cost {2} less to cast.
 mana={2}{R}
 type=Creature
@@ -61791,7 +61944,7 @@ subtype=Mountain Forest
 [/card]
 [card]
 name=Stone Calendar
-auto=lord(*|myhand) altercost( colorless, -1 )
+auto=lord(*|myhand) altercost(colorless,-1)
 text=Spells you cast cost up to {1} less to cast.
 mana={5}
 type=Artifact
@@ -61939,8 +62092,8 @@ toughness=2
 [card]
 name=Stonybrook Banneret
 abilities=islandwalk
-auto=lord(merfolk|myhand) altercost( colorless, -1 )
-auto=lord(wizard|myhand) altercost( colorless, -1 )
+auto=lord(merfolk|myhand) altercost(colorless,-1)
+auto=lord(wizard|myhand) altercost(colorless,-1)
 text=Islandwalk -- Merfolk spells and Wizard spells you cast cost {1} less to cast.
 mana={1}{U}
 type=Creature
@@ -62071,7 +62224,7 @@ toughness=1
 [card]
 name=Stormscape Familiar
 abilities=flying
-auto=lord(*[white;black]|myhand) altercost( colorless, -1 )
+auto=lord(*[white;black]|myhand) altercost(colorless,-1)
 text=Flying -- White spells and black spells you cast cost {1} less to cast.
 mana={1}{U}
 type=Creature
@@ -62862,7 +63015,7 @@ toughness=1
 [card]
 name=Sunscape Familiar
 abilities=flying
-auto=lord(*[green;blue]|myhand) altercost( colorless, -1 )
+auto=lord(*[green;blue]|myhand) altercost(colorless,-1)
 text=Defender (This creature can't attack.) -- Green spells and blue spells you cast cost {1} less to cast.
 mana={1}{W}
 type=Creature
@@ -65383,8 +65536,7 @@ toughness=7
 [/card]
 [card]
 name=Thorn of Amethyst
-auto=lord(*[-creature;-land]|myhand) altercost( colorless, +1 )
-auto=lord(*[-creature;-land]|opponenthand) altercost( colorless, +1 )
+auto=lord(*[-creature]|hand) altercost(colorless,+1)
 text=Noncreature spells cost {1} more to cast.
 mana={2}
 type=Artifact
@@ -65438,7 +65590,7 @@ toughness=1
 [/card]
 [card]
 name=Thornscape Familiar
-auto=lord(*[red;white]|myhand) altercost( colorless, -1 )
+auto=lord(*[red;white]|myhand) altercost(colorless,-1)
 text=Red spells and white spells you cast cost {1} less to cast.
 mana={1}{G}
 type=Creature
@@ -65942,7 +66094,7 @@ toughness=1
 [card]
 name=Thunderscape Familiar
 abilities=first strike
-auto=lord(*[black;green]|myhand) altercost( colorless, -1 )
+auto=lord(*[black;green]|myhand) altercost(colorless,-1)
 text=First strike -- Black spells and green spells you cast cost {1} less to cast.
 mana={1}{R}
 type=Creature
@@ -68356,7 +68508,7 @@ toughness=2
 [card]
 name=Undead Warchief
 auto=lord(zombie|myBattlefield) 2/1
-auto=lord(zombie|myhand) altercost( colorless, -1 )
+auto=lord(zombie|myhand) altercost( colorless,-1)
 text=Zombie spells you cast cost {1} less to cast. -- Zombie creatures you control get +2/+1.
 mana={2}{B}{B}
 type=Creature
@@ -68898,8 +69050,7 @@ subtype=Urza's
 [/card]
 [card]
 name=Urza's Filter
-auto=lord(*[multicolor]|myhand) altercost( colorless, -2 )
-auto=lord(*[multicolor]|opponenthand) altercost( colorless, -2 )
+auto=lord(*[multicolor]|hand) altercost(colorless,-2)
 text=Multicolored spells cost up to {2} less to cast.
 mana={4}
 type=Artifact
