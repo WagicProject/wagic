@@ -487,7 +487,7 @@ void GameObserver::gameStateBasedEffects()
             for (int j = 0; j < nbcards; ++j)
             {
                 MTGCardInstance * c = z->cards[j];
-                if (c->has(Constants::CANTLOSE) || c->has(Constants::CANTLIFELOSE))
+                if (c->has(Constants::CANTLOSE) || (c->has(Constants::CANTLIFELOSE && players[i]->poisonCount < 10)))
                 {
                     cantlosers++;
                 }
@@ -710,6 +710,17 @@ void GameObserver::Affinity()
             int color = 0;
             string type = "";
             //only do any of the following if a card with the stated ability is in your hand.
+           ManaCost * original = NEW ManaCost();
+           original->copy(card->model->data->getManaCost());
+           //have to run alter cost before affinity or the 2 cancel each other out.
+           if(card && (card->getIncreasedManaCost()->getConvertedCost()||card->getReducedManaCost()->getConvertedCost()))
+           {
+            if(card->getIncreasedManaCost()->getConvertedCost())
+            original->add(card->getIncreasedManaCost());
+            if(card->getReducedManaCost()->getConvertedCost())
+            original->remove(card->getReducedManaCost());
+            card->getManaCost()->copy(original);
+            }
             if(card && 
                 (card->has(Constants::AFFINITYARTIFACTS)||
                 card->has(Constants::AFFINITYFOREST)||
@@ -747,7 +758,6 @@ void GameObserver::Affinity()
                         color = 1;
                         type = "creature";
                     }
-                    ManaCost * original = card->model->data->getManaCost();
                     card->getManaCost()->copy(original);
                     int reduce = 0;
                     if(card->has(Constants::AFFINITYGREENCREATURES))
@@ -767,6 +777,8 @@ void GameObserver::Affinity()
                             card->getManaCost()->remove(color,1);
                     }
             }
+            if(original)
+            delete original;
         }
     }
 }

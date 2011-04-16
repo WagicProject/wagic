@@ -23,6 +23,8 @@ CardPrimitive::CardPrimitive(CardPrimitive * source)
     for (int i = 0; i < Constants::MTG_NB_COLORS; ++i)
         colors[i] = source->colors[i];
     manaCost.copy(source->getManaCost());
+    reducedCost.copy(source->getReducedManaCost());
+    increasedCost.copy(source->getIncreasedManaCost());
     if(source->getManaCost()->alternative)
     manaCost.alternative->alternativeName = source->getManaCost()->alternative->alternativeName;
 
@@ -268,6 +270,15 @@ const string& CardPrimitive::getLCName() const
 ManaCost* CardPrimitive::getManaCost()
 {
     return &manaCost;
+}
+
+ManaCost* CardPrimitive::getReducedManaCost()
+{
+    return &reducedCost;
+}
+ManaCost* CardPrimitive::getIncreasedManaCost()
+{
+    return &increasedCost;
 }
 
 bool CardPrimitive::hasType(int _type)

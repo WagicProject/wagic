@@ -148,13 +148,17 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
             {
                 string value = val;
                 std::transform(value.begin(), value.end(), value.begin(), ::tolower);
-                cost->alternative = ManaCost::parseManaCost(value);
                 size_t name = value.find("name(");
-                if(name != string::npos)
-                {
-                size_t endName = value.find(")",name);
-                cost->alternative->alternativeName = value.substr(name + 5,endName - name - 5);
-                }
+                string theName = "";
+                    if(name != string::npos)
+                    {
+                        size_t endName = value.find(")",name);
+                        theName = value.substr(name + 5,endName - name - 5);
+                        s.erase(name, endName - name + 1);
+                    }
+                    cost->alternative = ManaCost::parseManaCost(value);
+                    if(theName.size())
+                        cost->alternative->alternativeName.append(theName);
             }
         }
         break;

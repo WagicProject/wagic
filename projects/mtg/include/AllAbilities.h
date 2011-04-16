@@ -52,12 +52,28 @@ public:
     {
         MTGCardInstance * target = card->target;
         intValue = 0;
+        bool halfup = false;
+        bool halfdown = false;
         if (!target) target = card;
         int multiplier = 1;
         if (s[0] == '-')
         {
             s = s.substr(1);
             multiplier = -1;
+        }
+        //rounding values, the words can be written anywhere in the line,
+        //they are erased after parsing.
+        if(s.find("halfup") != string::npos)
+        {
+            halfup = true;
+            size_t hU = s.find("halfup");
+            s.erase(hU,hU + 6);
+        }
+        if(s.find("halfdown") != string::npos)
+        {
+            halfdown = true;
+            size_t hD = s.find("halfdown");
+            s.erase(hD,hD + 8);
         }
         if (s == "x" || s == "X")
         {
@@ -179,6 +195,17 @@ public:
         else
         {
             intValue = atoi(s.c_str());
+        }
+        if(intValue > 0)
+        {
+            if(halfup)
+            {
+                if(intValue%2 == 1)
+                    intValue++;
+                intValue = intValue/2;
+            }
+            if(halfdown)
+                intValue = intValue/2;//got lucky here, by default C++ rounds down.
         }
         intValue *= multiplier;
     }
@@ -3704,6 +3731,9 @@ MTGCardInstance * manaReducer;
     AAlterCost(int id, MTGCardInstance * source, MTGCardInstance * target, int amount, int type);
     int addToGame();
     int testDestroy();
+    void refreshCost(MTGCardInstance * card = NULL);
+    void increaseTheCost(MTGCardInstance * card = NULL);
+    void decreaseTheCost(MTGCardInstance * card = NULL);
     AAlterCost * clone() const;
     ~AAlterCost();
 };
@@ -4671,66 +4701,6 @@ public:
     ASacrifice * clone() const
     {
         ASacrifice * a = NEW ASacrifice(*this);
-        a->isClone = 1;
-        return a;
-    }
-};
-
-//1235 Aspect of Wolf
-class AAspectOfWolf: public ListMaintainerAbility
-{
-public:
-    int color;
-    AAspectOfWolf(int _id, MTGCardInstance * _source, MTGCardInstance * _target) :
-        ListMaintainerAbility(_id, _source, _target)
-    {
-    }
-
-    int canBeInList(MTGCardInstance * card)
-    {
-
-        if (card->controller() == source->controller() && card->hasType("forest") && game->isInPlay(card)) return 1;
-        return 0;
-    }
-
-    int added(MTGCardInstance * card)
-    {
-        MTGCardInstance * _target = (MTGCardInstance *) target;
-        int size = cards.size();
-        if (size % 2 == 0)
-        {
-            _target->power += 1;
-        }
-        else
-        {
-            _target->addToToughness(1);
-        }
-        return 1;
-    }
-
-    int removed(MTGCardInstance * card)
-    {
-        MTGCardInstance * _target = (MTGCardInstance *) target;
-        int size = cards.size();
-        if (size % 2 == 1)
-        {
-            _target->power -= 1;
-        }
-        else
-        {
-            _target->addToToughness(-1);
-        }
-        return 1;
-    }
-
-    virtual ostream& toString(ostream& out) const
-    {
-        out << "AAspectOfWolf ::: color : " << color << " (";
-        return ListMaintainerAbility::toString(out) << ")";
-    }
-    AAspectOfWolf * clone() const
-    {
-        AAspectOfWolf * a = NEW AAspectOfWolf(*this);
         a->isClone = 1;
         return a;
     }

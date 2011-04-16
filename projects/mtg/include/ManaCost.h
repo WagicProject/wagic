@@ -80,6 +80,7 @@ public:
     int tryToPayHybrids(ManaCostHybrid * _hybrids[], int _nbhybrids, int diff[]);
     void randomDiffHybrids(ManaCost * _cost, int diff[]);
     int add(ManaCost * _cost);
+    int remove(ManaCost * _cost);
     int pay (ManaCost * _cost);
 
     //return 1 if _cost can be paid with current data, 0 otherwise

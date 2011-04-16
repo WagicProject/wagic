@@ -528,6 +528,17 @@ int ManaCost::add(ManaCost * _cost)
     return 1;
 }
 
+int ManaCost::remove(ManaCost * _cost)
+{
+    if (!_cost)
+        return 0;
+    for (unsigned int i = 0; i < Constants::MTG_NB_COLORS; i++)
+    {
+        cost[i] -= _cost->getCost(i);
+    }
+    return 1;
+}
+
 int ManaCost::addHybrid(int c1, int v1, int c2, int v2)
 {
     ManaCostHybrid * h = NEW ManaCostHybrid(c1, v1, c2, v2);

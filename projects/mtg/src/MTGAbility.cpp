@@ -902,6 +902,9 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     {
         size_t end = sWithoutTc.find(")", found);
         newName = sWithoutTc.substr(found + 5, end - found - 5);
+        s.erase(found, end - found + 1);
+        //we erase the name section from the string to avoid 
+        //accidently building an mtg ability with the text meant for menuText.
     }
     //Target Abilities
     found = s.find("target(");
@@ -2404,9 +2407,9 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     found = s.find("counter(");
     if (found != string::npos)
     {
-        size_t start = s.find("(");
+        size_t start = s.find("counter(");
         size_t end = s.find(")");
-        string counterString = s.substr(start + 1, end - start - 1);
+        string counterString = s.substr(start + 8, end - start - 8);
         Counter * counter = parseCounter(counterString, target, spell);
         if (counter)
         {
@@ -2423,9 +2426,9 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     found = s.find("removeallcounters(");
     if (found != string::npos)
     {
-        size_t start = s.find("(");
+        size_t start = s.find("removeallcounters(");
         size_t end = s.find(")");
-        string counterString = s.substr(start + 1, end - start - 1);
+        string counterString = s.substr(start + 18, end - start - 18);
         if(counterString.find("all") != string::npos)
         {
         bool all = true;
@@ -3034,12 +3037,17 @@ int AbilityFactory::getAbilities(vector<MTGAbility *> * v, Spell * spell, MTGCar
     MTGCardInstance * target = card->target;
     if (!target)
         target = card;
-    card->getManaCost()->copy(card->model->data->getManaCost());
+    //card->getManaCost()->copy(card->model->data->getManaCost());
+    //zeth:i added this originally for no reason really, however
+    //i didn't realize ai runs this function about a million times during a match.
+    //it litterally distroys any altering cost effects.
+    //if for some reason i added this becuase of some bug...we need to think of a more clever way
+    //to do this.
     string magicText;
-    card->graveEffects = false;
-    card->exileEffects = false;
     if (dest)
     {
+        card->graveEffects = false;
+        card->exileEffects = false;
         GameObserver * g = GameObserver::GetInstance();
         for (int i = 0; i < 2; ++i)
         {
@@ -3158,7 +3166,6 @@ int AbilityFactory::getAbilities(vector<MTGAbility *> * v, Spell * spell, MTGCar
             line = magicText;
             magicText = "";
         }
-
         MTGAbility * a = parseMagicLine(line, result, spell, card, 0, 0, 0, 0, dest);
         if (a)
         {
@@ -3546,11 +3553,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
     case 1194: //Control Magic
     {
         game->addObserver(NEW AControlStealAura(_id, card, card->target));
-        break;
-    }
-    case 1235: //Aspect of Wolf
-    {
-        game->addObserver(NEW AAspectOfWolf(_id, card, card->target));
         break;
     }
     case 1231: //Volcanic Eruption

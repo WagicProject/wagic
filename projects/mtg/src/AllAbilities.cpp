@@ -2139,44 +2139,41 @@ GenericTargetAbility::~GenericTargetAbility()
 
 //Alter Cost
 AAlterCost::AAlterCost(int id, MTGCardInstance * source, MTGCardInstance * target, int amount, int type) :
-    MTGAbility(id, source, target), amount(amount), type(type)
+MTGAbility(id, source, target), amount(amount), type(type)
 {
-manaReducer = source;
+    manaReducer = source;
 }
 
 int AAlterCost::addToGame()
 {
     MTGCardInstance * _target = (MTGCardInstance *) target;
-    if (amount < 0)
+    if(!_target || _target->hasType("land"))
     {
-        tempAmount = abs(amount);
-        if (_target->getManaCost()->hasColor(type))
+        this->forceDestroy = 1;
+        return MTGAbility::addToGame();
+    }
+    if (amount > 0)
+    {
+        if(!_target->getIncreasedManaCost()->getConvertedCost())
         {
-            if (_target->getManaCost()->getConvertedCost() >= 1)
-            {
-                _target->getManaCost()->remove(type, tempAmount);
-                if (_target->getManaCost()->alternative > 0)
-                {
-                    _target->getManaCost()->alternative->remove(type, tempAmount);
-                }
-                if (_target->getManaCost()->BuyBack > 0)
-                {
-                    _target->getManaCost()->BuyBack->remove(type, tempAmount);
-                }
-            }
+            ManaCost * increased = NEW ManaCost();
+            increased->init();
+            _target->getIncreasedManaCost()->copy(increased);
+            delete increased;
+
         }
+        _target->getIncreasedManaCost()->add(type,amount);
     }
     else
     {
-        _target->getManaCost()->add(type, amount);
-        if (_target->getManaCost()->alternative > 0)
+        if(!_target->getReducedManaCost()->getConvertedCost())
         {
-            _target->getManaCost()->alternative->add(type, amount);
+            ManaCost * reduced = NEW ManaCost();
+            reduced->init();
+            _target->getReducedManaCost()->copy(reduced);
+            delete reduced;
         }
-        if (_target->getManaCost()->BuyBack > 0)
-        {
-            _target->getManaCost()->BuyBack->add(type, amount);
-        }
+        _target->getReducedManaCost()->add(type,abs(amount));
     }
     return MTGAbility::addToGame();
 }
@@ -2188,23 +2185,66 @@ int AAlterCost::testDestroy()
     {
         if (amount > 0)
         {
-            _target->getManaCost()->remove(type, amount);
-            if (_target->getManaCost()->alternative)
-            {
-                _target->getManaCost()->alternative->remove(type, amount);
-            }
-            if (_target->getManaCost()->BuyBack)
-            {
-                _target->getManaCost()->BuyBack->remove(type, amount);
-            }
+            _target->getIncreasedManaCost()->remove(type,amount);
+            refreshCost(_target);//special case for 0 cost.
         }
         else
         {
-          _target->controller()->game->putInHand(_target);
+            _target->getReducedManaCost()->remove(type,abs(amount));
+            refreshCost(_target);//special case for 0 cost.
         }
         return MTGAbility::testDestroy();
     }
-return 0;
+    return 0;
+}
+void AAlterCost::refreshCost(MTGCardInstance * card)
+{
+    ManaCost * original = NEW ManaCost();
+    original->copy(card->model->data->getManaCost());
+    original->add(card->getIncreasedManaCost());
+    original->remove(card->getReducedManaCost());
+    card->getManaCost()->copy(original);
+    delete original;
+        return;
+    }
+void AAlterCost::increaseTheCost(MTGCardInstance * card)
+{
+    if(card->getIncreasedManaCost()->getConvertedCost())
+    {
+        for(int k = Constants::MTG_COLOR_ARTIFACT; k < Constants::MTG_NB_COLORS;k++)
+        {
+            card->getManaCost()->add(k,card->getIncreasedManaCost()->getCost(k));
+            if (card->getManaCost()->alternative)
+            {
+                card->getManaCost()->alternative->add(k,card->getIncreasedManaCost()->getCost(k));
+            }
+            if (card->getManaCost()->BuyBack)
+            {
+                card->getManaCost()->BuyBack->add(k,card->getIncreasedManaCost()->getCost(k));
+            }
+        }
+    }
+    return;
+}
+
+void AAlterCost::decreaseTheCost(MTGCardInstance * card)
+{
+    if(card->getReducedManaCost()->getConvertedCost())
+    {
+        for(int k = Constants::MTG_COLOR_ARTIFACT; k < Constants::MTG_NB_COLORS;k++)
+        {
+            card->getManaCost()->remove(k,card->getReducedManaCost()->getCost(k));
+            if (card->getManaCost()->alternative)
+            {
+                card->getManaCost()->alternative->remove(k,card->getReducedManaCost()->getCost(k));
+            }
+            if (card->getManaCost()->BuyBack)
+            {
+                card->getManaCost()->BuyBack->remove(k,card->getReducedManaCost()->getCost(k));
+            }
+        }
+    }
+    return;
 }
 
 AAlterCost * AAlterCost::clone() const

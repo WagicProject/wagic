@@ -88,13 +88,28 @@ bool AIPlayer::tapLandsForMana(ManaCost * cost, MTGCardInstance * target)
     DebugTrace(" AI attempting to tap land for mana." << endl
             << "-  Target: " << (target ? target->name : "None" ) << endl
             << "-  Cost: " << (cost ? cost->toString() : "NULL") );
+    if(cost && !cost->getConvertedCost())
+    {
+        DebugTrace("Card has free to play.  ");
+        return true;
+        //return true becuase we don't need to do anything with a cost of 0;
+        //special case for 0 cost, which is valid
+    }
     if (!cost)
     {
         DebugTrace("Mana cost is NULL.  ");
         return false;
     }
-
-    ManaCost * pMana = getPotentialMana(target);
+    ManaCost * pMana = NULL;
+    if(!target)
+        pMana = getPotentialMana();
+    else
+        pMana = getPotentialMana(target);
+    if(!pMana->canAfford(cost))
+    {
+    delete pMana;
+    return false;
+    }
     ManaCost * diff = pMana->Diff(cost);
     delete (pMana);
     GameObserver * g = GameObserver::GetInstance();
@@ -1369,10 +1384,12 @@ int AIPlayerBaka::computeActions()
         {
             if (ipotential)
             {
-                tapLandsForMana(nextCardToPlay->getManaCost());
+                if(tapLandsForMana(nextCardToPlay->getManaCost(),nextCardToPlay))
+                {
+                    AIAction * a = NEW AIAction(nextCardToPlay);
+                    clickstream.push(a);
+                }
             }
-            AIAction * a = NEW AIAction(nextCardToPlay);
-            clickstream.push(a);
             findingCard = false;
             nextCardToPlay = NULL;
             return 1;
@@ -1445,10 +1462,12 @@ int AIPlayerBaka::computeActions()
                             delete (SunCheck);
                         }
                         /////////////////////////
-                        tapLandsForMana(nextCardToPlay->getManaCost());
                     }
-                    AIAction * a = NEW AIAction(nextCardToPlay);
-                    clickstream.push(a);
+                    if(tapLandsForMana(nextCardToPlay->getManaCost(),nextCardToPlay))
+                    {
+                        AIAction * a = NEW AIAction(nextCardToPlay);
+                        clickstream.push(a);
+                    }
                     return 1;
                 }
                 else
