@@ -12721,15 +12721,6 @@ power=2
 toughness=3
 [/card]
 [card]
-name=Llawan, Cephalid Empress
-text=When Llawan, Cephalid Empress enters the battlefield, return all blue creatures your opponents control to their owners' hands. -- Your opponents can't cast blue creature spells.
-mana={3}{U}
-type=Legendary Creature
-subtype=Cephalid
-power=2
-toughness=3
-[/card]
-[card]
 name=Loafing Giant
 text=Whenever Loafing Giant attacks or blocks, put the top card of your library into your graveyard. If that card is a land card, prevent all combat damage that Loafing Giant would deal this turn.
 mana={4}{R}
@@ -26702,15 +26693,6 @@ type=Creature
 subtype=Elf Warrior
 power=2
 toughness=2
-[/card]
-[card]
-name=Xantid Swarm
-text=Flying -- Whenever Xantid Swarm attacks, defending player can't cast spells this turn.
-mana={G}
-type=Creature
-subtype=Insect
-power=0
-toughness=1
 [/card]
 [card]
 name=Xathrid Demon

@@ -37101,6 +37101,17 @@ text={T}: Add {1} to your mana pool. -- {T}: Add {B} or {G} to your mana pool. L
 type=Land
 [/card]
 [card]
+name=Llawan, Cephalid Empress
+auto=maxCast(creature[blue])0 opponent
+auto=moveTo(ownerhand) all(creature[blue]|opoonentbattlefield)
+text=When Llawan, Cephalid Empress enters the battlefield, return all blue creatures your opponents control to their owners' hands. -- Your opponents can't cast blue creature spells.
+mana={3}{U}
+type=Legendary Creature
+subtype=Cephalid
+power=2
+toughness=3
+[/card]
+[card]
 name=Loam Dweller
 auto=@movedto(arcane,spirit|mystack) from(myhand):may moveto(myBattlefield) target(land|myhand) && tap
 text=Whenever you cast a Spirit or Arcane spell, you may put a land card from your hand onto the battlefield tapped.
@@ -74570,6 +74581,17 @@ auto={5}:becomes(Artifact Creature Golem,8/8,trample) ueot
 text={5}: Until end of turn, Xanthic Statue becomes an 8/8 Golem artifact creature with trample.
 mana={8}
 type=Artifact
+[/card]
+[card]
+name=Xantid Swarm
+abilities=flying
+auto=@combat(attacking) source(this):maxCast(*)0 opponent ueot
+text=Flying -- Whenever Xantid Swarm attacks, defending player can't cast spells this turn.
+mana={G}
+type=Creature
+subtype=Insect
+power=0
+toughness=1
 [/card]
 [card]
 name=Xiahou Dun, the One-Eyed
