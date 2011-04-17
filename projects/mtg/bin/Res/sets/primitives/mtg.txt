@@ -923,7 +923,7 @@ toughness=1
 [card]
 name=Akoum Battlesinger
 abilities=haste
-auto=may lord(ally) 1/0 ueot
+auto=may lord(ally|myBattlefield) 1/0 ueot
 auto=@movedTo(other ally|myBattlefield):may lord(ally|myBattlefield) 1/0 ueot
 text=Haste -- Whenever Akoum Battlesinger or another Ally enters the battlefield under your control, you may have Ally creatures you control get +1/+0 until end of turn.
 mana={1}{R}
@@ -1009,7 +1009,7 @@ name=Akroma, Angel of Fury
 abilities=flying,nofizzle,protection from blue,protection from white,trample
 facedown={3}
 autofacedown={3}{R}{R}{R}:morph
-auto={1}{R}:1/0
+auto={R}:1/0
 text=Akroma, Angel of Fury can't be countered. -- Flying, trample, protection from white and from blue -- {R}: Akroma, Angel of Fury gets +1/+0 until end of turn. -- Morph {3}{R}{R}{R} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
 mana={5}{R}{R}{R}
 type=Legendary Creature
@@ -26701,7 +26701,7 @@ toughness=2
 [/card]
 [card]
 name=Gossamer Phantasm
-abilities=flaing
+abilities=flying
 auto=@targeted(this):sacrifice
 text=Flying -- When Gossamer Phantasm becomes the target of a spell or ability, sacrifice it.
 mana={1}{U}
@@ -28420,7 +28420,7 @@ toughness=1
 [card]
 name=Haunted Angel
 abilities=flying
-autograveyard=token(Spirit,Creature Spirit,1/1) opponent && moveto(exile)
+autograveyard=token(Angel,Creature Angel,3/3,flying black) opponent && moveto(exile)
 text=Flying -- When Haunted Angel is put into a graveyard from the battlefield, exile Haunted Angel and each other player puts a 3/3 black Angel creature token with flying onto the battlefield.
 mana={2}{W}
 type=Creature
@@ -43714,7 +43714,7 @@ type=Instant
 [/card]
 [card]
 name=Nova Chaser
-abilties=trample
+abilities=trample
 auto=aslongas(other elemental|mybattlefield) choice notatarget(other elemental|mybattlefield) (blink)forsrc oneshot
 auto=choice sacrifice
 text=Trample -- Champion an Elemental (When this enters the battlefield, sacrifice it unless you exile another Elemental you control. When this leaves the battlefield, that card returns to the battlefield.)
@@ -60779,8 +60779,8 @@ toughness=3
 name=Spiteful Visions
 auto=@each my draw:draw:1 controller
 auto=@each opponent draw:draw:1 opponent
-auto=@movedTo(*|myhand) from(mylibrary):damage:1 controller
-auto=@movedTo(*|opponenthand) from(opponentlibrary):damage:1 opponent
+auto=@drawn(controller):damage:1 controller
+auto=@drawn(opponent):damage:1 opponent
 text=At the beginning of each player's draw step, that player draws an additional card. -- Whenever a player draws a card, Spiteful Visions deals 1 damage to that player.
 mana={2}{BR}{BR}
 type=Enchantment
