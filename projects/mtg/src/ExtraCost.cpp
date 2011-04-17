@@ -114,11 +114,15 @@ LifeorManaCost::LifeorManaCost(TargetChooser *_tc,string manaType) :
     int LifeorManaCost::canPay()
     {
         MTGCardInstance * _target = (MTGCardInstance *) target;
-        if(_target->controller()->life <= 0)
+        string buildType ="{";
+        buildType.append(manaType);
+        buildType.append("}");
+        ManaCost * newCost = ManaCost::parseManaCost(buildType);
+        if(_target->controller()->getManaPool()->canAfford(newCost) || _target->controller()->life > 1)
         {
-            return 0;
+            return 1;
         }
-        return 1;
+        return 0;
     }
 
 int LifeorManaCost::doPay()
