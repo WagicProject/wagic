@@ -57,7 +57,7 @@ public:
 class LifeCost: public ExtraCost{
 public:
   LifeCost(TargetChooser *_tc = NULL);
-
+  virtual int canPay();
   virtual int doPay();
   virtual LifeCost * clone() const;
 };
@@ -66,6 +66,7 @@ class LifeorManaCost: public ExtraCost{
 public:
     LifeorManaCost(TargetChooser *_tc = NULL,string manaType = "");
     string manaType;
+    virtual int canPay();
     virtual int doPay();
     virtual LifeorManaCost * clone() const;
 };

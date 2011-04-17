@@ -487,7 +487,7 @@ void GameObserver::gameStateBasedEffects()
             for (int j = 0; j < nbcards; ++j)
             {
                 MTGCardInstance * c = z->cards[j];
-                if (c->has(Constants::CANTLOSE) || (c->has(Constants::CANTLIFELOSE && players[i]->poisonCount < 10)))
+                if (c->has(Constants::CANTLOSE) || (c->has(Constants::CANTLIFELOSE) && players[i]->poisonCount < 10))
                 {
                     cantlosers++;
                 }

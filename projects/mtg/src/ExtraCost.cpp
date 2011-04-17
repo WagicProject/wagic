@@ -74,6 +74,16 @@ LifeCost::LifeCost(TargetChooser *_tc) :
 {
 }
 
+    int LifeCost::canPay()
+    {
+        MTGCardInstance * _target = (MTGCardInstance *) target;
+        if(_target->controller()->life <= 0)
+        {
+            return 0;
+        }
+        return 1;
+    }
+
 int LifeCost::doPay()
 {
     if (!target)
@@ -100,6 +110,16 @@ LifeorManaCost::LifeorManaCost(TargetChooser *_tc,string manaType) :
     ExtraCost("Phyrexian Mana", _tc),manaType(manaType)
 {
 }
+
+    int LifeorManaCost::canPay()
+    {
+        MTGCardInstance * _target = (MTGCardInstance *) target;
+        if(_target->controller()->life <= 0)
+        {
+            return 0;
+        }
+        return 1;
+    }
 
 int LifeorManaCost::doPay()
 {
