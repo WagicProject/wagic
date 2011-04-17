@@ -30682,7 +30682,7 @@ toughness=1
 name=Ichor Wellspring
 auto=draw:1
 auto=@movedTo(this|graveyard) from(battlefield):draw:1 controller
-text=When Viridian Emissary is put into a graveyard from the battlefield, you may search your library for a basic land card and put that card onto the battlefield tapped. If you do, shuffle your library.
+text=When Ichor Wellspring enters the battlefield or is put into a graveyard from the battlefield, draw a card.
 mana={2}
 type=Artifact
 [/card]
@@ -59784,7 +59784,7 @@ toughness=5
 [/card]
 [card]
 name=Soulbright Flamekin
-auto={2}:target(creature) trample ueot limit^add{R}{R}{R}{R}{R}{R}{R}{R} ^3
+auto={2}:target(creature) trample ueot limit^add{R}{R}{R}{R}{R}{R}{R}{R}^3
 text={2}: Target creature gains trample until end of turn. If this is the third time this ability has resolved this turn, you may add {R}{R}{R}{R}{R}{R}{R}{R} to your mana pool.
 mana={1}{R}
 type=Creature
@@ -65146,7 +65146,7 @@ toughness=3
 [card]
 name=Thalakos Deceiver
 abilities=shadow
-auto=@combat(notblocked) source(this):may moveTo(myBattlefield) target(creature|opponentBattlefield) && moveTo(mygraveyard) all(this)
+auto=@combat(notblocked) source(this):may moveTo(myBattlefield) target(creature|opponentBattlefield) && sacrifice all(this)
 text=Shadow (This creature can block or be blocked by only creatures with shadow.) -- Whenever Thalakos Deceiver attacks and isn't blocked, you may sacrifice it. If you do, gain control of target creature. (This effect lasts indefinitely.)
 mana={3}{U}
 type=Creature
@@ -70968,7 +70968,7 @@ type=Instant
 [card]
 name=Vivisection
 auto=draw:3
-text=At the beginning of your upkeep, you may put a charge counter on target artifact.
+text=As an additional cost to cast Vivisection, sacrifice a creature. -- Draw three cards.
 mana={3}{U}{S(creature|mybattlefield)}
 type=Sorcery
 [/card]
