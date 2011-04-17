@@ -25,7 +25,7 @@ PlayGuiObject::PlayGuiObject(float desiredHeight, const Pos& ref, bool hasFocus)
 
 void PlayGuiObject::Update(float dt)
 {
-    if (mHasFocus && mHeight < defaultHeight * 1.2)
+    if (mHasFocus && mHeight < defaultHeight * 1.2f)
     {
         mHeight += defaultHeight * 0.8f * dt;
         //      fprintf(stderr, "increasing size to %f - %d", mHeight, GetId() );
