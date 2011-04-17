@@ -1798,16 +1798,16 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         size_t opponent = s.find("opponent");
         if (opponent != string::npos)
         {
-            who = 1;
+            who = ATokenCreator::ATOKEN_WHO_OPPONENT;
         }
         else
         {
-            who = 0;
+            who = ATokenCreator::ATOKEN_WHO_CONTROLLER;
         }
         size_t targetcontroller = s.find("targetcontroller");
         if (targetcontroller != string::npos)
         {
-            who = 2;
+            who = ATokenCreator::ATOKEN_WHO_TARGETCONTROLLER;
         }
         if (tokenId)
         {
@@ -1848,22 +1848,6 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         }
         parsePowerToughness(spt, &power, &toughness);
         string sabilities = s.substr(end + 1);
-        if (s.find("opponent"))
-        {
-            if (opponent != string::npos)
-            {
-                who = 1;
-            }
-            else
-            {
-                who = 0;
-            }
-        }
-        targetcontroller = s.find("targetcontroller");
-        if (targetcontroller != string::npos)
-        {
-            who = 2;
-        }
         ATokenCreator * tok = NEW ATokenCreator(id, card,target, NULL, sname, stypes, power + value, toughness + value, sabilities, 0,starfound,
             multiplier, who,aLivingWeapon,spt);
         tok->oneShot = 1;

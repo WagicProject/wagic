@@ -2721,6 +2721,12 @@ public:
 class ATokenCreator: public ActivatedAbility
 {
 public:
+enum
+{
+ATOKEN_WHO_CONTROLLER = 0,
+ATOKEN_WHO_OPPONENT = 1,
+ATOKEN_WHO_TARGETCONTROLLER = 2
+};
     list<int> abilities;
     list<int> types;
     list<int> colors;
@@ -2736,6 +2742,7 @@ public:
     bool battleReady;
     MTGCardInstance * myToken;
     vector<MTGAbility *> currentAbilities;
+    Player * tokenReciever;
     ATokenCreator(int _id, MTGCardInstance * _source, Targetable * _target, ManaCost * _cost, int tokenId, int _doTap,string starfound, WParsedInt * multiplier = NULL,
         int who = 0,bool aLivingWeapon = false) :
     ActivatedAbility(_id, _source, _cost, 0, _doTap), tokenId(tokenId), starfound(starfound),multiplier(multiplier), who(who),aLivingWeapon(aLivingWeapon)
@@ -2809,13 +2816,13 @@ public:
         }
         if(!spt.empty())
         {
-        vector<string> powertoughness = split( spt, '/');
-        WParsedInt * NewPow = NEW WParsedInt(powertoughness[0].c_str(),NULL,source);
-        WParsedInt * NewTou = NEW WParsedInt(powertoughness[1].c_str(),NULL,source);
-        power = NewPow->getValue();
-        toughness = NewTou->getValue();
-        SAFE_DELETE(NewPow);
-        SAFE_DELETE(NewTou);
+            vector<string> powertoughness = split( spt, '/');
+            WParsedInt * NewPow = NEW WParsedInt(powertoughness[0].c_str(),NULL,source);
+            WParsedInt * NewTou = NEW WParsedInt(powertoughness[1].c_str(),NULL,source);
+            power = NewPow->getValue();
+            toughness = NewTou->getValue();
+            SAFE_DELETE(NewPow);
+            SAFE_DELETE(NewTou);
         }
         for (int i = 0; i < multiplier->getValue(); ++i)
         {
@@ -2823,8 +2830,8 @@ public:
             if (tokenId)
             {
                 MTGCard * card = MTGCollection()->getCardById(tokenId);
-                myToken = NEW MTGCardInstance(card, source->controller()->game);
-
+                setTokenOwner();
+                myToken = NEW MTGCardInstance(card, tokenReciever->game);
             }
             else
             {
@@ -2855,64 +2862,49 @@ public:
                 tokenText.append( sourcename);
                 myToken->text =  tokenText;
             }
-            if (who == 0 && who != 1 && who != 2)
+            setTokenOwner();
+            tokenReciever->game->temp->addCard(myToken);
+            Spell * spell = NEW Spell(myToken);
+            spell->resolve();
+            myToken = spell->source;
+            spell->source->owner = tokenReciever;
+            spell->source->isToken = 1;
+            spell->source->fresh = 1;
+            if(aLivingWeapon)
             {
-                source->controller()->game->temp->addCard(myToken);
-                Spell * spell = NEW Spell(myToken);
-                spell->resolve();
-                spell->source->isToken = 1;
-                spell->source->fresh = 1;
-                if(aLivingWeapon)
-                {
-                    livingWeaponToken(spell->source);
-                }
-                if(battleReady)
-                {
-                    battleReadyToken(spell->source);
-                }
-                delete spell;
+                livingWeaponToken(spell->source);
             }
-            else if (who == 1 && who != 0 && who != 2)
+            if(battleReady)
             {
-                source->controller()->opponent()->game->temp->addCard(myToken);
-                Spell * spell = NEW Spell(myToken);
-                spell->resolve();
-                spell->source->owner = spell->source->controller();
-                spell->source->isToken = 1;
-                spell->source->fresh = 1;
-                if(aLivingWeapon)
-                {
-                    livingWeaponToken(spell->source);
-                }
-                if(battleReady)
-                {
-                    battleReadyToken(spell->source);
-                }
-                delete spell;
+                battleReadyToken(spell->source);
             }
-            else
-            {
-                ((MTGCardInstance*)target)->controller()->game->temp->addCard(myToken);
-                Spell * spell = NEW Spell(myToken);
-                spell->resolve();
-                spell->source->owner = ((MTGCardInstance*)target)->controller();
-                spell->source->isToken = 1;
-                spell->source->fresh = 1;
-                myToken = spell->source;
-                if(aLivingWeapon)
-                {
-                    livingWeaponToken(spell->source);
-                }
-                if(battleReady)
-                {
-                    battleReadyToken(spell->source);
-                }
-                delete spell;
-            }
+            delete spell;
         }
         return 1;
     }
 
+    void setTokenOwner()
+    {
+        switch(who)
+        {
+        case ATokenCreator::ATOKEN_WHO_CONTROLLER:
+            tokenReciever = source->controller();
+            break;
+        case ATokenCreator::ATOKEN_WHO_OPPONENT:
+            tokenReciever = source->controller()->opponent();
+            break;
+        case ATokenCreator::ATOKEN_WHO_TARGETCONTROLLER:
+            if(target)
+            {
+                tokenReciever = ((MTGCardInstance*)target)->controller();
+                break;
+            }
+        default:
+            tokenReciever = source->controller();
+            break;
+        }
+    }
+    
     void livingWeaponToken(MTGCardInstance * card)
     {
         GameObserver * g = g->GetInstance();
@@ -2936,7 +2928,7 @@ public:
     }
 
     const char * getMenuText()
-        {
+    {
         sprintf(menuText, "Create %s", name.c_str());
         return menuText;
     }
