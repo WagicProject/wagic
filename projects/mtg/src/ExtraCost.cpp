@@ -120,8 +120,10 @@ LifeorManaCost::LifeorManaCost(TargetChooser *_tc,string manaType) :
         ManaCost * newCost = ManaCost::parseManaCost(buildType);
         if(_target->controller()->getManaPool()->canAfford(newCost) || _target->controller()->life > 1)
         {
+            SAFE_DELETE(newCost);
             return 1;
         }
+            SAFE_DELETE(newCost);
         return 0;
     }
 
