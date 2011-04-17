@@ -4091,49 +4091,7 @@ int ActivatedAbility::reactToClick(MTGCardInstance * card)
         abilityCost = previousManaPool->Diff(player->getManaPool());
         delete previousManaPool;
     }
-    MTGAbility * fmp = NULL;
-    if(GenericActivatedAbility * gaa = dynamic_cast<GenericActivatedAbility*>(this))
-    {
-    AForeach * fea = dynamic_cast<AForeach*>(gaa->ability);
-        if(fea)
-            fmp = fea->ability;
-            }
-        //taking foreach manaproducers off the stack and sending tapped for mana events.
-    AManaProducer * amp = dynamic_cast<AManaProducer *> (fmp);
-    if(amp)
-    {
-        needsTapping = amp->tap;
-    }
-    if (needsTapping && source->isInPlay())
-    {
-        if (amp)
-        {
-            GameObserver *g = GameObserver::GetInstance();
-            WEvent * e = NEW WEventCardTappedForMana(source, 0, 1);
-            g->receiveEvent(e);
-        }
-        source->tap();
-    }
-    if (amp)
-    {
-        counters++;
-        if(sideEffect && usesBeforeSideEffects.size())
-        {
-            activeSideEffect();
-        }
-        this->resolve();
-        return 1;
-    }
-    if (needsTapping && source->isInPlay())
-        source->tap();
-    counters++;
-    if(sideEffect && usesBeforeSideEffects.size())
-    {
-        activeSideEffect();
-    }
-    fireAbility();
-    return 1;
-
+    return ActivatedAbility::activateAbility();
 }
 
 int ActivatedAbility::reactToTargetClick(Targetable * object)
@@ -4157,7 +4115,20 @@ int ActivatedAbility::reactToTargetClick(Targetable * object)
         abilityCost = previousManaPool->Diff(player->getManaPool());
         delete previousManaPool;
     }
-    AManaProducer * amp = dynamic_cast<AManaProducer *> (this);
+    return ActivatedAbility::activateAbility();
+}
+
+int ActivatedAbility::activateAbility()
+{
+    MTGAbility * fmp = NULL;
+    if(GenericActivatedAbility * gaa = dynamic_cast<GenericActivatedAbility*>(this))
+    {
+        AForeach * fea = dynamic_cast<AForeach*>(gaa->ability);
+        if(fea)
+            fmp = fea->ability;
+    }
+    //taking foreach manaproducers off the stack and sending tapped for mana events.
+    AManaProducer * amp = dynamic_cast<AManaProducer *> (fmp);
     if(amp)
     {
         needsTapping = amp->tap;
@@ -4177,22 +4148,23 @@ int ActivatedAbility::reactToTargetClick(Targetable * object)
         counters++;
         if(sideEffect && usesBeforeSideEffects.size())
         {
-            activeSideEffect();
+            activateSideEffect();
         }
         this->resolve();
         return 1;
     }
+    if (needsTapping && source->isInPlay())
+        source->tap();
     counters++;
     if(sideEffect && usesBeforeSideEffects.size())
     {
-        activeSideEffect();
+        activateSideEffect();
     }
     fireAbility();
     return 1;
-
 }
 
-void ActivatedAbility::activeSideEffect()
+void ActivatedAbility::activateSideEffect()
 {
     WParsedInt * use = NEW WParsedInt(usesBeforeSideEffects.c_str(),NULL,source);
     uses = use->getValue();

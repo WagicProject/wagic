@@ -274,8 +274,9 @@ class ActivatedAbility:public MTGAbility{
   virtual int reactToClick(MTGCardInstance * card);
   virtual int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
   virtual int reactToTargetClick(Targetable * object);
+  virtual int activateAbility();
   virtual int resolve() = 0;
-  void activeSideEffect();
+  void activateSideEffect();
   virtual ActivatedAbility* clone() const = 0; 
   virtual ostream& toString(ostream& out) const;
 };

@@ -2938,14 +2938,22 @@ void APhaseAction::Update(float dt)
         {
             if(newPhase == phase && next )
             {
-                MTGCardInstance * _target = (MTGCardInstance *) target;
+                MTGCardInstance * _target = NULL;
+                if(target)
+                _target = (MTGCardInstance *) target;
                 if (_target)
                 {
                     while (_target->next)
                         _target = _target->next;
                 }
-                if(!sAbility.size())
+                if(!sAbility.size() || !target || !_target->isInPlay())
                 {
+                //im aware that adding the isinplay check restricts this ability to having targets
+                //which are in play..however after reviewing all the coded cards which use this
+                //none of them targeted this effect at something that is not inplay.
+                //the reason for this abilities that use this are generally combat abilities, and
+                //without this check, the ability contenues on forever, when used in a trigger which
+                //sets its ability to oneshot=0.
                     this->forceDestroy = 1;
                     return;
                 }
