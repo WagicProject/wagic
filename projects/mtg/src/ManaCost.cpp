@@ -93,7 +93,7 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
                     case 't': //Tap
                         if (value == "t")
                         {
-                            //default Tap is handled outside of Manacost
+                            manaCost->addExtraCost(NEW TapCost);
                         }
                         else
                         {
@@ -151,6 +151,11 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
                             size_t end = value.rfind(")");
                             string manaType = value.substr(start + 1, end - start - 1);
                             manaCost->addExtraCost(NEW LifeorManaCost(NULL,manaType));
+                            break;
+                        }
+                    case 'q':
+                        {
+                            manaCost->addExtraCost(NEW UnTapCost);
                             break;
                         }
                     case 'c': //Counters

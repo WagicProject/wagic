@@ -110,7 +110,24 @@ public:
 	MillExileCost(TargetChooser *_tc = NULL);
   virtual int doPay();
 };
-
+//tap  cost
+class TapCost: public ExtraCost{
+public:
+    TapCost();
+    virtual int isPaymentSet();
+    virtual int canPay();
+    virtual int doPay();
+    virtual TapCost * clone() const;
+};
+//untap  cost
+class UnTapCost: public ExtraCost{
+public:
+    UnTapCost();
+    virtual int isPaymentSet();
+    virtual int canPay();
+    virtual int doPay();
+    virtual UnTapCost * clone() const;
+};
 //tap other cost
 class TapTargetCost: public ExtraCost{
 public:

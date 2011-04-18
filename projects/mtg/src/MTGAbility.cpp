@@ -10,6 +10,7 @@
 #include "MTGDeck.h"
 #include "Translate.h"
 #include "ThisDescriptor.h"
+#include "ExtraCost.h"
 
 //const string kPreLordKeywords[] = { "foreach(", "lord(", "aslongas(", "teach(", "all(" };
 const string kLordKeywords[] = { "lord(", "foreach(", "aslongas(", "teach(", "all(" };
@@ -815,8 +816,13 @@ int AbilityFactory::parseRestriction(string s)
 // When abilities encapsulate each other, gets the deepest one (it is the one likely to have the most relevant information)
 MTGAbility * AbilityFactory::getCoreAbility(MTGAbility * a)
 {
-    if (AForeach * fea = dynamic_cast<AForeach*>(a))
-        return fea->ability;
+    AForeach * fea = dynamic_cast<AForeach*>(a);
+    if(fea)
+        return getCoreAbility(fea->ability);
+        
+    AAsLongAs * aea = dynamic_cast<AAsLongAs*>(a);
+        if(aea)
+            return getCoreAbility(aea->ability);
         
     GenericTargetAbility * gta = dynamic_cast<GenericTargetAbility*> (a);
     if (gta)
@@ -4105,29 +4111,39 @@ int ActivatedAbility::reactToTargetClick(Targetable * object)
 int ActivatedAbility::activateAbility()
 {
     MTGAbility * fmp = NULL;
-    if(GenericActivatedAbility * gaa = dynamic_cast<GenericActivatedAbility*>(this))
-    {
-        AForeach * fea = dynamic_cast<AForeach*>(gaa->ability);
-        if(fea)
-            fmp = fea->ability;
-    }
+    bool wasTappedForMana = false;
     //taking foreach manaproducers off the stack and sending tapped for mana events.
-    AManaProducer * amp = dynamic_cast<AManaProducer *> (fmp);
-    if(amp)
+    AbilityFactory af;
+    fmp = af.getCoreAbility(this);
+    AManaProducer * amp = dynamic_cast<AManaProducer *> (this);
+    AManaProducer * femp = dynamic_cast<AManaProducer *> (fmp);
+    if((amp||femp) && cost && cost->extraCosts)
     {
-        needsTapping = amp->tap;
+        for(unsigned int i = 0; i < cost->extraCosts->costs.size();i++)
+        {
+            ExtraCost * tapper = dynamic_cast<TapCost*>(cost->extraCosts->costs[i]);
+            if(tapper)
+                needsTapping = 1;
+                wasTappedForMana = true;
+        }
     }
-    if (needsTapping && source->isInPlay())
+    else if(amp||femp)
     {
-        if (amp)
+        if(amp)
+            needsTapping = amp->tap;
+        else
+            needsTapping = femp->tap;
+    }
+    if (needsTapping && (source->isInPlay()|| wasTappedForMana))
+    {
+        if (amp||femp)
         {
             GameObserver *g = GameObserver::GetInstance();
             WEvent * e = NEW WEventCardTappedForMana(source, 0, 1);
             g->receiveEvent(e);
         }
-        source->tap();
     }
-    if (amp)
+    if (amp||femp)
     {
         counters++;
         if(sideEffect && usesBeforeSideEffects.size())
@@ -4137,8 +4153,6 @@ int ActivatedAbility::activateAbility()
         this->resolve();
         return 1;
     }
-    if (needsTapping && source->isInPlay())
-        source->tap();
     counters++;
     if(sideEffect && usesBeforeSideEffects.size())
     {

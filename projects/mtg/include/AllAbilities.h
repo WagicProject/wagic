@@ -2144,6 +2144,7 @@ public:
         card->power = 1;
         card->setToughness(1);
         card->setSubtype("creature");
+        card->summoningSickness = 0;
         return 1;
     }
 
@@ -4411,30 +4412,36 @@ public:
         attackedThisTurn = 1;
     }
 
-    void Update(float dt)
-    {
-        if (newPhase != currentPhase)
+        void Update(float dt)
         {
-            Player * controller = source->controller();
-            if (newPhase == Constants::MTG_PHASE_COMBATDAMAGE && game->currentPlayer == controller)
+            if (newPhase != currentPhase)
             {
-                if (source->isAttacker())
+                Player * controller = source->controller();
+                if(newPhase == Constants::MTG_PHASE_ENDOFTURN)
                 {
-                    attackedThisTurn = 1;
+                    if(!attackedThisTurn && game->currentPlayer == source->controller() && !source->fresh)
+                        game->mLayers->stackLayer()->addDamage(source, controller, 2);
                 }
-            }
-            else if (newPhase == Constants::MTG_PHASE_UNTAP)
-            {
-                if (game->currentPlayer != controller && !attackedThisTurn)
+                else if (newPhase == Constants::MTG_PHASE_UNTAP)
                 {
-                    game->mLayers->stackLayer()->addDamage(source, controller, 2);
-                }
-                else if (game->currentPlayer == controller)
-                {
-                    attackedThisTurn = 0;
+
+                    if (game->currentPlayer == controller)
+                    {
+                        attackedThisTurn = 0;
+                    }
                 }
             }
         }
+    
+    int receiveEvent(WEvent * event)
+    {
+        WEventCardAttacked * attacked = dynamic_cast<WEventCardAttacked *> (event);
+        if (attacked && !attacked->card->didblocked && attacked->card == source)
+        {
+            attackedThisTurn = 1;
+            return 1;
+        }
+        return 0;
     }
 
     AErgRaiders * clone() const

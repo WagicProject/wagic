@@ -397,7 +397,7 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card)
     }
 
     ManaCost * previousManaPool = NEW ManaCost(player->getManaPool());
-    int payResult = player->getManaPool()->pay(cost);
+    int payResult = player->getManaPool()->pay(card->getManaCost());
     card->getManaCost()->doPayExtra();
     ManaCost * spellCost = previousManaPool->Diff(player->getManaPool());
 

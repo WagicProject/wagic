@@ -312,6 +312,79 @@ int MillExileCost::doPay()
     return 0;
 }
 
+//Tap cost
+TapCost * TapCost::clone() const
+{
+    TapCost * ec = NEW TapCost(*this);
+    return ec;
+}
+
+TapCost::TapCost() :
+    ExtraCost("Tap")
+{
+}
+
+int TapCost::isPaymentSet()
+{
+    if (source && (source->isTapped() || source->hasSummoningSickness()))
+    {
+        return 0;
+    }
+    return 1;
+}
+
+int TapCost::canPay()
+{
+    return isPaymentSet();
+}
+
+int TapCost::doPay()
+{
+    MTGCardInstance * _source = (MTGCardInstance *) source;
+    if (_source)
+    {
+        _source->tap();
+        return 1;
+    }
+    return 0;
+}
+//unTap cost
+UnTapCost * UnTapCost::clone() const
+{
+    UnTapCost * ec = NEW UnTapCost(*this);
+    return ec;
+}
+
+UnTapCost::UnTapCost() :
+    ExtraCost("UnTap")
+{
+}
+
+int UnTapCost::isPaymentSet()
+{
+    if (source && !source->isTapped())
+    {
+        return 0;
+    }
+    return 1;
+}
+
+int UnTapCost::canPay()
+{
+    return isPaymentSet();
+}
+
+int UnTapCost::doPay()
+{
+    MTGCardInstance * _source = (MTGCardInstance *) source;
+    if (_source)
+    {
+        _source->untap();
+        return 1;
+    }
+    return 0;
+}
+
 //Tap target cost
 TapTargetCost * TapTargetCost::clone() const
 {
