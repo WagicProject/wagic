@@ -417,7 +417,7 @@ type=Sorcery
 [card]
 name=Acid Web Spider
 abilities=reach
-auto=destroy target(equipment)
+auto=may destroy target(equipment)
 text=Reach -- When Acid Web Spider enters the battlefield, you may destroy target Equipment.
 mana={3}{G}{G}
 type=Creature
@@ -1822,7 +1822,7 @@ toughness=5
 [card]
 name=Angel of Fury
 abilities=flying
-auto=@movedTo(graveyard) from(this|battlefield):moveto(mylibrary) all(trigger[from]) && shuffle controller
+auto=@movedTo(graveyard) from(this|battlefield):may moveto(mylibrary) all(trigger[from]) && shuffle controller
 text=Flying -- When Angel of Fury is put into your graveyard from the battlefield, you may shuffle it into your library.
 mana={4}{W}{W}
 type=Creature
@@ -4202,7 +4202,7 @@ subtype=Swamp Mountain
 [card]
 name=Baku Altar
 auto={2}{T}{C(0/0,-1,Ki)}:token(Spirit,Creature Spirit,1/1)
-auto=@movedTo(spirit,arcane|mystack) from(myhand):counter(0/0,1,Ki)
+auto=@movedTo(spirit,arcane|mystack) from(myhand):may counter(0/0,1,Ki)
 text=Whenever you cast a Spirit or Arcane spell, you may put a ki counter on Baku Altar. -- {2}, {T}, Remove a ki counter from Baku Altar: Put a 1/1 colorless Spirit creature token onto the battlefield.
 mana={2}
 type=Artifact
@@ -5956,7 +5956,7 @@ toughness=4
 [/card]
 [card]
 name=Blademane Baku
-auto=@movedTo(spirit,arcane|mystack) from(myhand):counter(0/0,1,Ki)
+auto=@movedTo(spirit,arcane|mystack) from(myhand):may counter(0/0,1,Ki)
 auto={1}{C(0/0,-1,Ki)}:name(Remove 1 Counters) 2/0
 auto={1}{C(0/0,-2,Ki)}:name(Remove 2 Counters) 4/0
 auto={1}{C(0/0,-3,Ki)}:name(Remove 3 Counters) 6/0
@@ -6007,7 +6007,7 @@ toughness=4
 [card]
 name=Bladewing's Thrall
 auto=aslongas(dragon|mybattlefield) flying
-autograveyard=@movedTo(dragon|battlefield):moveTo(mybattlefield)
+autograveyard=@movedTo(dragon|battlefield):may moveTo(mybattlefield)
 text=Bladewing's Thrall has flying as long as you control a Dragon. -- When a Dragon enters the battlefield, you may return Bladewing's Thrall from your graveyard to the battlefield.
 mana={2}{B}{B}
 type=Creature
@@ -8331,7 +8331,7 @@ toughness=1
 [/card]
 [card]
 name=Brood Sliver
-auto=@combatdamaged(opponent) from(sliver):token(Sliver,Creature Sliver,1/1)
+auto=@combatdamaged(opponent) from(sliver):may token(Sliver,Creature Sliver,1/1)
 auto=@combatdamaged(controller) from(sliver):token(Sliver,Creature Sliver,1/1) opponent
 text=Whenever a Sliver deals combat damage to a player, its controller may put a 1/1 colorless Sliver creature token onto the battlefield.
 mana={4}{G}
@@ -8344,7 +8344,7 @@ toughness=3
 name=Broodhatch Nantuko
 facedown={3}
 autofacedown={2}{G}:morph
-auto=@damaged(this):token(Insect,Creature Insect,1/1,green)*thatmuch
+auto=@damaged(this):may token(Insect,Creature Insect,1/1,green)*thatmuch
 text=Whenever Broodhatch Nantuko is dealt damage, you may put that many 1/1 green Insect creature tokens onto the battlefield. -- Morph {2}{G} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
 mana={1}{G}
 type=Creature
@@ -11885,7 +11885,7 @@ toughness=1
 [card]
 name=Cold-Eyed Selkie
 abilities=islandwalk
-auto=@combatdamaged(player) from(this):draw:thatmuch controller
+auto=@combatdamaged(player) from(this):may draw:thatmuch controller
 text=Islandwalk -- Whenever Cold-Eyed Selkie deals combat damage to a player, you may draw that many cards.
 mana={1}{GU}{GU}
 type=Creature
@@ -12432,8 +12432,8 @@ type=Enchantment
 name=Coral Trickster
 facedown={3}
 autofacedown={U}:morph
-autofaceup=choice tap target(creature)
-autofaceup=choice untap target(creature)
+autofaceup=may tap target(*)
+autofaceup=may untap target(*)
 text=Morph {U} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- When Coral Trickster is turned face up, you may tap or untap target permanent.
 mana={1}{U}
 type=Creature
@@ -14669,6 +14669,7 @@ toughness=2
 name=Deathknell Kami
 abilities=flying
 auto={2}:1/1 && treason
+auto=@movedTo(this|mygraveyard) from(myBattlefield):may moveTo(myhand) target(other spirit[manacost<=1]|mygraveyard)
 text=Flying -- {2}: Deathknell Kami gets +1/+1 until end of turn. Sacrifice it at the beginning of the next end step. -- Soulshift 1 (When this is put into a graveyard from the battlefield, you may return target Spirit card with converted mana cost 1 or less from your graveyard to your hand.)
 mana={1}{B}
 type=Creature
@@ -14837,7 +14838,7 @@ text=Whenever another creature is put into a graveyard from the battlefield, you
 mana={4}{B}{R}
 type=Creature
 subtype=Zombie Beast
-auto=@moveTo(other creature|graveyard) from(battlefield):counter(1/1,1)
+auto=@movedTo(other creature|graveyard) from(battlefield):may counter(1/1,1)
 auto={C(1/1,-1)}:damage:1 target(creature,player)
 power=3
 toughness=3
@@ -20921,8 +20922,8 @@ type=Sorcery
 [/card]
 [card]
 name=Farsight Mask
-auto=@damaged(controller) from(*|opponentbattlefield) sourcenottap:draw:1 controller
-auto=@damaged(controller) from(*|opponentstack) sourcenottap:draw:1 controller
+auto=@damaged(controller) from(*|opponentbattlefield) sourcenottap:may draw:1 controller
+auto=@damaged(controller) from(*|opponentstack) sourcenottap:may draw:1 controller
 text=Whenever a source an opponent controls deals damage to you, if Farsight Mask is untapped, you may draw a card.
 mana={5}
 type=Artifact
@@ -21407,7 +21408,7 @@ toughness=1
 [card]
 name=Festering Wound
 target=creature
-auto=@each my upkeep:counter(0/0,1,Infection)
+auto=@each my upkeep:may counter(0/0,1,Infection)
 auto=@each targetController upkeep:thisforeach(counter{0/0.1.Infection}) damage:1 targetController
 text=Enchant creature -- At the beginning of your upkeep, you may put an infection counter on Festering Wound. -- At the beginning of the upkeep of enchanted creature's controller, Festering Wound deals X damage to that player, where X is the number of infection counters on Festering Wound.
 mana={1}{B}
@@ -23201,8 +23202,7 @@ type=Instant
 [/card]
 [card]
 name=Forgotten Ancient
-auto=@movedTo(*|mystack) from(myhand):counter(1/1,1)
-auto=@movedTo(*|opponentstack) from(opponenthand):counter(1/1,1)
+auto=@movedTo(*|stack) from(hand):may counter(1/1,1)
 auto={0}{counter(1/1,-1)}:counter(1/1,1) target(creature) myUpkeepOnly
 text=Whenever a player casts a spell, you may put a +1/+1 counter on Forgotten Ancient. -- At the beginning of your upkeep, you may move any number of +1/+1 counters from Forgotten Ancient onto other creatures.
 mana={3}{G}
@@ -24380,7 +24380,7 @@ type=Artifact
 name=Genju of the Cedars
 target=forest
 auto={2}:becomes(Spirit Creature,4/4,green) ueot
-auto=@movedTo(mytgt|mygraveyard) from(battlefield):moveTo(myhand) all(this)
+auto=@movedTo(mytgt|mygraveyard) from(battlefield):may moveTo(myhand) all(this)
 text=Enchant Forest -- {2}: Enchanted Forest becomes a 4/4 green Spirit creature until end of turn. It's still a land. -- When enchanted Forest is put into a graveyard, you may return Genju of the Cedars from your graveyard to your hand.
 mana={G}
 type=Enchantment
@@ -24390,7 +24390,7 @@ subtype=Aura
 name=Genju of the Falls
 target=island
 auto={2}:becomes(Spirit Creature,3/2,flying,blue) ueot
-auto=@movedTo(mytgt|mygraveyard) from(battlefield):moveTo(myhand) all(this)
+auto=@movedTo(mytgt|mygraveyard) from(battlefield):may moveTo(myhand) all(this)
 text=Enchant Island -- {2}: Enchanted Island becomes a 3/2 blue Spirit creature with flying until end of turn. It's still a land. -- When enchanted Island is put into a graveyard, you may return Genju of the Falls from your graveyard to your hand.
 mana={U}
 type=Enchantment
@@ -24400,7 +24400,7 @@ subtype=Aura
 name=Genju of the Fens
 target=swamp
 auto={2}:becomes(Spirit Creature,2/2,black) ueot
-auto=@movedTo(mytgt|mygraveyard) from(battlefield):moveTo(myhand) all(this)
+auto=@movedTo(mytgt|mygraveyard) from(battlefield):may moveTo(myhand) all(this)
 auto={B}:1/1(mytgt)
 text=Enchant Swamp -- {2}: Until end of turn, enchanted Swamp becomes a 2/2 black Spirit creature with "{B}: This creature gets +1/+1 until end of turn." It's still a land. -- When enchanted Swamp is put into a graveyard, you may return Genju of the Fens from your graveyard to your hand.
 mana={B}
@@ -24412,7 +24412,7 @@ name=Genju of the Fields
 target=plains
 auto=spiritlink
 auto={2}:becomes(Spirit Creature,2/5,white) ueot
-auto=@movedTo(mytgt|mygraveyard) from(battlefield):moveTo(myhand) all(this)
+auto=@movedTo(mytgt|mygraveyard) from(battlefield):may moveTo(myhand) all(this)
 text=Enchant Plains -- {2}: Until end of turn, enchanted Plains becomes a 2/5 white Spirit creature with "Whenever this creaure deals damage, its controller gains that much life." It's still a land. -- When enchanted Plains is put into a graveyard, you may return Genju of the Fields from your graveyard to your hand.
 mana={W}
 type=Enchantment
@@ -24422,7 +24422,7 @@ subtype=Aura
 name=Genju of the Realm
 target=land
 auto={2}:becomes(Legendary Spirit Creature,8/12,trample) ueot
-auto=@movedTo(mytgt|mygraveyard) from(battlefield):moveTo(myhand) all(this)
+auto=@movedTo(mytgt|mygraveyard) from(battlefield):may moveTo(myhand) all(this)
 text=Enchant land -- {2}: Enchanted land becomes a legendary 8/12 Spirit creature with trample until end of turn. It's still a land. -- When enchanted land is put into a graveyard, you may return Genju of the Realm from your graveyard to your hand.
 mana={W}{U}{B}{R}{G}
 type=Legendary Enchantment
@@ -24432,7 +24432,7 @@ subtype=Aura
 name=Genju of the Spires
 target=mountain
 auto={2}:becomes(Spirit Creature,6/1,red) ueot
-auto=@movedTo(mytgt|mygraveyard) from(battlefield):moveTo(myhand) all(this)
+auto=@movedTo(mytgt|mygraveyard) from(battlefield):may moveTo(myhand) all(this)
 text=Enchant Mountain -- {2}: Enchanted Mountain becomes a 6/1 red Spirit creature until end of turn. It's still a land. -- When enchanted Mountain is put into a graveyard, you may return Genju of the Spires from your graveyard to your hand.
 mana={R}
 type=Enchantment
@@ -27658,7 +27658,7 @@ type=Artifact
 [card]
 name=Guan Yu, Sainted Warrior
 abilities=horsemanship
-autograveyard=@movedTo(this|mygraveyard) from(myBattlefield):moveTo(ownerlibrary) && shuffle
+autograveyard=@movedTo(this|mygraveyard) from(myBattlefield):may moveTo(ownerlibrary) && shuffle
 text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.) -- When Guan Yu, Sainted Warrior is put into your graveyard from the battlefield, you may shuffle Guan Yu into your library.
 mana={3}{W}{W}
 type=Legendary Creature
@@ -27994,7 +27994,7 @@ toughness=1
 [card]
 name=Hagra Diabolist
 auto=may foreach(ally|myBattlefield) life:-1 target(player)
-auto=@movedTo(other ally|myBattlefield):foreach(ally|myBattlefield) life:-1 target(player)
+auto=@movedTo(other ally|myBattlefield):may foreach(ally|myBattlefield) life:-1 target(player)
 text=Whenever Hagra Diabolist or another Ally enters the battlefield under your control, you may have target player lose life equal to the number of Allies you control.
 mana={4}{B}
 type=Creature
@@ -29558,7 +29558,7 @@ toughness=2
 [card]
 name=Hoarding Dragon
 abilities=flying
-auto=hand(blink)forsrc target(artifact|mylibrary)
+auto=may hand(blink)forsrc target(artifact|mylibrary)
 text=Flying -- When Hoarding Dragon enters the battlefield, you may search your library for an artifact card, exile it, then shuffle your library. -- When Hoarding Dragon is put into a graveyard from the battlefield, you may put the exiled card into its owner's hand.
 mana={3}{R}{R}
 type=Creature
@@ -30512,9 +30512,10 @@ toughness=2
 [card]
 name=Hypnox
 abilities=flying
-auto=hand(blink)forsrc all(*|opponenthand)
+auto=kicker hand(blink)forsrc all(*|opponenthand)
 text=Flying -- When Hypnox enters the battlefield, if you cast it from your hand, exile all cards from target opponent's hand. -- When Hypnox leaves the battlefield, return the exiled cards to their owner's hand.
 mana={8}{B}{B}{B}
+kicker={0}
 type=Creature
 subtype=Nightmare Horror
 power=8
@@ -31018,7 +31019,7 @@ toughness=2
 [card]
 name=Incendiary
 target=creature
-auto=@each my upkeep:counter(0/0,1,Fuse)
+auto=@each my upkeep:may counter(0/0,1,Fuse)
 auto=@movedTo(mytgt|graveyard):thisforeach(counter{0/0.1.Fuse}) damage:1 target(creature,player)
 text=Enchant creature -- At the beginning of your upkeep, you may put a fuse counter on Incendiary. -- When enchanted creature is put into a graveyard, Incendiary deals X damage to target creature or player, where X is the number of fuse counters on Incendiary.
 mana={R}
@@ -39942,7 +39943,7 @@ type=Artifact
 [/card]
 [card]
 name=Mighty Emergence
-auto=@movedTo(creature[power>=5]|myBattlefield):all(trigger) counter(1/1,2)
+auto=@movedTo(creature[power>=5]|myBattlefield):may all(trigger) counter(1/1,2)
 text=Whenever a creature with power 5 or greater enters the battlefield under your control, you may put two +1/+1 counters on it.
 mana={2}{G}
 type=Enchantment
@@ -40600,7 +40601,7 @@ toughness=2
 [card]
 name=Mnemonic Wall
 abilities=defender
-auto=moveTo(myhand) target(instant,sorcery|mygraveyard)
+auto=may moveTo(myhand) target(instant,sorcery|mygraveyard)
 text=Defender -- When Mnemonic Wall enters the battlefield, you may return target instant or sorcery card from your graveyard to your hand.
 mana={4}{U}
 type=Creature
@@ -40939,7 +40940,7 @@ type=Instant
 [card]
 name=Momentum
 target=creature
-auto=@each my upkeep:counter(0/0,1,Growth)
+auto=@each my upkeep:may counter(0/0,1,Growth)
 auto=thisforeach(counter{0/0.1.Growth}) 1/1
 text=Enchant creature -- At the beginning of your upkeep, you may put a growth counter on Momentum. -- Enchanted creature gets +1/+1 for each growth counter on Momentum.
 mana={2}{G}
@@ -42421,7 +42422,7 @@ subtype=Aura
 [card]
 name=Narcomoeba
 abilities=flying
-autograveyard=@movedTo(this|mygraveyard) from(mylibrary):moveTo(myBattlefield)
+autograveyard=@movedTo(this|mygraveyard) from(mylibrary):may moveTo(myBattlefield)
 text=Flying -- When Narcomoeba is put into your graveyard from your library, you may put it onto the battlefield.
 mana={1}{U}
 type=Creature
@@ -44637,7 +44638,7 @@ type=Artifact
 [/card]
 [card]
 name=Orchard Warden
-auto=@movedTo(other treefolk|mybattlefield):all(trigger[to]) dynamicability<!mytgt toughnesslifegain targetcontroller!>
+auto=@movedTo(other treefolk|mybattlefield):may all(trigger[to]) dynamicability<!mytgt toughnesslifegain targetcontroller!>
 text=Whenever another Treefolk creature enters the battlefield under your control, you may gain life equal to that creature's toughness.
 mana={4}{G}{G}
 type=Creature
@@ -45786,8 +45787,8 @@ toughness=3
 [/card]
 [card]
 name=Pawn of Ulamog
-auto=@movedTo(this|exile,graveyard,hand,library) from(myBattlefield):Token(-193507)
-auto=@movedTo(other creature[-token]|mygraveyard) from(battlefield):Token(-193507)
+auto=@movedTo(this|graveyard) from(myBattlefield):may token(-193507)
+auto=@movedTo(other creature[-token]|graveyard) from(myBattlefield):may token(-193507)
 text=Whenever Pawn of Ulamog or another nontoken creature you control is put into a graveyard from the battlefield, you may put a 0/1 colorless Eldrazi Spawn creature token onto the battlefield. It has "Sacrifice this creature: Add 1 to your mana pool."
 mana={1}{B}{B}
 type=Creature
@@ -46959,7 +46960,7 @@ type=Instant
 [card]
 name=Pilgrim's Eye
 abilities=flying
-auto=moveTo(ownerhand) target(land[basic]|mylibrary)
+auto=may moveTo(ownerhand) target(land[basic]|mylibrary)
 text=Flying -- When Pilgrim's Eye enters the battlefield, you may search your library for a basic land card, reveal it, put it into your hand, then shuffle your library.
 mana={3}
 type=Artifact Creature
@@ -48214,7 +48215,7 @@ type=Artifact
 [card]
 name=Private Research
 target=creature
-auto=@each my upkeep:counter(0/0,1,Page) all(this)
+auto=@each my upkeep:may counter(0/0,1,Page) all(this)
 auto=@movedTo(mytgt|graveyard):thisforeach(counter{0/0.1.Page}) draw:1 controller
 text=Enchant creature -- At the beginning of your upkeep, you may put a page counter on Private Research. -- When enchanted creature is put into a graveyard, draw a card for each page counter on Private Research.
 mana={U}
@@ -49069,7 +49070,7 @@ toughness=8
 [/card]
 [card]
 name=Quillmane Baku
-auto=@movedTo(spirit,arcane|mystack) from(myhand):counter(0/0,1,Ki)
+auto=@movedTo(spirit,arcane|mystack) from(myhand):may counter(0/0,1,Ki)
 auto={1}{C(0/0,-1,Ki)}{T}:name(Remove 1 Counters) moveTo(ownerhand) target(creature[manacost<=1])
 auto={1}{C(0/0,-2,Ki)}{T}:name(Remove 2 Counters) moveTo(ownerhand) target(creature[manacost<=2])
 auto={1}{C(0/0,-3,Ki)}{T}:name(Remove 3 Counters) moveTo(ownerhand) target(creature[manacost<=3])
@@ -49331,7 +49332,7 @@ toughness=2
 [card]
 name=Rage Forger
 auto=counter(1/1,1) all(other shaman|mybattlefield)
-auto=@combat(attacking) source(creature[counter{1/1.1}]|mybattlefield):damage:1 target(player)
+auto=@combat(attacking) source(creature[counter{1/1.1}]|mybattlefield):may damage:1 target(player)
 text=When Rage Forger enters the battlefield, put a +1/+1 counter on each other Shaman creature you control. -- Whenever a creature you control with a +1/+1 counter on it attacks, you may have that creature deal 1 damage to target player.
 mana={2}{R}
 type=Creature
@@ -49789,7 +49790,7 @@ toughness=3
 [card]
 name=Rampaging Baloths
 abilities=trample
-auto=@movedTo(land|myBattlefield):token(Beast,Creature Beast,4/4,green)
+auto=@movedTo(land|myBattlefield):may token(Beast,Creature Beast,4/4,green)
 text=Trample -- Landfall - Whenever a land enters the battlefield under your control, you may put a 4/4 green Beast creature token onto the battlefield.
 mana={4}{G}{G}
 type=Creature
@@ -53058,7 +53059,7 @@ toughness=5
 [/card]
 [card]
 name=Saber Ants
-auto=@damaged(this):token(Insect,Creature Insect,1/1,green)*thatmuch
+auto=@damaged(this):may token(Insect,Creature Insect,1/1,green)*thatmuch
 text=Whenever Saber Ants is dealt damage, you may put that many 1/1 green Insect creature tokens onto the battlefield.
 mana={3}{G}
 type=Creature
@@ -57991,7 +57992,7 @@ subtype=Equipment
 [/card]
 [card]
 name=Skullmane Baku
-auto=@movedTo(spirit,arcane|mystack) from(myhand):counter(0/0,1,Ki)
+auto=@movedTo(spirit,arcane|mystack) from(myhand):may counter(0/0,1,Ki)
 auto={1}{C(0/0,-1,Ki)}{T}:name(Remove 1 Counters) -1/-1 target(creature)
 auto={1}{C(0/0,-2,Ki)}{T}:name(Remove 2 Counters) -2/-2 target(creature)
 auto={1}{C(0/0,-3,Ki)}{T}:name(Remove 3 Counters) -3/-3 target(creature)
@@ -63229,7 +63230,7 @@ toughness=1
 [card]
 name=Surrakar Spellblade
 auto=@movedTo(instant,sorcery|mystack) from(myhand):may counter(0/0,1,Charge)
-auto=@combatdamaged(player) from(this):dynamicability<!chargedraw srccontroller!>
+auto=@combatdamaged(player) from(this):may dynamicability<!chargedraw srccontroller!>
 text=Whenever you cast an instant or sorcery spell, you may put a charge counter on Surrakar Spellblade. -- Whenever Surrakar Spellblade deals combat damage to a player, you may draw X cards, where X is equal to the number of charge counters on it.
 mana={1}{U}{U}
 type=Creature
@@ -63305,7 +63306,7 @@ toughness=1
 [/card]
 [card]
 name=Suture Priest
-auto=@movedTo(creature|mybattlefield):life:1
+auto=@movedTo(creature|mybattlefield):may life:1
 auto=@movedTo(creature|opponentBattlefield):may life:-1 opponent 
 text=Whenever a creature enters the battlefield under your control, you may gain 1 life. Whenever a creature enters the battlefield under an opponent's control, you may have that player lose 1 life.
 mana={1}{W}
@@ -67027,7 +67028,7 @@ type=Enchantment
 [/card]
 [card]
 name=Totem-Guide Hartebeest
-auto=moveTo(myhand) target(aura|myLibrary)
+auto=may moveTo(myhand) target(aura|myLibrary)
 text=When Totem-Guide Hartebeest enters the battlefield, you may search you library for an aura card, reveal it, put it into your hand and shuffle your library.
 mana={4}{W}
 type=Creature
@@ -68097,7 +68098,7 @@ toughness=2
 name=Tuktuk Grunts
 abilities=haste
 auto=may counter(1/1)
-auto=@movedTo(other ally|myBattlefield):counter(1/1)
+auto=@movedTo(other ally|myBattlefield):may counter(1/1)
 text=Haste -- Whenever Tuktuk Grunts or another Ally enters the battlefield under your control, you may put a +1/+1 counter on Tuktuk Grunts.
 mana={4}{R}
 type=Creature
@@ -68418,7 +68419,7 @@ toughness=*
 name=Umara Raptor
 abilities=flying
 auto=may counter(1/1)
-auto=@movedTo(other ally|myBattlefield):counter(1/1,1) all(this)
+auto=@movedTo(other ally|myBattlefield):may counter(1/1,1) all(this)
 text=Flying -- Whenever Umara Raptor or another Ally enters the battlefield under your control, you may put a +1/+1 counter on Umara Raptor.
 mana={2}{U}
 type=Creature
@@ -71920,7 +71921,7 @@ toughness=3
 [card]
 name=Wall of Reverence
 abilities=defender,flying
-auto=@each myendofturn:target(creature|myBattlefield) dynamicability<!mytgt powerlifegain targetcontroller!>
+auto=@each myendofturn:may target(creature|myBattlefield) dynamicability<!mytgt powerlifegain targetcontroller!>
 text=Defender, flying -- At the beginning of your end step, you may gain life equal to the power of target creature you control.
 mana={3}{W}
 type=Creature
@@ -74736,7 +74737,7 @@ toughness=1
 [/card]
 [card]
 name=Yavimaya Granger
-auto=moveTo(myBattlefield) target(land[basic]|myLibrary) && tap
+auto=may moveTo(myBattlefield) target(land[basic]|myLibrary) && tap
 auto=upcost[{2}{G}{0};next upkeep] sacrifice
 text=Echo {2}{G} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- When Yavimaya Granger enters the battlefield, you may search your library for a basic land card, put that card onto the battlefield tapped, then shuffle your library.
 mana={2}{G}
@@ -75188,7 +75189,7 @@ toughness=2
 [/card]
 [card]
 name=Zodiac Dragon
-auto=@movedTo(graveyard) from(this|battlefield):moveTo(myhand) notatarget(this|mygraveyard)
+auto=@movedTo(mygraveyard) from(this|battlefield):may moveTo(myhand) notatarget(this|mygraveyard)
 text=When Zodiac Dragon is put into your graveyard from the battlefield, you may return it to your hand.
 mana={7}{R}{R}
 type=Creature
