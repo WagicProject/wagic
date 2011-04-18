@@ -5835,15 +5835,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Duergar Mine-Captain
-text={1}{(r/w)}, {Q}: Attacking creatures get +1/+0 until end of turn. ({Q} is the untap symbol.)
-mana={2}{RW}
-type=Creature
-subtype=Dwarf Soldier
-power=2
-toughness=1
-[/card]
-[card]
 name=Dunerider Outlaw
 text=Protection from green -- At the beginning of each end step, if Dunerider Outlaw dealt damage to an opponent this turn, put a +1/+1 counter on it.
 mana={B}{B}
@@ -9642,16 +9633,6 @@ type=Creature
 subtype=Goblin Warrior
 power=3
 toughness=3
-[/card]
-[card]
-name=Hateflayer
-abilities=wither
-text=Wither (This deals damage to creatures in the form of -1/-1 counters.) -- {2}{R}, {Q}: Hateflayer deals damage equal to its power to target creature or player. ({Q} is the untap symbol.)
-mana={5}{R}{R}
-type=Creature
-subtype=Elemental
-power=5
-toughness=5
 [/card]
 [card]
 name=Hatred
@@ -13792,15 +13773,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Merrow Grimeblotter
-text={1}{(u/b)}, {Q}: Target creature gets -2/-0 until end of turn. ({Q} is the untap symbol.)
-mana={3}{UB}
-type=Creature
-subtype=Merfolk Wizard
-power=2
-toughness=2
-[/card]
-[card]
 name=Merrow Harbinger
 text=Islandwalk -- When Merrow Harbinger enters the battlefield, you may search your library for a Merfolk card, reveal it, then shuffle your library and put that card on top of it.
 mana={3}{U}
@@ -13821,15 +13793,6 @@ type=Creature
 subtype=Merfolk Soldier
 power=2
 toughness=2
-[/card]
-[card]
-name=Merrow Wavebreakers
-text={1}{U}, {Q}: Merrow Wavebreakers gains flying until end of turn. ({Q} is the untap symbol.)
-mana={4}{U}
-type=Creature
-subtype=Merfolk Soldier
-power=3
-toughness=3
 [/card]
 [card]
 name=Merseine
@@ -16111,15 +16074,6 @@ mana={3}{W}
 type=Instant
 [/card]
 [card]
-name=Order of Whiteclay
-text={1}{W}{W}, {Q}: Return target creature card with converted mana cost 3 or less from your graveyard to the battlefield. ({Q} is the untap symbol.)
-mana={1}{W}{W}
-type=Creature
-subtype=Kithkin Cleric
-power=1
-toughness=4
-[/card]
-[card]
 name=Orim's Thunder
 text=Kicker {R} (You may pay an additional {R} as you cast this spell.) -- Destroy target artifact or enchantment. If Orim's Thunder was kicked, it deals damage equal to that permanent's converted mana cost to target creature.
 mana={2}{W}
@@ -16396,15 +16350,6 @@ mana={1}{U}
 type=Instant
 [/card]
 [card]
-name=Pale Wayfarer
-text={2}{W}{W}, {Q}: Target creature gains protection from the color of its controller's choice until end of turn. ({Q} is the untap symbol.)
-mana={5}{W}{W}
-type=Creature
-subtype=Spirit Giant
-power=4
-toughness=4
-[/card]
-[card]
 name=Palinchron
 text=Flying -- When Palinchron enters the battlefield, untap up to seven lands. -- {2}{U}{U}: Return Palinchron to its owner's hand.
 mana={5}{U}{U}
@@ -16557,15 +16502,6 @@ name=Patrician's Scorn
 text=If you've cast another white spell this turn, you may cast Patrician's Scorn without paying its mana cost. -- Destroy all enchantments.
 mana={3}{W}
 type=Instant
-[/card]
-[card]
-name=Patrol Signaler
-text={1}{W}, {Q}: Put a 1/1 white Kithkin Soldier creature token onto the battlefield. ({Q} is the untap symbol.)
-mana={1}{W}
-type=Creature
-subtype=Kithkin Soldier
-power=1
-toughness=1
 [/card]
 [card]
 name=Patron Wizard
@@ -16999,15 +16935,6 @@ type=Creature
 subtype=Human Cleric
 power=1
 toughness=3
-[/card]
-[card]
-name=Pili-Pala
-text=Flying -- {2}, {Q}: Add one mana of any color to your mana pool. ({Q} is the untap symbol.)
-mana={2}
-type=Artifact Creature
-subtype=Scarecrow
-power=1
-toughness=1
 [/card]
 [card]
 name=Pillar Tombs of Aku
@@ -19755,15 +19682,6 @@ mana={B}{B}{B}
 type=Sorcery
 [/card]
 [card]
-name=Safehold Sentry
-text={2}{W}, {Q}: Safehold Sentry gets +0/+2 until end of turn. ({Q} is the untap symbol.)
-mana={1}{W}
-type=Creature
-subtype=Elf Warrior
-power=2
-toughness=2
-[/card]
-[card]
 name=Saffi Eriksdotter
 text=Sacrifice Saffi Eriksdotter: When target creature is put into your graveyard from the battlefield this turn, return that card to the battlefield.
 mana={G}{W}
@@ -21160,15 +21078,6 @@ name=Silhouette
 text=Prevent all damage that would be dealt to target creature this turn by spells or abilities that target it.
 mana={1}{U}
 type=Instant
-[/card]
-[card]
-name=Silkbind Faerie
-text=Flying -- {1}{(w/u)}, {Q}: Tap target creature. ({Q} is the untap symbol.)
-mana={2}{WU}
-type=Creature
-subtype=Faerie Rogue
-power=1
-toughness=3
 [/card]
 [card]
 name=Silver Wyvern
@@ -24789,13 +24698,6 @@ type=Creature
 subtype=Elemental
 power=*
 toughness=*
-[/card]
-[card]
-name=Umbral Mantle
-text=Equipped creature has "{3}, {Q}: This creature gets +2/+2 until end of turn." ({Q} is the untap symbol.) -- Equip {0}
-mana={3}
-type=Artifact
-subtype=Equipment
 [/card]
 [card]
 name=Unblinking Bleb

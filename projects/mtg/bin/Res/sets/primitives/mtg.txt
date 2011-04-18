@@ -17652,6 +17652,16 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Duergar Mine-Captain
+auto={1}{rw}{q}:all(creature[attacking]) +1/+0 ueot
+text={1}{(r/w)}, {Q}: Attacking creatures get +1/+0 until end of turn. ({Q} is the untap symbol.)
+mana={2}{RW}
+type=Creature
+subtype=Dwarf Soldier
+power=2
+toughness=1
+[/card]
+[card]
 name=Duergar Cave-Guard
 abilities=wither
 auto={RW}:1/0
@@ -28418,6 +28428,17 @@ power=2
 toughness=1
 [/card]
 [card]
+name=Hateflayer
+abilities=wither
+auto={2}{r}{q}:target(creature,player) dynamicability<!powerstrike!>
+text=Wither (This deals damage to creatures in the form of -1/-1 counters.) -- {2}{R}, {Q}: Hateflayer deals damage equal to its power to target creature or player. ({Q} is the untap symbol.)
+mana={5}{R}{R}
+type=Creature
+subtype=Elemental
+power=5
+toughness=5
+[/card]
+[card]
 name=Haunted Angel
 abilities=flying
 autograveyard=token(Angel,Creature Angel,3/3,flying black) opponent && moveto(exile)
@@ -38852,6 +38873,16 @@ id=22222228
 type=nothing
 [/card]
 [card]
+name=Merrow Grimeblotter
+auto={1}{ub}{q}:target(creature) -2/0 ueot
+text={1}{(u/b)}, {Q}: Target creature gets -2/-0 until end of turn. ({Q} is the untap symbol.)
+mana={3}{UB}
+type=Creature
+subtype=Merfolk Wizard
+power=2
+toughness=2
+[/card]
+[card]
 name=Marrow-Gnawer
 auto={T}{S(rat|myBattlefield)}:foreach(rat|myBattlefield) token(Rat,Creature Rat,1/1,black)
 auto=lord(rat) fear
@@ -38860,6 +38891,16 @@ mana={3}{B}{B}
 type=Legendary Creature
 subtype=Rat Rogue
 power=2
+toughness=3
+[/card]
+[card]
+name=Merrow Wavebreakers
+auto={1}{u}{q}:flying ueot
+text={1}{U}, {Q}: Merrow Wavebreakers gains flying until end of turn. ({Q} is the untap symbol.)
+mana={4}{U}
+type=Creature
+subtype=Merfolk Soldier
+power=3
 toughness=3
 [/card]
 [card]
@@ -44803,6 +44844,16 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Order of Whiteclay
+auto={1}{w}{w}{q}:target(creature[manacost <=3]|mygraveyard) moveto(mybattlefield)
+text={1}{W}{W}, {Q}: Return target creature card with converted mana cost 3 or less from your graveyard to the battlefield. ({Q} is the untap symbol.)
+mana={1}{W}{W}
+type=Creature
+subtype=Kithkin Cleric
+power=1
+toughness=4
+[/card]
+[card]
 name=Order of the Stars
 abilities=defender
 auto=choice name(White) counter(0/0,1,White) all(this)
@@ -45356,6 +45407,20 @@ power=4
 toughness=5
 [/card]
 [card]
+name=Pale Wayfarer
+auto={2}{w}{w}{q}:target(creature) protection from white ueot
+auto={2}{w}{w}{q}:target(creature) protection from black ueot
+auto={2}{w}{w}{q}:target(creature) protection from green ueot
+auto={2}{w}{w}{q}:target(creature) protection from red ueot
+auto={2}{w}{w}{q}:target(creature) protection from blue ueot
+text={2}{W}{W}, {Q}: Target creature gains protection from the color of its controller's choice until end of turn. ({Q} is the untap symbol.)
+mana={5}{W}{W}
+type=Creature
+subtype=Spirit Giant
+power=4
+toughness=4
+[/card]
+[card]
 name=Paleoloth
 auto=@movedTo(other creature[power>=5]|myBattlefield):may moveTo(myhand) target(creature|mygraveyard)
 text=Whenever another creature with power 5 or greater enters the battlefield under your control, you may return target creature card from your graveyard to your hand.
@@ -45755,6 +45820,16 @@ type=Creature
 subtype=Hound
 power=2
 toughness=2
+[/card]
+[card]
+name=Patrol Signaler
+auto={1}{w}{q}:token(KithKin,creature kithkin soldier,1/1,white)
+text={1}{W}, {Q}: Put a 1/1 white Kithkin Soldier creature token onto the battlefield. ({Q} is the untap symbol.)
+mana={1}{W}
+type=Creature
+subtype=Kithkin Soldier
+power=1
+toughness=1
 [/card]
 [card]
 name=Patron of the Wild
@@ -46956,6 +47031,21 @@ auto=choice lord(creature|myBattlefield) vigilance ueot
 text=Choose one - Destroy target Aura attached to a creature; or target Soldier creature gets +2/+2 until end of turn; or creatures you control gain vigilance until end of turn.
 mana={W}
 type=Instant
+[/card]
+[card]
+name=Pili-Pala
+abilities=flying
+auto={2}{q}:add{g}
+auto={2}{q}:add{w}
+auto={2}{q}:add{r}
+auto={2}{q}:add{u}
+auto={2}{q}:add{b}
+text=Flying -- {2}, {Q}: Add one mana of any color to your mana pool. ({Q} is the untap symbol.)
+mana={2}
+type=Artifact Creature
+subtype=Scarecrow
+power=1
+toughness=1
 [/card]
 [card]
 name=Pilgrim's Eye
@@ -53247,6 +53337,16 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Safehold Sentry
+auto={2}{w}{q}:0/+2 ueot
+text={2}{W}, {Q}: Safehold Sentry gets +0/+2 until end of turn. ({Q} is the untap symbol.)
+mana={1}{W}
+type=Creature
+subtype=Elf Warrior
+power=2
+toughness=2
+[/card]
+[card]
 name=Safewright Quest
 target=forest,plains|myLibrary
 auto=moveTo(myHand)
@@ -57150,6 +57250,17 @@ auto=reach
 text=Target creature gets +1/+1 and gains reach until end of turn. (It can block creatures with flying.)
 mana={G}
 type=Instant
+[/card]
+[card]
+name=Silkbind Faerie
+auto={1}{wu}{q}:target(creature) tap
+abilities=flying
+text=Flying -- {1}{(w/u)}, {Q}: Tap target creature. ({Q} is the untap symbol.)
+mana={2}{WU}
+type=Creature
+subtype=Faerie Rogue
+power=1
+toughness=3
 [/card]
 [card]
 name=Silkenfist Fighter
@@ -68426,6 +68537,15 @@ type=Creature
 subtype=Bird Ally
 power=1
 toughness=1
+[/card]
+[card]
+name=Umbral Mantle
+auto=teach(creature) {3}{q}:+3/+3 ueot
+auto={0}:equip
+text=Equipped creature has "{3}, {Q}: This creature gets +2/+2 until end of turn." ({Q} is the untap symbol.) -- Equip {0}
+mana={3}
+type=Artifact
+subtype=Equipment
 [/card]
 [card]
 name=Umezawa's Jitte
