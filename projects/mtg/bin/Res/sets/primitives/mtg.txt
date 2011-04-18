@@ -2687,7 +2687,7 @@ toughness=5
 [card]
 name=Archdemon of Unx
 abilities=flying,trample
-auto=@each my upkeep:bury notatarget(creature[-zombie]|myBattlefield)
+auto=@each my upkeep:sacrifice notatarget(creature[-zombie]|myBattlefield)
 auto=@each my upkeep:token(Zombie,creature zombie, 2/2,black)
 text=Flying, trample -- At the beginning of your upkeep, sacrifice a non-Zombie creature, then put a 2/2 black Zombie creature token onto the battlefield.
 mana={5}{B}{B}
@@ -13861,7 +13861,7 @@ toughness=2
 [/card]
 [card]
 name=Darba
-auto=upcost[{G}{G}] moveTo(graveyard)
+auto=upcost[{G}{G}] sacrifice
 text=At the beginning of your upkeep, sacrifice Darba unless you pay {G}{G}.
 mana={3}{G}
 type=Creature
@@ -15037,7 +15037,7 @@ type=Sorcery
 [card]
 name=Deep Spawn
 abilities=trample
-auto=upcost[{M}{M}] moveTo(mygraveyard)
+auto=upcost[{M}{M}] sacrifice
 auto={U}:shroud && tap && frozen
 text=Trample -- At the beginning of your upkeep, sacrifice Deep Spawn unless you put the top two cards of your library into your graveyard. -- {U}: Deep Spawn gains shroud until end of turn and doesn't untap during your next untap step. Tap Deep Spawn. (A permanent with shroud can't be the target of spells or abilities.)
 mana={5}{U}{U}{U}
@@ -15456,7 +15456,7 @@ toughness=2
 name=Demonic Appetite
 target=creature|myBattlefield
 auto=3/3
-auto=@each my upkeep:moveTo(mygraveyard) notatarget(creature|myBattlefield)
+auto=@each my upkeep:sacrifice notatarget(creature|myBattlefield)
 text=Enchant creature you control -- Enchanted creature gets +3/+3. -- At the beginning of your upkeep, sacrifice a creature.
 mana={B}
 type=Enchantment
@@ -15784,7 +15784,7 @@ toughness=2
 [card]
 name=Devouring Strossus
 abilities=flying,trample
-auto=@each my upkeep:moveTo(mygraveyard) notatarget(creature|myBattlefield)
+auto=@each my upkeep:sacrifice notatarget(creature|myBattlefield)
 auto={S(creature|myBattlefield)}:regenerate
 text=Flying, trample -- At the beginning of your upkeep, sacrifice a creature. -- Sacrifice a creature: Regenerate Devouring Strossus.
 mana={5}{B}{B}{B}
@@ -16778,7 +16778,7 @@ subtype=Equipment
 [card]
 name=Dragon Tyrant
 abilities=flying,trample,double strike
-auto=upcost[{R}{R}{R}{R}] moveTo(mygraveyard)
+auto=upcost[{R}{R}{R}{R}] sacrifice
 auto={R}:1/0
 text=Flying, trample -- Double strike (This creature deals both first-strike and regular combat damage.) -- At the beginning of your upkeep, sacrifice Dragon Tyrant unless you pay {R}{R}{R}{R}. -- {R}: Dragon Tyrant gets +1/+0 until end of turn.
 mana={8}{R}{R}
@@ -17230,7 +17230,7 @@ toughness=*
 [card]
 name=Drifter il-Dal
 abilities=shadow
-auto=upcost[{U}] moveTo(graveyard)
+auto=upcost[{U}] sacrifice
 text=Shadow (This creature can block or be blocked by only creatures with shadow.) -- At the beginning of your upkeep, sacrifice Drifter il-Dal unless you pay {U}.
 mana={U}
 type=Creature
@@ -17241,7 +17241,7 @@ toughness=1
 [card]
 name=Drifting Djinn
 abilities=flying
-auto=upcost[{1}{U}] moveTo(graveyard)
+auto=upcost[{1}{U}] sacrifice
 autohand={2}:cycling
 text=Flying -- At the beginning of your upkeep, sacrifice Drifting Djinn unless you pay {1}{U}. -- Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={4}{U}{U}
@@ -18464,8 +18464,8 @@ name=Eldrazi Monument
 auto=lord(creature|myBattlefield) 1/1 
 auto=lord(creature|mybattlefield) flying
 auto=lord(creature|mybattlefield) indestructible
-auto=@each myupkeep:moveTo(mygraveyard) notatarget(creature|mybattlefield)
-auto=@each myupkeep:aslongas(creature|mybattlefield) moveto(mygraveyard) <1
+auto=@each myupkeep:sacrifice notatarget(creature|mybattlefield)
+auto=@each myupkeep:aslongas(creature|mybattlefield) sacrifice <1
 text=Creatures you control get +1/+1, have flying, and are indestructible. -- At the beginning of your upkeep, sacrifice a creature. If you can't, sacrifice Eldrazi Monument.
 mana={5}
 type=Artifact
@@ -19380,7 +19380,7 @@ type=Enchantment
 [card]
 name=Endless Wurm
 abilities=trample
-auto=upcost[{s(enchantment|mybattlefield)}] moveto(mygraveyard) all(this)
+auto=upcost[{s(enchantment|mybattlefield)}] sacrifice
 text=Trample -- At the beginning of your upkeep, sacrifice Endless Wurm unless you sacrifice an enchantment.
 mana={3}{G}{G}
 type=Creature
@@ -32917,7 +32917,7 @@ toughness=1
 [card]
 name=Junk Golem
 auto=counter(1/1,3)
-auto=upcost[{C(1/1,-1)}] moveTo(graveyard)
+auto=upcost[{C(1/1,-1)}] sacrifice
 auto={discard(*|myhand)}:counter(1/1)
 text=Junk Golem enters the battlefield with three +1/+1 counters on it. -- At the beginning of your upkeep, sacrifice Junk Golem unless you remove a +1/+1 counter from it. -- {1}, Discard a card: Put a +1/+1 counter on Junk Golem.
 mana={4}
@@ -32936,7 +32936,7 @@ type=Artifact
 [card]
 name=Junun Efreet
 abilities=flying
-auto=upcost[{B}{B}] moveTo(graveyard)
+auto=upcost[{B}{B}] sacrifice
 text=Flying -- At the beginning of your upkeep, sacrifice Junun Efreet unless you pay {B}{B}.
 mana={1}{B}{B}
 type=Creature
@@ -33307,7 +33307,7 @@ toughness=2
 [/card]
 [card]
 name=Kami of the Tended Garden
-auto=upcost[{G}] moveTo(graveyard)
+auto=upcost[{G}] sacrifice)
 auto=@movedTo(this|mygraveyard) from(myBattlefield):may moveTo(myhand) target(other spirit[manacost<=3]|mygraveyard)
 text=At the beginning of your upkeep, sacrifice Kami of the Tended Garden unless you pay {G}. -- Soulshift 3 (When this is put into a graveyard from the battlefield, you may return target Spirit card with converted mana cost 3 or less from your graveyard to your hand.)
 mana={3}{G}
@@ -35413,7 +35413,7 @@ toughness=3
 [/card]
 [card]
 name=Kuro, Pitlord
-auto=upcost[{B}{B}{B}{B}] moveTo(mygraveyard)
+auto=upcost[{B}{B}{B}{B}] sacrifice
 auto={L}:-1/-1 target(creature)
 text=At the beginning of your upkeep, sacrifice Kuro, Pitlord unless you pay {B}{B}{B}{B}. -- Pay 1 life: Target creature gets -1/-1 until end of turn.
 mana={6}{B}{B}{B}
@@ -36463,7 +36463,7 @@ name=Liege of the Pit
 abilities=flying,trample
 facedown={3}
 autofacedown={B}{B}{B}{B}:morph
-auto=@each myupkeep:moveTo(mygraveyard) notatarget(other creature|mybattlefield)
+auto=@each myupkeep:sacrifice notatarget(other creature|mybattlefield)
 auto=@each myupkeep:aslongas(other creature|mybattlefield) damage:7 controller <1
 text=Flying, trample -- At the beginning of your upkeep, sacrifice a creature other than Liege of the Pit. If you can't, Liege of the Pit deals 7 damage to you. -- Morph {B}{B}{B}{B} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
 mana={5}{B}{B}{B}
@@ -36875,7 +36875,7 @@ toughness=2
 [/card]
 [card]
 name=Lithophage
-auto=@each my upkeep:bury notatarget(lithophage,mountain|myBattlefield)
+auto=upcost[{S(mountain|myBattlefield)}] sacrifice
 text=At the beginning of your upkeep, sacrifice Lithophage unless you sacrifice a Mountain.
 mana={3}{R}{R}
 type=Creature
@@ -37332,7 +37332,7 @@ toughness=3
 [card]
 name=Lord of the Pit
 abilities=flying,trample
-auto=@each myupkeep:moveTo(mygraveyard) notatarget(other creature|mybattlefield)
+auto=@each myupkeep:sacrifice notatarget(other creature|mybattlefield)
 auto=@each myupkeep:aslongas(other creature|mybattlefield) damage:7 controller <1
 text=Flying, trample -- At the beginning of your upkeep, sacrifice a creature other than Lord of the Pit. If you can't, Lord of the Pit deals 7 damage to you.
 mana={4}{B}{B}{B}
@@ -39144,7 +39144,7 @@ type=Instant
 [/card]
 [card]
 name=Masticore
-auto=upcost[{discard(*|myhand)}] moveTo(mygraveyard)
+auto=upcost[{discard(*|myhand)}] sacrifice
 auto={2}:damage:1 target(creature)
 auto={2}:regenerate
 text=At the beginning of your upkeep, sacrifice Masticore unless you discard a card. -- {2}: Masticore deals 1 damage to target creature. -- {2}: Regenerate Masticore.
@@ -40898,7 +40898,7 @@ toughness=4
 [/card]
 [card]
 name=Molten-Tail Masticore
-auto=upcost[{discard(*|myhand)}] moveTo(mygraveyard)
+auto=upcost[{discard(*|myhand)}] sacrifice
 auto={4}{E(creature|mygraveyard)}:damage:4 target(creature,player)
 auto={2}:regenerate
 text=At the beginning of your upkeep, sacrifice Molten-Tail Masticore unless you discard a card. -- {4}, Exile a creature card from your graveyard: Molten-Tail Masticore deals 4 damage to target creature or player. -- {2}: Regenerate Molten-Tail Masticore.
@@ -40911,7 +40911,7 @@ toughness=4
 [card]
 name=Molting Harpy
 abilities=flying
-auto=upcost[{2}] moveTo(graveyard)
+auto=upcost[{2}] sacrifice
 text=Flying -- At the beginning of your upkeep, sacrifice Molting Harpy unless you pay {2}.
 mana={B}
 type=Creature
@@ -43080,7 +43080,7 @@ toughness=2
 [card]
 name=Nicol Bolas
 auto=flying
-auto=upcost[{U}{B}{R}] moveTo(graveyard)
+auto=upcost[{U}{B}{R}] sacrifice
 auto=@damaged(opponent) from(this):reject all(*|opponenthand)
 text=Flying -- At the beginning of your upkeep, sacrifice Nicol Bolas unless you pay {U}{B}{R}. -- Whenever Nicol Bolas deals damage to an opponent, that player discards his or her hand.
 mana={2}{U}{U}{B}{B}{R}{R}
@@ -44380,7 +44380,7 @@ type=Instant
 [card]
 name=Oni Possession
 target=creature
-auto=@each my upkeep:moveTo(graveyard) notatarget(creature|myBattlefield)
+auto=@each my upkeep:sacrifice notatarget(creature|myBattlefield)
 auto=transforms((Creature Demon Spirit))
 auto=3/3
 auto=trample
@@ -45367,7 +45367,7 @@ toughness=5
 [card]
 name=Palladia-Mors
 abilities=flying,trample
-auto=upcost[{R}{G}{W}] moveTo(graveyard)
+auto=upcost[{R}{G}{W}] sacrifice
 text=Flying, trample -- At the beginning of your upkeep, sacrifice Palladia-Mors unless you pay {R}{G}{W}.
 mana={2}{R}{R}{G}{G}{W}{W}
 type=Legendary Creature
@@ -45814,7 +45814,7 @@ toughness=3
 [/card]
 [card]
 name=Peacekeeper
-auto=upcost[{1}{W}] moveTo(graveyard)
+auto=upcost[{1}{W}] sacrifice
 auto=lord(creature) cantattack
 text=At the beginning of your upkeep, sacrifice Peacekeeper unless you pay {1}{W}. -- Creatures can't attack.
 mana={2}{W}
@@ -46341,7 +46341,7 @@ toughness=5
 [card]
 name=Phantasmal Forces
 abilities=flying
-auto=upcost[{U}] moveTo(graveyard)
+auto=upcost[{U}] sacrifice
 text=Flying -- At the beginning of your upkeep, sacrifice Phantasmal Forces unless you pay {U}.
 mana={3}{U}
 type=Creature
@@ -47118,7 +47118,7 @@ toughness=1
 [card]
 name=Pit Raptor
 abilities=flying,first strike
-auto=upcost[{2}{B}{B}] moveTo(graveyard)
+auto=upcost[{2}{B}{B}] sacrifice
 text=Flying, first strike -- At the beginning of your upkeep, sacrifice Pit Raptor unless you pay {2}{B}{B}.
 mana={2}{B}{B}
 type=Creature
@@ -47139,7 +47139,7 @@ toughness=1
 [card]
 name=Pit Spawn
 abilities=first strike
-auto=upcost[{B}{B}] moveTo(mygraveyard)
+auto=upcost[{B}{B}] sacrifice
 auto=@damaged(creature) from(this):all(trigger[to]) moveTo(exile)
 text=First strike -- At the beginning of your upkeep, sacrifice Pit Spawn unless you pay {B}{B}. -- Whenever Pit Spawn deals damage to a creature, exile that creature.
 mana={4}{B}{B}{B}
@@ -48597,7 +48597,7 @@ type=Instant
 [card]
 name=Puppet Conjurer
 auto={U}{T}:token(Homonculus,Artifact Creature Homonculus,0/1,blue)
-auto=@each my upkeep:bury notatarget(homonculus|myBattlefield)
+auto=@each my upkeep:sacrifice notatarget(homonculus|myBattlefield)
 text={U}, {T}: Put a 0/1 blue Homunculus artifact creature token onto the battlefield. -- At the beginning of your upkeep, sacrifice a Homunculus.
 mana={1}{B}
 type=Artifact Creature
@@ -49842,6 +49842,7 @@ name=Rancor
 target=creature
 auto=2/0
 auto=trample
+
 autograveyard=@movedTo(this|graveyard) from(battlefield):moveTo(myhand)
 text=Enchant creature -- Enchanted creature gets +2/+0 and has trample. -- When Rancor is put into a graveyard from the battlefield, return Rancor to its owner's hand.
 mana={G}
@@ -50304,7 +50305,7 @@ toughness=5
 [card]
 name=Razormane Masticore
 auto=first strike
-auto=upcost[{discard(*|myhand)}] moveTo(graveyard)
+auto=upcost[{discard(*|myhand)}] sacrifice
 auto=@each my draw:may damage:3 target(creature)
 text=First strike (This creature deals combat damage before creatures without first strike.) -- At the beginning of your upkeep, sacrifice Razormane Masticore unless you discard a card. -- At the beginning of your draw step, you may have Razormane Masticore deal 3 damage to target creature.
 mana={5}
@@ -53159,7 +53160,7 @@ toughness=2
 [/card]
 [card]
 name=Sacred Mesa
-auto=@each my upkeep:bury notatarget(sacred mesa,pegasus|myBattlefield)
+auto=@each my upkeep:sacrifice notatarget(sacred mesa,pegasus|myBattlefield)
 auto={1}{W}:token(Pegasus,creature pegasus, 1/1,white flying)
 text=At the beginning of your upkeep, sacrifice Sacred Mesa unless you sacrifice a Pegasus. -- {1}{W}: Put a 1/1 white Pegasus creature token with flying onto the battlefield.
 mana={2}{W}
@@ -54290,7 +54291,7 @@ type=Artifact
 [/card]
 [card]
 name=School of Piranha
-auto=upcost[{1}{U}] moveTo(graveyard)
+auto=upcost[{1}{U}] sacrifice
 text=At the beginning of your upkeep, sacrifice School of Piranha unless you pay {1}{U}.
 mana={1}{U}
 type=Creature
@@ -60481,7 +60482,7 @@ toughness=2
 [card]
 name=Spindrift Drake
 abilities=flying
-auto=upcost[{U}] moveTo(graveyard)
+auto=upcost[{U}] sacrifice
 text=Flying -- At the beginning of your upkeep, sacrifice Spindrift Drake unless you pay {U}.
 mana={U}
 type=Creature
@@ -62969,7 +62970,7 @@ toughness=4
 [/card]
 [card]
 name=Sunken City
-auto=upcost[{U}{U}] moveTo(graveyard)
+auto=upcost[{U}{U}] sacrifice
 auto=lord(creature[blue]) 1/1
 text=At the beginning of your upkeep, sacrifice Sunken City unless you pay {U}{U}. -- Blue creatures get +1/+1.
 mana={U}{U}
@@ -69170,7 +69171,7 @@ toughness=2
 [card]
 name=Vaevictis Asmadi
 abilities=flying
-auto=upcost[{B}{R}{G}] moveTo(graveyard)
+auto=upcost[{B}{R}{G}] sacrifice
 auto={B}:1/0
 auto={R}:1/0
 auto={G}:1/0
@@ -72495,7 +72496,7 @@ toughness=4
 [/card]
 [card]
 name=Waterspout Djinn
-auto=upcost[{h(island[-tapped]|mybattlefield)}] sacrifice all(this)
+auto=upcost[{h(island[-tapped]|mybattlefield)}] sacrifice
 abilities=flying
 text=Flying -- At the beginning of your upkeep, sacrifice Waterspout Djinn unless you return an untapped Island you control to its owner's hand.
 mana={2}{U}{U}
@@ -72593,7 +72594,7 @@ abilities=flying,vigilance
 auto=aslongas(*|mygraveyard) trample >6
 auto=aslongas(*|mygraveyard) 3/3 >6
 auto=aslongas(*|mygraveyard) transforms((,black)) >6
-auto=@each my upkeep:aslongas(*|mygraveyard) upcost[{S(creature|myBattlefield)}] moveTo(mygraveyard) >6
+auto=@each my upkeep:aslongas(*|mygraveyard) upcost[{S(creature|myBattlefield)}] sacrifice >6
 text=Flying, vigilance -- Threshold - As long as seven or more cards are in your graveyard, Wayward Angel gets +3/+3, is black, has trample, and has "At the beginning of your upkeep, sacrifice a creature."
 mana={4}{W}{W}
 type=Creature
@@ -72954,7 +72955,7 @@ toughness=2
 [/card]
 [card]
 name=Whipstitched Zombie
-auto=upcost[{B}] moveTo(graveyard)
+auto=upcost[{B}] sacrifice
 text=At the beginning of your upkeep, sacrifice Whipstitched Zombie unless you pay {B}.
 mana={1}{B}
 type=Creature
@@ -73268,7 +73269,7 @@ toughness=3
 [/card]
 [card]
 name=Wild Leotau
-auto=upcost[{G}] moveTo(graveyard)
+auto=upcost[{G}] sacrifice
 text=At the beginning of your upkeep, sacrifice Wild Leotau unless you pay {G}.
 mana={2}{G}{G}
 type=Creature
