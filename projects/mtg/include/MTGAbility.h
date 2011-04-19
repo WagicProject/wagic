@@ -169,6 +169,7 @@ class MTGAbility: public ActionElement{
 		STANDARD_TOKENCREATOR = 27,
 		MORPH_COST = 28,
 		SUSPEND_COST = 29,
+		COUNTERS = 30,
 
 
   };
@@ -261,7 +262,7 @@ class ActivatedAbility:public MTGAbility{
   MTGAbility * sa;
   string usesBeforeSideEffects;
   int uses;
-  ActivatedAbility(int id, MTGCardInstance * card,ManaCost * _cost = NULL, int _restrictions = NO_RESTRICTION,int tap = 1,string limit = "",MTGAbility * sideEffect = NULL,string usesBeforeSideEffects = "");
+  ActivatedAbility(int id, MTGCardInstance * card,ManaCost * _cost = NULL, int _restrictions = NO_RESTRICTION,string limit = "",MTGAbility * sideEffect = NULL,string usesBeforeSideEffects = "");
   virtual ~ActivatedAbility();
   virtual void Update(float dt)
   {
@@ -283,8 +284,8 @@ class ActivatedAbility:public MTGAbility{
 
 class TargetAbility:public ActivatedAbility, public NestedAbility{
  public:
-  TargetAbility(int id, MTGCardInstance * card, TargetChooser * _tc,ManaCost * _cost = NULL, int _playerturnonly = 0,int tap = 1);
-  TargetAbility(int id, MTGCardInstance * card,ManaCost * _cost = NULL, int _playerturnonly = 0,int tap = 1);
+  TargetAbility(int id, MTGCardInstance * card, TargetChooser * _tc,ManaCost * _cost = NULL, int _playerturnonly = 0);
+  TargetAbility(int id, MTGCardInstance * card,ManaCost * _cost = NULL, int _playerturnonly = 0);
   virtual int reactToClick(MTGCardInstance * card);
   virtual int reactToTargetClick(Targetable * object);
   virtual TargetAbility* clone() const = 0;
@@ -408,7 +409,7 @@ public:
 class ActivatedAbilityTP:public ActivatedAbility{
 public:
   int who;
-  ActivatedAbilityTP(int id, MTGCardInstance * card, Targetable * _target = NULL, ManaCost * cost=NULL, int doTap = 0, int who = TargetChooser::UNSET);
+  ActivatedAbilityTP(int id, MTGCardInstance * card, Targetable * _target = NULL, ManaCost * cost=NULL, int who = TargetChooser::UNSET);
   Targetable * getTarget();
 };
 
@@ -437,7 +438,7 @@ class AManaProducer: public ActivatedAbilityTP{
    string menutext;
    ManaCost * output;
    int tap;
-   AManaProducer(int id, MTGCardInstance * card, Targetable * t, ManaCost * _output, ManaCost * _cost = NULL, int doTap = 0, int who = TargetChooser::UNSET );
+   AManaProducer(int id, MTGCardInstance * card, Targetable * t, ManaCost * _output, ManaCost * _cost = NULL, int who = TargetChooser::UNSET );
    int isReactingToClick(MTGCardInstance *  _card, ManaCost * mana = NULL);
   int resolve();
   int reactToClick(MTGCardInstance *  _card);

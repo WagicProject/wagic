@@ -4,9 +4,9 @@
 //Activated Abilities
 
 //Generic Activated Abilities
-GenericActivatedAbility::GenericActivatedAbility(string newName,int _id, MTGCardInstance * card, MTGAbility * a, ManaCost * _cost, int _tap,
+GenericActivatedAbility::GenericActivatedAbility(string newName,int _id, MTGCardInstance * card, MTGAbility * a, ManaCost * _cost,
         string limit,MTGAbility * sideEffects,string usesBeforeSideEffects, int restrictions, MTGGameZone * dest) :
-    ActivatedAbility(_id, card, _cost, restrictions, _tap,limit,sideEffects,usesBeforeSideEffects), NestedAbility(a), activeZone(dest),newName(newName)
+    ActivatedAbility(_id, card, _cost, restrictions,limit,sideEffects,usesBeforeSideEffects), NestedAbility(a), activeZone(dest),newName(newName)
 {
     counters = 0;
     target = ability->target;
@@ -71,9 +71,9 @@ GenericActivatedAbility::~GenericActivatedAbility()
 }
 
 //AA Alter Poison
-AAAlterPoison::AAAlterPoison(int _id, MTGCardInstance * _source, Targetable * _target, int poison, ManaCost * _cost, int doTap,
+AAAlterPoison::AAAlterPoison(int _id, MTGCardInstance * _source, Targetable * _target, int poison, ManaCost * _cost,
         int who) :
-    ActivatedAbilityTP(_id, _source, _target, _cost, doTap, who), poison(poison)
+    ActivatedAbilityTP(_id, _source, _target, _cost, who), poison(poison)
 {
 }
 
@@ -105,8 +105,8 @@ AAAlterPoison::~AAAlterPoison()
 
 //Damage Prevent
 AADamagePrevent::AADamagePrevent(int _id, MTGCardInstance * _source, Targetable * _target, int preventing, ManaCost * _cost,
-        int doTap, int who) :
-    ActivatedAbilityTP(_id, _source, _target, _cost, doTap, who), preventing(preventing)
+        int who) :
+    ActivatedAbilityTP(_id, _source, _target, _cost, who), preventing(preventing)
 {
     aType = MTGAbility::STANDARD_PREVENT;
 }
@@ -138,9 +138,9 @@ AADamagePrevent::~AADamagePrevent()
 }
 
 //AADamager
-AADamager::AADamager(int _id, MTGCardInstance * _source, Targetable * _target, string d, ManaCost * _cost, int doTap,
+AADamager::AADamager(int _id, MTGCardInstance * _source, Targetable * _target, string d, ManaCost * _cost,
         int who) :
-    ActivatedAbilityTP(_id, _source, _target, _cost, doTap, who), d(d)
+    ActivatedAbilityTP(_id, _source, _target, _cost, who), d(d)
 {
     aType = MTGAbility::DAMAGER;
     }
@@ -178,8 +178,8 @@ AADamager * AADamager::clone() const
 
 
 //AADepleter
-AADepleter::AADepleter(int _id, MTGCardInstance * card, Targetable * _target,string nbcardsStr, ManaCost * _cost, int _tap, int who) :
-    ActivatedAbilityTP(_id, card, _target, _cost, _tap, who),nbcardsStr(nbcardsStr)
+AADepleter::AADepleter(int _id, MTGCardInstance * card, Targetable * _target,string nbcardsStr, ManaCost * _cost, int who) :
+    ActivatedAbilityTP(_id, card, _target, _cost, who),nbcardsStr(nbcardsStr)
 {
 
 }
@@ -223,7 +223,7 @@ AADepleter * AADepleter::clone() const
 
 //AACopier
 AACopier::AACopier(int _id, MTGCardInstance * _source, MTGCardInstance * _target, ManaCost * _cost) :
-    ActivatedAbility(_id, _source, _cost, 0, 0)
+    ActivatedAbility(_id, _source, _cost, 0)
 {
     target = _target;
 }
@@ -253,7 +253,7 @@ AACopier * AACopier::clone() const
 
 //phaser
 AAPhaseOut::AAPhaseOut(int _id, MTGCardInstance * _source, MTGCardInstance * _target, ManaCost * _cost) :
-    ActivatedAbility(_id, _source, _cost, 0, 0)
+    ActivatedAbility(_id, _source, _cost, 0)
 {
     target = _target;
 }
@@ -288,12 +288,15 @@ AAPhaseOut * AAPhaseOut::clone() const
 
 //Counters
 AACounter::AACounter(int id, MTGCardInstance * source, MTGCardInstance * target,string counterstring, const char * _name, int power, int toughness,
-        int nb,int maxNb, ManaCost * cost, int doTap) :
-    ActivatedAbility(id, source, cost, 0, doTap),counterstring(counterstring), nb(nb),maxNb(maxNb), power(power), toughness(toughness), name(_name)
+        int nb,int maxNb, ManaCost * cost) :
+    ActivatedAbility(id, source, cost, 0),counterstring(counterstring), nb(nb),maxNb(maxNb), power(power), toughness(toughness), name(_name)
 {
     this->target = target;
     if (name.find("Level"))
         aType = MTGAbility::STANDARD_LEVELUP;
+    else
+        aType = MTGAbility::COUNTERS;
+        
     menu = "";
 }
 
@@ -381,8 +384,8 @@ AACounter * AACounter::clone() const
 
 //Counters
 AARemoveAllCounter::AARemoveAllCounter(int id, MTGCardInstance * source, MTGCardInstance * target, const char * _name, int power, int toughness,
-        int nb,bool all, ManaCost * cost, int doTap) :
-    ActivatedAbility(id, source, cost, 0, doTap), nb(nb), power(power), toughness(toughness), name(_name),all(all)
+        int nb,bool all, ManaCost * cost) :
+    ActivatedAbility(id, source, cost, 0), nb(nb), power(power), toughness(toughness), name(_name),all(all)
 {
     this->target = target;
     menu = "";
@@ -462,8 +465,8 @@ AARemoveAllCounter * AARemoveAllCounter::clone() const
 }
 
 // Fizzler
-AAFizzler::AAFizzler(int _id, MTGCardInstance * card, Spell * _target, ManaCost * _cost, int _tap) :
-ActivatedAbility(_id, card, _cost, 0, _tap)
+AAFizzler::AAFizzler(int _id, MTGCardInstance * card, Spell * _target, ManaCost * _cost) :
+ActivatedAbility(_id, card, _cost, 0)
 {
     target = _target;
 }
@@ -650,9 +653,9 @@ AADiscardCard * AADiscardCard::clone() const
     return a;
 }
 
-AADrawer::AADrawer(int _id, MTGCardInstance * card, Targetable * _target, ManaCost * _cost, string nbcardsStr, int _tap,
+AADrawer::AADrawer(int _id, MTGCardInstance * card, Targetable * _target, ManaCost * _cost, string nbcardsStr,
         int who) :
-    ActivatedAbilityTP(_id, card, _target, _cost, _tap, who), nbcardsStr(nbcardsStr)
+    ActivatedAbilityTP(_id, card, _target, _cost, who), nbcardsStr(nbcardsStr)
 {
     aType = MTGAbility::STANDARD_DRAW;
 }
@@ -697,8 +700,8 @@ AADrawer * AADrawer::clone() const
 }
 
 // AAFrozen: Prevent a card from untapping during next untap phase
-AAFrozen::AAFrozen(int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost, int doTap) :
-ActivatedAbility(id, card, _cost, 0, doTap)
+AAFrozen::AAFrozen(int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost) :
+ActivatedAbility(id, card, _cost, 0)
 {
     target = _target;
 }
@@ -728,8 +731,8 @@ AAFrozen * AAFrozen::clone() const
 }
 
 // chose a new target for an aura or enchantment and equip it note: VERY basic right now.
-AANewTarget::AANewTarget(int id, MTGCardInstance * card, MTGCardInstance * _target,bool retarget, ManaCost * _cost, int doTap) :
-ActivatedAbility(id, card, _cost, 0, doTap),retarget(retarget)
+AANewTarget::AANewTarget(int id, MTGCardInstance * card, MTGCardInstance * _target,bool retarget, ManaCost * _cost) :
+ActivatedAbility(id, card, _cost, 0),retarget(retarget)
 {
     target = _target;
 }
@@ -796,8 +799,8 @@ AANewTarget * AANewTarget::clone() const
     return a;
 }
 // morph a card
-AAMorph::AAMorph(int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost, int doTap) :
-ActivatedAbility(id, card, _cost, restrictions, doTap)
+AAMorph::AAMorph(int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost) :
+ActivatedAbility(id, card, _cost, restrictions)
 {
     target = _target;
 }
@@ -875,8 +878,8 @@ AAMorph * AAMorph::clone() const
     return a;
 }
 // AADYNAMIC: dynamic ability builder
-AADynamic::AADynamic(int id, MTGCardInstance * card, Damageable * _target,int type,int effect,int who,int amountsource,MTGAbility * storedAbility, ManaCost * _cost, int doTap) :
-ActivatedAbility(id, card, _cost, 0, doTap),type(type),effect(effect),who(who),amountsource(amountsource),eachother(eachother),storedAbility(storedAbility)
+AADynamic::AADynamic(int id, MTGCardInstance * card, Damageable * _target,int type,int effect,int who,int amountsource,MTGAbility * storedAbility, ManaCost * _cost) :
+ActivatedAbility(id, card, _cost, 0),type(type),effect(effect),who(who),amountsource(amountsource),eachother(eachother),storedAbility(storedAbility)
 {
     target = _target;
     sourceamount = 0;
@@ -1293,8 +1296,8 @@ AADynamic::~AADynamic()
 }
 
 //AALifer
-AALifer::AALifer(int _id, MTGCardInstance * card, Targetable * _target, string life_s, ManaCost * _cost, int _tap, int who) :
-ActivatedAbilityTP(_id, card, _target, _cost, _tap, who),life_s(life_s)
+AALifer::AALifer(int _id, MTGCardInstance * card, Targetable * _target, string life_s, ManaCost * _cost, int who) :
+ActivatedAbilityTP(_id, card, _target, _cost, who),life_s(life_s)
 {
     aType = MTGAbility::LIFER;
 }
@@ -1339,9 +1342,9 @@ AALifer * AALifer::clone() const
 
 
 //Lifeset
-AALifeSet::AALifeSet(int _id, MTGCardInstance * _source, Targetable * _target, WParsedInt * life, ManaCost * _cost, int doTap,
+AALifeSet::AALifeSet(int _id, MTGCardInstance * _source, Targetable * _target, WParsedInt * life, ManaCost * _cost,
         int who) :
-    ActivatedAbilityTP(_id, _source, _target, _cost, doTap, who), life(life)
+    ActivatedAbilityTP(_id, _source, _target, _cost, who), life(life)
 {
 }
 
@@ -1389,7 +1392,7 @@ AALifeSet::~AALifeSet()
 //cloning...this makes a token thats a copy of the target.
 AACloner::AACloner(int _id, MTGCardInstance * _source, MTGCardInstance * _target, ManaCost * _cost, int who,
         string abilitiesStringList) :
-    ActivatedAbility(_id, _source, _cost, 0, 0), who(who)
+    ActivatedAbility(_id, _source, _cost, 0), who(who)
 {
     aType = MTGAbility::CLONING;
     target = _target;
@@ -1587,8 +1590,8 @@ AInstantCastRestrictionUEOT::~AInstantCastRestrictionUEOT()
 
 
 //AAMover
-AAMover::AAMover(int _id, MTGCardInstance * _source, MTGCardInstance * _target, string dest, ManaCost * _cost, int doTap) :
-    ActivatedAbility(_id, _source, _cost, 0, doTap), destination(dest)
+AAMover::AAMover(int _id, MTGCardInstance * _source, MTGCardInstance * _target, string dest, ManaCost * _cost) :
+    ActivatedAbility(_id, _source, _cost, 0), destination(dest)
 {
     if (_target)
         target = _target;
@@ -1646,8 +1649,8 @@ AAMover * AAMover::clone() const
 
 //Random Discard
 AARandomDiscarder::AARandomDiscarder(int _id, MTGCardInstance * card, Targetable * _target,string nbcardsStr, ManaCost * _cost,
-        int _tap, int who) :
-    ActivatedAbilityTP(_id, card, _target, _cost, _tap, who), nbcardsStr(nbcardsStr)
+         int who) :
+    ActivatedAbilityTP(_id, card, _target, _cost, who), nbcardsStr(nbcardsStr)
 {
 }
 
@@ -1690,8 +1693,8 @@ AARandomDiscarder * AARandomDiscarder::clone() const
 }
 
 // Shuffle 
-AAShuffle::AAShuffle(int _id, MTGCardInstance * card, Targetable * _target, ManaCost * _cost, int _tap, int who) :
-    ActivatedAbilityTP(_id, card, _target, _cost, _tap, who)
+AAShuffle::AAShuffle(int _id, MTGCardInstance * card, Targetable * _target, ManaCost * _cost, int who) :
+    ActivatedAbilityTP(_id, card, _target, _cost, who)
 {
 }
 
@@ -1728,8 +1731,8 @@ AAShuffle * AAShuffle::clone() const
 }
 
 //Tapper
-AATapper::AATapper(int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost, int doTap) :
-    ActivatedAbility(id, card, _cost, 0, doTap)
+AATapper::AATapper(int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost) :
+    ActivatedAbility(id, card, _cost, 0)
 {
     target = _target;
     aType = MTGAbility::TAPPER;
@@ -1760,8 +1763,8 @@ AATapper * AATapper::clone() const
 }
 
 //AA Untapper
-AAUntapper::AAUntapper(int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost, int doTap) :
-    ActivatedAbility(id, card, _cost, 0, doTap)
+AAUntapper::AAUntapper(int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost) :
+    ActivatedAbility(id, card, _cost, 0)
 {
     target = _target;
     aType = MTGAbility::UNTAPPER;
@@ -1791,8 +1794,8 @@ AAUntapper * AAUntapper::clone() const
     return a;
 }
 
-AAWhatsMax::AAWhatsMax(int id, MTGCardInstance * card, MTGCardInstance * source, ManaCost * _cost, int doTap, int value) :
-    ActivatedAbility(id, card, _cost, 0, doTap), value(value)
+AAWhatsMax::AAWhatsMax(int id, MTGCardInstance * card, MTGCardInstance * source, ManaCost * _cost, int value) :
+    ActivatedAbility(id, card, _cost, 0), value(value)
 {
 }
 
@@ -1815,8 +1818,8 @@ AAWhatsMax * AAWhatsMax::clone() const
 }
 
 // Win Game
-AAWinGame::AAWinGame(int _id, MTGCardInstance * card, Targetable * _target, ManaCost * _cost, int _tap, int who) :
-    ActivatedAbilityTP(_id, card, _target, _cost, _tap, who)
+AAWinGame::AAWinGame(int _id, MTGCardInstance * card, Targetable * _target, ManaCost * _cost, int who) :
+    ActivatedAbilityTP(_id, card, _target, _cost, who)
 {
 }
 
@@ -1942,8 +1945,8 @@ MayAbility::~MayAbility()
 }
 
 //MultiAbility : triggers several actions for a cost
-MultiAbility::MultiAbility(int _id, MTGCardInstance * card, Targetable * _target, ManaCost * _cost, int _tap) :
-    ActivatedAbility(_id, card, _cost, 0, _tap)
+MultiAbility::MultiAbility(int _id, MTGCardInstance * card, Targetable * _target, ManaCost * _cost) :
+    ActivatedAbility(_id, card, _cost, 0)
 {
     if (_target)
         target = _target;
@@ -2012,8 +2015,8 @@ MultiAbility::~MultiAbility()
 
 //Generic Target Ability
 GenericTargetAbility::GenericTargetAbility(string newName,int _id, MTGCardInstance * _source, TargetChooser * _tc, MTGAbility * a,
-        ManaCost * _cost, int _tap, string limit,MTGAbility * sideEffects,string usesBeforeSideEffects, int restrictions, MTGGameZone * dest) :
-    TargetAbility(_id, _source, _tc, _cost, restrictions, _tap), limit(limit), activeZone(dest),newName(newName)
+        ManaCost * _cost, string limit,MTGAbility * sideEffects,string usesBeforeSideEffects, int restrictions, MTGGameZone * dest) :
+    TargetAbility(_id, _source, _tc, _cost, restrictions), limit(limit), activeZone(dest),newName(newName)
 {
     ability = a;
     MTGAbility * core = AbilityFactory::getCoreAbility(a);
@@ -2749,7 +2752,7 @@ APreventDamageTypesUEOT::~APreventDamageTypesUEOT()
 }
 
 //AVanishing creature also fading
-AVanishing::AVanishing(int _id, MTGCardInstance * card, ManaCost * _cost, int _tap, int restrictions, int amount, string counterName) :
+AVanishing::AVanishing(int _id, MTGCardInstance * card, ManaCost * _cost, int restrictions, int amount, string counterName) :
 MTGAbility(_id, source, target),amount(amount),counterName(counterName)
 {
     target = card;
@@ -2823,9 +2826,9 @@ AVanishing::~AVanishing()
 }
 
 //AUpkeep
-AUpkeep::AUpkeep(int _id, MTGCardInstance * card, MTGAbility * a, ManaCost * _cost, int _tap, int restrictions, int _phase,
+AUpkeep::AUpkeep(int _id, MTGCardInstance * card, MTGAbility * a, ManaCost * _cost, int restrictions, int _phase,
         int _once,bool Cumulative) :
-    ActivatedAbility(_id, card, _cost, restrictions, _tap), NestedAbility(a), phase(_phase), once(_once),Cumulative(Cumulative)
+    ActivatedAbility(_id, card, _cost, restrictions), NestedAbility(a), phase(_phase), once(_once),Cumulative(Cumulative)
 {
     paidThisTurn = 0;
     aType = MTGAbility::UPCOST;
@@ -2913,7 +2916,7 @@ AUpkeep::~AUpkeep()
 }
 
 //A Phase based Action
-APhaseAction::APhaseAction(int _id, MTGCardInstance * card, MTGCardInstance * target, string sAbility, int _tap, int restrictions, int _phase,bool forcedestroy,bool next,bool myturn,bool opponentturn) :
+APhaseAction::APhaseAction(int _id, MTGCardInstance * card, MTGCardInstance * target, string sAbility, int restrictions, int _phase,bool forcedestroy,bool next,bool myturn,bool opponentturn) :
 MTGAbility(_id, card),sAbility(sAbility), phase(_phase),forcedestroy(forcedestroy),next(next),myturn(myturn),opponentturn(opponentturn)
 {
     abilityId = _id;
@@ -3005,11 +3008,11 @@ APhaseAction::~APhaseAction()
 }
 
 // the main ability
-APhaseActionGeneric::APhaseActionGeneric(int _id, MTGCardInstance * card, MTGCardInstance * target, string sAbility, int _tap, int restrictions, int _phase,bool forcedestroy,bool next,bool myturn,bool opponentturn) :
+APhaseActionGeneric::APhaseActionGeneric(int _id, MTGCardInstance * card, MTGCardInstance * target, string sAbility, int restrictions, int _phase,bool forcedestroy,bool next,bool myturn,bool opponentturn) :
     InstantAbility(_id, source, target)
 {
     MTGCardInstance * _target = target;
-    ability = NEW APhaseAction(_id, card,_target, sAbility,_tap, restrictions, _phase,forcedestroy,next,myturn,opponentturn);
+    ability = NEW APhaseAction(_id, card,_target, sAbility, restrictions, _phase,forcedestroy,next,myturn,opponentturn);
 }
 
 int APhaseActionGeneric::resolve()

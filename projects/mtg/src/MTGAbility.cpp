@@ -897,9 +897,6 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             }
         }
     }
-    int doTap = 0; //Tap in the cost ?
-    if (s.find("{t}") != string::npos)
-        doTap = 1;
 
     int restrictions = parseRestriction(s);
 
@@ -938,6 +935,17 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     if (delimiter != string::npos && firstNonSpace != string::npos && sWithoutTc[firstNonSpace] == '{')
     {
         ManaCost * cost = ManaCost::parseManaCost(sWithoutTc.substr(0, delimiter + 1), NULL, card);
+        int doTap = 0; //Tap in the cost ?
+        if(cost && cost->extraCosts)
+        {
+            for(unsigned int i = 0; i < cost->extraCosts->costs.size();i++)
+            {
+                ExtraCost * tapper = dynamic_cast<TapCost*>(cost->extraCosts->costs[i]);
+                if(tapper)
+                    doTap = 1;
+
+            }
+        }
         if (doTap || cost)
         {
             string s1 = sWithoutTc.substr(delimiter + 2);
@@ -997,8 +1005,8 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
                 return ae;
             }
             if (tc)
-                return NEW GenericTargetAbility(newName,id, card, tc, a, cost, doTap, limit,sideEffect,usesBeforeSideEffect, restrictions, dest);
-            return NEW GenericActivatedAbility(newName,id, card, a, cost, doTap, limit,sideEffect,usesBeforeSideEffect,restrictions, dest);
+                return NEW GenericTargetAbility(newName,id, card, tc, a, cost, limit,sideEffect,usesBeforeSideEffect, restrictions, dest);
+            return NEW GenericActivatedAbility(newName,id, card, a, cost, limit,sideEffect,usesBeforeSideEffect,restrictions, dest);
         }
         SAFE_DELETE(cost);
     }
@@ -1127,7 +1135,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             return NULL;
         }
 
-        return NEW AUpkeep(id, card, a, cost, doTap, restrictions, phase, once,Cumulative);
+        return NEW AUpkeep(id, card, a, cost, restrictions, phase, once,Cumulative);
     }
     
         //Phase based actions
@@ -1171,7 +1179,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             _target = spell->getNextCardTarget();
         if(!_target)
             _target = target;
-          return NEW APhaseActionGeneric(id, card,_target,sAbility, doTap, restrictions, phase,sourceinPlay,next);
+          return NEW APhaseActionGeneric(id, card,_target,sAbility, restrictions, phase,sourceinPlay,next);
     }
     
     //Multiple abilities for ONE cost
@@ -1180,7 +1188,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     {
         SAFE_DELETE(tc);
         vector<string> multiEffects = split(s,'&');
-        MultiAbility * multi = NEW MultiAbility(id, card, target, NULL, 0);
+        MultiAbility * multi = NEW MultiAbility(id, card, target, NULL);
         for(unsigned int i = 0;i < multiEffects.size();i++)
         {
             if(!multiEffects[i].empty())
@@ -1658,7 +1666,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             _target = spell->getNextCardTarget();
         if(!_target)
             _target = target;
-          return NEW APhaseActionGeneric(id, card,_target, sAbility, doTap, restrictions, phase,sourceinPlay,next,myturn,opponentturn);
+          return NEW APhaseActionGeneric(id, card,_target, sAbility, restrictions, phase,sourceinPlay,next,myturn,opponentturn);
     }
     
    //Upkeep Cost
@@ -1706,7 +1714,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             return NULL;
         }
 
-        return NEW AUpkeep(id, card, a, cost, doTap, restrictions, phase, once,Cumulative);
+        return NEW AUpkeep(id, card, a, cost, restrictions, phase, once,Cumulative);
     }
 
     //Cycling
@@ -1820,14 +1828,14 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             MTGCard * safetycard = MTGCollection()->getCardById(tokenId);
             if (safetycard)
             {//contenue
-                ATokenCreator * tok = NEW ATokenCreator(id, card,target, NULL, tokenId, 0, starfound, multiplier, who);
+                ATokenCreator * tok = NEW ATokenCreator(id, card,target, NULL, tokenId, starfound, multiplier, who);
                 tok->oneShot = 1;
                 return tok;
             }
             else
             {
                 tokenId = 0;
-                ATokenCreator * tok = NEW ATokenCreator(id, card, target, NULL, "ID NOT FOUND", "ERROR ID", 0, 0, "", 0, NULL);
+                ATokenCreator * tok = NEW ATokenCreator(id, card, target, NULL, "ID NOT FOUND", "ERROR ID",0, 0, "",0, NULL,0);
                 return tok;
             }
         }
@@ -1854,7 +1862,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         }
         parsePowerToughness(spt, &power, &toughness);
         string sabilities = s.substr(end + 1);
-        ATokenCreator * tok = NEW ATokenCreator(id, card,target, NULL, sname, stypes, power + value, toughness + value, sabilities, 0,starfound,
+        ATokenCreator * tok = NEW ATokenCreator(id, card,target, NULL, sname, stypes, power + value, toughness + value, sabilities,starfound,
             multiplier, who,aLivingWeapon,spt);
         tok->oneShot = 1;
         if(aLivingWeapon)
@@ -1874,7 +1882,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     found = s.find("attach");
     if (found != string::npos)
     {
-        MTGAbility * a = NEW AEquip(id, card, 0, 0, ActivatedAbility::NO_RESTRICTION);
+        MTGAbility * a = NEW AEquip(id, card, 0, ActivatedAbility::NO_RESTRICTION);
         return a;
     }
 
@@ -2117,7 +2125,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         Targetable * t = NULL;
         if (spell)
             t = spell->getNextTarget();
-        MTGAbility * a = NEW AADamager(id, card, t, d, NULL, 0, who);
+        MTGAbility * a = NEW AADamager(id, card, t, d, NULL, who);
         a->oneShot = 1;
         return a;
     }
@@ -2141,7 +2149,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         Targetable * t = NULL;
         if (spell)
             t = spell->getNextPlayerTarget();
-        MTGAbility * a = NEW AAAlterPoison(id, card, t, poison, NULL, 0, who);
+        MTGAbility * a = NEW AAAlterPoison(id, card, t, poison, NULL, who);
         a->oneShot = 1;
         return a;
     }
@@ -2164,7 +2172,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         Targetable * t = NULL;
         if (spell)
             t = spell->getNextDamageableTarget();
-        MTGAbility * a = NEW AADamagePrevent(id, card, t, preventing, NULL, 0, who);
+        MTGAbility * a = NEW AADamagePrevent(id, card, t, preventing, NULL, who);
         a->oneShot = 1;
         return a;
     }
@@ -2189,7 +2197,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         Damageable * t = NULL;
         if (spell)
             t = spell->getNextDamageableTarget();
-        MTGAbility * a = NEW AALifeSet(id, card, t, life, NULL, 0, who);
+        MTGAbility * a = NEW AALifeSet(id, card, t, life, NULL, who);
         a->oneShot = 1;
         return a;
     }
@@ -2212,7 +2220,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         Targetable * t = NULL;
         if (spell)
             t = spell->getNextTarget();
-        MTGAbility * a = NEW AALifer(id, card, t, life_s, NULL, 0, who);
+        MTGAbility * a = NEW AALifer(id, card, t, life_s, NULL, who);
         a->oneShot = 1;
         return a;
     }
@@ -2224,7 +2232,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         Damageable * d = NULL;
         if (spell)
             d = spell->getNextDamageableTarget();
-        MTGAbility * a = NEW AAWinGame(id, card, d, NULL, 0, who);
+        MTGAbility * a = NEW AAWinGame(id, card, d, NULL, who);
         a->oneShot = 1;
         return a;
     }
@@ -2247,7 +2255,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         Targetable * t = NULL;
         if (spell)
             t = spell->getNextTarget();
-        MTGAbility * a = NEW AADrawer(id, card, t, NULL,nbcardsStr, 0, who);
+        MTGAbility * a = NEW AADrawer(id, card, t, NULL,nbcardsStr, who);
         a->oneShot = 1;
         return a;
     }
@@ -2271,7 +2279,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         Targetable * t = NULL;
         if (spell)
             t = spell->getNextTarget();
-        MTGAbility * a = NEW AADepleter(id, card, t ,nbcardsStr, NULL, 0, who);
+        MTGAbility * a = NEW AADepleter(id, card, t ,nbcardsStr, NULL, who);
         a->oneShot = 1;
         return a;
     }
@@ -2283,7 +2291,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         Targetable * t = NULL;
         if (spell)
             t = spell->getNextTarget();
-        MTGAbility * a = NEW AAShuffle(id, card, t, NULL, 0, who);
+        MTGAbility * a = NEW AAShuffle(id, card, t, NULL, who);
         a->oneShot = 1;
         return a;
     }
@@ -2344,7 +2352,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         Targetable * t = NULL;
         if (spell)
             t = spell->getNextPlayerTarget();
-        MTGAbility * a = NEW AARandomDiscarder(id, card, t, nbcardsStr, NULL, 0, who);
+        MTGAbility * a = NEW AARandomDiscarder(id, card, t, nbcardsStr, NULL, who);
         a->oneShot = 1;
         return a;
     }
@@ -2532,7 +2540,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         {
             amount = atoi(s.substr(start + 1).c_str());
         }
-        MTGAbility * a = NEW AVanishing(id, card, NULL, doTap, restrictions,amount,"time");
+        MTGAbility * a = NEW AVanishing(id, card, NULL, restrictions,amount,"time");
         return a;
     }
         //Fading
@@ -2550,7 +2558,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         {
             amount = atoi(s.substr(start + 1).c_str());
         }
-        MTGAbility * a = NEW AVanishing(id, card, NULL, doTap, restrictions,amount,"fade");
+        MTGAbility * a = NEW AVanishing(id, card, NULL, restrictions,amount,"fade");
         return a;
     }
     if (s.find("altercost(") != string::npos)
@@ -2669,7 +2677,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         Targetable * t = NULL;
         if (spell)
             t = spell->getNextTarget();
-        MTGAbility * a = NEW AManaProducer(id, card, t, output, NULL, doTap, who);
+        MTGAbility * a = NEW AManaProducer(id, card, t, output, NULL, who);
         a->oneShot = 1;
         if(newName.size())
         ((AManaProducer*)a)->menutext = newName;
@@ -2791,7 +2799,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         {
             value = atoi(s.substr(start + 1).c_str());
         }
-        MTGAbility * a = NEW AAWhatsMax(id, card, card, NULL, 0, value);
+        MTGAbility * a = NEW AAWhatsMax(id, card, card, NULL, value);
         a->oneShot = 1;
         return a;
     }
@@ -3977,8 +3985,8 @@ NestedAbility::NestedAbility(MTGAbility * _ability)
 
 //
 
-ActivatedAbility::ActivatedAbility(int id, MTGCardInstance * card, ManaCost * _cost, int restrictions, int tap,string limit,MTGAbility * sideEffect,string usesBeforeSideEffects) :
-    MTGAbility(id, card), restrictions(restrictions), needsTapping(tap),limit(limit),sideEffect(sideEffect),usesBeforeSideEffects(usesBeforeSideEffects)
+ActivatedAbility::ActivatedAbility(int id, MTGCardInstance * card, ManaCost * _cost, int restrictions,string limit,MTGAbility * sideEffect,string usesBeforeSideEffects) :
+    MTGAbility(id, card), restrictions(restrictions), needsTapping(0),limit(limit),sideEffect(sideEffect),usesBeforeSideEffects(usesBeforeSideEffects)
 {
     counters = 0;
     cost = _cost;
@@ -4203,14 +4211,14 @@ ostream& ActivatedAbility::toString(ostream& out) const
     return MTGAbility::toString(out) << ")";
 }
 
-TargetAbility::TargetAbility(int id, MTGCardInstance * card, TargetChooser * _tc, ManaCost * _cost, int _playerturnonly, int tap) :
-    ActivatedAbility(id, card, _cost, _playerturnonly, tap), NestedAbility(NULL)
+TargetAbility::TargetAbility(int id, MTGCardInstance * card, TargetChooser * _tc, ManaCost * _cost, int _playerturnonly) :
+    ActivatedAbility(id, card, _cost, _playerturnonly), NestedAbility(NULL)
 {
     tc = _tc;
 }
 
-TargetAbility::TargetAbility(int id, MTGCardInstance * card, ManaCost * _cost, int _playerturnonly, int tap) :
-    ActivatedAbility(id, card, _cost, _playerturnonly, tap), NestedAbility(NULL)
+TargetAbility::TargetAbility(int id, MTGCardInstance * card, ManaCost * _cost, int _playerturnonly) :
+    ActivatedAbility(id, card, _cost, _playerturnonly), NestedAbility(NULL)
 {
     tc = NULL;
 }
@@ -4758,9 +4766,9 @@ GenericTriggeredAbility* GenericTriggeredAbility::clone() const
  other solutions need to be provided for abilities that add mana (ex: mana flare)
  */
 
-AManaProducer::AManaProducer(int id, MTGCardInstance * card, Targetable * t, ManaCost * _output, ManaCost * _cost, int doTap,
+AManaProducer::AManaProducer(int id, MTGCardInstance * card, Targetable * t, ManaCost * _output, ManaCost * _cost,
                 int who) :
-    ActivatedAbilityTP(id, card, t, _cost, doTap, who)
+    ActivatedAbilityTP(id, card, t, _cost, who)
 {
 
     aType = MTGAbility::MANA_PRODUCER;
@@ -4830,7 +4838,6 @@ int AManaProducer::reactToClick(MTGCardInstance * _card)
         GameObserver *g = GameObserver::GetInstance();
         WEvent * e = NEW WEventCardTappedForMana(source, 0, 1);
         g->receiveEvent(e);
-        source->tap();
     }
 
     if (options[Options::SFXVOLUME].number > 0)
@@ -4940,8 +4947,8 @@ Targetable * AbilityTP::getTarget()
     return NULL;
 }
 
-ActivatedAbilityTP::ActivatedAbilityTP(int id, MTGCardInstance * card, Targetable * _target, ManaCost * cost, int doTap, int who) :
-    ActivatedAbility(id, card, cost, 0, doTap), who(who)
+ActivatedAbilityTP::ActivatedAbilityTP(int id, MTGCardInstance * card, Targetable * _target, ManaCost * cost, int who) :
+    ActivatedAbility(id, card, cost, 0), who(who)
 {
     if (_target)
         target = _target;

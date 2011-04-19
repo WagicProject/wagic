@@ -894,7 +894,7 @@ public:
     string menu;
 
     AACounter(int id, MTGCardInstance * source, MTGCardInstance * target,string counterstring, const char * _name, int power, int toughness, int nb,int maxNb = 0,
-            ManaCost * cost = NULL, int doTap = 0);
+            ManaCost * cost = NULL);
 
     int resolve();
     const char* getMenuText();
@@ -913,7 +913,7 @@ public:
     bool all;
 
     AARemoveAllCounter(int id, MTGCardInstance * source, MTGCardInstance * target, const char * _name, int power, int toughness, int nb,
-            bool all,ManaCost * cost = NULL, int doTap = 0);
+            bool all,ManaCost * cost = NULL);
 
     int resolve();
     const char* getMenuText();
@@ -925,7 +925,7 @@ class AAFizzler: public ActivatedAbility
 {
 
 public:
-    AAFizzler(int _id, MTGCardInstance * card, Spell * _target, ManaCost * _cost = NULL, int _tap = 0);
+    AAFizzler(int _id, MTGCardInstance * card, Spell * _target, ManaCost * _cost = NULL);
     int resolve();
     const char * getMenuText();
     AAFizzler* clone() const;
@@ -965,7 +965,7 @@ class MultiAbility: public ActivatedAbility
 public:
     vector<MTGAbility *> abilities;
 
-    MultiAbility(int _id, MTGCardInstance * card, Targetable * _target, ManaCost * _cost, int _tap);
+    MultiAbility(int _id, MTGCardInstance * card, Targetable * _target, ManaCost * _cost);
     int Add(MTGAbility * ability);
     int resolve();
     const char * getMenuText();
@@ -981,7 +981,7 @@ public:
     MTGGameZone * activeZone;
     string newName;
 
-    GenericActivatedAbility(string newName,int _id, MTGCardInstance * card, MTGAbility * a, ManaCost * _cost, int _tap = 0, string limit = "",MTGAbility * sideEffects = NULL,string usesBeforeSideEffects = "",
+    GenericActivatedAbility(string newName,int _id, MTGCardInstance * card, MTGAbility * a, ManaCost * _cost, string limit = "",MTGAbility * sideEffects = NULL,string usesBeforeSideEffects = "",
             int restrictions = 0, MTGGameZone * dest = NULL);
     int resolve();
     const char * getMenuText();
@@ -1035,7 +1035,7 @@ class AAMover: public ActivatedAbility
 public:
     string destination;
 
-    AAMover(int _id, MTGCardInstance * _source, MTGCardInstance * _target, string dest, ManaCost * _cost = NULL, int doTap = 0);
+    AAMover(int _id, MTGCardInstance * _source, MTGCardInstance * _target, string dest, ManaCost * _cost = NULL);
     MTGGameZone * destinationZone();
     int resolve();
     const char * getMenuText();
@@ -1109,8 +1109,7 @@ public:
     MTGGameZone * activeZone;
     string newName;
 
-    GenericTargetAbility(string newName,int _id, MTGCardInstance * _source, TargetChooser * _tc, MTGAbility * a, ManaCost * _cost = NULL,
-            int _tap = 0, string limit = "",MTGAbility * sideEffects = NULL,string usesBeforeSideEffects = "", int restrictions = 0, MTGGameZone * dest = NULL);
+    GenericTargetAbility(string newName,int _id, MTGCardInstance * _source, TargetChooser * _tc, MTGAbility * a, ManaCost * _cost = NULL, string limit = "",MTGAbility * sideEffects = NULL,string usesBeforeSideEffects = "", int restrictions = 0, MTGGameZone * dest = NULL);
     const char * getMenuText();
     ~GenericTargetAbility();
     GenericTargetAbility * clone() const;
@@ -1239,7 +1238,7 @@ public:
 
     string nbcardsStr;
 
-    AADrawer(int _id, MTGCardInstance * card, Targetable * _target, ManaCost * _cost,string nbcardsStr, int _tap = 0, int who =
+    AADrawer(int _id, MTGCardInstance * card, Targetable * _target, ManaCost * _cost,string nbcardsStr, int who =
             TargetChooser::UNSET);
     int resolve();
     const char * getMenuText();
@@ -1287,7 +1286,7 @@ class AALifer: public ActivatedAbilityTP
 {
 public:
     string life_s;
-    AALifer(int _id, MTGCardInstance * card, Targetable * _target,string life_s, ManaCost * _cost = NULL, int _tap = 0,
+    AALifer(int _id, MTGCardInstance * card, Targetable * _target,string life_s, ManaCost * _cost = NULL,
             int who = TargetChooser::UNSET);
     int resolve();
     const char * getMenuText();
@@ -1300,7 +1299,7 @@ public:
 class AAWinGame: public ActivatedAbilityTP
 {
 public:
-    AAWinGame(int _id, MTGCardInstance * card, Targetable * _target, ManaCost * _cost = NULL, int _tap = 0, int who =
+    AAWinGame(int _id, MTGCardInstance * card, Targetable * _target, ManaCost * _cost = NULL, int who =
             TargetChooser::UNSET);
     int resolve();
     const char * getMenuText();
@@ -1390,8 +1389,8 @@ public:
     int stateBeforeActivation[50];
     int ability;
     ABasicAbilityModifierUntilEOT(int _id, MTGCardInstance * _source, int _ability, ManaCost * _cost, TargetChooser * _tc = NULL,
-            int _modifier = 1, int _tap = 1) :
-        TargetAbility(_id, _source, _cost, 0, _tap), modifier(_modifier), ability(_ability)
+            int _modifier = 1) :
+        TargetAbility(_id, _source, _cost, 0), modifier(_modifier), ability(_ability)
     {
         aType = MTGAbility::STANDARDABILITYGRANT;
         abilitygranted = ability;
@@ -1520,7 +1519,7 @@ public:
     AInstantBasicAbilityModifierUntilEOT * ability;
     ABasicAbilityAuraModifierUntilEOT(int _id, MTGCardInstance * _source, MTGCardInstance * _target, ManaCost * _cost,
             int _ability, int _value = 1) :
-        ActivatedAbility(_id, _source, _cost, 0, 0)
+        ActivatedAbility(_id, _source, _cost, 0)
     {
         target = _target;
         ability = NEW AInstantBasicAbilityModifierUntilEOT(_id, _source, _target, _ability, _value);
@@ -1916,7 +1915,7 @@ protected:
     map<ReplacementEffect*, int> current;
 public:
     ACircleOfProtection(int _id, MTGCardInstance * source, int _color) :
-        TargetAbility(_id, source, NEW SpellOrPermanentTargetChooser(source, _color), NEW ManaCost(), 0, 0)
+        TargetAbility(_id, source, NEW SpellOrPermanentTargetChooser(source, _color), NEW ManaCost(), 0)
     {
         cost->add(Constants::MTG_COLOR_ARTIFACT, 1);
         tc->targetter = NULL; //Circle of Protection doesn't use the word "source"
@@ -1978,7 +1977,7 @@ class AStandardRegenerate: public ActivatedAbility
 {
 public:
     AStandardRegenerate(int _id, MTGCardInstance * _source, MTGCardInstance * _target, ManaCost * _cost = NULL) :
-        ActivatedAbility(_id, _source, _cost, 0, 0)
+        ActivatedAbility(_id, _source, _cost, 0)
     {
         target = _target;
         aType = MTGAbility::STANDARD_REGENERATE;
@@ -2628,9 +2627,9 @@ class AEquip: public TargetAbility
 {
 public:
     vector<MTGAbility *> currentAbilities;
-    AEquip(int _id, MTGCardInstance * _source, ManaCost * _cost = NULL, int doTap = 0, int restrictions =
+    AEquip(int _id, MTGCardInstance * _source, ManaCost * _cost = NULL, int restrictions =
             ActivatedAbility::AS_SORCERY) :
-        TargetAbility(_id, _source, NULL, _cost, restrictions, doTap)
+        TargetAbility(_id, _source, NULL, _cost, restrictions)
     {
         aType = MTGAbility::STANDARD_EQUIP;
     }
@@ -2744,9 +2743,9 @@ ATOKEN_WHO_TARGETCONTROLLER = 2
     MTGCardInstance * myToken;
     vector<MTGAbility *> currentAbilities;
     Player * tokenReciever;
-    ATokenCreator(int _id, MTGCardInstance * _source, Targetable * _target, ManaCost * _cost, int tokenId, int _doTap,string starfound, WParsedInt * multiplier = NULL,
+    ATokenCreator(int _id, MTGCardInstance * _source, Targetable * _target, ManaCost * _cost, int tokenId,string starfound, WParsedInt * multiplier = NULL,
         int who = 0,bool aLivingWeapon = false) :
-    ActivatedAbility(_id, _source, _cost, 0, _doTap), tokenId(tokenId), starfound(starfound),multiplier(multiplier), who(who),aLivingWeapon(aLivingWeapon)
+    ActivatedAbility(_id, _source, _cost, 0), tokenId(tokenId), starfound(starfound),multiplier(multiplier), who(who),aLivingWeapon(aLivingWeapon)
     {
         if (!multiplier) this->multiplier = NEW WParsedInt(1);
         MTGCard * card = MTGCollection()->getCardById(tokenId);
@@ -2755,8 +2754,8 @@ ATOKEN_WHO_TARGETCONTROLLER = 2
     }
 
     ATokenCreator(int _id, MTGCardInstance * _source, Targetable * _target, ManaCost * _cost, string sname, string stypes, int _power, int _toughness,
-        string sabilities, int _doTap, string starfound,WParsedInt * multiplier = NULL, int who = 0,bool aLivingWeapon = false,string spt = "") :
-    ActivatedAbility(_id, _source, _cost, 0, _doTap),sabilities(sabilities),starfound(starfound), multiplier(multiplier), who(who),aLivingWeapon(aLivingWeapon),spt(spt)
+        string sabilities, string starfound,WParsedInt * multiplier = NULL, int who = 0,bool aLivingWeapon = false,string spt = "") :
+    ActivatedAbility(_id, _source, _cost, 0),sabilities(sabilities),starfound(starfound), multiplier(multiplier), who(who),aLivingWeapon(aLivingWeapon),spt(spt)
     {
         power = _power;
         toughness = _toughness;
@@ -3243,7 +3242,7 @@ class AALifeSet: public ActivatedAbilityTP
 public:
     WParsedInt * life;
 
-    AALifeSet(int _id, MTGCardInstance * _source, Targetable * _target, WParsedInt * life, ManaCost * _cost = NULL, int doTap = 0,
+    AALifeSet(int _id, MTGCardInstance * _source, Targetable * _target, WParsedInt * life, ManaCost * _cost = NULL,
             int who = TargetChooser::UNSET);
     int resolve();
     const char * getMenuText();
@@ -3260,7 +3259,7 @@ public:
     string d;
 
     AADamager(int _id, MTGCardInstance * _source, Targetable * _target, string d, ManaCost * _cost = NULL,
-            int doTap = 0, int who = TargetChooser::UNSET);
+             int who = TargetChooser::UNSET);
     int resolve();
     const char * getMenuText();
     int getDamage();
@@ -3274,8 +3273,7 @@ class AADamagePrevent: public ActivatedAbilityTP
 public:
     int preventing;
 
-    AADamagePrevent(int _id, MTGCardInstance * _source, Targetable * _target, int preventing, ManaCost * _cost = NULL, int doTap =
-            0, int who = TargetChooser::UNSET);
+    AADamagePrevent(int _id, MTGCardInstance * _source, Targetable * _target, int preventing, ManaCost * _cost = NULL, int who = TargetChooser::UNSET);
     int resolve();
     const char * getMenuText();
     AADamagePrevent * clone() const;
@@ -3288,7 +3286,7 @@ class AAAlterPoison: public ActivatedAbilityTP
 public:
     int poison;
 
-    AAAlterPoison(int _id, MTGCardInstance * _source, Targetable * _target, int poison, ManaCost * _cost = NULL, int doTap = 0,
+    AAAlterPoison(int _id, MTGCardInstance * _source, Targetable * _target, int poison, ManaCost * _cost = NULL,
             int who = TargetChooser::UNSET);
     int resolve();
     const char * getMenuText();
@@ -3300,8 +3298,8 @@ class TADamager: public TargetAbility
 {
 public:
 
-    TADamager(int id, MTGCardInstance * card, ManaCost * _cost, string d, TargetChooser * _tc = NULL, int _tap = 0) :
-        TargetAbility(id, card, _tc, _cost, 0, _tap)
+    TADamager(int id, MTGCardInstance * card, ManaCost * _cost, string d, TargetChooser * _tc = NULL) :
+        TargetAbility(id, card, _tc, _cost, 0)
     {
         if (!tc) tc = NEW DamageableTargetChooser(card);
         ability = NEW AADamager(id, card, NULL, d);
@@ -3319,7 +3317,7 @@ public:
 class AATapper: public ActivatedAbility
 {
 public:
-    AATapper(int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost = NULL, int doTap = 0);
+    AATapper(int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost = NULL);
     int resolve();
     const char * getMenuText();
     AATapper * clone() const;
@@ -3329,7 +3327,7 @@ public:
 class AAUntapper: public ActivatedAbility
 {
 public:
-    AAUntapper(int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost = NULL, int doTap = 0);
+    AAUntapper(int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost = NULL);
     int resolve();
     const char * getMenuText();
     AAUntapper * clone() const;
@@ -3341,7 +3339,7 @@ class AAWhatsMax: public ActivatedAbility
 public:
     int value;
 
-    AAWhatsMax(int id, MTGCardInstance * card, MTGCardInstance * source, ManaCost * _cost = NULL, int doTap = 0, int value = 0);
+    AAWhatsMax(int id, MTGCardInstance * card, MTGCardInstance * source, ManaCost * _cost = NULL, int value = 0);
     int resolve();
     AAWhatsMax * clone() const;
 };
@@ -3350,7 +3348,7 @@ public:
 class AAFrozen: public ActivatedAbility
 {
 public:
-    AAFrozen(int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost = NULL, int doTap = 0);
+    AAFrozen(int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost = NULL);
     int resolve();
     const char * getMenuText();
     AAFrozen * clone() const;
@@ -3360,7 +3358,7 @@ class AANewTarget: public ActivatedAbility
 {
 public:
 bool retarget;
-    AANewTarget(int id, MTGCardInstance * card, MTGCardInstance * _target,bool retarget = false, ManaCost * _cost = NULL, int doTap = 0);
+    AANewTarget(int id, MTGCardInstance * card, MTGCardInstance * _target,bool retarget = false, ManaCost * _cost = NULL);
     int resolve();
     const char * getMenuText();
     AANewTarget * clone() const;
@@ -3370,7 +3368,7 @@ class AAMorph: public ActivatedAbility
 {
 public:
     vector<MTGAbility *> currentAbilities;
-    AAMorph(int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost = NULL, int doTap = 0);
+    AAMorph(int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost = NULL);
     int resolve();
     int testDestroy();
     const char * getMenuText();
@@ -3433,7 +3431,7 @@ MTGAbility * storedAbility;
 MTGAbility * clonedStored;
 string menu;
 
-    AADynamic(int id, MTGCardInstance * card, Damageable * _target,int type = 0,int effect = 0,int who = 0,int amountsource = 1,MTGAbility * storedAbility = NULL, ManaCost * _cost = NULL, int doTap = 0);
+    AADynamic(int id, MTGCardInstance * card, Damageable * _target,int type = 0,int effect = 0,int who = 0,int amountsource = 1,MTGAbility * storedAbility = NULL, ManaCost * _cost = NULL);
     int resolve();
     int activateStored();
     const char * getMenuText();
@@ -3890,7 +3888,7 @@ public:
     string counterName;
     int next;
 
-    AVanishing(int _id, MTGCardInstance * card, ManaCost * _cost, int _tap = 0, int restrictions = 0,int amount = 0,string counterName = "");
+    AVanishing(int _id, MTGCardInstance * card, ManaCost * _cost, int restrictions = 0,int amount = 0,string counterName = "");
     void Update(float dt);
     int resolve();
     const char * getMenuText();
@@ -3908,7 +3906,7 @@ public:
     bool Cumulative;
     int currentage;
 
-    AUpkeep(int _id, MTGCardInstance * card, MTGAbility * a, ManaCost * _cost, int _tap = 0, int restrictions = 0, int _phase =
+    AUpkeep(int _id, MTGCardInstance * card, MTGAbility * a, ManaCost * _cost, int restrictions = 0, int _phase =
         Constants::MTG_PHASE_UPKEEP, int _once = 0,bool Cumulative = false);
     int receiveEvent(WEvent * event);
     void Update(float dt);
@@ -3935,7 +3933,7 @@ public:
     bool opponentturn;
     Player * abilityOwner;
 
-    APhaseAction(int _id, MTGCardInstance * card, MTGCardInstance * target, string sAbility, int _tap = 0, int restrictions = 0, int _phase =
+    APhaseAction(int _id, MTGCardInstance * card, MTGCardInstance * target, string sAbility, int restrictions = 0, int _phase =
         Constants::MTG_PHASE_UPKEEP,bool forcedestroy = false,bool next = true,bool myturn = true,bool opponentturn = true);
     void Update(float dt);
     int resolve();
@@ -3950,7 +3948,7 @@ class APhaseActionGeneric: public InstantAbility
 public:
     string sAbility;
     APhaseAction * ability;
-    APhaseActionGeneric(int _id, MTGCardInstance * card, MTGCardInstance * target, string sAbility, int _tap = 0, int restrictions = 0, int _phase =
+    APhaseActionGeneric(int _id, MTGCardInstance * card, MTGCardInstance * target, string sAbility, int restrictions = 0, int _phase =
             Constants::MTG_PHASE_UPKEEP,bool forcedestroy = false,bool next = true,bool myturn = false,bool opponentturn = false);
     int resolve();
     const char * getMenuText();
@@ -4251,7 +4249,7 @@ class AFarmstead: public ActivatedAbility
 public:
     int usedThisTurn;
     AFarmstead(int _id, MTGCardInstance * source, MTGCardInstance * _target) :
-        ActivatedAbility(_id, source, 0, 1, 0)
+        ActivatedAbility(_id, source, 0, 1)
     {
         int _cost[] = { Constants::MTG_COLOR_WHITE, 2 };
         cost = NEW ManaCost(_cost, 1);
@@ -4880,7 +4878,7 @@ class AStasis: public ActivatedAbility
 public:
     int paidThisTurn;
     AStasis(int _id, MTGCardInstance * card) :
-        ActivatedAbility(_id, card, NEW ManaCost(), 1, 0)
+        ActivatedAbility(_id, card, NEW ManaCost(), 0)
     {
         paidThisTurn = 1;
         cost->add(Constants::MTG_COLOR_BLUE, 1);
@@ -5003,7 +5001,7 @@ class AADepleter: public ActivatedAbilityTP
 public:
     string nbcardsStr;
 
-    AADepleter(int _id, MTGCardInstance * card, Targetable * _target,string nbcardsStr, ManaCost * _cost = NULL, int _tap = 0,
+    AADepleter(int _id, MTGCardInstance * card, Targetable * _target,string nbcardsStr, ManaCost * _cost = NULL,
             int who = TargetChooser::UNSET);
     int resolve();
     const char * getMenuText();
@@ -5014,7 +5012,7 @@ public:
 class AAShuffle: public ActivatedAbilityTP
 {
 public:
-    AAShuffle(int _id, MTGCardInstance * card, Targetable * _target, ManaCost * _cost = NULL, int _tap = 0, int who =
+    AAShuffle(int _id, MTGCardInstance * card, Targetable * _target, ManaCost * _cost = NULL, int who =
             TargetChooser::UNSET);
     int resolve();
     const char * getMenuText();
@@ -5029,7 +5027,7 @@ public:
     string nbcardsStr;
 
     AARandomDiscarder(int _id, MTGCardInstance * card, Targetable * _target,string nbcardsStr, ManaCost * _cost = NULL,
-            int _tap = 0, int who = TargetChooser::UNSET);
+             int who = TargetChooser::UNSET);
     int resolve();
     const char * getMenuText();
     AARandomDiscarder * clone() const;
@@ -5041,7 +5039,7 @@ class AMinionofLeshrac: public TargetAbility
 public:
     int paidThisTurn;
     AMinionofLeshrac(int _id, MTGCardInstance * source) :
-        TargetAbility(_id, source, NEW TypeTargetChooser("creature"), 0, 1, 0)
+        TargetAbility(_id, source, NEW TypeTargetChooser("creature"), 0, 1)
     {
         paidThisTurn = 1;
     }

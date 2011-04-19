@@ -216,8 +216,7 @@ int AIPlayer::canHandleCost(MTGAbility * ability)
 // I can't remember as I type this in which condition we use one or the other for this function, if you find out please replace this comment
 int AIAction::getEfficiency()
 {
-    //TODO add multiplier according to what the player wants
-    if (efficiency != -1)
+    if (efficiency > -1)
         return efficiency;
     if (!ability)
         return 0;
@@ -282,91 +281,90 @@ int AIAction::getEfficiency()
         {
             efficiency = 95;
         }
-
         //TODO If the card is the target of a damage spell
         break;
     }
     case MTGAbility::STANDARD_PREVENT:
-    {
-        efficiency = 0;//starts out low to avoid spamming it when its not needed.
-        if (!target && !dynamic_cast<ALord*> (a))
-            break;
-        if(dynamic_cast<ALord*> (a) && !target)
         {
-            //this is a special case for all(this) targetting workaround.
-            //adding a direct method for targetting the source is planned for
-            //the coming releases, all(this) workaround prevents eff from being returned
-            //as its not targetted the same as abilities
-            //for now this dirty hack will calculate eff on lords as tho the source is
-            //the target...otherwise these abilities will never be used.
-            target = a->source;
-        }
-
-        bool NeedPreventing;
-        NeedPreventing = false;
-        if (g->getCurrentGamePhase() == Constants::MTG_PHASE_COMBATBLOCKERS)
-        {
-            if ((target->defenser || target->blockers.size()) && target->preventable < target->getNextOpponent()->power)
-                NeedPreventing = true;
-            if (p == target->controller() && target->controller()->isAI() && NeedPreventing  && !(target->getNextOpponent()->has(Constants::DEATHTOUCH)
-                || target->getNextOpponent()->has(Constants::WITHER)))
+            efficiency = 0;//starts out low to avoid spamming it when its not needed.
+            if (!target && !dynamic_cast<ALord*> (a))
+                break;
+            if(dynamic_cast<ALord*> (a) && !target)
             {
-                efficiency = 20 * (target->DangerRanking());//increase this chance to be used in combat if the creature blocking/blocked could kill the creature this chance is taking into consideration how good the creature is, best creature will always be the first "saved"..
-                if (target->toughness == 1 && target->getNextOpponent()->power == 1)
-                    efficiency += 15;
-                //small bonus added for the poor 1/1s, if we can save them, we will unless something else took precidence.
-                //note is the target is being blocked or blocking a creature with wither or deathtouch, it is not even considered for preventing as it is a waste.
-                //if its combat blockers, it is being blocked or blocking, and has less prevents the the amount of damage it will be taking, the effeincy is increased slightly and totalled by the danger rank multiplier for final result.
-                int calculateAfterDamage = 0;
-                int damages = 0;
-                if((target->defenser || target->blockers.size()) && target->controller()->isAI())
+                //this is a special case for all(this) targetting workaround.
+                //adding a direct method for targetting the source is planned for
+                //the coming releases, all(this) workaround prevents eff from being returned
+                //as its not targetted the same as abilities
+                //for now this dirty hack will calculate eff on lords as tho the source is
+                //the target...otherwise these abilities will never be used.
+                target = a->source;
+            }
+
+            bool NeedPreventing;
+            NeedPreventing = false;
+            if (g->getCurrentGamePhase() == Constants::MTG_PHASE_COMBATBLOCKERS)
+            {
+                if ((target->defenser || target->blockers.size()) && target->preventable < target->getNextOpponent()->power)
+                    NeedPreventing = true;
+                if (p == target->controller() && target->controller()->isAI() && NeedPreventing  && !(target->getNextOpponent()->has(Constants::DEATHTOUCH)
+                    || target->getNextOpponent()->has(Constants::WITHER)))
                 {
-                    damages = target->getNextOpponent()->power;
-                    calculateAfterDamage = int(target->toughness - damages);
-                    if((calculateAfterDamage + target->preventable) > 0)
+                    efficiency = 20 * (target->DangerRanking());//increase this chance to be used in combat if the creature blocking/blocked could kill the creature this chance is taking into consideration how good the creature is, best creature will always be the first "saved"..
+                    if (target->toughness == 1 && target->getNextOpponent()->power == 1)
+                        efficiency += 15;
+                    //small bonus added for the poor 1/1s, if we can save them, we will unless something else took precidence.
+                    //note is the target is being blocked or blocking a creature with wither or deathtouch, it is not even considered for preventing as it is a waste.
+                    //if its combat blockers, it is being blocked or blocking, and has less prevents the the amount of damage it will be taking, the effeincy is increased slightly and totalled by the danger rank multiplier for final result.
+                    int calculateAfterDamage = 0;
+                    int damages = 0;
+                    if((target->defenser || target->blockers.size()) && target->controller()->isAI())
                     {
-                        efficiency = 0;
-                        //this is to avoid wasting prevents on creatures that will already survive.
-                        //this should take into account bushido and flanking as this check is run after every trigger.
+                        damages = target->getNextOpponent()->power;
+                        calculateAfterDamage = int(target->toughness - damages);
+                        if((calculateAfterDamage + target->preventable) > 0)
+                        {
+                            efficiency = 0;
+                            //this is to avoid wasting prevents on creatures that will already survive.
+                            //this should take into account bushido and flanking as this check is run after every trigger.
+                        }
                     }
                 }
             }
-        }
-				//TODO If the card is the target of a damage spell
-        break;
-    }
-    case MTGAbility::STANDARD_EQUIP:
-    {
-
-        efficiency = 0;
-        if (!target)
+            //TODO If the card is the target of a damage spell
             break;
-
-        int equips = p->game->battlefield->countByType("Equipment");
-        int myArmy = p->game->battlefield->countByType("Creature");
-        // when can this ever be negative?
-        int equilized = myArmy ? abs(equips / myArmy) : 0;
-
-        if (p == target->controller() && target->equipment <= 1 && !a->source->target)
-        {
-            efficiency = 20 * (target->DangerRanking());
-            if (target->hasColor(Constants::MTG_COLOR_WHITE))
-                efficiency += 20;//this is to encourage Ai to equip white creatures in a weenie deck. ultimately it will depend on what had the higher dangerranking.
-            if (target->power == 1 && target->toughness == 1 && target->isToken == 0)
-                efficiency += 10; //small bonus to encourage equipping nontoken 1/1 creatures.
         }
-
-        if (p == target->controller() && !a->source->target && target->equipment < equilized)
+    case MTGAbility::STANDARD_EQUIP:
         {
-            efficiency = 15 * (target->DangerRanking());
-            efficiency -= 5 * (target->equipment);
-        }
-        break;
-    }
 
+            efficiency = 0;
+            if (!target)
+                break;
+
+            int equips = p->game->battlefield->countByType("Equipment");
+            int myArmy = p->game->battlefield->countByType("Creature");
+            // when can this ever be negative?
+            int equilized = myArmy ? abs(equips / myArmy) : 0;
+
+            if (p == target->controller() && target->equipment <= 1 && !a->source->target)
+            {
+                efficiency = 20 * (target->DangerRanking());
+                if (target->hasColor(Constants::MTG_COLOR_WHITE))
+                    efficiency += 20;//this is to encourage Ai to equip white creatures in a weenie deck. ultimately it will depend on what had the higher dangerranking.
+                if (target->power == 1 && target->toughness == 1 && target->isToken == 0)
+                    efficiency += 10; //small bonus to encourage equipping nontoken 1/1 creatures.
+            }
+
+            if (p == target->controller() && !a->source->target && target->equipment < equilized)
+            {
+                efficiency = 15 * (target->DangerRanking());
+                efficiency -= 5 * (target->equipment);
+            }
+            break;
+        }
     case MTGAbility::STANDARD_LEVELUP:
+    case MTGAbility::COUNTERS:
     {
-        MTGCardInstance * _target = (MTGCardInstance *) (a->target);
+        MTGCardInstance * _target = (MTGCardInstance *) target;
         efficiency = 0;
         Counter * targetCounter = NULL;
         int currentlevel = 0;
@@ -379,27 +377,47 @@ int AIAction::getEfficiency()
                 currentlevel = targetCounter->nb;
             }
         }
+        if(AACounter * cc = dynamic_cast<AACounter*> (a))
+        {
+            if(cc && !targetCounter)
+            {
+                if(_target && _target->controller()->isAI() && cc->toughness>=0)
+                {
+                    efficiency = 90;
 
-				if (currentlevel < _target->MaxLevelUp)
-				{
-					efficiency = 85;
-					//increase the efficeincy of leveling up by a small amount equal to current level.
-					efficiency += currentlevel;
+                }
+                if(_target && !_target->controller()->isAI() && ((_target->toughness + cc->toughness <= 0 && _target->toughness) || (cc->toughness < 0 && cc->power < 0)))
+                {
+                    efficiency = 90;
 
-					if (p->game->hand->nb_cards > 0 && p->isAI())
-					{
-						efficiency -= (10 * p->game->hand->nb_cards);//reduce the eff if by 10 times the amount of cards in Ais hand.
-						//it should always try playing more cards before deciding
-					}
+                }
+                if(_target && _target->counters && _target->counters->counters && _target->counters->hasCounter(cc->power,cc->toughness) && _target->counters->hasCounter(cc->power,cc->toughness)->nb > 15)
+                {
+                    efficiency = _target->counters->hasCounter(cc->power,cc->toughness)->nb;
+                }
+                break;
+            }
+        }
+        if (currentlevel < _target->MaxLevelUp)
+        {
+            efficiency = 85;
+            //increase the efficeincy of leveling up by a small amount equal to current level.
+            efficiency += currentlevel;
 
-					if (g->getCurrentGamePhase() == Constants::MTG_PHASE_SECONDMAIN)
-					{
-						efficiency = 100;
-						//in 2nd main, go all out and try to max stuff.
-					}
-				}
-				break;
-		}
+            if (p->game->hand->nb_cards > 0 && p->isAI())
+            {
+                efficiency -= (10 * p->game->hand->nb_cards);//reduce the eff if by 10 times the amount of cards in Ais hand.
+                //it should always try playing more cards before deciding
+            }
+
+            if (g->getCurrentGamePhase() == Constants::MTG_PHASE_SECONDMAIN)
+            {
+                efficiency = 100;
+                //in 2nd main, go all out and try to max stuff.
+            }
+        }
+        break;
+    }
     case MTGAbility::STANDARD_PUMP:
         {
             MTGCardInstance * _target = (MTGCardInstance *) (a->target);
@@ -416,7 +434,6 @@ int AIAction::getEfficiency()
             {
                 target = a->source;
             }
-
 				AbilityFactory af;
         int suggestion = af.abilityEfficiency(a, p, MODE_ABILITY);
         //i do not set a starting eff. on this ability, this allows Ai to sometimes randomly do it as it normally does.
@@ -440,7 +457,7 @@ int AIAction::getEfficiency()
                 }
             }
         }
-        if (suggestion == BAKA_EFFECT_BAD && !target->controller()->isAI())
+        if (suggestion == BAKA_EFFECT_BAD && !target->controller()->isAI() && target->toughness > 0)
         {
             efficiency = 100;
         }
@@ -532,7 +549,7 @@ int AIAction::getEfficiency()
         int efficiencyModifier = (25 * target->DangerRanking());
         if (p->game->hand->nb_cards > 1)
         {
-            efficiencyModifier /= p->game->hand->nb_cards;
+            efficiencyModifier -= p->game->hand->nb_cards*3;
         }
         if (suggestion == BAKA_EFFECT_BAD && p != target->controller() && target->has(a->abilitygranted) && p->isAI())
         {
@@ -677,7 +694,17 @@ int AIAction::getEfficiency()
     {
         ExtraCosts * ec = ability->cost->extraCosts;
         if (ec)
-            efficiency = efficiency / 3; //Decrease chance of using ability if there is an extra cost to use the ability
+        {
+            for(unsigned int i = 0; i < ec->costs.size();i++)
+            {
+                ExtraCost * tapper = dynamic_cast<TapCost*>(ec->costs[i]);
+                if(tapper)
+                    continue;
+                else
+                    efficiency = efficiency / 2;
+            }
+            //Decrease chance of using ability if there is an extra cost to use the ability, ignore tap
+        }
     }
     return efficiency;
 }
