@@ -60149,7 +60149,7 @@ toughness=2
 [card]
 name=Spawnwrithe
 abilities=trample
-auto=@damaged(player) from(this):token(158687)
+auto=@combatdamaged(player) from(this):token(158687)
 text=Trample -- Whenever Spawnwrithe deals combat damage to a player, put a token that's a copy of Spawnwrithe onto the battlefield.
 mana={2}{G}
 type=Creature
