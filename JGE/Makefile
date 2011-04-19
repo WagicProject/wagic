@@ -33,7 +33,7 @@ HGE_OBJS = src/hge/hgecolor.o src/hge/hgeparticle.o \
 CXXFLAGS = -W -Wall -Werror -Wno-unused
 
 ifdef DEBUG
-CXXFLAGS += -ggdb3 -DDOJLOG
+CXXFLAGS += -ggdb3
 endif
 
 ifdef DOLOG
@@ -81,6 +81,7 @@ ifeq ($(TARGET_ARCHITECTURE),psp)
 PSPSDK = $(shell psp-config --pspsdk-path)
 PSPDIR = $(shell psp-config --psp-prefix)
 OBJS = $(GENERIC_OBJS) $(PSP_OBJS)
+PSPENV = 1
 TARGET_HGE = libhgetools.a
 INCDIR = include/psp include/psp/freetype2 ../Boost
 CXXFLAGS += -O2 -G0
