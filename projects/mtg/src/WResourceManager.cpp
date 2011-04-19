@@ -914,8 +914,8 @@ void WResourceManager::ResetCacheLimits()
     textureWCache.Resize(HUGE_CACHE_LIMIT,MAX_CACHE_OBJECTS);
 #endif
 #else
-    static unsigned int ram(ramAvailable() / 2);
-    unsigned int myNewSize = ram - OPERATIONAL_SIZE;
+    unsigned int ram = ramAvailable();
+    unsigned int myNewSize = ram - OPERATIONAL_SIZE + textureWCache.totalSize;
     if (myNewSize < TEXTURES_CACHE_MINSIZE)
     {
         DebugTrace( "Error, Not enough RAM for Cache: " << myNewSize << " - total Ram: " << ram);
