@@ -7,6 +7,10 @@
 #include "WFont.h"
 #include <sys/stat.h>
 
+#ifdef PSPENV
+#include "pspsdk.h"
+#endif
+
 namespace wagic
 {
 #ifdef TRACK_FILE_USAGE_STATS
@@ -162,6 +166,10 @@ u32 ramAvailableLineareMax(void)
     size = 0;
     sizeblock = RAM_BLOCK;
 
+#ifdef PSPENV
+    int disableInterrupts = pspSdkDisableInterrupts();
+#endif
+
     // Check loop
     while (sizeblock)
     {
@@ -184,6 +192,10 @@ u32 ramAvailableLineareMax(void)
             free(ram);
     }
 
+#ifdef PSPENV
+    pspSdkEnableInterrupts(disableInterrupts);
+#endif
+
     return size;
 }
 
@@ -196,6 +208,10 @@ u32 ramAvailable(void)
     ram = NULL;
     size = 0;
     count = 0;
+
+#ifdef PSPENV
+    int disableInterrupts = pspSdkDisableInterrupts();
+#endif
 
     // Check loop
     for (;;)
@@ -233,6 +249,9 @@ u32 ramAvailable(void)
         free(ram);
     }
 
+#ifdef PSPENV
+    pspSdkEnableInterrupts(disableInterrupts);
+#endif
     return size;
 }
 

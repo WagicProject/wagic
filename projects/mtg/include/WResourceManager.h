@@ -9,6 +9,10 @@
 #include "WCachedResource.h"
 #include "WFont.h"
 
+#include <sstream>
+
+#include "Threading.h"
+
 #define HUGE_CACHE_LIMIT 20000000  // Size of the cache for Windows and Linux
 #define SAMPLES_CACHE_SIZE 1500000  // Size in bytes of the cached samples
 #define PSI_CACHE_SIZE 500000  // Size in bytes of the cached particles
@@ -56,7 +60,7 @@ enum ENUM_RETRIEVE_STYLE
 enum ENUM_CACHE_SUBTYPE
 {
     CACHE_NORMAL =  (1<<0),    //Use default values. Not really a flag.
-    CACHE_EXISTING = (1<<1),   //Retrieve it only if it already exists
+    //CACHE_EXISTING = (1<<1),   //Retrieve it only if it already exists
 
     //Because these bits only modify how a cached resource's Attempt() is called,
     //We can use them over and over for each resource type.
@@ -89,12 +93,14 @@ class WCache
 {
 public:
     friend class WResourceManager;
+    friend class ThreadedCardRetriever;
+    friend class UnthreadedCardRetriever;
 
     WCache();
     ~WCache();
 
     cacheItem* Retrieve(int id, const string& filename, int style = RETRIEVE_NORMAL, int submode = CACHE_NORMAL);  //Primary interface function.
-    bool Release(cacheActual* actual); //Releases an item, and deletes it if unlocked.
+    bool Release(cacheActual* actual);         //Releases an item, and deletes it if unlocked.
     bool RemoveMiss(int id=0); //Removes a cache miss.
     bool RemoveOldest();    //Remove oldest unlocked item.
     bool Cleanup();         //Repeats RemoveOldest() until cache fits in size limits
@@ -102,18 +108,63 @@ public:
     void Refresh();         //Refreshes all cache items.
     unsigned int Flatten(); //Ensures that the times don't loop. Returns new lastTime.
     void Resize(unsigned long size, int items); //Sets new limits, then enforces them. Lock safe, so not a "hard limit".
+
 protected:
-    bool RemoveItem(cacheItem * item, bool force = true); //Removes an item, deleting it. if(force), ignores locks / permanent
-    bool UnlinkCache(cacheItem * item); //Removes an item from our cache, does not delete it. Use with care.
-    bool Delete(cacheItem * item); //SAFE_DELETE and garbage collect. If maxCached == 0, nullify first. (This means you have to free that cacheActual later!)
+
+    cacheItem* LoadIntoCache(int id, const string& filename, int submode, int style = RETRIEVE_NORMAL);
+
+    /*
+    ** Attempts a new cache item, progressively clearing cache if it fails.
+    */
+    cacheItem* AttemptNew(const string& filename, int submode);
+
+    bool RemoveItem(cacheItem* item, bool force = true); //Removes an item, deleting it. if(force), ignores locks / permanent
+    bool UnlinkCache(cacheItem* item); //Removes an item from our cache, does not delete it. Use with care.
+    bool Delete(cacheItem* item); //SAFE_DELETE and garbage collect. If maxCached == 0, nullify first. (This means you have to free that cacheActual later!)
     cacheItem* Get(int id, const string& filename, int style = RETRIEVE_NORMAL, int submode = CACHE_NORMAL); //Subordinate to Retrieve.
-    cacheItem* AttemptNew(const string& filename, int submode); //Attempts a new cache item, progressively clearing cache if it fails.
 
-    int makeID(int id, const string& filename, int submode); //Makes an ID appropriate to the submode.
+    int makeID(int id, const string& filename, int submode);  //Makes an ID appropriate to the submode.
 
-    map<string, int> ids;
-    map<int, cacheItem*> cache;
-    map<int, cacheItem*> managed; //Cache can be arbitrarily large, so managed items are seperate.
+    inline bool RequiresMissCleanup()
+    {
+        return (cacheItems < cache.size() /*&& cache.size() - cacheItems > MAX_CACHE_MISSES*/);
+    }
+
+    inline bool RequiresOldItemCleanup()
+    {
+        if (cacheItems > MAX_CACHE_OBJECTS || cacheItems > maxCached || cacheSize > maxCacheSize)
+        {
+            std::ostringstream stream;
+            if (cacheItems > MAX_CACHE_OBJECTS)
+            {
+                stream << "CacheItems exceeded 300, cacheItems = " << cacheItems;
+            }
+            else if (cacheItems > maxCached)
+            {
+                stream << "CacheItems (" << cacheItems << ") exceeded arbitrary limit of " << maxCached;
+            }
+            else
+            {
+                stream << "Cache size (" << cacheSize << ") exceeded max value of " << maxCacheSize;
+            }
+
+            LOG(stream.str().c_str());
+            return true;
+        }
+
+#if PSPENV
+        if (ramAvailableLineareMax() < MIN_LINEAR_RAM)
+        {
+            DebugTrace("Memory below minimum threshold!!");
+            return true;
+        }
+#endif
+        return false;
+    }
+
+    map<string,int> ids;
+    map<int,cacheItem*> cache;
+    map<int,cacheItem*> managed;  //Cache can be arbitrarily large, so managed items are separate.
     unsigned long totalSize;
     unsigned long cacheSize;
 
@@ -123,6 +174,11 @@ protected:
 
     unsigned int cacheItems;
     int mError;
+
+    // mutex meant for the cache map
+    boost::mutex mCacheMutex;
+    // mutex meant to protect against unthread-safe calls into JFileSystem, etc.
+    boost::mutex mLoadFunctionMutex;
 };
 
 struct WManagedQuad
@@ -151,6 +207,8 @@ public:
     }
 
     virtual ~WResourceManager();
+
+    bool IsThreaded();
 
     void Unmiss(string filename);
     JQuadPtr RetrieveCard(MTGCard * card, int style = RETRIEVE_NORMAL,int submode = CACHE_NORMAL);
@@ -224,8 +282,8 @@ private:
     */
     WResourceManager();
 
-    bool bThemedCards;  	//Does the theme have a "sets" directory for overwriting cards?
-    void FlattenTimes(); 	//To prevent bad cache timing on int overflow
+    bool bThemedCards;		//Does the theme have a "sets" directory for overwriting cards?
+    void FlattenTimes();	//To prevent bad cache timing on int overflow
 
     //For cached stuff
     WCache<WCachedTexture,JTexture> textureWCache;

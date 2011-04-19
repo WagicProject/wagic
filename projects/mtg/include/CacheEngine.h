@@ -90,6 +90,7 @@ public:
     UnthreadedCardRetriever(WCache<WCachedTexture,JTexture>& inCache)
         : CardRetrieverBase(inCache)
     {
+        DebugTrace("Unthreaded version");
     }
 
     virtual ~UnthreadedCardRetriever()
@@ -115,6 +116,7 @@ public:
     ThreadedCardRetriever(WCache<WCachedTexture,JTexture>& inCache)
         : CardRetrieverBase(inCache), mProcessing(true)
     {
+        DebugTrace("Threaded Version");
         mWorkerThread = boost::thread(ThreadProc, this);
     }
 
@@ -186,7 +188,9 @@ protected:
 
                     // not sure this is necessary, adding it to potentially prevent SIGHUP on the psp
                     // rumour has it that if a worker thread doesn't allow the main thread a chance to run, it can hang the unit
+#ifdef PSPENV
                     boost::this_thread::sleep(boost::posix_time::milliseconds(10));
+#endif
                 }
 
                 boost::this_thread::sleep(kIdleTime);

@@ -91,6 +91,7 @@ void GameApp::Create()
     //_CrtSetBreakAlloc(368);
     LOG("starting Game");
 
+	WResourceManager::Instance()->ResetCacheLimits();
     //Find the Res folder
     wagic::ifstream mfile("Res.txt");
     string resPath;

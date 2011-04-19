@@ -21,8 +21,7 @@
 #include "SimpleMenu.h"
 #include "utils.h"
 
-// This is pending a change by Wil regarding graphics threads
-#define GRAPHICS_NO_THREADING
+
 
 //!! helper function; this is probably handled somewhere in the code already.
 // If not, should be placed in general library
@@ -1314,62 +1313,63 @@ void GameStateDeckViewer::renderCard(int id, float rotation)
     int alpha = (int) (255 * (scale + 1.0 - max_scale));
 
     if (!card) return;
-
-#ifdef GRAPHICS_NO_THREADING
-
-    JQuadPtr backQuad = WResourceManager::Instance()->GetQuad("back");
-    JQuadPtr quad;
-
-    int cacheError = CACHE_ERROR_NONE;
-
-    if (!options[Options::DISABLECARDS].number)
+    
+    if (!WResourceManager::Instance()->IsThreaded())
     {
-        quad = WResourceManager::Instance()->RetrieveCard(card, RETRIEVE_EXISTING);
-        cacheError = WResourceManager::Instance()->RetrieveError();
-        if (!quad.get() && cacheError != CACHE_ERROR_404)
+        JQuadPtr backQuad = WResourceManager::Instance()->GetQuad("back");
+        JQuadPtr quad;
+
+        int cacheError = CACHE_ERROR_NONE;
+
+        if (!options[Options::DISABLECARDS].number)
         {
-            if (last_user_activity > (abs(2 - id) + 1) * NO_USER_ACTIVITY_SHOWCARD_DELAY)
-                quad = WResourceManager::Instance()->RetrieveCard(card);
-            else
+            quad = WResourceManager::Instance()->RetrieveCard(card, RETRIEVE_EXISTING);
+            cacheError = WResourceManager::Instance()->RetrieveError();
+            if (!quad.get() && cacheError != CACHE_ERROR_404)
             {
-                quad = backQuad;
+                if (last_user_activity > (abs(2 - id) + 1) * NO_USER_ACTIVITY_SHOWCARD_DELAY)
+                    quad = WResourceManager::Instance()->RetrieveCard(card);
+                else
+                {
+                    quad = backQuad;
+                }
             }
         }
-    }
 
-    if (quad.get())
-    {
-        if (quad == backQuad)
+        if (quad.get())
         {
-            quad->SetColor(ARGB(255,255,255,255));
-            float _scale = scale * (285 / quad->mHeight);
-            JRenderer::GetInstance()->RenderQuad(quad.get(), x, y, 0.0f, _scale, _scale);
+            if (quad == backQuad)
+            {
+                quad->SetColor(ARGB(255,255,255,255));
+                float _scale = scale * (285 / quad->mHeight);
+                JRenderer::GetInstance()->RenderQuad(quad.get(), x, y, 0.0f, _scale, _scale);
+            }
+            else
+            {
+                Pos pos = Pos(x, y, scale * 285 / 250, 0.0, 255);
+                CardGui::DrawCard(card, pos);
+            }
         }
         else
         {
             Pos pos = Pos(x, y, scale * 285 / 250, 0.0, 255);
-            CardGui::DrawCard(card, pos);
+            CardGui::DrawCard(card, pos, DrawMode::kText);
+            if (!options[Options::DISABLECARDS].number) quad = WResourceManager::Instance()->RetrieveCard(card, CACHE_THUMB);
+            if (quad.get())
+            {
+                float _scale = 285 * scale / quad->mHeight;
+                quad->SetColor(ARGB(40,255,255,255));
+                JRenderer::GetInstance()->RenderQuad(quad.get(), x, y, 0, _scale, _scale);
+            }
         }
     }
     else
     {
+        int mode = !options[Options::DISABLECARDS].number ? DrawMode::kNormal : DrawMode::kText;
+
         Pos pos = Pos(x, y, scale * 285 / 250, 0.0, 255);
-        CardGui::DrawCard(card, pos, DrawMode::kText);
-        if (!options[Options::DISABLECARDS].number) quad = WResourceManager::Instance()->RetrieveCard(card, CACHE_THUMB);
-        if (quad.get())
-        {
-            float _scale = 285 * scale / quad->mHeight;
-            quad->SetColor(ARGB(40,255,255,255));
-            JRenderer::GetInstance()->RenderQuad(quad.get(), x, y, 0, _scale, _scale);
-        }
+        CardGui::DrawCard(card, pos, mode);
     }
-
-#else
-    int mode = !options[Options::DISABLECARDS].number ? DrawMode::kNormal : DrawMode::kText;
-
-    Pos pos = Pos(x, y, scale * 285 / 250, 0.0, 255);
-    CardGui::DrawCard(card, pos, mode);
-#endif
 
     int quadAlpha = alpha;
     if (!displayed_deck->count(card)) quadAlpha /= 2;
@@ -1419,6 +1419,19 @@ void GameStateDeckViewer::Render()
     {
         order[0] = 3;
         order[2] = 1;
+    }
+
+    // even though we want to draw the cards in a particular z order for layering, we want to prefetch them 
+    // in a different order, ie the center card should appear first, then the adjacent ones
+    if (WResourceManager::Instance()->IsThreaded())
+    {
+        WResourceManager::Instance()->RetrieveCard(cardIndex[0]);
+        WResourceManager::Instance()->RetrieveCard(cardIndex[3]);
+        WResourceManager::Instance()->RetrieveCard(cardIndex[4]);
+        WResourceManager::Instance()->RetrieveCard(cardIndex[2]);
+        WResourceManager::Instance()->RetrieveCard(cardIndex[5]);
+        WResourceManager::Instance()->RetrieveCard(cardIndex[1]);
+        WResourceManager::Instance()->RetrieveCard(cardIndex[6]);
     }
 
     renderCard(6, mRotation);

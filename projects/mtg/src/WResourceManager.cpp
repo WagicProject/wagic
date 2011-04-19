@@ -1,9 +1,7 @@
 #include "PrecompiledHeader.h"
 
-#include <JFileSystem.h>
-
-#include "utils.h"
 #include "GameOptions.h"
+#include "CacheEngine.h"
 #include "WResourceManager.h"
 #include "StyleManager.h"
 
@@ -12,9 +10,8 @@
 #include <sys/stat.h>
 #endif
 #include "WFont.h"
-#include <JLogger.h>
 
-//#define FORCE_LOW_CACHE_MEMORY
+#define FORCE_LOW_CACHE_MEMORY
 const unsigned int kConstrainedCacheLimit = 8 * 1024 * 1024;
 
 extern bool neofont;
@@ -25,6 +22,9 @@ namespace
     const std::string kExtension_png(".png");
     const std::string kExtension_gbk(".gbk");
     const std::string kExtension_font(".font");
+
+    const std::string kGenericCard("back.jpg");
+    const std::string kGenericThumbCard("back_thumb.jpg");
 }
 
 WResourceManager* WResourceManager::sInstance = NULL;
@@ -48,10 +48,9 @@ void WResourceManager::DebugRender()
 {
     JRenderer* renderer = JRenderer::GetInstance();
     WFont * font = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
-    font->SetColor(ARGB(255,255,255,255));
-
     if (!font || !renderer) return;
 
+    font->SetColor(ARGB(255,255,255,255));
     font->SetScale(DEFAULT_MAIN_FONT_SCALE);
     renderer->FillRect(0, 0, SCREEN_WIDTH, 40, ARGB(128,155,0,0));
 
@@ -70,11 +69,11 @@ void WResourceManager::DebugRender()
         textureWCache.cacheSize, textureWCache.maxCacheSize, man);
     font->DrawString(buf, 10, 5);
 
-#if defined (WIN32) || defined (LINUX) || defined (IOS)
-#else
-    int maxLinear = ramAvailableLineareMax();
-    int ram = ramAvailable();
-    sprintf(buf, "Ram : linear max: %i - total : %i\n", maxLinear, ram);
+#if PSPENV
+    //int maxLinear = ramAvailableLineareMax();
+    //int ram = ramAvailable();
+   
+    //sprintf(buf, "Ram : linear max: %i - total : %i sceSize : %i\n", maxLinear, ram, sceSize);
     font->DrawString(buf, 10, 20);
 #endif
 
@@ -180,6 +179,14 @@ WResourceManager::WResourceManager()
     lastError = CACHE_ERROR_NONE;
 
     bThemedCards = false;
+
+    LOG("Calling CacheEngine::Create");
+
+#ifdef PSPENV
+    CacheEngine::Create<UnthreadedCardRetriever>(textureWCache);
+#else
+    CacheEngine::Create<ThreadedCardRetriever>(textureWCache);
+#endif
 }
 
 WResourceManager::~WResourceManager()
@@ -187,7 +194,13 @@ WResourceManager::~WResourceManager()
     LOG("==Destroying WResourceManager==");
     RemoveWFonts();
 
+    CacheEngine::Terminate();
     LOG("==Successfully Destroyed WResourceManager==");
+}
+
+bool WResourceManager::IsThreaded()
+{
+    return CacheEngine::IsThreaded();
 }
 
 JQuadPtr WResourceManager::RetrieveCard(MTGCard * card, int style, int submode)
@@ -197,9 +210,7 @@ JQuadPtr WResourceManager::RetrieveCard(MTGCard * card, int style, int submode)
 
     submode = submode | TEXTURE_SUB_CARD;
 
-    string filename = setlist[card->setId];
-    filename += "/";
-    string filename1 = filename + card->getImageName();
+    string filename = setlist[card->setId] + "/" + card->getImageName();
     int id = card->getMTGId();
 
     //Aliases.
@@ -209,40 +220,8 @@ JQuadPtr WResourceManager::RetrieveCard(MTGCard * card, int style, int submode)
         style = RETRIEVE_NORMAL;
     }
 
-    //Hack to allow either ID or card name as a filename for a given card.
-    // When missing the first attempt (for example [id].jpg), the cache assigns a "404" to the card's image cache,
-    // Preventing us to try a second time with [name].jpg.
-    //To bypass this, we first check if the card was ever marked as "null". If not, it means it's the first time we're looking for it
-    // In that case, we "unmiss" it after trying the [id].jpg, in order to give a chance to the [name.jpg]
-    bool canUnmiss = false;
-    {
-        JQuadPtr tempQuad = RetrieveQuad(filename1, 0, 0, 0, 0, "", RETRIEVE_EXISTING, submode | TEXTURE_SUB_5551, id);
-        lastError = textureWCache.mError;
-        if (!tempQuad && lastError != CACHE_ERROR_404)
-        {
-            canUnmiss = true;
-        }
-    }
-    JQuadPtr jq = RetrieveQuad(filename1, 0, 0, 0, 0, "", style, submode | TEXTURE_SUB_5551, id);
-    if (!jq)
-    {
-        if (canUnmiss)
-        {
-            int mId = id;
-            //To differentiate between cached thumbnails and the real thing.
-            if (submode & TEXTURE_SUB_THUMB)
-            {
-                if (mId < 0)
-                    mId -= THUMBNAILS_OFFSET;
-                else
-                    mId += THUMBNAILS_OFFSET;
-            }
-            textureWCache.RemoveMiss(mId);
-        }
-        filename1 = filename + card->data->getName() + ".jpg";
-        jq = RetrieveQuad(filename1, 0, 0, 0, 0, "", style, submode | TEXTURE_SUB_5551, id);
+    JQuadPtr jq = RetrieveQuad(filename, 0, 0, 0, 0, "", style, submode | TEXTURE_SUB_5551, id);
 
-    }
     lastError = textureWCache.mError;
     if (jq)
     {
@@ -353,11 +332,7 @@ JQuadPtr WResourceManager::RetrieveQuad(const string& filename, float offX, floa
     if (!resname.size()) resname = filename;
 
     //No quad, but we have a managed texture for this!
-    WCachedTexture * jtex = NULL;
-    if (style == RETRIEVE_MANAGE || style == RETRIEVE_EXISTING)
-        jtex = textureWCache.Retrieve(id, filename, style, submode);
-    else
-        jtex = textureWCache.Retrieve(id, filename, RETRIEVE_NORMAL, submode);
+    WCachedTexture* jtex = textureWCache.Retrieve(id, filename, style, submode);
 
     lastError = textureWCache.mError;
 
@@ -939,13 +914,15 @@ void WResourceManager::ResetCacheLimits()
     textureWCache.Resize(HUGE_CACHE_LIMIT,MAX_CACHE_OBJECTS);
 #endif
 #else
-    unsigned int ram = ramAvailable();
-    unsigned int myNewSize = ram - OPERATIONAL_SIZE + textureWCache.totalSize;
+    static unsigned int ram(ramAvailable() / 2);
+    unsigned int myNewSize = ram - OPERATIONAL_SIZE;
     if (myNewSize < TEXTURES_CACHE_MINSIZE)
     {
-        fprintf(stderr, "Error, Not enough RAM for Cache: %i - total Ram: %i\n", myNewSize, ram);
+        DebugTrace( "Error, Not enough RAM for Cache: " << myNewSize << " - total Ram: " << ram);
     }
-    textureWCache.Resize(myNewSize, MAX_CACHE_OBJECTS);
+    textureWCache.Resize(MIN(myNewSize, HUGE_CACHE_LIMIT), MAX_CACHE_OBJECTS);
+
+    DebugTrace("Texture cache resized to " << myNewSize);
 #endif
     return;
 }
@@ -990,6 +967,11 @@ bool WCache<cacheItem, cacheActual>::RemoveOldest()
 
     if (oldest != cache.end() && oldest->second && !oldest->second->isLocked())
     {
+#ifdef DEBUG_CACHE
+        std::ostringstream stream;
+        stream << "erasing from cache: "  << oldest->second->mFilename << " " << oldest->first;
+        LOG(stream.str().c_str());
+#endif
         Delete(oldest->second);
         cache.erase(oldest);
         return true;
@@ -1024,6 +1006,12 @@ void WCache<cacheItem, cacheActual>::Resize(unsigned long size, int items)
 {
     maxCacheSize = size;
 
+#ifdef DEBUG_CACHE
+    std::ostringstream stream;
+    stream << "Max cache limit resized to " << size << ", items limit reset to " << items;
+    LOG(stream.str().c_str());
+#endif
+
     if (items > MAX_CACHE_OBJECTS || items < 1)
         maxCached = MAX_CACHE_OBJECTS;
     else
@@ -1033,12 +1021,6 @@ void WCache<cacheItem, cacheActual>::Resize(unsigned long size, int items)
 template<class cacheItem, class cacheActual>
 cacheItem* WCache<cacheItem, cacheActual>::AttemptNew(const string& filename, int submode)
 {
-    if (submode & CACHE_EXISTING)
-    { //Should never get this far.
-        mError = CACHE_ERROR_NOT_CACHED;
-        return NULL;
-    }
-
     cacheItem* item = NEW cacheItem;
     if (!item)
     {
@@ -1053,25 +1035,22 @@ cacheItem* WCache<cacheItem, cacheActual>::AttemptNew(const string& filename, in
         //No such file. Fail
         if (mError == CACHE_ERROR_404)
         {
+            DebugTrace("AttemptNew failed to load. Deleting cache item " << ToHex(item));
             SAFE_DELETE(item);
             return NULL;
         }
-        //Probably not enough memory: cleanup and try again
-        Cleanup();
-        mError = CACHE_ERROR_NONE;
-        if (!item->Attempt(filename, submode, mError) || !item->isGood())
+		else
         {
+            DebugTrace("AttemptNew failed to load (not a 404 error). Deleting cache item " << ToHex(item));
             SAFE_DELETE(item);
             mError = CACHE_ERROR_BAD;
-            return NULL;
+        	return NULL;
         }
     }
 
     //Success! Enforce cache limits, then return.
     mError = CACHE_ERROR_NONE;
-    item->lock();
-    Cleanup();
-    item->unlock();
+
     return item;
 }
 
@@ -1079,13 +1058,8 @@ template<class cacheItem, class cacheActual>
 cacheItem* WCache<cacheItem, cacheActual>::Retrieve(int id, const string& filename, int style, int submode)
 {
     //Check cache.
-    cacheItem * tc = NULL;
     mError = CACHE_ERROR_NONE; //Reset error status.
-
-    if (style == RETRIEVE_EXISTING || style == RETRIEVE_RESOURCE)
-        tc = Get(id, filename, style, submode | CACHE_EXISTING);
-    else
-        tc = Get(id, filename, style, submode);
+    cacheItem* tc = Get(id, filename, style, submode);
 
     //Retrieve resource only works on permanent items.
     if (style == RETRIEVE_RESOURCE && tc && !tc->isPermanent())
@@ -1153,14 +1127,9 @@ int WCache<cacheItem, cacheActual>::makeID(int id, const string& filename, int s
         }
     }
 
-    //To differentiate between cached thumbnails and the real thing.
     if (submode & TEXTURE_SUB_THUMB)
-    {
-        if (mId < 0)
-            mId -= THUMBNAILS_OFFSET;
-        else
-            mId += THUMBNAILS_OFFSET;
-    }
+        mId += THUMBNAILS_OFFSET;
+
     return mId;
 }
 
@@ -1179,38 +1148,73 @@ cacheItem* WCache<cacheItem, cacheActual>::Get(int id, const string& filename, i
         return it->second; //A hit.
     }
 
-    //Failed to find managed resource and won't create one. Record a miss.
-    if (style == RETRIEVE_RESOURCE)
-    {
-        managed[lookup] = NULL;
-        return NULL;
-    }
-
     //Not managed, so look in cache.
     if (style != RETRIEVE_MANAGE)
     {
+        boost::mutex::scoped_lock lock(mCacheMutex);
+        //DebugTrace("Cache lock acquired, looking up index " << lookup);
         it = cache.find(lookup);
         //Well, we've found something...
         if (it != cache.end())
         {
-            if (!it->second) mError = CACHE_ERROR_404;
+            if (!it->second)
+            {
+                mError = CACHE_ERROR_404;
+                DebugTrace("cache hit, no item??");
+                //assert(false);
+            }
             return it->second; //A hit, or maybe a miss.
         }
     }
 
-    //Didn't exist in cache.
-    if (submode & CACHE_EXISTING)
+    // not hit in the cache, respect the RETRIEVE_EXISTING flag if present
+    if (style == RETRIEVE_EXISTING)
     {
-        mError = CACHE_ERROR_NOT_CACHED;
         return NULL;
     }
 
-    //Space in cache, make new texture
-    cacheItem * item = AttemptNew(filename, submode);
+    // no hit in cache, clear space before attempting to load a new one
+    // note: Cleanup() should ONLY be ever called on the main (UI) thread!
+    Cleanup();
 
+    // check if we're doing a card lookup
+    if (submode & TEXTURE_SUB_CARD)
+    {
+        // processing a cache miss, return a generic card & queue up an async read
+
+        // side note:  using a string reference here to a global predefined string, as basic_string is not thread safe for allocations!
+        const std::string& cardPath = (submode & TEXTURE_SUB_THUMB) ? kGenericThumbCard : kGenericCard;
+        int genericCardId = makeID(0, cardPath, CACHE_NORMAL);
+        it = managed.find(genericCardId);
+        assert(it != managed.end());
+
+        CacheEngine::Instance()->QueueRequest(filename, submode, lookup);
+        return it->second;
+    }
+
+    //Space in cache, make new texture
+    return LoadIntoCache(lookup, filename, submode, style);
+}
+
+template<class cacheItem, class cacheActual>
+cacheItem* WCache<cacheItem, cacheActual>::LoadIntoCache(int id, const string& filename, int submode, int style)
+{
+    // note: my original implementation only had one lock (the cache mutex lock) - I eventually
+    // added this second one, as locking at the Get() call means that the main thread is blocked on doing a simple cache
+    // check.  If you're hitting the system hard (like, paging up in the deck editor which forces 7 cards to load simultaneously),
+    // we'd block the UI thread for a long period at this point.  So I moved the cache mutex to lock specifically only attempts to touch
+    // the shared cache container, and this separate lock was added to insulate us against thread safety issues in JGE. In particular,
+    // JFileSystem is particularly unsafe, as it assumes that we have only one zip loaded at a time... rather than add mutexes in JGE,
+    // I've kept it local to here.
+    boost::mutex::scoped_lock functionLock(mLoadFunctionMutex);
+    cacheItem* item = AttemptNew(filename, submode);
+    //assert(item);
     if (style == RETRIEVE_MANAGE)
     {
-        if (mError == CACHE_ERROR_404 || item) managed[lookup] = item; //Record a hit or miss.
+        if (mError == CACHE_ERROR_404 || item)
+        {
+            managed[id] = item; //Record a hit or miss.
+        }
         if (item)
         {
             item->deadbolt(); //Make permanent.
@@ -1218,10 +1222,25 @@ cacheItem* WCache<cacheItem, cacheActual>::Get(int id, const string& filename, i
     }
     else
     {
-        if (mError == CACHE_ERROR_404 || item) cache[lookup] = item;
+        if (mError == CACHE_ERROR_404 || item)
+        {
+            boost::mutex::scoped_lock lock(mCacheMutex);
+            cache[id] = item;
+            DebugTrace("inserted item ptr " << ToHex(item) << " at index " << id);
+        }
     }
 
-    if (!item) return NULL; //Failure
+    if (item == NULL)
+    {
+        DebugTrace("Can't locate ");
+        if (submode & TEXTURE_SUB_THUMB)
+        {
+            DebugTrace("thumbnail ");
+        }
+        DebugTrace(filename);
+        
+        return NULL; //Failure
+    }
 
     //Succeeded in making a new item.
     unsigned long isize = item->size();
@@ -1233,6 +1252,12 @@ cacheItem* WCache<cacheItem, cacheActual>::Get(int id, const string& filename, i
         cacheItems++;
         cacheSize += isize;
     }
+
+#ifdef DEBUG_CACHE
+    std::ostringstream stream;
+    stream << "Cache insert: " << filename << " " << id << ", cacheItem count: " << cacheItems << ", cacheSize is now: " << cacheSize;
+    LOG(stream.str().c_str());
+#endif
 
     return item;
 }
@@ -1292,24 +1317,31 @@ WCache<cacheItem, cacheActual>::~WCache()
 template<class cacheItem, class cacheActual>
 bool WCache<cacheItem, cacheActual>::Cleanup()
 {
-    while (cacheItems < cache.size() && cache.size() - cacheItems > MAX_CACHE_MISSES)
+    bool result = true;
+    // this looks redundant, but the idea is, don't grab the mutex if there's no work to do
+    if (RequiresMissCleanup())
     {
-        RemoveMiss();
-    }
-
-    while (cacheItems > MAX_CACHE_OBJECTS || cacheItems > maxCached || cacheSize > maxCacheSize
-#if defined WIN32 || defined LINUX || defined (IOS)
-#else
-        || ramAvailableLineareMax() < MIN_LINEAR_RAM
-#endif
-        )
-    {
-        if (!RemoveOldest())
+        boost::mutex::scoped_lock lock(mCacheMutex);
+        while (RequiresMissCleanup())
         {
-            return false;
+            RemoveMiss();
         }
     }
-    return true;
+
+    if (RequiresOldItemCleanup())
+    {
+        boost::mutex::scoped_lock lock(mCacheMutex);
+        while (RequiresOldItemCleanup())
+        {
+            if (!RemoveOldest())
+            {
+                result = false;
+                break;
+            }
+        }
+    }
+
+    return result;
 }
 
 bool WCacheSort::operator()(const WResource * l, const WResource * r)
@@ -1425,6 +1457,7 @@ bool WCache<cacheItem, cacheActual>::Delete(cacheItem * item)
 
     cacheItems--;
 
+    DebugTrace("Deleting cache item " << ToHex(item));
     SAFE_DELETE(item);
     return true;
 }

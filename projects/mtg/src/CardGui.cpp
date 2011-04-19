@@ -776,15 +776,7 @@ void CardGui::RenderBig(MTGCard* card, const Pos& pos)
         return;
     }
 
-    //No card found, attempt to render the thumbnail instead (better than nothing, even if it gets super stretched)
-    JQuadPtr q;
-    if ((q = WResourceManager::Instance()->RetrieveCard(card, CACHE_THUMB)))
-    {
-        float scale = pos.actZ * 250 / q->mHeight;
-        q->SetColor(ARGB(255,255,255,255));
-        renderer->RenderQuad(q.get(), x, pos.actY, pos.actT, scale, scale);
-        return;
-    }
+    DebugTrace("Unable to fetch image: " << card->getImageName());
 
     // If we come here, we do not have the picture.
     AlternateRender(card, pos);

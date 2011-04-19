@@ -56,13 +56,14 @@ WSrcCards::WSrcCards(float delay)
 
 JQuadPtr WSrcCards::getImage(int offset)
 {
-#if defined WIN32 || defined LINUX //Loading delay only on PSP.
-#else
-    if (mDelay && mLastInput < mDelay)
-    {
-        return WResourceManager::Instance()->RetrieveCard(getCard(offset), RETRIEVE_EXISTING);
-    }
-#endif
+	if (!WResourceManager::Instance()->IsThreaded())
+	{	
+        if (mDelay && mLastInput < mDelay)
+        {
+            return WResourceManager::Instance()->RetrieveCard(getCard(offset), RETRIEVE_EXISTING);
+        }
+	}
+
     return WResourceManager::Instance()->RetrieveCard(getCard(offset));
 }
 
