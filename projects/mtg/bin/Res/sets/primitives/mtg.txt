@@ -49933,7 +49933,6 @@ name=Rancor
 target=creature
 auto=2/0
 auto=trample
-
 autograveyard=@movedTo(this|graveyard) from(battlefield):moveTo(myhand)
 text=Enchant creature -- Enchanted creature gets +2/+0 and has trample. -- When Rancor is put into a graveyard from the battlefield, return Rancor to its owner's hand.
 mana={G}
