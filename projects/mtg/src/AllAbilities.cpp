@@ -2929,6 +2929,7 @@ MTGAbility(_id, card),sAbility(sAbility), phase(_phase),forcedestroy(forcedestro
     else
         psMenuText = sAbility.c_str();
     delete (ability);
+
 }
 
 void APhaseAction::Update(float dt)
@@ -2944,12 +2945,7 @@ void APhaseAction::Update(float dt)
                 MTGCardInstance * _target = NULL;
                 if(target)
                 _target = (MTGCardInstance *) target;
-                if (_target)
-                {
-                    while (_target->next)
-                        _target = _target->next;
-                }
-                if(!sAbility.size() || !target || !_target->isInPlay())
+                if(!sAbility.size() || (!target||!_target->currentZone))
                 {
                 //im aware that adding the isinplay check restricts this ability to having targets
                 //which are in play..however after reviewing all the coded cards which use this
@@ -2982,6 +2978,7 @@ void APhaseAction::Update(float dt)
 
 int APhaseAction::resolve()
 {
+
     return 0;
 }
 

@@ -485,6 +485,7 @@ int AIAction::getEfficiency()
     }
 
     case MTGAbility::FOREACH:
+    case MTGAbility::MANA_PRODUCER://only way to hit this condition is nested manaabilities, ai skips manaproducers by defualt when finding an ability to use.
     {
         MTGCardInstance * _target = (MTGCardInstance *) (a->target);
         MTGAbility * a = AbilityFactory::getCoreAbility(ability);
@@ -662,10 +663,6 @@ int AIAction::getEfficiency()
         }
         break;
     }
-    case MTGAbility::MANA_PRODUCER:
-        efficiency = 0;
-        break;
-
     default:
         if (target)
         {
