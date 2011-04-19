@@ -8,7 +8,7 @@
 #include "utils.h"
 #include "WCachedResource.h"
 #include "WFont.h"
-
+#include "JLogger.h"
 #include <sstream>
 
 #include "Threading.h"

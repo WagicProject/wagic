@@ -17,7 +17,7 @@ template <class T>
 std::string ToHex(T* pointer)
 {
     std::ostringstream stream;
-    stream << hex << showbase << setfill('0') << setw(8) << (int) pointer;
+    stream << hex << showbase << setfill('0') << setw(8) << (uint64_t) pointer;
     return stream.str();
 }
 
@@ -29,7 +29,7 @@ std::string ToHex(T* pointer)
 {															\
 	std::ostringstream stream;								\
 	stream << inString << std::endl;					    \
-	OutputDebugString(stream.str().c_str());	            \
+  OutputDebugString(stream.str().c_str());  \
 }
 #else
 #define DebugTrace(inString)								\

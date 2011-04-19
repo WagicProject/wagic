@@ -7,6 +7,7 @@
 // Copyright (c) 2007 James Hui (a.k.a. Dr.Watson) <jhkhui@gmail.com>
 // 
 //-------------------------------------------------------------------------------------
+#undef GL_VERSION_2_0
 
 #include "../include/JFileSystem.h"
 #include "../include/JRenderer.h"
