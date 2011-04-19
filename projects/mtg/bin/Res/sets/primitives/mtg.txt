@@ -24562,7 +24562,7 @@ toughness=4
 [card]
 name=Ghastlord of Fugue
 auto=unblockable
-auto=@damaged(player) from(this):moveTo(myexile) target(*|opponenthand)
+auto=@combatdamaged(player) from(this):moveTo(myexile) target(*|opponenthand)
 text=Ghastlord of Fugue is unblockable. -- Whenever Ghastlord of Fugue deals combat damage to a player, that player reveals his or her hand. You choose a card from it. That player exiles that card.
 mana={UB}{UB}{UB}{UB}{UB}
 type=Creature
@@ -33557,7 +33557,7 @@ toughness=3
 [card]
 name=Kathari Bomber
 abilities=flying
-auto=@damaged(player) from(this):token(Goblin,Creature Token Goblin,1/1,red)*2 && moveTo(ownergraveyard) all(this)
+auto=@combatdamaged(player) from(this):token(Goblin,Creature Token Goblin,1/1,red)*2 && moveTo(ownergraveyard) all(this)
 autograveyard={3}{B}{R}:moveto(mybattlefield) && transforms((,unearth,haste)) asSorcery forever
 text=Flying -- When Kathari Bomber deals combat damage to a player, put two 1/1 red Goblin creature tokens onto the battlefield and sacrifice Kathari Bomber. -- Unearth {3}{B}{R} ({3}{B}{R}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
 mana={1}{B}{R}
@@ -45063,7 +45063,7 @@ name=Oros the Avenger
 #Please don't correct the card name by adding a "," because then the first auto line won't work anymore and even won't work when you add an "," there, too! (0.10.1)
 abilities=flying
 auto=aslongas(oros the avenger[attacking]|mybattlefield) lord(oros the avenger[attacking;-cloud]) {2}{W}:damage:3 all(creature[-white])
-auto=@damaged(player) from(this):cloud
+auto=@combatdamaged(player) from(this):cloud
 text=Flying -- Whenever Oros, the Avenger deals combat damage to a player, you may pay {2}{W}. If you do, Oros deals 3 damage to each nonwhite creature.
 mana={3}{W}{B}{R}
 type=Legendary Creature
@@ -55879,7 +55879,7 @@ toughness=3
 [card]
 name=Seshiro the Anointed
 auto=lord(other snake|myBattlefield) 2/2
-auto=@damaged(player) from(snake|myBattlefield):may draw:1 controller
+auto=@combatdamaged(player) from(snake|myBattlefield):may draw:1 controller
 text=Other Snake creatures you control get +2/+2. -- Whenever a Snake you control deals combat damage to a player, you may draw a card.
 mana={4}{G}{G}
 type=Legendary Creature
@@ -58822,7 +58822,7 @@ toughness=1
 [card]
 name=Slith Strider
 auto=@combat(blocked,turnlimited) source(this):draw:1 controller
-auto=@damaged(player) from(this):counter(1/1,1)
+auto=@combatdamaged(player) from(this):counter(1/1,1)
 text=Whenever Slith Strider becomes blocked, draw a card. -- Whenever Slith Strider deals combat damage to a player, put a +1/+1 counter on it.
 mana={1}{U}{U}
 type=Creature
@@ -60068,7 +60068,7 @@ toughness=1
 [/card]
 [card]
 name=Spark Mage
-auto=@damaged(player) from(this):may damage:1 target(creature|opponentBattlefield)
+auto=@combatdamaged(player) from(this):may damage:1 target(creature|opponentBattlefield)
 text=Whenever Spark Mage deals combat damage to a player, you may have Spark Mage deal 1 damage to target creature that player controls.
 mana={R}
 type=Creature
@@ -65008,7 +65008,7 @@ name=Teneb the Harvester
 #Please don't correct the card name by adding a "," because then the first auto line won't work anymore and even won't work when you add an "," there, too! (0.10.1)
 abilities=flying
 auto=aslongas(teneb the harvester[attacking]|mybattlefield) lord(teneb the harvester[attacking;-cloud]) {2}{B}:moveTo(myBattlefield) target(creature|graveyard)
-auto=@damaged(player) from(this):cloud
+auto=@combatdamaged(player) from(this):cloud
 text=Flying -- Whenever Teneb, the Harvester deals combat damage to a player, you may pay {2}{B}. If you do, put target creature card in a graveyard onto the battlefield under your control.
 mana={3}{B}{G}{W}
 type=Legendary Creature
@@ -74394,7 +74394,7 @@ toughness=2
 [/card]
 [card]
 name=Worldslayer
-auto=@damaged(player) from(mytgt[attacking]):destroy all(other *|battlefield)
+auto=@combatdamaged(player) from(mytgt[attacking]):destroy all(other *|battlefield)
 auto={5}:equip
 mana={5}
 text=Whenever equipped creature deals combat damage to a player, destroy all permanents other than Worldslayer. -- Equip {5} ({5}: Attach to target creature you control. Equip only as a sorcery. This card enters the battlefield unattached and stays on the battlefield if the creature leaves.)
