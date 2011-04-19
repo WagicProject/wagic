@@ -3987,6 +3987,16 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Awakener Druid
+auto=target(forest) becomes(Creature Treefolk,4/5,green)
+text=When Awakener Druid enters the battlefield, target Forest becomes a 4/5 green Treefolk creature for as long as Awakener Druid is on the battlefield. It's still a land.
+mana={2}{G}
+type=Creature
+subtype=Human Druid
+power=1
+toughness=1
+[/card]
+[card]
 name=Awakening
 auto=@each upkeep:untap all(creature,land)
 text=At the beginning of each upkeep, untap all creatures and lands.
@@ -35030,7 +35040,6 @@ type=Nothing
 [card]
 name=Kormus Bell
 auto=lord(swamp) becomes(Creature,1/1)
-alias=1121
 text=All Swamps are 1/1 creatures that are still lands.
 mana={4}
 type=Artifact
@@ -36940,7 +36949,6 @@ toughness=6
 [card]
 name=Living Lands
 auto=lord(forest) becomes(Creature,1/1)
-alias=1259
 text=All Forests are 1/1 creatures that are still lands.
 mana={3}{G}
 type=Enchantment
@@ -36949,7 +36957,6 @@ type=Enchantment
 name=Living Plane
 auto=@movedTo(enchantment[world]|battlefield):sacrifice all(this)
 auto=lord(land) becomes(Creature,1/1)
-alias=1533
 text=All lands are 1/1 creatures that are still lands.
 mana={2}{G}{G}
 type=World Enchantment
