@@ -12,6 +12,6 @@ hand:1386
 FIRSTMAIN
 [PLAYER1]
 inplay:1259,1386
-manapool:{G}
+manapool:{0}
 [PLAYER2]
 [END]
