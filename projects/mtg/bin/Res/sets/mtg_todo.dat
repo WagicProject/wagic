@@ -57,13 +57,6 @@ mana={X}{1}{B}
 type=Sorcery
 [/card]
 [card]
-name=Abduction
-text=Enchant creature -- When Abduction enters the battlefield, untap enchanted creature. -- You control enchanted creature. -- When enchanted creature is put into a graveyard, return that card to the battlefield under its owner's control.
-mana={2}{U}{U}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Abeyance
 text=Until end of turn, target player can't cast instant or sorcery spells, and that player can't activate abilities that aren't mana abilities. -- Draw a card.
 mana={1}{W}
@@ -3965,13 +3958,6 @@ mana={1}{B}{R}
 type=Enchantment
 [/card]
 [card]
-name=Corrupted Zendikon
-text=Enchant land -- Enchanted land is a 3/3 black Ooze creature. It's still a land. -- When enchanted land is put into a graveyard, return that card to its owner's hand.
-mana={1}{B}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Corrupting Licid
 text={B}, {T}: Corrupting Licid loses this ability and becomes an Aura enchantment with enchant creature. Attach it to target creature. You may pay {B} to end this effect. -- Enchanted creature has fear. (It can't be blocked except by artifact creatures and/or black creatures.)
 mana={2}{B}
@@ -4273,13 +4259,6 @@ name=Crumbling Sanctuary
 text=For each 1 damage that would be dealt to a player, that player exiles the top card of his or her library instead.
 mana={5}
 type=Artifact
-[/card]
-[card]
-name=Crusher Zendikon
-text=Enchant land -- Enchanted land is a 4/2 red Beast creature with trample. It's still a land. -- When enchanted land is put into a graveyard, return that card to its owner's hand.
-mana={2}{R}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
 name=Crush Underfoot
@@ -6963,13 +6942,6 @@ mana={1}{W}
 type=Sorcery
 [/card]
 [card]
-name=False Demise
-text=Enchant creature -- When enchanted creature is put into a graveyard, return that card to the battlefield under your control.
-mana={2}{U}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=False Memories
 text=Put the top seven cards of your library into your graveyard. At the beginning of the next end step, exile seven cards from your graveyard.
 mana={1}{U}
@@ -7591,13 +7563,6 @@ name=Food Chain
 text=Exile a creature you control: Add X mana of any one color to your mana pool, where X is the exiled creature's converted mana cost plus one. Spend this mana only to cast creature spells.
 mana={2}{G}
 type=Enchantment
-[/card]
-[card]
-name=Fool's Demise
-text=Enchant creature -- When enchanted creature is put into a graveyard, return that card to the battlefield under your control. -- When Fool's Demise is put into a graveyard from the battlefield, return Fool's Demise to its owner's hand.
-mana={4}{U}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
 name=Footbottom Feast
@@ -9305,13 +9270,6 @@ type=Creature
 subtype=Angel
 power=3
 toughness=4
-[/card]
-[card]
-name=Guardian Zendikon
-text=Enchant land -- Enchanted land is a 2/6 white Wall creature with defender. It's still a land. -- When enchanted land is put into a graveyard, return that card to its owner's hand.
-mana={2}{W}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
 name=Guardian of Vitu-Ghazi
@@ -20537,13 +20495,6 @@ mana={1}{B}
 type=Instant
 [/card]
 [card]
-name=Shade's Form
-text=Enchant creature -- Enchanted creature has "{B}: This creature gets +1/+1 until end of turn." -- When enchanted creature is put into a graveyard, return that card to the battlefield under your control.
-mana={1}{B}{B}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Shadow of Doubt
 text=({(u/b)} can be paid with either {U} or {B}.) -- Players can't search libraries this turn. -- Draw a card.
 mana={UB}{UB}
@@ -22326,16 +22277,6 @@ type=Creature
 subtype=Devil
 power=2
 toughness=1
-[/card]
-[card]
-name=Squee's Embrace
-target=creature
-auto=2/2
-auto=@movedTo(this|graveyard) from(battlefield):moveTo(myBattlefield) notatarget(mytgt)
-text=Enchant creature -- Enchanted creature gets +2/+2. -- When enchanted creature is put into a graveyard, return that card to its owner's hand.
-mana={R}{W}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
 name=Squee's Revenge
@@ -24988,13 +24929,6 @@ mana={3}{W}
 type=Enchantment
 [/card]
 [card]
-name=Vastwood Zendikon
-text=Enchant land -- Enchanted land is a 6/4 green Elemental creature. It's still a land. -- When enchanted land is put into a graveyard, return that card to its owner's hand.
-mana={4}{G}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Vectis Dominator
 text={T}: Tap target creature unless its controller pays 2 life.
 mana={1}{W}{B}
@@ -26174,13 +26108,6 @@ type=Creature
 subtype=Elemental Spirit
 power=3
 toughness=2
-[/card]
-[card]
-name=Wind Zendikon
-text=Enchant land -- Enchanted land is a 2/2 blue Elemental creature with flying. It's still a land. -- When enchanted land is put into a graveyard, return that card to its owner's hand.
-mana={U}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
 name=Windborn Muse

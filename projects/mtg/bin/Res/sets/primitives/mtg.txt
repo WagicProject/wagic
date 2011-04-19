@@ -195,6 +195,17 @@ power=1
 toughness=3
 [/card]
 [card]
+name=Abduction
+target=creature
+alias=1194
+auto=untap
+auto=@movedTo(mytgt|graveyard) from(battlefield):all(trigger[to]) moveTo(opponentbattlefield)
+text=Enchant creature -- When Abduction enters the battlefield, untap enchanted creature. -- You control enchanted creature. -- When enchanted creature is put into a graveyard, return that card to the battlefield under its owner's control.
+mana={2}{U}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 name=Abjure
 target=*|stack
 auto=fizzle
@@ -12589,6 +12600,16 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Corrupted Zendikon
+target=land
+auto=becomes(Creature Ooze,3/3,black)
+auto=@movedTo(mytgt|graveyard) from(battlefield):all(trigger[to]) moveTo(ownerhand)
+text=Enchant land -- Enchanted land is a 3/3 black Ooze creature. It's still a land. -- When enchanted land is put into a graveyard, return that card to its owner's hand.
+mana={1}{B}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 name=Cosi's Ravager
 auto=@movedTo(land|myBattlefield):may damage:1 target(player)
 text=Landfall - Whenever a land enters the battlefield under your control, you may have Cosi's Ravager deal 1 damage to target player.
@@ -20772,6 +20793,15 @@ mana={3}{W}
 type=Sorcery
 [/card]
 [card]
+name=False Demise
+target=creature
+auto=@movedTo(mytgt|graveyard) from(battlefield):all(trigger[to]) moveTo(mybattlefield)
+text=Enchant creature -- When enchanted creature is put into a graveyard, return that card to the battlefield under your control.
+mana={2}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 name=False Mourning
 target=creature|mygraveyard
 auto=moveTo(mylibrary)
@@ -23061,6 +23091,16 @@ auto=@each opponent draw:draw:2 opponent
 text=At the beginning of each player's draw step, that player draws two additional cards.
 mana={4}
 type=Artifact
+[/card]
+[card]
+name=Fool's Demise
+target=creature
+auto=@movedTo(mytgt|graveyard) from(battlefield):all(trigger[to]) moveTo(mybattlefield)
+autograveyard=@movedTo(this|graveyard) from(battlefield):moveTo(myhand)
+text=Enchant creature -- When enchanted creature is put into a graveyard, return that card to the battlefield under your control. -- When Fool's Demise is put into a graveyard from the battlefield, return Fool's Demise to its owner's hand.
+mana={4}{U}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 name=Fool's Tome
@@ -27752,6 +27792,16 @@ type=Creature
 subtype=Spirit
 power=2
 toughness=3
+[/card]
+[card]
+name=Guardian Zendikon
+target=land
+auto=becomes(Creature Wall,2/6,defender,white)
+auto=@movedTo(mytgt|graveyard) from(battlefield):all(trigger[to]) moveTo(ownerhand)
+text=Enchant land -- Enchanted land is a 2/6 white Wall creature with defender. It's still a land. -- When enchanted land is put into a graveyard, return that card to its owner's hand.
+mana={2}{W}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 name=Guardians of Akrasa
@@ -55990,6 +56040,16 @@ power=1
 toughness=2
 [/card]
 [card]
+name=Shade's Form
+target=creature
+auto=teach(creature) {B}:1/1
+auto=@movedTo(mytgt|graveyard) from(battlefield):all(trigger[to]) moveTo(mybattlefield)
+text=Enchant creature -- Enchanted creature has "{B}: This creature gets +1/+1 until end of turn." -- When enchanted creature is put into a graveyard, return that card to the battlefield under your control.
+mana={1}{B}{B}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 name=Shadow Guildmage
 auto={U}{T}:moveTo(ownerlibrary) target(creature|myBattlefield)
 auto={R}{T}:damage:1 target(creature,player) && damage:1 controller
@@ -61311,6 +61371,16 @@ type=Legendary Creature
 subtype=Goblin
 power=1
 toughness=1
+[/card]
+[card]
+name=Squee's Embrace
+target=creature
+auto=2/2
+auto=@movedTo(mytgt|graveyard) from(battlefield):all(trigger[to]) moveTo(ownerhand)
+text=Enchant creature -- Enchanted creature gets +2/+2. -- When enchanted creature is put into a graveyard, return that card to its owner's hand.
+mana={R}{W}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 name=Squee's Toy
@@ -69618,6 +69688,16 @@ power=5
 toughness=6
 [/card]
 [card]
+name=Vastwood Zendikon
+target=land
+auto=becomes(Creature Elemental,6/4,green)
+auto=@movedTo(mytgt|graveyard) from(battlefield):all(trigger[to]) moveTo(ownerhand)
+text=Enchant land -- Enchanted land is a 6/4 green Elemental creature. It's still a land. -- When enchanted land is put into a graveyard, return that card to its owner's hand.
+mana={4}{G}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 name=Vault of Whispers
 auto={T}:Add{B}
 text=(Vault of Whispers isn't a spell.) -- {T}: Add {B} to your mana pool.
@@ -73616,6 +73696,16 @@ auto=lord(creature[attacking;flying]) -flying
 text=Attacking creatures with flying get -2/-2 and lose flying until end of turn.
 mana={2}{G}
 type=Instant
+[/card]
+[card]
+name=Wind Zendikon
+target=land
+auto=becomes(Creature Elemental,2/2,flying,blue)
+auto=@movedTo(mytgt|graveyard) from(battlefield):all(trigger[to]) moveTo(ownerhand)
+text=Enchant land -- Enchanted land is a 2/2 blue Elemental creature with flying. It's still a land. -- When enchanted land is put into a graveyard, return that card to its owner's hand.
+mana={U}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 name=Windbrisk Raptor
