@@ -43,13 +43,14 @@ std::string ToHex(T* pointer)
 #endif //#ifdef _DEBUG
 #endif // Win32, Linux
 
-#if defined (IOS) && defined (DEBUG) 
+#if defined (DEBUG)
+#ifndef DebugTrace
 #define DebugTrace(inString)								\
 {															\
   std::cout << inString << std::endl;					    \
 }
-#endif // IOS, DEBUG
-
+#endif //DEBUG
+#endif
 
 #ifndef DebugTrace
 #define DebugTrace(inString)	(void (0))
