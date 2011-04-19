@@ -3379,11 +3379,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
         game->addObserver(NEW AJandorsRing(_id, card));
         break;
     }
-    case 1121: //Kormus Bell
-    {
-        game->addObserver(NEW AConvertLandToCreatures(id, card, "swamp"));
-        break;
-    }
     case 1254: //Kudzu
     {
         game->addObserver(NEW AKudzu(id, card, card->target));
@@ -3400,12 +3395,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
             Spell * starget = spell->getNextSpellTarget();
             starget->source->setColor(Constants::MTG_COLOR_GREEN, 1);
         }
-        break;
-    }
-
-    case 1259: //Living lands
-    {
-        game->addObserver(NEW AConvertLandToCreatures(id, card, "forest"));
         break;
     }
     case 1124: //Mana Vault (the rest is softcoded!)
@@ -3627,13 +3616,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
             Spell * starget = spell->getNextSpellTarget();
             starget->source->setColor(Constants::MTG_COLOR_BLUE, 1);
         }
-        break;
-    }
-
-        //Addons Legends
-    case 1533: //Livingplane
-    {
-        game->addObserver(NEW AConvertLandToCreatures(id, card, "land"));
         break;
     }
     case 1480: //Energy Tap

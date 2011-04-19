@@ -2120,52 +2120,6 @@ public:
     }
 };
 
-//Converts lands to creatures (Kormus bell, Living lands)
-class AConvertLandToCreatures: public ListMaintainerAbility
-{
-public:
-    int type;
-    int power, toughness;
-    AConvertLandToCreatures(int _id, MTGCardInstance * _source, const char * _type, int _power = 1, int _toughness = 1) :
-        ListMaintainerAbility(_id, _source), power(_power), toughness(_toughness)
-    {
-        type = Subtypes::subtypesList->find(_type);
-    }
-
-    int canBeInList(MTGCardInstance * card)
-    {
-        if (card->hasType(type) && game->isInPlay(card)) return 1;
-        return 0;
-    }
-
-    int added(MTGCardInstance * card)
-    {
-        card->power = 1;
-        card->setToughness(1);
-        card->setSubtype("creature");
-        card->summoningSickness = 0;
-        return 1;
-    }
-
-    int removed(MTGCardInstance * card)
-    {
-        card->removeType("creature");
-        return 1;
-    }
-
-    virtual ostream& toString(ostream& out) const
-    {
-        out << "AConvertLandToCreatures ::: power : " << power << " ; toughness : " << toughness << " ; type : " << type << " (";
-        return ListMaintainerAbility::toString(out) << ")";
-    }
-    AConvertLandToCreatures * clone() const
-    {
-        AConvertLandToCreatures * a = NEW AConvertLandToCreatures(*this);
-        a->isClone = 1;
-        return a;
-    }
-};
-
 //Generic Kird Ape
 class AAsLongAs: public ListMaintainerAbility, public NestedAbility
 {
