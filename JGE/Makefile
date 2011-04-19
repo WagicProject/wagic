@@ -81,10 +81,9 @@ ifeq ($(TARGET_ARCHITECTURE),psp)
 PSPSDK = $(shell psp-config --pspsdk-path)
 PSPDIR = $(shell psp-config --psp-prefix)
 OBJS = $(GENERIC_OBJS) $(PSP_OBJS)
-PSPENV = 1
 TARGET_HGE = libhgetools.a
 INCDIR = include/psp include/psp/freetype2 ../Boost
-CXXFLAGS += -O2 -G0
+CXXFLAGS += -O2 -G0 -DPSPENV
 LIBDIR = lib/psp
 endif
 ifeq ($(TARGET_ARCHITECTURE),linux)
