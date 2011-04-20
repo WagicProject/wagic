@@ -47,15 +47,18 @@ DeckMenuItem::DeckMenuItem(DeckMenu* _parent, int id, int fontId, string text, f
         switch(id)
         {
             case kRandomPlayerMenuID:
-                this->imageFilename = "avatar.jpg";
+                this->imageFilename = "noavatar.jpg";
                 break;
             case kRandomAIPlayerMenuID:
-                this->imageFilename = "avatar.jpg";
+                this->imageFilename = "noavatar.jpg";
                 break;
             case kEvilTwinMenuID:
-                this->imageFilename = "avatar_evil_twin.jpg";
-                break;
+                {
+                    this->imageFilename = "EvilTwinAvatar";
+                    break;
+                }
             default:
+                this->imageFilename = "noavatar.jpg";
                 // do nothing.  
                 break;
         }

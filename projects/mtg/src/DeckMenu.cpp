@@ -243,9 +243,26 @@ void DeckMenu::Render()
                 // display the avatar image
                 if (currentMenuItem->imageFilename.size() > 0)
                 {
-                    JQuadPtr quad = WResourceManager::Instance()->RetrieveTempQuad(currentMenuItem->imageFilename, TEXTURE_SUB_AVATAR);
-                    if (quad.get())
-                        renderer->RenderQuad(quad.get(), avatarX, avatarY);
+                    JQuadPtr quad;
+                    if(currentMenuItem->imageFilename == "EvilTwinAvatar")
+                    {
+                        quad = WResourceManager::Instance()->RetrieveTempQuad("avatar.jpg", TEXTURE_SUB_AVATAR);
+                        if(quad.get())
+                        {
+                            JQuad * evil = quad.get();
+                            evil->SetHFlip(true);
+                            evil->SetColor(red);
+                            renderer->RenderQuad(quad.get(), avatarX, avatarY);
+                            evil = NULL;
+                        }
+                    }
+                    else
+                    {
+                        quad = WResourceManager::Instance()->RetrieveTempQuad(currentMenuItem->imageFilename, TEXTURE_SUB_AVATAR);
+                        if (quad.get())
+                            renderer->RenderQuad(quad.get(), avatarX, avatarY);
+
+                    }
                 }
                 
                 // fill in the description part of the screen
