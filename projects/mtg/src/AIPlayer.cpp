@@ -1251,7 +1251,14 @@ AIPlayer * AIPlayerFactory::createAIPlayer(MTGAllCards * collection, Player * op
             deckid = 1 + WRand() % (nbdecks);
         }
         sprintf(deckFile, JGE_GET_RES("ai/baka/deck%i.txt").c_str(), deckid);
-        sprintf(avatarFile, "avatar%i.jpg", deckid);
+        int tempDeckId = deckid;
+        int avatarId = 0;
+        while(tempDeckId > 100)
+        {
+            tempDeckId -= 100;
+            avatarId = tempDeckId;
+        }
+        sprintf(avatarFile, "avatar%i.jpg", avatarId);
         sprintf(deckFileSmall, "ai_baka_deck%i", deckid);
     }
 

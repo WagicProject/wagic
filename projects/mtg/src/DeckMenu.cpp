@@ -253,7 +253,6 @@ void DeckMenu::Render()
                         {
                             JQuad * evil = quad.get();
                             evil->SetHFlip(true);
-                            evil->SetColor(kRedColor);
                             renderer->RenderQuad(quad.get(), avatarX, avatarY);
                             evil = NULL;
                         }
