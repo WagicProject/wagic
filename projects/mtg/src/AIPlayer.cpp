@@ -1222,7 +1222,7 @@ AIPlayer * AIPlayerFactory::createAIPlayer(MTGAllCards * collection, Player * op
     { //Evil twin
         sprintf(deckFile, "%s", opponent->deckFile.c_str());
         DebugTrace("Evil Twin => " << opponent->deckFile);
-        avatarFilename = "EvilTwinAvatar";
+        avatarFilename = "avatar.jpg";
         sprintf(deckFileSmall, "%s", "ai_baka_eviltwin");
     }
     else
@@ -1349,25 +1349,19 @@ AIPlayerBaka::AIPlayerBaka(string file, string fileSmall, string avatarFile, MTG
     AIPlayer(file, fileSmall, deck)
 {
 
-    if (avatarFile == "EvilTwinAvatar")
+    mAvatarTex = WResourceManager::Instance()->RetrieveTexture(avatarFile, RETRIEVE_LOCK, TEXTURE_SUB_AVATAR);
+    if (!mAvatarTex)
     {
-        mAvatarTex = WResourceManager::Instance()->RetrieveTexture("avatar.jpg", RETRIEVE_LOCK, TEXTURE_SUB_AVATAR);
-        mAvatar = WResourceManager::Instance()->RetrieveQuad("avatar.jpg", 0, 0, 35, 50, "bakaAvatar", RETRIEVE_NORMAL, TEXTURE_SUB_AVATAR);
-        mAvatar->SetHFlip(true);
-    }
-    else
-    {
+        avatarFile = "baka.jpg";
         mAvatarTex = WResourceManager::Instance()->RetrieveTexture(avatarFile, RETRIEVE_LOCK, TEXTURE_SUB_AVATAR);
-        if (!mAvatarTex)
-        {
-            avatarFile = "baka.jpg";
-            mAvatarTex = WResourceManager::Instance()->RetrieveTexture(avatarFile, RETRIEVE_LOCK, TEXTURE_SUB_AVATAR);
-        }
-
-        if (mAvatarTex)
-            mAvatar = WResourceManager::Instance()->RetrieveQuad(avatarFile, 0, 0, 35, 50, "bakaAvatar", RETRIEVE_NORMAL,
-        	    TEXTURE_SUB_AVATAR);
     }
+
+    if (mAvatarTex)
+        mAvatar = WResourceManager::Instance()->RetrieveQuad(avatarFile, 0, 0, 35, 50, "bakaAvatar", RETRIEVE_NORMAL,
+    	    TEXTURE_SUB_AVATAR);
+
+    if (fileSmall == "ai_baka_eviltwin")
+        mAvatar->SetHFlip(true);
     
     initTimer();
 }
