@@ -10,7 +10,6 @@
 #include "GameStateDuel.h"
 #include "DeckManager.h"
 
-
 const char * const MTG_LAND_TEXTS[] = { "artifact", "forest", "island", "mountain", "swamp", "plains", "other lands" };
 
 int AIAction::currentId = 0;
@@ -1216,14 +1215,14 @@ AIStats * AIPlayer::getStats()
 AIPlayer * AIPlayerFactory::createAIPlayer(MTGAllCards * collection, Player * opponent, int deckid)
 {
     char deckFile[512];
-    char avatarFile[512];
+    string avatarFilename; // default imagename
     char deckFileSmall[512];
     
     if (deckid == GameStateDuel::MENUITEM_EVIL_TWIN)
     { //Evil twin
         sprintf(deckFile, "%s", opponent->deckFile.c_str());
         DebugTrace("Evil Twin => " << opponent->deckFile);
-        sprintf(avatarFile, "%s", "baka.jpg");
+        avatarFilename = "EvilTwinAvatar";
         sprintf(deckFileSmall, "%s", "ai_baka_eviltwin");
     }
     else
@@ -1251,8 +1250,8 @@ AIPlayer * AIPlayerFactory::createAIPlayer(MTGAllCards * collection, Player * op
             deckid = 1 + WRand() % (nbdecks);
         }
         sprintf(deckFile, JGE_GET_RES("ai/baka/deck%i.txt").c_str(), deckid);
-        int avatarId = deckid % 100;
-        sprintf(avatarFile, "avatar%i.jpg", avatarId);
+        DeckMetaData *aiMeta = DeckManager::GetInstance()->getDeckMetaDataByFilename( deckFile, true);
+        avatarFilename = aiMeta->getAvatarFilename();
         sprintf(deckFileSmall, "ai_baka_deck%i", deckid);
     }
 
@@ -1264,7 +1263,8 @@ AIPlayer * AIPlayerFactory::createAIPlayer(MTGAllCards * collection, Player * op
         if ( meta->getVictoryPercentage() >= 65)
             deckSetting = HARD;
     }
-    AIPlayerBaka * baka = NEW AIPlayerBaka(deckFile, deckFileSmall, avatarFile);
+    
+    AIPlayerBaka * baka = NEW AIPlayerBaka(deckFile, deckFileSmall, avatarFilename);
     baka->deckId = deckid;
     return baka;
 }
@@ -1348,18 +1348,27 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
 AIPlayerBaka::AIPlayerBaka(string file, string fileSmall, string avatarFile, MTGDeck * deck) :
     AIPlayer(file, fileSmall, deck)
 {
-    mAvatarTex = WResourceManager::Instance()->RetrieveTexture(avatarFile, RETRIEVE_LOCK, TEXTURE_SUB_AVATAR);
 
-    if (!mAvatarTex)
+    if (avatarFile == "EvilTwinAvatar")
     {
-        avatarFile = "baka.jpg";
-        mAvatarTex = WResourceManager::Instance()->RetrieveTexture(avatarFile, RETRIEVE_LOCK, TEXTURE_SUB_AVATAR);
+        mAvatarTex = WResourceManager::Instance()->RetrieveTexture("avatar.jpg", RETRIEVE_LOCK, TEXTURE_SUB_AVATAR);
+        mAvatar = WResourceManager::Instance()->RetrieveQuad("avatar.jpg", 0, 0, 35, 50, "bakaAvatar", RETRIEVE_NORMAL, TEXTURE_SUB_AVATAR);
+        mAvatar->SetHFlip(true);
     }
+    else
+    {
+        mAvatarTex = WResourceManager::Instance()->RetrieveTexture(avatarFile, RETRIEVE_LOCK, TEXTURE_SUB_AVATAR);
+        if (!mAvatarTex)
+        {
+            avatarFile = "baka.jpg";
+            mAvatarTex = WResourceManager::Instance()->RetrieveTexture(avatarFile, RETRIEVE_LOCK, TEXTURE_SUB_AVATAR);
+        }
 
-    if (mAvatarTex)
-        mAvatar = WResourceManager::Instance()->RetrieveQuad(avatarFile, 0, 0, 35, 50, "bakaAvatar", RETRIEVE_NORMAL,
-        	TEXTURE_SUB_AVATAR);
-
+        if (mAvatarTex)
+            mAvatar = WResourceManager::Instance()->RetrieveQuad(avatarFile, 0, 0, 35, 50, "bakaAvatar", RETRIEVE_NORMAL,
+        	    TEXTURE_SUB_AVATAR);
+    }
+    
     initTimer();
 }
 
