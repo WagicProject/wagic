@@ -70,12 +70,7 @@ void DeckMetaData::LoadStats()
 // since we only have 100 stock avatar images, we need to recycle the images for deck numbers > 99
 int DeckMetaData::getAvatarId()
 {
-    if ( mDeckId < 101 )
-        return mDeckId;
-    int tempDeckId = mDeckId;
-    int avatarId = 0;
-    avatarId = tempDeckId%100;
-    return avatarId;
+    return mDeckId % 100;
 }
 
 void DeckMetaData::LoadDeck()
