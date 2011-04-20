@@ -25,6 +25,11 @@ namespace
 
     const std::string kGenericCard("back.jpg");
     const std::string kGenericThumbCard("back_thumb.jpg");
+
+    // mutex meant for the cache map
+    boost::mutex sCacheMutex;
+    // mutex meant to protect against unthread-safe calls into JFileSystem, etc.
+    boost::mutex sLoadFunctionMutex;
 }
 
 WResourceManager* WResourceManager::sInstance = NULL;
@@ -1161,7 +1166,7 @@ cacheItem* WCache<cacheItem, cacheActual>::Get(int id, const string& filename, i
     //Not managed, so look in cache.
     if (style != RETRIEVE_MANAGE)
     {
-        boost::mutex::scoped_lock lock(mCacheMutex);
+        boost::mutex::scoped_lock lock(sCacheMutex);
         //DebugTrace("Cache lock acquired, looking up index " << lookup);
         it = cache.find(lookup);
         //Well, we've found something...
@@ -1216,7 +1221,7 @@ cacheItem* WCache<cacheItem, cacheActual>::LoadIntoCache(int id, const string& f
     // the shared cache container, and this separate lock was added to insulate us against thread safety issues in JGE. In particular,
     // JFileSystem is particularly unsafe, as it assumes that we have only one zip loaded at a time... rather than add mutexes in JGE,
     // I've kept it local to here.
-    boost::mutex::scoped_lock functionLock(mLoadFunctionMutex);
+    boost::mutex::scoped_lock functionLock(sLoadFunctionMutex);
     cacheItem* item = AttemptNew(filename, submode);
     //assert(item);
     if (style == RETRIEVE_MANAGE)
@@ -1234,7 +1239,7 @@ cacheItem* WCache<cacheItem, cacheActual>::LoadIntoCache(int id, const string& f
     {
         if (mError == CACHE_ERROR_404 || item)
         {
-            boost::mutex::scoped_lock lock(mCacheMutex);
+            boost::mutex::scoped_lock lock(sCacheMutex);
             cache[id] = item;
             DebugTrace("inserted item ptr " << ToHex(item) << " at index " << id);
         }
@@ -1331,7 +1336,7 @@ bool WCache<cacheItem, cacheActual>::Cleanup()
     // this looks redundant, but the idea is, don't grab the mutex if there's no work to do
     if (RequiresOldItemCleanup())
     {
-        boost::mutex::scoped_lock lock(mCacheMutex);
+        boost::mutex::scoped_lock lock(sCacheMutex);
         while (RequiresOldItemCleanup())
         {
             if (!RemoveOldest())

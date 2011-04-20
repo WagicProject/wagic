@@ -4,7 +4,6 @@
 #include "MTGDeck.h"
 #include "MTGCard.h"
 #include "utils.h"
-#include "Threading.h"
 #include "WResourceManager.h"
 #include "WCachedResource.h"
 #include "WFont.h"
@@ -120,11 +119,6 @@ protected:
 
     unsigned int cacheItems;
     int mError;
-
-    // mutex meant for the cache map
-    boost::mutex mCacheMutex;
-    // mutex meant to protect against unthread-safe calls into JFileSystem, etc.
-    boost::mutex mLoadFunctionMutex;
 };
 
 struct WManagedQuad
