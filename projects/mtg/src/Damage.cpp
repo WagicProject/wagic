@@ -94,7 +94,7 @@ int Damage::resolve()
         }
         if ((_target)->has(Constants::ABSORB))
         {
-            damage -=  (_target)->basicAbilities[Constants::ABSORB];
+            damage -=  (_target)->basicAbilities[(int)Constants::ABSORB];
             if(damage < 0)
                 damage = 0;
         }

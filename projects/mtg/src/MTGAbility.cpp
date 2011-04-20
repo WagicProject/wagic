@@ -2984,13 +2984,13 @@ int AbilityFactory::abilityEfficiency(MTGAbility * a, Player * p, int mode, Targ
         return BAKA_EFFECT_GOOD;
 
     map<int, bool> badAbilities;
-    badAbilities[Constants::CANTATTACK] = true;
-    badAbilities[Constants::CANTBLOCK] = true;
-    badAbilities[Constants::CLOUD] = true;
-    badAbilities[Constants::DEFENDER] = true;
-    badAbilities[Constants::DOESNOTUNTAP] = true;
-    badAbilities[Constants::MUSTATTACK] = true;
-    badAbilities[Constants::CANTREGEN] = true;
+    badAbilities[(int)Constants::CANTATTACK] = true;
+    badAbilities[(int)Constants::CANTBLOCK] = true;
+    badAbilities[(int)Constants::CLOUD] = true;
+    badAbilities[(int)Constants::DEFENDER] = true;
+    badAbilities[(int)Constants::DOESNOTUNTAP] = true;
+    badAbilities[(int)Constants::MUSTATTACK] = true;
+    badAbilities[(int)Constants::CANTREGEN] = true;
 
     if (AInstantBasicAbilityModifierUntilEOT * abi = dynamic_cast<AInstantBasicAbilityModifierUntilEOT *>(a))
     {
@@ -3771,40 +3771,40 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
      * It shouldn't be necessary to add an object. State based abilities could do the trick
      */
 
-    if (card->basicAbilities[Constants::EXALTED])
+    if (card->basicAbilities[(int)Constants::EXALTED])
     {
         game->addObserver(NEW AExalted(_id, card));
     }
 
-    if (card->basicAbilities[Constants::FLANKING])
+    if (card->basicAbilities[(int)Constants::FLANKING])
     {
         game->addObserver(NEW AFlankerAbility(_id, card));
     }
 
     // Tested works the first r10 did not function because of the mistake in the array of the definition
-    if (card->basicAbilities[Constants::FORESTHOME])
+    if (card->basicAbilities[(int)Constants::FORESTHOME])
     {
         game->addObserver(NEW AStrongLandLinkCreature(_id, card, "forest"));
     }
-    if (card->basicAbilities[Constants::ISLANDHOME])
+    if (card->basicAbilities[(int)Constants::ISLANDHOME])
     {
         game->addObserver(NEW AStrongLandLinkCreature(_id, card, "island"));
     }
-    if (card->basicAbilities[Constants::MOUNTAINHOME])
+    if (card->basicAbilities[(int)Constants::MOUNTAINHOME])
     {
         game->addObserver(NEW AStrongLandLinkCreature(_id, card, "moutain"));
     }
-    if (card->basicAbilities[Constants::SWAMPHOME])
+    if (card->basicAbilities[(int)Constants::SWAMPHOME])
     {
         game->addObserver(NEW AStrongLandLinkCreature(_id, card, "swamp"));
     }
-    if (card->basicAbilities[Constants::PLAINSHOME])
+    if (card->basicAbilities[(int)Constants::PLAINSHOME])
     {
         game->addObserver(NEW AStrongLandLinkCreature(_id, card, "plains"));
     }
 
     if(card->previous && card->previous->previous && card->previous->previous->suspended)
-        card->basicAbilities[Constants::HASTE] = 1;
+        card->basicAbilities[(int)Constants::HASTE] = 1;
 
     if (card->hasType(Subtypes::TYPE_INSTANT) || card->hasType(Subtypes::TYPE_SORCERY))
     {

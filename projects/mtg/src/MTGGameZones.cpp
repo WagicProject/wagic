@@ -697,7 +697,7 @@ void MTGInPlay::untapAll()
     {
         MTGCardInstance * card = cards[i];
         card->setUntapping();
-        if (!card->basicAbilities[Constants::DOESNOTUNTAP])
+        if (!card->basicAbilities[(int)Constants::DOESNOTUNTAP])
         {
             if (card->frozen < 1)
             {

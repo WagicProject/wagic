@@ -173,7 +173,7 @@ void MTGCardInstance::initMTGCI()
     currentZone = NULL;
     data = this; //an MTGCardInstance point to itself for data, allows to update it without killing the underlying database item
 
-    if (basicAbilities[Constants::CHANGELING])
+    if (basicAbilities[(int)Constants::CHANGELING])
     {//if the card is a changeling.
         for (int i = Subtypes::LAST_TYPE + 1;; i++)
         {
@@ -304,12 +304,12 @@ int MTGCardInstance::afterDamage()
 int MTGCardInstance::bury()
 {
     Player * p = controller();
-    if (basicAbilities[Constants::EXILEDEATH])
+    if (basicAbilities[(int)Constants::EXILEDEATH])
     {
         p->game->putInZone(this, p->game->inPlay, owner->game->exile);
         return 1;
     }
-    if (!basicAbilities[Constants::INDESTRUCTIBLE])
+    if (!basicAbilities[(int)Constants::INDESTRUCTIBLE])
     {
         p->game->putInZone(this, p->game->inPlay, owner->game->graveyard);
         return 1;
@@ -512,7 +512,7 @@ int MTGCardInstance::hasSummoningSickness()
 {
     if (!summoningSickness)
         return 0;
-    if (basicAbilities[Constants::HASTE])
+    if (basicAbilities[(int)Constants::HASTE])
         return 0;
     if (!isCreature())
         return 0;
@@ -540,7 +540,7 @@ int MTGCardInstance::canAttack()
         return 0;
     if (hasSummoningSickness())
         return 0;
-    if ((basicAbilities[Constants::DEFENSER] || basicAbilities[Constants::CANTATTACK]) && !basicAbilities[Constants::CANATTACK])
+    if ((basicAbilities[(int)Constants::DEFENSER] || basicAbilities[(int)Constants::CANTATTACK]) && !basicAbilities[(int)Constants::CANATTACK])
         return 0;
     if (!isCreature())
         return 0;
@@ -569,7 +569,7 @@ int MTGCardInstance::canBlock()
 {
     if (tapped)
         return 0;
-    if (basicAbilities[Constants::CANTBLOCK])
+    if (basicAbilities[(int)Constants::CANTBLOCK])
         return 0;
     if (!isCreature())
         return 0;
@@ -591,19 +591,19 @@ int MTGCardInstance::canBlock(MTGCardInstance * opponent)
         return 0;
     if (opponent->cantBeBlockedBy(this))
         return 0;
-    if (opponent->basicAbilities[Constants::UNBLOCKABLE])
+    if (opponent->basicAbilities[(int)Constants::UNBLOCKABLE])
         return 0;
-    if (opponent->basicAbilities[Constants::ONEBLOCKER] && opponent->blocked)
+    if (opponent->basicAbilities[(int)Constants::ONEBLOCKER] && opponent->blocked)
         return 0;
-    if(opponent->basicAbilities[Constants::STRONG] && power < opponent->power)
+    if(opponent->basicAbilities[(int)Constants::STRONG] && power < opponent->power)
         return 0;
-    if(this->basicAbilities[Constants::WEAK] && power < opponent->power)
+    if(this->basicAbilities[(int)Constants::WEAK] && power < opponent->power)
         return 0;
-    if (opponent->basicAbilities[Constants::FEAR] && !(this->hasType(Subtypes::TYPE_ARTIFACT) || this->hasColor(Constants::MTG_COLOR_BLACK)))
+    if (opponent->basicAbilities[(int)Constants::FEAR] && !(this->hasType(Subtypes::TYPE_ARTIFACT) || this->hasColor(Constants::MTG_COLOR_BLACK)))
         return 0;
 
     //intimidate
-    if (opponent->basicAbilities[Constants::INTIMIDATE] && !(this->hasType(Subtypes::TYPE_ARTIFACT)))
+    if (opponent->basicAbilities[(int)Constants::INTIMIDATE] && !(this->hasType(Subtypes::TYPE_ARTIFACT)))
     {
         int canblock = 0;
         for (int i = Constants::MTG_COLOR_GREEN; i <= Constants::MTG_COLOR_WHITE; ++i)
@@ -618,47 +618,47 @@ int MTGCardInstance::canBlock(MTGCardInstance * opponent)
             return 0;
     }
 
-    if (opponent->basicAbilities[Constants::FLYING] && !(basicAbilities[Constants::FLYING] || basicAbilities[Constants::REACH]))
+    if (opponent->basicAbilities[(int)Constants::FLYING] && !(basicAbilities[(int)Constants::FLYING] || basicAbilities[(int)Constants::REACH]))
         return 0;
     //Can block only creatures with flying if has cloud
-    if (basicAbilities[Constants::CLOUD] && !(opponent->basicAbilities[Constants::FLYING]))
+    if (basicAbilities[(int)Constants::CLOUD] && !(opponent->basicAbilities[(int)Constants::FLYING]))
         return 0;
     // If opponent has shadow and a creature does not have either shadow or reachshadow it cannot be blocked
-    if (opponent->basicAbilities[Constants::SHADOW] && !(basicAbilities[Constants::SHADOW]
-                    || basicAbilities[Constants::REACHSHADOW]))
+    if (opponent->basicAbilities[(int)Constants::SHADOW] && !(basicAbilities[(int)Constants::SHADOW]
+                    || basicAbilities[(int)Constants::REACHSHADOW]))
         return 0;
     // If opponent does not have shadow and a creature has shadow it cannot be blocked
-    if (!opponent->basicAbilities[Constants::SHADOW] && basicAbilities[Constants::SHADOW])
+    if (!opponent->basicAbilities[(int)Constants::SHADOW] && basicAbilities[(int)Constants::SHADOW])
         return 0;
-    if (opponent->basicAbilities[Constants::HORSEMANSHIP] && !basicAbilities[Constants::HORSEMANSHIP])
+    if (opponent->basicAbilities[(int)Constants::HORSEMANSHIP] && !basicAbilities[(int)Constants::HORSEMANSHIP])
         return 0;
-    if (opponent->basicAbilities[Constants::SWAMPWALK] && controller()->game->inPlay->hasType("swamp"))
+    if (opponent->basicAbilities[(int)Constants::SWAMPWALK] && controller()->game->inPlay->hasType("swamp"))
         return 0;
-    if (opponent->basicAbilities[Constants::FORESTWALK] && controller()->game->inPlay->hasType("forest"))
+    if (opponent->basicAbilities[(int)Constants::FORESTWALK] && controller()->game->inPlay->hasType("forest"))
         return 0;
-    if (opponent->basicAbilities[Constants::ISLANDWALK] && controller()->game->inPlay->hasType("island"))
+    if (opponent->basicAbilities[(int)Constants::ISLANDWALK] && controller()->game->inPlay->hasType("island"))
         return 0;
-    if (opponent->basicAbilities[Constants::MOUNTAINWALK] && controller()->game->inPlay->hasType("mountain"))
+    if (opponent->basicAbilities[(int)Constants::MOUNTAINWALK] && controller()->game->inPlay->hasType("mountain"))
         return 0;
-    if (opponent->basicAbilities[Constants::PLAINSWALK] && controller()->game->inPlay->hasType("plains"))
+    if (opponent->basicAbilities[(int)Constants::PLAINSWALK] && controller()->game->inPlay->hasType("plains"))
         return 0;
-    if (opponent->basicAbilities[Constants::LEGENDARYWALK] && controller()->game->inPlay->hasPrimaryType("legendary","land"))
+    if (opponent->basicAbilities[(int)Constants::LEGENDARYWALK] && controller()->game->inPlay->hasPrimaryType("legendary","land"))
         return 0;
-    if (opponent->basicAbilities[Constants::DESERTWALK] && controller()->game->inPlay->hasSpecificType("land","desert"))
+    if (opponent->basicAbilities[(int)Constants::DESERTWALK] && controller()->game->inPlay->hasSpecificType("land","desert"))
         return 0;
-    if (opponent->basicAbilities[Constants::SNOWSWAMPWALK] && controller()->game->inPlay->hasSpecificType("snow","swamp"))
+    if (opponent->basicAbilities[(int)Constants::SNOWSWAMPWALK] && controller()->game->inPlay->hasSpecificType("snow","swamp"))
         return 0;
-    if (opponent->basicAbilities[Constants::SNOWFORESTWALK] && controller()->game->inPlay->hasSpecificType("snow","forest"))
+    if (opponent->basicAbilities[(int)Constants::SNOWFORESTWALK] && controller()->game->inPlay->hasSpecificType("snow","forest"))
         return 0;
-    if (opponent->basicAbilities[Constants::SNOWISLANDWALK] && controller()->game->inPlay->hasSpecificType("snow","island"))
+    if (opponent->basicAbilities[(int)Constants::SNOWISLANDWALK] && controller()->game->inPlay->hasSpecificType("snow","island"))
         return 0;
-    if (opponent->basicAbilities[Constants::SNOWMOUNTAINWALK] && controller()->game->inPlay->hasSpecificType("snow","mountain"))
+    if (opponent->basicAbilities[(int)Constants::SNOWMOUNTAINWALK] && controller()->game->inPlay->hasSpecificType("snow","mountain"))
         return 0;
-    if (opponent->basicAbilities[Constants::SNOWPLAINSWALK] && controller()->game->inPlay->hasSpecificType("snow","plains"))
+    if (opponent->basicAbilities[(int)Constants::SNOWPLAINSWALK] && controller()->game->inPlay->hasSpecificType("snow","plains"))
         return 0;
-    if (opponent->basicAbilities[Constants::SNOWWALK] && controller()->game->inPlay->hasPrimaryType("snow","land"))
+    if (opponent->basicAbilities[(int)Constants::SNOWWALK] && controller()->game->inPlay->hasPrimaryType("snow","land"))
         return 0;
-    if (opponent->basicAbilities[Constants::NONBASICWALK] && controller()->game->inPlay->hasTypeButNotType("land","basic"))
+    if (opponent->basicAbilities[(int)Constants::NONBASICWALK] && controller()->game->inPlay->hasTypeButNotType("land","basic"))
         return 0;
     return 1;
 }
@@ -674,7 +674,7 @@ MTGCardInstance * MTGCardInstance::getNextPartner()
     MTGCardInstance * bandingPartner = inplay->getNextAttacker(banding);
     while (bandingPartner)
     {
-        if (basicAbilities[Constants::BANDING] || bandingPartner->basicAbilities[Constants::BANDING])
+        if (basicAbilities[(int)Constants::BANDING] || bandingPartner->basicAbilities[(int)Constants::BANDING])
             return bandingPartner;
         bandingPartner = inplay->getNextAttacker(bandingPartner);
     }

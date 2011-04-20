@@ -3540,11 +3540,11 @@ public:
         {
             if (source->controller()->opponent()->game->inPlay->hasType(land))
             {
-                source->basicAbilities[Constants::CANTATTACK] = 0;
+                source->basicAbilities[(int)Constants::CANTATTACK] = 0;
             }
             else
             {
-                source->basicAbilities[Constants::CANTATTACK] = 1;
+                source->basicAbilities[(int)Constants::CANTATTACK] = 1;
             }
         }
         Player * player = source->controller();
@@ -4772,7 +4772,7 @@ public:
         {
             initThisTurn = 0;
             for(unsigned int i = 0; i < effectedCards.size(); i++)
-            effectedCards.at(i)->basicAbilities[Constants::CANTATTACK] = 0;
+            effectedCards.at(i)->basicAbilities[(int)Constants::CANTATTACK] = 0;
             effectedCards.clear();
         }
         if (initThisTurn && currentPhase == Constants::MTG_PHASE_COMBATBEGIN && game->currentPlayer != source->controller())
@@ -4783,7 +4783,7 @@ public:
                 MTGCardInstance * card = zone->cards[i];
                 if (!card->has(Constants::FLYING) && !card->has(Constants::ISLANDWALK) && !card->has(Constants::CANTATTACK))
                 {
-                    card->basicAbilities[Constants::CANTATTACK] = 1;
+                    card->basicAbilities[(int)Constants::CANTATTACK] = 1;
                     effectedCards.push_back(card);
                 }
             }

@@ -295,14 +295,14 @@ int MTGPutInPlayRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
     Player * currentPlayer = game->currentPlayer;
     if (!player->game->hand->hasCard(card))
         return 0;
-    if ((game->turn < 1) && (cardsinhand != 0) && (card->basicAbilities[Constants::LEYLINE])
+    if ((game->turn < 1) && (cardsinhand != 0) && (card->basicAbilities[(int)Constants::LEYLINE])
         && game->currentGamePhase == Constants::MTG_PHASE_FIRSTMAIN
         && game->players[0]->game->graveyard->nb_cards == 0
         && game->players[0]->game->exile->nb_cards == 0
         )
     {
 
-        if (card->basicAbilities[Constants::LEYLINE])
+        if (card->basicAbilities[(int)Constants::LEYLINE])
         {
             MTGCardInstance * copy = player->game->putInZone(card, player->game->hand, player->game->temp);
             Spell * spell = NEW Spell(copy);
@@ -1631,7 +1631,7 @@ int MTGPersistRule::receiveEvent(WEvent * event)
     {
         WEventZoneChange * e = (WEventZoneChange *) event;
         MTGCardInstance * card = e->card->previous;
-        if (card && card->basicAbilities[Constants::PERSIST] && !card->counters->hasCounter(-1, -1))
+        if (card && card->basicAbilities[(int)Constants::PERSIST] && !card->counters->hasCounter(-1, -1))
         {
             int ok = 0;
             for (int i = 0; i < 2; i++)
@@ -1704,7 +1704,7 @@ int MTGUnearthRule::receiveEvent(WEvent * event)
             e->card->fresh = 1;
         }
 
-        if (card && card->basicAbilities[Constants::UNEARTH])
+        if (card && card->basicAbilities[(int)Constants::UNEARTH])
         {
             int ok = 0;
             for (int i = 0; i < 2; i++)
@@ -1911,7 +1911,7 @@ int MTGLifelinkRule::receiveEvent(WEvent * event)
         WEventDamage * e = (WEventDamage *) event;
         Damage * d = e->damage;
         MTGCardInstance * card = d->source;
-        if (d->damage > 0 && card && card->basicAbilities[Constants::LIFELINK])
+        if (d->damage > 0 && card && card->basicAbilities[(int)Constants::LIFELINK])
         {
             card->controller()->gainLife(d->damage);
             return 1;
@@ -1962,7 +1962,7 @@ int MTGDeathtouchRule::receiveEvent(WEvent * event)
             return 0;
         MTGCardInstance * _target = (MTGCardInstance *) (d->target);
 
-        if (card->basicAbilities[Constants::DEATHTOUCH])
+        if (card->basicAbilities[(int)Constants::DEATHTOUCH])
         {
             _target->destroy();
             return 1;
