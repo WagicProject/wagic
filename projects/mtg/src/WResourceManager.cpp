@@ -1,9 +1,10 @@
 #include "PrecompiledHeader.h"
 
 #include "GameOptions.h"
-#include "CacheEngine.h"
-#include "WResourceManager.h"
+#include "WResourceManagerImpl.h"
 #include "StyleManager.h"
+
+#include "CacheEngine.h"
 
 #if defined (WIN32)
 #include <sys/types.h>
@@ -29,12 +30,29 @@ namespace
 
 WResourceManager* WResourceManager::sInstance = NULL;
 
-int WResourceManager::RetrieveError()
+WResourceManager* WResourceManager::Instance()
+{
+	if (sInstance == NULL)
+	{
+		sInstance = NEW ResourceManagerImpl;
+	}
+
+	return sInstance;
+}
+
+void WResourceManager::Terminate()
+{
+	if (sInstance)
+		SAFE_DELETE(sInstance);
+}
+
+
+int ResourceManagerImpl::RetrieveError()
 {
     return lastError;
 }
 
-bool WResourceManager::RemoveOldest()
+bool ResourceManagerImpl::RemoveOldest()
 {
     if (sampleWCache.RemoveOldest()) return true;
     if (textureWCache.RemoveOldest()) return true;
@@ -43,11 +61,11 @@ bool WResourceManager::RemoveOldest()
     return false;
 }
 
-//WResourceManager
-void WResourceManager::DebugRender()
+//ResourceManagerImpl
+void ResourceManagerImpl::DebugRender()
 {
     JRenderer* renderer = JRenderer::GetInstance();
-    WFont * font = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
+    WFont * font = ResourceManagerImpl::Instance()->GetWFont(Fonts::MAIN_FONT);
     if (!font || !renderer) return;
 
     font->SetColor(ARGB(255,255,255,255));
@@ -87,7 +105,7 @@ void WResourceManager::DebugRender()
 #endif
 }
 
-unsigned long WResourceManager::Size()
+unsigned long ResourceManagerImpl::Size()
 {
     unsigned long res = 0;
     res += textureWCache.totalSize;
@@ -96,7 +114,7 @@ unsigned long WResourceManager::Size()
     return res;
 }
 
-unsigned long WResourceManager::SizeCached()
+unsigned long ResourceManagerImpl::SizeCached()
 {
     unsigned long res = 0;
     res += textureWCache.cacheSize;
@@ -105,7 +123,7 @@ unsigned long WResourceManager::SizeCached()
     return res;
 }
 
-unsigned long WResourceManager::SizeManaged()
+unsigned long ResourceManagerImpl::SizeManaged()
 {
     unsigned long res = 0;
     if (textureWCache.totalSize > textureWCache.cacheSize) res += textureWCache.totalSize - textureWCache.cacheSize;
@@ -117,7 +135,7 @@ unsigned long WResourceManager::SizeManaged()
     return res;
 }
 
-unsigned int WResourceManager::Count()
+unsigned int ResourceManagerImpl::Count()
 {
     unsigned int count = 0;
     count += textureWCache.cacheItems;
@@ -129,7 +147,7 @@ unsigned int WResourceManager::Count()
     return count;
 }
 
-unsigned int WResourceManager::CountCached()
+unsigned int ResourceManagerImpl::CountCached()
 {
     unsigned int count = 0;
     count += textureWCache.cacheItems;
@@ -137,7 +155,7 @@ unsigned int WResourceManager::CountCached()
     count += psiWCache.cacheItems;
     return count;
 }
-unsigned int WResourceManager::CountManaged()
+unsigned int ResourceManagerImpl::CountManaged()
 {
     unsigned int count = 0;
     count += textureWCache.managed.size();
@@ -146,14 +164,14 @@ unsigned int WResourceManager::CountManaged()
     return count;
 }
 
-unsigned int WResourceManager::nowTime()
+unsigned int ResourceManagerImpl::nowTime()
 {
     if (lastTime > MAX_CACHE_TIME) FlattenTimes();
 
     return ++lastTime;
 }
 
-void WResourceManager::FlattenTimes()
+void ResourceManagerImpl::FlattenTimes()
 {
     unsigned int t;
     lastTime = sampleWCache.Flatten();
@@ -165,9 +183,9 @@ void WResourceManager::FlattenTimes()
     if (t > lastTime) lastTime = t;
 }
 
-WResourceManager::WResourceManager()
+ResourceManagerImpl::ResourceManagerImpl()
 {
-    DebugTrace("Init WResourceManager : " << this);
+    DebugTrace("Init ResourceManagerImpl : " << this);
 #ifdef DEBUG_CACHE
     menuCached = 0;
 #endif
@@ -189,21 +207,21 @@ WResourceManager::WResourceManager()
 #endif
 }
 
-WResourceManager::~WResourceManager()
+ResourceManagerImpl::~ResourceManagerImpl()
 {
-    LOG("==Destroying WResourceManager==");
+    LOG("==Destroying ResourceManagerImpl==");
     RemoveWFonts();
 
     CacheEngine::Terminate();
-    LOG("==Successfully Destroyed WResourceManager==");
+    LOG("==Successfully Destroyed ResourceManagerImpl==");
 }
 
-bool WResourceManager::IsThreaded()
+bool ResourceManagerImpl::IsThreaded()
 {
     return CacheEngine::IsThreaded();
 }
 
-JQuadPtr WResourceManager::RetrieveCard(MTGCard * card, int style, int submode)
+JQuadPtr ResourceManagerImpl::RetrieveCard(MTGCard * card, int style, int submode)
 {
     //Cards are never, ever resource managed, so just check cache.
     if (!card || options[Options::DISABLECARDS].number) return JQuadPtr();
@@ -232,7 +250,7 @@ JQuadPtr WResourceManager::RetrieveCard(MTGCard * card, int style, int submode)
     return JQuadPtr();
 }
 
-int WResourceManager::AddQuadToManaged(const WManagedQuad& inQuad)
+int ResourceManagerImpl::AddQuadToManaged(const WManagedQuad& inQuad)
 {
     int id = mIDLookupMap.size();
     mIDLookupMap.insert(make_pair(id, inQuad.resname));
@@ -241,7 +259,7 @@ int WResourceManager::AddQuadToManaged(const WManagedQuad& inQuad)
     return id;
 }
 
-int WResourceManager::CreateQuad(const string &quadName, const string &textureName, float x, float y, float width, float height)
+int ResourceManagerImpl::CreateQuad(const string &quadName, const string &textureName, float x, float y, float width, float height)
 {
     if (!quadName.size() || !textureName.size()) return INVALID_ID;
 
@@ -276,7 +294,7 @@ int WResourceManager::CreateQuad(const string &quadName, const string &textureNa
     return id;
 }
 
-JQuadPtr WResourceManager::GetQuad(const string &quadName)
+JQuadPtr ResourceManagerImpl::GetQuad(const string &quadName)
 {
     JQuadPtr result;
     ManagedQuadMap::const_iterator found = mManagedQuads.find(quadName);
@@ -288,7 +306,7 @@ JQuadPtr WResourceManager::GetQuad(const string &quadName)
     return result;
 }
 
-JQuadPtr WResourceManager::GetQuad(int id)
+JQuadPtr ResourceManagerImpl::GetQuad(int id)
 {
     JQuadPtr result;
     if (id < 0 || id >= (int) mManagedQuads.size()) return result;
@@ -306,12 +324,12 @@ JQuadPtr WResourceManager::GetQuad(int id)
     return result;
 }
 
-JQuadPtr WResourceManager::RetrieveTempQuad(const string& filename, int submode)
+JQuadPtr ResourceManagerImpl::RetrieveTempQuad(const string& filename, int submode)
 {
     return RetrieveQuad(filename, 0, 0, 0, 0, "temporary", RETRIEVE_NORMAL, submode);
 }
 
-JQuadPtr WResourceManager::RetrieveQuad(const string& filename, float offX, float offY, float width, float height, string resname,
+JQuadPtr ResourceManagerImpl::RetrieveQuad(const string& filename, float offX, float offY, float width, float height, string resname,
     int style, int submode, int id)
 {
     //Lookup managed resources, but only with a real resname.
@@ -368,7 +386,7 @@ JQuadPtr WResourceManager::RetrieveQuad(const string& filename, float offX, floa
     return JQuadPtr();
 }
 
-void WResourceManager::Release(JTexture * tex)
+void ResourceManagerImpl::Release(JTexture * tex)
 {
     if (!tex) return;
 
@@ -393,28 +411,28 @@ void WResourceManager::Release(JTexture * tex)
     return; //Released!
 }
 
-void WResourceManager::Unmiss(string filename)
+void ResourceManagerImpl::Unmiss(string filename)
 {
     map<int, WCachedTexture*>::iterator it;
     int id = textureWCache.makeID(0, filename, CACHE_NORMAL);
     textureWCache.RemoveMiss(id);
 }
 
-void WResourceManager::ClearUnlocked()
+void ResourceManagerImpl::ClearUnlocked()
 {
     textureWCache.ClearUnlocked();
     sampleWCache.ClearUnlocked();
     psiWCache.ClearUnlocked();
 }
 
-void WResourceManager::Release(JSample * sample)
+void ResourceManagerImpl::Release(JSample * sample)
 {
     if (!sample) return;
 
     sampleWCache.Release(sample);
 }
 
-JTexture * WResourceManager::RetrieveTexture(const string& filename, int style, int submode)
+JTexture * ResourceManagerImpl::RetrieveTexture(const string& filename, int style, int submode)
 {
     //Aliases.
     if (style == RETRIEVE_THUMB)
@@ -464,7 +482,7 @@ JTexture * WResourceManager::RetrieveTexture(const string& filename, int style, 
     return NULL;
 }
 
-int WResourceManager::CreateTexture(const string &textureName)
+int ResourceManagerImpl::CreateTexture(const string &textureName)
 {
     JTexture * jtex = RetrieveTexture(textureName, RETRIEVE_MANAGE);
 
@@ -473,13 +491,13 @@ int WResourceManager::CreateTexture(const string &textureName)
     return INVALID_ID;
 }
 
-JTexture* WResourceManager::GetTexture(const string &textureName)
+JTexture* ResourceManagerImpl::GetTexture(const string &textureName)
 {
     JTexture * jtex = RetrieveTexture(textureName, RETRIEVE_RESOURCE);
     return jtex;
 }
 
-JTexture* WResourceManager::GetTexture(int id)
+JTexture* ResourceManagerImpl::GetTexture(int id)
 {
     map<int, WCachedTexture*>::iterator it;
     JTexture *jtex = NULL;
@@ -498,7 +516,7 @@ JTexture* WResourceManager::GetTexture(int id)
     return jtex;
 }
 
-hgeParticleSystemInfo * WResourceManager::RetrievePSI(const string& filename, JQuad * texture, int style, int submode)
+hgeParticleSystemInfo * ResourceManagerImpl::RetrievePSI(const string& filename, JQuad * texture, int style, int submode)
 {
     if (!texture) return NULL;
 
@@ -515,7 +533,7 @@ hgeParticleSystemInfo * WResourceManager::RetrievePSI(const string& filename, JQ
     return NULL;
 }
 
-JSample * WResourceManager::RetrieveSample(const string& filename, int style, int submode)
+JSample * ResourceManagerImpl::RetrieveSample(const string& filename, int style, int submode)
 {
     WCachedSample * tc = NULL;
     tc = sampleWCache.Retrieve(0, filename, style, submode);
@@ -531,7 +549,7 @@ JSample * WResourceManager::RetrieveSample(const string& filename, int style, in
     return NULL;
 }
 
-string WResourceManager::graphicsFile(const string& filename)
+string ResourceManagerImpl::graphicsFile(const string& filename)
 {
     char buf[512];
 
@@ -582,7 +600,7 @@ string WResourceManager::graphicsFile(const string& filename)
     return graphdir;
 }
 
-string WResourceManager::avatarFile(const string& filename)
+string ResourceManagerImpl::avatarFile(const string& filename)
 {
     char buf[512];
 
@@ -636,7 +654,7 @@ string WResourceManager::avatarFile(const string& filename)
     return "";
 }
 
-string WResourceManager::cardFile(const string& filename)
+string ResourceManagerImpl::cardFile(const string& filename)
 {
     char buf[512];
     string::size_type i = 0;
@@ -709,7 +727,7 @@ string WResourceManager::cardFile(const string& filename)
     return "";
 }
 
-string WResourceManager::musicFile(const string& filename)
+string ResourceManagerImpl::musicFile(const string& filename)
 {
     char buf[512];
 
@@ -746,7 +764,7 @@ string WResourceManager::musicFile(const string& filename)
     return "";
 }
 
-string WResourceManager::sfxFile(const string& filename)
+string ResourceManagerImpl::sfxFile(const string& filename)
 {
     char buf[512];
 
@@ -778,7 +796,7 @@ string WResourceManager::sfxFile(const string& filename)
     return "";
 }
 
-int WResourceManager::dirOK(const string& dirname)
+int ResourceManagerImpl::dirOK(const string& dirname)
 {
     char fname[512];
 
@@ -796,7 +814,7 @@ int WResourceManager::dirOK(const string& dirname)
     return 0;
 }
 
-int WResourceManager::fileOK(const string& filename, bool relative)
+int ResourceManagerImpl::fileOK(const string& filename, bool relative)
 {
     wagic::ifstream * fp = NULL;
     if (relative)
@@ -817,7 +835,7 @@ int WResourceManager::fileOK(const string& filename, bool relative)
     return result;
 }
 
-void WResourceManager::InitFonts(const std::string& inLang)
+void ResourceManagerImpl::InitFonts(const std::string& inLang)
 {
     unsigned int idOffset = 0;
 
@@ -851,7 +869,7 @@ void WResourceManager::InitFonts(const std::string& inLang)
     LoadWFont("smallface", 7, Fonts::SMALLFACE_FONT + idOffset);
 }
 
-int WResourceManager::ReloadWFonts()
+int ResourceManagerImpl::ReloadWFonts()
 {
     RemoveWFonts();
 
@@ -863,7 +881,7 @@ int WResourceManager::ReloadWFonts()
     return 1;
 }
 
-WFont* WResourceManager::LoadWFont(const string& inFontname, int inFontHeight, int inFontID)
+WFont* ResourceManagerImpl::LoadWFont(const string& inFontname, int inFontHeight, int inFontID)
 {
     WFont* font = GetWFont(inFontID);
     if (font)
@@ -885,7 +903,7 @@ WFont* WResourceManager::LoadWFont(const string& inFontname, int inFontHeight, i
     return font;
 }
 
-WFont* WResourceManager::GetWFont(int id)
+WFont* ResourceManagerImpl::GetWFont(int id)
 {
     WFont* font = NULL;
     FontMap::iterator iter = mWFontMap.find(id);
@@ -896,7 +914,7 @@ WFont* WResourceManager::GetWFont(int id)
     return font;
 }
 
-void WResourceManager::RemoveWFonts()
+void ResourceManagerImpl::RemoveWFonts()
 {
     for (FontMap::iterator font = mWFontMap.begin(); font != mWFontMap.end(); ++font)
     {
@@ -905,7 +923,7 @@ void WResourceManager::RemoveWFonts()
     mWFontMap.clear();
 }
 
-void WResourceManager::ResetCacheLimits()
+void ResourceManagerImpl::ResetCacheLimits()
 {
 #if defined WIN32 || defined LINUX || defined (IOS)
 #ifdef FORCE_LOW_CACHE_MEMORY
@@ -927,14 +945,14 @@ void WResourceManager::ResetCacheLimits()
     return;
 }
 
-JMusic * WResourceManager::ssLoadMusic(const char *fileName)
+JMusic * ResourceManagerImpl::ssLoadMusic(const char *fileName)
 {
     string file = musicFile(fileName);
     if (!file.size()) return NULL;
     return JSoundSystem::GetInstance()->LoadMusic(file.c_str());
 }
 
-void WResourceManager::Refresh()
+void ResourceManagerImpl::Refresh()
 {
     //Really easy cache relinking.
     ReloadWFonts();

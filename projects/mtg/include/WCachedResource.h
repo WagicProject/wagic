@@ -13,7 +13,7 @@
 class WResource
 {
 public:
-    friend class WResourceManager;
+    friend class ResourceManagerImpl;
     friend struct WCacheSort;
     template<class cacheItem, class cacheActual> friend class WCache;
 
@@ -39,7 +39,7 @@ protected:
 class WCachedResource: public WResource
 {
 public:
-    friend class WResourceManager;
+    friend class ResourceManagerImpl;
     template<class cacheItem,class cacheActual> friend class WCache;
 
     virtual ~WCachedResource();
@@ -52,7 +52,7 @@ public:
 class WCachedTexture: public WCachedResource
 {
 public:
-    friend class WResourceManager;
+    friend class ResourceManagerImpl;
     template<class cacheItem,class cacheActual> friend class WCache;
 
     WCachedTexture();
@@ -82,7 +82,7 @@ protected:
 class WCachedParticles: public WCachedResource
 {
 public:
-    friend class WResourceManager;
+    friend class ResourceManagerImpl;
     template<class cacheItem,class cacheActual> friend class WCache;
     WCachedParticles();
     ~WCachedParticles();
@@ -104,7 +104,7 @@ protected:
 class WCachedSample: public WCachedResource
 {
 public:
-    friend class WResourceManager;
+    friend class ResourceManagerImpl;
     template<class cacheItem,class cacheActual> friend class WCache;
 
     WCachedSample();

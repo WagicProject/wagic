@@ -3,6 +3,7 @@
 #include "WFont.h"
 #include "WResourceManager.h"
 #include "JFileSystem.h"
+#include "GameApp.h"
 
 #define ISGBK(c) ((c) > 0x80 || (c) < 0x30 || (c) == '-' || (c) == '/')
 

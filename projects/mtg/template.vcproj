@@ -983,6 +983,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\include\CacheEngine.h"
+				>
+			</File>
+			<File
 				RelativePath=".\include\CardDescriptor.h"
 				>
 			</File>
@@ -1372,6 +1376,10 @@
 			</File>
 			<File
 				RelativePath=".\include\WResourceManager.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\WResourceManagerImpl.h"
 				>
 			</File>
 		</Filter>
