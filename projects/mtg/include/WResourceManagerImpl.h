@@ -76,11 +76,6 @@ protected:
 
     int makeID(int id, const string& filename, int submode);  //Makes an ID appropriate to the submode.
 
-    inline bool RequiresMissCleanup()
-    {
-        return (cacheItems < cache.size() /*&& cache.size() - cacheItems > MAX_CACHE_MISSES*/);
-    }
-
     inline bool RequiresOldItemCleanup()
     {
         if (cacheItems > MAX_CACHE_OBJECTS || cacheItems > maxCached || cacheSize > maxCacheSize)
@@ -147,7 +142,6 @@ public:
 
     bool IsThreaded();
 
-    void Unmiss(string filename);
     JQuadPtr RetrieveCard(MTGCard * card, int style = RETRIEVE_NORMAL,int submode = CACHE_NORMAL);
     JSample * RetrieveSample(const string& filename, int style = RETRIEVE_NORMAL, int submode = CACHE_NORMAL);
     JTexture * RetrieveTexture(const string& filename, int style = RETRIEVE_NORMAL, int submode = CACHE_NORMAL);

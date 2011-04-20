@@ -411,13 +411,6 @@ void ResourceManagerImpl::Release(JTexture * tex)
     return; //Released!
 }
 
-void ResourceManagerImpl::Unmiss(string filename)
-{
-    map<int, WCachedTexture*>::iterator it;
-    int id = textureWCache.makeID(0, filename, CACHE_NORMAL);
-    textureWCache.RemoveMiss(id);
-}
-
 void ResourceManagerImpl::ClearUnlocked()
 {
     textureWCache.ClearUnlocked();
@@ -1337,15 +1330,6 @@ bool WCache<cacheItem, cacheActual>::Cleanup()
 {
     bool result = true;
     // this looks redundant, but the idea is, don't grab the mutex if there's no work to do
-    if (RequiresMissCleanup())
-    {
-        boost::mutex::scoped_lock lock(mCacheMutex);
-        while (RequiresMissCleanup())
-        {
-            RemoveMiss();
-        }
-    }
-
     if (RequiresOldItemCleanup())
     {
         boost::mutex::scoped_lock lock(mCacheMutex);
