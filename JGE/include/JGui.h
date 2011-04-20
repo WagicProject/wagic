@@ -27,6 +27,9 @@
 
 const int kCancelMenuID = -1;
 const int kInfoMenuID = -200;
+const int kRandomPlayerMenuID = -11;
+const int kRandomAIPlayerMenuID = -12;
+const int kEvilTwinMenuID = -14;
 
 class JGuiListener
 {
