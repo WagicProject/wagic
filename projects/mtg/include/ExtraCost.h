@@ -14,13 +14,12 @@ public:
   TargetChooser * tc;
   MTGCardInstance * source;
   MTGCardInstance * target;
-  MTGCardInstance * targets[20];
   std::string mCostRenderString;
 
   ExtraCost(const std::string& inCostRenderString, TargetChooser *_tc = NULL);
   virtual ~ExtraCost();
   virtual int setPayment(MTGCardInstance * card);
-  virtual int isPaymentSet() { return (target != NULL && targets != NULL); }
+  virtual int isPaymentSet() { return (target != NULL); }
   virtual int canPay() { return 1; }
   virtual int doPay() = 0;
   virtual void Render();
