@@ -621,6 +621,9 @@
     <ClInclude Include="include\CacheEngine.h">
       <Filter>inc</Filter>
     </ClInclude>
+    <ClInclude Include="include\WResourceManagerImpl.h">
+      <Filter>inc</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Makefile" />

@@ -534,6 +534,7 @@
     <ClInclude Include="include\WFont.h" />
     <ClInclude Include="include\WGui.h" />
     <ClInclude Include="include\WResourceManager.h" />
+    <ClInclude Include="include\WResourceManagerImpl.h" />
     <ClInclude Include="include\WResource_Fwd.h" />
   </ItemGroup>
   <ItemGroup>
