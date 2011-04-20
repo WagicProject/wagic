@@ -77,8 +77,8 @@ int DeckMetaData::getAvatarId()
     while(tempDeckId > 100)
     {
         tempDeckId -= 100;
-        avatarId = tempDeckId;
     }
+    avatarId = tempDeckId;
     return avatarId;
 }
 

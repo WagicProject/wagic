@@ -1256,8 +1256,8 @@ AIPlayer * AIPlayerFactory::createAIPlayer(MTGAllCards * collection, Player * op
         while(tempDeckId > 100)
         {
             tempDeckId -= 100;
-            avatarId = tempDeckId;
         }
+        avatarId = tempDeckId;
         sprintf(avatarFile, "avatar%i.jpg", avatarId);
         sprintf(deckFileSmall, "ai_baka_deck%i", deckid);
     }
