@@ -11,7 +11,7 @@
 #endif
 #include "WFont.h"
 
-#define FORCE_LOW_CACHE_MEMORY
+//#define FORCE_LOW_CACHE_MEMORY
 const unsigned int kConstrainedCacheLimit = 8 * 1024 * 1024;
 
 extern bool neofont;
