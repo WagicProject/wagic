@@ -94,6 +94,10 @@ class MTGCardInstance: public CardPrimitive, public MTGCard, public Damageable {
   MTGCardInstance * next;
   int doDamageTest;
   int summoningSickness;
+  ManaCost reducedCost;
+  ManaCost increasedCost;
+  ManaCost * getReducedManaCost();
+  ManaCost * getIncreasedManaCost();
 
   bool matchesCastFilter(int castMethod);
 

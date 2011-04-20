@@ -539,7 +539,11 @@ int ManaCost::remove(ManaCost * _cost)
         return 0;
     for (unsigned int i = 0; i < Constants::MTG_NB_COLORS; i++)
     {
-        cost[i] -= _cost->getCost(i);
+        for(int c = 0;c < _cost->getCost(i);c++)
+        {
+            if(cost[i])//remove 1 at a time to avoid dipping into negitive cost.
+                cost[i] -= 1;
+        }
     }
     return 1;
 }

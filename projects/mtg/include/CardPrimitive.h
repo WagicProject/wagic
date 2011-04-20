@@ -18,8 +18,6 @@ protected:
     ManaCost manaCost;
 
 public:
-    ManaCost reducedCost;
-    ManaCost increasedCost;
     string text;
     string name;
     int init();
@@ -74,8 +72,6 @@ public:
 
     void setManaCost(string value);
     ManaCost * getManaCost();
-    ManaCost * getReducedManaCost();
-    ManaCost * getIncreasedManaCost();
     bool isCreature();
     bool isLand();
     bool isSpell();

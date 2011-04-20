@@ -333,6 +333,15 @@ int MTGCardInstance::has(int basicAbility)
     return basicAbilities[basicAbility];
 }
 
+ManaCost* MTGCardInstance::getReducedManaCost()
+{
+    return &reducedCost;
+}
+ManaCost* MTGCardInstance::getIncreasedManaCost()
+{
+    return &increasedCost;
+}
+
 //sets card as attacked and sends events
 void MTGCardInstance::eventattacked()
 {
