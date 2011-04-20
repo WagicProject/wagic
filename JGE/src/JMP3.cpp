@@ -57,7 +57,7 @@ bool JMP3::loadModules() {
 }
 
 bool JMP3::fillBuffers() {
-   JLOG("Start JMP3::fillBuffers");
+   //JLOG("Start JMP3::fillBuffers");
    if (!init_done) {
       JLOG("JMP3::fillBuffers called but init_done is false!");
       return false;
@@ -94,7 +94,7 @@ bool JMP3::fillBuffers() {
    if (ret < 0)
       return false;
 #endif
-     JLOG("End JMP3::fillBuffers");
+     //JLOG("End JMP3::fillBuffers");
    return true;
 }
 int JMP3::GetID3TagSize(char *fname) 
