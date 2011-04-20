@@ -22,6 +22,8 @@ namespace
 	const float kVerticalScrollSpeed = 7.0f;
 
     const int DETAILED_INFO_THRESHOLD = 20;
+
+    const PIXEL_TYPE kRedColor = ARGB(0xFF, 0xFF, 0x00, 0x00);
 }
 
 hgeParticleSystem* DeckMenu::stars = NULL;
@@ -251,7 +253,7 @@ void DeckMenu::Render()
                         {
                             JQuad * evil = quad.get();
                             evil->SetHFlip(true);
-                            evil->SetColor(red);
+                            evil->SetColor(kRedColor);
                             renderer->RenderQuad(quad.get(), avatarX, avatarY);
                             evil = NULL;
                         }
