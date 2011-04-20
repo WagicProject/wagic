@@ -7,6 +7,7 @@ text=At the beginning of your upkeep, each player sacrifices a non-Vampire creat
 mana={3}{B}{B}
 type=Legendary Creature
 subtype=Vampire Shaman
+grade=crappy
 power=4
 toughness=3
 [/card]
@@ -50,6 +51,7 @@ auto=@notblocked(this):discard:1 opponent
 text=Whenever Abyssal Nightstalker attacks and isn't blocked, defending player discards a card.
 mana={3}{B}
 type=Creature
+grade=crappy
 subtype=Nightstalker
 power=2
 toughness=2
@@ -63,6 +65,7 @@ text=Flying -- Whenever Abyssal Specter deals damage to a player, that player di
 mana={2}{B}{B}
 type=Creature
 subtype=Specter
+grade=crappy
 power=2
 toughness=3
 [/card]
@@ -73,6 +76,7 @@ text=Whenever Alley Grifters becomes blocked, defending player discards a card.
 mana={1}{B}{B}
 type=Creature
 subtype=Human Mercenary
+grade=crappy
 power=2
 toughness=2
 [/card]
@@ -83,6 +87,7 @@ text=When Ashen-Skin Zubera is put into a graveyard from the battlefield, target
 mana={1}{B}
 type=Creature
 subtype=Zubera Spirit
+grade=crappy
 power=1
 toughness=2
 [/card]
@@ -92,6 +97,7 @@ auto=@movedto(graveyard) from(creature[green]|battlefield):all(trigger[to]) disc
 text=Whenever a green creature is put into a graveyard from the battlefield, its controller discards a card.
 mana={1}{B}
 type=Enchantment
+grade=crappy
 [/card]
 [card]
 name=Blazing Specter
@@ -101,6 +107,7 @@ text=Flying, haste -- Whenever Blazing Specter deals combat damage to a player, 
 mana={2}{B}{R}
 type=Creature
 subtype=Specter
+grade=crappy
 power=2
 toughness=2
 [/card]
@@ -111,6 +118,7 @@ text=Threshold - {1}{B}, {T}, Exile two cards from your graveyard: Target player
 mana={1}{B}
 type=Creature
 subtype=Human Minion
+grade=crappy
 power=1
 toughness=1
 [/card]
@@ -120,6 +128,7 @@ auto=@combatdamaged(opponent) from(this):discard:1 opponent
 text=Whenever a Goblin deals combat damage to a player, that player discards a card.
 mana={2}{B}
 type=Creature
+grade=crappy
 subtype=Human Cleric
 power=2
 toughness=1
@@ -131,6 +140,7 @@ text=When Cackling Fiend enters the battlefield, each opponent discards a card.
 mana={2}{B}{B}
 type=Creature
 subtype=Zombie
+grade=crappy
 power=2
 toughness=1
 [/card]
@@ -141,6 +151,7 @@ text={2}{B}, {T}: Target player discards a card. Activate this ability only any 
 mana={3}{B}
 type=Creature
 subtype=Kor Rogue Minion
+grade=crappy
 power=2
 toughness=2
 [/card]
@@ -151,6 +162,7 @@ text={B}: Regenerate Chilling Apparition. -- Whenever Chilling Apparition deals 
 mana={2}{B}
 type=Creature
 subtype=Spirit
+grade=crappy
 power=1
 toughness=1
 [/card]
@@ -161,6 +173,7 @@ text={2}{R}, {T}: Reveal any number of red cards in your hand. Cinder Seer deals
 mana={3}{R}
 type=Creature
 subtype=Human Wizard
+grade=crappy
 power=1
 toughness=1
 [/card]
@@ -172,6 +185,7 @@ text={T}: Target player discards a card. Activate this ability only during your 
 mana={4}{B}
 type=Creature
 subtype=Elemental Shaman
+grade=crappy
 power=3
 toughness=2
 [/card]
@@ -182,6 +196,7 @@ text=When Corrupt Court Official enters the battlefield, target opponent discard
 mana={1}{B}
 type=Creature
 subtype=Human Advisor
+grade=crappy
 power=1
 toughness=1
 [/card]
@@ -191,6 +206,7 @@ auto={1}{e(*|mygraveyard)}{e(*|mygraveyard)}:discard:1 target(player)
 text={1}, Exile two creature cards from your graveyard: Target player discards a card. Activate this ability only any time you could cast a sorcery.
 mana={3}{B}
 type=Enchantment
+grade=crappy
 [/card]
 [card]
 name=Cunning Lethemancer
@@ -199,6 +215,7 @@ auto=@each opponentupkeep:discard:1 opponent
 text=At the beginning of your upkeep, each player discards a card.
 mana={2}{B}
 type=Creature
+grade=crappy
 subtype=Human Wizard
 power=2
 toughness=2
@@ -211,6 +228,7 @@ auto=destroy
 text=Destroy target land. Its controller discards a card.
 mana={4}{B}
 type=Sorcery
+grade=crappy
 [/card]
 [card]
 name=Dimir Cutpurse
@@ -219,6 +237,7 @@ text=Whenever Dimir Cutpurse deals combat damage to a player, that player discar
 mana={1}{U}{B}
 type=Creature
 subtype=Spirit
+grade=crappy
 power=2
 toughness=2
 [/card]
@@ -230,6 +249,7 @@ text=({(u/b)} can be paid with either {U} or {B}.) -- {3}{U}: Target player draw
 mana={UB}{UB}
 type=Creature
 subtype=Human Wizard
+grade=crappy
 power=2
 toughness=2
 [/card]
@@ -241,6 +261,7 @@ auto=discard:1 targetcontroller
 text=Counter target spell. Its controller discards a card.
 mana={2}{U}{U}
 type=Instant
+grade=crappy
 [/card]
 [card]
 name=Disrupting Scepter
@@ -248,6 +269,7 @@ auto={3}{t}:target(player) discard:1 myturnonly
 text={3}{T}: Target player discards a card. Activate this ability only during your turn.
 mana={3}
 type=Artifact
+grade=crappy
 [/card]
 [card]
 name=Earsplitting Rats
@@ -259,6 +281,7 @@ type=Creature
 subtype=Rat
 power=2
 toughness=1
+grade=crappy
 [/card]
 [card]
 name=Entropic Specter
@@ -268,6 +291,7 @@ text=Flying -- As Entropic Specter enters the battlefield, choose an opponent. -
 mana={3}{B}{B}
 type=Creature
 subtype=Specter Spirit
+grade=crappy
 power=*
 toughness=*
 [/card]
@@ -279,6 +303,7 @@ text=Trample -- Whenever Fungal Shambler deals damage to an opponent, you draw a
 mana={4}{G}{U}{B}
 type=Creature
 subtype=Fungus Beast
+grade=crappy
 power=6
 toughness=4
 [/card]
@@ -290,6 +315,7 @@ auto=destroy
 text=Destroy target creature. If that creature was green or white, its controller discards a card.
 mana={3}{B}{B}
 type=Sorcery
+grade=crappy
 [/card]
 [card]
 name=Guul Draz Specter
@@ -300,6 +326,7 @@ text=Flying -- Guul Draz Specter gets +3/+3 as long as an opponent has no cards 
 mana={2}{B}{B}
 type=Creature
 subtype=Specter
+grade=crappy
 power=2
 toughness=2
 [/card]
@@ -312,6 +339,7 @@ text=Whenever Headhunter deals combat damage to a player, that player discards a
 mana={1}{B}
 type=Creature
 subtype=Human Cleric
+grade=crappy
 power=1
 toughness=1
 [/card]
@@ -321,6 +349,7 @@ auto=@each myupkeep:target(opponent) discard:type:shrine:mybattlefield
 text=At the beginning of your upkeep, target opponent discards a card for each Shrine you control.
 mana={3}{B}
 type=Legendary Enchantment
+grade=crappy
 subtype=Shrine
 [/card]
 [card]
@@ -331,6 +360,7 @@ auto=deplete:1
 text=Target player discards a card, then puts the top card of his or her library into his or her graveyard.
 mana={B}
 type=Sorcery
+grade=crappy
 [/card]
 [card]
 name=Hypnotic Cloud
@@ -341,6 +371,7 @@ kicker={4}
 text=Kicker {4} (You may pay an additional {4} as you cast this spell.) -- Target player discards a card. If Hypnotic Cloud was kicked, that player discards three cards instead.
 mana={1}{B}
 type=Sorcery
+grade=crappy
 [/card]
 [card]
 name=Kemuri-Onna
@@ -350,6 +381,7 @@ text=When Kemuri-Onna enters the battlefield, target player discards a card. -- 
 mana={4}{B}
 type=Creature
 subtype=Spirit
+grade=crappy
 power=3
 toughness=3
 [/card]
@@ -359,6 +391,7 @@ auto=@damaged(player) from(creature|mybattlefield): all(trigger[to]) discard:1
 text=Whenever a creature you control deals combat damage to a player, that player discards a card.
 mana={3}{B}{B}
 type=Enchantment
+grade=crappy
 [/card]
 [card]
 name=Liliana's Specter
@@ -368,6 +401,7 @@ text=Flying -- When Liliana's Specter enters the battlefield, each opponent disc
 mana={1}{B}{B}
 type=Creature
 subtype=Specter
+grade=crappy
 power=2
 toughness=1
 [/card]
@@ -379,6 +413,7 @@ text=When Marsh Crocodile enters the battlefield, return a blue or black creatur
 mana={2}{U}{B}
 type=Creature
 subtype=Crocodile
+grade=crappy
 power=4
 toughness=4
 [/card]
@@ -390,6 +425,7 @@ buyback={2}{b}{b}{b}
 text=Buyback {2}{B}{B} (You may pay an additional {2}{B}{B} as you cast this spell. If you do, put this card into your hand as it resolves.) -- Target player discards a card.
 mana={B}
 type=Sorcery
+grade=crappy
 [/card]
 [card]
 name=Mind Ravel
@@ -399,6 +435,7 @@ auto=@next upkeep:draw:1 controller
 text=Target player discards a card. -- Draw a card at the beginning of the next turn's upkeep.
 mana={2}{B}
 type=Sorcery
+grade=crappy
 [/card]
 [card]
 name=Mind Rot
@@ -407,6 +444,7 @@ auto=discard:2
 text=Target player discards two cards.
 mana={2}{B}
 type=Sorcery
+grade=crappy
 [/card]
 [card]
 name=Mind Sludge
@@ -415,6 +453,7 @@ auto=discard:type:swamp:mybattlefield
 text=Target player discards a card for each Swamp you control.
 mana={4}{B}
 type=Sorcery
+grade=crappy
 [/card]
 [card]
 name=Mindlash Sliver
@@ -423,6 +462,7 @@ text=All Slivers have "{1}, Sacrifice this permanent: Each player discards a car
 mana={B}
 type=Creature
 subtype=Sliver
+grade=crappy
 power=1
 toughness=1
 [/card]
@@ -434,6 +474,7 @@ text=Mindwarper enters the battlefield with three +1/+1 counters on it. -- {2}{B
 mana={2}{B}{B}
 type=Creature
 subtype=Spirit
+grade=crappy
 power=0
 toughness=0
 [/card]
@@ -444,6 +485,7 @@ auto=@each opponentupkeep:discard:1 opponent
 text=At the beginning of each player's upkeep, that player discards a card.
 mana={2}{B}
 type=Enchantment
+grade=crappy
 [/card]
 [card]
 name=Necrogen Spellbomb
@@ -452,6 +494,7 @@ auto={1}{s}:draw:1
 text={B}, Sacrifice Necrogen Spellbomb: Target player discards a card. -- {1}, Sacrifice Necrogen Spellbomb: Draw a card.
 mana={1}
 type=Artifact
+grade=crappy
 [/card]
 [card]
 name=Nezumi Bone-Reader
@@ -460,6 +503,7 @@ text={B}, Sacrifice a creature: Target player discards a card. Activate this abi
 mana={1}{B}
 type=Creature
 subtype=Rat Shaman
+grade=crappy
 power=1
 toughness=1
 [/card]
@@ -470,6 +514,7 @@ text=When Noxious Toad is put into a graveyard from the battlefield, each oppone
 mana={2}{B}
 type=Creature
 subtype=Frog
+grade=crappy
 power=1
 toughness=1
 [/card]
@@ -482,6 +527,7 @@ text=Swampwalk -- Whenever Odylic Wraith deals damage to a player, that player d
 mana={3}{B}
 type=Creature
 subtype=Wraith
+grade=crappy
 power=2
 toughness=2
 [/card]
@@ -494,6 +540,7 @@ text=Fear (This creature can't be blocked except by artifact creatures and/or bl
 mana={2}{B}{B}
 type=Creature
 subtype=Zombie Knight
+grade=crappy
 power=2
 toughness=2
 [/card]
@@ -504,6 +551,7 @@ target=player
 text=Target player discards a card. -- Retrace (You may cast this card from your graveyard by discarding a land card in addition to paying its other costs.)
 mana={B}
 type=Sorcery
+grade=crappy
 [/card]
 [card]
 name=Ravenous Rats
@@ -511,6 +559,7 @@ auto=discard:1 target(opponent)
 text=When Ravenous Rats enters the battlefield, target opponent discards a card.
 mana={1}{B}
 type=Creature
+grade=crappy
 subtype=Rat
 power=1
 toughness=1
@@ -523,6 +572,7 @@ auto=discard:1 targetcontroller
 text=Return target permanent to its owner's hand. Then that player discards a card.
 mana={1}{U}{B}
 type=Instant
+grade=crappy
 [/card]
 [card]
 name=Riptide Pilferer
@@ -533,6 +583,7 @@ text=Whenever Riptide Pilferer deals combat damage to a player, that player disc
 mana={1}{U}
 type=Creature
 subtype=Merfolk Rogue
+grade=crappy
 power=1
 toughness=1
 [/card]
@@ -542,6 +593,7 @@ auto={t}:add{1}
 auto={1}{b}{r}{t}:all(player) discard:1 asSorcery
 text={T}: Add {1} to your mana pool. -- {1}{B}{R}, {T}: Each player discards a card. Activate this ability only any time you could cast a sorcery.
 type=Land
+grade=crappy
 [/card]
 [card]
 name=Rotting Rats
@@ -551,6 +603,7 @@ text=When Rotting Rats enters the battlefield, each player discards a card. -- U
 mana={1}{B}
 type=Creature
 subtype=Zombie Rat
+grade=crappy
 power=1
 toughness=1
 [/card]
@@ -560,6 +613,7 @@ auto={1}{b}{t}:target(player) discard:1 myturnonly
 text={1}{B}, {T}: Target player discards a card. Activate this ability only during your turn.
 mana={B}{B}
 type=Artifact
+grade=crappy
 [/card]
 [card]
 name=Screeching Buzzard
@@ -568,6 +622,7 @@ text=Flying -- When Screeching Buzzard is put into a graveyard from the battlefi
 mana={3}{B}
 type=Creature
 subtype=Bird
+grade=crappy
 power=2
 toughness=2
 [/card]
@@ -580,6 +635,7 @@ text=Flying -- Whenever Sedraxis Specter deals combat damage to a player, that p
 mana={U}{B}{R}
 type=Creature
 subtype=Specter
+grade=crappy
 power=3
 toughness=2
 [/card]
@@ -591,6 +647,7 @@ text=Flying -- When Serum Raker is put into a graveyard from the battlefield, ea
 mana={2}{U}{U}
 type=Creature
 subtype=Drake
+grade=crappy
 power=3
 toughness=2
 [/card]
@@ -601,6 +658,7 @@ text=Flying -- Whenever Shrieking Specter attacks, defending player discards a c
 mana={5}{B}
 type=Creature
 subtype=Specter
+grade=crappy
 power=2
 toughness=2
 [/card]
@@ -612,6 +670,7 @@ flashback={3}{b}
 text=Target player discards a card. -- Flashback {3}{B} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={B}
 type=Sorcery
+grade=crappy
 [/card]
 [card]
 name=Specter's Shroud
@@ -621,6 +680,7 @@ text=Equipped creature gets +1/+0. -- Whenever equipped creature deals combat da
 mana={2}
 type=Artifact
 subtype=Equipment
+grade=crappy
 [/card]
 [card]
 name=Stronghold Rats
@@ -629,6 +689,7 @@ auto=@combatdamaged(opponent) from(this):all(player) discard:1
 text=Shadow (This creature can block or be blocked by only creatures with shadow.) -- Whenever Stronghold Rats deals combat damage to a player, each player discards a card.
 mana={2}{B}
 type=Creature
+grade=crappy
 subtype=Rat
 power=2
 toughness=1
@@ -641,6 +702,7 @@ auto=discard:1
 text=Target opponent discards a card at random, then discards a card.
 mana={2}{B}
 type=Sorcery
+grade=crappy
 [/card]
 [card]
 name=Sword of Feast and Famine
@@ -653,6 +715,7 @@ text=Equipped creature gets +2/+2 and has protection from black and from green. 
 mana={3}
 type=Artifact
 subtype=equipment
+grade=crappy
 [/card]
 [card]
 name=Syphon Mind
@@ -660,6 +723,7 @@ auto=discard:1 opponent
 auto=draw:1 controller
 text=Each other player discards a card. You draw a card for each card discarded this way.
 mana={3}{B}
+grade=crappy
 type=Sorcery
 [/card]
 [card]
@@ -669,6 +733,7 @@ auto=discard:1
 auto=draw:1 controller
 text=Target player discards a card. -- Draw a card.
 mana={2}{B}
+grade=crappy
 type=Sorcery
 [/card]
 [card]
@@ -676,6 +741,7 @@ name=Vodalian Hypnotist
 auto={2}{b}{t}:target(player) discard:1 asSorcery
 text={2}{B}, {T}: Target player discards a card. Activate this ability only any time you could cast a sorcery.
 mana={1}{U}
+grade=crappy
 type=Creature
 subtype=Merfolk Wizard
 power=1
@@ -688,6 +754,7 @@ auto={2}{b}{t}:target(player) discard:1 asSorcery
 text=Defender (This creature can't attack.) -- {2}{B}, {T}: Target player discards a card. Activate this ability only any time you could cast a sorcery.
 mana={2}{B}{B}
 type=Creature
+grade=crappy
 subtype=Wall
 power=1
 toughness=3
@@ -699,6 +766,7 @@ auto=@damaged(opponent) from(this):discard:1 opponent
 text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.) -- Whenever Wei Night Raiders deals damage to an opponent, that player discards a card.
 mana={2}{B}{B}
 type=Creature
+grade=crappy
 subtype=Human Soldier
 power=2
 toughness=2
@@ -710,6 +778,7 @@ auto=@damaged(opponent) from(this):discard:1 opponent
 text=Whenever Zhang Liao, Hero of Hefei deals damage to an opponent, that opponent discards a card.
 mana={4}{B}{B}
 type=Legendary Creature
+grade=crappy
 subtype=Human Soldier
 power=3
 toughness=3
@@ -720,6 +789,7 @@ auto={2}{b}{t}:target(player) discard:1 myturnonly
 text={2}{B}, {T}: Target player discards a card. Activate this ability only during your turn.
 mana={1}{U}
 type=Creature
+grade=crappy
 subtype=Human Wizard
 power=1
 toughness=1
@@ -733,6 +803,7 @@ auto=discard:2
 text=Blightning deals 3 damage to target player. That player discards two cards.
 mana={1}{B}{R}
 type=Sorcery
+grade=crappy
 [/card]
 [card]
 name=Deception
@@ -740,6 +811,7 @@ target=opponent
 auto=discard:2
 text=Target opponent discards two cards.
 mana={2}{B}
+grade=crappy
 type=Sorcery
 [/card]
 [card]
@@ -748,6 +820,7 @@ auto=discard:3 controller
 auto=discard:3 opponent
 text=Each player discards three cards.
 mana={2}{B}
+grade=crappy
 type=Sorcery
 [/card]
 [card]
@@ -756,6 +829,7 @@ target=player
 auto=discard:3
 text=Target player discards three cards.
 mana={3}{B}{B}
+grade=crappy
 type=Sorcery
 [/card]
 [card]
@@ -765,5 +839,6 @@ auto=discard:2
 auto=draw:2
 text=Target player discards two cards, then draws as many cards as he or she discarded this way.
 mana={U}{U}
+grade=crappy
 type=Sorcery
 [/card]
