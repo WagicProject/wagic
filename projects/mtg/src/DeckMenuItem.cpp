@@ -41,9 +41,28 @@ DeckMenuItem::DeckMenuItem(DeckMenu* _parent, int id, int fontId, string text, f
 
     if (meta && meta->getAvatarFilename().size() > 0)
         this->imageFilename = meta->getAvatarFilename();
-    else
-        this->imageFilename = "avatar.jpg";
-
+    else 
+    {
+        // this is a non-deck menu item (ie "Random", "Cancel", etc
+        switch(id)
+        {
+            case kRandomPlayerMenuID:
+                this->imageFilename = "avatar.jpg";
+                break;
+            case kRandomAIPlayerMenuID:
+                this->imageFilename = "avatar.jpg";
+                break;
+            case kEvilTwinMenuID:
+                this->imageFilename = "avatar_evil_twin.jpg";
+                break;
+            default:
+                // do nothing.  
+                break;
+        }
+        
+    }
+    
+    
 	mDisplayInitialized = false;
 
 }

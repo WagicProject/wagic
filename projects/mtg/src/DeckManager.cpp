@@ -109,12 +109,12 @@ void DeckManager::AddMetaData( const string& filename, bool isAI )
 {
     if (isAI)
     {
-        aiDeckOrderList.push_back ( NEW DeckMetaData( filename ) );
+        aiDeckOrderList.push_back ( NEW DeckMetaData( filename, isAI ) );
         aiDeckStatsMap.insert( make_pair( filename.c_str(), new StatsWrapper( aiDeckOrderList.back()->getDeckId()) ));
     }
     else
     {
-        playerDeckOrderList.push_back ( NEW DeckMetaData( filename ) );
+        playerDeckOrderList.push_back ( NEW DeckMetaData( filename, isAI ) );
         playerDeckStatsMap.insert( make_pair( filename.c_str(), new StatsWrapper( playerDeckOrderList.back()->getDeckId()) ));
     }
 }

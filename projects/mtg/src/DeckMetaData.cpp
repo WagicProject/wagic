@@ -10,9 +10,9 @@
 //Merge this with DeckStats
 //Have this class handle all the Meta Data rather than relying on MTGDeck. Then MTGDeck would have a MetaData object...
 
-DeckMetaData::DeckMetaData(const string& filename)
+DeckMetaData::DeckMetaData(const string& filename, bool isAI)
     : mFilename(filename), mGamesPlayed(0), mVictories(0), mPercentVictories(0), mDifficulty(0),
-      mDeckLoaded(false), mStatsLoaded(false)
+      mDeckLoaded(false), mStatsLoaded(false), mIsAI(isAI)
 {
     // TODO, figure out how we can defer this to later - currently, 
     // there's a catch 22, as we sort the deck list alphabetically, so we need to open the deck file
@@ -36,12 +36,7 @@ void DeckMetaData::LoadStats()
                 mVictories = opponentDeckStats->victories;
                 mGamesPlayed = opponentDeckStats->nbgames;
                 mColorIndex = opponentDeckStats->manaColorIndex;
-                ostringstream oss;
-                int deckFilenameOffset = mStatsFilename.find("deck") + 4;
-                int oppDeckId = atoi(mStatsFilename.substr(deckFilenameOffset, mStatsFilename.find_last_of(".")).c_str());
-                int avatarId = getAvatarId(oppDeckId);
-                oss << "avatar" << avatarId << ".jpg";
-                mAvatarFilename = oss.str();
+ 
                 if (mPercentVictories < 34)
                 {
                     mDifficulty = HARD;
@@ -54,12 +49,6 @@ void DeckMetaData::LoadStats()
                 {
                     mDifficulty = EASY;
                 }
-            }
-            else
-            {
-                ostringstream oss;
-                oss << "avatar" << getAvatarId(mDeckId) << ".jpg";
-                mAvatarFilename = oss.str();
             }
         }
         else
@@ -79,10 +68,14 @@ void DeckMetaData::LoadStats()
 }
 
 // since we only have 100 stock avatar images, we need to recycle the images for deck numbers > 99
-int DeckMetaData::getAvatarId(int deckId)
+int DeckMetaData::getAvatarId()
 {
-    int avatarId = deckId % 100;
-    if (deckId >= 100 && avatarId == 0)
+    if ( mDeckId < 101 )
+        return mDeckId;
+        
+    int avatarId = mDeckId % 100;
+    
+    if (avatarId == 0)
         return 100;
 
     return avatarId;
@@ -97,6 +90,14 @@ void DeckMetaData::LoadDeck()
         mDescription = trim(deck.meta_desc);
         mDeckId = atoi((mFilename.substr(mFilename.find("deck") + 4, mFilename.find(".txt"))).c_str());
         mDeckLoaded = true;
+        if (!mIsAI)
+            mAvatarFilename = "avatar.jpg";
+        else
+        {
+            ostringstream avatarFilename;
+            avatarFilename << "avatar" << getAvatarId() << ".jpg";
+            mAvatarFilename = avatarFilename.str();
+        }        
     }
 
 

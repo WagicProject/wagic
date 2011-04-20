@@ -26,13 +26,14 @@ private:
     
     // statistical information
     int mGamesPlayed, mVictories, mPercentVictories, mDifficulty;
+    int getAvatarId();
 
     DeckMetaData();
 
 public:
 
 
-    DeckMetaData(const string& filename);
+    DeckMetaData(const string& filename, bool isAI = false);
     void LoadDeck();
     void LoadStats();
 
@@ -42,7 +43,6 @@ public:
     string getName();
     string getAvatarFilename();
     string getColorIndex();
-    int getAvatarId(int deckId);
     string getStatsSummary();
 
     int getDeckId();

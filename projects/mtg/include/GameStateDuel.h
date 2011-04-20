@@ -65,10 +65,10 @@ public:
     {
         MENUITEM_CANCEL = kCancelMenuID,
         MENUITEM_NEW_DECK = -10,
-        MENUITEM_RANDOM_PLAYER = -11,
-        MENUITEM_RANDOM_AI = -12,
+        MENUITEM_RANDOM_PLAYER = kRandomPlayerMenuID,
+        MENUITEM_RANDOM_AI = kRandomAIPlayerMenuID,
         MENUITEM_MAIN_MENU = -13,
-        MENUITEM_EVIL_TWIN = -14,
+        MENUITEM_EVIL_TWIN = kEvilTwinMenuID,
         MENUITEM_MULLIGAN = -15,
 #ifdef NETWORK_SUPPORT
         MENUITEM_REMOTE_CLIENT = -16,

@@ -247,6 +247,7 @@ void DeckMenu::Render()
                     if (quad.get())
                         renderer->RenderQuad(quad.get(), avatarX, avatarY);
                 }
+                
                 // fill in the description part of the screen
 				string text = wordWrap(_(currentMenuItem->desc), descWidth, mainFont->mFontID );
                 mainFont->DrawString(text.c_str(), descX, descY);
