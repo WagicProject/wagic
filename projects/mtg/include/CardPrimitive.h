@@ -10,84 +10,85 @@
 
 using namespace std;
 
-class CardPrimitive {
- protected:
-  vector<string> ftdText;
-  string lcname;
-  ManaCost manaCost;
+class CardPrimitive
+{
+protected:
+    vector<string> ftdText;
+    string lcname;
+    ManaCost manaCost;
 
- public:
-     ManaCost reducedCost;
-     ManaCost increasedCost;
-  string text;
-  string name;
-  int init();
+public:
+    ManaCost reducedCost;
+    ManaCost increasedCost;
+    string text;
+    string name;
+    int init();
 
-  int colors[Constants::MTG_NB_COLORS];
-  map<int,int> basicAbilities;
-  map<string,string> magicTexts;
-  string magicText;
-  int alias;
-  string spellTargetType;
-  int power;
-  int toughness;
-  bool hasRestriction;
-  string restriction;
-  string otherrestriction;
-  int suspendedTime;
+    int colors[Constants::MTG_NB_COLORS];
+    map<int,int> basicAbilities;
+    map<string,string> magicTexts;
+    string magicText;
+    int alias;
+    string spellTargetType;
+    int power;
+    int toughness;
+    bool hasRestriction;
+    string restriction;
+    string otherrestriction;
+    int suspendedTime;
 
-  vector<int>types;
-  CardPrimitive();
-  CardPrimitive(CardPrimitive * source);
+    vector<int>types;
+    CardPrimitive();
+    CardPrimitive(CardPrimitive * source);
 
-  void setColor(int _color, int removeAllOthers = 0);
-  void setColor(string _color, int removeAllOthers = 0);
-  void removeColor(int color);
-  int getColor();
-  int hasColor(int _color);
-  int countColors();
+    void setColor(int _color, int removeAllOthers = 0);
+    void setColor(string _color, int removeAllOthers = 0);
+    void removeColor(int color);
+    int getColor();
+    int hasColor(int _color);
+    int countColors();
 
-  int has(int ability);
+    int has(int ability);
 
-  void setText(const string& value);
-  const char * getText();
+    void setText(const string& value);
+    const char * getText();
 
-  void addMagicText(string value);
-  void addMagicText(string value, string zone);
+    void addMagicText(string value);
+    void addMagicText(string value, string zone);
 
-  void setName(const string& value);
-  const string& getName() const;
-  const string& getLCName() const;
+    void setName(const string& value);
+    const string& getName() const;
+    const string& getLCName() const;
 
-  void addType(char * type_text);
-  void addType(int id);
-  void setType(const string& type_text);
-  void setSubtype(const string& value);
-  int removeType(string value, int removeAll = 0);
-  int removeType(int value, int removeAll = 0);
-  bool hasSubtype(int _subtype);
-  bool hasSubtype(const char * _subtype);
-  bool hasSubtype(string _subtype);
-  bool hasType(int _type);
-  bool hasType(const char * type);
+    void addType(char * type_text);
+    void addType(int id);
+    void setType(const string& type_text);
+    void setSubtype(const string& value);
+    int removeType(string value, int removeAll = 0);
+    int removeType(int value, int removeAll = 0);
+    bool hasSubtype(int _subtype);
+    bool hasSubtype(const char * _subtype);
+    bool hasSubtype(string _subtype);
+    bool hasType(int _type);
+    bool hasType(const char * type);
 
-  void setManaCost(string value);
-  ManaCost * getManaCost();
-  ManaCost * getReducedManaCost();
-  ManaCost * getIncreasedManaCost();
-  bool isCreature();
-  bool isLand();
-  bool isSpell();
+    void setManaCost(string value);
+    ManaCost * getManaCost();
+    ManaCost * getReducedManaCost();
+    ManaCost * getIncreasedManaCost();
+    bool isCreature();
+    bool isLand();
+    bool isSpell();
 
-  void setPower(int _power);
-  int getPower();
-  void setToughness(int _toughness);
-  int getToughness();
-  void setRestrictions(string _restriction);
-  void getRestrictions();
-  void setOtherRestrictions(string _restriction);
-  void getOtherRestrictions();
-  const vector<string>& formattedText();
+    void setPower(int _power);
+    int getPower();
+    void setToughness(int _toughness);
+    int getToughness();
+    void setRestrictions(string _restriction);
+    void getRestrictions();
+    void setOtherRestrictions(string _restriction);
+    void getOtherRestrictions();
+    const vector<string>& formattedText();
 };
 
 

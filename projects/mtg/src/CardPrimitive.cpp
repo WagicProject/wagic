@@ -26,7 +26,7 @@ CardPrimitive::CardPrimitive(CardPrimitive * source)
     reducedCost.copy(source->getReducedManaCost());
     increasedCost.copy(source->getIncreasedManaCost());
     if(source->getManaCost()->alternative)
-    manaCost.alternative->alternativeName = source->getManaCost()->alternative->alternativeName;
+        manaCost.alternative->alternativeName = source->getManaCost()->alternative->alternativeName;
 
     text = source->text;
     setName(source->name);
@@ -82,10 +82,12 @@ bool CardPrimitive::isCreature()
 {
     return hasSubtype(Subtypes::TYPE_CREATURE);
 }
+
 bool CardPrimitive::isLand()
 {
     return hasSubtype(Subtypes::TYPE_LAND);
 }
+
 bool CardPrimitive::isSpell()
 {
     return (!isCreature() && !isLand());
@@ -95,6 +97,7 @@ void CardPrimitive::setRestrictions(string _restriction)
 {
     restriction = _restriction;
 }
+
 void CardPrimitive::getRestrictions()
 {
     restriction;
@@ -104,6 +107,7 @@ void CardPrimitive::setOtherRestrictions(string _restriction)
 {
     otherrestriction = _restriction;
 }
+
 void CardPrimitive::getOtherRestrictions()
 {
     otherrestriction;
