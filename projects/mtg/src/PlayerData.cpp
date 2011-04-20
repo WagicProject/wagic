@@ -1,6 +1,5 @@
 #include "PrecompiledHeader.h"
 
-#include "GameOptions.h"
 #include "PlayerData.h"
 
 #include <stdio.h>

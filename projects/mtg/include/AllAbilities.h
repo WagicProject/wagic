@@ -9,7 +9,6 @@
 #include "CardDisplay.h"
 #include "Subtypes.h"
 #include "CardGui.h"
-#include "GameOptions.h"
 #include "Token.h"
 #include "Counters.h"
 #include "WEvent.h"

@@ -9,7 +9,6 @@
 #include "MTGDeck.h"
 #include "Translate.h"
 #include "OptionItem.h"
-#include "GameOptions.h"
 #include "DeckDataWrapper.h"
 
 enum ENUM_AWARDS_STATE

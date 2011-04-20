@@ -2,7 +2,6 @@
 
 #include "MTGGameZones.h"
 #include "Player.h"
-#include "GameOptions.h"
 #include "WEvent.h"
 #include "MTGDeck.h"
 #include "Subtypes.h"

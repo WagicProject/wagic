@@ -1,6 +1,5 @@
 #include "PrecompiledHeader.h"
 
-#include "GameOptions.h"
 #include "WResourceManagerImpl.h"
 #include "StyleManager.h"
 

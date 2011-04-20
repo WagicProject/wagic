@@ -8,7 +8,6 @@ The Action Stack contains all information for Game Events that can be interrupte
 #include "CardSelectorSingleton.h"
 #include "Damage.h"
 #include "GameObserver.h"
-#include "GameOptions.h"
 #include "ManaCost.h"
 #include "MTGAbility.h"
 #include "Subtypes.h"

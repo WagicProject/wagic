@@ -9,6 +9,7 @@
 #include "Player.h"
 
 class GameApp;
+class DeckStats;
 
 using namespace std;
 

@@ -15,7 +15,6 @@
 #include "WResourceManager.h"
 
 #include "GameState.h"
-#include "GameOptions.h"
 
 #include "MTGDeck.h"
 #include "MTGCard.h"

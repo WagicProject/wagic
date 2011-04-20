@@ -1,7 +1,6 @@
 #include "PrecompiledHeader.h"
 
 #include "MenuItem.h"
-#include "GameOptions.h"
 #include "Translate.h"
 
 MenuItem::MenuItem(int id, WFont *font, string text, float x, float y, JQuad * _off, JQuad * _on, const char * particle,

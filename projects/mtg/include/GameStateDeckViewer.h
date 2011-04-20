@@ -11,7 +11,6 @@
 #include "SimpleMenu.h"
 #include "WResourceManager.h"
 #include "CardGui.h"
-#include "GameOptions.h"
 #include "PriceList.h"
 #include "PlayerData.h"
 #include "DeckDataWrapper.h"

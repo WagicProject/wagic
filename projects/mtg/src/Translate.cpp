@@ -1,7 +1,6 @@
 #include "PrecompiledHeader.h"
 
 #include "Translate.h"
-#include "GameOptions.h"
 
 Translator * Translator::mInstance = NULL;
 

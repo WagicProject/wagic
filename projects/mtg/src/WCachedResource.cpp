@@ -2,7 +2,6 @@
 
 #include "utils.h"
 #include <JFileSystem.h>
-#include "GameOptions.h"
 #include "WResourceManager.h"
 #include "WCachedResource.h"
 #include <hge/hgeparticle.h>

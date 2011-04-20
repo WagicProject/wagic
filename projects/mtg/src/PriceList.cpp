@@ -1,6 +1,8 @@
 #include "PrecompiledHeader.h"
 
 #include "PriceList.h"
+#include "utils.h"
+#include "MTGCard.h"
 
 int PriceList::randomKey = 0;
 

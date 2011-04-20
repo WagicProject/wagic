@@ -1,7 +1,6 @@
 #include "PrecompiledHeader.h"
 
 #include "GameObserver.h"
-#include "GameOptions.h"
 #include "CardGui.h"
 #include "Damage.h"
 #include "Rules.h"

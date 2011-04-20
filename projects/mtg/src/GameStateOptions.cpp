@@ -5,7 +5,6 @@
 #include "OptionItem.h"
 #include "SimpleMenu.h"
 #include "SimplePad.h"
-#include "GameOptions.h"
 #include "Translate.h"
 
 namespace

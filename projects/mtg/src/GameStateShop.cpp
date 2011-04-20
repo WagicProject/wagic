@@ -9,7 +9,6 @@
 #include "MTGDeck.h"
 #include "MTGPack.h"
 #include "Translate.h"
-#include "GameOptions.h"
 #include "TestSuiteAI.h"
 
 #include <hge/hgedistort.h>

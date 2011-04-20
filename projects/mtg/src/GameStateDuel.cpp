@@ -2,7 +2,6 @@
 
 #include "DeckMenu.h"
 #include "GameStateDuel.h"
-#include "GameOptions.h"
 #include "utils.h"
 #include "AIPlayer.h"
 #include "AIMomirPlayer.h"

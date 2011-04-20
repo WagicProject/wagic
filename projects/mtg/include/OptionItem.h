@@ -9,7 +9,6 @@
 #include <string>
 #include "GameApp.h"
 #include "GameStateOptions.h"
-#include "GameOptions.h"
 #include "WFilter.h"
 #include "WDataSrc.h"
 #include "WGui.h"

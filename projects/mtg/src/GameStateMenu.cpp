@@ -10,7 +10,6 @@
 #include "GameStateMenu.h"
 #include "DeckManager.h"
 #include "MenuItem.h"
-#include "GameOptions.h"
 #include "GameApp.h"
 #include "MTGCard.h"
 #include "Translate.h"

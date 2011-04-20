@@ -19,6 +19,8 @@
 #include "JFileSystem.h"
 #include "JLogger.h"
 
+#include "GameOptions.h"
+
 #include <boost/shared_ptr.hpp>
 
 #endif //PRECOMPILEDHEADER_H

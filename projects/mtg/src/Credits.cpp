@@ -2,7 +2,6 @@
 
 #include "Credits.h"
 #include "GameApp.h"
-#include "GameOptions.h"
 #include "PlayerData.h"
 #include "DeckStats.h"
 #include "Translate.h"

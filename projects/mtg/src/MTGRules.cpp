@@ -4,7 +4,6 @@
 #include "MTGRules.h"
 #include "Translate.h"
 #include "Subtypes.h"
-#include "GameOptions.h"
 #include "Credits.h"
 
 MTGEventBonus::MTGEventBonus(int _id) :

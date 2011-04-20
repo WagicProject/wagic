@@ -7,7 +7,6 @@
 #include "MTGDeck.h"
 #include "Translate.h"
 #include "OptionItem.h"
-#include "GameOptions.h"
 
 TransitionBase::TransitionBase(GameApp* parent, GameState* _from, GameState* _to, float duration) :
     GameState(parent)
