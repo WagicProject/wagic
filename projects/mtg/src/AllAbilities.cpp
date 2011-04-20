@@ -2947,12 +2947,6 @@ void APhaseAction::Update(float dt)
                 _target = (MTGCardInstance *) target;
                 if(!sAbility.size() || (!target||!_target->currentZone))
                 {
-                //im aware that adding the isinplay check restricts this ability to having targets
-                //which are in play..however after reviewing all the coded cards which use this
-                //none of them targeted this effect at something that is not inplay.
-                //the reason for this abilities that use this are generally combat abilities, and
-                //without this check, the ability contenues on forever, when used in a trigger which
-                //sets its ability to oneshot=0.
                     this->forceDestroy = 1;
                     return;
                 }
