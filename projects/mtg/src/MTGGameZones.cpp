@@ -1,5 +1,6 @@
 #include "PrecompiledHeader.h"
 
+#include "CardSelectorSingleton.h"
 #include "MTGGameZones.h"
 #include "Player.h"
 #include "WEvent.h"
@@ -237,6 +238,23 @@ void MTGPlayerCards::drawFromLibrary()
     }
     MTGCardInstance * toMove = library->cards[library->nb_cards - 1];
     library->lastCardDrawn = toMove;
+
+    // useability tweak - assume that the user is probably going to want to see the new card,
+    // so prefetch it.
+
+    // if we're not in text mode, always get the thumb
+    if (CardSelectorSingleton::Instance()->GetDrawMode() != DrawMode::kText)
+    {
+        DebugTrace("Prefetching AI card going into play: " << toMove->getImageName());
+        WResourceManager::Instance()->RetrieveCard(toMove, RETRIEVE_THUMB);
+
+        // also cache the large image if we're using kNormal mode
+        if (CardSelectorSingleton::Instance()->GetDrawMode() == DrawMode::kNormal)
+        {
+            WResourceManager::Instance()->RetrieveCard(toMove);
+        }
+    }
+
     putInZone(toMove, library, hand);
 }
 

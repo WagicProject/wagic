@@ -936,8 +936,6 @@ void ResourceManagerImpl::ResetCacheLimits()
         DebugTrace( "Error, Not enough RAM for Cache: " << myNewSize << " - total Ram: " << ram);
     }
     textureWCache.Resize(MIN(myNewSize, HUGE_CACHE_LIMIT), MAX_CACHE_OBJECTS);
-
-    DebugTrace("Texture cache resized to " << myNewSize);
 #endif
     return;
 }
@@ -1020,6 +1018,7 @@ template<class cacheItem, class cacheActual>
 void WCache<cacheItem, cacheActual>::Resize(unsigned long size, int items)
 {
     maxCacheSize = size;
+    DebugTrace(typeid(cacheActual).name() << " cache resized to " << size << " bytes");
 
 #ifdef DEBUG_CACHE
     std::ostringstream stream;
@@ -1463,7 +1462,7 @@ bool WCache<cacheItem, cacheActual>::Delete(cacheItem * item)
 
     cacheItems--;
 
-    DebugTrace("Deleting cache item " << ToHex(item));
+    DebugTrace("Deleting cache item " << ToHex(item) << ", cache reduced by " << isize << " bytes");
     SAFE_DELETE(item);
     return true;
 }

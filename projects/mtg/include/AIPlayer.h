@@ -40,12 +40,8 @@ public:
         id = currentId++;
     };
 
-    AIAction(MTGCardInstance * c, MTGCardInstance * t = NULL)
-        : efficiency(-1), ability(NULL), player(NULL), click(c), target(t)
-    {
-        id = currentId++;
-    };
-    
+    AIAction(MTGCardInstance * c, MTGCardInstance * t = NULL);
+
     AIAction(Player * p)
         : efficiency(-1), ability(NULL), player(p), click(NULL), target(NULL)
     {
