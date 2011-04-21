@@ -1512,7 +1512,7 @@ int GameStateDeckViewer::loadDeck(int deckid)
     {
         MTGCard * current = myDeck->getCard(i, true);
         int howmanyinDeck = myDeck->count(current);
-        for (int numCardsInCollection = myCollection->count(current); numCardsInCollection < howmanyinDeck; numCardsInCollection++)
+        for (int i = myCollection->count(current); i < howmanyinDeck; i++)
         {
             bPure = false;
             if (cheatmode)

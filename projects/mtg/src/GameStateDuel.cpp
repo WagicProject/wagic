@@ -561,6 +561,7 @@ void GameStateDuel::Render()
     {
     case DUEL_STATE_END:
         {
+            JRenderer * r = JRenderer::GetInstance();
             r->FillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, ARGB(200,0,0,0));
             credits->Render();
 #ifdef TESTSUITE

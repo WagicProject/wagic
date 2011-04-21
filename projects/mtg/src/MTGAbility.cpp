@@ -1618,11 +1618,11 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         size_t end = s.find("]", start);
         string s1 = s.substr(start + 1, end - start - 1);
         int phase = Constants::MTG_PHASE_UPKEEP;
-            for (int phaseIdx = 0; phaseIdx < Constants::NB_MTG_PHASES; phaseIdx++)
+            for (int i = 0; i < Constants::NB_MTG_PHASES; i++)
             {
-                if (s1.find(Constants::MTGPhaseCodeNames[phaseIdx]) != string::npos)
+                if (s1.find(Constants::MTGPhaseCodeNames[i]) != string::npos)
                 {
-                    phase = phaseIdx;
+                    phase = i;
                 }
             }
             bool opponentturn = true,myturn = true;
@@ -1685,13 +1685,13 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         int once = 0;
         if (seperator != string::npos)
         {
-            for (int phaseIdx = 0; phaseIdx < Constants::NB_MTG_PHASES; phaseIdx++)
+            for (int i = 0; i < Constants::NB_MTG_PHASES; i++)
             {
                 if (s1.find("next") != string::npos)
                     once = 1;
-                if (s1.find(Constants::MTGPhaseCodeNames[phaseIdx]) != string::npos)
+                if (s1.find(Constants::MTGPhaseCodeNames[i]) != string::npos)
                 {
-                    phase = phaseIdx;
+                    phase = i;
                 }
             }
             s1 = s1.substr(0, seperator - 1);
@@ -2297,12 +2297,12 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     }
 
     //Cast/Play Restrictions
-	for (size_t castPlayIdx = 0; castPlayIdx < kMaxCastKeywordsCount; ++castPlayIdx)
+	for (size_t i = 0; i < kMaxCastKeywordsCount; ++i)
     {
-        found = s.find(kMaxCastKeywords[castPlayIdx]);
+        found = s.find(kMaxCastKeywords[i]);
         if (found != string::npos)
         {
-            size_t header = kMaxCastKeywords[castPlayIdx].size();
+            size_t header = kMaxCastKeywords[i].size();
             size_t end = s.find(")");
             string targetsString = s.substr(found + header, end - found - header);
             TargetChooserFactory tcf;
@@ -2329,7 +2329,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             {
                 return NEW AInstantCastRestrictionUEOT(id, card, t, castTargets, value, modifyExisting, kMaxCastZones[i], who);
             }
-            return NEW ACastRestriction(id, card, t, castTargets, value, modifyExisting, kMaxCastZones[castPlayIdx], who);
+            return NEW ACastRestriction(id, card, t, castTargets, value, modifyExisting, kMaxCastZones[i], who);
             //TODO NEW ACastRestrictionUntilEndOfTurn(id, card, t, value, modifyExisting, kMaxCastZones[i], who);
         }
     }
@@ -2578,11 +2578,9 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         {
             size_t real_end = transformsParamsString.find("))", found);
             size_t end = transformsParamsString.find(",", found);
-            
             if (end == string::npos)
                 end = real_end;
-            
-            stypesStartIndex = found + 12;
+            size_t stypesStartIndex = found + 12;
             extraTransforms.append(transformsParamsString.substr(stypesStartIndex, real_end - stypesStartIndex).c_str());
             transformsParamsString.erase(stypesStartIndex, real_end - stypesStartIndex);
         }
@@ -2599,13 +2597,14 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         vector<string> newAbilitiesList;
         storedString.erase();
         storedString.append(extraTransforms);
-        extraTransforms.erase();     
-
+        extraTransforms.erase();
+        for (unsigned int i = 0 ; i < abilities.size() ; i++)
+        {
+            if(abilities[i].empty())
+                abilities.erase(abilities.begin()+i);
+        }            
         for(unsigned int j = 0;j < abilities.size();j++)
         {
-            if (abilities[j].empty())
-                continue;
-
             if(abilities[j].find("setpower=") != string::npos)
             {
                 newpowerfound = true;
@@ -3206,10 +3205,8 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card, int
         if (dryMode)
         {
             result = abilityEfficiency(a, card->controller(), mode, tc);
-
-            for (vector<MTGAbility *>::iterator it = v.begin(); it != v.end(); ++it )
-                SAFE_DELETE(*it);
-            
+            for (size_t i = 0; i < v.size(); ++i)
+                SAFE_DELETE(v[i]);
             return result;
         }
 
@@ -3491,7 +3488,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
                 MTGInPlay * inplay = game->players[i]->game->inPlay;
                 for (int j = inplay->nb_cards - 1; j >= 0; j--)
                 {
-                    // TODO: C6246: Clarify card, is this independant of the "card" declared outside this scope?
                     MTGCardInstance * card = inplay->cards[j];
                     if (card->owner == player && card->hasType(Subtypes::TYPE_ARTIFACT))
                     {
@@ -3648,14 +3644,14 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
     case 3410: //Seed of Innocence
     {
         GameObserver * game = GameObserver::GetInstance();
-        for (int playerIdx = 0; playerIdx < 2; playerIdx++)
+        for (int i = 0; i < 2; i++)
         {
-            for (int j = 0; j < game->players[playerIdx]->game->inPlay->nb_cards; j++)
+            for (int j = 0; j < game->players[i]->game->inPlay->nb_cards; j++)
             {
-                MTGCardInstance * current = game->players[playerIdx]->game->inPlay->cards[j];
+                MTGCardInstance * current = game->players[i]->game->inPlay->cards[j];
                 if (current->hasType("Artifact"))
                 {
-                    game->players[playerIdx]->game->putInGraveyard(current);
+                    game->players[i]->game->putInGraveyard(current);
                     current->controller()->gainLife(current->getManaCost()->getConvertedCost());
                 }
             }
@@ -3812,6 +3808,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
 
     if (card->hasType(Subtypes::TYPE_INSTANT) || card->hasType(Subtypes::TYPE_SORCERY))
     {
+        MTGPlayerCards * zones = card->controller()->game;
         if (card->alternateCostPaid[ManaCost::MANA_PAID_WITH_BUYBACK] > 0)
         {
             zones->putInZone(card, zones->stack, zones->hand);

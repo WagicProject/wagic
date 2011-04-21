@@ -292,11 +292,11 @@ int GameStateMenu::nextDirectory(const char * root, const char * file)
     while (!found && (mDit = readdir(mDip)))
     {
         sprintf(mCurrentSetFileName, "%s/%s/%s", root, mDit->d_name, file);
-        wagic::ifstream setFile(mCurrentSetFileName);
-        if (setFile)
+        wagic::ifstream file(mCurrentSetFileName);
+        if (file)
         {
             sprintf(mCurrentSetName, "%s", mDit->d_name);
-            setFile.close();
+            file.close();
             found = 1;
         }
     }

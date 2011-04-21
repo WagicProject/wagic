@@ -459,7 +459,6 @@ int GuiCombat::receiveEventPlus(WEvent* e)
         attackers.push_back(t);
         return 1;
     }
-   // TODO: C6246: Clarify event, which event are you referring to?
     else if (WEventCreatureBlocker* event = dynamic_cast<WEventCreatureBlocker*>(e))
     {
         for (inner_iterator it = attackers.begin(); it != attackers.end(); ++it)
@@ -478,7 +477,6 @@ int GuiCombat::receiveEventPlus(WEvent* e)
             }
         return 0;
     }
-   // TODO: C6246: Clarify event, which event are you referring to?
     else if (WEventCreatureBlockerRank* event = dynamic_cast<WEventCreatureBlockerRank*>(e))
     {
         for (inner_iterator it = attackers.begin(); it != attackers.end(); ++it)
@@ -545,7 +543,6 @@ int GuiCombat::receiveEventMinus(WEvent* e)
             }
         return 0;
     }
-   // TODO: C6246: Clarify event, which event are you referring to?
     else if (WEventCreatureBlocker* event = dynamic_cast<WEventCreatureBlocker*>(e))
     {
         for (inner_iterator it = attackers.begin(); it != attackers.end(); ++it)
@@ -560,7 +557,6 @@ int GuiCombat::receiveEventMinus(WEvent* e)
                     }
         return 0;
     }
-    // TODO: C6246: Clarify event->to->id, which event are you referring to?
     else if (WEventPhaseChange* event = dynamic_cast<WEventPhaseChange*>(e))
     {
         if (Constants::MTG_PHASE_COMBATDAMAGE == event->to->id)
@@ -568,7 +564,6 @@ int GuiCombat::receiveEventMinus(WEvent* e)
         else
             cursor_pos = NONE;
     }
-    // TODO:  C6246: Clarify event->step, which event are you referring to?
     else if (WEventCombatStepChange* event = dynamic_cast<WEventCombatStepChange*>(e))
         switch (event->step)
         {

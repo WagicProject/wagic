@@ -140,14 +140,15 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
                         manaCost->addExtraCost(NEW MillCost(tc));
                         break;
                     case 'n': //return unblocked attacker cost
+                        TargetChooserFactory tcf;
                         tc = tcf.createTargetChooser("creature|myBattlefield", c);
                         manaCost->addExtraCost(NEW Ninja(tc));
                         break;
                     case 'p' :
                         {
                             SAFE_DELETE(tc);
-                            start = value.find("(");
-                            end = value.rfind(")");
+                            size_t start = value.find("(");
+                            size_t end = value.rfind(")");
                             string manaType = value.substr(start + 1, end - start - 1);
                             manaCost->addExtraCost(NEW LifeorManaCost(NULL,manaType));
                             break;
@@ -171,15 +172,15 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
                             separator2 = value.find(",", separator + 1);
                         }
                         SAFE_DELETE(tc);
-                        size_t targetIndexStart = string::npos;
+                        size_t target_start = string::npos;
                         if (separator2 != string::npos)
                         {
-                            targetIndexStart = value.find(",", separator2 + 1);
+                            target_start = value.find(",", separator2 + 1);
                         }
-                        size_t targetIndexEnd = counter_end;
-                        if (targetIndexStart != string::npos && targetIndexEnd != string::npos)
+                        size_t target_end = counter_end;
+                        if (target_start != string::npos && target_end != string::npos)
                         {
-                            string target = value.substr(targetIndexStart + 1, targetIndexEnd - 1 - targetIndexStart);
+                            string target = value.substr(target_start + 1, target_end - 1 - target_start);
                             tc = tcf.createTargetChooser(target, c);
                         }
                         manaCost->addExtraCost(NEW CounterCost(counter, tc));
@@ -194,7 +195,6 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
                         {
                             for (int i = 0; i < 2; i++)
                             {
-                               // TODO: C6246: Clarify c, is this independant of the "c" declared outside this scope?
                                 char c = value[i];
                                 if (c >= '0' && c <= '9')
                                 {
@@ -215,13 +215,13 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
                             }
                             if (values[0] > 0 || values[1] > 0)
                                 manaCost->addHybrid(colors[0], values[0], colors[1], values[1]);
-                            }
-                            else
-                            {
-                                manaCost->add(Constants::MTG_COLOR_ARTIFACT, intvalue);
-                            }
-                            break;
                         }
+                        else
+                        {
+                            manaCost->add(Constants::MTG_COLOR_ARTIFACT, intvalue);
+                        }
+                        break;
+                    }
                     }
                 }
                 s = s.substr(end + 1);

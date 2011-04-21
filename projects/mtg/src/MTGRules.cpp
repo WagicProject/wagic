@@ -426,10 +426,10 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card)
         if (card->has(Constants::STORM))
         {
             int storm = player->game->stack->seenThisTurn("*", Constants::CAST_ALL) + player->opponent()->game->stack->seenThisTurn("*", Constants::CAST_ALL);
-            ManaCost * stormSpellCost = player->getManaPool();
+            ManaCost * spellCost = player->getManaPool();
             for (int i = storm; i > 1; i--)
             {
-                spell = game->mLayers->stackLayer()->addSpell(copy, NULL, stormSpellCost, payResult, 1);
+                spell = game->mLayers->stackLayer()->addSpell(copy, NULL, spellCost, payResult, 1);
 
             }
         }//end of storm

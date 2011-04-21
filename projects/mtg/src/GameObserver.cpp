@@ -604,9 +604,9 @@ void GameObserver::gameStateBasedEffects()
         for(int w = 0;w < z->nb_cards;w++)
         {  
             int colored = 0;
-            for (int colorIdx = Constants::MTG_COLOR_GREEN; colorIdx <= Constants::MTG_COLOR_WHITE; ++colorIdx)
+            for (int i = Constants::MTG_COLOR_GREEN; i <= Constants::MTG_COLOR_WHITE; ++i)
             {
-                if (z->cards[w]->hasColor(colorIdx))
+                if (z->cards[w]->hasColor(i))
                     ++colored;
             }
             if(colored > 1)
@@ -770,8 +770,7 @@ void GameObserver::Affinity()
                     {
                         reduce = card->controller()->game->battlefield->countByType(type.c_str());
                     }
-
-                    for(int reductionIdx = 0; reductionIdx < reduce; reductionIdx++)
+                    for(int i = 0; i < reduce;i++)
                     {
                         if(card->getManaCost()->getCost(color) > 0)
                             card->getManaCost()->remove(color,1);
