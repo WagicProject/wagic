@@ -156,11 +156,11 @@ bool AIPlayer::tapLandsForMana(ManaCost * cost, MTGCardInstance * target)
             {
                 used[card] = true;
                 int doUse = 1;
-                for (int i = Constants::MTG_NB_COLORS - 1; i >= 0; i--)
+                for (int colorsIdx = Constants::MTG_NB_COLORS - 1; colorsIdx >= 0; colorsIdx--)
                 {
-                    if (diff->getCost(i) && amp->output->getCost(i))
+                    if (diff->getCost(colorsIdx) && amp->output->getCost(colorsIdx))
                     {
-                        diff->remove(i, 1);
+                        diff->remove(colorsIdx, 1);
                         doUse = 0;
                         break;
                     }
@@ -513,7 +513,8 @@ int AIAction::getEfficiency()
     case MTGAbility::MANA_PRODUCER://only way to hit this condition is nested manaabilities, ai skips manaproducers by defualt when finding an ability to use.
     {
         MTGCardInstance * _target = (MTGCardInstance *) (a->target);
-        MTGAbility * a = AbilityFactory::getCoreAbility(ability);
+        // TODO: C6246: Clarify a, is this independant of the "a" declared outside this scope?
+       MTGAbility * a = AbilityFactory::getCoreAbility(ability);
 
         efficiency = 0;
         //trying to encourage Ai to use his foreach manaproducers in first main

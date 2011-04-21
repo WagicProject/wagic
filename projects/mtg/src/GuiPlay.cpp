@@ -356,6 +356,7 @@ int GuiPlay::receiveEventPlus(WEvent * e)
             return 1;
         }
     }
+   // TODO: C6246: Clarify event, which event are you referring to?
     else if (WEventCreatureAttacker* event = dynamic_cast<WEventCreatureAttacker*>(e))
     {
         if (NULL != event->after)
@@ -368,6 +369,7 @@ int GuiPlay::receiveEventPlus(WEvent * e)
     {
         Replace();
     }
+   // TODO: C6246: Clarify event, which event are you referring to?
     else if (WEventCardTap* event = dynamic_cast<WEventCardTap*>(e))
     {
         if (CardView* cv = dynamic_cast<CardView*>(event->card->view))
@@ -383,6 +385,7 @@ int GuiPlay::receiveEventPlus(WEvent * e)
         }
         return 1;
     }
+   // TODO: C6246: Clarify event, which event are you referring to?
     else if (WEventPhaseChange *event = dynamic_cast<WEventPhaseChange*>(e))
     {
         if (Constants::MTG_PHASE_COMBATEND == event->to->id)

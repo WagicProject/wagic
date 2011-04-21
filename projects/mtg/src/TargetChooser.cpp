@@ -484,6 +484,7 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                 else if (attribute.find("share!") != string::npos)
                 {
                     size_t start = attribute.find("share!");
+                   // TODO: C6246: Clarify end, is this independant of the "end" declared outside this scope?
                     size_t end = attribute.rfind("!");
                     string CDtype = attribute.substr(start + 6,end - start);
                     if( card && card->isSpell() && card->backupTargets[0]->typeAsTarget() == TARGET_STACKACTION)
@@ -546,6 +547,7 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                     else
                     {
                         size_t start = attribute.find("{");
+                       // TODO: C6246: Clarify end, is this independant of the "end" declared outside this scope?
                         size_t end = attribute.find("}");
                         string counterString = attribute.substr(start + 1, end - start - 1);
                         AbilityFactory abf;

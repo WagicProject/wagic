@@ -972,9 +972,10 @@ bool GameOptionAward::read(string input)
     int i;
     for (i = 0; i < 5; i++)
         tvals[i] = 0;
+    i = 0;
 
     string buf;
-    for (size_t t = 0, i = 0; t < input.size(); t++)
+    for (size_t t = 0; t < input.size(); t++)
     {
         if (!isdigit(input[t]))
         {

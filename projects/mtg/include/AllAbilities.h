@@ -804,6 +804,7 @@ public:
                         {
                         if(!source->isInPlay())
                         return 0;
+                           // TODO: C6246: Clarify e, is this independant of the "e" declared outside this scope?
                             WEvent * e = NEW WEventVampire(victems[w],victems[w],source);
                             game->receiveEvent(e);
                             victems[w] = NULL;
@@ -4704,6 +4705,7 @@ public:
     {
         if (value_before_modification)
         {
+            // TODO: C6246: Clarify _target, is this independant of the "_target" declared as the member var of this class?
             Damageable * _target = (Damageable *) target;
             game->mLayers->stackLayer()->addDamage(source, _target, 2);
         }
