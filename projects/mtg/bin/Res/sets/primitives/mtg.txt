@@ -142,7 +142,7 @@ toughness=4
 [/card]
 [card]
 name=AEthersnipe
-other={1}{U}{U}
+other={1}{U}{U} name(Evoke)
 auto=moveTo(ownerhand) target(*[-land])
 auto=alternative sacrifice
 text=When AEthersnipe enters the battlefield, return target nonland permanent to its owner's hand. -- Evoke {1}{U}{U} (You may cast this spell for its evoke cost. If you do, it's sacrificed when it enters the battlefield.)
@@ -8133,7 +8133,7 @@ toughness=1
 [card]
 name=Briarhorn
 abilities=flash
-other={1}{G}
+other={1}{G} name(Evoke)
 auto=3/3 target(creature) ueot
 auto=alternative sacrifice
 text=Flash -- When Briarhorn enters the battlefield, target creature gets +3/+3 until end of turn. -- Evoke {1}{G} (You may cast this spell for its evoke cost. If you do, it's sacrificed when it enters the battlefield.)
@@ -11687,7 +11687,7 @@ toughness=2
 [card]
 name=Cloudthresher
 abilities=flash,reach
-other={2}{G}{G}
+other={2}{G}{G} name(Evoke)
 auto=damage:2 all(creature[flying])
 auto=damage:2 all(player)
 auto=alternative sacrifice
@@ -14510,7 +14510,7 @@ toughness=1
 [card]
 name=Dawnfluke
 abilities=flash
-other={W}
+other={W} name(Evoke)
 auto=prevent:3 target(creaure,player)
 auto=alternative sacrifice
 text=Flash -- When Dawnfluke enters the battlefield, prevent the next 3 damage that would be dealt to target creature or player this turn. -- Evoke {W} (You may cast this spell for its evoke cost. If you do, it's sacrificed when it enters the battlefield.)
@@ -21058,7 +21058,7 @@ toughness=2
 [card]
 name=Faultgrinder
 abilities=trample
-other={4}{R}
+other={4}{R} name(Evoke)
 auto=destroy target(land)
 auto=alternative sacrifice
 text=Trample -- When Faultgrinder enters the battlefield, destroy target land. -- Evoke {4}{R} (You may cast this spell for its evoke cost. If you do, it's sacrificed when it enters the battlefield.)
@@ -31426,7 +31426,7 @@ toughness=1
 [/card]
 [card]
 name=Ingot Chewer
-other={R}
+other={R} name(Evoke)
 auto=destroy target(artifact)
 auto=alternative sacrifice
 text=When Ingot Chewer enters the battlefield, destroy target artifact. -- Evoke {R} (You may cast this spell for its evoke cost. If you do, it's sacrificed when it enters the battlefield.)
@@ -31521,7 +31521,7 @@ toughness=2
 [/card]
 [card]
 name=Inner-Flame Acolyte
-other={R}
+other={R} name(Evoke)
 auto=choice target(creature) 2/0 ueot && haste ueot
 auto=alternative sacrifice
 text=When Inner-Flame Acolyte enters the battlefield, target creature gets +2/+0 and gains haste until end of turn. -- Evoke {R} (You may cast this spell for its evoke cost. If you do, it's sacrificed when it enters the battlefield.)
@@ -39345,7 +39345,7 @@ type=Land
 [/card]
 [card]
 name=Meadowboon
-other={3}{W}
+other={3}{W} name(Evoke)
 auto=@movedTo(this|nonbattlezone) from(mybattlefield):counter(1/1,1) all(creature|myBattlefield)
 auto=alternative sacrifice
 text=When Meadowboon leaves the battlefield, put a +1/+1 counter on each creature target player controls. -- Evoke {3}{W} (You may cast this spell for its evoke cost. If you do, it's sacrificed when it enters the battlefield.)
@@ -41798,7 +41798,7 @@ type=Instant
 [card]
 name=Mulldrifter
 abilities=flying
-other={2}{U}
+other={2}{U} name(Evoke)
 auto=draw:2
 auto=alternative sacrifice
 text=Flying -- When Mulldrifter enters the battlefield, draw two cards. -- Evoke {2}{U} (You may cast this spell for its evoke cost. If you do, it's sacrificed when it enters the battlefield.)
@@ -43118,7 +43118,7 @@ subtype=Equipment
 [card]
 name=Nevermaker
 abilities=flying
-other={3}{U}
+other={3}{U} name(Evoke)
 auto=@movedTo(this|nonbattlezone) from(battlefield):moveTo(ownerlibrary) target(*[-land])
 auto=alternative sacrifice
 text=Flying -- When Nevermaker leaves the battlefield, put target nonland permanent on top of its owner's library. -- Evoke {3}{U} (You may cast this spell for its evoke cost. If you do, it's sacrificed when it enters the battlefield.)
@@ -44233,7 +44233,7 @@ toughness=1
 [card]
 name=Offalsnout
 abilities=flash
-other={B}
+other={B} name(Evoke)
 auto=@movedTo(this|nonbattlezone) from(battlefield):moveTo(exile) target(other *|graveyard)
 text=Flash -- When Offalsnout leaves the battlefield, exile target card from a graveyard. -- Evoke {B} (You may cast this spell for its evoke cost. If you do, it's sacrificed when it enters the battlefield.)
 mana={2}{B}
@@ -51507,7 +51507,7 @@ type=Sorcery
 [card]
 name=Reveillark
 abilities=flying
-other={5}{W}
+other={5}{W} name(Evoke)
 auto=alternative sacrifice
 auto=@movedTo(this|nonbattlezone) from(battlefield):may token(-152716111) && moveTo(myBattlefield) target(creature[power<=2]|mygraveyard)
 text=Flying -- When Reveillark leaves the battlefield, return up to two target creature cards with power 2 or less from your graveyard to the battlefield. -- Evoke {5}{W} (You may cast this spell for its evoke cost. If you do, it's sacrificed when it enters the battlefield.)
@@ -56944,7 +56944,7 @@ toughness=1
 [card]
 name=Shriekmaw
 abilities=fear
-other={1}{B}
+other={1}{B} name(Evoke)
 auto=destroy target(creature[-artifact;-black])
 auto=alternative sacrifice
 text=Fear (This creature can't be blocked except by artifact creatures and/or black creatures.) -- When Shriekmaw enters the battlefield, destroy target nonartifact, nonblack creature. -- Evoke {1}{B} (You may cast this spell for its evoke cost. If you do, it's sacrificed when it enters the battlefield.)
@@ -60924,7 +60924,7 @@ type=Instant
 [/card]
 [card]
 name=Spitebellows
-other={1}{R}{R}
+other={1}{R}{R} name(Evoke)
 auto=@movedTo(this|nonbattlezone) from(battlefield):damage:6 target(creature)
 auto=alternative sacrifice
 text=When Spitebellows leaves the battlefield, it deals 6 damage to target creature. -- Evoke {1}{R}{R} (You may cast this spell for its evoke cost. If you do, it's sacrificed when it enters the battlefield.)
@@ -71747,7 +71747,7 @@ toughness=2
 [/card]
 [card]
 name=Walker of the Grove
-other={4}{G}
+other={4}{G} name(Evoke)
 auto=@movedTo(this|nonbattlezone) from(battlefield):token(Elemental,Creature Elemental,4/4,green)
 auto=alternative sacrifice
 text=When Walker of the Grove leaves the battlefield, put a 4/4 green Elemental creature token onto the battlefield. -- Evoke {4}{G} (You may cast this spell for its evoke cost. If you do, it's sacrificed when it enters the battlefield.)
@@ -74051,7 +74051,7 @@ toughness=1
 [card]
 name=Wispmare
 abilities=flying
-other={W}
+other={W} name(Evoke)
 auto=destroy target(enchantment)
 auto=alternative sacrifice
 text=Flying -- When Wispmare enters the battlefield, destroy target enchantment. -- Evoke {W} (You may cast this spell for its evoke cost. If you do, it's sacrificed when it enters the battlefield.)
