@@ -21574,12 +21574,13 @@ toughness=1
 [/card]
 [card]
 name=Fieldmist Borderpost
-other={H(land[basic]|mybattlefield)}{1} name(Pay {1} and Return a Basic Land to Hand)
+other={H(land[basic]|mybattlefield)}{1} name(Pay /1/ and Return a Basic Land to Hand)
 auto=tap
 auto={T}:Add{W}
 auto={T}:Add{U}
 text=You may pay {1} and return a basic land you control to its owner's hand rather than pay Fieldmist Borderpost's mana cost. -- Fieldmist Borderpost enters the battlefield tapped. -- {T}: Add {W} or {U} to your mana pool.
-mana={1}{W}{U}
+#mana={1}{W}{U}
+mana={2}
 type=Artifact
 [/card]
 [card]
@@ -22019,7 +22020,7 @@ toughness=1
 [/card]
 [card]
 name=Firewild Borderpost
-other={H(land[basic]|mybattlefield)}{1} name(Pay {1} and Return a Basic Land to Hand)
+other={H(land[basic]|mybattlefield)}{1} name(Pay /1/ and Return a Basic Land to Hand)
 auto=tap
 auto={T}:Add{R}
 auto={T}:Add{G}
@@ -22339,7 +22340,7 @@ target=creature
 auto=untap
 auto=haste
 alias=129767
-other={4}{R}{W} name(Pay {W} to Cast)
+other={4}{R}{W} name(Pay /W/ to Cast)
 auto=alternative teach(creature) spiritlink ueot
 text=Untap target creature and gain control of it until end of turn. That creature gains haste until end of turn. If {W} was spent to cast Flash Conscription, the creature gains "Whenever this creature deals combat damage, you gain that much life" until end of turn.
 mana={5}{R}
@@ -40653,7 +40654,7 @@ toughness=1
 [/card]
 [card]
 name=Mistvein Borderpost
-other={H(land[basic]|mybattlefield)}{1} name(Pay {1} and Return a Basic Land to Hand)
+other={H(land[basic]|mybattlefield)}{1} name(Pay /1/ and Return a Basic Land to Hand)
 auto=tap
 auto={T}:Add{U}
 auto={T}:Add{B}
@@ -69913,7 +69914,7 @@ toughness=4
 [/card]
 [card]
 name=Veinfire Borderpost
-other={H(land[basic]|mybattlefield)}{1} name(Pay {1} and Return a Basic Land to Hand)
+other={H(land[basic]|mybattlefield)}{1} name(Pay /1/ and Return a Basic Land to Hand)
 auto=tap
 auto={T}:Add{B}
 auto={T}:Add{R}
@@ -73549,7 +73550,7 @@ toughness=3
 [/card]
 [card]
 name=Wildfield Borderpost
-other={H(land[basic]|mybattlefield)}{1} name(Pay {1} and Return a Basic Land to Hand)
+other={H(land[basic]|mybattlefield)}{1} name(Pay /1/ and Return a Basic Land to Hand)
 auto=tap
 auto={T}:Add{G}
 auto={T}:Add{W}
