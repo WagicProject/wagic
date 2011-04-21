@@ -21,6 +21,8 @@ using std::string;
 class WStyle;
 class StyleManager;
 class Player;
+class GameApp;
+
 
 class Options {
 public:
