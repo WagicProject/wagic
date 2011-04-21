@@ -115,6 +115,7 @@ void GameStateDuel::Start()
     {
         if (mParent->players[i] == PLAYER_TYPE_HUMAN)
         {
+            DeckManager::EndInstance();
             decksneeded = 1;
 
             deckmenu = NEW DeckMenu(DUEL_MENU_CHOOSE_DECK, this, Fonts::OPTION_FONT, "Choose a Deck",

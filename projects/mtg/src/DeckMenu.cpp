@@ -271,14 +271,12 @@ void DeckMenu::Render()
                 mainFont->DrawString(text.c_str(), descX, descY);
                 mFont->SetColor(ARGB(255,255,255,255));
                 
-                
                 // fill in the statistical portion
                 if (currentMenuItem->meta)
                 {
                     ostringstream oss;
                     oss << _("Deck: ") << currentMenuItem->meta->getName() << endl;
                     oss << currentMenuItem->meta->getStatsSummary();
-
                     mainFont->DrawString(oss.str(), statsX, statsY);
                 }
             }

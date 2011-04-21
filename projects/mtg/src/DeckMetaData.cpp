@@ -56,7 +56,7 @@ void DeckMetaData::LoadStats()
             DeckStat * opponentDeckStats = stats->getDeckStat(mStatsFilename);
             if (opponentDeckStats)
             {
-                mPercentVictories = stats->percentVictories(mStatsFilename);
+                mPercentVictories = opponentDeckStats->percentVictories();
                 mVictories = opponentDeckStats->victories;
                 mGamesPlayed = opponentDeckStats->nbgames;
                 mColorIndex = opponentDeckStats->manaColorIndex;
@@ -73,6 +73,7 @@ void DeckMetaData::LoadStats()
                 {
                     mDifficulty = EASY;
                 }
+                mStatsLoaded = true;
             }
         }
         else
@@ -83,10 +84,10 @@ void DeckMetaData::LoadStats()
                 mGamesPlayed = stats->nbGames();               
                 mPercentVictories = stats->percentVictories();
                 mVictories = static_cast<int>(mGamesPlayed * (mPercentVictories / 100.0f));
+                mStatsLoaded = true;
             }
         }
 
-        mStatsLoaded = true;
     }
 
 }
