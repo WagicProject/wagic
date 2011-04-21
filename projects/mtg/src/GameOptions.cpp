@@ -2,7 +2,6 @@
 
 #include "utils.h"
 #include "MTGDeck.h"
-#include "GameOptions.h"
 #include "Translate.h"
 #include "OptionItem.h"
 #include "StyleManager.h"

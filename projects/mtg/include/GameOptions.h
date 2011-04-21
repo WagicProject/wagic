@@ -8,7 +8,6 @@ using std::string;
 #include <JGE.h>
 #include <time.h>
 #include "SimplePad.h"
-#include "GameApp.h"
 
 #define GLOBAL_SETTINGS "settings/options.txt"
 #define PLAYER_SAVEFILE "data.dat"

@@ -1,6 +1,7 @@
 #include "PrecompiledHeader.h"
 
 #include "Translate.h"
+#include "utils.h"
 
 Translator * Translator::mInstance = NULL;
 

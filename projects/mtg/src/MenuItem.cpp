@@ -2,6 +2,7 @@
 
 #include "MenuItem.h"
 #include "Translate.h"
+#include "WResourceManager.h"
 
 MenuItem::MenuItem(int id, WFont *font, string text, float x, float y, JQuad * _off, JQuad * _on, const char * particle,
                 JQuad * particleTex, bool hasFocus) :
