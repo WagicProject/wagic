@@ -22431,7 +22431,6 @@ toughness=2
 [/card]
 [card]
 name=Fledgling Griffin
-abilities=flying
 auto=@movedTo(land|myBattlefield):flying ueot
 text=Landfall - Whenever a land enters the battlefield under your control, Fledgling Griffin gains flying until end of turn.
 mana={1}{W}
@@ -43066,7 +43065,7 @@ subtype=Equipment
 [card]
 name=Neurok Invisimancer
 abilities=unblockable
-auto=unblockable target(creature)
+auto=unblockable target(creature) ueot
 text=Neurok Invisimancer is unblockable. -- When Neurok Invisimancer enters the battlefield, target creature is unblockable until end of turn.
 mana={1}{U}{U}
 type=Creature
@@ -47860,7 +47859,7 @@ toughness=3
 [/card]
 [card]
 name=Poultice Sliver
-auto=lord(sliver) {T}:regenerate target(sliver)
+auto=lord(sliver) {2}{T}:regenerate target(sliver)
 text=All Slivers have "{2}, {T}: Regenerate target Sliver."
 mana={2}{W}
 type=Creature
