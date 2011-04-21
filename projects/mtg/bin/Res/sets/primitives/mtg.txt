@@ -30,8 +30,8 @@ type=Enchantment
 [card]
 name=AEther Figment
 abilities=unblockable
-other={4}{U} name(Pay Kicker)
-auto=alternative counter(1/1,2)
+kicker={3}
+auto=kicker counter(1/1,2)
 text=Kicker {3} (You may pay an additional {3} as you cast this spell.) -- AEther Figment is unblockable. -- If AEther Figment was kicked, it enters the battlefield with two +1/+1 counters on it.
 mana={1}{U}
 type=Creature
@@ -776,9 +776,9 @@ subtype=Aura
 [card]
 name=Agonizing Demise
 target=creature[-black]
-other={4}{R}{B} name(Pay Kicker)
+kicker={1}{R}
 auto=bury
-auto=alternative dynamicability<!mytgt powerstrike targetcontroller!>
+auto=kicker dynamicability<!mytgt powerstrike targetcontroller!>
 text=Kicker {1}{R} (You may pay an additional {1}{R} as you cast this spell.) -- Destroy target nonblack creature. It can't be regenerated. If Agonizing Demise was kicked, it deals damage equal to that creature's power to the creature's controller.
 mana={3}{B}
 type=Instant
@@ -2763,7 +2763,7 @@ name=Arctic Merfolk
 auto=alternative counter(1/1,1) all(this)
 text=Kicker - Return a creature you control to its owner's hand. (You may return a creature you control to its owner's hand in addition to any other costs as you cast this spell.) -- If Arctic Merfolk was kicked, it enters the battlefield with a +1/+1 counter on it.
 mana={1}{U}
-other={1}{U}{h(creature|mybattlefield)} name(Pay Kicker)
+other={1}{u}{h(creature|mybattlefield)} name(Pay Kicker)
 type=Creature
 subtype=Merfolk
 power=1
@@ -2814,9 +2814,9 @@ toughness=1
 [/card]
 [card]
 name=Ardent Soldier
-other={3}{W} name(Pay Kicker)
+kicker={2}
 auto=vigilance
-auto=alternative counter(1/1,1)
+auto=kicker counter(1/1,1)
 text=Kicker {2} (You may pay an additional {2} as you cast this spell.) -- Vigilance -- If Ardent Soldier was kicked, it enters the battlefield with a +1/+1 counter on it.
 mana={1}{W}
 type=Creature
@@ -5495,8 +5495,8 @@ toughness=2
 [/card]
 [card]
 name=Benalish Emissary
-other={3}{G}{W} name(Pay Kicker)
-auto=alternative destroy target(land)
+kicker={1}{G}
+auto=kicker destroy target(land)
 text=Kicker {1}{G} (You may pay an additional {1}{G} as you cast this spell.) -- When Benalish Emissary enters the battlefield, if it was kicked, destroy target land.
 mana={2}{W}
 type=Creature
@@ -5526,9 +5526,9 @@ toughness=2
 [/card]
 [card]
 name=Benalish Lancer
-other={4}{W}{W} name(Pay Kicker)
-auto=alternative counter(1/1,2)
-auto=alternative first strike
+kicker={2}{W}
+auto=kicker counter(1/1,2)
+auto=kicker first strike
 text=Kicker {2}{W} (You may pay an additional {2}{W} as you cast this spell.) -- If Benalish Lancer was kicked, it enters the battlefield with two +1/+1 counters on it and with first strike.
 mana={2}{W}
 type=Creature
@@ -6703,7 +6703,7 @@ text=Kicker - Tap an untapped Vampire you control. (You may tap a Vampire you co
 auto=life:-halfupopponentlifetotal opponent
 auto=life:opponentlifetotal controller
 mana={4}{B}{B}
-other={4}{b}{b}{T(vampire|mybattlefield)} name(Pay Kicker)
+other={4}{b}{b}{t(vampire|mybattlefield)} name(Pay Kicker)
 type=Sorcery
 [/card]
 [card]
@@ -7368,10 +7368,10 @@ toughness=1
 [/card]
 [card]
 name=Bold Defense
-other={5}{W}{W} name(Pay Kicker)
+kicker={3}{W}
 auto=lord(creature|myBattlefield) 1/1
-auto=alternative lord(creature|myBattlefield) 1/1
-auto=alternative lord(creature|myBattlefield) first strike
+auto=kicker lord(creature|myBattlefield) 1/1
+auto=kicker lord(creature|myBattlefield) first strike
 text=Kicker {3}{W} (You may pay an additional {3}{W} as you cast this spell.) -- Creatures you control get +1/+1 until end of turn. If Bold Defense was kicked, instead creatures you control get +2/+2 and gain first strike until end of turn.
 mana={2}{W}
 type=Instant
@@ -8038,13 +8038,13 @@ type=Sorcery
 [/card]
 [card]
 name=Breath of Darigaaz
-other={3}{R} name(Pay Kicker)
+kicker={2}
 auto=damage:1 all(creature[-flying])
 auto=damage:1 opponent
 auto=damage:1 controller
-auto=alternative damage:3 all(creature[-flying])
-auto=alternative damage:3 opponent
-auto=alternative damage:3 controller
+auto=kicker damage:3 all(creature[-flying])
+auto=kicker damage:3 opponent
+auto=kicker damage:3 controller
 text=Kicker {2} (You may pay an additional {2} as you cast this spell.) -- Breath of Darigaaz deals 1 damage to each creature without flying and each player. If Breath of Darigaaz was kicked, it deals 4 damage to each creature without flying and each player instead.
 mana={1}{R}
 type=Sorcery
@@ -8668,9 +8668,9 @@ subtype=Aura
 [card]
 name=Burst Lightning
 target=creature,player
-other={4}{R} name(Pay Kicker)
+kicker={4}
 auto=damage:2
-auto=alternative damage:2
+auto=kicker damage:2
 text=Kicker {4} (You may pay an additional {4} as you cast this spell.) -- Burst Lightning deals 2 damage to target creature or player. If Burst Lightning was kicked, it deals 4 damage to that creature or player instead.
 mana={R}
 type=Instant
@@ -9077,11 +9077,11 @@ toughness=3
 [/card]
 [card]
 name=Canopy Surge
-other={3}{G} name(Pay Kicker)
+kicker={2}
 auto=damage:1 all(creature[flying])
 auto=damage:1 all(player)
-auto=alternative damage:3 all(creature[flying])
-auto=alternative damage:3 all(player)
+auto=kicker damage:3 all(creature[flying])
+auto=kicker damage:3 all(player)
 text=Kicker {2} (You may pay an additional {2} as you cast this spell.) -- Canopy Surge deals 1 damage to each creature with flying and each player. If Canopy Surge was kicked, it deals 4 damage to each creature with flying and each player instead.
 mana={1}{G}
 type=Sorcery
@@ -11065,8 +11065,8 @@ toughness=2
 [/card]
 [card]
 name=Citanul Woodreaders
-other={4}{G}{G} name(Pay Kicker)
-auto=alternative draw:2
+kicker={2}{G}
+auto=kicker draw:2
 text=Kicker {2}{G} (You may pay an additional {2}{G} as you cast this spell.) -- When Citanul Woodreaders enters the battlefield, if it was kicked, draw two cards.
 mana={2}{G}
 type=Creature
@@ -12162,9 +12162,9 @@ subtype=Aura
 [/card]
 [card]
 name=Conqueror's Pledge
-other={8}{W}{W}{W} name(Pay Kicker)
+kicker={6}
 auto=token(Kor Soldier,Creature Kor Soldier,1/1,white)*6
-auto=alternative token(Kor Soldier,Creature Kor Soldier,1/1,white)*6
+auto=kicker token(Kor Soldier,Creature Kor Soldier,1/1,white)*6
 text=Kicker {6} (You may pay an additional {6} as you cast this spell.) -- Put six 1/1 white Kor Soldier creature tokens onto the battlefield. If Conqueror's Pledge was kicked, put twelve of those tokens onto the battlefield instead.
 mana={2}{W}{W}{W}
 type=Sorcery
@@ -15652,8 +15652,8 @@ type=Land
 [card]
 name=Desolation Angel
 abilities=flying
-other={3}{W}{W}{B}{B} name(Pay Kicker)
-auto=alternative destroy all(land|opponentBattlefield)
+kicker={W}{W}
+auto=kicker destroy all(land|opponentBattlefield)
 auto=destroy all(land|myBattlefield)
 text=Kicker {W}{W} (You may pay an additional {W}{W} as you cast this spell.) -- Flying -- When Desolation Angel enters the battlefield, destroy all lands you control. If it was kicked, destroy all lands instead.
 mana={3}{B}{B}
@@ -15664,8 +15664,8 @@ toughness=4
 [/card]
 [card]
 name=Desolation Giant
-other={2}{W}{W}{R}{R} name(Pay Kicker)
-auto=alternative destroy all(creature|opponentBattlefield)
+kicker={W}{W}
+auto=kicker destroy all(creature|opponentBattlefield)
 auto=destroy all(other creature|myBattlefield)
 text=Kicker {W}{W} (You may pay an additional {W}{W} as you cast this spell.) -- When Desolation Giant enters the battlefield, destroy all other creatures you control. If it was kicked, destroy all other creatures instead.
 mana={2}{R}{R}
@@ -16115,7 +16115,7 @@ toughness=2
 [/card]
 [card]
 name=Disease Carriers
-auto=@movedTo(this|graveyard) from(battlefield):-2/-2 target(creature) ueot
+auto=@movedTo(this|graveyard) from(battlefield):-2/-2 target(creature)
 text=When Disease Carriers is put into a graveyard from the battlefield, target creature gets -2/-2 until end of turn.
 mana={2}{B}{B}
 type=Creature
@@ -16186,9 +16186,9 @@ type=Sorcery
 [card]
 name=Dismantling Blow
 target=artifact,enchantment
-other={4}{U}{W} name(Pay Kicker)
+kicker={2}{U}
 auto=destroy
-auto=alternative draw:2 controller
+auto=kicker draw:2 controller
 text=Kicker {2}{U} (You may pay an additional {2}{U} as you cast this spell.) -- Destroy target artifact or enchantment. -- If Dismantling Blow was kicked, draw two cards.
 mana={2}{W}
 type=Instant
@@ -17821,9 +17821,9 @@ toughness=3
 [/card]
 [card]
 name=Duskwalker
-other={3}{B}{B} name(Pay Kicker)
-auto=alternative counter(1/1,2)
-auto=alternative fear
+kicker={3}{B}
+auto=kicker counter(1/1,2)
+auto=kicker fear
 text=Kicker {3}{B} (You may pay an additional {3}{B} as you cast this spell.) -- If Duskwalker was kicked, it enters the battlefield with two +1/+1 counters on it and with fear. (It can't be blocked except by artifact creatures and/or black creatures.)
 mana={B}
 type=Creature
@@ -20403,9 +20403,9 @@ type=Sorcery
 [card]
 name=Explosive Growth
 target=creature
-other={5}{G} name(Pay Kicker)
+kicker={5}
 auto=2/2
-auto=alternative 3/3
+auto=kicker 3/3
 text=Kicker {5} (You may pay an additional {5} as you cast this spell.) -- Target creature gets +2/+2 until end of turn. If Explosive Growth was kicked, that creature gets +5/+5 until end of turn instead.
 mana={G}
 type=Instant
@@ -20680,9 +20680,9 @@ toughness=2
 [/card]
 [card]
 name=Faerie Squadron
-other={3}{U}{U} name(Pay Kicker)
-auto=alternative counter(1/1,2)
-auto=alternative flying
+kicker={3}{U}
+auto=kicker counter(1/1,2)
+auto=kicker flying
 text=Kicker {3}{U} (You may pay an additional {3}{U} as you cast this spell.) -- If Faerie Squadron was kicked, it enters the battlefield with two +1/+1 counters on it and with flying.
 mana={U}
 type=Creature
@@ -25655,9 +25655,9 @@ type=Land
 [/card]
 [card]
 name=Goblin Bushwhacker
-other={R}{R} name(Pay Kicker)
-auto=alternative all(creature|myBattlefield) 1/0 ueot
-auto=alternative all(creature|myBattlefield) haste ueot
+kicker={R}
+auto=kicker all(creature|myBattlefield) 1/0 ueot
+auto=kicker all(creature|myBattlefield) haste ueot
 text=Kicker {R} (You may pay an additional {R} as you cast this spell.) -- When Goblin Bushwhacker enters the battlefield, if it was kicked, creatures you control get +1/+0 and gain haste until end of turn.
 mana={R}
 type=Creature
@@ -26129,8 +26129,8 @@ toughness=2
 [card]
 name=Goblin Ruinblaster
 abilities=haste
-other={2}{R}{R} name(Pay Kicker)
-auto=alternative destroy target(land[-basic])
+kicker={R}
+auto=kicker destroy target(land[-basic])
 text=Kicker {R} (You may pay an additional {R} as you cast this spell.) -- Haste -- When Goblin Ruinblaster enters the battlefield, if it was kicked, destroy target nonbasic land.
 mana={2}{R}
 type=Creature
@@ -28850,8 +28850,8 @@ toughness=2
 [card]
 name=Heartstabber Mosquito
 abilities=flying
-other={5}{B}{B} name(Pay Kicker)
-auto=alternative destroy target(creature)
+kicker={2}{B}
+auto=kicker destroy target(creature)
 text=Kicker {2}{B} (You may pay an additional {2}{B} as you cast this spell.) -- Flying -- When Heartstabber Mosquito enters the battlefield, if it was kicked, destroy target creature.
 mana={3}{B}
 type=Creature
@@ -31695,9 +31695,9 @@ type=Sorcery
 [card]
 name=Into the Roil
 target=*[-land]
-other={2}{U}{U} name(Pay Kicker)
+kicker={1}{U}
 auto=moveTo(ownerhand)
-auto=alternative draw:1 controller
+auto=kicker draw:1 controller
 text=Kicker {1}{U} (You may pay an additional {1}{U} as you cast this spell.) -- Return target nonland permanent to its owner's hand. If Into the Roil was kicked, draw a card.
 mana={1}{U}
 type=Instant
@@ -33630,8 +33630,8 @@ toughness=2
 [card]
 name=Kavu Aggressor
 abilities=cantblock
-other={6}{R} name(Pay Kicker)
-auto=alternative counter(1/1,1)
+kicker={4}
+auto=kicker counter(1/1,1)
 text=Kicker {4} (You may pay an additional {4} as you cast this spell.) -- Kavu Aggressor can't block. -- If Kavu Aggressor was kicked, it enters the battlefield with a +1/+1 counter on it.
 mana={2}{R}
 type=Creature
@@ -33743,9 +33743,9 @@ toughness=2
 [/card]
 [card]
 name=Kavu Titan
-other={3}{G}{G} name(Pay Kicker)
-auto=alternative counter(1/1,3)
-auto=alternative trample
+kicker={2}{G}
+auto=kicker counter(1/1,3)
+auto=kicker trample
 text=Kicker {2}{G} (You may pay an additional {2}{G} as you cast this spell.) -- If Kavu Titan was kicked, it enters the battlefield with three +1/+1 counters on it and with trample.
 mana={1}{G}
 type=Creature
@@ -34952,8 +34952,8 @@ toughness=5
 [card]
 name=Kor Aeronaut
 abilities=flying
-other={1}{W}{W}{W} name(Pay Kicker)
-auto=alternative flying target(creature) ueot
+kicker={1}{W}
+auto=kicker flying target(creature) ueot
 text=Kicker {1}{W} (You may pay an additional {1}{W} as you cast this spell.) -- Flying -- When Kor Aeronaut enters the battlefield, if it was kicked, target creature gains flying until end of turn.
 mana={W}{W}
 type=Creature
@@ -35021,8 +35021,8 @@ toughness=1
 [/card]
 [card]
 name=Kor Sanctifiers
-other={2}{W}{W} name(Pay Kicker)
-auto=alternative destroy target(artifact,enchantment)
+kicker={W}
+auto=kicker destroy target(artifact,enchantment)
 text=Kicker {W} (You may pay an additional {W} as you cast this spell.) -- When Kor Sanctifiers enters the battlefield, if it was kicked, destroy target artifact or enchantment.
 mana={2}{W}
 type=Creature
@@ -37113,8 +37113,8 @@ toughness=2
 [card]
 name=Llanowar Elite
 abilities=trample
-other={8}{G} name(Pay Kicker)
-auto=alternative counter(1/1,5)
+kicker={8}
+auto=kicker counter(1/1,5)
 text=Kicker {8} (You may pay an additional {8} as you cast this spell.) -- Trample -- If Llanowar Elite was kicked, it enters the battlefield with five +1/+1 counters on it.
 mana={G}
 type=Creature
@@ -38170,7 +38170,7 @@ auto=damage:3
 auto=alternative damage:3 target(other creature,player)
 text=Kicker - Sacrifice two lands. (You may sacrifice two lands in addition to any other costs as you cast this spell.) -- Magma Burst deals 3 damage to target creature or player. If Magma Burst was kicked, it deals 3 damage to another target creature or player.
 mana={3}{R}
-other={3}{R}{S(land|mybattlefield)}{S(land|mybattlefield)} name(Pay Kicker)
+other={3}{r}{s(land|mybattlefield)}{s(land|mybattlefield)} name(Pay Kicker)
 type=Instant
 [/card]
 [card]
@@ -38972,9 +38972,9 @@ toughness=1
 [/card]
 [card]
 name=Marsh Casualties
-other={3}{B}{B} name(Pay Kicker)
+kicker={3}
 auto=lord(creature|opponentBattlefield) -1/-1
-auto=alternative lord(creature|opponentBattlefield) -1/-1
+auto=kicker lord(creature|opponentBattlefield) -1/-1
 text=Kicker {3} (You may pay an additional {3} as you cast this spell.) -- Creatures target player controls get -1/-1 until end of turn. If Marsh Casualties was kicked, those creatures get -2/-2 until end of turn instead.
 mana={B}{B}
 type=Sorcery
@@ -40936,8 +40936,8 @@ toughness=3
 [/card]
 [card]
 name=Mold Shambler
-other={4}{G}{G} name(Pay Kicker)
-auto=alternative destroy target(*[-creature])
+kicker={1}{G}
+auto=kicker destroy target(*[-creature])
 text=Kicker {1}{G} (You may pay an additional {1}{G} as you cast this spell.) -- When Mold Shambler enters the battlefield, if it was kicked, destroy target noncreature permanent.
 mana={3}{G}
 type=Creature
@@ -44686,8 +44686,8 @@ toughness=2
 [card]
 name=Oran-Rief Recluse
 abilities=reach
-other={4}{G}{G} name(Pay Kicker)
-auto=alternative destroy target(creature[flying])
+kicker={2}{G}
+auto=kicker destroy target(creature[flying])
 text=Kicker {2}{G} (You may pay an additional {2}{G} as you cast this spell.) -- Reach (This creature can block creatures with flying.) -- When Oran-Rief Recluse enters the battlefield, if it was kicked, destroy target creature with flying.
 mana={2}{G}
 type=Creature
@@ -44999,8 +44999,8 @@ toughness=6
 name=Orim's Chant
 target=player
 auto=maxCast(*)0
-other={W}{W} name(Pay Kicker)
-auto=alternative cantattack all(creature)
+kicker={W}
+auto=kicker cantattack all(creature)
 text=Kicker {W} (You may pay an additional {W} as you cast this spell.) -- Target player can't cast spells this turn. -- If Orim's Chant was kicked, creatures can't attack this turn.
 mana={W}
 type=Instant
@@ -45025,8 +45025,8 @@ type=Enchantment
 [card]
 name=Orim's Touch
 target=creature,player
-other={1}{W} name(Pay Kicker)
-auto=alternative prevent:2
+kicker={1}
+auto=kicker prevent:2
 auto=prevent:2
 text=Kicker {1} (You may pay an additional {1} as you cast this spell.) -- Prevent the next 2 damage that would be dealt to target creature or player this turn. If Orim's Touch was kicked, prevent the next 4 damage that would be dealt to that creature or player this turn instead.
 mana={W}
@@ -45280,8 +45280,8 @@ type=Enchantment
 [card]
 name=Overload
 target=creature
-other={2}{R} name(Pay Kicker)
-auto=alternative teach(creature[manacost<=5]) destroy
+kicker={2}
+auto=kicker teach(creature[manacost<=5]) destroy
 auto=teach(creature[manacost<=2]) destroy
 text=Kicker {2} (You may pay an additional {2} as you cast this spell.) -- Destroy target artifact if its converted mana cost is 2 or less. If Overload was kicked, destroy that artifact if its converted mana cost is 5 or less instead.
 mana={R}
@@ -46963,7 +46963,7 @@ type=Enchantment
 name=Phyrexian Scuta
 text=Kicker - Pay 3 life. (You may pay 3 life in addition to any other costs as you cast this spell.) -- If Phyrexian Scuta was kicked, it enters the battlefield with two +1/+1 counters on it.
 auto=alternative counter(1/1,2) all(this)
-other={3}{B}{L}{L}{L} name(Pay Kicker)
+other={3}{b}{l}{l}{l} name(Pay Kicker)
 mana={3}{B}
 type=Creature
 subtype=Zombie
@@ -47156,8 +47156,8 @@ subtype=Aura
 [card]
 name=Pincer Spider
 abilities=reach
-other={5}{G} name(Pay Kicker)
-auto=alternative counter(1/1,1)
+kicker={3}
+auto=kicker counter(1/1,1)
 text=Kicker {3} (You may pay an additional {3} as you cast this spell.) -- Reach (This creature can block creatures with flying.) -- If Pincer Spider was kicked, it enters the battlefield with a +1/+1 counter on it.
 mana={2}{G}
 type=Creature
@@ -47881,9 +47881,9 @@ toughness=2
 [card]
 name=Pouncing Kavu
 abilities=first strike
-other={3}{R}{R} name(Pay Kicker)
-auto=alternative counter(1/1,2)
-auto=alternative haste
+kicker={2}{R}
+auto=kicker counter(1/1,2)
+auto=kicker haste
 text=Kicker {2}{R} (You may pay an additional {2}{R} as you cast this spell.) -- First strike -- If Pouncing Kavu was kicked, it enters the battlefield with two +1/+1 counters on it and with haste.
 mana={1}{R}
 type=Creature
@@ -47893,9 +47893,9 @@ toughness=1
 [/card]
 [card]
 name=Pouncing Wurm
-other={5}{G}{G} name(Pay Kicker)
-auto=alternative haste
-auto=alternative counter(1/1,3)
+kicker={2}{G}
+auto=kicker haste
+auto=kicker counter(1/1,3)
 text=Kicker {2}{G} (You may pay an additional {2}{G} as you cast this spell.) -- If Pouncing Wurm was kicked, it enters the battlefield with three +1/+1 counters on it and with haste.
 mana={3}{G}
 type=Creature
@@ -48172,7 +48172,7 @@ auto=moveto(mybattlefield)
 auto=alternative target(land[basic]|mylibrary) moveto(mybattlefield)
 text=Kicker - Sacrifice a creature. (You may sacrifice a creature in addition to any other costs as you cast this spell.) -- Search your library for a basic land card, put that card onto the battlefield, then shuffle your library. If Primal Growth was kicked, instead search your library for two basic land cards, put them onto the battlefield, then shuffle your library.
 mana={2}{G}
-other={2}{G}{S(creature|mybattlefield)} name(Pay Kicker)
+other={2}{g}{s(creature|mybattlefield)} name(Pay Kicker)
 type=Sorcery
 [/card]
 [card]
@@ -48325,9 +48325,9 @@ toughness=1
 [card]
 name=Prison Barricade
 abilities=defender
-other={2}{W}{W} name(Pay Kicker)
-auto=alternative counter(1/1,1)
-auto=alternative canattack
+kicker={1}{W}
+auto=kicker counter(1/1,1)
+auto=kicker canattack
 text=Defender (This creature can't attack.) -- Kicker {1}{W} (You may pay an additional {1}{W} as you cast this spell.) -- If Prison Barricade was kicked, it enters the battlefield with a +1/+1 counter on it and with "Prison Barricade can attack as though it didn't have defender."
 mana={1}{W}
 type=Creature
@@ -50233,8 +50233,8 @@ toughness=3
 [card]
 name=Ravaging Riftwurm
 auto=vanishing:2
-other={5}{G}{G} name(Pay Kicker)
-auto=alternative counter(0/0,3,Time)
+kicker={4}
+auto=kicker counter(0/0,3,Time)
 text=Kicker {4} (You may pay an additional 4 as you cast this spell.) -- Vanishing 2 (This permanent enters the battlefield with two time counters on it. At the beginning of your upkeep, remove a time counter from it. When the last is removed, sacrifice it.) -- If Ravaging Riftwurm was kicked, it enters the battlefield with three additional time counters on it.
 mana={1}{G}{G}
 type=Creature
@@ -52104,8 +52104,8 @@ type=Enchantment
 name=Rite of Replication
 target=creature
 auto=clone
-other={7}{U}{U} name(Pay Kicker)
-auto=alternative clone && clone && clone && clone
+kicker={5}
+auto=kicker clone && clone && clone && clone
 text=Kicker {5} (You may pay an additional {5} as you cast this spell.) -- Put a token onto the battlefield that's a copy of target creature. If Rite of Replication was kicked, put five of those tokens onto the battlefield instead.
 mana={2}{U}{U}
 type=Sorcery
@@ -53042,7 +53042,7 @@ auto=moveto(ownerhand)
 auto=alternative target(*[-land]|battlefield) moveto(ownerhand)
 text=Kicker - Sacrifice a land. (You may sacrifice a land in addition to any other costs as you cast this spell.) -- Return target nonland permanent to its owner's hand. If Rushing River was kicked, return another target nonland permanent to its owner's hand.
 mana={2}{U}
-other={2}{U}{S(land|mybattlefield)} name(Pay Kicker)
+other={2}{u}{S(land|mybattlefield)} name(Pay Kicker)
 type=Instant
 [/card]
 [card]
@@ -54078,9 +54078,9 @@ type=Land
 [/card]
 [card]
 name=Savage Offensive
-other={1}{G}{R} name(Pay Kicker)
+kicker={G}
 auto=lord(creature|myBattlefield) first strike
-auto=alternative lord(creature|myBattlefield) 1/1
+auto=kicker lord(creature|myBattlefield) 1/1
 text=Kicker {G} (You may pay an additional {G} as you cast this spell.) -- Creatures you control gain first strike until end of turn. If Savage Offensive was kicked, they get +1/+1 until end of turn.
 mana={1}{R}
 type=Sorcery
@@ -54514,9 +54514,9 @@ toughness=1
 [card]
 name=Scorching Lava
 target=creature,player
-other={1}{R}{R} name(Pay Kicker)
-auto=alternative cantregen
-auto=alternative exiledeath
+kicker={R}
+auto=kicker cantregen
+auto=kicker exiledeath
 auto=damage:2
 text=Kicker {R} (You may pay an additional {R} as you cast this spell.) -- Scorching Lava deals 2 damage to target creature or player. If Scorching Lava was kicked, that creature can't be regenerated this turn and if it would be put into a graveyard this turn, exile it instead.
 mana={1}{R}
@@ -56700,8 +56700,8 @@ toughness=5
 [/card]
 [card]
 name=Shivan Emissary
-other={3}{B}{R} name(Pay Kicker)
-auto=alternative bury target(creature[-black])
+kicker={1}{B}
+auto=kicker bury target(creature[-black])
 text=Kicker {1}{B} (You may pay an additional {1}{B} as you cast this spell.) -- When Shivan Emissary enters the battlefield, if it was kicked, destroy target nonblack creature. It can't be regenerated.
 mana={2}{R}
 type=Creature
@@ -58056,8 +58056,8 @@ toughness=1
 [card]
 name=Skizzik
 abilities=trample,haste,treason
-other={3}{R}{R} name(Pay Kicker)
-auto=alternative -treason
+kicker={R}
+auto=kicker -treason
 text=Kicker {R} (You may pay an additional {R} as you cast this spell.) -- Trample, haste -- At the beginning of the end step, sacrifice Skizzik unless it was kicked.
 mana={3}{R}
 type=Creature
@@ -62596,9 +62596,9 @@ subtype=Arcane
 [/card]
 [card]
 name=Strength of Night
-other={2}{B}{G} name(Pay Kicker)
+kicker={B}
 auto=all(creature|myBattlefield) 1/1 ueot
-auto=alternative all(creature[zombie]|myBattlefield) 2/2 ueot
+auto=kicker all(creature[zombie]|myBattlefield) 2/2 ueot
 text=Kicker {B} (You may pay an additional {B} as you cast this spell.) -- Creatures you control get +1/+1 until end of turn. If Strength of Night was kicked, Zombie creatures you control get an additional +2/+2 until end of turn.
 mana={2}{G}
 type=Instant
@@ -66898,8 +66898,8 @@ toughness=1
 [card]
 name=Tolarian Emissary
 abilities=flying
-other={3}{W}{U} name(Pay Kicker)
-auto=alternative destroy target(enchantment)
+kicker={1}{W}
+auto=kicker destroy target(enchantment)
 text=Kicker {1}{W} (You may pay an additional {1}{W} as you cast this spell.) -- Flying -- When Tolarian Emissary enters the battlefield, if it was kicked, destroy target enchantment.
 mana={2}{U}
 type=Creature
@@ -67079,8 +67079,8 @@ toughness=2
 [/card]
 [card]
 name=Torch Slinger
-other={3}{R}{R} name(Pay Kicker)
-auto=alternative damage:2 target(creature)
+kicker={1}{R}
+auto=kicker damage:2 target(creature)
 text=Kicker {1}{R} (You may pay an additional {1}{R} as you cast this spell.) -- When Torch Slinger enters the battlefield, if it was kicked, it deals 2 damage to target creature.
 mana={2}{R}
 type=Creature
@@ -69117,8 +69117,8 @@ toughness=1
 [/card]
 [card]
 name=Urborg Emissary
-other={3}{U}{B} name(Pay Kicker)
-auto=alternative moveTo(ownerhand) target(*|battlefield)
+kicker={1}{U}
+auto=kicker moveTo(ownerhand) target(*|battlefield)
 text=Kicker {1}{U} (You may pay an additional {1}{U} as you cast this spell.) -- When Urborg Emissary enters the battlefield, if it was kicked, return target permanent to its owner's hand.
 mana={2}{B}
 type=Creature
@@ -69159,8 +69159,8 @@ toughness=3
 [/card]
 [card]
 name=Urborg Skeleton
-other={3}{B} name(Pay Kicker)
-auto=alternative counter(1/1,1)
+kicker={3}
+auto=kicker counter(1/1,1)
 auto={B}:regenerate
 text=Kicker {3} (You may pay an additional {3} as you cast this spell.) -- {B}: Regenerate Urborg Skeleton. -- If Urborg Skeleton was kicked, it enters the battlefield with a +1/+1 counter on it.
 mana={B}
@@ -69529,9 +69529,9 @@ toughness=3
 [card]
 name=Vampire's Bite
 target=creature
-other={2}{B}{B} name(Pay Kicker)
+kicker={2}{B}
 auto=3/0
-auto=alternative lifelink
+auto=kicker lifelink
 text=Kicker {2}{B} (You may pay an additional {2}{B} as you cast this spell.) -- Target creature gets +3/+0 until end of turn. If Vampire's Bite was kicked, that creature gains lifelink until end of turn. (Damage dealt by the creature also causes its controller to gain that much life.)
 mana={B}
 type=Instant
@@ -70192,8 +70192,8 @@ type=Instant
 [/card]
 [card]
 name=Verduran Emissary
-other={1}{R}{G} name(Pay Kicker)
-auto=alternative bury target(artifact)
+kicker={1}{R}
+auto=kicker bury target(artifact)
 text=Kicker {1}{R} (You may pay an additional {1}{R} as you cast this spell.) -- When Verduran Emissary enters the battlefield, if it was kicked, destroy target artifact. It can't be regenerated.
 mana={2}{G}
 type=Creature
@@ -70775,9 +70775,9 @@ toughness=1
 [card]
 name=Vines of Vastwood
 target=creature
-other={G}{G} name(Pay Kicker)
+kicker={G}
 auto=opponentshroud
-auto=alternative 4/4
+auto=kicker 4/4
 text=Kicker {G} (You may pay an additional {G} as you cast this spell.) -- Target creature can't be the target of spells or abilities your opponents control this turn. If Vines of Vastwood was kicked, that creature gets +4/+4 until end of turn.
 mana={G}
 type=Instant
@@ -71223,8 +71223,8 @@ toughness=2
 [card]
 name=Vodalian Serpent
 abilities=cantattack
-other={5}{U} name(Pay Kicker)
-auto=alternative counter(1/1,4)
+kicker={2}
+auto=kicker counter(1/1,4)
 auto=aslongas(island|opponentBattlefield) -cantattack
 text=Kicker {2} (You may pay an additional {2} as you cast this spell.) -- Vodalian Serpent can't attack unless defending player controls an Island. -- If Vodalian Serpent was kicked, it enters the battlefield with four +1/+1 counters on it.
 mana={3}{U}
