@@ -11,11 +11,7 @@
 #ifndef _JTYPES_H
 #define _JTYPES_H
 
-#if defined (WIN32) || defined (LINUX) || defined (IOS)
-
-#include <stdint.h>
-
-#else
+#if defined (PSP)
 
 #include <pspgu.h>
 #include <pspgum.h>
@@ -27,8 +23,11 @@
 #include <string.h>
 #include <pspaudiolib.h>
 #include <psprtc.h>
-
 #include "JAudio.h"
+
+#else
+
+#include <stdint.h>
 
 #endif
 
@@ -46,6 +45,11 @@ enum {
   JGE_ERR_GENERIC = -5,
 };
 
+#ifdef PSP
+#include <fastmath.h>
+#else
+#include <math.h>
+#endif
 
 #ifndef M_PI
 #define M_PI	3.14159265358979323846f
@@ -81,7 +85,7 @@ enum {
 #ifdef WIN32
 	#include <windows.h>
 #endif
-#if defined(LINUX) || defined(IOS)
+#if defined(LINUX) || defined(IOS) || defined (ANDROID)
         typedef uint8_t byte;
         typedef uint32_t DWORD;
         typedef uint8_t BYTE;
@@ -98,47 +102,27 @@ enum {
 	#import <OpenGLES/ES2/glext.h>
 	#import <OpenGLES/ES1/gl.h>
 #	import <OpenGLES/ES1/glext.h>
-#elif defined (WIN32) || defined (LINUX)
-	#include <GL/gl.h>
+#elif defined (WIN32) || defined (LINUX) 
+	#include <GL/gl.h> 
 	#include <GL/glu.h>
+    
+//Android GL1 support TODO
+/*    
+#elif defined (ANDROID)
+	#include <GLES/gl.h> 
+    #include <GLES/glext.h>    
+*/
+//Android GL2 support
+#elif defined (ANDROID)
+    #include <GLES2/gl2.h> 
+    #include <GLES2/gl2ext.h> 
+    
 #endif
 #else
 # include <QtOpenGL>
 #endif
 
-#if defined (WIN32) || defined (LINUX) || defined (IOS)
-
-typedef int8_t s8;
-typedef int16_t s16;
-typedef int32_t s32;
-typedef uint8_t u8;
-typedef uint16_t u16;
-typedef uint32_t u32;
-
-
-	#define BLEND_ZERO					GL_ZERO
-	#define BLEND_ONE					GL_ONE
-	#define BLEND_SRC_COLOR				GL_SRC_COLOR
-	#define BLEND_ONE_MINUS_SRC_COLOR	GL_ONE_MINUS_SRC_COLOR
-	#define BLEND_SRC_ALPHA				GL_SRC_ALPHA
-	#define BLEND_ONE_MINUS_SRC_ALPHA	GL_ONE_MINUS_SRC_ALPHA
-	#define BLEND_DST_ALPHA				GL_DST_ALPHA
-	#define BLEND_ONE_MINUS_DST_ALPHA	GL_ONE_MINUS_DST_ALPHA
-	#define BLEND_DST_COLOR				GL_DST_COLOR
-	#define BLEND_ONE_MINUS_DST_COLOR	GL_ONE_MINUS_DST_COLOR
-	#define BLEND_SRC_ALPHA_SATURATE	GL_SRC_ALPHA_SATURATE
-
-	#define ARGB(a, r, g, b)		(((a) << 24) | ((r) << 16) | ((g) << 8) | (b))
-	#define RGBA(r, g, b, a)		(((a) << 24) | ((b) << 16) | ((g) << 8) | (r))
-
-  #define TEXTURE_FORMAT			0
-  #define GU_PSM_8888 0
-  #define GU_PSM_5551 0
-  #define GU_PSM_4444 0
-  #define GU_PSM_5650 0
-	#define PIXEL_TYPE				DWORD
-
-#else	// PSP
+#if defined (PSP)
 
 	#ifndef ABGR8888
 	#define ABGR8888
@@ -225,6 +209,37 @@ typedef uint32_t u32;
 		ScePspFVector3 pos;
 	} PSPVertex3D;
 
+#else //non PSP
+
+typedef int8_t s8;
+typedef int16_t s16;
+typedef int32_t s32;
+typedef uint8_t u8;
+typedef uint16_t u16;
+typedef uint32_t u32;
+
+
+	#define BLEND_ZERO					GL_ZERO
+	#define BLEND_ONE					GL_ONE
+	#define BLEND_SRC_COLOR				GL_SRC_COLOR
+	#define BLEND_ONE_MINUS_SRC_COLOR	GL_ONE_MINUS_SRC_COLOR
+	#define BLEND_SRC_ALPHA				GL_SRC_ALPHA
+	#define BLEND_ONE_MINUS_SRC_ALPHA	GL_ONE_MINUS_SRC_ALPHA
+	#define BLEND_DST_ALPHA				GL_DST_ALPHA
+	#define BLEND_ONE_MINUS_DST_ALPHA	GL_ONE_MINUS_DST_ALPHA
+	#define BLEND_DST_COLOR				GL_DST_COLOR
+	#define BLEND_ONE_MINUS_DST_COLOR	GL_ONE_MINUS_DST_COLOR
+	#define BLEND_SRC_ALPHA_SATURATE	GL_SRC_ALPHA_SATURATE
+
+	#define ARGB(a, r, g, b)		(((a) << 24) | ((r) << 16) | ((g) << 8) | (b))
+	#define RGBA(r, g, b, a)		(((a) << 24) | ((b) << 16) | ((g) << 8) | (r))
+
+  #define TEXTURE_FORMAT			0
+  #define GU_PSM_8888 0
+  #define GU_PSM_5551 0
+  #define GU_PSM_4444 0
+  #define GU_PSM_5650 0
+	#define PIXEL_TYPE				DWORD
 
 #endif
 
@@ -338,14 +353,14 @@ public:
 
 	int mFilter;
 
-#if defined (WIN32) || defined (LINUX) || defined (IOS) 	
-	GLuint mTexId;
-    u8* mBuffer;
-#else
+#if defined (PSP) 	
     int mTextureFormat;
 	int mTexId;
 	bool mInVideoRAM;
 	PIXEL_TYPE* mBits;
+#else
+	GLuint mTexId;
+    u8* mBuffer;
 #endif
 };
 
@@ -449,15 +464,15 @@ public:
 
 	JTexture* mTex;
 
-#if defined (WIN32) || defined(LINUX) || defined(IOS)
+#if defined (PSP)
+	PIXEL_TYPE mColor[4];	// up to 4 vertices
+	int mBlend;				// GU_TFX_MODULATE, GU_TFX_DECAL, GU_TFX_BLEND, GU_TFX_REPLACE, GU_TFX_ADD
+#else
 	float mTX0;
 	float mTY0;
 	float mTX1;
 	float mTY1;
 	JColor mColor[4];		// up to 4 vertices
-#else
-	PIXEL_TYPE mColor[4];	// up to 4 vertices
-	int mBlend;				// GU_TFX_MODULATE, GU_TFX_DECAL, GU_TFX_BLEND, GU_TFX_REPLACE, GU_TFX_ADD
 #endif
 
 	float mX;

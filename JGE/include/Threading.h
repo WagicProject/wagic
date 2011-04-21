@@ -1,7 +1,7 @@
 #ifndef THREADING_H
 #define THREADING_H
 
-#if defined (WIN32) || defined (LINUX)
+#if !defined(PSP)
 #include <boost/date_time.hpp>
 #include <boost/thread.hpp>
 #include <boost/thread/mutex.hpp>

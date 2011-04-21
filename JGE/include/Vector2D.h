@@ -11,12 +11,10 @@
 #ifndef _VECTOR2D_H
 #define _VECTOR2D_H
 
-#ifdef WIN32
-#include <math.h>
-#elif (defined LINUX) || (defined IOS)
-#include <math.h>
-#else
+#ifdef PSP
 #include <fastmath.h>
+#else
+#include <math.h>
 #endif
 
 

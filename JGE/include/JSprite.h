@@ -11,10 +11,10 @@
 #ifndef _SPRITE_H_
 #define _SPRITE_H_
 
-#if defined (WIN32) || defined(LINUX) || defined(IOS)
-#include <math.h>
-#else
+#if defined (PSP)
 #include <fastmath.h>
+#else
+#include <math.h>
 #endif
 
 #include <vector>

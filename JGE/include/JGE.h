@@ -28,18 +28,26 @@
 #include <Qt>
 typedef u32 LocalKeySym;
 #define LOCAL_KEY_NONE Qt::Key_unknown
+
 #elif defined(WIN32)
 #include <windows.h>
 typedef WPARAM LocalKeySym;
 #define LOCAL_KEY_NONE ((WPARAM)-1)
+
 #elif defined(LINUX)
 #include <X11/XKBlib.h>
 #include <X11/keysym.h>
 typedef KeySym LocalKeySym;
 #define LOCAL_KEY_NONE XK_VoidSymbol
+
+#elif defined(ANDROID) // This is temporary until we understand how to send real key events from Java
+typedef long unsigned int LocalKeySym;
+#define LOCAL_KEY_NONE 0
+
 #else
 typedef u32 LocalKeySym;
 #define LOCAL_KEY_NONE ((u32)-1)
+
 #endif
 
 
@@ -51,7 +59,7 @@ u8 JGEGetAnalogX();
 u8 JGEGetAnalogY();
 bool JGEToggleFullscreen();
 
-#if !defined(WIN32) && !defined(LINUX) && !defined(IOS)
+#if defined (PSP)
 
 // hack to fix a typedef definition of u32 inside of newlib's stdint.h
 // this used to be defined as an unsigned long, but as of minpspw 11.1, it's 

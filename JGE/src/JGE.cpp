@@ -313,22 +313,8 @@ JGE::~JGE()
 
 
 
-#if defined (WIN32) || defined (LINUX)  || defined (IOS)
-// Non-PSP code
-
-void JGE::Init()
-{
-  mDone = false;
-  mPaused = false;
-  mCriticalAssert = false;
-  JRenderer::GetInstance();
-  JFileSystem::GetInstance();
-  JSoundSystem::GetInstance();
-  LeftClickedProcessed();
-}
-
-//////////////////////////////////////////////////////////////////////////
-#else		///// PSP specific code
+#if defined (PSP)
+// PSP Specific code
 
 void JGE::Init()
 {
@@ -432,7 +418,21 @@ void JGE::Run()
     }
 }
 
-#endif		///// PSP specific code
+
+//////////////////////////////////////////////////////////////////////////
+#else		///// Non PSP code
+void JGE::Init()
+{
+  mDone = false;
+  mPaused = false;
+  mCriticalAssert = false;
+  JRenderer::GetInstance();
+  JFileSystem::GetInstance();
+  JSoundSystem::GetInstance();
+  LeftClickedProcessed();
+}
+
+#endif		///// Non PSP  code
 
 
 //////////////////////////////////////////////////////////////////////////

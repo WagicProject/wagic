@@ -11,15 +11,9 @@
 #ifndef _MD2MODEL_H
 #define _MD2MODEL_H
 
-#if defined (WIN32) || defined (LINUX) || defined (IOS)
-
-#else
-
+#if defined (PSP)
 #include <pspgu.h>
 #include <pspgum.h>
-
-
-
 #endif
 
 
@@ -236,10 +230,10 @@ private:
 
 	void CheckNextState();
 
-#if defined (WIN32) || defined (LINUX) || defined (IOS)
-	void CalculateNormal(float *p1, float *p2, float *p3);
-#else
+#if defined (PSP)
 	void CalculateNormal(ScePspFVector3* normal, float *p1, float *p2, float *p3);
+#else
+	void CalculateNormal(float *p1, float *p2, float *p3);
 #endif	
 	
 	MD2Animation **mAnimations;

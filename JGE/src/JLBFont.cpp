@@ -222,7 +222,7 @@ float JLBFont::GetStringWidth(const char *string) const
     {
       ch = *p - 32;
       p++;
-      if (ch < 0) continue;
+      //if (ch < 0) continue; //TODO useless test per compiler's message, char always positive, bug needs fixing here
       len += mCharWidth[ch+mBase] + mTracking;
     }
   len -= mTracking;

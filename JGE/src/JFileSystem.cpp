@@ -92,10 +92,10 @@ void JFileSystem::Destroy()
 JFileSystem::JFileSystem()
 {
     mZipAvailable = false;
-#if defined (WIN32) || defined (LINUX) || defined (IOS)
-    mFile = NULL;
+#if defined (PSP)
+	mFile = -1;
 #else
-    mFile = -1;
+    mFile = NULL;
 #endif
     mPassword = NULL;
     mZipFile = NULL;
@@ -197,21 +197,21 @@ bool JFileSystem::OpenFile(const string &filename)
     }
     else
     {
-#if defined (WIN32) || defined (LINUX)|| defined (IOS)
+#if defined (PSP)
+        mFile = sceIoOpen(path.c_str(), PSP_O_RDONLY, 0777);
+        if (mFile > 0)
+        {
+            mFileSize = sceIoLseek(mFile, 0, PSP_SEEK_END);
+            sceIoLseek(mFile, 0, PSP_SEEK_SET);
+            return true;
+        }
+#else
         mFile = fopen(path.c_str(), "rb");
         if (mFile != NULL)
         {
             fseek(mFile, 0, SEEK_END);
             mFileSize = ftell(mFile);
             fseek(mFile, 0, SEEK_SET);
-            return true;
-        }
-#else
-        mFile = sceIoOpen(path.c_str(), PSP_O_RDONLY, 0777);
-        if (mFile > 0)
-        {
-            mFileSize = sceIoLseek(mFile, 0, PSP_SEEK_END);
-            sceIoLseek(mFile, 0, PSP_SEEK_SET);
             return true;
         }
 #endif
@@ -229,30 +229,30 @@ void JFileSystem::CloseFile()
         return;
     }
 
-#if defined (WIN32) || defined (LINUX) || defined (IOS)
+#if defined (PSP)
+    if (mFile > 0)
+        sceIoClose(mFile);    
+#else
     if (mFile != NULL)
         fclose(mFile);
-#else
-    if (mFile > 0)
-        sceIoClose(mFile);
 #endif
 }
 
 
 int JFileSystem::ReadFile(void *buffer, int size)
 {
-    if (mZipAvailable && mZipFile != NULL)
-    {
-        return unzReadCurrentFile(mZipFile, buffer, size);
-    }
-    else
-    {
-#if defined (WIN32) || defined (LINUX) || defined (IOS)
-        return fread(buffer, 1, size, mFile);
+	if (mZipAvailable && mZipFile != NULL)
+	{
+		return unzReadCurrentFile(mZipFile, buffer, size);
+	}
+	else
+	{
+#if defined (PSP)
+        return sceIoRead(mFile, buffer, size);        
 #else
-        return sceIoRead(mFile, buffer, size);
+        return fread(buffer, 1, size, mFile);
 #endif
-    }
+	}
 }
 
 

@@ -19,9 +19,7 @@
 #include <map>
 #include <string>
 
-#if defined (WIN32) || defined (LINUX) || defined(IOS)
-
-#else
+#if defined (PSP)
 	#include <pspiofilemgr.h>
 	#include <pspiofilemgr_fcntl.h>
 #endif
@@ -130,10 +128,10 @@ private:
 	char *mPassword;
 	bool mZipAvailable;
   	void preloadZip(const string& filename);
-#if defined (WIN32) || defined (LINUX) || defined(IOS)
-	FILE *mFile;
-#else
+#if defined (PSP)
 	SceUID mFile;
+#else
+	FILE *mFile;
 #endif
 	unzFile mZipFile;
 	int mFileSize;

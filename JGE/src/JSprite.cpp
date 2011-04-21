@@ -145,11 +145,11 @@ void JSprite::Render()
 //			//mQuad->SetColor(ARGB(alpha,255,255,255));
 	
 
-#if defined (WIN32) || defined (LINUX) || defined (IOS)
+#if defined (PSP)
+			mFrames[mCurrentFrame]->SetColor(MAKE_COLOR(alpha, mColor));
+#else
 			mFrames[mCurrentFrame]->SetColor(alpha<<24 | mColor);
 //			mQuad->SetFlip(mFlipped[mCurrentFrame], false);
-#else
-			mFrames[mCurrentFrame]->SetColor(MAKE_COLOR(alpha, mColor));
 #endif
 //			mQuad->SetHFlip(mFlipped[mCurrentFrame]);
 //		}
@@ -306,10 +306,10 @@ void JSprite::SetHotSpot(float x, float y, int index)
 
 }
 
-#if defined (WIN32) || defined (LINUX) || defined (IOS)
-void JSprite::SetColor(PIXEL_TYPE color) { mColor = (color&0x00ffffff); }
-#else
+#if defined (PSP)
 void JSprite::SetColor(PIXEL_TYPE color) { mColor = (color&~MASK_ALPHA); }
+#else
+void JSprite::SetColor(PIXEL_TYPE color) { mColor = (color&0x00ffffff); }
 #endif
 
 // void JSprite::SetBlendMode(int blend, int index) 

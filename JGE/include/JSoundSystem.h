@@ -27,10 +27,7 @@
 
 	#include <windows.h>
 #define WITH_FMOD
-#elif defined (LINUX) || defined (IOS)
-
-#else
-
+#elif defined (PSP)
 	#include <pspgu.h>
 	#include <pspkernel.h>
 	#include <pspdisplay.h>
@@ -73,16 +70,17 @@ public:
 
 #else
 
-#if defined (WIN32) || defined (LINUX) || defined (IOS)
+#if defined (PSP)
+  JMP3* mTrack;
+#else
 #ifdef WITH_FMOD
   FSOUND_SAMPLE* mTrack;		// MP3 needed to be of "sample" type for FMOD, FMUSIC_MODULE is for MODs
   #else
   void* mTrack;
-#endif
-#else
-  JMP3* mTrack;
-#endif
-#endif
+#endif  //WITH_FMOD
+
+#endif  //PSP
+#endif  //USE_PHONON
 
 };
 
@@ -97,19 +95,20 @@ class JSample
   int mVoice;
 
   unsigned long fileSize();
-#if defined (WIN32) || defined (LINUX) || defined (IOS)
+#if defined (PSP)
+  WAVDATA *mSample;
+#else
 #ifdef WITH_FMOD
   FSOUND_SAMPLE *mSample;
   #else
 #ifdef USE_PHONON
   Phonon::AudioOutput* mOutput;
   Phonon::MediaObject* mMediaObject;
-#endif
+#endif //USE_PHONON
   void* mSample;
-  #endif
-#else
-  WAVDATA *mSample;
-#endif
+  #endif  //WITH_FMOD
+
+#endif //PSP
 };
 
 

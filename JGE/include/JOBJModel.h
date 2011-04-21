@@ -15,15 +15,9 @@
 
 using namespace std;
 
-#if defined (WIN32) || defined (LINUX) || defined (IOS)
-
-#else
-
+#if defined (PSP)
 #include <pspgu.h>
 #include <pspgum.h>
-
-
-
 #endif
 
 

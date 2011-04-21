@@ -220,10 +220,10 @@ bool JMD2Model::Load(char *filename, char *textureName)
 
 //-------------------------------------------------------------------------------------------------
 // given 3 points, calculates the normal to the points
-#if defined (WIN32) || defined (LINUX) || defined (IOS)
-void JMD2Model::CalculateNormal(float *p1, float *p2, float *p3)
-#else
+#if defined (PSP)
 void JMD2Model::CalculateNormal(ScePspFVector3 *normal, float *p1, float *p2, float *p3)
+#else
+void JMD2Model::CalculateNormal(float *p1, float *p2, float *p3)
 #endif
 {
    float a[3], b[3], result[3];
@@ -244,21 +244,21 @@ void JMD2Model::CalculateNormal(ScePspFVector3 *normal, float *p1, float *p2, fl
    // calculate the length of the normal
    length = (float)sqrt(result[0]*result[0] + result[1]*result[1] + result[2]*result[2]);
 
-#if defined (WIN32) || defined (LINUX) || defined (IOS)
-   // normalize and specify the normal
-#if (!defined GL_ES_VERSION_2_0) && (!defined GL_VERSION_2_0)
-   glNormal3f(result[0]/length, result[1]/length, result[2]/length);
-#else
-   // FIXME
-#endif //(!defined GL_ES_VERSION_2_0) && (!defined GL_VERSION_2_0)
-
-#else
+#if defined (PSP)
    if (length == 0.0f)
 	   length = SMALLEST_FP;
 
    normal->x = result[0]/length;
    normal->y = result[1]/length;
    normal->z = result[2]/length;
+#else   
+   // normalize and specify the normal
+#if (!defined GL_ES_VERSION_2_0) && (!defined GL_VERSION_2_0)
+   glNormal3f(result[0]/length, result[1]/length, result[2]/length);
+#else
+   // FIXME
+#endif //(!defined GL_ES_VERSION_2_0) && (!defined GL_VERSION_2_0)
+   
 #endif
 
 }
@@ -278,12 +278,12 @@ void JMD2Model::Render(int frameNum)
 	mRenderer->BindTexture(mModel->modelTex);
 
 
-#if defined (WIN32) || defined (LINUX) || defined (IOS)
+#if !defined (PSP)
 
 	// display the textured model with proper lighting normals
 #if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
 
-#elif (defined GL_ES_VERSION_1_1) || (defined GL_VERSION_1_1)
+#elif (defined GL_ES_VERSION_1_1) || (defined GL_VERSION_1_1) || (defined GL_VERSION_ES_CM_1_1)
         glEnableClientState(GL_VERTEX_ARRAY);
         glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 
@@ -299,7 +299,7 @@ void JMD2Model::Render(int frameNum)
 
 #if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
 
-#elif (defined GL_ES_VERSION_1_1) || (defined GL_VERSION_1_1)
+#elif (defined GL_ES_VERSION_1_1) || (defined GL_VERSION_1_1)|| (defined GL_VERSION_ES_CM_1_1)
                 float vertex_data[]={
                 pointList[mModel->triIndex[i].meshIndex[0]].x, pointList[mModel->triIndex[i].meshIndex[0]].y, pointList[mModel->triIndex[i].meshIndex[0]].z,
                 pointList[mModel->triIndex[i].meshIndex[2]].x, pointList[mModel->triIndex[i].meshIndex[2]].y, pointList[mModel->triIndex[i].meshIndex[2]].z,
@@ -333,7 +333,7 @@ void JMD2Model::Render(int frameNum)
         }
 #if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
 
-#elif (defined GL_ES_VERSION_1_1) || (defined GL_VERSION_1_1)
+#elif (defined GL_ES_VERSION_1_1) || (defined GL_VERSION_1_1) || (defined GL_VERSION_ES_CM_1_1)
         glDrawArrays(GL_TRIANGLES,0,3); // seems suspicious to put that here, should probably be in the loop
 #else
         glEnd();
@@ -482,11 +482,11 @@ void JMD2Model::Render()
 	
 	mRenderer->BindTexture(mModel->modelTex);
 
-#if defined (WIN32) || defined (LINUX) || defined (IOS)
+#if !defined (PSP)
 
 #if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
         // FIXME
-#elif (defined GL_ES_VERSION_1_1) || (defined GL_VERSION_1_1)
+#elif (defined GL_ES_VERSION_1_1) || (defined GL_VERSION_1_1) || (defined GL_VERSION_ES_CM_1_1)
         glEnableClientState(GL_VERTEX_ARRAY);
         glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 #else
@@ -541,7 +541,7 @@ void JMD2Model::Render()
 
 #if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
         // FIXME
-#elif (defined GL_ES_VERSION_1_1) || (defined GL_VERSION_1_1)
+#elif (defined GL_ES_VERSION_1_1) || (defined GL_VERSION_1_1) || (defined GL_VERSION_ES_CM_1_1)
                 float vertex_data[]={
                 vertex[0].x, vertex[0].y, vertex[0].z,
                 vertex[2].x, vertex[2].y, vertex[2].z,
@@ -575,7 +575,7 @@ void JMD2Model::Render()
         }
 #if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
         // FIXME
-#elif (defined GL_ES_VERSION_1_1) || (defined GL_VERSION_1_1)
+#elif (defined GL_ES_VERSION_1_1) || (defined GL_VERSION_1_1) || (defined GL_VERSION_ES_CM_1_1)
         glDrawArrays(GL_TRIANGLES,0,3); // seems suspicious to put that here, should probably be in the loop
 #else
         glEnd();

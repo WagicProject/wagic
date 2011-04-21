@@ -10,12 +10,7 @@
 static PIXEL_TYPE gencolor(int id, PIXEL_TYPE color)
 {
     unsigned int a, r, g, b, r0, g0, b0;
-#if defined (WIN32) || defined (LINUX)
-    a = (color >> 24) & 0xFF;
-    r = (color >> 16) & 0xFF;
-    g = (color >> 8) & 0xFF;
-    b = (color >> 0) & 0xFF;
-#else // PSP
+#if defined (PSP)
 # if defined (ABGR8888)
     a = (color >> 24) & 0xFF;
     b = (color >> 16) & 0xFF;
@@ -32,6 +27,11 @@ static PIXEL_TYPE gencolor(int id, PIXEL_TYPE color)
     g = ((color >> 4) & 0x0F) << 4;
     r = ((color >> 0) & 0x0F) << 4;
 # endif
+#else // non PSP
+    a = (color >> 24) & 0xFF;
+    r = (color >> 16) & 0xFF;
+    g = (color >> 8) & 0xFF;
+    b = (color >> 0) & 0xFF;
 #endif
     r0 = g0 = b0 = 255;
 
@@ -204,7 +204,7 @@ WFBFont::WFBFont(int inFontID, const char *fontname, int lineheight, bool useVid
     mSprites = NEW JQuad*[mCacheSize];
     mGBCode = NEW int[mCacheSize];
 
-#if defined (WIN32) || defined (LINUX)
+#if !defined (PSP)
     mCharBuffer = NEW u32[mFontSize*mFontSize];
 #endif
 
@@ -246,8 +246,7 @@ WFBFont::~WFBFont()
     if (mCharBuffer) delete[] mCharBuffer;
 }
 
-#if defined (WIN32) || defined (LINUX)
-#else
+#if defined (PSP)
 static void SwizzlePlot(u8* out, PIXEL_TYPE color, int i, int j, unsigned int width)
 {
     unsigned int rowblocks = (width >> 4);
@@ -283,14 +282,14 @@ int WFBFont::PreCacheChar(const u8 *ch)
     int index = mCurr++;
     if (mCurr >= mCacheSize) mCurr = 0;
 
-#if defined (WIN32) || defined (LINUX)  || defined (IOS)
-    int x = 0;
-    int y = 0;
-    memset(mCharBuffer, 0, sizeof(u32) * mFontSize * mFontSize);
-#else
+#if defined (PSP)
     u8* pTexture = (u8*) mTexture->mBits;
     int x;
     int y = (int) mSprites[index]->mY;
+#else
+    int x = 0;
+    int y = 0;
+    memset(mCharBuffer, 0, sizeof(u32) * mFontSize * mFontSize);
 #endif
 
     if (doubleWidthChar(ch))
@@ -319,10 +318,10 @@ int WFBFont::PreCacheChar(const u8 *ch)
 #if 1
         for (; j < offset; j++)
         {
-#if defined (WIN32) || defined (LINUX) || defined (IOS)
-            mCharBuffer[y * mFontSize + x] = ARGB(0, 0, 0, 0);
-#else
+#if defined (PSP)
             SwizzlePlot(pTexture, ARGB(0, 0, 0, 0), x * PIXEL_SIZE, y, mTexture->mTexWidth * PIXEL_SIZE);
+#else
+            mCharBuffer[y * mFontSize + x] = ARGB(0, 0, 0, 0);
 #endif
             x++;
         }
@@ -334,19 +333,19 @@ int WFBFont::PreCacheChar(const u8 *ch)
             gray = src[(i * size + j - offset) / 2];
             gray = ((j - offset) & 1) ? (gray & 0xF0) : ((gray & 0x0F) << 4);
             if (gray) gray |= 0x0F;
-#if defined (WIN32) || defined (LINUX) || defined (IOS)
-            mCharBuffer[y * mFontSize + x] = ARGB(gray, 255, 255, 255);
-#else
+#if defined (PSP)
             SwizzlePlot(pTexture, ARGB(gray, 255, 255, 255), x * PIXEL_SIZE, y, mTexture->mTexWidth * PIXEL_SIZE);
+#else
+            mCharBuffer[y * mFontSize + x] = ARGB(gray, 255, 255, 255);
 #endif
             x++;
         }
         for (; j < mFontSize; j++)
         {
-#if defined (WIN32) || defined (LINUX) || defined (IOS)
-            mCharBuffer[y * mFontSize + x] = ARGB(0, 0, 0, 0);
-#else
+#if defined (PSP)
             SwizzlePlot(pTexture, ARGB(0, 0, 0, 0), x * PIXEL_SIZE, y, mTexture->mTexWidth * PIXEL_SIZE);
+#else
+            mCharBuffer[y * mFontSize + x] = ARGB(0, 0, 0, 0);
 #endif
             x++;
         }
@@ -355,12 +354,12 @@ int WFBFont::PreCacheChar(const u8 *ch)
 
     mGBCode[index] = code;
 
-#if defined (WIN32) || defined (LINUX) || defined (IOS)
+#if defined (PSP)
+    sceKernelDcacheWritebackAll();
+#else
     x = (int)mSprites[index]->mX;
     y = (int)mSprites[index]->mY;
     glTexSubImage2D(GL_TEXTURE_2D, 0, x, y, mFontSize, mFontSize, GL_RGBA, GL_UNSIGNED_BYTE, mCharBuffer);
-#else
-    sceKernelDcacheWritebackAll();
 #endif
     return index;
 }
@@ -645,7 +644,7 @@ WGBKFont::WGBKFont(int inFontID, const char *fontname, int lineheight, bool useV
     mSprites = NEW JQuad*[mCacheSize];
     mGBCode = NEW int[mCacheSize];
 
-#if defined (WIN32) || defined (LINUX) || defined (IOS)
+#if !defined (PSP)
     mCharBuffer = NEW u32[mFontSize*mFontSize];
 #endif
 
@@ -681,14 +680,14 @@ int WGBKFont::PreCacheChar(const u8 *ch)
     int index = mCurr++;
     if (mCurr >= mCacheSize) mCurr = 0;
 
-#if defined (WIN32) || defined (LINUX) || defined (IOS)
-    int x = 0;
-    int y = 0;
-    memset(mCharBuffer, 0, sizeof(u32) * mFontSize * mFontSize);
-#else
+#if defined(PSP)
     u8* pTexture = (u8*) mTexture->mBits;
     int x;
     int y = (int) mSprites[index]->mY;
+#else
+    int x = 0;
+    int y = 0;
+    memset(mCharBuffer, 0, sizeof(u32) * mFontSize * mFontSize);
 #endif
 
     if (mIndex) code = mIndex[code];
@@ -709,19 +708,19 @@ int WGBKFont::PreCacheChar(const u8 *ch)
     // set up the font texture buffer
     for (unsigned int i = 0; i < mFontSize; i++)
     {
-#if defined (WIN32) || defined (LINUX) || defined (IOS)
-        x = 0;
-#else
+#if defined (PSP)
         x = (int) mSprites[index]->mX;
+#else
+        x = 0;
 #endif
         unsigned int j = 0;
 #if 1
         for (; j < offset; j++)
         {
-#if defined (WIN32) || defined (LINUX) || defined (IOS)
-            mCharBuffer[y * mFontSize + x] = ARGB(0, 0, 0, 0);
-#else
+#if defined (PSP)
             SwizzlePlot(pTexture, ARGB(0, 0, 0, 0), x * PIXEL_SIZE, y, mTexture->mTexWidth * PIXEL_SIZE);
+#else
+            mCharBuffer[y * mFontSize + x] = ARGB(0, 0, 0, 0);
 #endif
             x++;
         }
@@ -733,19 +732,19 @@ int WGBKFont::PreCacheChar(const u8 *ch)
             gray = src[(i * size + j - offset) / 2];
             gray = ((j - offset) & 1) ? (gray & 0xF0) : ((gray & 0x0F) << 4);
             if (gray) gray |= 0x0F;
-#if defined (WIN32) || defined (LINUX) || defined (IOS)
-            mCharBuffer[y * mFontSize + x] = ARGB(gray, 255, 255, 255);
-#else
+#if defined (PSP)
             SwizzlePlot(pTexture, ARGB(gray, 255, 255, 255), x * PIXEL_SIZE, y, mTexture->mTexWidth * PIXEL_SIZE);
+#else
+            mCharBuffer[y * mFontSize + x] = ARGB(gray, 255, 255, 255);
 #endif
             x++;
         }
         for (; j < mFontSize; j++)
         {
-#if defined (WIN32) || defined (LINUX) || defined (IOS)
-            mCharBuffer[y * mFontSize + x] = ARGB(0, 0, 0, 0);
-#else
+#if defined (PSP)
             SwizzlePlot(pTexture, ARGB(0, 0, 0, 0), x * PIXEL_SIZE, y, mTexture->mTexWidth * PIXEL_SIZE);
+#else
+            mCharBuffer[y * mFontSize + x] = ARGB(0, 0, 0, 0);
 #endif
             x++;
         }
@@ -754,12 +753,12 @@ int WGBKFont::PreCacheChar(const u8 *ch)
 
     mGBCode[index] = code;
 
-#if defined (WIN32) || defined (LINUX) || defined (IOS)
+#if defined (PSP)
+    sceKernelDcacheWritebackAll();
+#else
     x = (int)mSprites[index]->mX;
     y = (int)mSprites[index]->mY;
     glTexSubImage2D(GL_TEXTURE_2D, 0, x, y, mFontSize, mFontSize, GL_RGBA, GL_UNSIGNED_BYTE, mCharBuffer);
-#else
-    sceKernelDcacheWritebackAll();
 #endif
     return index;
 }

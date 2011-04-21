@@ -18,6 +18,7 @@
 #include "hgerect.h"
 
 #include <list>
+#include <string.h>
 
 class JQuad;
 

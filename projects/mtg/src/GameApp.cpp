@@ -3,10 +3,10 @@
 #include <JGE.h>
 #include <JLogger.h>
 #include <JRenderer.h>
-#if defined (WIN32) || defined (LINUX) || defined (IOS) 
-#include <time.h>
-#else
+#if defined (PSP) 
 #include <pspfpu.h>
+#else
+#include <time.h>
 #endif
 
 #include "WResourceManager.h"
@@ -85,7 +85,7 @@ void GameApp::Create()
 #if !defined(QT_CONFIG) && !defined(IOS)
 #if defined (WIN32)
     _CrtSetDbgFlag ( _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF );
-#elif not defined (LINUX)
+#elif defined (PSP)
     pspFpuSetEnable(0); //disable FPU Exceptions until we find where the FPU errors come from
 #endif
 #endif //QT_CONFIG
@@ -356,8 +356,7 @@ void GameApp::Update()
 
         mCurrentState = mNextState;
 
-#if defined (WIN32) || defined (LINUX)
-#else
+#if defined (PSP)
         /*
          int maxLinear = ramAvailableLineareMax();
          int ram = ramAvailable();

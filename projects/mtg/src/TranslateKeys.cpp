@@ -10,7 +10,7 @@ using std::map;
 static map<const LocalKeySym, KeyRep> fattable;
 static map<const JButton, KeyRep> slimtable;
 
-#if defined(LINUX) || defined (IOS)
+#if defined(LINUX) || defined (IOS) || defined (ANDROID)
 const KeyRep& translateKey(LocalKeySym key)
 {
     {
@@ -20,13 +20,13 @@ const KeyRep& translateKey(LocalKeySym key)
     }
 
     char* str = NULL;
-#if !defined(QT_CONFIG) && !defined(IOS)
+#if !defined(QT_CONFIG) && !defined(IOS) && !defined(ANDROID)
     str = XKeysymToString(key);
 #endif // QT_CONFIG
     if (!str)
     {
         str = NEW char[11];
-        sprintf(str, "%lu", key);
+        sprintf(str, "%lu", key);  //TODO: Wagic is not supposed to know that a key actually is an unsingned long, so this part should probably be platform specific (move to JGE ?)
     }
     const KeyRep k = make_pair(str, static_cast<JQuad*>(NULL));
     fattable[key] = k;

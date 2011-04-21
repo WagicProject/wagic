@@ -16,9 +16,9 @@
 #include <string.h>
 #include <stdarg.h>
 
-#if (!defined IOS)
+#if (!defined IOS) && (!defined ANDROID)
 #include <gif_lib.h>
-#endif //IOS
+#endif //IOS ANDROID
 
 #include "JTypes.h"
 
@@ -27,9 +27,7 @@
 
 	#include <windows.h>
 
-#elif defined (LINUX) || defined(IOS)
-
-#else
+#elif defined (PSP)
 
 	#include <pspgu.h>
 	#include <pspkernel.h>
@@ -80,8 +78,7 @@ protected:
 
 public:
 
-#if defined (WIN32) || defined (LINUX) || defined (IOS)
-#else
+#if defined (PSP)
   int PixelSize(int textureMode);
 #endif
 
@@ -575,13 +572,15 @@ private:
 #if (!defined IOS)
 	void LoadJPG(TextureInfo &textureInfo, const char *filename, int mode = 0, int TextureFormat = TEXTURE_FORMAT);
 	int LoadPNG(TextureInfo &textureInfo, const char *filename, int mode = 0, int TextureFormat = TEXTURE_FORMAT);
+#if (!defined ANDROID)
 	void LoadGIF(TextureInfo &textureInfo, const char *filename, int mode = 0, int TextureFormat = TEXTURE_FORMAT);
 	int image_readgif(void * handle, TextureInfo &textureInfo, DWORD * bgcolor, InputFunc readFunc,int mode = 0, int TextureFormat = TEXTURE_FORMAT);
+#endif // (ANDROID) How can we get gif support for android ?
 #endif //(IOS)
 	
 	static JRenderer* mInstance;
 
-#if defined (WIN32) || defined (LINUX) || defined (IOS)
+#if (!defined PSP)
 	
 	GLuint mCurrentTex;
 #if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0) || (defined WIN32)
