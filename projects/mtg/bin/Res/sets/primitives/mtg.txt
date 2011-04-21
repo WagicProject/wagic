@@ -18779,6 +18779,7 @@ toughness=1
 [/card]
 [card]
 name=Elvish Berserker
+abilities=haste
 auto=rampage(1/1,0)
 text=Whenever Elvish Berserker becomes blocked, it gets +1/+1 until end of turn for each creature blocking it.
 mana={G}
@@ -21579,8 +21580,7 @@ auto=tap
 auto={T}:Add{W}
 auto={T}:Add{U}
 text=You may pay {1} and return a basic land you control to its owner's hand rather than pay Fieldmist Borderpost's mana cost. -- Fieldmist Borderpost enters the battlefield tapped. -- {T}: Add {W} or {U} to your mana pool.
-#mana={1}{W}{U}
-mana={2}
+mana={1}{W}{U}
 type=Artifact
 [/card]
 [card]
