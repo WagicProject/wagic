@@ -164,33 +164,7 @@ bool DeckManager::instanceFlag = false;
 
 void DeckManager::EndInstance()
 {
-    if (mInstance)
-    {
-       
-        map<string, StatsWrapper *>::iterator it;
-        vector<DeckMetaData *>::iterator metaDataIter;
-        
-        for (it = mInstance->aiDeckStatsMap.begin(); it != mInstance->aiDeckStatsMap.end(); it++){
-            SAFE_DELETE(it->second);
-        }
-        for (it = mInstance->playerDeckStatsMap.begin(); it != mInstance->playerDeckStatsMap.end(); it++){
-            SAFE_DELETE(it->second);
-        }
-
-        for( metaDataIter =  mInstance->aiDeckOrderList.begin(); metaDataIter !=  mInstance->aiDeckOrderList.end(); ++metaDataIter)
-        {
-            SAFE_DELETE( *metaDataIter );
-        }
-        for( metaDataIter = mInstance->playerDeckOrderList.begin(); metaDataIter !=  mInstance->playerDeckOrderList.end(); ++metaDataIter)
-        {
-            SAFE_DELETE( *metaDataIter );
-        }
-        mInstance->aiDeckOrderList.clear();
-        mInstance->playerDeckOrderList.clear();
-        mInstance->aiDeckStatsMap.clear();
-        mInstance->playerDeckStatsMap.clear();
-        SAFE_DELETE( mInstance );
-    }
+    SAFE_DELETE(mInstance);
 }
 
 DeckManager* DeckManager::GetInstance()
@@ -215,4 +189,28 @@ int DeckManager::getDifficultyRating(Player *statsPlayer, Player *player)
 DeckManager::~DeckManager()
 {
     instanceFlag = false;
+    map<string, StatsWrapper *>::iterator it;
+    vector<DeckMetaData *>::iterator metaDataIter;
+    
+    for (it = mInstance->aiDeckStatsMap.begin(); it != mInstance->aiDeckStatsMap.end(); it++){
+        SAFE_DELETE(it->second);
+    }
+    for (it = mInstance->playerDeckStatsMap.begin(); it != mInstance->playerDeckStatsMap.end(); it++){
+        SAFE_DELETE(it->second);
+    }
+
+    for( metaDataIter =  mInstance->aiDeckOrderList.begin(); metaDataIter !=  mInstance->aiDeckOrderList.end(); ++metaDataIter)
+    {
+        SAFE_DELETE( *metaDataIter );
+    }
+    
+    for( metaDataIter = mInstance->playerDeckOrderList.begin(); metaDataIter !=  mInstance->playerDeckOrderList.end(); ++metaDataIter)
+    {
+        SAFE_DELETE( *metaDataIter );
+    }
+    
+    aiDeckOrderList.clear();
+    playerDeckOrderList.clear();
+    aiDeckStatsMap.clear();
+    playerDeckStatsMap.clear();
 }

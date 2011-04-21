@@ -21,6 +21,30 @@ DeckMetaData::DeckMetaData(const string& filename, bool isAI)
     LoadDeck();
 }
 
+
+void DeckMetaData::LoadDeck()
+{
+    if (!mDeckLoaded)
+    {
+        MTGDeck deck(mFilename.c_str(), NULL, 1);
+        mName = trim(deck.meta_name);
+        mDescription = trim(deck.meta_desc);
+        mDeckId = atoi((mFilename.substr(mFilename.find("deck") + 4, mFilename.find(".txt"))).c_str());
+        mDeckLoaded = true;
+        if (!mIsAI)
+            mAvatarFilename = "avatar.jpg";
+        else
+        {
+            ostringstream avatarFilename;
+            avatarFilename << "avatar" << getAvatarId() << ".jpg";
+            mAvatarFilename = avatarFilename.str();
+        }        
+    }
+
+
+}
+
+
 void DeckMetaData::LoadStats()
 {
     if (!mStatsLoaded)
@@ -71,28 +95,6 @@ void DeckMetaData::LoadStats()
 int DeckMetaData::getAvatarId()
 {
     return mDeckId % 100;
-}
-
-void DeckMetaData::LoadDeck()
-{
-    if (!mDeckLoaded)
-    {
-        MTGDeck deck(mFilename.c_str(), NULL, 1);
-        mName = trim(deck.meta_name);
-        mDescription = trim(deck.meta_desc);
-        mDeckId = atoi((mFilename.substr(mFilename.find("deck") + 4, mFilename.find(".txt"))).c_str());
-        mDeckLoaded = true;
-        if (!mIsAI)
-            mAvatarFilename = "avatar.jpg";
-        else
-        {
-            ostringstream avatarFilename;
-            avatarFilename << "avatar" << getAvatarId() << ".jpg";
-            mAvatarFilename = avatarFilename.str();
-        }        
-    }
-
-
 }
 
 //Accessors
