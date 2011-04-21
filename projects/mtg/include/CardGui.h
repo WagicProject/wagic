@@ -7,8 +7,9 @@
 #include <JGui.h>
 #include "Pos.h"
 #include "PlayGuiObject.h"
-#include "MTGCardInstance.h"
+#include "WResource_Fwd.h"
 
+class MTGCard;
 class MTGCardInstance;
 class PlayGuiObject;
 
