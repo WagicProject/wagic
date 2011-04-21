@@ -10,6 +10,7 @@
 #endif
 
 #include "WResourceManager.h"
+#include "ExtraCost.h"
 #include "GameApp.h"
 #include "Subtypes.h"
 #include "GameStateTransitions.h"
@@ -252,6 +253,8 @@ void GameApp::Create()
 
     DebugTrace("size of MTGCard: "<< sizeof(MTGCard));
     DebugTrace("size of CardPrimitive: "<< sizeof(CardPrimitive));
+    DebugTrace("size of ExtraCost: " << sizeof(ExtraCost));
+    DebugTrace("Size of ManaCost: " << sizeof(ManaCost));
 
     LOG("Game Creation Done.");
 }
