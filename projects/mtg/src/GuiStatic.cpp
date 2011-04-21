@@ -151,7 +151,7 @@ void GuiGameZone::toggleDisplay()
 void GuiGameZone::Render()
 {
     //Texture
-    JQuadPtr quad = WResourceManager::Instance()->GetQuad("back_thumb");
+    JQuadPtr quad = WResourceManager::Instance()->GetQuad(kGenericCardThumbnailID);
     float scale = defaultHeight / quad->mHeight;
     quad->SetColor(ARGB((int)(actA),255,255,255));
 

@@ -5,6 +5,8 @@
 #include "GameObserver.h"
 #include "Rules.h"
 
+const std::string kBackdropFile = "backdrop.jpg";
+
 GuiBackground::GuiBackground()
 {
 }
@@ -24,7 +26,7 @@ void GuiBackground::Render()
     }
     if (!quad.get())
     {
-        quad = WResourceManager::Instance()->RetrieveTempQuad("backdrop.jpg");
+        quad = WResourceManager::Instance()->RetrieveTempQuad(kBackdropFile);
     }
     if (quad.get())
     {

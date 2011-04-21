@@ -5,6 +5,9 @@
 #include <JResourceManager.h>
 #include <JSoundSystem.h>
 
+const std::string kGenericCardID = "back";
+const std::string kGenericCardThumbnailID = "back_thumb";
+
 enum ENUM_WRES_INFO
 {
     WRES_UNLOCKED = 0,      //Resource is unlocked.

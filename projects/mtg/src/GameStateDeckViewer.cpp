@@ -1316,7 +1316,7 @@ void GameStateDeckViewer::renderCard(int id, float rotation)
     
     if (!WResourceManager::Instance()->IsThreaded())
     {
-        JQuadPtr backQuad = WResourceManager::Instance()->GetQuad("back");
+        JQuadPtr backQuad = WResourceManager::Instance()->GetQuad(kGenericCardID);
         JQuadPtr quad;
 
         int cacheError = CACHE_ERROR_NONE;

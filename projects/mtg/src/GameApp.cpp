@@ -164,12 +164,12 @@ void GameApp::Create()
 
     LOG("--Loading back.jpg");
     WResourceManager::Instance()->RetrieveTexture("back.jpg", RETRIEVE_MANAGE);
-    JQuadPtr jq = WResourceManager::Instance()->RetrieveQuad("back.jpg", 0, 0, 0, 0, "back", RETRIEVE_MANAGE);
+    JQuadPtr jq = WResourceManager::Instance()->RetrieveQuad("back.jpg", 0, 0, 0, 0, kGenericCardID, RETRIEVE_MANAGE);
     if (jq.get())
         jq->SetHotSpot(jq->mWidth / 2, jq->mHeight / 2);
 
     WResourceManager::Instance()->RetrieveTexture("back_thumb.jpg", RETRIEVE_MANAGE);
-    WResourceManager::Instance()->RetrieveQuad("back_thumb.jpg", 0, 0, MTG_MINIIMAGE_WIDTH, MTG_MINIIMAGE_HEIGHT, "back_thumb", RETRIEVE_MANAGE);
+    WResourceManager::Instance()->RetrieveQuad("back_thumb.jpg", 0, 0, MTG_MINIIMAGE_WIDTH, MTG_MINIIMAGE_HEIGHT, kGenericCardThumbnailID, RETRIEVE_MANAGE);
 
     LOG("--Loading particles.png");
     WResourceManager::Instance()->RetrieveTexture("particles.png", RETRIEVE_MANAGE);

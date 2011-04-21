@@ -1359,14 +1359,14 @@ void WGuiCardImage::Render()
         JQuadPtr q;
         if (bThumb)
         {
-            q = WResourceManager::Instance()->GetQuad("back_thumb");
+            q = WResourceManager::Instance()->GetQuad(kGenericCardThumbnailID);
 #if defined WIN32 || defined LINUX
             if(!q)
-            q = WResourceManager::Instance()->GetQuad("back");
+            q = WResourceManager::Instance()->GetQuad(kGenericCardID);
 #endif
         }
         else
-            q = WResourceManager::Instance()->GetQuad("back");
+            q = WResourceManager::Instance()->GetQuad(kGenericCardID);
         float scale = p.actZ * 257.f / q->mHeight;
         q->SetColor(ARGB(255,255,255,255));
         renderer->RenderQuad(q.get(), p.x, p.y, 0, scale, scale);
@@ -1429,14 +1429,14 @@ void WGuiCardDistort::Render()
         //Default to back.
         if (bThumb)
         {
-            q = WResourceManager::Instance()->GetQuad("back_thumb");
+            q = WResourceManager::Instance()->GetQuad(kGenericCardThumbnailID);
 #if defined WIN32 || defined LINUX
             if(!q)
-            q = WResourceManager::Instance()->GetQuad("back");
+            q = WResourceManager::Instance()->GetQuad(kGenericCardID);
 #endif
         }
         else
-            q = WResourceManager::Instance()->GetQuad("back");
+            q = WResourceManager::Instance()->GetQuad(kGenericCardID);
     }
     else
     {

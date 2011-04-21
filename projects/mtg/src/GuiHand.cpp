@@ -68,7 +68,7 @@ GuiHandOpponent::GuiHandOpponent(MTGHand* hand) :
 
 void GuiHandOpponent::Render()
 {
-    JQuadPtr quad = WResourceManager::Instance()->GetQuad("back_thumb");
+    JQuadPtr quad = WResourceManager::Instance()->GetQuad(kGenericCardThumbnailID);
 
     float x = 45;
     for (vector<CardView*>::iterator it = cards.begin(); it != cards.end(); ++it)
