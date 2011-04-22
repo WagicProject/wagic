@@ -753,7 +753,7 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
         if (controlId == MENUITEM_RANDOM_PLAYER) // Random Player Deck Selection
         {
             vector<DeckMetaData *> * playerDeckList = deckManager->getPlayerDeckOrderList();
-            deckNumber = playerDeckList->at(WRand() * 1001 % (playerDeckList->size()))->getDeckId();
+            deckNumber = playerDeckList->at(WRand() % (playerDeckList->size()))->getDeckId();
             loadPlayer(0, deckNumber);
             deckmenu->Close();
             mGamePhase = DUEL_STATE_CHOOSE_DECK2_TO_PLAY;
