@@ -251,10 +251,11 @@ void GameApp::Create()
     JSoundSystem::GetInstance()->SetSfxVolume(options[Options::SFXVOLUME].number);
     JSoundSystem::GetInstance()->SetMusicVolume(options[Options::MUSICVOLUME].number);
 
+    DebugTrace("size of MTGCardInstance: " << sizeof(MTGCardInstance));
     DebugTrace("size of MTGCard: "<< sizeof(MTGCard));
     DebugTrace("size of CardPrimitive: "<< sizeof(CardPrimitive));
     DebugTrace("size of ExtraCost: " << sizeof(ExtraCost));
-    DebugTrace("Size of ManaCost: " << sizeof(ManaCost));
+    DebugTrace("size of ManaCost: " << sizeof(ManaCost));
 
     LOG("Game Creation Done.");
 }

@@ -368,7 +368,7 @@ void CardGui::AlternateRender(MTGCard * card, const Pos& pos)
     // Write the description
     {
         font->SetScale(kWidthScaleFactor * pos.actZ);
-        const std::vector<string> txt = card->data->formattedText();
+        const std::vector<string> txt = card->GetFormattedText();
         unsigned i = 0;
         unsigned h = neofont ? 14 : 11;
         for (std::vector<string>::const_iterator it = txt.begin(); it != txt.end(); ++it, ++i)
@@ -577,7 +577,7 @@ void CardGui::TinyCropRender(MTGCard * card, const Pos& pos, JQuad * quad)
         renderer->RenderQuad(q.get(), x, pos.actY, pos.actT, scale, scale);
     }
 
-    const std::vector<string> txt = card->data->formattedText();
+    const std::vector<string> txt = card->GetFormattedText();
     size_t nbTextLines = txt.size();
 
     //Render the image on top of that
@@ -785,12 +785,12 @@ void CardGui::RenderBig(MTGCard* card, const Pos& pos)
 void CardGui::RenderCountersBig(const Pos& pos)
 {
     // Write Named Counters
-    if (card->counters)
+    if (card->counters && card->counters->mCount > 0)
     {
         WFont * font = WResourceManager::Instance()->GetWFont(Fonts::MAGIC_FONT);
         font->SetColor(ARGB((int)pos.actA, 0, 0, 0));
         font->SetScale(kWidthScaleFactor * pos.actZ);
-        std::vector<string> txt = card->formattedText();
+        std::vector<string> txt = card->GetFormattedText();
         unsigned i = txt.size() + 1;
         Counter * c = NULL;
         for (int t = 0; t < card->counters->mCount; t++, i++)

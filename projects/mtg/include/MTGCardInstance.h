@@ -24,43 +24,44 @@ struct Pos;
 #include <list>
 using namespace std;
 
-class MTGCardInstance: public CardPrimitive, public MTGCard, public Damageable {
- protected:
-  int untapping;
-  int nb_damages;
-  string sample;
-	int tapped;
-  int lifeOrig;
-  MTGPlayerCards * belongs_to;
-  MTGCardInstance * getNextPartner();
-  void initMTGCI();
-  int addBlocker(MTGCardInstance * c);
-  int removeBlocker(MTGCardInstance * c);
-  int init();
- public:
-	int setAttacker(int value);
+class MTGCardInstance: public CardPrimitive, public MTGCard, public Damageable
+{
+protected:
+    int untapping;
+    int nb_damages;
+    string sample;
+    int tapped;
+    int lifeOrig;
+    MTGPlayerCards * belongs_to;
+    MTGCardInstance * getNextPartner();
+    void initMTGCI();
+    int addBlocker(MTGCardInstance * c);
+    int removeBlocker(MTGCardInstance * c);
+    int init();
+public:
+    int setAttacker(int value);
     int setDefenser(MTGCardInstance * c);
-  MTGGameZone * currentZone;
-  Pos* view;
-  int X;
-  int XX;
-  int alternateCostPaid[ManaCost::MANA_PAID_WITH_RETRACE + 1]; 
-  int paymenttype;
-  int castMethod; /* Tells if the card reached its current zone by being cast or not (brought into the zone by an effect). non 0 == cast, 0 == not cast */
-  int frozen;
-  int sunburst;
-  int equipment;
-  int auras;
-  bool wasDealtDamage;
-  bool damageToOpponent;
-  bool damageToController;
-  int reduxamount;
-  int flanked;
-  int regenerateTokens;
-  int isToken;
-  int origpower;
-  int origtoughness;
-  int isMultiColored;
+    MTGGameZone * currentZone;
+    Pos* view;
+    int X;
+    int XX;
+    int alternateCostPaid[ManaCost::MANA_PAID_WITH_RETRACE + 1]; 
+    int paymenttype;
+    int castMethod; /* Tells if the card reached its current zone by being cast or not (brought into the zone by an effect). non 0 == cast, 0 == not cast */
+    int frozen;
+    int sunburst;
+    int equipment;
+    int auras;
+    bool wasDealtDamage;
+    bool damageToOpponent;
+    bool damageToController;
+    int reduxamount;
+    int flanked;
+    int regenerateTokens;
+    int isToken;
+    int origpower;
+    int origtoughness;
+    int isMultiColored;
     int isBlackAndWhite;
     int isRedAndBlue;
     int isBlackAndGreen;
@@ -80,7 +81,7 @@ class MTGCardInstance: public CardPrimitive, public MTGCard, public Damageable {
     bool graveEffects;
     bool exileEffects;
     bool suspended;
-
+        
     int stillInUse();
     int didattacked;
     int didblocked;
@@ -88,121 +89,120 @@ class MTGCardInstance: public CardPrimitive, public MTGCard, public Damageable {
     int fresh;
     int MaxLevelUp;
     Player * lastController;
-  MTGGameZone * getCurrentZone();
-  MTGGameZone * previousZone;
-  MTGCardInstance * previous;
-  MTGCardInstance * next;
-  int doDamageTest;
-  int summoningSickness;
-  ManaCost reducedCost;
-  ManaCost increasedCost;
-  ManaCost * getReducedManaCost();
-  ManaCost * getIncreasedManaCost();
+    MTGGameZone * getCurrentZone();
+    MTGGameZone * previousZone;
+    MTGCardInstance * previous;
+    MTGCardInstance * next;
+    int doDamageTest;
+    int summoningSickness;
+    ManaCost reducedCost;
+    ManaCost increasedCost;
+    ManaCost * getReducedManaCost();
+    ManaCost * getIncreasedManaCost();
 
-  bool matchesCastFilter(int castMethod);
+    bool matchesCastFilter(int castMethod);
 
-  // The recommended method to test for summoning Sickness !
-  int hasSummoningSickness();
-  MTGCardInstance * changeController(Player * newcontroller);
-  Player * owner;
-  Counters * counters;
-  int typeAsTarget(){return TARGET_CARD;}
-  const string getDisplayName() const;
-  MTGCardInstance * target;
-  Targetable * backupTargets[MAX_TARGETS];
-
-
-  //types
-  void addType(char * type_text);
-  virtual void addType(int id);
-  void setType(const char * type_text);
-  void setSubtype( string value);
-  int removeType(string value, int removeAll = 0);
-  int removeType(int value, int removeAll = 0);
-
-	//dangerranking is a hint to Ai which creatures are the ones it should be targetting for effects.
-  int DangerRanking();
-  //Combat
-  bool blocked; //Blocked this turn or not?
-  MTGCardInstance * defenser;
-  list<MTGCardInstance *>blockers;
-  int attacker;
-  int toggleDefenser(MTGCardInstance * opponent);
-  int raiseBlockerRankOrder(MTGCardInstance * blocker);
-
-  //Returns rank of the card in blockers if it is a blocker of this (starting at 1), 0 otherwise
-  int getDefenserRank(MTGCardInstance * blocker);
-  int toggleAttacker();
-  MTGCardInstance * banding; // If belongs to a band when attacking
-  int canBlock();
-  int canBlock(MTGCardInstance * opponent);
-  int canAttack();
-  int isAttacker();
-  MTGCardInstance * isDefenser();
-  int initAttackersDefensers();
-  MTGCardInstance * getNextOpponent(MTGCardInstance * previous=NULL);
-  int nbOpponents();
-  int stepPower(CombatStep step);
-  int afterDamage();
-  int has(int ability);
-  int cleanup();
-
-  MTGCard * model;
-  MTGCardInstance();
-  MTGCardInstance(MTGCard * card, MTGPlayerCards * _belongs_to);
-  int regenerate();
-  int triggerRegenerate();
-  Player * controller();
-
-  virtual ~MTGCardInstance();
-  int bury();
-  int destroy();
+    // The recommended method to test for summoning Sickness !
+    int hasSummoningSickness();
+    MTGCardInstance * changeController(Player * newcontroller);
+    Player * owner;
+    Counters * counters;
+    int typeAsTarget(){return TARGET_CARD;}
+    const string getDisplayName() const;
+    MTGCardInstance * target;
+    Targetable * backupTargets[MAX_TARGETS];
 
 
-  int addToToughness(int value);
-  int setToughness(int value);
+    //types
+    void addType(char * type_text);
+    virtual void addType(int id);
+    void setType(const char * type_text);
+    void setSubtype( string value);
+    int removeType(string value, int removeAll = 0);
+    int removeType(int value, int removeAll = 0);
 
-  vector<TargetChooser *>protections;
-  int addProtection(TargetChooser * tc);
-  int removeProtection(TargetChooser *tc, int erase = 0);
-  int protectedAgainst(MTGCardInstance * card);
+    //dangerranking is a hint to Ai which creatures are the ones it should be targetting for effects.
+    int DangerRanking();
+    //Combat
+    bool blocked; //Blocked this turn or not?
+    MTGCardInstance * defenser;
+    list<MTGCardInstance *>blockers;
+    int attacker;
+    int toggleDefenser(MTGCardInstance * opponent);
+    int raiseBlockerRankOrder(MTGCardInstance * blocker);
 
-  vector<TargetChooser *>canttarget;
-  int addCantBeTarget(TargetChooser * tc);
-  int removeCantBeTarget(TargetChooser *tc, int erase = 0);
-  int CantBeTargetby(MTGCardInstance * card);
-  
-  vector<TargetChooser *>cantBeBlockedBys;
-  int addCantBeBlockedBy(TargetChooser * tc);
-  int removeCantBeBlockedBy(TargetChooser *tc, int erase = 0);
-  int cantBeBlockedBy(MTGCardInstance * card);
+    //Returns rank of the card in blockers if it is a blocker of this (starting at 1), 0 otherwise
+    int getDefenserRank(MTGCardInstance * blocker);
+    int toggleAttacker();
+    MTGCardInstance * banding; // If belongs to a band when attacking
+    int canBlock();
+    int canBlock(MTGCardInstance * opponent);
+    int canAttack();
+    int isAttacker();
+    MTGCardInstance * isDefenser();
+    int initAttackersDefensers();
+    MTGCardInstance * getNextOpponent(MTGCardInstance * previous=NULL);
+    int nbOpponents();
+    int stepPower(CombatStep step);
+    int afterDamage();
+    int has(int ability);
+    int cleanup();
 
-  void copy(MTGCardInstance * card);
+    MTGCard * model;
+    MTGCardInstance();
+    MTGCardInstance(MTGCard * card, MTGPlayerCards * _belongs_to);
+    int regenerate();
+    int triggerRegenerate();
+    Player * controller();
 
-  void setUntapping();
-  int isUntapping();
-  int isTapped();
-  void untap();
-  void tap();
-  void attemptUntap();
+    virtual ~MTGCardInstance();
+    int bury();
+    int destroy();
 
-	void eventattacked();
-	void eventattackedAlone();
-	void eventattackednotblocked();
-	void eventattackedblocked(MTGCardInstance * opponent);
-	void eventblocked(MTGCardInstance * opponent);
+    int addToToughness(int value);
+    int setToughness(int value);
 
-  int isInPlay();
-  JSample * getSample();
+    vector<TargetChooser *>protections;
+    int addProtection(TargetChooser * tc);
+    int removeProtection(TargetChooser *tc, int erase = 0);
+    int protectedAgainst(MTGCardInstance * card);
 
-  JQuadPtr getIcon();
+    vector<TargetChooser *>canttarget;
+    int addCantBeTarget(TargetChooser * tc);
+    int removeCantBeTarget(TargetChooser *tc, int erase = 0);
+    int CantBeTargetby(MTGCardInstance * card);
 
-  ostream& toString(ostream&) const;
+    vector<TargetChooser *>cantBeBlockedBys;
+    int addCantBeBlockedBy(TargetChooser * tc);
+    int removeCantBeBlockedBy(TargetChooser *tc, int erase = 0);
+    int cantBeBlockedBy(MTGCardInstance * card);
 
-  static MTGCardInstance AnyCard;
-  static MTGCardInstance NoCard;
+    void copy(MTGCardInstance * card);
 
-  static MTGCardInstance ExtraRules[2];
+    void setUntapping();
+    int isUntapping();
+    int isTapped();
+    void untap();
+    void tap();
+    void attemptUntap();
+
+    void eventattacked();
+    void eventattackedAlone();
+    void eventattackednotblocked();
+    void eventattackedblocked(MTGCardInstance * opponent);
+    void eventblocked(MTGCardInstance * opponent);
+
+    int isInPlay();
+    JSample * getSample();
+
+    JQuadPtr getIcon();
+
+    ostream& toString(ostream&) const;
+
+    static MTGCardInstance AnyCard;
+    static MTGCardInstance NoCard;
+
+    static MTGCardInstance ExtraRules[2];
 
 };
 

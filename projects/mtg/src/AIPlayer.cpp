@@ -1409,7 +1409,6 @@ int AIPlayerBaka::computeActions()
         //am im not interupting my own spell, or the stack contains nothing.
     {
         findingCard = true;
-        CardDescriptor cd;
         ManaCost * icurrentMana = getPotentialMana();
         bool ipotential = false;
         if (icurrentMana->getConvertedCost())
@@ -1454,7 +1453,6 @@ int AIPlayerBaka::computeActions()
     }
     else if(p == this && g->mLayers->stackLayer()->count(0, NOT_RESOLVED) == 0)
     { //standard actions
-        CardDescriptor cd;
         switch (currentGamePhase)
         {
         case Constants::MTG_PHASE_FIRSTMAIN:

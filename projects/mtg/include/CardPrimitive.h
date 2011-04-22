@@ -13,7 +13,6 @@ using namespace std;
 class CardPrimitive
 {
 protected:
-    vector<string> ftdText;
     string lcname;
     ManaCost manaCost;
 
@@ -84,7 +83,6 @@ public:
     void getRestrictions();
     void setOtherRestrictions(string _restriction);
     void getOtherRestrictions();
-    const vector<string>& formattedText();
 };
 
 

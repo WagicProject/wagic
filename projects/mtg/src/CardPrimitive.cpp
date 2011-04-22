@@ -61,23 +61,6 @@ int CardPrimitive::init()
     return 1;
 }
 
-const vector<string>& CardPrimitive::formattedText()
-{
-    if (ftdText.empty())
-    {
-        std::string s = text;
-        std::string::size_type found = s.find_first_of("{}");
-        while (found != string::npos)
-        {
-            s[found] = '/';
-            found = s.find_first_of("{}", found + 1);
-        }
-        WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAGIC_FONT);
-        mFont->FormatText(s, ftdText);
-    }
-    return ftdText;
-}
-
 bool CardPrimitive::isCreature()
 {
     return hasSubtype(Subtypes::TYPE_CREATURE);
