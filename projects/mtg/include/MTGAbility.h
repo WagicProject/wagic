@@ -198,6 +198,7 @@ public:
         MORPH_COST = 28,
         SUSPEND_COST = 29,
         COUNTERS = 30,
+		PUT_INTO_PLAY_WITH_KICKER = 31,
 
 
     };

@@ -105,6 +105,10 @@ void GameStateOptions::Start()
     WDecoEnum * oFirstPlayer = NEW WDecoEnum(NEW OptionInteger(Options::FIRSTPLAYER, "First Turn Player", Constants::WHO_R, 1,
                     Constants::WHO_P, "", Constants::WHO_P));
     optionsList->Add(oFirstPlayer);
+    
+    WDecoEnum * oKickerPay = NEW WDecoEnum(NEW OptionInteger(Options::KICKERPAYMENT, "Kicker Cost", Constants::KICKER_CHOICE, 1,
+        Constants::KICKER_ALWAYS, "", Constants::KICKER_ALWAYS));
+    optionsList->Add(oKickerPay);
 
     optionsList = NEW WGuiKeyBinder("Key Bindings", this);
     optionsTabs->Add(optionsList);

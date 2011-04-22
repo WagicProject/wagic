@@ -28,6 +28,7 @@ const string Options::optionNames[] = {
   "maxGrade",
   "ASPhases",
   "FirstPlayer",
+  "KickerPay",
   "economic_difficulty",
   "transitions",
   "bgStyle",
@@ -445,6 +446,11 @@ GameOption * GameOptions::get(int optionID)
         case Options::FIRSTPLAYER:
             goEnum = NEW GameOptionEnum();
             goEnum->def = OptionWhosFirst::getInstance();
+            go = goEnum;
+            break;
+        case Options::KICKERPAYMENT:
+            goEnum = NEW GameOptionEnum();
+            goEnum->def = OptionKicker::getInstance();
             go = goEnum;
             break;
         case Options::KEY_BINDINGS:
@@ -940,7 +946,13 @@ OptionEconDifficulty::OptionEconDifficulty()
     mDef.values.push_back(EnumDefinition::assoc(Constants::ECON_EASY, "Easy"));
 }
 ;
-
+OptionKicker OptionKicker::mDef;
+OptionKicker::OptionKicker()
+{
+    mDef.values.push_back(EnumDefinition::assoc(Constants::KICKER_ALWAYS, "Always Pay"));
+    mDef.values.push_back(EnumDefinition::assoc(Constants::KICKER_CHOICE, "Offer Choice"));
+}
+;
 //GameOptionAward
 GameOptionAward::GameOptionAward()
 {

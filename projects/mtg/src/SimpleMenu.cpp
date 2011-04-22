@@ -122,7 +122,8 @@ void SimpleMenu::drawVertPole(float x, float y, float height)
 
 void SimpleMenu::Render()
 {
-    WFont * titleFont = WResourceManager::Instance()->GetWFont(Fonts::SMALLFACE_FONT);
+    WFont * titleFont = WResourceManager::Instance()->GetWFont(fontId);
+    titleFont->SetColor(ARGB(250,255,255,255));//reseting color on passes as this is a shared font now.
     WFont * mFont = WResourceManager::Instance()->GetWFont(fontId);
     if (0 == mWidth)
     {

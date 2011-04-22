@@ -53,6 +53,7 @@ public:
         MAX_GRADE,
         ASPHASES,
         FIRSTPLAYER,
+        KICKERPAYMENT,
         ECON_DIFFICULTY,
         TRANSITIONS,
         GUI_STYLE,
@@ -286,6 +287,25 @@ public:
 private:
     OptionWhosFirst();
     static OptionWhosFirst mDef;
+};
+
+class OptionKicker : public EnumDefinition
+{
+public:
+    enum
+    {
+        KICKER_ALWAYS = 0,
+        KICKER_CHOICE = 1, 
+    };
+    
+    static EnumDefinition * getInstance()
+    {
+        return &mDef;
+    }
+
+private:
+    OptionKicker();
+    static OptionKicker mDef;
 };
 
 class OptionEconDifficulty : public EnumDefinition

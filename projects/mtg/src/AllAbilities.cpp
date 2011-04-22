@@ -2945,10 +2945,15 @@ void APhaseAction::Update(float dt)
                 MTGCardInstance * _target = NULL;
                 if(target)
                 _target = (MTGCardInstance *) target;
-                if(!sAbility.size() || (!target||!_target->currentZone))
+                if(!sAbility.size() || (!target||(!_target->currentZone && _target != this->source)))
                 {
                     this->forceDestroy = 1;
                     return;
+                }
+                else
+                {
+                    while(_target->next)
+                        _target = _target->next;
                 }
                 AbilityFactory af;
                 MTGAbility * ability = af.parseMagicLine(sAbility, abilityId, NULL, _target);

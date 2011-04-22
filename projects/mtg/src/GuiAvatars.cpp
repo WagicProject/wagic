@@ -11,8 +11,9 @@ GuiAvatars::GuiAvatars() :
     active(NULL)
 {
     Add(self = NEW GuiAvatar(SCREEN_WIDTH, SCREEN_HEIGHT, false, GameObserver::GetInstance()->players[0], GuiAvatar::BOTTOM_RIGHT, this));
-    Add(selfGraveyard = NEW GuiGraveyard(SCREEN_WIDTH - GuiAvatar::Width - GuiGameZone::Width / 2 - 5, SCREEN_HEIGHT - GuiAvatar::Height - 5, false, GameObserver::GetInstance()->players[0], this));
-    Add(selfLibrary = NEW GuiLibrary(SCREEN_WIDTH - GuiAvatar::Width - GuiGameZone::Width / 2 - 5, SCREEN_HEIGHT - GuiAvatar::Height - 5 + GuiGameZone::Height + 5, false, GameObserver::GetInstance()->players[0], this));
+    self->zoom = 0.9f;
+    Add(selfGraveyard = NEW GuiGraveyard(SCREEN_WIDTH - GuiAvatar::Width - GuiGameZone::Width / 2 - 11, SCREEN_HEIGHT - GuiAvatar::Height - 1, false, GameObserver::GetInstance()->players[0], this));
+    Add(selfLibrary = NEW GuiLibrary(SCREEN_WIDTH - GuiAvatar::Width - GuiGameZone::Width / 2 - 11, SCREEN_HEIGHT - GuiAvatar::Height - 5 + GuiGameZone::Height + 5, false, GameObserver::GetInstance()->players[0], this));
 
     Add(opponent = NEW GuiAvatar(0, 0, false, GameObserver::GetInstance()->players[1], GuiAvatar::TOP_LEFT, this));
     opponent->zoom = 0.9f;
@@ -20,9 +21,9 @@ GuiAvatars::GuiAvatars() :
     Add(opponentHand = NEW GuiOpponentHand(-30 + GuiAvatar::Width * 1.2 - GuiGameZone::Width / 2, 35 + GuiGameZone::Height - 10,
                     false, GameObserver::GetInstance()->players[1], this));
     //opponenthandveiwends
-    Add(opponentGraveyard = NEW GuiGraveyard(5 + GuiAvatar::Width * 1.2 - GuiGameZone::Width / 2, 5, false,
+    Add(opponentGraveyard = NEW GuiGraveyard(5 + GuiAvatar::Width * 1.4 - GuiGameZone::Width / 2, 5, false,
                     GameObserver::GetInstance()->players[1], this));
-    Add(opponentLibrary = NEW GuiLibrary(5 + GuiAvatar::Width * 1.2 - GuiGameZone::Width / 2, 5 + GuiGameZone::Height + 5, false,
+    Add(opponentLibrary = NEW GuiLibrary(5 + GuiAvatar::Width * 1.4 - GuiGameZone::Width / 2, 5 + GuiGameZone::Height + 5, false,
                     GameObserver::GetInstance()->players[1], this));
 
     CardSelectorSingleton::Instance()->Add(self);
@@ -77,7 +78,7 @@ void GuiAvatars::Deactivate(PlayGuiObject* c)
     else if ((selfGraveyard == c) || (selfLibrary == c) || (self == c))
     {
         selfGraveyard->alpha = selfLibrary->alpha = 0;
-        self->zoom = 0.3f;
+        self->zoom = 0.5f;
         active = NULL;
     }
 }
@@ -153,7 +154,7 @@ void GuiAvatars::Render()
     }
     else if (self == active)
     {
-        r->FillRect(self->actX - w * self->actZ, self->actY - h * self->actZ, w * self->actZ, h * self->actZ, ARGB(200,0,0,0));
+        r->FillRect(self->actX - w * self->actZ -4.5, self->actY - h * self->actZ, w * self->actZ, h * self->actZ, ARGB(200,0,0,0));
     }
     GuiLayer::Render();
 

@@ -227,6 +227,9 @@ CANATTACK = 91,
 	WHO_O=1,
 	WHO_R=2,
 	
+	KICKER_ALWAYS=0,
+	KICKER_CHOICE=1,
+	
   };
 
     enum{

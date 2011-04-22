@@ -72,9 +72,24 @@ public:
     MTGPutInPlayRule(int _id);
     const char * getMenuText()
     {
-        return "Play Card Normally";
+        return "cast card normally";
     }
     virtual MTGPutInPlayRule * clone() const;
+};
+
+class MTGKickerRule: public MTGPutInPlayRule
+{
+public:
+    int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
+    int reactToClick(MTGCardInstance * card);
+    int testDestroy();
+    virtual ostream& toString(ostream& out) const;
+    MTGKickerRule(int _id);
+    const char * getMenuText()
+    {
+        return "pay kicker";
+    }
+    virtual MTGKickerRule * clone() const;
 };
 
 class MTGAlternativeCostRule: public MTGAbility
@@ -94,7 +109,7 @@ public:
     {
         if(alternativeName.size())
             return alternativeName.c_str();
-        return "Pay Alternative Cost";
+        return "pay alternative cost";
     }
     virtual MTGAlternativeCostRule * clone() const;
 };
@@ -109,7 +124,7 @@ public:
     MTGBuyBackRule(int _id);
     const char * getMenuText()
     {
-        return "Cast And Buy Back";
+        return "cast and buy back";
     }
     virtual MTGBuyBackRule * clone() const;
 };
@@ -125,7 +140,7 @@ public:
     MTGFlashBackRule(int _id);
     const char * getMenuText()
     {
-        return "Flash Back";
+        return "flash back";
     }
     virtual MTGFlashBackRule * clone() const;
 };
@@ -140,7 +155,7 @@ public:
     MTGRetraceRule(int _id);
     const char * getMenuText()
     {
-        return "Retrace";
+        return "retrace";
     }
     virtual MTGRetraceRule * clone() const;
 };
@@ -156,7 +171,7 @@ public:
     MTGMorphCostRule(int _id);
     const char * getMenuText()
     {
-        return "Play Morphed";
+        return "play morphed";
     }
     virtual MTGMorphCostRule * clone() const;
 };
@@ -173,7 +188,7 @@ public:
     MTGSuspendRule(int _id);
     const char * getMenuText()
     {
-        suspendmenu = "Suspend";
+        suspendmenu = "suspend";
         //char buffer[20];
         //sprintf(buffer,"-%i",card->suspendedTime);
         //suspendmenu.append(buffer);

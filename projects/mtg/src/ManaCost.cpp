@@ -597,20 +597,6 @@ int ManaCost::pay(ManaCost * _cost)
     int result = MANA_PAID;
     ManaCost * toPay = NEW ManaCost();
     toPay->copy(_cost);
-
-    if (toPay->kicker)
-    {
-        toPay->add(toPay->kicker);
-        if (!canAfford(toPay))
-        {
-            toPay->copy(_cost);
-        }
-        else
-        {
-            result = MANA_PAID_WITH_KICKER;
-        }
-    }
-
     ManaCost * diff = Diff(toPay);
     for (int i = 0; i < Constants::MTG_NB_COLORS; i++)
     {

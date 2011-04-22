@@ -397,6 +397,17 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card)
 
     ManaCost * previousManaPool = NEW ManaCost(player->getManaPool());
     int payResult = player->getManaPool()->pay(card->getManaCost());
+    if (card->getManaCost()->kicker && OptionKicker::KICKER_ALWAYS == options[Options::KICKERPAYMENT].number)
+    {
+        ManaCost * withKickerCost= NEW ManaCost(card->getManaCost());
+        withKickerCost->add(withKickerCost->kicker);
+        if (previousManaPool->canAfford(withKickerCost))
+        {
+            player->getManaPool()->pay(card->getManaCost()->kicker);
+            payResult = ManaCost::MANA_PAID_WITH_KICKER;
+        }
+        delete withKickerCost;
+    }
     card->getManaCost()->doPayExtra();
     ManaCost * spellCost = previousManaPool->Diff(player->getManaPool());
 
@@ -462,8 +473,133 @@ MTGPutInPlayRule * MTGPutInPlayRule::clone() const
     return a;
 }
 
-//cast from anywhere possible with this??
 
+//kicker
+MTGKickerRule::MTGKickerRule(int _id) :
+MTGPutInPlayRule(_id)
+{
+    aType = MTGAbility::PUT_INTO_PLAY_WITH_KICKER;
+}
+int MTGKickerRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
+{
+    if(OptionKicker::KICKER_ALWAYS == options[Options::KICKERPAYMENT].number)
+        return 0;
+    Player * player = game->currentlyActing();
+    ManaCost * kicker = card->getManaCost()->kicker;
+    if(!kicker)
+    {
+    SAFE_DELETE(kicker);
+        return 0;
+    }
+    ManaCost * playerMana = player->getManaPool();
+    ManaCost * withKickerCost= NEW ManaCost(card->getManaCost());
+    withKickerCost->add(withKickerCost->kicker);
+    if(!playerMana->canAfford(withKickerCost))
+    {
+        delete withKickerCost;
+        return 0;
+    }
+    delete withKickerCost;
+    
+    
+    return 1;
+}
+
+int MTGKickerRule::reactToClick(MTGCardInstance * card)
+{
+    if(!isReactingToClick(card, NULL))
+        return 0;
+        
+    Player * player = game->currentlyActing();
+    ManaCost * withKickerCost= NEW ManaCost(card->getManaCost());//using pointers here alters the real cost of the card.
+    withKickerCost->add(withKickerCost->kicker);
+    card->paymenttype = MTGAbility::PUT_INTO_PLAY_WITH_KICKER;
+    if (withKickerCost->isExtraPaymentSet())
+    {
+        if (!game->targetListIsSet(card))
+        {
+        delete withKickerCost;
+            return 0;
+        }
+    }
+    else
+    {
+        withKickerCost->setExtraCostsAction(this, card);
+        game->mExtraPayment = withKickerCost->extraCosts;
+        delete withKickerCost;
+        return 0;
+    }
+
+    ManaCost * previousManaPool = NEW ManaCost(player->getManaPool());
+    int payResult = player->getManaPool()->pay(withKickerCost);
+    withKickerCost->doPayExtra();
+    ManaCost * spellCost = previousManaPool->Diff(player->getManaPool());
+    delete withKickerCost;
+    delete previousManaPool;
+    if (card->isLand())
+    {
+        MTGCardInstance * copy = player->game->putInZone(card, player->game->hand, player->game->temp);
+        Spell * spell = NEW Spell(0,copy,NULL,NULL, ManaCost::MANA_PAID_WITH_KICKER);
+        spell->resolve();
+        delete spellCost;
+        delete spell;
+    }
+    else
+    {
+        Spell * spell = NULL;
+        MTGCardInstance * copy = player->game->putInZone(card, player->game->hand, player->game->stack);
+        if (game->targetChooser)
+        {
+            spell = game->mLayers->stackLayer()->addSpell(copy, game->targetChooser, spellCost, ManaCost::MANA_PAID_WITH_KICKER, 0);
+            game->targetChooser = NULL;
+        }
+        else
+        {
+            spell = game->mLayers->stackLayer()->addSpell(copy, NULL, spellCost, ManaCost::MANA_PAID_WITH_KICKER, 0);
+        }
+
+        if (card->has(Constants::STORM))
+        {
+            int storm = player->game->stack->seenThisTurn("*", Constants::CAST_ALL) + player->opponent()->game->stack->seenThisTurn("*", Constants::CAST_ALL);
+            ManaCost * stormSpellCost = player->getManaPool();
+            for (int i = storm; i > 1; i--)
+            {
+                spell = game->mLayers->stackLayer()->addSpell(copy, NULL, stormSpellCost, ManaCost::MANA_PAID_WITH_KICKER, 1);
+
+            }
+        }//end of storm
+        if (!card->has(Constants::STORM))
+        {
+            copy->X = spell->computeX(copy);
+            copy->XX = spell->computeXX(copy);
+        }
+    }
+
+    return 1;
+}
+
+int MTGKickerRule::testDestroy()
+{
+    return 0;
+}
+
+ostream& MTGKickerRule::toString(ostream& out) const
+{
+    out << "MTGKickerRule ::: (";
+    return MTGAbility::toString(out) << ")";
+}
+
+MTGKickerRule * MTGKickerRule::clone() const
+{
+    MTGKickerRule * a = NEW MTGKickerRule(*this);
+    a->isClone = 1;
+    return a;
+}
+
+
+
+
+//cast from anywhere possible with this??
 //Alternative cost rules
 //-------------------------------------------------------------------------
 //-------------------------------------------------------------------------
