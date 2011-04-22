@@ -1,5 +1,3 @@
-#include "PrecompiledHeader.h"
-
 #include <errno.h>
 #ifdef WIN32
 #pragma comment(lib,"WSOCK32.LIB")
@@ -17,6 +15,7 @@
 #endif //WINDOWS
 
 #include "../../include/JSocket.h"
+#include "../../include/DebugRoutines.h"
 //JSocket * JSocket::mInstance = NULL;
 
 //#define SERVER_PORT 20666
