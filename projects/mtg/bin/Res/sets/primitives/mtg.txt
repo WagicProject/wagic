@@ -70887,7 +70887,7 @@ toughness=3
 [/card]
 [card]
 name=Viridian Revel
-auto=@movedTo(artifact|fraveyard) from(opponentBattlefield):may draw:1 controller
+auto=@movedTo(artifact|graveyard) from(opponentBattlefield):may draw:1 controller
 text=Whenever an artifact is put into an opponent's graveyard from the battlefield, you may draw a card.
 mana={1}{G}{G}
 type=Enchantment
