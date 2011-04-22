@@ -9,6 +9,7 @@ manapool:{11}{G}{G}{G}{G}
 life:20
 [DO]
 One Dozen Eyes
+choice 1
 choice 0
 Beast of Burden
 next

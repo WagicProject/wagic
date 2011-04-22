@@ -10,6 +10,7 @@ manapool:{G}{G}
 [PLAYER2]
 [DO]
 Vines of Vastwood
+choice 1
 grizzly bears
 mountain
 shock

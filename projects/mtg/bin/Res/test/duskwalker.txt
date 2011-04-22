@@ -8,6 +8,7 @@ manapool:{3}{B}{B}
 inplay:Grizzly Bears
 [DO]
 Duskwalker
+choice 1
 eot
 eot
 #untap

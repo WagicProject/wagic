@@ -8,6 +8,7 @@ manapool:{1}{W}{2}
 [PLAYER2]
 [DO]
 Ardent Soldier
+choice 1
 eot
 eot
 next
