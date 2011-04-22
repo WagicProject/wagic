@@ -208,7 +208,6 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
 
     case 'n': //name
         if (!primitive) primitive = NEW CardPrimitive();
-        if (0 == strcmp("Bloodrock Cyclops", val)) cout << "val" << endl;
         primitive->setName(val);
         break;
 
