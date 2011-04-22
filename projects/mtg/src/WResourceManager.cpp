@@ -91,12 +91,13 @@ void ResourceManagerImpl::DebugRender()
         textureWCache.cacheSize, textureWCache.maxCacheSize, man);
     font->DrawString(buf, 10, 5);
 
-#if PSPENV
+#ifdef PSP
+    //deliberately off - these functions aren't thread safe!
     //int maxLinear = ramAvailableLineareMax();
     //int ram = ramAvailable();
    
     //sprintf(buf, "Ram : linear max: %i - total : %i sceSize : %i\n", maxLinear, ram, sceSize);
-    font->DrawString(buf, 10, 20);
+    //font->DrawString(buf, 10, 20);
 #endif
 
     sprintf(buf, "Time: %u. Total Size: %lu (%lu cached, %lu managed). ", lastTime, Size(), SizeCached(), SizeManaged());
@@ -204,7 +205,7 @@ ResourceManagerImpl::ResourceManagerImpl()
 
     LOG("Calling CacheEngine::Create");
 
-#ifdef PSPENV
+#ifdef PSP
     CacheEngine::Create<UnthreadedCardRetriever>(textureWCache);
 #else
     CacheEngine::Create<ThreadedCardRetriever>(textureWCache);
@@ -232,7 +233,10 @@ JQuadPtr ResourceManagerImpl::RetrieveCard(MTGCard * card, int style, int submod
 
     submode = submode | TEXTURE_SUB_CARD;
 
-    string filename = setlist[card->setId] + "/" + card->getImageName();
+    static std::ostringstream filename;
+    filename.str("");
+    filename << setlist[card->setId] << "/" << card->getImageName();
+
     int id = card->getMTGId();
 
     //Aliases.
@@ -242,7 +246,7 @@ JQuadPtr ResourceManagerImpl::RetrieveCard(MTGCard * card, int style, int submod
         style = RETRIEVE_NORMAL;
     }
 
-    JQuadPtr jq = RetrieveQuad(filename, 0, 0, 0, 0, "", style, submode | TEXTURE_SUB_5551, id);
+    JQuadPtr jq = RetrieveQuad(filename.str(), 0, 0, 0, 0, "", style, submode | TEXTURE_SUB_5551, id);
 
     lastError = textureWCache.mError;
     if (jq)
