@@ -627,8 +627,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Makefile" />
-    <None Include="Makefile.1xx" />
-    <None Include="Makefile.3xx" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">

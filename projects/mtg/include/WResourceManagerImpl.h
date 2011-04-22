@@ -97,7 +97,7 @@ protected:
             return true;
         }
 
-#if PSPENV
+#ifdef PSP
         if (ramAvailableLineareMax() < MIN_LINEAR_RAM)
         {
             DebugTrace("Memory below minimum threshold!!");

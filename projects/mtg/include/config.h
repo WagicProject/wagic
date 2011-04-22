@@ -7,9 +7,6 @@
 
 #if (defined (WIN32) || defined (LINUX)) && defined (_DEBUG)
 #define TESTSUITE 1
-
-#else
-#define OutputDebugString(val) {}
 #endif
 
 #include "limits.h"
@@ -19,19 +16,6 @@
 #define NEW new(_NORMAL_BLOCK, __FILE__, __LINE__)
 #else
 #define NEW new
-#endif
-
-#ifdef QT_CONFIG
-#include <QtGlobal>
-#define OutputDebugString(val) qDebug(val)
-#else
-#ifdef LINUX
-#ifdef _DEBUG
-#define OutputDebugString(val) (std::cerr << val);
-#else
-#define OutputDebugString(val) {}
-#endif
-#endif
 #endif
 
 #ifndef RESPATH

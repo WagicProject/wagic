@@ -7,7 +7,7 @@
 #include "WFont.h"
 #include <sys/stat.h>
 
-#ifdef PSPENV
+#ifdef PSP
 #include "pspsdk.h"
 #endif
 
@@ -164,7 +164,7 @@ u32 ramAvailableLineareMax(void)
     size = 0;
     sizeblock = RAM_BLOCK;
 
-#ifdef PSPENV
+#ifdef PSP
     int disableInterrupts = pspSdkDisableInterrupts();
 #endif
 
@@ -190,7 +190,7 @@ u32 ramAvailableLineareMax(void)
             free(ram);
     }
 
-#ifdef PSPENV
+#ifdef PSP
     pspSdkEnableInterrupts(disableInterrupts);
 #endif
 
@@ -207,7 +207,7 @@ u32 ramAvailable(void)
     size = 0;
     count = 0;
 
-#ifdef PSPENV
+#ifdef PSP
     int disableInterrupts = pspSdkDisableInterrupts();
 #endif
 
@@ -247,7 +247,7 @@ u32 ramAvailable(void)
         free(ram);
     }
 
-#ifdef PSPENV
+#ifdef PSP
     pspSdkEnableInterrupts(disableInterrupts);
 #endif
     return size;

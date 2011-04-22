@@ -60,21 +60,12 @@ endif
 ifeq ($(MAKECMDGOALS),3xx)
 DEFAULT_RULE = 3xx
 endif
-ifeq ($(MAKECMDGOALS),1xx)
-DEFAULT_RULE = 1xx
-endif
 
 ifeq ($(DEFAULT_RULE),3xx)
 TARGET_ARCHITECTURE = psp
 TARGET_LIB = libjge300.a
 CXXFLAGS += -DDEVHOOK -DPSPFW3XX
 PSP_FW_VERSION=371
-endif
-ifeq ($(DEFAULT_RULE),1xx)
-OBJS = $(GENERIC_OBJS) $(PSP_OBJS)
-TARGET_LIB = libjge100.a
-TARGET_ARCHITECTURE = psp
-PSP_FW_VERSION=150
 endif
 
 ifeq ($(TARGET_ARCHITECTURE),psp)
@@ -83,7 +74,7 @@ PSPDIR = $(shell psp-config --psp-prefix)
 OBJS = $(GENERIC_OBJS) $(PSP_OBJS)
 TARGET_HGE = libhgetools.a
 INCDIR = include/psp include/psp/freetype2 ../Boost
-CXXFLAGS += -O2 -G0 -DPSPENV -DPSP
+CXXFLAGS += -O2 -G0 -DPSP
 LIBDIR = lib/psp
 endif
 ifeq ($(TARGET_ARCHITECTURE),linux)
@@ -111,8 +102,6 @@ debug: $(DEFAULT_RULE) hge
 linux: $(TARGET_LIB) hge
 
 3xx: $(TARGET_LIB)
-
-1xx: $(TARGET_LIB)
 
 install: $(TARGET_LIB) hge
 

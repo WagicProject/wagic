@@ -184,7 +184,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>.\Debug/template.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
-      <OptimizeReferences>true</OptimizeReferences>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
@@ -425,8 +424,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Makefile" />
-    <None Include="Makefile.1xx" />
-    <None Include="Makefile.3xx" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\ActionElement.h" />

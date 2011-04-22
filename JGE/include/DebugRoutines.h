@@ -21,6 +21,10 @@ std::string ToHex(T* pointer)
     return stream.str();
 }
 
+#ifdef LINUX
+#define OutputDebugString(val) (std::cerr << val);
+#endif
+
 #if defined (WIN32) || defined (LINUX) 
 #ifdef _DEBUG
 
@@ -29,7 +33,7 @@ std::string ToHex(T* pointer)
 {															\
 	std::ostringstream stream;								\
 	stream << inString << std::endl;					    \
-  OutputDebugString(stream.str().c_str());  \
+  	OutputDebugString(stream.str().c_str());  				\
 }
 #else
 #define DebugTrace(inString)								\
@@ -47,7 +51,7 @@ std::string ToHex(T* pointer)
 #ifndef DebugTrace
 #define DebugTrace(inString)								\
 {															\
-  std::cout << inString << std::endl;					    \
+  std::cerr << inString << std::endl;					    \
 }
 #endif //DEBUG
 #endif
