@@ -314,7 +314,8 @@ void StoryDuel::init()
 
     string rulesFile = folder;
     rulesFile.append("/rules.txt");
-    rules = NEW Rules(rulesFile, bg);
+    rules = NEW Rules(bg);
+    rules->load(rulesFile);
 
     GameObserver::Init(players, 2);
     game = GameObserver::GetInstance();

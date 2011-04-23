@@ -1,0 +1,4 @@
+include mtg.txt
+name=Story
+[INIT]
+mode=story

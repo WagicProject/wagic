@@ -18,6 +18,7 @@
 #include "utils.h"
 #include "WFont.h"
 #include <JLogger.h>
+#include "Rules.h"
 #ifdef NETWORK_SUPPORT
 #include <JNetwork.h>
 #endif//NETWORK_SUPPORT
@@ -69,11 +70,7 @@ enum
 #endif //NETWORK_SUPPORT
     SUBMENUITEM_DEMO,
     SUBMENUITEM_TESTSUITE,
-    SUBMENUITEM_MOMIR,
-    SUBMENUITEM_CLASSIC,
-    SUBMENUITEM_RANDOM1,
-    SUBMENUITEM_RANDOM2,
-    SUBMENUITEM_STORY
+    SUBMENUITEM_END_OFFSET
 };
 
 GameStateMenu::GameStateMenu(GameApp* parent) :
@@ -136,6 +133,7 @@ void GameStateMenu::Create()
     scrollerSet = 0;
 
     splashTex = NULL;
+
 }
 
 void GameStateMenu::Destroy()
@@ -470,8 +468,6 @@ void GameStateMenu::Update(float dt)
         if (primitivesLoadCounter == -1)
         {
             listPrimitives();
-            // Move translator init to GameApp::Create().
-            // Translator::GetInstance()->init();
         }
         if (primitivesLoadCounter < (int) (primitives.size()))
         {
@@ -600,15 +596,14 @@ void GameStateMenu::Update(float dt)
                 subMenuController = NEW SimpleMenu(MENU_FIRST_DUEL_SUBMENU, this, Fonts::MENU_FONT, 150, 60);
                 if (subMenuController)
                 {
-                    subMenuController->Add(SUBMENUITEM_CLASSIC, "Classic");
-                    if (options[Options::MOMIR_MODE_UNLOCKED].number)
-                        subMenuController->Add(SUBMENUITEM_MOMIR, "Momir Basic");
-                    if (options[Options::RANDOMDECK_MODE_UNLOCKED].number)
+                    for (size_t i = 0; i < Rules::RulesList.size(); ++i)
                     {
-                        subMenuController->Add(SUBMENUITEM_RANDOM1, "Random 1 Color");
-                        subMenuController->Add(SUBMENUITEM_RANDOM2, "Random 2 Colors");
+                        Rules * rules = Rules::RulesList[i];
+                        if (!rules->hidden && (rules->unlockOption == INVALID_OPTION || options[rules->unlockOption].number))
+                        {
+                            subMenuController->Add(SUBMENUITEM_END_OFFSET + i, rules->displayName.c_str());
+                        }
                     }
-                    subMenuController->Add(SUBMENUITEM_STORY, "Story");
                     subMenuController->Add(SUBMENUITEM_CANCEL, "Cancel");
                 }
             }
@@ -885,49 +880,24 @@ void GameStateMenu::ButtonPressed(int controllerId, int controlId)
             currentState = MENU_STATE_MAJOR_MAINMENU | MENU_STATE_MINOR_SUBMENU_CLOSING;
             break;
 
-        case SUBMENUITEM_CLASSIC:
-            this->hasChosenGameType = true;
-            mParent->gameType = GAME_TYPE_CLASSIC;
-            subMenuController->Close();
-            currentState = MENU_STATE_MAJOR_DUEL | MENU_STATE_MINOR_SUBMENU_CLOSING;
-            break;
-
-        case SUBMENUITEM_MOMIR:
-            this->hasChosenGameType = true;
-            mParent->gameType = GAME_TYPE_MOMIR;
-            subMenuController->Close();
-            currentState = MENU_STATE_MAJOR_DUEL | MENU_STATE_MINOR_SUBMENU_CLOSING;
-            break;
-
-        case SUBMENUITEM_RANDOM1:
-            this->hasChosenGameType = true;
-            mParent->gameType = GAME_TYPE_RANDOM1;
-            subMenuController->Close();
-            currentState = MENU_STATE_MAJOR_DUEL | MENU_STATE_MINOR_SUBMENU_CLOSING;
-            break;
-
-        case SUBMENUITEM_RANDOM2:
-            this->hasChosenGameType = true;
-            mParent->gameType = GAME_TYPE_RANDOM2;
-            subMenuController->Close();
-            currentState = MENU_STATE_MAJOR_DUEL | MENU_STATE_MINOR_SUBMENU_CLOSING;
-            break;
-
-        case SUBMENUITEM_STORY:
-            this->hasChosenGameType = true;
-            mParent->gameType = GAME_TYPE_STORY;
-            subMenuController->Close();
-            currentState = MENU_STATE_MAJOR_DUEL | MENU_STATE_MINOR_SUBMENU_CLOSING;
-            break;
-
 #ifdef TESTSUITE
             case SUBMENUITEM_TESTSUITE:
+            mParent->rules = Rules::getRulesByFilename("testsuite.txt");
+            this->hasChosenGameType = true;
+            mParent->gameType = GAME_TYPE_CLASSIC;
             mParent->players[0] = PLAYER_TYPE_TESTSUITE;
             mParent->players[1] = PLAYER_TYPE_TESTSUITE;
             subMenuController->Close();
             currentState = MENU_STATE_MAJOR_DUEL | MENU_STATE_MINOR_SUBMENU_CLOSING;
             break;
 #endif
+            default: //Game modes
+            this->hasChosenGameType = true;
+            mParent->rules = Rules::RulesList[controlId - SUBMENUITEM_END_OFFSET];
+            mParent->gameType = (mParent->rules->gamemode); //TODO can we get rid of gameType in the long run, since it is also stored in the rules object ?
+            subMenuController->Close();
+            currentState = MENU_STATE_MAJOR_DUEL | MENU_STATE_MINOR_SUBMENU_CLOSING;
+            break;
         }
         break;
     }

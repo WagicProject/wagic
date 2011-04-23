@@ -1,4 +1,5 @@
 #make sure this file always looks like mtg.txt, minus the initial shuffle and draw
+hidden
 [INIT]
 mode=mtg
 [PLAYERS]

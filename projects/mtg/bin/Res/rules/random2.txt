@@ -1,3 +1,5 @@
 include mtg.txt
+name=Random 2 Colors
+unlock=prx_rnddeck
 [INIT]
 mode=random2

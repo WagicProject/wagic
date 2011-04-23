@@ -34,6 +34,9 @@ AIStats::~AIStats()
 void AIStats::updateStatsCard(MTGCardInstance * cardInstance, Damage * damage, float multiplier)
 {
     MTGCard * card = cardInstance->model;
+    if (!card)
+        return; //card can be null because some special cardInstances (such as ExtraRules) don't have a "model"
+
     AIStat * stat = find(card);
     if (!stat)
     {

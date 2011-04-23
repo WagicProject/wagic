@@ -14,7 +14,6 @@
 class TestSuite;
 #endif
 class Credits;
-class Rules;
 #ifdef NETWORK_SUPPORT
 class JNetwork;
 #endif
@@ -41,7 +40,6 @@ private:
     bool premadeDeck;
     int OpponentsDeckid;
     string musictrack;
-    Rules * rules;
 
     bool MusicExist(string FileName);
     void loadPlayer(int playerId, int decknb = 0, bool isAI = false, bool isNetwork = false);

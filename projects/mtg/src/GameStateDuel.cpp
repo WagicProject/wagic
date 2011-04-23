@@ -81,7 +81,6 @@ GameState(parent)
 #endif
 
     credits = NULL;
-    rules = NULL;
 
 #ifdef NETWORK_SUPPORT
     RegisterNetworkPlayers();
@@ -233,7 +232,7 @@ void GameStateDuel::loadTestSuitePlayers()
 
     GameObserver::Init(mPlayers, 2);
     game = GameObserver::GetInstance();
-    game->startGame(rules);
+    game->startGame(mParent->rules);
     if (mParent->gameType == GAME_TYPE_MOMIR)
     {
         game->addObserver(NEW MTGMomirRule(-1, MTGCollection()));
@@ -267,7 +266,6 @@ void GameStateDuel::End()
         mPlayers[i] = NULL;
     }
     SAFE_DELETE(credits);
-    SAFE_DELETE(rules);
 
     SAFE_DELETE(menu);
     SAFE_DELETE(opponentMenu);
@@ -326,19 +324,8 @@ void GameStateDuel::Update(float dt)
         break;
 
     case DUEL_STATE_CHOOSE_DECK1:
-        if (mParent->gameType == GAME_TYPE_MOMIR)
+        if (!mParent->rules->canChooseDeck())
         {
-            rules = NEW Rules("momir.txt");
-            mGamePhase = DUEL_STATE_PLAY;
-        }
-        else if (mParent->gameType == GAME_TYPE_RANDOM1)
-        {
-            rules = NEW Rules("random1.txt");
-            mGamePhase = DUEL_STATE_PLAY;
-        }
-        else if (mParent->gameType == GAME_TYPE_RANDOM2)
-        {
-            rules = NEW Rules("random2.txt");
             mGamePhase = DUEL_STATE_PLAY;
         }
 #ifdef TESTSUITE
@@ -346,7 +333,6 @@ void GameStateDuel::Update(float dt)
         {
             if (testSuite && testSuite->loadNext())
             {
-                rules = NEW Rules("testsuite.txt");
                 loadTestSuitePlayers();
                 mGamePhase = DUEL_STATE_PLAY;
                 testSuite->pregameTests();
@@ -367,7 +353,6 @@ void GameStateDuel::Update(float dt)
 #endif
         else
         {
-            if (!rules) rules = NEW Rules("mtg.txt");
             if (mParent->players[0] == PLAYER_TYPE_HUMAN)
             {
                 if (!popupScreen || popupScreen->isClosed()) deckmenu->Update(dt);
@@ -424,7 +409,7 @@ void GameStateDuel::Update(float dt)
         {
             GameObserver::Init(mPlayers, 2);
             game = GameObserver::GetInstance();
-            game->startGame(rules);
+            game->startGame(mParent->rules);
             if (mParent->gameType == GAME_TYPE_MOMIR)
             {
                 game->addObserver(NEW MTGMomirRule(-1, MTGCollection()));

@@ -1,4 +1,6 @@
 include mtg.txt
+name=Momir Basic
+unlock=prx_rimom
 [INIT]
 mode=momir
 [PLAYERS]

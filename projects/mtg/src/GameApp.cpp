@@ -26,6 +26,7 @@
 #include "DeckManager.h"
 #include "Translate.h"
 #include "WFilter.h"
+#include "Rules.h"
 
 #define DEFAULT_DURATION .25
 
@@ -247,6 +248,9 @@ void GameApp::Create()
     mCurrentState = NULL;
     mNextState = mGameStates[GAME_STATE_MENU];
 
+    LOG("--Load Game rules");
+    Rules::loadAllRules();
+
     //Set Audio volume
     JSoundSystem::GetInstance()->SetSfxVolume(options[Options::SFXVOLUME].number);
     JSoundSystem::GetInstance()->SetMusicVolume(options[Options::MUSICVOLUME].number);
@@ -298,6 +302,8 @@ void GameApp::Destroy()
     DeckEditorMenu::destroy();
 
     options.theGame = NULL;
+
+    Rules::unloadAllRules();
     LOG("==Destroying GameApp Successful==");
 
 #ifdef TRACK_FILE_USAGE_STATS

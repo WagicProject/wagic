@@ -25,6 +25,8 @@
 #include "JNetwork.h"
 #endif //NETWORK_SUPPORT
 
+
+class Rules;
 enum
 {
     PLAYER_TYPE_CPU = 0,
@@ -68,6 +70,7 @@ private:
 public:
 
     int gameType;
+    Rules * rules;
     CardEffect *effect;
 #ifdef NETWORK_SUPPORT
     JNetwork* mpNetwork;

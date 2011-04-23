@@ -13,6 +13,59 @@
 #include "AIPlayer.h"
 #include <JLogger.h>
 
+
+vector<Rules *> Rules::RulesList = vector<Rules *>();
+
+//Sorting by dissplayName
+struct RulesMenuCmp{
+	bool operator()(const Rules * a,const Rules * b) const{
+        return a->displayName < b->displayName;
+	}
+} RulesMenuCmp_;
+
+Rules * Rules::getRulesByFilename(string _filename)
+{
+    for (size_t i = 0; i < RulesList.size(); ++i)
+    {
+        if (RulesList[i]->filename == _filename)
+            return RulesList[i];
+    }
+    return NULL;
+}
+
+int Rules::loadAllRules()
+{
+    DIR *dip = opendir(JGE_GET_RES("rules").c_str());
+    struct dirent *dit;
+
+    while ((dit = readdir(dip)))
+    {
+        Rules * rules = NEW Rules();
+        if (rules->load(dit->d_name))
+        {
+            RulesList.push_back(rules);
+        }
+        else
+        {
+            SAFE_DELETE(rules);
+        }
+    }
+    //Kind of a hack here, we sort Rules alphabetically because it turns out to be matching
+    // The historical order of Game modes: Classic, Momir Basic, Random 1, Random 2, Story
+    std::sort(RulesList.begin(),RulesList.end(),RulesMenuCmp_);
+    closedir(dip);
+    return 1;
+}
+
+void Rules::unloadAllRules()
+{
+    for (size_t i = 0; i < RulesList.size(); ++i)
+    {
+        SAFE_DELETE(RulesList[i]);
+    }
+    RulesList.clear();
+}
+
 int Rules::getMTGId(string cardName)
 {
     int cardnb = atoi(cardName.c_str());
@@ -195,7 +248,7 @@ void Rules::addExtraRules()
 #ifdef NETWORK_SUPPORT
                 && !g->players[1] == PLAYER_TYPE_REMOTE
 #endif //NETWORK_SUPPORT
-                    )//keep this out of mimor and other game modes.
+                    )//keep this out of momir and other game modes.
             {
                 difficultyRating = DeckManager::getDifficultyRating(g->players[0], g->players[1]);
             }
@@ -389,10 +442,7 @@ void Rules::initGame()
     DebugTrace("RULES Init Game\n");
 
     //Set the current player/phase
-    if (g->currentPlayer->playMode
-        != Player::MODE_TEST_SUITE && /*g->mRules->gamemode != GAME_TYPE_MOMIR && g->mRules->gamemode
-        != GAME_TYPE_RANDOM1 && g->mRules->gamemode != GAME_TYPE_RANDOM2 &&*/ g->mRules->gamemode
-        != GAME_TYPE_STORY)
+    if (g->currentPlayer->playMode!= Player::MODE_TEST_SUITE &&  g->mRules->gamemode!= GAME_TYPE_STORY)
     {
         if(OptionWhosFirst::WHO_R == options[Options::FIRSTPLAYER].number)
             initState.player = WRand() % 2;
@@ -490,25 +540,33 @@ void Rules::cleanup()
     initState.cleanup();
 }
 
-Rules::Rules(string filename, string _bg)
+Rules::Rules(string _bg)
 {
     bg = _bg;
-    load(filename);
+    unlockOption = INVALID_OPTION;
+    hidden = false;
+    filename = "";
+}
+
+bool Rules::canChooseDeck() 
+{
+    return (gamemode == GAME_TYPE_CLASSIC); 
 }
 
 int Rules::load(string _filename)
 {
-
-    char filename[4096];
+    if (!filename.size()) //this check is necessary because of the recursive calls (a fil loads other files)
+        filename = _filename;
+    char c_filename[4096];
     if (fileExists(_filename.c_str()))
     {
-        sprintf(filename, "%s", _filename.c_str());
+        sprintf(c_filename, "%s", _filename.c_str());
     }
     else
     {
-        sprintf(filename, JGE_GET_RES("rules/%s").c_str(), _filename.c_str());
+        sprintf(c_filename, JGE_GET_RES("rules/%s").c_str(), _filename.c_str());
     }
-    wagic::ifstream file(filename);
+    wagic::ifstream file(c_filename);
     std::string s;
 
     int state = PARSE_UNDEFINED;
@@ -522,6 +580,7 @@ int Rules::load(string _filename)
         if (!s.size()) continue;
         if (s[s.size() - 1] == '\r') s.erase(s.size() - 1); //Handle DOS files
         if (s[0] == '#') continue;
+        string scopy = s;
         std::transform(s.begin(), s.end(), s.begin(), ::tolower);
         if (s.find("include ") == 0)
         {
@@ -552,6 +611,18 @@ int Rules::load(string _filename)
         switch (state)
         {
         case PARSE_UNDEFINED:
+            if (s.find("name=") == 0)
+            {
+                displayName = scopy.substr(5);
+            }
+            else if (s.find("unlock=") == 0)
+            {
+                unlockOption = Options::getID(s.substr(7));
+            }
+            else if (s.find("hidden") == 0)
+            {
+                hidden = true;
+            }
             break;
         case PARSE_INIT:
             if (s.find("auto=") == 0)
@@ -592,5 +663,6 @@ int Rules::strToGameMode(string s)
     if (s.compare("momir") == 0) return GAME_TYPE_MOMIR;
     if (s.compare("random1") == 0) return GAME_TYPE_RANDOM1;
     if (s.compare("random2") == 0) return GAME_TYPE_RANDOM2;
+    if (s.compare("story") == 0) return GAME_TYPE_STORY;
     return GAME_TYPE_CLASSIC;
 }
