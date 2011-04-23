@@ -105,6 +105,7 @@ SOURCES += \
         src/MTGGameZones.cpp\
         src/MTGPack.cpp\
         src/MTGRules.cpp\
+        src/ObjectAnalytics.cpp\
         src/OptionItem.cpp\
         src/PhaseRing.cpp\
         src/Player.cpp\
@@ -244,7 +245,8 @@ HEADERS  += \
         include/WFont.h\
         include/DeckManager.h\
         include/SimplePopup.h\
-        include/SimpleMenu.h
+        include/SimpleMenu.h\
+        include/ObjectAnalytics.h
 
 # JGE, could probably be moved outside
 SOURCES += \

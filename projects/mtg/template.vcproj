@@ -750,6 +750,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\ObjectAnalytics.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\OptionItem.cpp"
 				>
 			</File>
@@ -1216,6 +1220,10 @@
 			</File>
 			<File
 				RelativePath=".\include\Navigator.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\ObjectAnalytics.h"
 				>
 			</File>
 			<File
