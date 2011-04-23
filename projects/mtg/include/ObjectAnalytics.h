@@ -1,7 +1,7 @@
 #ifndef OBJECTANALYTICS_H
 #define OBJECTANALYTICS_H
 
-#ifdef DEBUG
+#ifdef _DEBUG
 #define TRACK_OBJECT_USAGE
 #endif
 
@@ -18,6 +18,7 @@ namespace ObjectAnalytics
 #define SUPPORT_OBJECT_ANALYTICS(classname) \
 template <> unsigned int InstanceCounter<classname>::sHighWaterMark = 0; \
 template <> unsigned int InstanceCounter<classname>::sInstanceCount = 0; \
+template <> uint64_t InstanceCounter<classname>::sDynamicMemoryAllocated = 0;
 
 
 /**
@@ -76,8 +77,24 @@ public:
         return sizeof(T) * sHighWaterMark;
     }
 
+    void IncrementDynamicMemoryUsage(uint64_t inMemoryIncrease)
+    {
+        sDynamicMemoryAllocated += inMemoryIncrease;
+    }
+
+    void DecrementDynamicMemoryUsage(uint64_t inMemoryDecrease)
+    {
+        sDynamicMemoryAllocated -= inMemoryDecrease;
+    }
+
+    static uint64_t GetDynamicAllocationsCount()
+    {
+        return sDynamicMemoryAllocated;
+    }
+
     static unsigned int sInstanceCount;
     static unsigned int sHighWaterMark;
+    static uint64_t sDynamicMemoryAllocated;
 };
 
 #else
