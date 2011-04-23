@@ -301,6 +301,9 @@
     <ClCompile Include="src\PlayRestrictions.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\ObjectAnalytics.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\ActionElement.h">
@@ -622,6 +625,9 @@
       <Filter>inc</Filter>
     </ClInclude>
     <ClInclude Include="include\WResourceManagerImpl.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ObjectAnalytics.h">
       <Filter>inc</Filter>
     </ClInclude>
   </ItemGroup>

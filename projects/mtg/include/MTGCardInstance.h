@@ -25,6 +25,10 @@ struct Pos;
 using namespace std;
 
 class MTGCardInstance: public CardPrimitive, public MTGCard, public Damageable
+#ifdef TRACK_OBJECT_USAGE
+    , public InstanceCounter<MTGCardInstance>
+#endif
+
 {
 protected:
     int untapping;

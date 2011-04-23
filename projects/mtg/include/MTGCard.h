@@ -13,11 +13,16 @@
 #include <vector>
 #include <map>
 
+#include "ObjectAnalytics.h"
+
 class CardPrimitive;
 
 using namespace std;
 
 class MTGCard
+#ifdef TRACK_OBJECT_USAGE
+    : public InstanceCounter<MTGCard>
+#endif
 {
 protected:
     friend class MTGSetInfo;

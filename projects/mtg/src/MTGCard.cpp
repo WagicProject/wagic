@@ -13,6 +13,8 @@
 
 using std::string;
 
+SUPPORT_OBJECT_ANALYTICS(MTGCard)
+
 MTGCard::MTGCard()
 {
     init();

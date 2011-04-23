@@ -14,6 +14,8 @@
 
 using namespace std;
 
+SUPPORT_OBJECT_ANALYTICS(MTGCardInstance)
+
 MTGCardInstance MTGCardInstance::AnyCard = MTGCardInstance();
 MTGCardInstance MTGCardInstance::NoCard = MTGCardInstance();
 

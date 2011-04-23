@@ -379,6 +379,7 @@
     <ClCompile Include="src\MTGPack.cpp" />
     <ClCompile Include="src\MTGRules.cpp" />
     <ClCompile Include="src\Navigator.cpp" />
+    <ClCompile Include="src\ObjectAnalytics.cpp" />
     <ClCompile Include="src\OptionItem.cpp" />
     <ClCompile Include="src\PhaseRing.cpp" />
     <ClCompile Include="src\Player.cpp" />
@@ -492,6 +493,7 @@
     <ClInclude Include="include\MTGPack.h" />
     <ClInclude Include="include\MTGRules.h" />
     <ClInclude Include="include\Navigator.h" />
+    <ClInclude Include="include\ObjectAnalytics.h" />
     <ClInclude Include="include\OptionItem.h" />
     <ClInclude Include="include\OSD.h" />
     <ClInclude Include="include\PhaseRing.h" />

@@ -7,10 +7,14 @@
 #include <map>
 
 #include "ManaCost.h"
+#include "ObjectAnalytics.h"
 
 using namespace std;
 
 class CardPrimitive
+#ifdef TRACK_OBJECT_USAGE
+    : public InstanceCounter<CardPrimitive>
+#endif
 {
 protected:
     string lcname;
@@ -37,6 +41,7 @@ public:
     vector<int>types;
     CardPrimitive();
     CardPrimitive(CardPrimitive * source);
+    virtual ~CardPrimitive();
 
     void setColor(int _color, int removeAllOthers = 0);
     void setColor(string _color, int removeAllOthers = 0);

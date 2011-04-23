@@ -245,6 +245,10 @@ void GameStateDuel::End()
 {
     DebugTrace("Ending GameStateDuel");
 
+#ifdef TRACK_OBJECT_USAGE
+    ObjectAnalytics::DumpStatistics();
+#endif
+
     JRenderer::GetInstance()->EnableVSync(false);
     if (!premadeDeck && mPlayers[0] && mPlayers[1])
     { // save the stats for the game

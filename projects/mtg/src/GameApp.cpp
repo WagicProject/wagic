@@ -268,6 +268,11 @@ void GameApp::LoadGameStates()
 void GameApp::Destroy()
 {
     LOG("==Destroying GameApp==");
+
+#ifdef TRACK_OBJECT_USAGE
+    ObjectAnalytics::DumpStatistics();
+#endif
+
     for (int i = GAME_STATE_MENU; i <= GAME_STATE_MAX - 1; i++)
     {
         if (mGameStates[i])

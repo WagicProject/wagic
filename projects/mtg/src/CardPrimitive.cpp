@@ -8,6 +8,8 @@
 
 using std::string;
 
+SUPPORT_OBJECT_ANALYTICS(CardPrimitive)
+
 CardPrimitive::CardPrimitive()
 {
     init();
@@ -42,6 +44,10 @@ CardPrimitive::CardPrimitive(CardPrimitive * source)
         magicTexts[it->first] = source->magicTexts[it->first];
     spellTargetType = source->spellTargetType;
     alias = source->alias;
+}
+
+CardPrimitive::~CardPrimitive()
+{
 }
 
 int CardPrimitive::init()
