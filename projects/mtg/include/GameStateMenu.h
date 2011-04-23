@@ -37,9 +37,6 @@ private:
 
     int mReadConf;
     float timeIndex;
-    float angleMultiplier;
-    float angleW;
-    float yW;
     void fillScroller();
 
     void setLang(int id);

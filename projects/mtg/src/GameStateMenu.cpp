@@ -25,11 +25,6 @@
 
 static const char* GAME_VERSION = "WTH?! 0.15.1 - wololo.net";
 
-#define DEFAULT_ANGLE_MULTIPLIER 0.4f
-#define MAX_ANGLE_MULTIPLIER (3*M_PI)
-#define MIN_ANGLE_MULTIPLIER 0.4f
-static const float STEP_ANGLE_MULTIPLIER = 0.0002f;
-
 enum ENUM_MENU_STATE_MAJOR
 {
     MENU_STATE_MAJOR_MAINMENU = 0x01,
@@ -81,8 +76,6 @@ GameStateMenu::GameStateMenu(GameApp* parent) :
     gameTypeMenu = NULL;
     //bgMusic = NULL;
     timeIndex = 0;
-    angleMultiplier = MIN_ANGLE_MULTIPLIER;
-    yW = 55;
     mVolume = 0;
     scroller = NULL;
     langChoices = false;
@@ -638,38 +631,6 @@ void GameStateMenu::Update(float dt)
         ;// Nothing to do.
     }
 
-    if (mEngine->GetButtonState(JGE_BTN_PREV))
-    {
-        //Reset deck of cards
-        angleMultiplier = MIN_ANGLE_MULTIPLIER;
-        yW = 55;
-    }
-
-    if (yW <= 55)
-    {
-        if (mEngine->GetButtonState(JGE_BTN_PRI))
-            angleMultiplier += STEP_ANGLE_MULTIPLIER;
-        else
-            angleMultiplier *= 0.9999f;
-        if (angleMultiplier > MAX_ANGLE_MULTIPLIER)
-            angleMultiplier = MAX_ANGLE_MULTIPLIER;
-        else if (angleMultiplier < MIN_ANGLE_MULTIPLIER)
-            angleMultiplier = MIN_ANGLE_MULTIPLIER;
-
-        if (mEngine->GetButtonState(JGE_BTN_CANCEL) && (dt != 0))
-        {
-            angleMultiplier = (cos(timeIndex) * angleMultiplier - M_PI / 3.0f - 0.1f - angleW) / dt;
-            yW = yW + 5 * dt + (yW - 45) * 5 * dt;
-        }
-        else
-            angleW = cos(timeIndex) * angleMultiplier - M_PI / 3.0f - 0.1f;
-    }
-    else
-    {
-        angleW += angleMultiplier * dt;
-        yW = yW + 5 * dt + (yW - 55) * 5 * dt;
-    }
-
     scroller->Update(dt);
     if ((currentState & MENU_STATE_MINOR) == MENU_STATE_MINOR_FADEIN)
     {
@@ -923,8 +884,5 @@ ostream& GameStateMenu::toString(ostream& out) const
                  << " ; mCurrentSetName : " << mCurrentSetName
                  << " ; mCurrentSetFileName : " << mCurrentSetFileName
                  << " ; mReadConf : " << mReadConf
-                 << " ; timeIndex : " << timeIndex
-                 << " ; angleMultiplier : " << angleMultiplier
-                 << " ; angleW : " << angleW
-                 << " ; yW : " << yW;
+                 << " ; timeIndex : " << timeIndex;
 }
