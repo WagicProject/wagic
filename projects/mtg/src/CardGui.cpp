@@ -33,6 +33,18 @@ namespace
     {
         return cosf(2 * M_PI * (value - 35) / 256.0f);
     }
+
+    void FormatText(std::string inText, std::vector<string>& outFormattedText)
+    {
+        std::string::size_type found = inText.find_first_of("{}");
+        while (found != string::npos)
+        {
+            inText[found] = '/';
+            found = inText.find_first_of("{}", found + 1);
+        }
+        WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAGIC_FONT);
+        mFont->FormatText(inText, outFormattedText);
+    }
 }
 
 CardGui::CardGui(MTGCardInstance* card, float x, float y) :
@@ -368,7 +380,10 @@ void CardGui::AlternateRender(MTGCard * card, const Pos& pos)
     // Write the description
     {
         font->SetScale(kWidthScaleFactor * pos.actZ);
-        const std::vector<string> txt = card->GetFormattedText();
+
+	    std::vector<string> txt;
+	    FormatText(card->data->getText(), txt);
+
         unsigned i = 0;
         unsigned h = neofont ? 14 : 11;
         for (std::vector<string>::const_iterator it = txt.begin(); it != txt.end(); ++it, ++i)
@@ -577,7 +592,8 @@ void CardGui::TinyCropRender(MTGCard * card, const Pos& pos, JQuad * quad)
         renderer->RenderQuad(q.get(), x, pos.actY, pos.actT, scale, scale);
     }
 
-    const std::vector<string> txt = card->GetFormattedText();
+    std::vector<string> txt;
+    FormatText(card->data->getText(), txt);
     size_t nbTextLines = txt.size();
 
     //Render the image on top of that
@@ -790,7 +806,9 @@ void CardGui::RenderCountersBig(const Pos& pos)
         WFont * font = WResourceManager::Instance()->GetWFont(Fonts::MAGIC_FONT);
         font->SetColor(ARGB((int)pos.actA, 0, 0, 0));
         font->SetScale(kWidthScaleFactor * pos.actZ);
-        std::vector<string> txt = card->GetFormattedText();
+
+        std::vector<string> txt;
+        FormatText(card->data->getText(), txt);
         unsigned i = txt.size() + 1;
         Counter * c = NULL;
         for (int t = 0; t < card->counters->mCount; t++, i++)

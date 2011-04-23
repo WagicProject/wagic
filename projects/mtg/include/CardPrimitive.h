@@ -53,7 +53,7 @@ public:
     int has(int ability);
 
     void setText(const string& value);
-    const char * getText();
+    const string& getText();
 
     void addMagicText(string value);
     void addMagicText(string value, string zone);

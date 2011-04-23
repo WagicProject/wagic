@@ -218,9 +218,9 @@ void CardPrimitive::setText(const string& value)
     text = value;
 }
 
-const char * CardPrimitive::getText()
+const string& CardPrimitive::getText()
 {
-    return text.c_str();
+    return text;
 }
 
 void CardPrimitive::addMagicText(string value)

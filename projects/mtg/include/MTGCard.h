@@ -29,7 +29,6 @@ protected:
     int mtgid;
     char rarity;
     char image_name[MTGCARD_NAME_SIZE];
-    vector<string> mFormattedText;
     int init();
 
 public:
@@ -45,8 +44,6 @@ public:
     void setRarity(char _rarity);
     //void setImageName( char * value);
     void setPrimitive(CardPrimitive * cp);
-
-    const vector<string>& GetFormattedText();
 
     int getMTGId() const;
     int getId() const;
