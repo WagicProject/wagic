@@ -166,7 +166,9 @@ LOCAL_SRC_FILES := $(SDL_PATH)/src/main/android/SDL_android_main.cpp \
         $(JGE_PATH)/src/pc/JSfx.cpp \
         $(JGE_PATH)/src/pc/JGfx.cpp \
         $(JGE_PATH)/src/JNetwork.cpp \
-        $(JGE_PATH)/src/pc/JSocket.cpp
+        $(JGE_PATH)/src/pc/JSocket.cpp \
+        $(BOOST_PATH)/lib/pthread/thread.cpp \
+        $(BOOST_PATH)/lib/pthread/once.cpp
 
 LOCAL_LDLIBS := -lGLESv1_CM -llog -lz
 

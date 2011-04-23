@@ -3,7 +3,9 @@
 #include "Translate.h"
 #include "WResourceManager.h"
 #include "TranslateKeys.h"
-
+#ifdef SDL_CONFIG
+#include <SDL.h>
+#endif
 using std::string;
 using std::map;
 
@@ -20,9 +22,12 @@ const KeyRep& translateKey(LocalKeySym key)
     }
 
     char* str = NULL;
-#if !defined(QT_CONFIG) && !defined(IOS) && !defined(ANDROID)
+
+#if !defined(QT_CONFIG) && !defined(IOS) && !defined (SDL_CONFIG)
     str = XKeysymToString(key);
-#endif // QT_CONFIG
+#elif defined (SDL_CONFIG)
+    str = (char*)SDL_GetKeyName(key);
+#endif
     if (!str)
     {
         str = NEW char[11];

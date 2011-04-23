@@ -25,27 +25,34 @@ std::string ToHex(T* pointer)
 #define OutputDebugString(val) (std::cerr << val);
 #endif
 
-#if defined (WIN32) || defined (LINUX) 
 #ifdef _DEBUG
+#if defined (WIN32) || defined (LINUX)
 
-#ifndef QT_CONFIG
+#ifdef QT_CONFIG
 #define DebugTrace(inString)								\
 {															\
-	std::ostringstream stream;								\
-	stream << inString << std::endl;					    \
-  	OutputDebugString(stream.str().c_str());  				\
+  std::ostringstream stream;								\
+  stream << inString << std::endl;					    \
+  qDebug(stream.str().c_str());	                        \
+}
+#elif defined (ANDROID)
+#include <android/log.h>
+#define DebugTrace(inString)								\
+{															\
+  std::ostringstream stream;								\
+  stream << inString;					    \
+  __android_log_write(ANDROID_LOG_DEBUG, "Wagic", stream.str().c_str());\
 }
 #else
 #define DebugTrace(inString)								\
 {															\
 	std::ostringstream stream;								\
 	stream << inString << std::endl;					    \
-	qDebug(stream.str().c_str());	                        \
+  OutputDebugString(stream.str().c_str());  \
 }
-#endif //QT_CONFIG
-
-#endif //#ifdef _DEBUG
+#endif // QT_CONFIG
 #endif // Win32, Linux
+#endif //#ifdef _DEBUG
 
 #if defined (DEBUG)
 #ifndef DebugTrace

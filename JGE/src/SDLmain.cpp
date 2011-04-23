@@ -1,0 +1,448 @@
+#include <SDL.h>
+#ifndef ANDROID
+#include <SDL_opengl.h>
+#else
+#include <SDL_opengles.h>
+#endif
+#include "../include/JGE.h"
+#include "../include/JTypes.h"
+#include "../include/JApp.h"
+#include "../include/JFileSystem.h"
+#include "../include/JRenderer.h"
+#include "../include/JGameLauncher.h"
+#include "DebugRoutines.h"
+#include <stdexcept>
+#include <iostream>
+
+#undef GL_VERSION_2_0
+
+#define ACTUAL_SCREEN_WIDTH (SCREEN_WIDTH)
+#define ACTUAL_SCREEN_HEIGHT (SCREEN_HEIGHT)
+#define ACTUAL_RATIO ((GLfloat)ACTUAL_SCREEN_WIDTH / (GLfloat)ACTUAL_SCREEN_HEIGHT)
+
+#define WAGIC_UPDATE_EVENT (SDL_USEREVENT + 1)
+
+class SdlApp {
+    private:
+        bool            Running;
+        SDL_Surface*    Surf_Display;
+        SDL_Rect        viewPort;
+
+    public:
+        SdlApp() {
+          Surf_Display = NULL;
+
+          Running = true;
+        };
+
+        int OnExecute() {
+          if(OnInit() == false) {
+              return -1;
+          }
+
+          SDL_Event Event;
+
+          while(Running) {
+              while(SDL_PollEvent(&Event)) {
+                  OnEvent(&Event);
+              }
+
+              OnLoop();
+//              OnRender();
+          }
+
+          OnCleanup();
+
+          return 0;
+      };
+
+    public:
+        bool OnInit();
+
+        void OnResize(int width, int height) {
+          if ((GLfloat)width / (GLfloat)height <= ACTUAL_RATIO)
+          {
+            viewPort.x = 0;
+            viewPort.y = -((width/ACTUAL_RATIO)-height)/2;
+            viewPort.w = width;
+            viewPort.h = width / ACTUAL_RATIO;
+          }
+          else
+          {
+            viewPort.x = -(height*ACTUAL_RATIO-width)/2;
+            viewPort.y = 0;
+            viewPort.w = height * ACTUAL_RATIO;
+            viewPort.h = height;
+          }
+
+          glViewport(viewPort.x, viewPort.y, viewPort.w, viewPort.h);
+
+          JRenderer::GetInstance()->SetActualWidth(viewPort.w);
+          JRenderer::GetInstance()->SetActualHeight(viewPort.h);
+          glScissor(0, 0, width, height);
+
+        #if (!defined GL_ES_VERSION_2_0) && (!defined GL_VERSION_2_0)
+
+          glMatrixMode (GL_PROJECTION);										// Select The Projection Matrix
+          glLoadIdentity ();													// Reset The Projection Matrix
+
+          //gluOrtho2D(0.0f, (float) (viewPort.w)-1.0f, 0.0f, (float) (viewPort.h)-1.0f);
+
+#if (defined GL_VERSION_ES_CM_1_1)
+          glOrthof(0.0f, (float) (viewPort.w)-1.0f, 0.0f, (float) (viewPort.h)-1.0f, -1.0f, 1.0f);
+#else
+          gluOrtho2D(0.0f, (float) (viewPort.w)-1.0f, 0.0f, (float) (viewPort.h)-1.0f);
+#endif
+          glMatrixMode (GL_MODELVIEW);										// Select The Modelview Matrix
+          glLoadIdentity ();													// Reset The Modelview Matrix
+
+          glDisable (GL_DEPTH_TEST);
+
+        #endif
+        };
+        void OnKeyPressed(const SDL_KeyboardEvent& event);
+        void OnMouseClicked(const SDL_MouseButtonEvent& event);
+        void OnMouseMoved(const SDL_MouseMotionEvent& event);
+        void OnEvent(SDL_Event* Event) {
+            switch(Event->type){
+            case SDL_QUIT:
+                Running = false;
+                break;
+            case SDL_VIDEORESIZE:
+              OnResize(Event->resize.w, Event->resize.h);
+              break;
+            case SDL_KEYDOWN:
+            case SDL_KEYUP:
+              OnKeyPressed(Event->key);
+              break;
+            case SDL_MOUSEMOTION:
+              OnMouseMoved(Event->motion);
+              break;
+            case SDL_MOUSEBUTTONDOWN:
+            case SDL_MOUSEBUTTONUP:
+              OnMouseClicked(Event->button);
+              break;
+            case WAGIC_UPDATE_EVENT:
+              OnUpdate();
+              break;
+            }
+        }
+        void OnUpdate();
+        void OnRender();
+        void OnLoop() {
+        };
+
+        void OnCleanup() {
+            SDL_FreeSurface(Surf_Display);
+            SDL_Quit();
+        }
+};
+
+uint64_t	lastTickCount;
+JGE* g_engine = NULL;
+JApp* g_app = NULL;
+JGameLauncher* g_launcher = NULL;
+SdlApp *g_SdlApp = NULL;
+
+
+
+static const struct { LocalKeySym keysym; JButton keycode; } gDefaultBindings[] =
+{
+  { SDLK_RETURN,       JGE_BTN_MENU },
+  { SDLK_KP_ENTER,     JGE_BTN_MENU },
+  { SDLK_ESCAPE,       JGE_BTN_MENU },
+  { SDLK_BACKSPACE,    JGE_BTN_CTRL },
+  { SDLK_UP,           JGE_BTN_UP },
+  { SDLK_DOWN,         JGE_BTN_DOWN },
+  { SDLK_LEFT,         JGE_BTN_LEFT },
+  { SDLK_RIGHT,        JGE_BTN_RIGHT },
+  { SDLK_SPACE,        JGE_BTN_OK },
+  { SDLK_TAB,          JGE_BTN_CANCEL },
+  { SDLK_j,            JGE_BTN_PRI },
+  { SDLK_k,            JGE_BTN_SEC },
+  { SDLK_q,            JGE_BTN_PREV },
+  { SDLK_a,            JGE_BTN_NEXT },
+// fullscreen management seems somehow broken in JGE, it works fine with Qt directly
+//    { Qt::Key_F,            JGE_BTN_FULLSCREEN },
+};
+
+void JGECreateDefaultBindings()
+{
+  for (signed int i = sizeof(gDefaultBindings)/sizeof(gDefaultBindings[0]) - 1; i >= 0; --i)
+    g_engine->BindKey(gDefaultBindings[i].keysym, gDefaultBindings[i].keycode);
+}
+
+int JGEGetTime()
+{
+  return (int)SDL_GetTicks();
+}
+
+bool JGEToggleFullscreen()
+{
+  return true;
+}
+
+bool InitGame(void)
+{
+  g_engine = JGE::GetInstance();
+  g_app = g_launcher->GetGameApp();
+  g_app->Create();
+  g_engine->SetApp(g_app);
+
+  JRenderer::GetInstance()->Enable2D();
+  lastTickCount = JGEGetTime();
+
+  return true;
+}
+
+void DestroyGame(void)
+{
+  g_engine->SetApp(NULL);
+  if (g_app)
+  {
+    g_app->Destroy();
+    delete g_app;
+    g_app = NULL;
+  }
+
+  JGE::Destroy();
+
+  g_engine = NULL;
+}
+
+Uint32 OnTimer( Uint32 interval )
+{
+  SDL_Event event;
+  event.user.type = WAGIC_UPDATE_EVENT;
+  SDL_PushEvent(&event);
+  return 30;
+}
+
+void SdlApp::OnUpdate() {
+  static int tickCount;
+  Uint32 dt;
+  tickCount = JGEGetTime();
+  dt = (tickCount - lastTickCount);
+  lastTickCount = tickCount;
+
+  if(g_engine->IsDone()) {
+    SDL_Event event;
+    event.user.type = SDL_QUIT;
+    SDL_PushEvent(&event);
+  }
+
+  try {
+    g_engine->SetDelta((float)dt / 1000.0f);
+    g_engine->Update((float)dt / 1000.0f);
+  } catch(out_of_range& oor) {
+      cerr << oor.what();
+  }
+
+  OnRender();
+}
+
+void SdlApp::OnKeyPressed(const SDL_KeyboardEvent& event)
+{
+  if(event.type == SDL_KEYDOWN) {
+    g_engine->HoldKey_NoRepeat((LocalKeySym)event.keysym.sym);
+  } else if(event.type == SDL_KEYUP) {
+    g_engine->ReleaseKey((LocalKeySym)event.keysym.sym);
+  }
+}
+
+void SdlApp::OnMouseMoved(const SDL_MouseMotionEvent& event)
+{
+  int actualWidth = (int) JRenderer::GetInstance()->GetActualWidth();
+  int actualHeight = (int) JRenderer::GetInstance()->GetActualHeight();
+
+  if (event.y >= viewPort.y &&
+    event.y <= viewPort.y + viewPort.h &&
+    event.x >= viewPort.x &&
+    event.x <= viewPort.x + viewPort.w) {
+    g_engine->LeftClicked(
+                ((event.x-viewPort.x)*SCREEN_WIDTH)/actualWidth,
+                ((event.y-viewPort.y)*SCREEN_HEIGHT)/actualHeight);
+  }
+}
+
+void SdlApp::OnMouseClicked(const SDL_MouseButtonEvent& event)
+{
+  if(event.type == SDL_MOUSEBUTTONDOWN)
+  {
+    if(event.button == SDL_BUTTON_LEFT) /* Left button */
+    {
+      // this is intended to convert window coordinate into game coordinate.
+      // this is correct only if the game and window have the same aspect ratio, otherwise, it's just wrong
+      int actualWidth = (int) JRenderer::GetInstance()->GetActualWidth();
+      int actualHeight = (int) JRenderer::GetInstance()->GetActualHeight();
+
+      if (event.y >= viewPort.y &&
+        event.y <= viewPort.y + viewPort.h &&
+        event.x >= viewPort.x &&
+        event.x <= viewPort.x + viewPort.w) {
+        g_engine->LeftClicked(
+                    ((event.x-viewPort.x)*SCREEN_WIDTH)/actualWidth,
+                    ((event.y-viewPort.y)*SCREEN_HEIGHT)/actualHeight);
+        g_engine->HoldKey_NoRepeat(JGE_BTN_OK);
+      } else if(event.y < viewPort.y) {
+        g_engine->HoldKey_NoRepeat(JGE_BTN_MENU);
+      } else if(event.y > viewPort.y + viewPort.h) {
+        g_engine->HoldKey_NoRepeat(JGE_BTN_NEXT);
+      }
+    }
+    else if(event.button == SDL_BUTTON_RIGHT) /* Right button */
+    { /* next phase please */
+      g_engine->HoldKey_NoRepeat(JGE_BTN_PREV);
+    }
+    else if(event.button == SDL_BUTTON_MIDDLE) /* Middle button */
+    { /* interrupt please */
+      g_engine->HoldKey_NoRepeat(JGE_BTN_SEC);
+    }
+  } else if (event.type == SDL_MOUSEBUTTONUP)
+  {
+    if(event.button == SDL_BUTTON_LEFT)
+    {
+      if (event.y >= viewPort.y &&
+        event.y <= viewPort.y + viewPort.h &&
+        event.x >= viewPort.x &&
+        event.x <= viewPort.x + viewPort.w) {
+        g_engine->ReleaseKey(JGE_BTN_OK);
+      } else if(event.y < viewPort.y) {
+        g_engine->ReleaseKey(JGE_BTN_MENU);
+      } else if(event.y > viewPort.y + viewPort.h) {
+        g_engine->ReleaseKey(JGE_BTN_NEXT);
+      }
+    }
+    else if(event.button == SDL_BUTTON_RIGHT)
+    { /* next phase please */
+      g_engine->ReleaseKey(JGE_BTN_PREV);
+    }
+    else if(event.button == SDL_BUTTON_MIDDLE)
+    { /* interrupt please */
+      g_engine->ReleaseKey(JGE_BTN_SEC);
+    }
+  }
+}
+
+bool SdlApp::OnInit() {
+  if(SDL_Init(SDL_INIT_EVERYTHING) < 0) {
+      return false;
+  }
+
+  SDL_GL_SetAttribute(SDL_GL_RED_SIZE,    	    8);
+  SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE,  	    8);
+  SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE,   	    8);
+  SDL_GL_SetAttribute(SDL_GL_ALPHA_SIZE,  	    8);
+
+  SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE,  	    16);
+  SDL_GL_SetAttribute(SDL_GL_BUFFER_SIZE,		    32);
+
+  SDL_GL_SetAttribute(SDL_GL_ACCUM_RED_SIZE,	    8);
+  SDL_GL_SetAttribute(SDL_GL_ACCUM_GREEN_SIZE,	8);
+  SDL_GL_SetAttribute(SDL_GL_ACCUM_BLUE_SIZE,	    8);
+  SDL_GL_SetAttribute(SDL_GL_ACCUM_ALPHA_SIZE,	8);
+
+  SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS,  1);
+
+  SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES,  2);
+
+  if((Surf_Display = SDL_SetVideoMode(ACTUAL_SCREEN_WIDTH, ACTUAL_SCREEN_HEIGHT, 32, /*SDL_HWSURFACE | SDL_GL_DOUBLEBUFFER |*/ SDL_OPENGL | SDL_RESIZABLE)) == NULL) {
+      return false;
+  }
+
+  SDL_WM_SetCaption(g_launcher->GetName(), "");
+
+  glClearColor(0.0f, 0.0f, 0.0f, 0.0f);		// Black Background (yes that's the way fuckers)
+#if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
+#if (defined GL_ES_VERSION_2_0)
+  glClearDepthf(1.0f);					// Depth Buffer Setup
+#else
+  glClearDepth(1.0f);					// Depth Buffer Setup
+#endif// (defined GL_ES_VERSION_2_0)
+
+  glDepthFunc(GL_LEQUAL);				// The Type Of Depth Testing (Less Or Equal)
+  glEnable(GL_DEPTH_TEST);				// Enable Depth Testing
+
+#else
+#if (defined GL_VERSION_ES_CM_1_1)
+  glClearDepthf(1.0f);					// Depth Buffer Setup
+#else
+  glClearDepth(1.0f);					// Depth Buffer Setup
+#endif
+  glDepthFunc(GL_LEQUAL);				// The Type Of Depth Testing (Less Or Equal)
+  glEnable(GL_DEPTH_TEST);				// Enable Depth Testing
+  glShadeModel(GL_SMOOTH);				// Select Smooth Shading
+  glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);	// Set Perspective Calculations To Most Accurate
+
+  glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);		// Set Line Antialiasing
+  glEnable(GL_LINE_SMOOTH);				// Enable it!
+  glEnable(GL_TEXTURE_2D);
+
+#endif
+
+  glEnable(GL_CULL_FACE);				// do not calculate inside of poly's
+  glFrontFace(GL_CCW);					// counter clock-wise polygons are out
+
+  glEnable(GL_BLEND);
+  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+  glEnable(GL_SCISSOR_TEST);				// Enable Clipping
+
+
+  OnResize(ACTUAL_SCREEN_WIDTH, ACTUAL_SCREEN_HEIGHT);
+
+  /* opengl needs to be fully initialized before starting the game */
+  if (!InitGame())
+  {
+      cerr << "Could not init the game\n";
+      return false;
+  }
+
+  JGECreateDefaultBindings();
+
+  SDL_SetTimer(5, OnTimer);
+
+  return true;
+};
+
+void SdlApp::OnRender() {
+
+  if(g_engine)
+      g_engine->Render();
+
+    SDL_GL_SwapBuffers();
+};
+
+
+#ifdef ANDROID
+int SDL_main(int argc, char * argv[])
+#else
+int main(int argc, char* argv[])
+#endif //ANDROID
+{
+	DebugTrace("I R in da native");
+
+  g_launcher = new JGameLauncher();
+
+  u32 flags = g_launcher->GetInitFlags();
+
+  if ((flags&JINIT_FLAG_ENABLE3D)!=0)
+  {
+    JRenderer::Set3DFlag(true);
+  }
+
+  g_SdlApp = new SdlApp();
+
+  int result = g_SdlApp->OnExecute();
+
+  if (g_launcher)
+    delete g_launcher;
+
+  if(g_SdlApp)
+    delete g_SdlApp;
+
+  // Shutdown
+  DestroyGame();
+
+  return result;
+}

@@ -9,7 +9,7 @@
 //-------------------------------------------------------------------------------------
 #define GL_GLEXT_PROTOTYPES
 
-#if (!defined IOS)
+#if (!defined IOS) && (!defined QT_CONFIG)
 #ifdef WIN32
   #pragma warning(disable : 4786)
   #pragma comment( lib, "giflib.lib" )
@@ -42,12 +42,18 @@ extern "C" {
 #endif
 
 #ifdef _DEBUG
-#define checkGlError()            \
+void checkGlError()
+{
+    GLenum glError = glGetError();
+    if(glError != 0)
+      printf("%s : %u : GLerror is %u\n", __FUNCTION__, __LINE__, glError);
+}
+/*#define checkGlError()            \
 {                                 \
     GLenum glError = glGetError();  \
     if(glError != 0)                \
     printf("%s : %u : GLerror is %u\n", __FUNCTION__, __LINE__, glError); \
-}
+}/*/
 #else
 #define checkGlError() (void(0))
 #endif
@@ -955,32 +961,44 @@ void JRenderer::RenderQuad(JQuad* quad, float xo, float yo, float angle, float x
 
         // Use the program object
         glUseProgram ( prog2 );
+        checkGlError();
 
         // Load the vertex position
         glVertexAttribPointer ( prog2_positionLoc, 3, GL_FLOAT,
                                 GL_FALSE, 5 * sizeof(GLfloat), vVertices );
+        checkGlError();
         // Load the texture coordinate
         glVertexAttribPointer ( prog2_texCoordLoc, 2, GL_FLOAT,
                                 GL_FALSE, 5 * sizeof(GLfloat), &vVertices[3] );
+        checkGlError();
         // Load the colors
         glVertexAttribPointer ( prog2_colorLoc, 4, GL_UNSIGNED_BYTE,
                                 GL_TRUE, 4 * sizeof(GLubyte), colorCoords );
+        checkGlError();
 
         glEnableVertexAttribArray ( prog2_positionLoc );
+        checkGlError();
         glEnableVertexAttribArray ( prog2_texCoordLoc );
+        checkGlError();
         glEnableVertexAttribArray ( prog2_colorLoc );
+        checkGlError();
 
         // Load the MVP matrix
         glUniformMatrix4fv( prog2_mvpLoc, 1, GL_FALSE, (GLfloat*) &mvpMatrix.m[0][0] );
+        checkGlError();
 
         // Bind the texture
         glActiveTexture ( GL_TEXTURE0 );
+        checkGlError();
         glBindTexture ( GL_TEXTURE_2D, mCurrentTex );
+        checkGlError();
 
         // Set the sampler texture unit to 0
         glUniform1i ( prog2_samplerLoc, 0 );
+        checkGlError();
 
         glDrawArrays(GL_TRIANGLE_STRIP,0,4);
+        checkGlError();
 
 #else
         glPushMatrix();
@@ -988,7 +1006,7 @@ void JRenderer::RenderQuad(JQuad* quad, float xo, float yo, float angle, float x
         glRotatef(-angle*RAD2DEG, 0.0f, 0.0f, 1.0f);
         glScalef(xScale, yScale, 1.0f);
 
-#if (defined GL_ES_VERSION_1_1) || (defined GL_VERSION_1_1)
+#if (defined GL_VERSION_ES_CM_1_1)
         glEnableClientState(GL_VERTEX_ARRAY);
         glEnableClientState(GL_TEXTURE_COORD_ARRAY);
         glEnableClientState(GL_COLOR_ARRAY);
@@ -1121,6 +1139,41 @@ void JRenderer::RenderQuad(JQuad* quad, VertexColor* pt)
 
   //glDrawElements ( GL_TRIANGLE_STRIP, 6, GL_UNSIGNED_SHORT, indices );
   glDrawArrays(GL_TRIANGLE_STRIP,0,4);
+
+#elif (defined GL_VERSION_ES_CM_1_1)
+        glEnableClientState(GL_VERTEX_ARRAY);
+        glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+        glEnableClientState(GL_COLOR_ARRAY);
+
+        GLfloat vertCoords[] = {
+            pt[0].x, pt[0].y,
+            pt[1].x, pt[1].y,
+            pt[3].x, pt[3].y,
+            pt[2].x, pt[2].y,
+        };
+
+        GLfloat texCoords[] = {
+            uv[0].x, uv[0].y,
+            uv[1].x, uv[1].y,
+            uv[3].x, uv[3].y,
+            uv[2].x, uv[2].y,
+        };
+
+        GLubyte colorCoords[] = {
+            quad->mColor[0].r, quad->mColor[0].g, quad->mColor[0].b, quad->mColor[0].a,
+            quad->mColor[1].r, quad->mColor[1].g, quad->mColor[1].b, quad->mColor[1].a,
+            quad->mColor[3].r, quad->mColor[3].g, quad->mColor[3].b, quad->mColor[3].a,
+            quad->mColor[2].r, quad->mColor[2].g, quad->mColor[2].b, quad->mColor[2].a,
+        };
+
+        glVertexPointer(2,GL_FLOAT,0,vertCoords);
+        glTexCoordPointer(2,GL_FLOAT,0, texCoords);
+        glColorPointer(4, GL_UNSIGNED_BYTE, 0, colorCoords );
+        glDrawArrays(GL_TRIANGLE_STRIP,0,4);
+
+        glDisableClientState(GL_COLOR_ARRAY);
+        glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+        glDisableClientState(GL_VERTEX_ARRAY);
 #else
 	glRasterPos2f(pt[0].x, pt[0].y);
 
@@ -1195,7 +1248,33 @@ void JRenderer::FillRect(float x, float y, float width, float height, PIXEL_TYPE
   glUniformMatrix4fv( prog1_mvpLoc, 1, GL_FALSE, (GLfloat*) &theMvpMatrix.m[0][0] );
 
   glDrawArrays(GL_TRIANGLE_STRIP,0,4);
+
+#elif (defined GL_VERSION_ES_CM_1_1)
+        glEnableClientState(GL_VERTEX_ARRAY);
+        glEnableClientState(GL_COLOR_ARRAY);
+
+        GLfloat vVertices[] = {
+            x,        y+height,
+            x,        y,
+            x+width,  y+height,
+            x+width,  y,
+        };
+
+        GLubyte colors[] = {
+            col.r, col.g, col.b, col.a,
+            col.r, col.g, col.b, col.a,
+            col.r, col.g, col.b, col.a,
+            col.r, col.g, col.b, col.a,
+        };
+
+        glVertexPointer(2,GL_FLOAT,0,vVertices);
+        glColorPointer(4, GL_UNSIGNED_BYTE, 0, colors );
+        glDrawArrays(GL_TRIANGLE_STRIP,0,4);
+
+        glDisableClientState(GL_COLOR_ARRAY);
+        glDisableClientState(GL_VERTEX_ARRAY);
 #else
+
   glDisable(GL_TEXTURE_2D);
   glColor4ub(col.r, col.g, col.b, col.a);
 
@@ -1264,6 +1343,31 @@ void JRenderer::DrawRect(float x, float y, float width, float height, PIXEL_TYPE
   glUniformMatrix4fv( prog1_mvpLoc, 1, GL_FALSE, (GLfloat*) &theMvpMatrix.m[0][0] );
 
   glDrawArrays(GL_LINE_LOOP,0,4);
+
+#elif (defined GL_VERSION_ES_CM_1_1)
+  glEnableClientState(GL_VERTEX_ARRAY);
+  glEnableClientState(GL_COLOR_ARRAY);
+
+  GLfloat vertCoords[] = {
+    x,        y,
+    x,        y+height,
+    x+width,  y+height,
+    x+width,  y,
+  };
+
+  GLubyte colorCoords[] = {
+    col.r, col.g, col.b, col.a,
+    col.r, col.g, col.b, col.a,
+    col.r, col.g, col.b, col.a,
+    col.r, col.g, col.b, col.a,
+  };
+
+  glVertexPointer(2,GL_FLOAT,0,vertCoords);
+  glColorPointer(4, GL_UNSIGNED_BYTE, 0, colorCoords );
+  glDrawArrays(GL_LINE_LOOP,0,4);
+
+  glDisableClientState(GL_COLOR_ARRAY);
+  glDisableClientState(GL_VERTEX_ARRAY);
 #else
   glDisable(GL_TEXTURE_2D);
   glColor4ub(col.r, col.g, col.b, col.a);
@@ -1300,7 +1404,6 @@ void JRenderer::FillRect(float x, float y, float width, float height, PIXEL_TYPE
 
 	FillRect(x, y, width, height, col);
 }
-
 
 void JRenderer::FillRect(float x, float y, float width, float height, JColor* colors)
 {
@@ -1339,6 +1442,30 @@ void JRenderer::FillRect(float x, float y, float width, float height, JColor* co
   glUniformMatrix4fv( prog1_mvpLoc, 1, GL_FALSE, (GLfloat*) &theMvpMatrix.m[0][0] );
 
   glDrawArrays(GL_TRIANGLE_STRIP,0,4);
+#elif (defined GL_VERSION_ES_CM_1_1)
+  glEnableClientState(GL_VERTEX_ARRAY);
+  glEnableClientState(GL_COLOR_ARRAY);
+
+  GLfloat vVertices[] = {
+      x,        y+height,
+      x,        y,
+      x+width,  y+height,
+      x+width,  y,
+  };
+
+  GLubyte cols[] = {
+    colors[0].r, colors[0].g, colors[0].b, colors[0].a,
+    colors[2].r, colors[2].g, colors[2].b, colors[2].a,
+    colors[1].r, colors[1].g, colors[1].b, colors[1].a,
+    colors[3].r, colors[3].g, colors[3].b, colors[3].a,
+  };
+
+  glVertexPointer(2,GL_FLOAT,0,vVertices);
+  glColorPointer(4, GL_UNSIGNED_BYTE, 0, cols );
+  glDrawArrays(GL_TRIANGLE_STRIP,0,4);
+
+  glDisableClientState(GL_COLOR_ARRAY);
+  glDisableClientState(GL_VERTEX_ARRAY);
 #else
   glDisable(GL_TEXTURE_2D);
   glBegin(GL_QUADS);
@@ -1404,6 +1531,28 @@ void JRenderer::DrawLine(float x1, float y1, float x2, float y2, PIXEL_TYPE colo
   glUniformMatrix4fv( prog1_mvpLoc, 1, GL_FALSE, (GLfloat*) &theMvpMatrix.m[0][0] );
 
   glDrawArrays(GL_LINES,0,2);
+
+#elif (defined GL_VERSION_ES_CM_1_1)
+  glEnableClientState(GL_VERTEX_ARRAY);
+  glEnableClientState(GL_COLOR_ARRAY);
+
+  GLfloat vVertices[] = {
+      x1, SCREEN_HEIGHT_F-y1, 0.0f,
+      x2, SCREEN_HEIGHT_F-y2, 0.0f,
+  };
+
+  GLubyte cols[] = {
+      col.r, col.g, col.b, col.a,
+      col.r, col.g, col.b, col.a,
+  };
+
+  glVertexPointer(2,GL_FLOAT,0,vVertices);
+  glColorPointer(4, GL_UNSIGNED_BYTE, 0, cols );
+  glDrawArrays(GL_LINES,0,2);
+
+  glDisableClientState(GL_COLOR_ARRAY);
+  glDisableClientState(GL_VERTEX_ARRAY);
+
 #else
   glDisable(GL_TEXTURE_2D);
   glColor4ub(col.r, col.g, col.b, col.a);
@@ -1424,7 +1573,7 @@ void JRenderer::Plot(float x, float y, PIXEL_TYPE color)
   glDisable(GL_TEXTURE_2D);
 	JColor col;
 	col.color = color;
-#if (!defined GL_ES_VERSION_2_0) && (!defined GL_VERSION_2_0)
+#if (!defined GL_ES_VERSION_2_0) && (!defined GL_VERSION_2_0) && (!defined GL_VERSION_ES_CM_1_1)
   glColor4ub(col.r, col.g, col.b, col.a);
   glBegin(GL_POINTS);
 		glVertex2f(x, SCREEN_HEIGHT_F-y);
@@ -1444,7 +1593,7 @@ void JRenderer::PlotArray(float *x, float *y, int count, PIXEL_TYPE color)
   glDisable(GL_TEXTURE_2D);
 	JColor col;  
 	col.color = color;
-#if (!defined GL_ES_VERSION_2_0) && (!defined GL_VERSION_2_0)
+#if (!defined GL_ES_VERSION_2_0) && (!defined GL_VERSION_2_0) && (!defined GL_VERSION_ES_CM_1_1)
   glColor4ub(col.r, col.g, col.b, col.a);
   glBegin(GL_POINTS);
 		for (int i=0;i<count;i++)
@@ -1477,7 +1626,7 @@ static int getNextPower2(int width)
 }
 
 
-#if (!defined IOS)
+#if (!defined IOS) && (!defined QT_CONFIG)
 static void jpg_null(j_decompress_ptr cinfo __attribute__((unused)))
 {
 }
@@ -1665,8 +1814,10 @@ JTexture* JRenderer::LoadTexture(const char* filename, int mode, int TextureForm
 
     if (strstr(filename, ".jpg")!=NULL || strstr(filename, ".JPG")!=NULL)
         LoadJPG(textureInfo, filename);
+#if (!defined IOS) && (!defined QT_CONFIG) && (!defined SDL_CONFIG)
     else if(strstr(filename, ".gif")!=NULL || strstr(filename, ".GIF")!=NULL)
         LoadGIF(textureInfo,filename);
+#endif
     else if(strstr(filename, ".png")!=NULL || strstr(filename, ".PNG")!=NULL)
         LoadPNG(textureInfo, filename);
 
@@ -1710,7 +1861,8 @@ int JRenderer::LoadPNG(TextureInfo &textureInfo, const char *filename, int mode 
     DWORD* line;
 
 	JFileSystem* fileSystem = JFileSystem::GetInstance();
-	if (!fileSystem->OpenFile(filename)) return JGE_ERR_CANT_OPEN_FILE;
+  if (!fileSystem->OpenFile(filename))
+    return JGE_ERR_CANT_OPEN_FILE;
 
     png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
     if (png_ptr == NULL)
@@ -1781,8 +1933,8 @@ int JRenderer::LoadPNG(TextureInfo &textureInfo, const char *filename, int mode 
 					int g = (color32 >> 8) & 0xff;
 					int b = (color32 >> 16) & 0xff;
 
-					color32 = r | (g << 8) | (b << 16) | (a << 24);
-					*(p32+x) = color32;
+          color32 = r | (g << 8) | (b << 16) | (a << 24);
+          *(p32+x) = color32;
 
 				}
 				p32 += tw;
@@ -1821,7 +1973,7 @@ int JRenderer::LoadPNG(TextureInfo &textureInfo, const char *filename, int mode 
 // }
 
 
-
+#if (!defined IOS) && (!defined QT_CONFIG) && (!defined SDL_CONFIG)
 //////////////////////////////////////////////////////////////////////////
 /// GIF Support
 int JRenderer::image_readgif(void * handle, TextureInfo &textureInfo, DWORD * bgcolor, InputFunc readFunc, int mode __attribute__((unused)), int TextureFormat __attribute__((unused)))
@@ -1983,6 +2135,7 @@ void JRenderer::LoadGIF(TextureInfo &textureInfo, const char *filename, int mode
 	fileSys->CloseFile();
 	return ;//*/
 }
+#endif //(!defined IOS) && (!defined QT_CONFIG) && (!defined SDL_CONFIG)
 
 #elif (defined IOS)
 
@@ -2316,7 +2469,11 @@ void JRenderer::Enable2D()
         glMatrixMode (GL_PROJECTION);										// Select The Projection Matrix
 	glLoadIdentity ();													// Reset The Projection Matrix
 
-	gluOrtho2D(0.0f, SCREEN_WIDTH_F, 0.0f, SCREEN_HEIGHT_F-1.0f);
+#if (defined GL_VERSION_ES_CM_1_1)
+  glOrthof(0.0f, SCREEN_WIDTH_F, 0.0f, SCREEN_HEIGHT_F-1.0f, -1.0f, 1.0f);
+#else
+  gluOrtho2D(0.0f, SCREEN_WIDTH_F, 0.0f, SCREEN_HEIGHT_F-1.0f);
+#endif
 
 	glMatrixMode (GL_MODELVIEW);										// Select The Modelview Matrix
 	glLoadIdentity ();													// Reset The Modelview Matrix
@@ -2439,6 +2596,26 @@ void JRenderer::RenderTriangles(JTexture* texture, Vertex3D *vertices, int start
   glDrawArrays(GL_TRIANGLES,0,count*3);
 
   delete[] colorCoords;
+
+#elif (defined GL_VERSION_ES_CM_1_1)
+  glEnableClientState(GL_VERTEX_ARRAY);
+  glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+  glEnableClientState(GL_COLOR_ARRAY);
+
+  GLubyte* colorCoords = new GLubyte[count*3*4];
+  memset(colorCoords, 255, count*3*4);
+
+  glVertexPointer(3, GL_FLOAT, 5 * sizeof(GLfloat), &vertices[index].x);
+  glTexCoordPointer(2,GL_FLOAT,5 * sizeof(GLfloat), &vertices[index].u);
+  glColorPointer(4, GL_UNSIGNED_BYTE, 0, colorCoords );
+  glDrawArrays(GL_TRIANGLES,0,count*3);
+
+  glDisableClientState(GL_COLOR_ARRAY);
+  glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+  glDisableClientState(GL_VERTEX_ARRAY);
+
+  delete[] colorCoords;
+
 #else
   glBegin(GL_TRIANGLES);
 		for (int i = 0; i < count; i++)
@@ -2478,9 +2655,9 @@ void JRenderer::FillPolygon(float* x, float* y, int count, PIXEL_TYPE color)
   checkGlError();
   JColor col;
 	col.color = color;
+  int i;
 
 #if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
-  int i;
   GLubyte* colors = new GLubyte[count*4];
   GLfloat* vVertices = new GLfloat[count*3];
 
@@ -2520,12 +2697,44 @@ void JRenderer::FillPolygon(float* x, float* y, int count, PIXEL_TYPE color)
   delete[] vVertices;
   delete[] colors;
 
+#elif (defined GL_VERSION_ES_CM_1_1)
+  glEnableClientState(GL_VERTEX_ARRAY);
+  glEnableClientState(GL_COLOR_ARRAY);
+
+  GLubyte* colors = new GLubyte[count*4];
+  GLfloat* vVertices = new GLfloat[count*3];
+
+  for(i = 0; i < count; i++)
+  {
+    colors[4*i+0]= col.r;
+    colors[4*i+1]= col.g;
+    colors[4*i+2]= col.b;
+    colors[4*i+3]= col.a;
+  }
+
+  for(i=0; i < count;i++)
+  {
+    vVertices[3*i+0] = x[i];
+    vVertices[3*i+1] = SCREEN_HEIGHT_F-y[i];
+    vVertices[3*i+2] = 0.0f;
+  }
+
+  glVertexPointer(3, GL_FLOAT, 0, vVertices);
+  glColorPointer(4, GL_UNSIGNED_BYTE, 0, colors );
+  glDrawArrays(GL_TRIANGLE_FAN,0,count);
+
+  glDisableClientState(GL_COLOR_ARRAY);
+  glDisableClientState(GL_VERTEX_ARRAY);
+
+  delete[] vVertices;
+  delete[] colors;
+
 #else
   glDisable(GL_TEXTURE_2D);
   glColor4ub(col.r, col.g, col.b, col.a);
   glBegin(GL_TRIANGLE_FAN);
 
-	for(int i=0; i<count;i++)
+  for(i=0; i<count;i++)
 	{
 		glVertex2f(x[i],SCREEN_HEIGHT_F-y[i]);
 	}
@@ -2545,9 +2754,9 @@ void JRenderer::DrawPolygon(float* x, float* y, int count, PIXEL_TYPE color)
   checkGlError();
   JColor col;
 	col.color = color;
+  int i;
 
 #if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
-  int i;
   int number = count+1;
   GLfloat* vVertices = new GLfloat[3*number];
   GLubyte* colors = new GLubyte[4*number];
@@ -2591,12 +2800,52 @@ void JRenderer::DrawPolygon(float* x, float* y, int count, PIXEL_TYPE color)
 
   delete[] vVertices;
   delete[] colors;
+
+#elif (defined GL_VERSION_ES_CM_1_1)
+
+  glEnableClientState(GL_VERTEX_ARRAY);
+  glEnableClientState(GL_COLOR_ARRAY);
+
+  int number = count+1;
+  GLfloat* vVertices = new GLfloat[3*number];
+  GLubyte* colors = new GLubyte[4*number];
+
+  for(i = 0; i < number; i++)
+  {
+    colors[4*i+0]= col.r;
+    colors[4*i+1]= col.g;
+    colors[4*i+2]= col.b;
+    colors[4*i+3]= col.a;
+  }
+
+  for(i=0; i < count;i++)
+  {
+    vVertices[3*i+0] = x[i];
+    vVertices[3*i+1] = SCREEN_HEIGHT_F-y[i];
+    vVertices[3*i+2] = 0.0f;
+  }
+
+  vVertices[3*(number-1)+0] = x[0];
+  vVertices[3*(number-1)+1] = SCREEN_HEIGHT_F-y[0];
+  vVertices[3*(number-1)+2] = 0.0f;
+
+  glVertexPointer(3, GL_FLOAT, 0, vVertices);
+  glColorPointer(4, GL_UNSIGNED_BYTE, 0, colors );
+  glDrawArrays(GL_LINE_STRIP,0,number);
+
+  glDisableClientState(GL_COLOR_ARRAY);
+  glDisableClientState(GL_VERTEX_ARRAY);
+
+  delete[] vVertices;
+  delete[] colors;
+
 #else
+
   glDisable(GL_TEXTURE_2D);
   glColor4ub(col.r, col.g, col.b, col.a);
   glBegin(GL_LINE_STRIP);
 
-	for(int i=0; i<count;i++)
+  for(i=0; i<count;i++)
 	{
 		glVertex2f(x[i],SCREEN_HEIGHT_F-y[i]);
 	}
@@ -2691,6 +2940,44 @@ void JRenderer::DrawCircle(float x, float y, float radius, PIXEL_TYPE color)
   glUniformMatrix4fv( prog1_mvpLoc, 1, GL_FALSE, (GLfloat*) &theMvpMatrix.m[0][0] );
 
   glDrawArrays(GL_LINE_STRIP,0,number);
+
+#elif (defined GL_VERSION_ES_CM_1_1)
+
+  glEnableClientState(GL_VERTEX_ARRAY);
+  glEnableClientState(GL_COLOR_ARRAY);
+
+  int i, index;
+  const int number = 181;
+  GLfloat vVertices[number][3];
+  GLubyte colors[number][4];
+
+  for(i = 0; i < number; i++)
+  {
+    colors[i][0]= col.r;
+    colors[i][1]= col.g;
+    colors[i][2]= col.b;
+    colors[i][3]= col.a;
+  }
+
+  index = 0;
+  for(i=0; i < 360;i+=2, index++)
+  {
+    vVertices[index][0] = x+radius*COSF(i);
+    vVertices[index][1] = SCREEN_HEIGHT_F-y+radius*SINF(i);
+    vVertices[index][2] = 0.0f;
+  }
+
+  vVertices[number-1][0] = x+radius*COSF(0);
+  vVertices[number-1][1] = SCREEN_HEIGHT_F-y+radius*SINF(0);
+  vVertices[number-1][2] = 0.0f;
+
+  glVertexPointer(3, GL_FLOAT, 0, vVertices);
+  glColorPointer(4, GL_UNSIGNED_BYTE, 0, colors );
+  glDrawArrays(GL_LINE_STRIP,0,number);
+
+  glDisableClientState(GL_COLOR_ARRAY);
+  glDisableClientState(GL_VERTEX_ARRAY);
+
 #else
   glDisable(GL_TEXTURE_2D);
   glColor4ub(col.r, col.g, col.b, col.a);
@@ -2765,6 +3052,48 @@ void JRenderer::FillCircle(float x, float y, float radius, PIXEL_TYPE color)
   glUniformMatrix4fv( prog1_mvpLoc, 1, GL_FALSE, (GLfloat*) &theMvpMatrix.m[0][0] );
 
   glDrawArrays(GL_TRIANGLE_FAN,0,number);
+
+#elif (defined GL_VERSION_ES_CM_1_1)
+
+  glEnableClientState(GL_VERTEX_ARRAY);
+  glEnableClientState(GL_COLOR_ARRAY);
+
+  int i, index;
+  const int number = 182;
+  GLfloat vVertices[number][3];
+  GLubyte colors[number][4];
+
+  for(i = 0; i < number; i++)
+  {
+    colors[i][0]= col.r;
+    colors[i][1]= col.g;
+    colors[i][2]= col.b;
+    colors[i][3]= col.a;
+  }
+
+  vVertices[0][0] = x;
+  vVertices[0][1] = SCREEN_HEIGHT_F-y;
+  vVertices[0][2] = 0.0f;
+
+  index = 1;
+  for(i=0; i < 360;i+=2, index++)
+  {
+    vVertices[index][0] = x+radius*COSF(i);
+    vVertices[index][1] = SCREEN_HEIGHT_F-y+radius*SINF(i);
+    vVertices[index][2] = 0.0f;
+  }
+
+  vVertices[number-1][0] = x+radius*COSF(0);
+  vVertices[number-1][1] = SCREEN_HEIGHT_F-y+radius*SINF(0);
+  vVertices[number-1][2] = 0.0f;
+
+  glVertexPointer(3, GL_FLOAT, 0, vVertices);
+  glColorPointer(4, GL_UNSIGNED_BYTE, 0, colors );
+  glDrawArrays(GL_TRIANGLE_FAN,0,number);
+
+  glDisableClientState(GL_COLOR_ARRAY);
+  glDisableClientState(GL_VERTEX_ARRAY);
+
 #else
   glDisable(GL_TEXTURE_2D);
   glColor4ub(col.r, col.g, col.b, col.a);
@@ -2799,9 +3128,9 @@ void JRenderer::DrawPolygon(float x, float y, float size, int count, float start
 	float angle = startingAngle*RAD2DEG;
 	float steps = 360.0f/count;
 	size /= 2;
+  int i;
 
 #if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
-  int i;
   GLfloat* vVertices = new GLfloat[3*count];
   GLubyte* colors = new GLubyte[4*count];
 
@@ -2843,12 +3172,49 @@ void JRenderer::DrawPolygon(float x, float y, float size, int count, float start
 
   delete[] vVertices;
   delete[] colors;
+
+#elif (defined GL_VERSION_ES_CM_1_1)
+
+  glEnableClientState(GL_VERTEX_ARRAY);
+  glEnableClientState(GL_COLOR_ARRAY);
+
+  GLfloat* vVertices = new GLfloat[3*count];
+  GLubyte* colors = new GLubyte[4*count];
+
+  for(i = 0; i < count; i++)
+  {
+    colors[4*i+0]= col.r;
+    colors[4*i+1]= col.g;
+    colors[4*i+2]= col.b;
+    colors[4*i+3]= col.a;
+  }
+
+  for(i=0; i<count;i++)
+  {
+    vVertices[3*i+0] = x+size*COSF((int)angle);
+    vVertices[3*i+1] = SCREEN_HEIGHT_F-(y+size*SINF((int)angle));
+    vVertices[3*i+2] = 0.0f;
+    angle += steps;
+    if (angle >= 360.0f)
+      angle -= 360.0f;
+  }
+
+  glVertexPointer(3, GL_FLOAT, 0, vVertices);
+  glColorPointer(4, GL_UNSIGNED_BYTE, 0, colors );
+  glDrawArrays(GL_LINE_LOOP,0,count);
+
+  glDisableClientState(GL_COLOR_ARRAY);
+  glDisableClientState(GL_VERTEX_ARRAY);
+
+  delete[] vVertices;
+  delete[] colors;
+
 #else
   glDisable(GL_TEXTURE_2D);
   glColor4ub(col.r, col.g, col.b, col.a);
   glBegin(GL_LINE_LOOP);
 
-		for(int i=0; i<count;i++)
+    for(i=0; i<count;i++)
 		{
 			glVertex2f(x+size*COSF((int)angle), SCREEN_HEIGHT_F-(y+size*SINF((int)angle)));
 
@@ -2877,9 +3243,9 @@ void JRenderer::FillPolygon(float x, float y, float size, int count, float start
 	float firstAngle = angle;
 	float steps = 360.0f/count;
 	size /= 2;
+  int i;
 
 #if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
-  int i;
   GLfloat* vVertices = new GLfloat[3*(count+2)];
   GLubyte* colors = new GLubyte[4*(count+2)];
 
@@ -2929,6 +3295,51 @@ void JRenderer::FillPolygon(float x, float y, float size, int count, float start
 
   delete[] vVertices;
   delete[] colors;
+
+#elif (defined GL_VERSION_ES_CM_1_1)
+
+  glEnableClientState(GL_VERTEX_ARRAY);
+  glEnableClientState(GL_COLOR_ARRAY);
+
+  GLfloat* vVertices = new GLfloat[3*(count+2)];
+  GLubyte* colors = new GLubyte[4*(count+2)];
+
+  for(i = 0; i < count+2; i++)
+  {
+    colors[4*i+0]= col.r;
+    colors[4*i+1]= col.g;
+    colors[4*i+2]= col.b;
+    colors[4*i+3]= col.a;
+  }
+
+  vVertices[0] = x;
+  vVertices[1] = SCREEN_HEIGHT_F-y;
+  vVertices[2] = 0.0f;
+
+  for(i=1; i<count+1;i++)
+  {
+    vVertices[3*i+0] = x+size*COSF((int)angle);
+    vVertices[3*i+1] = SCREEN_HEIGHT_F-y+size*SINF((int)angle);
+    vVertices[3*i+2] = 0.0f;
+    angle += steps;
+    if (angle >= 360.0f)
+      angle -= 360.0f;
+  }
+
+  vVertices[3*(1+count)+0] = x+size*COSF((int)firstAngle);
+  vVertices[3*(1+count)+1] = SCREEN_HEIGHT_F-y+size*SINF((int)firstAngle);
+  vVertices[3*(1+count)+2] = 0.0f;
+
+  glVertexPointer(3, GL_FLOAT, 0, vVertices);
+  glColorPointer(4, GL_UNSIGNED_BYTE, 0, colors );
+  glDrawArrays(GL_TRIANGLE_FAN,0,count+2);
+
+  glDisableClientState(GL_COLOR_ARRAY);
+  glDisableClientState(GL_VERTEX_ARRAY);
+
+  delete[] vVertices;
+  delete[] colors;
+
 #else
   glDisable(GL_TEXTURE_2D);
   glColor4ub(col.r, col.g, col.b, col.a);
@@ -2936,7 +3347,7 @@ void JRenderer::FillPolygon(float x, float y, float size, int count, float start
 
 		glVertex2f(x, SCREEN_HEIGHT_F-y);
 
-		for(int i=0; i<count;i++)
+    for(i=0; i<count;i++)
 		{
 			glVertex2f(x+size*COSF((int)angle), SCREEN_HEIGHT_F-y+size*SINF((int)angle));
 			angle += steps;
@@ -2971,9 +3382,9 @@ void JRenderer::DrawRoundRect(float x, float y, float w, float h, float radius, 
 	y+=h+radius;
 	JColor col;
 	col.color = color;
+  int i;
 
 #if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
-  int i;
   int number = 360;
   GLfloat* vVertices = new GLfloat[3*number];
   GLubyte* colors = new GLubyte[4*number];
@@ -3036,11 +3447,69 @@ void JRenderer::DrawRoundRect(float x, float y, float w, float h, float radius, 
 
   delete[] vVertices;
   delete[] colors;
+
+#elif (defined GL_VERSION_ES_CM_1_1)
+
+  glEnableClientState(GL_VERTEX_ARRAY);
+  glEnableClientState(GL_COLOR_ARRAY);
+
+  int number = 360;
+  GLfloat* vVertices = new GLfloat[3*number];
+  GLubyte* colors = new GLubyte[4*number];
+
+  for(i = 0; i < number; i++)
+  {
+    colors[4*i+0]= col.r;
+    colors[4*i+1]= col.g;
+    colors[4*i+2]= col.b;
+    colors[4*i+3]= col.a;
+  }
+
+
+  for(i=0; i<90;i++) {
+    vVertices[3 * i + 0] = x+radius*COSF(i);
+    vVertices[3 * i + 1] = SCREEN_HEIGHT_F-(y+radius*SINF(i));
+    vVertices[3 * i + 2] = 0.0f;
+  }
+
+
+  for(i=90; i<180;i++)
+  {
+    vVertices[3 * i + 0] = x+radius*COSF(i)-w;
+    vVertices[3 * i + 1] = SCREEN_HEIGHT_F-(y+radius*SINF(i));
+    vVertices[3 * i + 2] = 0.0f;
+  }
+
+
+  for(i=180; i<270;i++)
+  {
+    vVertices[3 * i + 0] = x+radius*COSF(i)-w;
+    vVertices[3 * i + 1] = SCREEN_HEIGHT_F-(y+radius*SINF(i)-h);
+    vVertices[3 * i + 2] = 0.0f;
+  }
+
+  for(i=270; i<360;i++)
+  {
+    vVertices[3 * i + 0] = x+radius*COSF(i);
+    vVertices[3 * i + 1] = SCREEN_HEIGHT_F-(y+radius*SINF(i)-h);
+    vVertices[3 * i + 2] = 0.0f;
+  }
+
+  glVertexPointer(3, GL_FLOAT, 0, vVertices);
+  glColorPointer(4, GL_UNSIGNED_BYTE, 0, colors );
+  glDrawArrays(GL_LINE_LOOP,0,number);
+
+  glDisableClientState(GL_COLOR_ARRAY);
+  glDisableClientState(GL_VERTEX_ARRAY);
+
+  delete[] vVertices;
+  delete[] colors;
+
 #else
   glDisable(GL_TEXTURE_2D);
   glColor4ub(col.r, col.g, col.b, col.a);
   glBegin(GL_LINE_LOOP);
-	int i;
+
 	for(i=0; i<90;i++)
 	{
 		glVertex2f(x+radius*COSF(i), SCREEN_HEIGHT_F-(y+radius*SINF(i)));
@@ -3165,6 +3634,70 @@ void JRenderer::FillRoundRect(float x, float y, float w, float h, float radius, 
 
   delete[] vVertices;
   delete[] colors;
+
+#elif (defined GL_VERSION_ES_CM_1_1)
+
+  glEnableClientState(GL_VERTEX_ARRAY);
+  glEnableClientState(GL_COLOR_ARRAY);
+
+  int i, offset;
+  int number = 2+360;
+  GLfloat* vVertices = new GLfloat[3*number];
+  GLubyte* colors = new GLubyte[4*number];
+
+  for(i = 0; i < number; i++)
+  {
+    colors[4*i+0]= col.r;
+    colors[4*i+1]= col.g;
+    colors[4*i+2]= col.b;
+    colors[4*i+3]= col.a;
+  }
+
+  vVertices[0] = x-5; vVertices[1] = SCREEN_HEIGHT_F-y; vVertices[2] = 0.0f;
+  offset = 1;
+  for(i=0; i<90;i++) {
+    vVertices[3*(offset+i)+0] = x+radius*COSF(i);
+    vVertices[3*(offset+i)+1] = SCREEN_HEIGHT_F-y+radius*SINF(i);
+    vVertices[3*(offset+i)+2] = 0.0f;
+  }
+
+
+  for(i=90; i<180;i++)
+  {
+    vVertices[3*(offset+i)+0] = x+radius*COSF(i)-w;
+    vVertices[3*(offset+i)+1] = SCREEN_HEIGHT_F-y+radius*SINF(i);
+    vVertices[3*(offset+i)+2] = 0.0f;
+  }
+
+  for(i=180; i<270;i++)
+  {
+    vVertices[3*(offset+i)+0] = x+radius*COSF(i)-w;
+    vVertices[3*(offset+i)+1] = SCREEN_HEIGHT_F-y+radius*SINF(i)-h;
+    vVertices[3*(offset+i)+2] = 0.0f;
+  }
+
+
+  for(i=270; i<360;i++)
+  {
+    vVertices[3*(offset+i)+0] = x+radius*COSF(i);
+    vVertices[3*(offset+i)+1] = SCREEN_HEIGHT_F-y+radius*SINF(i)-h;
+    vVertices[3*(offset+i)+2] = 0.0f;
+  }
+
+  vVertices[3*(361)+0] = x+radius*COSF(0);
+  vVertices[3*(361)+1] = SCREEN_HEIGHT_F-y+radius*SINF(0);
+  vVertices[3*(361)+2] = 0.0f;
+
+  glVertexPointer(3, GL_FLOAT, 0, vVertices);
+  glColorPointer(4, GL_UNSIGNED_BYTE, 0, colors );
+  glDrawArrays(GL_TRIANGLE_FAN,0,number);
+
+  glDisableClientState(GL_COLOR_ARRAY);
+  glDisableClientState(GL_VERTEX_ARRAY);
+
+  delete[] vVertices;
+  delete[] colors;
+
 #else
   glDisable(GL_TEXTURE_2D);
 

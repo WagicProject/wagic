@@ -29,6 +29,11 @@
 typedef u32 LocalKeySym;
 #define LOCAL_KEY_NONE Qt::Key_unknown
 
+#elif defined(SDL_CONFIG)
+#include <SDL.h>
+typedef SDLKey LocalKeySym;
+#define LOCAL_KEY_NONE SDLK_UNKNOWN
+
 #elif defined(WIN32)
 #include <windows.h>
 typedef WPARAM LocalKeySym;
@@ -49,7 +54,6 @@ typedef u32 LocalKeySym;
 #define LOCAL_KEY_NONE ((u32)-1)
 
 #endif
-
 
 bool JGEGetButtonState(const JButton button);
 bool JGEGetButtonClick(const JButton button);

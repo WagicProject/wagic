@@ -269,6 +269,8 @@ void JFileSystem::SetResourceRoot(const string& resourceRoot)
     NSString *fullpath = [[[NSBundle mainBundle] resourcePath]  stringByAppendingPathComponent:pathUTF8]; 
     mResourceRoot = [fullpath cStringUsingEncoding:1];
     mResourceRoot += "/";
+#elif defined (ANDROID)
+    mResourceRoot = "/sdcard/Wagic/Res/";
 #else
     mResourceRoot = resourceRoot;
 #endif

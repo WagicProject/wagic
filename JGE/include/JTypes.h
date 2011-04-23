@@ -101,22 +101,13 @@ enum {
 	#import <OpenGLES/ES2/gl.h>
 	#import <OpenGLES/ES2/glext.h>
 	#import <OpenGLES/ES1/gl.h>
-#	import <OpenGLES/ES1/glext.h>
+  #	import <OpenGLES/ES1/glext.h>
+#elif defined (ANDROID)
+  #include <GLES/gl.h>
+  #include <GLES/glext.h>
 #elif defined (WIN32) || defined (LINUX) 
 	#include <GL/gl.h> 
 	#include <GL/glu.h>
-    
-//Android GL1 support TODO
-/*    
-#elif defined (ANDROID)
-	#include <GLES/gl.h> 
-    #include <GLES/glext.h>    
-*/
-//Android GL2 support
-#elif defined (ANDROID)
-    #include <GLES2/gl2.h> 
-    #include <GLES2/gl2ext.h> 
-    
 #endif
 #else
 # include <QtOpenGL>
