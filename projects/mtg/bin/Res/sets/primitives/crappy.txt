@@ -1,0 +1,736 @@
+grade=crappy
+[card]
+name=Anowon, the Ruin Sage
+auto=@each my upkeep: moveTo(mygraveyard) notatarget(creature[-vampire]|myBattlefield)
+auto=@each my upkeep: moveTo(opponentgraveyard) notatarget(creature[-vampire]|opponentBattlefield)
+text=At the beginning of your upkeep, each player sacrifices a non-Vampire creature.
+mana={3}{B}{B}
+type=Legendary Creature
+subtype=Vampire Shaman
+power=4
+toughness=3
+[/card]
+##the following are not added becuase theyre not choosen discard.
+[card]
+name=Abyssal Nightstalker
+auto=@notblocked(this):discard:1 opponent
+text=Whenever Abyssal Nightstalker attacks and isn't blocked, defending player discards a card.
+mana={3}{B}
+type=Creature
+subtype=Nightstalker
+power=2
+toughness=2
+[/card]
+[card]
+name=Abyssal Specter
+auto=@damaged(controller) from(this):discard:1 controller
+auto=@damaged(opponent) from(this):discard:1 opponent
+abilities=flying
+text=Flying -- Whenever Abyssal Specter deals damage to a player, that player discards a card.
+mana={2}{B}{B}
+type=Creature
+subtype=Specter
+power=2
+toughness=3
+[/card]
+[card]
+name=Alley Grifters
+auto=@blocked(this):discard:1 opponent
+text=Whenever Alley Grifters becomes blocked, defending player discards a card.
+mana={1}{B}{B}
+type=Creature
+subtype=Human Mercenary
+power=2
+toughness=2
+[/card]
+[card]
+name=Ashen-Skin Zubera
+auto=@movedto(mygraveyard) from(this|mybattlefield):discard:type:zubera[fresh]:mygraveyard opponent
+text=When Ashen-Skin Zubera is put into a graveyard from the battlefield, target opponent discards a card for each Zubera put into a graveyard from the battlefield this turn.
+mana={1}{B}
+type=Creature
+subtype=Zubera Spirit
+power=1
+toughness=2
+[/card]
+[card]
+name=Bereavement
+auto=@movedto(graveyard) from(creature[green]|battlefield):all(trigger[to]) discard:1 targetcontroller
+text=Whenever a green creature is put into a graveyard from the battlefield, its controller discards a card.
+mana={1}{B}
+type=Enchantment
+[/card]
+[card]
+name=Blazing Specter
+abilities=flying,haste
+auto=@combatdamaged(opponent) from(this): discard:1 opponent
+text=Flying, haste -- Whenever Blazing Specter deals combat damage to a player, that player discards a card.
+mana={2}{B}{R}
+type=Creature
+subtype=Specter
+power=2
+toughness=2
+[/card]
+[card]
+name=Cabal Inquisitor
+auto=aslongas(*|mygraveyard) {1}{b}{e(*|mygraveyard)}{e(*|mygraveyard)}{t}:target(player) discard:1 asSorcery >6
+text=Threshold - {1}{B}, {T}, Exile two cards from your graveyard: Target player discards a card. Activate this ability only any time you could cast a sorcery, and only if seven or more cards are in your graveyard.
+mana={1}{B}
+type=Creature
+subtype=Human Minion
+power=1
+toughness=1
+[/card]
+[card]
+name=Cabal Slaver
+auto=@combatdamaged(opponent) from(this):discard:1 opponent
+text=Whenever a Goblin deals combat damage to a player, that player discards a card.
+mana={2}{B}
+type=Creature
+subtype=Human Cleric
+power=2
+toughness=1
+[/card]
+[card]
+name=Cackling Fiend
+auto=discard:1 opponent
+text=When Cackling Fiend enters the battlefield, each opponent discards a card.
+mana={2}{B}{B}
+type=Creature
+subtype=Zombie
+power=2
+toughness=1
+[/card]
+[card]
+name=Cat Burglar
+auto={2}{b}{t}:target(player) discard:1 asSorcery
+text={2}{B}, {T}: Target player discards a card. Activate this ability only any time you could cast a sorcery.
+mana={3}{B}
+type=Creature
+subtype=Kor Rogue Minion
+power=2
+toughness=2
+[/card]
+[card]
+name=Chilling Apparition
+auto=@combatdamaged(opponent) from(this):discard:1 opponent
+text={B}: Regenerate Chilling Apparition. -- Whenever Chilling Apparition deals combat damage to a player, that player discards a card.
+mana={2}{B}
+type=Creature
+subtype=Spirit
+power=1
+toughness=1
+[/card]
+[card]
+name=Cinder Seer
+auto={2}{r}{t}:target(creature,Player) damage:type:*[red]:myhand
+text={2}{R}, {T}: Reveal any number of red cards in your hand. Cinder Seer deals X damage to target creature or player, where X is the number of cards revealed this way.
+mana={3}{R}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=1
+[/card]
+[card]
+name=Cinderhaze Wretch
+auto={t}:discard:1 target(player) myturnonly
+auto={C(-1/-1,1)}:untap
+text={T}: Target player discards a card. Activate this ability only during your turn. -- Put a -1/-1 counter on Cinderhaze Wretch: Untap Cinderhaze Wretch.
+mana={4}{B}
+type=Creature
+subtype=Elemental Shaman
+power=3
+toughness=2
+[/card]
+[card]
+name=Corrupt Court Official
+auto=discard:1 opponent
+text=When Corrupt Court Official enters the battlefield, target opponent discards a card.
+mana={1}{B}
+type=Creature
+subtype=Human Advisor
+power=1
+toughness=1
+[/card]
+[card]
+name=Cryptwailing
+auto={1}{e(*|mygraveyard)}{e(*|mygraveyard)}:discard:1 target(player)
+text={1}, Exile two creature cards from your graveyard: Target player discards a card. Activate this ability only any time you could cast a sorcery.
+mana={3}{B}
+type=Enchantment
+[/card]
+[card]
+name=Cunning Lethemancer
+auto=@each myupkeep:discard:1
+auto=@each opponentupkeep:discard:1 opponent
+text=At the beginning of your upkeep, each player discards a card.
+mana={2}{B}
+type=Creature
+subtype=Human Wizard
+power=2
+toughness=2
+[/card]
+[card]
+name=Desecrated Earth
+target=land
+auto=discard:1 targetcontroller
+auto=destroy
+text=Destroy target land. Its controller discards a card.
+mana={4}{B}
+type=Sorcery
+[/card]
+[card]
+name=Dimir Cutpurse
+auto=@combatdamaged(opponent) from(this):discard:1 opponent && draw:1 controller
+text=Whenever Dimir Cutpurse deals combat damage to a player, that player discards a card and you draw a card.
+mana={1}{U}{B}
+type=Creature
+subtype=Spirit
+power=2
+toughness=2
+[/card]
+[card]
+name=Dimir Guildmage
+auto={3}{u}:target(player) draw:1 asSorcery
+auto={3}{b}:target(player) discard:1 asSorcery
+text=({(u/b)} can be paid with either {U} or {B}.) -- {3}{U}: Target player draws a card. Activate this ability only any time you could cast a sorcery. -- {3}{B}: Target player discards a card. Activate this ability only any time you could cast a sorcery.
+mana={UB}{UB}
+type=Creature
+subtype=Human Wizard
+power=2
+toughness=2
+[/card]
+[card]
+name=Dismal Failure
+target=*|stack
+auto=fizzle
+auto=discard:1 targetcontroller
+text=Counter target spell. Its controller discards a card.
+mana={2}{U}{U}
+type=Instant
+[/card]
+[card]
+name=Disrupting Scepter
+auto={3}{t}:target(player) discard:1 myturnonly
+text={3}{T}: Target player discards a card. Activate this ability only during your turn.
+mana={3}
+type=Artifact
+[/card]
+[card]
+name=Earsplitting Rats
+auto=discard:1 && discard:1 opponent
+auto={d(*|myhand)}:regenerate
+text=When Earsplitting Rats enters the battlefield, each player discards a card. -- Discard a card: Regenerate Earsplitting Rats.
+mana={3}{B}
+type=Creature
+subtype=Rat
+power=2
+toughness=1
+[/card]
+[card]
+name=Entropic Specter
+auto=foreach(*|opponenthand) 1/1
+auto=@damaged(opponent) from(this): discard:1 opponent
+text=Flying -- As Entropic Specter enters the battlefield, choose an opponent. -- Entropic Specter's power and toughness are each equal to the number of cards in the chosen player's hand. -- Whenever Entropic Specter deals damage to a player, that player discards a card.
+mana={3}{B}{B}
+type=Creature
+subtype=Specter Spirit
+power=*
+toughness=*
+[/card]
+[card]
+name=Fungal Shambler
+abilities=trample
+auto=@damaged(opponent) from(this): draw:1 controller && discard:1 opponent
+text=Trample -- Whenever Fungal Shambler deals damage to an opponent, you draw a card and that opponent discards a card.
+mana={4}{G}{U}{B}
+type=Creature
+subtype=Fungus Beast
+power=6
+toughness=4
+[/card]
+[card]
+name=Gloomlance
+target=creature
+auto=teach(creature[green]) discard:1
+auto=destroy
+text=Destroy target creature. If that creature was green or white, its controller discards a card.
+mana={3}{B}{B}
+type=Sorcery
+[/card]
+[card]
+name=Guul Draz Specter
+abilities=flying
+auto=aslongas(*|opponenthand) 3/3 while <1
+auto=@combatdamaged(opponent) from(this):discard:1 opponent
+text=Flying -- Guul Draz Specter gets +3/+3 as long as an opponent has no cards in hand. -- Whenever Guul Draz Specter deals combat damage to a player, that player discards a card.
+mana={2}{B}{B}
+type=Creature
+subtype=Specter
+power=2
+toughness=2
+[/card]
+[card]
+name=Headhunter
+auto=@combatdamaged(opponent) from(this):discard:1 opponent
+autofacedown={b}:morph
+facedown={3}
+text=Whenever Headhunter deals combat damage to a player, that player discards a card. -- Morph {B} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
+mana={1}{B}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=1
+[/card]
+[card]
+name=Honden of Night's Reach
+auto=@each myupkeep:target(opponent) discard:type:shrine:mybattlefield
+text=At the beginning of your upkeep, target opponent discards a card for each Shrine you control.
+mana={3}{B}
+type=Legendary Enchantment
+subtype=Shrine
+[/card]
+[card]
+name=Horrifying Revelation
+target=player
+auto=discard:1
+auto=deplete:1
+text=Target player discards a card, then puts the top card of his or her library into his or her graveyard.
+mana={B}
+type=Sorcery
+[/card]
+[card]
+name=Hypnotic Cloud
+target=player
+auto=kicker discard:2
+auto=discard:1
+kicker={4}
+text=Kicker {4} (You may pay an additional {4} as you cast this spell.) -- Target player discards a card. If Hypnotic Cloud was kicked, that player discards three cards instead.
+mana={1}{B}
+type=Sorcery
+[/card]
+[card]
+name=Kemuri-Onna
+auto=target(player) discard:1
+auto=@movedto(mystack) from(myhand): may moveto(myhand) all(this)
+text=When Kemuri-Onna enters the battlefield, target player discards a card. -- Whenever you cast a Spirit or Arcane spell, you may return Kemuri-Onna to its owner's hand.
+mana={4}{B}
+type=Creature
+subtype=Spirit
+power=3
+toughness=3
+[/card]
+[card]
+name=Larceny
+auto=@damaged(player) from(creature|mybattlefield): all(trigger[to]) discard:1 
+text=Whenever a creature you control deals combat damage to a player, that player discards a card.
+mana={3}{B}{B}
+type=Enchantment
+[/card]
+[card]
+name=Liliana's Specter
+abilities=flying
+auto=discard:1 opponent
+text=Flying -- When Liliana's Specter enters the battlefield, each opponent discards a card.
+mana={1}{B}{B}
+type=Creature
+subtype=Specter
+power=2
+toughness=1
+[/card]
+[card]
+name=Marsh Crocodile
+auto=target(creature[blue;black]) moveto(myhand)
+auto=all(player) discard:1
+text=When Marsh Crocodile enters the battlefield, return a blue or black creature you control to its owner's hand. -- When Marsh Crocodile enters the battlefield, each player discards a card.
+mana={2}{U}{B}
+type=Creature
+subtype=Crocodile
+power=4
+toughness=4
+[/card]
+[card]
+name=Mind Peel
+target=player
+auto=discard:1
+buyback={2}{b}{b}{b}
+text=Buyback {2}{B}{B} (You may pay an additional {2}{B}{B} as you cast this spell. If you do, put this card into your hand as it resolves.) -- Target player discards a card.
+mana={B}
+type=Sorcery
+[/card]
+[card]
+name=Mind Ravel
+target=player
+auto=discard:1
+auto=@next upkeep:draw:1 controller
+text=Target player discards a card. -- Draw a card at the beginning of the next turn's upkeep.
+mana={2}{B}
+type=Sorcery
+[/card]
+[card]
+name=Mind Rot
+target=player
+auto=discard:2
+text=Target player discards two cards.
+mana={2}{B}
+type=Sorcery
+[/card]
+[card]
+name=Mind Sludge
+target=player
+auto=discard:type:swamp:mybattlefield
+text=Target player discards a card for each Swamp you control.
+mana={4}{B}
+type=Sorcery
+[/card]
+[card]
+name=Mindlash Sliver
+auto=lord(sliver) {1}{s}:target(player) discard:1
+text=All Slivers have "{1}, Sacrifice this permanent: Each player discards a card."
+mana={B}
+type=Creature
+subtype=Sliver
+power=1
+toughness=1
+[/card]
+[card]
+name=Mindwarper
+auto=counter(1/1,3)
+auto={2}{b}{c(1/1,-1)}:target(player) discard:1 asSorcery
+text=Mindwarper enters the battlefield with three +1/+1 counters on it. -- {2}{B}, Remove a +1/+1 counter from Mindwarper: Target player discards a card. Activate this ability only any time you could cast a sorcery.
+mana={2}{B}{B}
+type=Creature
+subtype=Spirit
+power=0
+toughness=0
+[/card]
+[card]
+name=Necrogen Mists
+auto=@each myupkeep:discard:1 controller
+auto=@each opponentupkeep:discard:1 opponent
+text=At the beginning of each player's upkeep, that player discards a card.
+mana={2}{B}
+type=Enchantment
+[/card]
+[card]
+name=Necrogen Spellbomb
+auto={b}{s}:target(player) discard:1
+auto={1}{s}:draw:1
+text={B}, Sacrifice Necrogen Spellbomb: Target player discards a card. -- {1}, Sacrifice Necrogen Spellbomb: Draw a card.
+mana={1}
+type=Artifact
+[/card]
+[card]
+name=Nezumi Bone-Reader
+auto={b}{s(creature|mybattlefield)}:target(player) discard:1 asSorcery
+text={B}, Sacrifice a creature: Target player discards a card. Activate this ability only any time you could cast a sorcery.
+mana={1}{B}
+type=Creature
+subtype=Rat Shaman
+power=1
+toughness=1
+[/card]
+[card]
+name=Noxious Toad
+auto=@movedto(mygraveyard) from(this|mybattlefield):discard:1 opponent
+text=When Noxious Toad is put into a graveyard from the battlefield, each opponent discards a card.
+mana={2}{B}
+type=Creature
+subtype=Frog
+power=1
+toughness=1
+[/card]
+[card]
+name=Odylic Wraith
+abilities=swampwalk
+auto=@damaged(opponent) from(this):discard:1 opponent
+auto=@damaged(controller) from(this):discard:1 controller
+text=Swampwalk -- Whenever Odylic Wraith deals damage to a player, that player discards a card.
+mana={3}{B}
+type=Creature
+subtype=Wraith
+power=2
+toughness=2
+[/card]
+[card]
+name=Order of Yawgmoth
+abilities=fear
+auto=@damaged(opponent) from(this):discard:1 opponent
+auto=@damaged(controller) from(this):discard:1 controller
+text=Fear (This creature can't be blocked except by artifact creatures and/or black creatures.) -- Whenever Order of Yawgmoth deals damage to a player, that player discards a card.
+mana={2}{B}{B}
+type=Creature
+subtype=Zombie Knight
+power=2
+toughness=2
+[/card]
+[card]
+name=Raven's Crime
+retrace={b}{S(land|myhand)}
+target=player
+text=Target player discards a card. -- Retrace (You may cast this card from your graveyard by discarding a land card in addition to paying its other costs.)
+mana={B}
+type=Sorcery
+[/card]
+[card]
+name=Ravenous Rats
+auto=discard:1 target(opponent)
+text=When Ravenous Rats enters the battlefield, target opponent discards a card.
+mana={1}{B}
+type=Creature
+subtype=Rat
+power=1
+toughness=1
+[/card]
+[card]
+name=Recoil
+target=*|battlefield
+auto=moveto(ownerhand)
+auto=discard:1 targetcontroller
+text=Return target permanent to its owner's hand. Then that player discards a card.
+mana={1}{U}{B}
+type=Instant
+[/card]
+[card]
+name=Riptide Pilferer
+auto=@combatdamaged(opponent) from(this):discard:1 opponent
+autofacedown={u}:morph
+facedown={3}
+text=Whenever Riptide Pilferer deals combat damage to a player, that player discards a card. -- Morph {U} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
+mana={1}{U}
+type=Creature
+subtype=Merfolk Rogue
+power=1
+toughness=1
+[/card]
+[card]
+name=Rix Maadi, Dungeon Palace
+auto={t}:add{1}
+auto={1}{b}{r}{t}:all(player) discard:1 asSorcery
+text={T}: Add {1} to your mana pool. -- {1}{B}{R}, {T}: Each player discards a card. Activate this ability only any time you could cast a sorcery.
+type=Land
+[/card]
+[card]
+name=Rotting Rats
+auto=discard:1 all(player)
+autograveyard={1}{b}:moveto(mybattlefield) && transforms((,unearth,haste)) asSorcery forever
+text=When Rotting Rats enters the battlefield, each player discards a card. -- Unearth {1}{B} ({1}{B}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
+mana={1}{B}
+type=Creature
+subtype=Zombie Rat
+power=1
+toughness=1
+[/card]
+[card]
+name=Scepter of Fugue
+auto={1}{b}{t}:target(player) discard:1 myturnonly
+text={1}{B}, {T}: Target player discards a card. Activate this ability only during your turn.
+mana={B}{B}
+type=Artifact
+[/card]
+[card]
+name=Screeching Buzzard
+auto=@movedto(mygraveyard) from(this|mybattlefield):discard:1 opponent
+text=Flying -- When Screeching Buzzard is put into a graveyard from the battlefield, each opponent discards a card.
+mana={3}{B}
+type=Creature
+subtype=Bird
+power=2
+toughness=2
+[/card]
+[card]
+name=Sedraxis Specter
+abitities=flying
+auto=@combatdamaged(opponent) from(this):discard:1 opponent
+autograveyard={1}{b}:moveto(mybattlefield) && transforms((,unearth,haste)) asSorcery forever
+text=Flying -- Whenever Sedraxis Specter deals combat damage to a player, that player discards a card. -- Unearth {1}{B} ({1}{B}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
+mana={U}{B}{R}
+type=Creature
+subtype=Specter
+power=3
+toughness=2
+[/card]
+[card]
+name=Serum Raker
+abilities=flying
+auto=@movedto(mygraveyard) from(this|mybattlefield):discard:1 all(player)
+text=Flying -- When Serum Raker is put into a graveyard from the battlefield, each player discards a card.
+mana={2}{U}{U}
+type=Creature
+subtype=Drake
+power=3
+toughness=2
+[/card]
+[card]
+name=Shrieking Specter
+auto=@attacking(this):discard:1 opponent
+text=Flying -- Whenever Shrieking Specter attacks, defending player discards a card.
+mana={5}{B}
+type=Creature
+subtype=Specter
+power=2
+toughness=2
+[/card]
+[card]
+name=Skull Fracture
+target=player
+auto=discard:1
+flashback={3}{b}
+text=Target player discards a card. -- Flashback {3}{B} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+mana={B}
+type=Sorcery
+[/card]
+[card]
+name=Specter's Shroud
+auto={1}:equip
+auto=@combatdamaged(player) from(mytgt): discard:1 opponent
+text=Equipped creature gets +1/+0. -- Whenever equipped creature deals combat damage to a player, that player discards a card. -- Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery. This card enters the battlefield unattached and stays on the battlefield if the creature leaves.)
+mana={2}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
+name=Stronghold Rats
+abilities=shadow
+auto=@combatdamaged(opponent) from(this):all(player) discard:1
+text=Shadow (This creature can block or be blocked by only creatures with shadow.) -- Whenever Stronghold Rats deals combat damage to a player, each player discards a card.
+mana={2}{B}
+type=Creature
+subtype=Rat
+power=2
+toughness=1
+[/card]
+[card]
+name=Stupor
+target=player
+auto=discard:1
+auto=discard:1
+text=Target opponent discards a card at random, then discards a card.
+mana={2}{B}
+type=Sorcery
+[/card]
+[card]
+name=Sword of Feast and Famine
+auto=2/2
+auto=teach(creature) protection from(black)
+auto=teach(creature) protection from(green)
+auto=@combatdamaged(player) from(mytgt): discard:1 opponent
+auto={2}:equip
+text=Equipped creature gets +2/+2 and has protection from black and from green. -- Whenever equipped creature deals combat damage to a player, that player discards a card and you untap all lands you control. -- Equip {2}
+mana={3}
+type=Artifact
+subtype=equipment
+[/card]
+[card]
+name=Syphon Mind
+auto=discard:1 opponent
+auto=draw:1 controller
+text=Each other player discards a card. You draw a card for each card discarded this way.
+mana={3}{B}
+type=Sorcery
+[/card]
+[card]
+name=Unhinge
+target=player
+auto=discard:1
+auto=draw:1 controller
+text=Target player discards a card. -- Draw a card.
+mana={2}{B}
+type=Sorcery
+[/card]
+[card]
+name=Vodalian Hypnotist
+auto={2}{b}{t}:target(player) discard:1 asSorcery
+text={2}{B}, {T}: Target player discards a card. Activate this ability only any time you could cast a sorcery.
+mana={1}{U}
+type=Creature
+subtype=Merfolk Wizard
+power=1
+toughness=1
+[/card]
+[card]
+name=Wall of Distortion
+abilities=defender
+auto={2}{b}{t}:target(player) discard:1 asSorcery
+text=Defender (This creature can't attack.) -- {2}{B}, {T}: Target player discards a card. Activate this ability only any time you could cast a sorcery.
+mana={2}{B}{B}
+type=Creature
+subtype=Wall
+power=1
+toughness=3
+[/card]
+[card]
+name=Wei Night Raiders
+abilities=horsemanship
+auto=@damaged(opponent) from(this):discard:1 opponent
+text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.) -- Whenever Wei Night Raiders deals damage to an opponent, that player discards a card.
+mana={2}{B}{B}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=2
+[/card]
+[card]
+name=Zhang Liao, Hero of Hefei
+abilities=horsemanship
+auto=@damaged(opponent) from(this):discard:1 opponent
+text=Whenever Zhang Liao, Hero of Hefei deals damage to an opponent, that opponent discards a card.
+mana={4}{B}{B}
+type=Legendary Creature
+subtype=Human Soldier
+power=3
+toughness=3
+[/card]
+[card]
+name=Zuran Enchanter
+auto={2}{b}{t}:target(player) discard:1 myturnonly
+text={2}{B}, {T}: Target player discards a card. Activate this ability only during your turn.
+mana={1}{U}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=1
+[/card]
+[card]
+name=Blightning
+target=player
+auto=damage:3
+auto=discard:2
+####The card should not cause random discard!
+text=Blightning deals 3 damage to target player. That player discards two cards.
+mana={1}{B}{R}
+type=Sorcery
+[/card]
+[card]
+name=Deception
+target=opponent
+auto=discard:2
+text=Target opponent discards two cards.
+mana={2}{B}
+type=Sorcery
+[/card]
+[card]
+name=Delirium Skeins
+auto=discard:3 controller
+auto=discard:3 opponent
+text=Each player discards three cards.
+mana={2}{B}
+type=Sorcery
+[/card]
+[card]
+name=Fugue
+target=player
+auto=discard:3
+text=Target player discards three cards.
+mana={3}{B}{B}
+type=Sorcery
+[/card]
+[card]
+name=Forget
+target=player
+auto=discard:2
+auto=draw:2
+text=Target player discards two cards, then draws as many cards as he or she discarded this way.
+mana={U}{U}
+type=Sorcery
+[/card]
