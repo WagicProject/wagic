@@ -95,22 +95,12 @@ rarity=R
 [/card]
 [card]
 primitive=Assault // Battery (Assault)
-id=20580
-rarity=U
-[/card]
-[card]
-primitive=Assault // Battery (Assault)
 id=20579
 rarity=U
 [/card]
 [card]
 primitive=Assault // Battery (Battery)
 id=20580
-rarity=U
-[/card]
-[card]
-primitive=Assault // Battery (Battery)
-id=20579
 rarity=U
 [/card]
 [card]
@@ -870,22 +860,12 @@ rarity=C
 [/card]
 [card]
 primitive=Pain // Suffering (Pain)
-id=20578
-rarity=U
-[/card]
-[card]
-primitive=Pain // Suffering (Pain)
 id=20577
 rarity=U
 [/card]
 [card]
 primitive=Pain // Suffering (Suffering)
 id=20578
-rarity=U
-[/card]
-[card]
-primitive=Pain // Suffering (Suffering)
-id=20577
 rarity=U
 [/card]
 [card]
@@ -1349,16 +1329,6 @@ id=20576
 rarity=U
 [/card]
 [card]
-primitive=Spite // Malice (Malice)
-id=20575
-rarity=U
-[/card]
-[card]
-primitive=Spite // Malice (Spite)
-id=20576
-rarity=U
-[/card]
-[card]
 primitive=Spite // Malice (Spite)
 id=20575
 rarity=U
@@ -1375,22 +1345,12 @@ rarity=R
 [/card]
 [card]
 primitive=Stand // Deliver (Stand)
-id=20574
-rarity=U
-[/card]
-[card]
-primitive=Stand // Deliver (Stand)
 id=20573
 rarity=U
 [/card]
 [card]
 primitive=Stand // Deliver (Deliver)
 id=20574
-rarity=U
-[/card]
-[card]
-primitive=Stand // Deliver (Deliver)
-id=20573
 rarity=U
 [/card]
 [card]
@@ -1755,16 +1715,6 @@ rarity=U
 [/card]
 [card]
 primitive=Wax // Wane (Wane)
-id=20582
-rarity=U
-[/card]
-[card]
-primitive=Wax // Wane (Wane)
-id=20581
-rarity=U
-[/card]
-[card]
-primitive=Wax // Wane (Wax)
 id=20582
 rarity=U
 [/card]

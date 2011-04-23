@@ -252,7 +252,7 @@ text=+1: You gain 2 life. -- -1: Put a +1/+1 counter on each creature you contro
 mana={2}{W}{W}
 type=Planeswalker
 subtype=Ajani
-loyalty=4
+#loyalty=4
 [/card]
 [card]
 name=Ajani Vengeant
@@ -260,7 +260,7 @@ text=+1: Target permanent doesn't untap during its controller's next untap step.
 mana={2}{R}{W}
 type=Planeswalker
 subtype=Ajani
-loyalty=3
+#loyalty=3
 [/card]
 [card]
 name=Akki Blizzard-Herder
@@ -396,12 +396,6 @@ mana={4}
 type=Artifact
 [/card]
 [card]
-name=Amnesia
-text=Target player reveals his or her hand and discards all nonland cards.
-mana={3}{U}{U}{U}
-type=Sorcery
-[/card]
-[card]
 name=Amulet of Quoz
 text=Remove Amulet of Quoz from your deck before playing if you're not playing for ante. -- {T}, Sacrifice Amulet of Quoz: Target opponent may add the top card of his or her library to the ante. If he or she doesn't, you flip a coin. If you win the flip, that player loses the game. If you lose the flip, you lose the game. Activate this ability only during your upkeep.
 mana={6}
@@ -489,12 +483,6 @@ name=Angel's Trumpet
 text=All creatures have vigilance. -- At the beginning of each player's end step, tap all untapped creatures that player controls that didn't attack this turn. Angel's Trumpet deals damage to the player equal to the number of creatures tapped this way.
 mana={3}
 type=Artifact
-[/card]
-[card]
-name=Angelic Renewal
-text=Whenever a creature is put into your graveyard from the battlefield, you may sacrifice Angelic Renewal. If you do, return that card to the battlefield.
-mana={1}{W}
-type=Enchantment
 [/card]
 [card]
 name=Angus Mackenzie
@@ -1156,15 +1144,6 @@ mana={G}
 type=Instant
 [/card]
 [card]
-name=Awakener Druid
-text=When Awakener Druid enters the battlefield, target Forest becomes a 4/5 green Treefolk creature for as long as Awakener Druid is on the battlefield. It's still a land.
-mana={2}{G}
-type=Creature
-subtype=Human Druid
-power=1
-toughness=1
-[/card]
-[card]
 name=Awe Strike
 text=The next time target creature would deal damage this turn, prevent that damage. You gain life equal to the damage prevented this way.
 mana={W}
@@ -1421,15 +1400,6 @@ power=4
 toughness=4
 [/card]
 [card]
-name=Basalt Golem
-text=Basalt Golem can't be blocked by artifact creatures. -- Whenever Basalt Golem becomes blocked by a creature, that creature's controller sacrifices it at end of combat. If the player does, he or she puts a 0/2 colorless Wall artifact creature token with defender onto the battlefield.
-mana={5}
-type=Artifact Creature
-subtype=Golem
-power=2
-toughness=4
-[/card]
-[card]
 name=Basking Rootwalla
 text={1}{G}: Basking Rootwalla gets +2/+2 until end of turn. Activate this ability only once each turn. -- Madness {0} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
 mana={G}
@@ -1650,13 +1620,6 @@ name=Bind
 text=Counter target activated ability. (Mana abilities can't be targeted.) -- Draw a card.
 mana={1}{G}
 type=Instant
-[/card]
-[card]
-name=Binding Grasp
-text=Enchant creature -- At the beginning of your upkeep, sacrifice Binding Grasp unless you pay {1}{U}. -- You control enchanted creature. -- Enchanted creature gets +0/+1.
-mana={3}{U}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
 name=Bioplasm
@@ -2448,14 +2411,6 @@ mana={3}{R}{R}
 type=Enchantment
 [/card]
 [card]
-name=Burgeoning
-auto=@movedTo(land|opponentinplay) from(opponenthand):may moveTo(myinplay) target(land|myhand)
-#just doesn't work
-text=Whenever an opponent plays a land, you may put a land card from your hand onto the battlefield.
-mana={G}
-type=Enchantment
-[/card]
-[card]
 name=Burning Sands
 text=Whenever a creature is put into a graveyard from the battlefield, that creature's controller sacrifices a land.
 mana={3}{R}{R}
@@ -3105,7 +3060,7 @@ text=+1: Discard a card. If a red card is discarded this way, Chandra Ablaze dea
 mana={4}{R}{R}
 type=Planeswalker
 subtype=Chandra
-loyalty=5
+#loyalty=5
 [/card]
 [card]
 name=Chandra Nalaar
@@ -3113,7 +3068,7 @@ text=+1: Chandra Nalaar deals 1 damage to target player. -- -X: Chandra Nalaar d
 mana={3}{R}{R}
 type=Planeswalker
 subtype=Chandra
-loyalty=6
+#loyalty=6
 [/card]
 [card]
 name=Channel
@@ -3361,12 +3316,6 @@ name=Churning Eddy
 text=Return target creature and target land to their owners' hands.
 mana={3}{U}
 type=Sorcery
-[/card]
-[card]
-name=Cinder Cloud
-text=Destroy target creature. If a white creature is put into a graveyard this way, Cinder Cloud deals damage to that creature's controller equal to the creature's power.
-mana={3}{R}{R}
-type=Instant
 [/card]
 [card]
 name=Cinder Crawler
@@ -4782,13 +4731,6 @@ mana={R}
 type=Instant
 [/card]
 [card]
-name=Death Watch
-text=Enchant creature -- When enchanted creature is put into a graveyard, its controller loses life equal to its power and you gain life equal to its toughness.
-mana={B}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Death Wish
 text=You may choose a card you own from outside the game and put it into your hand. You lose half your life, rounded up. Exile Death Wish.
 mana={1}{B}{B}
@@ -5142,12 +5084,6 @@ type=Creature
 subtype=Lhurgoyf
 power=*
 toughness=*
-[/card]
-[card]
-name=Dueling Grounds
-text=No more than one creature can attack each turn. -- No more than one creature can block each turn.
-mana={1}{G}{W}
-type=Enchantment
 [/card]
 [card]
 name=Deus of Calamity
@@ -5595,15 +5531,6 @@ mana={3}{B}{R}{G}
 type=Enchantment
 [/card]
 [card]
-name=Dragon Broodmother
-text=Flying -- At the beginning of each upkeep, put a 1/1 red and green Dragon creature token with flying and devour 2 onto the battlefield. (As the token enters the battlefield, you may sacrifice any number of creatures. It enters the battlefield with twice that many +1/+1 counters on it.)
-mana={2}{R}{R}{R}{G}
-type=Creature
-subtype=Dragon
-power=4
-toughness=4
-[/card]
-[card]
 name=Dragon Mask
 text={3}, {T}: Target creature you control gets +2/+2 until end of turn. Return it to its owner's hand at the beginning of the next end step. (Return it only if it's on the battlefield.)
 mana={3}
@@ -5945,13 +5872,6 @@ mana={3}{B}{R}{G}
 type=Enchantment
 [/card]
 [card]
-name=Earthlore
-text=Enchant land you control -- Enchanted land has "{T}: Target blocking creature gets +1/+2 until end of turn."
-mana={G}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Earwig Squad
 text=Prowl {2}{B} (You may cast this for its prowl cost if you dealt combat damage to a player this turn with a Goblin or Rogue.) -- When Earwig Squad enters the battlefield, if its prowl cost was paid, search target opponent's library for three cards and exile them. Then that player shuffles his or her library.
 mana={3}{B}{B}
@@ -6083,12 +6003,6 @@ mana={G}
 type=Enchantment
 [/card]
 [card]
-name=Elephant Resurgence
-text=Each player puts a green Elephant creature token onto the battlefield. Those creatures have "This creature's power and toughness are each equal to the number of creature cards in its controller's graveyard."
-mana={1}{G}
-type=Sorcery
-[/card]
-[card]
 name=Elfhame Sanctuary
 text=At the beginning of your upkeep, you may search your library for a basic land card, reveal that card, and put it into your hand. If you do, you skip your draw step this turn and shuffle your library.
 mana={1}{G}
@@ -6118,7 +6032,7 @@ text=+1: Put a 1/1 white Soldier creature token onto the battlefield. -- +1: Tar
 mana={2}{W}{W}
 type=Planeswalker
 subtype=Elspeth
-loyalty=4
+#loyalty=4
 [/card]
 [card]
 name=Elvish Bard
@@ -6573,16 +6487,11 @@ mana={7}{U}{U}{U}
 type=Sorcery
 [/card]
 [card]
-name=Eternity Vessel
-text=Eternity Vessel enters the battlefield with X charge counters on it, where X is your life total. -- Landfall - Whenever a land enters the battlefield under your control, you may have your life total become the number of charge counters on Eternity Vessel.
-mana={6}
-type=Artifact
-[/card]
-[card]
 name=Ether Well
 text=Put target creature on top of its owner's library. If that creature is red, you may put it on the bottom of its owner's library instead.
 mana={3}{U}
 type=Instant
+[/card]
 [card]
 name=Ethersworn Canonist
 text=Each player who has cast a nonartifact spell this turn can't cast additional nonartifact spells.
@@ -6778,13 +6687,6 @@ name=Extraplanar Lens
 text=Imprint - When Extraplanar Lens enters the battlefield, you may exile target land you control. -- Whenever a land with the same name as the exiled card is tapped for mana, its controller adds one mana to his or her mana pool of any type that land produced.
 mana={3}
 type=Artifact
-[/card]
-[card]
-name=Eye for an Eye
-alias=1344
-text=The next time a source of your choice would deal damage to you this turn, instead that source deals that much damage to you and Eye for an Eye deals that much damage to that source's controller.
-mana={W}{W}
-type=Instant
 [/card]
 [card]
 name=Eye Spy
@@ -7085,15 +6987,6 @@ power=3
 toughness=2
 [/card]
 [card]
-name=Feral Hydra
-text=Feral Hydra enters the battlefield with X +1/+1 counters on it. -- {3}: Put a +1/+1 counter on Feral Hydra. Any player may activate this ability.
-mana={X}{G}
-type=Creature
-subtype=Hydra Beast
-power=0
-toughness=0
-[/card]
-[card]
 name=Feral Throwback
 text=Amplify 2 (As this creature enters the battlefield, put two +1/+1 counters on it for each Beast card you reveal in your hand.) -- Provoke (When this attacks, you may have target creature defending player controls untap and block it if able.)
 mana={4}{G}{G}
@@ -7204,19 +7097,12 @@ name=Figure of Destiny
 auto={rw}:becomes(Spirit creature,4/4)
 auto=lord(figure of destiny[spirit]|mybattlefield) {rw}{rw}{rw}:becomes(Kithkin Spirit Creature,4/4)
 auto=lord(figure of destiny[warrior]|mybattlefield) {rw}{rw}{rw}{rw}{rw}{rw}:becomes(Spirit,4/4)
-text={(r/w)}: Figure of Destiny becomes a 2/2 Kithkin Spirit. -- {(r/w){(r/w){(r/w)}: If Figure of Destiny is a Spirit, it becomes a 4/4 Kithkin Spirit Warrior. -- 
-{(r/w){(r/w){(r/w){(r/w){(r/w){(r/w)}: If Figure of Destiny is a Warrior, it becomes an 8/8 Kithkin Spirit Warrior Avatar with flying and first strike.
+text={(r/w)}: Figure of Destiny becomes a 2/2 Kithkin Spirit. -- {(r/w){(r/w){(r/w)}: If Figure of Destiny is a Spirit, it becomes a 4/4 Kithkin Spirit Warrior. --  {(r/w){(r/w){(r/w){(r/w){(r/w){(r/w)}: If Figure of Destiny is a Warrior, it becomes an 8/8 Kithkin Spirit Warrior Avatar with flying and first strike.
 mana={RW}
 type=Creature
 subtype=Kithkin
 power=1
 toughness=1
-[/card]
-[card]
-name=Filigree Fracture
-text=Destroy target artifact or enchantment. If that permanent was blue or black, draw a card.
-mana={2}{G}
-type=Instant
 [/card]
 [card]
 name=Fill with Fright
@@ -8027,7 +7913,7 @@ text=+1: Untap two target lands. -- -1: Put a 3/3 green Beast creature token ont
 mana={2}{G}{G}
 type=Planeswalker
 subtype=Garruk
-loyalty=3
+#loyalty=3
 [/card]
 [card]
 name=Garza's Assassin
@@ -8502,15 +8388,6 @@ power=4
 toughness=4
 [/card]
 [card]
-name=Gluttonous Slime
-text=Flash -- Devour 1 (As this enters the battlefield, you may sacrifice any number of creatures. This creature enters the battlefield with that many +1/+1 counters on it.)
-mana={2}{G}
-type=Creature
-subtype=Ooze
-power=2
-toughness=2
-[/card]
-[card]
 name=Glyph of Delusion
 text=Put X glyph counters on target creature that target Wall blocked this turn, where X is the power of that blocked creature. The creature gains "This creature doesn't untap during your untap step if it has a glyph counter on it" and "At the beginning of your upkeep, remove a glyph counter from this creature."
 mana={U}
@@ -8726,8 +8603,7 @@ toughness=2
 [/card]
 [card]
 name=Goblin Ringleader
-text=Haste -- When Goblin Ring
-er enters the battlefield, reveal the top four cards of your library. Put all Goblin cards revealed this way into your hand and the rest on the bottom of your library.
+text=Haste -- When Goblin Ringleader enters the battlefield, reveal the top four cards of your library. Put all Goblin cards revealed this way into your hand and the rest on the bottom of your library.
 mana={3}{R}
 type=Creature
 subtype=Goblin
@@ -8874,15 +8750,6 @@ type=Creature
 subtype=Hound
 power=2
 toughness=1
-[/card]
-[card]
-name=Gorger Wurm
-text=Devour 1 (As this enters the battlefield, you may sacrifice any number of creatures. This creature enters the battlefield with that many +1/+1 counters on it.)
-mana={3}{R}{G}
-type=Creature
-subtype=Wurm
-power=5
-toughness=5
 [/card]
 [card]
 name=Gorgon Recluse
@@ -9479,15 +9346,6 @@ mana={1}{R}{R}
 type=Instant
 [/card]
 [card]
-name=Hand of Justice
-text={T}, Tap three untapped white creatures you control: Destroy target creature.
-mana={5}{W}
-type=Creature
-subtype=Avatar
-power=2
-toughness=6
-[/card]
-[card]
 name=Hand to Hand
 text=During the combat phase, players can't cast instant spells or activate abilities that aren't mana abilities.
 mana={2}{R}
@@ -9729,15 +9587,6 @@ power=5
 toughness=5
 [/card]
 [card]
-name=Hellkite Hatchling
-text=Devour 1 (As this enters the battlefield, you may sacrifice any number of creatures. This creature enters the battlefield with that many +1/+1 counters on it.) -- Hellkite Hatchling has flying and trample if it devoured a creature.
-mana={2}{R}{G}
-type=Creature
-subtype=Dragon
-power=2
-toughness=2
-[/card]
-[card]
 name=Helm of Chatzuk
 text={1}, {T}: Target creature gains banding until end of turn. (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding a player controls are blocking or being blocked by a creature, that player divides that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
 mana={1}
@@ -9819,12 +9668,6 @@ type=Sorcery
 name=Hibernation's End
 text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- Whenever you pay Hibernation's End's cumulative upkeep, you may search your library for a creature card with converted mana cost equal to the number of age counters on Hibernation's End and put it onto the battlefield. If you do, shuffle your library.
 mana={4}{G}
-type=Enchantment
-[/card]
-[card]
-name=Hidden Retreat
-text=Put a card from your hand on top of your library: Prevent all damage that would be dealt by target instant or sorcery spell this turn.
-mana={2}{W}
 type=Enchantment
 [/card]
 [card]
@@ -10398,13 +10241,6 @@ mana={3}
 type=Artifact
 [/card]
 [card]
-name=Immobilizing Ink
-text=Enchant creature -- Enchanted creature doesn't untap during its controller's untap step. -- Enchanted creature has "{1}, Discard a card: Untap this creature."
-mana={1}{U}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Immortal Coil
 text={T}, Exile two cards from your graveyard: Draw a card. -- If damage would be dealt to you, prevent that damage. Exile a card from your graveyard for each 1 damage prevented this way. -- When there are no cards in your graveyard, you lose the game.
 mana={2}{B}{B}
@@ -10478,12 +10314,6 @@ name=Impromptu Raid
 text={2}{(r/g)}: Reveal the top card of your library. If it isn't a creature card, put it into your graveyard. Otherwise, put that card onto the battlefield. That creature has haste. Sacrifice it at the beginning of the next end step.
 mana={3}{RG}
 type=Enchantment
-[/card]
-[card]
-name=Imps' Taunt
-text=Buyback {3} (You may pay an additional {3} as you cast this spell. If you do, put this card into your hand as it resolves.) -- Target creature attacks this turn if able.
-mana={1}{B}
-type=Instant
 [/card]
 [card]
 name=Impulse
@@ -10998,7 +10828,7 @@ text=+2: Each player draws a card. -- -1: Target player draws a card. -- -10: Ta
 mana={1}{U}{U}
 type=Planeswalker
 subtype=Jace
-loyalty=3
+#loyalty=3
 [/card]
 [card]
 name=Jace, the Mind Sculptor
@@ -11006,7 +10836,7 @@ text=+2: Look at the top card of target player's library. You may put that card 
 mana={2}{U}{U}
 type=Planeswalker
 subtype=Jace
-loyalty=3
+#loyalty=3
 [/card]
 [card]
 name=Jade Monolith
@@ -11900,18 +11730,6 @@ mana={2}
 type=Legendary Artifact
 [/card]
 [card]
-name=Krark-Clan Engineers
-auto={R}{S(artifact|mybattlefield)}{S(artifact|mybattlefield)}:destroy target(artifact)
-# Following line doesn't work, the game can't handle two
-# sacrifices in the same line yet
-text={R}, Sacrifice two artifacts: Destroy target artifact.
-mana={3}{R}
-type=Creature
-subtype=Goblin Artificer
-power=2
-toughness=2
-[/card]
-[card]
 name=Kresh the Bloodbraided
 text=Whenever another creature is put into a graveyard from the battlefield, you may put X +1/+1 counters on Kresh the Bloodbraided, where X is that creature's power.
 mana={2}{B}{R}{G}
@@ -12308,15 +12126,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Leonin Squire
-text=When Leonin Squire enters the battlefield, return target artifact card with converted mana cost 1 or less from your graveyard to your hand.
-mana={1}{W}
-type=Creature
-subtype=Cat Soldier
-power=2
-toughness=2
-[/card]
-[card]
 name=Leshrac's Sigil
 text=Whenever an opponent casts a green spell, you may pay {B}{B}. If you do, look at that player's hand and choose a card from it. The player discards that card. -- {B}{B}: Return Leshrac's Sigil to its owner's hand.
 mana={B}{B}
@@ -12348,12 +12157,6 @@ subtype=Trap
 name=Ley Line
 text=At the beginning of each player's upkeep, that player may put a +1/+1 counter on target creature of his or her choice.
 mana={3}{G}
-type=Enchantment
-[/card]
-[card]
-name=Leyline of Anticipation
-text=If Leyline of Anticipation is in your opening hand, you may begin the game with it on the battlefield. -- You may cast nonland cards as though they had flash.
-mana={2}{U}{U}
 type=Enchantment
 [/card]
 [card]
@@ -12526,7 +12329,7 @@ text=+1: Target player discards a card. -- -2: Search your library for a card, t
 mana={3}{B}{B}
 type=Planeswalker
 subtype=Liliana
-loyalty=5
+#loyalty=5
 [/card]
 [card]
 name=Lilting Refrain
@@ -12976,15 +12779,6 @@ mana={U}
 type=Instant
 [/card]
 [card]
-name=Magister Sphinx
-text=Flying -- When Magister Sphinx enters the battlefield, target player's life total becomes 10.
-mana={4}{W}{U}{B}
-type=Artifact Creature
-subtype=Sphinx
-power=5
-toughness=5
-[/card]
-[card]
 name=Magistrate's Scepter
 text={4}, {T}: Put a charge counter on Magistrate's Scepter. -- {T}, Remove three charge counters from Magistrate's Scepter: Take an extra turn after this one.
 mana={3}
@@ -13243,15 +13037,6 @@ mana={1}{U}
 type=Sorcery
 [/card]
 [card]
-name=Mana Skimmer
-text=Flying -- Whenever Mana Skimmer deals damage to a player, tap target land that player controls. That land doesn't untap during its controller's next untap step.
-mana={3}{B}
-type=Creature
-subtype=Leech
-power=2
-toughness=2
-[/card]
-[card]
 name=Mana Tithe
 text=Counter target spell unless its controller pays {1}.
 mana={W}
@@ -13277,6 +13062,7 @@ type=Creature
 subtype=Elemental Shaman
 power=1
 toughness=1
+[/card]
 [card]
 name=Mangara's Blessing
 text=You gain 5 life. -- When a spell or ability an opponent controls causes you to discard Mangara's Blessing, you gain 2 life, and you return Mangara's Blessing from your graveyard to your hand at the beginning of the next end step.
@@ -13302,13 +13088,6 @@ mana={1}{U}
 type=Sorcery
 [/card]
 [card]
-name=Manriki-Gusari
-text=Equipped creature gets +1/+2 and has "{T}: Destroy target Equipment." -- Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery.)
-mana={2}
-type=Artifact
-subtype=Equipment
-[/card]
-[card]
 name=Maralen of the Mornsong
 text=Players can't draw cards. -- At the beginning of each player's draw step, that player loses 3 life, searches his or her library for a card, puts it into his or her hand, then shuffles his or her library.
 mana={1}{B}{B}
@@ -13325,12 +13104,6 @@ type=Artifact Creature
 subtype=Cleric
 power=3
 toughness=3
-[/card]
-[card]
-name=March of the Machines
-text=Each noncreature artifact is an artifact creature with power and toughness each equal to its converted mana cost. (Equipment that's a creature can't equip a creature.)
-mana={3}{U}
-type=Enchantment
 [/card]
 [card]
 name=Mark of Eviction
@@ -13352,15 +13125,6 @@ text=Enchant creature -- You control enchanted creature. -- At the beginning of 
 mana={2}{B}
 type=Enchantment
 subtype=Aura
-[/card]
-[card]
-name=Marrow Chomper
-text=Devour 2 (As this enters the battlefield, you may sacrifice any number of creatures. This creature enters the battlefield with twice that many +1/+1 counters on it.) -- When Marrow Chomper enters the battlefield, you gain 2 life for each creature it devoured.
-mana={3}{B}{G}
-type=Creature
-subtype=Zombie Lizard
-power=3
-toughness=3
 [/card]
 [card]
 name=Marshal's Anthem
@@ -13844,12 +13608,6 @@ name=Might of Old Krosa
 text=Target creature gets +2/+2 until end of turn. If you cast this spell during your main phase, that creature gets +4/+4 until end of turn instead.
 mana={G}
 type=Instant
-[/card]
-[card]
-name=Mighty Emergence
-text=Whenever a creature with power 5 or greater enters the battlefield under your control, you may put two +1/+1 counters on it.
-mana={2}{G}
-type=Enchantment
 [/card]
 [card]
 name=Mijae Djinn
@@ -14458,13 +14216,6 @@ mana={1}{R}
 type=Instant
 [/card]
 [card]
-name=Molten Rain
-target=land
-text=Destroy target land. If that land was nonbasic, Molten Rain deals 2 damage to the land's controller.
-mana={1}{R}{R}
-type=Sorcery
-[/card]
-[card]
 name=Molten Sentry
 text=As Molten Sentry enters the battlefield, flip a coin. If the coin comes up heads, Molten Sentry enters the battlefield as a 5/2 creature with haste. If it comes up tails, Molten Sentry enters the battlefield as a 2/5 creature with defender.
 mana={3}{R}
@@ -14742,15 +14493,6 @@ name=Mwonvuli Acid-Moss
 text=Destroy target land. Search your library for a Forest card and put that card onto the battlefield tapped. Then shuffle your library.
 mana={2}{G}{G}
 type=Sorcery
-[/card]
-[card]
-name=Mycoloth
-text=Devour 2 (As this enters the battlefield, you may sacrifice any number of creatures. This creature enters the battlefield with twice that many +1/+1 counters on it.) -- At the beginning of your upkeep, put a 1/1 green Saproling creature token onto the battlefield for each +1/+1 counter on Mycoloth.
-mana={3}{G}{G}
-type=Creature
-subtype=Fungus
-power=4
-toughness=4
 [/card]
 [card]
 name=Mycosynth Golem
@@ -15261,7 +15003,7 @@ text=+3: Destroy target noncreature permanent. -- -2: Gain control of target cre
 mana={4}{U}{B}{B}{R}
 type=Planeswalker
 subtype=Bolas
-loyalty=5
+#loyalty=5
 [/card]
 [card]
 name=Night // Day (Day)
@@ -15279,12 +15021,6 @@ type=Instant
 name=Night Dealings
 text=Whenever a source you control deals damage to another player, put that many theft counters on Night Dealings. -- {2}{B}{B}, Remove X theft counters from Night Dealings: Search your library for a nonland card with converted mana cost X, reveal it, and put it into your hand. Then shuffle your library.
 mana={2}{B}{B}
-type=Enchantment
-[/card]
-[card]
-name=Night Soil
-text={1}, Exile two creature cards from a single graveyard: Put a 1/1 green Saproling creature token onto the battlefield.
-mana={G}{G}
 type=Enchantment
 [/card]
 [card]
@@ -15351,7 +15087,7 @@ text=+1: Search your library for a card named Nissa's Chosen and put it onto the
 mana={2}{G}{G}
 type=Planeswalker
 subtype=Nissa
-loyalty=2
+#loyalty=2
 [/card]
 [card]
 name=Nissa's Chosen
@@ -15508,13 +15244,6 @@ power=0
 toughness=0
 [/card]
 [card]
-name=Noxious Field
-text=Enchant land -- Enchanted land has "{T}: This land deals 1 damage to each creature and each player."
-mana={1}{B}{B}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Noxious Vapors
 text=Each player reveals his or her hand and chooses one card of each color from it, then discards all other nonland cards.
 mana={1}{B}{B}
@@ -15528,14 +15257,6 @@ type=Creature
 subtype=Beast
 power=4
 toughness=4
-[/card]
-[card]
-### Obviously never worked.
-name=Null Brooch
-auto={2}{T}:fizzle target(*[-creature]|stack) && moveTo(graveyard) all(*|myhand)
-text={2}, {T}, Discard your hand: Counter target noncreature spell.
-mana={4}
-type=Artifact
 [/card]
 [card]
 name=Null Chamber
@@ -15599,16 +15320,6 @@ type=Creature
 subtype=Licid
 power=1
 toughness=1
-[/card]
-[card]
-name=O-Naginata
-auto={2}:equip target(creature[power >=3]|mybattlefield)
-auto=teach(creature) 3/0
-auto=teach(creature) trample
-text=O-Naginata can be attached only to a creature with 3 or more power. -- Equipped creature gets +3/+0 and has trample. -- Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery.)
-mana={1}
-type=Artifact
-subtype=Equipment
 [/card]
 [card]
 name=Oaken Brawler
@@ -15695,13 +15406,6 @@ type=Creature
 subtype=Lizard
 power=1
 toughness=1
-[/card]
-[card]
-name=Ocular Halo
-text=Enchant creature -- Enchanted creature has "{T}: Draw a card." -- {W}: Enchanted creature gains vigilance until end of turn.
-mana={3}{U}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
 name=Odds // Ends (Ends)
@@ -15806,12 +15510,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=One Dozen Eyes
-text=Choose one - Put a 5/5 green Beast creature token onto the battlefield; or put five 1/1 green Insect creature tokens onto the battlefield. -- Entwine {G}{G}{G} (Choose both if you pay the entwine cost.)
-mana={5}{G}
-type=Sorcery
-[/card]
-[card]
 name=One with Nature
 target=creature
 auto=@damaged(player) from(mytgt):may moveto(myBattlefield) target(land[basic]|myLibrary) && tap
@@ -15889,12 +15587,6 @@ type=Legendary Creature
 subtype=Fox Samurai
 power=1
 toughness=4
-[/card]
-[card]
-name=Opalescence
-text=Each other non-Aura enchantment is a creature with power and toughness each equal to its converted mana cost. It's still an enchantment.
-mana={2}{W}{W}
-type=Enchantment
 [/card]
 [card]
 name=Opaline Sliver
@@ -16145,12 +15837,6 @@ mana={1}{U}
 type=Enchantment
 [/card]
 [card]
-name=Overload
-text=Kicker {2} (You may pay an additional {2} as you cast this spell.) -- Destroy target artifact if its converted mana cost is 2 or less. If Overload was kicked, destroy that artifact if its converted mana cost is 5 or less instead.
-mana={R}
-type=Instant
-[/card]
-[card]
 name=Overmaster
 text=The next instant or sorcery spell you cast this turn can't be countered by spells or abilities. -- Draw a card.
 mana={R}
@@ -16316,15 +16002,6 @@ type=Creature
 subtype=Illusion
 power=4
 toughness=5
-[/card]
-[card]
-name=Pallid Mycoderm
-text=At the beginning of your upkeep, put a spore counter on Pallid Mycoderm. -- Remove three spore counters from Pallid Mycoderm: Put a 1/1 green Saproling creature token onto the battlefield. -- Sacrifice a Saproling: Fungus and/or Saproling creatures you control get +1/+1 until end of turn.
-mana={3}{W}
-type=Creature
-subtype=Fungus
-power=2
-toughness=4
 [/card]
 [card]
 name=Pandemonium
@@ -16601,13 +16278,6 @@ mana={4}
 type=Artifact
 [/card]
 [card]
-name=Pentarch Ward
-text=Enchant creature -- As Pentarch Ward enters the battlefield, choose a color. -- When Pentarch Ward enters the battlefield, draw a card. -- Enchanted creature has protection from the chosen color. This effect doesn't remove Pentarch Ward.
-mana={2}{W}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Peregrine Drake
 text=Flying -- When Peregrine Drake enters the battlefield, untap up to five lands.
 mana={4}{U}
@@ -16628,12 +16298,6 @@ name=Perplex
 text=Counter target spell unless its controller discards his or her hand. -- Transmute {1}{U}{B} ({1}{U}{B}, Discard this card: Search your library for a card with the same converted mana cost as this card, reveal it, and put it into your hand. Then shuffle your library. Transmute only as a sorcery.)
 mana={1}{U}{B}
 type=Instant
-[/card]
-[card]
-name=Persecute
-text=Choose a color. Target player reveals his or her hand and discards all cards of that color.
-mana={2}{B}{B}
-type=Sorcery
 [/card]
 [card]
 name=Personal Incarnation
@@ -17164,13 +16828,6 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-name=Power of Fire
-text=Enchant creature -- Enchanted creature has "{T}: This creature deals 1 damage to target creature or player."
-mana={1}{R}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Powerleech
 text=Whenever an artifact an opponent controls becomes tapped or an opponent activates an artifact's ability without {T} in its activation cost, you gain 1 life.
 mana={G}{G}
@@ -17201,15 +16858,6 @@ name=Precognition
 text=At the beginning of your upkeep, you may look at the top card of target opponent's library. If you do, you may put that card on the bottom of that player's library.
 mana={4}{U}
 type=Enchantment
-[/card]
-[card]
-name=Predator Dragon
-text=Flying, haste -- Devour 2 (As this enters the battlefield, you may sacrifice any number of creatures. This creature enters the battlefield with twice that many +1/+1 counters on it.)
-mana={3}{R}{R}{R}
-type=Creature
-subtype=Dragon
-power=4
-toughness=4
 [/card]
 [card]
 name=Predatory Advantage
@@ -17273,21 +16921,6 @@ mana={U}
 type=Sorcery
 [/card]
 [card]
-name=Presence of Gond
-text=Enchant creature -- Enchanted creature has "{T}: Put a 1/1 green Elf Warrior creature token onto the battlefield."
-mana={2}{G}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
-####Reported not to work. Maybe never worked at all. There are no tests in the test suite for this card.
-name=Presence of the Master
-auto=@movedTo(enchantment|stack):fizzle all(enchantment|stack)
-text=Whenever a player casts an enchantment spell, counter it.
-mana={3}{W}
-type=Enchantment
-[/card]
-[card]
 name=Price of Glory
 text=Whenever a player taps a land for mana, if it's not that player's turn, destroy that land.
 mana={2}{R}
@@ -17337,16 +16970,6 @@ mana={3}{G}{G}
 type=Sorcery
 [/card]
 [card]
-name=Primal Forcemage
-text=Whenever another creature enters the battlefield under your control, that creature gets +3/+3 until end of turn.
-mana={2}{G}
-type=Creature
-subtype=Elf Shaman
-power=2
-toughness=2
-[/card]
-
-[card]
 name=Primal Whisperer
 text=Primal Whisperer gets +2/+2 for each face-down creature on the battlefield. -- Morph {3}{G} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
 mana={4}{G}
@@ -17372,12 +16995,6 @@ type=Creature
 subtype=Elemental
 power=8
 toughness=8
-[/card]
-[card]
-name=Primeval Light
-text=Destroy all enchantments target player controls.
-mana={3}{G}
-type=Sorcery
 [/card]
 [card]
 name=Primitive Etchings
@@ -17439,15 +17056,6 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-name=Prison Barricade
-text=Defender (This creature can't attack.) -- Kicker {1}{W} (You may pay an additional {1}{W} as you cast this spell.) -- If Prison Barricade was kicked, it enters the battlefield with a +1/+1 counter on it and with "Prison Barricade can attack as though it didn't have defender."
-mana={1}{W}
-type=Creature
-subtype=Wall
-power=1
-toughness=3
-[/card]
-[card]
 name=Prison Term
 text=Enchant creature -- Enchanted creature can't attack or block and its activated abilities can't be activated. -- Whenever a creature enters the battlefield under an opponent's control, you may attach Prison Term to that creature.
 mana={1}{W}{W}
@@ -17474,20 +17082,6 @@ name=Profane Command
 text=Choose two - Target player loses X life; or return target creature card with converted mana cost X or less from your graveyard to the battlefield; or target creature gets -X/-X until end of turn; or up to X target creatures gain fear until end of turn. (They can't be blocked except by artifact creatures and/or black creatures.)
 mana={X}{B}{B}
 type=Sorcery
-[/card]
-[card]
-name=Progenitus
-abilities=shroud,unblockable,protection from white,protection from blue,protection from black,protection from red,protection from green
-auto=@movedTo(this|graveyard):moveTo(ownerlibrary) && shuffle
-####
-####The auto-line does not work for now! :( (0.9.1)
-####
-text=Protection from everything -- If Progenitus would be put into a graveyard from anywhere, reveal Progenitus and shuffle it into its owner's library instead.
-mana={W}{W}{U}{U}{B}{B}{R}{R}{G}{G}
-type=Legendary Creature
-subtype=Hydra Avatar
-power=10
-toughness=10
 [/card]
 [card]
 name=Prohibit
@@ -17574,15 +17168,6 @@ type=Creature
 subtype=Anteater Beast
 power=6
 toughness=5
-[/card]
-[card]
-name=Psionic Gift
-target=creature
-auto={T}:damage:1 target(creature,player)
-text=Enchant creature -- Enchanted creature has "{T}: This creature deals 1 damage to target creature or player."
-mana={1}{U}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
 name=Psionic Sliver
@@ -18018,22 +17603,6 @@ type=Creature
 subtype=Licid
 power=1
 toughness=1
-[/card]
-[card]
-name=Quicksilver Dagger
-text=Enchant creature -- Enchanted creature has "{T}: This creature deals 1 damage to target player. You draw a card."
-mana={1}{U}{R}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
-name=Quicksilver Dragon
-text=Flying -- {U}: If target spell has only one target and that target is Quicksilver Dragon, change that spell's target to another creature. -- Morph {4}{U} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
-mana={4}{U}{U}
-type=Creature
-subtype=Dragon
-power=5
-toughness=5
 [/card]
 [card]
 name=Quicksilver Elemental
@@ -19297,15 +18866,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Rooting Kavu
-text=When Rooting Kavu is put into a graveyard from the battlefield, you may exile it. If you do, shuffle all creature cards from your graveyard into your library.
-mana={2}{G}{G}
-type=Creature
-subtype=Kavu
-power=4
-toughness=3
-[/card]
-[card]
 name=Roots of Life
 text=As Roots of Life enters the battlefield, choose Islands or Swamps. -- Whenever a land of the chosen type an opponent controls becomes tapped, you gain 1 life.
 mana={1}{G}{G}
@@ -19521,13 +19081,6 @@ text=If an opponent drew three or more cards this turn, you may pay {R} rather t
 mana={4}{R}{R}
 type=Instant
 subtype=Trap
-[/card]
-[card]
-name=Runes of the Deus
-text=Enchant creature -- As long as enchanted creature is red, it gets +1/+1 and has double strike. (It deals both first-strike and regular combat damage.) -- As long as enchanted creature is green, it gets +1/+1 and has trample.
-mana={4}{RG}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
 name=Runesword
@@ -19888,7 +19441,7 @@ text=+1: Creatures you control get +1/+1 and gain haste until end of turn. -- -2
 mana={2}{R}{G}
 type=Planeswalker
 subtype=Sarkhan
-loyalty=4
+#loyalty=4
 [/card]
 [card]
 name=Sasaya, Orochi Ascendant
@@ -20256,12 +19809,6 @@ type=Enchantment
 name=Second Sight
 text=Choose one - Look at the top five cards of target opponent's library, then put them back in any order; or look at the top five cards of your library, then put them back in any order. -- Entwine {U} (Choose both if you pay the entwine cost.)
 mana={2}{U}
-type=Instant
-[/card]
-[card]
-name=Second Sunrise
-text=Each player returns to the battlefield all artifact, creature, enchantment, and land cards in his or her graveyard that were put there from the battlefield this turn.
-mana={1}{W}{W}
 type=Instant
 [/card]
 [card]
@@ -20972,15 +20519,6 @@ type=Instant
 subtype=Arcane
 [/card]
 [card]
-name=Sigil Captain
-text=Whenever a creature enters the battlefield under your control, if that creature is 1/1, put two +1/+1 counters on it.
-mana={1}{G}{W}{W}
-type=Creature
-subtype=Rhino Soldier
-power=3
-toughness=3
-[/card]
-[card]
 name=Sigil Tracer
 text={1}{U}, Tap two untapped Wizards you control: Copy target instant or sorcery spell. You may choose new targets for the copy.
 mana={1}{U}{U}
@@ -21212,15 +20750,6 @@ type=Creature
 subtype=Beast
 power=5
 toughness=5
-[/card]
-[card]
-name=Skullmulcher
-text=Devour 1 (As this enters the battlefield, you may sacrifice any number of creatures. This creature enters the battlefield with that many +1/+1 counters on it.) -- When Skullmulcher enters the battlefield, draw a card for each creature it devoured.
-mana={4}{G}
-type=Creature
-subtype=Elemental
-power=3
-toughness=3
 [/card]
 [card]
 name=Skullscorch
@@ -21622,7 +21151,7 @@ text=+2: Sorin Markov deals 2 damage to target creature or player and you gain 2
 mana={3}{B}{B}{B}
 type=Planeswalker
 subtype=Sorin
-loyalty=4
+#loyalty=4
 [/card]
 [card]
 name=Sorrow's Path
@@ -23555,7 +23084,7 @@ text=+1: Untap up to two target artifacts. -- -X: Search your library for an art
 mana={3}{U}{U}
 type=Planeswalker
 subtype=Tezzeret
-loyalty=4
+#loyalty=4
 [/card]
 [card]
 name=Thada Adel, Acquisitor
@@ -23707,15 +23236,6 @@ name=Thirst for Knowledge
 text=Draw three cards. Then discard two cards unless you discard an artifact card.
 mana={2}{U}
 type=Instant
-[/card]
-[card]
-name=Thorn-Thrash Viashino
-text=Devour 2 (As this enters the battlefield, you may sacrifice any number of creatures. This creature enters the battlefield with twice that many +1/+1 counters on it.) -- {G}: Thorn-Thrash Viashino gains trample until end of turn.
-mana={3}{R}
-type=Creature
-subtype=Viashino Warrior
-power=2
-toughness=2
 [/card]
 [card]
 name=Thornscape Battlemage
@@ -24237,13 +23757,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Trace of Abundance
-text=Enchant land -- Enchanted land has shroud. (It can't be the target of spells or abilities.) -- Whenever enchanted land is tapped for mana, its controller adds one mana of any color to his or her mana pool (in addition to the mana the land produces).
-mana={RW}{G}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Trade Secrets
 text=Target opponent draws two cards, then you draw up to four cards. That opponent may repeat this process as many times as he or she chooses.
 mana={1}{U}{U}
@@ -24373,12 +23886,6 @@ name=Tremble
 text=Each player sacrifices a land.
 mana={1}{R}
 type=Sorcery
-[/card]
-[card]
-name=Treva's Charm
-text=Choose one - Destroy target enchantment; or exile target attacking creature; or draw a card, then discard a card.
-mana={G}{W}{U}
-type=Instant
 [/card]
 [card]
 name=Treva, the Renewer
@@ -24531,12 +24038,6 @@ type=Instant
 name=Turn the Tables
 text=All combat damage that would be dealt to you this turn is dealt to target attacking creature instead.
 mana={3}{W}{W}
-type=Instant
-[/card]
-[card]
-name=Turnabout
-text=Choose artifact, creature, or land. Tap all untapped permanents of the chosen type target player controls, or untap all tapped permanents of that type that player controls.
-mana={2}{U}{U}
 type=Instant
 [/card]
 [card]
@@ -24866,13 +24367,6 @@ name=Urza's Rage
 text=Kicker {8}{R} (You may pay an additional {8}{R} as you cast this spell.) -- Urza's Rage can't be countered by spells or abilities. -- Urza's Rage deals 3 damage to target creature or player. If Urza's Rage was kicked, instead it deals 10 damage to that creature or player and the damage can't be prevented.
 mana={2}{R}
 type=Instant
-[/card]
-[card]
-name=Utopia Sprawl
-text=Enchant Forest -- As Utopia Sprawl enters the battlefield, choose a color. -- Whenever enchanted Forest is tapped for mana, its controller adds one mana of the chosen color to his or her mana pool (in addition to the mana the land produces).
-mana={G}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
 name=Uyo, Silent Prophet
@@ -25358,15 +24852,6 @@ name=Volley of Boulders
 text=Volley of Boulders deals 6 damage divided as you choose among any number of target creatures and/or players. -- Flashback {R}{R}{R}{R}{R}{R} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={8}{R}
 type=Sorcery
-[/card]
-[card]
-name=Volrath the Fallen
-text={1}{B}, Discard a creature card: Volrath the Fallen gets +X/+X until end of turn, where X is the discarded card's converted mana cost.
-mana={3}{B}{B}{B}
-type=Legendary Creature
-subtype=Shapeshifter
-power=6
-toughness=4
 [/card]
 [card]
 name=Volrath's Curse
@@ -25874,12 +25359,6 @@ name=Well of Lost Dreams
 text=Whenever you gain life, you may pay {X}, where X is less than or equal to the amount of life you gained. If you do, draw X cards.
 mana={4}
 type=Artifact
-[/card]
-[card]
-name=Well-Laid Plans
-text=Prevent all damage that would be dealt to a creature by another creature if they share a color.
-mana={2}{U}
-type=Enchantment
 [/card]
 [card]
 name=Wellspring
@@ -26410,12 +25889,6 @@ mana={4}{WU}{WU}{WU}{WU}
 type=Sorcery
 [/card]
 [card]
-name=Worldslayer
-mana={5}
-type=Artifact
-subtype=Equipment
-[/card]
-[card]
 name=Wormfang Crab
 text=Wormfang Crab is unblockable. -- When Wormfang Crab enters the battlefield, an opponent chooses a permanent you control other than Wormfang Crab and exiles it. -- When Wormfang Crab leaves the battlefield, return the exiled card to the battlefield under its owner's control.
 mana={3}{U}
@@ -26591,15 +26064,6 @@ power=2
 toughness=1
 [/card]
 [card]
-name=Yomiji, Who Bars the Way
-text=Whenever a legendary permanent other than Yomiji, Who Bars the Way is put into a graveyard from the battlefield, return that card to its owner's hand.
-mana={5}{W}{W}
-type=Legendary Creature
-subtype=Spirit
-power=4
-toughness=4
-[/card]
-[card]
 name=Yosei, the Morning Star
 text=Flying -- When Yosei, the Morning Star is put into a graveyard from the battlefield, target player skips his or her next untap step. Tap up to five target permanents that player controls.
 mana={4}{W}{W}
@@ -26640,15 +26104,6 @@ name=Zelyon Sword
 text=You may choose not to untap Zelyon Sword during your untap step. -- {3}, {T}: Target creature gets +2/+0 for as long as Zelyon Sword remains tapped.
 mana={3}
 type=Artifact
-[/card]
-[card]
-name=Zephyr Spirit
-text=When Zephyr Spirit blocks, return it to its owner's hand.
-mana={5}{U}
-type=Creature
-subtype=Spirit
-power=0
-toughness=6
 [/card]
 [card]
 name=Zerapa Minotaur

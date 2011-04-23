@@ -78,11 +78,12 @@ primitive=Boom // Bust (Boom)
 id=126218
 rarity=R
 [/card]
-[card]
-primitive=Boom // Bust (Bust)
-id=126218
-rarity=R
-[/card]
+#need to find a way to deal with multipart cards
+#[card]
+#primitive=Boom // Bust (Bust)
+#id=126218
+#rarity=R
+#[/card]
 [card]
 primitive=Braids, Conjurer Adept
 id=124316
@@ -163,11 +164,12 @@ primitive=Dead // Gone (Dead)
 id=126419
 rarity=C
 [/card]
-[card]
-primitive=Dead // Gone (Gone)
-id=126419
-rarity=C
-[/card]
+#need to find a way to deal with multipart cards
+#[card]
+#primitive=Dead // Gone (Gone)
+#id=126419
+#rarity=C
+#[/card]
 [card]
 primitive=Deadly Grub
 id=111046
@@ -620,11 +622,12 @@ primitive=Rough // Tumble (Rough)
 id=126420
 rarity=U
 [/card]
-[card]
-primitive=Rough // Tumble (Tumble)
-id=126420
-rarity=U
-[/card]
+#need to find a way to deal with multipart cards
+#[card]
+#primitive=Rough // Tumble (Tumble)
+#id=126420
+#rarity=U
+#[/card]
 [card]
 primitive=Saltblast
 id=122435

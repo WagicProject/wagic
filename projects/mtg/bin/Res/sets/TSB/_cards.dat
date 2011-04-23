@@ -18,11 +18,12 @@ primitive=Assault // Battery (Assault)
 id=109704
 rarity=S
 [/card]
-[card]
-primitive=Assault // Battery (Battery)
-id=109704
-rarity=S
-[/card]
+#need to find a way to deal with multipart cards
+#[card]
+#primitive=Assault // Battery (Battery)
+#id=109704
+#rarity=S
+#[/card]
 [card]
 primitive=Auratog
 id=106665

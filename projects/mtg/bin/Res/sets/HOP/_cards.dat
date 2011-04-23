@@ -43,11 +43,12 @@ primitive=Assault // Battery (Assault)
 id=205409
 rarity=U
 [/card]
-[card]
-primitive=Assault // Battery (Battery)
-id=205409
-rarity=U
-[/card]
+#Need to find a way to deal with multipart cards
+#[card]
+#primitive=Assault // Battery (Battery)
+#id=205409
+#rarity=U
+#[/card]
 [card]
 primitive=Balefire Liege
 id=205377
@@ -553,11 +554,12 @@ primitive=Order // Chaos (Chaos)
 id=205384
 rarity=U
 [/card]
-[card]
-primitive=Order // Chaos (Order)
-id=205384
-rarity=U
-[/card]
+#Need to find a way to deal with multipart cards
+#[card]
+#primitive=Order // Chaos (Order)
+#id=205384
+#rarity=U
+#[/card]
 [card]
 primitive=Orim's Thunder
 id=205385

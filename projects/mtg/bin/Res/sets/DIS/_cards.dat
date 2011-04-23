@@ -98,11 +98,12 @@ primitive=Bound // Determined (Bound)
 id=107373
 rarity=R
 [/card]
-[card]
-primitive=Bound // Determined (Determined)
-id=107373
-rarity=R
-[/card]
+#Need to find a way to deal with multipart cards
+#[card]
+#primitive=Bound // Determined (Determined)
+#id=107373
+#rarity=R
+#[/card]
 [card]
 primitive=Brace for Impact
 id=107537
@@ -158,11 +159,12 @@ primitive=Crime // Punishment (Crime)
 id=107285
 rarity=R
 [/card]
-[card]
-primitive=Crime // Punishment (Punishment)
-id=107285
-rarity=R
-[/card]
+#Need to find a way to deal with multipart cards
+#[card]
+#primitive=Crime // Punishment (Punishment)
+#id=107285
+#rarity=R
+#[/card]
 [card]
 primitive=Crypt Champion
 id=107336
@@ -338,21 +340,23 @@ primitive=Hide // Seek (Hide)
 id=107315
 rarity=R
 [/card]
-[card]
-primitive=Hide // Seek (Seek)
-id=107315
-rarity=R
-[/card]
+#Need to find a way to deal with multipart cards
+#[card]
+#primitive=Hide // Seek (Seek)
+#id=107315
+#rarity=R
+#[/card]
 [card]
 primitive=Hit // Run (Hit)
 id=107387
 rarity=U
 [/card]
-[card]
-primitive=Hit // Run (Run)
-id=107387
-rarity=U
-[/card]
+#Need to find a way to deal with multipart cards
+#[card]
+#primitive=Hit // Run (Run)
+#id=107387
+#rarity=U
+#[/card]
 [card]
 primitive=Ignorant Bliss
 id=111281
@@ -473,11 +477,12 @@ primitive=Odds // Ends (Ends)
 id=107445
 rarity=R
 [/card]
-[card]
-primitive=Odds // Ends (Odds)
-id=107445
-rarity=R
-[/card]
+#Need to find a way to deal with multipart cards
+#[card]
+#primitive=Odds // Ends (Odds)
+#id=107445
+#rarity=R
+#[/card]
 [card]
 primitive=Ogre Gatecrasher
 id=107389
@@ -573,11 +578,12 @@ primitive=Pure // Simple (Pure)
 id=107532
 rarity=U
 [/card]
-[card]
-primitive=Pure // Simple (Simple)
-id=107532
-rarity=U
-[/card]
+#Need to find a way to deal with multipart cards
+#[card]
+#primitive=Pure // Simple (Simple)
+#id=107532
+#rarity=U
+#[/card]
 [card]
 primitive=Ragamuffyn
 id=107570
@@ -638,11 +644,12 @@ primitive=Research // Development (Development)
 id=107375
 rarity=R
 [/card]
-[card]
-primitive=Research // Development (Research)
-id=107375
-rarity=R
-[/card]
+#Need to find a way to deal with multipart cards
+#[card]
+#primitive=Research // Development (Research)
+#id=107375
+#rarity=R
+#[/card]
 [card]
 primitive=Riot Spikes
 id=97076
@@ -653,11 +660,12 @@ primitive=Rise // Fall (Fall)
 id=107423
 rarity=U
 [/card]
-[card]
-primitive=Rise // Fall (Rise)
-id=107423
-rarity=U
-[/card]
+#Need to find a way to deal with multipart cards
+#[card]
+#primitive=Rise // Fall (Rise)
+#id=107423
+#rarity=U
+#[/card]
 [card]
 primitive=Rix Maadi, Dungeon Palace
 id=97072
@@ -813,11 +821,12 @@ primitive=Supply // Demand (Demand)
 id=107464
 rarity=U
 [/card]
-[card]
-primitive=Supply // Demand (Supply)
-id=107464
-rarity=U
-[/card]
+#Need to find a way to deal with multipart cards
+#[card]
+#primitive=Supply // Demand (Supply)
+#id=107464
+#rarity=U
+#[/card]
 [card]
 primitive=Swift Silence
 id=107284
@@ -848,11 +857,12 @@ primitive=Trial // Error (Error)
 id=107259
 rarity=U
 [/card]
-[card]
-primitive=Trial // Error (Trial)
-id=107259
-rarity=U
-[/card]
+#Need to find a way to deal with multipart cards
+#[card]
+#primitive=Trial // Error (Trial)
+#id=107259
+#rarity=U
+#[/card]
 [card]
 primitive=Trygon Predator
 id=97112

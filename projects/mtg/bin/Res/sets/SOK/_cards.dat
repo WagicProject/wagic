@@ -193,11 +193,12 @@ primitive=Erayo, Soratami Ascendant
 id=87599
 rarity=R
 [/card]
-[card]
-primitive=Erayo, Soratami Ascendant (Erayo's Essence)
-id=87599
-rarity=R
-[/card]
+#need to find a way to deal with multipart cards
+#[card]
+#primitive=Erayo, Soratami Ascendant (Erayo's Essence)
+#id=87599
+#rarity=R
+#[/card]
 [card]
 primitive=Eternal Dominion
 id=87593
@@ -308,11 +309,12 @@ primitive=Homura, Human Ascendant
 id=84716
 rarity=R
 [/card]
-[card]
-primitive=Homura, Human Ascendant (Homura's Essence)
-id=84716
-rarity=R
-[/card]
+#need to find a way to deal with multipart cards
+#[card]
+#primitive=Homura, Human Ascendant (Homura's Essence)
+#id=84716
+#rarity=R
+#[/card]
 [card]
 primitive=Ideas Unbound
 id=88789
@@ -443,11 +445,12 @@ primitive=Kuon, Ogre Ascendant
 id=87596
 rarity=R
 [/card]
-[card]
-primitive=Kuon, Ogre Ascendant (Kuon's Essence)
-id=87596
-rarity=R
-[/card]
+#need to find a way to deal with multipart cards
+#[card]
+#primitive=Kuon, Ogre Ascendant (Kuon's Essence)
+#id=87596
+#rarity=R
+#[/card]
 [card]
 primitive=Kuro's Taken
 id=74065
@@ -668,11 +671,12 @@ primitive=Rune-Tail, Kitsune Ascendant
 id=87600
 rarity=R
 [/card]
-[card]
-primitive=Rune-Tail, Kitsune Ascendant (Rune-Tail's Essence)
-id=87600
-rarity=R
-[/card]
+#need to find a way to deal with multipart cards
+#[card]
+#primitive=Rune-Tail, Kitsune Ascendant (Rune-Tail's Essence)
+#id=87600
+#rarity=R
+#[/card]
 [card]
 primitive=Rushing-Tide Zubera
 id=50430
@@ -693,11 +697,12 @@ primitive=Sasaya, Orochi Ascendant
 id=87595
 rarity=R
 [/card]
-[card]
-primitive=Sasaya, Orochi Ascendant (Sasaya's Essence)
-id=87595
-rarity=R
-[/card]
+#need to find a way to deal with multipart cards
+#[card]
+#primitive=Sasaya, Orochi Ascendant (Sasaya's Essence)
+#id=87595
+#rarity=R
+#[/card]
 [card]
 primitive=Scroll of Origins
 id=88811

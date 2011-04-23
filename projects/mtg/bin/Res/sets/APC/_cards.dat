@@ -215,22 +215,12 @@ rarity=R
 [/card]
 [card]
 primitive=Fire // Ice (Fire)
-id=27166
-rarity=U
-[/card]
-[card]
-primitive=Fire // Ice (Fire)
 id=27165
 rarity=U
 [/card]
 [card]
 primitive=Fire // Ice (Ice)
 id=27166
-rarity=U
-[/card]
-[card]
-primitive=Fire // Ice (Ice)
-id=27165
 rarity=U
 [/card]
 [card]
@@ -320,22 +310,12 @@ rarity=U
 [/card]
 [card]
 primitive=Illusion // Reality (Illusion)
-id=27164
-rarity=U
-[/card]
-[card]
-primitive=Illusion // Reality (Illusion)
 id=27163
 rarity=U
 [/card]
 [card]
 primitive=Illusion // Reality (Reality)
 id=27164
-rarity=U
-[/card]
-[card]
-primitive=Illusion // Reality (Reality)
-id=27163
 rarity=U
 [/card]
 [card]
@@ -395,16 +375,6 @@ rarity=R
 [/card]
 [card]
 primitive=Life // Death (Death)
-id=27162
-rarity=U
-[/card]
-[card]
-primitive=Life // Death (Death)
-id=27161
-rarity=U
-[/card]
-[card]
-primitive=Life // Death (Life)
 id=27162
 rarity=U
 [/card]
@@ -490,11 +460,6 @@ rarity=R
 [/card]
 [card]
 primitive=Night // Day (Day)
-id=26691
-rarity=U
-[/card]
-[card]
-primitive=Night // Day (Day)
 id=26276
 rarity=U
 [/card]
@@ -504,22 +469,7 @@ id=26691
 rarity=U
 [/card]
 [card]
-primitive=Night // Day (Night)
-id=26276
-rarity=U
-[/card]
-[card]
 primitive=Order // Chaos (Chaos)
-id=27168
-rarity=U
-[/card]
-[card]
-primitive=Order // Chaos (Chaos)
-id=27167
-rarity=U
-[/card]
-[card]
-primitive=Order // Chaos (Order)
 id=27168
 rarity=U
 [/card]

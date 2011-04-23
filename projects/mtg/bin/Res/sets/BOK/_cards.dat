@@ -133,11 +133,12 @@ primitive=Faithful Squire
 id=74093
 rarity=U
 [/card]
-[card]
-primitive=Faithful Squire (Kaiso, Memory of Loyalty)
-id=74093
-rarity=U
-[/card]
+# Need to find a way to deal with multipart cards
+#[card]
+#primitive=Faithful Squire (Kaiso, Memory of Loyalty)
+#id=74093
+#rarity=U
+#[/card]
 [card]
 primitive=Final Judgment
 id=81991
