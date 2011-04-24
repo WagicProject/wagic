@@ -323,6 +323,10 @@ void JRenderer::BeginScene()
 		//if (mMode3D)
 		sceGuClear(GU_DEPTH_BUFFER_BIT|GU_COLOR_BUFFER_BIT);
 	}
+    else
+    {
+        sceGuClear(GU_COLOR_BUFFER_BIT);
+    }
 
 	sceGuTexMode(TEXTURE_FORMAT, 0, 0, mSwizzle);
   mCurrentTextureFormat = TEXTURE_FORMAT;
