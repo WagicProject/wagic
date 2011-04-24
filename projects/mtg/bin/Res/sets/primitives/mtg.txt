@@ -7275,7 +7275,7 @@ toughness=1
 name=Boggart Mob
 auto=aslongas(other goblin|mybattlefield) choice notatarget(other goblin|mybattlefield) (blink)forsrc oneshot
 auto=choice sacrifice
-auto=@combatdamaged(player) from(this):may token(Goblin Rogue,Creature Goblin Rogue,1/1,black)
+auto=@combatdamaged(player) from(goblin|mybattlefield):may token(Goblin Rogue,Creature Goblin Rogue,1/1,black)
 text=Champion a Goblin (When this enters the battlefield, sacrifice it unless you exile another Goblin you control. When this leaves the battlefield, that card returns to the battlefield.) -- Whenever a Goblin you control deals combat damage to a player, you may put a 1/1 black Goblin Rogue creature token onto the battlefield.
 mana={3}{B}
 type=Creature
@@ -44216,7 +44216,7 @@ auto=@movedTo(this|mygraveyard) from(battlefield):may draw:1 controller
 text=When Oculus is put into a graveyard from the battlefield, you may draw a card.
 mana={1}{U}
 type=Creature
-subtype=Homnuculus
+subtype=Homunculus
 power=1
 toughness=1
 [/card]
@@ -59098,7 +59098,7 @@ type=Nothing
 name=Snapback
 target=creature
 other={E(other *[blue]|myhand)} name(Exile a Blue Card from Hand)
-auto=moveTo(myhand)
+auto=moveTo(ownerhand)
 text=You may exile a blue card from your hand rather than pay Snapback's mana cost. -- Return target creature to its owner's hand.
 mana={1}{U}
 type=Instant
@@ -72890,7 +72890,7 @@ toughness=3
 [/card]
 [card]
 name=Weed-Pruner Poplar
-auto=@each my upkeep:-1/-1 target(other creature)
+auto=@each my upkeep:-1/-1 target(other creature) ueot
 text=At the beginning of your upkeep, target creature other than Weed-Pruner Poplar gets -1/-1 until end of turn.
 mana={4}{B}
 type=Creature
