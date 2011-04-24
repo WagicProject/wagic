@@ -4,6 +4,8 @@
 
 #include "CardPrimitive.h"
 #include "DebugRoutines.h"
+#include "ExtraCost.h"
+#include "ManaCost.h"
 #include "MTGCard.h"
 #include "MTGCardInstance.h"
 
@@ -29,6 +31,16 @@ namespace ObjectAnalytics
         DebugTrace("MTGCardInstance current byte usage: " << InstanceCounter<MTGCardInstance>::GetCurrentByteCount());
         DebugTrace("MTGCardInstance max count: " << InstanceCounter<MTGCardInstance>::GetMaximumObjectCount());
         DebugTrace("MTGCardInstance max byte usage: " << InstanceCounter<MTGCardInstance>::GetMaximumByteCount() << std::endl);
+
+        DebugTrace("ManaCost current count: " << InstanceCounter<ManaCost>::GetCurrentObjectCount());
+        DebugTrace("ManaCost current byte usage: " << InstanceCounter<ManaCost>::GetCurrentByteCount());
+        DebugTrace("ManaCost max count: " << InstanceCounter<ManaCost>::GetMaximumObjectCount());
+        DebugTrace("ManaCost max byte usage: " << InstanceCounter<ManaCost>::GetMaximumByteCount() << std::endl);
+
+        DebugTrace("ExtraCost current count: " << InstanceCounter<ExtraCost>::GetCurrentObjectCount());
+        DebugTrace("ExtraCost current byte usage: " << InstanceCounter<ExtraCost>::GetCurrentByteCount());
+        DebugTrace("ExtraCost max count: " << InstanceCounter<ExtraCost>::GetMaximumObjectCount());
+        DebugTrace("ExtraCost max byte usage: " << InstanceCounter<ExtraCost>::GetMaximumByteCount() << std::endl);
 
         DebugTrace("-----------------------------------------------------------");
 

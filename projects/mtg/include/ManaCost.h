@@ -3,7 +3,7 @@
 
 #include "utils.h"
 #include "MTGDefinitions.h"
-
+#include "ObjectAnalytics.h"
 
 class ManaCostHybrid;
 class ExtraCosts;
@@ -12,7 +12,11 @@ class MTGAbility;
 class MTGCardInstance;
 class Player;
 
-class ManaCost{
+class ManaCost
+#ifdef TRACK_OBJECT_USAGE
+    : public InstanceCounter<ManaCost>
+#endif
+{
 
     friend std::ostream& operator<<(std::ostream& out, ManaCost& m);
     friend std::ostream& operator<<(std::ostream& out, ManaCost* m);

@@ -7,8 +7,10 @@
 #include "Player.h"
 #include "Counters.h"
 
-ExtraCost::ExtraCost(const std::string& inCostRenderString, TargetChooser *_tc) :
-    tc(_tc), source(NULL), target(NULL), mCostRenderString(inCostRenderString)
+SUPPORT_OBJECT_ANALYTICS(ExtraCost)
+
+ExtraCost::ExtraCost(const std::string& inCostRenderString, TargetChooser *_tc)
+    : tc(_tc), source(NULL), target(NULL), mCostRenderString(inCostRenderString)
 {
     if (tc)
         tc->targetter = NULL;
@@ -25,7 +27,7 @@ int ExtraCost::setSource(MTGCardInstance * _source)
     if (tc)
     {
         tc->source = _source;
-        // "extra cost is not targetting, protections do not apply" this is not cryptic at all :) make an ability you will understand it then. this keeps the target chooser from being unable to select a creature with shroud/protections.
+        // this keeps the target chooser from being unable to select a creature with shroud/protections.
         tc->targetter = NULL;
     }
     else
@@ -69,20 +71,20 @@ LifeCost * LifeCost::clone() const
     return ec;
 }
 
-LifeCost::LifeCost(TargetChooser *_tc) :
-    ExtraCost("Life", _tc)
+LifeCost::LifeCost(TargetChooser *_tc)
+    : ExtraCost("Life", _tc)
 {
 }
 
-    int LifeCost::canPay()
+int LifeCost::canPay()
+{
+    MTGCardInstance * _target = (MTGCardInstance *) target;
+    if(_target->controller()->life <= 0)
     {
-        MTGCardInstance * _target = (MTGCardInstance *) target;
-        if(_target->controller()->life <= 0)
-        {
-            return 0;
-        }
-        return 1;
+        return 0;
     }
+    return 1;
+}
 
 int LifeCost::doPay()
 {
@@ -97,6 +99,7 @@ int LifeCost::doPay()
         tc->initTargets();
     return 1;
 }
+
 //life or Mana cost
 LifeorManaCost * LifeorManaCost::clone() const
 {
@@ -106,26 +109,26 @@ LifeorManaCost * LifeorManaCost::clone() const
     return ec;
 }
 
-LifeorManaCost::LifeorManaCost(TargetChooser *_tc,string manaType) :
-    ExtraCost("Phyrexian Mana", _tc),manaType(manaType)
+LifeorManaCost::LifeorManaCost(TargetChooser *_tc,string manaType)
+    : ExtraCost("Phyrexian Mana", _tc), manaType(manaType)
 {
 }
 
-    int LifeorManaCost::canPay()
+int LifeorManaCost::canPay()
+{
+    MTGCardInstance * _target = (MTGCardInstance *) target;
+    string buildType ="{";
+    buildType.append(manaType);
+    buildType.append("}");
+    ManaCost * newCost = ManaCost::parseManaCost(buildType);
+    if(_target->controller()->getManaPool()->canAfford(newCost) || _target->controller()->life > 1)
     {
-        MTGCardInstance * _target = (MTGCardInstance *) target;
-        string buildType ="{";
-        buildType.append(manaType);
-        buildType.append("}");
-        ManaCost * newCost = ManaCost::parseManaCost(buildType);
-        if(_target->controller()->getManaPool()->canAfford(newCost) || _target->controller()->life > 1)
-        {
-            SAFE_DELETE(newCost);
-            return 1;
-        }
-            SAFE_DELETE(newCost);
-        return 0;
+        SAFE_DELETE(newCost);
+        return 1;
     }
+    SAFE_DELETE(newCost);
+    return 0;
+}
 
 int LifeorManaCost::doPay()
 {
@@ -161,8 +164,8 @@ DiscardRandomCost * DiscardRandomCost::clone() const
     return ec;
 }
 
-DiscardRandomCost::DiscardRandomCost(TargetChooser *_tc) :
-    ExtraCost("Discard Random", _tc)
+DiscardRandomCost::DiscardRandomCost(TargetChooser *_tc)
+    : ExtraCost("Discard Random", _tc)
 {
 }
 
@@ -201,7 +204,7 @@ DiscardCost * DiscardCost::clone() const
 }
 
 DiscardCost::DiscardCost(TargetChooser *_tc) :
-    ExtraCost("Choose card to Discard", _tc)
+ExtraCost("Choose card to Discard", _tc)
 {
 }
 
@@ -231,8 +234,8 @@ ToLibraryCost * ToLibraryCost::clone() const
     return ec;
 }
 
-ToLibraryCost::ToLibraryCost(TargetChooser *_tc) :
-    ExtraCost("Put a card on top of Library", _tc)
+ToLibraryCost::ToLibraryCost(TargetChooser *_tc)
+    : ExtraCost("Put a card on top of Library", _tc)
 {
 }
 
@@ -259,8 +262,8 @@ MillCost * MillCost::clone() const
     return ec;
 }
 
-MillCost::MillCost(TargetChooser *_tc) :
-    ExtraCost("Deplete", _tc)
+MillCost::MillCost(TargetChooser *_tc)
+    : ExtraCost("Deplete", _tc)
 {
 }
 
@@ -279,8 +282,8 @@ int MillCost::doPay()
     if (target)
     {
         _target->controller()->game->putInZone(
-                        _target->controller()->game->library->cards[_target->controller()->game->library->nb_cards - 1],
-                        _target->controller()->game->library, _target->controller()->game->graveyard);
+            _target->controller()->game->library->cards[_target->controller()->game->library->nb_cards - 1],
+            _target->controller()->game->library, _target->controller()->game->graveyard);
         target = NULL;
         if (tc)
             tc->initTargets();
@@ -289,8 +292,8 @@ int MillCost::doPay()
     return 0;
 }
 
-MillExileCost::MillExileCost(TargetChooser *_tc) :
-    MillCost(_tc)
+MillExileCost::MillExileCost(TargetChooser *_tc)
+    : MillCost(_tc)
 {
     // override the base string here
     mCostRenderString = "Deplete To Exile";
@@ -302,8 +305,8 @@ int MillExileCost::doPay()
     if (target)
     {
         _target->controller()->game->putInZone(
-                        _target->controller()->game->library->cards[_target->controller()->game->library->nb_cards - 1],
-                        _target->controller()->game->library, _target->controller()->game->exile);
+            _target->controller()->game->library->cards[_target->controller()->game->library->nb_cards - 1],
+            _target->controller()->game->library, _target->controller()->game->exile);
         target = NULL;
         if (tc)
             tc->initTargets();
@@ -319,8 +322,8 @@ TapCost * TapCost::clone() const
     return ec;
 }
 
-TapCost::TapCost() :
-    ExtraCost("Tap")
+TapCost::TapCost()
+    : ExtraCost("Tap")
 {
 }
 
@@ -356,7 +359,7 @@ UnTapCost * UnTapCost::clone() const
 }
 
 UnTapCost::UnTapCost() :
-    ExtraCost("UnTap")
+ExtraCost("UnTap")
 {
 }
 
@@ -394,8 +397,8 @@ TapTargetCost * TapTargetCost::clone() const
     return ec;
 }
 
-TapTargetCost::TapTargetCost(TargetChooser *_tc) :
-    ExtraCost("Tap Target", _tc)
+TapTargetCost::TapTargetCost(TargetChooser *_tc)
+    : ExtraCost("Tap Target", _tc)
 {
 }
 
@@ -436,8 +439,8 @@ ExileTargetCost * ExileTargetCost::clone() const
     return ec;
 }
 
-ExileTargetCost::ExileTargetCost(TargetChooser *_tc) :
-    ExtraCost("Exile Target", _tc)
+ExileTargetCost::ExileTargetCost(TargetChooser *_tc)
+    : ExtraCost("Exile Target", _tc)
 {
 }
 
@@ -464,8 +467,8 @@ BounceTargetCost * BounceTargetCost::clone() const
     return ec;
 }
 
-BounceTargetCost::BounceTargetCost(TargetChooser *_tc) :
-    ExtraCost("Return Target to Hand", _tc)
+BounceTargetCost::BounceTargetCost(TargetChooser *_tc)
+    : ExtraCost("Return Target to Hand", _tc)
 {
 }
 
@@ -493,7 +496,7 @@ Ninja * Ninja::clone() const
 }
 
 Ninja::Ninja(TargetChooser *_tc) :
-    ExtraCost("Select unblocked attacker", _tc)
+ExtraCost("Select unblocked attacker", _tc)
 {
 }
 
@@ -502,7 +505,7 @@ int Ninja::isPaymentSet()
     GameObserver * g = GameObserver::GetInstance();
     int currentPhase = g->getCurrentGamePhase();
     if (target && ((target->isAttacker() && target->blocked) || target->isAttacker() < 1 || currentPhase
-                    != Constants::MTG_PHASE_COMBATBLOCKERS))
+        != Constants::MTG_PHASE_COMBATBLOCKERS))
     {
         tc->removeTarget(target);
         target = NULL;
@@ -515,7 +518,6 @@ int Ninja::isPaymentSet()
 
 int Ninja::doPay()
 {
-
     if (target)
     {
         target->controller()->game->putInHand(target);
@@ -538,8 +540,8 @@ SacrificeCost * SacrificeCost::clone() const
     return ec;
 }
 
-SacrificeCost::SacrificeCost(TargetChooser *_tc) :
-    ExtraCost("Sacrifice", _tc)
+SacrificeCost::SacrificeCost(TargetChooser *_tc)
+    : ExtraCost("Sacrifice", _tc)
 {
 }
 
@@ -568,12 +570,12 @@ CounterCost * CounterCost::clone() const
         ec->tc = tc->clone();
     if (counter)
         ec->counter = NEW Counter(counter->target, counter->name.c_str(), counter->power, counter->toughness);
-        ec->counter->nb = counter->nb;
+    ec->counter->nb = counter->nb;
     return ec;
 }
 
 CounterCost::CounterCost(Counter * _counter, TargetChooser *_tc) :
-    ExtraCost("Counters", _tc)
+ExtraCost("Counters", _tc)
 {
     counter = _counter;
     hasCounters = 0;
@@ -759,8 +761,8 @@ int ExtraCosts::doPay()
     int result = 0;
     for (size_t i = 0; i < costs.size(); i++)
     {
-    if(costs[i]->target)
-        costs[i]->target->isExtraCostTarget = false;
+        if(costs[i]->target)
+            costs[i]->target->isExtraCostTarget = false;
         result += costs[i]->doPay();
     }
     return result;

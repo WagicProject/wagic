@@ -9,6 +9,7 @@
 #include "WEvent.h"
 #include "MTGAbility.h"
 
+SUPPORT_OBJECT_ANALYTICS(ManaCost)
 
 ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstance * c)
 {
