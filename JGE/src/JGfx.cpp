@@ -362,10 +362,13 @@ void JRenderer::EnableVSync(bool flag)
 
 void JRenderer::ClearScreen(PIXEL_TYPE color)
 {
-	sceGuClearColor(color);
-	//sceGuClearStencil( 0 );
-	sceGuClear(GU_COLOR_BUFFER_BIT);
-	//sceGuClear( GU_COLOR_BUFFER_BIT | GU_STENCIL_BUFFER_BIT );
+    static PIXEL_TYPE previousColor = 0xFFFFFFFF;
+    if (previousColor != color)
+    {
+	    sceGuClearColor(color);
+	    sceGuClear(GU_COLOR_BUFFER_BIT);
+        previousColor = color;
+    }
 }
 
 
