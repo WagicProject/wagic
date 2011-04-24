@@ -48019,6 +48019,17 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Preeminent Captain
+abilities=First Strike
+auto=@combat(attacking) source(this):target(creature[soldier]|myhand) ninjutsu
+text=Whenever Preeminent Captain attacks, you may put a Soldier creature card from your hand onto the battlefield tapped and attacking.
+mana={2}{W}
+type=Creature
+subtype=Kithkin Soldier
+power=2
+toughness=2
+[/card]
+[card]
 name=Preemptive Strike
 target=creature|stack
 auto=fizzle
