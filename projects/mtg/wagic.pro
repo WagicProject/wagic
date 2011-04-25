@@ -32,7 +32,7 @@ OBJECTS_DIR = objs
 MOC_DIR = objs
 DESTDIR = bin
 
-unix:LIBS += -ljpeg -lgif -lpng12
+unix:LIBS += -ljpeg -lgif -lpng12 -lboost_thread-mt
 windows:LIBS += -L../../JGE/Dependencies/lib -llibjpeg-static-mt-debug -lgiflib -llibpng -lfmodvc
 macx|unix:LIBS += -lz
 

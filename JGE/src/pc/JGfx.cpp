@@ -9,7 +9,7 @@
 //-------------------------------------------------------------------------------------
 #define GL_GLEXT_PROTOTYPES
 
-#if (!defined IOS) && (!defined QT_CONFIG)
+#if (!defined IOS)
 #ifdef WIN32
 #pragma warning(disable : 4786)
 #pragma comment( lib, "giflib.lib" )
@@ -42,18 +42,12 @@ extern "C" {
 #endif
 
 #ifdef _DEBUG
-void checkGlError()
-{
-    GLenum glError = glGetError();
-    if(glError != 0)
-        printf("%s : %u : GLerror is %u\n", __FUNCTION__, __LINE__, glError);
-}
-/*#define checkGlError()            \
+#define checkGlError()            \
 {                                 \
 	GLenum glError = glGetError();  \
 	if(glError != 0)                \
 	printf("%s : %u : GLerror is %u\n", __FUNCTION__, __LINE__, glError); \
-}/*/
+}
 #else
 #define checkGlError() (void(0))
 #endif
@@ -826,7 +820,7 @@ void JRenderer::BeginScene()
     esMatrixLoadIdentity(&theMvpMatrix);
     esOrtho(&theMvpMatrix, 0.0f, SCREEN_WIDTH_F, 0.0f, SCREEN_HEIGHT_F-1.0f,-1.0f, 1.0f);
 #endif //(!defined GL_ES_VERSION_2_0) && (!defined GL_VERSION_2_0)
-#ifdef WIN32
+#if (defined WIN32) || (defined ANDROID)
     float scaleH = mActualHeight/SCREEN_HEIGHT_F;
     float scaleW = mActualWidth/SCREEN_WIDTH_F;
     if (scaleH != 1.0f || scaleW != 1.0f)
@@ -963,44 +957,37 @@ void JRenderer::RenderQuad(JQuad* quad, float xo, float yo, float angle, float x
 
     // Use the program object
     glUseProgram ( prog2 );
-    checkGlError();
 
     // Load the vertex position
     glVertexAttribPointer ( prog2_positionLoc, 3, GL_FLOAT,
         GL_FALSE, 5 * sizeof(GLfloat), vVertices );
-    checkGlError();
+
     // Load the texture coordinate
     glVertexAttribPointer ( prog2_texCoordLoc, 2, GL_FLOAT,
         GL_FALSE, 5 * sizeof(GLfloat), &vVertices[3] );
-    checkGlError();
+
     // Load the colors
     glVertexAttribPointer ( prog2_colorLoc, 4, GL_UNSIGNED_BYTE,
         GL_TRUE, 4 * sizeof(GLubyte), colorCoords );
-    checkGlError();
 
     glEnableVertexAttribArray ( prog2_positionLoc );
-    checkGlError();
+
     glEnableVertexAttribArray ( prog2_texCoordLoc );
-    checkGlError();
+
     glEnableVertexAttribArray ( prog2_colorLoc );
-    checkGlError();
 
     // Load the MVP matrix
     glUniformMatrix4fv( prog2_mvpLoc, 1, GL_FALSE, (GLfloat*) &mvpMatrix.m[0][0] );
-    checkGlError();
 
     // Bind the texture
     glActiveTexture ( GL_TEXTURE0 );
-    checkGlError();
+
     glBindTexture ( GL_TEXTURE_2D, mCurrentTex );
-    checkGlError();
 
     // Set the sampler texture unit to 0
     glUniform1i ( prog2_samplerLoc, 0 );
-    checkGlError();
 
     glDrawArrays(GL_TRIANGLE_STRIP,0,4);
-    checkGlError();
 
 #else
     glPushMatrix();
@@ -1273,7 +1260,7 @@ void JRenderer::FillRect(float x, float y, float width, float height, PIXEL_TYPE
     };
 
     glVertexPointer(2,GL_FLOAT,0,vVertices);
-    glColorPointer(4, GL_UNSIGNED_BYTE, 0, colors );
+    glColorPointer(4, GL_UNSIGNED_BYTE,  0, colors );
     glDrawArrays(GL_TRIANGLE_STRIP,0,4);
 
     glDisableClientState(GL_COLOR_ARRAY);
@@ -1635,7 +1622,7 @@ static int getNextPower2(int width)
 }
 
 
-#if (!defined IOS) && (!defined QT_CONFIG)
+#if (!defined IOS)
 static void jpg_null(j_decompress_ptr cinfo __attribute__((unused)))
 {
 }

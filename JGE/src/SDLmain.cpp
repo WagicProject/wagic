@@ -23,15 +23,16 @@
 #define WAGIC_UPDATE_EVENT (SDL_USEREVENT + 1)
 
 class SdlApp {
-    private:
+    public: /* For easy interfacing with JGE static functions */
         bool            Running;
         SDL_Surface*    Surf_Display;
         SDL_Rect        viewPort;
+        Uint32          lastMouseUpTime;
 
     public:
         SdlApp() {
           Surf_Display = NULL;
-
+          lastMouseUpTime = 0;
           Running = true;
         };
 
@@ -60,6 +61,8 @@ class SdlApp {
         bool OnInit();
 
         void OnResize(int width, int height) {
+          DebugTrace("OnResize Width " << width << " height " << height);
+
           if ((GLfloat)width / (GLfloat)height <= ACTUAL_RATIO)
           {
             viewPort.x = 0;
@@ -86,8 +89,6 @@ class SdlApp {
           glMatrixMode (GL_PROJECTION);										// Select The Projection Matrix
           glLoadIdentity ();													// Reset The Projection Matrix
 
-          //gluOrtho2D(0.0f, (float) (viewPort.w)-1.0f, 0.0f, (float) (viewPort.h)-1.0f);
-
 #if (defined GL_VERSION_ES_CM_1_1)
           glOrthof(0.0f, (float) (viewPort.w)-1.0f, 0.0f, (float) (viewPort.h)-1.0f, -1.0f, 1.0f);
 #else
@@ -101,13 +102,27 @@ class SdlApp {
         #endif
         };
         void OnKeyPressed(const SDL_KeyboardEvent& event);
+        void OnMouseDoubleClicked(const SDL_MouseButtonEvent& event);
         void OnMouseClicked(const SDL_MouseButtonEvent& event);
         void OnMouseMoved(const SDL_MouseMotionEvent& event);
         void OnEvent(SDL_Event* Event) {
+          if(Event->type < SDL_USEREVENT) DebugTrace("Received Event : " << Event->type);
             switch(Event->type){
             case SDL_QUIT:
+            {
                 Running = false;
                 break;
+            }
+            case SDL_WINDOWEVENT:
+            { /* On Android, this is triggered when the device orientation changed */
+#ifdef ANDROID
+              SDL_Window* window = SDL_GetWindowFromID(Event->window.windowID);
+              int h,w;
+              SDL_GetWindowSize(window, &w, &h);
+              OnResize(w, h);
+#endif
+              break;
+            }
             case SDL_VIDEORESIZE:
               OnResize(Event->resize.w, Event->resize.h);
               break;
@@ -119,9 +134,19 @@ class SdlApp {
               OnMouseMoved(Event->motion);
               break;
             case SDL_MOUSEBUTTONDOWN:
-            case SDL_MOUSEBUTTONUP:
               OnMouseClicked(Event->button);
               break;
+            case SDL_MOUSEBUTTONUP:
+            {
+              Uint32 eventTime = SDL_GetTicks();
+              if(eventTime - lastMouseUpTime <= 500) {
+                OnMouseDoubleClicked(Event->button);
+              } else {
+                OnMouseClicked(Event->button);
+              }
+              lastMouseUpTime = eventTime;
+              break;
+            }
             case WAGIC_UPDATE_EVENT:
               OnUpdate();
               break;
@@ -162,8 +187,8 @@ static const struct { LocalKeySym keysym; JButton keycode; } gDefaultBindings[] 
   { SDLK_k,            JGE_BTN_SEC },
   { SDLK_q,            JGE_BTN_PREV },
   { SDLK_a,            JGE_BTN_NEXT },
-// fullscreen management seems somehow broken in JGE, it works fine with Qt directly
-//    { Qt::Key_F,            JGE_BTN_FULLSCREEN },
+  { SDLK_f,            JGE_BTN_FULLSCREEN },
+  { SDL_SCANCODE_AC_BACK, JGE_BTN_MENU },
 };
 
 void JGECreateDefaultBindings()
@@ -179,6 +204,7 @@ int JGEGetTime()
 
 bool JGEToggleFullscreen()
 {
+  SDL_WM_ToggleFullScreen(g_SdlApp->Surf_Display);
   return true;
 }
 
@@ -265,6 +291,16 @@ void SdlApp::OnMouseMoved(const SDL_MouseMotionEvent& event)
   }
 }
 
+void SdlApp::OnMouseDoubleClicked(const SDL_MouseButtonEvent& event)
+{
+#if (defined ANDROID) || (defined IOS)
+  if(event.button == SDL_BUTTON_LEFT) /* Left button */
+  {
+    g_engine->HoldKey_NoRepeat(JGE_BTN_OK);
+  }
+#endif
+}
+
 void SdlApp::OnMouseClicked(const SDL_MouseButtonEvent& event)
 {
   if(event.type == SDL_MOUSEBUTTONDOWN)
@@ -283,7 +319,9 @@ void SdlApp::OnMouseClicked(const SDL_MouseButtonEvent& event)
         g_engine->LeftClicked(
                     ((event.x-viewPort.x)*SCREEN_WIDTH)/actualWidth,
                     ((event.y-viewPort.y)*SCREEN_HEIGHT)/actualHeight);
+#if (!defined ANDROID) && (!defined IOS)
         g_engine->HoldKey_NoRepeat(JGE_BTN_OK);
+#endif
       } else if(event.y < viewPort.y) {
         g_engine->HoldKey_NoRepeat(JGE_BTN_MENU);
       } else if(event.y > viewPort.y + viewPort.h) {
@@ -306,7 +344,9 @@ void SdlApp::OnMouseClicked(const SDL_MouseButtonEvent& event)
         event.y <= viewPort.y + viewPort.h &&
         event.x >= viewPort.x &&
         event.x <= viewPort.x + viewPort.w) {
+#if (!defined ANDROID) && (!defined IOS)
         g_engine->ReleaseKey(JGE_BTN_OK);
+#endif
       } else if(event.y < viewPort.y) {
         g_engine->ReleaseKey(JGE_BTN_MENU);
       } else if(event.y > viewPort.y + viewPort.h) {
@@ -325,9 +365,22 @@ void SdlApp::OnMouseClicked(const SDL_MouseButtonEvent& event)
 }
 
 bool SdlApp::OnInit() {
+  int window_w, window_h;
+
   if(SDL_Init(SDL_INIT_EVERYTHING) < 0) {
       return false;
   }
+
+  const SDL_VideoInfo *pVideoInfo = SDL_GetVideoInfo();
+  DebugTrace("Video Display : h " << pVideoInfo->current_h << ", w " << pVideoInfo->current_w);
+
+#if (defined ANDROID) || (defined IOS)
+  window_w = pVideoInfo->current_w;
+  window_h = pVideoInfo->current_h;
+#else
+  window_w = ACTUAL_SCREEN_WIDTH;
+  window_h = ACTUAL_SCREEN_HEIGHT;
+#endif
 
   SDL_GL_SetAttribute(SDL_GL_RED_SIZE,    	    8);
   SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE,  	    8);
@@ -343,10 +396,17 @@ bool SdlApp::OnInit() {
   SDL_GL_SetAttribute(SDL_GL_ACCUM_ALPHA_SIZE,	8);
 
   SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS,  1);
-
   SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES,  2);
 
-  if((Surf_Display = SDL_SetVideoMode(ACTUAL_SCREEN_WIDTH, ACTUAL_SCREEN_HEIGHT, 32, /*SDL_HWSURFACE | SDL_GL_DOUBLEBUFFER |*/ SDL_OPENGL | SDL_RESIZABLE)) == NULL) {
+  SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 1);
+  SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
+
+  if((Surf_Display = SDL_SetVideoMode(window_w, window_h, 32,
+#ifdef ANDROID
+                                      SDL_OPENGL | SDL_FULLSCREEN | SDL_WINDOW_BORDERLESS)) == NULL) {
+#else
+                                      SDL_OPENGL | SDL_RESIZABLE | SDL_WINDOW_BORDERLESS)) == NULL) {
+#endif
       return false;
   }
 
@@ -389,18 +449,17 @@ bool SdlApp::OnInit() {
   glEnable(GL_SCISSOR_TEST);				// Enable Clipping
 
 
-  OnResize(ACTUAL_SCREEN_WIDTH, ACTUAL_SCREEN_HEIGHT);
-
-  /* opengl needs to be fully initialized before starting the game */
   if (!InitGame())
   {
       cerr << "Could not init the game\n";
       return false;
   }
 
+  OnResize(window_w, window_h);
+
   JGECreateDefaultBindings();
 
-  SDL_SetTimer(5, OnTimer);
+  SDL_SetTimer(30, OnTimer);
 
   return true;
 };
