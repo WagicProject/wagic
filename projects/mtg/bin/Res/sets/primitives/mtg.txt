@@ -6292,7 +6292,7 @@ toughness=1
 name=Blightsteel Colossus
 abilities=trample,indestructible,infect
 autograveyard=moveTo(ownerlibrary) && shuffle
-text=Trample,infect -- BLightsteel Colossus is indestructible. -- If Blightsteel Colossus would be put into a graveyard from anywhere, reveal Blightsteel Colossus and shuffle it into its owner's library instead.
+text=Trample,infect -- Blightsteel Colossus is indestructible. -- If Blightsteel Colossus would be put into a graveyard from anywhere, reveal Blightsteel Colossus and shuffle it into its owner's library instead.
 mana={12}
 type=Artifact Creature
 subtype=Golem
@@ -55677,6 +55677,7 @@ type=Instant
 [card]
 name=Serene Offering
 target=enchantment
+auto=destroy
 auto=dynamicability<!mytgt manacostlifegain srccontroller!>
 text=Destroy target enchantment. You gain life equal to its converted mana cost.
 mana={1}{W}
@@ -62544,8 +62545,8 @@ toughness=1
 [/card]
 [card]
 name=Stream of Acid
-auto=may destroy target(land)
-auto=may destroy target(creature[-black])
+auto=choice name(destroy target land) destroy target(land)
+auto=choice name(destroy target nonblack creature) destroy target(creature[-black])
 text=Destroy target land or nonblack creature.
 mana={2}{B}{B}
 type=Sorcery
