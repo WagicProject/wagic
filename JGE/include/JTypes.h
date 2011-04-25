@@ -113,6 +113,15 @@ enum {
 # include <QtOpenGL>
 #endif
 
+#if (defined FORCE_GLES)
+#undef GL_ES_VERSION_2_0
+#undef GL_VERSION_2_0
+#define GL_VERSION_ES_CM_1_1 1
+#define glOrthof glOrtho
+#define glClearDepthf glClearDepth
+#endif
+
+
 #if defined (PSP)
 
 	#ifndef ABGR8888

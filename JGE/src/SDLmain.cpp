@@ -1,8 +1,8 @@
 #include <SDL.h>
-#ifndef ANDROID
-#include <SDL_opengl.h>
-#else
+#if (defined ANDROID)
 #include <SDL_opengles.h>
+#else
+#include <SDL_opengl.h>
 #endif
 #include "../include/JGE.h"
 #include "../include/JTypes.h"
@@ -14,7 +14,14 @@
 #include <stdexcept>
 #include <iostream>
 
+
+#if (defined FORCE_GLES)
+#undef GL_ES_VERSION_2_0
 #undef GL_VERSION_2_0
+#define GL_VERSION_ES_CM_1_1 1
+#define glOrthof glOrtho
+#define glClearDepthf glClearDepth
+#endif
 
 #define ACTUAL_SCREEN_WIDTH (SCREEN_WIDTH)
 #define ACTUAL_SCREEN_HEIGHT (SCREEN_HEIGHT)
@@ -43,19 +50,14 @@ class SdlApp {
 
           SDL_Event Event;
 
-          while(Running) {
-              while(SDL_PollEvent(&Event)) {
-                  OnEvent(&Event);
-              }
-
-              OnLoop();
-//              OnRender();
+          while(Running && SDL_WaitEventTimeout(&Event, 50)) {
+            OnEvent(&Event);
           }
 
           OnCleanup();
 
           return 0;
-      };
+        };
 
     public:
         bool OnInit();
@@ -150,13 +152,20 @@ class SdlApp {
             case WAGIC_UPDATE_EVENT:
               OnUpdate();
               break;
+            case SDL_MULTIGESTURE:
+            {
+              DebugTrace("Multigesure : touchId " << Event->mgesture.touchId
+                         << ", x " << Event->mgesture.x
+                         << ", y " << Event->mgesture.y
+                         << ", dTheta " << Event->mgesture.dTheta
+                         << ", dDist " << Event->mgesture.dDist
+                         << ", numFinder " << Event->mgesture.numFingers);
+              break;
+            }
             }
         }
         void OnUpdate();
         void OnRender();
-        void OnLoop() {
-        };
-
         void OnCleanup() {
             SDL_FreeSurface(Surf_Display);
             SDL_Quit();
@@ -469,11 +478,11 @@ void SdlApp::OnRender() {
   if(g_engine)
       g_engine->Render();
 
-    SDL_GL_SwapBuffers();
+  SDL_GL_SwapBuffers();
 };
 
 
-#ifdef ANDROID
+#if (defined ANDROID)
 int SDL_main(int argc, char * argv[])
 #else
 int main(int argc, char* argv[])
