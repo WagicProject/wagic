@@ -3113,8 +3113,7 @@ int AbilityFactory::getAbilities(vector<MTGAbility *> * v, Spell * spell, MTGCar
             card->setColor(0,1);
             card->name = card->model->data->name;
             card->types = card->model->data->types;
-            for (int i = 0; i < Constants::MTG_NB_COLORS; ++i)
-                card->colors[i] = card->model->data->colors[i];
+            card->colors = card->model->data->colors;
             for (map<int, int>::const_iterator it = card->model->data->basicAbilities.begin(); it != card->model->data->basicAbilities.end(); ++it)
             {
                 int i = it->first;

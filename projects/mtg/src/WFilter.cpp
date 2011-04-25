@@ -211,7 +211,7 @@ string WCFilterSet::getCode()
 bool WCFilterColor::isMatch(MTGCard * c)
 {
     if (!c || !c->data) return false;
-    return (c->data->hasColor(color) > 0);
+    return (c->data->hasColor(color));
 }
 string WCFilterColor::getCode()
 {
@@ -242,9 +242,9 @@ bool WCFilterOnlyColor::isMatch(MTGCard * c)
     for (int i = 0; i < Constants::MTG_NB_COLORS; i++)
     {
         if (i == color) continue;
-        if (c->data->hasColor(i) > 0) return false;
+        if (c->data->hasColor(i)) return false;
     }
-    return (c->data->hasColor(color) > 0);
+    return (c->data->hasColor(color));
 }
 string WCFilterOnlyColor::getCode()
 {

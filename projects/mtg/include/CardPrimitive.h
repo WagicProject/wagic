@@ -11,6 +11,15 @@
 
 using namespace std;
 
+const uint8_t kColorBitMask_Artifact = 0x01;
+const uint8_t kColorBitMask_Green    = 0x02;
+const uint8_t kColorBitMask_Blue     = 0x04;
+const uint8_t kColorBitMask_Red      = 0x08;
+const uint8_t kColorBitMask_Black    = 0x10;
+const uint8_t kColorBitMask_White    = 0x20;
+const uint8_t kColorBitMask_Land     = 0x40;
+
+
 class CardPrimitive
 #ifdef TRACK_OBJECT_USAGE
     : public InstanceCounter<CardPrimitive>
@@ -25,7 +34,7 @@ public:
     string name;
     int init();
 
-    int colors[Constants::MTG_NB_COLORS];
+    uint8_t colors;
     map<int,int> basicAbilities;
     map<string,string> magicTexts;
     string magicText;
@@ -44,10 +53,10 @@ public:
     virtual ~CardPrimitive();
 
     void setColor(int _color, int removeAllOthers = 0);
-    void setColor(string _color, int removeAllOthers = 0);
+    void setColor(const string& _color, int removeAllOthers = 0);
     void removeColor(int color);
     int getColor();
-    int hasColor(int _color);
+    bool hasColor(int inColor);
     int countColors();
 
     int has(int ability);
@@ -70,11 +79,11 @@ public:
     int removeType(int value, int removeAll = 0);
     bool hasSubtype(int _subtype);
     bool hasSubtype(const char * _subtype);
-    bool hasSubtype(string _subtype);
+    bool hasSubtype(const string& _subtype);
     bool hasType(int _type);
     bool hasType(const char * type);
 
-    void setManaCost(string value);
+    void setManaCost(const string& value);
     ManaCost * getManaCost();
     bool isCreature();
     bool isLand();

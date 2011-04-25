@@ -1,5 +1,6 @@
 #include "PrecompiledHeader.h"
 
+#include "MTGDefinitions.h"
 #include "CardPrimitive.h"
 
 #include "MTGDeck.h"
@@ -8,9 +9,68 @@
 
 using std::string;
 
+namespace
+{
+    uint8_t ConvertColorToBitMask(int inColor)
+    {
+        uint8_t value = 0;
+        switch (inColor)
+        {
+            case Constants::MTG_COLOR_ARTIFACT:
+                value = kColorBitMask_Artifact;
+                break;
+
+            case Constants::MTG_COLOR_GREEN:
+                 value = kColorBitMask_Green;
+                break;
+
+            case Constants::MTG_COLOR_BLUE:
+                value = kColorBitMask_Blue;
+                break;
+
+            case Constants::MTG_COLOR_RED:
+                value = kColorBitMask_Red;
+                break;
+
+            case Constants::MTG_COLOR_BLACK:
+                value = kColorBitMask_Black;
+                break;
+
+            case Constants::MTG_COLOR_WHITE:
+                value = kColorBitMask_White;
+                break;
+
+            case Constants::MTG_COLOR_LAND:
+                value = kColorBitMask_Land;
+                break;
+
+            default:
+                break;
+        }
+
+        return value;
+    }
+
+    /**
+    ** Count the number of set bits in a given integer 
+    */
+    int CountSetBits(int n)
+    {
+        int count = 0;
+        while (n)
+        {
+            n &= (n-1);
+            count++;
+        }
+        return count;
+    }
+}
+
+
 SUPPORT_OBJECT_ANALYTICS(CardPrimitive)
 
 CardPrimitive::CardPrimitive()
+    : colors(0)
 {
     init();
 }
@@ -22,8 +82,7 @@ CardPrimitive::CardPrimitive(CardPrimitive * source)
 
     for (size_t i = 0; i < source->types.size(); ++i)
         types.push_back(source->types[i]);
-    for (int i = 0; i < Constants::MTG_NB_COLORS; ++i)
-        colors[i] = source->colors[i];
+        colors = source->colors;
     manaCost.copy(source->getManaCost());
     //reducedCost.copy(source->getReducedManaCost());
     //increasedCost.copy(source->getIncreasedManaCost());
@@ -55,9 +114,6 @@ int CardPrimitive::init()
     basicAbilities.clear();
 
     types.clear();
-
-    for (int i = 0; i < Constants::MTG_NB_COLORS; ++i)
-        colors[i] = 0;
 
     magicText = "";
     magicTexts.clear();
@@ -102,17 +158,17 @@ void CardPrimitive::getOtherRestrictions()
     otherrestriction;
 }
 
-void CardPrimitive::setColor(string _color, int removeAllOthers)
+void CardPrimitive::setColor(const string& _color, int removeAllOthers)
 {
-    if (_color.compare("blue") == 0)
+    if (_color.compare(Constants::kManaBlue) == 0)
         return setColor(Constants::MTG_COLOR_BLUE, removeAllOthers);
-    if (_color.compare("red") == 0)
+    if (_color.compare(Constants::kManaRed) == 0)
         return setColor(Constants::MTG_COLOR_RED, removeAllOthers);
-    if (_color.compare("green") == 0)
+    if (_color.compare(Constants::kManaGreen) == 0)
         return setColor(Constants::MTG_COLOR_GREEN, removeAllOthers);
-    if (_color.compare("black") == 0)
+    if (_color.compare(Constants::kManaBlack) == 0)
         return setColor(Constants::MTG_COLOR_BLACK, removeAllOthers);
-    if (_color.compare("white") == 0)
+    if (_color.compare(Constants::kManaWhite) == 0)
         return setColor(Constants::MTG_COLOR_WHITE, removeAllOthers);
     if (_color.compare("artifact") == 0)
         return setColor(Constants::MTG_COLOR_ARTIFACT, removeAllOthers);
@@ -121,39 +177,43 @@ void CardPrimitive::setColor(string _color, int removeAllOthers)
 void CardPrimitive::setColor(int _color, int removeAllOthers)
 {
     if (removeAllOthers)
-        for (int i = 0; i < Constants::MTG_NB_COLORS; i++)
-            colors[i] = 0;
-    colors[_color] = 1;
+        colors = 0;
+
+    colors |= ConvertColorToBitMask(_color);
 }
 
 void CardPrimitive::removeColor(int _color)
 {
-    colors[_color] = 0;
+    uint8_t mask = ~ConvertColorToBitMask(_color);
+    colors &= mask;
 }
 
 int CardPrimitive::getColor()
 {
-    for (int i = 1; i < Constants::MTG_NB_COLORS; i++)
-        if (colors[i])
-            return i;
+    if (colors)
+    {
+        for (int i = 1; i < Constants::MTG_NB_COLORS; i++)
+            if (hasColor(i))
+                return i;
+    }
+
     return 0;
 }
 
-int CardPrimitive::hasColor(int color)
+bool CardPrimitive::hasColor(int inColor)
 {
-    return (colors[color]);
+    return (colors & ConvertColorToBitMask(inColor)) > 0;
 }
 
 int CardPrimitive::countColors()
 {
-    int result = 0;
-    for (int i = Constants::MTG_COLOR_GREEN; i <= Constants::MTG_COLOR_WHITE; ++i)
-        if (hasColor(i))
-            ++result;
-    return result;
+    uint8_t mask = kColorBitMask_Green | kColorBitMask_Blue | kColorBitMask_Red | kColorBitMask_Black | kColorBitMask_White;
+    mask &= colors;
+
+    return CountSetBits(mask);
 }
 
-void CardPrimitive::setManaCost(string s)
+void CardPrimitive::setManaCost(const string& s)
 {
     ManaCost::parseManaCost(s, &manaCost);
     for (int i = Constants::MTG_COLOR_GREEN; i <= Constants::MTG_COLOR_WHITE; i++)
@@ -163,7 +223,6 @@ void CardPrimitive::setManaCost(string s)
             setColor(i);
         }
     }
-
 }
 
 void CardPrimitive::setType(const string& _type_text)
@@ -290,7 +349,7 @@ bool CardPrimitive::hasSubtype(const char * _subtype)
     return hasType(id);
 }
 
-bool CardPrimitive::hasSubtype(string _subtype)
+bool CardPrimitive::hasSubtype(const string& _subtype)
 {
     int id = Subtypes::subtypesList->find(_subtype);
     return hasType(id);

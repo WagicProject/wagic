@@ -62,10 +62,9 @@ void MTGCardInstance::copy(MTGCardInstance * card)
     {
         types.push_back(data->types[i]);
     }
-    for (int i = 0; i < Constants::MTG_NB_COLORS; i++)
-    {
-        colors[i] = data->colors[i];
-    }
+
+    colors = data->colors;
+
     manaCost.copy(data->getManaCost());
 
     text = data->text;
@@ -197,32 +196,33 @@ void MTGCardInstance::initMTGCI()
         }
     }
     int colored = 0;
-    
+
     for (int i = Constants::MTG_COLOR_GREEN; i <= Constants::MTG_COLOR_WHITE; ++i)
     {
         if (this->hasColor(i))
             ++colored;
     }
-    if(colored > 1)
+    if (colored > 1)
     {
         isMultiColored = 1;
+
+        if(this->hasColor(Constants::MTG_COLOR_WHITE) && this->hasColor(Constants::MTG_COLOR_BLACK))
+            isBlackAndWhite = 1;
+        if(this->hasColor(Constants::MTG_COLOR_RED) && this->hasColor(Constants::MTG_COLOR_BLUE))
+            isRedAndBlue = 1;
+        if(this->hasColor(Constants::MTG_COLOR_GREEN) && this->hasColor(Constants::MTG_COLOR_BLACK))
+            isBlackAndGreen = 1;
+        if(this->hasColor(Constants::MTG_COLOR_BLUE) && this->hasColor(Constants::MTG_COLOR_GREEN))
+            isBlueAndGreen = 1;
+        if(this->hasColor(Constants::MTG_COLOR_RED) && this->hasColor(Constants::MTG_COLOR_WHITE))
+            isRedAndWhite = 1;
     }
-    
-    if(this->hasColor(Constants::MTG_COLOR_WHITE) && this->hasColor(Constants::MTG_COLOR_BLACK))
-        isBlackAndWhite = 1;
-    if(this->hasColor(Constants::MTG_COLOR_RED) && this->hasColor(Constants::MTG_COLOR_BLUE))
-        isRedAndBlue = 1;
-    if(this->hasColor(Constants::MTG_COLOR_GREEN) && this->hasColor(Constants::MTG_COLOR_BLACK))
-        isBlackAndGreen = 1;
-    if(this->hasColor(Constants::MTG_COLOR_BLUE) && this->hasColor(Constants::MTG_COLOR_GREEN))
-        isBlueAndGreen = 1;
-    if(this->hasColor(Constants::MTG_COLOR_RED) && this->hasColor(Constants::MTG_COLOR_WHITE))
-        isRedAndWhite = 1;
- if(previous && previous->morphed && !turningOver)
- {
- morphed = true;
- isMorphed = true;
- }
+
+    if(previous && previous->morphed && !turningOver)
+    {
+        morphed = true;
+        isMorphed = true;
+    }
 }
 
 const string MTGCardInstance::getDisplayName() const

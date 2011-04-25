@@ -101,6 +101,13 @@ bool CardDescriptor::valueInRange(int comparisonMode, int value, int criterion)
     return false;
 }
 
+MTGCardInstance* CardDescriptor::match_not(MTGCardInstance * card)
+{
+    // if we have a color match, return null
+    bool colorFound = (colors & card->colors) > 0;
+    return colorFound ? NULL : card;
+}
+
 MTGCardInstance * CardDescriptor::match_or(MTGCardInstance * card)
 {
     int found = 1;
@@ -128,27 +135,11 @@ MTGCardInstance * CardDescriptor::match_or(MTGCardInstance * card)
     if (!found)
         return NULL;
 
-    for (int i = 0; i < Constants::MTG_NB_COLORS; i++)
+    if (colors)
     {
-        if (colors[i] == 1)
-        {
-            found = 0;
-            if (card->hasColor(i))
-            {
-                found = 1;
-                break;
-            }
-        }
-        else if (colors[i] == -1)
-        {
-            found = 0;
-            if (!card->hasColor(i))
-            {
-                found = 1;
-                break;
-            }
-        }
+        found = (colors & card->colors);
     }
+
     if (!found)
         return NULL;
 
@@ -184,13 +175,8 @@ MTGCardInstance * CardDescriptor::match_and(MTGCardInstance * card)
             }
         }
     }
-    for (int i = 0; i < Constants::MTG_NB_COLORS; i++)
-    {
-        if ((colors[i] == 1 && !card->hasColor(i)) || (colors[i] == -1 && card->hasColor(i)))
-        {
-            match = NULL;
-        }
-    }
+    if ((colors & card->colors) != colors)
+        match = NULL;
 
     if (powerComparisonMode && !valueInRange(powerComparisonMode, card->getPower(), power))
         match = NULL;
@@ -200,21 +186,7 @@ MTGCardInstance * CardDescriptor::match_and(MTGCardInstance * card)
         match = NULL;
     if(nameComparisonMode && compareName != card->name)
         match = NULL;
-    if(colorComparisonMode)
-    {
-        bool hasMatch = false;
-        for (int i=0;i< Constants::MTG_NB_COLORS;i++) 
-        {
-            if (card->hasColor(i) && colors[i] > 0) 
-            {
-                hasMatch = true;
-            }
-        }
-        if( !hasMatch ) 
-        {
-            match = NULL;
-        }
-    }
+
     return match;
 }
 
@@ -226,9 +198,13 @@ MTGCardInstance * CardDescriptor::match(MTGCardInstance * card)
     {
         match = match_and(card);
     }
-    else
+    else if (mode == CD_OR)
     {
         match = match_or(card);
+    }
+    else
+    {
+        match = match_not(card);
     }
 
     //Abilities

@@ -507,13 +507,11 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                     }
                     else if( CDtype.find("color") != string::npos )
                     {
-                        for(int i = 0; i < Constants::MTG_NB_COLORS; i++)
-                        {
-                            if(card->target)
-                                cd->colors[i] = card->target->colors[i];
-                            else
-                                cd->colors[i] = card->colors[i];
-                        }
+                        if(card->target)
+                            cd->colors = card->target->colors;
+                        else
+                            cd->colors = card->colors;
+                       
                         cd->mode = CD_OR;
                     }
                     else if( CDtype.find("types") != string::npos )
@@ -571,20 +569,17 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                 else
                 {
                     int attributefound = 0;
-                    //Colors
+                    //Colors - remove Artifact and Land from the loop
                     for (int cid = 1; cid < Constants::MTG_NB_COLORS - 1; cid++)
-                    { //remove Artifact and Land from the loop
+                    { 
                         if (attribute.find(Constants::MTGColorStrings[cid]) != string::npos)
                         {
                             attributefound = 1;
                             if (minus)
                             {
-                                cd->colors[cid] = -1;
+                                cd->mode = CD_NOT;
                             }
-                            else
-                            {
-                                cd->colors[cid] = 1;
-                            }
+                            cd->setColor(cid);
                         }
                     }
                     if (!attributefound)
@@ -621,7 +616,8 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                     }
                 }
             }
-            if (nbminuses) cd->mode = CD_AND;
+            if (nbminuses && cd->mode != CD_NOT)
+                cd->mode = CD_AND;
             typeName = typeName.substr(0, found);
         }
         //X targets allowed ?

@@ -11,6 +11,7 @@
 
 #define CD_OR 1
 #define CD_AND 2
+#define CD_NOT 3
 
 enum ENUM_COMPARISON_MODES
   {
@@ -23,10 +24,12 @@ enum ENUM_COMPARISON_MODES
     COMPARISON_UNEQUAL
   };
 
-class CardDescriptor: public MTGCardInstance{
+class CardDescriptor: public MTGCardInstance
+{
  protected:
-  MTGCardInstance * match_or(MTGCardInstance * card);
-  MTGCardInstance * match_and(MTGCardInstance * card);
+    MTGCardInstance * match_or(MTGCardInstance * card);
+    MTGCardInstance * match_and(MTGCardInstance * card);
+    MTGCardInstance * match_not(MTGCardInstance * card);
   bool valueInRange(int comparisonMode, int value, int criterion);
  public:
   int mode;
