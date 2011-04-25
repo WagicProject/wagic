@@ -27,11 +27,10 @@
 #include <algorithm>
 #include <stdlib.h>
 
-#if defined( WIN32 ) || defined (LINUX)
+#include "DebugRoutines.h"
+
 // enable this define to collect statistics on how many times an ifstream is created for a given file.
 //#define TRACK_FILE_USAGE_STATS
-
-#endif
 
 namespace wagic
 {
@@ -44,6 +43,7 @@ namespace wagic
         std::ifstream(inFilename, inMode)
         {
             sFileMap[std::string(inFilename)] += 1;
+            DebugTrace("ifstream opened on file: " << inFilename);
         }
 
         static void Dump()
