@@ -282,7 +282,7 @@ ManaCost::ManaCost(ManaCost * manaCost)
 // Copy Constructor 
 
 ManaCost::ManaCost(const ManaCost& manaCost)
-#ifdef SUPPORT_OBJECT_ANALYTICS
+#ifdef TRACK_OBJECT_USAGE
     : InstanceCounter<ManaCost>(manaCost)
 #endif
 {
