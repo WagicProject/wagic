@@ -282,8 +282,10 @@ ManaCost::ManaCost(ManaCost * manaCost)
 // Copy Constructor 
 
 ManaCost::ManaCost(const ManaCost& manaCost)
+#ifdef SUPPORT_OBJECT_ANALYTICS
+    : InstanceCounter<ManaCost>(manaCost)
+#endif
 {
-
     for (int i = 0; i <= Constants::MTG_NB_COLORS; i++)
     {
         cost[i] = manaCost.cost[i];      
