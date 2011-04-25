@@ -1354,13 +1354,6 @@ void GameStateDeckViewer::renderCard(int id, float rotation)
         {
             Pos pos = Pos(x, y, scale * 285 / 250, 0.0, 255);
             CardGui::DrawCard(card, pos, DrawMode::kText);
-            if (!options[Options::DISABLECARDS].number) quad = WResourceManager::Instance()->RetrieveCard(card, CACHE_THUMB);
-            if (quad.get())
-            {
-                float _scale = 285 * scale / quad->mHeight;
-                quad->SetColor(ARGB(40,255,255,255));
-                JRenderer::GetInstance()->RenderQuad(quad.get(), x, y, 0, _scale, _scale);
-            }
         }
     }
     else
