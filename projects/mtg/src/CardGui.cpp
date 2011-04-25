@@ -1,7 +1,7 @@
 /*
- * CardGui.cpp
- * This class is in charge of rendering Cards on the screen
- */
+* CardGui.cpp
+* This class is in charge of rendering Cards on the screen
+*/
 
 #include "PrecompiledHeader.h"
 
@@ -47,12 +47,12 @@ namespace
     }
 }
 
-CardGui::CardGui(MTGCardInstance* card, float x, float y) :
-    PlayGuiObject(Height, x, y, false), card(card)
+CardGui::CardGui(MTGCardInstance* card, float x, float y)
+	: PlayGuiObject(Height, x, y, false), card(card)
 {
 }
-CardGui::CardGui(MTGCardInstance* card, const Pos& ref) :
-    PlayGuiObject(Height, ref, false), card(card)
+CardGui::CardGui(MTGCardInstance* card, const Pos& ref)
+	: PlayGuiObject(Height, ref, false), card(card)
 {
 }
 
@@ -73,8 +73,8 @@ float CardView::GetCenterY()
 }
 
 
-CardView::CardView(const SelectorZone owner, MTGCardInstance* card, float x, float y) :
-    CardGui(card, x, y), owner(owner)
+CardView::CardView(const SelectorZone owner, MTGCardInstance* card, float x, float y)
+	: CardGui(card, x, y), owner(owner)
 {
     const Pos* ref = card->view;
     while (card)
@@ -85,8 +85,8 @@ CardView::CardView(const SelectorZone owner, MTGCardInstance* card, float x, flo
     }
 }
 
-CardView::CardView(const SelectorZone owner, MTGCardInstance* card, const Pos& ref) :
-    CardGui(card, ref), owner(owner)
+CardView::CardView(const SelectorZone owner, MTGCardInstance* card, const Pos& ref)
+	: CardGui(card, ref), owner(owner)
 {
     const Pos* r = card->view;
     while (card)
@@ -157,7 +157,7 @@ void CardGui::Render()
 #if defined (WIN32) || defined (LINUX)
     //On pcs we render the big image if the thumbnail is not available
     if (!quad.get())
-		quad = WResourceManager::Instance()->RetrieveCard(card);
+        quad = WResourceManager::Instance()->RetrieveCard(card);
 #endif
     if (quad.get())
         alternate = false;
@@ -223,7 +223,7 @@ void CardGui::Render()
         mor->SetColor(ARGB(255,255,255,255));
         renderer->RenderQuad(mor.get(), actX, actY, actT,scale, scale);
     }
-    
+
     //draws the numbers power/toughness
     if (card->isCreature())
     {
@@ -231,7 +231,7 @@ void CardGui::Render()
         char buffer[200];
         sprintf(buffer, "%i/%i", card->power, card->life);
         renderer->FillRect(actX - (12 * actZ), actY + 6 * actZ, 25 * actZ, 12 * actZ,
-                        ARGB(((static_cast<unsigned char>(actA))/2),0,0,0));
+            ARGB(((static_cast<unsigned char>(actA))/2),0,0,0));
         mFont->SetColor(ARGB(static_cast<unsigned char>(actA),255,255,255));
         mFont->SetScale(actZ);
         mFont->DrawString(buffer, actX - 10 * actZ, actY + 8 * actZ);
@@ -381,8 +381,8 @@ void CardGui::AlternateRender(MTGCard * card, const Pos& pos)
     {
         font->SetScale(kWidthScaleFactor * pos.actZ);
 
-	    std::vector<string> txt;
-	    FormatText(card->data->getText(), txt);
+        std::vector<string> txt;
+        FormatText(card->data->getText(), txt);
 
         unsigned i = 0;
         unsigned h = neofont ? 14 : 11;
@@ -414,20 +414,20 @@ void CardGui::AlternateRender(MTGCard * card, const Pos& pos)
             if (scale < 0)
             {
                 renderer->RenderQuad(manaIcons[h->color1].get(), x + (-12 * j + 75 + 3 * SineHelperFunction((float) t)) * pos.actZ,
-                                pos.actY + (yOffset + 3 * CosineHelperFunction((float) t)) * pos.actZ, 0, 0.4f + scale, 0.4f
-                                                + scale);
+                    pos.actY + (yOffset + 3 * CosineHelperFunction((float) t)) * pos.actZ, 0, 0.4f + scale, 0.4f
+                    + scale);
                 renderer->RenderQuad(manaIcons[h->color2].get(), x + (-12 * j + 75 + 3 * SineHelperFunction((float) v)) * pos.actZ,
-                                pos.actY + (yOffset + 3 * CosineHelperFunction((float) v)) * pos.actZ, 0, 0.4f - scale, 0.4f
-                                                - scale);
+                    pos.actY + (yOffset + 3 * CosineHelperFunction((float) v)) * pos.actZ, 0, 0.4f - scale, 0.4f
+                    - scale);
             }
             else
             {
                 renderer->RenderQuad(manaIcons[h->color2].get(), x + (-12 * j + 75 + 3 * SineHelperFunction((float) v)) * pos.actZ,
-                                pos.actY + (yOffset + 3 * CosineHelperFunction((float) v)) * pos.actZ, 0, 0.4f - scale, 0.4f
-                                                - scale);
+                    pos.actY + (yOffset + 3 * CosineHelperFunction((float) v)) * pos.actZ, 0, 0.4f - scale, 0.4f
+                    - scale);
                 renderer->RenderQuad(manaIcons[h->color1].get(), x + (-12 * j + 75 + 3 * SineHelperFunction((float) t)) * pos.actZ,
-                                pos.actY + (yOffset + 3 * CosineHelperFunction((float) t)) * pos.actZ, 0, 0.4f + scale, 0.4f
-                                                + scale);
+                    pos.actY + (yOffset + 3 * CosineHelperFunction((float) t)) * pos.actZ, 0, 0.4f + scale, 0.4f
+                    + scale);
             }
             ++j;
         }
@@ -436,7 +436,7 @@ void CardGui::AlternateRender(MTGCard * card, const Pos& pos)
             for (int cost = manacost->getCost(i); cost > 0; --cost)
             {
                 renderer->RenderQuad(manaIcons[i].get(), x + (-12 * j + 75) * pos.actZ, pos.actY + (yOffset) * pos.actZ, 0, 0.4f
-                                * pos.actZ, 0.4f * pos.actZ);
+                    * pos.actZ, 0.4f * pos.actZ);
                 ++j;
             }
         }
@@ -446,7 +446,7 @@ void CardGui::AlternateRender(MTGCard * card, const Pos& pos)
             char buffer[10];
             sprintf(buffer, "%d", cost);
             renderer->RenderQuad(manaIcons[0].get(), x + (-12 * j + 75) * pos.actZ, pos.actY + (yOffset) * pos.actZ, 0, 0.4f * pos.actZ,
-                            0.4f * pos.actZ);
+                0.4f * pos.actZ);
             float w = font->GetStringWidth(buffer);
             font->DrawString(buffer, x + (-12 * j + 76 - w / 2) * pos.actZ, pos.actY + (yOffset - 5) * pos.actZ);
             ++j;
@@ -457,7 +457,7 @@ void CardGui::AlternateRender(MTGCard * card, const Pos& pos)
             char buffer[10];
             sprintf(buffer, "X");
             renderer->RenderQuad(manaIcons[0].get(), x + (-12 * j + 75) * pos.actZ, pos.actY + (yOffset) * pos.actZ, 0, 0.4f * pos.actZ,
-                            0.4f * pos.actZ);
+                0.4f * pos.actZ);
             float w = font->GetStringWidth(buffer);
             font->DrawString(buffer, x + (-12 * j + 76 - w / 2) * pos.actZ, pos.actY + (yOffset - 5) * pos.actZ);
         }
@@ -483,59 +483,59 @@ void CardGui::AlternateRender(MTGCard * card, const Pos& pos)
             s += _(Subtypes::subtypesList->find(card->data->types[0]));
         else
         {
-DebugTrace        ("Typeless card: " << setlist[card->setId].c_str() << card->data->getName() << card->getId());
+            DebugTrace("Typeless card: " << setlist[card->setId].c_str() << card->data->getName() << card->getId());
+        }
+
+        font->DrawString(s.c_str(), x + (22 - BigWidth / 2)*pos.actZ, pos.actY + (49 - BigHeight / 2)*pos.actZ);
     }
 
-    font->DrawString(s.c_str(), x + (22 - BigWidth / 2)*pos.actZ, pos.actY + (49 - BigHeight / 2)*pos.actZ);
-}
-
-//expansion and rarity
-font->SetColor(ARGB((int)pos.actA, 0, 0, 0));
-{
-    char buf[512];
-    switch(card->getRarity())
+    //expansion and rarity
+    font->SetColor(ARGB((int)pos.actA, 0, 0, 0));
     {
+        char buf[512];
+        switch(card->getRarity())
+        {
         case Constants::RARITY_M:
-        sprintf(buf,_("%s Mythic").c_str(),setlist[card->setId].c_str());
-        break;
+            sprintf(buf,_("%s Mythic").c_str(),setlist[card->setId].c_str());
+            break;
         case Constants::RARITY_R:
-        sprintf(buf,_("%s Rare").c_str(),setlist[card->setId].c_str());
-        break;
+            sprintf(buf,_("%s Rare").c_str(),setlist[card->setId].c_str());
+            break;
         case Constants::RARITY_U:
-        sprintf(buf,_("%s Uncommon").c_str(),setlist[card->setId].c_str());
-        break;
+            sprintf(buf,_("%s Uncommon").c_str(),setlist[card->setId].c_str());
+            break;
         case Constants::RARITY_C:
-        sprintf(buf,_("%s Common").c_str(),setlist[card->setId].c_str());
-        break;
+            sprintf(buf,_("%s Common").c_str(),setlist[card->setId].c_str());
+            break;
         case Constants::RARITY_L:
-        sprintf(buf,_("%s Land").c_str(),setlist[card->setId].c_str());
-        break;
+            sprintf(buf,_("%s Land").c_str(),setlist[card->setId].c_str());
+            break;
         case Constants::RARITY_T:
-        sprintf(buf,_("%s Token").c_str(),setlist[card->setId].c_str());
-        break;
+            sprintf(buf,_("%s Token").c_str(),setlist[card->setId].c_str());
+            break;
         default:
         case Constants::RARITY_S:
-        sprintf(buf,_("%s Special").c_str(),setlist[card->setId].c_str());
-        break;
-    }
+            sprintf(buf,_("%s Special").c_str(),setlist[card->setId].c_str());
+            break;
+        }
 
-    switch(card->data->getColor())
-    {
+        switch(card->data->getColor())
+        {
         case Constants::MTG_COLOR_BLACK:
         case Constants::MTG_COLOR_GREEN:
         case Constants::MTG_COLOR_BLUE:
         case Constants::MTG_COLOR_LAND:
-        font->SetColor(ARGB((int)pos.actA,255,255,255));
-        font->DrawString(buf, x + (22 - BigWidth / 2)*pos.actZ, pos.actY + (BigHeight / 2 - 30)*pos.actZ);
-        break;
+            font->SetColor(ARGB((int)pos.actA,255,255,255));
+            font->DrawString(buf, x + (22 - BigWidth / 2)*pos.actZ, pos.actY + (BigHeight / 2 - 30)*pos.actZ);
+            break;
         default:
-        font->DrawString(buf, x + (22 - BigWidth / 2)*pos.actZ, pos.actY + (BigHeight / 2 - 30)*pos.actZ);
-        break; //Leave black
+            font->DrawString(buf, x + (22 - BigWidth / 2)*pos.actZ, pos.actY + (BigHeight / 2 - 30)*pos.actZ);
+            break; //Leave black
+        }
+
     }
 
-}
-
-font->SetScale(backup_scale);
+    font->SetScale(backup_scale);
 }
 
 void CardGui::TinyCropRender(MTGCard * card, const Pos& pos, JQuad * quad)
@@ -835,7 +835,7 @@ void CardGui::RenderCountersBig(const Pos& pos)
                     sprintf(buf, _("%i/%i counters: %i").c_str(), c->power, c->toughness, c->nb);
                 }
                 font->DrawString(buf, pos.actX + (22 - BigWidth / 2) * pos.actZ, pos.actY + (-BigHeight / 2 + 80 + 11 * i)
-                                * pos.actZ);
+                    * pos.actZ);
             }
         }
     }
@@ -846,12 +846,13 @@ MTGCardInstance* CardView::getCard()
     return card;
 }
 
-TransientCardView::TransientCardView(MTGCardInstance* card, float x, float y) :
-    CardGui(card, x, y)
+TransientCardView::TransientCardView(MTGCardInstance* card, float x, float y)
+    : CardGui(card, x, y)
 {
 }
-TransientCardView::TransientCardView(MTGCardInstance* card, const Pos& ref) :
-    CardGui(card, ref)
+
+TransientCardView::TransientCardView(MTGCardInstance* card, const Pos& ref)
+    : CardGui(card, ref)
 {
 }
 ;
@@ -859,7 +860,7 @@ TransientCardView::TransientCardView(MTGCardInstance* card, const Pos& ref) :
 ostream& CardView::toString(ostream& out) const
 {
     return (CardGui::toString(out) << " : CardView ::: card : " << card << ";  actX,actY : " << actX << "," << actY << "; t : "
-                    << t << " ; actT : " << actT);
+        << t << " ; actT : " << actT);
 }
 ostream& CardGui::toString(ostream& out) const
 {
