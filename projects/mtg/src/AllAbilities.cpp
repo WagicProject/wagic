@@ -2922,8 +2922,8 @@ AUpkeep::~AUpkeep()
 }
 
 //A Phase based Action
-APhaseAction::APhaseAction(int _id, MTGCardInstance * card, MTGCardInstance * target, string sAbility, int restrictions, int _phase,bool forcedestroy,bool next,bool myturn,bool opponentturn) :
-MTGAbility(_id, card),sAbility(sAbility), phase(_phase),forcedestroy(forcedestroy),next(next),myturn(myturn),opponentturn(opponentturn)
+APhaseAction::APhaseAction(int _id, MTGCardInstance * card, MTGCardInstance * target, string sAbility, int restrictions, int _phase,bool forcedestroy,bool next,bool myturn,bool opponentturn,bool once) :
+MTGAbility(_id, card),sAbility(sAbility), phase(_phase),forcedestroy(forcedestroy),next(next),myturn(myturn),opponentturn(opponentturn),once(once)
 {
     abilityId = _id;
     abilityOwner = card->controller();
@@ -2969,7 +2969,7 @@ void APhaseAction::Update(float dt)
                 a->resolve();
                 delete (a);
                 delete (ability);
-                if(this->oneShot)
+                if(this->oneShot || once)
                 {
                     this->forceDestroy = 1;
                 }
@@ -3010,11 +3010,11 @@ APhaseAction::~APhaseAction()
 }
 
 // the main ability
-APhaseActionGeneric::APhaseActionGeneric(int _id, MTGCardInstance * card, MTGCardInstance * target, string sAbility, int restrictions, int _phase,bool forcedestroy,bool next,bool myturn,bool opponentturn) :
+APhaseActionGeneric::APhaseActionGeneric(int _id, MTGCardInstance * card, MTGCardInstance * target, string sAbility, int restrictions, int _phase,bool forcedestroy,bool next,bool myturn,bool opponentturn,bool once) :
     InstantAbility(_id, source, target)
 {
     MTGCardInstance * _target = target;
-    ability = NEW APhaseAction(_id, card,_target, sAbility, restrictions, _phase,forcedestroy,next,myturn,opponentturn);
+    ability = NEW APhaseAction(_id, card,_target, sAbility, restrictions, _phase,forcedestroy,next,myturn,opponentturn,once);
 }
 
 int APhaseActionGeneric::resolve()

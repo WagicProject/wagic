@@ -1142,11 +1142,26 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     found = s.find("phaseactionmulti");
     if (found != string::npos)
     {
-        size_t start = s.find("[");
+          size_t start = s.find("[");
         size_t end = s.find("]", start);
         string s1 = s.substr(start + 1, end - start - 1);
         int phase = Constants::MTG_PHASE_UPKEEP;
-
+            for (int i = 0; i < Constants::NB_MTG_PHASES; i++)
+            {
+                if (s1.find(Constants::MTGPhaseCodeNames[i]) != string::npos)
+                {
+                    phase = i;
+                }
+            }
+            bool opponentturn = true,myturn = true;
+            if(s1.find("my") != string::npos)
+            {
+                opponentturn = false;
+            }
+            if(s1.find("opponent") != string::npos)
+            {
+                myturn = false;
+            }
         if (s1.find("combatends") != string::npos)
         {
             phase = Constants::MTG_PHASE_COMBATEND;
@@ -1173,13 +1188,18 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         {
             next = false;
         }
+        bool once = false;
+        if (s1.find(",once") != string::npos)
+        {
+            once = true;
+        }
         string sAbility = s.substr(end + 1);
         MTGCardInstance * _target = NULL;
         if (spell)
             _target = spell->getNextCardTarget();
         if(!_target)
             _target = target;
-          return NEW APhaseActionGeneric(id, card,_target,sAbility, restrictions, phase,sourceinPlay,next);
+          return NEW APhaseActionGeneric(id, card,_target, sAbility, restrictions, phase,sourceinPlay,next,myturn,opponentturn,once);
     }
     
     //Multiple abilities for ONE cost
@@ -1660,13 +1680,18 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         {
             next = false;
         }
+        bool once = false;
+        if (s1.find(",once") != string::npos)
+        {
+            once = true;
+        }
         string sAbility = s.substr(end + 1);
         MTGCardInstance * _target = NULL;
         if (spell)
             _target = spell->getNextCardTarget();
         if(!_target)
             _target = target;
-          return NEW APhaseActionGeneric(id, card,_target, sAbility, restrictions, phase,sourceinPlay,next,myturn,opponentturn);
+          return NEW APhaseActionGeneric(id, card,_target, sAbility, restrictions, phase,sourceinPlay,next,myturn,opponentturn,once);
     }
     
    //Upkeep Cost

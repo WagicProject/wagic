@@ -3884,10 +3884,11 @@ public:
     bool next;
     bool myturn;
     bool opponentturn;
+    bool once;
     Player * abilityOwner;
 
     APhaseAction(int _id, MTGCardInstance * card, MTGCardInstance * target, string sAbility, int restrictions = 0, int _phase =
-        Constants::MTG_PHASE_UPKEEP,bool forcedestroy = false,bool next = true,bool myturn = true,bool opponentturn = true);
+        Constants::MTG_PHASE_UPKEEP,bool forcedestroy = false,bool next = true,bool myturn = true,bool opponentturn = true,bool once = false);
     void Update(float dt);
     int resolve();
     const char * getMenuText();
@@ -3902,7 +3903,7 @@ public:
     string sAbility;
     APhaseAction * ability;
     APhaseActionGeneric(int _id, MTGCardInstance * card, MTGCardInstance * target, string sAbility, int restrictions = 0, int _phase =
-            Constants::MTG_PHASE_UPKEEP,bool forcedestroy = false,bool next = true,bool myturn = false,bool opponentturn = false);
+            Constants::MTG_PHASE_UPKEEP,bool forcedestroy = false,bool next = true,bool myturn = false,bool opponentturn = false,bool once = false);
     int resolve();
     const char * getMenuText();
     APhaseActionGeneric * clone() const;
