@@ -292,7 +292,7 @@ AACounter::AACounter(int id, MTGCardInstance * source, MTGCardInstance * target,
     ActivatedAbility(id, source, cost, 0),counterstring(counterstring), nb(nb),maxNb(maxNb), power(power), toughness(toughness), name(_name)
 {
     this->target = target;
-    if (name.find("Level"))
+    if (name.find("Level") != string::npos || name.find("level") != string::npos)
         aType = MTGAbility::STANDARD_LEVELUP;
     else
         aType = MTGAbility::COUNTERS;
@@ -677,6 +677,12 @@ AADrawer::AADrawer(int _id, MTGCardInstance * card, Targetable * _target, ManaCo
             }
             game->mLayers->stackLayer()->addDraw(player, numCards.getValue());
             game->mLayers->stackLayer()->resolve();
+			GameObserver *g = GameObserver::GetInstance();
+			for(int i = numCards.getValue(); i > 0;i--)
+			{
+				WEvent * e = NEW WEventcardDraw(player, 1);
+				g->receiveEvent(e);
+			}
         }
         return 1;
     }

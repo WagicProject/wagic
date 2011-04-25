@@ -537,12 +537,6 @@ int ActionStack::addDraw(Player * player, int nb_cards)
 {
     DrawAction * draw = NEW DrawAction(mCount, player, nb_cards);
     addAction(draw);
-    GameObserver *g = GameObserver::GetInstance();
-		for(int i = nb_cards; i > 0;i--)
-		{
-    WEvent * e = NEW WEventcardDraw(player, nb_cards);
-    g->receiveEvent(e);
-		}
     return 1;
 }
 

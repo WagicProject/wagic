@@ -387,62 +387,66 @@ int AIAction::getEfficiency()
             break;
         }
     case MTGAbility::STANDARD_LEVELUP:
+        {
+            MTGCardInstance * _target = (MTGCardInstance *) target;
+            efficiency = 0;
+            Counter * targetCounter = NULL;
+            int currentlevel = 0;
+
+            if (_target)
+            {
+                if (_target->counters && _target->counters->hasCounter("level", 0, 0))
+                {
+                    targetCounter = _target->counters->hasCounter("level", 0, 0);
+                    currentlevel = targetCounter->nb;
+                }
+            }
+            if (currentlevel < _target->MaxLevelUp)
+            {
+                efficiency = 85;
+                //increase the efficeincy of leveling up by a small amount equal to current level.
+                efficiency += currentlevel;
+
+                if (p->game->hand->nb_cards > 0 && p->isAI())
+                {
+                    efficiency -= (10 * p->game->hand->nb_cards);//reduce the eff if by 10 times the amount of cards in Ais hand.
+                    //it should always try playing more cards before deciding
+                }
+
+                if (g->getCurrentGamePhase() == Constants::MTG_PHASE_SECONDMAIN)
+                {
+                    efficiency = 100;
+                    //in 2nd main, go all out and try to max stuff.
+                }
+            }
+            break;
+        }
     case MTGAbility::COUNTERS:
-    {
-        MTGCardInstance * _target = (MTGCardInstance *) target;
-        efficiency = 0;
-        Counter * targetCounter = NULL;
-        int currentlevel = 0;
-
-        if (_target)
         {
-            if (_target->counters && _target->counters->hasCounter("level", 0, 0))
+            MTGCardInstance * _target = (MTGCardInstance *) target;
+            efficiency = 0;
+            if(AACounter * cc = dynamic_cast<AACounter*> (a))
             {
-                targetCounter = _target->counters->hasCounter("level", 0, 0);
-                currentlevel = targetCounter->nb;
-            }
-        }
-        if(AACounter * cc = dynamic_cast<AACounter*> (a))
-        {
-            if(cc && !targetCounter)
-            {
-                if(_target && _target->controller()->isAI() && cc->toughness>=0)
+                if(cc && _target)
                 {
-                    efficiency = 90;
+                    if(_target && _target->controller()->isAI() && cc->toughness>=0)
+                    {
+                        efficiency = 90;
 
-                }
-                if(_target && !_target->controller()->isAI() && ((_target->toughness + cc->toughness <= 0 && _target->toughness) || (cc->toughness < 0 && cc->power < 0)))
-                {
-                    efficiency = 90;
+                    }
+                    if(_target && !_target->controller()->isAI() && ((_target->toughness + cc->toughness <= 0 && _target->toughness) || (cc->toughness < 0 && cc->power < 0)))
+                    {
+                        efficiency = 90;
 
+                    }
+                    if(_target && _target->counters && _target->counters->counters && _target->counters->hasCounter(cc->power,cc->toughness) && _target->counters->hasCounter(cc->power,cc->toughness)->nb > 15)
+                    {
+                        efficiency = _target->counters->hasCounter(cc->power,cc->toughness)->nb;
+                    }
                 }
-                if(_target && _target->counters && _target->counters->counters && _target->counters->hasCounter(cc->power,cc->toughness) && _target->counters->hasCounter(cc->power,cc->toughness)->nb > 15)
-                {
-                    efficiency = _target->counters->hasCounter(cc->power,cc->toughness)->nb;
-                }
-                break;
             }
+            break;
         }
-        if (currentlevel < _target->MaxLevelUp)
-        {
-            efficiency = 85;
-            //increase the efficeincy of leveling up by a small amount equal to current level.
-            efficiency += currentlevel;
-
-            if (p->game->hand->nb_cards > 0 && p->isAI())
-            {
-                efficiency -= (10 * p->game->hand->nb_cards);//reduce the eff if by 10 times the amount of cards in Ais hand.
-                //it should always try playing more cards before deciding
-            }
-
-            if (g->getCurrentGamePhase() == Constants::MTG_PHASE_SECONDMAIN)
-            {
-                efficiency = 100;
-                //in 2nd main, go all out and try to max stuff.
-            }
-        }
-        break;
-    }
     case MTGAbility::STANDARD_PUMP:
         {
             MTGCardInstance * _target = (MTGCardInstance *) (a->target);
