@@ -388,7 +388,7 @@ int AIAction::getEfficiency()
         }
     case MTGAbility::STANDARD_LEVELUP:
         {
-            MTGCardInstance * _target = (MTGCardInstance *) target;
+            MTGCardInstance * _target = (MTGCardInstance *) (a->target);
             efficiency = 0;
             Counter * targetCounter = NULL;
             int currentlevel = 0;
@@ -400,23 +400,23 @@ int AIAction::getEfficiency()
                     targetCounter = _target->counters->hasCounter("level", 0, 0);
                     currentlevel = targetCounter->nb;
                 }
-            }
-            if (currentlevel < _target->MaxLevelUp)
-            {
-                efficiency = 85;
-                //increase the efficeincy of leveling up by a small amount equal to current level.
-                efficiency += currentlevel;
-
-                if (p->game->hand->nb_cards > 0 && p->isAI())
+                if (currentlevel < _target->MaxLevelUp)
                 {
-                    efficiency -= (10 * p->game->hand->nb_cards);//reduce the eff if by 10 times the amount of cards in Ais hand.
-                    //it should always try playing more cards before deciding
-                }
+                    efficiency = 85;
+                    //increase the efficeincy of leveling up by a small amount equal to current level.
+                    efficiency += currentlevel;
 
-                if (g->getCurrentGamePhase() == Constants::MTG_PHASE_SECONDMAIN)
-                {
-                    efficiency = 100;
-                    //in 2nd main, go all out and try to max stuff.
+                    if (p->game->hand->nb_cards > 0 && p->isAI())
+                    {
+                        efficiency -= (10 * p->game->hand->nb_cards);//reduce the eff if by 10 times the amount of cards in Ais hand.
+                        //it should always try playing more cards before deciding
+                    }
+
+                    if (g->getCurrentGamePhase() == Constants::MTG_PHASE_SECONDMAIN)
+                    {
+                        efficiency = 100;
+                        //in 2nd main, go all out and try to max stuff.
+                    }
                 }
             }
             break;
@@ -424,6 +424,8 @@ int AIAction::getEfficiency()
     case MTGAbility::COUNTERS:
         {
             MTGCardInstance * _target = (MTGCardInstance *) target;
+            if(!_target)
+            _target = (MTGCardInstance *) (a->target);
             efficiency = 0;
             if(AACounter * cc = dynamic_cast<AACounter*> (a))
             {
