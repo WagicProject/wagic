@@ -6583,7 +6583,7 @@ name=Blood Frenzy
 target=creature[attacking;blocking]
 restriction=before battle damage
 auto=4/0
-auto=transforms((,newability[phaseaction[endofturn] destroy]))
+auto=transforms((,newability[phaseaction[endofturn once] destroy]))
 text=Cast Blood Frenzy only before the combat damage step. -- Target attacking or blocking creature gets +4/+0 until end of turn. Destroy that creature at the beginning of the next end step.
 mana={1}{R}
 type=Instant
@@ -8341,8 +8341,8 @@ type=Sorcery
 [/card]
 [card]
 name=Brood of Cockroaches
-auto=@movedTo(mygraveyard) from(this|battlefield):phaseaction[endofturn] life:-1 controller
-auto=@movedTo(mygraveyard) from(this|battlefield):phaseaction[endofturn] moveTo(myhand)
+auto=@movedTo(mygraveyard) from(this|battlefield):phaseaction[endofturn once] life:-1 controller
+auto=@movedTo(mygraveyard) from(this|battlefield):phaseaction[endofturn once] moveTo(myhand)
 text=When Brood of Cockroaches is put into your graveyard from the battlefield, at the beginning of the next end step, you lose 1 life and return Brood of Cockroaches to your hand.
 mana={1}{B}
 type=Creature
@@ -9912,7 +9912,7 @@ type=Instant
 [/card]
 [card]
 name=Celestial Sword
-auto={3}{T}:target(creature|mybattlefield) transforms((,newability[phaseaction[endofturn] bury],newability[3/3])) ueot
+auto={3}{T}:target(creature|mybattlefield) transforms((,newability[phaseaction[endofturn once] bury],newability[3/3])) ueot
 text={3}, {T}: Target creature you control gets +3/+3 until end of turn. Destroy it at the beginning of the next end step. A creature destroyed this way can't be regenerated.
 mana={6}
 type=Artifact
@@ -10862,7 +10862,7 @@ toughness=1
 [/card]
 [card]
 name=Goatnapper
-auto=choice target(goat) moveto(mybattlefield) && untap && transforms((,haste,newability[phaseaction[endofturn] moveto(ownerbattlefield)])) ueot
+auto=choice target(goat) moveto(mybattlefield) && untap && transforms((,haste,newability[phaseaction[endofturn once] moveto(ownerbattlefield)])) ueot
 text=When Goatnapper enters the battlefield, untap target Goat and gain control of it until end of turn. It gains haste until end of turn.
 mana={2}{R}
 type=Creature
@@ -12939,7 +12939,7 @@ toughness=2
 [/card]
 [card]
 name=Crazed Armodon
-auto={G}:3/0 && trample && phaseaction[endofturn] destroy limit:1
+auto={G}:3/0 && trample && phaseaction[endofturn once] destroy limit:1
 text={G}: Crazed Armodon gets +3/+0 and gains trample until end of turn. Destroy Crazed Armodon at the beginning of the next end step. Activate this ability only once each turn.
 mana={2}{G}{G}
 type=Creature
@@ -13998,7 +13998,7 @@ type=Enchantment
 [card]
 name=Dark Maze
 abilities=defender
-auto={0}:canattack ueot && phaseaction[endofturn] moveTo(exile)
+auto={0}:canattack ueot && phaseaction[endofturn once] moveTo(exile)
 text=Defender (This creature can't attack.) -- {0}: Dark Maze can attack this turn as though it didn't have defender. Exile it at the beginning of the next end step.
 mana={4}{U}
 type=Creature
@@ -16822,7 +16822,7 @@ toughness=6
 [card]
 name=Dragon Whelp
 abilities=flying
-auto={r}:+1/0 ueot limit^phaseaction[endofturn] sacrifice^4
+auto={r}:+1/0 ueot limit^phaseaction[endofturn once] sacrifice^4
 text=Flying -- {R}: Dragon Whelp gets +1/+0 until end of turn. If this ability has been activated four or more times this turn, sacrifice Dragon Whelp at the beginning of the next end step.
 mana={2}{R}{R}
 type=Creature
@@ -20944,7 +20944,7 @@ subtype=Aura
 [/card]
 [card]
 name=Farrelite Priest
-auto={1}:add{w} limit^phaseaction[endofturn] sacrifice^4
+auto={1}:add{w} limit^phaseaction[endofturn once] sacrifice^4
 text={1}: Add {W} to your mana pool. If this ability has been activated four or more times this turn, sacrifice Farrelite Priest at the beginning of the next end step.
 mana={1}{W}{W}
 type=Creature
@@ -24865,7 +24865,7 @@ toughness=2
 [/card]
 [card]
 name=Giant Caterpillar
-auto={G}{S}:phaseaction[endofturn] token(Butterfly,creature insect, 1/1,flying green)
+auto={G}{S}:phaseaction[endofturn once] token(Butterfly,creature insect, 1/1,flying green)
 text={G}, Sacrifice Giant Caterpillar: Put a 1/1 green Insect creature token with flying named Butterfly onto the battlefield at the beginning of the next end step.
 mana={3}{G}
 type=Creature
@@ -31438,7 +31438,7 @@ toughness=3
 [/card]
 [card]
 name=Initiates of the Ebon Hand
-auto={1}:add{b} limit^phaseaction[endofturn] sacrifice^4
+auto={1}:add{b} limit^phaseaction[endofturn once] sacrifice^4
 text={1}: Add {B} to your mana pool. If this ability has been activated four or more times this turn, sacrifice Initiates of the Ebon Hand at the beginning of the next end step.
 mana={B}
 type=Creature
@@ -40778,7 +40778,7 @@ toughness=4
 [/card]
 [card]
 name=Mogg Cannon
-auto={T}:target(creature|mybattlefield) transforms((,newability[phaseaction[endofturn] destroy],flying,newability[1/0])) ueot
+auto={T}:target(creature|mybattlefield) transforms((,newability[phaseaction[endofturn once] destroy],flying,newability[1/0])) ueot
 text={T}: Target creature you control gets +1/+0 and gains flying until end of turn. Destroy that creature at the beginning of the next end step.
 mana={2}
 type=Artifact
@@ -48674,7 +48674,7 @@ toughness=1
 [/card]
 [card]
 name=Puffer Extract
-auto={X}{T}:thisforeach(X) 1/1 target(creature|mybattlefield) && transforms((,newability[phaseaction[endofturn] destroy])) ueot
+auto={X}{T}:thisforeach(X) 1/1 target(creature|mybattlefield) && transforms((,newability[phaseaction[endofturn once] destroy])) ueot
 text={X}, {T}: Target creature you control gets +X/+X until end of turn. Destroy it at the beginning of the next end step.
 mana={5}
 type=Artifact
@@ -49713,7 +49713,7 @@ auto={T}:Add{W}
 auto={T}:Add{U}
 auto={T}:Add{B}
 auto={T}:Add{R}
-auto=@tappedformana(this):phaseaction[endofturn] moveTo(opponentbattlefield)
+auto=@tappedformana(this):phaseaction[endofturn once] moveTo(opponentbattlefield)
 text={T}: Add one mana of any color to your mana pool. An opponent gains control of Rainbow Vale at the beginning of the next end step.
 type=Land
 [/card]
@@ -52949,7 +52949,7 @@ type=Land
 [/card]
 [card]
 name=Rukh Egg
-auto=@movedTo(graveyard) from(this|battlefield):phaseaction[endofturn] token(Bird,Creature Bird,4/4,red,flying)
+auto=@movedTo(graveyard) from(this|battlefield):phaseaction[endofturn once] token(Bird,Creature Bird,4/4,red,flying)
 text=When Rukh Egg is put into a graveyard from the battlefield, put a 4/4 red Bird creature token with flying onto the battlefield at the beginning of the next end step.
 mana={3}{R}
 type=Creature
@@ -55136,10 +55136,10 @@ type=Land
 [card]
 name=Season of the Witch
 auto=upcost[{L}{L}] sacrifice
-auto=@each my combatends:all(creature[-fresh;-attacking;-defender;-cantattack;-tapped]|mybattlefield) phaseaction[endofturn] destroy
-auto=@each my combatends:all(creature[fresh;haste;-attacking;-defender;-cantattack;-tapped]|mybattlefield) phaseaction[endofturn] destroy
-auto=@each opponent combatends:all(creature[-fresh;-attacking;-defender;-cantattack]|opponentbattlefield) phaseaction[endofturn] destroy
-auto=@each opponent combatends:all(creature[fresh;haste;-attacking;-defender;-cantattack]|opponentbattlefield) phaseaction[endofturn] destroy
+auto=@each my combatends:all(creature[-fresh;-attacking;-defender;-cantattack;-tapped]|mybattlefield) phaseaction[endofturn once] destroy
+auto=@each my combatends:all(creature[fresh;haste;-attacking;-defender;-cantattack;-tapped]|mybattlefield) phaseaction[endofturn once] destroy
+auto=@each opponent combatends:all(creature[-fresh;-attacking;-defender;-cantattack]|opponentbattlefield) phaseaction[endofturn once] destroy
+auto=@each opponent combatends:all(creature[fresh;haste;-attacking;-defender;-cantattack]|opponentbattlefield) phaseaction[endofturn once] destroy
 text=At the beginning of your upkeep, sacrifice Season of the Witch unless you pay 2 life. -- At the beginning of the end step, destroy all untapped creatures that didn't attack this turn, except for creatures that couldn't attack.
 mana={B}{B}{B}
 type=Enchantment
@@ -63398,9 +63398,9 @@ type=Instant
 [/card]
 [card]
 name=Surprise Deployment
-target=creature|myhand
+target=creature[-white]|myhand
 auto=moveTo(mybattlefield)
-auto=phaseaction[endofturn] moveTo(ownerhand)
+auto=transforms((,newability[phaseaction[endofturn once] moveTo(ownerhand)]))
 restriction=during battle
 text=Cast Surprise Deployment only during combat. -- You may put a nonwhite creature card from your hand onto the battlefield. At the beginning of the next end step, return that creature to your hand. (Return it only if it's on the battlefield.)
 mana={3}{W}
@@ -67656,7 +67656,7 @@ toughness=3
 [/card]
 [card]
 name=Transluminant
-auto={W}{S}:phaseaction[endofturn] token(Spirit,creature spirit, 1/1,flying white)
+auto={W}{S}:phaseaction[endofturn once] token(Spirit,creature spirit, 1/1,flying white)
 text={W}, Sacrifice Transluminant: Put a 1/1 white Spirit creature token with flying onto the battlefield at the beginning of the next end step.
 mana={1}{G}
 type=Creature
