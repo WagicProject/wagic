@@ -972,8 +972,13 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
                 DebugTrace("ABILITYFACTORY Error parsing: " << sWithoutTc);
                 return NULL;
             }
-
-            //A stupid Special case for ManaProducers because they don't use the stack :(
+            string limit = "";
+            size_t limit_str = sWithoutTc.find("limit:");
+            if (limit_str != string::npos)
+            {
+                limit = sWithoutTc.substr(limit_str + 6);
+            }
+            ////A stupid Special case for ManaProducers, becuase Ai only understands manaabilities that are not nested.
             AManaProducer * amp = dynamic_cast<AManaProducer*> (a);
             if (amp)
             {
@@ -982,14 +987,11 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
                     cost->setExtraCostsAction(a, card);
                 amp->oneShot = 0;
                 amp->tap = doTap;
+                amp->limit = limit;
+                amp->sideEffect = sideEffect;
+                amp->usesBeforeSideEffects = usesBeforeSideEffect;
+                amp->restrictions = restrictions;
                 return amp;
-            }
-
-            string limit = "";
-            size_t limit_str = sWithoutTc.find("limit:");
-            if (limit_str != string::npos)
-            {
-                limit = sWithoutTc.substr(limit_str + 6);
             }
             
             AEquip *ae = dynamic_cast<AEquip*> (a);
@@ -1179,17 +1181,17 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             phase = Constants::MTG_PHASE_SECONDMAIN;
         }
         bool sourceinPlay = false;
-        if (s1.find(",sourceinplay") != string::npos)
+        if (s1.find(",sourceinplay") != string::npos || s1.find(" sourceinplay") != string::npos)
         {
             sourceinPlay = true;
         }
         bool next = true;
-        if (s1.find(",next") != string::npos)
+        if (s1.find(",next") != string::npos||s1.find(" next") != string::npos)
         {
             next = false;
         }
         bool once = false;
-        if (s1.find(",once") != string::npos)
+        if (s1.find(",once") != string::npos||s1.find(" once") != string::npos)
         {
             once = true;
         }
@@ -1671,17 +1673,17 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             phase = Constants::MTG_PHASE_SECONDMAIN;
         }
         bool sourceinPlay = false;
-        if (s1.find(",sourceinplay") != string::npos)
+        if (s1.find(",sourceinplay") != string::npos || s1.find(" sourceinplay") != string::npos)
         {
             sourceinPlay = true;
         }
         bool next = true;
-        if (s1.find(",next") != string::npos)
+        if (s1.find(",next") != string::npos||s1.find(" next") != string::npos)
         {
             next = false;
         }
         bool once = false;
-        if (s1.find(",once") != string::npos)
+        if (s1.find(",once") != string::npos||s1.find(" once") != string::npos)
         {
             once = true;
         }
@@ -2645,9 +2647,9 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             if(abilities[j].find("newability[") != string::npos)
             {
                 newAbilityFound = true;
-                size_t NewSkill = abilities[j].find("[");
-                size_t NewSkillEnd = abilities[j].rfind("]");
-                string newAbilities = abilities[j].substr(NewSkill + 1,NewSkillEnd - NewSkill - 1);
+                size_t NewSkill = abilities[j].find("newability[");
+                size_t NewSkillEnd = abilities[j].find_last_of("]");
+                string newAbilities = abilities[j].substr(NewSkill + 11,NewSkillEnd - NewSkill - 11);
                 newAbilitiesList.push_back(newAbilities);
             }
         }
@@ -4826,6 +4828,8 @@ int AManaProducer::reactToClick(MTGCardInstance * _card)
 {
     if (!isReactingToClick(_card))
         return 0;
+    if(!ActivatedAbility::isReactingToClick(_card))
+        return 0;
     if (cost)
     {
         cost->setExtraCostsAction(this, _card);
@@ -4837,12 +4841,6 @@ int AManaProducer::reactToClick(MTGCardInstance * _card)
         GameObserver::GetInstance()->currentlyActing()->getManaPool()->pay(cost);
         cost->doPayExtra();
     }
-    if (tap)
-    {
-        GameObserver *g = GameObserver::GetInstance();
-        WEvent * e = NEW WEventCardTappedForMana(source, 0, 1);
-        g->receiveEvent(e);
-    }
 
     if (options[Options::SFXVOLUME].number > 0)
     {
@@ -4850,7 +4848,7 @@ int AManaProducer::reactToClick(MTGCardInstance * _card)
         if (sample)
             JSoundSystem::GetInstance()->PlaySample(sample);
     }
-    return resolve();
+    return ActivatedAbility::activateAbility();
 }
 
 const char * AManaProducer::getMenuText()
