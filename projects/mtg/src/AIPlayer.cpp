@@ -431,12 +431,12 @@ int AIAction::getEfficiency()
             {
                 if(cc && _target)
                 {
-                    if(_target && _target->controller()->isAI() && cc->toughness>=0)
+                    if(_target && _target->controller() == p && cc->toughness>=0)
                     {
                         efficiency = 90;
 
                     }
-                    if(_target && !_target->controller()->isAI() && ((_target->toughness + cc->toughness <= 0 && _target->toughness) || (cc->toughness < 0 && cc->power < 0)))
+                    if(_target && _target->controller() != p && ((_target->toughness + cc->toughness <= 0 && _target->toughness) || (cc->toughness < 0 && cc->power < 0)))
                     {
                         efficiency = 90;
 
@@ -968,8 +968,14 @@ int AIPlayer::chooseTarget(TargetChooser * _tc, Player * forceTarget,MTGCardInst
         {
         case TARGET_CARD:
             {
-                MTGCardInstance * card = ((MTGCardInstance *) potentialTargets[i]);
-                clickstream.push(NEW AIAction(card));
+                if(!Choosencard)
+                {
+                    MTGCardInstance * card = ((MTGCardInstance *) potentialTargets[i]);
+                    clickstream.push(NEW AIAction(card));
+                    Choosencard = card;
+                }
+                //can't be 100% positive that this wont have an adverse side-effect
+                //hoping this fills a edge case where ai will keep trying to choose a target for a card which it already has a target for.
                 return 1;
                 break;
             }
