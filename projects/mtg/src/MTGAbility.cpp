@@ -2907,7 +2907,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
 }
 
 //Tells the AI if the ability should target itself or an ennemy
-int AbilityFactory::abilityEfficiency(MTGAbility * a, Player * p, int mode, TargetChooser * tc)
+int AbilityFactory::abilityEfficiency(MTGAbility * a, Player * p, int mode, TargetChooser * tc,Targetable * target)
 {
     if (!a)
         return BAKA_EFFECT_DONTKNOW;
@@ -2967,7 +2967,7 @@ int AbilityFactory::abilityEfficiency(MTGAbility * a, Player * p, int mode, Targ
 
     if (AAMover * aam = dynamic_cast<AAMover *>(a))
     {
-        MTGGameZone * z = aam->destinationZone();
+        MTGGameZone * z = aam->destinationZone(target);
         if (tc && tc->targetsZone(p->game->library))
         {
             if (z == p->game->hand || z == p->game->inPlay)

@@ -698,7 +698,7 @@ int AIAction::getEfficiency()
         if (target)
         {
             AbilityFactory af;
-            int suggestion = af.abilityEfficiency(a, p, MODE_ABILITY);
+            int suggestion = af.abilityEfficiency(a, p, MODE_ABILITY,NULL,target);
             if ((suggestion == BAKA_EFFECT_BAD && p == target->controller())
                     || (suggestion == BAKA_EFFECT_GOOD && p != target->controller()))
             {
@@ -706,12 +706,13 @@ int AIAction::getEfficiency()
             }
             else
             {
-                efficiency = WRand() % 5; //Small percentage of chance for unknown abilities
+            //without a base to start with Wrand % 5 almost always returns 0.
+                efficiency = 10 + WRand() % 5; //Small percentage of chance for unknown abilities
             }
         }
         else
         {
-            efficiency = WRand() % 10;
+            efficiency = 10 + WRand() % 10;
         }
         break;
     }

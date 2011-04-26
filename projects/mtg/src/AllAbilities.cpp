@@ -1603,7 +1603,7 @@ AAMover::AAMover(int _id, MTGCardInstance * _source, MTGCardInstance * _target, 
         target = _target;
 }
 
-MTGGameZone * AAMover::destinationZone()
+MTGGameZone * AAMover::destinationZone(Targetable * target)
 {
     MTGCardInstance * _target = (MTGCardInstance *) target;
     return MTGGameZone::stringToZone(destination, source, _target);
@@ -1619,7 +1619,7 @@ int AAMover::resolve()
         {
             GameObserver * g = GameObserver::GetInstance();
             MTGGameZone * fromZone = _target->getCurrentZone();
-            MTGGameZone * destZone = destinationZone();
+            MTGGameZone * destZone = destinationZone(target);
 
             //inplay is a special zone !
             for (int i = 0; i < 2; i++)

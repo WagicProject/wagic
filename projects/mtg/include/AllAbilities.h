@@ -1035,7 +1035,7 @@ public:
     string destination;
 
     AAMover(int _id, MTGCardInstance * _source, MTGCardInstance * _target, string dest, ManaCost * _cost = NULL);
-    MTGGameZone * destinationZone();
+    MTGGameZone * destinationZone(Targetable * target = NULL);
     int resolve();
     const char * getMenuText();
     AAMover * clone() const;
