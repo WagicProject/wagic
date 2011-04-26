@@ -77,8 +77,7 @@ CardPrimitive::CardPrimitive()
 
 CardPrimitive::CardPrimitive(CardPrimitive * source)
 {
-    for (map<int, int>::const_iterator it = source->basicAbilities.begin(); it != source->basicAbilities.end(); ++it)
-        basicAbilities[it->first] = source->basicAbilities[it->first];
+    basicAbilities = source->basicAbilities;
 
     for (size_t i = 0; i < source->types.size(); ++i)
         types.push_back(source->types[i]);
@@ -111,7 +110,7 @@ CardPrimitive::~CardPrimitive()
 
 int CardPrimitive::init()
 {
-    basicAbilities.clear();
+    basicAbilities.reset();
 
     types.clear();
 

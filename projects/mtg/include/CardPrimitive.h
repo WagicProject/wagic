@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <bitset>
 
 #include "ManaCost.h"
 #include "ObjectAnalytics.h"
@@ -35,7 +36,8 @@ public:
     int init();
 
     uint8_t colors;
-    map<int,int> basicAbilities;
+    std::bitset<Constants::NB_BASIC_ABILITIES> basicAbilities;
+
     map<string,string> magicTexts;
     string magicText;
     int alias;

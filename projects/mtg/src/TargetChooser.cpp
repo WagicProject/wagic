@@ -592,12 +592,9 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                                 attributefound = 1;
                                 if (minus)
                                 {
-                                    cd->basicAbilities[j] = -1;
+                                     cd->mode = CD_NOT;
                                 }
-                                else
-                                {
-                                    cd->basicAbilities[j] = 1;
-                                }
+                                cd->basicAbilities.set(j);
                             }
                         }
                     }

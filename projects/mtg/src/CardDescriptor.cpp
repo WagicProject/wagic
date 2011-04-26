@@ -208,13 +208,17 @@ MTGCardInstance * CardDescriptor::match(MTGCardInstance * card)
     }
 
     //Abilities
-    for (map<int, int>::const_iterator it = basicAbilities.begin(); it != basicAbilities.end(); ++it)
+    std::bitset<Constants::NB_BASIC_ABILITIES> set = basicAbilities & card->basicAbilities;
+
+    if (mode == CD_NOT)
     {
-        int j = it->first;
-        if ((basicAbilities[j] == 1 && !card->basicAbilities[j]) || (basicAbilities[j] == -1 && card->basicAbilities[j]))
-        {
-            match = NULL;
-        }
+        if (set.any())
+            return NULL;
+    }
+    else
+    {
+        if (set != basicAbilities)
+            return NULL;
     }
 
     if ((tapped == -1 && card->isTapped()) || (tapped == 1 && !card->isTapped()))

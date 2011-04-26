@@ -1095,9 +1095,10 @@ void MTGDeck::printDetailedDeckText(std::ofstream& file )
         if ( card->data->hasRestriction )
             currentCard << ", " << card->data->otherrestriction;
 
-        map<int,int>::iterator abilityIter;
-        for ( abilityIter = card->data->basicAbilities.begin(); abilityIter != card->data->basicAbilities.end(); ++abilityIter )
-            currentCard << Constants::MTGBasicAbilities[ abilityIter->first ] << "; ";
+        for (size_t x = 0; card->data->basicAbilities.size(); ++x)
+        {
+            currentCard <<  Constants::MTGBasicAbilities[x] << "; ";
+        }
         currentCard <<endl;
 
         for ( int i = 0; i < nbCards; i++ )

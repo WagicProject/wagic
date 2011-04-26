@@ -2406,17 +2406,21 @@ ATransformer::ATransformer(int id, MTGCardInstance * source, MTGCardInstance * t
                     }
                 }
             }
+
             for (it = colors.begin(); it != colors.end(); it++)
             {
                 _target->setColor(*it);
             }
+
             for (it = abilities.begin(); it != abilities.end(); it++)
             {
-                _target->basicAbilities[*it]++;
+                _target->basicAbilities.set(*it);
             }
+
             for (it = oldcolors.begin(); it != oldcolors.end(); it++)
             {
             }
+
             if(newAbilityFound)
             {
                 for (unsigned int k = 0 ; k < newAbilitiesList.size();k++)
@@ -2499,18 +2503,22 @@ int ATransformer::destroy()
             }
             //iterators annoy me :/
         }
+
         for (it = colors.begin(); it != colors.end(); it++)
         {
             _target->removeColor(*it);
         }
+
         for (it = abilities.begin(); it != abilities.end(); it++)
         {
-            _target->basicAbilities[*it]--;
+            _target->basicAbilities.reset(*it);
         }
+
         for (it = oldcolors.begin(); it != oldcolors.end(); it++)
         {
             _target->setColor(*it);
         }
+
         if (remove)
         {
             for (it = oldtypes.begin(); it != oldtypes.end(); it++)

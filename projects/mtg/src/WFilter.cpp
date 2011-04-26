@@ -404,14 +404,10 @@ WCFilterRarity::WCFilterRarity(string arg)
 bool WCFilterAbility::isMatch(MTGCard * c)
 {
     if (ability < 0) return false;
-    map<int, int>::iterator it = c->data->basicAbilities.find(ability);
-
-    if (it != c->data->basicAbilities.end())
-    {
-        if (it->second > 0) return true;
-    }
-    return false;
+    
+    return c->data->basicAbilities.test(ability);
 }
+
 WCFilterAbility::WCFilterAbility(string arg)
 {
     std::transform(arg.begin(), arg.end(), arg.begin(), ::tolower);

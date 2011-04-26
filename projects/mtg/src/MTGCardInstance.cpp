@@ -53,11 +53,8 @@ void MTGCardInstance::copy(MTGCardInstance * card)
 {
     MTGCard * source = card->model;
     CardPrimitive * data = source->data;
-    for (map<int, int>::const_iterator it = data->basicAbilities.begin(); it != data->basicAbilities.end(); ++it)
-    {
-        int i = it->first;
-        basicAbilities[i] = data->basicAbilities[i];
-    }
+
+    basicAbilities = card->basicAbilities;
     for (size_t i = 0; i < data->types.size(); i++)
     {
         types.push_back(data->types[i]);
@@ -1048,18 +1045,20 @@ JSample * MTGCardInstance::getSample()
         }
     }
 
-    for (map<int, int>::const_iterator it = basicAbilities.begin(); it != basicAbilities.end(); ++it)
+    if (basicAbilities.any())
     {
-        int i = it->first;
-        if (!basicAbilities[i])
-            continue;
-        string type = Constants::MTGBasicAbilities[i];
-        type = type + ".wav";
-        js = WResourceManager::Instance()->RetrieveSample(type);
-        if (js)
+        for (size_t x = 0; x < basicAbilities.size(); ++x)
         {
-            sample = string(type);
-            return js;
+            if (!basicAbilities.test(x))
+                continue;
+            string type = Constants::MTGBasicAbilities[x];
+            type = type + ".wav";
+            js = WResourceManager::Instance()->RetrieveSample(type);
+            if (js)
+            {
+                sample = string(type);
+                return js;
+            }
         }
     }
 

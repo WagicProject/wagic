@@ -3122,7 +3122,7 @@ int AbilityFactory::getAbilities(vector<MTGAbility *> * v, Spell * spell, MTGCar
             card->types.clear();
             string cre = "Creature";
             card->setType(cre.c_str());
-            card->basicAbilities.clear();
+            card->basicAbilities.reset();
             card->getManaCost()->remove(0,100);
             card->getManaCost()->remove(1,100);
             card->getManaCost()->remove(2,100);
@@ -3139,11 +3139,9 @@ int AbilityFactory::getAbilities(vector<MTGAbility *> * v, Spell * spell, MTGCar
             card->name = card->model->data->name;
             card->types = card->model->data->types;
             card->colors = card->model->data->colors;
-            for (map<int, int>::const_iterator it = card->model->data->basicAbilities.begin(); it != card->model->data->basicAbilities.end(); ++it)
-            {
-                int i = it->first;
-                card->basicAbilities[i] += card->model->data->basicAbilities[i];
-            }
+
+            card->basicAbilities |= card->model->data->basicAbilities;
+
             ManaCost * copyCost = card->model->data->getManaCost();
             card->getManaCost()->copy(copyCost);
             magicText = card->model->data->magicText;

@@ -1311,12 +1311,12 @@ public:
  modifier : 1 to add the ability, 0 to remove it
  _ability : Id of the ability, as described in mtgdefinitions
  */
-class ABasicAbilityModifier: public MTGAbility
+class ABasicAbilityModifier : public MTGAbility
 {
 public:
     int modifier;
     int ability;
-    int value_before_modification;
+    bool value_before_modification;
     ABasicAbilityModifier(int _id, MTGCardInstance * _source, MTGCardInstance * _target, int _ability, int _modifier = 1) :
         MTGAbility(_id, _source, _target), modifier(_modifier), ability(_ability)
     {
@@ -1326,35 +1326,20 @@ public:
 
     int addToGame()
     {
-        value_before_modification = ((MTGCardInstance *) target)->basicAbilities[ability];
-        if(ability != Constants::ABSORB && ability != Constants::FLANKING)
-        {
-            ((MTGCardInstance *) target)->basicAbilities[ability] = modifier;
-        }
-        else
-        {
-            ((MTGCardInstance *) target)->basicAbilities[ability] += modifier;
-        }
+        value_before_modification = ((MTGCardInstance *) target)->basicAbilities.test(ability);
+
+        assert(modifier < 2);
+        ((MTGCardInstance *) target)->basicAbilities.set(ability, modifier > 0);
+
         return MTGAbility::addToGame();
     }
 
     int destroy()
     {
-        if (((MTGCardInstance *) target)->basicAbilities[ability] == modifier && (ability != Constants::ABSORB && ability != Constants::FLANKING))
-        {
-            ((MTGCardInstance *) target)->basicAbilities[ability] = value_before_modification;
-            return 1;
-        }
-        else if (ability == Constants::ABSORB || ability == Constants::FLANKING)
-        {
-            ((MTGCardInstance *) target)->basicAbilities[ability] -= 1;
-            return 1;
-        }
-        else
-        {
-                    //BUG !!!
-            return 0;
-        }
+         assert(modifier < 2);
+        ((MTGCardInstance *) target)->basicAbilities.set(ability, value_before_modification);
+
+        return 1;
     }
 
     const char * getMenuText()
@@ -1375,18 +1360,17 @@ public:
         a->isClone = 1;
         return a;
     }
-
 };
 
 /*Instants that modifies a basic ability until end of turn */
-class AInstantBasicAbilityModifierUntilEOT: public InstantAbility
+class AInstantBasicAbilityModifierUntilEOT : public InstantAbility
 {
 public:
-    int stateBeforeActivation;
+    bool stateBeforeActivation;
     int ability;
     int value;
-    AInstantBasicAbilityModifierUntilEOT(int _id, MTGCardInstance * _source, MTGCardInstance * _target, int _ability, int value) :
-        InstantAbility(_id, _source, _target), ability(_ability), value(value)
+    AInstantBasicAbilityModifierUntilEOT(int _id, MTGCardInstance * _source, MTGCardInstance * _target, int _ability, int value)
+        : InstantAbility(_id, _source, _target), ability(_ability), value(value)
         {
             aType = MTGAbility::STANDARDABILITYGRANT;
             abilitygranted = ability;
@@ -1395,15 +1379,10 @@ public:
         int addToGame()
         {
             MTGCardInstance * _target = (MTGCardInstance *) target;
-            stateBeforeActivation = _target->basicAbilities[ability];
-            if(ability != Constants::ABSORB)
-            {
-                _target->basicAbilities[ability] = value;
-            }
-            else
-            {
-                _target->basicAbilities[ability] += value;
-            }
+            stateBeforeActivation = _target->basicAbilities.test(ability);
+
+            assert(value < 2);
+            _target->basicAbilities.set(ability, value > 0);
             return InstantAbility::addToGame();
         }
 
@@ -1415,9 +1394,11 @@ public:
     int destroy()
     {
         MTGCardInstance * _target = (MTGCardInstance *) target;
-        if (_target) _target->basicAbilities[ability] = stateBeforeActivation;
+        if (_target)
+            _target->basicAbilities.set(ability, stateBeforeActivation);
         return 1;
     }
+
     virtual ostream& toString(ostream& out) const
     {
         out << "ABasicAbilityModifierUntilEOT ::: stateBeforeActivation : " << stateBeforeActivation << " ability : " << ability
@@ -1431,7 +1412,6 @@ public:
         a->isClone = 1;
         return a;
     }
-
 };
 
 //Alteration of Ability until of turn (Aura)
