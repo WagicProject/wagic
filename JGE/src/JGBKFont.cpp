@@ -102,8 +102,12 @@ bool JGBKFont::Init(const char* engFileName, const char* chnFileName, int fontsi
 		{
 			mGBCode[index] = -1;
 
-			mSprites[index] = new JQuad(mTexture, x*mFontSize, y*mFontSize, mFontSize, mFontSize);
-			mSprites[index]->SetHotSpot(mFontSize/2, mFontSize/2);
+			mSprites[index] = new JQuad(mTexture, 
+                                        static_cast<float>(x*mFontSize),
+                                        static_cast<float>(y*mFontSize),
+                                        static_cast<float>(mFontSize),
+                                        static_cast<float>(mFontSize));
+			mSprites[index]->SetHotSpot(static_cast<float>(mFontSize/2), static_cast<float>(mFontSize/2));
 
 			index++;
 		}
