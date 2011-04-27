@@ -108,7 +108,7 @@ class SdlApp {
         void OnMouseClicked(const SDL_MouseButtonEvent& event);
         void OnMouseMoved(const SDL_MouseMotionEvent& event);
         void OnEvent(SDL_Event* Event) {
-          if(Event->type < SDL_USEREVENT) DebugTrace("Received Event : " << Event->type);
+            if(Event->type < SDL_USEREVENT) DebugTrace("Event received" << Event->type);
             switch(Event->type){
             case SDL_QUIT:
             {
@@ -149,9 +149,19 @@ class SdlApp {
               lastMouseUpTime = eventTime;
               break;
             }
-            case WAGIC_UPDATE_EVENT:
-              OnUpdate();
+            case SDL_FINGERMOTION:
+            {
+              DebugTrace("FingerMotion : touchId " << Event->tfinger.touchId
+                         << ", fingerId " << Event->tfinger.fingerId
+                         << ", state " << Event->tfinger.state
+                         << ", x " << Event->tfinger.x
+                         << ", y " << Event->tfinger.y
+                         << ", dy " << Event->tfinger.dx
+                         << ", dy " << Event->tfinger.dy
+                         << ", pressure " << Event->tfinger.pressure
+                         );
               break;
+            }
             case SDL_MULTIGESTURE:
             {
               DebugTrace("Multigesure : touchId " << Event->mgesture.touchId
@@ -162,6 +172,9 @@ class SdlApp {
                          << ", numFinder " << Event->mgesture.numFingers);
               break;
             }
+            case WAGIC_UPDATE_EVENT:
+              OnUpdate();
+              break;
             }
         }
         void OnUpdate();
@@ -182,22 +195,24 @@ SdlApp *g_SdlApp = NULL;
 
 static const struct { LocalKeySym keysym; JButton keycode; } gDefaultBindings[] =
 {
-  { SDLK_RETURN,       JGE_BTN_MENU },
-  { SDLK_KP_ENTER,     JGE_BTN_MENU },
-  { SDLK_ESCAPE,       JGE_BTN_MENU },
-  { SDLK_BACKSPACE,    JGE_BTN_CTRL },
-  { SDLK_UP,           JGE_BTN_UP },
-  { SDLK_DOWN,         JGE_BTN_DOWN },
-  { SDLK_LEFT,         JGE_BTN_LEFT },
-  { SDLK_RIGHT,        JGE_BTN_RIGHT },
-  { SDLK_SPACE,        JGE_BTN_OK },
-  { SDLK_TAB,          JGE_BTN_CANCEL },
-  { SDLK_j,            JGE_BTN_PRI },
-  { SDLK_k,            JGE_BTN_SEC },
-  { SDLK_q,            JGE_BTN_PREV },
-  { SDLK_a,            JGE_BTN_NEXT },
-  { SDLK_f,            JGE_BTN_FULLSCREEN },
-  { SDL_SCANCODE_AC_BACK, JGE_BTN_MENU },
+  { SDLK_RETURN,        JGE_BTN_MENU },
+  { SDLK_KP_ENTER,      JGE_BTN_MENU },
+  { SDLK_ESCAPE,        JGE_BTN_MENU },
+  { SDLK_BACKSPACE,     JGE_BTN_CTRL },
+  { SDLK_UP,            JGE_BTN_UP },
+  { SDLK_DOWN,          JGE_BTN_DOWN },
+  { SDLK_LEFT,          JGE_BTN_LEFT },
+  { SDLK_RIGHT,         JGE_BTN_RIGHT },
+  { SDLK_SPACE,         JGE_BTN_OK },
+  { SDLK_TAB,           JGE_BTN_CANCEL },
+  { SDLK_j,             JGE_BTN_PRI },
+  { SDLK_k,             JGE_BTN_SEC },
+  { SDLK_q,             JGE_BTN_PREV },
+  { SDLK_a,             JGE_BTN_NEXT },
+  { SDLK_f,             JGE_BTN_FULLSCREEN },
+  { SDLK_AC_BACK,       JGE_BTN_MENU },
+  { SDLK_VOLUMEUP,      JGE_BTN_PREV },
+  { SDLK_VOLUMEDOWN,    JGE_BTN_SEC},
 };
 
 void JGECreateDefaultBindings()
