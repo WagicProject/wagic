@@ -18779,7 +18779,6 @@ toughness=1
 [/card]
 [card]
 name=Elvish Berserker
-abilities=haste
 auto=rampage(1/1,0)
 text=Whenever Elvish Berserker becomes blocked, it gets +1/+1 until end of turn for each creature blocking it.
 mana={G}
@@ -43913,7 +43912,7 @@ toughness=1
 [/card]
 [card]
 name=Nullmage Shepherd
-auto={T(creature|myBattlefield)}{T(creature|myBattlefield)}{T(creature|myBattlefield)}{T(creature|myBattlefield)}:destroy all(artifact,enchantment)
+auto={T(creature|myBattlefield)}{T(creature|myBattlefield)}{T(creature|myBattlefield)}{T(creature|myBattlefield)}:destroy target(artifact,enchantment)
 text=Tap four untapped creatures you control: Destroy target artifact or enchantment.
 mana={3}{G}
 type=Creature

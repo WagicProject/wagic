@@ -72,6 +72,15 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Blightning
+target=player
+auto=damage:3
+auto=discard:2
+text=Blightning deals 3 damage to target player. That player discards two cards.
+mana={1}{B}{R}
+type=Sorcery
+[/card]
+[card]
 name=Cabal Inquisitor
 auto=aslongas(*|mygraveyard) {1}{b}{e(*|mygraveyard)}{e(*|mygraveyard)}{t}:target(player) discard:1 asSorcery >6
 text=Threshold - {1}{B}, {T}, Exile two cards from your graveyard: Target player discards a card. Activate this ability only any time you could cast a sorcery, and only if seven or more cards are in your graveyard.
@@ -171,6 +180,22 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Deception
+target=opponent
+auto=discard:2
+text=Target opponent discards two cards.
+mana={2}{B}
+type=Sorcery
+[/card]
+[card]
+name=Delirium Skeins
+auto=discard:3 controller
+auto=discard:3 opponent
+text=Each player discards three cards.
+mana={2}{B}
+type=Sorcery
+[/card]
+[card]
 name=Desecrated Earth
 target=land
 auto=discard:1 targetcontroller
@@ -237,6 +262,23 @@ type=Creature
 subtype=Specter Spirit
 power=*
 toughness=*
+[/card]
+[card]
+name=Forget
+target=player
+auto=discard:2
+auto=draw:2
+text=Target player discards two cards, then draws as many cards as he or she discarded this way.
+mana={U}{U}
+type=Sorcery
+[/card]
+[card]
+name=Fugue
+target=player
+auto=discard:3
+text=Target player discards three cards.
+mana={3}{B}{B}
+type=Sorcery
 [/card]
 [card]
 name=Fungal Shambler
@@ -612,9 +654,10 @@ type=Sorcery
 [card]
 name=Sword of Feast and Famine
 auto=2/2
-auto=teach(creature) protection from(black)
-auto=teach(creature) protection from(green)
-auto=@combatdamaged(player) from(mytgt): discard:1 opponent
+auto=teach(creature) protection from black
+auto=teach(creature) protection from green
+auto=@combatdamaged(player) from(mytgt):discard:1 opponent
+auto=@combatdamaged(player) from(mytgt):untap all(land|mybattlefield)
 auto={2}:equip
 text=Equipped creature gets +2/+2 and has protection from black and from green. -- Whenever equipped creature deals combat damage to a player, that player discards a card and you untap all lands you control. -- Equip {2}
 mana={3}
@@ -690,47 +733,4 @@ type=Creature
 subtype=Human Wizard
 power=1
 toughness=1
-[/card]
-[card]
-name=Blightning
-target=player
-auto=damage:3
-auto=discard:2
-####The card should not cause random discard!
-text=Blightning deals 3 damage to target player. That player discards two cards.
-mana={1}{B}{R}
-type=Sorcery
-[/card]
-[card]
-name=Deception
-target=opponent
-auto=discard:2
-text=Target opponent discards two cards.
-mana={2}{B}
-type=Sorcery
-[/card]
-[card]
-name=Delirium Skeins
-auto=discard:3 controller
-auto=discard:3 opponent
-text=Each player discards three cards.
-mana={2}{B}
-type=Sorcery
-[/card]
-[card]
-name=Fugue
-target=player
-auto=discard:3
-text=Target player discards three cards.
-mana={3}{B}{B}
-type=Sorcery
-[/card]
-[card]
-name=Forget
-target=player
-auto=discard:2
-auto=draw:2
-text=Target player discards two cards, then draws as many cards as he or she discarded this way.
-mana={U}{U}
-type=Sorcery
 [/card]
