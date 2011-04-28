@@ -485,6 +485,8 @@ int MTGKickerRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
     if(OptionKicker::KICKER_ALWAYS == options[Options::KICKERPAYMENT].number)
         return 0;
     Player * player = game->currentlyActing();
+    if(!player->game->hand->hasCard(card))
+    return 0;
     ManaCost * kicker = card->getManaCost()->kicker;
     if(!kicker)
     {

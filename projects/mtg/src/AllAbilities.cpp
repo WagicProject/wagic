@@ -1920,6 +1920,9 @@ int MayAbility::testDestroy()
         return 0;
     if (game->mLayers->actionLayer()->getIndexOf(mClone) != -1)
         return 0;
+    if(game->currentPlayer == source->controller() && game->isInterrupting == source->controller() && dynamic_cast<AManaProducer*>(AbilityFactory::getCoreAbility(ability)))
+    //if its my turn, and im interrupting myself(why?) then set interrupting to previous interrupter if the ability was a manaability
+    //special case since they don't use the stack.
     game->mLayers->stackLayer()->setIsInterrupting(previousInterrupter);
     return 1;
 }
@@ -2465,6 +2468,7 @@ ATransformer::ATransformer(int id, MTGCardInstance * source, MTGCardInstance * t
                 oldpower = _target->power;
                 _target->power += val->getValue();
                 _target->power -= oldpower;
+               _target->power += reapplyCountersBonus(_target,false,true);
                 delete val;
             }
             if(newtoughnessfound )
@@ -2473,13 +2477,38 @@ ATransformer::ATransformer(int id, MTGCardInstance * source, MTGCardInstance * t
                 oldtoughness = _target->toughness;
                 _target->addToToughness(val->getValue());
                 _target->addToToughness(-oldtoughness);
+                _target->addToToughness(reapplyCountersBonus(_target,true,false));
                 _target->life = _target->toughness;
                 delete val;
             }
         }
         return MTGAbility::addToGame();
     }
-
+    
+    int ATransformer::reapplyCountersBonus(MTGCardInstance * rtarget,bool powerapplied,bool toughnessapplied)
+    {
+        if(!rtarget->counters)
+            return 0;
+        Counter * c = NULL;
+        c = rtarget->counters->counters[0];
+        int rNewPower = 0;
+        int rNewToughness = 0;
+        for (int t = 0; t < rtarget->counters->mCount; t++)
+        {
+            if (c)
+            {
+                for(int i = 0;i < c->nb;i++)
+                {
+                    rNewPower += c->power;
+                    rNewToughness += c->toughness;   
+                }
+            }
+            c = rtarget->counters->getNext(c);
+        }
+        if(toughnessapplied)
+            return rNewToughness;
+        return rNewPower;
+    }
 int ATransformer::destroy()
 {
     if(aForever)

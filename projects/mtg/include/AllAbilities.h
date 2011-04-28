@@ -3652,6 +3652,7 @@ public:
 
     ATransformer(int id, MTGCardInstance * source, MTGCardInstance * target, string stypes, string sabilities,string newpower,bool newpowerfound,string newtoughness,bool newtoughnessfound,vector<string> newAbilitiesList,bool newAbilityFound = false,bool aForever = false);
     int addToGame();
+    int reapplyCountersBonus(MTGCardInstance * rtarget= NULL,bool powerapplied=false,bool toughnessapplied=false);
     int destroy();
     const char * getMenuText();
     ATransformer * clone() const;
