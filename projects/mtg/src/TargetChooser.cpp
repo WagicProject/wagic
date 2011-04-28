@@ -576,10 +576,9 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                         {
                             attributefound = 1;
                             if (minus)
-                            {
-                                cd->mode = CD_NOT;
-                            }
-                            cd->setColor(cid);
+                                cd->SetExclusionColor(cid);
+                            else
+                                cd->setColor(cid);
                         }
                     }
                     if (!attributefound)
@@ -591,10 +590,9 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                             {
                                 attributefound = 1;
                                 if (minus)
-                                {
-                                     cd->mode = CD_NOT;
-                                }
-                                cd->basicAbilities.set(j);
+                                    cd->mAbilityExclusions.set(j);
+                                else
+                                    cd->basicAbilities.set(j);
                             }
                         }
                     }
@@ -613,7 +611,7 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                     }
                 }
             }
-            if (nbminuses && cd->mode != CD_NOT)
+            if (nbminuses)
                 cd->mode = CD_AND;
             typeName = typeName.substr(0, found);
         }

@@ -11,46 +11,6 @@ using std::string;
 
 namespace
 {
-    uint8_t ConvertColorToBitMask(int inColor)
-    {
-        uint8_t value = 0;
-        switch (inColor)
-        {
-            case Constants::MTG_COLOR_ARTIFACT:
-                value = kColorBitMask_Artifact;
-                break;
-
-            case Constants::MTG_COLOR_GREEN:
-                 value = kColorBitMask_Green;
-                break;
-
-            case Constants::MTG_COLOR_BLUE:
-                value = kColorBitMask_Blue;
-                break;
-
-            case Constants::MTG_COLOR_RED:
-                value = kColorBitMask_Red;
-                break;
-
-            case Constants::MTG_COLOR_BLACK:
-                value = kColorBitMask_Black;
-                break;
-
-            case Constants::MTG_COLOR_WHITE:
-                value = kColorBitMask_White;
-                break;
-
-            case Constants::MTG_COLOR_LAND:
-                value = kColorBitMask_Land;
-                break;
-
-            default:
-                break;
-        }
-
-        return value;
-    }
-
     /**
     ** Count the number of set bits in a given integer 
     */
@@ -380,4 +340,44 @@ void CardPrimitive::setToughness(int _toughness)
 int CardPrimitive::getToughness()
 {
     return toughness;
+}
+
+uint8_t CardPrimitive::ConvertColorToBitMask(int inColor)
+{
+    uint8_t value = 0;
+    switch (inColor)
+    {
+    case Constants::MTG_COLOR_ARTIFACT:
+        value = kColorBitMask_Artifact;
+        break;
+
+    case Constants::MTG_COLOR_GREEN:
+        value = kColorBitMask_Green;
+        break;
+
+    case Constants::MTG_COLOR_BLUE:
+        value = kColorBitMask_Blue;
+        break;
+
+    case Constants::MTG_COLOR_RED:
+        value = kColorBitMask_Red;
+        break;
+
+    case Constants::MTG_COLOR_BLACK:
+        value = kColorBitMask_Black;
+        break;
+
+    case Constants::MTG_COLOR_WHITE:
+        value = kColorBitMask_White;
+        break;
+
+    case Constants::MTG_COLOR_LAND:
+        value = kColorBitMask_Land;
+        break;
+
+    default:
+        break;
+    }
+
+    return value;
 }

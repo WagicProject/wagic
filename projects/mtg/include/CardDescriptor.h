@@ -11,7 +11,6 @@
 
 #define CD_OR 1
 #define CD_AND 2
-#define CD_NOT 3
 
 enum ENUM_COMPARISON_MODES
   {
@@ -59,6 +58,11 @@ class CardDescriptor: public MTGCardInstance
   MTGCardInstance * match(MTGGameZone * zone);
   MTGCardInstance * nextmatch(MTGGameZone * zone, MTGCardInstance * previous);
   
+  void SetExclusionColor(int _color, int removeAllOthers = 0);
+
+  uint8_t mColorExclusions;
+  BasicAbilitiesSet mAbilityExclusions;
+
   int nameComparisonMode;
   int colorComparisonMode;
   string compareName;

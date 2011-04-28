@@ -4,7 +4,8 @@
 #include "Subtypes.h"
 #include "Counters.h"
 
-CardDescriptor::CardDescriptor() :  MTGCardInstance()
+CardDescriptor::CardDescriptor()
+    :  MTGCardInstance(), mColorExclusions(0)
 {
     init();
     counterName = "";
@@ -101,12 +102,6 @@ bool CardDescriptor::valueInRange(int comparisonMode, int value, int criterion)
     return false;
 }
 
-MTGCardInstance* CardDescriptor::match_not(MTGCardInstance * card)
-{
-    // if we have a color match, return null
-    bool colorFound = (colors & card->colors) > 0;
-    return colorFound ? NULL : card;
-}
 
 MTGCardInstance * CardDescriptor::match_or(MTGCardInstance * card)
 {
@@ -138,10 +133,16 @@ MTGCardInstance * CardDescriptor::match_or(MTGCardInstance * card)
     if (colors)
     {
         found = (colors & card->colors);
+        if (!found)
+            return NULL;
     }
 
-    if (!found)
-        return NULL;
+    if (mColorExclusions)
+    {
+        found = mColorExclusions & card->colors;
+        if (found)
+            return NULL;
+    }
 
     // Quantified restrictions are always AND-ed:
     if (powerComparisonMode && !valueInRange(powerComparisonMode, card->getPower(), power))
@@ -178,6 +179,12 @@ MTGCardInstance * CardDescriptor::match_and(MTGCardInstance * card)
     if ((colors & card->colors) != colors)
         match = NULL;
 
+    if (mColorExclusions)
+    {
+        if ((mColorExclusions & card->colors) == mColorExclusions)
+            match = NULL;
+    }
+
     if (powerComparisonMode && !valueInRange(powerComparisonMode, card->getPower(), power))
         match = NULL;
     if (toughnessComparisonMode && !valueInRange(toughnessComparisonMode, card->getToughness(), toughness))
@@ -202,24 +209,16 @@ MTGCardInstance * CardDescriptor::match(MTGCardInstance * card)
     {
         match = match_or(card);
     }
-    else
-    {
-        match = match_not(card);
-    }
 
     //Abilities
-    std::bitset<Constants::NB_BASIC_ABILITIES> set = basicAbilities & card->basicAbilities;
+    BasicAbilitiesSet set = basicAbilities & card->basicAbilities;
+    if (set != basicAbilities)
+        return NULL;
+    
+    BasicAbilitiesSet excludedSet = mAbilityExclusions & card->basicAbilities;
+    if (excludedSet.any())
+        return NULL;
 
-    if (mode == CD_NOT)
-    {
-        if (set.any())
-            return NULL;
-    }
-    else
-    {
-        if (set != basicAbilities)
-            return NULL;
-    }
 
     if ((tapped == -1 && card->isTapped()) || (tapped == 1 && !card->isTapped()))
     {
@@ -388,4 +387,12 @@ MTGCardInstance * CardDescriptor::nextmatch(MTGGameZone * zone, MTGCardInstance 
         }
     }
     return NULL;
+}
+
+void CardDescriptor::SetExclusionColor(int _color, int removeAllOthers)
+{
+    if (removeAllOthers)
+        mColorExclusions = 0;
+
+    mColorExclusions |= ConvertColorToBitMask(_color);
 }

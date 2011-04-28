@@ -36,7 +36,8 @@ public:
     int init();
 
     uint8_t colors;
-    std::bitset<Constants::NB_BASIC_ABILITIES> basicAbilities;
+    typedef std::bitset<Constants::NB_BASIC_ABILITIES> BasicAbilitiesSet;
+    BasicAbilitiesSet basicAbilities;
 
     map<string,string> magicTexts;
     string magicText;
@@ -60,6 +61,8 @@ public:
     int getColor();
     bool hasColor(int inColor);
     int countColors();
+
+    static uint8_t ConvertColorToBitMask(int inColor);
 
     int has(int ability);
 
