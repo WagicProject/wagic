@@ -258,13 +258,13 @@ void CardGui::Render()
             mFont->SetScale(1);
         }
     }
-    //if (tc && !tc->canTarget(card))
-    //{
-    //    if (!shadow)
-    //        shadow = WResourceManager::Instance()->GetQuad("shadow");
-    //    shadow->SetColor(ARGB(200,255,255,255));
-    //    renderer->RenderQuad(shadow.get(), actX, actY, actT, (28 * actZ + 1) / 16, 40 * actZ / 16);
-    //}
+    if (tc && !tc->canTarget(card))
+    {
+        if (!shadow)
+            shadow = WResourceManager::Instance()->GetQuad("shadow");
+        shadow->SetColor(ARGB(200,255,255,255));
+        renderer->RenderQuad(shadow.get(), actX, actY, actT, (28 * actZ + 1) / 16, 40 * actZ / 16);
+    }
 
     PlayGuiObject::Render();
 }
