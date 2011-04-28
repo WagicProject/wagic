@@ -9,6 +9,8 @@
 #include "WEvent.h"
 #include "MTGAbility.h"
 
+#include "iterator"
+
 SUPPORT_OBJECT_ANALYTICS(ManaCost)
 
 ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstance * c)
@@ -262,11 +264,8 @@ ManaCost::ManaCost(ManaCost * manaCost)
     {
         cost[i] = manaCost->getCost(i);
     }
-    for (int i = 0 ; i < 10; i++)
-        hybrids[i] = manaCost->hybrids[i];
+    hybrids = manaCost->hybrids;
 
-    nbhybrids = manaCost->nbhybrids;
-    extraCostsIsCopy = manaCost->extraCostsIsCopy;
     kicker = NEW ManaCost( manaCost->kicker );
     Retrace = NEW ManaCost( manaCost->Retrace );
     BuyBack = NEW ManaCost( manaCost->BuyBack );
@@ -290,13 +289,9 @@ ManaCost::ManaCost(const ManaCost& manaCost)
     {
         cost[i] = manaCost.cost[i];      
     }
-    for (int i = 0 ; i < 10; i++)
-    {
-        hybrids[i] = NEW ManaCostHybrid( manaCost.hybrids[i] );
-    }
+ 
+    hybrids = manaCost.hybrids;
 
-    nbhybrids = manaCost.nbhybrids;
-    extraCostsIsCopy = manaCost.extraCostsIsCopy;
     // make new copies of the pointers for the deep copy
     kicker = NEW ManaCost( manaCost.kicker );
     Retrace = NEW ManaCost( manaCost.Retrace );
@@ -318,14 +313,8 @@ ManaCost & ManaCost::operator= (const ManaCost & manaCost)
         for (int i = 0; i < Constants::MTG_NB_COLORS; i++)
             cost[i] = manaCost.cost[i];
 
-        for (int i = 0 ; i < 10; i++)
-        {
-            SAFE_DELETE( hybrids[i] );
-            hybrids[i] = manaCost.hybrids[i];
-        }
-        nbhybrids = manaCost.nbhybrids;
+        hybrids = manaCost.hybrids;
         extraCosts = manaCost.extraCosts;
-        extraCostsIsCopy = manaCost.extraCostsIsCopy;
         kicker = manaCost.kicker;
         Retrace = manaCost.Retrace;
         BuyBack = manaCost.BuyBack;
@@ -339,11 +328,6 @@ ManaCost & ManaCost::operator= (const ManaCost & manaCost)
 
 ManaCost::~ManaCost()
 {
-    for (unsigned int i = 0; i < 10; i++)
-    {
-        SAFE_DELETE(hybrids[i]);
-    }
-
     SAFE_DELETE(extraCosts);
     SAFE_DELETE(kicker);
     SAFE_DELETE(alternative);
@@ -371,9 +355,7 @@ void ManaCost::init()
     {
         cost[i] = 0;
     }
-    nbhybrids = 0;
     extraCosts = NULL;
-    extraCostsIsCopy = 0;
     kicker = NULL;
     alternative = NULL;
     BuyBack = NULL;
@@ -381,10 +363,6 @@ void ManaCost::init()
     Retrace = NULL;
     morph = NULL;
     suspend = NULL;
-    
-    // why is hybrids hardcoded to 10?
-    for (i = 0; i < 10; i++)
-        hybrids[i] = NULL;
 }
 
 void ManaCost::copy(ManaCost * _manaCost)
@@ -395,15 +373,8 @@ void ManaCost::copy(ManaCost * _manaCost)
     {
         cost[i] = _manaCost->getCost(i);
     }
-    for (unsigned int i = 0; i < nbhybrids; i++)
-    {
-        SAFE_DELETE(hybrids[i]);
-    }
-    for (unsigned int i = 0; i < _manaCost->nbhybrids; i++)
-    {
-        hybrids[i] = NEW ManaCostHybrid((*_manaCost->hybrids[i]));
-    }
-    nbhybrids = _manaCost->nbhybrids;
+
+    hybrids = _manaCost->hybrids;
 
     SAFE_DELETE(extraCosts);
     if (_manaCost->extraCosts)
@@ -462,18 +433,18 @@ int ManaCost::getCost(int color)
 
 ManaCostHybrid * ManaCost::getHybridCost(unsigned int i)
 {
-    if (nbhybrids <= i)
+    if (hybrids.size() <= i)
         return NULL;
-    return hybrids[i];
+    return &hybrids[i];
 }
 
 int ManaCost::hasColor(int color)
 {
     if (cost[color])
         return 1;
-    for (unsigned int i = 0; i < nbhybrids; i++)
+    for (size_t i = 0; i < hybrids.size(); i++)
     {
-        if (hybrids[i]->hasColor(color))
+        if (hybrids[i].hasColor(color))
             return 1;
     }
     return 0;
@@ -495,9 +466,9 @@ int ManaCost::getConvertedCost()
     {
         result += cost[i];
     }
-    for (unsigned int i = 0; i < nbhybrids; i++)
+    for (size_t i = 0; i < hybrids.size(); i++)
     {
-        result += hybrids[i]->getConvertedCost();
+        result += hybrids[i].getConvertedCost();
     }
     return result;
 }
@@ -528,11 +499,9 @@ int ManaCost::add(ManaCost * _cost)
     {
         cost[i] += _cost->getCost(i);
     }
-    for (unsigned int i = 0; i < _cost->nbhybrids; i++)
-    {
-        hybrids[i] = NEW ManaCostHybrid((*_cost->hybrids[i]));
-    }
-    nbhybrids = _cost->nbhybrids;
+
+    std::copy(_cost->hybrids.begin(), _cost->hybrids.end(), std::back_inserter(hybrids));
+
     return 1;
 }
 
@@ -553,10 +522,8 @@ int ManaCost::remove(ManaCost * _cost)
 
 int ManaCost::addHybrid(int c1, int v1, int c2, int v2)
 {
-    ManaCostHybrid * h = NEW ManaCostHybrid(c1, v1, c2, v2);
-    hybrids[nbhybrids] = h;
-    nbhybrids++;
-    return nbhybrids;
+    hybrids.push_back(ManaCostHybrid(c1, v1, c2, v2));
+    return hybrids.size();
 }
 
 int ManaCost::addExtraCost(ExtraCost * _cost)
@@ -640,38 +607,37 @@ int ManaCost::isPositive()
 
 void ManaCost::randomDiffHybrids(ManaCost * _cost, int diff[])
 {
-    int _nbhybrids = _cost->nbhybrids;
-    for (int i = 0; i < _nbhybrids; i++)
+    for (size_t i = 0; i < _cost->hybrids.size(); i++)
     {
-        ManaCostHybrid * h = _cost->hybrids[i];
-        diff[h->color1 * 2 + 1] -= h->value1;
+        ManaCostHybrid& h = _cost->hybrids[i];
+        diff[h.color1 * 2 + 1] -= h.value1;
     }
 }
 
 /**
     starting from the end of the array (diff) 
 */
-int ManaCost::tryToPayHybrids(ManaCostHybrid * _hybrids[], int _nbhybrids, int diff[])
+int ManaCost::tryToPayHybrids(std::vector<ManaCostHybrid>& _hybrids, int _nbhybrids, int diff[])
 {
     if (!_nbhybrids)
         return 1;
     int result = 0;
-    ManaCostHybrid * h = _hybrids[_nbhybrids - 1];
-    if (diff[h->color1 * 2 + 1] >= h->value1)
+    ManaCostHybrid& h = _hybrids[_nbhybrids - 1];
+    if (diff[h.color1 * 2 + 1] >= h.value1)
     {
-        diff[h->color1 * 2 + 1] -= h->value1;
+        diff[h.color1 * 2 + 1] -= h.value1;
         result = tryToPayHybrids(_hybrids, _nbhybrids - 1, diff);
         if (result)
             return 1;
-        diff[h->color1 * 2 + 1] += h->value1;
+        diff[h.color1 * 2 + 1] += h.value1;
     }
-    if (diff[h->color2 * 2 + 1] >= h->value2)
+    if (diff[h.color2 * 2 + 1] >= h.value2)
     {
-        diff[h->color2 * 2 + 1] -= h->value2;
+        diff[h.color2 * 2 + 1] -= h.value2;
         result = tryToPayHybrids(_hybrids, _nbhybrids - 1, diff);
         if (result)
             return 1;
-        diff[h->color2 * 2 + 1] += h->value2;
+        diff[h.color2 * 2 + 1] += h.value2;
     }
     return 0;
 }
@@ -686,7 +652,7 @@ ManaCost * ManaCost::Diff(ManaCost * _cost)
         diff[i * 2] = i;
         diff[i * 2 + 1] = cost[i] - _cost->getCost(i);
     }
-    int hybridResult = tryToPayHybrids(_cost->hybrids, _cost->nbhybrids, diff);
+    int hybridResult = tryToPayHybrids(_cost->hybrids, _cost->hybrids.size(), diff);
     if (!hybridResult)
         randomDiffHybrids(_cost, diff);
 
@@ -747,10 +713,9 @@ string ManaCost::toString()
         }
     }
 
-    for (unsigned int i = 0; i < nbhybrids; i++)
+    for (size_t i = 0; i < hybrids.size(); i++)
     {
-        if ( hybrids[i] != NULL )
-            oss << hybrids[i];
+        oss << hybrids[i];
     }
     return oss.str();
 }

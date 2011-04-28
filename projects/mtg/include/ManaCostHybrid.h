@@ -5,10 +5,10 @@ class ManaCostHybrid
 {
 
 public:
-    int color1;
-    int color2;
-    int value1;
-    int value2;
+    uint8_t color1;
+    uint8_t color2;
+    uint8_t value1;
+    uint8_t value2;
     ManaCostHybrid();
     ManaCostHybrid(const ManaCostHybrid& hybridManaCost);
     ManaCostHybrid(const ManaCostHybrid* hybridManaCost);

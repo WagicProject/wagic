@@ -24,12 +24,12 @@ class ManaCost
 
 protected:
     int cost[Constants::MTG_NB_COLORS+1];
-    ManaCostHybrid * hybrids[10];
-    unsigned int nbhybrids;
-    int extraCostsIsCopy;
+    std::vector<ManaCostHybrid> hybrids;
+
 
 public:
-    enum{
+    enum
+    {
         MANA_UNPAID = 0,
         MANA_PAID = 1,
         MANA_PAID_WITH_KICKER = 2,
@@ -39,8 +39,8 @@ public:
         MANA_PAID_WITH_RETRACE = 6,
         MANA_PAID_WITH_MORPH = 7,
         MANA_PAID_WITH_SUSPEND = 8
-
     };
+
     ExtraCosts * extraCosts;
     ManaCost * kicker;
     ManaCost * alternative;
@@ -81,7 +81,7 @@ public:
     int doPayExtra();
 
     int addHybrid(int c1, int v1, int c2, int v2);
-    int tryToPayHybrids(ManaCostHybrid * _hybrids[], int _nbhybrids, int diff[]);
+    int tryToPayHybrids(std::vector<ManaCostHybrid>& _hybrids, int _nbhybrids, int diff[]);
     void randomDiffHybrids(ManaCost * _cost, int diff[]);
     int add(ManaCost * _cost);
     int remove(ManaCost * _cost);
