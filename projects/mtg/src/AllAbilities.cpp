@@ -1902,6 +1902,7 @@ void MayAbility::Update(float dt)
                 return;
         }
         game->mLayers->actionLayer()->setMenuObject(source, must);
+        previousInterrupter = game->isInterrupting;
         game->mLayers->stackLayer()->setIsInterrupting(source->controller());
     }
 }
@@ -1919,6 +1920,7 @@ int MayAbility::testDestroy()
         return 0;
     if (game->mLayers->actionLayer()->getIndexOf(mClone) != -1)
         return 0;
+    game->mLayers->stackLayer()->setIsInterrupting(previousInterrupter);
     return 1;
 }
 

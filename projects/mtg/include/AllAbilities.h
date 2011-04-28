@@ -940,6 +940,7 @@ class MayAbility: public MTGAbility, public NestedAbility
 public:
     int triggered;
     bool must;
+    Player * previousInterrupter;
     MTGAbility * mClone;
 
     MayAbility(int _id, MTGAbility * _ability, MTGCardInstance * _source, bool must = false);
