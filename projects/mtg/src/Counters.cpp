@@ -72,24 +72,16 @@ Counters::~Counters()
 
 int Counters::addCounter(const char * _name, int _power, int _toughness)
 {
- /*   for (int i = 0; i < mCount; i++)
+/*420.5n If a permanent has both a +1/+1 counter and a -1/-1 counter on it, N +1/+1 and N -1/-1 counters are removed from it, where N is the smaller of the number of +1/+1 and -1/-1 counters on it.*/
+    for (int i = 0; i < mCount; i++)
     {
-        if (counters[i]->cancels(_power, _toughness) && counters[i]->nb > 0)
+        if (counters[i]->cancels(_power, _toughness) && !counters[i]->name.size() && counters[i]->nb > 0)
         {
             counters[i]->removed();
             counters[i]->nb--;
             return mCount;
         }
-    }*/
-	//leaving this commented out incase it was placed here to avoid some bug(maybe a misunderstanding of how counters work in MTG)
-	//bug fix, creatures that have abilities based on +1/+1 counters should still be allowed to use their counter
-	//putting a -1/-1 counter is not the same thing as removing a 1/1 counter.
-	//consider this effect, put a 1/1 counter on creature, then put a - 1/-1 counter on creature. it never saids
-	//remove the counter 1/1, it saids put a NEW counter -1/-1.
-	//the card should have both a 1/1 and a -1/-1 counter at this point.
-	//if an effect states that it should take off the counters, then it should be done with the following code
-	//counter(1/1,-1) this is removel of 1/1 counters. judging by the primitives its fully understood as i see this method being used often.
-
+    }
     for (int i = 0; i < mCount; i++)
     {
         if (counters[i]->sameAs(_name, _power, _toughness))
