@@ -555,6 +555,9 @@ bool Rules::canChooseDeck()
 
 int Rules::load(string _filename)
 {
+    if (_filename.size() < 5 || _filename.find(".txt") == string::npos)
+        return 0;
+
     if (!filename.size()) //this check is necessary because of the recursive calls (a fil loads other files)
         filename = _filename;
     char c_filename[4096];

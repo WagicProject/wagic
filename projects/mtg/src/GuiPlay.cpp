@@ -5,6 +5,7 @@
 #include "GuiPlay.h"
 #include "Subtypes.h"
 #include "Trash.h"
+#include "ModRules.h"
 
 #define CARD_WIDTH (31)
 
@@ -236,12 +237,12 @@ void GuiPlay::Replace()
             }
         }
     float x = 24 + opponentSpells.nextX();
-    //seperated the varible X into 2 different varibles. There are 2 players here!!
-    //we should not be using a single varible to determine the positioning of cards!!
+    //seperated the variable X into 2 different variables. There are 2 players here!!
+    //we should not be using a single variable to determine the positioning of cards!!
     float myx = 24 + selfSpells.nextX();
     opponentLands.reset(opponentLandsN,x, 50);
     opponentCreatures.reset(opponentCreaturesN, x, 95);
-    battleField.reset(x, 145);//what does this varible do? i can comment it out with no reprocussions...is this being double handled?
+    battleField.reset(x, 145);//what does this variable do? I can comment it out with no repercussions...is this being double handled?
     selfCreatures.reset(selfCreaturesN, myx, 195);
     selfLands.reset(selfLandsN, myx, 240);
 
@@ -346,7 +347,12 @@ int GuiPlay::receiveEventPlus(WEvent * e)
             else
                 card = NEW CardView(CardView::playZone, event->card, 0, 0);
             cards.push_back(card);
-            card->t = event->card->isTapped() ? M_PI / 2 : 0;
+
+            if (event->card->isTapped())
+                gModRules.cards.activateEffect->doEffect(card);
+            else
+                gModRules.cards.activateEffect->undoEffect(card);
+
             card->alpha = 255;
 
             // Make sure that the card is repositioned before adding it to the CardSelector, as
@@ -371,10 +377,20 @@ int GuiPlay::receiveEventPlus(WEvent * e)
     else if (WEventCardTap* event = dynamic_cast<WEventCardTap*>(e))
     {
         if (CardView* cv = dynamic_cast<CardView*>(event->card->view))
-            cv->t = event->after ? M_PI / 2 : 0;
+        {
+            if (event->after)
+                gModRules.cards.activateEffect->doEffect(cv);
+            else
+                gModRules.cards.activateEffect->undoEffect(cv);
+            //cv->t = event->after ? M_PI / 2 : 0;
+        }
         else if (event->card->view != NULL)
         {
-            event->card->view->actT = event->after ? M_PI / 2 : 0;
+            if (event->after)
+                gModRules.cards.activateEffect->doEffect(event->card->view);
+            else
+                gModRules.cards.activateEffect->undoEffect(event->card->view);
+            //event->card->view->actT = event->after ? M_PI / 2 : 0;
         }
         else
         {

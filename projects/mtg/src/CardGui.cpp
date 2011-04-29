@@ -266,6 +266,10 @@ void CardGui::Render()
         renderer->RenderQuad(shadow.get(), actX, actY, actT, (28 * actZ + 1) / 16, 40 * actZ / 16);
     }
 
+    // Render a mask over the card, if set
+    if (mask && quad)
+        JRenderer::GetInstance()->FillRect(actX - (scale * quad->mWidth / 2),actY - (scale * quad->mHeight / 2), scale * quad->mWidth, scale* quad->mHeight, mask);
+
     PlayGuiObject::Render();
 }
 
@@ -865,4 +869,33 @@ ostream& CardView::toString(ostream& out) const
 ostream& CardGui::toString(ostream& out) const
 {
     return (out << "CardGui ::: x,y " << x << "," << y);
+}
+
+
+SimpleCardEffectRotate::SimpleCardEffectRotate(float rotation): mRotation(rotation)
+{
+}
+    
+void SimpleCardEffectRotate::doEffect(Pos * card)
+{
+    card->t = mRotation;
+}
+
+void SimpleCardEffectRotate::undoEffect(Pos * card)
+{
+    card->t = 0;
+}
+
+SimpleCardEffectMask::SimpleCardEffectMask(PIXEL_TYPE mask): mMask(mask)
+{
+}
+    
+void SimpleCardEffectMask::doEffect(Pos * card)
+{
+    card->mask = mMask;
+}
+
+void SimpleCardEffectMask::undoEffect(Pos * card)
+{
+    card->mask = 0;
 }

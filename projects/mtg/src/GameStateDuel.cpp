@@ -14,6 +14,7 @@
 #include "Credits.h"
 #include "Translate.h"
 #include "Rules.h"
+#include "ModRules.h"
 
 #ifdef TESTSUITE
 #include "TestSuiteAI.h"
@@ -124,7 +125,7 @@ void GameStateDuel::Start()
             vector<DeckMetaData *> playerDeckList = BuildDeckList(options.profileFile());
             int nbDecks = playerDeckList.size();
 
-            if (nbDecks)
+            if (nbDecks > 1)
             {
                 decksneeded = 0;
                 deckmenu->Add(MENUITEM_RANDOM_PLAYER, "Random", "Play with a random deck.");
@@ -143,17 +144,21 @@ void GameStateDuel::Start()
     {
         if (decksneeded)
         {
-            //translate deck creating desc
-            Translator * t = Translator::GetInstance();
-            map<string, string>::iterator it = t->deckValues.find("Create your Deck!");
-            if (it != t->deckValues.end())
-                deckmenu->Add(MENUITEM_NEW_DECK, "Create your Deck!", it->second);
-            else
-                deckmenu->Add(MENUITEM_NEW_DECK, "Create your Deck!", "Highly recommended to get\nthe full Wagic experience!");
+            if (gModRules.general.hasDeckEditor())
+            {
+                //translate deck creating desc
+                Translator * t = Translator::GetInstance();
+                string desc =  "Highly recommended to get\nthe full Wagic experience!";
+                map<string, string>::iterator it = t->deckValues.find("Create your Deck!");
+                if (it != t->deckValues.end())
+                    desc = it->second;
+
+                deckmenu->Add(MENUITEM_NEW_DECK, "Create your Deck!", desc);
+            }
             premadeDeck = true;
             fillDeckMenu(deckmenu, JGE_GET_RES("player/premade"));
         }
-        if (!decksneeded)
+        else if (gModRules.general.hasDeckEditor())
         {
             deckmenu->Add(MENUITEM_NEW_DECK, "New Deck...", "Create a new deck to play with.");
         }

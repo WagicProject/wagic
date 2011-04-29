@@ -19,6 +19,8 @@
 #include "WFont.h"
 #include <JLogger.h>
 #include "Rules.h"
+#include "ModRules.h"
+
 #ifdef NETWORK_SUPPORT
 #include <JNetwork.h>
 #endif//NETWORK_SUPPORT
@@ -47,25 +49,6 @@ enum ENUM_MENU_STATE_MINOR
     MENU_STATE_MINOR_SUBMENU_CLOSING = 0x100,
     MENU_STATE_MINOR_FADEIN = 0x200,
     MENU_STATE_MINOR = 0xF00
-};
-
-enum
-{
-    SUBMENUITEM_CANCEL = kCancelMenuID,
-    MENUITEM_PLAY,
-    MENUITEM_DECKEDITOR,
-    MENUITEM_SHOP,
-    MENUITEM_OPTIONS,
-    MENUITEM_EXIT,
-    SUBMENUITEM_1PLAYER,
-#ifdef NETWORK_SUPPORT
-    SUBMENUITEM_2PLAYERS,
-    SUBMENUITEM_HOST_GAME,
-    SUBMENUITEM_JOIN_GAME,
-#endif //NETWORK_SUPPORT
-    SUBMENUITEM_DEMO,
-    SUBMENUITEM_TESTSUITE,
-    SUBMENUITEM_END_OFFSET
 };
 
 GameStateMenu::GameStateMenu(GameApp* parent) :
@@ -150,10 +133,6 @@ void GameStateMenu::Start()
     hasChosenGameType = false;
     mParent->gameType = GAME_TYPE_CLASSIC;
 
-    /*
-     if (options[Options::MOMIR_MODE_UNLOCKED].number) hasChosenGameType = 0;
-     if (options[Options::RANDOMDECK_MODE_UNLOCKED].number) hasChosenGameType = 0;
-     */
     bgTexture = WResourceManager::Instance()->RetrieveTexture("menutitle.png", RETRIEVE_LOCK);
     mBg = WResourceManager::Instance()->RetrieveQuad("menutitle.png", 0, 0, 256, 166); // Create background quad for rendering.
 
@@ -170,13 +149,25 @@ void GameStateMenu::genNbCardsStr()
 {
     //How many cards total ?
     PlayerData * playerdata = NEW PlayerData(MTGCollection());
-    if (playerdata && !options[Options::ACTIVE_PROFILE].isDefault())
-        sprintf(nbcardsStr, _("%s: %i cards (%i) (%i unique)").c_str(), options[Options::ACTIVE_PROFILE].str.c_str(),
-                        playerdata->collection->totalCards(), MTGCollection()->totalCards(),
-                        MTGCollection()->primitives.size());
+    size_t totalUnique =  MTGCollection()->primitives.size();
+    size_t totalPrints = MTGCollection()->totalCards();
+
+    if (totalUnique != totalPrints)
+    {
+        if (playerdata && !options[Options::ACTIVE_PROFILE].isDefault())
+            sprintf(nbcardsStr, _("%s: %i cards (%i) (%i unique)").c_str(), options[Options::ACTIVE_PROFILE].str.c_str(),
+                            playerdata->collection->totalCards(), totalPrints,totalUnique);
+        else
+            sprintf(nbcardsStr, _("%i cards (%i unique)").c_str(),totalPrints,totalUnique);
+    }
     else
-        sprintf(nbcardsStr, _("%i cards (%i unique)").c_str(), MTGCollection()->totalCards(),
-                        MTGCollection()->primitives.size());
+    {
+        if (playerdata && !options[Options::ACTIVE_PROFILE].isDefault())
+            sprintf(nbcardsStr, _("%s: %i cards (%i)").c_str(), options[Options::ACTIVE_PROFILE].str.c_str(),
+                            playerdata->collection->totalCards(), totalPrints);
+        else
+            sprintf(nbcardsStr, _("%i cards").c_str(),totalPrints);
+    }
 
     SAFE_DELETE(playerdata);
 }
@@ -239,18 +230,22 @@ void GameStateMenu::fillScroller()
     scroller->Add(buff2);
 
     PlayerData * playerdata = NEW PlayerData(MTGCollection());
-    int totalCards = playerdata->collection->totalCards();
-    if (totalCards)
+
+    if (gModRules.general.hasDeckEditor() && gModRules.general.hasShop())
     {
-        sprintf(buff2, _("You have a total of %i cards in your collection").c_str(), totalCards);
-        scroller->Add(buff2);
+        int totalCards = playerdata->collection->totalCards();
+        if (totalCards)
+        {
+            sprintf(buff2, _("You have a total of %i cards in your collection").c_str(), totalCards);
+            scroller->Add(buff2);
 
-        int estimatedValue = playerdata->collection->totalPrice();
-        sprintf(buff2, _("The shopkeeper would buy your entire collection for around %i credits").c_str(), estimatedValue / 2);
-        scroller->Add(buff2);
+            int estimatedValue = playerdata->collection->totalPrice();
+            sprintf(buff2, _("The shopkeeper would buy your entire collection for around %i credits").c_str(), estimatedValue / 2);
+            scroller->Add(buff2);
 
-        sprintf(buff2, _("The cards in your collection have an average value of %i credits").c_str(), estimatedValue / totalCards);
-        scroller->Add(buff2);
+            sprintf(buff2, _("The cards in your collection have an average value of %i credits").c_str(), estimatedValue / totalCards);
+            scroller->Add(buff2);
+        }
     }
 
     sprintf(buff2, _("You currently have %i credits").c_str(), playerdata->credits);
@@ -400,6 +395,13 @@ void GameStateMenu::listPrimitives()
         mDip = opendir(JGE_GET_RES("sets/primitives/").c_str());
     }
 
+    if (!mDip)
+    {
+        DebugTrace("GameStateMenu.cpp:WARNING:Primitives folder is missing");
+        primitivesLoadCounter = 0;
+        return;
+    }
+
     while ((mDit = readdir(mDip)))
     {
         string filename = JGE_GET_RES("sets/primitives/");
@@ -424,16 +426,28 @@ void GameStateMenu::ensureMGuiController()
         {
             WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MENU_FONT);
             mFont->SetColor(ARGB(255,255,255,255));
-            mGuiController->Add(NEW MenuItem(MENUITEM_PLAY, mFont, "Play", 80, 50 + SCREEN_HEIGHT / 2, mIcons[8].get(), mIcons[9].get(),
-                            "particle1.psi", WResourceManager::Instance()->GetQuad("particles").get(), true));
-            mGuiController->Add(NEW MenuItem(MENUITEM_DECKEDITOR, mFont, "Deck Editor", 160, 50 + SCREEN_HEIGHT / 2, mIcons[2].get(),
-                            mIcons[3].get(), "particle2.psi", WResourceManager::Instance()->GetQuad("particles").get()));
-            mGuiController->Add(NEW MenuItem(MENUITEM_SHOP, mFont, "Shop", 240, 50 + SCREEN_HEIGHT / 2, mIcons[0].get(), mIcons[1].get(),
-                            "particle3.psi", WResourceManager::Instance()->GetQuad("particles").get()));
-            mGuiController->Add(NEW MenuItem(MENUITEM_OPTIONS, mFont, "Options", 320, 50 + SCREEN_HEIGHT / 2, mIcons[6].get(), mIcons[7].get(),
-                            "particle4.psi", WResourceManager::Instance()->GetQuad("particles").get()));
-            mGuiController->Add(NEW MenuItem(MENUITEM_EXIT, mFont, "Exit", 400, 50 + SCREEN_HEIGHT / 2, mIcons[4].get(), mIcons[5].get(),
-                            "particle5.psi", WResourceManager::Instance()->GetQuad("particles").get()));
+            vector<ModRulesMainMenuItem *>items = gModRules.menu.main;
+
+            int numItems = (int)items.size();
+            float startX = 80.f;
+            float totalSize = SCREEN_WIDTH_F - (2 * startX);
+            float space = 0;
+            if (numItems < 2)
+                startX = SCREEN_WIDTH_F/2;
+            else 
+                space = totalSize/(numItems - 1);
+
+            for (size_t i = 0; i < items.size(); ++i) {
+                ModRulesMainMenuItem * item = items[i];
+                int iconId = (item->mIconId - 1) * 2;
+                mGuiController->Add(NEW MenuItem(
+                    item->mActionId, 
+                    mFont, item->mDisplayName, 
+                    startX + (i * space), 50 + SCREEN_HEIGHT / 2, 
+                    mIcons[iconId].get(), mIcons[iconId + 1].get(),
+                    item->mParticleFile.c_str(), WResourceManager::Instance()->GetQuad("particles").get(),
+                    (i == 0)));
+            }
         }
     }
 }
@@ -527,15 +541,23 @@ void GameStateMenu::Update(float dt)
         currentState &= MENU_STATE_MAJOR_MAINMENU;
         options.reloadProfile(); //Handles building a new deck, if needed.
         break;
-    case MENU_STATE_MAJOR_MAINMENU:
-        if (!scrollerSet)
-            fillScroller();
-        ensureMGuiController();
-        if (mGuiController)
-            mGuiController->Update(dt);
-        if (mEngine->GetButtonState(JGE_BTN_NEXT)) //Hook for GameStateAward state
-            mParent->DoTransition(TRANSITION_FADE, GAME_STATE_AWARDS); //TODO: A slide transition would be nice.
-        break;
+    case MENU_STATE_MAJOR_MAINMENU: 
+        {
+            if (!scrollerSet)
+                fillScroller();
+            ensureMGuiController();
+            if (mGuiController)
+                mGuiController->Update(dt);
+
+            //Hook for Top Menu actions
+            vector<ModRulesOtherMenuItem *>items = gModRules.menu.other;
+            for (size_t i = 0; i < items.size(); ++i)
+            {
+                if (mEngine->GetButtonState(items[i]->mKey) && items[i]->getMatchingGameState())
+                     mParent->DoTransition(TRANSITION_FADE, items[i]->getMatchingGameState()); //TODO: Add the transition as a parameter in the rules file
+            }
+            break;
+         }
 #ifdef NETWORK_SUPPORT
     case MENU_STATE_NETWORK_DEFINE:
         currentState = MENU_STATE_MAJOR_SUBMENU;
@@ -639,6 +661,83 @@ void GameStateMenu::Update(float dt)
     }
 }
 
+//Renders the "sub" menu with shoulder button links
+void GameStateMenu::RenderTopMenu()
+{
+    float leftTextPos = 10;
+    float rightTextPos = SCREEN_WIDTH - 10;
+
+    vector<ModRulesOtherMenuItem *>items = gModRules.menu.other;
+    for (size_t i = 0; i < items.size(); ++i)
+    {
+        switch(items[i]->mKey)
+        {
+        case JGE_BTN_PREV:
+            leftTextPos += 64;
+            break;
+        case JGE_BTN_NEXT:
+            rightTextPos -= 64;
+            break;
+        default:
+            DebugTrace("not supported yet!");
+            break;
+        }
+    }
+
+    WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
+    mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
+    mFont->SetColor(ARGB(128,255,255,255));
+    mFont->DrawString(GAME_VERSION, rightTextPos, 5, JGETEXT_RIGHT);
+    mFont->DrawString(nbcardsStr, leftTextPos, 5);
+    mFont->SetScale(1.f);
+    mFont->SetColor(ARGB(255,255,255,255));
+
+    if (!items.size())
+        return;
+
+    JQuadPtr jq = WResourceManager::Instance()->RetrieveTempQuad("button_shoulder.png");
+    if (!jq.get())
+        return;
+
+    mFont = WResourceManager::Instance()->GetWFont(Fonts::OPTION_FONT);
+    float olds = mFont->GetScale();
+
+    for (size_t i = 0; i < items.size(); ++i)
+    {
+        ModRulesOtherMenuItem * item = items[i];
+
+        int alpha = 255;
+        if (item->mActionId == MENUITEM_TROPHIES && options.newAward())
+            alpha = (int) (sin(timeIndex) * 255);
+        
+        float xPos = SCREEN_WIDTH - 64;
+        float xTextPos = xPos + 54;
+        int textAlign = JGETEXT_RIGHT;
+        jq->SetHFlip(false);
+
+        switch(item->mKey)
+        {
+        case JGE_BTN_PREV:
+            xPos = 5;
+            xTextPos = xPos + 10;
+            textAlign = JGETEXT_LEFT;
+            jq->SetHFlip(true);
+            break;
+        default:
+            break;
+        }
+
+        jq->SetColor(ARGB(abs(alpha),255,255,255));
+        mFont->SetColor(ARGB(abs(alpha),0,0,0));
+        string s = _(item->mDisplayName);
+        mFont->SetScale(1.0f);
+        mFont->SetScale(50.0f / mFont->GetStringWidth(s.c_str()));
+        JRenderer::GetInstance()->RenderQuad(jq.get(), xPos, 2);
+        mFont->DrawString(s, xTextPos, 9, textAlign);
+        mFont->SetScale(olds);
+    }
+}
+
 void GameStateMenu::Render()
 {
     if ((currentState & MENU_STATE_MINOR) == MENU_STATE_MINOR_FADEIN)
@@ -690,38 +789,14 @@ void GameStateMenu::Render()
         if (mGuiController)
             mGuiController->Render();
 
-        mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
-        mFont->SetColor(ARGB(128,255,255,255));
-        mFont->DrawString(GAME_VERSION, SCREEN_WIDTH - 74, 5, JGETEXT_RIGHT);
-        mFont->DrawString(nbcardsStr, 10, 5);
-        mFont->SetScale(1.f);
-        mFont->SetColor(ARGB(255,255,255,255));
-
         renderer->FillRoundRect(SCREEN_WIDTH / 2 - 100, SCREEN_HEIGHT, 191, 6, 5, ARGB(100,10,5,0));
         scroller->Render();
 
         if (mBg.get())
             renderer->RenderQuad(mBg.get(), SCREEN_WIDTH / 2, 50);
 
-        JQuadPtr jq = WResourceManager::Instance()->RetrieveTempQuad("button_shoulder.png");
-        if (jq.get())
-        {
-            int alp = 255;
-            if (options.newAward())
-                alp = (int) (sin(timeIndex) * 255);
-            float olds = mFont->GetScale();
-            mFont = WResourceManager::Instance()->GetWFont(Fonts::OPTION_FONT);
-            jq->SetColor(ARGB(abs(alp),255,255,255));
-            mFont->SetColor(ARGB(abs(alp),0,0,0));
-            string s = _("Trophy Room");
-            ;
-            mFont->SetScale(1.0f);
-            mFont->SetScale(50.0f / mFont->GetStringWidth(s.c_str()));
-            renderer->RenderQuad(jq.get(), SCREEN_WIDTH - 64, 2);
-            mFont->DrawString(s, SCREEN_WIDTH - 10, 9, JGETEXT_RIGHT);
-            mFont = WResourceManager::Instance()->GetWFont(Fonts::MENU_FONT);
-            mFont->SetScale(olds);
-        }
+        RenderTopMenu();
+
     }
     if (subMenuController)
     {
@@ -762,20 +837,20 @@ void GameStateMenu::ButtonPressed(int controllerId, int controlId)
                 subMenuController->Add(SUBMENUITEM_DEMO, "Demo");
                 subMenuController->Add(SUBMENUITEM_CANCEL, "Cancel");
 #ifdef TESTSUITE
-                subMenuController->Add(SUBMENUITEM_TESTSUITE, "Test Suite");
+                if (Rules::getRulesByFilename("testsuite.txt"))
+                    subMenuController->Add(SUBMENUITEM_TESTSUITE, "Test Suite");
 #endif
                 currentState = MENU_STATE_MAJOR_SUBMENU | MENU_STATE_MINOR_NONE;
             }
             break;
+
         case MENUITEM_DECKEDITOR:
-            mParent->DoTransition(TRANSITION_FADE, GAME_STATE_DECK_VIEWER);
-            break;
         case MENUITEM_SHOP:
-            mParent->DoTransition(TRANSITION_FADE, GAME_STATE_SHOP);
-            break;
         case MENUITEM_OPTIONS:
-            mParent->DoTransition(TRANSITION_FADE, GAME_STATE_OPTIONS);
+        case MENUITEM_TROPHIES:
+            mParent->DoTransition(TRANSITION_FADE,  ModRulesMenuItem::getMatchingGameState(controlId));
             break;
+
         case MENUITEM_EXIT:
             mEngine->End();
             break;

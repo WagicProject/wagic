@@ -304,6 +304,9 @@
     <ClCompile Include="src\ObjectAnalytics.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\ModRules.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\ActionElement.h">
@@ -628,6 +631,9 @@
       <Filter>inc</Filter>
     </ClInclude>
     <ClInclude Include="include\ObjectAnalytics.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ModRules.h">
       <Filter>inc</Filter>
     </ClInclude>
   </ItemGroup>

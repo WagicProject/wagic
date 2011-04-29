@@ -82,6 +82,7 @@ LOCAL_SRC_FILES := $(SDL_PATH)/src/main/android/SDL_android_main.cpp \
         $(MTG_PATH)/src/ManaCost.cpp \
         $(MTG_PATH)/src/ManaCostHybrid.cpp \
         $(MTG_PATH)/src/MenuItem.cpp \
+		$(MTG_PATH)/src/ModRules.cpp \
         $(MTG_PATH)/src/MTGAbility.cpp \
         $(MTG_PATH)/src/MTGCard.cpp \
         $(MTG_PATH)/src/MTGCardInstance.cpp \

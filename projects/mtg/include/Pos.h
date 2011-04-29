@@ -7,6 +7,7 @@ struct Pos
 {
     float actX, actY, actZ, actT, actA;
     float x, y, zoom, t, alpha;
+    PIXEL_TYPE mask;
     Pos(float, float, float, float, float);
     virtual void Update(float dt);
     void UpdateNow();

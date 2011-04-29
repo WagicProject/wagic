@@ -43,6 +43,8 @@ public:
     static const float BigWidth;
     static const float BigHeight;
 
+    PIXEL_TYPE mMask;
+
     MTGCardInstance* card;
     CardGui(MTGCardInstance* card, float x, float y);
     CardGui(MTGCardInstance* card, const Pos& ref);
@@ -94,5 +96,34 @@ public:
     TransientCardView(MTGCardInstance* card, float x, float y);
     TransientCardView(MTGCardInstance* card, const Pos& ref);
 };
+
+
+class SimpleCardEffect 
+{
+public:
+    virtual void doEffect(Pos * card) = 0;
+    virtual void undoEffect(Pos * card) = 0;
+};
+
+class SimpleCardEffectRotate:public SimpleCardEffect 
+{
+protected:
+    float mRotation;
+public:
+    SimpleCardEffectRotate(float rotation);
+    void doEffect(Pos * card);
+    void undoEffect(Pos * card);
+};
+
+class SimpleCardEffectMask:public SimpleCardEffect 
+{
+protected:
+    PIXEL_TYPE mMask;
+public:
+    SimpleCardEffectMask(PIXEL_TYPE mask);
+    void doEffect(Pos * card);
+    void undoEffect(Pos * card);
+};
+
 
 #endif

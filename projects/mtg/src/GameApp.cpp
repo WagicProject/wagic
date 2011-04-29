@@ -27,6 +27,7 @@
 #include "Translate.h"
 #include "WFilter.h"
 #include "Rules.h"
+#include "ModRules.h"
 
 #define DEFAULT_DURATION .25
 
@@ -116,6 +117,9 @@ void GameApp::Create()
     }
     LOG("Res Root:");
     LOG(JFileSystem::GetInstance()->GetResourceRoot().c_str());
+
+    //Load Mod Rules before everything else
+    gModRules.load("rules/modrules.xml");
 
     //Link this to our settings manager.
     options.theGame = this;

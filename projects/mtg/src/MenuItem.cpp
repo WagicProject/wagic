@@ -10,8 +10,13 @@ MenuItem::MenuItem(int id, WFont *font, string text, float x, float y, JQuad * _
 {
     mText = _(text);
     updatedSinceLastRender = 1;
-    mParticleSys = NEW hgeParticleSystem(WResourceManager::Instance()->RetrievePSI(particle, particleTex));
-    mParticleSys->MoveTo(mX, mY);
+    mParticleSys = NULL;
+    hgeParticleSystemInfo * psi = WResourceManager::Instance()->RetrievePSI(particle, particleTex);
+    if (psi)
+    {
+        mParticleSys = NEW hgeParticleSystem(psi);
+        mParticleSys->MoveTo(mX, mY);
+    }
 
     mHasFocus = hasFocus;
     lastDt = 0.001f;
@@ -73,20 +78,22 @@ void MenuItem::Update(float dt)
             mScale = mTargetScale;
     }
 
-    mParticleSys->Update(dt);
+    if (mParticleSys)
+        mParticleSys->Update(dt);
 }
 
 void MenuItem::Entering()
 {
-
-    mParticleSys->Fire();
+    if (mParticleSys)
+        mParticleSys->Fire();
     mHasFocus = true;
     mTargetScale = 1.3f;
 }
 
 bool MenuItem::Leaving(JButton key)
 {
-    mParticleSys->Stop(true);
+    if (mParticleSys)
+        mParticleSys->Stop(true);
     mHasFocus = false;
     mTargetScale = 1.0f;
     return true;
@@ -99,8 +106,7 @@ bool MenuItem::ButtonPressed()
 
 MenuItem::~MenuItem()
 {
-    if (mParticleSys)
-        delete mParticleSys;
+    SAFE_DELETE(mParticleSys);
 }
 
 ostream& MenuItem::toString(ostream& out) const

@@ -369,6 +369,7 @@
     <ClCompile Include="src\ManaCost.cpp" />
     <ClCompile Include="src\ManaCostHybrid.cpp" />
     <ClCompile Include="src\MenuItem.cpp" />
+    <ClCompile Include="src\ModRules.cpp" />
     <ClCompile Include="src\MTGAbility.cpp" />
     <ClCompile Include="src\MTGCard.cpp" />
     <ClCompile Include="src\MTGCardInstance.cpp" />
@@ -483,6 +484,7 @@
     <ClInclude Include="include\Manacost.h" />
     <ClInclude Include="include\ManaCostHybrid.h" />
     <ClInclude Include="include\MenuItem.h" />
+    <ClInclude Include="include\ModRules.h" />
     <ClInclude Include="include\MTGAbility.h" />
     <ClInclude Include="include\MTGCard.h" />
     <ClInclude Include="include\MTGCardInstance.h" />
