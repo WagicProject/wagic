@@ -1839,7 +1839,8 @@ int MTGVampireRule::receiveEvent(WEvent * event)
             return 0;
         if (!e->damage->target) 
             return 0;
-
+        if(e->damage->target->typeAsTarget() != TARGET_CARD)
+            return 0;
         MTGCardInstance * newVictem = (MTGCardInstance*)(e->damage->target);
         MTGCardInstance * vampire = (MTGCardInstance*)(e->damage->source);
 
