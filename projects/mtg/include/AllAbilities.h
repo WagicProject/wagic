@@ -749,10 +749,8 @@ class TrVampired: public TriggeredAbility
 public:
     TargetChooser * tc;
     TargetChooser * fromTc;
-    vector<MTGCardInstance*> victems;
-    int type;
-    TrVampired(int id, MTGCardInstance * source, TargetChooser * tc, TargetChooser * fromTc = NULL, int type = 0) :
-    TriggeredAbility(id, source), tc(tc), fromTc(fromTc), type(type)
+    TrVampired(int id, MTGCardInstance * source, TargetChooser * tc, TargetChooser * fromTc = NULL) :
+    TriggeredAbility(id, source), tc(tc), fromTc(fromTc)
     {
     }
 
@@ -764,64 +762,17 @@ public:
     int triggerOnEvent(WEvent * event)
     {
         if(source->isPhased) return 0;
-        WEventDamage * e = dynamic_cast<WEventDamage *> (event);
-        WEventZoneChange * z = dynamic_cast<WEventZoneChange *> (event);
-        WEventPhaseChange * pe = dynamic_cast<WEventPhaseChange*>(event);
         WEventVampire * vamp = dynamic_cast<WEventVampire*>(event);
-        if (e == event)
+        if (vamp)
         {
-            if (!tc->canTarget(e->damage->target)) return 0;
-            if (fromTc && !fromTc->canTarget(e->damage->source)) return 0;
-
-            MTGCardInstance * newVictem = (MTGCardInstance*)(e->damage->target);
-
-            victems.push_back(newVictem);
-            std::sort(victems.begin(), victems.end());
-            victems.erase(std::unique(victems.begin(), victems.end()), victems.end());
-        }
-        else if (z == event && !victems.empty())
-        {
-            MTGCardInstance * card = z->card;
-
-
-                for(unsigned int k = 0;k < victems.size();k--)
-                {
-                    if(victems[k] == NULL) 
-                        continue;
-                    if(victems[k] != z->card->previous) 
-                    {
-                        return 0;
-                    }
-                }
-                for(unsigned int w = 0;w < victems.size();w++)
-            {
-                    if(victems[w] == NULL) 
-                        continue;
-                    Player * p = victems[w]->controller();
-                    if (z->from == p->game->inPlay && z->to == p->game->graveyard)
-                    {
-                        if(victems[w] == z->card->previous)
-                        {
-                        if(!source->isInPlay())
-                        return 0;
-                            WEvent * e = NEW WEventVampire(victems[w],victems[w],source);
-                            game->receiveEvent(e);
-                            victems[w] = NULL;
-                            return 0;
-                        }
-                    }
-                }
-            }
-        else if (vamp == event)
-        {
-        return 1;
-        }
-        else if (pe == event)
-        {
-            if( pe->from->id == Constants::MTG_PHASE_ENDOFTURN)
-            {
-                victems.clear();
-            }
+            if(fromTc && !fromTc->canTarget(vamp->source))
+                return 0;
+            tc->setAllZones();
+            //creature that were "vampired" only happens in battlefield, and event sent when they hit a grave.
+            //setting allzones, as we don't care since we know the preexisting condiations cover the zones.
+            if(!tc->canTarget(vamp->victem))
+                return 0;
+            return 1;
         }
         return 0;
     }

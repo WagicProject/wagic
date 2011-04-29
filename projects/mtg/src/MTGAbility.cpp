@@ -713,7 +713,7 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string magicText, int 
             fromTc = tcf.createTargetChooser(starget, card);
             fromTc->targetter = NULL;
         }
-        return NEW TrVampired(id, card, tc, fromTc, 0);
+        return NEW TrVampired(id, card, tc, fromTc);
     }
 
     //when card becomes the target of a spell or ability

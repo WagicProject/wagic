@@ -1819,6 +1819,83 @@ MTGPersistRule * MTGPersistRule::clone() const
     return a;
 }
 
+//vampires rule
+//handled seperately as a rule since we only want one object to send out events that a card was "vampired".
+//otherwise vampire event is sent per instance of @vampired on the battlefield, multipling the results.
+MTGVampireRule::MTGVampireRule(int _id) :
+MTGAbility(_id, NULL)
+{
+}
+;
+
+int MTGVampireRule::receiveEvent(WEvent * event)
+{
+    WEventDamage * e = dynamic_cast<WEventDamage *> (event);
+    WEventZoneChange * z = dynamic_cast<WEventZoneChange *> (event);
+    WEventPhaseChange * pe = dynamic_cast<WEventPhaseChange*>(event);
+    if (e)
+    {
+        if(!e->damage->damage)
+            return 0;
+        if (!e->damage->target) 
+            return 0;
+
+        MTGCardInstance * newVictem = (MTGCardInstance*)(e->damage->target);
+        MTGCardInstance * vampire = (MTGCardInstance*)(e->damage->source);
+
+        victems[newVictem].push_back(vampire);
+
+    }
+    else if (z)
+    {
+        MTGCardInstance * card = z->card->previous;
+        if(card && victems[card].empty())
+            return 0;
+        std::sort(victems[card].begin(), victems[card].end());
+        victems[card].erase(std::unique(victems[card].begin(), victems[card].end()), victems[card].end());
+        //sort and remove duplicates, we only want one event of a vampire damaging a card stored per victem.
+        for(unsigned int w = 0;w < victems[card].size();w++)
+        {
+            if(victems[card].at(w) == NULL) 
+                continue;
+            Player * p = card->controller();
+            if (z->from == p->game->inPlay && z->to == p->game->graveyard)
+            {
+                if(card == z->card->previous)
+                {
+                    WEvent * e = NEW WEventVampire(card,victems[card].at(w),card);
+                    game->receiveEvent(e);
+                }
+            }
+        }
+        return 0;
+    }
+    else if (pe)
+    {
+        if( pe->from->id == Constants::MTG_PHASE_ENDOFTURN)
+        {
+            victems.clear();
+        }
+    }
+    return 0;
+}
+
+ostream& MTGVampireRule::toString(ostream& out) const
+{
+    out << "MTGVampireRule ::: (";
+    return MTGAbility::toString(out) << ")";
+}
+int MTGVampireRule::testDestroy()
+{
+    return 0;
+}
+MTGVampireRule * MTGVampireRule::clone() const
+{
+    MTGVampireRule * a = NEW MTGVampireRule(*this);
+    a->isClone = 1;
+    return a;
+}
+/////////////////////////////////////////////////
 //unearth rule----------------------------------
 //if the card leaves play, exile it instead.
 MTGUnearthRule::MTGUnearthRule(int _id) :

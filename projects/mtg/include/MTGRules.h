@@ -253,6 +253,17 @@ public:
     int testDestroy();
     virtual MTGPersistRule * clone() const;
 };
+/* vampire Rule */
+class MTGVampireRule: public MTGAbility
+{
+public:
+    MTGVampireRule(int _id);
+    map<MTGCardInstance*,vector<MTGCardInstance*> > victems;
+    int receiveEvent(WEvent * event);
+    virtual ostream& toString(ostream& out) const;
+    int testDestroy();
+    virtual MTGVampireRule * clone() const;
+};
 //unearths destruction if leaves play effect
 class MTGUnearthRule: public MTGAbility
 {
