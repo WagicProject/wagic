@@ -470,6 +470,7 @@ private:
     TriggeredAbility * parseTrigger(string s, string magicText, int id, Spell * spell, MTGCardInstance *card, Targetable * target);
     MTGAbility * getAlternateCost( string s, int id, Spell *spell, MTGCardInstance *card );
     MTGAbility * getManaReduxAbility(string s, int id, Spell *spell, MTGCardInstance *card, MTGCardInstance *target);
+    TargetChooser * parseSimpleTC(string s, string starter, MTGCardInstance *card, bool forceNoTarget = true);
 
 public:
     int parseRestriction(string s);

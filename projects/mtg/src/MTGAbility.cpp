@@ -344,6 +344,35 @@ int AbilityFactory::parsePowerToughness(string s, int *power, int *toughness)
     return 0;
 }
 
+TargetChooser * AbilityFactory::parseSimpleTC(string s, string _starter, MTGCardInstance * card, bool forceNoTarget)
+{
+    string starter = _starter;
+    starter.append("(");
+
+    size_t found = s.find(starter);
+    if (found == string::npos)
+        return NULL;
+
+    size_t start = found + starter.size(); 
+
+    size_t end = s.find(")", start);
+    if (end == string::npos)
+    {
+        DebugTrace("malformed syntax " << s);
+        return NULL;
+    }
+
+
+    string starget = s.substr(start , end - start);
+    TargetChooserFactory tcf;
+    TargetChooser * tc =  tcf.createTargetChooser(starget, card);
+
+    if (tc && forceNoTarget)
+        tc->targetter = NULL;
+
+    return tc;
+}
+
 // evaluate trigger ability
 // ie auto=@attacking(mytgt):destroy target(*)
 // eval only the text between the @ and the first :
@@ -352,51 +381,17 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string magicText, int 
 {
     size_t found = string::npos;
 
-    //restrictions on triggers
-    bool once = false;
-    bool sourceUntapped = false;
-    bool sourceTap = false;
-    bool opponentPoisoned = false;
-    bool lifelost = false;
-    int lifeamount = 0;
-    bool limitOnceATurn = false;
-    bool isSuspended = false;
-    found = s.find("once");
-    if (found != string::npos)
-    {
-        once = true;
-    }
-    found = s.find("sourcenottap");
-    if (found != string::npos)
-    {
-        sourceUntapped = true;
-    }
-    found = s.find("sourcetap");
-    if (found != string::npos)
-    {
-        sourceTap = true;
-    }
-    found = s.find("foelost(");
-    if (found != string::npos)
-    {
-        lifelost = true;
-        lifeamount = atoi(s.substr(found + 8,')').c_str());
-    }
-    found = s.find("opponentpoisoned");
-    if ( found != string::npos)
-    {
-    opponentPoisoned = true;
-    }
-    found = s.find("turnlimited");
-    if ( found != string::npos)
-    {
-    limitOnceATurn = true;
-    }
-    found = s.find("suspended");
-    if ( found != string::npos)
-    {
-        isSuspended = true;
-    }
+    //restrictions on triggers  
+    bool once = (s.find("once") != string::npos);
+    bool sourceUntapped = (s.find("sourcenottap") != string::npos);
+    bool sourceTap = (s.find("sourcetap") != string::npos);
+    bool limitOnceATurn = (s.find("turnlimited") != string::npos);
+    bool isSuspended = (s.find("suspended") != string::npos);
+    bool opponentPoisoned = (s.find("opponentpoisoned") != string::npos);
+
+    bool lifelost = (s.find("foelost(") != string::npos); 
+    int lifeamount = lifelost ? atoi(s.substr(found + 8,')').c_str()) : 0 ;
+
     //Card Changed Zone
     found = s.find("movedto(");
     if (found != string::npos)
@@ -451,43 +446,16 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string magicText, int 
     }
 
     //Card unTapped
-    found = s.find("untapped(");
-    if (found != string::npos)
-    {
-        size_t end = s.find(")");
-        string starget = s.substr(found + 9, end - found - 9);
-        TargetChooserFactory tcf;
-        TargetChooser *tc = tcf.createTargetChooser(starget, card);
-        tc->targetter = NULL;
-
+    if (TargetChooser *tc = parseSimpleTC(s,"untapped", card))
         return NEW TrCardTapped(id, card, tc, false);
-    }
 
     //Card Tapped
-    found = s.find("tapped(");
-    if (found != string::npos)
-    {
-        size_t end = s.find(")");
-        string starget = s.substr(found + 7, end - found - 7);
-        TargetChooserFactory tcf;
-        TargetChooser *tc = tcf.createTargetChooser(starget, card);
-        tc->targetter = NULL;
-
+    if (TargetChooser *tc = parseSimpleTC(s,"tapped", card))
         return NEW TrCardTapped(id, card, tc, true);
-    }
 
     //Card Tapped for mana
-    found = s.find("tappedformana(");
-    if (found != string::npos)
-    {
-        size_t end = s.find(")");
-        string starget = s.substr(found + 14, end - found - 14);
-        TargetChooserFactory tcf;
-        TargetChooser *tc = tcf.createTargetChooser(starget, card);
-        tc->targetter = NULL;
-
+    if (TargetChooser *tc = parseSimpleTC(s,"tappedformana", card))
         return NEW TrCardTappedformana(id, card, tc, true);
-    }
     
 //CombatTrigger
     //Card card attacked and is blocked
@@ -517,224 +485,74 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string magicText, int 
                 blockingTrigger = true;
         }  
         //build triggers TCs
-        TargetChooser *tc = NULL;
-        TargetChooser *fromTc = NULL;
-        TargetChooserFactory tcf;
-        string starget;
-        string ftarget;
-        size_t sourceCard = s.find("source(");
-        if (sourceCard != string::npos)
-        {
-            size_t sEnd = s.find(")",sourceCard);
-            starget = s.substr(sourceCard + 7, sEnd - sourceCard - 7);
-            tc = tcf.createTargetChooser(starget, card);
-            tc->targetter = NULL;
-        }
-        size_t From = s.find("from(");
-        if (From != string::npos)
-        {
-            size_t fromEnd = s.find(")", From);
-            ftarget = s.substr(From + 5, fromEnd - From - 5);
-            fromTc = tcf.createTargetChooser(ftarget, card);
-            fromTc->targetter = NULL;
-        }
-        if(tc)//a source( is required, from( is optional.
-            return NEW TrCombatTrigger(id, card, tc, fromTc,once,limitOnceATurn,sourceUntapped,opponentPoisoned,
-            attackingTrigger,attackedAloneTrigger,notBlockedTrigger,attackBlockedTrigger,blockingTrigger);
-        else
+        TargetChooser *tc = parseSimpleTC(s, "source", card);
+        if(!tc)//a source( is required, from( is optional.
             return NULL;
+
+        TargetChooser *fromTc = parseSimpleTC(s, "from", card);
+        
+        return NEW TrCombatTrigger(id, card, tc, fromTc,once,limitOnceATurn,sourceUntapped,opponentPoisoned,
+            attackingTrigger,attackedAloneTrigger,notBlockedTrigger,attackBlockedTrigger,blockingTrigger);
     }
 
     //Card card is drawn
-    found = s.find("drawn(");
-    if (found != string::npos)
-    {
-        size_t end = s.find(")");
-        string starget = s.substr(found + 6, end - found - 6);
-        TargetChooserFactory tcf;
-        TargetChooser *tc = tcf.createTargetChooser(starget, card);
-        tc->targetter = NULL;
-
+    if (TargetChooser * tc = parseSimpleTC(s, "drawn", card))
         return NEW TrcardDrawn(id, card, tc);
-    }
 
     //Card is sacrificed
-    found = s.find("sacrificed(");
-    if (found != string::npos)
-    {
-        size_t end = s.find(")");
-        string starget = s.substr(found + 11, end - found - 11);
-        TargetChooserFactory tcf;
-        TargetChooser *tc = tcf.createTargetChooser(starget, card);
-        tc->targetter = NULL;
-
+    if (TargetChooser * tc = parseSimpleTC(s, "sacrificed", card))
         return NEW TrCardSacrificed(id, card, tc);
-    }
 
-    //Card is sacrificed
-    found = s.find("discarded(");
-    if (found != string::npos)
-    {
-        size_t end = s.find(")");
-        string starget = s.substr(found + 10, end - found - 10);
-        TargetChooserFactory tcf;
-        TargetChooser *tc = tcf.createTargetChooser(starget, card);
-        tc->targetter = NULL;
-
+    //Card is Discarded
+    if (TargetChooser * tc = parseSimpleTC(s, "discarded", card))
         return NEW TrCardDiscarded(id, card, tc);
-    }
 
     //Card Damaging non combat
-    found = s.find("noncombatdamaged(");
-    if (found != string::npos)
+    if (TargetChooser * tc = parseSimpleTC(s, "noncombatdamaged", card))
     {
-        size_t end = s.find(")");
-        string starget = s.substr(found + 17, end - found - 17);
-        TargetChooserFactory tcf;
-        TargetChooser *tc = tcf.createTargetChooser(starget, card);
-        tc->targetter = NULL;
-        found = s.find("from(");
-
-        TargetChooser *fromTc = NULL;
-        if (found != string::npos)
-        {
-            end = s.find(")", found);
-            starget = s.substr(found + 5, end - found - 5);
-            fromTc = tcf.createTargetChooser(starget, card);
-            fromTc->targetter = NULL;
-        }
+        TargetChooser *fromTc = parseSimpleTC(s, "from", card);
         return NEW TrDamaged(id, card, tc, fromTc, 2);
     }
 
     //Card Damaging combat
-    found = s.find("combatdamaged(");
-    if (found != string::npos)
+    if (TargetChooser * tc = parseSimpleTC(s, "combatdamaged", card))
     {
-        size_t end = s.find(")");
-        string starget = s.substr(found + 14, end - found - 14);
-        TargetChooserFactory tcf;
-        TargetChooser *tc = tcf.createTargetChooser(starget, card);
-        tc->targetter = NULL;
-        found = s.find("from(");
-
-        TargetChooser *fromTc = NULL;
-        if (found != string::npos)
-        {
-            end = s.find(")", found);
-            starget = s.substr(found + 5, end - found - 5);
-            fromTc = tcf.createTargetChooser(starget, card);
-            fromTc->targetter = NULL;
-        }
+        TargetChooser *fromTc = parseSimpleTC(s, "from", card);
         return NEW TrDamaged(id, card, tc, fromTc, 1,sourceUntapped,limitOnceATurn);
     }
 
     //Card Damaging
-    found = s.find("damaged(");
-    if (found != string::npos)
+    if (TargetChooser * tc = parseSimpleTC(s, "damaged", card))
     {
-        size_t end = s.find(")");
-        string starget = s.substr(found + 8, end - found - 8);
-        TargetChooserFactory tcf;
-        TargetChooser *tc = tcf.createTargetChooser(starget, card);
-        tc->targetter = NULL;
-        found = s.find("from(");
-
-        TargetChooser *fromTc = NULL;
-        if (found != string::npos)
-        {
-            end = s.find(")", found);
-            starget = s.substr(found + 5, end - found - 5);
-            fromTc = tcf.createTargetChooser(starget, card);
-            fromTc->targetter = NULL;
-        }
+        TargetChooser *fromTc = parseSimpleTC(s, "from", card);
         return NEW TrDamaged(id, card, tc, fromTc, 0,sourceUntapped,limitOnceATurn);
     }
 
-    //Card Damaging
-    found = s.find("lifed(");
-    if (found != string::npos)
+    //Lifed
+    if (TargetChooser * tc = parseSimpleTC(s, "lifed", card))
     {
-        size_t end = s.find(")");
-        string starget = s.substr(found + 6, end - found - 6);
-        TargetChooserFactory tcf;
-        TargetChooser *tc = tcf.createTargetChooser(starget, card);
-        tc->targetter = NULL;
-        found = s.find("from(");
-
-        TargetChooser *fromTc = NULL;
-        if (found != string::npos)
-        {
-            end = s.find(")", found);
-            starget = s.substr(found + 5, end - found - 5);
-            fromTc = tcf.createTargetChooser(starget, card);
-            fromTc->targetter = NULL;
-        }
+        TargetChooser *fromTc = parseSimpleTC(s, "from", card);
         return NEW TrLifeGained(id, card, tc, fromTc, 0,sourceUntapped);
     }
-    
-        //Card Damaging
-    found = s.find("lifeloss(");
-    if (found != string::npos)
-    {
-        size_t end = s.find(")");
-        string starget = s.substr(found + 9, end - found - 9);
-        TargetChooserFactory tcf;
-        TargetChooser *tc = tcf.createTargetChooser(starget, card);
-        tc->targetter = NULL;
-        found = s.find("from(");
 
-        TargetChooser *fromTc = NULL;
-        if (found != string::npos)
-        {
-            end = s.find(")", found);
-            starget = s.substr(found + 5, end - found - 5);
-            fromTc = tcf.createTargetChooser(starget, card);
-            fromTc->targetter = NULL;
-        }
+    //Life Loss
+    if (TargetChooser * tc = parseSimpleTC(s, "lifeloss", card))
+    {
+        TargetChooser *fromTc = parseSimpleTC(s, "from", card);
         return NEW TrLifeGained(id, card, tc, fromTc,1,sourceUntapped);
     }
-    
-    //Card Damaged and killed by a creature this turn
-    found = s.find("vampired(");
-    if (found != string::npos)
-    {
-        size_t end = s.find(")");
-        string starget = s.substr(found + 9, end - found - 9);
-        TargetChooserFactory tcf;
-        TargetChooser *tc = tcf.createTargetChooser(starget, card);
-        tc->targetter = NULL;
-        found = s.find("from(");
 
-        TargetChooser *fromTc = NULL;
-        if (found != string::npos)
-        {
-            end = s.find(")", found);
-            starget = s.substr(found + 5, end - found - 5);
-            fromTc = tcf.createTargetChooser(starget, card);
-            fromTc->targetter = NULL;
-        }
+    //Card Damaged and killed by a creature this turn
+    if (TargetChooser * tc = parseSimpleTC(s, "vampired", card))
+    {
+        TargetChooser *fromTc = parseSimpleTC(s, "from", card);
         return NEW TrVampired(id, card, tc, fromTc);
     }
 
     //when card becomes the target of a spell or ability
-    found = s.find("targeted(");
-    if (found != string::npos)
+    if (TargetChooser * tc = parseSimpleTC(s, "targeted", card))
     {
-        size_t end = s.find(")");
-        string starget = s.substr(found + 9, end - found - 9);
-        TargetChooserFactory tcf;
-        TargetChooser *tc = tcf.createTargetChooser(starget, card);
-        tc->targetter = NULL;
-        found = s.find("from(");
-
-        TargetChooser *fromTc = NULL;
-        if (found != string::npos)
-        {
-            end = s.find(")", found);
-            starget = s.substr(found + 5, end - found - 5);
-            fromTc = tcf.createTargetChooser(starget, card);
-            fromTc->targetter = NULL;
-        }
+        TargetChooser *fromTc = parseSimpleTC(s, "from", card);
         return NEW TrTargeted(id, card, tc, fromTc, 0);
     }
     
