@@ -903,6 +903,7 @@ void GameStateMenu::ButtonPressed(int controllerId, int controlId)
             currentState = MENU_STATE_MAJOR_DUEL | MENU_STATE_MINOR_SUBMENU_CLOSING;
             break;
         case SUBMENUITEM_CANCEL:
+        case kInfoMenuID: // Triangle button
             if (subMenuController != NULL)
             {
                 subMenuController->Close();
