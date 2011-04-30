@@ -555,7 +555,8 @@ bool Rules::canChooseDeck()
 
 int Rules::load(string _filename)
 {
-    if (_filename.size() < 5 || _filename.find(".txt") == string::npos)
+    //avoid non .txt files
+    if (_filename.size() < 5 || (_filename.find(".txt") == string::npos && _filename.find(".TXT") == string::npos))
         return 0;
 
     if (!filename.size()) //this check is necessary because of the recursive calls (a fil loads other files)
