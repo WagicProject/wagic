@@ -3215,7 +3215,7 @@ static int gbk_mbtowc(ucs4_t *pwc, const u8 *s, int n)
 
 u16 charsets_gbk_to_ucs(const u8 * cjk)
 {
-	ucs4_t u;
+	ucs4_t u = 0;
 	if(gbk_mbtowc(&u, cjk, 2) < 1)
 		u = 0x1FFF;
 	return (u16) u;
