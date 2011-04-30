@@ -4315,10 +4315,8 @@ int TargetAbility::resolve()
         delete (diff);
         ability->target = t;
         //do nothing if the target controller responded by phasing out the target.
-        MTGCardInstance * targeted = (MTGCardInstance*)t;
-        if (targeted->typeAsTarget() == TARGET_CARD && targeted->isPhased)
-        return 0;
-        
+        if (t->typeAsTarget() == TARGET_CARD && ((MTGCardInstance*)t)->isPhased)
+            return 0;
         if (ability->oneShot)
             return ability->resolve();
         MTGAbility * a = ability->clone();
