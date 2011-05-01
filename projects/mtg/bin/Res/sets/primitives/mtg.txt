@@ -25429,7 +25429,7 @@ toughness=2
 [/card]
 [card]
 name=Gitaxian Probe
-auto=target(*|opponenthand) 0/0 ueot
+auto=name(look at opponents hand) target(*|opponenthand) 0/0 ueot
 auto=draw:1 controller
 text=({p(U)} may be paid for with either {U} or 2 life.) -- Look at target player's hand. -- Draw a card.
 color=blue
@@ -25511,7 +25511,7 @@ toughness=4
 [/card]
 [card]
 name=Glasses of Urza
-auto={T}:name(look at opponents hand) target(*|opponenthand)
+auto={T}:name(look at opponents hand) target(*|opponenthand) 0/0 ueot
 text={T}:Look at target player's hand.
 mana={1}
 type=Artifact
@@ -31802,7 +31802,7 @@ type=Artifact
 [card]
 name=Ingenious Thief
 abilities=flying
-auto=name(look at opponents hand) target(*|opponenthand)
+auto=name(look at opponents hand) target(*|opponenthand) 0/0 ueot
 text=Flying -- When Ingenious Thief enters the battlefield, look at target player's hand.
 mana={1}{U}
 type=Creature
@@ -36478,7 +36478,7 @@ toughness=2
 name=Lay Bare
 target=*|stack
 auto=fizzle
-auto=name(look at opponents hand) target(*|opponenthand)
+auto=name(look at opponents hand) target(*|opponenthand) 0/0 ueot
 text=Counter target spell. Look at its controller's hand.
 mana={2}{U}{U}
 type=Instant
@@ -46604,7 +46604,7 @@ type=Land
 [/card]
 [card]
 name=Peek
-auto=name(look at opponents hand) target(*|opponenthand)
+auto=name(look at opponents hand) target(*|opponenthand) 0/0 ueot
 auto=draw:1 controller
 text=Look at target player's hand. -- Draw a card.
 mana={U}
@@ -46910,11 +46910,11 @@ type=Enchantment
 [/card]
 [card]
 name=Persecute
-auto=choice name(white) target(*[white]|opponenthand) && reject all(*[white]|opponenthand)
-auto=choice name(Blue) target(*[blue]|opponenthand) && reject all(*[blue]|opponenthand)
-auto=choice name(Black) target(*[black]|opponenthand) && reject all(*[black]|opponenthand)
-auto=choice name(Red) target(*[red]|opponenthand) && reject all(*[red]|opponenthand)
-auto=choice name(Green) target(*[green]|opponenthand) && reject all(*[green]|opponenthand)
+auto=choice name(white) target(*[white]|opponenthand) 0/0 ueot && reject all(*[white]|opponenthand)
+auto=choice name(Blue) target(*[blue]|opponenthand) 0/0 ueot && reject all(*[blue]|opponenthand)
+auto=choice name(Black) target(*[black]|opponenthand) 0/0 ueot && reject all(*[black]|opponenthand)
+auto=choice name(Red) target(*[red]|opponenthand) 0/0 ueot && reject all(*[red]|opponenthand)
+auto=choice name(Green) target(*[green]|opponenthand) 0/0 ueot && reject all(*[green]|opponenthand)
 text=Choose a color. Target player reveals his or her hand and discards all cards of that color.
 mana={2}{B}{B}
 type=Sorcery
@@ -60567,7 +60567,7 @@ toughness=1
 [/card]
 [card]
 name=Sorcerous Sight
-target=*|opponenthand
+auto=name(look at opponents hand) target(*|opponenthand) 0/0 ueot
 auto=draw:1 controller
 text=Look at target opponent's hand. -- Draw a card.
 mana={U}
@@ -64952,7 +64952,7 @@ toughness=2
 [card]
 name=Talas Explorer
 abilities=flying
-auto=name(look at opponents hand) target(*|opponenthand)
+auto=name(look at opponents hand) target(*|opponenthand) 0/0 ueot
 text=Flying -- When Talas Explorer enters the battlefield, look at target opponent's hand.
 mana={1}{U}
 type=Creature
@@ -65729,7 +65729,7 @@ toughness=2
 [/card]
 [card]
 name=Telepathic Spies
-auto=name(look at opponents hand) target(*|opponenthand)
+auto=name(look at opponents hand) target(*|opponenthand) 0/0 ueot
 text=When Telepathic Spies enters the battlefield, look at target opponent's hand.
 mana={2}{U}
 type=Creature
@@ -72740,7 +72740,7 @@ toughness=4
 [card]
 name=Walker of Secret Ways
 autohand={1}{U}{N}:ninjutsu
-auto=@combatdamaged(player) from(this):name(look at opponents hand) target(*|opponenthand)
+auto=@combatdamaged(player) from(this):name(look at opponents hand) target(*|opponenthand) 0/0 ueot
 auto={1}{U}:moveTo(myhand) target(ninja|myBattlefield) myTurnOnly
 text=Ninjutsu {1}{U} ({1}{U}, Return an unblocked attacker you control to hand: Put this card onto the battlefield from your hand tapped and attacking.) -- Whenever Walker of Secret Ways deals combat damage to a player, look at that player's hand. -- {1}{U}: Return target Ninja you control to its owner's hand. Activate this ability only during your turn.
 mana={2}{U}
@@ -73321,7 +73321,7 @@ type=Artifact
 [/card]
 [card]
 name=Wanderguard Sentry
-auto=name(look at opponents hand) target(*|opponenthand)
+auto=name(look at opponents hand) target(*|opponenthand) 0/0 ueot
 text=When Wanderguard Sentry enters the battlefield, look at target opponent's hand.
 mana={4}{U}
 type=Creature
