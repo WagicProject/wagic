@@ -1,0 +1,880 @@
+[meta]
+author=Wagic Team
+name=NPH
+year=2011
+[/meta]
+[card]
+primitive=Act of Aggression
+id=230076
+rarity=U
+[/card]
+[card]
+primitive=Alloy Myr
+id=214344
+rarity=U
+[/card]
+[card]
+primitive=Apostle's Blessing
+id=194208
+rarity=C
+[/card]
+[card]
+primitive=Argent Mutation
+id=218001
+rarity=U
+[/card]
+[card]
+primitive=Arm with Æther
+id=202641
+rarity=U
+[/card]
+[card]
+primitive=Artillerize
+id=218081
+rarity=C
+[/card]
+[card]
+primitive=Auriok Survivors
+id=214353
+rarity=U
+[/card]
+[card]
+primitive=Batterskull
+id=233055
+rarity=M
+[/card]
+[card]
+primitive=Beast Within
+id=221533
+rarity=U
+[/card]
+[card]
+primitive=Birthing Pod
+id=218006
+rarity=R
+[/card]
+[card]
+primitive=Blade Splicer
+id=233068
+rarity=R
+[/card]
+[card]
+primitive=Blighted Agent
+id=214383
+rarity=C
+[/card]
+[card]
+primitive=Blind Zealot
+id=217999
+rarity=C
+[/card]
+[card]
+primitive=Blinding Souleater
+id=233045
+rarity=U
+[/card]
+[card]
+primitive=Bludgeon Brawl
+id=218055
+rarity=R
+[/card]
+[card]
+primitive=Brutalizer Exarch
+id=217998
+rarity=U
+[/card]
+[card]
+primitive=Caged Sun
+id=214345
+rarity=R
+[/card]
+[card]
+primitive=Caress of Phyrexia
+id=218061
+rarity=U
+[/card]
+[card]
+primitive=Cathedral Membrane
+id=218024
+rarity=U
+[/card]
+[card]
+primitive=Chained Throatseeker
+id=218075
+rarity=C
+[/card]
+[card]
+primitive=Chancellor of the Annex
+id=218083
+rarity=R
+[/card]
+[card]
+primitive=Chancellor of the Dross 
+id=218020
+rarity=R
+[/card]
+[card]
+primitive=Chancellor of the Forge
+id=218021
+rarity=R
+[/card]
+[card]
+primitive=Chancellor of the Spires
+id=214360
+rarity=R
+[/card]
+[card]
+primitive=Chancellor of the Tangle
+id=218062
+rarity=R
+[/card]
+[card]
+primitive=Conversion Chamber
+id=230070
+rarity=U
+[/card]
+[card]
+primitive=Corrosive Gale
+id=230075
+rarity=U
+[/card]
+[card]
+primitive=Corrupted Resolve
+id=233080
+rarity=U
+[/card]
+[card]
+primitive=Darksteel Relic
+id=218067
+rarity=U
+[/card]
+[card]
+primitive=Death-Hood Cobra
+id=233065
+rarity=C
+[/card]
+[card]
+primitive=Deceiver Exarch
+id=214365
+rarity=U
+[/card]
+[card]
+primitive=Defensive Stance
+id=217987
+rarity=C
+[/card]
+[card]
+primitive=Dementia Bat
+id=233084
+rarity=C
+[/card]
+[card]
+primitive=Despise
+id=233043
+rarity=U
+[/card]
+[card]
+primitive=Dismember
+id=230082
+rarity=U
+[/card]
+[card]
+primitive=Dispatch
+id=218072
+rarity=U
+[/card]
+[card]
+primitive=Due Respect
+id=233077
+rarity=U
+[/card]
+[card]
+primitive=Elesh Norn, Grand Cenobite
+id=214352
+rarity=M
+[/card]
+[card]
+primitive=Enslave
+id=233060
+rarity=U
+[/card]
+[card]
+primitive=Entomber Exarch
+id=218023
+rarity=U
+[/card]
+[card]
+primitive=Etched Monstrosity
+id=217996
+rarity=M
+[/card]
+[card]
+primitive=Evil Presence
+id=218073
+rarity=C
+[/card]
+[card]
+primitive=Exclusion Ritual
+id=214364
+rarity=U
+[/card]
+[card]
+primitive=Fallen Ferromancer
+id=227537
+rarity=U
+[/card]
+[card]
+primitive=Flameborn Viron
+id=233086
+rarity=C
+[/card]
+[card]
+primitive=Forced Worship
+id=230083
+rarity=C
+[/card]
+[card]
+primitive=Forest
+id=230081
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=230071
+rarity=L
+[/card]
+[card]
+primitive=Fresh Meat
+id=218051
+rarity=R
+[/card]
+[card]
+primitive=Furnace Scamp
+id=217979
+rarity=C
+[/card]
+[card]
+primitive=Geosurge
+id=218004
+rarity=U
+[/card]
+[card]
+primitive=Geth's Verdict
+id=214376
+rarity=C
+[/card]
+[card]
+primitive=Gitaxian Probe
+id=233056
+rarity=C
+[/card]
+[card]
+primitive=Glissa's Scorn
+id=194171
+rarity=C
+[/card]
+[card]
+primitive=Glistener Elf
+id=233052
+rarity=C
+[/card]
+[card]
+primitive=Glistening Oil
+id=214346
+rarity=R
+[/card]
+[card]
+primitive=Greenhilt Trainee
+id=233063
+rarity=U
+[/card]
+[card]
+primitive=Gremlin Mine
+id=218068
+rarity=C
+[/card]
+[card]
+primitive=Grim Affliction
+id=214389
+rarity=C
+[/card]
+[card]
+primitive=Gut Shot
+id=230074
+rarity=U
+[/card]
+[card]
+primitive=Hex Parasite
+id=218008
+rarity=R
+[/card]
+[card]
+primitive=Hovermyr
+id=227513
+rarity=C
+[/card]
+[card]
+primitive=Ichor Explosion
+id=218066
+rarity=U
+[/card]
+[card]
+primitive=Immolating Souleater
+id=233058
+rarity=C
+[/card]
+[card]
+primitive=Impaler Shrike
+id=217988
+rarity=C
+[/card]
+[card]
+primitive=Inquisitor Exarch
+id=218070
+rarity=U
+[/card]
+[card]
+primitive=Insatiable Souleater
+id=233066
+rarity=C
+[/card]
+[card]
+primitive=Invader Parasite
+id=233067
+rarity=R
+[/card]
+[card]
+primitive=Island
+id=227530
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=227505
+rarity=L
+[/card]
+[card]
+primitive=Isolation Cell
+id=218057
+rarity=U
+[/card]
+[card]
+primitive=Jin-Gitaxias, Core Augur
+id=214349
+rarity=M
+[/card]
+[card]
+primitive=Jor Kadeen, the Prevailer
+id=227508
+rarity=R
+[/card]
+[card]
+primitive=Karn Liberated
+id=214350
+rarity=M
+[/card]
+[card]
+primitive=Kiln Walker
+id=214380
+rarity=R
+[/card]
+[card]
+primitive=Lashwrithe
+id=214359
+rarity=R
+[/card]
+[card]
+primitive=Leeching Bite
+id=218028
+rarity=C
+[/card]
+[card]
+primitive=Life's Finale
+id=214362
+rarity=R
+[/card]
+[card]
+primitive=Lost Leonin
+id=218053
+rarity=C
+[/card]
+[card]
+primitive=Loxodon Convert
+id=218013
+rarity=C
+[/card]
+[card]
+primitive=Marrow Shards
+id=230072
+rarity=U
+[/card]
+[card]
+primitive=Marrow Splicer
+id=233062
+rarity=U
+[/card]
+[card]
+primitive=Maul Splicer
+id=233040
+rarity=C
+[/card]
+[card]
+primitive=Melira, Sylvok Outcast
+id=194274
+rarity=R
+[/card]
+[card]
+primitive=Mental Misstep
+id=230066
+rarity=U
+[/card]
+[card]
+primitive=Mindcrank
+id=233078
+rarity=U
+[/card]
+[card]
+primitive=Mindculling
+id=218085
+rarity=U
+[/card]
+[card]
+primitive=Moltensteel Dragon
+id=233051
+rarity=R
+[/card]
+[card]
+primitive=Mortis Dogs
+id=233072
+rarity=C
+[/card]
+[card]
+primitive=Mountain
+id=227507
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=230064
+rarity=L
+[/card]
+[card]
+primitive=Mutagenic Growth
+id=233070
+rarity=C
+[/card]
+[card]
+primitive=Mycosynth Fiend
+id=217995
+rarity=U
+[/card]
+[card]
+primitive=Mycosynth Wellspring
+id=218039
+rarity=C
+[/card]
+[card]
+primitive=Myr Superion
+id=194275
+rarity=R
+[/card]
+[card]
+primitive=Necropouncer
+id=214367
+rarity=
+[/card]
+[card]
+primitive=Norn's Annex
+id=233050
+rarity=R
+[/card]
+[card]
+primitive=Noxious Revival
+id=230067
+rarity=U
+[/card]
+[card]
+primitive=Numbing Dose
+id=218040
+rarity=C
+[/card]
+[card]
+primitive=Ogre Menial
+id=233082
+rarity=C
+[/card]
+[card]
+primitive=Omen Machine
+id=233042
+rarity=R
+[/card]
+[card]
+primitive=Parasitic Implant
+id=194216
+rarity=C
+[/card]
+[card]
+primitive=Pestilent Souleater
+id=233085
+rarity=C
+[/card]
+[card]
+primitive=Phyrexian Hulk
+id=214379
+rarity=C
+[/card]
+[card]
+primitive=Phyrexian Ingester
+id=214384
+rarity=R
+[/card]
+[card]
+primitive=Phyrexian Metamorph
+id=214375
+rarity=R
+[/card]
+[card]
+primitive=Phyrexian Obliterator
+id=214386
+rarity=M
+[/card]
+[card]
+primitive=Phyrexian Swarmlord
+id=218086
+rarity=R
+[/card]
+[card]
+primitive=Phyrexian Unlife
+id=218058
+rarity=R
+[/card]
+[card]
+primitive=Phyrexia's Core
+id=218015
+rarity=U
+[/card]
+[card]
+primitive=Pith Driller
+id=230079
+rarity=C
+[/card]
+[card]
+primitive=Plains
+id=227552
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=227518
+rarity=L
+[/card]
+[card]
+primitive=Porcelain Legionnaire
+id=218043
+rarity=C
+[/card]
+[card]
+primitive=Postmortem Lunge
+id=233054
+rarity=U
+[/card]
+[card]
+primitive=Praetor's Grasp
+id=218050
+rarity=R
+[/card]
+[card]
+primitive=Priest of Urabrask
+id=218037
+rarity=U
+[/card]
+[card]
+primitive=Pristine Talisman
+id=233074
+rarity=C
+[/card]
+[card]
+primitive=Psychic Barrier
+id=218016
+rarity=C
+[/card]
+[card]
+primitive=Psychic Surgery
+id=214347
+rarity=R
+[/card]
+[card]
+primitive=Puresteel Paladin
+id=227504
+rarity=R
+[/card]
+[card]
+primitive=Rage Extractor
+id=214385
+rarity=U
+[/card]
+[card]
+primitive=Razor Swine
+id=218022
+rarity=C
+[/card]
+[card]
+primitive=Reaper of Sheoldred
+id=214374
+rarity=C
+[/card]
+[card]
+primitive=Remember the Fallen
+id=218078
+rarity=C
+[/card]
+[card]
+primitive=Rotted Hystrix
+id=233064
+rarity=C
+[/card]
+[card]
+primitive=Ruthless Invasion
+id=227528
+rarity=C
+[/card]
+[card]
+primitive=Scrapyard Salvo
+id=218019
+rarity=C
+[/card]
+[card]
+primitive=Sensor Splicer
+id=233038
+rarity=C
+[/card]
+[card]
+primitive=Shattered Angel
+id=233059
+rarity=U
+[/card]
+[card]
+primitive=Sheoldred, Whispering One
+id=214382
+rarity=M
+[/card]
+[card]
+primitive=Shriek Raptor
+id=217994
+rarity=C
+[/card]
+[card]
+primitive=Shrine of Boundless Growth
+id=217982
+rarity=U
+[/card]
+[card]
+primitive=Shrine of Burning Rage
+id=218018
+rarity=U
+[/card]
+[card]
+primitive=Shrine of Limitless Power
+id=217980
+rarity=U
+[/card]
+[card]
+primitive=Shrine of Loyal Legions
+id=206347
+rarity=U
+[/card]
+[card]
+primitive=Shrine of Piercing Vision
+id=194318
+rarity=U
+[/card]
+[card]
+primitive=Sickleslicer
+id=214357
+rarity=U
+[/card]
+[card]
+primitive=Slag Fiend
+id=218010
+rarity=R
+[/card]
+[card]
+primitive=Slash Panther
+id=230065
+rarity=C
+[/card]
+[card]
+primitive=Soul Conduit
+id=233048
+rarity=R
+[/card]
+[card]
+primitive=Spellskite
+id=217992
+rarity=R
+[/card]
+[card]
+primitive=Spinebiter
+id=230068
+rarity=U
+[/card]
+[card]
+primitive=Spined Thopter
+id=217990
+rarity=C
+[/card]
+[card]
+primitive=Spire Monitor
+id=233053
+rarity=C
+[/card]
+[card]
+primitive=Surge Node
+id=194070
+rarity=U
+[/card]
+[card]
+primitive=Surgical Extraction
+id=233041
+rarity=R
+[/card]
+[card]
+primitive=Suture Priest
+id=217981
+rarity=C
+[/card]
+[card]
+primitive=Swamp
+id=227519
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=227521
+rarity=L
+[/card]
+[card]
+primitive=Sword of War and Peace
+id=214368
+rarity=M
+[/card]
+[card]
+primitive=Tezzeret's Gambit
+id=227547
+rarity=U
+[/card]
+[card]
+primitive=Thundering Thanadon
+id=218077
+rarity=C
+[/card]
+[card]
+primitive=Tormentor Exarch
+id=218082
+rarity=U
+[/card]
+[card]
+primitive=Torpor Orb
+id=233069
+rarity=R
+[/card]
+[card]
+primitive=Toxic Nim
+id=233081
+rarity=C
+[/card]
+[card]
+primitive=Trespassing Souleater
+id=233073
+rarity=C
+[/card]
+[card]
+primitive=Triumph of the Hordes
+id=218044
+rarity=U
+[/card]
+[card]
+primitive=Unwinding Clock
+id=218079
+rarity=R
+[/card]
+[card]
+primitive=Urabrask, the Hidden
+id=214378
+rarity=M
+[/card]
+[card]
+primitive=Vapor Snag
+id=218017
+rarity=C
+[/card]
+[card]
+primitive=Vault Skirge
+id=217984
+rarity=C
+[/card]
+[card]
+primitive=Victorious Destruction
+id=227549
+rarity=C
+[/card]
+[card]
+primitive=Viral Drake
+id=233047
+rarity=U
+[/card]
+[card]
+primitive=Viridian Betrayers
+id=214390
+rarity=C
+[/card]
+[card]
+primitive=Viridian Harvest
+id=214388
+rarity=C
+[/card]
+[card]
+primitive=Vital Splicer
+id=233079
+rarity=U
+[/card]
+[card]
+primitive=Volt Charge
+id=214381
+rarity=U
+[/card]
+[card]
+primitive=Vorinclex, Voice of Hunger
+id=218002
+rarity=M
+[/card]
+[card]
+primitive=Vulshok Refugee
+id=218038
+rarity=U
+[/card]
+[card]
+primitive=War Report
+id=230078
+rarity=C
+[/card]
+[card]
+primitive=Whipflare
+id=194383
+rarity=U
+[/card]
+[card]
+primitive=Whispering Specter
+id=218045
+rarity=U
+[/card]
+[card]
+primitive=Wing Splicer
+id=233037
+rarity=U
+[/card]
+[card]
+primitive=Xenograft
+id=227544
+rarity=R
+[/card]
