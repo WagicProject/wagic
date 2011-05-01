@@ -47926,8 +47926,9 @@ type=Artifact
 [card]
 name=Pith Driller
 auto=counter(-1/-1,1) target(creature)
-text=When Pith Driller enters the battlefield, put a -1/-1 counter on target creature.
-mana={4}{B}
+text=({p(B)} may be paid for with either {B} or 2 life.) -- When Pith Driller enters the battlefield, put a -1/-1 counter on target creature.
+mana={4}{p(B)}
+color=black
 type=Creature
 subtype=Horror
 power=2
