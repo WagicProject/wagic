@@ -1149,10 +1149,10 @@ public:
 
 //remove from combat
 
-class ACombatRemovel: public ActivatedAbility
+class ACombatRemoval: public ActivatedAbility
 {
 public:
-    ACombatRemovel(int _id, MTGCardInstance * card, Targetable * _target) :
+    ACombatRemoval(int _id, MTGCardInstance * card, Targetable * _target) :
         ActivatedAbility(_id, card)
     {
         target = _target;
@@ -1173,9 +1173,9 @@ public:
         return "Remove From Combat";
     }
 
-    ACombatRemovel * clone() const
+    ACombatRemoval * clone() const
     {
-        ACombatRemovel * a = NEW ACombatRemovel(*this);
+        ACombatRemoval * a = NEW ACombatRemoval(*this);
         a->isClone = 1;
         return a;
     }
@@ -2529,12 +2529,6 @@ public:
 class ATokenCreator: public ActivatedAbility
 {
 public:
-enum
-{
-ATOKEN_WHO_CONTROLLER = 0,
-ATOKEN_WHO_OPPONENT = 1,
-ATOKEN_WHO_TARGETCONTROLLER = 2
-};
     list<int> abilities;
     list<int> types;
     list<int> colors;
@@ -2695,13 +2689,13 @@ ATOKEN_WHO_TARGETCONTROLLER = 2
     {
         switch(who)
         {
-        case ATokenCreator::ATOKEN_WHO_CONTROLLER:
+        case TargetChooser::CONTROLLER:
             tokenReciever = source->controller();
             break;
-        case ATokenCreator::ATOKEN_WHO_OPPONENT:
+        case TargetChooser::OPPONENT:
             tokenReciever = source->controller()->opponent();
             break;
-        case ATokenCreator::ATOKEN_WHO_TARGETCONTROLLER:
+        case TargetChooser::TARGET_CONTROLLER:
             if(target)
             {
                 tokenReciever = ((MTGCardInstance*)target)->controller();

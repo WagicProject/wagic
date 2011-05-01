@@ -470,7 +470,9 @@ private:
     TriggeredAbility * parseTrigger(string s, string magicText, int id, Spell * spell, MTGCardInstance *card, Targetable * target);
     MTGAbility * getAlternateCost( string s, int id, Spell *spell, MTGCardInstance *card );
     MTGAbility * getManaReduxAbility(string s, int id, Spell *spell, MTGCardInstance *card, MTGCardInstance *target);
-    TargetChooser * parseSimpleTC(string s, string starter, MTGCardInstance *card, bool forceNoTarget = true);
+    TargetChooser * parseSimpleTC(const std::string& s, const std::string& starter, MTGCardInstance *card, bool forceNoTarget = true);
+    std::vector<std::string>&  parseBetween(const std::string& s, string start, string stop, bool stopRequired, std::vector<std::string>& elems);
+    std::vector<std::string> parseBetween(const std::string& s, string start, string stop, bool stopRequired = true);
 
 public:
     int parseRestriction(string s);

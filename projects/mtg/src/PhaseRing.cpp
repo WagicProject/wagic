@@ -12,10 +12,12 @@ int PhaseRing::phaseStrToInt(string s)
     if (s.compare("draw") == 0) return Constants::MTG_PHASE_DRAW;
     if (s.compare("firstmain") == 0) return Constants::MTG_PHASE_FIRSTMAIN;
     if (s.compare("combatbegin") == 0) return Constants::MTG_PHASE_COMBATBEGIN;
+    if (s.compare("combatbegins") == 0) return Constants::MTG_PHASE_COMBATBEGIN;
     if (s.compare("combatattackers") == 0) return Constants::MTG_PHASE_COMBATATTACKERS;
     if (s.compare("combatblockers") == 0) return Constants::MTG_PHASE_COMBATBLOCKERS;
     if (s.compare("combatdamage") == 0) return Constants::MTG_PHASE_COMBATDAMAGE;
     if (s.compare("combatend") == 0) return Constants::MTG_PHASE_COMBATEND;
+    if (s.compare("combatends") == 0) return Constants::MTG_PHASE_COMBATEND;
     if (s.compare("secondmain") == 0) return Constants::MTG_PHASE_SECONDMAIN;
     if (s.compare("endofturn") == 0) return Constants::MTG_PHASE_ENDOFTURN;
     if (s.compare("cleanup") == 0) return Constants::MTG_PHASE_CLEANUP;
