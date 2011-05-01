@@ -24,7 +24,7 @@ id=218001
 rarity=U
 [/card]
 [card]
-primitive=Arm with Æther
+primitive=Arm with AEther
 id=202641
 rarity=U
 [/card]
@@ -109,7 +109,7 @@ id=218083
 rarity=R
 [/card]
 [card]
-primitive=Chancellor of the Dross 
+primitive=Chancellor of the Dross
 id=218020
 rarity=R
 [/card]
@@ -409,7 +409,7 @@ id=230072
 rarity=U
 [/card]
 [card]
-primitive=Marrow Splicer
+primitive=Master Splicer
 id=233062
 rarity=U
 [/card]
@@ -764,7 +764,7 @@ id=227547
 rarity=U
 [/card]
 [card]
-primitive=Thundering Thanadon
+primitive=Thundering Tanadon
 id=218077
 rarity=C
 [/card]
@@ -799,7 +799,7 @@ id=218079
 rarity=R
 [/card]
 [card]
-primitive=Urabrask, the Hidden
+primitive=Urabrask the Hidden
 id=214378
 rarity=M
 [/card]
