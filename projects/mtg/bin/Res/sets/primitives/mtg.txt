@@ -3201,7 +3201,7 @@ type=Enchantment
 [/card]
 [card]
 name=Arrogant Bloodlord
-auto=@combat(blocking,blocked) source(this) from(creature[power<=1]):all(trigger[to]) phaseaction[combatends] destroy
+auto=@combat(blocking,blocked) source(this) from(creature[power<=1]):all(trigger[to]) phaseaction[combatends,sourceinplay] destroy
 text=Whenever Arrogant Bloodlord blocks or becomes blocked by a creature with power 1 or less, destroy Arrogant Bloodlord at end of combat.
 mana={1}{B}{B}
 type=Creature
@@ -4750,11 +4750,11 @@ type=Enchantment
 [/card]
 [card]
 name=Barbed Sextant
-auto={1}{T}{S}:Add{W} && phaseaction[upkeep] draw:1 controller
-auto={1}{T}{S}:Add{U} && phaseaction[upkeep] draw:1 controller
-auto={1}{T}{S}:Add{B} && phaseaction[upkeep] draw:1 controller
-auto={1}{T}{S}:Add{R} && phaseaction[upkeep] draw:1 controller
-auto={1}{T}{S}:Add{G} && phaseaction[upkeep] draw:1 controller
+auto={1}{T}{S}:Add{W} && phaseaction[upkeep once] draw:1 controller
+auto={1}{T}{S}:Add{U} && phaseaction[upkeep once] draw:1 controller
+auto={1}{T}{S}:Add{B} && phaseaction[upkeep once] draw:1 controller
+auto={1}{T}{S}:Add{R} && phaseaction[upkeep once] draw:1 controller
+auto={1}{T}{S}:Add{G} && phaseaction[upkeep once] draw:1 controller
 text={1}, {T}, Sacrifice Barbed Sextant: Add one mana of any color to your mana pool. Draw a card at the beginning of the next turn's upkeep.
 mana={1}
 type=Artifact
@@ -4964,7 +4964,7 @@ toughness=2
 [card]
 name=Basalt Golem
 auto=cantbeblockedby(creature[artifact])
-auto=@combat(blocked) source(this) from(creature):all(trigger[from]) phaseaction[combatends] sacrifice && phaseaction[combatends] token(Wall,Artifact Creature Wall,0/2,defender) opponent
+auto=@combat(blocked) source(this) from(creature):all(trigger[from]) phaseaction[combatends] sacrifice && phaseaction[combatends once] token(Wall,Artifact Creature Wall,0/2,defender) opponent
 text=Basalt Golem can't be blocked by artifact creatures. -- Whenever Basalt Golem becomes blocked by a creature, that creature's controller sacrifices it at end of combat. If the player does, he or she puts a 0/2 colorless Wall artifact creature token with defender onto the battlefield.
 mana={5}
 type=Artifact Creature
@@ -10243,8 +10243,8 @@ toughness=1
 [/card]
 [card]
 name=Ceremonial Guard
-auto=@combat(attacking) source(this):phaseaction[combatends] destroy
-auto=@combat(blocking) source(this):phaseaction[combatends] destroy
+auto=@combat(attacking) source(this):phaseaction[combatends,sourceinplay] destroy
+auto=@combat(blocking) source(this):phaseaction[combatends,sourceinplay] destroy
 text=When Ceremonial Guard attacks or blocks, destroy it at end of combat.
 mana={2}{R}
 type=Creature
@@ -11078,7 +11078,7 @@ type=Sorcery
 [card]
 name=Cinder Wall
 abilities=defender
-auto=@combat(blocking) source(this):phaseaction[combatends] destroy
+auto=@combat(blocking) source(this):phaseaction[combatends,sourceinplay] destroy
 text=Defender (This creature can't attack.) -- When Cinder Wall blocks, destroy it at end of combat.
 mana={R}
 type=Creature
@@ -13081,7 +13081,7 @@ toughness=2
 [/card]
 [card]
 name=Crazed Armodon
-auto={G}:3/0 && trample && phaseaction[endofturn once] destroy limit:1
+auto={G}:3/0 && trample && phaseaction[endofturn once,sourceinplay] destroy limit:1
 text={G}: Crazed Armodon gets +3/+0 and gains trample until end of turn. Destroy Crazed Armodon at the beginning of the next end step. Activate this ability only once each turn.
 mana={2}{G}{G}
 type=Creature
@@ -13697,7 +13697,7 @@ type=Artifact
 name=Cunning
 target=creature
 auto=3/3
-auto=@combat(attacking,blocking) source(mytgt):phaseaction[cleanup] sacrifice
+auto=@combat(attacking,blocking) source(mytgt):phaseaction[cleanup,sourceinplay] sacrifice
 text=Enchant creature -- Enchanted creature gets +3/+3. -- When enchanted creature attacks or blocks, sacrifice Cunning at the beginning of the next cleanup step.
 mana={1}{U}
 type=Enchantment
@@ -17040,7 +17040,7 @@ toughness=6
 [card]
 name=Dragon Whelp
 abilities=flying
-auto={r}:+1/0 ueot limit^phaseaction[endofturn once] sacrifice^4
+auto={R}:1/0 ueot limit^phaseaction[endofturn once] sacrifice^4
 text=Flying -- {R}: Dragon Whelp gets +1/+0 until end of turn. If this ability has been activated four or more times this turn, sacrifice Dragon Whelp at the beginning of the next end step.
 mana={2}{R}{R}
 type=Creature
@@ -23280,8 +23280,8 @@ toughness=2
 [card]
 name=Fog Elemental
 abilities=flying
-auto=@combat(attacking) source(this):phaseaction[combatends] sacrifice
-auto=@combat(blocking) source(this):phaseaction[combatends] sacrifice
+auto=@combat(attacking) source(this):phaseaction[combatends,sourceinplay] sacrifice
+auto=@combat(blocking) source(this):phaseaction[combatends,sourceinplay] sacrifice
 text=Flying (This creature can't be blocked except by creatures with flying or reach.) -- When Fog Elemental attacks or blocks, sacrifice it at end of combat.
 mana={2}{U}
 type=Creature
@@ -23945,7 +23945,7 @@ toughness=1
 [card]
 name=Frostweb Spider
 abilities=reach
-auto=@combat(blocking) source(this) from(creature[flying]):all(trigger[to]) phaseaction[combatends] counter(1/1,1)
+auto=@combat(blocking) source(this) from(creature[flying]):all(trigger[to]) phaseaction[combatends once] counter(1/1,1)
 text=Reach (This creature can block creatures with flying.) -- Whenever Frostweb Spider blocks a creature with flying, put a +1/+1 counter on Frostweb Spider at end of combat.
 mana={2}{G}
 type=Snow Creature
@@ -24606,7 +24606,7 @@ toughness=1
 [/card]
 [card]
 name=Gemini Engine
-auto=@combat(attacking) source(this):token(Twin,Gemini Creature,p/t,battleready) && all(Twin[gemini]|mybattlefield) phaseaction[combatends] sacrifice
+auto=@combat(attacking) source(this):token(Twin,Gemini Creature,p/t,battleready) && all(Twin[gemini]|mybattlefield) phaseaction[combatends,sourceinplay] sacrifice
 text=Whenever Gemini Engine attacks, put a colorless Construct artifact creature token named Twin onto the battlefield attacking. Its power is equal to Gemini Engine's power and its toughness is equal to Gemini Engine's toughness. Sacrifice the token at end of combat.
 mana={6}
 type=Artifact Creature
@@ -26476,7 +26476,7 @@ toughness=1
 [/card]
 [card]
 name=Goblin Sappers
-auto={R}{R}{T}:unblockable target(creature) && phaseaction[combatends] destroy && all(this) phaseaction[combatends] destroy
+auto={R}{R}{T}:unblockable target(creature) && phaseaction[combatends] destroy && all(this) phaseaction[combatends,sourceinplay] destroy
 auto={R}{R}{R}{R}{T}:unblockable target(creature) && phaseaction[combatends] destroy
 text={R}{R}, {T}: Target creature you control is unblockable this turn. Destroy it and Goblin Sappers at end of combat. -- {R}{R}{R}{R}, {T}: Target creature you control is unblockable this turn. Destroy it at end of combat.
 mana={1}{R}
@@ -33169,7 +33169,7 @@ toughness=3
 [card]
 name=Joven's Ferrets
 auto=@combat(attacking) source(this):0/2 ueot
-auto=@combat(blocked) source(this) from(creature):all(trigger[from]) phaseaction[combatends] tap && all(trigger[from]) phaseaction[combatends] frozen
+auto=@combat(blocked) source(this) from(creature):all(trigger[from]) phaseaction[combatends once] tap && all(trigger[from]) phaseaction[combatends once] frozen
 text=Whenever Joven's Ferrets attacks, it gets +0/+2 until end of turn. -- At end of combat, tap all creatures that blocked Joven's Ferrets this turn. They don't untap during their controller's next untap step.
 mana={G}
 type=Creature
@@ -50373,7 +50373,7 @@ auto={T}:Add{W}
 auto={T}:Add{U}
 auto={T}:Add{B}
 auto={T}:Add{R}
-auto=@tappedformana(this):phaseaction[endofturn once] moveTo(opponentbattlefield)
+auto=@tappedformana(this):phaseaction[endofturn once,sourceinplay] moveTo(opponentbattlefield)
 text={T}: Add one mana of any color to your mana pool. An opponent gains control of Rainbow Vale at the beginning of the next end step.
 type=Land
 [/card]
@@ -62946,8 +62946,8 @@ type=Land
 [card]
 name=Stoic Ephemera
 abilities=flying,defender
-auto=@combat(attacking) source(this):phaseaction[combatends] destroy
-auto=@combat(blocking) source(this):phaseaction[combatends] destroy
+auto=@combat(attacking) source(this):phaseaction[combatends,sourceinplay] sacrifice
+auto=@combat(blocking) source(this):phaseaction[combatends,sourceinplay] sacrifice
 text=Defender (This creature can't attack.) -- Flying -- When Stoic Ephemera blocks, sacrifice it at end of combat.
 mana={2}{W}
 type=Creature
@@ -65595,7 +65595,7 @@ type=Enchantment
 [/card]
 [card]
 name=Teferi's Veil
-auto=@combat(attacking) source(creature|myBattlefield):all(trigger[to]) phaseaction[combatends] phaseout
+auto=@combat(attacking) source(creature|myBattlefield):all(trigger[to]) phaseaction[combatends,sourceinplay] phaseout
 text=Whenever a creature you control attacks, it phases out at end of combat. (While it's phased out, it's treated as though it doesn't exist. It phases in before you untap during your next untap step.)
 mana={1}{U}
 type=Enchantment
@@ -66347,7 +66347,7 @@ toughness=2
 [card]
 name=Thawing Glaciers
 auto=tap
-auto={1}{T}:moveTo(mybattlefield) target(land[basic]|mylibrary) && tap && phaseaction[cleanup] moveto(myhand) all(this)
+auto={1}{T}:moveTo(mybattlefield) target(land[basic]|mylibrary) && tap && phaseaction[cleanup,sourceinplay] moveto(myhand) all(this)
 text=Thawing Glaciers enters the battlefield tapped. -- {1}, {T}: Search your library for a basic land card, put that card onto the battlefield tapped, then shuffle your library. Return Thawing Glaciers to its owner's hand at the beginning of the next cleanup step.
 type=Land
 [/card]
@@ -67506,8 +67506,8 @@ type=Sorcery
 [/card]
 [card]
 name=Time Elemental
-auto=@combat(attacking) source(this):phaseaction[combatends] damage:5 controller && phaseaction[combatends] sacrifice
-auto=@combat(blocking) source(this):phaseaction[combatends] damage:5 controller && phaseaction[combatends] sacrifice
+auto=@combat(attacking) source(this):phaseaction[combatends] damage:5 controller && phaseaction[combatends,sourceinplay] sacrifice
+auto=@combat(blocking) source(this):phaseaction[combatends] damage:5 controller && phaseaction[combatends,sourceinplay] sacrifice
 auto={2}{U}{U}{T}:moveTo(ownerhand) target(*[-enchanted])
 text=When Time Elemental attacks or blocks, at end of combat, sacrifice it and it deals 5 damage to you. -- {2}{U}{U}, {T}: Return target permanent that isn't enchanted to its owner's hand.
 mana={2}{U}
@@ -69712,11 +69712,11 @@ type=Enchantment
 [/card]
 [card]
 name=Undiscovered Paradise
-auto={T}:Add{G} && phaseaction[myupkeep,next] moveTo(ownerhand)
-auto={T}:Add{W} && phaseaction[myupkeep,next] moveTo(ownerhand)
-auto={T}:Add{U} && phaseaction[myupkeep,next] moveTo(ownerhand)
-auto={T}:Add{B} && phaseaction[myupkeep,next] moveTo(ownerhand)
-auto={T}:Add{R} && phaseaction[myupkeep,next] moveTo(ownerhand)
+auto={T}:Add{G} && phaseaction[myupkeep,next,sourceinplay] moveTo(ownerhand)
+auto={T}:Add{W} && phaseaction[myupkeep,next,sourceinplay] moveTo(ownerhand)
+auto={T}:Add{U} && phaseaction[myupkeep,next,sourceinplay] moveTo(ownerhand)
+auto={T}:Add{B} && phaseaction[myupkeep,next,sourceinplay] moveTo(ownerhand)
+auto={T}:Add{R} && phaseaction[myupkeep,next,sourceinplay] moveTo(ownerhand)
 text={T}: Add one mana of any color to your mana pool. During your next untap step, as you untap your permanents, return Undiscovered Paradise to its owner's hand.
 type=Land
 [/card]
@@ -70680,8 +70680,8 @@ type=Instant
 name=Vebulid
 auto=counter(1/1)
 auto=@each my upkeep:may counter(1/1)
-auto=@combat(attacking) source(this):phaseaction[combatends] destroy
-auto=@combat(blocking) source(this):phaseaction[combatends] destroy
+auto=@combat(attacking) source(this):phaseaction[combatends,sourceinplay] destroy
+auto=@combat(blocking) source(this):phaseaction[combatends,sourceinplay] destroy
 text=Vebulid enters the battlefield with a +1/+1 counter on it. -- At the beginning of your upkeep, you may put a +1/+1 counter on Vebulid. -- When Vebulid attacks or blocks, destroy it at end of combat.
 mana={B}
 type=Creature
@@ -73054,7 +73054,7 @@ toughness=4
 [card]
 name=Wall of Nets
 abilities=defender
-auto=@combat(blocking) source(this) from(creature):all(trigger[from]) phaseaction[combatends] (blink)forsrc
+auto=@combat(blocking) source(this) from(creature):all(trigger[from]) phaseaction[combatends,sourceinplay] (blink)forsrc
 text=Defender (This creature can't attack.) -- At end of combat, exile all creatures blocked by Wall of Nets. -- When Wall of Nets leaves the battlefield, return all cards exiled with Wall of Nets to the battlefield under their owners' control.
 mana={1}{W}{W}
 type=Creature
@@ -73217,7 +73217,7 @@ toughness=6
 [card]
 name=Wall of Tears
 abilities=defender
-auto=@combat(blocking) source(this) from(creature):all(trigger[from]) phaseaction[combatends,sourceinplay] moveTo(ownerhand)
+auto=@combat(blocking) source(this) from(creature):all(trigger[from]) phaseaction[combatends] moveTo(ownerhand)
 text=Defender (This creature can't attack.) -- Whenever Wall of Tears blocks a creature, return that creature to its owner's hand at end of combat.
 mana={1}{U}
 type=Creature
@@ -74392,8 +74392,8 @@ type=Instant
 [/card]
 [card]
 name=Wicker Warcrawler
-auto=@combat(attacking) source(this):phaseaction[combatends] counter(-1/-1,1)
-auto=@combat(blocking) source(this):phaseaction[combatends] counter(-1/-1,1)
+auto=@combat(attacking) source(this):phaseaction[combatends once] counter(-1/-1,1)
+auto=@combat(blocking) source(this):phaseaction[combatends once] counter(-1/-1,1)
 text=Whenever Wicker Warcrawler attacks or blocks, put a -1/-1 counter on it at end of combat.
 mana={5}
 type=Artifact Creature
