@@ -3494,11 +3494,11 @@ type=Instant
 [/card]
 [card]
 name=Astrolabe
-auto={1}{T}{S}:Add{W}{W} && phaseaction[upkeep] draw:1 controller
-auto={1}{T}{S}:Add{U}{U} && phaseaction[upkeep] draw:1 controller
-auto={1}{T}{S}:Add{B}{B} && phaseaction[upkeep] draw:1 controller
-auto={1}{T}{S}:Add{R}{R} && phaseaction[upkeep] draw:1 controller
-auto={1}{T}{S}:Add{G}{G} && phaseaction[upkeep] draw:1 controller
+auto={1}{T}{S}:Add{W}{W} && phaseaction[upkeep once] draw:1 controller
+auto={1}{T}{S}:Add{U}{U} && phaseaction[upkeep once] draw:1 controller
+auto={1}{T}{S}:Add{B}{B} && phaseaction[upkeep once] draw:1 controller
+auto={1}{T}{S}:Add{R}{R} && phaseaction[upkeep once] draw:1 controller
+auto={1}{T}{S}:Add{G}{G} && phaseaction[upkeep once] draw:1 controller
 text={1}, {T}, Sacrifice Astrolabe: Add two mana of any one color to your mana pool. Draw a card at the beginning of the next turn's upkeep.
 mana={3}
 type=Artifact
@@ -11078,7 +11078,7 @@ type=Sorcery
 [card]
 name=Cinder Wall
 abilities=defender
-auto=@each combatends:destroy all(cinder wall[attacking;blocking]|myBattlefield)
+auto=@combat(blocking) source(this):phaseaction[combatends] destroy
 text=Defender (This creature can't attack.) -- When Cinder Wall blocks, destroy it at end of combat.
 mana={R}
 type=Creature
