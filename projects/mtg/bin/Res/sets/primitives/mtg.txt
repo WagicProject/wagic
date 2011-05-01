@@ -11438,7 +11438,7 @@ auto=@combat(attacking) source(this):phaseaction[combatends once] counter(1/0,-1
 auto=@combat(blocking) source(this):phaseaction[combatends once] counter(1/0,-1)
 auto={X}{T}:thisforeach(X) all(this) counter(1/0,1,,4) myUpkeepOnly
 text=Flying -- Clockwork Avian enters the battlefield with four +1/+0 counters on it. -- At end of combat, if Clockwork Avian attacked or blocked this combat, remove a +1/+0 counter from it. -- {X}, {T}: Put up to X +1/+0 counters on Clockwork Avian. This ability can't cause the total number of +1/+0 counters on Clockwork Avian to be greater than four. Activate this ability only during your upkeep.
-mana={1}
+mana={5}
 type=Artifact Creature
 subtype=Bird
 power=0
@@ -70014,7 +70014,7 @@ mana={4}
 type=Artifact
 [/card]
 [card]
-name=Urabrask, the Hidden
+name=Urabrask the Hidden
 auto=lord(creature|mybattlefield) haste
 auto=@movedTo(creature|opponentBattlefield):all(trigger) tap
 text=Creatures you control have Haste. -- Creatures your opponents control enter the battlefield tapped.
