@@ -1549,10 +1549,10 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             sabilities.append(tokenParameters[i]);
         }
         int value = 0;
-        if (spt.find("x/x") != string::npos)
+        if (spt.find("xx/xx") != string::npos)
+            value = card->X / 2;
+        else if (spt.find("x/x") != string::npos)
             value = card->X;
-        else if (spt.find("xx/xx") != string::npos)
-            value = card->XX;
 
         int power, toughness;
         parsePowerToughness(spt, &power, &toughness);
@@ -2389,16 +2389,6 @@ int AbilityFactory::computeX(Spell * spell, MTGCardInstance * card)
     return 0;
 }
 
-//Returns the "XX" cost that was paid for a spell
-int AbilityFactory::computeXX(Spell * spell, MTGCardInstance * card)
-{
-    if (spell)
-        return spell->computeXX(card);
-    if(card)
-        return card->XX;
-    return 0;
-}
-
 int AbilityFactory::getAbilities(vector<MTGAbility *> * v, Spell * spell, MTGCardInstance * card, int id, MTGGameZone * dest)
 {
 
@@ -3150,7 +3140,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
     }
     if (card->basicAbilities[(int)Constants::MOUNTAINHOME])
     {
-        game->addObserver(NEW AStrongLandLinkCreature(_id, card, "moutain"));
+        game->addObserver(NEW AStrongLandLinkCreature(_id, card, "mountain"));
     }
     if (card->basicAbilities[(int)Constants::SWAMPHOME])
     {
@@ -3641,7 +3631,6 @@ int TargetAbility::resolve()
     {
         ManaCost * diff = abilityCost->Diff(cost);
         source->X = diff->hasX();
-        source->XX = source->X/2;
         delete (diff);
         ability->target = t;
         //do nothing if the target controller responded by phasing out the target.

@@ -484,7 +484,6 @@ public:
     int abilityEfficiency(MTGAbility * a, Player * p, int mode = MODE_ABILITY, TargetChooser * tc = NULL,Targetable * target = NULL);
     int magicText(int id, Spell * spell, MTGCardInstance * card = NULL, int mode = MODE_PUTINTOPLAY, TargetChooser * tc = NULL, MTGGameZone * dest = NULL);
     static int computeX(Spell * spell, MTGCardInstance * card);
-    static int computeXX(Spell * spell, MTGCardInstance * card);
     static MTGAbility * getCoreAbility(MTGAbility * a);
     int destroyAllInPlay(TargetChooser * tc, int bury = 0);
     int moveAll(TargetChooser * tc, string destinationZone);

@@ -467,7 +467,6 @@ MTGCardInstance * MTGGameZone::removeCard(MTGCardInstance * card, int createCopy
                 copy->view = card->view;
                 copy->isToken = card->isToken;
                 copy->X = card->X;
-                copy->XX = card->X/2;
 
                 //stupid bug with tokens...
                 if (card->model == card)

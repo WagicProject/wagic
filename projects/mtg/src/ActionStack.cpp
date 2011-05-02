@@ -245,14 +245,6 @@ int Spell::computeX(MTGCardInstance * card)
     return x;
 }
 
-int Spell::computeXX(MTGCardInstance * card)
-{
-    ManaCost * c = cost->Diff(card->getManaCost());
-    int xx = c->getCost(Constants::MTG_NB_COLORS) / 2;
-    delete c;
-    return xx;
-}
-
 bool Spell::FullfilledAlternateCost(const int &costType)
 {
     bool hasFullfilledAlternateCost = false;

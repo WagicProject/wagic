@@ -48,7 +48,6 @@ public:
     MTGGameZone * currentZone;
     Pos* view;
     int X;
-    int XX;
     int alternateCostPaid[ManaCost::MANA_PAID_WITH_RETRACE + 1]; 
     int paymenttype;
     int castMethod; /* Tells if the card reached its current zone by being cast or not (brought into the zone by an effect). non 0 == cast, 0 == not cast */

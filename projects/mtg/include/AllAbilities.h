@@ -36,12 +36,6 @@ public:
         if (card) return card->X;
         return 1; //this should only hapen when the ai calls the ability. This is to give it an idea of the "direction" of X (positive/negative)
     }
-    int computeXX(Spell * spell, MTGCardInstance * card)
-    {
-        if (spell) return spell->computeXX(card);
-        if (card) return card->XX;
-        return 1; //this should only hapen when the ai calls the ability. This is to give it an idea of the "direction" of X (positive/negative)
-    }
     WParsedInt(int value = 0)
     {
         intValue = value;
@@ -82,7 +76,7 @@ public:
         }
         else if (s == "xx" || s == "XX")
         {
-            intValue = computeXX(spell, card);
+            intValue = computeX(spell, card) / 2;
             if(intValue < 0)
                 intValue = 0;
         }
