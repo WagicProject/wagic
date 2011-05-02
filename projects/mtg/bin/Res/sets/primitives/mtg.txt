@@ -15545,6 +15545,14 @@ mana={2}{W}
 type=Enchantment
 [/card]
 [card]
+name=Deglamer
+target=artifact,enchantment
+auto=moveTo(ownerlibrary) && shuffle
+text=Choose target artifact or enchantment. Its owner shuffles it into his or her library.
+mana={1}{G}
+type=Instant
+[/card]
+[card]
 name=Dehydration
 target=creature
 auto=doesnotuntap
