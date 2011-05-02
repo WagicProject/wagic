@@ -6,3 +6,6 @@ mode=mtg
 life:20
 auto=@each my draw:draw:1
 auto=maxPlay(land)1
+[Player1]
+#This is a trick, we put this in player 1's rules so that they most likely won't see that this can be interrupted. Kind of a hack until we can get "noninterruptible" events
+auto=@each cleanup:all(*|Battlefield) resetDamage

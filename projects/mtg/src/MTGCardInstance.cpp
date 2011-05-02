@@ -468,11 +468,10 @@ int MTGCardInstance::initAttackersDefensers()
     return 1;
 }
 
-//Function to call to remove all damages, etc to a card (generally at the end of the turn)
+//Function to cleanup flags on a card (generally at the end of the turn)
 int MTGCardInstance::cleanup()
 {
     initAttackersDefensers();
-    life = toughness;
     GameObserver * game = GameObserver::GetInstance();
     if (!game || game->currentPlayer == controller())
     {

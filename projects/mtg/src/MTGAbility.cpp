@@ -1700,6 +1700,15 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         }
     }
  
+    //Reset damages on cards
+    found = s.find("resetdamage");
+    if (found != string::npos)
+    {
+        MTGAbility * a = NEW AAResetDamage(id, card, target);
+        a->oneShot = 1;
+        return a;
+    }
+
     //Damage
     vector<string> splitDamage = parseBetween(s, "damage:", " ", false);
     if (splitDamage.size())

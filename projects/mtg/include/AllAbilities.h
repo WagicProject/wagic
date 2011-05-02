@@ -865,6 +865,15 @@ public:
 };
 
 
+class AAResetDamage: public ActivatedAbility
+{
+public:
+    AAResetDamage(int id, MTGCardInstance * source, MTGCardInstance * target, ManaCost * cost = NULL);
+    int resolve();
+    const char* getMenuText();
+    AAResetDamage * clone() const;
+};
+
 class AAFizzler: public ActivatedAbility
 {
 

@@ -463,6 +463,32 @@ AARemoveAllCounter * AARemoveAllCounter::clone() const
     return a;
 }
 
+//Reset Damage on creatures
+ AAResetDamage::AAResetDamage(int id, MTGCardInstance * source, MTGCardInstance * _target, ManaCost * cost):
+    ActivatedAbility(id, source, cost, 0)
+{
+    this->target = _target;
+}
+int AAResetDamage::resolve()
+{
+    MTGCardInstance * _target =  (MTGCardInstance *)target; 
+    _target->life = _target->toughness;
+    return 1;
+}
+
+const char* AAResetDamage::getMenuText()
+{
+    return "Reset Damages";
+}
+
+AAResetDamage * AAResetDamage::clone() const
+{
+    AAResetDamage * a = NEW AAResetDamage(*this);
+    a->isClone = 1;
+    return a;
+}
+
+
 // Fizzler
 AAFizzler::AAFizzler(int _id, MTGCardInstance * card, Spell * _target, ManaCost * _cost) :
 ActivatedAbility(_id, card, _cost, 0)
