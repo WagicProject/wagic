@@ -13194,7 +13194,8 @@ type=Enchantment
 [card]
 name=Crib Swap
 abilities=changeling
-auto=moveTo(exile) && targetcontroller(Shapeshifter,Creature Shapeshifter,1/1,changeling)
+target=creature
+auto=moveTo(exile) && token(Shapeshifter,Creature Shapeshifter,1/1,changeling) targetcontroller
 text=Changeling (This card is every creature type at all times.) -- Exile target creature. Its controller puts a 1/1 colorless Shapeshifter creature token with changeling onto the battlefield.
 mana={2}{W}
 type=Tribal Instant
@@ -38379,7 +38380,7 @@ type=Artifact
 [/card]
 [card]
 name=Lymph Sliver
-auto=lord(silver) absorb
+auto=lord(sliver) absorb
 text=All Sliver creatures have absorb 1. (If a source would deal damage to a Sliver, prevent 1 of that damage.)
 mana={4}{W}
 type=Creature
@@ -45706,6 +45707,14 @@ type=Legendary Creature
 subtype=Dragon
 power=6
 toughness=6
+[/card]
+[card]
+name=Orzhov Basilica
+auto=tap
+auto=moveTo(ownerhand) notatarget(land|mybattlefield)
+auto={T}:Add{W}{B}
+text=Orzhov Basilica enters the battlefield tapped. -- When Orzhov Basilica enters the battlefield, return a land you control to its owner's hand. -- {T}: Add {W}{B} to your mana pool.
+type=Land
 [/card]
 [card]
 name=Orzhov Guildmage
@@ -67491,7 +67500,7 @@ toughness=2
 [/card]
 [card]
 name=Time Bomb
-auto=@each my upkeep:may counter(0/0,1,Time)
+auto=@each my upkeep:counter(0/0,1,Time)
 auto={1}{T}{S}:thisforeach(counter{0/0.1.Time}) damage:1 all(creature,player)
 text=At the beginning of your upkeep, put a time counter on Time Bomb. -- {1}, {T}, Sacrifice Time Bomb: Time Bomb deals damage to each creature and each player equal to the number of time counters on Time Bomb.
 mana={4}
