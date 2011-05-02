@@ -36418,7 +36418,7 @@ toughness=3
 [/card]
 [card]
 name=Lavaborn Muse
-auto=@each opponentupkeep:aslongas(*|opponenthand) damage:3 <2
+auto=@each opponentupkeep:aslongas(*|opponenthand) damage:3 opponent <2
 text=At the beginning of each opponent's upkeep, if that player has two or fewer cards in hand, Lavaborn Muse deals 3 damage to him or her.
 mana={3}{R}
 type=Creature
