@@ -30535,7 +30535,7 @@ id=-1111125
 type=Nothing
 [/card]
 [card]
-name=Hover Myr
+name=Hovermyr
 abilities=flying,vigilance
 text=Flying, vigilance
 mana={2}
@@ -41970,7 +41970,7 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Mortis Dog
+name=Mortis Dogs
 auto=@combat(attacking) source(this):2/0 ueot
 auto=@movedTo(this|graveyard) from(battlefield):target(player) dynamicability<!powerlifeloss!>
 text=Whenever Mortis Dogs attacks, it gets +2/+0 until end of turn. -- When Mortis Dogs is put into a graveyard from the battlefield, target player loses life equal to its power.
