@@ -25745,7 +25745,7 @@ toughness=1
 [card]
 name=Glistening Oil
 target=creature
-abilities=infect
+auto=infect
 auto=@each my upkeep:counter(-1/-1,1)
 autograveyard=@movedTo(this|graveyard) from(battlefield):moveTo(myhand)
 text=Enchant creature -- Enchanted creature has Infect. -- At the beginning of your upkeep, put a -1/-1 counter on enchanted creature. -- When Glistening Oil is put into a graveyard from the battlefield, return Glistening Oil to its owner's hand.
