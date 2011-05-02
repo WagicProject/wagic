@@ -953,8 +953,6 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
                     break;
                 }
             }
-            if (s1.find("endofturn") != string::npos) //stupid edge case, let's get rid of this
-                phase = Constants::MTG_PHASE_ENDOFTURN;
             s1 = s1.substr(0, seperator - 1);
         }
         ManaCost * cost = ManaCost::parseManaCost(s1);
@@ -999,9 +997,6 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
                 break;
             }
         }
-        
-        if (s1.find("endofturn") != string::npos) //stupid edge case, let's get rid of this
-            phase = Constants::MTG_PHASE_ENDOFTURN;
         
         bool opponentturn = (s1.find("my") == string::npos);
         bool myturn = (s1.find("opponent") == string::npos);
@@ -1364,8 +1359,6 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
                 break;
             }
         }
-        if (s1.find("endofturn") != string::npos) //stupid edge case, let's get rid of this
-            phase = Constants::MTG_PHASE_ENDOFTURN;
 
         bool opponentturn = (s1.find("my") == string::npos);
         bool myturn = (s1.find("opponent") == string::npos);
@@ -1413,8 +1406,6 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
                 }
 
             }
-            if (s1.find("endofturn") != string::npos) //stupid edge case, let's get rid of this
-                phase = Constants::MTG_PHASE_ENDOFTURN;
             s1 = s1.substr(0, seperator - 1);
         }
         ManaCost * cost = ManaCost::parseManaCost(s1);
@@ -2967,19 +2958,9 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
         game->addObserver(NEW AFastbond(_id, card));
         break;
     }
-    case 1238: //Cockatrice
-    {
-        game->addObserver(NEW AOldSchoolDeathtouch(_id, card));
-        break;
-    }
     case 1225: //Stasis
     {
         game->addObserver(NEW AStasis(_id, card));
-        break;
-    }
-    case 1267: //Thicket Basilic
-    {
-        game->addObserver(NEW AOldSchoolDeathtouch(_id, card));
         break;
     }
     case 1227: //Toughtlace
@@ -3660,11 +3641,7 @@ int TargetAbility::resolve()
     {
         ManaCost * diff = abilityCost->Diff(cost);
         source->X = diff->hasX();
-        source->XX = 0;
-        if(source->X > 0)
-        {
-            source->XX = source->X/2;
-        }
+        source->XX = source->X/2;
         delete (diff);
         ability->target = t;
         //do nothing if the target controller responded by phasing out the target.

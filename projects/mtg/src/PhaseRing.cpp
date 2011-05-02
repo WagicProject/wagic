@@ -20,6 +20,7 @@ int PhaseRing::phaseStrToInt(string s)
     if (s.compare("combatends") == 0) return Constants::MTG_PHASE_COMBATEND;
     if (s.compare("secondmain") == 0) return Constants::MTG_PHASE_SECONDMAIN;
     if (s.compare("endofturn") == 0) return Constants::MTG_PHASE_ENDOFTURN;
+    if (s.compare("end") == 0) return Constants::MTG_PHASE_ENDOFTURN;
     if (s.compare("cleanup") == 0) return Constants::MTG_PHASE_CLEANUP;
     DebugTrace("PHASERING: Unknown Phase name: " << s);
 
