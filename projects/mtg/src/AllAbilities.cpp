@@ -1761,6 +1761,81 @@ AAShuffle * AAShuffle::clone() const
     return a;
 }
 
+// Remove Mana From ManaPool
+AARemoveMana::AARemoveMana(int _id, MTGCardInstance * card, Targetable * _target, string manaDesc, int who) :
+    ActivatedAbilityTP(_id, card, _target, NULL, who)
+{
+    if (!manaDesc.size())
+    {
+        DebugTrace("ALL_ABILITIES: AARemoveMana ctor error"); 
+        return;
+    }
+    mRemoveAll = (manaDesc[0] == '*');
+    if (mRemoveAll)
+        manaDesc = manaDesc.substr(1);
+    
+    mManaDesc = (manaDesc.size()) ? ManaCost::parseManaCost(manaDesc) : NULL;
+
+}
+
+int AARemoveMana::resolve()
+{
+    Targetable * _target = getTarget();
+    Player * player;
+    if (_target)
+    {
+        if (_target->typeAsTarget() == TARGET_CARD)
+        {
+            player = ((MTGCardInstance *) _target)->controller();
+        }
+        else
+        {
+            player = (Player *) _target;
+        }
+        ManaPool * manaPool = player->getManaPool();
+        if (mRemoveAll)
+        {
+            if (mManaDesc) // Remove all mana Matching a description
+            {
+                    for (unsigned int i = 0; i < Constants::MTG_NB_COLORS; i++)
+                    {
+                        if (mManaDesc->hasColor(i))
+                            manaPool->removeAll(i);
+                    }
+            }
+            else //Remove all mana
+            {
+                manaPool->init();
+            }
+        }
+        else //remove a "standard" mana Description
+        {
+            ((ManaCost *)manaPool)->remove(mManaDesc); //why do I have to cast here?
+        }
+    }
+    return 1;
+}
+
+const char * AARemoveMana::getMenuText()
+{
+    if (mRemoveAll && !mManaDesc)
+        return "Empty Manapool";
+    return "Remove Mana";
+}
+
+AARemoveMana * AARemoveMana::clone() const
+{
+    AARemoveMana * a = NEW AARemoveMana(*this);
+    a->mManaDesc = mManaDesc ? NEW ManaCost(mManaDesc) : NULL;
+    a->isClone = 1;
+    return a;
+}
+
+AARemoveMana::~AARemoveMana()
+{
+    SAFE_DELETE(mManaDesc);
+}
+
 //Tapper
 AATapper::AATapper(int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost) :
     ActivatedAbility(id, card, _cost, 0)

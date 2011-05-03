@@ -122,9 +122,6 @@ void GameObserver::nextGamePhase()
         return nextGamePhase();
     }
 
-    for (int i = 0; i < 2; ++i)
-        players[i]->getManaPool()->init();
-
     if (currentGamePhase == Constants::MTG_PHASE_AFTER_EOT)
     {
         //Auto Hand cleaning, in case the player didn't do it himself
@@ -371,16 +368,7 @@ void GameObserver::gameStateBasedEffects()
     //check land playability at start; as we want this effect to happen reguardless of unresolved
     //effects or menus actions
     for (int i = 0; i < 2; i++)
-    {
-        if(players[i]->poisonCount > 0)
-        {
-        players[i]->isPoisoned = true;
-        }
-        else
-        {
-        players[i]->isPoisoned = false;
-        }
-    }
+        players[i]->isPoisoned = (players[i]->poisonCount > 0);
     if (mLayers->stackLayer()->count(0, NOT_RESOLVED) != 0)
     	return;
     if (mLayers->actionLayer()->menuObject) 
@@ -939,7 +927,7 @@ int GameObserver::cardClick(MTGCardInstance * card, Targetable * object)
     {
         //card played as normal, alternative cost, buyback, flashback, retrace.
 
-        //the varible "paymenttype = int" only serves one purpose, to tell this bug fix what menu item you clicked on...
+        //the variable "paymenttype = int" only serves one purpose, to tell this bug fix what menu item you clicked on...
         // all alternative cost or play methods suffered from the fix because if the card contained "target=" 
         // it would automatically force the play method to putinplayrule...even charge you the original mana cost.
 

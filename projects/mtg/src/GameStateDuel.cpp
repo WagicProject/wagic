@@ -441,6 +441,9 @@ void GameStateDuel::Update(float dt)
             GameApp::playMusic(musictrack);
         }
         game->Update(dt);
+        //run a "post update" init call in the rules. This is for things such as Manapool, which gets emptied in the update
+        // That's mostly because of a legacy bug, where we use the update sequence for some things when we should use events (such as phase changes)
+        mParent->rules->postUpdateInit();
         if (game->gameOver)
         {
             if (game->players[1]->playMode != Player::MODE_TEST_SUITE) credits->compute(game->players[0], game->players[1], mParent);

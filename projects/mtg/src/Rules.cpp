@@ -255,6 +255,8 @@ void Rules::addExtraRules()
 
             if (a)
             {
+                //We make those non interruptible, so that they don't appear on the player's stack
+                a->canBeInterrupted = false;
                 if (a->oneShot)
                 {
                     if (((p->isAI() && p->playMode
@@ -463,7 +465,6 @@ void Rules::initGame()
         p->poisonCount = initState.playerData[i].poisonCount;
         p->damageCount = initState.playerData[i].damageCount;
         p->preventable = initState.playerData[i].preventable;
-        p->getManaPool()->copy(initState.playerData[i].manapool);
         if (initState.playerData[i].avatar.size())
         {
             p->loadAvatar(initState.playerData[i].avatar);
@@ -504,7 +505,21 @@ void Rules::initGame()
         }
     }
     addExtraRules();
+
+    postUpdateInitDone = false;
 DebugTrace("RULES Init Game Done !\n");
+}
+
+//This function has all iitialization that can't be done in the "real" init function,
+// because the first update call messes things up.
+//It's a hack, ideally, the first update call shouldn't mess the init parameters...
+void Rules::postUpdateInit()
+{
+    if (postUpdateInitDone)
+        return;
+    for (int i = 0; i < 2; ++ i)
+        GameObserver::GetInstance()->players[i]->getManaPool()->copy(initState.playerData[i].manapool);
+    postUpdateInitDone = true;
 }
 
 void RulesPlayerZone::cleanup()
@@ -546,6 +561,7 @@ Rules::Rules(string _bg)
     unlockOption = INVALID_OPTION;
     hidden = false;
     filename = "";
+    postUpdateInitDone = false;
 }
 
 bool Rules::canChooseDeck() 

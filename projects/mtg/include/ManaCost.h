@@ -52,6 +52,7 @@ public:
     string alternativeName;
     static ManaCost * parseManaCost(string value, ManaCost * _manacost = NULL, MTGCardInstance * c = NULL);
     virtual void init();
+    virtual void reinit();
     void x();
     int hasX();
     ManaCost(int _cost[], int nb_elems = 1);
@@ -85,6 +86,7 @@ public:
     void randomDiffHybrids(ManaCost * _cost, int diff[]);
     int add(ManaCost * _cost);
     int remove(ManaCost * _cost);
+    int removeAll(int color);
     int pay (ManaCost * _cost);
 
     //return 1 if _cost can be paid with current data, 0 otherwise

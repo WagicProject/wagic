@@ -78,6 +78,14 @@ int TestSuiteAI::Act(float dt)
 {
     GameObserver * g = GameObserver::GetInstance();
     g->gameOver = NULL; // Prevent draw rule from losing the game
+
+    //Last bits of initialization require to be done here, after the first "update" call of the game
+    if (suite->currentAction == 0)
+    {
+        for (int i = 0; i < 2; ++ i)
+            g->players[i]->getManaPool()->copy(suite->initState.playerData[i].manapool);
+    }
+
     if (playMode == MODE_AI && suite->aiMaxCalls)
     {
         suite->aiMaxCalls--;
@@ -87,6 +95,7 @@ int TestSuiteAI::Act(float dt)
     if (playMode == MODE_HUMAN)
     {
         g->mLayers->CheckUserInput(0);
+        suite->currentAction++; //hack to avoid repeating the initialization of manapool
         return 1;
     }
 
@@ -96,7 +105,6 @@ int TestSuiteAI::Act(float dt)
 
     string action = suite->getNextAction();
     g->mLayers->stackLayer()->Dump();
-    //  DamageResolverLayer * drl = g->mLayers->combatLayer();
     DebugTrace("TESTSUITE command: " << action);
 
     if (g->mLayers->stackLayer()->askIfWishesToInterrupt == this)
@@ -386,7 +394,6 @@ void TestSuite::initGame()
         AIPlayer * p = (AIPlayer *) (g->players[i]);
         p->forceBestAbilityUse = forceAbility;
         p->life = initState.playerData[i].life;
-        p->getManaPool()->copy(initState.playerData[i].manapool);
         MTGGameZone * playerZones[] = { p->game->graveyard, p->game->library, p->game->hand, p->game->inPlay };
         for (int j = 0; j < 4; j++)
         {

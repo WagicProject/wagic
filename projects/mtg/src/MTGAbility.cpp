@@ -1804,6 +1804,16 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         return a;
     }
 
+    //Remove Mana from ManaPool
+    vector<string> splitRemove = parseBetween(s, "removemana(", ")");
+    if (splitRemove.size())
+    {
+        Targetable * t = spell? spell->getNextTarget() : NULL;
+        MTGAbility *a = NEW AARemoveMana(id, card, t, splitRemove[1], who);
+        a->oneShot = 1;
+        return a;
+    }
+
     //Cast/Play Restrictions
 	for (size_t i = 0; i < kMaxCastKeywordsCount; ++i)
     {
@@ -2400,7 +2410,6 @@ int AbilityFactory::computeX(Spell * spell, MTGCardInstance * card)
 
 int AbilityFactory::getAbilities(vector<MTGAbility *> * v, Spell * spell, MTGCardInstance * card, int id, MTGGameZone * dest)
 {
-
     if (!card && spell)
         card = spell->source;
     if (!card)
@@ -2468,12 +2477,7 @@ int AbilityFactory::getAbilities(vector<MTGAbility *> * v, Spell * spell, MTGCar
             string cre = "Creature";
             card->setType(cre.c_str());
             card->basicAbilities.reset();
-            card->getManaCost()->remove(0,100);
-            card->getManaCost()->remove(1,100);
-            card->getManaCost()->remove(2,100);
-            card->getManaCost()->remove(3,100);
-            card->getManaCost()->remove(4,100);
-            card->getManaCost()->remove(5,100);
+            card->getManaCost()->reinit();
         }
         else if(card && !card->morphed && card->turningOver)
         {
@@ -3241,6 +3245,7 @@ MTGAbility::MTGAbility(int id, MTGCardInstance * card) :
     cost = NULL;
     forceDestroy = 0;
     oneShot = 0;
+    canBeInterrupted = true;
 }
 
 MTGAbility::MTGAbility(int id, MTGCardInstance * _source, Targetable * _target) :
@@ -3253,6 +3258,7 @@ MTGAbility::MTGAbility(int id, MTGCardInstance * _source, Targetable * _target) 
     cost = NULL;
     forceDestroy = 0;
     oneShot = 0;
+    canBeInterrupted = true;
 }
 
 int MTGAbility::stillInUse(MTGCardInstance * card)
@@ -3307,7 +3313,10 @@ GameObserver * g=g->GetInstance();
 
 int MTGAbility::fireAbility()
 {
-    game->mLayers->stackLayer()->addAbility(this);
+    if (canBeInterrupted)
+        game->mLayers->stackLayer()->addAbility(this);
+    else
+        resolve();
     return 1;
 }
 

@@ -365,6 +365,23 @@ void ManaCost::init()
     suspend = NULL;
 }
 
+void ManaCost::reinit()
+{
+    int i;
+    for (i = 0; i <= Constants::MTG_NB_COLORS; i++)
+    {
+        cost[i] = 0;
+    }
+    SAFE_DELETE(extraCosts);
+    SAFE_DELETE(kicker);
+    SAFE_DELETE(alternative);
+    SAFE_DELETE(BuyBack);
+    SAFE_DELETE(FlashBack);
+    SAFE_DELETE(Retrace);
+    SAFE_DELETE(morph);
+    SAFE_DELETE(suspend);
+}
+
 void ManaCost::copy(ManaCost * _manaCost)
 {
     if (!_manaCost)
@@ -475,11 +492,9 @@ int ManaCost::getConvertedCost()
 
 int ManaCost::remove(int color, int value)
 {
-    cost[color] -= value;
-    if (cost[color] < 0)
-    {
-        cost[color] = 0;
-    }
+    assert (value >= 0);
+    int toRemove = min(cost[color], value);
+    cost[color] -= toRemove;
     return 1;
 }
 
@@ -511,12 +526,16 @@ int ManaCost::remove(ManaCost * _cost)
         return 0;
     for (unsigned int i = 0; i < Constants::MTG_NB_COLORS; i++)
     {
-        for(int c = 0;c < _cost->getCost(i);c++)
-        {
-            if(cost[i])//remove 1 at a time to avoid dipping into negitive cost.
-                cost[i] -= 1;
-        }
+        int toRemove = min(cost[i], _cost->getCost(i)); //we don't want to be negative
+        cost[i] -= toRemove;
+        assert(cost[i] >= 0);
     }
+    return 1;
+}
+
+int ManaCost::removeAll(int color)
+{
+    cost[color] = 0;
     return 1;
 }
 

@@ -4762,6 +4762,20 @@ public:
     AAShuffle * clone() const;
 };
 
+//Remove Mana From ManaPool
+class AARemoveMana: public ActivatedAbilityTP
+{
+public:
+    ManaCost * mManaDesc;
+    bool mRemoveAll;
+
+    AARemoveMana(int _id, MTGCardInstance * card, Targetable * _target, string ManaDesc, int who = TargetChooser::UNSET);
+    int resolve();
+    const char * getMenuText();
+    AARemoveMana * clone() const;
+    ~AARemoveMana();
+
+};
 
 //Random Discard
 class AARandomDiscarder: public ActivatedAbilityTP

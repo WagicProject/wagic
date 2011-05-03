@@ -8,6 +8,20 @@ auto=shuffle
 auto=draw:7
 auto=@each my draw:draw:1
 auto=maxPlay(land)1
-[Player1]
-#This is a trick, we put this in player 1's rules so that they most likely won't see that this can be interrupted. Kind of a hack until we can get "noninterruptible" events
-auto=@each cleanup:all(*|Battlefield) resetDamage
+
+#Mana Empties from manapool at the end of each phase
+auto=@each untap:removeMana(*)
+auto=@each upkeep:removeMana(*)
+auto=@each draw:removeMana(*)
+auto=@each firstmain:removeMana(*)
+auto=@each combatbegins:removeMana(*)
+auto=@each attackers:removeMana(*)
+auto=@each blockers:removeMana(*)
+auto=@each combatdamage:removeMana(*)
+auto=@each combatEnds:removeMana(*)
+auto=@each secondmain:removeMana(*)
+auto=@each end:removeMana(*)
+auto=@each cleanup:removeMana(*)
+
+#reset Creature damage at the cleanup phase
+auto=@each cleanup:all(*|myBattlefield) resetDamage
