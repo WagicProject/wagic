@@ -145,9 +145,6 @@ void GameObserver::nextGamePhase()
         DebugTrace("Untap Phase -------------   Turn " << turn );
         untapPhase();
         break;
-    case Constants::MTG_PHASE_DRAW:
-        //mLayers->stackLayer()->addDraw(currentPlayer,1);
-        break;
     case Constants::MTG_PHASE_COMBATBLOCKERS:
         receiveEvent(NEW WEventAttackersChosen());
         break;
@@ -205,8 +202,6 @@ void GameObserver::userRequestNextGamePhase()
     if (WaitForExtraPayment(NULL)) 
     	return;
 
-    bool executeNextPhaseImmediately = true;
-
     Phase * cPhaseOld = phaseRing->getCurrentPhase();
     if ((cPhaseOld->id == Constants::MTG_PHASE_COMBATBLOCKERS && combatStep == ORDER) 
     	|| (cPhaseOld->id == Constants::MTG_PHASE_COMBATBLOCKERS && combatStep == TRIGGERS) 
@@ -215,16 +210,11 @@ void GameObserver::userRequestNextGamePhase()
         || options[Options::optionInterrupt(currentGamePhase)].number
     )
     {
-        executeNextPhaseImmediately = false;
-    }
-
-    if (executeNextPhaseImmediately)
-    {
-        nextGamePhase();
+        mLayers->stackLayer()->AddNextGamePhase();
     }
     else
     {
-        mLayers->stackLayer()->AddNextGamePhase();
+       nextGamePhase(); 
     }
 
 }
@@ -232,18 +222,16 @@ void GameObserver::userRequestNextGamePhase()
 int GameObserver::forceShuffleLibraries()
 {
     int result = 0;
-    if (players[0]->game->library->needShuffle)
+    for (int i = 0; i < 2 ; ++i)
     {
-        players[0]->game->library->shuffle();
-        players[0]->game->library->needShuffle = false;
-        ++result;
+        if (players[i]->game->library->needShuffle)
+        {
+            players[i]->game->library->shuffle();
+            players[i]->game->library->needShuffle = false;
+            ++result;
+        }
     }
-    if (players[1]->game->library->needShuffle)
-    {
-        players[1]->game->library->shuffle();
-        players[1]->game->library->needShuffle = false;
-        ++result;
-    }
+
     return result;
 }
 
@@ -432,7 +420,7 @@ void GameObserver::gameStateBasedEffects()
                 card->isPhased = true;
                 card->phasedTurn = turn;
                 if(card->view)
-                card->view->alpha = 50;
+                    card->view->alpha = 50;
                 card->initAttackersDefensers();
             }
             else if((card->has(Constants::PHASING) || card->isPhased)&& currentGamePhase == Constants::MTG_PHASE_UNTAP && currentPlayer == card->controller() && card->phasedTurn != turn)
@@ -440,14 +428,14 @@ void GameObserver::gameStateBasedEffects()
                 card->isPhased = false;
                 card->phasedTurn = turn;
                 if(card->view)
-                card->view->alpha = 255;
+                    card->view->alpha = 255;
             }
             if (card->target && isInPlay(card->target) && (card->hasSubtype(Subtypes::TYPE_EQUIPMENT) || card->hasSubtype(Subtypes::TYPE_AURA)))
             {
                 card->isPhased = card->target->isPhased;
                 card->phasedTurn = card->target->phasedTurn;
                 if(card->view && card->target->view)
-                card->view->alpha = card->target->view->alpha;
+                    card->view->alpha = card->target->view->alpha;
             }
             //////////////////////////  
             //forceDestroy over ride//
@@ -508,14 +496,7 @@ void GameObserver::gameStateBasedEffects()
         MTGGameZone * z = players[i]->game->inPlay;
         int nbcards = z->nb_cards;
         //------------------------------
-        if (z->hasAbility(Constants::NOMAXHAND))
-        {
-            p->nomaxhandsize = true;
-        }
-        else
-        {
-            p->nomaxhandsize = false;
-        }
+        p->nomaxhandsize = (z->hasAbility(Constants::NOMAXHAND));
 
         /////////////////////////////////////////////////
         //handle end of turn effects while we're at it.//
@@ -536,9 +517,9 @@ void GameObserver::gameStateBasedEffects()
                     c->addToToughness(1);
                     c->flanked -= 1;
                 }
-                if (c->fresh) c->fresh = 0;
+                c->fresh = 0;
                 if(c->wasDealtDamage && c->isInPlay())
-                c->wasDealtDamage = false;
+                    c->wasDealtDamage = false;
                 c->damageToController = false;
                 c->damageToOpponent = false;
 
@@ -597,14 +578,8 @@ void GameObserver::gameStateBasedEffects()
                 if (z->cards[w]->hasColor(i))
                     ++colored;
             }
-            if(colored > 1)
-            {
-                z->cards[w]->isMultiColored = 1;
-            }
-            else
-            {
-                z->cards[w]->isMultiColored = 0;
-            }
+            z->cards[w]->isMultiColored = (colored > 1) ? 1 : 0;
+
             if(z->cards[w]->hasColor(Constants::MTG_COLOR_WHITE) && z->cards[w]->hasColor(Constants::MTG_COLOR_BLACK))
                 z->cards[w]->isBlackAndWhite = 1;
             else
@@ -694,53 +669,55 @@ void GameObserver::Affinity()
         for (int k = zone->nb_cards - 1; k >= 0; k--)
         {
             MTGCardInstance * card = zone->cards[k];
+            if (!card)
+                continue;
+
             int color = 0;
             string type = "";
             //only do any of the following if a card with the stated ability is in your hand.
-           ManaCost * original = NEW ManaCost();
-           original->copy(card->model->data->getManaCost());
-           //have to run alter cost before affinity or the 2 cancel each other out.
-           if(card && (card->getIncreasedManaCost()->getConvertedCost()||card->getReducedManaCost()->getConvertedCost()))
-           {
-            if(card->getIncreasedManaCost()->getConvertedCost())
-            original->add(card->getIncreasedManaCost());
-            if(card->getReducedManaCost()->getConvertedCost())
-            original->remove(card->getReducedManaCost());
-            card->getManaCost()->copy(original);
+            ManaCost * original = NEW ManaCost();
+            original->copy(card->model->data->getManaCost());
+            //have to run alter cost before affinity or the 2 cancel each other out.
+            if(card->getIncreasedManaCost()->getConvertedCost()||card->getReducedManaCost()->getConvertedCost())
+            {
+                if(card->getIncreasedManaCost()->getConvertedCost())
+                    original->add(card->getIncreasedManaCost());
+                if(card->getReducedManaCost()->getConvertedCost())
+                    original->remove(card->getReducedManaCost());
+                card->getManaCost()->copy(original);
             }
-            if(card && 
-                (card->has(Constants::AFFINITYARTIFACTS)||
+            if(card->has(Constants::AFFINITYARTIFACTS)||
                 card->has(Constants::AFFINITYFOREST)||
                 card->has(Constants::AFFINITYGREENCREATURES)||
                 card->has(Constants::AFFINITYISLAND)||
                 card->has(Constants::AFFINITYMOUNTAIN)||
                 card->has(Constants::AFFINITYPLAINS)||
-                card->has(Constants::AFFINITYSWAMP))){
-                    if (card && card->has(Constants::AFFINITYARTIFACTS))
+                card->has(Constants::AFFINITYSWAMP)){
+                    if (card->has(Constants::AFFINITYARTIFACTS))
                     {
                         type = "artifact";
                     }
-                    else if (card && card->has(Constants::AFFINITYSWAMP))
+                    else if (card->has(Constants::AFFINITYSWAMP))
                     {
                         type = "swamp";
                     }
-                    else if (card && card->has(Constants::AFFINITYMOUNTAIN))
+                    else if (card->has(Constants::AFFINITYMOUNTAIN))
                     {
                         type = "mountain";
                     }
-                    else if (card && card->has(Constants::AFFINITYPLAINS))
+                    else if (card->has(Constants::AFFINITYPLAINS))
                     {
                         type = "plains";
                     }
-                    else if (card && card->has(Constants::AFFINITYISLAND))
+                    else if (card->has(Constants::AFFINITYISLAND))
                     {
                         type = "island";
                     }
-                    else if (card && card->has(Constants::AFFINITYFOREST))
+                    else if (card->has(Constants::AFFINITYFOREST))
                     {
                         type = "forest";
                     }
-                    else if (card && card->has(Constants::AFFINITYGREENCREATURES))
+                    else if (card->has(Constants::AFFINITYGREENCREATURES))
                     {
                         color = 1;
                         type = "creature";
@@ -764,8 +741,7 @@ void GameObserver::Affinity()
                             card->getManaCost()->remove(color,1);
                     }
             }
-            if(original)
-            delete original;
+            SAFE_DELETE(original);
         }
     }
 }
