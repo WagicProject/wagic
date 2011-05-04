@@ -1896,6 +1896,12 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         return NEW ABushidoAbility(id, card, power, toughness);
     }
 
+    //loseAbilities
+    if (s.find("loseabilities") != string::npos)
+    {
+        return NEW ALoseAbilities(id, card, target);
+    }
+
     //counter
     vector<string> splitCounter = parseBetween(s, "counter(", ")");
     if (splitCounter.size())

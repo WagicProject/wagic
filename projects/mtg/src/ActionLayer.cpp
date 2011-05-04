@@ -18,17 +18,26 @@ MTGAbility* ActionLayer::getAbility(int type)
     return NULL;
 }
 
-int ActionLayer::moveToGarbage(ActionElement * e)
+int ActionLayer::removeFromGame(ActionElement * e)
 {
     mReactions.erase(e);
     int i = getIndexOf(e);
-    if (i != -1)
+    if (i == -1)
+        return 0;
+
+    if (isWaitingForAnswer() == e)
+        setCurrentWaitingAction(NULL);
+    e->destroy();
+    mObjects.erase(mObjects.begin() + i);
+    mCount--;
+    return 1;
+
+}
+
+int ActionLayer::moveToGarbage(ActionElement * e)
+{
+    if (removeFromGame(e))
     {
-        if (isWaitingForAnswer() == e)
-            setCurrentWaitingAction(NULL);
-        e->destroy();
-        mObjects.erase(mObjects.begin() + i);
-        mCount--;
         garbage.push_back(e);
         return 1;
     }

@@ -46,6 +46,8 @@ public:
     TargetChooser * getCurrentTargetChooser();
     void setCurrentWaitingAction(ActionElement * ae);
     MTGAbility * getAbility(int type);
+    //Removes from game but does not move the element to garbage. The caller must take care of deleting the element.
+    int removeFromGame(ActionElement * e);
     int moveToGarbage(ActionElement * e);
     int cleanGarbage();
 protected:

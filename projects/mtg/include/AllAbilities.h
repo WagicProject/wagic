@@ -3606,6 +3606,17 @@ public:
     ~APreventDamageTypes();
 };
 
+//Remove all abilities from target
+class ALoseAbilities: public MTGAbility
+{
+public:
+    vector <MTGAbility *> storedAbilities;
+    ALoseAbilities(int id, MTGCardInstance * source, MTGCardInstance * target);
+    int addToGame();
+    int destroy();
+    ALoseAbilities * clone() const;
+};
+
 //Adds types/abilities/P/T to a card (until end of turn)
 class APreventDamageTypesUEOT: public InstantAbility
 {

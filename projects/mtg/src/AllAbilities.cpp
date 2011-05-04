@@ -2797,6 +2797,66 @@ ASwapPTUEOT::~ASwapPTUEOT()
     SAFE_DELETE(ability);
 }
 
+
+//ALoseAbilities
+ALoseAbilities::ALoseAbilities(int id, MTGCardInstance * source, MTGCardInstance * _target) :
+    MTGAbility(id, source)
+{
+    target = _target;
+}
+
+int ALoseAbilities::addToGame()
+{
+    if (storedAbilities.size())
+    {
+        DebugTrace("FATAL:storedAbilities shouldn't be already set inALoseAbilitie\n");
+        return 0;
+    }
+    MTGCardInstance * _target = (MTGCardInstance *)target;
+
+    ActionLayer * al = game->mLayers->actionLayer();
+
+    for (int i = al->mCount - 1; i > 0; i--)      //0 is not a mtgability...hackish
+    {
+        if (al->mObjects[i])
+        {
+            MTGAbility * currentAction = (MTGAbility *) al->mObjects[i];
+            if (currentAction->source == _target)
+            {
+                storedAbilities.push_back(currentAction);
+                al->removeFromGame(currentAction);
+            }
+        }
+    }
+
+    return MTGAbility::addToGame();
+}
+
+int ALoseAbilities::destroy()
+{
+    for (size_t i = 0; i < storedAbilities.size(); ++i)
+    {
+        MTGAbility * a = storedAbilities[i];
+        //OneShot abilities are not supposed to stay in the game for long.
+        // If we copied one, something wrong probably happened
+        if (a->oneShot)
+        {
+            DebugTrace("ALL_ABILITIES: Ability should not be one shot");
+            continue;
+        }
+        a->addToGame();
+    }
+    storedAbilities.clear();
+    return 1;
+}
+
+ALoseAbilities * ALoseAbilities::clone() const
+{
+    ALoseAbilities * a = NEW ALoseAbilities(*this);
+    a->isClone = 1;
+    return a;
+}
+
 //APreventDamageTypes
 APreventDamageTypes::APreventDamageTypes(int id, MTGCardInstance * source, string to, string from, int type) :
     MTGAbility(id, source), to(to), from(from), type(type)

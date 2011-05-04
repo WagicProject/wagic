@@ -6574,8 +6574,13 @@ power=2
 toughness=2
 [/card]
 [card]
+#Need a way for the target to lose its land subtypes.
+#Need to move the {T}:Add{X} rules for basic lands outside of the cards and into the rules <-- easy?
 name=Evil Presence
 text=Enchant land -- Enchanted land is a Swamp.
+target=land
+auto=loseabilities
+auto=transforms((swamp,))
 mana={B}
 type=Enchantment
 subtype=Aura
