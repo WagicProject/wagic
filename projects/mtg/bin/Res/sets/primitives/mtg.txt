@@ -46095,7 +46095,7 @@ toughness=7
 [card]
 name=Palladium Myr
 auto={T}:Add {2}
-text={T}: Add {W} to your mana pool.
+text={T}: Add {2} to your mana pool.
 mana={3}
 type=Artifact Creature
 subtype=Myr
