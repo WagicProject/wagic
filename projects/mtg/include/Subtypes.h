@@ -42,7 +42,7 @@ public:
     int find(string subtype, bool forceAdd = true);
     string find(unsigned int id);
     bool isSubtypeOfType(string subtype, string type);
-    bool isSubtypeOfType(unsigned int subtype, unsigned int type);
+    bool isSubtypeOfType(int subtype, int type);
     bool isSuperType(int type);
     bool isType(int type);
     bool isSubType(int type);
