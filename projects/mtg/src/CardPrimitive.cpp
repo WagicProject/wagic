@@ -196,7 +196,17 @@ void CardPrimitive::addType(char * _type_text)
 
 void CardPrimitive::setSubtype(const string& value)
 {
-    int id = Subtypes::subtypesList->find(value);
+    //find the parent type for this card
+    int parentType = 0;
+    for (size_t i = 0; i < types.size(); ++i)
+    {
+        if (Subtypes::subtypesList->isType(types[i]))
+        {
+            parentType = types[i];
+            break;
+        }
+    }
+    int id = Subtypes::subtypesList->add(value, parentType);
     addType(id);
 }
 

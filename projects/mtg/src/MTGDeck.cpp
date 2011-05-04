@@ -78,25 +78,13 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
             string value = val;
             //Specific Abilities
             std::transform(value.begin(), value.end(), value.begin(), ::tolower);
-            while (value.size())
+            vector<string> values = split(value, ',');
+            for (size_t values_i = 0; values_i < values.size(); ++values_i)
             {
-                string attribute;
-                size_t found2 = value.find(',');
-                if (found2 != string::npos)
-                {
-                    attribute = value.substr(0, found2);
-                    value = value.substr(found2 + 1);
-                }
-                else
-                {
-                    attribute = value;
-                    value = "";
-                }
 
                 for (int j = Constants::NB_BASIC_ABILITIES - 1; j >= 0; --j)
                 {
-                    size_t found = attribute.find(Constants::MTGBasicAbilities[j]);
-                    if (found != string::npos)
+                    if (values[values_i].find(Constants::MTGBasicAbilities[j]) != string::npos)
                     {
                         primitive->basicAbilities[j] = 1;
                         break;
@@ -249,7 +237,7 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
             card->setRarity(val[0]);
         }
         break;
-    case 's': //subtype
+    case 's': //subtype, suspend
         {
             if (s.find("suspend") != string::npos)
             {
@@ -269,21 +257,9 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
             else
             {
                 if (!primitive) primitive = NEW CardPrimitive();
-                while (true)
-                {
-                    char* found = strchr(val, ' ');
-                    if (found)
-                    {
-                        string value(val, found - val);
-                        primitive->setSubtype(value);
-                        val = found + 1;
-                    }
-                    else
-                    {
-                        primitive->setSubtype(val);
-                        break;
-                    }
-                }
+                vector<string> values = split(val, ' ');
+                for (size_t values_i = 0; values_i < values.size(); ++values_i)
+                    primitive->setSubtype(values[values_i]);
             }
             break;
         }
@@ -299,21 +275,9 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
             primitive->setText(val);
         else if (0 == strcmp("type", key))
         {
-            while (true)
-            {
-                char* found = strchr(val, ' ');
-                if (found)
-                {
-                    string value(val, found - val);
-                    primitive->setType(value);
-                    val = found + 1;
-                }
-                else
-                {
-                    primitive->setType(val);
-                    break;
-                }
-            }
+            vector<string> values = split(val, ' ');
+            for (size_t values_i = 0; values_i < values.size(); ++values_i)
+                    primitive->setType(values[values_i]);
         }
         else if (0 == strcmp("toughness", key)) primitive->setToughness(atoi(val));
         break;

@@ -1,0 +1,19 @@
+#Testing Evil Presence on a Forest
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Evil PResence
+inplay:Forest
+manapool:{B}
+[PLAYER2]
+[DO]
+Evil PResence
+Forest
+Forest
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Forest,Evil Presence
+manapool:{B}
+[PLAYER2]
+[END]

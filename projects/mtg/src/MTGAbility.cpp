@@ -1814,6 +1814,14 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         return a;
     }
 
+    //Lose subtypes of a given type
+    vector<string> splitLoseTypes = parseBetween(s, "losesubtypesof(", ")");
+    if (splitLoseTypes.size())
+    {
+        int parentType = Subtypes::subtypesList->find(splitLoseTypes[1]);
+        return NEW ALoseSubtypes(id, card, target, parentType);
+    }
+
     //Cast/Play Restrictions
 	for (size_t i = 0; i < kMaxCastKeywordsCount; ++i)
     {

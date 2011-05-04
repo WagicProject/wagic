@@ -4269,8 +4269,6 @@ type=Land
 [/card]
 [card]
 name=Badlands
-auto={T}:Add {R}
-auto={T}:Add {B}
 type=Land
 subtype=Swamp Mountain
 [/card]
@@ -5252,8 +5250,6 @@ toughness=1
 [/card]
 [card]
 name=Bayou
-auto={T}:Add {B}
-auto={T}:Add {G}
 type=Land
 subtype=Swamp Forest
 [/card]
@@ -6678,8 +6674,6 @@ toughness=2
 name=Blood Crypt
 auto=tap
 auto=may untap && life:-2 controller
-auto={T}:Add {B}
-auto={T}:Add {R}
 text=({T}: Add {B} or {R} to your mana pool.) -- As Blood Crypt enters the battlefield, you may pay 2 life. If you don't, Blood Crypt enters the battlefield tapped.
 type=Land
 subtype=Swamp Mountain
@@ -8203,8 +8197,6 @@ type=Enchantment
 name=Breeding Pool
 auto=tap
 auto=may untap && life:-2 controller
-auto={T}:Add {G}
-auto={T}:Add {U}
 text=({T}: Add {G} or {U} to your mana pool.) -- As Breeding Pool enters the battlefield, you may pay 2 life. If you don't, Breeding Pool enters the battlefield tapped.
 type=Land
 subtype=Forest Island
@@ -17855,10 +17847,9 @@ type=Sorcery
 [/card]
 [card]
 name=Dryad Arbor
-auto={T}:add{G}
 text=(Dryad Arbor isn't a spell, it's affected by summoning sickness, and it has "{T}: Add {G} to your mana pool.") -- Dryad Arbor is green.
 color=green
-type=Land Creature
+type=Creature Land
 subtype=Forest Dryad
 power=1
 toughness=1
@@ -20459,6 +20450,17 @@ type=Creature
 subtype=Eye
 power=6
 toughness=3
+[/card]
+[card]
+name=Evil Presence
+text=Enchant land -- Enchanted land is a Swamp.
+target=land
+auto=loseabilities
+auto=losesubtypesof(land)
+auto=transforms((swamp,))
+mana={B}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 name=Evincar's Justice
@@ -23529,7 +23531,6 @@ subtype=Aura
 [/card]
 [card]
 name=Forest
-auto={T}: Add {G}
 text=G
 type=Basic Land
 subtype=Forest
@@ -26788,8 +26789,6 @@ toughness=4
 name=Godless Shrine
 auto=tap
 auto=may untap && life:-2 controller
-auto={T}:Add {W}
-auto={T}:Add {B}
 text=({T}: Add {W} or {B} to your mana pool.) -- As Godless Shrine enters the battlefield, you may pay 2 life. If you don't, Godless Shrine enters the battlefield tapped.
 type=Land
 subtype=Plains Swamp
@@ -28498,8 +28497,6 @@ toughness=3
 name=Hallowed Fountain
 auto=tap
 auto=may untap && life:-2 controller
-auto={T}:Add {W}
-auto={T}:Add {U}
 text=({T}: Add {W} or {U} to your mana pool.) -- As Hallowed Fountain enters the battlefield, you may pay 2 life. If you don't, Hallowed Fountain enters the battlefield tapped.
 type=Land
 subtype=Plains Island
@@ -32457,7 +32454,6 @@ toughness=1
 [/card]
 [card]
 name=Island
-auto={T}: Add {U}
 text=U
 type=Basic Land
 subtype=Island
@@ -36645,7 +36641,6 @@ toughness=5
 [card]
 name=Leechridden Swamp
 auto=tap
-auto={T}:Add {B}
 auto=aslongas(*[black]|myBattlefield) {B}{T}:life:-1 opponent >1
 text=({T}: Add {B} to your mana pool.) -- Leechridden Swamp enters the battlefield tapped. -- {B}, {T}: Each opponent loses 1 life. Activate this ability only if you control two or more black permanents.
 type=Land
@@ -42130,7 +42125,6 @@ toughness=2
 [/card]
 [card]
 name=Mountain
-auto={T}: Add {R}
 text=R
 type=Basic Land
 subtype=Mountain
@@ -42437,7 +42431,6 @@ toughness=4
 name=Murmuring Bosk
 auto=tap
 auto=aslongas(treefolk|myhand) untap
-auto={T}:Add{G}
 auto={T}:Add{W} && damage:1 controller
 auto={T}:Add{B} && damage:1 controller
 text=({T}: Add {G} to your mana pool.) -- As Murmuring Bosk enters the battlefield, you may reveal a Treefolk card from your hand. If you don't, Murmuring Bosk enters the battlefield tapped. -- {T}: Add {W} or {B} to your mana pool. Murmuring Bosk deals 1 damage to you.
@@ -45853,8 +45846,6 @@ type=Enchantment
 name=Overgrown Tomb
 auto=tap
 auto=may untap && life:-2 controller
-auto={T}:Add {B}
-auto={T}:Add {G}
 text=({T}: Add {B} or {G} to your mana pool.) -- As Overgrown Tomb enters the battlefield, you may pay 2 life. If you don't, Overgrown Tomb enters the battlefield tapped.
 type=Land
 subtype=Swamp Forest
@@ -48100,7 +48091,6 @@ toughness=1
 [/card]
 [card]
 name=Plains
-auto={T}: Add {W}
 text=W
 type=Basic Land
 subtype=Plains
@@ -48185,8 +48175,6 @@ toughness=1
 [/card]
 [card]
 name=Plateau
-auto={T}:Add {R}
-auto={T}:Add {W}
 type=Land
 subtype=Mountain Plains
 [/card]
@@ -54017,8 +54005,6 @@ toughness=3
 name=Sacred Foundry
 auto=tap
 auto=may untap && life:-2 controller
-auto={T}:Add {R}
-auto={T}:Add {W}
 text=({T}: Add {R} or {W} to your mana pool.) -- As Sacred Foundry enters the battlefield, you may pay 2 life. If you don't, Sacred Foundry enters the battlefield tapped.
 type=Land
 subtype=Mountain Plains
@@ -54662,7 +54648,6 @@ type=Land
 [card]
 name=Sapseep Forest
 auto=tap
-auto={T}:Add {G}
 auto=aslongas(*[green]|myBattlefield) {G}{T}:life:1 controller >1
 text=({T}: Add {G} to your mana pool.) -- Sapseep Forest enters the battlefield tapped. -- {G}, {T}: You gain 1 life. Activate this ability only if you control two or more green permanents.
 type=Land
@@ -54844,8 +54829,6 @@ type=Sorcery
 [/card]
 [card]
 name=Savannah
-auto={T}:Add {W}
-auto={T}:Add {G}
 type=Land
 subtype=Forest Plains
 [/card]
@@ -55540,8 +55523,6 @@ toughness=3
 [/card]
 [card]
 name=Scrubland
-auto={T}:Add {W}
-auto={T}:Add {B}
 type=Land
 subtype=Plains Swamp
 [/card]
@@ -60057,35 +60038,30 @@ toughness=1
 [/card]
 [card]
 name=Snow-Covered Forest
-auto={T}:Add {G}
 text=G
 type=Basic Snow Land
 subtype=Forest
 [/card]
 [card]
 name=Snow-Covered Island
-auto={T}:Add {U}
 text=U
 type=Basic Snow Land
 subtype=Island
 [/card]
 [card]
 name=Snow-Covered Mountain
-auto={T}:Add {R}
 text=R
 type=Basic Snow Land
 subtype=Mountain
 [/card]
 [card]
 name=Snow-Covered Plains
-auto={T}:Add {W}
 text=W
 type=Basic Snow Land
 subtype=Plains
 [/card]
 [card]
 name=Snow-Covered Swamp
-auto={T}:Add {B}
 text=B
 type=Basic Snow Land
 subtype=Swamp
@@ -62691,8 +62667,6 @@ toughness=5
 name=Steam Vents
 auto=tap
 auto=may untap && life:-2 controller
-auto={T}:Add {U}
-auto={T}:Add {R}
 text=({T}: Add {U} or {R} to your mana pool.) -- As Steam Vents enters the battlefield, you may pay 2 life. If you don't, Steam Vents enters the battlefield tapped.
 type=Land
 subtype=Island Mountain
@@ -62995,8 +62969,6 @@ toughness=3
 name=Stomping Ground
 auto=tap
 auto=may untap && life:-2 controller
-auto={T}:Add {R}
-auto={T}:Add {G}
 text=({T}: Add {R} or {G} to your mana pool.) -- As Stomping Ground enters the battlefield, you may pay 2 life. If you don't, Stomping Ground enters the battlefield tapped.
 type=Land
 subtype=Mountain Forest
@@ -64418,7 +64390,6 @@ subtype=Arcane
 [/card]
 [card]
 name=Swamp
-auto={T}: Add {B}
 text=B
 type=Basic Land
 subtype=Swamp
@@ -64851,8 +64822,6 @@ toughness=5
 [/card]
 [card]
 name=Taiga
-auto={T}:Add {G}
-auto={T}:Add {R}
 type=Land
 subtype=Mountain Forest
 [/card]
@@ -65855,8 +65824,6 @@ toughness=2
 name=Temple Garden
 auto=tap
 auto=may untap && life:-2 controller
-auto={T}:Add {G}
-auto={T}:Add {W}
 text=({T}: Add {G} or {W} to your mana pool.) -- As Temple Garden enters the battlefield, you may pay 2 life. If you don't, Temple Garden enters the battlefield tapped.
 type=Land
 subtype=Forest Plains
@@ -69106,8 +69073,6 @@ toughness=3
 [/card]
 [card]
 name=Tropical Island
-auto={T}:Add {G}
-auto={T}:Add {U}
 type=Land
 subtype=Forest Island
 [/card]
@@ -69258,8 +69223,6 @@ type=Artifact
 [/card]
 [card]
 name=Tundra
-auto={T}:Add {U}
-auto={T}:Add {W}
 type=Land
 subtype=Plains Island
 [/card]
@@ -69690,8 +69653,6 @@ type=Land
 [/card]
 [card]
 name=Underground Sea
-auto={T}:Add {B}
-auto={T}:Add {U}
 type=Land
 subtype=Island Swamp
 [/card]
@@ -72406,8 +72367,6 @@ type=Sorcery
 [/card]
 [card]
 name=Volcanic Island
-auto={T}:Add {U}
-auto={T}:Add {R}
 type=Land
 subtype=Island Mountain
 [/card]
@@ -73773,8 +73732,6 @@ type=Land
 name=Watery Grave
 auto=tap
 auto=may untap && life:-2 controller
-auto={T}:Add {U}
-auto={T}:Add {B}
 text=({T}: Add {U} or {B} to your mana pool.) -- As Watery Grave enters the battlefield, you may pay 2 life. If you don't, Watery Grave enters the battlefield tapped.
 type=Land
 subtype=Island Swamp

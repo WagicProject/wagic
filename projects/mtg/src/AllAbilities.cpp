@@ -2857,6 +2857,51 @@ ALoseAbilities * ALoseAbilities::clone() const
     return a;
 }
 
+//ALoseSubtypes
+ALoseSubtypes::ALoseSubtypes(int id, MTGCardInstance * source, MTGCardInstance * _target, int parentType) :
+    MTGAbility(id, source), parentType(parentType)
+{
+    target = _target;
+}
+
+int ALoseSubtypes::addToGame()
+{
+    if (storedSubtypes.size())
+    {
+        DebugTrace("FATAL:storedSubtypes shouldn't be already set inALoseSubtypes\n");
+        return 0;
+    }
+    MTGCardInstance * _target = (MTGCardInstance *)target;
+
+    for (int i = ((int)_target->types.size())-1; i >= 0; --i)
+    {
+        int subtype = _target->types[i];
+        if (Subtypes::subtypesList->isSubtypeOfType(subtype, parentType))
+        {
+            storedSubtypes.push_back(subtype);
+            _target->removeType(subtype);
+        }
+    }
+
+    return MTGAbility::addToGame();
+}
+
+int ALoseSubtypes::destroy()
+{
+    MTGCardInstance * _target = (MTGCardInstance *)target;
+    for (size_t i = 0; i < storedSubtypes.size(); ++i)
+        _target->addType(storedSubtypes[i]);
+    storedSubtypes.clear();
+    return 1;
+}
+
+ALoseSubtypes * ALoseSubtypes::clone() const
+{
+    ALoseSubtypes * a = NEW ALoseSubtypes(*this);
+    a->isClone = 1;
+    return a;
+}
+
 //APreventDamageTypes
 APreventDamageTypes::APreventDamageTypes(int id, MTGCardInstance * source, string to, string from, int type) :
     MTGAbility(id, source), to(to), from(from), type(type)

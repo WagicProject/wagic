@@ -3617,6 +3617,18 @@ public:
     ALoseAbilities * clone() const;
 };
 
+//Remove subtypes (of a given type) from target
+class ALoseSubtypes: public MTGAbility
+{
+public:
+    int parentType;
+    vector <int> storedSubtypes;
+    ALoseSubtypes(int id, MTGCardInstance * source, MTGCardInstance * target, int parentType);
+    int addToGame();
+    int destroy();
+    ALoseSubtypes * clone() const;
+};
+
 //Adds types/abilities/P/T to a card (until end of turn)
 class APreventDamageTypesUEOT: public InstantAbility
 {

@@ -1,0 +1,22 @@
+#Testing Evil Presence on Gaea's Cradle
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Evil PResence, disenchant
+inplay:Gaea's Cradle,raging goblin,grizzly bears
+manapool:{B}{1}{W}
+[PLAYER2]
+[DO]
+Evil PResence
+Gaea's Cradle
+Disenchant
+Evil PResence
+Gaea's Cradle
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Gaea's Cradle,raging goblin, grizzly bears
+graveyard:Evil PResence,Disenchant
+manapool:{G}{G}
+[PLAYER2]
+[END]
