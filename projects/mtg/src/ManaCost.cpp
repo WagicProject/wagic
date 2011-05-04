@@ -493,7 +493,7 @@ int ManaCost::getConvertedCost()
 int ManaCost::remove(int color, int value)
 {
     assert (value >= 0);
-    int toRemove = min(cost[color], value);
+    int8_t toRemove = min(cost[color], (int8_t)value);
     cost[color] -= toRemove;
     return 1;
 }
@@ -526,7 +526,7 @@ int ManaCost::remove(ManaCost * _cost)
         return 0;
     for (unsigned int i = 0; i < Constants::MTG_NB_COLORS; i++)
     {
-        int toRemove = min(cost[i], _cost->getCost(i)); //we don't want to be negative
+        int8_t toRemove = min(cost[i], (int8_t)_cost->getCost(i)); //we don't want to be negative
         cost[i] -= toRemove;
         assert(cost[i] >= 0);
     }
