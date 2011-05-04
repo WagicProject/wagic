@@ -243,7 +243,7 @@ ManaCost::ManaCost()
     init();
 }
 
-ManaCost::ManaCost(int _cost[], int nb_elems)
+ManaCost::ManaCost(int8_t _cost[], int nb_elems)
 {
     init();
     for (int i = 0; i < nb_elems; i++)
@@ -624,7 +624,7 @@ int ManaCost::isPositive()
 
 }
 
-void ManaCost::randomDiffHybrids(ManaCost * _cost, int diff[])
+void ManaCost::randomDiffHybrids(ManaCost * _cost, int8_t diff[])
 {
     for (size_t i = 0; i < _cost->hybrids.size(); i++)
     {
@@ -636,7 +636,7 @@ void ManaCost::randomDiffHybrids(ManaCost * _cost, int diff[])
 /**
     starting from the end of the array (diff) 
 */
-int ManaCost::tryToPayHybrids(std::vector<ManaCostHybrid>& _hybrids, int _nbhybrids, int diff[])
+int ManaCost::tryToPayHybrids(std::vector<ManaCostHybrid>& _hybrids, int _nbhybrids, int8_t diff[])
 {
     if (!_nbhybrids)
         return 1;
@@ -664,7 +664,7 @@ int ManaCost::tryToPayHybrids(std::vector<ManaCostHybrid>& _hybrids, int _nbhybr
 //compute the difference between two mana costs
 ManaCost * ManaCost::Diff(ManaCost * _cost)
 {
-    int diff[(Constants::MTG_NB_COLORS + 1) * 2];
+    int8_t diff[(Constants::MTG_NB_COLORS + 1) * 2];
     diff[Constants::MTG_NB_COLORS * 2] = Constants::MTG_NB_COLORS;
     for (int i = 0; i < Constants::MTG_NB_COLORS; i++)
     {

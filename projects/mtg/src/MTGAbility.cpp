@@ -2710,7 +2710,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
 
     case 1103: //Crystal Rod
     {
-        int cost[] = { Constants::MTG_COLOR_ARTIFACT, 1 };
+        int8_t cost[] = { Constants::MTG_COLOR_ARTIFACT, 1 };
         ASpellCastLife* ability = NEW ASpellCastLife(_id, card, Constants::MTG_COLOR_BLUE, NEW ManaCost(cost, 1), 1);
         game->addObserver(ability);
         break;
@@ -2742,7 +2742,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
     }
     case 1113: //Iron Star
     {
-        int cost[] = { Constants::MTG_COLOR_ARTIFACT, 1 };
+        int8_t cost[] = { Constants::MTG_COLOR_ARTIFACT, 1 };
         ASpellCastLife* ability = NEW ASpellCastLife(_id, card, Constants::MTG_COLOR_RED, NEW ManaCost(cost, 1), 1);
         game->addObserver(ability);
         break;
@@ -2754,7 +2754,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
     }
     case 1114: //Ivory cup
     {
-        int cost[] = { Constants::MTG_COLOR_ARTIFACT, 1 };
+        int8_t cost[] = { Constants::MTG_COLOR_ARTIFACT, 1 };
         ASpellCastLife* ability = NEW ASpellCastLife(_id, card, Constants::MTG_COLOR_WHITE, NEW ManaCost(cost, 1), 1);
         game->addObserver(ability);
         break;
@@ -2827,7 +2827,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
 
     case 1140: //Throne of Bone
     {
-        int cost[] = { Constants::MTG_COLOR_ARTIFACT, 1 };
+        int8_t cost[] = { Constants::MTG_COLOR_ARTIFACT, 1 };
         ASpellCastLife* ability = NEW ASpellCastLife(_id, card, Constants::MTG_COLOR_BLACK, NEW ManaCost(cost, 1), 1);
         game->addObserver(ability);
         break;
@@ -2835,7 +2835,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
 
     case 1142: //Wooden Sphere
     {
-        int cost[] = { Constants::MTG_COLOR_ARTIFACT, 1 };
+        int8_t cost[] = { Constants::MTG_COLOR_ARTIFACT, 1 };
         ASpellCastLife* ability = NEW ASpellCastLife(_id, card, Constants::MTG_COLOR_GREEN, NEW ManaCost(cost, 1), 1);
         game->addObserver(ability);
         break;

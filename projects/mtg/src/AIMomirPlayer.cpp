@@ -53,7 +53,7 @@ int AIMomirPlayer::momir()
 
     if (efficiency >= chance)
     {
-        int _cost[] = { Constants::MTG_COLOR_ARTIFACT, converted };
+        int8_t _cost[] = { Constants::MTG_COLOR_ARTIFACT, converted };
         ManaCost * cost = NEW ManaCost(_cost);
         MTGAbility * ability = getMomirAbility();
         MTGCardInstance * card = game->hand->cards[0];

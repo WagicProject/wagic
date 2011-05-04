@@ -3857,7 +3857,7 @@ public:
         MTGAbility(id, _source)
     {
         counters = 0;
-        int _cost[] = { Constants::MTG_COLOR_ARTIFACT, 4 };
+        int8_t _cost[] = { Constants::MTG_COLOR_ARTIFACT, 4 };
         cost = ManaCost(_cost, 1);
     }
 
@@ -3921,7 +3921,7 @@ public:
         MTGAbility(_id, _source)
     {
         canprevent = 0;
-        int _cost[] = { Constants::MTG_COLOR_ARTIFACT, 2 };
+        int8_t _cost[] = { Constants::MTG_COLOR_ARTIFACT, 2 };
         cost = ManaCost(_cost, 1);
     }
 
@@ -4017,7 +4017,7 @@ public:
     AFarmstead(int _id, MTGCardInstance * source, MTGCardInstance * _target) :
         ActivatedAbility(_id, source, 0, 1)
     {
-        int _cost[] = { Constants::MTG_COLOR_WHITE, 2 };
+        int8_t _cost[] = { Constants::MTG_COLOR_WHITE, 2 };
         cost = NEW ManaCost(_cost, 1);
         target = _target;
         usedThisTurn = 0;
