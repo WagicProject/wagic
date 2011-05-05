@@ -321,12 +321,16 @@ void GameStateShop::purchaseBooster(int controlId)
         ddw->Sort(WSrcCards::SORT_COLLECTOR);
     else
         ddw->Sort(WSrcCards::SORT_RARITY);
+
     for (int x = 0; x < ddw->Size(); x++)
     {
         MTGCard * c = ddw->getCard(x);
-        MTGCardInstance * ci = NEW MTGCardInstance(c, NULL);
-        boosterDisplay->AddCard(ci);
-        subBooster.push_back(ci);
+        for (int copies = 0; copies < ddw->count(c); ++copies)
+        {
+            MTGCardInstance * ci = NEW MTGCardInstance(c, NULL);
+            boosterDisplay->AddCard(ci);
+            subBooster.push_back(ci);
+        }
     }
     SAFE_DELETE(ddw);
 
@@ -963,7 +967,7 @@ bool ShopBooster::unitTest()
     DeckDataWrapper* ddw = NEW DeckDataWrapper(d);
     bool res = true;
 
-    int u = 0, r = 0;
+    int u = 0, r = 0, s = 0;
     int card = 0;
     for(int i=0;i<ddw->Size(true);i++)
     {
@@ -973,12 +977,16 @@ bool ShopBooster::unitTest()
         r+=ddw->count(c);
         else if(c->getRarity() == Constants::RARITY_U)
         u+=ddw->count(c);
+        else if(c->getRarity() == Constants::RARITY_S)
+        s+=ddw->count(c);
         card++;
     }
     int count = ddw->getCount();
     SAFE_DELETE(ddw);
     SAFE_DELETE(d);
-    if(r != 1 || u != 3 )
+    //Note: When there are special cards, the count IS going to be messed up, so do not perform the check for Rare and Uncommon in that case
+    //also see http://code.google.com/p/wagic/issues/detail?id=644
+    if(!s && (r != 1 || u != 3) ) 
     {
         sprintf(result, "<span class=\"error\">==Unexpected rarity count==</span><br />");
         TestSuite::Log(result);

@@ -46,9 +46,11 @@ int MTGPackSlot::add(WSrcCards * ocean, MTGDeck *to, int carryover)
         myPool = MTGPack::getPool(pool);
     if (!myPool)
         myPool = ocean;
+
     for (int i = 0; i < amt; i++)
     {
-        size_t pos = rand() % entries.size();
+        std::random_shuffle(entries.begin(), entries.end());
+        size_t pos = 0;
         while (pos < entries.size() && entries[pos]->addCard(myPool, to))
             pos++;
         if (pos == entries.size())
@@ -378,6 +380,10 @@ MTGPack * MTGPacks::getDefault()
             defaultBooster.slotss.push_back(ps);
             defaultBooster.bValid = true;
             defaultBooster.unlockStatus = 1;
+            for (size_t i = 0; i <  defaultBooster.slotss.size(); ++ i)
+            {
+                defaultBooster.slotss[i]->addEntry(NEW MTGPackEntryRandom("rarity:special;"));
+            }
         }
     }
     return &defaultBooster;
