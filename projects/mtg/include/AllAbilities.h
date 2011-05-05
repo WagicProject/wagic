@@ -198,7 +198,7 @@ public:
                 intValue = intValue/2;
             }
             if(halfdown)
-                intValue = intValue/2;//got lucky here, by default C++ rounds down.
+                intValue = intValue/2;
         }
         intValue *= multiplier;
     }

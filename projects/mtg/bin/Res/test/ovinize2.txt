@@ -1,0 +1,23 @@
+#Testing Ovinize: target creature loses its abilities and becomes 0/1 ueot
+# Testing the ueot effect
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Llanowar elves
+hand:Ovinize
+manapool:{1}{U}
+[PLAYER2]
+[DO]
+Ovinize
+Llanowar elves
+eot
+eot
+Llanowar elves
+[ASSERT]
+UNTAP
+[PLAYER1]
+inplay:Llanowar elves
+graveyard:Ovinize
+manapool:{G}
+[PLAYER2]
+[END]

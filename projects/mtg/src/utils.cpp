@@ -302,6 +302,38 @@ std::vector<std::string> split(const std::string& s, char delim)
     return split(s, delim, elems);
 }
 
+std::vector<std::string>&  parseBetween(const std::string& s, string start, string stop, bool stopRequired, std::vector<std::string>& elems)
+{
+    size_t found = s.find(start);
+    if (found == string::npos)
+        return elems;
+    
+    size_t offset = found + start.size();
+    size_t end = s.find(stop, offset);
+    if (end == string::npos && stopRequired)
+        return elems;
+
+    elems.push_back(s.substr(0,found));
+    if (end != string::npos)
+    {
+        elems.push_back(s.substr(offset, end - offset));
+        elems.push_back(s.substr(end + 1));
+    }
+    else
+    {
+        elems.push_back(s.substr(offset));
+        elems.push_back("");
+    }
+
+    return elems;
+}
+
+std::vector<std::string> parseBetween(const std::string& s, string start, string stop, bool stopRequired)
+{
+    std::vector<std::string> elems;
+    return parseBetween(s, start, stop, stopRequired, elems);
+}
+
 // This is a customized word wrap based on pixel width.  It tries it's best 
 // to wrap strings using spaces as delimiters.  
 // Not sure how this translates into non-english fonts.

@@ -15892,12 +15892,6 @@ power=0
 toughness=1
 [/card]
 [card]
-name=Ovinize
-text=Target creature loses all abilities and becomes 0/1 until end of turn.
-mana={1}{U}
-type=Instant
-[/card]
-[card]
 name=Pack Hunt
 text=Search your library for up to three cards with the same name as target creature, reveal them, and put them into your hand. Then shuffle your library.
 mana={3}{G}

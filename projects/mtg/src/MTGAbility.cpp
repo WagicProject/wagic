@@ -687,38 +687,6 @@ MTGAbility * AbilityFactory::getCoreAbility(MTGAbility * a)
     return a;
 }
 
-std::vector<std::string>&  AbilityFactory::parseBetween(const std::string& s, string start, string stop, bool stopRequired, std::vector<std::string>& elems)
-{
-    size_t found = s.find(start);
-    if (found == string::npos)
-        return elems;
-    
-    size_t offset = found + start.size();
-    size_t end = s.find(stop, offset);
-    if (end == string::npos && stopRequired)
-        return elems;
-
-    elems.push_back(s.substr(0,found));
-    if (end != string::npos)
-    {
-        elems.push_back(s.substr(offset, end - offset));
-        elems.push_back(s.substr(end + 1));
-    }
-    else
-    {
-        elems.push_back(s.substr(offset));
-        elems.push_back("");
-    }
-
-    return elems;
-}
-
-std::vector<std::string> AbilityFactory::parseBetween(const std::string& s, string start, string stop, bool stopRequired)
-{
-    std::vector<std::string> elems;
-    return parseBetween(s, start, stop, stopRequired, elems);
-}
-
 //Parses a string and returns the corresponding MTGAbility object
 //Returns NULL if parsing failed
 //Beware, Spell CAN be null when the function is called by the AI trying to analyze the effects of a given card
@@ -924,6 +892,17 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
                 a1 = NEW GenericActivatedAbility(newName,id, card, a1, NULL);
             return NEW MayAbility(id, a1, card,mayMust[i]);
         }
+    }
+
+    // Generic "Until end of turn" effect
+    if (s.find("ueot ") == 0)
+    {
+        string s1 = s.substr(5);
+        MTGAbility * a1 = parseMagicLine(s1, id, spell, card);
+        if (!a1)
+            return NULL;
+
+        return NEW GenericInstantAbility(1, card, (Damageable *) target, a1);
     }
     
     //Upkeep Cost
