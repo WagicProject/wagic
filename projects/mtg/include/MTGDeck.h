@@ -156,6 +156,8 @@ public:
     map<int, int> cards;
     string meta_desc;
     string meta_name;
+    vector<string> meta_AIHints;
+
     int meta_id;
     int totalCards();
     int totalPrice();

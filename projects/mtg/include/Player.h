@@ -30,6 +30,7 @@ public:
     bool nomaxhandsize;
     bool isPoisoned;
     MTGPlayerCards * game;
+    MTGDeck * mDeck;
     string deckFile;
     string deckFileSmall;
     string deckName;

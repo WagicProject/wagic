@@ -301,6 +301,7 @@
     <ClCompile Include="src\ActionElement.cpp" />
     <ClCompile Include="src\ActionLayer.cpp" />
     <ClCompile Include="src\ActionStack.cpp" />
+    <ClCompile Include="src\AIHints.cpp" />
     <ClCompile Include="src\AIMomirPlayer.cpp" />
     <ClCompile Include="src\AIPlayer.cpp" />
     <ClCompile Include="src\AIStats.cpp" />
@@ -431,6 +432,7 @@
     <ClInclude Include="include\ActionElement.h" />
     <ClInclude Include="include\ActionLayer.h" />
     <ClInclude Include="include\ActionStack.h" />
+    <ClInclude Include="include\AIHints.h" />
     <ClInclude Include="include\AIMomirPlayer.h" />
     <ClInclude Include="include\AIPlayer.h" />
     <ClInclude Include="include\AIStats.h" />

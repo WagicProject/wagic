@@ -1178,7 +1178,7 @@ cacheItem* WCache<cacheItem, cacheActual>::Get(int id, const string& filename, i
             if (!it->second)
             {
                 mError = CACHE_ERROR_404;
-                DebugTrace("cache hit, no item??");
+                //DebugTrace("cache hit, no item??");
                 //assert(false);
             }
             return it->second; //A hit, or maybe a miss.

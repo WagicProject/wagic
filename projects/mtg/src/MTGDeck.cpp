@@ -720,6 +720,12 @@ MTGDeck::MTGDeck(const char * config_file, MTGAllCards * _allcards, int meta_onl
                     meta_desc.append(s.substr(found + 5));
                     continue;
                 }
+                found = s.find("HINT:");
+                if (found != string::npos)
+                {
+                    meta_AIHints.push_back(s.substr(found + 5));
+                    continue;
+                }
                 continue;
             }
             if (meta_only) break;
@@ -874,7 +880,8 @@ int MTGDeck::add(MTGDeck * deck)
 
 int MTGDeck::add(int cardid)
 {
-    if (!database->getCardById(cardid)) return 0;
+    if (!database->getCardById(cardid))
+        return 0;
     if (cards.find(cardid) == cards.end())
     {
         cards[cardid] = 1;
@@ -890,7 +897,8 @@ int MTGDeck::add(int cardid)
 
 int MTGDeck::add(MTGCard * card)
 {
-    if (!card) return 0;
+    if (!card) 
+        return 0;
     return (add(card->getId()));
 }
 

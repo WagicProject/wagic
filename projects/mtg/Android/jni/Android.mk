@@ -30,6 +30,7 @@ LOCAL_SRC_FILES := $(SDL_PATH)/src/main/android/SDL_android_main.cpp \
         $(MTG_PATH)/src/ActionElement.cpp \
         $(MTG_PATH)/src/ActionLayer.cpp \
         $(MTG_PATH)/src/ActionStack.cpp \
+		$(MTG_PATH)/src/AIHints.cpp \
         $(MTG_PATH)/src/AIMomirPlayer.cpp \
         $(MTG_PATH)/src/AIPlayer.cpp \
         $(MTG_PATH)/src/AIStats.cpp \

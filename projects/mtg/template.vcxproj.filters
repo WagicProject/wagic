@@ -307,6 +307,9 @@
     <ClCompile Include="src\ModRules.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\AIHints.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\ActionElement.h">
@@ -634,6 +637,9 @@
       <Filter>inc</Filter>
     </ClInclude>
     <ClInclude Include="include\ModRules.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\AIHints.h">
       <Filter>inc</Filter>
     </ClInclude>
   </ItemGroup>

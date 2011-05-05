@@ -8,12 +8,8 @@
 Player::Player(string file, string fileSmall, MTGDeck * deck) :
 Damageable(20)
 {
-    bool deleteDeckPlease = false;
     if(deck == NULL && file != "testsuite" && file != "remote")
-    {
         deck = NEW MTGDeck(file.c_str(), MTGCollection());
-        deleteDeckPlease = true;
-    }
 
     game = NULL;
     deckFile = file;
@@ -28,14 +24,11 @@ Damageable(20)
     playMode = MODE_HUMAN;
     if (deck != NULL)
     {
-            game = NEW MTGPlayerCards(deck);
-            game->setOwner(this);
-            deckName = deck->meta_name;
+        game = NEW MTGPlayerCards(deck);
+        game->setOwner(this);
+        deckName = deck->meta_name;
     }
-    if(deleteDeckPlease)
-    {
-        SAFE_DELETE(deck);
-    }
+    mDeck = deck;
 }
 
 /*Method to call at the end of a game, before all objects involved in the game are destroyed */
@@ -50,6 +43,7 @@ Player::~Player()
     SAFE_DELETE(game);
     WResourceManager::Instance()->Release(mAvatarTex);
     mAvatarTex = NULL;
+    SAFE_DELETE(mDeck);
 }
 
 void Player::loadAvatar(string file)

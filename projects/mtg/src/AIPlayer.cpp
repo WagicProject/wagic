@@ -9,6 +9,7 @@
 #include "GuiCombat.h"
 #include "GameStateDuel.h"
 #include "DeckManager.h"
+#include "AIHints.h"
 
 const char * const MTG_LAND_TEXTS[] = { "artifact", "forest", "island", "mountain", "swamp", "plains", "other lands" };
 
@@ -27,7 +28,7 @@ AIAction::AIAction(MTGCardInstance * c, MTGCardInstance * t)
     // if we're not in text mode, always get the thumb
     if (CardSelectorSingleton::Instance()->GetDrawMode() != DrawMode::kText)
     {
-        DebugTrace("Prefetching AI card going into play: " << c->getImageName());
+        //DebugTrace("Prefetching AI card going into play: " << c->getImageName());
         WResourceManager::Instance()->RetrieveCard(c, RETRIEVE_THUMB);
         
         // also cache the large image if we're using kNormal mode
@@ -71,6 +72,15 @@ AIPlayer::AIPlayer(string file, string fileSmall, MTGDeck * deck) :
     agressivity = 50;
     forceBestAbilityUse = false;
     playMode = Player::MODE_AI;
+
+    //Initialize "AIHints" system
+    hints = NULL;
+    if (mDeck && mDeck->meta_AIHints.size())
+    {
+        hints = NEW AIHints(this);
+        for (size_t i = 0; i <  mDeck->meta_AIHints.size(); ++i)
+            hints->add(mDeck->meta_AIHints[i]);
+    }
 }
 
 AIPlayer::~AIPlayer()
@@ -86,6 +96,7 @@ AIPlayer::~AIPlayer()
         SAFE_DELETE(action);
         clickstream.pop();
     }
+    SAFE_DELETE(hints);
 }
 MTGCardInstance * AIPlayer::chooseCard(TargetChooser * tc, MTGCardInstance * source, int random)
 {
@@ -125,15 +136,12 @@ bool AIPlayer::tapLandsForMana(ManaCost * cost, MTGCardInstance * target)
         DebugTrace("Mana cost is NULL.  ");
         return false;
     }
-    ManaCost * pMana = NULL;
-    if(!target)
-        pMana = getPotentialMana();
-    else
-        pMana = getPotentialMana(target);
+    ManaCost * pMana = target ? getPotentialMana(target) : getPotentialMana();
+
     if(!pMana->canAfford(cost))
     {
-    delete pMana;
-    return false;
+        delete pMana;
+        return false;
     }
     ManaCost * diff = pMana->Diff(cost);
     delete (pMana);
@@ -670,7 +678,6 @@ int AIAction::getEfficiency()
         AADrawer * drawer = (AADrawer *)a;
         //adding this case since i played a few games where Ai litterally decided to mill himself to death. fastest and easiest win ever.
         //this should help a little, tho ultimately it will be decided later what the best course of action is.
-        efficiency = 0;
         //eff of drawing ability is calculated by base 20 + the amount of cards in library minus the amount of cards in hand times 7.
         //drawing is never going to return a hundred eff because later eff is multiplied by 1.3 if no cards in hand.
         efficiency = int(20 + p->game->library->nb_cards) - int(p->game->hand->nb_cards * 7);
@@ -769,6 +776,32 @@ int AIPlayer::createAbilityTargets(MTGAbility * a, MTGCardInstance * c, RankingC
     return 1;
 }
 
+int AIPlayer::selectHintAbility()
+{
+    if (!hints)
+        return 0;
+
+    ManaCost * totalPotentialMana = getPotentialMana(); 
+
+    AIAction * action = hints->suggestAbility(totalPotentialMana);
+    if (action && ((WRand() % 100) < 95)) //95% chance
+    {
+        if (!clickstream.size())
+        {
+            DebugTrace("AIPlayer:Using Activated ability");
+            if (tapLandsForMana(action->ability->cost, action->click))
+            {
+                clickstream.push(action);
+                SAFE_DELETE(totalPotentialMana);
+                return 1;
+            }
+        }
+    }
+    SAFE_DELETE(action);
+    SAFE_DELETE(totalPotentialMana);
+    return 0;
+}
+
 int AIPlayer::selectAbility()
 {
     static bool findingAbility = false;
@@ -783,6 +816,15 @@ int AIPlayer::selectAbility()
         return 0;
     }
     findingAbility = true;//im looking now safely!
+
+
+    // Try Deck hints first
+    if (selectHintAbility())
+    {
+        findingAbility = false;//ok to start looking again.
+        return 1;
+    }
+
     RankingContainer ranking;
     list<int>::iterator it;
     GameObserver * g = GameObserver::GetInstance();
@@ -826,6 +868,7 @@ int AIPlayer::selectAbility()
             }
         }
     }
+
     findingAbility = false;//ok to start looking again.
     return 1;
 }
@@ -864,16 +907,24 @@ int AIPlayer::chooseTarget(TargetChooser * _tc, Player * forceTarget,MTGCardInst
     int checkOnly = 0;
     if (tc)
     {
-    if(!Choosencard)
-        checkOnly = 1;
+        if(!Choosencard)
+            checkOnly = 1;
     }
     else
     {
-            tc = gameObs->getCurrentTargetChooser();
-
+        tc = gameObs->getCurrentTargetChooser();
     }
     if (!tc)
         return 0;
+
+    if (tc->source->controller() != this)
+    {
+        DebugTrace("AIPLAYER: Error, was asked to chose targets but I don't own the source of the targetController\n");
+        return 0;
+    }
+    //Make sure we own the decision to choose the targets
+    assert(tc->source->controller() == this);
+
     tc->initTargets(); //cleanup the targetchooser just in case.
     if (!(gameObs->currentlyActing() == this))
         return 0;
@@ -1091,14 +1142,27 @@ int AIPlayer::chooseBlockers()
     //kick the ai out of this function.
     map<MTGCardInstance *, int> opponentsToughness;
     int opponentForce = getCreaturesInfo(opponent(), INFO_CREATURESPOWER);
+
+    //Initialize the list of opponent's attacking cards toughness
+    CardDescriptor cdAttackers;
+    cdAttackers.init();
+    cdAttackers.setType("Creature");
+    MTGCardInstance * card = NULL;
+    while ((card = cdAttackers.nextmatch(opponent()->game->inPlay, card)))
+    {
+        if (card->isAttacker())
+            opponentsToughness[card] = card->toughness;
+    }
+
+    //A Descriptor to find untapped creatures in our game
     CardDescriptor cd;
     cd.init();
     cd.setType("Creature");
     cd.unsecureSetTapped(-1);
-    MTGCardInstance * card = NULL;
+    card = NULL;
     MTGAbility * a = g->mLayers->actionLayer()->getAbility(MTGAbility::MTG_BLOCK_RULE);
 
-
+    // We first try to block the major threats, those that are marked in the Top 3 of our stats
     while ((card = cd.nextmatch(game->inPlay, card)))
     {
         g->mLayers->actionLayer()->reactToClick(a, card);
@@ -1130,6 +1194,9 @@ int AIPlayer::chooseBlockers()
             }
         }
     }
+
+    //If blocking one of the major threats is not enough to kill it,
+    // We change strategy, first we unassign its blockers that where assigned above
     card = NULL;
     while ((card = cd.nextmatch(game->inPlay, card)))
     {
@@ -1141,6 +1208,8 @@ int AIPlayer::chooseBlockers()
             }
         }
     }
+
+    //Assign the "free" potential blockers to attacking creatures that are not blocked enough
     card = NULL;
     while ((card = cd.nextmatch(game->inPlay, card)))
     {
@@ -1158,8 +1227,7 @@ int AIPlayer::chooseBlockers()
                 {
                     MTGCardInstance * attacker = card->defenser;
                     if (opponentsToughness[attacker] <= 0 || (card->toughness <= attacker->power && opponentForce * 2 < life
-                            && !canFirstStrikeKill(card, attacker)) || attacker->nbOpponents() > 1
-                            || attacker->controller()->isAI())
+                            && !canFirstStrikeKill(card, attacker)) || attacker->nbOpponents() > 1)
                     {
                         g->mLayers->actionLayer()->reactToClick(a, card);
                     }
@@ -1200,9 +1268,7 @@ int AIPlayer::affectCombatDamages(CombatStep step)
 //TODO: Deprecate combatDamages
 int AIPlayer::combatDamages()
 {
-    //int result = 0;
-    GameObserver * gameObs = GameObserver::GetInstance();
-    int currentGamePhase = gameObs->getCurrentGamePhase();
+    int currentGamePhase =  GameObserver::GetInstance()->getCurrentGamePhase();
 
     if (currentGamePhase == Constants::MTG_PHASE_COMBATBLOCKERS)
         return orderBlockers();
@@ -1609,12 +1675,14 @@ int AIPlayerBaka::Act(float dt)
         return 0;
     }
     interruptIfICan();
+
+    //computeActions only when i have priority
     if (!(g->currentlyActing() == this))
     {
         DebugTrace("Cannot interrupt");
         return 0;
     }
-    if (clickstream.empty() && g->currentlyActing() == this)//computeActions only when i have priority
+    if (clickstream.empty())
         computeActions();
     if (clickstream.empty())
     {

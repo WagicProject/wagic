@@ -20,6 +20,7 @@ using std::queue;
 
 
 class AIStats;
+class AIHints;
 
 class AIAction
 {
@@ -72,6 +73,7 @@ class AIPlayer: public Player{
 protected:
     //Variables used by Test suite
     MTGCardInstance * nextCardToPlay;
+    AIHints * hints;
     queue<AIAction *> clickstream;
     bool tapLandsForMana(ManaCost * cost, MTGCardInstance * card = NULL);
     int orderBlockers();
@@ -86,6 +88,9 @@ protected:
 
     // returns 1 if the AI algorithm supports a given cost (ex:simple mana cost), 0 otherwise (ex: cost involves Sacrificing a target)
     int CanHandleCost(ManaCost * cost); 
+
+    //Tries to play an ability recommended by the deck creator
+    int selectHintAbility();
 
 public:
     AIStats * stats;

@@ -796,7 +796,7 @@ void CardGui::RenderBig(MTGCard* card, const Pos& pos)
         return;
     }
 
-    DebugTrace("Unable to fetch image: " << card->getImageName());
+    //DebugTrace("Unable to fetch image: " << card->getImageName());
 
     // If we come here, we do not have the picture.
     AlternateRender(card, pos);

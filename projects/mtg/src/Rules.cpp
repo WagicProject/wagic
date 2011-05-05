@@ -336,7 +336,6 @@ Player * Rules::loadPlayerMomir(int isAI)
     else
         player = NEW AIMomirPlayer(options.profileFile("momir.txt", "", true).c_str(), deckFileSmall, empty, tempDeck);
 
-    delete tempDeck;
     return player;
 }
 
@@ -371,7 +370,6 @@ Player * Rules::loadPlayerRandom(int isAI, int mode)
     else
         player = NEW AIPlayerBaka(deckFile, deckFileSmall, "", tempDeck);
 
-    delete tempDeck;
     return player;
 }
 
@@ -518,7 +516,8 @@ void Rules::postUpdateInit()
     if (postUpdateInitDone)
         return;
     for (int i = 0; i < 2; ++ i)
-        GameObserver::GetInstance()->players[i]->getManaPool()->copy(initState.playerData[i].manapool);
+        GameObserver::GetInstance()->players[i]->getManaPool()->add(initState.playerData[i].manapool);
+       // GameObserver::GetInstance()->players[i]->getManaPool()->copy(initState.playerData[i].manapool);
     postUpdateInitDone = true;
 }
 
