@@ -994,6 +994,7 @@ public:
     MTGGameZone * destinationZone(Targetable * target = NULL);
     int resolve();
     const char * getMenuText();
+    const char * AAMover::getMenuText(TargetChooser * fromTc);
     AAMover * clone() const;
 };
 
@@ -2248,81 +2249,11 @@ public:
 
     const char * getMenuText()
     {
+        //Special case for move
         if (AAMover * move = dynamic_cast<AAMover *>(ability))
-        {
-            MTGGameZone * dest = move->destinationZone();
-            GameObserver * g = GameObserver::GetInstance();
-            for (int i = 0; i < 2; i++)
-            {
-                // Move card to hand
-                if (dest == g->players[i]->game->hand)
-                {
-                    if (tc->targetsZone(g->players[i]->game->inPlay))
-                    {
-                        return "Bounce";
-                    }
-                    else if (tc->targetsZone(g->players[i]->game->graveyard))
-                    {
-                        return "Reclaim";
-                    }
-                    else if (tc->targetsZone(g->opponent()->game->hand))
-                    {
-                        return "Steal";
-                    }
-                }
-                // Move card to graveyard
-                else if (dest == g->players[i]->game->graveyard)
-                {
-                    if (tc->targetsZone(g->players[i]->game->inPlay))
-                    {
-                        return "Sacrifice";
-                    }
-                    else if (tc->targetsZone(g->players[i]->game->hand))
-                    {
-                        return "Discard";
-                    }
-                    else if (tc->targetsZone(g->opponent()->game->hand))
-                    {
-                        return "Opponent Discards";
-                    }
-                }
-                // move card to library
-                else if (dest == g->players[i]->game->library)
-                {
-                    if (tc->targetsZone(g->players[i]->game->graveyard))
-                    {
-                        return "Recycle";
-                    }
-                    else
-                    {
-                        return "Put in Library";
-                    }
-                }
-                // move card to battlefield
-                else if (dest == g->players[i]->game->battlefield && tc->targetsZone(g->players[i]->game->graveyard))
-                {
-                    return "Reanimate";
-                }
-                // move card in play ( different from battlefield? )
-                else if (dest == g->players[i]->game->inPlay)
-                {
-                    return "Put in Play";
-                }
-                // move card into exile
-                else if (dest == g->players[i]->game->exile)
-                {
-                    return "Exile";
-                }
-                // move card from Library
-                else if (tc->targetsZone(g->players[i]->game->library))
-                {
-                    return "Fetch";
-                }
-            }
-            return "Move";
-        }
-        else
-            return ability->getMenuText();
+            return move->getMenuText(tc);
+
+        return ability->getMenuText();
     }
 
     ALord * clone() const

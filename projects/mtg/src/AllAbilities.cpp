@@ -1671,6 +1671,67 @@ const char * AAMover::getMenuText()
     return "Move";
 }
 
+const char * AAMover::getMenuText(TargetChooser * tc)
+{
+    GameObserver * g = GameObserver::GetInstance();
+    MTGGameZone * dest = destinationZone();
+
+    for (int i = 0; i < 2; i++)
+    {
+        // Move card to hand
+        if (dest == g->players[i]->game->hand)
+        {
+            if (tc->targetsZone(g->players[i]->game->inPlay))
+                return "Bounce";
+            if (tc->targetsZone(g->players[i]->game->graveyard))
+                return "Reclaim";
+            if (tc->targetsZone(g->opponent()->game->hand))
+                return "Steal";
+        }
+
+        // Move card to graveyard
+        else if (dest == g->players[i]->game->graveyard)
+        {
+            if (tc->targetsZone(g->players[i]->game->inPlay))
+                return "Sacrifice";
+            if (tc->targetsZone(g->players[i]->game->hand))
+                return "Discard";
+            if (tc->targetsZone(g->opponent()->game->hand))
+                return "Opponent Discards";
+        }
+
+        // move card to library
+        else if (dest == g->players[i]->game->library)
+        {
+            if (tc->targetsZone(g->players[i]->game->graveyard))
+                return "Recycle";
+            return "Put in Library";
+        }
+
+        // move card to battlefield
+        else if (dest == g->players[i]->game->battlefield)
+        {
+            if (tc->targetsZone(g->players[i]->game->graveyard))
+                return "Reanimate";
+            return "Put in Play";
+        }
+
+        // move card into exile
+        else if (dest == g->players[i]->game->exile)
+        {
+            return "Exile";
+        }
+
+        // move card from Library
+        else if (tc->targetsZone(g->players[i]->game->library))
+        {
+            return "Fetch";
+        }
+    }
+
+    return "Move";
+}
+
 AAMover * AAMover::clone() const
 {
     AAMover * a = NEW AAMover(*this);
@@ -2153,65 +2214,10 @@ const char * GenericTargetAbility::getMenuText()
     if (newName.size())
         return newName.c_str();
 
+    //Special case for move
     MTGAbility * core = AbilityFactory::getCoreAbility(ability);
     if (AAMover * move = dynamic_cast<AAMover *>(core))
-    {
-        MTGGameZone * dest = move->destinationZone();
-        GameObserver * g = GameObserver::GetInstance();
-        for (int i = 0; i < 2; i++)
-        {
-            if (dest == g->players[i]->game->hand && tc->targetsZone(g->players[i]->game->inPlay))
-            {
-                return "Bounce";
-            }
-            else if (dest == g->players[i]->game->hand && tc->targetsZone(g->players[i]->game->graveyard))
-            {
-                return "Reclaim";
-            }
-            else if (dest == g->players[i]->game->graveyard && tc->targetsZone(g->players[i]->game->inPlay))
-            {
-                return "Sacrifice";
-            }
-            else if (dest == g->players[i]->game->library && tc->targetsZone(g->players[i]->game->graveyard))
-            {
-                return "Recycle";
-            }
-            else if (dest == g->players[i]->game->battlefield && tc->targetsZone(g->players[i]->game->graveyard))
-            {
-                return "Reanimate";
-            }
-            else if ((tc->targetsZone(g->players[i]->game->inPlay)
-                    && dest == g->players[i]->game->library)
-                    || dest == g->players[i]->game->library)
-            {
-                return "Put in Library";
-            }
-            else if (dest == g->players[i]->game->inPlay)
-            {
-                return "Put in Play";
-            }
-            else if (dest == g->players[i]->game->graveyard && tc->targetsZone(g->players[i]->game->hand))
-            {
-                return "Discard";
-            }
-            else if (dest == g->players[i]->game->exile)
-            {
-                return "Exile";
-            }
-            else if (tc->targetsZone(g->players[i]->game->library))
-            {
-                return "Fetch";
-            }
-            else if (dest == g->players[i]->game->hand && tc->targetsZone(g->opponent()->game->hand))
-            {
-                return "Steal";
-            }
-            else if (dest == g->players[i]->game->graveyard && tc->targetsZone(g->opponent()->game->hand))
-            {
-                return "Opponent Discards";
-            }
-        }
-    }
+        return (move->getMenuText(tc));
 
     return ability->getMenuText();
 
