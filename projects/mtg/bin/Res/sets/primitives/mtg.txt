@@ -67300,6 +67300,16 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Tidal Warrior
+auto={T}:ueot loseabilities && losesubtypesof(land) && transforms((island)) target(land)
+text={T}: Target land becomes an Island until end of turn.
+mana={U}
+type=Creature
+subtype=Merfolk Warrior
+power=1
+toughness=1
+[/card]
+[card]
 name=Tidal Wave
 auto=token(Wall,Creature Wall,5/5,defender,treason,blue)
 text=Put a 5/5 blue Wall creature token with defender onto the battlefield. Sacrifice it at the beginning of the next end step.

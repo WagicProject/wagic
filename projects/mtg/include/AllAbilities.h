@@ -922,6 +922,7 @@ public:
     MultiAbility(int _id, MTGCardInstance * card, Targetable * _target, ManaCost * _cost);
     int Add(MTGAbility * ability);
     int resolve();
+    int addToGame();
     const char * getMenuText();
     MultiAbility * clone() const;
     ~MultiAbility();
@@ -1747,6 +1748,7 @@ public:
     int addToGame()
     {
         ability->forceDestroy = -1;
+        ability->target = target; //Might have changed since initialization
         ability->addToGame();
         return InstantAbility::addToGame();
     }

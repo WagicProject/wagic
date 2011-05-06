@@ -1,0 +1,18 @@
+#Testing Tidal Warrior's "target becomes island" ability
+#see http://code.google.com/p/wagic/issues/detail?id=646
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Forest, Tidal Warrior
+[PLAYER2]
+[DO]
+Tidal Warrior
+Forest
+Forest
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Forest, Tidal Warrior
+manapool:{U}
+[PLAYER2]
+[END]

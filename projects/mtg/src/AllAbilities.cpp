@@ -2079,7 +2079,6 @@ int MultiAbility::resolve()
             continue;
         Targetable * backup = abilities[i]->target;
 
-
         if (target && target != source && abilities[i]->target == abilities[i]->source)
         {
             abilities[i]->target = target;
@@ -2087,13 +2086,24 @@ int MultiAbility::resolve()
         }
         abilities[i]->resolve();
         abilities[i]->target = backup;
-        if(dynamic_cast<APhaseActionGeneric *> (abilities[i]))
-        {
-            if(Phaseactiontarget != NULL)
-                dynamic_cast<APhaseActionGeneric *> (abilities[i])->target = Phaseactiontarget;
-        }
-
+        if(Phaseactiontarget && dynamic_cast<APhaseActionGeneric *> (abilities[i]))
+            abilities[i]->target = Phaseactiontarget;
     }
+    return 1;
+}
+
+int MultiAbility::addToGame()
+{
+    for (unsigned int i = 0; i < abilities.size(); i++)
+    {
+        if (abilities[i] == NULL)
+            continue;
+
+        MTGAbility * a = abilities[i]->clone();
+        a->target = target;
+        a->addToGame();
+    }
+    MTGAbility::addToGame();
     return 1;
 }
 

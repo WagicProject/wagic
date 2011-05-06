@@ -539,6 +539,7 @@ thellon_of_havenwood.txt
 threaten.txt
 throne_of_bone.txt
 thunder-thrash_elder.txt
+tidal_warrior_i646.txt
 titanic_ultimatum.txt
 tolsimir_wolfblood.txt
 torture.txt
