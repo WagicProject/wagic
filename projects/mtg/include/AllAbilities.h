@@ -994,7 +994,7 @@ public:
     MTGGameZone * destinationZone(Targetable * target = NULL);
     int resolve();
     const char * getMenuText();
-    const char * AAMover::getMenuText(TargetChooser * fromTc);
+    const char * getMenuText(TargetChooser * fromTc);
     AAMover * clone() const;
 };
 
