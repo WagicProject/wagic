@@ -47,6 +47,7 @@ public:
     bool isType(int type);
     bool isSubType(int type);
     int add(string value, int parentType);
+    const vector<string> getValuesById();
 };
 
 #endif

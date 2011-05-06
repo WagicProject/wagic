@@ -2401,37 +2401,31 @@ ATransformer::ATransformer(int id, MTGCardInstance * source, MTGCardInstance * t
     PopulateAbilityIndexVector(abilities, sabilities);
     PopulateColorIndexVector(colors, sabilities);
     
-    addNewColors = false;
-    if(sabilities.find("newcolors") != string::npos)
-    addNewColors = true;
+   
     //this subkeyword adds a color without removing the existing colors.
-    remove = false;
-    if (stypes == "removesubtypes")
-        remove = true;
-    removeTypes = false;
-    if (stypes == "removetypes")
-        removeTypes = true;
+    addNewColors = (sabilities.find("newcolors") != string::npos);
+    remove = (stypes == "removesubtypes");
+    removeTypes = (stypes == "removetypes");
+
+    //Gains or loses all creature subtypes
     if (stypes == "allsubtypes" || stypes == "removesubtypes")
     {
-        for (int i = Subtypes::LAST_TYPE + 1;; i++)
+        for (size_t i = 0; i <Subtypes::subtypesList->getValuesById().size(); ++i)
         {
-            string s = Subtypes::subtypesList->find(i);
+            if (!Subtypes::subtypesList->isSubtypeOfType(i,Subtypes::TYPE_CREATURE))
+                continue;
+
+            //Erwan 2011/5/6 String comparison is expensive. Any way to do this in a cleaner way?
+            //I think this is releated to the fact that "Pestilence Rats" is a type for some reason, maybe we don't need that anymore
+            //TODO Remove the following block if possible
             {
-                if (s == "")
-                    break;
+                string s = Subtypes::subtypesList->find(i);
+
                 if (s.find(" ") != string::npos)
                     continue;
-                if (s == "Nothing" || s == "Swamp" || s == "Plains" || s == "Mountain" || s == "Forest"
-                        || s == "Island" || s == "Shrine" || s == "Basic" || s == "Colony" || s == "Desert"
-                        || s == "Dismiss" || s == "Equipment" || s == "Everglades" || s == "Grasslands" || s == "Lair"
-                        || s == "Level" || s == "Levelup" || s == "Mine" || s == "Oasis" || s == "World" || s == "Aura" || s == "Land"|| s == "Legendary" || s == "Token" || s == "Planeswalker")
-                {//dont add "nothing" or land type to this card.
-                }
-                else
-                {
-                    types.push_back(i);
-                }
             }
+
+            types.push_back(i);
         }
     }
     else
@@ -2442,158 +2436,146 @@ ATransformer::ATransformer(int id, MTGCardInstance * source, MTGCardInstance * t
     menu = stypes;
 }
 
-    int ATransformer::addToGame()
+int ATransformer::addToGame()
+{
+    MTGCardInstance * _target = NULL;
+        Interruptible * action = (Interruptible *) target;
+    if (action->type == ACTION_SPELL && action->state == NOT_RESOLVED)
     {
-        MTGCardInstance * _target = NULL;
-         Interruptible * action = (Interruptible *) target;
-        if (action->type == ACTION_SPELL && action->state == NOT_RESOLVED)
+        Spell * spell = (Spell *) action;
+        _target = spell->source;
+        aForever = true;
+        //when targeting the stack, set the effect to forever, incase the person does not use it
+        //otherwise we will end up with a null pointer on the destroy.
+    }
+    else
+    {
+        _target = (MTGCardInstance *) target;
+    }
+
+    if (!_target)
+    {
+        DebugTrace("ALL_ABILITIES: Target not set in ATransformer::addToGame\n");
+        return 0;
+    }
+        
+    while (_target->next)
+        _target = _target->next;
+
+    for (int j = 0; j < Constants::MTG_NB_COLORS; j++)
+    {
+        if (_target->hasColor(j))
+            oldcolors.push_back(j);
+    }
+    for (size_t j = 0; j < _target->types.size(); ++j)
+        oldtypes.push_back( _target->types[j]);
+
+    list<int>::iterator it;
+    for (it = colors.begin(); it != colors.end(); it++)
+    {
+        if(!addNewColors)
+            _target->setColor(0, 1);
+    }
+
+    if (removeTypes)
+    {
+        //remove the main types from a card, ie: hidden enchantment cycle.
+        for (int i = 0; i < Subtypes::LAST_TYPE; ++ i)
+            _target->removeType(i,1);
+    }
+
+    for (it = types.begin(); it != types.end(); it++)
+    {
+        if (remove)
         {
-            Spell * spell = (Spell *) action;
-            _target = spell->source;
-            aForever = true;
-            //when targeting the stack, set the effect to forever, incase the person does not use it
-            //otherwise we will end up with a null pointer on the destroy.
+            _target->removeType(*it);
         }
         else
         {
-            _target = (MTGCardInstance *) target;
-        }
-        if (_target)
-        {
-            while (_target->next)
-                _target = _target->next;
-            for (int j = 0; j < Constants::MTG_NB_COLORS; j++)
+            if(_target->hasSubtype(*it))
             {
-                if (_target->hasColor(j))
-                    oldcolors.push_back(j);
+                //we generally don't want to give a creature type creature again
+                //all it does is create a sloppy mess of the subtype line on alternative quads
+                //also creates instances where a card gained a type from an ability like this one
+                //then loses the type through another ability, when this effect is destroyed the creature regains
+                //the type, which is wrong.
+                dontremove.push_back(*it);
             }
-            for (int j = Subtypes::LAST_TYPE + 1;; j++)
+            else
             {
-                string otypes = Subtypes::subtypesList->find(j);
-                if (otypes == "")
-                    break;
-                if (otypes.find(" ") != string::npos)
-                    continue;
-                if (_target->hasSubtype(j))
-                {
-                    oldtypes.push_back(j);
-                }
-            }
-            list<int>::iterator it;
-            for (it = colors.begin(); it != colors.end(); it++)
-            {
-                if(!addNewColors)
-                    _target->setColor(0, 1);
-            }
-
-            for (it = types.begin(); it != types.end(); it++)
-            {
-                if (removeTypes)
-                {
-                    //remove the main types from a card, ie: hidden enchantment cycle.
-                    _target->removeType(0,1);
-                    _target->removeType(1,1);
-                    _target->removeType(2,1);
-                    _target->removeType(3,1);
-                    _target->removeType(4,1);
-                    _target->removeType(5,1);
-                    _target->removeType(6,1);
-                    _target->removeType(7,1);
-                }
-                if (remove)
-                {
-                    _target->removeType(*it);
-                }
-                else
-                {
-                    if(_target->hasSubtype(*it))
-                    {
-                        //we generally don't want to give a creature type creature again
-                        //all it does is create a sloppy mess of the subtype line on alternative quads
-                        //also creates instances where a card gained a type from an ability like this one
-                        //then loses the type through another ability, when this effect is destroyed the creature regains
-                        //the type, which is wrong.
-                        dontremove.push_back(*it);
-                    }
-                    else
-                    {
-                        _target->addType(*it);
-                    }
-                }
-            }
-
-            for (it = colors.begin(); it != colors.end(); it++)
-            {
-                _target->setColor(*it);
-            }
-
-            for (it = abilities.begin(); it != abilities.end(); it++)
-            {
-                _target->basicAbilities.set(*it);
-            }
-
-            for (it = oldcolors.begin(); it != oldcolors.end(); it++)
-            {
-            }
-
-            if(newAbilityFound)
-            {
-                for (unsigned int k = 0 ; k < newAbilitiesList.size();k++)
-                {
-                    AbilityFactory af;
-                    MTGAbility * aNew = af.parseMagicLine(newAbilitiesList[k], 0, NULL, _target);
-                    aNew->isClone = 1;
-                    GenericTargetAbility * gta = dynamic_cast<GenericTargetAbility*> (aNew);
-                    if (gta)
-                    {
-                        ((GenericTargetAbility *)aNew)->source = _target;
-                        ((GenericTargetAbility *)aNew)->ability->source = _target;
-                    }
-                    GenericActivatedAbility * gaa = dynamic_cast<GenericActivatedAbility*> (aNew);
-                    if (gaa)
-                    {
-                        ((GenericActivatedAbility *)aNew)->source = _target;
-                        ((GenericActivatedAbility *)aNew)->ability->source = _target;
-                    }
-                    if (MultiAbility * abi = dynamic_cast<MultiAbility*>(aNew))
-                    {
-                        ((MultiAbility *)aNew)->source = _target;
-                        ((MultiAbility *)aNew)->abilities[0]->source = _target;
-                    }
-                    aNew->target = _target;
-                    aNew->source = (MTGCardInstance *) _target;
-                    if(aNew->oneShot)
-                    {
-                        aNew->resolve();
-                        delete aNew;
-                    }
-                    else
-                        aNew->addToGame();
-                    newAbilities[_target].push_back(aNew);
-                }
-            }
-            if(newpowerfound )
-            {
-                WParsedInt * val = NEW WParsedInt(newpower,NULL, source);
-                oldpower = _target->power;
-                _target->power += val->getValue();
-                _target->power -= oldpower;
-               _target->power += reapplyCountersBonus(_target,false,true);
-                delete val;
-            }
-            if(newtoughnessfound )
-            {
-                WParsedInt * val = NEW WParsedInt(newtoughness,NULL, source);
-                oldtoughness = _target->toughness;
-                _target->addToToughness(val->getValue());
-                _target->addToToughness(-oldtoughness);
-                _target->addToToughness(reapplyCountersBonus(_target,true,false));
-                _target->life = _target->toughness;
-                delete val;
+                _target->addType(*it);
             }
         }
-        return MTGAbility::addToGame();
     }
+
+    for (it = colors.begin(); it != colors.end(); it++)
+    {
+        _target->setColor(*it);
+    }
+
+    for (it = abilities.begin(); it != abilities.end(); it++)
+    {
+        _target->basicAbilities.set(*it);
+    }
+
+    if(newAbilityFound)
+    {
+        for (unsigned int k = 0 ; k < newAbilitiesList.size();k++)
+        {
+            AbilityFactory af;
+            MTGAbility * aNew = af.parseMagicLine(newAbilitiesList[k], 0, NULL, _target);
+            aNew->isClone = 1;
+            GenericTargetAbility * gta = dynamic_cast<GenericTargetAbility*> (aNew);
+            if (gta)
+            {
+                ((GenericTargetAbility *)aNew)->source = _target;
+                ((GenericTargetAbility *)aNew)->ability->source = _target;
+            }
+            GenericActivatedAbility * gaa = dynamic_cast<GenericActivatedAbility*> (aNew);
+            if (gaa)
+            {
+                ((GenericActivatedAbility *)aNew)->source = _target;
+                ((GenericActivatedAbility *)aNew)->ability->source = _target;
+            }
+            if (MultiAbility * abi = dynamic_cast<MultiAbility*>(aNew))
+            {
+                ((MultiAbility *)aNew)->source = _target;
+                ((MultiAbility *)aNew)->abilities[0]->source = _target;
+            }
+            aNew->target = _target;
+            aNew->source = (MTGCardInstance *) _target;
+            if(aNew->oneShot)
+            {
+                aNew->resolve();
+                delete aNew;
+            }
+            else
+                aNew->addToGame();
+            newAbilities[_target].push_back(aNew);
+        }
+    }
+    if(newpowerfound )
+    {
+        WParsedInt * val = NEW WParsedInt(newpower,NULL, source);
+        oldpower = _target->power;
+        _target->power += val->getValue();
+        _target->power -= oldpower;
+        _target->power += reapplyCountersBonus(_target,false,true);
+        delete val;
+    }
+    if(newtoughnessfound )
+    {
+        WParsedInt * val = NEW WParsedInt(newtoughness,NULL, source);
+        oldtoughness = _target->toughness;
+        _target->addToToughness(val->getValue());
+        _target->addToToughness(-oldtoughness);
+        _target->addToToughness(reapplyCountersBonus(_target,true,false));
+        _target->life = _target->toughness;
+        delete val;
+    }
+
+    return MTGAbility::addToGame();
+}
     
     int ATransformer::reapplyCountersBonus(MTGCardInstance * rtarget,bool powerapplied,bool toughnessapplied)
     {
@@ -2629,18 +2611,19 @@ int ATransformer::destroy()
         while (_target->next)
             _target = _target->next;
         list<int>::iterator it;
-        for (it = types.begin(); it != types.end(); it++)
+        
+        if (!remove)
         {
-            if (!remove)
+            for (it = types.begin(); it != types.end(); it++)
             {
-                bool removing = true;
-                for(unsigned int k = 0;k < dontremove.size();k++)
-                {
-                    if(dontremove[k] == *it)
-                        removing = false;
-                }
-                if(removing)
-                    _target->removeType(*it);
+                    bool removing = true;
+                    for(unsigned int k = 0;k < dontremove.size();k++)
+                    {
+                        if(dontremove[k] == *it)
+                            removing = false;
+                    }
+                    if(removing)
+                        _target->removeType(*it);
             }
             //iterators annoy me :/
         }

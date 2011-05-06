@@ -2021,46 +2021,31 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         }            
         for(unsigned int j = 0;j < abilities.size();j++)
         {
-            if(abilities[j].find("setpower=") != string::npos)
+            vector<string> splitPower = parseBetween(abilities[j], "setpower=", ",", false);
+            if(splitPower.size())
             {
                 newpowerfound = true;
-                int powerstart = abilities[j].find("setpower=");
-                newpower = abilities[j].substr(powerstart + 9).c_str();
+                newpower = splitPower[1];
             }
-            if(abilities[j].find("settoughness=") != string::npos)
+            vector<string> splitToughness = parseBetween(abilities[j], "settoughness=", ",", false);
+            if(splitToughness.size())
             {
                 newtoughnessfound = true;
-                int toughnessstart = abilities[j].find("settoughness=");
-                newtoughness = abilities[j].substr(toughnessstart + 13).c_str();
+                newtoughness = splitToughness[1];
             }
-            if(abilities[j].find("newability[") != string::npos)
+            vector<string> splitAbilities = parseBetween(abilities[j], "newability[", "]");
+            if(splitAbilities.size())
             {
                 newAbilityFound = true;
-                size_t NewSkill = abilities[j].find("newability[");
-                size_t NewSkillEnd = abilities[j].find_last_of("]");
-                string newAbilities = abilities[j].substr(NewSkill + 11,NewSkillEnd - NewSkill - 11);
-                newAbilitiesList.push_back(newAbilities);
+                newAbilitiesList.push_back(splitAbilities[1]);
             }
         }
-        MTGAbility * a;
-        bool foreverEffect = false;
-        if (forceFOREVER)
-        {
-        foreverEffect = true;
-        }
-        if (oneShot || forceUEOT)
-        {
-            a = NEW ATransformerInstant(id, card, target, stypes, sabilities,newpower,newpowerfound,newtoughness,newtoughnessfound,newAbilitiesList,newAbilityFound,foreverEffect);
-        }
-        else if(foreverEffect)
-        {
-        a = NEW ATransformerInstant(id, card, target, stypes, sabilities,newpower,newpowerfound,newtoughness,newtoughnessfound,newAbilitiesList,newAbilityFound,foreverEffect);
-        }
-        else
-        {
-            a = NEW ATransformer(id, card, target, stypes, sabilities,newpower,newpowerfound,newtoughness,newtoughnessfound,newAbilitiesList,newAbilityFound);
-        }
-        return a;
+
+        if (oneShot || forceUEOT || forceFOREVER)
+            return NEW ATransformerInstant(id, card, target, stypes, sabilities,newpower,newpowerfound,newtoughness,newtoughnessfound,newAbilitiesList,newAbilityFound,forceFOREVER);
+        
+        return NEW ATransformer(id, card, target, stypes, sabilities,newpower,newpowerfound,newtoughness,newtoughnessfound,newAbilitiesList,newAbilityFound);
+
     }
     
     //Change Power/Toughness
