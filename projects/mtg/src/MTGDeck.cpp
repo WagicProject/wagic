@@ -698,7 +698,6 @@ MTGDeck::MTGDeck(const char * config_file, MTGAllCards * _allcards, int meta_onl
     meta_id = atoi(meta_name.substr(4).c_str());
     wagic::ifstream file(config_file);
     std::string s;
-    
     if (file)
     {
         while (std::getline(file, s))
@@ -724,6 +723,12 @@ MTGDeck::MTGDeck(const char * config_file, MTGAllCards * _allcards, int meta_onl
                 if (found != string::npos)
                 {
                     meta_AIHints.push_back(s.substr(found + 5));
+                    continue;
+                }
+                found = s.find("UNLOCK:");
+                if (found != string::npos)
+                {
+                    meta_unlockRequirements = s.substr(found + 7);
                     continue;
                 }
                 continue;

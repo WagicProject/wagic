@@ -157,6 +157,7 @@ public:
     string meta_desc;
     string meta_name;
     vector<string> meta_AIHints;
+    string meta_unlockRequirements;
 
     int meta_id;
     int totalCards();

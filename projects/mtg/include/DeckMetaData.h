@@ -20,6 +20,7 @@ private:
     string mFilename;
     string mDescription;
     string mName;
+    vector<int> mUnlockRequirements;
     int mDeckId;
     string mAvatarFilename;
     string  mColorIndex;
@@ -44,6 +45,7 @@ public:
     string getAvatarFilename();
     string getColorIndex();
     string getStatsSummary();
+    vector<int> getUnlockRequirements();
 
     int getDeckId();
     int getGamesPlayed();

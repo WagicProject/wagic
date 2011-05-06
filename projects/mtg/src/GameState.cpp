@@ -51,29 +51,44 @@ vector<DeckMetaData *> GameState::BuildDeckList(const string& path, const string
 
         if (meta)
         {
-            found = 1;
-            if (statsPlayer)
+            //Check if the deck is unlocked based on sets etc...
+            bool unlocked = true;
+            vector<int> unlockRequirements = meta->getUnlockRequirements();
+            for (size_t i = 0; i < unlockRequirements.size(); ++i)
             {
-                std::ostringstream aiStatsDeckName;
-                aiStatsDeckName << smallDeckPrefix << "_deck" << nbDecks;
-				meta->mStatsFilename = aiStatsDeckName.str();
-                meta->mIsAI = true;
-                if (meta->mPlayerDeck != statsPlayer->GetCurrentDeckStatsFile())
-                {
-                    meta->mPlayerDeck = statsPlayer->GetCurrentDeckStatsFile();
-                    meta->Invalidate();
-                }
-            }
-            else
-            {
-                std::ostringstream playerStatsDeckName;
-                playerStatsDeckName << "stats/player_deck" << nbDecks << ".txt";
-                meta->mStatsFilename = options.profileFile(playerStatsDeckName.str());
-                meta->mIsAI = false;
+                    if (! options[unlockRequirements[i]].number)
+                    {
+                        unlocked = false;
+                        break;
+                    }
             }
 
-            retList.push_back(meta);
-            nbDecks++;
+            if (unlocked)
+            {
+                found = 1;
+                if (statsPlayer)
+                {
+                    std::ostringstream aiStatsDeckName;
+                    aiStatsDeckName << smallDeckPrefix << "_deck" << nbDecks;
+				    meta->mStatsFilename = aiStatsDeckName.str();
+                    meta->mIsAI = true;
+                    if (meta->mPlayerDeck != statsPlayer->GetCurrentDeckStatsFile())
+                    {
+                        meta->mPlayerDeck = statsPlayer->GetCurrentDeckStatsFile();
+                        meta->Invalidate();
+                    }
+                }
+                else
+                {
+                    std::ostringstream playerStatsDeckName;
+                    playerStatsDeckName << "stats/player_deck" << nbDecks << ".txt";
+                    meta->mStatsFilename = options.profileFile(playerStatsDeckName.str());
+                    meta->mIsAI = false;
+                }
+
+                retList.push_back(meta);
+                nbDecks++;
+            }
         }
         meta = NULL;
     }

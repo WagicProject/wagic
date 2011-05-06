@@ -30,6 +30,13 @@ void DeckMetaData::LoadDeck()
         mName = trim(deck.meta_name);
         mDescription = trim(deck.meta_desc);
         mDeckId = atoi((mFilename.substr(mFilename.find("deck") + 4, mFilename.find(".txt"))).c_str());
+
+        vector<string> requirements = split(deck.meta_unlockRequirements, ',');
+        for(size_t i = 0; i < requirements.size(); ++i)
+        {
+            mUnlockRequirements.push_back(Options::getID(requirements[i]));
+        }
+
         mDeckLoaded = true;
         if (!mIsAI)
             mAvatarFilename = "avatar.jpg";
@@ -114,6 +121,12 @@ int DeckMetaData::getDeckId()
 {
     return mDeckId;
 }
+
+vector<int> DeckMetaData::getUnlockRequirements()
+{
+    return mUnlockRequirements;
+}
+
 
 string DeckMetaData::getAvatarFilename()
 {
