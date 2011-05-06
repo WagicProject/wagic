@@ -684,6 +684,9 @@ MTGAbility * AbilityFactory::getCoreAbility(MTGAbility * a)
     if (MultiAbility * abi = dynamic_cast<MultiAbility*>(a))
         return getCoreAbility(abi->abilities[0]);
 
+    if (NestedAbility * na = dynamic_cast<NestedAbility*> (a))
+        return getCoreAbility(na->ability);
+
     return a;
 }
 
@@ -2568,6 +2571,11 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card, int
             }
             else
             {
+                // Anything involving Mana Producing abilities cannot be interrupted
+                MTGAbility * core = getCoreAbility(a);
+                if (AManaProducer * amp = dynamic_cast<AManaProducer*> (core))
+                    a->canBeInterrupted = false;
+
                 a->addToGame();
             }
         }
