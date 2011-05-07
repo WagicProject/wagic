@@ -6607,7 +6607,7 @@ toughness=7
 [card]
 name=Blizzard
 restriction=control snow land
-auto=auto=cumulativeupcost[{2}] sacrifice
+auto=cumulativeupcost[{2}] sacrifice
 auto=lord(creature[flying] doesnotuntap
 text=Cast Blizzard only if you control a snow land. -- Cumulative upkeep {2} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- Creatures with flying don't untap during their controllers' untap steps.
 mana={G}{G}
@@ -40641,7 +40641,7 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-name=Midsummer Revel 
+name=Midsummer Revel
 auto=@each my upkeep:may counter(0/0,1,Verse)
 auto={G}{S}:thisforeach(counter{0/0.1.Verse}) token(Beast,Creature Beast,3/3,green)
 text=At the beginning of your upkeep, you may put a verse counter on Midsummer Revel. -- {G}, Sacrifice Midsummer Revel: Put X 3/3 green Beast creature tokens onto the battlefield, where X is the number of verse counters on Midsummer Revel.
@@ -50871,7 +50871,6 @@ type=Sorcery
 [/card]
 [card]
 name=Rancor
-target=creature
 auto=2/0
 auto=trample
 autograveyard=@movedTo(this|graveyard) from(battlefield):moveTo(ownerhand)
