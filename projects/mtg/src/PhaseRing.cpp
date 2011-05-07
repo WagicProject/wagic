@@ -34,8 +34,7 @@ PhaseRing::PhaseRing(Player* players[], int nbPlayers)
     {
         if(players[i]->phaseRing.size())
         {
-            Phase * defaultsphase = NEW Phase(Constants::MTG_PHASE_BEFORE_BEGIN, players[i]);
-            addPhase(defaultsphase);
+            addPhase(NEW Phase(Constants::MTG_PHASE_BEFORE_BEGIN, players[i]));
             vector<string>customRing = split(players[i]->phaseRing,',');
             for (unsigned int k = 0;k < customRing.size(); k++)
             {
@@ -43,10 +42,7 @@ PhaseRing::PhaseRing(Player* players[], int nbPlayers)
                 Phase * phase = NEW Phase(customOrder, players[i]);
                 addPhase(phase);
             }
-            defaultsphase = NEW Phase(Constants::MTG_PHASE_CLEANUP, players[i]);
-            addPhase(defaultsphase);
-            defaultsphase = NEW Phase(Constants::MTG_PHASE_AFTER_EOT, players[i]);
-            addPhase(defaultsphase);
+            addPhase( NEW Phase(Constants::MTG_PHASE_AFTER_EOT, players[i]));
         }
         else
         {
