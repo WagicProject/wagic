@@ -46,6 +46,10 @@ bool ModRules::load(string filename)
             {
                  cards.parse(element);
             }
+            else if (strcmp(element->Value(), "game") == 0)
+            {
+                 game.parse(element);
+            }
         }
     }
     return true;
@@ -174,19 +178,25 @@ ModRulesMenu::~ModRulesMenu()
     other.clear();
 }
 
+//inGame rules
+ModRulesGame::ModRulesGame()
+{
+    mCanInterrupt = true;
+}
+
+void ModRulesGame::parse(TiXmlElement* element)
+{
+    int value = ModRules::getValueAsInt(element, "canInterrupt");
+    if (value != -1)
+        mCanInterrupt = value;
+}
+
+
+//General Rules
 ModRulesGeneral::ModRulesGeneral()
 {
     mHasDeckEditor = true;
     mHasShop = true;
-}
-
-int ModRules::getValueAsInt(TiXmlElement* element, string childName){
-    TiXmlNode* node = element->FirstChild(childName.c_str());
-    if (node) {
-        const char* value = node->ToElement()->GetText();
-        return atoi(value);
-    }
-    return -1;
 }
 
 void ModRulesGeneral::parse(TiXmlElement* element)
@@ -199,6 +209,15 @@ void ModRulesGeneral::parse(TiXmlElement* element)
     if (value != -1)
         mHasShop = value;
 
+}
+
+int ModRules::getValueAsInt(TiXmlElement* element, string childName){
+    TiXmlNode* node = element->FirstChild(childName.c_str());
+    if (node) {
+        const char* value = node->ToElement()->GetText();
+        return atoi(value);
+    }
+    return -1;
 }
 
 ModRulesCards::ModRulesCards()

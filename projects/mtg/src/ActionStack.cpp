@@ -14,6 +14,7 @@ The Action Stack contains all information for Game Events that can be interrupte
 #include "TargetChooser.h"
 #include "Translate.h"
 #include "WResourceManager.h"
+#include "ModRules.h"
 
 #include <typeinfo>
 
@@ -573,10 +574,17 @@ int ActionStack::AddNextCombatStep()
 
 int ActionStack::setIsInterrupting(Player * player)
 {
+    askIfWishesToInterrupt = NULL;
+
+    if (!gModRules.game.canInterrupt())
+    {
+        cancelInterruptOffer();
+        return 0;
+    }
+
     int playerId = (player == game->players[1]) ? 1 : 0;
     interruptDecision[playerId] = -1;
     game->isInterrupting = player;
-    askIfWishesToInterrupt = NULL;
     return 1;
 }
 
@@ -634,12 +642,6 @@ ActionStack::ActionStack(GameObserver* game)
         pspIcons[i] = WResourceManager::Instance()->RetrieveQuad("iconspsp.png", (float) i * 32, 0, 32, 32, stream.str(), RETRIEVE_MANAGE);
         pspIcons[i]->SetHotSpot(16, 16);
     }
-
-    // fix for translation.
-    kInterruptMessageString = _(kInterruptMessageString);
-    kInterruptString = _(kInterruptString);
-    kNoString = _(kNoString);
-    kNoToAllString = _(kNoToAllString);
 }
 
 int ActionStack::has(MTGAbility * ability)
@@ -961,7 +963,7 @@ bool ActionStack::CheckUserInput(JButton key)
     {
         if (askIfWishesToInterrupt)
         {
-            if (JGE_BTN_SEC == key)
+            if (JGE_BTN_SEC == key && gModRules.game.canInterrupt())
             {
                 setIsInterrupting(askIfWishesToInterrupt);
                 return true;
@@ -1100,12 +1102,8 @@ void ActionStack::Render()
         mFont->SetColor(ARGB(255,255,255,255));
         JRenderer * renderer = JRenderer::GetInstance();
 
-        //JQuad * back = WResourceManager::Instance()->GetQuad("interrupt");
-        //float xScale = width / back->mWidth;
-        //float yScale = height / back->mHeight;
         renderer->FillRoundRect(x0 + 16, y0 + 16, width + 2, height + 2, 10, ARGB(128,0,0,0));
         renderer->FillRoundRect(x0 - 5, y0, width + 2, height + 2, 10, ARGB(200,0,0,0));
-        //renderer->RenderQuad(back,x0,y0,0,xScale, yScale);
         renderer->DrawRoundRect(x0 - 5, y0, width + 2, height + 2, 10, ARGB(255,255,255,255));
 
         std::ostringstream stream;
@@ -1116,31 +1114,40 @@ void ActionStack::Render()
         // Mootpoint 01/12/2011: draw the interrupt text first, at the top.  Offset the rest of the 
         // unresolved stack effects down so that they don't collide with the interrupt text.
         if (options[Options::INTERRUPT_SECONDS].number == 0)
-            stream << kInterruptMessageString;
+            stream << _(kInterruptMessageString);
         else
-            stream << kInterruptMessageString << " " << static_cast<int>(timer);
+            stream << _(kInterruptMessageString) << " " << static_cast<int>(timer);
 
         mFont->DrawString(stream.str(), x0 + 5, currenty);
 
         static const float kIconVerticalOffset = 24;
-        if (mCount > 1)
+        static const float kIconHorizontalOffset = 9;
+        static const float kBeforeIconSpace = 10;
+  
+        //Render "interrupt?" text + possible actions
         {
-            renderer->RenderQuad(pspIcons[7].get(), x0 + 10, kIconVerticalOffset, 0, kGamepadIconSize, kGamepadIconSize);
-            mFont->DrawString(kInterruptString, x0 + 19, kIconVerticalOffset - 6);
+            float currentx = x0 + 10;
+      
+            if (gModRules.game.canInterrupt())
+            {
+                renderer->RenderQuad(pspIcons[7].get(), currentx, kIconVerticalOffset, 0, kGamepadIconSize, kGamepadIconSize);
+                currentx+= kIconHorizontalOffset;
+                mFont->DrawString(_(kInterruptString), currentx, kIconVerticalOffset - 6);
+                currentx+= mFont->GetStringWidth(_(kInterruptString).c_str()) + kBeforeIconSpace;
+            }
 
-            renderer->RenderQuad(pspIcons[4].get(), x0 + 97, kIconVerticalOffset, 0, kGamepadIconSize, kGamepadIconSize);
-            mFont->DrawString(kNoString, x0 + 106, kIconVerticalOffset - 6);
+            renderer->RenderQuad(pspIcons[4].get(), currentx, kIconVerticalOffset, 0, kGamepadIconSize, kGamepadIconSize);
+            currentx+= kIconHorizontalOffset;
+            mFont->DrawString(_(kNoString), currentx, kIconVerticalOffset - 6);
+            currentx+= mFont->GetStringWidth(_(kNoString).c_str()) + kBeforeIconSpace;
 
-            renderer->RenderQuad(pspIcons[6].get(), x0 + 145, kIconVerticalOffset, 0, kGamepadIconSize, kGamepadIconSize);
-            mFont->DrawString(kNoToAllString, x0 + 154, kIconVerticalOffset - 6);
-        }
-        else
-        {
-            renderer->RenderQuad(pspIcons[7].get(), x0 + 40, kIconVerticalOffset, 0, kGamepadIconSize, kGamepadIconSize);
-            mFont->DrawString(kInterruptString, x0 + 49, kIconVerticalOffset - 6);
-
-            renderer->RenderQuad(pspIcons[4].get(), x0 + 140, kIconVerticalOffset - 6, 0, kGamepadIconSize, kGamepadIconSize);
-            mFont->DrawString(kNoString, x0 + 146, kIconVerticalOffset - 6);
+            if (mCount > 1)
+            {
+                renderer->RenderQuad(pspIcons[6].get(), currentx, kIconVerticalOffset, 0, kGamepadIconSize, kGamepadIconSize);
+                currentx+= kIconHorizontalOffset;
+                mFont->DrawString(_(kNoToAllString), currentx, kIconVerticalOffset - 6);
+                currentx+= mFont->GetStringWidth(_(kNoToAllString).c_str()) + kBeforeIconSpace;
+            }
         }
 
         currenty += kIconVerticalOffset + kSpacer;

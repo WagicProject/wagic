@@ -882,8 +882,7 @@ int AIPlayer::interruptIfICan()
         if (!clickstream.empty())
             g->mLayers->stackLayer()->cancelInterruptOffer();
         else
-            g->mLayers->stackLayer()->setIsInterrupting(this);
-        return 1;
+            return g->mLayers->stackLayer()->setIsInterrupting(this);
     }
     return 0;
 }
@@ -1131,8 +1130,14 @@ int AIPlayer::canFirstStrikeKill(MTGCardInstance * card, MTGCardInstance *ennemy
 int AIPlayer::chooseBlockers()
 {
     GameObserver * g = GameObserver::GetInstance();
+
+    //Should not block during my own turn...
+    if (g->currentPlayer == this)
+        return 0;
+    //Should not run this if I'm not the player with priority
     if (g->currentActionPlayer != this)
         return 0;
+    //I am interrupting, why would I be choosing blockers now?
     if(g->isInterrupting == this)
         return 0;
     //ai should not be allowed to run this if it is not legally allowed to do so

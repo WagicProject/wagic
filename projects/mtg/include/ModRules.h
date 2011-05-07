@@ -1,3 +1,16 @@
+/*
+ *  Wagic, The Homebrew ?! is licensed under the BSD license
+ *  See LICENSE in the Folder's root
+ *  http://wololo.net/wagic/
+ */
+
+/*
+ModRules class describes global game rules used for a given Wagic Mod.
+These rules describe some high level Game rules,
+some graphical effects, what parts of the game are made accessible to the player, etc...
+They are accessed through the global variable gModRules, and loaded from rules/modrules.xml
+*/
+
 #ifndef _MODRULES_H_
 #define _MODRULES_H_
 
@@ -70,6 +83,16 @@ public:
     ~ModRulesMenu();
 };
 
+class ModRulesGame
+{
+public:
+    bool mCanInterrupt;
+public:
+    bool canInterrupt() {return mCanInterrupt;};
+    ModRulesGame();
+    void parse(TiXmlElement* element);
+};
+
 class ModRulesGeneral
 {
 protected:
@@ -98,6 +121,7 @@ public:
     ModRulesGeneral general;
     ModRulesCards cards;
     ModRulesMenu menu;
+    ModRulesGame game;
 
     bool load(string filename);
     static int getValueAsInt(TiXmlElement* element, string childName);
