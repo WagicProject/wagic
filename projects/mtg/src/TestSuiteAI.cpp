@@ -491,6 +491,12 @@ int TestSuite::assertGame()
             sprintf(result, "<span class=\"error\">==Mana problem. Was expecting %i but got %i for player %i==</span><br />",
                             endState.playerData[i].manapool->getConvertedCost(), p->getManaPool()->getConvertedCost(), i);
             Log(result);
+
+            if ( endState.playerData[i].manapool->getConvertedCost() == p->getManaPool()->getConvertedCost())
+            {
+                sprintf(result, "<span class=\"error\">====(Apparently Mana Color issues since converted cost is the same)==</span><br />");
+                Log(result);
+            }
             error++;
 
         }

@@ -28,6 +28,11 @@ int ActionLayer::removeFromGame(ActionElement * e)
     if (isWaitingForAnswer() == e)
         setCurrentWaitingAction(NULL);
     e->destroy();
+
+    i = getIndexOf(e); //the destroy event might have changed the contents of mObjects, so we get the index again
+    if (i == -1)
+        return 0; //Should not happen, it means we deleted thesame object twice?
+
     mObjects.erase(mObjects.begin() + i);
     mCount--;
     return 1;

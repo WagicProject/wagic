@@ -2163,9 +2163,21 @@ int MultiAbility::addToGame()
         MTGAbility * a = abilities[i]->clone();
         a->target = target;
         a->addToGame();
+        clones.push_back(a);
     }
     MTGAbility::addToGame();
     return 1;
+}
+
+int MultiAbility::destroy()
+{
+    for (size_t i = 0; i < clones.size(); ++i)
+    {
+        //I'd like to call game->removeObserver here instead of using forceDestroy, but I get a weird crash after that, need to investigate a bit
+        clones[i]->forceDestroy = 1;
+    }
+    clones.clear();
+    return ActivatedAbility::destroy();
 }
 
 const char * MultiAbility::getMenuText()

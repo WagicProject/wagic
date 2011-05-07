@@ -448,7 +448,7 @@ void StatsWrapper::updateStats(DeckDataWrapper *myDeck)
         //but through a rule that is outside of the primitives. This block is a hack to address this
         const int colors[] = {Constants::MTG_COLOR_GREEN, Constants::MTG_COLOR_BLUE, Constants::MTG_COLOR_RED, Constants::MTG_COLOR_BLACK, Constants::MTG_COLOR_WHITE};
         const string lands[] = { "forest", "island", "mountain", "swamp", "plains" };
-        for (int i = 0; i < sizeof(colors)/sizeof(colors[0]); ++i)
+        for (unsigned int i = 0; i < sizeof(colors)/sizeof(colors[0]); ++i)
         {
             int colorId = colors[i];
             string type = lands[i];

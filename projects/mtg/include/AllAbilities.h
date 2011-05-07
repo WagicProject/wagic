@@ -918,11 +918,14 @@ class MultiAbility: public ActivatedAbility
 {
 public:
     vector<MTGAbility *> abilities;
+    //Maintains abilities created by this instance, for cleanup
+    vector<MTGAbility *> clones;
 
     MultiAbility(int _id, MTGCardInstance * card, Targetable * _target, ManaCost * _cost);
     int Add(MTGAbility * ability);
     int resolve();
     int addToGame();
+    int destroy();
     const char * getMenuText();
     MultiAbility * clone() const;
     ~MultiAbility();
