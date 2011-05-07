@@ -820,7 +820,7 @@ void JRenderer::BeginScene()
     esMatrixLoadIdentity(&theMvpMatrix);
     esOrtho(&theMvpMatrix, 0.0f, SCREEN_WIDTH_F, 0.0f, SCREEN_HEIGHT_F-1.0f,-1.0f, 1.0f);
 #endif //(!defined GL_ES_VERSION_2_0) && (!defined GL_VERSION_2_0)
-#if (defined WIN32) || (defined GL_VERSION_ES_CM_1_1)
+#if (defined WIN32) || ((defined GL_VERSION_ES_CM_1_1) && (!defined IOS))
     float scaleH = mActualHeight/SCREEN_HEIGHT_F;
     float scaleW = mActualWidth/SCREEN_WIDTH_F;
     if (scaleH != 1.0f || scaleW != 1.0f)

@@ -18,6 +18,11 @@
 		CE9A478912B514BA00C9F38A /* ES2Renderer.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9A477D12B514BA00C9F38A /* ES2Renderer.m */; };
 		CE9A478A12B514BA00C9F38A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9A477F12B514BA00C9F38A /* main.m */; };
 		CE9A478D12B514BA00C9F38A /* wagicAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9A478412B514BA00C9F38A /* wagicAppDelegate.m */; };
+		CE9E71DD1375A58600759DDC /* thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE9E71DC1375A58600759DDC /* thread.cpp */; };
+		CE9E71DF1375A5A000759DDC /* once.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE9E71DE1375A5A000759DDC /* once.cpp */; };
+		CE9E71E31375A5CC00759DDC /* AIHints.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE9E71E21375A5CC00759DDC /* AIHints.cpp */; };
+		CE9E71E71375A5FF00759DDC /* PlayRestrictions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE9E71E61375A5FF00759DDC /* PlayRestrictions.cpp */; };
+		CE9E71EB1375A62300759DDC /* ModRules.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE9E71EA1375A62300759DDC /* ModRules.cpp */; };
 		CEA377581291C60500B9016A /* ActionElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA376EE1291C60500B9016A /* ActionElement.cpp */; };
 		CEA377591291C60500B9016A /* ActionLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA376EF1291C60500B9016A /* ActionLayer.cpp */; };
 		CEA3775A1291C60500B9016A /* ActionStack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA376F01291C60500B9016A /* ActionStack.cpp */; };
@@ -186,6 +191,11 @@
 		CE9A478112B514BA00C9F38A /* wagic_Prefix.pch */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; path = wagic_Prefix.pch; sourceTree = "<group>"; };
 		CE9A478312B514BA00C9F38A /* wagicAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = wagicAppDelegate.h; path = ../../JGE/src/iOS/wagicAppDelegate.h; sourceTree = SOURCE_ROOT; };
 		CE9A478412B514BA00C9F38A /* wagicAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = wagicAppDelegate.m; path = ../../JGE/src/iOS/wagicAppDelegate.m; sourceTree = SOURCE_ROOT; };
+		CE9E71DC1375A58600759DDC /* thread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = thread.cpp; path = ../../Boost/lib/pthread/thread.cpp; sourceTree = SOURCE_ROOT; };
+		CE9E71DE1375A5A000759DDC /* once.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = once.cpp; path = ../../Boost/lib/pthread/once.cpp; sourceTree = SOURCE_ROOT; };
+		CE9E71E21375A5CC00759DDC /* AIHints.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AIHints.cpp; sourceTree = "<group>"; };
+		CE9E71E61375A5FF00759DDC /* PlayRestrictions.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlayRestrictions.cpp; sourceTree = "<group>"; };
+		CE9E71EA1375A62300759DDC /* ModRules.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ModRules.cpp; sourceTree = "<group>"; };
 		CEA376861291C60500B9016A /* ActionElement.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = ActionElement.h; sourceTree = "<group>"; };
 		CEA376871291C60500B9016A /* ActionLayer.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = ActionLayer.h; sourceTree = "<group>"; };
 		CEA376881291C60500B9016A /* ActionStack.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = ActionStack.h; sourceTree = "<group>"; };
@@ -507,6 +517,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
++				CE9E71DB1375A53600759DDC /* Boost */,
 				CE9A477512B514BA00C9F38A /* EAGLView.h */,
 				CE9A477612B514BA00C9F38A /* EAGLView.m */,
 				CE9A477712B514BA00C9F38A /* EAGLViewController.h */,
@@ -551,6 +562,15 @@
 				F2494ADB12A1BD4100D6284A /* libz.dylib */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CE9E71DB1375A53600759DDC /* Boost */ = {
+			isa = PBXGroup;
+			children = (
+				CE9E71DE1375A5A000759DDC /* once.cpp */,
+				CE9E71DC1375A58600759DDC /* thread.cpp */,
+			);
+			name = Boost;
 			sourceTree = "<group>";
 		};
 		CEA376841291C5CD00B9016A /* Wagic */ = {
@@ -675,6 +695,9 @@
 		CEA376ED1291C60500B9016A /* src */ = {
 			isa = PBXGroup;
 			children = (
+				CE9E71EA1375A62300759DDC /* ModRules.cpp */,
+				CE9E71E61375A5FF00759DDC /* PlayRestrictions.cpp */,
+				CE9E71E21375A5CC00759DDC /* AIHints.cpp */,
 				CE97CD1D1295AB4300FDFD3B /* SimplePopup.cpp */,
 				CEA376EE1291C60500B9016A /* ActionElement.cpp */,
 				CEA376EF1291C60500B9016A /* ActionLayer.cpp */,
@@ -1135,6 +1158,11 @@
 				CE9A478912B514BA00C9F38A /* ES2Renderer.m in Sources */,
 				CE9A478A12B514BA00C9F38A /* main.m in Sources */,
 				CE9A478D12B514BA00C9F38A /* wagicAppDelegate.m in Sources */,
+				CE9E71DD1375A58600759DDC /* thread.cpp in Sources */,
+				CE9E71DF1375A5A000759DDC /* once.cpp in Sources */,
+				CE9E71E31375A5CC00759DDC /* AIHints.cpp in Sources */,
+				CE9E71E71375A5FF00759DDC /* PlayRestrictions.cpp in Sources */,
+				CE9E71EB1375A62300759DDC /* ModRules.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1160,6 +1188,7 @@
 				HEADER_SEARCH_PATHS = (
 					../../JGE/include/,
 					include/,
+					../../Boost,
 				);
 				INFOPLIST_FILE = "wagic-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
@@ -1211,6 +1240,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
++				HEADER_SEARCH_PATHS = ../../Boost/boost;
 				PREBINDING = NO;
 				SDKROOT = iphoneos4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1225,6 +1255,7 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = ../../Boost/boost;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PREBINDING = NO;
 				SDKROOT = iphoneos4.2;
