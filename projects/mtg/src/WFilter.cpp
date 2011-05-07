@@ -259,6 +259,15 @@ bool WCFilterProducesColor::isMatch(MTGCard * c)
 {
     bool bMatch = false;
     if (!c || !c->data) return false;
+
+    //http://code.google.com/p/wagic/issues/detail?id=650
+    //Basic lands are not producing their mana through regular abilities anymore,
+    //but through a rule that is outside of the primitives. This block is a hack to address this
+    const string lands[] = { "dummy(colorless)", "forest", "island", "mountain", "swamp", "plains" };
+    if ((color < sizeof(lands)/sizeof(lands[0])) && c->data->hasType(lands[color].c_str()))
+        return true;
+
+    //Retrieve non basic Mana abilities
     string s = c->data->magicText;
     size_t t = s.find("add");
     while (t != string::npos)

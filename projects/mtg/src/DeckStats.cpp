@@ -443,6 +443,28 @@ void StatsWrapper::updateStats(DeckDataWrapper *myDeck)
 
         // Lets look for mana producing abilities
 
+        //http://code.google.com/p/wagic/issues/detail?id=650
+        //Basic lands are not producing their mana through regular abilities anymore,
+        //but through a rule that is outside of the primitives. This block is a hack to address this
+        const int colors[] = {Constants::MTG_COLOR_GREEN, Constants::MTG_COLOR_BLUE, Constants::MTG_COLOR_RED, Constants::MTG_COLOR_BLACK, Constants::MTG_COLOR_WHITE};
+        const string lands[] = { "forest", "island", "mountain", "swamp", "plains" };
+        for (int i = 0; i < sizeof(colors)/sizeof(colors[0]); ++i)
+        {
+            int colorId = colors[i];
+            string type = lands[i];
+            if (current->data->hasType(type.c_str()))
+            {
+                if (current->data->hasType("Basic"))
+                {
+                    this->countBasicLandsPerColor[colorId] += currentCount;
+                }
+                else
+                {
+                    this->countLandsPerColor[colorId] += currentCount;
+                }
+            }
+        }
+
         vector<string> abilitiesVector;
         string thisstring = current->data->magicText;
         abilitiesVector = split(thisstring, '\n');
