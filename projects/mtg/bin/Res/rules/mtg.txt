@@ -11,11 +11,12 @@ auto=maxPlay(land)1
 
 
 #Lands Mana Rules
-auto=lord(Swamp|MyBattlefield) {T}:Add{B}
-auto=lord(Forest|MyBattlefield) {T}:Add{G}
-auto=lord(Island|MyBattlefield) {T}:Add{U}
-auto=lord(Mountains|MyBattlefield) {T}:Add{R}
 auto=lord(Plains|MyBattlefield) {T}:Add{W}
+auto=lord(Island|MyBattlefield) {T}:Add{U}
+auto=lord(Swamp|MyBattlefield) {T}:Add{B}
+auto=lord(Mountains|MyBattlefield) {T}:Add{R}
+auto=lord(Forest|MyBattlefield) {T}:Add{G}
+
 
 #Mana Empties from manapool at the end of each phase
 auto=@each untap:removeMana(*)

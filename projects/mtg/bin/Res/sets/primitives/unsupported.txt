@@ -1656,12 +1656,6 @@ type=Artifact
 subtype=Equipment
 [/card]
 [card]
-name=Blanket of Night
-text=Each land is a Swamp in addition to its other land types.
-mana={1}{B}{B}
-type=Enchantment
-[/card]
-[card]
 name=Blaze of Glory
 text=Target creature can block any number of creatures this turn. It must block each attacking creature this turn if able.
 mana={W}
@@ -3788,12 +3782,6 @@ power=4
 toughness=4
 [/card]
 [card]
-name=Conversion
-text=At the beginning of your upkeep, sacrifice Conversion unless you pay {W}{W}. -- All Mountains are Plains.
-mana={2}{W}{W}
-type=Enchantment
-[/card]
-[card]
 name=Convincing Mirage
 text=Enchant land -- As Convincing Mirage enters the battlefield, choose a basic land type. -- Enchanted land is the chosen type.
 mana={1}{U}
@@ -5616,15 +5604,6 @@ power=2
 toughness=1
 [/card]
 [card]
-name=Dream Thrush
-text=Flying -- {T}: Target land becomes the basic land type of your choice until end of turn.
-mana={1}{U}
-type=Creature
-subtype=Bird
-power=1
-toughness=1
-[/card]
-[card]
 name=Dream Tides
 text=Creatures don't untap during their controllers' untap steps. -- At the beginning of each player's upkeep, that player may choose any number of tapped nongreen creatures he or she controls and pay {2} for each creature chosen this way. If the player does, untap those creatures.
 mana={2}{U}{U}
@@ -5662,15 +5641,6 @@ type=Creature
 subtype=Faerie Wizard
 power=2
 toughness=2
-[/card]
-[card]
-name=Dreamwinder
-text=Dreamwinder can't attack unless defending player controls an Island. -- {U}, Sacrifice an Island: Target land becomes an Island until end of turn.
-mana={3}{U}
-type=Creature
-subtype=Serpent
-power=4
-toughness=3
 [/card]
 [card]
 name=Dregs of Sorrow
@@ -7358,15 +7328,6 @@ mana={1}{R}
 type=Instant
 [/card]
 [card]
-name=Floodchaser
-text=Floodchaser enters the battlefield with six +1/+1 counters on it. -- Floodchaser can't attack unless defending player controls an Island. -- {U}, Remove a +1/+1 counter from Floodchaser: Target land becomes an Island until end of turn.
-mana={5}{U}
-type=Creature
-subtype=Elemental
-power=0
-toughness=0
-[/card]
-[card]
 name=Flooded Woodlands
 auto=lord(creature[green])cantattack
 auto=lord(creature[green]) {S(land|myBattlefield)}:-cantattack
@@ -8246,12 +8207,6 @@ type=Instant
 subtype=Arcane
 [/card]
 [card]
-name=Glaciers
-text=At the beginning of your upkeep, sacrifice Glaciers unless you pay {W}{U}. -- All Mountains are Plains.
-mana={2}{W}{U}
-type=Enchantment
-[/card]
-[card]
 name=Glamer Spinners
 text=Flash -- Flying -- When Glamer Spinners enters the battlefield, attach all Auras enchanting target permanent to another permanent with the same controller.
 mana={4}{WU}
@@ -9053,15 +9008,6 @@ name=Grip of Chaos
 text=Whenever a spell or ability is put onto the stack, if it has a single target, reselect its target at random. (Select from among all legal targets.)
 mana={4}{R}{R}
 type=Enchantment
-[/card]
-[card]
-name=Grixis Illusionist
-text={T}: Target land you control becomes the basic land type of your choice until end of turn.
-mana={U}
-type=Creature
-subtype=Human Wizard
-power=1
-toughness=1
 [/card]
 [card]
 name=Grizzled Wolverine
@@ -9954,12 +9900,6 @@ name=Hum of the Radix
 text=Each artifact spell costs {1} more to cast for each artifact its controller controls.
 mana={2}{G}{G}
 type=Enchantment
-[/card]
-[card]
-name=Humble
-text=Target creature loses all abilities and becomes 0/1 until end of turn.
-mana={1}{W}
-type=Instant
 [/card]
 [card]
 name=Humility
@@ -11210,15 +11150,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Kavu Recluse
-text={T}: Target land becomes a Forest until end of turn.
-mana={2}{R}
-type=Creature
-subtype=Kavu
-power=2
-toughness=2
-[/card]
-[card]
 name=Kazuul, Tyrant of the Cliffs
 text=Whenever a creature an opponent controls attacks, if you're the defending player, put a 3/3 red Ogre creature token onto the battlefield unless that creature's controller pays {3}.
 mana={3}{R}{R}
@@ -11825,15 +11756,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Kukemssa Serpent
-text=Kukemssa Serpent can't attack unless defending player controls an Island. -- {U}, Sacrifice an Island: Target land an opponent controls becomes an Island until end of turn. -- When you control no Islands, sacrifice Kukemssa Serpent.
-mana={3}{U}
-type=Creature
-subtype=Serpent
-power=4
-toughness=3
-[/card]
-[card]
 name=Kuldotha Flamefiend
 text=When Kuldotha Flamefiend enters the battlefield, you may sacrifice an artifact. If you do, Kuldotha Flamefiend deals 4 damage divided as you choose among any number of target creatures and/or players.
 mana={4}{R}{R}
@@ -12376,13 +12298,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Lingering Mirage
-text=Enchant land -- Enchanted land is an Island. -- Cycling {2} ({2}, Discard this card: Draw a card.)
-mana={1}{U}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Liquid Fire
 text=As an additional cost to cast Liquid Fire, choose a number between 0 and 5. -- Liquid Fire deals X damage to target creature and 5 minus X damage to that creature's controller, where X is the chosen number.
 mana={4}{R}{R}
@@ -12687,13 +12602,6 @@ mana={4}{G}{G}
 type=Enchantment
 [/card]
 [card]
-name=Lush Growth
-text=Enchant land -- Enchanted land is a Mountain, Forest, and Plains.
-mana={G}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Lyzolda, the Blood Witch
 text={2}, Sacrifice a creature: Lyzolda, the Blood Witch deals 2 damage to target creature or player if the sacrificed creature was red. Draw a card if the sacrificed creature was black.
 mana={1}{B}{R}
@@ -12875,15 +12783,6 @@ mana={4}{B}{B}
 type=Creature
 subtype=Human Wizard
 power=4
-toughness=2
-[/card]
-[card]
-name=Magus of the Moon
-text=Nonbasic lands are Mountains.
-mana={2}{R}
-type=Creature
-subtype=Human Wizard
-power=2
 toughness=2
 [/card]
 [card]
@@ -14265,15 +14164,6 @@ power=4
 toughness=4
 [/card]
 [card]
-name=Moonbow Illusionist
-text=Flying -- {2}, Return a land you control to its owner's hand: Target land becomes the basic land type of your choice until end of turn.
-mana={2}{U}
-type=Creature
-subtype=Moonfolk Wizard
-power=2
-toughness=1
-[/card]
-[card]
 name=Moonhold
 text=Target player can't play land cards this turn if {R} was spent to cast Moonhold and can't play creature cards this turn if {W} was spent to cast it. (Do both if {R}{W} was spent.)
 mana={2}{RW}
@@ -14534,12 +14424,6 @@ type=Artifact Creature
 subtype=Myr
 power=1
 toughness=4
-[/card]
-[card]
-name=Mystic Compass
-text={1}, {T}: Target land becomes the basic land type of your choice until end of turn.
-mana={2}
-type=Artifact
 [/card]
 [card]
 name=Mystic Remora
@@ -18050,15 +17934,6 @@ mana={U}{U}
 type=Instant
 [/card]
 [card]
-name=Reef Shaman
-text={T}: Target land becomes the basic land type of your choice until end of turn.
-mana={U}
-type=Creature
-subtype=Merfolk Shaman
-power=0
-toughness=2
-[/card]
-[card]
 name=Reflect Damage
 text=The next time a source of your choice would deal damage this turn, that damage is dealt to that source's controller instead.
 mana={3}{R}{W}
@@ -19706,15 +19581,6 @@ mana={U}
 type=Instant
 [/card]
 [card]
-name=Sea Snidd
-text={T}: Target land becomes the basic land type of your choice until end of turn.
-mana={4}{U}
-type=Creature
-subtype=Beast
-power=3
-toughness=3
-[/card]
-[card]
 name=Sea Troll
 text={U}: Regenerate Sea Troll. Activate this ability only if Sea Troll blocked or was blocked by a blue creature this turn.
 mana={2}{U}
@@ -19722,13 +19588,6 @@ type=Creature
 subtype=Troll
 power=2
 toughness=1
-[/card]
-[card]
-name=Sea's Claim
-text=Enchant land (Target a land as you cast this. This card enters the battlefield attached to that land.) -- Enchanted land is an Island.
-mana={U}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
 name=Seafarer's Quay
@@ -20843,15 +20702,6 @@ mana={U}
 type=Instant
 [/card]
 [card]
-name=Slimy Kavu
-text={T}: Target land becomes a Swamp until end of turn.
-mana={2}{R}
-type=Creature
-subtype=Kavu
-power=2
-toughness=2
-[/card]
-[card]
 name=Slingbow Trap
 text=If a black creature with flying is attacking, you may pay {G} rather than pay Slingbow Trap's mana cost. -- Destroy target attacking creature with flying.
 mana={3}{G}
@@ -21686,13 +21536,6 @@ mana={4}{B}
 type=Enchantment
 [/card]
 [card]
-name=Spreading Seas
-text=Enchant land -- When Spreading Seas enters the battlefield, draw a card. -- Enchanted land is an Island.
-mana={1}{U}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Spring Cleaning
 text=Destroy target enchantment. Clash with an opponent. If you win, destroy all enchantments your opponents control. (Each clashing player reveals the top card of his or her library, then puts that card on the top or bottom. A player wins if his or her card had a higher converted mana cost.)
 mana={1}{G}
@@ -22146,15 +21989,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Stormtide Leviathan
-text=Islandwalk -- All lands are Islands in addition to their original type. -- Creatures without flying or islandwalk can't attack.
-mana={5}{U}{U}{U}
-type=Creature
-subtype=Leviathan
-power=8
-toughness=8
-[/card]
-[card]
 name=Story Circle
 text=As Story Circle enters the battlefield, choose a color. -- {W}: The next time a source of your choice of the chosen color would deal damage to you this turn, prevent that damage.
 mana={1}{W}{W}
@@ -22195,15 +22029,6 @@ text=Target player shuffles up to four target cards from his or her graveyard in
 mana={1}{U}
 type=Instant
 subtype=Arcane
-[/card]
-[card]
-name=Streambed Aquitects
-text={T}: Target Merfolk creature gets +1/+1 and gains islandwalk until end of turn. -- {T}: Target land becomes an Island until end of turn.
-mana={1}{U}{U}
-type=Creature
-subtype=Merfolk Scout
-power=2
-toughness=3
 [/card]
 [card]
 name=Street Savvy
@@ -22712,13 +22537,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Tainted Well
-text=Enchant land -- When Tainted Well enters the battlefield, draw a card. -- Enchanted land is a Swamp.
-mana={2}{B}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Taj-Nar Swordsmith
 text=When Taj-Nar Swordsmith enters the battlefield, you may pay {X}. If you do, search your library for an Equipment card with converted mana cost X or less and put that card onto the battlefield. Then shuffle your library.
 mana={3}{W}
@@ -23133,15 +22951,6 @@ mana={G}{G}
 type=Enchantment
 [/card]
 [card]
-name=Thelonite Monk
-text={T}, Sacrifice a green creature: Target land becomes a Forest. (This effect lasts indefinitely.)
-mana={2}{G}{G}
-type=Creature
-subtype=Insect Monk Cleric
-power=1
-toughness=2
-[/card]
-[card]
 name=Thermal Flux
 text=Choose one - Target nonsnow permanent becomes snow until end of turn; or target snow permanent isn't snow until end of turn. -- Draw a card at the beginning of the next turn's upkeep.
 mana={U}
@@ -23492,15 +23301,6 @@ name=Tide of War
 text=Whenever one or more creatures blocks, flip a coin. If you win the flip, each blocking creature is sacrificed by its controller. If you lose the flip, each blocked creature is sacrificed by its controller.
 mana={4}{R}{R}
 type=Enchantment
-[/card]
-[card]
-name=Tideshaper Mystic
-text={T}: Target land becomes the basic land type of your choice until end of turn. Activate this ability only during your turn.
-mana={U}
-type=Creature
-subtype=Merfolk Wizard
-power=1
-toughness=1
 [/card]
 [card]
 name=Timber Wolves
@@ -23995,15 +23795,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Tundra Kavu
-text={T}: Target land becomes a Plains or an Island until end of turn.
-mana={2}{R}
-type=Creature
-subtype=Kavu
-power=2
-toughness=2
-[/card]
-[card]
 name=Tunnel Vision
 text=Name a card. Target player reveals cards from the top of his or her library until the named card is revealed. If it is, that player puts the rest of the revealed cards into his or her graveyard and puts the named card on top of his or her library. Otherwise, the player shuffles his or her library.
 mana={5}{U}
@@ -24237,11 +24028,6 @@ name=Unstable Footing
 text=Kicker {3}{R} (You may pay an additional {3}{R} as you cast this spell.) -- Damage can't be prevented this turn. If Unstable Footing was kicked, it deals 5 damage to target player.
 mana={R}
 type=Instant
-[/card]
-[card]
-name=Unstable Frontier
-text={T}: Add {1} to your mana pool. -- {T}: Target land you control becomes the basic land type of your choice until end of turn.
-type=Land
 [/card]
 [card]
 name=Unstable Hulk
@@ -26130,7 +25916,6 @@ toughness=4
 [/card]
 [card]
 name=Zombie Musher
-auto=aslongas(land[snow]|opponentBattlefield)unblockable
 text=Snow landwalk -- {S}i}: Regenerate Zombie Musher. ({S}i} can be paid with one mana from a snow permanent.)
 mana={3}{B}
 type=Snow Creature
@@ -26146,15 +25931,6 @@ type=Creature
 subtype=Zombie
 power=3
 toughness=1
-[/card]
-[card]
-name=Zombie Trailblazer
-text=Tap an untapped Zombie you control: Target land becomes a Swamp until end of turn. -- Tap an untapped Zombie you control: Target creature gains swampwalk until end of turn.
-mana={B}{B}{B}
-type=Creature
-subtype=Zombie Scout
-power=2
-toughness=2
 [/card]
 [card]
 name=Zoologist
