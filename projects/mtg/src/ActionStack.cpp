@@ -493,9 +493,9 @@ void LifeAction::Render()
     mFont->SetBase(0);
     mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
     char buffer[200];
-    if(amount >= 0)
+    if(amount > 0)
         sprintf(buffer, _("Player gains %i life").c_str(), amount);
-    else if(amount >= 0)
+    else if(amount < 0)
         sprintf(buffer, _("Player loses %i life").c_str(), amount);
     else
         sprintf(buffer, _("Nothing happened").c_str(), amount);
@@ -552,14 +552,11 @@ int ActionStack::AddNextGamePhase()
 {
     if (getNext(NULL, NOT_RESOLVED))
         return 0;
+
     NextGamePhase * next = NEW NextGamePhase(mCount);
     addAction(next);
-    int playerId = 0;
     game->currentActionPlayer = game->GetInstance()->currentActionPlayer;
-    if (game->currentActionPlayer == game->players[1])
-    {
-        playerId = 1;
-    }
+    int playerId = (game->currentActionPlayer == game->players[1]) ? 1 : 0;
     interruptDecision[playerId] = 1;
     return 1;
 }
@@ -568,6 +565,7 @@ int ActionStack::AddNextCombatStep()
 {
     if (getNext(NULL, NOT_RESOLVED))
         return 0;
+
     NextGamePhase * next = NEW NextGamePhase(mCount);
     addAction(next);
     return 1;
@@ -575,14 +573,8 @@ int ActionStack::AddNextCombatStep()
 
 int ActionStack::setIsInterrupting(Player * player)
 {
-    if (player == game->players[0])
-    {
-        interruptDecision[0] = -1;
-    }
-    else
-    {
-        interruptDecision[1] = -1;
-    }
+    int playerId = (player == game->players[1]) ? 1 : 0;
+    interruptDecision[playerId] = -1;
     game->isInterrupting = player;
     askIfWishesToInterrupt = NULL;
     return 1;
@@ -607,10 +599,6 @@ Spell * ActionStack::addSpell(MTGCardInstance * _source, TargetChooser * tc, Man
     if (storm > 0)
     {
         mana = NULL;
-    }
-    if (mana < 0)
-    {
-        mana = 0;
     }
     Spell * spell = NEW Spell(mCount, _source, tc, mana, payResult);
     addAction(spell);
@@ -760,10 +748,11 @@ int ActionStack::count(int type, int state, int display)
     }
     return result;
 }
+
 int ActionStack::getActionElementFromCard(MTGCardInstance * card)
 {
 
-for (int i = 0; i < mCount; i++)
+    for (int i = 0; i < mCount; i++)
     {
         Interruptible * current = (Interruptible *) mObjects[i];
         if (current->source == card)
@@ -771,7 +760,7 @@ for (int i = 0; i < mCount; i++)
             return i;
         }
     }  
-return NULL;
+    return NULL;
 }
 
 Interruptible * ActionStack::getNext(Interruptible * previous, int type, int state, int display)
@@ -930,17 +919,18 @@ void ActionStack::Update(float dt)
         // game will wait for ever for the user to make a selection.
         if (options[Options::INTERRUPT_SECONDS].number > 0)
         {
-					int extraTime = 0;
-					//extraTime is a multiplier, it counts the number of unresolved stack actions
-					//then is used to extend the time you have to interupt.
-					//this prevents you from "running out of time" while deciding.
-					//before this int was added, it was possible to run out of time if you had 10 stack actions
-					//and set the timer to 4 secs. BUG FIX //http://code.google.com/p/wagic/issues/detail?id=464
-					extraTime = count(0, NOT_RESOLVED, 0);
-					if (extraTime == 0)
-						extraTime = 1;//we never want this int to be 0.
+            int extraTime = 0;
+            //extraTime is a multiplier, it counts the number of unresolved stack actions
+            //then is used to extend the time you have to interupt.
+            //this prevents you from "running out of time" while deciding.
+            //before this int was added, it was possible to run out of time if you had 10 stack actions
+            //and set the timer to 4 secs. BUG FIX //http://code.google.com/p/wagic/issues/detail?id=464
+            extraTime = count(0, NOT_RESOLVED, 0);
+            if (extraTime == 0)
+	            extraTime = 1;//we never want this int to be 0.
+
             if (timer < 0)
-							timer = options[Options::INTERRUPT_SECONDS].number * extraTime;
+			    timer = options[Options::INTERRUPT_SECONDS].number * extraTime;
             timer -= dt;
             if (timer < 0)
                 cancelInterruptOffer();
@@ -950,14 +940,8 @@ void ActionStack::Update(float dt)
 
 void ActionStack::cancelInterruptOffer(int cancelMode)
 {
-    if (game->isInterrupting == game->players[0])
-    {
-        interruptDecision[0] = cancelMode;
-    }
-    else
-    {
-        interruptDecision[1] = cancelMode;
-    }
+    int playerId = (game->isInterrupting == game->players[1]) ? 1 : 0;
+    interruptDecision[playerId] = cancelMode;
     askIfWishesToInterrupt = NULL;
     game->isInterrupting = NULL;
     timer = -1;
@@ -965,14 +949,8 @@ void ActionStack::cancelInterruptOffer(int cancelMode)
 
 void ActionStack::endOfInterruption()
 {
-    if (game->isInterrupting == game->players[0])
-    {
-        interruptDecision[0] = 0;
-    }
-    else
-    {
-        interruptDecision[1] = 0;
-    }
+    int playerId = (game->isInterrupting == game->players[1]) ? 1 : 0;
+    interruptDecision[playerId] = 0;
     game->isInterrupting = NULL;
 }
 
