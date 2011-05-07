@@ -1,0 +1,8 @@
+This is a short summary of the licenses of the various parts of Wagic, The Homebrew.
+More specific License texts can be found in each subfolder. In particular,
+resource files (graphics, etc...) do NOT follow the same licenses as the source code.
+
+
+* JGE is licensed under the BSD License
+* Wagic's source code is licensed under the BSD License
+* For Wagic's resources (graphics, sounds, etc...) please see projects/mtg/bin/Res/LICENSE for a detailed list

@@ -1,0 +1,31 @@
+Unless specified otherwise (see exceptions below), the resource files in Wagic
+(all files in this folder and subfolders) are distributed to you with a 
+"Creative Commons Attribution-NonCommercial-ShareAlike 3.0" License.
+
+You are free:
+to Share — to copy, distribute and transmit the work
+to Remix — to adapt the work
+
+Under the following conditions:
+Attribution — You must attribute the work in the manner specified by the author
+or licensor (but not in any way that suggests that they endorse you or your use
+of the work). 
+Noncommercial — You may not use this work for commercial purposes. 
+Share Alike — If you alter, transform, or build upon this work, you may 
+distribute the resulting work only under the same or similar license to this one. 
+
+see http://creativecommons.org/licenses/by-nc-sa/3.0/ for more details
+
+##############
+Exceptions
+##############
+mp3 files in sound/ are http://creativecommons.org/licenses/by-nc-sa/2.5/
+see http://www.jamendo.com/en/artist/celestial.aeon.project for details
+
+wav files in sound/sfx follow the license at http://www.soundsnap.com/licence
+
+themes/Classic/menuicons.png is in the Public Domain
+
+themes/Classic/backdrop.jpg is LGPL
+
+
