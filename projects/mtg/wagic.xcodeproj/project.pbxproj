@@ -517,7 +517,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-+				CE9E71DB1375A53600759DDC /* Boost */,
+				CE9E71DB1375A53600759DDC /* Boost */,
 				CE9A477512B514BA00C9F38A /* EAGLView.h */,
 				CE9A477612B514BA00C9F38A /* EAGLView.m */,
 				CE9A477712B514BA00C9F38A /* EAGLViewController.h */,
@@ -1240,9 +1240,9 @@
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-+				HEADER_SEARCH_PATHS = ../../Boost/boost;
+				HEADER_SEARCH_PATHS = ../../Boost/boost;
 				PREBINDING = NO;
-				SDKROOT = iphoneos4.2;
+				SDKROOT = iphoneos3.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
