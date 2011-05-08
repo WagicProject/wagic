@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		127D4C6F1376B33200109AB4 /* mtg.txt in Resources */ = {isa = PBXBuildFile; fileRef = 127D4C6E1376B33200109AB4 /* mtg.txt */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		28FD15000DC6FC520079059D /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FD14FF0DC6FC520079059D /* OpenGLES.framework */; };
@@ -170,6 +171,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		127D4C6E1376B33200109AB4 /* mtg.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = mtg.txt; path = bin/Res/sets/primitives/mtg.txt; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D6058910D05DD3D006BFB54 /* wagic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wagic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -541,6 +543,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				127D4C6E1376B33200109AB4 /* mtg.txt */,
 				F2CDD5E212A6F7A2007B35AF /* EAGLViewController.xib */,
 				8D1107310486CEB800E47090 /* wagic-Info.plist */,
 				F233DC3712A111EB008594F2 /* wagic-64x64.png */,
@@ -1005,6 +1008,7 @@
 				F2494AC912A1BBFD00D6284A /* Res in Resources */,
 				F2CDD5E312A6F7A2007B35AF /* EAGLViewController.xib in Resources */,
 				CECB67E112B517C000321D5A /* MainWindow.xib in Resources */,
+				127D4C6F1376B33200109AB4 /* mtg.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1203,6 +1207,7 @@
 				"New Setting" = "";
 				PRODUCT_NAME = wagic;
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
+				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
@@ -1225,6 +1230,7 @@
 					"\"$(SDKROOT)/usr/lib/gcc/powerpc-apple-darwin9/4.0.1\"",
 				);
 				PRODUCT_NAME = testproject;
+				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
