@@ -315,7 +315,7 @@ int MTGPutInPlayRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
 
     if (card->isLand())
     {
-        if (currentPlayer->game->playRestrictions->canPutIntoZone(card, currentPlayer->game->inPlay) == PlayRestriction::CANT_PLAY)
+        if (game->currentActionPlayer->game->playRestrictions->canPutIntoZone(card, game->currentActionPlayer->game->inPlay) == PlayRestriction::CANT_PLAY)
             return 0;
         if (player == currentPlayer
             && (game->currentGamePhase == Constants::MTG_PHASE_FIRSTMAIN || game->currentGamePhase == Constants::MTG_PHASE_SECONDMAIN)
@@ -331,7 +331,7 @@ int MTGPutInPlayRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
         )
     {
 
-        if (currentPlayer->game->playRestrictions->canPutIntoZone(card, currentPlayer->game->stack) == PlayRestriction::CANT_PLAY)
+        if (game->currentActionPlayer->game->playRestrictions->canPutIntoZone(card, game->currentActionPlayer->game->stack) == PlayRestriction::CANT_PLAY)
             return 0;
         ManaCost * playerMana = player->getManaPool();
         ManaCost * cost = card->getManaCost();
@@ -635,7 +635,7 @@ int MTGAlternativeCostRule::isReactingToClick(MTGCardInstance * card, ManaCost *
 
     if (card->isLand())
     {
-        if (currentPlayer->game->playRestrictions->canPutIntoZone(card, currentPlayer->game->inPlay) == PlayRestriction::CANT_PLAY)
+        if (game->currentActionPlayer->game->playRestrictions->canPutIntoZone(card, game->currentActionPlayer->game->inPlay) == PlayRestriction::CANT_PLAY)
             return 0;
         if (player == currentPlayer
             && (game->currentGamePhase == Constants::MTG_PHASE_FIRSTMAIN
@@ -649,7 +649,7 @@ int MTGAlternativeCostRule::isReactingToClick(MTGCardInstance * card, ManaCost *
         || game->currentGamePhase == Constants::MTG_PHASE_SECONDMAIN))
         )
     {
-        if (currentPlayer->game->playRestrictions->canPutIntoZone(card, currentPlayer->game->stack) == PlayRestriction::CANT_PLAY)
+        if (game->currentActionPlayer->game->playRestrictions->canPutIntoZone(card, game->currentActionPlayer->game->stack) == PlayRestriction::CANT_PLAY)
             return 0;
         ManaCost * playerMana = player->getManaPool();
 
@@ -1048,7 +1048,7 @@ int MTGMorphCostRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
         || game->currentGamePhase == Constants::MTG_PHASE_SECONDMAIN))
         )
     {
-        if (currentPlayer->game->playRestrictions->canPutIntoZone(card, currentPlayer->game->stack) == PlayRestriction::CANT_PLAY)
+        if (game->currentActionPlayer->game->playRestrictions->canPutIntoZone(card, game->currentActionPlayer->game->stack) == PlayRestriction::CANT_PLAY)
             return 0;
         ManaCost * playerMana = player->getManaPool();
         ManaCost * morph = card->getManaCost()->morph;
