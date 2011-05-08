@@ -15189,6 +15189,7 @@ type=Sorcery
 [/card]
 [card]
 name=Decomposition
+target=creature[black]
 auto=teach(creature) cumulativeupcost[{l}] sacrifice
 auto=@movedto(mytgt|graveyard): all(trigger[to]) damage:2 targetcontroller
 text=Enchant black creature -- Enchanted creature has "Cumulative upkeep - Pay 1 life." (At the beginning of its controller's upkeep, that player puts an age counter on it, then sacrifices it unless he or she pays its upkeep cost for each age counter on it.) -- When enchanted creature is put into a graveyard, its controller loses 2 life.
