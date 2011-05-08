@@ -4117,10 +4117,6 @@ int AManaProducer::isReactingToClick(MTGCardInstance * _card, ManaCost * mana)
         if (!cost || mana->canAfford(cost))
         {
             result = 1;
-            if (cost && cost->extraCosts != NULL)
-            {
-                return cost->canPayExtra();
-            }
         }
     }
     return result;
