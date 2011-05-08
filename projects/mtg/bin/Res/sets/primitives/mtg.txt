@@ -50871,6 +50871,7 @@ type=Sorcery
 [/card]
 [card]
 name=Rancor
+target=Creature
 auto=2/0
 auto=trample
 autograveyard=@movedTo(this|graveyard) from(battlefield):moveTo(ownerhand)
