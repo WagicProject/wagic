@@ -69540,7 +69540,7 @@ toughness=1
 name=Tumble Magnet
 auto=counter(0/0,3,Charge)
 auto={T}{C(0/0,-1,Charge)}:tap target(artifact,creature)
-text=Whenever an opponent casts a nonartifact spell, put a charge counter on Chimeric Egg. -- Remove three charge counters from Chimeric Egg: Chimeric Egg becomes a 6/6 Construct artifact creature with trample until end of turn.
+text=Tumble Magnet enters the battlefield with three charge counters on it. -- {T}, Remove a charge counter from Tumble Magnet: Tap target artifact or creature.
 mana={3}
 type=Artifact
 [/card]
