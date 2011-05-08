@@ -487,6 +487,16 @@ int ManaCost::getConvertedCost()
     {
         result += hybrids[i].getConvertedCost();
     }
+	if(extraCosts && extraCosts->costs.size())
+	{
+		for(unsigned int i = 0; i < extraCosts->costs.size();i++)
+		{
+			ExtraCost * pMana = dynamic_cast<LifeorManaCost*>(extraCosts->costs[i]);
+			if(pMana)
+				result++;
+		}
+	}
+
     return result;
 }
 
