@@ -2036,12 +2036,14 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
                 newtoughnessfound = true;
                 newtoughness = splitToughness[1];
             }
-            vector<string> splitAbilities = parseBetween(abilities[j], "newability[", "]");
-            if(splitAbilities.size())
-            {
-                newAbilityFound = true;
-                newAbilitiesList.push_back(splitAbilities[1]);
-            }
+			if(abilities[j].find("newability[") != string::npos)
+			{
+				size_t NewSkill = abilities[j].find("newability[");
+				size_t NewSkillEnd = abilities[j].find_last_of("]");
+				string newAbilities = abilities[j].substr(NewSkill + 11,NewSkillEnd - NewSkill - 11);
+				newAbilitiesList.push_back(newAbilities);
+				newAbilityFound = true;
+			}
         }
 
         if (oneShot || forceUEOT || forceFOREVER)
