@@ -58,6 +58,7 @@ public:
     bool wasDealtDamage;
     bool damageToOpponent;
     bool damageToController;
+    bool mPropertiesChangedSinceLastUpdate;
     int reduxamount;
     int flanked;
     int regenerateTokens;

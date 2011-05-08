@@ -1,0 +1,21 @@
+#Testing Evil Presence on a swamp...it should have no visible effect
+# Bug: it removes the swamp's ability
+#see http://code.google.com/p/wagic/issues/detail?id=647
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Evil Presence
+inplay:Swamp
+manapool:{B}
+[PLAYER2]
+[DO]
+Evil Presence
+Swamp
+Swamp
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Swamp,Evil Presence
+manapool:{B}
+[PLAYER2]
+[END]

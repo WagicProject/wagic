@@ -1,0 +1,33 @@
+#Testing Evil Presence on a swamp...it should have no visible effect
+# Bug: it removes the swamp's ability
+#In thistest we make sure we don't get a crash during the next turn, when abilities are added/removed from different sources
+#see http://code.google.com/p/wagic/issues/detail?id=647
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Evil Presence, Disenchant
+inplay:Swamp,Forest,Plains
+manapool:{B}
+[PLAYER2]
+[DO]
+Evil Presence
+Swamp
+eot
+eot
+next
+#upkeep
+next
+#draw
+next
+#main
+Forest
+Plains
+Disenchant
+Evil Presence
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Swamp,Forest,Plains
+graveyard:Evil Presence,disenchant
+[PLAYER2]
+[END]

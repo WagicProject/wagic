@@ -303,14 +303,15 @@ void GameObserver::addObserver(MTGAbility * observer)
     mLayers->actionLayer()->Add(observer);
 }
 
-void GameObserver::removeObserver(ActionElement * observer)
+//Returns true if the Ability was correctly removed from the game, false otherwise
+//Main (valid) reason of returning false is an attempt at removing an Ability that has already been removed
+bool GameObserver::removeObserver(ActionElement * observer)
 {
-    if (observer)
-        mLayers->actionLayer()->moveToGarbage(observer);
+    if (!observer)
+        return false;
 
-    else
-    {
-    } //TODO log error
+    return mLayers->actionLayer()->moveToGarbage(observer);
+
 }
 
 GameObserver::~GameObserver()
@@ -375,6 +376,8 @@ void GameObserver::gameStateBasedEffects()
         {
             MTGCardInstance * card = zone->cards[j];
             card->afterDamage();
+            card->mPropertiesChangedSinceLastUpdate = false;
+
             ///////////////////////////////////////////////////////
             //Remove auras that don't have a valid target anymore//
             ///////////////////////////////////////////////////////

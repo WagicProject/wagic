@@ -145,6 +145,7 @@ void MTGCardInstance::initMTGCI()
     wasDealtDamage = false;
     suspended = false;
     castMethod = Constants::NOT_CAST;
+    mPropertiesChangedSinceLastUpdate = false;
 
 
     for (int i = 0; i < ManaCost::MANA_PAID_WITH_RETRACE +1; i++)
@@ -233,6 +234,16 @@ void MTGCardInstance::addType(int type)
 {
     bool before = hasType(type);
     CardPrimitive::addType(type);
+
+    if (!before)
+        mPropertiesChangedSinceLastUpdate = true;
+
+    // If the card name is not set, set it to the type.
+    //This is a hack for "transform", used in combination with "losesubtypes" on Basic Lands
+    //See removeType below
+    if (!name.length())
+        setName(Subtypes::subtypesList->find(type));
+
     WEvent * e = NEW WEventCardChangeType(this, type, before, true);
     GameObserver * go = GameObserver::GetInstance();
     if (go)
@@ -267,6 +278,16 @@ int MTGCardInstance::removeType(int id, int removeAll)
     bool before = hasType(id);
     int result = CardPrimitive::removeType(id, removeAll);
     bool after = hasType(id);
+    if (before != after)
+    {
+        mPropertiesChangedSinceLastUpdate = true;
+        // Basic lands have the same name as their subtypes, and TargetChoosers don't make a distinction between name and type,
+        // so if we remove a subtype "Forest", we also need to remove its name.
+        //This means the card might lose its name, but usually when we force remove a type, we add another one just after that.
+        //see "AddType" above which force sets a name if necessary
+        if (name.compare(Subtypes::subtypesList->find(id)) == 0)
+            setName("");
+    }
     WEvent * e = NEW WEventCardChangeType(this, id, before, after);
     GameObserver * go = GameObserver::GetInstance();
     if (go)

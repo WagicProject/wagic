@@ -3767,7 +3767,7 @@ void ListMaintainerAbility::updateTargets()
     for (map<MTGCardInstance *, bool>::iterator it = cards.begin(); it != cards.end(); ++it)
     {
         MTGCardInstance * card = (*it).first;
-        if (!canBeInList(card))
+        if (!canBeInList(card) || card->mPropertiesChangedSinceLastUpdate)
         {
             temp[card] = true;
         }
@@ -3794,11 +3794,12 @@ void ListMaintainerAbility::updateTargets()
             {
                 for (int j = 0; j < zone->nb_cards; j++)
                 {
-                    if (canBeInList(zone->cards[j]))
+                     MTGCardInstance * card = zone->cards[j];
+                    if (canBeInList(card))
                     {
-                        if (cards.find(zone->cards[j]) == cards.end())
+                        if (cards.find(card) == cards.end())
                         {
-                            temp[zone->cards[j]] = true;
+                            temp[card] = true;
                         }
                     }
                 }

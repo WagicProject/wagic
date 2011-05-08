@@ -260,6 +260,8 @@ erg_raiders_i157.txt
 evil_presence.txt
 evil_presence2.txt
 evil_presence3.txt
+evil_presence_i647.txt
+evil_presence_i647_2.txt
 explore.txt
 Faceless_Butcher.txt
 fangren_pathcutter.txt

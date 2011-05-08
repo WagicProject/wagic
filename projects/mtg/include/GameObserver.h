@@ -76,7 +76,7 @@ class GameObserver{
   void Affinity();
   void eventOccured();
   void addObserver(MTGAbility * observer);
-  void removeObserver(ActionElement * observer);
+  bool removeObserver(ActionElement * observer);
   void startGame(Rules * rules);
   void untapPhase();
   int isInPlay(MTGCardInstance *  card);
