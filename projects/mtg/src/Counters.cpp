@@ -131,7 +131,8 @@ int Counters::removeCounter(const char * _name, int _power, int _toughness)
             {
                 GameObserver * game = game->GetInstance();
                 MTGCardInstance * copy = target->controller()->game->putInZone(target, target->currentZone, target->controller()->game->stack);
-                Spell * spell = game->mLayers->stackLayer()->addSpell(copy, game->targetChooser, NULL,1, 0);
+                
+                game->mLayers->stackLayer()->addSpell(copy, game->targetChooser, NULL,1, 0);
                 game->targetChooser = NULL;
             }
             return mCount;

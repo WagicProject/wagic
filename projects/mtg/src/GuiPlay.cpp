@@ -184,8 +184,8 @@ bool isSpell(CardView* c)
 }
 void GuiPlay::Replace()
 {
-    unsigned opponentSpellsN = 0, selfSpellsN = 0, opponentLandsN = 0, opponentCreaturesN = 0, battleFieldAttackersN = 0,
-                    battleFieldBlockersN = 0, selfCreaturesN = 0, selfLandsN = 0, selfPlaneswalkern = 0,opponentPlaneswalkern = 0;
+    unsigned opponentSpellsN = 0, selfSpellsN = 0, opponentLandsN = 0, opponentCreaturesN = 0, 
+            battleFieldAttackersN = 0, battleFieldBlockersN = 0, selfCreaturesN = 0, selfLandsN = 0;
 
     end_spells = stable_partition(cards.begin(), cards.end(), &isSpell);
 

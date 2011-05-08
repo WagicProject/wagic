@@ -860,7 +860,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
 
     // figure out alternative cost effects
     string keyword;
-    int costType = -1;
+
 
     for (size_t i = 0; i < sizeof(kAlternateCostIds)/sizeof(kAlternateCostIds[0]); ++i)
     {
@@ -1813,7 +1813,6 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             TargetChooserFactory tcf;
             TargetChooser * castTargets = tcf.createTargetChooser(splitCast[1], card);
 
-            size_t space = s.find(" ");
             vector<string> splitValue = parseBetween(splitCast[2], "", " ", false);
             if (!splitValue.size())
             {
@@ -1987,8 +1986,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     found = s.find("transforms((");
     if (found != string::npos)
     {
-    string extraTransforms = "";
-        size_t stypesStartIndex = found + 12;
+        string extraTransforms = "";
         string transformsParamsString = "";
         transformsParamsString.append(storedString);//the string between found and real end is removed at start.
         
@@ -2575,7 +2573,7 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card, int
             {
                 // Anything involving Mana Producing abilities cannot be interrupted
                 MTGAbility * core = getCoreAbility(a);
-                if (AManaProducer * amp = dynamic_cast<AManaProducer*> (core))
+                if (dynamic_cast<AManaProducer*> (core))
                     a->canBeInterrupted = false;
 
                 a->addToGame();

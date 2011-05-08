@@ -101,7 +101,7 @@ void DestroyGame(void)
     return self;
 }
 
--(id)initialize {
+- (id)initialize {
 	
 	NSLog(@"EAGL View - initialize EAGL");
 	

@@ -910,7 +910,7 @@ AAMorph * AAMorph::clone() const
 }
 // AADYNAMIC: dynamic ability builder
 AADynamic::AADynamic(int id, MTGCardInstance * card, Damageable * _target,int type,int effect,int who,int amountsource,MTGAbility * storedAbility, ManaCost * _cost) :
-ActivatedAbility(id, card, _cost, 0),type(type),effect(effect),who(who),amountsource(amountsource),eachother(eachother),storedAbility(storedAbility)
+ActivatedAbility(id, card, _cost, 0),type(type),effect(effect),who(who),amountsource(amountsource),storedAbility(storedAbility)
 {
     target = _target;
     sourceamount = 0;
@@ -919,7 +919,6 @@ ActivatedAbility(id, card, _cost, 0),type(type),effect(effect),who(who),amountso
     tosrc = false;
     menu = "";
     OriginalSrc = source;
-    storedAbility = storedAbility;
     clonedStored = NULL;
 }
 
@@ -2555,7 +2554,8 @@ int ATransformer::addToGame()
                 ((GenericActivatedAbility *)aNew)->source = _target;
                 ((GenericActivatedAbility *)aNew)->ability->source = _target;
             }
-            if (MultiAbility * abi = dynamic_cast<MultiAbility*>(aNew))
+            MultiAbility * abi = dynamic_cast<MultiAbility*>(aNew);
+            if (abi)
             {
                 ((MultiAbility *)aNew)->source = _target;
                 ((MultiAbility *)aNew)->abilities[0]->source = _target;

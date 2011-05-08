@@ -698,7 +698,7 @@ void CardGui::TinyCropRender(MTGCard * card, const Pos& pos, JQuad * quad)
             ++j;
         }
         //Has X?
-        if (int cost = manacost->hasX())
+        if (manacost->hasX())
         {
             char buffer[10];
             sprintf(buffer, "X");

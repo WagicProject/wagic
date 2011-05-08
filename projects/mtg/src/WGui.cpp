@@ -1118,7 +1118,6 @@ bool WGuiTabMenu::CheckUserInput(JButton key)
 {
     bool result = false;
     bool kidModal = false;
-    bool handledInput = false;
     int nbitems = (int) items.size();
     JGE * mEngine = JGE::GetInstance();
     int i, j;

@@ -4559,7 +4559,6 @@ public:
         {
         
             Interruptible * action = game->mLayers->stackLayer()->getAt(-1);
-            Spell * spell = (Spell *) action;
             AADrawer * draw = dynamic_cast <AADrawer *> (action);
             if (draw && draw->aType == MTGAbility::STANDARD_DRAW) 
             return 1;

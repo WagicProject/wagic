@@ -49,7 +49,6 @@ MTGAbility(_id,NULL)
 }
 int MTGEventBonus::receiveEvent(WEvent * event)
 {
-    Player * player = game->currentlyActing();
     Player * currentPlayer = game->currentPlayer;
     //bonus for chain chain casting without tapping for mana or being interupted;
     //note gaining mana from other sources is still possible.
@@ -532,7 +531,7 @@ int MTGKickerRule::reactToClick(MTGCardInstance * card)
     }
 
     ManaCost * previousManaPool = NEW ManaCost(player->getManaPool());
-    int payResult = player->getManaPool()->pay(withKickerCost);
+    player->getManaPool()->pay(withKickerCost);
     withKickerCost->doPayExtra();
     ManaCost * spellCost = previousManaPool->Diff(player->getManaPool());
     delete withKickerCost;
@@ -630,7 +629,7 @@ int MTGAlternativeCostRule::isReactingToClick(MTGCardInstance * card, ManaCost *
         return 0;
     if(!allowedToAltCast(card,player))
         return 0;
-        card->getManaCost()->alternativeName;
+
     if(card->model->data->getManaCost()->alternative && card->model->data->getManaCost()->alternative->alternativeName.size())
         alternativeName = card->model->data->getManaCost()->alternative->alternativeName;
 
@@ -673,11 +672,9 @@ int MTGAlternativeCostRule::reactToClick(MTGCardInstance * card)
 		return 0;
 
 	ManaCost *alternateCost = card->getManaCost()->alternative;
-    Player * player = game->currentlyActing();
-    ManaCost * playerMana = player->getManaPool();
 	card->paymenttype = MTGAbility::ALTERNATIVE_COST;
 
-    return reactToClick(card, card->getManaCost()->alternative, ManaCost::MANA_PAID_WITH_ALTERNATIVE);
+    return reactToClick(card, alternateCost, ManaCost::MANA_PAID_WITH_ALTERNATIVE);
 }
 
 int MTGAlternativeCostRule::reactToClick(MTGCardInstance * card, ManaCost *alternateCost, int alternateCostType){
@@ -789,8 +786,6 @@ int MTGBuyBackRule::reactToClick(MTGCardInstance * card)
     if (!isReactingToClick(card))
         return 0;
 
-    Player *player = game->currentlyActing();
-    ManaCost * playerMana = player->getManaPool();
     ManaCost * alternateCost = card->getManaCost()->BuyBack;
     
     card->paymenttype = MTGAbility::BUYBACK_COST;
@@ -838,9 +833,8 @@ int MTGFlashBackRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
 
 int MTGFlashBackRule::reactToClick(MTGCardInstance * card) 
 {
-    Player *player = game->currentlyActing();
     ManaCost * alternateCost = card->getManaCost()->FlashBack;
-    ManaCost * playerMana = game->currentlyActing()->getManaPool();
+    
     if (!isReactingToClick(card))
         return 0;
 
@@ -896,8 +890,7 @@ int MTGRetraceRule::reactToClick(MTGCardInstance * card)
 {
     if (!isReactingToClick(card))
         return 0;
-    Player *player = game->currentlyActing();
-    ManaCost * playerMana = player->getManaPool();
+    
     ManaCost * alternateCost = card->getManaCost()->Retrace;
     
     card->paymenttype = MTGAbility::RETRACE_COST;
@@ -1039,7 +1032,7 @@ MTGMorphCostRule::MTGMorphCostRule(int _id) :
 }
 int MTGMorphCostRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
 {
-    int cardsinhand = game->players[0]->game->hand->nb_cards;
+
     Player * player = game->currentlyActing();
     Player * currentPlayer = game->currentPlayer;
     if (!player->game->hand->hasCard(card))
@@ -1058,11 +1051,13 @@ int MTGMorphCostRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
         if (currentPlayer->game->playRestrictions->canPutIntoZone(card, currentPlayer->game->stack) == PlayRestriction::CANT_PLAY)
             return 0;
         ManaCost * playerMana = player->getManaPool();
-        ManaCost * cost = card->getManaCost();
         ManaCost * morph = card->getManaCost()->morph;
+
 #ifdef WIN32
+        ManaCost * cost = card->getManaCost();
         cost->Dump();
 #endif
+        
         //cost of card.
         if (morph && playerMana->canAfford(morph))
         {
