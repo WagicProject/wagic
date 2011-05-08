@@ -182,6 +182,7 @@ castle.txt
 cathodion.txt
 celestial_mantle.txt
 celestial_purge.txt
+celestial_sword.txt
 chainbreaker.txt
 circle_of_protection.txt
 circle_of_protection_i211.txt

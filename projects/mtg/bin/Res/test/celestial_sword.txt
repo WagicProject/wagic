@@ -1,0 +1,37 @@
+#Testing Celestial Sword. It has a complex "newability"
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:shock
+inplay:Celestial Sword,grizzly bears
+manapool:{3}{R}
+[PLAYER2]
+life:20
+[DO]
+Celestial Sword
+Grizzly Bears
+Shock
+Grizzly Bears
+next
+#begin
+next
+#attackers
+Grizzly Bears
+next
+#blockers
+next
+#damage
+eot
+eot
+next
+next
+next
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Celestial Sword
+graveyard:Grizzly Bears,Shock
+manapool:{0}
+[PLAYER2]
+life:15
+[END]
