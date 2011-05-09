@@ -272,10 +272,6 @@ void CardPrimitive::setName(const string& value)
     name = value;
     lcname = value;
     std::transform(lcname.begin(), lcname.end(), lcname.begin(), ::tolower);
-    //This is a bug fix for plague rats and the "foreach ability"
-    //Right now we add names as types, so that they get recognized
-    if (value.length() && lcname.at(value.length() - 1) == 's')
-        Subtypes::subtypesList->find(lcname);
 }
 
 const string& CardPrimitive::getName() const

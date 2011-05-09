@@ -2420,7 +2420,7 @@ ATransformer::ATransformer(int id, MTGCardInstance * source, MTGCardInstance * t
    
     //this subkeyword adds a color without removing the existing colors.
     addNewColors = (sabilities.find("newcolors") != string::npos);
-	remove = (stypes.find("removesubtypes") != string::npos);
+	remove = (stypes.find("removealltypes") != string::npos);
 	removeCreatureSubtypes = (stypes.find("removecreaturesubtypes") != string::npos);
     removeTypes = (stypes.find("removetypes") != string::npos);
 
@@ -2432,8 +2432,9 @@ ATransformer::ATransformer(int id, MTGCardInstance * source, MTGCardInstance * t
 				continue;
 
 			//Erwan 2011/5/6 String comparison is expensive. Any way to do this in a cleaner way?
-			//I think this is releated to the fact that "Pestilence Rats" is a type for some reason, maybe we don't need that anymore
-			//TODO Remove the following block if possible
+			//this check is related to targetchooser instances of cards dynamically loaded subtypes. 
+			//example(foreach(arbor elf)) adds this as a subtype for list ment.
+			//TODO find cheaper method
 			string s = Subtypes::subtypesList->find(i);
 			if (s.find(" ") != string::npos)
 				continue;
@@ -2502,27 +2503,29 @@ int ATransformer::addToGame()
 			_target->removeType(*it);
 		}
 	}
-	for (it = types.begin(); it != types.end(); it++)
+	else
 	{
-		if(removeCreatureSubtypes)
+		for (it = types.begin(); it != types.end(); it++)
 		{
-			_target->removeType(*it);
-		}
-		else if(_target->hasSubtype(*it))
-		{
-			//we generally don't want to give a creature type creature again
-			//all it does is create a sloppy mess of the subtype line on alternative quads
-			//also creates instances where a card gained a type from an ability like this one
-			//then loses the type through another ability, when this effect is destroyed the creature regains
-			//the type, which is wrong.
-			dontremove.push_back(*it);
-		}
-		else
-		{
-			_target->addType(*it);
+			if(removeCreatureSubtypes)
+			{
+				_target->removeType(*it);
+			}
+			else if(_target->hasSubtype(*it))
+			{
+				//we generally don't want to give a creature type creature again
+				//all it does is create a sloppy mess of the subtype line on alternative quads
+				//also creates instances where a card gained a type from an ability like this one
+				//then loses the type through another ability, when this effect is destroyed the creature regains
+				//the type, which is wrong.
+				dontremove.push_back(*it);
+			}
+			else
+			{
+				_target->addType(*it);
+			}
 		}
 	}
-
     for (it = colors.begin(); it != colors.end(); it++)
     {
         _target->setColor(*it);
@@ -2663,7 +2666,6 @@ int ATransformer::destroy()
         {
             for (it = oldtypes.begin(); it != oldtypes.end(); it++)
             {
-                if (!_target->hasSubtype(*it))
                     _target->addType(*it);
             }
         }

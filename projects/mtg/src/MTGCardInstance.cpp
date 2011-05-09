@@ -182,14 +182,12 @@ void MTGCardInstance::initMTGCI()
                 continue;
 
             //Erwan 2011/5/6 String comparison is expensive. Any way to do this in a cleaner way?
-            //I think this is releated to the fact that "Pestilence Rats" is a type for some reason, maybe we don't need that anymore
-            //TODO Remove the following block if possible
-            {
+			//this check is related to targetchooser instances of cards dynamically loaded subtypes. 
+			//example(foreach(arbor elf)) adds this as a subtype for list ment.
+			//TODO find cheaper method
                 string s = Subtypes::subtypesList->find(i);
-
                 if (s.find(" ") != string::npos)
                     continue;
-            }
 
             addType(i);
         }
