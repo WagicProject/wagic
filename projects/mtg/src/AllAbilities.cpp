@@ -2662,13 +2662,6 @@ int ATransformer::destroy()
             _target->setColor(*it);
         }
 
-        if (remove)
-        {
-            for (it = oldtypes.begin(); it != oldtypes.end(); it++)
-            {
-                    _target->addType(*it);
-            }
-        }
         if(newpowerfound )
         {
             _target->power = oldpower;
@@ -2688,7 +2681,14 @@ int ATransformer::destroy()
                 newAbilities.erase(_target);
             }
         }
-		//we reset the name in the case that we removed or added types to a card, so that it retains its original name when the effect is removed.
+		if (remove)
+		{
+			for (it = oldtypes.begin(); it != oldtypes.end(); it++)
+			{
+				_target->addType(*it);
+			}
+		}
+		//n the case that we removed or added types to a card, so that it retains its original name when the effect is removed.
 		_target->name.clear();
 		_target->setName(_target->model->data->name.c_str());
     }
@@ -2853,12 +2853,21 @@ int ALoseAbilities::destroy()
         MTGAbility * a = storedAbilities[i];
         //OneShot abilities are not supposed to stay in the game for long.
         // If we copied one, something wrong probably happened
-        if (a->oneShot)
-        {
-            DebugTrace("ALL_ABILITIES: Ability should not be one shot");
-            continue;
-        }
-        a->addToGame();
+		ALoseAbilities * la = dynamic_cast<ALoseAbilities*> (a);
+		if (a->oneShot||la)
+		{
+			if(la)
+			{
+				DebugTrace("Dangerous chance of infinate loop avoided!");
+				continue;
+			}
+			else
+			{
+				DebugTrace("ALLABILITIES: Ability should not be one shot");
+				continue;
+			}
+		}
+ 				   a->addToGame();
     }
     storedAbilities.clear();
     return 1;
