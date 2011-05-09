@@ -70358,7 +70358,7 @@ type=Legendary Land
 [/card]
 [card]
 name=Urborg, Tomb of Yawgmoth
-auto=lord(land) transforms((swamp]))
+auto=lord(land) transforms((swamp))
 text=Each land is a Swamp in addition to its other land types.
 type=Legendary Land
 [/card]
