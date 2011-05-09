@@ -684,8 +684,12 @@ MTGAbility * AbilityFactory::getCoreAbility(MTGAbility * a)
     if (MultiAbility * abi = dynamic_cast<MultiAbility*>(a))
         return getCoreAbility(abi->abilities[0]);
 
-    if (NestedAbility * na = dynamic_cast<NestedAbility*> (a))
-        return getCoreAbility(na->ability);
+	if (NestedAbility * na = dynamic_cast<NestedAbility*> (a))
+	{
+		if(na->ability)
+			//only atempt to return a nestedability if it contains a valid ability. example where this causes a bug otherwise. AEquip is considered nested, but contains no ability.
+			return getCoreAbility(na->ability);
+	}
 
     return a;
 }
@@ -1942,18 +1946,25 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     {
         vector<string> becomesParameters = split(splitBecomes[1], ',');
         string stypes = becomesParameters[0];
+		string newPower = "";
+        string newToughness = "";
+		bool ptFound = false;
+		if(becomesParameters.size() >1)
+		{
         vector<string> pt = split(becomesParameters[1], '/');
-        string newPower = pt[0];
-        string newToughness = pt[1];
+        newPower = pt[0];
+        newToughness = pt[1];
+		ptFound = true;
+		}
         string sabilities = (becomesParameters.size() > 2) ? becomesParameters[2] : "";
 
         if (oneShot || forceUEOT)
-            return NEW ATransformerInstant(id, card, target, stypes, sabilities,newPower,true,newToughness,true,vector<string>(),false,forceFOREVER);
+            return NEW ATransformerInstant(id, card, target, stypes, sabilities,newPower,ptFound,newToughness,ptFound,vector<string>(),false,forceFOREVER);
 
         if(forceFOREVER)
-            return NEW ATransformerInstant(id, card, target, stypes, sabilities,newPower,true,newToughness,true,vector<string>(),false,forceFOREVER);
+            return NEW ATransformerInstant(id, card, target, stypes, sabilities,newPower,ptFound,newToughness,ptFound,vector<string>(),false,forceFOREVER);
 
-        return  NEW ATransformer(id, card, target, stypes, sabilities,newPower,true,newToughness,true,vector<string>(),false,forceFOREVER);
+        return  NEW ATransformer(id, card, target, stypes, sabilities,newPower,ptFound,newToughness,ptFound,vector<string>(),false,forceFOREVER);
     }
 
     //bloodthirst

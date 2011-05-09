@@ -2417,34 +2417,29 @@ ATransformer::ATransformer(int id, MTGCardInstance * source, MTGCardInstance * t
 
     PopulateAbilityIndexVector(abilities, sabilities);
     PopulateColorIndexVector(colors, sabilities);
-    
    
     //this subkeyword adds a color without removing the existing colors.
     addNewColors = (sabilities.find("newcolors") != string::npos);
-    remove = (stypes == "removesubtypes");
-    removeTypes = (stypes == "removetypes");
+	remove = (stypes.find("removesubtypes") != string::npos);
+	removeCreatureSubtypes = (stypes.find("removecreaturesubtypes") != string::npos);
+    removeTypes = (stypes.find("removetypes") != string::npos);
 
-    //Gains or loses all creature subtypes
-    if (stypes == "allsubtypes" || stypes == "removesubtypes")
-    {
-        for (size_t i = 0; i <Subtypes::subtypesList->getValuesById().size(); ++i)
-        {
-            if (!Subtypes::subtypesList->isSubtypeOfType(i,Subtypes::TYPE_CREATURE))
-                continue;
+	if (stypes.find("allsubtypes") != string::npos || stypes.find("removecreaturesubtypes") != string::npos)
+	{
+		for (size_t i = 0; i <Subtypes::subtypesList->getValuesById().size(); ++i)
+		{
+			if (!Subtypes::subtypesList->isSubtypeOfType(i,Subtypes::TYPE_CREATURE))
+				continue;
 
-            //Erwan 2011/5/6 String comparison is expensive. Any way to do this in a cleaner way?
-            //I think this is releated to the fact that "Pestilence Rats" is a type for some reason, maybe we don't need that anymore
-            //TODO Remove the following block if possible
-            {
-                string s = Subtypes::subtypesList->find(i);
-
-                if (s.find(" ") != string::npos)
-                    continue;
-            }
-
-            types.push_back(i);
-        }
-    }
+			//Erwan 2011/5/6 String comparison is expensive. Any way to do this in a cleaner way?
+			//I think this is releated to the fact that "Pestilence Rats" is a type for some reason, maybe we don't need that anymore
+			//TODO Remove the following block if possible
+			string s = Subtypes::subtypesList->find(i);
+			if (s.find(" ") != string::npos)
+				continue;
+			types.push_back(i);
+		}
+	}
     else
     {
         PopulateSubtypesIndexVector(types, stypes);
@@ -2500,30 +2495,33 @@ int ATransformer::addToGame()
         for (int i = 0; i < Subtypes::LAST_TYPE; ++ i)
             _target->removeType(i,1);
     }
-
-    for (it = types.begin(); it != types.end(); it++)
-    {
-        if (remove)
-        {
-            _target->removeType(*it);
-        }
-        else
-        {
-            if(_target->hasSubtype(*it))
-            {
-                //we generally don't want to give a creature type creature again
-                //all it does is create a sloppy mess of the subtype line on alternative quads
-                //also creates instances where a card gained a type from an ability like this one
-                //then loses the type through another ability, when this effect is destroyed the creature regains
-                //the type, which is wrong.
-                dontremove.push_back(*it);
-            }
-            else
-            {
-                _target->addType(*it);
-            }
-        }
-    }
+	if (remove)
+	{
+		for (it = oldtypes.begin(); it != oldtypes.end(); it++)
+		{
+			_target->removeType(*it);
+		}
+	}
+	for (it = types.begin(); it != types.end(); it++)
+	{
+		if(removeCreatureSubtypes)
+		{
+			_target->removeType(*it);
+		}
+		else if(_target->hasSubtype(*it))
+		{
+			//we generally don't want to give a creature type creature again
+			//all it does is create a sloppy mess of the subtype line on alternative quads
+			//also creates instances where a card gained a type from an ability like this one
+			//then loses the type through another ability, when this effect is destroyed the creature regains
+			//the type, which is wrong.
+			dontremove.push_back(*it);
+		}
+		else
+		{
+			_target->addType(*it);
+		}
+	}
 
     for (it = colors.begin(); it != colors.end(); it++)
     {
@@ -2688,6 +2686,9 @@ int ATransformer::destroy()
                 newAbilities.erase(_target);
             }
         }
+		//we reset the name in the case that we removed or added types to a card, so that it retains its original name when the effect is removed.
+		_target->name.clear();
+		_target->setName(_target->model->data->name.c_str());
     }
     return 1;
 }

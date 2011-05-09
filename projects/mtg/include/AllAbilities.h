@@ -3471,6 +3471,7 @@ public:
     vector<int> dontremove;
     bool addNewColors;
     bool remove;
+	bool removeCreatureSubtypes;
     bool removeTypes;
     string menu;
     string newpower;

@@ -318,7 +318,7 @@ int AIAction::getEfficiency()
         break;
     }
     case MTGAbility::STANDARD_PREVENT:
-        {
+		{
             efficiency = 0;//starts out low to avoid spamming it when its not needed.
             if (!target && !dynamic_cast<ALord*> (a))
                 break;
