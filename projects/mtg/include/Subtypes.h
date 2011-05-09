@@ -35,18 +35,18 @@ public:
 protected:
     map<string, int> values;
     vector<string> valuesById;
-    map<int,int> subtypesToType;
+    vector<unsigned int> subtypesToType;
 public:
     static Subtypes * subtypesList;
     Subtypes();
     int find(string subtype, bool forceAdd = true);
     string find(unsigned int id);
     bool isSubtypeOfType(string subtype, string type);
-    bool isSubtypeOfType(int subtype, int type);
-    bool isSuperType(int type);
-    bool isType(int type);
-    bool isSubType(int type);
-    int add(string value, int parentType);
+    bool isSubtypeOfType(unsigned int subtype, unsigned int type);
+    bool isSuperType(unsigned int type);
+    bool isType(unsigned int type);
+    bool isSubType(unsigned int type);
+    int add(string value, unsigned int parentType);
     const vector<string> getValuesById();
 };
 
