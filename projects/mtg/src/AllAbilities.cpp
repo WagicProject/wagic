@@ -2835,6 +2835,9 @@ int ALoseAbilities::addToGame()
         if (al->mObjects[i])
         {
             MTGAbility * currentAction = (MTGAbility *) al->mObjects[i];
+			ALoseAbilities * la = dynamic_cast<ALoseAbilities*> (currentAction);
+			if(la)
+				continue;
             if (currentAction->source == _target)
             {
                 storedAbilities.push_back(currentAction);
