@@ -1,0 +1,23 @@
+#Testing Tidal Warrior's "target becomes island" ability,
+# Make sure it can be cast several times
+#see http://code.google.com/p/wagic/issues/detail?id=652
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Forest,mountain, Tidal Warrior
+[PLAYER2]
+[DO]
+Tidal Warrior
+Forest
+eot
+eot
+Tidal Warrior
+Mountain
+Mountain
+[ASSERT]
+UNTAP
+[PLAYER1]
+inplay:Forest, Mountain,Tidal Warrior
+manapool:{U}
+[PLAYER2]
+[END]

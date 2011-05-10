@@ -1766,6 +1766,7 @@ public:
     GenericInstantAbility * clone() const
     {
         GenericInstantAbility * a = NEW GenericInstantAbility(*this);
+        a->ability = ability->clone();
         a->isClone = 1;
         return a;
     }
