@@ -2496,7 +2496,7 @@ int ATransformer::addToGame()
         for (int i = 0; i < Subtypes::LAST_TYPE; ++ i)
             _target->removeType(i,1);
     }
-	if (remove)
+	else if (remove)
 	{
 		for (it = oldtypes.begin(); it != oldtypes.end(); it++)
 		{
