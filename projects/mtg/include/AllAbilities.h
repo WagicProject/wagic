@@ -825,6 +825,20 @@ public:
         return a;
     }
 };
+
+//make instant ability out of anything
+class AGenericInstantWrapper: public InstantAbility
+{
+public:
+    MTGAbility * ability;
+
+    AGenericInstantWrapper(int id, MTGCardInstance * source, Damageable * target,MTGAbility * wrapThis);
+    int resolve();
+    const char * getMenuText();
+    AGenericInstantWrapper * clone() const;
+    ~AGenericInstantWrapper();
+};
+
 //counters
 class AACounter: public ActivatedAbility
 {
@@ -1766,7 +1780,6 @@ public:
     GenericInstantAbility * clone() const
     {
         GenericInstantAbility * a = NEW GenericInstantAbility(*this);
-        a->ability = ability->clone();
         a->isClone = 1;
         return a;
     }
