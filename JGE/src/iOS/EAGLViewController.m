@@ -64,11 +64,16 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // Overriden to allow any orientation.
+    bool isSmallScreen = (UI_USER_INTERFACE_IDIOM()) == UIUserInterfaceIdiomPhone;
+
+    if ( isSmallScreen && UIInterfaceOrientationIsPortrait(interfaceOrientation))
+        return NO;
+    
     return YES;
 }
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-	
+    
 	UIDeviceOrientation currentDeviceOrientation = [UIDevice currentDevice].orientation;
 	UIInterfaceOrientation currentInterfaceOrientation	= self.interfaceOrientation;
 	

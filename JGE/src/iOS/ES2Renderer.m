@@ -44,7 +44,7 @@ bool checkFramebufferStatus();
 
 - (void)render
 {
-	NSLog(@"Renderer - render");
+//	NSLog(@"Renderer - render");
 
 	struct timeval tv;
 	uint dt;

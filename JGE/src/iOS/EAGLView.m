@@ -68,7 +68,6 @@ void DestroyGame(void)
     return [CAEAGLLayer class];
 }
 
-
 - (void)dealloc
 {
     [renderer release];
