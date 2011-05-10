@@ -53,6 +53,8 @@ int MTGEventBonus::receiveEvent(WEvent * event)
     //bonus for chain chain casting without tapping for mana or being interupted;
     //note gaining mana from other sources is still possible.
     //only spells going to the stack are counted.
+	if(game->turn <2)//this shouldnt trigger on first turn, chances are they are cheating.
+		return 0;
     if (WEventCardTappedForMana* e = dynamic_cast<WEventCardTappedForMana*>(event))
     {
         if(e)

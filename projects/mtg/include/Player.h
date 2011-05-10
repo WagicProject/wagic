@@ -35,6 +35,7 @@ public:
     string deckFileSmall;
     string deckName;
     string phaseRing;
+	int offerInterruptOnPhase;
     Player(string deckFile, string deckFileSmall, MTGDeck * deck = NULL);
     virtual ~Player();
 

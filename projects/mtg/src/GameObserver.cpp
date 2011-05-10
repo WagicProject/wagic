@@ -208,6 +208,7 @@ void GameObserver::userRequestNextGamePhase()
     	|| (cPhaseOld->id == Constants::MTG_PHASE_COMBATDAMAGE)
         || opponent()->isAI() 
         || options[Options::optionInterrupt(currentGamePhase)].number
+		|| currentPlayer->offerInterruptOnPhase - 1 == currentGamePhase
     )
     {
         mLayers->stackLayer()->AddNextGamePhase();
