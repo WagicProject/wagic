@@ -20246,7 +20246,7 @@ type=Instant
 [/card]
 [card]
 name=Essence Sliver
-auto=@damaged(creature,player) from(sliver):all(trigger[from]) life:thatmuch controller
+auto=lord(sliver) transforms((,newability[spiritlink]))
 text=Whenever a Sliver deals damage, its controller gains that much life.
 mana={3}{W}
 type=Creature
