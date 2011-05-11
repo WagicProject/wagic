@@ -112,6 +112,14 @@ void ActionLayer::Update(float dt)
     GameObserver* game = GameObserver::GetInstance();
     for (int i = mCount - 1; i >= 0; i--)
     {
+        //a dirty hack, there might be cases when the mObject array gets reshaped if an ability removes some of its children abilites
+        if ((int) mObjects.size() <= i)
+        {
+            i = (int) (mObjects.size()) - 1;
+            if (i<0)
+                break;
+        }
+
         if (mObjects[i] != NULL)
         {
             ActionElement * currentAction = (ActionElement *) mObjects[i];
@@ -364,10 +372,8 @@ ActionLayer::ActionLayer()
 
 ActionLayer::~ActionLayer()
 {
-    for (int i = mCount - 1; i >= 0; i--)
-    {
-        moveToGarbage((ActionElement *) mObjects[i]);
-    }
+    while(mObjects.size())
+        moveToGarbage((ActionElement *) mObjects[mObjects.size() - 1]);
     SAFE_DELETE(abilitiesMenu);
     cleanGarbage();
 }

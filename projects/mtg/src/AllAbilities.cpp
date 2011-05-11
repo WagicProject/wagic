@@ -69,39 +69,6 @@ GenericActivatedAbility::~GenericActivatedAbility()
     SAFE_DELETE(ability);
 }
 
-//a generic instant wrapper
-//this turns any MTGAbility object into an instant ability.
-AGenericInstantWrapper::AGenericInstantWrapper(int id, MTGCardInstance * source, Damageable * target,MTGAbility * wrapThis) :
-    InstantAbility(id, source, target)
-{
-    ability = wrapThis;
-}
-
-int AGenericInstantWrapper::resolve()
-{
-    MTGAbility * a = ability->clone();
-    GenericInstantAbility * wrapper = NEW GenericInstantAbility(1, source, (Damageable *) (this->target), a);
-    wrapper->addToGame();
-    return 1;
-}
-const char * AGenericInstantWrapper::getMenuText()
-{
-    return ability->getMenuText();
-}
-
-AGenericInstantWrapper * AGenericInstantWrapper::clone() const
-{
-    AGenericInstantWrapper * a = NEW AGenericInstantWrapper(*this);
-    a->ability = this->ability->clone();
-    a->isClone = 1;
-    return a;
-}
-
-AGenericInstantWrapper::~AGenericInstantWrapper()
-{
-    SAFE_DELETE(ability);
-}
-
 //AA Alter Poison
 AAAlterPoison::AAAlterPoison(int _id, MTGCardInstance * _source, Targetable * _target, int poison, ManaCost * _cost,
         int who) :

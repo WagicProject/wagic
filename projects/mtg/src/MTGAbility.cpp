@@ -909,7 +909,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         if (!a1)
             return NULL;
 
-        return NEW AGenericInstantWrapper(1, card, (Damageable *) target, a1);
+        return NEW GenericInstantAbility(1, card, (Damageable *) target, a1);
     }
     
     //Upkeep Cost
