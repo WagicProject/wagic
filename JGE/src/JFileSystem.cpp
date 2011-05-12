@@ -265,9 +265,20 @@ int JFileSystem::GetFileSize()
 void JFileSystem::SetResourceRoot(const string& resourceRoot)
 {
 #ifdef IOS
-    NSString *pathUTF8 = [NSString stringWithUTF8String: resourceRoot.c_str()];
-    NSString *fullpath = [[[NSBundle mainBundle] resourcePath]  stringByAppendingPathComponent:pathUTF8]; 
-    mResourceRoot = [fullpath cStringUsingEncoding:1];
+    //copy the RES folder over to the Documents folder
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSError *error;
+    NSArray *paths = NSSearchPathForDirectoriesInDomains( NSDocumentDirectory,
+                                                         NSUserDomainMask, YES);
+    NSString *documentsDirectory = [[paths objectAtIndex:0] stringByAppendingString: @"/Res"];
+    
+    NSString *resourceDBFolderPath = [[[NSBundle mainBundle] resourcePath] 
+                                      stringByAppendingPathComponent:@"Res"];
+    // copy the Res folder over to the Documents directory if it doesn't exist.
+    if ( ![fileManager fileExistsAtPath: documentsDirectory])
+        [fileManager copyItemAtPath:resourceDBFolderPath toPath:documentsDirectory error:&error];
+    
+    mResourceRoot = [documentsDirectory cStringUsingEncoding:1];
     mResourceRoot += "/";
 #elif defined (ANDROID)
     mResourceRoot = "/sdcard/Wagic/Res/";
