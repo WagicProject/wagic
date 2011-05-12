@@ -1080,7 +1080,7 @@ type=Artifact
 [card]
 name=Alabaster Dragon
 auto=flying
-auto=@movedTo(graveyard) from(this|battlefield):moveto(mylibrary) all(trigger[from]) && shuffle controller
+auto=@movedTo(graveyard) from(this|battlefield):moveto(ownerlibrary) all(trigger[from]) && shuffle
 text=Flying -- When Alabaster Dragon is put into a graveyard from the battlefield, shuffle Alabaster Dragon into its owner's library.
 mana={4}{W}{W}
 type=Creature
@@ -1858,7 +1858,7 @@ toughness=5
 [card]
 name=Angel of Fury
 abilities=flying
-auto=@movedTo(graveyard) from(this|battlefield):may moveto(mylibrary) all(trigger[from]) && shuffle controller
+auto=@movedTo(mygraveyard) from(this|battlefield):may moveto(mylibrary) all(trigger[from]) && shuffle
 text=Flying -- When Angel of Fury is put into your graveyard from the battlefield, you may shuffle it into your library.
 mana={4}{W}{W}
 type=Creature
@@ -3655,7 +3655,7 @@ toughness=2
 name=Aurification
 auto=@damaged(controller) from(creature):all(trigger[from]) counter(0/0,1,Gold)
 auto=lord(creature[counter{0/0.1.Gold}]) defender
-auto=@movedTo(graveyard) from(this|myBattlefield):all(creature) removeallcounters(0/0,1,Gold)
+auto=@movedTo(this|nonbattlezone) from(myBattlefield):all(creature) removeallcounters(0/0,1,Gold)
 text=Whenever a creature deals damage to you, put a gold counter on it. -- Each creature with a gold counter on it is a Wall in addition to its other creature types and has defender. (Those creatures can't attack.) -- When Aurification leaves the battlefield, remove all gold counters from all creatures.
 mana={2}{W}{W}
 type=Enchantment
@@ -17613,7 +17613,7 @@ toughness=1
 [/card]
 [card]
 name=Dripping-Tongue Zubera
-auto=@movedTo(graveyard) from(this|mybattlefield):foreach(zubera[fresh]|mygraveyard) token(Spirit,Creature Spirit,1/1)
+auto=@movedTo(graveyard) from(this|mybattlefield):foreach(zubera[fresh]|graveyard) token(Spirit,Creature Spirit,1/1)
 text=When Dripping-Tongue Zubera is put into a graveyard from the battlefield, put a 1/1 colorless Spirit creature token onto the battlefield for each Zubera put into a graveyard from the battlefield this turn.
 mana={1}{G}
 type=Creature
@@ -18058,9 +18058,9 @@ toughness=1
 [/card]
 [card]
 name=Dusk Urchins
+auto=@combat(attacking,blocking) source(this):counter(-1/-1,1) all(this)
+auto=@movedTo(this|graveyard) from(battlefield):thisforeach(counter{-1/-1,1}) draw:1 controller
 text=Whenever Dusk Urchins attacks or blocks, put a -1/-1 counter on it. -- When Dusk Urchins is put into a graveyard from the battlefield, draw a card for each -1/-1 counter on it.
-auto=@combat(attacking,blocking) source(this):counter(1/1,-1) all(this)
-auto=@movedto(mygraveyard) from(this|mybattlefield) thisforeach(counter{1/1,-1}) draw:1 controller
 mana={2}{B}
 type=Creature
 subtype=Ouphe
@@ -19426,7 +19426,7 @@ toughness=4
 [/card]
 [card]
 name=Ember-Fist Zubera
-auto=@movedTo(graveyard) from(this|mybattlefield):foreach(zubera[fresh]|mygraveyard) damage:1 target(creature,player)
+auto=@movedTo(graveyard) from(this|mybattlefield):foreach(zubera[fresh]|graveyard) damage:1 target(creature,player)
 text=When Ember-Fist Zubera is put into a graveyard from the battlefield, it deals damage to target creature or player equal to the number of Zubera put into all graveyards from the battlefield this turn.
 mana={1}{R}
 type=Creature
@@ -23028,7 +23028,7 @@ subtype=Aura
 [/card]
 [card]
 name=Floating-Dream Zubera
-auto=@movedTo(graveyard) from(this|mybattlefield):foreach(zubera[fresh]|mygraveyard) draw:1 controller
+auto=@movedTo(graveyard) from(this|mybattlefield):foreach(zubera[fresh]|graveyard) draw:1 controller
 text=When Floating-Dream Zubera is put into a graveyard from the battlefield, draw a card for each Zubera put into a graveyard from the battlefield this turn.
 mana={1}{U}
 type=Creature
@@ -58289,7 +58289,7 @@ toughness=2
 [/card]
 [card]
 name=Silent-Chant Zubera
-auto=@movedTo(graveyard) from(this|mybattlefield):foreach(zubera[fresh]|mygraveyard) life:2 controller
+auto=@movedTo(graveyard) from(this|mybattlefield):foreach(zubera[fresh]|graveyard) life:2 controller
 text=When Silent-Chant Zubera is put into a graveyard from the battlefield, you gain 2 life for each Zubera put into a graveyard from the battlefield this turn.
 mana={1}{W}
 type=Creature
