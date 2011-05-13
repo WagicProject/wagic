@@ -5372,7 +5372,7 @@ toughness=*
 [card]
 name=Beast Within
 target=*
-auto=destroy && targetcontroller token(Beast,Creature Beast,3/3,green)
+auto=destroy && token(Beast,Creature Beast,3/3,green) targetcontroller
 text=Destroy target permanent. Its controller puts a 3/3 green Beast creature token onto the battlefield.
 mana={2}{G}
 type=Instant
@@ -64769,8 +64769,8 @@ toughness=2
 [card]
 name=Sword of Body and Mind
 auto={2}:equip
-auto=protection from green
-auto=protection from blue
+auto=teach(creature) protection from green
+auto=teach(creature) protection from blue
 auto=2/2
 auto=@combatdamaged(player) from(mytgt):token(Wolf,Creature Wolf,2/2,green)
 auto=@combatdamaged(player) from(mytgt):deplete:10 opponent
@@ -64782,8 +64782,8 @@ subtype=Equipment
 [card]
 name=Sword of Fire and Ice
 auto={2}:equip
-auto=protection from red
-auto=protection from blue
+auto=teach(creature) protection from red
+auto=teach(creature) protection from blue
 auto=2/2
 auto=@combatdamaged(player) from(mytgt):draw:1 controller
 auto=@combatdamaged(player) from(mytgt):damage:2 target(creature,player)
@@ -64805,8 +64805,8 @@ subtype=Equipment
 [card]
 name=Sword of Light and Shadow
 auto={2}:equip
-auto=protection from white
-auto=protection from black
+auto=teach(creature) protection from white
+auto=teach(creature) protection from black
 auto=2/2
 auto=@combatdamaged(player) from(mytgt):life:3
 auto=@combatdamaged(player) from(mytgt):may moveTo(myhand) target(creature|mygraveyard)
@@ -64860,8 +64860,8 @@ subtype=Equipment
 [card]
 name=Sword of War and Peace
 auto={2}:equip
-auto=protection from red
-auto=protection from white
+auto=teach(creature) protection from red
+auto=teach(creature) protection from white
 auto=2/2
 auto=@combatdamaged(player) from(mytgt):foreach(*|opponenthand) damage:1 opponent
 auto=@combatdamaged(player) from(mytgt):foreach(*|myhand) life:1 controller
