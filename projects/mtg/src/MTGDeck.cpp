@@ -1074,7 +1074,8 @@ void MTGDeck::printDetailedDeckText(std::ofstream& file )
 
         for (size_t x = 0; x < card->data->basicAbilities.size(); ++x)
         {
-            currentCard <<  Constants::MTGBasicAbilities[x] << "; ";
+            if ( card->data->basicAbilities[x] == 1 )
+                currentCard <<  Constants::MTGBasicAbilities[x] << "; ";
         }
         currentCard <<endl;
 

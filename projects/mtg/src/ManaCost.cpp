@@ -735,9 +735,9 @@ string ManaCost::toString()
         if (cost[i])
         {
             if ( i == Constants::MTG_COLOR_ARTIFACT)
-                oss << "{" << cost[i] << "}";
+                oss << "{" << getCost(i) << "}";
             else
-                for (int colorCount = 0; colorCount < cost[i]; colorCount++ )
+                for (int colorCount = 0; colorCount < getCost(i); colorCount++ )
                     oss << "{" << Constants::MTGColorChars[i] << "}";
         }
     }
