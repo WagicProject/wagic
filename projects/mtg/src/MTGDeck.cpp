@@ -1072,7 +1072,7 @@ void MTGDeck::printDetailedDeckText(std::ofstream& file )
         if ( card->data->hasRestriction )
             currentCard << ", " << card->data->otherrestriction;
 
-        for (size_t x = 0; card->data->basicAbilities.size(); ++x)
+        for (size_t x = 0; x < card->data->basicAbilities.size(); ++x)
         {
             currentCard <<  Constants::MTGBasicAbilities[x] << "; ";
         }
