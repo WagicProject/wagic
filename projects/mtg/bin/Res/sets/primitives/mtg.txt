@@ -25292,12 +25292,10 @@ toughness=3
 [/card]
 [card]
 name=Giant Growth
-auto=damage:X opponent
-auto=damage:X all(creature|opponentbattlefield)
-#target=creature
-#auto=3/3
+target=creature
+auto=3/3
 text=Target creature gets +3/+3 until end of turn.
-mana={X}{G}
+mana={G}
 type=Instant
 [/card]
 [card]
