@@ -32,12 +32,13 @@ size_t WCFilterFactory::findNext(string src, size_t start, char open, char close
 }
 WCardFilter * WCFilterFactory::Construct(string src)
 {
-    size_t srcLength = src.size();
     size_t x = 0;
     string whitespaces(" \t\f\v\n\r");
     x = src.find_first_not_of(whitespaces);
-    if (x != string::npos) src = src.substr(x);
+    if (x != string::npos) 
+        src = src.substr(x);
 
+    size_t srcLength = src.size();
     if (!srcLength) return NEW WCFilterNULL(); //Empty string.
 
     for (size_t i = 0; i < srcLength; i++)
