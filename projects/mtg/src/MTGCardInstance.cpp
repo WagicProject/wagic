@@ -173,23 +173,14 @@ void MTGCardInstance::initMTGCI()
 
     if (basicAbilities[(int)Constants::CHANGELING])
     {//if the card is a changeling, it gains all creature subtypes
-        for (size_t i = 0; i <Subtypes::subtypesList->getValuesById().size(); ++i)
+        const vector<string> values = Subtypes::subtypesList->getValuesById();
+        for (size_t i = 0; i < values.size(); ++i)
         {
-            if (hasSubtype(i))
-                continue;
-
             if (!Subtypes::subtypesList->isSubtypeOfType(i,Subtypes::TYPE_CREATURE))
                 continue;
 
-            //Erwan 2011/5/6 String comparison is expensive. Any way to do this in a cleaner way?
-			//this check is related to targetchooser instances of cards dynamically loaded subtypes. 
-			//example(foreach(arbor elf)) adds this as a subtype for list ment.
-			//TODO find cheaper method
-                string s = Subtypes::subtypesList->find(i);
-                if (s.find(" ") != string::npos)
-                    continue;
-
-            addType(i);
+            //Don' want to send any event to the gameObserver inside of initMCGI, so calling the parent addType method instead of mine
+            CardPrimitive::addType(i);
         }
     }
 

@@ -63,12 +63,6 @@ string Subtypes::find(unsigned int id)
     return valuesById[id - 1];
 }
 
-bool  Subtypes::isSubtypeOfType(string subtype, string type)
-{
-    unsigned int subtypeInt = find(subtype);
-    unsigned int typeInt = find(type);
-    return isSubtypeOfType(subtypeInt, typeInt);
-}
 bool  Subtypes::isSubtypeOfType(unsigned int subtype, unsigned int type)
 {
     return (subtypesToType[subtype] == type);

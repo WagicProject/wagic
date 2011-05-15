@@ -6,6 +6,7 @@ generic/becomes_transform_i559.txt
 generic/becomes_transform_i559_2.txt
 generic/bushido_1.txt
 generic/bushido_2.txt
+generic/changeling_i501.txt
 generic/cycling.txt
 generic/cycling2.txt
 generic/deathtouch.txt

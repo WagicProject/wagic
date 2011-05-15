@@ -2426,18 +2426,12 @@ ATransformer::ATransformer(int id, MTGCardInstance * source, MTGCardInstance * t
 
 	if (stypes.find("allsubtypes") != string::npos || stypes.find("removecreaturesubtypes") != string::npos)
 	{
-		for (size_t i = 0; i <Subtypes::subtypesList->getValuesById().size(); ++i)
+        const vector<string> values = Subtypes::subtypesList->getValuesById();
+		for (size_t i = 0; i <values.size(); ++i)
 		{
 			if (!Subtypes::subtypesList->isSubtypeOfType(i,Subtypes::TYPE_CREATURE))
 				continue;
 
-			//Erwan 2011/5/6 String comparison is expensive. Any way to do this in a cleaner way?
-			//this check is related to targetchooser instances of cards dynamically loaded subtypes. 
-			//example(foreach(arbor elf)) adds this as a subtype for list ment.
-			//TODO find cheaper method
-			string s = Subtypes::subtypesList->find(i);
-			if (s.find(" ") != string::npos)
-				continue;
 			types.push_back(i);
 		}
 	}
