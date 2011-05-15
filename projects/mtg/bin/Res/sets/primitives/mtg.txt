@@ -25292,10 +25292,12 @@ toughness=3
 [/card]
 [card]
 name=Giant Growth
-target=creature
-auto=3/3
+auto=damage:X opponent
+auto=damage:X all(creature|opponentbattlefield)
+#target=creature
+#auto=3/3
 text=Target creature gets +3/+3 until end of turn.
-mana={G}
+mana={X}{G}
 type=Instant
 [/card]
 [card]
@@ -62126,6 +62128,7 @@ toughness=3
 [/card]
 [card]
 name=Spitting Spider
+abilities=reach
 auto={S(land|myBattlefield)}:damage:1 all(creature[flying])
 text=Reach (This creature can block creatures with flying.) -- Sacrifice a land: Spitting Spider deals 1 damage to each creature with flying.
 mana={3}{G}{G}
