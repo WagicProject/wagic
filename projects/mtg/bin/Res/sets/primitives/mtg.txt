@@ -92,7 +92,7 @@ type=Artifact
 [/card]
 [card]
 name=AEther Sting
-auto=@movedTo(creature|opponentstack) from(opponenthand):life:-1 opponent
+auto=@movedTo(creature|opponentstack):life:-1 opponent
 text=Whenever an opponent casts a creature spell, AEther Sting deals 1 damage to that player.
 mana={3}{R}
 type=Enchantment
@@ -1899,7 +1899,7 @@ toughness=5
 [/card]
 [card]
 name=Angel's Feather
-auto=@movedTo(*[white]|stack) from(hand):may life:1 controller
+auto=@movedTo(*[white]|stack):may life:1 controller
 text=Whenever a player casts a white spell, you may gain 1 life.
 mana={2}
 type=Artifact
@@ -1942,7 +1942,7 @@ type=Artifact
 [card]
 name=Angelic Arbiter
 abilities=flying
-auto=@movedTo(*|opponentstack) from(opponenthand):all(creature|opponentBattlefield) cantattack
+auto=@movedTo(*|opponentstack):all(creature|opponentBattlefield) cantattack
 auto=@combat(attacking) source(creature|opponentBattlefield):maxCast(*)0 opponent ueot
 text=Flying -- Each opponent who cast a spell this turn can't attack with creatures. -- Each opponent who attacked with creatures this turn can't cast spells.
 mana={5}{W}{W}
@@ -2947,7 +2947,7 @@ type=Sorcery
 [card]
 name=Argothian Enchantress
 abilities=shroud
-auto=@movedTo(enchantment|mystack) from(myhand):draw:1
+auto=@movedTo(enchantment|mystack):draw:1
 text=Shroud (This permanent can't be the target of spells or abilities.) -- Whenever you cast an enchantment spell, draw a card.
 mana={1}{G}
 type=Creature
@@ -3759,7 +3759,7 @@ toughness=4
 [card]
 name=Aurora Eidolon
 auto={W}{S}:prevent:3 target(creature,player)
-autograveyard=@movedTo(*[multicolor]|mystack) from(myhand):may moveTo(myhand)
+autograveyard=@movedTo(*[multicolor]|mystack):may moveTo(myhand)
 text={W}, Sacrifice Aurora Eidolon: Prevent the next 3 damage that would be dealt to target creature or player this turn. -- Whenever you cast a multicolored spell, you may return Aurora Eidolon from your graveyard to your hand.
 mana={3}{W}
 type=Creature
@@ -4275,7 +4275,7 @@ subtype=Swamp Mountain
 [card]
 name=Baku Altar
 auto={2}{T}{C(0/0,-1,Ki)}:token(Spirit,Creature Spirit,1/1)
-auto=@movedTo(spirit,arcane|mystack) from(myhand):may counter(0/0,1,Ki)
+auto=@movedTo(spirit,arcane|mystack):may counter(0/0,1,Ki)
 text=Whenever you cast a Spirit or Arcane spell, you may put a ki counter on Baku Altar. -- {2}, {T}, Remove a ki counter from Baku Altar: Put a 1/1 colorless Spirit creature token onto the battlefield.
 mana={2}
 type=Artifact
@@ -4392,8 +4392,8 @@ toughness=3
 name=Balefire Liege
 auto=lord(other creature[red]|myBattlefield) 1/1
 auto=lord(other creature[white]|myBattlefield) 1/1
-auto=@movedto(*[red]|mystack) from(myhand):damage:3 opponent
-auto=@movedto(*[white]|mystack) from(myhand):life:3 controller
+auto=@movedto(*[red]|mystack):damage:3 opponent
+auto=@movedto(*[white]|mystack):life:3 controller
 text=Other red creatures you control get +1/+1. -- Other white creatures you control get +1/+1. -- Whenever you cast a red spell, Balefire Liege deals 3 damage to target player. -- Whenever you cast a white spell, you gain 3 life.
 mana={2}{RW}{RW}{RW}
 type=Creature
@@ -4453,7 +4453,7 @@ toughness=2
 [card]
 name=Ballynock Trapper
 auto={T}:tap target(creature)
-auto=@movedTo(*[white]|mystack) from(myhand):may untap
+auto=@movedTo(*[white]|mystack):may untap
 text={T}: Tap target creature. -- Whenever you cast a white spell, you may untap Ballynock Trapper.
 mana={3}{W}
 type=Creature
@@ -5188,7 +5188,7 @@ toughness=2
 [/card]
 [card]
 name=Battlegate Mimic
-auto=@movedTo(*[redandwhite]|mystack) from(myhand) turnlimited:transforms((,setpower=4,settoughness=2,first strike)) ueot
+auto=@movedTo(*[redandwhite]|mystack) turnlimited:transforms((,setpower=4,settoughness=2,first strike)) ueot
 text=Whenever you cast a spell that's both red and white, Battlegate Mimic becomes 4/2 and gains first strike until end of turn.
 mana={1}{RW}
 type=Creature
@@ -5218,7 +5218,7 @@ type=Instant
 [card]
 name=Battlewand Oak
 auto=@movedTo(forest|myBattlefield):2/2 ueot
-auto=@movedTo(treefolk|mystack) from(myhand):2/2 ueot
+auto=@movedTo(treefolk|mystack):2/2 ueot
 text=Whenever a Forest enters the battlefield under your control, Battlewand Oak gets +2/+2 until end of turn. -- Whenever you cast a Treefolk spell, Battlewand Oak gets +2/+2 until end of turn.
 mana={2}{G}
 type=Creature
@@ -5501,8 +5501,8 @@ toughness=2
 [card]
 name=Belligerent Hatchling
 abilities=first strike
-auto=@movedTo(*[red]|mystack) from(myhand):counter(-1/-1,-1)
-auto=@movedTo(*[white]|mystack) from(myhand):counter(-1/-1,-1)
+auto=@movedTo(*[red]|mystack):counter(-1/-1,-1)
+auto=@movedTo(*[white]|mystack):counter(-1/-1,-1)
 auto=counter(-1/-1,4)
 text=First strike -- Belligerent Hatchling enters the battlefield with four -1/-1 counters on it. -- Whenever you cast a red spell, remove a -1/-1 counter from Belligerent Hatchling. -- Whenever you cast a white spell, remove a -1/-1 counter from Belligerent Hatchling.
 mana={3}{RW}
@@ -6059,7 +6059,7 @@ toughness=4
 [/card]
 [card]
 name=Blademane Baku
-auto=@movedTo(spirit,arcane|mystack) from(myhand):may counter(0/0,1,Ki)
+auto=@movedTo(spirit,arcane|mystack):may counter(0/0,1,Ki)
 auto={1}{C(0/0,-1,Ki)}:name(Remove 1 Counters) 2/0
 auto={1}{C(0/0,-2,Ki)}:name(Remove 2 Counters) 4/0
 auto={1}{C(0/0,-3,Ki)}:name(Remove 3 Counters) 6/0
@@ -6410,8 +6410,7 @@ toughness=4
 [/card]
 [card]
 name=Blind Creeper
-auto=@movedTo(*|mystack) from(myhand):-1/-1 ueot
-auto=@movedTo(*|opponentstack) from(opponenthand):-1/-1 ueot
+auto=@movedTo(*|stack):-1/-1 ueot
 text=Whenever a player casts a spell, Blind Creeper gets -1/-1 until end of turn.
 mana={1}{B}
 type=Creature
@@ -7203,8 +7202,7 @@ toughness=1
 [/card]
 [card]
 name=Bog Gnarr
-auto=@movedTo(*[black]|mystack) from(myhand):2/2 ueot
-auto=@movedTo(*[black]|opponentstack) from(opponenthand):2/2 ueot
+auto=@movedTo(*[black]|stack):2/2 ueot
 text=Whenever a player casts a black spell, Bog Gnarr gets +2/+2 until end of turn.
 mana={4}{G}
 type=Creature
@@ -7874,18 +7872,18 @@ subtype=Rebel Aura
 [/card]
 [card]
 name=Bounteous Kirin
-auto=@movedTo(*[arcane;spirit;manacost=1]|mystack) from(myhand):may life:1 controller
-auto=@movedTo(*[arcane;spirit;manacost=2]|mystack) from(myhand):may life:2 controller
-auto=@movedTo(*[arcane;spirit;manacost=3]|mystack) from(myhand):may life:3 controller
-auto=@movedTo(*[arcane;spirit;manacost=4]|mystack) from(myhand):may life:4 controller
-auto=@movedTo(*[arcane;spirit;manacost=5]|mystack) from(myhand):may life:5 controller
-auto=@movedTo(*[arcane;spirit;manacost=6]|mystack) from(myhand):may life:6 controller
-auto=@movedTo(*[arcane;spirit;manacost=7]|mystack) from(myhand):may life:7 controller
-auto=@movedTo(*[arcane;spirit;manacost=8]|mystack) from(myhand):may life:8 controller
-auto=@movedTo(*[arcane;spirit;manacost=9]|mystack) from(myhand):may life:9 controller
-auto=@movedTo(*[arcane;spirit;manacost=10]|mystack) from(myhand):may life:10 controller
-auto=@movedTo(*[arcane;spirit;manacost=11]|mystack) from(myhand):may life:11 controller
-auto=@movedTo(*[arcane;spirit;manacost=12]|mystack) from(myhand):may life:12 controller
+auto=@movedTo(*[arcane;spirit;manacost=1]|mystack):may life:1 controller
+auto=@movedTo(*[arcane;spirit;manacost=2]|mystack):may life:2 controller
+auto=@movedTo(*[arcane;spirit;manacost=3]|mystack):may life:3 controller
+auto=@movedTo(*[arcane;spirit;manacost=4]|mystack):may life:4 controller
+auto=@movedTo(*[arcane;spirit;manacost=5]|mystack):may life:5 controller
+auto=@movedTo(*[arcane;spirit;manacost=6]|mystack):may life:6 controller
+auto=@movedTo(*[arcane;spirit;manacost=7]|mystack):may life:7 controller
+auto=@movedTo(*[arcane;spirit;manacost=8]|mystack):may life:8 controller
+auto=@movedTo(*[arcane;spirit;manacost=9]|mystack):may life:9 controller
+auto=@movedTo(*[arcane;spirit;manacost=10]|mystack):may life:10 controller
+auto=@movedTo(*[arcane;spirit;manacost=11]|mystack):may life:11 controller
+auto=@movedTo(*[arcane;spirit;manacost=12]|mystack):may life:12 controller
 text=Flying -- Whenever you cast a Spirit or Arcane spell, you may gain life equal to that spell's converted mana cost.
 mana={5}{G}{G}
 type=Legendary Creature
@@ -8271,7 +8269,7 @@ toughness=3
 [/card]
 [card]
 name=Briarknit Kami
-auto=@movedto(arcane,spirit|mystack) from(myhand):counter(1/1,1) target(creature)
+auto=@movedto(arcane,spirit|mystack):counter(1/1,1) target(creature)
 text=Whenever you cast a Spirit or Arcane spell, put a +1/+1 counter on target creature.
 mana={3}{G}{G}
 type=Creature
@@ -9967,7 +9965,7 @@ type=Instant
 [card]
 name=Celestial Ancient
 abilities=flying
-auto=@movedTo(enchantment|mystack) from(myhand):all(creature|mybattlefield) counter(1/1,1)
+auto=@movedTo(enchantment|mystack):all(creature|mybattlefield) counter(1/1,1)
 text=Flying -- Whenever you cast an enchantment spell, put a +1/+1 counter on each creature you control.
 mana={3}{W}{W}
 type=Creature
@@ -9998,18 +9996,18 @@ type=Land
 [card]
 name=Celestial Kirin
 abilities=flying
-auto=@movedTo(*[arcane;spirit;manacost=1]|mystack) from(myhand):destroy all(*[manacost=1])
-auto=@movedTo(*[arcane;spirit;manacost=2]|mystack) from(myhand):destroy all(*[manacost=2])
-auto=@movedTo(*[arcane;spirit;manacost=3]|mystack) from(myhand):destroy all(*[manacost=3])
-auto=@movedTo(*[arcane;spirit;manacost=4]|mystack) from(myhand):destroy all(*[manacost=4])
-auto=@movedTo(*[arcane;spirit;manacost=5]|mystack) from(myhand):destroy all(*[manacost=5])
-auto=@movedTo(*[arcane;spirit;manacost=6]|mystack) from(myhand):destroy all(*[manacost=6])
-auto=@movedTo(*[arcane;spirit;manacost=7]|mystack) from(myhand):destroy all(*[manacost=7])
-auto=@movedTo(*[arcane;spirit;manacost=8]|mystack) from(myhand):destroy all(*[manacost=8])
-auto=@movedTo(*[arcane;spirit;manacost=9]|mystack) from(myhand):destroy all(*[manacost=9])
-auto=@movedTo(*[arcane;spirit;manacost=10]|mystack) from(myhand):destroy all(*[manacost=10])
-auto=@movedTo(*[arcane;spirit;manacost=11]|mystack) from(myhand):destroy all(*[manacost=11])
-auto=@movedTo(*[arcane;spirit;manacost=12]|mystack) from(myhand):destroy all(*[manacost=12])
+auto=@movedTo(*[arcane;spirit;manacost=1]|mystack):destroy all(*[manacost=1])
+auto=@movedTo(*[arcane;spirit;manacost=2]|mystack):destroy all(*[manacost=2])
+auto=@movedTo(*[arcane;spirit;manacost=3]|mystack):destroy all(*[manacost=3])
+auto=@movedTo(*[arcane;spirit;manacost=4]|mystack):destroy all(*[manacost=4])
+auto=@movedTo(*[arcane;spirit;manacost=5]|mystack):destroy all(*[manacost=5])
+auto=@movedTo(*[arcane;spirit;manacost=6]|mystack):destroy all(*[manacost=6])
+auto=@movedTo(*[arcane;spirit;manacost=7]|mystack):destroy all(*[manacost=7])
+auto=@movedTo(*[arcane;spirit;manacost=8]|mystack):destroy all(*[manacost=8])
+auto=@movedTo(*[arcane;spirit;manacost=9]|mystack):destroy all(*[manacost=9])
+auto=@movedTo(*[arcane;spirit;manacost=10]|mystack):destroy all(*[manacost=10])
+auto=@movedTo(*[arcane;spirit;manacost=11]|mystack):destroy all(*[manacost=11])
+auto=@movedTo(*[arcane;spirit;manacost=12]|mystack):destroy all(*[manacost=12])
 text=Flying -- Whenever you cast a Spirit or Arcane spell, destroy all permanents with that spell's converted mana cost.
 mana={2}{W}{W}
 type=Legendary Creature
@@ -10799,7 +10797,7 @@ type=Artifact
 [/card]
 [card]
 name=Chimeric Egg
-auto=@movedTo(*[-artifact]|opponentstack) from(opponenthand):counter(0/0,1,Charge)
+auto=@movedTo(*[-artifact]|opponentstack):counter(0/0,1,Charge)
 auto={C(0/0,-3,Charge)}:becomes(Construct Artifact Creature,6/6,trample) ueot
 text=Whenever an opponent casts a nonartifact spell, put a charge counter on Chimeric Egg. -- Remove three charge counters from Chimeric Egg: Chimeric Egg becomes a 6/6 Construct artifact creature with trample until end of turn.
 mana={3}
@@ -11057,7 +11055,7 @@ type=Land
 [card]
 name=Cinder Pyromancer
 auto={T}:damage:1 target(player)
-auto=@movedTo(*[red]|mystack) from(myhand):may untap
+auto=@movedTo(*[red]|mystack):may untap
 text={T}: Cinder Pyromancer deals 1 damage to target player. -- Whenever you cast a red spell, you may untap Cinder Pyromancer.
 mana={2}{R}
 type=Creature
@@ -11760,18 +11758,18 @@ toughness=3
 [card]
 name=Cloudhoof Kirin
 abilities=flying
-auto=@movedTo(*[arcane;spirit;manacost=1]|mystack) from(myhand):may deplete:1 target(player)
-auto=@movedTo(*[arcane;spirit;manacost=2]|mystack) from(myhand):may deplete:2 target(player)
-auto=@movedTo(*[arcane;spirit;manacost=3]|mystack) from(myhand):may deplete:3 target(player)
-auto=@movedTo(*[arcane;spirit;manacost=4]|mystack) from(myhand):may deplete:4 target(player)
-auto=@movedTo(*[arcane;spirit;manacost=5]|mystack) from(myhand):may deplete:5 target(player)
-auto=@movedTo(*[arcane;spirit;manacost=6]|mystack) from(myhand):may deplete:6 target(player)
-auto=@movedTo(*[arcane;spirit;manacost=7]|mystack) from(myhand):may deplete:7 target(player)
-auto=@movedTo(*[arcane;spirit;manacost=8]|mystack) from(myhand):may deplete:8 target(player)
-auto=@movedTo(*[arcane;spirit;manacost=9]|mystack) from(myhand):may deplete:9 target(player)
-auto=@movedTo(*[arcane;spirit;manacost=10]|mystack) from(myhand):may deplete:10 target(player)
-auto=@movedTo(*[arcane;spirit;manacost=11]|mystack) from(myhand):may deplete:11 target(player)
-auto=@movedTo(*[arcane;spirit;manacost=12]|mystack) from(myhand):may deplete:12 target(player)
+auto=@movedTo(*[arcane;spirit;manacost=1]|mystack):may deplete:1 target(player)
+auto=@movedTo(*[arcane;spirit;manacost=2]|mystack):may deplete:2 target(player)
+auto=@movedTo(*[arcane;spirit;manacost=3]|mystack):may deplete:3 target(player)
+auto=@movedTo(*[arcane;spirit;manacost=4]|mystack):may deplete:4 target(player)
+auto=@movedTo(*[arcane;spirit;manacost=5]|mystack):may deplete:5 target(player)
+auto=@movedTo(*[arcane;spirit;manacost=6]|mystack):may deplete:6 target(player)
+auto=@movedTo(*[arcane;spirit;manacost=7]|mystack):may deplete:7 target(player)
+auto=@movedTo(*[arcane;spirit;manacost=8]|mystack):may deplete:8 target(player)
+auto=@movedTo(*[arcane;spirit;manacost=9]|mystack):may deplete:9 target(player)
+auto=@movedTo(*[arcane;spirit;manacost=10]|mystack):may deplete:10 target(player)
+auto=@movedTo(*[arcane;spirit;manacost=11]|mystack):may deplete:11 target(player)
+auto=@movedTo(*[arcane;spirit;manacost=12]|mystack):may deplete:12 target(player)
 text=Flying -- Whenever you cast a Spirit or Arcane spell, you may put the top X cards of target player's library into his or her graveyard, where X is that spell's converted mana cost.
 mana={3}{U}{U}
 type=Legendary Creature
@@ -12426,7 +12424,7 @@ subtype=Aura
 [/card]
 [card]
 name=Contemplation
-auto=@movedTo(*|mystack) from(myhand):life:1
+auto=@movedTo(*|mystack):life:1
 text=Whenever you cast a spell, you gain 1 life.
 mana={1}{W}{W}
 type=Enchantment
@@ -15047,8 +15045,8 @@ toughness=13
 name=Deathbringer Liege
 auto=lord(other creature[black]|myBattlefield) 1/1
 auto=lord(other creature[white]|myBattlefield) 1/1
-auto=@movedto(*[black]|mystack) from(myhand):may destroy target(creature[tapped])
-auto=@movedto(*[white]|mystack) from(myhand):may tap target(creature)
+auto=@movedto(*[black]|mystack):may destroy target(creature[tapped])
+auto=@movedto(*[white]|mystack):may tap target(creature)
 text=Other white creatures you control get +1/+1. -- Other black creatures you control get +1/+1. -- Whenever you cast a white spell, you may tap target creature. -- Whenever you cast a black spell, you may destroy target creature if it's tapped.
 mana={2}{WB}{WB}{WB}
 type=Creature
@@ -15294,7 +15292,7 @@ type=Instant
 [/card]
 [card]
 name=Deep-Sea Kraken
-autoexile=@movedto(*|stack) from(opponenthand) suspended:counter(0/0,-1,Time)
+autoexile=@movedto(*|opponentstack) suspended:counter(0/0,-1,Time)
 abilities=unblockable
 text=Deep-Sea Kraken is unblockable. -- Suspend 9 - {2}{U} (Rather than cast this card from your hand, you may pay {2}{U} and exile it with nine time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost. It has haste.) -- Whenever an opponent casts a spell, if Deep-Sea Kraken is suspended, remove a time counter from it.
 mana={7}{U}{U}{U}
@@ -15702,7 +15700,7 @@ toughness=1
 [/card]
 [card]
 name=Demon's Horn
-auto=@movedTo(*[black]|stack) from(hand):may life:1 controller
+auto=@movedTo(*[black]|stack):may life:1 controller
 text=Whenever a player casts a black spell, you may gain 1 life.
 mana={2}
 type=Artifact
@@ -15823,8 +15821,7 @@ toughness=1
 [card]
 name=Desecration Elemental
 abilities=fear
-auto=@movedto(*|mystack) from(myhand):moveTo(ownergraveyard) notatarget(creature|myBattlefield)
-auto=@movedto(*|opponentstack) from(opponenthand):moveTo(ownergraveyard) notatarget(creature|myBattlefield)
+auto=@movedto(*|stack):moveTo(ownergraveyard) notatarget(creature|myBattlefield)
 text=Fear (This creature can't be blocked except by artifact creatures and/or black creatures.) -- Whenever a player casts a spell, sacrifice a creature.
 mana={3}{B}
 type=Creature
@@ -17104,7 +17101,7 @@ subtype=Aura
 [/card]
 [card]
 name=Dragon's Claw
-auto=@movedTo(*[red]|stack) from(hand):may life:1 controller
+auto=@movedTo(*[red]|stack):may life:1 controller
 text=Whenever a player casts a red spell, you may gain 1 life.
 mana={2}
 type=Artifact
@@ -17448,7 +17445,7 @@ toughness=2
 [/card]
 [card]
 name=Dreamcatcher
-auto=@movedto(arcane,spirit|mystack) from(myhand):may moveTo(mygraveyard) all(this) && draw:1 controller
+auto=@movedto(arcane,spirit|mystack):may moveTo(mygraveyard) all(this) && draw:1 controller
 text=Whenever you cast a Spirit or Arcane spell, you may sacrifice Dreamcatcher. If you do, draw a card.
 mana={U}
 type=Creature
@@ -17699,7 +17696,7 @@ toughness=4
 [/card]
 [card]
 name=Drooling Ogre
-auto=@movedto(*[artifact]|opponentstack) from(opponenthand):moveto(opponentBattlefield)
+auto=@movedto(*[artifact]|opponentstack):moveto(opponentBattlefield)
 text=Whenever a player casts an artifact spell, that player gains control of Drooling Ogre. (This effect lasts indefinitely.)
 mana={1}{R}
 type=Creature
@@ -18259,7 +18256,7 @@ toughness=1
 [card]
 name=Dwarven Patrol
 auto=doesnotuntap
-auto=@movedTo(*[-red]|mystack) from(myhand):untap
+auto=@movedTo(*[-red]|mystack):untap
 text=Dwarven Patrol doesn't untap during your untap step. -- Whenever you cast a nonred spell, untap Dwarven Patrol.
 mana={2}{R}
 type=Creature
@@ -18490,7 +18487,7 @@ type=Sorcery
 [/card]
 [card]
 name=Earthshaker
-auto=@movedTo(arcane,spirit|mystack) from(myhand):damage:2 all(creature[-flying])
+auto=@movedTo(arcane,spirit|mystack):damage:2 all(creature[-flying])
 text=Whenever you cast a Spirit or Arcane spell, Earthshaker deals 2 damage to each creature without flying.
 mana={4}{R}{R}
 type=Creature
@@ -18524,8 +18521,7 @@ toughness=1
 [card]
 name=Ebon Drake
 abilities=flying
-auto=@movedTo(*|mystack) from(myhand):life:-1 controller
-auto=@movedTo(*|opponentstack) from(opponenthand):life:-1 controller
+auto=@movedTo(*|stack):life:-1 controller
 text=Flying -- Whenever a player casts a spell, you lose 1 life.
 mana={2}{B}
 type=Creature
@@ -19148,8 +19144,7 @@ subtype=Aura
 [/card]
 [card]
 name=Elvish Handservant
-auto=@movedTo(giant|mystack) from(myhand):may counter(1/1,1)
-auto=@movedTo(giant|opponentstack) from(opponenthand):may counter(1/1,1)
+auto=@movedTo(giant|stack):may counter(1/1,1)
 text=Whenever a player casts a Giant spell, you may put a +1/+1 counter on Elvish Handservant.
 mana={G}
 type=Creature
@@ -19393,8 +19388,8 @@ toughness=1
 [/card]
 [card]
 name=Emberstrike Duo
-auto=@movedTo(*[black]|mystack) from(myhand):1/1 ueot
-auto=@movedTo(*[red]|mystack) from(myhand):first strike ueot
+auto=@movedTo(*[black]|mystack):1/1 ueot
+auto=@movedTo(*[red]|mystack):first strike ueot
 text=Whenever you cast a black spell, Emberstrike Duo gets +1/+1 until end of turn. -- Whenever you cast a red spell, Emberstrike Duo gains first strike until end of turn.
 mana={1}{BR}
 type=Creature
@@ -19635,7 +19630,7 @@ type=Enchantment
 [/card]
 [card]
 name=Enchantress's Presence
-auto=@movedTo(enchantment|myBattlefield) from(mystack) from(myhand):draw:1
+auto=@movedTo(enchantment|myBattlefield) from(mystack):draw:1
 text=Whenever you cast an enchantment spell, draw a card.
 mana={2}{G}
 type=Enchantment
@@ -19855,7 +19850,7 @@ toughness=7
 [card]
 name=Enigma Eidolon
 auto={U}{S}:deplete:3 target(player)
-autograveyard=@movedTo(*[multicolor]|mystack) from(myhand):may moveTo(myhand)
+autograveyard=@movedTo(*[multicolor]|mystack):may moveTo(myhand)
 text={U}, Sacrifice Enigma Eidolon: Target player puts the top three cards of his or her library into his or her graveyard. -- Whenever you cast a multicolored spell, you may return Enigma Eidolon from your graveyard to your hand.
 mana={3}{U}
 type=Creature
@@ -19958,7 +19953,7 @@ toughness=1
 [card]
 name=Entropic Eidolon
 auto={B}{S}:life:-1 target(player) && life:1 controller
-autograveyard=@movedTo(*[multicolor]|mystack) from(myhand):may moveTo(myhand)
+autograveyard=@movedTo(*[multicolor]|mystack):may moveTo(myhand)
 text={B}, Sacrifice Entropic Eidolon: Target player loses 1 life and you gain 1 life. -- Whenever you cast a multicolored spell, you may return Entropic Eidolon from your graveyard to your hand.
 mana={3}{B}
 type=Creature
@@ -20914,8 +20909,8 @@ toughness=2
 [/card]
 [card]
 name=Fable of Wolf and Owl
-auto=@movedTo(*[green]|mystack) from(myhand):may token(-15208711)
-auto=@movedTo(*[blue]|mystack) from(myhand):may token(-15208712)
+auto=@movedTo(*[green]|mystack):may token(-15208711)
+auto=@movedTo(*[blue]|mystack):may token(-15208712)
 text=Whenever you cast a green spell, you may put a 2/2 green Wolf creature token onto the battlefield. -- Whenever you cast a blue spell, you may put a 1/1 blue Bird creature token with flying onto the battlefield.
 mana={3}{GU}{GU}{GU}
 type=Enchantment
@@ -21867,7 +21862,7 @@ type=Instant
 [/card]
 [card]
 name=Fiddlehead Kami
-auto=@movedto(arcane,spirit|mystack) from(myhand):regenerate
+auto=@movedto(arcane,spirit|mystack):regenerate
 text=Whenever you cast a Spirit or Arcane spell, regenerate Fiddlehead Kami.
 mana={4}{G}
 type=Creature
@@ -23580,7 +23575,7 @@ type=Instant
 [/card]
 [card]
 name=Forced Fruition
-auto=@movedTo(*[-land]|opponentstack) from(opponenthand):draw:7 opponent
+auto=@movedTo(*[-land]|opponentstack):draw:7 opponent
 text=Whenever an opponent casts a spell, that player draws seven cards.
 mana={4}{U}{U}
 type=Enchantment
@@ -23633,7 +23628,7 @@ type=Instant
 [/card]
 [card]
 name=Forgotten Ancient
-auto=@movedTo(*|stack) from(hand):may counter(1/1,1)
+auto=@movedTo(*|stack):may counter(1/1,1)
 auto={0}{counter(1/1,-1)}:counter(1/1,1) target(creature) myUpkeepOnly
 text=Whenever a player casts a spell, you may put a +1/+1 counter on Forgotten Ancient. -- At the beginning of your upkeep, you may move any number of +1/+1 counters from Forgotten Ancient onto other creatures.
 mana={3}{G}
@@ -24187,7 +24182,7 @@ toughness=2
 [/card]
 [card]
 name=Furious Assault
-auto=@movedTo(creature|mystack) from(myhand):damage:1 target(player)
+auto=@movedTo(creature|mystack):damage:1 target(player)
 text=Whenever you cast a creature spell, Furious Assault deals 1 damage to target player.
 mana={2}{R}
 type=Enchantment
@@ -24687,7 +24682,7 @@ type=Sorcery
 [card]
 name=Gelectrode
 auto={T}:damage:1 target(creature,player)
-auto=@movedTo(instant,sorcery|mystack) from(myhand):may untap
+auto=@movedTo(instant,sorcery|mystack):may untap
 text={T}: Gelectrode deals 1 damage to target creature or player. -- Whenever you cast an instant or sorcery spell, you may untap Gelectrode.
 mana={1}{U}{R}
 type=Creature
@@ -25489,7 +25484,7 @@ type=Artifact
 [/card]
 [card]
 name=Gilt-Leaf Archdruid
-auto=@movedTo(druid|mystack) from(myhand):may draw:1
+auto=@movedTo(druid|mystack):may draw:1
 auto={T(druid|myBattlefield)}{T(druid|myBattlefield)}{T(druid|myBattlefield)}{T(druid|myBattlefield)}{T(druid|myBattlefield)}{T(druid|myBattlefield)}{T(druid|myBattlefield)}:moveTo(mybattlefield) all(land|opponentBattlefield)
 text=Whenever you cast a Druid spell, you may draw a card. -- Tap seven untapped Druids you control: Gain control of all lands target player controls.
 mana={3}{G}{G}
@@ -25575,8 +25570,7 @@ type=Enchantment
 [/card]
 [card]
 name=Glade Gnarr
-auto=@movedTo(*[blue]|mystack) from(myhand):2/2 ueot
-auto=@movedTo(*[blue]|opponentstack) from(opponenthand):2/2 ueot
+auto=@movedTo(*[blue]|stack):2/2 ueot
 text=Whenever a player casts a blue spell, Glade Gnarr gets +2/+2 until end of turn.
 mana={5}{G}
 type=Creature
@@ -25748,7 +25742,7 @@ type=Sorcery
 [/card]
 [card]
 name=Glimpse of Nature's Draw
-auto=@movedTo(creature|mystack) from(myhand):draw:1
+auto=@movedTo(creature|mystack):draw:1
 auto=@next endofturn:moveto(exile)
 type=Nothing
 id=-752411111
@@ -25924,7 +25918,7 @@ toughness=2
 [/card]
 [card]
 name=Gloryscale Viashino
-auto=@movedTo(*[multicolor]|mystack) from(myhand):3/3 ueot
+auto=@movedTo(*[multicolor]|mystack):3/3 ueot
 text=Whenever you cast a multicolored spell, Gloryscale Viashino gets +3/+3 until end of turn.
 mana={1}{R}{G}{W}
 type=Creature
@@ -26186,7 +26180,7 @@ toughness=3
 [card]
 name=Goblin Cohort
 abilities=cantattack
-auto=@movedTo(creature|mystack) from(myhand):-cantattack ueot
+auto=@movedTo(creature|mystack):-cantattack ueot
 text=Goblin Cohort can't attack unless you've cast a creature spell this turn.
 mana={R}
 type=Creature
@@ -27003,7 +26997,7 @@ toughness=3
 [/card]
 [card]
 name=Golem Foundry
-auto=@movedTo(artifact|mystack) from(myhand):may counter(0/0,1,Charge)
+auto=@movedTo(artifact|mystack):may counter(0/0,1,Charge)
 auto={C(0/0,-3,Charge)}:token(Golem,Artifact Creature Golem,3/3)
 text=Whenever you cast an artifact spell, you may put a charge counter on Golem Foundry. -- Remove three charge counters from Golem Foundry: Put a 3/3 colorless Golem artifact creature token onto the battlefield.
 mana={3}
@@ -27011,7 +27005,7 @@ type=Artifact
 [/card]
 [card]
 name=Golem's Heart
-auto=@movedTo(artifact|stack) from(hand):may life:1 controller
+auto=@movedTo(artifact|stack):may life:1 controller
 text=Whenever a player casts an artifact spell, you may gain 1 life.
 mana={2}
 type=Artifact
@@ -27451,8 +27445,8 @@ toughness=3
 [/card]
 [card]
 name=Gravelgill Duo
-auto=@movedTo(*[blue]|mystack) from(myhand):1/1 ueot
-auto=@movedTo(*[black]|mystack) from(myhand):fear ueot
+auto=@movedTo(*[blue]|mystack):1/1 ueot
+auto=@movedTo(*[black]|mystack):fear ueot
 text=Whenever you cast a blue spell, Gravelgill Duo gets +1/+1 until end of turn. -- Whenever you cast a black spell, Gravelgill Duo gains fear until end of turn. (It can't be blocked except by artifact creatures and/or black creatures.)
 mana={2}{UB}
 type=Creature
@@ -28235,7 +28229,7 @@ toughness=5
 [/card]
 [card]
 name=Guardian of Solitude
-auto=@movedTo(arcane,spirit|mystack) from(myhand):flying target(creature) ueot
+auto=@movedTo(arcane,spirit|mystack):flying target(creature) ueot
 text=Whenever you cast a Spirit or Arcane spell, target creature gains flying until end of turn.
 mana={1}{U}
 type=Creature
@@ -28569,7 +28563,7 @@ toughness=1
 [/card]
 [card]
 name=Halcyon Glaze
-auto=@movedTo(creature|mystack) from(myhand):becomes(Illusion Creature,4/4,flying) ueot
+auto=@movedTo(creature|mystack):becomes(Illusion Creature,4/4,flying) ueot
 text=Whenever you cast a creature spell, Halcyon Glaze becomes a 4/4 Illusion creature with flying until end of turn. It's still an enchantment.
 mana={1}{U}{U}
 type=Enchantment
@@ -28751,7 +28745,7 @@ toughness=6
 name=Hand of the Praetors
 abilities=infect
 auto=lord(other creature[infect]|myBattlefield) 1/1
-auto=@movedTo(*[infect]|mystack) from(myhand):alterpoison:1 target(player)
+auto=@movedTo(*[infect]|mystack):alterpoison:1 target(player)
 text=Infect -- Other creatures you control with infect get +1/+1. -- Whenever you cast a creature spell with infect, target player gets a poison counter.
 mana={3}{B}
 type=Creature
@@ -28908,7 +28902,7 @@ type=nothing
 [card]
 name=Haru-Onna
 auto=draw:1 controller
-auto=@movedto(arcane,spirit|mystack) from(myhand):may moveto(ownerhand)
+auto=@movedto(arcane,spirit|mystack):may moveto(ownerhand)
 text=When Haru-Onna enters the battlefield, draw a card. -- Whenever you cast a Spirit or Arcane spell, you may return Haru-Onna to its owner's hand.
 mana={3}{G}
 type=Creature
@@ -29014,7 +29008,7 @@ toughness=6
 [/card]
 [card]
 name=Havoc
-auto=@movedTo(*[white]|opponentStack) from(opponenthand):life:-2 opponent
+auto=@movedTo(*[white]|opponentStack):life:-2 opponent
 text=Whenever an opponent casts a white spell, he or she loses 2 life.
 mana={1}{R}
 type=Enchantment
@@ -29356,8 +29350,8 @@ type=Artifact
 [/card]
 [card]
 name=Heartwood Storyteller
-auto=@movedTo(*[-creature]|mystack) from(myhand):draw:1 opponent
-auto=@movedTo(*[-creature]|opponentstack) from(opponenthand):may draw:1 controller
+auto=@movedTo(*[-creature]|mystack):draw:1 opponent
+auto=@movedTo(*[-creature]|opponentstack):may draw:1 controller
 text=Whenever a player casts a noncreature spell, each of that player's opponents may draw a card.
 mana={1}{G}{G}
 type=Creature
@@ -29878,28 +29872,28 @@ type=Land
 [/card]
 [card]
 name=Hidden Ancients
-auto=@movedto(enchantment|opponentstack) from(opponenthand) once:transforms((removetypes)) forever && transforms((Treefolk Creature,setpower=5,settoughness=5)) forever
+auto=@movedto(enchantment|opponentstack) once:transforms((removetypes)) forever && transforms((Treefolk Creature,setpower=5,settoughness=5)) forever
 text=When an opponent casts an enchantment spell, if Hidden Ancients is an enchantment, Hidden Ancients becomes a 5/5 Treefolk creature.
 mana={1}{G}
 type=Enchantment
 [/card]
 [card]
 name=Hidden Gibbons
-auto=@movedto(instant|opponentstack) from(opponenthand) once:transforms((removetypes)) forever && transforms((Ape Creature,setpower=4,settoughness=4)) forever
+auto=@movedto(instant|opponentstack) once:transforms((removetypes)) forever && transforms((Ape Creature,setpower=4,settoughness=4)) forever
 text=When an opponent casts an instant spell, if Hidden Gibbons is an enchantment, Hidden Gibbons becomes a 4/4 Ape creature.
 mana={G}
 type=Enchantment
 [/card]
 [card]
 name=Hidden Guerrillas
-auto=@movedto(artifact|opponentstack) from(opponenthand) once:transforms((removetypes)) forever && transforms((Soldier Creature,setpower=5,settoughness=3,trample)) forever
+auto=@movedto(artifact|opponentstack) once:transforms((removetypes)) forever && transforms((Soldier Creature,setpower=5,settoughness=3,trample)) forever
 text=When an opponent casts an artifact spell, if Hidden Guerrillas is an enchantment, Hidden Guerrillas becomes a 5/3 Soldier creature with trample.
 mana={G}
 type=Enchantment
 [/card]
 [card]
 name=Hidden Herd
-auto=@movedto(land[-basic]|opponentbattlefield) from(opponenthand) once:transforms((removetypes)) forever && transforms((Beast Creature,setpower=3,settoughness=3)) forever
+auto=@movedto(land[-basic]|opponentbattlefield) once:transforms((removetypes)) forever && transforms((Beast Creature,setpower=3,settoughness=3)) forever
 text=When an opponent plays a nonbasic land, if Hidden Herd is an enchantment, Hidden Herd becomes a 3/3 Beast creature.
 mana={G}
 type=Enchantment
@@ -29917,14 +29911,14 @@ toughness=4
 [/card]
 [card]
 name=Hidden Predators
-auto=@movedto(creature[power>=4]|opponentstack) from(opponenthand) once:transforms((removetypes)) forever && transforms((Beast Creature,setpower=4,settoughness=4)) forever
+auto=@movedto(creature[power>=4]|opponentstack) once:transforms((removetypes)) forever && transforms((Beast Creature,setpower=4,settoughness=4)) forever
 text=When an opponent controls a creature with power 4 or greater, if Hidden Predators is an enchantment, Hidden Predators becomes a 4/4 Beast creature.
 mana={G}
 type=Enchantment
 [/card]
 [card]
 name=Hidden Spider
-auto=@movedto(creature[flying]|opponentstack) from(opponenthand) once:transforms((removetypes)) forever && transforms((Spider Creature,setpower=3,settoughness=5,reach)) forever
+auto=@movedto(creature[flying]|opponentstack) once:transforms((removetypes)) forever && transforms((Spider Creature,setpower=3,settoughness=5,reach)) forever
 text=When an opponent casts a creature spell with flying, if Hidden Spider is an enchantment, Hidden Spider becomes a 3/5 Spider creature with reach. (It can block creatures with flying.)
 mana={G}
 type=Enchantment
@@ -30027,7 +30021,7 @@ toughness=4
 [card]
 name=Hikari, Twilight Guardian
 abilities=flying
-auto=@movedTo(spirit,arcane|mystack) from(myhand):may (blink)ueot
+auto=@movedTo(spirit,arcane|mystack):may (blink)ueot
 text=Flying -- Whenever you cast a Spirit or Arcane spell, you may exile Hikari, Twilight Guardian. If you do, return it to the battlefield under its owner's control at the beginning of the next end step.
 mana={3}{W}{W}
 type=Legendary Creature
@@ -30425,7 +30419,7 @@ toughness=1
 [/card]
 [card]
 name=Horizon Seed
-auto=@movedTo(arcane,spirit|mystack) from(myhand):regenerate target(creature)
+auto=@movedTo(arcane,spirit|mystack):regenerate target(creature)
 text=Whenever you cast a Spirit or Arcane spell, regenerate target creature.
 mana={4}{W}
 type=Creature
@@ -31437,7 +31431,7 @@ type=Enchantment
 [card]
 name=Illusory Demon
 abilities=flying
-auto=@movedTo(*|mystack) from(myhand):bury
+auto=@movedTo(*|mystack):bury
 text=Flying -- When you cast a spell, sacrifice Illusory Demon.
 mana={1}{U}{B}
 type=Creature
@@ -32051,7 +32045,7 @@ toughness=2
 [card]
 name=Innocence Kami
 auto={W}{T}:tap target(creature)
-auto=@movedTo(spirit,arcane|mystack) from(myhand):untap
+auto=@movedTo(spirit,arcane|mystack):untap
 text={W}, {T}: Tap target creature. -- Whenever you cast a Spirit or Arcane spell, untap Innocence Kami.
 mana={3}{W}{W}
 type=Creature
@@ -32108,7 +32102,7 @@ type=Instant
 [/card]
 [card]
 name=Insight
-auto=@movedTo(*[green]|opponentstack) from(opponenthand):draw:1 controller
+auto=@movedTo(*[green]|opponentstack):draw:1 controller
 text=Whenever an opponent casts a green spell, you draw a card.
 mana={2}{U}
 type=Enchantment
@@ -32140,7 +32134,7 @@ type=Instant
 [card]
 name=Inspired Sprite
 abilities=flash,flying
-auto=@movedTo(wizard|mystack) from(myhand):may untap
+auto=@movedTo(wizard|mystack):may untap
 auto={T}:token(-1111127) && draw:1
 text=Flash -- Flying -- Whenever you cast a Wizard spell, you may untap Inspired Sprite. -- {T}: Draw a card, then discard a card.
 mana={3}{U}
@@ -32559,7 +32553,7 @@ toughness=1
 [/card]
 [card]
 name=Ishi-Ishi, Akki Crackshot
-auto=@movedto(spirit,arcane|opponentstack) from(opponenthand):damage:2 opponent
+auto=@movedto(spirit,arcane|opponentstack):damage:2 opponent
 text=Whenever an opponent casts a Spirit or Arcane spell, Ishi-Ishi, Akki Crackshot deals 2 damage to that player.
 mana={1}{R}
 type=Legendary Creature
@@ -32762,7 +32756,7 @@ toughness=1
 [/card]
 [card]
 name=Jackalope Herd
-auto=@movedTo(*|mystack) from(myhand):moveTo(ownerHand)
+auto=@movedTo(*|mystack):moveTo(ownerHand)
 text=When you cast a spell, return Jackalope Herd to its owner's hand.
 mana={3}{G}
 type=Creature
@@ -32782,7 +32776,7 @@ toughness=2
 [/card]
 [card]
 name=Jade Idol
-auto=@movedTo(spirit,arcane|mystack) from(myhand):becomes(Artifact Creature Spirit,4/4) ueot
+auto=@movedTo(spirit,arcane|mystack):becomes(Artifact Creature Spirit,4/4) ueot
 text=Whenever you cast a Spirit or Arcane spell, Jade Idol becomes a 4/4 Spirit artifact creature until end of turn.
 mana={4}
 type=Artifact
@@ -33657,22 +33651,22 @@ toughness=2
 [/card]
 [card]
 name=Kaervek the Merciless
-auto=@movedTo(*[manacost=1]|opponentstack) from(opponenthand):damage:1 target(creature,player)
-auto=@movedTo(*[manacost=2]|opponentstack) from(opponenthand):damage:2 target(creature,player)
-auto=@movedTo(*[manacost=3]|opponentstack) from(opponenthand):damage:3 target(creature,player)
-auto=@movedTo(*[manacost=4]|opponentstack) from(opponenthand):damage:4 target(creature,player)
-auto=@movedTo(*[manacost=5]|opponentstack) from(opponenthand):damage:5 target(creature,player)
-auto=@movedTo(*[manacost=6]|opponentstack) from(opponenthand):damage:6 target(creature,player)
-auto=@movedTo(*[manacost=7]|opponentstack) from(opponenthand):damage:7 target(creature,player)
-auto=@movedTo(*[manacost=8]|opponentstack) from(opponenthand):damage:8 target(creature,player)
-auto=@movedTo(*[manacost=9]|opponentstack) from(opponenthand):damage:9 target(creature,player)
-auto=@movedTo(*[manacost=10]|opponentstack) from(opponenthand):damage:10 target(creature,player)
-auto=@movedTo(*[manacost=11]|opponentstack) from(opponenthand):damage:11 target(creature,player)
-auto=@movedTo(*[manacost=12]|opponentstack) from(opponenthand):damage:12 target(creature,player)
-auto=@movedTo(*[manacost=13]|opponentstack) from(opponenthand):damage:13 target(creature,player)
-auto=@movedTo(*[manacost=14]|opponentstack) from(opponenthand):damage:14 target(creature,player)
-auto=@movedTo(*[manacost=15]|opponentstack) from(opponenthand):damage:15 target(creature,player)
-auto=@movedTo(*[manacost=16]|opponentstack) from(opponenthand):damage:16 target(creature,player)
+auto=@movedTo(*[manacost=1]|opponentstack):damage:1 target(creature,player)
+auto=@movedTo(*[manacost=2]|opponentstack):damage:2 target(creature,player)
+auto=@movedTo(*[manacost=3]|opponentstack):damage:3 target(creature,player)
+auto=@movedTo(*[manacost=4]|opponentstack):damage:4 target(creature,player)
+auto=@movedTo(*[manacost=5]|opponentstack):damage:5 target(creature,player)
+auto=@movedTo(*[manacost=6]|opponentstack):damage:6 target(creature,player)
+auto=@movedTo(*[manacost=7]|opponentstack):damage:7 target(creature,player)
+auto=@movedTo(*[manacost=8]|opponentstack):damage:8 target(creature,player)
+auto=@movedTo(*[manacost=9]|opponentstack):damage:9 target(creature,player)
+auto=@movedTo(*[manacost=10]|opponentstack):damage:10 target(creature,player)
+auto=@movedTo(*[manacost=11]|opponentstack):damage:11 target(creature,player)
+auto=@movedTo(*[manacost=12]|opponentstack):damage:12 target(creature,player)
+auto=@movedTo(*[manacost=13]|opponentstack):damage:13 target(creature,player)
+auto=@movedTo(*[manacost=14]|opponentstack):damage:14 target(creature,player)
+auto=@movedTo(*[manacost=15]|opponentstack):damage:15 target(creature,player)
+auto=@movedTo(*[manacost=16]|opponentstack):damage:16 target(creature,player)
 text=Whenever an opponent casts a spell, Kaervek the Merciless deals damage to target creature or player equal to that spell's converted mana cost.
 mana={5}{B}{R}
 type=Legendary Creature
@@ -33820,7 +33814,7 @@ toughness=1
 [/card]
 [card]
 name=Kami of Fire's Roar
-auto=@movedTo(arcane,spirit|mystack) from(myhand):cantblock target(creature)
+auto=@movedTo(arcane,spirit|mystack):cantblock target(creature)
 text=Whenever you cast a Spirit or Arcane spell, target creature can't block this turn.
 mana={3}{R}
 type=Creature
@@ -33849,7 +33843,7 @@ toughness=7
 [/card]
 [card]
 name=Kami of Tattered Shoji
-auto=@movedto(arcane,spirit|mystack) from(myhand):flying ueot
+auto=@movedto(arcane,spirit|mystack):flying ueot
 text=Whenever you cast a Spirit or Arcane spell, Kami of Tattered Shoji gains flying until end of turn.
 mana={4}{W}
 type=Creature
@@ -33892,7 +33886,7 @@ toughness=5
 [/card]
 [card]
 name=Kami of the Hunt
-auto=@movedTo(arcane,spirit|mystack) from(myhand):1/1 ueot
+auto=@movedTo(arcane,spirit|mystack):1/1 ueot
 text=Whenever you cast a Spirit or Arcane spell, Kami of the Hunt gets +1/+1 until end of turn.
 mana={2}{G}
 type=Creature
@@ -33902,11 +33896,11 @@ toughness=2
 [/card]
 [card]
 name=Kami of the Painted Road
-auto=@movedTo(arcane,spirit|mystack) from(myhand):may protection from white ueot
-auto=@movedTo(arcane,spirit|mystack) from(myhand):may protection from blue ueot
-auto=@movedTo(arcane,spirit|mystack) from(myhand):may protection from black ueot
-auto=@movedTo(arcane,spirit|mystack) from(myhand):may protection from red ueot
-auto=@movedTo(arcane,spirit|mystack) from(myhand):may protection from green ueot
+auto=@movedTo(arcane,spirit|mystack):may protection from white ueot
+auto=@movedTo(arcane,spirit|mystack):may protection from blue ueot
+auto=@movedTo(arcane,spirit|mystack):may protection from black ueot
+auto=@movedTo(arcane,spirit|mystack):may protection from red ueot
+auto=@movedTo(arcane,spirit|mystack):may protection from green ueot
 text=Whenever you cast a Spirit or Arcane spell, Kami of the Painted Road gains protection from the color of your choice until end of turn.
 mana={4}{W}
 type=Creature
@@ -33939,7 +33933,7 @@ toughness=4
 [card]
 name=Kami of the Waning Moon
 abilities=flying
-auto=@movedTo(arcane,spirit|mystack) from(myhand):fear target(creature)
+auto=@movedTo(arcane,spirit|mystack):fear target(creature)
 text=Flying -- Whenever you cast a Spirit or Arcane spell, target creature gains fear until end of turn. (It can't be blocked except by artifact creatures and/or black creatures.)
 mana={2}{B}
 type=Creature
@@ -34727,7 +34721,7 @@ toughness=5
 [/card]
 [card]
 name=Kiln Fiend
-auto=@movedTo(instant,sorcery|mystack) from(myhand):3/0 ueot
+auto=@movedTo(instant,sorcery|mystack):3/0 ueot
 text=Whenever you cast an instant or sorcery spell, Kiln Fiend gets +3/+0 until end of turn.
 mana={1}{R}
 type=Creature
@@ -34880,7 +34874,7 @@ toughness=1
 [card]
 name=Kiri-Onna
 auto=moveTo(ownerhand) target(creature)
-auto=@movedto(arcane,spirit|mystack) from(myhand):may moveTo(ownerhand)
+auto=@movedto(arcane,spirit|mystack):may moveTo(ownerhand)
 text=When Kiri-Onna enters the battlefield, return target creature to its owner's hand. -- Whenever you cast a Spirit or Arcane spell, you may return Kiri-Onna to its owner's hand.
 mana={4}{U}
 type=Creature
@@ -35429,8 +35423,8 @@ toughness=4
 [/card]
 [card]
 name=Kodama of the South Tree
-auto=@movedTo(arcane,spirit|mystack) from(myhand):lord(other creature|myBattlefield) 1/1 ueot
-auto=@movedTo(other arcane,spirit|mystack) from(myhand):lord(creature|myBattlefield) trample ueot
+auto=@movedTo(arcane,spirit|mystack):lord(other creature|myBattlefield) 1/1 ueot
+auto=@movedTo(other arcane,spirit|mystack):lord(creature|myBattlefield) trample ueot
 text=Whenever you cast a Spirit or Arcane spell, each other creature you control gets +1/+1 and gains trample until end of turn.
 mana={2}{G}{G}
 type=Legendary Creature
@@ -35542,7 +35536,7 @@ toughness=1
 [card]
 name=Kor Firewalker
 abilities=protection from red
-auto=@movedTo(*[red]|stack) from(hand):may life:1 controller
+auto=@movedTo(*[red]|stack):may life:1 controller
 text=Protection from red -- Whenever a player casts a red spell, you may gain 1 life.
 mana={W}{W}
 type=Creature
@@ -35602,7 +35596,7 @@ toughness=3
 [card]
 name=Kor Spiritdancer
 auto=auto=thisforeach(auras > 0) 2/2
-auto=@movedTo(aura|mystack) from(myhand):draw:1 controller
+auto=@movedTo(aura|mystack):draw:1 controller
 text=Kor Spiritdancer gets +2/+2 for each Aura attached to it. -- Whenever you cast an Aura spell, you may draw a card.
 mana={1}{W}
 type=Creature
@@ -35691,7 +35685,7 @@ toughness=4
 [/card]
 [card]
 name=Kraken's Eye
-auto=@movedTo(*[blue]|stack) from(hand):may life:1 controller
+auto=@movedTo(*[blue]|stack):may life:1 controller
 text=Whenever a player casts a blue spell, you may gain 1 life.
 mana={2}
 type=Artifact
@@ -36053,7 +36047,7 @@ toughness=3
 [/card]
 [card]
 name=Kurgadon
-auto=@movedTo(creature[manacost>=6]|mystack) from(myhand):counter(1/1,3)
+auto=@movedTo(creature[manacost>=6]|mystack):counter(1/1,3)
 text=Whenever you cast a creature spell with converted mana cost 6 or more, put three +1/+1 counters on Kurgadon.
 mana={4}{G}
 type=Creature
@@ -36785,7 +36779,7 @@ subtype=Swamp
 [card]
 name=Leering Emblem
 auto={2}:equip
-auto=@movedTo(*|mystack) from(myhand):2/2 ueot
+auto=@movedTo(*|mystack):2/2 ueot
 text=Whenever you cast a spell, equipped creature gets +2/+2 until end of turn. -- Equip {2}
 mana={2}
 type=Artifact
@@ -36853,7 +36847,7 @@ toughness=3
 [card]
 name=Leonin Battlemage
 auto={T}:1/1 target(creature)
-auto=@movedto(*|mystack) from(myhand):may untap
+auto=@movedto(*|mystack):may untap
 text={T}: Target creature gets +1/+1 until end of turn. -- Whenever you cast a spell, you may untap Leonin Battlemage.
 mana={3}{W}
 type=Creature
@@ -37782,7 +37776,7 @@ toughness=3
 [/card]
 [card]
 name=Loam Dweller
-auto=@movedto(arcane,spirit|mystack) from(myhand):may moveto(myBattlefield) target(land|myhand) && tap
+auto=@movedto(arcane,spirit|mystack):may moveto(myBattlefield) target(land|myhand) && tap
 text=Whenever you cast a Spirit or Arcane spell, you may put a land card from your hand onto the battlefield tapped.
 mana={1}{G}
 type=Creature
@@ -38276,7 +38270,7 @@ toughness=5
 [card]
 name=Loyal Gyrfalcon
 abilities=defender,flying
-auto=@movedTo(*[white]|mystack) from(myhand):-defender ueot
+auto=@movedTo(*[white]|mystack):-defender ueot
 text=Defender, flying -- Whenever you cast a white spell, Loyal Gyrfalcon loses defender until end of turn.
 mana={3}{W}
 type=Creature
@@ -38565,7 +38559,7 @@ toughness=1
 [card]
 name=Lys Alana Bowmaster
 abilities=reach
-auto=@movedTo(elf|mystack) from(myhand):may damage:2 target(creature[flying])
+auto=@movedTo(elf|mystack):may damage:2 target(creature[flying])
 text=Reach (This can block creatures with flying.) -- Whenever you cast an Elf spell, you may have Lys Alana Bowmaster deal 2 damage to target creature with flying.
 mana={2}{G}
 type=Creature
@@ -38575,7 +38569,7 @@ toughness=2
 [/card]
 [card]
 name=Lys Alana Huntmaster
-auto=@movedTo(elf|mystack) from(myhand):may token(Elf Warrior,Creature Elf Warrior,1/1,green)
+auto=@movedTo(elf|mystack):may token(Elf Warrior,Creature Elf Warrior,1/1,green)
 text=Whenever you cast an Elf spell, you may put a 1/1 green Elf Warrior creature token onto the battlefield.
 mana={2}{G}{G}
 type=Creature
@@ -39259,22 +39253,22 @@ toughness=1
 [/card]
 [/card]
 name=Manaplasm
-auto=@movedTo(*[manacost=1]|mystack) from(myhand):1/1 ueot
-auto=@movedTo(*[manacost=2]|mystack) from(myhand):2/2 ueot
-auto=@movedTo(*[manacost=3]|mystack) from(myhand):3/3 ueot
-auto=@movedTo(*[manacost=4]|mystack) from(myhand):4/4 ueot
-auto=@movedTo(*[manacost=5]|mystack) from(myhand):5/5 ueot
-auto=@movedTo(*[manacost=6]|mystack) from(myhand):6/6 ueot
-auto=@movedTo(*[manacost=7]|mystack) from(myhand):7/7 ueot
-auto=@movedTo(*[manacost=8]|mystack) from(myhand):8/8 ueot
-auto=@movedTo(*[manacost=9]|mystack) from(myhand):9/9 ueot
-auto=@movedTo(*[manacost=10]|mystack) from(myhand):10/10 ueot
-auto=@movedTo(*[manacost=11]|mystack) from(myhand):11/11 ueot
-auto=@movedTo(*[manacost=12]|mystack) from(myhand):12/12 ueot
-auto=@movedTo(*[manacost=13]|mystack) from(myhand):13/13 ueot
-auto=@movedTo(*[manacost=14]|mystack) from(myhand):14/14 ueot
-auto=@movedTo(*[manacost=15]|mystack) from(myhand):15/15 ueot
-auto=@movedTo(*[manacost=16]|mystack) from(myhand):16/16 ueot
+auto=@movedTo(*[manacost=1]|mystack):1/1 ueot
+auto=@movedTo(*[manacost=2]|mystack):2/2 ueot
+auto=@movedTo(*[manacost=3]|mystack):3/3 ueot
+auto=@movedTo(*[manacost=4]|mystack):4/4 ueot
+auto=@movedTo(*[manacost=5]|mystack):5/5 ueot
+auto=@movedTo(*[manacost=6]|mystack):6/6 ueot
+auto=@movedTo(*[manacost=7]|mystack):7/7 ueot
+auto=@movedTo(*[manacost=8]|mystack):8/8 ueot
+auto=@movedTo(*[manacost=9]|mystack):9/9 ueot
+auto=@movedTo(*[manacost=10]|mystack):10/10 ueot
+auto=@movedTo(*[manacost=11]|mystack):11/11 ueot
+auto=@movedTo(*[manacost=12]|mystack):12/12 ueot
+auto=@movedTo(*[manacost=13]|mystack):13/13 ueot
+auto=@movedTo(*[manacost=14]|mystack):14/14 ueot
+auto=@movedTo(*[manacost=15]|mystack):15/15 ueot
+auto=@movedTo(*[manacost=16]|mystack):16/16 ueot
 text=Whenever you cast a spell, Manaplasm gets +X/+X until end of turn, where X is that spell's converted mana cost.
 mana={2}{G}
 type=Creature
@@ -40136,7 +40130,7 @@ toughness=1
 [/card]
 [card]
 name=Memory Erosion
-auto=@movedTo(*|opponentstack) from(opponenthand):deplete:2 opponent
+auto=@movedTo(*|opponentstack):deplete:2 opponent
 text=Whenever an opponent casts a spell, that player puts the top two cards of his or her library into his or her graveyard.
 mana={1}{U}{U}
 type=Enchantment
@@ -40432,7 +40426,7 @@ subtype=Merfolk
 [card]
 name=Merrow Levitator
 auto={T}:flying target(creature)
-auto=@movedTo(*[blue]|mystack) from(myhand):may untap
+auto=@movedTo(*[blue]|mystack):may untap
 text={T}: Target creature gains flying until end of turn. -- Whenever you cast a blue spell, you may untap Merrow Levitator.
 mana={3}{U}
 type=Creature
@@ -40452,7 +40446,7 @@ toughness=1
 [/card]
 [card]
 name=Mesa Enchantress
-auto=@movedTo(enchantment|mystack) from(myhand):may draw:1 controller
+auto=@movedTo(enchantment|mystack):may draw:1 controller
 text=Whenever you cast an enchantment spell, you may draw a card.
 mana={1}{W}{W}
 type=Creature
@@ -41099,7 +41093,7 @@ type=Instant
 [card]
 name=Mirran Spy
 abilities=flying
-auto=@movedTo(artifact|mystack) from(myhand):may untap target(creature)
+auto=@movedTo(artifact|mystack):may untap target(creature)
 text=Flying -- Whenever you cast an artifact spell, you may untap target creature.
 mana={2}{U}
 type=Creature
@@ -41468,7 +41462,7 @@ type=Artifact
 [card]
 name=Mogg Conscripts
 abilities=cantattack
-auto=@movedTo(creature|mystack) from(myhand):-cantattack ueot
+auto=@movedTo(creature|mystack):-cantattack ueot
 text=Mogg Conscripts can't attack unless you've cast a creature spell this turn.
 mana={R}
 type=Creature
@@ -41547,7 +41541,7 @@ type=Instant
 [/card]
 [card]
 name=Mogg Sentry
-auto=@movedTo(*|opponentstack) from(opponenthand):2/2 ueot
+auto=@movedTo(*|opponentstack):2/2 ueot
 text=Whenever an opponent casts a spell, Mogg Sentry gets +2/+2 until end of turn.
 mana={R}
 type=Creature
@@ -41589,7 +41583,7 @@ toughness=2
 [/card]
 [card]
 name=Mold Adder
-auto=@movedTo(*[black;blue]|opponentStack) from(opponenthand):may counter(1/1)
+auto=@movedTo(*[black;blue]|opponentStack):may counter(1/1)
 text=Whenever an opponent casts a blue or black spell, you may put a +1/+1 counter on Mold Adder.
 mana={G}
 type=Creature
@@ -43773,7 +43767,7 @@ toughness=1
 [card]
 name=Nettle Sentinel
 abilities=doesnotuntap
-auto=@movedTo(*[green]|mystack) from(myhand):may untap
+auto=@movedTo(*[green]|mystack):may untap
 text=Nettle Sentinel doesn't untap during your untap step. -- Whenever you cast a green spell, you may untap Nettle Sentinel.
 mana={G}
 type=Creature
@@ -44061,7 +44055,7 @@ toughness=1
 [/card]
 [card]
 name=Nightsky Mimic
-auto=@movedTo(*[blackandwhite]|mystack) from(myhand) turnlimited:transforms((,setpower=4,settoughness=4,flying)) ueot
+auto=@movedTo(*[blackandwhite]|mystack) turnlimited:transforms((,setpower=4,settoughness=4,flying)) ueot
 text=Whenever you cast a spell that's both white and black, Nightsky Mimic becomes 4/4 and gains flying until end of turn.
 mana={1}{WB}
 type=Creature
@@ -44133,7 +44127,7 @@ type=Enchantment
 [card]
 name=Nikko-Onna
 auto=destroy target(enchantment)
-auto=@movedto(arcane,spirit|mystack) from(myhand):may moveTo(ownerhand)
+auto=@movedto(arcane,spirit|mystack):may moveTo(ownerhand)
 text=When Nikko-Onna enters the battlefield, destroy target enchantment. -- Whenever you cast a Spirit or Arcane spell, you may return Nikko-Onna to its owner's hand.
 mana={2}{W}
 type=Creature
@@ -44483,8 +44477,7 @@ toughness=2
 [/card]
 [card]
 name=Norin the Wary
-auto=@movedTo(*|mystack) from(myhand):(blink)ueot
-auto=@movedTo(*|opponentstack) from(opponenthand):(blink)ueot
+auto=@movedTo(*|stack):(blink)ueot
 auto=@combat(attacking) source(creature):(blink)ueot
 text=When a player casts a spell or a creature attacks, exile Norin the Wary. Return it to the battlefield under its owner's control at the beginning of the next end step.
 mana={R}
@@ -44630,8 +44623,8 @@ toughness=3
 [card]
 name=Noxious Hatchling
 abilities=wither
-auto=@movedTo(*[black]|mystack) from(myhand):counter(-1/-1,-1)
-auto=@movedTo(*[green]|mystack) from(myhand):counter(-1/-1,-1)
+auto=@movedTo(*[black]|mystack):counter(-1/-1,-1)
+auto=@movedTo(*[green]|mystack):counter(-1/-1,-1)
 auto=counter(-1/-1,4)
 text=Noxious Hatchling enters the battlefield with four -1/-1 counters on it. -- Wither (This deals damage to creatures in the form of -1/-1 counters.) -- Whenever you cast a black spell, remove a -1/-1 counter from Noxious Hatchling. -- Whenever you cast a green spell, remove a -1/-1 counter from Noxious Hatchling.
 mana={3}{BG}
@@ -45089,8 +45082,7 @@ toughness=4
 [/card]
 [card]
 name=Ogre Recluse
-auto=@movedto(*|mystack) from(myhand):tap
-auto=@movedto(*|opponentstack) from(opponenthand):tap
+auto=@movedto(*|stack):tap
 text=Whenever a player casts a spell, tap Ogre Recluse.
 mana={3}{R}
 type=Creature
@@ -45288,7 +45280,7 @@ toughness=5
 [/card]
 [card]
 name=Onslaught
-auto=@movedTo(creature|mystack) from(myhand):tap target(creature)
+auto=@movedTo(creature|mystack):tap target(creature)
 text=Whenever you cast a creature spell, tap target creature.
 mana={R}
 type=Enchantment
@@ -45349,35 +45341,35 @@ color=green
 [/card]
 [card]
 name=Opal Archangel
-auto=@movedto(creature|opponentstack) from(opponenthand) once:transforms((removetypes)) forever && transforms((Angel Creature,setpower=5,settoughness=5,flying,vigilance)) forever
+auto=@movedto(creature|opponentstack) once:transforms((removetypes)) forever && transforms((Angel Creature,setpower=5,settoughness=5,flying,vigilance)) forever
 text=When an opponent casts a creature spell, if Opal Archangel is an enchantment, Opal Archangel becomes a 5/5 Angel creature with flying and vigilance.
 mana={4}{W}
 type=Enchantment
 [/card]
 [card]
 name=Opal Caryatid
-auto=@movedto(creature|opponentstack) from(opponenthand) once:transforms((removetypes)) forever && transforms((Soldier Creature,setpower=2,settoughness=2)) forever
+auto=@movedto(creature|opponentstack) once:transforms((removetypes)) forever && transforms((Soldier Creature,setpower=2,settoughness=2)) forever
 text=When an opponent casts a creature spell, if Opal Caryatid is an enchantment, Opal Caryatid becomes a 2/2 Soldier creature.
 mana={W}
 type=Enchantment
 [/card]
 [card]
 name=Opal Champion
-auto=@movedto(creature|opponentstack) from(opponenthand) once:transforms((removetypes)) forever && transforms((Soldier Creature,setpower=3,settoughness=3,first strike)) forever
+auto=@movedto(creature|opponentstack) once:transforms((removetypes)) forever && transforms((Soldier Creature,setpower=3,settoughness=3,first strike)) forever
 text=When an opponent casts a creature spell, if Opal Champion is an enchantment, Opal Champion becomes a 3/3 Knight creature with first strike.
 mana={2}{W}
 type=Enchantment
 [/card]
 [card]
 name=Opal Gargoyle
-auto=@movedto(creature|opponentstack) from(opponenthand) once:transforms((removetypes)) forever && transforms((Soldier Creature,setpower=2,settoughness=2,flying)) forever
+auto=@movedto(creature|opponentstack) once:transforms((removetypes)) forever && transforms((Soldier Creature,setpower=2,settoughness=2,flying)) forever
 text=When an opponent casts a creature spell, if Opal Gargoyle is an enchantment, Opal Gargoyle becomes a 2/2 Gargoyle creature with flying.
 mana={1}{W}
 type=Enchantment
 [/card]
 [card]
 name=Opal Guardian
-auto=@movedto(creature|opponentstack) from(opponenthand) once:transforms((removetypes)) forever && transforms((Gargoyle Creature,setpower=3,settoughness=4,flying,protection from red)) forever
+auto=@movedto(creature|opponentstack) once:transforms((removetypes)) forever && transforms((Gargoyle Creature,setpower=3,settoughness=4,flying,protection from red)) forever
 text=When an opponent casts a creature spell, if Opal Guardian is an enchantment, Opal Guardian becomes a 3/4 Gargoyle creature with flying and protection from red.
 mana={W}{W}{W}
 type=Enchantment
@@ -45506,7 +45498,7 @@ toughness=3
 [card]
 name=Orbweaver Kumo
 abilities=reach
-auto=@movedTo(arcane,spirit|mystack) from(myhand):forestwalk ueot
+auto=@movedTo(arcane,spirit|mystack):forestwalk ueot
 text=Reach (This creature can block creatures with flying.) -- Whenever you cast a Spirit or Arcane spell, Orbweaver Kumo gains forestwalk until end of turn.
 mana={4}{G}{G}
 type=Creature
@@ -45752,7 +45744,7 @@ toughness=1
 [/card]
 [card]
 name=Ore Gorger
-auto=@movedTo(spirit,arcane|mystack) from(myhand):may destroy target(land[-basic])
+auto=@movedTo(spirit,arcane|mystack):may destroy target(land[-basic])
 text=Whenever you cast a Spirit or Arcane spell, you may destroy target nonbasic land.
 mana={3}{R}{R}
 type=Creature
@@ -46177,7 +46169,7 @@ type=Instant
 [card]
 name=Oyobi, Who Split the Heavens
 abilities=flying
-auto=@movedto(arcane,spirit|mystack) from(myhand):token(Spirit,Creature Spirit,3/3,flying white)
+auto=@movedto(arcane,spirit|mystack):token(Spirit,Creature Spirit,3/3,flying white)
 text=Flying -- Whenever you cast a Spirit or Arcane spell, put a 3/3 white Spirit creature token with flying onto the battlefield.
 mana={6}{W}
 type=Legendary Creature
@@ -46215,7 +46207,7 @@ type=Sorcery
 [/card]
 [card]
 name=Painsmith
-auto=@movedTo(artifact|mystack) from(myhand):may 2/0 target(creature) && deathtouch ueot
+auto=@movedTo(artifact|mystack):may 2/0 target(creature) && deathtouch ueot
 text=Whenever you cast an artifact spell, you may have target creature get +2/+0 and gain deathtouch until end of turn.
 mana={1}{B}
 type=Creature
@@ -46376,8 +46368,7 @@ toughness=2
 [/card]
 [card]
 name=Pangosaur
-auto=@movedTo(land|myBattlefield) from(myhand):moveTo(ownerhand)
-auto=@movedTo(land|opponentBattlefield) from(opponenthand):moveTo(ownerhand)
+auto=@movedTo(land|battlefield) from(hand):moveTo(ownerhand)
 text=Whenever a player plays a land, return Pangosaur to its owner's hand.
 mana={2}{G}{G}
 type=Creature
@@ -46428,11 +46419,11 @@ auto=this(counter{0/0.1.Blue}) {T}:add{U}
 auto=this(counter{0/0.1.Black}) {T}:add{B}
 auto=this(counter{0/0.1.Red}) {T}:add{R}
 auto=this(counter{0/0.1.Green}) {T}:add{G}
-auto=@movedto(*[white]|stack) from(hand):this(counter{0/0.1.White}) life:1 controller
-auto=@movedto(*[blue]|stack) from(hand):this(counter{0/0.1.Blue}) life:1 controller
-auto=@movedto(*[black]|stack) from(hand):this(counter{0/0.1.Black}) life:1 controller
-auto=@movedto(*[red]|stack) from(hand):this(counter{0/0.1.Red}) life:1 controller
-auto=@movedto(*[green]|stack) from(hand):this(counter{0/0.1.Green}) life:1 controller
+auto=@movedto(*[white]|stack):this(counter{0/0.1.White}) life:1 controller
+auto=@movedto(*[blue]|stack):this(counter{0/0.1.Blue}) life:1 controller
+auto=@movedto(*[black]|stack):this(counter{0/0.1.Black}) life:1 controller
+auto=@movedto(*[red]|stack):this(counter{0/0.1.Red}) life:1 controller
+auto=@movedto(*[green]|stack):this(counter{0/0.1.Green}) life:1 controller
 text=As Paradise Plume enters the battlefield, choose a color. -- Whenever a player casts a spell of the chosen color, you may gain 1 life. -- {T}: Add one mana of the chosen color to your mana pool.
 mana={4}
 type=Artifact
@@ -48867,7 +48858,7 @@ type=Legendary Artifact
 [card]
 name=Predatory Hunger
 target=creature
-auto=@movedTo(creature|opponentstack) from(opponenthand):counter(1/1)
+auto=@movedTo(creature|opponentstack):counter(1/1)
 text=Enchant creature -- Whenever an opponent casts a creature spell, put a +1/+1 counter on enchanted creature.
 mana={G}
 type=Enchantment
@@ -48903,7 +48894,7 @@ subtype=Aura
 [/card]
 [card]
 name=Presence of the Master
-auto=@movedTo(enchantment|stack) from(hand):fizzle all(enchantment|stack)
+auto=@movedTo(enchantment|stack):fizzle all(enchantment|stack)
 text=Whenever a player casts an enchantment spell, counter it.
 mana={3}{W}
 type=Enchantment
@@ -49135,7 +49126,7 @@ toughness=4
 [/card]
 [card]
 name=Primordial Sage
-auto=@movedTo(creature|mystack) from(myhand):may draw:1
+auto=@movedTo(creature|mystack):may draw:1
 text=Whenever you cast a creature spell, you may draw a card.
 mana={4}{G}{G}
 type=Creature
@@ -49220,7 +49211,7 @@ auto=this(untapped) protection from black
 auto=this(untapped) protection from red
 auto=this(untapped) protection from green
 auto=this(untapped) protection from(artifact)
-auto=@movedTo(*|mystack) from(myhand):may untap
+auto=@movedTo(*|mystack):may untap
 text=Flying -- As long as Pristine Angel is untapped, it has protection from artifacts and from all colors. -- Whenever you cast a spell, you may untap Pristine Angel.
 mana={4}{W}{W}
 type=Creature
@@ -49882,8 +49873,8 @@ type=Enchantment
 [/card]
 [card]
 name=Pyrostatic Pillar
-auto=@movedTo(*[manacost<=3]|mystack) from(myhand):damage:2 controller
-auto=@movedTo(*[manacost<=3]|opponentstack) from(opponenthand):damage:2 opponent
+auto=@movedTo(*[manacost<=3]|mystack):damage:2 controller
+auto=@movedTo(*[manacost<=3]|opponentstack):damage:2 opponent
 text=Whenever a player casts a spell with converted mana cost 3 or less, Pyrostatic Pillar deals 2 damage to that player.
 mana={1}{R}
 type=Enchantment
@@ -50073,7 +50064,7 @@ subtype=Equipment
 [/card]
 [card]
 name=Quill-Slinger Boggart
-auto=@movedTo(kithkin|stack) from(hand):may life:-1 target(player)
+auto=@movedTo(kithkin|stack):may life:-1 target(player)
 text=Whenever a player casts a Kithkin spell, you may have target player lose 1 life.
 mana={3}{B}
 type=Creature
@@ -50102,7 +50093,7 @@ toughness=8
 [/card]
 [card]
 name=Quillmane Baku
-auto=@movedTo(spirit,arcane|mystack) from(myhand):may counter(0/0,1,Ki)
+auto=@movedTo(spirit,arcane|mystack):may counter(0/0,1,Ki)
 auto={1}{C(0/0,-1,Ki)}{T}:name(Remove 1 Counters) moveTo(ownerhand) target(creature[manacost<=1])
 auto={1}{C(0/0,-2,Ki)}{T}:name(Remove 2 Counters) moveTo(ownerhand) target(creature[manacost<=2])
 auto={1}{C(0/0,-3,Ki)}{T}:name(Remove 3 Counters) moveTo(ownerhand) target(creature[manacost<=3])
@@ -50134,7 +50125,7 @@ toughness=2
 [/card]
 [card]
 name=Quirion Dryad
-auto=@movedTo(*[white;blue;black;red]|myStack) from(myhand):counter(1/1)
+auto=@movedTo(*[white;blue;black;red]|myStack):counter(1/1)
 text=Whenever you cast a white, blue, black, or red spell, put a +1/+1 counter on Quirion Dryad.
 mana={1}{G}
 type=Creature
@@ -51889,7 +51880,7 @@ type=Artifact
 [/card]
 [card]
 name=Reki, the History of Kamigawa
-auto=@movedto(*[legendary]|mystack) from(myhand):draw:1 controller
+auto=@movedto(*[legendary]|mystack):draw:1 controller
 text=Whenever you cast a legendary spell, draw a card.
 mana={2}{G}
 type=Legendary Creature
@@ -52710,7 +52701,7 @@ subtype=Arcane
 [/card]
 [card]
 name=Riddlesmith
-auto=@movedTo(artifact|mystack) from(myhand):may token(-5555556) && draw:1
+auto=@movedTo(artifact|mystack):may token(-5555556) && draw:1
 text=Whenever you cast an artifact spell, you may draw a card. If you do, discard a card.
 mana={1}{U}
 type=Creature
@@ -53167,7 +53158,7 @@ type=Land
 [/card]
 [card]
 name=Riverfall Mimic
-auto=@movedTo(*[RedAndBlue]|mystack) from(myhand) turnlimited:transforms((,setpower=3,settoughness=3,unblockable)) ueot
+auto=@movedTo(*[RedAndBlue]|mystack) turnlimited:transforms((,setpower=3,settoughness=3,unblockable)) ueot
 text=Whenever you cast a spell that's both blue and red, Riverfall Mimic becomes 3/3 and is unblockable until end of turn.
 mana={1}{UR}
 type=Creature
@@ -54309,8 +54300,8 @@ type=Enchantment
 [/card]
 [card]
 name=Safehold Duo
-auto=@movedTo(*[green]|mystack) from(myhand):1/1 ueot
-auto=@movedTo(*[white]|mystack) from(myhand):vigilance ueot
+auto=@movedTo(*[green]|mystack):1/1 ueot
+auto=@movedTo(*[white]|mystack):vigilance ueot
 text=Whenever you cast a green spell, Safehold Duo gets +1/+1 until end of turn. -- Whenever you cast a white spell, Safehold Duo gains vigilance until end of turn.
 mana={3}{GW}
 type=Creature
@@ -54692,7 +54683,7 @@ type=Instant
 [card]
 name=Sandstorm Eidolon
 auto={R}{S}:cantblock target(creature)
-autograveyard=@movedTo(*[multicolor]|mystack) from(myhand):may moveTo(myhand)
+autograveyard=@movedTo(*[multicolor]|mystack):may moveTo(myhand)
 text={R}, Sacrifice Sandstorm Eidolon: Target creature can't block this turn. -- Whenever you cast a multicolored spell, you may return Sandstorm Eidolon from your graveyard to your hand.
 mana={3}{R}
 type=Creature
@@ -55147,7 +55138,7 @@ toughness=4
 [/card]
 [card]
 name=Scaled Hulk
-auto=@movedto(spirit,arcane|myStack) from(myhand):2/2 ueot
+auto=@movedto(spirit,arcane|myStack):2/2 ueot
 text=Whenever you cast a Spirit or Arcane spell, Scaled Hulk gets +2/+2 until end of turn.
 mana={5}{G}
 type=Creature
@@ -57822,7 +57813,7 @@ toughness=2
 [/card]
 [card]
 name=Shorecrasher Mimic
-auto=@movedTo(*[BlueAndGreen]|mystack) from(myhand) turnlimited:transforms((,setpower=5,settoughness=3,trample)) ueot
+auto=@movedTo(*[BlueAndGreen]|mystack) turnlimited:transforms((,setpower=5,settoughness=3,trample)) ueot
 text=Whenever you cast a spell that's both green and blue, Shorecrasher Mimic becomes 5/3 and gains trample until end of turn.
 mana={1}{GU}
 type=Creature
@@ -58205,7 +58196,7 @@ subtype=Aura
 [/card]
 [card]
 name=Sigil of the Empty Throne
-auto=@movedTo(enchantment|mystack) from(myhand):token(Angel,Creature Angel,4/4,white flying)
+auto=@movedTo(enchantment|mystack):token(Angel,Creature Angel,4/4,white flying)
 text=Whenever you cast an enchantment spell, put a 4/4 white Angel creature token with flying onto the battlefield.
 mana={3}{W}{W}
 type=Enchantment
@@ -58700,7 +58691,7 @@ toughness=7
 [card]
 name=Sire of the Storm
 abilities=flying
-auto=@movedTo(arcane,spirit|mystack) from(myhand):may draw:1
+auto=@movedTo(arcane,spirit|mystack):may draw:1
 text=Flying -- Whenever you cast a Spirit or Arcane spell, you may draw a card.
 mana={4}{U}{U}
 type=Creature
@@ -59026,7 +59017,7 @@ toughness=4
 [/card]
 [card]
 name=Skittering Horror
-auto=@movedTo(creature|mystack) from(myhand):bury
+auto=@movedTo(creature|mystack):bury
 text=When you cast a creature spell, sacrifice Skittering Horror.
 mana={2}{B}
 type=Creature
@@ -59044,7 +59035,7 @@ subtype=Eldrazi
 [/card]
 [card]
 name=Skittering Monstrosity
-auto=@movedTo(creature|mystack) from(myhand):bury
+auto=@movedTo(creature|mystack):bury
 text=When you cast a creature spell, sacrifice Skittering Monstrosity.
 mana={3}{B}{B}
 type=Creature
@@ -59055,7 +59046,7 @@ toughness=5
 [card]
 name=Skittering Skirge
 abilities=flying
-auto=@movedTo(creature|mystack) from(myhand):bury
+auto=@movedTo(creature|mystack):bury
 text=Flying -- When you cast a creature spell, sacrifice Skittering Skirge.
 mana={B}{B}
 type=Creature
@@ -59189,7 +59180,7 @@ subtype=Equipment
 [/card]
 [card]
 name=Skullmane Baku
-auto=@movedTo(spirit,arcane|mystack) from(myhand):may counter(0/0,1,Ki)
+auto=@movedTo(spirit,arcane|mystack):may counter(0/0,1,Ki)
 auto={1}{C(0/0,-1,Ki)}{T}:name(Remove 1 Counters) -1/-1 target(creature)
 auto={1}{C(0/0,-2,Ki)}{T}:name(Remove 2 Counters) -2/-2 target(creature)
 auto={1}{C(0/0,-3,Ki)}{T}:name(Remove 3 Counters) -3/-3 target(creature)
@@ -60123,7 +60114,7 @@ subtype=Aura
 [/card]
 [card]
 name=Snake Pit
-auto=@movedTo(*[blue;black]|opponentstack) from(opponenthand):may token(Snake,Creature Snake,1/1,green)
+auto=@movedTo(*[blue;black]|opponentstack):may token(Snake,Creature Snake,1/1,green)
 text=Whenever an opponent casts a blue or black spell, you may put a 1/1 green Snake creature token onto the battlefield.
 mana={3}{G}
 type=Enchantment
@@ -60340,7 +60331,7 @@ type=Land
 [/card]
 [card]
 name=Soilshaper
-auto=@movedTo(spirit,arcane|mystack) from(myhand):target(land) becomes(Creature,3/3) ueot
+auto=@movedTo(spirit,arcane|mystack):target(land) becomes(Creature,3/3) ueot
 text=Whenever you cast a Spirit or Arcane spell, target land becomes a 3/3 creature until end of turn. It's still a land.
 mana={1}{G}
 type=Creature
@@ -60395,8 +60386,7 @@ type=Artifact
 [card]
 name=Sol'kanar the Swamp King
 abilities=swampwalk
-auto=@movedTo(*[black]|mystack) from(myhand):life:1
-auto=@movedTo(*[black]|opponentstack) from(opponenthand):life:1
+auto=@movedTo(*[black]|stack):life:1
 text=Swampwalk -- Whenever a player casts a black spell, you gain 1 life.
 mana={2}{U}{B}{R}
 type=Legendary Creature
@@ -60675,8 +60665,8 @@ type=Instant
 [card]
 name=Soot Imp
 abilities=flying
-auto=@movedTo(*[-black]|mystack) from(myhand):life:-1 controller
-auto=@movedTo(*[-black]|opponentstack) from(opponenthand):life:-1 opponent
+auto=@movedTo(*[-black]|mystack):life:-1 controller
+auto=@movedTo(*[-black]|opponentstack):life:-1 opponent
 text=Flying -- Whenever a player casts a nonblack spell, that player loses 1 life.
 mana={1}{B}{B}
 type=Creature
@@ -60947,7 +60937,7 @@ toughness=1
 [/card]
 [card]
 name=Soul of Magma
-auto=@movedTo(arcane,spirit|mystack) from(myhand):damage:1 target(creature)
+auto=@movedTo(arcane,spirit|mystack):damage:1 target(creature)
 text=Whenever you cast a Spirit or Arcane spell, Soul of Magma deals 1 damage to target creature.
 mana={3}{R}{R}
 type=Creature
@@ -61432,8 +61422,8 @@ toughness=1
 [/card]
 [card]
 name=Spellshock
-auto=@movedTo(*|mystack) from(myhand):damage:2 controller
-auto=@movedTo(*|opponentstack) from(opponenthand):damage:2 opponent
+auto=@movedTo(*|mystack):damage:2 controller
+auto=@movedTo(*|opponentstack):damage:2 opponent
 text=Whenever a player casts a spell, Spellshock deals 2 damage to that player.
 mana={2}{R}
 type=Enchantment
@@ -61481,7 +61471,7 @@ toughness=2
 [/card]
 [card]
 name=Sphinx-Bone Wand
-auto=@movedTo(instant,sorcery|mystack) from(myhand):may counter(0/0,1,Charge) all(this) && thisforeach(counter{0/0,1,Charge}) damage:1 target(creature,player)
+auto=@movedTo(instant,sorcery|mystack):may counter(0/0,1,Charge) all(this) && thisforeach(counter{0/0,1,Charge}) damage:1 target(creature,player)
 text=Whenever you cast an instant or sorcery spell, you may put a charge counter on Sphinx-Bone Wand. If you do, Sphinx-Bone Wand deals damage equal to the number of charge counters on it to target creature or player.
 mana={7}
 type=Artifact
@@ -63604,7 +63594,7 @@ toughness=4
 [/card]
 [card]
 name=Straw Golem
-auto=@movedto(creature|opponentstack) from(opponenthand):bury
+auto=@movedto(creature|opponentstack):bury
 text=When an opponent casts a creature spell, sacrifice Straw Golem.
 mana={1}
 type=Artifact Creature
@@ -63911,8 +63901,8 @@ toughness=1
 [card]
 name=Sturdy Hatchling
 auto={GU}:shroud
-auto=@movedTo(*[blue]|mystack) from(myhand):counter(-1/-1,-1)
-auto=@movedTo(*[green]|mystack) from(myhand):counter(-1/-1,-1)
+auto=@movedTo(*[blue]|mystack):counter(-1/-1,-1)
+auto=@movedTo(*[green]|mystack):counter(-1/-1,-1)
 auto=counter(-1/-1,4)
 text=Sturdy Hatchling enters the battlefield with four -1/-1 counters on it. -- {(g/u)}: Sturdy Hatchling gains shroud until end of turn. -- Whenever you cast a green spell, remove a -1/-1 counter from Sturdy Hatchling. -- Whenever you cast a blue spell, remove a -1/-1 counter from Sturdy Hatchling.
 mana={3}{GU}
@@ -64546,7 +64536,7 @@ toughness=1
 [/card]
 [card]
 name=Surrakar Spellblade
-auto=@movedTo(instant,sorcery|mystack) from(myhand):may counter(0/0,1,Charge)
+auto=@movedTo(instant,sorcery|mystack):may counter(0/0,1,Charge)
 auto=@combatdamaged(player) from(this):may dynamicability<!chargedraw srccontroller!>
 text=Whenever you cast an instant or sorcery spell, you may put a charge counter on Surrakar Spellblade. -- Whenever Surrakar Spellblade deals combat damage to a player, you may draw X cards, where X is equal to the number of charge counters on it.
 mana={1}{U}{U}
@@ -65538,8 +65528,8 @@ type=Instant
 [/card]
 [card]
 name=Tangleroot
-auto=@movedto(creature|mystack) from(myhand):add{G}
-auto=@movedto(creature|opponentstack) from(opponenthand):add{G} opponent
+auto=@movedto(creature|mystack):add{G}
+auto=@movedto(creature|opponentstack):add{G} opponent
 text=Whenever a player casts a creature spell, that player adds {G} to his or her mana pool.
 mana={3}
 type=Artifact
@@ -65695,8 +65685,8 @@ toughness=2
 [/card]
 [card]
 name=Tattermunge Duo
-auto=@movedTo(*[red]|mystack) from(myhand):1/1 ueot
-auto=@movedTo(*[green]|mystack) from(myhand):forestwalk ueot
+auto=@movedTo(*[red]|mystack):1/1 ueot
+auto=@movedTo(*[green]|mystack):forestwalk ueot
 text=Whenever you cast a red spell, Tattermunge Duo gets +1/+1 until end of turn. -- Whenever you cast a green spell, Tattermunge Duo gains forestwalk until end of turn.
 mana={2}{RG}
 type=Creature
@@ -65738,7 +65728,7 @@ subtype=Aura
 [card]
 name=Taurean Mauler
 abilities=changeling
-auto=@movedTo(*|opponentstack) from(opponenthand):may counter(1/1,1)
+auto=@movedTo(*|opponentstack):may counter(1/1,1)
 text=Changeling (This card is every creature type at all times.) -- Whenever an opponent casts a spell, you may put a +1/+1 counter on Taurean Mauler.
 mana={2}{R}
 type=Creature
@@ -66051,8 +66041,8 @@ type=Instant
 [card]
 name=Teller of Tales
 abilities=flying
-auto=@movedTo(arcane,spirit|mystack) from(myhand):may tap target(creature)
-auto=@movedTo(arcane,spirit|mystack) from(myhand):may untap target(creature)
+auto=@movedTo(arcane,spirit|mystack):may tap target(creature)
+auto=@movedTo(arcane,spirit|mystack):may untap target(creature)
 text=Flying -- Whenever you cast a Spirit or Arcane spell, you may tap or untap target creature.
 mana={3}{U}{U}
 type=Creature
@@ -66801,7 +66791,7 @@ toughness=4
 [/card]
 [card]
 name=Thief of Hope
-auto=@movedTo(arcane,spirit|mystack) from(myhand):life:-1 opponent && life:1 controller
+auto=@movedTo(arcane,spirit|mystack):life:-1 opponent && life:1 controller
 auto=@movedTo(this|mygraveyard) from(myBattlefield):may moveTo(myhand) target(other spirit[manacost<=2]|mygraveyard)
 text=Whenever you cast a Spirit or Arcane spell, target opponent loses 1 life and you gain 1 life. -- Soulshift 2 (When this is put into a graveyard from the battlefield, you may return target Spirit card with converted mana cost 2 or less from your graveyard to your hand.)
 mana={2}{B}
@@ -66831,8 +66821,8 @@ type=Instant
 [/card]
 [card]
 name=Thistledown Duo
-auto=@movedTo(*[white]|mystack) from(myhand):1/1 ueot
-auto=@movedTo(*[blue]|mystack) from(myhand):flying ueot
+auto=@movedTo(*[white]|mystack):1/1 ueot
+auto=@movedTo(*[blue]|mystack):flying ueot
 text=Whenever you cast a white spell, Thistledown Duo gets +1/+1 until end of turn. -- Whenever you cast a blue spell, Thistledown Duo gains flying until end of turn.
 mana={2}{WU}
 type=Creature
@@ -66975,7 +66965,7 @@ toughness=2
 [/card]
 [card]
 name=Thorntooth Witch
-auto=@movedTo(treefolk|mystack) from(myhand):may 3/-3 target(creature) ueot
+auto=@movedTo(treefolk|mystack):may 3/-3 target(creature) ueot
 text=Whenever you cast a Treefolk spell, you may have target creature get +3/-3 until end of turn.
 mana={5}{B}
 type=Creature
@@ -67508,8 +67498,8 @@ toughness=1
 [/card]
 [card]
 name=Tibor and Lumia
-auto=@movedTo(*[blue]|mystack) from(myhand):flying target(creature) ueot
-auto=@movedTo(*[red]|mystack) from(myhand):damage:1 all(creature[-flying])
+auto=@movedTo(*[blue]|mystack):flying target(creature) ueot
+auto=@movedTo(*[red]|mystack):damage:1 all(creature[-flying])
 text=Whenever you cast a blue spell, target creature gains flying until end of turn. -- Whenever you cast a red spell, Tibor and Lumia deals 1 damage to each creature without flying.
 mana={2}{U}{R}
 type=Legendary Creature
@@ -67657,7 +67647,7 @@ toughness=1
 [card]
 name=Tidespout Tyrant
 abilities=flying
-auto=@movedTo(*|mystack) from(myhand):moveTo(ownerhand) target(*)
+auto=@movedTo(*|mystack):moveTo(ownerhand) target(*)
 text=Flying -- Whenever you cast a spell, return target permanent to its owner's hand.
 mana={5}{U}{U}{U}
 type=Creature
@@ -67961,8 +67951,7 @@ type=Sorcery
 [/card]
 [card]
 name=Titania's Chosen
-auto=@movedTo(*[green]|opponentStack) from(opponenthand):counter(1/1)
-auto=@movedTo(*[green]|myStack) from(myhand):counter(1/1)
+auto=@movedTo(*[green]|stack):counter(1/1)
 text=Whenever a player casts a green spell, put a +1/+1 counter on Titania's Chosen.
 mana={2}{G}
 type=Creature
@@ -71078,7 +71067,7 @@ toughness=2
 [/card]
 [card]
 name=Vedalken Archmage
-auto=@movedTo(artifact|mystack) from(myhand):draw:1 controller
+auto=@movedTo(artifact|mystack):draw:1 controller
 text=Whenever you cast an artifact spell, draw a card.
 mana={2}{U}{U}
 type=Creature
@@ -71168,7 +71157,7 @@ toughness=2
 [/card]
 [card]
 name=Veil of Birds
-auto=@movedto(*|opponentstack) from(opponenthand) once:transforms((removetypes)) forever && transforms((Bird Creature,setpower=1,settoughness=1,flying)) forever
+auto=@movedto(*|opponentstack) once:transforms((removetypes)) forever && transforms((Bird Creature,setpower=1,settoughness=1,flying)) forever
 text=When an opponent casts a spell, if Veil of Birds is an enchantment, Veil of Birds becomes a 1/1 Bird creature with flying.
 mana={U}
 type=Enchantment
@@ -71178,14 +71167,14 @@ name=Veiled Serpent
 abilities=cantattack
 autohand={2}:cycling
 auto=aslongas(island|opponentbattlefield) -cantattack
-auto=@movedto(*|opponentstack) from(opponenthand) once:transforms((removetypes)) forever && transforms((Serpent Creature,setpower=4,settoughness=4)) forever
+auto=@movedto(*|opponentstack) once:transforms((removetypes)) forever && transforms((Serpent Creature,setpower=4,settoughness=4)) forever
 text=When an opponent casts a spell, if Veiled Serpent is an enchantment, Veiled Serpent becomes a 4/4 Serpent creature that can't attack unless defending player controls an Island. -- Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={2}{U}
 type=Enchantment
 [/card]
 [card]
 name=Veilstone Amulet
-auto=@movedTo(*|mystack) from(myhand):lord(creature|myBattlefield) opponentshroud ueot
+auto=@movedTo(*|mystack):lord(creature|myBattlefield) opponentshroud ueot
 text=Whenever you cast a spell, creatures you control can't be the targets of spells or abilities your opponents control this turn.
 mana={3}
 type=Artifact
@@ -71424,7 +71413,7 @@ auto={G}{S}:Add{U}{U}{U}
 auto={G}{S}:Add{B}{B}{B}
 auto={G}{S}:Add{R}{R}{R}
 auto={G}{S}:Add{G}{G}{G}
-autograveyard=@movedTo(*[multicolor]|mystack) from(myhand):may moveTo(myhand)
+autograveyard=@movedTo(*[multicolor]|mystack):may moveTo(myhand)
 text={G}, Sacrifice Verdant Eidolon: Add three mana of any one color to your mana pool. -- Whenever you cast a multicolored spell, you may return Verdant Eidolon from your graveyard to your hand.
 mana={3}{G}
 type=Creature
@@ -71493,7 +71482,7 @@ toughness=3
 [/card]
 [card]
 name=Verduran Enchantress
-auto=@movedTo(enchantment|mystack) from(myhand):may draw:1
+auto=@movedTo(enchantment|mystack):may draw:1
 text=Whenever you cast an enchantment spell, you may draw a card.
 mana={1}{G}{G}
 type=Creature
@@ -72851,8 +72840,8 @@ toughness=2
 [card]
 name=Voracious Hatchling
 abilities=lifelink
-auto=@movedTo(*[white]|mystack) from(myhand):counter(-1/-1,-1)
-auto=@movedTo(*[black]|mystack) from(myhand):counter(-1/-1,-1)
+auto=@movedTo(*[white]|mystack):counter(-1/-1,-1)
+auto=@movedTo(*[black]|mystack):counter(-1/-1,-1)
 auto=counter(-1/-1,4)
 text=Lifelink -- Voracious Hatchling enters the battlefield with four -1/-1 counters on it. -- Whenever you cast a white spell, remove a -1/-1 counter from Voracious Hatchling. -- Whenever you cast a black spell, remove a -1/-1 counter from Voracious Hatchling.
 mana={3}{WB}
@@ -73851,7 +73840,7 @@ subtype=Equipment
 [/card]
 [card]
 name=Warmth
-auto=@movedTo(*[red]|opponentstack) from(opponenthand):life:2
+auto=@movedTo(*[red]|opponentstack):life:2
 text=Whenever an opponent casts a red spell, you gain 2 life.
 mana={1}{W}
 type=Enchantment
@@ -74213,7 +74202,7 @@ subtype=Aura
 [card]
 name=Wee Dragonauts
 abilities=flying
-auto=@movedTo(instant,sorcery|mystack) from(myhand):2/0 ueot
+auto=@movedTo(instant,sorcery|mystack):2/0 ueot
 text=Flying -- Whenever you cast an instant or sorcery spell, Wee Dragonauts gets +2/+0 until end of turn.
 mana={1}{U}{R}
 type=Creature
@@ -75453,7 +75442,7 @@ toughness=1
 [/card]
 [card]
 name=Witch-Maw Nephilim
-auto=@movedTo(*|mystack) from(myhand):may counter(1/1,2)
+auto=@movedTo(*|mystack):may counter(1/1,2)
 auto=lord(witch-maw nephilim[attacking;power>=10]) trample
 text=Whenever you cast a spell, you may put two +1/+1 counters on Witch-Maw Nephilim. -- Whenever Witch-Maw Nephilim attacks, it gains trample until end of turn if its power is 10 or greater.
 mana={G}{W}{U}{B}
@@ -75691,7 +75680,7 @@ toughness=2
 [/card]
 [card]
 name=Woodlurker Mimic
-auto=@movedTo(*[BlackAndGreen]|mystack) from(myhand) turnlimited:transforms((,setpower=4,settoughness=5,wither)) ueot
+auto=@movedTo(*[BlackAndGreen]|mystack) turnlimited:transforms((,setpower=4,settoughness=5,wither)) ueot
 text=Whenever you cast a spell that's both black and green, Woodlurker Mimic becomes 4/5 and gains wither until end of turn. (It deals damage to creatures in the form of -1/-1 counters.)
 mana={1}{BG}
 type=Creature
@@ -76071,7 +76060,7 @@ toughness=3
 [/card]
 [card]
 name=Wurm's Tooth
-auto=@movedTo(*[green]|stack) from(hand):may life:1 controller
+auto=@movedTo(*[green]|stack):may life:1 controller
 text=Whenever a player casts a green spell, you may gain 1 life.
 mana={2}
 type=Artifact
@@ -76375,8 +76364,8 @@ toughness=6
 [/card]
 [card]
 name=Yawgmoth's Edict
-auto=@movedTo(*[white]|opponentStack) from(opponenthand):life:-1 opponent
-auto=@movedTo(*[white]|opponentStack) from(opponenthand):life:1 controller
+auto=@movedTo(*[white]|opponentStack):life:-1 opponent
+auto=@movedTo(*[white]|opponentStack):life:1 controller
 text=Whenever an opponent casts a white spell, that player loses 1 life and you gain 1 life.
 mana={1}{B}
 type=Enchantment
@@ -76503,7 +76492,7 @@ toughness=2
 [card]
 name=Yuki-Onna
 auto=destroy target(artifact)
-auto=@movedto(arcane,spirit|mystack) from(myhand):may moveto(ownerhand)
+auto=@movedto(arcane,spirit|mystack):may moveto(ownerhand)
 text=When Yuki-Onna enters the battlefield, destroy target artifact. -- Whenever you cast a Spirit or Arcane spell, you may return Yuki-Onna to its owner's hand.
 mana={3}{R}
 type=Creature
