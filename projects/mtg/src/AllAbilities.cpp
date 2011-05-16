@@ -2682,10 +2682,13 @@ int ATransformer::destroy()
 				_target->addType(*it);
 			}
 		}
-		//n the case that we removed or added types to a card, so that it retains its original name when the effect is removed.
+		//in the case that we removed or added types to a card, so that it retains its original name when the effect is removed.
+		if(_target->model->data->name.size())//tokens don't have a model name.
+		{
 		_target->name.clear();
 		_target->setName(_target->model->data->name.c_str());
-    }
+		}
+	}
     return 1;
 }
 

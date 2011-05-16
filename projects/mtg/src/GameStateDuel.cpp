@@ -474,12 +474,12 @@ void GameStateDuel::Update(float dt)
             {
                 menu = NEW SimpleMenu(DUEL_MENU_GAME_MENU, this, Fonts::MENU_FONT, SCREEN_WIDTH / 2 - 100, 25,
                     game->players[1]->deckName.c_str());
-                int cardsinhand = game->players[0]->game->hand->nb_cards;
+                int cardsinhand = game->currentPlayer->game->hand->nb_cards;
 
                 //almosthumane - mulligan
                 if ((game->turn < 1) && (cardsinhand != 0) && game->currentGamePhase == Constants::MTG_PHASE_FIRSTMAIN
-                    && game->players[0]->game->inPlay->nb_cards == 0 && game->players[0]->game->graveyard->nb_cards == 0
-                    && game->players[0]->game->exile->nb_cards == 0) //1st Play Check
+                    && game->currentPlayer->game->inPlay->nb_cards == 0 && game->currentPlayer->game->graveyard->nb_cards == 0
+					&& game->currentPlayer->game->exile->nb_cards == 0 && game->currentlyActing() == (Player*)game->currentPlayer) //1st Play Check
                     //IF there was no play at the moment automatically mulligan
                 {
                     menu->Add(MENUITEM_MULLIGAN, "Mulligan");

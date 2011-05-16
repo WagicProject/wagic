@@ -1778,7 +1778,7 @@ int MTGPersistRule::receiveEvent(WEvent * event)
                 Player * p = game->players[i];
                 if (e->to == p->game->graveyard)
                 {
-                    MTGCardInstance * copy = p->game->putInZone(e->card, p->game->graveyard, e->card->owner->game->stack);
+					MTGCardInstance * copy = p->game->putInZone(e->card, p->game->graveyard, e->card->owner->game->temp);
                     if (!copy)
                     {
                         DebugTrace("MTGRULES: couldn't move card for persist");
