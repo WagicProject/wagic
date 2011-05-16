@@ -95,7 +95,7 @@ bool Subtypes::isSubType(unsigned int type)
     return (!isSuperType(type) && !isType(type));
 }
 
-const vector<string> Subtypes::getValuesById()
+const vector<string>& Subtypes::getValuesById()
 {
     return valuesById;
 }

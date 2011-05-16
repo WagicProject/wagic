@@ -46,7 +46,7 @@ public:
     bool isType(unsigned int type);
     bool isSubType(unsigned int type);
     int add(string value, unsigned int parentType);
-    const vector<string> getValuesById();
+    const vector<string>& getValuesById();
 };
 
 #endif

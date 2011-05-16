@@ -2427,9 +2427,9 @@ ATransformer::ATransformer(int id, MTGCardInstance * source, MTGCardInstance * t
 	if (stypes.find("allsubtypes") != string::npos || stypes.find("removecreaturesubtypes") != string::npos)
 	{
         const vector<string> values = Subtypes::subtypesList->getValuesById();
-		for (size_t i = 0; i <values.size(); ++i)
-		{
-			if (!Subtypes::subtypesList->isSubtypeOfType(i,Subtypes::TYPE_CREATURE))
+        for (size_t i = 0; i <values.size(); ++i)
+        {
+            if (!Subtypes::subtypesList->isSubtypeOfType(i,Subtypes::TYPE_CREATURE))
 				continue;
 
 			types.push_back(i);
@@ -2684,10 +2684,7 @@ int ATransformer::destroy()
 		}
 		//in the case that we removed or added types to a card, so that it retains its original name when the effect is removed.
 		if(_target->model->data->name.size())//tokens don't have a model name.
-		{
-		_target->name.clear();
-		_target->setName(_target->model->data->name.c_str());
-		}
+		    _target->setName(_target->model->data->name.c_str());
 	}
     return 1;
 }
