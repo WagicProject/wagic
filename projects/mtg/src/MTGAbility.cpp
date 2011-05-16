@@ -1616,28 +1616,28 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     //Bury, destroy, sacrifice, reject(discard)
     if (s.find("bury") != string::npos)
     {
-        MTGAbility *a = NEW AABuryCard(id, card, target, AABanishCard::BURY);
+        MTGAbility *a = NEW AABuryCard(id, card, target);
         a->oneShot = 1;
         return a;
     }
 
     if (s.find("destroy") != string::npos)
     {
-        MTGAbility * a = NEW AADestroyCard(id, card, target, AABanishCard::DESTROY);
+        MTGAbility * a = NEW AADestroyCard(id, card, target);
         a->oneShot = 1;
         return a;
     }
 
     if (s.find("sacrifice") != string::npos)
     {
-        MTGAbility *a = NEW AASacrificeCard(id, card, target, AABanishCard::SACRIFICE);
+        MTGAbility *a = NEW AASacrificeCard(id, card, target);
         a->oneShot = 1;
         return a;
     }
 
     if (s.find("reject") != string::npos)
     {
-        MTGAbility *a = NEW AADiscardCard(id, card, target, AABanishCard::DISCARD);
+        MTGAbility *a = NEW AADiscardCard(id, card, target);
         a->oneShot = 1;
         return a;
     }

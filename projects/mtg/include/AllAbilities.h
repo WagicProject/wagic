@@ -1002,56 +1002,38 @@ public:
 };
 
 //-----------------------------------------------------------------------------------------------
-class AABanishCard: public ActivatedAbility
-{
 
-protected:
-
-public:
-    int banishmentType;
-    const static int BANISHED = -1;
-    const static int BURY = 0;
-    const static int DESTROY = 1;
-    const static int SACRIFICE = 2;
-    const static int DISCARD = 3;
-
-    AABanishCard(int _id, MTGCardInstance * _source, MTGCardInstance * _target, int _banishmentType = BANISHED);
-    int resolve();
-    virtual const char * getMenuText();
-    AABanishCard * clone() const;
-};
-
-class AABuryCard: public AABanishCard
+class AABuryCard: public ActivatedAbility
 {
 public:
-    AABuryCard(int _id, MTGCardInstance * _source, MTGCardInstance * _target, int _banishmentType = BURY);
+    AABuryCard(int _id, MTGCardInstance * _source, MTGCardInstance * _target);
     int resolve();
     const char * getMenuText();
     AABuryCard * clone() const;
 };
 
-class AADestroyCard: public AABanishCard
+class AADestroyCard: public ActivatedAbility
 {
 public:
-    AADestroyCard(int _id, MTGCardInstance * _source, MTGCardInstance * _target, int _banishmentType = DESTROY);
+    AADestroyCard(int _id, MTGCardInstance * _source, MTGCardInstance * _target);
     int resolve();
     const char * getMenuText();
     AADestroyCard * clone() const;
 };
 
-class AASacrificeCard: public AABanishCard
+class AASacrificeCard: public ActivatedAbility
 {
 public:
-    AASacrificeCard(int _id, MTGCardInstance * _source, MTGCardInstance * _target, int _banishmentType = SACRIFICE);
+    AASacrificeCard(int _id, MTGCardInstance * _source, MTGCardInstance * _target);
     int resolve();
     const char * getMenuText();
     AASacrificeCard * clone() const;
 };
 
-class AADiscardCard: public AABanishCard
+class AADiscardCard: public ActivatedAbility
 {
 public:
-    AADiscardCard(int _id, MTGCardInstance * _source, MTGCardInstance * _target, int _banishmentType = DISCARD);
+    AADiscardCard(int _id, MTGCardInstance * _source, MTGCardInstance * _target);
     int resolve();
     const char * getMenuText();
     AADiscardCard * clone() const;

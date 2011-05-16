@@ -527,37 +527,12 @@ AAFizzler* AAFizzler::clone() const
     return a;
 }
 // BanishCard implementations
-
-AABanishCard::AABanishCard(int _id, MTGCardInstance * _source, MTGCardInstance * _target, int _banishmentType) :
-    ActivatedAbility(_id, _source, NULL), banishmentType(_banishmentType)
-{
-    if (_target)
-        target = _target;
-}
-
-const char * AABanishCard::getMenuText()
-{
-    return "Send to graveyard";
-}
-
-int AABanishCard::resolve()
-{
-    DebugTrace("This is not implemented!");
-    return 0;
-}
-
-AABanishCard * AABanishCard::clone() const
-{
-    AABanishCard * a = NEW AABanishCard(*this);
-    a->isClone = 1;
-    return a;
-}
-
 // Bury
 
-AABuryCard::AABuryCard(int _id, MTGCardInstance * _source, MTGCardInstance * _target, int _banishmentType) :
-    AABanishCard(_id, _source, _target, AABanishCard::BURY)
+AABuryCard::AABuryCard(int _id, MTGCardInstance * _source, MTGCardInstance * _target) :
+   ActivatedAbility(_id, _source)
 {
+    target = _target;
 }
 
 int AABuryCard::resolve()
@@ -584,9 +559,10 @@ AABuryCard * AABuryCard::clone() const
 
 // Destroy
 
-AADestroyCard::AADestroyCard(int _id, MTGCardInstance * _source, MTGCardInstance * _target, int _banishmentType) :
-    AABanishCard(_id, _source, _target, AABanishCard::DESTROY)
+AADestroyCard::AADestroyCard(int _id, MTGCardInstance * _source, MTGCardInstance * _target) :
+   ActivatedAbility(_id, _source)
 {
+    target = _target;
 }
 
 int AADestroyCard::resolve()
@@ -612,9 +588,10 @@ AADestroyCard * AADestroyCard::clone() const
 }
 
 // Sacrifice
-AASacrificeCard::AASacrificeCard(int _id, MTGCardInstance * _source, MTGCardInstance * _target, int _banishmentType) :
-    AABanishCard(_id, _source, _target, AABanishCard::SACRIFICE)
+AASacrificeCard::AASacrificeCard(int _id, MTGCardInstance * _source, MTGCardInstance * _target) :
+   ActivatedAbility(_id, _source)
 {
+    target = _target;
 }
 
 int AASacrificeCard::resolve()
@@ -646,9 +623,10 @@ AASacrificeCard * AASacrificeCard::clone() const
 
 // Discard 
 
-AADiscardCard::AADiscardCard(int _id, MTGCardInstance * _source, MTGCardInstance * _target, int _banishmentType) :
-    AABanishCard(_id, _source, _target, AABanishCard::DISCARD)
+AADiscardCard::AADiscardCard(int _id, MTGCardInstance * _source, MTGCardInstance * _target) :
+   ActivatedAbility(_id, _source)
 {
+    target = _target;
 }
 
 int AADiscardCard::resolve()
