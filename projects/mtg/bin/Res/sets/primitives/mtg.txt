@@ -42736,10 +42736,10 @@ auto={C(0/0,-1,Divinity)}:destroy all(other creature)
 text=Myojin of Cleansing Fire enters the battlefield with a divinity counter on it if you cast it from your hand. Myojin of Cleansing Fire is indestructible as long as it has a divinity counter on it. Remove a divinity counter from Myojin of Cleansing Fire: Destroy all other creatures.
 mana={5}{W}{W}{W}
 kicker={0}
+type=Legendary Creature
+subtype=Spirit
 power=4
 toughness=6
-type=Creature
-subtype=Legendary Spirit
 [/card]
 [card]
 name=Myojin of Infinite Rage
