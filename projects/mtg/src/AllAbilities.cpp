@@ -493,26 +493,30 @@ AAResetDamage * AAResetDamage::clone() const
 AAFizzler::AAFizzler(int _id, MTGCardInstance * card, Spell * _target, ManaCost * _cost) :
 ActivatedAbility(_id, card, _cost, 0)
 {
+	aType = MTGAbility::STANDARD_FIZZLER;
     target = _target;
 }
 
 int AAFizzler::resolve()
 {
-    Spell * _target = (Spell *) target;
-    if(!target && !_target)
-    {
-        //if we hit this condiational its because Ai was targetting.
-        Interruptible * targetCard = game->mLayers->stackLayer()->getAt(game->mLayers->stackLayer()->getActionElementFromCard(source->target));
-        if (source->target && source->target->has(Constants::NOFIZZLE))
-            return 0;
-        _target = (Spell *) targetCard;
-        game->mLayers->stackLayer()->Fizzle(_target);
-        return 1;
-    }
-    if (target && _target->source->has(Constants::NOFIZZLE))
-        return 0;
-    game->mLayers->stackLayer()->Fizzle(_target);
-    return 1;
+	ActionStack * stack = game->mLayers->stackLayer();
+	//the next section helps Ai correctly recieve its targets for this effect
+	if(!target)
+	{
+		//ai is casting a spell from it's hand to fizzle.
+		target = stack->getAt(stack->getActionElementFromCard(source->target));
+	}
+	else if(target->typeAsTarget() == TARGET_CARD)
+	{
+		//ai targeted using an ability on a card to fizzle.
+		target = stack->getAt(stack->getActionElementFromCard((MTGCardInstance*)target));
+	}
+	Spell * sTarget = (Spell *) target;
+	MTGCardInstance* sCard = (MTGCardInstance*)sTarget->source;
+	if(!sCard || !sTarget || sCard->has(Constants::NOFIZZLE))
+		return 0;
+	game->mLayers->stackLayer()->Fizzle(sTarget);
+	return 1;
 }
 
 const char * AAFizzler::getMenuText()

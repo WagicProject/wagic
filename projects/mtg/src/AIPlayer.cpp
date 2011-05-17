@@ -701,6 +701,17 @@ int AIAction::getEfficiency()
         }
         break;
     }
+	case MTGAbility::STANDARD_FIZZLER:
+		{
+			Interruptible * action = g->mLayers->stackLayer()->getAt(-1);
+			Spell * spell = (Spell *) action;
+			Player * lastStackActionController = NULL;
+			if(spell && spell->type == ACTION_SPELL)
+				lastStackActionController = spell->source->controller();   
+			if(p != target->controller() && lastStackActionController && lastStackActionController != p)
+				efficiency = 60;//we want ai to fizzle at higher than "unknown" ability %.
+			break;
+		}
     default:
         if (target)
         {
@@ -757,8 +768,8 @@ int AIPlayer::createAbilityTargets(MTGAbility * a, MTGCardInstance * c, RankingC
     for (int i = 0; i < 2; i++)
     {
         Player * p = g->players[i];
-        MTGGameZone * playerZones[] = { p->game->graveyard, p->game->library, p->game->hand, p->game->inPlay };
-        for (int j = 0; j < 4; j++)
+		MTGGameZone * playerZones[] = { p->game->graveyard, p->game->library, p->game->hand, p->game->inPlay,p->game->stack };
+        for (int j = 0; j < 5; j++)
         {
             MTGGameZone * zone = playerZones[j];
             for (int k = 0; k < zone->nb_cards; k++)
@@ -819,7 +830,7 @@ int AIPlayer::selectAbility()
 
 
     // Try Deck hints first
-    if (selectHintAbility())
+   if (selectHintAbility())
     {
         findingAbility = false;//ok to start looking again.
         return 1;

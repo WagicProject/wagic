@@ -200,6 +200,7 @@ public:
         SUSPEND_COST = 29,
         COUNTERS = 30,
 		PUT_INTO_PLAY_WITH_KICKER = 31,
+		STANDARD_FIZZLER = 32,
 
 
     };

@@ -754,6 +754,8 @@ int ActionStack::count(int type, int state, int display)
 int ActionStack::getActionElementFromCard(MTGCardInstance * card)
 {
 
+	if(!card)
+		return NULL;
     for (int i = 0; i < mCount; i++)
     {
         Interruptible * current = (Interruptible *) mObjects[i];
