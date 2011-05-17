@@ -25711,6 +25711,7 @@ toughness=3
 name=Glimmerpost
 auto=foreach(locus|myBattlefield) life:1 controller
 auto={T}:Add{1}
+text=When Glimmerpost enters the battlefield, you gain 1 life for each Locus on the battlefield. -- {T}: Add {1} to your mana pool.
 type=Land
 subtype=Locus
 [/card]
