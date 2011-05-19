@@ -41709,7 +41709,7 @@ auto={p(R)}:1/0
 text=({p(R)} may be paid for with either {R} or 2 life.) -- {p(R)}: Moltensteel Dragon gets +1/+0 until end of turn.
 color=red
 mana={4}{p(R)}{p(R)}
-type=Creature
+type=Artifact Creature
 subtype=Dragon
 power=4
 toughness=4
@@ -68313,8 +68313,8 @@ toughness=5
 [/card]
 [card]
 name=Tormentor Exarch
-auto=choice 2/0 target(creature)
-auto=choice 0/-2 target(creature)
+auto=choice 2/0 target(creature) ueot
+auto=choice 0/-2 target(creature) ueot
 text=When Tormentor Exarch enters the battlefield, choose one - Target creature gets +2/+0 until end of turn; or target creature gets -0/-2 until end of turn.
 mana={3}{R}
 type=Creature
@@ -74498,7 +74498,7 @@ name=Whipflare
 auto=damage:2 all(creature[-artifact])
 text=Whipflare deals 2 damage to each nonartifact creature.
 mana={1}{R}
-type=Instant
+type=Sorcery
 [/card]
 [card]
 name=Whip Sergeant
