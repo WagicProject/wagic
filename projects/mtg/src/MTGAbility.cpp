@@ -423,9 +423,8 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string magicText, int 
     bool limitOnceATurn = (s.find("turnlimited") != string::npos);
     bool isSuspended = (s.find("suspended") != string::npos);
     bool opponentPoisoned = (s.find("opponentpoisoned") != string::npos);
-
-    bool lifelost = (s.find("foelost(") != string::npos); 
-    int lifeamount = lifelost ? atoi(s.substr(found + 8,')').c_str()) : 0 ;
+	bool lifelost = (s.find("foelost(") != string::npos);
+	int lifeamount = lifelost ? atoi(s.substr(s.find("foelost(") + 8,')').c_str()) : 0;
 
     //Card Changed Zone
     found = s.find("movedto(");
