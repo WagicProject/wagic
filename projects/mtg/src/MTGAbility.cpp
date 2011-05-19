@@ -1956,8 +1956,16 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         newToughness = pt[1];
 		ptFound = true;
 		}
-        string sabilities = (becomesParameters.size() > 2) ? becomesParameters[2] : "";
-
+		string sabilities = "";
+		if(becomesParameters.size() > 2)
+		{
+			for(unsigned int i = 2;i < becomesParameters.size();i++)
+			{ 
+				sabilities.append(becomesParameters[i].c_str());
+				if(i+1 < becomesParameters.size())
+					sabilities.append(",");
+			}
+		}
         if (oneShot || forceUEOT)
             return NEW ATransformerInstant(id, card, target, stypes, sabilities,newPower,ptFound,newToughness,ptFound,vector<string>(),false,forceFOREVER);
 

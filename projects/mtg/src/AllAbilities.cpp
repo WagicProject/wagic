@@ -501,7 +501,7 @@ int AAFizzler::resolve()
 {
 	ActionStack * stack = game->mLayers->stackLayer();
 	//the next section helps Ai correctly recieve its targets for this effect
-	if(!target)
+	if(!target && source->target)
 	{
 		//ai is casting a spell from it's hand to fizzle.
 		target = stack->getAt(stack->getActionElementFromCard(source->target));
@@ -515,7 +515,7 @@ int AAFizzler::resolve()
 	MTGCardInstance* sCard = (MTGCardInstance*)sTarget->source;
 	if(!sCard || !sTarget || sCard->has(Constants::NOFIZZLE))
 		return 0;
-	game->mLayers->stackLayer()->Fizzle(sTarget);
+	stack->Fizzle(sTarget);
 	return 1;
 }
 
