@@ -15237,6 +15237,7 @@ color=white
 [card]
 name=Decree of Savagery
 auto=lord(creature|myBattlefield) counter(1/1,4)
+autohand={4}{G}{G}:cycling
 autohand={4}{G}{G}:name(cycle and 4 counters) counter(1/1,4) target(creature) && cycling
 text=Put four +1/+1 counters on each creature you control. -- Cycling {4}{G}{G} ({4}{G}{G}, Discard this card: Draw a card.) -- When you cycle Decree of Savagery, you may put four +1/+1 counters on target creature.
 mana={7}{G}{G}
@@ -64203,8 +64204,7 @@ name=Sunfire Balm
 target=creature,player
 auto=prevent:4
 autohand={1}{W}:cycling
-autohand={1}{R}:cycling
-autohand={1}{R}:prevent:1 target(creature,player) && cycling
+autohand={1}{W}:prevent:1 target(creature,player) && cycling
 text=Prevent the next 4 damage that would be dealt to target creature or player this turn. -- Cycling {1}{W} ({1}{W}, Discard this card: Draw a card.) -- When you cycle Sunfire Balm, you may prevent the next 1 damage that would be dealt to target creature or player this turn.
 mana={2}{W}
 type=Instant
