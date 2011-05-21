@@ -19943,7 +19943,7 @@ toughness=2
 [/card]
 [card]
 name=Entrails Feaster
-auto=upcost[{E(creature|mygraveyard)}{C(1/1,1)}] tap
+auto=upcost[{E(creature|graveyard)}{C(1/1,1)}] tap
 text=At the beginning of your upkeep, you may exile a creature card from a graveyard. If you do, put a +1/+1 counter on Entrails Feaster. If you don't, tap Entrails Feaster.
 mana={B}
 type=Creature
@@ -71279,7 +71279,7 @@ type=Sorcery
 [/card]
 [card]
 name=Vengeful Dead
-auto=@movedto(zombie other|graveyard) from(battlefield): life:-1 opponent
+auto=@movedto(other zombie|graveyard) from(battlefield): life:-1 opponent
 auto=@movedto(this|graveyard) from(battlefield): life:-1 opponent
 text=Whenever Vengeful Dead or another Zombie is put into a graveyard from the battlefield, each opponent loses 1 life.
 mana={3}{B}
