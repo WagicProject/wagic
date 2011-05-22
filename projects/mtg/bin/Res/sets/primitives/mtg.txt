@@ -49,7 +49,7 @@ type=Enchantment
 [card]
 name=AEther Membrane
 abilities=defender,reach
-auto=@combat(blocking) source(this) from(creature):all(trigger[from]) phaseaction[combatends] moveTo(ownerhand)
+auto=@combat(blocking) source(this) from(creature):all(trigger[from]) phaseaction[combatends once] moveTo(ownerhand)
 text=Defender; reach (This creature can block creatures with flying.) -- Whenever AEther Membrane blocks a creature, return that creature to its owner's hand at end of combat.
 mana={1}{R}{R}
 type=Creature
@@ -224,7 +224,7 @@ type=Instant
 [/card]
 [card]
 name=Abomination
-auto=@combat(blocking,blocked) source(this) from(creature[green;white]):all(trigger[from]) phaseaction[combatends] destroy
+auto=@combat(blocking,blocked) source(this) from(creature[green;white]):all(trigger[from]) phaseaction[combatends once] destroy
 text=Whenever Abomination blocks or becomes blocked by a green or white creature, destroy that creature at end of combat.
 mana={3}{B}{B}
 type=Creature
@@ -4962,7 +4962,7 @@ toughness=2
 [card]
 name=Basalt Golem
 auto=cantbeblockedby(creature[artifact])
-auto=@combat(blocked) source(this) from(creature):all(trigger[from]) phaseaction[combatends] sacrifice && phaseaction[combatends once] token(Wall,Artifact Creature Wall,0/2,defender) opponent
+auto=@combat(blocked) source(this) from(creature):all(trigger[from]) phaseaction[combatends once] sacrifice && phaseaction[combatends once] token(Wall,Artifact Creature Wall,0/2,defender) opponent
 text=Basalt Golem can't be blocked by artifact creatures. -- Whenever Basalt Golem becomes blocked by a creature, that creature's controller sacrifices it at end of combat. If the player does, he or she puts a 0/2 colorless Wall artifact creature token with defender onto the battlefield.
 mana={5}
 type=Artifact Creature
@@ -11971,7 +11971,7 @@ toughness=3
 [card]
 name=Cockatrice
 abilities=flying
-auto=@combat(blocking,blocked) source(this) from(creature[-wall]):all(trigger[from]) phaseaction[combatends] destroy
+auto=@combat(blocking,blocked) source(this) from(creature[-wall]):all(trigger[from]) phaseaction[combatends once] destroy
 text=Flying -- Whenever Cockatrice blocks or becomes blocked by a non-Wall creature, destroy that creature at end of combat.
 mana={3}{G}{G}
 type=Creature
@@ -12432,7 +12432,7 @@ type=Enchantment
 [card]
 name=Contempt
 target=creature
-auto=@combat(attacking) source(mytgt) :all(trigger[to]) phaseaction[combatends] moveTo(ownerhand) && phaseaction[combatends] moveTo(ownerhand) all(this)
+auto=@combat(attacking) source(mytgt) :all(trigger[to]) phaseaction[combatends once] moveTo(ownerhand) && phaseaction[combatends once] moveTo(ownerhand) all(this)
 text=Enchant creature -- Whenever enchanted creature attacks, return it and Contempt to their owners' hands at end of combat.
 mana={1}{U}
 type=Enchantment
@@ -14879,7 +14879,7 @@ toughness=6
 [/card]
 [card]
 name=Deathgazer
-auto=@combat(blocking,blocked) source(this) from(creature[-black]):all(trigger[from]) phaseaction[combatends] destroy
+auto=@combat(blocking,blocked) source(this) from(creature[-black]):all(trigger[from]) phaseaction[combatends once] destroy
 text=Whenever Deathgazer blocks or becomes blocked by a nonblack creature, destroy that creature at end of combat.
 mana={3}{B}
 type=Creature
@@ -15519,8 +15519,8 @@ type=Instant
 [/card]
 [card]
 name=Defiant Vanguard
-auto=@combat(blocking) source(this):all(trigger[to]) phaseaction[combatends] destroy
-auto=@combat(blocking) source(this) from(creature):all(trigger[from]) phaseaction[combatends] destroy
+auto=@combat(blocking) source(this):all(trigger[to]) phaseaction[combatends once] destroy
+auto=@combat(blocking) source(this) from(creature):all(trigger[from]) phaseaction[combatends once] destroy
 auto={5}{T}:moveTo(myBattlefield) target(rebel[manacost<=4]|mylibrary)
 text=When Defiant Vanguard blocks, at end of combat, destroy it and all creatures it blocked this turn. -- {5}{T}: Search your library for a Rebel permanent card with converted mana cost 4 or less and put it onto the battlefield. Then shuffle your library.
 mana={2}{W}
@@ -17314,7 +17314,7 @@ toughness=9
 [/card]
 [card]
 name=Dread Specter
-auto=@combat(blocking,blocked) source(this) from(creature[-black]):all(trigger[from]) phaseaction[combatends] destroy
+auto=@combat(blocking,blocked) source(this) from(creature[-black]):all(trigger[from]) phaseaction[combatends once] destroy
 text=Whenever Dread Specter blocks or becomes blocked by a nonblack creature, destroy that creature at end of combat.
 mana={3}{B}
 type=Creature
@@ -17342,8 +17342,8 @@ toughness=2
 [card]
 name=Dread Wight
 auto=lord(creature[counter{0/0.1.Paralyzation}]) doesnotuntap
-auto=@combat(blocking,blocked) source(this) from(creature):all(trigger[from]) phaseaction[combatends] tap oneshot
-auto=@combat(blocking,blocked) source(this) from(creature):all(trigger[from]) phaseaction[combatends] counter(0/0,1,Paralyzation) oneshot
+auto=@combat(blocking,blocked) source(this) from(creature):all(trigger[from]) phaseaction[combatends once] tap oneshot
+auto=@combat(blocking,blocked) source(this) from(creature):all(trigger[from]) phaseaction[combatends once] counter(0/0,1,Paralyzation) oneshot
 auto=lord(creature[counter{0/0.1.Paralyzation}]) {4}:counter(0/0,-1,Paralyzation)
 text=At end of combat, put a paralyzation counter on all creatures blocking or blocked by Dread Wight and tap those creatures. They gain "If this creature has a paralyzation counter on it, it doesn't untap during its controller's untap step" and "{4}: Remove a paralyzation counter from this creature."
 mana={3}{B}{B}
@@ -26574,8 +26574,8 @@ toughness=1
 [/card]
 [card]
 name=Goblin Sappers
-auto={R}{R}{T}:unblockable target(creature) && phaseaction[combatends] destroy && all(this) phaseaction[combatends,sourceinplay] destroy
-auto={R}{R}{R}{R}{T}:unblockable target(creature) && phaseaction[combatends] destroy
+auto={R}{R}{T}:unblockable target(creature) && phaseaction[combatends once] destroy && all(this) phaseaction[combatends,sourceinplay] destroy
+auto={R}{R}{R}{R}{T}:unblockable target(creature) && phaseaction[combatends once] destroy
 text={R}{R}, {T}: Target creature you control is unblockable this turn. Destroy it and Goblin Sappers at end of combat. -- {R}{R}{R}{R}, {T}: Target creature you control is unblockable this turn. Destroy it at end of combat.
 mana={1}{R}
 type=Creature
@@ -27620,7 +27620,7 @@ toughness=4
 [/card]
 [card]
 name=Greater Werewolf
-auto=@combat(blocking,blocked) source(this) from(creature[-black]):all(trigger[from]) phaseaction[combatends] counter(-0/-2,1) oneshot
+auto=@combat(blocking,blocked) source(this) from(creature[-black]):all(trigger[from]) phaseaction[combatends once] counter(-0/-2,1) oneshot
 text=At end of combat, put a -0/-2 counter on all creatures blocking or blocked by Greater Werewolf.
 mana={4}{B}
 type=Creature
@@ -29397,7 +29397,7 @@ type=Sorcery
 [/card]
 [card]
 name=Heat Stroke
-auto=@combat(blocking,blocked) source(creature):all(trigger[to]) phaseaction[combatends] destroy
+auto=@combat(blocking,blocked) source(creature):all(trigger[to]) phaseaction[combatends once] destroy
 text=At end of combat, destroy each creature that blocked or was blocked this turn.
 mana={2}{R}
 type=Enchantment
@@ -31802,8 +31802,8 @@ type=Sorcery
 [/card]
 [card]
 name=Infernal Medusa
-auto=@combat(blocking) source(this) from(creature):all(trigger[from]) phaseaction[combatends] destroy
-auto=@combat(blocked) source(this) from(creature[-wall]):all(trigger[from]) phaseaction[combatends] destroy
+auto=@combat(blocking) source(this) from(creature):all(trigger[from]) phaseaction[combatends once] destroy
+auto=@combat(blocked) source(this) from(creature[-wall]):all(trigger[from]) phaseaction[combatends once] destroy
 text=Whenever Infernal Medusa blocks a creature, destroy that creature at end of combat. -- Whenever Infernal Medusa becomes blocked by a non-Wall creature, destroy that creature at end of combat.
 mana={3}{B}{B}
 type=Creature
@@ -45152,7 +45152,7 @@ toughness=3
 [/card]
 [card]
 name=Ohran Viper
-auto=@combatdamaged(creature) from(this):all(trigger[to]) phaseaction[combatends] destroy
+auto=@combatdamaged(creature) from(this):all(trigger[to]) phaseaction[combatends once] destroy
 auto=@combatdamaged(player) from(this):may draw:1 controller
 text=Whenever Ohran Viper deals combat damage to a creature, destroy that creature at end of combat. -- Whenever Ohran Viper deals combat damage to a player, you may draw a card.
 mana={1}{G}{G}
@@ -55057,7 +55057,7 @@ toughness=1
 [/card]
 [card]
 name=Sawtooth Ogre
-auto=@combat(blocking,blocked) source(this) from(creature[-black]):all(trigger[from]) phaseaction[combatends] damage:1 oneshot
+auto=@combat(blocking,blocked) source(this) from(creature):all(trigger[from]) phaseaction[combatends once] damage:1
 text=Whenever Sawtooth Ogre blocks or becomes blocked by a creature, Sawtooth Ogre deals 1 damage to that creature at end of combat.
 mana={2}{R}{R}
 type=Creature
@@ -56687,7 +56687,7 @@ toughness=*
 name=Serpentine Basilisk
 facedown={3}
 autofacedown={1}{G}{G}:morph
-auto=@combatdamaged(creature) from(this):all(trigger[to]) phaseaction[combatends] destroy
+auto=@combatdamaged(creature) from(this):all(trigger[to]) phaseaction[combatends once] destroy
 text=Whenever Serpentine Basilisk deals combat damage to a creature, destroy that creature at end of combat. -- Morph {1}{G}{G} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
 mana={2}{G}{G}
 type=Creature
@@ -58262,7 +58262,7 @@ type=Instant
 [/card]
 [card]
 name=Silent Assassin
-auto={3}{B}:target(creature[blocking]) phaseaction[combatends] destroy
+auto={3}{B}:target(creature[blocking]) phaseaction[combatends once] destroy
 text={3}{B}: Destroy target blocking creature at end of combat.
 mana={B}{B}
 type=Creature
@@ -60804,7 +60804,7 @@ type=Sorcery
 [card]
 name=Sosuke, Son of Seshiro
 auto=lord(other snake|myBattlefield) 1/0
-auto=@combatdamaged(creature) from(warrior|myBattlefield):all(trigger[to]) phaseaction[combatends] destroy
+auto=@combatdamaged(creature) from(warrior|myBattlefield):all(trigger[to]) phaseaction[combatends once] destroy
 text=Other Snake creatures you control get +1/+0. -- Whenever a Warrior you control deals combat damage to a creature, destroy that creature at end of combat.
 mana={2}{G}{G}
 type=Legendary Creature
@@ -65455,7 +65455,7 @@ type=Instant
 [/card]
 [card]
 name=Tangle Asp
-auto=@combat(blocking,blocked) source(this) from(creature):all(trigger[from]) phaseaction[combatends] destroy
+auto=@combat(blocking,blocked) source(this) from(creature):all(trigger[from]) phaseaction[combatends once] destroy
 text=Whenever Tangle Asp blocks or becomes blocked by a creature, destroy that creature at end of combat.
 mana={1}{G}
 type=Creature
@@ -66782,7 +66782,7 @@ type=Sorcery
 [/card]
 [card]
 name=Thicket Basilisk
-auto=@combat(blocking,blocked) source(this) from(creature[-wall]):all(trigger[from]) phaseaction[combatends] destroy
+auto=@combat(blocking,blocked) source(this) from(creature[-wall]):all(trigger[from]) phaseaction[combatends once] destroy
 text=Whenever Thicket Basilisk blocks or becomes blocked by a non-Wall creature, destroy that creature at end of combat.
 mana={3}{G}{G}
 type=Creature
@@ -67807,8 +67807,8 @@ type=Sorcery
 [/card]
 [card]
 name=Time Elemental
-auto=@combat(attacking) source(this):phaseaction[combatends] damage:5 controller && phaseaction[combatends,sourceinplay] sacrifice
-auto=@combat(blocking) source(this):phaseaction[combatends] damage:5 controller && phaseaction[combatends,sourceinplay] sacrifice
+auto=@combat(attacking) source(this):phaseaction[combatends once] damage:5 controller && phaseaction[combatends,sourceinplay] sacrifice
+auto=@combat(blocking) source(this):phaseaction[combatends once] damage:5 controller && phaseaction[combatends,sourceinplay] sacrifice
 auto={2}{U}{U}{T}:moveTo(ownerhand) target(*[-enchanted])
 text=When Time Elemental attacks or blocks, at end of combat, sacrifice it and it deals 5 damage to you. -- {2}{U}{U}, {T}: Return target permanent that isn't enchanted to its owner's hand.
 mana={2}{U}
@@ -68072,7 +68072,7 @@ toughness=4
 [/card]
 [card]
 name=Tolarian Entrancer
-auto=@combat(blocked) source(this) from(creature):all(trigger[from]) phaseaction[combatends] moveTo(opponentBattlefield)
+auto=@combat(blocked) source(this) from(creature):all(trigger[from]) phaseaction[combatends once] moveTo(opponentBattlefield)
 text=Whenever Tolarian Entrancer becomes blocked by a creature, gain control of that creature at end of combat.
 mana={1}{U}
 type=Creature
@@ -71302,7 +71302,7 @@ toughness=2
 [card]
 name=Venom
 target=creature
-auto=@combat(blocking,blocked) source(mytgt) from(creature[-wall]):all(trigger[from]) phaseaction[combatends] destroy
+auto=@combat(blocking,blocked) source(mytgt) from(creature[-wall]):all(trigger[from]) phaseaction[combatends once] destroy
 text=Enchant creature -- Whenever enchanted creature blocks or becomes blocked by a non-Wall creature, destroy the other creature at end of combat.
 mana={1}{G}{G}
 type=Enchantment
@@ -73531,7 +73531,7 @@ toughness=6
 [card]
 name=Wall of Tears
 abilities=defender
-auto=@combat(blocking) source(this) from(creature):all(trigger[from]) phaseaction[combatends] moveTo(ownerhand)
+auto=@combat(blocking) source(this) from(creature):all(trigger[from]) phaseaction[combatends once] moveTo(ownerhand)
 text=Defender (This creature can't attack.) -- Whenever Wall of Tears blocks a creature, return that creature to its owner's hand at end of combat.
 mana={1}{U}
 type=Creature
