@@ -70017,11 +70017,11 @@ type=Enchantment
 [/card]
 [card]
 name=Undiscovered Paradise
-auto={T}:Add{G} && phaseaction[myupkeep,next,sourceinplay] moveTo(ownerhand)
-auto={T}:Add{W} && phaseaction[myupkeep,next,sourceinplay] moveTo(ownerhand)
-auto={T}:Add{U} && phaseaction[myupkeep,next,sourceinplay] moveTo(ownerhand)
-auto={T}:Add{B} && phaseaction[myupkeep,next,sourceinplay] moveTo(ownerhand)
-auto={T}:Add{R} && phaseaction[myupkeep,next,sourceinplay] moveTo(ownerhand)
+auto={T}:Add{G} && phaseaction[myupkeep sourceinplay] moveTo(ownerhand)
+auto={T}:Add{W} && phaseaction[myupkeep sourceinplay] moveTo(ownerhand)
+auto={T}:Add{U} && phaseaction[myupkeep sourceinplay] moveTo(ownerhand)
+auto={T}:Add{B} && phaseaction[myupkeep sourceinplay] moveTo(ownerhand)
+auto={T}:Add{R} && phaseaction[myupkeep sourceinplay] moveTo(ownerhand)
 text={T}: Add one mana of any color to your mana pool. During your next untap step, as you untap your permanents, return Undiscovered Paradise to its owner's hand.
 type=Land
 [/card]
