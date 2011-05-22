@@ -3,7 +3,11 @@
 #include <SDL_opengles.h>
 #else
 #include <SDL_opengl.h>
+#ifdef WIN32
+#undef GL_VERSION_2_0
 #endif
+#endif
+
 #include "../include/JGE.h"
 #include "../include/JTypes.h"
 #include "../include/JApp.h"
@@ -50,8 +54,11 @@ class SdlApp {
 
           SDL_Event Event;
 
-          while(Running && SDL_WaitEventTimeout(&Event, 50)) {
-            OnEvent(&Event);
+          while(Running) {
+			while(SDL_WaitEventTimeout(&Event, 0)) {
+			  OnEvent(&Event);
+			}
+			OnUpdate();
           }
 
           OnCleanup();
@@ -108,7 +115,8 @@ class SdlApp {
         void OnMouseClicked(const SDL_MouseButtonEvent& event);
         void OnMouseMoved(const SDL_MouseMotionEvent& event);
         void OnEvent(SDL_Event* Event) {
-            if(Event->type < SDL_USEREVENT) DebugTrace("Event received" << Event->type);
+/*            if(Event->type < SDL_USEREVENT) 
+				DebugTrace("Event received" << Event->type);*/
             switch(Event->type){
             case SDL_QUIT:
             {
@@ -178,7 +186,6 @@ class SdlApp {
             }
         }
         void OnUpdate();
-        void OnRender();
         void OnCleanup() {
             SDL_FreeSurface(Surf_Display);
             SDL_Quit();
@@ -260,14 +267,6 @@ void DestroyGame(void)
   g_engine = NULL;
 }
 
-Uint32 OnTimer( Uint32 interval )
-{
-  SDL_Event event;
-  event.user.type = WAGIC_UPDATE_EVENT;
-  SDL_PushEvent(&event);
-  return 30;
-}
-
 void SdlApp::OnUpdate() {
   static int tickCount;
   Uint32 dt;
@@ -288,7 +287,10 @@ void SdlApp::OnUpdate() {
       cerr << oor.what();
   }
 
-  OnRender();
+  if(g_engine)
+      g_engine->Render();
+
+  SDL_GL_SwapBuffers();
 }
 
 void SdlApp::OnKeyPressed(const SDL_KeyboardEvent& event)
@@ -483,21 +485,10 @@ bool SdlApp::OnInit() {
 
   JGECreateDefaultBindings();
 
-  SDL_SetTimer(30, OnTimer);
-
   return true;
 };
 
-void SdlApp::OnRender() {
-
-  if(g_engine)
-      g_engine->Render();
-
-  SDL_GL_SwapBuffers();
-};
-
-
-#if (defined ANDROID)
+#if (defined ANDROID) || (defined WIN32)
 int SDL_main(int argc, char * argv[])
 #else
 int main(int argc, char* argv[])
