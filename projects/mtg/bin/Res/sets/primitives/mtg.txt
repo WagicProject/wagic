@@ -4185,7 +4185,7 @@ name=Azorius Herald
 abilities=unblockable
 other={1}{W}{U} (Spend {U} to Cast)
 auto=alternative 99/99
-auto=draw:1
+auto=life:4
 auto=-99/-99
 text=Azorius Herald is unblockable. -- When Azorius Herald enters the battlefield, you gain 4 life. -- When Azorius Herald enters the battlefield, sacrifice it unless {U} was spent to cast it.
 mana={2}{W}
@@ -57836,7 +57836,7 @@ toughness=2
 [card]
 name=Shoreline Ranger
 abilities=flying
-autohand={2}{discard(this|myhand)}:moveTo(myhand) target(plains|mylibrary)
+autohand={2}{discard(this|myhand)}:moveTo(myhand) target(island|mylibrary)
 text=Flying -- Islandcycling {2} ({2}, Discard this card: Search your library for an Island card, reveal it, and put it into your hand. Then shuffle your library.)
 mana={5}{U}
 type=Creature
@@ -68072,7 +68072,7 @@ toughness=4
 [/card]
 [card]
 name=Tolarian Entrancer
-auto=@combat(blocked) source(this) from(creature):all(trigger[from]) phaseaction[combatends] moveto(mybattlefield)
+auto=@combat(blocked) source(this) from(creature):all(trigger[from]) phaseaction[combatends] moveTo(opponentBattlefield)
 text=Whenever Tolarian Entrancer becomes blocked by a creature, gain control of that creature at end of combat.
 mana={1}{U}
 type=Creature
