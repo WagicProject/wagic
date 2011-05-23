@@ -7,7 +7,7 @@ life:20
 offerinterruptonphase=draw
 auto=sethand:7
 auto=shuffle
-auto=draw:handsize
+auto=draw:7
 auto=@each my draw:draw:1
 auto=maxPlay(land)1
 
