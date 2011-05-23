@@ -579,7 +579,7 @@ Rules::Rules(string _bg)
 
 bool Rules::canChooseDeck() 
 {
-    return (gamemode == GAME_TYPE_CLASSIC); 
+    return (gamemode == GAME_TYPE_CLASSIC || gamemode == GAME_TYPE_STONEHEWER || gamemode == GAME_TYPE_HERMIT); 
 }
 
 int Rules::load(string _filename)
@@ -697,5 +697,7 @@ int Rules::strToGameMode(string s)
     if (s.compare("random1") == 0) return GAME_TYPE_RANDOM1;
     if (s.compare("random2") == 0) return GAME_TYPE_RANDOM2;
     if (s.compare("story") == 0) return GAME_TYPE_STORY;
+	if (s.compare("stonehewer") == 0) return GAME_TYPE_STONEHEWER;
+	if (s.compare("hermit") == 0) return GAME_TYPE_HERMIT;
     return GAME_TYPE_CLASSIC;
 }

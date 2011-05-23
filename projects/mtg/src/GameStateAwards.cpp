@@ -71,6 +71,14 @@ void GameStateAwards::Start()
     btn = NEW WGuiButton(aw, -103, Options::MOMIR_MODE_UNLOCKED, this);
     listview->Add(btn);
 
+	aw = NEW WGuiAward(Options::STONEHEWER_MODE_UNLOCKED, "Stone Hewer Mode", "Won with more than 10 equipments.");
+	btn = NEW WGuiButton(aw, -103, Options::STONEHEWER_MODE_UNLOCKED, this);
+	listview->Add(btn);
+
+	aw = NEW WGuiAward(Options::HERMIT_MODE_UNLOCKED, "Hermit Druid Mode", "Won with less than 10 lands.");
+	btn = NEW WGuiButton(aw, -103, Options::HERMIT_MODE_UNLOCKED, this);
+	listview->Add(btn);
+
     aw = NEW WGuiAward(Options::EVILTWIN_MODE_UNLOCKED, "Evil Twin Mode", "Won with same army size.");
     btn = NEW WGuiButton(aw, -103, Options::EVILTWIN_MODE_UNLOCKED, this);
     listview->Add(btn);

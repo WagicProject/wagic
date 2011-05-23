@@ -1726,6 +1726,17 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         return a;
     }
 
+	//set hand size
+	vector<string> splitSetHand = parseBetween(s, "sethand:", " ", false);
+	if (splitSetHand.size())
+	{
+		int hand = atoi(splitSetHand[1].c_str());
+		Damageable * t = spell ? spell->getNextDamageableTarget() : NULL;
+		MTGAbility * a = NEW AASetHand(id, card, t, hand, NULL, who);
+		a->oneShot = 1;
+		return a;
+	}
+
     //set life total
     vector<string> splitLifeset = parseBetween(s, "lifeset:", " ", false);
     if (splitLifeset.size())

@@ -185,6 +185,10 @@ public:
         {
             intValue = target->getToughness();
         }
+		else if (s == "handsize")
+		{
+			intValue = target->controller()->handsize;
+		}
         else
         {
             intValue = atoi(s.c_str());
@@ -2982,6 +2986,21 @@ public:
         return a;
     }
 };
+
+//set a players hand size
+class AASetHand: public ActivatedAbilityTP
+{
+public:
+    int hand;
+
+    AASetHand(int _id, MTGCardInstance * _source, Targetable * _target, int hand, ManaCost * _cost = NULL,
+            int who = TargetChooser::UNSET);
+    int resolve();
+    const char * getMenuText();
+    AASetHand * clone() const;
+
+};
+
 //lifeset
 class AALifeSet: public ActivatedAbilityTP
 {

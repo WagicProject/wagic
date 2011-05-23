@@ -82,6 +82,8 @@ public:
         BEGIN_AWARDS, //Options after this use the GameOptionAward struct, which includes a timestamp.
         DIFFICULTY_MODE_UNLOCKED = BEGIN_AWARDS,
         MOMIR_MODE_UNLOCKED,
+		STONEHEWER_MODE_UNLOCKED,
+		HERMIT_MODE_UNLOCKED,
         EVILTWIN_MODE_UNLOCKED,
         RANDOMDECK_MODE_UNLOCKED,    
         AWARD_COLLECTOR,

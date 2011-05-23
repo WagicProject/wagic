@@ -125,7 +125,7 @@ void GameObserver::nextGamePhase()
     if (currentGamePhase == Constants::MTG_PHASE_AFTER_EOT)
     {
         //Auto Hand cleaning, in case the player didn't do it himself
-        while (currentPlayer->game->hand->nb_cards > 7 && currentPlayer->nomaxhandsize == false)
+		while (currentPlayer->game->hand->nb_cards > currentPlayer->handsize && currentPlayer->nomaxhandsize == false)
         {
             WEvent * e = NEW WEventCardDiscard(currentPlayer->game->hand->cards[0]);
             GameObserver * game = GameObserver::GetInstance();
@@ -937,7 +937,7 @@ int GameObserver::cardClick(MTGCardInstance * card, Targetable * object)
 
     //Current player's hand
     if (currentPlayer->game->hand->hasCard(card) && currentGamePhase == Constants::MTG_PHASE_CLEANUP
-            && currentPlayer->game->hand->nb_cards > 7 && currentPlayer->nomaxhandsize == false)
+		&& currentPlayer->game->hand->nb_cards > currentPlayer->handsize && currentPlayer->nomaxhandsize == false)
     {
         WEvent * e = NEW WEventCardDiscard(currentPlayer->game->hand->cards[0]);
         GameObserver * game = GameObserver::GetInstance();

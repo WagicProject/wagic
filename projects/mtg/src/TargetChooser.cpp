@@ -935,6 +935,7 @@ bool TypeTargetChooser::canTarget(Targetable * target,bool withoutProtections)
         MTGCardInstance * card = (MTGCardInstance *) target;
         for (int i = 0; i < nbtypes; i++)
         {
+
             if (card->hasSubtype(types[i])) return true;
 			if(card->getLCName().size())
 			{

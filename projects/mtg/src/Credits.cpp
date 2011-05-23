@@ -132,6 +132,20 @@ void Credits::compute(Player * _p1, Player * _p2, GameApp * _app)
                 goa->giveAward();
                 options.save();
             }
+			else if ((unlocked = isStoneHewerUnlocked()))
+			{
+				unlockedTextureName = "stonehewer_unlocked.png";
+				goa = (GameOptionAward*) &options[Options::STONEHEWER_MODE_UNLOCKED];
+				goa->giveAward();
+				options.save();
+			}
+			else if ((unlocked = isHermitUnlocked()))
+			{
+				unlockedTextureName = "hermit_unlocked.png";
+				goa = (GameOptionAward*) &options[Options::HERMIT_MODE_UNLOCKED];
+				goa->giveAward();
+				options.save();
+			}
             else if ((unlocked = isEvilTwinUnlocked()))
             {
                 unlockedTextureName = "eviltwin_unlocked.png";
@@ -334,6 +348,24 @@ int Credits::isMomirUnlocked()
     if (options[Options::MOMIR_MODE_UNLOCKED].number)
         return 0;
     if (p1->game->inPlay->countByType("land") == 8)
+        return 1;
+    return 0;
+}
+
+int Credits::isStoneHewerUnlocked()
+{
+    if (options[Options::STONEHEWER_MODE_UNLOCKED].number)
+        return 0;
+	if (int(p1->game->inPlay->countByType("equipment") + p1->opponent()->game->inPlay->countByType("equipment")) > 10)
+        return 1;
+    return 0;
+}
+
+int Credits::isHermitUnlocked()
+{
+    if (options[Options::HERMIT_MODE_UNLOCKED].number)
+        return 0;
+	if (int(p1->game->inPlay->countByType("land")) < 10)
         return 1;
     return 0;
 }

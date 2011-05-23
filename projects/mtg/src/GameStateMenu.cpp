@@ -210,6 +210,8 @@ void GameStateMenu::fillScroller()
         scroller->Add(_("Unlock the difficult mode for more challenging duels!"));
     if (!options[Options::MOMIR_MODE_UNLOCKED].number)
         scroller->Add(_("Interested in playing Momir Basic? You'll have to unlock it first :)"));
+	if (!options[Options::STONEHEWER_MODE_UNLOCKED].number)
+		scroller->Add(_("Love Equipment and want a real challenge? Unlock Stone Hewer Basic:)"));
     if (!options[Options::RANDOMDECK_MODE_UNLOCKED].number)
         scroller->Add(_("You haven't unlocked the random deck mode yet"));
     if (!options[Options::EVILTWIN_MODE_UNLOCKED].number)

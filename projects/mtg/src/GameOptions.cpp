@@ -68,6 +68,8 @@ const string Options::optionNames[] = {
 //Unlocked modes
   "prx_handler",
   "prx_rimom",
+  "prx_rewehenots",
+  "prx_timreh",
   "prx_eviltwin",
   "prx_rnddeck",
   "aw_collector",

@@ -419,6 +419,14 @@ void GameStateDuel::Update(float dt)
             {
                 game->addObserver(NEW MTGMomirRule(-1, MTGCollection()));
             }
+			if (mParent->gameType == GAME_TYPE_STONEHEWER)
+			{
+				game->addObserver(NEW MTGStoneHewerRule(-1,MTGCollection()));
+			}
+			if (mParent->gameType == GAME_TYPE_HERMIT)
+			{
+				game->addObserver(NEW MTGHermitRule(-1));
+			}
 
             //start of in game music code
             musictrack = "";
@@ -611,7 +619,8 @@ void GameStateDuel::Render()
 #ifdef NETWORK_SUPPORT
                 && mParent->gameType != GAME_TYPE_SLAVE
 #endif //NETWORK_SUPPORT
-                )
+				&& mParent->gameType != GAME_TYPE_STONEHEWER
+				&& mParent->gameType != GAME_TYPE_HERMIT)
             mFont->DrawString(_("LOADING DECKS").c_str(), 0, SCREEN_HEIGHT / 2);
         else
         {

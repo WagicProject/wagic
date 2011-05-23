@@ -927,13 +927,17 @@ int AIPlayer::chooseTarget(TargetChooser * _tc, Player * forceTarget,MTGCardInst
     if (!tc)
         return 0;
 
-    if (tc->source->controller() != this)
-    {
-        DebugTrace("AIPLAYER: Error, was asked to chose targets but I don't own the source of the targetController\n");
-        return 0;
-    }
-    //Make sure we own the decision to choose the targets
-    assert(tc->source->controller() == this);
+	//Make sure we own the decision to choose the targets
+	assert(tc->source->controller() == this);
+	if (tc->source->controller() != this)
+	{
+		gameObs->currentActionPlayer = tc->source->controller();
+		//this is a hack, but if we hit this condition we are locked in a infinate loop
+		//so lets give the tc to its owner
+		//todo:find the root cause of this.
+		DebugTrace("AIPLAYER: Error, was asked to chose targets but I don't own the source of the targetController\n");
+		return 0;
+	}
 
     tc->initTargets(); //cleanup the targetchooser just in case.
     if (!(gameObs->currentlyActing() == this))

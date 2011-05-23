@@ -1352,6 +1352,45 @@ AALifer * AALifer::clone() const
 }
 
 
+//players max hand size
+AASetHand::AASetHand(int _id, MTGCardInstance * _source, Targetable * _target, int hand, ManaCost * _cost,
+        int who) :
+    ActivatedAbilityTP(_id, _source, _target, _cost, who), hand(hand)
+{
+}
+
+int AASetHand::resolve()
+{
+    Damageable * _target = (Damageable *) getTarget();
+    if (!_target)
+        return 0;
+
+    Player * p = NULL;
+    if (_target->type_as_damageable == DAMAGEABLE_MTGCARDINSTANCE)
+    {
+        p = ((MTGCardInstance *) _target)->controller();
+    }
+    else
+    {
+        p = (Player*)_target;
+    }
+
+    p->handsize = hand;
+
+    return 1;
+}
+
+const char * AASetHand::getMenuText()
+{
+    return "Set Hand Size";
+}
+
+AASetHand * AASetHand::clone() const
+{
+    AASetHand * a = NEW AASetHand(*this);
+    a->isClone = 1;
+    return a;
+}
 
 //Lifeset
 AALifeSet::AALifeSet(int _id, MTGCardInstance * _source, Targetable * _target, WParsedInt * life, ManaCost * _cost,

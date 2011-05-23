@@ -28,6 +28,8 @@ private:
     time_t gameLength;
     int isDifficultyUnlocked(DeckStats * stats);
     int isMomirUnlocked();
+	int isStoneHewerUnlocked();
+	int isHermitUnlocked();
     int isEvilTwinUnlocked();
     int isRandomDeckUnlocked();
     int IsMoreAIDecksUnlocked(DeckStats * stats);

@@ -23,6 +23,7 @@ class Damageable:public Targetable
 protected:
 public:
     int life;
+	int handsize;
     int poisonCount;
     int damageCount;
     int preventable;

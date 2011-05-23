@@ -5,6 +5,7 @@
 #include "Translate.h"
 #include "Subtypes.h"
 #include "Credits.h"
+#include "AllAbilities.h"
 
 MTGEventBonus::MTGEventBonus(int _id) :
 MTGAbility(_id,NULL)
@@ -1628,6 +1629,199 @@ MTGMomirRule * MTGMomirRule::clone() const
     a->isClone = 1;
     return a;
 }
+
+//stone hewer game mode
+//in stonehewer when ever a creature enters the battlefield
+//it enters play with a equipment choosen at random with a converted manacost
+//less than or equal to the creature.
+//note this can kill your creature if the equipment contains negitive toughness
+
+int MTGStoneHewerRule::initialized = 0;
+vector<int> MTGStoneHewerRule::pool[20];
+
+MTGStoneHewerRule::MTGStoneHewerRule(int _id, MTGAllCards * _collection) :
+MTGAbility(_id, NULL)
+{
+    collection = _collection;
+    if (!initialized)
+    {
+        for (size_t i = 0; i < collection->ids.size(); i++)
+        {
+            MTGCard * card = collection->collection[collection->ids[i]];
+			if (card->data->hasSubtype("equipment") && (card->getRarity() != Constants::RARITY_T) && //remove tokens
+                card->setId != MTGSets::INTERNAL_SET //remove cards that are defined in primitives. Those are workarounds (usually tokens) and should only be used internally
+                )
+            {
+                int convertedCost = card->data->getManaCost()->getConvertedCost();
+                if (convertedCost > 20)
+                    continue;
+                pool[convertedCost].push_back(card->getMTGId());
+            }
+        }
+        initialized = 1;
+    }
+    alreadyplayed = 0;
+    textAlpha = 0;
+}
+
+int MTGStoneHewerRule::receiveEvent(WEvent * event)
+{
+	WEventZoneChange * e = (WEventZoneChange *) event;
+	if (e->to == game->currentlyActing()->game->inPlay && e->card->isCreature())
+	{
+		int eId = genRandomEquipId(e->card->getManaCost()->getConvertedCost());
+		MTGCardInstance * card = genEquip(eId);
+		if(card)
+		{
+		game->currentlyActing()->game->temp->addCard(card);
+		Spell * spell = NEW Spell(card);
+		spell->resolve();
+		spell->source->isToken = 1;
+
+		GameObserver * g = g->GetInstance();
+		for (int i = 1; i < g->mLayers->actionLayer()->mCount; i++)
+		{
+			MTGAbility * a = ((MTGAbility *) g->mLayers->actionLayer()->mObjects[i]);
+			AEquip * eq = dynamic_cast<AEquip*> (a);
+			if (eq && eq->source == spell->source)
+			{
+				((AEquip*)a)->unequip();
+				((AEquip*)a)->equip(e->card);
+			}
+		}
+
+		alreadyplayed = 1;
+		textAlpha = 255;
+		text = "equipment";//for some reason if i don't set this to something it runs the risk of a string based crash.
+		text = spell->source->name;
+		SAFE_DELETE(spell);
+		}
+		return 1;
+	}
+	return 0;
+}
+
+MTGCardInstance * MTGStoneHewerRule::genEquip(int id)
+{
+    if (!id)
+        return NULL;
+    Player * p = game->currentlyActing();
+    MTGCard * card = collection->getCardById(id);
+    return NEW MTGCardInstance(card, p->game);
+}
+
+int MTGStoneHewerRule::genRandomEquipId(int convertedCost)
+{
+	if (convertedCost >= 20)
+		convertedCost = 19;
+    int total_cards = 0;
+    int i = (WRand() % int(convertedCost+1));//+1 becuase we want to generate a random "<=" the coverted.
+    while (!total_cards && i >= 0)
+    {
+        DebugTrace("Converted Cost in Stone Hewer: " << i);
+        total_cards = pool[i].size();
+        convertedCost = i;
+        i--;
+    }
+    if (!total_cards)
+        return 0;
+    int start = (WRand() % total_cards);
+    return pool[convertedCost][start];
+}
+
+//The StoneHewer is never destroyed
+int MTGStoneHewerRule::testDestroy()
+{
+    return 0;
+}
+
+void MTGStoneHewerRule::Update(float dt)
+{
+    if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_UNTAP)
+    {
+        alreadyplayed = 0;
+    }
+    if (textAlpha)
+    {
+        textAlpha -= static_cast<int> (200 * dt);
+        if (textAlpha < 0)
+            textAlpha = 0;
+    }
+    MTGAbility::Update(dt);
+}
+
+void MTGStoneHewerRule::Render()
+{
+    if (!textAlpha)
+        return;
+    WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MENU_FONT);
+    mFont->SetScale(2 - (float) textAlpha / 130);
+    mFont->SetColor(ARGB(textAlpha,255,255,255));
+    mFont->DrawString(text.c_str(), SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, JGETEXT_CENTER);
+}
+
+ostream& MTGStoneHewerRule::toString(ostream& out) const
+{
+    out << "MTGStoneHewerRule ::: pool : " << pool << " ; initialized : " << initialized << " ; textAlpha : " << textAlpha
+        << " ; text " << text << " ; alreadyplayed : " << alreadyplayed
+        << " ; collection : " << collection << "(";
+    return MTGAbility::toString(out) << ")";
+}
+
+MTGStoneHewerRule * MTGStoneHewerRule::clone() const
+{
+    MTGStoneHewerRule * a = NEW MTGStoneHewerRule(*this);
+    a->isClone = 1;
+    return a;
+}
+
+//------------------
+//Hermit druid mode places a random land from your deck into play during each of your upkeeps
+MTGHermitRule::MTGHermitRule(int _id) :
+MTGAbility(_id, NULL)
+{
+}
+
+int MTGHermitRule::receiveEvent(WEvent * event)
+{
+	WEventPhaseChange * e = dynamic_cast<WEventPhaseChange*>(event);
+	if (e && e->from->id == Constants::MTG_PHASE_UNTAP)
+	{
+		MTGCardInstance * lcard = NULL;
+		vector<MTGCardInstance*>lands = vector<MTGCardInstance*>();
+		for(int i = 0; i < game->currentPlayer->game->library->nb_cards-1; i++)
+		{
+			MTGCardInstance * temp = game->currentPlayer->game->library->cards[i];
+			if(temp && temp->isLand())
+				lands.push_back(temp);
+		}
+		if(lands.size())
+			lcard = lands[WRand() % lands.size()];
+		if(lcard)
+		{
+			MTGCardInstance * copy = game->currentPlayer->game->putInZone(lcard,game->currentPlayer->game->library, game->currentPlayer->game->temp);
+            Spell * spell = NEW Spell(copy);
+            spell->resolve();
+            delete spell;
+		}
+		return 1;
+	}
+	return 0;
+}
+
+//The hermit is never destroyed
+int MTGHermitRule::testDestroy()
+{
+    return 0;
+}
+
+MTGHermitRule * MTGHermitRule::clone() const
+{
+    MTGHermitRule * a = NEW MTGHermitRule(*this);
+    a->isClone = 1;
+    return a;
+}
+//--------------------
 
 //HUDDisplay
 int HUDDisplay::testDestroy()

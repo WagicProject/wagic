@@ -342,6 +342,47 @@ public:
     virtual MTGMomirRule * clone() const;
 };
 
+//stone hewer gaint avatar mode
+class MTGStoneHewerRule: public MTGAbility
+{
+private:
+    int genRandomEquipId(int convertedCost);
+    static vector<int> pool[20];
+    static int initialized;
+
+    int textAlpha;
+    string text;
+public:
+
+	int alreadyplayed;
+	MTGAllCards * collection;
+	MTGCardInstance * genEquip(int id);
+	int testDestroy();
+	void Update(float dt);
+	void Render();
+	MTGStoneHewerRule(int _id, MTGAllCards * _collection);
+	int receiveEvent(WEvent * event);
+	const char * getMenuText()
+	{
+		return "Stone Hewer";
+	}
+	virtual ostream& toString(ostream& out) const;
+	virtual MTGStoneHewerRule * clone() const;
+};
+//Hermit Druid avatar mode
+class MTGHermitRule: public MTGAbility
+{
+public:
+	int testDestroy();
+	MTGHermitRule(int _id);
+	int receiveEvent(WEvent * event);
+	const char * getMenuText()
+	{
+		return "Hermit";
+	}
+	virtual MTGHermitRule * clone() const;
+};
+//
 /* LifeLink */
 class MTGLifelinkRule: public MTGAbility
 {

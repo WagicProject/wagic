@@ -14,6 +14,7 @@ Damageable(20)
     game = NULL;
     deckFile = file;
     deckFileSmall = fileSmall;
+	handsize = 0;
     manaPool = NEW ManaPool(this);
     nomaxhandsize = false;
     poisonCount = 0;
