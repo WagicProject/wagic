@@ -1,0 +1,9 @@
+include mtg.txt
+name=Stone Hewer Basic
+unlock=prx_rewehenots
+[INIT]
+mode=stonehewer
+[PLAYERS]
+life:15
+auto=draw:1
+auto=sethand:8

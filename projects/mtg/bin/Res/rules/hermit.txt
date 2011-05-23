@@ -1,11 +1,11 @@
-#If you change this file, be sure to report your changes into testsuite.txt!
-name=Classic
+name=Hermit Druid Basic
+unlock=prx_timreh
 [INIT]
-mode=mtg
+mode=hermit
 [PLAYERS]
-life:20
+life:18
 offerinterruptonphase=draw
-auto=sethand:7
+auto=sethand:5
 auto=shuffle
 auto=draw:handsize
 auto=@each my draw:draw:1
