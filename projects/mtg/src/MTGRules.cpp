@@ -1660,8 +1660,6 @@ MTGAbility(_id, NULL)
         }
         initialized = 1;
     }
-    alreadyplayed = 0;
-    textAlpha = 0;
 }
 
 int MTGStoneHewerRule::receiveEvent(WEvent * event)
@@ -1673,28 +1671,22 @@ int MTGStoneHewerRule::receiveEvent(WEvent * event)
 		MTGCardInstance * card = genEquip(eId);
 		if(card)
 		{
-		game->currentlyActing()->game->temp->addCard(card);
-		Spell * spell = NEW Spell(card);
-		spell->resolve();
-		spell->source->isToken = 1;
-
-		GameObserver * g = g->GetInstance();
-		for (int i = 1; i < g->mLayers->actionLayer()->mCount; i++)
-		{
-			MTGAbility * a = ((MTGAbility *) g->mLayers->actionLayer()->mObjects[i]);
-			AEquip * eq = dynamic_cast<AEquip*> (a);
-			if (eq && eq->source == spell->source)
+			game->currentlyActing()->game->temp->addCard(card);
+			Spell * spell = NEW Spell(card);
+			spell->resolve();
+			spell->source->isToken = 1;
+			GameObserver * g = g->GetInstance();
+			for (int i = 1; i < g->mLayers->actionLayer()->mCount; i++)
 			{
-				((AEquip*)a)->unequip();
-				((AEquip*)a)->equip(e->card);
+				MTGAbility * a = ((MTGAbility *) g->mLayers->actionLayer()->mObjects[i]);
+				AEquip * eq = dynamic_cast<AEquip*> (a);
+				if (eq && eq->source == spell->source)
+				{
+					((AEquip*)a)->unequip();
+					((AEquip*)a)->equip(e->card);
+				}
 			}
-		}
-
-		alreadyplayed = 1;
-		textAlpha = 255;
-		text = "equipment";//for some reason if i don't set this to something it runs the risk of a string based crash.
-		text = spell->source->name;
-		SAFE_DELETE(spell);
+			SAFE_DELETE(spell);
 		}
 		return 1;
 	}
@@ -1718,7 +1710,6 @@ int MTGStoneHewerRule::genRandomEquipId(int convertedCost)
     int i = (WRand() % int(convertedCost+1));//+1 becuase we want to generate a random "<=" the coverted.
     while (!total_cards && i >= 0)
     {
-        DebugTrace("Converted Cost in Stone Hewer: " << i);
         total_cards = pool[i].size();
         convertedCost = i;
         i--;
@@ -1735,35 +1726,9 @@ int MTGStoneHewerRule::testDestroy()
     return 0;
 }
 
-void MTGStoneHewerRule::Update(float dt)
-{
-    if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_UNTAP)
-    {
-        alreadyplayed = 0;
-    }
-    if (textAlpha)
-    {
-        textAlpha -= static_cast<int> (200 * dt);
-        if (textAlpha < 0)
-            textAlpha = 0;
-    }
-    MTGAbility::Update(dt);
-}
-
-void MTGStoneHewerRule::Render()
-{
-    if (!textAlpha)
-        return;
-    WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MENU_FONT);
-    mFont->SetScale(2 - (float) textAlpha / 130);
-    mFont->SetColor(ARGB(textAlpha,255,255,255));
-    mFont->DrawString(text.c_str(), SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, JGETEXT_CENTER);
-}
-
 ostream& MTGStoneHewerRule::toString(ostream& out) const
 {
-    out << "MTGStoneHewerRule ::: pool : " << pool << " ; initialized : " << initialized << " ; textAlpha : " << textAlpha
-        << " ; text " << text << " ; alreadyplayed : " << alreadyplayed
+    out << "MTGStoneHewerRule ::: pool : " << pool << " ; initialized : " << initialized 
         << " ; collection : " << collection << "(";
     return MTGAbility::toString(out) << ")";
 }
