@@ -358,8 +358,6 @@ public:
 	MTGAllCards * collection;
 	MTGCardInstance * genEquip(int id);
 	int testDestroy();
-	void Update(float dt);
-	void Render();
 	MTGStoneHewerRule(int _id, MTGAllCards * _collection);
 	int receiveEvent(WEvent * event);
 	const char * getMenuText()
