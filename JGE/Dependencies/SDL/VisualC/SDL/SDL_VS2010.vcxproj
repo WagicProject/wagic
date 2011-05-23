@@ -106,7 +106,7 @@
       <CLRUnmanagedCodeCheck>false</CLRUnmanagedCodeCheck>
     </Link>
     <PostBuildEvent>
-      <Command>copy $(TargetPath) ..\..\..\..\..\projects\mtg\bin</Command>
+      <Command>copy "$(TargetPath)" "$(MSBuildProjectDirectory)\..\..\..\..\..\projects\mtg\bin"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -177,7 +177,7 @@
       <SubSystem>Windows</SubSystem>
     </Link>
     <PostBuildEvent>
-      <Command>copy $(TargetPath) ..\..\..\..\..\projects\mtg\bin</Command>
+      <Command>copy "$(TargetPath)" "$(MSBuildProjectDirectory)\..\..\..\..\..\projects\mtg\bin"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
