@@ -37768,7 +37768,7 @@ type=Land
 [card]
 name=Llawan, Cephalid Empress
 auto=maxCast(creature[blue])0 opponent
-auto=moveTo(ownerhand) all(creature[blue]|opoonentbattlefield)
+auto=moveTo(ownerhand) all(creature[blue]|opponentbattlefield)
 text=When Llawan, Cephalid Empress enters the battlefield, return all blue creatures your opponents control to their owners' hands. -- Your opponents can't cast blue creature spells.
 mana={3}{U}
 type=Legendary Creature
