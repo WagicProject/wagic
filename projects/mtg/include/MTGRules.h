@@ -349,12 +349,7 @@ private:
     int genRandomEquipId(int convertedCost);
     static vector<int> pool[20];
     static int initialized;
-
-    int textAlpha;
-    string text;
 public:
-
-	int alreadyplayed;
 	MTGAllCards * collection;
 	MTGCardInstance * genEquip(int id);
 	int testDestroy();
