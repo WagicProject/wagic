@@ -20277,7 +20277,8 @@ toughness=2
 [card]
 name=Etched Monstrosity
 auto=counter(-1/-1,5)
-text={W}{U}{B}{R}{G}{C(-1/-1,-5)}:draw:3 target(player)
+auto={W}{U}{B}{R}{G}{C(-1/-1,-5)}:draw:3 target(player)
+text=Etched Monstrosity enters the battlefield with five -1/-1 counters on it. -- {W}{U}{B}{R}{G}, Remove five -1/-1 counters from Etched Monstrosity: Target player draws three cards.
 mana={5}
 type=Artifact Creature
 subtype=Golem
