@@ -33,18 +33,16 @@ const string Options::optionNames[] = {
   "transitions",
   "bgStyle",
   "interruptSeconds",
-#if defined(QT_CONFIG)
+#if defined(SDL_CONFIG)
+  "keybindings_sdl",
+#elif defined(QT_CONFIG)
   "keybindings_qt",
-#else
-#if defined(WIN32)
+#elif defined(WIN32)
   "keybindings_win",
-#else
-#if defined(LINUX)
+#elif defined(LINUX)
   "keybindings_x",
 #else
   "keybindings_psp",
-#endif
-#endif
 #endif
   "aidecks",
   "interruptMySpells",

@@ -12,7 +12,7 @@ using std::map;
 static map<const LocalKeySym, KeyRep> fattable;
 static map<const JButton, KeyRep> slimtable;
 
-#if defined(LINUX) || defined (IOS) || defined (ANDROID)
+#if defined(LINUX) || defined (IOS) || defined (ANDROID) ||  defined (SDL_CONFIG) || defined (QT_CONFIG)
 const KeyRep& translateKey(LocalKeySym key)
 {
     {
@@ -37,9 +37,7 @@ const KeyRep& translateKey(LocalKeySym key)
     fattable[key] = k;
     return fattable[key];
 }
-#else
-#ifdef WIN32
-
+#elif defined(WIN32)
 const KeyRep& translateKey(LocalKeySym key)
 {
     {
@@ -134,7 +132,6 @@ const KeyRep& translateKey(LocalKeySym key)
     }
     return k;
 }
-#endif
 #endif
 
 const KeyRep& translateKey(JButton key) {
