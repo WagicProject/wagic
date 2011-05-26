@@ -1762,9 +1762,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     found = s.find("wingame");
     if (found != string::npos)
     {
-        Damageable * d = NULL;
-        if (spell)
-            d = spell->getNextDamageableTarget();
+        Damageable * d = spell ?  spell->getNextDamageableTarget() : NULL;
         MTGAbility * a = NEW AAWinGame(id, card, d, NULL, who);
         a->oneShot = 1;
         return a;

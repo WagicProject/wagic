@@ -1,0 +1,29 @@
+#Bug: fireball can crash the game if unselecting a target
+#see http://code.google.com/p/wagic/issues/detail?id=583
+#Target 8 creatures and remove 1 of them
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:fireball
+manapool:{7}{R}{R}{R}{R}{R}{R}{R}{R}
+inplay:raging goblin,Akrasan Squire,Alpha Myr,Ambush Party,Apprentice Wizard,Arbor Elf,Aven Squire,Bay Falcon
+[PLAYER2]
+[DO]
+fireball
+raging goblin
+Akrasan Squire
+Alpha Myr
+Ambush Party
+Apprentice Wizard
+Arbor Elf
+Aven Squire
+Bay Falcon
+Alpha Myr
+fireball
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:raging goblin,Akrasan Squire,Ambush Party,Apprentice Wizard,Arbor Elf,Aven Squire,Bay Falcon, Fireball
+inplay:Alpha Myr
+[PLAYER2]
+[END]

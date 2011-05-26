@@ -275,6 +275,7 @@ fault_line.txt
 feral_hydra.txt
 fieldmist_borderpost.txt
 fire_tempest.txt
+fireball_i583.txt
 firebreathing.txt
 fists_of_ironwood.txt
 flagstones.txt

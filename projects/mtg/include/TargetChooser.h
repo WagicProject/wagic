@@ -67,7 +67,7 @@ public:
 
     virtual int full()
     {
-        if (maxtargets != -1 && cursor >= maxtargets)
+        if (maxtargets != -1 && ((int) (targets.size())) >= maxtargets)
         {
             return 1;
         }
@@ -79,7 +79,7 @@ public:
     ;
     virtual int ready()
     {
-        return cursor;
+        return (int) (targets.size());
     }
     ;
     virtual ~TargetChooser()

@@ -486,7 +486,7 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                     size_t start = attribute.find("share!");
                     size_t end = attribute.rfind("!");
                     string CDtype = attribute.substr(start + 6,end - start);
-                    if( card && card->isSpell() && card->backupTargets[0]->typeAsTarget() == TARGET_STACKACTION)
+                    if( card && card->isSpell() && card->backupTargets.size() && card->backupTargets[0]->typeAsTarget() == TARGET_STACKACTION)
                     {
                     //spells always store their targets in :targets[]
                     //however they are all erased as the spell resolves
@@ -785,7 +785,7 @@ int TargetChooser::ForceTargetListReady()
 
 int TargetChooser::targetsReadyCheck()
 {
-    if (cursor <= 0)
+    if (!targets.size())
     {
         return TARGET_NOK;
     }

@@ -114,7 +114,7 @@ public:
     int typeAsTarget(){return TARGET_CARD;}
     const string getDisplayName() const;
     MTGCardInstance * target;
-    Targetable * backupTargets[MAX_TARGETS];
+    vector<Targetable *> backupTargets;
 
 
     //types

@@ -8,24 +8,19 @@
 
 TargetsList::TargetsList()
 {
-    cursor = 0;
 }
 
 TargetsList::TargetsList(Targetable * _targets[], int nbtargets)
 {
     for (int i = 0; i < nbtargets; i++)
-    {
-        targets[i] = _targets[i];
-    }
-    cursor = nbtargets;
+        targets.push_back(_targets[i]);
 }
 
 int TargetsList::addTarget(Targetable * target)
 {
     if (!alreadyHasTarget(target))
     {
-        targets[cursor] = target;
-        cursor++;
+        targets.push_back(target);
         return 1;
     }
     return 0;
@@ -34,7 +29,7 @@ int TargetsList::addTarget(Targetable * target)
 
 int TargetsList::alreadyHasTarget(Targetable * target)
 {
-    for (int i = 0; i < cursor; i++)
+    for (size_t i = 0; i < targets.size(); i++)
     {
         if (targets[i] == target) return 1;
     }
@@ -43,13 +38,12 @@ int TargetsList::alreadyHasTarget(Targetable * target)
 
 int TargetsList::removeTarget(Targetable * target)
 {
-    for (int i = 0; i < cursor; i++)
+    for (size_t i = 0; i < targets.size(); i++)
     {
         if (targets[i] == target)
         {
-            targets[i] = targets[cursor];
-            targets[cursor] = NULL;
-            cursor--;
+            targets.erase(targets.begin() + i);
+            return 1;
         }
     }
 
@@ -74,7 +68,7 @@ Targetable * TargetsList::getNextTarget(Targetable * previous, int type)
 {
     int found = 0;
     if (!previous) found = 1;
-    for (int i = 0; i < cursor; i++)
+    for (size_t i = 0; i < targets.size(); i++)
     {
         if (found && (type == -1 || targets[i]->typeAsTarget() == type))
         {
@@ -99,7 +93,7 @@ Interruptible * TargetsList::getNextInterruptible(Interruptible * previous, int 
 {
     int found = 0;
     if (!previous) found = 1;
-    for (int i = 0; i < cursor; i++)
+    for (size_t i = 0; i < targets.size(); i++)
     {
         if (found && targets[i]->typeAsTarget() == TARGET_STACKACTION)
         {
@@ -131,7 +125,7 @@ Damageable * TargetsList::getNextDamageableTarget(Damageable * previous)
 {
     int found = 0;
     if (!previous) found = 1;
-    for (int i = 0; i < cursor; i++)
+    for (size_t i = 0; i < targets.size(); i++)
     {
 
         if (targets[i]->typeAsTarget() == TARGET_PLAYER)

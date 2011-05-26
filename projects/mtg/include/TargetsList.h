@@ -1,8 +1,6 @@
 #ifndef _TARGETSLIST_H_
 #define _TARGETSLIST_H_
 
-#define MAX_TARGETS 20
-
 class Targetable;
 class MTGCardInstance;
 class Player;
@@ -11,13 +9,15 @@ class Spell;
 class Interruptible;
 class Damage;
 
+#include <vector>
+using std::vector;
+
 class TargetsList
 {
 public:
-    int cursor;
     TargetsList();
     TargetsList(Targetable * _targets[], int nbtargets);
-    Targetable* targets[MAX_TARGETS];
+    vector<Targetable*> targets;
     int alreadyHasTarget(Targetable * target);
     int removeTarget(Targetable * _card);
     int toggleTarget(Targetable * _card);
@@ -31,7 +31,7 @@ public:
     Targetable * getNextTarget(Targetable * previous = 0, int type = -1);
     void initTargets()
     {
-        cursor = 0;
+        targets.clear();
     }
     ;
 };
