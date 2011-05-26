@@ -202,22 +202,39 @@ SdlApp *g_SdlApp = NULL;
 
 static const struct { LocalKeySym keysym; JButton keycode; } gDefaultBindings[] =
 {
+  /* windows controls */
+  { SDLK_LCTRL,         JGE_BTN_CTRL },
+  { SDLK_RCTRL,         JGE_BTN_CTRL },
   { SDLK_RETURN,        JGE_BTN_MENU },
   { SDLK_KP_ENTER,      JGE_BTN_MENU },
   { SDLK_ESCAPE,        JGE_BTN_MENU },
-  { SDLK_BACKSPACE,     JGE_BTN_CTRL },
   { SDLK_UP,            JGE_BTN_UP },
   { SDLK_DOWN,          JGE_BTN_DOWN },
   { SDLK_LEFT,          JGE_BTN_LEFT },
   { SDLK_RIGHT,         JGE_BTN_RIGHT },
+  { SDLK_z,             JGE_BTN_UP },
+  { SDLK_d,             JGE_BTN_RIGHT },
+  { SDLK_s,             JGE_BTN_DOWN },
+  { SDLK_q,             JGE_BTN_LEFT },
+  { SDLK_a,             JGE_BTN_PREV },
+  { SDLK_e,             JGE_BTN_NEXT },
+  { SDLK_i,             JGE_BTN_CANCEL },
+  { SDLK_l,             JGE_BTN_OK },
   { SDLK_SPACE,         JGE_BTN_OK },
-  { SDLK_TAB,           JGE_BTN_CANCEL },
-  { SDLK_j,             JGE_BTN_PRI },
   { SDLK_k,             JGE_BTN_SEC },
-  { SDLK_q,             JGE_BTN_PREV },
-  { SDLK_a,             JGE_BTN_NEXT },
+  { SDLK_j,             JGE_BTN_PRI },
   { SDLK_f,             JGE_BTN_FULLSCREEN },
+
+  /* old Qt ones, basically modified to comply with the N900 keyboard
+  { SDLK_a,             JGE_BTN_NEXT },
+  { SDLK_TAB,           JGE_BTN_CANCEL },
+  { SDLK_q,             JGE_BTN_PREV },
+  { SDLK_BACKSPACE,     JGE_BTN_CTRL },
+  */
+
+  /* Android customs */
   { SDLK_AC_BACK,       JGE_BTN_MENU },
+  /* Android/maemo volume button mapping */
   { SDLK_VOLUMEUP,      JGE_BTN_PREV },
   { SDLK_VOLUMEDOWN,    JGE_BTN_SEC},
 };
