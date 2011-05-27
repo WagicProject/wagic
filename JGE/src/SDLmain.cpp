@@ -31,18 +31,22 @@
 #define ACTUAL_SCREEN_HEIGHT (SCREEN_HEIGHT)
 #define ACTUAL_RATIO ((GLfloat)ACTUAL_SCREEN_WIDTH / (GLfloat)ACTUAL_SCREEN_HEIGHT)
 
-#define WAGIC_UPDATE_EVENT (SDL_USEREVENT + 1)
-
 class SdlApp {
     public: /* For easy interfacing with JGE static functions */
         bool            Running;
+        SDL_Window*     window;
         SDL_Surface*    Surf_Display;
         SDL_Rect        viewPort;
         Uint32          lastMouseUpTime;
+        int             windowed_w;
+        int             windowed_h;
+        int             windowed_pos_x;
+        int             windowed_pos_y;
 
     public:
         SdlApp() {
           Surf_Display = NULL;
+          window = NULL;
           lastMouseUpTime = 0;
           Running = true;
         };
@@ -125,17 +129,13 @@ class SdlApp {
             }
             case SDL_WINDOWEVENT:
             { /* On Android, this is triggered when the device orientation changed */
-#ifdef ANDROID
-              SDL_Window* window = SDL_GetWindowFromID(Event->window.windowID);
+              window = SDL_GetWindowFromID(Event->window.windowID);
               int h,w;
               SDL_GetWindowSize(window, &w, &h);
               OnResize(w, h);
-#endif
               break;
             }
-            case SDL_VIDEORESIZE:
-              OnResize(Event->resize.w, Event->resize.h);
-              break;
+
             case SDL_KEYDOWN:
             case SDL_KEYUP:
               OnKeyPressed(Event->key);
@@ -180,10 +180,7 @@ class SdlApp {
                          << ", numFinder " << Event->mgesture.numFingers);
               break;
             }
-            case WAGIC_UPDATE_EVENT:
-              OnUpdate();
-              break;
-            }
+			}
         }
         void OnUpdate();
         void OnCleanup() {
@@ -201,7 +198,7 @@ SdlApp *g_SdlApp = NULL;
 
 
 static const struct { LocalKeySym keysym; JButton keycode; } gDefaultBindings[] =
-{
+{  
   /* windows controls */
   { SDLK_LCTRL,         JGE_BTN_CTRL },
   { SDLK_RCTRL,         JGE_BTN_CTRL },
@@ -252,7 +249,27 @@ int JGEGetTime()
 
 bool JGEToggleFullscreen()
 {
-  SDL_WM_ToggleFullScreen(g_SdlApp->Surf_Display);
+  SDL_DisplayMode mode;
+  SDL_GetCurrentDisplayMode(0, &mode);
+
+  /* Do the physical mode switch */
+  if (SDL_GetWindowFlags(g_SdlApp->window) & SDL_WINDOW_FULLSCREEN) {
+    if (SDL_SetWindowFullscreen(g_SdlApp->window, SDL_FALSE) < 0) {
+      return false;
+    }
+    // restore old position and size
+    SDL_SetWindowPosition(g_SdlApp->window, g_SdlApp->windowed_pos_x, g_SdlApp->windowed_pos_y);
+    SDL_SetWindowSize(g_SdlApp->window, g_SdlApp->windowed_w, g_SdlApp->windowed_h);
+  } else {
+    // backup old position and size
+    SDL_GetWindowSize(g_SdlApp->window, &g_SdlApp->windowed_w, &g_SdlApp->windowed_h);
+    SDL_GetWindowPosition(g_SdlApp->window, &g_SdlApp->windowed_pos_x, &g_SdlApp->windowed_pos_y);
+    SDL_SetWindowSize(g_SdlApp->window, mode.w, mode.h);
+    if (SDL_SetWindowFullscreen(g_SdlApp->window, SDL_TRUE) < 0) {
+      return false;
+    }
+  }
+
   return true;
 }
 
@@ -448,11 +465,10 @@ bool SdlApp::OnInit() {
 #ifdef ANDROID
                                       SDL_OPENGL | SDL_FULLSCREEN | SDL_WINDOW_BORDERLESS)) == NULL) {
 #else
-                                      SDL_OPENGL | SDL_RESIZABLE | SDL_WINDOW_BORDERLESS)) == NULL) {
+                                      SDL_OPENGL | SDL_RESIZABLE )) == NULL) {
 #endif
       return false;
   }
-
   SDL_WM_SetCaption(g_launcher->GetName(), "");
 
   glClearColor(0.0f, 0.0f, 0.0f, 0.0f);		// Black Background (yes that's the way fuckers)
