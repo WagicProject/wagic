@@ -59,6 +59,12 @@ void DeckMetaData::LoadStats()
         DeckStats * stats = DeckStats::GetInstance();
         if (mIsAI)
         {
+            mPercentVictories = 0;
+            mVictories = 0;
+            mGamesPlayed = 0;
+            mColorIndex = "";
+            mDifficulty = 0;
+
             stats->load(mPlayerDeck);
             DeckStat * opponentDeckStats = stats->getDeckStat(mStatsFilename);
             if (opponentDeckStats)

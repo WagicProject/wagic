@@ -193,6 +193,8 @@ void DeckStats::save(const std::string& filename)
             file << "MANA:" << it->second->manaColorIndex <<endl;
         }
         file.close();
+
+        playerDeckMeta->Invalidate();
     }
 }
 
