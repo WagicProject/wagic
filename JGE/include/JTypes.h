@@ -57,6 +57,9 @@ enum {
 #define M_PI_4	0.785398163397448309616f
 #define M_1_PI	0.318309886183790671538f
 #define M_2_PI	0.636619772367581343076f
+
+// prevent macro redefinition within SDL
+#define HAVE_M_PI
 #endif
 
 #define RAD2DEG		57.29577951f
