@@ -619,6 +619,8 @@ Spell * ActionStack::addSpell(MTGCardInstance * _source, TargetChooser * tc, Man
 
 Interruptible * ActionStack::getAt(int id)
 {
+    if (!mObjects.size())//nothing to get.
+        return NULL;
     if (id < 0)
         id = mCount + id;
     if (id > mCount - 1)
