@@ -31,6 +31,15 @@
 #define ACTUAL_SCREEN_HEIGHT (SCREEN_HEIGHT)
 #define ACTUAL_RATIO ((GLfloat)ACTUAL_SCREEN_WIDTH / (GLfloat)ACTUAL_SCREEN_HEIGHT)
 
+enum eDisplayMode
+{
+	DisplayMode_lowRes = 0,
+	DisplayMode_hiRes,
+	DisplayMode_fullscreen
+};
+
+unsigned int gDisplayMode = DisplayMode_lowRes;
+
 class SdlApp {
     public: /* For easy interfacing with JGE static functions */
         bool            Running;
@@ -249,28 +258,49 @@ int JGEGetTime()
 
 bool JGEToggleFullscreen()
 {
-  SDL_DisplayMode mode;
-  SDL_GetCurrentDisplayMode(0, &mode);
+	//cycle between the display modes
+	++gDisplayMode;
+	if (gDisplayMode > DisplayMode_fullscreen)
+		gDisplayMode = DisplayMode_lowRes;
 
-  /* Do the physical mode switch */
-  if (SDL_GetWindowFlags(g_SdlApp->window) & SDL_WINDOW_FULLSCREEN) {
-    if (SDL_SetWindowFullscreen(g_SdlApp->window, SDL_FALSE) < 0) {
-      return false;
-    }
-    // restore old position and size
-    SDL_SetWindowPosition(g_SdlApp->window, g_SdlApp->windowed_pos_x, g_SdlApp->windowed_pos_y);
-    SDL_SetWindowSize(g_SdlApp->window, g_SdlApp->windowed_w, g_SdlApp->windowed_h);
-  } else {
-    // backup old position and size
-    SDL_GetWindowSize(g_SdlApp->window, &g_SdlApp->windowed_w, &g_SdlApp->windowed_h);
-    SDL_GetWindowPosition(g_SdlApp->window, &g_SdlApp->windowed_pos_x, &g_SdlApp->windowed_pos_y);
-    SDL_SetWindowSize(g_SdlApp->window, mode.w, mode.h);
-    if (SDL_SetWindowFullscreen(g_SdlApp->window, SDL_TRUE) < 0) {
-      return false;
-    }
-  }
+	SDL_DisplayMode mode;
+	SDL_GetCurrentDisplayMode(0, &mode);
 
-  return true;
+	int width = 0;
+	int height = 0;
+
+	switch (gDisplayMode)
+	{
+	case DisplayMode_fullscreen:
+		SDL_SetWindowSize(g_SdlApp->window, mode.w, mode.h);
+		return (SDL_SetWindowFullscreen(g_SdlApp->window, SDL_TRUE) == 0);
+
+		break;
+
+	case DisplayMode_hiRes:
+		width = SCREEN_WIDTH * 2;
+		height = SCREEN_HEIGHT * 2;
+		break;
+
+	case DisplayMode_lowRes:
+	default:
+		width = SCREEN_WIDTH;
+		height = SCREEN_HEIGHT;
+		break;
+	}
+
+	if (SDL_SetWindowFullscreen(g_SdlApp->window, SDL_FALSE) < 0)
+	{
+		return false;
+	}
+
+	int x = (mode.w - width) / 2;
+	int y = (mode.h - height) / 2;
+
+	SDL_SetWindowPosition(g_SdlApp->window, x, y);
+	SDL_SetWindowSize(g_SdlApp->window, width, height);
+
+	return true;
 }
 
 bool InitGame(void)
