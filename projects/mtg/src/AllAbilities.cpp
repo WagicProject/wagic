@@ -777,7 +777,7 @@ int AANewTarget::resolve()
         {
             reUp->resolve();
             GameObserver * g = g->GetInstance();
-            for (int i = 1; i < g->mLayers->actionLayer()->mCount; i++)
+            for (size_t i = 1; i < g->mLayers->actionLayer()->mObjects.size(); i++)
             {
                 MTGAbility * a = ((MTGAbility *) g->mLayers->actionLayer()->mObjects[i]);
                 AEquip * eq = dynamic_cast<AEquip*> (a);
@@ -2845,7 +2845,7 @@ int ALoseAbilities::addToGame()
 
     ActionLayer * al = game->mLayers->actionLayer();
 
-    for (int i = al->mCount - 1; i > 0; i--)      //0 is not a mtgability...hackish
+    for (int i = (int)(al->mObjects.size()) - 1; i > 0; i--)      //0 is not a mtgability...hackish
     {
         if (al->mObjects[i])
         {

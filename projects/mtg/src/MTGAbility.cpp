@@ -1974,10 +1974,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
 					sabilities.append(",");
 			}
 		}
-        if (oneShot || forceUEOT)
-            return NEW ATransformerInstant(id, card, target, stypes, sabilities,newPower,ptFound,newToughness,ptFound,vector<string>(),false,forceFOREVER);
-
-        if(forceFOREVER)
+        if (oneShot || forceUEOT || forceFOREVER)
             return NEW ATransformerInstant(id, card, target, stypes, sabilities,newPower,ptFound,newToughness,ptFound,vector<string>(),false,forceFOREVER);
 
         return  NEW ATransformer(id, card, target, stypes, sabilities,newPower,ptFound,newToughness,ptFound,vector<string>(),false,forceFOREVER);

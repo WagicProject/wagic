@@ -7,7 +7,7 @@
 
 MTGAbility* ActionLayer::getAbility(int type)
 {
-    for (int i = 1; i < mCount; i++)
+    for (size_t i = 1; i < mObjects.size(); i++)
     {
         MTGAbility * a = ((MTGAbility *) mObjects[i]);
         if (a->aType == type)
@@ -34,7 +34,6 @@ int ActionLayer::removeFromGame(ActionElement * e)
         return 0; //Should not happen, it means we deleted thesame object twice?
 
     mObjects.erase(mObjects.begin() + i);
-    mCount--;
     return 1;
 
 }
@@ -88,7 +87,7 @@ bool ActionLayer::CheckUserInput(JButton key)
     {
         return false;
     }
-    for (int i = 0; i < mCount; i++)
+    for (size_t i = 0; i < mObjects.size(); i++)
     {
         if (mObjects[i] != NULL)
         {
@@ -110,7 +109,7 @@ void ActionLayer::Update(float dt)
     }
     modal = 0;
     GameObserver* game = GameObserver::GetInstance();
-    for (int i = mCount - 1; i >= 0; i--)
+    for (int i = (int)(mObjects.size()) - 1; i >= 0; i--)
     {
         //a dirty hack, there might be cases when the mObject array gets reshaped if an ability removes some of its children abilites
         if ((int) mObjects.size() <= i)
@@ -128,7 +127,7 @@ void ActionLayer::Update(float dt)
         }
     }
     int newPhase = game->getCurrentGamePhase();
-    for (int i = 0; i < mCount; i++)
+    for (size_t i = 0; i < mObjects.size(); i++)
     {
         if (mObjects[i] != NULL)
         {
@@ -157,7 +156,7 @@ void ActionLayer::Render()
         abilitiesMenu->Render();
         return;
     }
-    for (int i = 0; i < mCount; i++)
+    for (size_t i = 0; i < mObjects.size(); i++)
     {
         if (mObjects[i] != NULL)
         {
@@ -203,7 +202,7 @@ ActionElement * ActionLayer::isWaitingForAnswer()
 
 int ActionLayer::stillInUse(MTGCardInstance * card)
 {
-    for (int i = 0; i < mCount; i++)
+    for (size_t i = 0; i < mObjects.size(); i++)
     {
         ActionElement * currentAction = (ActionElement *) mObjects[i];
         if (currentAction->stillInUse(card))
@@ -215,7 +214,7 @@ int ActionLayer::stillInUse(MTGCardInstance * card)
 int ActionLayer::receiveEventPlus(WEvent * event)
 {
     int result = 0;
-    for (int i = 0; i < mCount; i++)
+    for (size_t i = 0; i < mObjects.size(); i++)
     {
         ActionElement * currentAction = (ActionElement *) mObjects[i];
         result += currentAction->receiveEvent(event);
@@ -230,7 +229,7 @@ int ActionLayer::isReactingToTargetClick(Targetable * card)
     if (isWaitingForAnswer())
         return -1;
 
-    for (int i = 0; i < mCount; i++)
+    for (size_t i = 0; i < mObjects.size(); i++)
     {
         ActionElement * currentAction = (ActionElement *) mObjects[i];
         result += currentAction->isReactingToTargetClick(card);
@@ -246,7 +245,7 @@ int ActionLayer::reactToTargetClick(Targetable * card)
     if (ae)
         return reactToTargetClick(ae, card);
 
-    for (int i = 0; i < mCount; i++)
+    for (size_t i = 0; i < mObjects.size(); i++)
     {
         ActionElement * currentAction = (ActionElement *) mObjects[i];
         result += currentAction->reactToTargetClick(card);
@@ -262,7 +261,7 @@ int ActionLayer::isReactingToClick(MTGCardInstance * card)
     if (isWaitingForAnswer())
         return -1;
 
-    for (int i = 0; i < mCount; i++)
+    for (size_t i = 0; i < mObjects.size(); i++)
     {
         ActionElement * currentAction = (ActionElement *) mObjects[i];
         if (currentAction->isReactingToClick(card))
@@ -315,7 +314,7 @@ void ActionLayer::setMenuObject(Targetable * object, bool must)
 
     abilitiesMenu = NEW SimpleMenu(10, this, Fonts::MAIN_FONT, 100, 100, object->getDisplayName().c_str());
 
-    for (int i = 0; i < mCount; i++)
+    for (size_t i = 0; i < mObjects.size(); i++)
     {
         ActionElement * currentAction = (ActionElement *) mObjects[i];
         if (currentAction->isReactingToTargetClick(object))

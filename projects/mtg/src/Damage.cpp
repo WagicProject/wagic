@@ -247,7 +247,7 @@ DamageStack::DamageStack()
  */
 int DamageStack::resolve()
 {
-    for (int i = mCount - 1; i >= 0; i--)
+    for (int i = (int)(mObjects.size()) - 1; i >= 0; i--)
     {
         Damage * damage = (Damage*) mObjects[i];
         if (damage->state == NOT_RESOLVED)
@@ -263,7 +263,7 @@ int DamageStack::receiveEvent(WEvent * e)
     if (!event)
         return 0;
 
-    for (int i = mCount - 1; i >= 0; i--)
+    for (int i = (int)(mObjects.size()) - 1; i >= 0; i--)
     {
         Damage * damage = (Damage*) mObjects[i];
         if (damage->state == RESOLVED_OK)
@@ -275,7 +275,7 @@ int DamageStack::receiveEvent(WEvent * e)
 void DamageStack::Render()
 {
     float currenty = y;
-    for (int i = 0; i < mCount; i++)
+    for (size_t i = 0; i < mObjects.size(); i++)
     {
         Damage * damage = (Damage*) mObjects[i];
         if (damage->state == NOT_RESOLVED)

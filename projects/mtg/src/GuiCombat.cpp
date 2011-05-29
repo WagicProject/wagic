@@ -434,7 +434,7 @@ int GuiCombat::resolve() // Returns the number of damage objects dealt this turn
         for (vector<Damage>::iterator d = (*it)->damages.begin(); d != (*it)->damages.end(); ++d)
             stack->Add(NEW Damage(*d));
     }
-    int v = stack->mCount;
+    int v = stack->mObjects.size();
     if (v > 0)
     {
         go->mLayers->stackLayer()->Add(stack);

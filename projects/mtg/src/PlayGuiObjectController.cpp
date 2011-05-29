@@ -14,11 +14,11 @@ int PlayGuiObjectController::getClosestItem(int direction)
 
 int PlayGuiObjectController::getClosestItem(int direction, float tolerance)
 {
-    if (mCount == 0)
+    if (mObjects.size() == 0)
     {
         return -1;
     }
-    if (mCount == 1)
+    if (mObjects.size() == 1)
     {
         return mCurr;
     }
@@ -30,9 +30,9 @@ int PlayGuiObjectController::getClosestItem(int direction, float tolerance)
     float x0, y0, x1, y1;
     x0 = current->x;
     y0 = current->y;
-    for (int i = 0; i < mCount; i++)
+    for (size_t i = 0; i < mObjects.size(); i++)
     {
-        if (i == mCurr) continue;
+        if ((int) i == mCurr) continue;
         PlayGuiObject * other = (PlayGuiObject *) mObjects[i];
         x1 = other->x;
         y1 = other->y;
@@ -88,7 +88,7 @@ int PlayGuiObjectController::getClosestItem(int direction, float tolerance)
 void PlayGuiObjectController::Update(float dt)
 {
     last_user_move += dt;
-    for (int i = 0; i < mCount; i++)
+    for (size_t i = 0; i < mObjects.size(); i++)
     {
         if (mObjects[i] != NULL)
         {

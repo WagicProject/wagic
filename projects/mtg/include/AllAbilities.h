@@ -2658,7 +2658,7 @@ public:
     void livingWeaponToken(MTGCardInstance * card)
     {
         GameObserver * g = g->GetInstance();
-        for (int i = 1; i < g->mLayers->actionLayer()->mCount; i++)
+        for (size_t i = 1; i < g->mLayers->actionLayer()->mObjects.size(); i++)
         {
             MTGAbility * a = ((MTGAbility *) g->mLayers->actionLayer()->mObjects[i]);
             if (a->aType == MTGAbility::STANDARD_EQUIP && a->source == source)
@@ -3908,7 +3908,7 @@ public:
         if (canprevent)
         {
             ActionStack * stack = game->mLayers->stackLayer();
-            for (int i = stack->mCount - 1; i >= 0; i--)
+            for (int i = stack->mObjects.size() - 1; i >= 0; i--)
             {
                 if (!canprevent) return 1;
                 Interruptible * current = ((Interruptible *) stack->mObjects[i]);
@@ -3920,7 +3920,7 @@ public:
                 else if (current->type == ACTION_DAMAGES && current->state == NOT_RESOLVED)
                 {
                     DamageStack * damages = (DamageStack *) current;
-                    for (int j = damages->mCount - 1; j >= 0; j--)
+                    for (int j = damages->mObjects.size() - 1; j >= 0; j--)
                     {
                         alterDamage(((Damage *) damages->mObjects[j]));
                     }

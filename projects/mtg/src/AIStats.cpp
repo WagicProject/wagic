@@ -82,7 +82,7 @@ int AIStats::receiveEvent(WEvent * event)
     GameObserver * g = GameObserver::GetInstance();
     //Lords
     map<MTGCardInstance *, int> lords;
-    for (int i = 1; i < g->mLayers->actionLayer()->mCount; i++)
+    for (size_t i = 1; i < g->mLayers->actionLayer()->mObjects.size(); i++)
     { //0 is not a mtgability...hackish
         MTGAbility * a = ((MTGAbility *) g->mLayers->actionLayer()->mObjects[i]);
         if (ALord * al = dynamic_cast<ALord*>(a))

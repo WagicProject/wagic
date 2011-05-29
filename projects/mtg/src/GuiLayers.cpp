@@ -7,7 +7,6 @@ GuiLayer::GuiLayer()
 {
     modal = 0;
     hasFocus = false;
-    mCount = 0;
     mCurr = 0;
     mActionButton = JGE_BTN_OK;
 }
@@ -20,18 +19,16 @@ GuiLayer::~GuiLayer()
 void GuiLayer::Add(JGuiObject *object)
 {
     mObjects.push_back(object);
-    mCount++;
 }
 
 int GuiLayer::Remove(JGuiObject *object)
 {
-    for (int i = 0; i < mCount; i++)
+    for (size_t i = 0; i < mObjects.size(); i++)
         if (mObjects[i] == object)
         {
             delete mObjects[i];
             mObjects.erase(mObjects.begin() + i);
-            mCount--;
-            if (mCurr == mCount)
+            if (mCurr == (int)(mObjects.size()))
                 mCurr = 0;
             return 1;
         }
@@ -40,26 +37,26 @@ int GuiLayer::Remove(JGuiObject *object)
 
 int GuiLayer::getMaxId()
 {
-    return mCount;
+    return (int) (mObjects.size());
 }
 
 void GuiLayer::Render()
 {
-    for (int i = 0; i < mCount; i++)
+    for (size_t i = 0; i < mObjects.size(); i++)
         if (mObjects[i] != NULL)
             mObjects[i]->Render();
 }
 
 void GuiLayer::Update(float dt)
 {
-    for (int i = 0; i < mCount; i++)
+    for (size_t i = 0; i < mObjects.size(); i++)
         if (mObjects[i] != NULL)
             mObjects[i]->Update(dt);
 }
 
 void GuiLayer::resetObjects()
 {
-    for (int i = 0; i < mCount; i++)
+    for (size_t i = 0; i < mObjects.size(); i++)
         if (mObjects[i])
         {
             // big, ugly hack around CardView / MTGCardInstance ownership problem - these two classes have an interdependency with naked pointers,
@@ -74,13 +71,12 @@ void GuiLayer::resetObjects()
             delete mObjects[i];
         }
     mObjects.clear();
-    mCount = 0;
     mCurr = 0;
 }
 
 int GuiLayer::getIndexOf(JGuiObject * object)
 {
-    for (int i = 0; i < mCount; i++)
+    for (size_t i = 0; i < mObjects.size(); i++)
     {
         if (mObjects[i] == object)
             return i;

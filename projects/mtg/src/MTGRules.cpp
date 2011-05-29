@@ -1676,7 +1676,7 @@ int MTGStoneHewerRule::receiveEvent(WEvent * event)
 			spell->resolve();
 			spell->source->isToken = 1;
 			GameObserver * g = g->GetInstance();
-			for (int i = 1; i < g->mLayers->actionLayer()->mCount; i++)
+			for (size_t i = 1; i < g->mLayers->actionLayer()->mObjects.size(); i++)
 			{
 				MTGAbility * a = ((MTGAbility *) g->mLayers->actionLayer()->mObjects[i]);
 				AEquip * eq = dynamic_cast<AEquip*> (a);

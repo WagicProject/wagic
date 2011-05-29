@@ -34,7 +34,7 @@ CardDisplay::CardDisplay(int id, GameObserver* game, int _x, int _y, JGuiListene
 
 void CardDisplay::AddCard(MTGCardInstance * _card)
 {
-    CardGui * card = NEW CardView(CardView::nullZone, _card, static_cast<float> (x + 20 + (mCount - start_item) * 30),
+    CardGui * card = NEW CardView(CardView::nullZone, _card, static_cast<float> (x + 20 + (mObjects.size() - start_item) * 30),
                     static_cast<float> (y + 25));
     Add(card);
 }
@@ -48,13 +48,13 @@ void CardDisplay::init(MTGGameZone * zone)
     {
         AddCard(zone->cards[i]);
     }
-    if (mCount) mObjects[0]->Entering();
+    if (mObjects.size()) mObjects[0]->Entering();
 }
 
 void CardDisplay::rotateLeft()
 {
     if (start_item == 0) return;
-    for (int i = 0; i < mCount; i++)
+    for (size_t i = 0; i < mObjects.size(); i++)
     {
         CardGui * cardg = (CardGui *) mObjects[i];
         cardg->x += 30;
@@ -64,8 +64,8 @@ void CardDisplay::rotateLeft()
 
 void CardDisplay::rotateRight()
 {
-    if (start_item == mCount - 1) return;
-    for (int i = 0; i < mCount; i++)
+    if (start_item == (int)(mObjects.size()) - 1) return;
+    for (size_t i = 0; i < mObjects.size(); i++)
     {
         CardGui * cardg = (CardGui *) mObjects[i];
         cardg->x -= 30;
@@ -80,7 +80,7 @@ void CardDisplay::Update(float dt)
     if (zone)
     {
         int size = zone->cards.size();
-        for (int i = start_item; i < start_item + nb_displayed_items && i < mCount; i++)
+        for (int i = start_item; i < start_item + nb_displayed_items && i < (int)(mObjects.size()); i++)
         {
             if (i > size - 1)
             {
@@ -104,7 +104,7 @@ bool CardDisplay::CheckUserInput(int x, int y)
     JButton key;
     if (JGE::GetInstance()->GetLeftClickCoordinates(x, y))
     {
-        for (int i = 0; i < mCount; i++)
+        for (size_t i = 0; i < mObjects.size(); i++)
         {
             float top, left;
             if (mObjects[i]->getTopLeft(top, left))
@@ -127,9 +127,9 @@ bool CardDisplay::CheckUserInput(int x, int y)
         {
             rotateLeft();
         }
-        else if (n >= mCount && mCount > 0)
+        else if (n >= (int)(mObjects.size()) && mObjects.size())
         {
-            n = mCount - 1;
+            n = mObjects.size() - 1;
         }
         if (n >= start_item + nb_displayed_items)
         {
@@ -158,7 +158,7 @@ bool CardDisplay::CheckUserInput(JButton key)
             return true;
         }
     }
-    if (!mCount) return false;
+    if (!mObjects.size()) return false;
 
     if (mActionButton == key)
     {
@@ -207,9 +207,9 @@ bool CardDisplay::CheckUserInput(JButton key)
     {
         int n = mCurr;
         n++;
-        if (n >= mCount)
+        if (n >= (int) (mObjects.size()))
         {
-            n = mCount - 1;
+            n = mObjects.size() - 1;
         }
         if (n >= start_item + nb_displayed_items)
         {
@@ -234,8 +234,8 @@ void CardDisplay::Render()
     JRenderer * r = JRenderer::GetInstance();
     r->DrawRect(static_cast<float> (x), static_cast<float> (y), static_cast<float> (nb_displayed_items * 30 + 20), 50,
                     ARGB(255,255,255,255));
-    if (!mCount) return;
-    for (int i = start_item; i < start_item + nb_displayed_items && i < mCount; i++)
+    if (!mObjects.size()) return;
+    for (int i = start_item; i < start_item + nb_displayed_items && i < (int)(mObjects.size()); i++)
     {
         if (mObjects[i])
         {
@@ -256,7 +256,7 @@ void CardDisplay::Render()
     }
 
     //TODO: CardSelector should handle the graveyard and the library in the future...
-    if (mCount && mObjects[mCurr] != NULL)
+    if (mObjects.size() && mObjects[mCurr] != NULL)
     {
         mObjects[mCurr]->Render();
         CardGui * cardg = ((CardGui *) mObjects[mCurr]);

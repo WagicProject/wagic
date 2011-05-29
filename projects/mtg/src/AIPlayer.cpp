@@ -148,7 +148,7 @@ bool AIPlayer::tapLandsForMana(ManaCost * cost, MTGCardInstance * target)
     GameObserver * g = GameObserver::GetInstance();
 
     map<MTGCardInstance *, bool> used;
-    for (int i = 1; i < g->mLayers->actionLayer()->mCount; i++)
+    for (size_t i = 1; i < g->mLayers->actionLayer()->mObjects.size(); i++)
     { //0 is not a mtgability...hackish
         //Make sure we can use the ability
         MTGAbility * a = ((MTGAbility *) g->mLayers->actionLayer()->mObjects[i]);
@@ -190,7 +190,7 @@ ManaCost * AIPlayer::getPotentialMana(MTGCardInstance * target)
     ManaCost * result = NEW ManaCost();
     GameObserver * g = GameObserver::GetInstance();
     map<MTGCardInstance *, bool> used;
-    for (int i = 1; i < g->mLayers->actionLayer()->mCount; i++)
+    for (size_t i = 1; i < g->mLayers->actionLayer()->mObjects.size(); i++)
     { //0 is not a mtgability...hackish
         //Make sure we can use the ability
         MTGAbility * a = ((MTGAbility *) g->mLayers->actionLayer()->mObjects[i]);
@@ -841,7 +841,7 @@ int AIPlayer::selectAbility()
     GameObserver * g = GameObserver::GetInstance();
     //This loop is extrmely inefficient. TODO: optimize!
     ManaCost * totalPotentialMana = getPotentialMana();
-    for (int i = 1; i < g->mLayers->actionLayer()->mCount; i++)
+    for (size_t i = 1; i < g->mLayers->actionLayer()->mObjects.size(); i++)
     { //0 is not a mtgability...hackish
         MTGAbility * a = ((MTGAbility *) g->mLayers->actionLayer()->mObjects[i]);
         //Skip mana abilities for performance

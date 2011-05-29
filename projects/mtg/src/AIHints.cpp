@@ -106,7 +106,7 @@ vector<MTGAbility *> AIHints::findAbilities(AIHint * hint)
     std::vector<MTGAbility *> elems;
     ActionLayer * al = GameObserver::GetInstance()->mLayers->actionLayer();
 
-    for (int i = 1; i < al->mCount; i++) //0 is not a mtgability...hackish
+    for (size_t i = 1; i < al->mObjects.size(); i++) //0 is not a mtgability...hackish
     { 
         MTGAbility * a = ((MTGAbility *) al->mObjects[i]);
         if (abilityMatches(a, hint))

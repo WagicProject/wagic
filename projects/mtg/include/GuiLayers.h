@@ -17,7 +17,6 @@ class GuiLayer
 protected:
     JButton mActionButton;
 public:
-    int mCount;
     int mCurr;
     vector<JGuiObject *> mObjects;
     void Add(JGuiObject * object);
@@ -39,7 +38,7 @@ public:
     virtual void Render();
     int empty()
     {
-        if (mCount)
+        if (mObjects.size())
             return 0;
         return 1;
     }
