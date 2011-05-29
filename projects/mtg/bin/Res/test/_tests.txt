@@ -35,6 +35,7 @@ generic/hybrid_mana.txt
 generic/hybrid_mana_2.txt
 generic/hybrid_mana_3.txt
 generic/indestructible.txt
+generic/indestructible_2_i570.txt
 generic/kicker.txt
 generic/kicker2.txt
 generic/lands_max_per_turn.txt
@@ -218,6 +219,9 @@ crosis_s_catacombs_1.txt
 crosis_s_catacombs_2.txt
 crumble.txt
 crystal_rod_i172.txt
+cursed_land1_i188.txt
+cursed_land3_i188.txt
+cursed_land4_i188.txt
 dark_banishing.txt
 dauntless_escort.txt
 dauthi_embrace.txt
@@ -288,6 +292,7 @@ flowstone_hellion.txt
 flowstone_slide.txt
 fog.txt
 fog_bank.txt
+fog_effect_i286.txt
 foratog.txt
 force_of_nature.txt
 force_of_nature2.txt
@@ -386,6 +391,7 @@ livingweapon.txt
 lord_of_the_pit.txt
 lord_of_the_pit2.txt
 magma_spray.txt
+manabarbs_dual_lands_i562.txt
 martial_coup.txt
 martial_coup2.txt
 master_decoy.txt
@@ -406,6 +412,7 @@ misc01.txt
 misty_rainforest_i604.txt
 moat.txt
 mobile_fort.txt
+mogg_flunkies1_i193.txt
 Morph#1.txt
 Morph#2.txt
 Morph#3.txt
@@ -436,6 +443,10 @@ paralysis.txt
 paralysis2.txt
 persuasion.txt
 phytohydra.txt
+pillory_of_the_sleepless1_i188.txt
+pillory_of_the_sleepless2_i188.txt
+pillory_of_the_sleepless3_i188.txt
+pillory_of_the_sleepless4_i188.txt
 plague_rats.txt
 plumes_of_peace_i260.txt
 pouncing_jaguar_i425.txt
@@ -452,6 +463,10 @@ quilled_sliver.txt
 rain_of_filth_i206.txt
 rain_of_filth_i283.txt
 rainbow_efreet_phase_out.txt
+rakdos_pit_dragon_i555_1.txt
+rakdos_pit_dragon_i555_2.txt
+rakdos_pit_dragon_i555_3.txt
+rakdos_pit_dragon_i555_4.txt
 rampant_growth.txt
 rancid_earth_with_threshold.txt
 rancid_earth_without_threshold.txt
@@ -517,6 +532,7 @@ soul's_grace_POWERLIFEGAIN.txt
 spark_elemental.txt
 sphinx_summoner.txt
 spirit_link.txt
+spirit_link_i173.txt
 SPIRITLINK_keyword#1.txt
 SPIRITLINK_keyword#2.txt
 SPIRITLINK_keyword#3.txt
@@ -532,6 +548,7 @@ stonebrow2.txt
 stonebrow_i159.txt
 stronghold_discipline.txt
 sword_to_plowshares.txt
+sylvan_basilisk_i182.txt
 sylvan_scrying_i195.txt
 symbiotic_wurm.txt
 tangle_golem.txt

@@ -15,10 +15,9 @@ Grizzly Bears
 Mogg Flunkies
 Grizzly Bears
 next
-next
-next
+#combat blockers
 [ASSERT]
-combatend
+combatblockers
 [PLAYER1]
 inplay:Mogg Flunkies,Grizzly Bears
 [PLAYER2]

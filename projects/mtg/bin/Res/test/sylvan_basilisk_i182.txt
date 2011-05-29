@@ -28,18 +28,28 @@ Giant Spider
 next
 Sylvan Basilisk
 eot
+#untap
 next
+#upkeep
 next
+#draw
 next
+#main
 next
+#begins
 next
+#attackers
 Sylvan Basilisk
 next
+#blockers
 Gosta Dirk
 next
+#first strike damage, Gosta Dirk gets destroyed
+#Weirdness happens here, we get directly to combat end
 next
+#main 2
 [ASSERT]
-combatend
+secondmain
 [PLAYER1]
 inplay:Giant Spider
 graveyard:Gosta Dirk

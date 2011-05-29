@@ -10,6 +10,7 @@ manapool:{1}{B}
 inplay:Runeclaw Bear
 [DO]
 Blister Beetle
+choice 0
 Darksteel Myr
 [ASSERT]
 FIRSTMAIN

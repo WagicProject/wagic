@@ -14,7 +14,9 @@ rakdos pit dragon
 next
 #blockers
 next
-#damage
+#damage first strike
+next
+#second strike
 next
 #combatend
 [ASSERT]

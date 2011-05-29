@@ -1,8 +1,0 @@
-bugs/cursed_land1_i188.txt
-bugs/cursed_land2_i188.txt
-bugs/cursed_land3_i188.txt
-bugs/cursed_land4_i188.txt
-bugs/pillory_of_the_sleepless1_i188.txt
-bugs/pillory_of_the_sleepless2_i188.txt
-bugs/pillory_of_the_sleepless3_i188.txt
-bugs/pillory_of_the_sleepless4_i188.txt
