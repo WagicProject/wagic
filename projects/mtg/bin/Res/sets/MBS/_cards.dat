@@ -190,12 +190,12 @@ rarity=C
 [/card]
 [card]
 primitive=Glissa, the Traitor
-id=213783
+id=214072
 rarity=M
 [/card]
 [card]
 primitive=Glissa's Courier
-id=214072
+id=213783
 rarity=C
 [/card]
 [card]
@@ -466,7 +466,7 @@ rarity=R
 [card]
 primitive=Phyrexian Juggernaut
 id=214038
-rarity=R
+rarity=U
 [/card]
 [card]
 primitive=Phyrexian Rager

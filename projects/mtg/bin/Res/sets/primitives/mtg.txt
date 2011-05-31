@@ -70851,7 +70851,7 @@ toughness=3
 [/card]
 [card]
 name=Vampiric Sliver
-auto=@vampired(creature) from(silver):all(trigger[from]) counter(1/1,1)
+auto=@vampired(creature) from(sliver):all(trigger[from]) counter(1/1,1)
 text=All Sliver creatures have "Whenever a creature dealt damage by this creature this turn is put into a graveyard, put a +1/+1 counter on this creature."
 mana={3}{B}
 type=Creature
