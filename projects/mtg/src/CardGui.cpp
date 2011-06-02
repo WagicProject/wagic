@@ -48,11 +48,11 @@ namespace
 }
 
 CardGui::CardGui(MTGCardInstance* card, float x, float y)
-	: PlayGuiObject(Height, x, y, false), card(card)
+	: PlayGuiObject(Height, x, y, 0, false), card(card)
 {
 }
 CardGui::CardGui(MTGCardInstance* card, const Pos& ref)
-	: PlayGuiObject(Height, ref, false), card(card)
+	: PlayGuiObject(Height, ref, 0, false), card(card)
 {
 }
 
