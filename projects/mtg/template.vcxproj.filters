@@ -642,9 +642,15 @@
     <ClInclude Include="include\AIHints.h">
       <Filter>inc</Filter>
     </ClInclude>
+    <ClInclude Include="Windows\resource.h">
+      <Filter>res</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Makefile" />
+    <None Include="Windows\Wagic.ico">
+      <Filter>res</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -653,5 +659,13 @@
     <Filter Include="inc">
       <UniqueIdentifier>{92d0309c-53b0-48a4-8b4d-07af74f87f0c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="res">
+      <UniqueIdentifier>{9daff64e-41a3-4f32-bb42-a179bc5788fe}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Windows\mtg.rc">
+      <Filter>res</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

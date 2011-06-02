@@ -427,6 +427,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Makefile" />
+    <None Include="Windows\Wagic.ico" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\ActionElement.h" />
@@ -539,12 +540,16 @@
     <ClInclude Include="include\WResourceManager.h" />
     <ClInclude Include="include\WResourceManagerImpl.h" />
     <ClInclude Include="include\WResource_Fwd.h" />
+    <ClInclude Include="Windows\resource.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\JGE\JGE.vcxproj">
       <Project>{89159c26-2282-404a-a194-103b0a49df7b}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Windows\mtg.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
