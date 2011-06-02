@@ -701,7 +701,6 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
 {
     size_t found;
     trim(s);
-
     //TODO This block redundant with calling function
     if (!card && spell)
         card = spell->source;
@@ -1017,6 +1016,13 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         return multi;
     }
 
+    int forcedalive = 0;
+    //force an ability to ignore destroy while source is still valid.
+    //allow the lords to remove the ability instead of gameobserver checks.
+    found = s.find("forcedalive");
+    if (found != string::npos)
+        forcedalive = 1;
+
     //rather dirty way to stop thises and lords from conflicting with each other.
     size_t lord = string::npos;
     for (size_t j = 0; j < kLordKeywordsCount; ++j)
@@ -1105,6 +1111,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             if (result)
             {
                 result->oneShot = oneShot;
+                a->forcedAlive = forcedalive;
             }
             return result;
         }
@@ -1238,7 +1245,10 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
                 result = NULL;
             }
             if (result)
+            {
                 result->oneShot = oneShot;
+                a->forcedAlive = forcedalive;
+            }
             return result;
         }
         return NULL;
@@ -1650,7 +1660,6 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     found = s.find("forever");
     if (found != string::npos)
         forceFOREVER = 1;
-
     //Prevent Damage
     const string preventDamageKeywords[] = { "preventallcombatdamage", "preventallnoncombatdamage", "preventalldamage", "fog" };
     const int preventDamageTypes[] = {0, 2, 1, 0}; //TODO enum ?
@@ -3313,6 +3322,8 @@ GameObserver * g=g->GetInstance();
     if(source->graveEffects && game->isInGrave(source))
         return 0;
     if(source->exileEffects && game->isInExile(source))
+        return 0;
+    if(this->forcedAlive == 1)
         return 0;
     if (!game->isInPlay(source))
         return 1;

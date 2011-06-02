@@ -109,6 +109,7 @@ public:
     int allowedToAltCast(MTGCardInstance* card, Player* player);
     int oneShot;
     int forceDestroy;
+    int forcedAlive;
     bool canBeInterrupted;
     ManaCost* cost;
     ManaCost* alternative;
