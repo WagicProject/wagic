@@ -30,8 +30,8 @@ JTexture* SimpleMenu::sideTex = NULL;
 WFont* SimpleMenu::titleFont = NULL;
 hgeParticleSystem* SimpleMenu::stars = NULL;
 
-SimpleMenu::SimpleMenu(int id, JGuiListener* listener, int fontId, float x, float y, const char * _title, int _maxItems) :
-    JGuiController(id, listener), fontId(fontId)
+SimpleMenu::SimpleMenu(int id, JGuiListener* listener, int fontId, float x, float y, const char * _title, int _maxItems, bool centerHorizontal, bool centerVertical)
+    : JGuiController(id, listener), fontId(fontId), mCenterHorizontal(centerHorizontal), mCenterVertical(centerVertical)
 {
     autoTranslate = true;
     mHeight = 2 * kVerticalMargin;
@@ -137,6 +137,13 @@ void SimpleMenu::Render()
         if ((!title.empty()) && (mWidth < titleFont->GetStringWidth(title.c_str()))) 
 			mWidth = titleFont->GetStringWidth(title.c_str());
         mWidth += 2 * kHorizontalMargin;
+
+        if (mCenterHorizontal)
+            mX = (JRenderer::GetInstance()->GetActualWidth() - mWidth) / 2;
+
+        if (mCenterVertical)
+            mY = (JRenderer::GetInstance()->GetActualHeight() - mHeight) / 2;
+
         for (int i = 0; i < mCount; ++i)
         {
             float y = mY + kVerticalMargin + i * kLineHeight;
