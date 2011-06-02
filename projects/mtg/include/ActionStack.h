@@ -83,11 +83,9 @@ public:
         return TARGET_STACKACTION;
     }
     
-    Interruptible(bool hasFocus = false) : PlayGuiObject(40,x,y,hasFocus)
+    Interruptible(int inID = 0, bool hasFocus = false)
+        : PlayGuiObject(40, x, y, inID, hasFocus), state(NOT_RESOLVED), display(0), source(NULL)
     {
-        state = NOT_RESOLVED;
-        display = 0;
-        source = NULL;
     }
     
     virtual const string getDisplayName() const;

@@ -4,8 +4,8 @@
 
 using namespace std;
 
-PlayGuiObject::PlayGuiObject(float desiredHeight, float x, float y, bool hasFocus) :
-    JGuiObject(0), Pos(x, y, 1.0, 0.0, 255)
+PlayGuiObject::PlayGuiObject(float desiredHeight, float x, float y, int inID, bool hasFocus)
+    : JGuiObject(inID), Pos(x, y, 1.0, 0.0, 255)
 {
     defaultHeight = desiredHeight;
     mHeight = desiredHeight;
@@ -13,8 +13,8 @@ PlayGuiObject::PlayGuiObject(float desiredHeight, float x, float y, bool hasFocu
     type = 0;
     wave = 0;
 }
-PlayGuiObject::PlayGuiObject(float desiredHeight, const Pos& ref, bool hasFocus) :
-    JGuiObject(0), Pos(ref)
+PlayGuiObject::PlayGuiObject(float desiredHeight, const Pos& ref, int inID, bool hasFocus)
+    : JGuiObject(inID), Pos(ref)
 {
     defaultHeight = desiredHeight;
     mHeight = desiredHeight;

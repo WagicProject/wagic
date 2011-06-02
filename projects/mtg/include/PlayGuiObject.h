@@ -51,8 +51,11 @@ public:
     ;
     virtual void Render();
     virtual void Update(float dt);
-    PlayGuiObject(float desiredHeight, float x, float y, bool hasFocus);
-    PlayGuiObject(float desiredHeight, const Pos& ref, bool hasFocus);
+
+    PlayGuiObject(float desiredHeight, float x, float y, int inID, bool hasFocus);
+
+    PlayGuiObject(float desiredHeight, const Pos& ref, int inID, bool hasFocus);
+
     virtual void ButtonPressed(int controllerId, int controlId) {}
     virtual bool getTopLeft(float& top, float& left)
     {

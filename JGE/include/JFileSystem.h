@@ -28,6 +28,61 @@
 
 using namespace std;
 
+
+class JFile
+{
+public:
+
+    JFile();
+    virtual ~JFile();
+
+
+    virtual bool OpenFile(const string &filename);
+
+    virtual int ReadFile(void *buffer, int size);
+
+    virtual int GetFileSize();
+
+    virtual void CloseFile();
+
+protected:
+
+    std::string mFilename;
+
+#if defined (PSP)
+    SceUID mFile;
+#else
+    FILE *mFile;
+#endif
+    int mFileSize;
+};
+
+class JZipFile : public JFile
+{
+public:
+
+    JZipFile(const std::string& inZipFilename);
+    virtual ~JZipFile();
+
+
+    /*
+    ** Access filename within the zip.
+    */
+    virtual bool OpenFile(const string &filename);
+
+    virtual int ReadFile(void *buffer, int size);
+
+    virtual int GetFileSize();
+
+    virtual void CloseFile();
+
+private:
+
+    std::string mZipFilename;
+	unzFile mZipFile;
+};
+
+
 //////////////////////////////////////////////////////////////////////////
 /// Interface for low level file access with ZIP archive support. All
 /// file operations in JGE are handled through this class so if a ZIP

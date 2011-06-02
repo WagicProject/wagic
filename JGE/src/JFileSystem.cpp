@@ -24,6 +24,136 @@
 #include <map>
 #include <string>
 
+#include "../include/DebugRoutines.h"
+#include <fstream>
+
+
+JFile::JFile() : mFile(0), mFileSize(0)
+{
+}
+
+JFile::~JFile()
+{
+}
+
+bool JFile::OpenFile(const string &filename)
+{
+    bool result = false;
+    mFilename = JFileSystem::GetInstance()->GetResourceRoot() + filename;
+
+#if defined (PSP)
+    mFile = sceIoOpen(mFilename.c_str(), PSP_O_RDONLY, 0777);
+    if (mFile > 0)
+    {
+        mFileSize = sceIoLseek(mFile, 0, PSP_SEEK_END);
+        sceIoLseek(mFile, 0, PSP_SEEK_SET);
+        result = true;
+    }
+#else
+    mFile = fopen(mFilename.c_str(), "rb");
+    if (mFile != NULL)
+    {
+        fseek(mFile, 0, SEEK_END);
+        mFileSize = ftell(mFile);
+        fseek(mFile, 0, SEEK_SET);
+        result = true;
+    }
+#endif
+
+    return result;
+}
+
+int JFile::ReadFile(void *buffer, int size)
+{
+#if defined (PSP)
+    return sceIoRead(mFile, buffer, size);        
+#else
+    return fread(buffer, 1, size, mFile);
+#endif
+}
+
+int JFile::GetFileSize()
+{
+    return mFileSize;
+}
+
+void JFile::CloseFile()
+{
+
+#if defined (PSP)
+    if (mFile > 0)
+        sceIoClose(mFile);    
+#else
+    if (mFile != NULL)
+        fclose(mFile);
+#endif
+
+    mFile = 0;
+    mFileSize = 0;
+}
+
+
+JZipFile::JZipFile(const std::string& inZipFilename)
+    : mZipFilename(inZipFilename)
+{
+    mZipFile = unzOpen(mZipFilename.c_str());
+    assert(mZipFile);
+
+    if (mZipFile == NULL)
+        throw;
+}
+
+JZipFile::~JZipFile()
+{
+    unzClose(mZipFile);
+}
+
+const int kCaseInsensitive = 2;
+
+bool JZipFile::OpenFile(const string &filename)
+{
+    bool result = false;
+    mFilename = JFileSystem::GetInstance()->GetResourceRoot() + filename;
+
+    if (mZipFile)
+    {
+        int fileAttempt = unzLocateFile(mZipFile, mFilename.c_str(), kCaseInsensitive);
+        if (fileAttempt != UNZ_END_OF_LIST_OF_FILE)
+        {
+            result = (unzOpenCurrentFile(mZipFile) == UNZ_OK);
+        }
+    }
+
+    return result;
+}
+
+int JZipFile::ReadFile(void *buffer, int size)
+{
+    return unzReadCurrentFile(mZipFile, buffer, size);
+}
+
+int JZipFile::GetFileSize()
+{
+    int result = 0;
+    if (mZipFile != NULL)
+    {
+        unz_file_info info;
+        unzGetCurrentFileInfo(mZipFile, &info, NULL, 0, NULL, 0, NULL, 0);
+        result = info.uncompressed_size;
+    }
+    return result;
+}
+
+void JZipFile::CloseFile()
+{
+    if (mZipFile != NULL)
+    {
+        unzCloseCurrentFile(mZipFile);
+    }
+}
+
+
+
 
 JZipCache::JZipCache()
 {}
@@ -281,7 +411,16 @@ void JFileSystem::SetResourceRoot(const string& resourceRoot)
     mResourceRoot = [documentsDirectory cStringUsingEncoding:1];
     mResourceRoot += "/";
 #elif defined (ANDROID)
-    mResourceRoot = "/sdcard/Wagic/Res/";
+    mResourceRoot = "/mnt/sdcard-ext/Wagic/Res/";
+
+    DebugTrace("test: writing to /sdcard-ext/ ");
+    std::ofstream file("/mnt/sdcard-ext/Foo.txt");
+    if (file)
+    {
+        DebugTrace("successfully opened foo.txt...");
+        file << "test";
+        file.close();
+    }
 #else
     mResourceRoot = resourceRoot;
 #endif
