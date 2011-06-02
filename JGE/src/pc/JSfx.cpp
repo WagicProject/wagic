@@ -32,7 +32,7 @@ void JMusic::Update(){
 
 int JMusic::getPlayTime(){
 #ifdef WITH_FMOD
-  return FSOUND_GetCurrentPosition(JSoundSystem::GetInstance()->mChannel)/44.1; //todo more generic, here it's only 44kHz
+  return static_cast<int>(FSOUND_GetCurrentPosition(JSoundSystem::GetInstance()->mChannel) / 44.1); //todo more generic, here it's only 44kHz
 #else
   return 0;
 #endif
@@ -238,7 +238,7 @@ void JSoundSystem::SetVolume(int volume)
 void JSoundSystem::SetMusicVolume(int volume)
 {
 #ifdef WITH_FMOD
-  if (mChannel != FSOUND_FREE) FSOUND_SetVolumeAbsolute(mChannel,volume * 2.55);
+  if (mChannel != FSOUND_FREE) FSOUND_SetVolumeAbsolute(mChannel, static_cast<int>(volume * 2.55));
 #endif
   mVolume = volume;
 }
@@ -247,7 +247,7 @@ void JSoundSystem::SetSfxVolume(int volume){
   //this sets the volume to all channels then reverts back the volume for music..
   //that's a bit dirty but it works
 #ifdef WITH_FMOD
-  FSOUND_SetVolumeAbsolute(FSOUND_ALL, volume * 2.55);
+  FSOUND_SetVolumeAbsolute(FSOUND_ALL, static_cast<int>(volume * 2.55));
 #endif
   mSampleVolume = volume;
   SetMusicVolume(mVolume);
@@ -305,7 +305,7 @@ void JSoundSystem::PlaySample(JSample *sample)
 #ifdef WITH_FMOD
   if (sample && sample->mSample){
     int channel = FSOUND_PlaySound(FSOUND_FREE, sample->mSample);
-    FSOUND_SetVolumeAbsolute(channel,mSampleVolume * 2.55);
+    FSOUND_SetVolumeAbsolute(channel, static_cast<int>(mSampleVolume * 2.55));
   }
 #endif
 #endif

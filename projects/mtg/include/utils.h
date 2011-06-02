@@ -126,7 +126,7 @@ u32 ramAvailable(void);
 
 #ifdef WIN32
 #include <direct.h>
-#define MAKEDIR(name) mkdir(name)
+#define MAKEDIR(name) _mkdir(name)
 #else
 #include <sys/stat.h>
 #define MAKEDIR(name) mkdir(name, 0777)

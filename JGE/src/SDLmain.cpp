@@ -88,22 +88,22 @@ class SdlApp {
           if ((GLfloat)width / (GLfloat)height <= ACTUAL_RATIO)
           {
             viewPort.x = 0;
-            viewPort.y = -((width/ACTUAL_RATIO)-height)/2;
+            viewPort.y = -(static_cast<int>(width / ACTUAL_RATIO) - height) / 2;
             viewPort.w = width;
-            viewPort.h = width / ACTUAL_RATIO;
+            viewPort.h = static_cast<int>(width / ACTUAL_RATIO);
           }
           else
           {
-            viewPort.x = -(height*ACTUAL_RATIO-width)/2;
+            viewPort.x = -(static_cast<int>(height * ACTUAL_RATIO) - width) / 2;
             viewPort.y = 0;
-            viewPort.w = height * ACTUAL_RATIO;
+            viewPort.w = static_cast<int>(height * ACTUAL_RATIO);
             viewPort.h = height;
           }
 
           glViewport(viewPort.x, viewPort.y, viewPort.w, viewPort.h);
 
-          JRenderer::GetInstance()->SetActualWidth(viewPort.w);
-          JRenderer::GetInstance()->SetActualHeight(viewPort.h);
+          JRenderer::GetInstance()->SetActualWidth(static_cast<float>(viewPort.w));
+          JRenderer::GetInstance()->SetActualHeight(static_cast<float>(viewPort.h));
           glScissor(0, 0, width, height);
 
         #if (!defined GL_ES_VERSION_2_0) && (!defined GL_VERSION_2_0)
@@ -331,11 +331,10 @@ void DestroyGame(void)
   g_engine = NULL;
 }
 
-void SdlApp::OnUpdate() {
-  static int tickCount;
-  Uint32 dt;
-  tickCount = JGEGetTime();
-  dt = (tickCount - lastTickCount);
+void SdlApp::OnUpdate()
+{
+  static int tickCount = JGEGetTime();
+  int64_t dt = (tickCount - lastTickCount);
   lastTickCount = tickCount;
 
   if(g_engine->IsDone()) {
