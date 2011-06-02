@@ -370,7 +370,7 @@ public:
     ~GameSettings();
     int save();
 
-    SimplePad * keypadStart(string input, string * _dest = NULL, bool _cancel=true, bool _numpad=false, int _x = SCREEN_WIDTH/2, int _y = SCREEN_HEIGHT/2);
+    SimplePad * keypadStart(string input, string * _dest = NULL, bool _cancel = true, bool _numpad = false, float _x = SCREEN_WIDTH_F / 2, float _y = SCREEN_HEIGHT_F / 2);
     string keypadFinish();
     void keypadShutdown();
     void keypadTitle(string set);

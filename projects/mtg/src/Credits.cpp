@@ -221,7 +221,12 @@ JQuadPtr Credits::GetUnlockedQuad(string textureName)
     JTexture * unlockedTex = WResourceManager::Instance()->RetrieveTexture(textureName);
     if (!unlockedTex) return JQuadPtr();
 
-    return WResourceManager::Instance()->RetrieveQuad(unlockedTextureName, 2, 2, unlockedTex->mWidth - 4, unlockedTex->mHeight - 4);
+    return WResourceManager::Instance()->RetrieveQuad(
+                                            unlockedTextureName,
+                                            2.0f,
+                                            2.0f, 
+                                            static_cast<float>(unlockedTex->mWidth - 4),
+                                            static_cast<float>(unlockedTex->mHeight - 4));
     
 }
 

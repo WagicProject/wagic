@@ -188,7 +188,7 @@ void ModRulesGame::parse(TiXmlElement* element)
 {
     int value = ModRules::getValueAsInt(element, "canInterrupt");
     if (value != -1)
-        mCanInterrupt = value;
+        mCanInterrupt = value > 0;
 }
 
 
@@ -203,11 +203,11 @@ void ModRulesGeneral::parse(TiXmlElement* element)
 {
     int value = ModRules::getValueAsInt(element, "hasDeckEditor");
     if (value != -1)
-        mHasDeckEditor = value;
+        mHasDeckEditor = value > 0;
 
     value = ModRules::getValueAsInt(element, "hasShop");
     if (value != -1)
-        mHasShop = value;
+        mHasShop = value > 0;
 
 }
 

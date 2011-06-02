@@ -486,7 +486,7 @@ void GameStateMenu::Update(float dt)
             MTGCollection()->load(primitives[primitivesLoadCounter].c_str());
 #if _DEBUG
             int endTime = JGEGetTime();
-            float elapsedTime = (endTime - startTime);
+            int elapsedTime = (endTime - startTime);
             DebugTrace("Time elapsed while loading " << primitives[primitivesLoadCounter] << " : " << elapsedTime << " ms");
 #endif
 

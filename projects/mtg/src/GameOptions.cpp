@@ -776,12 +776,14 @@ void GameSettings::createUsersFirstDeck(int setId)
     mCollection->save();
     SAFE_DELETE(mCollection);
 }
+
 void GameSettings::keypadTitle(string set)
 {
     if (keypad != NULL)
         keypad->title = set;
 }
-SimplePad * GameSettings::keypadStart(string input, string * _dest, bool _cancel, bool _numpad, int _x, int _y)
+
+SimplePad * GameSettings::keypadStart(string input, string * _dest, bool _cancel, bool _numpad, float _x, float _y)
 {
     if (keypad == NULL)
         keypad = NEW SimplePad();

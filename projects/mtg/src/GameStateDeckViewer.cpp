@@ -478,7 +478,7 @@ void GameStateDeckViewer::Update(float dt)
             {
               for(int i=0; i < CARDS_DISPLAYED; i++)
               {
-                distance2 = (cardsCoordinates[i].second - y) * (cardsCoordinates[i].second - y) + (cardsCoordinates[i].first - x) * (cardsCoordinates[i].first - x);
+                distance2 = static_cast<unsigned int>((cardsCoordinates[i].second - y) * (cardsCoordinates[i].second - y) + (cardsCoordinates[i].first - x) * (cardsCoordinates[i].first - x));
                 if (distance2 < minDistance2)
                 {
                     minDistance2 = distance2;

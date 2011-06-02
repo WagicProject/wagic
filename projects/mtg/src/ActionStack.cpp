@@ -936,7 +936,7 @@ void ActionStack::Update(float dt)
 	            extraTime = 1;//we never want this int to be 0.
 
             if (timer < 0)
-			    timer = options[Options::INTERRUPT_SECONDS].number * extraTime;
+			    timer = static_cast<float>(options[Options::INTERRUPT_SECONDS].number * extraTime);
             timer -= dt;
             if (timer < 0)
                 cancelInterruptOffer();

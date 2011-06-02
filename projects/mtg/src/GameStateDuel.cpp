@@ -219,7 +219,8 @@ void GameStateDuel::loadPlayer(int playerId, int decknb, bool isAI, bool isNetwo
 
 void GameStateDuel::initRand(unsigned int seed)
 {
-    if (!seed) seed = time(0);
+    if (!seed)
+        seed = static_cast<unsigned int>(time(0));
     srand(seed);
 }
 

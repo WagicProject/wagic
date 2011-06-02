@@ -154,7 +154,7 @@ void GuiAvatars::Render()
     }
     else if (self == active)
     {
-        r->FillRect(self->actX - w * self->actZ -4.5, self->actY - h * self->actZ, w * self->actZ, h * self->actZ, ARGB(200,0,0,0));
+        r->FillRect(self->actX - w * self->actZ - 4.5f, self->actY - h * self->actZ, w * self->actZ, h * self->actZ, ARGB(200,0,0,0));
     }
     GuiLayer::Render();
 

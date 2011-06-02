@@ -819,7 +819,7 @@ void TaskDelay::restoreCustomAttribs()
     turn = atoi(persistentAttribs[COMMON_ATTRIBS_COUNT].c_str());
     if (persistentAttribs.size() > COMMON_ATTRIBS_COUNT + 1)
     {
-        afterTurn = static_cast<bool> (atoi(persistentAttribs[COMMON_ATTRIBS_COUNT + 1].c_str()));
+        afterTurn = atoi(persistentAttribs[COMMON_ATTRIBS_COUNT + 1].c_str()) > 0;
     }
 }
 

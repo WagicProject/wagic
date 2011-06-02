@@ -109,7 +109,7 @@ bool CardDisplay::CheckUserInput(int x, int y)
             float top, left;
             if (mObjects[i]->getTopLeft(top, left))
             {
-                distance2 = (top - y) * (top - y) + (left - x) * (left - x);
+                distance2 = static_cast<unsigned int>((top - y) * (top - y) + (left - x) * (left - x));
                 if (distance2 < minDistance2)
                 {
                     minDistance2 = distance2;

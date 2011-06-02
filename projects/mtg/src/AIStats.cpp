@@ -45,7 +45,7 @@ void AIStats::updateStatsCard(MTGCardInstance * cardInstance, Damage * damage, f
     }
     if (damage->target == player)
     {
-        stat->value += multiplier * STATS_PLAYER_MULTIPLIER * damage->damage;
+        stat->value += static_cast<int>(multiplier * STATS_PLAYER_MULTIPLIER * damage->damage);
     }
     else if (damage->target->type_as_damageable == DAMAGEABLE_MTGCARDINSTANCE)
     {
@@ -53,7 +53,7 @@ void AIStats::updateStatsCard(MTGCardInstance * cardInstance, Damage * damage, f
         if (target->controller() == player && !target->isInPlay())
         {
             //One of my creatures got lethal damage...
-            stat->value += multiplier * STATS_CREATURE_MULTIPLIER * damage->damage;
+            stat->value += static_cast<int>(multiplier * STATS_CREATURE_MULTIPLIER * damage->damage);
         }
     }
 }
@@ -157,7 +157,7 @@ void AIStats::load(char * filename)
             std::getline(file, s);
             int value = atoi(s.c_str());
             std::getline(file, s);
-            int direct = atoi(s.c_str());
+            bool direct = atoi(s.c_str()) > 0;
             AIStat * stat = NEW AIStat(cardid, value, 1, direct);
             stats.push_back(stat);
         }
