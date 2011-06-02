@@ -89,14 +89,18 @@ class MTGGameZone {
    int countByType(const char * value);
    int countByCanTarget(TargetChooser * tc);
    MTGCardInstance * findByName(string name);
-   int hasAbility(int ability); //returns 1 if one of the cards in the  zone has the ability, 0 otherwise
-   int hasType(const char * value); //returns 1 if one of the cards in the zone has the type, 0 otherwise
-   int hasSpecificType(const char * value,const char * secondvalue); //returns 1 if one of the cards in the zone has the type, 0 otherwise
-   int hasPrimaryType(const char * value,const char * secondvalue); //returns 1 if one of the cards in the zone has the type, 0 otherwise
-   int hasTypeButNotType(const char * value,const char * secondvalue); //returns 1 if one of the cards in the zone has the type, 0 otherwise
-   int hasName(string value);
-   int hasColor(int value); //returns 1 if one of the cards in the zone has the color, 0 otherwise
-   int hasX();
+
+    //returns true if one of the cards in the zone has the ability
+   bool hasAbility(int ability);
+
+   //returns true if one of the cards in the zone has the type
+   bool hasType(const char * value);
+   bool hasSpecificType(const char* value, const char* secondvalue);
+   bool hasPrimaryType(const char* value, const char* secondvalue);
+   bool hasTypeButNotType(const char* value, const char* secondvalue);
+   bool hasName(string value);
+   bool hasColor(int value);
+   bool hasX();
 
    //How many cards matching a TargetChooser have been put in this zone during the turn
    int seenThisTurn(TargetChooser * tc, int castFilter = Constants::CAST_DONT_CARE); 

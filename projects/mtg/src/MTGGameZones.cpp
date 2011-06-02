@@ -532,79 +532,79 @@ MTGCardInstance * MTGGameZone::findByName(string name)
     return NULL;
 }
 
-int MTGGameZone::hasType(const char * value)
+bool MTGGameZone::hasType(const char * value)
 {
     for (int i = 0; i < (nb_cards); i++)
     {
         if (cards[i]->hasType(value))
         {
-            return 1;
+            return true;
         }
     }
-    return 0;
+    return false;
 }
 
-int MTGGameZone::hasPrimaryType(const char * value,const char * secondvalue)
+bool MTGGameZone::hasPrimaryType(const char * value,const char * secondvalue)
 {
     for (int i = 0; i < (nb_cards); i++)
     {
         if (cards[i]->hasType(value) && cards[i]->hasType(secondvalue))
         {
-            return 1;
+            return true;
         }
     }
     return 0;
 }
 
-int MTGGameZone::hasSpecificType(const char * value,const char * secondvalue)
+bool MTGGameZone::hasSpecificType(const char * value,const char * secondvalue)
 {
     for (int i = 0; i < (nb_cards); i++)
     {
         if (cards[i]->hasType(value) && cards[i]->hasSubtype(secondvalue))
         {
-            return 1;
+            return true;
         }
     }
-    return 0;
+    return false;
 }
 
-int MTGGameZone::hasTypeButNotType(const char * value,const char * secondvalue)
+bool MTGGameZone::hasTypeButNotType(const char * value,const char * secondvalue)
 {
     for (int i = 0; i < (nb_cards); i++)
     {
         if (cards[i]->hasType(value) && cards[i]->hasSubtype(value) && !cards[i]->hasType(secondvalue) && !cards[i]->hasSubtype(secondvalue))
         {
-            return 1;
+            return true;
         }
     }
-    return 0;
+    return false;
 }
 
-int MTGGameZone::hasName(string value)
+bool MTGGameZone::hasName(string value)
 {
     for (int i = 0; i < (nb_cards); i++)
     {
         if (cards[i]->name == value)
         {
-            return 1;
+            return true;
         }
     }
-    return 0;
+    return false;
 }
 
-int MTGGameZone::hasColor(int value)
+bool MTGGameZone::hasColor(int value)
 {
     for (int i = 0; i < (nb_cards); i++)
     {
 			if (cards[i]->getManaCost()->hasColor(value) && cards[i]->getManaCost()->getConvertedCost() > 0)
         {
-            return 1;
+            return true;
         }
     }
-    return 0;
+    return false;
 }
 
-int MTGGameZone::hasX()
+bool MTGGameZone::hasX()
 {
     for (int i = 0; i < (nb_cards); i++)
     {
@@ -616,16 +616,16 @@ int MTGGameZone::hasX()
     return false;
 }
 
-int MTGGameZone::hasAbility(int ability)
+bool MTGGameZone::hasAbility(int ability)
 {
     for (int i = 0; i < (nb_cards); i++)
     {
         if (cards[i]->basicAbilities[ability])
         {
-            return 1;
+            return true;
         }
     }
-    return 0;
+    return false;
 }
 
 int MTGGameZone::seenThisTurn(TargetChooser * tc, int castMethod)

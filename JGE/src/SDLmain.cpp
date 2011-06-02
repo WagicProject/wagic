@@ -333,7 +333,8 @@ void DestroyGame(void)
 
 void SdlApp::OnUpdate()
 {
-  static int tickCount = JGEGetTime();
+  static int tickCount = 0;
+  tickCount = JGEGetTime();
   int64_t dt = (tickCount - lastTickCount);
   lastTickCount = tickCount;
 

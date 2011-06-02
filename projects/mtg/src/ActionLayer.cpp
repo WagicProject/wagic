@@ -38,25 +38,24 @@ int ActionLayer::removeFromGame(ActionElement * e)
 
 }
 
-int ActionLayer::moveToGarbage(ActionElement * e)
+bool ActionLayer::moveToGarbage(ActionElement * e)
 {
     if (removeFromGame(e))
     {
         garbage.push_back(e);
-        return 1;
+        return true;
     }
-    return 0;
+    return false;
 
 }
 
-int ActionLayer::cleanGarbage()
+void ActionLayer::cleanGarbage()
 {
     for (size_t i = 0; i < garbage.size(); ++i)
     {
         delete (garbage[i]);
     }
     garbage.clear();
-    return 1;
 }
 
 int ActionLayer::reactToClick(ActionElement * ability, MTGCardInstance * card)
