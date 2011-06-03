@@ -517,6 +517,7 @@ skullcage7_i239.txt
 skullclamp.txt
 skullclamp2_i439.txt
 shepherd_of_rot.txt
+shimmer_myr_FORCEDALIVE.txt
 shivan_hellkite.txt
 shock.txt
 shock2.txt

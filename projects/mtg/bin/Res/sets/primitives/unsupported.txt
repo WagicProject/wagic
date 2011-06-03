@@ -20130,15 +20130,6 @@ power=4
 toughness=4
 [/card]
 [card]
-name=Shimmer Myr
-text=Flash -- You may cast artifact cards as though they had flash.
-mana={3}
-type=Artifact Creature
-subtype=Myr
-power=2
-toughness=2
-[/card]
-[card]
 name=Shimmering Efreet
 text=Flying -- Phasing (This phases in or out before you untap during each of your untap steps. While it's phased out, it's treated as though it doesn't exist.) -- Whenever Shimmering Efreet phases in, target creature phases out. (It phases in before its controller untaps during his or her next untap step.)
 mana={2}{U}

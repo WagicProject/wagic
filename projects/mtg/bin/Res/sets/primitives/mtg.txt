@@ -57539,6 +57539,17 @@ mana={2}{U}{U}
 type=Enchantment
 [/card]
 [card]
+name=Shimmer Myr
+abilities=flash
+auto=lord(artifact|myhand) flash forcedalive
+text=Flash -- You may cast artifact cards as though they had flash.
+mana={3}
+type=Artifact Creature
+subtype=Myr
+power=2
+toughness=2
+[/card]
+[card]
 name=Shimmering Barrier
 auto=defender,first strike
 autohand={2}:cycling

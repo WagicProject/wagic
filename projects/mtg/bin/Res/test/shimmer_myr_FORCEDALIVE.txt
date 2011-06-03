@@ -1,0 +1,26 @@
+#Testing "forcedalive" (example: Shimmer Myr).
+#You may cast artifact cards as though they had flash.
+#"forcedalive" guarantees that Shimmer Myr's effect lasts only till it leaves the battlefield.
+[INIT]
+COMBATATTACKERS
+[PLAYER1]
+inplay:Shimmer Myr,Mox Pearl
+hand:Lightning Bolt,Bottle Gnomes,Sol Ring
+manapool:{4}{R}
+[PLAYER2]
+[DO]
+Bottle Gnomes
+Lightning Bolt
+Shimmer Myr
+next
+Mox Pearl
+Sol Ring
+[ASSERT]
+COMBATENDS
+[PLAYER1]
+graveyard:Shimmer Myr,Lightning Bolt
+inplay:Bottle Gnomes,Mox Pearl
+hand:Sol Ring
+manapool:{W}
+[PLAYER2]
+[END]
