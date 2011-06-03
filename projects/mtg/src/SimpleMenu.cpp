@@ -139,10 +139,10 @@ void SimpleMenu::Render()
         mWidth += 2 * kHorizontalMargin;
 
         if (mCenterHorizontal)
-            mX = (JRenderer::GetInstance()->GetActualWidth() - mWidth) / 2;
+            mX = (SCREEN_WIDTH_F - mWidth) / 2;
 
         if (mCenterVertical)
-            mY = (JRenderer::GetInstance()->GetActualHeight() - mHeight) / 2;
+            mY = (SCREEN_HEIGHT_F - mHeight) / 2;
 
         for (int i = 0; i < mCount; ++i)
         {
