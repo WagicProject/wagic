@@ -9,6 +9,8 @@
 
 const int kHorizontalScrollSpeed = 30; // higher numbers mean faster scrolling
 
+float DeckMenuItem::mYOffset = 0;
+
 DeckMenuItem::DeckMenuItem(DeckMenu* _parent, int id, int fontId, string text, float x, float y, bool hasFocus, bool autoTranslate, DeckMetaData *deckMetaData)
                         : JGuiObject(id), parent(_parent), fontId(fontId), mX(x), mY(y)
 {
@@ -80,6 +82,8 @@ void DeckMenuItem::Update(float dt)
 
 void DeckMenuItem::RenderWithOffset(float yOffset)
 {
+  mYOffset = yOffset;
+
     WFont * mFont = WResourceManager::Instance()->GetWFont(fontId);
 	
 	if (!( mHasFocus && mScrollEnabled ))

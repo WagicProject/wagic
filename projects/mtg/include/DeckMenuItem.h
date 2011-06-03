@@ -19,6 +19,7 @@ private:
     int fontId;
     string mText;
     float mTitleResetWidth;
+    static float mYOffset;
 
 public:
     string imageFilename;
@@ -53,7 +54,7 @@ public:
     virtual ostream& toString(ostream& out) const;
     virtual bool getTopLeft(float& top, float& left)
     {
-        top = mY;
+        top = mY + mYOffset;
         left = mX;
         return true;
     }
