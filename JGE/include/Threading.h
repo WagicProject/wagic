@@ -3,7 +3,16 @@
 
 #if !defined(PSP)
 #include <boost/date_time.hpp>
+
+#ifdef WIN32
+#pragma warning (push)
+#pragma warning (disable : 4244)
+#endif
 #include <boost/thread.hpp>
+#ifdef WIN32
+#pragma warning (pop)
+#endif
+
 #include <boost/thread/mutex.hpp>
 #else
 #include <boost/bind.hpp>

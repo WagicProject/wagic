@@ -696,8 +696,8 @@ MTGAbility * AbilityFactory::getCoreAbility(MTGAbility * a)
 //Parses a string and returns the corresponding MTGAbility object
 //Returns NULL if parsing failed
 //Beware, Spell CAN be null when the function is called by the AI trying to analyze the effects of a given card
-MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTGCardInstance *card, int activated, int forceUEOT,
-                int oneShot, int forceFOREVER, MTGGameZone * dest)
+MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTGCardInstance *card, bool activated, bool forceUEOT,
+                                            MTGGameZone * dest)
 {
     size_t found;
     trim(s);
@@ -1080,17 +1080,18 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
                 SAFE_DELETE(td);
                 return NULL;
             }
+
             MTGAbility * result = NULL;
-            int oneShot = 0;
+            bool oneShot = false;
             found = s.find(" oneshot");
-            if (found != string::npos)
-                oneShot = 1;
-            if (activated)
-                oneShot = 1;
-            if (card->hasType(Subtypes::TYPE_SORCERY) || card->hasType(Subtypes::TYPE_INSTANT))
-                oneShot = 1;
-            if (a->oneShot)
-                oneShot = 1;
+            if (found != string::npos || activated ||
+                card->hasType(Subtypes::TYPE_SORCERY) ||
+                card->hasType(Subtypes::TYPE_INSTANT) ||
+                a->oneShot)
+            {
+                oneShot = true;
+            }
+
             Damageable * _target = NULL;
             if (spell)
                 _target = spell->getNextDamageableTarget();
@@ -1164,28 +1165,24 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
                 return NULL;
             }
 
-            MTGAbility * a = parseMagicLine(s1, id, spell, card, 0, activated); //activated lords usually force an end of turn ability
+            MTGAbility * a = parseMagicLine(s1, id, spell, card, false, activated); //activated lords usually force an end of turn ability
             if (!a)
             {
                 SAFE_DELETE(lordTargets);
                 return NULL;
             }
             MTGAbility * result = NULL;
-            int oneShot = 0;
-            if (activated)
-                oneShot = 1;
-            if (i == 4)
-                oneShot = 1;
-            if (a->oneShot)
-                oneShot = 1;
+            bool oneShot = false;
+            if (activated || i == 4 || a->oneShot)
+                oneShot = true;
             if (card->hasType(Subtypes::TYPE_SORCERY) || card->hasType(Subtypes::TYPE_INSTANT))
-                oneShot = 1;
+                oneShot = true;
             found = s.find("while ");
             if (found != string::npos)
-                oneShot = 0;
+                oneShot = false;
             found = s.find(" oneshot");
             if (found != string::npos)
-                oneShot = 1;
+                oneShot = true;
             Damageable * _target = NULL;
             if (spell)
                 _target = spell->getNextDamageableTarget();
@@ -1232,7 +1229,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
                     {
                         miniFound = true;
                     }
-                    result = NEW AAsLongAs(id, card, _target, lordTargets, lordIncludeSelf, a, mini, maxi,miniFound,maxiFound,compareZone);
+                    result = NEW AAsLongAs(id, card, _target, lordTargets, lordIncludeSelf, a, mini, maxi, miniFound, maxiFound, compareZone);
                 }
                 break;
             case 3:
@@ -1650,16 +1647,17 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         a->oneShot = 1;
         return a;
     }
-
+    bool oneShot = false;
+    bool forceForever = false;
     found = s.find("ueot");
     if (found != string::npos)
-        forceUEOT = 1;
+        forceUEOT = true;
     found = s.find("oneshot");
     if (found != string::npos)
-        oneShot = 1;
+        oneShot = true;
     found = s.find("forever");
     if (found != string::npos)
-        forceFOREVER = 1;
+        forceForever = true;
     //Prevent Damage
     const string preventDamageKeywords[] = { "preventallcombatdamage", "preventallnoncombatdamage", "preventalldamage", "fog" };
     const int preventDamageTypes[] = {0, 2, 1, 0}; //TODO enum ?
@@ -1983,10 +1981,10 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
 					sabilities.append(",");
 			}
 		}
-        if (oneShot || forceUEOT || forceFOREVER)
-            return NEW ATransformerInstant(id, card, target, stypes, sabilities,newPower,ptFound,newToughness,ptFound,vector<string>(),false,forceFOREVER);
+        if (oneShot || forceUEOT || forceForever)
+            return NEW ATransformerInstant(id, card, target, stypes, sabilities,newPower,ptFound,newToughness,ptFound,vector<string>(),false,forceForever);
 
-        return  NEW ATransformer(id, card, target, stypes, sabilities,newPower,ptFound,newToughness,ptFound,vector<string>(),false,forceFOREVER);
+        return  NEW ATransformer(id, card, target, stypes, sabilities,newPower,ptFound,newToughness,ptFound,vector<string>(),false,forceForever);
     }
 
     //bloodthirst
@@ -2077,8 +2075,8 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
 			}
         }
 
-        if (oneShot || forceUEOT || forceFOREVER)
-            return NEW ATransformerInstant(id, card, target, stypes, sabilities,newpower,newpowerfound,newtoughness,newtoughnessfound,newAbilitiesList,newAbilityFound,forceFOREVER);
+        if (oneShot || forceUEOT || forceForever)
+            return NEW ATransformerInstant(id, card, target, stypes, sabilities,newpower,newpowerfound,newtoughness,newtoughnessfound,newAbilitiesList,newAbilityFound,forceForever);
         
         return NEW ATransformer(id, card, target, stypes, sabilities,newpower,newpowerfound,newtoughness,newtoughnessfound,newAbilitiesList,newAbilityFound);
 
@@ -2552,7 +2550,7 @@ int AbilityFactory::getAbilities(vector<MTGAbility *> * v, Spell * spell, MTGCar
             line = magicText;
             magicText = "";
         }
-        MTGAbility * a = parseMagicLine(line, result, spell, card, 0, 0, 0, 0, dest);
+        MTGAbility * a = parseMagicLine(line, result, spell, card, false, false, dest);
         if (a)
         {
             v->push_back(a);

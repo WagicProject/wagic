@@ -107,7 +107,7 @@ public:
     int parseCastRestrictions(MTGCardInstance* card, Player* player, string restrictions, string otherRestrictions);
     int allowedToCast(MTGCardInstance* card, Player* player);
     int allowedToAltCast(MTGCardInstance* card, Player* player);
-    int oneShot;
+    bool oneShot;
     int forceDestroy;
     int forcedAlive;
     bool canBeInterrupted;
@@ -479,8 +479,8 @@ public:
     int parseRestriction(string s);
     Counter * parseCounter(string s, MTGCardInstance * target, Spell * spell = NULL);
     int parsePowerToughness(string s, int *power, int *toughness);	
-    int getAbilities(vector<MTGAbility *> * v, Spell * spell, MTGCardInstance * card = NULL, int id = 0,MTGGameZone * dest = NULL);
-    MTGAbility * parseMagicLine(string s, int id, Spell * spell, MTGCardInstance *card, int activated = 0, int forceUEOT = 0,int oneShot = 0,int forceForever = 0, MTGGameZone * dest = NULL);
+    int getAbilities(vector<MTGAbility *> * v, Spell * spell, MTGCardInstance * card = NULL, int id = 0, MTGGameZone * dest = NULL);
+    MTGAbility* parseMagicLine(string s, int id, Spell * spell, MTGCardInstance *card, bool activated = false, bool forceUEOT = false, MTGGameZone * dest = NULL);
 
     int abilityEfficiency(MTGAbility * a, Player * p, int mode = MODE_ABILITY, TargetChooser * tc = NULL,Targetable * target = NULL);
     int magicText(int id, Spell * spell, MTGCardInstance * card = NULL, int mode = MODE_PUTINTOPLAY, TargetChooser * tc = NULL, MTGGameZone * dest = NULL);
