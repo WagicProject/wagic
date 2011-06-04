@@ -175,8 +175,9 @@ void GameStateAwards::Update(float dt)
     }
     else
     {
-        JButton key;
-        while ((key = JGE::GetInstance()->ReadButton()))
+        JButton key = JGE_BTN_NONE;
+        int x, y;
+        while ((key = JGE::GetInstance()->ReadButton()) || JGE::GetInstance()->GetLeftClickCoordinates(x,y))
         {
             switch (key)
             {

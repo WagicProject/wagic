@@ -20,6 +20,7 @@ private:
     string mText;
     float mScale;
     float mTargetScale;
+    static float mYOffset;
 
 public:
     string desc;
@@ -42,7 +43,7 @@ public:
     virtual ostream& toString(ostream& out) const;
     virtual bool getTopLeft(float& top, float& left)
     {
-        top = mY;
+        top = mY + mYOffset;
         left = mX;
         return true;
     }

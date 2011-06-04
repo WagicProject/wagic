@@ -4,6 +4,8 @@
 #include "Translate.h"
 #include "WResourceManager.h"
 
+float SimpleMenuItem::mYOffset = 0;
+
 SimpleMenuItem::SimpleMenuItem(SimpleMenu* _parent, int id, int fontId, string text, float x, float y, bool hasFocus, bool autoTranslate) :
     JGuiObject(id), parent(_parent), fontId(fontId), mX(x), mY(y)
 {
@@ -21,8 +23,9 @@ SimpleMenuItem::SimpleMenuItem(SimpleMenu* _parent, int id, int fontId, string t
 
 void SimpleMenuItem::RenderWithOffset(float yOffset)
 {
-    WFont * mFont = WResourceManager::Instance()->GetWFont(fontId);
-    mFont->DrawString(mText.c_str(), mX, mY + yOffset, JGETEXT_CENTER);
+  mYOffset = yOffset;
+  WFont * mFont = WResourceManager::Instance()->GetWFont(fontId);
+  mFont->DrawString(mText.c_str(), mX, mY + yOffset, JGETEXT_CENTER);
 }
 
 void SimpleMenuItem::Render()

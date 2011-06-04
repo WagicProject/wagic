@@ -177,7 +177,8 @@ void GameStateOptions::Update(float dt)
         case SHOW_OPTIONS:
         {
             JGE* j = JGE::GetInstance();
-            JButton key;
+            JButton key = JGE_BTN_NONE;
+            int x, y;
             if (grabber)
             {
                 LocalKeySym sym;
@@ -185,7 +186,7 @@ void GameStateOptions::Update(float dt)
                     grabber->KeyPressed(sym);
             }
             else
-                while ((key = JGE::GetInstance()->ReadButton()))
+                while ((key = JGE::GetInstance()->ReadButton()) || JGE::GetInstance()->GetLeftClickCoordinates(x,y))
                 {
                     if (!optionsTabs->CheckUserInput(key) && key == JGE_BTN_MENU)
                         mState = SHOW_OPTIONS_MENU;

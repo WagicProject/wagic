@@ -901,14 +901,14 @@ bool WGuiMenu::CheckUserInput(JButton key)
         {
           WGuiItem* pItem = (WGuiItem*)items[k];
           distance2 = static_cast<unsigned int>((pItem->getY() - j) * (pItem->getY() - j) + (pItem->getX() - i) * (pItem->getX() - i));
-          if (distance2 < minDistance2)
+          if (distance2 < minDistance2 && pItem->Selectable())
           {
               minDistance2 = distance2;
               n = k;
           }
         }
 
-        if (n != currentItem)
+        if (n != currentItem && items[n]->Selectable())
         {
             setSelected(n);
             mEngine->LeftClickedProcessed();
@@ -946,6 +946,8 @@ bool WGuiMenu::CheckUserInput(JButton key)
     }
 
     if (currentItem >= 0 && currentItem < nbitems) result = items[currentItem]->CheckUserInput(key);
+
+    mEngine->LeftClickedProcessed();
 
     return result;
 }
