@@ -393,8 +393,6 @@
   <ItemGroup>
     <None Include="Makefile" />
     <None Include="Makefile.hge" />
-    <None Include="readme.txt" />
-    <None Include="..\projects\mtg\mtg.vsprops" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
