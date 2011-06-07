@@ -44,10 +44,11 @@ SDL_Touch* CreateTouchInstance()
 	touch.id = gTouchID;
 	touch.x_min = 0;
 	touch.x_max = 1;
-	touch.native_xres = touch.x_max - touch.x_min;
+	touch.native_xres = touch.xres = 1;
+    touch.xres = 1;
 	touch.y_min = 0;
 	touch.y_max = 1;
-	touch.native_yres = touch.y_max - touch.y_min;
+	touch.native_yres = touch.yres = 1;
 	touch.pressure_min = 0;
 	touch.pressure_max = 1;
 	touch.native_pressureres = touch.pressure_max - touch.pressure_min;
@@ -74,19 +75,23 @@ void Android_OnTouch(int action, float x, float y, float p)
 			touch = CreateTouchInstance();
 		}
 
+        char buffer[64];
+        sprintf(buffer, "Touch action: %d x: %f y: %f", action, x, y);
+        __android_log_write(ANDROID_LOG_DEBUG, "Wagic", buffer);
+
         switch(action)
 		{
         case ACTION_DOWN:
-			SDL_SendFingerDown(touch->id, 1, 1, x, y, p);
+			SDL_SendFingerDown(touch->id, 1, SDL_TRUE, &x, &y, &p);
             //SDL_SendMouseButton(Android_Window, SDL_PRESSED, SDL_BUTTON_LEFT);
             break;
 
 		case ACTION_MOVE:
-			SDL_SendTouchMotion(touch->id, 1, 0, x, y, 1);
+			SDL_SendTouchMotion(touch->id, 1, SDL_FALSE, x, y, 1);
 			break;
 
         case ACTION_UP:
-			SDL_SendFingerDown(touch->id, 1, 0, x, y, p);
+			SDL_SendFingerDown(touch->id, 1, SDL_FALSE, &x, &y, p);
             //SDL_SendMouseButton(Android_Window, SDL_RELEASED, SDL_BUTTON_LEFT);
             break;
         }

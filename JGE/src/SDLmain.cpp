@@ -132,6 +132,8 @@ public:
 	void OnMouseClicked(const SDL_MouseButtonEvent& event);
 	void OnMouseMoved(const SDL_MouseMotionEvent& event);
 
+    void OnTouchEvent(const SDL_TouchFingerEvent& event);
+
 	void OnEvent(SDL_Event* Event)
 	{
 		/* if(Event->type < SDL_USEREVENT) 
@@ -180,28 +182,17 @@ public:
 			break;
 
 		case SDL_FINGERMOTION:
-			DebugTrace("FingerMotion : touchId " << Event->tfinger.touchId
-				<< ", fingerId " << Event->tfinger.fingerId
-				<< ", state " << Event->tfinger.state
-				<< ", x " << Event->tfinger.x
-				<< ", y " << Event->tfinger.y
-				<< ", dy " << Event->tfinger.dx
-				<< ", dy " << Event->tfinger.dy
-				<< ", pressure " << Event->tfinger.pressure
-				);
+        case SDL_FINGERDOWN:
+        case SDL_FINGERUP:
+			DebugTrace("Touch Event triggered");
+            DebugTrace("touchId " << Event->tfinger.touchId);
+			DebugTrace("fingerId " << Event->tfinger.fingerId);
+			DebugTrace("state " << Event->tfinger.state);
+			DebugTrace("x " << Event->tfinger.x	<< ", y " << Event->tfinger.y);
+			DebugTrace("dx " << Event->tfinger.dx << ", dy " << Event->tfinger.dy);
+			DebugTrace("pressure " << Event->tfinger.pressure);
 
-			OnMouseMoved(Event->motion);
-			break;
-
-		case SDL_FINGERDOWN:
-			DebugTrace("FingerDown msg");
-			OnMouseClicked(Event->button);
-			break;
-
-		case SDL_FINGERUP:
-			DebugTrace("FingerUp msg");
-			DebugTrace("X: " << Event->button.x << ", Y: " << Event->button.y);
-			OnMouseDoubleClicked(Event->button);
+			OnTouchEvent(Event->tfinger);
 			break;
 
 		case SDL_MULTIGESTURE:
@@ -497,6 +488,29 @@ void SdlApp::OnMouseClicked(const SDL_MouseButtonEvent& event)
 			g_engine->ReleaseKey(JGE_BTN_SEC);
 		}
 	}
+}
+
+void SdlApp::OnTouchEvent(const SDL_TouchFingerEvent& event)
+{
+    if (event.y >= viewPort.y &&
+        event.y <= viewPort.y + viewPort.h &&
+        event.x >= viewPort.x &&
+        event.x <= viewPort.x + viewPort.w)
+    {
+        int actualWidth = (int) JRenderer::GetInstance()->GetActualWidth();
+        int actualHeight = (int) JRenderer::GetInstance()->GetActualHeight();
+
+        g_engine->LeftClicked(
+            ((event.x - viewPort.x) * SCREEN_WIDTH) / actualWidth,
+            ((event.y - viewPort.y) * SCREEN_HEIGHT) / actualHeight);
+       
+#if (defined ANDROID) || (defined IOS)
+        if (event.type == SDL_FINGERUP)
+        {
+            g_engine->HoldKey_NoRepeat(JGE_BTN_OK);
+        }
+#endif
+    }
 }
 
 bool SdlApp::OnInit()

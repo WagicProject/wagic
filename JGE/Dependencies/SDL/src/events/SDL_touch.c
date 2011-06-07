@@ -20,6 +20,8 @@
 */
 #include "SDL_config.h"
 
+#include <android/log.h>
+
 /* General touch handling code for SDL */
 
 #include "SDL_events.h"
@@ -324,11 +326,14 @@ SDL_SendFingerDown(SDL_TouchID id, SDL_FingerID fingerid, SDL_bool down,
       return SDL_TouchNotFoundError(id);
     }
 
-    
     //scale to Integer coordinates
     x = (Uint16)((xin+touch->x_min)*(touch->xres)/(touch->native_xres));
     y = (Uint16)((yin+touch->y_min)*(touch->yres)/(touch->native_yres));
-    pressure = (Uint16)((yin+touch->pressure_min)*(touch->pressureres)/(touch->native_pressureres));
+    pressure = (Uint16)((pressurein+touch->pressure_min)*(touch->pressureres)/(touch->native_pressureres));
+
+    char buffer[64];
+    sprintf(buffer, "Finger Down: xin: %g yin: %g x: %d y: %d", xin, yin, x, y);
+    __android_log_write(ANDROID_LOG_DEBUG, "Wagic", buffer);
     
     finger = SDL_GetFinger(touch,fingerid);
     if(down) {
