@@ -23,6 +23,7 @@
 #include <android/log.h>
 
 #include "SDL_events.h"
+#include "SDL_touch.h"
 #include "../../events/SDL_mouse_c.h"
 
 #include "SDL_androidtouch.h"
@@ -34,25 +35,65 @@
 #define ACTION_CANCEL 3
 #define ACTION_OUTSIDE 4
 
+
+static SDL_TouchID gTouchID = 0;
+
+SDL_Touch* CreateTouchInstance()
+{
+	SDL_Touch touch;
+	touch.id = gTouchID;
+	touch.x_min = 0;
+	touch.x_max = 1;
+	touch.native_xres = touch.x_max - touch.x_min;
+	touch.y_min = 0;
+	touch.y_max = 1;
+	touch.native_yres = touch.y_max - touch.y_min;
+	touch.pressure_min = 0;
+	touch.pressure_max = 1;
+	touch.native_pressureres = touch.pressure_max - touch.pressure_min;
+
+	SDL_AddTouch(&touch, "");
+
+	return SDL_GetTouch(touch.id);
+}
+
 void Android_OnTouch(int action, float x, float y, float p)
 {
-    if (!Android_Window) {
+    if (!Android_Window)
+	{
         return;
     }
 
-    if ((action != ACTION_CANCEL) && (action != ACTION_OUTSIDE)) {
-        SDL_SetMouseFocus(Android_Window);
-        SDL_SendMouseMotion(Android_Window, 0, (int)x, (int)y);
-        switch(action) {
+    if ((action != ACTION_CANCEL) && (action != ACTION_OUTSIDE))
+	{
+        //SDL_SetMouseFocus(Android_Window);
+        //SDL_SendMouseMotion(Android_Window, 0, (int)x, (int)y);
+		SDL_Touch* touch = SDL_GetTouch(gTouchID);
+		if (touch == NULL)
+		{
+			touch = CreateTouchInstance();
+		}
+
+        switch(action)
+		{
         case ACTION_DOWN:
-            SDL_SendMouseButton(Android_Window, SDL_PRESSED, SDL_BUTTON_LEFT);
+			SDL_SendFingerDown(touch->id, 1, 1, x, y, p);
+            //SDL_SendMouseButton(Android_Window, SDL_PRESSED, SDL_BUTTON_LEFT);
             break;
+
+		case ACTION_MOVE:
+			SDL_SendTouchMotion(touch->id, 1, 0, x, y, 1);
+			break;
+
         case ACTION_UP:
-            SDL_SendMouseButton(Android_Window, SDL_RELEASED, SDL_BUTTON_LEFT);
+			SDL_SendFingerDown(touch->id, 1, 0, x, y, p);
+            //SDL_SendMouseButton(Android_Window, SDL_RELEASED, SDL_BUTTON_LEFT);
             break;
         }
-    } else {
-        SDL_SetMouseFocus(NULL);
+    }
+	else
+	{
+        //SDL_SetMouseFocus(NULL);
     }
 }
 
