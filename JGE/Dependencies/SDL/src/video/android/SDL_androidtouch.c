@@ -82,7 +82,7 @@ void Android_OnTouch(int action, float x, float y, float p)
         switch(action)
 		{
         case ACTION_DOWN:
-			SDL_SendFingerDown(touch->id, 1, SDL_TRUE, &x, &y, &p);
+			SDL_SendFingerDown(touch->id, 1, SDL_TRUE, x, y, p);
             //SDL_SendMouseButton(Android_Window, SDL_PRESSED, SDL_BUTTON_LEFT);
             break;
 
@@ -91,7 +91,7 @@ void Android_OnTouch(int action, float x, float y, float p)
 			break;
 
         case ACTION_UP:
-			SDL_SendFingerDown(touch->id, 1, SDL_FALSE, &x, &y, p);
+			SDL_SendFingerDown(touch->id, 1, SDL_FALSE, x, y, p);
             //SDL_SendMouseButton(Android_Window, SDL_RELEASED, SDL_BUTTON_LEFT);
             break;
         }
