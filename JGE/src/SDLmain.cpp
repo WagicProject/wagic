@@ -40,6 +40,8 @@ enum eDisplayMode
 
 unsigned int gDisplayMode = DisplayMode_lowRes;
 
+const int kHitzonePliancy = 50;
+
 class SdlApp
 {
 public: /* For easy interfacing with JGE static functions */
@@ -53,8 +55,11 @@ public: /* For easy interfacing with JGE static functions */
 	int             windowed_pos_x;
 	int             windowed_pos_y;
 
+    int mMouseDownX;
+    int mMouseDownY;
+
 public:
-	SdlApp() : Surf_Display(NULL), window(NULL), lastMouseUpTime(0), Running(true)
+	SdlApp() : Surf_Display(NULL), window(NULL), lastMouseUpTime(0), Running(true), mMouseDownX(0), mMouseDownY(0)
 	{
 	}
 
@@ -503,11 +508,21 @@ void SdlApp::OnTouchEvent(const SDL_TouchFingerEvent& event)
         g_engine->LeftClicked(
             ((event.x - viewPort.x) * SCREEN_WIDTH) / actualWidth,
             ((event.y - viewPort.y) * SCREEN_HEIGHT) / actualHeight);
-       
+
+         if (event.type == SDL_FINGERDOWN)
+         {
+             mMouseDownX = event.x;
+             mMouseDownY = event.y;
+         }
+
 #if (defined ANDROID) || (defined IOS)
         if (event.type == SDL_FINGERUP)
         {
-            g_engine->HoldKey_NoRepeat(JGE_BTN_OK);
+            // treat an up finger within 50 pixels of the down finger coords as a double click event
+            if (abs(mMouseDownX - event.x) < kHitzonePliancy && abs(mMouseDownY - event.y) < kHitzonePliancy)
+            {
+                g_engine->HoldKey_NoRepeat(JGE_BTN_OK);
+            }
         }
 #endif
     }

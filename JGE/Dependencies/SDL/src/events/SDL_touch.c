@@ -141,8 +141,10 @@ SDL_AddTouch(const SDL_Touch * touch, char *name)
     SDL_touchPads[index]->relative_mode = SDL_FALSE;
     SDL_touchPads[index]->flush_motion = SDL_FALSE;
     
-    SDL_touchPads[index]->xres = (1<<(16-1));
-    SDL_touchPads[index]->yres = (1<<(16-1));
+    // Wil 06/10/11:  WTF is this for?  It's stomping over what's been passed in!
+    //SDL_touchPads[index]->xres = (1<<(16-1));
+    //SDL_touchPads[index]->yres = (1<<(16-1));
+
     //Do I want this here? Probably
     SDL_GestureAddTouch(SDL_touchPads[index]);
 
@@ -309,16 +311,15 @@ SDL_DelFinger(SDL_Touch* touch,SDL_FingerID fingerid)
     return 0;
 }
 
-
 int
 SDL_SendFingerDown(SDL_TouchID id, SDL_FingerID fingerid, SDL_bool down, 
                    float xin, float yin, float pressurein)
 {
     int posted;
-        Uint16 x;
-        Uint16 y;
-        Uint16 pressure;
-        SDL_Finger *finger;
+    Uint16 x;
+    Uint16 y;
+    Uint16 pressure;
+    SDL_Finger *finger;
 
     SDL_Touch* touch = SDL_GetTouch(id);
 
@@ -331,10 +332,6 @@ SDL_SendFingerDown(SDL_TouchID id, SDL_FingerID fingerid, SDL_bool down,
     y = (Uint16)((yin+touch->y_min)*(touch->yres)/(touch->native_yres));
     pressure = (Uint16)((pressurein+touch->pressure_min)*(touch->pressureres)/(touch->native_pressureres));
 
-    char buffer[64];
-    sprintf(buffer, "Finger Down: xin: %g yin: %g x: %d y: %d", xin, yin, x, y);
-    __android_log_write(ANDROID_LOG_DEBUG, "Wagic", buffer);
-    
     finger = SDL_GetFinger(touch,fingerid);
     if(down) {
         if(finger == NULL) {

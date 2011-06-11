@@ -25,6 +25,7 @@
 #include "SDL_events.h"
 #include "SDL_touch.h"
 #include "../../events/SDL_mouse_c.h"
+#include "../../events/SDL_touch_c.h"
 
 #include "SDL_androidtouch.h"
 
@@ -42,16 +43,21 @@ SDL_Touch* CreateTouchInstance()
 {
 	SDL_Touch touch;
 	touch.id = gTouchID;
+
 	touch.x_min = 0;
 	touch.x_max = 1;
-	touch.native_xres = touch.xres = 1;
+	touch.native_xres = 1;
     touch.xres = 1;
-	touch.y_min = 0;
+
+    touch.y_min = 0;
 	touch.y_max = 1;
-	touch.native_yres = touch.yres = 1;
-	touch.pressure_min = 0;
+	touch.native_yres = 1;
+    touch.yres = 1;
+
+    touch.pressure_min = 0;
 	touch.pressure_max = 1;
-	touch.native_pressureres = touch.pressure_max - touch.pressure_min;
+	touch.native_pressureres = 1;
+    touch.pressureres = 1;
 
 	SDL_AddTouch(&touch, "");
 
