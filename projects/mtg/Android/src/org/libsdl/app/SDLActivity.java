@@ -95,6 +95,7 @@ public class SDLActivity extends Activity {
     public static native void onNativeKeyUp(int keycode);
     public static native void onNativeTouch(int index, int action, float x, 
                                             float y, float p);
+	public static native void onNativeFlickGesture(float xVelocity, float yVelocity);
     public static native void onNativeAccel(float x, float y, float z);
     public static native void nativeRunAudioThread();
 
@@ -244,6 +245,8 @@ class SDLSurface extends SurfaceView implements SurfaceHolder.Callback,
 
     // Sensors
     private static SensorManager mSensorManager;
+
+	private static VelocityTracker mVelocityTracker;
 
     // Startup    
     public SDLSurface(Context context) {
@@ -467,6 +470,32 @@ class SDLSurface extends SurfaceView implements SurfaceHolder.Callback,
 	        SDLActivity.onNativeTouch(index, action, x, y, p);
 		}
         
+		// account for 'flick' type gestures by monitoring velocity
+		if (event.getActionIndex() == 0)
+		{
+			if (event.getAction() == MotionEvent.ACTION_DOWN)
+			{
+				mVelocityTracker = VelocityTracker.obtain();
+				mVelocityTracker.clear();
+				mVelocityTracker.addMovement(event);
+			}
+			else if (event.getAction() == MotionEvent.ACTION_MOVE)
+			{
+				mVelocityTracker.addMovement(event);
+			}
+			else if (event.getAction() == MotionEvent.ACTION_UP)
+			{
+				mVelocityTracker.addMovement(event);
+
+				// calc velocity
+				mVelocityTracker.computeCurrentVelocity(1000);
+				
+				SDLActivity.onNativeFlickGesture(mVelocityTracker.getXVelocity(), mVelocityTracker.getYVelocity());
+
+				mVelocityTracker.recycle();
+			}
+		}
+
 		return true;
     }
 

@@ -119,4 +119,18 @@ void Android_OnTouch(int index, int action, float x, float y, float p)
     }
 }
 
+void Android_OnFlickGesture(float xVelocity, float yVelocity)
+{
+    // cheap hack, translate this to a joystick ball event instead of its own proper event
+    
+    SDL_Event event;
+    event.jball.type = SDL_JOYBALLMOTION;
+    event.jball.which = 0;
+    event.jball.ball = 0;
+    event.jball.xrel = (int) xVelocity;;
+    event.jball.yrel = (int) yVelocity;
+
+    SDL_PushEvent(&event);
+}
+
 /* vi: set ts=4 sw=4 expandtab: */

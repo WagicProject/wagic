@@ -24,4 +24,6 @@
 
 extern void Android_OnTouch(int index, int action, float x, float y, float p);
 
+extern void Android_OnFlickGesture(float xVelocity, float yVelocity);
+
 /* vi: set ts=4 sw=4 expandtab: */

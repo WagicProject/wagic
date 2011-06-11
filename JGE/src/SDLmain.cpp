@@ -208,7 +208,11 @@ public:
 				<< ", dDist " << Event->mgesture.dDist
 				<< ", numFingers " << Event->mgesture.numFingers);
 			break;
-		}
+
+        case SDL_JOYBALLMOTION:
+            DebugTrace("Flick gesture detected");
+            break;
+        }
 	}
 
 	void OnUpdate();

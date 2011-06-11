@@ -128,6 +128,13 @@ extern "C" void Java_org_libsdl_app_SDLActivity_onNativeTouch(
     Android_OnTouch(index, action, x, y, p);
 }
 
+extern "C" void Java_org_libsdl_app_SDLActivity_onNativeFlickGesture(
+                                    JNIEnv* env, jclass jcls,
+                                    jfloat xVelocity, jfloat yVelocity)
+{
+    Android_OnFlickGesture(xVelocity, yVelocity);
+}
+
 // Accelerometer
 extern "C" void Java_org_libsdl_app_SDLActivity_onNativeAccel(
                                     JNIEnv* env, jclass jcls,
