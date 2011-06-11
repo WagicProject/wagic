@@ -93,7 +93,7 @@ public class SDLActivity extends Activity {
     public static native void onNativeResize(int x, int y, int format);
     public static native void onNativeKeyDown(int keycode);
     public static native void onNativeKeyUp(int keycode);
-    public static native void onNativeTouch(int action, float x, 
+    public static native void onNativeTouch(int index, int action, float x, 
                                             float y, float p);
     public static native void onNativeAccel(float x, float y, float z);
     public static native void nativeRunAudioThread();
@@ -456,14 +456,18 @@ class SDLSurface extends SurfaceView implements SurfaceHolder.Callback,
     // Touch events
     public boolean onTouch(View v, MotionEvent event) {
     
-        int action = event.getAction();
-        float x = event.getX();
-        float y = event.getY();
-        float p = event.getPressure();
+		for (int index = 0; index < event.getPointerCount(); ++index)
+		{
+			int action = event.getActionMasked();
+			float x = event.getX(index);
+			float y = event.getY(index);
+			float p = event.getPressure(index);
 
-        // TODO: Anything else we need to pass?        
-        SDLActivity.onNativeTouch(action, x, y, p);
-        return true;
+	        // TODO: Anything else we need to pass?        
+	        SDLActivity.onNativeTouch(index, action, x, y, p);
+		}
+        
+		return true;
     }
 
     // Sensor events

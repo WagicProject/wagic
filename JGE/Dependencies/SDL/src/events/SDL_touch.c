@@ -20,7 +20,10 @@
 */
 #include "SDL_config.h"
 
+#if defined(ANDROID)
 #include <android/log.h>
+#endif
+
 
 /* General touch handling code for SDL */
 

@@ -189,13 +189,13 @@ public:
 		case SDL_FINGERMOTION:
         case SDL_FINGERDOWN:
         case SDL_FINGERUP:
-			DebugTrace("Touch Event triggered");
-            DebugTrace("touchId " << Event->tfinger.touchId);
-			DebugTrace("fingerId " << Event->tfinger.fingerId);
-			DebugTrace("state " << Event->tfinger.state);
-			DebugTrace("x " << Event->tfinger.x	<< ", y " << Event->tfinger.y);
-			DebugTrace("dx " << Event->tfinger.dx << ", dy " << Event->tfinger.dy);
-			DebugTrace("pressure " << Event->tfinger.pressure);
+			//DebugTrace("Touch Event triggered");
+            //DebugTrace("touchId " << Event->tfinger.touchId);
+			//DebugTrace("fingerId " << Event->tfinger.fingerId);
+			//DebugTrace("state " << Event->tfinger.state);
+			//DebugTrace("x " << Event->tfinger.x	<< ", y " << Event->tfinger.y);
+			//DebugTrace("dx " << Event->tfinger.dx << ", dy " << Event->tfinger.dy);
+			//DebugTrace("pressure " << Event->tfinger.pressure);
 
 			OnTouchEvent(Event->tfinger);
 			break;
@@ -206,7 +206,7 @@ public:
 				<< ", y " << Event->mgesture.y
 				<< ", dTheta " << Event->mgesture.dTheta
 				<< ", dDist " << Event->mgesture.dDist
-				<< ", numFinder " << Event->mgesture.numFingers);
+				<< ", numFingers " << Event->mgesture.numFingers);
 			break;
 		}
 	}
@@ -497,34 +497,39 @@ void SdlApp::OnMouseClicked(const SDL_MouseButtonEvent& event)
 
 void SdlApp::OnTouchEvent(const SDL_TouchFingerEvent& event)
 {
-    if (event.y >= viewPort.y &&
-        event.y <= viewPort.y + viewPort.h &&
-        event.x >= viewPort.x &&
-        event.x <= viewPort.x + viewPort.w)
+    // only respond to the first finger for mouse type movements - any additional finger
+    // should be ignored, and will come through instead as a multigesture event
+    if (event.fingerId == 0)
     {
-        int actualWidth = (int) JRenderer::GetInstance()->GetActualWidth();
-        int actualHeight = (int) JRenderer::GetInstance()->GetActualHeight();
+        if (event.y >= viewPort.y &&
+            event.y <= viewPort.y + viewPort.h &&
+            event.x >= viewPort.x &&
+            event.x <= viewPort.x + viewPort.w)
+        {
+            int actualWidth = (int) JRenderer::GetInstance()->GetActualWidth();
+            int actualHeight = (int) JRenderer::GetInstance()->GetActualHeight();
 
-        g_engine->LeftClicked(
-            ((event.x - viewPort.x) * SCREEN_WIDTH) / actualWidth,
-            ((event.y - viewPort.y) * SCREEN_HEIGHT) / actualHeight);
+            g_engine->LeftClicked(
+                ((event.x - viewPort.x) * SCREEN_WIDTH) / actualWidth,
+                ((event.y - viewPort.y) * SCREEN_HEIGHT) / actualHeight);
 
-         if (event.type == SDL_FINGERDOWN)
-         {
-             mMouseDownX = event.x;
-             mMouseDownY = event.y;
-         }
+            if (event.type == SDL_FINGERDOWN)
+            {
+                mMouseDownX = event.x;
+                mMouseDownY = event.y;
+            }
 
 #if (defined ANDROID) || (defined IOS)
-        if (event.type == SDL_FINGERUP)
-        {
-            // treat an up finger within 50 pixels of the down finger coords as a double click event
-            if (abs(mMouseDownX - event.x) < kHitzonePliancy && abs(mMouseDownY - event.y) < kHitzonePliancy)
+            if (event.type == SDL_FINGERUP)
             {
-                g_engine->HoldKey_NoRepeat(JGE_BTN_OK);
+                // treat an up finger within 50 pixels of the down finger coords as a double click event
+                if (abs(mMouseDownX - event.x) < kHitzonePliancy && abs(mMouseDownY - event.y) < kHitzonePliancy)
+                {
+                    g_engine->HoldKey_NoRepeat(JGE_BTN_OK);
+                }
             }
-        }
 #endif
+        }
     }
 }
 

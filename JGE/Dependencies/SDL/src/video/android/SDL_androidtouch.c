@@ -35,6 +35,8 @@
 #define ACTION_MOVE 2
 #define ACTION_CANCEL 3
 #define ACTION_OUTSIDE 4
+#define ACTION_POINTER_DOWN 5
+#define ACTION_POINTER_UP 6
 
 
 static SDL_TouchID gTouchID = 0;
@@ -64,7 +66,7 @@ SDL_Touch* CreateTouchInstance()
 	return SDL_GetTouch(touch.id);
 }
 
-void Android_OnTouch(int action, float x, float y, float p)
+void Android_OnTouch(int index, int action, float x, float y, float p)
 {
     if (!Android_Window)
 	{
@@ -81,23 +83,32 @@ void Android_OnTouch(int action, float x, float y, float p)
 			touch = CreateTouchInstance();
 		}
 
-        char buffer[64];
-        sprintf(buffer, "Touch action: %d x: %f y: %f", action, x, y);
-        __android_log_write(ANDROID_LOG_DEBUG, "Wagic", buffer);
+        //char buffer[64];
+        //sprintf(buffer, "Touch action: %d x: %f y: %f, index: %d", action, x, y, index);
+        //__android_log_write(ANDROID_LOG_DEBUG, "Wagic", buffer);
 
         switch(action)
 		{
         case ACTION_DOWN:
-			SDL_SendFingerDown(touch->id, 1, SDL_TRUE, x, y, p);
+        case ACTION_POINTER_DOWN:
+			SDL_SendFingerDown(touch->id, index, SDL_TRUE, x, y, p);
             //SDL_SendMouseButton(Android_Window, SDL_PRESSED, SDL_BUTTON_LEFT);
             break;
 
 		case ACTION_MOVE:
-			SDL_SendTouchMotion(touch->id, 1, SDL_FALSE, x, y, 1);
+			SDL_SendTouchMotion(touch->id, index, SDL_FALSE, x, y, 1);
 			break;
 
         case ACTION_UP:
-			SDL_SendFingerDown(touch->id, 1, SDL_FALSE, x, y, p);
+            // this means a completed gesture
+            SDL_SendFingerDown(touch->id, index, SDL_FALSE, x, y, p);
+            break;
+
+        case ACTION_POINTER_UP:
+            // this is an individual finger up - due to some false hits on finger 0 lifting, only honor this event
+            // if the finger up is anything BUT finger 0, this prevents false action triggers
+            if (index > 0)
+			    SDL_SendFingerDown(touch->id, index, SDL_FALSE, x, y, p);
             //SDL_SendMouseButton(Android_Window, SDL_RELEASED, SDL_BUTTON_LEFT);
             break;
         }

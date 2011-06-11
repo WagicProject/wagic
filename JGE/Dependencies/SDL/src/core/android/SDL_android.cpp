@@ -123,9 +123,9 @@ extern "C" void Java_org_libsdl_app_SDLActivity_onNativeKeyUp(
 // Touch
 extern "C" void Java_org_libsdl_app_SDLActivity_onNativeTouch(
                                     JNIEnv* env, jclass jcls,
-                                    jint action, jfloat x, jfloat y, jfloat p)
+                                    jint index, jint action, jfloat x, jfloat y, jfloat p)
 {
-    Android_OnTouch(action, x, y, p);
+    Android_OnTouch(index, action, x, y, p);
 }
 
 // Accelerometer
