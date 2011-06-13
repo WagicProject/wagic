@@ -17062,7 +17062,7 @@ target=creature
 auto=-5/-5
 text=({p(B)} may be paid for with either {B} or 2 life.) -- Target creature gets -5/-5 until end of turn.
 color=black
-mana={1}{p(B){p(B)}
+mana={1}{p(B)}{p(B)}
 type=Instant
 [/card]
 [card]
@@ -22914,7 +22914,7 @@ toughness=2
 [/card]
 [card]
 name=Fleshwrither
-auto={1}{B}{B}{S}:moveTo(myBattlefield) target(*[manacost=4]|mylibrary) asSorcery
+auto={1}{B}{B}{S}:moveTo(myBattlefield) target(creature[manacost=4]|mylibrary) asSorcery
 text=Transfigure {1}{B}{B} ({1}{B}{B}, Sacrifice this creature: Search your library for a creature card with the same converted mana cost as this creature and put that card onto the battlefield. Then shuffle your library. Transfigure only as a sorcery.)
 mana={2}{B}{B}
 type=Creature
@@ -36889,8 +36889,8 @@ toughness=1
 [/card]
 [card]
 name=Leonin Relic-Warder
-auto=(blink)forsrc target(artifact,enchantment)
-text=When Leonin Relic-Warder enters the battlefield, exile target artifact or enchantment. -- When Leonin Relicguard leaves the battlefield, return the exiled card to the battlefield under its owner's control.
+auto=may (blink)forsrc target(artifact,enchantment)
+text=When Leonin Relic-Warder enters the battlefield, you may exile target artifact or enchantment. -- When Leonin Relicguard leaves the battlefield, return the exiled card to the battlefield under its owner's control.
 mana={W}{W}
 type=Creature
 subtype=Cat Cleric
@@ -61849,7 +61849,7 @@ toughness=4
 name=Spire Monitor
 abilities=flash,flying
 text=Flash -- Flying
-mana={2}{U}
+mana={4}{U}
 type=Creature
 subtype=Drake
 power=3
