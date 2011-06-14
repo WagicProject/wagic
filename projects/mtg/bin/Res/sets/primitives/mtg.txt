@@ -57955,8 +57955,8 @@ type=Artifact
 name=Shrine of Burning Rage
 auto=@each my upkeep:counter(0/0,1,Charge)
 auto=@movedTo(*[red]|mystack):counter(0/0,1,Charge)
-auto={T}{S}:thisforeach(counter{0/0.1.Charge}) damage:1 target(creature)
-text=At the beginning of your upkeep or whenever you cast a red spell, put a charge counter on Shrine of Burning Rage. -- {T}, Sacrifice Shrine of Burning Rage: Shrine of Burning Rage deals damage equal to the number of charge counters on it to target creature or player.
+auto={3}{T}{S}:thisforeach(counter{0/0.1.Charge}) damage:1 target(creature,player)
+text=At the beginning of your upkeep or whenever you cast a red spell, put a charge counter on Shrine of Burning Rage. -- {3}, {T}, Sacrifice Shrine of Burning Rage: Shrine of Burning Rage deals damage equal to the number of charge counters on it to target creature or player.
 mana={2}
 type=Artifact
 [/card]
@@ -57965,7 +57965,7 @@ name=Shrine of Loyal Legions
 auto=@each my upkeep:counter(0/0,1,Charge)
 auto=@movedTo(*[white]|mystack):counter(0/0,1,Charge)
 auto={3}{T}{S}:thisforeach(counter{0/0.1.Charge}) token(Myr,Artifact Creature Myr,1/1)
-text=At the beginning of your upkeep or whenever you cast a red spell, put a charge counter on Shrine of Burning Rage. -- {T}, Sacrifice Shrine of Burning Rage: Shrine of Burning Rage deals damage equal to the number of charge counters on it to target creature or player.
+text=At the beginning of your upkeep or whenever you cast a white spell, put a charge counter on Shrine of Loyal Legions. -- {3}, {T}, Sacrifice Shrine of Loyal Legions: Put a 1/1 colorless Myr artifact creature token onto the battlefield for each charge counter on Shrine of Loyal Legions.
 mana={2}
 type=Artifact
 [/card]
