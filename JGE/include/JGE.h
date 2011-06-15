@@ -319,6 +319,10 @@ class JGE
   // Returns false if nothing has been clicked, true otherwise
   bool GetLeftClickCoordinates(int& x, int& y);
 
+
+  // Scroll events - currently triggered by SDL JOYBALL events
+  void Scroll(int inXVelocity, int inYVelocity);
+
   //////////////////////////////////////////////////////////////////////////
   /// Get if the system is ended/paused or not.
   ///

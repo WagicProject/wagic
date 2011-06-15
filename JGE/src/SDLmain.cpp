@@ -45,6 +45,17 @@ const int kHitzonePliancy = 50;
 // tick value equates to ms
 const int kTapEventTimeout = 250;
 
+
+uint64_t	lastTickCount;
+JGE* g_engine = NULL;
+JApp* g_app = NULL;
+JGameLauncher* g_launcher = NULL;
+
+class SdlApp;
+
+SdlApp *g_SdlApp = NULL;
+
+
 class SdlApp
 {
 public: /* For easy interfacing with JGE static functions */
@@ -215,6 +226,7 @@ public:
 
         case SDL_JOYBALLMOTION:
             DebugTrace("Flick gesture detected, x: " << Event->jball.xrel << ", y: " << Event->jball.yrel);
+            g_engine->Scroll(Event->jball.xrel, Event->jball.yrel);
             break;
         }
 	}
@@ -227,14 +239,6 @@ public:
 		SDL_Quit();
 	}
 };
-
-uint64_t	lastTickCount;
-JGE* g_engine = NULL;
-JApp* g_app = NULL;
-JGameLauncher* g_launcher = NULL;
-SdlApp *g_SdlApp = NULL;
-
-
 
 static const struct { LocalKeySym keysym; JButton keycode; } gDefaultBindings[] =
 {  

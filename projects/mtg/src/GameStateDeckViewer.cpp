@@ -1668,3 +1668,12 @@ void GameStateDeckViewer::ButtonPressed(int controllerId, int controlId)
     }
 }
 
+void GameStateDeckViewer::OnScroll(int inXVelocity, int inYVelocity)
+{
+    if (abs(inYVelocity) > 300)
+    {
+        bool flickUpwards = (inYVelocity < 0);
+        mEngine->HoldKey_NoRepeat(flickUpwards ? JGE_BTN_DOWN : JGE_BTN_UP);
+
+    }
+}

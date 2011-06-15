@@ -82,6 +82,8 @@ public:
 	///
 	//////////////////////////////////////////////////////////////////////////
 	virtual void Resume() = 0;
+
+    virtual void OnScroll(int inXVelocity, int inYVelocity) = 0;
 };
 
 

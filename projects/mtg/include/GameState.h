@@ -55,6 +55,10 @@ public:
     virtual void Start(){}
     virtual void End(){}
 
+    virtual void OnScroll(int inXVelocity, int inYVelocity)
+    {
+    }
+
     virtual void Update(float dt) = 0;
     virtual void Render() = 0;
 
