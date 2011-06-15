@@ -42,6 +42,9 @@ unsigned int gDisplayMode = DisplayMode_lowRes;
 
 const int kHitzonePliancy = 50;
 
+// tick value equates to ms
+const int kTapEventTimeout = 250;
+
 class SdlApp
 {
 public: /* For easy interfacing with JGE static functions */
@@ -50,6 +53,7 @@ public: /* For easy interfacing with JGE static functions */
 	SDL_Surface*    Surf_Display;
 	SDL_Rect        viewPort;
 	Uint32          lastMouseUpTime;
+    Uint32          lastFingerDownTime;
 	int             windowed_w;
 	int             windowed_h;
 	int             windowed_pos_x;
@@ -59,7 +63,7 @@ public: /* For easy interfacing with JGE static functions */
     int mMouseDownY;
 
 public:
-	SdlApp() : Surf_Display(NULL), window(NULL), lastMouseUpTime(0), Running(true), mMouseDownX(0), mMouseDownY(0)
+	SdlApp() : Surf_Display(NULL), window(NULL), lastMouseUpTime(0), lastFingerDownTime(0), Running(true), mMouseDownX(0), mMouseDownY(0)
 	{
 	}
 
@@ -210,7 +214,7 @@ public:
 			break;
 
         case SDL_JOYBALLMOTION:
-            DebugTrace("Flick gesture detected");
+            DebugTrace("Flick gesture detected, x: " << Event->jball.xrel << ", y: " << Event->jball.yrel);
             break;
         }
 	}
@@ -517,19 +521,26 @@ void SdlApp::OnTouchEvent(const SDL_TouchFingerEvent& event)
                 ((event.x - viewPort.x) * SCREEN_WIDTH) / actualWidth,
                 ((event.y - viewPort.y) * SCREEN_HEIGHT) / actualHeight);
 
+
+            Uint32 eventTime = SDL_GetTicks();
             if (event.type == SDL_FINGERDOWN)
             {
                 mMouseDownX = event.x;
                 mMouseDownY = event.y;
+
+                lastFingerDownTime = eventTime;
             }
 
 #if (defined ANDROID) || (defined IOS)
             if (event.type == SDL_FINGERUP)
             {
-                // treat an up finger within 50 pixels of the down finger coords as a double click event
-                if (abs(mMouseDownX - event.x) < kHitzonePliancy && abs(mMouseDownY - event.y) < kHitzonePliancy)
+                if (eventTime - lastFingerDownTime <= kTapEventTimeout)
                 {
-                    g_engine->HoldKey_NoRepeat(JGE_BTN_OK);
+                    // treat an up finger within 50 pixels of the down finger coords as a double click event
+                    if (abs(mMouseDownX - event.x) < kHitzonePliancy && abs(mMouseDownY - event.y) < kHitzonePliancy)
+                    {
+                        g_engine->HoldKey_NoRepeat(JGE_BTN_OK);
+                    }
                 }
             }
 #endif
