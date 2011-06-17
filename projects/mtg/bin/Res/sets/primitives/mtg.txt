@@ -59262,6 +59262,18 @@ mana={2}
 type=Artifact
 [/card]
 [card]
+name=Sky Hussar
+abilities=flying
+auto=untap all(creature|mybattlefield)
+autohand={0}{T(creature[blue;white]|mybattlefield)}{T(creature[blue;white]|mybattlefield)}:draw:1 controller limit:1 myUpkeepOnly
+text=Flying -- When Sky Hussar enters the battlefield, untap all creatures you control. -- Forecast - Tap two untapped white and/or blue creatures you control, Reveal Sky Hussar from your hand: Draw a card. (Activate this ability only during your upkeep and only once each turn.)
+mana={3}{W}{U}
+type=Creature
+subtype=Human Knight
+power=4
+toughness=3
+[/card]
+[card]
 name=Sky Ruin Drake
 abilities=flying
 text=Flying
