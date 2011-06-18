@@ -73840,7 +73840,7 @@ toughness=2
 [/card]
 [card]
 name=Wargate
-auto=moveto(mybattlefield) target(*[manacost <=X]|mylibrary)
+auto=moveto(mybattlefield) target(*[-instant;-sorcery;manacost <=X]|mylibrary)
 text=Search your library for a permanent card with converted mana cost X or less, put it onto the battlefield, then shuffle your library.
 mana={X}{G}{W}{U}
 type=Sorcery
