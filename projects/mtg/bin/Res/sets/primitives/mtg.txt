@@ -478,7 +478,7 @@ toughness=1
 [card]
 name=Acorn Catapult
 auto={1}{T}:damage:1 target(creature,player) && token(Squirrel,Creature Squirrel,1/1,green) targetcontroller
-text=1, {T}: Acorn Catapult deals 1 damage to target creature or player. That creature's controller or that player puts a 1/1 green Squirrel creature token onto the battlefield.
+text={1}, {T}: Acorn Catapult deals 1 damage to target creature or player. That creature's controller or that player puts a 1/1 green Squirrel creature token onto the battlefield.
 mana={4}
 type=Artifact
 [/card]
@@ -10472,7 +10472,7 @@ name=Champion's Helm
 auto={1}:equip
 auto=2/2
 auto=teach(creature[legendary]) opponentshroud
-text=Equipped creature gets +2/+2. -- As long as equipped creature is legendary, it has hexproof. -- Equip {1}
+text=Equipped creature gets +2/+2. -- As long as equipped creature is legendary, it has hexproof. (It can't be the target of spells or abilities your opponents control.) -- Equip {1}
 mana={3}
 type=Artifact
 [/card]
@@ -17324,7 +17324,7 @@ toughness=6
 [card]
 name=Dread Cacodemon
 auto=kicker destroy all(creature|opponentbattlefield)
-auto=kicker tap all(creature|mybattlefield)
+auto=kicker tap all(other creature|mybattlefield)
 text=When Dread Cacodemon enters the battlefield, if you cast it from your hand, destroy all creatures your opponents control, then tap all other creatures you control.
 mana={7}{B}{B}{B}
 kicker={0}
