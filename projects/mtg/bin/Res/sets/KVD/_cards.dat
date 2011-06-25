@@ -69,7 +69,12 @@ id=243468
 rarity=C
 [/card]
 [card]
-primitive=Dragon Claw
+primitive=Dragon Whelp
+id=243472
+rarity=U
+[/card]
+[card]
+primitive=Dragon's Claw
 id=243481
 rarity=U
 [/card]
@@ -139,7 +144,7 @@ id=243473
 rarity=U
 [/card]
 [card]
-primitive=Hero's Reunion
+primitive=Heroes' Reunion
 id=243446
 rarity=U
 [/card]
