@@ -164,7 +164,7 @@ id=247401
 rarity=R
 [/card]
 [card]
-primitive=Bujoka Bog
+primitive=Bojuka Bog
 id=247536
 rarity=C
 [/card]
@@ -469,7 +469,7 @@ id=247523
 rarity=R
 [/card]
 [card]
-primitive=Fault Grinder
+primitive=Faultgrinder
 id=247299
 rarity=C
 [/card]
@@ -514,7 +514,7 @@ id=247153
 rarity=U
 [/card]
 [card]
-primitive=Fluster Storm
+primitive=Flusterstorm
 id=228255
 rarity=R
 [/card]
@@ -729,7 +729,7 @@ id=247281
 rarity=C
 [/card]
 [card]
-primitive=Jötun Grunt
+primitive=Jotun Grunt
 id=247182
 rarity=U
 [/card]
@@ -941,7 +941,7 @@ rarity=C
 [/card]
 [card]
 primitive=Oblivion Stone
-id=247388
+id=247338
 rarity=R
 [/card]
 [card]
@@ -1091,17 +1091,17 @@ rarity=R
 [/card]
 [card]
 primitive=Relic Crush
-id=247187
-rarity=C
-[/card]
-[card]
-primitive=Repulse
 id=247551
 rarity=C
 [/card]
 [card]
-primitive=Return to Dust
+primitive=Repulse
 id=247187
+rarity=C
+[/card]
+[card]
+primitive=Return to Dust
+id=247517
 rarity=U
 [/card]
 [card]
@@ -1121,18 +1121,13 @@ rarity=M
 [/card]
 [card]
 primitive=Rise from the Grave
-id=247351
+id=247325
 rarity=U
 [/card]
 [card]
 primitive=Ruhan of the Fomori
 id=236477
 rarity=M
-[/card]
-[card]
-primitive=Scavenging Ooze
-id=247325
-rarity=R
 [/card]
 [card]
 primitive=Ruination
