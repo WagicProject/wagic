@@ -476,6 +476,13 @@ power=0
 toughness=1
 [/card]
 [card]
+name=Acorn Catapult
+auto={1}{T}:damage:1 target(creature,player) && token(Squirrel,Creature Squirrel,1/1,green) targetcontroller
+text=1, {T}: Acorn Catapult deals 1 damage to target creature or player. That creature's controller or that player puts a 1/1 green Squirrel creature token onto the battlefield.
+mana={4}
+type=Artifact
+[/card]
+[card]
 name=Acorn Harvest
 auto=token(Squirrel,creature squirrel, 1/1,green)*2
 flashback={L}{L}{L}{1}{G}
@@ -2081,6 +2088,18 @@ type=Creature
 subtype=Human
 power=2+*
 toughness=2+*
+[/card]
+[card]
+name=Animar, Soul of Elements
+abilities=protection from white,protection from black
+auto=@movedTo(creature|mystack):counter(1/1,1)
+auto=thisforeach(counter{1/1,1}) lord(creature|myhand) altercost(colorless, -1)
+text=Protection from white and from black -- Whenever you cast a creature spell, put a +1/+1 counter on Animar, Soul of Elements. -- Creature spells you cast cost 1 less to cast for each +1/+1 counter on Animar.
+mana={U}{R}{G}
+type=Legendary Creature
+subtype=Elemental
+power=1
+toughness=1
 [/card]
 [card]
 name=Animate Artifact
@@ -3821,6 +3840,17 @@ otherrestriction=opponenttypemin:4 opponenttype(creature)
 other={G}{G}
 text=If an opponent controls at least four more creatures than you, Avatar of Might costs {6} less to cast. -- Trample (If this creature would deal enough damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player or planeswalker.)
 mana={6}{G}{G}
+type=Creature
+subtype=Avatar
+power=8
+toughness=8
+[/card]
+[card]
+name=Avatar of Slaughter
+auto=lord(creature) double strike
+auto=lord(creature) mustattack
+text=All creatures have double strike and attack each turn if able.
+mana={6}{R}{R}
 type=Creature
 subtype=Avatar
 power=8
@@ -9994,6 +10024,16 @@ text=Celestial Colonnade enters the battlefield tapped. -- {T}: Add {W} or {U} t
 type=Land
 [/card]
 [card]
+name=Celestial Force
+auto=@each upkeep:life:3 controller
+text=At the beginning of each upkeep, you gain 3 life.
+mana={5}{W}{W}{W}
+type=Creature
+subtype=Elemental
+power=7
+toughness=7
+[/card]
+[card]
 name=Celestial Kirin
 abilities=flying
 auto=@movedTo(*[arcane;spirit;manacost=1]|mystack):destroy all(*[manacost=1])
@@ -10426,6 +10466,15 @@ type=Creature
 subtype=Drake
 power=1
 toughness=1
+[/card]
+[card]
+name=Champion's Helm
+auto={1}:equip
+auto=2/2
+auto=teach(creature[legendary]) opponentshroud
+text=Equipped creature gets +2/+2. -- As long as equipped creature is legendary, it has hexproof. -- Equip {1}
+mana={3}
+type=Artifact
 [/card]
 [card]
 name=Champion's Victory
@@ -14932,6 +14981,14 @@ mana={3}{B}{S(creature|mybattlefield)}
 type=Instant
 [/card]
 [card]
+name=Death by Dragons
+auto=choice (you get a Dragon) token(Dragon,Creature Dragon,5/5,red,flying)
+auto=choice (opponent gets a Dragon) token(Dragon,Creature Dragon,5/5,red,flying)
+text=Each player other than target player puts a 5/5 red Dragon creature token with flying onto the battlefield.
+mana={4}{R}{R}
+type=Sorcery
+[/card]
+[card]
 name=Death Cultist
 auto={S}:life:-1 target(player) && life:1 controller
 text=Sacrifice Death Cultist: Target loses 1 life and you gain 1 life.
@@ -17265,6 +17322,18 @@ power=6
 toughness=6
 [/card]
 [card]
+name=Dread Cacodemon
+auto=kicker destroy all(creature|opponentbattlefield)
+auto=kicker tap all(creature|mybattlefield)
+text=When Dread Cacodemon enters the battlefield, if you cast it from your hand, destroy all creatures your opponents control, then tap all other creatures you control.
+mana={7}{B}{B}{B}
+kicker={0}
+type=Creature
+subtype=Demon
+power=8
+toughness=8
+[/card]
+[card]
 name=Dread Charge
 auto=lord(creature|myBattlefield) cantbeblockedby(creature[-black])
 text=Until end of turn, black creatures you control can be blocked only by black creatures.
@@ -18647,6 +18716,16 @@ text=Enchant creature -- As long as enchanted creature is white, it gets +1/+2. 
 mana={WB}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+name=Edric, Spymaster of Trest
+auto=@combatdamaged(opponent) from(creature|mybattlefield):may draw:1 controller
+text=Whenever a creature deals combat damage to one of your opponents, that creature's controller may draw a card.
+mana={1}{G}{U}
+type=Legendary Creature
+subtype=Elf Rogue
+power=2
+toughness=2
 [/card]
 [card]
 name=Eerie Procession
@@ -30550,6 +30629,17 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Hornet Queen
+abilities=flying,deathtouch
+auto=token(Insect,Creature Insect,1/1,green,flying,deathtouch)*4
+text=Flying, deathtouch -- When Hornet Queen enters the battlefield, put four 1/1 green Insect creature tokens with flying and deathtouch onto the battlefield.
+mana={4}{G}{G}{G}
+type=Creature
+subtype=Insect
+power=2
+toughness=2
+[/card]
+[card]
 name=Hornet Sting
 target=creature,player
 auto=damage:1
@@ -31018,6 +31108,15 @@ type=Creature
 subtype=Spirit
 power=4
 toughness=3
+[/card]
+[card]
+name=Hydra Omnivore
+text=Whenever Hydra Omnivore deals combat damage to an opponent, it deals that much damage to each other opponent.
+mana={4}{G}{G}
+type=Creature
+subtype=Hydra
+power=8
+toughness=8
 [/card]
 [card]
 name=Hydroblast
@@ -38856,6 +38955,17 @@ mana={2}{R}
 type=Enchantment
 [/card]
 [card]
+name=Magmasaur
+auto=counter(1/1,5)
+auto=upcostmulti[{C(1/1,-1)}] sacrifice && thisforeach(counter{1/1.1}) damage:1 all(creature) && thisforeach(counter{1/1.1}) damage:1 all(player)
+text=Magmasaur enters the battlefield with five +1/+1 counters on it. -- At the beginning of your upkeep, sacrifice Magmasaur unless you remove a +1/+1 counter from it. If you sacrifice Magmasaur this way, it deals damage equal to the number of +1/+1 counters on it to each creature without flying and each player.
+mana={3}{R}{R}
+type=Creature
+subtype=Elemental Lizard
+power=0
+toughness=0
+[/card]
+[card]
 name=Magmaw
 auto={1}{S(*[-land]|myBattlefield)}:damage:1 target(creature,player)
 text={1}, Sacrifice a nonland permanent: Magmaw deals 1 damage to target creature or player.
@@ -38866,15 +38976,14 @@ power=4
 toughness=4
 [/card]
 [card]
-name=Magmasaur
-auto=counter(1/1,5)
-auto=upcostmulti[{C(1/1,-1)}] sacrifice && thisforeach(counter{1/1.1}) damage:1 all(creature) && thisforeach(counter{1/1.1}) damage:1 all(player)
-text=Magmasaur enters the battlefield with five +1/+1 counters on it. -- At the beginning of your upkeep, sacrifice Magmasaur unless you remove a +1/+1 counter from it. If you sacrifice Magmasaur this way, it deals damage equal to the number of +1/+1 counters on it to each creature without flying and each player.
-mana={3}{R}{R}
+name=Magmatic Force
+auto=@each upkeep:damage:3 target(creature,player)
+text=At the beginning of each upkeep, Magmatic Force deals 3 damage to target creature or player.
+mana={5}{R}{R}{R}
 type=Creature
-subtype=Elemental Lizard
-power=0
-toughness=0
+subtype=Elemental
+power=7
+toughness=7
 [/card]
 [card]
 name=Magnetic Flux
@@ -44239,6 +44348,16 @@ text=Enchant creature -- Enchanted creature gets +1/+2 and has flying.
 mana={1}{W}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+name=Nin, the Pain Artist
+auto={X}{U}{R}{T}:damage:x target(creature) && draw:X targetcontroller
+text={X}{U}{R}, {T}: Nin, the Pain Artist deals X damage to target creature. That creature's controller draws X cards.
+mana={U}{R}
+type=Legendary Creature
+subtype=Nin, the Oain Artist
+power=1
+toughness=1
 [/card]
 [card]
 name=Nine-Ringed Bo
@@ -52703,6 +52822,16 @@ type=Sorcery
 subtype=Arcane
 [/card]
 [card]
+name=Riddlekeeper
+auto=@combat(attacking) source(creature|opponentBattlefield):deplete:2 opponent
+text=Whenever a creature attacks you or a planeswalker you control, that creature's controller puts the top two cards of his or her library into his or her graveyard.
+mana={2}{U}
+type=Creature
+subtype=Homunculus
+power=1
+toughness=4
+[/card]
+[card]
 name=Riddlesmith
 auto=@movedTo(artifact|mystack):may token(-5555556) && draw:1
 text=Whenever you cast an artifact spell, you may draw a card. If you do, discard a card.
@@ -53859,6 +53988,16 @@ auto={T}:Add {W}
 auto={T}{S}:Add {W}{W}
 text=Ruins of Trokair enters the battlefield tapped. -- {T}: Add {W} to your mana pool. -- {T}, Sacrifice Ruins of Trokair: Add {W}{W} to your mana pool.
 type=Land
+[/card]
+[card]
+name=Ruhan of the Fomori
+abilities=mustattack
+text=At the beginning of combat on your turn, choose an opponent at random. Ruhan of the Fomori attacks that player this combat if able.
+mana={1}{W}{R}{U}
+type=Legendary Creature
+subtype=Giant Warrior
+power=7
+toughness=7
 [/card]
 [card]
 name=Rukh Egg
@@ -55346,6 +55485,17 @@ text=At the beginning of each end step, put a corpse counter on Scavenging Ghoul
 mana={3}{B}
 type=Creature
 subtype=Zombie
+power=2
+toughness=2
+[/card]
+[card]
+name=Scavenging Ooze
+auto={G}:name(exile non-creature card) moveTo(exile) target(*[-creature]|graveyard)
+auto={G}:name(exile creature card) moveTo(exile) target(creature|graveyard) && all(this) counter(1/1,1) && life:1 controller
+text={G}: Exile target card from a graveyard. If it was a creature card, put a +1/+1 counter on Scavenging Ooze and you gain 1 life.
+mana={1}{G}
+type=Creature
+subtype=Ooze
 power=2
 toughness=2
 [/card]
@@ -56932,6 +57082,17 @@ type=Creature
 subtype=Zombie
 power=2
 toughness=2
+[/card]
+[card]
+name=Sewer Nemesis
+auto=choice name(opponent) transforms((,newability[foreach(*|opponentgraveyard) 1/1],newability[@movedTo(*|opponentstack):deplete:1 opponent])) forever
+auto=choice name(you) transforms((,newability[foreach(*|mygraveyard) 1/1],newability[@movedTo(*|mystack):deplete:1 controller])) forever
+text=As Sewer Nemesis enters the battlefield, choose a player. -- Sewer Nemesis's power and toughness are each equal to the number of cards in the chosen player's graveyard. -- Whenever the chosen player casts a spell, that player puts the top card of his or her library into his or her graveyard.
+mana={3}{B}
+type=Creature
+subtype=Horror
+power=*
+toughness=*
 [/card]
 [card]
 name=Sewer Rats
@@ -60930,6 +61091,13 @@ auto=life:3 controller
 text=Soul Shred deals 3 damage to target nonblack creature. You gain 3 life.
 mana={3}{B}{B}
 type=Sorcery
+[/card]
+[card]
+name=Soul Snare
+auto={W}{S}:moveTo(exile) target(creature[attacking]|opponentbattlefield)
+text={W}, Sacrifice Soul Snare: Exile target creature that's attacking you or a planeswalker you control.
+mana={W}
+type=Enchantment
 [/card]
 [card]
 name=Soul Snuffers
@@ -72902,6 +73070,61 @@ auto={2}{S}:(blink)ueot target(creature)
 text={2}, Sacrifice Voyager Staff: Exile target creature. Return the exiled card to the battlefield under its owner's control at the beginning of the next end step.
 mana={1}
 type=Artifact
+[/card]
+[card]
+name=Vow of Duty
+target=creature
+auto=2/2
+auto=vigilance
+auto=teach(creature|opponentbattlefield) cantattack
+text=Enchant creature -- Enchanted creature gets +2/+2, has vigilance, and can't attack you or a planeswalker you control.
+mana={2}{W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Vow of Flight
+target=creature
+auto=2/2
+auto=flying
+auto=teach(creature|opponentbattlefield) cantattack
+text=Enchant creature -- Enchanted creature gets +2/+2, has flying, and can't attack you or a planeswalker you control.
+mana={2}{U}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Vow of Lightining
+target=creature
+auto=2/2
+auto=first strike
+auto=teach(creature|opponentbattlefield) cantattack
+text=Enchant creature -- Enchanted creature gets +2/+2, has first strike, and can't attack you or a planeswalker you control.
+mana={2}{R}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Vow of Malice
+target=creature
+auto=2/2
+auto=intimidate
+auto=teach(creature|opponentbattlefield) cantattack
+text=Enchant creature -- Enchanted creature gets +2/+2, has intimidate, and can't attack you or a planeswalker you control.
+mana={2}{B}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Vow of Wildness
+target=creature
+auto=2/2
+auto=trample
+auto=teach(creature|opponentbattlefield) cantattack
+text=Enchant creature -- Enchanted creature gets +2/+2, has trample, and can't attack you or a planeswalker you control.
+mana={2}{G}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 name=Vug Lizard
