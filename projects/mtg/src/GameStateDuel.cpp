@@ -855,3 +855,13 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
 
     }
 }
+
+void GameStateDuel::OnScroll(int inXVelocity, int inYVelocity)
+{
+    if (abs(inYVelocity) > 300)
+    {
+        bool flickUpwards = (inYVelocity < 0);
+        mEngine->HoldKey_NoRepeat(flickUpwards ? JGE_BTN_PREV : JGE_BTN_SEC);
+    }
+}
+

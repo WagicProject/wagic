@@ -59,6 +59,8 @@ public:
     virtual void Render();
     void initRand(unsigned seed = 0);
 
+    void OnScroll(int inXVelocity, int inYVelocity);
+
     enum ENUM_DUEL_STATE_MENU_ITEM
     {
         MENUITEM_CANCEL = kCancelMenuID,
