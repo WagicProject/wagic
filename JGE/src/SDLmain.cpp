@@ -151,8 +151,9 @@ public:
 	void OnMouseDoubleClicked(const SDL_MouseButtonEvent& event);
 	void OnMouseClicked(const SDL_MouseButtonEvent& event);
 	void OnMouseMoved(const SDL_MouseMotionEvent& event);
+  void OnMouseWheel(int x, int y);
 
-    void OnTouchEvent(const SDL_TouchFingerEvent& event);
+  void OnTouchEvent(const SDL_TouchFingerEvent& event);
 
 	void OnEvent(SDL_Event* Event)
 	{
@@ -200,6 +201,10 @@ public:
 			}
 
 			break;
+
+    case SDL_MOUSEWHEEL:
+      OnMouseWheel(Event->wheel.x, Event->wheel.y);
+      break;
 
 		case SDL_FINGERMOTION:
         case SDL_FINGERDOWN:
@@ -431,6 +436,29 @@ void SdlApp::OnMouseDoubleClicked(const SDL_MouseButtonEvent& event)
 		g_engine->HoldKey_NoRepeat(JGE_BTN_OK);
 	}
 #endif
+}
+
+void SdlApp::OnMouseWheel(int x, int y)
+{
+  if(!x && y)
+  { // Vertical wheel
+    if(y > 0)
+    {
+      g_engine->HoldKey_NoRepeat(JGE_BTN_UP);
+    }
+    else
+    {
+      g_engine->HoldKey_NoRepeat(JGE_BTN_DOWN);
+    }
+  }
+  else if(x && !y)
+  { // Horizontal wheel
+    g_engine->HoldKey_NoRepeat(JGE_BTN_LEFT);
+  }
+  else
+  {
+    g_engine->HoldKey_NoRepeat(JGE_BTN_RIGHT);
+  }
 }
 
 void SdlApp::OnMouseClicked(const SDL_MouseButtonEvent& event)
