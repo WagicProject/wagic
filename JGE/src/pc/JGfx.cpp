@@ -1536,8 +1536,8 @@ void JRenderer::DrawLine(float x1, float y1, float x2, float y2, PIXEL_TYPE colo
     glEnableClientState(GL_COLOR_ARRAY);
 
     GLfloat vVertices[] = {
-        x1, SCREEN_HEIGHT_F-y1, 0.0f,
-        x2, SCREEN_HEIGHT_F-y2, 0.0f,
+        x1, SCREEN_HEIGHT_F-y1,
+        x2, SCREEN_HEIGHT_F-y2,
     };
 
     GLubyte cols[] = {
