@@ -352,13 +352,15 @@ public:
     int load();
 
     GameOption * get(int);
+    GameOption * get(string optionName);
     GameOption& operator[](int);
+    GameOption& operator[](string);
     GameOptions(string filename);
     ~GameOptions();
 
 private:
     vector<GameOption*> values;
-    vector<string> unknown;
+    map<string,GameOption*> unknownMap;
 };
 
 class GameSettings
@@ -408,6 +410,7 @@ public:
 
     GameOption* get(int);
     GameOption& operator[](int);
+    GameOption& operator[](string);
 
     GameOptions* profileOptions;
     GameOptions* globalOptions;

@@ -91,10 +91,9 @@ int Options::getID(string name)
     }
 
     //Is it an unlocked set?
-    size_t un = strlen("unlocked_");
-    if (un < name.size())
+    if (name.find("unlocked_") == 0)
     {
-        string setname = name.substr(un);
+        string setname = name.substr(strlen("unlocked_"));
         if (setlist.size())
         {
             int unlocked = setlist[setname];
@@ -195,7 +194,7 @@ GameOption::GameOption(int value) :
 {
 }
 GameOption::GameOption(string value) :
-    number(0), str(value)
+    number(atoi(value.c_str())), str(value)
 {
 }
 GameOption::GameOption(int num, string str) :
@@ -335,7 +334,7 @@ int GameOptions::load()
             int id = Options::getID(name);
             if (id == INVALID_OPTION)
             {
-                unknown.push_back(s);
+                if (!unknownMap[name]) unknownMap[name] = NEW GameOption(val);
                 continue;
             }
 
@@ -385,8 +384,16 @@ int GameOptions::save()
             opt->write(&file, name);
         }
 
-        for (vector<string>::size_type t = 0; t < unknown.size(); t++)
-            file << unknown[t] << "\n";
+        for (map<string, GameOption *>::iterator it = unknownMap.begin(); it != unknownMap.end(); it++)
+        {
+            if (it->second)
+            {
+                if (it->second->str.size())
+                    file << it->first << "=" <<  it->second->str << "\n";
+                else if (it->second->number)
+                    file << it->first << "=" <<  it->second->number << "\n";
+            }
+        }
         file.close();
     }
     return 1;
@@ -399,6 +406,26 @@ GameOption& GameOptions::operator[](int optionID)
         return GameSettings::invalid_option;
 
     return *go;
+}
+
+GameOption& GameOptions::operator[](string optionName)
+{
+    int id = Options::getID(optionName);
+    if (id != INVALID_OPTION)
+        return operator[](id);
+
+    GameOption * go =  get(optionName);
+
+    return * go;
+
+}
+
+GameOption * GameOptions::get(string optionName)
+{
+   if (!unknownMap[optionName])
+        unknownMap[optionName] = NEW GameOption(0);
+
+    return unknownMap[optionName];
 }
 
 GameOption * GameOptions::get(int optionID)
@@ -480,6 +507,10 @@ GameOptions::~GameOptions()
     for (vector<GameOption*>::iterator it = values.begin(); it != values.end(); it++)
         SAFE_DELETE(*it);
     values.clear();
+
+    for (map<string, GameOption*>::iterator it = unknownMap.begin(); it != unknownMap.end(); it++)
+        SAFE_DELETE(it->second);
+    unknownMap.clear();
 }
 
 GameSettings options;
@@ -566,6 +597,22 @@ GameOption& GameSettings::operator[](int optionID)
     GameOption * go = get(optionID);
     if (!go)
         return invalid_option;
+
+    return *go;
+}
+
+GameOption& GameSettings::operator[](string optionName)
+{
+    int id = Options::getID(optionName);
+    if (id != INVALID_OPTION)
+        return operator[](id);
+
+    if (!profileOptions)
+        return invalid_option;
+    
+    GameOption * go =  profileOptions->get(optionName);
+
+    assert(go);
 
     return *go;
 }

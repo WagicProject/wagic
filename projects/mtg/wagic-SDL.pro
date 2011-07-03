@@ -97,6 +97,7 @@ SOURCES += \
         src/GuiPhaseBar.cpp\
         src/GuiPlay.cpp\
         src/GuiStatic.cpp\
+		src/IconButton.cpp\	
         src/ManaCost.cpp\
         src/ManaCostHybrid.cpp\
         src/MenuItem.cpp\
@@ -200,6 +201,7 @@ HEADERS  += \
         include/ThisDescriptor.h\
         include/CardGui.h\
         include/GameStateTransitions.h\
+		include/IconButton.h\
         include/OptionItem.h\
         include/Token.h\
         include/CardPrimitive.h\

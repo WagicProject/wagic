@@ -477,8 +477,7 @@ void GameStateShop::Update(float dt)
         lightAlpha = 0;
     if (lightAlpha > 50)
         lightAlpha = 50;
-    //  mParent->effect->UpdateSmall(dt);
-    //  mParent->effect->UpdateBig(dt);
+
     if (mStage != STAGE_FADE_IN)
         mElapsed += dt;
 

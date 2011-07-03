@@ -1,5 +1,7 @@
 #include "PrecompiledHeader.h"
 #include "AllAbilities.h"
+#include "Translate.h"
+#include <boost/algorithm/string.hpp>
 
 //Activated Abilities
 
@@ -3571,6 +3573,285 @@ ABlinkGeneric * ABlinkGeneric::clone() const
 ABlinkGeneric::~ABlinkGeneric()
 {
     SAFE_DELETE(ability);
+}
+
+
+//Tutorial Messaging
+
+ATutorialMessage * ATutorialMessage::Current = NULL;
+
+ATutorialMessage::ATutorialMessage(MTGCardInstance * source, string message) : MTGAbility(0, source), IconButtonsController(0, 0)
+{
+    mBgTex = NULL;
+
+    mElapsed = 0;
+    mIsImage = false;
+
+    for (int i = 0; i < 9; i++)
+        mBg[i] = NULL;
+
+    string gfx = WResourceManager::Instance()->graphicsFile(message);
+    if (fileExists(gfx.c_str()))
+    {
+        mIsImage = true;
+        mMessage = message;
+    }
+    else
+    {
+        mMessage = _(message); //translate directly here, remove this and translate at rendering time if it bites us
+        boost::replace_all(mMessage, "\\n", "\n");
+    }
+
+    if (mIsImage)
+    {
+        mX = SCREEN_WIDTH_F / 2;
+        mY = SCREEN_HEIGHT_F / 2;
+
+    }
+    else
+    {
+        mX = 0;
+        mY = -SCREEN_HEIGHT_F - 0.1f; //Offscreen
+    }
+    mDontShow = mUserCloseRequest = alreadyShown();
+
+    if(mDontShow)
+        forceDestroy = 1;
+}
+
+
+string ATutorialMessage::getOptionName()
+{
+    std::stringstream out;
+    out << "tuto_";
+    out << hash_djb2(mMessage.c_str());
+    return out.str();
+}
+
+bool ATutorialMessage::alreadyShown()
+{
+    return options[getOptionName()].number ? true : false;
+}
+
+bool ATutorialMessage::CheckUserInput(JButton key)
+{
+    if (mUserCloseRequest) return false;
+
+    if(key == JGE_BTN_SEC || key == JGE_BTN_OK)
+    {
+        ButtonPressed(0, 1);
+        return true;
+    }
+
+    //Required for Mouse/touch input
+    IconButtonsController::CheckUserInput(key);
+
+    return true; //this ability is modal, so it catches all key events until it gets closed
+}
+
+void ATutorialMessage::Update(float dt)
+{
+    if (!Current && !mDontShow)
+        Current = this;
+
+    if (Current != this)
+        return;
+
+    if (mUserCloseRequest && mY < -SCREEN_HEIGHT)
+        mDontShow = true;
+
+    if (mDontShow)
+    {
+        Current = NULL;
+        forceDestroy = 1;
+        return;
+    }
+
+    mElapsed += dt;
+
+    IconButtonsController::Update(dt);
+
+    if (mIsImage)
+        return;
+
+    //Below this only affects "text" mode
+    if (!mUserCloseRequest && mY < 0)
+    {
+        mY = -SCREEN_HEIGHT + (SCREEN_HEIGHT * mElapsed / 0.75f); //Todo: more physical drop-in.
+        if (mY >= 0)
+            mY = 0;
+    }
+    else if (mUserCloseRequest && mY > -SCREEN_HEIGHT)
+    {
+        mY = -(SCREEN_HEIGHT * mElapsed / 0.75f);
+    }
+}
+
+void ATutorialMessage::ButtonPressed(int controllerId, int controlId)
+{
+    //TODO : cancel ALL tips/tutorials for JGE_BTN_SEC?
+    options[getOptionName()].number = 1;
+    options.save(); //TODO: if we experience I/O slowness in tutorials, move this save at the end of a turn, or at the end of the game.
+    mElapsed = 0;
+    mUserCloseRequest = true;
+}
+
+void ATutorialMessage::Render()
+{
+    if (mDontShow)
+        return;
+
+    if (mY < -SCREEN_HEIGHT)
+        return;
+
+    if (!mBgTex)
+    {
+        if (mIsImage)
+        {
+            mBgTex = WResourceManager::Instance()->RetrieveTexture(mMessage, RETRIEVE_LOCK);
+            if (mBgTex)
+            {
+                mBg[0] = NEW JQuad(mBgTex, 0, 0, (float) mBgTex->mWidth, (float) mBgTex->mHeight);
+                mBg[0]->SetHotSpot(mBg[0]->mWidth / 2, mBg[0]->mHeight / 2);
+
+                //Continue Button
+                JQuadPtr quad =  WResourceManager::Instance()->RetrieveQuad("iconspsp.png", 4 * 32, 0, 32, 32, "iconpsp4", RETRIEVE_MANAGE);
+                quad->SetHotSpot(16, 16);
+                IconButton * iconButton = NEW IconButton(1, this, quad.get(), 0, mBg[0]->mHeight / 2, 0.7f, Fonts::MAGIC_FONT, _("continue"), 0, 16, true);
+                Add(iconButton);
+            }
+
+            if (options[Options::SFXVOLUME].number > 0)
+            {
+                JSample * sample = WResourceManager::Instance()->RetrieveSample("tutorial.wav");
+                if (sample)
+                    JSoundSystem::GetInstance()->PlaySample(sample);
+            }
+        }
+        else
+        {
+            mBgTex = WResourceManager::Instance()->RetrieveTexture("taskboard.png", RETRIEVE_LOCK);
+
+            float unitH = static_cast<float> (mBgTex->mHeight / 4);
+            float unitW = static_cast<float> (mBgTex->mWidth / 4);
+            if (unitH == 0 || unitW == 0) return;
+
+            if (mBgTex)
+            {
+                mBg[0] = NEW JQuad(mBgTex, 0, 0, unitW, unitH);
+                mBg[1] = NEW JQuad(mBgTex, unitW, 0, unitW * 2, unitH);
+                mBg[2] = NEW JQuad(mBgTex, unitW * 3, 0, unitW, unitH);
+                mBg[3] = NEW JQuad(mBgTex, 0, unitH, unitW, unitH * 2);
+                mBg[4] = NEW JQuad(mBgTex, unitW, unitH, unitW * 2, unitH * 2);
+                mBg[5] = NEW JQuad(mBgTex, unitW * 3, unitH, unitW, unitH * 2);
+                mBg[6] = NEW JQuad(mBgTex, 0, unitH * 3, unitW, unitH);
+                mBg[7] = NEW JQuad(mBgTex, unitW, unitH * 3, unitW * 2, unitH);
+                mBg[8] = NEW JQuad(mBgTex, unitW * 3, unitH * 3, unitW, unitH);
+            }
+
+            //Continue Button
+            JQuadPtr quad =  WResourceManager::Instance()->RetrieveQuad("iconspsp.png", 4 * 32, 0, 32, 32, "iconpsp4", RETRIEVE_MANAGE);
+            quad->SetHotSpot(16, 16);
+            IconButton * iconButton = NEW IconButton(1, this, quad.get(), SCREEN_WIDTH_F / 2,  SCREEN_HEIGHT_F - 60, 0.7f, Fonts::MAGIC_FONT, _("continue"), 0, 16, true);
+            Add(iconButton);
+
+            mSH = 64 / unitH;
+            mSW = 64 / unitW;
+
+            if (options[Options::SFXVOLUME].number > 0)
+            {
+                JSample * sample = WResourceManager::Instance()->RetrieveSample("chain.wav");
+                if (sample)
+                    JSoundSystem::GetInstance()->PlaySample(sample);
+            }
+        }
+    }
+
+    JRenderer * r = JRenderer::GetInstance();
+
+    //Render background board
+    if (mBgTex)
+    {
+        if (mIsImage)
+        {
+            int alpha = mUserCloseRequest ? MAX(0, 255 - (int)(mElapsed * 500)) : MIN(255, (int)(mElapsed * 500)) ;
+            if (mUserCloseRequest && alpha == 0)
+                mDontShow = true;
+
+            r->FillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, ARGB(alpha / 2,0,0,0));
+            mBg[0]->SetColor(ARGB(alpha,255,255,255));
+            r->RenderQuad(mBg[0], SCREEN_WIDTH_F /2 , SCREEN_HEIGHT_F / 2 , 0);
+            IconButtonsController::SetColor(ARGB(alpha,255,255,255));
+        }
+        else 
+        {
+            //Setup fonts.
+            WFont * f2 = WResourceManager::Instance()->GetWFont(Fonts::MAGIC_FONT);
+            f2->SetColor(ARGB(255, 205, 237, 240));
+
+            r->FillRect(0, mY, SCREEN_WIDTH, SCREEN_HEIGHT, ARGB(128,0,0,0));
+            r->RenderQuad(mBg[0], 0, mY, 0, mSW, mSH); //TL
+            r->RenderQuad(mBg[2], SCREEN_WIDTH - 64, mY, 0, mSW, mSH); //TR
+            r->RenderQuad(mBg[6], 0, mY + SCREEN_HEIGHT - 64, 0, mSW, mSH); //BL
+            r->RenderQuad(mBg[8], SCREEN_WIDTH - 64, mY + SCREEN_HEIGHT - 64, 0, mSW, mSH); //BR
+
+            //Stretch the sides
+            float stretchV = (144.0f / 128.0f) * mSH;
+            float stretchH = (176.0f / 128.0f) * mSW;
+            r->RenderQuad(mBg[3], 0, mY + 64, 0, mSW, stretchV); //L
+            r->RenderQuad(mBg[5], SCREEN_WIDTH - 64, mY + 64, 0, mSW, stretchV); //R
+            r->RenderQuad(mBg[1], 64, mY, 0, stretchH, mSH); //T1
+            r->RenderQuad(mBg[1], 240, mY, 0, stretchH, mSH); //T1
+            r->RenderQuad(mBg[7], 64, mY + 208, 0, stretchH, mSH); //B1
+            r->RenderQuad(mBg[7], 240, mY + 208, 0, stretchH, mSH); //B1
+            r->RenderQuad(mBg[4], 64, mY + 64, 0, stretchH, stretchV); //Center1
+            r->RenderQuad(mBg[4], 240, mY + 64, 0, stretchH, stretchV); //Center2
+        }
+    }
+    else
+    {
+        r->FillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, ARGB(128,0,0,0));
+        r->FillRect(10, 10 + mY, SCREEN_WIDTH - 10, SCREEN_HEIGHT - 10, ARGB(128,0,0,0));
+    }
+
+    if (!mBgTex || !mIsImage)
+    {
+        float posX = 40, posY = mY + 20;
+        string title = _("Help");
+
+        WFont * f = WResourceManager::Instance()->GetWFont(Fonts::MAGIC_FONT);
+        WFont * f3 = WResourceManager::Instance()->GetWFont(Fonts::MENU_FONT); //OPTION_FONT
+        f->SetColor(ARGB(255, 55, 46, 34));
+        f3->SetColor(ARGB(255, 219, 206, 151));
+
+        f3->DrawString(title.c_str(), static_cast<float> ((SCREEN_WIDTH - 20) / 2 - title.length() * 4), posY);
+        posY += 30;
+
+        f->DrawString(_(mMessage).c_str(), posX, posY);
+        posY += 20;
+    
+        f->SetScale(1);
+    }
+
+    IconButtonsController::Render();
+
+}
+
+ATutorialMessage * ATutorialMessage::clone() const
+{
+    ATutorialMessage * copy =  NEW ATutorialMessage(*this);
+    copy->mUserCloseRequest = copy->alreadyShown();
+    return copy;
+}
+
+ATutorialMessage::~ATutorialMessage()
+{
+    if (mBgTex)
+    {
+        WResourceManager::Instance()->Release(mBgTex);
+        for (int i = 0; i < 9; i++)
+            SAFE_DELETE(mBg[i]);
+    }
 }
 
 // utility functions

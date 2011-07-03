@@ -1,5 +1,5 @@
 #If you change this file, be sure to report your changes into testsuite.txt!
-name=Classic
+hidden
 [INIT]
 mode=mtg
 [PLAYERS]

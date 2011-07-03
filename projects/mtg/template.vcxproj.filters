@@ -310,6 +310,9 @@
     <ClCompile Include="src\AIHints.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\IconButton.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\ActionElement.h">
@@ -644,6 +647,9 @@
     </ClInclude>
     <ClInclude Include="Windows\resource.h">
       <Filter>res</Filter>
+    </ClInclude>
+    <ClInclude Include="include\IconButton.h">
+      <Filter>inc</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

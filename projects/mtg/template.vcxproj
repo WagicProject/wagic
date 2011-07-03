@@ -371,6 +371,7 @@
     <ClCompile Include="src\GuiPhaseBar.cpp" />
     <ClCompile Include="src\GuiPlay.cpp" />
     <ClCompile Include="src\GuiStatic.cpp" />
+    <ClCompile Include="src\IconButton.cpp" />
     <ClCompile Include="src\ManaCost.cpp" />
     <ClCompile Include="src\ManaCostHybrid.cpp" />
     <ClCompile Include="src\MenuItem.cpp" />
@@ -489,6 +490,7 @@
     <ClInclude Include="include\GuiPhaseBar.h" />
     <ClInclude Include="include\GuiPlay.h" />
     <ClInclude Include="include\GuiStatic.h" />
+    <ClInclude Include="include\IconButton.h" />
     <ClInclude Include="include\Manacost.h" />
     <ClInclude Include="include\ManaCostHybrid.h" />
     <ClInclude Include="include\MenuItem.h" />

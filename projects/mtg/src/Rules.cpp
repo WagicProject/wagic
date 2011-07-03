@@ -588,7 +588,7 @@ int Rules::load(string _filename)
     if (_filename.size() < 5 || (_filename.find(".txt") == string::npos && _filename.find(".TXT") == string::npos))
         return 0;
 
-    if (!filename.size()) //this check is necessary because of the recursive calls (a fil loads other files)
+    if (!filename.size()) //this check is necessary because of the recursive calls (a file loads other files)
         filename = _filename;
     char c_filename[4096];
     if (fileExists(_filename.c_str()))
@@ -608,6 +608,7 @@ int Rules::load(string _filename)
     if (!file) return 0;
 
     cleanup();
+
     while (std::getline(file, s))
     {
         if (!s.size()) continue;
@@ -618,6 +619,7 @@ int Rules::load(string _filename)
         if (s.find("include ") == 0)
         {
             load(s.substr(8));
+            hidden = false; //To avoid transmitting the hidden param to children
             continue;
         }
         if (s.compare("[init]") == 0)

@@ -15,6 +15,7 @@ The Action Stack contains all information for Game Events that can be interrupte
 #include "Translate.h"
 #include "WResourceManager.h"
 #include "ModRules.h"
+#include "AllAbilities.h"
 
 #include <typeinfo>
 
@@ -822,6 +823,12 @@ int ActionStack::receiveEventPlus(WEvent * event)
 
 void ActionStack::Update(float dt)
 {
+
+    //This is a hack to avoid updating the stack while tuto messages are being shown
+    //Ideally, the tuto messages should be moved to a layer above this one
+    if (ATutorialMessage::Current)
+        return;
+
     askIfWishesToInterrupt = NULL;
     //modal = 0;
     GameObserver * game = GameObserver::GetInstance();
@@ -1080,6 +1087,11 @@ void ActionStack::Fizzle(Interruptible * action)
 
 void ActionStack::Render()
 {
+    //This is a hack to avoid rendering the stack above the tuto messages
+    //Ideally, the tuto messages should be moved to a layer above this one
+    if (ATutorialMessage::Current)
+        return;
+
     static const float kSpacer = 8;
     static const float x0 = 250;
     static const float y0 = 0;

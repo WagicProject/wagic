@@ -100,6 +100,9 @@ std::vector<std::string> parseBetween(const std::string& s, string start, string
 
 std::string wordWrap(const std::string& s, float width, int fontId);
 
+//basic hash function
+unsigned long hash_djb2(const char *str);
+
 int loadRandValues(string s);
 int filesize(const char * filename);
 int fileExists(const char * filename);

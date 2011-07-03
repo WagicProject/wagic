@@ -8,46 +8,9 @@
 #include "MTGDefinitions.h"
 #include <JRenderer.h>
 #include <math.h>
+#include "utils.h"
 
 vector<string> Task::sAIDeckNames;
-
-/*---------------- Utils -----------------*/
-// TODO: Move to dedicated file
-
-//!! Copypaste from GameStateDeckViewer.cpp StringExplode. Move and #include here and there
-void ExplodeStr(string str, string separator, vector<string>* results)
-{
-    int found;
-    results->clear();
-    found = str.find_first_of(separator);
-    while (found != (int) string::npos)
-    {
-        if (found > 0)
-        {
-            results->push_back(str.substr(0, found));
-        }
-        else
-        {
-            results->push_back(" ");
-        }
-        str = str.substr(found + 1);
-        found = str.find_first_of(separator);
-    }
-    if (str.length() > 0)
-    {
-        results->push_back(str);
-    }
-}
-
-string ImplodeStr(string separator, vector<string> strs)
-{
-    string result = "";
-    for (vector<string>::iterator it = strs.begin(); it != strs.end(); it++)
-    {
-        result += (it == strs.begin() ? "" : separator) + (*it);
-    }
-    return result;
-}
 
 /*---------------- Task -----------------*/
 
@@ -80,7 +43,7 @@ string Task::toString()
 {
     storeCommonAttribs();
     storeCustomAttribs();
-    return ImplodeStr(ITEM_SEPARATOR, persistentAttribs);
+    return join(persistentAttribs, ITEM_SEPARATOR);
 }
 
 // Store basic attributes to vector, for saving
@@ -226,12 +189,12 @@ string Task::getAIDeckName(int id)
 // End of AI deck buffering code
 
 // Each child class has to be added to the switch in this function (clumsy..)
-Task* Task::createFromStr(string params, bool rand)
+Task* Task::createFromStr(const string params, bool rand)
 {
     vector<string> exploded;
     Task *result;
 
-    ExplodeStr(params, ITEM_SEPARATOR, &exploded);
+    split(params, ITEM_SEPARATOR[0], exploded);
 
     switch (exploded[0][0])
     {

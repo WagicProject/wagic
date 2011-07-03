@@ -18,6 +18,7 @@
 #include "ThisDescriptor.h"
 #include <JGui.h>
 #include <hge/hgeparticle.h>
+#include "IconButton.h"
 
 #include <map>
 using std::map;
@@ -829,6 +830,38 @@ public:
         return a;
     }
 };
+
+
+//Tutorial Messaging
+class ATutorialMessage: public MTGAbility, public IconButtonsController
+{
+public:
+    string mMessage;
+    float mElapsed, mSH, mSW;
+    JTexture * mBgTex;
+    JQuad * mBg[9];
+    bool mUserCloseRequest, mDontShow;
+    bool mIsImage;
+
+    ATutorialMessage(MTGCardInstance * source, string message);
+
+    void Update(float dt);
+    bool CheckUserInput(JButton key);
+    void Render();
+    string getOptionName();
+    bool alreadyShown();
+
+    ATutorialMessage * clone() const;
+    ~ATutorialMessage();
+
+    //JGuiListener Implementation
+    void ButtonPressed(int controllerId, int controlId);
+
+    static ATutorialMessage * Current;
+
+};
+
+
 //counters
 class AACounter: public ActivatedAbility
 {

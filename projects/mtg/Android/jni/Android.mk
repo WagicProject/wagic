@@ -80,6 +80,7 @@ LOCAL_SRC_FILES := $(SDL_PATH)/src/main/android/SDL_android_main.cpp \
         $(MTG_PATH)/src/GuiPhaseBar.cpp \
         $(MTG_PATH)/src/GuiPlay.cpp \
         $(MTG_PATH)/src/GuiStatic.cpp \
+		$(MTG_PATH)/src/IconButton.cpp \
         $(MTG_PATH)/src/ManaCost.cpp \
         $(MTG_PATH)/src/ManaCostHybrid.cpp \
         $(MTG_PATH)/src/MenuItem.cpp \

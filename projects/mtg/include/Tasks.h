@@ -52,7 +52,7 @@ public:
 
     Task(char _type = ' ');
 
-    static Task* createFromStr(string params, bool rand = false);
+    static Task* createFromStr(const string params, bool rand = false);
     virtual string toString();
     string getDesc();
     virtual string createDesc() = 0;
