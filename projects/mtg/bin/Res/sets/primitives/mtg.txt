@@ -705,7 +705,7 @@ type=Enchantment
 [card]
 name=Afterlife
 target=creature
-auto=bury && targetcontroller token(Spirit,Creature Spirit,1/1,white,flying)
+auto=bury && token(Spirit,Creature Spirit,1/1,white,flying) targetcontroller
 text=Destroy target creature. It can't be regenerated. Its controller puts a 1/1 white Spirit creature token with flying onto the battlefield.
 mana={2}{W}
 type=Instant
@@ -13441,7 +13441,7 @@ name=Crovax the Cursed
 auto=counter(1/1,4)
 auto=upcost[{S(creature|myBattlefield)}{C(1/1,1)}] counter(1/1,-1)
 auto={B}:flying
-text=Other white creatures get +1/+1. -- Nonwhite creatures get -1/-1. -- Pay 2 life: Return Crovax, Ascendant Hero to its owner's hand.
+text=Crovax the Cursed enters the battlefield with four +1/+1 counters on it. -- At the beginning of your upkeep, you may sacrifice a creature. If you do, put a +1/+1 counter on Crovax. If you don't, remove a +1/+1 counter from Crovax. -- {B}: Crovax gains flying until end of turn.
 mana={2}{B}{B}
 type=Legendary Creature
 subtype=Vampire
@@ -16184,7 +16184,7 @@ type=Artifact
 [/card]
 [card]
 name=Diamond Valley
-auto={T}:target(creature) dynamicability<!mytgt toughnesslifegain srccontroller!> sacrifice
+auto={T}:target(creature|myBattlefield) dynamicability<!mytgt toughnesslifegain srccontroller!> sacrifice
 text={T}, Sacrifice a creature: You gain life equal to the sacrificed creature's toughness.
 type=Land
 [/card]
@@ -21037,7 +21037,7 @@ toughness=3
 [card]
 name=Faceless Devourer
 abilities=shadow
-auto=(blink)forsrc target(creature[shadow]|battlefield)
+auto=(blink)forsrc target(other creature[shadow]|battlefield)
 text=Shadow (This creature can block or be blocked by only creatures with shadow.) -- When Faceless Devourer enters the battlefield, exile another target creature with shadow. -- When Faceless Devourer leaves the battlefield, return the exiled card to the battlefield under its owner's control.
 mana={2}{B}
 type=Creature
@@ -62445,7 +62445,7 @@ auto=counter(1/1,2)
 auto=@movedto(creature|battlefield):may this(counter{1/1}) all(trigger) counter(1/1) && this(counter{1/1})  counter(1/1,-1)
 auto={1}{G}:regenerate target(creature[counter{1/1.1}])
 text=Graft 2 (This creature enters the battlefield with two +1/+1 counters on it. Whenever another creature enters the battlefield, you may move a +1/+1 counter from this creature onto it.) -- {1}{G}: Regenerate target creature with a +1/+1 counter on it.
-mana={G}
+mana={3}{G}
 type=Creature
 subtype=Human Mutant
 power=0
@@ -64507,7 +64507,7 @@ toughness=1
 [/card]
 [card]
 name=Sunscape Familiar
-abilities=flying
+abilities=defender
 auto=lord(*[green;blue]|myhand) altercost(colorless,-1)
 text=Defender (This creature can't attack.) -- Green spells and blue spells you cast cost {1} less to cast.
 mana={1}{W}
@@ -73094,7 +73094,7 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-name=Vow of Lightining
+name=Vow of Lightning
 target=creature
 auto=2/2
 auto=first strike
