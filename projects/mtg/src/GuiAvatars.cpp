@@ -115,23 +115,6 @@ bool GuiAvatars::CheckUserInput(JButton key)
     return false;
 }
 
-bool GuiAvatars::CheckUserInput(int x, int y)
-{
-    //  if (self->CheckUserInput(key)) return true;
-    //  if (opponent->CheckUserInput(key)) return true;
-    if (selfGraveyard->CheckUserInput(x, y))
-        return true;
-    if (opponentGraveyard->CheckUserInput(x, y))
-        return true;
-    if (opponentHand->CheckUserInput(x, y))
-        return true;
-    if (selfLibrary->CheckUserInput(x, y))
-        return true;
-    if (opponentLibrary->CheckUserInput(x, y))
-        return true;
-    return false;
-}
-
 void GuiAvatars::Update(float dt)
 {
     self->Update(dt);

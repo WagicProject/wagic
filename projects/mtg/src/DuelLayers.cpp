@@ -66,34 +66,36 @@ void DuelLayers::CheckUserInput(int isAI)
 {
     JButton key;
     int x, y;
-    while ((key = JGE::GetInstance()->ReadButton()))
+    while ((key = JGE::GetInstance()->ReadButton()) || JGE::GetInstance()->GetLeftClickCoordinates(x, y))
     {
-        if ((!isAI) && (0 != key))
+        if ((!isAI) && ((0 != key) ||  JGE::GetInstance()->GetLeftClickCoordinates(x, y)))
         {
-            if (stack->CheckUserInput(key))
+            if (stack->CheckUserInput(key)) {
+                JGE::GetInstance()->LeftClickedProcessed();
                 break;
-            if (combat->CheckUserInput(key))
+            }
+            if (combat->CheckUserInput(key)) {
+                JGE::GetInstance()->LeftClickedProcessed();
                 break;
-            if (avatars->CheckUserInput(key))
+            }
+            if (avatars->CheckUserInput(key)) {
+                JGE::GetInstance()->LeftClickedProcessed();
                 break; //avatars need to check their input before action (CTRL_CROSS)
-            if (action->CheckUserInput(key))
+            }
+            if (action->CheckUserInput(key)) {
+                JGE::GetInstance()->LeftClickedProcessed();
                 break;
-            if (hand->CheckUserInput(key))
+            }
+            if (hand->CheckUserInput(key)) {
+                JGE::GetInstance()->LeftClickedProcessed();
                 break;
-            if (CardSelectorSingleton::Instance()->CheckUserInput(key))
+            }
+            if (CardSelectorSingleton::Instance()->CheckUserInput(key)) {
+                JGE::GetInstance()->LeftClickedProcessed();
                 break;
+            }
         }
-    }
-    if ((!isAI) && JGE::GetInstance()->GetLeftClickCoordinates(x, y))
-    {
-        if (avatars->CheckUserInput(x, y))
-        {
-            JGE::GetInstance()->LeftClickedProcessed();
-        }
-        else if (CardSelectorSingleton::Instance()->CheckUserInput(x, y))
-        {
-            JGE::GetInstance()->LeftClickedProcessed();
-        }
+        JGE::GetInstance()->LeftClickedProcessed();
     }
 }
 

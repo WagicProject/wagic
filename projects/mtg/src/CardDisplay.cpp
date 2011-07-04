@@ -95,59 +95,6 @@ void CardDisplay::Update(float dt)
     if (update) init(zone);
 }
 
-bool CardDisplay::CheckUserInput(int x, int y)
-{
-    bool result = false;
-    unsigned int distance2;
-    unsigned int minDistance2 = -1;
-    int n = mCurr;
-    JButton key;
-    if (JGE::GetInstance()->GetLeftClickCoordinates(x, y))
-    {
-        for (size_t i = 0; i < mObjects.size(); i++)
-        {
-            float top, left;
-            if (mObjects[i]->getTopLeft(top, left))
-            {
-                distance2 = static_cast<unsigned int>((top - y) * (top - y) + (left - x) * (left - x));
-                if (distance2 < minDistance2)
-                {
-                    minDistance2 = distance2;
-                    n = i;
-                }
-            }
-        }
-
-        if (n < mCurr)
-            key = JGE_BTN_LEFT;
-        else
-            key = JGE_BTN_RIGHT;
-
-        if (n < start_item)
-        {
-            rotateLeft();
-        }
-        else if (n >= (int)(mObjects.size()) && mObjects.size())
-        {
-            n = mObjects.size() - 1;
-        }
-        if (n >= start_item + nb_displayed_items)
-        {
-            rotateRight();
-        }
-
-        if (n != mCurr && mObjects[mCurr] != NULL && mObjects[mCurr]->Leaving(key))
-        {
-            mCurr = n;
-            mObjects[mCurr]->Entering();
-            result = true;
-        }
-        JGE::GetInstance()->LeftClickedProcessed();
-    }
-
-    return result;
-}
-
 bool CardDisplay::CheckUserInput(JButton key)
 {
     if (JGE_BTN_SEC == key || JGE_BTN_PRI == key || JGE_BTN_UP == key || JGE_BTN_DOWN == key)
@@ -220,11 +167,62 @@ bool CardDisplay::CheckUserInput(JButton key)
             mCurr = n;
             mObjects[mCurr]->Entering();
         }
-    }
         return true;
-    default:
-        ;
     }
+    default:
+    {
+      bool result = false;
+      unsigned int distance2;
+      unsigned int minDistance2 = -1;
+      int n = mCurr;
+      int x1,y1;
+      JButton key;
+      if (JGE::GetInstance()->GetLeftClickCoordinates(x1, y1))
+      {
+          for (size_t i = 0; i < mObjects.size(); i++)
+          {
+              float top, left;
+              if (mObjects[i]->getTopLeft(top, left))
+              {
+                  distance2 = static_cast<unsigned int>((top - y1) * (top - y1) + (left - x1) * (left - x1));
+                  if (distance2 < minDistance2)
+                  {
+                      minDistance2 = distance2;
+                      n = i;
+                  }
+              }
+          }
+
+          if (n < mCurr)
+              key = JGE_BTN_LEFT;
+          else
+              key = JGE_BTN_RIGHT;
+
+          if (n < start_item)
+          {
+              rotateLeft();
+          }
+          else if (n >= (int)(mObjects.size()) && mObjects.size())
+          {
+              n = mObjects.size() - 1;
+          }
+          if (n >= start_item + nb_displayed_items)
+          {
+              rotateRight();
+          }
+
+          if (n != mCurr && mObjects[mCurr] != NULL && mObjects[mCurr]->Leaving(key))
+          {
+              mCurr = n;
+              mObjects[mCurr]->Entering();
+              result = true;
+          }
+          JGE::GetInstance()->LeftClickedProcessed();
+      }
+      return result;
+    }
+    }
+
     return false;
 }
 

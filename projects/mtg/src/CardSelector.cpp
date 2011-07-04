@@ -214,7 +214,17 @@ bool CardSelector::CheckUserInput(JButton key)
             options[Options::DISABLECARDS].number = 0;
         return true;
     default:
-        return false;
+      {
+        int x,y;
+        if(JGE::GetInstance()->GetLeftClickCoordinates(x, y))
+        {
+          active = closest<True> (cards, limitor, static_cast<float> (x), static_cast<float> (y));
+        }
+        else
+        {
+          return false;
+        }
+      }
     }
     if (active != oldactive)
     {

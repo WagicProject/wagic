@@ -29,7 +29,6 @@ public:
     int receiveEventPlus(WEvent*);
     int receiveEventMinus(WEvent*);
     bool CheckUserInput(JButton key);
-    bool CheckUserInput(int x, int y);
     float LeftBoundarySelf();
 };
 
