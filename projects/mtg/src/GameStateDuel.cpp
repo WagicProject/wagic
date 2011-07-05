@@ -125,11 +125,11 @@ void GameStateDuel::Start()
             vector<DeckMetaData *> playerDeckList = BuildDeckList(options.profileFile());
             int nbDecks = playerDeckList.size();
 
-            if (nbDecks > 1)
-            {
+            if (nbDecks)
                 decksneeded = 0;
+            
+             if (nbDecks > 1)   
                 deckmenu->Add(MENUITEM_RANDOM_PLAYER, "Random", "Play with a random deck.");
-            }
 
             renderDeckMenu(deckmenu, playerDeckList);
             // save the changes to the player deck list maintained in DeckManager

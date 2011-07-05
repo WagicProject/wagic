@@ -123,8 +123,14 @@ void DeckStats::load(const std::string& filename)
         int deckId = atoi(filename.substr(filename.find("_deck") + 5, filename.find(".txt")).c_str());
         char buffer[512];
         sprintf(buffer, "deck%i.txt", deckId);
-        string playerDeckFilePath= options.profileFile( buffer);
+        string playerDeckFilePath = options.profileFile( buffer);
         DeckMetaData *playerDeckMetaData = DeckManager::GetInstance()->getDeckMetaDataByFilename( playerDeckFilePath, false);
+        if (!playerDeckMetaData)
+        {
+            DebugTrace("DeckStats.cpp:CONSISTENCY ERROR: DeckStats are set, but no deck meta data");
+            file.close();
+            return;
+        }
         // check if this player deck has already been profiled for manacolors
         char next = file.peek();
         string manaColorIndex = "";
