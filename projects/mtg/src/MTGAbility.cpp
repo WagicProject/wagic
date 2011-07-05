@@ -481,15 +481,15 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string magicText, int 
 
     //Card unTapped
     if (TargetChooser *tc = parseSimpleTC(s,"untapped", card))
-        return NEW TrCardTapped(id, card, tc, false);
+        return NEW TrCardTapped(id, card, tc, false,once);
 
     //Card Tapped
     if (TargetChooser *tc = parseSimpleTC(s,"tapped", card))
-        return NEW TrCardTapped(id, card, tc, true);
+        return NEW TrCardTapped(id, card, tc, true,once);
 
     //Card Tapped for mana
     if (TargetChooser *tc = parseSimpleTC(s,"tappedformana", card))
-        return NEW TrCardTappedformana(id, card, tc, true);
+        return NEW TrCardTappedformana(id, card, tc, true,once);
     
 //CombatTrigger
     //Card card attacked and is blocked
@@ -531,63 +531,63 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string magicText, int 
 
     //Card card is drawn
     if (TargetChooser * tc = parseSimpleTC(s, "drawn", card))
-        return NEW TrcardDrawn(id, card, tc);
+        return NEW TrcardDrawn(id, card, tc,once);
 
     //Card is sacrificed
     if (TargetChooser * tc = parseSimpleTC(s, "sacrificed", card))
-        return NEW TrCardSacrificed(id, card, tc);
+        return NEW TrCardSacrificed(id, card, tc,once);
 
     //Card is Discarded
     if (TargetChooser * tc = parseSimpleTC(s, "discarded", card))
-        return NEW TrCardDiscarded(id, card, tc);
+        return NEW TrCardDiscarded(id, card, tc,once);
 
     //Card Damaging non combat
     if (TargetChooser * tc = parseSimpleTC(s, "noncombatdamaged", card))
     {
         TargetChooser *fromTc = parseSimpleTC(s, "from", card);
-        return NEW TrDamaged(id, card, tc, fromTc, 2);
+        return NEW TrDamaged(id, card, tc, fromTc, 2,once);
     }
 
     //Card Damaging combat
     if (TargetChooser * tc = parseSimpleTC(s, "combatdamaged", card))
     {
         TargetChooser *fromTc = parseSimpleTC(s, "from", card);
-        return NEW TrDamaged(id, card, tc, fromTc, 1,sourceUntapped,limitOnceATurn);
+        return NEW TrDamaged(id, card, tc, fromTc, 1,sourceUntapped,limitOnceATurn,once);
     }
 
     //Card Damaging
     if (TargetChooser * tc = parseSimpleTC(s, "damaged", card))
     {
         TargetChooser *fromTc = parseSimpleTC(s, "from", card);
-        return NEW TrDamaged(id, card, tc, fromTc, 0,sourceUntapped,limitOnceATurn);
+        return NEW TrDamaged(id, card, tc, fromTc, 0,sourceUntapped,limitOnceATurn,once);
     }
 
     //Lifed
     if (TargetChooser * tc = parseSimpleTC(s, "lifed", card))
     {
         TargetChooser *fromTc = parseSimpleTC(s, "from", card);
-        return NEW TrLifeGained(id, card, tc, fromTc, 0,sourceUntapped);
+        return NEW TrLifeGained(id, card, tc, fromTc, 0,sourceUntapped,once);
     }
 
     //Life Loss
     if (TargetChooser * tc = parseSimpleTC(s, "lifeloss", card))
     {
         TargetChooser *fromTc = parseSimpleTC(s, "from", card);
-        return NEW TrLifeGained(id, card, tc, fromTc,1,sourceUntapped);
+        return NEW TrLifeGained(id, card, tc, fromTc,1,sourceUntapped,once);
     }
 
     //Card Damaged and killed by a creature this turn
     if (TargetChooser * tc = parseSimpleTC(s, "vampired", card))
     {
         TargetChooser *fromTc = parseSimpleTC(s, "from", card);
-        return NEW TrVampired(id, card, tc, fromTc);
+        return NEW TrVampired(id, card, tc, fromTc,once);
     }
 
     //when card becomes the target of a spell or ability
     if (TargetChooser * tc = parseSimpleTC(s, "targeted", card))
     {
         TargetChooser *fromTc = parseSimpleTC(s, "from", card);
-        return NEW TrTargeted(id, card, tc, fromTc, 0);
+        return NEW TrTargeted(id, card, tc, fromTc, 0,once);
     }
     
     int who = 0;
@@ -607,7 +607,7 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string magicText, int 
             found = s.find(Constants::MTGPhaseCodeNames[i]);
             if (found != string::npos)
             {
-                return NEW TriggerNextPhase(id, card, target, i, who,sourceUntapped);
+                return NEW TriggerNextPhase(id, card, target, i, who,sourceUntapped,once);
             }
         }
     }
@@ -621,7 +621,7 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string magicText, int 
             found = s.find(Constants::MTGPhaseCodeNames[i]);
             if (found != string::npos)
             {
-                return NEW TriggerAtPhase(id, card, target, i, who,sourceUntapped,sourceTap,lifelost,lifeamount);
+                return NEW TriggerAtPhase(id, card, target, i, who,sourceUntapped,sourceTap,lifelost,lifeamount,once);
             }
         }
     }
@@ -3901,9 +3901,10 @@ ostream& ListMaintainerAbility::toString(ostream& out) const
     return MTGAbility::toString(out) << ")";
 }
 
-TriggerAtPhase::TriggerAtPhase(int id, MTGCardInstance * source, Targetable * target, int _phaseId, int who, bool sourceUntapped, bool sourceTap,bool lifelost,int lifeamount) :
-    TriggeredAbility(id, source, target), phaseId(_phaseId), who(who), sourceUntapped(sourceUntapped), sourceTap(sourceTap),lifelost(lifelost),lifeamount(lifeamount)
+TriggerAtPhase::TriggerAtPhase(int id, MTGCardInstance * source, Targetable * target, int _phaseId, int who, bool sourceUntapped, bool sourceTap,bool lifelost,int lifeamount,bool once) :
+    TriggeredAbility(id, source, target), phaseId(_phaseId), who(who), sourceUntapped(sourceUntapped), sourceTap(sourceTap),lifelost(lifelost),lifeamount(lifeamount),once(once)
 {
+    activeTrigger = true;
     GameObserver * g = GameObserver::GetInstance();
     if (g)
     {
@@ -3914,6 +3915,7 @@ TriggerAtPhase::TriggerAtPhase(int id, MTGCardInstance * source, Targetable * ta
 
     int TriggerAtPhase::trigger()
     {
+        if(!activeTrigger) return 0;
         if(source->isPhased) return 0;
         if(lifelost)
         {
@@ -3959,6 +3961,8 @@ TriggerAtPhase::TriggerAtPhase(int id, MTGCardInstance * source, Targetable * ta
             break;
         }
     }
+        if(once && activeTrigger)
+            activeTrigger = false;
     return result;
 }
 
@@ -3969,10 +3973,11 @@ TriggerAtPhase* TriggerAtPhase::clone() const
     return a;
 }
 
-TriggerNextPhase::TriggerNextPhase(int id, MTGCardInstance * source, Targetable * target, int _phaseId, int who,bool sourceUntapped, bool sourceTap) :
-    TriggerAtPhase(id, source, target, _phaseId, who, sourceUntapped, sourceTap)
+TriggerNextPhase::TriggerNextPhase(int id, MTGCardInstance * source, Targetable * target, int _phaseId, int who,bool sourceUntapped, bool sourceTap,bool once) :
+    TriggerAtPhase(id, source, target, _phaseId, who, sourceUntapped, sourceTap, once)
 {
     destroyActivated = 0;
+    activeTrigger = true;
 }
 
 int TriggerNextPhase::testDestroy()

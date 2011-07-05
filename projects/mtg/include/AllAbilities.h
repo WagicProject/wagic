@@ -278,14 +278,13 @@ public:
 
     int triggerOnEvent(WEvent * event)
     {
+        if(!activeTrigger) return 0;
         if(source->isPhased) return 0;
         WEventZoneChange * e = dynamic_cast<WEventZoneChange*> (event);
         if (!e) return 0;
         if(sourceUntapped && source->isTapped() == 1)
             return 0;
         if(isSuspended && !source->suspended)
-            return 0;
-        if(activeTrigger == false)
             return 0;
         if (!toTcZone->targetsZone(e->to)) return 0;
         if (!toTcCard->canTarget(e->card)) return 0;
@@ -325,9 +324,11 @@ class TrCardTapped: public TriggeredAbility
 public:
     TargetChooser * tc;
     bool tap;
-    TrCardTapped(int id, MTGCardInstance * source, TargetChooser * tc, bool tap = true) :
-        TriggeredAbility(id, source), tc(tc), tap(tap)
+    bool once,activeTrigger;
+    TrCardTapped(int id, MTGCardInstance * source, TargetChooser * tc, bool tap = true, bool once = false) :
+        TriggeredAbility(id, source), tc(tc), tap(tap), once(once)
     {
+        activeTrigger = true;
     }
 
     int resolve()
@@ -337,12 +338,15 @@ public:
 
     int triggerOnEvent(WEvent * event)
     {
+        if(!activeTrigger) return 0;
         if(source->isPhased) return 0;
         WEventCardTap * e = dynamic_cast<WEventCardTap *> (event);
         if (!e) return 0;
         if (e->before == e->after) return 0;
         if (e->after != tap) return 0;
         if (!tc->canTarget(e->card)) return 0;
+        if (once && activeTrigger)
+            activeTrigger = false;
         return 1;
     }
 
@@ -364,9 +368,11 @@ class TrCardTappedformana: public TriggeredAbility
 public:
     TargetChooser * tc;
     bool tap;
-    TrCardTappedformana(int id, MTGCardInstance * source, TargetChooser * tc, bool tap = true) :
-        TriggeredAbility(id, source), tc(tc), tap(tap)
+    bool once,activeTrigger;
+    TrCardTappedformana(int id, MTGCardInstance * source, TargetChooser * tc, bool tap = true, bool once = false) :
+        TriggeredAbility(id, source), tc(tc), tap(tap), once(once)
     {
+        activeTrigger = true;
     }
 
     int resolve()
@@ -376,12 +382,15 @@ public:
 
     int triggerOnEvent(WEvent * event)
     {
+        if(!activeTrigger) return 0;
         if(source->isPhased) return 0;
         WEventCardTappedForMana * e = dynamic_cast<WEventCardTappedForMana *> (event);
         if (!e) return 0;
         if (e->before == e->after) return 0;
         if (e->after != tap) return 0;
         if (!tc->canTarget(e->card)) return 0;
+        if (once && activeTrigger)
+            activeTrigger = false;
         return 1;
     }
 
@@ -539,9 +548,11 @@ class TrcardDrawn: public TriggeredAbility
 {
 public:
     TargetChooser * tc;
-    TrcardDrawn(int id, MTGCardInstance * source, TargetChooser * tc) :
-        TriggeredAbility(id, source), tc(tc)
+    bool once,activeTrigger;
+    TrcardDrawn(int id, MTGCardInstance * source, TargetChooser * tc,bool once = false) :
+        TriggeredAbility(id, source), tc(tc), once(once)
     {
+        activeTrigger = true;
     }
 
     int resolve()
@@ -551,10 +562,13 @@ public:
 
     int triggerOnEvent(WEvent * event)
     {
+        if(!activeTrigger) return 0;
         if(source->isPhased) return 0;
         WEventcardDraw * e = dynamic_cast<WEventcardDraw *> (event);
         if (!e) return 0;
         if (!tc->canTarget(e->player)) return 0;
+        if (once && activeTrigger)
+            activeTrigger = false;
         return 1;
     }
 
@@ -575,9 +589,11 @@ class TrCardSacrificed: public TriggeredAbility
 {
 public:
     TargetChooser * tc;
-    TrCardSacrificed(int id, MTGCardInstance * source, TargetChooser * tc) :
-        TriggeredAbility(id, source), tc(tc)
+    bool once,activeTrigger;
+    TrCardSacrificed(int id, MTGCardInstance * source, TargetChooser * tc,bool once = false) :
+        TriggeredAbility(id, source), tc(tc), once(once)
     {
+        activeTrigger = true;
     }
 
     int resolve()
@@ -587,10 +603,13 @@ public:
 
     int triggerOnEvent(WEvent * event)
     {
+        if(!activeTrigger) return 0;
         if(source->isPhased) return 0;
         WEventCardSacrifice * e = dynamic_cast<WEventCardSacrifice *> (event);
         if (!e) return 0;
         if (!tc->canTarget(e->card)) return 0;
+        if (once && activeTrigger)
+            activeTrigger = false;
         return 1;
     }
 
@@ -611,9 +630,11 @@ class TrCardDiscarded: public TriggeredAbility
 {
 public:
     TargetChooser * tc;
-    TrCardDiscarded(int id, MTGCardInstance * source, TargetChooser * tc) :
+    bool once,activeTrigger;
+    TrCardDiscarded(int id, MTGCardInstance * source, TargetChooser * tc,bool once = false) :
         TriggeredAbility(id, source), tc(tc)
     {
+        activeTrigger = true;
     }
 
     int resolve()
@@ -622,10 +643,13 @@ public:
     }
     int triggerOnEvent(WEvent * event)
     {
+        if(!activeTrigger) return 0;
         if(source->isPhased) return 0;
         WEventCardDiscard * e = dynamic_cast<WEventCardDiscard *> (event);
         if (!e) return 0;
         if (!tc->canTarget(e->card)) return 0;
+        if (once && activeTrigger)
+            activeTrigger = false;
         return 1;
     }
     ~TrCardDiscarded()
@@ -649,10 +673,12 @@ public:
     bool sourceUntapped;
     bool limitOnceATurn;
     int triggeredTurn;
-    TrDamaged(int id, MTGCardInstance * source, TargetChooser * tc, TargetChooser * fromTc = NULL, int type = 0,bool sourceUntapped = false,bool limitOnceATurn = false) :
-        TriggeredAbility(id, source), tc(tc), fromTc(fromTc), type(type) , sourceUntapped(sourceUntapped),limitOnceATurn(limitOnceATurn)
+    bool once,activeTrigger;
+    TrDamaged(int id, MTGCardInstance * source, TargetChooser * tc, TargetChooser * fromTc = NULL, int type = 0,bool sourceUntapped = false,bool limitOnceATurn = false,bool once = false) :
+        TriggeredAbility(id, source), tc(tc), fromTc(fromTc), type(type) , sourceUntapped(sourceUntapped),limitOnceATurn(limitOnceATurn),once(once)
     {
     triggeredTurn = -1;
+    activeTrigger = true;
     }
 
     int resolve()
@@ -662,6 +688,7 @@ public:
 
     int triggerOnEvent(WEvent * event)
     {
+        if(!activeTrigger) return 0;
         if(source->isPhased) return 0;
         WEventDamage * e = dynamic_cast<WEventDamage *> (event);
         if (!e) return 0;
@@ -678,6 +705,8 @@ public:
         e->damage->source->thatmuch = e->damage->damage;
         this->source->thatmuch = e->damage->damage;
         triggeredTurn = g->turn;
+        if (once && activeTrigger)
+            activeTrigger = false;
         return 1;
     }
 
@@ -702,9 +731,11 @@ public:
     TargetChooser * fromTc;
     int type;//this allows damagenoncombat and combatdamage to share this trigger
     bool sourceUntapped;
-    TrLifeGained(int id, MTGCardInstance * source, TargetChooser * tc, TargetChooser * fromTc = NULL, int type = 0,bool sourceUntapped = false) :
-        TriggeredAbility(id, source), tc(tc), fromTc(fromTc), type(type) , sourceUntapped(sourceUntapped)
+    bool once,activeTrigger;
+    TrLifeGained(int id, MTGCardInstance * source, TargetChooser * tc, TargetChooser * fromTc = NULL, int type = 0,bool sourceUntapped = false,bool once = false) :
+        TriggeredAbility(id, source), tc(tc), fromTc(fromTc), type(type) , sourceUntapped(sourceUntapped), once(once)
     {
+        activeTrigger = true;
     }
 
     int resolve()
@@ -714,6 +745,7 @@ public:
 
     int triggerOnEvent(WEvent * event)
     {
+        if(!activeTrigger) return 0;
         if(source->isPhased) return 0;
         WEventLife * e = dynamic_cast<WEventLife *> (event);
         if (!e) return 0;
@@ -725,6 +757,8 @@ public:
         if (type == 0 && (e->amount < 0)) return 0;
         e->player->thatmuch = abs(e->amount);
         this->source->thatmuch = abs(e->amount);
+        if (once && activeTrigger)
+            activeTrigger = false;
         return 1;
     }
 
@@ -748,9 +782,11 @@ class TrVampired: public TriggeredAbility
 public:
     TargetChooser * tc;
     TargetChooser * fromTc;
-    TrVampired(int id, MTGCardInstance * source, TargetChooser * tc, TargetChooser * fromTc = NULL) :
-    TriggeredAbility(id, source), tc(tc), fromTc(fromTc)
+    bool once,activeTrigger;
+    TrVampired(int id, MTGCardInstance * source, TargetChooser * tc, TargetChooser * fromTc = NULL,bool once = false) :
+    TriggeredAbility(id, source), tc(tc), fromTc(fromTc), once(once)
     {
+        activeTrigger = true;
     }
 
     int resolve()
@@ -760,6 +796,7 @@ public:
 
     int triggerOnEvent(WEvent * event)
     {
+        if(!activeTrigger) return 0;
         if(source->isPhased) return 0;
         WEventVampire * vamp = dynamic_cast<WEventVampire*>(event);
         if (vamp)
@@ -771,6 +808,8 @@ public:
             //setting allzones, as we don't care since we know the preexisting condiations cover the zones.
             if(!tc->canTarget(vamp->victem))
                 return 0;
+            if (once && activeTrigger)
+                activeTrigger = false;
             return 1;
         }
         return 0;
@@ -797,9 +836,11 @@ public:
     TargetChooser * tc;
     TargetChooser * fromTc;
     int type;
-    TrTargeted(int id, MTGCardInstance * source, TargetChooser * tc, TargetChooser * fromTc = NULL, int type = 0) :
-    TriggeredAbility(id, source), tc(tc), fromTc(fromTc), type(type)
+    bool once,activeTrigger;
+    TrTargeted(int id, MTGCardInstance * source, TargetChooser * tc, TargetChooser * fromTc = NULL, int type = 0,bool once = false) :
+    TriggeredAbility(id, source), tc(tc), fromTc(fromTc), type(type), once(once)
     {
+        activeTrigger = true;
     }
 
     int resolve()
@@ -809,11 +850,14 @@ public:
 
     int triggerOnEvent(WEvent * event)
     {
+        if(!activeTrigger) return 0;
         if(source->isPhased) return 0;
         WEventTarget * e = dynamic_cast<WEventTarget *> (event);
         if (!e) return 0;
         if (!tc->canTarget(e->card)) return 0;
         if (fromTc && !fromTc->canTarget(e->source)) return 0;
+        if (once && activeTrigger)
+            activeTrigger = false;
         return 1;
     }
 

@@ -424,7 +424,8 @@ public:
     bool sourceTap;
     bool lifelost;
     int lifeamount;
-    TriggerAtPhase(int id, MTGCardInstance * source, Targetable * target,int _phaseId, int who = 0,bool sourceUntapped = false,bool sourceTap = false,bool lifelost = false, int lifeamount = 0);
+    bool once,activeTrigger;
+    TriggerAtPhase(int id, MTGCardInstance * source, Targetable * target,int _phaseId, int who = 0,bool sourceUntapped = false,bool sourceTap = false,bool lifelost = false, int lifeamount = 0, bool once = false);
     virtual int trigger();
     int resolve(){return 0;};
     virtual TriggerAtPhase* clone() const;
@@ -436,7 +437,8 @@ public:
     int destroyActivated;
     bool sourceUntapped;
     bool sourceTap;
-    TriggerNextPhase(int id, MTGCardInstance * source, Targetable * target,int _phaseId, int who = 0,bool sourceUntapped = false,bool sourceTap = false);
+    bool once,activeTrigger;
+    TriggerNextPhase(int id, MTGCardInstance * source, Targetable * target,int _phaseId, int who = 0,bool sourceUntapped = false,bool sourceTap = false,bool once = false);
     virtual TriggerNextPhase* clone() const;
     virtual int testDestroy();
 
