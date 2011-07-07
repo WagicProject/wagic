@@ -8,6 +8,9 @@
 const std::string kGenericCardID = "back";
 const std::string kGenericCardThumbnailID = "back_thumb";
 
+const std::string kGenericCard("back.jpg");
+const std::string kGenericThumbCard("back_thumb.jpg");
+
 enum ENUM_WRES_INFO
 {
     WRES_UNLOCKED = 0,      //Resource is unlocked.
@@ -74,7 +77,7 @@ public:
     virtual JQuadPtr RetrieveCard(MTGCard * card, int style = RETRIEVE_NORMAL,int submode = CACHE_NORMAL) = 0;
     virtual JSample * RetrieveSample(const string& filename, int style = RETRIEVE_NORMAL, int submode = CACHE_NORMAL) = 0;
     virtual JTexture * RetrieveTexture(const string& filename, int style = RETRIEVE_NORMAL, int submode = CACHE_NORMAL) = 0;
-    virtual JQuadPtr RetrieveQuad(const string& filename, float offX=0.0f, float offY=0.0f, float width=0.0f, float height=0.0f,  string resname="",  int style = RETRIEVE_LOCK, int submode = CACHE_NORMAL, int id = 0) = 0;
+    virtual JQuadPtr RetrieveQuad(const string& filename, float offX=0.0f, float offY=0.0f, float width=0.0f, float height=0.0f,  string resname="",  int style = RETRIEVE_NORMAL, int submode = CACHE_NORMAL, int id = 0) = 0;
     virtual JQuadPtr RetrieveTempQuad(const string& filename, int submode = CACHE_NORMAL) = 0;
     virtual hgeParticleSystemInfo * RetrievePSI(const string& filename, JQuad * texture, int style = RETRIEVE_NORMAL, int submode = CACHE_NORMAL) = 0;
     virtual int RetrieveError() = 0;

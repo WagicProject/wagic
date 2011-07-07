@@ -184,7 +184,7 @@ void DeckMenu::initMenuItems()
     mSelectionTargetY = selectionY = sY;
 
     //Grab a texture in VRAM.
-    pspIconsTexture = WResourceManager::Instance()->RetrieveTexture("iconspsp.png", RETRIEVE_LOCK);
+    pspIconsTexture = WResourceManager::Instance()->RetrieveTexture("iconspsp.png", RETRIEVE_MANAGE);
 
     char buf[512];
     for (int i = 0; i < 8; i++)

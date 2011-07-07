@@ -39,6 +39,9 @@ void WResource::deadbolt()
 void WResource::lock()
 {
     if (locks < WRES_MAX_LOCK) locks++;
+    // watch out for this - if the lock count increases beyond a reasonable threshold, 
+    // someone is probably not releasing the texture correctly
+    assert(locks < 50);
 }
 
 void WResource::unlock(bool force)
@@ -97,7 +100,19 @@ JQuadPtr WCachedTexture::GetQuad(float offX, float offY, float width, float heig
     if (width == 0.0f || width > static_cast<float> (texture->mWidth)) width = static_cast<float> (texture->mWidth);
     if (height == 0.0f || height > static_cast<float> (texture->mHeight)) height = static_cast<float> (texture->mHeight);
 
-	std::map<string, JQuadPtr>::iterator iter = mTrackedQuads.find(resname);
+    // If we're fetching a card resource, but it's not available yet, we'll be attempting to get the Quad from the temporary back image.
+    // If that's the case, don't stash a separate tracked quad entry for each card name in the the Back/BackThumbnail's resource
+    string resource(resname);
+    if (mFilename == kGenericCard)
+    {
+        resource = kGenericCardID;
+    }
+    else if (mFilename == kGenericThumbCard)
+    {
+        resource = kGenericCardThumbnailID;
+    }
+
+	std::map<string, JQuadPtr>::iterator iter = mTrackedQuads.find(resource);
 	if (iter != mTrackedQuads.end())
 		return iter->second;
 
@@ -105,7 +120,7 @@ JQuadPtr WCachedTexture::GetQuad(float offX, float offY, float width, float heig
 
     //Update JQ's values to what we called this with.
     quad->SetTextureRect(offX, offY, width, height);
-	mTrackedQuads.insert(std::pair<string, JQuadPtr>(resname, quad));
+	mTrackedQuads.insert(std::pair<string, JQuadPtr>(resource, quad));
     return quad;
 
 }

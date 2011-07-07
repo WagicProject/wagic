@@ -23,9 +23,6 @@ namespace
     const std::string kExtension_gbk(".gbk");
     const std::string kExtension_font(".font");
 
-    const std::string kGenericCard("back.jpg");
-    const std::string kGenericThumbCard("back_thumb.jpg");
-
     // mutex meant for the cache map
     boost::mutex sCacheMutex;
     // mutex meant to protect against unthread-safe calls into JFileSystem, etc.
