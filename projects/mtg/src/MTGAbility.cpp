@@ -105,68 +105,51 @@ int MTGAbility::parseCastRestrictions(MTGCardInstance * card,Player * player,str
             if (cPhase != checkPhaseBased - BEFORE_BEGIN + Constants::MTG_PHASE_BEFORE_BEGIN)
                 return 0;
         }
-        size_t typeRelated = restriction[i].find("typemin:");
+        
+        size_t typeRelated = restriction[i].find("type(");
         size_t check = NULL;
         if(typeRelated != string::npos)
         {
-            bool less = false;
-            bool more = false;
-            int mytypemin = 0;
-            int opponenttypemin = 0;
-            int min = 0;
-            int opponentmin = 0;
-            string type = "*";
-            string opponenttype = "*";
-
-            check = restriction[i].find("mytypemin:");
-            if( check != string::npos)
+            int firstAmount = 0;
+            int secondAmount = 0;
+            string type;
+            vector<string> comparasion = split(restriction[i],'~');
+            if(comparasion.size() != 3)
+                return 0;//it was incorrectly coded, user should proofread card code.
+            bool less = comparasion[1].find("lessthan") != string::npos;
+            bool more = comparasion[1].find("morethan") != string::npos;
+            bool equal = comparasion[1].find("equalto") != string::npos;
+            for(unsigned int i = 0; i < comparasion.size(); i++)
             {
-                size_t start = restriction[i].find(":", check);
-                size_t end = restriction[i].find(" ", check);
-                size_t lesser = restriction[i].find(":less",check);
-                size_t morer = restriction[i].find(":more",check);
-                if(lesser != string::npos)
+                check = comparasion[i].find("type(");
+                if( check != string::npos)
                 {
-                    less = true;
+                    size_t start = 0;
+                    size_t end = 0;
+                    size_t found = comparasion[i].find("type(");
+                    if (found != string::npos)
+                    {
+                        end = comparasion[i].find(")", found);
+                        type = comparasion[i].substr(found + 5, end - found - 5).c_str();
+                        TargetChooserFactory tcf;
+                        TargetChooser * ttc = tcf.createTargetChooser(type,card);
+                        if(i == 2)
+                            secondAmount = ttc->countValidTargets();
+                        else
+                            firstAmount = ttc->countValidTargets();
+                        SAFE_DELETE(ttc);
+                    }
                 }
-                else if(morer != string::npos)
-                {
-                    more = true;
-                }
-                else
-                {
-                    min = atoi(restriction[i].substr(start + 1, end - start - 1).c_str());
-                }
-                size_t found = restriction[i].find("type(");
-                if (found != string::npos)
-                {
-                    end = restriction[i].find(")", found);
-                    type = restriction[i].substr(found + 5, end - found - 5).c_str();
-                }
-                mytypemin = card->controller()->game->inPlay->countByType(type.c_str());
-                if(mytypemin < min && less == false && more == false)
-                    return 0;
+                else if (i == 2)
+                    secondAmount = atoi(comparasion[2].c_str());
             }
-            check = restriction[i].find("opponenttypemin:");
-            if( check != string::npos)
-            {
-                size_t start = restriction[i].find(":", check);
-                size_t end = restriction[i].find(" ", check);
-                opponentmin = atoi(restriction[i].substr(start + 1, end - start - 1).c_str());
-
-                size_t found = restriction[i].find("opponenttype(");
-                if (found != string::npos)
-                {
-                    end = restriction[i].find(")", found);
-                    opponenttype = restriction[i].substr(found + 13, end - found - 13).c_str();
-                }
-                opponenttypemin = card->controller()->opponent()->game->inPlay->countByType(opponenttype.c_str());
-                if(opponenttypemin < opponentmin && less == false && more == false)
-                    return 0;
-            }
-            if(less  && more == false && opponenttypemin <= mytypemin)
+            if(firstAmount < secondAmount && !less && !more && !equal)
                 return 0;
-            if(less == false && more  && opponenttypemin >= mytypemin)
+            if(equal && firstAmount != secondAmount)
+                return 0;
+            if(less && firstAmount >= secondAmount)
+                return 0;
+            if(more  && firstAmount <= secondAmount)
                 return 0;
         }
         check = restriction[i].find("turn:");

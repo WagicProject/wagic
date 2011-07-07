@@ -43,6 +43,7 @@ public:
 
     int maxtargets; //Set to -1 for "unlimited"
     bool validTargetsExist();
+    int countValidTargets();
     virtual int setAllZones()
     {
         return 0;

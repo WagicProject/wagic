@@ -832,6 +832,28 @@ bool TargetChooser::validTargetsExist()
     return false;
 }
 
+int TargetChooser::countValidTargets()
+{
+    int result = 0;
+    for (int i = 0; i < 2; ++i)
+    {
+        Player *p = GameObserver::GetInstance()->players[i];
+        MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->exile };
+        for (int k = 0; k < 5; k++)
+        {
+            MTGGameZone * z = zones[k];
+            if (targetsZone(z))
+            {
+                for (int j = 0; j < z->nb_cards; j++)
+                {
+                    if (canTarget(z->cards[j])) result++;
+                }
+            }
+        }
+    }
+    return result;
+}
+
 bool TargetChooser::equals(TargetChooser * tc)
 {
 
