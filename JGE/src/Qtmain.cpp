@@ -1,6 +1,6 @@
 #define GL_GLEXT_PROTOTYPES
-#include <QtOpenGL/QtOpenGL>
-#include <QtCore/QTime>
+#include <QtOpenGL>
+#include <QTime>
 
 #ifdef Q_WS_MAEMO_5
 // For volume buttons support

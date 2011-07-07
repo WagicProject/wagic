@@ -50,8 +50,8 @@ JGameLauncher* g_launcher = NULL;
 //------------------------------------------------------------------------
 
 Display* gXDisplay = NULL;
-Window gXWindow = (Window)0;
-GLXWindow glxWin = (GLXWindow)0;
+Window gXWindow = (Window)NULL;
+GLXWindow glxWin = (GLXWindow)NULL;
 
 static std::multiset<JButton> gControllerState;
 static std::multiset<JButton> gPrevControllerState;
@@ -173,7 +173,7 @@ void KillGLWindow(void) // Properly Kill The Window
 {
   if (gXWindow && gXDisplay)
     XDestroyWindow(gXDisplay, gXWindow);
-  gXWindow = (Window)0;
+  gXWindow = (Window)NULL;
 }
 
 
