@@ -50,8 +50,8 @@ JGameLauncher* g_launcher = NULL;
 //------------------------------------------------------------------------
 
 Display* gXDisplay = NULL;
-Window gXWindow = NULL;
-GLXWindow glxWin = NULL;
+Window gXWindow = (Window)0;
+GLXWindow glxWin = (GLXWindow)0;
 
 static std::multiset<JButton> gControllerState;
 static std::multiset<JButton> gPrevControllerState;
@@ -140,6 +140,7 @@ bool InitGame(void)
 {
   g_engine = JGE::GetInstance();
   g_app = g_launcher->GetGameApp();
+  JGECreateDefaultBindings();
   g_app->Create();
   g_engine->SetApp(g_app);
 
@@ -172,7 +173,7 @@ void KillGLWindow(void) // Properly Kill The Window
 {
   if (gXWindow && gXDisplay)
     XDestroyWindow(gXDisplay, gXWindow);
-  gXWindow = NULL;
+  gXWindow = (Window)0;
 }
 
 
@@ -368,8 +369,6 @@ int main(int argc, char* argv[])
 
   XSelectInput(gXDisplay, gXWindow, KeyPressMask | KeyReleaseMask | StructureNotifyMask);
   XkbSetDetectableAutoRepeat(gXDisplay, True, NULL);
-
-  JGECreateDefaultBindings();
 
   static uint64_t tickCount;
   while (!g_engine->IsDone())

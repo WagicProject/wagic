@@ -1,6 +1,6 @@
 #define GL_GLEXT_PROTOTYPES
-#include <QtOpenGL>
-#include <QTime>
+#include <QtOpenGL/QtOpenGL>
+#include <QtCore/QTime>
 
 #ifdef Q_WS_MAEMO_5
 // For volume buttons support
@@ -599,13 +599,13 @@ int main(int argc, char* argv[])
   g_glwidget->show();
 #endif
 
+  JGECreateDefaultBindings();
+
   if (!InitGame())
   {
       qCritical("Could not init the game\n");
       return 1;
   }
-
-  JGECreateDefaultBindings();
 
   a.exec();
 

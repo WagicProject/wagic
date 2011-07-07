@@ -667,6 +667,7 @@ bool SdlApp::OnInit()
 
 	glEnable(GL_SCISSOR_TEST);				// Enable Clipping
 
+	JGECreateDefaultBindings();
 
 	if (!InitGame())
 	{
@@ -675,8 +676,6 @@ bool SdlApp::OnInit()
 	}
 
 	OnResize(window_w, window_h);
-
-	JGECreateDefaultBindings();
 
 	return true;
 };

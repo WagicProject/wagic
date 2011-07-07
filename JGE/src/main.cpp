@@ -323,7 +323,6 @@ void Run()
 
     sceRtcGetCurrentTick(&lastTime);
     oldButtons = veryOldButtons = 0;
-    JGECreateDefaultBindings();
 
     while (!g_engine->mDone)
     {
@@ -383,6 +382,7 @@ int main(int argc, char *argv[])
     JLOG("JGE::GetInstance()");
     g_engine = JGE::GetInstance();
     g_engine->SetARGV(argc, argv);
+    JGECreateDefaultBindings();
 
     JLOG("Create Game");
     game = launcher->GetGameApp();

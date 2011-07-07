@@ -265,12 +265,13 @@ void DestroyGame(void)
 			JRenderer::Set3DFlag(true);
 		}
 		
+		JGECreateDefaultBindings();
+
 		if (!InitGame())
 		{
 			//return 1;
 		}
 		
-		JGECreateDefaultBindings();
 		
 		started = TRUE;
 	}
