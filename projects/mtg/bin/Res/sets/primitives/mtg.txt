@@ -2469,8 +2469,6 @@ name=Arbor Elf
 auto={t}:untap target(forest)
 text={T}: Untap target Forest.
 mana={G}
-other={0}
-otherrestriction=type(land|mybattlefield)~equalto~1,type(land|opponentbattlefield)~equalto~1
 type=Creature
 subtype=Elf Druid
 power=1
@@ -3838,7 +3836,7 @@ toughness=6
 [card]
 name=Avatar of Might
 abilities=trample
-otherrestriction=type(creature|opponentbattlefield)~morethan~type(creature|mybattlefield)
+otherrestriction=type(creature|mybattlefield)~lessthan~type(creature|opponentbattlefield)-3
 other={G}{G}
 text=If an opponent controls at least four more creatures than you, Avatar of Might costs {6} less to cast. -- Trample (If this creature would deal enough damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player or planeswalker.)
 mana={6}{G}{G}
