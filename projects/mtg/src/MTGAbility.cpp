@@ -112,6 +112,7 @@ int MTGAbility::parseCastRestrictions(MTGCardInstance * card,Player * player,str
         {
             int firstAmount = 0;
             int secondAmount = 0;
+            int mod=0;
             string type;
             vector<string> comparasion = split(restriction[i],'~');
             if(comparasion.size() != 3)
@@ -133,10 +134,18 @@ int MTGAbility::parseCastRestrictions(MTGCardInstance * card,Player * player,str
                         type = comparasion[i].substr(found + 5, end - found - 5).c_str();
                         TargetChooserFactory tcf;
                         TargetChooser * ttc = tcf.createTargetChooser(type,card);
+                        mod = atoi(comparasion[i].substr(end+1).c_str());
                         if(i == 2)
+                        {
                             secondAmount = ttc->countValidTargets();
+                            secondAmount += mod;
+                        }
                         else
+                        {
                             firstAmount = ttc->countValidTargets();
+                            firstAmount += mod;
+                        }
+                        mod = 0;
                         SAFE_DELETE(ttc);
                     }
                 }
