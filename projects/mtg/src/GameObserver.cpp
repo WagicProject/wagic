@@ -689,6 +689,13 @@ void GameObserver::Affinity()
                 if(card->getReducedManaCost()->getConvertedCost())
                     original->remove(card->getReducedManaCost());
                 card->getManaCost()->copy(original);
+                if(card->getManaCost()->extraCosts)
+                {
+                    for(unsigned int i = 0; i < card->getManaCost()->extraCosts->costs.size();i++)
+                    {
+                        card->getManaCost()->extraCosts->costs[i]->setSource(card);
+                    }
+                }
             }
             if(card->has(Constants::AFFINITYARTIFACTS)||
                 card->has(Constants::AFFINITYFOREST)||
