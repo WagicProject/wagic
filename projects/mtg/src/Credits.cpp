@@ -134,14 +134,18 @@ void Credits::compute(Player * _p1, Player * _p2, GameApp * _app)
             }
 			else if ((unlocked = isStoneHewerUnlocked()))
 			{
-				unlockedTextureName = "stonehewer_unlocked.png";
+				//unlockedTextureName = "stonehewer_unlocked.png";//until we can find a nice free use font.
+                CreditBonus * b = NEW CreditBonus(0, _("Stone Hewer Basic Unlocked"));
+                bonus.push_back(b);
 				goa = (GameOptionAward*) &options[Options::STONEHEWER_MODE_UNLOCKED];
 				goa->giveAward();
 				options.save();
 			}
 			else if ((unlocked = isHermitUnlocked()))
 			{
-				unlockedTextureName = "hermit_unlocked.png";
+				//unlockedTextureName = "hermit_unlocked.png";//until we can find a nice free use font.
+                CreditBonus * b = NEW CreditBonus(0, _("Hermit Druid Basic Unlocked"));
+                bonus.push_back(b);
 				goa = (GameOptionAward*) &options[Options::HERMIT_MODE_UNLOCKED];
 				goa->giveAward();
 				options.save();

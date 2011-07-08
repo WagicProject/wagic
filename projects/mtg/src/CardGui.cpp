@@ -270,6 +270,20 @@ void CardGui::Render()
     if (mask && quad)
         JRenderer::GetInstance()->FillRect(actX - (scale * quad->mWidth / 2),actY - (scale * quad->mHeight / 2), scale * quad->mWidth, scale* quad->mHeight, mask);
 
+    if (tc && tc->alreadyHasTarget(card))//paint targets red.
+    {
+        if (card->isTapped())
+        {
+            renderer->FillRect(actX - (scale * quad->mWidth / 2)-7,actY - (scale * quad->mHeight / 2)+7,scale* quad->mHeight,scale * quad->mWidth, ARGB(128,255,0,0));
+        }
+        else
+        {
+            renderer->FillRect(actX - (scale * quad->mWidth / 2),actY - (scale * quad->mHeight / 2), scale * quad->mWidth, scale* quad->mHeight, ARGB(128,255,0,0));
+        }
+    }
+    if(tc && tc->source && tc->source->view->actZ >= 1.3)//paint the source green while infocus.
+        renderer->FillRect(tc->source->view->actX - (scale * quad->mWidth / 2),tc->source->view->actY - (scale * quad->mHeight / 2), scale*quad->mWidth, scale*quad->mHeight, ARGB(128,0,255,0));
+
     PlayGuiObject::Render();
 }
 
