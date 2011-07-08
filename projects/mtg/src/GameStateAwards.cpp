@@ -368,7 +368,7 @@ void GameStateAwards::ButtonPressed(int controllerId, int controlId)
             SAFE_DELETE(detailview);
             showMenu = false;
             break;
-        case 3:
+        case kCancelMenuID:
             showMenu = false;
             break;
         }
