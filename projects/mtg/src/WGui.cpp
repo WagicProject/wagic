@@ -1992,12 +1992,17 @@ void WGuiFilterItem::updateValue()
         {
             mParent->addArg("Artifact", "t:Artifact;");
             mParent->addArg("Artifact Creature", "t:Artifact;&t:Creature;");
+            mParent->addArg("Aura", "t:Aura;");
+            mParent->addArg("Basic", "t:Basic;");
             mParent->addArg("Creature", "t:Creature;");
             mParent->addArg("Enchantment", "t:Enchantment;");
+            mParent->addArg("Equipment", "t:Equipment;");
             mParent->addArg("Instant", "t:Instant;");
             mParent->addArg("Land", "t:Land;");
             mParent->addArg("Legendary", "t:Legendary;");
             mParent->addArg("Sorcery", "t:Sorcery;");
+            mParent->addArg("Tribal", "t:Tribal;");
+
         }
         else if (filterType == FILTER_SUBTYPE)
         {
