@@ -9,6 +9,8 @@
 #ifdef WITH_FMOD
 #endif
 
+const std::string kPlaceholderID("placeholder");
+
 //WResource
 WResource::~WResource()
 {
@@ -103,13 +105,12 @@ JQuadPtr WCachedTexture::GetQuad(float offX, float offY, float width, float heig
     // If we're fetching a card resource, but it's not available yet, we'll be attempting to get the Quad from the temporary back image.
     // If that's the case, don't stash a separate tracked quad entry for each card name in the the Back/BackThumbnail's resource
     string resource(resname);
-    if (mFilename == kGenericCard)
+    if (mFilename == kGenericCard || mFilename == kGenericThumbCard)
     {
-        resource = kGenericCardID;
-    }
-    else if (mFilename == kGenericThumbCard)
-    {
-        resource = kGenericCardThumbnailID;
+        // if we're the back or thumb_back file, but we've been asked for a card ID, then assign it
+        // a placeholder ID.  Reason being, hotspots on quads are different (ie centered) for card images, so we'll store a separate quad for cards 
+        if (resname != kGenericCardID && resname != kGenericCardThumbnailID)
+            resource = kPlaceholderID;
     }
 
 	std::map<string, JQuadPtr>::iterator iter = mTrackedQuads.find(resource);
