@@ -713,31 +713,66 @@ void WGuiSplit::setModal(bool val)
 
 bool WGuiSplit::CheckUserInput(JButton key)
 {
+    bool result = false;
+
     if (hasFocus())
     {
+        int i,j;
+
+        if (key == JGE_BTN_NONE && JGE::GetInstance()->GetLeftClickCoordinates(i, j))
+        {   // a dude clicked somwhere, we're gonna select the closest object from where he clicked
+            unsigned int distanceLeft, distanceRight;
+
+            distanceLeft = static_cast<unsigned int>((left->getY() - j) * (left->getY() - j) + (left->getX() - i) * (left->getX() - i));
+            distanceRight = static_cast<unsigned int>((right->getY() - j) * (right->getY() - j) + (right->getX() - i) * (right->getX() - i));
+
+            if (distanceLeft < distanceRight && bRight)
+            {
+              key = JGE_BTN_LEFT;
+            }
+            else if(!bRight && distanceLeft > distanceRight)
+            {
+              key = JGE_BTN_RIGHT;
+            }
+        }
+
         if (!bRight)
         {
-            if (left->CheckUserInput(key)) return true;
+            if (left->CheckUserInput(key))  {
+                result = true;
+                goto done;
+            }
+
             if (key == JGE_BTN_RIGHT && !isModal() && right->Selectable() && left->Leaving(JGE_BTN_RIGHT))
             {
                 bRight = !bRight;
                 right->Entering(JGE_BTN_RIGHT);
-                return true;
+                result = true;
+                goto done;
             }
         }
         else
         {
-            if (right->CheckUserInput(key)) return true;
+            if (right->CheckUserInput(key)) {
+                result = true;
+                goto done;
+            }
             if (key == JGE_BTN_LEFT && !isModal() && left->Selectable() && right->Leaving(JGE_BTN_LEFT))
             {
                 bRight = !bRight;
                 left->Entering(JGE_BTN_LEFT);
-                return true;
+                result = true;
+                goto done;
             }
         }
-    }
 
-    return false;
+    }
+done:
+    if(result == true)
+    {
+        JGE::GetInstance()->LeftClickedProcessed();
+    }
+    return result;
 }
 
 void WGuiSplit::Update(float dt)
@@ -936,7 +971,7 @@ bool WGuiMenu::CheckUserInput(JButton key)
         {
             held = buttonNext;
             duration = 0;
-            if (nextItem()) return true;
+             if (nextItem()) return true;
         }
         else if (held == buttonNext && duration > 1)
         {
