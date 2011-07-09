@@ -2232,7 +2232,6 @@ class ALord: public ListMaintainerAbility, public NestedAbility
 public:
     int includeSelf;
     map<Damageable *, MTGAbility *> abilities;
-    vector<MTGAbility *> bermudaTriangle; //Hack: Lost abilities that need to be properly removed if they reappear
 
     ALord(int _id, MTGCardInstance * card, TargetChooser * _tc, int _includeSelf, MTGAbility * a) :
         ListMaintainerAbility(_id, card), NestedAbility(a)
@@ -2241,19 +2240,15 @@ public:
             tc->targetter = NULL;
             includeSelf = _includeSelf;
             if(ability->aType == MTGAbility::STANDARD_PREVENT)
-            aType = MTGAbility::STANDARD_PREVENT;
+                aType = MTGAbility::STANDARD_PREVENT;
         }
      
-    void Update(float dt)
+    //returns true if it is me who created ability a attached to Damageable d
+    bool isParentOf(Damageable * d, MTGAbility * a)
     {
-        ListMaintainerAbility::Update(dt);
-
-        //This is a hack to avoid some abilities "combing back from the dead" because of the loseAbility keyword :/
-        for (int i = (int)(bermudaTriangle.size()) - 1 ; i >= 0 ; --i)
-        {
-            if (game->removeObserver(bermudaTriangle[i]))
-                bermudaTriangle.erase(bermudaTriangle.begin()+i);
-        }
+        if (abilities.find(d) != abilities.end())
+            return (abilities[d] == a);
+        return false;
     }
 
     int canBeInList(Player *p)
@@ -2267,7 +2262,7 @@ public:
         if(card->isPhased || source->isPhased)
             return 0;
         if ((includeSelf || card != source) && tc->canTarget(card)) 
-        return 1;
+            return 1;
         return 0;
     }
 
@@ -2323,8 +2318,7 @@ public:
     {
         if (abilities.find(card) != abilities.end())
         { 
-            if (!game->removeObserver(abilities[card]))
-                bermudaTriangle.push_back(abilities[card]);
+            game->removeObserver(abilities[card]);
             abilities.erase(card);
         }
         return 1;

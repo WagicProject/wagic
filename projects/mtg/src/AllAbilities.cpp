@@ -2847,6 +2847,20 @@ int ALoseAbilities::addToGame()
 
     ActionLayer * al = game->mLayers->actionLayer();
 
+
+    //Build a list of Lords in game, this is a hack mostly for lands, see below
+    vector <ALord *> lordsInGame;
+    for (int i = (int)(al->mObjects.size()) - 1; i > 0; i--)      //0 is not a mtgability...hackish
+    {
+        if (al->mObjects[i])
+        {
+            MTGAbility * currentAction = (MTGAbility *) al->mObjects[i];
+			ALord * l = dynamic_cast<ALord*> (currentAction);
+			if(l)
+                lordsInGame.push_back(l);
+        }
+    }
+
     for (int i = (int)(al->mObjects.size()) - 1; i > 0; i--)      //0 is not a mtgability...hackish
     {
         if (al->mObjects[i])
@@ -2857,8 +2871,30 @@ int ALoseAbilities::addToGame()
 				continue;
             if (currentAction->source == _target)
             {
-                storedAbilities.push_back(currentAction);
-                al->removeFromGame(currentAction);
+                bool canRemove = true;
+
+                //Hack: we don't remove abilities on the card if they are provided by an external lord ability.
+                //This is partly to solve the following issues:
+                // http://code.google.com/p/wagic/issues/detail?id=647
+                // http://code.google.com/p/wagic/issues/detail?id=700
+                // But also because "most" abilities granted by lords will actually go away by themselves,
+                // based on the fact that we usually remove abilities AND change the type of the card
+                //Also in a general way we don't want to remove the card's abilities if it is provided by a Lord,
+                //although there is also a problem with us not handling the P/T layer correctly
+                for (size_t i = 0; i < lordsInGame.size(); ++i)
+                {
+                    if (lordsInGame[i]->isParentOf(_target, currentAction))
+                    {
+                        canRemove = false;
+                        break;
+                    }
+                }
+                
+                if (canRemove)
+                {
+                    storedAbilities.push_back(currentAction);
+                    al->removeFromGame(currentAction);
+                }
             }
         }
     }

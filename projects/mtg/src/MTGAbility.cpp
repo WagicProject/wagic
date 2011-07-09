@@ -3903,7 +3903,7 @@ TriggerAtPhase::TriggerAtPhase(int id, MTGCardInstance * source, Targetable * ta
         newPhase = g->getCurrentGamePhase();
         currentPhase = newPhase;
     }
-    }
+}
 
     int TriggerAtPhase::trigger()
     {
