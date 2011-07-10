@@ -886,14 +886,15 @@ public:
     JQuad * mBg[9];
     bool mUserCloseRequest, mDontShow;
     bool mIsImage;
+    int mLimit;
 
-    ATutorialMessage(MTGCardInstance * source, string message);
+    ATutorialMessage(MTGCardInstance * source, string message, int limit = 1);
 
     void Update(float dt);
     bool CheckUserInput(JButton key);
     void Render();
     string getOptionName();
-    bool alreadyShown();
+    int alreadyShown();
 
     ATutorialMessage * clone() const;
     ~ATutorialMessage();

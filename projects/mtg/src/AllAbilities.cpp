@@ -3616,7 +3616,7 @@ ABlinkGeneric::~ABlinkGeneric()
 
 ATutorialMessage * ATutorialMessage::Current = NULL;
 
-ATutorialMessage::ATutorialMessage(MTGCardInstance * source, string message) : MTGAbility(0, source), IconButtonsController(0, 0)
+ATutorialMessage::ATutorialMessage(MTGCardInstance * source, string message, int limit) : MTGAbility(0, source), IconButtonsController(0, 0), mLimit(limit)
 {
     mBgTex = NULL;
 
@@ -3649,7 +3649,7 @@ ATutorialMessage::ATutorialMessage(MTGCardInstance * source, string message) : M
         mX = 0;
         mY = -SCREEN_HEIGHT_F - 0.1f; //Offscreen
     }
-    mDontShow = mUserCloseRequest = alreadyShown();
+    mDontShow = mUserCloseRequest = (mLimit > 0) && (alreadyShown() >= mLimit);
 
     if(mDontShow)
         forceDestroy = 1;
@@ -3664,9 +3664,9 @@ string ATutorialMessage::getOptionName()
     return out.str();
 }
 
-bool ATutorialMessage::alreadyShown()
+int ATutorialMessage::alreadyShown()
 {
-    return options[getOptionName()].number ? true : false;
+    return options[getOptionName()].number;
 }
 
 bool ATutorialMessage::CheckUserInput(JButton key)
@@ -3726,8 +3726,12 @@ void ATutorialMessage::Update(float dt)
 void ATutorialMessage::ButtonPressed(int controllerId, int controlId)
 {
     //TODO : cancel ALL tips/tutorials for JGE_BTN_SEC?
-    options[getOptionName()].number = 1;
-    options.save(); //TODO: if we experience I/O slowness in tutorials, move this save at the end of a turn, or at the end of the game.
+    if (mLimit)
+    {
+        string optionName = getOptionName();
+        options[optionName].number = options[optionName].number + 1;
+        options.save(); //TODO: if we experience I/O slowness in tutorials, move this save at the end of a turn, or at the end of the game.
+    }
     mElapsed = 0;
     mUserCloseRequest = true;
 }
@@ -3876,7 +3880,7 @@ void ATutorialMessage::Render()
 ATutorialMessage * ATutorialMessage::clone() const
 {
     ATutorialMessage * copy =  NEW ATutorialMessage(*this);
-    copy->mUserCloseRequest = copy->alreadyShown();
+    copy->mUserCloseRequest = (copy->alreadyShown() > 0);
     return copy;
 }
 

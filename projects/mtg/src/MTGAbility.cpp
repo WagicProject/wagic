@@ -737,11 +737,20 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
 
     //This one is not a real ability, it displays a message on the screen. We use this for tutorials
     // Triggers need to be checked above this one, as events are usuallly what will trigger (...) these messages
-    vector<string> splitMsg = parseBetween(s, "tutorial(", ")");
-    if (splitMsg.size())
     {
-        string msg = splitMsg[1];
-        return NEW ATutorialMessage(card, msg);
+        vector<string> splitMsg = parseBetween(s, "tutorial(", ")");
+        if (splitMsg.size())
+        {
+            string msg = splitMsg[1];
+            return NEW ATutorialMessage(card, msg);
+        }
+
+        splitMsg = parseBetween(s, "message(", ")");
+        if (splitMsg.size())
+        {
+            string msg = splitMsg[1];
+            return NEW ATutorialMessage(card, msg, 0);
+        }
     }
 
     int restrictions = parseRestriction(s);
