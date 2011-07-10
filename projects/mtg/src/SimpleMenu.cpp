@@ -226,16 +226,6 @@ void SimpleMenu::Add(int id, const char * text, string desc, bool forceFocus)
     SimpleMenuItem * smi = NEW SimpleMenuItem(this, id, fontId, text, 0, mY + kVerticalMargin + mCount * kLineHeight,
                     (mCount == 0), autoTranslate);
 
-    // stupid hack, forced out of necessity - since we poll for key events, mouse movements show up as JGE_BTN_NONE events;
-    // consequently, even though we're setting the hasFocus variable to true for the first item, this gets ignored as a mouse event
-    // will come through wherever the click occurred, and will change the default selection. To combat this, if we're setting hasFocus,
-    // change the x/y coords of the click system to point to that selection.  This was primarily for fixing the issue where the Play 
-	// menu comes up with the last option selected instead of '1 Player'.
-    if (mCount == 0)
-    {
-        mEngine->LeftClicked(static_cast<int>(mX), static_cast<int>(mY));
-    }
-
     smi->desc = desc;
     JGuiController::Add(smi);
     if (mCount <= maxItems) mHeight += kLineHeight;
