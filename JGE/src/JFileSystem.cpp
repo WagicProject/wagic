@@ -111,6 +111,11 @@ JFileSystem::JFileSystem()
 
 JFileSystem::~JFileSystem()
 {
+    clearZipCache();
+}
+
+void JFileSystem::clearZipCache()
+{
     DetachZipFile();
 
     map<string,JZipCache *>::iterator it;
@@ -119,7 +124,6 @@ JFileSystem::~JFileSystem()
     }
     mZipCache.clear();	
 }
-
 
 bool JFileSystem::AttachZipFile(const string &zipfile, char *password /* = NULL */)
 {

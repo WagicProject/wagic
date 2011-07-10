@@ -88,6 +88,9 @@ public:
 	//Refreshes all files in cache, for when mode/profile changes.
     virtual void Refresh() = 0;
 
+    //Manual clear of the cache
+    virtual void ClearUnlocked() = 0;
+
     virtual unsigned int nowTime() = 0;
 
     virtual JQuadPtr GetQuad(const string &quadName) = 0;

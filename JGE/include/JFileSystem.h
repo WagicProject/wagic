@@ -115,6 +115,9 @@ public:
   // Returns a string prefixed with the resource path
   string GetResourceFile(string filename);
 
+    // Manually Clear the zip cache
+  void clearZipCache();
+    
 protected:
 	JFileSystem();
 	~JFileSystem();
@@ -128,6 +131,7 @@ private:
 	char *mPassword;
 	bool mZipAvailable;
   	void preloadZip(const string& filename);
+
 #if defined (PSP)
 	SceUID mFile;
 #else
