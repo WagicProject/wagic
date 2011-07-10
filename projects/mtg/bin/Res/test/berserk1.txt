@@ -1,0 +1,38 @@
+#Testing Berserk. Target is a Grizzly Bears.
+#TEST 1:
+#Grizzly Bears attacks. Opponent should get 10 damage.
+#Grizzly Bears should die at end of turn.
+[INIT]
+COMBATATTACKERS
+[PLAYER1]
+hand:Berserk,Giant Growth
+inplay:Grizzly Bears
+manapool:{G}{G}
+[PLAYER2]
+life:20
+[DO]
+Giant Growth
+Grizzly Bears
+Berserk
+Grizzly Bears
+Grizzly Bears
+next
+#blockers 
+next
+#combatdamage 2
+next
+#endofcombat 2
+next
+#secondmain
+next
+#endofturn
+next
+#cleanup
+[ASSERT]
+CLEANUP
+[PLAYER1]
+graveyard:Giant Growth,Berserk,Grizzly Bears
+manapool:{0}
+[PLAYER2]
+life:10
+[END]

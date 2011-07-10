@@ -1,0 +1,31 @@
+#Testing Solfatara.
+#Solfatara's rules text:"Target player can't play land cards this turn."
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Solfatara,Tundra,Volcanic Island
+manapool:{2}{R}
+[PLAYER2]
+[DO]
+Solfatara
+p1
+Tundra
+eot
+eot
+#untap
+next
+#upkeep
+next
+#draw
+next
+#firstmain
+Volcanic Island
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:Solfatara
+inplay:Volcanic Island
+hand:Tundra
+manapool:{0}
+[PLAYER2]
+[END]

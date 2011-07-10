@@ -1,0 +1,29 @@
+#Testing Accelerated Mutation. Target is a Grizzly Bears.
+#It should get +4/+4 because of Giant Mantis on your battlefield.
+[INIT]
+COMBATATTACKERS
+[PLAYER1]
+hand:Accelerated Mutation
+inplay:Grizzly Bears,Giant Mantis
+manapool:{3}{G}{G}
+[PLAYER2]
+life:20
+[DO]
+Accelerated Mutation
+Grizzly Bears
+Grizzly Bears
+next
+#blockers 
+next
+#combatdamage 2
+next
+#endofcombat 2
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:Grizzly Bears,Giant Mantis
+graveyard:Accelerated Mutation
+manapool:{0}
+[PLAYER2]
+life:14
+[END]

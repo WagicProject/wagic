@@ -1,0 +1,25 @@
+#Testing Deadshot. First target is Grizzly Bears. Second target is a Hill Giant.
+#Deadshot's rules text: "Tap target creature. It deals damage equal to its power to another target creature."
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Deadshot
+inplay:Gaea's Anthem,Grizzly Bears
+manapool:{3}{R}
+[PLAYER2]
+inplay:Hill Giant
+[DO]
+Deadshot
+Grizzly Bears
+Grizzly Bears
+choice 0
+Hill Giant
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Gaea's Anthem,Grizzly Bears
+graveyard:Deadshot
+manapool:{0}
+[PLAYER2]
+graveyard:Hill Giant
+[END]

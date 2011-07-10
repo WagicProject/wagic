@@ -12,6 +12,28 @@ power=4
 toughness=4
 [/card]
 [card]
+name=Aven Warhawk
+abilities=flying
+auto=foreach(bird|myhand) counter(1/1,1)
+auto=foreach(soldier|myhand) counter(1/1,1)
+text=Amplify 1 (As this creature enters the battlefield, put a +1/+1 counter on it for each Bird and/or Soldier card you reveal in your hand.) -- Flying
+mana={4}{W}
+type=Creature
+subtype=Bird Soldier
+power=2
+toughness=2
+[/card]
+[card]
+name=Cinder Seer
+auto={2}{R}{T}:foreach(*[red]|myhand) damage:1 target(creature)
+text={2}{R}, {T}: Reveal any number of red cards in your hand. Cinder Seer deals X damage to target creature or player, where X is the number of cards revealed this way.
+mana={3}{R}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=1
+[/card]
+[card]
 name=Drain Life
 #can use non black mana
 target=creature,player
@@ -31,4 +53,117 @@ text=Feral Hydra enters the battlefield with X +1/+1 counters on it. -- {3}: Put
 auto=counter(1/1,X)
 auto={3}:counter(1/1)
 #Not all player can use ability
+[/card]
+[card]
+name=Ghastly Remains
+auto=foreach(zombie|myhand) counter(1/1,1)
+autograveyard={B}{B}{B}:moveTo(myhand) myUpkeepOnly
+text=Amplify 1 (As this creature enters the battlefield, put a +1/+1 counter on it for each Zombie card you reveal in your hand.) -- At the beginning of your upkeep, if Ghastly Remains is in your graveyard, you may pay {B}{B}{B}. If you do, return Ghastly Remains to your hand.
+mana={B}{B}{B}
+type=Creature
+subtype=Zombie
+power=0
+toughness=0
+[/card]
+[card]
+name=Glowering Rogon
+auto=foreach(beast|myhand) counter(1/1,1)
+text=Amplify 1 (As this creature enters the battlefield, put a +1/+1 counter on it for each Beast card you reveal in your hand.)
+mana={5}{G}
+type=Creature
+subtype=Beast
+power=4
+toughness=4
+[/card]
+[card]
+name=Ivy Seer
+auto={2}{G}{T}:foreach(*[green]|myhand) 1/1 target(creature)
+text={2}{G}, {T}: Reveal any number of green cards in your hand. Target creature gets +X/+X until end of turn, where X is the number of cards revealed this way.
+mana={3}{G}
+type=Creature
+subtype=Elf Wizard
+power=1
+toughness=1
+[/card]
+[card]
+name=Jasmine Seer
+auto={2}{W}{T}:foreach(*[white]|myhand) life:2
+text={2}{W}, {T}: Reveal any number of white cards in your hand. You gain 2 life for each card revealed this way.
+mana={3}{W}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=1
+[/card]
+[card]
+name=Metalworker
+auto={T}:foreach(artifact|myhand) Add{2} controller
+text={T}: Reveal any number of artifact cards in your hand. Add {2} to your mana pool for each card revealed this way.
+mana={3}
+type=Artifact Creature
+subtype=Construct
+power=1
+toughness=2
+[/card]
+[card]
+name=Nightshade Seer
+auto={2}{B}{T}:foreach(*[black]|myhand) -1/-1 target(creature)
+text={2}{B}, {T}: Reveal any number of black cards in your hand. Target creature gets -X/-X until end of turn, where X is the number of cards revealed this way.
+mana={3}{B}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=1
+[/card]
+[card]
+name=Sacellum Godspeaker
+auto={T}:foreach(creaure[power>=5]|myhand) add{G}
+text={T}: Reveal any number of creature cards with power 5 or greater from your hand. Add {G} to your mana pool for each card revealed this way.
+mana={2}{G}
+type=Creature
+subtype=Elf Druid
+power=2
+toughness=2
+[/card]
+[card]
+name=Scent of Cinder
+target=creature
+auto=foreach(*[red]|myhand) damage:1
+text=Reveal any number of red cards in your hand. Scent of Cinder deals X damage to target creature or player, where X is the number of cards revealed this way.
+mana={1}{R}
+type=Sorcery
+[/card]
+[card]
+name=Scent of Ivy
+target=creature
+auto=foreach(*[green]|myhand) 1/1
+text=Reveal any number of green cards in your hand. Target creature gets +X/+X until end of turn, where X is the number of cards revealed this way.
+mana={G}
+type=Instant
+[/card]
+[card]
+name=Scent of Jasmine
+auto=foreach(*[white]|myhand) life:2
+text=Reveal any number of white cards in your hand. You gain 2 life for each card revealed this way.
+mana={W}
+type=Instant
+[/card]
+[card]
+name=Scent of Nightshade
+target=creature
+auto=foreach(*[black]|myhand) -1/-1 target(creature)
+text=Reveal any number of black cards in your hand. Target creature gets -X/-X until end of turn, where X is the number of cards revealed this way.
+mana={1}{B}
+type=Instant
+[/card]
+[card]
+name=Zombie Brute
+abilities=trample
+auto=foreach(zombie|myhand) counter(1/1,1)
+text=Amplify 1 (As this creature enters the battlefield, put a +1/+1 counter on it for each Zombie card you reveal in your hand.) -- Trample
+mana={6}{B}
+type=Creature
+subtype=Zombie
+power=5
+toughness=4
 [/card]

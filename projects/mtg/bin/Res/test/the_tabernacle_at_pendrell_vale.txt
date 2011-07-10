@@ -1,0 +1,24 @@
+#Testing The Tabernacle at Pendrell Vale.
+#Bringer's rules text:
+#"All creatures have "At the beginning of your upkeep, sacrifice this creature unless you pay {1}."
+[INIT]
+UNTAP
+[PLAYER1]
+inplay:The Tabernacle at Pendrell Vale,Grizzly Bears,Enormous Baloth,Bog Imp,Sol Ring
+[PLAYER2]
+[DO]
+next
+#Upkeep
+Sol Ring
+Grizzly Bears
+Bog Imp
+next
+#Draw
+[ASSERT]
+DRAW
+[PLAYER1]
+inplay:The Tabernacle at Pendrell Vale,Grizzly Bears,Bog Imp,Sol Ring
+graveyard:Enormous Baloth
+manapool:{0}
+[PLAYER2]
+[END]

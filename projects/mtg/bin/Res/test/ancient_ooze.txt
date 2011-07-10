@@ -1,0 +1,23 @@
+#Testing Ancient Ooze. It should be 10/10
+#because of 2 Giant Mantis and 1 Grizzly Bears on your battlefield.
+[INIT]
+COMBATATTACKERS
+[PLAYER1]
+inplay:Grizzly Bears,Giant Mantis,Giant Mantis,Ancient Ooze
+[PLAYER2]
+life:20
+[DO]
+Ancient Ooze
+next
+#blockers 
+next
+#combatdamage 2
+next
+#endofcombat 2
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:Grizzly Bears,Giant Mantis,Giant Mantis,Ancient Ooze
+[PLAYER2]
+life:10
+[END]

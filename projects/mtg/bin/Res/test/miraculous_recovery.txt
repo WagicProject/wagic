@@ -1,0 +1,37 @@
+#Testing Miraculous Recovery. Target is a Grizzly Bears.
+#Miraculous Recovery`s rules text:
+#"Return target creature card from your graveyard to the battlefield with a +1/+1 counter on it."
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Miraculous Recovery
+inplay:Fervor
+graveyard:Grizzly Bears
+manapool:{4}{W}
+[PLAYER2]
+life:20
+[DO]
+Miraculous Recovery
+Grizzly Bears
+next
+#combatbegins
+next
+#combatattackers
+Grizzly Bears
+next
+#combatblockers
+next
+#combatdamage 2
+next
+#endofcombat 2
+next
+#secondmain
+[ASSERT]
+SECONDMAIN
+[PLAYER1]
+graveyard:Miraculous Recovery
+inplay:Fervor,Grizzly Bears
+manapool:{0}
+[PLAYER2]
+life:17
+[END]

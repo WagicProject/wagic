@@ -1,0 +1,41 @@
+#Testing Rise from the Grave. Target is an Elvish Berserker.
+#Rise from the Grave`s rules text:
+#"Put target creature card in a graveyard onto the battlefield under your control. That creature is a black Zombie in addition to its other colors and types."
+#The reanimated Elvish Berserker should get the following bonuses:
+#+1/+1 from Lord of the Undead because it has become a Zombie.
+#+1/+1 from Bad Moon because it has become black.
+#+1/+1 from Elvish Archdruid because it is still an elf.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Rise from the Grave
+inplay:Fervor,Bad Moon,Elvish Archdruid,Lord of the Undead
+graveyard:Elvish Berserker
+manapool:{4}{B}
+[PLAYER2]
+life:20
+[DO]
+Rise from the Grave
+Elvish Berserker
+next
+#combatbegins
+next
+#combatattackers
+Elvish Berserker
+next
+#combatblockers
+next
+#combatdamage 2
+next
+#endofcombat 2
+next
+#secondmain
+[ASSERT]
+SECONDMAIN
+[PLAYER1]
+graveyard:Rise from the Grave
+inplay:Fervor,Bad Moon,Elvish Archdruid,Lord of the Undead,Elvish Berserker
+manapool:{0}
+[PLAYER2]
+life:16
+[END]

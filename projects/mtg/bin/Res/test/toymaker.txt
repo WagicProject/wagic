@@ -1,0 +1,23 @@
+#Testing Karn, Silver Golem. Target is a Tower of Champions.
+#Karn, Silver Golem's ability:"{1}: Target noncreature artifact becomes an artifact creature with power and toughness each equal to its converted mana cost until end of turn. (That artifact retains its abilities.)"
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Reprisal,Tundra
+inplay:Toymaker,Hedron Matrix
+manapool:{W}{W}{W}
+[PLAYER2]
+[DO]
+Toymaker
+Tundra
+Hedron Matrix
+Reprisal
+Hedron Matrix
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Toymaker
+graveyard:Hedron Matrix,Reprisal,Tundra
+manapool:{0}
+[PLAYER2]
+[END]

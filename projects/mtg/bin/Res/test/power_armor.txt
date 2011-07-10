@@ -1,0 +1,31 @@
+#Testing Power Armor. Target is a Grizzly Bears. it should get +4/+4.
+#Power Armor's rules text: "Domain - {3}, {T}: Target creature gets +1/+1 until end of turn for each basic land type among lands you control."
+[INIT]
+COMBATBEGINS
+[PLAYER1]
+inplay:Power Armor,Grizzly Bears,Tundra,Bayou,Swamp
+manapool:{3}
+[PLAYER2]
+life:20
+[DO]
+Power Armor
+Grizzly Bears
+next
+#combatattackers
+Grizzly Bears
+next
+#blockers 
+next
+#combatdamage 2
+next
+#endofcombat 2
+next
+#secondmain
+[ASSERT]
+SECONDMAIN
+[PLAYER1]
+inplay:Power Armor,Grizzly Bears,Tundra,Bayou,Swamp
+manapool:{0}
+[PLAYER2]
+life:14
+[END]

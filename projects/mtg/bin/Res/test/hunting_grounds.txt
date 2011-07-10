@@ -1,0 +1,32 @@
+#Testing Hunting Grounds.
+#Hunting Grounds' rules text:"Threshold - As long as seven or more cards are in your graveyard, Hunting Grounds has "Whenever an opponent casts a spell, you may put a creature card from your hand onto the battlefield."
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Enormous Baloth
+inplay:Hunting Grounds
+graveyard:Grizzly Bears,Tundra,Giant Growth,Rancor,Taiga,Plateau,Llanowar Elves
+[PLAYER2]
+hand:Mox Pearl
+[DO]
+eot
+#Player 2's turn
+#untap
+next
+#upkeep
+next
+#draw
+next
+#firstmain
+Mox Pearl
+Hunting Grounds
+choice 0
+Enormous Baloth
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Hunting Grounds,Enormous Baloth
+graveyard:Grizzly Bears,Tundra,Giant Growth,Rancor,Taiga,Plateau,Llanowar Elves
+[PLAYER2]
+inplay:Mox Pearl
+[END]

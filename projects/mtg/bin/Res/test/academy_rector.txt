@@ -1,0 +1,21 @@
+[INIT]
+firstmain
+[PLAYER1]
+hand:Shock
+inplay:Academy Rector
+library:Gaea's Anthem
+manapool:{R}
+[PLAYER2]
+[DO]
+Shock
+Academy Rector
+choice 0
+Gaea'S Anthem
+[ASSERT]
+firstmain
+[PLAYER1]
+inplay:Gaea's Anthem
+graveyard:Shock
+exile:Academy Rector
+[PLAYER2]
+[END]

@@ -1,0 +1,22 @@
+#Testing High Tide.
+#High Tide's rules text: "Until end of turn, whenever a player taps an Island for mana, that player adds {U} to his or her mana pool (in addition to the mana the land produces)."
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:High Tide
+inplay:Island,Tundra
+manapool:{U}
+[PLAYER2]
+[DO]
+High Tide
+Island
+Tundra
+choice 0
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:High Tide
+inplay:Island,Tundra
+manapool:{U}{U}{U}{W}
+[PLAYER2]
+[END]

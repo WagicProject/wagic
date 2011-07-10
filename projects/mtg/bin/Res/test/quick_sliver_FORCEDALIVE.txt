@@ -1,0 +1,23 @@
+#Testing Quick Sliver (keyword: FORCEDALIVE).
+#All slivers should have flash until Quick Sliver dies.
+[INIT]
+UNTAP
+[PLAYER1]
+hand:Muscle Sliver,Winged Sliver,Lightning Bolt
+inplay:Quick Sliver
+manapool:{2}{G}{U}{R}
+[PLAYER2]
+[DO]
+Winged Sliver
+Lightning Bolt
+Quick Sliver
+Muscle Sliver
+[ASSERT]
+UNTAP
+[PLAYER1]
+hand:Muscle Sliver
+inplay:Winged Sliver
+graveyard:Quick Sliver,Lightning Bolt
+manapool:{1}{G}
+[PLAYER2]
+[END]

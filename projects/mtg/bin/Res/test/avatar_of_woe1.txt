@@ -1,0 +1,22 @@
+#Testing Avatar of Woe.
+#Avatar of Woe' rules text:"If there are ten or more creature cards total in all graveyards, Avatar of Woe costs {6} less to cast."
+#Test1:Casting Avatar of Woe with a total of 10 creatures in all graveyards. 
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Avatar of Woe
+graveyard:Grizzly Bears,Llanowar Elves,Suntail Hawk,Lord of Atlantis,Wild Mongrel
+manapool:{B}{B}
+[PLAYER2]
+graveyard:Raging GOblin,Spark Elemental,Ball Lightning,Mogg Fanatic,Hill Giant
+[DO]
+Avatar of Woe
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Avatar of Woe
+graveyard:Grizzly Bears,Llanowar Elves,Suntail Hawk,Lord of Atlantis,Wild Mongrel
+manapool:{0}
+[PLAYER2]
+graveyard:Raging GOblin,Spark Elemental,Ball Lightning,Mogg Fanatic,Hill Giant
+[END]

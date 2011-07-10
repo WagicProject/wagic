@@ -1,0 +1,41 @@
+#Testing Bringer of the Red Dawn. Target is a Grizzly Bears.
+#Bringer's rules text:
+#"At the beginning of your upkeep, you may untap target creature and gain control of it until end of turn. That creature gains haste until end of turn."
+[INIT]
+UNTAP
+[PLAYER1]
+hand:Dispatch
+inplay:Bringer of the Red Dawn
+manapool:{W}
+[PLAYER2]
+inplay:Grizzly Bears
+life:20
+[DO]
+Dispatch
+Grizzly Bears
+#Grizzly Bear is tapped now.
+next
+#Upkeep
+Bringer of the Red Dawn
+choice 0
+Grizzly Bears
+next
+#Draw
+next
+#Firstmain
+next
+#Beginofcombat
+next
+#Combatattackers
+Grizzly Bears
+eot
+[ASSERT]
+UNTAP
+[PLAYER1]
+inplay:Bringer of the Red Dawn
+graveyard:Dispatch
+manapool:{0}
+[PLAYER2]
+inplay:Grizzly Bears
+life:18
+[END]

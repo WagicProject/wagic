@@ -89,6 +89,8 @@ generic/wither.txt
 #Specific Cards
 ########################
 abyssal_hunter_POWERSTRIKE.txt
+academy_rector.txt
+accelerated_mutation.txt
 act_of_treason.txt
 aegis_of_the_meek.txt
 aether_mutation.txt
@@ -103,6 +105,7 @@ alluring_siren.txt
 Amugaba.txt
 anarchy.txt
 ancestors_chosen.txt
+ancient_ooze.txt
 angelic_chorus_TOUGHNESSLIFEGAIN.txt
 angry_mob1.txt
 angry_mob2.txt
@@ -111,6 +114,7 @@ angry_mob4.txt
 angry_mob4b.txt
 angry_mob5.txt
 angry_mob7.txt
+animal_boneyard.txt
 animate_artifact.txt
 animate_artifact2.txt
 animate_dead.txt
@@ -137,6 +141,8 @@ auriok_bladewarden_POWERPUMPBOTH.txt
 Auriok_Sunchaser_ASLONGAS_1.txt
 Auriok_Sunchaser_ASLONGAS_2.txt
 avarice_totem.txt
+avatar_of_woe1.txt
+avatar_of_woe2.txt
 aven_riftwatcher.txt
 aven_riftwatcher2.txt
 aysen_bureaucrats.txt
@@ -155,6 +161,8 @@ behemoth_sledge4.txt
 behemoth_sledge5.txt
 belligerent_hatchling.txt
 benalish_knight.txt
+berserk1.txt
+berserk2.txt
 biorhythm.txt
 black_market.txt
 black_vise.txt
@@ -177,6 +185,7 @@ bramblewood_paragon.txt
 brass_man.txt
 brass_man_i161.txt
 briarhorn.txt
+bringer_of_the_red_dawn.txt
 cage_of_hands.txt
 Call_to_Heel_1.txt
 Call_to_Heel_2.txt
@@ -225,6 +234,8 @@ cursed_land4_i188.txt
 dark_banishing.txt
 dauntless_escort.txt
 dauthi_embrace.txt
+dawn_of_the_dead.txt
+deadshot.txt
 death_grasp.txt
 death_ward.txt
 decree_of_justice.txt
@@ -259,6 +270,7 @@ emblem_of_the_warmind.txt
 Emperor Crocodile aslongas while tag.txt
 Emperor Crocodile aslongas while tag 2.txt
 enchanted evening.txt
+endrek_sahr.txt
 enervate.txt
 enchantress_s_presence.txt
 Eradicate.txt
@@ -329,8 +341,10 @@ gravity_well2.txt
 great_defender.txt
 hannas_custody.txt
 harpoon_sniper.txt
+haunting_echoes.txt
 hellfire.txt
 helm_of_kaldra1.txt
+high_tide.txt
 holy_day_i226.txt
 hope_charm_i267.txt
 hopping_automaton_i232.txt
@@ -339,6 +353,7 @@ howl_from_beyond.txt
 howl_of_the_night_pack.txt
 howling_mine_i614.txt
 hunted_dragon.txt
+hunting_grounds.txt
 hunting_pack.txt
 hurricane.txt
 hyalopterous_lemure.txt
@@ -347,6 +362,7 @@ hypnotic_specter.txt
 icatian_priest.txt
 imaginary_pet.txt
 immaculate_magistrate.txt
+impending_disaster.txt
 incinerate.txt
 instill_energy_i166.txt
 invigorate.txt
@@ -406,6 +422,7 @@ mephidross_vampire.txt
 millstone.txt
 Mimics#1.txt
 Mimics#2.txt
+miraculous_recovery.txt
 mirri_the_cursed.txt
 mirri_the_cursed2_i284.txt
 misc01.txt
@@ -450,6 +467,7 @@ pillory_of_the_sleepless4_i188.txt
 plague_rats.txt
 plumes_of_peace_i260.txt
 pouncing_jaguar_i425.txt
+power_armor.txt
 promise_of_bunrei_i305.txt
 prosperity.txt
 protomatter_powder.txt
@@ -459,6 +477,7 @@ prowess_of_the_fair3.txt
 pygmy_troll.txt
 pyknite_i426.txt
 pyroclasm.txt
+quick_sliver_FORCEDALIVE.txt
 quilled_sliver.txt
 rain_of_filth_i206.txt
 rain_of_filth_i283.txt
@@ -483,6 +502,7 @@ resounding_roar.txt
 resurrection.txt
 resuscitate_i210.txt
 righteous_cause.txt
+rise_from_the_grave.txt
 river_kelpie2_i335.txt
 rockslide_elemental.txt
 rootwalla.txt
@@ -527,10 +547,12 @@ slate_of_ancestry.txt
 sleeper_agent.txt
 slith_bloodletter.txt
 sneak_attack.txt
+solfatara.txt
 soulblast.txt
 souls_attendant_i489.txt
 soul's_grace_POWERLIFEGAIN.txt
 spark_elemental.txt
+spectral_shield_CANTBETARGETOF.txt
 sphinx_summoner.txt
 spirit_link.txt
 spirit_link_i173.txt
@@ -558,6 +580,7 @@ telekinetic_sliver.txt
 terror.txt
 terror2.txt
 thallid.txt
+the_tabernacle_at_pendrell_vale.txt
 thellon_of_havenwood.txt
 threaten.txt
 throne_of_bone.txt

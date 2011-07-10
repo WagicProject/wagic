@@ -1,0 +1,38 @@
+#Testing Spectral Shield. Target is a Grizzly Bears.
+#Spectral Shield's rules text: "Enchanted creature gets +0/+2 and can't be the target of spells."
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Giant Growth,Spectral Shield
+inplay:Grizzly Bears,Seal of Strength
+manapool:{1}{W}{U}{G}
+[PLAYER2]
+life:20
+[DO]
+Spectral Shield
+Grizzly Bears
+next
+#combatbegins
+Giant Growth
+Grizzly Bears
+Seal of Strength
+Grizzly Bears
+next
+#combatattackers
+Grizzly Bears
+next
+#combatblockers
+next
+#combatdamage
+next
+#combatends
+[ASSERT]
+COMBATENDS
+[PLAYER1]
+hand:Giant Growth
+inplay:Grizzly Bears,Spectral Shield
+graveyard:Seal of Strength
+manapool:{0}
+[PLAYER2]
+life:15
+[END]

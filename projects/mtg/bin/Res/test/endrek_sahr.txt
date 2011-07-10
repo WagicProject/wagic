@@ -1,0 +1,20 @@
+#Testing Endrek Sahr.
+#Endrek Sahr's rules text:"Whenever you cast a creature spell, put X 1/1 black Thrull creature tokens onto the battlefield, where X is that spell's converted mana cost. -- When you control seven or more Thrulls, sacrifice Endrek Sahr, Master Breeder."
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Enormous Baloth
+inplay:113527
+manapool:{6}{G}
+[PLAYER2]
+[DO]
+Enormous Baloth
+next
+[ASSERT]
+COMBATBEGINS
+[PLAYER1]
+inplay:Enormous Baloth,*,*,*,*,*,*,*
+graveyard:113527
+manapool:{0}
+[PLAYER2]
+[END]

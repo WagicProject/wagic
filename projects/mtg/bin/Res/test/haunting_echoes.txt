@@ -1,0 +1,21 @@
+#Testing Haunting Echoes.
+#Haunting Echoes' rules text: "Exile all cards from target player's graveyard other than basic land cards. For each card exiled this way, search that player's library for all cards with the same name as that card and exile them. Then that player shuffles his or her library."
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Haunting Echoes
+manapool:{3}{B}{B}
+[PLAYER2]
+graveyard:White Knight,Glorious Anthem
+library:White Knight,Glorious Anthem,Grizzly Bears
+[DO]
+Haunting Echoes
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:Haunting Echoes
+manapool:{0}
+[PLAYER2]
+library:Grizzly Bears
+exile:White Knight,Glorious Anthem,White Knight,Glorious Anthem
+[END]

@@ -1,0 +1,35 @@
+#Testing Dawn of the Dead. Target is a Grizzly Bears.
+#Dawn's rules text:
+#"At the beginning of your upkeep, you lose 1 life. -- At the beginning of your upkeep, you may return target creature card from your graveyard to the battlefield. That creature gains haste until end of turn. Exile it at the beginning of the next end step."
+[INIT]
+UNTAP
+[PLAYER1]
+inplay:Dawn of the Dead
+graveyard:Grizzly Bears
+life:20
+[PLAYER2]
+life:20
+[DO]
+next
+Dawn of the Dead
+choice 0
+Grizzly Bears
+next
+#Draw
+next
+#Firstmain
+next
+#Beginofcombat
+next
+#Combatattackers
+Grizzly Bears
+eot
+[ASSERT]
+UNTAP
+[PLAYER1]
+inplay:Dawn of the Dead
+exile:Grizzly Bears
+life:19
+[PLAYER2]
+life:18
+[END]

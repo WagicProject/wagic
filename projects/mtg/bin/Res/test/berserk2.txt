@@ -1,0 +1,28 @@
+#Testing Berserk. Target is a Grizzly Bears.
+#TEST 2:
+#Grizzly Bears DOES NOT ATTACK.
+#Grizzly Bears should NOT die at the end of turn.
+[INIT]
+COMBATATTACKERS
+[PLAYER1]
+hand:Berserk,Giant Growth
+inplay:Grizzly Bears
+manapool:{G}{G}
+[PLAYER2]
+[DO]
+Giant Growth
+Grizzly Bears
+Berserk
+Grizzly Bears
+next
+next
+next
+next
+[ASSERT]
+CLEANUP
+[PLAYER1]
+inplay:Grizzly Bears
+graveyard:Giant Growth,Berserk
+manapool:{0}
+[PLAYER2]
+[END]

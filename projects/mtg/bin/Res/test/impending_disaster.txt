@@ -1,0 +1,20 @@
+#Testing Impending Disaster
+#Impending Disaster's rules text:
+#"At the beginning of your upkeep, if there are seven or more lands on the battlefield, sacrifice Impending Disaster. If you do, destroy all lands."
+[INIT]
+UNTAP
+[PLAYER1]
+inplay:Impending Disaster,Plateau,Badlands,Volcanic Island
+[PLAYER2]
+inplay:Tundra,Taiga,Bayou,Tropical Island
+[DO]
+next
+next
+next
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:Impending Disaster,Plateau,Badlands,Volcanic Island
+[PLAYER2]
+graveyard:Tundra,Taiga,Bayou,Tropical Island
+[END]

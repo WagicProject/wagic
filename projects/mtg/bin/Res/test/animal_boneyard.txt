@@ -1,0 +1,24 @@
+#Testing Animal Boneyard
+#Enchanted land has "{T}, Sacrifice a creature: You gain life equal to that creature's toughness."
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Giant Mantis,Gaea's Anthem,Forest
+hand:Animal Boneyard
+manapool:{2}{W}
+life:20
+[PLAYER2]
+[DO]
+Animal Boneyard
+Forest
+Forest
+choice 1
+Giant Mantis
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Animal Boneyard,Gaea's Anthem,Forest
+graveyard:Giant Mantis
+manapool:{0}
+life:25
+[END]
