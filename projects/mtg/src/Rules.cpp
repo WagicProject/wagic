@@ -133,7 +133,7 @@ void RulesState::parsePlayerState(int playerId, string s)
     size_t limiter = s.find("=");
     if (limiter == string::npos) limiter = s.find(":");
     string areaS;
-    int area;
+    int area = -1;
     if (limiter != string::npos)
     {
         areaS = s.substr(0, limiter);
