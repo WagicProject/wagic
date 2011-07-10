@@ -394,7 +394,7 @@ void JGE::Run()
 
     sceRtcGetCurrentTick(&lastTime);
     oldButtons = veryOldButtons = 0;
-    JGECreateDefaultBindings();
+
     while (!mDone)
     {
         if (!mPaused)
