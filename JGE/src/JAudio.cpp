@@ -171,6 +171,9 @@ char loadWaveData(WAVDATA* p_wav, char* fileName, char memLoad)  // WAVE加载, 
 ///////////////////////////////////////////////////////////////////
 void releaseWaveData(WAVDATA* p_wav)  // WAVE释放
 {
+    //stop channels playing this sample before doing anything
+    stopWaveMem(p_wav);
+
 	if (p_wav->fd==-1)
 		free(p_wav->buffer);
 	else
@@ -360,6 +363,15 @@ int playWaveMem(WAVDATA* p_wav, unsigned long flag)  // 播放WAVE
 	}
 
 	return -1;
+}
+
+void stopWaveMem (WAVDATA * pWav)
+{
+    for (int i = 0;  i < NUMBER_WAV_CHANNELS; ++i)
+    {
+        if (p_currentWav[i] == pWav)
+            stopWaveMem(i);
+    }
 }
 
 ///////////////////////////////////////////////////////////////////

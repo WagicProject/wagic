@@ -61,6 +61,7 @@ void audioOutCallback_2(void* buf, unsigned int length, void *userdata);
 char playWaveFile(int channel, char* fullName, unsigned long flag);
 void stopWaveFile(int channel);
 int playWaveMem(WAVDATA* p_wav, unsigned long flag);
+void stopWaveMem(WAVDATA* p_wav);
 void stopWaveMem(int channel);
 void audioInit();
 void audioDestroy();
