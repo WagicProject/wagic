@@ -226,12 +226,12 @@ int MTGAbility::parseCastRestrictions(MTGCardInstance * card,Player * player,str
         check = restriction[i].find("control two or more vampires");
         if(check != string::npos)
         {
-            restriction.push_back("mytypemin:2 type(vampire)");
+            restriction.push_back("type(vampire|mybattlefield)~morethan~1");
         }
         check = restriction[i].find("control less creatures");
         if(check != string::npos)
         {
-            restriction.push_back("mytypemin:less type(creature)");
+            restriction.push_back("type(creature|mybattlefield)~lessthan~type(creature|opponentbattlefield)");
         }
         check = restriction[i].find("fourth turn");
         if(check != string::npos)
