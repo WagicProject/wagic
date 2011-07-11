@@ -139,9 +139,14 @@ void DeckMenu::RenderBackground()
     static bool loadBackground = true;
     if (loadBackground)
     {
+        //Erwan 2010/07/11 the TEXTURE_SUB_5551 below is useless, JGE doesn't support it for png. I'm letting it here to avoid causing a bug, but it should be removed
         JQuadPtr background = WResourceManager::Instance()->RetrieveTempQuad(bgFilename.str(), TEXTURE_SUB_5551);
         if (background.get())
-            JRenderer::GetInstance()->RenderQuad(background.get(), 0, 0);
+        {
+            float scaleX = SCREEN_WIDTH_F / background.get()->mWidth;
+            float scaleY = SCREEN_HEIGHT_F / background.get()->mHeight;
+            JRenderer::GetInstance()->RenderQuad(background.get(), 0, 0,0,scaleX, scaleY);
+        }
         else
             loadBackground = false;
     }
