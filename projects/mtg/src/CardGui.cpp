@@ -340,35 +340,35 @@ void CardGui::AlternateRender(MTGCard * card, const Pos& pos)
 
     if (card->data->countColors() > 1)
     {
-        q = WResourceManager::Instance()->RetrieveTempQuad("gold.jpg");
+        q = WResourceManager::Instance()->RetrieveTempQuad("gold.jpg", TEXTURE_SUB_5551);
     }
     else
     {
         switch (card->data->getColor())
         {
         case Constants::MTG_COLOR_ARTIFACT:
-            q = WResourceManager::Instance()->RetrieveTempQuad("artifact.jpg");
+            q = WResourceManager::Instance()->RetrieveTempQuad("artifact.jpg", TEXTURE_SUB_5551);
             break;
         case Constants::MTG_COLOR_GREEN:
-            q = WResourceManager::Instance()->RetrieveTempQuad("green.jpg");
+            q = WResourceManager::Instance()->RetrieveTempQuad("green.jpg", TEXTURE_SUB_5551);
             break;
         case Constants::MTG_COLOR_BLUE:
-            q = WResourceManager::Instance()->RetrieveTempQuad("blue.jpg");
+            q = WResourceManager::Instance()->RetrieveTempQuad("blue.jpg", TEXTURE_SUB_5551);
             break;
         case Constants::MTG_COLOR_RED:
-            q = WResourceManager::Instance()->RetrieveTempQuad("red.jpg");
+            q = WResourceManager::Instance()->RetrieveTempQuad("red.jpg", TEXTURE_SUB_5551);
             break;
         case Constants::MTG_COLOR_BLACK:
-            q = WResourceManager::Instance()->RetrieveTempQuad("black.jpg");
+            q = WResourceManager::Instance()->RetrieveTempQuad("black.jpg", TEXTURE_SUB_5551);
             break;
         case Constants::MTG_COLOR_WHITE:
-            q = WResourceManager::Instance()->RetrieveTempQuad("white.jpg");
+            q = WResourceManager::Instance()->RetrieveTempQuad("white.jpg", TEXTURE_SUB_5551);
             break;
         case Constants::MTG_COLOR_LAND:
-            q = WResourceManager::Instance()->RetrieveTempQuad("land.jpg");
+            q = WResourceManager::Instance()->RetrieveTempQuad("land.jpg", TEXTURE_SUB_5551);
             break;
         default:
-            q = WResourceManager::Instance()->RetrieveTempQuad("gold.jpg");
+            q = WResourceManager::Instance()->RetrieveTempQuad("gold.jpg", TEXTURE_SUB_5551);
             break;
         }
     }
@@ -569,35 +569,35 @@ void CardGui::TinyCropRender(MTGCard * card, const Pos& pos, JQuad * quad)
 
     if (card->data->countColors() > 1)
     {
-        q = WResourceManager::Instance()->RetrieveTempQuad("gold.jpg");
+        q = WResourceManager::Instance()->RetrieveTempQuad("gold.jpg", TEXTURE_SUB_5551);
     }
     else
     {
         switch (card->data->getColor())
         {
         case Constants::MTG_COLOR_ARTIFACT:
-            q = WResourceManager::Instance()->RetrieveTempQuad("artifact.jpg");
+            q = WResourceManager::Instance()->RetrieveTempQuad("artifact.jpg", TEXTURE_SUB_5551);
             break;
         case Constants::MTG_COLOR_GREEN:
-            q = WResourceManager::Instance()->RetrieveTempQuad("green.jpg");
+            q = WResourceManager::Instance()->RetrieveTempQuad("green.jpg", TEXTURE_SUB_5551);
             break;
         case Constants::MTG_COLOR_BLUE:
-            q = WResourceManager::Instance()->RetrieveTempQuad("blue.jpg");
+            q = WResourceManager::Instance()->RetrieveTempQuad("blue.jpg", TEXTURE_SUB_5551);
             break;
         case Constants::MTG_COLOR_RED:
-            q = WResourceManager::Instance()->RetrieveTempQuad("red.jpg");
+            q = WResourceManager::Instance()->RetrieveTempQuad("red.jpg", TEXTURE_SUB_5551);
             break;
         case Constants::MTG_COLOR_BLACK:
-            q = WResourceManager::Instance()->RetrieveTempQuad("black.jpg");
+            q = WResourceManager::Instance()->RetrieveTempQuad("black.jpg", TEXTURE_SUB_5551);
             break;
         case Constants::MTG_COLOR_WHITE:
-            q = WResourceManager::Instance()->RetrieveTempQuad("white.jpg");
+            q = WResourceManager::Instance()->RetrieveTempQuad("white.jpg", TEXTURE_SUB_5551);
             break;
         case Constants::MTG_COLOR_LAND:
-            q = WResourceManager::Instance()->RetrieveTempQuad("land.jpg");
+            q = WResourceManager::Instance()->RetrieveTempQuad("land.jpg", TEXTURE_SUB_5551);
             break;
         default:
-            q = WResourceManager::Instance()->RetrieveTempQuad("gold.jpg");
+            q = WResourceManager::Instance()->RetrieveTempQuad("gold.jpg", TEXTURE_SUB_5551);
             break;
         }
     }
