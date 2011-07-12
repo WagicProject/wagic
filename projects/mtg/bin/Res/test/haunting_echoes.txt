@@ -10,12 +10,14 @@ graveyard:White Knight,Glorious Anthem
 library:White Knight,Glorious Anthem,Grizzly Bears
 [DO]
 Haunting Echoes
+next
+goto firstmain
 [ASSERT]
 FIRSTMAIN
 [PLAYER1]
 graveyard:Haunting Echoes
 manapool:{0}
 [PLAYER2]
-library:Grizzly Bears
+hand:Grizzly Bears
 exile:White Knight,Glorious Anthem,White Knight,Glorious Anthem
 [END]
