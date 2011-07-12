@@ -29,6 +29,7 @@ next
 #Combatattackers
 Grizzly Bears
 eot
+goto untap
 [ASSERT]
 UNTAP
 [PLAYER1]
