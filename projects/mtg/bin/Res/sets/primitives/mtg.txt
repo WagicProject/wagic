@@ -7014,10 +7014,11 @@ toughness=2
 [card]
 name=Blood Lust
 target=creature
-auto=teach(creature[toughness>=4] 4/-3
-auto=teach(creature[toughness=3] 4/-2
-auto=teach(creature[toughness=2] 4/-1
-auto=teach(creature[toughness=1] 4/0
+auto=teach(creature[toughness>=5]) 4/-4
+auto=teach(creature[toughness=4]) 4/-3
+auto=teach(creature[toughness=3]) 4/-2
+auto=teach(creature[toughness=2]) 4/-1
+auto=teach(creature[toughness=1]) 4/0
 text=If target creature has toughness 5 or greater, it gets +4/-4 until end of turn. Otherwise, it gets +4/-X until end of turn, where X is its toughness minus 1.
 mana={1}{R}
 type=Instant
