@@ -57881,7 +57881,7 @@ toughness=2
 name=Screeching Silcaw
 abilities=flying
 auto=@combatdamaged(player) from(this):aslongas(artifact|myBattlefield) deplete:4 opponent >2
-text=Flying -- Metalcraft — Whenever Screeching Silcaw deals combat damage to a player, if you control three or more artifacts, that player puts the top four cards of his or her library into his or her graveyard.
+text=Flying -- Metalcraft - Whenever Screeching Silcaw deals combat damage to a player, if you control three or more artifacts, that player puts the top four cards of his or her library into his or her graveyard.
 mana={1}{U}
 type=Creature
 subtype=Bird
@@ -77231,14 +77231,14 @@ toughness=1
 [/card]
 [card]
 name=Well of Discovery
-auto=@next endofturn:aslongas(land[-tapped]|mybattlefield) draw:1 <1
+auto=@each my endofturn:aslongas(land[-tapped]|mybattlefield) draw:1 <1
 text=At the beginning of your end step, if you control no untapped lands, draw a card.
 mana={6}
 type=Artifact
 [/card]
 [card]
 name=Well of Life
-auto=@next endofturn:aslongas(land[-tapped]|mybattlefield) life:2 <1
+auto=@each my endofturn:aslongas(land[-tapped]|mybattlefield) life:2 <1
 text=At the beginning of your end step, if you control no untapped lands, you gain 2 life.
 mana={4}
 type=Artifact
