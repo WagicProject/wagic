@@ -3,6 +3,10 @@ name=Classic
 [INIT]
 mode=mtg
 
+[PLAYERS]
+auto=shuffle
+auto=draw:7
+
 [PLAYER1]
 #Tutorial is an ability that works like all others, but it is only activated once for a given player
 #Therefore triggering it with somthing such as @each... will actually only work once

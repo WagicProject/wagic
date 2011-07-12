@@ -5,3 +5,5 @@ unlock=prx_rimom
 mode=momir
 [PLAYERS]
 life:24
+auto=shuffle
+auto=draw:7

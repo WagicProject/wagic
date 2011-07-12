@@ -1,33 +1,4 @@
-#make sure this file always looks like mtg.txt, minus the initial shuffle and draw
+include mtg.txt
 hidden
 [INIT]
 mode=mtg
-[PLAYERS]
-life:20
-auto=sethand:7
-auto=@each my draw:draw:1
-auto=maxPlay(land)1
-
-#Lands Mana Rules
-auto=lord(Plains|MyBattlefield) {T}:Add{W}
-auto=lord(Island|MyBattlefield) {T}:Add{U}
-auto=lord(Swamp|MyBattlefield) {T}:Add{B}
-auto=lord(Mountains|MyBattlefield) {T}:Add{R}
-auto=lord(Forest|MyBattlefield) {T}:Add{G}
-
-#Mana Empties from manapool at the end of each phase
-auto=@each untap:removeMana(*)
-auto=@each upkeep:removeMana(*)
-auto=@each draw:removeMana(*)
-auto=@each firstmain:removeMana(*)
-auto=@each combatbegins:removeMana(*)
-auto=@each attackers:removeMana(*)
-auto=@each blockers:removeMana(*)
-auto=@each combatdamage:removeMana(*)
-auto=@each combatEnds:removeMana(*)
-auto=@each secondmain:removeMana(*)
-auto=@each end:removeMana(*)
-auto=@each cleanup:removeMana(*)
-
-#reset Creature damage at the cleanup phase
-auto=@each cleanup:all(*|myBattlefield) resetDamage

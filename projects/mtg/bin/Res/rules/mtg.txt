@@ -1,4 +1,7 @@
-#If you change this file, be sure to report your changes into testsuite.txt!
+# This is the basic rules for MTG.
+# Do not add any "Draw X cards at startup" or "shuffle" here, as the story mode and the test suite rely on this
+# file, and they usually don't expect the draw rule or shuffle to happen
+# If you want shuffle or draw events, put them directly in your own rules file that includes this file, see clasic.txt for example 
 hidden
 [INIT]
 mode=mtg
@@ -6,8 +9,6 @@ mode=mtg
 life:20
 offerinterruptonphase=draw
 auto=sethand:7
-auto=shuffle
-auto=draw:7
 auto=@each my draw:draw:1
 auto=maxPlay(land)1
 

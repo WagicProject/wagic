@@ -1,3 +1,4 @@
+include mtg.txt
 [INIT]
 mode=mtg
 [PLAYER1]

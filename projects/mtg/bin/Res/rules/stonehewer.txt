@@ -5,5 +5,7 @@ unlock=prx_rewehenots
 mode=stonehewer
 [PLAYERS]
 life:15
-auto=draw:1
+auto=shuffle
+auto=draw:8
 auto=sethand:8
+
