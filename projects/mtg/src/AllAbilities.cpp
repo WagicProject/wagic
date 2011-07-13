@@ -2559,6 +2559,8 @@ int ATransformer::addToGame()
         {
             AbilityFactory af;
             MTGAbility * aNew = af.parseMagicLine(newAbilitiesList[k], 0, NULL, _target);
+            if(!aNew)
+                continue;
             aNew->isClone = 1;
             GenericTargetAbility * gta = dynamic_cast<GenericTargetAbility*> (aNew);
             if (gta)
@@ -2578,6 +2580,7 @@ int ATransformer::addToGame()
                 ((MultiAbility *)aNew)->source = _target;
                 ((MultiAbility *)aNew)->abilities[0]->source = _target;
             }
+
             aNew->target = _target;
             aNew->source = (MTGCardInstance *) _target;
             if(aNew->oneShot)
@@ -2586,8 +2589,10 @@ int ATransformer::addToGame()
                 delete aNew;
             }
             else
+            {
                 aNew->addToGame();
-            newAbilities[_target].push_back(aNew);
+                newAbilities[_target].push_back(aNew);
+            }
         }
     }
     if(newpowerfound )
@@ -2691,7 +2696,10 @@ int ATransformer::destroy()
         {
             for (unsigned int i = 0;i < newAbilities[_target].size(); i++)
             {
-                newAbilities[_target].at(i)->forceDestroy = 1;
+                if(newAbilities[_target].at(i))
+                {
+                    newAbilities[_target].at(i)->forceDestroy = 1;
+                }
             }
             if (newAbilities.find(_target) != newAbilities.end())
             {

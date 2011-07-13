@@ -439,20 +439,22 @@ int AIAction::getEfficiency()
             {
                 if(cc && _target)
                 {
-                    if(_target && _target->controller() == p && cc->toughness>=0)
+                    if(_target->controller() == p && cc->toughness>=0)
                     {
                         efficiency = 90;
 
                     }
-                    if(_target && _target->controller() != p && ((_target->toughness + cc->toughness <= 0 && _target->toughness) || (cc->toughness < 0 && cc->power < 0)))
+                    if(_target->controller() != p && ((_target->toughness + cc->toughness <= 0 && _target->toughness) || (cc->toughness < 0 && cc->power < 0)))
                     {
                         efficiency = 90;
 
                     }
-                    if(_target && _target->counters && _target->counters->counters && _target->counters->hasCounter(cc->power,cc->toughness) && _target->counters->hasCounter(cc->power,cc->toughness)->nb > 15)
+                    if(_target->counters && _target->counters->counters && _target->counters->hasCounter(cc->power,cc->toughness) && _target->counters->hasCounter(cc->power,cc->toughness)->nb > 15)
                     {
                         efficiency = _target->counters->hasCounter(cc->power,cc->toughness)->nb;
                     }
+                    if(cc->maxNb && _target->counters && _target->counters->counters && _target->counters->hasCounter(cc->power,cc->toughness)->nb >= cc->maxNb) 
+                        efficiency = 0;
                 }
             }
             break;
