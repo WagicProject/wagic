@@ -154,11 +154,6 @@ void CardGui::Render()
     bool alternate = true;
     JQuadPtr quad = WResourceManager::Instance()->RetrieveCard(card, CACHE_THUMB);
 
-#if defined (WIN32) || defined (LINUX)
-    //On pcs we render the big image if the thumbnail is not available
-    if (!quad.get())
-        quad = WResourceManager::Instance()->RetrieveCard(card);
-#endif
     if (quad.get())
         alternate = false;
     else
