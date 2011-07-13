@@ -72014,8 +72014,7 @@ name=Trollhide
 target=creature
 auto=2/2
 auto=teach(creature) {1}{G}:regenerate
-text=Enchant creature
-Enchanted creature gets +2/+2 and has "{1}{G}: Regenerate this creature."
+text=Enchant creature -- Enchanted creature gets +2/+2 and has "{1}{G}: Regenerate this creature."
 mana={1}{G}
 type=Enchantment
 subtype=Aura
