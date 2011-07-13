@@ -33,7 +33,7 @@ MOC_DIR = objs
 DESTDIR = bin
 
 unix:LIBS += -ljpeg -lgif -lpng12 -lboost_thread-mt
-windows:LIBS += -L../../JGE/Dependencies/lib -llibjpeg-static-mt-debug -lgiflib -llibpng -lfmodvc
+windows:LIBS += -L../../JGE/Dependencies/lib -L../../Boost/lib -llibjpeg-static-mt-debug -lgiflib -llibpng -lfmodvc -llibboost_date_time-vc100-mt-1_44
 macx|unix:LIBS += -lz
 
 PRECOMPILED_HEADER = include/PrecompiledHeader.h
@@ -43,6 +43,7 @@ SOURCES += \
         src/ActionElement.cpp\
         src/ActionLayer.cpp\
         src/ActionStack.cpp\
+        src/AIHints.cpp\
         src/AIMomirPlayer.cpp\
         src/AIPlayer.cpp\
         src/AIStats.cpp\
@@ -93,10 +94,11 @@ SOURCES += \
         src/GuiPhaseBar.cpp\
         src/GuiPlay.cpp\
         src/GuiStatic.cpp\
-		src/IconButton.cpp\
+        src/IconButton.cpp\
         src/ManaCost.cpp\
         src/ManaCostHybrid.cpp\
         src/MenuItem.cpp\
+        src/ModRules.cpp\
         src/MTGAbility.cpp\
         src/MTGCard.cpp\
         src/MTGCardInstance.cpp\
