@@ -2561,7 +2561,6 @@ int ATransformer::addToGame()
             MTGAbility * aNew = af.parseMagicLine(newAbilitiesList[k], 0, NULL, _target);
             if(!aNew)
                 continue;
-            aNew->isClone = 1;
             GenericTargetAbility * gta = dynamic_cast<GenericTargetAbility*> (aNew);
             if (gta)
             {

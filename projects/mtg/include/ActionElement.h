@@ -22,9 +22,8 @@ class ActionElement: public JGuiObject
 {
 protected:
     int activeState;
-
-public:
     int isClone;
+public:
     TargetChooser * tc;
     int currentPhase;
     int newPhase;
