@@ -61527,7 +61527,7 @@ toughness=2
 [card]
 name=Sky Swallower
 abilities=flying
-auto=moveTo(opponentBattlefield) all(* other|myBattlefield)
+auto=moveTo(opponentBattlefield) all(other *|myBattlefield)
 text=Flying -- When Sky Swallower enters the battlefield, target opponent gains control of all other permanents you control.
 mana={3}{U}{U}
 type=Creature
