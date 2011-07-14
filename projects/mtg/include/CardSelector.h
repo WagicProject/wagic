@@ -32,7 +32,6 @@ public:
     virtual void Add(PlayGuiObject*) = 0;
     virtual void Remove(PlayGuiObject*) = 0;
     virtual bool CheckUserInput(JButton key) = 0;
-    virtual bool CheckUserInput(int x, int y) = 0;
     virtual void PushLimitor() = 0;
     virtual void PopLimitor() = 0;
     virtual void Limit(LimitorFunctor<PlayGuiObject>* inLimitor, CardView::SelectorZone inZone) = 0;
@@ -75,7 +74,6 @@ public:
     void Add(PlayGuiObject*);
     void Remove(PlayGuiObject*);
     bool CheckUserInput(JButton key);
-    bool CheckUserInput(int x, int y);
     void Update(float dt);
     void Render();
     void Push();

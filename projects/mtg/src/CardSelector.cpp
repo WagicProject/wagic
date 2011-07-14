@@ -226,123 +226,68 @@ bool CardSelector::CheckUserInput(JButton key)
         }
       }
     }
-    if (active != oldactive)
+    if(key != JGE_BTN_NONE)
     {
-        CardView::SelectorZone oldowner, owner;
-        if (CardView *q = dynamic_cast<CardView*>(oldactive))
-            oldowner = q->owner;
-        else
-            oldowner = CardView::nullZone;
-        if (CardView *q = dynamic_cast<CardView*>(active))
-            owner = q->owner;
-        else
-            owner = CardView::nullZone;
-        if (oldowner != owner)
-        {
-            if (CardView::nullZone != owner)
-            {
-                if (PlayGuiObject* old = fetchMemory(lasts[owner]))
-                    switch (key)
-                    {
-                    case JGE_BTN_LEFT:
-                        if (old->x < oldactive->x)
-                            active = old;
-                        break;
-                    case JGE_BTN_RIGHT:
-                        if (old->x > oldactive->x)
-                            active = old;
-                        break;
-                    case JGE_BTN_UP:
-                        if (old->y < oldactive->y)
-                            active = old;
-                        break;
-                    case JGE_BTN_DOWN:
-                        if (old->y > oldactive->y)
-                            active = old;
-                        break;
-                    default:
-                        if (old)
-                            active = old;
-                        break;
-                    }
-            }
-            lasts[oldowner] = SelectorMemory(oldactive);
-        }
-    }
-    else
-    {
-        // active card hasn't changed - that means we're probably at an edge of the battlefield.
-        // check if we're not already a selected avatar - if not, select one depending whether we're going up/down.
-        GuiAvatar* avatar = dynamic_cast<GuiAvatar*> (active);
-        if (!avatar)
-        {
-            if (key == JGE_BTN_DOWN)
-            {
-                active = duel->GetAvatars()->GetSelf();
-            }
-            else if (key == JGE_BTN_UP)
-            {
-                active = duel->GetAvatars()->GetOpponent();
-            }
-        }
-    }
-    if (active != oldactive)
-    {
-        {
-            CardView* c = dynamic_cast<CardView*> (oldactive);
-            if (c)
-                c->zoom = 1.0f;
-        }
-        {
-            CardView* c = dynamic_cast<CardView*> (active);
-            if (c)
-                c->zoom = 1.4f;
-        }
-        if (oldactive)
-            oldactive->Leaving(JGE_BTN_NONE);
-        if (active)
-            active->Entering();
-    }
-    return true;
-}
-
-bool CardSelector::CheckUserInput(int x, int y)
-{
-    if (!active)
-    {
-        for (vector<Target*>::iterator it = cards.begin(); it != cards.end(); ++it)
-            if ((NULL == limitor) || (limitor->select(*it)))
-            {
-                active = *it;
-                active->Entering();
-                return true;
-            }
-        return true;
-    }
-    Target* oldactive = active;
-    active = closest<True> (cards, limitor, static_cast<float> (x), static_cast<float> (y));
-
-    if (active != oldactive)
-    {
-        CardView::SelectorZone oldowner, owner;
-        if (CardView *q = dynamic_cast<CardView*>(oldactive))
-            oldowner = q->owner;
-        else
-            oldowner = CardView::nullZone;
-        if (CardView *q = dynamic_cast<CardView*>(active))
-            owner = q->owner;
-        else
-            owner = CardView::nullZone;
-        if (oldowner != owner)
-        {
-            if (CardView::nullZone != owner)
-            {
-                if (PlayGuiObject* old = fetchMemory(lasts[owner]))
-                    if (old)
-                        active = old;
-            }
-            lasts[oldowner] = SelectorMemory(oldactive);
-        }
+      if (active != oldactive)
+      {
+          CardView::SelectorZone oldowner, owner;
+          if (CardView *q = dynamic_cast<CardView*>(oldactive))
+              oldowner = q->owner;
+          else
+              oldowner = CardView::nullZone;
+          if (CardView *q = dynamic_cast<CardView*>(active))
+              owner = q->owner;
+          else
+              owner = CardView::nullZone;
+          if (oldowner != owner)
+          {
+              if (CardView::nullZone != owner)
+              {
+                  if (PlayGuiObject* old = fetchMemory(lasts[owner]))
+                      switch (key)
+                      {
+                      case JGE_BTN_LEFT:
+                          if (old->x < oldactive->x)
+                              active = old;
+                          break;
+                      case JGE_BTN_RIGHT:
+                          if (old->x > oldactive->x)
+                              active = old;
+                          break;
+                      case JGE_BTN_UP:
+                          if (old->y < oldactive->y)
+                              active = old;
+                          break;
+                      case JGE_BTN_DOWN:
+                          if (old->y > oldactive->y)
+                              active = old;
+                          break;
+                      default:
+                          if (old)
+                              active = old;
+                          break;
+                      }
+              }
+              lasts[oldowner] = SelectorMemory(oldactive);
+          }
+      }
+      else
+      {
+          // active card hasn't changed - that means we're probably at an edge of the battlefield.
+          // check if we're not already a selected avatar - if not, select one depending whether we're going up/down.
+          GuiAvatar* avatar = dynamic_cast<GuiAvatar*> (active);
+          if (!avatar)
+          {
+              if (key == JGE_BTN_DOWN)
+              {
+                  active = duel->GetAvatars()->GetSelf();
+              }
+              else if (key == JGE_BTN_UP)
+              {
+                  active = duel->GetAvatars()->GetOpponent();
+              }
+          }
+      }
     }
     if (active != oldactive)
     {
