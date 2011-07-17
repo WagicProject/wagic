@@ -32,6 +32,8 @@ DESTDIR = bin
 symbian:DEFINES += FORCE_GLES
 symbian:DEFINES += QT_OPENGL_ES_1
 
+unix:LIBS += -lz
+
 PRECOMPILED_HEADER = include/PrecompiledHeader.h
 
 # MGT
