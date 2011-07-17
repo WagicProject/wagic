@@ -58,7 +58,7 @@ class JMusic
 #endif
 public:
 	JMusic();
-        ~JMusic();
+  ~JMusic();
   void Update();
   int getPlayTime();
 

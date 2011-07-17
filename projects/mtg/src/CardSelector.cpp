@@ -7,7 +7,7 @@
 #include "Closest.cpp"
 #include "GameObserver.h"
 
-using std::cout;
+//using std::cout;
 
 // The X lib annoyingly defines True to be 1, leading to
 // hard to understand syntax errors. Not using it, so it's

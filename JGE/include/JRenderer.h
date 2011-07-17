@@ -16,7 +16,7 @@
 #include <string.h>
 #include <stdarg.h>
 
-#if (!defined IOS) && (!defined ANDROID)
+#if (!defined IOS) && (!defined ANDROID) && (!defined QT_CONFIG)
 #include <gif_lib.h>
 #endif //IOS ANDROID
 
@@ -569,7 +569,7 @@ private:
 		bool mVRAM;
 	};
 
-#if (!defined IOS)
+#if (!defined IOS) && (!defined QT_CONFIG)
 	void LoadJPG(TextureInfo &textureInfo, const char *filename, int mode = 0, int TextureFormat = TEXTURE_FORMAT);
 	int LoadPNG(TextureInfo &textureInfo, const char *filename, int mode = 0, int TextureFormat = TEXTURE_FORMAT);
 #if (!defined ANDROID)

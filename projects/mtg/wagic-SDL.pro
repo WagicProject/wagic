@@ -24,6 +24,7 @@ DEFINES += USE_PHONON
 QT += phonon dbus
 }
 windows:INCLUDEPATH += ../../JGE/Dependencies/include
+windows:INCLUDEPATH += ../../JGE/Dependencies/SDL/include
 windows:INCLUDEPATH += extra
 unix:INCLUDEPATH += /usr/include/GL
 unix:INCLUDEPATH += /usr/local/include/SDL
@@ -47,6 +48,7 @@ SOURCES += \
         src/ActionElement.cpp\
         src/ActionLayer.cpp\
         src/ActionStack.cpp\
+        src/AIHints.cpp\
         src/AIMomirPlayer.cpp\
         src/AIPlayer.cpp\
         src/AIStats.cpp\
@@ -97,10 +99,11 @@ SOURCES += \
         src/GuiPhaseBar.cpp\
         src/GuiPlay.cpp\
         src/GuiStatic.cpp\
-		src/IconButton.cpp\	
+        src/IconButton.cpp\
         src/ManaCost.cpp\
         src/ManaCostHybrid.cpp\
         src/MenuItem.cpp\
+        src/ModRules.cpp\
         src/MTGAbility.cpp\
         src/MTGCard.cpp\
         src/MTGCardInstance.cpp\
@@ -201,7 +204,7 @@ HEADERS  += \
         include/ThisDescriptor.h\
         include/CardGui.h\
         include/GameStateTransitions.h\
-		include/IconButton.h\
+        include/IconButton.h\
         include/OptionItem.h\
         include/Token.h\
         include/CardPrimitive.h\
@@ -257,7 +260,9 @@ HEADERS  += \
         include/Navigator.h\
         include/DeckEditorMenu.h\
         include/PlayRestrictions.h\
-        include/NetworkPlayer.h
+        include/NetworkPlayer.h\
+        include/ModRules.h\
+        include/AIHints.h\
 
 # JGE, could probably be moved outside
 SOURCES += \

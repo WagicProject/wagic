@@ -2,6 +2,16 @@
 #include <QtOpenGL>
 #include <QTime>
 
+#if (defined FORCE_GLES)
+#undef GL_ES_VERSION_2_0
+#undef GL_VERSION_2_0
+#define GL_VERSION_ES_CM_1_1 1
+#ifndef GL_OES_VERSION_1_1
+#define glOrthof glOrtho
+#define glClearDepthf glClearDepth
+#endif
+#endif
+
 #ifdef Q_WS_MAEMO_5
 // For volume buttons support
 #include <QtGui/QX11Info>
@@ -268,7 +278,11 @@ void JGEQtRenderer::initializeGL()
   glEnable(GL_DEPTH_TEST);				// Enable Depth Testing
 
 #else
+#if (defined GL_VERSION_ES_CM_1_1 || defined GL_OES_VERSION_1_1)
+  glClearDepthf(1.0f);					// Depth Buffer Setup
+#else
   glClearDepth(1.0f);					// Depth Buffer Setup
+#endif
 
   glDepthFunc(GL_LEQUAL);				// The Type Of Depth Testing (Less Or Equal)
   glEnable(GL_DEPTH_TEST);				// Enable Depth Testing
@@ -317,7 +331,11 @@ void JGEQtRenderer::resizeGL(int width, int height)
   glMatrixMode (GL_PROJECTION);										// Select The Projection Matrix
   glLoadIdentity ();													// Reset The Projection Matrix
 
+#if (defined GL_VERSION_ES_CM_1_1 || defined GL_OES_VERSION_1_1)
+  glOrthof(0.0f, (float) (viewPort.right()-viewPort.left())-1.0f, 0.0f, (float) (viewPort.bottom()-viewPort.top())-1.0f, -1.0f, 1.0f);
+#else
   gluOrtho2D(0.0f, (float) (viewPort.right()-viewPort.left())-1.0f, 0.0f, (float) (viewPort.bottom()-viewPort.top())-1.0f);
+#endif
 
   glMatrixMode (GL_MODELVIEW);										// Select The Modelview Matrix
   glLoadIdentity ();													// Reset The Modelview Matrix

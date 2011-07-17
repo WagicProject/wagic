@@ -120,10 +120,11 @@ enum {
 #undef GL_ES_VERSION_2_0
 #undef GL_VERSION_2_0
 #define GL_VERSION_ES_CM_1_1 1
+#ifndef GL_OES_VERSION_1_1
 #define glOrthof glOrtho
 #define glClearDepthf glClearDepth
 #endif
-
+#endif
 
 #if defined (PSP)
 

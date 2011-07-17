@@ -1,7 +1,7 @@
 #ifndef THREADING_H
 #define THREADING_H
 
-#if !defined(PSP)
+#if !defined(PSP) && !defined(QT_CONFIG)
 #include <boost/date_time.hpp>
 
 #ifdef WIN32
@@ -14,7 +14,7 @@
 #endif
 
 #include <boost/thread/mutex.hpp>
-#else
+#elif !defined(QT_CONFIG)
 #include <boost/bind.hpp>
 #include <boost/shared_ptr.hpp>
 
@@ -303,6 +303,239 @@ namespace boost
         inline void sleep(boost::posix_time::milliseconds const& time)
         {
             sceKernelDelayThread(time * 1000);
+        }
+    }
+}
+
+#elif defined(QT_CONFIG)
+
+#include <QMutex>
+#include <QThread>
+
+#include <boost/bind.hpp>
+#include <boost/shared_ptr.hpp>
+
+#include "../include/DebugRoutines.h"
+#include "../include/JLogger.h"
+
+namespace boost
+{
+    template <class Mutex>
+    struct unique_lock
+    {
+        unique_lock(Mutex& inMutex) : mMutex(&inMutex)
+        {
+            mMutex->lock();
+        }
+
+        ~unique_lock()
+        {
+            mMutex->unlock();
+        }
+
+        Mutex* mMutex;
+    };
+
+    class mutex
+    {
+    public:
+
+        typedef unique_lock<mutex> scoped_lock;
+
+        mutex()
+          : mQMutex()
+        {
+        }
+
+        ~mutex()
+        {
+        }
+
+        void lock()
+        {
+            mQMutex.lock();
+        }
+
+        void unlock()
+        {
+            mQMutex.unlock();
+        }
+
+        QMutex mQMutex;
+
+    private:
+        mutex(mutex const&);
+        mutex& operator=(mutex const&);
+    };
+
+
+
+    class recursive_mutex
+    {
+    public:
+
+        typedef unique_lock<recursive_mutex> scoped_lock;
+
+        recursive_mutex() : mQMutex(QMutex::Recursive)
+        {
+        }
+
+        ~recursive_mutex()
+        {
+        }
+
+        void lock()
+        {
+          mQMutex.lock();
+        }
+
+        void unlock()
+        {
+          mQMutex.unlock();
+        }
+
+        QMutex mQMutex;
+
+    private:
+        recursive_mutex(recursive_mutex const&);
+        recursive_mutex& operator=(recursive_mutex const&);
+    };
+
+
+    /**
+    ** Emulating boost::thread configuration glue, with some shortcuts
+    ** This detail namespace is a distillation of boost's thread.hpp, thread_data.hpp.
+    */
+    namespace detail
+    {
+        struct thread_data_base
+        {
+            thread_data_base()
+            {
+            }
+
+            virtual ~thread_data_base()
+            {
+            }
+
+            virtual void run() = 0;
+        };
+
+        typedef boost::shared_ptr<detail::thread_data_base> thread_data_ptr;
+
+        template<typename F>
+        class thread_data : public detail::thread_data_base
+        {
+        public:
+            thread_data(F f_) : f(f_)
+            {
+            }
+
+            void run()
+            {
+                f();
+            }
+
+        private:
+            F f;
+
+            void operator=(thread_data&);
+            thread_data(thread_data&);
+        };
+
+    } //namespace detail
+
+    class threadImpl : public QThread
+    {
+      detail::thread_data_ptr mThreadInfo;
+    public:
+      static threadImpl* spThreadImpl;
+      threadImpl(detail::thread_data_ptr threadInfo) : mThreadInfo(threadInfo)
+      {
+        setTerminationEnabled();
+        spThreadImpl = this;
+      };
+      static void mymsleep(unsigned long msecs)
+      {
+        spThreadImpl->msleep(msecs);
+      }
+    protected:
+      void run()
+      {
+        LOG("Entering thread::run");
+        mThreadInfo->run();
+      }
+    };
+
+    threadImpl* threadImpl::spThreadImpl = 0;
+
+    /**
+    ** A simplistic implementation of boost::thread, using QThread.
+    **
+    */
+    class thread
+    {
+        /*
+        ** Helper class for sceKernelStartThread, which passes args by value, not by reference
+        ** We use this struct to wrap any pointers that we want to pass to the worker thread.
+        */
+        struct CallbackData
+        {
+            CallbackData(detail::thread_data_ptr inThreadInfo)
+                : mThreadInfo(inThreadInfo)
+            {
+            }
+
+            detail::thread_data_ptr mThreadInfo;
+        };
+
+    public:
+
+        thread()
+        {
+        }
+
+        template <class F,class A1>
+        thread(F f, A1 a1) : mThreadInfo(make_thread_info(boost::bind(boost::type<void>(), f, a1)))
+        {
+            mpThread = new threadImpl(mThreadInfo);
+            LOG("Calling start func");
+            mpThread->start(QThread::LowPriority);
+        }
+
+        ~thread()
+        {
+        }
+
+        void join()
+        {
+          mpThread->terminate();
+        }
+
+    private:
+        template<typename F>
+        static inline detail::thread_data_ptr make_thread_info(F f)
+        {
+            return detail::thread_data_ptr(new detail::thread_data<F>(f));
+        }
+
+        detail::thread_data_ptr mThreadInfo;
+        threadImpl* mpThread;
+    };
+
+    namespace posix_time
+    {
+        typedef unsigned int milliseconds;
+    }
+
+    /**
+    ** boost's platform neutral sleep call.
+    */
+    namespace this_thread
+    {
+        inline void sleep(boost::posix_time::milliseconds const& time)
+        {
+          threadImpl::mymsleep(time);
         }
     }
 }

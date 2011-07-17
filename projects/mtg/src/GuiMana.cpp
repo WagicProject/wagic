@@ -4,7 +4,7 @@
 #include "OptionItem.h"
 #include "Player.h"
 
-using std::cout;
+//using std::cout;
 using std::endl;
 
 ManaIcon::ManaIcon(int color, float x, float y, float destx, float desty) :

@@ -4,10 +4,9 @@
 #
 #-------------------------------------------------
 
-QT       += core gui opengl
-macx:QT += phonon
+QT       += core gui opengl phonon
 #CONFIG += warn_off precompile_header // causes some massives errors on mac.
-VERSION = 0.14.1
+VERSION = 0.16.0
 TARGET = wagic
 TEMPLATE = app
 unix|macx:QMAKE_CXXFLAGS += -Wno-unused-parameter
@@ -16,14 +15,13 @@ windows:DEFINES += _CRT_SECURE_NO_WARNINGS
 unix|macx:DEFINES += LINUX
 CONFIG(debug, debug|release):DEFINES += _DEBUG
 DEFINES += QT_CONFIG
-macx:DEFINES += USE_PHONON
-maemo5 {
 DEFINES += USE_PHONON
-QT += phonon dbus
+maemo5 {
+QT += dbus
 }
 windows:INCLUDEPATH += ../../JGE/Dependencies/include
 windows:INCLUDEPATH += extra
-unix:INCLUDEPATH += /usr/include/GL
+unix:!symbian:INCLUDEPATH += /usr/include/GL
 macx:INCLUDEPATH += /opt/include
 INCLUDEPATH += ../../JGE/include
 INCLUDEPATH += ../../Boost
@@ -31,10 +29,8 @@ INCLUDEPATH += include
 OBJECTS_DIR = objs
 MOC_DIR = objs
 DESTDIR = bin
-
-unix:LIBS += -ljpeg -lgif -lpng12 -lboost_thread-mt
-windows:LIBS += -L../../JGE/Dependencies/lib -L../../Boost/lib -llibjpeg-static-mt-debug -lgiflib -llibpng -lfmodvc -llibboost_date_time-vc100-mt-1_44
-macx|unix:LIBS += -lz
+symbian:DEFINES += FORCE_GLES
+symbian:DEFINES += QT_OPENGL_ES_1
 
 PRECOMPILED_HEADER = include/PrecompiledHeader.h
 
@@ -198,7 +194,7 @@ HEADERS  += \
         include/ThisDescriptor.h\
         include/CardGui.h\
         include/GameStateTransitions.h\
-		include/IconButton.h\
+        include/IconButton.h\
         include/OptionItem.h\
         include/Token.h\
         include/CardPrimitive.h\
@@ -329,6 +325,7 @@ HEADERS += \
         ../../JGE/src/tinyxml/tinyxml.h\
         ../../JGE/include/vram.h
 
+# maemo 5 packaging
 maemo5: {
     # Variables
     BINDIR = /opt/wagic
@@ -360,4 +357,10 @@ maemo5: {
 
     launcher.path = $$BINDIR
     launcher.files += debian/launcher
+}
+
+# Meego/maemo 6 packaging (incomplete)
+unix:!symbian:!maemo5 {
+    target.path = /opt/wagic/bin
+    INSTALLS += target
 }

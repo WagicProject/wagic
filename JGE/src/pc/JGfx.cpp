@@ -9,7 +9,7 @@
 //-------------------------------------------------------------------------------------
 #define GL_GLEXT_PROTOTYPES
 
-#if (!defined IOS)
+#if (!defined IOS) && (!defined QT_CONFIG)
 #ifdef WIN32
 #pragma warning(disable : 4786)
 #pragma comment( lib, "giflib.lib" )
@@ -1630,7 +1630,7 @@ static int getNextPower2(int width)
 }
 
 
-#if (!defined IOS)
+#if (!defined IOS) && (!defined QT_CONFIG)
 static void jpg_null(j_decompress_ptr cinfo __attribute__((unused)))
 {
 }
