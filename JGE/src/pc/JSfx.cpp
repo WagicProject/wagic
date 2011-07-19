@@ -7,6 +7,7 @@
 // Copyright (c) 2007 James Hui (a.k.a. Dr.Watson) <jhkhui@gmail.com>
 //
 //-------------------------------------------------------------------------------------
+#include "DebugRoutines.h"
 
 #ifdef WITH_FMOD
 #include "../../Dependencies/include/fmod.h"
@@ -16,7 +17,6 @@
 
 #include "../../include/JSoundSystem.h"
 #include "../../include/JFileSystem.h"
-
 
 //////////////////////////////////////////////////////////////////////////
 JMusic::JMusic()
@@ -45,11 +45,9 @@ JMusic::~JMusic()
     delete mOutput;
   if(mMediaObject)
     delete mMediaObject;
-#else
-#ifdef WITH_FMOD
+#elif defined WITH_FMOD
   JSoundSystem::GetInstance()->StopMusic(this);
   if (mTrack) FSOUND_Sample_Free(mTrack);
-#endif
 #endif
 }
 
@@ -76,10 +74,8 @@ JSample::~JSample()
     delete mOutput;
   if(mMediaObject)
     delete mMediaObject;
-#else
-#ifdef WITH_FMOD
+#elif (defined WITH_FMOD)
   if (mSample) FSOUND_Sample_Free(mSample);
-#endif
 #endif
 }
 
@@ -154,15 +150,13 @@ JMusic *JSoundSystem::LoadMusic(const char *fileName)
   {
     music->mOutput = new Phonon::AudioOutput(Phonon::GameCategory, 0);
     music->mMediaObject = new Phonon::MediaObject(0);
-    music->mMediaObject->setCurrentSource("Res/" + QString(fileName));
-    Phonon::Path path = Phonon::createPath(music->mMediaObject, music->mOutput);
-    Q_ASSERT(path.isValid());
+    string fullpath = JFileSystem::GetInstance()->GetResourceFile(fileName);
+    music->mMediaObject->setCurrentSource(QString(fullpath.c_str()));
+    Phonon::Path mediapath = Phonon::createPath(music->mMediaObject, music->mOutput);
+    Q_ASSERT(mediapath.isValid());
   }
   return music;
-#else
-#ifndef WITH_FMOD
-  return NULL;
-#else
+#elif (defined WITH_FMOD)
   JMusic* music = new JMusic();
   if (music)
     {
@@ -179,7 +173,8 @@ JMusic *JSoundSystem::LoadMusic(const char *fileName)
 	}
     }
   return music;
-#endif
+#else
+  return NULL;
 #endif
 }
 
@@ -197,8 +192,7 @@ void JSoundSystem::PlayMusic(JMusic *music, bool looping)
     music->mMediaObject->play();
 
   }
-#else
-#ifdef WITH_FMOD
+#elif (defined WITH_FMOD)
   if (music && music->mTrack)
     {
       mChannel = FSOUND_PlaySound(mChannel, music->mTrack);
@@ -210,7 +204,6 @@ void JSoundSystem::PlayMusic(JMusic *music, bool looping)
 	FSOUND_SetLoopMode(mChannel, FSOUND_LOOP_OFF);
     }
 #endif
-#endif
 }
 
 
@@ -221,10 +214,8 @@ void JSoundSystem::StopMusic(JMusic *music)
   {
     music->mMediaObject->stop();
   }
-#else
-#ifdef WITH_FMOD
+#elif (defined WITH_FMOD)
   FSOUND_StopSound(mChannel);
-#endif
 #endif
 }
 
@@ -255,21 +246,19 @@ void JSoundSystem::SetSfxVolume(int volume){
 
 JSample *JSoundSystem::LoadSample(const char *fileName)
 {
-#ifdef USE_PHONON
+#if (defined USE_PHONON)
   JSample* sample = new JSample();
   if (sample)
   {
     sample->mOutput = new Phonon::AudioOutput(Phonon::GameCategory, 0);
     sample->mMediaObject = new Phonon::MediaObject(0);
-    sample->mMediaObject->setCurrentSource("Res/" + QString(fileName));
-    Phonon::Path path = Phonon::createPath(sample->mMediaObject, sample->mOutput);
-    Q_ASSERT(path.isValid());
+    string fullpath = JFileSystem::GetInstance()->GetResourceFile(fileName);
+    sample->mMediaObject->setCurrentSource(QString(fullpath.c_str()));
+    Phonon::Path mediapath = Phonon::createPath(sample->mMediaObject, sample->mOutput);
+    Q_ASSERT(mediapath.isValid());
   }
   return sample;
-#else
-#ifndef WITH_FMOD
-  return NULL;
-#else
+#elif (defined WITH_FMOD)
   JSample* sample = new JSample();
   if (sample)
     {
@@ -288,7 +277,8 @@ JSample *JSoundSystem::LoadSample(const char *fileName)
 
     }
   return sample;
-#endif
+#else
+  return NULL;
 #endif
 }
 
@@ -301,13 +291,11 @@ void JSoundSystem::PlaySample(JSample *sample)
     sample->mOutput->setVolume((qreal)mSampleVolume*0.01);
     sample->mMediaObject->play();
   }
-#else
-#ifdef WITH_FMOD
+#elif (defined WITH_FMOD)
   if (sample && sample->mSample){
     int channel = FSOUND_PlaySound(FSOUND_FREE, sample->mSample);
     FSOUND_SetVolumeAbsolute(channel, static_cast<int>(mSampleVolume * 2.55));
   }
-#endif
 #endif
 }
 

@@ -18,7 +18,6 @@
 
 #include "JTypes.h"
 
-
 #ifdef USE_PHONON
 #include <phonon/AudioOutput>
 #include <phonon/MediaObject>
@@ -68,19 +67,13 @@ public:
   public slots:
   void seekAtTheBegining();
 
-#else
-
-#if defined (PSP)
+#elif defined (PSP)
   JMP3* mTrack;
-#else
-#ifdef WITH_FMOD
+#elif defined WITH_FMOD
   FSOUND_SAMPLE* mTrack;		// MP3 needed to be of "sample" type for FMOD, FMUSIC_MODULE is for MODs
-  #else
+#else
   void* mTrack;
 #endif  //WITH_FMOD
-
-#endif  //PSP
-#endif  //USE_PHONON
 
 };
 
@@ -92,23 +85,17 @@ class JSample
   JSample();
   ~JSample();
 
-  int mVoice;
-
   unsigned long fileSize();
+
 #if defined (PSP)
   WAVDATA *mSample;
-#else
-#ifdef WITH_FMOD
+#elif defined  (WITH_FMOD)
   FSOUND_SAMPLE *mSample;
-  #else
-#ifdef USE_PHONON
+#elif defined (USE_PHONON)
   Phonon::AudioOutput* mOutput;
   Phonon::MediaObject* mMediaObject;
-#endif //USE_PHONON
+#endif
   void* mSample;
-  #endif  //WITH_FMOD
-
-#endif //PSP
 };
 
 
