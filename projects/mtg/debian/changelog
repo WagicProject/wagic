@@ -1,5 +1,6 @@
-wagic (0.15.1maemo1) unstable; urgency=low
+wagic (0.16.0maemo0) unstable; urgency=low
 
-  * Fixed upgrade problem causing the multi-land per turn bug
-  * Fixed shop card display problem when using touch interface
- -- Xawotihs <xawotihs@gmail.com>  Mon, 16 Apr 2011 14:11:42 +0200
+  * Fixed Phonon sound problem
+  * Improved upgrade script
+  * Wagic 0.16.0
+ -- Xawotihs <xawotihs@gmail.com>  Mon, 18 Jul 2011 14:11:42 +0200
