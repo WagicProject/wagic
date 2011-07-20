@@ -2588,7 +2588,7 @@ toughness=3
 name=Arbor Elf
 auto={t}:untap target(forest)
 text={T}: Untap target Forest.
-mana={G}
+mana={g}
 type=Creature
 subtype=Elf Druid
 power=1
@@ -4013,7 +4013,7 @@ toughness=2
 name=Avatar of Fury
 abilities=flying
 auto={R}:1/0
-otherrestriction=type(land|opponentbattlefield)~morethan~7
+otherrestriction=type(land|opponentbattlefield)~morethan~6
 other={R}{R}
 text=If an opponent controls seven or more lands, Avatar of Fury costs {6} less to cast. -- Flying -- {R}: Avatar of Fury gets +1/+0 until end of turn.
 mana={6}{R}{R}
@@ -8767,7 +8767,7 @@ toughness=1
 [card]
 name=Bringer of the Blue Dawn
 abilities=trample
-other={W}{U}{B}{R}{G} name(Spend {W}{U}{B}{R}{G} to Cast)
+other={W}{U}{B}{R}{G} name(Spend WUBRG to Cast)
 auto=@each my upkeep:may draw:2
 text=You may pay {W}{U}{B}{R}{G} rather than pay Bringer of the Blue Dawn's mana cost. -- Trample -- At the beginning of your upkeep, you may draw two cards.
 mana={7}{U}{U}
@@ -8779,7 +8779,7 @@ toughness=5
 [card]
 name=Bringer of the Green Dawn
 abilities=trample
-other={W}{U}{B}{R}{G} name(Spend {W}{U}{B}{R}{G} to Cast)
+other={W}{U}{B}{R}{G} name(Spend WUBRG  to Cast)
 auto=@each my upkeep:may token(Beast,Creature Beast,3/3,green)
 text=You may pay {W}{U}{B}{R}{G} rather than pay Bringer of the Green Dawn's mana cost. -- Trample -- At the beginning of your upkeep, you may put a 3/3 green Beast creature token onto the battlefield.
 mana={7}{G}{G}
@@ -8790,7 +8790,7 @@ toughness=5
 [/card]
 [card]
 name=Bringer of the Red Dawn
-other={W}{U}{B}{R}{G} name(Spend {W}{U}{B}{R}{G} to Cast)
+other={W}{U}{B}{R}{G} name(Spend WUBRG  to Cast)
 auto=@each my upkeep:may name(gain control of target creature until end of turn) target(creature|opponentbattlefield) transforms((,newability[moveTo(opponentbattlefield)],newability[phaseaction[endofturn sourceinplay] moveTo(ownerbattlefield)],newability[untap],haste)) ueot
 text=You may pay {W}{U}{B}{R}{G} rather than pay Bringer of the Red Dawn's mana cost. -- Trample -- At the beginning of your upkeep, you may untap target creature and gain control of it until end of turn. That creature gains haste until end of turn.
 mana={7}{R}{R}
@@ -8802,7 +8802,7 @@ toughness=5
 [card]
 name=Bringer of the White Dawn
 abilities=trample
-other={W}{U}{B}{R}{G} name(Spend {W}{U}{B}{R}{G} to Cast)
+other={W}{U}{B}{R}{G} name(Spend WUBRG to Cast)
 auto=@each my upkeep:may moveTo(mybattlefield) target(artifact|mygraveyard)
 text=You may pay {W}{U}{B}{R}{G} rather than pay Bringer of the White Dawn's mana cost. -- Trample -- At the beginning of your upkeep, you may return target artifact card from your graveyard to the battlefield.
 mana={7}{W}{W}
