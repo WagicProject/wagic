@@ -858,7 +858,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
                 if (!tc)
                 {
                     TargetChooserFactory tcf;
-                    tc = tcf.createTargetChooser("creature|myBattlefield", card);
+                    tc = tcf.createTargetChooser("creature|mybattlefield", card);
                 }
                 ae->tc = tc;
                 return ae;
