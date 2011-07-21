@@ -94,8 +94,8 @@ class JSample
 #elif defined (USE_PHONON)
   Phonon::AudioOutput* mOutput;
   Phonon::MediaObject* mMediaObject;
-#endif
   void* mSample;
+#endif
 };
 
 
