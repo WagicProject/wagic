@@ -164,6 +164,11 @@ id=244246
 rarity=C
 [/card]
 [card]
+primitive=Buried Ruin
+id=220302
+rarity=U
+[/card]
+[card]
 primitive=Call to the Grave
 id=236460
 rarity=R
@@ -269,7 +274,7 @@ id=221516
 rarity=U
 [/card]
 [card]
-primitive=Demistify
+primitive=Demystify
 id=238328
 rarity=C
 [/card]
@@ -449,6 +454,11 @@ id=220103
 rarity=M
 [/card]
 [card]
+primitive=Garruk, Primal Hunter
+id=220100
+rarity=M
+[/card]
+[card]
 primitive=Garruk's Companion
 id=226896
 rarity=C
@@ -589,7 +599,7 @@ id=220304
 rarity=C
 [/card]
 [card]
-primitive=Honor the Pure
+primitive=Honor of the Pure
 id=233237
 rarity=R
 [/card]
@@ -889,7 +899,7 @@ id=241832
 rarity=M
 [/card]
 [card]
-primitive=Primeordial Hydra
+primitive=Primordial Hydra
 id=220172
 rarity=M
 [/card]

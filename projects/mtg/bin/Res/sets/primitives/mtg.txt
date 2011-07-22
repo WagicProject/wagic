@@ -40143,7 +40143,7 @@ toughness=4
 [/card]
 [card]
 name=Maelstrom Djinn
-abilties=flying
+abilities=flying
 facedown={3}
 autofacedown={2}{u}:morph
 autofaceup=vanishing:2
