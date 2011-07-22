@@ -27838,7 +27838,7 @@ type=Enchantment
 [card]
 name=Goblin Tunneler
 auto={T}:unblockable target(creature[power<=2])
-text={T}: TArget creature with power 2 or less is unblockable until end of turn.
+text={T}: Target creature with power 2 or less is unblockable until end of turn.
 mana={1}{R}
 type=Creature
 subtype=Goblin Rogue
