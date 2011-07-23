@@ -479,6 +479,7 @@ private:
 
 public:
     int parseRestriction(string s);
+    int parseCastRestrictions(MTGCardInstance * card = NULL,Player * player= NULL,string restrictions= "",string otherRestrictions= "");
     Counter * parseCounter(string s, MTGCardInstance * target, Spell * spell = NULL);
     int parsePowerToughness(string s, int *power, int *toughness);	
     int getAbilities(vector<MTGAbility *> * v, Spell * spell, MTGCardInstance * card = NULL, int id = 0, MTGGameZone * dest = NULL);

@@ -61,48 +61,65 @@ const int kDynamicWhoIds[] = {
 
 int MTGAbility::parseCastRestrictions(MTGCardInstance * card,Player * player,string restrictions,string otherRestrictions)
 {
+    AbilityFactory af;
+    return af.parseCastRestrictions(card,player,restrictions,otherRestrictions);
+}
+
+int MTGAbility::allowedToCast(MTGCardInstance * card,Player * player)
+{
+    return parseCastRestrictions(card,player,card->restriction,"");
+}
+
+int MTGAbility::allowedToAltCast(MTGCardInstance * card,Player * player)
+{
+       return parseCastRestrictions(card,player,"",card->otherrestriction);
+}
+
+int AbilityFactory::parseCastRestrictions(MTGCardInstance * card,Player * player,string restrictions,string otherRestrictions)
+{
     restrictions.append(otherRestrictions);
     //we can do this becuase the function calls send them seperately, so one will always be empty
     vector <string> restriction = split(restrictions, ',');
     AbilityFactory af;
+    GameObserver * game = game->GetInstance();
     int cPhase = game->getCurrentGamePhase();
     for(unsigned int i = 0;i < restriction.size();i++)
     {
         int checkPhaseBased = af.parseRestriction(restriction[i]);
         switch (checkPhaseBased)
         {
-        case PLAYER_TURN_ONLY:
+        case MTGAbility::PLAYER_TURN_ONLY:
             if (player != game->currentPlayer)
                 return 0;
             break;
-        case OPPONENT_TURN_ONLY:
+        case MTGAbility::OPPONENT_TURN_ONLY:
             if (player == game->currentPlayer)
                 return 0;
             break;
-        case AS_SORCERY:
+        case MTGAbility::AS_SORCERY:
             if (player != game->currentPlayer)
                 return 0;
             if (cPhase != Constants::MTG_PHASE_FIRSTMAIN && cPhase != Constants::MTG_PHASE_SECONDMAIN)
                 return 0;
             break;
         }
-        if (checkPhaseBased >= MY_BEFORE_BEGIN && checkPhaseBased <= MY_AFTER_EOT)
+        if (checkPhaseBased >= MTGAbility::MY_BEFORE_BEGIN && checkPhaseBased <= MTGAbility::MY_AFTER_EOT)
         {
             if (player != game->currentPlayer)
                 return 0;
-            if (cPhase != checkPhaseBased - MY_BEFORE_BEGIN + Constants::MTG_PHASE_BEFORE_BEGIN)
+            if (cPhase != checkPhaseBased - MTGAbility::MY_BEFORE_BEGIN + Constants::MTG_PHASE_BEFORE_BEGIN)
                 return 0;
         }
-        if (checkPhaseBased >= OPPONENT_BEFORE_BEGIN && checkPhaseBased <= OPPONENT_AFTER_EOT)
+        if (checkPhaseBased >= MTGAbility::OPPONENT_BEFORE_BEGIN && checkPhaseBased <= MTGAbility::OPPONENT_AFTER_EOT)
         {
             if (player == game->currentPlayer)
                 return 0;
-            if (cPhase != checkPhaseBased - OPPONENT_BEFORE_BEGIN + Constants::MTG_PHASE_BEFORE_BEGIN)
+            if (cPhase != checkPhaseBased - MTGAbility::OPPONENT_BEFORE_BEGIN + Constants::MTG_PHASE_BEFORE_BEGIN)
                 return 0;
         }
-        if (checkPhaseBased >= BEFORE_BEGIN && checkPhaseBased <= AFTER_EOT)
+        if (checkPhaseBased >= MTGAbility::BEFORE_BEGIN && checkPhaseBased <= MTGAbility::AFTER_EOT)
         {
-            if (cPhase != checkPhaseBased - BEFORE_BEGIN + Constants::MTG_PHASE_BEFORE_BEGIN)
+            if (cPhase != checkPhaseBased - MTGAbility::BEFORE_BEGIN + Constants::MTG_PHASE_BEFORE_BEGIN)
                 return 0;
         }
         
@@ -187,9 +204,21 @@ int MTGAbility::parseCastRestrictions(MTGCardInstance * card,Player * player,str
                 if(player->game->stack->seenThisTurn(tc, Constants::CAST_ALL) < 1)
                     return 0;
             }
-            if(tc.find("|opponentstack") != string::npos)
+            else if(tc.find("|opponentstack") != string::npos)
             {
                 if(player->opponent()->game->stack->seenThisTurn(tc, Constants::CAST_ALL) < 1)
+                    return 0;
+            }
+            else if(tc.find("this") != string::npos)
+            {
+                int count = 0;
+                for(unsigned int k = 0; k < player->game->stack->cardsSeenThisTurn.size(); k++)
+                {
+                    MTGCardInstance * stackCard = player->game->stack->cardsSeenThisTurn[k];
+                    if(stackCard->next && stackCard->next == card)
+                        count++;
+                }
+                if(!count)
                     return 0;
             }
         }
@@ -240,16 +269,6 @@ int MTGAbility::parseCastRestrictions(MTGCardInstance * card,Player * player,str
         }
     }
     return 1;
-}
-
-int MTGAbility::allowedToCast(MTGCardInstance * card,Player * player)
-{
-    return parseCastRestrictions(card,player,card->restriction,"");
-}
-
-int MTGAbility::allowedToAltCast(MTGCardInstance * card,Player * player)
-{
-       return parseCastRestrictions(card,player,"",card->otherrestriction);
 }
 
 int AbilityFactory::countCards(TargetChooser * tc, Player * player, int option)
