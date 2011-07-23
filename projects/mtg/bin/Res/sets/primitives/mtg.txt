@@ -14911,7 +14911,7 @@ type=Instant
 [card]
 name=Dark Depths
 auto=counter(0/0,10,Ice)
-auto={3}:(counter(0/0,-1,Ice) all(this) && bury all(dark depths[-counter{0/0.1.Ice}])
+auto={3}:counter(0/0,-1,Ice) all(this) && bury all(dark depths[-counter{0/0.1.Ice}])
 auto=this(counter{0/0.1.Ice}<1) {0}:sacrifice all(this)
 auto=@movedTo(mygraveyard) from(dark depths[-counter{0/0.1.Ice}]|myBattlefield):token(Marit Lage,legendary creature avatar, 20/20,flying,indestructible,black)
 text=Dark Depths enters the battlefield with ten ice counters on it. -- {3}: Remove an ice counter from Dark Depths. -- When Dark Depths has no ice counters on it, sacrifice it. If you do, put a legendary 20/20 black Avatar creature token with flying and "This creature is indestructible" named Marit Lage onto the battlefield.
