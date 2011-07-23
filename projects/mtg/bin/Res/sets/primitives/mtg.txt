@@ -6115,7 +6115,7 @@ target=creature
 alias=1194
 auto=upcost[{1}{U}] moveTo(graveyard)
 auto=0/1
-text=Enchant creature -- You control enchanted creature.
+text=Enchant creature -- You control enchanted creature. At the beginning of your upkeep, sacrifice Binding Grasp unless you pay {U}{1}. Enchanted creature gets +0/+1.
 mana={3}{U}
 type=Enchantment
 subtype=Aura
@@ -12404,10 +12404,9 @@ toughness=3
 [/card]
 [card]
 name=Coal Stoker
-auto=kicker add{R}{R}{R}
+auto=if casted(this) then add{R}{R}{R}
 text=When Coal Stoker enters the battlefield, if you cast it from your hand, add {R}{R}{R} to your mana pool.
 mana={3}{R}
-kicker={0}
 type=Creature
 subtype=Elemental
 power=3
@@ -18141,11 +18140,10 @@ toughness=6
 [/card]
 [card]
 name=Dread Cacodemon
-auto=kicker destroy all(creature|opponentbattlefield)
-auto=kicker tap all(other creature|mybattlefield)
+auto=if casted(this) then destroy all(creature|opponentbattlefield)
+auto=if casted(this) then tap all(other creature|mybattlefield)
 text=When Dread Cacodemon enters the battlefield, if you cast it from your hand, destroy all creatures your opponents control, then tap all other creatures you control.
 mana={7}{B}{B}{B}
-kicker={0}
 type=Creature
 subtype=Demon
 power=8
@@ -25233,10 +25231,9 @@ toughness=3
 [card]
 name=Furnace Dragon
 abilities=affinityartifacts,flying
-auto=kicker moveTo(exile) all(artifact|battlefield)
+auto=if casted(this) then moveTo(exile) all(artifact|battlefield)
 text=Affinity for artifacts (This spell costs {1} less to cast for each artifact you control.) -- Flying -- When Furnace Dragon enters the battlefield, if you cast it from your hand, exile all artifacts.
 mana={6}{R}{R}{R}
-kicker={0}
 type=Creature
 subtype=Dragon
 power=5
@@ -32359,10 +32356,9 @@ toughness=2
 [card]
 name=Hypnox
 abilities=flying
-auto=kicker hand(blink)forsrc all(*|opponenthand)
+auto=if casted(this) then hand(blink)forsrc all(*|opponenthand)
 text=Flying -- When Hypnox enters the battlefield, if you cast it from your hand, exile all cards from target opponent's hand. -- When Hypnox leaves the battlefield, return the exiled cards to their owner's hand.
 mana={8}{B}{B}{B}
-kicker={0}
 type=Creature
 subtype=Nightmare Horror
 power=8
@@ -32884,11 +32880,10 @@ type=Instant
 [/card]
 [card]
 name=Iname as One
-auto=kicker moveTo(mybattlefield) target(spirit|mylibrary)
+auto=if casted(this) then moveTo(mybattlefield) target(spirit|mylibrary)
 auto=@movedTo(this|graveyard) from(battlefield):may all(trigger[to]) moveto(exile) && target(spirit|mylibrary) moveTo(mybattlefield)
 text=When Iname as One enters the battlefield, if you cast it from your hand, you may search your library for a Spirit permanent card, put it onto the battlefield, then shuffle your library. -- When Iname as One is put into a graveyard from the battlefield, you may exile it. If you do, return target Spirit permanent card from your graveyard to the battlefield.
 mana={8}{B}{B}{G}{G}
-kicker={0}
 type=Legendary Creature
 subtype=Spirit
 power=8
@@ -44405,12 +44400,11 @@ type=Artifact
 [/card]
 [card]
 name=Myojin of Cleansing Fire
-auto=kicker counter(0/0,1,Divinity)
+auto=if casted(this) then counter(0/0,1,Divinity)
 auto=this(counter{0/0.1.Divinity}) indestructible
 auto={C(0/0,-1,Divinity)}:destroy all(other creature)
 text=Myojin of Cleansing Fire enters the battlefield with a divinity counter on it if you cast it from your hand. Myojin of Cleansing Fire is indestructible as long as it has a divinity counter on it. Remove a divinity counter from Myojin of Cleansing Fire: Destroy all other creatures.
 mana={5}{W}{W}{W}
-kicker={0}
 type=Legendary Creature
 subtype=Spirit
 power=4
@@ -44418,12 +44412,11 @@ toughness=6
 [/card]
 [card]
 name=Myojin of Infinite Rage
-auto=kicker counter(0/0,1,Divinity)
+auto=if casted(this) then counter(0/0,1,Divinity)
 auto=this(counter{0/0.1.Divinity}) indestructible
 auto={C(0/0,-1,Divinity)}:destroy all(land)
 text=Myojin of Infinite Rage enters the battlefield with a divinity counter on it if you cast it from your hand. -- Myojin of Infinite Rage is indestructible as long as it has a divinity counter on it. -- Remove a divinity counter from Myojin of Infinite Rage: Destroy all lands.
 mana={7}{R}{R}{R}
-kicker={0}
 type=Legendary Creature
 subtype=Spirit
 power=7
@@ -44431,12 +44424,11 @@ toughness=4
 [/card]
 [card]
 name=Myojin of Night's Reach
-auto=kicker counter(0/0,1,Divinity)
+auto=if casted(this) then counter(0/0,1,Divinity)
 auto=this(counter{0/0.1.Divinity}) indestructible
 auto={C(0/0,-1,Divinity)}:reject all(*|opponenthand)
 text=Myojin of Night's Reach enters the battlefield with a divinity counter on it if you cast it from your hand. -- Myojin of Night's Reach is indestructible as long as it has a divinity counter on it. -- Remove a divinity counter from Myojin of Night's Reach: Each opponent discards his or her hand.
 mana={5}{B}{B}{B}
-kicker={0}
 type=Legendary Creature
 subtype=Spirit
 power=5
@@ -44444,12 +44436,11 @@ toughness=2
 [/card]
 [card]
 name=Myojin of Seeing Winds
-auto=kicker counter(0/0,1,Divinity)
+auto=if casted(this) then counter(0/0,1,Divinity)
 auto=this(counter{0/0.1.Divinity}) indestructible
 auto={C(0/0,-1,Divinity)}:foreach(*|myBattlefield) draw:1
 text=Myojin of Seeing Winds enters the battlefield with a divinity counter on it if you cast it from your hand. -- Myojin of Seeing Winds is indestructible as long as it has a divinity counter on it. -- Remove a divinity counter from Myojin of Seeing Winds: Draw a card for each permanent you control.
 mana={7}{U}{U}{U}
-kicker={0}
 type=Legendary Creature
 subtype=Spirit
 power=3
@@ -49116,13 +49107,9 @@ toughness=2
 ##the cantlose on phage only last until the ability checks if she was played from hand enjoy :)
 [card]
 name=Phage the Untouchable
-auto=kicker lord(this) cantlose ueot
-auto=@combatdamaged(player) from(this):wingame controller
-auto=@combatdamaged(creature) from(this):all(trigger[to] bury
-auto=choice name(Phage enters the Battlefield!!) wingame opponent && all(this) -cantlose ueot
+auto=ifnot casted(this) then wingame opponent
 text=When Phage the Untouchable enters the battlefield, if you didn't cast it from your hand, you lose the game. Whenever Phage deals combat damage to a creature, destroy that creature. It can't be regenerated. Whenever Phage deals combat damage to a player, that player loses the game.
 mana={3}{B}{B}{B}{B}
-kicker={0}
 type=Legendary Creature
 subtype=Minion
 power=4
@@ -53917,10 +53904,9 @@ type=Instant
 [card]
 name=Reiver Demon
 abilities=flying
-auto=kicker bury all(creature[-artifact;-black])
+auto=if casted(this) then bury all(creature[-artifact;-black])
 text=Flying -- When Reiver Demon enters the battlefield, if you cast it from your hand, destroy all nonartifact, nonblack creatures. They can't be regenerated.
 mana={4}{B}{B}{B}{B}
-kicker={0}
 type=Creature
 subtype=Demon
 power=6
