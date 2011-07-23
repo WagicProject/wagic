@@ -2065,6 +2065,48 @@ AAWinGame * AAWinGame::clone() const
 
 //Generic Abilities
 
+
+//IfThenEffect
+IfThenAbility::IfThenAbility(int _id, string delayAbility, MTGCardInstance * _source, int type,string Cond) :
+MTGAbility(_id, _source),delayAbility(delayAbility), type(type),Cond(Cond)
+{
+}
+
+int IfThenAbility::resolve()
+{
+    MTGCardInstance * card = (MTGCardInstance*)source;
+    AbilityFactory af;
+    int checkCond = af.parseCastRestrictions(card,card->controller(),Cond);
+    if((checkCond && type == 1)||(!checkCond && type == 2))
+    {
+        MTGAbility * a1 = af.parseMagicLine(delayAbility, this->GetId(), NULL, card);
+        if (!a1)
+            return 0;
+        if(a1->oneShot)
+        {
+            a1->resolve();
+            SAFE_DELETE(a1);
+        }
+        else
+            a1->addToGame();
+        return 1;
+    }
+    return 0;
+}
+
+const char * IfThenAbility::getMenuText()
+{
+    return "";
+}
+
+IfThenAbility * IfThenAbility::clone() const
+{
+    IfThenAbility * a = NEW IfThenAbility(*this);
+    a->isClone = 1;
+    return a;
+}
+//
+
 //May Abilities
 MayAbility::MayAbility(int _id, MTGAbility * _ability, MTGCardInstance * _source, bool must) :
     MTGAbility(_id, _source), NestedAbility(_ability), must(must)

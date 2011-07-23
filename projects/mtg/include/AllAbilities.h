@@ -970,6 +970,19 @@ public:
  Generic classes
  */
 
+//if/ifnot Cond then EFFECT
+class IfThenAbility: public MTGAbility
+{
+public:
+    string delayAbility;
+    int type;
+    string Cond;
+    IfThenAbility(int _id,string delayAbility = "", MTGCardInstance * _source=NULL, int type = 1,string Cond = "");
+    int resolve();
+    const char * getMenuText();
+    IfThenAbility * clone() const;
+};
+
 //MayAbility: May do ...
 class MayAbility: public MTGAbility, public NestedAbility
 {

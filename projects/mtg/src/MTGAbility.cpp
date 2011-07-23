@@ -906,6 +906,24 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             return parseMagicLine(s.substr(kAlternateCostKeywords[i].length()), id, spell, card);
         }
     }
+    
+    //if/ifnot COND then DO EFFECT.
+    const string ifKeywords[] = {"if ", "ifnot "};
+    int checkIf[] = { 1, 2 };
+    for (size_t i =0; i < sizeof(checkIf)/sizeof(checkIf[0]); ++i)
+    {
+        if (sWithoutTc.find(ifKeywords[i]) == 0)
+        {
+            string cond = sWithoutTc.substr(ifKeywords[i].length(),ifKeywords[i].length() + sWithoutTc.find(" then ")-6);
+            string s1 = s.substr(s.find(" then ")+6);
+            MTGAbility * a = NEW IfThenAbility(id, s1, card,checkIf[i],cond);
+            a->canBeInterrupted = false;
+            a->oneShot = true;
+            if(tc)
+                SAFE_DELETE(tc);
+            return a;
+        }
+    }
 
     //When...comes into play, you may...
     //When...comes into play, choose one...
