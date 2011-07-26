@@ -1138,6 +1138,9 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             {
                 oneShot = true;
             }
+            found = s.find("while ");
+            if (found != string::npos)
+                oneShot = false;
 
             Damageable * _target = NULL;
             if (spell)
