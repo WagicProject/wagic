@@ -2587,6 +2587,7 @@ toughness=3
 [card]
 name=Arbor Elf
 text={T}: Untap target Forest.
+auto={t}:untap target(forest)
 mana={g}
 type=Creature
 subtype=Elf Druid
