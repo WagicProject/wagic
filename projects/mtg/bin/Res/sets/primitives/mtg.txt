@@ -24919,7 +24919,8 @@ toughness=1
 [/card]
 [card]
 name=Fresh Meat
-auto=token(Beast,Creature Beast,3/3,green)*type:creature[fresh]:mybattlefield
+auto=token(Beast,Creature Beast,3/3,green)*type:creature[fresh]:mygraveyard
+#we need a method to track tokens that went to graveyard this turn.
 text=Put a 3/3 green Beast creature token onto the battlefield for each creature put into your graveyard from the battlefield this turn.
 mana={3}{G}
 type=Instant
