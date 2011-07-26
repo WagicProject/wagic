@@ -143,6 +143,7 @@ int Damage::resolve()
         // Poison on player
         Player * _target = (Player *) target;
         _target->poisonCount += damage;//this will be changed to poison counters.
+        target->damageCount += damage;
     }
     else if (target->type_as_damageable == DAMAGEABLE_PLAYER && (source->has(Constants::POISONTOXIC) ||
                     source->has(Constants::POISONTWOTOXIC) || source->has(Constants::POISONTHREETOXIC)))
