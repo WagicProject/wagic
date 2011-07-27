@@ -42,6 +42,8 @@ using std::map;
 
 class MTGAbility : public ActionElement
 {
+private:
+     ManaCost* mCost;
 protected:
     char menuText[50];
 
@@ -104,14 +106,10 @@ public:
 
     };
 
-    int parseCastRestrictions(MTGCardInstance* card, Player* player, string restrictions, string otherRestrictions);
-    int allowedToCast(MTGCardInstance* card, Player* player);
-    int allowedToAltCast(MTGCardInstance* card, Player* player);
     bool oneShot;
     int forceDestroy;
     int forcedAlive;
     bool canBeInterrupted;
-    ManaCost* cost;
     ManaCost* alternative;
     ManaCost* BuyBack;
     ManaCost* FlashBack;
@@ -124,10 +122,17 @@ public:
     int naType;
     int abilitygranted;
     MTGCardInstance * source;
+
+    int parseCastRestrictions(MTGCardInstance* card, Player* player, string restrictions, string otherRestrictions);
+    int allowedToCast(MTGCardInstance* card, Player* player);
+    int allowedToAltCast(MTGCardInstance* card, Player* player);
     MTGAbility(int id, MTGCardInstance * card);
     MTGAbility(int id, MTGCardInstance * _source, Targetable * _target);
+    MTGAbility(const MTGAbility& copyFromMe);
     virtual int testDestroy();
     virtual ~MTGAbility();
+    ManaCost * getCost() {return mCost;};
+    void setCost(ManaCost * cost, bool forceDelete = 0);
 
     virtual void Render()
     {

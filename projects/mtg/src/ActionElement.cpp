@@ -14,15 +14,22 @@ ActionElement::ActionElement(int id) :
     currentPhase = -1;
     newPhase = -1;
     tc = NULL;
-    isClone = 0;
+}
+
+ActionElement::ActionElement(const ActionElement& a): JGuiObject(a)
+{
+    activeState = a.activeState;
+    tc = a.tc ? a.tc->clone() : NULL;
+    currentPhase = a.currentPhase;
+    newPhase = a.newPhase;
+    modal = a.modal;
+    waitingForAnswer = a.waitingForAnswer;
 }
 
 ActionElement::~ActionElement()
 {
-    if (!isClone)
-    {
-        SAFE_DELETE(tc);
-    }
+    SAFE_DELETE(tc);
+
 }
 
 int ActionElement::getActivity()

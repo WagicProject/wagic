@@ -274,8 +274,7 @@ ManaCost::ManaCost(ManaCost * manaCost)
     morph = NEW ManaCost( manaCost->morph );
     suspend = NEW ManaCost( manaCost->suspend );
 
-    // TODO: Need to figure out if a deep copy is necessary
-    extraCosts = manaCost->extraCosts;
+    extraCosts = manaCost->extraCosts ? manaCost->extraCosts->clone() : NULL;
 }
 
 // Copy Constructor 
@@ -301,8 +300,7 @@ ManaCost::ManaCost(const ManaCost& manaCost)
     morph = NEW ManaCost( manaCost.morph );
     suspend = NEW ManaCost( manaCost.suspend );
     
-    // TODO: Need to figure out if a deep copy is necessary
-    extraCosts = manaCost.extraCosts;
+    extraCosts = manaCost.extraCosts ? manaCost.extraCosts->clone() : NULL;
 }
 
 // operator=
@@ -674,6 +672,9 @@ int ManaCost::tryToPayHybrids(std::vector<ManaCostHybrid>& _hybrids, int _nbhybr
 //compute the difference between two mana costs
 ManaCost * ManaCost::Diff(ManaCost * _cost)
 {
+    if (!_cost) 
+        return NEW ManaCost(*this); //diff with null is equivalent to diff with 0
+
     int8_t diff[(Constants::MTG_NB_COLORS + 1) * 2];
     diff[Constants::MTG_NB_COLORS * 2] = Constants::MTG_NB_COLORS;
     for (int i = 0; i < Constants::MTG_NB_COLORS; i++)

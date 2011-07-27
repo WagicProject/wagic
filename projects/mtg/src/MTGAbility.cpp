@@ -858,7 +858,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             AManaProducer * amp = dynamic_cast<AManaProducer*> (a);
             if (amp)
             {
-                amp->cost = cost;
+                amp->setCost(cost);
                 if (cost && card->typeAsTarget() == TARGET_CARD)
                     cost->setExtraCostsAction(a, card);
                 amp->oneShot = 0;
@@ -873,7 +873,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             AEquip *ae = dynamic_cast<AEquip*> (a);
             if (ae)
             {
-                ae->cost = cost;
+                ae->setCost(cost);
                 if (!tc)
                 {
                     TargetChooserFactory tcf;
@@ -3302,6 +3302,42 @@ MTGAbility * AbilityFactory::getManaReduxAbility(string s, int id, Spell *spell,
     return NEW AAlterCost(id, card, target, amount, color);
 }
 
+MTGAbility::MTGAbility(const MTGAbility& a): ActionElement(a)
+{
+    //Todo get rid of menuText, it is only used as a placeholder in getMenuText, for something that could be a string
+    for (int i = 0; i < 50; ++i)
+    {
+        menuText[i] = a.menuText[i];
+    }
+
+    game = a.game;
+
+    oneShot = a.oneShot;
+    forceDestroy = a.forceDestroy;
+    forcedAlive = a.forcedAlive;
+    canBeInterrupted = a.canBeInterrupted;
+
+    //costs get copied, and will be deleted in the destructor
+    mCost = a.mCost ? NEW ManaCost(a.mCost) : NULL;
+
+    //alternative costs are not deleted in the destructor...who deletes them???
+    alternative = a.alternative; // ? NEW ManaCost(a.alternative) : NULL;
+    BuyBack = a.BuyBack; //? NEW ManaCost(a.BuyBack) : NULL;
+    FlashBack = a.FlashBack; // ? NEW ManaCost(a.FlashBack) : NULL;
+    Retrace = a.Retrace;// ? NEW ManaCost(a.Retrace) : NULL;
+    morph =  a.morph;  //? NEW ManaCost(a.morph) : NULL;
+    suspend = a.suspend;// ? NEW ManaCost(a.suspend) : NULL;
+
+    //Those two are pointers, but we don't delete them in the destructor, no need to copy them
+    target = a.target;
+    source = a.source;
+
+    aType = a.aType;
+    naType = a.naType;
+    abilitygranted = a.abilitygranted;
+    
+};
+
 MTGAbility::MTGAbility(int id, MTGCardInstance * card) :
     ActionElement(id)
 {
@@ -3309,7 +3345,7 @@ MTGAbility::MTGAbility(int id, MTGCardInstance * card) :
     source = card;
     target = card;
     aType = MTGAbility::UNKNOWN;
-    cost = NULL;
+    mCost = NULL;
     forceDestroy = 0;
     oneShot = 0;
     canBeInterrupted = true;
@@ -3322,10 +3358,20 @@ MTGAbility::MTGAbility(int id, MTGCardInstance * _source, Targetable * _target) 
     source = _source;
     target = _target;
     aType = MTGAbility::UNKNOWN;
-    cost = NULL;
+    mCost = NULL;
     forceDestroy = 0;
     oneShot = 0;
     canBeInterrupted = true;
+}
+
+void MTGAbility::setCost(ManaCost * cost, bool forceDelete)
+{
+    if (mCost) {
+        DebugTrace("WARNING: Mtgability.cpp, attempt to set cost when previous cost is not null");
+        if (forceDelete)
+            delete(mCost);
+    }
+    mCost = cost;
 }
 
 int MTGAbility::stillInUse(MTGCardInstance * card)
@@ -3337,10 +3383,7 @@ int MTGAbility::stillInUse(MTGCardInstance * card)
 
 MTGAbility::~MTGAbility()
 {
-    if (!isClone)
-    {
-        SAFE_DELETE(cost);
-    }
+    SAFE_DELETE(mCost);
 }
 
 int MTGAbility::addToGame()
@@ -3392,7 +3435,7 @@ int MTGAbility::fireAbility()
 ostream& MTGAbility::toString(ostream& out) const
 {
     return out << "MTGAbility ::: menuText : " << menuText << " ; game : " << game << " ; forceDestroy : " << forceDestroy
-                    << " ; cost : " << cost << " ; target : " << target << " ; aType : " << aType << " ; source : " << source;
+                    << " ; mCost : " << mCost << " ; target : " << target << " ; aType : " << aType << " ; source : " << source;
 }
 
 NestedAbility::NestedAbility(MTGAbility * _ability)
@@ -3406,7 +3449,7 @@ ActivatedAbility::ActivatedAbility(int id, MTGCardInstance * card, ManaCost * _c
     MTGAbility(id, card), restrictions(restrictions), needsTapping(0),limit(limit),sideEffect(sideEffect),usesBeforeSideEffects(usesBeforeSideEffects)
 {
     counters = 0;
-    cost = _cost;
+    setCost(_cost);
     abilityCost = 0;
     sa = NULL;
 }
@@ -3473,6 +3516,7 @@ int ActivatedAbility::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
     if (card == source && source->controller() == player && (!needsTapping || (!source->isTapped()
                     && !source->hasSummoningSickness())))
     {
+        ManaCost * cost = getCost();
         if (!cost)
             return 1;
         cost->setExtraCostsAction(this, card);
@@ -3492,6 +3536,7 @@ int ActivatedAbility::reactToClick(MTGCardInstance * card)
     if (!isReactingToClick(card))
         return 0;
     Player * player = game->currentlyActing();
+    ManaCost * cost = getCost();
     if (cost)
     {
         if (!cost->isExtraPaymentSet())
@@ -3514,6 +3559,7 @@ int ActivatedAbility::reactToTargetClick(Targetable * object)
     if (!isReactingToTargetClick(object))
         return 0;
     Player * player = game->currentlyActing();
+    ManaCost * cost = getCost();
     if (cost)
     {
         if (object->typeAsTarget() == TARGET_CARD)
@@ -3542,6 +3588,7 @@ int ActivatedAbility::activateAbility()
     fmp = af.getCoreAbility(this);
     AManaProducer * amp = dynamic_cast<AManaProducer *> (this);
     AManaProducer * femp = dynamic_cast<AManaProducer *> (fmp);
+    ManaCost * cost = getCost();
     if((amp||femp) && cost && cost->extraCosts)
     {
         for(unsigned int i = 0; i < cost->extraCosts->costs.size();i++)
@@ -3612,14 +3659,9 @@ void ActivatedAbility::activateSideEffect()
 
 ActivatedAbility::~ActivatedAbility()
 {
-    //Ok, this will probably lead to crashes, maybe with lord abilities involving "X" costs.
-    // If that's the case, we need to improve the clone() method of GenericActivatedAbility and GenericTargetAbility, I think
-    // Erwan 2004/04/25
-    //if (!isClone){
     SAFE_DELETE(abilityCost);
     SAFE_DELETE(sideEffect);
     SAFE_DELETE(sa);
-    //}
 }
 
 ostream& ActivatedAbility::toString(ostream& out) const
@@ -3663,6 +3705,7 @@ int TargetAbility::reactToClick(MTGCardInstance * card)
     {
         if (isReactingToClick(card))
         {
+            ManaCost * cost = getCost();
             if (cost && !cost->isExtraPaymentSet())
             {
                 game->mExtraPayment = cost->extraCosts;
@@ -3716,9 +3759,14 @@ int TargetAbility::resolve()
     Targetable * t = tc->getNextTarget();
     if (t && ability)
     {
-        ManaCost * diff = abilityCost->Diff(cost);
-        source->X = diff->hasX();
-        delete (diff);
+        source->X = 0;
+        if (abilityCost)
+        {
+            ManaCost * diff = abilityCost->Diff(getCost());
+            source->X = diff->hasX();
+            delete (diff);
+        }
+
         ability->target = t;
         //do nothing if the target controller responded by phasing out the target.
         if (t->typeAsTarget() == TARGET_CARD && ((MTGCardInstance*)t)->isPhased)
@@ -3740,8 +3788,7 @@ const char * TargetAbility::getMenuText()
 
 TargetAbility::~TargetAbility()
 {
-    if (!isClone)
-        SAFE_DELETE(ability);
+    SAFE_DELETE(ability);
 }
 
 ostream& TargetAbility::toString(ostream& out) const
@@ -4009,9 +4056,7 @@ TriggerAtPhase::TriggerAtPhase(int id, MTGCardInstance * source, Targetable * ta
 
 TriggerAtPhase* TriggerAtPhase::clone() const
 {
-    TriggerAtPhase * a = NEW TriggerAtPhase(*this);
-    a->isClone = 1;
-    return a;
+    return NEW TriggerAtPhase(*this);
 }
 
 TriggerNextPhase::TriggerNextPhase(int id, MTGCardInstance * source, Targetable * target, int _phaseId, int who,bool sourceUntapped, bool sourceTap,bool once) :
@@ -4036,9 +4081,7 @@ int TriggerNextPhase::testDestroy()
 
 TriggerNextPhase* TriggerNextPhase::clone() const
 {
-    TriggerNextPhase * a = NEW TriggerNextPhase(*this);
-    a->isClone = 1;
-    return a;
+    return NEW TriggerNextPhase(*this);
 }
 
 GenericTriggeredAbility::GenericTriggeredAbility(int id, MTGCardInstance * _source, TriggeredAbility * _t, MTGAbility * a,
@@ -4156,12 +4199,9 @@ int GenericTriggeredAbility::testDestroy()
 
 GenericTriggeredAbility::~GenericTriggeredAbility()
 {
-    if (!isClone)
-    {
-        delete t;
-        delete ability;
-        SAFE_DELETE(destroyCondition);
-    }
+    delete t;
+    delete ability;
+    SAFE_DELETE(destroyCondition);
 }
 
 const char * GenericTriggeredAbility::getMenuText()
@@ -4171,8 +4211,10 @@ const char * GenericTriggeredAbility::getMenuText()
 
 GenericTriggeredAbility* GenericTriggeredAbility::clone() const
 {
-    GenericTriggeredAbility * a = NEW GenericTriggeredAbility(*this);
-    a->isClone = 1;
+    GenericTriggeredAbility * a =  NEW GenericTriggeredAbility(*this);
+    a->t = t->clone();
+    a->ability = ability->clone();
+    a->destroyCondition = destroyCondition->clone();
     return a;
 }
 
@@ -4188,7 +4230,7 @@ AManaProducer::AManaProducer(int id, MTGCardInstance * card, Targetable * t, Man
 {
 
     aType = MTGAbility::MANA_PRODUCER;
-    cost = _cost;
+    setCost(_cost);
     output = _output;
 
     menutext = "";
@@ -4202,6 +4244,7 @@ int AManaProducer::isReactingToClick(MTGCardInstance * _card, ManaCost * mana)
     if (_card == source && (!tap || !source->isTapped()) && game->currentlyActing()->game->inPlay->hasCard(source)
                     && (source->hasType(Subtypes::TYPE_LAND) || !tap || !source->hasSummoningSickness()) && !source->isPhased)
     {
+        ManaCost * cost = getCost();
         if (!cost || mana->canAfford(cost))
         {
             result = 1;
@@ -4236,6 +4279,8 @@ int AManaProducer::reactToClick(MTGCardInstance * _card)
         return 0;
     if(!ActivatedAbility::isReactingToClick(_card))
         return 0;
+
+    ManaCost * cost = getCost();
     if (cost)
     {
         cost->setExtraCostsAction(this, _card);
@@ -4302,18 +4347,14 @@ const char * AManaProducer::getMenuText()
 
 AManaProducer::~AManaProducer()
 {
-    SAFE_DELETE(cost);
     SAFE_DELETE(output);
 }
 
 AManaProducer * AManaProducer::clone() const
 {
     AManaProducer * a = NEW AManaProducer(*this);
-    a->cost = NEW ManaCost();
     a->output = NEW ManaCost();
-    a->cost->copy(cost);
     a->output->copy(output);
-    a->isClone = 1;
     return a;
 }
 

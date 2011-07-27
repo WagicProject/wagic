@@ -369,6 +369,13 @@ ThisCounter::~ThisCounter()
     SAFE_DELETE(counter);
 }
 
+ThisCounter* ThisCounter::clone() const 
+{
+    ThisCounter * a =  NEW ThisCounter(*this);
+    a->counter = NEW Counter(NULL, counter->name.c_str(), counter->power, counter->toughness);
+    return a;
+}
+
 ThisOpponentlife::ThisOpponentlife(int olife)
 {
     comparisonCriterion = olife;
@@ -377,6 +384,11 @@ ThisOpponentlife::ThisOpponentlife(int olife)
 int ThisOpponentlife::match(MTGCardInstance * card)
 {
     return matchValue(card->controller()->opponent()->life);
+}
+
+ThisOpponentlife* ThisOpponentlife::clone() const 
+{
+    return NEW ThisOpponentlife(*this);
 }
 
 ThisControllerlife::ThisControllerlife(int life)
@@ -389,6 +401,11 @@ int ThisControllerlife::match(MTGCardInstance * card)
     return matchValue(card->controller()->life);
 }
 
+ThisControllerlife* ThisControllerlife::clone() const 
+{
+    return NEW ThisControllerlife(*this);
+}
+
 ThisPower::ThisPower(int power)
 {
     comparisonCriterion = power;
@@ -397,6 +414,11 @@ ThisPower::ThisPower(int power)
 int ThisPower::match(MTGCardInstance * card)
 {
     return matchValue(card->power);
+}
+
+ThisPower* ThisPower::clone() const 
+{
+    return NEW ThisPower(*this);
 }
 
 ThisEquip::ThisEquip(int equipment)
@@ -408,6 +430,11 @@ int ThisEquip::match(MTGCardInstance * card)
     return matchValue(card->equipment);
 }
 
+ThisEquip* ThisEquip::clone() const 
+{
+    return NEW ThisEquip(*this);
+}
+
 ThisAuras::ThisAuras(int auras)
 {
     comparisonCriterion = auras;
@@ -415,6 +442,11 @@ ThisAuras::ThisAuras(int auras)
 int ThisAuras::match(MTGCardInstance * card)
 {
     return matchValue(card->auras);
+}
+
+ThisAuras* ThisAuras::clone() const 
+{
+    return NEW ThisAuras(*this);
 }
 
 ThisOpponentDamageAmount::ThisOpponentDamageAmount(int damagecount)
@@ -426,6 +458,11 @@ int ThisOpponentDamageAmount::match(MTGCardInstance * card)
     return matchValue(card->controller()->opponent()->damageCount);
 }
 
+ThisOpponentDamageAmount* ThisOpponentDamageAmount::clone() const 
+{
+    return NEW ThisOpponentDamageAmount(*this);
+}
+
 ThisUntapped::ThisUntapped(int untapped)
 {
     comparisonCriterion = untapped;
@@ -435,6 +472,11 @@ int ThisUntapped::match(MTGCardInstance * card)
     return matchValue(!card->isTapped());
 }
 
+ThisUntapped* ThisUntapped::clone() const 
+{
+    return NEW ThisUntapped(*this);
+}
+
 ThisTapped::ThisTapped(int tapped)
 {
     comparisonCriterion = tapped;
@@ -442,6 +484,11 @@ ThisTapped::ThisTapped(int tapped)
 int ThisTapped::match(MTGCardInstance * card)
 {
     return matchValue(card->isTapped());
+}
+
+ThisTapped* ThisTapped::clone() const 
+{
+    return NEW ThisTapped(*this);
 }
 
 ThisAttacked::ThisAttacked(int attack)
@@ -456,6 +503,11 @@ int ThisAttacked::match(MTGCardInstance * card)
     return matchValue(card->didattacked);
 }
 
+ThisAttacked* ThisAttacked::clone() const 
+{
+    return NEW ThisAttacked(*this);
+}
+
 ThisBlocked::ThisBlocked(int block)
 {
 
@@ -468,6 +520,11 @@ int ThisBlocked::match(MTGCardInstance * card)
     return matchValue(card->didblocked);
 }
 
+ThisBlocked* ThisBlocked::clone() const 
+{
+    return NEW ThisBlocked(*this);
+}
+
 ThisNotBlocked::ThisNotBlocked(int unblocked)
 {
 
@@ -478,6 +535,11 @@ int ThisNotBlocked::match(MTGCardInstance * card)
 {
 
     return matchValue(card->notblocked);
+}
+
+ThisNotBlocked* ThisNotBlocked::clone() const 
+{
+    return NEW ThisNotBlocked(*this);
 }
 
 ThisDamaged::ThisDamaged(int wasDealtDamage)
@@ -494,6 +556,11 @@ result = 1;
     return matchValue(result);
 }
 
+ThisDamaged* ThisDamaged::clone() const 
+{
+    return NEW ThisDamaged(*this);
+}
+
 ThisToughness::ThisToughness(int toughness)
 {
     comparisonCriterion = toughness;
@@ -502,6 +569,11 @@ ThisToughness::ThisToughness(int toughness)
 int ThisToughness::match(MTGCardInstance * card)
 {
     return matchValue(card->toughness);
+}
+
+ThisToughness* ThisToughness::clone() const 
+{
+    return NEW ThisToughness(*this);
 }
 
 ThisCounterAny::ThisCounterAny(int nb)
@@ -519,6 +591,11 @@ int ThisCounterAny::match(MTGCardInstance * card)
     return matchValue(result);
 }
 
+ThisCounterAny * ThisCounterAny::clone() const 
+{
+    return NEW ThisCounterAny(*this);
+}
+
 ThisX::ThisX(int x)
 {
     comparisonCriterion = x;
@@ -527,4 +604,9 @@ ThisX::ThisX(int x)
 int ThisX::match(MTGCardInstance * card)
 {
     return matchValue(card->X);
+}
+
+ThisX * ThisX::clone() const 
+{
+    return NEW ThisX(*this);
 }

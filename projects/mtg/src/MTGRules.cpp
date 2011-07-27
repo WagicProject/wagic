@@ -278,9 +278,7 @@ void MTGEventBonus::Render()
 
 MTGEventBonus * MTGEventBonus::clone() const
 {
-    MTGEventBonus * a = NEW MTGEventBonus(*this);
-    a->isClone = 1;
-    return a;
+    return NEW MTGEventBonus(*this);
 }
 
 //
@@ -469,9 +467,7 @@ ostream& MTGPutInPlayRule::toString(ostream& out) const
 
 MTGPutInPlayRule * MTGPutInPlayRule::clone() const
 {
-    MTGPutInPlayRule * a = NEW MTGPutInPlayRule(*this);
-    a->isClone = 1;
-    return a;
+    return NEW MTGPutInPlayRule(*this);
 }
 
 
@@ -593,9 +589,7 @@ ostream& MTGKickerRule::toString(ostream& out) const
 
 MTGKickerRule * MTGKickerRule::clone() const
 {
-    MTGKickerRule * a = NEW MTGKickerRule(*this);
-    a->isClone = 1;
-    return a;
+    return NEW MTGKickerRule(*this);
 }
 
 
@@ -757,9 +751,7 @@ ostream& MTGAlternativeCostRule::toString(ostream& out) const
 
 MTGAlternativeCostRule * MTGAlternativeCostRule::clone() const
 {
-    MTGAlternativeCostRule * a = NEW MTGAlternativeCostRule(*this);
-    a->isClone = 1;
-    return a;
+    return NEW MTGAlternativeCostRule(*this);
 }
 
 //-------------------------------------------------------------------------
@@ -811,9 +803,7 @@ ostream& MTGBuyBackRule::toString(ostream& out) const
 
 MTGBuyBackRule * MTGBuyBackRule::clone() const
 {
-    MTGBuyBackRule * a = NEW MTGBuyBackRule(*this);
-    a->isClone = 1;
-    return a;
+    return NEW MTGBuyBackRule(*this);
 }
 
 //-------------------------------------------------------------------------
@@ -860,9 +850,7 @@ ostream& MTGFlashBackRule::toString(ostream& out) const
 }
 MTGFlashBackRule * MTGFlashBackRule::clone() const
 {
-    MTGFlashBackRule * a = NEW MTGFlashBackRule(*this);
-    a->isClone = 1;
-    return a;
+    return NEW MTGFlashBackRule(*this);
 }
 
 //-------------------------------------------------------------------------
@@ -915,9 +903,7 @@ ostream& MTGRetraceRule::toString(ostream& out) const
 }
 MTGRetraceRule * MTGRetraceRule::clone() const
 {
-    MTGRetraceRule * a = NEW MTGRetraceRule(*this);
-    a->isClone = 1;
-    return a;
+    return NEW MTGRetraceRule(*this);
 }
 
 //-------------------------------------------------------------------------
@@ -985,7 +971,7 @@ int MTGSuspendRule::reactToClick(MTGCardInstance * card)
         else
         {
             alternateCost->setExtraCostsAction(this, card);
-            game->mExtraPayment = cost->suspend->extraCosts;
+            game->mExtraPayment = getCost()->suspend->extraCosts;
             return 0;
         }
             card->paymenttype = MTGAbility::SUSPEND_COST;
@@ -1016,9 +1002,7 @@ ostream& MTGSuspendRule::toString(ostream& out) const
 }
 MTGSuspendRule * MTGSuspendRule::clone() const
 {
-    MTGSuspendRule * a = NEW MTGSuspendRule(*this);
-    a->isClone = 1;
-    return a;
+    return NEW MTGSuspendRule(*this);
 }
 
 //-------------------------------------------------------------------------
@@ -1146,9 +1130,7 @@ ostream& MTGMorphCostRule::toString(ostream& out) const
 
 MTGMorphCostRule * MTGMorphCostRule::clone() const
 {
-    MTGMorphCostRule * a = NEW MTGMorphCostRule(*this);
-    a->isClone = 1;
-    return a;
+    return NEW MTGMorphCostRule(*this);
 }
 
 //-------------------------------------------------------------------------
@@ -1252,9 +1234,7 @@ ostream& MTGAttackRule::toString(ostream& out) const
 
 MTGAttackRule * MTGAttackRule::clone() const
 {
-    MTGAttackRule * a = NEW MTGAttackRule(*this);
-    a->isClone = 1;
-    return a;
+    return NEW MTGAttackRule(*this);
 }
 
 //this rules handles returning cards to combat triggers for activations.
@@ -1372,9 +1352,7 @@ ostream& MTGCombatTriggersRule::toString(ostream& out) const
 
 MTGCombatTriggersRule * MTGCombatTriggersRule::clone() const
 {
-    MTGCombatTriggersRule * a = NEW MTGCombatTriggersRule(*this);
-    a->isClone = 1;
-    return a;
+    return NEW MTGCombatTriggersRule(*this);
 }
 ///------------
 
@@ -1410,9 +1388,7 @@ int OtherAbilitiesEventReceiver::testDestroy()
 
 OtherAbilitiesEventReceiver * OtherAbilitiesEventReceiver::clone() const
 {
-    OtherAbilitiesEventReceiver * a = NEW OtherAbilitiesEventReceiver(*this);
-    a->isClone = 1;
-    return a;
+    return NEW OtherAbilitiesEventReceiver(*this);
 }
 
 MTGBlockRule::MTGBlockRule(int _id) :
@@ -1467,9 +1443,7 @@ ostream& MTGBlockRule::toString(ostream& out) const
 
 MTGBlockRule * MTGBlockRule::clone() const
 {
-    MTGBlockRule * a = NEW MTGBlockRule(*this);
-    a->isClone = 1;
-    return a;
+    return NEW MTGBlockRule(*this);
 }
 //
 // Attacker chooses blockers order
@@ -1625,9 +1599,7 @@ ostream& MTGMomirRule::toString(ostream& out) const
 
 MTGMomirRule * MTGMomirRule::clone() const
 {
-    MTGMomirRule * a = NEW MTGMomirRule(*this);
-    a->isClone = 1;
-    return a;
+    return NEW MTGMomirRule(*this);
 }
 
 //stone hewer game mode
@@ -1735,9 +1707,7 @@ ostream& MTGStoneHewerRule::toString(ostream& out) const
 
 MTGStoneHewerRule * MTGStoneHewerRule::clone() const
 {
-    MTGStoneHewerRule * a = NEW MTGStoneHewerRule(*this);
-    a->isClone = 1;
-    return a;
+    return NEW MTGStoneHewerRule(*this);
 }
 
 //------------------
@@ -1782,9 +1752,7 @@ int MTGHermitRule::testDestroy()
 
 MTGHermitRule * MTGHermitRule::clone() const
 {
-    MTGHermitRule * a = NEW MTGHermitRule(*this);
-    a->isClone = 1;
-    return a;
+    return NEW MTGHermitRule(*this);
 }
 //--------------------
 
@@ -1903,9 +1871,7 @@ HUDDisplay::~HUDDisplay()
 
 HUDDisplay * HUDDisplay::clone() const
 {
-    HUDDisplay * a = NEW HUDDisplay(*this);
-    a->isClone = 1;
-    return a;
+    return NEW HUDDisplay(*this);
 }
 
 /* Persist */
@@ -1966,9 +1932,7 @@ int MTGPersistRule::testDestroy()
 }
 MTGPersistRule * MTGPersistRule::clone() const
 {
-    MTGPersistRule * a = NEW MTGPersistRule(*this);
-    a->isClone = 1;
-    return a;
+    return NEW MTGPersistRule(*this);
 }
 
 //vampires rule
@@ -2044,9 +2008,7 @@ int MTGVampireRule::testDestroy()
 }
 MTGVampireRule * MTGVampireRule::clone() const
 {
-    MTGVampireRule * a = NEW MTGVampireRule(*this);
-    a->isClone = 1;
-    return a;
+    return NEW MTGVampireRule(*this);
 }
 /////////////////////////////////////////////////
 //unearth rule----------------------------------
@@ -2108,9 +2070,7 @@ int MTGUnearthRule::testDestroy()
 }
 MTGUnearthRule * MTGUnearthRule::clone() const
 {
-    MTGUnearthRule * a = NEW MTGUnearthRule(*this);
-    a->isClone = 1;
-    return a;
+    return NEW MTGUnearthRule(*this);
 }
 //token clean up
 MTGTokensCleanup::MTGTokensCleanup(int _id) :
@@ -2142,9 +2102,7 @@ int MTGTokensCleanup::testDestroy()
 
 MTGTokensCleanup * MTGTokensCleanup::clone() const
 {
-    MTGTokensCleanup * a = NEW MTGTokensCleanup(*this);
-    a->isClone = 1;
-    return a;
+    return NEW MTGTokensCleanup(*this);
 }
 
 /* Legend Rule */
@@ -2201,9 +2159,7 @@ ostream& MTGLegendRule::toString(ostream& out) const
 }
 MTGLegendRule * MTGLegendRule::clone() const
 {
-    MTGLegendRule * a = NEW MTGLegendRule(*this);
-    a->isClone = 1;
-    return a;
+    return NEW MTGLegendRule(*this);
 }
 
 /* PlaneWalker Rule */
@@ -2260,9 +2216,7 @@ ostream& MTGPlaneWalkerRule::toString(ostream& out) const
 }
 MTGPlaneWalkerRule * MTGPlaneWalkerRule::clone() const
 {
-    MTGPlaneWalkerRule * a = NEW MTGPlaneWalkerRule(*this);
-    a->isClone = 1;
-    return a;
+    return NEW MTGPlaneWalkerRule(*this);
 }
 
 /* Lifelink */
@@ -2300,9 +2254,7 @@ ostream& MTGLifelinkRule::toString(ostream& out) const
 }
 MTGLifelinkRule * MTGLifelinkRule::clone() const
 {
-    MTGLifelinkRule * a = NEW MTGLifelinkRule(*this);
-    a->isClone = 1;
-    return a;
+    return NEW MTGLifelinkRule(*this);
 }
 
 /* Deathtouch */
@@ -2346,7 +2298,5 @@ int MTGDeathtouchRule::testDestroy()
 
 MTGDeathtouchRule * MTGDeathtouchRule::clone() const
 {
-    MTGDeathtouchRule * a = NEW MTGDeathtouchRule(*this);
-    a->isClone = 1;
-    return a;
+    return NEW MTGDeathtouchRule(*this);
 }

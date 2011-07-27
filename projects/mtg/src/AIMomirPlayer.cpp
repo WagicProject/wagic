@@ -18,7 +18,8 @@ AIMomirPlayer::AIMomirPlayer(string file, string fileSmall, string avatarFile, M
 int AIMomirPlayer::getEfficiency(AIAction * action)
 {
     MTGAbility * ability = action->ability;
-    if (ability->cost && !(ability->cost->isExtraPaymentSet())) return 0; //Does not handle abilities with sacrifice yet
+    ManaCost * cost = ability->getCost();
+    if (cost && !(cost->isExtraPaymentSet())) return 0; //Does not handle abilities with sacrifice yet
     int efficiency = AIPlayerBaka::getEfficiency(action);
 
     GameObserver * g = GameObserver::GetInstance();

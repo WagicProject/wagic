@@ -22,7 +22,6 @@ class ActionElement: public JGuiObject
 {
 protected:
     int activeState;
-    int isClone;
 public:
     TargetChooser * tc;
     int currentPhase;
@@ -48,6 +47,7 @@ public:
     }
     ;
     ActionElement(int id);
+    ActionElement(const ActionElement& copyFromMe);
     virtual ~ActionElement();
     virtual int isReactingToTargetClick(Targetable * card);
     virtual int reactToTargetClick(Targetable * card);

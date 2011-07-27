@@ -53,9 +53,7 @@ bool MTGGamePhase::CheckUserInput(JButton key)
 
 MTGGamePhase * MTGGamePhase::clone() const
 {
-    MTGGamePhase * a = NEW MTGGamePhase(*this);
-    a->isClone = 1;
-    return a;
+    return NEW MTGGamePhase(*this);
 }
 
 ostream& MTGGamePhase::toString(ostream& out) const

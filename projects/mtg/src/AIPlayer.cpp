@@ -242,7 +242,7 @@ int AIPlayer::CanHandleCost(ManaCost * cost)
 
 int AIPlayer::canHandleCost(MTGAbility * ability)
 {
-    return CanHandleCost(ability->cost);
+    return CanHandleCost(ability->getCost());
 }
 
 // In this function, target represents the target of the currentAIAction object, while _target is the target of the ability of this AIAction object
@@ -753,9 +753,10 @@ int AIAction::getEfficiency()
 
     if (p->game->hand->nb_cards == 0)
         efficiency = (int) ((float) efficiency * 1.3); //increase chance of using ability if hand is empty
-    if (ability->cost)
+    ManaCost * cost = ability->getCost();
+    if (cost)
     {
-        ExtraCosts * ec = ability->cost->extraCosts;
+        ExtraCosts * ec = cost->extraCosts;
         if (ec)
         {
             for(unsigned int i = 0; i < ec->costs.size();i++)
@@ -816,7 +817,7 @@ int AIPlayer::selectHintAbility()
         if (!clickstream.size())
         {
             DebugTrace("AIPlayer:Using Activated ability");
-            if (tapLandsForMana(action->ability->cost, action->click))
+            if (tapLandsForMana(action->ability->getCost(), action->click))
             {
                 clickstream.push(action);
                 SAFE_DELETE(totalPotentialMana);
@@ -890,7 +891,7 @@ int AIPlayer::selectAbility()
             if (!clickstream.size())
             {
                 DebugTrace("AIPlayer:Using Activated ability");
-                if (tapLandsForMana(action.ability->cost, action.click))
+                if (tapLandsForMana(action.ability->getCost(), action.click))
                     clickstream.push(NEW AIAction(action));
             }
         }

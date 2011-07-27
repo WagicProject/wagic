@@ -16,10 +16,14 @@ GenericActivatedAbility::GenericActivatedAbility(string newName,int _id, MTGCard
 
 int GenericActivatedAbility::resolve()
 {
-    ManaCost * diff = abilityCost->Diff(cost);
-    source->X = diff->hasX();
-    SAFE_DELETE(diff);
-    //SAFE_DELETE(abilityCost); this line has been reported as a bug. removing it doesn't seem to break anything, although I didn't get any error in the test suite by leaving it either, so... leaving it for now as a comment, in case.
+    //Note: I've seen a similar block in some other MTGAbility, can this be refactored .
+    source->X = 0;
+    if (abilityCost)
+    {
+        ManaCost * diff = abilityCost->Diff(getCost());
+        source->X = diff->hasX();
+        SAFE_DELETE(diff);
+    }
     ability->target = target; //may have been updated...
     if (ability)
         return ability->resolve();
@@ -60,8 +64,8 @@ int GenericActivatedAbility::testDestroy()
 GenericActivatedAbility * GenericActivatedAbility::clone() const
 {
     GenericActivatedAbility * a = NEW GenericActivatedAbility(*this);
-    a->cost = NEW ManaCost();
-    a->cost->copy(cost);
+    //a->getCost() = NEW ManaCost();
+    //a->getCost()->copy(cost);
     a->ability = ability->clone();
     return a;
 }
@@ -95,9 +99,7 @@ const char * AAAlterPoison::getMenuText()
 
 AAAlterPoison * AAAlterPoison::clone() const
 {
-    AAAlterPoison * a = NEW AAAlterPoison(*this);
-    a->isClone = 1;
-    return a;
+    return NEW AAAlterPoison(*this);
 }
 
 AAAlterPoison::~AAAlterPoison()
@@ -129,9 +131,7 @@ const char * AADamagePrevent::getMenuText()
 
 AADamagePrevent * AADamagePrevent::clone() const
 {
-    AADamagePrevent * a = NEW AADamagePrevent(*this);
-    a->isClone = 1;
-    return a;
+    return NEW AADamagePrevent(*this);
 }
 
 AADamagePrevent::~AADamagePrevent()
@@ -172,9 +172,7 @@ AADamager::AADamager(int _id, MTGCardInstance * _source, Targetable * _target, s
 
 AADamager * AADamager::clone() const
 {
-    AADamager * a = NEW AADamager(*this);
-    a->isClone = 1;
-    return a;
+    return NEW AADamager(*this);
 }
 
 
@@ -217,9 +215,7 @@ const char * AADepleter::getMenuText()
 
 AADepleter * AADepleter::clone() const
 {
-    AADepleter * a = NEW AADepleter(*this);
-    a->isClone = 1;
-    return a;
+    return NEW AADepleter(*this);
 }
 
 //AACopier
@@ -247,9 +243,7 @@ const char * AACopier::getMenuText()
 
 AACopier * AACopier::clone() const
 {
-    AACopier * a = NEW AACopier(*this);
-    a->isClone = 1;
-    return a;
+    return NEW AACopier(*this);
 }
 
 //phaser
@@ -282,9 +276,7 @@ const char * AAPhaseOut::getMenuText()
 
 AAPhaseOut * AAPhaseOut::clone() const
 {
-    AAPhaseOut * a = NEW AAPhaseOut(*this);
-    a->isClone = 1;
-    return a;
+    return NEW AAPhaseOut(*this);
 }
 
 //Counters
@@ -378,9 +370,7 @@ const char* AACounter::getMenuText()
 
 AACounter * AACounter::clone() const
 {
-    AACounter * a = NEW AACounter(*this);
-    a->isClone = 1;
-    return a;
+    return NEW AACounter(*this);
 }
 
 //Counters
@@ -460,9 +450,7 @@ const char* AARemoveAllCounter::getMenuText()
 
 AARemoveAllCounter * AARemoveAllCounter::clone() const
 {
-    AARemoveAllCounter * a = NEW AARemoveAllCounter(*this);
-    a->isClone = 1;
-    return a;
+    return NEW AARemoveAllCounter(*this);
 }
 
 //Reset Damage on creatures
@@ -485,9 +473,7 @@ const char* AAResetDamage::getMenuText()
 
 AAResetDamage * AAResetDamage::clone() const
 {
-    AAResetDamage * a = NEW AAResetDamage(*this);
-    a->isClone = 1;
-    return a;
+    return NEW AAResetDamage(*this);
 }
 
 
@@ -528,9 +514,7 @@ const char * AAFizzler::getMenuText()
 
 AAFizzler* AAFizzler::clone() const
 {
-    AAFizzler * a = NEW AAFizzler(*this);
-    a->isClone = 1;
-    return a;
+    return NEW AAFizzler(*this);
 }
 // BanishCard implementations
 // Bury
@@ -558,9 +542,7 @@ const char * AABuryCard::getMenuText()
 
 AABuryCard * AABuryCard::clone() const
 {
-    AABuryCard * a = NEW AABuryCard(*this);
-    a->isClone = 1;
-    return a;
+    return NEW AABuryCard(*this);
 }
 
 // Destroy
@@ -588,9 +570,7 @@ const char * AADestroyCard::getMenuText()
 
 AADestroyCard * AADestroyCard::clone() const
 {
-    AADestroyCard * a = NEW AADestroyCard(*this);
-    a->isClone = 1;
-    return a;
+    return NEW AADestroyCard(*this);
 }
 
 // Sacrifice
@@ -622,9 +602,7 @@ const char * AASacrificeCard::getMenuText()
 
 AASacrificeCard * AASacrificeCard::clone() const
 {
-    AASacrificeCard * a = NEW AASacrificeCard(*this);
-    a->isClone = 1;
-    return a;
+    return NEW AASacrificeCard(*this);
 }
 
 // Discard 
@@ -657,9 +635,7 @@ const char * AADiscardCard::getMenuText()
 
 AADiscardCard * AADiscardCard::clone() const
 {
-    AADiscardCard * a = NEW AADiscardCard(*this);
-    a->isClone = 1;
-    return a;
+    return NEW AADiscardCard(*this);
 }
 
 AADrawer::AADrawer(int _id, MTGCardInstance * card, Targetable * _target, ManaCost * _cost, string nbcardsStr,
@@ -709,9 +685,7 @@ const char * AADrawer::getMenuText()
 
 AADrawer * AADrawer::clone() const
 {
-    AADrawer * a = NEW AADrawer(*this);
-    a->isClone = 1;
-    return a;
+    return NEW AADrawer(*this);
 }
 
 // AAFrozen: Prevent a card from untapping during next untap phase
@@ -740,9 +714,7 @@ const char * AAFrozen::getMenuText()
 
 AAFrozen * AAFrozen::clone() const
 {
-    AAFrozen * a = NEW AAFrozen(*this);
-    a->isClone = 1;
-    return a;
+    return NEW AAFrozen(*this);
 }
 
 // chose a new target for an aura or enchantment and equip it note: VERY basic right now.
@@ -809,7 +781,6 @@ const char * AANewTarget::getMenuText()
 AANewTarget * AANewTarget::clone() const
 {
     AANewTarget * a = NEW AANewTarget(*this);
-    a->isClone = 1;
     a->oneShot = 1;
     return a;
 }
@@ -888,7 +859,6 @@ const char * AAMorph::getMenuText()
 AAMorph * AAMorph::clone() const
 {
     AAMorph * a = NEW AAMorph(*this);
-    a->isClone = 1;
     a->forceDestroy = 1;
     return a;
 }
@@ -1299,14 +1269,13 @@ const char * AADynamic::getMenuText()
 AADynamic * AADynamic::clone() const
 {
     AADynamic * a = NEW AADynamic(*this);
-    a->isClone = 1;
+    a->storedAbility = storedAbility? storedAbility->clone() : NULL;
     return a;
 }
 
 AADynamic::~AADynamic()
 {
-    if (!isClone)
-        SAFE_DELETE(storedAbility);
+    SAFE_DELETE(storedAbility);
 }
 
 //AALifer
@@ -1348,9 +1317,7 @@ const char * AALifer::getMenuText()
 
 AALifer * AALifer::clone() const
 {
-    AALifer * a = NEW AALifer(*this);
-    a->isClone = 1;
-    return a;
+    return NEW AALifer(*this);
 }
 
 
@@ -1389,9 +1356,7 @@ const char * AASetHand::getMenuText()
 
 AASetHand * AASetHand::clone() const
 {
-    AASetHand * a = NEW AASetHand(*this);
-    a->isClone = 1;
-    return a;
+    return NEW AASetHand(*this);
 }
 
 //Lifeset
@@ -1432,7 +1397,6 @@ AALifeSet * AALifeSet::clone() const
 {
     AALifeSet * a = NEW AALifeSet(*this);
     a->life = NEW WParsedInt(*(a->life));
-    a->isClone = 1;
     return a;
 }
 
@@ -1518,9 +1482,7 @@ ostream& AACloner::toString(ostream& out) const
 
 AACloner * AACloner::clone() const
 {
-    AACloner * a = NEW AACloner(*this);
-    a->isClone = 1;
-    return a;
+    return NEW AACloner(*this);
 }
 AACloner::~AACloner()
 {
@@ -1599,7 +1561,6 @@ ACastRestriction * ACastRestriction::clone() const
     ACastRestriction * a = NEW ACastRestriction(*this);
     a->value = NEW WParsedInt(*(a->value));
     a->restrictionsScope = restrictionsScope->clone();
-    a->isClone = 1;
     return a;
 }
 
@@ -1632,7 +1593,6 @@ AInstantCastRestrictionUEOT * AInstantCastRestrictionUEOT::clone() const
 {
     AInstantCastRestrictionUEOT * a = NEW AInstantCastRestrictionUEOT(*this);
     a->ability = this->ability->clone();
-    a->isClone = 1;
     return a;
 }
 
@@ -1756,9 +1716,7 @@ const char * AAMover::getMenuText(TargetChooser * tc)
 
 AAMover * AAMover::clone() const
 {
-    AAMover * a = NEW AAMover(*this);
-    a->isClone = 1;
-    return a;
+    return NEW AAMover(*this);
 }
 
 //Random Discard
@@ -1801,9 +1759,7 @@ const char * AARandomDiscarder::getMenuText()
 
 AARandomDiscarder * AARandomDiscarder::clone() const
 {
-    AARandomDiscarder * a = NEW AARandomDiscarder(*this);
-    a->isClone = 1;
-    return a;
+    return NEW AARandomDiscarder(*this);
 }
 
 // Shuffle 
@@ -1839,9 +1795,7 @@ const char * AAShuffle::getMenuText()
 
 AAShuffle * AAShuffle::clone() const
 {
-    AAShuffle * a = NEW AAShuffle(*this);
-    a->isClone = 1;
-    return a;
+    return NEW AAShuffle(*this);
 }
 
 // Remove Mana From ManaPool
@@ -1910,7 +1864,6 @@ AARemoveMana * AARemoveMana::clone() const
 {
     AARemoveMana * a = NEW AARemoveMana(*this);
     a->mManaDesc = mManaDesc ? NEW ManaCost(mManaDesc) : NULL;
-    a->isClone = 1;
     return a;
 }
 
@@ -1946,9 +1899,7 @@ const char * AATapper::getMenuText()
 
 AATapper * AATapper::clone() const
 {
-    AATapper * a = NEW AATapper(*this);
-    a->isClone = 1;
-    return a;
+    return NEW AATapper(*this);
 }
 
 //AA Untapper
@@ -1978,9 +1929,7 @@ const char * AAUntapper::getMenuText()
 
 AAUntapper * AAUntapper::clone() const
 {
-    AAUntapper * a = NEW AAUntapper(*this);
-    a->isClone = 1;
-    return a;
+    return NEW AAUntapper(*this);
 }
 
 AAWhatsMax::AAWhatsMax(int id, MTGCardInstance * card, MTGCardInstance * source, ManaCost * _cost, int value) :
@@ -2001,9 +1950,7 @@ int AAWhatsMax::resolve()
 
 AAWhatsMax * AAWhatsMax::clone() const
 {
-    AAWhatsMax * a = NEW AAWhatsMax(*this);
-    a->isClone = 1;
-    return a;
+    return NEW AAWhatsMax(*this);
 }
 
 // Win Game
@@ -2058,9 +2005,7 @@ const char * AAWinGame::getMenuText()
 
 AAWinGame * AAWinGame::clone() const
 {
-    AAWinGame * a = NEW AAWinGame(*this);
-    a->isClone = 1;
-    return a;
+    return NEW AAWinGame(*this);
 }
 
 //Generic Abilities
@@ -2101,9 +2046,7 @@ const char * IfThenAbility::getMenuText()
 
 IfThenAbility * IfThenAbility::clone() const
 {
-    IfThenAbility * a = NEW IfThenAbility(*this);
-    a->isClone = 1;
-    return a;
+    return NEW IfThenAbility(*this);
 }
 //
 
@@ -2171,7 +2114,6 @@ MayAbility * MayAbility::clone() const
 {
     MayAbility * a = NEW MayAbility(*this);
     a->ability = ability->clone();
-    a->isClone = 1;
     return a;
 }
 
@@ -2254,20 +2196,24 @@ const char * MultiAbility::getMenuText()
 MultiAbility * MultiAbility::clone() const
 {
     MultiAbility * a = NEW MultiAbility(*this);
-    a->isClone = 1;
+    a->abilities.clear();
+    vector<int>::size_type sz = abilities.size();
+    for (size_t i = 0; i < sz; i++)
+    {
+        a->abilities.push_back(abilities[i]->clone());
+    }
     return a;
 }
 
 MultiAbility::~MultiAbility()
 {
-    if (!isClone)
+
+    vector<int>::size_type sz = abilities.size();
+    for (size_t i = 0; i < sz; i++)
     {
-        vector<int>::size_type sz = abilities.size();
-        for (size_t i = 0; i < sz; i++)
-        {
-            SAFE_DELETE(abilities[i]);
-        }
+        SAFE_DELETE(abilities[i]);
     }
+
     abilities.clear();
 }
 
@@ -2342,10 +2288,6 @@ GenericTargetAbility * GenericTargetAbility::clone() const
 {
     GenericTargetAbility * a = NEW GenericTargetAbility(*this);
     a->ability = ability->clone();
-    a->cost = NEW ManaCost();
-    a->cost->copy(cost);
-    if (tc)
-        a->tc = tc->clone();
     return a;
 }
 
@@ -2466,9 +2408,7 @@ void AAlterCost::decreaseTheCost(MTGCardInstance * card)
 
 AAlterCost * AAlterCost::clone() const
 {
-    AAlterCost * a = NEW AAlterCost(*this);
-    a->isClone = 1;
-    return a;
+    return NEW AAlterCost(*this);
 }
 
 AAlterCost::~AAlterCost()
@@ -2770,9 +2710,7 @@ const char * ATransformer::getMenuText()
 
 ATransformer * ATransformer::clone() const
 {
-    ATransformer * a = NEW ATransformer(*this);
-    a->isClone = 1;
-    return a;
+    return NEW ATransformer(*this);
 }
 
 ATransformer::~ATransformer()
@@ -2803,7 +2741,6 @@ ATransformerInstant * ATransformerInstant::clone() const
 {
     ATransformerInstant * a = NEW ATransformerInstant(*this);
     a->ability = this->ability->clone();
-    a->isClone = 1;
     return a;
 }
 
@@ -2835,7 +2772,6 @@ PTInstant * PTInstant::clone() const
 {
     PTInstant * a = NEW PTInstant(*this);
     a->ability = this->ability->clone();
-    a->isClone = 1;
     return a;
 }
 
@@ -2868,7 +2804,6 @@ ASwapPTUEOT * ASwapPTUEOT::clone() const
 {
     ASwapPTUEOT * a = NEW ASwapPTUEOT(*this);
     a->ability = this->ability->clone();
-    a->isClone = 1;
     return a;
 }
 
@@ -2980,9 +2915,7 @@ int ALoseAbilities::destroy()
 
 ALoseAbilities * ALoseAbilities::clone() const
 {
-    ALoseAbilities * a = NEW ALoseAbilities(*this);
-    a->isClone = 1;
-    return a;
+    return NEW ALoseAbilities(*this);
 }
 
 //ALoseSubtypes
@@ -3025,9 +2958,7 @@ int ALoseSubtypes::destroy()
 
 ALoseSubtypes * ALoseSubtypes::clone() const
 {
-    ALoseSubtypes * a = NEW ALoseSubtypes(*this);
-    a->isClone = 1;
-    return a;
+    return NEW ALoseSubtypes(*this);
 }
 
 //APreventDamageTypes
@@ -3077,7 +3008,7 @@ int APreventDamageTypes::destroy()
 APreventDamageTypes * APreventDamageTypes::clone() const
 {
     APreventDamageTypes * a = NEW APreventDamageTypes(*this);
-    a->isClone = 1;
+    a->re = NULL;
     return a;
 }
 
@@ -3120,7 +3051,6 @@ APreventDamageTypesUEOT * APreventDamageTypesUEOT::clone() const
 {
     APreventDamageTypesUEOT * a = NEW APreventDamageTypesUEOT(*this);
     a->ability = this->ability->clone();
-    a->isClone = 1;
     return a;
 }
 
@@ -3194,9 +3124,7 @@ return "Fading";
 
 AVanishing * AVanishing::clone() const
 {
-    AVanishing * a = NEW AVanishing(*this);
-    a->isClone = 1;
-    return a;
+    return NEW AVanishing(*this);
 }
 
 AVanishing::~AVanishing()
@@ -3283,14 +3211,13 @@ ostream& AUpkeep::toString(ostream& out) const
 AUpkeep * AUpkeep::clone() const
 {
     AUpkeep * a = NEW AUpkeep(*this);
-    a->isClone = 1;
+    a->ability = ability->clone();
     return a;
 }
 
 AUpkeep::~AUpkeep()
 {
-    if (!isClone)
-        SAFE_DELETE(ability);
+    SAFE_DELETE(ability);
 }
 
 //A Phase based Action
@@ -3372,7 +3299,6 @@ APhaseAction * APhaseAction::clone() const
     APhaseAction * a = NEW APhaseAction(*this);
     if(forcedestroy == false)
         a->forceDestroy = -1;// we want this ability to stay alive until it resolves.
-    a->isClone = 1;
     return a;
 }
 
@@ -3407,7 +3333,6 @@ APhaseActionGeneric * APhaseActionGeneric::clone() const
     APhaseActionGeneric * a = NEW APhaseActionGeneric(*this);
     a->ability = this->ability->clone();
     a->oneShot = 1;
-    a->isClone = 1;
     return a;
 }
 
@@ -3617,14 +3542,13 @@ const char * ABlink::getMenuText()
 ABlink * ABlink::clone() const
 {
     ABlink * a = NEW ABlink(*this);
-    a->isClone = 1;
+    a->stored = stored ? stored->clone() : NULL;
     a->forceDestroy = -1;
     return a;
 };
 ABlink::~ABlink()
 {
-    if (!isClone)
-        SAFE_DELETE(stored);
+    SAFE_DELETE(stored);
 }
 
 ABlinkGeneric::ABlinkGeneric(int _id, MTGCardInstance * card, MTGCardInstance * _target,bool blinkueot,bool blinkForSource,bool blinkhand,MTGAbility * stored) :
@@ -3651,7 +3575,6 @@ ABlinkGeneric * ABlinkGeneric::clone() const
     ABlinkGeneric * a = NEW ABlinkGeneric(*this);
     a->ability = this->ability->clone();
     a->oneShot = 1;
-    a->isClone = 1;
     return a;
 }
 

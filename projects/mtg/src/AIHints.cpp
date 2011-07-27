@@ -130,7 +130,7 @@ RankingContainer AIHints::findActions(AIHint * hint)
         for (int j = 0; j < mPlayer->game->inPlay->nb_cards; j++)
         {
             MTGCardInstance * card = mPlayer->game->inPlay->cards[j];
-            if (a->isReactingToClick(card, a->cost))
+            if (a->isReactingToClick(card, a->getCost()))
             {
                 mPlayer->createAbilityTargets(a, card, ranking); //TODO make that function static?
                 break; //For performance... ?
@@ -177,7 +177,7 @@ string AIHints::constraintsNotFulfilled(AIAction * action, AIHint * hint, ManaCo
         return "not supported";
 
     //dummy test: would the ability work if we were sure to fulfill its mana requirements?
-    if (!a->isReactingToClick(card, a->cost))
+    if (!a->isReactingToClick(card, a->getCost()))
     {
         DebugTrace("This shouldn't happen, this AIAction doesn't seem like a good choice");
         return "not supported";
@@ -186,7 +186,7 @@ string AIHints::constraintsNotFulfilled(AIAction * action, AIHint * hint, ManaCo
     if (!a->isReactingToClick(card, potentialMana))
     {
         //Not enough Mana, try to find which mana we should get in priority
-        ManaCost * diff = potentialMana->Diff(a->cost);
+        ManaCost * diff = potentialMana->Diff(a->getCost());
         for (int i = 0; i < Constants::MTG_NB_COLORS; i++)
         {
             if(diff->getCost(i) < 0)

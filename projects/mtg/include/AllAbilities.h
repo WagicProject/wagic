@@ -313,9 +313,7 @@ public:
 
     TrCardAddedToZone * clone() const
     {
-        TrCardAddedToZone * a = NEW TrCardAddedToZone(*this);
-        a->isClone = 1;
-        return a;
+        return NEW TrCardAddedToZone(*this);
     }
 };
 
@@ -357,9 +355,7 @@ public:
 
     TrCardTapped * clone() const
     {
-        TrCardTapped * a = NEW TrCardTapped(*this);
-        a->isClone = 1;
-        return a;
+        return NEW TrCardTapped(*this);
     }
 };
 
@@ -401,9 +397,7 @@ public:
 
     TrCardTappedformana * clone() const
     {
-        TrCardTappedformana * a = NEW TrCardTappedformana(*this);
-        a->isClone = 1;
-        return a;
+        return NEW TrCardTappedformana(*this);
     }
 };
 
@@ -538,9 +532,7 @@ public:
 
     TrCombatTrigger * clone() const
     {
-        TrCombatTrigger * a = NEW TrCombatTrigger(*this);
-        a->isClone = 1;
-        return a;
+        return NEW TrCombatTrigger(*this);
     }
 };
 
@@ -579,9 +571,7 @@ public:
 
     TrcardDrawn * clone() const
     {
-        TrcardDrawn * a = NEW TrcardDrawn(*this);
-        a->isClone = 1;
-        return a;
+        return NEW TrcardDrawn(*this);
     }
 };
 
@@ -620,9 +610,7 @@ public:
 
     TrCardSacrificed * clone() const
     {
-        TrCardSacrificed * a = NEW TrCardSacrificed(*this);
-        a->isClone = 1;
-        return a;
+        return NEW TrCardSacrificed(*this);
     }
 };
 
@@ -658,9 +646,7 @@ public:
     }
     TrCardDiscarded * clone() const
     {
-        TrCardDiscarded * a = NEW TrCardDiscarded(*this);
-        a->isClone = 1;
-        return a;
+        return NEW TrCardDiscarded(*this);
     }
 };
 
@@ -718,9 +704,7 @@ public:
 
     TrDamaged * clone() const
     {
-        TrDamaged * a = NEW TrDamaged(*this);
-        a->isClone = 1;
-        return a;
+        return NEW TrDamaged(*this);
     }
 };
 
@@ -770,9 +754,7 @@ public:
 
     TrLifeGained * clone() const
     {
-        TrLifeGained * a = NEW TrLifeGained(*this);
-        a->isClone = 1;
-        return a;
+        return NEW TrLifeGained(*this);
     }
 };
 
@@ -823,9 +805,7 @@ public:
 
     TrVampired * clone() const
     {
-        TrVampired * a = NEW TrVampired(*this);
-        a->isClone = 1;
-        return a;
+        return NEW TrVampired(*this);
     }
 };
 
@@ -869,9 +849,7 @@ public:
 
     TrTargeted * clone() const
     {
-        TrTargeted * a = NEW TrTargeted(*this);
-        a->isClone = 1;
-        return a;
+        return NEW TrTargeted(*this);
     }
 };
 
@@ -1184,9 +1162,7 @@ public:
 
     ACycle * clone() const
     {
-        ACycle * a = NEW ACycle(*this);
-        a->isClone = 1;
-        return a;
+        return NEW ACycle(*this);
     }
 
 };
@@ -1226,9 +1202,7 @@ public:
 
     ANinja * clone() const
     {
-        ANinja * a = NEW ANinja(*this);
-        a->isClone = 1;
-        return a;
+        return NEW ANinja(*this);
     }
 };
 
@@ -1260,9 +1234,7 @@ public:
 
     ACombatRemoval * clone() const
     {
-        ACombatRemoval * a = NEW ACombatRemoval(*this);
-        a->isClone = 1;
-        return a;
+        return NEW ACombatRemoval(*this);
     }
 };
 
@@ -1393,9 +1365,7 @@ public:
 
     ABasicAbilityModifier * clone() const
     {
-        ABasicAbilityModifier * a = NEW ABasicAbilityModifier(*this);
-        a->isClone = 1;
-        return a;
+        return NEW ABasicAbilityModifier(*this);
     }
 };
 
@@ -1445,9 +1415,7 @@ public:
 
     AInstantBasicAbilityModifierUntilEOT * clone() const
     {
-        AInstantBasicAbilityModifierUntilEOT * a = NEW AInstantBasicAbilityModifierUntilEOT(*this);
-        a->isClone = 1;
-        return a;
+        return NEW AInstantBasicAbilityModifierUntilEOT(*this);
     }
 };
 
@@ -1494,13 +1462,12 @@ public:
     ABasicAbilityAuraModifierUntilEOT * clone() const
     {
         ABasicAbilityAuraModifierUntilEOT * a = NEW ABasicAbilityAuraModifierUntilEOT(*this);
-        a->isClone = 1;
+        a->ability = ability->clone();
         return a;
     }
 
     ~ABasicAbilityAuraModifierUntilEOT()
     {
-        if (!isClone)
         SAFE_DELETE(ability);
     }
 };
@@ -1565,9 +1532,7 @@ public:
 
     ASpellCastLife * clone() const
     {
-        ASpellCastLife * a = NEW ASpellCastLife(*this);
-        a->isClone = 1;
-        return a;
+        return NEW ASpellCastLife(*this);
     }
 
     ~ASpellCastLife()
@@ -1615,9 +1580,7 @@ public:
 
     AUnBlocker * clone() const
     {
-        AUnBlocker * a = NEW AUnBlocker(*this);
-        a->isClone = 1;
-        return a;
+        return NEW AUnBlocker(*this);
     }
 
 };
@@ -1657,7 +1620,6 @@ public:
     {
         AProtectionFrom * a = NEW AProtectionFrom(*this);
         a->fromTc = fromTc->clone();
-        a->isClone = 1;
         return a;
     }
 
@@ -1696,7 +1658,6 @@ public:
     {
         ACantBeTargetFrom * a = NEW ACantBeTargetFrom(*this);
         a->fromTc = fromTc->clone();
-        a->isClone = 1;
         return a;
     }
 
@@ -1734,7 +1695,6 @@ public:
     {
         ACantBeBlockedBy * a = NEW ACantBeBlockedBy(*this);
         a->fromTc = fromTc->clone();
-        a->isClone = 1;
         return a;
     }
 
@@ -1806,7 +1766,6 @@ public:
     {
         APowerToughnessModifier * a = NEW APowerToughnessModifier(*this);
         a->wppt = NEW WParsedPT(*(a->wppt));
-        a->isClone = 1;
         return a;
     }
 
@@ -1847,7 +1806,6 @@ public:
     {
         GenericInstantAbility * a = NEW GenericInstantAbility(*this);
         a->ability = ability->clone();
-        a->isClone = 1;
         return a;
     }
 
@@ -1866,7 +1824,7 @@ public:
     ACircleOfProtection(int _id, MTGCardInstance * source, int _color) :
         TargetAbility(_id, source, NEW SpellOrPermanentTargetChooser(source, _color), NEW ManaCost(), 0)
     {
-        cost->add(Constants::MTG_COLOR_ARTIFACT, 1);
+        getCost()->add(Constants::MTG_COLOR_ARTIFACT, 1);
         tc->targetter = NULL; //Circle of Protection doesn't use the word "source"
     }
 
@@ -1915,9 +1873,7 @@ public:
     }
     ACircleOfProtection * clone() const
     {
-        ACircleOfProtection * a = NEW ACircleOfProtection(*this);
-        a->isClone = 1;
-        return a;
+        return NEW ACircleOfProtection(*this);
     }
 };
 
@@ -1952,9 +1908,7 @@ public:
     }
     AStandardRegenerate * clone() const
     {
-        AStandardRegenerate * a = NEW AStandardRegenerate(*this);
-        a->isClone = 1;
-        return a;
+        return NEW AStandardRegenerate(*this);
     }
 };
 
@@ -1996,9 +1950,7 @@ public:
     }
     ARegularLifeModifierAura * clone() const
     {
-        ARegularLifeModifierAura * a = NEW ARegularLifeModifierAura(*this);
-        a->isClone = 1;
-        return a;
+        return NEW ARegularLifeModifierAura(*this);
     }
 };
 
@@ -2063,9 +2015,7 @@ public:
 
     AExalted * clone() const
     {
-        AExalted * a = NEW AExalted(*this);
-        a->isClone = 1;
-        return a;
+        return NEW AExalted(*this);
     }
 };
 
@@ -2216,8 +2166,7 @@ public:
     ///////////////////////////////////////////////////////
     ~AAsLongAs()
     {
-        if (!isClone)
-            SAFE_DELETE(ability);
+        SAFE_DELETE(ability);
     }
 
     const char * getMenuText()
@@ -2235,7 +2184,7 @@ public:
     AAsLongAs * clone() const
     {
         AAsLongAs * a = NEW AAsLongAs(*this);
-        a->isClone = 1;
+        a->ability = ability->clone();
         return a;
     }
 };
@@ -2340,7 +2289,6 @@ public:
 
     ~ALord()
     {
-        if (!isClone)
         SAFE_DELETE(ability);
     }
 
@@ -2356,7 +2304,7 @@ public:
     ALord * clone() const
     {
         ALord * a = NEW ALord(*this);
-        a->isClone = 1;
+        a->ability = ability->clone();
         return a;
     }
 };
@@ -2449,14 +2397,13 @@ public:
     }
     ~ATeach()
     {
-        if (!isClone)
         SAFE_DELETE(ability);
     }
 
     ATeach * clone() const
     {
-        ATeach * a = NEW ATeach(*this);
-        a->isClone = 1;
+        ATeach * a =  NEW ATeach(*this);
+        a->ability = ability->clone();
         return a;
     }
 
@@ -2552,9 +2499,7 @@ public:
 
     AEquip * clone() const
     {
-        AEquip * a = NEW AEquip(*this);
-        a->isClone = 1;
-        return a;
+        return NEW AEquip(*this);
     }
 
 };
@@ -2781,7 +2726,6 @@ public:
     {
         ATokenCreator * a = NEW ATokenCreator(*this);
         a->multiplier = NEW WParsedInt(*(multiplier));
-        a->isClone = 1;
         return a;
     }
 
@@ -2859,7 +2803,7 @@ public:
     AForeach * clone() const
     {
         AForeach * a = NEW AForeach(*this);
-        a->isClone = 1;
+        a->ability = ability->clone();
         return a;
     }
 
@@ -2874,7 +2818,6 @@ public:
 
     ~AForeach()
     {
-        if (!isClone)
         SAFE_DELETE(ability);
     }
 
@@ -2953,15 +2896,15 @@ public:
 
     ~AThis()
     {
-        if (!isClone)
         SAFE_DELETE(ability);
         SAFE_DELETE(td);
     }
 
     AThis * clone() const
     {
-        AThis * a = NEW AThis(*this);
-        a->isClone = 1;
+        AThis * a =  NEW AThis(*this);
+        a->ability = ability->clone();
+        a->td = td->clone();
         return a;
     }
 };
@@ -3048,11 +2991,9 @@ public:
 
     ~AThisForEach()
     {
-        if (!isClone)
-        {
-            SAFE_DELETE(ability);
-            SAFE_DELETE(td);
-        }
+        SAFE_DELETE(ability);
+        SAFE_DELETE(td);
+
         if (abilities.size())
         {
             removeAbilityFromGame();
@@ -3066,8 +3007,9 @@ public:
 
     AThisForEach * clone() const
     {
-        AThisForEach * a = NEW AThisForEach(*this);
-        a->isClone = 1;
+        AThisForEach * a =  NEW AThisForEach(*this);
+        a->ability = ability->clone();
+        a->td = td->clone();
         return a;
     }
 };
@@ -3157,9 +3099,7 @@ public:
 
     TADamager * clone() const
     {
-        TADamager * a = NEW TADamager(*this);
-        a->isClone = 1;
-        return a;
+        return NEW TADamager(*this);
     }
 };
 
@@ -3343,9 +3283,7 @@ public:
     }
     ASwapPT * clone() const
     {
-        ASwapPT * a = NEW ASwapPT(*this);
-        a->isClone = 1;
-        return a;
+        return NEW ASwapPT(*this);
     }
 };
 
@@ -3413,9 +3351,7 @@ public:
     }
     ALifeZoneLink * clone() const
     {
-        ALifeZoneLink * a = NEW ALifeZoneLink(*this);
-        a->isClone = 1;
-        return a;
+        return NEW ALifeZoneLink(*this);
     }
 };
 
@@ -3457,9 +3393,7 @@ public:
     }
     AStrongLandLinkCreature * clone() const
     {
-        AStrongLandLinkCreature * a = NEW AStrongLandLinkCreature(*this);
-        a->isClone = 1;
-        return a;
+        return NEW AStrongLandLinkCreature(*this);
     }
 };
 
@@ -3495,9 +3429,7 @@ public:
     }
     AControlStealAura * clone() const
     {
-        AControlStealAura * a = NEW AControlStealAura(*this);
-        a->isClone = 1;
-        return a;
+        return NEW AControlStealAura(*this);
     }
 };
 //bloodthirst ability------------------------------------------
@@ -3526,9 +3458,7 @@ public:
 
     ABloodThirst * clone() const
     {
-        ABloodThirst * a = NEW ABloodThirst(*this);
-        a->isClone = 1;
-        return a;
+        return NEW ABloodThirst(*this);
     }
 
     ~ABloodThirst()
@@ -3820,8 +3750,8 @@ public:
     AAladdinsLamp(int id, MTGCardInstance * card) :
         TargetAbility(id, card)
     {
-        cost = NEW ManaCost();
-        cost->x();
+        setCost(NEW ManaCost(), true);
+        getCost()->x();
         cd = CardDisplay(1, game, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, NULL);
         int zones[] = { MTGGameZone::MY_LIBRARY };
         tc = NEW TargetZoneChooser(zones, 1, source);
@@ -3837,7 +3767,7 @@ public:
             {
                 cd.resetObjects();
                 int wished = game->currentlyActing()->getManaPool()->getConvertedCost();
-                game->currentlyActing()->getManaPool()->pay(cost);
+                game->currentlyActing()->getManaPool()->pay(getCost());
                 nbcards = 0;
                 MTGGameZone * library = game->currentlyActing()->game->library;
                 while (nbcards < wished)
@@ -3887,9 +3817,7 @@ public:
     }
     AAladdinsLamp * clone() const
     {
-        AAladdinsLamp * a = NEW AAladdinsLamp(*this);
-        a->isClone = 1;
-        return a;
+        return NEW AAladdinsLamp(*this);
     }
 };
 
@@ -3951,9 +3879,7 @@ public:
     }
     AArmageddonClock * clone() const
     {
-        AArmageddonClock * a = NEW AArmageddonClock(*this);
-        a->isClone = 1;
-        return a;
+        return NEW AArmageddonClock(*this);
     }
 };
 
@@ -4049,9 +3975,7 @@ public:
     }
     AConservator * clone() const
     {
-        AConservator * a = NEW AConservator(*this);
-        a->isClone = 1;
-        return a;
+        return NEW AConservator(*this);
     }
 };
 
@@ -4064,7 +3988,7 @@ public:
         ActivatedAbility(_id, source, 0, 1)
     {
         int8_t _cost[] = { Constants::MTG_COLOR_WHITE, 2 };
-        cost = NEW ManaCost(_cost, 1);
+        setCost(NEW ManaCost(_cost, 1), true);
         target = _target;
         usedThisTurn = 0;
     }
@@ -4100,9 +4024,7 @@ public:
     }
     AFarmstead * clone() const
     {
-        AFarmstead * a = NEW AFarmstead(*this);
-        a->isClone = 1;
-        return a;
+        return NEW AFarmstead(*this);
     }
 };
 
@@ -4162,9 +4084,7 @@ public:
     }
     AKjeldoranFrostbeast * clone() const
     {
-        AKjeldoranFrostbeast * a = NEW AKjeldoranFrostbeast(*this);
-        a->isClone = 1;
-        return a;
+        return NEW AKjeldoranFrostbeast(*this);
     }
 };
 
@@ -4205,9 +4125,7 @@ public:
     }
     AAnimateDead * clone() const
     {
-        AAnimateDead * a = NEW AAnimateDead(*this);
-        a->isClone = 1;
-        return a;
+        return NEW AAnimateDead(*this);
     }
 };
 
@@ -4256,9 +4174,7 @@ public:
 
     AErgRaiders * clone() const
     {
-        AErgRaiders * a = NEW AErgRaiders(*this);
-        a->isClone = 1;
-        return a;
+        return NEW AErgRaiders(*this);
     }
 };
 
@@ -4325,9 +4241,7 @@ public:
     }
     AFastbond * clone() const
     {
-        AFastbond * a = NEW AFastbond(*this);
-        a->isClone = 1;
-        return a;
+        return NEW AFastbond(*this);
     }
 
     ~AFastbond()
@@ -4343,7 +4257,7 @@ public:
     AJandorsRing(int _id, MTGCardInstance * _source) :
         ActivatedAbility(_id, _source, NEW ManaCost())
     {
-        cost->add(Constants::MTG_COLOR_ARTIFACT, 2);
+        getCost()->add(Constants::MTG_COLOR_ARTIFACT, 2);
     }
 
     int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL)
@@ -4366,9 +4280,7 @@ public:
     }
     AJandorsRing * clone() const
     {
-        AJandorsRing * a = NEW AJandorsRing(*this);
-        a->isClone = 1;
-        return a;
+        return NEW AJandorsRing(*this);
     }
 };
 
@@ -4442,9 +4354,7 @@ public:
 
     AKudzu * clone() const
     {
-        AKudzu * a = NEW AKudzu(*this);
-        a->isClone = 1;
-        return a;
+        return NEW AKudzu(*this);
     }
 };
 
@@ -4513,9 +4423,7 @@ public:
     }
     APowerLeak * clone() const
     {
-        APowerLeak * a = NEW APowerLeak(*this);
-        a->isClone = 1;
-        return a;
+        return NEW APowerLeak(*this);
     }
 };
 
@@ -4548,9 +4456,7 @@ public:
     }
     ASacrifice * clone() const
     {
-        ASacrifice * a = NEW ASacrifice(*this);
-        a->isClone = 1;
-        return a;
+        return NEW ASacrifice(*this);
     }
 };
 
@@ -4575,9 +4481,7 @@ public:
     }
     AEarthbind * clone() const
     {
-        AEarthbind * a = NEW AEarthbind(*this);
-        a->isClone = 1;
-        return a;
+        return NEW AEarthbind(*this);
     }
 };
 
@@ -4607,9 +4511,7 @@ public:
     }
     AFireball * clone() const
     {
-        AFireball * a = NEW AFireball(*this);
-        a->isClone = 1;
-        return a;
+        return NEW AFireball(*this);
     }
 };
 
@@ -4677,9 +4579,7 @@ public:
     }
     AIslandSanctuary * clone() const
     {
-        AIslandSanctuary * a = NEW AIslandSanctuary(*this);
-        a->isClone = 1;
-        return a;
+        return NEW AIslandSanctuary(*this);
     }
 };
 
@@ -4692,7 +4592,7 @@ public:
         ActivatedAbility(_id, card, NEW ManaCost(), 0)
     {
         paidThisTurn = 1;
-        cost->add(Constants::MTG_COLOR_BLUE, 1);
+        getCost()->add(Constants::MTG_COLOR_BLUE, 1);
     }
 
     void Update(float dt)
@@ -4748,9 +4648,7 @@ public:
     }
     AStasis * clone() const
     {
-        AStasis * a = NEW AStasis(*this);
-        a->isClone = 1;
-        return a;
+        return NEW AStasis(*this);
     }
 };
 
@@ -4800,9 +4698,7 @@ public:
     }
     ABasilik * clone() const
     {
-        ABasilik * a = NEW ABasilik(*this);
-        a->isClone = 1;
-        return a;
+        return NEW ABasilik(*this);
     }
 };
 
@@ -4912,9 +4808,7 @@ public:
 
     AMinionofLeshrac * clone() const
     {
-        AMinionofLeshrac * a = NEW AMinionofLeshrac(*this);
-        a->isClone = 1;
-        return a;
+        return NEW AMinionofLeshrac(*this);
     }
 };
 
@@ -4958,9 +4852,7 @@ public:
 
     ARampageAbility * clone() const
     {
-        ARampageAbility * a = NEW ARampageAbility(*this);
-        a->isClone = 1;
-        return a;
+        return NEW ARampageAbility(*this);
     }
 };
 
@@ -5009,9 +4901,7 @@ public:
 
     AFlankerAbility * clone() const
     {
-        AFlankerAbility * a = NEW AFlankerAbility(*this);
-        a->isClone = 1;
-        return a;
+        return NEW AFlankerAbility(*this);
     }
 };
 
@@ -5066,9 +4956,7 @@ public:
 
     ABushidoAbility * clone() const
     {
-        ABushidoAbility * a = NEW ABushidoAbility(*this);
-        a->isClone = 1;
-        return a;
+        return NEW ABushidoAbility(*this);
     }
 };
 
@@ -5101,9 +4989,7 @@ public:
     }
     ASpiritLinkAbility * clone() const
     {
-        ASpiritLinkAbility * a = NEW ASpiritLinkAbility(*this);
-        a->isClone = 1;
-        return a;
+        return NEW ASpiritLinkAbility(*this);
     }
 };
 
@@ -5143,9 +5029,7 @@ public:
 
     AInstantControlSteal * clone() const
     {
-        AInstantControlSteal * a = NEW AInstantControlSteal(*this);
-        a->isClone = 1;
-        return a;
+        return NEW AInstantControlSteal(*this);
     }
 };
 
