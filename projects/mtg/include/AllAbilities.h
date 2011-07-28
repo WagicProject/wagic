@@ -620,7 +620,7 @@ public:
     TargetChooser * tc;
     bool once,activeTrigger;
     TrCardDiscarded(int id, MTGCardInstance * source, TargetChooser * tc,bool once = false) :
-        TriggeredAbility(id, source), tc(tc)
+        TriggeredAbility(id, source), tc(tc),once(once)
     {
         activeTrigger = true;
     }
@@ -947,7 +947,6 @@ public:
 /*
  Generic classes
  */
-
 //if/ifnot Cond then EFFECT
 class IfThenAbility: public MTGAbility
 {
