@@ -254,32 +254,22 @@ public:
 
 
 // Triggers When a card gets added to a zone (@movedTo)
-class TrCardAddedToZone: public TriggeredAbility
+class TrCardAddedToZone: public Trigger
 {
 public:
     TargetZoneChooser * toTcZone, *fromTcZone;
     TargetChooser * toTcCard, *fromTcCard;
-    bool once;
     bool sourceUntapped;
     bool isSuspended;
-    bool activeTrigger;
     TrCardAddedToZone(int id, MTGCardInstance * source, TargetZoneChooser * toTcZone, TargetChooser * toTcCard,
             TargetZoneChooser * fromTcZone = NULL, TargetChooser * fromTcCard = NULL,bool once = false,bool sourceUntapped = false,bool isSuspended = false) :
-        TriggeredAbility(id, source), toTcZone(toTcZone), fromTcZone(fromTcZone), toTcCard(toTcCard), fromTcCard(fromTcCard),once(once),sourceUntapped(sourceUntapped),isSuspended(isSuspended)
+        Trigger(id, source, once), toTcZone(toTcZone), fromTcZone(fromTcZone), toTcCard(toTcCard), fromTcCard(fromTcCard),sourceUntapped(sourceUntapped),isSuspended(isSuspended)
     {
-    activeTrigger = true;
-    }
-    ;
+    };
 
-    int resolve()
-    {
-        return 0; //This is a trigger, this function should not be called
-    }
 
-    int triggerOnEvent(WEvent * event)
+    int triggerOnEventImpl(WEvent * event)
     {
-        if(!activeTrigger) return 0;
-        if(source->isPhased) return 0;
         WEventZoneChange * e = dynamic_cast<WEventZoneChange*> (event);
         if (!e) return 0;
         if(sourceUntapped && source->isTapped() == 1)
@@ -298,9 +288,8 @@ public:
         {
             return 0;
         }
-        if(once && activeTrigger)
-            activeTrigger = false;
-            return 1;
+
+        return 1;
     }
 
     ~TrCardAddedToZone()
@@ -317,40 +306,23 @@ public:
     }
 };
 
-class TrCardTapped: public TriggeredAbility
+class TrCardTapped: public Trigger
 {
 public:
-    TargetChooser * tc;
     bool tap;
-    bool once,activeTrigger;
     TrCardTapped(int id, MTGCardInstance * source, TargetChooser * tc, bool tap = true, bool once = false) :
-        TriggeredAbility(id, source), tc(tc), tap(tap), once(once)
+        Trigger(id, source, once, tc), tap(tap)
     {
-        activeTrigger = true;
     }
 
-    int resolve()
+    int triggerOnEventImpl(WEvent * event)
     {
-        return 0; //This is a trigger, this function should not be called
-    }
-
-    int triggerOnEvent(WEvent * event)
-    {
-        if(!activeTrigger) return 0;
-        if(source->isPhased) return 0;
         WEventCardTap * e = dynamic_cast<WEventCardTap *> (event);
         if (!e) return 0;
         if (e->before == e->after) return 0;
         if (e->after != tap) return 0;
         if (!tc->canTarget(e->card)) return 0;
-        if (once && activeTrigger)
-            activeTrigger = false;
         return 1;
-    }
-
-    ~TrCardTapped()
-    {
-        SAFE_DELETE(tc);
     }
 
     TrCardTapped * clone() const
@@ -359,40 +331,23 @@ public:
     }
 };
 
-class TrCardTappedformana: public TriggeredAbility
+class TrCardTappedformana: public Trigger
 {
 public:
-    TargetChooser * tc;
     bool tap;
-    bool once,activeTrigger;
     TrCardTappedformana(int id, MTGCardInstance * source, TargetChooser * tc, bool tap = true, bool once = false) :
-        TriggeredAbility(id, source), tc(tc), tap(tap), once(once)
+        Trigger(id, source, once, tc), tap(tap)
     {
-        activeTrigger = true;
     }
 
-    int resolve()
+    int triggerOnEventImpl(WEvent * event)
     {
-        return 0; //This is a trigger, this function should not be called
-    }
-
-    int triggerOnEvent(WEvent * event)
-    {
-        if(!activeTrigger) return 0;
-        if(source->isPhased) return 0;
         WEventCardTappedForMana * e = dynamic_cast<WEventCardTappedForMana *> (event);
         if (!e) return 0;
         if (e->before == e->after) return 0;
         if (e->after != tap) return 0;
         if (!tc->canTarget(e->card)) return 0;
-        if (once && activeTrigger)
-            activeTrigger = false;
         return 1;
-    }
-
-    ~TrCardTappedformana()
-    {
-        SAFE_DELETE(tc);
     }
 
     TrCardTappedformana * clone() const
@@ -401,13 +356,10 @@ public:
     }
 };
 
-class TrCombatTrigger: public TriggeredAbility
+class TrCombatTrigger: public Trigger
 {
 public:
-    TargetChooser * tc;//source(card)
     TargetChooser * fromTc;//from(card)
-    bool once;//can only activate one time ever.
-    bool activeTrigger;
     bool limitOnceATurn;//can activate one time per turn
     int triggeredTurn;//the turn it last activated
     bool sourceUntapped;
@@ -421,31 +373,21 @@ public:
     TrCombatTrigger(int id, MTGCardInstance * source, TargetChooser * tc,TargetChooser * fromTc = NULL,
     bool once = false,bool limitOnceATurn = false,bool sourceUntapped = false,bool opponentPoisoned = false,
     bool attackingTrigger = false,bool attackedAloneTrigger = false,bool notBlockedTrigger = false,bool attackBlockedTrigger = false,bool blockingTrigger = false) :
-    TriggeredAbility(id, source),tc(tc), fromTc(fromTc), once(once),limitOnceATurn(limitOnceATurn),sourceUntapped(sourceUntapped),opponentPoisoned(opponentPoisoned),
+    Trigger(id, source,once, tc), fromTc(fromTc),limitOnceATurn(limitOnceATurn),sourceUntapped(sourceUntapped),opponentPoisoned(opponentPoisoned),
     attackingTrigger(attackingTrigger),attackedAloneTrigger(attackedAloneTrigger),notBlockedTrigger(notBlockedTrigger),
     attackBlockedTrigger(attackBlockedTrigger),blockingTrigger(blockingTrigger)
     {
-        activeTrigger = true;
         triggeredTurn = -1;
     }
 
-    int resolve()
-    {
-        return 0; //This is a trigger, this function should not be called
-    }
-
-    int triggerOnEvent(WEvent * event)
+    int triggerOnEventImpl(WEvent * event)
     {
         //general restrictions
-        if(source->isPhased) 
-            return 0;
         if (opponentPoisoned && !source->controller()->opponent()->isPoisoned) 
             return 0;
         if (sourceUntapped  && source->isTapped() == 1)
             return 0;
         if (limitOnceATurn && triggeredTurn == game->turn)
-            return 0;
-        if(activeTrigger == false)
             return 0;
         //the follow cases are not "else'd" on purpose, triggers which are conjoined such as
         //"whenever this card attacks, or attacks and is not blocked, are supposed to gernerally
@@ -518,15 +460,12 @@ public:
     
     int returnResult()
     {
-        if(once && activeTrigger )
-            activeTrigger = false;
         triggeredTurn = game->turn;
         return 1;
     }
     
     ~TrCombatTrigger()
     {
-        SAFE_DELETE(tc);
         SAFE_DELETE(fromTc);
     }
 
@@ -536,37 +475,22 @@ public:
     }
 };
 
-class TrcardDrawn: public TriggeredAbility
+class TrcardDrawn: public Trigger
 {
 public:
-    TargetChooser * tc;
-    bool once,activeTrigger;
+
     TrcardDrawn(int id, MTGCardInstance * source, TargetChooser * tc,bool once = false) :
-        TriggeredAbility(id, source), tc(tc), once(once)
+        Trigger(id, source,once, tc)
     {
-        activeTrigger = true;
     }
 
-    int resolve()
+    int triggerOnEventImpl(WEvent * event)
     {
-        return 0; //This is a trigger, this function should not be called
-    }
-
-    int triggerOnEvent(WEvent * event)
-    {
-        if(!activeTrigger) return 0;
-        if(source->isPhased) return 0;
         WEventcardDraw * e = dynamic_cast<WEventcardDraw *> (event);
         if (!e) return 0;
         if (!tc->canTarget(e->player)) return 0;
-        if (once && activeTrigger)
-            activeTrigger = false;
-        return 1;
-    }
 
-    ~TrcardDrawn()
-    {
-        SAFE_DELETE(tc);
+        return 1;
     }
 
     TrcardDrawn * clone() const
@@ -575,37 +499,21 @@ public:
     }
 };
 
-class TrCardSacrificed: public TriggeredAbility
+class TrCardSacrificed: public Trigger
 {
 public:
-    TargetChooser * tc;
-    bool once,activeTrigger;
     TrCardSacrificed(int id, MTGCardInstance * source, TargetChooser * tc,bool once = false) :
-        TriggeredAbility(id, source), tc(tc), once(once)
+        Trigger(id, source, once, tc)
     {
-        activeTrigger = true;
     }
 
-    int resolve()
+    int triggerOnEventImpl(WEvent * event)
     {
-        return 0; //This is a trigger, this function should not be called
-    }
-
-    int triggerOnEvent(WEvent * event)
-    {
-        if(!activeTrigger) return 0;
-        if(source->isPhased) return 0;
         WEventCardSacrifice * e = dynamic_cast<WEventCardSacrifice *> (event);
         if (!e) return 0;
         if (!tc->canTarget(e->card)) return 0;
-        if (once && activeTrigger)
-            activeTrigger = false;
-        return 1;
-    }
 
-    ~TrCardSacrificed()
-    {
-        SAFE_DELETE(tc);
+        return 1;
     }
 
     TrCardSacrificed * clone() const
@@ -614,68 +522,44 @@ public:
     }
 };
 
-class TrCardDiscarded: public TriggeredAbility
+class TrCardDiscarded: public Trigger
 {
 public:
-    TargetChooser * tc;
-    bool once,activeTrigger;
     TrCardDiscarded(int id, MTGCardInstance * source, TargetChooser * tc,bool once = false) :
-        TriggeredAbility(id, source), tc(tc),once(once)
+        Trigger(id, source, once, tc)
     {
-        activeTrigger = true;
     }
 
-    int resolve()
+    int triggerOnEventImpl(WEvent * event)
     {
-        return 0; //This is a trigger, this function should not be called
-    }
-    int triggerOnEvent(WEvent * event)
-    {
-        if(!activeTrigger) return 0;
-        if(source->isPhased) return 0;
         WEventCardDiscard * e = dynamic_cast<WEventCardDiscard *> (event);
         if (!e) return 0;
         if (!tc->canTarget(e->card)) return 0;
-        if (once && activeTrigger)
-            activeTrigger = false;
         return 1;
     }
-    ~TrCardDiscarded()
-    {
-        SAFE_DELETE(tc);
-    }
+
     TrCardDiscarded * clone() const
     {
         return NEW TrCardDiscarded(*this);
     }
 };
 
-class TrDamaged: public TriggeredAbility
+class TrDamaged: public Trigger
 {
 public:
-    TargetChooser * tc;
     TargetChooser * fromTc;
     int type;//this allows damagenoncombat and combatdamage to share this trigger
     bool sourceUntapped;
     bool limitOnceATurn;
     int triggeredTurn;
-    bool once,activeTrigger;
     TrDamaged(int id, MTGCardInstance * source, TargetChooser * tc, TargetChooser * fromTc = NULL, int type = 0,bool sourceUntapped = false,bool limitOnceATurn = false,bool once = false) :
-        TriggeredAbility(id, source), tc(tc), fromTc(fromTc), type(type) , sourceUntapped(sourceUntapped),limitOnceATurn(limitOnceATurn),once(once)
+        Trigger(id, source, once, tc), fromTc(fromTc), type(type) , sourceUntapped(sourceUntapped),limitOnceATurn(limitOnceATurn)
     {
-    triggeredTurn = -1;
-    activeTrigger = true;
+        triggeredTurn = -1;
     }
 
-    int resolve()
+    int triggerOnEventImpl(WEvent * event)
     {
-        return 0; //This is a trigger, this function should not be called
-    }
-
-    int triggerOnEvent(WEvent * event)
-    {
-        if(!activeTrigger) return 0;
-        if(source->isPhased) return 0;
         WEventDamage * e = dynamic_cast<WEventDamage *> (event);
         if (!e) return 0;
         GameObserver * g = GameObserver::GetInstance();
@@ -691,14 +575,12 @@ public:
         e->damage->source->thatmuch = e->damage->damage;
         this->source->thatmuch = e->damage->damage;
         triggeredTurn = g->turn;
-        if (once && activeTrigger)
-            activeTrigger = false;
+
         return 1;
     }
 
     ~TrDamaged()
     {
-        SAFE_DELETE(tc);
         SAFE_DELETE(fromTc);
     }
 
@@ -708,29 +590,19 @@ public:
     }
 };
 
-class TrLifeGained: public TriggeredAbility
+class TrLifeGained: public Trigger
 {
 public:
-    TargetChooser * tc;
     TargetChooser * fromTc;
     int type;//this allows damagenoncombat and combatdamage to share this trigger
     bool sourceUntapped;
-    bool once,activeTrigger;
     TrLifeGained(int id, MTGCardInstance * source, TargetChooser * tc, TargetChooser * fromTc = NULL, int type = 0,bool sourceUntapped = false,bool once = false) :
-        TriggeredAbility(id, source), tc(tc), fromTc(fromTc), type(type) , sourceUntapped(sourceUntapped), once(once)
+        Trigger(id, source, once , tc),  fromTc(fromTc), type(type) , sourceUntapped(sourceUntapped)
     {
-        activeTrigger = true;
     }
 
-    int resolve()
+    int triggerOnEventImpl(WEvent * event)
     {
-        return 0; //This is a trigger, this function should not be called
-    }
-
-    int triggerOnEvent(WEvent * event)
-    {
-        if(!activeTrigger) return 0;
-        if(source->isPhased) return 0;
         WEventLife * e = dynamic_cast<WEventLife *> (event);
         if (!e) return 0;
         if (sourceUntapped  && source->isTapped() == 1)
@@ -741,14 +613,12 @@ public:
         if (type == 0 && (e->amount < 0)) return 0;
         e->player->thatmuch = abs(e->amount);
         this->source->thatmuch = abs(e->amount);
-        if (once && activeTrigger)
-            activeTrigger = false;
+
         return 1;
     }
 
     ~TrLifeGained()
     {
-        SAFE_DELETE(tc);
         SAFE_DELETE(fromTc);
     }
 
@@ -759,47 +629,34 @@ public:
 };
 
 //vampire trigger
-class TrVampired: public TriggeredAbility
+class TrVampired: public Trigger
 {
 public:
-    TargetChooser * tc;
     TargetChooser * fromTc;
-    bool once,activeTrigger;
     TrVampired(int id, MTGCardInstance * source, TargetChooser * tc, TargetChooser * fromTc = NULL,bool once = false) :
-    TriggeredAbility(id, source), tc(tc), fromTc(fromTc), once(once)
+    Trigger(id, source, once, tc), fromTc(fromTc)
     {
-        activeTrigger = true;
     }
 
-    int resolve()
+    int triggerOnEventImpl(WEvent * event)
     {
-        return 0; //This is a trigger, this function should not be called
-    }
-
-    int triggerOnEvent(WEvent * event)
-    {
-        if(!activeTrigger) return 0;
-        if(source->isPhased) return 0;
         WEventVampire * vamp = dynamic_cast<WEventVampire*>(event);
-        if (vamp)
-        {
-            if(fromTc && !fromTc->canTarget(vamp->source))
-                return 0;
-            tc->setAllZones();
-            //creature that were "vampired" only happens in battlefield, and event sent when they hit a grave.
-            //setting allzones, as we don't care since we know the preexisting condiations cover the zones.
-            if(!tc->canTarget(vamp->victem))
-                return 0;
-            if (once && activeTrigger)
-                activeTrigger = false;
-            return 1;
-        }
-        return 0;
+        if (!vamp)
+            return 0;
+
+        if(fromTc && !fromTc->canTarget(vamp->source))
+            return 0;
+        tc->setAllZones();
+        //creature that were "vampired" only happens in battlefield, and event sent when they hit a grave.
+        //setting allzones, as we don't care since we know the preexisting condiations cover the zones.
+        if(!tc->canTarget(vamp->victem))
+            return 0;
+        return 1;
+
     }
 
     ~TrVampired()
     {
-        SAFE_DELETE(tc);
         SAFE_DELETE(fromTc);
     }
 
@@ -810,40 +667,28 @@ public:
 };
 
 //targetted trigger
-class TrTargeted: public TriggeredAbility
+class TrTargeted: public Trigger
 {
 public:
-    TargetChooser * tc;
     TargetChooser * fromTc;
     int type;
-    bool once,activeTrigger;
     TrTargeted(int id, MTGCardInstance * source, TargetChooser * tc, TargetChooser * fromTc = NULL, int type = 0,bool once = false) :
-    TriggeredAbility(id, source), tc(tc), fromTc(fromTc), type(type), once(once)
+    Trigger(id, source, once, tc), fromTc(fromTc), type(type)
     {
-        activeTrigger = true;
     }
 
-    int resolve()
+    int triggerOnEventImpl(WEvent * event)
     {
-        return 0; //This is a trigger, this function should not be called
-    }
-
-    int triggerOnEvent(WEvent * event)
-    {
-        if(!activeTrigger) return 0;
-        if(source->isPhased) return 0;
         WEventTarget * e = dynamic_cast<WEventTarget *> (event);
         if (!e) return 0;
         if (!tc->canTarget(e->card)) return 0;
         if (fromTc && !fromTc->canTarget(e->source)) return 0;
-        if (once && activeTrigger)
-            activeTrigger = false;
+
         return 1;
     }
 
     ~TrTargeted()
     {
-        SAFE_DELETE(tc);
         SAFE_DELETE(fromTc);
     }
 

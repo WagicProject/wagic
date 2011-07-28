@@ -247,6 +247,23 @@ public:
 };
 
 
+//Triggers are not "real" abilities. They don't resolve, they just "trigger" and are associated to other abilities that will be addedToGame when the Trigger triggers
+class Trigger: public TriggeredAbility {
+private:
+    bool mOnce;
+    bool mActiveTrigger;
+
+public:
+    Trigger(int id, MTGCardInstance * source, bool once, TargetChooser * _tc = NULL);
+    int resolve()
+    {
+        return 0; //This is a trigger, this function should not be called
+    }
+    int triggerOnEvent(WEvent * event);
+    virtual int triggerOnEventImpl(WEvent * event) = 0;
+
+};
+
 class ActivatedAbility : public MTGAbility
 {
 public:

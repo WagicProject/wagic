@@ -3839,6 +3839,28 @@ ostream& TriggeredAbility::toString(ostream& out) const
     return MTGAbility::toString(out) << ")";
 }
 
+// Trigger
+Trigger::Trigger(int id, MTGCardInstance * source, bool once, TargetChooser * _tc): TriggeredAbility(id, source), mOnce(once), mActiveTrigger(true)
+{
+    tc = _tc;
+}
+
+int  Trigger::triggerOnEvent(WEvent * event) {
+    if(!mActiveTrigger) 
+        return 0;
+
+    //Abilities don't work if the card is phased
+    if(source->isPhased) return 0;
+
+    if (!triggerOnEventImpl(event))
+        return 0;
+
+    if(mOnce && mActiveTrigger)
+        mActiveTrigger = false;
+
+    return 1;
+}
+
 //
 InstantAbility::InstantAbility(int _id, MTGCardInstance * source) :
     MTGAbility(_id, source)
