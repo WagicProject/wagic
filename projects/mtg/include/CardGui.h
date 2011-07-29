@@ -33,7 +33,7 @@ protected:
     */
     static void RenderBig(MTGCard * card, const Pos& pos);
 
-    void RenderCountersBig(const Pos& pos);
+    static void RenderCountersBig(MTGCard * card, const Pos& pos, int drawMode = DrawMode::kNormal);
     static void AlternateRender(MTGCard * card, const Pos& pos);
     static void TinyCropRender(MTGCard * card, const Pos& pos, JQuad * quad);
 

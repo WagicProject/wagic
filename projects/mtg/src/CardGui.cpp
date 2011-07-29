@@ -34,17 +34,6 @@ namespace
         return cosf(2 * M_PI * (value - 35) / 256.0f);
     }
 
-    void FormatText(std::string inText, std::vector<string>& outFormattedText)
-    {
-        std::string::size_type found = inText.find_first_of("{}");
-        while (found != string::npos)
-        {
-            inText[found] = '/';
-            found = inText.find_first_of("{}", found + 1);
-        }
-        WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAGIC_FONT);
-        mFont->FormatText(inText, outFormattedText);
-    }
 }
 
 CardGui::CardGui(MTGCardInstance* card, float x, float y)
@@ -119,10 +108,6 @@ void CardGui::Update(float dt)
 void CardGui::DrawCard(const Pos& inPosition, int inMode)
 {
     DrawCard(card, inPosition, inMode);
-    if (inMode != DrawMode::kHidden)
-    {
-        RenderCountersBig(inPosition);
-    }
 }
 
 void CardGui::DrawCard(MTGCard* inCard, const Pos& inPosition, int inMode)
@@ -253,6 +238,7 @@ void CardGui::Render()
             mFont->SetScale(1);
         }
     }
+
     if (tc && !tc->canTarget(card))
     {
         if (!shadow)
@@ -394,8 +380,7 @@ void CardGui::AlternateRender(MTGCard * card, const Pos& pos)
     {
         font->SetScale(kWidthScaleFactor * pos.actZ);
 
-        std::vector<string> txt;
-        FormatText(card->data->getText(), txt);
+        std::vector<string> txt = card->data->getFormattedText();
 
         unsigned i = 0;
         unsigned h = neofont ? 14 : 11;
@@ -549,6 +534,8 @@ void CardGui::AlternateRender(MTGCard * card, const Pos& pos)
     }
 
     font->SetScale(backup_scale);
+
+    RenderCountersBig(card, pos, DrawMode::kText);
 }
 
 void CardGui::TinyCropRender(MTGCard * card, const Pos& pos, JQuad * quad)
@@ -605,8 +592,7 @@ void CardGui::TinyCropRender(MTGCard * card, const Pos& pos, JQuad * quad)
         renderer->RenderQuad(q.get(), x, pos.actY, pos.actT, scale, scale);
     }
 
-    std::vector<string> txt;
-    FormatText(card->data->getText(), txt);
+    std::vector<string> txt = card->data->getFormattedText();
     size_t nbTextLines = txt.size();
 
     //Render the image on top of that
@@ -783,6 +769,8 @@ void CardGui::TinyCropRender(MTGCard * card, const Pos& pos, JQuad * quad)
     }
 
     font->SetScale(backup_scale);
+
+    RenderCountersBig(card, pos);
 }
 
 //Renders a big card on screen. Defaults to the "alternate" rendering if no image is found
@@ -802,6 +790,7 @@ void CardGui::RenderBig(MTGCard* card, const Pos& pos)
         quad->SetColor(ARGB(255,255,255,255));
         float scale = pos.actZ * 250.f / quad->mHeight;
         renderer->RenderQuad(quad.get(), x, pos.actY, pos.actT, scale, scale);
+        RenderCountersBig(card, pos);
         return;
     }
 
@@ -811,47 +800,114 @@ void CardGui::RenderBig(MTGCard* card, const Pos& pos)
     AlternateRender(card, pos);
 }
 
-void CardGui::RenderCountersBig(const Pos& pos)
+void CardGui::RenderCountersBig(MTGCard * mtgcard, const Pos& pos, int drawMode)
 {
-    // Write Named Counters
-    if (card->counters && card->counters->mCount > 0)
-    {
-        WFont * font = WResourceManager::Instance()->GetWFont(Fonts::MAGIC_FONT);
-        font->SetColor(ARGB((int)pos.actA, 0, 0, 0));
-        font->SetScale(kWidthScaleFactor * pos.actZ);
+    MTGCardInstance * card = dynamic_cast<MTGCardInstance*> (mtgcard);
+    if (!card)
+        return;
 
-        std::vector<string> txt;
-        FormatText(card->data->getText(), txt);
-        unsigned i = txt.size() + 1;
-        Counter * c = NULL;
-        for (int t = 0; t < card->counters->mCount; t++, i++)
+    if (!card->counters)
+        return;
+    if (!card->counters->mCount)
+        return;
+
+    // Write Named Counters
+    WFont * font = WResourceManager::Instance()->GetWFont(Fonts::MAGIC_FONT);
+    font->SetColor(ARGB((int)pos.actA, 0, 0, 0));
+    font->SetScale(kWidthScaleFactor * pos.actZ);
+
+    unsigned i = 0; 
+    if (drawMode == DrawMode::kText)
+    {
+        std::vector<string> txt = card->data->getFormattedText();
+        i = txt.size() + 1;
+    }
+    
+    for (size_t t = 0; t < card->counters->counters.size(); t++)
+    {
+        Counter * c = card->counters->counters[t];
+
+        if (!c || c->nb <= 0)
+            continue;
+
+        char buf[512];
+        bool renderText = true;
+        string gfx = "";
+        //TODO cache the gfx fetch results?
+        if (c->name.size()) 
         {
-            if (c)
+            if (c->nb < 6) //we only render a counter's specific quad if there are 5 counters of this type or less. Otherwise we will use the generic one
             {
-                c = card->counters->getNext(c);
-            }
-            else
-            {
-                c = card->counters->counters[0];
-            }
-            if (c != NULL && c->nb > 0)
-            {
-                char buf[512];
-                if (c->name != "")
+                string gfxRelativeName = "counters/";
+                gfxRelativeName.append(c->name);
+                gfxRelativeName.append(".png");
+                gfx = WResourceManager::Instance()->graphicsFile(gfxRelativeName);
+                if (fileExists(gfx.c_str()))
                 {
-                    std::string s = c->name;
-                    s[0] = toupper(s[0]);
-                    sprintf(buf, _("%s counters: %i").c_str(), s.c_str(), c->nb);
+                    renderText = false;
+                }
+                else 
+                {
+                    gfx = "";
+                }
+            }
+
+            if (renderText)
+            {
+                std::string s = c->name;
+                s[0] = toupper(s[0]);
+                sprintf(buf, _("%s: %i").c_str(), s.c_str(), c->nb);
+            }
+        }
+        else
+        {
+            sprintf(buf, _("%s%i/%s%i").c_str(), ((c->power > 0) ? "+": ""), c->power * c->nb, ((c->toughness > 0) ? "+": ""),c->toughness* c->nb);
+        }
+
+        if (!gfx.size())
+        {
+            gfx = WResourceManager::Instance()->graphicsFile("counters/default.png");
+            if (!fileExists(gfx.c_str()))
+                gfx = "";
+        }
+        
+        float x = pos.actX + (22 - BigWidth / 2) * pos.actZ;
+        float y =  pos.actY + (-BigHeight / 2 + 80 + 11 * i + 21 * t) * pos.actZ;
+        if (y > pos.actY + 105) 
+        {
+           y =  (-BigHeight / 2 + 80 + 11 * i) * pos.actZ + (y - 105 - 21);
+           x +=  (BigWidth / 2) * pos.actZ;
+        }
+
+        if (gfx.size())
+        {
+            JQuadPtr q = WResourceManager::Instance()->RetrieveTempQuad(gfx);
+
+            if (q.get() && q->mTex)
+            {
+                float scale = 20.f / q->mHeight;
+                if (renderText)
+                {
+                    float scaleX = (font->GetStringWidth(buf) + 20) / q->mWidth;
+                    JRenderer::GetInstance()->RenderQuad(q.get(), x, y, 0, scaleX, scale);
                 }
                 else
                 {
-                    sprintf(buf, _("%i/%i counters: %i").c_str(), c->power, c->toughness, c->nb);
+                    for (int j = 0; j < c->nb; ++j)
+                    {
+                        JRenderer::GetInstance()->RenderQuad(q.get(), x + (scale * q->mWidth * j), y, 0, scale, scale);
+                    }
                 }
-                font->DrawString(buf, pos.actX + (22 - BigWidth / 2) * pos.actZ, pos.actY + (-BigHeight / 2 + 80 + 11 * i)
-                    * pos.actZ);
             }
         }
+
+        if (renderText)
+        {
+            font->SetColor(ARGB(255,0,0,0));
+            font->DrawString(buf, x + 5, y + 5);
+        }
     }
+    
 }
 
 MTGCardInstance* CardView::getCard()

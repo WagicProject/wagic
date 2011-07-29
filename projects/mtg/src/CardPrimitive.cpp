@@ -246,10 +246,32 @@ void CardPrimitive::setText(const string& value)
     text = value;
 }
 
-const string& CardPrimitive::getText()
+/* This alters the card structure, but this is intentional for performance and
+*  space purpose: The only time we get the card text is to render it
+*  on the screen, in a formatted way.
+* Formatting the string every frame is not efficient, especially since we always display it the same way
+* Formatting all strings at startup is inefficient too.
+* Instead, we format when requested, but only once, and cache the result.
+* To avoid memory to blow up, in exchange of the cached result, we erase the original string
+*/
+const vector<string>& CardPrimitive::getFormattedText()
 {
-    return text;
-}
+    if (!text.size())
+        return formattedText;
+
+    std::string::size_type found = text.find_first_of("{}");
+    while (found != string::npos)
+    {
+        text[found] = '/';
+        found = text.find_first_of("{}", found + 1);
+    }
+    WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAGIC_FONT);
+    mFont->FormatText(text, formattedText);
+
+    text = "";
+
+    return formattedText;
+};
 
 void CardPrimitive::addMagicText(string value)
 {

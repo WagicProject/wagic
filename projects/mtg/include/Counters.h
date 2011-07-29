@@ -28,7 +28,7 @@ class Counters
 {
 public:
     int mCount;
-    Counter * counters[10];
+   vector<Counter *>counters;
     MTGCardInstance * target;
     Counters(MTGCardInstance * _target);
     ~Counters();

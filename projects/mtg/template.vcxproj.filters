@@ -289,12 +289,6 @@
     <ClCompile Include="src\WResourceManager.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\Pos.cpp">
-      <Filter>inc</Filter>
-    </ClCompile>
-    <ClCompile Include="src\PriceList.cpp">
-      <Filter>inc</Filter>
-    </ClCompile>
     <ClCompile Include="src\SimplePopup.cpp">
       <Filter>src</Filter>
     </ClCompile>
@@ -311,6 +305,12 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\IconButton.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Pos.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PriceList.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

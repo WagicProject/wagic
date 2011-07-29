@@ -64,7 +64,7 @@ void MTGCardInstance::copy(MTGCardInstance * card)
 
     manaCost.copy(data->getManaCost());
 
-    text = data->text;
+    setText(""); //The text is retrieved from the data anyways
     setName(data->name);
 
     power = data->power;

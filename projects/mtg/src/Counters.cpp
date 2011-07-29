@@ -92,7 +92,7 @@ int Counters::addCounter(const char * _name, int _power, int _toughness)
         }
     }
     Counter * counter = NEW Counter(target, _name, _power, _toughness);
-    counters[mCount] = counter;
+    counters.push_back(counter);
     counter->added();
     mCount++;
     return mCount;

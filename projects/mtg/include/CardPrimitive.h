@@ -26,12 +26,15 @@ class CardPrimitive
     : public InstanceCounter<CardPrimitive>
 #endif
 {
+private:
+    string text;
+    vector<string> formattedText;
+
 protected:
     string lcname;
     ManaCost manaCost;
 
 public:
-    string text;
     string name;
     int init();
 
@@ -67,7 +70,7 @@ public:
     int has(int ability);
 
     void setText(const string& value);
-    const string& getText();
+    const vector<string>& getFormattedText();
 
     void addMagicText(string value);
     void addMagicText(string value, string zone);

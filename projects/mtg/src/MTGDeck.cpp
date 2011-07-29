@@ -1049,7 +1049,6 @@ void MTGDeck::printDetailedDeckText(std::ofstream& file )
         MTGSetInfo *setInfo = setlist.getInfo(card->setId);
         string setName = setInfo->id;
         string cardName = card->data->getName();
-        string description = card->data->getText();
 
         currentCard << "#" << nbCards << " x " << cardName << " (" << setName << "), ";
 

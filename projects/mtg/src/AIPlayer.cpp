@@ -451,11 +451,11 @@ int AIAction::getEfficiency()
                         efficiency = 90;
 
                     }
-                    if(_target->counters && _target->counters->counters && _target->counters->hasCounter(cc->power,cc->toughness) && _target->counters->hasCounter(cc->power,cc->toughness)->nb > 15)
+                    if(_target->counters && _target->counters->hasCounter(cc->power,cc->toughness) && _target->counters->hasCounter(cc->power,cc->toughness)->nb > 15)
                     {
                         efficiency = _target->counters->hasCounter(cc->power,cc->toughness)->nb;
                     }
-                    if(cc->maxNb && _target->counters && _target->counters->counters && _target->counters->hasCounter(cc->power,cc->toughness)->nb >= cc->maxNb) 
+                    if(cc->maxNb && _target->counters && _target->counters->hasCounter(cc->power,cc->toughness)->nb >= cc->maxNb) 
                         efficiency = 0;
                 }
             }

@@ -2484,7 +2484,7 @@ public:
                 string sourcename = ((MTGCardInstance*)source)->name;
                 tokenText.append(") source: ");
                 tokenText.append( sourcename);
-                myToken->text =  tokenText;
+                myToken->setText(tokenText);
             }
             setTokenOwner();
             tokenReciever->game->temp->addCard(myToken);

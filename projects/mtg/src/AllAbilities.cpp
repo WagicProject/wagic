@@ -2601,10 +2601,9 @@ int ATransformer::addToGame()
     
     int ATransformer::reapplyCountersBonus(MTGCardInstance * rtarget,bool powerapplied,bool toughnessapplied)
     {
-        if(!rtarget->counters)
+        if(!rtarget->counters || !rtarget->counters->counters.size())
             return 0;
-        Counter * c = NULL;
-        c = rtarget->counters->counters[0];
+        Counter * c = rtarget->counters->counters[0];
         int rNewPower = 0;
         int rNewToughness = 0;
         for (int t = 0; t < rtarget->counters->mCount; t++)
