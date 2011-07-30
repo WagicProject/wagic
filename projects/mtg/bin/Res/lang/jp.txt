@@ -6,7 +6,7 @@
 ##########################
 
 # Main menu:
-Play=スタート
+Play=プレイ
 Deck Editor=デッキ
 Shop=ショップ
 Options=オプション
@@ -133,6 +133,7 @@ Blistergrub=水膨れ地掘り
 Bloodshot Trainee=血まなこの練習生
 Blunt the Assault=突撃の鈍化
 Bonds of Quicksilver=水銀の縛め
+Boreal Druid=ボリアルのドルイド
 Carapace Forger=甲殻の鍛冶工
 Carnifex Demon=執行の悪魔
 Carrion Call=屍肉の呼び声
@@ -156,12 +157,18 @@ Darksteel Axe=ダークスティールの斧
 Darksteel Juggernaut=ダークスティールの巨大戦車
 Darksteel Myr=ダークスティールのマイア
 Darksteel Sentinel=ダークスティールの歩哨
+Desert Twister=砂漠の竜巻
 Dispense Justice=正義の施行
 Disperse=分散
 Dissipation Field=霧消の場
 Dross Hopper=ドロスバッタ
+Durkwood Boars=ダークウッドの猪
 Echo Circlet=こだまの飾り輪
 Elspeth Tirel=エルズペス・ティレル
+Elvish Archer=エルフの射手
+Elvish Champion=エルフのチャンピオン
+Elvish Piper=エルフの笛吹き
+Elvish Warrior=エルフの戦士
 Embersmith=燃えさし鍛冶
 Engulfing Slagwurm=飲み込む金屑ワーム
 Etched Champion=刻まれた勇者
@@ -173,13 +180,18 @@ Ferrovore=鉄を食うもの
 Flameborn Hellion=炎生まれのヘリオン
 Flesh Allergy=肉体アレルギー
 Flight Spellbomb=飛行の呪文爆弾
+Fog=濃霧
 Fulgent Distraction=燦爛たる放心
 Fume Spitter=煙霧吐き
 Furnace Celebration=炉の式典
+Fyndhorn Elder=フィンドホーンの古老
 Galvanic Blast=感電破
+Garruk's Companion=ガラクの仲間
 Genesis Wave=起源の波
 Geth, Lord of the Vault=大霊堂の王、ゲス
 Ghalma's Warden=ガルマの保護者
+Giant Growth=巨大化
+Giant Spider=大蜘蛛
 Glimmerpoint Stag=微光角の鹿
 Glimmerpost=微光地
 Glint Hawk=きらめく鷹
@@ -194,6 +206,7 @@ Grafted Exoskeleton=生体融合外骨格
 Grand Architect=大建築家
 Grasp of Darkness=闇の掌握
 Grindclock=研磨時計
+Grizzly Bears=灰色熊
 Halt Order=停止命令
 Hand of the Praetors=法務官の手
 Heavy Arbalest=大石弓
@@ -206,18 +219,23 @@ Inexorable Tide=容赦無い潮流
 Infiltration Lens=浸透のレンズ
 Instill Infection=感染の賦活
 Iron Myr=鉄のマイア
+Kaysa=ケイサ
 Kemba, Kha Regent=王の摂政、ケンバ
 Kemba's Skyguard=ケンバの空護衛
+Killer Bees=殺人蜂
 Koth of the Hammer=槌のコス
 Kuldotha Forgemaster=カルドーサの鍛冶場主
 Kuldotha Phoenix=カルドーサのフェニックス
 Kuldotha Rebirth=カルドーサの再誕
 Leaden Myr=鉛のマイア
 Leonin Arbiter=レオニンの裁き人
+Ley Druid=草原のドルイド僧
+Lhurgoyf=ルアゴイフ
 Liege of the Tangle=絡み森の主
 Lifesmith=生命鍛冶
 Liquimetal Coating=液鋼の塗膜
 Livewire Lash=活線の鞭
+Llanowar Elves=ラノワールのエルフ
 Loxodon Wayfarer=ロクソドンの旅人
 Lumengrid Drake=ルーメングリッドのドレイク
 Lux Cannon=光明の大砲
@@ -237,6 +255,7 @@ Myr Galvanizer=マイアの感電者
 Myr Propagator=マイアの繁殖者
 Myr Reservoir=マイアの貯蔵庫
 Myrsmith=マイア鍛冶
+Nature's Lore=自然の知識
 Necrogen Censer=屍気の香炉
 Necrogen Scudder=屍気を飛ばすもの
 Necropede=屍百足
@@ -245,8 +264,11 @@ Neurok Invisimancer=ニューロックの透術士
 Neurok Replica=ニューロックの模造品
 Nihil Spellbomb=虚無の呪文爆弾
 Nim Deathmantle=屍賊の死のマント
+Norwood Ranger=ノーウッドのレインジャー
 Ogre Geargrabber=オーガの装具奪い
 Origin Spellbomb=起源の呪文爆弾
+Overgrowth=はびこり
+Overrun=踏み荒らし
 Oxidda Daredevil=オキシダの向こう見ず
 Oxidda Scrapmelter=オキシダの屑鉄溶かし
 Painful Quandary=痛ましい苦境
@@ -262,6 +284,8 @@ Prototype Portal=試作品の扉
 Psychic Miasma=精神の瘴気
 Putrefax=化膿獣
 Quicksilver Gargantuan=水銀のガルガンチュアン
+Rampant Growth=不屈の自然
+Rancor=怨恨
 Ratchet Bomb=漸増爆弾
 Razorfield Thresher=剃刀ヶ原の打つもの
 Razor Hippogriff=剃刀のヒポグリフ
@@ -290,10 +314,12 @@ Snapsail Glider=嵌め乗りの滑空者
 Soliton=ソリトン
 Soul Parry=魂の受け流し
 Spikeshot Elder=トゲ撃ちの古老
+Sporoloth Ancient=スポロロスの古茸
 Steady Progress=着実な進歩
 Steel Hellkite=鋼のヘルカイト
 Stoic Rebuttal=冷静な反論
 Strata Scythe=地層の鎌
+Stream of Life=命の川
 Strider Harness=闊歩するものの装具
 Sunblast Angel=太陽破の天使
 Sunspear Shikari=太陽の槍のシカール
@@ -327,12 +353,114 @@ Vedalken Certarch=ヴィダルケンのセルターチ
 Venser's Journal=ヴェンセールの日誌
 Venser, the Sojourner=滞留者ヴェンセール
 Vigil for the Lost=失われし者への祈り
+Viridian Joiner=ヴィリジアンの社交家
 Viridian Revel=ヴィリジアンのお祭り騒ぎ
 Volition Reins=決断の手綱
 Vulshok Heartstoker=ヴァルショクの心臓焚き
 Vulshok Replica=ヴァルショクの模造品
 Wall of Tanglecord=絡み線の壁
+War Mammoth=ウォー・マンモス
 Whitesun's Passage=白の太陽の通過
 Wing Puncture=風の突き刺し
+Windstorm=暴風
 Withstand Death=死への抵抗
+Wood Elves=ウッド・エルフ
 Wurmcoil Engine=ワームとぐろエンジン
+
+##########################
+# USER INTERFACE:        #
+##########################
+
+Creature=クリーチャー
+Land=土地
+Instant=インスタント
+Sorcery=ソーサリー
+Enchantment=エンチャント
+Equipment=装備
+Artifact=アーティファクト
+Artifact Creature=アーティファクト・クリーチャー
+graveyard=墓地
+Permanent=パーマネント
+
+Forest=森
+Island=島
+Mountain=山
+Plains=平地
+Swamp=沼
+Tower=塔
+
+Angel=天使
+Bear=熊
+Cat=猫
+Cyclops=サイクロプス
+Druid=ドルイド
+Dryad=ドライアド
+Dwarf=ドワーフ
+Efreet=イフリ－ト
+Elf=エルフ
+Fungus=ファンガス
+Giant=巨人
+Goblin=ゴブリン
+Golem=ゴーレム
+Human=人
+Wall=壁
+Warrior=戦士
+Aura=オーラ
+Archer=射手
+Boar=猪
+Elephant=象
+Insect=昆虫
+Scout=スカウト
+Shaman=シャーマン
+wurm=ワーム
+
+
+Flying=飛行
+Haste=速攻
+Trample=トランプル
+First strike=先制攻撃
+mana pool=マナ・プール
+Reach=到達
+Shroud=スレッショルド
+Deathtouch=接死
+Regeneration=再生
+
+Yes=はい
+No=いいえ
+Cancel=キャンセル
+Classic=クラシック
+Momir Basic=モミールベーシック
+Story=ストーリー
+
+Save & Back to Main Menu=保存して戻る
+Back to Main Menu=メニューに戻る
+Back to main menu=メニューに戻る
+New Deck...=新規作成
+
+Filter By...=検索する。
+Switch Decks=デッキ切り替え
+Rename Deck=デッキ名 編集
+Save & Quit Editor=デッキを保存して戻る。
+Save As AI Deck=デッキを対戦相手にする。
+Quit Editor=メニューに戻る。
+Cancel=閉じる。
+
+# Player deck menu:
+Choose a Deck=デッキを選択して下さい
+Create your Deck!=デッキ作成
+##Premade G/R
+
+Choose Opponent=相手を選択して下さい
+Random=ランダム
+Put into play=発動する
+
+PRESS CIRCLE TO GO TO THE DECK EDITOR!=○ボタンを押すと、デッキ編集に移ります。
+
+
+Interrupt?=割り込み？
+: Interrupt=割込
+Ability=能力
+Copy=複製
+Damage=ダメージ
+
+

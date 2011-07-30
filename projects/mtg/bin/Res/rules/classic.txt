@@ -11,31 +11,31 @@ auto=draw:7
 #Tutorial is an ability that works like all others, but it is only activated once for a given player
 #Therefore triggering it with somthing such as @each... will actually only work once
 
-#auto=tutorial(Welcome to Wagic!\n\nIn Wagic, you play as a wizard against the computer.\nYour goal is to kill your opponent with your spells and Creatures,\nby reducing your opponent's life to 0 or less.)
-#auto=tutorial(Wagic is divided in turns:one turn for you, one turn\nfor your opponent, and so on.\nEach turn is divided into phases, that we will explain.\n\nNote: If at any time you feel you are blocked\nand cannot play any card,\npress the "next phase" button\n-- LTrigger, Right click, or swipe up by default --\nto move to the next phase, until you reach the opponent's turn)
+auto=tutorial(Welcome to Wagic!\n\nIn Wagic, you play as a wizard against the computer.\nYour goal is to kill your opponent with your spells and Creatures,\nby reducing your opponent's life to 0 or less.)
+auto=tutorial(Wagic is divided in turns:one turn for you, one turn\nfor your opponent, and so on.\nEach turn is divided into phases, that we will explain.\n\nNote: If at any time you feel you are blocked\nand cannot play any card,\npress the "next phase" button\n-- LTrigger, Right click, or swipe up by default --\nto move to the next phase, until you reach the opponent's turn)
 
-#auto=tutorial(This is your turn, and we are in the first "Main Phase".\nThis is basically the phase in which you will play your spells.\n\nNote: In General, you cannot\nplay spells during your opponent's turn,\nbut there are of course exceptions to the rule.)
-#auto=tutorial(Your hand -- by default, shown on the right side of the screen --\n is where you will find your spells\n\nIn order to play spells and Creatures, you need mana.\n\nMana is usually obtained by putting Lands into play.)
-#auto=tutorial(If you have some "Land" cards in your hand,\ntry to click on one of them,\nand put it into play!\n\nNote:If you don't have any land, go to your opponent's turn by\npressing "next phase" several times\n-- LTrigger, Right click, or swipe up by default --)
+auto=tutorial(This is your turn, and we are in the first "Main Phase".\nThis is basically the phase in which you will play your spells.\n\nNote: In General, you cannot\nplay spells during your opponent's turn,\nbut there are of course exceptions to the rule.)
+auto=tutorial(Your hand -- by default, shown on the right side of the screen --\n is where you will find your spells\n\nIn order to play spells and Creatures, you need mana.\n\nMana is usually obtained by putting Lands into play.)
+auto=tutorial(If you have some "Land" cards in your hand,\ntry to click on one of them,\nand put it into play!\n\nNote:If you don't have any land, go to your opponent's turn by\npressing "next phase" several times\n-- LTrigger, Right click, or swipe up by default --)
 
-#auto=@movedTo(Land|myBattlefield):tutorial(Now that you have a Land into play,you can use it to get mana.\nMana is used to cast spells, but each spell has a cost,\nrepresented on the top right of the card.\n\nMana wears out at the end of each game phase,\nso if you want to cast a spell that costs 2 green mana,\nyou will generally need at least 2 forests in play.)
-#auto=@movedTo(Land|myBattlefield):tutorial(Once you have enough lands in play to cast your first spell,\nactivate the lands - click on them - then click on the spell.\n\nImportant note:\nLands don't require any mana to be played,\nbut you can only play one land per turn)
-#auto=@movedTo(Land|myBattlefield):tutorial(If you don't have enough lands in play to cast a spell,\nclick on the "next phase" button until you\nreach your opponent's turn.\n "next phase" is LTrigger, right click, or Swipe up by default)
+auto=@movedTo(Land|myBattlefield):tutorial(Now that you have a Land into play,you can use it to get mana.\nMana is used to cast spells, but each spell has a cost,\nrepresented on the top right of the card.\n\nMana wears out at the end of each game phase,\nso if you want to cast a spell that costs 2 green mana,\nyou will generally need at least 2 forests in play.)
+auto=@movedTo(Land|myBattlefield):tutorial(Once you have enough lands in play to cast your first spell,\nactivate the lands - click on them - then click on the spell.\n\nImportant note:\nLands don't require any mana to be played,\nbut you can only play one land per turn)
+auto=@movedTo(Land|myBattlefield):tutorial(If you don't have enough lands in play to cast a spell,\nclick on the "next phase" button until you\nreach your opponent's turn.\n "next phase" is LTrigger, right click, or Swipe up by default)
 
-#auto=@each my draw:tutorial(Each of your turns, at the "Draw" phase,\nyou will draw one card from your deck into your hand.\n\nSome spells also allow you to draw additional cards!\n\nIf you get to draw a card but your deck is empty,\nyou lose the game, so be careful!)
+auto=@each my draw:tutorial(Each of your turns, at the "Draw" phase,\nyou will draw one card from your deck into your hand.\n\nSome spells also allow you to draw additional cards!\n\nIf you get to draw a card but your deck is empty,\nyou lose the game, so be careful!)
 
-#auto=@movedTo(creature|myBattlefield):tutorial(Congratulations, you played your first creature!\n\nCreatures are used to attack your opponent\nduring your attacker's phase\n,and to protect you during your opponent's combat phase.\n\nCreatures are attached to two numbers P/T,\n called Power an toughness.\nPower is how much damage your creature can do,\ntoughness is how much damage it can take every turn)
-#auto=@movedTo(creature|myBattlefield):tutorial(Creatures can usually not attack\nduring the turn they came into play,\nyou have to wait an additional turn before you can\n"activate" them or attack with them.\nThis is known as "summoning sickness")
-#auto=@movedTo(creature|myBattlefield):tutorial(Some creatures have special abilities that\nare described on the card's text.\nThese abilities might require some mana to be activated,\nwhich is also described on the creature's text)
+auto=@movedTo(creature|myBattlefield):tutorial(Congratulations, you played your first creature!\n\nCreatures are used to attack your opponent\nduring your attacker's phase\n,and to protect you during your opponent's combat phase.\n\nCreatures are attached to two numbers P/T,\n called Power an toughness.\nPower is how much damage your creature can do,\ntoughness is how much damage it can take every turn)
+auto=@movedTo(creature|myBattlefield):tutorial(Creatures can usually not attack\nduring the turn they came into play,\nyou have to wait an additional turn before you can\n"activate" them or attack with them.\nThis is known as "summoning sickness")
+auto=@movedTo(creature|myBattlefield):tutorial(Some creatures have special abilities that\nare described on the card's text.\nThese abilities might require some mana to be activated,\nwhich is also described on the creature's text)
 
-#auto=@lifeloss(opponent):tutorial(You did some damage to your opponent.\nKeep doing this until their life goes to 0 or below,\nand victory is yours! )
-#auto=@lifeloss(controller):tutorial(You lost some life!\nBe careful to not go down to 0,\nor you will lose the game!))
+auto=@lifeloss(opponent):tutorial(You did some damage to your opponent.\nKeep doing this until their life goes to 0 or below,\nand victory is yours! )
+auto=@lifeloss(controller):tutorial(You lost some life!\nBe careful to not go down to 0,\nor you will lose the game!))
 
-#auto=@each my combatattackers:tutorial(Attackers phase:\nThis is where you choose which of your creatures will\nattack your opponent.\n\nSelecting attacking creatures is done by clicking\non each creature you want to set as an attacker.\n\nCreatures usually can't attack on the turn they came into play,\nthis is known as "summoning sickness)
+auto=@each my combatattackers:tutorial(Attackers phase:\nThis is where you choose which of your creatures will\nattack your opponent.\n\nSelecting attacking creatures is done by clicking\non each creature you want to set as an attacker.\n\nCreatures usually can't attack on the turn they came into play,\nthis is known as "summoning sickness)
 #Below doesn't work
 #auto=@each my combatattackers:aslongas(creature|myBattlefield) tutorial(It seems you have creatures that can attack this turn\n, maybe you can run an offensive...)
 
-#auto=@movedTo(*|opponentStack):tutorial(When the computer casts a spell,\nthe card being casted is shown to you,\nand you can click on the action button to move on)
+auto=@movedTo(*|opponentStack):tutorial(When the computer casts a spell,\nthe card being casted is shown to you,\nand you can click on the action button to move on)
 
 #this would work too and display a graphics file assuming there's a file in graphics/tutorials/tuto1.png
 # Graphics files should be at most 480x272, 480x250 suggested
