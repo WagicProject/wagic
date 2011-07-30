@@ -28,6 +28,8 @@ struct CardGui: public PlayGuiObject
 {
 protected:
 
+    static map<string, string>counterGraphics;
+
     /*
     ** Tries to render the Big version of a card picture, backups to text version in case of failure
     */

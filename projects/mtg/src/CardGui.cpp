@@ -22,6 +22,8 @@ const float CardGui::BigHeight = 285.0;
 
 const float kWidthScaleFactor = 0.8f;
 
+map<string, string> CardGui::counterGraphics;
+
 namespace
 {
     inline float SineHelperFunction(const float& value)
@@ -838,18 +840,19 @@ void CardGui::RenderCountersBig(MTGCard * mtgcard, const Pos& pos, int drawMode)
         {
             if (c->nb < 6) //we only render a counter's specific quad if there are 5 counters of this type or less. Otherwise we will use the generic one
             {
-                string gfxRelativeName = "counters/";
-                gfxRelativeName.append(c->name);
-                gfxRelativeName.append(".png");
-                gfx = WResourceManager::Instance()->graphicsFile(gfxRelativeName);
-                if (fileExists(gfx.c_str()))
+                if (counterGraphics.find(c->name) == counterGraphics.end())
                 {
+                    string gfxRelativeName = "counters/";
+                    gfxRelativeName.append(c->name);
+                    gfxRelativeName.append(".png");
+                    string _gfx = WResourceManager::Instance()->graphicsFile(gfxRelativeName);
+                    if (!fileExists(_gfx.c_str()))
+                        _gfx = "";
+                    counterGraphics[c->name] = _gfx;
+                }
+                gfx = counterGraphics[c->name];
+                if (gfx.size())
                     renderText = false;
-                }
-                else 
-                {
-                    gfx = "";
-                }
             }
 
             if (renderText)
@@ -866,9 +869,7 @@ void CardGui::RenderCountersBig(MTGCard * mtgcard, const Pos& pos, int drawMode)
 
         if (!gfx.size())
         {
-            gfx = WResourceManager::Instance()->graphicsFile("counters/default.png");
-            if (!fileExists(gfx.c_str()))
-                gfx = "";
+            gfx = "counters/default.png";
         }
         
         float x = pos.actX + (22 - BigWidth / 2) * pos.actZ;
