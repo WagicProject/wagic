@@ -1,6 +1,7 @@
 #include "PrecompiledHeader.h"
 
 #include "MTGGamePhase.h"
+#include "GuiPhaseBar.h"
 
 MTGGamePhase::MTGGamePhase(int id) :
     ActionElement(id)
@@ -40,7 +41,25 @@ bool MTGGamePhase::CheckUserInput(JButton key)
     GameObserver * game = GameObserver::GetInstance();
     if (activeState == INACTIVE)
     {
+        int x1,y1;
         JButton trigger = (options[Options::REVERSETRIGGERS].number ? JGE_BTN_NEXT : JGE_BTN_PREV);
+        if(JGE::GetInstance()->GetLeftClickCoordinates(x1, y1))
+        {
+          if(x1 < 28 && y1 <185 && y1 > 106)
+          { /* See GuiPhaseBar to understand where those values come from */
+            GuiPhaseBar::GetInstance()->Zoom(1.4);
+            if(key == JGE_BTN_OK)
+            {
+              key = trigger;
+              JGE::GetInstance()->LeftClickedProcessed();
+            }
+          }
+          else
+          {
+            GuiPhaseBar::GetInstance()->Zoom(1.0);
+          }
+        }
+
         if ((trigger == key) && game->currentActionPlayer == game->currentlyActing())
         {
             activeState = ACTIVE;

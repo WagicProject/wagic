@@ -10,11 +10,18 @@ class GuiPhaseBar: public GuiLayer
 protected:
     Phase* phase;
     float angle;
+    float zoomFactor;
+    float zoomTarget;
+    static GuiPhaseBar*instance;
+
+public:
+    static GuiPhaseBar* GetInstance();
 
 public:
     GuiPhaseBar();
     ~GuiPhaseBar();
     void Update(float dt);
+    void Zoom(float);
     virtual void Render();
     virtual int receiveEventMinus(WEvent * e);
 };

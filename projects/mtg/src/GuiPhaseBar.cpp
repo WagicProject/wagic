@@ -40,8 +40,21 @@ namespace
     }
 }
 
+GuiPhaseBar* GuiPhaseBar::instance = NULL;
+
+
+GuiPhaseBar* GuiPhaseBar::GetInstance()
+{
+  return GuiPhaseBar::instance;
+}
+
+void GuiPhaseBar::Zoom(float zoom)
+{
+  zoomTarget = zoom*ICONSCALE;
+}
+
 GuiPhaseBar::GuiPhaseBar() :
-    phase(NULL), angle(0.0f)
+  phase(NULL), angle(0.0f), zoomTarget(ICONSCALE), zoomFactor(ICONSCALE)
 {
     JQuadPtr quad = WResourceManager::Instance()->GetQuad("phasebar");
     if (quad.get() != NULL)
@@ -51,6 +64,8 @@ GuiPhaseBar::GuiPhaseBar() :
     }
     else
         GameApp::systemError = "Error loading phasebar texture : " __FILE__;
+
+    instance = this;
 }
 
 GuiPhaseBar::~GuiPhaseBar()
@@ -63,6 +78,15 @@ void GuiPhaseBar::Update(float dt)
         angle -= 3 * dt;
     else
         angle = 0;
+
+    if(zoomFactor + 0.05 < zoomTarget)
+    {
+      zoomFactor += 0.05;
+    }
+    else if (zoomFactor - 0.05 > zoomTarget)
+    {
+      zoomFactor -= 0.05;
+    }
 }
 
 void GuiPhaseBar::Render()
@@ -73,12 +97,12 @@ void GuiPhaseBar::Render()
     JRenderer::GetInstance()->DrawLine(0, CENTER, SCREEN_WIDTH, CENTER, ARGB(255, 255, 255, 255));
 
     unsigned int p = (phase->id + kPhases - 4) * (int) (kWidth + 1);
-    float centerYPosition = CENTER + (kWidth / 2) * angle * ICONSCALE / (M_PI / 6) - ICONSCALE * kWidth / 4;
+    float centerYPosition = CENTER + (kWidth / 2) * angle * zoomFactor / (M_PI / 6) - zoomFactor * kWidth / 4;
     float yPos = centerYPosition;
     float scale = 0;
     for (int glyph = 3; glyph < 6; ++glyph)
     {
-        scale = ICONSCALE * sinf(angle + glyph * M_PI / 6) / 2;
+        scale = zoomFactor * sinf(angle + glyph * M_PI / 6) / 2;
         DrawGlyph(quad.get(), glyph, yPos, angle, p, scale);
         yPos += kWidth * scale;
     }
@@ -86,14 +110,14 @@ void GuiPhaseBar::Render()
     yPos = centerYPosition;
     for (int glyph = 2; glyph > 0; --glyph)
     {
-        scale = ICONSCALE * sinf(angle + glyph * M_PI / 6) / 2;
+        scale = zoomFactor * sinf(angle + glyph * M_PI / 6) / 2;
         yPos -= kWidth * scale;
         DrawGlyph(quad.get(), glyph, yPos, angle, p, scale);
     }
 
     if (angle > 0)
     {
-        scale = ICONSCALE * sinf(angle) / 2;
+        scale = zoomFactor * sinf(angle) / 2;
         yPos -= kWidth * scale;
         float xPos = static_cast<float> (p % (kPhases * (int) (kWidth + 1)));
         quad->SetTextureRect(xPos, kHeight, kWidth, kHeight);
