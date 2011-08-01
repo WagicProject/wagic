@@ -1141,12 +1141,12 @@ rarity=U
 [card]
 primitive=Thran Golem
 id=234072
-rarity=R
+rarity=U
 [/card]
 [card]
 primitive=Throne of Empires
 id=220232
-rarity=U
+rarity=R
 [/card]
 [card]
 primitive=Time Reversal
