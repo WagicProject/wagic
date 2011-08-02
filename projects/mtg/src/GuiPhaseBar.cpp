@@ -81,11 +81,11 @@ void GuiPhaseBar::Update(float dt)
 
     if(zoomFactor + 0.05 < zoomTarget)
     {
-      zoomFactor += 0.05;
+      zoomFactor += (float)0.05;
     }
     else if (zoomFactor - 0.05 > zoomTarget)
     {
-      zoomFactor -= 0.05;
+      zoomFactor -= (float)0.05;
     }
 }
 
