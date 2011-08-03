@@ -48982,7 +48982,7 @@ name=Personal Sanctuary
 auto=@each my beginofturn:preventalldamage to(controller) ueot
 auto=preventalldamage to(controller) ueot
 text=During your turn, prevent all damage that would be dealt to you.
-mana={1}{W}
+mana={2}{W}
 type=Enchantment
 [/card]
 [card]
