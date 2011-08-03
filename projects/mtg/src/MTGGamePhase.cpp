@@ -47,7 +47,7 @@ bool MTGGamePhase::CheckUserInput(JButton key)
         {
           if(x1 < 28 && y1 <185 && y1 > 106)
           { /* See GuiPhaseBar to understand where those values come from */
-            GuiPhaseBar::GetInstance()->Zoom(1.4);
+            GuiPhaseBar::GetInstance()->Zoom(float(1.4));
             if(key == JGE_BTN_OK)
             {
               key = trigger;
