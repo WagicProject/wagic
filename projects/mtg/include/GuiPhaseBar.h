@@ -10,8 +10,8 @@ class GuiPhaseBar: public GuiLayer
 protected:
     Phase* phase;
     float angle;
-    float zoomFactor;
     float zoomTarget;
+    float zoomFactor;
     static GuiPhaseBar*instance;
 
 public:
