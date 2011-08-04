@@ -3,6 +3,8 @@
 #include "MTGGamePhase.h"
 #include "GuiPhaseBar.h"
 
+MTGGamePhase* MTGGamePhase::instance = 0;
+
 MTGGamePhase::MTGGamePhase(int id) :
     ActionElement(id)
 {
@@ -10,6 +12,7 @@ MTGGamePhase::MTGGamePhase(int id) :
     currentState = -1;
     mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
     mFont->SetBase(0); // using 2nd font
+    instance = this;
 }
 
 void MTGGamePhase::Update(float dt)
@@ -36,36 +39,28 @@ void MTGGamePhase::Update(float dt)
 
 }
 
-bool MTGGamePhase::CheckUserInput(JButton key)
+bool MTGGamePhase::NextGamePhase()
 {
     GameObserver * game = GameObserver::GetInstance();
     if (activeState == INACTIVE)
     {
-        int x1,y1;
-        JButton trigger = (options[Options::REVERSETRIGGERS].number ? JGE_BTN_NEXT : JGE_BTN_PREV);
-        if(JGE::GetInstance()->GetLeftClickCoordinates(x1, y1))
-        {
-          if(x1 < 28 && y1 <185 && y1 > 106)
-          { /* See GuiPhaseBar to understand where those values come from */
-            GuiPhaseBar::GetInstance()->Zoom(1.4f);
-            if(key == JGE_BTN_OK)
-            {
-              key = trigger;
-              JGE::GetInstance()->LeftClickedProcessed();
-            }
-          }
-          else
-          {
-            GuiPhaseBar::GetInstance()->Zoom(1.0);
-          }
-        }
-
-        if ((trigger == key) && game->currentActionPlayer == game->currentlyActing())
+        if (game->currentActionPlayer == game->currentlyActing())
         {
             activeState = ACTIVE;
             game->userRequestNextGamePhase();
             return true;
         }
+    }
+    return false;
+}
+
+
+bool MTGGamePhase::CheckUserInput(JButton key)
+{
+    JButton trigger = (options[Options::REVERSETRIGGERS].number ? JGE_BTN_NEXT : JGE_BTN_PREV);
+    if (trigger == key)
+    {
+        return NextGamePhase();
     }
     return false;
 }

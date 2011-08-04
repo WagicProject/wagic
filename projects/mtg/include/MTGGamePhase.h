@@ -13,12 +13,16 @@ protected:
     float animation;
     int currentState;
     WFont * mFont;
+    static MTGGamePhase* instance;
+
 public:
     MTGGamePhase(int id);
+    static MTGGamePhase* GetInstance() { return instance; };
     virtual void Update(float dt);
     bool CheckUserInput(JButton key);
     virtual MTGGamePhase * clone() const;
     virtual ostream& toString(ostream& out) const;
+    bool NextGamePhase();
 };
 
 #endif

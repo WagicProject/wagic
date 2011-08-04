@@ -292,12 +292,12 @@ bool CardSelector::CheckUserInput(JButton key)
     if (active != oldactive)
     {
         {
-            CardView* c = dynamic_cast<CardView*> (oldactive);
+            PlayGuiObject* c = dynamic_cast<PlayGuiObject*> (oldactive);
             if (c)
                 c->zoom = 1.0f;
         }
         {
-            CardView* c = dynamic_cast<CardView*> (active);
+            PlayGuiObject* c = dynamic_cast<PlayGuiObject*> (active);
             if (c)
                 c->zoom = 1.4f;
         }

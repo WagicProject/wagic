@@ -5,25 +5,22 @@
 #include "PhaseRing.h"
 #include "WEvent.h"
 
-class GuiPhaseBar: public GuiLayer
+class GuiPhaseBar: public GuiLayer, public PlayGuiObject
 {
 protected:
     Phase* phase;
     float angle;
-    float zoomTarget;
     float zoomFactor;
-    static GuiPhaseBar*instance;
-
-public:
-    static GuiPhaseBar* GetInstance();
 
 public:
     GuiPhaseBar();
     ~GuiPhaseBar();
     void Update(float dt);
-    void Zoom(float);
     virtual void Render();
     virtual int receiveEventMinus(WEvent * e);
+    virtual ostream& toString(ostream& out) const;
+    virtual void Entering();
+    virtual bool Leaving(JButton key);
 };
 
 #endif // _GUIPHASEBAR_H_

@@ -4,6 +4,7 @@
 #include "GuiPhaseBar.h"
 #include "GameObserver.h"
 #include "Translate.h"
+#include "CardSelectorSingleton.h"
 
 /*
  static int colors[] =
@@ -40,21 +41,9 @@ namespace
     }
 }
 
-GuiPhaseBar* GuiPhaseBar::instance = NULL;
-
-
-GuiPhaseBar* GuiPhaseBar::GetInstance()
-{
-  return GuiPhaseBar::instance;
-}
-
-void GuiPhaseBar::Zoom(float zoom)
-{
-  zoomTarget = zoom*ICONSCALE;
-}
-
 GuiPhaseBar::GuiPhaseBar() :
-  phase(NULL), angle(0.0f), zoomTarget(ICONSCALE), zoomFactor(ICONSCALE)
+  PlayGuiObject(0, 0, 106, 0, false),
+  phase(NULL), angle(0.0f), zoomFactor(ICONSCALE)
 {
     JQuadPtr quad = WResourceManager::Instance()->GetQuad("phasebar");
     if (quad.get() != NULL)
@@ -65,7 +54,9 @@ GuiPhaseBar::GuiPhaseBar() :
     else
         GameApp::systemError = "Error loading phasebar texture : " __FILE__;
 
-    instance = this;
+    zoom = ICONSCALE;
+    CardSelectorSingleton::Instance()->Add(this);
+
 }
 
 GuiPhaseBar::~GuiPhaseBar()
@@ -79,14 +70,28 @@ void GuiPhaseBar::Update(float dt)
     else
         angle = 0;
 
-    if(zoomFactor + 0.05 < zoomTarget)
+    if (dt > 0.05f) dt = 0.05f;
+    if(zoomFactor + 0.05f < zoom)
     {
-      zoomFactor += (float)0.05;
+      zoomFactor += dt;
     }
-    else if (zoomFactor - 0.05 > zoomTarget)
+    else if (zoomFactor - 0.05f > zoom)
     {
-      zoomFactor -= (float)0.05;
+      zoomFactor -= dt;
     }
+}
+
+void GuiPhaseBar::Entering()
+{
+    mHasFocus = true;
+    zoom = 1.4f*ICONSCALE;
+}
+
+bool GuiPhaseBar::Leaving(JButton key)
+{
+    mHasFocus = false;
+    zoom = ICONSCALE;
+    return true;
 }
 
 void GuiPhaseBar::Render()
@@ -163,4 +168,9 @@ int GuiPhaseBar::receiveEventMinus(WEvent *e)
         phase = event->to;
     }
     return 1;
+}
+
+ostream& GuiPhaseBar::toString(ostream& out) const
+{
+    return out << "GuiPhaseBar";
 }

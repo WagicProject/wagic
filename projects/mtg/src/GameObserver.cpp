@@ -8,6 +8,8 @@
 #include "Subtypes.h"
 #include <JLogger.h>
 #include <JRenderer.h>
+#include "MTGGamePhase.h"
+#include "GuiPhaseBar.h"
 
 GameObserver * GameObserver::mInstance = NULL;
 
@@ -815,6 +817,10 @@ void GameObserver::ButtonPressed(PlayGuiObject * target)
     else if (GuiAvatar* avatar = dynamic_cast<GuiAvatar*>(target))
     {
         cardClick(NULL, avatar->player);
+    }
+    else if (GuiPhaseBar* phaseBar = dynamic_cast<GuiPhaseBar*>(target))
+    {
+        MTGGamePhase::GetInstance()->NextGamePhase();
     }
 }
 
