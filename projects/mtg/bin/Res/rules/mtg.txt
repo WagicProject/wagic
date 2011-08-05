@@ -17,7 +17,7 @@ auto=maxPlay(land)1
 auto=lord(Plains|MyBattlefield) {T}:Add{W}
 auto=lord(Island|MyBattlefield) {T}:Add{U}
 auto=lord(Swamp|MyBattlefield) {T}:Add{B}
-auto=lord(Mountains|MyBattlefield) {T}:Add{R}
+auto=lord(Mountain|MyBattlefield) {T}:Add{R}
 auto=lord(Forest|MyBattlefield) {T}:Add{G}
 
 
