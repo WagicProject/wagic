@@ -28758,6 +28758,7 @@ auto=3/0
 text=Equipped creature gets +3/+0. -- Equip {3}
 mana={3}
 type=Artifact
+subtype=Equipment
 [/card]
 [card]
 name=Greed
@@ -36312,6 +36313,7 @@ auto=0/3
 text=Equipped creature gets +0/+3. -- Equip {3}
 mana={0}
 type=Artifact
+subtype=Equipment
 [/card]
 [card]
 name=Kitesail
@@ -67207,6 +67209,7 @@ auto=opponentshroud
 text=Equipped creature has hexproof and haste. -- Equip {1}
 mana={2}
 type=Artifact
+subtype=Equipment
 [/card]
 [card]
 name=Swirling Sandstorm
