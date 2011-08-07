@@ -49,12 +49,12 @@ CardPrimitive::CardPrimitive(CardPrimitive * source)
         manaCost.alternative->alternativeName = source->getManaCost()->alternative->alternativeName;
 
     text = source->text;
+    formattedText = source->formattedText;
     setName(source->name);
 
     power = source->power;
     toughness = source->toughness;
-    restriction = source->restriction;
-    otherrestriction = source->otherrestriction;
+    restrictions = source->restrictions ? source->restrictions->clone() : NULL;
     suspendedTime = source->suspendedTime;
 
     magicText = source->magicText;
@@ -66,6 +66,7 @@ CardPrimitive::CardPrimitive(CardPrimitive * source)
 
 CardPrimitive::~CardPrimitive()
 {
+    SAFE_DELETE(restrictions);
 }
 
 int CardPrimitive::init()
@@ -78,7 +79,7 @@ int CardPrimitive::init()
     magicTexts.clear();
     spellTargetType = "";
     alias = 0;
-    hasRestriction = false;
+    restrictions = NULL;
     return 1;
 }
 
@@ -99,22 +100,34 @@ bool CardPrimitive::isSpell()
 
 void CardPrimitive::setRestrictions(string _restriction)
 {
-    restriction = _restriction;
+    if (!restrictions)
+        restrictions = NEW CastRestrictions();
+
+    restrictions->restriction = _restriction;
 }
 
-void CardPrimitive::getRestrictions()
+const string CardPrimitive::getRestrictions()
 {
-    restriction;
+    if (!restrictions)
+        return "";
+
+    return restrictions->restriction;
 }
 
 void CardPrimitive::setOtherRestrictions(string _restriction)
 {
-    otherrestriction = _restriction;
+    if (!restrictions)
+        restrictions = NEW CastRestrictions();
+
+    restrictions->otherrestriction = _restriction;
 }
 
-void CardPrimitive::getOtherRestrictions()
+const string CardPrimitive::getOtherRestrictions()
 {
-    otherrestriction;
+    if (!restrictions)
+        return "";
+
+    return restrictions->otherrestriction;
 }
 
 void CardPrimitive::setColor(const string& _color, int removeAllOthers)

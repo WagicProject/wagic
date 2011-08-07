@@ -94,6 +94,16 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
         }
         break;
 
+    case 'b': //buyback
+        if (!primitive) primitive = NEW CardPrimitive();
+        if (ManaCost * cost = primitive->getManaCost())
+        {
+            string value = val;
+            std::transform(value.begin(), value.end(), value.begin(), ::tolower);
+            cost->BuyBack = ManaCost::parseManaCost(value);
+        }
+        break;
+
     case 'c': //color
         if (!primitive) primitive = NEW CardPrimitive();
         {
@@ -109,8 +119,34 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
         }
         break;
 
+    case 'f': //flashback//morph
+        {
+            if (!primitive) primitive = NEW CardPrimitive();
+            if(ManaCost * cost = primitive->getManaCost())
+            {
+                if( s.find("facedown") != string::npos)//morph
+                {
+                    string value = val;
+                    std::transform(value.begin(), value.end(), value.begin(), ::tolower);
+                    cost->morph = ManaCost::parseManaCost(value);
+                }
+                else
+                {
+                    string value = val;
+                    std::transform(value.begin(), value.end(), value.begin(), ::tolower);
+                    cost->FlashBack = ManaCost::parseManaCost(value);
+                }
+            }
+            break;
+        }
+
     case 'g': //grade
         if (s.size() - i - 1 > 2) currentGrade = getGrade(val[2]);
+        break;
+
+    case 'i': //id
+        if (!card) card = NEW MTGCard();
+        card->setMTGId(atoi(val));
         break;
 
     case 'k': //kicker
@@ -123,7 +159,21 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
         }
         break;
 
-    case 'o': //othercost
+    case 'm': //mana
+        if (!primitive) primitive = NEW CardPrimitive();
+        {
+            string value = val;
+            std::transform(value.begin(), value.end(), value.begin(), ::tolower);
+            primitive->setManaCost(value);
+        }
+        break;
+
+    case 'n': //name
+        if (!primitive) primitive = NEW CardPrimitive();
+        primitive->setName(val);
+        break;
+
+    case 'o': //othercost/otherrestriction
         if (!primitive) primitive = NEW CardPrimitive();
         if(key[5] == 'r')//otherrestrictions
         {
@@ -151,54 +201,6 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
         }
         break;
 
-    case 'b': //buyback
-        if (!primitive) primitive = NEW CardPrimitive();
-        if (ManaCost * cost = primitive->getManaCost())
-        {
-            string value = val;
-            std::transform(value.begin(), value.end(), value.begin(), ::tolower);
-            cost->BuyBack = ManaCost::parseManaCost(value);
-        }
-        break;
-    case 'f': //flashback//morph
-        {
-            if (!primitive) primitive = NEW CardPrimitive();
-            if(ManaCost * cost = primitive->getManaCost())
-            {
-                if( s.find("facedown") != string::npos)//morph
-                {
-                    string value = val;
-                    std::transform(value.begin(), value.end(), value.begin(), ::tolower);
-                    cost->morph = ManaCost::parseManaCost(value);
-                }
-                else
-                {
-                    string value = val;
-                    std::transform(value.begin(), value.end(), value.begin(), ::tolower);
-                    cost->FlashBack = ManaCost::parseManaCost(value);
-                }
-            }
-            break;
-        }
-    case 'i': //id
-        if (!card) card = NEW MTGCard();
-        card->setMTGId(atoi(val));
-        break;
-
-    case 'm': //mana
-        if (!primitive) primitive = NEW CardPrimitive();
-        {
-            string value = val;
-            std::transform(value.begin(), value.end(), value.begin(), ::tolower);
-            primitive->setManaCost(value);
-        }
-        break;
-
-    case 'n': //name
-        if (!primitive) primitive = NEW CardPrimitive();
-        primitive->setName(val);
-        break;
-
     case 'p':
         if ('r' == key[1])
         { // primitive
@@ -213,13 +215,12 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
         }
         break;
 
-    case 'r': //retrace/rarity
+    case 'r': //retrace/rarity//restrictions
         if('s' == key[2] && 't' == key[3])//restrictions
         {
             if (!primitive) primitive = NEW CardPrimitive();
             string value = val;
             primitive->setRestrictions(value);
-            primitive->hasRestriction = true;
         }
         else if ('e' == key[1] && 't' == key[2])
         { //retrace
@@ -237,6 +238,7 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
             card->setRarity(val[0]);
         }
         break;
+
     case 's': //subtype, suspend
         {
             if (s.find("suspend") != string::npos)
@@ -263,6 +265,7 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
             }
             break;
         }
+
     case 't':
         if (!primitive) primitive = NEW CardPrimitive();
         if (0 == strcmp("target", key))
@@ -1068,8 +1071,8 @@ void MTGDeck::printDetailedDeckText(std::ofstream& file )
             currentCard << card->data->getPower() << "/" << card->data->getToughness() << ", ";
 
 
-        if ( card->data->hasRestriction )
-            currentCard << ", " << card->data->otherrestriction;
+        if ( card->data->getOtherRestrictions().size() )
+            currentCard << ", " << card->data->getOtherRestrictions();
 
         for (size_t x = 0; x < card->data->basicAbilities.size(); ++x)
         {

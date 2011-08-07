@@ -67,12 +67,12 @@ int MTGAbility::parseCastRestrictions(MTGCardInstance * card,Player * player,str
 
 int MTGAbility::allowedToCast(MTGCardInstance * card,Player * player)
 {
-    return parseCastRestrictions(card,player,card->restriction,"");
+    return parseCastRestrictions(card,player,card->getRestrictions(),"");
 }
 
 int MTGAbility::allowedToAltCast(MTGCardInstance * card,Player * player)
 {
-       return parseCastRestrictions(card,player,"",card->otherrestriction);
+       return parseCastRestrictions(card,player,"",card->getOtherRestrictions());
 }
 
 int AbilityFactory::parseCastRestrictions(MTGCardInstance * card,Player * player,string restrictions,string otherRestrictions)

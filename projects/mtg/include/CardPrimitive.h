@@ -1,3 +1,8 @@
+/* CardPrimitive objects represent the cards database. 
+ * For MTG we have thousands of those, that stay constantly in Ram
+ * on low-end devices such as the PSP, adding stuff to this class can have a very high cost
+ * As an example, with 16'000 card primitives (the rough number of cards in MTG), adding a simple 16 bytes attribute costs 250kB (2% of the total available ram on the PSP)
+ */
 #ifndef _CARDPRIMITIVE_H_
 #define _CARDPRIMITIVE_H_
 
@@ -21,6 +26,17 @@ const uint8_t kColorBitMask_White    = 0x20;
 const uint8_t kColorBitMask_Land     = 0x40;
 
 
+class CastRestrictions {
+public:
+    string restriction;
+    string otherrestriction;
+
+    CastRestrictions * clone() const
+    {
+        return NEW  CastRestrictions(*this);
+    };
+};
+
 class CardPrimitive
 #ifdef TRACK_OBJECT_USAGE
     : public InstanceCounter<CardPrimitive>
@@ -29,6 +45,7 @@ class CardPrimitive
 private:
     string text;
     vector<string> formattedText;
+    CastRestrictions * restrictions;
 
 protected:
     string lcname;
@@ -48,9 +65,6 @@ public:
     string spellTargetType;
     int power;
     int toughness;
-    bool hasRestriction;
-    string restriction;
-    string otherrestriction;
     int suspendedTime;
 
     vector<int>types;
@@ -102,9 +116,9 @@ public:
     void setToughness(int _toughness);
     int getToughness();
     void setRestrictions(string _restriction);
-    void getRestrictions();
+    const string getRestrictions();
     void setOtherRestrictions(string _restriction);
-    void getOtherRestrictions();
+    const string getOtherRestrictions();
 };
 
 
