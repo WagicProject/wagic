@@ -11,7 +11,7 @@
 #include <vector>
 #include <map>
 #include <bitset>
-
+#include "config.h"
 #include "ManaCost.h"
 #include "ObjectAnalytics.h"
 
