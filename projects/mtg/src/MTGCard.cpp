@@ -28,7 +28,6 @@ MTGCard::MTGCard(int set_id)
 
 MTGCard::MTGCard(MTGCard * source)
 {
-    strcpy(image_name, source->image_name);
     rarity = source->rarity;
     mtgid = source->mtgid;
     setId = source->setId;
@@ -51,14 +50,6 @@ int MTGCard::init()
 void MTGCard::setMTGId(int id)
 {
     mtgid = id;
-    if (id < 0)
-    {
-        sprintf(image_name, "%dt.jpg", -mtgid);
-    }
-    else
-    {
-        sprintf(image_name, "%d.jpg", mtgid);
-    }
 }
 
 int MTGCard::getMTGId() const
@@ -79,9 +70,19 @@ void MTGCard::setRarity(char _rarity)
     rarity = _rarity;
 }
 
-char * MTGCard::getImageName()
+const string MTGCard::getImageName()
 {
-    return image_name;
+    std::stringstream out;
+    if (mtgid < 0)
+    {
+        //tokens that have negative id have an image name that is the absolute value of their id + letter "t"
+        out << -mtgid << "t.jpg";
+    }
+    else
+    {
+        out << mtgid << ".jpg";
+    }
+    return out.str();
 }
 
 void MTGCard::setPrimitive(CardPrimitive * cp)

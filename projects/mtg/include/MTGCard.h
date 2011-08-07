@@ -1,7 +1,6 @@
 #ifndef _MTGCARD_H_
 #define _MTGCARD_H_
 
-#define MTGCARD_NAME_SIZE 16
 
 #define MTG_IMAGE_WIDTH 200
 #define MTG_IMAGE_HEIGHT 285
@@ -28,7 +27,6 @@ protected:
     friend class MTGSetInfo;
     int mtgid;
     char rarity;
-    char image_name[MTGCARD_NAME_SIZE];
     int init();
 
 public:
@@ -48,7 +46,7 @@ public:
     int getMTGId() const;
     int getId() const;
     char getRarity() const;
-    char * getImageName();
+    const string getImageName();
 };
 
 #endif
