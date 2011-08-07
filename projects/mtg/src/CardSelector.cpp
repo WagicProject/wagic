@@ -185,14 +185,22 @@ bool CardSelector::CheckUserInput(JButton key)
         return true;
     }
     Target* oldactive = active;
+
+    int x,y;
+    if(JGE::GetInstance()->GetLeftClickCoordinates(x, y))
+    {
+      active = closest<True> (cards, limitor, static_cast<float> (x), static_cast<float> (y));
+    }
+
     switch (key)
     {
     case JGE_BTN_SEC:
         GameObserver::GetInstance()->cancelCurrentAction();
-        return true;
+        goto switch_active;
+        break;
     case JGE_BTN_OK:
         GameObserver::GetInstance()->ButtonPressed(active);
-        return true;
+        goto switch_active;
         break;
     case JGE_BTN_LEFT:
         active = closest<Left> (cards, limitor, active);
@@ -215,12 +223,7 @@ bool CardSelector::CheckUserInput(JButton key)
         return true;
     default:
       {
-        int x,y;
-        if(JGE::GetInstance()->GetLeftClickCoordinates(x, y))
-        {
-          active = closest<True> (cards, limitor, static_cast<float> (x), static_cast<float> (y));
-        }
-        else
+        if(!JGE::GetInstance()->GetLeftClickCoordinates(x, y))
         {
           return false;
         }
@@ -289,6 +292,8 @@ bool CardSelector::CheckUserInput(JButton key)
           }
       }
     }
+
+switch_active:
     if (active != oldactive)
     {
         {
