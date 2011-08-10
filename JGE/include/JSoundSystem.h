@@ -95,6 +95,8 @@ class JSample
   Phonon::AudioOutput* mOutput;
   Phonon::MediaObject* mMediaObject;
   void* mSample;
+#else
+  void* mSample;
 #endif
 };
 
