@@ -321,6 +321,7 @@ void GameApp::Update()
     if (systemError.size())
         return;
     JGE* mEngine = JGE::GetInstance();
+#if defined (PSP)
     if (mEngine->GetButtonState(JGE_BTN_MENU) && mEngine->GetButtonClick(JGE_BTN_CANCEL))
     {
         char s[80];
@@ -337,6 +338,7 @@ void GameApp::Update()
     //Restart Rendering engine when START and SQUARE ARE PRESSED SIMULTANEOUSLY
     if (mEngine->GetButtonState(JGE_BTN_MENU) && mEngine->GetButtonState(JGE_BTN_PRI))
         JRenderer::Destroy();
+#endif //PSP
 
     float dt = mEngine->GetDelta();
     if (dt > 35.0f) // min 30 FPS ;)
