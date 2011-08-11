@@ -12,20 +12,29 @@
 #endif
 #endif
 
-#ifdef Q_WS_MAEMO_5
+#if (defined Q_WS_MAEMO_5)
 // For volume buttons support
 #include <QtGui/QX11Info>
 #include <X11/Xlib.h>
 #include <X11/Xatom.h>
+#endif
 
+#if (defined Q_WS_MAEMO_5)
 // For screen on/off events support
 #include <mce/dbus-names.h>
 #include <mce/mode-names.h>
 #include <QDBusConnection>
 #include <QDBusMessage>
 #include <QDBusInterface>
-
 #endif //Q_WS_MAEMO_5
+
+#if (defined FORCE_GLES)
+#undef GL_ES_VERSION_2_0
+#undef GL_VERSION_2_0
+#define GL_VERSION_ES_CM_1_1 1
+#define glOrthof glOrtho
+#define glClearDepthf glClearDepth
+#endif
 
 #include "../include/JGE.h"
 #include "../include/JTypes.h"
@@ -37,6 +46,18 @@
 #define ACTUAL_SCREEN_WIDTH (SCREEN_WIDTH)
 #define ACTUAL_SCREEN_HEIGHT (SCREEN_HEIGHT)
 #define ACTUAL_RATIO ((GLfloat)ACTUAL_SCREEN_WIDTH / (GLfloat)ACTUAL_SCREEN_HEIGHT)
+
+// in pixels
+#define kHitzonePliancy 50
+
+// tick value equates to ms
+#define kTapEventTimeout 250
+
+// swipe duration
+#define kSwipeEventMinDuration 250
+// swipe distance in pixel (from top to down)
+#define kSwipeMinDistance 200
+
 
 class JGEQtRenderer : public QGLWidget
 {
@@ -93,12 +114,13 @@ protected:
   {
       if (QGesture *tapAndHold = event->gesture(Qt::TapAndHoldGesture))
           tapAndHoldTriggered(static_cast<QTapAndHoldGesture *>(tapAndHold));
+
       return true;
   }
 
   void tapAndHoldTriggered(QTapAndHoldGesture* gesture);
 
-#ifdef Q_WS_MAEMO_5
+#if (defined Q_WS_MAEMO_5)
   void grabZoomKeys(bool grab)
   {
       if (!winId()) {
@@ -130,13 +152,21 @@ protected:
   bool timerStarted;
   QRect viewPort;
 
+#if (defined Q_WS_MAEMO_5) || (defined MEEGO_EDITION_HARMATTAN)
+  int mMouseDownX;
+  int mMouseDownY;
+  qint64 mLastFingerDownTime;
+#endif //Q_WS_MAEMO_5
+
+
 #ifdef Q_WS_MAEMO_5
   QDBusConnection dBusConnection;
   QDBusInterface* dBusInterface;
 #endif //Q_WS_MAEMO_5
 };
 
-uint64_t	lastTickCount;
+QElapsedTimer g_startTimer;
+qint64	lastTickCount;
 JGE* g_engine = NULL;
 JApp* g_app = NULL;
 JGameLauncher* g_launcher = NULL;
@@ -194,10 +224,10 @@ bool InitGame(void)
   g_app = g_launcher->GetGameApp();
   g_app->Create();
   g_engine->SetApp(g_app);
+  g_startTimer.start();
 
   JRenderer::GetInstance()->Enable2D();
-  QTime theTime = QTime::currentTime();
-  lastTickCount = theTime.second() * 1000 + theTime.msec();
+  lastTickCount = g_startTimer.elapsed();
 
   return true;
 }
@@ -226,18 +256,19 @@ JGEQtRenderer::JGEQtRenderer(QWidget *parent)
 #endif //Q_WS_MAEMO_5
 {
   setWindowTitle(g_launcher->GetName());
-#ifdef Q_WS_MAEMO_5
+#if (defined Q_WS_MAEMO_5)
   setAttribute(Qt::WA_Maemo5AutoOrientation);
   setAttribute(Qt::WA_Maemo5NonComposited);
+#endif
+#if (defined Q_WS_MAEMO_5)
   grabZoomKeys(true);
 #endif
   setAttribute(Qt::WA_AcceptTouchEvents);
   setMouseTracking(true);
-/*
+
   grabGesture(Qt::PanGesture);
   grabGesture(Qt::PinchGesture);
   grabGesture(Qt::SwipeGesture);
-*/
   grabGesture(Qt::TapAndHoldGesture);
 
 #ifdef Q_WS_MAEMO_5
@@ -353,20 +384,26 @@ void JGEQtRenderer::paintGL()
 
 void JGEQtRenderer::timerEvent( QTimerEvent* )
 {
-  QTime theTime = QTime::currentTime();
-  static uint64_t tickCount;
-  quint32 dt;
-  tickCount = theTime.second() * 1000 + theTime.msec();
-  dt = (tickCount - lastTickCount);
-  lastTickCount = tickCount;
+  if(this->isVisible()
+#if (defined Q_WS_MAEMO_5) || (defined MEEGO_EDITION_HARMATTAN)
+     && this->isActiveWindow()
+#endif
+     )
+  {
+    static qint64 tickCount;
+    quint32 dt;
+    tickCount = g_startTimer.elapsed();
+    dt = (tickCount - lastTickCount);
+    lastTickCount = tickCount;
 
-  if(g_engine->IsDone()) close();
+    if(g_engine->IsDone()) close();
 
-  //gPrevControllerState = gControllerState;
-  g_engine->SetDelta((float)dt / 1000.0f);
-  g_engine->Update((float)dt / 1000.0f);
+    //gPrevControllerState = gControllerState;
+    g_engine->SetDelta((float)dt / 1000.0f);
+    g_engine->Update((float)dt / 1000.0f);
 
-  updateGL();
+    updateGL();
+  }
 }
 
 void JGEQtRenderer::tapAndHoldTriggered(QTapAndHoldGesture* gesture)
@@ -393,8 +430,12 @@ void JGEQtRenderer::mousePressEvent(QMouseEvent *event)
       g_engine->LeftClicked(
                   ((lastPos.x()-viewPort.left())*SCREEN_WIDTH)/actualWidth,
                   ((lastPos.y()-viewPort.top())*SCREEN_HEIGHT)/actualHeight);
-#if (!defined Q_WS_MAEMO_5) && (!defined Q_WS_MEEGO)
+#if (!defined Q_WS_MAEMO_5) && (!defined MEEGO_EDITION_HARMATTAN)
       g_engine->HoldKey_NoRepeat(JGE_BTN_OK);
+#else
+      mMouseDownX = lastPos.x();
+      mMouseDownY = lastPos.y();
+      mLastFingerDownTime = g_startTimer.elapsed();
 #endif
     } else if(lastPos.y()<viewPort.top()) {
       g_engine->HoldKey_NoRepeat(JGE_BTN_MENU);
@@ -431,9 +472,34 @@ void JGEQtRenderer::mouseReleaseEvent(QMouseEvent *event)
       lastPos.y() <= viewPort.bottom() &&
       lastPos.x() <= viewPort.right() &&
       lastPos.x() >= viewPort.left()) {
-#if (!defined Q_WS_MAEMO_5) && (!defined Q_WS_MEEGO)
+#if (defined Q_WS_MAEMO_5) || (defined MEEGO_EDITION_HARMATTAN)
+      if(g_startTimer.elapsed() - mLastFingerDownTime <= kTapEventTimeout )
+      {
+        if(abs(mMouseDownX - lastPos.x()) < kHitzonePliancy &&
+           abs(mMouseDownY - lastPos.y()) < kHitzonePliancy)
+        {
+          g_engine->HoldKey_NoRepeat(JGE_BTN_OK);
+        }
+      }
+      else if (g_startTimer.elapsed() - mLastFingerDownTime >= kSwipeEventMinDuration)
+      { // Swipe down is cancel or interrupt
+        if(abs(mMouseDownX - lastPos.x()) < kHitzonePliancy)
+        {
+          if(lastPos.y() - mMouseDownY >= kSwipeMinDistance)
+          {
+            g_engine->HoldKey_NoRepeat(JGE_BTN_SEC);
+          }
+          else if(mMouseDownY - lastPos.y()>= kSwipeMinDistance)
+          {
+            g_engine->HoldKey_NoRepeat(JGE_BTN_PREV);
+          }
+        }
+      }
+#else
+//#if (!defined Q_WS_MAEMO_5) && (!defined MEEGO_EDITION_HARMATTAN)
       g_engine->ReleaseKey(JGE_BTN_OK);
 #endif
+      g_engine->ReleaseKey(JGE_BTN_MENU);
     } else if(lastPos.y() < viewPort.top()) {
       g_engine->ReleaseKey(JGE_BTN_MENU);
     } else if(lastPos.y() > viewPort.bottom()) {
@@ -479,7 +545,7 @@ void JGEQtRenderer::mouseMoveEvent(QMouseEvent *event)
 
 void JGEQtRenderer::mouseDoubleClickEvent(QMouseEvent *event)
 {
-#if (defined Q_WS_MAEMO_5) || (defined Q_WS_MEEGO)
+#if (defined Q_WS_MAEMO_5) || (defined MEEGO_EDITION_HARMATTAN)
   if(event->button() == Qt::LeftButton)
   {
     g_engine->HoldKey_NoRepeat(JGE_BTN_OK);
@@ -520,7 +586,7 @@ void JGEQtRenderer::keyPressEvent(QKeyEvent *event)
 {
   switch(event->key())
   {
-#ifdef Q_WS_MAEMO_5
+#if (defined Q_WS_MAEMO_5)
   case Qt::Key_F7:
     /* interrupt please */
     g_engine->HoldKey_NoRepeat(JGE_BTN_SEC);
@@ -545,7 +611,7 @@ void JGEQtRenderer::keyReleaseEvent(QKeyEvent *event)
 {
     switch(event->key())
     {
-  #ifdef Q_WS_MAEMO_5
+#if (defined Q_WS_MAEMO_5)
     case Qt::Key_F7:
       /* interrupt please */
       g_engine->ReleaseKey(JGE_BTN_SEC);
@@ -568,7 +634,7 @@ void JGEQtRenderer::showEvent ( QShowEvent * event )
 {
   if(!timerStarted)
   {
-#if (defined Q_WS_MAEMO_5) || (defined Q_WS_MEEGO)
+#if (defined Q_WS_MAEMO_5) || (defined MEEGO_EDITION_HARMATTAN)
     // 30 fps max on mobile
     timerId = startTimer(33);
 #else
@@ -609,7 +675,7 @@ int main(int argc, char* argv[])
 
   a.setApplicationName(g_launcher->GetName());
 
-#if (defined Q_WS_MAEMO_5) || (defined Q_WS_MEEGO)
+#if (defined Q_WS_MAEMO_5) || (defined MEEGO_EDITION_HARMATTAN)
   // We start in fullscreen on mobile
   g_glwidget->showFullScreen();
 #else
