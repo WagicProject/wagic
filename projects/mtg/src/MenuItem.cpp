@@ -3,6 +3,7 @@
 #include "MenuItem.h"
 #include "Translate.h"
 #include "WResourceManager.h"
+#include "ModRules.h"
 
 MenuItem::MenuItem(int id, WFont *font, string text, float x, float y, JQuad * _off, JQuad * _on, const char * particle,
                 JQuad * particleTex, bool hasFocus) :
@@ -115,4 +116,54 @@ ostream& MenuItem::toString(ostream& out) const
                     << mX << "," << mY << " ; updatedSinceLastRender : " << updatedSinceLastRender << " ; lastDt : " << lastDt
                     << " ; mScale : " << mScale << " ; mTargetScale : " << mTargetScale << " ; onQuad : " << onQuad
                     << " ; offQuad : " << offQuad << " ; mParticleSys : " << mParticleSys;
+}
+
+OtherMenuItem::OtherMenuItem(int id, WFont *font, string text, float x, float y, JQuad * _off, JQuad * _on, JButton _key, bool hasFocus) :
+  MenuItem(id, font, text, x, y, _off, _on, "", WResourceManager::Instance()->GetQuad("particles").get(), hasFocus), mKey(_key), mTimeIndex(0)
+{
+
+}
+
+OtherMenuItem::~OtherMenuItem()
+{
+
+}
+
+void OtherMenuItem::Render()
+{
+  int alpha = 255;
+  if (GetId() == MENUITEM_TROPHIES && options.newAward())
+      alpha = (int) (sin(mTimeIndex) * 255);
+
+  float olds = mFont->GetScale();
+  float xPos = SCREEN_WIDTH - 64;
+  float xTextPos = xPos + 54;
+  int textAlign = JGETEXT_RIGHT;
+  onQuad->SetHFlip(false);
+
+  switch(mKey)
+  {
+  case JGE_BTN_PREV:
+      xPos = 5;
+      xTextPos = xPos + 10;
+      textAlign = JGETEXT_LEFT;
+      onQuad->SetHFlip(true);
+      break;
+  default:
+      break;
+  }
+
+  onQuad->SetColor(ARGB(abs(alpha),255,255,255));
+  mFont->SetColor(ARGB(abs(alpha),0,0,0));
+  mFont->SetScale(1.0f);
+  mFont->SetScale(50.0f / mFont->GetStringWidth(mText.c_str()));
+  JRenderer::GetInstance()->RenderQuad(onQuad, xPos, 2, 0, mScale, mScale);
+  mFont->DrawString(mText, xTextPos, 9, textAlign);
+  mFont->SetScale(olds);
+}
+
+void OtherMenuItem::Update(float dt)
+{
+  MenuItem::Update(dt);
+  mTimeIndex += 2*dt;
 }

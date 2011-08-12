@@ -454,6 +454,19 @@ void GameStateMenu::ensureMGuiController()
                     item->mParticleFile.c_str(), WResourceManager::Instance()->GetQuad("particles").get(),
                     (i == 0)));
             }
+
+            JQuadPtr jq = WResourceManager::Instance()->RetrieveTempQuad("button_shoulder.png");
+            if (!jq.get()) return;
+            jq->SetHFlip(false);
+            jq->SetColor(ARGB(abs(255),255,255,255));
+            mFont = WResourceManager::Instance()->GetWFont(Fonts::OPTION_FONT);
+            vector<ModRulesOtherMenuItem *>otherItems = gModRules.menu.other;
+            mGuiController->Add(NEW OtherMenuItem(
+                                   otherItems[0]->mActionId,
+                                   mFont, otherItems[0]->mDisplayName,
+                                   SCREEN_WIDTH - 64, 2,
+                                   jq.get(), jq.get(), otherItems[0]->mKey, false
+                                   ));
         }
     }
 }
@@ -697,51 +710,6 @@ void GameStateMenu::RenderTopMenu()
     mFont->DrawString(nbcardsStr, leftTextPos, 5);
     mFont->SetScale(1.f);
     mFont->SetColor(ARGB(255,255,255,255));
-
-    if (!items.size())
-        return;
-
-    JQuadPtr jq = WResourceManager::Instance()->RetrieveTempQuad("button_shoulder.png");
-    if (!jq.get())
-        return;
-
-    mFont = WResourceManager::Instance()->GetWFont(Fonts::OPTION_FONT);
-    float olds = mFont->GetScale();
-
-    for (size_t i = 0; i < items.size(); ++i)
-    {
-        ModRulesOtherMenuItem * item = items[i];
-
-        int alpha = 255;
-        if (item->mActionId == MENUITEM_TROPHIES && options.newAward())
-            alpha = (int) (sin(timeIndex) * 255);
-        
-        float xPos = SCREEN_WIDTH - 64;
-        float xTextPos = xPos + 54;
-        int textAlign = JGETEXT_RIGHT;
-        jq->SetHFlip(false);
-
-        switch(item->mKey)
-        {
-        case JGE_BTN_PREV:
-            xPos = 5;
-            xTextPos = xPos + 10;
-            textAlign = JGETEXT_LEFT;
-            jq->SetHFlip(true);
-            break;
-        default:
-            break;
-        }
-
-        jq->SetColor(ARGB(abs(alpha),255,255,255));
-        mFont->SetColor(ARGB(abs(alpha),0,0,0));
-        string s = _(item->mDisplayName);
-        mFont->SetScale(1.0f);
-        mFont->SetScale(50.0f / mFont->GetStringWidth(s.c_str()));
-        JRenderer::GetInstance()->RenderQuad(jq.get(), xPos, 2);
-        mFont->DrawString(s, xTextPos, 9, textAlign);
-        mFont->SetScale(olds);
-    }
 }
 
 void GameStateMenu::Render()

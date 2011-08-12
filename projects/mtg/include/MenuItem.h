@@ -14,7 +14,7 @@ class hgeParticleSystem;
 
 class MenuItem: public JGuiObject
 {
-private:
+protected:
     bool mHasFocus;
     WFont *mFont;
     string mText;
@@ -47,6 +47,18 @@ public:
     ;
 
     virtual ostream& toString(ostream& out) const;
+};
+
+class OtherMenuItem: public MenuItem
+{
+private:
+  JButton mKey;
+  int mTimeIndex;
+public:
+  OtherMenuItem(int id, WFont *font, string text, float x, float y, JQuad * _off, JQuad * _on, JButton _key, bool hasFocus = false);
+  ~OtherMenuItem();
+  virtual void Render();
+  virtual void Update(float dt);
 };
 
 #endif
