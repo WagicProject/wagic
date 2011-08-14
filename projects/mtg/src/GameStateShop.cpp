@@ -827,6 +827,16 @@ void GameStateShop::ButtonPressed(int controllerId, int controlId)
     menu->Close();
 }
 
+void GameStateShop::OnScroll(int inXVelocity, int inYVelocity)
+{
+    if (abs(inXVelocity) > 200)
+    {
+        bool flickLeft = (inXVelocity < 0);
+        if(!flickLeft)
+          mEngine->HoldKey_NoRepeat(JGE_BTN_PRI);
+    }
+}
+
 //ShopBooster
 ShopBooster::ShopBooster()
 {

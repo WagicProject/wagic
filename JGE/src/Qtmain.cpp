@@ -386,6 +386,7 @@ void JGEQtRenderer::timerEvent( QTimerEvent* )
 {
   if(this->isVisible()
 #if (defined Q_WS_MAEMO_5) || (defined MEEGO_EDITION_HARMATTAN)
+     // This one is funny, this gives us 0% CPU when the app is in background for 1 line of code =)
      && this->isActiveWindow()
 #endif
      )
@@ -482,18 +483,8 @@ void JGEQtRenderer::mouseReleaseEvent(QMouseEvent *event)
         }
       }
       else if (g_startTimer.elapsed() - mLastFingerDownTime >= kSwipeEventMinDuration)
-      { // Swipe down is cancel or interrupt
-        if(abs(mMouseDownX - lastPos.x()) < kHitzonePliancy)
-        {
-          if(lastPos.y() - mMouseDownY >= kSwipeMinDistance)
-          {
-            g_engine->HoldKey_NoRepeat(JGE_BTN_SEC);
-          }
-          else if(mMouseDownY - lastPos.y()>= kSwipeMinDistance)
-          {
-            g_engine->HoldKey_NoRepeat(JGE_BTN_PREV);
-          }
-        }
+      { // Let's swipe
+        g_engine->Scroll(lastPos.x()-mMouseDownX, lastPos.y()-mMouseDownY);
       }
 #else
 //#if (!defined Q_WS_MAEMO_5) && (!defined MEEGO_EDITION_HARMATTAN)
