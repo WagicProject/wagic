@@ -1398,7 +1398,7 @@ public:
 
     int isReactingToClick(MTGCardInstance * _card, ManaCost * mana = NULL)
     {
-        if (_card == target && game->currentlyActing()->game->inPlay->hasCard(source) && (MTGCardInstance *) _card->isTapped())
+        if (_card == target && game->currentlyActing()->game->inPlay->hasCard(source) && _card->isTapped())
         {
             if (game->currentlyActing()->getManaPool()->canAfford(cost))
             {
@@ -3289,7 +3289,6 @@ public:
     int addToGame()
     {
         MTGCardInstance * _target = (MTGCardInstance *) target;
-        amount;
         for (int i = 0; i < amount; i++)
         {
             if (_target->controller()->opponent()->damaged() > 0)

@@ -1328,10 +1328,6 @@ const char* TiXmlAttribute::Parse( const char* p, TiXmlParsingData* data, TiXmlE
 	p = SkipWhiteSpace( p, encoding );
 	if ( !p || !*p ) return 0;
 
-	int tabsize = 4;
-	if ( document )
-		tabsize = document->TabSize();
-
 	if ( data )
 	{
 		data->Stamp( p, encoding );

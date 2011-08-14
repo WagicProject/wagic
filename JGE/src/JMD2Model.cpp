@@ -226,6 +226,7 @@ void JMD2Model::CalculateNormal(ScePspFVector3 *normal, float *p1, float *p2, fl
 void JMD2Model::CalculateNormal(float *p1, float *p2, float *p3)
 #endif
 {
+#if defined (PSP) || ((!defined GL_ES_VERSION_2_0) && (!defined GL_VERSION_2_0))
    float a[3], b[3], result[3];
    float length;
 
@@ -251,16 +252,12 @@ void JMD2Model::CalculateNormal(float *p1, float *p2, float *p3)
    normal->x = result[0]/length;
    normal->y = result[1]/length;
    normal->z = result[2]/length;
-#else   
-   // normalize and specify the normal
-#if (!defined GL_ES_VERSION_2_0) && (!defined GL_VERSION_2_0)
+#elif (!defined GL_ES_VERSION_2_0) && (!defined GL_VERSION_2_0)
    glNormal3f(result[0]/length, result[1]/length, result[2]/length);
 #else
    // FIXME
-#endif //(!defined GL_ES_VERSION_2_0) && (!defined GL_VERSION_2_0)
-   
 #endif
-
+#endif
 }
 
 

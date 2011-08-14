@@ -1550,7 +1550,7 @@ WDistort::WDistort(float x1, float y1, float x2, float y2, float x3, float y3, f
 
 void WGuiListRow::Render()
 {
-    int start = 0, nowPos = 0, vHeight = 0;
+    int start = 0, nowPos = 0;
     int nbitems = (int) items.size();
 
     //List is empty.
@@ -1576,7 +1576,6 @@ void WGuiListRow::Render()
         }
     }
 
-    vHeight = 0;
     nowPos = 4;
     float nowVPos = 4;
     float tallestRow = 0;

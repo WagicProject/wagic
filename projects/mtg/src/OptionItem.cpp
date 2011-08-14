@@ -500,7 +500,7 @@ void OptionTheme::Render()
         {
             string temp;
             std::getline(file, temp);
-            for (unsigned int x = 0; x < 17, x < temp.size(); x++)
+            for (unsigned int x = 0; x < 17 && x < temp.size(); x++)
             {
                 if (isprint(temp[x])) //Clear stuff that breaks mFont->DrawString, cuts to 16 chars.
                     author += temp[x];

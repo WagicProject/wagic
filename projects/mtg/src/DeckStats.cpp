@@ -322,9 +322,7 @@ void StatsWrapper::initStatistics(string deckstats)
         gamesPlayed = stats->nbGames();
 
         // Detailed deck statistics against AI
-        int found = 1;
         int nbDecks = 0;
-        found = 0;
         char buffer[512];
         char smallDeckName[512];
         ostringstream oss;
@@ -334,7 +332,6 @@ void StatsWrapper::initStatistics(string deckstats)
         sprintf(buffer, "%s/%s.txt", bakaDir.c_str(), deckFilename.c_str());
         if (fileExists(buffer))
         {
-            found = 1;
             nbDecks++;
 
             sprintf(smallDeckName, "%s_deck%i", "ai_baka", nbDecks);

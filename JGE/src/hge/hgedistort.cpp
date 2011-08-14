@@ -102,20 +102,8 @@ void hgeDistortionMesh::SetTexture(JTexture* tex)
 void hgeDistortionMesh::SetTextureRect(float x, float y, float w, float h)
 {
 	int i,j;
-	float tw,th;
 
 	tx=x; ty=y; width=w; height=h;
-
-	if (quad->mTex)
-	{
-		tw=(float)quad->mTex->mTexWidth;
-		th=(float)quad->mTex->mTexHeight;
-	}
-	else
-	{
-		tw = w;
-		th = h;
-	}
 
 	cellw=w/(nCols-1);
 	cellh=h/(nRows-1);

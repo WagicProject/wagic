@@ -1575,9 +1575,9 @@ void JRenderer::Plot(float x, float y, PIXEL_TYPE color)
 {
     checkGlError();
     glDisable(GL_TEXTURE_2D);
+#if (!defined GL_ES_VERSION_2_0) && (!defined GL_VERSION_2_0) && (!defined GL_VERSION_ES_CM_1_1)
     JColor col;
     col.color = color;
-#if (!defined GL_ES_VERSION_2_0) && (!defined GL_VERSION_2_0) && (!defined GL_VERSION_ES_CM_1_1)
     glColor4ub(col.r, col.g, col.b, col.a);
     glBegin(GL_POINTS);
     glVertex2f(x, SCREEN_HEIGHT_F-y);
@@ -1595,9 +1595,9 @@ void JRenderer::PlotArray(float *x, float *y, int count, PIXEL_TYPE color)
 {
     checkGlError();
     glDisable(GL_TEXTURE_2D);
-    JColor col;  
-    col.color = color;
 #if (!defined GL_ES_VERSION_2_0) && (!defined GL_VERSION_2_0) && (!defined GL_VERSION_ES_CM_1_1)
+    JColor col;
+    col.color = color;
     glColor4ub(col.r, col.g, col.b, col.a);
     glBegin(GL_POINTS);
     for (int i=0;i<count;i++)

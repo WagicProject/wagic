@@ -124,7 +124,7 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card,Player * player
         }
         
         size_t typeRelated = restriction[i].find("type(");
-        size_t check = NULL;
+        size_t check = 0;
         if(typeRelated != string::npos)
         {
             int firstAmount = 0;
@@ -142,7 +142,6 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card,Player * player
                 check = comparasion[i].find("type(");
                 if( check != string::npos)
                 {
-                    size_t start = 0;
                     size_t end = 0;
                     size_t found = comparasion[i].find("type(");
                     if (found != string::npos)

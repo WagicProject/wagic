@@ -758,7 +758,7 @@ int ActionStack::getActionElementFromCard(MTGCardInstance * card)
 {
 
 	if(!card)
-		return NULL;
+    return 0;
     for (size_t i = 0; i < mObjects.size(); i++)
     {
         Interruptible * current = (Interruptible *) mObjects[i];
@@ -767,7 +767,7 @@ int ActionStack::getActionElementFromCard(MTGCardInstance * card)
             return i;
         }
     }  
-    return NULL;
+    return 0;
 }
 
 Interruptible * ActionStack::getNext(Interruptible * previous, int type, int state, int display)

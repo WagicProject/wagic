@@ -228,7 +228,7 @@ float JLBFont::GetStringWidth(const char *string) const
     float len = 0.0f;
 
     const char *p = string;
-    char ch;
+    int ch;
 
     while (*p)
     {

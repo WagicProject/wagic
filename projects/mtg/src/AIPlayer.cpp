@@ -1371,13 +1371,10 @@ AIPlayer * AIPlayerFactory::createAIPlayer(MTGAllCards * collection, Player * op
         sprintf(deckFileSmall, "ai_baka_deck%i", deckid);
     }
 
-    int deckSetting = EASY;
     if ( opponent ) 
     {
         bool isOpponentAI = opponent->isAI() == 1;
-        DeckMetaData *meta = DeckManager::GetInstance()->getDeckMetaDataByFilename( opponent->deckFile, isOpponentAI );
-        if ( meta->getVictoryPercentage() >= 65)
-            deckSetting = HARD;
+        DeckManager::GetInstance()->getDeckMetaDataByFilename( opponent->deckFile, isOpponentAI );
     }
     
     AIPlayerBaka * baka = NEW AIPlayerBaka(deckFile, deckFileSmall, avatarFilename);

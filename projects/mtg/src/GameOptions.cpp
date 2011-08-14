@@ -76,7 +76,7 @@ const string Options::optionNames[] = {
 int Options::getID(string name)
 {
     if (0 == name.size())
-        INVALID_OPTION;
+        return INVALID_OPTION;
 
     std::transform(name.begin(), name.end(), name.begin(), ::tolower);
 

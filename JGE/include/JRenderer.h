@@ -572,7 +572,7 @@ private:
 #if (!defined IOS) && (!defined QT_CONFIG)
 	void LoadJPG(TextureInfo &textureInfo, const char *filename, int mode = 0, int TextureFormat = TEXTURE_FORMAT);
 	int LoadPNG(TextureInfo &textureInfo, const char *filename, int mode = 0, int TextureFormat = TEXTURE_FORMAT);
-#if (!defined ANDROID)
+#if (!defined ANDROID) && (!defined QT_CONFIG)
 	void LoadGIF(TextureInfo &textureInfo, const char *filename, int mode = 0, int TextureFormat = TEXTURE_FORMAT);
 	int image_readgif(void * handle, TextureInfo &textureInfo, DWORD * bgcolor, InputFunc readFunc,int mode = 0, int TextureFormat = TEXTURE_FORMAT);
 #endif // (ANDROID) How can we get gif support for android ?

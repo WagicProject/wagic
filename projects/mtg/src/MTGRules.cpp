@@ -977,9 +977,8 @@ int MTGSuspendRule::reactToClick(MTGCardInstance * card)
             card->paymenttype = MTGAbility::SUSPEND_COST;
     }
     //------------------------------------------------------------------------
-    int payResult = player->getManaPool()->pay(card->getManaCost()->suspend);
+    player->getManaPool()->pay(card->getManaCost()->suspend);
     card->getManaCost()->suspend->doPayExtra();
-    payResult = ManaCost::MANA_PAID_WITH_SUSPEND;
     //---------------------------------------------------------------------------
     player->game->putInZone(card, card->currentZone, player->game->exile);
     card->next->suspended = true;

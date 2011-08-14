@@ -818,7 +818,7 @@ void GameObserver::ButtonPressed(PlayGuiObject * target)
     {
         cardClick(NULL, avatar->player);
     }
-    else if (GuiPhaseBar* phaseBar = dynamic_cast<GuiPhaseBar*>(target))
+    else if (dynamic_cast<GuiPhaseBar*>(target))
     {
         MTGGamePhase::GetInstance()->NextGamePhase();
     }
