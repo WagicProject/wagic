@@ -53,7 +53,7 @@ class OtherMenuItem: public MenuItem
 {
 private:
   JButton mKey;
-  int mTimeIndex;
+  float mTimeIndex;
 public:
   OtherMenuItem(int id, WFont *font, string text, float x, float y, JQuad * _off, JQuad * _on, JButton _key, bool hasFocus = false);
   ~OtherMenuItem();
