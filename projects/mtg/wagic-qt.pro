@@ -10,6 +10,7 @@ VERSION = 0.16.0
 TARGET = wagic
 TEMPLATE = app
 unix|macx:QMAKE_CXXFLAGS += -Wno-unused-parameter
+unix|macx:!maemo5:QMAKE_CXXFLAGS += -Werror
 windows:DEFINES += WIN32
 windows:DEFINES += _CRT_SECURE_NO_WARNINGS
 unix|macx:DEFINES += LINUX
@@ -19,6 +20,15 @@ DEFINES += USE_PHONON
 maemo5 {
 QT += dbus
 }
+
+exists($$QMAKE_INCDIR_QT"/../qmsystem2/qmkeys.h"):!contains(MEEGO_EDITION,harmattan): {
+  MEEGO_VERSION_MAJOR     = 1
+  MEEGO_VERSION_MINOR     = 2
+  MEEGO_VERSION_PATCH     = 0
+  MEEGO_EDITION           = harmattan
+  DEFINES += MEEGO_EDITION_HARMATTAN
+}
+
 windows:INCLUDEPATH += ../../JGE/Dependencies/include
 windows:INCLUDEPATH += extra
 unix:!symbian:INCLUDEPATH += /usr/include/GL
@@ -33,7 +43,6 @@ symbian:DEFINES += FORCE_GLES
 symbian:DEFINES += QT_OPENGL_ES_1
 
 unix:LIBS += -lz
-
 PRECOMPILED_HEADER = include/PrecompiledHeader.h
 
 # MGT
@@ -338,9 +347,9 @@ maemo5: {
     INSTALLS += target \
         desktop \
         icon \
-        res \
         restxt \
         launcher \
+        res \
 
     target.path = $$BINDIR
 
@@ -361,8 +370,31 @@ maemo5: {
     launcher.files += debian/launcher
 }
 
-# Meego/maemo 6 packaging (incomplete)
+# Meego/maemo 6 packaging (no launcher)
 unix:!symbian:!maemo5 {
-    target.path = /opt/wagic/bin
-    INSTALLS += target
+    # Variables
+    BINDIR = /opt/wagic/bin
+    RESDIR = /opt/wagic/bin/Res
+    ICONDIR = /usr/share
+    DEFINES += RESDIR=\\\"$$RESDIR\\\"
+
+    INSTALLS += target \
+        desktop \
+        icon \
+        restxt \
+        res \
+
+    target.path = $$BINDIR
+
+    desktop.path = /usr/share/applications
+    desktop.files += debian_harmattan/wagic.desktop
+
+    icon.files = wagic-80x80.png
+    icon.path = /usr/share/icons/hicolor/64x64/apps
+
+    res.path = $$RESDIR
+    res.files += bin/Res/*
+
+    restxt.path = $$BINDIR
+    restxt.files += debian/Res.txt
 }
