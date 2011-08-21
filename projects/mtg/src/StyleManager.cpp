@@ -45,9 +45,15 @@ void StyleManager::loadRules()
 {
     killRules();
     //TODO Placeholder until XML format available.
-    string filename = JGE_GET_RES(WResourceManager::Instance()->graphicsFile("style.txt"));
-    TiXmlDocument xmlfile(filename.c_str());
-    if (!xmlfile.LoadFile()) return;
+    string filename = WResourceManager::Instance()->graphicsFile("style.txt");
+
+    std::string xmlBuffer;
+    if (! JFileSystem::GetInstance()->readIntoString(filename, xmlBuffer))
+        return;
+
+    TiXmlDocument xmlfile;
+    xmlfile.Parse(xmlBuffer.c_str());
+
     TiXmlHandle hDoc(&xmlfile);
     TiXmlElement * pRule;
     for (pRule = hDoc.FirstChildElement().Element(); pRule != NULL; pRule = pRule->NextSiblingElement())

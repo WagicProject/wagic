@@ -156,7 +156,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>./include;$(MTGEXTRAS);../../JGE/include;../../JGE/Dependencies/include;../../Boost;../../JGE/Dependencies/SDL/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./include;$(MTGEXTRAS);../../JGE/include;../../JGE/Dependencies/include;../../Boost;../../JGE/Dependencies/SDL/include;../../JGE/src/zipFS;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>SDL_CONFIG;WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -181,7 +181,7 @@
     <Link>
       <AdditionalDependencies>glu32.lib;opengl32.lib;odbc32.lib;odbccp32.lib;SDL.lib;libpngd.lib;fmodvc.lib;libjpeg-static-mt-debug.lib;freetype.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>..\..\JGE\Dependencies\lib;..\..\JGE\lib\win;..\..\Boost\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\..\zipFS;..\..\JGE\Dependencies\lib;..\..\JGE\lib\win;..\..\Boost\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>LIBCD;LIBC;MSVCRT;LIBCMTD;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>.\Debug/template.pdb</ProgramDatabaseFile>

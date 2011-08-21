@@ -22,6 +22,7 @@ LOCAL_C_INCLUDES := \
 	$(LOCAL_PATH)/$(SDL_PATH)/include \
 	$(LOCAL_PATH)/$(MTG_PATH)/include \
 	$(LOCAL_PATH)/$(JGE_PATH)/include \
+	$(LOCAL_PATH)/$(JGE_PATH)/src/zipFS \
 	$(LOCAL_PATH)/$(BOOST_PATH) \
 	$(LOCAL_PATH)/$(JPEG_PATH) \
 	$(LOCAL_PATH)/$(PNG_PATH) \
@@ -163,9 +164,9 @@ LOCAL_SRC_FILES := $(SDL_PATH)/src/main/android/SDL_android_main.cpp \
         $(JGE_PATH)/src/hge/hgeparticle.cpp \
         $(JGE_PATH)/src/hge/hgerect.cpp \
         $(JGE_PATH)/src/hge/hgevector.cpp \
-        $(JGE_PATH)/src/unzip/ioapi.c \
-        $(JGE_PATH)/src/unzip/mztools.c \
-        $(JGE_PATH)/src/unzip/unzip.c \
+		$(JGE_PATH)/src/zipFS/zfsystem.cpp \
+		$(JGE_PATH)/src/zipFS/ziphdr.cpp \
+		$(JGE_PATH)/src/zipFS/zstream.cpp \
         $(JGE_PATH)/src/pc/JSfx.cpp \
         $(JGE_PATH)/src/pc/JGfx.cpp \
         $(JGE_PATH)/src/JNetwork.cpp \

@@ -173,8 +173,8 @@ public:
     string cardFile(const string& filename);
     string musicFile(const string& filename);
     string sfxFile(const string& filename);
-    int fileOK(const string&, bool relative = false);
-    int dirOK(const string& dirname);
+    bool fileOK(const string&);
+    bool dirOK(const string& dirname);
 
     //For backwards compatibility with JResourceManager. Avoid using these, they're not optimal.
     int CreateTexture(const string &textureName);

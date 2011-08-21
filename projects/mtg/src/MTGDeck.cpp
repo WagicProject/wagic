@@ -311,41 +311,6 @@ void MTGAllCards::init()
     initCounters();
 }
 
-void MTGAllCards::loadPrimitives(const char *root_directory)
-{
-    DIR *dir = opendir(root_directory);
-    struct dirent *dit;
-
-    while ((dit = readdir(dir)))
-    {
-        char fullname[1000];
-        sprintf(fullname, "%s/%s", root_directory, dit->d_name);
-        wagic::ifstream file(fullname);
-        if (!file)
-            continue;
-        file.close();
-        MTGCollection()->load(fullname);
-    }
-    closedir(dir);
-}
-
-void MTGAllCards::loadSets(const char *root_directory, const char* filename)
-{
-    DIR *dir = opendir(root_directory);
-    struct dirent *dit;
-
-    while ((dit = readdir(dir)))
-    {
-        char fullname[1000];
-        sprintf(fullname, "%s/%s/%s", root_directory, dit->d_name, filename);
-        wagic::ifstream file(fullname);
-        if (!file)
-            continue;
-        file.close();
-        MTGCollection()->load(fullname, dit->d_name);
-    }
-    closedir(dir);}
-
 int MTGAllCards::load(const char * config_file, const char * set_name, int autoload)
 {
     conf_read_mode = 0;
@@ -353,17 +318,10 @@ int MTGAllCards::load(const char * config_file, const char * set_name, int autol
     MTGSetInfo *si = setlist.getInfo(set_id);
 
     int lineNumber = 0;
-    wagic::ifstream setFile(config_file, ios::in | ios::ate);
-    if (!setFile) return total_cards;
-
-    streampos fileSize = setFile.tellg();
-    setFile.seekg(0, ios::beg);
-
     std::string contents;
-    contents.resize((std::string::size_type) fileSize);
-    setFile.read(&contents[0], fileSize);
+    if (!JFileSystem::GetInstance()->readIntoString(config_file, contents))
+        return total_cards;
     std::stringstream stream(contents);
-
     string s;
 
     while (true)
@@ -379,7 +337,14 @@ int MTGAllCards::load(const char * config_file, const char * set_name, int autol
             if (s[0] == '[')
             {
                 currentGrade = Constants::GRADE_SUPPORTED; // Default value
-                conf_read_mode = ('m' == s[1]) ? MTGAllCards::READ_METADATA : MTGAllCards::READ_CARD; // M for metadata.
+                if (s.size() < 2)
+                {
+                    DebugTrace("FATAL: Card file incorrect");
+                }
+                else
+                {
+                    conf_read_mode = ('m' == s[1]) ? MTGAllCards::READ_METADATA : MTGAllCards::READ_CARD; // M for metadata.
+                }
             }
             else
             {
@@ -679,7 +644,7 @@ MTGDeck::MTGDeck(MTGAllCards * _allcards)
 int MTGDeck::totalPrice()
 {
     int total = 0;
-    PriceList * pricelist = NEW PriceList(JGE_GET_RES("settings/prices.dat").c_str(), MTGCollection());
+    PriceList * pricelist = NEW PriceList("settings/prices.dat", MTGCollection());
     map<int, int>::iterator it;
     for (it = cards.begin(); it != cards.end(); it++)
     {
@@ -699,14 +664,16 @@ MTGDeck::MTGDeck(const char * config_file, MTGAllCards * _allcards, int meta_onl
     size_t dot = filename.find(".");
     meta_name = filename.substr(slash + 1, dot - slash - 1);
     meta_id = atoi(meta_name.substr(4).c_str());
-    wagic::ifstream file(config_file);
-    std::string s;
-    if (file)
+    std::string contents;
+    if (JFileSystem::GetInstance()->readIntoString(config_file, contents))
     {
-        while (std::getline(file, s))
+        std::stringstream stream(contents);
+        std::string s;
+        while (std::getline(stream, s))
         {
             if (!s.size()) continue;
             if (s[s.size() - 1] == '\r') s.erase(s.size() - 1); //Handle DOS files
+            if (!s.size()) continue;
             if (s[0] == '#')
             {
                 size_t found = s.find("NAME:");
@@ -773,11 +740,10 @@ MTGDeck::MTGDeck(const char * config_file, MTGAllCards * _allcards, int meta_onl
                 DebugTrace("could not find Card matching name: " << s);
             }
         }
-        file.close();
     }
     else
     {
-        //TODO Error management
+        DebugTrace("FATAL:MTGDeck.cpp:MTGDeck - can't load deck file");
     }
 }
 
@@ -979,10 +945,10 @@ int MTGDeck::save(const string& destFileName, bool useExpandedDescriptions, cons
 {
     string tmp = destFileName;
     tmp.append(".tmp"); //not thread safe
-    std::ofstream file(tmp.c_str());
-    char writer[512];
-    if (file)
+    std::ofstream file;
+    if (JFileSystem::GetInstance()->openForWrite(file, tmp))
     {
+        char writer[512];
         DebugTrace("Saving Deck: " << deckTitle << " to " << destFileName );
         if (meta_name.size())
         {
@@ -1025,8 +991,7 @@ int MTGDeck::save(const string& destFileName, bool useExpandedDescriptions, cons
             }
         }
         file.close();
-        std::remove(destFileName.c_str());
-        rename(tmp.c_str(), destFileName.c_str());
+        JFileSystem::GetInstance()->Rename(tmp, destFileName);
     }
     return 1;
 }
@@ -1272,7 +1237,7 @@ MTGSetInfo::MTGSetInfo(string _id)
         counts[i] = 0;
 
     char myFilename[4096];
-    sprintf(myFilename, JGE_GET_RES("sets/%s/booster.txt").c_str(), id.c_str());
+    sprintf(myFilename, "sets/%s/booster.txt", id.c_str());
     mPack = NEW MTGPack(myFilename);
     if (!mPack->isValid())
     {

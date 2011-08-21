@@ -127,8 +127,6 @@ public:
     int totalCards();
     int randomCardId();
 
-    static void loadPrimitives(const char *root_directory);
-    static void loadSets(const char *root_directory, const char* filename);
     static void loadInstance();
     static void unloadAll();
     static inline MTGAllCards* getInstance() { return instance; };

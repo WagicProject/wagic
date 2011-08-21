@@ -402,7 +402,7 @@ public:
     //These return a filepath accurate to the current mode/profile/theme, and can
     //optionally fallback to a file within a certain directory. 
     //The sanity=false option returns the adjusted path even if the file doesn't exist.
-    string profileFile(string filename="", string fallback="", bool sanity=false,bool relative=false);
+    string profileFile(string filename="", string fallback="", bool sanity=false);
 
     void reloadProfile(); //Reloads profile using current options[ACTIVE_PROFILE]
     void checkProfile();  //Confirms that a profile is loaded and contains a collection.

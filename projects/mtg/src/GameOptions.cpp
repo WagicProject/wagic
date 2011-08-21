@@ -317,12 +317,13 @@ GameOptions::GameOptions(string filename)
 
 int GameOptions::load()
 {
-    wagic::ifstream file(mFilename.c_str());
-    std::string s;
-
-    if (file)
+    std::string contents;
+    if (JFileSystem::GetInstance()->readIntoString(mFilename, contents))
     {
-        while (std::getline(file, s))
+        std::stringstream stream(contents);
+        string s;
+
+        while (std::getline(stream, s))
         {
             if (!s.size())
                 continue;
@@ -340,7 +341,6 @@ int GameOptions::load()
 
             (*this)[id].read(val);
         }
-        file.close();
     }
     // (PSY) Make sure that cheatmode is switched off for ineligible profiles:
     if (options[Options::ACTIVE_PROFILE].str != SECRET_PROFILE)
@@ -369,8 +369,8 @@ int GameOptions::save()
 				(*this)[Options::CHEATMODEAIDECK].number = 0;
 		}
 
-    std::ofstream file(mFilename.c_str());
-    if (file)
+    std::ofstream file;
+    if (JFileSystem::GetInstance()->openForWrite(file, mFilename))
     {
         for (int x = 0; x < (int) values.size(); x++)
         {
@@ -640,14 +640,15 @@ int GameSettings::save()
 
     if (profileOptions)
     {
-        //Force our directories to exist.
-        MAKEDIR(JGE_GET_RES("profiles").c_str());
-        string temp = profileFile("", "", false, false);
+        //Create a temp directory
+        // Erwan 2011/08/14: what does this really do? temp is never used.
+        /*
+        string temp = profileFile("", "", false);
         MAKEDIR(temp.c_str());
         temp += "/stats";
         MAKEDIR(temp.c_str());
         temp = profileFile(PLAYER_SETTINGS, "", false);
-
+        */
         profileOptions->save();
     }
 
@@ -656,7 +657,7 @@ int GameSettings::save()
     return 1;
 }
 
-string GameSettings::profileFile(string filename, string fallback, bool sanity, bool relative)
+string GameSettings::profileFile(string filename, string fallback, bool sanity)
 {
     char buf[512];
     string profile = (*this)[Options::ACTIVE_PROFILE].str;
@@ -666,30 +667,27 @@ string GameSettings::profileFile(string filename, string fallback, bool sanity, 
         //No file, return root of profile directory
         if (filename == "")
         {
-            sprintf(buf, "%sprofiles/%s", (relative ? "" : JGE_GET_RES("").c_str()), profile.c_str());
+            sprintf(buf, "profiles/%s", profile.c_str());
             return buf;
         }
         //Return file
-        sprintf(buf, JGE_GET_RES("profiles/%s/%s").c_str(), profile.c_str(), filename.c_str());
+        sprintf(buf, "profiles/%s/%s", profile.c_str(), filename.c_str());
         if (fileExists(buf))
         {
-            if (relative)
-                sprintf(buf, "profiles/%s/%s", profile.c_str(), filename.c_str());
             return buf;
         }
     }
     else
     {
         //Use the default directory.
-        sprintf(buf, "%splayer%s%s", (relative ? "" : JGE_GET_RES("").c_str()), (filename == "" ? "" : "/"), filename.c_str());
+        sprintf(buf, "player%s%s", (filename == "" ? "" : "/"), filename.c_str());
         return buf;
     }
 
     //Don't fallback if sanity checking is disabled..
     if (!sanity)
     {
-        sprintf(buf, "%sprofiles/%s%s%s", (relative ? "" : JGE_GET_RES("").c_str()), profile.c_str(), (filename == "" ? "" : "/"),
-                        filename.c_str());
+        sprintf(buf, "profiles/%s%s%s", profile.c_str(), (filename == "" ? "" : "/"), filename.c_str());
         return buf;
     }
 
@@ -697,8 +695,7 @@ string GameSettings::profileFile(string filename, string fallback, bool sanity, 
     if (fallback == "")
         return "";
 
-    sprintf(buf, "%s%s%s%s", (relative ? "" : JGE_GET_RES("").c_str()), fallback.c_str(), (filename == "" ? "" : "/"),
-                    filename.c_str());
+    sprintf(buf, "%s%s%s", fallback.c_str(), (filename == "" ? "" : "/"), filename.c_str());
     return buf;
 }
 
@@ -711,7 +708,7 @@ void GameSettings::reloadProfile()
 void GameSettings::checkProfile()
 {
     if (!globalOptions)
-        globalOptions = NEW GameOptions(JGE_GET_RES(GLOBAL_SETTINGS));
+        globalOptions = NEW GameOptions(GLOBAL_SETTINGS);
 
     //If it doesn't exist, load current profile.
     if (!profileOptions)
@@ -744,13 +741,13 @@ void GameSettings::checkProfile()
         if (profileOptions)
         {
             //Force our directories to exist.
-            MAKEDIR(JGE_GET_RES("profiles").c_str());
-            string temp = profileFile("", "", false, false);
+            /*
+            string temp = profileFile("", "", false);
             MAKEDIR(temp.c_str());
             temp += "/stats";
             MAKEDIR(temp.c_str());
             temp = profileFile(PLAYER_SETTINGS, "", false);
-
+            */
             profileOptions->save();
         }
     }

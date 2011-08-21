@@ -114,11 +114,12 @@ void DeckStats::load(const std::string& filename)
     {
         return;
     }
-    wagic::ifstream file(filename.c_str());
-    std::string s;
 
-    if (file)
+    std::string contents;
+    if (JFileSystem::GetInstance()->readIntoString(filename, contents))
     {
+        std::stringstream stream(contents);
+        std::string s;
         // get the associated player deck file:
         int deckId = atoi(filename.substr(filename.find("_deck") + 5, filename.find(".txt")).c_str());
         char buffer[512];
@@ -128,31 +129,30 @@ void DeckStats::load(const std::string& filename)
         if (!playerDeckMetaData)
         {
             DebugTrace("DeckStats.cpp:CONSISTENCY ERROR: DeckStats are set, but no deck meta data");
-            file.close();
             return;
         }
         // check if this player deck has already been profiled for manacolors
-        char next = file.peek();
+        char next = stream.peek();
         string manaColorIndex = "";
         if ( next == 'M')
         {
-            std::getline(file, s );
+            std::getline(stream, s );
             manaColorIndex = s.substr( s.find(":") + 1);
             playerDeckMetaData->setColorIndex( manaColorIndex );
         }
 
-        while (std::getline(file, s))
+        while (std::getline(stream, s))
         {
             string deckfile = s;
-            std::getline(file, s);
+            std::getline(stream, s);
             int games = atoi(s.c_str());
-            std::getline(file, s);
+            std::getline(stream, s);
             int victories = atoi(s.c_str());
-            next = file.peek();
+            next = stream.peek();
             
             if ( next == 'M')
             {
-                std::getline(file, s );
+                std::getline(stream, s );
                 manaColorIndex = s.substr( s.find(":") + 1);
             }
             if ( masterDeckStats[filename].find(deckfile) != masterDeckStats[filename].end())
@@ -162,16 +162,15 @@ void DeckStats::load(const std::string& filename)
             DeckStat * newDeckStat = NEW DeckStat(games, victories, manaColorIndex);
             (masterDeckStats[filename])[deckfile] = newDeckStat;
         }
-        file.close();
     }
 }
 
 void DeckStats::save(const std::string& filename)
 {
-    std::ofstream file(filename.c_str());
-    char writer[512];
-    if (file)
+    std::ofstream file;
+    if (JFileSystem::GetInstance()->openForWrite(file, filename))
     {
+        char writer[512];
         map<string, DeckStat *> stats = masterDeckStats[currentDeck];
         map<string, DeckStat *>::iterator it;
         string manaColorIndex = "";
@@ -327,7 +326,7 @@ void StatsWrapper::initStatistics(string deckstats)
         char smallDeckName[512];
         ostringstream oss;
         oss << "deck" << (nbDecks + 1);
-        string bakaDir = JGE_GET_RES("/ai/baka");
+        string bakaDir = "ai/baka/";
         string deckFilename = oss.str();
         sprintf(buffer, "%s/%s.txt", bakaDir.c_str(), deckFilename.c_str());
         if (fileExists(buffer))

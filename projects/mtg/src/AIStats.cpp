@@ -146,34 +146,33 @@ AIStat * AIStats::find(MTGCard * source)
 
 void AIStats::load(char * filename)
 {
-    wagic::ifstream file(filename);
-    std::string s;
-
-    if (file)
+    std::string contents;
+    if (JFileSystem::GetInstance()->readIntoString(filename, contents))
     {
-        while (std::getline(file, s))
+        std::stringstream stream(contents);
+        std::string s;
+        while (std::getline(stream, s))
         {
             int cardid = atoi(s.c_str());
-            std::getline(file, s);
+            std::getline(stream, s);
             int value = atoi(s.c_str());
-            std::getline(file, s);
+            std::getline(stream, s);
             bool direct = atoi(s.c_str()) > 0;
             AIStat * stat = NEW AIStat(cardid, value, 1, direct);
             stats.push_back(stat);
         }
-        file.close();
     }
     else
     {
-        //TODO Error management
+        DebugTrace("FATAL: AIStats.cpp:load : can't load" << filename);
     }
 }
 void AIStats::save()
 {
-    std::ofstream file(filename.c_str());
-    char writer[128];
-    if (file)
+    std::ofstream file;
+    if (JFileSystem::GetInstance()->openForWrite(file, filename))
     {
+        char writer[128];
         list<AIStat *>::iterator it;
         for (it = stats.begin(); it != stats.end(); it++)
         {

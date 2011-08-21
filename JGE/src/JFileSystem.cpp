@@ -1,12 +1,21 @@
-//-------------------------------------------------------------------------------------
-//
-// JGE++ is a hardware accelerated 2D game SDK for PSP/Windows.
-//
-// Licensed under the BSD license, see LICENSE in JGE root for details.
-//
-// Copyright (c) 2007 James Hui (a.k.a. Dr.Watson) <jhkhui@gmail.com>
-//
-//-------------------------------------------------------------------------------------
+/* JFileSystem centralizes all access to resources in JGE.
+It allows to have files for the game split in two subfolders, a "system" subfolder (read only) and a "user" subfolder (read/write)
+Additionally, these two subfolders can have some of their resources in zip file (see zfsystem.h).
+Zip files can contain duplicates of the same file, the one that will eventually be used is the one is the latest zip file (by alphabetical order)
+
+Read access priority:
+User folder, real file
+User folder, zip file
+System folder, real file
+System folder, zip file
+
+Write access:
+User folder, real file
+
+User folder is the only one that is really needed to guarantee both read and write access, the system folder is not necessary but provides a nice way to distinguish
+The content that users should not be touching.
+*/
+
 
 #ifdef WIN32
 #pragma warning(disable : 4786)
@@ -15,26 +24,15 @@
 #include "../include/JGE.h"
 #include "../include/JFileSystem.h"
 #include "../include/JLogger.h"
-#include "tinyxml/tinyxml.h"
-#include "unzip/unzip.h"
+#include <dirent.h>
 
-
-#include <stdio.h>
-#include <vector>
-#include <map>
-#include <string>
-
+JFileSystem* JFileSystem::mInstance = NULL;
 
 JZipCache::JZipCache()
 {}
 
 JZipCache::~JZipCache()
 {
-    map<string,unz_file_pos *>::iterator it;
-    for (it = dir.begin(); it != dir.end(); ++it)
-    {
-        delete(it->second);
-    }
     dir.clear();
 }
 
@@ -46,38 +44,115 @@ void JFileSystem::preloadZip(const string& filename)
     JZipCache * cache = new JZipCache();
     mZipCache[filename] = cache;
 
-    if (!mZipAvailable || !mZipFile)
+    if (!mZipAvailable || !mZipFile) {
+		AttachZipFile(filename);
+		if (!mZipAvailable || !mZipFile) return;
+	}
+
+    if (! (mUserFS->PreloadZip(filename.c_str(), cache->dir) || (mSystemFS && mSystemFS->PreloadZip(filename.c_str(), cache->dir))))
     {
-        AttachZipFile(filename);
-        if (!mZipAvailable || !mZipFile) return;
-    }
-    int err = unzGoToFirstFile (mZipFile);
-    while (err == UNZ_OK)
-    {
-        unz_file_pos* filePos = new unz_file_pos();
-        char filenameInzip[4096];
-        if (unzGetCurrentFileInfo(mZipFile, NULL, filenameInzip, sizeof(filenameInzip), NULL, 0, NULL, 0) == UNZ_OK)
-        {
-            unzGetFilePos(mZipFile, filePos);
-            string name = filenameInzip;
-            cache->dir[name] = filePos;
-        }
-        err = unzGoToNextFile(mZipFile);
+        DetachZipFile();
     }
 }
 
-JFileSystem* JFileSystem::mInstance = NULL;
+
+void JFileSystem::init(const string & userPath, const string & systemPath)
+{
+    Destroy();
+    mInstance = new JFileSystem(userPath, systemPath);
+}
 
 JFileSystem* JFileSystem::GetInstance()
 {
-    if (mInstance == NULL)
+    if (!mInstance)
     {
-        mInstance = new JFileSystem();
+#ifdef RESPATH
+    init( RESPATH"/");
+#else
+    init("Res/");
     }
-
+#endif
     return mInstance;
 }
 
+// Tries to set the system and user paths.
+// On some OSes, the parameters get overriden by hardcoded values
+JFileSystem::JFileSystem(const string & _userPath, const string & _systemPath)
+
+{
+    string systemPath = _systemPath;
+    string userPath = _userPath;
+
+#ifdef IOS
+    //copy the RES folder over to the Documents folder
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSError *error;
+    NSArray *paths = NSSearchPathForDirectoriesInDomains( NSDocumentDirectory,
+                                                         NSUserDomainMask, YES);
+    NSString *documentsDirectory = [[paths objectAtIndex:0] stringByAppendingString: @"/Res"];
+    
+    NSString *resourceDBFolderPath = [[[NSBundle mainBundle] resourcePath] 
+                                      stringByAppendingPathComponent:@"Res"];
+    // copy the Res folder over to the Documents directory if it doesn't exist.
+    if ( ![fileManager fileExistsAtPath: documentsDirectory])
+        [fileManager copyItemAtPath:resourceDBFolderPath toPath:documentsDirectory error:&error];
+    
+    userPath = [documentsDirectory cStringUsingEncoding:1];
+    userPath += "/";
+    systemPath = "";
+#elif defined (ANDROID)
+    userPath = "/sdcard/Wagic/Res/";
+    systemPath = "";
+#else
+    //Find the Res.txt file and matching Res folders for backwards compatibility
+    ifstream mfile("Res.txt");
+    string resPath;
+    if (mfile)
+    {
+        bool found = false;
+        while (!found && std::getline(mfile, resPath))
+        {
+            if (resPath[resPath.size() - 1] == '\r')
+                resPath.erase(resPath.size() - 1); //Handle DOS files
+            string testfile = resPath;
+            testfile.append("graphics/simon.dat");
+            ifstream file(testfile.c_str());
+            if (file)
+            {
+                userPath = resPath;
+                systemPath = "";
+                found = true;
+                file.close();
+            }
+        }
+        mfile.close();
+    }
+#endif
+
+	// Make sure the base paths finish with a '/' or a '\'
+	if (! userPath.empty()) {
+		string::iterator c = --(userPath.end());
+		if ((*c != '/') && (*c != '\\'))
+			userPath += '/';
+	}
+
+	if (! systemPath.empty()) {
+		string::iterator c = --(systemPath.end());
+		if ((*c != '/') && (*c != '\\'))
+			systemPath += '/';
+	}
+
+    mUserFSPath = userPath;
+    mSystemFSPath = systemPath;
+   
+    mUserFS = new filesystem(userPath.c_str());
+    mSystemFS = (mSystemFSPath.size() && (mSystemFSPath.compare(mUserFSPath) != 0)) ? new filesystem(systemPath.c_str()) : NULL;
+
+    mZipAvailable = false;
+    mPassword = NULL;
+    mFileSize = 0;
+    mCurrentFileInZip = NULL;
+};
 
 void JFileSystem::Destroy()
 {
@@ -88,31 +163,28 @@ void JFileSystem::Destroy()
     }
 }
 
-
-JFileSystem::JFileSystem()
-{
-    mZipAvailable = false;
-#if defined (PSP)
-	mFile = -1;
-#else
-    mFile = NULL;
-#endif
-    mPassword = NULL;
-    mZipFile = NULL;
-    mFileSize = 0;
-
-#ifdef RESPATH
-    SetResourceRoot(RESPATH"/");
-#else
-    SetResourceRoot("Res/");				// default root folder
-#endif
+bool JFileSystem::DirExists(const string& strDirname)
+{ 
+    return mUserFS->DirExists(strDirname) || (mSystemFS && mSystemFS->DirExists(strDirname));
 }
 
+bool JFileSystem::FileExists(const string& strFilename)
+{ 
+    izfstream temp;
+    bool result = openForRead(temp, strFilename);
+    if (temp)
+        temp.close();
+
+    return result;
+}
 
 JFileSystem::~JFileSystem()
 {
     clearZipCache();
+    SAFE_DELETE(mUserFS);
+    SAFE_DELETE(mSystemFS);
 }
+
 
 void JFileSystem::clearZipCache()
 {
@@ -138,166 +210,313 @@ bool JFileSystem::AttachZipFile(const string &zipfile, char *password /* = NULL 
     mZipFileName = zipfile;
     mPassword = password;
 
-    mZipFile = unzOpen(mZipFileName.c_str());
+    openForRead(mZipFile, mZipFileName);
 
-    if (mZipFile != NULL)
+    if (!mZipFile)
+        return false;
+
+
+    //A hack for a zip inside a zip: instead we open the zip containing it
+    if (mZipFile.Zipped())
     {
-        mZipAvailable = true;
-        return true;
+        mZipFile.close();
+        assert(filesystem::getCurrentFS());
+        mZipFile.open(filesystem::getCurrentZipName().c_str(), filesystem::getCurrentFS()); 
+        assert(mZipFile);
     }
+    mZipAvailable = true;
+    return true;
 
-    return false;
 }
 
 
 void JFileSystem::DetachZipFile()
 {
-    if (mZipAvailable && mZipFile != NULL)
+    if (mZipFile)
     {
-        int error = unzCloseCurrentFile(mZipFile);
-        if (error < 0 )
-            JLOG("error calling unzCloseCurrentFile");
-
-        error = unzClose(mZipFile);
-        if (error < 0)
-            JLOG("Error calling unzClose");
+        mZipFile.close();
     }
-
-    mZipFile = NULL;
+    mCurrentFileInZip = NULL;
     mZipAvailable = false;
 }
 
+bool JFileSystem::openForRead(izfstream & File, const string & FilePath) {
+
+    File.open(FilePath.c_str(), mUserFS);
+    if (File)
+        return true;
+    
+    if(!mSystemFS)
+        return false;
+
+    File.open(FilePath.c_str(), mSystemFS);
+    if (File)
+        return true;
+
+    return false;
+}
+
+bool JFileSystem::readIntoString(const string & FilePath, string & target)
+{
+    izfstream file;
+    if (!openForRead(file, FilePath))
+        return false;
+
+    int fileSize = GetFileSize(file);
+
+    target.resize((std::string::size_type) fileSize);
+
+    if (fileSize)
+        file.read(&target[0], fileSize);
+
+    file.close();
+    return true;
+}
+
+bool JFileSystem::openForWrite(ofstream & File, const string & FilePath, ios_base::openmode mode)
+{
+    string filename = mUserFSPath;
+    filename.append(FilePath);
+    File.open(filename.c_str(), mode);
+
+    if (File)
+    {
+        return true;
+    }
+    return false;
+}
 
 bool JFileSystem::OpenFile(const string &filename)
 {
-    string path = mResourceRoot + filename;
+    mCurrentFileInZip = NULL;
 
-    if (mZipAvailable && mZipFile != NULL)
+    if (!mZipAvailable || !mZipFile)
+        return openForRead(mFile, filename);
+
+    preloadZip(mZipFileName);
+    map<string,JZipCache *>::iterator it = mZipCache.find(mZipFileName);
+    if (it == mZipCache.end())
     {
-        preloadZip(mZipFileName);
-        map<string,JZipCache *>::iterator it = mZipCache.find(mZipFileName);
-        if (it == mZipCache.end())
-        {
-            DetachZipFile();
-            return OpenFile(filename);  
-        }
-        JZipCache * zc = it->second;
-        map<string,unz_file_pos *>::iterator it2 = zc->dir.find(filename);
-        if (it2 == zc->dir.end())
-        {
-            DetachZipFile();
-            return OpenFile(filename);  
-        }
-        unzGoToFilePos(mZipFile,it2->second);
-        char filenameInzip[256];
-        unz_file_info fileInfo;
-
-        if (unzGetCurrentFileInfo(mZipFile, &fileInfo, filenameInzip, sizeof(filenameInzip), NULL, 0, NULL, 0) == UNZ_OK)
-            mFileSize = fileInfo.uncompressed_size;
-        else
-            mFileSize = 0;
-
-        return (unzOpenCurrentFilePassword(mZipFile, mPassword) == UNZ_OK);
+        //DetachZipFile();
+        //return OpenFile(filename); 
+        return openForRead(mFile, filename);
     }
-    else
+    JZipCache * zc = it->second;
+    map<string,  filesystem::file_info>::iterator it2 = zc->dir.find(filename);
+    if (it2 == zc->dir.end())
     {
-#if defined (PSP)
-        mFile = sceIoOpen(path.c_str(), PSP_O_RDONLY, 0777);
-        if (mFile > 0)
-        {
-            mFileSize = sceIoLseek(mFile, 0, PSP_SEEK_END);
-            sceIoLseek(mFile, 0, PSP_SEEK_SET);
-            return true;
-        }
-#else
-        mFile = fopen(path.c_str(), "rb");
-        if (mFile != NULL)
-        {
-            fseek(mFile, 0, SEEK_END);
-            mFileSize = ftell(mFile);
-            fseek(mFile, 0, SEEK_SET);
-            return true;
-        }
-#endif
+        /*DetachZipFile();
+        return OpenFile(filename); */
+        return openForRead(mFile, filename);
     }
 
-    return false;
+    mCurrentFileInZip = &(it2->second);
+    mFileSize = it2->second.m_Size;
+    return true;
+
 }
 
 
 void JFileSystem::CloseFile()
 {
-    if (mZipAvailable && mZipFile != NULL)
+    if (mZipAvailable && mZipFile)
     {
-        unzCloseCurrentFile(mZipFile);
-        return;
+        mCurrentFileInZip = NULL;
     }
 
-#if defined (PSP)
-    if (mFile > 0)
-        sceIoClose(mFile);    
-#else
-    if (mFile != NULL)
-        fclose(mFile);
-#endif
+    if (mFile)
+        mFile.close();
 }
 
-
+//returns 0 if less than "size" bits were read
 int JFileSystem::ReadFile(void *buffer, int size)
 {
-	if (mZipAvailable && mZipFile != NULL)
-	{
-		return unzReadCurrentFile(mZipFile, buffer, size);
-	}
-	else
-	{
-#if defined (PSP)
-        return sceIoRead(mFile, buffer, size);        
-#else
-        return fread(buffer, 1, size, mFile);
-#endif
-	}
+    if (mCurrentFileInZip)
+    {
+        assert(mZipFile);
+        if((size_t)size > mCurrentFileInZip->m_CompSize) //only support "store" method for zip inside zips
+            return 0;
+        std::streamoff offset = filesystem::SkipLFHdr(mZipFile, mCurrentFileInZip->m_Offset);
+        if (!mZipFile.seekg(offset))
+            return 0;
+        mZipFile.read((char *) buffer, size);
+        //TODO what if can't read
+        return size;
+    }
+
+    if (!mFile)
+        return 0;
+
+    assert(!mFile.Zipped() || (size_t)size <= mFile.getUncompSize());
+	mFile.read((char *)buffer, size);
+    if (mFile.eof())
+        return 0;
+    return size;
 }
 
+std::vector<std::string>& JFileSystem::scanRealFolder(const std::string& folderName, std::vector<std::string>& results)
+{
+    DIR *dip = opendir(folderName.c_str());
+    if (!dip)
+        return results;
+
+    while (struct dirent * dit = readdir(dip))
+    {
+        results.push_back(dit->d_name);
+    }
+
+    closedir(dip);
+
+    return results;
+}
+
+std::vector<std::string>& JFileSystem::scanfolder(const std::string& _folderName, std::vector<std::string>& results)
+{
+    if (!_folderName.size())
+        return results;
+
+    map<string, bool> seen;
+
+
+    string folderName = _folderName;
+    if (folderName[folderName.length() - 1] != '/')
+        folderName.append("/");
+
+    //user filesystem
+    {    
+        //Scan the zip filesystem
+        std::vector<std::string> userZips;
+        mUserFS->scanfolder(folderName, userZips);
+
+        for (size_t i = 0; i < userZips.size(); ++i)
+            seen[userZips[i]] = true;
+
+        //scan the real files
+        //TODO check for "/" 
+        std::vector<std::string> userReal;
+        string realFolderName = mUserFSPath;
+        realFolderName.append(folderName);
+        scanRealFolder(realFolderName, userReal);
+
+        for (size_t i = 0; i < userReal.size(); ++i)
+        seen[userReal[i]] = true;
+    }
+
+    if (mSystemFS)
+    {
+        //Scan the zip filesystem
+        std::vector<std::string> systemZips;
+        mSystemFS->scanfolder(folderName, systemZips);
+
+        for (size_t i = 0; i < systemZips.size(); ++i)
+            seen[systemZips[i]] = true;
+
+        //scan the real files
+        //TODO check for "/"   
+        std::vector<std::string> systemReal;
+        string realFolderName = mSystemFSPath;
+        realFolderName.append(folderName);
+        scanRealFolder(realFolderName, systemReal);
+
+    
+        for (size_t i = 0; i < systemReal.size(); ++i)
+            seen[systemReal[i]] = true;
+    }
+
+
+    for(map<string,bool>::iterator it = seen.begin(); it != seen.end(); ++it) 
+    {
+      results.push_back(it->first);
+    }
+
+    return results;
+}
+
+std::vector<std::string> JFileSystem::scanfolder(const std::string& folderName)
+{
+    std::vector<std::string> result;
+    return scanfolder(folderName, result);
+}
 
 int JFileSystem::GetFileSize()
 {
-    return mFileSize;
+    if (mCurrentFileInZip)
+        return mFileSize;
+
+    return GetFileSize(mFile);
 }
 
-
-void JFileSystem::SetResourceRoot(const string& resourceRoot)
+bool JFileSystem::Rename(string _from, string _to)
 {
-#ifdef IOS
-    //copy the RES folder over to the Documents folder
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSError *error;
-    NSArray *paths = NSSearchPathForDirectoriesInDomains( NSDocumentDirectory,
-                                                         NSUserDomainMask, YES);
-    NSString *documentsDirectory = [[paths objectAtIndex:0] stringByAppendingString: @"/Res"];
-    
-    NSString *resourceDBFolderPath = [[[NSBundle mainBundle] resourcePath] 
-                                      stringByAppendingPathComponent:@"Res"];
-    // copy the Res folder over to the Documents directory if it doesn't exist.
-    if ( ![fileManager fileExistsAtPath: documentsDirectory])
-        [fileManager copyItemAtPath:resourceDBFolderPath toPath:documentsDirectory error:&error];
-    
-    mResourceRoot = [documentsDirectory cStringUsingEncoding:1];
-    mResourceRoot += "/";
-#elif defined (ANDROID)
-    mResourceRoot = "/sdcard/Wagic/Res/";
-#else
-    mResourceRoot = resourceRoot;
-#endif
+    string from = mUserFSPath + _from;
+    string to = mUserFSPath + _to;
+    std::remove(to.c_str());
+    return rename(from.c_str(), to.c_str()) ? true: false;
 }
 
-string JFileSystem::GetResourceRoot() 
+int JFileSystem::GetFileSize(izfstream & file)
 {
-    return mResourceRoot;
+    if (!file)
+        return 0;
+
+    if (file.Zipped())
+    {
+        //There's a bug in zipped version that prevents from sending a correct filesize with the "standard" seek method
+        //The hack below only works for the "stored" version I think...
+        return file.getUncompSize();
+    }
+
+    file.seekg (0, ios::end);
+    int length = (int) file.tellg();
+    file.seekg (0, ios::beg);
+    return length;
+
 }
 
+// AVOID Using This function!!!
+/*
+This function is deprecated, but some code is still using it
+It used to give a pathname to a file in the file system.
+Now with the support of zip resources, a pathname does not make sense anymore
+However some of our code still relies on "physical" files not being in zip.
+So this call is now super heavy: it checks where the file is, and if it's in a zip, it extracts
+it to the user Filesystem, assuming that whoever called this needs to access the file through its pathname later on.
+
+As a result, this function isvery inefficient and shouldn't be used in the general case.
+*/
 string JFileSystem::GetResourceFile(string filename) 
 {
-    string result = mResourceRoot;
-    return result.append(filename);
+    izfstream temp;
+    bool result = openForRead(temp, filename);
+
+    if (!temp || !result)
+        return "";
+
+    if (!temp.Zipped())
+    {
+        string result = temp.FullFilePath();
+        temp.close();
+        return result;
+    }
+
+    // File is inside a zip archive,
+    //we copy it to the user FS
+    string destFile = mUserFSPath + filename;
+    ofstream dest;
+    if (openForWrite(dest, filename, ios_base::binary))
+    {
+        // allocate memory:
+        size_t length = temp.getUncompSize();
+        char * buffer = new char [length];
+
+        // read data as a block:
+        temp.read(buffer, length);
+        temp.close();
+
+        dest.write (buffer,length);
+        delete[] buffer;
+        dest.close();
+        return destFile;
+    }
+    return "";
 }

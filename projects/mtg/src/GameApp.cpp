@@ -28,11 +28,12 @@
 #include "WFilter.h"
 #include "Rules.h"
 #include "ModRules.h"
+#include "JFileSystem.h"
 
 #define DEFAULT_DURATION .25
 
 int GameApp::players[] = { 0, 0 };
-int GameApp::HasMusic = 1;
+bool GameApp::HasMusic = true;
 JMusic * GameApp::music = NULL;
 string GameApp::currentMusicFile = "";
 string GameApp::systemError = "";
@@ -95,28 +96,22 @@ void GameApp::Create()
     LOG("starting Game");
 
 	WResourceManager::Instance()->ResetCacheLimits();
-    //Find the Res folder
-    wagic::ifstream mfile("Res.txt");
-    string resPath;
-    if (mfile)
+
+    JFileSystem::init("User/", "Res/");
+
+    // Create User Folders (for write access) if they don't exist
     {
-        bool found = false;
-        while (!found && std::getline(mfile, resPath))
+        const char* folders[] = { "ai", "ai/baka", "ai/baka/stats", "campaigns", "graphics", "lang", "packs", "player", "player/stats", "profiles", "rules", "sets", "settings", "sound", "sound/sfx", "themes"};
+        string userRoot = JFileSystem::GetInstance()->GetUserRoot();
+        MAKEDIR(userRoot.c_str());
+
+        for (size_t i = 0; i < sizeof(folders)/sizeof(folders[0]); ++i)
         {
-            if (resPath[resPath.size() - 1] == '\r')
-                resPath.erase(resPath.size() - 1); //Handle DOS files
-            string testfile = resPath;
-            testfile.append("graphics/simon.dat");
-            if (fileExists(testfile.c_str()))
-            {
-                JFileSystem::GetInstance()->SetResourceRoot(trim(resPath));
-                found = true;
-            }
+            string current(folders[i]);
+            string folder = userRoot + current;
+            MAKEDIR(folder.c_str());
         }
-        mfile.close();
     }
-    LOG("Res Root:");
-    LOG(JFileSystem::GetInstance()->GetResourceRoot().c_str());
 
     //Load Mod Rules before everything else
     gModRules.load("rules/modrules.xml");
@@ -130,19 +125,8 @@ void GameApp::Create()
 
     LOG("Checking for music files");
     //Test for Music files presence
-    string filepath = JGE_GET_RES(WResourceManager::Instance()->musicFile("Track0.mp3"));
-    wagic::ifstream file(filepath.c_str());
-    if (file)
-        file.close();
-    else
-        HasMusic = 0;
-
-    filepath = JGE_GET_RES(WResourceManager::Instance()->musicFile("Track1.mp3"));
-    wagic::ifstream file2(filepath.c_str());
-    if (file2)
-        file2.close();
-    else
-        HasMusic = 0;
+    JFileSystem * jfs = JFileSystem::GetInstance();
+    HasMusic = jfs->FileExists(WResourceManager::Instance()->musicFile("Track0.mp3")) && jfs->FileExists(WResourceManager::Instance()->musicFile("Track1.mp3"));
 
     LOG("Loading Textures");
     LOG("--Loading menuicons.png");

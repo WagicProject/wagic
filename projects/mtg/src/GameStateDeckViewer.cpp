@@ -218,7 +218,7 @@ void GameStateDeckViewer::Start()
     lastPos = 0;
     lastTotal = 0;
 
-    pricelist = NEW PriceList(JGE_GET_RES("settings/prices.dat").c_str(), MTGCollection());
+    pricelist = NEW PriceList("settings/prices.dat", MTGCollection());
     playerdata = NEW PlayerData(MTGCollection());
     myCollection = NEW DeckDataWrapper(playerdata->collection);
     myCollection->Sort(WSrcCards::SORT_ALPHA);
@@ -321,7 +321,7 @@ void GameStateDeckViewer::saveDeck()
 void GameStateDeckViewer::saveAsAIDeck(string deckName)
 {
 
-    vector<DeckMetaData *> aiDecks = GameState::BuildDeckList(JGE_GET_RES("ai/baka"), "ai_baka", NULL);
+    vector<DeckMetaData *> aiDecks = GameState::BuildDeckList("ai/baka", "ai_baka", NULL);
     int nbAiDecks = aiDecks.size() + 1;
     aiDecks.clear();
 
@@ -335,7 +335,7 @@ void GameStateDeckViewer::saveAsAIDeck(string deckName)
     else
         oss << myDeck->parent->meta_desc;
     string deckDesc = oss.str();
-    string filepath = JGE_GET_RES("ai/baka/");
+    string filepath = "ai/baka/";
     filepath.append(defaultAiDeckName).append(".txt");
     DebugTrace("saving AI deck " << filepath);
     myDeck->save(filepath, true, deckName, deckDesc);
@@ -1496,7 +1496,7 @@ int GameStateDeckViewer::loadDeck(int deckid)
         SAFE_DELETE(myDeck->parent);
         SAFE_DELETE(myDeck);
     }
-    myDeck = NEW DeckDataWrapper(NEW MTGDeck(options.profileFile(deckname, "", false, false).c_str(), MTGCollection()));
+    myDeck = NEW DeckDataWrapper(NEW MTGDeck(options.profileFile(deckname, "", false).c_str(), MTGCollection()));
 
     // Check whether the cards in the deck are actually available in the player's collection:
     int cheatmode = options[Options::CHEATMODE].number;

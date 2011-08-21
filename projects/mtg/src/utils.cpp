@@ -78,61 +78,15 @@ int filesize(const char * filename)
     return file_size;
 }
 
-
-// check to see if a file exists on the file system.
-int fileExists(const char * filename)
+bool fileExists(const char * filename)
 {
-    wagic::ifstream fichier(filename);
-    if (fichier)
-    {
-        fichier.close();
-        return 1;
-    }
-
-    wagic::ifstream fichier2(JGE_GET_RES(filename).c_str());
-    if (fichier2)
-    {
-        fichier2.close();
-        return 1;
-    }
-    return 0;
+    return JFileSystem::GetInstance()->FileExists(filename);
 }
 
-// check to see if a file exists on the file system.
-// this can be used to extract last modified date of a file.
-bool FileExists(const string& strFilename)
-{ 
-    struct stat stFileInfo; 
-    bool blnReturn = false;
-    int intStat; 
-
-    // Attempt to get the file attributes 
-    intStat = stat(strFilename.c_str(),&stFileInfo); 
-    if(intStat == 0)
-    {
-        // We were able to get the file attributes 
-        // so the file obviously exists. 
-        blnReturn = true; 
-    }
-    else
-    {
-        // We were not able to get the file attributes. 
-        // This may mean that we don't have permission to 
-        // access the folder which contains this file. If you 
-        // need to do that level of checking, lookup the 
-        // return values of stat which will give you 
-        // more details on why stat failed. 
-        
-        // try to search in the resource directory 
-        if ( stat( JGE_GET_RES(strFilename).c_str(), &stFileInfo ) == 0)
-            blnReturn = true;
-        else
-            blnReturn = false; 
-    }
-
-    return(blnReturn); 
+bool FileExists(const string & filename)
+{
+    return JFileSystem::GetInstance()->FileExists(filename);
 }
-
 
 /*
 #ifdef LINUX
@@ -396,4 +350,21 @@ unsigned long hash_djb2(const char *str)
         hash = ((hash << 5) + hash) + c; /* hash * 33 + c */
 
     return hash;
+}
+
+std::string buildFilePath(const vector<string> & folders, const string & filename)
+{
+    string result = "";
+    for (size_t i = 0; i < folders.size(); ++i)
+    {
+        result.append(folders[i]);
+        if (result[result.length()-1] != '/')
+        {
+            result.append("/");
+        }
+    }
+
+    result.append(filename);
+    return result;
+
 }

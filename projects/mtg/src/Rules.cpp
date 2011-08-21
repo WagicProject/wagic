@@ -13,7 +13,6 @@
 #include "AIPlayer.h"
 #include <JLogger.h>
 
-
 vector<Rules *> Rules::RulesList = vector<Rules *>();
 
 //Sorting by dissplayName
@@ -35,13 +34,11 @@ Rules * Rules::getRulesByFilename(string _filename)
 
 int Rules::loadAllRules()
 {
-    DIR *dip = opendir(JGE_GET_RES("rules").c_str());
-    struct dirent *dit;
-
-    while ((dit = readdir(dip)))
+    vector<string> rulesFiles = JFileSystem::GetInstance()->scanfolder("rules");
+    for (size_t i = 0; i < rulesFiles.size(); ++i)
     {
         Rules * rules = NEW Rules();
-        if (rules->load(dit->d_name))
+        if (rules->load(rulesFiles[i]))
         {
             RulesList.push_back(rules);
         }
@@ -53,7 +50,6 @@ int Rules::loadAllRules()
     //Kind of a hack here, we sort Rules alphabetically because it turns out to be matching
     // The historical order of Game modes: Classic, Momir Basic, Random 1, Random 2, Story
     std::sort(RulesList.begin(),RulesList.end(),RulesMenuCmp_);
-    closedir(dip);
     return 1;
 }
 
@@ -597,22 +593,23 @@ int Rules::load(string _filename)
     }
     else
     {
-        sprintf(c_filename, JGE_GET_RES("rules/%s").c_str(), _filename.c_str());
+        sprintf(c_filename, "rules/%s", _filename.c_str());
     }
-    wagic::ifstream file(c_filename);
+    std::string contents;
+    if (!JFileSystem::GetInstance()->readIntoString(c_filename, contents))
+        return 0;
+    std::stringstream stream(contents);
     std::string s;
 
     int state = PARSE_UNDEFINED;
 
-    //  std::cout << std::endl << std::endl << "!!!" << file << std::endl << std::endl;
-    if (!file) return 0;
-
     cleanup();
 
-    while (std::getline(file, s))
+    while (std::getline(stream, s))
     {
         if (!s.size()) continue;
         if (s[s.size() - 1] == '\r') s.erase(s.size() - 1); //Handle DOS files
+        if (!s.size()) continue;
         if (s[0] == '#') continue;
         string scopy = s;
         std::transform(s.begin(), s.end(), s.begin(), ::tolower);
@@ -689,7 +686,6 @@ int Rules::load(string _filename)
             break;
         }
     }
-    file.close();
     return 1;
 }
 

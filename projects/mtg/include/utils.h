@@ -29,46 +29,6 @@
 
 #include "DebugRoutines.h"
 
-// enable this define to collect statistics on how many times an ifstream is created for a given file.
-//#define TRACK_FILE_USAGE_STATS
-
-namespace wagic
-{
-
-#ifdef TRACK_FILE_USAGE_STATS
-    class ifstream : public std::ifstream
-    {
-    public:
-        explicit ifstream(const char *inFilename, ios_base::openmode inMode = ios_base::in) :
-        std::ifstream(inFilename, inMode)
-        {
-            sFileMap[std::string(inFilename)] += 1;
-            DebugTrace("ifstream opened on file: " << inFilename);
-        }
-
-        static void Dump()
-        {
-            DebugTrace("-------------------");
-            DebugTrace("File Usage Statistics" << std::endl);
-            std::map<std::string, int>::const_iterator iter = sFileMap.begin();
-            for (; iter != sFileMap.end(); ++iter)
-            {
-                DebugTrace(iter->first << "  -- " << iter->second);
-            }
-
-            DebugTrace("End File Usage Statistics");
-            DebugTrace("-------------------");
-        }
-
-    private:
-        static std::map<std::string, int> sFileMap;
-    };
-
-#else
-    typedef std::ifstream ifstream;
-#endif
-
-} //namespace wagic
 
 using std::string;
 
@@ -105,7 +65,6 @@ unsigned long hash_djb2(const char *str);
 
 int loadRandValues(string s);
 int filesize(const char * filename);
-int fileExists(const char * filename);
 int WRand();
 
 #ifdef LINUX
@@ -135,6 +94,9 @@ u32 ramAvailable(void);
 #define MAKEDIR(name) mkdir(name, 0777)
 #endif
 
-bool FileExists(const string& strFilename);
+bool fileExists(const char * filename);
+bool FileExists(const string & filename);
+
+std::string buildFilePath(const vector<string> & folders, const string & filename);
 
 #endif

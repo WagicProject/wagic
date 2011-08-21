@@ -26,13 +26,14 @@ private:
     char nbcardsStr[400];
     vector<string> langs;
     vector<string> primitives;
+
+    size_t mCurrentSetFolderIndex;
+    string mCurrentSetName;
+    string mCurrentSetFileName;
+    vector<string> setFolders;
+
     string wallpaper;
     int primitivesLoadCounter;
-
-    DIR *mDip;
-    struct dirent *mDit;
-    char mCurrentSetName[32];
-    char mCurrentSetFileName[512];
 
     int mReadConf;
     float timeIndex;
@@ -61,8 +62,7 @@ public:
     virtual void Render();
     virtual void ButtonPressed(int controllerId, int controlId);
 
-    int nextDirectory(const char * root, const char * file); // Retrieves the next directory to have matching file
-    void resetDirectory();
+    int nextSetFolder(const string & root, const string & file); // Retrieves the next directory to have matching file
     void createUsersFirstDeck(int setId);
     virtual ostream& toString(ostream& out) const;
 

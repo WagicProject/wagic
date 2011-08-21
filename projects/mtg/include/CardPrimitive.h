@@ -33,7 +33,7 @@ public:
 
     CastRestrictions * clone() const
     {
-        return NEW  CastRestrictions(*this);
+        return NEW CastRestrictions(*this);
     };
 };
 

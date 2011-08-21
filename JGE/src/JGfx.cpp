@@ -1024,8 +1024,6 @@ void JRenderer::LoadJPG(TextureInfo &textureInfo, const char *filename, int mode
 {
   JLOG("JRenderer::LoadJPG");
 	textureInfo.mBits = NULL;
-	char filenamenew[4096];
-	sprintf(filenamenew, JGE_GET_RES(filename).c_str());
 
 	bool useVideoRAM = (mode == TEX_TYPE_USE_VRAM);
 

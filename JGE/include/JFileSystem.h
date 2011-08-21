@@ -1,28 +1,11 @@
-//-------------------------------------------------------------------------------------
-//
-// JGE++ is a hardware accelerated 2D game SDK for PSP/Windows.
-//
-// Licensed under the BSD license, see LICENSE in JGE root for details.
-//
-// Copyright (c) 2007 James Hui (a.k.a. Dr.Watson) <jhkhui@gmail.com>
-//
-//-------------------------------------------------------------------------------------
+#ifndef _J_FILE_SYSTEM_H_
+#define _J_FILE_SYSTEM_H_
 
-#ifndef _FILE_SYSTEM_H_
-#define _FILE_SYSTEM_H_
-
-#define JGE_GET_RES(filename) JFileSystem::GetInstance()->GetResourceFile(filename)
-#define JGE_GET_RESPATH() JFileSystem::GetInstance()->GetResourceRoot()
-
-#include <stdio.h>
-#include <vector>
-#include <map>
+#include "zfsystem.h"
 #include <string>
-
-#if defined (PSP)
-	#include <pspiofilemgr.h>
-	#include <pspiofilemgr_fcntl.h>
-#endif
+using zip_file_system::filesystem;
+using zip_file_system::izfstream;
+using namespace std;
 
 #include "unzip/unzip.h"
 
@@ -40,21 +23,29 @@ class JZipCache {
 public:
   JZipCache();
   ~JZipCache();
-  map<string,unz_file_pos *> dir;
+  map<string, filesystem::file_info> dir;
   
 };
 
-class JFileSystem
-{
+class JFileSystem {
+private:
+    string mSystemFSPath, mUserFSPath;
+    filesystem * mSystemFS, * mUserFS;
+	static JFileSystem* mInstance;
+    izfstream mFile;
+
+	map<string,JZipCache *>mZipCache;
+	string mZipFileName;
+    int mFileSize;
+	char *mPassword;
+	bool mZipAvailable;
+  	void preloadZip(const string& filename);
+	izfstream mZipFile;
+    filesystem::file_info * mCurrentFileInZip;
+
+    std::vector<std::string>& scanRealFolder(const std::string& folderName, std::vector<std::string>& results);
+
 public:
-
-	//////////////////////////////////////////////////////////////////////////
-	/// Get the singleton instance
-	///
-	//////////////////////////////////////////////////////////////////////////
-	static JFileSystem* GetInstance();
-
-	static void Destroy();
 
 
 	//////////////////////////////////////////////////////////////////////////
@@ -74,12 +65,26 @@ public:
 	//////////////////////////////////////////////////////////////////////////
 	void DetachZipFile();
 
+    // Manually Clear the zip cache
+    void clearZipCache();
+
+	//////////////////////////////////////////////////////////////////////////
+	/// Get the singleton instance
+	///
+	//////////////////////////////////////////////////////////////////////////
+	static JFileSystem* GetInstance();
+
+	static void Destroy();
+
 	//////////////////////////////////////////////////////////////////////////
 	/// Open file for reading.
 	///
 	//////////////////////////////////////////////////////////////////////////
 	bool OpenFile(const string &filename);
 
+    //Fills the vector results with a list of children of the given folder
+    std::vector<std::string>& scanfolder(const std::string& folderName, std::vector<std::string>& results);
+    std::vector<std::string> scanfolder(const std::string& folderName);
 	//////////////////////////////////////////////////////////////////////////
 	/// Read data from file.
 	///
@@ -96,6 +101,7 @@ public:
 	///
 	//////////////////////////////////////////////////////////////////////////
 	int GetFileSize();
+    int GetFileSize(izfstream & file);
 
 	//////////////////////////////////////////////////////////////////////////
 	/// Close file.
@@ -109,37 +115,47 @@ public:
 	/// @resourceRoot - New root.
 	///
 	//////////////////////////////////////////////////////////////////////////
-	void SetResourceRoot(const string& resourceRoot);
-  string GetResourceRoot();
+	void SetSystemRoot(const string& resourceRoot);
+    string GetSystemRoot() { return mSystemFSPath; };
 
-  // Returns a string prefixed with the resource path
-  string GetResourceFile(string filename);
+	void SetUSerRoot(const string& resourceRoot);
+    string GetUserRoot() { return mUserFSPath; };
 
-    // Manually Clear the zip cache
-  void clearZipCache();
-    
+    bool openForRead(izfstream & File, const string & FilePath);
+    bool readIntoString(const string & FilePath, string & target);
+    bool openForWrite(ofstream & File, const string & FilePath, ios_base::openmode mode = ios_base::out );
+    bool Rename(string from, string to);
+
+    //Returns true if strFilename exists somewhere in the fileSystem
+    bool FileExists(const string& strFilename);
+
+    //Returns true if strdirname exists somewhere in the fileSystem, and is a directory
+    bool DirExists(const string& strDirname);
+
+    static void init( const string & userPath, const string & systemPath = "");
+
+
+
+    // AVOID Using This function!!!
+    /*
+    This function is deprecated, but some code is still using it
+    It used to give a pathname to a file in the file system.
+    Now with the support of zip resources, a pathname does not make sense anymore
+    However some of our code still relies on "physical" files not being in zip.
+    So this call is now super heavy: it checks where the file is, and if it's in a zip, it extracts
+    it to the user Filesystem, assuming that whoever called this needs to access the file through its pathname later on
+    */
+    string GetResourceFile(string filename);
+
 protected:
-	JFileSystem();
+	JFileSystem(const string & userPath, const string & systemPath = "");
 	~JFileSystem();
 
-private:
-	static JFileSystem* mInstance;
-
-	map<string,JZipCache *>mZipCache;
-	string mResourceRoot;
-	string mZipFileName;
-	char *mPassword;
-	bool mZipAvailable;
-  	void preloadZip(const string& filename);
-
-#if defined (PSP)
-	SceUID mFile;
-#else
-	FILE *mFile;
-#endif
-	unzFile mZipFile;
-	int mFileSize;
 
 };
+
+
+
+
 
 #endif

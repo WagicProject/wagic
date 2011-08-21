@@ -1322,7 +1322,7 @@ AIStats * AIPlayer::getStats()
     if (!stats)
     {
         char statFile[512];
-        sprintf(statFile, JGE_GET_RES("ai/baka/stats/%s.stats").c_str(), opponent()->deckFileSmall.c_str());
+        sprintf(statFile, "ai/baka/stats/%s.stats", opponent()->deckFileSmall.c_str());
         stats = NEW AIStats(this, statFile);
     }
     return stats;
@@ -1352,12 +1352,10 @@ AIPlayer * AIPlayerFactory::createAIPlayer(MTGAllCards * collection, Player * op
             {
                 found = 0;
                 char buffer[512];
-                sprintf(buffer, JGE_GET_RES("ai/baka/deck%i.txt").c_str(), nbdecks + 1);
-                wagic::ifstream file(buffer);
-                if (file)
+                sprintf(buffer, "ai/baka/deck%i.txt", nbdecks + 1);
+                if (FileExists(buffer))
                 {
                     found = 1;
-                    file.close();
                     nbdecks++;
                 }
             }
@@ -1365,7 +1363,7 @@ AIPlayer * AIPlayerFactory::createAIPlayer(MTGAllCards * collection, Player * op
                 return NULL;
             deckid = 1 + WRand() % (nbdecks);
         }
-        sprintf(deckFile, JGE_GET_RES("ai/baka/deck%i.txt").c_str(), deckid);
+        sprintf(deckFile, "ai/baka/deck%i.txt", deckid);
         DeckMetaData *aiMeta = DeckManager::GetInstance()->getDeckMetaDataByFilename( deckFile, true);
         avatarFilename = aiMeta->getAvatarFilename();
         sprintf(deckFileSmall, "ai_baka_deck%i", deckid);

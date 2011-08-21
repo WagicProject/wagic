@@ -336,7 +336,7 @@ int Credits::isDifficultyUnlocked(DeckStats * stats)
         found = 0;
         char buffer[512];
         char aiSmallDeckName[512];
-        sprintf(buffer, JGE_GET_RES("ai/baka/deck%i.txt").c_str(), nbAIDecks + 1);
+        sprintf(buffer, "ai/baka/deck%i.txt", nbAIDecks + 1);
         if (fileExists(buffer))
         {
             found = 1;
@@ -486,12 +486,10 @@ int Credits::IsMoreAIDecksUnlocked(DeckStats * stats) {
     {
         found = 0;
         char buffer[512];
-        sprintf(buffer, JGE_GET_RES("ai/baka/deck%i.txt").c_str(), nbdecks + 1);
-        wagic::ifstream file(buffer);
-        if (file)
+        sprintf(buffer, "ai/baka/deck%i.txt", nbdecks + 1);
+        if (JFileSystem::GetInstance()->FileExists(buffer))
         {
             found = 1;
-            file.close();
             nbdecks++;
             if (nbdecks > currentlyUnlocked)
                 return 1;

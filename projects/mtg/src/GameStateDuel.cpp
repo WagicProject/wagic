@@ -102,7 +102,7 @@ void GameStateDuel::Start()
 
 #ifdef TESTSUITE
     SAFE_DELETE(testSuite);
-    testSuite = NEW TestSuite(JGE_GET_RES("test/_tests.txt").c_str(),MTGCollection());
+    testSuite = NEW TestSuite("test/_tests.txt",MTGCollection());
 #endif
 
     mGamePhase = DUEL_STATE_CHOOSE_DECK1;
@@ -156,7 +156,7 @@ void GameStateDuel::Start()
                 deckmenu->Add(MENUITEM_NEW_DECK, "Create your Deck!", desc);
             }
             premadeDeck = true;
-            fillDeckMenu(deckmenu, JGE_GET_RES("player/premade"));
+            fillDeckMenu(deckmenu, "player/premade");
         }
         else if (gModRules.general.hasDeckEditor())
         {
@@ -181,7 +181,7 @@ void GameStateDuel::loadPlayer(int playerId, int decknb, bool isAI, bool isNetwo
             {
                 char deckFile[255];
                 if (premadeDeck)
-                    sprintf(deckFile, JGE_GET_RES("player/premade/deck%i.txt").c_str(), decknb);
+                    sprintf(deckFile, "player/premade/deck%i.txt", decknb);
                 else
                     sprintf(deckFile, "%s/deck%i.txt", options.profileFile().c_str(), decknb);
                 char deckFileSmall[255];
@@ -286,15 +286,7 @@ void GameStateDuel::End()
 //TODO Move This to utils or ResourceManager. Don't we have more generic functions that can do that?
 bool GameStateDuel::MusicExist(string FileName)
 {
-    string filepath = JGE_GET_RES(WResourceManager::Instance()->musicFile(FileName));
-    wagic::ifstream file(filepath.c_str());
-    if (file)
-    {
-        file.close();
-        return true;
-    }
-    else
-        return false;
+    return FileExists(WResourceManager::Instance()->musicFile(FileName));
 }
 
 void GameStateDuel::ConstructOpponentMenu()
@@ -309,7 +301,7 @@ void GameStateDuel::ConstructOpponentMenu()
         DeckManager * deckManager = DeckManager::GetInstance();
         vector<DeckMetaData*> opponentDeckList;
         int nbUnlockedDecks = options[Options::CHEATMODEAIDECK].number ? 1000 : options[Options::AIDECKS_UNLOCKED].number;
-        opponentDeckList = fillDeckMenu(opponentMenu, JGE_GET_RES("ai/baka"), "ai_baka", mPlayers[0], nbUnlockedDecks);
+        opponentDeckList = fillDeckMenu(opponentMenu, "ai/baka", "ai_baka", mPlayers[0], nbUnlockedDecks);
         deckManager->updateMetaDataList(&opponentDeckList, true);
         opponentMenu->Add(MENUITEM_CANCEL, "Cancel", _("Choose a different player deck").c_str());
         opponentDeckList.clear();

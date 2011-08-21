@@ -15,7 +15,7 @@ GENERIC_OBJS = src/JApp.o src/JGBKFont.o \
 	src/JNetwork.o \
 	src/JParticle.o src/JParticleEmitter.o src/JParticleEffect.o \
 	src/JParticleSystem.o \
-	src/unzip/ioapi.o src/unzip/mztools.o src/unzip/unzip.o \
+	src/zipFS/zfsystem.o src/zipFS/ziphdr.o src/zipFS/zstream.o \
 	src/JSprite.o src/Vector2D.o \
 	src/tinyxml/tinystr.o src/tinyxml/tinyxml.o \
 	src/tinyxml/tinyxmlparser.o src/tinyxml/tinyxmlerror.o \
@@ -73,7 +73,7 @@ PSPSDK = $(shell psp-config --pspsdk-path)
 PSPDIR = $(shell psp-config --psp-prefix)
 OBJS = $(GENERIC_OBJS) $(PSP_OBJS)
 TARGET_HGE = libhgetools.a
-INCDIR = include/psp include/psp/freetype2 ../Boost
+INCDIR = include/psp include/psp/freetype2 ../Boost src/zipFS
 CXXFLAGS += -O2 -G0 -DPSP
 LIBDIR = lib/psp
 endif

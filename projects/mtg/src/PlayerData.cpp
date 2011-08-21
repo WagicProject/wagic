@@ -24,11 +24,12 @@ void PlayerData::init()
     //CREDITS
     credits = 3000; //Default value
 
-    wagic::ifstream file(options.profileFile(PLAYER_SAVEFILE).c_str());
-    std::string s;
-    if (file)
+    std::string contents;
+    if (JFileSystem::GetInstance()->readIntoString(options.profileFile(PLAYER_SAVEFILE), contents))
     {
-        if (std::getline(file, s))
+        std::stringstream stream(contents);
+        std::string s;
+        if (std::getline(stream, s))
         {
             credits = atoi(s.c_str());
         }
@@ -38,7 +39,7 @@ void PlayerData::init()
         }
 
         //Story Saves
-        while (std::getline(file, s))
+        while (std::getline(stream, s))
         {
             if (!s.size()) continue;
             if (s[s.size() - 1] == '\r') s.erase(s.size() - 1); //Handle DOS files
@@ -54,7 +55,6 @@ void PlayerData::init()
             key = key.substr(2);
             storySaves[key] = value;
         }
-        file.close();
     }
 
     taskList = NEW TaskList(options.profileFile(PLAYER_TASKS).c_str());
@@ -62,10 +62,10 @@ void PlayerData::init()
 
 int PlayerData::save()
 {
-    std::ofstream file(options.profileFile(PLAYER_SAVEFILE).c_str());
-    char writer[512];
-    if (file)
+    std::ofstream file;
+    if (JFileSystem::GetInstance()->openForWrite(file, options.profileFile(PLAYER_SAVEFILE)))
     {
+        char writer[512];
         sprintf(writer, "%i\n", credits);
         file << writer;
 

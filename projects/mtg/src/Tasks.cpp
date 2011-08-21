@@ -160,7 +160,7 @@ void Task::LoadAIDeckNames()
         {
             found = 0;
             std::ostringstream stream;
-            stream << JGE_GET_RES("ai/baka") << "/deck" << nbDecks + 1 << ".txt";
+            stream << "ai/baka" << "/deck" << nbDecks + 1 << ".txt";
             if (fileExists(stream.str().c_str()))
             {
                 found = 1;
@@ -281,8 +281,8 @@ int TaskList::save(string _fileName)
         return -1;
     }
 
-    std::ofstream file(fileName.c_str());
-    if (file)
+    std::ofstream file;
+    if (JFileSystem::GetInstance()->openForWrite(file, fileName))
     {
 #if defined (WIN32) || defined (LINUX)
         DebugTrace("\nsaving tasks\n");
@@ -309,46 +309,37 @@ int TaskList::load(string _fileName)
     }
     if (fileName == "")
     {
-#if defined (WIN32) || defined (LINUX)
         DebugTrace("\nTaskList::load: No filename specified\n");
-#endif
         return -1;
     }
 
-    wagic::ifstream file(fileName.c_str());
-    std::string s;
-
-    if (file)
+    std::string contents;
+    if (!JFileSystem::GetInstance()->readIntoString(fileName, contents))
     {
-        while (std::getline(file, s))
-        {
-            if (!s.size()) continue;
-            if (s[s.size() - 1] == '\r') s.erase(s.size() - 1); //Handle DOS files
-            if (s[0] == '#')
-            {
-                continue;
-            }
-
-            task = Task::createFromStr(s);
-            if (task)
-            {
-                this->addTask(task);
-            }
-            else
-            {
-#if defined (WIN32) || defined (LINUX)
-                DebugTrace("\nTaskList::load: error creating task\n");
-#endif
-            }
-        }
-        file.close();
-    }
-    else
-    {
-#if defined (WIN32) || defined (LINUX)
         DebugTrace("\nTaskList::load: Failed to open file\n");
-#endif
         return -1;
+    }
+
+    std::stringstream stream(contents);
+    std::string s;
+    while (std::getline(stream, s))
+    {
+        if (!s.size()) continue;
+        if (s[s.size() - 1] == '\r') s.erase(s.size() - 1); //Handle DOS files
+        if (s[0] == '#')
+        {
+            continue;
+        }
+
+        task = Task::createFromStr(s);
+        if (task)
+        {
+            this->addTask(task);
+        }
+        else
+        {
+            DebugTrace("\nTaskList::load: error creating task\n");
+        }
     }
 
     return 1;

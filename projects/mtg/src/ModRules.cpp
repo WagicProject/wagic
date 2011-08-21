@@ -10,24 +10,15 @@ ModRules gModRules;
 
 bool ModRules::load(string filename)
 {
-    JFileSystem *fileSystem = JFileSystem::GetInstance();
-    if (!fileSystem) return false;
-
-    if (!fileSystem->OpenFile(filename.c_str())) 
+    std::string xmlBuffer;
+    if (! JFileSystem::GetInstance()->readIntoString(filename, xmlBuffer))
     {
-        DebugTrace("FATAL: " << filename << "Does not exist");
+        DebugTrace("FATAL: cannot find modrules.xml");
         return false;
     }
 
-    int size = fileSystem->GetFileSize();
-    char *xmlBuffer = NEW char[size];
-    fileSystem->ReadFile(xmlBuffer, size);
-
     TiXmlDocument doc;
-    doc.Parse(xmlBuffer);
-
-    fileSystem->CloseFile();
-    delete[] xmlBuffer;
+    doc.Parse(xmlBuffer.c_str());
 
     for (TiXmlNode* node = doc.FirstChild(); node; node = node->NextSibling())
     {

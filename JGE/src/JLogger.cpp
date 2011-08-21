@@ -3,7 +3,10 @@
 
 #include <fstream>
 
+string JLogger::lastLog = "";
+
 void JLogger::Log(const char * text){
+#ifdef DOLOG
   std::ofstream file(LOG_FILE, std::ios_base::app);
   if (file){
     file << text;
@@ -12,6 +15,8 @@ void JLogger::Log(const char * text){
   }
 
   DebugTrace(text);
+#endif
+  lastLog = text;
 }
 
 JLogger::JLogger(const char* text) : mText(text)

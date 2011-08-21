@@ -30,7 +30,7 @@ unix:INCLUDEPATH += /usr/include/GL
 unix:INCLUDEPATH += /usr/local/include/SDL
 macx:INCLUDEPATH += /opt/include
 INCLUDEPATH += ../../JGE/include
-INCLUDEPATH += ../../JGE/include/unzip
+INCLUDEPATH += ../../JGE/src/zipFS
 INCLUDEPATH += ../../Boost
 INCLUDEPATH += include
 OBJECTS_DIR = objs
@@ -297,9 +297,9 @@ SOURCES += \
         ../../JGE/src/hge/hgeparticle.cpp\
         ../../JGE/src/hge/hgerect.cpp\
         ../../JGE/src/hge/hgevector.cpp\
-        ../../JGE/src/unzip/ioapi.c\
-        ../../JGE/src/unzip/mztools.c\
-        ../../JGE/src/unzip/unzip.c\
+		../../JGE/src/zipFS/zfsystem.cpp\
+		../../JGE/src/zipFS/ziphdr.cpp\
+		../../JGE/src/zipFS/zstream.cpp\
         ../../JGE/src/pc/JSfx.cpp\
         ../../JGE/src/pc/JGfx.cpp\
        ../../JGE/src/JNetwork.cpp\

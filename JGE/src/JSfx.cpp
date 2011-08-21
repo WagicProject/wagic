@@ -110,7 +110,7 @@ void JSoundSystem::DestroySoundSystem()
 JMusic *JSoundSystem::LoadMusic(const char *fileName)
 {
 
-  string s = JGE_GET_RES(fileName);
+  string s = JFileSystem::GetInstance()->GetResourceFile(fileName);
 
   JMusic *music = new JMusic();
   if (music)

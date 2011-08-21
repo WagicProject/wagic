@@ -10,17 +10,17 @@ PriceList::PriceList(const char * _filename, MTGAllCards * _collection) :
     collection(_collection)
 {
     filename = _filename;
-    wagic::ifstream file(_filename);
-    std::string cardid;
-    std::string price;
-    if (file)
+    std::string contents;
+    if (JFileSystem::GetInstance()->readIntoString(filename, contents))
     {
-        while (std::getline(file, cardid))
+        std::stringstream stream(contents);
+        std::string cardid;
+        std::string price;
+        while (std::getline(stream, cardid))
         {
-            std::getline(file, price);
+            std::getline(stream, price);
             prices[atoi(cardid.c_str())] = atoi(price.c_str());
         }
-        file.close();
     }
     if (randomKey == 0) randomKey = rand();
 }
@@ -31,10 +31,10 @@ PriceList::~PriceList()
 
 int PriceList::save()
 {
-    std::ofstream file(filename.c_str());
-    char writer[20];
-    if (file)
+    std::ofstream file;
+    if (JFileSystem::GetInstance()->openForWrite(file, filename))
     {
+        char writer[20];
         map<int, int>::iterator it = prices.begin();
         while (it != prices.end())
         {

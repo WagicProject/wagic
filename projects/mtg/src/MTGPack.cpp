@@ -287,18 +287,15 @@ MTGPack * MTGPacks::randomPack(int key)
 }
 void MTGPacks::loadAll()
 {
-    DIR *mDip = opendir(JGE_GET_RES("packs/").c_str());
-    struct dirent *mDit;
-    if (!mDip)
-        return;
-
-    while ((mDit = readdir(mDip)))
+    vector<string>packFiles = JFileSystem::GetInstance()->scanfolder("packs/");
+    for (size_t i = 0; i < packFiles.size(); ++i)
     {
+        string relative = packFiles[i];
         char myFilename[4096];
-        sprintf(myFilename, JGE_GET_RES("packs/%s").c_str(), mDit->d_name);
-        if (mDit->d_name[0] == '.')
+        sprintf(myFilename, "packs/%s",relative.c_str());
+        if (relative[0] == '.')
             continue;
-        if (!strcmp(mDit->d_name, "default_booster.txt"))
+        if (!strcmp(relative.c_str(), "default_booster.txt"))
             continue;
         MTGPack * p = NEW MTGPack(myFilename);
         if (!p->isValid())
@@ -308,7 +305,6 @@ void MTGPacks::loadAll()
         }
         packs.push_back(p);
     }
-    closedir(mDip);
 }
 string MTGPack::getName()
 {
@@ -356,7 +352,7 @@ MTGPack * MTGPacks::getDefault()
 {
     if (!defaultBooster.isValid())
     {
-        defaultBooster.load(JGE_GET_RES("packs/default_booster.txt"));
+        defaultBooster.load("packs/default_booster.txt");
         defaultBooster.unlockStatus = 1;
         if (!defaultBooster.isValid())
         {

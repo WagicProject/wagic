@@ -302,7 +302,7 @@ void StoryDuel::init()
     Player * players[2];
 
     char folder[255], deckFile[255], deckFileSmall[255];
-    sprintf(folder, JGE_GET_RES(CAMPAIGNS_FOLDER"%s/%s").c_str(), mParent->folder.c_str(), pageId.c_str());
+    sprintf(folder, CAMPAIGNS_FOLDER"%s/%s", mParent->folder.c_str(), pageId.c_str());
 
     sprintf(deckFile, "%s/deck.txt", folder);
     sprintf(deckFileSmall, "campaign_%s", mParent->folder.c_str());

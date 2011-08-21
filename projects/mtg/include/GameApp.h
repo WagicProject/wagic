@@ -96,7 +96,7 @@ public:
     void DoTransition(int trans, int tostate, float dur = -1, bool animonly = false);
     void DoAnimation(int trans, float dur = -1);
     static hgeParticleSystem * Particles[6];
-    static int HasMusic;
+    static bool HasMusic;
     static string systemError;
     static JMusic* music;
     static string currentMusicFile;

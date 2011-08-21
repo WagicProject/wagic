@@ -42,10 +42,10 @@ Translator::~Translator()
 {
 #if defined DEBUG_TRANSLATE
     if (!checkMisses) return;
-    std::ofstream file(JGE_GET_RES("lang/missing.txt").c_str());
-    char writer[4096];
-    if (file)
+    std::ofstream file;
+    if (JFileSystem::GetInstance()->openForWrite(file, "lang/missing.txt"))
     {
+        char writer[4096];
         map<string,int>::iterator it;
         for (it = missingValues.begin(); it!=missingValues.end(); it++)
         {
@@ -65,16 +65,18 @@ Translator::Translator()
 
 void Translator::load(string filename, map<string, string> * dictionary)
 {
-    wagic::ifstream file(filename.c_str());
 
-    if (file)
+    std::string contents;
+    if (JFileSystem::GetInstance()->readIntoString(filename, contents))
     {
+        std::stringstream stream(contents);
         string s;
+
         initDone = true;
 #if defined DEBUG_TRANSLATE
         checkMisses = 1;
 #endif
-        while (std::getline(file, s))
+        while (std::getline(stream, s))
         {
             if (!s.size()) continue;
             if (s[s.size() - 1] == '\r') s.erase(s.size() - 1); //Handle DOS files
@@ -84,17 +86,16 @@ void Translator::load(string filename, map<string, string> * dictionary)
             string s2 = s.substr(found + 1);
             (*dictionary)[s1] = s2;
         }
-        file.close();
     }
 
 #if defined DEBUG_TRANSLATE
     if (!checkMisses) return;
-    wagic::ifstream file2(JGE_GET_RES("lang/dontcare.txt").c_str());
 
-    if(file2)
+    if (JFileSystem::GetInstance()->readIntoString("lang/dontcare.txt", contents))
     {
+        std::stringstream stream(contents);
         string s;
-        while(std::getline(file2,s))
+        while(std::getline(stream,s))
         {
             if (!s.size()) continue;
             if (s[s.size()-1] == '\r') s.erase(s.size()-1); //Handle DOS files
@@ -103,7 +104,6 @@ void Translator::load(string filename, map<string, string> * dictionary)
             s = s.substr(0,found);
             dontCareValues[s] = 1;
         }
-        file2.close();
     }
 #endif
 }
@@ -112,7 +112,7 @@ void Translator::initCards()
 {
     string lang = options[Options::LANG].str;
     if (!lang.size()) return;
-    string cards_dict = JGE_GET_RES("lang/") + lang + "_cards.txt";
+    string cards_dict = "lang/" + lang + "_cards.txt";
     load(cards_dict, &tempValues);
 }
 
@@ -120,15 +120,16 @@ void Translator::initDecks()
 {
     string lang = options[Options::LANG].str;
     if (!lang.size()) return;
-    string decks_dict = JGE_GET_RES("lang/") + lang + "_decks.txt";
+    string decks_dict = "lang/" + lang + "_decks.txt";
 
     // Load file
-    wagic::ifstream file(decks_dict.c_str());
-    if (file)
+    std::string contents;
+    if (JFileSystem::GetInstance()->readIntoString(decks_dict, contents))
     {
+        std::stringstream stream(contents);
         string s;
         initDone = true;
-        while (std::getline(file, s))
+        while (std::getline(stream, s))
         {
             if (!s.size()) continue;
             if (s[s.size() - 1] == '\r') s.erase(s.size() - 1); //Handle DOS files
@@ -143,7 +144,6 @@ void Translator::initDecks()
             string s2 = s.substr(found + 1);
             deckValues[s1] = s2;
         }
-        file.close();
     }
 }
 
@@ -154,7 +154,7 @@ void Translator::init()
 #endif
     string lang = options[Options::LANG].str;
     if (!lang.size()) return;
-    string name = JGE_GET_RES("lang/") + lang + ".txt";
+    string name = "lang/" + lang + ".txt";
 
     if (fileExists(name.c_str()))
     {

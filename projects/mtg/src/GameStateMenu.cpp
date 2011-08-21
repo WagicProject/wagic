@@ -71,10 +71,8 @@ GameStateMenu::~GameStateMenu()
 
 void GameStateMenu::Create()
 {
-    mDip = NULL;
     mGuiController = NULL;
     mReadConf = 0;
-    mCurrentSetName[0] = 0;
 
     //load all the icon images. Menu icons are managed, so we can do this here.
     int n = 0;
@@ -97,8 +95,10 @@ void GameStateMenu::Create()
     string lang = options[Options::LANG].str;
     if (lang.size())
     {
-        lang = JGE_GET_RES("lang/") + lang + ".txt";
-        if (fileExists(lang.c_str()))
+        string langpath = "lang/";
+        langpath.append(lang);
+        langpath.append(".txt");
+        if (JFileSystem::GetInstance()->FileExists(langpath))
             langChosen = true;
     }
     if (!langChosen)
@@ -110,6 +110,8 @@ void GameStateMenu::Create()
 
     splashTex = NULL;
 
+    JFileSystem::GetInstance()->scanfolder("sets/", setFolders);
+    mCurrentSetFolderIndex = 0;
 }
 
 void GameStateMenu::Destroy()
@@ -265,35 +267,27 @@ void GameStateMenu::fillScroller()
     scrollerSet = 1;
     scroller->setRandom();
 }
-void GameStateMenu::resetDirectory()
+
+int GameStateMenu::nextSetFolder(const string & root, const string & file)
 {
-    if (mDip != NULL)
+    bool found = false;
+    while (!found && (mCurrentSetFolderIndex < setFolders.size()))
     {
-        closedir(mDip);
-        mDip = NULL;
-    }
-}
-int GameStateMenu::nextDirectory(const char * root, const char * file)
-{
-    int found = 0;
-    if (!mDip)
-    {
-        mDip = opendir(root);
+        vector<string> folders;
+        folders.push_back(root);
+        folders.push_back(setFolders[mCurrentSetFolderIndex]);
+        mCurrentSetFileName = buildFilePath(folders, file);
+        
+        if (JFileSystem::GetInstance()->FileExists(mCurrentSetFileName))
+        {
+            mCurrentSetName = setFolders[mCurrentSetFolderIndex];
+            if (mCurrentSetName.length() && (mCurrentSetName[mCurrentSetName.length() - 1] == '/'))
+                mCurrentSetName.resize(mCurrentSetName.length() - 1);
+            found = true;
+        }
+        mCurrentSetFolderIndex++;
     }
 
-    while (!found && (mDit = readdir(mDip)))
-    {
-        sprintf(mCurrentSetFileName, "%s/%s/%s", root, mDit->d_name, file);
-        wagic::ifstream file(mCurrentSetFileName);
-        if (file)
-        {
-            sprintf(mCurrentSetName, "%s", mDit->d_name);
-            file.close();
-            found = 1;
-        }
-    }
-    if (!found)
-        resetDirectory();
     return found;
 }
 
@@ -311,9 +305,8 @@ string GameStateMenu::loadRandomWallpaper()
         return wallpaper;
 
     vector<string> wallpapers;
-    wagic::ifstream file(JGE_GET_RES("graphics/wallpapers.txt").c_str());
-
-    if (!file)
+    izfstream file;
+    if (! JFileSystem::GetInstance()->openForRead(file, "graphics/wallpapers.txt"))
         return wallpaper;
 
     string s;
@@ -325,6 +318,7 @@ string GameStateMenu::loadRandomWallpaper()
             s.erase(s.size() - 1); //Handle DOS files
         wallpapers.push_back(s);
     }
+    file.close();
 
     int rnd = rand() % (wallpapers.size());
     wallpaper = wallpapers[rnd];
@@ -359,66 +353,60 @@ void GameStateMenu::loadLangMenu()
     subMenuController = NEW SimpleMenu(MENU_LANGUAGE_SELECTION, this, Fonts::MENU_FONT, 150, 60);
     if (!subMenuController)
         return;
-    resetDirectory();
-    if (!mDip)
-    {
-        mDip = opendir(JGE_GET_RES("lang").c_str());
-    }
 
-    while ((mDit = readdir(mDip)))
+    vector<string> langFiles = JFileSystem::GetInstance()->scanfolder("lang/");
+    for (size_t i = 0; i < langFiles.size(); ++i)
     {
-        string filename = JGE_GET_RES("lang/");
-        filename += mDit->d_name;
-        wagic::ifstream file(filename.c_str());
+        izfstream file;
+        string filePath = "lang/";
+        filePath.append(langFiles[i]);
+        if (! JFileSystem::GetInstance()->openForRead(file, filePath))
+            continue;
+
         string s;
         string lang;
-        if (file)
+
+        if (std::getline(file, s))
         {
-            if (std::getline(file, s))
-            {
-                lang = getLang(s);
-            }
-            file.close();
+            lang = getLang(s);
         }
+
+        file.close();
+
         if (lang.size())
         {
             langChoices = true;
-            string filen = mDit->d_name;
+            string filen = langFiles[i];
             langs.push_back(filen.substr(0, filen.size() - 4));
             subMenuController->Add(langs.size(), lang.c_str());
         }
     }
-    resetDirectory();
     LOG("GameStateMenu::loadLangMenu - Done");
 }
 
 void GameStateMenu::listPrimitives()
 {
     LOG("GameStateMenu::listPrimitives");
-    resetDirectory();
-    if (!mDip)
-    {
-        mDip = opendir(JGE_GET_RES("sets/primitives/").c_str());
-    }
+    vector<string> primitiveFiles = JFileSystem::GetInstance()->scanfolder("sets/primitives/");
 
-    if (!mDip)
+    if (!primitiveFiles.size())
     {
         DebugTrace("GameStateMenu.cpp:WARNING:Primitives folder is missing");
         primitivesLoadCounter = 0;
         return;
     }
 
-    while ((mDit = readdir(mDip)))
+    for (size_t i = 0; i < primitiveFiles.size(); ++i)
     {
-        string filename = JGE_GET_RES("sets/primitives/");
-        filename += mDit->d_name;
-        wagic::ifstream file(filename.c_str());
-        if (!file)
+        string filename = "sets/primitives/";
+        filename.append(primitiveFiles[i]);
+        izfstream file;
+        if (! JFileSystem::GetInstance()->openForRead(file, filename))
             continue;
+
         file.close();
         primitives.push_back(filename);
     }
-    resetDirectory();
     primitivesLoadCounter = 0;
     LOG("GameStateMenu::listPrimitives - Done");
 }
@@ -513,13 +501,13 @@ void GameStateMenu::Update(float dt)
         primitivesLoadCounter = primitives.size() + 1;
         if (mReadConf)
         {
-            MTGCollection()->load(mCurrentSetFileName, mCurrentSetName);
+            MTGCollection()->load(mCurrentSetFileName.c_str(), mCurrentSetName.c_str());
         }
         else
         {
             mReadConf = 1;
         }
-        if (!nextDirectory(JGE_GET_RES("sets/").c_str(), "_cards.dat"))
+        if (!nextSetFolder("sets/", "_cards.dat"))
         {
             //Remove temporary translations
             Translator::GetInstance()->tempValues.clear();
@@ -537,10 +525,8 @@ void GameStateMenu::Update(float dt)
             splashTex = NULL;
 
             //check for deleted collection / first-timer
-            wagic::ifstream file(options.profileFile(PLAYER_COLLECTION).c_str());
-            if (file)
+            if (JFileSystem::GetInstance()->FileExists(options.profileFile(PLAYER_COLLECTION)))
             {
-                file.close();
                 currentState = MENU_STATE_MAJOR_MAINMENU;
             }
             else
@@ -551,7 +537,6 @@ void GameStateMenu::Update(float dt)
             //Reload list of unlocked sets, now that we know about the sets.
             options.reloadProfile();
             genNbCardsStr();
-            resetDirectory();
             //All major things have been loaded, resize the cache to use it as efficiently as possible
             WResourceManager::Instance()->ResetCacheLimits();
         }
@@ -736,9 +721,9 @@ void GameStateMenu::Render()
         }
 
         char text[512];
-        if (mCurrentSetName[0])
+        if (mCurrentSetName.size())
         {
-            sprintf(text, _("LOADING SET: %s").c_str(), mCurrentSetName);
+            sprintf(text, _("LOADING SET: %s").c_str(), mCurrentSetName.c_str());
         }
         else
         {
@@ -929,8 +914,6 @@ ostream& GameStateMenu::toString(ostream& out) const
                  << " ; currentState : " << currentState
                  << " ; mVolume : " << mVolume
                  << " ; nbcardsStr : " << nbcardsStr
-                 << " ; mDip : " << mDip
-                 << " ; mDit : " << mDit
                  << " ; mCurrentSetName : " << mCurrentSetName
                  << " ; mCurrentSetFileName : " << mCurrentSetFileName
                  << " ; mReadConf : " << mReadConf

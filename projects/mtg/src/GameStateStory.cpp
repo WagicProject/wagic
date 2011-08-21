@@ -22,24 +22,17 @@ void GameStateStory::loadStoriesMenu(const char * root)
 {
     SAFE_DELETE(menu);
     stories.clear();
-    DIR *mDip;
-    struct dirent *mDit;
+    vector<string>subFolders = JFileSystem::GetInstance()->scanfolder(root);
 
-    mDip = opendir(root);
-
-    while ((mDit = readdir(mDip)))
+    for (size_t i = 0; i < subFolders.size(); ++i)
     {
-        char buffer[4096];
-        sprintf(buffer, "%s%s/story.xml", root, mDit->d_name);
-        wagic::ifstream file(buffer);
-        if (file)
+        string filename = root + subFolders[i] + "story.xml";
+        if (FileExists(filename))
         {
-            string fname = mDit->d_name;
-            stories.push_back(fname);
-            file.close();
+            subFolders[i].resize(subFolders[i].length() - 1); //remove trailing slash
+            stories.push_back(subFolders[i]);
         }
     }
-    closedir(mDip);
 
     switch (stories.size())
     {
@@ -63,7 +56,7 @@ void GameStateStory::Start()
 {
     flow = NULL;
     menu = NULL;
-    loadStoriesMenu(JGE_GET_RES("campaigns/").c_str());
+    loadStoriesMenu("campaigns/");
 }
 
 void GameStateStory::Update(float dt)

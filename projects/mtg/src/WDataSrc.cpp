@@ -550,7 +550,7 @@ int WSrcDeck::getCount(int count)
 int WSrcDeck::totalPrice()
 {
     int total = 0;
-    PriceList * pricelist = NEW PriceList(JGE_GET_RES("settings/prices.dat").c_str(), MTGCollection());
+    PriceList * pricelist = NEW PriceList("settings/prices.dat", MTGCollection());
     map<int, int>::iterator it;
     for (it = copies.begin(); it != copies.end(); it++)
     {

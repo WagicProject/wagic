@@ -561,14 +561,14 @@ string ResourceManagerImpl::graphicsFile(const string& filename)
         if (ws)
         {
             sprintf(buf, "themes/%s/%s", theme.c_str(), ws->stylized(filename).c_str());
-            if (fileOK(buf, true)) return buf;
+            if (fileOK(buf)) return buf;
         }
     }
 
     if (theme != "" && theme != "Default")
     {
         sprintf(buf, "themes/%s/%s", theme.c_str(), filename.c_str());
-        if (fileOK(buf, true)) return buf;
+        if (fileOK(buf)) return buf;
     }
     /*
     //FIXME Put back when we're using modes.
@@ -584,15 +584,15 @@ string ResourceManagerImpl::graphicsFile(const string& filename)
     //Failure. Check graphics
     char graphdir[512];
     sprintf(graphdir, "graphics/%s", filename.c_str());
-    if (fileOK(graphdir, true)) return graphdir;
+    if (fileOK(graphdir)) return graphdir;
 
     //Failure. Check sets.
     sprintf(buf, "sets/%s", filename.c_str());
-    if (fileOK(buf, true)) return buf;
+    if (fileOK(buf)) return buf;
 
     //Failure. Check raw faile.
     sprintf(buf, "%s", filename.c_str());
-    if (fileOK(buf, true)) return buf;
+    if (fileOK(buf)) return buf;
 
     //Complete abject failure. Probably a crash...
     return graphdir;
@@ -608,12 +608,12 @@ string ResourceManagerImpl::avatarFile(const string& filename)
     if (profile != "" && profile != "Default")
     {
         sprintf(buf, "profiles/%s/%s", profile.c_str(), filename.c_str());
-        if (fileOK(buf, true)) return buf;
+        if (fileOK(buf)) return buf;
     }
     else
     {
         sprintf(buf, "player/%s", filename.c_str());
-        if (fileOK(buf, true)) return buf;
+        if (fileOK(buf)) return buf;
     }
 
     //Check the theme folder.
@@ -622,7 +622,7 @@ string ResourceManagerImpl::avatarFile(const string& filename)
     if (theme != "" && theme != "Default")
     {
         sprintf(buf, "themes/%s/%s", theme.c_str(), filename.c_str());
-        if (fileOK(buf, true)) return buf;
+        if (fileOK(buf)) return buf;
     }
     /*
     //FIXME Put back when we're using modes.
@@ -638,15 +638,15 @@ string ResourceManagerImpl::avatarFile(const string& filename)
 
     //Failure. Check Baka
     sprintf(buf, "ai/baka/avatars/%s", filename.c_str());
-    if (fileOK(buf, true)) return buf;
+    if (fileOK(buf)) return buf;
 
     //Failure. Check graphics
     sprintf(buf, "graphics/%s", filename.c_str());
-    if (fileOK(buf, true)) return buf;
+    if (fileOK(buf)) return buf;
 
     //Failure. Check raw faile.
     sprintf(buf, "%s", filename.c_str());
-    if (fileOK(buf, true)) return buf;
+    if (fileOK(buf)) return buf;
 
     //Complete abject failure. Probably a crash...
     return "";
@@ -678,12 +678,12 @@ string ResourceManagerImpl::cardFile(const string& filename)
             if (set.size())
             {
                 char zipname[512];
-                sprintf(zipname, JGE_GET_RES("themes/%s/sets/%s/%s.zip").c_str(), theme.c_str(), set.c_str(), set.c_str());
+                sprintf(zipname, "themes/%s/sets/%s/%s.zip", theme.c_str(), set.c_str(), set.c_str());
                 if (fs->AttachZipFile(zipname)) return filename.substr(i + 1);
             }
 
             sprintf(buf, "themes/%s/sets/%s", theme.c_str(), filename.c_str());
-            if (fileOK(buf, true)) return buf; //Themed, unzipped.
+            if (fileOK(buf)) return buf; //Themed, unzipped.
         }
     }
 
@@ -712,14 +712,14 @@ string ResourceManagerImpl::cardFile(const string& filename)
     if (set.size())
     {
         char zipname[512];
-        sprintf(zipname, JGE_GET_RES("sets/%s/%s.zip").c_str(), set.c_str(), set.c_str());
+        sprintf(zipname, "sets/%s/%s.zip", set.c_str(), set.c_str());
         if (fs->AttachZipFile(zipname)) return filename.substr(i + 1);
     }
 
     //Failure. Check for unzipped file in sets
     char defdir[512];
     sprintf(defdir, "sets/%s", filename.c_str());
-    if (fileOK(defdir, true)) return defdir;
+    if (fileOK(defdir)) return defdir;
 
     //Complete failure.
     return "";
@@ -735,7 +735,7 @@ string ResourceManagerImpl::musicFile(const string& filename)
     if (theme != "" && theme != "Default")
     {
         sprintf(buf, "themes/%s/sound/%s", theme.c_str(), filename.c_str());
-        if (fileOK(buf, true)) return buf;
+        if (fileOK(buf)) return buf;
     }
 
     /*
@@ -752,11 +752,11 @@ string ResourceManagerImpl::musicFile(const string& filename)
     //Failure. Check sound
     char defdir[512];
     sprintf(defdir, "sound/%s", filename.c_str());
-    if (fileOK(defdir, true)) return defdir;
+    if (fileOK(defdir)) return defdir;
 
     //Failure. Check raw faile.
     sprintf(defdir, "%s", filename.c_str());
-    if (fileOK(defdir, true)) return defdir;
+    if (fileOK(defdir)) return defdir;
 
     //Complete abject failure. Probably a crash...
     return "";
@@ -772,7 +772,7 @@ string ResourceManagerImpl::sfxFile(const string& filename)
     if (theme != "" && theme != "Default")
     {
         sprintf(buf, "themes/%s/sound/sfx/%s", theme.c_str(), filename.c_str());
-        if (fileOK(buf, true)) return buf;
+        if (fileOK(buf)) return buf;
     }
 
     /*
@@ -788,49 +788,20 @@ string ResourceManagerImpl::sfxFile(const string& filename)
     //Failure. Check sound
     char defdir[512];
     sprintf(defdir, "sound/sfx/%s", filename.c_str());
-    if (fileOK(defdir, true)) return defdir;
+    if (fileOK(defdir)) return defdir;
 
     //Complete abject failure. Probably a crash...
     return "";
 }
 
-int ResourceManagerImpl::dirOK(const string& dirname)
+bool ResourceManagerImpl::dirOK(const string& dirname)
 {
-    char fname[512];
-
-#if defined (WIN32)
-    sprintf(fname,JGE_GET_RES(dirname).c_str());
-
-    struct _stat statBuffer;
-    return (_stat(fname, &statBuffer) >= 0 && // make sure it exists
-        statBuffer.st_mode & S_IFDIR); // and it's not a file
-#else
-    sprintf(fname, "%s", JGE_GET_RES(dirname).c_str());
-    struct stat st;
-    if (stat(fname, &st) == 0) return 1;
-#endif
-    return 0;
+    return JFileSystem::GetInstance()->DirExists(dirname);
 }
 
-int ResourceManagerImpl::fileOK(const string& filename, bool relative)
+bool ResourceManagerImpl::fileOK(const string& filename)
 {
-    wagic::ifstream * fp = NULL;
-    if (relative)
-    {
-        fp = NEW wagic::ifstream(JGE_GET_RES(filename).c_str());
-    }
-    else
-        fp = NEW wagic::ifstream(filename.c_str());
-
-    int result = 0;
-    if (fp)
-    {
-        if (*fp) result = 1;
-        fp->close();
-        delete fp;
-    }
-
-    return result;
+    return JFileSystem::GetInstance()->FileExists(filename);
 }
 
 void ResourceManagerImpl::InitFonts(const std::string& inLang)

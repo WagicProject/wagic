@@ -3,7 +3,9 @@
 //logging facility
 //#define DOLOG
 
-#ifdef DOLOG
+#include <string>
+//The PSP one is to log stuff in JLogger's lastLog, it does not do full log in a text file unless DOLOG is defined
+#if defined(DOLOG) || defined (PSP)
 #define LOG(x) JLogger::Log(x);
 #else
 #define LOG(x) {};
@@ -22,6 +24,8 @@ class JLogger{
   ~JLogger();
 
   const char* mText;
+
+  static std::string lastLog;
 };
 
 #endif

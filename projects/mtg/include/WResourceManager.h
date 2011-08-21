@@ -101,8 +101,8 @@ public:
     virtual string cardFile(const string& filename) = 0;
     virtual string musicFile(const string& filename) = 0;
     virtual string sfxFile(const string& filename) = 0;
-    virtual int fileOK(const string&, bool relative = false) = 0;
-    virtual int dirOK(const string& dirname) = 0;
+    virtual bool fileOK(const string&) = 0;
+    virtual bool dirOK(const string& dirname) = 0;
 
     //For backwards compatibility with JWResourceManager. Avoid using these, they're not optimal.
     virtual int CreateTexture(const string &textureName) = 0;

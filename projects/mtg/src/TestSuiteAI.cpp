@@ -436,8 +436,8 @@ DebugTrace("TESTUITE Init Game Done !");
 }
 int TestSuite::Log(const char * text)
 {
-    ofstream file(JGE_GET_RES("test/results.html").c_str(), ios_base::app);
-    if (file)
+    ofstream file;
+    if (JFileSystem::GetInstance()->openForWrite(file, "test/results.html", ios_base::app))
     {
         file << text;
         file << "\n";
@@ -555,7 +555,7 @@ TestSuite::TestSuite(const char * filename, MTGAllCards* _collection)
 {
     collection = _collection;
     timerLimit = 0;
-    wagic::ifstream file(filename);
+    
     std::string s;
     nbfiles = 0;
     currentfile = 0;
@@ -567,9 +567,12 @@ TestSuite::TestSuite(const char * filename, MTGAllCards* _collection)
     seed = 0;
     forceAbility = false;
     aiMaxCalls = -1;
-    if (file)
+
+    std::string contents;
+    if (JFileSystem::GetInstance()->readIntoString(filename, contents))
     {
-        while (std::getline(file, s))
+        std::stringstream stream(contents);
+        while (std::getline(stream, s))
         {
             if (!s.size()) continue;
             if (s[s.size() - 1] == '\r') s.erase(s.size() - 1); //Handle DOS files
@@ -581,11 +584,10 @@ TestSuite::TestSuite(const char * filename, MTGAllCards* _collection)
             }
             if (s[0] == '*' && s[1] == '/') comment = 0;
         }
-        file.close();
     }
 
-    ofstream file2(JGE_GET_RES("/test/results.html").c_str());
-    if (file2)
+    ofstream file2;
+    if (JFileSystem::GetInstance()->openForWrite(file2, "/test/results.html"))
     {
         file2 << "<html><head>";
 #ifdef WIN32
@@ -662,18 +664,20 @@ int TestSuite::load(const char * _filename)
     forceAbility = false;
     gameType = GAME_TYPE_CLASSIC;
     char filename[4096];
-    sprintf(filename, JGE_GET_RES("/test/%s").c_str(), _filename);
-    wagic::ifstream file(filename);
+    sprintf(filename, "test/%s", _filename);
+    
     std::string s;
     loadRandValues("");
 
     int state = -1;
 
-    //  std::cout << std::endl << std::endl << "!!!" << file << std::endl << std::endl;
-    if (file)
+    std::string contents;
+    if (JFileSystem::GetInstance()->readIntoString(filename, contents))
     {
+        std::stringstream stream(contents);
+
         cleanup();
-        while (std::getline(file, s))
+        while (std::getline(stream, s))
         {
             if (!s.size()) continue;
             if (s[s.size() - 1] == '\r') s.erase(s.size() - 1); //Handle DOS files
@@ -786,7 +790,6 @@ int TestSuite::load(const char * _filename)
                 break;
             }
         }
-        file.close();
     }
     else
     {

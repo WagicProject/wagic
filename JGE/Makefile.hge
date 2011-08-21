@@ -6,7 +6,7 @@ OBJS = src/hge/hgecolor.o src/hge/hgeparticle.o \
        src/hge/hgedistort.o src/hge/hgefont.o
 
 
-INCDIR = include/psp include/psp/freetype2
+INCDIR = include/psp include/psp/freetype2 src/zipFS
 LIBDIR = lib/psp
 
 CFLAGS = -O2 -G0 -Wall

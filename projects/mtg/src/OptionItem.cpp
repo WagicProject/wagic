@@ -108,7 +108,7 @@ void OptionSelect::addSelection(string s)
 //OptionProfile
 const string OptionProfile::DIRTESTER = "collection.dat";
 OptionProfile::OptionProfile(GameApp * _app, JGuiListener * jgl) :
-    OptionDirectory(JGE_GET_RES("profiles"), Options::ACTIVE_PROFILE, "Profile", DIRTESTER)
+    OptionDirectory("profiles/", Options::ACTIVE_PROFILE, "Profile", DIRTESTER)
 {
     app = _app;
     listener = jgl;
@@ -165,16 +165,16 @@ void OptionProfile::populate()
     PlayerData * pdata = NEW PlayerData(MTGCollection());
 
     int unlocked = 0, sets = setlist.size();
-    wagic::ifstream file(options.profileFile(PLAYER_SETTINGS).c_str());
-    std::string s;
-    if (file)
+    std::string contents;
+    if (JFileSystem::GetInstance()->readIntoString(options.profileFile(PLAYER_SETTINGS), contents))
     {
-        while (std::getline(file, s))
+        std::stringstream stream(contents);
+        std::string s;
+        while (std::getline(stream, s))
         {
             if (s.substr(0, 9) == "unlocked_")
                 unlocked++;
         }
-        file.close();
     }
 
     options[Options::ACTIVE_PROFILE] = temp;
@@ -321,47 +321,44 @@ void OptionLanguage::confirmChange(bool confirmed)
 
 void OptionLanguage::Reload()
 {
-    struct dirent *mDit;
-    DIR *mDip;
 
-    mDip = opendir(JGE_GET_RES("lang").c_str());
-
-    while ((mDit = readdir(mDip)))
+    vector<string> langFiles = JFileSystem::GetInstance()->scanfolder("lang/");
+    for (size_t i = 0; i < langFiles.size(); ++i)
     {
-        string filename = JGE_GET_RES("lang/");
-        filename += mDit->d_name;
-        wagic::ifstream file(filename.c_str());
+        izfstream file;
+        string filePath = "lang/";
+        filePath.append(langFiles[i]);
+        if (! JFileSystem::GetInstance()->openForRead(file, filePath))
+            continue;
+
         string s;
         string lang;
-        if (file)
+
+        if (std::getline(file, s))
         {
-            if (std::getline(file, s))
+            if (!s.size())
             {
-                if (!s.size())
-                {
-                    lang = "";
-                }
-                else
-                {
-                    if (s[s.size() - 1] == '\r')
-                        s.erase(s.size() - 1); //Handle DOS files
-                    size_t found = s.find("#LANG:");
-                    if (found != 0)
-                        lang = "";
-                    else
-                        lang = s.substr(6);
-                }
+                lang = "";
             }
-            file.close();
+            else
+            {
+                if (s[s.size() - 1] == '\r')
+                    s.erase(s.size() - 1); //Handle DOS files
+                size_t found = s.find("#LANG:");
+                if (found != 0)
+                    lang = "";
+                else
+                    lang = s.substr(6);
+            }
         }
+        file.close();
 
         if (lang.size())
         {
-            string filen = mDit->d_name;
+            string filen = langFiles[i];
             addSelection(filen.substr(0, filen.size() - 4), lang);
         }
     }
-    closedir(mDip);
     initSelections();
 }
 
@@ -398,59 +395,39 @@ bool OptionLanguage::Selectable()
 //OptionDirectory
 void OptionDirectory::Reload()
 {
-    DIR *mDip;
-    struct dirent *mDit;
-    char buf[PATH_MAX];
-    mDip = opendir(root.c_str());
-
-    if (!mDip)
-        return;
-
-    while ((mDit = readdir(mDip)))
+    vector<string> subfolders = JFileSystem::GetInstance()->scanfolder(root);
+    for (size_t i = 0; i < subfolders.size(); ++i)
     {
-        sprintf(buf, "%s/%s/%s", root.c_str(), mDit->d_name, type.c_str());
-        wagic::ifstream file(buf);
-        if (!file)
+        string filename = root + "/" + subfolders[i] + "/" + type;
+        if (!JFileSystem::GetInstance()->FileExists(filename))
             continue;
-        file.close();
-        if (find(selections.begin(), selections.end(), mDit->d_name) == selections.end())
-            addSelection(mDit->d_name);
+        if (find(selections.begin(), selections.end(), subfolders[i]) == selections.end())
+            addSelection(subfolders[i]);
     }
-
-    closedir(mDip);
-    mDip = NULL;
     initSelections();
 }
 
 OptionDirectory::OptionDirectory(string root, int id, string displayValue, string type) :
     OptionSelect(id, displayValue), root(root), type(type)
 {
-    DIR *mDip;
-    struct dirent *mDit;
-    char buf[PATH_MAX];
-
-    mDip = opendir(root.c_str());
-    if (!mDip)
-        return;
-
-    while ((mDit = readdir(mDip)))
+    vector<string> subfolders = JFileSystem::GetInstance()->scanfolder(root);
+    
+    for (size_t i = 0; i < subfolders.size(); ++i)
     {
-        sprintf(buf, "%s/%s/%s", root.c_str(), mDit->d_name, type.c_str());
-        wagic::ifstream file(buf);
-        if (!file)
-            continue;
-        file.close();
-        addSelection(mDit->d_name);
+        string subfolder = subfolders[i].substr(0, subfolders[i].length() - 1); //remove trailing "/"
+        vector<string> path;
+        path.push_back(root);
+        path.push_back(subfolder);
+        string filePath = buildFilePath(path, type);
+        if (JFileSystem::GetInstance()->FileExists(filePath))
+            addSelection(subfolder);
     }
-
-    closedir(mDip);
-    mDip = NULL;
     initSelections();
 }
 
 const string OptionTheme::DIRTESTER = "preview.png";
 OptionTheme::OptionTheme(OptionThemeStyle * style) :
-    OptionDirectory(JGE_GET_RES("themes"), Options::ACTIVE_THEME, "Current Theme", DIRTESTER)
+    OptionDirectory("themes", Options::ACTIVE_THEME, "Current Theme", DIRTESTER)
 {
     addSelection("Default");
     sort(selections.begin(), selections.end());
@@ -492,20 +469,20 @@ void OptionTheme::Render()
         author = "";
         bChecked = true;
         if (selections[value] == "Default")
-            sprintf(buf, "%s", JGE_GET_RES("graphics/themeinfo.txt").c_str());
+            sprintf(buf, "%s", "graphics/themeinfo.txt");
         else
-            sprintf(buf, "%s%s", JGE_GET_RES("themes/%s/themeinfo.txt").c_str(), selections[value].c_str());
-        wagic::ifstream file(buf);
-        if (file)
+            sprintf(buf, "themes/%s/themeinfo.txt", selections[value].c_str());
+        string contents;
+        if (JFileSystem::GetInstance()->readIntoString(buf, contents))
         {
+            std::stringstream stream(contents);
             string temp;
-            std::getline(file, temp);
+            std::getline(stream, temp);
             for (unsigned int x = 0; x < 17 && x < temp.size(); x++)
             {
                 if (isprint(temp[x])) //Clear stuff that breaks mFont->DrawString, cuts to 16 chars.
                     author += temp[x];
             }
-            file.close();
         }
     }
     sprintf(buf, _("Theme: %s").c_str(), selections[value].c_str());
