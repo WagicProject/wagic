@@ -385,7 +385,11 @@ std::vector<std::string>& JFileSystem::scanfolder(const std::string& _folderName
     if (folderName[folderName.length() - 1] != '/')
         folderName.append("/");
 
-    //user filesystem
+    //we scan zips first, then normal folders.
+    // This is to avoid duplicate folders coming from the real folder 
+    // (a folder "foo" in the zip comes out as "foo/", while on the real FS it comes out as "foo")
+
+    //user zips
     {    
         //Scan the zip filesystem
         std::vector<std::string> userZips;
@@ -393,18 +397,9 @@ std::vector<std::string>& JFileSystem::scanfolder(const std::string& _folderName
 
         for (size_t i = 0; i < userZips.size(); ++i)
             seen[userZips[i]] = true;
-
-        //scan the real files
-        //TODO check for "/" 
-        std::vector<std::string> userReal;
-        string realFolderName = mUserFSPath;
-        realFolderName.append(folderName);
-        scanRealFolder(realFolderName, userReal);
-
-        for (size_t i = 0; i < userReal.size(); ++i)
-        seen[userReal[i]] = true;
     }
 
+    //system zips
     if (mSystemFS)
     {
         //Scan the zip filesystem
@@ -414,8 +409,28 @@ std::vector<std::string>& JFileSystem::scanfolder(const std::string& _folderName
         for (size_t i = 0; i < systemZips.size(); ++i)
             seen[systemZips[i]] = true;
 
+    }
+
+    //user real files
+    {
         //scan the real files
-        //TODO check for "/"   
+        std::vector<std::string> userReal;
+        string realFolderName = mUserFSPath;
+        realFolderName.append(folderName);
+        scanRealFolder(realFolderName, userReal);
+
+        for (size_t i = 0; i < userReal.size(); ++i)
+        {
+            string asFolder = userReal[i] + "/";
+            if (seen.find(asFolder) == seen.end())
+                seen[userReal[i]] = true;
+        }
+    }
+
+    //system real files
+    if (mSystemFS)
+    {
+        //scan the real files 
         std::vector<std::string> systemReal;
         string realFolderName = mSystemFSPath;
         realFolderName.append(folderName);
@@ -423,9 +438,12 @@ std::vector<std::string>& JFileSystem::scanfolder(const std::string& _folderName
 
     
         for (size_t i = 0; i < systemReal.size(); ++i)
-            seen[systemReal[i]] = true;
+        {
+            string asFolder = systemReal[i] + "/";
+            if (seen.find(asFolder) == seen.end())
+                seen[systemReal[i]] = true;
+        }
     }
-
 
     for(map<string,bool>::iterator it = seen.begin(); it != seen.end(); ++it) 
     {

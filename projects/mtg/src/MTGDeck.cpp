@@ -329,8 +329,8 @@ int MTGAllCards::load(const char * config_file, const char * set_name, int autol
         if (!std::getline(stream, s)) return total_cards;
         lineNumber++;
         if (!s.size()) continue;
-
         if (s[s.size() - 1] == '\r') s.erase(s.size() - 1); // Handle DOS files
+        if (!s.size()) continue;
         switch (conf_read_mode)
         {
         case MTGAllCards::READ_ANYTHING:
