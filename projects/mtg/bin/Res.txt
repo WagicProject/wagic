@@ -1,7 +1,1 @@
-./Res/
-ms0:/PSP/wagic_res/
-ms0:/wagic_res/
-../../wagic_res/
-../../../wagic_res/
-../wagic_res/
-wagic_res/
+

@@ -112,6 +112,9 @@ JFileSystem::JFileSystem(const string & _userPath, const string & _systemPath)
         bool found = false;
         while (!found && std::getline(mfile, resPath))
         {
+            if (!resPath.size())
+                continue;
+
             if (resPath[resPath.size() - 1] == '\r')
                 resPath.erase(resPath.size() - 1); //Handle DOS files
             string testfile = resPath;

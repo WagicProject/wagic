@@ -348,7 +348,7 @@ void JGE::Init()
     sceCtrlSetSamplingMode(PSP_CTRL_MODE_ANALOG);
 
     JRenderer::GetInstance();
-    JFileSystem::GetInstance();
+    //JFileSystem::GetInstance(); Lazy loading
     //JSoundSystem::GetInstance(); let's do lazy loading
 
     mDone = false;
@@ -442,7 +442,7 @@ void JGE::Init()
     mPaused = false;
     mCriticalAssert = false;
     JRenderer::GetInstance();
-    JFileSystem::GetInstance();
+    //JFileSystem::GetInstance(); Lazy loading
     JSoundSystem::GetInstance();
     LeftClickedProcessed();
 }

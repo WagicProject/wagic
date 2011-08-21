@@ -681,6 +681,7 @@ int TestSuite::load(const char * _filename)
         {
             if (!s.size()) continue;
             if (s[s.size() - 1] == '\r') s.erase(s.size() - 1); //Handle DOS files
+            if (!s.size()) continue;
             if (s[0] == '#') continue;
             std::transform(s.begin(), s.end(), s.begin(), ::tolower);
             if (s.compare("summoningsickness") == 0)
