@@ -12,6 +12,14 @@
 
 
 APPNAME := wagic
+configure: configure-stamp
+configure-stamp:
+	dh_testdir
+	qmake PREFIX=/usr
+# Uncomment this line for use without Qt Creator
+
+	touch configure-stamp
+
 builddir:
 	mkdir -p builddir
 
@@ -22,7 +30,7 @@ builddir/Makefile: builddir
 
 build: build-stamp
 
-build-stamp: builddir/Makefile  
+build-stamp: builddir/Makefile configure-stamp
 	dh_testdir
 
 	# Add here commands to compile the package.
@@ -34,7 +42,7 @@ build-stamp: builddir/Makefile
 clean: 
 	dh_testdir
 	dh_testroot
-	rm -f build-stamp
+	rm -f build-stamp configure-stamp
 
 	# Add here commands to clean up after the build process.
 	# $(MAKE) clean

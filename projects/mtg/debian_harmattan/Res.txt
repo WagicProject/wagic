@@ -1,2 +1,0 @@
-/home/user/MyDocs/wagic/Res/
-/opt/wagic/bin/Res/

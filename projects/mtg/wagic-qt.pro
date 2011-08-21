@@ -5,6 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui opengl phonon
+
 #CONFIG += warn_off precompile_header // causes some massives errors on mac.
 VERSION = 0.16.0
 TARGET = wagic
@@ -19,14 +20,6 @@ DEFINES += QT_CONFIG
 DEFINES += USE_PHONON
 maemo5 {
 QT += dbus
-}
-
-exists($$QMAKE_INCDIR_QT"/../qmsystem2/qmkeys.h"):!contains(MEEGO_EDITION,harmattan): {
-  MEEGO_VERSION_MAJOR     = 1
-  MEEGO_VERSION_MINOR     = 2
-  MEEGO_VERSION_PATCH     = 0
-  MEEGO_EDITION           = harmattan
-  DEFINES += MEEGO_EDITION_HARMATTAN
 }
 
 windows:INCLUDEPATH += ../../JGE/Dependencies/include
@@ -372,18 +365,40 @@ maemo5: {
 }
 
 # Meego/maemo 6 packaging (no launcher)
-unix:!symbian:!maemo5 {
+#unix:!symbian:!maemo5 {
+exists($$QMAKE_INCDIR_QT"/../qmsystem2/qmkeys.h"):!contains(MEEGO_EDITION,harmattan): {
+    MEEGO_VERSION_MAJOR     = 1
+    MEEGO_VERSION_MINOR     = 2
+    MEEGO_VERSION_PATCH     = 0
+    MEEGO_EDITION           = harmattan
+    DEFINES += MEEGO_EDITION_HARMATTAN
+
     # Variables
     BINDIR = /opt/wagic/bin
-    RESDIR = /opt/wagic/bin/Res
+    RESDIR = /opt/wagic/Res
+    USERDIR = /home/user/MyDocs/.Wagic
     ICONDIR = /usr/share
+
     DEFINES += RESDIR=\\\"$$RESDIR\\\"
+    DEFINES += USERDIR=\\\"$$USERDIR\\\"
 
     INSTALLS += target \
         desktop \
         icon \
         restxt \
-        res \
+        policy \
+        res_ai \
+        res_campaigns \
+        res_graphics \
+        res_lang \
+        res_packs \
+        res_player \
+        res_profiles \
+        res_rules \
+        res_sets \
+        res_settings \
+        res_sound \
+        res_themes \
 
     target.path = $$BINDIR
 
@@ -393,9 +408,48 @@ unix:!symbian:!maemo5 {
     icon.files = wagic-80x80.png
     icon.path = /usr/share/icons/hicolor/64x64/apps
 
-    res.path = $$RESDIR
-    res.files += bin/Res/*
+    policy.files = debian_harmattan/wagic.conf
+    policy.path = /usr/share/policy/etc/syspart.conf.d
 
-    restxt.path = $$BINDIR
-    restxt.files += debian/Res.txt
+    res_ai.path = $$RESDIR/ai
+    res_ai.files += bin/Res/ai/*
+
+    res_campaigns.path = $$RESDIR/campaigns
+    res_campaigns.files += bin/Res/campaigns/*
+
+    res_graphics.path = $$RESDIR/graphics
+    res_graphics.files += bin/Res/graphics/*
+
+    res_lang.path = $$RESDIR/lang
+    res_lang.files += bin/Res/lang/*
+
+    res_packs.path = $$RESDIR/packs
+    res_packs.files += bin/Res/packs/*
+
+    res_player.path = $$RESDIR/player
+    res_player.files += bin/Res/player/*
+
+    res_profiles.path = $$RESDIR/profiles
+    res_profiles.files += bin/Res/profiles/*
+
+    res_rules.path = $$RESDIR/rules
+    res_rules.files += bin/Res/rules/*
+
+    res_sets.sets = $$RESDIR/sets
+    res_sets.sets += bin/Res/sets/*
+
+    res_settings.sets = $$RESDIR/settings
+    res_settings.sets += bin/Res/settings/*
+
+    res_sound.sets = $$RESDIR/sound
+    res_sound.sets += bin/Res/sound/*
+
+    res_themes.sets = $$RESDIR/themes
+    res_themes.sets += bin/Res/themes/*
+} else:unix {
+  RESDIR = Res
+  USERDIR = ~/.Wagic
+  DEFINES += RESDIR=\\\"$$RESDIR\\\"
+  DEFINES += USERDIR=\\\"$$USERDIR\\\"
 }
+
