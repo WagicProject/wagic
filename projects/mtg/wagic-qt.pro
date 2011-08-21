@@ -385,7 +385,6 @@ exists($$QMAKE_INCDIR_QT"/../qmsystem2/qmkeys.h"):!contains(MEEGO_EDITION,harmat
     INSTALLS += target \
         desktop \
         icon \
-        restxt \
         policy \
         res_ai \
         res_campaigns \
@@ -393,7 +392,6 @@ exists($$QMAKE_INCDIR_QT"/../qmsystem2/qmkeys.h"):!contains(MEEGO_EDITION,harmat
         res_lang \
         res_packs \
         res_player \
-        res_profiles \
         res_rules \
         res_sets \
         res_settings \
@@ -429,23 +427,20 @@ exists($$QMAKE_INCDIR_QT"/../qmsystem2/qmkeys.h"):!contains(MEEGO_EDITION,harmat
     res_player.path = $$RESDIR/player
     res_player.files += bin/Res/player/*
 
-    res_profiles.path = $$RESDIR/profiles
-    res_profiles.files += bin/Res/profiles/*
-
     res_rules.path = $$RESDIR/rules
     res_rules.files += bin/Res/rules/*
 
-    res_sets.sets = $$RESDIR/sets
-    res_sets.sets += bin/Res/sets/*
+    res_sets.path = $$RESDIR/sets
+    res_sets.files += bin/Res/sets/*
 
-    res_settings.sets = $$RESDIR/settings
-    res_settings.sets += bin/Res/settings/*
+    res_settings.path = $$RESDIR/settings
+    res_settings.files += bin/Res/settings/*
 
-    res_sound.sets = $$RESDIR/sound
-    res_sound.sets += bin/Res/sound/*
+    res_sound.path = $$RESDIR/sound
+    res_sound.files += bin/Res/sound/*
 
-    res_themes.sets = $$RESDIR/themes
-    res_themes.sets += bin/Res/themes/*
+    res_themes.path = $$RESDIR/themes
+    res_themes.files += bin/Res/themes/*
 } else:unix {
   RESDIR = Res
   USERDIR = ~/.Wagic
