@@ -384,6 +384,10 @@ bool filesystem::PreloadZip(const char * Filename, map<string, file_info>& targe
 		    const unsigned short i = FileHdr.m_FilenameSize - 1;
 		    if (FileHdr.m_FilenameSize != 0) {
 
+                // The zip in zip method only supports stored Zips because of JFileSystem limitations
+                if ((FileHdr.m_UncompSize != FileHdr.m_CompSize) || FileHdr.m_CompMethod != STORED)
+                    continue;
+
 			    target[Name] = file_info(
 				    1,									// Package ID
 				    FileHdr.m_RelOffset,					// "Local File" header offset position
