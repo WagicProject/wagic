@@ -10,8 +10,7 @@ XSBC-Bugtracker: http://code.google.com/p/wagic/issues/list
 Package: wagic
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: <insert up to 60 chars description>
- Wagic is an heroic fantasy collectible trading card game
+Description: Wagic is an heroic fantasy collectible trading card game
  In Wagic, you play as a wizard against the CPU with your army of minions. You start the game with a small collection of cards (symbolizing creatures and spells), and as you win battles against the AI, you earn credits that allow you to buy more cards and build more powerful decks.
  As you play, you unlock cards and new game modes, so Wagic is much more than a simple card simulation. Wagic features several thousands of cards in the official release,but if that’s not enough for you, it is highly customizable and allows to create your own cards and mods.
 XSBC-Maemo-Display-Name: wagic
