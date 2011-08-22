@@ -368,3 +368,15 @@ std::string buildFilePath(const vector<string> & folders, const string & filenam
     return result;
 
 }
+std::string ensureFolder(const std::string & folderName)
+{
+    if (!folderName.size())
+        return "";
+
+    string result = folderName;
+    if (result[result.length()-1] != '/')
+    {
+        result.append("/");
+    }
+    return result;
+}

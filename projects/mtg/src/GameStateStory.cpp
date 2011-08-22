@@ -26,11 +26,12 @@ void GameStateStory::loadStoriesMenu(const char * root)
 
     for (size_t i = 0; i < subFolders.size(); ++i)
     {
-        string filename = root + subFolders[i] + "story.xml";
+        string subfolder = ensureFolder(subFolders[i]);
+        string filename = root + subfolder + "story.xml";
         if (FileExists(filename))
         {
-            subFolders[i].resize(subFolders[i].length() - 1); //remove trailing slash
-            stories.push_back(subFolders[i]);
+            subfolder.resize(subfolder.length() - 1); //remove trailing slash
+            stories.push_back(subfolder);
         }
     }
 
