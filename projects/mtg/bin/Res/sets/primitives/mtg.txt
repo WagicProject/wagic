@@ -32376,8 +32376,10 @@ type=Enchantment
 [/card]
 [card]
 name=Hystrodon
+facedown={3}
+autofacedown={1}{G}{G}:morph
 abilities=trample
-auto=@combatdamaged(player):may draw:1 controller
+auto=@combatdamaged(player) from(this):may draw:1 controller
 text=Trample -- Whenever Hystrodon deals combat damage to a player, you may draw a card. -- Morph {1}{G}{G} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
 mana={4}{G}
 type=Creature
