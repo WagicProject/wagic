@@ -9,7 +9,6 @@ inplay:Runeclaw Bear,Glory Seeker
 [DO]
 Twinstrike
 Runeclaw Bear
-choice 0
 Glory Seeker
 [ASSERT]
 FIRSTMAIN

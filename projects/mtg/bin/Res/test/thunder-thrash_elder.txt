@@ -10,9 +10,8 @@ manapool:{2}{R}
 Thunder-Thrash Elder
 choice 0
 ornithopter
-choice 0
 elvish berserker
-choice 1
+Thunder-Thrash Elder
 next
 #begin
 next
