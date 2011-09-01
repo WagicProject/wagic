@@ -254,7 +254,7 @@ AAPhaseOut::AAPhaseOut(int _id, MTGCardInstance * _source, MTGCardInstance * _ta
 }
 
 int AAPhaseOut::resolve()
-{GameObserver * g = g->GetInstance();
+{GameObserver * g = GameObserver::GetInstance();
     MTGCardInstance * _target = (MTGCardInstance *) target;
     if (_target)
     {
@@ -299,9 +299,12 @@ AACounter::AACounter(int id, MTGCardInstance * source, MTGCardInstance * target,
         {
             MTGCardInstance * _target = (MTGCardInstance *) target;
             AbilityFactory af;
+            if(counterstring.size())
+            {
             Counter * checkcounter = af.parseCounter(counterstring, source, NULL);
             nb = checkcounter->nb;
             delete checkcounter;
+            }
             if (nb > 0)
             {
                 for (int i = 0; i < nb; i++)
@@ -317,7 +320,9 @@ AACounter::AACounter(int id, MTGCardInstance * source, MTGCardInstance * target,
                         currentAmount = targetCounter->nb;
                     }
                     if(!maxNb || (maxNb && currentAmount < maxNb))
+                    {
                         _target->counters->addCounter(name.c_str(), power, toughness);
+                    }
                 }
             }
         else
@@ -373,7 +378,45 @@ AACounter * AACounter::clone() const
     return NEW AACounter(*this);
 }
 
-//Counters
+//sheild a card from a certain type of counter.
+ACounterShroud::ACounterShroud(int id, MTGCardInstance * source, MTGCardInstance * target, Counter * counter) :
+MTGAbility(id, source),counter(counter),re(NULL)
+{
+}
+
+int ACounterShroud::addToGame()
+{
+    SAFE_DELETE(re);
+    re = NEW RECountersPrevention(this,source,(MTGCardInstance*)target,counter);
+    if (re)
+    {
+        game->replacementEffects->add(re);
+        return MTGAbility::addToGame();
+    }
+    return 0;
+}
+
+int ACounterShroud::destroy()
+{
+    game->replacementEffects->remove(re);
+    SAFE_DELETE(re);
+    return 1;
+}
+
+ACounterShroud * ACounterShroud::clone() const
+{
+    ACounterShroud * a = NEW ACounterShroud(*this);
+    a->re = NULL;
+    return a;
+}
+
+ACounterShroud::~ACounterShroud()
+{
+    SAFE_DELETE(re);
+    SAFE_DELETE(counter);
+}
+
+//removeall counters of a certain type or all.
 AARemoveAllCounter::AARemoveAllCounter(int id, MTGCardInstance * source, MTGCardInstance * target, const char * _name, int power, int toughness,
         int nb,bool all, ManaCost * cost) :
     ActivatedAbility(id, source, cost, 0), nb(nb), power(power), toughness(toughness), name(_name),all(all)
@@ -452,6 +495,62 @@ AARemoveAllCounter * AARemoveAllCounter::clone() const
 {
     return NEW AARemoveAllCounter(*this);
 }
+
+//proliferate a target
+AAProliferate::AAProliferate(int id, MTGCardInstance * source, Targetable * target,ManaCost * cost) :
+ActivatedAbility(id, source, cost, 0)
+{
+}
+ 
+int AAProliferate::resolve()
+{
+    if (target)
+    {
+        vector<MTGAbility*>pcounters = vector<MTGAbility*>();
+        if(target->typeAsTarget() == TARGET_PLAYER && ((Player*)target)->poisonCount && target != source->controller())
+        {
+            MTGAbility * a = NEW AAAlterPoison(game->mLayers->actionLayer()->getMaxId(), source,(Player*)target,1,NULL);
+            a->target = (Player*)target;
+            a->oneShot = true;
+            pcounters.push_back(a);
+        }
+        else if (target->typeAsTarget() == TARGET_CARD && ((MTGCardInstance*)target)->counters)
+        {
+            Counter * targetCounter = NULL;
+            for(unsigned int i = 0; i < ((MTGCardInstance*)target)->counters->counters.size();i++)
+            {
+                MTGAbility * a = NEW AACounter(game->mLayers->actionLayer()->getMaxId(), source, (MTGCardInstance*)target,"", ((MTGCardInstance*)target)->counters->counters[i]->name.c_str(), ((MTGCardInstance*)target)->counters->counters[i]->power, ((MTGCardInstance*)target)->counters->counters[i]->toughness, 1,0);
+                a->target = (MTGCardInstance*)target;
+                a->oneShot = true;
+                pcounters.push_back(a);
+            }
+        }
+        if(pcounters.size())
+        {
+            MTGAbility * a = NEW MenuAbility(/*int(game->mLayers->actionLayer()->getMaxId())*/this->GetId(),(MTGCardInstance*)target, source,false,pcounters);
+            a->target = (MTGCardInstance*)target;
+            a->resolve();
+        }
+        return 1;
+    }
+    return 0;
+}
+
+const char* AAProliferate::getMenuText()
+{
+    return "Proliferate";
+}
+
+AAProliferate * AAProliferate::clone() const
+{
+    return NEW AAProliferate(*this);
+}
+
+AAProliferate::~AAProliferate()
+{
+}
+
+//
 
 //Reset Damage on creatures
  AAResetDamage::AAResetDamage(int id, MTGCardInstance * source, MTGCardInstance * _target, ManaCost * cost):
@@ -750,7 +849,7 @@ int AANewTarget::resolve()
         if(_target->hasSubtype(Subtypes::TYPE_EQUIPMENT))
         {
             reUp->resolve();
-            GameObserver * g = g->GetInstance();
+            GameObserver * g = GameObserver::GetInstance();
             for (size_t i = 1; i < g->mLayers->actionLayer()->mObjects.size(); i++)
             {
                 MTGAbility * a = ((MTGAbility *) g->mLayers->actionLayer()->mObjects[i]);
@@ -814,7 +913,7 @@ int AAMorph::resolve()
             if( a && dynamic_cast<AAMorph *> (a))
             {
                 a->removeFromGame();
-                GameObserver * g = g->GetInstance();
+                GameObserver * g = GameObserver::GetInstance();
                 g->removeObserver(a);
             }
             if (a)
@@ -843,7 +942,7 @@ int AAMorph::testDestroy()
     {
         if(_target->turningOver && !_target->isMorphed && !_target->morphed)
         {
-            GameObserver * g = g->GetInstance();
+            GameObserver * g = GameObserver::GetInstance();
             g->removeObserver(this);
             return 1;
         }
@@ -2012,8 +2111,8 @@ AAWinGame * AAWinGame::clone() const
 
 
 //IfThenEffect
-IfThenAbility::IfThenAbility(int _id, string delayAbility, MTGCardInstance * _source, int type,string Cond) :
-MTGAbility(_id, _source),delayAbility(delayAbility), type(type),Cond(Cond)
+IfThenAbility::IfThenAbility(int _id, MTGAbility * delayedAbility, MTGCardInstance * _source, int type,string Cond) :
+MTGAbility(_id, _source),delayedAbility(delayedAbility), type(type),Cond(Cond)
 {
 }
 
@@ -2022,11 +2121,30 @@ int IfThenAbility::resolve()
     MTGCardInstance * card = (MTGCardInstance*)source;
     AbilityFactory af;
     int checkCond = af.parseCastRestrictions(card,card->controller(),Cond);
+    if(Cond.find("cantargetcard(") != string::npos)
+    {
+        TargetChooser * condTc = NULL;
+        vector<string>splitTarget = parseBetween(Cond, "card(", ")");
+        if (splitTarget.size())
+        {
+            TargetChooserFactory tcf;
+            condTc = tcf.createTargetChooser(splitTarget[1], source);
+            condTc->targetter = NULL;
+            if(source->target)
+                checkCond = condTc->canTarget(source->target);
+            SAFE_DELETE(condTc);
+        }
+
+    }
     if((checkCond && type == 1)||(!checkCond && type == 2))
     {
-        MTGAbility * a1 = af.parseMagicLine(delayAbility, this->GetId(), NULL, card);
+        MTGAbility * a1 = delayedAbility->clone();
         if (!a1)
             return 0;
+        if(target)
+            a1->target = target;
+        if(!a1->target)
+        a1->target = source->target;
         if(a1->oneShot)
         {
             a1->resolve();
@@ -2046,7 +2164,14 @@ const char * IfThenAbility::getMenuText()
 
 IfThenAbility * IfThenAbility::clone() const
 {
-    return NEW IfThenAbility(*this);
+    IfThenAbility * a = NEW IfThenAbility(*this);
+    a->delayedAbility = delayedAbility->clone();
+    return a;
+}
+
+IfThenAbility::~IfThenAbility()
+{
+    SAFE_DELETE(delayedAbility);
 }
 //
 
@@ -2060,13 +2185,14 @@ MayAbility::MayAbility(int _id, MTGAbility * _ability, MTGCardInstance * _source
 
 void MayAbility::Update(float dt)
 {
+    GameObserver * gameObs = GameObserver::GetInstance();
     MTGAbility::Update(dt);
-    if (!triggered)
+    if (!triggered && !gameObs->getCurrentTargetChooser())
     {
         triggered = 1;
         if (TargetAbility * ta = dynamic_cast<TargetAbility *>(ability))
         {
-            if (!ta->tc->validTargetsExist())
+            if (!ta->getActionTc()->validTargetsExist())
                 return;
         }
         game->mLayers->actionLayer()->setMenuObject(source, must);
@@ -2122,6 +2248,130 @@ MayAbility::~MayAbility()
     SAFE_DELETE(ability);
 }
 
+//Menu building ability Abilities
+//this will eventaully handle choosen discards/sacrifices.
+MenuAbility::MenuAbility(int _id, Targetable * mtarget, MTGCardInstance * _source, bool must,vector<MTGAbility*>abilities,Player * who) :
+MayAbility(_id,NULL,_source,must), must(must),abilities(abilities),who(who)
+{
+    triggered = 0;
+    mClone = NULL;
+    this->target = mtarget;
+    removeMenu = false;
+}
+
+void MenuAbility::Update(float dt)
+{
+    MTGAbility::Update(dt);
+    ActionLayer * object = game->mLayers->actionLayer();
+    if (!triggered && !object->menuObject)
+    {
+
+        triggered = 1;
+        if (TargetAbility * ta = dynamic_cast<TargetAbility *>(ability))
+        {
+            if (!ta->getActionTc()->validTargetsExist())
+                return;
+        }
+    }
+    if(object->currentActionCard && this->target != object->currentActionCard)
+    {
+        triggered = 0;
+    }
+    if(triggered)
+    {
+        game->mLayers->actionLayer()->setCustomMenuObject(source, must,abilities);
+        previousInterrupter = game->isInterrupting;
+        game->mLayers->stackLayer()->setIsInterrupting(source->controller());
+    }
+}
+
+int MenuAbility::resolve()
+{
+    this->triggered = 1;
+    MTGAbility * a = this;
+    a->target = this->target;
+    return a->addToGame();
+}
+
+const char * MenuAbility::getMenuText()
+{
+    if(abilities.size())
+        return "choose one";
+    return ability->getMenuText();
+}
+
+int MenuAbility::testDestroy()
+{
+    if (!removeMenu)
+        return 0;
+    if (game->mLayers->actionLayer()->menuObject)
+        return 0;
+    if (game->mLayers->actionLayer()->getIndexOf(mClone) != -1)
+        return 0;
+    return 1;
+}
+
+int MenuAbility::isReactingToTargetClick(Targetable * card){return MayAbility::isReactingToTargetClick(card);}
+int MenuAbility::reactToTargetClick(Targetable * object){return 1;}
+
+int MenuAbility::reactToChoiceClick(Targetable * object,int choice,int control)
+{
+    ActionElement * currentAction = (ActionElement *) game->mLayers->actionLayer()->mObjects[control];
+    if(currentAction != (ActionElement*)this)
+        return 0;
+    if(!abilities.size()||!triggered)
+        return 0;
+    for(int i = 0;i < int(abilities.size());i++)
+    {
+        if(choice == i)
+            mClone = abilities[choice]->clone();
+        else
+            abilities[i]->clone();//all get cloned for clean up purposes.
+    }
+    if(!mClone)
+        return 0;
+    mClone->target = abilities[choice]->target;
+    mClone->oneShot = true;
+    mClone->forceDestroy = 1;
+        mClone->resolve();
+    SAFE_DELETE(mClone);
+    if (source->controller() == game->isInterrupting)
+        game->mLayers->stackLayer()->cancelInterruptOffer();
+    this->forceDestroy = 1;
+    removeMenu = true;
+    return reactToTargetClick(object);
+}
+
+MenuAbility * MenuAbility::clone() const
+{
+    MenuAbility * a = NEW MenuAbility(*this);
+    a->canBeInterrupted = false;
+    if(abilities.size())
+    {
+        for(int i = 0;i < int(abilities.size());i++)
+        {
+            a->abilities.push_back(abilities[i]->clone());
+            a->abilities[i]->target = abilities[i]->target;
+        }
+    }
+    else
+    a->ability = ability->clone();
+    return a;
+}
+
+MenuAbility::~MenuAbility()
+{
+    if(abilities.size())
+    {
+        for(int i = 0;i < int(abilities.size());i++)
+        {
+            SAFE_DELETE(abilities[i]);
+        }
+    }
+    else
+        SAFE_DELETE(ability);
+}
+///
 //MultiAbility : triggers several actions for a cost
 MultiAbility::MultiAbility(int _id, MTGCardInstance * card, Targetable * _target, ManaCost * _cost) :
     ActivatedAbility(_id, card, _cost, 0)
@@ -3381,8 +3631,8 @@ void ABlink::Update(float dt)
             if(!tc->validTargetsExist())
             {
                 spell->source->owner->game->putInExile(spell->source);
-                delete spell;
-                delete tc;
+                SAFE_DELETE(spell);
+                SAFE_DELETE(tc);
                 this->forceDestroy = 1;
                 return;
             }
@@ -3397,8 +3647,8 @@ void ABlink::Update(float dt)
                     spell->getNextCardTarget();
                     spell->resolve();
 
-                    delete spell;
-                    delete tc;
+                    SAFE_DELETE(spell);
+                    SAFE_DELETE(tc);
                     this->forceDestroy = 1;
                     return;
                 }
@@ -3480,8 +3730,8 @@ void ABlink::resolveBlink()
                 if(!tc->validTargetsExist())
                 {
                     spell->source->owner->game->putInExile(spell->source);
-                    delete spell;
-                    delete tc;
+                    SAFE_DELETE(spell);
+                    SAFE_DELETE(tc);
                     this->forceDestroy = 1;
                     return;
                 }
@@ -3495,8 +3745,8 @@ void ABlink::resolveBlink()
                         spell->source->target = inplay->cards[i];
                         spell->getNextCardTarget();
                         spell->resolve();
-                        delete spell;
-                        delete tc;
+                        SAFE_DELETE(spell);
+                        SAFE_DELETE(tc);
                         this->forceDestroy = 1;
                         return;
                     }
@@ -3519,8 +3769,8 @@ void ABlink::resolveBlink()
                     clonedStored->addToGame();
                 }
             }
-            delete tc;
-            delete spell;
+            SAFE_DELETE(spell);
+            SAFE_DELETE(tc);
             this->forceDestroy = 1;
             if(stored)
             delete(stored);

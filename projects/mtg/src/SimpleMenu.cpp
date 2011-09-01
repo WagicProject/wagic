@@ -34,6 +34,7 @@ SimpleMenu::SimpleMenu(int id, JGuiListener* listener, int fontId, float x, floa
     : JGuiController(id, listener), fontId(fontId), mCenterHorizontal(centerHorizontal), mCenterVertical(centerVertical)
 {
     autoTranslate = true;
+    isMultipleChoice = false;
     mHeight = 2 * kVerticalMargin;
     mWidth = 0;
     mX = x;

@@ -253,7 +253,7 @@ void CardGui::Render()
     if (mask && quad)
         JRenderer::GetInstance()->FillRect(actX - (scale * quad->mWidth / 2),actY - (scale * quad->mHeight / 2), scale * quad->mWidth, scale* quad->mHeight, mask);
 
-    if (tc && tc->alreadyHasTarget(card))//paint targets red.
+    if ((tc && tc->alreadyHasTarget(card)) || card == game->mLayers->actionLayer()->currentActionCard)//paint targets red.
     {
         if (card->isTapped())
         {
@@ -264,8 +264,17 @@ void CardGui::Render()
             renderer->FillRect(actX - (scale * quad->mWidth / 2),actY - (scale * quad->mHeight / 2), scale * quad->mWidth, scale* quad->mHeight, ARGB(128,255,0,0));
         }
     }
-    if(tc && tc->source && tc->source->view->actZ >= 1.3)//paint the source green while infocus.
-        renderer->FillRect(tc->source->view->actX - (scale * quad->mWidth / 2),tc->source->view->actY - (scale * quad->mHeight / 2), scale*quad->mWidth, scale*quad->mHeight, ARGB(128,0,255,0));
+    if(tc && tc->source && tc->source->view && tc->source->view->actZ >= 1.3 && card == tc->source)//paint the source green while infocus.
+    {
+        if (tc->source->isTapped())
+        {
+            renderer->FillRect(actX - (scale * quad->mWidth / 2)-7,actY - (scale * quad->mHeight / 2)+7,scale* quad->mHeight,scale * quad->mWidth, ARGB(128,0,255,0));
+        }
+        else
+        {
+            renderer->FillRect(tc->source->view->actX - (scale * quad->mWidth / 2),tc->source->view->actY - (scale * quad->mHeight / 2), scale*quad->mWidth, scale*quad->mHeight, ARGB(128,0,255,0));
+        }
+    }
 
     PlayGuiObject::Render();
 }
@@ -779,7 +788,10 @@ void CardGui::TinyCropRender(MTGCard * card, const Pos& pos, JQuad * quad)
 void CardGui::RenderBig(MTGCard* card, const Pos& pos)
 {
     JRenderer * renderer = JRenderer::GetInstance();
-
+    //GameObserver * game = GameObserver::GetInstance();
+    //if((MTGCard*)game->mLayers->actionLayer()->currentActionCard != NULL)
+    //    card = (MTGCard*)game->mLayers->actionLayer()->currentActionCard;
+    //i want this but ai targets cards so quickly that it can crash the game.
     float x = pos.actX;
 
     JQuadPtr quad = WResourceManager::Instance()->RetrieveCard(card);

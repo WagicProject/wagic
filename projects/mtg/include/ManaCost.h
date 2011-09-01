@@ -50,6 +50,7 @@ public:
     ManaCost * morph;
     ManaCost * suspend;
     string alternativeName;
+    bool isMulti;
     static ManaCost * parseManaCost(string value, ManaCost * _manacost = NULL, MTGCardInstance * c = NULL);
     virtual void init();
     virtual void reinit();

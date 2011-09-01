@@ -172,15 +172,15 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
                         size_t separator2 = string::npos;
                         if (separator != string::npos)
                         {
-                            separator2 = value.find(",", separator + 1);
+                            separator2 = value.find(",", counter_end + 1);
                         }
                         SAFE_DELETE(tc);
                         size_t target_start = string::npos;
                         if (separator2 != string::npos)
                         {
-                            target_start = value.find(",", separator2 + 1);
+                            target_start = value.find(",", counter_end + 1);
                         }
-                        size_t target_end = counter_end;
+                        size_t target_end = value.length();
                         if (target_start != string::npos && target_end != string::npos)
                         {
                             string target = value.substr(target_start + 1, target_end - 1 - target_start);
@@ -267,6 +267,8 @@ ManaCost::ManaCost(ManaCost * manaCost)
     hybrids = manaCost->hybrids;
 
     kicker = NEW ManaCost( manaCost->kicker );
+    if(kicker)
+    kicker->isMulti = manaCost->isMulti;
     Retrace = NEW ManaCost( manaCost->Retrace );
     BuyBack = NEW ManaCost( manaCost->BuyBack );
     alternative = NEW ManaCost( manaCost->alternative );
@@ -361,6 +363,7 @@ void ManaCost::init()
     Retrace = NULL;
     morph = NULL;
     suspend = NULL;
+    isMulti = false;
 }
 
 void ManaCost::reinit()
@@ -402,6 +405,7 @@ void ManaCost::copy(ManaCost * _manaCost)
     {
         kicker = NEW ManaCost();
         kicker->copy(_manaCost->kicker);
+        kicker->isMulti = _manaCost->kicker->isMulti;
     }
     SAFE_DELETE(alternative);
     if (_manaCost->alternative)
@@ -753,9 +757,12 @@ string ManaCost::toString()
 #ifdef WIN32
 void ManaCost::Dump()
 {
+    //if(this->getConvertedCost())//uncomment when this is far too loud and clutters your output making other traces pointless.
+    //{
     DebugTrace( "\n===ManaCost===" );
     DebugTrace( this->toString() );
     DebugTrace( "\n=============" );
+    //}
 }
 
 #endif

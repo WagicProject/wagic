@@ -155,7 +155,16 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
         {
             string value = val;
             std::transform(value.begin(), value.end(), value.begin(), ::tolower);
-            cost->kicker = ManaCost::parseManaCost(value);
+            size_t multikick = value.find("multi");
+            bool isMultikicker = false;
+            if(multikick != string::npos)
+            {
+                size_t endK = value.find("{",multikick);
+                value.erase(multikick, endK - multikick);
+                isMultikicker = true;
+        }
+            cost->kicker = ManaCost::parseManaCost(value);  
+            cost->kicker->isMulti = isMultikicker;
         }
         break;
 

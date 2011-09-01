@@ -66,11 +66,6 @@ public:
     int origpower;
     int origtoughness;
     int isMultiColored;
-    int isBlackAndWhite;
-    int isRedAndBlue;
-    int isBlackAndGreen;
-    int isBlueAndGreen;
-    int isRedAndWhite;
     int isLeveler;
     bool enchanted;
     int CDenchanted;
@@ -92,6 +87,7 @@ public:
     int notblocked;
     int fresh;
     int MaxLevelUp;
+    int kicked;
     Player * lastController;
     MTGGameZone * getCurrentZone();
     MTGGameZone * previousZone;

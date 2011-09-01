@@ -138,7 +138,7 @@ void GuiPhaseBar::Render()
         currentP = _("opponent's turn");
     }
     font->SetColor(ARGB(255, 255, 255, 255));
-    if (g->currentlyActing()->isAI())
+    if (g->currentlyActing() && g->currentlyActing()->isAI())
     {
         font->SetColor(ARGB(255, 128, 128, 128));
     }

@@ -52,27 +52,6 @@ void CardDescriptor::setisMultiColored(int w)
 {
     isMultiColored = w;
 }
-
-void CardDescriptor::setisBlackAndWhite(int w)
-{
-    isBlackAndWhite = w;
-}
-void CardDescriptor::setisRedAndBlue(int w)
-{
-    isRedAndBlue = w;
-}
-void CardDescriptor::setisBlackAndGreen(int w)
-{
-    isBlackAndGreen = w;
-}
-void CardDescriptor::setisBlueAndGreen(int w)
-{
-    isBlueAndGreen = w;
-}
-void CardDescriptor::setisRedAndWhite(int w)
-{
-    isRedAndWhite = w;
-}
     
 void CardDescriptor::setNegativeSubtype(string value)
 {
@@ -234,26 +213,6 @@ MTGCardInstance * CardDescriptor::match(MTGCardInstance * card)
     {
         match = NULL;
     }
-        if ((isBlackAndWhite == -1 && card->isBlackAndWhite) || (isBlackAndWhite == 1 && !card->isBlackAndWhite))
-    {
-        match = NULL;
-    }
-        if ((isRedAndBlue == -1 && card->isRedAndBlue) || (isRedAndBlue == 1 && !card->isRedAndBlue))
-    {
-        match = NULL;
-    }
-        if ((isBlackAndGreen == -1 && card->isBlackAndGreen) || (isBlackAndGreen == 1 && !card->isBlackAndGreen))
-    {
-        match = NULL;
-    }
-        if ((isBlueAndGreen == -1 && card->isBlueAndGreen) || (isBlueAndGreen == 1 && !card->isBlueAndGreen))
-        {
-            match = NULL;
-        }
-        if ((isRedAndWhite == -1 && card->isRedAndWhite) || (isRedAndWhite == 1 && !card->isRedAndWhite))
-        {
-            match = NULL;
-        }
         if ((isLeveler == -1 && card->isLeveler) || (isLeveler == 1 && !card->isLeveler))
         {
             match = NULL;

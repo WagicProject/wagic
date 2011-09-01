@@ -177,11 +177,9 @@ class Constants
       SNOWISLANDWALK = 89,
       SNOWSWAMPWALK = 90,
       CANATTACK = 91,
+      HYDRA = 92,
 
-
-
-
-      NB_BASIC_ABILITIES = 92,
+      NB_BASIC_ABILITIES = 93,
 
 
     RARITY_S = 'S',   //Special Rarity

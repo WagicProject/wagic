@@ -146,9 +146,9 @@ void StackAbility::Render()
     string alt1 = source->getName();
 
     Targetable * _target = ability->target;
-    if (ability->tc)
+    if (ability->getActionTc())
     {
-        Targetable * t = ability->tc->getNextTarget();
+        Targetable * t = ability->getActionTc()->getNextTarget();
         if (t)
             _target = t;
     }
@@ -243,7 +243,8 @@ Interruptible(id), tc(tc), cost(_cost), payResult(payResult)
 
 int Spell::computeX(MTGCardInstance * card)
 {
-    ManaCost * c = cost->Diff(card->getManaCost());
+    ManaCost * c = NULL;
+    cost? c = cost->Diff(card->getManaCost()) : c = card->controller()->getManaPool()->Diff(card->getManaCost());
     int x = c->getCost(Constants::MTG_NB_COLORS);
     delete c;
     return x;
@@ -598,6 +599,7 @@ int ActionStack::addAction(Interruptible * action)
         interruptDecision[i] = 0;
     }
     Add(action);
+    lastActionController = game->currentlyActing();
     DebugTrace("Action added to stack: " << action->getDisplayName());
 
     return 1;
@@ -705,7 +707,7 @@ int ActionStack::resolve()
                 interruptDecision[i] = 0;
         }
     }
-
+    lastActionController = NULL;
     return 1;
 
 }
@@ -1061,6 +1063,11 @@ int ActionStack::garbageCollect()
         Interruptible * current = ((Interruptible *) *iter);
         if (current->state != NOT_RESOLVED)
         {
+            AManaProducer * amp = dynamic_cast<AManaProducer*>(current);
+            if(amp)
+            {
+                manaObjects.erase(iter);
+            }
             iter = mObjects.erase(iter);
             SAFE_DELETE(current);
         }

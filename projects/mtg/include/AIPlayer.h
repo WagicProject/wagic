@@ -34,22 +34,37 @@ public:
     int id;
     MTGCardInstance * click;
     MTGCardInstance * target; // TODO Improve
+    vector<Targetable*>mAbilityTargets;
+    Targetable * playerAbilityTarget;
+    //player targeting through abilities is handled completely seperate from spell targeting.
     
     AIAction(MTGAbility * a, MTGCardInstance * c, MTGCardInstance * t = NULL)
-        : efficiency(-1), ability(a), player(NULL), click(c), target(t)
+        : efficiency(-1), ability(a), player(NULL), click(c), target(t),playerAbilityTarget(NULL)
     {
         id = currentId++;
     };
 
     AIAction(MTGCardInstance * c, MTGCardInstance * t = NULL);
 
-    AIAction(Player * p)
-        : efficiency(-1), ability(NULL), player(p), click(NULL), target(NULL)
+    AIAction(Player * p)//player targeting through spells
+        : efficiency(-1), ability(NULL), player(p), click(NULL), target(NULL),playerAbilityTarget(NULL)
     {
     };
 
+    AIAction(MTGAbility * a, MTGCardInstance * c, vector<Targetable*>targetCards)
+        : efficiency(-1), ability(a), player(NULL), click(c), mAbilityTargets(targetCards),playerAbilityTarget(NULL)
+    {
+        id = currentId++;
+    };
+
+    AIAction(MTGAbility * a, Player * p, MTGCardInstance * c)//player targeting through abilities.
+        : efficiency(-1), ability(a), click(c),target(NULL), playerAbilityTarget(p)
+    {
+        id = currentId++;
+    };
     int getEfficiency();
     int Act();
+    int clickMultiAct(vector<Targetable*>&actionTargets);
 };
 
 // compares Abilities efficiency
@@ -75,7 +90,7 @@ protected:
     MTGCardInstance * nextCardToPlay;
     AIHints * hints;
     queue<AIAction *> clickstream;
-    bool tapLandsForMana(ManaCost * cost, MTGCardInstance * card = NULL);
+    bool payTheManaCost(ManaCost * cost, MTGCardInstance * card = NULL,vector<MTGAbility*> gotPayment = vector<MTGAbility*>());
     int orderBlockers();
     int combatDamages();
     int interruptIfICan();
@@ -101,10 +116,15 @@ public:
     int receiveEvent(WEvent * event);
     void Render();
     ManaCost * getPotentialMana(MTGCardInstance * card = NULL);
+    vector<MTGAbility*> canPayMana(MTGCardInstance * card = NULL,ManaCost * mCost = NULL);
+    vector<MTGAbility*> canPaySunBurst(ManaCost * mCost = NULL);
     AIPlayer(string deckFile, string deckFileSmall, MTGDeck * deck = NULL);
     virtual ~AIPlayer();
     virtual MTGCardInstance * chooseCard(TargetChooser * tc, MTGCardInstance * source, int random = 0);
-    virtual int chooseTarget(TargetChooser * tc = NULL, Player * forceTarget =NULL,MTGCardInstance * Choosencard = NULL);
+    virtual int selectMenuOption();
+    virtual int chooseTarget(TargetChooser * tc = NULL, Player * forceTarget =NULL,MTGCardInstance * Choosencard = NULL,bool checkonly = false);
+    virtual int clickMultiTarget(TargetChooser * tc,vector<Targetable*>&potentialTargets);
+    virtual int clickSingleTarget(TargetChooser * tc,vector<Targetable*>&potentialTargets,int nbtargets = 0,MTGCardInstance * Choosencard = NULL);
     virtual int Act(float dt);
     virtual int affectCombatDamages(CombatStep);
     int isAI(){return 1;};
@@ -123,6 +143,7 @@ class AIPlayerBaka: public AIPlayer{
   float timer;
   MTGCardInstance * FindCardToPlay(ManaCost * potentialMana, const char * type);
  public:
+     vector<MTGAbility*>gotPayments;
   int deckId;
   AIPlayerBaka(string deckFile, string deckfileSmall, string avatarFile, MTGDeck * deck = NULL);
   virtual int Act(float dt);

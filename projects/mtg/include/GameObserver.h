@@ -79,6 +79,7 @@ class GameObserver{
   bool removeObserver(ActionElement * observer);
   void startGame(Rules * rules);
   void untapPhase();
+  MTGCardInstance * isCardWaiting(){ return cardWaitingForTargets; }
   int isInPlay(MTGCardInstance *  card);
   int isInGrave(MTGCardInstance *  card);
   int isInExile(MTGCardInstance *  card);

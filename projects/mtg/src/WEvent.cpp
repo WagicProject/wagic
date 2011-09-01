@@ -37,6 +37,11 @@ WEventCardUpdate::WEventCardUpdate(MTGCardInstance * card) :
 }
 ;
 
+WEventCounters::WEventCounters(Counters *counter,string name,int power,int toughness,bool added,bool removed) :
+WEvent(),counter(counter),name(name),power(power),toughness(toughness),added(added),removed(removed)
+{
+}
+
 WEventPhaseChange::WEventPhaseChange(Phase * from, Phase * to) :
     WEvent(CHANGE_PHASE), from(from), to(to)
 {
@@ -166,6 +171,11 @@ Targetable * WEventLife::getTarget(int target)
         return player;
     }
     return NULL;
+}
+
+Targetable * WEventCounters::getTarget()
+{
+    return targetCard;
 }
 
 Targetable * WEventVampire::getTarget(int target)

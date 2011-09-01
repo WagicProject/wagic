@@ -118,11 +118,6 @@ void MTGCardInstance::initMTGCI()
     frozen = 0;
     fresh = 0;
     isMultiColored = 0;
-    isBlackAndWhite = 0;
-    isRedAndBlue = 0;
-    isBlackAndGreen = 0;
-    isBlueAndGreen = 0;
-    isRedAndWhite = 0;
     isLeveler = 0;
     enchanted = false;
     CDenchanted = 0;
@@ -146,6 +141,7 @@ void MTGCardInstance::initMTGCI()
     suspended = false;
     castMethod = Constants::NOT_CAST;
     mPropertiesChangedSinceLastUpdate = false;
+    kicked = 0;
 
 
     for (int i = 0; i < ManaCost::MANA_PAID_WITH_RETRACE +1; i++)
@@ -194,17 +190,6 @@ void MTGCardInstance::initMTGCI()
     if (colored > 1)
     {
         isMultiColored = 1;
-
-        if(this->hasColor(Constants::MTG_COLOR_WHITE) && this->hasColor(Constants::MTG_COLOR_BLACK))
-            isBlackAndWhite = 1;
-        if(this->hasColor(Constants::MTG_COLOR_RED) && this->hasColor(Constants::MTG_COLOR_BLUE))
-            isRedAndBlue = 1;
-        if(this->hasColor(Constants::MTG_COLOR_GREEN) && this->hasColor(Constants::MTG_COLOR_BLACK))
-            isBlackAndGreen = 1;
-        if(this->hasColor(Constants::MTG_COLOR_BLUE) && this->hasColor(Constants::MTG_COLOR_GREEN))
-            isBlueAndGreen = 1;
-        if(this->hasColor(Constants::MTG_COLOR_RED) && this->hasColor(Constants::MTG_COLOR_WHITE))
-            isRedAndWhite = 1;
     }
 
     if(previous && previous->morphed && !turningOver)

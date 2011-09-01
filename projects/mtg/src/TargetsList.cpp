@@ -20,8 +20,23 @@ int TargetsList::addTarget(Targetable * target)
 {
     if (!alreadyHasTarget(target))
     {
-        targets.push_back(target);
-        return 1;
+        GameObserver * state = state->GetInstance();
+        TargetChooser * tc = state->getCurrentTargetChooser();
+        if(!tc || (tc && tc->maxtargets == 1))
+        {
+            //because this was originally coded with targets as an array
+            //we have to add this condiational to insure that cards with single target effects
+            //and abilities that seek the nextcardtarget still work correctly.
+            targets.clear();
+            targets.push_back(target);
+            return 1;
+
+        }
+        else
+        {
+            targets.push_back(target);
+            return 1;
+        }
     }
     return 0;
 
@@ -46,7 +61,6 @@ int TargetsList::removeTarget(Targetable * target)
             return 1;
         }
     }
-
     return 0;
 }
 
@@ -72,7 +86,7 @@ Targetable * TargetsList::getNextTarget(Targetable * previous, int type)
     {
         if (found && (type == -1 || targets[i]->typeAsTarget() == type))
         {
-            return (targets[i]);
+            return targets[i];
         }
         if (targets[i] == previous) found = 1;
     }

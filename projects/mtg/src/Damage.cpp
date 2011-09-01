@@ -114,6 +114,14 @@ int Damage::resolve()
             }
             damage = 0;
         }
+        if ((_target)->has(Constants::HYDRA))
+        {
+            for (int j = damage; j > 0; j--)
+            {
+                (_target)->counters->removeCounter(1, 1);
+            }
+            damage = 0;
+        }
         if (!damage)
         {
             state = RESOLVED_NOK;
@@ -136,14 +144,13 @@ int Damage::resolve()
         }
         if(_target->toughness <= 0 && _target->has(Constants::INDESTRUCTIBLE))
             _target->controller()->game->putInGraveyard(_target);
-
     }
     else if (target->type_as_damageable == DAMAGEABLE_PLAYER && source->has(Constants::INFECT))
     {
         // Poison on player
         Player * _target = (Player *) target;
         _target->poisonCount += damage;//this will be changed to poison counters.
-        target->damageCount += damage;
+        _target->damageCount += damage;
     }
     else if (target->type_as_damageable == DAMAGEABLE_PLAYER && (source->has(Constants::POISONTOXIC) ||
                     source->has(Constants::POISONTWOTOXIC) || source->has(Constants::POISONTHREETOXIC)))

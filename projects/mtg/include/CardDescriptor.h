@@ -43,12 +43,6 @@ class CardDescriptor: public MTGCardInstance
   void unsecureSetTapped(int i);
   void unsecuresetfresh(int k);
   void setisMultiColored(int w);
-  void setisBlackAndWhite(int w);
-  void setisRedAndBlue(int w);
-  void setisBlackAndGreen(int w);
-  void setisBlueAndGreen(int w);
-  void setisRedAndWhite(int w);
-
   void setNegativeSubtype( string value);
   int counterPower;
   int counterToughness;

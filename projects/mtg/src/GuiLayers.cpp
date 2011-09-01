@@ -19,10 +19,22 @@ GuiLayer::~GuiLayer()
 void GuiLayer::Add(JGuiObject *object)
 {
     mObjects.push_back(object);
+    AManaProducer * manaObject = dynamic_cast<AManaProducer*>(object);
+    if(manaObject)
+        manaObjects.push_back(object);
 }
 
 int GuiLayer::Remove(JGuiObject *object)
 {
+    AManaProducer * manaObject = dynamic_cast<AManaProducer*>(object);
+    if(manaObject)
+    {
+        for (size_t i = 0; i < manaObjects.size(); i++)
+            if (manaObjects[i] == object)
+            {
+                manaObjects.erase(manaObjects.begin() + i);
+            }
+    }
     for (size_t i = 0; i < mObjects.size(); i++)
         if (mObjects[i] == object)
         {

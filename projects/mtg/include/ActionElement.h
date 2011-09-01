@@ -22,8 +22,8 @@ class ActionElement: public JGuiObject
 {
 protected:
     int activeState;
-public:
     TargetChooser * tc;
+public:
     int currentPhase;
     int newPhase;
     int modal;
@@ -48,9 +48,15 @@ public:
     ;
     ActionElement(int id);
     ActionElement(const ActionElement& copyFromMe);
+    TargetChooser * getActionTc(){return tc;}
+    virtual void setActionTC(TargetChooser * newTc = NULL){this->tc = newTc;}
     virtual ~ActionElement();
     virtual int isReactingToTargetClick(Targetable * card);
     virtual int reactToTargetClick(Targetable * card);
+    virtual int reactToChoiceClick(Targetable * card,int choice = 0,int controlid = 0)
+    {
+        return 0;
+    }
     virtual int isReactingToClick(MTGCardInstance * card, ManaCost * man = NULL)
     {
         return 0;

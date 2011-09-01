@@ -207,7 +207,7 @@ public:
         DONT_INTERRUPT = 1,
         DONT_INTERRUPT_ALL = 2,
     };
-
+    Player * lastActionController;
     int setIsInterrupting(Player * player);
     int count( int type = 0 , int state = 0 , int display = -1);
     int getActionElementFromCard(MTGCardInstance * card);

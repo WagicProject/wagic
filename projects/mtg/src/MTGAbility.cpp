@@ -166,7 +166,11 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card,Player * player
                     }
                 }
                 else if (i == 2)
-                    secondAmount = atoi(comparasion[2].c_str());
+                {
+                   WParsedInt * secondA = NEW WParsedInt(comparasion[2].c_str(),(Spell*)card,card);
+                   secondAmount = secondA->getValue();
+                   SAFE_DELETE(secondA);
+                }
             }
             if(firstAmount < secondAmount && !less && !more && !equal)
                 return 0;
@@ -599,7 +603,23 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string magicText, int 
         TargetChooser *fromTc = parseSimpleTC(s, "from", card);
         return NEW TrTargeted(id, card, tc, fromTc, 0,once);
     }
-    
+
+    if (s.find("counteradded(") != string::npos)
+    {
+        vector<string>splitCounter = parseBetween(s,"counteradded(",")");
+        Counter * counter = parseCounter(splitCounter[1],card,NULL);
+        TargetChooser * tc = parseSimpleTC(s, "from", card);
+        return NEW TrCounter(id, card, counter, tc, 1,once);
+    }
+
+    if (s.find("counterremoved(") != string::npos)
+    {
+        vector<string>splitCounter = parseBetween(s,"counterremoved(",")");
+        Counter * counter = parseCounter(splitCounter[1],card,NULL);
+        TargetChooser * tc = parseSimpleTC(s, "from", card);
+        return NEW TrCounter(id, card, counter, tc, 0,once);
+    }
+
     int who = 0;
     if (s.find("my") != string::npos)
         who = 1;
@@ -699,7 +719,8 @@ MTGAbility * AbilityFactory::getCoreAbility(MTGAbility * a)
 			//only atempt to return a nestedability if it contains a valid ability. example where this causes a bug otherwise. AEquip is considered nested, but contains no ability.
 			return getCoreAbility(na->ability);
 	}
-
+    if (MenuAbility * ma = dynamic_cast<MenuAbility*>(a))
+        return ma->abilities[0];
     return a;
 }
 
@@ -878,11 +899,14 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
                     TargetChooserFactory tcf;
                     tc = tcf.createTargetChooser("creature|mybattlefield", card);
                 }
-                ae->tc = tc;
+                ae->setActionTC(tc);
                 return ae;
             }
             if (tc)
+            {
+                tc->belongsToAbility = sWithoutTc;
                 return NEW GenericTargetAbility(newName,id, card, tc, a, cost, limit,sideEffect,usesBeforeSideEffect, restrictions, dest);
+            }
             return NEW GenericActivatedAbility(newName,id, card, a, cost, limit,sideEffect,usesBeforeSideEffect,restrictions, dest);
         }
         SAFE_DELETE(cost);
@@ -915,7 +939,8 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         {
             string cond = sWithoutTc.substr(ifKeywords[i].length(),ifKeywords[i].length() + sWithoutTc.find(" then ")-6);
             string s1 = s.substr(s.find(" then ")+6);
-            MTGAbility * a = NEW IfThenAbility(id, s1, card,checkIf[i],cond);
+            MTGAbility * a1 = parseMagicLine(s1, id, spell, card);
+            MTGAbility * a = NEW IfThenAbility(id, a1, card,checkIf[i],cond);
             a->canBeInterrupted = false;
             a->oneShot = true;
             if(tc)
@@ -1977,7 +2002,30 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         a->oneShot = 1;
         return a;
     }
-    
+
+    //no counters on target of optional type
+    vector<string> splitCounterShroud = parseBetween(s, "countershroud(", ")");
+    if (splitCounterShroud.size())
+    {
+        string counterShroudString = splitCounterShroud[1];
+        Counter * counter = NULL;
+        if(splitCounterShroud[1] == "any")
+        {
+            counter = NULL;
+        }
+        else
+        {
+            counter = parseCounter(counterShroudString, target, spell);
+            if (!counter)
+            {
+                DebugTrace("MTGAbility: can't parse counter:" << s);
+                return NULL;
+            }
+        }
+        MTGAbility * a = NEW ACounterShroud(id, card, target,counter);
+        return a;
+    }
+
     //removes all counters of the specifified type.
     vector<string> splitRemoveCounter = parseBetween(s, "removeallcounters(", ")");
     if (splitRemoveCounter.size())
@@ -2226,6 +2274,16 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         return NULL; //TODO
     }
 
+    //proliferate
+    found = s.find("proliferate");
+    if (found != string::npos)
+    {
+        MTGAbility * a = NEW AAProliferate(id, card, target);
+        a->oneShot = 1;
+        a->canBeInterrupted = false;
+        return a;
+    }
+
     //frozen, next untap this does not untap.
     found = s.find("frozen");
     if (found != string::npos)
@@ -2340,7 +2398,7 @@ int AbilityFactory::abilityEfficiency(MTGAbility * a, Player * p, int mode, Targ
     {
         if (mode == MODE_PUTINTOPLAY)
             return BAKA_EFFECT_GOOD;
-        return abilityEfficiency(abi->ability, p, mode, abi->tc);
+        return abilityEfficiency(abi->ability, p, mode, abi->getActionTc());
     }
     if (GenericActivatedAbility * abi = dynamic_cast<GenericActivatedAbility*>(a))
     {
@@ -2354,8 +2412,8 @@ int AbilityFactory::abilityEfficiency(MTGAbility * a, Player * p, int mode, Targ
         return abilityEfficiency(abi->ability, p, mode, tc);
     if (ALord * abi = dynamic_cast<ALord *>(a))
     {
-        int myCards = countCards(abi->tc, p);
-        int theirCards = countCards(abi->tc, p->opponent());
+        int myCards = countCards(abi->getActionTc(), p);
+        int theirCards = countCards(abi->getActionTc(), p->opponent());
         int efficiency = abilityEfficiency(abi->ability, p, mode, tc);
         if ( ((myCards < theirCards) && efficiency == BAKA_EFFECT_GOOD) || ((myCards > theirCards) && efficiency == BAKA_EFFECT_BAD)   )
             return efficiency;
@@ -2379,6 +2437,8 @@ int AbilityFactory::abilityEfficiency(MTGAbility * a, Player * p, int mode, Targ
         return BAKA_EFFECT_GOOD;
     if (dynamic_cast<AATapper *> (a))
         return BAKA_EFFECT_BAD;
+    if (dynamic_cast<AManaProducer *> (a))
+        return BAKA_EFFECT_GOOD;
     if (AACounter * ac = dynamic_cast<AACounter *>(a))
     {
         bool negative_effect = ac->power < 0 || ac->toughness < 0;
@@ -2634,6 +2694,12 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card, int
     for (size_t i = 0; i < v.size(); ++i)
     {
         MTGAbility * a = v[i];
+        if (!a)
+        {
+            DebugTrace("ABILITYFACTORY ERROR: Parser returned NULL");
+            return 0;
+        }
+
         if (dryMode)
         {
             result = abilityEfficiency(a, card->controller(), mode, tc);
@@ -2641,8 +2707,44 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card, int
                 SAFE_DELETE(v[i]);
             return result;
         }
-
-        if (a)
+        if(spell && spell->tc && spell->tc->targets.size() > 1 && spell->getNextTarget())
+            a->target = spell->getNextTarget();
+        if(a && a->target && spell && spell->tc && spell->tc->targets.size() > 1)
+        {
+            while(a && a->target)
+            {
+                if(a->oneShot)
+                {
+                    a->resolve();
+                }
+                else if(!dynamic_cast<MayAbility*>(a))
+                {
+                    MTGAbility * mClone = a->clone();
+                    mClone->target = a->target;
+                    MTGAbility * core = getCoreAbility(mClone);
+                    if (dynamic_cast<AManaProducer*> (core))
+                        mClone->canBeInterrupted = false;
+                    mClone->addToGame();
+                }
+                else if(dynamic_cast<MayAbility*>(a) && a->target == spell->tc->targets[0])
+                {
+                    //only add may/choice/target( menu ability for the first card, 
+                    //no point in adding "discard" 3 times to a menu, as you can only choose the effect once
+                    MTGAbility * mClone = a->clone();
+                    mClone->target = a->target;
+                    MTGAbility * core = getCoreAbility(mClone);
+                    if (dynamic_cast<AManaProducer*> (core))
+                        mClone->canBeInterrupted = false;
+                    mClone->addToGame();
+                }
+                a->target = spell->getNextTarget(a->target);
+                if(!a->target)
+                {
+                    SAFE_DELETE(a);
+                }
+            }
+        }
+        else
         {
             if (a->oneShot)
             {
@@ -2651,17 +2753,8 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card, int
             }
             else
             {
-                // Anything involving Mana Producing abilities cannot be interrupted
-                MTGAbility * core = getCoreAbility(a);
-                if (dynamic_cast<AManaProducer*> (core))
-                    a->canBeInterrupted = false;
-
                 a->addToGame();
             }
-        }
-        else
-        {
-            DebugTrace("ABILITYFACTORY ERROR: Parser returned NULL");
         }
     }
 
@@ -3045,13 +3138,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
         }
         break;
     }
-    case 1480: //Energy Tap
-    {
-        card->target->tap();
-        int mana = card->target->getManaCost()->getConvertedCost();
-        game->currentlyActing()->getManaPool()->add(Constants::MTG_COLOR_ARTIFACT, mana);
-    }
-
         //Addons ICE-AGE Cards
 
     case 2474: //Minion of Leshrac
@@ -3771,9 +3857,28 @@ int TargetAbility::resolve()
         if (t->typeAsTarget() == TARGET_CARD && ((MTGCardInstance*)t)->isPhased)
             return 0;
         if (ability->oneShot)
-            return ability->resolve();
-        MTGAbility * a = ability->clone();
-        return a->addToGame();
+        {
+            while(t)
+            {
+                ability->resolve();
+                t = tc->getNextTarget(t);
+                ability->target = t;
+            }
+            tc->targets.clear();
+            return 1;
+        }
+        else
+        {
+            while(t)
+            {
+                MTGAbility * a = ability->clone();
+                a->addToGame();
+                t = tc->getNextTarget(t);
+                ability->target = t;
+            }
+            tc->targets.clear();
+            return 1;
+        }
     }
     return 0;
 }
@@ -3984,6 +4089,58 @@ void ListMaintainerAbility::updateTargets()
 
 }
 
+void ListMaintainerAbility::checkTargets()
+{
+    //remove invalid ones
+    map<MTGCardInstance *, bool> tempCheck;
+    for (map<MTGCardInstance *, bool>::iterator it = checkCards.begin(); it != checkCards.end(); ++it)
+    {
+        MTGCardInstance * card = (*it).first;
+        if (!canBeInList(card) || card->mPropertiesChangedSinceLastUpdate)
+        {
+            tempCheck[card] = true;
+        }
+    }
+
+    for (map<MTGCardInstance *, bool>::iterator it = tempCheck.begin(); it != tempCheck.end(); ++it)
+    {
+        MTGCardInstance * card = (*it).first;
+        checkCards.erase(card);
+    }
+
+    tempCheck.clear();
+
+    //add New valid ones
+    for (int i = 0; i < 2; i++)
+    {
+        Player * p = game->players[i];
+        MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library };
+        for (int k = 0; k < 4; k++)
+        {
+            MTGGameZone * zone = zones[k];
+            if (canTarget(zone))
+            {
+                for (int j = 0; j < zone->nb_cards; j++)
+                {
+                     MTGCardInstance * card = zone->cards[j];
+                    if (canBeInList(card))
+                    {
+                        if (checkCards.find(card) == checkCards.end())
+                        {
+                            tempCheck[card] = true;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    for (map<MTGCardInstance *, bool>::iterator it = tempCheck.begin(); it != tempCheck.end(); ++it)
+    {
+        MTGCardInstance * card = (*it).first;
+        checkCards[card] = true;
+    }
+}
+
 void ListMaintainerAbility::Update(float dt)
 {
     updateTargets();
@@ -4142,7 +4299,7 @@ int GenericTriggeredAbility::triggerOnEvent(WEvent * e)
 
 Targetable * GenericTriggeredAbility::getTriggerTarget(WEvent * e, MTGAbility * a)
 {
-    TriggerTargetChooser * ttc = dynamic_cast<TriggerTargetChooser *> (a->tc);
+    TriggerTargetChooser * ttc = dynamic_cast<TriggerTargetChooser *> (a->getActionTc());
     if (ttc)
         return e->getTarget(ttc->triggerTarget);
 
@@ -4164,7 +4321,7 @@ Targetable * GenericTriggeredAbility::getTriggerTarget(WEvent * e, MTGAbility * 
 
 void GenericTriggeredAbility::setTriggerTargets(Targetable * ta, MTGAbility * a)
 {
-    TriggerTargetChooser * ttc = dynamic_cast<TriggerTargetChooser *> (a->tc);
+    TriggerTargetChooser * ttc = dynamic_cast<TriggerTargetChooser *> (a->getActionTc());
     if (ttc)
     {
         a->target = ta;
@@ -4266,7 +4423,7 @@ int AManaProducer::isReactingToClick(MTGCardInstance * _card, ManaCost * mana)
                     && (source->hasType(Subtypes::TYPE_LAND) || !tap || !source->hasSummoningSickness()) && !source->isPhased)
     {
         ManaCost * cost = getCost();
-        if (!cost || mana->canAfford(cost))
+        if (!cost || (mana->canAfford(cost) && (!cost->extraCosts || cost->extraCosts->canPay())))/*counter cost bypass react to click*/
         {
             result = 1;
         }

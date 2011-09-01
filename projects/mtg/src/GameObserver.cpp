@@ -192,6 +192,12 @@ void GameObserver::nextCombatStep()
 
 void GameObserver::userRequestNextGamePhase()
 {
+    if(getCurrentTargetChooser() && getCurrentTargetChooser()->maxtargets == 1000)
+    {
+        getCurrentTargetChooser()->done = true;
+        if(getCurrentTargetChooser()->source)
+            cardClick(getCurrentTargetChooser()->source);
+    }
     if (mLayers->stackLayer()->getNext(NULL, 0, NOT_RESOLVED))
     	return;
     if (getCurrentTargetChooser())
@@ -312,7 +318,6 @@ bool GameObserver::removeObserver(ActionElement * observer)
 {
     if (!observer)
         return false;
-
     return mLayers->actionLayer()->moveToGarbage(observer);
 
 }
@@ -334,16 +339,22 @@ GameObserver::~GameObserver()
 void GameObserver::Update(float dt)
 {
     Player * player = currentPlayer;
-
-    if (Constants::MTG_PHASE_COMBATBLOCKERS == currentGamePhase && BLOCKERS == combatStep) 
-    	player = player->opponent();
-
+    if (Constants::MTG_PHASE_COMBATBLOCKERS == currentGamePhase && BLOCKERS == combatStep)
+    {
+            player = player->opponent();
+    }
+    if(getCurrentTargetChooser() && getCurrentTargetChooser()->Owner && player != getCurrentTargetChooser()->Owner)
+    {
+        if(getCurrentTargetChooser()->Owner != currentlyActing())
+        {
+            player = getCurrentTargetChooser()->Owner;
+        }
+    }
     currentActionPlayer = player;
     if (isInterrupting) 
     	player = isInterrupting;
     mLayers->Update(dt, player);
-
-    while (mLayers->actionLayer()->stuffHappened)
+    while (mLayers->actionLayer()->stuffHappened) 
     {
         mLayers->actionLayer()->Update(0);
     }
@@ -357,15 +368,15 @@ void GameObserver::Update(float dt)
 //Handles game state based effects
 void GameObserver::gameStateBasedEffects()
 {
-    //check land playability at start; as we want this effect to happen reguardless of unresolved
-    //effects or menus actions
+    if(getCurrentTargetChooser() && int(getCurrentTargetChooser()->targets.size()) == getCurrentTargetChooser()->maxtargets)
+        getCurrentTargetChooser()->done = true;
     for (int i = 0; i < 2; i++)
         players[i]->isPoisoned = (players[i]->poisonCount > 0);
     if (mLayers->stackLayer()->count(0, NOT_RESOLVED) != 0)
     	return;
     if (mLayers->actionLayer()->menuObject) 
     	return;
-    if (targetChooser || mLayers->actionLayer()->isWaitingForAnswer()) 
+    if (getCurrentTargetChooser() || mLayers->actionLayer()->isWaitingForAnswer()) 
     	return;
 
     ////////////////////////
@@ -585,27 +596,6 @@ void GameObserver::gameStateBasedEffects()
                     ++colored;
             }
             z->cards[w]->isMultiColored = (colored > 1) ? 1 : 0;
-
-            if(z->cards[w]->hasColor(Constants::MTG_COLOR_WHITE) && z->cards[w]->hasColor(Constants::MTG_COLOR_BLACK))
-                z->cards[w]->isBlackAndWhite = 1;
-            else
-                z->cards[w]->isBlackAndWhite = 0;
-            if(z->cards[w]->hasColor(Constants::MTG_COLOR_RED) && z->cards[w]->hasColor(Constants::MTG_COLOR_BLUE))
-                z->cards[w]->isRedAndBlue = 1;
-            else
-                z->cards[w]->isRedAndBlue = 0;
-            if(z->cards[w]->hasColor(Constants::MTG_COLOR_GREEN) && z->cards[w]->hasColor(Constants::MTG_COLOR_BLACK))
-                z->cards[w]->isBlackAndGreen = 1;
-            else
-                z->cards[w]->isBlackAndGreen = 0;
-            if(z->cards[w]->hasColor(Constants::MTG_COLOR_BLUE) && z->cards[w]->hasColor(Constants::MTG_COLOR_GREEN))
-                z->cards[w]->isBlueAndGreen = 1;
-            else
-                z->cards[w]->isBlueAndGreen = 0;
-            if(z->cards[w]->hasColor(Constants::MTG_COLOR_RED) && z->cards[w]->hasColor(Constants::MTG_COLOR_WHITE))
-                z->cards[w]->isRedAndWhite = 1;
-            else
-                z->cards[w]->isRedAndWhite = 0;
         }
     }
     ///////////////////////////////////
@@ -879,6 +869,8 @@ int GameObserver::cardClick(MTGCardInstance * card, Targetable * object)
             if (card == cardWaitingForTargets)
             {
                 int _result = targetChooser->ForceTargetListReady();
+                if(targetChooser->targetMin && int(targetChooser->targets.size()) < targetChooser->maxtargets)
+                    _result = 0;
                 if (_result)
                 {
                     result = TARGET_OK_FULL;

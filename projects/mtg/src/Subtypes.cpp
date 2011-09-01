@@ -65,6 +65,8 @@ string Subtypes::find(unsigned int id)
 
 bool  Subtypes::isSubtypeOfType(unsigned int subtype, unsigned int type)
 {
+    if(subtype >= size_t(subtypesToType.size()))
+        return false;
     return (subtypesToType[subtype] == type);
 }
 

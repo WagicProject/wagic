@@ -240,11 +240,6 @@ int MTGEventBonus::receiveEvent(WEvent * event)
 
 void MTGEventBonus::grantAward(string awardName,int amount)
 {
-    JSample * sample = WResourceManager::Instance()->RetrieveSample("bonus.wav");
-    if (sample)
-    {
-        JSoundSystem::GetInstance()->PlaySample(sample);
-    }
     text = awardName;
     textAlpha = 255;
     Credits::addCreditBonus(amount);
@@ -397,11 +392,22 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card)
 
     ManaCost * previousManaPool = NEW ManaCost(player->getManaPool());
     int payResult = player->getManaPool()->pay(card->getManaCost());
-    if (card->getManaCost()->kicker && OptionKicker::KICKER_ALWAYS == options[Options::KICKERPAYMENT].number)
+    if (card->getManaCost()->kicker && (OptionKicker::KICKER_ALWAYS == options[Options::KICKERPAYMENT].number || card->controller()->isAI()))
     {
         ManaCost * withKickerCost= NEW ManaCost(card->getManaCost());
         withKickerCost->add(withKickerCost->kicker);
-        if (previousManaPool->canAfford(withKickerCost))
+        if (card->getManaCost()->kicker->isMulti)
+        {
+            while(previousManaPool->canAfford(withKickerCost))
+            {
+                withKickerCost->add(withKickerCost->kicker);
+                card->kicked += 1;
+            }
+            for(int i = 0;i < card->kicked;i++)
+                player->getManaPool()->pay(card->getManaCost()->kicker);
+            payResult = ManaCost::MANA_PAID_WITH_KICKER;
+        }
+        else if (previousManaPool->canAfford(withKickerCost))
         {
             player->getManaPool()->pay(card->getManaCost()->kicker);
             payResult = ManaCost::MANA_PAID_WITH_KICKER;
@@ -511,8 +517,23 @@ int MTGKickerRule::reactToClick(MTGCardInstance * card)
         
     Player * player = game->currentlyActing();
     ManaCost * withKickerCost= NEW ManaCost(card->getManaCost());//using pointers here alters the real cost of the card.
-    withKickerCost->add(withKickerCost->kicker);
-    card->paymenttype = MTGAbility::PUT_INTO_PLAY_WITH_KICKER;
+    if (card->getManaCost()->kicker->isMulti)
+    {
+        while(player->getManaPool()->canAfford(withKickerCost))
+        {
+            withKickerCost->add(withKickerCost->kicker);
+            card->kicked += 1;
+        }
+        card->kicked -= 1;
+        //for(int i = 0;i < card->kicked;i++)
+            //player->getManaPool()->pay(card->getManaCost()->kicker);
+        card->paymenttype = MTGAbility::PUT_INTO_PLAY_WITH_KICKER;
+    }
+    else
+    {
+        withKickerCost->add(withKickerCost->kicker);
+        card->paymenttype = MTGAbility::PUT_INTO_PLAY_WITH_KICKER;
+    }
     if (withKickerCost->isExtraPaymentSet())
     {
         if (!game->targetListIsSet(card))
@@ -1163,7 +1184,7 @@ MTGAbility(_id, NULL)
 
 int MTGAttackRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
 {
-    if (currentPhase == Constants::MTG_PHASE_COMBATATTACKERS && card->controller() == game->currentPlayer)
+    if (currentPhase == Constants::MTG_PHASE_COMBATATTACKERS && card->controller() == game->currentPlayer && card->controller() == game->currentlyActing())//on my turn and when I am the acting player.
     {
         if(card->isPhased)
             return 0;
@@ -1205,7 +1226,6 @@ int MTGAttackRule::reactToClick(MTGCardInstance * card)
 {
     if (!isReactingToClick(card))
         return 0;
-
     //Graphically select the next card that can attack
     if (!card->isAttacker())
     {
@@ -1399,7 +1419,7 @@ MTGAbility(_id, NULL)
 int MTGBlockRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
 {
     if (currentPhase == Constants::MTG_PHASE_COMBATBLOCKERS && !game->isInterrupting
-        && card->controller() == game->currentlyActing()
+        && card->controller() != game->currentPlayer
         )
     {
         if (card->canBlock() && !card->isPhased)

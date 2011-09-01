@@ -643,6 +643,9 @@ int CounterCost::doPay()
         {
             target->counters->addCounter(counter->name.c_str(), counter->power, counter->toughness);
         }
+        if (tc)
+            tc->initTargets();
+        target = NULL;
         return 1;
     }
 
@@ -654,8 +657,14 @@ int CounterCost::doPay()
             target->counters->removeCounter(counter->name.c_str(), counter->power, counter->toughness);
         }
         hasCounters = 0;
+        if (tc)
+            tc->initTargets();
+        target = NULL;
         return 1;
     }
+    if (tc)
+        tc->initTargets();
+    target = NULL;
     return 0;
 }
 

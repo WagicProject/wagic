@@ -3,6 +3,7 @@
 #include "ReplacementEffects.h"
 #include "MTGCardInstance.h"
 #include "TargetChooser.h"
+#include "AllAbilities.h"
 
 REDamagePrevention::REDamagePrevention(MTGAbility * source, TargetChooser *tcSource, TargetChooser *tcTarget, int damage,
                 bool oneShot, int typeOfDamage) :
@@ -47,7 +48,34 @@ REDamagePrevention::~REDamagePrevention()
     SAFE_DELETE(tcSource);
     SAFE_DELETE(tcTarget);
 }
+//counters replacement effect///////////////////
+RECountersPrevention::RECountersPrevention(MTGAbility * source,MTGCardInstance * cardSource,MTGCardInstance * cardTarget,Counter * counter) :
+    source(source),cardSource(cardSource),cardTarget(cardTarget),counter(counter)
+{
+}
 
+    WEvent * RECountersPrevention::replace(WEvent *event)
+    {
+        if (!event) return event;
+        WEventCounters * e = dynamic_cast<WEventCounters*> (event);
+        if (!e) return event;
+        if((MTGCardInstance*)e->targetCard)
+        {
+            if((MTGCardInstance*)e->targetCard == cardSource && counter)
+            {
+                if(e->power == counter->power && e->toughness == counter->toughness && e->name == counter->name)
+                    return event = NULL;
+            }
+            else if((MTGCardInstance*)e->targetCard == cardSource)
+                return event = NULL;
+        }
+        return event;
+    }
+RECountersPrevention::~RECountersPrevention()
+{
+
+}
+//////////////////////////////////////////////
 ReplacementEffects::ReplacementEffects()
 {
 }

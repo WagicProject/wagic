@@ -72,29 +72,47 @@ Counters::~Counters()
 
 int Counters::addCounter(const char * _name, int _power, int _toughness)
 {
-/*420.5n If a permanent has both a +1/+1 counter and a -1/-1 counter on it, N +1/+1 and N -1/-1 counters are removed from it, where N is the smaller of the number of +1/+1 and -1/-1 counters on it.*/
-    for (int i = 0; i < mCount; i++)
+    /*420.5n If a permanent has both a +1/+1 counter and a -1/-1 counter on it, N +1/+1 and N -1/-1 counters are removed from it, where N is the smaller of the number of +1/+1 and -1/-1 counters on it.*/
+    GameObserver *g = GameObserver::GetInstance();
+    WEvent * e = NEW WEventCounters(this,_name,_power,_toughness);
+    dynamic_cast<WEventCounters*>(e)->targetCard = this->target;
+    if (e == g->replacementEffects->replace(e))
     {
-        if (counters[i]->cancels(_power, _toughness) && !counters[i]->name.size() && counters[i]->nb > 0)
+        for (int i = 0; i < mCount; i++)
         {
-            counters[i]->removed();
-            counters[i]->nb--;
-            return mCount;
+            if (counters[i]->cancels(_power, _toughness) && !counters[i]->name.size() && counters[i]->nb > 0)
+            {
+                counters[i]->removed();
+                counters[i]->nb--;
+                WEvent * t = NEW WEventCounters(this,_name,_power*-1,_toughness*-1,false,true);
+                dynamic_cast<WEventCounters*>(t)->targetCard = this->target;
+                g->receiveEvent(t);
+                delete(e);
+                return mCount;
+            }
         }
-    }
-    for (int i = 0; i < mCount; i++)
-    {
-        if (counters[i]->sameAs(_name, _power, _toughness))
+        for (int i = 0; i < mCount; i++)
         {
-            counters[i]->added();
-            counters[i]->nb++;
-            return mCount;
+            if (counters[i]->sameAs(_name, _power, _toughness))
+            {
+                counters[i]->added();
+                counters[i]->nb++;
+                WEvent * j = NEW WEventCounters(this,_name,_power,_toughness,true,false);
+                dynamic_cast<WEventCounters*>(j)->targetCard = this->target;
+                g->receiveEvent(j);
+                delete(e);
+                return mCount;
+            }
         }
+        Counter * counter = NEW Counter(target, _name, _power, _toughness);
+        counters.push_back(counter);
+        counter->added();
+        WEvent * w = NEW WEventCounters(this,_name,_power,_toughness,true,false);
+        dynamic_cast<WEventCounters*>(w)->targetCard = this->target;
+        g->receiveEvent(w);
+        mCount++;
     }
-    Counter * counter = NEW Counter(target, _name, _power, _toughness);
-    counters.push_back(counter);
-    counter->added();
-    mCount++;
+    delete(e);
     return mCount;
 }
 
@@ -126,6 +144,10 @@ int Counters::removeCounter(const char * _name, int _power, int _toughness)
                 return 0;
             counters[i]->removed();
             counters[i]->nb--;
+            GameObserver *g = GameObserver::GetInstance();
+            WEvent * e = NEW WEventCounters(this,_name,_power,_toughness,false,true);
+            dynamic_cast<WEventCounters*>(e)->targetCard = this->target;
+            g->receiveEvent(e);
             //special case:if a card is suspended and no longer has a time counter when the last is removed, the card is cast.
             if (target->suspended && !target->counters->hasCounter("time",0,0))
             {

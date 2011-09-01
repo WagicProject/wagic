@@ -10,6 +10,8 @@ class Damage;
 class Phase;
 class Targetable;
 class ManaPool;
+class AACounter;
+class Counters;
 
 class WEvent {
 public:
@@ -49,6 +51,18 @@ struct WEventDamage : public WEvent {
   virtual std::ostream& toString(std::ostream& out) const;
   virtual int getValue();
   virtual Targetable * getTarget(int target);
+};
+
+struct WEventCounters : public WEvent {
+  MTGCardInstance * targetCard;
+  Counters * counter;
+  string name;
+  int power;
+  int toughness;
+  bool added;
+  bool removed;
+  WEventCounters(Counters *counter,string name,int power, int toughness,bool added = false, bool removed = false);
+  virtual Targetable * getTarget();
 };
 
 struct WEventLife : public WEvent {

@@ -37,11 +37,13 @@ private:
 
 public:
     bool autoTranslate;
+    bool isMultipleChoice;
     SimpleMenu(int id, JGuiListener* listener, int fontId, float x, float y, const char * _title = "", int _maxItems = 7, bool centerHorizontal = true, bool centerVertical = true);
     virtual ~SimpleMenu();
     void Render();
     void Update(float dt);
     void Add(int id, const char * Text, string desc = "", bool forceFocus = false);
+    int getmCurr(){return mCurr;}
     void Close();
 
     void RecenterMenu();

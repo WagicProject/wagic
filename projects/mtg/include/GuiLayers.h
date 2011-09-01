@@ -19,6 +19,7 @@ protected:
 public:
     int mCurr;
     vector<JGuiObject *> mObjects;
+    vector<JGuiObject *> manaObjects;
     void Add(JGuiObject * object);
     int Remove(JGuiObject * object);
     int modal;

@@ -394,6 +394,7 @@ class ListMaintainerAbility:public MTGAbility
 {
 public:
     map<MTGCardInstance *,bool> cards;
+    map<MTGCardInstance *,bool> checkCards;
     map<Player *,bool> players;
     ListMaintainerAbility(int _id)
         : MTGAbility(_id, NULL)
@@ -412,6 +413,7 @@ public:
 
     virtual void Update(float dt);
     void updateTargets();
+    void checkTargets();
     virtual bool canTarget(MTGGameZone * zone);
     virtual int canBeInList(MTGCardInstance * card) = 0;
     virtual int added(MTGCardInstance * card) = 0;
@@ -506,7 +508,6 @@ public:
     int parsePowerToughness(string s, int *power, int *toughness);	
     int getAbilities(vector<MTGAbility *> * v, Spell * spell, MTGCardInstance * card = NULL, int id = 0, MTGGameZone * dest = NULL);
     MTGAbility* parseMagicLine(string s, int id, Spell * spell, MTGCardInstance *card, bool activated = false, bool forceUEOT = false, MTGGameZone * dest = NULL);
-
     int abilityEfficiency(MTGAbility * a, Player * p, int mode = MODE_ABILITY, TargetChooser * tc = NULL,Targetable * target = NULL);
     int magicText(int id, Spell * spell, MTGCardInstance * card = NULL, int mode = MODE_PUTINTOPLAY, TargetChooser * tc = NULL, MTGGameZone * dest = NULL);
     static int computeX(Spell * spell, MTGCardInstance * card);

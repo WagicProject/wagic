@@ -5,6 +5,7 @@
 using namespace std;
 #include "Damage.h"
 #include "WEvent.h"
+#include "Counters.h"
 
 class TargetChooser;
 class MTGAbility;
@@ -33,6 +34,19 @@ public:
     REDamagePrevention(MTGAbility * _source, TargetChooser *_tcSource = NULL, TargetChooser *_tcTarget = NULL, int _damage = -1, bool _oneShot = true, int typeOfDamage = DAMAGE_ALL_TYPES);
     WEvent * replace(WEvent *e);
     ~REDamagePrevention();
+};
+
+class RECountersPrevention: public ReplacementEffect
+{
+protected:
+    MTGAbility * source;
+    MTGCardInstance * cardSource;
+    MTGCardInstance * cardTarget;
+    Counter * counter;
+public:
+    RECountersPrevention(MTGAbility * _source,MTGCardInstance * cardSource = NULL,MTGCardInstance * cardTarget = NULL,Counter * counter = NULL);
+    WEvent * replace(WEvent *e);
+    ~RECountersPrevention();
 };
 
 class ReplacementEffects

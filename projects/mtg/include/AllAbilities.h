@@ -44,6 +44,8 @@ public:
 
     WParsedInt(string s, Spell * spell, MTGCardInstance * card)
     {
+        if(!card)
+            return;
         MTGCardInstance * target = card->target;
         intValue = 0;
         bool halfup = false;
@@ -185,6 +187,10 @@ public:
         else if (s == "t" || s == "toughness")
         {
             intValue = target->getToughness();
+        }
+        else if (s == "kicked")
+        {
+            intValue = target->kicked;
         }
 		else if (s == "handsize")
 		{
@@ -698,6 +704,40 @@ public:
     }
 };
 
+//targetted trigger
+class TrCounter: public Trigger
+{
+public:
+    Counter * counter;
+    int type;
+    TrCounter(int id, MTGCardInstance * source, Counter * counter, TargetChooser * tc, int type = 0,bool once = false) :
+    Trigger(id, source, once, tc),counter(counter), type(type)
+    {
+    }
+
+    int triggerOnEventImpl(WEvent * event)
+    {
+        WEventCounters * e = dynamic_cast<WEventCounters *> (event);
+        if (!e) return 0;
+        if (type == 0 && !e->removed) return 0;
+        if (type == 1 && !e->added) return 0;
+        if (!(e->power == counter->power && e->toughness == counter->toughness && e->name == counter->name)) return 0;
+        if (tc && !tc->canTarget(e->targetCard)) return 0;
+        return 1;
+    }
+
+    ~TrCounter()
+    {
+        SAFE_DELETE(counter);
+    }
+
+    TrCounter * clone() const
+    {
+        TrCounter * mClone = NEW TrCounter(*this);
+        mClone->counter = NEW Counter(*this->counter);
+        return mClone;
+    }
+};
 
 //Tutorial Messaging
 class ATutorialMessage: public MTGAbility, public IconButtonsController
@@ -796,13 +836,14 @@ public:
 class IfThenAbility: public MTGAbility
 {
 public:
-    string delayAbility;
+    MTGAbility * delayedAbility;
     int type;
     string Cond;
-    IfThenAbility(int _id,string delayAbility = "", MTGCardInstance * _source=NULL, int type = 1,string Cond = "");
+    IfThenAbility(int _id,MTGAbility * delayedAbility = NULL, MTGCardInstance * _source=NULL, int type = 1,string Cond = "");
     int resolve();
     const char * getMenuText();
     IfThenAbility * clone() const;
+    ~IfThenAbility();
 };
 
 //MayAbility: May do ...
@@ -828,6 +869,39 @@ public:
     MayAbility * clone() const;
     ~MayAbility();
 
+};
+
+//MayAbility with custom menues.
+class MenuAbility: public MayAbility
+{
+public:
+    int triggered;
+    bool removeMenu;
+    bool must;
+    MTGAbility * mClone;
+    vector<MTGAbility*>abilities;
+    Player * who;
+    MenuAbility(int _id, Targetable * target, MTGCardInstance * _source, bool must = false, vector<MTGAbility*>abilities = vector<MTGAbility*>(),Player * who = NULL);
+    void Update(float dt);
+    int resolve();
+    const char * getMenuText();
+    int testDestroy();
+    int isReactingToTargetClick(Targetable * card);
+    int reactToTargetClick(Targetable * object);
+    int reactToChoiceClick(Targetable * object,int choice,int control);
+    MenuAbility * clone() const;
+    ~MenuAbility();
+
+};
+
+class AAProliferate: public ActivatedAbility
+{
+public:
+    AAProliferate(int id, MTGCardInstance * source, Targetable * target,ManaCost * cost = NULL);
+    int resolve();
+    const char* getMenuText();
+    AAProliferate * clone() const;
+    ~AAProliferate();
 };
 
 //MultiAbility : triggers several actions for a cost
@@ -2531,7 +2605,7 @@ public:
     
     void livingWeaponToken(MTGCardInstance * card)
     {
-        GameObserver * g = g->GetInstance();
+        GameObserver * g = GameObserver::GetInstance();
         for (size_t i = 1; i < g->mLayers->actionLayer()->mObjects.size(); i++)
         {
             MTGAbility * a = ((MTGAbility *) g->mLayers->actionLayer()->mObjects[i]);
@@ -2658,6 +2732,13 @@ public:
         cards.clear();
         players.clear();
         return 1;
+    }
+
+    int checkActivation()
+    {
+        checkCards.clear();
+        checkTargets();
+        return checkCards.size();
     }
 
     ~AForeach()
@@ -3424,7 +3505,18 @@ public:
     APreventDamageTypes * clone() const;
     ~APreventDamageTypes();
 };
-
+//prevent counters
+class ACounterShroud: public MTGAbility
+{
+public:
+    Counter * counter;
+    RECountersPrevention * re;
+    ACounterShroud(int id, MTGCardInstance * source, MTGCardInstance * target, Counter * counter = NULL);
+    int addToGame();
+    int destroy();
+    ACounterShroud * clone() const;
+    ~ACounterShroud();
+};
 //Remove all abilities from target
 class ALoseAbilities: public MTGAbility
 {

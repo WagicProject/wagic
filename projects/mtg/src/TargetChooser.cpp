@@ -43,10 +43,10 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
     };
 
     found = s.find("other ");
-    if (found == 0)
+    if (found != string::npos)
     {
         other = true;
-        s = s.substr(6);
+        s = s.erase(found,found+6-found);
     }
 
     found = s.find("trigger");
@@ -65,11 +65,18 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
     if (found != string::npos)
     {
         int maxtargets = 1;
-        size_t several = s.find_first_of('s', 5);
-        if (several != string::npos) maxtargets = -1;
+        size_t several = s.find("<anyamount>");
+        if (several != string::npos) maxtargets = TargetChooser::UNLITMITED_TARGETS;
         found = s.find("creature");
         if (found != string::npos) return NEW DamageableTargetChooser(card, maxtargets, other); //Any Damageable target (player, creature)
         return NEW PlayerTargetChooser(card, maxtargets); //Any player
+    }
+
+    found = s.find("proliferation");
+    if (found != string::npos)
+    {
+        int maxtargets = TargetChooser::UNLITMITED_TARGETS;
+        return NEW ProliferateChooser(card, maxtargets); //Any player
     }
 
     string s1;
@@ -152,6 +159,7 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
 
     TargetChooser * tc = NULL;
     int maxtargets = 1;
+    bool targetMin = false;
     CardDescriptor * cd = NULL;
     //max targets allowed
     size_t limit = s1.find('<');
@@ -162,8 +170,18 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
         if (end != string::npos)
         {
             howmany = s1.substr(limit + 1, end - limit - 1);
-            WParsedInt * howmuch = NEW WParsedInt(howmany, NULL, card);
-            maxtargets = howmuch->getValue();
+            size_t uptoamount= howmany.find("upto:");
+
+            if(uptoamount != string::npos)
+            {
+                howmany = s1.substr(uptoamount + 6, end - uptoamount - 6);
+            }
+            else
+            {
+                targetMin = true;//if upto: is not found, then we need to have a minimum of the amount....
+            }
+            WParsedInt * howmuch = NEW WParsedInt(howmany, (Spell*)card, card);
+            howmany.find("anyamount") != string::npos?maxtargets = TargetChooser::UNLITMITED_TARGETS:maxtargets = howmuch->getValue();
             delete howmuch;
             s1 = s1.substr(end + 1);
         }
@@ -195,12 +213,19 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
             while (attributes.size())
             {
                 size_t found2 = attributes.find(";");
+                size_t foundAnd = attributes.find("&");
                 string attribute;
                 if (found2 != string::npos)
                 {
                     cd->mode = CD_OR;
                     attribute = attributes.substr(0, found2);
                     attributes = attributes.substr(found2 + 1);
+                }
+                else if (foundAnd != string::npos)
+                {
+                    cd->mode = CD_AND;
+                    attribute = attributes.substr(0, foundAnd);
+                    attributes = attributes.substr(foundAnd + 1);
                 }
                 else
                 {
@@ -397,71 +422,6 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                     }
 
                 }
-                else if (attribute.find("blackandgreen") != string::npos)
-                {
-                    //card is both colors?
-                    if (minus)
-                    {
-                        cd->setisBlackAndGreen(-1);
-                    }
-                    else
-                    {
-                        cd->setisBlackAndGreen(1);
-                    }
-
-                }
-                else if (attribute.find("blackandwhite") != string::npos)
-                {
-                    //card is both colors?
-                    if (minus)
-                    {
-                        cd->setisBlackAndWhite(-1);
-                    }
-                    else
-                    {
-                        cd->setisBlackAndWhite(1);
-                    }
-
-                }
-                else if (attribute.find("redandblue") != string::npos)
-                {
-                    //card is both colors?
-                    if (minus)
-                    {
-                        cd->setisRedAndBlue(-1);
-                    }
-                    else
-                    {
-                        cd->setisRedAndBlue(1);
-                    }
-
-                }
-                else if (attribute.find("blueandgreen") != string::npos)
-                {
-                    //card is both colors?
-                    if (minus)
-                    {
-                        cd->setisBlueAndGreen(-1);
-                    }
-                    else
-                    {
-                        cd->setisBlueAndGreen(1);
-                    }
-
-                }
-                else if (attribute.find("redandwhite") != string::npos)
-                {
-                    //card is both colors?
-                    if (minus)
-                    {
-                        cd->setisRedAndWhite(-1);
-                    }
-                    else
-                    {
-                        cd->setisRedAndWhite(1);
-                    }
-
-                }
                 else if (attribute.find("power") != string::npos)
                 {
                     //Power restrictions
@@ -615,20 +575,13 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                 cd->mode = CD_AND;
             typeName = typeName.substr(0, found);
         }
-        //X targets allowed ?
-        if (typeName.at(typeName.length() - 1) == 's' && !Subtypes::subtypesList->find(typeName, false) && typeName.compare("this")
-                        != 0)
-        {
-            typeName = typeName.substr(0, typeName.length() - 1);
-            maxtargets = -1;
-        }
         if (cd)
         {
             if (!tc)
             {
                 if (typeName.compare("*") != 0) cd->setSubtype(typeName);
 
-                tc = NEW DescriptorTargetChooser(cd, zones, nbzones, card, maxtargets, other);
+                tc = NEW DescriptorTargetChooser(cd, zones, nbzones, card, maxtargets, other, targetMin);
             }
             else
             {
@@ -642,7 +595,7 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
             {
                 if (typeName.compare("*") == 0)
                 {
-                    return NEW TargetZoneChooser(zones, nbzones, card, maxtargets, other);
+                    return NEW TargetZoneChooser(zones, nbzones, card, maxtargets, other, targetMin);
                 }
                 else if (typeName.compare("this") == 0)
                 {
@@ -650,7 +603,7 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                 }
                 else
                 {
-                    tc = NEW TypeTargetChooser(typeName.c_str(), zones, nbzones, card, maxtargets, other);
+                    tc = NEW TypeTargetChooser(typeName.c_str(), zones, nbzones, card, maxtargets, other, targetMin);
                 }
             }
             else
@@ -718,7 +671,7 @@ TargetChooser * TargetChooserFactory::createTargetChooser(MTGCardInstance * card
     }
 }
 
-TargetChooser::TargetChooser(MTGCardInstance * card, int _maxtargets, bool _other) :
+TargetChooser::TargetChooser(MTGCardInstance * card, int _maxtargets, bool _other,bool _targetMin) :
     TargetsList()
 {
     forceTargetListReady = 0;
@@ -726,6 +679,11 @@ TargetChooser::TargetChooser(MTGCardInstance * card, int _maxtargets, bool _othe
     targetter = card;
     maxtargets = _maxtargets;
     other = _other;
+    targetMin = _targetMin;
+    done = false;
+    attemptsToFill = 0;
+    if(source)
+    Owner = source->controller();
 }
 
 //Default targetter : every card can be targetted, unless it is protected from the targetter card
@@ -810,10 +768,11 @@ int TargetChooser::targetListSet()
     return 0;
 }
 
-bool TargetChooser::validTargetsExist()
+bool TargetChooser::validTargetsExist(int maxTargets)
 {
     for (int i = 0; i < 2; ++i)
     {
+        int maxAmount = 0;
         Player *p = GameObserver::GetInstance()->players[i];
         if (canTarget(p)) return true;
         MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->exile };
@@ -824,10 +783,12 @@ bool TargetChooser::validTargetsExist()
             {
                 for (int j = 0; j < z->nb_cards; j++)
                 {
-                    if (canTarget(z->cards[j])) return true;
+                    if (canTarget(z->cards[j])) maxAmount++;
                 }
             }
         }
+        if(maxAmount >= maxTargets)
+        return true;
     }
     return false;
 }
@@ -838,6 +799,8 @@ int TargetChooser::countValidTargets()
     for (int i = 0; i < 2; ++i)
     {
         Player *p = GameObserver::GetInstance()->players[i];
+        if(canTarget(p))
+            result++;
         MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->exile };
         for (int k = 0; k < 5; k++)
         {
@@ -909,8 +872,8 @@ bool CardTargetChooser::equals(TargetChooser * tc)
 /**
  Choose anything that has a given list of types
  **/
-TypeTargetChooser::TypeTargetChooser(const char * _type, MTGCardInstance * card, int _maxtargets, bool other) :
-    TargetZoneChooser(card, _maxtargets, other)
+TypeTargetChooser::TypeTargetChooser(const char * _type, MTGCardInstance * card, int _maxtargets, bool other,bool targetMin) :
+    TargetZoneChooser(card, _maxtargets, other,targetMin)
 {
     int id = Subtypes::subtypesList->find(_type);
     nbtypes = 0;
@@ -920,8 +883,8 @@ TypeTargetChooser::TypeTargetChooser(const char * _type, MTGCardInstance * card,
 }
 
 TypeTargetChooser::TypeTargetChooser(const char * _type, int * _zones, int nbzones, MTGCardInstance * card, int _maxtargets,
-                bool other) :
-    TargetZoneChooser(card, _maxtargets, other)
+                bool other,bool targetMin) :
+    TargetZoneChooser(card, _maxtargets, other,targetMin)
 {
     int id = Subtypes::subtypesList->find(_type);
     nbtypes = 0;
@@ -1021,8 +984,8 @@ bool TypeTargetChooser ::equals(TargetChooser * tc)
 /**
  A Target Chooser associated to a Card Descriptor object, for fine tuning of targets description
  **/
-DescriptorTargetChooser::DescriptorTargetChooser(CardDescriptor * _cd, MTGCardInstance * card, int _maxtargets, bool other) :
-    TargetZoneChooser(card, _maxtargets, other)
+DescriptorTargetChooser::DescriptorTargetChooser(CardDescriptor * _cd, MTGCardInstance * card, int _maxtargets, bool other,bool targetMin) :
+    TargetZoneChooser(card, _maxtargets, other,targetMin)
 {
     int default_zones[] = { MTGGameZone::MY_BATTLEFIELD, MTGGameZone::OPPONENT_BATTLEFIELD };
     init(default_zones, 2);
@@ -1030,8 +993,8 @@ DescriptorTargetChooser::DescriptorTargetChooser(CardDescriptor * _cd, MTGCardIn
 }
 
 DescriptorTargetChooser::DescriptorTargetChooser(CardDescriptor * _cd, int * _zones, int nbzones, MTGCardInstance * card,
-                int _maxtargets, bool other) :
-    TargetZoneChooser(card, _maxtargets, other)
+                int _maxtargets, bool other,bool targetMin) :
+    TargetZoneChooser(card, _maxtargets, other,targetMin)
 {
     if (nbzones == 0)
     {
@@ -1092,14 +1055,14 @@ bool DescriptorTargetChooser::equals(TargetChooser * tc)
 }
 
 /* TargetzoneChooser targets everything in a given zone */
-TargetZoneChooser::TargetZoneChooser(MTGCardInstance * card, int _maxtargets, bool other) :
-    TargetChooser(card, _maxtargets, other)
+TargetZoneChooser::TargetZoneChooser(MTGCardInstance * card, int _maxtargets, bool other,bool targetMin) :
+    TargetChooser(card, _maxtargets, other,targetMin)
 {
     init(NULL, 0);
 }
 
-TargetZoneChooser::TargetZoneChooser(int * _zones, int _nbzones, MTGCardInstance * card, int _maxtargets, bool other) :
-    TargetChooser(card, _maxtargets, other)
+TargetZoneChooser::TargetZoneChooser(int * _zones, int _nbzones, MTGCardInstance * card, int _maxtargets, bool other,bool targetMin) :
+    TargetChooser(card, _maxtargets, other,targetMin)
 {
     init(_zones, _nbzones);
 }
@@ -1275,8 +1238,8 @@ bool DamageableTargetChooser::equals(TargetChooser * tc)
 
 /*Spell */
 
-SpellTargetChooser::SpellTargetChooser(MTGCardInstance * card, int _color, int _maxtargets, bool other) :
-    TargetChooser(card, _maxtargets, other)
+SpellTargetChooser::SpellTargetChooser(MTGCardInstance * card, int _color, int _maxtargets, bool other,bool targetMin) :
+    TargetChooser(card, _maxtargets, other,targetMin)
 {
     color = _color;
 }
@@ -1318,8 +1281,8 @@ bool SpellTargetChooser::equals(TargetChooser * tc)
 }
 
 /*Spell or Permanent */
-SpellOrPermanentTargetChooser::SpellOrPermanentTargetChooser(MTGCardInstance * card, int _color, int _maxtargets, bool other) :
-    TargetZoneChooser(card, _maxtargets, other)
+SpellOrPermanentTargetChooser::SpellOrPermanentTargetChooser(MTGCardInstance * card, int _color, int _maxtargets, bool other,bool targetMin) :
+    TargetZoneChooser(card, _maxtargets, other,targetMin)
 {
     int default_zones[] = { MTGGameZone::MY_BATTLEFIELD, MTGGameZone::OPPONENT_BATTLEFIELD };
     init(default_zones, 2);
@@ -1443,4 +1406,40 @@ bool TriggerTargetChooser::equals(TargetChooser * tc)
         return false;
 
     return TargetChooser::equals(tc);
+}
+
+/*Proliferate Target */
+bool ProliferateChooser::canTarget(Targetable * target,bool withoutProtections)
+{
+    if (target->typeAsTarget() == TARGET_CARD)
+    {
+        MTGCardInstance * card = (MTGCardInstance*)target;
+        if(card->counters && card->counters->counters.empty())
+            return false;
+        return true;
+    }
+    if (target->typeAsTarget() == TARGET_PLAYER)
+    {
+        Player * p = (Player*)target;
+        if(!p->poisonCount)
+            return false;
+        return true;
+    }
+    return TypeTargetChooser::canTarget(target,withoutProtections);
+}
+
+ProliferateChooser* ProliferateChooser::clone() const
+{
+    ProliferateChooser * a = NEW ProliferateChooser(*this);
+    return a;
+}
+
+bool ProliferateChooser::equals(TargetChooser * tc)
+{
+
+    ProliferateChooser  * dtc = dynamic_cast<ProliferateChooser  *> (tc);
+    if (!dtc)
+        return false;
+
+    return TypeTargetChooser::equals(tc);
 }

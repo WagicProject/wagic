@@ -10,7 +10,6 @@
 #if defined (WIN32) || defined (LINUX)
 #include <time.h>
 #endif
-
 //------------------------------
 //Players Game
 //------------------------------
@@ -467,6 +466,7 @@ MTGCardInstance * MTGGameZone::removeCard(MTGCardInstance * card, int createCopy
                 copy->view = card->view;
                 copy->isToken = card->isToken;
                 copy->X = card->X;
+                copy->kicked = card->kicked;
 
                 //stupid bug with tokens...
                 if (card->model == card)
@@ -524,7 +524,7 @@ MTGCardInstance * MTGGameZone::findByName(string name)
 {
     for (int i = 0; i < (nb_cards); i++)
     {
-        if (cards[i]->name == name)
+        if (cards[i]->name == name || cards[i]->getLCName()/*tokens*/ == name)
         {
             return cards[i];
         }

@@ -4,6 +4,7 @@
 #include "GameObserver.h"
 #include "Targetable.h"
 #include "WEvent.h"
+#include "AllAbilities.h"
 
 MTGAbility* ActionLayer::getAbility(int type)
 {
@@ -27,12 +28,21 @@ int ActionLayer::removeFromGame(ActionElement * e)
 
     if (isWaitingForAnswer() == e)
         setCurrentWaitingAction(NULL);
+    assert(e);
     e->destroy();
 
     i = getIndexOf(e); //the destroy event might have changed the contents of mObjects, so we get the index again
     if (i == -1)
         return 0; //Should not happen, it means we deleted thesame object twice?
-
+    AManaProducer * manaObject = dynamic_cast<AManaProducer*>(e);
+    if(manaObject)
+    {
+        for (size_t i = 0; i < manaObjects.size(); i++)
+            if (manaObjects[i] == e)
+            {
+                manaObjects.erase(manaObjects.begin() + i);
+            }
+    }
     mObjects.erase(mObjects.begin() + i);
     return 1;
 
@@ -140,10 +150,32 @@ void ActionLayer::Update(float dt)
     if (cantCancel)
     {
         ActionElement * ae = isWaitingForAnswer();
-        if (ae && !ae->tc->validTargetsExist())
+        int countTargets = 0;
+        int maxTargets = 0;
+        if(ae && ae->getActionTc())
         {
-            cantCancel = 0;
-            cancelCurrentAction();
+            if (!ae->getActionTc()->validTargetsExist())
+            {
+                cantCancel = 0;
+                cancelCurrentAction();
+                return;
+            }
+            countTargets = ae->getActionTc()->countValidTargets();
+            maxTargets = ae->getActionTc()->maxtargets;
+            if (countTargets < maxTargets)
+            {
+                /*
+                @movedto(this|mygraveyard) from(mybattlefield):moveto(mybattlefield) 
+                target(<2>creature[elf]|opponentgraveyard)
+                and there were 3 in the grave, you have the valid amount needed, this function should not trigger
+                ...however if you had only 1 in the grave, then the max targets is reset to the maximum you CAN
+                use this effect on...in line with "up to" wording found on the cards with such abilities.
+                without this, the game locks into a freeze state while you try to select the targets and dont have enough to
+                fill the maxtargets list.
+                */
+                if(int(ae->getActionTc()->targets.size()) == countTargets-1)
+                    ae->getActionTc()->done = true;
+            }
         }
     }
 }
@@ -155,6 +187,7 @@ void ActionLayer::Render()
         abilitiesMenu->Render();
         return;
     }
+    currentActionCard = NULL;
     for (size_t i = 0; i < mObjects.size(); i++)
     {
         if (mObjects[i] != NULL)
@@ -176,7 +209,7 @@ void ActionLayer::setCurrentWaitingAction(ActionElement * ae)
 TargetChooser * ActionLayer::getCurrentTargetChooser()
 {
     if (currentWaitingAction && currentWaitingAction->waitingForAnswer)
-        return currentWaitingAction->tc;
+        return currentWaitingAction->getActionTc();
     return NULL;
 }
 
@@ -185,7 +218,7 @@ int ActionLayer::cancelCurrentAction()
     ActionElement * ae = isWaitingForAnswer();
     if (!ae)
         return 0;
-    if (cantCancel && ae->tc->validTargetsExist())
+    if (cantCancel && ae->getActionTc()->validTargetsExist())
         return 0;
     ae->waitingForAnswer = 0; //TODO MOVE THIS IN ActionElement
     setCurrentWaitingAction(NULL);
@@ -312,13 +345,43 @@ void ActionLayer::setMenuObject(Targetable * object, bool must)
     SAFE_DELETE(abilitiesMenu);
 
     abilitiesMenu = NEW SimpleMenu(10, this, Fonts::MAIN_FONT, 100, 100, object->getDisplayName().c_str());
-
+    currentActionCard = NULL;
     for (size_t i = 0; i < mObjects.size(); i++)
     {
         ActionElement * currentAction = (ActionElement *) mObjects[i];
         if (currentAction->isReactingToTargetClick(object))
         {
             abilitiesMenu->Add(i, currentAction->getMenuText());
+        }
+    }
+    if (!must)
+        abilitiesMenu->Add(kCancelMenuID, "Cancel");
+    else
+        cantCancel = 1;
+    modal = 1;
+}
+
+void ActionLayer::setCustomMenuObject(Targetable * object, bool must,vector<MTGAbility*>abilities)
+{
+    if (!object)
+    {
+        DebugTrace("FATAL: ActionLayer::setCustomMenuObject");
+        return;
+    }
+    menuObject = object;
+    SAFE_DELETE(abilitiesMenu);
+    abilitiesMenu = NEW SimpleMenu(10, this, Fonts::MAIN_FONT, 100, 100, object->getDisplayName().c_str());
+    currentActionCard = NULL;
+    abilitiesMenu->isMultipleChoice = false;
+    if(abilities.size())
+    {
+        abilitiesMenu->isMultipleChoice = true;
+        ActionElement * currentAction = NULL;
+        for(int w = 0; w < int(abilities.size());w++)
+        {
+            currentAction = (ActionElement*)abilities[w];
+            currentActionCard = (MTGCardInstance*)abilities[0]->target;
+            abilitiesMenu->Add(mObjects.size()-1, currentAction->getMenuText(),"",false);
         }
     }
     if (!must)
@@ -339,8 +402,21 @@ void ActionLayer::doReactTo(int menuIndex)
     }
 }
 
+void ActionLayer::doMultipleChoice(int choice)
+{
+    if (menuObject)
+    {
+        DebugTrace("ActionLayer::doReactToChoice " << choice);
+        ButtonPressedOnMultipleChoice(choice);
+    }
+}
+
 void ActionLayer::ButtonPressed(int controllerid, int controlid)
 {
+    if(this->abilitiesMenu && this->abilitiesMenu->isMultipleChoice)
+    {
+        return ButtonPressedOnMultipleChoice();
+    }
     if (controlid >= 0 && controlid < static_cast<int>(mObjects.size()))
     {
         ActionElement * currentAction = (ActionElement *) mObjects[controlid];
@@ -357,6 +433,35 @@ void ActionLayer::ButtonPressed(int controllerid, int controlid)
         // fallthrough case. We have an id we don't recognize - do nothing, don't clear the menu!
         //assert(false);
     }
+}
+
+void ActionLayer::ButtonPressedOnMultipleChoice(int choice)
+{
+    int currentMenuObject = -1;
+    for(int i = int(mObjects.size()-1);i > 0;i--)
+    {
+        //the currently displayed menu is not always the currently listenning action object
+        //find the menu which is displayed.
+        MenuAbility * ma = dynamic_cast<MenuAbility *>(mObjects[i]);//find the active menu
+        if(ma && ma->triggered)
+        {
+            currentMenuObject = i;
+            break;
+        }
+    }
+    if (currentMenuObject >= 0 && currentMenuObject < static_cast<int>(mObjects.size()))
+    {
+        ActionElement * currentAction = (ActionElement *) mObjects[currentMenuObject];
+        currentAction->reactToChoiceClick(menuObject,choice > -1?choice:this->abilitiesMenu->getmCurr(),currentMenuObject);
+        MenuAbility * ma = dynamic_cast<MenuAbility *>(mObjects[currentMenuObject]);
+        if(ma)
+            ma->removeMenu = true;//we clicked something, close menu now.
+    }
+    else if (currentMenuObject == kCancelMenuID)
+    {
+        GameObserver::GetInstance()->mLayers->stackLayer()->endOfInterruption();
+    }
+    menuObject = 0;
 }
 
 ActionLayer::ActionLayer()

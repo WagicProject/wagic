@@ -29,7 +29,6 @@ ActionElement::ActionElement(const ActionElement& a): JGuiObject(a)
 ActionElement::~ActionElement()
 {
     SAFE_DELETE(tc);
-
 }
 
 int ActionElement::getActivity()
