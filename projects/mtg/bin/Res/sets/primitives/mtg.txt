@@ -54859,7 +54859,7 @@ type=Instant
 name=Reality Spasm
 auto=choice name(tap) target(<x>*) tap
 auto=choice name(untap) target(<x>*) untap
-text=Choose one — Tap X target permanents; or untap X target permanents.
+text=Choose one - Tap X target permanents; or untap X target permanents.
 mana={X}{U}{U}
 type=Instant
 [/card]
@@ -63906,7 +63906,7 @@ toughness=1
 [card]
 name=Slithery Stalker
 abilities=swampwalk
-auto=(blink)forsrc target(creature[white;green]]|battlefield)
+auto=(blink)forsrc target(creature[white;green]|opponentbattlefield)
 text=Swampwalk -- When Slithery Stalker enters the battlefield, exile target green or white creature an opponent controls. -- When Slithery Stalker leaves the battlefield, return the exiled card to the battlefield under its owner's control.
 mana={1}{B}{B}
 type=Creature
