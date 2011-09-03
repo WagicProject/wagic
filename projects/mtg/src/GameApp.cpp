@@ -281,7 +281,7 @@ void GameApp::Destroy()
 
     SAFE_DELETE(Subtypes::subtypesList);
 
-    playMusic("none");
+    stopMusic();
 
     Translator::EndInstance();
     WCFilterFactory::Destroy();
@@ -425,12 +425,12 @@ void GameApp::SetNextState(int state)
 
 void GameApp::Pause()
 {
-
+    stopMusic();
 }
 
 void GameApp::Resume()
 {
-
+    playMusic();
 }
 
 void GameApp::DoTransition(int trans, int tostate, float dur, bool animonly)
@@ -486,7 +486,9 @@ void GameApp::DoAnimation(int trans, float dur)
 
 void GameApp::playMusic(string filename, bool loop)
 {
-    if (filename.compare(currentMusicFile) == 0)
+    if(filename == "") filename = currentMusicFile;
+
+    if (filename.compare(currentMusicFile) == 0 && music)
         return;
 
     if (music)
@@ -501,5 +503,14 @@ void GameApp::playMusic(string filename, bool loop)
         if (music)
             JSoundSystem::GetInstance()->PlayMusic(music, loop);
         currentMusicFile = filename;
+    }
+}
+
+void GameApp::stopMusic()
+{
+    if (music && currentMusicFile != "")
+    {
+        JSoundSystem::GetInstance()->StopMusic(music);
+        SAFE_DELETE(music);
     }
 }

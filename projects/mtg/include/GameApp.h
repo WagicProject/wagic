@@ -100,7 +100,8 @@ public:
     static string systemError;
     static JMusic* music;
     static string currentMusicFile;
-    static void playMusic(string filename, bool loop = true);
+    static void playMusic(string filename = "", bool loop = true);
+    static void stopMusic();
     static int players[2];
 
 };
