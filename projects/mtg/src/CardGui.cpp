@@ -253,7 +253,7 @@ void CardGui::Render()
     if (mask && quad)
         JRenderer::GetInstance()->FillRect(actX - (scale * quad->mWidth / 2),actY - (scale * quad->mHeight / 2), scale * quad->mWidth, scale* quad->mHeight, mask);
 
-    if ((tc && tc->alreadyHasTarget(card)) || card == game->mLayers->actionLayer()->currentActionCard)//paint targets red.
+    if ((tc && tc->alreadyHasTarget(card)) || (game && card == game->mLayers->actionLayer()->currentActionCard))//paint targets red.
     {
         if (card->isTapped())
         {
