@@ -185,9 +185,9 @@ void RulesState::parsePlayerState(int playerId, string s)
             playerData[playerId].phaseRing = s.substr(limiter + 1);
             return;
         }
-		else if (areaS.compare("offerinterruptonphase") == 0)
-		{
-			  for (int i = 0; i < Constants::NB_MTG_PHASES; i++)
+        else if (areaS.compare("offerinterruptonphase") == 0)
+        {
+            for (int i = 0; i < Constants::NB_MTG_PHASES; i++)
             {
                 string phaseStr = Constants::MTGPhaseCodeNames[i];
                 if (s.find(phaseStr) != string::npos)
@@ -195,9 +195,9 @@ void RulesState::parsePlayerState(int playerId, string s)
                     playerData[playerId].offerInterruptOnPhase = PhaseRing::phaseStrToInt(phaseStr);
                     break;
                 }
-
-            }  
-		}
+            } 
+            return;
+        }
         else if (areaS.compare("auto") == 0)
         {
             playerData[playerId].extraRules.push_back(s.substr(limiter + 1));
