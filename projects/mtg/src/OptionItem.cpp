@@ -415,7 +415,7 @@ OptionDirectory::OptionDirectory(string root, int id, string displayValue, strin
     for (size_t i = 0; i < subfolders.size(); ++i)
     {
         string subfolder = subfolders[i].substr(0, subfolders[i].length());
-        if(subfolders[i].find("/") == subfolders[i].length())
+        if(subfolder[subfolders[i].length()-1] == '/')
         subfolder = subfolders[i].substr(0, subfolders[i].length() - 1); //remove trailing "/" 
         vector<string> path;
         path.push_back(root);
