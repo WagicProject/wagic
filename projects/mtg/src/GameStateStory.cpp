@@ -7,7 +7,7 @@
 #include <dirent.h>
 
 GameStateStory::GameStateStory(GameApp* parent) :
-    GameState(parent)
+    GameState(parent, "story")
 {
     flow = NULL;
     menu = NULL;

@@ -49,7 +49,7 @@ bool BoosterDisplay::CheckUserInput(JButton key)
 }
 
 GameStateShop::GameStateShop(GameApp* parent) :
-    GameState(parent)
+    GameState(parent, "shop")
 {
     menu = NULL;
     for (int i = 0; i < 8; i++)

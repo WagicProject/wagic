@@ -315,6 +315,11 @@ JGE::JGE()
     strcpy(mDebuggingMsg, "");
     mCurrentMusic = NULL;
 #endif
+
+#if defined (ANDROID)
+    mJNIEnv = NULL;
+#endif
+
     Init();
 }
 
@@ -566,6 +571,30 @@ void JGE::Scroll(int inXVelocity, int inYVelocity)
         mApp->OnScroll(inXVelocity, inYVelocity);
     }
 }
+
+void JGE::SendCommand(string command)
+{
+ #if defined (ANDROID)
+    sendJNICommand(command);
+ #endif
+}
+
+ #if defined (ANDROID)
+   /// Access to JNI Environment
+    void JGE::SetJNIEnv(JNIEnv * env, jclass cls)
+    {
+        mJNIEnv = env;
+        mJNIClass = cls;
+        midSendCommand = mJNIEnv->GetStaticMethodID(mJNIClass,"jgeSendCommand","(Ljava/lang/String;)V");
+    }
+	
+    void JGE::sendJNICommand(string command)
+    {
+        if (midSendCommand) {
+            mJNIEnv->CallStaticVoidMethod(mJNIClass, midSendCommand, mJNIEnv->NewStringUTF(command.c_str()));
+        }       
+	}
+#endif 
 
 std::queue< pair< pair<LocalKeySym, JButton>, bool> > JGE::keyBuffer;
 std::multimap<LocalKeySym, JButton> JGE::keyBinds;

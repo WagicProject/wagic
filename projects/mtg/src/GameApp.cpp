@@ -40,8 +40,8 @@ string GameApp::systemError = "";
 
 JQuadPtr manaIcons[7];
 
-GameState::GameState(GameApp* parent) :
-    mParent(parent)
+GameState::GameState(GameApp* parent, string id) :
+    mParent(parent), mStringID(id)
 {
     mEngine = JGE::GetInstance();
 }
@@ -341,13 +341,13 @@ void GameApp::Update()
         mTrans->End();
         if (mTrans->to != NULL && !mTrans->bAnimationOnly)
         {
-            mCurrentState = mTrans->to;
+            SetCurrentState(mTrans->to);
             SAFE_DELETE(mGameStates[GAME_STATE_TRANSITION]);
             mCurrentState->Start();
         }
         else
         {
-            mCurrentState = mTrans->from;
+            SetCurrentState(mTrans->from);
             SAFE_DELETE(mGameStates[GAME_STATE_TRANSITION]);
         }
     }
@@ -356,7 +356,7 @@ void GameApp::Update()
         if (mCurrentState != NULL)
             mCurrentState->End();
 
-        mCurrentState = mNextState;
+        SetCurrentState(mNextState);
 
 #if defined (PSP)
         /*
@@ -423,6 +423,20 @@ void GameApp::SetNextState(int state)
     mNextState = mGameStates[state];
 }
 
+void GameApp::SetCurrentState(GameState * state)
+{
+    if (mCurrentState == state)
+        return;
+
+    if (mCurrentState)
+        JGE::GetInstance()->SendCommand("leavegamestate:" + mCurrentState->getStringID());
+
+    mCurrentState = state;
+
+    if (mCurrentState)
+        JGE::GetInstance()->SendCommand("entergamestate:" + mCurrentState->getStringID());
+}
+
 void GameApp::Pause()
 {
     stopMusic();
@@ -471,7 +485,7 @@ void GameApp::DoTransition(int trans, int tostate, float dur, bool animonly)
         tb->bAnimationOnly = animonly;
         mGameStates[GAME_STATE_TRANSITION] = tb;
         mGameStates[GAME_STATE_TRANSITION]->Start();
-        mCurrentState = tb; //The old current state is ended inside our transition.
+        SetCurrentState(tb); //The old current state is ended inside our transition.
     }
     else if (toState)
     { //Somehow failed, just do standard SetNextState behavior

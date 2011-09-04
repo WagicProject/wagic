@@ -55,6 +55,10 @@ typedef u32 LocalKeySym;
 
 #endif
 
+#if defined(ANDROID)
+#include <jni.h>
+#endif
+
 bool JGEGetButtonState(const JButton button);
 bool JGEGetButtonClick(const JButton button);
 void JGECreateDefaultBindings();
@@ -119,6 +123,12 @@ class JGE
  public:
   void Run();
  private:
+#endif
+
+#if defined (ANDROID)
+    JNIEnv * mJNIEnv;
+    jclass mJNIClass;
+    jmethodID midSendCommand;
 #endif
 
   bool mDone;
@@ -356,6 +366,16 @@ class JGE
 
   void Assert(const char *filename, long lineNumber);
 
+  /// Sends a message through JGE
+  /// Currently used only to communicate with the JNI Layer in Android
+  void SendCommand(std::string command);
+  
+ #if defined (ANDROID)
+   /// Access to JNI Environment
+   void SetJNIEnv(JNIEnv * env, jclass cls);
+   void sendJNICommand(std::string command);
+#endif 
+  
  protected:
   JGE();
   ~JGE();

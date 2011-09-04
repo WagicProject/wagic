@@ -51,7 +51,7 @@ void MenuItem::Render()
         onQuad->SetColor(ARGB(70,255,255,255));
         renderer->RenderQuad(onQuad, SCREEN_WIDTH, SCREEN_HEIGHT / 2, 0, 8, 8);
         onQuad->SetColor(ARGB(255,255,255,255));
-        mFont->DrawString(mText.c_str(), SCREEN_WIDTH / 2, 20 + 3 * SCREEN_HEIGHT / 4, JGETEXT_CENTER);
+        mFont->DrawString(mText.c_str(), SCREEN_WIDTH / 2, 3 * SCREEN_HEIGHT / 4, JGETEXT_CENTER);
         renderer->RenderQuad(onQuad, mX, mY, 0, mScale, mScale);
 
     }

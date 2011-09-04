@@ -44,9 +44,10 @@ class GameState
 protected:
     GameApp* mParent;
     JGE* mEngine;
+    string mStringID;
 
 public:
-    GameState(GameApp* parent);
+    GameState(GameApp* parent, string id);
     virtual ~GameState(){}
 
     virtual void Create(){}
@@ -61,6 +62,8 @@ public:
 
     virtual void Update(float dt) = 0;
     virtual void Render() = 0;
+
+    string getStringID() {return mStringID;};
 
     // deck manipulation methods
     // 2010/09/15:

@@ -50,10 +50,37 @@ uint64_t	lastTickCount;
 JGE* g_engine = NULL;
 JApp* g_app = NULL;
 JGameLauncher* g_launcher = NULL;
+#ifdef ANDROID
+JNIEnv * mJNIEnv = NULL;
+jclass * mJNIClass = NULL;
+#endif
 
 class SdlApp;
 
 SdlApp *g_SdlApp = NULL;
+
+
+#ifdef ANDROID
+// Pause
+extern "C" void Java_org_libsdl_app_SDLActivity_nativePause(
+                                    JNIEnv* env, jclass cls)
+{    
+	DebugTrace("Attempt pause");
+	if (!g_engine)
+		return;
+   g_engine->Pause();
+   DebugTrace("Pause done");
+}
+
+// Resume
+extern "C" void Java_org_libsdl_app_SDLActivity_nativeResume(
+                                    JNIEnv* env, jclass cls)
+{    
+	if (!g_engine)
+		return;
+	g_engine->Resume();
+}
+#endif
 
 
 class SdlApp
@@ -89,11 +116,14 @@ public:
 
 		while(Running)
 		{
-			while(SDL_WaitEventTimeout(&Event, 0))
+			if (g_engine && !g_engine->IsPaused())
 			{
-				OnEvent(&Event);
+				while(SDL_WaitEventTimeout(&Event, 0))
+				{
+					OnEvent(&Event);
+				}
+				OnUpdate();
 			}
-			OnUpdate();
 		}
 
 		OnCleanup();
@@ -348,6 +378,16 @@ bool InitGame(void)
 	g_app = g_launcher->GetGameApp();
 	g_app->Create();
 	g_engine->SetApp(g_app);
+#ifdef ANDROID
+    DebugTrace("Can I Set JNI Params ?");
+     if (mJNIEnv)
+        DebugTrace("mJNIEnv is ok");
+    if (mJNIEnv && mJNIClass)
+    {
+        DebugTrace("Setting JNI Params");
+        g_engine->SetJNIEnv(mJNIEnv, *mJNIClass);
+    }
+#endif	
 
 	JRenderer::GetInstance()->Enable2D();
 	lastTickCount = JGEGetTime();
@@ -686,6 +726,15 @@ int SDL_main(int argc, char * argv[])
 int main(int argc, char* argv[])
 #endif //ANDROID
 {
+
+#if (defined ANDROID)
+	if (argc > 2)
+    {
+		mJNIEnv = (JNIEnv * )argv[1];
+        mJNIClass = (jclass * )argv[2];
+    }
+#endif		
+
 	DebugTrace("I R in da native");
 
 	g_launcher = new JGameLauncher();

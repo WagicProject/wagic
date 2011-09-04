@@ -45,6 +45,7 @@ private:
     void loadPlayer(int playerId, int decknb = 0, bool isAI = false, bool isNetwork = false);
     void ConstructOpponentMenu(); //loads the opponentMenu if it doesn't exist
     void initScroller();
+    void setGamePhase(int newGamePhase);
 
 public:
     GameStateDuel(GameApp* parent);

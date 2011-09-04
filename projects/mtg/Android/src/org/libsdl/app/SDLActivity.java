@@ -21,12 +21,18 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.VelocityTracker;
 import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.FrameLayout.LayoutParams;
+
+import com.google.ads.*;
+
 
 
 /**
@@ -35,9 +41,10 @@ import android.view.View;
 public class SDLActivity extends Activity {
 
     // Main components
+    private static AdView mAdView;	
     private static SDLActivity mSingleton;
     private static SDLSurface mSurface;
-
+    
     // Audio
     private static Thread mAudioThread;
     private static AudioTrack mAudioTrack;
@@ -52,6 +59,7 @@ public class SDLActivity extends Activity {
     }
 
     // Setup
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         //Log.v("SDL", "onCreate()");
         super.onCreate(savedInstanceState);
@@ -59,33 +67,96 @@ public class SDLActivity extends Activity {
         // So we can call stuff from static callbacks
         mSingleton = this;
 
+        
+        FrameLayout _videoLayout = new FrameLayout(this);
+        
+        //mGLView = new DemoGLSurfaceView(this);
+       
+        
         // Set up the surface
         mSurface = new SDLSurface(getApplication());
-        setContentView(mSurface);
+        
+        //setContentView(mSurface);
         SurfaceHolder holder = mSurface.getHolder();
         holder.setType(SurfaceHolder.SURFACE_TYPE_GPU);
+       
+        // Create the adView
+        mAdView = new AdView(this, AdSize.BANNER, "a14dc0ab7b27413");       
+        
+        _videoLayout.addView(mSurface, new LayoutParams(LayoutParams.FILL_PARENT,
+        		  LayoutParams.FILL_PARENT));
+        _videoLayout.addView(mAdView, new LayoutParams(LayoutParams.WRAP_CONTENT
+        		  , LayoutParams.WRAP_CONTENT, Gravity.BOTTOM + Gravity.CENTER_HORIZONTAL) );
+        		       // mGLView.setFocusableInTouchMode(true);
+        		       // mGLView.setFocusable(true);
+        		         //         adView.requestFreshAd();
+        setContentView(_videoLayout,
+        		new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
+        mSurface.requestFocus(); 
+        		        
+
+        AdRequest request = new AdRequest();
+
+        request.addTestDevice(AdRequest.TEST_EMULATOR);
+        request.addTestDevice("1DA1E070BC7D4ABE8BA77EB73C2CB0AA"); //wololo's phone
+                
+        // Initiate a generic request to load it with an ad
+        mAdView.loadAd(request);                
     }
 
     // Events
+    @Override
     protected void onPause() {
         //Log.v("SDL", "onPause()");
         super.onPause();
+        SDLActivity.nativePause();   
     }
-
+    
+    @Override
     protected void onResume() {
-        //Log.v("SDL", "onResume()");
+        Log.v("SDL", "onResume()");
         super.onResume();
+        SDLActivity.nativeResume();
     }
 
+
+    @Override
+    public void onDestroy() {   
+    	Log.v("SDL", "onDestroy()");
+
+    	super.onDestroy();    	
+    	mSurface.onDestroy();
+    }
+ 
+    // Handler for Messages coming from JGE
+    // Suggested syntax for JGE messages is a string separated by the ":" symbol
+    protected void processJGEMsg (String command)
+    {   
+    	if (null == command) {
+    		return;
+    	}
+    	
+        if ((command.compareTo("entergamestate:menu") == 0)
+        		|| (command.compareTo("enterduelphase:end") == 0)) {
+        	mAdView.setVisibility(View.VISIBLE);
+        } else if (command.compareTo("leavegamestate:menu") == 0) {
+        	mAdView.setVisibility(View.INVISIBLE);
+        }   
+    }
+    
     // Messages from the SDLMain thread
     static int COMMAND_CHANGE_TITLE = 1;
+    static int COMMAND_JGE_MSG = 2;
 
     // Handler for the messages
     Handler commandHandler = new Handler() {
         public void handleMessage(Message msg) {
             if (msg.arg1 == COMMAND_CHANGE_TITLE) {
                 setTitle((String)msg.obj);
-            }
+            }   
+            if (msg.arg1 == COMMAND_JGE_MSG) {
+                processJGEMsg((String)msg.obj);
+            }                
         }
     };
 
@@ -96,10 +167,12 @@ public class SDLActivity extends Activity {
         msg.obj = data;
         commandHandler.sendMessage(msg);
     }
-
+    
     // C functions we call
     public static native void nativeInit();
     public static native void nativeQuit();
+    public static native void nativePause();
+    public static native void nativeResume();    
     public static native void onNativeResize(int x, int y, int format);
     public static native void onNativeKeyDown(int keycode);
     public static native void onNativeKeyUp(int keycode);
@@ -111,7 +184,11 @@ public class SDLActivity extends Activity {
 
 
     // Java functions called from C
-
+    // Receive a message from the SDLMain thread
+    public static void jgeSendCommand(String command) {
+    	mSingleton.sendCommand(COMMAND_JGE_MSG, command);
+    }    
+    
     public static boolean createGLContext(int majorVersion, int minorVersion) {
         return mSurface.initEGL(majorVersion, minorVersion);
     }
@@ -119,7 +196,7 @@ public class SDLActivity extends Activity {
     public static void flipBuffers() {
         mSurface.flipEGL();
     }
-
+    
     public static void setActivityTitle(String title) {
         // Called from SDLMain() thread and can't directly affect the view
         mSingleton.sendCommand(COMMAND_CHANGE_TITLE, title);
@@ -224,19 +301,6 @@ public class SDLActivity extends Activity {
 }
 
 /**
-    Simple nativeInit() runnable
-*/
-class SDLMain implements Runnable {
-    public void run() {
-        // Runs SDL_main()
-        SDLActivity.nativeInit();
-
-        //Log.v("SDL", "SDL thread terminated");
-    }
-}
-
-
-/**
     SDLSurface. This is what we draw on, so we need to know when it's created
     in order to do anything useful. 
 
@@ -246,21 +310,52 @@ class SDLSurface extends SurfaceView implements SurfaceHolder.Callback,
     View.OnKeyListener, View.OnTouchListener, SensorEventListener  {
 
     // This is what SDL runs in. It invokes SDL_main(), eventually
-    private Thread mSDLThread;    
+    private Thread mSDLThread;       
     
     // EGL private objects
     private EGLContext  mEGLContext;
     private EGLSurface  mEGLSurface;
     private EGLDisplay  mEGLDisplay;
+    private EGLConfig   mEGLConfig;
 
     // Sensors
     private static SensorManager mSensorManager;
 
 	private static VelocityTracker mVelocityTracker;
 
+	final private Object mSemSurface;
+	private Boolean mSurfaceValid;
+	
+
+    void startSDLThread() {
+        if (mSDLThread == null) {
+            mSDLThread = new Thread(new SDLMain(), "SDLThread"); 
+            mSDLThread.start();       
+        }    	
+    }
+    
+	/**
+    Simple nativeInit() runnable
+	*/
+	class SDLMain implements Runnable {
+	    public void run() {
+	        // Runs SDL_main()
+            SDLActivity.nativeInit();
+
+            SDLActivity.nativeQuit();
+            
+	        Log.v("SDL", "SDL thread terminated");
+	        
+        	// On exit, tear everything down for a fresh restart next time.
+            System.exit(0);        
+	    }    
+	}	
+			
     // Startup    
     public SDLSurface(Context context) {
         super(context);
+    	mSemSurface = new Object();
+    	mSurfaceValid = false;
         getHolder().addCallback(this); 
     
         setFocusable(true);
@@ -269,21 +364,20 @@ class SDLSurface extends SurfaceView implements SurfaceHolder.Callback,
         setOnKeyListener(this); 
         setOnTouchListener(this);   
 
-        mSensorManager = (SensorManager)context.getSystemService("sensor");  
+        mSensorManager = (SensorManager)context.getSystemService("sensor");
     }
 
     // Called when we have a valid drawing surface
     public void surfaceCreated(SurfaceHolder holder) {
-        //Log.v("SDL", "surfaceCreated()");
+        Log.v("SDL", "surfaceCreated()");
 
         enableSensor(Sensor.TYPE_ACCELEROMETER, true);
     }
 
-    // Called when we lose the surface
-    public void surfaceDestroyed(SurfaceHolder holder) {
-        //Log.v("SDL", "surfaceDestroyed()");
-
+    public void onDestroy() {
         // Send a quit message to the application
+    	//should that be in SDLActivity "onDestroy" instead ?
+        
         SDLActivity.nativeQuit();
 
         // Now wait for the SDL thread to quit
@@ -294,17 +388,25 @@ class SDLSurface extends SurfaceView implements SurfaceHolder.Callback,
                 Log.v("SDL", "Problem stopping thread: " + e);
             }
             mSDLThread = null;
-
+          
             //Log.v("SDL", "Finished waiting for SDL thread");
+        }     	
+    }
+    
+    // Called when we lose the surface
+    public void surfaceDestroyed(SurfaceHolder holder) {
+        Log.v("SDL", "surfaceDestroyed()");
+        synchronized(mSemSurface) {
+        	mSurfaceValid = false;
+        	mSemSurface.notifyAll();
         }
-
         enableSensor(Sensor.TYPE_ACCELEROMETER, false);
     }
-
+    
     // Called when the surface is resized
     public void surfaceChanged(SurfaceHolder holder,
                                int format, int width, int height) {
-        //Log.v("SDL", "surfaceChanged()");
+        Log.v("SDL", "surfaceChanged()");
 
         int sdlFormat = 0x85151002; // SDL_PIXELFORMAT_RGB565 by default
         switch (format) {
@@ -350,13 +452,10 @@ class SDLSurface extends SurfaceView implements SurfaceHolder.Callback,
             Log.v("SDL", "pixel format unknown " + format);
             break;
         }
-        SDLActivity.onNativeResize(width, height, sdlFormat);
-
+        SDLActivity.onNativeResize(width, height, sdlFormat);    
+        
         // Now start up the C app thread
-        if (mSDLThread == null) {
-            mSDLThread = new Thread(new SDLMain(), "SDLThread"); 
-            mSDLThread.start();       
-        }
+        startSDLThread();   
     }
 
     // unused
@@ -368,6 +467,7 @@ class SDLSurface extends SurfaceView implements SurfaceHolder.Callback,
         Log.v("SDL", "Starting up OpenGL ES " + majorVersion + "." + minorVersion);
 
         try {
+        	
             EGL10 egl = (EGL10)EGLContext.getEGL();
 
             EGLDisplay dpy = egl.eglGetDisplay(EGL10.EGL_DEFAULT_DISPLAY);
@@ -394,28 +494,20 @@ class SDLSurface extends SurfaceView implements SurfaceHolder.Callback,
                 Log.e("SDL", "No EGL config available");
                 return false;
             }
-            EGLConfig config = configs[0];
+            mEGLConfig = configs[0];
 
-            EGLContext ctx = egl.eglCreateContext(dpy, config, EGL10.EGL_NO_CONTEXT, null);
+            EGLContext ctx = egl.eglCreateContext(dpy, mEGLConfig, EGL10.EGL_NO_CONTEXT, null);
             if (ctx == EGL10.EGL_NO_CONTEXT) {
                 Log.e("SDL", "Couldn't create context");
                 return false;
             }
 
-            EGLSurface surface = egl.eglCreateWindowSurface(dpy, config, this, null);
-            if (surface == EGL10.EGL_NO_SURFACE) {
-                Log.e("SDL", "Couldn't create surface");
-                return false;
-            }
-
-            if (!egl.eglMakeCurrent(dpy, surface, surface, ctx)) {
-                Log.e("SDL", "Couldn't make context current");
-                return false;
-            }
-
             mEGLContext = ctx;
             mEGLDisplay = dpy;
-            mEGLSurface = surface;
+            
+            if (!createSurface(this.getHolder())) {
+            	return false;
+            }
 
         } catch(Exception e) {
             Log.v("SDL", e + "");
@@ -426,9 +518,56 @@ class SDLSurface extends SurfaceView implements SurfaceHolder.Callback,
 
         return true;
     }
+    
+    
+    public Boolean createSurface(SurfaceHolder holder) {
+        /*
+         *  The window size has changed, so we need to create a new
+         *  surface.
+         */
+    	EGL10 egl = (EGL10)EGLContext.getEGL();
+        if (mEGLSurface != null) {
+
+            /*
+             * Unbind and destroy the old EGL surface, if
+             * there is one.
+             */
+            egl.eglMakeCurrent(mEGLDisplay, EGL10.EGL_NO_SURFACE, EGL10.EGL_NO_SURFACE, EGL10.EGL_NO_CONTEXT);
+            egl.eglDestroySurface(mEGLDisplay, mEGLSurface);
+        }
+
+        /*
+         * Create an EGL surface we can render into.
+         */
+        mEGLSurface = egl.eglCreateWindowSurface(mEGLDisplay, mEGLConfig, holder, null);
+        if (mEGLSurface == EGL10.EGL_NO_SURFACE) {
+            Log.e("SDL", "Couldn't create surface");
+            return false;
+        }        
+
+        /*
+         * Before we can issue GL commands, we need to make sure
+         * the context is current and bound to a surface.
+         */
+        if (!egl.eglMakeCurrent(mEGLDisplay, mEGLSurface, mEGLSurface, mEGLContext)) {
+            Log.e("SDL", "Couldn't make context current");
+            return false;
+        }        
+        
+        mSurfaceValid = true;
+
+        return true;
+    }
+    
 
     // EGL buffer flip
     public void flipEGL() {
+    	
+    	if (!mSurfaceValid)
+    	{
+    		createSurface(this.getHolder());
+    	}
+    	
         try {
             EGL10 egl = (EGL10)EGLContext.getEGL();
 
@@ -447,6 +586,7 @@ class SDLSurface extends SurfaceView implements SurfaceHolder.Callback,
                 Log.v("SDL", s.toString());
             }
         }
+                 
     }
 
     // Key events

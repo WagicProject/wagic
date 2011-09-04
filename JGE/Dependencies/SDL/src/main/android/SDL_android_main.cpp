@@ -24,10 +24,12 @@ extern "C" void Java_org_libsdl_app_SDLActivity_nativeInit(JNIEnv* env, jclass c
 
     /* Run the application code! */
     int status;
-    char *argv[2];
+    char *argv[4];
     argv[0] = strdup("SDL_app");
-    argv[1] = NULL;
-    status = SDL_main(1, argv);
+	argv[1] = (char *)env;
+    argv[2] = (char *)&cls;
+    argv[3] = NULL;
+    status = SDL_main(3, argv);
 
     /* We exit here for consistency with other platforms. */
     exit(status);

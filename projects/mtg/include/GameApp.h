@@ -93,6 +93,7 @@ public:
 
     void LoadGameStates();
     void SetNextState(int state);
+    void SetCurrentState(GameState * state);
     void DoTransition(int trans, int tostate, float dur = -1, bool animonly = false);
     void DoAnimation(int trans, float dur = -1);
     static hgeParticleSystem * Particles[6];

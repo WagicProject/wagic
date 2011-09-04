@@ -23,7 +23,7 @@ namespace
 }
 
 GameStateAwards::GameStateAwards(GameApp* parent) :
-    GameState(parent)
+    GameState(parent, "trophies")
 {
 
 }

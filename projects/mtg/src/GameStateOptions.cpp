@@ -17,7 +17,7 @@ namespace
 }
 
 GameStateOptions::GameStateOptions(GameApp* parent) :
-    GameState(parent), mReload(false), grabber(NULL), optionsMenu(NULL), optionsTabs(NULL)
+    GameState(parent, "options"), mReload(false), grabber(NULL), optionsMenu(NULL), optionsTabs(NULL)
 {
 }
 GameStateOptions::~GameStateOptions()

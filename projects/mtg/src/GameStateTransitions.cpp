@@ -9,7 +9,7 @@
 #include "OptionItem.h"
 
 TransitionBase::TransitionBase(GameApp* parent, GameState* _from, GameState* _to, float duration) :
-    GameState(parent)
+    GameState(parent, "transition")
 {
     from = _from;
     to = _to;

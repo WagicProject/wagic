@@ -39,7 +39,7 @@ void StringExplode(string str, string separator, vector<string>* results)
 }
 
 GameStateDeckViewer::GameStateDeckViewer(GameApp* parent) :
-    GameState(parent)
+    GameState(parent, "deckeditor")
 {
     bgMusic = NULL;
     useFilter = 0;

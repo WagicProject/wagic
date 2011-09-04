@@ -52,7 +52,7 @@ enum ENUM_MENU_STATE_MINOR
 };
 
 GameStateMenu::GameStateMenu(GameApp* parent) :
-    GameState(parent)
+    GameState(parent, "menu")
 {
     mGuiController = NULL;
     subMenuController = NULL;
@@ -437,7 +437,7 @@ void GameStateMenu::ensureMGuiController()
                 mGuiController->Add(NEW MenuItem(
                     item->mActionId, 
                     mFont, item->mDisplayName, 
-                    startX + (i * space), 50 + SCREEN_HEIGHT / 2, 
+                    startX + (i * space), 40 + SCREEN_HEIGHT / 2, 
                     mIcons[iconId].get(), mIcons[iconId + 1].get(),
                     item->mParticleFile.c_str(), WResourceManager::Instance()->GetQuad("particles").get(),
                     (i == 0)));

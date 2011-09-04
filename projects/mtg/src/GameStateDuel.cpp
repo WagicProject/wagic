@@ -32,6 +32,7 @@ const float MENU_FONT_SCALE = 1.0f;
 
 enum ENUM_DUEL_STATE
 {
+    DUEL_STATE_UNSET = 0,
     DUEL_STATE_START,
     DUEL_STATE_END,
     DUEL_STATE_CHOOSE_DECK1,
@@ -45,11 +46,12 @@ enum ENUM_DUEL_STATE
     DUEL_STATE_PLAY,
     DUEL_STATE_BACK_TO_MAIN_MENU,
     DUEL_STATE_MENU,
-#ifdef NETWORK_SUPPORT
-    DUEL_STATE_OPPONENT_WAIT,
-#endif //NETWORK_SUPPORT
+    DUEL_STATE_OPPONENT_WAIT, // used For Network only
     DUEL_STATE_ERROR
 };
+
+const char * stateStrings[] = { "unset", "start", "end", "choose_deck1", "deck1_detailed_info", "deck2_detailed_info", "choose_deck1_to_2", "choose_deck2", "choose_deck2_to_play",
+    "error_no_deck", "cancel", "play", "back_to_main_menu", "menu", "oponent_wait", "error" };
 
 enum ENUM_DUEL_MENUS
 {
@@ -64,7 +66,7 @@ int GameStateDuel::selectedPlayerDeckId = 0;
 int GameStateDuel::selectedAIDeckId = 0;
 
 GameStateDuel::GameStateDuel(GameApp* parent) :
-GameState(parent)
+GameState(parent, "duel")
 {
     for (int i = 0; i < 2; i++)
     {
@@ -76,6 +78,7 @@ GameState(parent)
     opponentMenu = NULL;
     menu = NULL;
     popupScreen = NULL;
+    mGamePhase = DUEL_STATE_UNSET;
 
 #ifdef TESTSUITE
     testSuite = NULL;
@@ -105,7 +108,7 @@ void GameStateDuel::Start()
     testSuite = NEW TestSuite("test/_tests.txt",MTGCollection());
 #endif
 
-    mGamePhase = DUEL_STATE_CHOOSE_DECK1;
+    setGamePhase(DUEL_STATE_CHOOSE_DECK1);
     credits = NEW Credits();
 
     menu = NULL;
@@ -308,6 +311,19 @@ void GameStateDuel::ConstructOpponentMenu()
     }
 }
 
+void GameStateDuel::setGamePhase(int newGamePhase) {
+    if (mGamePhase == newGamePhase)
+        return;
+
+    if (mGamePhase)
+        JGE::GetInstance()->SendCommand("leaveduelphase:" + string(stateStrings[mGamePhase]));
+
+    mGamePhase = newGamePhase;
+
+    if (mGamePhase )
+        JGE::GetInstance()->SendCommand("enterduelphase:" +  string(stateStrings[mGamePhase]));
+}
+
 void GameStateDuel::Update(float dt)
 {
     switch (mGamePhase)
@@ -324,7 +340,7 @@ void GameStateDuel::Update(float dt)
     case DUEL_STATE_CHOOSE_DECK1:
         if (!mParent->rules->canChooseDeck())
         {
-            mGamePhase = DUEL_STATE_PLAY;
+            setGamePhase(DUEL_STATE_PLAY);
         }
 #ifdef TESTSUITE
         else if (mParent->players[1] == PLAYER_TYPE_TESTSUITE)
@@ -332,7 +348,7 @@ void GameStateDuel::Update(float dt)
             if (testSuite && testSuite->loadNext())
             {
                 loadTestSuitePlayers();
-                mGamePhase = DUEL_STATE_PLAY;
+                setGamePhase(DUEL_STATE_PLAY);
                 testSuite->pregameTests();
                 testSuite->initGame();
             }
@@ -340,11 +356,11 @@ void GameStateDuel::Update(float dt)
             {
                 if (!game)
                 {
-                    mGamePhase = DUEL_STATE_ERROR;
+                    setGamePhase(DUEL_STATE_ERROR);
                 }
                 else
                 {
-                    mGamePhase = DUEL_STATE_END;
+                    setGamePhase(DUEL_STATE_END);
                 }
             }
         }
@@ -358,13 +374,13 @@ void GameStateDuel::Update(float dt)
             else
             {
                 loadPlayer(0);
-                mGamePhase = DUEL_STATE_CHOOSE_DECK2;
+                setGamePhase(DUEL_STATE_CHOOSE_DECK2);
             }
         }
         break;
     case DUEL_STATE_CHOOSE_DECK1_TO_2:
         if (deckmenu->isClosed())
-            mGamePhase = DUEL_STATE_CHOOSE_DECK2;
+            setGamePhase(DUEL_STATE_CHOOSE_DECK2);
         else
             deckmenu->Update(dt);
         break;
@@ -381,7 +397,7 @@ void GameStateDuel::Update(float dt)
             else
             {
                 loadPlayer(1);
-                mGamePhase = DUEL_STATE_PLAY;
+                setGamePhase(DUEL_STATE_PLAY);
             }
         }
         break;
@@ -389,7 +405,7 @@ void GameStateDuel::Update(float dt)
         if (mParent->players[1] == PLAYER_TYPE_HUMAN)
         {
             if (deckmenu->isClosed())
-                mGamePhase = DUEL_STATE_PLAY;
+                setGamePhase(DUEL_STATE_PLAY);
             else
                 deckmenu->Update(dt);
         }
@@ -397,7 +413,7 @@ void GameStateDuel::Update(float dt)
         {
             ConstructOpponentMenu();
             if (opponentMenu->isClosed())
-                mGamePhase = DUEL_STATE_PLAY;
+                setGamePhase(DUEL_STATE_PLAY);
             else
                 opponentMenu->Update(dt);
         }
@@ -448,18 +464,18 @@ void GameStateDuel::Update(float dt)
         if (game->gameOver)
         {
             if (game->players[1]->playMode != Player::MODE_TEST_SUITE) credits->compute(game->players[0], game->players[1], mParent);
-            mGamePhase = DUEL_STATE_END;
+            setGamePhase(DUEL_STATE_END);
 #ifdef TESTSUITE
             if (mParent->players[1] == PLAYER_TYPE_TESTSUITE)
             {
                 if (testSuite->loadNext())
                 {
                     loadTestSuitePlayers();
-                    mGamePhase = DUEL_STATE_PLAY;
+                    setGamePhase(DUEL_STATE_PLAY);
                     testSuite->initGame();
                 }
                 else
-                    mGamePhase = DUEL_STATE_END;
+                    setGamePhase(DUEL_STATE_END);
             }
             else
 #endif
@@ -489,7 +505,7 @@ void GameStateDuel::Update(float dt)
                 menu->Add(MENUITEM_MAIN_MENU, "Back to main menu");
                 menu->Add(MENUITEM_CANCEL, "Cancel");
             }
-            mGamePhase = DUEL_STATE_MENU;
+            setGamePhase(DUEL_STATE_MENU);
         }
         break;
 #ifdef NETWORK_SUPPORT
@@ -499,7 +515,7 @@ void GameStateDuel::Update(float dt)
         { // Player loaded
           menu->Close();
           SAFE_DELETE(menu);
-          mGamePhase = DUEL_STATE_PLAY;
+          setGamePhase(DUEL_STATE_PLAY);
         } else if(menu == NULL)
         {
           loadPlayer(1, 42/* 0 not good*/, false, true);
@@ -522,7 +538,7 @@ void GameStateDuel::Update(float dt)
         menu->Update(dt);
         if (menu->isClosed())
         {
-            mGamePhase = DUEL_STATE_PLAY;
+            setGamePhase(DUEL_STATE_PLAY);
             SAFE_DELETE(menu);
         }
         break;
@@ -665,7 +681,7 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
             if (!popupScreen->isClosed())
             {
                 popupScreen->Close();
-                mGamePhase = DUEL_STATE_CHOOSE_DECK1;
+                setGamePhase(DUEL_STATE_CHOOSE_DECK1);
                 SAFE_DELETE( popupScreen );
             }
             else
@@ -682,7 +698,7 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
             if (!popupScreen->isClosed())
             {
                 popupScreen->Close();
-                mGamePhase = DUEL_STATE_CHOOSE_DECK2_TO_PLAY;
+                setGamePhase(DUEL_STATE_CHOOSE_DECK2_TO_PLAY);
                 SAFE_DELETE( popupScreen );
             }
             else
@@ -700,7 +716,7 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
         case MENUITEM_RANDOM_AI:
             loadPlayer(1);
             opponentMenu->Close();
-            mGamePhase = DUEL_STATE_CHOOSE_DECK2_TO_PLAY;
+            setGamePhase(DUEL_STATE_CHOOSE_DECK2_TO_PLAY);
             break;
         default:
             // cancel option.  return to player deck selection
@@ -710,7 +726,7 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
                 opponentMenu->Close();
                 deckmenu->Close();
                 mParent->SetNextState(DUEL_STATE_CHOOSE_DECK1);
-                mGamePhase = DUEL_STATE_CHOOSE_DECK1;
+                setGamePhase(DUEL_STATE_CHOOSE_DECK1);
                 break;
             }
 
@@ -728,7 +744,7 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
                 {
                     popupScreen->Update(selectedDeck);
                 }
-                mGamePhase = DUEL_STATE_DECK2_DETAILED_INFO;
+                setGamePhase(DUEL_STATE_DECK2_DETAILED_INFO);
                 break;
             }
             else if (controlId == MENUITEM_MORE_INFO && !opponentMenu->showDetailsScreen())
@@ -741,7 +757,7 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
             loadPlayer(1, deckNumber, 1);
             OpponentsDeckid = deckNumber;
             opponentMenu->Close();
-            mGamePhase = DUEL_STATE_CHOOSE_DECK2_TO_PLAY;
+            setGamePhase(DUEL_STATE_CHOOSE_DECK2_TO_PLAY);
             break;
         }
         break;
@@ -754,13 +770,13 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
             deckNumber = playerDeckList->at(WRand() % (playerDeckList->size()))->getDeckId();
             loadPlayer(0, deckNumber);
             deckmenu->Close();
-            mGamePhase = DUEL_STATE_CHOOSE_DECK2_TO_PLAY;
+            setGamePhase(DUEL_STATE_CHOOSE_DECK2_TO_PLAY);
             break;
         }
         else if (controlId == MENUITEM_MAIN_MENU || controlId == MENUITEM_CANCEL) // user clicked on "Cancel"
         {
             if (deckmenu) deckmenu->Close();
-            mGamePhase = DUEL_STATE_BACK_TO_MAIN_MENU;
+            setGamePhase(DUEL_STATE_BACK_TO_MAIN_MENU);
             break;
         }
         else if (controlId == MENUITEM_MORE_INFO && deckmenu->showDetailsScreen())
@@ -777,7 +793,7 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
             {
                 popupScreen->Update(selectedDeck);
             }
-            mGamePhase = DUEL_STATE_DECK1_DETAILED_INFO;
+            setGamePhase(DUEL_STATE_DECK1_DETAILED_INFO);
             break;
         }
         else if (controlId == MENUITEM_MORE_INFO)
@@ -804,12 +820,12 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
 #ifdef NETWORK_SUPPORT
             if(mParent->players[1] == PLAYER_TYPE_REMOTE)
             {   // no need to choose an opponent deck in network mode
-                mGamePhase = DUEL_STATE_OPPONENT_WAIT;
+                setGamePhase(DUEL_STATE_OPPONENT_WAIT);
             }
             else
 #endif //NETWORK_SUPPORT
             {
-                mGamePhase = DUEL_STATE_CHOOSE_DECK1_TO_2;
+                setGamePhase(DUEL_STATE_CHOOSE_DECK1_TO_2);
             }
             playerDeck = NULL;
         }
@@ -817,7 +833,7 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
         {
             loadPlayer(1, controlId);
             deckmenu->Close();
-            mGamePhase = DUEL_STATE_CHOOSE_DECK2_TO_PLAY;
+            setGamePhase(DUEL_STATE_CHOOSE_DECK2_TO_PLAY);
         }
         break;
 
@@ -828,18 +844,18 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
 
         case MENUITEM_MAIN_MENU:
             menu->Close();
-            mGamePhase = DUEL_STATE_BACK_TO_MAIN_MENU;
+            setGamePhase(DUEL_STATE_BACK_TO_MAIN_MENU);
             break;
         case MENUITEM_CANCEL:
             menu->Close();
-            mGamePhase = DUEL_STATE_CANCEL;
+            setGamePhase(DUEL_STATE_CANCEL);
             break;
         case MENUITEM_MULLIGAN:
             //almosthumane - mulligan
             game->currentPlayer->takeMulligan();
             
             menu->Close();
-            mGamePhase = DUEL_STATE_CANCEL;
+            setGamePhase(DUEL_STATE_CANCEL);
             break;
 
             //END almosthumane - mulligan
