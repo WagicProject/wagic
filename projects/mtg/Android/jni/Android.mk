@@ -31,7 +31,7 @@ LOCAL_SRC_FILES := $(SDL_PATH)/src/main/android/SDL_android_main.cpp \
         $(MTG_PATH)/src/ActionElement.cpp \
         $(MTG_PATH)/src/ActionLayer.cpp \
         $(MTG_PATH)/src/ActionStack.cpp \
-		$(MTG_PATH)/src/AIHints.cpp \
+        $(MTG_PATH)/src/AIHints.cpp \
         $(MTG_PATH)/src/AIMomirPlayer.cpp \
         $(MTG_PATH)/src/AIPlayer.cpp \
         $(MTG_PATH)/src/AIStats.cpp \
@@ -81,11 +81,11 @@ LOCAL_SRC_FILES := $(SDL_PATH)/src/main/android/SDL_android_main.cpp \
         $(MTG_PATH)/src/GuiPhaseBar.cpp \
         $(MTG_PATH)/src/GuiPlay.cpp \
         $(MTG_PATH)/src/GuiStatic.cpp \
-		$(MTG_PATH)/src/IconButton.cpp \
+        $(MTG_PATH)/src/IconButton.cpp \
         $(MTG_PATH)/src/ManaCost.cpp \
         $(MTG_PATH)/src/ManaCostHybrid.cpp \
         $(MTG_PATH)/src/MenuItem.cpp \
-		$(MTG_PATH)/src/ModRules.cpp \
+        $(MTG_PATH)/src/ModRules.cpp \
         $(MTG_PATH)/src/MTGAbility.cpp \
         $(MTG_PATH)/src/MTGCard.cpp \
         $(MTG_PATH)/src/MTGCardInstance.cpp \
@@ -164,17 +164,17 @@ LOCAL_SRC_FILES := $(SDL_PATH)/src/main/android/SDL_android_main.cpp \
         $(JGE_PATH)/src/hge/hgeparticle.cpp \
         $(JGE_PATH)/src/hge/hgerect.cpp \
         $(JGE_PATH)/src/hge/hgevector.cpp \
-		$(JGE_PATH)/src/zipFS/zfsystem.cpp \
-		$(JGE_PATH)/src/zipFS/ziphdr.cpp \
-		$(JGE_PATH)/src/zipFS/zstream.cpp \
-        $(JGE_PATH)/src/pc/JSfx.cpp \
+        $(JGE_PATH)/src/zipFS/zfsystem.cpp \
+        $(JGE_PATH)/src/zipFS/ziphdr.cpp \
+        $(JGE_PATH)/src/zipFS/zstream.cpp \
+        $(JGE_PATH)/src/android/JSfx.cpp \
         $(JGE_PATH)/src/pc/JGfx.cpp \
         $(JGE_PATH)/src/JNetwork.cpp \
         $(JGE_PATH)/src/pc/JSocket.cpp \
         $(BOOST_PATH)/lib/pthread/thread.cpp \
         $(BOOST_PATH)/lib/pthread/once.cpp
 
-LOCAL_LDLIBS := -lGLESv1_CM -llog -lz
+LOCAL_LDLIBS := -lGLESv1_CM -llog -lz -lOpenSLES
 
 include $(BUILD_SHARED_LIBRARY)
 

@@ -18,31 +18,32 @@
 
 #include "JTypes.h"
 
-#ifdef USE_PHONON
-#include <phonon/AudioOutput>
-#include <phonon/MediaObject>
+#ifdef ANDROID
+#include <SLES/OpenSLES.h>
+#include "SLES/OpenSLES_Android.h"
+#elif defined USE_PHONON
+    #include <phonon/AudioOutput>
+    #include <phonon/MediaObject>
 #else
 #ifdef WIN32
-
-	#include <windows.h>
+    #include <windows.h>
 #define WITH_FMOD
 #elif defined (PSP)
-	#include <pspgu.h>
-	#include <pspkernel.h>
-	#include <pspdisplay.h>
-	#include <pspdebug.h>
-	#include <pspctrl.h>
-	#include <time.h>
-	#include <string.h>
-	#include <pspaudiolib.h>
-	#include <psprtc.h>
+    #include <pspgu.h>
+    #include <pspkernel.h>
+    #include <pspdisplay.h>
+    #include <pspdebug.h>
+    #include <pspctrl.h>
+    #include <time.h>
+    #include <string.h>
+    #include <pspaudiolib.h>
+    #include <psprtc.h>
 
-	#include "JAudio.h"
-	#include "JMP3.h"
-
+    #include "JAudio.h"
+    #include "JMP3.h"
 #endif
 #ifdef WITH_FMOD
-        #include "../Dependencies/include/fmod.h"
+    #include "../Dependencies/include/fmod.h"
 #endif
 #endif
 
@@ -50,29 +51,32 @@
 #ifdef USE_PHONON
 class JMusic : public QObject
 {
-  Q_OBJECT
+    Q_OBJECT
 #else
 class JMusic
 {
 #endif
 public:
-	JMusic();
-  ~JMusic();
-  void Update();
-  int getPlayTime();
+    JMusic();
+    ~JMusic();
+    void Update();
+    int getPlayTime();
 
 #ifdef USE_PHONON
-  Phonon::AudioOutput* mOutput;
-  Phonon::MediaObject* mMediaObject;
-  public slots:
-  void seekAtTheBegining();
-
+    Phonon::AudioOutput* mOutput;
+    Phonon::MediaObject* mMediaObject;
+    public slots:
+    void seekAtTheBegining();
 #elif defined (PSP)
-  JMP3* mTrack;
+    JMP3* mTrack;
 #elif defined WITH_FMOD
-  FSOUND_SAMPLE* mTrack;		// MP3 needed to be of "sample" type for FMOD, FMUSIC_MODULE is for MODs
+    FSOUND_SAMPLE* mTrack;		// MP3 needed to be of "sample" type for FMOD, FMUSIC_MODULE is for MODs
+#elif defined ANDROID
+    SLObjectItf playerObject;
+    SLPlayItf playInterface;
+    SLSeekItf seekInterface;
 #else
-  void* mTrack;
+    void* mTrack;
 #endif  //WITH_FMOD
 
 };
@@ -82,21 +86,25 @@ public:
 class JSample
 {
  public:
-  JSample();
-  ~JSample();
+    JSample();
+    ~JSample();
 
-  unsigned long fileSize();
+    unsigned long fileSize();
 
 #if defined (PSP)
-  WAVDATA *mSample;
+    WAVDATA *mSample;
 #elif defined  (WITH_FMOD)
-  FSOUND_SAMPLE *mSample;
+    FSOUND_SAMPLE *mSample;
 #elif defined (USE_PHONON)
-  Phonon::AudioOutput* mOutput;
-  Phonon::MediaObject* mMediaObject;
-  void* mSample;
+    Phonon::AudioOutput* mOutput;
+    Phonon::MediaObject* mMediaObject;
+    void* mSample;
+#elif defined ANDROID
+    SLObjectItf playerObject;
+    SLPlayItf playInterface;
+    void* mSample;
 #else
-  void* mSample;
+    void* mSample;
 #endif
 };
 
@@ -214,9 +222,7 @@ protected:
 private:
 
 #ifdef WIN32
-
 	JMusic *mCurrentMusic;
-
 #endif
 
 	int mVolume;
