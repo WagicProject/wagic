@@ -30769,7 +30769,7 @@ toughness=3
 [/card]
 [card]
 name=Harrow
-target=<upto:2>land|[basic]|myLibrary
+target=<upto:2>land[basic]|myLibrary
 auto=moveTo(myBattlefield)
 text=As an additional cost to cast Harrow, sacrifice a land. -- Search your library for up to two basic land cards and put them onto the battlefield. Then shuffle your library.
 mana={2}{G}{S(land|mybattlefield)}
