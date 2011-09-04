@@ -26293,11 +26293,7 @@ toughness=4
 [/card]
 [card]
 name=Gemhide Sliver
-auto=lord(sliver) {T}:add {B}
-auto=lord(sliver) {T}:add {U}
-auto=lord(sliver) {T}:add {G}
-auto=lord(sliver) {T}:add {R}
-auto=lord(sliver) {T}:add {W}
+auto=lord(sliver) transforms((,newability[{t}:add{w}],newability[{t}:add{g}],newability[{t}:add{r}],newability[{t}:add{b}],newability[{t}:add{u}]))
 text=All Slivers have "{T}: Add one mana of any color to your mana pool."
 mana={1}{G}
 type=Creature
