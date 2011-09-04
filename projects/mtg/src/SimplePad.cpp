@@ -249,6 +249,24 @@ void SimplePad::Update(float dt)
         }
     }
 
+    int x, y, n = selected;
+    unsigned int minDistance = -1;
+    if(JGE::GetInstance()->GetLeftClickCoordinates(x, y))
+    {
+        for(int i = 0; i < nbitems; i++)
+        {
+            unsigned int distance = static_cast<unsigned int>((keys[i]->mY - (float)y) * (keys[i]->mY - (float)y) + (keys[i]->mX - (float)x) * (keys[i]->mX - (float)x));
+            if (distance < minDistance)
+            {
+                minDistance = distance;
+                n = i;
+            }
+        }
+
+        MoveSelection(n);
+        JGE::GetInstance()->LeftClickedProcessed();
+    }
+
     mX = 50;
     mY = 50;
 
@@ -410,6 +428,8 @@ void SimplePad::Render()
                 renderer->FillRoundRect(mX + offX - 4, mY + offY - 4, kW + 8, kH + 4, 2, ARGB(255,100,100,100));
                 mFont->SetColor(ARGB(255,255,255,255));
             }
+            keys[x]->mX = mX + offX - 4;
+            keys[x]->mY = mY + offY - 4;
 
             char vkey[2];
             vkey[1] = '\0';

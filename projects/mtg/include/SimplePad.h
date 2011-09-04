@@ -25,6 +25,7 @@ struct SimpleKey
     string displayValue;
     unsigned char id;
     unsigned char adjacency[4];
+    float mX, mY;
 };
 
 class SimplePad
