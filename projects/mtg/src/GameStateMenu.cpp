@@ -449,12 +449,14 @@ void GameStateMenu::ensureMGuiController()
             jq->SetColor(ARGB(abs(255),255,255,255));
             mFont = WResourceManager::Instance()->GetWFont(Fonts::OPTION_FONT);
             vector<ModRulesOtherMenuItem *>otherItems = gModRules.menu.other;
-            mGuiController->Add(NEW OtherMenuItem(
-                                   otherItems[0]->mActionId,
-                                   mFont, otherItems[0]->mDisplayName,
-                                   SCREEN_WIDTH - 64, 2,
-                                   jq.get(), jq.get(), otherItems[0]->mKey, false
-                                   ));
+            if (otherItems.size()) {
+                mGuiController->Add(NEW OtherMenuItem(
+                                       otherItems[0]->mActionId,
+                                       mFont, otherItems[0]->mDisplayName,
+                                       SCREEN_WIDTH - 64, 2,
+                                       jq.get(), jq.get(), otherItems[0]->mKey, false
+                                       ));
+            }
         }
     }
 }
