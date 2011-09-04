@@ -189,7 +189,7 @@ bool CardSelector::CheckUserInput(JButton key)
     int x,y;
     if(JGE::GetInstance()->GetLeftClickCoordinates(x, y))
     {
-      active = closest<True> (cards, limitor, static_cast<float> (x), static_cast<float> (y));
+        active = closest<True> (cards, limitor, static_cast<float> (x), static_cast<float> (y));
     }
 
     switch (key)

@@ -23,8 +23,23 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-//    [glView startAnimation];
+	EAGLView *eaglView = (EAGLView *)self.glViewController.view;
+    [eaglView startAnimation];
 }
+
+
+- (void)applicationWillEnterForeground:(UIApplication *)application
+{
+	EAGLView *eaglView = (EAGLView *)self.glViewController.view;
+	[eaglView startAnimation];
+}
+
+- (void)applicationDidEnterBackground:(UIApplication *)application
+{
+	EAGLView *eaglView = (EAGLView *)self.glViewController.view;
+	[eaglView stopAnimation];    
+}
+
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
