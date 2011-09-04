@@ -99,6 +99,7 @@ public class SDLActivity extends Activity {
 
         request.addTestDevice(AdRequest.TEST_EMULATOR);
         request.addTestDevice("1DA1E070BC7D4ABE8BA77EB73C2CB0AA"); //wololo's phone
+        request.addTestDevice("C386F3830A9789C649098A817BF54C04"); //xawotihs's tablet
                 
         // Initiate a generic request to load it with an ad
         mAdView.loadAd(request);                
