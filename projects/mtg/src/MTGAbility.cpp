@@ -2697,7 +2697,7 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card, int
         if (!a)
         {
             DebugTrace("ABILITYFACTORY ERROR: Parser returned NULL");
-            return 0;
+            continue;
         }
 
         if (dryMode)
@@ -2707,42 +2707,37 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card, int
                 SAFE_DELETE(v[i]);
             return result;
         }
-        if(spell && spell->tc && spell->tc->targets.size() > 1 && spell->getNextTarget())
-            a->target = spell->getNextTarget();
-        if(a && a->target && spell && spell->tc && spell->tc->targets.size() > 1)
+
+        if (!a->oneShot)
         {
-            while(a && a->target)
+            // Anything involving Mana Producing abilities cannot be interrupted
+            MTGAbility * core = getCoreAbility(a);
+            if (dynamic_cast<AManaProducer*> (core))
+                a->canBeInterrupted = false;
+        }
+
+        bool moreThanOneTarget = spell && spell->tc && spell->tc->targets.size() > 1;
+
+        if(moreThanOneTarget)
+            a->target = spell->getNextTarget();
+
+        if(a->target && moreThanOneTarget 
+            && !dynamic_cast<MayAbility*>(a)) //MayAbility is an exception to multitargets, as we don't want to add the same text n times to a menu
+        {
+            while(a->target)
             {
                 if(a->oneShot)
                 {
                     a->resolve();
                 }
-                else if(!dynamic_cast<MayAbility*>(a))
+                else
                 {
                     MTGAbility * mClone = a->clone();
-                    mClone->target = a->target;
-                    MTGAbility * core = getCoreAbility(mClone);
-                    if (dynamic_cast<AManaProducer*> (core))
-                        mClone->canBeInterrupted = false;
-                    mClone->addToGame();
-                }
-                else if(dynamic_cast<MayAbility*>(a) && a->target == spell->tc->targets[0])
-                {
-                    //only add may/choice/target( menu ability for the first card, 
-                    //no point in adding "discard" 3 times to a menu, as you can only choose the effect once
-                    MTGAbility * mClone = a->clone();
-                    mClone->target = a->target;
-                    MTGAbility * core = getCoreAbility(mClone);
-                    if (dynamic_cast<AManaProducer*> (core))
-                        mClone->canBeInterrupted = false;
                     mClone->addToGame();
                 }
                 a->target = spell->getNextTarget(a->target);
-                if(!a->target)
-                {
-                    SAFE_DELETE(a);
-                }
             }
+            SAFE_DELETE(a);
         }
         else
         {
@@ -3294,7 +3289,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
         game->addObserver(NEW AFlankerAbility(_id, card));
     }
 
-    // Tested works the first r10 did not function because of the mistake in the array of the definition
     if (card->basicAbilities[(int)Constants::FORESTHOME])
     {
         game->addObserver(NEW AStrongLandLinkCreature(_id, card, "forest"));
