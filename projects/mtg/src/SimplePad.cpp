@@ -196,6 +196,25 @@ void SimplePad::MoveSelection(unsigned char moveto)
 void SimplePad::Update(float dt)
 {
     JGE * mEngine = JGE::GetInstance();
+
+    int x, y, n = selected;
+    unsigned int minDistance = -1;
+    if(mEngine->GetLeftClickCoordinates(x, y))
+    {
+        for(int i = 0; i < nbitems; i++)
+        {
+            unsigned int distance = static_cast<unsigned int>((keys[i]->mY - (float)y) * (keys[i]->mY - (float)y) + (keys[i]->mX - (float)x) * (keys[i]->mX - (float)x));
+            if (distance < minDistance)
+            {
+                minDistance = distance;
+                n = i;
+            }
+        }
+
+        MoveSelection(n);
+        JGE::GetInstance()->LeftClickedProcessed();
+    }
+
     JButton key = mEngine->ReadButton();
 
     //Start button changes capslock setting.
@@ -247,24 +266,6 @@ void SimplePad::Update(float dt)
             buffer += ' ';
             cursor = buffer.size();
         }
-    }
-
-    int x, y, n = selected;
-    unsigned int minDistance = -1;
-    if(JGE::GetInstance()->GetLeftClickCoordinates(x, y))
-    {
-        for(int i = 0; i < nbitems; i++)
-        {
-            unsigned int distance = static_cast<unsigned int>((keys[i]->mY - (float)y) * (keys[i]->mY - (float)y) + (keys[i]->mX - (float)x) * (keys[i]->mX - (float)x));
-            if (distance < minDistance)
-            {
-                minDistance = distance;
-                n = i;
-            }
-        }
-
-        MoveSelection(n);
-        JGE::GetInstance()->LeftClickedProcessed();
     }
 
     mX = 50;
@@ -428,8 +429,8 @@ void SimplePad::Render()
                 renderer->FillRoundRect(mX + offX - 4, mY + offY - 4, kW + 8, kH + 4, 2, ARGB(255,100,100,100));
                 mFont->SetColor(ARGB(255,255,255,255));
             }
-            keys[x]->mX = mX + offX - 4;
-            keys[x]->mY = mY + offY - 4;
+            keys[x]->mX = mX + offX - 4 + (kW + 14)/2;
+            keys[x]->mY = mY + offY - 4 + (kH + 12)/2;
 
             char vkey[2];
             vkey[1] = '\0';
