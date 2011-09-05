@@ -2721,8 +2721,7 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card, int
         if(moreThanOneTarget)
             a->target = spell->getNextTarget();
 
-        if(a->target && moreThanOneTarget 
-            && !dynamic_cast<MayAbility*>(a)) //MayAbility is an exception to multitargets, as we don't want to add the same text n times to a menu
+        if(a->target && moreThanOneTarget) 
         {
             while(a->target)
             {
@@ -2730,8 +2729,17 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card, int
                 {
                     a->resolve();
                 }
-                else
+                else if(!dynamic_cast<MayAbility*>(a))
                 {
+                    MTGAbility * mClone = a->clone();
+                    mClone->addToGame();
+                }
+                else if(dynamic_cast<MayAbility*>(a) && a->target == spell->tc->targets[0])
+                {
+                    //this only keeps a menu objects from displaying multiple options of the same ability during the resolve of a multiability effect.
+                    //meaning as long as it is targeting the first target add it, else don't display it again.
+                    //this does not make "may" abilities an exception to multitarget simply on mayabilities resolving from a multitarget
+                    //spell, only display the menu once. this is purely cosmetic.
                     MTGAbility * mClone = a->clone();
                     mClone->addToGame();
                 }
