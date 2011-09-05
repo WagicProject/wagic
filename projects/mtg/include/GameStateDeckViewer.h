@@ -31,7 +31,8 @@ enum
     STAGE_ONSCREEN_MENU = 5,
     STAGE_WELCOME = 6,
     STAGE_MENU = 7,
-    STAGE_FILTERS = 8
+    STAGE_FILTERS = 8,
+    STAGE_TRANSITION_SELECTED = 9
 };
 
 // TODO: need a better name for MENU_FIRST_MENU, this is reused for the 1st submenu of
@@ -93,6 +94,7 @@ private:
     JMusic * bgMusic;
     int lastPos;
     int lastTotal;
+    int mSelected;
 
     WGuiFilters * filterMenu;
     WSrcDeckViewer * source;

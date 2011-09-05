@@ -423,8 +423,30 @@ void GameStateDeckViewer::Update(float dt)
             }
             break;
         case JGE_BTN_OK:
-            last_user_activity = 0;
-            addRemove(cardIndex[2]);
+            if (mEngine->GetLeftClickCoordinates(x, y))
+            {
+              for(int i=0; i < CARDS_DISPLAYED; i++)
+              {
+                distance2 = static_cast<unsigned int>((cardsCoordinates[i].second - y) * (cardsCoordinates[i].second - y) + (cardsCoordinates[i].first - x) * (cardsCoordinates[i].first - x));
+                if (distance2 < minDistance2)
+                {
+                    minDistance2 = distance2;
+                    n = i;
+                }
+              }
+
+              if(n!=2) {
+                mSelected = n;
+                last_user_activity = 0;
+                mStage = STAGE_TRANSITION_SELECTED;
+              }
+              mEngine->LeftClickedProcessed();
+            }
+            if(mStage != STAGE_TRANSITION_SELECTED)
+            {
+                last_user_activity = 0;
+                addRemove(cardIndex[2]);
+            }
             break;
         case JGE_BTN_SEC:
             last_user_activity = 0;
@@ -474,32 +496,6 @@ void GameStateDeckViewer::Update(float dt)
             else if ((mStage == STAGE_ONSCREEN_MENU) && (++stw->currentPage > stw->pageCount)) stw->currentPage = 0;
             break;
         default: // no keypress
-            if (mEngine->GetLeftClickCoordinates(x, y))
-            {
-              for(int i=0; i < CARDS_DISPLAYED; i++)
-              {
-                distance2 = static_cast<unsigned int>((cardsCoordinates[i].second - y) * (cardsCoordinates[i].second - y) + (cardsCoordinates[i].first - x) * (cardsCoordinates[i].first - x));
-                if (distance2 < minDistance2)
-                {
-                    minDistance2 = distance2;
-                    n = i;
-                }
-              }
-
-              if (n < ((CARDS_DISPLAYED/2) - 1))
-              {
-                  last_user_activity = 0;
-                  mStage = STAGE_TRANSITION_RIGHT;
-              }
-              if (n > ((CARDS_DISPLAYED/2) + 1))
-              {
-                last_user_activity = 0;
-                mStage = STAGE_TRANSITION_LEFT;
-              }
-              mEngine->LeftClickedProcessed();
-              break;
-            }
-
             if (last_user_activity > NO_USER_ACTIVITY_HELP_DELAY)
             {
                 if (mStage != STAGE_ONSCREEN_MENU)
@@ -519,6 +515,37 @@ void GameStateDeckViewer::Update(float dt)
                 last_user_activity += dt;
         }
 
+    }
+    if (mStage == STAGE_TRANSITION_SELECTED)
+    {
+        if (mSelected < 2)
+        {
+            mRotation -= dt * MED_SPEED;
+            if (mRotation < mSelected-2)
+            {
+                do
+                {
+                    rotateCards(STAGE_TRANSITION_RIGHT);
+                    mRotation += 1;
+                } while (mRotation < -1.0f);
+                mStage = STAGE_WAITING;
+                mRotation = 0;
+            }
+        }
+        else if (mSelected > 2)
+        {
+            mRotation += dt * MED_SPEED;
+            if (mRotation > mSelected - 2)
+            {
+                do
+                {
+                    rotateCards(STAGE_TRANSITION_LEFT);
+                    mRotation -= 1;
+                } while (mRotation > 1.0f);
+                mStage = STAGE_WAITING;
+                mRotation = 0;
+            }
+        }
     }
     if (mStage == STAGE_TRANSITION_RIGHT || mStage == STAGE_TRANSITION_LEFT)
     {
@@ -1675,5 +1702,8 @@ void GameStateDeckViewer::OnScroll(int inXVelocity, int inYVelocity)
         bool flickUpwards = (inYVelocity < 0);
         mEngine->HoldKey_NoRepeat(flickUpwards ? JGE_BTN_DOWN : JGE_BTN_UP);
 
+    } else if (abs(inXVelocity) > 300)
+    {
+        mEngine->HoldKey_NoRepeat(JGE_BTN_PRI);
     }
 }
