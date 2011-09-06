@@ -177,7 +177,7 @@ void GameStateAwards::Update(float dt)
     {
         JButton key = JGE_BTN_NONE;
         int x, y;
-        while ((key = JGE::GetInstance()->ReadButton()) || JGE::GetInstance()->GetLeftClickCoordinates(x,y))
+        while ((key = JGE::GetInstance()->ReadButton()))
         {
             switch (key)
             {
@@ -385,6 +385,20 @@ void GameStateAwards::ButtonPressed(int controllerId, int controlId)
         else if (controlId == Options::AWARD_COLLECTOR && enterStats(controlId))
         {
             mState = STATE_DETAILS;
+        }
+    }
+}
+
+void GameStateAwards::OnScroll(int inXVelocity, int inYVelocity)
+{
+    if (abs(inYVelocity) > 300)
+    {
+        bool flickUpwards = (inYVelocity < 0);
+        int velocity = (inYVelocity < 0) ? (-1 * inYVelocity) : inYVelocity;
+        while(velocity > 0)
+        {
+            mEngine->HoldKey_NoRepeat(flickUpwards ? JGE_BTN_DOWN : JGE_BTN_UP);
+            velocity -= 100;
         }
     }
 }

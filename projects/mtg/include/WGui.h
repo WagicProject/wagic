@@ -857,8 +857,11 @@ public:
     virtual void ButtonPressed(int controllerId, int controlId);
     virtual void setData();
     WGuiBase * operator[](int);
+    virtual bool CheckUserInput(JButton key);
 protected:
     bool mFocus;
+    int startWindow;
+    int endWindow;
 };
 
 /**

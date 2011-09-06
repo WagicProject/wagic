@@ -360,10 +360,11 @@ void WGuiList::Render()
     //Render items.
     if (start >= 0)
     {
+        int pos;
         //Render current underlay.
         if (currentItem >= 0 && currentItem < nbitems && items[currentItem]->Visible()) items[currentItem]->Underlay();
 
-        for (int pos = 0; pos < nbitems; pos++)
+        for (pos = 0; pos < nbitems; pos++)
         {
             if (!items[pos]->Visible()) continue;
 
@@ -385,6 +386,9 @@ void WGuiList::Render()
             if (nowPos > SCREEN_HEIGHT) //Stop displaying things once we reach the bottom of the screen.
             break;
         }
+
+        startWindow = start;
+        endWindow = pos;
 
         //Draw scrollbar
         if (listHeight > SCREEN_HEIGHT && listSelectable > 1)
@@ -417,6 +421,41 @@ void WGuiList::ButtonPressed(int controllerId, int controlId)
 
     it->ButtonPressed(controllerId, controlId);
 }
+
+bool WGuiList::CheckUserInput(JButton key)
+{
+    JGE * mEngine = JGE::GetInstance();
+    int i, j;
+
+    if ((key == JGE_BTN_OK) && mEngine->GetLeftClickCoordinates(i, j))
+    {   // a dude clicked somwhere, we're gonna select the closest object from where he clicked
+        int n = currentItem;
+        unsigned int distance2;
+        unsigned int minDistance2 = -1;
+        for(int k = startWindow; k < endWindow; k++)
+        {
+          WGuiItem* pItem = (WGuiItem*)items[k];
+          distance2 = static_cast<unsigned int>((pItem->getY() - j) * (pItem->getY() - j) + (pItem->getX() - i) * (pItem->getX() - i));
+          if (distance2 < minDistance2 && pItem->Selectable())
+          {
+              minDistance2 = distance2;
+              n = k;
+          }
+        }
+
+        if (n != currentItem && items[n]->Selectable())
+        {
+            setSelected(n);
+            mEngine->LeftClickedProcessed();
+            if (sync) syncMove();
+            return true;
+        }
+    }
+
+    mEngine->LeftClickedProcessed();
+    return WGuiMenu::CheckUserInput(key);
+}
+
 
 string WDecoEnum::lookupVal(int value)
 {
@@ -927,12 +966,12 @@ bool WGuiMenu::CheckUserInput(JButton key)
     if (!mEngine->GetButtonState(held)) //Key isn't held down.
     held = JGE_BTN_NONE;
 
-    if (mEngine->GetLeftClickCoordinates(i, j))
+    if ((key == JGE_BTN_OK) && mEngine->GetLeftClickCoordinates(i, j))
     {   // a dude clicked somwhere, we're gonna select the closest object from where he clicked
         int n = currentItem;
         unsigned int distance2;
         unsigned int minDistance2 = -1;
-        for(size_t k = 0; k < items.size(); k++)
+        for(int k = 0; k >= items.size(); k++)
         {
           WGuiItem* pItem = (WGuiItem*)items[k];
           distance2 = static_cast<unsigned int>((pItem->getY() - j) * (pItem->getY() - j) + (pItem->getX() - i) * (pItem->getX() - i));

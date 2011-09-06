@@ -35,6 +35,7 @@ public:
     virtual void Update(float dt);
     virtual void Render();
     virtual void ButtonPressed(int controllerId, int controlId);
+    virtual void OnScroll(int inXVelocity, int inYVelocity);
 };
 
 #endif
