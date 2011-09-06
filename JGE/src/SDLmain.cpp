@@ -86,193 +86,185 @@ extern "C" void Java_org_libsdl_app_SDLActivity_nativeResume(
 class SdlApp
 {
 public: /* For easy interfacing with JGE static functions */
-	bool            Running;
-	SDL_Window*     window;
-	SDL_Surface*    Surf_Display;
-	SDL_Rect        viewPort;
-	Uint32          lastMouseUpTime;
+    bool            Running;
+    SDL_Window*     window;
+    SDL_Surface*    Surf_Display;
+    SDL_Rect        viewPort;
+    Uint32          lastMouseUpTime;
     Uint32          lastFingerDownTime;
-	int             windowed_w;
-	int             windowed_h;
-	int             windowed_pos_x;
-	int             windowed_pos_y;
+    int             windowed_w;
+    int             windowed_h;
+    int             windowed_pos_x;
+    int             windowed_pos_y;
 
     int mMouseDownX;
     int mMouseDownY;
 
 public:
-	SdlApp() : Surf_Display(NULL), window(NULL), lastMouseUpTime(0), lastFingerDownTime(0), Running(true), mMouseDownX(0), mMouseDownY(0)
-	{
-	}
+    SdlApp() : Surf_Display(NULL), window(NULL), lastMouseUpTime(0), lastFingerDownTime(0), Running(true), mMouseDownX(0), mMouseDownY(0)
+    {
+    }
 
-	int OnExecute()
-	{
-		if (OnInit() == false)
-		{
-			return -1;
-		}
+    int OnExecute()
+    {
+        if (OnInit() == false)
+        {
+            return -1;
+        }
 
-		SDL_Event Event;
+        SDL_Event Event;
 
-		while(Running)
-		{
-			if (g_engine && !g_engine->IsPaused())
-			{
-				while(SDL_WaitEventTimeout(&Event, 0))
-				{
-					OnEvent(&Event);
-				}
-				OnUpdate();
-			}
-		}
+        while(Running)
+        {
+            if (g_engine)
+            {
+                while(SDL_WaitEventTimeout(&Event, 10))
+                {
+                    if(!g_engine->IsPaused())
+                        OnEvent(&Event);
+                }
+                if(!g_engine->IsPaused())
+                    OnUpdate();
+            }
+        }
 
-		OnCleanup();
+        OnCleanup();
 
-		return 0;
-	};
+        return 0;
+    };
 
 public:
-	bool OnInit();
+    bool OnInit();
 
-	void OnResize(int width, int height)
-	{
-		DebugTrace("OnResize Width " << width << " height " << height);
+    void OnResize(int width, int height)
+    {
+        DebugTrace("OnResize Width " << width << " height " << height);
 
-		if ((GLfloat)width / (GLfloat)height <= ACTUAL_RATIO)
-		{
-			viewPort.x = 0;
-			viewPort.y = -(static_cast<int>(width / ACTUAL_RATIO) - height) / 2;
-			viewPort.w = width;
-			viewPort.h = static_cast<int>(width / ACTUAL_RATIO);
-		}
-		else
-		{
-			viewPort.x = -(static_cast<int>(height * ACTUAL_RATIO) - width) / 2;
-			viewPort.y = 0;
-			viewPort.w = static_cast<int>(height * ACTUAL_RATIO);
-			viewPort.h = height;
-		}
+        if ((GLfloat)width / (GLfloat)height <= ACTUAL_RATIO)
+        {
+                viewPort.x = 0;
+                viewPort.y = -(static_cast<int>(width / ACTUAL_RATIO) - height) / 2;
+                viewPort.w = width;
+                viewPort.h = static_cast<int>(width / ACTUAL_RATIO);
+        }
+        else
+        {
+                viewPort.x = -(static_cast<int>(height * ACTUAL_RATIO) - width) / 2;
+                viewPort.y = 0;
+                viewPort.w = static_cast<int>(height * ACTUAL_RATIO);
+                viewPort.h = height;
+        }
 
-		glViewport(viewPort.x, viewPort.y, viewPort.w, viewPort.h);
+        glViewport(viewPort.x, viewPort.y, viewPort.w, viewPort.h);
 
-		JRenderer::GetInstance()->SetActualWidth(static_cast<float>(viewPort.w));
-		JRenderer::GetInstance()->SetActualHeight(static_cast<float>(viewPort.h));
-		glScissor(0, 0, width, height);
+        JRenderer::GetInstance()->SetActualWidth(static_cast<float>(viewPort.w));
+        JRenderer::GetInstance()->SetActualHeight(static_cast<float>(viewPort.h));
+        glScissor(0, 0, width, height);
 
 #if (!defined GL_ES_VERSION_2_0) && (!defined GL_VERSION_2_0)
 
-		glMatrixMode (GL_PROJECTION);										// Select The Projection Matrix
-		glLoadIdentity ();													// Reset The Projection Matrix
+        glMatrixMode (GL_PROJECTION);										// Select The Projection Matrix
+        glLoadIdentity ();													// Reset The Projection Matrix
 
 #if (defined GL_VERSION_ES_CM_1_1)
-		glOrthof(0.0f, (float) (viewPort.w)-1.0f, 0.0f, (float) (viewPort.h)-1.0f, -1.0f, 1.0f);
+        glOrthof(0.0f, (float) (viewPort.w)-1.0f, 0.0f, (float) (viewPort.h)-1.0f, -1.0f, 1.0f);
 #else
-		gluOrtho2D(0.0f, (float) (viewPort.w)-1.0f, 0.0f, (float) (viewPort.h)-1.0f);
+        gluOrtho2D(0.0f, (float) (viewPort.w)-1.0f, 0.0f, (float) (viewPort.h)-1.0f);
 #endif
-		glMatrixMode (GL_MODELVIEW);										// Select The Modelview Matrix
-		glLoadIdentity ();													// Reset The Modelview Matrix
+        glMatrixMode (GL_MODELVIEW);										// Select The Modelview Matrix
+        glLoadIdentity ();													// Reset The Modelview Matrix
 
-		glDisable (GL_DEPTH_TEST);
-
+        glDisable (GL_DEPTH_TEST);
 #endif
-	}
+    }
 
-	void OnKeyPressed(const SDL_KeyboardEvent& event);
-	void OnMouseDoubleClicked(const SDL_MouseButtonEvent& event);
-	void OnMouseClicked(const SDL_MouseButtonEvent& event);
-	void OnMouseMoved(const SDL_MouseMotionEvent& event);
-  void OnMouseWheel(int x, int y);
+    void OnKeyPressed(const SDL_KeyboardEvent& event);
+    void OnMouseDoubleClicked(const SDL_MouseButtonEvent& event);
+    void OnMouseClicked(const SDL_MouseButtonEvent& event);
+    void OnMouseMoved(const SDL_MouseMotionEvent& event);
+    void OnMouseWheel(int x, int y);
 
-  void OnTouchEvent(const SDL_TouchFingerEvent& event);
+    void OnTouchEvent(const SDL_TouchFingerEvent& event);
 
-	void OnEvent(SDL_Event* Event)
-	{
-		/* if(Event->type < SDL_USEREVENT) 
-		DebugTrace("Event received" << Event->type);*/
-		switch(Event->type)
-		{
-		case SDL_QUIT:
-			Running = false;
-			break;
+    void OnEvent(SDL_Event* Event)
+    {
+        /* if(Event->type < SDL_USEREVENT)
+        DebugTrace("Event received" << Event->type);*/
+        switch(Event->type)
+        {
+        case SDL_QUIT:
+            Running = false;
+            break;
 
-		/* On Android, this is triggered when the device orientation changed */
-		case SDL_WINDOWEVENT: 
-			window = SDL_GetWindowFromID(Event->window.windowID);
-			int h,w;
-			SDL_GetWindowSize(window, &w, &h);
-			OnResize(w, h);
-			break;
+        /* On Android, this is triggered when the device orientation changed */
+        case SDL_WINDOWEVENT:
+            window = SDL_GetWindowFromID(Event->window.windowID);
+            int h,w;
+            SDL_GetWindowSize(window, &w, &h);
+            OnResize(w, h);
+            break;
 
-		case SDL_KEYDOWN:
-		case SDL_KEYUP:
-			OnKeyPressed(Event->key);
-			break;
+        case SDL_KEYDOWN:
+        case SDL_KEYUP:
+            OnKeyPressed(Event->key);
+            break;
 
-		case SDL_MOUSEMOTION:
-			OnMouseMoved(Event->motion);
-			break;
+        case SDL_MOUSEMOTION:
+            OnMouseMoved(Event->motion);
+            break;
 
-		case SDL_MOUSEBUTTONDOWN:
-			OnMouseClicked(Event->button);
-			break;
+        case SDL_MOUSEBUTTONDOWN:
+            OnMouseClicked(Event->button);
+            break;
 
-		case SDL_MOUSEBUTTONUP:
-			{
-				Uint32 eventTime = SDL_GetTicks();
-				if (eventTime - lastMouseUpTime <= 500)
-				{
-					OnMouseDoubleClicked(Event->button);
-				}
-				else
-				{
-					OnMouseClicked(Event->button);
-				}
-				lastMouseUpTime = eventTime;
-			}
+        case SDL_MOUSEBUTTONUP:
+            {
+                Uint32 eventTime = SDL_GetTicks();
+                if (eventTime - lastMouseUpTime <= 500)
+                {
+                    OnMouseDoubleClicked(Event->button);
+                }
+                else
+                {
+                    OnMouseClicked(Event->button);
+                }
+                lastMouseUpTime = eventTime;
+            }
+            break;
 
-			break;
+        case SDL_MOUSEWHEEL:
+            OnMouseWheel(Event->wheel.x, Event->wheel.y);
+            break;
 
-    case SDL_MOUSEWHEEL:
-      OnMouseWheel(Event->wheel.x, Event->wheel.y);
-      break;
-
-		case SDL_FINGERMOTION:
+        case SDL_FINGERMOTION:
         case SDL_FINGERDOWN:
         case SDL_FINGERUP:
-			//DebugTrace("Touch Event triggered");
-            //DebugTrace("touchId " << Event->tfinger.touchId);
-			//DebugTrace("fingerId " << Event->tfinger.fingerId);
-			//DebugTrace("state " << Event->tfinger.state);
-			//DebugTrace("x " << Event->tfinger.x	<< ", y " << Event->tfinger.y);
-			//DebugTrace("dx " << Event->tfinger.dx << ", dy " << Event->tfinger.dy);
-			//DebugTrace("pressure " << Event->tfinger.pressure);
+            OnTouchEvent(Event->tfinger);
+            break;
 
-			OnTouchEvent(Event->tfinger);
-			break;
-
-		case SDL_MULTIGESTURE:
-			DebugTrace("Multigesture : touchId " << Event->mgesture.touchId
-				<< ", x " << Event->mgesture.x
-				<< ", y " << Event->mgesture.y
-				<< ", dTheta " << Event->mgesture.dTheta
-				<< ", dDist " << Event->mgesture.dDist
-				<< ", numFingers " << Event->mgesture.numFingers);
-			break;
+        case SDL_MULTIGESTURE:
+            DebugTrace("Multigesture : touchId " << Event->mgesture.touchId
+                    << ", x " << Event->mgesture.x
+                    << ", y " << Event->mgesture.y
+                    << ", dTheta " << Event->mgesture.dTheta
+                    << ", dDist " << Event->mgesture.dDist
+                    << ", numFingers " << Event->mgesture.numFingers);
+            break;
 
         case SDL_JOYBALLMOTION:
             DebugTrace("Flick gesture detected, x: " << Event->jball.xrel << ", y: " << Event->jball.yrel);
             g_engine->Scroll(Event->jball.xrel, Event->jball.yrel);
             break;
         }
-	}
+    }
 
-	void OnUpdate();
+    void OnUpdate();
 
-	void OnCleanup()
-	{
-		SDL_FreeSurface(Surf_Display);
-		SDL_Quit();
-	}
+    void OnCleanup()
+    {
+        SDL_FreeSurface(Surf_Display);
+        SDL_Quit();
+    }
 };
 
 static const struct { LocalKeySym keysym; JButton keycode; } gDefaultBindings[] =
