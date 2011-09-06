@@ -1,4 +1,4 @@
-grade=unsupported
+﻿grade=unsupported
 # The cards in this file are not implemented yet
 [card]
 name="Ach! Hans, Run!"
@@ -9684,15 +9684,6 @@ text=Equipped creature has "{T}: Put an aim counter on Hankyu" and "{T}, Remove 
 mana={1}
 type=Artifact
 subtype=Equipment
-[/card]
-[card]
-name=Hapless Researcher
-text=Sacrifice Hapless Researcher: Draw a card, then discard a card.
-mana={U}
-type=Creature
-subtype=Human Wizard
-power=1
-toughness=1
 [/card]
 [card]
 name=Harm's Way
