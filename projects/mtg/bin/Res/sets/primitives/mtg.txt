@@ -45465,7 +45465,7 @@ toughness=2
 [/card]
 [card]
 name=Mycoloth
-auto=may target(<anyamount>other creature|mybattlefield) sacrifice && counter(1/1,1) all(this)
+auto=may target(<anyamount>other creature|mybattlefield) sacrifice && counter(1/1,2) all(this)
 auto=@each my upkeep:thisforeach(counter{1/1.1}) token(Saproling,creature saproling,1/1,green)
 text=Devour 2 (As this enters the battlefield, you may sacrifice any number of creatures. This creature enters the battlefield with twice that many +1/+1 counters on it.) -- At the beginning of your upkeep, put a 1/1 green Saproling creature token onto the battlefield for each +1/+1 counter on Mycoloth.
 mana={3}{G}{G}
@@ -45952,7 +45952,7 @@ toughness=3
 [/card]
 [card]
 name=Nantuko Cultivator
-auto=may target(<anyamount>land|myhand) reject && draw:1 controller
+auto=may target(<anyamount>land|myhand) reject && draw:1 controller && counter(1/1,1) all(this)
 text=When Nantuko Cultivator enters the battlefield, you may discard any number of land cards. Put that many +1/+1 counters on Nantuko Cultivator and draw that many cards.
 mana={3}{G}
 type=Creature
