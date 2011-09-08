@@ -971,7 +971,7 @@ bool WGuiMenu::CheckUserInput(JButton key)
         int n = currentItem;
         unsigned int distance2;
         unsigned int minDistance2 = -1;
-        for(int k = 0; k >= items.size(); k++)
+        for(unsigned int k = 0; k >= items.size(); k++)
         {
           WGuiItem* pItem = (WGuiItem*)items[k];
           distance2 = static_cast<unsigned int>((pItem->getY() - j) * (pItem->getY() - j) + (pItem->getX() - i) * (pItem->getX() - i));
