@@ -20,6 +20,8 @@ CGFloat lastRotation;
 CGFloat firstX;
 CGFloat firstY;
 
+CGFloat currentX;
+CGFloat currentY;
 
 void JGECreateDefaultBindings()
 {
@@ -67,6 +69,8 @@ void DestroyGame(void)
 @dynamic animationFrameInterval;
 @synthesize currentLocation;
 
+#pragma mark class initialization methods
+
 // You must implement this method
 + (Class)layerClass
 {
@@ -78,6 +82,150 @@ void DestroyGame(void)
     [renderer release];
 	
     [super dealloc];
+}
+
+
+- (void) initGestureRecognizers {
+
+    
+    UIGestureRecognizer *recognizer;
+    
+    /*
+     create swipe handlers for single swipe
+     */
+    UISwipeGestureRecognizer *singleFlickGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget: self action: @selector(handleFlickGesture:)];
+    singleFlickGestureRecognizer.numberOfTouchesRequired = 1;
+    singleFlickGestureRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
+    [self addGestureRecognizer: singleFlickGestureRecognizer];
+    [singleFlickGestureRecognizer release];	
+    
+    singleFlickGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget: self action: @selector(handleFlickGesture:)];
+    singleFlickGestureRecognizer.numberOfTouchesRequired = 1;
+    singleFlickGestureRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
+    [self addGestureRecognizer: singleFlickGestureRecognizer];
+    [singleFlickGestureRecognizer release];	
+    
+    singleFlickGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget: self action: @selector(handleFlickGesture:)];
+    singleFlickGestureRecognizer.numberOfTouchesRequired = 1;
+    singleFlickGestureRecognizer.direction = UISwipeGestureRecognizerDirectionUp;
+    [self addGestureRecognizer: singleFlickGestureRecognizer];
+    [singleFlickGestureRecognizer release];	
+    
+    singleFlickGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget: self action: @selector(handleFlickGesture:)];
+    singleFlickGestureRecognizer.numberOfTouchesRequired = 1;
+    singleFlickGestureRecognizer.direction = UISwipeGestureRecognizerDirectionDown;
+    [self addGestureRecognizer: singleFlickGestureRecognizer];
+    [singleFlickGestureRecognizer release];	
+
+    
+    /*
+     Create a 3 fingers left swipe gesture recognizer to handle left trigger operations
+     */
+    UISwipeGestureRecognizer *threeFingerSwipeLeftRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleNextPhase:)];
+    threeFingerSwipeLeftRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
+    threeFingerSwipeLeftRecognizer.numberOfTouchesRequired = 3;
+    
+    [self addGestureRecognizer: threeFingerSwipeLeftRecognizer];
+    [threeFingerSwipeLeftRecognizer release];
+    
+    /*
+     Create a 3 fingers right swipe gesture recognizer to handle opening and closing of hand. (right trigger)
+     */
+    UISwipeGestureRecognizer *threeFingerSwipeRightRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleHand:)];
+    threeFingerSwipeRightRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
+    threeFingerSwipeRightRecognizer.numberOfTouchesRequired = 3;
+    
+    [self addGestureRecognizer: threeFingerSwipeRightRecognizer];
+    [threeFingerSwipeRightRecognizer release];
+    
+    /*
+     Create a 2 fingers left swipe gesture recognizer to handle interruption. (square key)
+     */
+    recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleInterrupt:)];
+	((UISwipeGestureRecognizer*)recognizer).direction = UISwipeGestureRecognizerDirectionLeft;
+	((UISwipeGestureRecognizer*)recognizer).numberOfTouchesRequired = 2;
+    [self addGestureRecognizer:recognizer];
+    [recognizer requireGestureRecognizerToFail: threeFingerSwipeLeftRecognizer];
+    [recognizer release];	
+    
+    
+    /*
+     Create a 2 fingers right swipe gesture recognizer. (circle key)
+     */
+    recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSecondary:)];
+	((UISwipeGestureRecognizer*)recognizer).direction = UISwipeGestureRecognizerDirectionRight;
+	((UISwipeGestureRecognizer*)recognizer).numberOfTouchesRequired = 2;
+    [self addGestureRecognizer:recognizer];
+    [recognizer requireGestureRecognizerToFail: threeFingerSwipeRightRecognizer];
+    [recognizer release];	
+    
+    /*
+     Create a 2 fingers down swipe gesture recognizer to handle interruption. (cross key)
+     */
+    recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleOK:)];
+	((UISwipeGestureRecognizer*)recognizer).direction = UISwipeGestureRecognizerDirectionDown;
+	((UISwipeGestureRecognizer*)recognizer).numberOfTouchesRequired = 2;
+    [self addGestureRecognizer:recognizer];
+    [recognizer release];	
+    
+    
+    /*
+     Create a 2 fingers up swipe gesture recognizer. (triangle key)
+     */
+    recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleCancel:)];
+	((UISwipeGestureRecognizer*)recognizer).direction = UISwipeGestureRecognizerDirectionUp;
+	((UISwipeGestureRecognizer*)recognizer).numberOfTouchesRequired = 2;
+    [self addGestureRecognizer:recognizer];
+    [recognizer release];
+
+    /*
+     Create a recognizer for the select key functionality
+     */
+    UILongPressGestureRecognizer *selectKeyRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleSelectKey:)];
+    selectKeyRecognizer.minimumPressDuration =2;
+    selectKeyRecognizer.numberOfTouchesRequired = 2;
+    selectKeyRecognizer.delaysTouchesBegan = YES;
+    [self addGestureRecognizer:selectKeyRecognizer];
+
+    /* 
+     Create a touch and hold to handle opening up the menu
+     */
+    UILongPressGestureRecognizer *menuKeyRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleMenuWithLongPress:)];
+    menuKeyRecognizer.minimumPressDuration =2;
+    menuKeyRecognizer.numberOfTouchesRequired = 1;
+    [menuKeyRecognizer requireGestureRecognizerToFail: selectKeyRecognizer];
+    menuKeyRecognizer.delaysTouchesBegan = YES;
+    [self addGestureRecognizer:menuKeyRecognizer];
+    
+    /*
+     Create a double tap recognizer to handle OK.
+     */
+    UITapGestureRecognizer *doubleTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleOK:)];
+    doubleTapRecognizer.numberOfTapsRequired = 2;
+    doubleTapRecognizer.numberOfTouchesRequired = 1; 
+    [self addGestureRecognizer: doubleTapRecognizer];
+
+    /*
+     Create a single tap recognizer to select the nearest object.
+     */
+    UITapGestureRecognizer *singleTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
+    singleTapRecognizer.numberOfTapsRequired = 1;
+    singleTapRecognizer.numberOfTouchesRequired = 1;
+    
+    [self addGestureRecognizer: singleTapRecognizer];
+
+    
+    /*
+     Use the pinch gesture recognizer to zoom in and out of a location on the screen.
+     */
+    UIPinchGestureRecognizer *pinchGestureRecognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(pinchDetected:)];
+    [pinchGestureRecognizer setDelaysTouchesEnded: YES];
+    [self addGestureRecognizer: pinchGestureRecognizer];
+    [pinchGestureRecognizer release];
+    
+    [menuKeyRecognizer release];
+    [selectKeyRecognizer release];
+    [singleTapRecognizer release];
 }
 
 
@@ -109,62 +257,8 @@ void DestroyGame(void)
 	started = FALSE;
 	animationFrameInterval = 1;
 	displayLink = nil;
-    
-    UIGestureRecognizer *recognizer;
-    
-    /*
-     Create a 2 fingers left swipe gesture recognizer to handle interruption.
-     */
-    recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleInterrupt:)];
-	((UISwipeGestureRecognizer*)recognizer).direction = UISwipeGestureRecognizerDirectionLeft;
-	((UISwipeGestureRecognizer*)recognizer).numberOfTouchesRequired = 2;
-    [self addGestureRecognizer:recognizer];
-    [recognizer release];	
-    
-    /* 
-     Create a touch and hold to handle opening up the menu
-     */
-    UILongPressGestureRecognizer *menuKeyRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleMenuWithLongPress:)];
-    menuKeyRecognizer.minimumPressDuration =2;
-    menuKeyRecognizer.numberOfTouchesRequired = 1;
-    menuKeyRecognizer.delaysTouchesBegan = YES;
-    [self addGestureRecognizer:menuKeyRecognizer];
-    
-    
-    /*
-     Create a single tap recognizer to handle OK.
-     */
-    UITapGestureRecognizer *singleTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleOK:)];
-    singleTapRecognizer.numberOfTapsRequired = 1;
-    singleTapRecognizer.numberOfTouchesRequired = 1;
-    [singleTapRecognizer requireGestureRecognizerToFail: menuKeyRecognizer];
-    [singleTapRecognizer setDelaysTouchesBegan: YES];
-    
-    [self addGestureRecognizer: singleTapRecognizer];
-    
-    
-    /*
-     Create a Pan recognizer 
-     */
-    UIPanGestureRecognizer *panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget: self action: @selector(handlePan:)];
-    panRecognizer.minimumNumberOfTouches = 1;
-    panRecognizer.maximumNumberOfTouches = 1;
-    [recognizer requireGestureRecognizerToFail: singleTapRecognizer];
-    [self addGestureRecognizer: panRecognizer];
-    
-    /*
-     Create a 2 fingers right swipe gesture recognizer to handle opening and closing of hand
-     */
-    recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleHand:)];
-	((UISwipeGestureRecognizer*)recognizer).direction = UISwipeGestureRecognizerDirectionRight;
-	((UISwipeGestureRecognizer*)recognizer).numberOfTouchesRequired = 2;
-    
-    [self addGestureRecognizer:recognizer];
-    [recognizer release];
-    
-    [panRecognizer release];
-    [menuKeyRecognizer release];
-    [singleTapRecognizer release];
+
+    [self initGestureRecognizers];
     
 	return self;	
 }
@@ -196,116 +290,9 @@ void DestroyGame(void)
     return self;
 }
 
+#pragma mark -
 
-- (void)handlePan: (UIPanGestureRecognizer *)recognizer {
-    
-    [[[(UITapGestureRecognizer*)recognizer view] layer] removeAllAnimations];
-    
-	[self bringSubviewToFront:[(UIPanGestureRecognizer*)recognizer view]];
-	CGPoint translatedPoint = [(UIPanGestureRecognizer*)recognizer translationInView: self];
-    
-	if([(UIPanGestureRecognizer*)recognizer state] == UIGestureRecognizerStateBegan) {
-        
-		firstX = [[recognizer view] center].x;
-		firstY = [[recognizer view] center].y;
-	}
-    
-	translatedPoint = CGPointMake(firstX+translatedPoint.x, firstY+translatedPoint.y);
-    
-    //	[[recognizer view] setCenter:translatedPoint];
-    
-	if([(UIPanGestureRecognizer*)recognizer state] == UIGestureRecognizerStateEnded) {
-        
-        CGFloat xVelocity = [(UIPanGestureRecognizer*)recognizer velocityInView: self].x;
-        CGFloat yVelocity = [(UIPanGestureRecognizer*)recognizer velocityInView: self].y;
-		CGFloat finalX = translatedPoint.x + (.35 * xVelocity);
-		CGFloat finalY = translatedPoint.y + (.35 * yVelocity);
-        
-		if(UIDeviceOrientationIsPortrait([[UIDevice currentDevice] orientation])) {
-			if(finalX < 0) 
-            { 				 				
-                finalX = 0;
- 			} 			 			
-            else if(finalX > 768) {
-				finalX = 768;
-			}
-            
-			if(finalY < 0) { 	
-                finalY = 0; 		
-            } 			 			
-            else if(finalY > 1024) {    
-				finalY = 1024;
-			}
-		}
-        
-		else {
-            
-			if(finalX < 0) 
-            {
-                finalX = 0; 			
-            }
-            else if(finalX > 1024) {
-                
-				finalX = 768;
-			}
-            
-			if(finalY < 0) {
-                finalY = 0;
-            }
-            else if(finalY > 768) {   
-				finalY = 1024;
-			}
-		}
-        
-        int xVelocityAbs = abs(static_cast<int>(xVelocity));
-        int yVelocityAbs = abs(static_cast<int>(yVelocity));
-
-        
-        if (yVelocityAbs > 300 && (xVelocityAbs < yVelocityAbs))
-        {
-            bool flickUpwards = yVelocity < 0;
-            g_engine->HoldKey_NoRepeat(flickUpwards ? JGE_BTN_UP : JGE_BTN_DOWN);
-        }
-        else if (xVelocityAbs > 300  && (xVelocityAbs > yVelocityAbs))
-        {
-            bool flickRight = xVelocity > 0;
-            g_engine->HoldKey_NoRepeat( flickRight ? JGE_BTN_RIGHT : JGE_BTN_LEFT);
-        }
-    }
-    
-}
-
-- (void)handleHand:(UITapGestureRecognizer *)recognizer {
-	g_engine->HoldKey_NoRepeat(JGE_BTN_NEXT);
-}
-
-- (void)handleMenu:(UISwipeGestureRecognizer *)recognizer {
-	g_engine->HoldKey_NoRepeat(JGE_BTN_MENU);
-}
-
-
-- (void)handleMenuWithLongPress:(UILongPressGestureRecognizer *)recognizer {
-    if (recognizer.state == UIGestureRecognizerStateEnded) {
-        NSLog(@"Long press Ended");
-        g_engine->HoldKey_NoRepeat(JGE_BTN_MENU);
-    }
-    else {
-        NSLog(@"Long press detected.");
-    }
-}
-
-- (void)handleInterrupt:(UISwipeGestureRecognizer *)recognizer {
-	g_engine->HoldKey_NoRepeat(JGE_BTN_SEC);
-    
-}
-
-- (void)handleNextPhase:(UISwipeGestureRecognizer *)recognizer {
-	g_engine->HoldKey_NoRepeat(JGE_BTN_PREV);
-}
-
-- (void)handleOK:(UITapGestureRecognizer *)recognizer {
-	g_engine->HoldKey_NoRepeat(JGE_BTN_OK);
-}
+#pragma mark Animation callbacks/methods
 
 - (void)drawView:(id)sender
 {
@@ -396,10 +383,142 @@ void DestroyGame(void)
     }
 }
 
+#pragma mark -
+
+#pragma mark Gesture Recognizer callbacks
+
+- (void)handleSingleTap: (UITapGestureRecognizer *) recognizer {
+    [[[recognizer view] layer] removeAllAnimations];
+    currentLocation = [recognizer locationInView: self];
+    ES2Renderer* es2renderer = (ES2Renderer*)renderer;
+	
+	int actualWidth = (int) JRenderer::GetInstance()->GetActualWidth();
+	int actualHeight = (int) JRenderer::GetInstance()->GetActualHeight();
+	
+    if (currentLocation.y > es2renderer.viewPort.top && 
+		currentLocation.y < es2renderer.viewPort.bottom &&
+		currentLocation.x < es2renderer.viewPort.right &&
+		currentLocation.x > es2renderer.viewPort.left) 
+    {
+        
+        int xOffset = ((currentLocation.x-es2renderer.viewPort.left)*SCREEN_WIDTH)/actualWidth;
+        int yOffset = ((currentLocation.y-es2renderer.viewPort.top)*SCREEN_HEIGHT)/actualHeight;
+        
+        g_engine->LeftClicked(xOffset, yOffset);
+/*
+    // doesn't work as expected.  Need to figure out correct algorithm.  Double tap or double swipe down will execute OK button.
+        NSInteger xDiff = abs(static_cast<int>(currentX) - xOffset);
+        NSInteger yDiff = abs(static_cast<int>(currentY) - yOffset);
+        
+        if (xDiff <= 60 && yDiff <= 60)
+        {
+            g_engine->HoldKey_NoRepeat(JGE_BTN_OK);
+        }
+*/
+        currentX = xOffset;
+        currentY = yOffset;
+        
+	}
+        
+    else if(currentLocation.y < es2renderer.viewPort.top) {
+        NSLog(@"Menu Button");
+        if (recognizer.state == UIGestureRecognizerStateEnded)
+            g_engine->HoldKey_NoRepeat(JGE_BTN_MENU);		
+	} 
+    
+    else if((currentLocation.y > es2renderer.viewPort.bottom) && (currentLocation.x < actualWidth/2)) {
+        if (recognizer.state == UIGestureRecognizerStateEnded)
+            g_engine->HoldKey_NoRepeat(JGE_BTN_PREV);
+	}
+    else if((currentLocation.y > es2renderer.viewPort.bottom) && (currentLocation.x >= actualWidth/2)) {
+        NSLog( @"Right Trigger");
+		if (recognizer.state == UIGestureRecognizerStateEnded)
+            g_engine->HoldKey_NoRepeat(JGE_BTN_NEXT);
+	}
+}
+
+- (void)handleFlickGesture: (UISwipeGestureRecognizer *) recognizer {
+
+    switch (recognizer.direction) {
+        case UISwipeGestureRecognizerDirectionDown:
+            g_engine->HoldKey_NoRepeat( JGE_BTN_DOWN );
+            break;
+        case UISwipeGestureRecognizerDirectionUp:
+            g_engine->HoldKey_NoRepeat( JGE_BTN_UP);
+            break;
+        case UISwipeGestureRecognizerDirectionLeft:
+            g_engine->HoldKey_NoRepeat( JGE_BTN_LEFT );
+            break;
+        case UISwipeGestureRecognizerDirectionRight:
+            g_engine->HoldKey_NoRepeat( JGE_BTN_RIGHT );
+            break;
+            
+        default:
+            break;
+    }
+
+    CGPoint translatedPoint = [recognizer locationInView: self];
+    currentX = translatedPoint.x;
+    currentY = translatedPoint.y;
+}
+
+- (void)handleHand:(UITapGestureRecognizer *)recognizer {
+	g_engine->HoldKey_NoRepeat(JGE_BTN_NEXT);
+}
+
+/* implement a zoom in /out function call */
+- (IBAction)pinchDetected:(UIGestureRecognizer *)sender {
+/*    
+    CGFloat scale = 
+    [(UIPinchGestureRecognizer *)sender scale];
+    CGFloat velocity = 
+    [(UIPinchGestureRecognizer *)sender velocity];
+    
+    g_engine->Zoom( scale, velocity );
+*/
+}
+
+
+- (void)handleSelectKey:(UILongPressGestureRecognizer *) recognizer {
+    if ( recognizer.state == UIGestureRecognizerStateEnded )
+    {
+        g_engine->HoldKey_NoRepeat(JGE_BTN_CTRL);
+    }
+}
+
+
+- (void)handleMenuWithLongPress:(UILongPressGestureRecognizer *)recognizer {
+    if (recognizer.state == UIGestureRecognizerStateEnded) {
+        g_engine->HoldKey_NoRepeat(JGE_BTN_MENU);
+    }
+}
+
+- (void)handleNextPhase:(UISwipeGestureRecognizer *)recognizer {
+	g_engine->HoldKey_NoRepeat(JGE_BTN_PREV);
+}
+
+- (void)handleOK:(UITapGestureRecognizer *)recognizer {
+	g_engine->HoldKey_NoRepeat(JGE_BTN_OK);
+}
+
+- (void)handleSecondary: (UISwipeGestureRecognizer *)recognizer {
+    g_engine->HoldKey_NoRepeat(JGE_BTN_PRI);
+}
+
+- (void)handleInterrupt:(UISwipeGestureRecognizer *)recognizer {
+	g_engine->HoldKey_NoRepeat(JGE_BTN_SEC);
+    
+}
+
+- (void)handleCancel:(UISwipeGestureRecognizer *) recognizer {
+    g_engine->HoldKey_NoRepeat(JGE_BTN_CANCEL);
+}
+
 
 - (void) handleTouchEvent: (NSSet *) touches withEvent: (UIEvent *) event
 {
-    UITouch*            touch = [[event touchesForView:self] anyObject];
+    UITouch     *touch = [[event touchesForView:self] anyObject];
+    NSUInteger  numberOfTouches = [[event touchesForView: self] count];
 	
     // Convert touch point from UIView referential to OpenGL one (upside-down flip)
     currentLocation = [touch previousLocationInView:self];
@@ -415,25 +534,26 @@ void DestroyGame(void)
     {
         int xOffset = ((currentLocation.x-es2renderer.viewPort.left)*SCREEN_WIDTH)/actualWidth;
         int yOffset = ((currentLocation.y-es2renderer.viewPort.top)*SCREEN_HEIGHT)/actualHeight;
-        NSLog( @"clicked %d, %d: tapCount: %d", xOffset, yOffset, touch.tapCount);
         
-        if (touch.tapCount == 1)
-        {            
+        if (touch.tapCount == 1 && numberOfTouches == 1)
+        {
             g_engine->LeftClicked(xOffset, yOffset);
+            if ( touch.phase == UITouchPhaseEnded)
+                g_engine->HoldKey_NoRepeat(JGE_BTN_OK);
         }
         
 	}
     
-    else if(currentLocation.y < es2renderer.viewPort.top) {
-        NSLog(@"Menu Button");
-		g_engine->HoldKey_NoRepeat(JGE_BTN_MENU);		
-	} 
-    
-    else if(currentLocation.y > es2renderer.viewPort.bottom) {
-        NSLog( @"Right Trigger");
-		g_engine->HoldKey_NoRepeat(JGE_BTN_NEXT);
+    else if((currentLocation.y > es2renderer.viewPort.bottom) && (currentLocation.x < actualWidth/2)) {
+
+        if (touch.phase == UITouchPhaseEnded)
+            g_engine->HoldKey_NoRepeat(JGE_BTN_PREV);
 	}
-    
+    else if((currentLocation.y > es2renderer.viewPort.bottom) && (currentLocation.x >= actualWidth/2)) {
+
+        if (touch.phase == UITouchPhaseEnded)
+            g_engine->HoldKey_NoRepeat(JGE_BTN_NEXT);
+	}    
 }
 
 // Handles the start of a touch
@@ -446,7 +566,7 @@ void DestroyGame(void)
 // Handles the continuation of a touch.
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {  
-    [self handleTouchEvent: touches withEvent: event];
+    //[self handleTouchEvent: touches withEvent: event];
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
@@ -461,5 +581,6 @@ void DestroyGame(void)
     // This application is not saving state.
 }
 
+#pragma mark -
 @end
 
