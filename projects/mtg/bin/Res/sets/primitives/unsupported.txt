@@ -1,19 +1,10 @@
-ï»¿grade=unsupported
-# The cards in this file are not implemented yet
+grade=unsupported
+#The cards in this file are not implemented yet
 [card]
 name="Ach! Hans, Run!"
 mana={2}{R}{R}{G}{G}
 type=Enchantment
 text=At the beginning of your upkeep, you may say "Ach Hans, run It's the . . ." and name a creature card. If you do, search your library for the named card, put it into play, then shuffle your library. That creature has haste. Remove it from the game at end of turn.
-[/card]
-[card]
-name=AErathi Berserker (AErathi Berserker)
-mana={2}{R}{R}{R}
-type=Creature
-subtype=Human Berserker
-power=2
-toughness=4
-text=Rampage 3 (Whenever this creature becomes blocked, it gets +3/+3 until end of turn for each creature blocking it beyond the first.)
 [/card]
 [card]
 name=AEther Barrier
@@ -353,7 +344,7 @@ type=Sorcery
 name=Alliance of Arms
 mana={W}
 type=Sorcery
-text=Join forces â€” Starting with you, each player may pay any amount of mana. Each player puts X 1/1 white Soldier creature tokens onto the battlefield, where X is the total amount of mana paid this way.
+text=Join forces — Starting with you, each player may pay any amount of mana. Each player puts X 1/1 white Soldier creature tokens onto the battlefield, where X is the total amount of mana paid this way.
 [/card]
 [card]
 name=Alluring Scent
@@ -759,7 +750,7 @@ toughness=2
 [card]
 name=Artful Looter
 mana={2}{U}
-type=Creature â€” Human Wizard
+type=Creature — Human Wizard
 power=1
 toughness=2
 text={T}: Draw a card, then discard a card. Whenever a permanent comes into play that shares an artist with another permanent you control, untap Artful Looter.
@@ -861,7 +852,7 @@ type=Instant
 [card]
 name=Assquatch
 mana={4}{R}
-type=Creature â€” Donkey Lord
+type=Creature — Donkey Lord
 power=3{1/2}/3{1
 toughness=2}
 text=Each other Donkey gets +1{1/2}/+1{1/2}. Whenever another Donkey comes into play, untap target creature and gain control of it until end of turn. That creature gains haste until end of turn.
@@ -884,7 +875,7 @@ toughness=3
 [card]
 name=Atinlay Igpay
 mana={5}{W}
-type=Eaturecray â€” Igpay
+type=Eaturecray — Igpay
 power=3
 toughness=3
 text=Oubleday ikestray Eneverwhay Atinlay Igpay's ontrollercay eaksspay ay onnay-Igpay-Atinlay ordway, acrificesay Atinlay Igpay.
@@ -1038,7 +1029,7 @@ toughness=9
 [card]
 name=Avatar of Me
 mana={2}{U}{U}
-type=Creature â€” Avatar
+type=Creature — Avatar
 power=*
 toughness=*
 text=Avatar of Me costs {1} more to play for each ten years you've been alive. Avatar of Me's power is equal to your height in feet and its toughness is equal to your American shoe size. Round to the nearest {1/2}. Avatar of Me's color is the color of your eyes.
@@ -1182,7 +1173,7 @@ type=Instant
 [card]
 name=B-I-N-G-O
 mana={1}{G}
-type=Creature â€” Hound
+type=Creature — Hound
 power=1
 toughness=1
 text=Trample Whenever a player plays a spell, put a chip counter on its converted mana cost.   B-I-N-G-O gets +9/+9 for each set of three numbers in a row with chip counters on them.
@@ -1210,7 +1201,7 @@ type=Instant
 [card]
 name=Bad Ass
 mana={2}{B}{B}
-type=Creature â€” Donkey Zombie
+type=Creature — Donkey Zombie
 power=3{1/2}
 toughness=1
 text={1B}, Growl: Regenerate Bad Ass.
@@ -1830,7 +1821,7 @@ subtype=Aura
 [card]
 name=Bloodletter
 mana={2}{B}
-type=Creature â€” Zombie
+type=Creature — Zombie
 power=2
 toughness=3
 text=When the names of three or more nonland permanents begin with the same letter, sacrifice Bloodletter. If you do, it deals 2 damage to each creature and each player.
@@ -2049,7 +2040,7 @@ type=Artifact
 [card]
 name=Bosom Buddy
 mana={3}{W}
-type=Creature â€” Elephant Townsfolk
+type=Creature — Elephant Townsfolk
 power=1
 toughness=4
 text=Whenever you play a spell, you may gain {1/2} life for each word in that spell's name.
@@ -2348,7 +2339,7 @@ type=Enchantment
 [card]
 name=Brushstroke Paintermage
 mana={3}{U}
-type=Creature â€” Human Wizard
+type=Creature — Human Wizard
 power=2
 toughness=3
 text={T}: Target permanent's artist becomes the artist of your choice until end of turn.
@@ -2384,7 +2375,7 @@ type=Creature
 subtype=Cleric
 power=3
 toughness=3
-text=When Brutalizer Exarch enters the battlefield, choose one â€” Search your library for a creature card, reveal it, then shuffle your library and put that card on top of it; or put target noncreature permanent on the bottom of its owner's library.
+text=When Brutalizer Exarch enters the battlefield, choose one — Search your library for a creature card, reveal it, then shuffle your library and put that card on top of it; or put target noncreature permanent on the bottom of its owner's library.
 [/card]
 [card]
 name=Bubbling Muck
@@ -2435,7 +2426,7 @@ type=Enchantment
 name=Bureaucracy
 mana={3}{U}{U}
 type=Enchantment
-text=Pursuant to subsection 3.1(4) of Richard's Rules of Order, during the upkeep of each participant in this game of the Magic: The GatheringÂ® trading card game (hereafter known as "PLAYER"), that PLAYER performs all actions in the sequence of previously added actions (hereafter known as "ACTION QUEUE"), in the order those actions were added, then adds another action to the end of the ACTION QUEUE. All actions must be simple physical or verbal actions that a player can perform while sitting in a chair, without jeopardizing the health and security of said PLAYER. If any PLAYER does not perform all the prescribed actions in the correct order, sacrifice Bureaucracy and said PLAYER discards his or her complement of cards in hand (hereafter known as "HAND").
+text=Pursuant to subsection 3.1(4) of Richard's Rules of Order, during the upkeep of each participant in this game of the Magic: The Gathering® trading card game (hereafter known as "PLAYER"), that PLAYER performs all actions in the sequence of previously added actions (hereafter known as "ACTION QUEUE"), in the order those actions were added, then adds another action to the end of the ACTION QUEUE. All actions must be simple physical or verbal actions that a player can perform while sitting in a chair, without jeopardizing the health and security of said PLAYER. If any PLAYER does not perform all the prescribed actions in the correct order, sacrifice Bureaucracy and said PLAYER discards his or her complement of cards in hand (hereafter known as "HAND").
 [/card]
 [card]
 name=Burning Cinder Fury of Crimson Chaos Fire
@@ -2506,7 +2497,7 @@ toughness=1
 [card]
 name=Bursting Beebles
 mana={2}{U}
-type=Creature â€” Beeble
+type=Creature — Beeble
 power=2
 toughness=2
 text=Bursting Beebles is unblockable as long as defending player controls two or more nonland permanents that share an artist.
@@ -2609,12 +2600,6 @@ text=As an additional cost to cast Call for Blood, sacrifice a creature. -- Targ
 mana={4}{B}
 type=Instant
 subtype=Arcane
-[/card]
-[card]
-name=Call of the Herd (Call of the Herd)
-mana={2}{G}
-type=Sorcery
-text=Put a 3/3 green Elephant creature token onto the battlefield. Flashback {3}{G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 [/card]
 [card]
 name=Call of the Wild
@@ -2795,7 +2780,7 @@ text=For each other Cardboard Carapace card you have with you, enchanted creatur
 [card]
 name=Cardpecker
 mana={1}{W}
-type=Creature â€” Bird
+type=Creature — Bird
 power=1{1/2}
 toughness=1
 text=Flying Gotcha Whenever an opponent touches the table with his or her hand, you may say "Gotcha" If you do, return Cardpecker from your graveyard to your hand.
@@ -2809,7 +2794,7 @@ type=Instant
 [card]
 name=Carnivorous Death-Parrot
 mana={1}{U}
-type=Creature â€” Bird
+type=Creature — Bird
 power=2
 toughness=2
 text=Flying At the beginning of your upkeep, sacrifice Carnivorous Death-Parrot unless you say its flavor text.
@@ -3284,7 +3269,7 @@ type=Artifact
 [card]
 name=Cheap Ass
 mana={1}{W}
-type=Creature â€” Donkey Townsfolk
+type=Creature — Donkey Townsfolk
 power=1/3{1
 toughness=2}
 text=Spells you play cost {o{1/2}} less to play.
@@ -3292,7 +3277,7 @@ text=Spells you play cost {o{1/2}} less to play.
 [card]
 name=Cheatyface
 mana={U}{U}{U}
-type=Creature â€” Efreet
+type=Creature — Efreet
 power=2
 toughness=2
 text=You may sneak Cheatyface into play at any time without paying for it, but if an opponent catches you right away, that player may remove Cheatyface from the game. Flying
@@ -3306,15 +3291,15 @@ text=Whenever any spell is played, counter that spell if each player, other than
 [card]
 name=Chicken Egg
 mana={1}{R}
-type=Summon â€” Egg
+type=Summon — Egg
 power=0
 toughness=1
 text=During your upkeep, roll a six-sided die. On a 6, sacrifice Chicken Egg and put a Giant Chicken token into play. Treat this token as a 4/4 red creature that counts as a Chicken.
 [/card]
 [card]
-name=Chicken Ã  la King
+name=Chicken à la King
 mana={1}{U}{U}
-type=Summon â€” Chicken
+type=Summon — Chicken
 power=2
 toughness=2
 text=Whenever a 6 is rolled on a six-sided die, put a +1/+1 counter on each Chicken in play. (You may roll dice only when a card instructs you to.) Tap a Chicken you control: Roll a six-sided die.
@@ -3555,7 +3540,7 @@ type=Enchantment
 [card]
 name=Clam Session
 mana={1}{U}{U}
-type=Summon â€” Clamfolk
+type=Summon — Clamfolk
 power=2
 toughness=5
 text=When Clam Session comes into play, choose a word.  During your upkeep, sing at least six words of a song, one of which must be the chosen word, or sacrifice Clam Session. You cannot repeat a song.
@@ -3563,7 +3548,7 @@ text=When Clam Session comes into play, choose a word.  During your upkeep, sing
 [card]
 name=Clam-I-Am
 mana={2}{U}
-type=Summon â€” Clamfolk
+type=Summon — Clamfolk
 power=2
 toughness=2
 text=Whenever you roll a 3 on a six-sided die, you may reroll that die.
@@ -3571,7 +3556,7 @@ text=Whenever you roll a 3 on a six-sided die, you may reroll that die.
 [card]
 name=Clambassadors
 mana={3}{U}
-type=Summon â€” Clamfolk
+type=Summon — Clamfolk
 power=4
 toughness=4
 text=If Clambassadors damages any player, choose an artifact, creature, or land you control. That player gains control of that artifact, creature, or land.
@@ -3636,7 +3621,7 @@ type=Artifact Creature
 subtype=Shapeshifter
 power=2
 toughness=2
-text=Imprint â€” When Clone Shell enters the battlefield, look at the top four cards of your library, exile one face down, then put the rest on the bottom of your library in any order. When Clone Shell dies, turn the exiled card face up. If it's a creature card, put it onto the battlefield under your control.
+text=Imprint — When Clone Shell enters the battlefield, look at the top four cards of your library, exile one face down, then put the rest on the bottom of your library in any order. When Clone Shell dies, turn the exiled card face up. If it's a creature card, put it onto the battlefield under your control.
 [/card]
 [card]
 name=Cloudstone Curio
@@ -3739,12 +3724,12 @@ type=Enchantment
 name=Collective Voyage
 mana={G}
 type=Sorcery
-text=Join forces â€” Starting with you, each player may pay any amount of mana. Each player searches his or her library for up to X basic land cards, where X is the total amount of mana paid this way, puts them onto the battlefield tapped, then shuffles his or her library.
+text=Join forces — Starting with you, each player may pay any amount of mana. Each player searches his or her library for up to X basic land cards, where X is the total amount of mana paid this way, puts them onto the battlefield tapped, then shuffles his or her library.
 [/card]
 [card]
 name=Collector Protector
 mana={3}{W}{W}
-type=Creature â€” Human Gamer
+type=Creature — Human Gamer
 power=2
 toughness=5
 text={W}, Give an opponent a nonland card you own from outside the game: Prevent the next 1 damage that would be dealt to you or Collector Protector this turn.
@@ -4241,7 +4226,7 @@ type=Enchantment
 [card]
 name=Creature Guy
 mana={3}{G}
-type=Creature â€” Beast
+type=Creature — Beast
 power=3
 toughness=3
 text=Gotcha Whenever an opponent says "Creature" or "Guy," you may say "Gotcha" If you do, return Creature Guy from your graveyard to your hand.
@@ -4669,13 +4654,13 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-name=DandÃ¢n
+name=Dandân
 mana={U}{U}
 type=Creature
 subtype=Fish
 power=4
 toughness=1
-text=DandÃ¢n can't attack unless defending player controls an Island. When you control no Islands, sacrifice DandÃ¢n.
+text=Dandân can't attack unless defending player controls an Island. When you control no Islands, sacrifice Dandân.
 [/card]
 [card]
 name=Darigaaz, the Igniter
@@ -4828,7 +4813,7 @@ type=Sorcery
 [card]
 name=Deadhead
 mana={3}{B}
-type=Summon â€” Zombie
+type=Summon — Zombie
 power=3
 toughness=3
 text=Put Deadhead into play. Use this ability only if any opponent loses contact with his or her hand of cards and only if Deadhead is in your graveyard.
@@ -4987,7 +4972,7 @@ power=1
 toughness=1
 [/card]
 [card]
-name=DejÃ  Vu
+name=Dejà Vu
 mana={2}{U}
 type=Sorcery
 text=Return target sorcery card from your graveyard to your hand.
@@ -5397,7 +5382,7 @@ type=Sorcery
 name=Dispense Justice
 mana={2}{W}
 type=Instant
-text=Target player sacrifices an attacking creature. Metalcraft â€” That player sacrifices two attacking creatures instead if you control three or more artifacts.
+text=Target player sacrifices an attacking creature. Metalcraft — That player sacrifices two attacking creatures instead if you control three or more artifacts.
 [/card]
 [card]
 name=Dispersal Shield
@@ -5625,7 +5610,7 @@ text=Choose another player. Gain 5 life now and an additional 5 life at the begi
 [card]
 name=Double Header
 mana={3}{U}{U}
-type=Creature â€” Drake
+type=Creature — Drake
 power=2
 toughness=3
 text=Flying When Double Header comes into play, you may return target permanent with a two-word name to its owner's hand.
@@ -5899,7 +5884,7 @@ text=Destroy target creature with reminder text. (Reminder text is any italicize
 [card]
 name=Dumb Ass
 mana={2}{R}
-type=Creature â€” Donkey Barbarian
+type=Creature — Donkey Barbarian
 power=3{1/2}
 toughness=2
 text=At the beginning of your upkeep, flip a coin. If you lose the flip, target opponent chooses whether Dumb Ass attacks this turn.
@@ -6085,13 +6070,13 @@ type=Tribal Instant
 subtype=Shapeshifter
 [/card]
 [card]
-name=El-HajjÃ¢j
+name=El-Hajjâj
 mana={1}{B}{B}
 type=Creature
 subtype=Human Wizard
 power=1
 toughness=1
-text=Whenever El-HajjÃ¢j deals damage, you gain that much life.
+text=Whenever El-Hajjâj deals damage, you gain that much life.
 [/card]
 [card]
 name=Eland Umbra
@@ -6138,7 +6123,7 @@ type=Enchantment
 [card]
 name=Elemental
 mana=
-type=Creature â€” Elemental
+type=Creature — Elemental
 power=7
 toughness=7
 text=Trample
@@ -6172,7 +6157,7 @@ subtype=Aura
 [card]
 name=Elemental Shaman
 mana=
-type=Creature â€” Elemental Shaman
+type=Creature — Elemental Shaman
 power=3
 toughness=1
 [/card]
@@ -6185,7 +6170,7 @@ type=Enchantment
 [card]
 name=Elf Warrior
 mana=
-type=Creature â€” Elf Warrior
+type=Creature — Elf Warrior
 power=1
 toughness=1
 [/card]
@@ -6258,7 +6243,7 @@ toughness=2
 [card]
 name=Elvish House Party
 mana={4}{G}{G}
-type=Creature â€” Elf Rogue
+type=Creature — Elf Rogue
 power=*
 toughness=*
 text=Elvish House Party's power and toughness are each equal to the current hour, using the twelve-hour system.
@@ -6266,7 +6251,7 @@ text=Elvish House Party's power and toughness are each equal to the current hour
 [card]
 name=Elvish Impersonators
 mana={3}{G}
-type=Summon â€” Elves
+type=Summon — Elves
 power=*
 toughness=*
 text=When you play Elvish Impersonators, roll two six-sided dice one after the other. Elvish Impersonators comes into play with power equal to the first die roll and toughness equal to the second.
@@ -6325,7 +6310,7 @@ type=Instant
 [card]
 name=Emcee
 mana={2}{W}
-type=Creature â€” Human Rogue
+type=Creature — Human Rogue
 power=0
 toughness=1
 text=Whenever another creature comes into play, you may stand up and say in a deep, booming voice "Presenting . . . " and that creature's name. If you do, put a +1/+1 counter on that creature.
@@ -6803,7 +6788,7 @@ type=Instant
 name=Exclusion Ritual
 mana={4}{W}{W}
 type=Enchantment
-text=Imprint â€” When Exclusion Ritual enters the battlefield, exile target nonland permanent. Players can't cast spells with the same name as the exiled card.
+text=Imprint — When Exclusion Ritual enters the battlefield, exile target nonland permanent. Players can't cast spells with the same name as the exiled card.
 [/card]
 [card]
 name=Excruciator
@@ -7088,7 +7073,7 @@ subtype=Aura
 [card]
 name=Fascist Art Director
 mana={1}{W}{W}
-type=Creature â€” Human Horror
+type=Creature — Human Horror
 power=2
 toughness=2
 text={WW}: Fascist Art Director gains protection from the artist of your choice until end of turn..
@@ -7102,7 +7087,7 @@ type=Enchantment
 [card]
 name=Fat Ass
 mana={4}{G}
-type=Creature â€” Donkey Shaman
+type=Creature — Donkey Shaman
 power=2/3{1
 toughness=2}
 text=Fat Ass gets +2/+2 and has trample as long as you're eating. (Food is in your mouth and you're chewing, licking, sucking, or swallowing it.)
@@ -7422,7 +7407,7 @@ text=The attacking or blocking creature with the lowest collector number has fir
 name=Fissure Vent
 mana={3}{R}{R}
 type=Sorcery
-text=Choose one or both â€” Destroy target artifact; and/or destroy target nonbasic land.
+text=Choose one or both — Destroy target artifact; and/or destroy target nonbasic land.
 [/card]
 [card]
 name=Fist of Suns
@@ -7833,7 +7818,7 @@ text=Enchanted creature loses all abilities and is a 1/1 creature that counts as
 [card]
 name=Fraction Jackson
 mana={2}{G}
-type=Creature â€” Human Hero
+type=Creature — Human Hero
 power=1/1{1
 toughness=2}
 text={G}, {T}: Return target card with a {1/2} on it from your graveyard to your hand.
@@ -7863,7 +7848,7 @@ toughness=1
 [card]
 name=Frankie Peanuts
 mana={2}{W}{W}
-type=Legendary Creature â€” Elephant Rogue
+type=Legendary Creature — Elephant Rogue
 power=2
 toughness=3
 text=At the beginning of your upkeep, you may ask target player a yes-or-no question. If you do, that player answers the question truthfully and abides by that answer if able until end of turn.
@@ -7883,7 +7868,7 @@ type=Instant
 [card]
 name=Frazzled Editor
 mana={1}{R}
-type=Creature â€” Human Bureaucrat
+type=Creature — Human Bureaucrat
 power=2
 toughness=2
 text=Protection from wordy (Something is wordy if it has four or more lines of text in its text box.)
@@ -7891,7 +7876,7 @@ text=Protection from wordy (Something is wordy if it has four or more lines of t
 [card]
 name=Free-Range Chicken
 mana={3}{G}
-type=Summon â€” Chicken
+type=Summon — Chicken
 power=3
 toughness=3
 text=o1oG: Roll two six-sided dice. If both die rolls are the same, Free-Range Chicken gets +X/+X until end of turn, where X is the number rolled on each die. Otherwise, if the total rolled is equal to any other total you have rolled this turn for Free-Range Chicken, sacrifice it. (For example, if you roll two 3s, Free-Range Chicken gets +3/+3. If you roll a total of 6 for Free-Range Chicken later in that turn, sacrifice it.)
@@ -8320,7 +8305,7 @@ toughness=2
 [card]
 name=Ghazban Ogress
 mana={G}
-type=Summon â€” Ogre
+type=Summon — Ogre
 power=2
 toughness=2
 text=When Ghazban Ogress comes into play, the player who has won the most Magic games that day gains control of it. If more than one player has won the same number of games, you retain control of Ghazban Ogress.
@@ -8500,7 +8485,7 @@ target=creature
 kicker={4}
 auto=8/8
 auto=trample
-auto=kicker teach(creature) may retarget target(Gigantiform|mylibrary)
+auto=kicker moveto(mybattlefield) target(Gigantiform|mylibrary) && transforms(,newability[retarget target(creature)])) ueot
 text=Kicker {4} -- Enchant creature -- Enchanted creature is 8/8 and has trample. -- When Gigantiform enters the battlefield, if it was kicked, you may search your library for a card named Gigantiform, put it onto the battlefield, then shuffle your library.
 mana={3}{G}{G}
 type=Enchantment
@@ -8671,7 +8656,7 @@ type=Enchantment
 [card]
 name=Gluetius Maximus
 mana={3}{G}{G}
-type=Creature â€” Beast
+type=Creature — Beast
 power=5
 toughness=5
 text=As Gluetius Maximus comes into play, an opponent chooses one of your fingers. (Thumbs are fingers, too.) When the chosen finger isn't touching Gluetius Maximus, sacrifice Gluetius Maximus.
@@ -8760,7 +8745,7 @@ type=Enchantment
 [card]
 name=Goblin Bookie
 mana={R}
-type=Summon â€” Goblin
+type=Summon — Goblin
 power=1
 toughness=1
 text=oR, ocT: Reflip any coin or reroll any die.
@@ -8768,7 +8753,7 @@ text=oR, ocT: Reflip any coin or reroll any die.
 [card]
 name=Goblin Bowling Team
 mana={3}{R}
-type=Summon â€” Goblins
+type=Summon — Goblins
 power=1
 toughness=1
 text=Whenever Goblin Bowling Team damages any creature or player, roll a six-sided die. Goblin Bowling Team deals to that creature or player additional damage equal to the die roll.
@@ -8879,7 +8864,7 @@ toughness=5
 [card]
 name=Goblin Mime
 mana={1}{R}
-type=Creature â€” Goblin Mime
+type=Creature — Goblin Mime
 power=2
 toughness=2
 text=When you speak, sacrifice Goblin Mime.
@@ -8923,7 +8908,7 @@ toughness=2
 [card]
 name=Goblin S.W.A.T. Team
 mana={3}{R}
-type=Creature â€” Goblin Warrior
+type=Creature — Goblin Warrior
 power=2
 toughness=2
 text=Say "Goblin S.W.A.T. Team": Put a +1/+1 counter on Goblin S.W.A.T. Team unless an opponent swats the table within five seconds. Play this ability only once each turn.
@@ -8931,7 +8916,7 @@ text=Say "Goblin S.W.A.T. Team": Put a +1/+1 counter on Goblin S.W.A.T. Team unl
 [card]
 name=Goblin Secret Agent
 mana={2}{R}
-type=Creature â€” Goblin Rogue
+type=Creature — Goblin Rogue
 power=2
 toughness=2
 text=First strike At the beginning of your upkeep, reveal a card from your hand at random.
@@ -9159,7 +9144,7 @@ subtype=Equipment
 [card]
 name=Grand Abolisher
 mana={W}{W}
-type=Creature â€” Human Cleric
+type=Creature — Human Cleric
 power=2
 toughness=2
 text=During your turn, your opponents can't cast spells or activate abilities of artifacts, creatures, or enchantments.
@@ -9319,7 +9304,7 @@ toughness=6
 [card]
 name=Greater Morphling
 mana={6}{U}{U}
-type=Creature â€” Shapeshifter
+type=Creature — Shapeshifter
 power=5
 toughness=5
 text={2}: Greater Morphling gains your choice of banding, bushido 1, double strike, fear, flying, first strike, haste, landwalk of your choice, protection from a color of your choice, provoke, rampage 1, shadow, or trample until end of turn. {2}: Greater Morphling becomes the colors of your choice until end of turn. {2}: Greater Morphling's type becomes the creature type of your choice until end of turn. {2}: Greater Morphling's expansion symbol becomes the symbol of your choice until end of turn. {2}: Greater Morphling's artist becomes the artist of your choice until end of turn. {2}: Greater Morphling gets +2/-2 or -2/+2 until end of turn. {2}: Untap Greater Morphling.
@@ -9522,7 +9507,7 @@ toughness=8
 [card]
 name=Gus
 mana={2}{G}
-type=Summon â€” Gus
+type=Summon — Gus
 power=2
 toughness=2
 text=Gus comes into play with one +1/+1 counter on it for each game you have lost to your opponent since you last won a Magic game against him or her.
@@ -9806,7 +9791,7 @@ type=Sorcery
 name=Head to Head
 mana={W}
 type=Instant
-text=You and target opponent play Seven Questions about the top card of that player's library. (That player looks at the card, then you ask up to six yes-or-no questions about the card that he or she answers truthfully. You guess the card's nameâ€”that's question sevenâ€”and the player reveals the card.) If you win, prevent all damage that would be dealt this turn by a source of your choice.
+text=You and target opponent play Seven Questions about the top card of that player's library. (That player looks at the card, then you ask up to six yes-or-no questions about the card that he or she answers truthfully. You guess the card's name—that's question seven—and the player reveals the card.) If you win, prevent all damage that would be dealt this turn by a source of your choice.
 [/card]
 [card]
 name=Heart Wolf
@@ -10280,7 +10265,7 @@ subtype=Arcane
 [card]
 name=Hungry Hungry Heifer
 mana={2}{G}
-type=Summon â€” Cow
+type=Summon — Cow
 power=3
 toughness=3
 text=During your upkeep, remove a counter from any card you control or sacrifice Hungry Hungry Heifer.
@@ -10339,7 +10324,7 @@ toughness=3
 [card]
 name=Hurloon Wrangler
 mana={2}{R}
-type=Summon â€” Minotaur
+type=Summon — Minotaur
 power=2
 toughness=2
 text=Denimwalk (If defending player is wearing any clothing made of denim, this creature is unblockable.)
@@ -10773,7 +10758,7 @@ toughness=3
 [card]
 name=Infernal Spawn of Evil
 mana={6}{B}{B}{B}
-type=Summon â€” Demon Beast
+type=Summon — Demon Beast
 power=7
 toughness=7
 text=Flying, first strike o1oB, Reveal Infernal Spawn of Evil from your hand, Say "It's coming": Infernal Spawn of Evil deals 1 damage to target opponent. Use this ability only during your upkeep and only once each upkeep.
@@ -10781,7 +10766,7 @@ text=Flying, first strike o1oB, Reveal Infernal Spawn of Evil from your hand, Sa
 [card]
 name=Infernal Spawn of Infernal Spawn of Evil
 mana={8}{B}{B}
-type=Creature â€” Demon Child
+type=Creature — Demon Child
 power=8
 toughness=8
 text=Flying, first strike, trample If you say "I'm coming, too" as you search your library, you may pay {1B} and reveal Infernal Spawn of Infernal Spawn of Evil from your library to have it deal 2 damage to a player of your choice. Do this no more than once each turn.
@@ -10988,7 +10973,7 @@ type=Creature
 subtype=Insect
 power=3
 toughness=2
-text=Imprint â€” When Invader Parasite enters the battlefield, exile target land. Whenever a land with the same name as the exiled card enters the battlefield under an opponent's control, Invader Parasite deals 2 damage to that player.
+text=Imprint — When Invader Parasite enters the battlefield, exile target land. Whenever a land with the same name as the exiled card enters the battlefield under an opponent's control, Invader Parasite deals 2 damage to that player.
 [/card]
 [card]
 name=Invasion Plans
@@ -11204,7 +11189,7 @@ toughness=4
 [card]
 name=Jalum Grifter
 mana={3}{R}{R}
-type=Summon â€” Legend
+type=Summon — Legend
 power=3
 toughness=5
 text=o1oR, ocT: Put Jalum Grifter and two lands you control face down in front of target opponent after revealing each card to him or her. Then, rearrange the order of the three cards as often as you wish, keeping them on the table at all times. That opponent then chooses one of those cards. If a land is chosen, destroy target card in play. Otherwise, sacrifice Jalum Grifter.
@@ -11314,7 +11299,7 @@ type=Artifact
 [card]
 name=Johnny, Combo Player
 mana={2}{U}{U}
-type=Legendary Creature â€” Human Gamer
+type=Legendary Creature — Human Gamer
 power=1
 toughness=1
 text={4}: Search your library for a card and put that card into your hand. Then shuffle your library.
@@ -11352,7 +11337,7 @@ toughness=5
 [card]
 name=Jumbo Imp
 mana={2}{B}
-type=Summon â€” Imp
+type=Summon — Imp
 power=0
 toughness=0
 text=Flying When you play Jumbo Imp, roll a six-sided die. Jumbo Imp comes into play with a number of +1/+1 counters on it equal to the die roll. During your upkeep, roll a six-sided die and put on Jumbo Imp a number of +1/+1 counters equal to the die roll. At the end of your turn, roll a six-sided die and remove from Jumbo Imp a number of +1/+1 counters equal to the die roll.
@@ -11367,13 +11352,13 @@ power=0
 toughness=6
 [/card]
 [card]
-name=JunÃºn Efreet
+name=Junún Efreet
 mana={1}{B}{B}
 type=Creature
 subtype=Efreet
 power=3
 toughness=3
-text=Flying At the beginning of your upkeep, sacrifice JunÃºn Efreet unless you pay {B}{B}.
+text=Flying At the beginning of your upkeep, sacrifice Junún Efreet unless you pay {B}{B}.
 [/card]
 [card]
 name=Jushi Apprentice
@@ -11604,7 +11589,7 @@ toughness=2
 [card]
 name=Keeper of the Sacred Word
 mana={2}{G}
-type=Creature â€” Human Druid
+type=Creature — Human Druid
 power=2
 toughness=3
 text=As Keeper of the Sacred Word comes into play, choose a word. Whenever an opponent says the chosen word, Keeper of the Sacred Word gets +3/+3 until end of turn.
@@ -11903,7 +11888,7 @@ toughness=2
 [card]
 name=Knight of the Hokey Pokey
 mana={W}{W}
-type=Summon â€” Knight
+type=Summon — Knight
 power=2
 toughness=2
 text=First strike o1oW, Do the Hokey Pokey (Stand up, wiggle your butt, raise your hands above your head, and shake them wildly as you rotate 360 degrees): Prevent all damage to Knight of the Hokey Pokey from any one source.
@@ -12008,15 +11993,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Korlash, Heir to Blackblade
-mana={2}{B}{B}
-type=Legendary Creature
-subtype=Zombie Warrior
-power=*
-toughness=*
-text=Korlash, Heir to Blackblade's power and toughness are each equal to the number of Swamps you control. {1}{B}: Regenerate Korlash. Grandeur â€” Discard another card named Korlash, Heir to Blackblade: Search your library for up to two Swamp cards, put them onto the battlefield tapped, then shuffle your library.
-[/card]
-[card]
 name=Koskun Falls
 text=At the beginning of your upkeep, sacrifice Koskun Falls unless you tap an untapped creature you control. -- Creatures can't attack you unless their controller pays {2} for each creature he or she controls that's attacking you.
 mana={2}{B}{B}
@@ -12027,7 +12003,7 @@ name=Koth of the Hammer
 mana={2}{R}{R}
 type=Planeswalker
 subtype=Koth
-text=+1: Untap target Mountain. It becomes a 4/4 red Elemental creature until end of turn. It's still a land. -2: Add {R} to your mana pool for each Mountain you control. -5: You get an emblem with "Mountains you control have â€˜{T}: This land deals 1 damage to target creature or player.'"
+text=+1: Untap target Mountain. It becomes a 4/4 red Elemental creature until end of turn. It's still a land. -2: Add {R} to your mana pool for each Mountain you control. -5: You get an emblem with "Mountains you control have ‘{T}: This land deals 1 damage to target creature or player.'"
 [/card]
 [card]
 name=Kozilek, Butcher of Truth
@@ -12047,7 +12023,7 @@ type=Legendary Artifact
 [card]
 name=Krazy Kow
 mana={3}{R}
-type=Summon â€” Cow
+type=Summon — Cow
 power=3
 toughness=3
 text=During your upkeep, roll a six-sided die. On a 1, sacrifice Krazy Kow and it deals 3 damage to each creature and player.
@@ -12179,7 +12155,7 @@ subtype=Aura
 [card]
 name=Ladies' Knight
 mana={3}{W}
-type=Creature â€” Human Knight
+type=Creature — Human Knight
 power=2
 toughness=2
 text=Flying Spells that players wearing at least one item of women's clothing play cost {1} less to play. (Women's clothing is designed to be worn exclusively by women.)
@@ -12313,7 +12289,7 @@ toughness=1
 [card]
 name=Laughing Hyena
 mana={1}{G}
-type=Creature â€” Hyena
+type=Creature — Hyena
 power=2
 toughness=2
 text=Gotcha Whenever an opponent laughs, you may say "Gotcha" If you do, return Laughing Hyena from your graveyard to your hand.
@@ -12451,7 +12427,7 @@ text=When Letter Bomb comes into play, sign it and shuffle it into target player
 [card]
 name=Lexivore
 mana={3}{W}
-type=Summon â€” Beast
+type=Summon — Beast
 power=2
 toughness=3
 text=If Lexivore damages any player, destroy target card in play, other than Lexivore, with the most lines of text in its text box. (If more than one card has the most lines of text, you choose which of those cards to destroy.)
@@ -12733,7 +12709,7 @@ type=Instant
 [card]
 name=Little Girl
 mana={5}{0}{0}
-type=Creature â€” Human Child
+type=Creature — Human Child
 power={1/2}/{1
 toughness=2}
 [/card]
@@ -13119,7 +13095,7 @@ type=Instant
 [card]
 name=Magical Hacker
 mana={1}{U}
-type=Creature â€” Human Gamer
+type=Creature — Human Gamer
 power=1
 toughness=2
 text={U}: Change the text of target spell or permanent by replacing all instances of + with -, and vice versa, until end of turn.
@@ -13259,7 +13235,7 @@ text=Enchant creature Enchanted creature gets +3/+3 and has vigilance. Totem arm
 [card]
 name=Man of Measure
 mana={1}{W}{W}
-type=Creature â€” Human Knight
+type=Creature — Human Knight
 power=2
 toughness=2
 text=As long as you're shorter than an opponent, Man of Measure has first strike and gets +0/+1. As long as you're taller than an opponent, Man of Measure gets +1/+0.
@@ -13370,7 +13346,7 @@ type=Creature
 subtype=Dragon
 power=5
 toughness=5
-text=Flying, trample Join forces â€” Whenever Mana-Charged Dragon attacks or blocks, each player starting with you may pay any amount of mana. Mana-Charged Dragon gets +X/+0 until end of turn, where X is the total amount of mana paid this way.
+text=Flying, trample Join forces — Whenever Mana-Charged Dragon attacks or blocks, each player starting with you may pay any amount of mana. Mana-Charged Dragon gets +X/+0 until end of turn, where X is the total amount of mana paid this way.
 [/card]
 [card]
 name=Manaforge Cinder
@@ -13634,7 +13610,7 @@ type=Instant
 [card]
 name=Meddling Kids
 mana={2}{W}{U}
-type=Creature â€” Human Child
+type=Creature — Human Child
 power=2
 toughness=3
 text=As Meddling Kids comes into play, choose a word with four or more letters. Nonland cards with the chosen word in their text box can't be played.
@@ -13846,7 +13822,7 @@ subtype=Aura
 [card]
 name=Mesa Chicken
 mana={W}{W}
-type=Summon â€” Chicken
+type=Summon — Chicken
 power=2
 toughness=2
 text=Stand up, Flap your arms, Cluck like a chicken: Mesa Chicken gains flying until end of turn.
@@ -13951,7 +13927,7 @@ type=Sorcery
 name=Mimic Vat
 mana={3}
 type=Artifact
-text=Imprint â€” Whenever a nontoken creature dies, you may exile that card. If you do, return each other card exiled with Mimic Vat to its owner's graveyard. {3}, {T}: Put a token onto the battlefield that's a copy of the exiled card. It gains haste. Exile it at the beginning of the next end step.
+text=Imprint — Whenever a nontoken creature dies, you may exile that card. If you do, return each other card exiled with Mimic Vat to its owner's graveyard. {3}, {T}: Put a token onto the battlefield that's a copy of the exiled card. It gains haste. Exile it at the beginning of the next end step.
 [/card]
 [card]
 name=Minamo Scrollkeeper
@@ -14065,7 +14041,7 @@ type=Enchantment
 name=Minds Aglow
 mana={U}
 type=Sorcery
-text=Join forces â€” Starting with you, each player may pay any amount of mana. Each player draws X cards, where X is the total amount of mana paid this way.
+text=Join forces — Starting with you, each player may pay any amount of mana. Each player draws X cards, where X is the total amount of mana paid this way.
 [/card]
 [card]
 name=Mindslaver
@@ -14111,7 +14087,7 @@ text=When Mine, Mine, Mine comes into play, each player puts his or her library 
 [card]
 name=Minion
 mana=
-type=Creature â€” Minion
+type=Creature — Minion
 power=*
 toughness=*
 [/card]
@@ -14302,7 +14278,7 @@ toughness=4
 [card]
 name=Miss Demeanor
 mana={3}{W}
-type=Summon â€” Lady of Proper Etiquette
+type=Summon — Lady of Proper Etiquette
 power=3
 toughness=1
 text=Flying, first strike During each other player's turn, compliment that player on his or her game play or sacrifice Miss Demeanor.
@@ -14527,7 +14503,7 @@ type=Instant
 name=Molten Psyche
 mana={1}{R}{R}
 type=Sorcery
-text=Each player shuffles the cards from his or her hand into his or her library, then draws that many cards. Metalcraft â€” If you control three or more artifacts, Molten Psyche deals damage to each opponent equal to the number of cards that player has drawn this turn.
+text=Each player shuffles the cards from his or her hand into his or her library, then draws that many cards. Metalcraft — If you control three or more artifacts, Molten Psyche deals damage to each opponent equal to the number of cards that player has drawn this turn.
 [/card]
 [card]
 name=Molten Sentry
@@ -14572,7 +14548,7 @@ toughness=1
 [card]
 name=Moniker Mage
 mana={2}{U}
-type=Creature â€” Human Wizard
+type=Creature — Human Wizard
 power=2
 toughness=2
 text={U}, Say your middle name: Moniker Mage can't be the target of spells or abilities this turn. {U}, Say an opponent's middle name: Moniker Mage gains flying until end of turn.
@@ -14587,7 +14563,7 @@ type=Artifact
 [card]
 name=Monkey Monkey Monkey
 mana={3}{G}
-type=Creature â€” Ape
+type=Creature — Ape
 power=1
 toughness=1
 text=As Monkey Monkey Monkey comes into play, choose a letter. Monkey Monkey Monkey gets +1/+1 for each nonland permanent whose name begins with the chosen letter.
@@ -14601,7 +14577,7 @@ text=Target player chooses a card in his or her hand and discards the rest.
 [card]
 name=Mons's Goblin Waiters
 mana={R}
-type=Creature â€” Goblin Waiter
+type=Creature — Goblin Waiter
 power=1
 toughness=1
 text=Sacrifice a creature or land: Add {o{1/2*R}} to your mana pool.
@@ -14663,7 +14639,7 @@ type=Land
 [card]
 name=Mother of Goons
 mana={2}{B}
-type=Creature â€” Human Cleric
+type=Creature — Human Cleric
 power=3
 toughness=2
 text=Whenever a creature an opponent controls is put into a graveyard from play, sacrifice Mother of Goons unless you insult that creature.
@@ -14712,7 +14688,7 @@ text=You and target opponent have a breath-holding contest. If you win, you gain
 name=Mox Lotus
 mana={1}{5}
 type=Artifact
-text={T}: Add {âˆž} to your mana pool. {100}: Add one mana of any color to your mana pool. You don't lose life due to mana burn.
+text={T}: Add {8} to your mana pool. {100}: Add one mana of any color to your mana pool. You don't lose life due to mana burn.
 [/card]
 [card]
 name=Mtenda Lion
@@ -15835,7 +15811,7 @@ toughness=4
 [card]
 name=Old Fogey
 mana={G}{G}
-type=Summon â€” Dinosaur
+type=Summon — Dinosaur
 power=7
 toughness=7
 text=Phasing, cumulative upkeep {1}, echo, fading 3, bands with other Dinosaurs, protection from Homarids, snow-covered plainswalk, flanking, rampage 2
@@ -16052,7 +16028,7 @@ subtype=Aura
 [card]
 name=Orcish Paratroopers
 mana={2}{R}
-type=Creature â€” Orc Paratrooper
+type=Creature — Orc Paratrooper
 power=4
 toughness=4
 text=When Orcish Paratroopers comes into play, flip it from a height of at least one foot. Sacrifice Orcish Paratroopers unless it lands face up after turning over completely.
@@ -16106,7 +16082,7 @@ type=Legendary Creature
 subtype=Human Cleric
 power=1
 toughness=3
-text={T}: Prevent all damage that would be dealt to target creature this turn. Grandeur â€” Discard another card named Oriss, Samite Guardian: Target player can't cast spells this turn, and creatures that player controls can't attack this turn.
+text={T}: Prevent all damage that would be dealt to target creature this turn. Grandeur — Discard another card named Oriss, Samite Guardian: Target player can't cast spells this turn, and creatures that player controls can't attack this turn.
 [/card]
 [card]
 name=Ornate Kanzashi
@@ -16177,7 +16153,7 @@ toughness=2
 [card]
 name=Our Market Research Shows That Players Like Really Long Card Names So We Made this Card to Have the Absolute Longest Card Name Ever Elemental
 mana={1}{G}{G}
-type=Creature â€” Elemental
+type=Creature — Elemental
 power=2
 toughness=2
 text=Art rampage 2 (Whenever this becomes blocked by a creature, it gets +2/+2 for each creature in the blocker's art beyond the first.)
@@ -16763,7 +16739,7 @@ type=Creature
 subtype=Beast
 power=3
 toughness=3
-text=Imprint â€” When Phyrexian Ingester enters the battlefield, you may exile target nontoken creature. Phyrexian Ingester gets +X/+Y, where X is the exiled creature card's power and Y is its toughness.
+text=Imprint — When Phyrexian Ingester enters the battlefield, you may exile target nontoken creature. Phyrexian Ingester gets +X/+Y, where X is the exiled creature card's power and Y is its toughness.
 [/card]
 [card]
 name=Phyrexian Ironfoot
@@ -16778,7 +16754,7 @@ toughness=4
 [card]
 name=Phyrexian Librarian
 mana={3}{B}
-type=Creature â€” Horror
+type=Creature — Horror
 power=3
 toughness=3
 text=Flying, trample At the beginning of your upkeep, remove the top card of your library from the game face up and balance it on your body. When a balanced card falls or touches another balanced card, sacrifice Phyrexian Librarian.
@@ -17126,7 +17102,7 @@ text=({(b/p)} can be paid with either {B} or 2 life.) Return target creature car
 [card]
 name=Poultrygeist
 mana={2}{B}
-type=Summon â€” Chicken
+type=Summon — Chicken
 power=1
 toughness=1
 text=Flying Whenever a creature is put into any graveyard from play, you may roll a six-sided die. On a 1, sacrifice Poultrygeist. Otherwise, put a +1/+1 counter on Poultrygeist.
@@ -17452,7 +17428,7 @@ type=Artifact
 name=Prototype Portal
 mana={4}
 type=Artifact
-text=Imprint â€” When Prototype Portal enters the battlefield, you may exile an artifact card from your hand. {X}, {T}: Put a token that's a copy of the exiled card onto the battlefield. X is the converted mana cost of that card.
+text=Imprint — When Prototype Portal enters the battlefield, you may exile an artifact card from your hand. {X}, {T}: Put a token that's a copy of the exiled card onto the battlefield. X is the converted mana cost of that card.
 [/card]
 [card]
 name=Provoke
@@ -17766,7 +17742,7 @@ toughness=2
 [card]
 name=Pygmy Giant
 mana={1}{R}{R}
-type=Creature â€” Giant
+type=Creature — Giant
 power=0
 toughness=2
 text={R}, {T}, Sacrifice a creature: Pygmy Giant deals X damage to target creature, where X is a number in the sacrificed creature's text box.
@@ -17891,7 +17867,7 @@ type=Enchantment
 [card]
 name=Question Elemental?
 mana={2}{U}{U}
-type=Creature â€” Elemental
+type=Creature — Elemental
 power=3
 toughness=4
 text=Flying Are you aware that when you say something that isn't a question, the player who first points out this fact gains control of Question Elemental?
@@ -18323,10 +18299,10 @@ type=Enchantment
 [card]
 name=Red-Hot Hottie
 mana={2}{R}{R}
-type=Creature â€” Elemental
+type=Creature — Elemental
 power=2
 toughness=5
-text=Whenever Red-Hot Hottie deals damage to a creature, put a third-degree-burn counter on that creature. It has "At the end of each turn, sacrifice this creature unless you scream â€˜Aaah' at the top of your lungs."
+text=Whenever Red-Hot Hottie deals damage to a creature, put a third-degree-burn counter on that creature. It has "At the end of each turn, sacrifice this creature unless you scream ‘Aaah' at the top of your lungs."
 [/card]
 [card]
 name=Redeem the Lost
@@ -18450,7 +18426,7 @@ type=Instant
 name=Remember the Fallen
 mana={2}{W}
 type=Sorcery
-text=Choose one or both â€” Return target creature card from your graveyard to your hand; and/or return target artifact card from your graveyard to your hand.
+text=Choose one or both — Return target creature card from your graveyard to your hand; and/or return target artifact card from your graveyard to your hand.
 [/card]
 [card]
 name=Remodel
@@ -18716,7 +18692,7 @@ toughness=3
 [card]
 name=Richard Garfield, Ph.D.
 mana={3}{U}{U}
-type=Legendary Creature â€” Human Designer
+type=Legendary Creature — Human Designer
 power=2
 toughness=2
 text=You may play cards as though they were other Magic cards of your choice with the same mana cost. (Mana cost includes color.) You can't choose the same card twice.
@@ -19062,7 +19038,7 @@ type=Artifact
 [card]
 name=Rocket-Powered Turbo Slug
 mana={3}{R}
-type=Creature â€” Slug
+type=Creature — Slug
 power=3
 toughness=1
 text=Super haste (This may attack the turn before you play it. (You may put this card into play from your hand, tapped and attacking, during your declare attackers step. If you do, you lose the game at the end of your next turn unless you pay this card's mana cost during that turn.))
@@ -19391,7 +19367,7 @@ toughness=2
 [card]
 name=S.N.O.T.
 mana={G}
-type=Creature â€” Ooze
+type=Creature — Ooze
 power=*{^2}
 toughness=*{^2}
 text=As S.N.O.T. comes into play, you may stick it onto another creature named S.N.O.T. in play. If you do, all those creatures form a single creature. S.N.O.T.'s power and toughness are equal to the square of the number of S.N.O.T.s stuck together. (One is a 1/1, two are a 4/4, three are a 9/9, and four are a 16/16.)
@@ -20397,7 +20373,7 @@ type=Enchantment
 name=Shared Trauma
 mana={B}
 type=Sorcery
-text=Join forces â€” Starting with you, each player may pay any amount of mana. Each player puts the top X cards of his or her library into his or her graveyard, where X is the total amount of mana paid this way.
+text=Join forces — Starting with you, each player may pay any amount of mana. Each player puts the top X cards of his or her library into his or her graveyard, where X is the total amount of mana paid this way.
 [/card]
 [card]
 name=Shared Triumph
@@ -20614,7 +20590,7 @@ toughness=1
 [card]
 name=Shoe Tree
 mana={4}{G}
-type=Creature â€” Treefolk
+type=Creature — Treefolk
 power=3
 toughness=3
 text=Shoe Tree comes into play with up to two shoe counters on it. Use your shoes as counters. Shoe Tree gets +1/+1 for each shoe counter on it.
@@ -20909,7 +20885,7 @@ type=Instant
 [card]
 name=Six-y Beast
 mana={3}{R}
-type=Creature â€” Beast
+type=Creature — Beast
 power=0
 toughness=0
 text=As Six-y Beast comes into play, you secretly put six or fewer +1/+1 counters on it, then an opponent guesses the number of counters. If that player guesses right, sacrifice Six-y Beast.
@@ -20951,7 +20927,7 @@ type=Creature
 subtype=Human Shaman
 power=1
 toughness=1
-text={G}: Choose one â€” Until end of turn, Skinshifter becomes a 4/4 Rhino and gains trample; or until end of turn, Skinshifter becomes a 2/2 Bird and gains flying; or until end of turn, Skinshifter becomes a 0/8 Plant. Activate this ability only once each turn.
+text={G}: Choose one — Until end of turn, Skinshifter becomes a 4/4 Rhino and gains trample; or until end of turn, Skinshifter becomes a 2/2 Bird and gains flying; or until end of turn, Skinshifter becomes a 0/8 Plant. Activate this ability only once each turn.
 [/card]
 [card]
 name=Skirk Alarmist
@@ -21106,7 +21082,7 @@ type=Sorcery
 [card]
 name=Smart Ass
 mana={2}{U}
-type=Creature â€” Donkey Wizard
+type=Creature — Donkey Wizard
 power=2{1/2}
 toughness=1
 text=Whenever Smart Ass attacks, name a card. Defending player may reveal his or her hand and show you that the named card isn't there. If that player doesn't, Smart Ass is unblockable this turn.
@@ -21491,7 +21467,7 @@ toughness=2
 [card]
 name=Spark Fiend
 mana={4}{R}
-type=Summon â€” Beast
+type=Summon — Beast
 power=5
 toughness=6
 text=When Spark Fiend comes into play, roll two six-sided dice. On a total of 2, 3, or 12, sacrifice Spark Fiend. On a total of 7 or 11, do not roll dice for Spark Fiend during any of your following upkeep phases. If you roll any other total, note it. During your upkeep, roll two six-sided dice. On a total of 7, sacrifice Spark Fiend. If you roll the noted total, do not roll dice for Spark Fiend during any of your following upkeep phases. On any other roll, there is no effect.
@@ -22102,7 +22078,7 @@ type=Instant
 [card]
 name=Standing Army
 mana={2}{W}{W}
-type=Creature â€” Human Soldier
+type=Creature — Human Soldier
 power=2
 toughness=4
 text=As long as you're standing, Standing Army has vigilance. (Attacking doesn't cause it to tap.)
@@ -22237,7 +22213,7 @@ toughness=2
 name=Stoic Rebuttal
 mana={1}{U}{U}
 type=Instant
-text=Metalcraft â€” Stoic Rebuttal costs {1} less to cast if you control three or more artifacts. Counter target spell.
+text=Metalcraft — Stoic Rebuttal costs {1} less to cast if you control three or more artifacts. Counter target spell.
 [/card]
 [card]
 name=Stomp and Howl
@@ -22273,7 +22249,7 @@ subtype=Trap
 [card]
 name=Stone-Cold Basilisk
 mana={4}{G}
-type=Creature â€” Basilisk
+type=Creature — Basilisk
 power=2{1/2}
 toughness=5
 text=Whenever Stone-Cold Basilisk blocks or becomes blocked by a creature with fewer letters in its name, destroy that creature at end of combat. (Punctuation and spaces aren't letters.) Whenever an opponent reads Stone-Cold Basilisk, that player is turned to stone until end of turn. Stoned players can't attack, block, or play spells or abilities.
@@ -22308,7 +22284,7 @@ toughness=4
 [card]
 name=Stonehorn Dignitary
 mana={3}{W}
-type=Creature â€” Rhino Soldier
+type=Creature — Rhino Soldier
 power=1
 toughness=4
 text=When Stonehorn Dignitary enters the battlefield, target opponent skips his or her next combat phase.
@@ -22417,7 +22393,7 @@ name=Strata Scythe
 mana={3}
 type=Artifact
 subtype=Equipment
-text=Imprint â€” When Strata Scythe enters the battlefield, search your library for a land card, exile it, then shuffle your library. Equipped creature gets +1/+1 for each land on the battlefield with the same name as the exiled card. Equip {3}
+text=Imprint — When Strata Scythe enters the battlefield, search your library for a land card, exile it, then shuffle your library. Equipped creature gets +1/+1 for each land on the battlefield with the same name as the exiled card. Equip {3}
 [/card]
 [card]
 name=Stratadon
@@ -22962,7 +22938,7 @@ type=Enchantment
 [card]
 name=Tainted Monkey
 mana={1}{B}
-type=Creature â€” Ape
+type=Creature — Ape
 power=1
 toughness=1
 text={T}: Choose a word. Target player puts the top card of his or her library into his or her graveyard. If that card has the chosen word in its text box, that player loses 3 life.
@@ -23214,7 +23190,7 @@ type=Instant
 [card]
 name=Temp of the Damned
 mana={2}{B}
-type=Summon â€” Zombie
+type=Summon — Zombie
 power=3
 toughness=3
 text=When you play Temp of the Damned, roll a six-sided die. Temp of the Damned comes into play with a number of funk counters on it equal to the die roll. During your upkeep, remove a funk counter from Temp of the Damned or sacrifice Temp of the Damned.
@@ -23398,7 +23374,7 @@ toughness=3
 [card]
 name=The Fallen Apart
 mana={2}{B}{B}
-type=Creature â€” Zombie
+type=Creature — Zombie
 power=4
 toughness=4
 text=The Fallen Apart comes into play with two arms and two legs. Whenever damage is dealt to The Fallen Apart, remove an arm or a leg from it. The Fallen Apart can't attack if it has no legs and can't block if it has no arms.
@@ -23413,10 +23389,10 @@ toughness=0
 text=As The Mimeoplasm enters the battlefield, you may exile two creature cards from graveyards. If you do, it enters the battlefield as a copy of one of those cards with a number of additional +1/+1 counters on it equal to the power of the other card.
 [/card]
 [card]
-name=The Ultimate Nightmare of Wizards of the CoastÂ® Customer Service
+name=The Ultimate Nightmare of Wizards of the Coast® Customer Service
 mana={X}{Y}{Z}{R}{R}
 type=Sorcery
-text=The Ultimate Nightmare of Wizards of the CoastÂ® Customer Service deals X damage to each of Y target creatures and Z target players.
+text=The Ultimate Nightmare of Wizards of the Coast® Customer Service deals X damage to each of Y target creatures and Z target players.
 [/card]
 [card]
 name=The Wretched
@@ -23863,7 +23839,7 @@ toughness=1
 [card]
 name=Timmy, Power Gamer
 mana={2}{G}{G}
-type=Summon â€” Legend
+type=Summon — Legend
 power=1
 toughness=1
 text=o4: Put a creature into play from your hand.
@@ -23892,7 +23868,7 @@ type=Enchantment
 [card]
 name=Togglodyte
 mana={3}
-type=Artifact Creature â€” Golem
+type=Artifact Creature — Golem
 power=4
 toughness=4
 text=Togglodyte comes into play turned on. Whenever a player plays a spell, toggle Togglodyte's ON/OFF switch. As long as Togglodyte is turned off, it can't attack or block, and all damage it would deal is prevented.
@@ -24035,10 +24011,10 @@ type=Sorcery
 [card]
 name=Toy Boat
 mana={3}
-type=Artifact Creature â€” Ship
+type=Artifact Creature — Ship
 power=3
 toughness=3
-text=Cumulative upkeepâ€”Say "Toy Boat" quickly. (At the beginning of your upkeep, put an age counter on Toy Boat, then sacrifice it unless you say "Toy Boat" once for each age counter on itâ€”without pausing between or fumbling it.)
+text=Cumulative upkeep—Say "Toy Boat" quickly. (At the beginning of your upkeep, put an age counter on Toy Boat, then sacrifice it unless you say "Toy Boat" once for each age counter on it—without pausing between or fumbling it.)
 [/card]
 [card]
 name=Trade Secrets
@@ -24384,7 +24360,7 @@ type=Artifact
 [card]
 name=Uktabi Kong
 mana={5}{G}{G}{G}
-type=Creature â€” Ape
+type=Creature — Ape
 power=8
 toughness=8
 text=Trample When Uktabi Kong comes into play, destroy all artifacts. Tap two untapped Apes you control: Put a 1/1 green Ape creature token into play.
@@ -24958,7 +24934,7 @@ type=Instant
 [card]
 name=Vile Bile
 mana={1}{B}
-type=Creature â€” Ooze
+type=Creature — Ooze
 power=2{1/2}/2{1
 toughness=2}
 text=Whenever a player's skin or fingernail touches Vile Bile, that player loses 2 life.
@@ -26140,7 +26116,7 @@ type=Enchantment
 [card]
 name=Working Stiff
 mana={1}{B}
-type=Creature â€” Mummy
+type=Creature — Mummy
 power=2
 toughness=2
 text=As Working Stiff comes into play, straighten your arms. When you bend an elbow, sacrifice Working Stiff.
@@ -26427,7 +26403,7 @@ toughness=2
 [card]
 name=Zombie Fanboy
 mana={2}{B}
-type=Creature â€” Zombie Gamer
+type=Creature — Zombie Gamer
 power=1
 toughness=1
 text=As Zombie Fanboy comes into play, choose an artist. Whenever a permanent by the chosen artist is put into a graveyard, put two +1/+1 counters on Zombie Fanboy.
