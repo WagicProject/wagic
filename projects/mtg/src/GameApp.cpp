@@ -404,7 +404,7 @@ void GameApp::Render()
     if (mFont)
     {
         mFont->SetColor(ARGB(255,255,255,255));
-        mFont->DrawString(buf, 10, SCREEN_HEIGHT-15);
+        mFont->DrawString(buf, 10, SCREEN_HEIGHT-25);
     }
 #endif
 

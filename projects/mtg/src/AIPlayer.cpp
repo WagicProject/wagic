@@ -206,9 +206,9 @@ bool AIPlayer::payTheManaCost(ManaCost * cost, MTGCardInstance * target,vector<M
     {
         DebugTrace(" Ai had a payment in mind.");
         ManaCost * paid = NEW ManaCost();
-        paid->init();
-        GameObserver * go = GameObserver::GetInstance();
         vector<AIAction*>clicks = vector<AIAction*>();
+
+        paid->init();
         for(int k = 0;k < int(gotPayments.size());k++)
         {
             AManaProducer * amp = dynamic_cast<AManaProducer*> (gotPayments[k]);
@@ -2197,7 +2197,7 @@ int AIPlayerBaka::computeActions()
         if (targetResult)
             return 1;
     }
-    int currentGamePhase = g->getCurrentGamePhase();
+
     static bool findingCard = false;
     //this guard is put in place to prevent Ai from
     //ever running computeActions() function WHILE its already doing so.

@@ -13,7 +13,11 @@
 
 enum ENUM_AWARDS_STATE
 {
-    STATE_LISTVIEW, STATE_DETAILS,
+    STATE_LISTVIEW, 
+    STATE_DETAILS,
+    EXIT_AWARDS_MENU = -102,
+    GUI_AWARD_BUTTON = -103,
+    
 };
 
 namespace
@@ -64,31 +68,31 @@ void GameStateAwards::Start()
     listview->Add(wgh);
 
     aw = NEW WGuiAward(Options::DIFFICULTY_MODE_UNLOCKED, "Difficulty Modes", "Achieved a 66% victory ratio.");
-    btn = NEW WGuiButton(aw, -103, Options::DIFFICULTY_MODE_UNLOCKED, this);
+    btn = NEW WGuiButton(aw, GUI_AWARD_BUTTON, Options::DIFFICULTY_MODE_UNLOCKED, this);
     listview->Add(btn);
 
     aw = NEW WGuiAward(Options::MOMIR_MODE_UNLOCKED, "Momir Mode", "Won with exactly 8 lands.");
-    btn = NEW WGuiButton(aw, -103, Options::MOMIR_MODE_UNLOCKED, this);
+    btn = NEW WGuiButton(aw, GUI_AWARD_BUTTON, Options::MOMIR_MODE_UNLOCKED, this);
     listview->Add(btn);
 
 	aw = NEW WGuiAward(Options::STONEHEWER_MODE_UNLOCKED, "Stone Hewer Mode", "Won with more than 10 equipments.");
-	btn = NEW WGuiButton(aw, -103, Options::STONEHEWER_MODE_UNLOCKED, this);
+	btn = NEW WGuiButton(aw, GUI_AWARD_BUTTON, Options::STONEHEWER_MODE_UNLOCKED, this);
 	listview->Add(btn);
 
 	aw = NEW WGuiAward(Options::HERMIT_MODE_UNLOCKED, "Hermit Druid Mode", "Won with less than 10 lands.");
-	btn = NEW WGuiButton(aw, -103, Options::HERMIT_MODE_UNLOCKED, this);
+	btn = NEW WGuiButton(aw, GUI_AWARD_BUTTON, Options::HERMIT_MODE_UNLOCKED, this);
 	listview->Add(btn);
 
     aw = NEW WGuiAward(Options::EVILTWIN_MODE_UNLOCKED, "Evil Twin Mode", "Won with same army size.");
-    btn = NEW WGuiButton(aw, -103, Options::EVILTWIN_MODE_UNLOCKED, this);
+    btn = NEW WGuiButton(aw, GUI_AWARD_BUTTON, Options::EVILTWIN_MODE_UNLOCKED, this);
     listview->Add(btn);
 
     aw = NEW WGuiAward(Options::RANDOMDECK_MODE_UNLOCKED, "Random Deck Mode", "Won against a higher difficulty.");
-    btn = NEW WGuiButton(aw, -103, Options::RANDOMDECK_MODE_UNLOCKED, this);
+    btn = NEW WGuiButton(aw, GUI_AWARD_BUTTON, Options::RANDOMDECK_MODE_UNLOCKED, this);
     listview->Add(btn);
 
     aw = NEW WGuiAward(Options::AWARD_COLLECTOR, "Valuable Collection", "Collection valued over 10,000c.", "Collection Info");
-    btn = NEW WGuiButton(aw, -103, Options::AWARD_COLLECTOR, this);
+    btn = NEW WGuiButton(aw, GUI_AWARD_BUTTON, Options::AWARD_COLLECTOR, this);
     listview->Add(btn);
 
     wgh = NEW WGuiHeader("");
@@ -115,7 +119,7 @@ void GameStateAwards::Start()
 
         aw = NEW WGuiAward(Options::optionSet(i), si->getName(), buf, "Card Spoiler");
         aw->mFlags = WGuiItem::NO_TRANSLATE;
-        btn = NEW WGuiButton(aw, -103, Options::optionSet(i), this);
+        btn = NEW WGuiButton(aw, GUI_AWARD_BUTTON, Options::optionSet(i), this);
         listview->Add(btn);
     }
     if (locked)
@@ -176,6 +180,7 @@ void GameStateAwards::Update(float dt)
     else
     {
         JButton key = JGE_BTN_NONE;
+
         while ((key = JGE::GetInstance()->ReadButton()))
         {
             switch (key)
@@ -183,7 +188,7 @@ void GameStateAwards::Update(float dt)
             case JGE_BTN_MENU:
                 showMenu = true;
                 SAFE_DELETE(menu);
-                menu = NEW SimpleMenu(-102, this, Fonts::MENU_FONT, 50, 170);
+                menu = NEW SimpleMenu(EXIT_AWARDS_MENU, this, Fonts::MENU_FONT, 50, 170);
                 if (mState == STATE_DETAILS)
                     menu->Add(kBackToTrophiesID, "Back to Trophies");
                 menu->Add(kBackToMainMenuID, "Back to Main Menu");
@@ -355,7 +360,7 @@ bool GameStateAwards::enterStats(int option)
 }
 void GameStateAwards::ButtonPressed(int controllerId, int controlId)
 {
-    if (controllerId == -102)
+    if (controllerId == EXIT_AWARDS_MENU)
         switch (controlId)
         {
         case kBackToMainMenuID:
@@ -371,7 +376,7 @@ void GameStateAwards::ButtonPressed(int controllerId, int controlId)
             showMenu = false;
             break;
         }
-    else if (controllerId == -103)
+    else if (controllerId == GUI_AWARD_BUTTON)
     {
         int setid = controlId - Options::SET_UNLOCKS;
 

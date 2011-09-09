@@ -254,7 +254,7 @@ AAPhaseOut::AAPhaseOut(int _id, MTGCardInstance * _source, MTGCardInstance * _ta
 }
 
 int AAPhaseOut::resolve()
-{GameObserver * g = GameObserver::GetInstance();
+{
     MTGCardInstance * _target = (MTGCardInstance *) target;
     if (_target)
     {
@@ -516,7 +516,6 @@ int AAProliferate::resolve()
         }
         else if (target->typeAsTarget() == TARGET_CARD && ((MTGCardInstance*)target)->counters)
         {
-            Counter * targetCounter = NULL;
             for(unsigned int i = 0; i < ((MTGCardInstance*)target)->counters->counters.size();i++)
             {
                 MTGAbility * a = NEW AACounter(game->mLayers->actionLayer()->getMaxId(), source, (MTGCardInstance*)target,"", ((MTGCardInstance*)target)->counters->counters[i]->name.c_str(), ((MTGCardInstance*)target)->counters->counters[i]->power, ((MTGCardInstance*)target)->counters->counters[i]->toughness, 1,0);

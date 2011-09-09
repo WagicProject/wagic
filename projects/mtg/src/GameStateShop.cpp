@@ -831,9 +831,9 @@ void GameStateShop::OnScroll(int inXVelocity, int inYVelocity)
 {
     if (abs(inXVelocity) > 200)
     {
-        bool flickLeft = (inXVelocity < 0);
-        if(!flickLeft)
-          mEngine->HoldKey_NoRepeat(JGE_BTN_PRI);
+        bool flickRight = (inXVelocity >= 0);
+        if (flickRight)
+            mEngine->HoldKey_NoRepeat(JGE_BTN_PRI);
     }
 }
 
