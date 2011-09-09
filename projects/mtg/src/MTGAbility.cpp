@@ -761,6 +761,12 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     if (splitTrigger.size())
     {
         TriggeredAbility * trigger = parseTrigger(splitTrigger[1], s, id, spell, card, target);
+        if (splitTrigger[1].find("restriction{") != string::npos)//using other/cast restrictions for abilities.
+        {
+            vector<string> splitRest = parseBetween(s,"restriction{","}");
+            if (splitRest.size())
+                trigger->castRestriction = splitRest[1];
+        }
         //Dirty way to remove the trigger text (could get in the way)
         if (trigger)
         {
@@ -793,7 +799,13 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     }
 
     int restrictions = parseRestriction(s);
-
+    string castRestriction = "";
+    if (s.find("restriction{") != string::npos)//using other/cast restrictions for abilities.
+    {
+        vector<string> splitRest = parseBetween(s,"restriction{","}");
+        if (splitRest.size())
+            castRestriction = splitRest[1];
+    }
     string newName = "";
     vector<string> splitName = parseBetween(s, "name(", ")");
     if (splitName.size())
@@ -887,6 +899,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
                 amp->sideEffect = sideEffect;
                 amp->usesBeforeSideEffects = usesBeforeSideEffect;
                 amp->restrictions = restrictions;
+                amp->castRestriction = castRestriction;
                 return amp;
             }
             
@@ -905,9 +918,9 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             if (tc)
             {
                 tc->belongsToAbility = sWithoutTc;
-                return NEW GenericTargetAbility(newName,id, card, tc, a, cost, limit,sideEffect,usesBeforeSideEffect, restrictions, dest);
+                return NEW GenericTargetAbility(newName,castRestriction,id, card, tc, a, cost, limit,sideEffect,usesBeforeSideEffect, restrictions, dest);
             }
-            return NEW GenericActivatedAbility(newName,id, card, a, cost, limit,sideEffect,usesBeforeSideEffect,restrictions, dest);
+            return NEW GenericActivatedAbility(newName,castRestriction,id, card, a, cost, limit,sideEffect,usesBeforeSideEffect,restrictions, dest);
         }
         SAFE_DELETE(cost);
     }
@@ -963,9 +976,9 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
                 return NULL;
 
             if (tc)
-                a1 = NEW GenericTargetAbility(newName,id, card, tc, a1);
+                a1 = NEW GenericTargetAbility(newName,castRestriction,id, card, tc, a1);
             else
-                a1 = NEW GenericActivatedAbility(newName,id, card, a1, NULL);
+                a1 = NEW GenericActivatedAbility(newName,castRestriction,id, card, a1, NULL);
             return NEW MayAbility(id, a1, card,mayMust[i]);
         }
     }
@@ -1333,7 +1346,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             DebugTrace("ABILITYFACTORY Error parsing: " << s);
             return NULL;
         }
-        a = NEW GenericTargetAbility(newName,id, card, tc, a);
+        a = NEW GenericTargetAbility(newName,castRestriction,id, card, tc, a);
         return NEW MayAbility(id, a, card, true);
     }
 
@@ -3527,8 +3540,8 @@ NestedAbility::NestedAbility(MTGAbility * _ability)
 
 //
 
-ActivatedAbility::ActivatedAbility(int id, MTGCardInstance * card, ManaCost * _cost, int restrictions,string limit,MTGAbility * sideEffect,string usesBeforeSideEffects) :
-    MTGAbility(id, card), restrictions(restrictions), needsTapping(0),limit(limit),sideEffect(sideEffect),usesBeforeSideEffects(usesBeforeSideEffects)
+ActivatedAbility::ActivatedAbility(int id, MTGCardInstance * card, ManaCost * _cost, int restrictions,string limit,MTGAbility * sideEffect,string usesBeforeSideEffects,string castRestriction) :
+    MTGAbility(id, card), restrictions(restrictions), needsTapping(0),limit(limit),sideEffect(sideEffect),usesBeforeSideEffects(usesBeforeSideEffects),castRestriction(castRestriction)
 {
     counters = 0;
     setCost(_cost);
@@ -3593,6 +3606,13 @@ int ActivatedAbility::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
         //as ability limits are supposed to count the use regaurdless of the ability actually
         //resolving. this check was previously located in genericactivated, and incrementing was handled in the resolve.
         if (limitPerTurn && counters >= limitPerTurn)
+            return 0;
+    }
+    if(castRestriction.size())
+    {
+        AbilityFactory af;
+        int checkCond = af.parseCastRestrictions(card,card->controller(),castRestriction);
+        if(!checkCond)
             return 0;
     }
     if (card == source && source->controller() == player && (!needsTapping || (!source->isTapped()
@@ -3752,14 +3772,14 @@ ostream& ActivatedAbility::toString(ostream& out) const
     return MTGAbility::toString(out) << ")";
 }
 
-TargetAbility::TargetAbility(int id, MTGCardInstance * card, TargetChooser * _tc, ManaCost * _cost, int _playerturnonly) :
-    ActivatedAbility(id, card, _cost, _playerturnonly), NestedAbility(NULL)
+TargetAbility::TargetAbility(int id, MTGCardInstance * card, TargetChooser * _tc, ManaCost * _cost, int _playerturnonly, string castRestriction) :
+    ActivatedAbility(id, card, _cost, _playerturnonly, castRestriction), NestedAbility(NULL)
 {
     tc = _tc;
 }
 
-TargetAbility::TargetAbility(int id, MTGCardInstance * card, ManaCost * _cost, int _playerturnonly) :
-    ActivatedAbility(id, card, _cost, _playerturnonly), NestedAbility(NULL)
+TargetAbility::TargetAbility(int id, MTGCardInstance * card, ManaCost * _cost, int _playerturnonly, string castRestriction) :
+    ActivatedAbility(id, card, _cost, _playerturnonly, castRestriction), NestedAbility(NULL)
 {
     tc = NULL;
 }
@@ -3959,6 +3979,15 @@ int  Trigger::triggerOnEvent(WEvent * event) {
     if(mOnce && mActiveTrigger)
         mActiveTrigger = false;
 
+    if(castRestriction.size())
+    {
+        if(!source)
+            return 1;//can't check these restrictions without a source aka:in a rule.txt
+        AbilityFactory af;
+        int checkCond = af.parseCastRestrictions(source,source->controller(),castRestriction);
+        if(!checkCond)
+            return 0;
+    }
     return 1;
 }
 

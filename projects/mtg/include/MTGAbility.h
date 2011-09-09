@@ -244,6 +244,7 @@ public:
     virtual int resolve() = 0;
     virtual TriggeredAbility* clone() const = 0; 
     virtual ostream& toString(ostream& out) const;
+    string castRestriction;
 };
 
 
@@ -333,8 +334,9 @@ public:
     MTGAbility* sa;
     string usesBeforeSideEffects;
     int uses;
+    string castRestriction;
 
-    ActivatedAbility(int id, MTGCardInstance* card, ManaCost* _cost = NULL, int _restrictions = NO_RESTRICTION, string limit = "", MTGAbility* sideEffect = NULL, string usesBeforeSideEffects = "");
+    ActivatedAbility(int id, MTGCardInstance* card, ManaCost* _cost = NULL, int _restrictions = NO_RESTRICTION, string limit = "", MTGAbility* sideEffect = NULL, string usesBeforeSideEffects = "",string castRestriction = "");
     virtual ~ActivatedAbility();
 
     virtual void Update(float dt)
@@ -358,8 +360,8 @@ public:
 class TargetAbility : public ActivatedAbility, public NestedAbility
 {
 public:
-    TargetAbility(int id, MTGCardInstance * card, TargetChooser * _tc,ManaCost * _cost = NULL, int _playerturnonly = 0);
-    TargetAbility(int id, MTGCardInstance * card,ManaCost * _cost = NULL, int _playerturnonly = 0);
+    TargetAbility(int id, MTGCardInstance * card, TargetChooser * _tc,ManaCost * _cost = NULL, int _playerturnonly = 0, string castRestriction = "");
+    TargetAbility(int id, MTGCardInstance * card,ManaCost * _cost = NULL, int _playerturnonly = 0, string castRestriction = "");
     ~TargetAbility();
 
     virtual int reactToClick(MTGCardInstance * card);

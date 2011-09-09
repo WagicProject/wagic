@@ -176,7 +176,6 @@ void GameStateAwards::Update(float dt)
     else
     {
         JButton key = JGE_BTN_NONE;
-        int x, y;
         while ((key = JGE::GetInstance()->ReadButton()))
         {
             switch (key)
