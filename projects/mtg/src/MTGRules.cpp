@@ -2319,3 +2319,61 @@ MTGDeathtouchRule * MTGDeathtouchRule::clone() const
 {
     return NEW MTGDeathtouchRule(*this);
 }
+//
+//kai mod
+ParentChildRule::ParentChildRule(int _id) :
+MTGAbility(_id, NULL)
+{
+}
+;
+
+int ParentChildRule::receiveEvent(WEvent * event)
+{
+    WEventZoneChange * z = dynamic_cast<WEventZoneChange *> (event);
+    if (z)
+    {
+        MTGCardInstance * card = z->card->previous;
+        if(!card)
+        {
+            return 0;
+        }
+        if(!card->childrenCards.size())
+            return 0;
+        Player * p = card->controller();
+        if (z->from == p->game->inPlay)
+        {
+            for(unsigned int w = 0;w < card->childrenCards.size();w++)
+            {
+                MTGCardInstance * child = card->childrenCards[w];
+                if(child == NULL) 
+                    continue;
+                if(child->parentCards.size() < 2)
+                    child->controller()->game->putInGraveyard(child);
+                else//allows a card to declare 2 homes, as long as it has a home it can stay inplay.
+                {
+                    for(unsigned int myParent = 0;myParent < child->parentCards.size();myParent++)
+                    {
+                        if(child->parentCards[myParent] == card)
+                            child->parentCards.erase(child->parentCards.begin() + myParent);
+                    }
+                }
+            }
+        }
+        return 1;
+    }
+    return 0;
+}
+
+ostream& ParentChildRule::toString(ostream& out) const
+{
+    out << "ParentChildRule ::: (";
+    return MTGAbility::toString(out) << ")";
+}
+int ParentChildRule::testDestroy()
+{
+    return 0;
+}
+ParentChildRule * ParentChildRule::clone() const
+{
+    return NEW ParentChildRule(*this);
+}

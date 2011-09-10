@@ -2397,6 +2397,15 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         return a;
     }
 
+    //create an association between cards.
+    found = s.find("connect");
+    if (found != string::npos)
+    {
+        MTGAbility * a = NEW AAConnect(id, card, target);
+        a->oneShot = 1;
+        return a;
+    }
+
     DebugTrace(" no matching ability found. " << s);
     return NULL;
 }

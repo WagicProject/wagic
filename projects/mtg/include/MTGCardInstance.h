@@ -43,6 +43,9 @@ protected:
     int removeBlocker(MTGCardInstance * c);
     int init();
 public:
+    vector<MTGCardInstance*>parentCards;
+    vector<MTGCardInstance*>childrenCards;
+
     int setAttacker(int value);
     int setDefenser(MTGCardInstance * c);
     MTGGameZone * currentZone;

@@ -3831,6 +3831,36 @@ ABlinkGeneric::~ABlinkGeneric()
     SAFE_DELETE(ability);
 }
 
+// target becomes a parent of card(source)
+AAConnect::AAConnect(int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost) :
+ActivatedAbility(id, card, _cost, 0)
+{
+    target = _target;
+}
+
+int AAConnect::resolve()
+{
+    MTGCardInstance * _target = (MTGCardInstance *) target;
+    if (_target)
+    {
+        while (_target->next)
+            _target = _target->next;
+        _target->childrenCards.push_back(source);
+        source->parentCards.push_back(_target);
+        if(source->target)
+            source->target = NULL;
+        //clearing the source target allows us to use target= line
+        //without creating side effects on any other abilities a card has
+        //connect has to be the first ability in the cards lines unless you want it to do effects to the targeted card!!!
+
+    }
+    return 1;
+}
+
+AAConnect * AAConnect::clone() const
+{
+    return NEW AAConnect(*this);
+}
 
 //Tutorial Messaging
 

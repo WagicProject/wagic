@@ -3214,6 +3214,15 @@ public:
     }
 };
 
+/* create a parent child association between cards */
+class AAConnect: public ActivatedAbility
+{
+public:
+    AAConnect(int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost = NULL);
+    int resolve();
+    AAConnect * clone() const;
+};
+
 // Add life of gives damage if a given zone has more or less than [condition] cards at the beginning of [phase]
 //Ex : the rack, ivory tower...
 class ALifeZoneLink: public MTGAbility

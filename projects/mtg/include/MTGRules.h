@@ -408,6 +408,17 @@ public:
     virtual MTGDeathtouchRule * clone() const;
 };
 
+/* handling parentchild */
+class ParentChildRule: public MTGAbility
+{
+public:
+    ParentChildRule(int _id);
+    map<MTGCardInstance*,vector<MTGCardInstance*> > victems;
+    int receiveEvent(WEvent * event);
+    virtual ostream& toString(ostream& out) const;
+    int testDestroy();
+    virtual ParentChildRule * clone() const;
+};
 /* HUD Display */
 
 class HUDString
