@@ -255,4 +255,26 @@ public:
     virtual ProliferateChooser * clone() const;
     virtual bool equals(TargetChooser * tc);
 };
+
+class ParentChildChooser: public TypeTargetChooser
+{
+public:
+    bool withoutProtections;
+    int type;
+    TargetChooser * deeperTargeting;
+    ParentChildChooser(int * _zones, int _nbzones, MTGCardInstance * card = NULL, int _maxtargets = 1,TargetChooser * deepTc = NULL,int type = 1, bool other = false, bool targetMin = false) :
+    TypeTargetChooser("*",_zones, _nbzones, card, _maxtargets, other, targetMin),deeperTargeting(deepTc),type(type)
+    {
+    }
+    ;
+    ParentChildChooser(MTGCardInstance * card = NULL, int _maxtargets = 1,TargetChooser * deepTc = NULL,int type = 1, bool other = false,bool targetMin = false) :
+        TypeTargetChooser("*", card, _maxtargets, other,targetMin),deeperTargeting(deepTc),type(type)
+    {
+    }
+    ;
+    virtual bool canTarget(Targetable * target, bool withoutProtections = false);
+    virtual ParentChildChooser * clone() const;
+    virtual bool equals(TargetChooser * tc);
+    ~ParentChildChooser();
+};
 #endif

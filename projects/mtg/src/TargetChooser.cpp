@@ -187,6 +187,18 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
         }
     }
 
+    if (s1.find("children") != string::npos || s1.find("parents") != string::npos)
+    {
+        TargetChooser * deeperTc = NULL;
+        if(s1.find("[") != string::npos)
+        {
+            AbilityFactory af;
+            vector<string>deepTc = parseBetween(s1,"[","]");
+            deeperTc = createTargetChooser(deepTc[1],card);
+        }
+        return NEW ParentChildChooser(card, maxtargets,deeperTc,s1.find("parents") != string::npos?2:1); 
+    }
+
     while (s1.size())
     {
         found = s1.find(",");
@@ -1442,4 +1454,72 @@ bool ProliferateChooser::equals(TargetChooser * tc)
         return false;
 
     return TypeTargetChooser::equals(tc);
+}
+
+/*parents or children Target */
+bool ParentChildChooser::canTarget(Targetable * target,bool withoutProtections)
+{
+    if (target->typeAsTarget() == TARGET_CARD)
+    {
+        MTGCardInstance * card = (MTGCardInstance*)target;
+        if(type == 1)
+        {
+            if(!source->childrenCards.size())
+                return false;
+            for(unsigned int w = 0;w < source->childrenCards.size();w++)
+            {
+                MTGCardInstance * child = source->childrenCards[w];
+                if(child == target)
+                {
+                    if(deeperTargeting)
+                    {
+                        if(!deeperTargeting->canTarget(child))
+                            return false;
+                    }
+                    return true;
+                }
+            }
+        }
+        else
+        {
+            if(!source->parentCards.size())
+                return false;
+            for(unsigned int w = 0;w < source->parentCards.size();w++)
+            {
+                MTGCardInstance * parent = source->parentCards[w];
+                if(parent == target)
+                {
+                    if(deeperTargeting)
+                    {
+                        if(!deeperTargeting->canTarget(parent))
+                            return false;
+                    }
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    return TypeTargetChooser::canTarget(target,withoutProtections);
+}
+
+ParentChildChooser* ParentChildChooser::clone() const
+{
+    ParentChildChooser * a = NEW ParentChildChooser(*this);
+    return a;
+}
+
+bool ParentChildChooser::equals(TargetChooser * tc)
+{
+
+    ParentChildChooser  * dtc = dynamic_cast<ParentChildChooser  *> (tc);
+    if (!dtc)
+        return false;
+
+    return TypeTargetChooser::equals(tc);
+}
+
+ParentChildChooser::~ParentChildChooser()
+{
+    SAFE_DELETE(deeperTargeting);
 }
