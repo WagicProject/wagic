@@ -11,6 +11,7 @@
 #include "Translate.h"
 #include "ThisDescriptor.h"
 #include "ExtraCost.h"
+#include "MTGRules.h"
 
 
 //Used for Lord/This parsing
@@ -2397,6 +2398,14 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         return a;
     }
 
+    //adds the rule to destroy children if parent dies
+    found = s.find("connectrule");
+    if(found != string::npos)
+    {
+        GameObserver * game = GameObserver::GetInstance();
+        game->addObserver(NEW ParentChildRule(-1));
+        return NULL;
+    }
     //create an association between cards.
     found = s.find("connect");
     if (found != string::npos)

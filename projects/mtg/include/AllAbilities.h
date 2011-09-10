@@ -2330,6 +2330,15 @@ public:
 };
 //
 
+/* create a parent child association between cards */
+class AAConnect: public InstantAbility
+{
+public:
+    AAConnect(int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost = NULL);
+    int resolve();
+    AAConnect * clone() const;
+};
+
 //equipment
 class AEquip: public TargetAbility
 {
@@ -2347,12 +2356,19 @@ public:
         if (source->target)
         {
             source->target->equipment -= 1;
+            source->parentCards.clear();
+            for(unsigned int w = 0;w < source->target->childrenCards.size();w++)
+            {
+                MTGCardInstance * child = source->target->childrenCards[w];
+                if(child == source)
+                    source->target->childrenCards.erase(source->target->childrenCards.begin() + w);
+            }
         }
         source->target = NULL;
         for (size_t i = 0; i < currentAbilities.size(); ++i)
         {
             MTGAbility * a = currentAbilities[i];
-            if (dynamic_cast<AEquip *> (a) || dynamic_cast<ATeach *> (a) || (a->aType == MTGAbility::STANDARD_TOKENCREATOR && a->oneShot))
+            if (dynamic_cast<AEquip *> (a) || dynamic_cast<ATeach *> (a) || dynamic_cast<AAConnect *> (a) || (a->aType == MTGAbility::STANDARD_TOKENCREATOR && a->oneShot))
             {
                 SAFE_DELETE(a);
                 continue;
@@ -2367,6 +2383,8 @@ public:
     {
         source->target = equipped;
         source->target->equipment += 1;
+        source->parentCards.push_back((MTGCardInstance*)target);
+        source->target->childrenCards.push_back((MTGCardInstance*)source);
         AbilityFactory af;
         af.getAbilities(&currentAbilities, NULL, source);
         for (size_t i = 0; i < currentAbilities.size(); ++i)
@@ -2374,6 +2392,7 @@ public:
             MTGAbility * a = currentAbilities[i];
             if (dynamic_cast<AEquip *> (a)) continue;
             if (dynamic_cast<ATeach *> (a)) continue;
+            if (dynamic_cast<AAConnect *> (a)) continue;
             if (a->aType == MTGAbility::STANDARD_TOKENCREATOR && a->oneShot)
             {
             a->forceDestroy = 1;
@@ -3212,15 +3231,6 @@ public:
     {
         return NEW ASwapPT(*this);
     }
-};
-
-/* create a parent child association between cards */
-class AAConnect: public ActivatedAbility
-{
-public:
-    AAConnect(int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost = NULL);
-    int resolve();
-    AAConnect * clone() const;
 };
 
 // Add life of gives damage if a given zone has more or less than [condition] cards at the beginning of [phase]

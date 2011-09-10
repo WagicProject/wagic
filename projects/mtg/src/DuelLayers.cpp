@@ -44,7 +44,6 @@ void DuelLayers::init()
     action->Add(NEW MTGDeathtouchRule(-1));
     action->Add(NEW OtherAbilitiesEventReceiver(-1));
     action->Add(NEW MTGMorphCostRule(-1));
-    action->Add(NEW ParentChildRule(-1));
     //Other display elements
     action->Add(NEW HUDDisplay(-1));
 

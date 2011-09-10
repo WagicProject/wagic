@@ -3833,7 +3833,7 @@ ABlinkGeneric::~ABlinkGeneric()
 
 // target becomes a parent of card(source)
 AAConnect::AAConnect(int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost) :
-ActivatedAbility(id, card, _cost, 0)
+InstantAbility(id, card, target)
 {
     target = _target;
 }
@@ -3847,12 +3847,29 @@ int AAConnect::resolve()
             _target = _target->next;
         _target->childrenCards.push_back(source);
         source->parentCards.push_back(_target);
-        if(source->target)
-            source->target = NULL;
-        //clearing the source target allows us to use target= line
-        //without creating side effects on any other abilities a card has
-        //connect has to be the first ability in the cards lines unless you want it to do effects to the targeted card!!!
-
+        //weapon
+        if(source->hasSubtype(Subtypes::TYPE_EQUIPMENT))
+        {
+            GameObserver * g = GameObserver::GetInstance();
+            for (size_t i = 1; i < g->mLayers->actionLayer()->mObjects.size(); i++)
+            {
+                MTGAbility * a = ((MTGAbility *) g->mLayers->actionLayer()->mObjects[i]);
+                AEquip * eq = dynamic_cast<AEquip*> (a);
+                if (eq && eq->source == source)
+                {
+                    ((AEquip*)a)->unequip();
+                    ((AEquip*)a)->equip(_target);
+                }
+            }
+        }
+        else
+        {
+            if(source->target)
+                source->target = NULL;
+            //clearing the source target allows us to use target= line
+            //without creating side effects on any other abilities a card has
+            //connect has to be the first ability in the cards lines unless you want it to do effects to the targeted card!!!
+        }
     }
     return 1;
 }
