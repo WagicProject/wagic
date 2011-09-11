@@ -118,7 +118,7 @@ public:
         {
             if (g_engine)
             {
-                while(SDL_WaitEventTimeout(&Event, 10))
+                for (int x = 0; x < 5 && SDL_WaitEventTimeout(&Event, 10); ++x)
                 {
                     if(!g_engine->IsPaused())
                         OnEvent(&Event);
