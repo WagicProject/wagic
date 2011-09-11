@@ -263,12 +263,12 @@ public:
     int type;
     TargetChooser * deeperTargeting;
     ParentChildChooser(int * _zones, int _nbzones, MTGCardInstance * card = NULL, int _maxtargets = 1,TargetChooser * deepTc = NULL,int type = 1, bool other = false, bool targetMin = false) :
-    TypeTargetChooser("*",_zones, _nbzones, card, _maxtargets, other, targetMin),deeperTargeting(deepTc),type(type)
+    TypeTargetChooser("*",_zones, _nbzones, card, _maxtargets, other, targetMin),type(type),deeperTargeting(deepTc)
     {
     }
     ;
     ParentChildChooser(MTGCardInstance * card = NULL, int _maxtargets = 1,TargetChooser * deepTc = NULL,int type = 1, bool other = false,bool targetMin = false) :
-        TypeTargetChooser("*", card, _maxtargets, other,targetMin),deeperTargeting(deepTc),type(type)
+        TypeTargetChooser("*", card, _maxtargets, other,targetMin),type(type),deeperTargeting(deepTc)
     {
     }
     ;
