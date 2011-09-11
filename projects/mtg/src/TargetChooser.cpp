@@ -1469,7 +1469,7 @@ bool ParentChildChooser::canTarget(Targetable * target,bool withoutProtections)
             for(unsigned int w = 0;w < source->childrenCards.size();w++)
             {
                 MTGCardInstance * child = source->childrenCards[w];
-                if(child == target)
+                if(child == card)
                 {
                     if(deeperTargeting)
                     {
@@ -1487,7 +1487,7 @@ bool ParentChildChooser::canTarget(Targetable * target,bool withoutProtections)
             for(unsigned int w = 0;w < source->parentCards.size();w++)
             {
                 MTGCardInstance * parent = source->parentCards[w];
-                if(parent == target)
+                if(parent == card)
                 {
                     if(deeperTargeting)
                     {

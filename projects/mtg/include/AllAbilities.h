@@ -2383,7 +2383,7 @@ public:
     {
         source->target = equipped;
         source->target->equipment += 1;
-        source->parentCards.push_back((MTGCardInstance*)target);
+        source->parentCards.push_back(equipped);
         source->target->childrenCards.push_back((MTGCardInstance*)source);
         AbilityFactory af;
         af.getAbilities(&currentAbilities, NULL, source);
