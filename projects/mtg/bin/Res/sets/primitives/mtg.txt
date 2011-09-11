@@ -5689,17 +5689,9 @@ toughness=1
 [/card]
 [card]
 name=Bazaar of Baghdad
-auto={T}:token(-20122011)*3 && draw:2
+auto={T}:draw:2 && transforms((,newability[target(<3>*|myhand) reject])) forever
 text={T}: Draw two cards, then discard three cards.
 type=Land
-[/card]
-[card]
-name=Bazaar of Baghdad Discard
-auto=counter(0/0,1,Bazaar of Baghdad)
-auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Bazaar of Baghdad}>0) reject target(*|myhand) && counter(0/0,-1,Bazaar of Baghdad) && counter(0/0,1,Bury)
-auto=thisforeach(counter{0/0.1.Bury}>0) bury
-type=Nothing
-id=-20122011
 [/card]
 [card]
 name=Bazaar Trader
@@ -8018,21 +8010,13 @@ toughness=5
 [card]
 name=Bonded Fetch
 abilities=defender,haste
-auto={T}:token(-1111145) && draw:1
+auto={T}:draw:1 && transforms((,newability[target(*|myhand) reject])) forever
 text=Defender, haste -- {T}: Draw a card, then discard a card.
 mana={2}{U}
 type=Creature
 subtype=Homunculus
 power=0
 toughness=2
-[/card]
-[card]
-name=Bonded Fetch's Discard
-auto=counter(0/0,1,Bonded Fetch)
-auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Bonded Fetch}>0) reject target(*|myhand) && counter(0/0,-1,Bonded Fetch) && counter(0/0,1,Bury)
-auto=thisforeach(counter{0/0.1.Bury}>0) bury
-id=-1111145
-type=nothing
 [/card]
 [card]
 name=Bonds of Quicksilver
@@ -19048,21 +19032,13 @@ type=Land
 [/card]
 [card]
 name=Drowned Rusalka
-auto={U}{S(creature|myBattlefield)}:token(-1111117) && draw:1
+auto={U}{S(creature|myBattlefield)}:draw:1 && transforms((,newability[target(*|myhand) reject])) forever
 text={U}, Sacrifice a creature: Discard a card, then draw a card.
 mana={U}
 type=Creature
 subtype=Spirit
 power=1
 toughness=1
-[/card]
-[card]
-name=Drowned Rusalkas Discard
-auto=counter(0/0,1,Drowned Rusalka)
-auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Drowned Rusalka}>0) reject target(*|myhand) && counter(0/0,-1,Drowned Rusalka) && counter(0/0,1,Bury)
-auto=thisforeach(counter{0/0.1.Bury}>0) bury
-id=-1111117
-type=nothing
 [/card]
 [card]
 name=Drowner of Secrets
@@ -20817,18 +20793,10 @@ toughness=3
 [/card]
 [card]
 name=Emmessi Tome
-auto={5}{T}:token(-1111119) && draw:2
+auto={5}{T}:auto={T}:draw:2 && transforms((,newability[target(*|myhand) reject])) forever
 text={5}, {T}: Draw two cards, then discard a card.
 mana={4}
 type=Artifact
-[/card]
-[card]
-name=Emmessi Tome's Discard
-auto=counter(0/0,1,Emmessi Tome)
-auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Emmessi Tome}>0) reject target(*|myhand) && counter(0/0,-1,Emmessi Tome) && counter(0/0,1,Bury)
-auto=thisforeach(counter{0/0.1.Bury}>0) bury
-id=-1111119
-type=nothing
 [/card]
 [card]
 name=Emissary of Despair
@@ -20967,8 +20935,8 @@ type=Enchantment
 [card]
 name=Enclave Cryptologist
 auto={1}{U}:counter(0/0,1,Level) asSorcery
-auto=this(counter{0/0.1.Level}=1) {T}:token(-194903111)
-auto=this(counter{0/0.1.Level}=2) {T}:token(-194903111)
+auto=this(counter{0/0.1.Level}=1) {T}:draw:1 && transforms((,newability[target(*|myhand) reject])) forever
+auto=this(counter{0/0.1.Level}=2) {T}:draw:1 && transforms((,newability[target(*|myhand) reject])) forever
 auto=this(counter{0/0.1.Level}>2) {T}:draw:1 controller
 text=Level up {1}{U} -- [Level 1-2] {T}:Draw a card, then discard a card. -- [Level 3+] Draw a card.
 auto=maxlevel:2
@@ -20977,14 +20945,6 @@ type=Creature
 subtype=Merfolk Wizard
 power=0
 toughness=1
-[/card]
-[card]
-name=Enclave Cryptologist's Draw-Discard
-type=nothing
-id=-194903111
-auto=draw:1 controller
-auto=@movedto(this|exile):reject target(*|myhand)
-auto=moveto(exile) all(this)
 [/card]
 [card]
 name=Enclave Elite
@@ -25539,21 +25499,13 @@ toughness=1
 [card]
 name=Frontline Sage
 abilities=exalted
-auto={T}:token(-1111122) && draw:1
+auto={T}:draw:1 && transforms((,newability[target(*|myhand) reject])) forever
 text=Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.) -- {U}, {T}: Draw a card, then discard a card.
 mana={2}{U}
 type=Creature
 subtype=Human Wizard
 power=0
 toughness=1
-[/card]
-[card]
-name=Frontline Sage's Discard
-auto=counter(0/0,1,Frontline Sage)
-auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Frontline Sage}>0) reject target(*|myhand) && counter(0/0,-1,Frontline Sage) && counter(0/0,1,Bury)
-auto=thisforeach(counter{0/0.1.Bury}>0) bury
-id=-1111122
-type=nothing
 [/card]
 [card]
 name=Frost Giant
@@ -29682,7 +29634,7 @@ toughness=2
 [/card]
 [card]
 name=Grixis Battlemage
-auto={U}{T}:token(-1111123) && draw:1
+auto={U}{T}:draw:1 && transforms((,newability[target(*|myhand) reject])) forever
 auto={R}{T}:cantblock target(creature)
 text={U}, {T}: Draw a card, then discard a card. -- {R}, {T}: Target creature can't block this turn.
 mana={2}{B}
@@ -29690,14 +29642,6 @@ type=Creature
 subtype=Human Wizard
 power=2
 toughness=2
-[/card]
-[card]
-name=Grixis Battlemage's Discard
-auto=counter(0/0,1,Grixis Battlemage)
-auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Grixis Battlemage}>0) reject target(*|myhand) && counter(0/0,-1,Grixis Battlemage) && counter(0/0,1,Bury)
-auto=thisforeach(counter{0/0.1.Bury}>0) bury
-id=-1111123
-type=Nothing
 [/card]
 [card]
 name=Grixis Charm
@@ -34205,21 +34149,13 @@ type=Instant
 name=Inspired Sprite
 abilities=flash,flying
 auto=@movedTo(wizard|mystack):may untap
-auto={T}:token(-1111127) && draw:1
+auto={T}:draw:1 && transforms((,newability[target(*|myhand) reject])) forever
 text=Flash -- Flying -- Whenever you cast a Wizard spell, you may untap Inspired Sprite. -- {T}: Draw a card, then discard a card.
 mana={3}{U}
 type=Creature
 subtype=Faerie Wizard
 power=2
 toughness=2
-[/card]
-[card]
-name=Inspired Sprite's Discard
-auto=counter(0/0,1,Inspired Sprite)
-auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Inspired Sprite}>0) reject target(*|myhand) && counter(0/0,-1,Inspired Sprite) && counter(0/0,1,Bury)
-auto=thisforeach(counter{0/0.1.Bury}>0) bury
-id=-1111127
-type=nothing
 [/card]
 [card]
 name=Inspirit
@@ -34927,18 +34863,10 @@ toughness=2
 [/card]
 [card]
 name=Jalum Tome
-auto={2}{T}:token(-1111128) && draw:1
+auto={2}{T}:draw:1 && transforms((,newability[target(*|myhand) reject])) forever
 text={2}, {T}: Draw a card, then discard a card.
 mana={3}
 type=Artifact
-[/card]
-[card]
-name=Jalum Tome's Discard
-auto=counter(0/0,1,Jalum Tome)
-auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Jalum Tome}>0) reject target(*|myhand) && counter(0/0,-1,Jalum Tome) && counter(0/0,1,Bury)
-auto=thisforeach(counter{0/0.1.Bury}>0) bury
-id=-1111128
-type=nothing
 [/card]
 [card]
 name=Jamuraan Lion
@@ -41402,21 +41330,13 @@ toughness=*
 [/card]
 [card]
 name=Magus of the Bazaar
-auto={T}:token(-13100811)*3 && draw:2
+auto={T}:draw:2 && transforms((,newability[target(<3>*|myhand) reject])) forever
 text={T}: Draw two cards, then discard three cards.
 mana={1}{U}
 type=Creature
 subtype=Human Wizard
 power=0
 toughness=1
-[/card]
-[card]
-name=Magus of the Bazaar Discard
-auto=counter(0/0,1,Magus of Bazaar)
-auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Magus of Bazaar}>0) reject target(*|myhand) && counter(0/0,-1,Magus of Bazaar) && counter(0/0,1,Bury)
-auto=thisforeach(counter{0/0.1.Bury}>0) bury
-type=Nothing
-id=-13100811
 [/card]
 [card]
 name=Magus of the Candelabra
@@ -42941,21 +42861,13 @@ toughness=2
 [/card]
 [card]
 name=Merfolk Looter
-auto={T}:token(-1111130) && draw:1
+auto={T}:draw:1 && transforms((,newability[target(*|myhand) reject])) forever
 text={T}: Draw a card, then discard a card.
 mana={1}{U}
 type=Creature
 subtype=Merfolk Rogue
 power=1
 toughness=1
-[/card]
-[card]
-name=Merfolk Looter's Discard
-auto=counter(0/0,1,Merfolk Looter)
-auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Merfolk Looter}>0) reject target(*|myhand) && counter(0/0,-1,Merfolk Looter) && counter(0/0,1,Bury)
-auto=thisforeach(counter{0/0.1.Bury}>0) bury
-id=-1111130
-type=nothing
 [/card]
 [card]
 name=Merfolk Mesmerist
@@ -47736,21 +47648,13 @@ toughness=3
 [card]
 name=Obelisk of Alara
 auto={1}{W}{T}:life:5
-auto={1}{U}{T}:token(-1111132) && Draw:1
+auto={1}{U}{T}:draw:1 && transforms((,newability[target(*|myhand) reject])) forever
 auto={1}{B}{T}:-2/-2 target(creature)
 auto={1}{R}{T}:damage:3 target(player)
 auto={1}{G}{T}:4/4 target(creature)
 text={1}{W}, {T}: You gain 5 life. -- {1}{U}, {T}: Draw a card, then discard a card. -- {1}{B}, {T}: Target creature gets -2/-2 until end of turn. -- {1}{R}, {T}: Obelisk of Alara deals 3 damage to target player. -- {1}{G}, {T}: Target creature gets +4/+4 until end of turn.
 mana={6}
 type=Artifact
-[/card]
-[card]
-name=Obelisk of Alara's Discard
-auto=counter(0/0,1,Obelisk)
-auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Obelisk}>0) reject target(*|myhand) && counter(0/0,-1,Obelisk) && counter(0/0,1,Bury)
-auto=thisforeach(counter{0/0.1.Bury}>0) bury
-id=-1111132
-type=nothing
 [/card]
 [card]
 name=Obelisk of Bant
@@ -50181,7 +50085,7 @@ toughness=1
 [card]
 name=Perilous Research
 auto=draw:2 controller
-auto=moveTo(ownergraveyard) notatarget(*|myBattlefield)
+auto=sacrifice notatarget(*|myBattlefield)
 text=Draw two cards, then sacrifice a permanent.
 mana={1}{U}
 type=Instant
@@ -56289,21 +56193,13 @@ toughness=4
 [/card]
 [card]
 name=Riddlesmith
-auto=@movedTo(artifact|mystack):may token(-5555556) && draw:1
+auto=@movedTo(artifact|mystack):may draw:1 && transforms((,newability[target(*|myhand) reject])) forever
 text=Whenever you cast an artifact spell, you may draw a card. If you do, discard a card.
 mana={1}{U}
 type=Creature
 subtype=Human Artificer
 power=2
 toughness=1
-[/card]
-[card]
-name=Riddlesmith's Discard
-auto=counter(0/0,1,Riddlesmith)
-auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Riddlesmith}>0) reject target(*|myhand) && counter(0/0,-1,Riddlesmith) && counter(0/0,1,Bury)
-auto=thisforeach(counter{0/0.1.Bury}>0) bury
-id=-5555556
-type=nothing
 [/card]
 [card]
 name=Ridge Rannet
@@ -68810,7 +68706,7 @@ type=Enchantment
 [/card]
 [card]
 name=Survivor of the Unseen
-auto={T}:token(-1111138) && draw:2
+auto={T}:draw:2 && transforms((,newability[target(*|myhand) moveTo(mylibrary)])) forever
 auto=cumulativeupcost[{2}] sacrifice
 text=Cumulative upkeep {2} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- {T}: Draw two cards, then put a card from your hand on top of your library.
 mana={2}{U}
@@ -68818,14 +68714,6 @@ type=Creature
 subtype=Human Wizard
 power=2
 toughness=1
-[/card]
-[card]
-name=Survivor's MoveToTop
-auto=counter(0/0,1,Survivor)
-auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Survivor}>0) moveTo(myLibrary) target(*|myhand) && counter(0/0,-1,Survivor) && counter(0/0,1,Bury)
-auto=thisforeach(counter{0/0.1.Bury}>0) bury
-id=-1111138
-type=nothing
 [/card]
 [card]
 name=Sustainer of the Realm
@@ -71385,21 +71273,13 @@ toughness=2
 [/card]
 [card]
 name=Thought Courier
-auto={T}:token(-1111140) && draw:1
+auto={T}:draw:1 && transforms((,newability[target(*|myhand) reject])) forever
 text={T}: Draw a card, then discard a card.
 mana={1}{U}
 type=Creature
 subtype=Human Wizard
 power=1
 toughness=1
-[/card]
-[card]
-name=Thought Courier's Discard
-auto=counter(0/0,1,Thought Courier)
-auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Thought Courier}>0) reject target(*|myhand) && counter(0/0,-1,Thought Courier) && counter(0/0,1,Bury)
-auto=thisforeach(counter{0/0.1.Bury}>0) bury
-id=-1111140
-type=nothing
 [/card]
 [card]
 name=Thought Gorger
@@ -73655,18 +73535,10 @@ toughness=3
 name=Treva's Charm
 auto=aslongas(enchantment|battlefield) choice destroy target(enchantment)
 auto=aslongas(creature[attacking]|battlefield) choice moveTo(exile) target(creature[attacking])
-auto=choice token(-1111143) && draw:1
+auto=choice draw:1 && transforms((,newability[target(*|myhand) reject])) forever
 text=Choose one - Destroy target enchantment; or exile target attacking creature; or draw a card, then discard a card.
 mana={G}{W}{U}
 type=Instant
-[/card]
-[card]
-name=Treva's Charm's Discard
-auto=counter(0/0,1,Treva)
-auto=@movedTo(*|myhand) from(mylibrary):thisforeach(counter{0/0.1.Treva}>0) reject target(*|myhand) && counter(0/0,-1,Treva) && counter(0/0,1,Bury)
-auto=thisforeach(counter{0/0.1.Bury}>0) bury
-id=-1111143
-type=nothing
 [/card]
 [card]
 name=Treva's Ruins
