@@ -1,0 +1,40 @@
+#Testing Contagion Clasp (keyword: Proliferate
+#"When Contagion Clasp enters the battlefield, put a -1/-1 counter on target creature. -- {4}, Tap: Proliferate. (You choose any number of permanents and/or players with counters on them, then give each another counter of a kind already there.)"
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Contagion Clasp
+inplay:Spike Feeder
+manapool:{6}
+life:20
+[PLAYER2]
+inplay:Grizzly Bears
+[DO]
+Contagion Clasp
+choice 0
+Grizzly Bears
+Contagion Clasp
+Grizzly Bears
+Spike Feeder
+Contagion Clasp
+choice 0
+Contagion Clasp
+choice 0
+next
+#combatbegins
+next
+#attackers
+Spike Feeder
+choice 0
+next
+next
+next
+[ASSERT]
+COMBATENDS
+[PLAYER1]
+inplay:Contagion Clasp,Spike Feeder
+life:20
+[PLAYER2]
+life:17
+graveyard:Grizzly Bears
+[END]

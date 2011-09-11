@@ -1,0 +1,22 @@
+#Testing Armillary Sphere ("<upto:x>"): "{2}, {T}, Sacrifice Armillary Sphere: Search your library for up to two basic land cards, reveal them, and put them into your hand. Then shuffle your library."
+#Test 1: Can you search for two target basic lands?
+Wished result's answer: YES.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+library:forest,island
+inplay:Armillary Sphere
+manapool:{2}
+[PLAYER2]
+[DO]
+Armillary Sphere
+island
+forest
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:Armillary Sphere
+hand:forest,island
+manapool:{0}
+[PLAYER2]
+[END]

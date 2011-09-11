@@ -1,0 +1,31 @@
+#Testing Quillspike (remove counters from other creatures as an activation cost).
+#"{BG}, Remove a -1/-1 counter from a creature you control: Quillspike gets +3/+3 until end of turn."
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Quillspike,Spike Feeder
+manapool:{B}{B}
+[PLAYER2]
+life:20
+[DO]
+Quillspike
+Spike Feeder
+Quillspike
+Spike Feeder
+next
+#combatbegins
+next
+#attackers
+Quillspike
+next
+next
+next
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:Quillspike
+graveyard:Spike Feeder
+manapool:{0}
+[PLAYER2]
+life:13
+[END]

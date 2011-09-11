@@ -131,6 +131,8 @@ ardakar_wastes.txt
 ardent_soldier.txt
 argothian_enchantress.txt
 armadillo_cloak.txt
+Armillary_Sphere.txt
+Armillary_Sphere2.txt
 ascendant_evincar.txt
 ascendant_evincar2.txt
 ascendant_evincar3.txt
@@ -195,6 +197,7 @@ celestial_mantle.txt
 celestial_purge.txt
 celestial_sword.txt
 chainbreaker.txt
+Charge_Across_the_Araba.txt
 circle_of_protection.txt
 circle_of_protection_i211.txt
 civic_wayfinder.txt
@@ -207,6 +210,7 @@ colossus_of_sardia1.txt
 colossus_of_sardia2.txt
 composite_golem.txt
 conservator.txt
+Contagion_Clasp.txt
 control_magic.txt
 control_magic2.txt
 control_magic3.txt
@@ -375,6 +379,8 @@ jump.txt
 juniper_order_ranger.txt
 kaldra.txt
 karns_touch_i233.txt
+Keeper_of_the_Beasts.txt
+Keeper_of_the_Beasts2.txt
 keldon_warlord.txt
 keldon_warlord2.txt
 khalni_hydra.txt
@@ -394,11 +400,14 @@ kraken_eye4.txt
 kudzu.txt
 kudzu2.txt
 kudzu_i168.txt
+Lethargy_Trap.txt
+Lethargy_Trap2.txt
 leveler.txt
 lhurgoyf.txt
 liability.txt
 lifeforce.txt
 lifetap.txt
+Lightkeeper_of_Emeria_MULTIKICKER.txt
 lightmine_field1.txt
 lightmine_field2.txt
 living_artifact_i169.txt
@@ -416,6 +425,7 @@ masticore.txt
 masticore2.txt
 maze_of_ith.txt
 meekstone.txt
+meliras_keepers.txt
 memnarch.txt
 memory_erosion.txt
 mephidross_vampire.txt
@@ -479,6 +489,9 @@ pyknite_i426.txt
 pyroclasm.txt
 quick_sliver_FORCEDALIVE.txt
 quilled_sliver.txt
+Quillspike.txt
+Rack_and_Ruin.txt
+Rack_and_Ruin2.txt
 rain_of_filth_i206.txt
 rain_of_filth_i283.txt
 rainbow_efreet_phase_out.txt
@@ -498,6 +511,8 @@ reclusive_wight2.txt
 recover.txt
 regal_force.txt
 reinforcements_1.txt
+Rending_Vines.txt
+Rending_Vines2.txt
 resounding_roar.txt
 resurrection.txt
 resuscitate_i210.txt

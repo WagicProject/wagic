@@ -1,0 +1,19 @@
+#Testing Rack and Ruin: "Destroy two target artifacts."
+#Test 1: Can you destroy two target artifacts?
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Mox Pearl,Ornithopter
+hand:Rack and Ruin
+manapool:{2}{R}
+[PLAYER2]
+[DO]
+Rack and Ruin
+Mox Pearl
+Ornithopter
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:Mox Pearl,Ornithopter,Rack and Ruin
+[PLAYER2]
+[END]

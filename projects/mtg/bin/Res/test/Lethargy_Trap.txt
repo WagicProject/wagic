@@ -1,0 +1,30 @@
+#Testing Lethargy Trap.
+#"If three or more creatures are attacking, you may pay {U} rather than pay Lethargy Trap's mana cost. -- Attacking creatures get -3/-0 until end of turn."
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Lethargy Trap
+inplay:Mox Sapphire,Hill Giant,Grizzly Bears,Serra Angel
+[PLAYER2]
+life:20
+[DO]
+next
+#combatbegins
+next
+#attackers
+Hill Giant
+Grizzly Bears
+Serra Angel
+Mox Sapphire
+Lethargy Trap
+next
+next
+[ASSERT]
+COMBATDAMAGE
+[PLAYER1]
+inplay:Mox Sapphire,Hill Giant,Grizzly Bears,Serra Angel
+graveyard:Lethargy Trap
+manapool:{0}
+[PLAYER2]
+life:19
+[END]

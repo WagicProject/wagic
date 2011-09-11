@@ -1,0 +1,23 @@
+#Testing Rending Vines.
+#"Destroy target artifact or enchantment if its converted mana cost is less than or equal to the number of cards in your hand. -- Draw a card."
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+library:Grizzly Bears
+hand:Island,Forest,Rending Vines
+manapool:{G}{G}{G}
+[PLAYER2]
+inplay:Omega Myr
+life:20
+[DO]
+Rending Vines
+Omega Myr
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+hand:Island,Forest,Grizzly Bears
+graveyard:Rending Vines
+manapool:{0}
+[PLAYER2]
+graveyard:Omega Myr
+[END]

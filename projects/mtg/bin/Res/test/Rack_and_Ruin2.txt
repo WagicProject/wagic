@@ -1,0 +1,21 @@
+#Testing Rack and Ruin: "Destroy two target artifacts."
+#Test 1: Can you cast Rack and Ruin when there is only one artifact on the battlefield?
+#Answer: It should not be possible to cast Rack and Ruin.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Ornithopter
+hand:Rack and Ruin
+manapool:{2}{R}
+[PLAYER2]
+[DO]
+Rack and Ruin
+Ornithopter
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Ornithopter
+hand:Rack and Ruin
+manapool:{2}{R}
+[PLAYER2]
+[END]

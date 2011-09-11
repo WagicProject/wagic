@@ -1,0 +1,20 @@
+#Testing Keeper of the Beasts (keyword:if..then).
+#"{G}, {T}: Choose target opponent who controlled more creatures than you did as you activated this ability. Put a 2/2 green Beast creature token onto the battlefield."
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Keeper of the Beasts
+manapool:{G}
+[PLAYER2]
+inplay:Grizzly Bears,Raging Goblin
+life:20
+[DO]
+Keeper of the Beasts
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Keeper of the Beasts,*
+manapool:{0}
+[PLAYER2]
+inplay:Grizzly Bears,Raging Goblin
+[END]

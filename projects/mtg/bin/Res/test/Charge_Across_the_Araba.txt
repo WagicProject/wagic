@@ -1,0 +1,32 @@
+#Testing Charge Across the Araba (target=<anyamount>*)
+#
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Charge Across the Araba
+inplay:Plains,Tundra,Savannah,Grizzly Bears,Hill Giant
+manapool:{4}{W}
+[PLAYER2]
+life:20
+[DO]
+Charge Across the Araba
+Plains
+Tundra
+Savannah
+next
+next
+next
+Grizzly Bears
+Hill Giant
+next
+next
+next
+[ASSERT]
+COMBATENDS
+[PLAYER1]
+inplay:Grizzly Bears,Hill Giant
+hand:Plains,Tundra,Savannah
+graveyard:Charge Across the Araba
+[PLAYER2]
+life:9
+[END]

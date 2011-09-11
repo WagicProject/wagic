@@ -7284,7 +7284,7 @@ toughness=3
 [/card]
 [card]
 name=Bloodhusk Ritualist
-auto=target(player) discard:kicked
+auto=kicker target(player) discard:kicked
 kicker=multi{B}
 text=Multikicker {B} (You may pay an additional {B} any number of times as you cast this spell.) -- When Bloodhusk Ritualist enters the battlefield, target opponent discards a card for each time it was kicked.
 mana={2}{B}
@@ -16173,7 +16173,7 @@ toughness=3
 [/card]
 [card]
 name=Deathforge Shaman
-auto=target(player) damage:kicked && damage:kicked
+auto=kicker choice target(player) damage:kicked && damage:kicked
 kicker=multi{R}
 text=Multikicker {R} (You may pay an additional {R} any number of times as you cast this spell.) -- When Deathforge Shaman enters the battlefield, it deals damage to target player equal to twice the number of times it was kicked.
 mana={4}{R}
@@ -21878,7 +21878,7 @@ toughness=5
 [/card]
 [card]
 name=Everflowing Chalice
-auto=counter(0/0,kicked,charge)
+auto=kicker counter(0/0,kicked,charge)
 auto={T}:thisforeach(counter{0/0.1.charge}) add{1}
 kicker=multi{2}
 text=Multikicker {2} (You may pay an additional {2} any number of times as you cast this spell.) -- Everflowing Chalice enters the battlefield with a charge counter on it for each time it was kicked. -- {T}: Add {1} to your mana pool for each charge counter on Everflowing Chalice.
@@ -39643,7 +39643,7 @@ toughness=2
 [card]
 name=Lightkeeper of Emeria
 abilities=flying
-auto=life:kicked && life:kicked
+auto=kicker life:kicked && life:kicked
 kicker=multi{W}
 text=Multikicker {W} (You may pay an additional {W} any number of times as you cast this spell.) -- Flying -- When Lightkeeper of Emeria enters the battlefield, you gain 2 life for each time it was kicked.
 mana={3}{W}

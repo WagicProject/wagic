@@ -1,0 +1,30 @@
+#Testing Melira's Keepers (keyword "countershroud")
+#"Melira's Keepers can't have counters placed on it."
+#EXAMPLE: Melira's Keepers shouldn't not die when blocking or being blocked by a creature with Infect.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Melira's Keepers
+[PLAYER2]
+inplay:Putrefax
+[DO]
+next
+#combatbegins
+next
+#attackers
+Melira's Keepers
+next
+#blockers
+Putrefax
+next
+#combatdamage
+next
+#combatend
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:Melira's Keepers
+manapool:{0}
+[PLAYER2]
+graveyard:Putrefax
+[END]
