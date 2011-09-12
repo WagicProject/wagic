@@ -3840,7 +3840,7 @@ int TargetAbility::reactToClick(MTGCardInstance * card)
     }
     else
     {
-        if (card == source && (tc->targetsReadyCheck() == TARGET_OK || tc->targetsReadyCheck() == TARGET_OK_FULL))
+        if (card == source && ((tc->targetsReadyCheck() == TARGET_OK && !tc->targetMin) || tc->targetsReadyCheck() == TARGET_OK_FULL))
         {
             waitingForAnswer = 0;
             game->mLayers->actionLayer()->setCurrentWaitingAction(NULL);
