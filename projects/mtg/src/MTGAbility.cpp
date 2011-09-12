@@ -226,6 +226,29 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card,Player * player
                     return 0;
             }
         }
+        check = restriction[i].find("morbid");
+        if(check != string::npos)
+        {
+            bool isMorbid = false;
+            for(int cp = 0;cp < 2;cp++)
+            {
+                Player * checkCurrent = game->players[cp];
+                MTGGameZone * grave = checkCurrent->game->graveyard;
+                for(unsigned int gy = 0;gy < grave->cardsSeenThisTurn.size();gy++)
+                {
+                    MTGCardInstance * checkCard = grave->cardsSeenThisTurn[gy];
+                    if(checkCard->isCreature())
+                    {
+                        isMorbid = true;
+                        break;
+                    }
+                }
+                if(isMorbid)
+                    break;
+            }
+            if(!isMorbid)
+                return 0;
+        }
         check = restriction[i].find("one of a kind");
         if(check != string::npos)
         {
