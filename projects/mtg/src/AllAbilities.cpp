@@ -3386,6 +3386,7 @@ AUpkeep::AUpkeep(int _id, MTGCardInstance * card, MTGAbility * a, ManaCost * _co
 {
     paidThisTurn = 0;
     aType = MTGAbility::UPCOST;
+    backupMana = NEW ManaCost(this->getCost());
 }
 
     int AUpkeep::receiveEvent(WEvent * event)
@@ -3424,7 +3425,14 @@ void AUpkeep::Update(float dt)
                     currentage = targetCounter->nb - 1;
                 }
             if(currentage)
-                paidThisTurn -= currentage;
+            {
+                paidThisTurn = 0;
+                this->getCost()->copy(backupMana);
+                for(int age = 0;age < currentage;age++)
+                {
+                    this->getCost()->add(backupMana); 
+                }
+            }
         }
         if (newPhase == phase + 1 && once)
             once = 2;
@@ -3466,6 +3474,7 @@ AUpkeep * AUpkeep::clone() const
 AUpkeep::~AUpkeep()
 {
     SAFE_DELETE(ability);
+    SAFE_DELETE(backupMana);
 }
 
 //A Phase based Action

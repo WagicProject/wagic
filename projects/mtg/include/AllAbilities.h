@@ -3602,6 +3602,7 @@ public:
     int once;
     bool Cumulative;
     int currentage;
+    ManaCost * backupMana;
 
     AUpkeep(int _id, MTGCardInstance * card, MTGAbility * a, ManaCost * _cost, int restrictions = 0, int _phase =
         Constants::MTG_PHASE_UPKEEP, int _once = 0,bool Cumulative = false);
