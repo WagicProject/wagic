@@ -4110,8 +4110,8 @@ toughness=2
 [card]
 name=Avatar of Discord
 abilities=flying
-auto=aslongas(*|myhand) choice target(<2>*|myhand) reject oneshot >1
-auto=choice sacrifice all(this)
+auto=if type(*|myhand)~morethan~1 then target(<2>*|myhand) reject
+auto=ifnot type(*|myhand)~morethan~1 then sacrifice all(this)
 text=({(b/r)} can be paid with either {B} or {R}.) -- Flying -- When Avatar of Discord enters the battlefield, sacrifice it unless you discard two cards.
 mana={BR}{BR}{BR}
 type=Creature
