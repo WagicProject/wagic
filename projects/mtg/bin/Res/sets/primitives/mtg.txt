@@ -70716,8 +70716,9 @@ name=Tezzeret's Gambit
 auto=draw:2 controller
 auto=target(proliferation) proliferate
 text=Draw two cards, then proliferate.
+color=blue
 mana={3}{p(U)}
-type=Instant
+type=Sorcery
 [/card]
 [card]
 name=Thalakos Deceiver
