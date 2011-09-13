@@ -253,6 +253,19 @@ ThisDescriptor * ThisDescriptorFactory::createThisDescriptor(string s)
         return NULL;
     }
     
+        //this creature has 2 of the same weapons in its children vector
+    found = s.find("dualwielding");
+    if (found != string::npos)
+    {
+        ThisDualWield * td = NEW ThisDualWield(criterion);
+        if (td)
+        {
+            td->comparisonMode = mode;
+            return td;
+        }
+        return NULL;
+    }
+
     //controller life
     found = s.find("opponentlife");
     if (found != string::npos)
@@ -559,6 +572,25 @@ result = 1;
 ThisDamaged* ThisDamaged::clone() const 
 {
     return NEW ThisDamaged(*this);
+}
+
+ThisDualWield::ThisDualWield(int dualWield)
+{
+
+    comparisonCriterion = dualWield;
+}
+
+int ThisDualWield::match(MTGCardInstance * card)
+{
+int result = 0;
+if(card->isDualWielding)
+result = 1;
+    return matchValue(result);
+}
+
+ThisDualWield* ThisDualWield::clone() const 
+{
+    return NEW ThisDualWield(*this);
 }
 
 ThisToughness::ThisToughness(int toughness)

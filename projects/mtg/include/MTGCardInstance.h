@@ -91,6 +91,7 @@ public:
     int fresh;
     int MaxLevelUp;
     int kicked;
+    bool isDualWielding;
     Player * lastController;
     MTGGameZone * getCurrentZone();
     MTGGameZone * previousZone;

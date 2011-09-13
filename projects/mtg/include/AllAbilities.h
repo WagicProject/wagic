@@ -2271,7 +2271,8 @@ public:
     {
         if (skills.find(card) != skills.end())
         {
-            game->removeObserver(skills[card]);
+            if(!game->removeObserver(skills[card]))
+                skills[card]->destroy();
             skills.erase(card);
         }
         return 1;
@@ -3537,6 +3538,18 @@ public:
     int destroy();
     ACounterShroud * clone() const;
     ~ACounterShroud();
+};
+//track an effect using counters.
+class ACounterTracker: public MTGAbility
+{
+public:
+    Counter * counter;
+    int removed;
+    ACounterTracker(int id, MTGCardInstance * source, MTGCardInstance * target, Counter * counter = NULL);
+    int addToGame();
+    int destroy();
+    ACounterTracker * clone() const;
+    ~ACounterTracker();
 };
 //Remove all abilities from target
 class ALoseAbilities: public MTGAbility

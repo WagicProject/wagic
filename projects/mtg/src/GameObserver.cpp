@@ -462,6 +462,29 @@ void GameObserver::gameStateBasedEffects()
                 card->graveEffects = false;
                 card->exileEffects = false;
             }
+
+            if(card->childrenCards.size())
+            {
+                MTGCardInstance * check = NULL;
+                MTGCardInstance * matched = NULL;
+                sort(card->childrenCards.begin(),card->childrenCards.end());
+                for(unsigned int wC = 0; wC < int(card->childrenCards.size());wC++)
+                {
+                    check = card->childrenCards[wC];
+                    for(unsigned int wCC = 0; wCC < int(card->childrenCards.size());wCC++)
+                    {
+                        if(check->getName() == card->childrenCards[wCC]->getName() && check != card->childrenCards[wCC])
+                        {
+                            card->isDualWielding = true;
+                            matched = card->childrenCards[wCC];
+                        }
+                    }
+                    if(matched)
+                        wC = card->childrenCards.size();
+                }
+                if(!matched)
+                    card->isDualWielding = false;
+            }
         }
     }
     //-------------------------------------
@@ -539,7 +562,6 @@ void GameObserver::gameStateBasedEffects()
                     c->wasDealtDamage = false;
                 c->damageToController = false;
                 c->damageToOpponent = false;
-
             }
             for (int t = 0; t < nbcards; t++)
             {

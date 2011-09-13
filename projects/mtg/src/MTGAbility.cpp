@@ -2062,7 +2062,20 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         MTGAbility * a = NEW ACounterShroud(id, card, target,counter);
         return a;
     }
-
+    //use counters to track by counters to track an efect by counter name.
+    vector<string> splitCounterTracking = parseBetween(s, "countertrack(", ")");
+    if (splitCounterTracking.size())
+    {
+        string splitCounterTrack = splitCounterTracking[1];
+        Counter * counter = NULL;
+        counter = parseCounter(splitCounterTrack, target, spell);
+        if (!counter)
+        {
+            DebugTrace("MTGAbility: can't parse counter:" << s);
+            return NULL;
+        }
+        return NEW ACounterTracker(id, card, target,counter);
+    }
     //removes all counters of the specifified type.
     vector<string> splitRemoveCounter = parseBetween(s, "removeallcounters(", ")");
     if (splitRemoveCounter.size())
@@ -4293,9 +4306,20 @@ TriggerAtPhase::TriggerAtPhase(int id, MTGCardInstance * source, Targetable * ta
             result = 1;
             break;
         }
+        if(castRestriction.size())
+        {
+            if(!source)
+                result = 1;//can't check these restrictions without a source aka:in a rule.txt
+            AbilityFactory af;
+            int checkCond = af.parseCastRestrictions(source,source->controller(),castRestriction);
+            if(!checkCond)
+                result = 0;
+        }
+
     }
         if(once && activeTrigger)
             activeTrigger = false;
+
     return result;
 }
 

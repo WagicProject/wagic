@@ -416,6 +416,60 @@ ACounterShroud::~ACounterShroud()
     SAFE_DELETE(counter);
 }
 
+//sheild a card from a certain type of counter.
+ACounterTracker::ACounterTracker(int id, MTGCardInstance * source, MTGCardInstance * target, Counter * counter) :
+MTGAbility(id, source, target),counter(counter)
+{
+    removed = 0;
+}
+
+int ACounterTracker::addToGame()
+{
+    MTGCardInstance * _target = (MTGCardInstance*)target;
+    if(_target && !removed)
+    {
+        if(_target->counters->hasCounter(counter->name.c_str(),counter->power,counter->toughness) && _target->counters->hasCounter(counter->name.c_str(),counter->power,counter->toughness)->nb >= counter->nb)
+        {
+            for(int nb = 0;nb < counter->nb;nb++)
+            {
+                _target->counters->removeCounter(counter->name.c_str(),counter->power,counter->toughness);
+                removed++;
+            }
+        }
+        return 1;
+    }
+    return 0;
+}
+
+int ACounterTracker::destroy()
+{
+    MTGCardInstance * _target = (MTGCardInstance*)target;
+    if(_target)
+    {
+        if(removed == counter->nb)
+        {
+            for(int nb = 0;nb < counter->nb;nb++)
+            {
+                _target->counters->addCounter(counter->name.c_str(),counter->power,counter->toughness);
+            }
+        }
+    }
+    removeFromGame();
+    return 1;
+}
+
+ACounterTracker * ACounterTracker::clone() const
+{
+    ACounterTracker * a = NEW ACounterTracker(*this);
+    a->counter = this->counter;
+    return a;
+}
+
+ACounterTracker::~ACounterTracker()
+{
+    SAFE_DELETE(counter);
+}
+
 //removeall counters of a certain type or all.
 AARemoveAllCounter::AARemoveAllCounter(int id, MTGCardInstance * source, MTGCardInstance * target, const char * _name, int power, int toughness,
         int nb,bool all, ManaCost * cost) :

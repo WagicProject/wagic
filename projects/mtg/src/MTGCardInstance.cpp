@@ -138,6 +138,7 @@ void MTGCardInstance::initMTGCI()
     damageToOpponent = false;
     damageToController = false;
     wasDealtDamage = false;
+    isDualWielding = false;
     suspended = false;
     castMethod = Constants::NOT_CAST;
     mPropertiesChangedSinceLastUpdate = false;

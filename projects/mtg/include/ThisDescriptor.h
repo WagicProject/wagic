@@ -133,6 +133,14 @@ class ThisDamaged:public ThisDescriptor{
     ThisDamaged * clone() const;
 };
 
+class ThisDualWield:public ThisDescriptor{
+ public:
+    virtual int match(MTGCardInstance * card);
+
+	ThisDualWield(int dualWield);
+    ThisDualWield * clone() const;
+};
+
 class ThisPower:public ThisDescriptor{
  public:
     virtual int match(MTGCardInstance * card);
