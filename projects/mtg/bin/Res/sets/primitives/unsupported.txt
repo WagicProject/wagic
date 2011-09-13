@@ -17643,7 +17643,7 @@ toughness=2
 #removed, this card caused a palifora of bugs.
 name=Puresteel Paladin
 auto=@movedTo(equipment|mybattlefield):may draw:1
-auto=aslongas(artifact|mybattlefield) lord(equipment|mybattlefield) {0}:equip >2
+#auto=aslongas(artifact|mybattlefield) lord(equipment|mybattlefield) {0}:equip >2
 text=Whenever an Equipment enters the battlefield under your control, you may draw a card. -- Metalcraft - As long as you control 3 or more artifacts, each Equipment you control has equip {0}.
 mana={W}{W}
 type=Creature
