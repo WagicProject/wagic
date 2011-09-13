@@ -30025,7 +30025,7 @@ subtype=Aura
 name=Guardians' Pledge
 auto=all(creature[white]|mybattlefield) 2/2
 text=White creatures you control get +2/+2 until end of turn.
-mana={2}{W}{W}
+mana={1}{W}{W}
 type=Instant
 [/card]
 [card]
@@ -48809,7 +48809,7 @@ type=Land
 [card]
 name=Osai Vultures
 abilities=flying
-auto=@each my end:foreach(creature[fresh]|graveyard) counter(0/0,1,Carrion)
+auto=@each end restriction{morbid}: counter(0/0,1,Carrion)
 auto={C(0/0,-2,Carrion)}:1/1
 text=Flying -- At the beginning of each end step, if a creature was put into a graveyard from the battlefield this turn, put a carrion counter on Osai Vultures. -- Remove two carrion counters from Osai Vultures: Osai Vultures gets +1/+1 until end of turn.
 mana={1}{W}
@@ -53349,6 +53349,7 @@ subtype=Arcane
 name=Quietus Spike
 text=Equipped creature has deathtouch. -- Whenever equipped creature deals combat damage to a player, that player loses half his or her life, rounded up. -- Equip {3}
 mana={3}
+auto={3}:equip
 auto=teach(creature) deathtouch
 auto=@combatdamaged(opponent) from(mytgt):life:-halfupopponentlifetotal opponent
 type=Artifact
@@ -66459,7 +66460,7 @@ type=Sorcery
 [card]
 name=Squall Drifter
 abilities=flying
-auto={T}:Add {W}
+auto={W}{T}:tap target(creature)
 text=Flying -- {W}, {T}: Tap target creature.
 mana={1}{W}
 type=Snow Creature
