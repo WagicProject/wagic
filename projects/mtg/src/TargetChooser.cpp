@@ -182,6 +182,8 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
             }
             WParsedInt * howmuch = NEW WParsedInt(howmany, (Spell*)card, card);
             howmany.find("anyamount") != string::npos?maxtargets = TargetChooser::UNLITMITED_TARGETS:maxtargets = howmuch->getValue();
+            if(howmany.find("anyamount") != string::npos)
+                targetMin = false;
             delete howmuch;
             s1 = s1.substr(end + 1);
         }
