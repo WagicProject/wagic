@@ -977,6 +977,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             string cond = sWithoutTc.substr(ifKeywords[i].length(),ifKeywords[i].length() + sWithoutTc.find(" then ")-6);
             string s1 = s.substr(s.find(" then ")+6);
             MTGAbility * a1 = parseMagicLine(s1, id, spell, card);
+            if(!a1) return NULL;
             MTGAbility * a = NEW IfThenAbility(id, a1, card,checkIf[i],cond);
             a->canBeInterrupted = false;
             a->oneShot = true;
@@ -1022,89 +1023,14 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     found = s.find("upcostmulti");
     if (found != string::npos)
     {
-        bool Cumulative = false;
-        size_t cumulative = s.find("cumulativeupcost");
-        if(cumulative != string::npos)
-            Cumulative = true;
-        size_t start = s.find("[");
-        size_t end = s.find("]", start);
-        string s1 = s.substr(start + 1, end - start - 1);
-        size_t seperator = s1.find(";");
-        int phase = Constants::MTG_PHASE_UPKEEP;
-        int once = 0;
-        if (seperator != string::npos)
-        {
-            for (int i = 0; i < Constants::NB_MTG_PHASES; i++)
-            {
-                if (s1.find("next") != string::npos)
-                    once = 1;
-                string phaseStr = Constants::MTGPhaseCodeNames[i];
-                if (s1.find(phaseStr) != string::npos)
-                {
-                    phase = PhaseRing::phaseStrToInt(phaseStr);
-                    break;
-                }
-            }
-            s1 = s1.substr(0, seperator - 1);
-        }
-        ManaCost * cost = ManaCost::parseManaCost(s1);
-
-        if (!cost)
-        {
-            DebugTrace("MTGABILITY: Parsing Error: " << s);
-            return NULL;
-        }
-
-        string sAbility = s.substr(end + 1);
-        MTGAbility * a = parseMagicLine(sAbility, id, spell, card);
-
-        if (!a)
-        {
-            DebugTrace("MTGABILITY: Parsing Error: " << s);
-            delete (cost);
-            return NULL;
-        }
-
-        return NEW AUpkeep(id, card, a, cost, restrictions, phase, once,Cumulative);
+        return AbilityFactory::parseUpkeepAbility(s,card,spell,restrictions,id);
     }
-    
     //Phase based actions
     found = s.find("phaseactionmulti");
     if (found != string::npos)
     {
-        vector<string> splitActions = parseBetween(s, "[", "]");
-        if (!splitActions.size())
-        {
-            DebugTrace("MTGABILITY:Parsing Error " << s);
-            return NULL;
-        }
-        string s1 = splitActions[1];
-        int phase = Constants::MTG_PHASE_UPKEEP;
-        for (int i = 0; i < Constants::NB_MTG_PHASES; i++)
-        {
-            string phaseStr = Constants::MTGPhaseCodeNames[i];
-            if (s1.find(phaseStr) != string::npos)
-            {
-                phase = PhaseRing::phaseStrToInt(phaseStr);
-                break;
-            }
-        }
-        
-        bool opponentturn = (s1.find("my") == string::npos);
-        bool myturn = (s1.find("opponent") == string::npos);
-
-        bool sourceinPlay = (s1.find("sourceinplay") != string::npos);
-        bool next = (s1.find("next") == string::npos); //Why is this one the opposite of the two others? That's completely inconsistent
-        bool once = (s1.find("once") != string::npos);
-
-        MTGCardInstance * _target = NULL;
-        if (spell)
-            _target = spell->getNextCardTarget();
-        if(!_target)
-            _target = target;
-          return NEW APhaseActionGeneric(id, card,_target, splitActions[2], restrictions, phase,sourceinPlay,next,myturn,opponentturn,once);
+        return parsePhaseActionAbility(s,card,spell,target,restrictions,id);
     }
-    
     //Multiple abilities for ONE cost
     found = s.find("&&");
     if (found != string::npos)
@@ -1440,98 +1366,18 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         return a;
    }
 
-    //Phase based actions
-    //TODO: This is 100% the same code as phaseActionMulti, can't these 2 be merged somehow?   
+    //Phase based actions  
     found = s.find("phaseaction");
     if (found != string::npos)
     {
-        vector<string> splitActions = parseBetween(s, "[", "]");
-        if (!splitActions.size())
-        {
-            DebugTrace("MTGABILITY:Parsing Error " << s);
-            return NULL;
-        }
-        string s1 = splitActions[1];
-        int phase = Constants::MTG_PHASE_UPKEEP;
-        for (int i = 0; i < Constants::NB_MTG_PHASES; i++)
-        {
-            string phaseStr = Constants::MTGPhaseCodeNames[i];
-            if (s1.find(phaseStr) != string::npos)
-            {
-                phase = PhaseRing::phaseStrToInt(phaseStr);
-                break;
-            }
-        }
-
-        bool opponentturn = (s1.find("my") == string::npos);
-        bool myturn = (s1.find("opponent") == string::npos);
-
-        bool sourceinPlay = (s1.find("sourceinplay") != string::npos);
-        bool next = (s1.find("next") == string::npos); //Why is this one the opposite of the two others? That's completely inconsistent
-        bool once = (s1.find("once") != string::npos);
-
-        MTGCardInstance * _target = NULL;
-        if (spell)
-            _target = spell->getNextCardTarget();
-        if(!_target)
-            _target = target;
-          return NEW APhaseActionGeneric(id, card,_target, trim(splitActions[2]), restrictions, phase,sourceinPlay,next,myturn,opponentturn,once);
+        return parsePhaseActionAbility(s,card,spell,target,restrictions,id);
     }
-
     //Upkeep Cost
-    //TODO: This is 100% the same code as upkeepCostMulti, can't these 2 be merged somehow?
-    //also see phaseActionMulti
     found = s.find("upcost");
     if (found != string::npos)
     {
-    bool Cumulative = false;
-    size_t cumulative = s.find("cumulativeupcost");
-    if(cumulative != string::npos)
-    Cumulative = true;
-        size_t start = s.find("[");
-        size_t end = s.find("]", start);
-        string s1 = s.substr(start + 1, end - start - 1);
-        size_t seperator = s1.find(";");
-        int phase = Constants::MTG_PHASE_UPKEEP;
-        int once = 0;
-        if (seperator != string::npos)
-        {
-            for (int i = 0; i < Constants::NB_MTG_PHASES; i++)
-            {
-                if (s1.find("next") != string::npos)
-                    once = 1;
-
-                string phaseStr = Constants::MTGPhaseCodeNames[i];
-                if (s1.find(phaseStr) != string::npos)
-                {
-                    phase = PhaseRing::phaseStrToInt(phaseStr);
-                    break;
-                }
-
-            }
-            s1 = s1.substr(0, seperator - 1);
-        }
-        ManaCost * cost = ManaCost::parseManaCost(s1);
-
-        if (!cost)
-        {
-            DebugTrace("MTGABILITY: Parsing Error: " << s);
-            return NULL;
-        }
-
-        string sAbility = s.substr(end + 1);
-        MTGAbility * a = parseMagicLine(sAbility, id, spell, card);
-
-        if (!a)
-        {
-            DebugTrace("MTGABILITY: Parsing Error: " << s);
-            delete (cost);
-            return NULL;
-        }
-
-        return NEW AUpkeep(id, card, a, cost, restrictions, phase, once,Cumulative);
+       return AbilityFactory::parseUpkeepAbility(s,card,spell,restrictions,id);
     }
-
     //Cycling
     found = s.find("cycling");
     if (found != string::npos)
@@ -2453,6 +2299,90 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
 
     DebugTrace(" no matching ability found. " << s);
     return NULL;
+}
+
+MTGAbility * AbilityFactory::parseUpkeepAbility(string s,MTGCardInstance * card,Spell * spell,int restrictions,int id)
+{
+    MTGAbility * a1 = NULL;
+    bool Cumulative = false;
+    size_t cumulative = s.find("cumulativeupcost");
+    if(cumulative != string::npos)
+        Cumulative = true;
+    size_t start = s.find("[");
+    size_t end = s.find("]", start);
+    string s1 = s.substr(start + 1, end - start - 1);
+    size_t seperator = s1.find(";");
+    int phase = Constants::MTG_PHASE_UPKEEP;
+    int once = 0;
+    if (seperator != string::npos)
+    {
+        for (int i = 0; i < Constants::NB_MTG_PHASES; i++)
+        {
+            if (s1.find("next") != string::npos)
+                once = 1;
+
+            string phaseStr = Constants::MTGPhaseCodeNames[i];
+            if (s1.find(phaseStr) != string::npos)
+            {
+                phase = PhaseRing::phaseStrToInt(phaseStr);
+                break;
+            }
+
+        }
+        s1 = s1.substr(0, seperator);
+    }
+    ManaCost * cost = ManaCost::parseManaCost(s1);
+
+    if (!cost)
+    {
+        DebugTrace("MTGABILITY: Parsing Error: " << s);
+        return NULL;
+    }
+
+    string sAbility = s.substr(end + 1);
+    MTGAbility * a = parseMagicLine(sAbility, id, spell, card);
+
+    if (!a)
+    {
+        DebugTrace("MTGABILITY: Parsing Error: " << s);
+        delete (cost);
+        return NULL;
+    }
+    return  NEW AUpkeep(id, card, a, cost, restrictions, phase, once,Cumulative);;
+}
+
+MTGAbility * AbilityFactory::parsePhaseActionAbility(string s,MTGCardInstance * card,Spell * spell,MTGCardInstance * target, int restrictions,int id)
+{
+        vector<string> splitActions = parseBetween(s, "[", "]");
+        if (!splitActions.size())
+        {
+            DebugTrace("MTGABILITY:Parsing Error " << s);
+            return NULL;
+        }
+        string s1 = splitActions[1];
+        int phase = Constants::MTG_PHASE_UPKEEP;
+        for (int i = 0; i < Constants::NB_MTG_PHASES; i++)
+        {
+            string phaseStr = Constants::MTGPhaseCodeNames[i];
+            if (s1.find(phaseStr) != string::npos)
+            {
+                phase = PhaseRing::phaseStrToInt(phaseStr);
+                break;
+            }
+        }
+
+        bool opponentturn = (s1.find("my") == string::npos);
+        bool myturn = (s1.find("opponent") == string::npos);
+        bool sourceinPlay = (s1.find("sourceinplay") != string::npos);
+        bool next = (s1.find("next") == string::npos); //Why is this one the opposite of the two others? That's completely inconsistent
+        bool once = (s1.find("once") != string::npos);
+
+        MTGCardInstance * _target = NULL;
+        if (spell)
+            _target = spell->getNextCardTarget();
+        if(!_target)
+            _target = target;
+          return NEW APhaseActionGeneric(id, card,_target, trim(splitActions[2]), restrictions, phase,sourceinPlay,next,myturn,opponentturn,once);
 }
 
 //Tells the AI if the ability should target itself or an ennemy

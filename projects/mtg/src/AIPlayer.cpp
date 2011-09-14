@@ -665,7 +665,6 @@ int AIAction::getEfficiency()
     if (s->has(ability))
         return 0;
     MTGAbility * a = AbilityFactory::getCoreAbility(ability);
-
     if (!a)
     {
         DebugTrace("FATAL: Ability is NULL in AIAction::getEfficiency()");
@@ -941,40 +940,29 @@ int AIAction::getEfficiency()
         }
         break;
     }
-
-    case MTGAbility::UPCOST:
-    {
-        //hello, Ai pay your upcost please :P, this entices Ai into paying upcost, the conditional isAi() is required strangely ai is able to pay upcost during YOUR upkeep.
-        if (g->getCurrentGamePhase() == Constants::MTG_PHASE_UPKEEP && g->currentPlayer == p && p == a->source->controller())
-        {
-            efficiency = 100;
-        }
-        break;
-    }
-
     case MTGAbility::FOREACH:
     case MTGAbility::MANA_PRODUCER://only way to hit this condition is nested manaabilities, ai skips manaproducers by defualt when finding an ability to use.
     {
         MTGCardInstance * _target = (MTGCardInstance *) (a->target);
         MTGAbility * a = AbilityFactory::getCoreAbility(ability);
-
+        AManaProducer * amp = dynamic_cast<AManaProducer*>(a);
         efficiency = 0;
         //trying to encourage Ai to use his foreach manaproducers in first main
-        if (a->getCost() && a->getCost()->getConvertedCost() && a->aType == MTGAbility::MANA_PRODUCER && (g->getCurrentGamePhase() == Constants::MTG_PHASE_FIRSTMAIN
+        if (amp && amp->output && amp->output->getConvertedCost() && (g->getCurrentGamePhase() == Constants::MTG_PHASE_FIRSTMAIN
                 || g->getCurrentGamePhase() == Constants::MTG_PHASE_SECONDMAIN) && _target->controller()->game->hand->nb_cards > 0)
         {
             efficiency = 0;
             for (int i = Constants::MTG_NB_COLORS - 1; i > 0; i--)
             {
                 if ((p->game->hand->hasColor(i) || p->game->hand->hasColor(0))
-                        && (dynamic_cast<AManaProducer*> (a)->output->hasColor(i)))
+                        && amp->output->hasColor(i))
                 {
                     
                     efficiency = 100;
                 }
             }
 
-            if (a->getCost() && a->getCost()->getConvertedCost() && p->game->hand->hasX())
+            if (amp->getCost() && amp->getCost()->getConvertedCost() && p->game->hand->hasX())
                 efficiency = 100;
 
         }
@@ -1195,6 +1183,14 @@ int AIAction::getEfficiency()
             efficiency = 10 + (WRand() % 30);
         }
         break;
+    }
+    if(AUpkeep * auk = dynamic_cast<AUpkeep *>(ability))
+    {
+        //hello, Ai pay your upcost please :P, this entices Ai into paying upcost, the conditional isAi() is required strangely ai is able to pay upcost during YOUR upkeep.
+        if (auk && g->getCurrentGamePhase() == Constants::MTG_PHASE_UPKEEP && g->currentPlayer == p && p == a->source->controller())
+        {
+            efficiency = 100;
+        }
     }
     if (AAMover * aam = dynamic_cast<AAMover *>(a))
     {

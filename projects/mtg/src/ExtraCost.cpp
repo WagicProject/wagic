@@ -621,16 +621,17 @@ int CounterCost::isPaymentSet()
 int CounterCost::canPay()
 {
     // if target needs to be chosen, then move on.
-    if(!target)
-        return 0;
     if (tc)
         return 1;
     if (counter->nb >= 0)
         return 1; //add counters always possible
     // otherwise, move on only if target has enough counters
-    Counter * targetCounter = target->counters->hasCounter(counter->name.c_str(), counter->power, counter->toughness);
-    if (targetCounter && targetCounter->nb >= -counter->nb)
-        return 1;
+    if(target)
+    {
+        Counter * targetCounter = target->counters->hasCounter(counter->name.c_str(), counter->power, counter->toughness);
+        if (targetCounter && targetCounter->nb >= -counter->nb)
+            return 1;
+    }
     return 0;
 }
 
