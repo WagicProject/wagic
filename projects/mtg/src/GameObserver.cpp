@@ -468,10 +468,10 @@ void GameObserver::gameStateBasedEffects()
                 MTGCardInstance * check = NULL;
                 MTGCardInstance * matched = NULL;
                 sort(card->childrenCards.begin(),card->childrenCards.end());
-                for(unsigned int wC = 0; wC < int(card->childrenCards.size());wC++)
+                for(size_t wC = 0; wC < card->childrenCards.size();wC++)
                 {
                     check = card->childrenCards[wC];
-                    for(unsigned int wCC = 0; wCC < int(card->childrenCards.size());wCC++)
+                    for(size_t wCC = 0; wCC < card->childrenCards.size();wCC++)
                     {
                         if(check->getName() == card->childrenCards[wCC]->getName() && check != card->childrenCards[wCC])
                         {
