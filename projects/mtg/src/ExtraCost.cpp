@@ -621,6 +621,8 @@ int CounterCost::isPaymentSet()
 int CounterCost::canPay()
 {
     // if target needs to be chosen, then move on.
+    if(!target)
+        return 0;
     if (tc)
         return 1;
     if (counter->nb >= 0)
@@ -758,7 +760,8 @@ int ExtraCosts::canPay()
     {
         if (!costs[i]->canPay())
         {
-            costs[i]->target->isExtraCostTarget = false;
+            if(costs[i]->target)
+                costs[i]->target->isExtraCostTarget = false;
             return 0;
         }
     }
