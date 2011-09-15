@@ -839,7 +839,7 @@ public:
     MTGAbility * delayedAbility;
     int type;
     string Cond;
-    IfThenAbility(int _id,MTGAbility * delayedAbility = NULL, MTGCardInstance * _source=NULL, int type = 1,string Cond = "");
+    IfThenAbility(int _id,MTGAbility * delayedAbility = NULL, MTGCardInstance * _source=NULL, Targetable * target = NULL, int type = 1,string Cond = "");
     int resolve();
     const char * getMenuText();
     IfThenAbility * clone() const;

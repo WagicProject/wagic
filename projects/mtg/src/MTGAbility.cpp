@@ -978,7 +978,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             string s1 = s.substr(s.find(" then ")+6);
             MTGAbility * a1 = parseMagicLine(s1, id, spell, card);
             if(!a1) return NULL;
-            MTGAbility * a = NEW IfThenAbility(id, a1, card,checkIf[i],cond);
+            MTGAbility * a = NEW IfThenAbility(id, a1, card,(Targetable*)target,checkIf[i],cond);
             a->canBeInterrupted = false;
             a->oneShot = true;
             if(tc)

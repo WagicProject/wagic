@@ -626,11 +626,19 @@ int CounterCost::canPay()
     if (counter->nb >= 0)
         return 1; //add counters always possible
     // otherwise, move on only if target has enough counters
+    Counter * targetCounter = NULL;
     if(target)
     {
-        Counter * targetCounter = target->counters->hasCounter(counter->name.c_str(), counter->power, counter->toughness);
-        if (targetCounter && targetCounter->nb >= -counter->nb)
-            return 1;
+        targetCounter = target->counters->hasCounter(counter->name.c_str(), counter->power, counter->toughness);
+
+    }
+    else
+    {
+        targetCounter = source->counters->hasCounter(counter->name.c_str(), counter->power, counter->toughness);
+    }
+    if (targetCounter && targetCounter->nb >= -counter->nb)
+    {
+        return 1;
     }
     return 0;
 }

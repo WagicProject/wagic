@@ -2164,8 +2164,8 @@ AAWinGame * AAWinGame::clone() const
 
 
 //IfThenEffect
-IfThenAbility::IfThenAbility(int _id, MTGAbility * delayedAbility, MTGCardInstance * _source, int type,string Cond) :
-MTGAbility(_id, _source),delayedAbility(delayedAbility), type(type),Cond(Cond)
+IfThenAbility::IfThenAbility(int _id, MTGAbility * delayedAbility, MTGCardInstance * _source, Targetable * _target, int type,string Cond) :
+MTGAbility(_id, _source,_target),delayedAbility(delayedAbility), type(type),Cond(Cond)
 {
 }
 
@@ -2173,6 +2173,7 @@ int IfThenAbility::resolve()
 {
     MTGCardInstance * card = (MTGCardInstance*)source;
     AbilityFactory af;
+    Targetable* aTarget = (Targetable*)target;
     int checkCond = af.parseCastRestrictions(card,card->controller(),Cond);
     if(Cond.find("cantargetcard(") != string::npos)
     {
@@ -2194,10 +2195,7 @@ int IfThenAbility::resolve()
         MTGAbility * a1 = delayedAbility->clone();
         if (!a1)
             return 0;
-        if(target)
-            a1->target = target;
-        if(!a1->target)
-        a1->target = source->target;
+        a1->target = aTarget;
         if(a1->oneShot)
         {
             a1->resolve();
