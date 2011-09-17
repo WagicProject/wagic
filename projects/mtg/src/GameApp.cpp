@@ -102,14 +102,10 @@ void GameApp::Create()
     // Create User Folders (for write access) if they don't exist
     {
         const char* folders[] = { "ai", "ai/baka", "ai/baka/stats", "campaigns", "graphics", "lang", "packs", "player", "player/stats", "profiles", "rules", "sets", "settings", "sound", "sound/sfx", "themes", "test"};
-        string userRoot = JFileSystem::GetInstance()->GetUserRoot();
-        MAKEDIR(userRoot.c_str());
 
         for (size_t i = 0; i < sizeof(folders)/sizeof(folders[0]); ++i)
         {
-            string current(folders[i]);
-            string folder = userRoot + current;
-            MAKEDIR(folder.c_str());
+            JFileSystem::GetInstance()->MakeDir(string(folders[i]));
         }
     }
 

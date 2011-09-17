@@ -19,6 +19,11 @@ The content that users should not be touching.
 
 #ifdef WIN32
 #pragma warning(disable : 4786)
+#include <direct.h>
+#define MAKEDIR(name) _mkdir(name)
+#else
+#include <sys/stat.h>
+#define MAKEDIR(name) mkdir(name, 0777)
 #endif
 
 #include "../include/JGE.h"
@@ -149,6 +154,8 @@ JFileSystem::JFileSystem(const string & _userPath, const string & _systemPath)
 	}
 
     mUserFSPath = userPath;
+    MAKEDIR(userPath.c_str());
+
     mSystemFSPath = systemPath;
    
     mUserFS = new filesystem(userPath.c_str());
@@ -182,6 +189,13 @@ bool JFileSystem::FileExists(const string& strFilename)
         temp.close();
 
     return result;
+}
+
+bool JFileSystem::MakeDir(const string & dir)
+{
+    string fullDir = mUserFSPath + dir;
+    MAKEDIR(fullDir.c_str());
+    return true;
 }
 
 JFileSystem::~JFileSystem()

@@ -132,6 +132,8 @@ public:
     //Returns true if strdirname exists somewhere in the fileSystem, and is a directory
     bool DirExists(const string& strDirname);
 
+    bool MakeDir(const string & dir);
+
     static void init( const string & userPath, const string & systemPath = "");
 
 

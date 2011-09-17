@@ -633,24 +633,26 @@ GameOption* GameSettings::get(int optionID)
     return &invalid_option;
 }
 
+void GameSettings::createProfileFolders()
+{
+     if (!profileOptions)
+         return;
+
+    string temp = profileFile("", "", false);
+    JFileSystem::GetInstance()->MakeDir(temp);
+    temp += "/stats";
+    JFileSystem::GetInstance()->MakeDir(temp);
+    temp = profileFile(PLAYER_SETTINGS, "", false);
+        
+    profileOptions->save();
+}
+
 int GameSettings::save()
 {
     if (globalOptions)
         globalOptions->save();
 
-    if (profileOptions)
-    {
-        //Create a temp directory
-        // Erwan 2011/08/14: what does this really do? temp is never used.
-        /*
-        string temp = profileFile("", "", false);
-        MAKEDIR(temp.c_str());
-        temp += "/stats";
-        MAKEDIR(temp.c_str());
-        temp = profileFile(PLAYER_SETTINGS, "", false);
-        */
-        profileOptions->save();
-    }
+    createProfileFolders();
 
     checkProfile();
 
@@ -714,7 +716,7 @@ void GameSettings::checkProfile()
     if (!profileOptions)
     {
         profileOptions = NEW GameOptions(profileFile(PLAYER_SETTINGS, "", false));
-        //Backwards compatability hack for unlocked modes.
+        //Backwards compatibility hack for unlocked modes.
         for (int x = Options::BEGIN_AWARDS; x < Options::LAST_NAMED; x++)
         {
             GameOptionAward * goa = dynamic_cast<GameOptionAward *> (globalOptions->get(x));
@@ -736,20 +738,8 @@ void GameSettings::checkProfile()
     {
         //If we had any default settings, we'd set them here.
 
-
-        //Make the proper directories
-        if (profileOptions)
-        {
-            //Force our directories to exist.
-            /*
-            string temp = profileFile("", "", false);
-            MAKEDIR(temp.c_str());
-            temp += "/stats";
-            MAKEDIR(temp.c_str());
-            temp = profileFile(PLAYER_SETTINGS, "", false);
-            */
-            profileOptions->save();
-        }
+        //Create proper directories
+        createProfileFolders();
     }
 
     //Find the set for which we have the most variety

@@ -425,6 +425,7 @@ private:
     GameApp* theGame;  
     SimplePad* keypad;
     StyleManager* styleMan;
+    void createProfileFolders();
 };
 
 extern GameSettings options;
