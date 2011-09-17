@@ -501,7 +501,6 @@ void StoryDialog::Update(float dt)
 
 void StoryDialog::RenderElement(StoryDialogElement * elmt)
 {
-    float mYBackup = elmt->mY;
     if (!elmt->mY) elmt->mY = currentY;
     if (elmt->mY == -1)
     {
@@ -510,7 +509,6 @@ void StoryDialog::RenderElement(StoryDialogElement * elmt)
     elmt->Render();
     previousY = currentY;
     currentY = elmt->mY + elmt->getHeight() + LINE_SPACE;
-    elmt->mY = mYBackup;
 }
 
 void StoryDialog::Render()

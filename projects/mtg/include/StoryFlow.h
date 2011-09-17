@@ -37,6 +37,12 @@ public:
     }
     ;
     virtual float getHeight() = 0;
+    virtual bool getTopLeft(float& top, float& left)
+    {
+        top = mY;
+        left = mX;
+        return true;
+    }
 };
 
 class StoryText: public StoryDialogElement
