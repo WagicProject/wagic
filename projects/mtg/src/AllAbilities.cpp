@@ -417,8 +417,8 @@ ACounterShroud::~ACounterShroud()
 }
 
 //sheild a card from a certain type of counter.
-ACounterTracker::ACounterTracker(int id, MTGCardInstance * source, MTGCardInstance * target, Counter * counter) :
-MTGAbility(id, source, target),counter(counter)
+ACounterTracker::ACounterTracker(int id, MTGCardInstance * source, MTGCardInstance * target, string scounter) :
+MTGAbility(id, source, target),scounter(scounter)
 {
     removed = 0;
 }
@@ -426,6 +426,13 @@ MTGAbility(id, source, target),counter(counter)
 int ACounterTracker::addToGame()
 {
     MTGCardInstance * _target = (MTGCardInstance*)target;
+    Counter * counter = NULL;
+    AbilityFactory af;
+    counter = af.parseCounter(scounter, _target, (Spell*)source);
+    if (!counter)
+    {
+        return 0;
+    }
     if(_target && !removed)
     {
         if(_target->counters->hasCounter(counter->name.c_str(),counter->power,counter->toughness) && _target->counters->hasCounter(counter->name.c_str(),counter->power,counter->toughness)->nb >= counter->nb)
@@ -436,14 +443,23 @@ int ACounterTracker::addToGame()
                 removed++;
             }
         }
+        SAFE_DELETE(counter);
         return 1;
     }
+    SAFE_DELETE(counter);
     return 0;
 }
 
 int ACounterTracker::destroy()
 {
     MTGCardInstance * _target = (MTGCardInstance*)target;
+    Counter * counter = NULL;
+    AbilityFactory af;
+    counter = af.parseCounter(scounter, _target, (Spell*)source);
+    if (!counter)
+    {
+        return 0;
+    }
     if(_target)
     {
         if(removed == counter->nb)
@@ -454,20 +470,25 @@ int ACounterTracker::destroy()
             }
         }
     }
-    removeFromGame();
+    SAFE_DELETE(counter);
+    return 1;
+}
+
+int ACounterTracker::testDestroy()
+{
+    if(this->source->isInPlay())
+        return 0;
     return 1;
 }
 
 ACounterTracker * ACounterTracker::clone() const
 {
     ACounterTracker * a = NEW ACounterTracker(*this);
-    a->counter = this->counter;
     return a;
 }
 
 ACounterTracker::~ACounterTracker()
 {
-    SAFE_DELETE(counter);
 }
 
 //removeall counters of a certain type or all.

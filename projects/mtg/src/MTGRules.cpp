@@ -2337,12 +2337,22 @@ int ParentChildRule::receiveEvent(WEvent * event)
         {
             return 0;
         }
-        if(!card->childrenCards.size())
-            return 0;
         Player * p = card->controller();
         if (z->from == p->game->inPlay)
         {
-            for(unsigned int w = 0;w < card->childrenCards.size();w++)
+            for(size_t myChildCheck = 0;myChildCheck < card->parentCards.size();myChildCheck++)
+            {
+                MTGCardInstance * pCard = card->parentCards[myChildCheck];
+                for(size_t myC = 0;myC < pCard->childrenCards.size();myC++)
+                {
+                    if(pCard->childrenCards[myC] == card)
+                    {
+                        pCard->childrenCards.erase(pCard->childrenCards.begin() + myC);
+                    }
+                }
+            }
+
+            for(size_t w = 0;w < card->childrenCards.size();w++)
             {
                 MTGCardInstance * child = card->childrenCards[w];
                 if(child == NULL) 
@@ -2351,10 +2361,12 @@ int ParentChildRule::receiveEvent(WEvent * event)
                     child->controller()->game->putInGraveyard(child);
                 else//allows a card to declare 2 homes, as long as it has a home it can stay inplay.
                 {
-                    for(unsigned int myParent = 0;myParent < child->parentCards.size();myParent++)
+                    for(size_t myParent = 0;myParent < child->parentCards.size();myParent++)
                     {
                         if(child->parentCards[myParent] == card)
+                        {
                             child->parentCards.erase(child->parentCards.begin() + myParent);
+                        }
                     }
                 }
             }

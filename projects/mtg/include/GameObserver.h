@@ -88,6 +88,7 @@ class GameObserver{
   void ButtonPressed(PlayGuiObject*);
 
   int receiveEvent(WEvent * event);
+  bool connectRule;
 };
 
 #endif

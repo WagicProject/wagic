@@ -49,6 +49,7 @@ GameObserver::GameObserver(Player * _players[], int _nb_players)
     replacementEffects = NEW ReplacementEffects();
     combatStep = BLOCKERS;
     mRules = NULL;
+    connectRule = false;
 }
 
 int GameObserver::getCurrentGamePhase()
@@ -473,10 +474,13 @@ void GameObserver::gameStateBasedEffects()
                     check = card->childrenCards[wC];
                     for(size_t wCC = 0; wCC < card->childrenCards.size();wCC++)
                     {
-                        if(check->getName() == card->childrenCards[wCC]->getName() && check != card->childrenCards[wCC])
+                        if(check->isInPlay())
                         {
-                            card->isDualWielding = true;
-                            matched = card->childrenCards[wCC];
+                            if(check->getName() == card->childrenCards[wCC]->getName() && check != card->childrenCards[wCC])
+                            {
+                                card->isDualWielding = true;
+                                matched = card->childrenCards[wCC];
+                            }
                         }
                     }
                     if(matched)

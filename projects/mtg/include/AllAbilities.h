@@ -2245,14 +2245,26 @@ public:
         aType = MTGAbility::STANDARD_TEACH;
     }
 
-    int canBeInList(MTGCardInstance * card)
-    {
-        if(card->isPhased || source->isPhased)
+        int canBeInList(MTGCardInstance * card)
+        {
+            if(card->isPhased || source->isPhased)
+                return 0;
+            if(tc->canTarget(card) && card != tc->source)
+            {
+                if ((tc->source->hasSubtype(Subtypes::TYPE_AURA) || tc->source->hasSubtype(Subtypes::TYPE_EQUIPMENT) || tc->source->hasSubtype("instant")
+                    || tc->source->hasSubtype("sorcery")) && card == tc->source->target ) 
+                    return 1;
+                if(tc->source->hasSubtype(Subtypes::TYPE_CREATURE))
+                {
+                    for(size_t myChild = 0; myChild < tc->source->parentCards.size();++myChild)
+                    {
+                        if(tc->source->parentCards[myChild] == card)
+                            return 1;
+                    }
+                }
+            }
             return 0;
-        if ((tc->source->hasSubtype(Subtypes::TYPE_AURA) || tc->source->hasSubtype(Subtypes::TYPE_EQUIPMENT) || tc->source->hasSubtype("instant")
-                || tc->source->hasSubtype("sorcery")) && tc->canTarget(card) && card == tc->source->target && card != tc->source) return 1;
-        return 0;
-    }
+        }
 
     int resolve()
     {
@@ -2289,7 +2301,10 @@ public:
         }
         else
         {
-            return 0;
+            if(tc->source->hasSubtype(Subtypes::TYPE_CREATURE))
+                a->target = d;
+            else
+                return 0;
         }
 
         if (a->oneShot)
@@ -2426,8 +2441,11 @@ public:
     {
         if (source->target && !game->isInPlay(source->target)) 
         unequip();
+        if(!game->connectRule)
+        {
         if (source->target && TargetAbility::tc && !TargetAbility::tc->canTarget((Targetable *)source->target,true)) 
         unequip();
+        }
         return TargetAbility::testDestroy();
     }
 
@@ -3543,11 +3561,12 @@ public:
 class ACounterTracker: public MTGAbility
 {
 public:
-    Counter * counter;
+    string scounter;
     int removed;
-    ACounterTracker(int id, MTGCardInstance * source, MTGCardInstance * target, Counter * counter = NULL);
+    ACounterTracker(int id, MTGCardInstance * source, MTGCardInstance * target, string scounter = "");
     int addToGame();
     int destroy();
+    int testDestroy();
     ACounterTracker * clone() const;
     ~ACounterTracker();
 };

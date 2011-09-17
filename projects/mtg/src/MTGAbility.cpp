@@ -1913,14 +1913,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     if (splitCounterTracking.size())
     {
         string splitCounterTrack = splitCounterTracking[1];
-        Counter * counter = NULL;
-        counter = parseCounter(splitCounterTrack, target, spell);
-        if (!counter)
-        {
-            DebugTrace("MTGAbility: can't parse counter:" << s);
-            return NULL;
-        }
-        return NEW ACounterTracker(id, card, target,counter);
+        return NEW ACounterTracker(id, card, target,splitCounterTrack);
     }
     //removes all counters of the specifified type.
     vector<string> splitRemoveCounter = parseBetween(s, "removeallcounters(", ")");
@@ -2286,6 +2279,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     {
         GameObserver * game = GameObserver::GetInstance();
         game->addObserver(NEW ParentChildRule(-1));
+        game->connectRule = true;
         return NULL;
     }
     //create an association between cards.
