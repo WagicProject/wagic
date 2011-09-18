@@ -14402,7 +14402,7 @@ type=Enchantment
 [card]
 name=Crumbling Colossus
 abilities=trample
-auto=@combat(attacking) source(this):auto=@combat(attacking) source(this):phaseaction[combatends,sourceinplay] sacrifice
+auto=@combat(attacking) source(this):phaseaction[combatends,sourceinplay] sacrifice
 text=Trample -- When Crumbling Colossus attacks, sacrifice it at end of combat.
 mana={5}
 type=Artifact Creature
