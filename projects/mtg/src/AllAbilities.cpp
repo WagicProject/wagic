@@ -2216,6 +2216,7 @@ int IfThenAbility::resolve()
         MTGAbility * a1 = delayedAbility->clone();
         if (!a1)
             return 0;
+        if(a1->target && a1->target->typeAsTarget() != TARGET_PLAYER)
         a1->target = aTarget;
         if(a1->oneShot)
         {
