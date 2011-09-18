@@ -55891,7 +55891,7 @@ type=Sorcery
 name=Reveillark
 abilities=flying
 other={5}{W} name(Evoke)
-auto=@movedTo(this|nonbattlezone) from(battlefield):may token(-152716111) && moveTo(myBattlefield) target(creature[power<=2]|mygraveyard)
+auto=@movedTo(this|nonbattlezone) from(battlefield):may moveTo(myBattlefield) target(<upto:2>creature[power<=2]|mygraveyard)
 auto=alternative sacrifice
 text=Flying -- When Reveillark leaves the battlefield, return up to two target creature cards with power 2 or less from your graveyard to the battlefield. -- Evoke {5}{W} (You may cast this spell for its evoke cost. If you do, it's sacrificed when it enters the battlefield.)
 mana={4}{W}
