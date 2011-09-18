@@ -1098,11 +1098,18 @@ int GameObserver::targetListIsSet(MTGCardInstance * card)
     {
         TargetChooserFactory tcf;
         targetChooser = tcf.createTargetChooser(card);
-        cardWaitingForTargets = card;
         if (targetChooser == NULL)
         {
             return 1;
         }
     }
-    return (targetChooser->targetListSet());
+    if(targetChooser && targetChooser->validTargetsExist())
+    {
+        cardWaitingForTargets = card;
+        return (targetChooser->targetListSet());
+    }
+    else
+        targetChooser = NULL;
+    return 0;
+    
 }

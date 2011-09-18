@@ -789,8 +789,8 @@ bool TargetChooser::validTargetsExist(int maxTargets)
         int maxAmount = 0;
         Player *p = GameObserver::GetInstance()->players[i];
         if (canTarget(p)) return true;
-        MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->exile };
-        for (int k = 0; k < 5; k++)
+        MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->exile, p->game->stack };
+        for (int k = 0; k < 6; k++)
         {
             MTGGameZone * z = zones[k];
             if (targetsZone(z))
