@@ -2571,6 +2571,7 @@ const char * GenericTargetAbility::getMenuText()
 int GenericTargetAbility::resolve()
 {
     counters++;
+    tc->done = false;
     return TargetAbility::resolve();
 }
 
