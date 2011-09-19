@@ -1106,7 +1106,7 @@ int GameObserver::targetListIsSet(MTGCardInstance * card)
         return (targetChooser->targetListSet());
     }
     else
-        targetChooser = NULL;
+        SAFE_DELETE(targetChooser);
     return 0;
     
 }
