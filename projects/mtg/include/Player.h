@@ -28,7 +28,6 @@ public:
     JQuadPtr mAvatar;
     int playMode;
     bool nomaxhandsize;
-    bool isPoisoned;
     MTGPlayerCards * game;
     MTGDeck * mDeck;
     string deckFile;
@@ -56,6 +55,7 @@ public:
     int loseLife(int value);
     int gainOrLoseLife(int value);
 
+    bool isPoisoned() {return (poisonCount > 0);}
     int poisoned();
     int damaged();
     int prevented();

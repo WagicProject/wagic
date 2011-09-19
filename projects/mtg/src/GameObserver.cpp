@@ -112,7 +112,6 @@ void GameObserver::nextGamePhase()
         cleanupPhase();
         currentPlayer->damageCount = 0;
         currentPlayer->preventable = 0;
-        currentPlayer->isPoisoned = false;
         mLayers->actionLayer()->cleanGarbage(); //clean abilities history for this turn;
         mLayers->stackLayer()->garbageCollect(); //clean stack history for this turn;
         mLayers->actionLayer()->Update(0);
@@ -371,8 +370,6 @@ void GameObserver::gameStateBasedEffects()
 {
     if(getCurrentTargetChooser() && int(getCurrentTargetChooser()->targets.size()) == getCurrentTargetChooser()->maxtargets)
         getCurrentTargetChooser()->done = true;
-    for (int i = 0; i < 2; i++)
-        players[i]->isPoisoned = (players[i]->poisonCount > 0);
     if (mLayers->stackLayer()->count(0, NOT_RESOLVED) != 0)
     	return;
     if (mLayers->actionLayer()->menuObject) 

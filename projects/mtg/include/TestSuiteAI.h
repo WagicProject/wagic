@@ -59,45 +59,52 @@ public:
 
 class TestSuite
 {
-public:
-    MTGAllCards* collection;
-    int summoningSickness;
-    bool forceAbility;
-    int gameType;
-    float timerLimit;
-    unsigned int seed;
-    int aiMaxCalls;
-    int currentAction;
-    TestSuiteState initState;
+private:
+    int currentfile;
+    int nbfiles;
+    string files[1024];
     TestSuiteState endState;
     TestSuiteActions actions;
-    string files[1024];
-    int nbfiles;
-    int currentfile;
-    int nbFailed, nbTests, nbAIFailed, nbAITests;
+    bool forceAbility;
+    int summoningSickness;
+
     int load(const char * filename);
-    TestSuite(const char * filename,MTGAllCards* _collection);
+    void cleanup();
+
+public:
+    /* but only used by the testsuite classes */
+    float timerLimit;
+    int aiMaxCalls;
+    int currentAction;
+
+    TestSuiteState initState;
+    string getNextAction();
+    MTGPlayerCards * buildDeck(int playerId);
+    Interruptible * getActionByMTGId(int mtgid);
+    int assertGame();
+
+public:
+    int gameType;
+    unsigned int seed;
+    int nbFailed, nbTests, nbAIFailed, nbAITests;
+    TestSuite(const char * filename);
     void initGame();
     void pregameTests();
-    int assertGame();
-    MTGPlayerCards * buildDeck(int playerId);
-    string getNextAction();
-    Interruptible * getActionByMTGId(int mtgid);
     int loadNext();
-    void cleanup();
     static int Log(const char * text);
 
 };
 
 class TestSuiteAI:public AIPlayerBaka
 {
-public:
-    TestSuite * suite;
+private:
+    MTGCardInstance * getCard(string action);
     float timer;
+    TestSuite * suite;
 
+public:
     TestSuiteAI(TestSuite * suite, int playerId);
     virtual int Act(float dt);
-    MTGCardInstance * getCard(string action);
     virtual int displayStack();
 };
 

@@ -75,8 +75,8 @@ JFileSystem* JFileSystem::GetInstance()
     init( RESPATH"/");
 #else
     init("Res/");
-    }
 #endif
+    }
     return mInstance;
 }
 

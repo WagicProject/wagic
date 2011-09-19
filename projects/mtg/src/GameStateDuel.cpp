@@ -105,7 +105,7 @@ void GameStateDuel::Start()
 
 #ifdef TESTSUITE
     SAFE_DELETE(testSuite);
-    testSuite = NEW TestSuite("test/_tests.txt",MTGCollection());
+    testSuite = NEW TestSuite("test/_tests.txt");
 #endif
 
     setGamePhase(DUEL_STATE_CHOOSE_DECK1);

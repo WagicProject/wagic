@@ -389,7 +389,7 @@ public:
     int triggerOnEventImpl(WEvent * event)
     {
         //general restrictions
-        if (opponentPoisoned && !source->controller()->opponent()->isPoisoned) 
+        if (opponentPoisoned && !source->controller()->opponent()->isPoisoned())
             return 0;
         if (sourceUntapped  && source->isTapped() == 1)
             return 0;

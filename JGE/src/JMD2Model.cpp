@@ -280,7 +280,7 @@ void JMD2Model::Render(int frameNum)
 	// display the textured model with proper lighting normals
 #if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
 
-#elif (defined GL_ES_VERSION_1_1) || (defined GL_VERSION_1_1) || (defined GL_VERSION_ES_CM_1_1)
+#elif (defined GL_ES_VERSION_1_1) || (defined GL_VERSION_1_1) || (defined GL_VERSION_ES_CM_1_1) || (defined GL_OES_VERSION_1_1)
         glEnableClientState(GL_VERTEX_ARRAY);
         glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 
@@ -296,7 +296,7 @@ void JMD2Model::Render(int frameNum)
 
 #if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
 
-#elif (defined GL_ES_VERSION_1_1) || (defined GL_VERSION_1_1)|| (defined GL_VERSION_ES_CM_1_1)
+#elif (defined GL_ES_VERSION_1_1) || (defined GL_VERSION_1_1)|| (defined GL_VERSION_ES_CM_1_1) || (defined GL_OES_VERSION_1_1)
                 float vertex_data[]={
                 pointList[mModel->triIndex[i].meshIndex[0]].x, pointList[mModel->triIndex[i].meshIndex[0]].y, pointList[mModel->triIndex[i].meshIndex[0]].z,
                 pointList[mModel->triIndex[i].meshIndex[2]].x, pointList[mModel->triIndex[i].meshIndex[2]].y, pointList[mModel->triIndex[i].meshIndex[2]].z,
@@ -330,7 +330,7 @@ void JMD2Model::Render(int frameNum)
         }
 #if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
 
-#elif (defined GL_ES_VERSION_1_1) || (defined GL_VERSION_1_1) || (defined GL_VERSION_ES_CM_1_1)
+#elif (defined GL_ES_VERSION_1_1) || (defined GL_VERSION_1_1) || (defined GL_VERSION_ES_CM_1_1) || (defined GL_OES_VERSION_1_1)
         glDrawArrays(GL_TRIANGLES,0,3); // seems suspicious to put that here, should probably be in the loop
 #else
         glEnd();
@@ -483,7 +483,7 @@ void JMD2Model::Render()
 
 #if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
         // FIXME
-#elif (defined GL_ES_VERSION_1_1) || (defined GL_VERSION_1_1) || (defined GL_VERSION_ES_CM_1_1)
+#elif (defined GL_ES_VERSION_1_1) || (defined GL_VERSION_1_1) || (defined GL_VERSION_ES_CM_1_1) || (defined GL_OES_VERSION_1_1)
         glEnableClientState(GL_VERTEX_ARRAY);
         glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 #else
@@ -538,7 +538,7 @@ void JMD2Model::Render()
 
 #if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
         // FIXME
-#elif (defined GL_ES_VERSION_1_1) || (defined GL_VERSION_1_1) || (defined GL_VERSION_ES_CM_1_1)
+#elif (defined GL_ES_VERSION_1_1) || (defined GL_VERSION_1_1) || (defined GL_VERSION_ES_CM_1_1) || (defined GL_OES_VERSION_1_1)
                 float vertex_data[]={
                 vertex[0].x, vertex[0].y, vertex[0].z,
                 vertex[2].x, vertex[2].y, vertex[2].z,
@@ -572,7 +572,7 @@ void JMD2Model::Render()
         }
 #if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
         // FIXME
-#elif (defined GL_ES_VERSION_1_1) || (defined GL_VERSION_1_1) || (defined GL_VERSION_ES_CM_1_1)
+#elif (defined GL_ES_VERSION_1_1) || (defined GL_VERSION_1_1) || (defined GL_VERSION_ES_CM_1_1) || (defined GL_OES_VERSION_1_1)
         glDrawArrays(GL_TRIANGLES,0,3); // seems suspicious to put that here, should probably be in the loop
 #else
         glEnd();

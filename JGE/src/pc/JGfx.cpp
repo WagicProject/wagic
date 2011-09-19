@@ -1002,7 +1002,7 @@ void JRenderer::RenderQuad(JQuad* quad, float xo, float yo, float angle, float x
         glScalef(xScale, yScale, 1.0f);
     }
 
-#if (defined GL_VERSION_ES_CM_1_1)
+#if (defined GL_VERSION_ES_CM_1_1) || (defined GL_OES_VERSION_1_1)
     glEnableClientState(GL_VERTEX_ARRAY);
     glEnableClientState(GL_TEXTURE_COORD_ARRAY);
     glEnableClientState(GL_COLOR_ARRAY);
@@ -1132,7 +1132,7 @@ void JRenderer::RenderQuad(JQuad* quad, VertexColor* pt)
     //glDrawElements ( GL_TRIANGLE_STRIP, 6, GL_UNSIGNED_SHORT, indices );
     glDrawArrays(GL_TRIANGLE_STRIP,0,4);
 
-#elif (defined GL_VERSION_ES_CM_1_1)
+#elif (defined GL_VERSION_ES_CM_1_1) || (defined GL_OES_VERSION_1_1)
     glEnableClientState(GL_VERTEX_ARRAY);
     glEnableClientState(GL_TEXTURE_COORD_ARRAY);
     glEnableClientState(GL_COLOR_ARRAY);
@@ -1241,7 +1241,7 @@ void JRenderer::FillRect(float x, float y, float width, float height, PIXEL_TYPE
 
     glDrawArrays(GL_TRIANGLE_STRIP,0,4);
 
-#elif (defined GL_VERSION_ES_CM_1_1)
+#elif (defined GL_VERSION_ES_CM_1_1) || (defined GL_OES_VERSION_1_1)
     glDisable(GL_TEXTURE_2D);
     glEnableClientState(GL_VERTEX_ARRAY);
     glEnableClientState(GL_COLOR_ARRAY);
@@ -1338,7 +1338,7 @@ void JRenderer::DrawRect(float x, float y, float width, float height, PIXEL_TYPE
 
     glDrawArrays(GL_LINE_LOOP,0,4);
 
-#elif (defined GL_VERSION_ES_CM_1_1)
+#elif (defined GL_VERSION_ES_CM_1_1) || (defined GL_OES_VERSION_1_1)
     glDisable(GL_TEXTURE_2D);
     glEnableClientState(GL_VERTEX_ARRAY);
     glEnableClientState(GL_COLOR_ARRAY);
@@ -1438,7 +1438,7 @@ void JRenderer::FillRect(float x, float y, float width, float height, JColor* co
     glUniformMatrix4fv( prog1_mvpLoc, 1, GL_FALSE, (GLfloat*) &theMvpMatrix.m[0][0] );
 
     glDrawArrays(GL_TRIANGLE_STRIP,0,4);
-#elif (defined GL_VERSION_ES_CM_1_1)
+#elif (defined GL_VERSION_ES_CM_1_1) || (defined GL_OES_VERSION_1_1)
     glDisable(GL_TEXTURE_2D);
     glEnableClientState(GL_VERTEX_ARRAY);
     glEnableClientState(GL_COLOR_ARRAY);
@@ -1530,7 +1530,7 @@ void JRenderer::DrawLine(float x1, float y1, float x2, float y2, PIXEL_TYPE colo
 
     glDrawArrays(GL_LINES,0,2);
 
-#elif (defined GL_VERSION_ES_CM_1_1)
+#elif (defined GL_VERSION_ES_CM_1_1) || (defined GL_OES_VERSION_1_1)
     glDisable(GL_TEXTURE_2D);
     glEnableClientState(GL_VERTEX_ARRAY);
     glEnableClientState(GL_COLOR_ARRAY);
@@ -1575,7 +1575,7 @@ void JRenderer::Plot(float x, float y, PIXEL_TYPE color)
 {
     checkGlError();
     glDisable(GL_TEXTURE_2D);
-#if (!defined GL_ES_VERSION_2_0) && (!defined GL_VERSION_2_0) && (!defined GL_VERSION_ES_CM_1_1)
+#if (!defined GL_ES_VERSION_2_0) && (!defined GL_VERSION_2_0) && (!defined GL_VERSION_ES_CM_1_1) && (!defined GL_OES_VERSION_1_1)
     JColor col;
     col.color = color;
     glColor4ub(col.r, col.g, col.b, col.a);
@@ -1595,7 +1595,7 @@ void JRenderer::PlotArray(float *x, float *y, int count, PIXEL_TYPE color)
 {
     checkGlError();
     glDisable(GL_TEXTURE_2D);
-#if (!defined GL_ES_VERSION_2_0) && (!defined GL_VERSION_2_0) && (!defined GL_VERSION_ES_CM_1_1)
+#if (!defined GL_ES_VERSION_2_0) && (!defined GL_VERSION_2_0) && (!defined GL_VERSION_ES_CM_1_1) && (!defined GL_OES_VERSION_1_1)
     JColor col;
     col.color = color;
     glColor4ub(col.r, col.g, col.b, col.a);
@@ -2479,7 +2479,7 @@ void JRenderer::Enable2D()
     glMatrixMode (GL_PROJECTION);										// Select The Projection Matrix
     glLoadIdentity ();													// Reset The Projection Matrix
 
-#if (defined GL_VERSION_ES_CM_1_1)
+#if (defined GL_VERSION_ES_CM_1_1) || (defined GL_OES_VERSION_1_1)
     glOrthof(0.0f, SCREEN_WIDTH_F, 0.0f, SCREEN_HEIGHT_F-1.0f, -1.0f, 1.0f);
 #else
     gluOrtho2D(0.0f, SCREEN_WIDTH_F, 0.0f, SCREEN_HEIGHT_F-1.0f);
@@ -2607,7 +2607,7 @@ void JRenderer::RenderTriangles(JTexture* texture, Vertex3D *vertices, int start
 
     delete[] colorCoords;
 
-#elif (defined GL_VERSION_ES_CM_1_1)
+#elif (defined GL_VERSION_ES_CM_1_1) || (defined GL_OES_VERSION_1_1)
     glEnableClientState(GL_VERTEX_ARRAY);
     glEnableClientState(GL_TEXTURE_COORD_ARRAY);
     glEnableClientState(GL_COLOR_ARRAY);
@@ -2707,7 +2707,7 @@ void JRenderer::FillPolygon(float* x, float* y, int count, PIXEL_TYPE color)
     delete[] vVertices;
     delete[] colors;
 
-#elif (defined GL_VERSION_ES_CM_1_1)
+#elif (defined GL_VERSION_ES_CM_1_1) || (defined GL_OES_VERSION_1_1)
     glDisable(GL_TEXTURE_2D);
     glEnableClientState(GL_VERTEX_ARRAY);
     glEnableClientState(GL_COLOR_ARRAY);
@@ -2813,7 +2813,7 @@ void JRenderer::DrawPolygon(float* x, float* y, int count, PIXEL_TYPE color)
     delete[] vVertices;
     delete[] colors;
 
-#elif (defined GL_VERSION_ES_CM_1_1)
+#elif (defined GL_VERSION_ES_CM_1_1) || (defined GL_OES_VERSION_1_1)
 
     glDisable(GL_TEXTURE_2D);
     glEnableClientState(GL_VERTEX_ARRAY);
@@ -2955,7 +2955,7 @@ void JRenderer::DrawCircle(float x, float y, float radius, PIXEL_TYPE color)
 
     glDrawArrays(GL_LINE_STRIP,0,number);
 
-#elif (defined GL_VERSION_ES_CM_1_1)
+#elif (defined GL_VERSION_ES_CM_1_1) || (defined GL_OES_VERSION_1_1)
 
     glDisable(GL_TEXTURE_2D);
     glEnableClientState(GL_VERTEX_ARRAY);
@@ -3069,7 +3069,7 @@ void JRenderer::FillCircle(float x, float y, float radius, PIXEL_TYPE color)
 
     glDrawArrays(GL_TRIANGLE_FAN,0,number);
 
-#elif (defined GL_VERSION_ES_CM_1_1)
+#elif (defined GL_VERSION_ES_CM_1_1) || (defined GL_OES_VERSION_1_1)
 
     glDisable(GL_TEXTURE_2D);
     glEnableClientState(GL_VERTEX_ARRAY);
@@ -3191,7 +3191,7 @@ void JRenderer::DrawPolygon(float x, float y, float size, int count, float start
     delete[] vVertices;
     delete[] colors;
 
-#elif (defined GL_VERSION_ES_CM_1_1)
+#elif (defined GL_VERSION_ES_CM_1_1) || (defined GL_OES_VERSION_1_1)
     glDisable(GL_TEXTURE_2D);
     glEnableClientState(GL_VERTEX_ARRAY);
     glEnableClientState(GL_COLOR_ARRAY);
@@ -3315,7 +3315,7 @@ void JRenderer::FillPolygon(float x, float y, float size, int count, float start
     delete[] vVertices;
     delete[] colors;
 
-#elif (defined GL_VERSION_ES_CM_1_1)
+#elif (defined GL_VERSION_ES_CM_1_1) || (defined GL_OES_VERSION_1_1)
 
     glDisable(GL_TEXTURE_2D);
     glEnableClientState(GL_VERTEX_ARRAY);
@@ -3469,7 +3469,7 @@ void JRenderer::DrawRoundRect(float x, float y, float w, float h, float radius, 
     delete[] vVertices;
     delete[] colors;
 
-#elif (defined GL_VERSION_ES_CM_1_1)
+#elif (defined GL_VERSION_ES_CM_1_1) || (defined GL_OES_VERSION_1_1)
 
     glDisable(GL_TEXTURE_2D);
     glEnableClientState(GL_VERTEX_ARRAY);
@@ -3658,7 +3658,7 @@ void JRenderer::FillRoundRect(float x, float y, float w, float h, float radius, 
     delete[] vVertices;
     delete[] colors;
 
-#elif (defined GL_VERSION_ES_CM_1_1)
+#elif (defined GL_VERSION_ES_CM_1_1)  || (defined GL_OES_VERSION_1_1)
 
     glDisable(GL_TEXTURE_2D);
     glEnableClientState(GL_VERTEX_ARRAY);

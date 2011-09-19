@@ -551,9 +551,8 @@ int TestSuite::assertGame()
     return 1;
 }
 
-TestSuite::TestSuite(const char * filename, MTGAllCards* _collection)
+TestSuite::TestSuite(const char * filename)
 {
-    collection = _collection;
     timerLimit = 0;
     
     std::string s;
