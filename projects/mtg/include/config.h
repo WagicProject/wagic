@@ -32,6 +32,9 @@
 // Debug options - comment/uncomment as needed
 //#define DEBUG_CACHE
 #ifdef _DEBUG
+#ifdef WIN32
+#define AI_CHANGE_TESTING
+#endif
 //#define RENDER_AI_STATS
 #endif
 

@@ -53,6 +53,13 @@ public:
 #ifdef TESTSUITE
     void loadTestSuitePlayers();
 #endif
+
+#ifdef AI_CHANGE_TESTING
+    int totalTestGames;
+    int testPlayer2Victories;
+    int totalAIDecks;
+#endif
+
     virtual void ButtonPressed(int ControllerId, int ControlId);
     virtual void Start();
     virtual void End();

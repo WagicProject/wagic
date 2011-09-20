@@ -84,6 +84,27 @@ GameState(parent, "duel")
     testSuite = NULL;
 #endif
 
+#ifdef AI_CHANGE_TESTING
+    totalTestGames = 0;
+    testPlayer2Victories = 0;
+    totalAIDecks = 0;
+    {
+        int found = 1;
+        while (found)
+        {
+            found = 0;
+            char buffer[512];
+            sprintf(buffer, "ai/baka/deck%i.txt", totalAIDecks + 1);
+            if (FileExists(buffer))
+            {
+                found = 1;
+                totalAIDecks++;
+            }
+        } 
+        
+    }
+#endif
+
     credits = NULL;
 
 #ifdef NETWORK_SUPPORT
@@ -216,7 +237,17 @@ void GameStateDuel::loadPlayer(int playerId, int decknb, bool isAI, bool isNetwo
         AIPlayerFactory playerCreator;
         Player * opponent = NULL;
         if (playerId == 1) opponent = mPlayers[0];
-        mPlayers[playerId] = playerCreator.createAIPlayer(MTGCollection(), opponent);
+#ifdef AI_CHANGE_TESTING
+        if (mParent->players[1] == PLAYER_TYPE_CPU_TEST && playerId == 1)
+            mPlayers[playerId] = playerCreator.createAIPlayerTest(MTGCollection(), opponent);
+        else
+#endif
+        {
+            mPlayers[playerId] = playerCreator.createAIPlayer(MTGCollection(), opponent);
+        }
+
+        if (mParent->players[playerId] == PLAYER_TYPE_CPU_TEST)
+            ((AIPlayer *) mPlayers[playerId])->setFastTimerMode();
     }
 }
 
@@ -479,11 +510,21 @@ void GameStateDuel::Update(float dt)
             }
             else
 #endif
-                if (mParent->players[0] == PLAYER_TYPE_CPU && mParent->players[1] == PLAYER_TYPE_CPU)
-                {
-                    End();
-                    Start();
-                }
+#ifdef AI_CHANGE_TESTING
+            if (mParent->players[0] == PLAYER_TYPE_CPU_TEST && mParent->players[1] == PLAYER_TYPE_CPU_TEST)
+            {
+                totalTestGames++;
+                if (game->gameOver == game->players[0])
+                    testPlayer2Victories++;
+                End();
+                Start();
+            }
+#endif
+            if (mParent->players[0] == PLAYER_TYPE_CPU && mParent->players[1] == PLAYER_TYPE_CPU)
+            {
+                End();
+                Start();
+            }
         }
         if (mEngine->GetButtonClick(JGE_BTN_MENU))
         {
@@ -570,6 +611,29 @@ void GameStateDuel::Render()
     r->ClearScreen(ARGB(0,0,0,0));
 
     if (game) game->Render();
+
+#ifdef AI_CHANGE_TESTING
+      if (game && totalTestGames)
+      {
+          char buf[4096];
+
+          if (totalTestGames < 2.5 * totalAIDecks)
+          {
+               mFont->SetColor(ARGB(255,255,255,0));
+               sprintf(buf, "Results are not significant, you should let at least %i more games run", totalAIDecks * 2.5 - totalTestGames);
+               mFont->DrawString(buf,0,SCREEN_HEIGHT/2 - 20);
+          }
+
+          mFont->SetColor(ARGB(255,255,255,255));
+          float ratio = float(testPlayer2Victories) / float(totalTestGames);
+          if (ratio < 0.48)
+              mFont->SetColor(ARGB(255,255,0,0));
+          if (ratio > 0.52)
+              mFont->SetColor(ARGB(255,0,255,0));
+          sprintf(buf, "Victories Player 2/total Games: %i/%i", testPlayer2Victories, totalTestGames);
+          mFont->DrawString(buf,0,SCREEN_HEIGHT/2);
+      }
+#endif
 
     switch (mGamePhase)
     {

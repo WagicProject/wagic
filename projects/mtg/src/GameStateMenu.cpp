@@ -801,6 +801,10 @@ void GameStateMenu::ButtonPressed(int controllerId, int controlId)
                 if (Rules::getRulesByFilename("testsuite.txt"))
                     subMenuController->Add(SUBMENUITEM_TESTSUITE, "Test Suite");
 #endif
+
+#ifdef AI_CHANGE_TESTING
+                subMenuController->Add(SUBMENUITEM_TESTAI, "AI A/B Testing");
+#endif
                 currentState = MENU_STATE_MAJOR_SUBMENU | MENU_STATE_MINOR_NONE;
             }
             break;
@@ -877,7 +881,16 @@ void GameStateMenu::ButtonPressed(int controllerId, int controlId)
 #endif //NETWORK_SUPPORT
             currentState = MENU_STATE_MAJOR_MAINMENU | MENU_STATE_MINOR_SUBMENU_CLOSING;
             break;
-
+#ifdef AI_CHANGE_TESTING
+        case SUBMENUITEM_TESTAI:
+             options[Options::AIDECKS_UNLOCKED].number = 5000; //hack to force-test all decks
+            mParent->players[0] = PLAYER_TYPE_CPU_TEST;
+            mParent->players[1] = PLAYER_TYPE_CPU_TEST;
+            mParent->gameType = GAME_TYPE_DEMO;
+            subMenuController->Close();
+            currentState = MENU_STATE_MAJOR_DUEL | MENU_STATE_MINOR_SUBMENU_CLOSING;
+            break;
+#endif
 #ifdef TESTSUITE
             case SUBMENUITEM_TESTSUITE:
             mParent->rules = Rules::getRulesByFilename("testsuite.txt");

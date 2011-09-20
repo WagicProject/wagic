@@ -61,11 +61,6 @@ typedef std::map<OrderedAIAction, int, CmpAbilities> RankingContainer;
 
 class AIPlayerBaka: public AIPlayer{
 private:
-
-    MTGCardInstance * nextCardToPlay;
-    AIHints * hints;
-    AIStats * stats;
-
     int orderBlockers();
     int combatDamages();
     int interruptIfICan();
@@ -91,6 +86,9 @@ private:
     AIStats * getStats();
 
  protected:
+    MTGCardInstance * nextCardToPlay;
+    AIHints * hints;
+    AIStats * stats;
     int oldGamePhase;
     float timer;
     MTGCardInstance * FindCardToPlay(ManaCost * potentialMana, const char * type);
@@ -122,7 +120,7 @@ private:
     virtual ~AIPlayerBaka();
     int affectCombatDamages(CombatStep step);
     int canHandleCost(MTGAbility * ability);
-    int chooseTarget(TargetChooser * tc = NULL, Player * forceTarget =NULL,MTGCardInstance * Choosencard = NULL,bool checkonly = false);
+    int chooseTarget(TargetChooser * tc = NULL, Player * forceTarget = NULL,MTGCardInstance * Chosencard = NULL,bool checkonly = false);
 
     //used by AIHInts, therefore public instead of private :/
     int createAbilityTargets(MTGAbility * a, MTGCardInstance * c, RankingContainer& ranking);

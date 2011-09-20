@@ -16,6 +16,7 @@
 #define _IAPLAYER_H
 
 #include "Player.h"
+#include "config.h"
 
 #include <queue>
 using std::queue;
@@ -68,7 +69,9 @@ public:
 
 
 class AIPlayer: public Player{
+
 protected:
+    bool mFastTimerMode;
     queue<AIAction *> clickstream;
     int clickMultiTarget(TargetChooser * tc,vector<Targetable*>&potentialTargets);
     int clickSingleTarget(TargetChooser * tc,vector<Targetable*>&potentialTargets, MTGCardInstance * Choosencard = NULL);
@@ -93,6 +96,8 @@ public:
     
     int isAI(){return 1;};
 
+    void setFastTimerMode(bool mode = true) { mFastTimerMode = mode; };
+
 
 };
 
@@ -100,6 +105,9 @@ public:
 class AIPlayerFactory{
  public:
   AIPlayer * createAIPlayer(MTGAllCards * collection, Player * opponent, int deckid = 0);
+#ifdef AI_CHANGE_TESTING
+  AIPlayer * createAIPlayerTest(MTGAllCards * collection, Player * opponent, int deckid = 0);
+#endif
 };
 
 
