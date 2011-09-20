@@ -2907,18 +2907,18 @@ public:
     int resolve()
     {
         //TODO check if ability is oneShot ?
-        unsigned int matches;
+        int matches;
         matches = td->match(source);
         if (matches > 0)
         {
-            if ((unsigned int) (abilities.size()) > matches)
+            if (abilities.size() > (size_t)matches)
             {
                 removeAbilityFromGame();
             }
             // i will equal abilities size, then we increment from there
             //abilities size was previously being subtracted from matches
             //tho since it was a nonstatic number, it would stop adding abilities prematurely.
-            for (unsigned int i = abilities.size(); i < matches; i++)
+            for (size_t i = abilities.size(); i < (size_t)matches; i++)
             {
                 addAbilityToGame();
             }
