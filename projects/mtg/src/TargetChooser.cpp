@@ -180,7 +180,8 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
             {
                 targetMin = true;//if upto: is not found, then we need to have a minimum of the amount....
             }
-            WParsedInt * howmuch = NEW WParsedInt(howmany, (Spell*)card, card);
+            Spell * sCard = (Spell*)card;
+            WParsedInt * howmuch = NEW WParsedInt(howmany, sCard?sCard:NULL, card);
             howmany.find("anyamount") != string::npos?maxtargets = TargetChooser::UNLITMITED_TARGETS:maxtargets = howmuch->getValue();
             if(howmany.find("anyamount") != string::npos)
                 targetMin = false;
@@ -467,6 +468,7 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                     //again for effects such as these.
                         Spell * spell;
                         spell = (Spell*)card->backupTargets[0];
+                        if(spell)
                         card->target = spell->source;
                     }
                     if( CDtype.find("name") != string::npos )

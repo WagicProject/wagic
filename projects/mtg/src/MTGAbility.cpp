@@ -168,9 +168,10 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card,Player * player
                 }
                 else if (i == 2)
                 {
-                   WParsedInt * secondA = NEW WParsedInt(comparasion[2].c_str(),(Spell*)card,card);
-                   secondAmount = secondA->getValue();
-                   SAFE_DELETE(secondA);
+                    Spell * spellCard = (Spell*)card;
+                    WParsedInt * secondA = NEW WParsedInt(comparasion[2].c_str(),spellCard?spellCard:NULL,card);
+                    secondAmount = secondA->getValue();
+                    SAFE_DELETE(secondA);
                 }
             }
             if(firstAmount < secondAmount && !less && !more && !equal)
@@ -967,6 +968,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         }
     }
     
+
     //if/ifnot COND then DO EFFECT.
     const string ifKeywords[] = {"if ", "ifnot "};
     int checkIf[] = { 1, 2 };
