@@ -391,7 +391,7 @@ void TestSuite::initGame()
     g->currentGamePhase = initState.phase;
     for (int i = 0; i < 2; i++)
     {
-        AIPlayer * p = (AIPlayer *) (g->players[i]);
+        AIPlayerBaka * p = (AIPlayerBaka *) (g->players[i]);
         p->forceBestAbilityUse = forceAbility;
         p->life = initState.playerData[i].life;
         MTGGameZone * playerZones[] = { p->game->graveyard, p->game->library, p->game->hand, p->game->inPlay };

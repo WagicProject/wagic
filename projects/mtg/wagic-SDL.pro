@@ -51,6 +51,7 @@ SOURCES += \
         src/AIHints.cpp\
         src/AIMomirPlayer.cpp\
         src/AIPlayer.cpp\
+		src/AIPlayerBaka.cpp\
         src/AIStats.cpp\
         src/AllAbilities.cpp\
         src/CardDescriptor.cpp\

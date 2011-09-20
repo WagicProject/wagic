@@ -263,7 +263,6 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                         string numberCD = attribute.substr(operatorPosition + 1, attribute.size() - operatorPosition - 1);
                         WParsedInt * val = NEW WParsedInt(numberCD,NULL, card);
                         comparisonCriterion = val->getValue();
-                        /*atoi(attribute.substr(operatorPosition + 1, attribute.size() - operatorPosition - 1).c_str());*/
                         delete val;           
                         switch (attribute[operatorPosition - 1])
                         {

@@ -4,6 +4,10 @@
 #include "MTGDefinitions.h"
 #include "WResourceManager.h"
 #include "AIPlayer.h"
+
+//TODO remove this dependency
+#include "AIPlayerBaka.h"
+
 #include "Rules.h"
 #include "Credits.h"
 #include "PlayerData.h"

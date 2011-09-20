@@ -4,6 +4,10 @@
 #include "Player.h"
 #include "Tasks.h"
 #include "AIPlayer.h"
+
+// Todo remove this dependency!
+#include "AIPlayerBaka.h"
+
 #include "Translate.h"
 #include "MTGDefinitions.h"
 #include <JRenderer.h>

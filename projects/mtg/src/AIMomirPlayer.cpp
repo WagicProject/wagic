@@ -15,7 +15,7 @@ AIMomirPlayer::AIMomirPlayer(string file, string fileSmall, string avatarFile, M
     agressivity = 100;
 }
 
-int AIMomirPlayer::getEfficiency(AIAction * action)
+int AIMomirPlayer::getEfficiency(OrderedAIAction * action)
 {
     MTGAbility * ability = action->ability;
     ManaCost * cost = ability->getCost();

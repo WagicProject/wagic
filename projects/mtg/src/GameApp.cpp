@@ -97,7 +97,33 @@ void GameApp::Create()
 
 	WResourceManager::Instance()->ResetCacheLimits();
 
-    JFileSystem::init("User/", "Res/");
+    string systemFolder = "Res/";
+    string foldersRoot = "";
+
+    //Find the Res folder
+    ifstream mfile("Res.txt");
+    string resPath;
+    if (mfile)
+    {
+        bool found = false;
+        while (!found && std::getline(mfile, resPath))
+        {
+            if (resPath[resPath.size() - 1] == '\r')
+                resPath.erase(resPath.size() - 1); //Handle DOS files
+            string testfile = resPath + systemFolder;
+            testfile.append("graphics/simon.dat");
+            ifstream tempfile(testfile.c_str());
+            if (tempfile)
+            {
+                found = true;
+                tempfile.close();
+                foldersRoot = resPath;
+            }
+        }
+        mfile.close();
+    }
+
+    JFileSystem::init(foldersRoot + "User/", foldersRoot + systemFolder);
 
     // Create User Folders (for write access) if they don't exist
     {

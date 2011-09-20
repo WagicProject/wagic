@@ -6,7 +6,7 @@
 using std::string;
 using std::vector;
 
-#include "AIPlayer.h"
+#include "AIPlayerBaka.h"
 
 class ManaCost;
 class MTGAbility;
@@ -24,7 +24,7 @@ public:
 class AIHints
 {
 protected:
-    AIPlayer * mPlayer;
+    AIPlayerBaka * mPlayer;
     vector<AIHint *> hints;
     AIHint * getByCondition (string condition);
     AIAction * findAbilityRecursive(AIHint * hint, ManaCost * potentialMana);
@@ -34,7 +34,7 @@ protected:
     bool findSource(int sourceId);
     bool abilityMatches(MTGAbility * a, AIHint * hint);
 public:
-    AIHints (AIPlayer * player);
+    AIHints (AIPlayerBaka * player);
     AIAction * suggestAbility(ManaCost * potentialMana);
     void add(string line);
     ~AIHints();

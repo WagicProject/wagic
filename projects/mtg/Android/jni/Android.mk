@@ -34,6 +34,7 @@ LOCAL_SRC_FILES := $(SDL_PATH)/src/main/android/SDL_android_main.cpp \
         $(MTG_PATH)/src/AIHints.cpp \
         $(MTG_PATH)/src/AIMomirPlayer.cpp \
         $(MTG_PATH)/src/AIPlayer.cpp \
+		$(MTG_PATH)/src/AIPlayerBaka.cpp \
         $(MTG_PATH)/src/AIStats.cpp \
         $(MTG_PATH)/src/AllAbilities.cpp \
         $(MTG_PATH)/src/CardDescriptor.cpp \

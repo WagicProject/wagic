@@ -1470,7 +1470,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         {
             MTGCard * safetycard = MTGCollection()->getCardById(tokenId);
             if (!safetycard) //Error, card not foudn in DB
-                return NEW ATokenCreator(id, card, target, NULL, "ID NOT FOUND", "ERROR ID",0, 0, "",0, NULL,0);
+                return NEW ATokenCreator(id, card, target, NULL, "ID NOT FOUND", "ERROR ID",0, 0, "","", NULL,0);
 
             ATokenCreator * tok = NEW ATokenCreator(id, card,target, NULL, tokenId, starfound, multiplier, who);
             tok->oneShot = 1;

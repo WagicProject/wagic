@@ -6,7 +6,7 @@
 #define MAX_TESTSUITE_ACTIONS 100
 #define MAX_TESTUITE_CARDS 100
 
-#include "AIPlayer.h"
+#include "AIPlayerBaka.h"
 
 class TestSuiteActions
 {
@@ -95,6 +95,7 @@ public:
 
 };
 
+// TODO This should inherit from AIPlayer instead!
 class TestSuiteAI:public AIPlayerBaka
 {
 private:

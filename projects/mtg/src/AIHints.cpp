@@ -1,7 +1,7 @@
 #include "PrecompiledHeader.h"
 
 #include "AIHints.h"
-#include "AIPlayer.h"
+#include "AIPlayerBaka.h"
 #include "utils.h"
 #include "AllAbilities.h"
 
@@ -33,7 +33,7 @@ AIHint::AIHint(string _line)
     }
 }
 
-AIHints::AIHints(AIPlayer * player): mPlayer(player)
+AIHints::AIHints(AIPlayerBaka * player): mPlayer(player)
 {
 }
 
