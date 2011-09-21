@@ -270,9 +270,11 @@ int OrderedAIAction::getEfficiency()
             {
                 if(_target->defenser || _target->blockers.size())
                 {
-                    if(!_target->getNextOpponent()->typeAsTarget() == TARGET_CARD)
+                    MTGCardInstance * opponent = _target->getNextOpponent();
+                    if (!opponent)
                         break;
-                    if (_target->power < _target->getNextOpponent()->toughness ||(_target->getNextOpponent() && _target->toughness < _target->getNextOpponent()->power) || (_target->has(Constants::TRAMPLE)))
+
+                    if (_target->power < opponent->toughness ||( _target->toughness < opponent->power) || (_target->has(Constants::TRAMPLE)))
                     {
                         //this pump is based on a start eff. of 20 multiplied by how good the creature is.
                         efficiency = 20 * _target->DangerRanking();
@@ -659,82 +661,83 @@ MTGCardInstance * AIPlayerBaka::chooseCard(TargetChooser * tc, MTGCardInstance *
 
 bool AIPlayerBaka::payTheManaCost(ManaCost * cost, MTGCardInstance * target,vector<MTGAbility*>gotPayments)
 {
-    DebugTrace(" AI attempting to pay a mana cost." << endl
+     DebugTrace("AIPlayerBaka: AI attempting to pay a mana cost." << endl
             << "-  Target: " << (target ? target->name : "None" ) << endl
             << "-  Cost: " << (cost ? cost->toString() : "NULL") );
-    if(cost && !cost->getConvertedCost())
-    {
-        DebugTrace("Card or Ability was free to play.  ");
-        if(!cost->hasX())//don't return true if it contains {x} but no cost, locks ai in a loop. ie oorchi hatchery cost {x}{x} to play.
-        return true;
-        //return true if cost does not contain "x" becuase we don't need to do anything with a cost of 0;
-    }
+
     if (!cost)
     {
-        DebugTrace("Mana cost is NULL.  ");
+        DebugTrace("AIPlayerBaka: Mana cost is NULL.  ");
         return false;
     }
-    ManaCost * pMana = NULL;
-    if(!gotPayments.size())
+
+    if(!cost->getConvertedCost())
     {
-        pMana = target ? getPotentialMana(target) : getPotentialMana();
-        pMana->add(this->getManaPool());
+        DebugTrace("AIPlayerBaka: Card or Ability was free to play.  ");
+        if(!cost->hasX())//don't return true if it contains {x} but no cost, locks ai in a loop. ie oorchi hatchery cost {x}{x} to play.
+            return true;
+        //return true if cost does not contain "x" becuase we don't need to do anything with a cost of 0;
     }
-    if(cost && pMana && !cost->getConvertedCost() && cost->hasX())
-    {
-        cost = pMana;//{x}:effect, set x to max.
-    }
+
     if(gotPayments.size())
     {
-        DebugTrace(" Ai had a payment in mind.");
+        DebugTrace("AIPlayerBaka: Ai had a payment in mind.");
         ManaCost * paid = NEW ManaCost();
-        vector<AIAction*>clicks = vector<AIAction*>();
+        vector<AIAction*>clicks;
 
-        paid->init();
-        for(int k = 0;k < int(gotPayments.size());k++)
+        for(size_t k = 0; k < gotPayments.size(); ++k)
         {
-            AManaProducer * amp = dynamic_cast<AManaProducer*> (gotPayments[k]);
-            GenericActivatedAbility * gmp = dynamic_cast<GenericActivatedAbility*>(gotPayments[k]);
-            if (amp)
+            if ( AManaProducer * amp = dynamic_cast<AManaProducer*> (gotPayments[k]))
             {
                 AIAction * action = NEW AIAction(amp,amp->source);
                 clicks.push_back(action);
                 paid->add(amp->output);
             }
-            else if(gmp)
+            else if(GenericActivatedAbility * gmp = dynamic_cast<GenericActivatedAbility*>(gotPayments[k]))
             {
                 AIAction * action = NEW AIAction(gmp,gmp->source);
                 clicks.push_back(action);
-                AForeach * fmp = dynamic_cast<AForeach*>(gmp->ability);
-                if(fmp)
+                if(AForeach * fmp = dynamic_cast<AForeach*>(gmp->ability))
                 {
                     amp = dynamic_cast<AManaProducer*> (fmp->ability);
                     int outPut = fmp->checkActivation();
-                    for(int k = 0;k < outPut;k++)
+                    for(int k = 0; k < outPut; ++k)
                         paid->add(amp->output);
                 }
             }
             paid->add(this->getManaPool());//incase some of our payments were mana already in the pool/.
-            if(paid->canAfford(cost) && !cost->hasX())
+            if(paid->canAfford(cost) && (!cost->hasX() || k == gotPayments.size()))
             {
                 SAFE_DELETE(paid);
-                for(int clicking = 0; clicking < int(clicks.size()); clicking++)
+                for(size_t clicking = 0; clicking < clicks.size(); ++clicking)
                     clickstream.push(clicks[clicking]);
                 return true;
             }
-            if(cost->hasX() && k == int(gotPayments.size()) && paid->canAfford(cost))
-            {
-                SAFE_DELETE(paid);
-                for(int clicking = 0; clicking < int(clicks.size()); clicking++)
-                    clickstream.push(clicks[clicking]);
-                return true;
-            }
+
+            //clean up temporary "clicks" structure if its content wasn't used above
+            for(size_t i = 0; i< clicks.size(); ++i)
+                SAFE_DELETE(clicks[i]);
+            clicks.clear();
         }
         SAFE_DELETE(paid);
         return false;
     }
+
+    // Didn't have a payment in mind if we reach this point
     //pMana is our main payment form, it is far faster then direct search.
-    DebugTrace(" the Mana was already in the manapool or could be Paid with potential mana, using potential Mana now.");
+    DebugTrace("AIPlayerBaka: the Mana was already in the manapool or could be Paid with potential mana, using potential Mana now.");
+
+    ManaCost * pMana = getPotentialMana(target);
+    if (!pMana)
+        return false;
+
+    pMana->add(this->getManaPool());
+
+    if(!cost->getConvertedCost() && cost->hasX())
+    {
+        cost = pMana;//{x}:effect, set x to max.
+    }
+
     if(!pMana->canAfford(cost))
     {
         delete pMana;
@@ -745,7 +748,7 @@ bool AIPlayerBaka::payTheManaCost(ManaCost * cost, MTGCardInstance * target,vect
     GameObserver * g = GameObserver::GetInstance();
 
     map<MTGCardInstance *, bool> used;
-    for (size_t i = 1; i < g->mLayers->actionLayer()->mObjects.size(); i++)
+    for (size_t i = 1; i < g->mLayers->actionLayer()->mObjects.size(); ++i)
     { //0 is not a mtgability...hackish
         //Make sure we can use the ability
         MTGAbility * a = ((MTGAbility *) g->mLayers->actionLayer()->mObjects[i]);
@@ -1730,7 +1733,7 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
 void AIPlayerBaka::initTimer()
 {
     if (mFastTimerMode)
-        timer = 0;
+        timer = 0; //0 or 1 is as fast as possible and will generate bad side effects in the game engine (phases getting skipped...), use wisely
     else
         timer = 0.1f;
 }
@@ -1745,9 +1748,9 @@ int AIPlayerBaka::computeActions()
     the 2nd else is run about 90% of the time over the third, this was causing ai to miss the chance to chooseblockers()
     when it could have blocked almost 90% of the time.*/
     GameObserver * g = GameObserver::GetInstance();
-    Player * p = (Player*)this;
+    Player * p = this;
     Player * currentP = g->currentlyActing();
-    if (!(g->currentlyActing() == p))
+    if (!(currentP == p))
         return 0;
     ActionLayer * object = g->mLayers->actionLayer();
     if (object->menuObject)
@@ -1786,7 +1789,7 @@ int AIPlayerBaka::computeActions()
     Player * lastStackActionController = NULL;
     if(spell && spell->type == ACTION_SPELL)
       lastStackActionController = spell->source->controller();           
-    if ((interruptIfICan() || g->isInterrupting == this) 
+    if (g->isInterrupting == this 
         && this == currentP 
         //and i am the currentlyActivePlayer
         && ((lastStackActionController && lastStackActionController != this) || (g->mLayers->stackLayer()->count(0, NOT_RESOLVED) == 0)))
@@ -1834,7 +1837,7 @@ int AIPlayerBaka::computeActions()
         findingCard = false;
         return 1;
     }
-    else if(p == this && g->mLayers->stackLayer()->count(0, NOT_RESOLVED) == 0)
+    else if(g->mLayers->stackLayer()->count(0, NOT_RESOLVED) == 0)
     { //standard actions
         switch (g->getCurrentGamePhase())
         {

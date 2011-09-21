@@ -620,7 +620,7 @@ void GameStateDuel::Render()
           if (totalTestGames < 2.5 * totalAIDecks)
           {
                mFont->SetColor(ARGB(255,255,255,0));
-               sprintf(buf, "Results are not significant, you should let at least %i more games run", totalAIDecks * 2.5 - totalTestGames);
+               sprintf(buf, "Results are not significant, you should let at least %i more games run", (int)(totalAIDecks * 2.5) - totalTestGames);
                mFont->DrawString(buf,0,SCREEN_HEIGHT/2 - 20);
           }
 

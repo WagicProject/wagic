@@ -586,6 +586,13 @@ int ActionStack::setIsInterrupting(Player * player)
         return 0;
     }
 
+    // Is it a valid interruption request, or is uninterruptible stuff going on in the game?
+    if (game->getCurrentTargetChooser())
+    {
+        DebugTrace("ActionStack: WARNING - We were asked to interrupt, but some un-interruptible action is already going on");
+        return 0;
+    }
+
     int playerId = (player == game->players[1]) ? 1 : 0;
     interruptDecision[playerId] = -1;
     game->isInterrupting = player;
