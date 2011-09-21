@@ -84,12 +84,11 @@ bool AIPlayerBakaB::payTheManaCost(ManaCost * cost, MTGCardInstance * target, ve
                     clickstream.push(clicks[clicking]);
                 return true;
             }
-
-            //clean up temporary "clicks" structure if its content wasn't used above
-            for(size_t i = 0; i< clicks.size(); ++i)
-                SAFE_DELETE(clicks[i]);
-            clicks.clear();
         }
+        //clean up temporary "clicks" structure if its content wasn't used above
+        for(size_t i = 0; i< clicks.size(); ++i)
+            SAFE_DELETE(clicks[i]);
+        clicks.clear();
         SAFE_DELETE(paid);
         return false;
     }
@@ -1724,6 +1723,8 @@ MTGCardInstance * AIPlayerBakaB::FindCardToPlay(ManaCost * pMana, const char * t
     }
     if(nextCardToPlay)
     {
+        if(!pMana->canAfford(nextCardToPlay->getManaCost()))
+            gotPayments = canPayMana(nextCardToPlay,nextCardToPlay->getManaCost());
    DebugTrace(" AI wants to play card." << endl
             << "- Next card to play: " << (nextCardToPlay ? nextCardToPlay->name : "None" ) << endl );
     }
