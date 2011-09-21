@@ -77290,7 +77290,7 @@ toughness=4
 [/card]
 [card]
 name=Volcanic Eruption
-target=<x>mountain
+target=<prex>mountain
 auto=destroy && damage:1 all(player) && damage:1 all(creature)
 text=Destroy X target Mountains. Volcanic Eruption deals damage to each creature and each player equal to the number of Mountains destroyed this way.
 mana={X}{U}{U}{U}
