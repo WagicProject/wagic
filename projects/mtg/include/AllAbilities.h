@@ -71,7 +71,14 @@ public:
             size_t hD = s.find("halfdown");
             s.erase(hD,hD + 8);
         }
-        if (s == "x" || s == "X")
+        if(s == "prex")
+        {
+            ManaCost * cX = NEW ManaCost(card->controller()->getManaPool()->Diff(card->getManaCost()));
+            int preX = 
+            intValue = cX->getCost(Constants::MTG_NB_COLORS);
+            delete cX;
+        }
+        else if (s == "x" || s == "X")
         {
             intValue = computeX(spell, card);
             if(intValue < 0)

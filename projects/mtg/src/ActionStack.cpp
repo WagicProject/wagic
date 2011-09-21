@@ -243,8 +243,7 @@ Interruptible(id), tc(tc), cost(_cost), payResult(payResult)
 
 int Spell::computeX(MTGCardInstance * card)
 {
-    ManaCost * c = NULL;
-    cost? c = cost->Diff(card->getManaCost()) : c = card->controller()->getManaPool()->Diff(card->getManaCost());
+    ManaCost * c = NEW ManaCost(cost->Diff(card->getManaCost()));
     int x = c->getCost(Constants::MTG_NB_COLORS);
     delete c;
     return x;
@@ -589,7 +588,8 @@ int ActionStack::setIsInterrupting(Player * player)
     // Is it a valid interruption request, or is uninterruptible stuff going on in the game?
     if (game->getCurrentTargetChooser())
     {
-        DebugTrace("ActionStack: WARNING - We were asked to interrupt, but some un-interruptible action is already going on");
+        DebugTrace("ActionStack: WARNING - We were asked to interrupt, During Targetchoosing" << endl
+            << "source: " << (game->getCurrentTargetChooser()->source ? game->getCurrentTargetChooser()->source->name : "None" ) << endl );
         return 0;
     }
 

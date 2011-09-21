@@ -34,14 +34,18 @@ int ActionLayer::removeFromGame(ActionElement * e)
     i = getIndexOf(e); //the destroy event might have changed the contents of mObjects, so we get the index again
     if (i == -1)
         return 0; //Should not happen, it means we deleted thesame object twice?
-    AManaProducer * manaObject = dynamic_cast<AManaProducer*>(e);
-    if(manaObject)
+    AbilityFactory af;
+    if(MTGAbility * a = dynamic_cast<MTGAbility*>(e))
     {
-        for (size_t i = 0; i < manaObjects.size(); i++)
-            if (manaObjects[i] == e)
-            {
-                manaObjects.erase(manaObjects.begin() + i);
-            }
+        AManaProducer * manaObject = dynamic_cast<AManaProducer*>(af.getCoreAbility((MTGAbility*)e));
+        if(manaObject)
+        {
+            for (size_t i = 0; i < manaObjects.size(); i++)
+                if (manaObjects[i] == e)
+                {
+                    manaObjects.erase(manaObjects.begin() + i);
+                }
+        }
     }
     mObjects.erase(mObjects.begin() + i);
     return 1;

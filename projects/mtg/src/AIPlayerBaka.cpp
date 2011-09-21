@@ -321,50 +321,8 @@ int OrderedAIAction::getEfficiency()
     case MTGAbility::MANA_PRODUCER://only way to hit this condition is nested manaabilities, ai skips manaproducers by defualt when finding an ability to use.
     {
         efficiency = 0;
-
-        if(!coreAbilityCardTarget)
-            break;
-
-        AManaProducer * amp = dynamic_cast<AManaProducer*>(a);
-
-        //trying to encourage Ai to use his foreach manaproducers in first main
-        if (amp && amp->output && amp->output->getConvertedCost() && (g->getCurrentGamePhase() == Constants::MTG_PHASE_FIRSTMAIN
-                || g->getCurrentGamePhase() == Constants::MTG_PHASE_SECONDMAIN) && coreAbilityCardTarget->controller()->game->hand->nb_cards > 0)
-        {
-            for (int i = Constants::MTG_NB_COLORS - 1; i > 0; i--)
-            {
-                if ((p->game->hand->hasColor(i) || p->game->hand->hasColor(0))
-                        && amp->output->hasColor(i))
-                {            
-                    efficiency = 100;
-                }
-            }
-
-            if (amp->getCost() && amp->getCost()->getConvertedCost() && p->game->hand->hasX())
-                efficiency = 100;
-        }
-        else
-        {
-            AbilityFactory af;
-            int suggestion = af.abilityEfficiency(a, p, MODE_ABILITY);
-
-            if (target && a->naType != MTGAbility::MANA_PRODUCER && ((suggestion == BAKA_EFFECT_BAD && p == target->controller())
-                    || (suggestion == BAKA_EFFECT_GOOD && p != target->controller())))
-            {
-                efficiency = 0;
-            }
-            else if (a->naType != MTGAbility::MANA_PRODUCER && (g->getCurrentGamePhase() == Constants::MTG_PHASE_FIRSTMAIN
-                    || g->getCurrentGamePhase() == Constants::MTG_PHASE_SECONDMAIN))
-            {
-                //if its not a manaproducing foreach, and its not targetted, its eff is 90.
-                //added this basically to cover the unknown foreachs, or untrained ones which were not targetted effects.
-                efficiency = 90;
-            }
-
-        }
         break;
     }
-
     case MTGAbility::STANDARDABILITYGRANT:
         {
             efficiency = 0;
@@ -856,7 +814,7 @@ vector<MTGAbility*> AIPlayerBaka::canPayMana(MTGCardInstance * target,ManaCost *
         AManaProducer * amp = dynamic_cast<AManaProducer*> (a);
         if(amp && (amp->getCost() && amp->getCost()->extraCosts && !amp->getCost()->extraCosts->canPay()))
             continue;
-        if(fullColor == needColorConverted)
+        if(fullColor == needColorConverted && result->getConvertedCost() < cost->getConvertedCost())
         {
             if(cost->hasColor(0) && amp)//find colorless after color mana.
             {
@@ -878,8 +836,7 @@ vector<MTGAbility*> AIPlayerBaka::canPayMana(MTGCardInstance * target,ManaCost *
                     }
                 }
             }
-            i = g->mLayers->actionLayer()->manaObjects.size();
-            break;
+            continue;
         }
         GenericActivatedAbility * gmp = dynamic_cast<GenericActivatedAbility*>(a);
         if(gmp && canHandleCost(gmp))

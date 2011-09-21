@@ -2,6 +2,7 @@
 
 #include "GuiLayers.h"
 #include "Player.h"
+#include "AllAbilities.h"
 
 GuiLayer::GuiLayer()
 {
@@ -19,21 +20,32 @@ GuiLayer::~GuiLayer()
 void GuiLayer::Add(JGuiObject *object)
 {
     mObjects.push_back(object);
-    AManaProducer * manaObject = dynamic_cast<AManaProducer*>(object);
-    if(manaObject)
-        manaObjects.push_back(object);
+    AbilityFactory af;
+    if(MTGAbility * a = dynamic_cast<MTGAbility*>(object))
+    {
+        AManaProducer * manaObject = dynamic_cast<AManaProducer*>(af.getCoreAbility((MTGAbility*)object));
+        if(manaObject)
+        {
+            manaObjects.push_back(object);
+        }
+    }
 }
 
 int GuiLayer::Remove(JGuiObject *object)
 {
-    AManaProducer * manaObject = dynamic_cast<AManaProducer*>(object);
-    if(manaObject)
+
+    AbilityFactory af;
+    if(MTGAbility * a = dynamic_cast<MTGAbility*>(object))
     {
-        for (size_t i = 0; i < manaObjects.size(); i++)
-            if (manaObjects[i] == object)
-            {
-                manaObjects.erase(manaObjects.begin() + i);
-            }
+        AManaProducer * manaObject = dynamic_cast<AManaProducer*>(af.getCoreAbility((MTGAbility*)object));
+        if(manaObject)
+        {
+            for (size_t i = 0; i < manaObjects.size(); i++)
+                if (manaObjects[i] == object)
+                {
+                    manaObjects.erase(manaObjects.begin() + i);
+                }
+        }
     }
     for (size_t i = 0; i < mObjects.size(); i++)
         if (mObjects[i] == object)

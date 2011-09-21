@@ -168,8 +168,7 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card,Player * player
                 }
                 else if (i == 2)
                 {
-                    Spell * spellCard = (Spell*)card;
-                    WParsedInt * secondA = NEW WParsedInt(comparasion[2].c_str(),spellCard?spellCard:NULL,card);
+                    WParsedInt * secondA = NEW WParsedInt(comparasion[2].c_str(),NULL,card);
                     secondAmount = secondA->getValue();
                     SAFE_DELETE(secondA);
                 }
