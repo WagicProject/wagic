@@ -705,9 +705,9 @@ bool AIPlayerBaka::payTheManaCost(ManaCost * cost, MTGCardInstance * target,vect
                         paid->add(amp->output);
                 }
             }
-            if(k == gotPayments.size())//only add it once, and at the end.
+            if(k == gotPayments.size()-1)//only add it once, and at the end.
             paid->add(this->getManaPool());//incase some of our payments were mana already in the pool/.
-            if(paid->canAfford(cost) && (!cost->hasX() || k == gotPayments.size()))
+            if(paid->canAfford(cost) && (!cost->hasX() || k == gotPayments.size()-1))
             {
                 SAFE_DELETE(paid);
                 for(size_t clicking = 0; clicking < clicks.size(); ++clicking)
