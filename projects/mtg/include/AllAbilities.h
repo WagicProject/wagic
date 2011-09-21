@@ -984,13 +984,14 @@ class AAMover: public ActivatedAbility
 {
 public:
     string destination;
-
+    MTGAbility * andAbility;
     AAMover(int _id, MTGCardInstance * _source, MTGCardInstance * _target, string dest, ManaCost * _cost = NULL);
     MTGGameZone * destinationZone(Targetable * target = NULL);
     int resolve();
     const char * getMenuText();
     const char * getMenuText(TargetChooser * fromTc);
     AAMover * clone() const;
+    ~AAMover();
 };
 
 //-----------------------------------------------------------------------------------------------

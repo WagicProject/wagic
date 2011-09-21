@@ -1781,6 +1781,7 @@ AAMover::AAMover(int _id, MTGCardInstance * _source, MTGCardInstance * _target, 
 {
     if (_target)
         target = _target;
+    andAbility = NULL;
 }
 
 MTGGameZone * AAMover::destinationZone(Targetable * target)
@@ -1810,11 +1811,39 @@ int AAMover::resolve()
                     MTGCardInstance * copy = g->players[i]->game->putInZone(_target, fromZone, g->players[i]->game->temp);
                     Spell * spell = NEW Spell(copy);
                     spell->resolve();
+                    if(andAbility)
+                    {
+                        MTGAbility * andAbilityClone = andAbility->clone();
+                        andAbilityClone->target = spell->source;
+                        if(andAbility->oneShot)
+                        {
+                            andAbilityClone->resolve();
+                            SAFE_DELETE(andAbilityClone);
+                        }
+                        else
+                        {
+                            andAbilityClone->addToGame();
+                        }
+                    }
                     delete spell;
                     return 1;
                 }
             }
             p->game->putInZone(_target, fromZone, destZone);
+            if(andAbility)
+            {
+                MTGAbility * andAbilityClone = andAbility->clone();
+                andAbilityClone->target = _target;
+                if(andAbility->oneShot)
+                {
+                    andAbilityClone->resolve();
+                    SAFE_DELETE(andAbilityClone);
+                }
+                else
+                {
+                    andAbilityClone->addToGame();
+                }
+            }
             return 1;
         }
     }
@@ -1889,7 +1918,15 @@ const char * AAMover::getMenuText(TargetChooser * tc)
 
 AAMover * AAMover::clone() const
 {
-    return NEW AAMover(*this);
+    AAMover * a = NEW AAMover(*this);
+    if(andAbility)
+    a->andAbility = andAbility->clone();
+    return a;
+}
+
+AAMover::~AAMover()
+{
+SAFE_DELETE(andAbility);
 }
 
 //Random Discard
