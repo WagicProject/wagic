@@ -75,6 +75,7 @@ bool AIPlayerBakaB::payTheManaCost(ManaCost * cost, MTGCardInstance * target, ve
                         paid->add(amp->output);
                 }
             }
+            if(k == gotPayments.size())//add it once, and at the end.
             paid->add(this->getManaPool());//incase some of our payments were mana already in the pool/.
             if(paid->canAfford(cost) && (!cost->hasX() || k == gotPayments.size()))
             {
