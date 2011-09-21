@@ -492,7 +492,7 @@ MTGCardInstance * MTGGameZone::hasCard(MTGCardInstance * card)
 
 }
 
-int MTGGameZone::countByType(const char * value)
+unsigned int MTGGameZone::countByType(const char * value)
 {
     int result = 0;
     int subTypeId = Subtypes::subtypesList->find(value);
@@ -506,10 +506,11 @@ int MTGGameZone::countByType(const char * value)
     return result;
 }
 
-int MTGGameZone::countByCanTarget(TargetChooser * tc)
+unsigned int MTGGameZone::countByCanTarget(TargetChooser * tc)
 {
-if(!tc)
-return 0;
+    if(!tc)
+        return 0;
+
     int result = 0;
     for (int i = 0; i < (nb_cards); i++)
     {

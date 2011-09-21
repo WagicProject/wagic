@@ -2,6 +2,7 @@
 #define _AI_PLAYER_BAKA_H_
 
 #include "AIPlayer.h"
+#include "AllAbilities.h"
 
 class AIStats;
 class AIHints;
@@ -12,33 +13,37 @@ class AIHints;
 class OrderedAIAction: public AIAction
 {
 protected:
-
+    Player * getPlayerTarget();
 
 public:
     int efficiency;
     
-    OrderedAIAction(MTGAbility * a, MTGCardInstance * c, MTGCardInstance * t = NULL)
-        : AIAction(a, c, t), efficiency(-1)
+    OrderedAIAction(Player * owner, MTGAbility * a, MTGCardInstance * c, MTGCardInstance * t = NULL)
+        : AIAction(owner, a, c, t), efficiency(-1)
     {
     };
 
-    OrderedAIAction(MTGCardInstance * c, MTGCardInstance * t = NULL);
+    OrderedAIAction(Player * owner, MTGCardInstance * c, MTGCardInstance * t = NULL);
 
-    OrderedAIAction(Player * p)//player targeting through spells
-        : AIAction(p), efficiency(-1)
+    OrderedAIAction(Player * owner, Player * p)//player targeting through spells
+        : AIAction(owner,p), efficiency(-1)
     {
     };
 
-    OrderedAIAction(MTGAbility * a, MTGCardInstance * c, vector<Targetable*>targetCards)
-        : AIAction(a,  c, targetCards), efficiency(-1)
+    OrderedAIAction(Player * owner, MTGAbility * a, MTGCardInstance * c, vector<Targetable*>targetCards)
+        : AIAction(owner,a,  c, targetCards), efficiency(-1)
     {
     };
 
-    OrderedAIAction(MTGAbility * a, Player * p, MTGCardInstance * c)//player targeting through abilities.
-        : AIAction(a, p, c), efficiency(-1)
+    OrderedAIAction(Player * owner, MTGAbility * a, Player * p, MTGCardInstance * c)//player targeting through abilities.
+        : AIAction(owner, a, p, c), efficiency(-1)
     {
     };
     int getEfficiency();
+
+    // Functions depending on the type of Ability
+    int getEfficiency(AADamager * aad);
+
 };
 
 // compares Abilities efficiency
@@ -60,7 +65,7 @@ typedef std::map<OrderedAIAction, int, CmpAbilities> RankingContainer;
 
 
 class AIPlayerBaka: public AIPlayer{
-private:
+ protected:
     virtual int orderBlockers();
     virtual int combatDamages();
     virtual int interruptIfICan();
@@ -84,7 +89,6 @@ private:
 
     virtual AIStats * getStats();
 
- protected:
     MTGCardInstance * nextCardToPlay;
     AIHints * hints;
     AIStats * stats;

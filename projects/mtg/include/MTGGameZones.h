@@ -86,8 +86,8 @@ class MTGGameZone {
    void cleanupPhase();
    void beforeBeginPhase();
 
-   int countByType(const char * value);
-   int countByCanTarget(TargetChooser * tc);
+   unsigned int countByType(const char * value);
+   unsigned int countByCanTarget(TargetChooser * tc);
    MTGCardInstance * findByName(string name);
 
     //returns true if one of the cards in the zone has the ability

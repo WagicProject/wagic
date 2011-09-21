@@ -28,6 +28,7 @@ class AIAction
 protected:
     static int currentId;
 public:
+    Player * owner;
     MTGAbility * ability;
     NestedAbility * nability;
     Player * player;
@@ -38,27 +39,27 @@ public:
     Targetable * playerAbilityTarget;
     //player targeting through abilities is handled completely seperate from spell targeting.
     
-    AIAction(MTGAbility * a, MTGCardInstance * c, MTGCardInstance * t = NULL)
-        :  ability(a), player(NULL), click(c), target(t),playerAbilityTarget(NULL)
+    AIAction(Player * owner, MTGAbility * a, MTGCardInstance * c, MTGCardInstance * t = NULL)
+        : owner(owner), ability(a), player(NULL), click(c), target(t),playerAbilityTarget(NULL)
     {
         id = currentId++;
     };
 
-    AIAction(MTGCardInstance * c, MTGCardInstance * t = NULL);
+    AIAction(Player * owner, MTGCardInstance * c, MTGCardInstance * t = NULL);
 
-    AIAction(Player * p)//player targeting through spells
-        :  ability(NULL), player(p), click(NULL), target(NULL),playerAbilityTarget(NULL)
+    AIAction(Player * owner, Player * p)//player targeting through spells
+        :  owner(owner), ability(NULL), player(p), click(NULL), target(NULL),playerAbilityTarget(NULL)
     {
     };
 
-    AIAction(MTGAbility * a, MTGCardInstance * c, vector<Targetable*>targetCards)
-        :  ability(a), player(NULL), click(c), mAbilityTargets(targetCards),playerAbilityTarget(NULL)
+    AIAction(Player * owner, MTGAbility * a, MTGCardInstance * c, vector<Targetable*>targetCards)
+        :  owner(owner), ability(a), player(NULL), click(c), mAbilityTargets(targetCards),playerAbilityTarget(NULL)
     {
         id = currentId++;
     };
 
-    AIAction(MTGAbility * a, Player * p, MTGCardInstance * c)//player targeting through abilities.
-        : ability(a), click(c),target(NULL), playerAbilityTarget(p)
+    AIAction(Player * owner, MTGAbility * a, Player * p, MTGCardInstance * c)//player targeting through abilities.
+        : owner(owner), ability(a), click(c),target(NULL), playerAbilityTarget(p)
     {
         id = currentId++;
     };

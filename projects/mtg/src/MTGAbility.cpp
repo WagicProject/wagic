@@ -719,20 +719,16 @@ int AbilityFactory::parseRestriction(string s)
 // When abilities encapsulate each other, gets the deepest one (it is the one likely to have the most relevant information)
 MTGAbility * AbilityFactory::getCoreAbility(MTGAbility * a)
 {
-    AForeach * fea = dynamic_cast<AForeach*>(a);
-    if(fea)
+    if(AForeach * fea = dynamic_cast<AForeach*>(a))
         return getCoreAbility(fea->ability);
         
-    AAsLongAs * aea = dynamic_cast<AAsLongAs*>(a);
-    if(aea)
+    if( AAsLongAs * aea = dynamic_cast<AAsLongAs*>(a))
         return getCoreAbility(aea->ability);
         
-    GenericTargetAbility * gta = dynamic_cast<GenericTargetAbility*> (a);
-    if (gta)
+    if (GenericTargetAbility * gta = dynamic_cast<GenericTargetAbility*> (a))
         return getCoreAbility(gta->ability);
 
-    GenericActivatedAbility * gaa = dynamic_cast<GenericActivatedAbility*> (a);
-    if (gaa)
+    if (GenericActivatedAbility * gaa = dynamic_cast<GenericActivatedAbility*> (a))
         return getCoreAbility(gaa->ability);
 
     if (MultiAbility * abi = dynamic_cast<MultiAbility*>(a))
@@ -744,8 +740,10 @@ MTGAbility * AbilityFactory::getCoreAbility(MTGAbility * a)
 			//only atempt to return a nestedability if it contains a valid ability. example where this causes a bug otherwise. AEquip is considered nested, but contains no ability.
 			return getCoreAbility(na->ability);
 	}
+    
     if (MenuAbility * ma = dynamic_cast<MenuAbility*>(a))
-        return ma->abilities[0];
+        return getCoreAbility(ma->abilities[0]);
+
     return a;
 }
 

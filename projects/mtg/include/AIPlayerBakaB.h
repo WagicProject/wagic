@@ -5,13 +5,14 @@
 #define _AI_PLAYER_BAKA_B_H_
 
 #include "AIPlayerBaka.h"
+#include "AllAbilities.h"
 
 class AIStats;
 class AIHints;
 
 
 class AIPlayerBakaB: public AIPlayerBaka{
-private:
+protected:
     int orderBlockers();
     int combatDamages();
     int interruptIfICan();
@@ -36,15 +37,15 @@ private:
 
     AIStats * getStats();
 
- protected:
     MTGCardInstance * FindCardToPlay(ManaCost * potentialMana, const char * type);
 
-    //used by MomirPlayer, hence protected instead of private
-    virtual int getEfficiency(OrderedAIAction * action);
     bool payTheManaCost(ManaCost * cost, MTGCardInstance * card = NULL,vector<MTGAbility*> gotPayment = vector<MTGAbility*>());
     int getCreaturesInfo(Player * player, int neededInfo = INFO_NBCREATURES , int untapMode = 0, int canAttack = 0);
     ManaCost * getPotentialMana(MTGCardInstance * card = NULL);
     int selectAbility();
+
+    //used by MomirPlayer, hence protected instead of private
+    virtual int getEfficiency(OrderedAIAction * action);
 
  public:
 

@@ -19,8 +19,8 @@ const char * const MTG_LAND_TEXTS[] = { "artifact", "forest", "island", "mountai
 
 int AIAction::currentId = 0;
 
-AIAction::AIAction(MTGCardInstance * c, MTGCardInstance * t)
-    : ability(NULL), player(NULL), click(c), target(t)
+AIAction::AIAction(Player * owner, MTGCardInstance * c, MTGCardInstance * t)
+    : owner(owner), ability(NULL), player(NULL), click(c), target(t)
 {
     id = currentId++;
 
@@ -165,21 +165,21 @@ int AIPlayer::clickMultiTarget(TargetChooser * tc, vector<Targetable*>& potentia
         Player * pTarget = (Player*)potentialTargets[f];
         if(card && card == (MTGCardInstance*)tc->source)//if the source is part of the targetting deal with it first. second click is "confirming click".
         {
-            clickstream.push(NEW AIAction(card));
+            clickstream.push(NEW AIAction(this, card));
             DebugTrace("Ai clicked source as a target: " << (card ? card->name : "None" ) << endl );
             potentialTargets.erase(potentialTargets.begin() + f);
             sourceIncluded = true;
         }
         if(pTarget && pTarget->typeAsTarget() == TARGET_PLAYER)
         {
-            clickstream.push(NEW AIAction(pTarget));
+            clickstream.push(NEW AIAction(this, pTarget));
             DebugTrace("Ai clicked Player as a target");
             potentialTargets.erase(potentialTargets.begin() + f);
         }
     }
     std::random_shuffle(potentialTargets.begin(), potentialTargets.end());
     if(potentialTargets.size())
-        clickstream.push(NEW AIAction(NULL,tc->source,potentialTargets));
+        clickstream.push(NEW AIAction(this, NULL,tc->source,potentialTargets));
     while(clickstream.size())
     {
         AIAction * action = clickstream.front();
@@ -201,7 +201,7 @@ int AIPlayer::clickSingleTarget(TargetChooser * tc, vector<Targetable*>& potenti
                 if(!chosenCard)
                 {
                     MTGCardInstance * card = ((MTGCardInstance *) potentialTargets[i]);
-                    clickstream.push(NEW AIAction(card));
+                    clickstream.push(NEW AIAction(this, card));
                     chosenCard = card;
                 }
                 break;
@@ -209,7 +209,7 @@ int AIPlayer::clickSingleTarget(TargetChooser * tc, vector<Targetable*>& potenti
         case TARGET_PLAYER:
             {
                 Player * player = ((Player *) potentialTargets[i]);
-                clickstream.push(NEW AIAction(player));
+                clickstream.push(NEW AIAction(this, player));
                 break;
             }
         }

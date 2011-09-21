@@ -61,7 +61,7 @@ int AIMomirPlayer::momir()
         if (ability->isReactingToClick(card, cost))
         {
             payTheManaCost(cost);
-            AIAction * a = NEW AIAction(ability, card);
+            AIAction * a = NEW AIAction(this, ability, card);
             clickstream.push(a);
             result = 1;
         }
@@ -112,7 +112,7 @@ int AIMomirPlayer::computeActions()
                 if (card && (canPutLandsIntoPlay == PlayRestriction::CAN_PLAY))
                 {
                     MTGAbility * putIntoPlay = g->mLayers->actionLayer()->getAbility(MTGAbility::PUT_INTO_PLAY);
-                    AIAction * a = NEW AIAction(putIntoPlay, card); //TODO putinplay action
+                    AIAction * a = NEW AIAction(this, putIntoPlay, card); //TODO putinplay action
                     clickstream.push(a);
                     return 1;
                 }
