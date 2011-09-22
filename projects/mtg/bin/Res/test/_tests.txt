@@ -248,6 +248,8 @@ delusions_of_mediocrity.txt
 dematerialize_flashback.txt
 dingus_egg.txt
 dingus_staff_i153.txt
+Distorting_Wake.txt
+Distorting_Wake2.txt
 divergent_growth.txt
 doomed_necromancer.txt
 double_strike_i145.txt

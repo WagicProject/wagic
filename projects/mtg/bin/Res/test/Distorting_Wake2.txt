@@ -1,0 +1,23 @@
+#Testing Distorting Wake (X = 3).
+#Test 2: You should not be able to return only 2 permanents if x = 3.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Mox Pearl,Ornithopter,Grizzly Bears
+hand:Distorting Wake
+manapool:{3}{U}{U}{U}
+[PLAYER2]
+[DO]
+Distorting Wake
+choice 0
+Mox Pearl
+Ornithopter
+next
+[ASSERT]
+BEGINOFCOMBAT
+[PLAYER1]
+inplay:Mox Pearl,Ornithopter,Grizzly Bears
+hand:Distorting Wake
+manapool:{3}{U}{U}{U}
+[PLAYER2]
+[END]
