@@ -590,39 +590,75 @@ MTGCard * MTGAllCards::_(int index)
     return getCardById(ids[index]);
 }
 
-MTGCard * MTGAllCards::getCardByName(string name)
+#ifdef TESTSUITE
+void MTGAllCards::prefetchCardNameCache()
 {
-    if (!name.size()) return NULL;
-    if (name[0] == '#') return NULL;
+    map<int, MTGCard *>::iterator it;
+    for (it = collection.begin(); it != collection.end(); it++)
+    {
+        MTGCard * c = it->second;
 
-    map<string, MTGCard * >::iterator cached = mtgCardByNameCache.end();
-    if (mtgCardByNameCache.size() > 0)
-        cached = mtgCardByNameCache.find(name);
+        //Name only
+        string cardName = c->data->name;
+        std::transform(cardName.begin(), cardName.end(), cardName.begin(), ::tolower);
+        mtgCardByNameCache[cardName] = c;
+
+        //Name + set
+        int setId = c->setId;
+        MTGSetInfo* setInfo = setlist.getInfo(setId);
+        if (setInfo)
+        {
+            string setName = setInfo->getName();
+            std::transform(setName.begin(), setName.end(), setName.begin(), ::tolower);
+            cardName = cardName + " (" + setName +  ")";
+            mtgCardByNameCache[cardName] = c;
+        }
+
+        // id
+        std::stringstream out;
+        out << c->getMTGId();
+        mtgCardByNameCache[out.str()] = c;
+    }    
+}
+#endif
+
+MTGCard * MTGAllCards::getCardByName(string nameDescriptor)
+{
+    if (!nameDescriptor.size()) return NULL;
+    if (nameDescriptor[0] == '#') return NULL;
+
+    std::transform(nameDescriptor.begin(), nameDescriptor.end(), nameDescriptor.begin(), ::tolower);
+
+    map<string, MTGCard * >::iterator cached = mtgCardByNameCache.find(nameDescriptor);
     
     if (cached!= mtgCardByNameCache.end())
     {
         return cached->second;
     }
 
-    int cardnb = atoi(name.c_str());
+    int cardnb = atoi(nameDescriptor.c_str());
     if (cardnb)
     {
         MTGCard * result = getCardById(cardnb);
-        mtgCardByNameCache[name] = result;
+        mtgCardByNameCache[nameDescriptor] = result;
         return result;
     }
 
-    std::transform(name.begin(), name.end(), name.begin(), ::tolower);
     int setId = -1;
-    size_t found = name.find(" (");
+    size_t found = nameDescriptor.find(" (");
+    string name = nameDescriptor;
     if (found != string::npos)
     {
-        size_t end = name.find(")");
-        string setName = name.substr(found + 2, end - found - 2);
+        size_t end = nameDescriptor.find(")");
+        string setName = nameDescriptor.substr(found + 2, end - found - 2);
         trim(setName);
-        name = name.substr(0, found);
+        name = nameDescriptor.substr(0, found);
         trim(name);
         setId = setlist[setName];
+
+        //Reconstruct a clean string "name (set)" for cache consistency
+        nameDescriptor = name + " (" + setName + ")";
+        
     }
     map<int, MTGCard *>::iterator it;
     for (it = collection.begin(); it != collection.end(); it++)
@@ -632,12 +668,12 @@ MTGCard * MTGAllCards::getCardByName(string name)
         string cardName = c->data->name;
         std::transform(cardName.begin(), cardName.end(), cardName.begin(), ::tolower);
         if (cardName.compare(name) == 0) {
-            mtgCardByNameCache[name] = c;
+            mtgCardByNameCache[nameDescriptor] = c;
             return c;
         }
 
     }
-    mtgCardByNameCache[name] = NULL;
+    mtgCardByNameCache[nameDescriptor] = NULL;
     return NULL;
 }
 

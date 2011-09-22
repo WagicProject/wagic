@@ -243,7 +243,7 @@ Interruptible(id), tc(tc), cost(_cost), payResult(payResult)
 
 int Spell::computeX(MTGCardInstance * card)
 {
-    ManaCost * c = NEW ManaCost(cost->Diff(card->getManaCost()));
+    ManaCost * c = cost->Diff(card->getManaCost());
     int x = c->getCost(Constants::MTG_NB_COLORS);
     delete c;
     return x;
@@ -763,7 +763,7 @@ int ActionStack::count(int type, int state, int display)
     return result;
 }
 
-int ActionStack::getActionElementFromCard(MTGCardInstance * card)
+Interruptible * ActionStack::getActionElementFromCard(MTGCardInstance * card)
 {
 
 	if(!card)
@@ -773,10 +773,10 @@ int ActionStack::getActionElementFromCard(MTGCardInstance * card)
         Interruptible * current = (Interruptible *) mObjects[i];
         if (current->source == card)
         {
-            return i;
+            return current;
         }
     }  
-    return 0;
+    return NULL;
 }
 
 Interruptible * ActionStack::getNext(Interruptible * previous, int type, int state, int display)

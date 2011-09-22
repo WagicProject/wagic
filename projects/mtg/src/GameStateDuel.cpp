@@ -238,8 +238,8 @@ void GameStateDuel::loadPlayer(int playerId, int decknb, bool isAI, bool isNetwo
         Player * opponent = NULL;
         if (playerId == 1) opponent = mPlayers[0];
 #ifdef AI_CHANGE_TESTING
-        if (mParent->players[1] == PLAYER_TYPE_CPU_TEST && playerId == 1)
-            mPlayers[playerId] = playerCreator.createAIPlayerTest(MTGCollection(), opponent);
+        if (mParent->players[0] == PLAYER_TYPE_CPU_TEST)
+            mPlayers[playerId] = playerCreator.createAIPlayerTest(MTGCollection(), opponent, playerId == 0 ? "ai/bakaA/" : "ai/bakaB/");
         else
 #endif
         {
@@ -646,6 +646,12 @@ void GameStateDuel::Render()
             {
                 r->ClearScreen(ARGB(255,0,0,0));
                 char buf[4096];
+                mFont->SetColor(ARGB(255,255,255,255));
+
+                int elapsedTime = (testSuite->endTime - testSuite->startTime);
+                sprintf(buf, "Time to run the tests: %is", elapsedTime/1000);
+                mFont->DrawString(buf,0,SCREEN_HEIGHT/2 - 20);
+
                 int nbFailed = testSuite->nbFailed;
                 int nbTests = testSuite->nbTests;
                 if (!nbFailed)
@@ -656,7 +662,7 @@ void GameStateDuel::Render()
                 {
                     sprintf(buf, "%i tests out of %i FAILED!", nbFailed, nbTests);
                 }
-                mFont->SetColor(ARGB(255,255,255,255));
+  
                 mFont->DrawString(buf,0,SCREEN_HEIGHT/2);
                 nbFailed = testSuite->nbAIFailed;
                 nbTests = testSuite->nbAITests;

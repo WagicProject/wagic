@@ -1754,10 +1754,8 @@ int AIPlayerBaka::computeActions()
         return 0;
     } 
     Interruptible * action = g->mLayers->stackLayer()->getAt(-1);
-    Spell * spell = (Spell *) action;
-    Player * lastStackActionController = NULL;
-    if(spell && spell->type == ACTION_SPELL)
-      lastStackActionController = spell->source->controller();           
+    Spell * spell = dynamic_cast<Spell *>(action);
+    Player * lastStackActionController = spell ? spell->source->controller() : NULL;         
     if (g->isInterrupting == this 
         && this == currentP 
         //and i am the currentlyActivePlayer

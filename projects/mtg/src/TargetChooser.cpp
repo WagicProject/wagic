@@ -180,11 +180,19 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
             {
                 targetMin = true;//if upto: is not found, then we need to have a minimum of the amount....
             }
-            WParsedInt * howmuch = NEW WParsedInt(howmany, NULL, card);
-            howmany.find("anyamount") != string::npos?maxtargets = TargetChooser::UNLITMITED_TARGETS:maxtargets = howmuch->getValue();
-            if(howmany.find("anyamount") != string::npos)
+            
+            if (howmany.find("anyamount") != string::npos)
+            {
+                maxtargets = TargetChooser::UNLITMITED_TARGETS;
                 targetMin = false;
-            delete howmuch;
+            }
+            else
+            {
+                WParsedInt * howmuch = NEW WParsedInt(howmany, NULL, card);
+                maxtargets = howmuch->getValue();
+                delete howmuch;
+            }
+                     
             s1 = s1.substr(end + 1);
         }
     }

@@ -566,7 +566,8 @@ TestSuite::TestSuite(const char * filename)
     seed = 0;
     forceAbility = false;
     aiMaxCalls = -1;
-
+    startTime = JGEGetTime();
+    endTime = startTime;
     std::string contents;
     if (JFileSystem::GetInstance()->readIntoString(filename, contents))
     {
@@ -584,6 +585,11 @@ TestSuite::TestSuite(const char * filename)
             if (s[0] == '*' && s[1] == '/') comment = 0;
         }
     }
+
+    //If more than 1 test, prefecth names to make the suite run faster
+    if (nbfiles > 1)
+        MTGCollection()->prefetchCardNameCache();
+
 
     ofstream file2;
     if (JFileSystem::GetInstance()->openForWrite(file2, "/test/results.html"))
@@ -603,6 +609,7 @@ TestSuite::TestSuite(const char * filename)
 
 int TestSuite::loadNext()
 {
+    endTime = JGEGetTime();
     summoningSickness = 0;
     seed = 0;
     aiMaxCalls = -1;
@@ -613,8 +620,6 @@ int TestSuite::loadNext()
         return loadNext();
     else
         cout << "Starting test : " << files[currentfile - 1] << endl;
-    //load(files[currentfile].c_str());
-    //currentfile++;
     return currentfile;
 }
 

@@ -107,7 +107,7 @@ class AIPlayerFactory{
  public:
   AIPlayer * createAIPlayer(MTGAllCards * collection, Player * opponent, int deckid = 0);
 #ifdef AI_CHANGE_TESTING
-  AIPlayer * createAIPlayerTest(MTGAllCards * collection, Player * opponent, int deckid = 0);
+  AIPlayer * createAIPlayerTest(MTGAllCards * collection, Player * opponent, string folder);
 #endif
 };
 

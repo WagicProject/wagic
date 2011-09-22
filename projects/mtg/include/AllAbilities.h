@@ -37,12 +37,9 @@ public:
         if (card) return card->X;
         return 1; //this should only hapen when the ai calls the ability. This is to give it an idea of the "direction" of X (positive/negative)
     }
-    WParsedInt(int value = 0)
-    {
-        intValue = value;
-    }
 
-    WParsedInt(string s, Spell * spell, MTGCardInstance * card)
+private:
+    void init(string s, Spell * spell, MTGCardInstance * card)
     {
         if(!card)
             return;
@@ -73,8 +70,7 @@ public:
         }
         if(s == "prex")
         {
-            ManaCost * cX = NEW ManaCost(card->controller()->getManaPool()->Diff(card->getManaCost()));
-            int preX = 
+            ManaCost * cX = card->controller()->getManaPool()->Diff(card->getManaCost());
             intValue = cX->getCost(Constants::MTG_NB_COLORS);
             delete cX;
         }
@@ -219,6 +215,22 @@ public:
                 intValue = intValue/2;
         }
         intValue *= multiplier;
+    }
+public:
+
+    WParsedInt(int value = 0)
+    {
+        intValue = value;
+    }
+
+    WParsedInt(string s, Spell * spell, MTGCardInstance * card)
+    {
+        init(s, spell, card);
+    }
+
+    WParsedInt(string s, MTGCardInstance * card)
+    {
+        init(s, NULL, card);
     }
 
     int getValue()

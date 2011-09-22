@@ -119,6 +119,11 @@ public:
     map<string, CardPrimitive *> primitives;
     MTGCard * _(int id);
     MTGCard * getCardById(int id);
+
+#ifdef TESTSUITE
+    void prefetchCardNameCache();
+#endif
+
     MTGCard * getCardByName(string name);
     int load(const char * config_file, const char * setName = NULL, int autoload = 1);
     int countByType(const char * _type);

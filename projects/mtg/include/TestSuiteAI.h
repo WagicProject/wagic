@@ -68,6 +68,7 @@ private:
     bool forceAbility;
     int summoningSickness;
 
+
     int load(const char * filename);
     void cleanup();
 
@@ -84,6 +85,7 @@ public:
     int assertGame();
 
 public:
+    int startTime, endTime;
     int gameType;
     unsigned int seed;
     int nbFailed, nbTests, nbAIFailed, nbAITests;

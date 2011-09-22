@@ -416,7 +416,7 @@ ACounterShroud::~ACounterShroud()
     SAFE_DELETE(counter);
 }
 
-//sheild a card from a certain type of counter.
+//shield a card from a certain type of counter.
 ACounterTracker::ACounterTracker(int id, MTGCardInstance * source, MTGCardInstance * target, string scounter) :
 MTGAbility(id, source, target),scounter(scounter)
 {
@@ -428,7 +428,7 @@ int ACounterTracker::addToGame()
     MTGCardInstance * _target = (MTGCardInstance*)target;
     Counter * counter = NULL;
     AbilityFactory af;
-    counter = af.parseCounter(scounter, _target, (Spell*)source);
+    counter = af.parseCounter(scounter, _target, NULL); //(Spell*)source);
     if (!counter)
     {
         return 0;
@@ -455,7 +455,7 @@ int ACounterTracker::destroy()
     MTGCardInstance * _target = (MTGCardInstance*)target;
     Counter * counter = NULL;
     AbilityFactory af;
-    counter = af.parseCounter(scounter, _target, (Spell*)source);
+    counter = af.parseCounter(scounter, _target, NULL); //(Spell*)source);
     if (!counter)
     {
         return 0;
@@ -665,12 +665,12 @@ int AAFizzler::resolve()
 	if(!target && source->target)
 	{
 		//ai is casting a spell from it's hand to fizzle.
-		target = stack->getAt(stack->getActionElementFromCard(source->target));
+		target = stack->getActionElementFromCard(source->target);
 	}
 	else if(target->typeAsTarget() == TARGET_CARD)
 	{
 		//ai targeted using an ability on a card to fizzle.
-		target = stack->getAt(stack->getActionElementFromCard((MTGCardInstance*)target));
+		target = stack->getActionElementFromCard((MTGCardInstance*)target);
 	}
 	Spell * sTarget = (Spell *) target;
 	MTGCardInstance* sCard = (MTGCardInstance*)sTarget->source;

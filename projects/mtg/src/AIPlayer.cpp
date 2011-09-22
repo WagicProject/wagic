@@ -286,46 +286,44 @@ void AIPlayer::Render()
 }
 
 #ifdef AI_CHANGE_TESTING
-AIPlayer * AIPlayerFactory::createAIPlayerTest(MTGAllCards * collection, Player * opponent, int deckid)
+AIPlayer * AIPlayerFactory::createAIPlayerTest(MTGAllCards * collection, Player * opponent, string _folder)
 {
     char deckFile[512];
     string avatarFilename; // default imagename
     char deckFileSmall[512];
-    
-    if (deckid == GameStateDuel::MENUITEM_EVIL_TWIN)
-    { //Evil twin
-        sprintf(deckFile, "%s", opponent->deckFile.c_str());
-        DebugTrace("Evil Twin => " << opponent->deckFile);
-        avatarFilename = "avatar.jpg";
-        sprintf(deckFileSmall, "%s", "ai_baka_eviltwin");
-    }
-    else
+  
+
+    string folder = _folder.size() ? _folder : "ai/baka/";
+
+    int deckid = 0;
+
+    //random deck
+    int nbdecks = 0;
+    int found = 1;
+    while (found && nbdecks < options[Options::AIDECKS_UNLOCKED].number)
     {
-        if (!deckid)
+        found = 0;
+        char buffer[512];
+        sprintf(buffer, "%sdeck%i.txt", folder.c_str(), nbdecks + 1);
+        if (FileExists(buffer))
         {
-            //random deck
-            int nbdecks = 0;
-            int found = 1;
-            while (found && nbdecks < options[Options::AIDECKS_UNLOCKED].number)
-            {
-                found = 0;
-                char buffer[512];
-                sprintf(buffer, "ai/baka/deck%i.txt", nbdecks + 1);
-                if (FileExists(buffer))
-                {
-                    found = 1;
-                    nbdecks++;
-                }
-            }
-            if (!nbdecks)
-                return NULL;
-            deckid = 1 + WRand() % (nbdecks);
+            found = 1;
+            nbdecks++;
         }
-        sprintf(deckFile, "ai/baka/deck%i.txt", deckid);
-        DeckMetaData *aiMeta = DeckManager::GetInstance()->getDeckMetaDataByFilename( deckFile, true);
-        avatarFilename = aiMeta->getAvatarFilename();
-        sprintf(deckFileSmall, "ai_baka_deck%i", deckid);
     }
+    if (!nbdecks)
+    {
+        if (_folder.size())
+            return createAIPlayerTest(collection, opponent, "");
+        return NULL;
+    }
+    deckid = 1 + WRand() % (nbdecks);
+
+    sprintf(deckFile, "%sdeck%i.txt", folder.c_str(), deckid);
+    DeckMetaData *aiMeta = DeckManager::GetInstance()->getDeckMetaDataByFilename( deckFile, true);
+    avatarFilename = aiMeta->getAvatarFilename();
+    sprintf(deckFileSmall, "ai_baka_deck%i", deckid);
+
 
     int deckSetting = EASY;
     if ( opponent ) 
@@ -337,7 +335,9 @@ AIPlayer * AIPlayerFactory::createAIPlayerTest(MTGAllCards * collection, Player 
     }
     
     // AIPlayerBaka will delete MTGDeck when it's time
-    AIPlayerBakaB * baka = NEW AIPlayerBakaB(deckFile, deckFileSmall, avatarFilename, NEW MTGDeck(deckFile, collection,0, deckSetting));
+    AIPlayerBaka * baka = opponent ? 
+        NEW AIPlayerBakaB(deckFile, deckFileSmall, avatarFilename, NEW MTGDeck(deckFile, collection,0, deckSetting)) :
+        NEW AIPlayerBaka(deckFile, deckFileSmall, avatarFilename, NEW MTGDeck(deckFile, collection,0, deckSetting));
     baka->deckId = deckid;
     return baka;
 }
