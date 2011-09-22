@@ -2536,12 +2536,7 @@ int AbilityFactory::getAbilities(vector<MTGAbility *> * v, Spell * spell, MTGCar
     MTGCardInstance * target = card->target;
     if (!target)
         target = card;
-    //card->getManaCost()->copy(card->model->data->getManaCost());
-    //zeth:i added this originally for no reason really, however
-    //i didn't realize ai runs this function about a million times during a match.
-    //it litterally distroys any altering cost effects.
-    //if for some reason i added this becuase of some bug...we need to think of a more clever way
-    //to do this.
+
     string magicText;
     if (dest)
     {
@@ -3290,25 +3285,13 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
         game->addObserver(NEW AFlankerAbility(_id, card));
     }
 
-    if (card->basicAbilities[(int)Constants::FORESTHOME])
+    const int HomeAbilities[] = {(int)Constants::FORESTHOME, (int)Constants::ISLANDHOME, (int)Constants::MOUNTAINHOME, (int)Constants::SWAMPHOME, (int)Constants::PLAINSHOME};
+    const char * HomeLands[] = {"forest", "island", "mountain", "swamp", "plains"};
+
+    for (int i = 0; i < sizeof(HomeAbilities)/sizeof(HomeAbilities[0]); ++i)
     {
-        game->addObserver(NEW AStrongLandLinkCreature(_id, card, "forest"));
-    }
-    if (card->basicAbilities[(int)Constants::ISLANDHOME])
-    {
-        game->addObserver(NEW AStrongLandLinkCreature(_id, card, "island"));
-    }
-    if (card->basicAbilities[(int)Constants::MOUNTAINHOME])
-    {
-        game->addObserver(NEW AStrongLandLinkCreature(_id, card, "mountain"));
-    }
-    if (card->basicAbilities[(int)Constants::SWAMPHOME])
-    {
-        game->addObserver(NEW AStrongLandLinkCreature(_id, card, "swamp"));
-    }
-    if (card->basicAbilities[(int)Constants::PLAINSHOME])
-    {
-        game->addObserver(NEW AStrongLandLinkCreature(_id, card, "plains"));
+        if (card->basicAbilities[HomeAbilities[i]])
+            game->addObserver(NEW AStrongLandLinkCreature(_id, card, HomeLands[i]));
     }
 
     if(card->previous && card->previous->previous && card->previous->previous->suspended)
@@ -3340,39 +3323,19 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
 MTGAbility * AbilityFactory::getManaReduxAbility(string s, int id, Spell *spell, MTGCardInstance *card, MTGCardInstance *target)
 {
     int color = -1;
-    string manaCost;
-    size_t endIndex = manaCost.find(")");
-    if (s.find(Constants::kManaColorless) != string::npos)
+    string manaCost = s.substr(s.find(",") + 1);
+
+    const string ColorStrings[] = { Constants::kManaColorless, Constants::kManaGreen, Constants::kManaBlue, Constants::kManaRed, Constants::kManaBlack, Constants::kManaWhite };
+
+    for (int i = 0; i < sizeof(ColorStrings)/sizeof(ColorStrings[0]); ++i)
     {
-        manaCost = s.substr(s.find(",") + 1, endIndex);
-        color = Constants::MTG_COLOR_ARTIFACT;
+        if (s.find(ColorStrings[i]) != string::npos)
+        {
+            color = i;
+            break;
+        }
     }
-    else if (s.find(Constants::kManaGreen) != string::npos)
-    {
-        manaCost = s.substr(s.find(",") + 1, endIndex);
-        color = Constants::MTG_COLOR_GREEN;
-    }
-    else if (s.find(Constants::kManaBlue) != string::npos)
-    {
-        manaCost = s.substr(s.find(",") + 1, endIndex);
-        color = Constants::MTG_COLOR_BLUE;
-    }
-    else if (s.find(Constants::kManaRed) != string::npos)
-    {
-        manaCost = s.substr(s.find(",") + 1, endIndex);
-        color = Constants::MTG_COLOR_RED;
-    }
-    else if (s.find(Constants::kManaBlack) != string::npos)
-    {
-        manaCost = s.substr(s.find(",") + 1, endIndex);
-        color = Constants::MTG_COLOR_BLACK;
-    }
-    else if (s.find(Constants::kManaWhite) != string::npos)
-    {
-        manaCost = s.substr(s.find(",") + 1, endIndex);
-        color = Constants::MTG_COLOR_WHITE;
-    }
-    else
+    if (color == -1)
     {
         DebugTrace("An error has happened in creating a Mana Redux Ability! " << s );
         return NULL;
@@ -3517,6 +3480,30 @@ ostream& MTGAbility::toString(ostream& out) const
     return out << "MTGAbility ::: menuText : " << menuText << " ; game : " << game << " ; forceDestroy : " << forceDestroy
                     << " ; mCost : " << mCost << " ; target : " << target << " ; aType : " << aType << " ; source : " << source;
 }
+
+Player * MTGAbility::getPlayerFromTarget(Targetable * target)
+{
+    if (!target)
+        return NULL;
+
+    if (target->typeAsTarget() == TARGET_CARD)
+        return ((MTGCardInstance *) target)->controller();
+
+    return (Player *) target;
+}
+
+Player * MTGAbility::getPlayerFromDamageable(Damageable * target)
+{
+    if (!target)
+        return NULL;
+
+    if (target->type_as_damageable == DAMAGEABLE_MTGCARDINSTANCE)
+        return ((MTGCardInstance *) target)->controller();
+
+    return (Player *) target;
+}
+
+//
 
 NestedAbility::NestedAbility(MTGAbility * _ability)
 {
@@ -4518,26 +4505,8 @@ const char * AManaProducer::getMenuText()
                 menutext.append(",");
             sprintf(buffer, "%i ", value);
             menutext.append(buffer);
-            switch (i)
-            {
-            case Constants::MTG_COLOR_RED:
-                menutext.append(_("red"));
-                break;
-            case Constants::MTG_COLOR_BLUE:
-                menutext.append(_("blue"));
-                break;
-            case Constants::MTG_COLOR_GREEN:
-                menutext.append(_("green"));
-                break;
-            case Constants::MTG_COLOR_WHITE:
-                menutext.append(_("white"));
-                break;
-            case Constants::MTG_COLOR_BLACK:
-                menutext.append(_("black"));
-                break;
-            default:
-                break;
-            }
+            if (i >= Constants::MTG_COLOR_GREEN && i <= Constants::MTG_COLOR_WHITE)
+                menutext.append(_(Constants::MTGColorStrings[i]));
             alreadyHasOne = 1;
         }
     }

@@ -1216,35 +1216,19 @@ int AIPlayerBaka::selectHintAbility()
 
 int AIPlayerBaka::selectAbility()
 {
-    static bool findingAbility = false;
-    //this guard is put in place to prevent Ai from
-    //ever running selectAbility() function WHILE its already doing so.
-
-    // Break if this happens in debug mode. If this happens, it's actually a bug
-    assert(!findingAbility);
-
-    if (findingAbility)
-    {//is already looking kick me out of this function!
-        return 0;
-    }
-    findingAbility = true;//im looking now safely!
-
-
-    // Try Deck hints first
+   // Try Deck hints first
    if (selectHintAbility())
-    {
-        findingAbility = false;//ok to start looking again.
         return 1;
-    }
+
    GameObserver * go = GameObserver::GetInstance();
    if(go->mLayers->stackLayer()->lastActionController == this)
    {
        //this is here for 2 reasons, MTG rules state that priority is passed with each action.
        //without this ai is able to chain cast {t}:damage:1 target(creature) from everything it can all at once.
        //this not only is illegal but cause ai to waste abilities ei:all damage:1 on a single 1/1 creature.
-       findingAbility = false;
        return 1;
    }
+
     RankingContainer ranking;
     list<int>::iterator it;
     GameObserver * g = GameObserver::GetInstance();
@@ -1262,7 +1246,7 @@ int AIPlayerBaka::selectAbility()
         for (int j = 0; j < game->inPlay->nb_cards; j++)
         {
             MTGCardInstance * card = game->inPlay->cards[j];
-            if(a->getCost() && !a->isReactingToClick(card, totalPotentialMana))//for preformence reason only look for specific mana if the payment couldnt be made with potential.
+            if(a->getCost() && !a->isReactingToClick(card, totalPotentialMana))//for performance reason only look for specific mana if the payment couldnt be made with potential.
             {
                 abilityPayment = vector<MTGAbility*>();
                 abilityPayment = canPayMana(card,a->getCost());
@@ -1323,7 +1307,6 @@ int AIPlayerBaka::selectAbility()
         }
     }
 
-    findingAbility = false;//ok to start looking again.
     abilityPayment.clear();
     return 1;
 }

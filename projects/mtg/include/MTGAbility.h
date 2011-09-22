@@ -44,10 +44,17 @@ class MTGAbility : public ActionElement
 {
 private:
      ManaCost* mCost;
+
 protected:
     char menuText[50];
 
     GameObserver * game;
+
+     // returns target itself if it is a player, or its controller if it is a card
+     static Player * getPlayerFromTarget(Targetable * target);
+
+     // returns target itself if it is a player, or its controller if it is a card
+     static Player * getPlayerFromDamageable(Damageable * target);
 public:
     enum
     {
@@ -207,8 +214,6 @@ public:
         COUNTERS = 30,
 		PUT_INTO_PLAY_WITH_KICKER = 31,
 		STANDARD_FIZZLER = 32,
-
-
     };
 };
 
