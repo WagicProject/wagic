@@ -1663,6 +1663,13 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
                 SAFE_DELETE(withKickerCost);
                 shouldPlayPercentage = 10*canKick;
             }
+            if(card->getRestrictions().size())
+            {
+                AbilityFactory af;
+                int canPlay = af.parseCastRestrictions(card,card->controller(),card->getRestrictions());
+                if(!canPlay)
+                    continue;
+            }
             if (WRand() % 100 > shouldPlayPercentage)
                 continue;
             nextCardToPlay = card;
