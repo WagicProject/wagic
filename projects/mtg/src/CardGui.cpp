@@ -185,8 +185,11 @@ void CardGui::Render()
     if (isActiveConnectedParent)
     {
         JQuadPtr white = WResourceManager::Instance()->GetQuad("white");
-        white->SetColor(ARGB(255,230,50,50));
-        renderer->RenderQuad(white.get(), actX, actY, actT, 30 * actZ / 16, 42 * actZ / 16);
+        if(white)
+        {
+            white->SetColor(ARGB(255,230,50,50));
+            renderer->RenderQuad(white.get(), actX, actY, actT, 30 * actZ / 16, 42 * actZ / 16);
+        }
     }
 
     // Am I a child of a selected card, or am I a child and myself being selected?
@@ -209,8 +212,11 @@ void CardGui::Render()
     if (isActiveConnectedChild)
     {
         JQuadPtr white = WResourceManager::Instance()->GetQuad("white");
+        if(white)
+        {
         white->SetColor(ARGB(255,0,0,255));
         renderer->RenderQuad(white.get(), actX, actY, actT, 30 * actZ / 16, 42 * actZ / 16);
+        }
     }
 
     if (quad)
