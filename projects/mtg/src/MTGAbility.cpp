@@ -2438,6 +2438,10 @@ int AbilityFactory::abilityEfficiency(MTGAbility * a, Player * p, int mode, Targ
     if (dynamic_cast<AManaProducer *> (a))
         return BAKA_EFFECT_GOOD;
 
+    // Equipment that gets immediately attached. Todo: check the abilities associated with Equip, to make sure they're good (for now it seems to be the majority of the cases)?
+    if (dynamic_cast<AEquip *> (a))
+        return BAKA_EFFECT_GOOD;
+
     // For now, ACounterTracker is only used for Creatures that "belong" to one of our domains, need to target one of our own lands, so we return a "positive" value
     if (ACounterTracker * act = dynamic_cast<ACounterTracker *>(a))
         return BAKA_EFFECT_GOOD;
