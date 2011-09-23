@@ -576,6 +576,7 @@ TestSuite::TestSuite(const char * filename)
         {
             if (!s.size()) continue;
             if (s[s.size() - 1] == '\r') s.erase(s.size() - 1); //Handle DOS files
+            if (!s.size()) continue;
             if (s[0] == '/' && s[1] == '*') comment = 1;
             if (s[0] && s[0] != '#' && !comment)
             {
@@ -616,7 +617,15 @@ int TestSuite::loadNext()
     if (!nbfiles) return 0;
     if (currentfile >= nbfiles) return 0;
     currentfile++;
-    if (!load(files[currentfile - 1].c_str()))
+
+    string currFilename = files[currentfile - 1];
+    if (currFilename == "+pregametests")
+    {
+        pregameTests();
+        return loadNext();
+    }
+
+    if (!load(currFilename.c_str()))
         return loadNext();
     else
         cout << "Starting test : " << files[currentfile - 1] << endl;

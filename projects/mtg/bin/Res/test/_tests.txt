@@ -1,4 +1,8 @@
 ########################
+#Internal tests
+########################
++pregametests
+########################
 #Generic engine features
 ########################
 generic/attacks_each_turn.txt

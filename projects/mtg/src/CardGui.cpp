@@ -165,6 +165,54 @@ void CardGui::Render()
         renderer->RenderQuad(extracostshadow.get(), actX + (actZ - 1) * 15, actY + (actZ - 1) * 15, actT, 28 * actZ / 16, 40 * actZ / 16);
     }
 
+    // Am I a parent of a selected card, or am I a parent and myself being selected?
+    bool isActiveConnectedParent = mHasFocus && card->childrenCards.size();
+    if (!isActiveConnectedParent)
+    {
+        for (size_t i = 0; i < card->childrenCards.size(); ++i)
+        {
+            MTGCardInstance * child = card->childrenCards[i];
+            if (CardView* cv = dynamic_cast<CardView*>(child->view))
+            {
+                if (cv->mHasFocus)
+                {
+                    isActiveConnectedParent = true;
+                    break;
+                }
+            }
+        }
+    }
+    if (isActiveConnectedParent)
+    {
+        JQuadPtr white = WResourceManager::Instance()->GetQuad("white");
+        white->SetColor(ARGB(255,230,50,50));
+        renderer->RenderQuad(white.get(), actX, actY, actT, 30 * actZ / 16, 42 * actZ / 16);
+    }
+
+    // Am I a child of a selected card, or am I a child and myself being selected?
+    bool isActiveConnectedChild = mHasFocus && card->parentCards.size();
+    if (!isActiveConnectedChild)
+    {
+        for (size_t i = 0; i < card->parentCards.size(); ++i)
+        {
+            MTGCardInstance * parent = card->parentCards[i];
+            if (CardView* cv = dynamic_cast<CardView*>(parent->view))
+            {
+                if (cv->mHasFocus)
+                {
+                    isActiveConnectedChild = true;
+                    break;
+                }
+            }
+        }
+    }
+    if (isActiveConnectedChild)
+    {
+        JQuadPtr white = WResourceManager::Instance()->GetQuad("white");
+        white->SetColor(ARGB(255,0,0,255));
+        renderer->RenderQuad(white.get(), actX, actY, actT, 30 * actZ / 16, 42 * actZ / 16);
+    }
+
     if (quad)
     {
         quad->SetColor(ARGB(static_cast<unsigned char>(actA),255,255,255));

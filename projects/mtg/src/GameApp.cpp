@@ -208,6 +208,7 @@ void GameApp::Create()
     WResourceManager::Instance()->RetrieveTexture("BattleIcon.png", RETRIEVE_MANAGE);
     WResourceManager::Instance()->RetrieveTexture("DefenderIcon.png", RETRIEVE_MANAGE);
     WResourceManager::Instance()->RetrieveTexture("shadow.png", RETRIEVE_MANAGE);
+    WResourceManager::Instance()->RetrieveTexture("white.png", RETRIEVE_MANAGE);
     WResourceManager::Instance()->RetrieveTexture("extracostshadow.png", RETRIEVE_MANAGE);
     WResourceManager::Instance()->RetrieveTexture("morph.jpg", RETRIEVE_MANAGE);
 
@@ -218,6 +219,9 @@ void GameApp::Create()
     if (jq)
         jq->SetHotSpot(12, 12);
     jq = WResourceManager::Instance()->RetrieveQuad("shadow.png", 0, 0, 16, 16, "shadow", RETRIEVE_MANAGE);
+    if (jq)
+        jq->SetHotSpot(8, 8);
+    jq = WResourceManager::Instance()->RetrieveQuad("white.png", 0, 0, 16, 16, "white", RETRIEVE_MANAGE);
     if (jq)
         jq->SetHotSpot(8, 8);
     jq = WResourceManager::Instance()->RetrieveQuad("extracostshadow.png", 0, 0, 16, 16, "extracostshadow", RETRIEVE_MANAGE);

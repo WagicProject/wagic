@@ -380,7 +380,6 @@ void GameStateDuel::Update(float dt)
             {
                 loadTestSuitePlayers();
                 setGamePhase(DUEL_STATE_PLAY);
-                testSuite->pregameTests();
                 testSuite->initGame();
             }
             else
