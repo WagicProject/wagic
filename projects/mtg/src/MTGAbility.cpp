@@ -3288,7 +3288,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
     const int HomeAbilities[] = {(int)Constants::FORESTHOME, (int)Constants::ISLANDHOME, (int)Constants::MOUNTAINHOME, (int)Constants::SWAMPHOME, (int)Constants::PLAINSHOME};
     const char * HomeLands[] = {"forest", "island", "mountain", "swamp", "plains"};
 
-    for (int i = 0; i < sizeof(HomeAbilities)/sizeof(HomeAbilities[0]); ++i)
+    for (unsigned int i = 0; i < sizeof(HomeAbilities)/sizeof(HomeAbilities[0]); ++i)
     {
         if (card->basicAbilities[HomeAbilities[i]])
             game->addObserver(NEW AStrongLandLinkCreature(_id, card, HomeLands[i]));
@@ -3327,7 +3327,7 @@ MTGAbility * AbilityFactory::getManaReduxAbility(string s, int id, Spell *spell,
 
     const string ColorStrings[] = { Constants::kManaColorless, Constants::kManaGreen, Constants::kManaBlue, Constants::kManaRed, Constants::kManaBlack, Constants::kManaWhite };
 
-    for (int i = 0; i < sizeof(ColorStrings)/sizeof(ColorStrings[0]); ++i)
+    for (unsigned int i = 0; i < sizeof(ColorStrings)/sizeof(ColorStrings[0]); ++i)
     {
         if (s.find(ColorStrings[i]) != string::npos)
         {
