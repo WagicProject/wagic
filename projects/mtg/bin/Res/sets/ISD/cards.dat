@@ -1,0 +1,1445 @@
+[meta]
+author=Wagic Team
+year=2011
+block=Inni
+[/meta]
+[card]
+primitive=Abattoir Ghoul
+id=222911
+rarity=U
+[/card]
+[card]
+primitive=Abbey Griffin
+id=235595
+rarity=C
+[/card]
+[card]
+primitive=Altar's Reap
+id=226890
+rarity=C
+[/card]
+[card]
+primitive=Ambush Viper
+id=220644
+rarity=C
+[/card]
+[card]
+primitive=Ancient Grudge
+id=235600
+rarity=C
+[/card]
+[card]
+primitive=Angel of Flight Alabaster
+id=230620
+rarity=R
+[/card]
+[card]
+primitive=Angelic Overseer
+id=220370
+rarity=R
+[/card]
+[card]
+primitive=Armored Skaab
+id=244685
+rarity=C
+[/card]
+[card]
+primitive=Army of the Damned
+id=229968
+rarity=M
+[/card]
+[card]
+primitive=Ashmouth Hound
+id=233255
+rarity=C
+[/card]
+[card]
+primitive=Avacynian Priest
+id=220380
+rarity=C
+[/card]
+[card]
+primitive=Avacyn's Pilgrim
+id=243212
+rarity=C
+[/card]
+[card]
+primitive=Back from the Brink
+id=249663
+rarity=R
+[/card]
+[card]
+primitive=Balefire Dragon
+id=230774
+rarity=M
+[/card]
+[card]
+primitive=Battleground Geist
+id=237355
+rarity=U
+[/card]
+[card]
+primitive=Bitterheart Witch
+id=222205
+rarity=U
+[/card]
+[card]
+primitive=Blasphemous Act
+id=222206
+rarity=R
+[/card]
+[card]
+primitive=Blazing Torch
+id=221284
+rarity=C
+[/card]
+[card]
+primitive=Bloodcrazed Neonate
+id=220373
+rarity=C
+[/card]
+[card]
+primitive=Bloodgift Demon
+id=226885
+rarity=R
+[/card]
+[card]
+primitive=Bloodline Keeper // Lord of Lineage (Bloodline Keeper)
+id=227061
+rarity=R
+[/card]
+#Need to find a way to deal with multipart cards
+#[card]
+#primitive=Bloodline Keeper // Lord of Lineage (Lord of Lineage)
+#id=
+#rarity=R
+#[/card]
+[card]
+primitive=Bonds of Faith
+id=221216
+rarity=C
+[/card]
+[card]
+primitive=Boneyard Wurm
+id=220050
+rarity=U
+[/card]
+[card]
+primitive=Brain Weevil
+id=235596
+rarity=C
+[/card]
+[card]
+primitive=Bramblecrush
+id=227095
+rarity=U
+[/card]
+[card]
+primitive=Brimstone Volley
+id=233253
+rarity=C
+[/card]
+[card]
+primitive=Bump in the Night
+id=222203
+rarity=C
+[/card]
+[card]
+primitive=Burning Vengeance
+id=243211
+rarity=U
+[/card]
+[card]
+primitive=Butcher's Cleaver
+id=220049
+rarity=U
+[/card]
+[card]
+primitive=Cackling Counterpart
+id=245195
+rarity=R
+[/card]
+[card]
+primitive=Caravan Vigil
+id=234444
+rarity=C
+[/card]
+[card]
+primitive=Cellar Door
+id=220390
+rarity=U
+[/card]
+[card]
+primitive=Champion of the Parish
+id=262861
+rarity=R
+[/card]
+[card]
+primitive=Chapel Geist
+id=230622
+rarity=C
+[/card]
+[card]
+primitive=Charmbreaker Devils
+id=227668
+rarity=R
+[/card]
+[card]
+primitive=Civilized Scholar // Homicidal Brute (Civilized Scholar)
+id=221209
+rarity=U
+[/card]
+#Need to find a way to deal with multipart cards
+#[card]
+#primitive=Civilized Scholar // Homicidal Brute (Homicidal Brute)
+#id=
+#rarity=U
+#[/card]
+[card]
+primitive=Claustrophobia
+id=235601
+rarity=C
+[/card]
+[card]
+primitive=Clifftop Retreat
+id=241980
+rarity=R
+[/card]
+[card]
+primitive=Cloistered Youth // Unholy Fiend (Cloistered Youth)
+id=221212
+rarity=U
+[/card]
+#Need to find a way to deal with multipart cards
+#[card]
+#primitive=Cloistered Youth // Unholy Fiend (Unholy Fiend)
+#id=
+#rarity=U
+#[/card]
+[card]
+primitive=Cobbled Wings
+id=220649
+rarity=C
+[/card]
+[card]
+primitive=Corpse Lunge
+id=244680
+rarity=C
+[/card]
+[card]
+primitive=Creepy Doll
+id=245198
+rarity=R
+[/card]
+[card]
+primitive=Creeping Renaissance
+id=220378
+rarity=R
+[/card]
+[card]
+primitive=Crossway Vampire
+id=230779
+rarity=C
+[/card]
+[card]
+primitive=Curiosity
+id=230767
+rarity=U
+[/card]
+[card]
+primitive=Curse of Death's Hold
+id=227075
+rarity=R
+[/card]
+[card]
+primitive=Curse of Oblivion
+id=237020
+rarity=C
+[/card]
+[card]
+primitive=Curse of Stalked Prey
+id=226889
+rarity=R
+[/card]
+[card]
+primitive=Curse of the Bloody Tome
+id=230627
+rarity=C
+[/card]
+[card]
+primitive=Curse of the Nightly Hunt
+id=226881
+rarity=U
+[/card]
+[card]
+primitive=Curse of the Pierced Heart
+id=227071
+rarity=C
+[/card]
+[card]
+primitive=Darkthicket Wolf
+id=241986
+rarity=C
+[/card]
+[card]
+primitive=Daybreak Ranger // Nightfall Predator (Daybreak Ranger)
+id=222118
+rarity=R
+[/card]
+#Need to find a way to deal with multipart cards
+#[card]
+#primitive=Daybreak Ranger // Nightfall Predator (Nightfall Predator)
+#id=
+#rarity=R
+#[/card]
+[card]
+primitive=Dead Weight
+id=220393
+rarity=C
+[/card]
+[card]
+primitive=Dearly Departed
+id=222194
+rarity=R
+[/card]
+[card]
+primitive=Delver of Secrets // Insectile Aberration (Delver of Secrets)
+id=226749
+rarity=C
+[/card]
+#Need to find a way to deal with multipart cards
+#[card]
+#primitive=Delver of Secrets // Insectile Aberration (Insectile Aberration)
+#id=
+#rarity=C
+#[/card]
+[card]
+primitive=Demonmail Hauberk
+id=227291
+rarity=U
+[/card]
+[card]
+primitive=Deranged Assitant
+id=221171
+rarity=C
+[/card]
+[card]
+primitive=Desperate Ravings
+id=237359
+rarity=U
+[/card]
+[card]
+primitive=Devil's Play
+id=247419
+rarity=R
+[/card]
+[card]
+primitive=Diregraf Ghoul
+id=226747
+rarity=U
+[/card]
+[card]
+primitive=Disciple of Griselbrand
+id=224679
+rarity=U
+[/card]
+[card]
+primitive=Dissipate
+id=241985
+rarity=U
+[/card]
+[card]
+primitive=Divine Reckoning
+id=245196
+rarity=R
+[/card]
+[card]
+primitive=Doomed Traveler
+id=237364
+rarity=C
+[/card]
+[card]
+primitive=Dream Twist
+id=243213
+rarity=C
+[/card]
+[card]
+primitive=Elder Cathar
+id=222910
+rarity=C
+[/card]
+[card]
+primitive=Elder of Laurels
+id=247418
+rarity=R
+[/card]
+[card]
+primitive=Elite Inquisitor
+id=246949
+rarity=R
+[/card]
+[card]
+primitive=Endless Ranks of the Dead
+id=234430
+rarity=R
+[/card]
+[card]
+primitive=Essence of the Wild
+id=254133
+rarity=M
+[/card]
+[card]
+primitive=Evil Twin
+id=229965
+rarity=R
+[/card]
+[card]
+primitive=Falkenrath Marauders
+id=246954
+rarity=R
+[/card]
+[card]
+primitive=Falkenrath Noble
+id=226751
+rarity=U
+[/card]
+[card]
+primitive=Feeling of Dread
+id=237360
+rarity=C
+[/card]
+[card]
+primitive=Feral Ridgewolf
+id=220022
+rarity=C
+[/card]
+[card]
+primitive=Festerhide Boar
+id=233250
+rarity=C
+[/card]
+[card]
+primitive=Fiend Hunter
+id=222007
+rarity=U
+[/card]
+[card]
+primitive=Forbidden Alchemy
+id=226758
+rarity=C
+[/card]
+[card]
+primitive=Forest
+id=245247
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=245247
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=245247
+rarity=L
+[/card]
+[card]
+primitive=Fortress Crab
+id=234429
+rarity=C
+[/card]
+[card]
+primitive=Frightful Delusion
+id=220031
+rarity=C
+[/card]
+[card]
+primitive=Full Moon's Rise
+id=241981
+rarity=U
+[/card]
+[card]
+primitive=Furor of the Bitten
+id=234431
+rarity=C
+[/card]
+[card]
+primitive=Gallows Warden
+id=233248
+rarity=U
+[/card]
+[card]
+primitive=Galvanic Juggernaut
+id=230772
+rarity=U
+[/card]
+[card]
+primitive=Garruk Relentless // Garruk, the Veil-Cursed (Garruk Relentless)
+id=245250
+rarity=M
+[/card]
+#Need to find a way to deal with multipart cards
+#[card]
+#primitive=Garruk Relentless // Garruk, the Veil-Cursed (Garruk, the Veil-Cursed)
+#id=
+#rarity=M
+#[/card]
+[card]
+primitive=Gatstaf Shepherd // Gatstaf Howler (Gatstaf Shepherd)
+id=227290
+rarity=U
+[/card]
+#Need to find a way to deal with multipart cards
+#[card]
+#primitive=Gatstaf Shepherd // Gatstaf Howler (Gatstaf Howler)
+#id=
+#rarity=U
+#[/card]
+[card]
+primitive=Gavony Township
+id=233242
+rarity=R
+[/card]
+[card]
+primitive=Geist of Saint Traft
+id=247236
+rarity=M
+[/card]
+[card]
+primitive=Geistcatcher's Rig
+id=234445
+rarity=U
+[/card]
+[card]
+primitive=Geistflame
+id=247427
+rarity=C
+[/card]
+[card]
+primitive=Geist-Honored Monk
+id=230787
+rarity=R
+[/card]
+[card]
+primitive=Ghost Quarter
+id=220371
+rarity=U
+[/card]
+[card]
+primitive=Ghostly Possession
+id=220052
+rarity=C
+[/card]
+[card]
+primitive=Ghoulcaller's Bell
+id=237362
+rarity=C
+[/card]
+[card]
+primitive=Ghoulcaller's Chant
+id=220021
+rarity=C
+[/card]
+[card]
+primitive=Ghoulraiser
+id=220019
+rarity=C
+[/card]
+[card]
+primitive=Gnaw to the Bone
+id=247420
+rarity=C
+[/card]
+[card]
+primitive=Grasp of Phantoms
+id=243208
+rarity=U
+[/card]
+[card]
+primitive=Grave Bramble
+id=229964
+rarity=C
+[/card]
+[card]
+primitive=Graveyard Shovel
+id=221288
+rarity=U
+[/card]
+[card]
+primitive=Grimgrin, Corpse-Born
+id=247237
+rarity=M
+[/card]
+[card]
+primitive=Grimoire of the Dead
+id=230792
+rarity=M
+[/card]
+[card]
+primitive=Grizzled Outcasts // Krallenhorde Wantons (Grizzled Outcasts)
+id=222124
+rarity=C
+[/card]
+#Need to find a way to deal with multipart cards
+#[card]
+#primitive=Grizzled Outcasts // Krallenhorde Wantons (Krallenhorde Wantons)
+#id=
+#rarity=C
+#[/card]
+[card]
+primitive=Gruesome Deformity
+id=246945
+rarity=C
+[/card]
+[card]
+primitive=Gutter Grime
+id=234849
+rarity=R
+[/card]
+[card]
+primitive=Hamlet Captain
+id=23446
+rarity=U
+[/card]
+[card]
+primitive=Hanweir Watchkeep // Bane of Hanweir (Hanweir Watchkeep)
+id=244683
+rarity=U
+[/card]
+#Need to find a way to deal with multipart cards
+#[card]
+#primitive=Hanweir Watchkeep // Bane of Hanweir (Bane of Hanweir)
+#id=
+#rarity=U
+#[/card]
+[card]
+primitive=Harvest Pyre
+id=220010
+rarity=C
+[/card]
+[card]
+primitive=Heartless Summoning
+id=244678
+rarity=R
+[/card]
+[card]
+primitive=Heretic's Punishment
+id=249974
+rarity=R
+[/card]
+[card]
+primitive=Hinterland Harbor
+id=241988
+rarity=R
+[/card]
+[card]
+primitive=Hollowhenge Scavenger
+id=226883
+rarity=U
+[/card]
+[card]
+primitive=Hysterical Blindness
+id=234433
+rarity=C
+[/card]
+[card]
+primitive=Infernal Plunge
+id=235603
+rarity=C
+[/card]
+[card]
+primitive=Inquisitor's Flail
+id=222196
+rarity=U
+[/card]
+[card]
+primitive=Instigator Gang // Wildblood Pack (Instigator Gang)
+id=227415
+rarity=R
+[/card]
+#Need to find a way to deal with multipart cards
+#[card]
+#primitive=Instigator Gang // Wildblood Pack (Wildblood Pack)
+#id=
+#rarity=R
+#[/card]
+[card]
+primitive=Intangible Virtue
+id=243217
+rarity=U
+[/card]
+[card]
+primitive=Into the Maw of Hell
+id=220035
+rarity=U
+[/card]
+[card]
+primitive=Invisible Stalker
+id=220041
+rarity=U
+[/card]
+[card]
+primitive=Island
+id=245235
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=245235
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=245235
+rarity=L
+[/card]
+[card]
+primitive=Isolated Chapel
+id=241979
+rarity=R
+[/card]
+[card]
+primitive=Kessig Cagebreakers
+id=249868
+rarity=R
+[/card]
+[card]
+primitive=Kessig Wolf
+id=22040
+rarity=C
+[/card]
+[card]
+primitive=Kessig Wolf Run
+id=233256
+rarity=R
+[/card]
+[card]
+primitive=Kindercatch
+id=227088
+rarity=C
+[/card]
+[card]
+primitive=Kruin Outlaw // Terror of Kruin Pass (Kruin Outlaw)
+id=227084
+rarity=R
+[/card]
+#Need to find a way to deal with multipart cards
+#[card]
+#primitive=Kruin Outlaw // Terror of Kruin Pass (Terror of Kruin Pass)
+#id=
+#rarity=R
+#[/card]
+[card]
+primitive=Laboratory Maniac
+id=230788
+rarity=R
+[/card]
+[card]
+primitive=Lantern Spirit
+id=241984
+rarity=U
+[/card]
+[card]
+primitive=Liliana of the Veil
+id=235597
+rarity=M
+[/card]
+[card]
+primitive=Lost in the Mist
+id=241982
+rarity=C
+[/card]
+[card]
+primitive=Ludevic's Test Subject // Ludevic's Abomination (Ludevic's Test Subject)
+id=221173
+rarity=R
+[/card]
+#Need to find a way to deal with multipart cards
+#[card]
+#primitive=Ludevic's Test Subject // Ludevic's Abomination (Ludevic's Abomination)
+#id=
+#rarity=R
+#[/card]
+[card]
+primitive=Lumberknot
+id=230624
+rarity=U
+[/card]
+[card]
+primitive=Make a Wish
+id=222193
+rarity=U
+[/card]
+[card]
+primitive=Makeshift Mauler
+id=222916
+rarity=C
+[/card]
+[card]
+primitive=Manor Gargoyle
+id=227083
+rarity=R
+[/card]
+[card]
+primitive=Manor Skeleton
+id=249976
+rarity=C
+[/card]
+[card]
+primitive=Markov Patrician
+id=226754
+rarity=C
+[/card]
+[card]
+primitive=Mask of Avacyn
+id=221193
+rarity=U
+[/card]
+[card]
+primitive=Mausoleum Guard
+id=237356
+rarity=U
+[/card]
+[card]
+primitive=Maw of the Mire
+id=246952
+rarity=U
+[/card]
+[card]
+primitive=Mayor of Avabruck // Howlpack Alpha (Mayor of Avabruck)
+id=222189
+rarity=R
+[/card]
+#Need to find a way to deal with multipart cards
+#[card]
+#primitive=Mayor of Avabruck // Howlpack Alpha (Howlpack Alpha)
+#id=
+#rarity=R
+#[/card]
+[card]
+primitive=Memory's Journey
+id=254134
+rarity=U
+[/card]
+[card]
+primitive=Mentor of the Meek
+id=244682
+rarity=R
+[/card]
+[card]
+primitive=Midnight Haunting
+id=221214
+rarity=U
+[/card]
+[card]
+primitive=Mikaeus, the Lunarch
+id=247234
+rarity=M
+[/card]
+[card]
+primitive=Mindshrieker
+id=229960
+rarity=R
+[/card]
+[card]
+primitive=Mirror-Mad Phantom
+id=227297
+rarity=M
+[/card]
+[card]
+primitive=Moan of the Unhallowed
+id=227286
+rarity=U
+[/card]
+[card]
+primitive=Moldgraf Monstrosity
+id=249664
+rarity=R
+[/card]
+[card]
+primitive=Moment of Heroism
+id=226882
+rarity=C
+[/card]
+[card]
+primitive=Moon Heron
+id=221187
+rarity=C
+[/card]
+[card]
+primitive=Moonmist
+id=222933
+rarity=C
+[/card]
+[card]
+primitive=Moorland Haunt
+id=233239
+rarity=R
+[/card]
+[card]
+primitive=Morkrut Banshee
+id=230777
+rarity=U
+[/card]
+[card]
+primitive=Mountain
+id=245242
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=245242
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=245242
+rarity=L
+[/card]
+[card]
+primitive=Mulch
+id=237012
+rarity=C
+[/card]
+[card]
+primitive=Murder of Crows
+id=230616
+rarity=U
+[/card]
+[card]
+primitive=Naturalize
+id=237015
+rarity=C
+[/card]
+[card]
+primitive=Nephalia Drownyard
+id=230789
+rarity=R
+[/card]
+[card]
+primitive=Nevermore
+id=226878
+rarity=R
+[/card]
+[card]
+primitive=Night Revelers
+id=226879
+rarity=C
+[/card]
+[card]
+primitive=Night Terrors
+id=246947
+rarity=C
+[/card]
+[card]
+primitive=Nightbird's Clutches
+id=220386
+rarity=C
+[/card]
+[card]
+primitive=Olivia Voldaren
+id=247235
+rarity=M
+[/card]
+[card]
+primitive=One-Eyed Scarecrow
+id=220045
+rarity=C
+[/card]
+[card]
+primitive=Orchard Spirit
+id=234855
+rarity=C
+[/card]
+[card]
+primitive=Parallel Lives
+id=249662
+rarity=R
+[/card]
+[card]
+primitive=Paraselene
+id=249975
+rarity=U
+[/card]
+[card]
+primitive=Past in Flames
+id=245197
+rarity=M
+[/card]
+[card]
+primitive=Pitchburn Devils
+id=222904
+rarity=C
+[/card]
+[card]
+primitive=Plains
+id=245230
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=245230
+rarity=L
+[/card]
+[card]
+primitive=Plains
+id=245230
+rarity=L
+[/card]
+[card]
+primitive=Prey Upon
+id=220383
+rarity=C
+[/card]
+[card]
+primitive=Purify the Grave
+id=226884
+rarity=U
+[/card]
+[card]
+primitive=Rage Thrower
+id=222921
+rarity=U
+[/card]
+[card]
+primitive=Rakish Heir
+id=234441
+rarity=U
+[/card]
+[card]
+primitive=Rally the Peasants
+id=237361
+rarity=U
+[/card]
+[card]
+primitive=Ranger's Guile
+id=249973
+rarity=C
+[/card]
+[card]
+primitive=Reaper from the Abyss
+id=230768
+rarity=M
+[/card]
+[card]
+primitive=Rebuke
+id=247423
+rarity=C
+[/card]
+[card]
+primitive=Reckless Waif // Merciless Predator (Reckless Waif)
+id=222111
+rarity=U
+[/card]
+#Need to find a way to deal with multipart cards
+#[card]
+#primitive=Reckless Waif // Merciless Predator (Merciless Predator)
+#id=
+#rarity=U
+#[/card]
+[card]
+primitive=Riot Devils
+id=220648
+rarity=C
+[/card]
+[card]
+primitive=Rolling Temblor
+id=249660
+rarity=U
+[/card]
+[card]
+primitive=Rooftop Storm
+id=227287
+rarity=R
+[/card]
+[card]
+primitive=Rotting Fensnake
+id=237011
+rarity=C
+[/card]
+[card]
+primitive=Runechanter's Pike
+id=244681
+rarity=R
+[/card]
+[card]
+primitive=Runic Repetition
+id=227298
+rarity=U
+[/card]
+[card]
+primitive=Scourge of Geier Reach
+id=227077
+rarity=U
+[/card]
+[card]
+primitive=Screeching Bat // Stalking Vampire (Screeching Bat)
+id=221211
+rarity=U
+[/card]
+#Need to find a way to deal with multipart cards
+#[card]
+#primitive=Screeching Bat // Stalking Vampire (Stalking Vampire)
+#id=
+#rarity=U
+#[/card]
+[card]
+primitive=Selfless Cathar
+id=221219
+rarity=C
+[/card]
+[card]
+primitive=Selhoff Occultist
+id=233254
+rarity=C
+[/card]
+[card]
+primitive=Sensory Deprivation
+id=222014
+rarity=C
+[/card]
+[card]
+primitive=Sever the Bloodline
+id=245194
+rarity=R
+[/card]
+[card]
+primitive=Sharpened Pitchfork
+id=220642
+rarity=C
+[/card]
+[card]
+primitive=Shimmering Grotto
+id=243216
+rarity=C
+[/card]
+[card]
+primitive=Silent Departure
+id=220047
+rarity=C
+[/card]
+[card]
+primitive=Silverchase Fox
+id=234848
+rarity=C
+[/card]
+[card]
+primitive=Silver-Inlaid Dagger
+id=222190
+rarity=U
+[/card]
+[card]
+primitive=Skaab Goliath
+id=222913
+rarity=U
+[/card]
+[card]
+primitive=Skaab Ruinator
+id=230780
+rarity=R
+[/card]
+[card]
+primitive=Skeletal Grimace
+id=220387
+rarity=C
+[/card]
+[card]
+primitive=Skirsdag Cultist
+id=220638
+rarity=U
+[/card]
+[card]
+primitive=Skirsdag High Priest
+id=230764
+rarity=R
+[/card]
+[card]
+primitive=Slayer of the Wicked
+id=220062
+rarity=U
+[/card]
+[card]
+primitive=Smite the Monstrous
+id=220377
+rarity=C
+[/card]
+[card]
+primitive=Snapcaster Mage
+id=227676
+rarity=R
+[/card]
+[card]
+primitive=Somberwald Spider
+id=237013
+rarity=C
+[/card]
+[card]
+primitive=Spare from Evil
+id=230618
+rarity=C
+[/card]
+[card]
+primitive=Spectral Flight
+id=230775
+rarity=U
+[/card]
+[card]
+primitive=Spectral Rider
+id=220372
+rarity=U
+[/card]
+[card]
+primitive=Spider Spawning
+id=222175
+rarity=U
+[/card]
+[card]
+primitive=Spidery Grasp
+id=244686
+rarity=C
+[/card]
+[card]
+primitive=Splinterfright
+id=227301
+rarity=R
+[/card]
+[card]
+primitive=Stensia Bloodhall
+id=233244
+rarity=R
+[/card]
+[card]
+primitive=Stitched Drake
+id=220652
+rarity=C
+[/card]
+[card]
+primitive=Stitcher's Apprentice
+id=220631
+rarity=C
+[/card]
+[card]
+primitive=Stony Silence
+id=247425
+rarity=R
+[/card]
+[card]
+primitive=Stromkirk Noble
+id=230783
+rarity=R
+[/card]
+[card]
+primitive=Stromkirk Patrol
+id=226876
+rarity=C
+[/card]
+[card]
+primitive=Sturmgeist
+id=246950
+rarity=R
+[/card]
+[card]
+primitive=Sulfur Falls
+id=241987
+rarity=R
+[/card]
+[card]
+primitive=Swamp
+id=245240
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=245240
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=245240
+rarity=L
+[/card]
+[card]
+primitive=Think Twice
+id=230626
+rarity=C
+[/card]
+[card]
+primitive=Thraben Purebloods
+id=230625
+rarity=C
+[/card]
+[card]
+primitive=Thraben Sentry // Thraben Militia (Thraben Sentry)
+id=222016
+rarity=C
+[/card]
+#Need to find a way to deal with multipart cards
+#[card]
+#primitive=Thraben Sentry // Thraben Militia (Thraben Militia)
+#id=
+#rarity=C
+#[/card]
+[card]
+primitive=Tormented Pariah // Rampaging Werewolf (Tormented Pariah)
+id=222186
+rarity=C
+[/card]
+#Need to find a way to deal with multipart cards
+#[card]
+#primitive=Tormented Pariah // Rampaging Werewolf  (Rampaging Werewolf)
+#id=
+#rarity=C
+#[/card]
+[card]
+primitive=Traitorous Blood
+id=234438
+rarity=C
+[/card]
+[card]
+primitive=Travel Preparations
+id=220026
+rarity=C
+[/card]
+[card]
+primitive=Traveler's Amulet
+id=237357
+rarity=C
+[/card]
+[card]
+primitive=Tree of Redemption
+id=247421
+rarity=M
+[/card]
+[card]
+primitive=Trepanation Blade
+id=221186
+rarity=U
+[/card]
+[card]
+primitive=Tribute to Hunger
+id=227064
+rarity=U
+[/card]
+[card]
+primitive=Typhoid Rats
+id=220634
+rarity=C
+[/card]
+[card]
+primitive=Ulvenwald Mystics // Ulvenwald Primordials (Ulvenwald Mystics)
+id=222105
+rarity=U
+[/card]
+#Need to find a way to deal with multipart cards
+#[card]
+#primitive=Ulvenwald Mystics // Ulvenwald Primordials (Ulvenwald Primordials)
+#id=
+#rarity=U
+#[/card]
+[card]
+primitive=Unbreathing Horde
+id=230786
+rarity=R
+[/card]
+[card]
+primitive=Unburial Rites
+id=227087
+rarity=U
+[/card]
+[card]
+primitive=Undead Alchemist
+id=244684
+rarity=R
+[/card]
+[card]
+primitive=Unruly Mob
+id=220389
+rarity=U
+[/card]
+[card]
+primitive=Urgent Exorcism
+id=227066
+rarity=C
+[/card]
+[card]
+primitive=Vampire Interloper
+id=226748
+rarity=C
+[/card]
+[card]
+primitive=Vampiric Fury
+id=247424
+rarity=C
+[/card]
+[card]
+primitive=Victim of Night
+id=220023
+rarity=C
+[/card]
+[card]
+primitive=Village Bell-Ringer
+id=222923
+rarity=C
+[/card]
+[card]
+primitive=Village Cannibals
+id=222903
+rarity=U
+[/card]
+[card]
+primitive=Village Ironsmith // Ironfang (Village Ironsmith)
+id=222112
+rarity=C
+[/card]
+#Need to find a way to deal with multipart cards
+#[card]
+#primitive=Village Ironsmith // Ironfang (Ironfang)
+#id=
+#rarity=C
+#[/card]
+[card]
+primitive=Villagers of Estwald // Howlpack of Estwald (Villagers of Estwald)
+id=222915
+rarity=C
+[/card]
+#Need to find a way to deal with multipart cards
+#[card]
+#primitive=Villagers of Estwald // Howlpack of Estwald (Howlpack of Estwald)
+#id=
+#rarity=C
+#[/card]
+[card]
+primitive=Voiceless Spirit
+id=243215
+rarity=C
+[/card]
+[card]
+primitive=Walking Corpse
+id=243210
+rarity=C
+[/card]
+[card]
+primitive=Witchbane Orb
+id=233240
+rarity=R
+[/card]
+[card]
+primitive=Wooden Stake
+id=226880
+rarity=C
+[/card]
+[card]
+primitive=Woodland Cemetery
+id=241983
+rarity=R
+[/card]
+[card]
+primitive=Woodland Sleuth
+id=220654
+rarity=C
+[/card]
+[card]
+primitive=Wreath of Geists
+id=237017
+rarity=U
+[/card]
