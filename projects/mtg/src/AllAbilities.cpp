@@ -432,7 +432,7 @@ int ACounterTracker::addToGame()
             }
         }
         SAFE_DELETE(counter);
-        return 1;
+        return MTGAbility::addToGame();
     }
     SAFE_DELETE(counter);
     return 0;
