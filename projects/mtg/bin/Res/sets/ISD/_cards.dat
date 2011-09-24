@@ -435,12 +435,12 @@ rarity=L
 [/card]
 [card]
 primitive=Forest
-id=245247
+id=245246
 rarity=L
 [/card]
 [card]
 primitive=Forest
-id=245247
+id=245248
 rarity=L
 [/card]
 [card]
@@ -598,7 +598,7 @@ rarity=R
 [/card]
 [card]
 primitive=Hamlet Captain
-id=23446
+id=234446
 rarity=U
 [/card]
 [card]
@@ -685,12 +685,12 @@ rarity=L
 [/card]
 [card]
 primitive=Island
-id=245235
+id=245236
 rarity=L
 [/card]
 [card]
 primitive=Island
-id=245235
+id=245237
 rarity=L
 [/card]
 [card]
@@ -705,7 +705,7 @@ rarity=R
 [/card]
 [card]
 primitive=Kessig Wolf
-id=22040
+id=220040
 rarity=C
 [/card]
 [card]
@@ -888,12 +888,12 @@ rarity=L
 [/card]
 [card]
 primitive=Mountain
-id=245242
+id=245243
 rarity=L
 [/card]
 [card]
 primitive=Mountain
-id=245242
+id=245245
 rarity=L
 [/card]
 [card]
@@ -973,12 +973,12 @@ rarity=C
 [/card]
 [card]
 primitive=Plains
-id=245230
+id=245231
 rarity=L
 [/card]
 [card]
 primitive=Plains
-id=245230
+id=245233
 rarity=L
 [/card]
 [card]
@@ -1250,12 +1250,12 @@ rarity=L
 [/card]
 [card]
 primitive=Swamp
-id=245240
+id=245241
 rarity=L
 [/card]
 [card]
 primitive=Swamp
-id=245240
+id=245239
 rarity=L
 [/card]
 [card]
