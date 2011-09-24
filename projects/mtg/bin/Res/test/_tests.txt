@@ -355,6 +355,8 @@ haunting_echoes.txt
 hellfire.txt
 helm_of_kaldra1.txt
 high_tide.txt
+hollowhenge scavenger2_MORBID.txt
+hollowhenge scavenger_MORBID.txt
 holy_day_i226.txt
 hope_charm_i267.txt
 hopping_automaton_i232.txt

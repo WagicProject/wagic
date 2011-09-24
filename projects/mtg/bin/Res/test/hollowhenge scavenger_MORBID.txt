@@ -1,0 +1,23 @@
+#NAME: Hollowhenge Scavenger
+#DESC: Morbid - When Hollowhenge Scavenger enters the battlefield, if a creature died this turn, you gain 5 life.
+#Test 1: Cast Hollowhenge Scavenger after a creature dies (morbid => true).
+[INIT]
+firstmain
+[PLAYER1]
+hand:Shock,Hollowhenge Scavenger
+manapool:{3}{G}{G}{R}
+inplay:Llanowar Elves
+life:20
+[PLAYER2]
+[DO]
+Shock
+Llanowar Elves
+Hollowhenge Scavenger
+[ASSERT]
+firstmain
+[PLAYER1]
+graveyard:Llanowar Elves,Shock
+inplay:Hollowhenge Scavenger
+life:25
+[PLAYER2]
+[END]

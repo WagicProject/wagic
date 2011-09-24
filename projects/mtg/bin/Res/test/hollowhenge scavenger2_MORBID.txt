@@ -1,0 +1,20 @@
+#NAME: Hollowhenge Scavenger
+#DESC: Morbid - When Hollowhenge Scavenger enters the battlefield, if a creature died this turn, you gain 5 life.
+#Test 1: Cast Hollowhenge Scavenger without morbid. You should not gain any life.
+[INIT]
+firstmain
+[PLAYER1]
+hand:Hollowhenge Scavenger
+manapool:{3}{G}{G}
+inplay:
+life:20
+[PLAYER2]
+[DO]
+Hollowhenge Scavenger
+[ASSERT]
+firstmain
+[PLAYER1]
+inplay:Hollowhenge Scavenger
+life:20
+[PLAYER2]
+[END]
