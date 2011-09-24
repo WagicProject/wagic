@@ -280,9 +280,7 @@ int AIPlayer::receiveEvent(WEvent * event)
 
 void AIPlayer::Render()
 {
-#ifdef RENDER_AI_STATS
-    if (getStats()) getStats()->Render();
-#endif
+
 }
 
 #ifdef AI_CHANGE_TESTING

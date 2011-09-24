@@ -29,6 +29,7 @@ int ExtraCost::setSource(MTGCardInstance * _source)
         tc->source = _source;
         // this keeps the target chooser from being unable to select a creature with shroud/protections.
         tc->targetter = NULL;
+        tc->Owner = source->controller();
     }
     else
     {

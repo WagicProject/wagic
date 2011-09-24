@@ -616,13 +616,25 @@ int AIPlayerBaka::getEfficiency(OrderedAIAction * action)
 
 MTGCardInstance * AIPlayerBaka::chooseCard(TargetChooser * tc, MTGCardInstance * source, int random)
 {
-    for (int i = 0; i < game->hand->nb_cards; i++)
+    MTGPlayerCards * playerZones = source->controller()->game;
+    MTGGameZone * zones[] = { playerZones->hand, playerZones->library, playerZones->inPlay, playerZones->graveyard,playerZones->stack };
+    for(int players = 0; players < 2;++players)
     {
-        MTGCardInstance * card = game->hand->cards[i];
-        if (!tc->alreadyHasTarget(card) && tc->canTarget(card))
+        for (int j = 0; j < 5; j++)
         {
-            return card;
+            MTGGameZone * zone = zones[j];
+            for (int k = 0; k < zone->nb_cards; k++)
+            {
+                MTGCardInstance * card = zone->cards[k];
+                if (card != source && !tc->alreadyHasTarget(card) && tc->canTarget(card))
+                {
+
+                    return card;
+
+                }
+            }
         }
+        playerZones = source->controller()->opponent()->game;
     }
     return NULL;
 }
@@ -639,6 +651,31 @@ bool AIPlayerBaka::payTheManaCost(ManaCost * cost, MTGCardInstance * target,vect
         return false;
     }
 
+    ExtraCosts * ec = cost->extraCosts;
+    if (ec)
+    {
+        for (size_t i = 0; i < ec->costs.size(); ++i)
+        {
+            if (ec->costs[i]->tc)
+            {
+                ec->costs[i]->setSource(target);
+                if(!ec->costs[i]->tc->countValidTargets())
+                    return false;
+                MTGCardInstance * costTarget = chooseCard(ec->costs[i]->tc,target);
+                int checkTarget = 0;
+                while (ec->tryToSetPayment(costTarget))
+                {
+                    costTarget = chooseCard(ec->costs[i]->tc,target);
+                    if(checkTarget == 20)
+                        return false;
+                    checkTarget++;
+                }
+                if(!ec->costs[i]->isPaymentSet())
+                    return false;
+            }
+        }
+    }
+
     if(!cost->getConvertedCost())
     {
         DebugTrace("AIPlayerBaka: Card or Ability was free to play.  ");
@@ -646,7 +683,6 @@ bool AIPlayerBaka::payTheManaCost(ManaCost * cost, MTGCardInstance * target,vect
             return true;
         //return true if cost does not contain "x" becuase we don't need to do anything with a cost of 0;
     }
-
     if(gotPayments.size())
     {
         DebugTrace("AIPlayerBaka: Ai had a payment in mind.");
@@ -1075,7 +1111,7 @@ vector<MTGAbility*> AIPlayerBaka::canPaySunBurst(ManaCost * cost)
 
 
 //Can't yet handle extraCost objects (ex: sacrifice) if they require a target :(
-int AIPlayerBaka::CanHandleCost(ManaCost * cost)
+int AIPlayerBaka::CanHandleCost(ManaCost * cost, MTGCardInstance * card)
 {
     if (!cost)
         return 1;
@@ -1088,7 +1124,11 @@ int AIPlayerBaka::CanHandleCost(ManaCost * cost)
     {
         if (ec->costs[i]->tc)
         {
+            ec->costs[i]->setSource(card);
+            if(!ec->costs[i]->tc->countValidTargets())
             return 0;
+            if(!chooseCard(ec->costs[i]->tc,card))
+                return 0;
         }
     }
     return 1;
@@ -1096,7 +1136,7 @@ int AIPlayerBaka::CanHandleCost(ManaCost * cost)
 
 int AIPlayerBaka::canHandleCost(MTGAbility * ability)
 {
-    return CanHandleCost(ability->getCost());
+    return CanHandleCost(ability->getCost(),ability->source);
 }
 
 
@@ -1568,7 +1608,7 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
     gotPayments = vector<MTGAbility*>();
     while ((card = cd.nextmatch(game->hand, card)))
     {
-        if (!CanHandleCost(card->getManaCost()))
+        if (!CanHandleCost(card->getManaCost(),card))
             continue;
 
         if (card->hasType(Subtypes::TYPE_LAND))

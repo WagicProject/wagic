@@ -76,7 +76,7 @@ class AIPlayerBaka: public AIPlayer{
 
 
     // returns 1 if the AI algorithm supports a given cost (ex:simple mana cost), 0 otherwise (ex: cost involves Sacrificing a target)
-    virtual int CanHandleCost(ManaCost * cost); 
+    virtual int CanHandleCost(ManaCost * cost, MTGCardInstance * card = NULL); 
 
     //Tries to play an ability recommended by the deck creator
     virtual int selectHintAbility();
