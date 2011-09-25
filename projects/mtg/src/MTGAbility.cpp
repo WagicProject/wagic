@@ -298,6 +298,38 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card,Player * player
     return 1;
 }
 
+int AbilityFactory::parseRestriction(string s)
+{
+    if (s.find("myturnonly") != string::npos)
+        return ActivatedAbility::PLAYER_TURN_ONLY;
+    if (s.find("opponentturnonly") != string::npos)
+        return ActivatedAbility::OPPONENT_TURN_ONLY;
+    if (s.find("assorcery") != string::npos)
+        return ActivatedAbility::AS_SORCERY;
+
+    string types[] = { "my", "opponent", "" };
+    int starts[] = { ActivatedAbility::MY_BEFORE_BEGIN, ActivatedAbility::OPPONENT_BEFORE_BEGIN, ActivatedAbility::BEFORE_BEGIN };
+    for (int j = 0; j < 3; ++j)
+    {
+        size_t found = s.find(types[j]);
+        if (found != string::npos)
+        {
+            for (int i = 0; i < Constants::NB_MTG_PHASES; i++)
+            {
+                string toFind = types[j];
+                toFind.append(Constants::MTGPhaseCodeNames[i]).append("only");
+                found = s.find(toFind);
+                if (found != string::npos)
+                {
+                    return starts[j] + i;
+                }
+            }
+        }
+    }
+
+    return ActivatedAbility::NO_RESTRICTION;
+}
+
 int AbilityFactory::countCards(TargetChooser * tc, Player * player, int option)
 {
     int result = 0;
@@ -681,38 +713,6 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string magicText, int 
     }
 
     return NULL;
-}
-
-int AbilityFactory::parseRestriction(string s)
-{
-    if (s.find("myturnonly") != string::npos)
-        return ActivatedAbility::PLAYER_TURN_ONLY;
-    if (s.find("opponentturnonly") != string::npos)
-        return ActivatedAbility::OPPONENT_TURN_ONLY;
-    if (s.find("assorcery") != string::npos)
-        return ActivatedAbility::AS_SORCERY;
-
-    string types[] = { "my", "opponent", "" };
-    int starts[] = { ActivatedAbility::MY_BEFORE_BEGIN, ActivatedAbility::OPPONENT_BEFORE_BEGIN, ActivatedAbility::BEFORE_BEGIN };
-    for (int j = 0; j < 3; ++j)
-    {
-        size_t found = s.find(types[j]);
-        if (found != string::npos)
-        {
-            for (int i = 0; i < Constants::NB_MTG_PHASES; i++)
-            {
-                string toFind = types[j];
-                toFind.append(Constants::MTGPhaseCodeNames[i]).append("only");
-                found = s.find(toFind);
-                if (found != string::npos)
-                {
-                    return starts[j] + i;
-                }
-            }
-        }
-    }
-
-    return ActivatedAbility::NO_RESTRICTION;
 }
 
 // When abilities encapsulate each other, gets the deepest one (it is the one likely to have the most relevant information)
