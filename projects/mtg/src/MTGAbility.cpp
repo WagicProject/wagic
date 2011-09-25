@@ -645,11 +645,11 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string magicText, int 
     }
 
     int who = 0;
-    if (s.find("my") != string::npos)
+    if (s.find(" my") != string::npos)
         who = 1;
-    if (s.find("opponent") != string::npos)
+    if (s.find(" opponent") != string::npos)
         who = -1;
-    if (s.find("targetcontroller") != string::npos)
+    if (s.find(" targetcontroller") != string::npos)
         who = -2;
 
     //Next Time...
