@@ -49162,7 +49162,7 @@ type=Instant
 [card]
 name=One-Eyed Scarecrow
 abilities=defender
-auto=lord(creature[flying]|opponentcontrol) -1/0
+auto=lord(creature[flying]|opponentbattlefield) -1/0
 text=Defender -- Creatures with flying your opponents control get -1/-0.
 mana={3}
 type=Artifact Creature
