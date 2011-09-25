@@ -107,6 +107,19 @@ protected:
   {
       if (event->type() == QEvent::Gesture)
           return gestureEvent(static_cast<QGestureEvent*>(event));
+#if (defined Q_WS_MAEMO_5) || (defined MEEGO_EDITION_HARMATTAN)
+      else if (event->type() == QEvent::WindowActivate)
+      {
+          JGE::GetInstance()->Resume();
+          showEvent(NULL);
+      }
+      else if (event->type() == QEvent::WindowDeactivate)
+      {
+          JGE::GetInstance()->Pause();
+          hideEvent(NULL);
+      }
+#endif
+
       return QGLWidget::event(event);
   }
 
@@ -201,8 +214,7 @@ void JGECreateDefaultBindings()
 
 int JGEGetTime()
 {
-  QTime theTime = QTime::currentTime();
-  return theTime.second() * 1000 + theTime.msec();
+    return (int)g_startTimer.elapsed();
 }
 
 bool JGEToggleFullscreen()
@@ -264,6 +276,7 @@ JGEQtRenderer::JGEQtRenderer(QWidget *parent)
   grabZoomKeys(true);
 #endif
   setAttribute(Qt::WA_AcceptTouchEvents);
+//  setAttribute(Qt::WA_InputMethodEnabled);
   setMouseTracking(true);
 
   grabGesture(Qt::PanGesture);
@@ -536,6 +549,10 @@ void JGEQtRenderer::mouseMoveEvent(QMouseEvent *event)
 
 void JGEQtRenderer::mouseDoubleClickEvent(QMouseEvent *event)
 {
+/*
+    QEvent SIPevent(QEvent::RequestSoftwareInputPanel);
+    QApplication::sendEvent(this, &SIPevent);
+
 #if (defined Q_WS_MAEMO_5) || (defined MEEGO_EDITION_HARMATTAN)
   if(event->button() == Qt::LeftButton)
   {
@@ -544,6 +561,7 @@ void JGEQtRenderer::mouseDoubleClickEvent(QMouseEvent *event)
   }
   else
 #endif
+*/
   {
     QGLWidget::mouseDoubleClickEvent(event);
   }
@@ -551,25 +569,11 @@ void JGEQtRenderer::mouseDoubleClickEvent(QMouseEvent *event)
 
 void JGEQtRenderer::wheelEvent(QWheelEvent *event)
 {
-  if(event->orientation() == Qt::Vertical)
-  {
-    if(event->delta() > 0)
-    {
-      g_engine->HoldKey_NoRepeat(JGE_BTN_UP);
-    }
+    if(event->orientation() == Qt::Vertical)
+        g_engine->Scroll(0, 3*event->delta());
     else
-    {
-      g_engine->HoldKey_NoRepeat(JGE_BTN_DOWN);
-    }
-  }
-  else if(event->orientation() == Qt::Horizontal)
-  {
-    g_engine->HoldKey_NoRepeat(JGE_BTN_LEFT);
-  }
-  else
-  {
-    g_engine->HoldKey_NoRepeat(JGE_BTN_RIGHT);
-  }
+        g_engine->Scroll(3*event->delta(), 0);
+
   event->accept();
 }
 
@@ -665,6 +669,7 @@ int main(int argc, char* argv[])
   g_glwidget->resize(ACTUAL_SCREEN_WIDTH, ACTUAL_SCREEN_HEIGHT);
 
   a.setApplicationName(g_launcher->GetName());
+  //a.setAutoSipEnabled(true);
 
 #if (defined Q_WS_MAEMO_5) || (defined MEEGO_EDITION_HARMATTAN)
   // We start in fullscreen on mobile
