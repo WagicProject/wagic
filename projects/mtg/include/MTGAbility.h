@@ -273,62 +273,6 @@ public:
 class ActivatedAbility : public MTGAbility
 {
 public:
-    enum
-    {
-        NO_RESTRICTION = 0,
-        PLAYER_TURN_ONLY = 1,
-        AS_SORCERY = 2,
-        MY_BEFORE_BEGIN = 3,
-        MY_UNTAP = 4,
-        MY_UPKEEP = 5,
-        MY_DRAW = 6,
-        MY_FIRSTMAIN = 7,
-        MY_COMBATBEGIN = 8,
-        MY_COMBATATTACKERS = 9,
-        MY_COMBATBLOCKERS = 10,
-        MY_COMBATDAMAGE = 11,
-        MY_COMBATEND = 12,
-        MY_SECONDMAIN = 13,
-        MY_ENDOFTURN = 14,
-        MY_EOT = 15,
-        MY_CLEANUP = 16,
-        MY_AFTER_EOT = 17,
-
-        OPPONENT_BEFORE_BEGIN = 23,
-        OPPONENT_UNTAP = 24,
-        OPPONENT_UPKEEP = 25,
-        OPPONENT_DRAW = 26,
-        OPPONENT_FIRSTMAIN = 27,
-        OPPONENT_COMBATBEGIN = 28,
-        OPPONENT_COMBATATTACKERS = 29,
-        OPPONENT_COMBATBLOCKERS = 30,
-        OPPONENT_COMBATDAMAGE = 31,
-        OPPONENT_COMBATEND = 32,
-        OPPONENT_SECONDMAIN = 33,
-        OPPONENT_ENDOFTURN = 34,
-        OPPONENT_EOT = 35,
-        OPPONENT_CLEANUP = 36,
-        OPPONENT_AFTER_EOT = 37,
-
-        BEFORE_BEGIN = 43,
-        UNTAP = 44,
-        UPKEEP = 45,
-        DRAW = 46,
-        FIRSTMAIN = 47,
-        COMBATBEGIN = 48,
-        COMBATATTACKERS = 49,
-        COMBATBLOCKERS = 50,
-        COMBATDAMAGE = 51,
-        COMBATEND = 52,
-        SECONDMAIN = 53,
-        ENDOFTURN = 54,
-        EOT = 55,
-        CLEANUP = 56,
-        AFTER_EOT = 57,
-
-        OPPONENT_TURN_ONLY = 69,
-    };
-
     ManaCost* abilityCost;
     int restrictions;
     int limitPerTurn;
