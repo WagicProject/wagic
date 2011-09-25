@@ -72189,10 +72189,12 @@ toughness=1
 [card]
 name=Tetravite
 abilities=flying
-power=1
-toughness=1
 auto=cantbetargetof(aura)
 id=-67564534
+type=Artifact Creature
+subtype=Tertavite
+power=1
+toughness=1
 [/card]
 [card]
 name=Tethered Griffin
