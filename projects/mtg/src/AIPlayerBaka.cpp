@@ -1110,7 +1110,7 @@ vector<MTGAbility*> AIPlayerBaka::canPaySunBurst(ManaCost * cost)
 }
 
 
-//Can't yet handle extraCost objects (ex: sacrifice) if they require a target :(
+//can handle extra cost to some extent, tho not wisely.
 int AIPlayerBaka::CanHandleCost(ManaCost * cost, MTGCardInstance * card)
 {
     if (!cost)

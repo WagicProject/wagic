@@ -22,7 +22,7 @@ protected:
     int effectBadOrGood(MTGCardInstance * card, int mode = MODE_PUTINTOPLAY, TargetChooser * tc = NULL);
 
 
-    // returns 1 if the AI algorithm supports a given cost (ex:simple mana cost), 0 otherwise (ex: cost involves Sacrificing a target)
+    // returns 1 if the AI algorithm supports a given cost (ex:simple mana cost), 0 otherwise
     int CanHandleCost(ManaCost * cost); 
 
     //Tries to play an ability recommended by the deck creator
