@@ -13,6 +13,7 @@ life:20
 Shock
 Llanowar Elves
 Hollowhenge Scavenger
+choice 0
 [ASSERT]
 firstmain
 [PLAYER1]
