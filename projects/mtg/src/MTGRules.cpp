@@ -982,6 +982,17 @@ int MTGSuspendRule::reactToClick(MTGCardInstance * card)
     //this handles extra cost payments at the moment a card is played.
     if (playerMana->canAfford(alternateCost))
     {
+        if(alternateCost->hasX())
+        {
+            ManaCost * checkXnotZero = NEW ManaCost(alternateCost);//suspend cards with x cost, x can not be zero.
+            checkXnotZero->add(0,1);
+            if (!playerMana->canAfford(checkXnotZero))
+            {
+                SAFE_DELETE(checkXnotZero);
+                return 0;
+            }
+            SAFE_DELETE(checkXnotZero);
+        }
         if (alternateCost->isExtraPaymentSet())
         {
             if (!game->targetListIsSet(card))
@@ -998,6 +1009,14 @@ int MTGSuspendRule::reactToClick(MTGCardInstance * card)
             card->paymenttype = MTGAbility::SUSPEND_COST;
     }
     //------------------------------------------------------------------------
+    if(card->getManaCost()->suspend->hasX())
+    {
+        ManaCost * pMana = NEW ManaCost(player->getManaPool());
+        ManaCost * suspendCheckMana = NEW ManaCost(card->getManaCost()->suspend);
+        card->suspendedTime = pMana->getConvertedCost() - suspendCheckMana->getConvertedCost();
+        SAFE_DELETE(pMana);
+        SAFE_DELETE(suspendCheckMana);
+    }
     player->getManaPool()->pay(card->getManaCost()->suspend);
     card->getManaCost()->suspend->doPayExtra();
     //---------------------------------------------------------------------------
