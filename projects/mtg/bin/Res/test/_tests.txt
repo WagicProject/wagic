@@ -128,6 +128,7 @@ animated_legendaries1_i221.txt
 animated_legendaries2_i221.txt
 animated_legendaries3_i221.txt
 ankh_of_mishra.txt
+Apex_Hawks_MULTIKICKER.txt
 arcanis_the_omnipotent.txt
 arcanis_the_omnipotent2.txt
 arcbound.txt
@@ -415,7 +416,6 @@ lhurgoyf.txt
 liability.txt
 lifeforce.txt
 lifetap.txt
-Lightkeeper_of_Emeria_MULTIKICKER.txt
 lightmine_field1.txt
 lightmine_field2.txt
 living_artifact_i169.txt

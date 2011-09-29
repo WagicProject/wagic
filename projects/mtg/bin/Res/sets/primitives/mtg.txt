@@ -2497,7 +2497,7 @@ toughness=4
 name=Apex Hawks
 abilities=flying
 auto=kicker counter(1/1,kicked)
-kicker=multi{1}{w}
+kicker=multi{1}{W}
 text=Multikicker (You may pay an additional  any number of times as you cast this spell.) -- Flying -- Apex Hawks enters the battlefield with a +1/+1 counter on it for each time it was kicked.
 type=Creature
 subtype=Bird
@@ -5647,7 +5647,7 @@ subtype=Aura
 [/card]
 [card]
 name=Battle of Wits
-auto=@each my upkeep:aslongas(*|mylibrary) winGame >199
+auto=@each my upkeep restriction{type(*|mylibrary)~morethan~199}:winGame
 text=At the beginning of your upkeep, if you have 200 or more cards in your library, you win the game.
 mana={3}{U}{U}
 type=Enchantment
@@ -7562,8 +7562,8 @@ toughness=2
 [/card]
 [card]
 name=Bloodhall Ooze
-auto=@each my upkeep:aslongas(*[black]|myBattlefield) !=0 may counter(1/1)
-auto=@each my upkeep:aslongas(*[green]|myBattlefield) !=0 may counter(1/1)
+auto=@each my upkeep restriction{type(*[black]|myBattlefield)~morethan~0}:may counter(1/1)
+auto=@each my upkeep restriction{type(*[green]|myBattlefield)~morethan~0}:may counter(1/1)
 text=At the beginning of your upkeep, if you control a black permanent, you may put a +1/+1 counter on Bloodhall Ooze. -- At the beginning of your upkeep, if you control a green permanent, you may put a +1/+1 counter on Bloodhall Ooze.
 mana={R}
 type=Creature
@@ -8292,7 +8292,7 @@ toughness=1
 name=Boneshard Slasher
 abilities=flying
 auto=aslongas(*|mygraveyard) 2/2 >6
-auto=@targeted(this):aslongas(*|mygraveyard) sacrifice >6
+auto=@targeted(this) restriction{type(*|mygraveyard)~morethan~6}:sacrifice
 text=Flying -- Threshold - As long as seven or more cards are in your graveyard, Boneshard Slasher gets +2/+2 and has "When Boneshard Slasher becomes the target of a spell or ability, sacrifice it."
 mana={1}{B}
 type=Creature
@@ -9167,8 +9167,8 @@ subtype=Aura
 [/card]
 [card]
 name=Brink of Madness
-auto=@each my upkeep:aslongas(*|myhand) sacrifice <1
-auto=@each my upkeep:aslongas(*|myhand) all(*|opponenthand) moveTo(ownergraveyard) <1
+auto=@each my upkeep restriction{type(*|myhand)~lessthan~1}:sacrifice
+auto=@each my upkeep restriction{type(*|myhand)~lessthan~1}:all(*|opponenthand) reject
 text=At the beginning of your upkeep, if you have no cards in hand, sacrifice Brink of Madness. If you do, target opponent discards his or her hand.
 mana={2}{B}{B}
 type=Enchantment
@@ -13104,17 +13104,17 @@ subtype=Snow
 [/card]
 [card]
 name=Collapsing Borders
-auto=@each my upkeep:aslongas(plains|myBattlefield) life:1 controller
-auto=@each my upkeep:aslongas(island|myBattlefield) life:1 controller
-auto=@each my upkeep:aslongas(swamp|myBattlefield) life:1 controller
-auto=@each my upkeep:aslongas(mountain|myBattlefield) life:1 controller
-auto=@each my upkeep:aslongas(forest|myBattlefield) life:1 controller
+auto=@each my upkeep restriction{type(plains|myBattlefield)~morethan~0:life:1 controller
+auto=@each my upkeep restriction{type(island|myBattlefield)~morethan~0:life:1 controller
+auto=@each my upkeep restriction{type(swamp|myBattlefield)~morethan~0:life:1 controller
+auto=@each my upkeep restriction{type(mountain|myBattlefield)~morethan~0:life:1 controller
+auto=@each my upkeep restriction{type(forest|myBattlefield)~morethan~0:life:1 controller
 auto=@each my upkeep:life:-3 controller
-auto=@each opponent upkeep:aslongas(plains|opponentBattlefield) life:1 opponent
-auto=@each opponent upkeep:aslongas(island|opponentBattlefield) life:1 opponent
-auto=@each opponent upkeep:aslongas(swamp|opponentBattlefield) life:1 opponent
-auto=@each opponent upkeep:aslongas(mountain|opponentBattlefield) life:1 opponent
-auto=@each opponent upkeep:aslongas(forest|opponentBattlefield) life:1 opponent
+auto=@each opponent upkeep restriction{type(plains|myBattlefield)~morethan~0:life:1 opponent
+auto=@each opponent upkeep restriction{type(island|myBattlefield)~morethan~0:life:1 opponent
+auto=@each opponent upkeep restriction{type(swamp|myBattlefield)~morethan~0:life:1 opponent
+auto=@each opponent upkeep restriction{type(mountain|myBattlefield)~morethan~0:life:1 opponent
+auto=@each opponent upkeep restriction{type(green|myBattlefield)~morethan~0:life:1 opponent
 auto=@each opponent upkeep:life:-3 opponent
 text=Domain - At the beginning of each player's upkeep, that player gains 1 life for each basic land type among lands he or she controls. Then Collapsing Borders deals 3 damage to him or her.
 mana={3}{R}
@@ -13219,7 +13219,7 @@ type=Instant
 [/card]
 [card]
 name=Complex Automaton
-auto=@each my upkeep:aslongas(*|myBattlefield) moveTo(myhand) >6
+auto=@each my upkeep restriction{type(*|myBattlefield)~morethan~6:moveTo(myhand)
 text=At the beginning of your upkeep, if you control seven or more permanents, return Complex Automaton to its owner's hand.
 mana={4}
 type=Artifact Creature
@@ -17097,7 +17097,9 @@ toughness=1
 [card]
 name=Dega Sanctuary
 text=At the beginning of your upkeep, if you control a black or red permanent, you gain 2 life. If you control a black permanent and a red permanent, you gain 4 life instead.
-auto=@each my upkeep:aslongas(*[red]|mybattlefield) life:2 && aslongas(*[black]|mybattlefield) life:2
+auto=@each my upkeep restriction{type(*[black]|myBattlefield)~morethan~0,type(*[red]|myBattlefield)~lessthan~1}}:life:2
+auto=@each my upkeep restriction{type(*[red]|myBattlefield)~morethan~0,type(*[black]|myBattlefield)~lessthan~1}}:life:2
+auto=@each my upkeep restriction{type(*[black]|myBattlefield)~morethan~0,type(*[red]|myBattlefield)~morethan~0}:life:4
 mana={2}{W}
 type=Enchantment
 [/card]
@@ -18763,7 +18765,7 @@ toughness=1
 [/card]
 [card]
 name=Dragonmaster Outcast
-auto=@each my upkeep:aslongas(land|myBattlefield) token(Dragon,creature dragon, 5/5,flying red) >5
+auto=@each my upkeep restriction{type(land|myBattlefield)~morethan~5:token(Dragon,creature dragon, 5/5,flying red)
 text=At the beginning of your upkeep, if you control six or more lands, put a 5/5 red Dragon creature token with flying onto the battlefield.
 mana={R}
 type=Creature
@@ -19055,7 +19057,7 @@ subtype=Aura
 [/card]
 [card]
 name=Dream Prowler
-auto=@combat(attacking) source(this):aslongas(creature[attacking]|mybattlefield) all(this) unblockable ueot oneShot <2
+auto=@combat(attacking) source(this) restriction{type(creature[attacking]|myBattlefield)~lessthan~2:all(this) unblockable ueot oneShot
 text=Dream Prowler is unblockable as long as it's attacking alone.
 mana={2}{U}{U}
 type=Creature
@@ -19581,7 +19583,7 @@ subtype=Aura
 [/card]
 [card]
 name=Drumhunter
-auto=@each my end:aslongas(creature[power>=5]|myBattlefield) may draw:1
+auto=@each my end restriction{type(creature[power>=5]|myBattlefield)~morethan~0:may draw:1 controller
 auto={T}:Add{1}
 text=At the beginning of your end step, if you control a creature with power 5 or greater, you may draw a card. -- {T}: Add {1} to your mana pool.
 mana={3}{G}
@@ -20310,7 +20312,7 @@ type=Artifact
 [/card]
 [card]
 name=Ebony Owl Netsuke
-auto=@each opponent upkeep:aslongas(*|opponenthand) damage:4 opponent >6
+auto=@each opponent upkeep restriction{type(*|opponenthand)~morethan~6}:damage:4 opponent
 text=At the beginning of each opponent's upkeep, if that player has seven or more cards in hand, Ebony Owl Netsuke deals 4 damage to him or her.
 mana={2}
 type=Artifact
@@ -20583,7 +20585,7 @@ auto=lord(creature|myBattlefield) 1/1
 auto=lord(creature|mybattlefield) flying
 auto=lord(creature|mybattlefield) indestructible
 auto=@each myupkeep:sacrifice notatarget(creature|mybattlefield)
-auto=@each myupkeep:aslongas(creature|mybattlefield) sacrifice <1
+auto=@each myupkeep restriction{type(creature|myBattlefield)~lessthan~1}:sacrifice
 text=Creatures you control get +1/+1, have flying, and are indestructible. -- At the beginning of your upkeep, sacrifice a creature. If you can't, sacrifice Eldrazi Monument.
 mana={5}
 type=Artifact
@@ -20881,6 +20883,10 @@ toughness=1
 [card]
 name=Elvish Berserker
 auto=rampage(1/1,0)
+auto=@each my upkeep restriction{type(*[red]|myBattlefield)~morethan~0,type(*[green]|myBattlefield)~lessthan~1}:may draw:1 controller && transforms((,newability[target(*|myhand) reject])) forever
+auto=@each my upkeep restriction{type(*[green]|myBattlefield)~morethan~0,type(*[red]|myBattlefield)~lessthan~1}:may draw:1 controller && transforms((,newability[target(*|myhand) reject])) forever
+auto=@each my upkeep restriction{type(*[red]|myBattlefield)~morethan~0,type(*[green]|myBattlefield)~morethan~0}:may draw:2 controller && transforms((,newability[target(*|myhand) reject])) forever
+may draw:1 controller && transforms((,newability[target(*|myhand) reject])) forever
 text=Whenever Elvish Berserker becomes blocked, it gets +1/+1 until end of turn for each creature blocking it.
 mana={G}
 type=Creature
@@ -21843,7 +21849,7 @@ subtype=Aura
 [/card]
 [card]
 name=Epic Struggle
-auto=@each my upkeep:aslongas(creature|myBattlefield) winGame >19
+auto=@each my upkeep restriction{type(creature|myBattlefield)~morethan~19}:winGame
 text=At the beginning of your upkeep, if you control twenty or more creatures, you win the game.
 mana={2}{G}{G}
 type=Enchantment
@@ -22727,7 +22733,7 @@ type=Instant
 [/card]
 [card]
 name=Exuberant Firestoker
-auto=@each my endofturn:aslongas(creature[power>=5]|myBattlefield) may damage:2 target(player)
+auto=@each my endofturn restriction{type(creature[power>=5]|myBattlefield)~morethan~0}:may damage:2 target(player)
 auto={T}:Add{1}
 text=At the beginning of your end step, if you control a creature with power 5 or greater, you may have Exuberant Firestoker deal 2 damage to target player. -- {T}: Add {1} to your mana pool.
 mana={2}{R}
@@ -28011,7 +28017,7 @@ auto={T}:add{U}
 auto={T}:add{B}
 auto={T}:add{R}
 auto={T}:add{G}
-auto=@each endofturn:aslongas(artifact|mybattlefield) sacrifice <1
+auto=@each endofturn restriction{type(artifact|myBattlefield)~lessthan~1}:sacrifice
 text=At the beginning of the end step, if you control no artifacts, sacrifice Glimmervoid. -- {T}: Add one mana of any color to your mana pool.
 type=Land
 [/card]
@@ -30960,7 +30966,7 @@ type=Instant
 [card]
 name=Gutwrencher Oni
 abilities=trample
-auto=@each my upkeep:aslongas(ogre|mybattlefield) reject target(*|myhand) <1
+auto=@each my upkeep restriction{type(ogre|myBattlefield)~lessthan~1}:reject target(*|myhand)
 text=Trample -- At the beginning of your upkeep, discard a card if you don't control an Ogre.
 mana={3}{B}{B}
 type=Creature
@@ -32163,7 +32169,7 @@ toughness=0
 name=Helix Pinnacle
 abilities=shroud
 auto={X}:thisforeach(X) all(this) counter(0/0,1,Tower)
-auto=@each my upkeep:aslongas(helix pinnacle[counter{0/0.100.Tower}]|myBattlefield) winGame
+auto=@each my upkeep restriction{type(helix pinnacle[counter{0/0.100.Tower}]|myBattlefield)~morethan~0}:winGame
 text=Shroud -- {X}: Put X tower counters on Helix Pinnacle. -- At the beginning of your upkeep, if there are 100 or more tower counters on Helix Pinnacle, you win the game.
 mana={G}
 type=Enchantment
@@ -32229,7 +32235,7 @@ type=Sorcery
 [/card]
 [card]
 name=Hellfire Mongrel
-auto=@each opponent upkeep:aslongas(*|opponenthand) damage:2 opponent <3
+auto=@each opponent upkeep restriction{type(*|opponenthand)~lessthan~3}:damage:2 opponent
 text=At the beginning of each opponent's upkeep, if that player has two or fewer cards in hand, Hellfire Mongrel deals 2 damage to him or her.
 mana={2}{R}
 type=Creature
@@ -32828,10 +32834,8 @@ type=Land
 [/card]
 [card]
 name=Hollowborn Barghest
-auto=@each my upkeep:life:-2 opponent
-auto=@each my upkeep:aslongas(*|myhand):life:2 opponent
-auto=@each opponent upkeep:life:-2 opponent
-auto=@each opponent upkeep:aslongas(*|opponenthand):life:2 opponent
+auto=@each my upkeep restriction{type(*|myhand)~lessthan~1}:life:-2 opponent
+auto=@each opponent upkeep restriction{type(*|opponenthand)~lessthan~1}:life:-2 opponent
 text=At the beginning of your upkeep, if you have no cards in hand, each opponent loses 2 life. -- At the beginning of each opponent's upkeep, if that player has no cards in hand, he or she loses 2 life.
 mana={5}{B}{B}
 type=Creature
@@ -34180,7 +34184,7 @@ toughness=3
 [/card]
 [card]
 name=Imaginary Pet
-auto=@each my upkeep:aslongas(*|myhand) moveTo(myHand)
+auto=@each my upkeep restriction{type(*|myhand)~morethan~0}:moveTo(myHand)
 text=At the beginning of your upkeep, if you have a card in hand, return Imaginary Pet to its owner's hand.
 mana={1}{U}
 type=Creature
@@ -34240,8 +34244,8 @@ toughness=1
 [/card]
 [card]
 name=Impending Disaster
-auto=@each my upkeep:aslongas(land|battlefield) all(land) destroy >3
-auto=@each my upkeep:aslongas(land|battlefield) sacrifice >3
+auto=@each my upkeep restriction{type(land|battlefield)~morethan~6}:all(land) destroy
+auto=@each my upkeep restriction{type(land|battlefield)~morethan~6}:sacrifice
 text=At the beginning of your upkeep, if there are seven or more lands on the battlefield, sacrifice Impending Disaster. If you do, destroy all lands.
 mana={1}{R}
 type=Enchantment
@@ -35471,7 +35475,7 @@ type=Instant
 [/card]
 [card]
 name=Ivory Crane Netsuke
-auto=@each my upkeep:aslongas(*|myhand) life:4 controller >6
+auto=@each my upkeep restriction{type(*|myhand)~morethan~6}:life:4 controller
 text=At the beginning of your upkeep, if you have seven or more cards in hand, you gain 4 life.
 mana={2}
 type=Artifact
@@ -37313,7 +37317,7 @@ toughness=5
 [/card]
 [card]
 name=Kederekt Parasite
-auto=@drawn(opponent):aslongas(*[red]|myBattlefield) may damage:1 opponent
+auto=@drawn(opponent) restriction{type(*[red]|myBattlefield)~morethan~0}:may damage:1 opponent
 text=Whenever an opponent draws a card, if you control a red permanent, you may have Kederekt Parasite deal 1 damage to that player.
 mana={B}
 type=Creature
@@ -37630,7 +37634,7 @@ type=Land
 [card]
 name=Kezzerdrix
 abilities=first strike
-auto=@each my upkeep:aslongas(creature|opponentBattlefield) damage:4 controller <1
+auto=@each my upkeep restriction{type(creature|opponentBattlefield)~lessthan~1}:damage:4 controller
 text=First strike -- At the beginning of your upkeep, if your opponents control no creatures, Kezzerdrix deals 4 damage to you.
 mana={2}{B}{B}
 type=Creature
@@ -38168,8 +38172,8 @@ toughness=1
 name=Kiyomaro, First to Stand
 auto=foreach(*|myhand) 1/1
 auto=aslongas(*|myhand) vigilance >3
-auto=@damaged(player) from(this):aslongas(*|myhand) life:7 controller >6
-auto=@damaged(creature) from(this):aslongas(*|myhand) life:7 controller >6
+auto=@damaged(player) from(this) restriction{type(*|myhand)~morethan~6}:life:7 controller >6
+auto=@damaged(creature) from(this) restriction{type(*|myhand)~morethan~6}:life:7 controller >6
 text=Kiyomaro, First to Stand's power and toughness are each equal to the number of cards in your hand. -- As long as you have four or more cards in hand, Kiyomaro has vigilance. -- Whenever Kiyomaro deals damage, if you have seven or more cards in hand, you gain 7 life.
 mana={3}{W}{W}
 type=Legendary Creature
@@ -38585,10 +38589,9 @@ toughness=2
 [/card]
 [card]
 name=Kookus
-abilities=trample,mustattack
-auto=@each my upkeep:damage:3 controller
-auto=@each my upkeep:aslongas(Keeper of Kookus|myBattlefield) life:3 controller
-auto=@each my upkeep:aslongas(Keeper of Kookus|myBattlefield) -mustattack ueot
+abilities=trample
+auto=@each my upkeep restriction{type(Keeper of Kookus|myBattlefield)~lessthan~1}:damage:3 controller
+auto=@each my upkeep restriction{type(Keeper of Kookus|myBattlefield)~lessthan~1}:mustattack ueot
 auto={R}:1/0
 text=Trample -- At the beginning of your upkeep, if you don't control a creature named Keeper of Kookus, Kookus deals 3 damage to you and attacks this turn if able. -- {R}: Kookus gets +1/+0 until end of turn.
 mana={3}{R}{R}
@@ -39714,7 +39717,7 @@ subtype=Trap
 [/card]
 [card]
 name=Lavaborn Muse
-auto=@each opponentupkeep:aslongas(*|opponenthand) damage:3 opponent <2
+auto=@each opponent upkeep restriction{type(*|opponenthand)~lessthan~3}:damage:3 opponent
 text=At the beginning of each opponent's upkeep, if that player has two or fewer cards in hand, Lavaborn Muse deals 3 damage to him or her.
 mana={3}{R}
 type=Creature
@@ -40280,6 +40283,13 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Library of Alexandria
+auto={T}:add{1}
+auto={T}:draw:1 restriction{type(*|myhand)~equalto~7}
+text={T}: Add {1} to your mana pool. -- {T}: Draw a card. Activate this ability only if you have exactly seven cards in hand.
+type=Land
+[/card]
+[card]
 name=Lich Lord of Unx
 auto={U}{B}{T}:token(Zombie Wizard,Creature Zombie Wizard,1/1,blue black)
 auto={U}{U}{B}{B}:foreach(zombie|myBattlefield) life:-1 && foreach(zombie|myBattlefield) deplete:1 target(player)
@@ -40320,7 +40330,7 @@ abilities=flying,trample
 facedown={3}
 autofacedown={B}{B}{B}{B}:morph
 auto=@each myupkeep:sacrifice notatarget(other creature|mybattlefield)
-auto=@each myupkeep:aslongas(other creature|mybattlefield) damage:7 controller <1
+auto=@each myupkeep restriction{type(creature|myBattlefield)~lessthan~2}:damage:7 controller
 text=Flying, trample -- At the beginning of your upkeep, sacrifice a creature other than Liege of the Pit. If you can't, Liege of the Pit deals 7 damage to you. -- Morph {B}{B}{B}{B} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
 mana={5}{B}{B}{B}
 type=Creature
@@ -40461,7 +40471,8 @@ toughness=2
 [card]
 name=Lightkeeper of Emeria
 abilities=flying
-auto=kicker life:kicked && life:kicked
+auto=kicker life:kicked
+auto=kicker life:kicked
 kicker=multi{W}
 text=Multikicker {W} (You may pay an additional {W} any number of times as you cast this spell.) -- Flying -- When Lightkeeper of Emeria enters the battlefield, you gain 2 life for each time it was kicked.
 mana={3}{W}
@@ -41219,7 +41230,7 @@ toughness=3
 name=Lord of the Pit
 abilities=flying,trample
 auto=@each myupkeep:sacrifice notatarget(other creature|mybattlefield)
-auto=@each myupkeep:aslongas(other creature|mybattlefield) damage:7 controller <1
+auto=@each myupkeep restriction{type(creature|myBattlefield)~lessthan~2}:damage:7 controller
 text=Flying, trample -- At the beginning of your upkeep, sacrifice a creature other than Lord of the Pit. If you can't, Lord of the Pit deals 7 damage to you.
 mana={4}{B}{B}{B}
 type=Creature
@@ -42293,6 +42304,17 @@ type=Creature
 subtype=Human Wizard
 power=2
 toughness=4
+[/card]
+[card]
+name=Magus of the Library
+auto={T}:add{1}
+auto={T}:draw:1 restriction{type(*|myhand)~equalto~7}
+text={T}: Add {1} to your mana pool. -- {T}: Draw a card. Activate this ability only if you have exactly seven cards in hand.
+mana={G}{G}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=1
 [/card]
 [card]
 name=Magus of the Moat
@@ -43458,9 +43480,9 @@ toughness=3
 [/card]
 [card]
 name=Mayael's Aria
-auto=@each my upkeep:aslongas(creature[power>=20]|myBattlefield) winGame
-auto=@each my upkeep:aslongas(creature[power>=10]|myBattlefield) life:10
-auto=@each my upkeep:aslongas(creature[power>=5]|myBattlefield) all(creature|mybattlefield) counter(1/1,1)
+auto=@each my upkeep restriction{type(creature[power>=20]|myBattlefield)~morethan~0}:winGame
+auto=@each my upkeep restriction{type(creature[power>=10]|myBattlefield)~morethan~0}:life:10
+auto=@each my upkeep restriction{type(creature[power>=5]|myBattlefield)~morethan~0}:all(creature|mybattlefield) counter(1/1,1)
 text=At the beginning of your upkeep, put a +1/+1 counter on each creature you control if you control a creature with power 5 or greater. Then you gain 10 life if you control a creature with power 10 or greater. Then you win the game if you control a creature with power 20 or greater.
 mana={R}{G}{W}
 type=Enchantment
@@ -44761,7 +44783,7 @@ toughness=1
 [card]
 name=Mirror-Sigil Sergeant
 abilities=trample
-auto=@each my upkeep:aslongas(*[blue]|myBattlefield) may token(158598)
+auto=@each my upkeep restriction{type(*[blue]|myBattlefield)~morethan~0}:may token(158598)
 text=Trample -- At the beginning of your upkeep, if you control a blue permanent, you may put a token that's a copy of Mirror-Sigil Sergeant onto the battlefield.
 mana={5}{W}
 type=Creature
@@ -44793,7 +44815,7 @@ toughness=1
 [/card]
 [card]
 name=Misers' Cage
-auto=@each opponent upkeep:aslongas(*|opponenthand) damage:2 opponent >4
+auto=@each opponent upkeep restriction{type(*|opponenthand)~morethan~4}:damage:2 opponent
 text=At the beginning of each opponent's upkeep, if that player has five or more cards in hand, Misers' Cage deals 2 damage to him or her.
 mana={3}
 type=Artifact
@@ -45823,7 +45845,7 @@ toughness=4
 [/card]
 [card]
 name=Mortal Combat
-auto=@each my upkeep:aslongas(creature|mygraveyard) winGame >19
+auto=@each my upkeep restriction{type(creature|mygraveyard)~morethan~19}:winGame
 text=At the beginning of your upkeep, if twenty or more creature cards are in your graveyard, you win the game.
 mana={2}{B}{B}
 type=Enchantment
@@ -50067,7 +50089,7 @@ type=Sorcery
 [/card]
 [card]
 name=Oversold Cemetery
-auto=@each my upkeep:aslongas(creature|mygraveyard) may target(creature|mygraveyard) moveTo(myhand) >2
+auto=@each my upkeep restriction{type(creature|mygraveyard)~morethan~3}:may target(creature|mygraveyard) moveTo(myhand)
 text=At the beginning of your upkeep, if you have four or more creature cards in your graveyard, you may return target creature card from your graveyard to your hand.
 mana={1}{B}
 type=Enchantment
@@ -50102,7 +50124,7 @@ type=Sorcery
 [/card]
 [card]
 name=Overwhelming Instinct
-auto=@each my blockers:aslongas(creature[attacking]|mybattlefield) draw:1 >2
+auto=@each my blockers restriction{type(creature[attacking]|myBattlefield)~morethan~0}:draw:1
 text=Whenever you attack with three or more creatures, draw a card.
 mana={2}{G}
 type=Enchantment
@@ -50262,7 +50284,7 @@ toughness=1
 [card]
 name=Painwracker Oni
 abilities=fear
-auto=@each my upkeep:aslongas(ogre|mybattlefield) sacrifice notatarget(creature|mybattlefield) <1
+auto=@each my upkeep restriction{type(ogre|myBattlefield)~lessthan~1}:sacrifice notatarget(creature|mybattlefield)
 text=Fear (This creature can't be blocked except by artifact creatures and/or black creatures.) -- At the beginning of your upkeep, sacrifice a creature if you don't control an Ogre.
 mana={3}{B}{B}
 type=Creature
@@ -50813,7 +50835,7 @@ toughness=1
 [/card]
 [card]
 name=Paupers' Cage
-auto=@each opponent upkeep:aslongas(*|opponenthand) damage:2 opponent <3
+auto=@each opponent upkeep restriction{type(*|opponenthand)~lessthan~3}:damage:2 opponent
 text=At the beginning of each opponent's upkeep, if that player has two or fewer cards in hand, Paupers' Cage deals 2 damage to him or her.
 mana={3}
 type=Artifact
@@ -51314,8 +51336,8 @@ toughness=1
 [/card]
 [card]
 name=Pestilence
-auto=@each endofturn:aslongas(creature|battlefield) sacrifice <1
-auto={b}:damage:1 all(creature,player)
+auto=@each endofturn restriction{type(creature|battlefield)~lessthan~1}:sacrifice
+auto={B}:damage:1 all(creature,player)
 text=At the beginning of the end step, if no creatures are on the battlefield, sacrifice Pestilence. -- {B}: Pestilence deals 1 damage to each creature and each player.
 mana={2}{B}{B}
 type=Enchantment
@@ -52241,7 +52263,7 @@ type=Land
 [/card]
 [card]
 name=Pious Kitsune
-auto=@each my upkeep:aslongas(eight-and-a-half-tails|myBattlefield) thisforeach(counter{0/0.1.Devotion}) life:1 controller
+auto=@each my upkeep restriction{type(eight-and-a-half-tails|battlefield)~morethan~0}:thisforeach(counter{0/0.1.Devotion}) life:1 controller
 auto=@each my upkeep:counter(0/0,1,Devotion)
 auto={T}{C(0/0,-1,Devotion)}:life:1
 text=At the beginning of your upkeep, put a devotion counter on Pious Kitsune. Then if a creature named Eight-and-a-Half-Tails is on the battlefield, you gain 1 life for each devotion counter on Pious Kitsune. -- {T}, Remove a devotion counter from Pious Kitsune: You gain 1 life.
@@ -52570,8 +52592,8 @@ type=Sorcery
 [/card]
 [card]
 name=Planar Collapse
-auto=@each my upkeep:aslongas(creature|battlefield) all(creature) bury >3
-auto=@each my upkeep:aslongas(creature|battlefield) sacrifice >3
+auto=@each my upkeep restriction{type(creature|battlefield)~morethan~3}:all(creature) bury
+auto=@each my upkeep restriction{type(creature|battlefield)~morethan~3}:sacrifice
 text=At the beginning of your upkeep, if there are four or more creatures on the battlefield, sacrifice Planar Collapse. If you do, destroy all creatures. They can't be regenerated.
 mana={1}{W}
 type=Enchantment
@@ -54261,7 +54283,7 @@ type=Sorcery
 [card]
 name=Pyrohemia
 auto={R}:damage:1 all(creature,player)
-auto=@each endofturn:aslongas(creature|battlefield) sacrifice <1
+auto=@each endofturn restriction{type(creature|battlefield)~lessthan~1}:sacrifice
 text=At the beginning of the end step, if no creatures are on the battlefield, sacrifice Pyrohemia. -- {R}: Pyrohemia deals 1 damage to each creature and each player.
 mana={2}{R}{R}
 type=Enchantment
@@ -55744,7 +55766,7 @@ toughness=3
 [card]
 name=Raving Oni-Slave
 auto=aslongas(demon|mybattlefield) life:-3 controller <1 oneshot
-auto=@movedTo(this|graveyard) from(battlefield):aslongas(demon|mybattlefield) life:-3 controller <1 oneshot
+auto=@movedTo(this|graveyard) from(battlefield) restriction{type(demon|myBattlefield)~lessthan~1}:life:-3 controller
 text=When Raving Oni-Slave enters the battlefield or leaves the battlefield, you lose 3 life if you don't control a Demon.
 mana={1}{B}
 type=Creature
@@ -56179,7 +56201,7 @@ type=Instant
 [/card]
 [card]
 name=Reclusive Wight
-auto=@each my upkeep:aslongas(other *[-land]|mybattlefield) moveTo(mygraveyard)
+auto=@each my upkeep restriction{type(*[-land]|myBattlefield)~morethan~1}:sacrifice
 text=At the beginning of your upkeep, if you control another nonland permanent, sacrifice Reclusive Wight.
 mana={3}{B}
 type=Creature
@@ -59760,7 +59782,7 @@ toughness=2
 [card]
 name=Sarcomancy
 auto=token(Zombie,Creature Zombie,2/2,black)
-auto=@each my upkeep:aslongas(zombie|myBattlefield) damage:1 controller <1
+auto=@each my upkeep restriction{type(zombie|battlefield)~lessthan~1}:damage:1 controller
 text=When Sarcomancy enters the battlefield, put a 2/2 black Zombie creature token onto the battlefield. -- At the beginning of your upkeep, if there are no Zombies on the battlefield, Sarcomancy deals 1 damage to you.
 mana={B}
 type=Enchantment
@@ -60013,7 +60035,7 @@ type=Land
 [/card]
 [card]
 name=Scalding Tongs
-auto=@each my upkeep:aslongas(*|myhand) damage:1 opponent <4
+auto=@each my upkeep restriction{type(*|myhand)~lessthan~4}:damage:1 opponent
 text=At the beginning of your upkeep, if you have three or fewer cards in hand, Scalding Tongs deals 1 damage to target opponent.
 mana={2}
 type=Artifact
@@ -60483,7 +60505,7 @@ toughness=6
 [/card]
 [card]
 name=Scourge of Numai
-auto=@each my upkeep:aslongas(ogre|myBattlefield) life:-2 <1
+auto=@each my upkeep restriction{type(ogre|myBattlefield)~lessthan~1}:life:-2
 text=At the beginning of your upkeep, you lose 2 life if you don't control an Ogre.
 mana={3}{B}
 type=Creature
@@ -60636,7 +60658,7 @@ toughness=2
 [card]
 name=Screeching Silcaw
 abilities=flying
-auto=@combatdamaged(player) from(this):aslongas(artifact|myBattlefield) deplete:4 opponent >2
+auto=@combatdamaged(player) from(this) restriction{type(artifact|myBattlefield)~morethan~2}:deplete:4 opponent
 text=Flying -- Metalcraft - Whenever Screeching Silcaw deals combat damage to a player, if you control three or more artifacts, that player puts the top four cards of his or her library into his or her graveyard.
 mana={1}{U}
 type=Creature
@@ -60716,7 +60738,7 @@ type=Artifact
 [/card]
 [card]
 name=Scute Mob
-auto=@each myupkeep:aslongas(land|mybattlefield) counter(1/1,4) >4
+auto=@each my upkeep restriction{type(land|myBattlefield)~morethan~4}:counter(1/1,4)
 text=At the beginning of your upkeep, if you control five or more lands, put four +1/+1 counters on Scute Mob.
 type=Creature
 subtype=Insect
@@ -62376,9 +62398,9 @@ type=Instant
 [/card]
 [card]
 name=Sheltered Valley
-auto=moveto(ownergraveyard) all(other sheltered valley|mybattlefield)
+auto=sacrifice all(other sheltered valley|mybattlefield)
 auto={T}:Add{1}
-auto=@each my upkeep:aslongas(land|mybattlefield) life:1 <4
+auto=@each my upkeep restriction{type(land|myBattlefield)~lessthan~4}:life:1
 text=If Sheltered Valley would enter the battlefield, instead sacrifice each other permanent named Sheltered Valley you control, then put Sheltered Valley onto the battlefield. -- At the beginning of your upkeep, if you control three or fewer lands, you gain 1 life. -- {T}: Add {1} to your mana pool.
 type=Land
 [/card]
@@ -62928,7 +62950,7 @@ toughness=4
 [/card]
 [card]
 name=Shoreline Salvager
-auto=@combatdamaged(player) from(this):aslongas(island|myBattlefield) may draw:1 controller
+auto=@combatdamaged(player) from(this) restriction{type(island|myBattlefield)~morethan~0}:may draw:1 controller
 text=Whenever Shoreline Salvager deals combat damage to a player, if you control an Island, you may draw a card.
 mana={3}{B}
 type=Creature
@@ -64367,8 +64389,8 @@ type=Artifact
 [/card]
 [card]
 name=Skullcage
-auto=@each opponent upkeep:aslongas(*|opponenthand) damage:2 opponent >4
-auto=@each opponent upkeep:aslongas(*|opponenthand) damage:2 opponent <3
+auto=@each opponent upkeep restriction{type(*|opponenthand)~morethan~4}:damage:2 opponent
+auto=@each opponent upkeep restriction{type(*|opponenthand)~lessthan~3}:damage:2 opponent
 text=At the beginning of each opponent's upkeep, Skullcage deals 2 damage to that player unless he or she has exactly three or exactly four cards in hand.
 mana={4}
 type=Artifact
@@ -64928,7 +64950,7 @@ type=Instant
 [/card]
 [card]
 name=Slaughterhouse Bouncer
-autograveyard=@movedTo(this|mygraveyard) from(battlefield):aslongas(*|myhand) target(creature) -3/-3 <1
+autograveyard=@movedTo(this|mygraveyard) from(battlefield) restriction{type(*|myhand)~lessthan~1}:target(creature) -3/-3 ueot
 text=Hellbent - When Slaughterhouse Bouncer dies, if you have no cards in hand, target creature gets -3/-3 until end of turn.
 mana={4}{B}
 type=Creature
@@ -66669,7 +66691,7 @@ type=Sorcery
 [/card]
 [card]
 name=Spectral Bears
-auto=@each mycombatdamage:aslongas(*[black]|opponentbattlefield) all(spectral bears[attacking]|mybattlefield) frozen <1
+auto=@each my combatdamage restriction{type(*[black]|opponentbattlefield)~lessthan~1}:frozen
 text=Whenever Spectral Bears attacks, if defending player controls no black nontoken permanents, it doesn't untap during your next untap step.
 mana={1}{G}
 type=Creature
@@ -66699,7 +66721,7 @@ subtype=Aura
 [card]
 name=Spectral Force
 abilities=trample
-auto=@each mycombatdamage:aslongas(*[black]|opponentbattlefield) all(spectral force[attacking]|mybattlefield) frozen <1
+auto=@each my combatdamage restriction{type(*[black]|opponentbattlefield)~lessthan~1}:frozen
 text=Trample -- Whenever Spectral Force attacks, if defending player controls no black permanents, it doesn't untap during your next untap step.
 mana={3}{G}{G}
 type=Creature
@@ -67336,7 +67358,7 @@ subtype=Aura
 [card]
 name=Spirit Mirror
 auto={0}:destroy target(reflection)
-auto=@each my upkeep:aslongas(reflection|myBattlefield) token(Reflection,Creature Reflection,2/2,white) <1
+auto=@each my upkeep restriction{type(creature[reflection]|battlefield)~lessthan~1}:token(Reflection,Creature Reflection,2/2,white)
 text=At the beginning of your upkeep, if there are no Reflection tokens on the battlefield, put a 2/2 white Reflection creature token onto the battlefield. -- {0}: Destroy target Reflection.
 mana={2}{W}{W}
 type=Enchantment
@@ -67436,8 +67458,8 @@ toughness=4
 [/card]
 [card]
 name=Spiritual Sanctuary
-auto=@each my upkeep:aslongas(plains|myBattlefield) life:1 controller
-auto=@each opponent upkeep:aslongas(plains|opponentBattlefield) life:1 opponent
+auto=@each my upkeep restriction{type(plains|myBattlefield)~morethan~0}:life:1 controller
+auto=@each opponent upkeep restriction{type(plains|myBattlefield)~morethan~0}:life:1 opponent
 text=At the beginning of each player's upkeep, if that player controls a Plains, he or she gains 1 life.
 mana={2}{W}{W}
 type=Enchantment
@@ -68596,7 +68618,7 @@ type=Sorcery
 [card]
 name=Stenchskipper
 abilities=flying
-auto=@each endofturn:aslongas(goblin|mybattlefield) sacrifice <1
+auto=@each endofturn restriction{type(goblin|myBattlefield)~lessthan~1}:sacrifice
 text=Flying -- At the beginning of the end step, if you control no Goblins, sacrifice Stenchskipper.
 mana={3}{B}
 type=Creature
@@ -70003,7 +70025,7 @@ type=Sorcery
 [/card]
 [card]
 name=Sunseed Nurturer
-auto=@each my end:aslongas(creature[power>=5]|myBattlefield) may life:2 controller
+auto=@each my end restriction{type(creature[power>=5]|myBattlefield)~morethan~0}:may life:2 controller
 auto={T}:Add{1}
 text=At the beginning of your end step, if you control a creature with power 5 or greater, you may gain 2 life. -- {T}: Add {1} to your mana pool.
 mana={2}{W}
@@ -70893,8 +70915,8 @@ toughness=1
 [/card]
 [card]
 name=Takenuma Bleeder
-auto=@combat(attacking) source(this):aslongas(demon|mybattlefield) life:1 controller <1
-auto=@combat(blocking) source(this):aslongas(demon|mybattlefield) life:1 controller <1
+auto=@combat(attacking) source(this) restriction{type(demon|myBattlefield)~lessthan~1}:life:-1 controller
+auto=@combat(blocking) source(this) restriction{type(demon|myBattlefield)~lessthan~1}:life:-1 controller
 text=Whenever Takenuma Bleeder attacks or blocks, you lose 1 life if you don't control a Demon.
 mana={2}{B}
 type=Creature
@@ -72631,8 +72653,8 @@ toughness=3
 [card]
 name=Thopter Assembly
 abilities=flying
-auto=@each my upkeep:aslongas(thopter|mybattlefield) token(Thopter,Artifact Creature,1/1,flying)*5 <2
-auto=@each my upkeep:aslongas(thopter|mybattlefield) moveTo(ownerhand) <2
+auto=@each my upkeep restriction{type(other thopter|myBattlefield)~lessthan~1}:token(Thopter,Artifact Creature,1/1,flying)*5
+auto=@each my upkeep restriction{type(other thopter|myBattlefield)~lessthan~1}:moveTo(ownerhand)
 text=Flying -- At the beginning of your upkeep, if you control no Thopters other than Thopter Assembly, return Thopter Assembly to its owner's hand and put five 1/1 colorless Thopter artifact creature tokens with flying onto the battlefield.
 mana={6}
 type=Artifact Creature
@@ -72942,7 +72964,7 @@ auto={T}:add{U}
 auto={T}:add{B}
 auto={T}:add{R}
 auto={T}:add{G}
-auto=@each endofturn:aslongas(creature|mybattlefield) sacrifice <1
+auto=@each endofturn restriction{type(creature|myBattlefield)~lessthan~1}:sacrifice
 text=At the beginning of the end step, if you control no creatures, sacrifice Thran Quarry. -- {T}: Add one mana of any color to your mana pool.
 type=Land
 [/card]
@@ -73109,7 +73131,7 @@ toughness=4
 [/card]
 [card]
 name=Thumbscrews
-auto=@each my upkeep:aslongas(*|myhand) damage:1 opponent >4
+auto=@each my upkeep restriction{type(*|myhand)~morethan~4}: damage:1 opponent
 text=At the beginning of your upkeep, if you have five or more cards in hand, Thumbscrews deals 1 damage to target opponent.
 mana={2}
 type=Artifact
@@ -80560,7 +80582,7 @@ abilities=flying,vigilance
 auto=aslongas(*|mygraveyard) trample >6
 auto=aslongas(*|mygraveyard) 3/3 >6
 auto=aslongas(*|mygraveyard) transforms((,black)) >6
-auto=@each my upkeep:aslongas(*|mygraveyard) upcost[{S(creature|myBattlefield)}] sacrifice >6
+auto=@each my upkeep restriction{type(*|mygraveyard)~morethan~6}:upcost[{S(creature|myBattlefield)}] sacrifice
 text=Flying, vigilance -- Threshold - As long as seven or more cards are in your graveyard, Wayward Angel gets +3/+3, is black, has trample, and has "At the beginning of your upkeep, sacrifice a creature."
 mana={4}{W}{W}
 type=Creature
@@ -80764,14 +80786,14 @@ toughness=1
 [/card]
 [card]
 name=Well of Discovery
-auto=@each my endofturn:aslongas(land[-tapped]|mybattlefield) draw:1 <1
+auto=@each my endofturn restriction{type(land[-tapped]|myBattlefield)~lessthan~1}:draw:1
 text=At the beginning of your end step, if you control no untapped lands, draw a card.
 mana={6}
 type=Artifact
 [/card]
 [card]
 name=Well of Life
-auto=@each my endofturn:aslongas(land[-tapped]|mybattlefield) life:2 <1
+auto=auto=@each my endofturn restriction{type(land[-tapped]|myBattlefield)~lessthan~1}:life:2 <1
 text=At the beginning of your end step, if you control no untapped lands, you gain 2 life.
 mana={4}
 type=Artifact
@@ -81989,7 +82011,7 @@ type=Instant
 [card]
 name=Withering Wisps
 auto={B}:damage:1 all(creature,player) limit:type:swamp[snow]:mybattlefield
-auto=@each endofturn:aslongas(creature|battlefield) sacrifice <1
+auto=@each endofturn restriction{type(creature|battlefield)~lessthan~1}:sacrifice
 text=At the beginning of the end step, if no creatures are on the battlefield, sacrifice Withering Wisps. -- {B}: Withering Wisps deals 1 damage to each creature and each player. Activate this ability no more times each turn than the number of snow Swamps you control.
 mana={1}{B}{B}
 type=Enchantment

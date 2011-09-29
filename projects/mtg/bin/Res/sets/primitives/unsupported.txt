@@ -12463,11 +12463,6 @@ mana={1}
 type=Artifact
 [/card]
 [card]
-name=Library of Alexandria
-text={T}: Add {1} to your mana pool. -- {T}: Draw a card. Activate this ability only if you have exactly seven cards in hand.
-type=Land
-[/card]
-[card]
 name=Library of Lat-Nam
 text=An opponent chooses one - You draw three cards at the beginning of the next turn's upkeep; or you search your library for a card, put that card into your hand, then shuffle your library.
 mana={4}{U}
@@ -13176,15 +13171,6 @@ type=Creature
 subtype=Human Wizard
 power=3
 toughness=3
-[/card]
-[card]
-name=Magus of the Library
-text={T}: Add {1} to your mana pool. -- {T}: Draw a card. Activate this ability only if you have exactly seven cards in hand.
-mana={G}{G}
-type=Creature
-subtype=Human Wizard
-power=1
-toughness=1
 [/card]
 [card]
 name=Magus of the Mirror
