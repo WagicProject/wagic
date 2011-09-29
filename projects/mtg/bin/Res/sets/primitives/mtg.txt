@@ -61350,11 +61350,11 @@ type=Land
 [card]
 name=Sejiri Steppe
 auto=tap
-auto=choice protection from white target(creature) ueot
-auto=choice protection from blue target(creature) ueot
-auto=choice protection from black target(creature) ueot
-auto=choice protection from red target(creature) ueot
-auto=choice protection from green target(creature) ueot
+auto=choice protection from white target(creature|mybattlefield) ueot
+auto=choice protection from blue target(creature|mybattlefield) ueot
+auto=choice protection from black target(creature|mybattlefield) ueot
+auto=choice protection from red target(creature|mybattlefield) ueot
+auto=choice protection from green target(creature|mybattlefield) ueot
 auto={T}:Add {W}
 text=Sejiri Steppe enters the battlefield tapped. -- When Sejiri Steppe enters the battlefield, target creature you control gains protection from the color of your choice until end of turn. -- {T}: Add {W} to your mana pool.
 type=Land
