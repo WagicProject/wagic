@@ -966,12 +966,12 @@ bool WGuiMenu::CheckUserInput(JButton key)
     if (!mEngine->GetButtonState(held)) //Key isn't held down.
     held = JGE_BTN_NONE;
 
-    if ((key == JGE_BTN_OK) && mEngine->GetLeftClickCoordinates(i, j))
+    if (mEngine->GetLeftClickCoordinates(i, j))
     {   // a dude clicked somwhere, we're gonna select the closest object from where he clicked
         int n = currentItem;
         unsigned int distance2;
         unsigned int minDistance2 = -1;
-        for(unsigned int k = 0; k >= items.size(); k++)
+        for(size_t k = 0; k < items.size(); k++)
         {
           WGuiItem* pItem = (WGuiItem*)items[k];
           distance2 = static_cast<unsigned int>((pItem->getY() - j) * (pItem->getY() - j) + (pItem->getX() - i) * (pItem->getX() - i));
