@@ -85,7 +85,7 @@ int AIAction::Act()
 
 int AIAction::clickMultiAct(vector<Targetable*>& actionTargets)
 {
-    GameObserver * g = player->getObserver();
+    GameObserver * g = owner->getObserver();
     TargetChooser * tc = g->getCurrentTargetChooser();
     bool sourceIncluded = false;
     if(!tc) return 0;
