@@ -1011,6 +1011,67 @@ ostream& operator<<(ostream& out, const MTGPlayerCards& z)
     return out;
 }
 
+bool MTGGameZone::parseLine(const string& ss)
+{
+    bool result = false;
+    string s = ss;
+
+    for (int i = 0; i < nb_cards; i++)
+    {
+        SAFE_DELETE( cards[i] );
+    }
+    cards.clear();
+    cardsMap.clear();
+
+    while(s.size())
+    {
+        size_t limiter = s.find(",");
+        MTGCard * card = 0;
+        string toFind;
+        if (limiter != string::npos)
+        {
+            toFind = trim(s.substr(0, limiter));
+            s = s.substr(limiter + 1);
+        }
+        else
+        {
+            toFind = trim(s);
+            s = "";
+        }
+
+        card = MTGCollection()->getCardByName(toFind);
+        int id = Rules::getMTGId(toFind);
+
+        if (card)
+        {
+            /* For the moment we add the card directly in the final zone.
+                This is not the normal way and this prevents to resolve spells.
+                We'll need a fusion operation afterward to cast relevant spells */
+            MTGCardInstance * newCard = NEW MTGCardInstance(card, owner->game);
+            addCard(newCard);
+            result = true;
+        }
+        else
+        {
+            if(toFind == "*")
+                nb_cards++;
+            else if ( id < 0 )
+            {
+                // For the moment, we create a dummy Token to please the testsuite
+                Token* myToken = new Token(id);
+                addCard(myToken);
+                result = true;
+            }
+            else
+            {
+                DebugTrace("Card unfound " << toFind << " " << id);
+            }
+        }
+    }
+
+    return result;
+}
+
 istream& operator>>(istream& in, MTGGameZone& z)
 {
     for (int i = 0; i < z.nb_cards; i++)
@@ -1069,6 +1130,39 @@ istream& operator>>(istream& in, MTGGameZone& z)
     }
 
     return in;
+}
+
+bool MTGPlayerCards::parseLine(const string& s)
+{
+    size_t limiter = s.find("=");
+    if (limiter == string::npos) limiter = s.find(":");
+    string areaS;
+    if (limiter != string::npos)
+    {
+        areaS = s.substr(0, limiter);
+        if (areaS.compare("graveyard") == 0)
+        {
+            graveyard->parseLine(s.substr(limiter+1));
+            return true;
+        }
+        else if (areaS.compare("library") == 0)
+        {
+            library->parseLine(s.substr(limiter+1));
+            return true;
+        }
+        else if (areaS.compare("hand") == 0)
+        {
+            hand->parseLine(s.substr(limiter+1));
+            return true;
+        }
+        else if (areaS.compare("inplay") == 0 || areaS.compare("battlefield") == 0)
+        {
+            battlefield->parseLine(s.substr(limiter+1));
+            return true;
+        }
+    }
+
+    return false;
 }
 
 istream& operator>>(istream& in, MTGPlayerCards& z)

@@ -115,6 +115,7 @@ class MTGGameZone {
    bool needShuffle;
    virtual const char * getName(){return "zone";};
    virtual ostream& toString(ostream&) const;
+   bool parseLine(const string& s);
 };
 
 class MTGLibrary: public MTGGameZone {
@@ -197,6 +198,7 @@ public:
   int isInPlay(MTGCardInstance * card);
   int isInGrave(MTGCardInstance * card);
   int isInZone(MTGCardInstance * card,MTGGameZone * zone);
+  bool parseLine(const string& s);
 };
 
 ostream& operator<<(ostream&, const MTGGameZone&);

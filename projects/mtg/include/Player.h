@@ -35,7 +35,7 @@ public:
     string deckFileSmall;
     string deckName;
     string phaseRing;
-	int offerInterruptOnPhase;
+	  int offerInterruptOnPhase;
     Player(GameObserver *observer, string deckFile, string deckFileSmall, MTGDeck * deck = NULL);
     virtual ~Player();
     virtual void setObserver(GameObserver*g);
@@ -97,6 +97,7 @@ public:
     std::string GetCurrentDeckStatsFile();
 
     friend istream& operator>>(istream& in, Player& p);
+    bool parseLine(const string& s);
 };
 
 class HumanPlayer: public Player

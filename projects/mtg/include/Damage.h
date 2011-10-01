@@ -39,6 +39,8 @@ public:
     virtual int poisoned(){return 0;}
     virtual int prevented(){return 0;}
     virtual JQuadPtr getIcon(){return JQuadPtr();}
+
+    bool parseLine(const string& s);
 };
 
 class Damage: public Interruptible

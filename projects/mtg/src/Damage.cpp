@@ -308,6 +308,40 @@ ostream& operator<<(ostream& out, const Damageable& p)
     return out;
 }
 
+
+bool Damageable::parseLine(const string& s)
+{
+    size_t limiter = s.find("=");
+    if (limiter == string::npos) limiter = s.find(":");
+    string areaS;
+    if (limiter != string::npos)
+    {
+        areaS = s.substr(0, limiter);
+        if (areaS.compare("life") == 0)
+        {
+            life = atoi((s.substr(limiter + 1)).c_str());
+        }
+        else if (areaS.compare("poisoncount") == 0)
+        {
+            poisonCount = atoi((s.substr(limiter + 1)).c_str());
+        }
+        else if (areaS.compare("damagecount") == 0)
+        {
+            damageCount = atoi((s.substr(limiter + 1)).c_str());
+        }
+        else if (areaS.compare("preventable") == 0)
+        {
+            preventable = atoi((s.substr(limiter + 1)).c_str());
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    return true;
+}
+
 istream& operator>>(istream& in, Damageable& p)
 {
     string s;

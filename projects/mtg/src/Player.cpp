@@ -208,6 +208,60 @@ ostream& operator<<(ostream& out, const Player& p)
     return out << *(p.game);
 }
 
+bool Player::parseLine(const string& s)
+{
+  if(((Damageable*)this)->parseLine(s))
+    return true;
+
+    size_t limiter = s.find("=");
+    if (limiter == string::npos) limiter = s.find(":");
+    string areaS;
+    if (limiter != string::npos)
+    {
+        areaS = s.substr(0, limiter);
+        if (areaS.compare("manapool") == 0)
+        {
+            SAFE_DELETE(manaPool);
+            manaPool = new ManaPool(this);
+            ManaCost::parseManaCost(s.substr(limiter + 1), manaPool);
+            return true;
+        }
+        else if (areaS.compare("avatar") == 0)
+        {   // We don't load directly for now
+            mAvatarName = s.substr(limiter + 1);
+            return true;
+        }
+        else if (areaS.compare("customphasering") == 0)
+        {
+            phaseRing = s.substr(limiter + 1);
+            return true;
+        }
+        else if (areaS.compare("offerinterruptonphase") == 0)
+        {
+            for (int i = 0; i < Constants::NB_MTG_PHASES; i++)
+            {
+                string phaseStr = Constants::MTGPhaseCodeNames[i];
+                if (s.find(phaseStr) != string::npos)
+                {
+                    offerInterruptOnPhase = PhaseRing::phaseStrToInt(phaseStr);
+                    return true;
+                }
+            }
+        }
+    }
+
+    if(!game)
+    {
+      game = new MTGPlayerCards();
+      game->setOwner(this);
+    }
+
+    if(game->parseLine(s))
+      return true;
+
+    return false;
+}
+
 istream& operator>>(istream& in, Player& p)
 {
     string s;
@@ -215,6 +269,7 @@ istream& operator>>(istream& in, Player& p)
 
     in >> *((Damageable*)&p);
 
+    in.seekg(pos);
     while(std::getline(in, s))
     {
         size_t limiter = s.find("=");

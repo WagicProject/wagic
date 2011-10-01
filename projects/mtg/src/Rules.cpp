@@ -111,9 +111,8 @@ RulesState::RulesState()
 
 void RulesState::parsePlayerState(int playerId, string s)
 {
-    stringstream stream(s);
-    streampos pos = stream.tellg();
-    stream >> *(playerData[playerId].player);
+    if(playerData[playerId].player->parseLine(s))
+      return;
 
     size_t limiter = s.find("=");
     if (limiter == string::npos) limiter = s.find(":");

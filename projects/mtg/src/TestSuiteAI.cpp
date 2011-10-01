@@ -76,7 +76,7 @@ int TestSuiteAI::displayStack()
 
 int TestSuiteAI::Act(float dt)
 {
-    observer->gameOver = NULL; // Prevent draw rule from losing the game
+observer->gameOver = NULL; // Prevent draw rule from losing the game
 
     //Last bits of initialization require to be done here, after the first "update" call of the game
     if (suite->currentAction == 0)
@@ -261,8 +261,7 @@ TestSuiteState::TestSuiteState()
 
 void TestSuiteState::parsePlayerState(int playerId, string s)
 {
-    stringstream stream(s);
-    stream >> *players[playerId];
+    players[playerId]->parseLine(s);
 }
 
 
