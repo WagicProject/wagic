@@ -59,34 +59,24 @@ const int kDynamicWhoIds[] = {
      AADynamic::DYNAMIC_ABILITY_WHO_TOSOURCE,  AADynamic::DYNAMIC_ABILITY_WHO_SOURCECONTROLLER,  AADynamic::DYNAMIC_ABILITY_WHO_SOURCEOPPONENT
 };
 
-
-int MTGAbility::parseCastRestrictions(MTGCardInstance * card,Player * player,string restrictions,string otherRestrictions)
-{
-    AbilityFactory af;
-    return af.parseCastRestrictions(card,player,restrictions,otherRestrictions);
-}
-
 int MTGAbility::allowedToCast(MTGCardInstance * card,Player * player)
 {
-    return parseCastRestrictions(card,player,card->getRestrictions(),"");
+    return AbilityFactory::parseCastRestrictions(card,player,card->getRestrictions());
 }
 
 int MTGAbility::allowedToAltCast(MTGCardInstance * card,Player * player)
 {
-       return parseCastRestrictions(card,player,"",card->getOtherRestrictions());
+       return AbilityFactory::parseCastRestrictions(card,player,card->getOtherRestrictions());
 }
 
-int AbilityFactory::parseCastRestrictions(MTGCardInstance * card,Player * player,string restrictions,string otherRestrictions)
+int AbilityFactory::parseCastRestrictions(MTGCardInstance * card,Player * player,string restrictions)
 {
-    restrictions.append(otherRestrictions);
-    //we can do this becuase the function calls send them seperately, so one will always be empty
     vector <string> restriction = split(restrictions, ',');
-    AbilityFactory af;
     GameObserver * game = game->GetInstance();
     int cPhase = game->getCurrentGamePhase();
     for(unsigned int i = 0;i < restriction.size();i++)
     {
-        int checkPhaseBased = af.parseRestriction(restriction[i]);
+        int checkPhaseBased = parseRestriction(restriction[i]);
         switch (checkPhaseBased)
         {
         case MTGAbility::PLAYER_TURN_ONLY:

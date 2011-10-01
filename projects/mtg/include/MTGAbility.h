@@ -130,9 +130,8 @@ public:
     int abilitygranted;
     MTGCardInstance * source;
 
-    int parseCastRestrictions(MTGCardInstance* card, Player* player, string restrictions, string otherRestrictions);
-    int allowedToCast(MTGCardInstance* card, Player* player);
-    int allowedToAltCast(MTGCardInstance* card, Player* player);
+    static int allowedToCast(MTGCardInstance* card, Player* player);
+    static int allowedToAltCast(MTGCardInstance* card, Player* player);
     MTGAbility(int id, MTGCardInstance * card);
     MTGAbility(int id, MTGCardInstance * _source, Targetable * _target);
     MTGAbility(const MTGAbility& copyFromMe);
@@ -453,8 +452,8 @@ private:
     TargetChooser * parseSimpleTC(const std::string& s, const std::string& starter, MTGCardInstance *card, bool forceNoTarget = true);
 
 public:
-    int parseRestriction(string s);
-    int parseCastRestrictions(MTGCardInstance * card = NULL,Player * player= NULL,string restrictions= "",string otherRestrictions= "");
+    static int parseRestriction(string s);
+    static int parseCastRestrictions(MTGCardInstance * card, Player * player, string restrictions);
     Counter * parseCounter(string s, MTGCardInstance * target, Spell * spell = NULL);
     int parsePowerToughness(string s, int *power, int *toughness);	
     int getAbilities(vector<MTGAbility *> * v, Spell * spell, MTGCardInstance * card = NULL, int id = 0, MTGGameZone * dest = NULL);
