@@ -259,6 +259,14 @@ TestSuiteState::TestSuiteState()
     players[1] = 0;
 }
 
+TestSuiteState::~TestSuiteState() 
+{
+  if(players[0])
+    SAFE_DELETE(players[0]);
+  if(players[1])
+    SAFE_DELETE(players[1]);
+};
+
 void TestSuiteState::parsePlayerState(int playerId, string s)
 {
     players[playerId]->parseLine(s);
