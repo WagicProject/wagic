@@ -112,31 +112,29 @@ RulesState::RulesState()
 void RulesState::parsePlayerState(int playerId, string s)
 {
     stringstream stream(s);
+    streampos pos = stream.tellg();
     stream >> *(playerData[playerId].player);
 
-    while(std::getline(stream, s))
+    size_t limiter = s.find("=");
+    if (limiter == string::npos) limiter = s.find(":");
+    string areaS;
+    if (limiter != string::npos)
     {
-        size_t limiter = s.find("=");
-        if (limiter == string::npos) limiter = s.find(":");
-        string areaS;
-        if (limiter != string::npos)
-        {
-            areaS = s.substr(0, limiter);
+        areaS = s.substr(0, limiter);
 
-            if (areaS.compare("auto") == 0)
-            {
-                playerData[playerId].extraRules.push_back(s.substr(limiter + 1));
-                return;
-            }
-            else
-            {
-                return; // ERROR
-            }
+        if (areaS.compare("auto") == 0)
+        {
+            playerData[playerId].extraRules.push_back(s.substr(limiter + 1));
+            return;
         }
         else
         {
-            //ERROR
+            return; // ERROR
         }
+    }
+    else
+    {
+        //ERROR
     }
 }
 
