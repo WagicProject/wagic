@@ -342,8 +342,8 @@ void Rules::initPlayers(GameObserver *g)
     for (int i = 0; i < 2; i++)
     {
         Player * p = initPlayer(g, i);
-        if(p)
-        g->players.push_back(p);
+        if(p && g->getPlayersNumber() < 2)
+            g->players.push_back(p);
         MTGDeck * deck = buildDeck(i);
         if (deck)
         {

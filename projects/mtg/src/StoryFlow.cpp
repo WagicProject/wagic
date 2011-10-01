@@ -321,7 +321,7 @@ void StoryDuel::init()
     rules = NEW Rules(bg);
     rules->load(rulesFile);
 
-    game = new GameObserver(players, 2);
+    game = new GameObserver(players);
 
     rules->gamemode = GAME_TYPE_STORY;
     game->startGame(rules);

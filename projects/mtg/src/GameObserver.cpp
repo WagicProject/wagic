@@ -22,7 +22,6 @@ void GameObserver::initialize()
     currentActionPlayer = NULL;
     isInterrupting = NULL;
     currentPlayerId = 0;
-    nbPlayers = 0;
     currentGamePhase = -1;
     targetChooser = NULL;
     cardWaitingForTargets = NULL;
@@ -35,20 +34,19 @@ void GameObserver::initialize()
     connectRule = false;
 }
 
-void GameObserver::setPlayers(vector<Player *> _players, int _nbplayers)
+void GameObserver::setPlayers(vector<Player *> _players)
 {
     for (size_t i = 0; i < _players.size(); i++)
     {
         players.push_back(_players[i]);
         players[i]->setObserver(this);
     }
-    nbPlayers = _nbplayers;
 }
 
-GameObserver::GameObserver(vector<Player *> _players, int _nb_players)
+GameObserver::GameObserver(vector<Player *> _players)
 {
     initialize();
-    setPlayers(_players, _nb_players);
+    setPlayers(_players);
 }
 
 int GameObserver::getCurrentGamePhase()
@@ -68,14 +66,14 @@ const char* GameObserver::getNextGamePhaseName()
 
 Player * GameObserver::opponent()
 {
-    int index = (currentPlayerId + 1) % nbPlayers;
+    int index = (currentPlayerId + 1) % players.size();
     return players[index];
 }
 
 void GameObserver::nextPlayer()
 {
     turn++;
-    currentPlayerId = (currentPlayerId + 1) % nbPlayers;
+    currentPlayerId = (currentPlayerId + 1) % players.size();
     currentPlayer = players[currentPlayerId];
     currentActionPlayer = currentPlayer;
     combatStep = BLOCKERS;
@@ -337,7 +335,7 @@ GameObserver::~GameObserver()
     SAFE_DELETE(mLayers);
     SAFE_DELETE(phaseRing);
     SAFE_DELETE(replacementEffects);
-    for (int i = 0; i < nbPlayers; ++i)
+    for (int i = 0; i < players.size(); ++i)
     {
         SAFE_DELETE(players[i]);
     }
@@ -786,7 +784,7 @@ void GameObserver::Render()
     if (mExtraPayment) 
     	mExtraPayment->Render();
     
-    for (int i = 0; i < nbPlayers; ++i)
+    for (int i = 0; i < players.size(); ++i)
     {
         players[i]->Render();
     }

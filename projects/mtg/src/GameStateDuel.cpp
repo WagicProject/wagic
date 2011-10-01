@@ -264,7 +264,7 @@ void GameStateDuel::loadTestSuitePlayers()
     {
         mPlayers.push_back(new TestSuiteAI(game, testSuite, i));
     }
-    game->setPlayers(mPlayers, 2);
+    game->setPlayers(mPlayers);
     mParent->gameType = testSuite->gameType;
 
     game->startGame(mParent->rules);
@@ -446,20 +446,20 @@ void GameStateDuel::Update(float dt)
     case DUEL_STATE_PLAY:
         if (!game)
         {
-            game = new GameObserver(mPlayers, 2);
+            game = new GameObserver(mPlayers);
             game->startGame(mParent->rules);
             if (mParent->gameType == GAME_TYPE_MOMIR)
             {
                 game->addObserver(NEW MTGMomirRule(game, -1, MTGCollection()));
             }
-			if (mParent->gameType == GAME_TYPE_STONEHEWER)
-			{
-                                game->addObserver(NEW MTGStoneHewerRule(game, -1,MTGCollection()));
-			}
-			if (mParent->gameType == GAME_TYPE_HERMIT)
-			{
-                                game->addObserver(NEW MTGHermitRule(game, -1));
-			}
+            if (mParent->gameType == GAME_TYPE_STONEHEWER)
+            {
+                    game->addObserver(NEW MTGStoneHewerRule(game, -1,MTGCollection()));
+            }
+            if (mParent->gameType == GAME_TYPE_HERMIT)
+            {
+                    game->addObserver(NEW MTGHermitRule(game, -1));
+            }
 
             //start of in game music code
             musictrack = "";

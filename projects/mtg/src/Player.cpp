@@ -30,6 +30,7 @@ Player::Player(GameObserver *observer, string file, string fileSmall, MTGDeck * 
     if (deck != NULL)
     {
         game = NEW MTGPlayerCards(deck);
+        // This automatically sets the observer pointer on all the deck cards
         game->setOwner(this);
         deckName = deck->meta_name;
     }
@@ -106,7 +107,6 @@ HumanPlayer::HumanPlayer(GameObserver *observer, string file, string fileSmall, 
 {
     loadAvatar("avatar.jpg");
     playMode = MODE_HUMAN;
-    setObserver(observer);
 }
 
 ManaPool * Player::getManaPool()

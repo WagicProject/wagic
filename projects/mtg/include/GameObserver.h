@@ -27,7 +27,6 @@ class GameObserver{
   MTGCardInstance * cardWaitingForTargets;
   queue<WEvent *> eventsQueue;
 
-  int nbPlayers;
   int untap(MTGCardInstance * card);
   bool WaitForExtraPayment(MTGCardInstance* card);
   void initialize();
@@ -63,14 +62,14 @@ class GameObserver{
   void nextGamePhase();
   void cleanupPhase();
   void nextPlayer();
-  void setPlayers(vector<Player *> _players, int _nbplayers);
+  void setPlayers(vector<Player *> _players);
   Player * currentPlayer;
   Player * currentActionPlayer;
   Player * isInterrupting;
   Player * opponent();
   Player * currentlyActing();
   GameObserver();
-  GameObserver(vector<Player *> _players, int _nbplayers);
+  GameObserver(vector<Player *> _players);
   ~GameObserver();
   void gameStateBasedEffects();
   void enchantmentStatus();
@@ -87,7 +86,7 @@ class GameObserver{
   void Update(float dt);
   void Render();
   void ButtonPressed(PlayGuiObject*);
-  int getPlayersNumber() {return nbPlayers;};
+  int getPlayersNumber() {return players.size();};
 
   int receiveEvent(WEvent * event);
   bool connectRule;
