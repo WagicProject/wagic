@@ -291,7 +291,7 @@ MTGPlayerCards * TestSuite::buildDeck(Player* player, int playerId)
 
         for (int j = 0; j < 4; j++)
         {
-            for (int k = 0; k < loadedPlayerZones[j]->cards.size(); k++)
+            for (size_t k = 0; k < loadedPlayerZones[j]->cards.size(); k++)
             {
                 int cardid = loadedPlayerZones[j]->cards[k]->getId();
                 list[nbcards] = cardid;
@@ -338,7 +338,7 @@ void TestSuite::initGame(GameObserver* g)
         for (int j = 0; j < 4; j++)
         {
             MTGGameZone * zone = playerZones[j];
-            for (int k = 0; k < loadedPlayerZones[j]->cards.size(); k++)
+            for (size_t k = 0; k < loadedPlayerZones[j]->cards.size(); k++)
             {
                 MTGCardInstance * card = Rules::getCardByMTGId(g, loadedPlayerZones[j]->cards[k]->getId());
                 if (card && zone != p->game->library)
@@ -348,7 +348,7 @@ void TestSuite::initGame(GameObserver* g)
                         MTGCardInstance * copy = p->game->putInZone(card, p->game->library, p->game->stack);
                         Spell * spell = NEW Spell(g, copy);
                         spell->resolve();
-                        if (!summoningSickness && p->game->inPlay->nb_cards > k) p->game->inPlay->cards[k]->summoningSickness = 0;
+                        if (!summoningSickness && (size_t)p->game->inPlay->nb_cards > k) p->game->inPlay->cards[k]->summoningSickness = 0;
                         delete spell;
                     }
                     else
@@ -457,7 +457,7 @@ int TestSuite::assertGame(GameObserver* g)
                 Log(result);
                 error++;
             }
-            for (int k = 0; k < endstateZones[j]->nb_cards; k++)
+            for (size_t k = 0; k < (size_t)endstateZones[j]->nb_cards; k++)
             {
                 MTGCardInstance* cardToCheck = (k<endstateZones[j]->cards.size())?endstateZones[j]->cards[k]:0;
                 if(cardToCheck)

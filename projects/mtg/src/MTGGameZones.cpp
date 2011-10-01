@@ -426,7 +426,7 @@ MTGGameZone::MTGGameZone() :
 
 MTGGameZone::~MTGGameZone()
 {
-    for (int i = 0; i < cards.size(); i++)
+    for (size_t i = 0; i < cards.size(); i++)
     {
         SAFE_DELETE( cards[i] );
     }

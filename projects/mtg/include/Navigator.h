@@ -16,7 +16,7 @@ class Navigator: public CardSelectorBase
 {
 public:
 
-    Navigator(DuelLayers* inDuelLayers);
+    Navigator(GameObserver *observer, DuelLayers* inDuelLayers);
     virtual ~Navigator();
 
     // Inherited functions from GuiLayer

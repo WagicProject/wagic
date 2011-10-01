@@ -382,8 +382,8 @@ CardZone* LandCardZone::EnterZone(JButton inDirection)
 /*
  ** Constructor.  All the navigation logic is initialized here, by pairing up each card zone with a set of neighbours.
  */
-Navigator::Navigator(DuelLayers* inDuelLayers) :
-    mDrawPosition(kDefaultCardPosition), mDuelLayers(inDuelLayers), mLimitorEnabled(false)
+Navigator::Navigator(GameObserver *observer, DuelLayers* inDuelLayers) :
+    CardSelectorBase(observer), mDrawPosition(kDefaultCardPosition), mDuelLayers(inDuelLayers), mLimitorEnabled(false)
 {
     assert(mDuelLayers);
 
@@ -500,10 +500,10 @@ bool Navigator::CheckUserInput(JButton inKey)
     switch (inKey)
     {
     case JGE_BTN_SEC:
-        GameObserver::GetInstance()->cancelCurrentAction();
+        observer->cancelCurrentAction();
         return true;
     case JGE_BTN_OK:
-        GameObserver::GetInstance()->ButtonPressed(GetCurrentCard());
+        observer->ButtonPressed(GetCurrentCard());
         return true;
         break;
     case JGE_BTN_LEFT:
