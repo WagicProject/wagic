@@ -27,6 +27,7 @@ public:
     int phase;
     void parsePlayerState(int playerId, string s);
     TestSuiteState();
+    ~TestSuiteState();
 
     TestSuiteAI* players[2];
     void cleanup(TestSuite*);
