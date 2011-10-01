@@ -29,7 +29,7 @@ public:
     TestSuiteState();
     ~TestSuiteState();
 
-    TestSuiteAI* players[2];
+    vector<TestSuiteAI*> players;
     void cleanup(TestSuite*);
 };
 

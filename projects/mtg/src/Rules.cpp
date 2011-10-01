@@ -288,7 +288,7 @@ Player * Rules::loadPlayerRandom(GameObserver* observer, int isAI, int mode)
 
 Player * Rules::initPlayer(GameObserver *g, int playerId)
 {
-    Player * p = g->players[playerId];
+    Player * p = g->players.size() > 1?g->players[playerId]:NULL;
     if (!p)
     {
         int isAI = 1;
@@ -342,7 +342,8 @@ void Rules::initPlayers(GameObserver *g)
     for (int i = 0; i < 2; i++)
     {
         Player * p = initPlayer(g, i);
-        g->players[i] = p;
+        if(p)
+        g->players.push_back(p);
         MTGDeck * deck = buildDeck(i);
         if (deck)
         {

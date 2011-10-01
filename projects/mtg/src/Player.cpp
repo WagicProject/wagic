@@ -106,6 +106,7 @@ HumanPlayer::HumanPlayer(GameObserver *observer, string file, string fileSmall, 
 {
     loadAvatar("avatar.jpg");
     playMode = MODE_HUMAN;
+    setObserver(observer);
 }
 
 ManaPool * Player::getManaPool()

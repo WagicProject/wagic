@@ -68,10 +68,7 @@ int GameStateDuel::selectedAIDeckId = 0;
 GameStateDuel::GameStateDuel(GameApp* parent) :
 GameState(parent, "duel")
 {
-    for (int i = 0; i < 2; i++)
-    {
-        mPlayers[i] = NULL;
-    }
+    mPlayers.clear();
     premadeDeck = false;
     game = NULL;
     deckmenu = NULL;
@@ -189,10 +186,7 @@ void GameStateDuel::Start()
         deckmenu->Add(MENUITEM_CANCEL, "Main Menu", "Return to Main Menu");
     }
 
-    for (int i = 0; i < 2; ++i)
-    {
-        mPlayers[i] = NULL;
-    }
+    mPlayers.clear();
 }
 
 void GameStateDuel::loadPlayer(int playerId, int decknb, bool isAI, bool isNetwork)
@@ -210,7 +204,7 @@ void GameStateDuel::loadPlayer(int playerId, int decknb, bool isAI, bool isNetwo
                     sprintf(deckFile, "%s/deck%i.txt", options.profileFile().c_str(), decknb);
                 char deckFileSmall[255];
                 sprintf(deckFileSmall, "player_deck%i", decknb);
-                mPlayers[playerId] = NEW HumanPlayer(game, deckFile, deckFileSmall);
+                mPlayers.push_back(NEW HumanPlayer(game, deckFile, deckFileSmall));
 #ifdef NETWORK_SUPPORT
                 if(isNetwork)
                 {
@@ -220,7 +214,7 @@ void GameStateDuel::loadPlayer(int playerId, int decknb, bool isAI, bool isNetwo
             }
             else
             {   //Remote player
-                mPlayers[playerId] = NEW RemotePlayer(mParent->mpNetwork);
+                mPlayers.push_back(NEW RemotePlayer(mParent->mpNetwork));
 #endif //NETWORK_SUPPORT
             }
         }
@@ -229,7 +223,7 @@ void GameStateDuel::loadPlayer(int playerId, int decknb, bool isAI, bool isNetwo
             AIPlayerFactory playerCreator;
             Player * opponent = NULL;
             if (playerId == 1) opponent = mPlayers[0];
-            mPlayers[playerId] = playerCreator.createAIPlayer(game, MTGCollection(), opponent, decknb);
+            mPlayers.push_back(playerCreator.createAIPlayer(game, MTGCollection(), opponent, decknb));
         }
     }
     else
@@ -239,11 +233,11 @@ void GameStateDuel::loadPlayer(int playerId, int decknb, bool isAI, bool isNetwo
         if (playerId == 1) opponent = mPlayers[0];
 #ifdef AI_CHANGE_TESTING
         if (mParent->players[0] == PLAYER_TYPE_CPU_TEST)
-            mPlayers[playerId] = playerCreator.createAIPlayerTest(game, MTGCollection(), opponent, playerId == 0 ? "ai/bakaA/" : "ai/bakaB/");
+            mPlayers.push_back(playerCreator.createAIPlayerTest(game, MTGCollection(), opponent, playerId == 0 ? "ai/bakaA/" : "ai/bakaB/"));
         else
 #endif
         {
-            mPlayers[playerId] = playerCreator.createAIPlayer(game, MTGCollection(), opponent);
+            mPlayers.push_back(playerCreator.createAIPlayer(game, MTGCollection(), opponent));
         }
 
         if (mParent->players[playerId] == PLAYER_TYPE_CPU_TEST)
@@ -265,9 +259,10 @@ void GameStateDuel::loadTestSuitePlayers()
     initRand(testSuite->seed);
     SAFE_DELETE(game);
     game = new GameObserver();
+    mPlayers.clear();
     for (int i = 0; i < 2; i++)
     {
-        mPlayers[i] = new TestSuiteAI(game, testSuite, i);
+        mPlayers.push_back(new TestSuiteAI(game, testSuite, i));
     }
     game->setPlayers(mPlayers, 2);
     mParent->gameType = testSuite->gameType;
@@ -289,21 +284,22 @@ void GameStateDuel::End()
 #endif
 
     JRenderer::GetInstance()->EnableVSync(false);
-    if (!premadeDeck && mPlayers[0] && mPlayers[1])
+    if (!premadeDeck && mPlayers.size() && mPlayers[0] && mPlayers[1])
     { // save the stats for the game
         mPlayers[0]->End();
     }
-    else if ( !mPlayers[1] && mPlayers[0] )
+    else if (mPlayers.size() &&  !mPlayers[1] && mPlayers[0] )
         // clean up player object
         SAFE_DELETE( mPlayers[0] );
 
     SAFE_DELETE(game);
     premadeDeck = false;
-
-    for (int i = 0; i < 2; i++)
+    if(mPlayers.size())
+    for (size_t i = 0; i < mPlayers.size(); i++)
     {
         mPlayers[i] = NULL;
     }
+    mPlayers.clear();
     SAFE_DELETE(credits);
 
     SAFE_DELETE(menu);

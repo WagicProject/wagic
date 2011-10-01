@@ -35,17 +35,17 @@ void GameObserver::initialize()
     connectRule = false;
 }
 
-void GameObserver::setPlayers(Player * _players[], int _nbplayers)
+void GameObserver::setPlayers(vector<Player *> _players, int _nbplayers)
 {
-    for (int i = 0; i < _nbplayers; i++)
+    for (size_t i = 0; i < _players.size(); i++)
     {
-        players[i] = _players[i];
+        players.push_back(_players[i]);
         players[i]->setObserver(this);
     }
     nbPlayers = _nbplayers;
 }
 
-GameObserver::GameObserver(Player * _players[], int _nb_players)
+GameObserver::GameObserver(vector<Player *> _players, int _nb_players)
 {
     initialize();
     setPlayers(_players, _nb_players);
@@ -341,6 +341,7 @@ GameObserver::~GameObserver()
     {
         SAFE_DELETE(players[i]);
     }
+    players.clear();
     LOG("==GameObserver Destroyed==");
 }
 

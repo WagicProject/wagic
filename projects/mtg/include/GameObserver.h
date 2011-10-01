@@ -47,7 +47,7 @@ class GameObserver{
   DuelLayers * mLayers;
   ReplacementEffects *replacementEffects;
   Player * gameOver;
-  Player * players[2]; //created outside
+  vector<Player *> players; //created outside
   time_t startedAt;
   Rules * mRules;
 
@@ -63,14 +63,14 @@ class GameObserver{
   void nextGamePhase();
   void cleanupPhase();
   void nextPlayer();
-  void setPlayers(Player * _players[], int _nbplayers);
+  void setPlayers(vector<Player *> _players, int _nbplayers);
   Player * currentPlayer;
   Player * currentActionPlayer;
   Player * isInterrupting;
   Player * opponent();
   Player * currentlyActing();
   GameObserver();
-  GameObserver(Player * _players[], int _nbplayers);
+  GameObserver(vector<Player *> _players, int _nbplayers);
   ~GameObserver();
   void gameStateBasedEffects();
   void enchantmentStatus();

@@ -28,7 +28,7 @@ private:
     Credits * credits;
     int mGamePhase;
     Player * mCurrentPlayer;
-    Player * mPlayers[2];
+    vector<Player *> mPlayers;
     GameObserver * game;
     DeckMenu * deckmenu;
     DeckMenu * opponentMenu;

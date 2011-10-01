@@ -255,16 +255,22 @@ void TestSuiteActions::add(string s)
 
 TestSuiteState::TestSuiteState()
 {
-    players[0] = 0;
-    players[1] = 0;
+    for(size_t p = 0;p < players.size();++p)
+    {
+        players[p] = 0;
+    }
+    players.clear();
 }
 
 TestSuiteState::~TestSuiteState() 
 {
-  if(players[0])
-    SAFE_DELETE(players[0]);
-  if(players[1])
-    SAFE_DELETE(players[1]);
+    if(players.size())
+    {
+        if(players[0])
+            SAFE_DELETE(players[0]);
+        if(players[1])
+            SAFE_DELETE(players[1]);
+    }
 };
 
 void TestSuiteState::parsePlayerState(int playerId, string s)
@@ -288,24 +294,28 @@ MTGPlayerCards * TestSuite::buildDeck(Player* player, int playerId)
     int list[100];
     int nbcards = 0;
     MTGPlayerCards * deck = NULL;
-
-    if(initState.players[playerId])
+    if(initState.players.size())
     {
-        MTGGameZone * loadedPlayerZones[] = { initState.players[playerId]->game->graveyard,
-                                              initState.players[playerId]->game->library,
-                                              initState.players[playerId]->game->hand,
-                                              initState.players[playerId]->game->inPlay };
-
-        for (int j = 0; j < 4; j++)
+        if(initState.players.size() > size_t(playerId))
         {
-            for (size_t k = 0; k < loadedPlayerZones[j]->cards.size(); k++)
+            MTGGameZone * loadedPlayerZones[] = { initState.players[playerId]->game->graveyard,
+                initState.players[playerId]->game->library,
+                initState.players[playerId]->game->hand,
+                initState.players[playerId]->game->inPlay };
+
+            for (int j = 0; j < 4; j++)
             {
-                int cardid = loadedPlayerZones[j]->cards[k]->getId();
-                list[nbcards] = cardid;
-                nbcards++;
+                for (size_t k = 0; k < loadedPlayerZones[j]->cards.size(); k++)
+                {
+                    int cardid = loadedPlayerZones[j]->cards[k]->getId();
+                    list[nbcards] = cardid;
+                    nbcards++;
+                }
             }
+            deck = NEW MTGPlayerCards(player, list, nbcards);
         }
-        deck = NEW MTGPlayerCards(player, list, nbcards);
+        else
+            deck = NEW MTGPlayerCards();
     }
     else
     {
@@ -591,13 +601,14 @@ void TestSuiteActions::cleanup()
 
 void TestSuiteState::cleanup(TestSuite* suite)
 {
-    for (int i = 0; i < 2; i++)
+    for (size_t i = 0; i < players.size(); i++)
     {
         SAFE_DELETE(players[i]);
     }
+    players.clear();
 
-    players[0] = new TestSuiteAI(0, suite, 0);
-    players[1] = new TestSuiteAI(0, suite, 1);;
+    players.push_back(new TestSuiteAI(0, suite, 0));
+    players.push_back(new TestSuiteAI(0, suite, 1));
 }
 
 void TestSuite::cleanup()
