@@ -27,8 +27,12 @@ MTGCardInstance::MTGCardInstance() :
     initMTGCI();
 }
 MTGCardInstance::MTGCardInstance(MTGCard * card, MTGPlayerCards * arg_belongs_to) :
-    CardPrimitive(card->data), MTGCard(card), Damageable((arg_belongs_to->owner)?arg_belongs_to->owner->getObserver():0, card->data->getToughness()), view(NULL)
+    CardPrimitive(card->data), MTGCard(card), Damageable(0, card->data->getToughness()), view(NULL)
 {
+    if(arg_belongs_to)
+      if(arg_belongs_to->owner)
+        observer = arg_belongs_to->owner->getObserver();
+
     initMTGCI();
     model = card;
     attacker = 0;
