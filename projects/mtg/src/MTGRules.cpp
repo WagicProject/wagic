@@ -7,8 +7,8 @@
 #include "Credits.h"
 #include "AllAbilities.h"
 
-MTGEventBonus::MTGEventBonus(int _id) :
-MTGAbility(_id,NULL)
+MTGEventBonus::MTGEventBonus(GameObserver* observer, int _id) :
+MTGAbility(observer, _id,NULL)
 {
     textAlpha = 0;
     text = "";
@@ -277,8 +277,8 @@ MTGEventBonus * MTGEventBonus::clone() const
 }
 
 //
-MTGPutInPlayRule::MTGPutInPlayRule(int _id) :
-MTGAbility(_id, NULL)
+MTGPutInPlayRule::MTGPutInPlayRule(GameObserver* observer, int _id) :
+MTGAbility(observer, _id, NULL)
 {
     aType = MTGAbility::PUT_INTO_PLAY;
 }
@@ -300,7 +300,7 @@ int MTGPutInPlayRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
         if (card->basicAbilities[(int)Constants::LEYLINE])
         {
             MTGCardInstance * copy = player->game->putInZone(card, player->game->hand, player->game->temp);
-            Spell * spell = NEW Spell(copy);
+            Spell * spell = NEW Spell(game, copy);
             spell->resolve();
             delete spell;
         }
@@ -421,7 +421,7 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card)
     if (card->isLand())
     {
         MTGCardInstance * copy = player->game->putInZone(card, player->game->hand, player->game->temp);
-        Spell * spell = NEW Spell(0,copy,NULL,NULL, payResult);
+        Spell * spell = NEW Spell(game, 0,copy,NULL,NULL, payResult);
         spell->resolve();
         delete spellCost;
         delete spell;
@@ -478,8 +478,8 @@ MTGPutInPlayRule * MTGPutInPlayRule::clone() const
 
 
 //kicker
-MTGKickerRule::MTGKickerRule(int _id) :
-MTGPutInPlayRule(_id)
+MTGKickerRule::MTGKickerRule(GameObserver* observer, int _id) :
+MTGPutInPlayRule(observer, _id)
 {
     aType = MTGAbility::PUT_INTO_PLAY_WITH_KICKER;
 }
@@ -559,7 +559,7 @@ int MTGKickerRule::reactToClick(MTGCardInstance * card)
     if (card->isLand())
     {
         MTGCardInstance * copy = player->game->putInZone(card, player->game->hand, player->game->temp);
-        Spell * spell = NEW Spell(0,copy,NULL,NULL, ManaCost::MANA_PAID_WITH_KICKER);
+        Spell * spell = NEW Spell(game, 0,copy,NULL,NULL, ManaCost::MANA_PAID_WITH_KICKER);
         spell->resolve();
         delete spellCost;
         delete spell;
@@ -624,8 +624,8 @@ MTGKickerRule * MTGKickerRule::clone() const
 //-------------------------------------------------------------------------
 //-------------------------------------------------------------------------
 
-MTGAlternativeCostRule::MTGAlternativeCostRule(int _id) :
-MTGAbility(_id, NULL)
+MTGAlternativeCostRule::MTGAlternativeCostRule(GameObserver* observer, int _id) :
+MTGAbility(observer, _id, NULL)
 {
     aType = MTGAbility::ALTERNATIVE_COST;
 }
@@ -723,7 +723,7 @@ int MTGAlternativeCostRule::reactToClick(MTGCardInstance * card, ManaCost *alter
     if (card->isLand())
     {
         MTGCardInstance * copy = player->game->putInZone(card, card->currentZone, player->game->temp);
-        Spell * spell = NEW Spell(0,copy,NULL,NULL, alternateCostType);
+        Spell * spell = NEW Spell(game, 0,copy,NULL,NULL, alternateCostType);
         copy->alternateCostPaid[alternateCostType] = 1;
         spell->resolve();
         SAFE_DELETE(spell);
@@ -781,8 +781,8 @@ MTGAlternativeCostRule * MTGAlternativeCostRule::clone() const
 //-------------------------------------------------------------------------
 
 //buyback follows its own resolving rules
-MTGBuyBackRule::MTGBuyBackRule(int _id) :
-MTGAlternativeCostRule(_id)
+MTGBuyBackRule::MTGBuyBackRule(GameObserver* observer, int _id) :
+MTGAlternativeCostRule(observer, _id)
 {
     aType = MTGAbility::BUYBACK_COST;
 }
@@ -832,8 +832,8 @@ MTGBuyBackRule * MTGBuyBackRule::clone() const
 //-------------------------------------------------------------------------
 //-------------------------------------------------------------------------
 //flashback follows its own resolving rules
-MTGFlashBackRule::MTGFlashBackRule(int _id) :
-MTGAlternativeCostRule(_id)
+MTGFlashBackRule::MTGFlashBackRule(GameObserver* observer, int _id) :
+MTGAlternativeCostRule(observer, _id)
 {
     aType = MTGAbility::FLASHBACK_COST;
 }
@@ -880,8 +880,8 @@ MTGFlashBackRule * MTGFlashBackRule::clone() const
 //-------------------------------------------------------------------------
 
 //retrace
-MTGRetraceRule::MTGRetraceRule(int _id) :
-MTGAlternativeCostRule(_id)
+MTGRetraceRule::MTGRetraceRule(GameObserver* observer, int _id) :
+MTGAlternativeCostRule(observer, _id)
 {
     aType = MTGAbility::RETRACE_COST;
 }
@@ -934,8 +934,8 @@ MTGRetraceRule * MTGRetraceRule::clone() const
 //-------------------------------------------------------------------------
 
 //Suspend
-MTGSuspendRule::MTGSuspendRule(int _id) :
-MTGAlternativeCostRule(_id)
+MTGSuspendRule::MTGSuspendRule(GameObserver* observer, int _id) :
+MTGAlternativeCostRule(observer, _id)
 {
     aType = MTGAbility::SUSPEND_COST;
 }
@@ -1051,8 +1051,8 @@ MTGSuspendRule * MTGSuspendRule::clone() const
 //-------------------------------------------------------------------------
 
 
-MTGMorphCostRule::MTGMorphCostRule(int _id) :
-    MTGAbility(_id, NULL)
+MTGMorphCostRule::MTGMorphCostRule(GameObserver* observer, int _id) :
+    MTGAbility(observer, _id, NULL)
 {
     aType = MTGAbility::MORPH_COST;
 }
@@ -1195,8 +1195,8 @@ bool MTGAttackRule::greyout(Target* t)
     return true;
 }
 
-MTGAttackRule::MTGAttackRule(int _id) :
-MTGAbility(_id, NULL)
+MTGAttackRule::MTGAttackRule(GameObserver* observer, int _id) :
+MTGAbility(observer, _id, NULL)
 {
     aType = MTGAbility::MTG_ATTACK_RULE;
 }
@@ -1276,8 +1276,8 @@ MTGAttackRule * MTGAttackRule::clone() const
 }
 
 //this rules handles returning cards to combat triggers for activations.
-MTGCombatTriggersRule::MTGCombatTriggersRule(int _id) :
-MTGAbility(_id, NULL)
+MTGCombatTriggersRule::MTGCombatTriggersRule(GameObserver* observer, int _id) :
+MTGAbility(observer, _id, NULL)
 {
     aType = MTGAbility::MTG_COMBATTRIGGERS_RULE;
 }
@@ -1394,8 +1394,8 @@ MTGCombatTriggersRule * MTGCombatTriggersRule::clone() const
 }
 ///------------
 
-OtherAbilitiesEventReceiver::OtherAbilitiesEventReceiver(int _id) :
-MTGAbility(_id, NULL)
+OtherAbilitiesEventReceiver::OtherAbilitiesEventReceiver(GameObserver* observer, int _id) :
+MTGAbility(observer, _id, NULL)
 {
 }
 
@@ -1405,14 +1405,13 @@ int OtherAbilitiesEventReceiver::receiveEvent(WEvent *e)
     {
         if (event->to && (event->to != event->from))
         {
-            GameObserver * g = GameObserver::GetInstance();
             for (int i = 0; i < 2; ++i)
             {
-                if (event->to == g->players[i]->game->inPlay)
+                if (event->to == game->players[i]->game->inPlay)
                     return 0;
             }
-            AbilityFactory af;
-            af.magicText(g->mLayers->actionLayer()->getMaxId(), NULL, event->card, 1, 0, event->to);
+            AbilityFactory af(game);
+            af.magicText(game->mLayers->actionLayer()->getMaxId(), NULL, event->card, 1, 0, event->to);
             return 1;
         }
     }
@@ -1429,8 +1428,8 @@ OtherAbilitiesEventReceiver * OtherAbilitiesEventReceiver::clone() const
     return NEW OtherAbilitiesEventReceiver(*this);
 }
 
-MTGBlockRule::MTGBlockRule(int _id) :
-MTGAbility(_id, NULL)
+MTGBlockRule::MTGBlockRule(GameObserver* observer, int _id) :
+MTGAbility(observer, _id, NULL)
 {
     aType = MTGAbility::MTG_BLOCK_RULE;
 }
@@ -1494,8 +1493,8 @@ MTGBlockRule * MTGBlockRule::clone() const
 int MTGMomirRule::initialized = 0;
 vector<int> MTGMomirRule::pool[20];
 
-MTGMomirRule::MTGMomirRule(int _id, MTGAllCards * _collection) :
-MTGAbility(_id, NULL)
+MTGMomirRule::MTGMomirRule(GameObserver* observer, int _id, MTGAllCards * _collection) :
+MTGAbility(observer, _id, NULL)
 {
     collection = _collection;
     if (!initialized)
@@ -1558,7 +1557,7 @@ int MTGMomirRule::reactToClick(MTGCardInstance * card_to_discard, int cardId)
     player->game->putInZone(card_to_discard, player->game->hand, player->game->graveyard);
 
     player->game->stack->addCard(card);
-    Spell * spell = NEW Spell(card);
+    Spell * spell = NEW Spell(game, card);
     spell->resolve();
     spell->source->isToken = 1;
     delete spell;
@@ -1649,8 +1648,8 @@ MTGMomirRule * MTGMomirRule::clone() const
 int MTGStoneHewerRule::initialized = 0;
 vector<int> MTGStoneHewerRule::pool[20];
 
-MTGStoneHewerRule::MTGStoneHewerRule(int _id, MTGAllCards * _collection) :
-MTGAbility(_id, NULL)
+MTGStoneHewerRule::MTGStoneHewerRule(GameObserver* observer, int _id, MTGAllCards * _collection) :
+MTGAbility(observer, _id, NULL)
 {
     collection = _collection;
     if (!initialized)
@@ -1682,13 +1681,12 @@ int MTGStoneHewerRule::receiveEvent(WEvent * event)
 		if(card)
 		{
 			game->currentlyActing()->game->temp->addCard(card);
-			Spell * spell = NEW Spell(card);
+                        Spell * spell = NEW Spell(game, card);
 			spell->resolve();
 			spell->source->isToken = 1;
-			GameObserver * g = g->GetInstance();
-			for (size_t i = 1; i < g->mLayers->actionLayer()->mObjects.size(); i++)
+                        for (size_t i = 1; i < game->mLayers->actionLayer()->mObjects.size(); i++)
 			{
-				MTGAbility * a = ((MTGAbility *) g->mLayers->actionLayer()->mObjects[i]);
+                                MTGAbility * a = ((MTGAbility *) game->mLayers->actionLayer()->mObjects[i]);
 				AEquip * eq = dynamic_cast<AEquip*> (a);
 				if (eq && eq->source == spell->source)
 				{
@@ -1750,8 +1748,8 @@ MTGStoneHewerRule * MTGStoneHewerRule::clone() const
 
 //------------------
 //Hermit druid mode places a random land from your deck into play during each of your upkeeps
-MTGHermitRule::MTGHermitRule(int _id) :
-MTGAbility(_id, NULL)
+MTGHermitRule::MTGHermitRule(GameObserver* observer, int _id) :
+MTGAbility(observer, _id, NULL)
 {
 }
 
@@ -1773,7 +1771,7 @@ int MTGHermitRule::receiveEvent(WEvent * event)
 		if(lcard)
 		{
 			MTGCardInstance * copy = game->currentPlayer->game->putInZone(lcard,game->currentPlayer->game->library, game->currentPlayer->game->temp);
-            Spell * spell = NEW Spell(copy);
+            Spell * spell = NEW Spell(game, copy);
             spell->resolve();
             delete spell;
 		}
@@ -1887,8 +1885,8 @@ void HUDDisplay::Render()
         i++;
     }
 }
-HUDDisplay::HUDDisplay(int _id) :
-MTGAbility(_id, NULL)
+HUDDisplay::HUDDisplay(GameObserver* observer, int _id) :
+MTGAbility(observer, _id, NULL)
 {
     timestamp = 0;
     popdelay = 2;
@@ -1913,8 +1911,8 @@ HUDDisplay * HUDDisplay::clone() const
 }
 
 /* Persist */
-MTGPersistRule::MTGPersistRule(int _id) :
-MTGAbility(_id, NULL)
+MTGPersistRule::MTGPersistRule(GameObserver* observer, int _id) :
+MTGAbility(observer, _id, NULL)
 {
 }
 ;
@@ -1947,7 +1945,7 @@ int MTGPersistRule::receiveEvent(WEvent * event)
                         DebugTrace("MTGRULES: couldn't move card for persist");
                         return 0;
                     }
-                    Spell * spell = NEW Spell(copy);
+                    Spell * spell = NEW Spell(game, copy);
                     spell->resolve();
                     spell->source->counters->addCounter(-1, -1);
                     delete spell;
@@ -1976,8 +1974,8 @@ MTGPersistRule * MTGPersistRule::clone() const
 //vampires rule
 //handled seperately as a rule since we only want one object to send out events that a card was "vampired".
 //otherwise vampire event is sent per instance of @vampired on the battlefield, multipling the results.
-MTGVampireRule::MTGVampireRule(int _id) :
-MTGAbility(_id, NULL)
+MTGVampireRule::MTGVampireRule(GameObserver* observer, int _id) :
+MTGAbility(observer, _id, NULL)
 {
 }
 ;
@@ -2051,8 +2049,8 @@ MTGVampireRule * MTGVampireRule::clone() const
 /////////////////////////////////////////////////
 //unearth rule----------------------------------
 //if the card leaves play, exile it instead.
-MTGUnearthRule::MTGUnearthRule(int _id) :
-MTGAbility(_id, NULL)
+MTGUnearthRule::MTGUnearthRule(GameObserver* observer, int _id) :
+MTGAbility(observer, _id, NULL)
 {
 }
 ;
@@ -2111,8 +2109,8 @@ MTGUnearthRule * MTGUnearthRule::clone() const
     return NEW MTGUnearthRule(*this);
 }
 //token clean up
-MTGTokensCleanup::MTGTokensCleanup(int _id) :
-MTGAbility(_id, NULL)
+MTGTokensCleanup::MTGTokensCleanup(GameObserver* observer, int _id) :
+MTGAbility(observer, _id, NULL)
 {
 }
 
@@ -2144,8 +2142,8 @@ MTGTokensCleanup * MTGTokensCleanup::clone() const
 }
 
 /* Legend Rule */
-MTGLegendRule::MTGLegendRule(int _id) :
-ListMaintainerAbility(_id)
+MTGLegendRule::MTGLegendRule(GameObserver* observer, int _id) :
+ListMaintainerAbility(observer, _id)
 {
 }
 ;
@@ -2201,8 +2199,8 @@ MTGLegendRule * MTGLegendRule::clone() const
 }
 
 /* PlaneWalker Rule */
-MTGPlaneWalkerRule::MTGPlaneWalkerRule(int _id) :
-ListMaintainerAbility(_id)
+MTGPlaneWalkerRule::MTGPlaneWalkerRule(GameObserver* observer, int _id) :
+ListMaintainerAbility(observer, _id)
 {
 }
 ;
@@ -2258,8 +2256,8 @@ MTGPlaneWalkerRule * MTGPlaneWalkerRule::clone() const
 }
 
 /* Lifelink */
-MTGLifelinkRule::MTGLifelinkRule(int _id) :
-MTGAbility(_id, NULL)
+MTGLifelinkRule::MTGLifelinkRule(GameObserver* observer, int _id) :
+MTGAbility(observer, _id, NULL)
 {
 }
 ;
@@ -2296,8 +2294,8 @@ MTGLifelinkRule * MTGLifelinkRule::clone() const
 }
 
 /* Deathtouch */
-MTGDeathtouchRule::MTGDeathtouchRule(int _id) :
-MTGAbility(_id, NULL)
+MTGDeathtouchRule::MTGDeathtouchRule(GameObserver* observer, int _id) :
+MTGAbility(observer, _id, NULL)
 {
 }
 ;
@@ -2340,8 +2338,8 @@ MTGDeathtouchRule * MTGDeathtouchRule::clone() const
 }
 //
 //kai mod
-ParentChildRule::ParentChildRule(int _id) :
-MTGAbility(_id, NULL)
+ParentChildRule::ParentChildRule(GameObserver* observer, int _id) :
+MTGAbility(observer, _id, NULL)
 {
 }
 ;

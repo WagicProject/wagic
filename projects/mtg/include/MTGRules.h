@@ -15,7 +15,7 @@ class OtherAbilitiesEventReceiver: public MTGAbility
 public:
     int testDestroy();
     int receiveEvent(WEvent * event);
-    OtherAbilitiesEventReceiver(int _id);
+    OtherAbilitiesEventReceiver(GameObserver* observer, int _id);
     OtherAbilitiesEventReceiver * clone() const;
 };
 
@@ -58,7 +58,7 @@ public:
     int testDestroy();
     void Update(float dt);
     void Render();
-    MTGEventBonus(int _id);
+    MTGEventBonus(GameObserver* observer, int _id);
     virtual MTGEventBonus * clone() const;
 };
 
@@ -69,7 +69,7 @@ public:
     int reactToClick(MTGCardInstance * card);
     int testDestroy();
     virtual ostream& toString(ostream& out) const;
-    MTGPutInPlayRule(int _id);
+    MTGPutInPlayRule(GameObserver* observer, int _id);
     const char * getMenuText()
     {
         return "cast card normally";
@@ -84,7 +84,7 @@ public:
     int reactToClick(MTGCardInstance * card);
     int testDestroy();
     virtual ostream& toString(ostream& out) const;
-    MTGKickerRule(int _id);
+    MTGKickerRule(GameObserver* observer, int _id);
     const char * getMenuText()
     {
         return "pay kicker";
@@ -104,7 +104,7 @@ public:
 
     int testDestroy();
     virtual ostream& toString(ostream& out) const;
-    MTGAlternativeCostRule(int _id);
+    MTGAlternativeCostRule(GameObserver* observer, int _id);
     const char * getMenuText()
     {
         if(alternativeName.size())
@@ -121,7 +121,7 @@ public:
     int reactToClick(MTGCardInstance * card);
     int testDestroy();
     virtual ostream& toString(ostream& out) const;
-    MTGBuyBackRule(int _id);
+    MTGBuyBackRule(GameObserver* observer, int _id);
     const char * getMenuText()
     {
         return "cast and buy back";
@@ -137,7 +137,7 @@ public:
     int reactToClick(MTGCardInstance * card);
     int testDestroy();
     virtual ostream& toString(ostream& out) const;
-    MTGFlashBackRule(int _id);
+    MTGFlashBackRule(GameObserver* observer, int _id);
     const char * getMenuText()
     {
         return "flash back";
@@ -152,7 +152,7 @@ public:
     int reactToClick(MTGCardInstance * card);
     int testDestroy();
     virtual ostream& toString(ostream& out) const;
-    MTGRetraceRule(int _id);
+    MTGRetraceRule(GameObserver* observer, int _id);
     const char * getMenuText()
     {
         return "retrace";
@@ -168,7 +168,7 @@ public:
     int reactToClick(MTGCardInstance * card);
     int testDestroy();
     virtual ostream& toString(ostream& out) const;
-    MTGMorphCostRule(int _id);
+    MTGMorphCostRule(GameObserver* observer, int _id);
     const char * getMenuText()
     {
         return "play morphed";
@@ -185,7 +185,7 @@ public:
     int testDestroy();
     string suspendmenu;
     virtual ostream& toString(ostream& out) const;
-    MTGSuspendRule(int _id);
+    MTGSuspendRule(GameObserver* observer, int _id);
     const char * getMenuText()
     {
         suspendmenu = "suspend";
@@ -208,7 +208,7 @@ public:
     int reactToClick(MTGCardInstance * card);
     int testDestroy();
     virtual ostream& toString(ostream& out) const;
-    MTGAttackRule(int _id);
+    MTGAttackRule(GameObserver* observer, int _id);
     const char * getMenuText()
     {
         return "Attacker";
@@ -221,7 +221,7 @@ public:
 class MTGCombatTriggersRule: public MTGAbility
 {
 public:
-    MTGCombatTriggersRule(int _id);
+    MTGCombatTriggersRule(GameObserver* observer, int _id);
     int receiveEvent(WEvent * event);
     virtual ostream& toString(ostream& out) const;
     int testDestroy();
@@ -235,7 +235,7 @@ public:
     int reactToClick(MTGCardInstance * card);
     int testDestroy();
     virtual ostream& toString(ostream& out) const;
-    MTGBlockRule(int _id);
+    MTGBlockRule(GameObserver* observer, int _id);
     const char * getMenuText()
     {
         return "Blocker";
@@ -247,7 +247,7 @@ public:
 class MTGPersistRule: public MTGAbility
 {
 public:
-    MTGPersistRule(int _id);
+    MTGPersistRule(GameObserver* observer, int _id);
     int receiveEvent(WEvent * event);
     virtual ostream& toString(ostream& out) const;
     int testDestroy();
@@ -257,7 +257,7 @@ public:
 class MTGVampireRule: public MTGAbility
 {
 public:
-    MTGVampireRule(int _id);
+    MTGVampireRule(GameObserver* observer, int _id);
     map<MTGCardInstance*,vector<MTGCardInstance*> > victems;
     int receiveEvent(WEvent * event);
     virtual ostream& toString(ostream& out) const;
@@ -268,7 +268,7 @@ public:
 class MTGUnearthRule: public MTGAbility
 {
 public:
-    MTGUnearthRule(int _id);
+    MTGUnearthRule(GameObserver* observer, int _id);
     int receiveEvent(WEvent * event);
     virtual ostream& toString(ostream& out) const;
     int testDestroy();
@@ -278,7 +278,7 @@ class MTGTokensCleanup: public MTGAbility
 {
 public:
     vector<MTGCardInstance *> list;
-    MTGTokensCleanup(int _id);
+    MTGTokensCleanup(GameObserver* observer, int _id);
     int receiveEvent(WEvent * event);
     int testDestroy();
     virtual MTGTokensCleanup * clone() const;
@@ -293,7 +293,7 @@ public:
 class MTGLegendRule: public ListMaintainerAbility
 {
 public:
-    MTGLegendRule(int _id);
+    MTGLegendRule(GameObserver* observer, int _id);
     int canBeInList(MTGCardInstance * card);
     int added(MTGCardInstance * card);
     int removed(MTGCardInstance * card);
@@ -304,7 +304,7 @@ public:
 class MTGPlaneWalkerRule: public ListMaintainerAbility
 {
 public:
-    MTGPlaneWalkerRule(int _id);
+    MTGPlaneWalkerRule(GameObserver* observer, int _id);
     int canBeInList(MTGCardInstance * card);
     int added(MTGCardInstance * card);
     int removed(MTGCardInstance * card);
@@ -330,7 +330,7 @@ public:
     int testDestroy();
     void Update(float dt);
     void Render();
-    MTGMomirRule(int _id, MTGAllCards * _collection);
+    MTGMomirRule(GameObserver* observer, int _id, MTGAllCards * _collection);
     int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
     int reactToClick(MTGCardInstance * card);
     int reactToClick(MTGCardInstance * card, int id);
@@ -353,7 +353,7 @@ public:
 	MTGAllCards * collection;
 	MTGCardInstance * genEquip(int id);
 	int testDestroy();
-	MTGStoneHewerRule(int _id, MTGAllCards * _collection);
+        MTGStoneHewerRule(GameObserver* observer, int _id, MTGAllCards * _collection);
 	int receiveEvent(WEvent * event);
 	const char * getMenuText()
 	{
@@ -367,7 +367,7 @@ class MTGHermitRule: public MTGAbility
 {
 public:
 	int testDestroy();
-	MTGHermitRule(int _id);
+        MTGHermitRule(GameObserver* observer, int _id);
 	int receiveEvent(WEvent * event);
 	const char * getMenuText()
 	{
@@ -380,7 +380,7 @@ public:
 class MTGLifelinkRule: public MTGAbility
 {
 public:
-    MTGLifelinkRule(int _id);
+    MTGLifelinkRule(GameObserver* observer, int _id);
 
     int receiveEvent(WEvent * event);
 
@@ -395,7 +395,7 @@ public:
 class MTGDeathtouchRule: public MTGAbility
 {
 public:
-    MTGDeathtouchRule(int _id);
+    MTGDeathtouchRule(GameObserver* observer, int _id);
 
     int receiveEvent(WEvent * event);
 
@@ -412,7 +412,7 @@ public:
 class ParentChildRule: public MTGAbility
 {
 public:
-    ParentChildRule(int _id);
+    ParentChildRule(GameObserver* observer, int _id);
     int receiveEvent(WEvent * event);
     virtual ostream& toString(ostream& out) const;
     int testDestroy();
@@ -448,7 +448,7 @@ public:
     int receiveEvent(WEvent * event);
     void Update(float dt);
     void Render();
-    HUDDisplay(int _id);
+    HUDDisplay(GameObserver* observer, int _id);
     ~HUDDisplay();
     virtual HUDDisplay * clone() const;
 };

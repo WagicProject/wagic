@@ -88,7 +88,7 @@ public:
     virtual int receiveEvent(WEvent * event);
     virtual void Render();
 
-    AIPlayer(string deckFile, string deckFileSmall, MTGDeck * deck = NULL);
+    AIPlayer(GameObserver *observer, string deckFile, string deckFileSmall, MTGDeck * deck = NULL);
     virtual ~AIPlayer();
     
     virtual int chooseTarget(TargetChooser * tc = NULL, Player * forceTarget = NULL, MTGCardInstance * Chosencard = NULL, bool checkonly = false) = 0;
@@ -105,9 +105,9 @@ public:
 
 class AIPlayerFactory{
  public:
-  AIPlayer * createAIPlayer(MTGAllCards * collection, Player * opponent, int deckid = 0);
+  AIPlayer * createAIPlayer(GameObserver *observer, MTGAllCards * collection, Player * opponent, int deckid = 0);
 #ifdef AI_CHANGE_TESTING
-  AIPlayer * createAIPlayerTest(MTGAllCards * collection, Player * opponent, string folder);
+  AIPlayer * createAIPlayerTest(GameObserver *observer, MTGAllCards * collection, Player * opponent, string folder);
 #endif
 };
 

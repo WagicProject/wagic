@@ -226,7 +226,7 @@ void ManaIcon::Drop()
 }
 
 GuiMana::GuiMana(float x, float y, Player *p) :
-    x(x), y(y), owner(p)
+    GuiLayer(p->getObserver()), x(x), y(y), owner(p)
 {
 }
 

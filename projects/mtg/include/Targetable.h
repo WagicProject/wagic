@@ -7,9 +7,14 @@
 
 class Targetable
 {
+protected:
+    GameObserver* observer;
 public:
+    Targetable(GameObserver* observer) : observer(observer) {};
     virtual int typeAsTarget() = 0;
     virtual const string getDisplayName() const = 0;
+    inline GameObserver* getObserver() { return observer; };
+    virtual void setObserver(GameObserver*g) { observer = g; };
 };
 
 #endif

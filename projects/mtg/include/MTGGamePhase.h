@@ -14,9 +14,10 @@ protected:
     int currentState;
     WFont * mFont;
     static MTGGamePhase* instance;
+    GameObserver* observer;
 
 public:
-    MTGGamePhase(int id);
+    MTGGamePhase(GameObserver* g, int id);
     static MTGGamePhase* GetInstance() { return instance; };
     virtual void Update(float dt);
     bool CheckUserInput(JButton key);

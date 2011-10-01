@@ -31,7 +31,7 @@ int ThisDescriptor::matchValue(int value)
     return 0;
 }
 
-ThisDescriptor * ThisDescriptorFactory::createThisDescriptor(string s)
+ThisDescriptor * ThisDescriptorFactory::createThisDescriptor(GameObserver* observer, string s)
 {
     size_t found;
 
@@ -116,7 +116,7 @@ ThisDescriptor * ThisDescriptorFactory::createThisDescriptor(string s)
         size_t start = s.find("{");
         size_t end = s.find("}");
         string counterString = s.substr(start + 1, end - start - 1);
-        AbilityFactory abf;
+        AbilityFactory abf(observer);
         Counter * counter = abf.parseCounter(counterString, NULL);
         if (counter)
         {

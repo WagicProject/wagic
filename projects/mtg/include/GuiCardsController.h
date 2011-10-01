@@ -6,8 +6,10 @@
 class GuiCardsController: public PlayGuiObjectController
 {
 public:
-    GuiCardsController(){}
-    ;
+    GuiCardsController(GameObserver*observer)
+        : PlayGuiObjectController(observer)
+    {
+    };
 };
 
 #endif

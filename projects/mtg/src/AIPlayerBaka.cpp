@@ -28,7 +28,7 @@ Player * OrderedAIAction::getPlayerTarget()
 int OrderedAIAction::getEfficiency(AADamager * aad)
 {
     Player * playerTarget = getPlayerTarget();
-    GameObserver * g = GameObserver::GetInstance();
+    GameObserver * g = owner->getObserver();
     Player * p = g->currentlyActing();
 
     MTGCardInstance * dTarget = target ? target : dynamic_cast<MTGCardInstance *>(aad->getTarget());
@@ -68,7 +68,7 @@ int OrderedAIAction::getEfficiency()
         return efficiency;
     if (!ability)
         return 0;
-    GameObserver * g = GameObserver::GetInstance();
+    GameObserver * g = owner->getObserver();
     ActionStack * s = g->mLayers->stackLayer();
     int currentPhase = g->getCurrentGamePhase();
 
@@ -271,7 +271,7 @@ int OrderedAIAction::getEfficiency()
                 target = a->source;
             }
 
-			AbilityFactory af;
+            AbilityFactory af(g);
             int suggestion = af.abilityEfficiency(a, p, MODE_ABILITY);
             //i do not set a starting eff. on this ability, this allows Ai to sometimes randomly do it as it normally does.
             int currentPhase = g->getCurrentGamePhase();
@@ -333,7 +333,7 @@ int OrderedAIAction::getEfficiency()
             //ensuring that Ai grants abilities to creatures during first main, so it can actually use them in combat.
             //quick note: the eff is multiplied by creatures ranking then divided by the number of cards in hand.
             //the reason i do this is to encourage more casting and less waste of mana on abilities.
-            AbilityFactory af;
+            AbilityFactory af(g);
             int suggestion = af.abilityEfficiency(a, p, MODE_ABILITY);
 
             int efficiencyModifier = (25 * target->DangerRanking());
@@ -405,7 +405,7 @@ int OrderedAIAction::getEfficiency()
             Targetable * _t = alife->getTarget();
 
             efficiency = 100;
-            AbilityFactory af;
+            AbilityFactory af(g);
             int suggestion = af.abilityEfficiency(a, p, MODE_ABILITY);
 
             if ((suggestion == BAKA_EFFECT_BAD && _t == p) || (suggestion == BAKA_EFFECT_GOOD && _t != p))
@@ -469,7 +469,7 @@ int OrderedAIAction::getEfficiency()
     default:
         if (target)
         {
-            AbilityFactory af;
+            AbilityFactory af(g);
             int suggestion = af.abilityEfficiency(a, p, MODE_ABILITY,NULL,target);
             if (AADynamic * ady = dynamic_cast<AADynamic *>(a))
             {
@@ -749,13 +749,12 @@ bool AIPlayerBaka::payTheManaCost(ManaCost * cost, MTGCardInstance * target,vect
     }
     ManaCost * diff = pMana->Diff(cost);
     delete (pMana);
-    GameObserver * g = GameObserver::GetInstance();
 
     map<MTGCardInstance *, bool> used;
-    for (size_t i = 1; i < g->mLayers->actionLayer()->mObjects.size(); ++i)
+    for (size_t i = 1; i < observer->mLayers->actionLayer()->mObjects.size(); ++i)
     { //0 is not a mtgability...hackish
         //Make sure we can use the ability
-        MTGAbility * a = ((MTGAbility *) g->mLayers->actionLayer()->mObjects[i]);
+        MTGAbility * a = ((MTGAbility *) observer->mLayers->actionLayer()->mObjects[i]);
         AManaProducer * amp = dynamic_cast<AManaProducer*> (a);
         if (amp && canHandleCost(amp))
         {
@@ -792,12 +791,11 @@ bool AIPlayerBaka::payTheManaCost(ManaCost * cost, MTGCardInstance * target,vect
 ManaCost * AIPlayerBaka::getPotentialMana(MTGCardInstance * target)
 {
     ManaCost * result = NEW ManaCost();
-    GameObserver * g = GameObserver::GetInstance();
     map<MTGCardInstance *, bool> used;
-    for (size_t i = 0; i < g->mLayers->actionLayer()->manaObjects.size(); i++)
+    for (size_t i = 0; i < observer->mLayers->actionLayer()->manaObjects.size(); i++)
     { 
         //Make sure we can use the ability
-        MTGAbility * a = ((MTGAbility *) g->mLayers->actionLayer()->manaObjects[i]);
+        MTGAbility * a = ((MTGAbility *) observer->mLayers->actionLayer()->manaObjects[i]);
         AManaProducer * amp = dynamic_cast<AManaProducer*> (a);
         GenericActivatedAbility * gmp = dynamic_cast<GenericActivatedAbility*>(a);
         if(gmp && canHandleCost(gmp))
@@ -834,7 +832,6 @@ vector<MTGAbility*> AIPlayerBaka::canPayMana(MTGCardInstance * target,ManaCost *
     if(!cost || (cost && !cost->getConvertedCost()))
         return vector<MTGAbility*>();
     ManaCost * result = NEW ManaCost();
-    GameObserver * g = GameObserver::GetInstance();
     map<MTGCardInstance *, bool> used;
     vector<MTGAbility*>payments = vector<MTGAbility*>();
     if (this->getManaPool()->getConvertedCost())
@@ -844,9 +841,9 @@ vector<MTGAbility*> AIPlayerBaka::canPayMana(MTGCardInstance * target,ManaCost *
     }
     int needColorConverted = cost->getConvertedCost()-int(cost->getCost(0)+cost->getCost(7));
     int fullColor = 0;
-    for (size_t i = 0; i < g->mLayers->actionLayer()->manaObjects.size(); i++)
+    for (size_t i = 0; i < observer->mLayers->actionLayer()->manaObjects.size(); i++)
     {
-        MTGAbility * a = ((MTGAbility *) g->mLayers->actionLayer()->manaObjects[i]);
+        MTGAbility * a = ((MTGAbility *) observer->mLayers->actionLayer()->manaObjects[i]);
         AManaProducer * amp = dynamic_cast<AManaProducer*> (a);
         if(amp && (amp->getCost() && amp->getCost()->extraCosts && !amp->getCost()->extraCosts->canPay()))
             continue;
@@ -946,9 +943,9 @@ vector<MTGAbility*> AIPlayerBaka::canPayMana(MTGCardInstance * target,ManaCost *
             //{rw}{ub} would be 2 runs of this.90% of the time ai finds it's hybrid in pMana check.
             bool foundColor1 = false;
             bool foundColor2 = false;
-            for (size_t i = 0; i < g->mLayers->actionLayer()->manaObjects.size(); i++)
+            for (size_t i = 0; i < observer->mLayers->actionLayer()->manaObjects.size(); i++)
             {
-                MTGAbility * a = ((MTGAbility *) g->mLayers->actionLayer()->manaObjects[i]);
+                MTGAbility * a = ((MTGAbility *) observer->mLayers->actionLayer()->manaObjects[i]);
                 AManaProducer * amp = dynamic_cast<AManaProducer*> (a);
                 if (amp && canHandleCost(amp))
                 {
@@ -1010,9 +1007,9 @@ vector<MTGAbility*> AIPlayerBaka::canPayMana(MTGCardInstance * target,ManaCost *
     {
         //if we decided to play an "x" ability/card, lets go all out, these effects tend to be game winners.
         //add the rest of the mana.
-        for (size_t i = 0; i < g->mLayers->actionLayer()->manaObjects.size(); i++)
+        for (size_t i = 0; i < observer->mLayers->actionLayer()->manaObjects.size(); i++)
         { 
-            MTGAbility * a = ((MTGAbility *) g->mLayers->actionLayer()->manaObjects[i]);
+            MTGAbility * a = ((MTGAbility *) observer->mLayers->actionLayer()->manaObjects[i]);
             AManaProducer * amp = dynamic_cast<AManaProducer*> (a);
             if (amp && canHandleCost(amp))
             {
@@ -1035,21 +1032,20 @@ vector<MTGAbility*> AIPlayerBaka::canPaySunBurst(ManaCost * cost)
     //note it is still possible to use lotus petal for it's first mana ability and not later for a final color
     //a search of true sunburst would cause the game to come to a crawl, trust me, this is the "fast" method for sunburst :)
     ManaCost * result = NEW ManaCost();
-    GameObserver * g = GameObserver::GetInstance();
     map<MTGCardInstance *, bool> used;
     vector<MTGAbility*>payments = vector<MTGAbility*>();
     int needColorConverted = 6;
     int fullColor = 0;
     result->add(this->getManaPool());
-    for (size_t i = 0; i < g->mLayers->actionLayer()->manaObjects.size(); i++)
+    for (size_t i = 0; i < observer->mLayers->actionLayer()->manaObjects.size(); i++)
     { 
         //Make sure we can use the ability
         if(fullColor == needColorConverted || fullColor == cost->getConvertedCost())
         {
-            i = g->mLayers->actionLayer()->manaObjects.size();
+            i = observer->mLayers->actionLayer()->manaObjects.size();
             break;
         }
-        MTGAbility * a = ((MTGAbility *) g->mLayers->actionLayer()->manaObjects[i]);
+        MTGAbility * a = ((MTGAbility *) observer->mLayers->actionLayer()->manaObjects[i]);
         AManaProducer * amp = dynamic_cast<AManaProducer*> (a);
         if(amp && amp->getCost() && amp->getCost()->extraCosts && !amp->getCost()->extraCosts->canPay())
             continue;//pentid prism, has no cost but contains a counter cost, without this check ai will think it can still use this mana.
@@ -1084,9 +1080,9 @@ vector<MTGAbility*> AIPlayerBaka::canPaySunBurst(ManaCost * cost)
     }
     for(int i = fullColor;i < cost->getConvertedCost();i++)
     {
-        for (size_t i = 0; i < g->mLayers->actionLayer()->manaObjects.size(); i++)
+        for (size_t i = 0; i < observer->mLayers->actionLayer()->manaObjects.size(); i++)
         { 
-            MTGAbility * a = ((MTGAbility *) g->mLayers->actionLayer()->manaObjects[i]);
+            MTGAbility * a = ((MTGAbility *) observer->mLayers->actionLayer()->manaObjects[i]);
             AManaProducer * amp = dynamic_cast<AManaProducer*> (a);
             if (amp && canHandleCost(amp))
             {
@@ -1151,10 +1147,9 @@ int AIPlayerBaka::createAbilityTargets(MTGAbility * a, MTGCardInstance * c, Rank
         return 1;
     }
     vector<Targetable*>potentialTargets;
-    GameObserver * g = GameObserver::GetInstance();
     for (int i = 0; i < 2; i++)
     {
-        Player * p = g->players[i];
+        Player * p = observer->players[i];
         MTGGameZone * playerZones[] = { p->game->graveyard, p->game->library, p->game->hand, p->game->inPlay,p->game->stack };
         if(a->getActionTc()->canTarget((Targetable*)p))
         {
@@ -1260,8 +1255,7 @@ int AIPlayerBaka::selectAbility()
    if (selectHintAbility())
         return 1;
 
-   GameObserver * go = GameObserver::GetInstance();
-   if(go->mLayers->stackLayer()->lastActionController == this)
+   if(observer->mLayers->stackLayer()->lastActionController == this)
    {
        //this is here for 2 reasons, MTG rules state that priority is passed with each action.
        //without this ai is able to chain cast {t}:damage:1 target(creature) from everything it can all at once.
@@ -1271,14 +1265,13 @@ int AIPlayerBaka::selectAbility()
 
     RankingContainer ranking;
     list<int>::iterator it;
-    GameObserver * g = GameObserver::GetInstance();
     vector<MTGAbility*>abilityPayment = vector<MTGAbility*>();
     //This loop is extrmely inefficient. TODO: optimize!
     ManaCost * totalPotentialMana = getPotentialMana();
     totalPotentialMana->add(this->getManaPool());
-    for (size_t i = 1; i < g->mLayers->actionLayer()->mObjects.size(); i++)
+    for (size_t i = 1; i < observer->mLayers->actionLayer()->mObjects.size(); i++)
     { //0 is not a mtgability...hackish
-        MTGAbility * a = ((MTGAbility *) g->mLayers->actionLayer()->mObjects[i]);
+        MTGAbility * a = ((MTGAbility *) observer->mLayers->actionLayer()->mObjects[i]);
         //Skip mana abilities for performance
         if (dynamic_cast<AManaProducer*> (a))
             continue;
@@ -1353,14 +1346,12 @@ int AIPlayerBaka::selectAbility()
 
 int AIPlayerBaka::interruptIfICan()
 {
-    GameObserver * g = GameObserver::GetInstance();
-
-    if (g->mLayers->stackLayer()->askIfWishesToInterrupt == this)
+    if (observer->mLayers->stackLayer()->askIfWishesToInterrupt == this)
     {
         if (!clickstream.empty())
-            g->mLayers->stackLayer()->cancelInterruptOffer();
+            observer->mLayers->stackLayer()->cancelInterruptOffer();
         else
-            return g->mLayers->stackLayer()->setIsInterrupting(this);
+            return observer->mLayers->stackLayer()->setIsInterrupting(this);
     }
     return 0;
 }
@@ -1368,7 +1359,7 @@ int AIPlayerBaka::interruptIfICan()
 int AIPlayerBaka::effectBadOrGood(MTGCardInstance * card, int mode, TargetChooser * tc)
 {
     int id = card->getMTGId();
-    AbilityFactory af;
+    AbilityFactory af(observer);
     int autoGuess = af.magicText(id, NULL, card, mode, tc);
     if (autoGuess)
         return autoGuess;
@@ -1379,12 +1370,11 @@ int AIPlayerBaka::chooseTarget(TargetChooser * _tc, Player * forceTarget,MTGCard
 {
     vector<Targetable *> potentialTargets;
     TargetChooser * tc = _tc;
-    GameObserver * gameObs = GameObserver::GetInstance();
-    if (!(gameObs->currentlyActing() == this))
+    if (!(observer->currentlyActing() == this))
         return 0;
     if (!tc)
     {
-        tc = gameObs->getCurrentTargetChooser();
+        tc = observer->getCurrentTargetChooser();
     }
     if (!tc || !tc->source || tc->maxtargets < 1)
         return 0;
@@ -1395,10 +1385,10 @@ int AIPlayerBaka::chooseTarget(TargetChooser * _tc, Player * forceTarget,MTGCard
         potentialTargets.clear();
     }
     //Make sure we own the decision to choose the targets
-    assert(tc->Owner == gameObs->currentlyActing());
-    if (tc && tc->Owner != gameObs->currentlyActing())
+    assert(tc->Owner == observer->currentlyActing());
+    if (tc && tc->Owner != observer->currentlyActing())
     {
-        gameObs->currentActionPlayer = tc->Owner;
+        observer->currentActionPlayer = tc->Owner;
 		//this is a hack, but if we hit this condition we are locked in a infinate loop
 		//so lets give the tc to its owner
 		//todo:find the root cause of this.
@@ -1413,7 +1403,7 @@ int AIPlayerBaka::chooseTarget(TargetChooser * _tc, Player * forceTarget,MTGCard
         int cardEffect = effectBadOrGood(tc->source, MODE_TARGET, tc);
         if(tc->belongsToAbility.size())
         {
-            AbilityFactory af;
+            AbilityFactory af(observer);
             MTGAbility * withoutGuessing = af.parseMagicLine(tc->belongsToAbility,NULL,NULL,tc->source);
             cardEffect = af.abilityEfficiency(withoutGuessing,this,MODE_TARGET,tc,NULL);
             delete withoutGuessing;
@@ -1461,7 +1451,7 @@ int AIPlayerBaka::chooseTarget(TargetChooser * _tc, Player * forceTarget,MTGCard
                     {
                         if(tc->maxtargets != 1 && tc->belongsToAbility.size())
                         {
-                            AbilityFactory af;
+                            AbilityFactory af(observer);
                             MTGAbility * withoutGuessing = af.parseMagicLine(tc->belongsToAbility,NULL,NULL,tc->source);
                             OrderedAIAction * effCheck = NEW OrderedAIAction(this, withoutGuessing,(MTGCardInstance*)tc->source,card);
                             if(effCheck->getEfficiency())
@@ -1504,7 +1494,7 @@ int AIPlayerBaka::chooseTarget(TargetChooser * _tc, Player * forceTarget,MTGCard
     //Couldn't find any valid target,
     //usually that's because we played a card that has bad side effects (ex: when X comes into play, return target land you own to your hand)
     //so we try again to choose a target in the other player's field...
-    int cancel = gameObs->cancelCurrentAction();
+    int cancel = observer->cancelCurrentAction();
     if (!cancel && !forceTarget)
         return chooseTarget(tc, target->opponent(), NULL, checkOnly);
     //ERROR!!!
@@ -1514,8 +1504,7 @@ int AIPlayerBaka::chooseTarget(TargetChooser * _tc, Player * forceTarget,MTGCard
 
 int AIPlayerBaka::selectMenuOption()
 {
-    GameObserver * g = GameObserver::GetInstance();
-    ActionLayer * object = g->mLayers->actionLayer();
+    ActionLayer * object = observer->mLayers->actionLayer();
     int doThis = -1;
     if (object->menuObject)
     {
@@ -1633,7 +1622,7 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
             //for preformence reason we only look for specific mana if the payment couldn't be made with pmana.
         if ((currentCost > maxCost || hasX) && (gotPayments.size() || pMana->canAfford(card->getManaCost())))
         {
-            TargetChooserFactory tcf;
+            TargetChooserFactory tcf(observer);
             TargetChooser * tc = tcf.createTargetChooser(card);
             int shouldPlayPercentage = 10;
             if (tc)
@@ -1705,7 +1694,7 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
             }
             if(card->getRestrictions().size())
             {
-                AbilityFactory af;
+                AbilityFactory af(observer);
                 int canPlay = af.parseCastRestrictions(card,card->controller(),card->getRestrictions());
                 if(!canPlay)
                     continue;
@@ -1746,27 +1735,26 @@ int AIPlayerBaka::computeActions()
     reasoning:I split this from 2 to 3 else statements, leaving chooseblockers in the 3rd else,
     the 2nd else is run about 90% of the time over the third, this was causing ai to miss the chance to chooseblockers()
     when it could have blocked almost 90% of the time.*/
-    GameObserver * g = GameObserver::GetInstance();
     Player * p = this;
-    Player * currentP = g->currentlyActing();
+    Player * currentP = observer->currentlyActing();
     if (!(currentP == p))
         return 0;
-    ActionLayer * object = g->mLayers->actionLayer();
+    ActionLayer * object = observer->mLayers->actionLayer();
     if (object->menuObject)
     {
         int doThis = selectMenuOption();
         if(doThis >= 0)
         {
             if(object->abilitiesMenu->isMultipleChoice)
-                g->mLayers->actionLayer()->doMultipleChoice(doThis);
+                observer->mLayers->actionLayer()->doMultipleChoice(doThis);
             else
-                g->mLayers->actionLayer()->doReactTo(doThis);
+                observer->mLayers->actionLayer()->doReactTo(doThis);
         }
         else if(doThis < 0 || object->checkCantCancel())
-            g->mLayers->actionLayer()->doReactTo(object->abilitiesMenu->mObjects.size()-1);
+            observer->mLayers->actionLayer()->doReactTo(object->abilitiesMenu->mObjects.size()-1);
         return 1;
     }
-    TargetChooser * currentTc = g->getCurrentTargetChooser();
+    TargetChooser * currentTc = observer->getCurrentTargetChooser();
     if(currentTc)
     {
         int targetResult = currentTc->Owner == this? chooseTarget():0;
@@ -1783,13 +1771,13 @@ int AIPlayerBaka::computeActions()
     {//is already looking kick me out of this function!
         return 0;
     } 
-    Interruptible * action = g->mLayers->stackLayer()->getAt(-1);
+    Interruptible * action = observer->mLayers->stackLayer()->getAt(-1);
     Spell * spell = dynamic_cast<Spell *>(action);
     Player * lastStackActionController = spell ? spell->source->controller() : NULL;         
-    if (g->isInterrupting == this 
+    if (observer->isInterrupting == this
         && this == currentP 
         //and i am the currentlyActivePlayer
-        && ((lastStackActionController && lastStackActionController != this) || (g->mLayers->stackLayer()->count(0, NOT_RESOLVED) == 0)))
+        && ((lastStackActionController && lastStackActionController != this) || (observer->mLayers->stackLayer()->count(0, NOT_RESOLVED) == 0)))
         //am im not interupting my own spell, or the stack contains nothing.
     {
         bool ipotential = false;
@@ -1834,9 +1822,9 @@ int AIPlayerBaka::computeActions()
         findingCard = false;
         return 1;
     }
-    else if(g->mLayers->stackLayer()->count(0, NOT_RESOLVED) == 0)
+    else if(observer->mLayers->stackLayer()->count(0, NOT_RESOLVED) == 0)
     { //standard actions
-        switch (g->getCurrentGamePhase())
+        switch (observer->getCurrentGamePhase())
         {
         case Constants::MTG_PHASE_UPKEEP:
             selectAbility();
@@ -1904,13 +1892,13 @@ int AIPlayerBaka::computeActions()
             }
         case Constants::MTG_PHASE_COMBATATTACKERS:
             {
-                if(g->currentPlayer == this)//only on my turns.
+                if(observer->currentPlayer == this)//only on my turns.
                     chooseAttackers();
                 break;
             }
         case Constants::MTG_PHASE_COMBATBLOCKERS:
             {
-                if(g->currentPlayer != this)//only on my opponents turns.
+                if(observer->currentPlayer != this)//only on my opponents turns.
                     chooseBlockers();
                 break;
             }
@@ -1924,7 +1912,7 @@ int AIPlayerBaka::computeActions()
     else
     {
         cout << "my turn" << endl;
-        switch (g->getCurrentGamePhase())
+        switch (observer->getCurrentGamePhase())
         {
         case Constants::MTG_PHASE_UPKEEP:
         case Constants::MTG_PHASE_FIRSTMAIN:
@@ -1996,11 +1984,10 @@ int AIPlayerBaka::chooseAttackers()
         cd.init();
         cd.setType("creature");
         MTGCardInstance * card = NULL;
-        GameObserver * g = GameObserver::GetInstance();
-        MTGAbility * a = g->mLayers->actionLayer()->getAbility(MTGAbility::MTG_ATTACK_RULE);
+        MTGAbility * a = observer->mLayers->actionLayer()->getAbility(MTGAbility::MTG_ATTACK_RULE);
         while ((card = cd.nextmatch(game->inPlay, card)))
         {
-            g->mLayers->actionLayer()->reactToClick(a, card);
+            observer->mLayers->actionLayer()->reactToClick(a, card);
         }
     }
     return 1;
@@ -2022,10 +2009,8 @@ int AIPlayerBaka::canFirstStrikeKill(MTGCardInstance * card, MTGCardInstance *en
 
 int AIPlayerBaka::chooseBlockers()
 {
-    GameObserver * g = GameObserver::GetInstance();
-
     //Should not block during my own turn...
-    if (g->currentPlayer == this)
+    if (observer->currentPlayer == this)
         return 0;
     map<MTGCardInstance *, int> opponentsToughness;
     int opponentForce = getCreaturesInfo(opponent(), INFO_CREATURESPOWER);
@@ -2047,12 +2032,12 @@ int AIPlayerBaka::chooseBlockers()
     cd.setType("Creature");
     cd.unsecureSetTapped(-1);
     card = NULL;
-    MTGAbility * a = g->mLayers->actionLayer()->getAbility(MTGAbility::MTG_BLOCK_RULE);
+    MTGAbility * a = observer->mLayers->actionLayer()->getAbility(MTGAbility::MTG_BLOCK_RULE);
 
     // We first try to block the major threats, those that are marked in the Top 3 of our stats
     while ((card = cd.nextmatch(game->inPlay, card)))
     {
-        g->mLayers->actionLayer()->reactToClick(a, card);
+        observer->mLayers->actionLayer()->reactToClick(a, card);
         int set = 0;
         while (!set)
         {
@@ -2076,7 +2061,7 @@ int AIPlayerBaka::chooseBlockers()
                 }
                 else
                 {
-                    g->mLayers->actionLayer()->reactToClick(a, card);
+                    observer->mLayers->actionLayer()->reactToClick(a, card);
                 }
             }
         }
@@ -2091,7 +2076,7 @@ int AIPlayerBaka::chooseBlockers()
         {
             while (card->defenser)
             {
-                g->mLayers->actionLayer()->reactToClick(a, card);
+                observer->mLayers->actionLayer()->reactToClick(a, card);
             }
         }
     }
@@ -2102,7 +2087,7 @@ int AIPlayerBaka::chooseBlockers()
     {
         if (!card->defenser)
         {
-            g->mLayers->actionLayer()->reactToClick(a, card);
+            observer->mLayers->actionLayer()->reactToClick(a, card);
             int set = 0;
             while (!set)
             {
@@ -2116,7 +2101,7 @@ int AIPlayerBaka::chooseBlockers()
                     if (opponentsToughness[attacker] <= 0 || (card->toughness <= attacker->power && opponentForce * 2 < life
                             && !canFirstStrikeKill(card, attacker)) || attacker->nbOpponents() > 1)
                     {
-                        g->mLayers->actionLayer()->reactToClick(a, card);
+                        observer->mLayers->actionLayer()->reactToClick(a, card);
                     }
                     else
                     {
@@ -2132,12 +2117,10 @@ int AIPlayerBaka::chooseBlockers()
 
 int AIPlayerBaka::orderBlockers()
 {
-
-    GameObserver * g = GameObserver::GetInstance();
-    if (ORDER == g->combatStep && g->currentPlayer == this)
+    if (ORDER == observer->combatStep && observer->currentPlayer == this)
     {
         DebugTrace("AIPLAYER: order blockers");
-        g->userRequestNextGamePhase(); //TODO clever rank of blockers
+        observer->userRequestNextGamePhase(); //TODO clever rank of blockers
         return 1;
     }
 
@@ -2146,8 +2129,7 @@ int AIPlayerBaka::orderBlockers()
 
 int AIPlayerBaka::affectCombatDamages(CombatStep step)
 {
-    GameObserver * g = GameObserver::GetInstance();
-    GuiCombat * gc = g->mLayers->combatLayer();
+    GuiCombat * gc = observer->mLayers->combatLayer();
     for (vector<AttackerDamaged*>::iterator attacker = gc->attackers.begin(); attacker != gc->attackers.end(); ++attacker)
         gc->autoaffectDamage(*attacker, step);
     return 1;
@@ -2156,7 +2138,7 @@ int AIPlayerBaka::affectCombatDamages(CombatStep step)
 //TODO: Deprecate combatDamages
 int AIPlayerBaka::combatDamages()
 {
-    int currentGamePhase =  GameObserver::GetInstance()->getCurrentGamePhase();
+    int currentGamePhase =  observer->getCurrentGamePhase();
 
     if (currentGamePhase == Constants::MTG_PHASE_COMBATBLOCKERS)
         return orderBlockers();
@@ -2200,8 +2182,8 @@ int AIPlayerBaka::receiveEvent(WEvent * event)
 }
 
 
-AIPlayerBaka::AIPlayerBaka(string file, string fileSmall, string avatarFile, MTGDeck * deck) :
-    AIPlayer(file, fileSmall, deck)
+AIPlayerBaka::AIPlayerBaka(GameObserver *observer, string file, string fileSmall, string avatarFile, MTGDeck * deck) :
+    AIPlayer(observer, file, fileSmall, deck)
 {
 
     nextCardToPlay = NULL;
@@ -2236,13 +2218,12 @@ AIPlayerBaka::AIPlayerBaka(string file, string fileSmall, string avatarFile, MTG
 
 int AIPlayerBaka::Act(float dt)
 {
-    GameObserver * g = GameObserver::GetInstance();
-    if (!(g->currentlyActing() == this))
+    if (!(observer->currentlyActing() == this))
     {
         return 0;
     }
 
-    int currentGamePhase = g->getCurrentGamePhase();
+    int currentGamePhase = observer->getCurrentGamePhase();
 
     oldGamePhase = currentGamePhase;
 
@@ -2263,7 +2244,7 @@ int AIPlayerBaka::Act(float dt)
     interruptIfICan();
 
     //computeActions only when i have priority
-    if (!(g->currentlyActing() == this))
+    if (!(observer->currentlyActing() == this))
     {
         DebugTrace("Cannot interrupt");
         return 0;
@@ -2272,14 +2253,14 @@ int AIPlayerBaka::Act(float dt)
         computeActions();
     if (clickstream.empty())
     {
-        if (g->isInterrupting == this)
+        if (observer->isInterrupting == this)
         {
-            g->mLayers->stackLayer()->cancelInterruptOffer(); //endOfInterruption();
+            observer->mLayers->stackLayer()->cancelInterruptOffer(); //endOfInterruption();
         }
         else
         {
-            if (g->currentActionPlayer == this)//if im not the action player why would i requestnextphase?
-            g->userRequestNextGamePhase();
+            if (observer->currentActionPlayer == this)//if im not the action player why would i requestnextphase?
+            observer->userRequestNextGamePhase();
         }
     }
     else

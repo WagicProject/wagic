@@ -7,6 +7,9 @@
 #include "MTGDeck.h"
 #include "Subtypes.h"
 
+#include "Rules.h"
+#include "Token.h"
+
 #if defined (WIN32) || defined (LINUX)
 #include <time.h>
 #endif
@@ -15,14 +18,17 @@
 //------------------------------
 
 MTGPlayerCards::MTGPlayerCards()
+    : owner(0)
 {
     init();
 }
 
-MTGPlayerCards::MTGPlayerCards(int * idList, int idListSize)
+MTGPlayerCards::MTGPlayerCards(Player* player, int * idList, int idListSize)
+    : owner(player)
 {
     init();
     int i;
+
     for (i = 0; i < idListSize; i++)
     {
         MTGCard * card = MTGCollection()->getCardById(idList[i]);
@@ -35,6 +41,7 @@ MTGPlayerCards::MTGPlayerCards(int * idList, int idListSize)
 }
 
 MTGPlayerCards::MTGPlayerCards(MTGDeck * deck)
+    : owner(0)
 {
     init();
     initDeck(deck);
@@ -116,7 +123,7 @@ void MTGPlayerCards::initGame(int shuffle, int draw)
 void MTGPlayerCards::OptimizedHand(Player * who,int amount, int lands, int creatures, int othercards)
 {
     //give the Ai hand adventage to insure a challanging match.
-    GameObserver * game = game->GetInstance();
+    GameObserver * game = who->getObserver();
     game->currentPlayerId = game->currentPlayerId;
     game->currentPlayer = game->currentPlayer;
 
@@ -231,7 +238,7 @@ void MTGPlayerCards::drawFromLibrary()
         }
         if (cantlosers < 1)
         {
-            GameObserver::GetInstance()->gameOver = library->owner;
+            library->owner->getObserver()->gameOver = library->owner;
         }
         return;
     }
@@ -315,7 +322,7 @@ MTGCardInstance * MTGPlayerCards::putInHand(MTGCardInstance * card)
 MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone * from, MTGGameZone * to)
 {
     MTGCardInstance * copy = NULL;
-    GameObserver *g = GameObserver::GetInstance();
+    GameObserver *g = owner->getObserver();
     if (!from || !to)
         return card; //Error check
 
@@ -387,7 +394,7 @@ void MTGPlayerCards::discardRandom(MTGGameZone * from, MTGCardInstance * source)
         return;
     int r = WRand() % (from->nb_cards);
     WEvent * e = NEW WEventCardDiscard(from->cards[r]);
-    GameObserver * game = GameObserver::GetInstance();
+    GameObserver * game = owner->getObserver();
     game->receiveEvent(e);
     putInZone(from->cards[r], from, graveyard);
 }
@@ -419,7 +426,7 @@ MTGGameZone::MTGGameZone() :
 
 MTGGameZone::~MTGGameZone()
 {
-    for (int i = 0; i < nb_cards; i++)
+    for (int i = 0; i < cards.size(); i++)
     {
         SAFE_DELETE( cards[i] );
     }
@@ -439,6 +446,7 @@ void MTGGameZone::setOwner(Player * player)
     {
         cards[i]->owner = player;
         cards[i]->lastController = player;
+        cards[i]->setObserver(player->getObserver());
     }
     owner = player;
 }
@@ -647,7 +655,7 @@ int MTGGameZone::seenThisTurn(TargetChooser * tc, int castMethod)
 
 int MTGGameZone::seenThisTurn(string targetChooserDefinition, int castMethod)
 {
-    TargetChooserFactory tcf;
+    TargetChooserFactory tcf(owner->getObserver());
     TargetChooser *tc = tcf.createTargetChooser(targetChooserDefinition, NULL);
     int result = seenThisTurn(tc, castMethod);
     delete(tc);
@@ -828,10 +836,10 @@ MTGGameZone * MTGGameZone::intToZone(int zoneId, Player * p, Player * p2)
     }
 }
 
-MTGGameZone * MTGGameZone::intToZone(int zoneId, MTGCardInstance * source, MTGCardInstance * target)
+MTGGameZone * MTGGameZone::intToZone(GameObserver *g, int zoneId, MTGCardInstance * source, MTGCardInstance * target)
 {
     Player *p, *p2;
-    GameObserver * g = GameObserver::GetInstance();
+
     if (!source)
         p = g->currentlyActing();
     else
@@ -956,9 +964,9 @@ int MTGGameZone::zoneStringToId(string zoneName)
     return 0;
 }
 
-MTGGameZone * MTGGameZone::stringToZone(string zoneName, MTGCardInstance * source, MTGCardInstance * target)
+MTGGameZone * MTGGameZone::stringToZone(GameObserver *g, string zoneName, MTGCardInstance * source, MTGCardInstance * target)
 {
-    return intToZone(zoneStringToId(zoneName), source, target);
+    return intToZone(g, zoneStringToId(zoneName), source, target);
 }
 
 ostream& MTGGameZone::toString(ostream& out) const
@@ -993,6 +1001,7 @@ ostream& operator<<(ostream& out, const MTGGameZone& z)
 {
     return z.toString(out);
 }
+
 ostream& operator<<(ostream& out, const MTGPlayerCards& z)
 {
     out << z.library->nb_cards << " ";
@@ -1002,27 +1011,106 @@ ostream& operator<<(ostream& out, const MTGPlayerCards& z)
     return out;
 }
 
+istream& operator>>(istream& in, MTGGameZone& z)
+{
+    for (int i = 0; i < z.nb_cards; i++)
+    {
+        SAFE_DELETE( z.cards[i] );
+    }
+    z.cards.clear();
+    z.cardsMap.clear();
+
+    string s;
+    while(std::getline(in, s))
+    {
+        while(s.size())
+        {
+            size_t limiter = s.find(",");
+            MTGCard * card = 0;
+            string toFind;
+            if (limiter != string::npos)
+            {
+                toFind = trim(s.substr(0, limiter));
+                s = s.substr(limiter + 1);
+            }
+            else
+            {
+                toFind = trim(s);
+                s = "";
+            }
+
+            card = MTGCollection()->getCardByName(toFind);
+            int id = Rules::getMTGId(toFind);
+
+            if (card)
+            {
+                /* For the moment we add the card directly in the final zone.
+                   This is not the normal way and this prevents to resolve spells.
+                   We'll need a fusion operation afterward to cast relevant spells */
+                MTGCardInstance * newCard = NEW MTGCardInstance(card, z.owner->game);
+                z.addCard(newCard);
+            }
+            else
+            {
+                if(toFind == "*")
+                    z.nb_cards++;
+                else if ( id < 0 )
+                {
+                    // For the moment, we create a dummy Token to please the testsuite
+                    Token* myToken = new Token(id);
+                    z.addCard(myToken);
+                }
+                else
+                {
+                    DebugTrace("Card unfound " << toFind << " " << id);
+                }
+            }
+        }
+    }
+
+    return in;
+}
+
 istream& operator>>(istream& in, MTGPlayerCards& z)
 {
-    int nb, mtgid;
-    in >> nb;
+    string s;
+    streampos pos = in.tellg();
 
-    for (int i = 0; i < z.library->nb_cards; i++)
+    while(std::getline(in, s))
     {
-        SAFE_DELETE( z.library->cards[i] );
-    }
-    z.library->cards.clear();
-    z.library->cardsMap.clear();
-
-    for (int i = 0; i < nb; i++)
-    {
-        in >> mtgid;
-        MTGCard * card = MTGCollection()->getCardById(mtgid);
-        if (card)
+        size_t limiter = s.find("=");
+        if (limiter == string::npos) limiter = s.find(":");
+        string areaS;
+        if (limiter != string::npos)
         {
-            MTGCardInstance * newCard = NEW MTGCardInstance(card, &z);
-            z.library->addCard(newCard);
+            areaS = s.substr(0, limiter);
+            if (areaS.compare("graveyard") == 0)
+            {
+                istringstream stream(s.substr(limiter+1));
+                stream >> (*z.graveyard);
+            }
+            else if (areaS.compare("library") == 0)
+            {
+                istringstream stream(s.substr(limiter+1));
+                stream >> (*z.library);
+            }
+            else if (areaS.compare("hand") == 0)
+            {
+                istringstream stream(s.substr(limiter+1));
+                stream >> (*z.hand);
+            }
+            else if (areaS.compare("inplay") == 0 || areaS.compare("battlefield") == 0)
+            {
+                istringstream stream(s.substr(limiter+1));
+                stream >> (*z.battlefield);
+            }
+            else
+            {
+                in.seekg(pos);
+                break;
+            }
         }
+        pos = in.tellg();
     }
 
     return in;

@@ -71,7 +71,6 @@ protected:
     class Spells: public VertStack {};
 
 protected:
-    GameObserver* game;
     Creatures selfCreatures, opponentCreatures;
     BattleField battleField;
     Lands selfLands, opponentLands;

@@ -196,7 +196,7 @@ public:
     void eventattackedblocked(MTGCardInstance * opponent);
     void eventblocked(MTGCardInstance * opponent);
 
-    int isInPlay();
+    int isInPlay(GameObserver* game);
     JSample * getSample();
 
     JQuadPtr getIcon();

@@ -7,24 +7,24 @@
 
 #define LIB_GRAVE_OFFSET 230
 
-GuiAvatars::GuiAvatars() :
-    active(NULL)
+GuiAvatars::GuiAvatars(GameObserver* observer) :
+    GuiLayer(observer), active(NULL)
 {
-    Add(self = NEW GuiAvatar(SCREEN_WIDTH, SCREEN_HEIGHT, false, GameObserver::GetInstance()->players[0], GuiAvatar::BOTTOM_RIGHT, this));
+    Add(self = NEW GuiAvatar(SCREEN_WIDTH, SCREEN_HEIGHT, false, observer->players[0], GuiAvatar::BOTTOM_RIGHT, this));
     self->zoom = 0.9f;
-    Add(selfGraveyard = NEW GuiGraveyard(SCREEN_WIDTH - GuiAvatar::Width - GuiGameZone::Width / 2 - 11, SCREEN_HEIGHT - GuiAvatar::Height - 1, false, GameObserver::GetInstance()->players[0], this));
-    Add(selfLibrary = NEW GuiLibrary(SCREEN_WIDTH - GuiAvatar::Width - GuiGameZone::Width / 2 - 11, SCREEN_HEIGHT - GuiAvatar::Height - 5 + GuiGameZone::Height + 5, false, GameObserver::GetInstance()->players[0], this));
+    Add(selfGraveyard = NEW GuiGraveyard(SCREEN_WIDTH - GuiAvatar::Width - GuiGameZone::Width / 2 - 11, SCREEN_HEIGHT - GuiAvatar::Height - 1, false, observer->players[0], this));
+    Add(selfLibrary = NEW GuiLibrary(SCREEN_WIDTH - GuiAvatar::Width - GuiGameZone::Width / 2 - 11, SCREEN_HEIGHT - GuiAvatar::Height - 5 + GuiGameZone::Height + 5, false, observer->players[0], this));
 
-    Add(opponent = NEW GuiAvatar(0, 0, false, GameObserver::GetInstance()->players[1], GuiAvatar::TOP_LEFT, this));
+    Add(opponent = NEW GuiAvatar(0, 0, false, observer->players[1], GuiAvatar::TOP_LEFT, this));
     opponent->zoom = 0.9f;
     //opponenthandveiw button
     Add(opponentHand = NEW GuiOpponentHand(-30 + GuiAvatar::Width * 1.2 - GuiGameZone::Width / 2, 35 + GuiGameZone::Height - 10,
-                    false, GameObserver::GetInstance()->players[1], this));
+                    false, observer->players[1], this));
     //opponenthandveiwends
     Add(opponentGraveyard = NEW GuiGraveyard(5 + GuiAvatar::Width * 1.4 - GuiGameZone::Width / 2, 5, false,
-                    GameObserver::GetInstance()->players[1], this));
+                    observer->players[1], this));
     Add(opponentLibrary = NEW GuiLibrary(5 + GuiAvatar::Width * 1.4 - GuiGameZone::Width / 2, 5 + GuiGameZone::Height + 5, false,
-                    GameObserver::GetInstance()->players[1], this));
+                    observer->players[1], this));
 
     CardSelectorSingleton::Instance()->Add(self);
     CardSelectorSingleton::Instance()->Add(selfGraveyard);

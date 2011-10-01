@@ -73,9 +73,8 @@ int Rules::getMTGId(string cardName)
     return 0;
 }
 
-MTGCardInstance * Rules::getCardByMTGId(int mtgid)
+MTGCardInstance * Rules::getCardByMTGId(GameObserver* g, int mtgid)
 {
-    GameObserver * g = GameObserver::GetInstance();
     for (int i = 0; i < 2; i++)
     {
         Player * p = g->players[i];
@@ -95,27 +94,13 @@ MTGCardInstance * Rules::getCardByMTGId(int mtgid)
 }
 
 RulesPlayerData::RulesPlayerData()
+    : player(0)
 {
-    life = 20;
-    poisonCount = 0;
-    damageCount = 0;
-    preventable = 0;
-    manapool = NEW ManaCost();
-    avatar = "";
 }
 
 RulesPlayerData::~RulesPlayerData()
 {
-    SAFE_DELETE(manapool);
-}
-
-RulesPlayerZone::RulesPlayerZone()
-{
-}
-
-void RulesPlayerZone::add(int cardId)
-{
-    cards.push_back(cardId);
+    SAFE_DELETE(player);
 }
 
 RulesState::RulesState()
@@ -126,115 +111,37 @@ RulesState::RulesState()
 
 void RulesState::parsePlayerState(int playerId, string s)
 {
-    size_t limiter = s.find("=");
-    if (limiter == string::npos) limiter = s.find(":");
-    string areaS;
-    int area = -1;
-    if (limiter != string::npos)
+    stringstream stream(s);
+    stream >> *(playerData[playerId].player);
+
+    while(std::getline(stream, s))
     {
-        areaS = s.substr(0, limiter);
-        if (areaS.compare("graveyard") == 0)
+        size_t limiter = s.find("=");
+        if (limiter == string::npos) limiter = s.find(":");
+        string areaS;
+        if (limiter != string::npos)
         {
-            area = 0;
-        }
-        else if (areaS.compare("library") == 0)
-        {
-            area = 1;
-        }
-        else if (areaS.compare("hand") == 0)
-        {
-            area = 2;
-        }
-        else if (areaS.compare("inplay") == 0 || areaS.compare("battlefield") == 0)
-        {
-            area = 3;
-        }
-        else if (areaS.compare("life") == 0)
-        {
-            playerData[playerId].life = atoi((s.substr(limiter + 1)).c_str());
-            return;
-        }
-        else if (areaS.compare("poisoncount") == 0)
-        {
-            playerData[playerId].poisonCount = atoi((s.substr(limiter + 1)).c_str());
-            return;
-        }
-        else if (areaS.compare("damagecount") == 0)
-        {
-            playerData[playerId].damageCount = atoi((s.substr(limiter + 1)).c_str());
-            return;
-        }
-        else if (areaS.compare("preventable") == 0)
-        {
-            playerData[playerId].preventable = atoi((s.substr(limiter + 1)).c_str());
-            return;
-        }
-        else if (areaS.compare("avatar") == 0)
-        {
-            playerData[playerId].avatar = s.substr(limiter + 1);
-            return;
-        }
-        else if (areaS.compare("manapool") == 0)
-        {
-            SAFE_DELETE(playerData[playerId].manapool);
-            playerData[playerId].manapool = ManaCost::parseManaCost(s.substr(limiter + 1));
-            return;
-        }
-        else if (areaS.compare("customphasering") == 0)
-        {
-            playerData[playerId].phaseRing = s.substr(limiter + 1);
-            return;
-        }
-        else if (areaS.compare("offerinterruptonphase") == 0)
-        {
-            for (int i = 0; i < Constants::NB_MTG_PHASES; i++)
+            areaS = s.substr(0, limiter);
+
+            if (areaS.compare("auto") == 0)
             {
-                string phaseStr = Constants::MTGPhaseCodeNames[i];
-                if (s.find(phaseStr) != string::npos)
-                {
-                    playerData[playerId].offerInterruptOnPhase = PhaseRing::phaseStrToInt(phaseStr);
-                    break;
-                }
-            } 
-            return;
-        }
-        else if (areaS.compare("auto") == 0)
-        {
-            playerData[playerId].extraRules.push_back(s.substr(limiter + 1));
-            return;
-        }
-        else
-        {
-            return; // ERROR
-        }
-        s = s.substr(limiter + 1);
-        while (s.size())
-        {
-            unsigned int value;
-            limiter = s.find(",");
-            if (limiter != string::npos)
-            {
-                value = Rules::getMTGId(s.substr(0, limiter));
-                s = s.substr(limiter + 1);
+                playerData[playerId].extraRules.push_back(s.substr(limiter + 1));
+                return;
             }
             else
             {
-                value = Rules::getMTGId(s);
-                s = "";
+                return; // ERROR
             }
-            if (value) playerData[playerId].zones[area].add(value);
         }
-    }
-    else
-    {
-        //ERROR
+        else
+        {
+            //ERROR
+        }
     }
 }
 
-void Rules::addExtraRules()
+void Rules::addExtraRules(GameObserver* g)
 {
-    GameObserver * g = GameObserver::GetInstance();
-
     int id = g->mLayers->actionLayer()->getMaxId();
     for (int i = 0; i < 2; ++i)
     {
@@ -244,7 +151,7 @@ void Rules::addExtraRules()
         MTGCardInstance::ExtraRules[i].lastController = p;
         for (size_t j = 0; j < initState.playerData[i].extraRules.size(); ++j)
         {
-            AbilityFactory af;
+            AbilityFactory af(g);
             MTGPlayerCards * hand = NULL;
             int handsize = 7;
             int difficultyRating = 0;
@@ -309,7 +216,7 @@ void Rules::addExtraRules()
 
     for (size_t j = 0; j < extraRules.size(); ++j)
     {
-        AbilityFactory af;
+        AbilityFactory af(g);
         MTGAbility * a = af.parseMagicLine(extraRules[j], id++, NULL, &MTGCardInstance::ExtraRules[0]);
         if (a)
         {
@@ -327,7 +234,7 @@ void Rules::addExtraRules()
 
 }
 
-Player * Rules::loadPlayerMomir(int isAI)
+Player * Rules::loadPlayerMomir(GameObserver* observer, int isAI)
 {
     string deckFileSmall = "momir";
     char empty[] = "";
@@ -341,14 +248,14 @@ Player * Rules::loadPlayerMomir(int isAI)
 
     Player *player = NULL;
     if (!isAI) // Human Player
-        player = NEW HumanPlayer(options.profileFile("momir.txt", "", true).c_str(), deckFileSmall, tempDeck);
+        player = NEW HumanPlayer(observer, options.profileFile("momir.txt", "", true).c_str(), deckFileSmall, tempDeck);
     else
-        player = NEW AIMomirPlayer(options.profileFile("momir.txt", "", true).c_str(), deckFileSmall, empty, tempDeck);
+        player = NEW AIMomirPlayer(observer, options.profileFile("momir.txt", "", true).c_str(), deckFileSmall, empty, tempDeck);
 
     return player;
 }
 
-Player * Rules::loadPlayerRandom(int isAI, int mode)
+Player * Rules::loadPlayerRandom(GameObserver* observer, int isAI, int mode)
 {
     int color1 = 1 + WRand() % 5;
     int color2 = 1 + WRand() % 5;
@@ -375,16 +282,15 @@ Player * Rules::loadPlayerRandom(int isAI, int mode)
 
     Player *player = NULL;
     if (!isAI) // Human Player
-        player = NEW HumanPlayer(deckFile, deckFileSmall, tempDeck);
+        player = NEW HumanPlayer(observer, deckFile, deckFileSmall, tempDeck);
     else
-        player = NEW AIPlayerBaka(deckFile, deckFileSmall, "", tempDeck);
+        player = NEW AIPlayerBaka(observer, deckFile, deckFileSmall, "", tempDeck);
 
     return player;
 }
 
-Player * Rules::initPlayer(int playerId)
+Player * Rules::initPlayer(GameObserver *g, int playerId)
 {
-    GameObserver * g = GameObserver::GetInstance();
     Player * p = g->players[playerId];
     if (!p)
     {
@@ -393,17 +299,17 @@ Player * Rules::initPlayer(int playerId)
         switch (gamemode)
         {
         case GAME_TYPE_MOMIR:
-            return loadPlayerMomir(isAI);
+            return loadPlayerMomir(g, isAI);
         case GAME_TYPE_CLASSIC:
             return NULL; //Error for the time being
         case GAME_TYPE_RANDOM1:
-            return loadPlayerRandom(isAI, GAME_TYPE_RANDOM1);
+            return loadPlayerRandom(g, isAI, GAME_TYPE_RANDOM1);
         case GAME_TYPE_RANDOM2:
-            return loadPlayerRandom(isAI, GAME_TYPE_RANDOM2);
+            return loadPlayerRandom(g, isAI, GAME_TYPE_RANDOM2);
         }
     }
-    p->phaseRing = initState.playerData[playerId].phaseRing;
-	p->offerInterruptOnPhase = initState.playerData[playerId].offerInterruptOnPhase;
+    p->phaseRing = initState.playerData[playerId].player->phaseRing;
+    p->offerInterruptOnPhase = initState.playerData[playerId].player->offerInterruptOnPhase;
     return p;
 }
 
@@ -411,11 +317,17 @@ MTGDeck * Rules::buildDeck(int playerId)
 {
     int nbcards = 0;
     MTGDeck * deck = NEW MTGDeck(MTGCollection());
+
+    MTGGameZone * loadedPlayerZones[] = { initState.playerData[playerId].player->game->graveyard,
+                                          initState.playerData[playerId].player->game->library,
+                                          initState.playerData[playerId].player->game->hand,
+                                          initState.playerData[playerId].player->game->inPlay };
+
     for (int j = 0; j < 4; j++)
     {
-        for (size_t k = 0; k < initState.playerData[playerId].zones[j].cards.size(); k++)
+        for (size_t k = 0; k < loadedPlayerZones[j]->cards.size(); k++)
         {
-            int cardid = initState.playerData[playerId].zones[j].cards[k];
+            int cardid = loadedPlayerZones[j]->cards[k]->getId();
             deck->add(cardid);
             nbcards++;
         }
@@ -428,12 +340,11 @@ MTGDeck * Rules::buildDeck(int playerId)
     return deck;
 }
 
-void Rules::initPlayers()
+void Rules::initPlayers(GameObserver *g)
 {
-    GameObserver * g = GameObserver::GetInstance();
     for (int i = 0; i < 2; i++)
     {
-        Player * p = initPlayer(i);
+        Player * p = initPlayer(g, i);
         g->players[i] = p;
         MTGDeck * deck = buildDeck(i);
         if (deck)
@@ -445,10 +356,8 @@ void Rules::initPlayers()
     }
 }
 
-void Rules::initGame()
+void Rules::initGame(GameObserver *g)
 {
-    //Put the GameObserver in the initial state
-    GameObserver * g = GameObserver::GetInstance();
     DebugTrace("RULES Init Game\n");
 
     //Set the current player/phase
@@ -469,27 +378,31 @@ void Rules::initGame()
     for (int i = 0; i < 2; i++)
     {
         Player * p = g->players[i];
-        p->life = initState.playerData[i].life;
-        p->poisonCount = initState.playerData[i].poisonCount;
-        p->damageCount = initState.playerData[i].damageCount;
-        p->preventable = initState.playerData[i].preventable;
-        if (initState.playerData[i].avatar.size())
+        p->life = initState.playerData[i].player->life;
+        p->poisonCount = initState.playerData[i].player->poisonCount;
+        p->damageCount = initState.playerData[i].player->damageCount;
+        p->preventable = initState.playerData[i].player->preventable;
+        if (initState.playerData[i].player->mAvatarName.size())
         {
-            p->loadAvatar(initState.playerData[i].avatar);
+            p->loadAvatar(initState.playerData[i].player->mAvatarName);
         }
         MTGGameZone * playerZones[] = { p->game->graveyard, p->game->library, p->game->hand, p->game->inPlay };
+        MTGGameZone * loadedPlayerZones[] = { initState.playerData[i].player->game->graveyard,
+                                              initState.playerData[i].player->game->library,
+                                              initState.playerData[i].player->game->hand,
+                                              initState.playerData[i].player->game->inPlay };
         for (int j = 0; j < 4; j++)
         {
             MTGGameZone * zone = playerZones[j];
-            for (size_t k = 0; k < initState.playerData[i].zones[j].cards.size(); k++)
+            for (size_t k = 0; k < loadedPlayerZones[j]->cards.size(); k++)
             {
-                MTGCardInstance * card = getCardByMTGId(initState.playerData[i].zones[j].cards[k]);
+                MTGCardInstance * card = getCardByMTGId(g, loadedPlayerZones[j]->cards[k]->getId());
                 if (card && zone != p->game->library)
                 {
                     if (zone == p->game->inPlay)
                     {
                         MTGCardInstance * copy = p->game->putInZone(card, p->game->library, p->game->stack);
-                        Spell * spell = NEW Spell(copy);
+                        Spell * spell = NEW Spell(g, copy);
                         spell->resolve();
                         delete spell;
                     }
@@ -512,7 +425,7 @@ void Rules::initGame()
             }
         }
     }
-    addExtraRules();
+    addExtraRules(g);
 
     postUpdateInitDone = false;
 DebugTrace("RULES Init Game Done !\n");
@@ -521,34 +434,20 @@ DebugTrace("RULES Init Game Done !\n");
 //This function has all iitialization that can't be done in the "real" init function,
 // because the first update call messes things up.
 //It's a hack, ideally, the first update call shouldn't mess the init parameters...
-void Rules::postUpdateInit()
+void Rules::postUpdateInit(GameObserver* observer)
 {
     if (postUpdateInitDone)
         return;
     for (int i = 0; i < 2; ++ i)
-        GameObserver::GetInstance()->players[i]->getManaPool()->add(initState.playerData[i].manapool);
+        observer->players[i]->getManaPool()->add(initState.playerData[i].player->getManaPool());
        // GameObserver::GetInstance()->players[i]->getManaPool()->copy(initState.playerData[i].manapool);
     postUpdateInitDone = true;
 }
 
-void RulesPlayerZone::cleanup()
-{
-    cards.clear();
-}
-
 void RulesPlayerData::cleanup()
 {
-    if (manapool) delete manapool;
-    manapool = NULL;
-    manapool = NEW ManaCost();
-    for (int i = 0; i < 5; i++)
-    {
-        zones[i].cleanup();
-    }
-    life = 20;
-    poisonCount = 0;
-    damageCount = 0;
-    preventable = 0;
+    SAFE_DELETE(player);
+    player = new Player(NULL, "", "");
 }
 
 void RulesState::cleanup()

@@ -59,7 +59,7 @@ public:
     virtual string getShortDesc() = 0;
     int getExpiration();
     int getReward();
-    virtual bool isDone(Player * _p1, Player * _p2, GameApp * _app) = 0;
+    virtual bool isDone(GameObserver* observer, GameApp * _app) = 0;
     bool isExpired();
     void setExpiration(int _expiresIn);
     void passOneDay();
@@ -100,7 +100,7 @@ public:
     void addRandomTask(int diff = 100);
     void removeTask(Task *task);
     void passOneDay();
-    void getDoneTasks(Player * _p1, Player * _p2, GameApp * _app, vector<Task*>* result);
+    void getDoneTasks(GameObserver* observer, GameApp * _app, vector<Task*>* result);
     int getTaskCount();
 
     void Start();
@@ -121,7 +121,7 @@ public:
     TaskWinAgainst(int _opponent = 0);
     virtual string createDesc();
     virtual string getShortDesc();
-    virtual bool isDone(Player * _p1, Player * _p2, GameApp * _app);
+    virtual bool isDone(GameObserver* observer, GameApp * _app);
 };
 
 class TaskSlaughter: public TaskWinAgainst
@@ -133,7 +133,7 @@ public:
     TaskSlaughter(int _opponent = 0, int _targetLife = -15);
     virtual string createDesc();
     virtual string getShortDesc();
-    virtual bool isDone(Player * _p1, Player * _p2, GameApp * _app);
+    virtual bool isDone(GameObserver* observer, GameApp * _app);
     virtual void storeCustomAttribs();
     virtual void restoreCustomAttribs();
     virtual void randomize();
@@ -149,7 +149,7 @@ public:
     TaskDelay(int _opponent = 0, int _turn = 20);
     virtual string createDesc();
     virtual string getShortDesc();
-    virtual bool isDone(Player * _p1, Player * _p2, GameApp * _app);
+    virtual bool isDone(GameObserver* observer, GameApp * _app);
     virtual void storeCustomAttribs();
     virtual void restoreCustomAttribs();
     virtual void randomize();
@@ -166,7 +166,7 @@ public:
 
     virtual string createDesc();
     virtual string getShortDesc();
-    virtual bool isDone(Player * _p1, Player * _p2, GameApp * _app);
+    virtual bool isDone(GameObserver* observer, GameApp * _app);
     virtual void storeCustomAttribs();
     virtual void restoreCustomAttribs();
     virtual void randomize();
@@ -183,7 +183,7 @@ public:
 
     virtual string createDesc();
     virtual string getShortDesc();
-    virtual bool isDone(Player * _p1, Player * _p2, GameApp * _app);
+    virtual bool isDone(GameObserver* observer, GameApp * _app);
     virtual void storeCustomAttribs();
     virtual void restoreCustomAttribs();
     virtual void randomize();
@@ -200,7 +200,7 @@ public:
 
     virtual string createDesc();
     virtual string getShortDesc();
-    virtual bool isDone(Player * _p1, Player * _p2, GameApp * _app);
+    virtual bool isDone(GameObserver* observer, GameApp * _app);
     virtual void storeCustomAttribs();
     virtual void restoreCustomAttribs();
     virtual void randomize();
@@ -216,7 +216,7 @@ public:
 
     virtual string createDesc();
     virtual string getShortDesc();
-    virtual bool isDone(Player * _p1, Player * _p2, GameApp * _app);
+    virtual bool isDone(GameObserver* observer, GameApp * _app);
     virtual void storeCustomAttribs();
     virtual void restoreCustomAttribs();
     virtual void randomize();
@@ -232,7 +232,7 @@ public:
 
  virtual string createDesc();
  virtual string getShortDesc();
- virtual bool isDone(Player * _p1, Player * _p2, GameApp * _app);
+ virtual bool isDone(GameObserver* observer, GameApp * _app);
  virtual void storeCustomAttribs();
  virtual void restoreCustomAttribs();
  virtual void randomize();

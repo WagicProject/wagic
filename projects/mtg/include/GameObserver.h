@@ -24,13 +24,13 @@ using namespace std;
 
 class GameObserver{
  protected:
-  static GameObserver * mInstance;
   MTGCardInstance * cardWaitingForTargets;
   queue<WEvent *> eventsQueue;
 
   int nbPlayers;
   int untap(MTGCardInstance * card);
   bool WaitForExtraPayment(MTGCardInstance* card);
+  void initialize();
 
  public:
   int currentPlayerId;
@@ -56,19 +56,20 @@ class GameObserver{
 
   int cardClick(MTGCardInstance * card,Targetable * _object = NULL );
   int getCurrentGamePhase();
+  const char * getCurrentGamePhaseName();
+  const char * getNextGamePhaseName();
   void nextCombatStep();
   void userRequestNextGamePhase();
   void nextGamePhase();
   void cleanupPhase();
   void nextPlayer();
-  static void Init(Player * _players[], int _nbplayers);
-  static GameObserver * GetInstance();
-  static void EndInstance();
+  void setPlayers(Player * _players[], int _nbplayers);
   Player * currentPlayer;
   Player * currentActionPlayer;
   Player * isInterrupting;
   Player * opponent();
   Player * currentlyActing();
+  GameObserver();
   GameObserver(Player * _players[], int _nbplayers);
   ~GameObserver();
   void gameStateBasedEffects();
@@ -86,6 +87,7 @@ class GameObserver{
   void Update(float dt);
   void Render();
   void ButtonPressed(PlayGuiObject*);
+  int getPlayersNumber() {return nbPlayers;};
 
   int receiveEvent(WEvent * event);
   bool connectRule;

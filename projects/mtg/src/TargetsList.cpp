@@ -20,8 +20,7 @@ int TargetsList::addTarget(Targetable * target)
 {
     if (!alreadyHasTarget(target))
     {
-        GameObserver * state = state->GetInstance();
-        TargetChooser * tc = state->getCurrentTargetChooser();
+        TargetChooser * tc = target->getObserver()->getCurrentTargetChooser();
         if(!tc || (tc && tc->maxtargets == 1))
         {
             //because this was originally coded with targets as an array
@@ -39,7 +38,6 @@ int TargetsList::addTarget(Targetable * target)
         }
     }
     return 0;
-
 }
 
 int TargetsList::alreadyHasTarget(Targetable * target)

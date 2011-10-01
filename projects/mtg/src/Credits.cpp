@@ -29,6 +29,7 @@ Credits::Credits()
     unlocked = -1;
     p1 = NULL;
     p2 = NULL;
+    observer = NULL;
 }
 
 Credits::~Credits()
@@ -39,15 +40,15 @@ Credits::~Credits()
     bonus.clear();
 }
 
-void Credits::compute(Player * _p1, Player * _p2, GameApp * _app)
+void Credits::compute(GameObserver* g, GameApp * _app)
 {
-    p1 = _p1;
-    p2 = _p2;
-    app = _app;
-    showMsg = (WRand() % 3);
-    GameObserver * g = GameObserver::GetInstance();
     if (!g->turn)
         return;
+    p1 = g->players[0];
+    p2 = g->players[1];
+    observer = g;
+    app = _app;
+    showMsg = (WRand() % 3);
 
     //no credits when the AI plays :)
     if (p1->isAI())
@@ -105,7 +106,7 @@ void Credits::compute(Player * _p1, Player * _p2, GameApp * _app)
         GameOptionAward * goa = NULL;
         // <Tasks handling>
         vector<Task*> finishedTasks;
-        playerdata->taskList->getDoneTasks(_p1, _p2, _app, &finishedTasks);
+        playerdata->taskList->getDoneTasks(g, _app, &finishedTasks);
 
         char buffer[512];
 
@@ -243,7 +244,6 @@ void Credits::Render()
 {
     if (!p1)
         return;
-    GameObserver * g = GameObserver::GetInstance();
     JRenderer * r = JRenderer::GetInstance();
     WFont * f = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
     WFont * f2 = WResourceManager::Instance()->GetWFont(Fonts::MENU_FONT);
@@ -255,7 +255,7 @@ void Credits::Render()
     f3->SetScale(1);
     f3->SetColor(ARGB(255,255,255,255));
     char buffer[512];
-    if (!g->turn)
+    if (!observer->turn)
     {
         sprintf(buffer, "%s", _("Please check your deck (not enough cards?)").c_str());
     }
@@ -263,7 +263,7 @@ void Credits::Render()
     {
         if (!p1->isAI() && p2->isAI())
         {
-            if (g->gameOver != p1)
+            if (observer->gameOver != p1)
             {
                 sprintf(buffer, _("Congratulations! You earn %i credits").c_str(), value);
                 JQuadPtr unlockedQuad = GetUnlockedQuad(unlockedTextureName);
@@ -285,7 +285,7 @@ void Credits::Render()
         else
         {
             int winner = 2;
-            if (g->gameOver != p1)
+            if (observer->gameOver != p1)
             {
                 winner = 1;
             }
@@ -308,9 +308,9 @@ void Credits::Render()
     y += 15;
 
     //!!
-    if (g->gameOver != p1)
+    if (observer->gameOver != p1)
     {
-        sprintf(buffer, _("Game length: %i turns (%i seconds)").c_str(), g->turn, this->gameLength);
+        sprintf(buffer, _("Game length: %i turns (%i seconds)").c_str(), observer->turn, this->gameLength);
         f->DrawString(buffer, 10, y);
         y += 10;
         sprintf(buffer, _("Credits per minute: %i").c_str(), (int) (60 * value / this->gameLength));

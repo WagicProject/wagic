@@ -8,6 +8,7 @@ class Token: public MTGCardInstance
     MTGCardInstance * tokenSource;
 public:
     Token(string _name, MTGCardInstance * source, int _power = 0, int _toughness = 0);
+    Token(int id);
 };
 
 #endif

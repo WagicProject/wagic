@@ -29,7 +29,7 @@ public:
     virtual void Render();
     virtual void Update(float dt);
     bool CheckUserInput(JButton key);
-    ActionLayer();
+    ActionLayer(GameObserver *observer);
     ~ActionLayer();
     int cancelCurrentAction();
     ActionElement * isWaitingForAnswer();

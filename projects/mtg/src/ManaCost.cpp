@@ -16,6 +16,7 @@ SUPPORT_OBJECT_ANALYTICS(ManaCost)
 ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstance * c)
 {
     ManaCost * manaCost;
+    GameObserver* g = c?c->getObserver():NULL;
     if (_manaCost)
     {
         manaCost = _manaCost;
@@ -75,9 +76,8 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
                 }
                 else
                 {
-
                     //Parse target for extraCosts
-                    TargetChooserFactory tcf;
+                    TargetChooserFactory tcf(g);
                     TargetChooser * tc = NULL;
                     size_t target_start = value.find("(");
                     size_t target_end = value.find(")");
@@ -143,10 +143,12 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
                         manaCost->addExtraCost(NEW MillCost(tc));
                         break;
                     case 'n': //return unblocked attacker cost
-                        TargetChooserFactory tcf;
-                        tc = tcf.createTargetChooser("creature|myBattlefield", c);
-                        manaCost->addExtraCost(NEW Ninja(tc));
-                        break;
+                        {
+                            TargetChooserFactory tcf(g);
+                            tc = tcf.createTargetChooser("creature|myBattlefield", c);
+                            manaCost->addExtraCost(NEW Ninja(tc));
+                            break;
+                        }
                     case 'p' :
                         {
                             SAFE_DELETE(tc);
@@ -165,7 +167,7 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
                     {
                         size_t counter_start = value.find("(");
                         size_t counter_end = value.find(")", counter_start);
-                        AbilityFactory abf;
+                        AbilityFactory abf(g);
                         string counterString = value.substr(counter_start + 1, counter_end - counter_start - 1);
                         Counter * counter = abf.parseCounter(counterString, c);
                         size_t separator = value.find(",", counter_start);
@@ -786,7 +788,7 @@ void ManaPool::init()
 {
     ManaCost::init();
     WEvent * e = NEW WEventEmptyManaPool(this);
-    GameObserver::GetInstance()->receiveEvent(e);
+    player->getObserver()->receiveEvent(e);
 }
 
 ManaPool::ManaPool(Player * player) :
@@ -805,7 +807,7 @@ int ManaPool::remove(int color, int value)
     for (int i = 0; i < value; ++i)
     {
         WEvent * e = NEW WEventConsumeMana(color, this);
-        GameObserver::GetInstance()->receiveEvent(e);
+        player->getObserver()->receiveEvent(e);
     }
     return result;
 }
@@ -816,7 +818,7 @@ int ManaPool::add(int color, int value, MTGCardInstance * source)
     for (int i = 0; i < value; ++i)
     {
         WEvent * e = NEW WEventEngageMana(color, source, this);
-        GameObserver::GetInstance()->receiveEvent(e);
+        player->getObserver()->receiveEvent(e);
     }
     return result;
 }
@@ -831,7 +833,7 @@ int ManaPool::add(ManaCost * _cost, MTGCardInstance * source)
         for (int j = 0; j < _cost->getCost(i); j++)
         {
             WEvent * e = NEW WEventEngageMana(i, source, this);
-            GameObserver::GetInstance()->receiveEvent(e);
+            player->getObserver()->receiveEvent(e);
         }
     }
     return result;
@@ -852,7 +854,7 @@ int ManaPool::pay(ManaCost * _cost)
         for (int j = 0; j < value; j++)
         {
             WEvent * e = NEW WEventConsumeMana(i, this);
-            GameObserver::GetInstance()->receiveEvent(e);
+            player->getObserver()->receiveEvent(e);
 
         }
     }

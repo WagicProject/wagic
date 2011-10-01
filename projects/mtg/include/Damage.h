@@ -23,20 +23,22 @@ class Damageable:public Targetable
 protected:
 public:
     int life;
-	int handsize;
+    int handsize;
     int poisonCount;
     int damageCount;
     int preventable;
     int thatmuch;
     int lifeLostThisTurn;
     int type_as_damageable;
-    Damageable(int _life){life=_life;lifeLostThisTurn = 0;};
-  int getLife(){return life;};
-  virtual int dealDamage(int damage){life-=damage;return life;};
-  virtual int afterDamage(){return 0;}
-  virtual int poisoned(){return 0;}
-  virtual int prevented(){return 0;}
-  virtual JQuadPtr getIcon(){return JQuadPtr();}
+    Damageable(GameObserver* observer, int _life)
+        : Targetable(observer)
+        {life=_life;lifeLostThisTurn = 0;};
+    int getLife(){return life;};
+    virtual int dealDamage(int damage){life-=damage;return life;};
+    virtual int afterDamage(){return 0;}
+    virtual int poisoned(){return 0;}
+    virtual int prevented(){return 0;}
+    virtual JQuadPtr getIcon(){return JQuadPtr();}
 };
 
 class Damage: public Interruptible
@@ -48,8 +50,8 @@ class Damage: public Interruptible
   int typeOfDamage;
   int damage;
   void Render();
-  Damage(MTGCardInstance* source, Damageable * target);
-  Damage(MTGCardInstance* source, Damageable * target, int damage, int typeOfDamage = DAMAGE_OTHER);
+  Damage(GameObserver* observer, MTGCardInstance* source, Damageable * target);
+  Damage(GameObserver* observer, MTGCardInstance* source, Damageable * target, int damage, int typeOfDamage = DAMAGE_OTHER);
   int resolve();
   virtual ostream& toString(ostream& out) const;
 };
@@ -58,14 +60,17 @@ class DamageStack : public GuiLayer, public Interruptible
 {
  protected:
   int currentState;
-  GameObserver* game;
 
  public:
   int receiveEvent(WEvent * event);
   int resolve();
   void Render();
   virtual ostream& toString(ostream& out) const;
-  DamageStack();
+  DamageStack(GameObserver *observer);
 };
+
+ostream& operator<<(ostream& out, const Damageable& p);
+
+istream& operator>>(istream& in, Damageable& p);
 
 #endif

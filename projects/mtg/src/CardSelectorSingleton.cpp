@@ -12,11 +12,10 @@ namespace CardSelectorSingleton
 {
     static CardSelectorBase* sCardSelectorInstance = NULL;
 
-    CardSelectorBase* Create(DuelLayers* inDuelLayers)
+    CardSelectorBase* Create(GameObserver* observer, DuelLayers* inDuelLayers)
     {
         if (sCardSelectorInstance == NULL)
-            sCardSelectorInstance = NEW CardSelector(inDuelLayers);
-        //sCardSelectorInstance = NEW Navigator(inDuelLayers);
+            sCardSelectorInstance = NEW CardSelector(observer, inDuelLayers);
 
         return sCardSelectorInstance;
     }

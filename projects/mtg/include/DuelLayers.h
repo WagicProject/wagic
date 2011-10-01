@@ -35,7 +35,7 @@ public:
     ActionStack * stackLayer();
     GuiCombat * combatLayer();
     GuiAvatars * GetAvatars();
-    void init();
+    void init(GameObserver* go);
     virtual void Update(float dt, Player * player);
     void CheckUserInput(int isAI);
     void Render();

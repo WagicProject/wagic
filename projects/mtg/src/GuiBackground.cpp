@@ -7,7 +7,8 @@
 
 const std::string kBackdropFile = "backdrop.jpg";
 
-GuiBackground::GuiBackground()
+GuiBackground::GuiBackground(GameObserver* observer)
+    : GuiLayer(observer)
 {
 }
 
@@ -19,10 +20,9 @@ void GuiBackground::Render()
 {
     JRenderer* renderer = JRenderer::GetInstance();
     JQuadPtr quad;
-    GameObserver * go = GameObserver::GetInstance();
-    if (go && go->mRules && go->mRules->bg.size())
+    if (observer && observer->mRules && observer->mRules->bg.size())
     {
-        quad = WResourceManager::Instance()->RetrieveTempQuad(go->mRules->bg);
+        quad = WResourceManager::Instance()->RetrieveTempQuad(observer->mRules->bg);
     }
     if (!quad.get())
     {

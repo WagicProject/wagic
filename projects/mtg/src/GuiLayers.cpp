@@ -4,7 +4,8 @@
 #include "Player.h"
 #include "AllAbilities.h"
 
-GuiLayer::GuiLayer()
+GuiLayer::GuiLayer(GameObserver *observer)
+    : observer(observer)
 {
     modal = 0;
     hasFocus = false;
@@ -20,7 +21,7 @@ GuiLayer::~GuiLayer()
 void GuiLayer::Add(JGuiObject *object)
 {
     mObjects.push_back(object);
-    AbilityFactory af;
+    AbilityFactory af(observer);
     if(MTGAbility * a = dynamic_cast<MTGAbility*>(object))
     {
         AManaProducer * manaObject = dynamic_cast<AManaProducer*>(af.getCoreAbility((MTGAbility*)object));
@@ -34,7 +35,7 @@ void GuiLayer::Add(JGuiObject *object)
 int GuiLayer::Remove(JGuiObject *object)
 {
 
-    AbilityFactory af;
+    AbilityFactory af(observer);
     if(MTGAbility * a = dynamic_cast<MTGAbility*>(object))
     {
         AManaProducer * manaObject = dynamic_cast<AManaProducer*>(af.getCoreAbility((MTGAbility*)object));

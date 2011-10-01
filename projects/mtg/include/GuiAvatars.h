@@ -17,7 +17,7 @@ protected:
     GuiAvatar* active;
 
 public:
-    GuiAvatars();
+    GuiAvatars(GameObserver *observer);
     ~GuiAvatars();
 
     GuiAvatar* GetSelf();

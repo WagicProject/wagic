@@ -41,8 +41,8 @@ namespace
     }
 }
 
-GuiPhaseBar::GuiPhaseBar() :
-  PlayGuiObject(0, 0, 106, 0, false),
+GuiPhaseBar::GuiPhaseBar(GameObserver* observer) :
+    PlayGuiObject(0, 0, 106, 0, false), GuiLayer(observer),
   phase(NULL), angle(0.0f), zoomFactor(ICONSCALE)
 {
     JQuadPtr quad = WResourceManager::Instance()->GetQuad("phasebar");
@@ -96,7 +96,6 @@ bool GuiPhaseBar::Leaving(JButton key)
 
 void GuiPhaseBar::Render()
 {
-    GameObserver * g = GameObserver::GetInstance();
     JQuadPtr quad = WResourceManager::Instance()->GetQuad("phasebar");
 
     JRenderer::GetInstance()->DrawLine(0, CENTER, SCREEN_WIDTH, CENTER, ARGB(255, 255, 255, 255));
@@ -133,18 +132,18 @@ void GuiPhaseBar::Render()
     WFont * font = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
     string currentP = _("your turn");
     string interrupt = "";
-    if (g->currentPlayer == g->players[1])
+    if (observer->currentPlayer == observer->players[1])
     {
         currentP = _("opponent's turn");
     }
     font->SetColor(ARGB(255, 255, 255, 255));
-    if (g->currentlyActing() && g->currentlyActing()->isAI())
+    if (observer->currentlyActing() && observer->currentlyActing()->isAI())
     {
         font->SetColor(ARGB(255, 128, 128, 128));
     }
-    if (g->currentlyActing() != g->currentPlayer)
+    if (observer->currentlyActing() != observer->currentPlayer)
     {
-        if (g->currentPlayer == g->players[0])
+        if (observer->currentPlayer == observer->players[0])
         {
             interrupt = _(" - ") + _("opponent plays");
         }
@@ -155,7 +154,7 @@ void GuiPhaseBar::Render()
     }
 
     char buf[64];
-    sprintf(buf, _("(%s%s) %s").c_str(), currentP.c_str(), interrupt.c_str(), _(PhaseRing::phaseName(phase->id)).c_str());
+    sprintf(buf, _("(%s%s) %s").c_str(), currentP.c_str(), interrupt.c_str(), observer->phaseRing->phaseName(phase->id));
     font->DrawString(buf, SCREEN_WIDTH - 5, 2, JGETEXT_RIGHT);
 }
 

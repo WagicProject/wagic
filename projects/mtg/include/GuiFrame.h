@@ -11,7 +11,7 @@ protected:
     float step;
 
 public:
-    GuiFrame();
+    GuiFrame(GameObserver* observer);
     ~GuiFrame();
     virtual void Render();
     void Update(float dt);

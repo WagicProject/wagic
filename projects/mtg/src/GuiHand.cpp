@@ -32,8 +32,8 @@ HandLimitor::HandLimitor(GuiHand* hand) :
 {
 }
 
-GuiHand::GuiHand(MTGHand* hand) :
-    GuiLayer(), hand(hand)
+GuiHand::GuiHand(GameObserver* observer, MTGHand* hand) :
+    GuiLayer(observer), hand(hand)
 {
     back = WResourceManager::Instance()->RetrieveTempQuad("handback.png");
     if (back.get())
@@ -61,8 +61,8 @@ bool GuiHand::isInHand(CardView* card)
     return (it != cards.end());
 }
 
-GuiHandOpponent::GuiHandOpponent(MTGHand* hand) :
-    GuiHand(hand)
+GuiHandOpponent::GuiHandOpponent(GameObserver* observer, MTGHand* hand) :
+    GuiHand(observer, hand)
 {
 }
 
@@ -81,8 +81,8 @@ void GuiHandOpponent::Render()
     }
 }
 
-GuiHandSelf::GuiHandSelf(MTGHand* hand) :
-    GuiHand(hand), state(Closed), backpos(ClosedX, SCREEN_HEIGHT - 250, 1.0, 0, 255)
+GuiHandSelf::GuiHandSelf(GameObserver* observer, MTGHand* hand) :
+    GuiHand(observer, hand), state(Closed), backpos(ClosedX, SCREEN_HEIGHT - 250, 1.0, 0, 255)
 {
     limitor = NEW HandLimitor(this);
     if (OptionHandDirection::HORIZONTAL == options[Options::HANDDIRECTION].number)

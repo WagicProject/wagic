@@ -3,7 +3,8 @@
 #include "GameApp.h"
 #include "GuiFrame.h"
 
-GuiFrame::GuiFrame()
+GuiFrame::GuiFrame(GameObserver* observer)
+    : GuiLayer(observer)
 {
     if (WResourceManager::Instance()->GetTexture("wood.png"))
         wood = WResourceManager::Instance()->RetrieveQuad("wood.png", 0, 0, SCREEN_WIDTH, 28);

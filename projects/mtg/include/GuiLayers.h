@@ -16,6 +16,7 @@ class GuiLayer
 {
 protected:
     JButton mActionButton;
+    GameObserver* observer;
 public:
     int mCurr;
     vector<JGuiObject *> mObjects;
@@ -26,7 +27,7 @@ public:
     bool hasFocus;
     virtual void resetObjects();
     int getMaxId();
-    GuiLayer();
+    GuiLayer(GameObserver *observer);
     virtual ~GuiLayer();
     virtual void Update(float dt);
     virtual bool CheckUserInput(JButton key)

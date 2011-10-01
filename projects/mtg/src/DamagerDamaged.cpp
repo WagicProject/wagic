@@ -43,7 +43,7 @@ void DamagerDamaged::addDamage(int damage, DamagerDamaged* source)
             return;
         }
     if (0 < damage)
-        damages.push_back(Damage(source->card, card, damage, DAMAGE_COMBAT));
+        damages.push_back(Damage(card->getObserver(), source->card, card, damage, DAMAGE_COMBAT));
     return;
 }
 

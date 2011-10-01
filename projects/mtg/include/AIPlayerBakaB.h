@@ -49,7 +49,7 @@ protected:
 
  public:
 
-    AIPlayerBakaB(string deckFile, string deckfileSmall, string avatarFile, MTGDeck * deck = NULL);
+    AIPlayerBakaB(GameObserver *observer, string deckFile, string deckfileSmall, string avatarFile, MTGDeck * deck = NULL);
     virtual int Act(float dt);
     void initTimer();
     virtual int computeActions();

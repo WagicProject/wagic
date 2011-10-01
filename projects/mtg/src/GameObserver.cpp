@@ -11,35 +11,18 @@
 #include "MTGGamePhase.h"
 #include "GuiPhaseBar.h"
 
-GameObserver * GameObserver::mInstance = NULL;
-
-GameObserver* GameObserver::GetInstance()
+GameObserver::GameObserver()
 {
-    return mInstance;
+    initialize();
 }
 
-void GameObserver::EndInstance()
+void GameObserver::initialize()
 {
-
-    SAFE_DELETE(mInstance);
-}
-
-void GameObserver::Init(Player * _players[], int _nbplayers)
-{
-    mInstance = NEW GameObserver(_players, _nbplayers);
-}
-
-GameObserver::GameObserver(Player * _players[], int _nb_players)
-{
-    for (int i = 0; i < _nb_players; i++)
-    {
-        players[i] = _players[i];
-    }
     currentPlayer = NULL;
     currentActionPlayer = NULL;
     isInterrupting = NULL;
     currentPlayerId = 0;
-    nbPlayers = _nb_players;
+    nbPlayers = 0;
     currentGamePhase = -1;
     targetChooser = NULL;
     cardWaitingForTargets = NULL;
@@ -52,9 +35,35 @@ GameObserver::GameObserver(Player * _players[], int _nb_players)
     connectRule = false;
 }
 
+void GameObserver::setPlayers(Player * _players[], int _nbplayers)
+{
+    for (int i = 0; i < _nbplayers; i++)
+    {
+        players[i] = _players[i];
+        players[i]->setObserver(this);
+    }
+    nbPlayers = _nbplayers;
+}
+
+GameObserver::GameObserver(Player * _players[], int _nb_players)
+{
+    initialize();
+    setPlayers(_players, _nb_players);
+}
+
 int GameObserver::getCurrentGamePhase()
 {
     return currentGamePhase;
+}
+
+const char* GameObserver::getCurrentGamePhaseName()
+{
+    return phaseRing->phaseName(currentGamePhase);
+}
+
+const char* GameObserver::getNextGamePhaseName()
+{
+    return phaseRing->phaseName((currentGamePhase + 1) % Constants::MTG_PHASE_CLEANUP);
 }
 
 Player * GameObserver::opponent()
@@ -130,8 +139,7 @@ void GameObserver::nextGamePhase()
 		while (currentPlayer->game->hand->nb_cards > currentPlayer->handsize && currentPlayer->nomaxhandsize == false)
         {
             WEvent * e = NEW WEventCardDiscard(currentPlayer->game->hand->cards[0]);
-            GameObserver * game = GameObserver::GetInstance();
-            game->receiveEvent(e);
+            receiveEvent(e);
             currentPlayer->game->putInGraveyard(currentPlayer->game->hand->cards[0]);
         }
         mLayers->actionLayer()->Update(0);
@@ -249,19 +257,19 @@ void GameObserver::startGame(Rules * rules)
     turn = 0;
     mRules = rules;
     if (rules) 
-    	rules->initPlayers();
+        rules->initPlayers(this);
 
     options.automaticStyle(players[0], players[1]);
 
     mLayers = NEW DuelLayers();
-    mLayers->init();
+    mLayers->init(this);
 
     currentPlayerId = 0;
     currentPlayer = players[0];
     currentActionPlayer = currentPlayer;
-    phaseRing = NEW PhaseRing(players, nbPlayers);
+    phaseRing = NEW PhaseRing(this);
     if (rules) 
-    	rules->initGame();
+        rules->initGame(this);
 
     //Preload images from hand
     if (!players[0]->isAI())
@@ -298,7 +306,7 @@ void GameObserver::startGame(Rules * rules)
                 if (card)
                 {
                     MTGCardInstance * copy = p->game->putInZone(card, p->game->library, p->game->stack);
-                    Spell * spell = NEW Spell(copy);
+                    Spell * spell = NEW Spell(this, copy);
                     spell->resolve();
                     delete spell;
                 }
@@ -455,7 +463,7 @@ void GameObserver::gameStateBasedEffects()
             //////////////////////////  
             //forceDestroy over ride//
             //////////////////////////
-            if(card->isInPlay())
+            if(card->isInPlay(this))
             {
                 card->graveEffects = false;
                 card->exileEffects = false;
@@ -471,7 +479,7 @@ void GameObserver::gameStateBasedEffects()
                     check = card->childrenCards[wC];
                     for(size_t wCC = 0; wCC < card->childrenCards.size();wCC++)
                     {
-                        if(check->isInPlay())
+                        if(check->isInPlay(this))
                         {
                             if(check->getName() == card->childrenCards[wCC]->getName() && check != card->childrenCards[wCC])
                             {
@@ -559,7 +567,7 @@ void GameObserver::gameStateBasedEffects()
                     c->flanked -= 1;
                 }
                 c->fresh = 0;
-                if(c->wasDealtDamage && c->isInPlay())
+                if(c->wasDealtDamage && c->isInPlay(this))
                     c->wasDealtDamage = false;
                 c->damageToController = false;
                 c->damageToOpponent = false;
@@ -571,8 +579,7 @@ void GameObserver::gameStateBasedEffects()
                 if (c->has(Constants::TREASON))
                 {
                     WEvent * e = NEW WEventCardSacrifice(c);
-                    GameObserver * game = GameObserver::GetInstance();
-                    game->receiveEvent(e);
+                    receiveEvent(e);
 
                     p->game->putInGraveyard(c);
                 }
@@ -632,8 +639,7 @@ void GameObserver::gameStateBasedEffects()
     }
 
     //Auto skip Phases
-    GameObserver * game = game->GetInstance();
-    int skipLevel = (game->currentPlayer->playMode == Player::MODE_TEST_SUITE) ? Constants::ASKIP_NONE
+    int skipLevel = (currentPlayer->playMode == Player::MODE_TEST_SUITE) ? Constants::ASKIP_NONE
         : options[Options::ASPHASES].number;
     int nrCreatures = currentPlayer->game->inPlay->countByType("Creature");
 
@@ -752,7 +758,7 @@ void GameObserver::Affinity()
                     int reduce = 0;
                     if(card->has(Constants::AFFINITYGREENCREATURES))
                     {
-                        TargetChooserFactory tf;
+                        TargetChooserFactory tf(this);
                         TargetChooser * tc = tf.createTargetChooser("creature[green]",NULL);
                         reduce = card->controller()->game->battlefield->countByCanTarget(tc);
                         SAFE_DELETE(tc);
@@ -968,8 +974,7 @@ int GameObserver::cardClick(MTGCardInstance * card, Targetable * object)
 		&& currentPlayer->game->hand->nb_cards > currentPlayer->handsize && currentPlayer->nomaxhandsize == false)
     {
         WEvent * e = NEW WEventCardDiscard(currentPlayer->game->hand->cards[0]);
-        GameObserver * game = GameObserver::GetInstance();
-        game->receiveEvent(e);
+        receiveEvent(e);
         currentPlayer->game->putInGraveyard(card);
     }
     else if (reaction)
@@ -1093,7 +1098,7 @@ int GameObserver::targetListIsSet(MTGCardInstance * card)
 {
     if (targetChooser == NULL)
     {
-        TargetChooserFactory tcf;
+        TargetChooserFactory tcf(this);
         targetChooser = tcf.createTargetChooser(card);
         if (targetChooser == NULL)
         {

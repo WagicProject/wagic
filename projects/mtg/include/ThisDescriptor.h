@@ -22,7 +22,7 @@ class ThisDescriptor{
 
 class ThisDescriptorFactory{
 public:
-  ThisDescriptor * createThisDescriptor(string s);
+  ThisDescriptor * createThisDescriptor(GameObserver* observer, string s);
 };
 
 class ThisCounter:public ThisDescriptor{

@@ -13,39 +13,36 @@
 #include "Trash.h"
 #include "DuelLayers.h"
 
-void DuelLayers::init()
+void DuelLayers::init(GameObserver* go)
 {
-
-    GameObserver* go = GameObserver::GetInstance();
-
-    mCardSelector = CardSelectorSingleton::Create(this);
+    mCardSelector = CardSelectorSingleton::Create(go, this);
     //1 Action Layer
-    action = NEW ActionLayer();
-    action->Add(NEW MTGGamePhase(action->getMaxId()));
+    action = NEW ActionLayer(go);
+    action->Add(NEW MTGGamePhase(go, action->getMaxId()));
     //Add Magic Specific Rules
-    action->Add(NEW MTGEventBonus(-1));
-    action->Add(NEW MTGPutInPlayRule(-1));
-    action->Add(NEW MTGKickerRule(-1));
-    action->Add(NEW MTGAlternativeCostRule(-1));
-    action->Add(NEW MTGBuyBackRule(-1));
-    action->Add(NEW MTGFlashBackRule(-1));
-    action->Add(NEW MTGRetraceRule(-1));
-    action->Add(NEW MTGSuspendRule(-1));
-    action->Add(NEW MTGAttackRule(-1));
-    action->Add(NEW MTGBlockRule(-1));
-    action->Add(NEW MTGCombatTriggersRule(-1));
-    action->Add(NEW MTGLegendRule(-1));
-    action->Add(NEW MTGPlaneWalkerRule(-1));
-    action->Add(NEW MTGTokensCleanup(-1)); // needs to be before persist
-    action->Add(NEW MTGPersistRule(-1));
-    action->Add(NEW MTGVampireRule(-1));
-    action->Add(NEW MTGUnearthRule(-1));
-    action->Add(NEW MTGLifelinkRule(-1));
-    action->Add(NEW MTGDeathtouchRule(-1));
-    action->Add(NEW OtherAbilitiesEventReceiver(-1));
-    action->Add(NEW MTGMorphCostRule(-1));
+    action->Add(NEW MTGEventBonus(go, -1));
+    action->Add(NEW MTGPutInPlayRule(go, -1));
+    action->Add(NEW MTGKickerRule(go, -1));
+    action->Add(NEW MTGAlternativeCostRule(go, -1));
+    action->Add(NEW MTGBuyBackRule(go, -1));
+    action->Add(NEW MTGFlashBackRule(go, -1));
+    action->Add(NEW MTGRetraceRule(go, -1));
+    action->Add(NEW MTGSuspendRule(go, -1));
+    action->Add(NEW MTGAttackRule(go, -1));
+    action->Add(NEW MTGBlockRule(go, -1));
+    action->Add(NEW MTGCombatTriggersRule(go, -1));
+    action->Add(NEW MTGLegendRule(go, -1));
+    action->Add(NEW MTGPlaneWalkerRule(go, -1));
+    action->Add(NEW MTGTokensCleanup(go, -1)); // needs to be before persist
+    action->Add(NEW MTGPersistRule(go, -1));
+    action->Add(NEW MTGVampireRule(go, -1));
+    action->Add(NEW MTGUnearthRule(go, -1));
+    action->Add(NEW MTGLifelinkRule(go, -1));
+    action->Add(NEW MTGDeathtouchRule(go, -1));
+    action->Add(NEW OtherAbilitiesEventReceiver(go, -1));
+    action->Add(NEW MTGMorphCostRule(go, -1));
     //Other display elements
-    action->Add(NEW HUDDisplay(-1));
+    action->Add(NEW HUDDisplay(go, -1));
 
     Add(NEW GuiMana(20, 20, go->players[1]));
     Add(NEW GuiMana(440, 20, go->players[0]));
@@ -53,13 +50,13 @@ void DuelLayers::init()
     Add(combat = NEW GuiCombat(go));
     Add(action);
     Add(mCardSelector);
-    Add(hand = NEW GuiHandSelf(go->players[0]->game->hand));
-    Add(avatars = NEW GuiAvatars());
-    Add(NEW GuiHandOpponent(go->players[1]->game->hand));
+    Add(hand = NEW GuiHandSelf(go, go->players[0]->game->hand));
+    Add(avatars = NEW GuiAvatars(go));
+    Add(NEW GuiHandOpponent(go, go->players[1]->game->hand));
     Add(NEW GuiPlay(go));
-    Add(NEW GuiPhaseBar());
-    Add(NEW GuiFrame());
-    Add(NEW GuiBackground());
+    Add(NEW GuiPhaseBar(go));
+    Add(NEW GuiFrame(go));
+    Add(NEW GuiBackground(go));
 }
 
 void DuelLayers::CheckUserInput(int isAI)

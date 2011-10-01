@@ -26,3 +26,11 @@ Token::Token(string _name, MTGCardInstance * source, int _power, int _toughness)
     defenser = NULL;
     banding = NULL;
 }
+
+Token::Token(int id) :
+    MTGCardInstance()
+{
+    isToken = true;
+    name = "dummyToken";
+    setMTGId(id);
+}

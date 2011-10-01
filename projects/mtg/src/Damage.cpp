@@ -8,12 +8,14 @@
 #include "WResourceManager.h"
 #include "GameObserver.h"
 
-Damage::Damage(MTGCardInstance * source, Damageable * target)
+Damage::Damage(GameObserver* observer, MTGCardInstance * source, Damageable * target)
+    : Interruptible(observer)
 {
     init(source, target, source->getPower(), DAMAGE_OTHER);
 }
 
-Damage::Damage(MTGCardInstance * source, Damageable * target, int damage, int _typeOfDamage)
+Damage::Damage(GameObserver* observer, MTGCardInstance * source, Damageable * target, int damage, int _typeOfDamage)
+    : Interruptible(observer)
 {
     init(source, target, damage, _typeOfDamage);
 }
@@ -36,16 +38,15 @@ int Damage::resolve()
     if (damage < 0)
         damage = 0; //Negative damages cannot happen
     state = RESOLVED_OK;
-    GameObserver * g = GameObserver::GetInstance();
     WEvent * e = NEW WEventDamage(this);
     //Replacement Effects
-    e = g->replacementEffects->replace(e);
+    e = observer->replacementEffects->replace(e);
     if (!e)
         return 0;
     WEventDamage * ev = dynamic_cast<WEventDamage*> (e);
     if (!ev)
     {
-        g->receiveEvent(e);
+        observer->receiveEvent(e);
         return 0;
     }
     damage = ev->damage->damage;
@@ -193,13 +194,12 @@ int Damage::resolve()
             }
             target->lifeLostThisTurn += damage;
             WEvent * lifed = NEW WEventLife((Player*)target,-damage);
-            GameObserver * game = GameObserver::GetInstance();
-            game->receiveEvent(lifed);
+            observer->receiveEvent(lifed);
         }
     }
 
     //Send (Damage/Replaced effect) event to listeners
-    g->receiveEvent(e);
+    observer->receiveEvent(e);
     return a;
 }
 void Damage::Render()
@@ -241,7 +241,8 @@ ostream& Damage::toString(ostream& out) const
     return out;
 }
 
-DamageStack::DamageStack()
+DamageStack::DamageStack(GameObserver *observer)
+    : GuiLayer(observer), Interruptible(observer)
 {
     currentState = -1;
     type = ACTION_DAMAGES;
@@ -261,7 +262,7 @@ int DamageStack::resolve()
         if (damage->state == NOT_RESOLVED)
             damage->resolve();
     }
-    GameObserver::GetInstance()->receiveEvent(NEW WEventDamageStackResolved());
+    ((Interruptible*)this)->getObserver()->receiveEvent(NEW WEventDamageStackResolved());
     return 1;
 }
 
@@ -299,4 +300,50 @@ void DamageStack::Render()
 ostream& DamageStack::toString(ostream& out) const
 {
     return (out << "DamageStack ::: currentState : " << currentState);
+}
+
+
+ostream& operator<<(ostream& out, const Damageable& p)
+{
+    return out;
+}
+
+istream& operator>>(istream& in, Damageable& p)
+{
+    string s;
+    streampos pos = in.tellg();
+    while(std::getline(in, s))
+    {
+        size_t limiter = s.find("=");
+        if (limiter == string::npos) limiter = s.find(":");
+        string areaS;
+        if (limiter != string::npos)
+        {
+            areaS = s.substr(0, limiter);
+            if (areaS.compare("life") == 0)
+            {
+                p.life = atoi((s.substr(limiter + 1)).c_str());
+            }
+            else if (areaS.compare("poisoncount") == 0)
+            {
+                p.poisonCount = atoi((s.substr(limiter + 1)).c_str());
+            }
+            else if (areaS.compare("damagecount") == 0)
+            {
+                p.damageCount = atoi((s.substr(limiter + 1)).c_str());
+            }
+            else if (areaS.compare("preventable") == 0)
+            {
+                p.preventable = atoi((s.substr(limiter + 1)).c_str());
+            }
+            else
+            {
+                in.seekg(pos);
+                break;
+            }
+        }
+        pos = in.tellg();
+    }
+
+    return in;
 }

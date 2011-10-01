@@ -5,8 +5,8 @@
 
 MTGGamePhase* MTGGamePhase::instance = 0;
 
-MTGGamePhase::MTGGamePhase(int id) :
-    ActionElement(id)
+MTGGamePhase::MTGGamePhase(GameObserver* g, int id) :
+    ActionElement(id), observer(g)
 {
     animation = 0;
     currentState = -1;
@@ -18,7 +18,7 @@ MTGGamePhase::MTGGamePhase(int id) :
 void MTGGamePhase::Update(float dt)
 {
 
-    int newState = GameObserver::GetInstance()->getCurrentGamePhase();
+    int newState = observer->getCurrentGamePhase();
     if (newState != currentState)
     {
         activeState = ACTIVE;
@@ -41,13 +41,12 @@ void MTGGamePhase::Update(float dt)
 
 bool MTGGamePhase::NextGamePhase()
 {
-    GameObserver * game = GameObserver::GetInstance();
     if (activeState == INACTIVE)
     {
-        if (game->currentActionPlayer == game->currentlyActing())
+        if (observer->currentActionPlayer == observer->currentlyActing())
         {
             activeState = ACTIVE;
-            game->userRequestNextGamePhase();
+            observer->userRequestNextGamePhase();
             return true;
         }
     }

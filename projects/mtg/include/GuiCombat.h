@@ -10,7 +10,6 @@
 class GuiCombat: public GuiLayer
 {
 protected:
-    GameObserver* go;
     DamagerDamaged* active;
     AttackerDamaged* activeAtk;
     static JTexture* ok_tex;

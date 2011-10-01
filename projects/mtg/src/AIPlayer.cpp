@@ -45,7 +45,7 @@ AIAction::AIAction(Player * owner, MTGCardInstance * c, MTGCardInstance * t)
 
 int AIAction::Act()
 {
-    GameObserver * g = GameObserver::GetInstance();
+    GameObserver * g = owner->getObserver();
     if (player && !playerAbilityTarget)
     {
         g->cardClick(NULL, player);
@@ -85,10 +85,10 @@ int AIAction::Act()
 
 int AIAction::clickMultiAct(vector<Targetable*>& actionTargets)
 {
-    GameObserver * g = GameObserver::GetInstance();
+    GameObserver * g = player->getObserver();
     TargetChooser * tc = g->getCurrentTargetChooser();
-    if(!tc) return 0;
     bool sourceIncluded = false;
+    if(!tc) return 0;
     for(size_t f = 0;f < actionTargets.size();f++)
     {
         MTGCardInstance * card = ((MTGCardInstance *) actionTargets[f]);
@@ -123,8 +123,8 @@ int AIAction::clickMultiAct(vector<Targetable*>& actionTargets)
     return 1;
 }
 
-AIPlayer::AIPlayer(string file, string fileSmall, MTGDeck * deck) :
-    Player(file, fileSmall, deck)
+AIPlayer::AIPlayer(GameObserver *observer, string file, string fileSmall, MTGDeck * deck) :
+    Player(observer, file, fileSmall, deck)
 {
     agressivity = 50;
     forceBestAbilityUse = false;
@@ -147,9 +147,8 @@ AIPlayer::~AIPlayer()
 
 int AIPlayer::Act(float dt)
 {
-    GameObserver * gameObs = GameObserver::GetInstance();
-    if (gameObs->currentPlayer == this)
-        gameObs->userRequestNextGamePhase();
+    if (observer->currentPlayer == this)
+        observer->userRequestNextGamePhase();
     return 1;
 }
 
@@ -217,7 +216,7 @@ int AIPlayer::clickSingleTarget(TargetChooser * tc, vector<Targetable*>& potenti
 }
 
 
-AIPlayer * AIPlayerFactory::createAIPlayer(MTGAllCards * collection, Player * opponent, int deckid)
+AIPlayer * AIPlayerFactory::createAIPlayer(GameObserver *observer, MTGAllCards * collection, Player * opponent, int deckid)
 {
     char deckFile[512];
     string avatarFilename; // default imagename
@@ -268,7 +267,7 @@ AIPlayer * AIPlayerFactory::createAIPlayer(MTGAllCards * collection, Player * op
     }
     
     // AIPlayerBaka will delete MTGDeck when it's time
-    AIPlayerBaka * baka = NEW AIPlayerBaka(deckFile, deckFileSmall, avatarFilename, NEW MTGDeck(deckFile, collection,0, deckSetting));
+    AIPlayerBaka * baka = NEW AIPlayerBaka(observer, deckFile, deckFileSmall, avatarFilename, NEW MTGDeck(deckFile, collection,0, deckSetting));
     baka->deckId = deckid;
     return baka;
 }
@@ -284,7 +283,7 @@ void AIPlayer::Render()
 }
 
 #ifdef AI_CHANGE_TESTING
-AIPlayer * AIPlayerFactory::createAIPlayerTest(MTGAllCards * collection, Player * opponent, string _folder)
+AIPlayer * AIPlayerFactory::createAIPlayerTest(GameObserver *observer, MTGAllCards * collection, Player * opponent, string _folder)
 {
     char deckFile[512];
     string avatarFilename; // default imagename
@@ -312,7 +311,7 @@ AIPlayer * AIPlayerFactory::createAIPlayerTest(MTGAllCards * collection, Player 
     if (!nbdecks)
     {
         if (_folder.size())
-            return createAIPlayerTest(collection, opponent, "");
+            return createAIPlayerTest(observer, collection, opponent, "");
         return NULL;
     }
     deckid = 1 + WRand() % (nbdecks);
@@ -334,8 +333,8 @@ AIPlayer * AIPlayerFactory::createAIPlayerTest(MTGAllCards * collection, Player 
     
     // AIPlayerBaka will delete MTGDeck when it's time
     AIPlayerBaka * baka = opponent ? 
-        NEW AIPlayerBakaB(deckFile, deckFileSmall, avatarFilename, NEW MTGDeck(deckFile, collection,0, deckSetting)) :
-        NEW AIPlayerBaka(deckFile, deckFileSmall, avatarFilename, NEW MTGDeck(deckFile, collection,0, deckSetting));
+        NEW AIPlayerBakaB(observer, deckFile, deckFileSmall, avatarFilename, NEW MTGDeck(deckFile, collection,0, deckSetting)) :
+        NEW AIPlayerBaka(observer, deckFile, deckFileSmall, avatarFilename, NEW MTGDeck(deckFile, collection,0, deckSetting));
     baka->deckId = deckid;
     return baka;
 }

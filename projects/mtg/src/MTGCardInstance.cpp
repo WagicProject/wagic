@@ -22,12 +22,12 @@ MTGCardInstance MTGCardInstance::NoCard = MTGCardInstance();
 MTGCardInstance MTGCardInstance::ExtraRules[] = { MTGCardInstance(), MTGCardInstance() };
 
 MTGCardInstance::MTGCardInstance() :
-    CardPrimitive(), MTGCard(), Damageable(0), view(NULL)
+    CardPrimitive(), MTGCard(), Damageable(0, 0), view(NULL)
 {
     initMTGCI();
 }
 MTGCardInstance::MTGCardInstance(MTGCard * card, MTGPlayerCards * arg_belongs_to) :
-    CardPrimitive(card->data), MTGCard(card), Damageable(card->data->getToughness()), view(NULL)
+    CardPrimitive(card->data), MTGCard(card), Damageable((arg_belongs_to->owner)?arg_belongs_to->owner->getObserver():0, card->data->getToughness()), view(NULL)
 {
     initMTGCI();
     model = card;
@@ -78,10 +78,10 @@ void MTGCardInstance::copy(MTGCardInstance * card)
     //Now this is dirty...
     int backupid = mtgid;
     mtgid = source->getId();
-    Spell * spell = NEW Spell(this);
-    AbilityFactory af;
-    GameObserver * g = GameObserver::GetInstance();
-    af.addAbilities(g->mLayers->actionLayer()->getMaxId(), spell);
+    Spell * spell = NEW Spell(observer, this);
+    observer = card->observer;
+    AbilityFactory af(observer);
+    af.addAbilities(observer->mLayers->actionLayer()->getMaxId(), spell);
     delete spell;
     mtgid = backupid;
 }
@@ -220,9 +220,8 @@ void MTGCardInstance::addType(int type)
         setName(Subtypes::subtypesList->find(type));
 
     WEvent * e = NEW WEventCardChangeType(this, type, before, true);
-    GameObserver * go = GameObserver::GetInstance();
-    if (go)
-        go->receiveEvent(e);
+    if (observer)
+        observer->receiveEvent(e);
     else
         SAFE_DELETE(e);
 }
@@ -264,17 +263,15 @@ int MTGCardInstance::removeType(int id, int removeAll)
             setName("");
     }
     WEvent * e = NEW WEventCardChangeType(this, id, before, after);
-    GameObserver * go = GameObserver::GetInstance();
-    if (go)
-        go->receiveEvent(e);
+    if (observer)
+        observer->receiveEvent(e);
     else
         SAFE_DELETE(e);
     return result;
 }
 
-int MTGCardInstance::isInPlay()
+int MTGCardInstance::isInPlay(GameObserver* game)
 {
-    GameObserver * game = GameObserver::GetInstance();
     for (int i = 0; i < 2; i++)
     {
         MTGGameZone * zone = game->players[i]->game->inPlay;
@@ -291,7 +288,7 @@ int MTGCardInstance::afterDamage()
     doDamageTest = 0;
     if (!isCreature())
         return 0;
-    if (life <= 0 && isInPlay())
+    if (life <= 0 && isInPlay(observer))
     {
         return destroy();
     }
@@ -344,16 +341,14 @@ void MTGCardInstance::eventattacked()
 {
     didattacked = 1;
     WEvent * e = NEW WEventCardAttacked(this);
-    GameObserver * game = GameObserver::GetInstance();
-    game->receiveEvent(e);
+    observer->receiveEvent(e);
 }
 
 //sets card as attacked alone and sends events
 void MTGCardInstance::eventattackedAlone()
 {
     WEvent * e = NEW WEventCardAttackedAlone(this);
-    GameObserver * game = GameObserver::GetInstance();
-    game->receiveEvent(e);
+    observer->receiveEvent(e);
 }
 
 //sets card as attacked and sends events
@@ -361,8 +356,7 @@ void MTGCardInstance::eventattackednotblocked()
 {
     didattacked = 1;
     WEvent * e = NEW WEventCardAttackedNotBlocked(this);
-    GameObserver * game = GameObserver::GetInstance();
-    game->receiveEvent(e);
+    observer->receiveEvent(e);
 }
 
 //sets card as attacked and sends events
@@ -370,8 +364,7 @@ void MTGCardInstance::eventattackedblocked(MTGCardInstance * opponent)
 {
     didattacked = 1;
     WEvent * e = NEW WEventCardAttackedBlocked(this,opponent);
-    GameObserver * game = GameObserver::GetInstance();
-    game->receiveEvent(e);
+    observer->receiveEvent(e);
 }
 
 //sets card as blocking and sends events
@@ -379,8 +372,7 @@ void MTGCardInstance::eventblocked(MTGCardInstance * opponent)
 {
     didblocked = 1;
     WEvent * e = NEW WEventCardBlocked(this,opponent);
-    GameObserver * game = GameObserver::GetInstance();
-    game->receiveEvent(e);
+    observer->receiveEvent(e);
 }
 
 //Taps the card
@@ -390,8 +382,7 @@ void MTGCardInstance::tap()
         return;
     tapped = 1;
     WEvent * e = NEW WEventCardTap(this, 0, 1);
-    GameObserver * game = GameObserver::GetInstance();
-    game->receiveEvent(e);
+    observer->receiveEvent(e);
 }
 
 void MTGCardInstance::untap()
@@ -400,8 +391,7 @@ void MTGCardInstance::untap()
         return;
     tapped = 0;
     WEvent * e = NEW WEventCardTap(this, 1, 0);
-    GameObserver * game = GameObserver::GetInstance();
-    game->receiveEvent(e);
+    observer->receiveEvent(e);
 }
 
 void MTGCardInstance::setUntapping()
@@ -471,8 +461,7 @@ int MTGCardInstance::initAttackersDefensers()
 int MTGCardInstance::cleanup()
 {
     initAttackersDefensers();
-    GameObserver * game = GameObserver::GetInstance();
-    if (!game || game->currentPlayer == controller())
+    if (!observer || observer->currentPlayer == controller())
     {
         summoningSickness = 0;
     }
@@ -489,11 +478,11 @@ int MTGCardInstance::cleanup()
 
 int MTGCardInstance::stillInUse()
 {
-    GameObserver * game = GameObserver::GetInstance();
-    if (game->mLayers->actionLayer()->stillInUse(this))
+    if (observer->mLayers->actionLayer()->stillInUse(this))
         return 1;
     if (!previous)
         return 0;
+
     return previous->stillInUse();
 }
 
@@ -540,7 +529,7 @@ int MTGCardInstance::canAttack()
         return 0;
     if (!isCreature())
         return 0;
-    if (!isInPlay())
+    if (!isInPlay(observer))
         return 0;
     return 1;
 }
@@ -569,7 +558,7 @@ int MTGCardInstance::canBlock()
         return 0;
     if (!isCreature())
         return 0;
-    if (!isInPlay())
+    if (!isInPlay(observer))
         return 0;
     return 1;
 }
@@ -717,9 +706,8 @@ int MTGCardInstance::setAttacker(int value)
         previousTarget = p;
     attacker = value;
     WEvent * e = NEW WEventCreatureAttacker(this, previousTarget, target);
-    GameObserver * go = GameObserver::GetInstance();
-    if (go)
-        go->receiveEvent(e);
+    if (observer)
+        observer->receiveEvent(e);
     else
         SAFE_DELETE(e);
     return 1;
@@ -775,9 +763,8 @@ int MTGCardInstance::raiseBlockerRankOrder(MTGCardInstance * blocker)
 
     std::iter_swap(it1, it2);
     WEvent* e = NEW WEventCreatureBlockerRank(*it1, *it2, this);
-    GameObserver * go = GameObserver::GetInstance();
-    if (go)
-        go->receiveEvent(e);
+    if (observer)
+        observer->receiveEvent(e);
     else
         SAFE_DELETE(e);
     //delete(e);
@@ -817,13 +804,12 @@ int MTGCardInstance::addBlocker(MTGCardInstance * blocker)
 //Returns opponents to this card for this turn. This * should * take into account banding
 MTGCardInstance * MTGCardInstance::getNextOpponent(MTGCardInstance * previous)
 {
-    GameObserver * game = GameObserver::GetInstance();
     int foundprevious = 0;
     if (!previous)
         foundprevious = 1;
     if (attacker)
     {
-        MTGInPlay * inPlay = game->opponent()->game->inPlay;
+        MTGInPlay * inPlay = observer->opponent()->game->inPlay;
         for (int i = 0; i < inPlay->nb_cards; i++)
         {
             MTGCardInstance * current = inPlay->cards[i];
@@ -843,7 +829,7 @@ MTGCardInstance * MTGCardInstance::getNextOpponent(MTGCardInstance * previous)
     }
     else if (defenser)
     {
-        MTGInPlay * inPlay = game->currentPlayer->game->inPlay;
+        MTGInPlay * inPlay = observer->currentPlayer->game->inPlay;
         for (int i = 0; i < inPlay->nb_cards; i++)
         {
             MTGCardInstance * current = inPlay->cards[i];
@@ -865,10 +851,9 @@ MTGCardInstance * MTGCardInstance::getNextOpponent(MTGCardInstance * previous)
 
 int MTGCardInstance::setDefenser(MTGCardInstance * opponent)
 {
-    GameObserver * g = GameObserver::GetInstance();
     if (defenser)
     {
-        if (g->players[0]->game->battlefield->hasCard(defenser) || g->players[1]->game->battlefield->hasCard(defenser))
+        if (observer->players[0]->game->battlefield->hasCard(defenser) || observer->players[1]->game->battlefield->hasCard(defenser))
         {
             defenser->removeBlocker(this);
         }
@@ -880,7 +865,7 @@ int MTGCardInstance::setDefenser(MTGCardInstance * opponent)
     if (defenser)
         defenser->addBlocker(this);
     if (e)
-        g->receiveEvent(e);
+        observer->receiveEvent(e);
     return 1;
 }
 

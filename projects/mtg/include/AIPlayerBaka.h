@@ -114,7 +114,7 @@ class AIPlayerBaka: public AIPlayer{
 
      vector<MTGAbility*>gotPayments;
     int deckId;
-    AIPlayerBaka(string deckFile, string deckfileSmall, string avatarFile, MTGDeck * deck = NULL);
+    AIPlayerBaka(GameObserver *observer, string deckFile, string deckfileSmall, string avatarFile, MTGDeck * deck = NULL);
     virtual int Act(float dt);
     void initTimer();
     virtual int computeActions();

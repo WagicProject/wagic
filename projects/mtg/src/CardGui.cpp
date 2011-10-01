@@ -132,7 +132,7 @@ void CardGui::Render()
     WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
 
     JRenderer * renderer = JRenderer::GetInstance();
-    GameObserver * game = GameObserver::GetInstance();
+    GameObserver * game = card->getObserver();
 
     TargetChooser * tc = NULL;
     if (game)
@@ -496,9 +496,11 @@ void CardGui::AlternateRender(MTGCard * card, const Pos& pos)
         }
         for (int i = Constants::MTG_NB_COLORS - 2; i >= 1; --i)
         {
-            for (int cost = manacost->getCost(i); cost > 0; --cost)
+            int cost;
+
+            for (cost = manacost->getCost(i); cost > 0; --cost)
             {
-                renderer->RenderQuad(manaIcons[i].get(), x + (-12 * j + 75) * pos.actZ, pos.actY + (yOffset) * pos.actZ, 0, 0.4f
+                renderer->RenderQuad(manaIcons[i].get(), x + (-12 * j + 75) * pos.actZ, pos.actY + (yOffset) * pos.actZ, 0.0f, 0.4f
                     * pos.actZ, 0.4f * pos.actZ);
                 ++j;
             }

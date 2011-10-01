@@ -28,7 +28,6 @@ GuiAvatar::GuiAvatar(float x, float y, bool hasFocus, Player * player, Corner co
 
 void GuiAvatar::Render()
 {
-    GameObserver * game = GameObserver::GetInstance();
     JRenderer * r = JRenderer::GetInstance();
     int life = player->life;
     int poisonCount = player->poisonCount;
@@ -88,11 +87,11 @@ void GuiAvatar::Render()
             avatarRed = 255;
     }
 
-    if (game->currentPlayer == player)
+    if (player->getObserver()->currentPlayer == player)
         r->DrawRect(x0 - 1, y0 - 1, 36 * actZ, 51 * actZ, ARGB((int)actA, 0, 255, 0));
-    else if (game->currentActionPlayer == player)
+    else if (player->getObserver()->currentActionPlayer == player)
         r->DrawRect(x0, y0, 34 * actZ, 49 * actZ, ARGB((int)actA, 0, 0, 255));
-    if (game->isInterrupting == player)
+    if (player->getObserver()->isInterrupting == player)
         r->DrawRect(x0, y0, 34 * actZ, 49 * actZ, ARGB((int)actA, 255, 0, 0));
 
     //Life
@@ -189,7 +188,7 @@ void GuiGameZone::Render()
 
 void GuiGameZone::ButtonPressed(int controllerId, int controlId)
 {
-    GameObserver::GetInstance()->ButtonPressed(this);
+    zone->owner->getObserver()->ButtonPressed(this);
 }
 
 bool GuiGameZone::CheckUserInput(JButton key)
@@ -223,7 +222,7 @@ void GuiGameZone::Update(float dt)
 GuiGameZone::GuiGameZone(float x, float y, bool hasFocus, MTGGameZone* zone, GuiAvatars* parent) :
     GuiStatic(static_cast<float> (GuiGameZone::Height), x, y, hasFocus, parent), zone(zone)
 {
-    cd = NEW CardDisplay(0, GameObserver::GetInstance(), static_cast<int> (x), static_cast<int> (y), this);
+    cd = NEW CardDisplay(0, zone->owner->getObserver(), static_cast<int> (x), static_cast<int> (y), this);
     cd->zone = zone;
     showCards = 0;
 }

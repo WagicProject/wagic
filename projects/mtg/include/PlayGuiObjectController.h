@@ -15,7 +15,8 @@ protected:
 public:
     virtual void Update(float dt);
     virtual bool CheckUserInput(JButton key);
-    PlayGuiObjectController()
+    PlayGuiObjectController(GameObserver *observer)
+        : GuiLayer(observer)
     {
         last_user_move = 0;
     }

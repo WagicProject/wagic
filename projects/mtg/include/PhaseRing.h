@@ -10,6 +10,7 @@ using namespace std;
  */
 
 class Player;
+class GameObserver;
 
 typedef enum
 {
@@ -37,19 +38,20 @@ public:
 class PhaseRing
 {
 private:
-    static bool extraDamagePhase(int id);
+    bool extraDamagePhase(int id);
+    GameObserver* observer;
 public:
     list<Phase *> ring;
     list<Phase *>::iterator current;
     Phase * getCurrentPhase();
     Phase * forward(bool sendEvents = true);
     Phase * goToPhase(int id, Player * player, bool sendEvents = true);
-    PhaseRing(Player* players[], int nbPlayers = 2);
+    PhaseRing(GameObserver* observer);
     ~PhaseRing();
     int addPhase(Phase * phase);
     int addPhaseBefore(int id, Player* player, int after_id, Player * after_player, int allOccurences = 1);
     int removePhase(int id, Player * player, int allOccurences = 1);
-    static const char * phaseName(int id);
+    const char * phaseName(int id);
     static int phaseStrToInt(string s);
 
 };

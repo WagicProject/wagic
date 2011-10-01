@@ -24,8 +24,9 @@ class CardSelectorBase: public GuiLayer
 {
 public:
 
-    CardSelectorBase(int inDrawMode = DrawMode::kNormal) :
-        mDrawMode(inDrawMode)
+    CardSelectorBase(GameObserver *observer, int inDrawMode = DrawMode::kNormal) :
+        GuiLayer(observer), mDrawMode(inDrawMode)
+
     {
     }
     ;
@@ -70,7 +71,7 @@ protected:
     PlayGuiObject* fetchMemory(SelectorMemory&);
 
 public:
-    CardSelector(DuelLayers*);
+    CardSelector(GameObserver *observer, DuelLayers*);
     void Add(PlayGuiObject*);
     void Remove(PlayGuiObject*);
     bool CheckUserInput(JButton key);

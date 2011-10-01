@@ -13,7 +13,7 @@ protected:
     float zoomFactor;
 
 public:
-    GuiPhaseBar();
+    GuiPhaseBar(GameObserver* observer);
     ~GuiPhaseBar();
     void Update(float dt);
     virtual void Render();

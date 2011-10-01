@@ -18,37 +18,18 @@ public:
     void cleanup();
 };
 
-class TestSuitePlayerZone
-{
-public:
-    int cards[MAX_TESTUITE_CARDS];
-    int nbitems;
-    void add(int cardid);
-    TestSuitePlayerZone();
-    void cleanup();
-};
-
-class TestSuitePlayerData
-{
-public:
-    int life;
-    ManaCost * manapool;
-    TestSuitePlayerZone zones[5];
-    TestSuitePlayerData();
-    ~TestSuitePlayerData();
-    void cleanup();
-
-};
 
 class TestSuite;
+class TestSuiteAI;
 class TestSuiteState
 {
 public:
     int phase;
     void parsePlayerState(int playerId, string s);
     TestSuiteState();
-    TestSuitePlayerData playerData[2];
-    void cleanup();
+
+    TestSuiteAI* players[2];
+    void cleanup(TestSuite*);
 };
 
 class TestSuitePregame
@@ -66,8 +47,6 @@ private:
     TestSuiteState endState;
     TestSuiteActions actions;
     bool forceAbility;
-    int summoningSickness;
-
 
     int load(const char * filename);
     void cleanup();
@@ -77,12 +56,13 @@ public:
     float timerLimit;
     int aiMaxCalls;
     int currentAction;
+    int summoningSickness;
 
     TestSuiteState initState;
     string getNextAction();
-    MTGPlayerCards * buildDeck(int playerId);
-    Interruptible * getActionByMTGId(int mtgid);
-    int assertGame();
+    MTGPlayerCards * buildDeck(Player*, int playerId);
+    Interruptible * getActionByMTGId(GameObserver* observer, int mtgid);
+    int assertGame(GameObserver*);
 
 public:
     int startTime, endTime;
@@ -90,7 +70,7 @@ public:
     unsigned int seed;
     int nbFailed, nbTests, nbAIFailed, nbAITests;
     TestSuite(const char * filename);
-    void initGame();
+    void initGame(GameObserver* g);
     void pregameTests();
     int loadNext();
     static int Log(const char * text);
@@ -106,9 +86,10 @@ private:
     TestSuite * suite;
 
 public:
-    TestSuiteAI(TestSuite * suite, int playerId);
+    TestSuiteAI(GameObserver *observer, TestSuite * suite, int playerId);
     virtual int Act(float dt);
     virtual int displayStack();
+    bool summoningSickness() {return (suite->summoningSickness == 1); }
 };
 
 #endif

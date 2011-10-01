@@ -18,7 +18,7 @@ namespace CardSelectorSingleton
     /*
      ** Create the singleton pointer. Instance() isn't valid until this is called.
      */
-    CardSelectorBase* Create(DuelLayers* inDuelLayers);
+    CardSelectorBase* Create(GameObserver* observer, DuelLayers* inDuelLayers);
 
     /*
      ** Teardown the singleton pointer instance.

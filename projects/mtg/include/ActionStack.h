@@ -83,8 +83,8 @@ public:
         return TARGET_STACKACTION;
     }
     
-    Interruptible(int inID = 0, bool hasFocus = false)
-        : PlayGuiObject(40, x, y, inID, hasFocus), state(NOT_RESOLVED), display(0), source(NULL)
+    Interruptible(GameObserver* observer, int inID = 0, bool hasFocus = false)
+        : Targetable(observer), PlayGuiObject(40, x, y, inID, hasFocus), state(NOT_RESOLVED), display(0), source(NULL)
     {
     }
     
@@ -112,7 +112,7 @@ public:
     void Render();
     virtual ostream& toString(ostream& out) const;
     virtual const string getDisplayName() const;
-    NextGamePhase(int id);
+    NextGamePhase(GameObserver* observer, int id);
 };
 
 class Spell: public Interruptible
@@ -125,8 +125,8 @@ public:
     ManaCost * cost;
     int payResult;
     int computeX(MTGCardInstance * card);
-    Spell(MTGCardInstance* _source);
-    Spell(int id, MTGCardInstance* _source, TargetChooser *_tc, ManaCost * _cost, int payResult);
+    Spell(GameObserver* observer, MTGCardInstance* _source);
+    Spell(GameObserver* observer, int id, MTGCardInstance* _source, TargetChooser *_tc, ManaCost * _cost, int payResult);
     ~Spell();
     int resolve();
     void Render();
@@ -151,7 +151,7 @@ public:
     void Render();
     virtual ostream& toString(ostream& out) const;
     virtual const string getDisplayName() const;
-    StackAbility(int id, MTGAbility * _ability);
+    StackAbility(GameObserver* observer, int id, MTGAbility * _ability);
 };
 
 class PutInGraveyard: public Interruptible {
@@ -161,7 +161,7 @@ public:
     int resolve();
     void Render();
     virtual ostream& toString(ostream& out) const;
-    PutInGraveyard(int id, MTGCardInstance * _card);
+    PutInGraveyard(GameObserver* observer, int id, MTGCardInstance * _card);
 };
 
 
@@ -173,7 +173,7 @@ public:
     int resolve();
     void Render();
     virtual ostream& toString(ostream& out) const;
-    DrawAction(int id, Player *  _player, int _nbcards);
+    DrawAction(GameObserver* observer, int id, Player *  _player, int _nbcards);
 };
 
 class LifeAction: public Interruptible
@@ -184,14 +184,13 @@ public:
     int resolve();
     void Render();
     virtual ostream& toString(ostream& out) const;
-    LifeAction(int id, Damageable * _target, int amount);
+    LifeAction(GameObserver* observer, int id, Damageable * _target, int amount);
 };
 
 class ActionStack :public GuiLayer
 {
 protected:
     JQuadPtr pspIcons[8];
-    GameObserver* game;
     int interruptDecision[2];
     float timer;
     int currentState;

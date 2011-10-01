@@ -122,15 +122,13 @@ void GuiPlay::BattleField::reset(float x, float y)
 }
 void GuiPlay::BattleField::EnstackAttacker(CardView* card)
 {
-    GameObserver* game = GameObserver::GetInstance();
     card->x = currentAttacker * (HORZWIDTH - 20) / (attackers + 1);
-    card->y = baseY + (game->players[0] == card->card->controller() ? 20 + y : -20 - y);
+    card->y = baseY + (card->card->getObserver()->players[0] == card->card->controller() ? 20 + y : -20 - y);
     ++currentAttacker;
     //  JRenderer::GetInstance()->RenderQuad(WResourceManager::Instance()->GetQuad("BattleIcon"), card->actX, card->actY, 0, 0.5 + 0.1 * sinf(JGE::GetInstance()->GetTime()), 0.5 + 0.1 * sinf(JGE::GetInstance()->GetTime()));
 }
 void GuiPlay::BattleField::EnstackBlocker(CardView* card)
 {
-    GameObserver* game = GameObserver::GetInstance();
     MTGCardInstance * c = card->card;
     if (!c)
         return;
@@ -140,7 +138,7 @@ void GuiPlay::BattleField::EnstackBlocker(CardView* card)
         offset = c->defenser->getDefenserRank(c);
         card->x = c->defenser->view->x + 5 * offset;
     }
-    card->y = baseY + (game->players[0] == card->card->controller() ? 20 + y + 6 * offset : -20 - y + 6 * offset);
+    card->y = baseY + (card->card->getObserver()->players[0] == card->card->controller() ? 20 + y + 6 * offset : -20 - y + 6 * offset);
 }
 void GuiPlay::BattleField::Update(float dt)
 {
@@ -165,7 +163,7 @@ void GuiPlay::BattleField::Render()
 }
 
 GuiPlay::GuiPlay(GameObserver* game) :
-    game(game)
+    GuiLayer(game)
 {
     end_spells = cards.end();
 }
@@ -194,7 +192,7 @@ void GuiPlay::Replace()
         {
             if(!(*it)->card->hasSubtype(Subtypes::TYPE_AURA) && !(*it)->card->hasType(Subtypes::TYPE_PLANESWALKER))
             {
-                if (game->players[0] == (*it)->card->controller())
+                if (observer->players[0] == (*it)->card->controller())
                     ++selfSpellsN;
                 else
                     ++opponentSpellsN;
@@ -208,14 +206,14 @@ void GuiPlay::Replace()
                 ++battleFieldAttackersN;
             else if ((*it)->card->isDefenser())
                 ++battleFieldBlockersN;
-            else if (game->players[0] == (*it)->card->controller())
+            else if (observer->players[0] == (*it)->card->controller())
                 ++selfCreaturesN;
             else
                 ++opponentCreaturesN;
         }
         else if ((*it)->card->isLand() || (*it)->card->hasType(Subtypes::TYPE_PLANESWALKER))
         {
-            if (game->players[0] == (*it)->card->controller())
+            if (observer->players[0] == (*it)->card->controller())
                 ++selfLandsN;
             else
                 ++opponentLandsN;
@@ -230,7 +228,7 @@ void GuiPlay::Replace()
         {
             if(!(*it)->card->hasSubtype(Subtypes::TYPE_AURA) && !(*it)->card->hasType(Subtypes::TYPE_PLANESWALKER))
             {
-                if (game->players[0] == (*it)->card->controller())
+                if (observer->players[0] == (*it)->card->controller())
                     selfSpells.Enstack(*it);
                 else
                     opponentSpells.Enstack(*it);
@@ -254,14 +252,14 @@ void GuiPlay::Replace()
                 battleField.EnstackAttacker(*it);
             else if ((*it)->card->isDefenser())
                 battleField.EnstackBlocker(*it);
-            else if (game->players[0] == (*it)->card->controller())
+            else if (observer->players[0] == (*it)->card->controller())
                 selfCreatures.Enstack(*it);
             else
                 opponentCreatures.Enstack(*it);
         }
         else if ((*it)->card->isLand())
         {
-            if (game->players[0] == (*it)->card->controller())
+            if (observer->players[0] == (*it)->card->controller())
                 selfLands.Enstack(*it);
             else
                 opponentLands.Enstack(*it);
@@ -273,7 +271,7 @@ void GuiPlay::Replace()
     {
         if ((*it)->card->hasType(Subtypes::TYPE_PLANESWALKER))
         {
-            if (game->players[0] == (*it)->card->controller())
+            if (observer->players[0] == (*it)->card->controller())
                 selfLands.Enstack(*it);
             else
                 opponentLands.Enstack(*it);
@@ -288,14 +286,14 @@ void GuiPlay::Render()
     for (iterator it = cards.begin(); it != cards.end(); ++it)
         if ((*it)->card->isLand())
         {
-            if (game->players[0] == (*it)->card->controller())
+            if (observer->players[0] == (*it)->card->controller())
                 selfLands.Render(*it, cards.begin(), end_spells);
             else
                 opponentLands.Render(*it, cards.begin(), end_spells);
         }
         else if ((*it)->card->isCreature())
         {
-            if (game->players[0] == (*it)->card->controller())
+            if (observer->players[0] == (*it)->card->controller())
                 selfCreatures.Render(*it, cards.begin(), end_spells);
             else
                 opponentCreatures.Render(*it, cards.begin(), end_spells);
@@ -304,7 +302,7 @@ void GuiPlay::Render()
         {
             if (!(*it)->card->target)
             {
-                if (game->players[0] == (*it)->card->controller())
+                if (observer->players[0] == (*it)->card->controller())
                     selfSpells.Render(*it, cards.begin(), end_spells);
                 else
                     opponentSpells.Render(*it, cards.begin(), end_spells);
@@ -314,7 +312,7 @@ void GuiPlay::Render()
         {
             if (!(*it)->card->target)
             {
-                if (game->players[0] == (*it)->card->controller())
+                if (observer->players[0] == (*it)->card->controller())
                     selfPlaneswalker.Render(*it, cards.begin(), end_spells);
                 else
                     opponentPlaneswalker.Render(*it, cards.begin(), end_spells);
@@ -333,7 +331,7 @@ int GuiPlay::receiveEventPlus(WEvent * e)
 {
     if (WEventZoneChange *event = dynamic_cast<WEventZoneChange*>(e))
     {
-        if ((game->players[0]->inPlay() == event->to) || (game->players[1]->inPlay() == event->to))
+        if ((observer->players[0]->inPlay() == event->to) || (observer->players[1]->inPlay() == event->to))
         {
             CardView * card;
             if (event->card->view)
@@ -413,7 +411,7 @@ int GuiPlay::receiveEventMinus(WEvent * e)
 {
     if (WEventZoneChange *event = dynamic_cast<WEventZoneChange*>(e))
     {
-        if ((game->players[0]->inPlay() == event->from) || (game->players[1]->inPlay() == event->from))
+        if ((observer->players[0]->inPlay() == event->from) || (observer->players[1]->inPlay() == event->from))
             for (iterator it = cards.begin(); it != cards.end(); ++it)
                 if (event->card->previous == (*it)->card || event->card == (*it)->card)
                 {

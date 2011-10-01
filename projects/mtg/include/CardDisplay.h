@@ -10,13 +10,12 @@ class MTGCardInstance;
 class CardDisplay: public PlayGuiObjectController
 {
     int mId;
-    GameObserver* game;
 public:
     int x, y, start_item, nb_displayed_items;
     MTGGameZone * zone;
     TargetChooser * tc;
     JGuiListener * listener;
-    CardDisplay();
+    CardDisplay(GameObserver* game);
     CardDisplay(int id, GameObserver* game, int x, int y, JGuiListener * listener = NULL, TargetChooser * tc = NULL,
             int nb_displayed_items = 7);
     void AddCard(MTGCardInstance * _card);

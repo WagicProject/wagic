@@ -7,8 +7,8 @@
 #include "MTGGameZones.h"
 #include "GameObserver.h"
 
-CardDisplay::CardDisplay() :
-    mId(0), game(GameObserver::GetInstance())
+CardDisplay::CardDisplay(GameObserver* game) :
+    mId(0), PlayGuiObjectController(game)
 {
     tc = NULL;
     listener = NULL;
@@ -21,7 +21,7 @@ CardDisplay::CardDisplay() :
 
 CardDisplay::CardDisplay(int id, GameObserver* game, int _x, int _y, JGuiListener * _listener, TargetChooser * _tc,
                 int _nb_displayed_items) :
-    mId(id), game(game), x(_x), y(_y)
+    mId(id), PlayGuiObjectController(game), x(_x), y(_y)
 {
     tc = _tc;
     listener = _listener;
@@ -119,7 +119,7 @@ bool CardDisplay::CheckUserInput(JButton key)
             }
             else
             {
-                if (game) game->ButtonPressed(cardg);
+                if (observer) observer->ButtonPressed(cardg);
                 return true;
             }
         }
@@ -260,7 +260,7 @@ void CardDisplay::Render()
         CardGui * cardg = ((CardGui *) mObjects[mCurr]);
         Pos pos = Pos(CardGui::BigWidth / 2, CardGui::BigHeight / 2 - 10, 1.0, 0.0, 220);
         int drawMode = DrawMode::kNormal;
-        if (game)
+        if (observer)
         {
             pos.actY = 150;
             if (x < (CardGui::BigWidth / 2)) pos.actX = SCREEN_WIDTH - 10 - CardGui::BigWidth / 2;

@@ -38,6 +38,7 @@ private:
 public:
     int value;
     Player * p1, *p2;
+    GameObserver* observer;
     GameApp * app;
     int showMsg;
     int unlocked;
@@ -45,7 +46,7 @@ public:
     vector<CreditBonus *> bonus;
     Credits();
     ~Credits();
-    void compute(Player * _p1, Player * _p2, GameApp * _app);
+    void compute(GameObserver* observer, GameApp * _app);
     void Render();
     static int unlockRandomSet(bool force = false);
     static int unlockSetByName(string name);

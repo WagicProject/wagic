@@ -28,27 +28,28 @@ int PhaseRing::phaseStrToInt(string s)
 }
 
 /* Creates a New phase ring with the default rules */
-PhaseRing::PhaseRing(Player* players[], int nbPlayers)
+PhaseRing::PhaseRing(GameObserver* observer)
+    :observer(observer)
 {
-    for (int i = 0; i < nbPlayers; i++)
+    for (int i = 0; i < observer->getPlayersNumber(); i++)
     {
-        if(players[i]->phaseRing.size())
+        if(observer->players[i]->phaseRing.size())
         {
-            addPhase(NEW Phase(Constants::MTG_PHASE_BEFORE_BEGIN, players[i]));
-            vector<string>customRing = split(players[i]->phaseRing,',');
+            addPhase(NEW Phase(Constants::MTG_PHASE_BEFORE_BEGIN, observer->players[i]));
+            vector<string>customRing = split(observer->players[i]->phaseRing,',');
             for (unsigned int k = 0;k < customRing.size(); k++)
             {
                 int customOrder = phaseStrToInt(customRing[k]);
-                Phase * phase = NEW Phase(customOrder, players[i]);
+                Phase * phase = NEW Phase(customOrder, observer->players[i]);
                 addPhase(phase);
             }
-            addPhase( NEW Phase(Constants::MTG_PHASE_AFTER_EOT, players[i]));
+            addPhase( NEW Phase(Constants::MTG_PHASE_AFTER_EOT, observer->players[i]));
         }
         else
         {
             for (int j = 0; j < Constants::NB_MTG_PHASES; j++)
             {
-                Phase * phase = NEW Phase(j, players[i]);
+                Phase * phase = NEW Phase(j, observer->players[i]);
                 addPhase(phase);
             }
         }
@@ -69,12 +70,11 @@ PhaseRing::~PhaseRing()
 //Tells if next phase will be another Damage phase rather than combat ends
 bool PhaseRing::extraDamagePhase(int id)
 {
-    GameObserver * g = GameObserver::GetInstance();
     if (id != Constants::MTG_PHASE_COMBATEND) return false;
-    if (g->combatStep != END_FIRST_STRIKE) return false;
+    if (observer->combatStep != END_FIRST_STRIKE) return false;
     for (int j = 0; j < 2; ++j)
     {
-        MTGGameZone * z = g->players[j]->game->inPlay;
+        MTGGameZone * z = observer->players[j]->game->inPlay;
         for (int i = 0; i < z->nb_cards; ++i)
         {
             MTGCardInstance * card = z->cards[i];
@@ -110,7 +110,7 @@ Phase * PhaseRing::forward(bool sendEvents)
     {
         //Warn the layers about the phase Change
         WEvent * e = NEW WEventPhaseChange(cPhaseOld, *current);
-        GameObserver::GetInstance()->receiveEvent(e);
+        observer->receiveEvent(e);
     }
 
     return *current;

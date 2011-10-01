@@ -10,7 +10,7 @@ protected:
     JQuad* quad;
 
 public:
-    GuiBackground();
+    GuiBackground(GameObserver* observer);
     ~GuiBackground();
     virtual void Render();
 };

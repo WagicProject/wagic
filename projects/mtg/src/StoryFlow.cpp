@@ -310,19 +310,19 @@ void StoryDuel::init()
 
     sprintf(deckFile, "%s/deck.txt", folder);
     sprintf(deckFileSmall, "campaign_%s", mParent->folder.c_str());
-    players[0] = NEW HumanPlayer(deckFile, deckFileSmall);
+    players[0] = NEW HumanPlayer(0, deckFile, deckFileSmall);
 
     sprintf(deckFile, "%s/opponent_deck.txt", folder);
     sprintf(deckFileSmall, "campaign_ennemy_%s_%s", mParent->folder.c_str(), pageId.c_str());
-    players[1] = NEW AIPlayerBaka(deckFile, deckFileSmall, "baka.jpg");
+    players[1] = NEW AIPlayerBaka(0, deckFile, deckFileSmall, "baka.jpg");
 
     string rulesFile = folder;
     rulesFile.append("/rules.txt");
     rules = NEW Rules(bg);
     rules->load(rulesFile);
 
-    GameObserver::Init(players, 2);
-    game = GameObserver::GetInstance();
+    game = new GameObserver(players, 2);
+
     rules->gamemode = GAME_TYPE_STORY;
     game->startGame(rules);
 }
@@ -364,8 +364,7 @@ StoryDuel::StoryDuel(TiXmlElement* root, StoryFlow * mParent) :
 StoryDuel::~StoryDuel()
 {
     SAFE_DELETE(rules);
-    if (game) GameObserver::EndInstance();
-    game = NULL;
+    SAFE_DELETE(game);
 }
 
 void StoryDuel::Update(float dt)
@@ -378,8 +377,7 @@ void StoryDuel::Update(float dt)
             mParent->gotoPage(onWin);
         else
             mParent->gotoPage(onLose);
-        GameObserver::EndInstance();
-        game = NULL;
+        SAFE_DELETE(game);
     }
 }
 

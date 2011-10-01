@@ -50,7 +50,7 @@ void AIStats::updateStatsCard(MTGCardInstance * cardInstance, Damage * damage, f
     else if (damage->target->type_as_damageable == DAMAGEABLE_MTGCARDINSTANCE)
     {
         MTGCardInstance * target = (MTGCardInstance *) damage->target;
-        if (target->controller() == player && !target->isInPlay())
+        if (target->controller() == player && !target->isInPlay(player->getObserver()))
         {
             //One of my creatures got lethal damage...
             stat->value += static_cast<int>(multiplier * STATS_CREATURE_MULTIPLIER * damage->damage);
@@ -79,7 +79,7 @@ int AIStats::receiveEvent(WEvent * event)
         }
     }
 
-    GameObserver * g = GameObserver::GetInstance();
+    GameObserver * g = player->getObserver();
     //Lords
     map<MTGCardInstance *, int> lords;
     for (size_t i = 1; i < g->mLayers->actionLayer()->mObjects.size(); i++)
@@ -190,7 +190,7 @@ void AIStats::save()
 
 void AIStats::Render()
 {
-    GameObserver * g = GameObserver::GetInstance();
+    GameObserver * g = player->getObserver();
     float x0 = 10;
     if (player == g->players[1])
         x0 = 280;

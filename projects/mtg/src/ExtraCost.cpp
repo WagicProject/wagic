@@ -215,7 +215,7 @@ int DiscardCost::doPay()
     if (target)
     {
         WEvent * e = NEW WEventCardDiscard(target);
-        GameObserver * game = GameObserver::GetInstance();
+        GameObserver * game = target->owner->getObserver();
         game->receiveEvent(e);
         _target->controller()->game->putInGraveyard(_target);
         target = NULL;
@@ -503,10 +503,9 @@ ExtraCost("Select unblocked attacker", _tc)
 
 int Ninja::isPaymentSet()
 {
-    GameObserver * g = GameObserver::GetInstance();
-    int currentPhase = g->getCurrentGamePhase();
-    if (target && ((target->isAttacker() && target->blocked) || target->isAttacker() < 1 || currentPhase
-        != Constants::MTG_PHASE_COMBATBLOCKERS))
+    if (target && ((target->isAttacker() && target->blocked) ||
+                   target->isAttacker() < 1 ||
+                   target->getObserver()->getCurrentGamePhase() != Constants::MTG_PHASE_COMBATBLOCKERS))
     {
         tc->removeTarget(target);
         target = NULL;
@@ -551,7 +550,7 @@ int SacrificeCost::doPay()
     if (target)
     {
         WEvent * e = NEW WEventCardSacrifice(target);
-        GameObserver * game = GameObserver::GetInstance();
+        GameObserver * game = target->owner->getObserver();
         game->receiveEvent(e);
         target->controller()->game->putInGraveyard(target);
         target = NULL;

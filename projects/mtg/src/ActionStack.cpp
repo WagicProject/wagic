@@ -34,39 +34,35 @@ NextGamePhase requested by user
 */
 int NextGamePhase::resolve()
 {
-    GameObserver::GetInstance()->nextGamePhase();
+    observer->nextGamePhase();
     return 1;
 }
 
 const string NextGamePhase::getDisplayName() const
 {
     std::ostringstream stream;
-    stream << "NextGamePhase.  (Current phase is: " << PhaseRing::phaseName(GameObserver::GetInstance()->getCurrentGamePhase())
-        << ")";
+    stream << "NextGamePhase.  (Current phase is: " << observer->getCurrentGamePhaseName() << ")";
 
     return stream.str();
 }
 
 void NextGamePhase::Render()
 {
-    GameObserver * g = GameObserver::GetInstance();
-    int nextPhase = (g->getCurrentGamePhase() + 1) % Constants::MTG_PHASE_CLEANUP;
-
     WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
     mFont->SetBase(0);
     mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
     char buffer[200];
     int playerId = 1;
-    if (g->currentActionPlayer == GameObserver::GetInstance()->players[1])
+    if (observer->currentActionPlayer == observer->players[1])
         playerId = 2;
 
-    sprintf(buffer, "%s %i : -> %s", _("Player").c_str(), playerId, _(PhaseRing::phaseName(nextPhase)).c_str());
+    sprintf(buffer, "%s %i : -> %s", _("Player").c_str(), playerId, observer->getNextGamePhaseName());
 
     mFont->DrawString(buffer, x + 30, y, JGETEXT_LEFT);
 }
 
-NextGamePhase::NextGamePhase(int id) :
-Interruptible(id)
+NextGamePhase::NextGamePhase(GameObserver* observer, int id) :
+Interruptible(observer, id)
 {
     mHeight = 40;
     type = ACTION_NEXTGAMEPHASE;
@@ -172,8 +168,8 @@ void StackAbility::Render()
 
     Interruptible::Render(source, quad.get(), alt1, alt2, action);
 }
-StackAbility::StackAbility(int id, MTGAbility * _ability) :
-Interruptible(id), ability(_ability)
+StackAbility::StackAbility(GameObserver* observer, int id, MTGAbility * _ability) :
+Interruptible(observer, id), ability(_ability)
 {
     type = ACTION_ABILITY;
 }
@@ -197,8 +193,8 @@ const string StackAbility::getDisplayName() const
 
 /* Spell Cast */
 
-Spell::Spell(MTGCardInstance * _source) :
-Interruptible(0)
+Spell::Spell(GameObserver* observer, MTGCardInstance * _source) :
+Interruptible(observer, 0)
 {
     source = _source;
     mHeight = 40;
@@ -210,8 +206,8 @@ Interruptible(0)
     source->castMethod = Constants::NOT_CAST;
 }
 
-Spell::Spell(int id, MTGCardInstance * _source, TargetChooser * tc, ManaCost * _cost, int payResult) :
-Interruptible(id), tc(tc), cost(_cost), payResult(payResult)
+Spell::Spell(GameObserver* observer, int id, MTGCardInstance * _source, TargetChooser * tc, ManaCost * _cost, int payResult) :
+Interruptible(observer, id), tc(tc), cost(_cost), payResult(payResult)
 {
     if (!cost) cost = NEW ManaCost();
     source = _source;
@@ -287,7 +283,6 @@ Spell::~Spell()
 
 int Spell::resolve()
 {
-    GameObserver * game = GameObserver::GetInstance();
     if (!source->hasType(Subtypes::TYPE_INSTANT) && !source->hasType(Subtypes::TYPE_SORCERY))
     {
         Player * p = source->controller();
@@ -311,8 +306,8 @@ int Spell::resolve()
         }
     }
 
-    AbilityFactory af;
-    af.addAbilities(game->mLayers->actionLayer()->getMaxId(), this);
+    AbilityFactory af(observer);
+    af.addAbilities(observer->mLayers->actionLayer()->getMaxId(), this);
     return 1;
 }
 
@@ -393,8 +388,8 @@ ostream& Spell::toString(ostream& out) const
 
 /* Put a card in graveyard */
 
-PutInGraveyard::PutInGraveyard(int id, MTGCardInstance * _card) :
-Interruptible(id)
+PutInGraveyard::PutInGraveyard(GameObserver* observer, int id, MTGCardInstance * _card) :
+Interruptible(observer, id)
 {
     card = _card;
     removeFromGame = 0;
@@ -403,9 +398,8 @@ Interruptible(id)
 
 int PutInGraveyard::resolve()
 {
-    GameObserver * g = GameObserver::GetInstance();
     MTGGameZone * zone = card->getCurrentZone();
-    if (zone == g->players[0]->game->inPlay || zone == g->players[1]->game->inPlay)
+    if (zone == observer->players[0]->game->inPlay || zone == observer->players[1]->game->inPlay)
     {
         card->owner->game->putInZone(card, zone, card->owner->game->graveyard);
         return 1;
@@ -447,8 +441,8 @@ ostream& PutInGraveyard::toString(ostream& out) const
 }
 
 /* Draw a Card */
-DrawAction::DrawAction(int id, Player * _player, int _nbcards) :
-Interruptible(id), nbcards(_nbcards), player(_player)
+DrawAction::DrawAction(GameObserver* observer, int id, Player * _player, int _nbcards) :
+Interruptible(observer, id), nbcards(_nbcards), player(_player)
 {
 }
 
@@ -468,7 +462,7 @@ void DrawAction::Render()
     mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
     char buffer[200];
     int playerId = 1;
-    if (player == GameObserver::GetInstance()->players[1])
+    if (player == observer->players[1])
         playerId = 2;
     sprintf(buffer, _("Player %i draws %i card").c_str(), playerId, nbcards);
     mFont->DrawString(buffer, x + 35, y + GetVerticalTextOffset(), JGETEXT_LEFT);
@@ -480,8 +474,8 @@ ostream& DrawAction::toString(ostream& out) const
     return out;
 }
 //////
-LifeAction::LifeAction(int id, Damageable * _target, int amount) :
-Interruptible(id), amount(amount),target(_target)
+LifeAction::LifeAction(GameObserver* observer, int id, Damageable * _target, int amount) :
+Interruptible(observer, id), amount(amount),target(_target)
 {
 }
 
@@ -514,16 +508,16 @@ ostream& LifeAction::toString(ostream& out) const
 /* The Action Stack itself */
 int ActionStack::addPutInGraveyard(MTGCardInstance * card)
 {
-    PutInGraveyard * death = NEW PutInGraveyard(mObjects.size(), card);
+    PutInGraveyard * death = NEW PutInGraveyard(observer, mObjects.size(), card);
     addAction(death);
     return 1;
 }
 
 int ActionStack::addAbility(MTGAbility * ability)
 {
-    StackAbility * stackAbility = NEW StackAbility(mObjects.size(), ability);
+    StackAbility * stackAbility = NEW StackAbility(observer, mObjects.size(), ability);
     int result = addAction(stackAbility);
-    if (!game->players[0]->isAI() && ability->source->controller() == game->players[0] && 0
+    if (!observer->players[0]->isAI() && ability->source->controller() == observer->players[0] && 0
         == options[Options::INTERRUPTMYABILITIES].number)
         interruptDecision[0] = DONT_INTERRUPT;
     return result;
@@ -531,21 +525,21 @@ int ActionStack::addAbility(MTGAbility * ability)
 
 int ActionStack::addDraw(Player * player, int nb_cards)
 {
-    DrawAction * draw = NEW DrawAction(mObjects.size(), player, nb_cards);
+    DrawAction * draw = NEW DrawAction(observer, mObjects.size(), player, nb_cards);
     addAction(draw);
     return 1;
 }
 
 int ActionStack::addLife(Damageable * _target, int amount)
 {
-    LifeAction * life = NEW LifeAction(mObjects.size(), _target, amount);
+    LifeAction * life = NEW LifeAction(observer, mObjects.size(), _target, amount);
     addAction(life);
     return 1;
 }
 
 int ActionStack::addDamage(MTGCardInstance * _source, Damageable * _target, int _damage)
 {
-    Damage * damage = NEW Damage(_source, _target, _damage);
+    Damage * damage = NEW Damage(observer, _source, _target, _damage);
     addAction(damage);
     _source->thatmuch = _damage;
     _target->thatmuch = _damage;
@@ -557,10 +551,9 @@ int ActionStack::AddNextGamePhase()
     if (getNext(NULL, NOT_RESOLVED))
         return 0;
 
-    NextGamePhase * next = NEW NextGamePhase(mObjects.size());
+    NextGamePhase * next = NEW NextGamePhase(observer, mObjects.size());
     addAction(next);
-    game->currentActionPlayer = game->GetInstance()->currentActionPlayer;
-    int playerId = (game->currentActionPlayer == game->players[1]) ? 1 : 0;
+    int playerId = (observer->currentActionPlayer == observer->players[1]) ? 1 : 0;
     interruptDecision[playerId] = 1;
     return 1;
 }
@@ -570,7 +563,7 @@ int ActionStack::AddNextCombatStep()
     if (getNext(NULL, NOT_RESOLVED))
         return 0;
 
-    NextGamePhase * next = NEW NextGamePhase(mObjects.size());
+    NextGamePhase * next = NEW NextGamePhase(observer, mObjects.size());
     addAction(next);
     return 1;
 }
@@ -586,16 +579,16 @@ int ActionStack::setIsInterrupting(Player * player)
     }
 
     // Is it a valid interruption request, or is uninterruptible stuff going on in the game?
-    if (game->getCurrentTargetChooser())
+    if (observer->getCurrentTargetChooser())
     {
         DebugTrace("ActionStack: WARNING - We were asked to interrupt, During Targetchoosing" << endl
-            << "source: " << (game->getCurrentTargetChooser()->source ? game->getCurrentTargetChooser()->source->name : "None" ) << endl );
+            << "source: " << (observer->getCurrentTargetChooser()->source ? observer->getCurrentTargetChooser()->source->name : "None" ) << endl );
         return 0;
     }
 
-    int playerId = (player == game->players[1]) ? 1 : 0;
+    int playerId = (player == observer->players[1]) ? 1 : 0;
     interruptDecision[playerId] = -1;
-    game->isInterrupting = player;
+    observer->isInterrupting = player;
     return 1;
 }
 
@@ -606,7 +599,7 @@ int ActionStack::addAction(Interruptible * action)
         interruptDecision[i] = 0;
     }
     Add(action);
-    lastActionController = game->currentlyActing();
+    lastActionController = observer->currentlyActing();
     DebugTrace("Action added to stack: " << action->getDisplayName());
 
     return 1;
@@ -620,9 +613,9 @@ Spell * ActionStack::addSpell(MTGCardInstance * _source, TargetChooser * tc, Man
     {
         mana = NULL;
     }
-    Spell * spell = NEW Spell(mObjects.size(), _source, tc, mana, payResult);
+    Spell * spell = NEW Spell(observer, mObjects.size(), _source, tc, mana, payResult);
     addAction(spell);
-    if (!game->players[0]->isAI() && _source->controller() == game->players[0] && 0 == options[Options::INTERRUPTMYSPELLS].number)
+    if (!observer->players[0]->isAI() && _source->controller() == observer->players[0] && 0 == options[Options::INTERRUPTMYSPELLS].number)
         interruptDecision[0] = DONT_INTERRUPT;
     return spell;
 }
@@ -637,7 +630,7 @@ Interruptible * ActionStack::getAt(int id)
 }
 
 ActionStack::ActionStack(GameObserver* game)
-    : game(game)
+    : GuiLayer(game)
 {
     for (int i = 0; i < 2; i++)
         interruptDecision[i] = 0;
@@ -840,9 +833,9 @@ void ActionStack::Update(float dt)
 
     askIfWishesToInterrupt = NULL;
     //modal = 0;
-    GameObserver * game = GameObserver::GetInstance();
-    TargetChooser * tc = game->getCurrentTargetChooser();
-    int newState = game->getCurrentGamePhase();
+
+    TargetChooser * tc = observer->getCurrentTargetChooser();
+    int newState = observer->getCurrentGamePhase();
     currentState = newState;
     if (!tc)
         checked = 0;
@@ -894,33 +887,33 @@ void ActionStack::Update(float dt)
             {
                 int currentPlayerId = 0;
                 int otherPlayerId = 1;
-                if (game->currentlyActing() != game->players[0])
+                if (observer->currentlyActing() != observer->players[0])
                 {
                     currentPlayerId = 1;
                     otherPlayerId = 0;
                 }
                 if (interruptDecision[currentPlayerId] == NOT_DECIDED)
                 {
-                    askIfWishesToInterrupt = game->players[currentPlayerId];
-                    game->isInterrupting = game->players[currentPlayerId];
+                    askIfWishesToInterrupt = observer->players[currentPlayerId];
+                    observer->isInterrupting = observer->players[currentPlayerId];
                     modal = 1;
                 }
                 else if (interruptDecision[currentPlayerId] == INTERRUPT)
                 {
-                    game->isInterrupting = game->players[currentPlayerId];
+                    observer->isInterrupting = observer->players[currentPlayerId];
 
                 }
                 else
                 {
                     if (interruptDecision[otherPlayerId] == NOT_DECIDED)
                     {
-                        askIfWishesToInterrupt = game->players[otherPlayerId];
-                        game->isInterrupting = game->players[otherPlayerId];
+                        askIfWishesToInterrupt = observer->players[otherPlayerId];
+                        observer->isInterrupting = observer->players[otherPlayerId];
                         modal = 1;
                     }
                     else if (interruptDecision[otherPlayerId] == INTERRUPT)
                     {
-                        game->isInterrupting = game->players[otherPlayerId];
+                        observer->isInterrupting = observer->players[otherPlayerId];
                     }
                     else
                     {
@@ -962,18 +955,18 @@ void ActionStack::Update(float dt)
 
 void ActionStack::cancelInterruptOffer(int cancelMode)
 {
-    int playerId = (game->isInterrupting == game->players[1]) ? 1 : 0;
+    int playerId = (observer->isInterrupting == observer->players[1]) ? 1 : 0;
     interruptDecision[playerId] = cancelMode;
     askIfWishesToInterrupt = NULL;
-    game->isInterrupting = NULL;
+    observer->isInterrupting = NULL;
     timer = -1;
 }
 
 void ActionStack::endOfInterruption()
 {
-    int playerId = (game->isInterrupting == game->players[1]) ? 1 : 0;
+    int playerId = (observer->isInterrupting == observer->players[1]) ? 1 : 0;
     interruptDecision[playerId] = 0;
-    game->isInterrupting = NULL;
+    observer->isInterrupting = NULL;
 }
 
 bool ActionStack::CheckUserInput(JButton key)
@@ -1000,7 +993,7 @@ bool ActionStack::CheckUserInput(JButton key)
             }
             return true;
         }
-        else if (game->isInterrupting)
+        else if (observer->isInterrupting)
         {
             if (JGE_BTN_SEC == key)
             {
@@ -1045,7 +1038,7 @@ bool ActionStack::CheckUserInput(JButton key)
             {
                 DebugTrace("ACTIONSTACK CLICKED mCurr = " << mCurr);
 
-                game->stackObjectClicked(((Interruptible *) mObjects[mCurr]));
+                observer->stackObjectClicked(((Interruptible *) mObjects[mCurr]));
                 return true;
             }
             return true; //Steal the input to other layers if we're visible

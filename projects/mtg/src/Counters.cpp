@@ -73,7 +73,7 @@ Counters::~Counters()
 int Counters::addCounter(const char * _name, int _power, int _toughness)
 {
     /*420.5n If a permanent has both a +1/+1 counter and a -1/-1 counter on it, N +1/+1 and N -1/-1 counters are removed from it, where N is the smaller of the number of +1/+1 and -1/-1 counters on it.*/
-    GameObserver *g = GameObserver::GetInstance();
+    GameObserver *g = target->getObserver();
     WEvent * e = NEW WEventCounters(this,_name,_power,_toughness);
     dynamic_cast<WEventCounters*>(e)->targetCard = this->target;
     if (e == g->replacementEffects->replace(e))
@@ -144,14 +144,14 @@ int Counters::removeCounter(const char * _name, int _power, int _toughness)
                 return 0;
             counters[i]->removed();
             counters[i]->nb--;
-            GameObserver *g = GameObserver::GetInstance();
+            GameObserver *g = target->getObserver();
             WEvent * e = NEW WEventCounters(this,_name,_power,_toughness,false,true);
             dynamic_cast<WEventCounters*>(e)->targetCard = this->target;
             g->receiveEvent(e);
             //special case:if a card is suspended and no longer has a time counter when the last is removed, the card is cast.
             if (target->suspended && !target->counters->hasCounter("time",0,0))
             {
-                GameObserver * game = game->GetInstance();
+                GameObserver * game = target->getObserver();
                 MTGCardInstance * copy = target->controller()->game->putInZone(target, target->currentZone, target->controller()->game->stack);
                 
                 game->mLayers->stackLayer()->addSpell(copy, game->targetChooser, NULL,1, 0);

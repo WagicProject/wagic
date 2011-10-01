@@ -15,11 +15,12 @@ using std::string;
 
 // NULL is sent in place of a MTGDeck since there is no way to create a MTGDeck without a proper deck file.
 // TestSuiteAI will be responsible for managing its own deck state.
-TestSuiteAI::TestSuiteAI(TestSuite * _suite, int playerId) :
-    AIPlayerBaka("testsuite", "testsuite", "baka.jpg", NULL)
+TestSuiteAI::TestSuiteAI(GameObserver *observer, TestSuite * _suite, int playerId) :
+    AIPlayerBaka(observer, "testsuite", "testsuite", "baka.jpg", NULL)
 {
-    this->game = _suite->buildDeck(playerId);
+    game = _suite->buildDeck(this, playerId);
     game->setOwner(this);
+
     suite = _suite;
     timer = 0;
     playMode = MODE_TEST_SUITE;
@@ -29,14 +30,13 @@ TestSuiteAI::TestSuiteAI(TestSuite * _suite, int playerId) :
 MTGCardInstance * TestSuiteAI::getCard(string action)
 {
     int mtgid = Rules::getMTGId(action);
-    if (mtgid) return Rules::getCardByMTGId(mtgid);
+    if (mtgid) return Rules::getCardByMTGId(observer, mtgid);
 
     //This mostly handles tokens
-    GameObserver * g = GameObserver::GetInstance();
     std::transform(action.begin(), action.end(), action.begin(), ::tolower);
     for (int i = 0; i < 2; i++)
     {
-        Player * p = g->players[i];
+        Player * p = observer->players[i];
         MTGGameZone * zones[] = { p->game->library, p->game->hand, p->game->inPlay, p->game->graveyard };
         for (int j = 0; j < 4; j++)
         {
@@ -54,9 +54,9 @@ MTGCardInstance * TestSuiteAI::getCard(string action)
     return NULL;
 }
 
-Interruptible * TestSuite::getActionByMTGId(int mtgid)
+Interruptible * TestSuite::getActionByMTGId(GameObserver* observer, int mtgid)
 {
-    ActionStack * as = GameObserver::GetInstance()->mLayers->stackLayer();
+    ActionStack * as = observer->mLayers->stackLayer();
     Interruptible * action = NULL;
     while ((action = as->getNext(action, 0, 0, 1)))
     {
@@ -76,14 +76,13 @@ int TestSuiteAI::displayStack()
 
 int TestSuiteAI::Act(float dt)
 {
-    GameObserver * g = GameObserver::GetInstance();
-    g->gameOver = NULL; // Prevent draw rule from losing the game
+    observer->gameOver = NULL; // Prevent draw rule from losing the game
 
     //Last bits of initialization require to be done here, after the first "update" call of the game
     if (suite->currentAction == 0)
     {
         for (int i = 0; i < 2; ++ i)
-            g->players[i]->getManaPool()->copy(suite->initState.playerData[i].manapool);
+            observer->players[i]->getManaPool()->copy(suite->initState.players[i]->getManaPool());
     }
 
     if (playMode == MODE_AI && suite->aiMaxCalls)
@@ -94,7 +93,7 @@ int TestSuiteAI::Act(float dt)
     }
     if (playMode == MODE_HUMAN)
     {
-        g->mLayers->CheckUserInput(0);
+        observer->mLayers->CheckUserInput(0);
         suite->currentAction++; //hack to avoid repeating the initialization of manapool
         return 1;
     }
@@ -104,14 +103,14 @@ int TestSuiteAI::Act(float dt)
     timer = 0;
 
     string action = suite->getNextAction();
-    g->mLayers->stackLayer()->Dump();
+    observer->mLayers->stackLayer()->Dump();
     DebugTrace("TESTSUITE command: " << action);
 
-    if (g->mLayers->stackLayer()->askIfWishesToInterrupt == this)
+    if (observer->mLayers->stackLayer()->askIfWishesToInterrupt == this)
     {
         if (action.compare("no") != 0 && action.compare("yes") != 0)
         {
-            g->mLayers->stackLayer()->cancelInterruptOffer();
+            observer->mLayers->stackLayer()->cancelInterruptOffer();
             suite->currentAction--;
             return 1;
         }
@@ -120,16 +119,16 @@ int TestSuiteAI::Act(float dt)
     if (action == "")
     {
         //end of game
-        suite->assertGame();
-        g->gameOver = g->players[0];
+        suite->assertGame(observer);
+        observer->gameOver = observer->players[0];
         DebugTrace("================================    END OF TEST   =======================\n");
         return 1;
     }
 
     if (action.compare("eot") == 0)
     {
-        if (g->getCurrentGamePhase() != Constants::MTG_PHASE_CLEANUP) suite->currentAction--;
-        g->userRequestNextGamePhase();
+        if (observer->getCurrentGamePhase() != Constants::MTG_PHASE_CLEANUP) suite->currentAction--;
+        observer->userRequestNextGamePhase();
     }
     else if (action.compare("human") == 0)
     {
@@ -157,60 +156,61 @@ int TestSuiteAI::Act(float dt)
                     phaseToGo = i;
                 }
             }
-            if(g->currentGamePhase != phaseToGo)
+            if(observer->currentGamePhase != phaseToGo)
                 suite->currentAction--;
                 else
                 {
                 return 1;
                 }
-            GuiCombat * gc = g->mLayers->combatLayer();
-            if (ORDER == g->combatStep || DAMAGE == g->combatStep)
+            GuiCombat * gc = observer->mLayers->combatLayer();
+            if (ORDER == observer->combatStep || DAMAGE == observer->combatStep)
             {
                 gc->clickOK();
             }
             else
             {
-                g->userRequestNextGamePhase();
+                observer->userRequestNextGamePhase();
             }
         }
         else
         {
-            GuiCombat * gc = g->mLayers->combatLayer();
-            if (ORDER == g->combatStep || DAMAGE == g->combatStep)
+            GuiCombat * gc = observer->mLayers->combatLayer();
+            if (ORDER == observer->combatStep || DAMAGE == observer->combatStep)
                 gc->clickOK();
             else
-                g->userRequestNextGamePhase();
+                observer->userRequestNextGamePhase();
         }
     }
     else if (action.compare("yes") == 0)
-        g->mLayers->stackLayer()->setIsInterrupting(this);
+        observer->mLayers->stackLayer()->setIsInterrupting(this);
     else if (action.compare("endinterruption") == 0)
-        g->mLayers->stackLayer()->endOfInterruption();
+        observer->mLayers->stackLayer()->endOfInterruption();
     else if (action.compare("no") == 0)
     {
-        if (g->mLayers->stackLayer()->askIfWishesToInterrupt == this) g->mLayers->stackLayer()->cancelInterruptOffer();
+        if (observer->mLayers->stackLayer()->askIfWishesToInterrupt == this)
+            observer->mLayers->stackLayer()->cancelInterruptOffer();
     }
     else if (action.find("choice ") != string::npos)
     {
         DebugTrace("TESTSUITE choice !!!");
         int choice = atoi(action.substr(action.find("choice ") + 7).c_str());
-        g->mLayers->actionLayer()->doReactTo(choice);
+        observer->mLayers->actionLayer()->doReactTo(choice);
     }
     else if (action.find(" -momir- ") != string::npos)
     {
         int start = action.find(" -momir- ");
         int cardId = Rules::getMTGId(action.substr(start + 9).c_str());
         int cardIdHand = Rules::getMTGId(action.substr(0, start).c_str());
-        MTGMomirRule * a = ((MTGMomirRule *) g->mLayers->actionLayer()->getAbility(MTGAbility::MOMIR));
-        a->reactToClick(Rules::getCardByMTGId(cardIdHand), cardId);
-        g->mLayers->actionLayer()->stuffHappened = 1;
+        MTGMomirRule * a = ((MTGMomirRule *) observer->mLayers->actionLayer()->getAbility(MTGAbility::MOMIR));
+        a->reactToClick(Rules::getCardByMTGId(observer, cardIdHand), cardId);
+        observer->mLayers->actionLayer()->stuffHappened = 1;
     }
     else if (action.find("p1") != string::npos || action.find("p2") != string::npos)
     {
-        Player * p = g->players[1];
+        Player * p = observer->players[1];
         size_t start = action.find("p1");
-        if (start != string::npos) p = g->players[0];
-        g->cardClick(NULL, p);
+        if (start != string::npos) p = observer->players[0];
+        observer->cardClick(NULL, p);
     }
     else
     {
@@ -219,12 +219,12 @@ int TestSuiteAI::Act(float dt)
         if (mtgid)
         {
             DebugTrace("TESTSUITE CARD ID:" << mtgid);
-            toInterrupt = suite->getActionByMTGId(mtgid);
+            toInterrupt = suite->getActionByMTGId(observer, mtgid);
         }
 
         if (toInterrupt)
         {
-            g->stackObjectClicked(toInterrupt);
+            observer->stackObjectClicked(toInterrupt);
             return 1;
         }
 
@@ -233,8 +233,8 @@ int TestSuiteAI::Act(float dt)
         {
             DebugTrace("TESTSUITE Clicking ON: " << card->name);
             card->currentZone->needShuffle = true; //mimic library shuffle
-            g->cardClick(card, card);
-            g->forceShuffleLibraries(); //mimic library shuffle
+            observer->cardClick(card, card);
+            observer->forceShuffleLibraries(); //mimic library shuffle
             return 1;
         }
     }
@@ -252,96 +252,19 @@ void TestSuiteActions::add(string s)
     nbitems++;
 }
 
-TestSuitePlayerData::TestSuitePlayerData()
-{
-    life = 20;
-    manapool = NEW ManaCost();
-}
-
-TestSuitePlayerData::~TestSuitePlayerData()
-{
-    SAFE_DELETE(manapool);
-}
-
-TestSuitePlayerZone::TestSuitePlayerZone()
-{
-    nbitems = 0;
-}
-
-void TestSuitePlayerZone::add(int cardId)
-{
-    cards[nbitems] = cardId;
-    nbitems++;
-}
 
 TestSuiteState::TestSuiteState()
 {
-
+    players[0] = 0;
+    players[1] = 0;
 }
 
 void TestSuiteState::parsePlayerState(int playerId, string s)
 {
-    size_t limiter = s.find(":");
-    string areaS;
-    int area;
-    if (limiter != string::npos)
-    {
-        areaS = s.substr(0, limiter);
-        if (areaS.compare("graveyard") == 0)
-        {
-            area = 0;
-        }
-        else if (areaS.compare("library") == 0)
-        {
-            area = 1;
-        }
-        else if (areaS.compare("hand") == 0)
-        {
-            area = 2;
-        }
-        else if (areaS.compare("inplay") == 0 || areaS.compare("battlefield") == 0)
-        {
-            area = 3;
-        }
-        else if (areaS.compare("life") == 0)
-        {
-            playerData[playerId].life = atoi((s.substr(limiter + 1)).c_str());
-            return;
-        }
-        else if (areaS.compare("manapool") == 0)
-        {
-            SAFE_DELETE(playerData[playerId].manapool);
-            playerData[playerId].manapool = ManaCost::parseManaCost(s.substr(limiter + 1));
-            return;
-        }
-        else
-        {
-            return; // ERROR
-        }
-        s = s.substr(limiter + 1);
-        while (s.size())
-        {
-            unsigned int value;
-            limiter = s.find(",");
-            if (limiter != string::npos)
-            {
-                string ss = s.substr(0, limiter); // ss is needed because trim requires a non-const reference,
-                value = Rules::getMTGId(trim(ss)); // while in g++ functions cannot take non-const references from temporary values
-                s = s.substr(limiter + 1);
-            }
-            else
-            {
-                value = Rules::getMTGId(trim(s));
-                s = "";
-            }
-            if (value) playerData[playerId].zones[area].add(value);
-        }
-    }
-    else
-    {
-        //ERROR
-    }
+    stringstream stream(s);
+    stream >> *players[playerId];
 }
+
 
 string TestSuite::getNextAction()
 {
@@ -353,24 +276,38 @@ string TestSuite::getNextAction()
     return "";
 }
 
-MTGPlayerCards * TestSuite::buildDeck(int playerId)
+MTGPlayerCards * TestSuite::buildDeck(Player* player, int playerId)
 {
     int list[100];
     int nbcards = 0;
-    for (int j = 0; j < 4; j++)
+    MTGPlayerCards * deck = NULL;
+
+    if(initState.players[playerId])
     {
-        for (int k = 0; k < initState.playerData[playerId].zones[j].nbitems; k++)
+        MTGGameZone * loadedPlayerZones[] = { initState.players[playerId]->game->graveyard,
+                                              initState.players[playerId]->game->library,
+                                              initState.players[playerId]->game->hand,
+                                              initState.players[playerId]->game->inPlay };
+
+        for (int j = 0; j < 4; j++)
         {
-            int cardid = initState.playerData[playerId].zones[j].cards[k];
-            list[nbcards] = cardid;
-            nbcards++;
+            for (int k = 0; k < loadedPlayerZones[j]->cards.size(); k++)
+            {
+                int cardid = loadedPlayerZones[j]->cards[k]->getId();
+                list[nbcards] = cardid;
+                nbcards++;
+            }
         }
+        deck = NEW MTGPlayerCards(player, list, nbcards);
     }
-    MTGPlayerCards * deck = NEW MTGPlayerCards(list, nbcards);
+    else
+    {
+        deck = NEW MTGPlayerCards();
+    }
     return deck;
 }
 
-void TestSuite::initGame()
+void TestSuite::initGame(GameObserver* g)
 {
     //The first test runs slowly, the other ones run faster.
     //This way a human can see what happens when testing a specific file,
@@ -384,8 +321,7 @@ void TestSuite::initGame()
     {
         timerLimit = 3;
     }
-    //Put the GameObserver in the initial state
-    GameObserver * g = GameObserver::GetInstance();
+
     DebugTrace("TESTSUITE Init Game");
     g->phaseRing->goToPhase(initState.phase, g->players[0]);
     g->currentGamePhase = initState.phase;
@@ -393,20 +329,24 @@ void TestSuite::initGame()
     {
         AIPlayerBaka * p = (AIPlayerBaka *) (g->players[i]);
         p->forceBestAbilityUse = forceAbility;
-        p->life = initState.playerData[i].life;
+        p->life = initState.players[i]->life;
         MTGGameZone * playerZones[] = { p->game->graveyard, p->game->library, p->game->hand, p->game->inPlay };
+        MTGGameZone * loadedPlayerZones[] = { initState.players[i]->game->graveyard,
+                                              initState.players[i]->game->library,
+                                              initState.players[i]->game->hand,
+                                              initState.players[i]->game->inPlay };
         for (int j = 0; j < 4; j++)
         {
             MTGGameZone * zone = playerZones[j];
-            for (int k = 0; k < initState.playerData[i].zones[j].nbitems; k++)
+            for (int k = 0; k < loadedPlayerZones[j]->cards.size(); k++)
             {
-                MTGCardInstance * card = Rules::getCardByMTGId(initState.playerData[i].zones[j].cards[k]);
+                MTGCardInstance * card = Rules::getCardByMTGId(g, loadedPlayerZones[j]->cards[k]->getId());
                 if (card && zone != p->game->library)
                 {
                     if (zone == p->game->inPlay)
                     {
                         MTGCardInstance * copy = p->game->putInZone(card, p->game->library, p->game->stack);
-                        Spell * spell = NEW Spell(copy);
+                        Spell * spell = NEW Spell(g, copy);
                         spell->resolve();
                         if (!summoningSickness && p->game->inPlay->nb_cards > k) p->game->inPlay->cards[k]->summoningSickness = 0;
                         delete spell;
@@ -431,8 +371,9 @@ void TestSuite::initGame()
             zone->cardsSeenThisTurn.clear(); //don't consider those cards as having moved in this area during this turn
         }
         p->game->stack->cardsSeenThisTurn.clear(); //don't consider those cards as having moved in this area during this turn
+
     }
-DebugTrace("TESTUITE Init Game Done !");
+    DebugTrace("TESTUITE Init Game Done !");
 }
 int TestSuite::Log(const char * text)
 {
@@ -448,7 +389,7 @@ int TestSuite::Log(const char * text)
     return 1;
 
 }
-int TestSuite::assertGame()
+int TestSuite::assertGame(GameObserver* g)
 {
     //compare the game state with the results
     char result[4096];
@@ -458,7 +399,6 @@ int TestSuite::assertGame()
     int error = 0;
     bool wasAI = false;
 
-    GameObserver * g = GameObserver::GetInstance();
     if (g->currentGamePhase != endState.phase)
     {
         sprintf(result, "<span class=\"error\">==phase problem. Expected [ %s ](%i), got [ %s ](%i)==</span><br />", 
@@ -472,27 +412,27 @@ int TestSuite::assertGame()
         TestSuiteAI * p = (TestSuiteAI *) (g->players[i]);
         if (p->playMode == Player::MODE_AI) wasAI = true;
 
-        if (p->life != endState.playerData[i].life)
+        if (p->life != endState.players[i]->life)
         {
             sprintf(result, "<span class=\"error\">==life problem for player %i. Expected %i, got %i==</span><br />", i,
-                            endState.playerData[i].life, p->life);
+                            endState.players[i]->life, p->life);
             Log(result);
             error++;
         }
-        if (!p->getManaPool()->canAfford(endState.playerData[i].manapool))
+        if (!p->getManaPool()->canAfford(endState.players[i]->getManaPool()))
         {
             sprintf(result, "<span class=\"error\">==Mana problem. Was expecting %i but got %i for player %i==</span><br />",
-                            endState.playerData[i].manapool->getConvertedCost(), p->getManaPool()->getConvertedCost(), i);
+                            endState.players[i]->getManaPool()->getConvertedCost(), p->getManaPool()->getConvertedCost(), i);
             Log(result);
             error++;
         }
-        if (!endState.playerData[i].manapool->canAfford(p->getManaPool()))
+        if (!endState.players[i]->getManaPool()->canAfford(p->getManaPool()))
         {
             sprintf(result, "<span class=\"error\">==Mana problem. Was expecting %i but got %i for player %i==</span><br />",
-                            endState.playerData[i].manapool->getConvertedCost(), p->getManaPool()->getConvertedCost(), i);
+                            endState.players[i]->getManaPool()->getConvertedCost(), p->getManaPool()->getConvertedCost(), i);
             Log(result);
 
-            if ( endState.playerData[i].manapool->getConvertedCost() == p->getManaPool()->getConvertedCost())
+            if ( endState.players[i]->getManaPool()->getConvertedCost() == p->getManaPool()->getConvertedCost())
             {
                 sprintf(result, "<span class=\"error\">====(Apparently Mana Color issues since converted cost is the same)==</span><br />");
                 Log(result);
@@ -501,27 +441,31 @@ int TestSuite::assertGame()
 
         }
         MTGGameZone * playerZones[] = { p->game->graveyard, p->game->library, p->game->hand, p->game->inPlay };
+        MTGGameZone * endstateZones[] = { endState.players[i]->game->graveyard,
+                                         endState.players[i]->game->library,
+                                         endState.players[i]->game->hand,
+                                         endState.players[i]->game->inPlay };
         for (int j = 0; j < 4; j++)
         {
             MTGGameZone * zone = playerZones[j];
-            if (zone->nb_cards != endState.playerData[i].zones[j].nbitems)
+            if (zone->nb_cards != endstateZones[j]->nb_cards)
             {
                 sprintf(
                                 result,
                                 "<span class=\"error\">==Card number not the same in player %i's %s==, expected %i, got %i</span><br />",
-                                i, zone->getName(), endState.playerData[i].zones[j].nbitems, zone->nb_cards);
+                                i, zone->getName(), endstateZones[j]->nb_cards, zone->nb_cards);
                 Log(result);
                 error++;
             }
-            for (int k = 0; k < endState.playerData[i].zones[j].nbitems; k++)
+            for (int k = 0; k < endstateZones[j]->nb_cards; k++)
             {
-                int cardid = endState.playerData[i].zones[j].cards[k];
-                if (cardid != -1)
-                {
-                    MTGCardInstance * card = Rules::getCardByMTGId(cardid);
-                    if (!card || !zone->hasCard(card))
+                MTGCardInstance* cardToCheck = (k<endstateZones[j]->cards.size())?endstateZones[j]->cards[k]:0;
+                if(cardToCheck)
+                {   // Can be NULL if used "*" in the testcase.
+                    MTGCardInstance* card = Rules::getCardByMTGId(g, cardToCheck->getId());
+                    if (card != 0 && !zone->hasCard(card))
                     {
-                        sprintf(result, "<span class=\"error\">==Card ID not the same. Didn't find %i</span><br />", cardid);
+                        sprintf(result, "<span class=\"error\">==Card ID not the same. Didn't find %i</span><br />", card->getId());
                         Log(result);
                         error++;
                     }
@@ -637,36 +581,23 @@ void TestSuiteActions::cleanup()
     nbitems = 0;
 }
 
-void TestSuitePlayerZone::cleanup()
-{
-    nbitems = 0;
-}
 
-void TestSuitePlayerData::cleanup()
-{
-    if (manapool) delete manapool;
-    manapool = NULL;
-    manapool = NEW ManaCost();
-    for (int i = 0; i < 5; i++)
-    {
-        zones[i].cleanup();
-    }
-    life = 20;
-}
-
-void TestSuiteState::cleanup()
+void TestSuiteState::cleanup(TestSuite* suite)
 {
     for (int i = 0; i < 2; i++)
     {
-        playerData[i].cleanup();
+        SAFE_DELETE(players[i]);
     }
+
+    players[0] = new TestSuiteAI(0, suite, 0);
+    players[1] = new TestSuiteAI(0, suite, 1);;
 }
 
 void TestSuite::cleanup()
 {
     currentAction = 0;
-    initState.cleanup();
-    endState.cleanup();
+    initState.cleanup(this);
+    endState.cleanup(this);
     actions.cleanup();
     loadRandValues("");
 }

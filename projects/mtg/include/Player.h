@@ -24,6 +24,7 @@ public:
         MODE_AI
     };
 
+    string mAvatarName;
     JTexture * mAvatarTex;
     JQuadPtr mAvatar;
     int playMode;
@@ -35,9 +36,9 @@ public:
     string deckName;
     string phaseRing;
 	int offerInterruptOnPhase;
-    Player(string deckFile, string deckFileSmall, MTGDeck * deck = NULL);
+    Player(GameObserver *observer, string deckFile, string deckFileSmall, MTGDeck * deck = NULL);
     virtual ~Player();
-
+    virtual void setObserver(GameObserver*g);
     virtual void End();
     virtual int displayStack()
     {
@@ -94,17 +95,17 @@ public:
     ** Returns the path to the stats file of currently selected deck. 
     */
     std::string GetCurrentDeckStatsFile();
+
+    friend istream& operator>>(istream& in, Player& p);
 };
 
 class HumanPlayer: public Player
 {
 public:
-    HumanPlayer(string deckFile, string deckFileSmall, MTGDeck * deck = NULL);
-    HumanPlayer(string deckFile);
+    HumanPlayer(GameObserver *observer, string deckFile, string deckFileSmall = "", MTGDeck * deck = NULL);
 
 };
 
 ostream& operator<<(ostream&, const Player&);
-istream& operator>>(istream& in, Player& p);
 
 #endif

@@ -108,9 +108,9 @@ class MTGGameZone {
 
    void setOwner(Player * player);
    MTGCardInstance * lastCardDrawn;
-   static MTGGameZone * stringToZone(string zoneName, MTGCardInstance * source, MTGCardInstance * target);
+   static MTGGameZone * stringToZone(GameObserver *g, string zoneName, MTGCardInstance * source, MTGCardInstance * target);
    static int zoneStringToId(string zoneName);
-   static MTGGameZone *intToZone(int zoneId, MTGCardInstance * source = NULL,MTGCardInstance * target = NULL);
+   static MTGGameZone *intToZone(GameObserver *g, int zoneId, MTGCardInstance * source = NULL,MTGCardInstance * target = NULL);
    static MTGGameZone *intToZone(int zoneId, Player * source, Player * target = NULL);
    bool needShuffle;
    virtual const char * getName(){return "zone";};
@@ -177,7 +177,7 @@ public:
   MTGGameZone * temp;
 
   MTGPlayerCards();
-  MTGPlayerCards(int * idList, int idListSize);
+  MTGPlayerCards(Player*, int * idList, int idListSize);
   MTGPlayerCards(MTGDeck * deck);
   ~MTGPlayerCards();
   void initGame(int shuffle = 1, int draw = 1);
@@ -200,6 +200,7 @@ public:
 };
 
 ostream& operator<<(ostream&, const MTGGameZone&);
+istream& operator>>(istream&, MTGGameZone&);
 ostream& operator<<(ostream&, const MTGPlayerCards&);
 istream& operator>>(istream&, MTGPlayerCards&);
 

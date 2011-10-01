@@ -178,8 +178,8 @@ int AIPlayerBakaB::receiveEvent(WEvent * event)
 }
 
 
-AIPlayerBakaB::AIPlayerBakaB(string file, string fileSmall, string avatarFile, MTGDeck * deck) :
-   AIPlayerBaka(file, fileSmall, avatarFile,  deck)
+AIPlayerBakaB::AIPlayerBakaB(GameObserver *observer, string file, string fileSmall, string avatarFile, MTGDeck * deck) :
+   AIPlayerBaka(observer, file, fileSmall, avatarFile,  deck)
 {
 
 }

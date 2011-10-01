@@ -431,13 +431,13 @@ void TaskList::passOneDay()
     }
 }
 
-void TaskList::getDoneTasks(Player * _p1, Player * _p2, GameApp * _app, vector<Task*>* result)
+void TaskList::getDoneTasks(GameObserver* observer, GameApp * _app, vector<Task*>* result)
 {
     result->clear();
     // TODO: Return only accepted tasks
     for (vector<Task*>::iterator it = tasks.begin(); it != tasks.end(); it++)
     {
-        if ((*it)->isDone(_p1, _p2, _app))
+        if ((*it)->isDone(observer, _app))
         {
             result->push_back(*it);
         }
@@ -615,11 +615,10 @@ string TaskWinAgainst::getShortDesc()
     return result;
 }
 
-bool TaskWinAgainst::isDone(Player * _p1, Player * _p2, GameApp * _app)
+bool TaskWinAgainst::isDone(GameObserver* observer, GameApp * _app)
 {
-    GameObserver * g = GameObserver::GetInstance();
-    AIPlayerBaka * baka = (AIPlayerBaka*) _p2;
-    return ((baka) && (!_p1->isAI()) && (_p2->isAI()) && (g->gameOver != _p1) // Human player wins
+    AIPlayerBaka * baka = (AIPlayerBaka*) observer->players[1];
+    return ((baka) && (!observer->players[0]->isAI()) && (observer->players[1]->isAI()) && (observer->gameOver != observer->players[0]) // Human player wins
                     && (baka->deckId == opponent));
 }
 
@@ -670,9 +669,9 @@ string TaskSlaughter::getShortDesc()
     return buffer;
 }
 
-bool TaskSlaughter::isDone(Player * _p1, Player * _p2, GameApp * _app)
+bool TaskSlaughter::isDone(GameObserver* observer, GameApp * _app)
 {
-    return TaskWinAgainst::isDone(_p1, _p2, _app) && (_p2->life <= targetLife);
+    return TaskWinAgainst::isDone(observer, _app) && (observer->players[1]->life <= targetLife);
 }
 
 void TaskSlaughter::storeCustomAttribs()
@@ -756,10 +755,9 @@ string TaskDelay::getShortDesc()
     return buffer;
 }
 
-bool TaskDelay::isDone(Player * _p1, Player * _p2, GameApp * _app)
+bool TaskDelay::isDone(GameObserver* observer, GameApp * _app)
 {
-    GameObserver * g = GameObserver::GetInstance();
-    return TaskWinAgainst::isDone(_p1, _p2, _app) && (afterTurn ? (g->turn >= turn) : (g->turn <= turn));
+    return TaskWinAgainst::isDone(observer, _app) && (afterTurn ? (observer->turn >= turn) : (observer->turn <= turn));
 }
 
 void TaskDelay::storeCustomAttribs()
@@ -824,11 +822,10 @@ string TaskImmortal::getShortDesc()
     return buffer;
 }
 
-bool TaskImmortal::isDone(Player * _p1, Player * _p2, GameApp * _app)
+bool TaskImmortal::isDone(GameObserver *observer, GameApp * _app)
 {
-    GameObserver * g = GameObserver::GetInstance();
-    return (!_p1->isAI()) && (_p2->isAI()) && (g->gameOver != _p1) // Human player wins
-                    && (_p1->life >= targetLife);
+    return (!observer->players[0]->isAI()) && (observer->players[1]->isAI()) && (observer->gameOver != observer->players[0]) // Human player wins
+                    && (observer->players[1]->life >= targetLife);
 }
 
 void TaskImmortal::storeCustomAttribs()
@@ -920,10 +917,10 @@ string TaskMassiveBurial::getShortDesc()
     return buffer;
 }
 
-bool TaskMassiveBurial::isDone(Player * _p1, Player * _p2, GameApp * _app)
+bool TaskMassiveBurial::isDone(GameObserver* observer, GameApp * _app)
 {
     int countColor = 0;
-    vector<MTGCardInstance *> cards = _p2->game->graveyard->cards;
+    vector<MTGCardInstance *> cards = observer->players[1]->game->graveyard->cards;
 
     for (vector<MTGCardInstance *>::iterator it = cards.begin(); it != cards.end(); it++)
     {
@@ -1013,11 +1010,10 @@ string TaskWisdom::getShortDesc()
     return buffer;
 }
 
-bool TaskWisdom::isDone(Player * _p1, Player * _p2, GameApp * _app)
+bool TaskWisdom::isDone(GameObserver* observer, GameApp * _app)
 {
-    GameObserver * g = GameObserver::GetInstance();
     int countColor = 0;
-    vector<MTGCardInstance *> cards = _p1->game->hand->cards;
+    vector<MTGCardInstance *> cards = observer->players[0]->game->hand->cards;
 
     for (vector<MTGCardInstance *>::iterator it = cards.begin(); it != cards.end(); it++)
     {
@@ -1027,7 +1023,7 @@ bool TaskWisdom::isDone(Player * _p1, Player * _p2, GameApp * _app)
         }
     }
 
-    return (!_p1->isAI()) && (_p2->isAI()) && (g->gameOver != _p1) // Human player wins
+    return (!observer->players[0]->isAI()) && (observer->players[1]->isAI()) && (observer->gameOver != observer->players[0]) // Human player wins
                     && (countColor >= cardCount);
 }
 
@@ -1095,11 +1091,10 @@ string TaskPacifism::getShortDesc()
     return buffer;
 }
 
-bool TaskPacifism::isDone(Player * _p1, Player * _p2, GameApp * _app)
+bool TaskPacifism::isDone(GameObserver* observer, GameApp * _app)
 {
-    GameObserver * g = GameObserver::GetInstance();
-    return (!_p1->isAI()) && (_p2->isAI()) && (g->gameOver != _p1) // Human player wins
-                    && (_p2->life >= lifeSlashCardMin) && ((int) _p2->game->library->cards.size() >= lifeSlashCardMin);
+    return (!observer->players[0]->isAI()) && (observer->players[1]->isAI()) && (observer->gameOver != observer->players[0]) // Human player wins
+                    && (observer->players[1]->life >= lifeSlashCardMin) && ((int) observer->players[1]->game->library->cards.size() >= lifeSlashCardMin);
 }
 
 void TaskPacifism::storeCustomAttribs()
@@ -1154,11 +1149,9 @@ void TaskPacifism::randomize()
  return buffer;
  }
 
- bool TaskXX::isDone(Player * _p1, Player * _p2, GameApp * _app) {
- GameObserver * g = GameObserver::GetInstance();
+ bool TaskXX::isDone(GameObserver* observer, GameApp * _app) {
  // TODO: Implement
- return (!_p1->isAI()) && (_p2->isAI()) && (g->gameOver != _p1) // Human player wins
- && ;
+ return (!observer->players[0]->isAI()) && (observer->players[1]->isAI()) && (observer->gameOver != _p1) // Human player wins
  }
 
  void TaskXX::storeCustomAttribs() {

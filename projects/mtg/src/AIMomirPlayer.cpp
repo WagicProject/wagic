@@ -8,8 +8,8 @@
 
 MTGAbility * AIMomirPlayer::momirAbility = NULL;
 
-AIMomirPlayer::AIMomirPlayer(string file, string fileSmall, string avatarFile, MTGDeck * deck) :
-    AIPlayerBaka(file, fileSmall, avatarFile, deck)
+AIMomirPlayer::AIMomirPlayer(GameObserver *observer, string file, string fileSmall, string avatarFile, MTGDeck * deck) :
+    AIPlayerBaka(observer, file, fileSmall, avatarFile, deck)
 {
     momirAbility = NULL;
     agressivity = 100;
@@ -22,8 +22,7 @@ int AIMomirPlayer::getEfficiency(OrderedAIAction * action)
     if (cost && !(cost->isExtraPaymentSet())) return 0; //Does not handle abilities with sacrifice yet
     int efficiency = AIPlayerBaka::getEfficiency(action);
 
-    GameObserver * g = GameObserver::GetInstance();
-    if (g->getCurrentGamePhase() < Constants::MTG_PHASE_FIRSTMAIN) return 0;
+    if (observer->getCurrentGamePhase() < Constants::MTG_PHASE_FIRSTMAIN) return 0;
     return efficiency;
 }
 
@@ -31,8 +30,7 @@ MTGAbility * AIMomirPlayer::getMomirAbility()
 {
     if (momirAbility) return momirAbility;
 
-    GameObserver * g = GameObserver::GetInstance();
-    momirAbility = g->mLayers->actionLayer()->getAbility(MTGAbility::MOMIR);
+    momirAbility = observer->mLayers->actionLayer()->getAbility(MTGAbility::MOMIR);
     return momirAbility;
 }
 
@@ -79,17 +77,17 @@ int AIMomirPlayer::computeActions()
      You skip your Five on the play because it is the weakest drop. There are plenty of serviceable guys there, but very few bombs compared to other drops
      the general rule is this: if you want to get to Eight, you have to skip two drops on the play and one drop on the draw.
      */
-    GameObserver * g = GameObserver::GetInstance();
-    Player * p = g->currentPlayer;
-    if (!(g->currentlyActing() == this)) return 0;
+
+    Player * p = observer->currentPlayer;
+    if (!(observer->currentlyActing() == this)) return 0;
     if (chooseTarget()) return 1;
-    int currentGamePhase = g->getCurrentGamePhase();
-    if (g->isInterrupting == this)
+    int currentGamePhase = observer->getCurrentGamePhase();
+    if (observer->isInterrupting == this)
     { // interrupting
         selectAbility();
         return 1;
     }
-    else if (p == this && g->mLayers->stackLayer()->count(0, NOT_RESOLVED) == 0)
+    else if (p == this && observer->mLayers->stackLayer()->count(0, NOT_RESOLVED) == 0)
     { //standard actions
         CardDescriptor cd;
         MTGCardInstance * card = NULL;
@@ -111,7 +109,7 @@ int AIMomirPlayer::computeActions()
                 int canPutLandsIntoPlay = game->playRestrictions->canPutIntoZone(card, game->inPlay);
                 if (card && (canPutLandsIntoPlay == PlayRestriction::CAN_PLAY))
                 {
-                    MTGAbility * putIntoPlay = g->mLayers->actionLayer()->getAbility(MTGAbility::PUT_INTO_PLAY);
+                    MTGAbility * putIntoPlay = observer->mLayers->actionLayer()->getAbility(MTGAbility::PUT_INTO_PLAY);
                     AIAction * a = NEW AIAction(this, putIntoPlay, card); //TODO putinplay action
                     clickstream.push(a);
                     return 1;

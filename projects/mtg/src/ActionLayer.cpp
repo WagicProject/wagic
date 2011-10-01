@@ -34,7 +34,7 @@ int ActionLayer::removeFromGame(ActionElement * e)
     i = getIndexOf(e); //the destroy event might have changed the contents of mObjects, so we get the index again
     if (i == -1)
         return 0; //Should not happen, it means we deleted thesame object twice?
-    AbilityFactory af;
+    AbilityFactory af(observer);
     if(MTGAbility * a = dynamic_cast<MTGAbility*>(e))
     {
         AManaProducer * manaObject = dynamic_cast<AManaProducer*>(af.getCoreAbility((MTGAbility*)e));
@@ -90,10 +90,9 @@ int ActionLayer::reactToTargetClick(ActionElement* ability, Targetable * card)
 
 bool ActionLayer::CheckUserInput(JButton key)
 {
-    GameObserver * g = GameObserver::GetInstance();
-    if (g->mExtraPayment && key == JGE_BTN_SEC)
+    if (observer->mExtraPayment && key == JGE_BTN_SEC)
     {
-        g->mExtraPayment = NULL;
+        observer->mExtraPayment = NULL;
         return 1;
     }
     if (menuObject)
@@ -121,7 +120,6 @@ void ActionLayer::Update(float dt)
         return;
     }
     modal = 0;
-    GameObserver* game = GameObserver::GetInstance();
     for (int i = (int)(mObjects.size()) - 1; i >= 0; i--)
     {
         //a dirty hack, there might be cases when the mObject array gets reshaped if an ability removes some of its children abilites
@@ -136,10 +134,10 @@ void ActionLayer::Update(float dt)
         {
             ActionElement * currentAction = (ActionElement *) mObjects[i];
             if (currentAction->testDestroy())
-                game->removeObserver(currentAction);
+                observer->removeObserver(currentAction);
         }
     }
-    int newPhase = game->getCurrentGamePhase();
+    int newPhase = observer->getCurrentGamePhase();
     for (size_t i = 0; i < mObjects.size(); i++)
     {
         if (mObjects[i] != NULL)
@@ -429,7 +427,7 @@ void ActionLayer::ButtonPressed(int controllerid, int controlid)
     }
     else if (controlid == kCancelMenuID)
     {
-        GameObserver::GetInstance()->mLayers->stackLayer()->endOfInterruption();
+        observer->mLayers->stackLayer()->endOfInterruption();
         menuObject = 0;
     }
     else
@@ -463,12 +461,13 @@ void ActionLayer::ButtonPressedOnMultipleChoice(int choice)
     }
     else if (currentMenuObject == kCancelMenuID)
     {
-        GameObserver::GetInstance()->mLayers->stackLayer()->endOfInterruption();
+        observer->mLayers->stackLayer()->endOfInterruption();
     }
     menuObject = 0;
 }
 
-ActionLayer::ActionLayer()
+ActionLayer::ActionLayer(GameObserver *observer)
+    : GuiLayer(observer)
 {
     menuObject = NULL;
     abilitiesMenu = NULL;

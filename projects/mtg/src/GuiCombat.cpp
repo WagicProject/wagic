@@ -34,7 +34,7 @@ struct Right: public Exp
 JTexture* GuiCombat::ok_tex = NULL;
 
 GuiCombat::GuiCombat(GameObserver* go) :
-    GuiLayer(), go(go), active(false), activeAtk(NULL), ok(SCREEN_WIDTH - MARGIN, 210, 1, 0, 255), enemy_avatar(SCREEN_WIDTH
+    GuiLayer(go), active(false), activeAtk(NULL), ok(SCREEN_WIDTH - MARGIN, 210, 1, 0, 255), enemy_avatar(SCREEN_WIDTH
                     - MARGIN, TOP_LINE, 2, 0, 255), cursor_pos(NONE), step(DAMAGE)
 {
     if (NULL == ok_tex)
@@ -104,10 +104,10 @@ void GuiCombat::validateDamage()
     switch (step)
     {
     case FIRST_STRIKE:
-        go->nextCombatStep();
+        observer->nextCombatStep();
         break;
     case DAMAGE:
-        go->nextGamePhase();
+        observer->nextGamePhase();
         break;
     default:
         cout << "COMBAT : Cannot validate damage in this phase" << endl;
@@ -172,7 +172,7 @@ bool GuiCombat::clickOK()
         return false; // that should not happen
 
     case ORDER:
-        go->nextGamePhase();
+        observer->nextGamePhase();
         return true;
     case FIRST_STRIKE:
         return false;
@@ -198,7 +198,7 @@ bool GuiCombat::CheckUserInput(JButton key)
         if (BLK == cursor_pos)
         {
             if (ORDER == step)
-                go->cardClick(active->card); //  { activeAtk->card->raiseBlockerRankOrder(active->card); }
+                observer->cardClick(active->card); //  { activeAtk->card->raiseBlockerRankOrder(active->card); }
             else
             {
                 signed damage = activeAtk->card->stepPower(step);
@@ -389,8 +389,8 @@ void GuiCombat::Render()
             damage = 0;
         if (activeAtk->card->has(Constants::TRAMPLE))
         {
-            go->opponent()->mAvatar->SetHotSpot(18, 25);
-            enemy_avatar.Render(go->opponent()->mAvatar.get());
+            observer->opponent()->mAvatar->SetHotSpot(18, 25);
+            enemy_avatar.Render(observer->opponent()->mAvatar.get());
             WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
             mFont->SetColor(ARGB(255, 255, 64, 0));
             {
@@ -417,7 +417,7 @@ void GuiCombat::Render()
 
 int GuiCombat::resolve() // Returns the number of damage objects dealt this turn.
 {
-    DamageStack* stack = NEW DamageStack();
+    DamageStack* stack = NEW DamageStack(observer);
     for (inner_iterator it = attackers.begin(); it != attackers.end(); ++it)
     {
         MTGCardInstance * attacker = (*it)->card;
@@ -430,15 +430,15 @@ int GuiCombat::resolve() // Returns the number of damage objects dealt this turn
         }
 
         if (dmg > 0 && ((!attacker->blocked) || attacker->has(Constants::TRAMPLE)))
-            stack->Add(NEW Damage((*it)->card, go->opponent(), dmg, DAMAGE_COMBAT));
+            stack->Add(NEW Damage(observer, (*it)->card, observer->opponent(), dmg, DAMAGE_COMBAT));
         for (vector<Damage>::iterator d = (*it)->damages.begin(); d != (*it)->damages.end(); ++d)
             stack->Add(NEW Damage(*d));
     }
     int v = stack->mObjects.size();
     if (v > 0)
     {
-        go->mLayers->stackLayer()->Add(stack);
-        go->mLayers->stackLayer()->resolve(); // This will delete the damage stack which will in turn delete the Damage it contains
+        observer->mLayers->stackLayer()->Add(stack);
+        observer->mLayers->stackLayer()->resolve(); // This will delete the damage stack which will in turn delete the Damage it contains
     }
     else
         SAFE_DELETE(stack);
@@ -506,7 +506,7 @@ int GuiCombat::receiveEventPlus(WEvent* e)
 int GuiCombat::receiveEventMinus(WEvent* e)
 {
     if (WEventZoneChange* event = dynamic_cast<WEventZoneChange*>(e))
-        if (go->players[0]->game->inPlay == event->from || go->players[1]->game->inPlay == event->from)
+        if (observer->players[0]->game->inPlay == event->from || observer->players[1]->game->inPlay == event->from)
         {
             for (inner_iterator it = attackers.begin(); it != attackers.end(); ++it)
                 if ((*it)->card == event->card->previous || (*it)->card == event->card)
@@ -578,9 +578,9 @@ int GuiCombat::receiveEventMinus(WEvent* e)
         {
             if (ORDER == step)
                 return 0; // Why do I take this twice ? >.>
-            if (!go->currentPlayer->displayStack())
+            if (!observer->currentPlayer->displayStack())
             {
-                go->nextCombatStep();
+                observer->nextCombatStep();
                 return 1;
             }
             for (inner_iterator it = attackers.begin(); it != attackers.end(); ++it)
@@ -608,7 +608,7 @@ int GuiCombat::receiveEventMinus(WEvent* e)
                 step = ORDER;
             }
             else
-                go->nextGamePhase();
+                observer->nextGamePhase();
             return 1;
         }
         case FIRST_STRIKE:
@@ -616,22 +616,22 @@ int GuiCombat::receiveEventMinus(WEvent* e)
             for (inner_iterator attacker = attackers.begin(); attacker != attackers.end(); ++attacker)
                 if ((*attacker)->card->has(Constants::FIRSTSTRIKE) || (*attacker)->card->has(Constants::DOUBLESTRIKE))
                     goto DAMAGE;
-            go->nextCombatStep();
+            observer->nextCombatStep();
             break;
         case END_FIRST_STRIKE:
             step = END_FIRST_STRIKE;
             for (inner_iterator attacker = attackers.begin(); attacker != attackers.end(); ++attacker)
                 autoaffectDamage(*attacker, FIRST_STRIKE);
             if (0 == resolve())
-                go->nextCombatStep();
+                observer->nextCombatStep();
             //else go->mLayers->stackLayer()->AddNextGamePhase(); //uncomment to add "interrupt" offer after first strike, rather than giving priority to current player
             return 1;
         case DAMAGE:
             DAMAGE: step = event->step;
-            if (!go->currentPlayer->displayStack())
+            if (!observer->currentPlayer->displayStack())
             {
-                ((AIPlayer *) go->currentPlayer)->affectCombatDamages(step);
-                go->nextGamePhase();
+                ((AIPlayer *) observer->currentPlayer)->affectCombatDamages(step);
+                observer->nextGamePhase();
                 return 1;
             }
             for (inner_iterator attacker = attackers.begin(); attacker != attackers.end(); ++attacker)
@@ -656,12 +656,12 @@ int GuiCombat::receiveEventMinus(WEvent* e)
                 cursor_pos = ATK;
             }
             else
-				go->nextCombatStep();
+                observer->nextCombatStep();
             return 1;
         case END_DAMAGE:
             step = END_DAMAGE;
             if (0 == resolve())
-                go->nextGamePhase();
+                observer->nextGamePhase();
             return 1;
         }
     return 0;

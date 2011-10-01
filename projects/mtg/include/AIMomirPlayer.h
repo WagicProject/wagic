@@ -6,12 +6,12 @@
 class AIMomirPlayer: public AIPlayerBaka
 {
 public:
-    AIMomirPlayer(string file, string fileSmall, string avatarFile, MTGDeck * deck = NULL);
+    AIMomirPlayer(GameObserver *observer, string file, string fileSmall, string avatarFile, MTGDeck * deck = NULL);
     int getEfficiency(OrderedAIAction * action);
     int momir();
     int computeActions();
     static MTGAbility * momirAbility;
-    static MTGAbility * getMomirAbility();
+    MTGAbility * getMomirAbility();
 };
 
 #endif

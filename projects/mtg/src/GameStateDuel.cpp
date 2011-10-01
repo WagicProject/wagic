@@ -210,7 +210,7 @@ void GameStateDuel::loadPlayer(int playerId, int decknb, bool isAI, bool isNetwo
                     sprintf(deckFile, "%s/deck%i.txt", options.profileFile().c_str(), decknb);
                 char deckFileSmall[255];
                 sprintf(deckFileSmall, "player_deck%i", decknb);
-                mPlayers[playerId] = NEW HumanPlayer(deckFile, deckFileSmall);
+                mPlayers[playerId] = NEW HumanPlayer(game, deckFile, deckFileSmall);
 #ifdef NETWORK_SUPPORT
                 if(isNetwork)
                 {
@@ -229,7 +229,7 @@ void GameStateDuel::loadPlayer(int playerId, int decknb, bool isAI, bool isNetwo
             AIPlayerFactory playerCreator;
             Player * opponent = NULL;
             if (playerId == 1) opponent = mPlayers[0];
-            mPlayers[playerId] = playerCreator.createAIPlayer(MTGCollection(), opponent, decknb);
+            mPlayers[playerId] = playerCreator.createAIPlayer(game, MTGCollection(), opponent, decknb);
         }
     }
     else
@@ -239,11 +239,11 @@ void GameStateDuel::loadPlayer(int playerId, int decknb, bool isAI, bool isNetwo
         if (playerId == 1) opponent = mPlayers[0];
 #ifdef AI_CHANGE_TESTING
         if (mParent->players[0] == PLAYER_TYPE_CPU_TEST)
-            mPlayers[playerId] = playerCreator.createAIPlayerTest(MTGCollection(), opponent, playerId == 0 ? "ai/bakaA/" : "ai/bakaB/");
+            mPlayers[playerId] = playerCreator.createAIPlayerTest(game, MTGCollection(), opponent, playerId == 0 ? "ai/bakaA/" : "ai/bakaB/");
         else
 #endif
         {
-            mPlayers[playerId] = playerCreator.createAIPlayer(MTGCollection(), opponent);
+            mPlayers[playerId] = playerCreator.createAIPlayer(game, MTGCollection(), opponent);
         }
 
         if (mParent->players[playerId] == PLAYER_TYPE_CPU_TEST)
@@ -264,18 +264,18 @@ void GameStateDuel::loadTestSuitePlayers()
     if (!testSuite) return;
     initRand(testSuite->seed);
     SAFE_DELETE(game);
+    game = new GameObserver();
     for (int i = 0; i < 2; i++)
     {
-        mPlayers[i] = NEW TestSuiteAI(testSuite, i);
+        mPlayers[i] = new TestSuiteAI(game, testSuite, i);
     }
+    game->setPlayers(mPlayers, 2);
     mParent->gameType = testSuite->gameType;
 
-    GameObserver::Init(mPlayers, 2);
-    game = GameObserver::GetInstance();
     game->startGame(mParent->rules);
     if (mParent->gameType == GAME_TYPE_MOMIR)
     {
-        game->addObserver(NEW MTGMomirRule(-1, MTGCollection()));
+        game->addObserver(NEW MTGMomirRule(game, -1, MTGCollection()));
     }
 }
 #endif
@@ -296,9 +296,8 @@ void GameStateDuel::End()
     else if ( !mPlayers[1] && mPlayers[0] )
         // clean up player object
         SAFE_DELETE( mPlayers[0] );
-    GameObserver::EndInstance(); // this will delete both player objects if a game has been played
 
-    game = NULL;
+    SAFE_DELETE(game);
     premadeDeck = false;
 
     for (int i = 0; i < 2; i++)
@@ -380,7 +379,7 @@ void GameStateDuel::Update(float dt)
             {
                 loadTestSuitePlayers();
                 setGamePhase(DUEL_STATE_PLAY);
-                testSuite->initGame();
+                testSuite->initGame(game);
             }
             else
             {
@@ -451,20 +450,19 @@ void GameStateDuel::Update(float dt)
     case DUEL_STATE_PLAY:
         if (!game)
         {
-            GameObserver::Init(mPlayers, 2);
-            game = GameObserver::GetInstance();
+            game = new GameObserver(mPlayers, 2);
             game->startGame(mParent->rules);
             if (mParent->gameType == GAME_TYPE_MOMIR)
             {
-                game->addObserver(NEW MTGMomirRule(-1, MTGCollection()));
+                game->addObserver(NEW MTGMomirRule(game, -1, MTGCollection()));
             }
 			if (mParent->gameType == GAME_TYPE_STONEHEWER)
 			{
-				game->addObserver(NEW MTGStoneHewerRule(-1,MTGCollection()));
+                                game->addObserver(NEW MTGStoneHewerRule(game, -1,MTGCollection()));
 			}
 			if (mParent->gameType == GAME_TYPE_HERMIT)
 			{
-				game->addObserver(NEW MTGHermitRule(-1));
+                                game->addObserver(NEW MTGHermitRule(game, -1));
 			}
 
             //start of in game music code
@@ -490,10 +488,10 @@ void GameStateDuel::Update(float dt)
         game->Update(dt);
         //run a "post update" init call in the rules. This is for things such as Manapool, which gets emptied in the update
         // That's mostly because of a legacy bug, where we use the update sequence for some things when we should use events (such as phase changes)
-        mParent->rules->postUpdateInit();
+        mParent->rules->postUpdateInit(game);
         if (game->gameOver)
         {
-            if (game->players[1]->playMode != Player::MODE_TEST_SUITE) credits->compute(game->players[0], game->players[1], mParent);
+            if (game->players[1]->playMode != Player::MODE_TEST_SUITE) credits->compute(game, mParent);
             setGamePhase(DUEL_STATE_END);
 #ifdef TESTSUITE
             if (mParent->players[1] == PLAYER_TYPE_TESTSUITE)
@@ -502,10 +500,11 @@ void GameStateDuel::Update(float dt)
                 {
                     loadTestSuitePlayers();
                     setGamePhase(DUEL_STATE_PLAY);
-                    testSuite->initGame();
+                    testSuite->initGame(game);
                 }
-                else
+                else {
                     setGamePhase(DUEL_STATE_END);
+                }
             }
             else
 #endif

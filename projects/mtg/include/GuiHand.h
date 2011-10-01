@@ -36,7 +36,7 @@ protected:
     vector<CardView*> cards;
 
 public:
-    GuiHand(MTGHand* hand);
+    GuiHand(GameObserver* observer, MTGHand* hand);
     ~GuiHand();
     void Update(float dt);
     bool isInHand(CardView*);
@@ -47,7 +47,7 @@ public:
 class GuiHandOpponent : public GuiHand
 {
 public:
-    GuiHandOpponent(MTGHand* hand);
+    GuiHandOpponent(GameObserver* observer, MTGHand* hand);
     virtual void Render();
     virtual int receiveEventPlus(WEvent* e);
     virtual int receiveEventMinus(WEvent* e);
@@ -65,7 +65,7 @@ protected:
     Pos backpos;
 
 public:
-    GuiHandSelf(MTGHand* hand);
+    GuiHandSelf(GameObserver* observer, MTGHand* hand);
     ~GuiHandSelf();
     virtual int receiveEventPlus(WEvent* e);
     virtual int receiveEventMinus(WEvent* e);

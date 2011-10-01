@@ -74,8 +74,8 @@ CardSelector::SelectorMemory::SelectorMemory()
     x = y = 0;
 }
 
-CardSelector::CardSelector(DuelLayers* duel) :
-    active(NULL), duel(duel), limitor(NULL), bigpos(300, 145, 1.0, 0.0, 220)
+CardSelector::CardSelector(GameObserver *observer, DuelLayers* duel) :
+    CardSelectorBase(observer), active(NULL), duel(duel), limitor(NULL), bigpos(300, 145, 1.0, 0.0, 220)
 {
 }
 
@@ -195,11 +195,11 @@ bool CardSelector::CheckUserInput(JButton key)
     switch (key)
     {
     case JGE_BTN_SEC:
-        GameObserver::GetInstance()->cancelCurrentAction();
+        observer->cancelCurrentAction();
         goto switch_active;
         break;
     case JGE_BTN_OK:
-        GameObserver::GetInstance()->ButtonPressed(active);
+        observer->ButtonPressed(active);
         goto switch_active;
         break;
     case JGE_BTN_LEFT:

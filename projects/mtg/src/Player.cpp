@@ -5,10 +5,14 @@
 #include "DeckStats.h"
 #include "ManaCost.h"
 
-Player::Player(string file, string fileSmall, MTGDeck * deck) :
-Damageable(20)
+#ifdef TESTSUITE
+#include "TestSuiteAI.h"
+#endif
+
+Player::Player(GameObserver *observer, string file, string fileSmall, MTGDeck * deck) :
+    Damageable(observer, 20), mAvatarName("")
 {
-    if(deck == NULL && file != "testsuite" && file != "remote")
+    if(deck == NULL && file != "testsuite" && file != "remote" && file != "")
         deck = NEW MTGDeck(file.c_str(), MTGCollection());
 
     game = NULL;
@@ -32,10 +36,17 @@ Damageable(20)
     mDeck = deck;
 }
 
+void Player::setObserver(GameObserver*g)
+{
+    observer = g;
+    // fix card instances direct pointer
+    game->setOwner(this);
+}
+
 /*Method to call at the end of a game, before all objects involved in the game are destroyed */
 void Player::End()
 {
-    DeckStats::GetInstance()->saveStats(this, opponent(), GameObserver::GetInstance());
+    DeckStats::GetInstance()->saveStats(this, opponent(), observer);
 }
 
 Player::~Player()
@@ -61,8 +72,7 @@ void Player::loadAvatar(string file)
 
 const string Player::getDisplayName() const
 {
-    GameObserver * g = GameObserver::GetInstance();
-    if (this == g->players[0]) return "Player 1";
+    if (this == observer->players[0]) return "Player 1";
     return "Player 2";
 }
 
@@ -73,10 +83,9 @@ MTGInPlay * Player::inPlay()
 
 int Player::getId()
 {
-    GameObserver * game = GameObserver::GetInstance();
     for (int i = 0; i < 2; i++)
     {
-        if (game->players[i] == this) return i;
+        if (observer->players[i] == this) return i;
     }
     return -1;
 }
@@ -88,13 +97,12 @@ JQuadPtr Player::getIcon()
 
 Player * Player::opponent()
 {
-    GameObserver * game = GameObserver::GetInstance();
-    if (!game) return NULL;
-    return this == game->players[0] ? game->players[1] : game->players[0];
+    if (!observer) return NULL;
+    return this == observer->players[0] ? observer->players[1] : observer->players[0];
 }
 
-HumanPlayer::HumanPlayer(string file, string fileSmall, MTGDeck * deck) :
-    Player(file, fileSmall, deck)
+HumanPlayer::HumanPlayer(GameObserver *observer, string file, string fileSmall, MTGDeck * deck) :
+    Player(observer, file, fileSmall, deck)
 {
     loadAvatar("avatar.jpg");
     playMode = MODE_HUMAN;
@@ -119,8 +127,7 @@ int Player::gainOrLoseLife(int value)
 
     //Send life event to listeners
     WEvent * lifed = NEW WEventLife(this,value);
-    GameObserver * game = GameObserver::GetInstance();
-    game->receiveEvent(lifed);
+    observer->receiveEvent(lifed);
 
     return value;
 }
@@ -203,13 +210,61 @@ ostream& operator<<(ostream& out, const Player& p)
 
 istream& operator>>(istream& in, Player& p)
 {
+    string s;
+    streampos pos = in.tellg();
+
+    in >> *((Damageable*)&p);
+
+    while(std::getline(in, s))
+    {
+        size_t limiter = s.find("=");
+        if (limiter == string::npos) limiter = s.find(":");
+        string areaS;
+        if (limiter != string::npos)
+        {
+            areaS = s.substr(0, limiter);
+            if (areaS.compare("manapool") == 0)
+            {
+                SAFE_DELETE(p.manaPool);
+                p.manaPool = new ManaPool(&p);
+                ManaCost::parseManaCost(s.substr(limiter + 1), p.manaPool);
+            }
+            else if (areaS.compare("avatar") == 0)
+            {   // We don't load directly for now
+                p.mAvatarName = s.substr(limiter + 1);
+            }
+            else if (areaS.compare("customphasering") == 0)
+            {
+                p.phaseRing = s.substr(limiter + 1);
+            }
+            else if (areaS.compare("offerinterruptonphase") == 0)
+            {
+                for (int i = 0; i < Constants::NB_MTG_PHASES; i++)
+                {
+                    string phaseStr = Constants::MTGPhaseCodeNames[i];
+                    if (s.find(phaseStr) != string::npos)
+                    {
+                        p.offerInterruptOnPhase = PhaseRing::phaseStrToInt(phaseStr);
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                in.seekg(pos);
+                break;
+            }
+        }
+        pos = in.tellg();
+    }
+
     if(!p.game)
     {
         p.game = new MTGPlayerCards();
+        p.game->setOwner(&p);
     }
 
     in >> *(p.game);
-    p.game->setOwner(&p);
 
     return in;
 }
