@@ -99,7 +99,7 @@ bool FileExists(const string & filename);
 
 std::string buildFilePath(const vector<string> & folders, const string & filename);
 std::string ensureFolder(const string & folderName);
-
+/*
 template <class T> istream& operator>>(istream& in, T& p)
 {
     string s;
@@ -114,5 +114,5 @@ template <class T> istream& operator>>(istream& in, T& p)
 
     return in;
 }
-
+*/
 #endif
