@@ -124,8 +124,6 @@ void MTGPlayerCards::OptimizedHand(Player * who,int amount, int lands, int creat
 {
     //give the Ai hand adventage to insure a challanging match.
     GameObserver * game = who->getObserver();
-    game->currentPlayerId = game->currentPlayerId;
-    game->currentPlayer = game->currentPlayer;
 
     if (!game->players[0]->isAI() && game->players[1]->isAI())
     {
@@ -1072,66 +1070,6 @@ bool MTGGameZone::parseLine(const string& ss)
     return result;
 }
 
-istream& operator>>(istream& in, MTGGameZone& z)
-{
-    for (int i = 0; i < z.nb_cards; i++)
-    {
-        SAFE_DELETE( z.cards[i] );
-    }
-    z.cards.clear();
-    z.cardsMap.clear();
-
-    string s;
-    while(std::getline(in, s))
-    {
-        while(s.size())
-        {
-            size_t limiter = s.find(",");
-            MTGCard * card = 0;
-            string toFind;
-            if (limiter != string::npos)
-            {
-                toFind = trim(s.substr(0, limiter));
-                s = s.substr(limiter + 1);
-            }
-            else
-            {
-                toFind = trim(s);
-                s = "";
-            }
-
-            card = MTGCollection()->getCardByName(toFind);
-            int id = Rules::getMTGId(toFind);
-
-            if (card)
-            {
-                /* For the moment we add the card directly in the final zone.
-                   This is not the normal way and this prevents to resolve spells.
-                   We'll need a fusion operation afterward to cast relevant spells */
-                MTGCardInstance * newCard = NEW MTGCardInstance(card, z.owner->game);
-                z.addCard(newCard);
-            }
-            else
-            {
-                if(toFind == "*")
-                    z.nb_cards++;
-                else if ( id < 0 )
-                {
-                    // For the moment, we create a dummy Token to please the testsuite
-                    Token* myToken = new Token(id);
-                    z.addCard(myToken);
-                }
-                else
-                {
-                    DebugTrace("Card unfound " << toFind << " " << id);
-                }
-            }
-        }
-    }
-
-    return in;
-}
-
 bool MTGPlayerCards::parseLine(const string& s)
 {
     size_t limiter = s.find("=");
@@ -1165,47 +1103,3 @@ bool MTGPlayerCards::parseLine(const string& s)
     return false;
 }
 
-istream& operator>>(istream& in, MTGPlayerCards& z)
-{
-    string s;
-    streampos pos = in.tellg();
-
-    while(std::getline(in, s))
-    {
-        size_t limiter = s.find("=");
-        if (limiter == string::npos) limiter = s.find(":");
-        string areaS;
-        if (limiter != string::npos)
-        {
-            areaS = s.substr(0, limiter);
-            if (areaS.compare("graveyard") == 0)
-            {
-                istringstream stream(s.substr(limiter+1));
-                stream >> (*z.graveyard);
-            }
-            else if (areaS.compare("library") == 0)
-            {
-                istringstream stream(s.substr(limiter+1));
-                stream >> (*z.library);
-            }
-            else if (areaS.compare("hand") == 0)
-            {
-                istringstream stream(s.substr(limiter+1));
-                stream >> (*z.hand);
-            }
-            else if (areaS.compare("inplay") == 0 || areaS.compare("battlefield") == 0)
-            {
-                istringstream stream(s.substr(limiter+1));
-                stream >> (*z.battlefield);
-            }
-            else
-            {
-                in.seekg(pos);
-                break;
-            }
-        }
-        pos = in.tellg();
-    }
-
-    return in;
-}

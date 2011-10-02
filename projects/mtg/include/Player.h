@@ -95,8 +95,6 @@ public:
     ** Returns the path to the stats file of currently selected deck. 
     */
     std::string GetCurrentDeckStatsFile();
-
-    friend istream& operator>>(istream& in, Player& p);
     bool parseLine(const string& s);
 };
 

@@ -203,16 +203,10 @@ std::string Player::GetCurrentDeckStatsFile()
    return options.profileFile(filename.str());
 }
 
-
-ostream& operator<<(ostream& out, const Player& p)
-{
-    return out << *(p.game);
-}
-
 bool Player::parseLine(const string& s)
 {
-  if(((Damageable*)this)->parseLine(s))
-    return true;
+    if(((Damageable*)this)->parseLine(s))
+        return true;
 
     size_t limiter = s.find("=");
     if (limiter == string::npos) limiter = s.find(":");
@@ -263,64 +257,7 @@ bool Player::parseLine(const string& s)
     return false;
 }
 
-istream& operator>>(istream& in, Player& p)
+ostream& operator<<(ostream& out, const Player& p)
 {
-    string s;
-    streampos pos = in.tellg();
-
-    in >> *((Damageable*)&p);
-
-    in.seekg(pos);
-    while(std::getline(in, s))
-    {
-        size_t limiter = s.find("=");
-        if (limiter == string::npos) limiter = s.find(":");
-        string areaS;
-        if (limiter != string::npos)
-        {
-            areaS = s.substr(0, limiter);
-            if (areaS.compare("manapool") == 0)
-            {
-                SAFE_DELETE(p.manaPool);
-                p.manaPool = new ManaPool(&p);
-                ManaCost::parseManaCost(s.substr(limiter + 1), p.manaPool);
-            }
-            else if (areaS.compare("avatar") == 0)
-            {   // We don't load directly for now
-                p.mAvatarName = s.substr(limiter + 1);
-            }
-            else if (areaS.compare("customphasering") == 0)
-            {
-                p.phaseRing = s.substr(limiter + 1);
-            }
-            else if (areaS.compare("offerinterruptonphase") == 0)
-            {
-                for (int i = 0; i < Constants::NB_MTG_PHASES; i++)
-                {
-                    string phaseStr = Constants::MTGPhaseCodeNames[i];
-                    if (s.find(phaseStr) != string::npos)
-                    {
-                        p.offerInterruptOnPhase = PhaseRing::phaseStrToInt(phaseStr);
-                        break;
-                    }
-                }
-            }
-            else
-            {
-                in.seekg(pos);
-                break;
-            }
-        }
-        pos = in.tellg();
-    }
-
-    if(!p.game)
-    {
-        p.game = new MTGPlayerCards();
-        p.game->setOwner(&p);
-    }
-
-    in >> *(p.game);
-
-    return in;
+    return out << *(p.game);
 }

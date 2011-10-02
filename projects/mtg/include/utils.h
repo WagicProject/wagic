@@ -100,4 +100,19 @@ bool FileExists(const string & filename);
 std::string buildFilePath(const vector<string> & folders, const string & filename);
 std::string ensureFolder(const string & folderName);
 
+template <class T> istream& operator>>(istream& in, T& p)
+{
+    string s;
+
+    while(std::getline(in, s))
+    {
+        if(!p.parseLine(s))
+        {
+            break;
+        }
+    }
+
+    return in;
+}
+
 #endif

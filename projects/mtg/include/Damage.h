@@ -41,6 +41,8 @@ public:
     virtual JQuadPtr getIcon(){return JQuadPtr();}
 
     bool parseLine(const string& s);
+
+    friend ostream& operator<<(ostream& out, const Damageable& p);
 };
 
 class Damage: public Interruptible
@@ -70,9 +72,5 @@ class DamageStack : public GuiLayer, public Interruptible
   virtual ostream& toString(ostream& out) const;
   DamageStack(GameObserver *observer);
 };
-
-ostream& operator<<(ostream& out, const Damageable& p);
-
-istream& operator>>(istream& in, Damageable& p);
 
 #endif

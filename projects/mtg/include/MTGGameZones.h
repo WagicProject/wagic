@@ -202,8 +202,7 @@ public:
 };
 
 ostream& operator<<(ostream&, const MTGGameZone&);
-istream& operator>>(istream&, MTGGameZone&);
 ostream& operator<<(ostream&, const MTGPlayerCards&);
-istream& operator>>(istream&, MTGPlayerCards&);
+
 
 #endif
