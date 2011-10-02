@@ -25,7 +25,7 @@ public:
     bool tryToUnlock(GameObserver * game);
     static void load();
     static map <string, Unlockable *> unlockables;
-    static void Unlockable::Destroy();
+    static void Destroy();
 };
 
 

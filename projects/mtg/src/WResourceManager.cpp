@@ -894,13 +894,7 @@ void ResourceManagerImpl::RemoveWFonts()
 
 void ResourceManagerImpl::ResetCacheLimits()
 {
-#if defined WIN32 || defined LINUX || defined (IOS)
-#ifdef FORCE_LOW_CACHE_MEMORY
-    textureWCache.Resize(kConstrainedCacheLimit, MAX_CACHE_OBJECTS);
-#else
-    textureWCache.Resize(HUGE_CACHE_LIMIT,MAX_CACHE_OBJECTS);
-#endif
-#else
+#if defined PSP
     unsigned int ram = ramAvailable();
     unsigned int myNewSize = ram - OPERATIONAL_SIZE + textureWCache.totalSize;
     if (myNewSize < TEXTURES_CACHE_MINSIZE)
@@ -908,6 +902,14 @@ void ResourceManagerImpl::ResetCacheLimits()
         DebugTrace( "Error, Not enough RAM for Cache: " << myNewSize << " - total Ram: " << ram);
     }
     textureWCache.Resize(MIN(myNewSize, HUGE_CACHE_LIMIT), MAX_CACHE_OBJECTS);
+#else
+#ifdef FORCE_LOW_CACHE_MEMORY
+    textureWCache.Resize(kConstrainedCacheLimit, MAX_CACHE_OBJECTS);
+#else
+    unsigned long cacheSize = options["cachesize"].number ? (unsigned long)(options["cachesize"].number) * 1024 * 1024 : HUGE_CACHE_LIMIT;
+    textureWCache.Resize(cacheSize,MAX_CACHE_OBJECTS);
+#endif
+
 #endif
     return;
 }

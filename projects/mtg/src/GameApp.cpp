@@ -96,8 +96,6 @@ void GameApp::Create()
     //_CrtSetBreakAlloc(368);
     LOG("starting Game");
 
-	WResourceManager::Instance()->ResetCacheLimits();
-
     string systemFolder = "Res/";
     string foldersRoot = "";
 
@@ -148,6 +146,11 @@ void GameApp::Create()
     //Ensure that options are partially loaded before loading files.
     LOG("options.reloadProfile()");
     options.reloadProfile();
+
+
+    //Setup Cache before calling any gfx/sfx functions
+	WResourceManager::Instance()->ResetCacheLimits();
+
 
     LOG("Checking for music files");
     //Test for Music files presence
