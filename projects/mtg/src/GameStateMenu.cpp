@@ -20,6 +20,7 @@
 #include <JLogger.h>
 #include "Rules.h"
 #include "ModRules.h"
+#include "Credits.h"
 
 #ifdef NETWORK_SUPPORT
 #include <JNetwork.h>
@@ -214,14 +215,16 @@ void GameStateMenu::fillScroller()
 
     if (!options[Options::DIFFICULTY_MODE_UNLOCKED].number)
         scroller->Add(_("Unlock the difficult mode for more challenging duels!"));
-    if (!options[Options::MOMIR_MODE_UNLOCKED].number)
-        scroller->Add(_("Interested in playing Momir Basic? You'll have to unlock it first :)"));
-	if (!options[Options::STONEHEWER_MODE_UNLOCKED].number)
-		scroller->Add(_("Love Equipment and want a real challenge? Unlock Stone Hewer Basic:)"));
-    if (!options[Options::RANDOMDECK_MODE_UNLOCKED].number)
-        scroller->Add(_("You haven't unlocked the random deck mode yet"));
-    if (!options[Options::EVILTWIN_MODE_UNLOCKED].number)
-        scroller->Add(_("You haven't unlocked the evil twin mode yet"));
+
+    for (map<string, Unlockable *>::iterator it = Unlockable::unlockables.begin(); it !=  Unlockable::unlockables.end(); ++it) {
+        Unlockable * award = it->second;
+        if (!award->isUnlocked())
+        {
+            if (award->getValue("teaser").size())
+                scroller->Add(_(award->getValue("teaser")));
+        }
+    }
+
     if (!options[Options::RANDOMDECK_MODE_UNLOCKED].number)
         scroller->Add(_("You haven't unlocked the random deck mode yet"));
     if (!options[Options::EVILTWIN_MODE_UNLOCKED].number)
@@ -620,7 +623,10 @@ void GameStateMenu::Update(float dt)
                     for (size_t i = 0; i < Rules::RulesList.size(); ++i)
                     {
                         Rules * rules = Rules::RulesList[i];
-                        if (!rules->hidden && (rules->unlockOption == INVALID_OPTION || options[rules->unlockOption].number))
+                        bool unlocked = rules->unlockOption == INVALID_OPTION 
+                            ? (rules->mUnlockOptionString.size() == 0 ||  options[rules->mUnlockOptionString].number !=0)
+                            :  options[rules->unlockOption].number != 0;
+                        if (!rules->hidden && (unlocked))
                         {
                             subMenuController->Add(SUBMENUITEM_END_OFFSET + i, rules->displayName.c_str());
                         }

@@ -5,6 +5,7 @@
 #include "Translate.h"
 #include "OptionItem.h"
 #include "StyleManager.h"
+#include "Credits.h"
 
 const string Options::optionNames[] = {
 //Global options
@@ -65,9 +66,6 @@ const string Options::optionNames[] = {
   "interruptAfterEnd",
 //Unlocked modes
   "prx_handler",
-  "prx_rimom",
-  "prx_rewehenots",
-  "prx_timreh",
   "prx_eviltwin",
   "prx_rnddeck",
   "aw_collector",
@@ -335,7 +333,7 @@ int GameOptions::load()
             int id = Options::getID(name);
             if (id == INVALID_OPTION)
             {
-                if (!unknownMap[name]) unknownMap[name] = NEW GameOption(val);
+                if (!unknownMap[name]) unknownMap[name] = factorNewGameOption(name, val);
                 continue;
             }
 
@@ -420,12 +418,31 @@ GameOption& GameOptions::operator[](string optionName)
 
 }
 
+GameOption * GameOptions::factorNewGameOption(string optionName, string value)
+{
+    if (optionName == "prx_rimom")
+        int a = 0;
+
+    GameOption * result =( Unlockable::unlockables.find(optionName) !=  Unlockable::unlockables.end())
+        ? NEW GameOptionAward()
+        : NEW GameOption();
+
+    if (value.size())
+        result->read(value);
+
+    return result;
+}
+
 GameOption * GameOptions::get(string optionName)
 {
-   if (!unknownMap[optionName])
-        unknownMap[optionName] = NEW GameOption(0);
+    if (optionName == "prx_rimom")
+        int a = 0;
 
-    return unknownMap[optionName];
+   if (!unknownMap[optionName])
+   {
+       unknownMap[optionName] = factorNewGameOption(optionName);
+   }
+   return unknownMap[optionName];
 }
 
 GameOption * GameOptions::get(int optionID)
@@ -619,10 +636,6 @@ GameOption& GameSettings::operator[](string optionName)
 
 GameOption* GameSettings::get(int optionID)
 {
-#ifdef DEBUG
-    string option_name = Options::getName(optionID);
-#endif
-
     if (optionID < 0)
         return &invalid_option;
     else if (globalOptions && optionID <= Options::LAST_GLOBAL)

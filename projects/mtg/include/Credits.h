@@ -13,6 +13,22 @@ class DeckStats;
 
 using namespace std;
 
+class Unlockable
+{
+private:
+    map <string, string>mValues;
+public:
+    Unlockable();
+    void setValue(string, string);
+    string getValue(string);
+    bool isUnlocked();
+    bool tryToUnlock(GameObserver * game);
+    static void load();
+    static map <string, Unlockable *> unlockables;
+    static void Unlockable::Destroy();
+};
+
+
 class CreditBonus
 {
 public:
@@ -27,9 +43,6 @@ class Credits
 private:
     time_t gameLength;
     int isDifficultyUnlocked(DeckStats * stats);
-    int isMomirUnlocked();
-	int isStoneHewerUnlocked();
-	int isHermitUnlocked();
     int isEvilTwinUnlocked();
     int isRandomDeckUnlocked();
     int IsMoreAIDecksUnlocked(DeckStats * stats);

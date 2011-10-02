@@ -1,0 +1,25 @@
+[award]
+name=Momir Mode
+trophyroom_text=Won with exactly 8 lands.
+id=prx_rimom
+unlock_img=momir_unlocked.png
+teaser=Interested in playing Momir Basic? You'll have to unlock it first :)
+unlock_condition=type(land|myBattlefield)~equalto~8
+[/award]
+
+[award]
+name=Hermit Druid Mode
+id=prx_timreh
+unlock_text=Hermit Druid Basic Unlocked
+trophyroom_text=Won with less than 10 lands.
+unlock_condition=type(land|myBattlefield)~lessthan~10
+[/award]
+
+[award]
+name=Stone Hewer Mode
+id=prx_rewehenots
+unlock_text=Stone Hewer Basic Unlocked
+teaser=Love Equipment and want a real challenge? Unlock Stone Hewer Basic:)
+trophyroom_text=Won with more than 10 equipments.
+unlock_condition=type(equipment|Battlefield)~morethan~10
+[/award]

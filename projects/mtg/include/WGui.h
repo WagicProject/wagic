@@ -595,6 +595,7 @@ class WGuiAward: public WGuiItem
 {
 public:
     WGuiAward(int _id, string name, string _text, string _details = "");
+    WGuiAward(string _id, string name, string _text, string _details = "");
     virtual ~WGuiAward();
     virtual void Render();
     virtual bool Selectable()
@@ -614,6 +615,7 @@ public:
 protected:
     string details;
     int id;
+    string textId;
     string text;
 };
 

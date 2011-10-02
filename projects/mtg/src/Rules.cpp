@@ -546,7 +546,8 @@ int Rules::load(string _filename)
             }
             else if (s.find("unlock=") == 0)
             {
-                unlockOption = Options::getID(s.substr(7));
+                mUnlockOptionString = s.substr(7);
+                unlockOption = Options::getID(mUnlockOptionString);
             }
             else if (s.find("hidden") == 0)
             {

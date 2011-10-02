@@ -61,6 +61,7 @@ public:
     bool hidden;
 	string displayName;
 	int unlockOption;
+    string mUnlockOptionString;
 	static vector<Rules *> RulesList;
 
     Rules(string bg = "");

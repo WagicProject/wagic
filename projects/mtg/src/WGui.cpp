@@ -1293,7 +1293,7 @@ void WGuiAward::Underlay()
     char buf[1024];
     JQuadPtr trophy;
 
-    string n = Options::getName(id);
+    string n = id ? Options::getName(id) : textId;
     if (n.size())
     {
         sprintf(buf, "trophy_%s.png", n.c_str()); //Trophy specific to the award
@@ -1316,7 +1316,7 @@ void WGuiAward::Underlay()
 }
 void WGuiAward::Render()
 {
-    GameOptionAward * goa = dynamic_cast<GameOptionAward*> (&options[id]);
+    GameOptionAward * goa = id ? dynamic_cast<GameOptionAward*> (&options[id]) : dynamic_cast<GameOptionAward*> (&options[textId]);
 
     if (!goa) return;
 
@@ -1359,6 +1359,17 @@ WGuiAward::WGuiAward(int _id, string name, string _text, string _details) :
     height = 60;
     details = _details;
 }
+
+WGuiAward::WGuiAward(string _id, string name, string _text, string _details) :
+    WGuiItem(name)
+{
+    id = 0;
+    textId = _id;
+    text = _text;
+    height = 60;
+    details = _details;
+}
+
 WGuiAward::~WGuiAward()
 {
     GameOptionAward * goa = dynamic_cast<GameOptionAward*> (&options[id]);
@@ -1367,7 +1378,7 @@ WGuiAward::~WGuiAward()
 bool WGuiAward::Visible()
 {
     //WGuiAward is only visible when it's tied to an already achieved award.
-    GameOptionAward * goa = dynamic_cast<GameOptionAward*> (&options[id]);
+    GameOptionAward * goa = id ? dynamic_cast<GameOptionAward*> (&options[id]) : dynamic_cast<GameOptionAward*> (&options[textId]);
     if (!goa || !goa->number) return false;
     return true;
 }

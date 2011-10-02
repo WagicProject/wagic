@@ -10,11 +10,129 @@
 #include "GameStateShop.h"
 #include "PlayerData.h"
 
+
+map <string, Unlockable *> Unlockable::unlockables;
+
+Unlockable::Unlockable() 
+{
+}
+
+void  Unlockable::setValue(string k , string v) 
+{
+    mValues[k] = v;
+}
+
+string Unlockable::getValue(string k) 
+{
+    return mValues[k];
+}
+
+bool Unlockable::isUnlocked() {
+    string id = getValue("id");
+    assert(id.size() > 0);
+    return (options[id].number != 0);
+}
+
+bool Unlockable::tryToUnlock(GameObserver * game) {
+    if (isUnlocked())
+        return false;
+
+    string conditions = getValue("unlock_condition");
+    
+    Player * p = game->players[0];
+    if (p->isAI())
+        return false;
+
+    // We need a card belonging to the player in order to call parceCastRestrictions
+    // The goal is usually to create objects such as targetChoosers, that are usually required
+    // for protection, or determining the card's owner
+    //Therefore here any card is ok
+    MTGCardInstance * dummyCard = p->game->battlefield->nb_cards 
+        ? p->game->battlefield->cards[0]
+        :  p->game->hand->nb_cards 
+            ?  p->game->hand->cards[0]
+            : p->game->library->nb_cards
+                ?  p->game->library->cards[0]
+                : NULL;
+
+    AbilityFactory af(game);
+    int meetConditions = conditions.size() 
+        ? dummyCard 
+            ? af.parseCastRestrictions(dummyCard, p, conditions) 
+            : 0
+        : 1;
+
+    if (!meetConditions)
+        return false;
+
+    // Unlock the award and return
+    string id = getValue("id");
+    assert(id.size() > 0);
+
+	GameOptionAward* goa = (GameOptionAward*) &options[id]; 
+    goa->giveAward();
+    return true;
+}
+
+void Unlockable::load()
+{
+    std::string contents;
+    if (! JFileSystem::GetInstance()->readIntoString("Rules/awards.dat", contents))
+        return;
+
+    std::stringstream stream(contents);
+    std::string s;
+
+    Unlockable * current = NULL;
+    while (std::getline(stream, s))
+    {
+        if (!s.size()) continue;
+        if (s[s.size() - 1] == '\r') s.erase(s.size() - 1); //Handle DOS files
+        if (!s.size()) continue;
+        if (s[0] == '#') continue;
+
+        if (s == "[award]")
+        {
+            current = NEW Unlockable();
+            continue;
+        }
+
+
+        if (!current)
+            continue;
+
+        if (s == "[/award]")
+        {
+            string id = current->getValue("id");
+            
+            if (id.size())
+                unlockables[id] = current;
+            else 
+                SAFE_DELETE(current);
+
+            continue;
+        }
+
+        vector<string> keyValue = split(s,'=');
+        if (keyValue.size() != 2)
+            continue;
+
+        current->setValue(keyValue[0], keyValue[1]);
+    }
+}
+
+void Unlockable::Destroy()
+{
+    for (map<string, Unlockable *>::iterator it = unlockables.begin(); it != unlockables.end(); ++it) {
+        SAFE_DELETE(it->second);
+    }
+    unlockables.clear();
+}
+
 CreditBonus::CreditBonus(int _value, string _text)
 {
     value = _value;
     text = _text;
-
 }
 
 void CreditBonus::Render(float x, float y, WFont * font)
@@ -129,59 +247,48 @@ void Credits::compute(GameObserver* g, GameApp * _app)
                 unlockedTextureName = "unlocked.png";
                 goa = (GameOptionAward*) &options[Options::DIFFICULTY_MODE_UNLOCKED];
                 goa->giveAward();
-                options.save();
             }
-            else if ((unlocked = isMomirUnlocked()))
+            else
             {
-                unlockedTextureName = "momir_unlocked.png";
-                goa = (GameOptionAward*) &options[Options::MOMIR_MODE_UNLOCKED];
-                goa->giveAward();
-                options.save();
+                for (map<string, Unlockable *>::iterator it = Unlockable::unlockables.begin(); it !=  Unlockable::unlockables.end(); ++it) {
+                    Unlockable * award = it->second;
+                    if (award->tryToUnlock(g))
+                    {
+                        unlocked = 1;
+                        unlockedString = award->getValue("unlock_text");
+                        unlockedTextureName = award->getValue("unlock_img");
+                        break;
+                    }
+                }
             }
-			else if ((unlocked = isStoneHewerUnlocked()))
-			{
-				//unlockedTextureName = "stonehewer_unlocked.png";//until we can find a nice free use font.
-                CreditBonus * b = NEW CreditBonus(0, _("Stone Hewer Basic Unlocked"));
-                bonus.push_back(b);
-				goa = (GameOptionAward*) &options[Options::STONEHEWER_MODE_UNLOCKED];
-				goa->giveAward();
-				options.save();
-			}
-			else if ((unlocked = isHermitUnlocked()))
-			{
-				//unlockedTextureName = "hermit_unlocked.png";//until we can find a nice free use font.
-                CreditBonus * b = NEW CreditBonus(0, _("Hermit Druid Basic Unlocked"));
-                bonus.push_back(b);
-				goa = (GameOptionAward*) &options[Options::HERMIT_MODE_UNLOCKED];
-				goa->giveAward();
-				options.save();
-			}
-            else if ((unlocked = isEvilTwinUnlocked()))
+            
+            if (!unlocked)
             {
-                unlockedTextureName = "eviltwin_unlocked.png";
-                goa = (GameOptionAward*) &options[Options::EVILTWIN_MODE_UNLOCKED];
-                goa->giveAward();
-                options.save();
-            }
-            else if ((unlocked = isRandomDeckUnlocked()))
-            {
-                unlockedTextureName = "randomdeck_unlocked.png";
-                goa = (GameOptionAward*) &options[Options::RANDOMDECK_MODE_UNLOCKED];
-                goa->giveAward();
-                options.save();
-            }
-            else if ((unlocked = unlockRandomSet()))
-            {
-                unlockedTextureName = "set_unlocked.png";
-                MTGSetInfo * si = setlist.getInfo(unlocked - 1);
-                if (si)
-                    unlockedString = si->getName(); //Show the set's pretty name for unlocks.
-            }
-            else if ((unlocked = IsMoreAIDecksUnlocked(stats)))
-            {
-                options[Options::AIDECKS_UNLOCKED].number += 10;
-                options.save();
-                unlockedTextureName = "ai_unlocked.png";
+                if ((unlocked = isEvilTwinUnlocked()))
+                {
+                    unlockedTextureName = "eviltwin_unlocked.png";
+                    goa = (GameOptionAward*) &options[Options::EVILTWIN_MODE_UNLOCKED];
+                    goa->giveAward();
+                }
+                else if ((unlocked = isRandomDeckUnlocked()))
+                {
+                    unlockedTextureName = "randomdeck_unlocked.png";
+                    goa = (GameOptionAward*) &options[Options::RANDOMDECK_MODE_UNLOCKED];
+                    goa->giveAward();
+                }
+                else if ((unlocked = unlockRandomSet()))
+                {
+                    unlockedTextureName = "set_unlocked.png";
+                    MTGSetInfo * si = setlist.getInfo(unlocked - 1);
+                    if (si)
+                        unlockedString = si->getName(); //Show the set's pretty name for unlocks.
+                }
+                else if ((unlocked = IsMoreAIDecksUnlocked(stats)))
+                {
+                    options[Options::AIDECKS_UNLOCKED].number += 10;
+                    options.save();
+                    unlockedTextureName = "ai_unlocked.png";
+                }
             }
 
             if (unlocked && options[Options::SFXVOLUME].number > 0)
@@ -232,11 +339,11 @@ JQuadPtr Credits::GetUnlockedQuad(string textureName)
     if (!unlockedTex) return JQuadPtr();
 
     return WResourceManager::Instance()->RetrieveQuad(
-                                            unlockedTextureName,
-                                            2.0f,
-                                            2.0f, 
-                                            static_cast<float>(unlockedTex->mWidth - 4),
-                                            static_cast<float>(unlockedTex->mHeight - 4));
+        unlockedTextureName,
+        2.0f,
+        2.0f, 
+        static_cast<float>(unlockedTex->mWidth - 4),
+        static_cast<float>(unlockedTex->mHeight - 4));
     
 }
 
@@ -255,6 +362,7 @@ void Credits::Render()
     f3->SetScale(1);
     f3->SetColor(ARGB(255,255,255,255));
     char buffer[512];
+
     if (!observer->turn)
     {
         sprintf(buffer, "%s", _("Please check your deck (not enough cards?)").c_str());
@@ -308,7 +416,7 @@ void Credits::Render()
     y += 15;
 
     //!!
-    if (observer->gameOver != p1)
+    if (observer->gameOver != p1 && this->gameLength != 0)
     {
         sprintf(buffer, _("Game length: %i turns (%i seconds)").c_str(), observer->turn, this->gameLength);
         f->DrawString(buffer, 10, y);
@@ -354,33 +462,6 @@ int Credits::isDifficultyUnlocked(DeckStats * stats)
                 return 1;
         }
     }
-    return 0;
-}
-
-int Credits::isMomirUnlocked()
-{
-    if (options[Options::MOMIR_MODE_UNLOCKED].number)
-        return 0;
-    if (p1->game->inPlay->countByType("land") == 8)
-        return 1;
-    return 0;
-}
-
-int Credits::isStoneHewerUnlocked()
-{
-    if (options[Options::STONEHEWER_MODE_UNLOCKED].number)
-        return 0;
-	if (int(p1->game->inPlay->countByType("equipment") + p1->opponent()->game->inPlay->countByType("equipment")) > 10)
-        return 1;
-    return 0;
-}
-
-int Credits::isHermitUnlocked()
-{
-    if (options[Options::HERMIT_MODE_UNLOCKED].number)
-        return 0;
-	if (int(p1->game->inPlay->countByType("land")) < 10)
-        return 1;
     return 0;
 }
 

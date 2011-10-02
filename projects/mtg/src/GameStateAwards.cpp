@@ -10,6 +10,7 @@
 #include "Translate.h"
 #include "OptionItem.h"
 #include "DeckDataWrapper.h"
+#include "Credits.h"
 
 enum ENUM_AWARDS_STATE
 {
@@ -71,17 +72,12 @@ void GameStateAwards::Start()
     btn = NEW WGuiButton(aw, GUI_AWARD_BUTTON, Options::DIFFICULTY_MODE_UNLOCKED, this);
     listview->Add(btn);
 
-    aw = NEW WGuiAward(Options::MOMIR_MODE_UNLOCKED, "Momir Mode", "Won with exactly 8 lands.");
-    btn = NEW WGuiButton(aw, GUI_AWARD_BUTTON, Options::MOMIR_MODE_UNLOCKED, this);
-    listview->Add(btn);
-
-	aw = NEW WGuiAward(Options::STONEHEWER_MODE_UNLOCKED, "Stone Hewer Mode", "Won with more than 10 equipments.");
-	btn = NEW WGuiButton(aw, GUI_AWARD_BUTTON, Options::STONEHEWER_MODE_UNLOCKED, this);
-	listview->Add(btn);
-
-	aw = NEW WGuiAward(Options::HERMIT_MODE_UNLOCKED, "Hermit Druid Mode", "Won with less than 10 lands.");
-	btn = NEW WGuiButton(aw, GUI_AWARD_BUTTON, Options::HERMIT_MODE_UNLOCKED, this);
-	listview->Add(btn);
+    for (map<string, Unlockable *>::iterator it = Unlockable::unlockables.begin(); it !=  Unlockable::unlockables.end(); ++it) {
+        Unlockable * award = it->second;
+        aw = NEW WGuiAward(award->getValue("id"), award->getValue("name"), award->getValue("trophyroom_text"));
+        btn = NEW WGuiButton(aw, GUI_AWARD_BUTTON, 0, this);
+        listview->Add(btn);
+    }
 
     aw = NEW WGuiAward(Options::EVILTWIN_MODE_UNLOCKED, "Evil Twin Mode", "Won with same army size.");
     btn = NEW WGuiButton(aw, GUI_AWARD_BUTTON, Options::EVILTWIN_MODE_UNLOCKED, this);

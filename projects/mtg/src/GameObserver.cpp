@@ -335,7 +335,7 @@ GameObserver::~GameObserver()
     SAFE_DELETE(mLayers);
     SAFE_DELETE(phaseRing);
     SAFE_DELETE(replacementEffects);
-    for (int i = 0; i < players.size(); ++i)
+    for (size_t i = 0; i < players.size(); ++i)
     {
         SAFE_DELETE(players[i]);
     }
@@ -784,7 +784,7 @@ void GameObserver::Render()
     if (mExtraPayment) 
     	mExtraPayment->Render();
     
-    for (int i = 0; i < players.size(); ++i)
+    for (size_t i = 0; i < players.size(); ++i)
     {
         players[i]->Render();
     }

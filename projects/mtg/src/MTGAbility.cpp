@@ -71,7 +71,7 @@ int MTGAbility::allowedToAltCast(MTGCardInstance * card,Player * player)
     return af.parseCastRestrictions(card,player,card->getOtherRestrictions());
 }
 
-int AbilityFactory::parseCastRestrictions(MTGCardInstance * card,Player * player,string restrictions)
+int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * player,string restrictions)
 {
     vector <string> restriction = split(restrictions, ',');
     AbilityFactory af(observer);
@@ -3954,6 +3954,7 @@ int  Trigger::triggerOnEvent(WEvent * event) {
             return 1;//can't check these restrictions without a source aka:in a rule.txt
         AbilityFactory af(game);
         int checkCond = af.parseCastRestrictions(source,source->controller(),castRestriction);
+
         if(!checkCond)
             return 0;
     }

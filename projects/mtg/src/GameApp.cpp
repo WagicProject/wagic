@@ -29,6 +29,7 @@
 #include "Rules.h"
 #include "ModRules.h"
 #include "JFileSystem.h"
+#include "Credits.h"
 
 #define DEFAULT_DURATION .25
 
@@ -137,6 +138,9 @@ void GameApp::Create()
 
     //Load Mod Rules before everything else
     gModRules.load("rules/modrules.xml");
+
+    //Load awards (needs to be loaded before any option are accessed)
+    Unlockable::load();
 
     //Link this to our settings manager.
     options.theGame = this;
@@ -316,6 +320,7 @@ void GameApp::Destroy()
     DeckEditorMenu::destroy();
 
     options.theGame = NULL;
+    Unlockable::Destroy();
 
     Rules::unloadAllRules();
     LOG("==Destroying GameApp Successful==");
