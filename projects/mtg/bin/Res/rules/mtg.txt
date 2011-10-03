@@ -5,9 +5,34 @@
 hidden
 [INIT]
 mode=mtg
+
+#MTG Game specific rules
+auto=bonusrule
+auto=putinplayrule
+auto=kickerrule
+auto=alternativecostrule
+auto=buybackrule
+auto=flashbackrule
+auto=retracerule
+auto=suspendrule
+auto=morphrule
+auto=attackrule
+auto=blockrule
+auto=combattriggerrule
+auto=legendrule
+auto=planeswalkerrule
+auto=tokencleanuprule
+auto=persistrule
+auto=vampirerule
+auto=unearthrule
+auto=lifelinkrule
+auto=deathtouchrule
+auto=otherabilitiesrule
+
 [PLAYERS]
 life:20
 offerinterruptonphase=draw
+
 auto=sethand:7
 auto=@each my draw:draw:1
 auto=maxPlay(land)1
