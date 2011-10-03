@@ -19,28 +19,6 @@ void DuelLayers::init(GameObserver* go)
     //1 Action Layer
     action = NEW ActionLayer(go);
     action->Add(NEW MTGGamePhase(go, action->getMaxId()));
-    //Add Magic Specific Rules
-    action->Add(NEW MTGEventBonus(go, -1));
-    action->Add(NEW MTGPutInPlayRule(go, -1));
-    action->Add(NEW MTGKickerRule(go, -1));
-    action->Add(NEW MTGAlternativeCostRule(go, -1));
-    action->Add(NEW MTGBuyBackRule(go, -1));
-    action->Add(NEW MTGFlashBackRule(go, -1));
-    action->Add(NEW MTGRetraceRule(go, -1));
-    action->Add(NEW MTGSuspendRule(go, -1));
-    action->Add(NEW MTGAttackRule(go, -1));
-    action->Add(NEW MTGBlockRule(go, -1));
-    action->Add(NEW MTGCombatTriggersRule(go, -1));
-    action->Add(NEW MTGLegendRule(go, -1));
-    action->Add(NEW MTGPlaneWalkerRule(go, -1));
-    action->Add(NEW MTGTokensCleanup(go, -1)); // needs to be before persist
-    action->Add(NEW MTGPersistRule(go, -1));
-    action->Add(NEW MTGVampireRule(go, -1));
-    action->Add(NEW MTGUnearthRule(go, -1));
-    action->Add(NEW MTGLifelinkRule(go, -1));
-    action->Add(NEW MTGDeathtouchRule(go, -1));
-    action->Add(NEW OtherAbilitiesEventReceiver(go, -1));
-    action->Add(NEW MTGMorphCostRule(go, -1));
     //Other display elements
     action->Add(NEW HUDDisplay(go, -1));
 

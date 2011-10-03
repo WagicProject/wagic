@@ -578,7 +578,7 @@ int ActionStack::setIsInterrupting(Player * player)
         return 0;
     }
 
-    // Is it a valid interruption request, or is uninterruptible stuff going on in the game?
+     //Is it a valid interruption request, or is uninterruptible stuff going on in the game?
     if (observer->getCurrentTargetChooser())
     {
         DebugTrace("ActionStack: WARNING - We were asked to interrupt, During Targetchoosing" << endl

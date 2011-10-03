@@ -754,6 +754,155 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     if (!target)
         target = card;
 
+    //MTG Specific rules
+    //adds the bonus credit system
+    found = s.find("bonusrule");
+    if(found != string::npos)
+    {
+        observer->addObserver(NEW MTGEventBonus(observer, -1));
+        return NULL;
+    }
+    //putinplay/cast rule.. this is a parent rule and is required for all cost related rules.
+    found = s.find("putinplayrule");
+    if(found != string::npos)
+    {
+        observer->addObserver(NEW MTGPutInPlayRule(observer, -1));
+        return NULL;
+    }
+    //rule for kicker handling
+    found = s.find("kickerrule");
+    if(found != string::npos)
+    {
+        observer->addObserver(NEW MTGKickerRule(observer, -1));
+        return NULL;
+    }
+    //alternative cost types rule, this is a parent rule and is required for all cost related rules.
+    found = s.find("alternativecostrule");
+    if(found != string::npos)
+    {
+        observer->addObserver(NEW MTGAlternativeCostRule(observer, -1));
+        return NULL;
+    }
+    //alternative cost type buyback
+    found = s.find("buybackrule");
+    if(found != string::npos)
+    {
+        observer->addObserver(NEW MTGBuyBackRule(observer, -1));
+        return NULL;
+    }
+    //alternative cost type flashback
+    found = s.find("flashbackrule");
+    if(found != string::npos)
+    {
+        observer->addObserver(NEW MTGFlashBackRule(observer, -1));
+        return NULL;
+    }
+    //alternative cost type retrace
+    found = s.find("retracerule");
+    if(found != string::npos)
+    {
+        observer->addObserver(NEW MTGRetraceRule(observer, -1));
+        return NULL;
+    }
+    //alternative cost type suspend
+    found = s.find("suspendrule");
+    if(found != string::npos)
+    {
+        observer->addObserver(NEW MTGSuspendRule(observer, -1));
+        return NULL;
+    }
+    //alternative cost type morph
+    found = s.find("morphrule");
+    if(found != string::npos)
+    {
+        observer->addObserver(NEW MTGMorphCostRule(observer, -1));
+        return NULL;
+    }
+    //this rule handles attacking ability during attacker phase
+    found = s.find("attackrule");
+    if(found != string::npos)
+    {
+        observer->addObserver(NEW MTGAttackRule(observer, -1));
+        return NULL;
+    }
+    //this rule handles blocking ability during blocker phase
+    found = s.find("blockrule");
+    if(found != string::npos)
+    {
+        observer->addObserver(NEW MTGBlockRule(observer, -1));
+        return NULL;
+    }
+    //this rule handles combat related triggers. note, combat related triggered abilities will not work without it.
+    found = s.find("combattriggerrule");
+    if(found != string::npos)
+    {
+        observer->addObserver(NEW MTGCombatTriggersRule(observer, -1));
+        return NULL;
+    }
+    //this handles the legend rule
+    found = s.find("legendrule");
+    if(found != string::npos)
+    {
+        observer->addObserver(NEW MTGLegendRule(observer, -1));
+        return NULL;
+    }
+    //this handles the planeswalker named legend rule which is dramatically different from above.
+    found = s.find("planeswalkerrule");
+    if(found != string::npos)
+    {
+        observer->addObserver(NEW MTGPlaneWalkerRule(observer, -1));
+        return NULL;
+    }
+        //this handles the clean up of tokens !!MUST BE ADDED BEFORE PERSIST RULE!!
+    found = s.find("tokencleanuprule");
+    if(found != string::npos)
+    {
+        observer->addObserver(NEW MTGTokensCleanup(observer, -1));
+        return NULL;
+    }
+        //this handles the returning of cards with persist to the battlefield.
+    found = s.find("persistrule");
+    if(found != string::npos)
+    {
+        observer->addObserver(NEW MTGPersistRule(observer, -1));
+        return NULL;
+    }
+    //this handles the vectors of cards which attacked and were attacked and later died during that turn.
+    found = s.find("vampirerule");
+    if(found != string::npos)
+    {
+        observer->addObserver(NEW MTGVampireRule(observer, -1));
+        return NULL;
+    }
+    //this handles the removel of cards which were unearthed.
+    found = s.find("unearthrule");
+    if(found != string::npos)
+    {
+        observer->addObserver(NEW MTGUnearthRule(observer, -1));
+        return NULL;
+    }
+    //this handles lifelink ability rules.
+    found = s.find("lifelinkrule");
+    if(found != string::npos)
+    {
+        observer->addObserver(NEW MTGLifelinkRule(observer, -1));
+        return NULL;
+    }
+    //this handles death touch ability rule.
+    found = s.find("deathtouchrule");
+    if(found != string::npos)
+    {
+        observer->addObserver(NEW MTGDeathtouchRule(observer, -1));
+        return NULL;
+    }
+    //this handles all other events reciever, this one is essential for the game to play.
+    found = s.find("otherabilitiesrule");
+    if(found != string::npos)
+    {
+        observer->addObserver(NEW OtherAbilitiesEventReceiver(observer, -1));
+        return NULL;
+    }
+
     //need to remove the section inside the transforms ability from the string before parsing
     //TODO: store string values of "&&" so we can remove the classes added just to add support
     //the current parser finds other abilities inside what should be nested abilities, and converts them into
@@ -2287,7 +2436,6 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         a->oneShot = 1;
         return a;
     }
-
     DebugTrace(" no matching ability found. " << s);
     return NULL;
 }
