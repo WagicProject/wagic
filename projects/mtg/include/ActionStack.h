@@ -84,7 +84,7 @@ public:
     }
     
     Interruptible(GameObserver* observer, int inID = 0, bool hasFocus = false)
-        : Targetable(observer), PlayGuiObject(40, x, y, inID, hasFocus), state(NOT_RESOLVED), display(0), source(NULL)
+        : PlayGuiObject(40, x, y, inID, hasFocus), Targetable(observer), state(NOT_RESOLVED), display(0), source(NULL)
     {
     }
     
