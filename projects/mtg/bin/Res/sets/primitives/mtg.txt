@@ -7405,13 +7405,13 @@ toughness=2
 [card]
 name=Bloodcrazed Neonate
 abilities=mustattack
-auto=@movedTo(other human|ownergraveyard) from(battlefield):counter(1/1,1)
-text=Whenever another Human creature dies, put a +1/+1 counter on Village Cannibals.
-mana={2}{B}
+auto=@combatdamaged(player) from(this):counter(1/1,1)
+text=Bloodcrazed Neonate attacks each turn if able. -- Whenever Bloodcrazed Neonate deals combat damage to a player, put a +1/+1 counter on it.
+mana={1}{R}
 type=Creature
-subtype=Human
+subtype=Vampire
 power=2
-toughness=2
+toughness=1
 [/card]
 [card]
 name=Bloodghast
@@ -30063,6 +30063,7 @@ auto=3/0
 text=Equipped creature gets +3/+0. -- Equip {3}
 mana={3}
 type=Artifact
+subtype=Equipment
 [/card]
 [card]
 name=Greed
@@ -37975,6 +37976,7 @@ auto=0/3
 text=Equipped creature gets +0/+3. -- Equip {3}
 mana={0}
 type=Artifact
+subtype=Equipment
 [/card]
 [card]
 name=Kitesail
@@ -53253,7 +53255,7 @@ name=Pride Guardian
 abilities=defender
 auto=@combat(blocking) source(this):life:3 controller
 text=Defender -- Whenever Pride Guardian blocks, you gain 3 life.
-mana={4}{W}
+mana={W}
 type=Creature
 subtype=Cat Monk
 power=0
@@ -70435,6 +70437,7 @@ auto=opponentshroud
 text=Equipped creature has hexproof and haste. -- Equip {1}
 mana={2}
 type=Artifact
+subtype=Equipment
 [/card]
 [card]
 name=Swirling Sandstorm
