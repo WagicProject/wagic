@@ -8,7 +8,7 @@
 #include "GameObserver.h"
 
 CardDisplay::CardDisplay(GameObserver* game) :
-    mId(0), PlayGuiObjectController(game)
+    PlayGuiObjectController(game), mId(0)
 {
     tc = NULL;
     listener = NULL;
@@ -21,7 +21,7 @@ CardDisplay::CardDisplay(GameObserver* game) :
 
 CardDisplay::CardDisplay(int id, GameObserver* game, int _x, int _y, JGuiListener * _listener, TargetChooser * _tc,
                 int _nb_displayed_items) :
-    mId(id), PlayGuiObjectController(game), x(_x), y(_y)
+    PlayGuiObjectController(game), mId(id), x(_x), y(_y)
 {
     tc = _tc;
     listener = _listener;
