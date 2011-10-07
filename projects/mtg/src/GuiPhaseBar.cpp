@@ -42,7 +42,7 @@ namespace
 }
 
 GuiPhaseBar::GuiPhaseBar(GameObserver* observer) :
-    PlayGuiObject(0, 0, 106, 0, false), GuiLayer(observer),
+    GuiLayer(observer), PlayGuiObject(0, 0, 106, 0, false),
   phase(NULL), angle(0.0f), zoomFactor(ICONSCALE)
 {
     JQuadPtr quad = WResourceManager::Instance()->GetQuad("phasebar");

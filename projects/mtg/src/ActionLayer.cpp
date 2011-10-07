@@ -35,7 +35,7 @@ int ActionLayer::removeFromGame(ActionElement * e)
     if (i == -1)
         return 0; //Should not happen, it means we deleted thesame object twice?
     AbilityFactory af(observer);
-    if(MTGAbility * a = dynamic_cast<MTGAbility*>(e))
+    if(dynamic_cast<MTGAbility*>(e))
     {
         AManaProducer * manaObject = dynamic_cast<AManaProducer*>(af.getCoreAbility((MTGAbility*)e));
         if(manaObject)

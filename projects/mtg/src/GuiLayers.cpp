@@ -22,7 +22,7 @@ void GuiLayer::Add(JGuiObject *object)
 {
     mObjects.push_back(object);
     AbilityFactory af(observer);
-    if(MTGAbility * a = dynamic_cast<MTGAbility*>(object))
+    if(dynamic_cast<MTGAbility*>(object))
     {
         AManaProducer * manaObject = dynamic_cast<AManaProducer*>(af.getCoreAbility((MTGAbility*)object));
         if(manaObject)
@@ -36,7 +36,7 @@ int GuiLayer::Remove(JGuiObject *object)
 {
 
     AbilityFactory af(observer);
-    if(MTGAbility * a = dynamic_cast<MTGAbility*>(object))
+    if(dynamic_cast<MTGAbility*>(object))
     {
         AManaProducer * manaObject = dynamic_cast<AManaProducer*>(af.getCoreAbility((MTGAbility*)object));
         if(manaObject)
