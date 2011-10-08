@@ -109,7 +109,7 @@ bool JOBJModel::Load(const char *modelName, const char *textureName)
 				face.mVertCount = 0;
 
 				char *p = strchr(tmpLine, ' ');
-				char *pNext = p;
+				char *pNext = NULL;
 
 				int vertIdx, texIdx, norIdx;
 				

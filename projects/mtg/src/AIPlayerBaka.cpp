@@ -634,7 +634,6 @@ MTGCardInstance * AIPlayerBaka::chooseCard(TargetChooser * tc, MTGCardInstance *
                 }
             }
         }
-        playerZones = source->controller()->opponent()->game;
     }
     return NULL;
 }
@@ -1042,7 +1041,6 @@ vector<MTGAbility*> AIPlayerBaka::canPaySunBurst(ManaCost * cost)
         //Make sure we can use the ability
         if(fullColor == needColorConverted || fullColor == cost->getConvertedCost())
         {
-            i = observer->mLayers->actionLayer()->manaObjects.size();
             break;
         }
         MTGAbility * a = ((MTGAbility *) observer->mLayers->actionLayer()->manaObjects[i]);
@@ -1078,6 +1076,7 @@ vector<MTGAbility*> AIPlayerBaka::canPaySunBurst(ManaCost * cost)
             }
         }
     }
+    
     for(int i = fullColor;i < cost->getConvertedCost();i++)
     {
         for (size_t i = 0; i < observer->mLayers->actionLayer()->manaObjects.size(); i++)
@@ -1833,13 +1832,8 @@ int AIPlayerBaka::computeActions()
         case Constants::MTG_PHASE_SECONDMAIN:
             {
                 ManaCost * currentMana = getPotentialMana();
-                bool potential = false;
                 currentMana->add(this->getManaPool());
-                if (currentMana->getConvertedCost())
-                {
-                    //if theres mana i can use there then potential is true.
-                    potential = true;
-                }
+
                 nextCardToPlay = FindCardToPlay(currentMana, "land");
                 //look for the most expensive creature we can afford. If not found, try enchantment, then artifact, etc...
                 const char* types[] = {"creature", "enchantment", "artifact", "sorcery", "instant"};

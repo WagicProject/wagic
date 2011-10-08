@@ -519,7 +519,6 @@ void TaskList::Render()
     if (0 == tasks.size())
     {
         f->DrawString(_("There are no tasks that need to be done. Come again tomorrow.").c_str(), posX, posY);
-        posY += 20;
         return;
     }
 

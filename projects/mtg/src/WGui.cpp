@@ -1100,9 +1100,8 @@ bool WGuiMenu::nextItem()
 
     while (potential < nbitems - 1 && items[potential]->Selectable() == false)
         potential++;
-    if (potential == nbitems || !items[potential]->Selectable())
-        potential = -1;
-    else if (potential != currentItem && (!now || now->Leaving(buttonNext)))
+    
+    if (potential != currentItem && (!now || now->Leaving(buttonNext)))
     {
         currentItem = potential;
         items[currentItem]->Entering(buttonNext);

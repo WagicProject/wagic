@@ -420,9 +420,6 @@ GameOption& GameOptions::operator[](string optionName)
 
 GameOption * GameOptions::factorNewGameOption(string optionName, string value)
 {
-    if (optionName == "prx_rimom")
-        int a = 0;
-
     GameOption * result =( Unlockable::unlockables.find(optionName) !=  Unlockable::unlockables.end())
         ? NEW GameOptionAward()
         : NEW GameOption();
@@ -435,9 +432,6 @@ GameOption * GameOptions::factorNewGameOption(string optionName, string value)
 
 GameOption * GameOptions::get(string optionName)
 {
-    if (optionName == "prx_rimom")
-        int a = 0;
-
    if (!unknownMap[optionName])
    {
        unknownMap[optionName] = factorNewGameOption(optionName);

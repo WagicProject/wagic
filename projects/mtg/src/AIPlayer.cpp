@@ -87,7 +87,7 @@ int AIAction::clickMultiAct(vector<Targetable*>& actionTargets)
 {
     GameObserver * g = owner->getObserver();
     TargetChooser * tc = g->getCurrentTargetChooser();
-    bool sourceIncluded = false;
+
     if(!tc) return 0;
     for(size_t f = 0;f < actionTargets.size();f++)
     {
@@ -96,7 +96,6 @@ int AIAction::clickMultiAct(vector<Targetable*>& actionTargets)
         {
             g->cardClick(card);
             actionTargets.erase(actionTargets.begin() + f);
-            sourceIncluded = true;
         }
     }
     std::random_shuffle(actionTargets.begin(), actionTargets.end());
@@ -157,7 +156,6 @@ int AIPlayer::Act(float dt)
 
 int AIPlayer::clickMultiTarget(TargetChooser * tc, vector<Targetable*>& potentialTargets)
 {
-    bool sourceIncluded = false;
     for(int f = 0;f < int(potentialTargets.size());f++)
     {
         MTGCardInstance * card = ((MTGCardInstance *) potentialTargets[f]);
@@ -167,7 +165,6 @@ int AIPlayer::clickMultiTarget(TargetChooser * tc, vector<Targetable*>& potentia
             clickstream.push(NEW AIAction(this, card));
             DebugTrace("Ai clicked source as a target: " << (card ? card->name : "None" ) << endl );
             potentialTargets.erase(potentialTargets.begin() + f);
-            sourceIncluded = true;
         }
         if(pTarget && pTarget->typeAsTarget() == TARGET_PLAYER)
         {

@@ -759,6 +759,7 @@ void MTGLibrary::shuffleTopToBottom(int nbcards)
     {
         _cards[i] = cards[i - nb_cards];
     }
+    // Logic error here: the final value of cards[i] will always be garbage. possible optimization: use vectors to push and pop
     for (int i = 0; i < nb_cards; i++)
     {
         cards[i] = _cards[i];

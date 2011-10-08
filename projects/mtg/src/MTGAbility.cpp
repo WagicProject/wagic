@@ -154,7 +154,7 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
                             firstAmount = ttc->countValidTargets();
                             firstAmount += mod;
                         }
-                        mod = 0;
+
                         SAFE_DELETE(ttc);
                     }
                 }
@@ -911,9 +911,6 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     if (found != string::npos && storedString.empty())
     {
         size_t real_end = s.find("))", found);
-        size_t end = s.find(",", found);
-        if (end == string::npos)
-            end = real_end;
         size_t stypesStartIndex = found + 12;
         storedString.append(s.substr(stypesStartIndex, real_end - stypesStartIndex).c_str());
         s.erase(stypesStartIndex, real_end - stypesStartIndex);
@@ -2158,9 +2155,6 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         if (found != string::npos && extraTransforms.empty())
         {
             size_t real_end = transformsParamsString.find("))", found);
-            size_t end = transformsParamsString.find(",", found);
-            if (end == string::npos)
-                end = real_end;
             size_t stypesStartIndex = found + 12;
             extraTransforms.append(transformsParamsString.substr(stypesStartIndex, real_end - stypesStartIndex).c_str());
             transformsParamsString.erase(stypesStartIndex, real_end - stypesStartIndex);
@@ -2442,7 +2436,6 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
 
 MTGAbility * AbilityFactory::parseUpkeepAbility(string s,MTGCardInstance * card,Spell * spell,int restrictions,int id)
 {
-    MTGAbility * a1 = NULL;
     bool Cumulative = false;
     size_t cumulative = s.find("cumulativeupcost");
     if(cumulative != string::npos)
@@ -2681,9 +2674,6 @@ int AbilityFactory::getAbilities(vector<MTGAbility *> * v, Spell * spell, MTGCar
         card = spell->source;
     if (!card)
         return 0;
-    MTGCardInstance * target = card->target;
-    if (!target)
-        target = card;
 
     string magicText;
     if (dest)

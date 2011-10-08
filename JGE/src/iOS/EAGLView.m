@@ -225,6 +225,7 @@ void DestroyGame(void)
     
     [menuKeyRecognizer release];
     [selectKeyRecognizer release];
+    [doubleTapRecognizer release];
     [singleTapRecognizer release];
 }
 
@@ -282,7 +283,7 @@ void DestroyGame(void)
 //The EAGL view is stored in the nib file. When it's unarchived it's sent -initWithCoder:
 - (id)initWithCoder:(NSCoder*)coder
 {    
-    if ((self = [super initWithCoder:coder]))
+    if (( self = [super initWithCoder:coder] ))
     {
 		self = [self initialize];
     }

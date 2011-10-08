@@ -2311,7 +2311,6 @@ int MenuAbility::resolve()
 {
     this->triggered = 1;
     MTGAbility * a = this;
-    a->target = this->target;
     return a->addToGame();
 }
 
@@ -3522,7 +3521,7 @@ void APhaseAction::Update(float dt)
                 MTGCardInstance * _target = NULL;
                 if(target)
                 _target = (MTGCardInstance *) target;
-                if(!sAbility.size() || (!target||(!_target->currentZone && _target != this->source)))
+                if(!sAbility.size() || (!target || _target != this->source))
                 {
                     this->forceDestroy = 1;
                     return;
@@ -4159,7 +4158,6 @@ void ATutorialMessage::Render()
         posY += 30;
 
         f->DrawString(_(mMessage).c_str(), posX, posY);
-        posY += 20;
     
         f->SetScale(1);
     }
