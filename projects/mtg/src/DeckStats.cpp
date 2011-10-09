@@ -392,7 +392,7 @@ void StatsWrapper::updateStats(DeckDataWrapper *myDeck)
     this->totalManaCost = 0;
     this->totalCreatureCost = 0;
     this->totalSpellCost = 0;
-    MTGCard * current = myDeck->getCard();
+    MTGCard * current = NULL;
 
     // Clearing arrays
     for (int i = 0; i <= Constants::STATS_MAX_MANA_COST; i++)

@@ -15,7 +15,7 @@
 
 vector<Rules *> Rules::RulesList = vector<Rules *>();
 
-//Sorting by dissplayName
+//Sorting by displayName
 struct RulesMenuCmp{
 	bool operator()(const Rules * a,const Rules * b) const{
         return a->displayName < b->displayName;
@@ -305,6 +305,7 @@ Player * Rules::initPlayer(GameObserver *g, int playerId)
             return loadPlayerRandom(g, isAI, GAME_TYPE_RANDOM2);
         }
     }
+    //TODO p may still be NULL, what do we do to handle this? Above switch has no default case to handle the case where p is NULL 
     p->phaseRing = initState.playerData[playerId].player->phaseRing;
     p->offerInterruptOnPhase = initState.playerData[playerId].player->offerInterruptOnPhase;
     return p;
@@ -345,8 +346,10 @@ void Rules::initPlayers(GameObserver *g)
         if(p && g->getPlayersNumber() < 2)
             g->players.push_back(p);
         MTGDeck * deck = buildDeck(i);
+        
         if (deck)
         {
+            // TODO: p may be NULL, initPlayer(g, i) may return NULL, what do we do in this case?
             p->game->initDeck(deck);
             SAFE_DELETE(deck);
             p->game->setOwner(p);

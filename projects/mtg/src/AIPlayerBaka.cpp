@@ -51,10 +51,10 @@ int OrderedAIAction::getEfficiency(AADamager * aad)
     if(p == target->controller())
         return 0;
 
-    if (aad->getDamage() >= dTarget->toughness)
+    if (dTarget && aad && (aad->getDamage() >= dTarget->toughness))
         return 100;
 
-    if (dTarget->toughness)
+    if (dTarget && dTarget->toughness)
         return (50 * aad->getDamage()) / dTarget->toughness;
 
     return 0;

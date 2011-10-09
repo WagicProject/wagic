@@ -87,7 +87,6 @@ int AIAction::clickMultiAct(vector<Targetable*>& actionTargets)
 {
     GameObserver * g = owner->getObserver();
     TargetChooser * tc = g->getCurrentTargetChooser();
-
     if(!tc) return 0;
     for(size_t f = 0;f < actionTargets.size();f++)
     {
@@ -198,7 +197,6 @@ int AIPlayer::clickSingleTarget(TargetChooser * tc, vector<Targetable*>& potenti
                 {
                     MTGCardInstance * card = ((MTGCardInstance *) potentialTargets[i]);
                     clickstream.push(NEW AIAction(this, card));
-                    chosenCard = card;
                 }
                 break;
             }

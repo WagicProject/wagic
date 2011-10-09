@@ -759,7 +759,7 @@ void MTGLibrary::shuffleTopToBottom(int nbcards)
     {
         _cards[i] = cards[i - nb_cards];
     }
-    // Logic error here: the final value of cards[i] will always be garbage. possible optimization: use vectors to push and pop
+    //TODO Logic error here: the final value of cards[i] will always be garbage. possible optimization: use vectors to push and pop
     for (int i = 0; i < nb_cards; i++)
     {
         cards[i] = _cards[i];
@@ -845,6 +845,7 @@ MTGGameZone * MTGGameZone::intToZone(GameObserver *g, int zoneId, MTGCardInstanc
         p = source->controller();
     if (!target)
     {
+        //TODO source may be NULL, need to handle the case when it is NULL.  method declaration has NULL being default value of source and target. 
         if(source->target)
         {
         //bug case, this is a patchwork fix for now

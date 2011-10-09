@@ -899,13 +899,12 @@ bool WGuiSplit::yieldFocus()
 }
 
 //WGuiMenu
-WGuiMenu::WGuiMenu(JButton next = JGE_BTN_RIGHT, JButton prev = JGE_BTN_LEFT, bool m, WSyncable * syncme) :
-    WGuiItem("")
+WGuiMenu::WGuiMenu(JButton next, JButton prev, bool dPad, WSyncable * syncme) : WGuiItem("")
 {
     buttonNext = next;
     buttonPrev = prev;
     currentItem = -1;
-    mDPad = m;
+    mDPad = dPad;
     sync = syncme;
     held = JGE_BTN_NONE;
 }
@@ -1100,7 +1099,6 @@ bool WGuiMenu::nextItem()
 
     while (potential < nbitems - 1 && items[potential]->Selectable() == false)
         potential++;
-    
     if (potential != currentItem && (!now || now->Leaving(buttonNext)))
     {
         currentItem = potential;
@@ -1130,9 +1128,9 @@ bool WGuiMenu::prevItem()
 
     while (potential > 0 && items[potential]->Selectable() == false)
         potential--;
-    if (potential < 0 || !items[potential]->Selectable())
-        potential = -1;
-    else if (potential != currentItem && (!now || now->Leaving(buttonNext)))
+
+    if ( (!(potential < 0 || !items[potential]->Selectable()))
+          && (potential != currentItem && (!now || now->Leaving(buttonNext))))
     {
         currentItem = potential;
         items[currentItem]->Entering(buttonPrev);

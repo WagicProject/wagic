@@ -932,6 +932,7 @@ int GameObserver::cardClick(MTGCardInstance * card, Targetable * object)
 
     if (ORDER == combatStep)
     {
+        //TODO it is possible at this point that card is NULL. if so, what do we return since card->defenser would result in a crash?
         card->defenser->raiseBlockerRankOrder(card);
         return 1;
     }

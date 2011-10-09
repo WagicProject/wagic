@@ -3519,18 +3519,25 @@ void APhaseAction::Update(float dt)
             if(newPhase == phase && next )
             {
                 MTGCardInstance * _target = NULL;
+                bool isTargetable = false;
+                
                 if(target)
-                _target = (MTGCardInstance *) target;
-                if(!sAbility.size() || (!target || _target != this->source))
+                {
+                    _target = static_cast<MTGCardInstance *>(target);
+                    isTargetable = (_target && !_target->currentZone && _target != this->source);
+                }
+                
+                if(!sAbility.size() || (!target || isTargetable))
                 {
                     this->forceDestroy = 1;
                     return;
                 }
                 else
                 {
-                    while(_target->next)
+                    while(_target && _target->next)
                         _target = _target->next;
                 }
+                
                 AbilityFactory af(game);
                 MTGAbility * ability = af.parseMagicLine(sAbility, abilityId, NULL, _target);
 

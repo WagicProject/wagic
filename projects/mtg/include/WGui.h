@@ -798,7 +798,7 @@ class WGuiMenu: public WGuiItem
 public:
     friend class WGuiFilters;
     virtual ~WGuiMenu();
-    WGuiMenu(JButton next, JButton prev, bool mDPad = false, WSyncable * syncme = NULL);
+    WGuiMenu(JButton next = JGE_BTN_RIGHT, JButton prev = JGE_BTN_LEFT, bool mDPad = false, WSyncable * syncme = NULL);
 
     virtual bool yieldFocus();
     virtual void Render();

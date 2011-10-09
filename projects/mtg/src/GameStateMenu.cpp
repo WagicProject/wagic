@@ -747,7 +747,6 @@ void GameStateMenu::Render()
     }
     else
     {
-
         PIXEL_TYPE colors[] = {
 
         ARGB(255,3,3,0), ARGB(255,8,8,0), ARGB(255,21,21,10), ARGB(255,50,50,30), };

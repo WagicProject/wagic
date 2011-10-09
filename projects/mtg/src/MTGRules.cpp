@@ -1123,9 +1123,9 @@ int MTGMorphCostRule::reactToClick(MTGCardInstance * card)
     }
     //------------------------------------------------------------------------
     ManaCost * previousManaPool = NEW ManaCost(player->getManaPool());
-    int payResult = player->getManaPool()->pay(card->getManaCost()->morph);
+    player->getManaPool()->pay(card->getManaCost()->morph);
     card->getManaCost()->morph->doPayExtra();
-    payResult = ManaCost::MANA_PAID_WITH_MORPH;
+    int payResult = ManaCost::MANA_PAID_WITH_MORPH;
     //if morph has a extra payment thats set, this code pays it.the if statement is 100% needed as it would cause a crash on cards that dont have the morph cost.
     if (morph)
     {

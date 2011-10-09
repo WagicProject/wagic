@@ -568,9 +568,14 @@ CounterCost * CounterCost::clone() const
     CounterCost * ec = NEW CounterCost(*this);
     if (tc)
         ec->tc = tc->clone();
+    
     if (counter)
         ec->counter = NEW Counter(counter->target, counter->name.c_str(), counter->power, counter->toughness);
-    ec->counter->nb = counter->nb;
+
+    //TODO: counter can be NULL at this point, what do we set ec->counter->nb to if it is?
+    if (ec->counter != NULL)
+        ec->counter->nb = counter->nb;
+    
     return ec;
 }
 

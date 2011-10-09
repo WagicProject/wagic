@@ -727,11 +727,17 @@ bool TargetChooser::canTarget(Targetable * target,bool withoutProtections)
                 tempcard = tempcard->previous;
             }
         }
+        
         if(source && ((source->hasSubtype(Subtypes::TYPE_AURA) || source->hasSubtype(Subtypes::TYPE_EQUIPMENT)) && source->target && source->target == card && source->target->isPhased && targetter->target == card)) 
-        return true;
+        {
+            return true;
+        }
         //this is kinda cheating but by default we let auras and equipments always continue to target a phased creature.
-        else if(card->isPhased) 
-        return false;
+        else if (card && card->isPhased) 
+        {
+            return false;
+        }
+        
         if (source && targetter && card->isInPlay(observer) && !withoutProtections)
         { 
             if (card->has(Constants::SHROUD)) return false;

@@ -270,11 +270,9 @@ void DestroyGame(void)
 	NSLog(@"EAGL View - init With Frame: origin(%f %f) size(%f %f)", 
 		  frame.origin.x, frame.origin.y, frame.size.width, frame.size.height);
 	
-    if ((self = [super initWithFrame:frame])) {
-		
-		self = [self initialize];
-		
-    } 
+    self = [super initWithFrame:frame];
+    if (self)
+        [self initialize];
 	
     return self;
 }
@@ -283,9 +281,11 @@ void DestroyGame(void)
 //The EAGL view is stored in the nib file. When it's unarchived it's sent -initWithCoder:
 - (id)initWithCoder:(NSCoder*)coder
 {    
-    if (( self = [super initWithCoder:coder] ))
+    self = [super initWithCoder:coder];
+
+    if (self)
     {
-		self = [self initialize];
+        [self initialize];
     }
     
     return self;
