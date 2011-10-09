@@ -3164,7 +3164,7 @@ int ALoseAbilities::destroy()
         }
 
         //Avoid inifinite loop of removing/putting back abilities
-        if (ALoseAbilities * la = dynamic_cast<ALoseAbilities*> (a))
+        if (dynamic_cast<ALoseAbilities*> (a))
         {
 			DebugTrace("ALLABILITIES: loseability won't be put in the loseability list");
 			continue;

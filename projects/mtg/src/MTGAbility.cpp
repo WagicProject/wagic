@@ -2574,7 +2574,7 @@ int AbilityFactory::abilityEfficiency(MTGAbility * a, Player * p, int mode, Targ
         return BAKA_EFFECT_GOOD;
 
     // For now, ACounterTracker is only used for Creatures that "belong" to one of our domains, need to target one of our own lands, so we return a "positive" value
-    if (ACounterTracker * act = dynamic_cast<ACounterTracker *>(a))
+    if (dynamic_cast<ACounterTracker *>(a))
         return BAKA_EFFECT_GOOD;
 
     if (AACounter * ac = dynamic_cast<AACounter *>(a))
