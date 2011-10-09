@@ -81,7 +81,7 @@ public class SDLActivity extends Activity {
         holder.setType(SurfaceHolder.SURFACE_TYPE_GPU);
        
         // Create the adView
-        mAdView = new AdView(this, AdSize.BANNER, "a14dc0ab7b27413");       
+        mAdView = new AdView(this, AdSize.BANNER, "a14e9009f88864f"); //"a14dc0ab7b27413" <-- for the alpha);       
         
         _videoLayout.addView(mSurface, new LayoutParams(LayoutParams.FILL_PARENT,
         		  LayoutParams.FILL_PARENT));
@@ -100,7 +100,7 @@ public class SDLActivity extends Activity {
         request.addTestDevice(AdRequest.TEST_EMULATOR);
         request.addTestDevice("1DA1E070BC7D4ABE8BA77EB73C2CB0AA"); //wololo's phone
         request.addTestDevice("C386F3830A9789C649098A817BF54C04"); //xawotihs's tablet
-                
+             
         // Initiate a generic request to load it with an ad
         mAdView.loadAd(request);                
     }
