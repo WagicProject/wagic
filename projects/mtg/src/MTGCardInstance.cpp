@@ -81,6 +81,7 @@ void MTGCardInstance::copy(MTGCardInstance * card)
 
     //Now this is dirty...
     int backupid = mtgid;
+    int castMethodBackUP = this->castMethod;
     mtgid = source->getId();
     Spell * spell = NEW Spell(observer, this);
     observer = card->observer;
@@ -88,6 +89,7 @@ void MTGCardInstance::copy(MTGCardInstance * card)
     af.addAbilities(observer->mLayers->actionLayer()->getMaxId(), spell);
     delete spell;
     mtgid = backupid;
+    castMethod = castMethodBackUP;
 }
 
 MTGCardInstance::~MTGCardInstance()
