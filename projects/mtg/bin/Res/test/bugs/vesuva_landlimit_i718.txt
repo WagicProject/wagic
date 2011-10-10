@@ -1,0 +1,20 @@
+#Bug: Playing a plains after Vesuva in the same turn shouldn't be possible
+# see http://code.google.com/p/wagic/issues/detail?id=718
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:mountain,vesuva
+inplay:plains
+[PLAYER2]
+[DO]
+vesuva
+choice 0
+plains
+mountain
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+hand:mountain
+inplay:plains,vesuva
+[PLAYER2]
+[END]
