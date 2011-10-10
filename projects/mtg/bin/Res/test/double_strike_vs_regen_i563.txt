@@ -19,8 +19,6 @@ Drudge skeletons
 next
 #damage first strike
 next
-#damage
-next
 #end of combat
 [ASSERT]
 COMBATEND

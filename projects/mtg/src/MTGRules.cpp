@@ -1355,12 +1355,12 @@ int MTGCombatTriggersRule::receiveEvent(WEvent *e)
         for (int i = 0; i < z->nb_cards; i++)
         {
             MTGCardInstance * card = z->cards[i];
-            if (card && card->isAttacker() && !card->blocked)
+            if (card && card->isAttacker() && !card->isBlocked())
             {
                 card->eventattackednotblocked();
                 card->notblocked = 1;
             }
-            if (card && card->isAttacker() && card->blocked)
+            if (card && card->isAttacker() && card->isBlocked())
             {
 
                 MTGCardInstance * opponent = card->getNextOpponent();

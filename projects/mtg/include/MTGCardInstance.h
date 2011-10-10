@@ -30,6 +30,8 @@ class MTGCardInstance: public CardPrimitive, public MTGCard, public Damageable
 #endif
 
 {
+private:
+    bool blocked; //Blocked this turn or not?
 protected:
     int untapping;
     int nb_damages;
@@ -128,7 +130,7 @@ public:
     //dangerranking is a hint to Ai which creatures are the ones it should be targetting for effects.
     int DangerRanking();
     //Combat
-    bool blocked; //Blocked this turn or not?
+    bool isBlocked() {return blocked;}; //Blocked this turn or not?
     MTGCardInstance * defenser;
     list<MTGCardInstance *>blockers;
     int attacker;

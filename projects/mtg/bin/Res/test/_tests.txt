@@ -259,6 +259,7 @@ divergent_growth.txt
 doomed_necromancer.txt
 double_strike_i145.txt
 double_strike2_i145.txt
+double_strike_vs_regen_i563.txt
 dragon_broodmother_i491.txt
 dragon_fodder.txt
 dragon_fodder2.txt

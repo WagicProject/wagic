@@ -458,7 +458,7 @@ public:
         {
             if (!notblocked->card->didattacked) 
                 return 0;
-            if (notblocked->card->blocked) 
+            if (notblocked->card->isBlocked()) 
                 return 0;
             if (!tc->canTarget(notblocked->card))
                 return 0;
@@ -470,7 +470,7 @@ public:
         {
             if (!attackblocked->card->didattacked) 
                 return 0;
-            if (!attackblocked->card->blocked) 
+            if (!attackblocked->card->isBlocked()) 
                 return 0;
             if (fromTc && !fromTc->canTarget(attackblocked->opponent)) 
                 return 0;

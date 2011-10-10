@@ -503,7 +503,7 @@ ExtraCost("Select unblocked attacker", _tc)
 
 int Ninja::isPaymentSet()
 {
-    if (target && ((target->isAttacker() && target->blocked) ||
+    if (target && ((target->isAttacker() && target->isBlocked()) ||
                    target->isAttacker() < 1 ||
                    target->getObserver()->getCurrentGamePhase() != Constants::MTG_PHASE_COMBATBLOCKERS))
     {

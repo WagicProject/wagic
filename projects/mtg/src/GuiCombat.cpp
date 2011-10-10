@@ -429,7 +429,7 @@ int GuiCombat::resolve() // Returns the number of damage objects dealt this turn
             dmg -= (*q)->sumDamages();
         }
 
-        if (dmg > 0 && ((!attacker->blocked) || attacker->has(Constants::TRAMPLE)))
+        if (dmg > 0 && ((!attacker->isBlocked()) || attacker->has(Constants::TRAMPLE)))
             stack->Add(NEW Damage(observer, (*it)->card, observer->opponent(), dmg, DAMAGE_COMBAT));
         for (vector<Damage>::iterator d = (*it)->damages.begin(); d != (*it)->damages.end(); ++d)
             stack->Add(NEW Damage(*d));
