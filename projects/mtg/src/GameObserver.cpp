@@ -575,17 +575,20 @@ void GameObserver::gameStateBasedEffects()
             {
                 MTGCardInstance * c = z->cards[t];
 
-                if (c->has(Constants::TREASON))
+                if(!c->isPhased)
                 {
-                    WEvent * e = NEW WEventCardSacrifice(c);
-                    receiveEvent(e);
+                    if (c->has(Constants::TREASON))
+                    {
+                        WEvent * e = NEW WEventCardSacrifice(c);
+                        receiveEvent(e);
 
-                    p->game->putInGraveyard(c);
-                }
-                if (c->has(Constants::UNEARTH))
-                {
-                    p->game->putInExile(c);
+                        p->game->putInGraveyard(c);
+                    }
+                    if (c->has(Constants::UNEARTH))
+                    {
+                        p->game->putInExile(c);
 
+                    }
                 }
                 if(nbcards > z->nb_cards)
                 {
