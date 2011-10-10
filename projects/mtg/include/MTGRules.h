@@ -10,16 +10,22 @@
 #include "CardSelector.h"
 #include "ManaCost.h"
 
-class OtherAbilitiesEventReceiver: public MTGAbility
+class PermanentAbility: public MTGAbility
 {
 public:
-    int testDestroy();
+    int testDestroy() {return 0;};
+    PermanentAbility(GameObserver* observer, int _id);
+};
+
+class OtherAbilitiesEventReceiver: public PermanentAbility
+{
+public:
     int receiveEvent(WEvent * event);
     OtherAbilitiesEventReceiver(GameObserver* observer, int _id);
     OtherAbilitiesEventReceiver * clone() const;
 };
 
-class MTGEventBonus: public MTGAbility
+class MTGEventBonus: public PermanentAbility
 {
 public:
     int textAlpha;
@@ -55,19 +61,17 @@ public:
 
     int receiveEvent(WEvent * event);
     void grantAward(string awardName,int amount);
-    int testDestroy();
     void Update(float dt);
     void Render();
     MTGEventBonus(GameObserver* observer, int _id);
     virtual MTGEventBonus * clone() const;
 };
 
-class MTGPutInPlayRule: public MTGAbility
+class MTGPutInPlayRule: public PermanentAbility
 {
 public:
     int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
     int reactToClick(MTGCardInstance * card);
-    int testDestroy();
     virtual ostream& toString(ostream& out) const;
     MTGPutInPlayRule(GameObserver* observer, int _id);
     const char * getMenuText()
@@ -82,7 +86,6 @@ class MTGKickerRule: public MTGPutInPlayRule
 public:
     int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
     int reactToClick(MTGCardInstance * card);
-    int testDestroy();
     virtual ostream& toString(ostream& out) const;
     MTGKickerRule(GameObserver* observer, int _id);
     const char * getMenuText()
@@ -92,7 +95,7 @@ public:
     virtual MTGKickerRule * clone() const;
 };
 
-class MTGAlternativeCostRule: public MTGAbility
+class MTGAlternativeCostRule: public PermanentAbility
 {
 protected:
     int isReactingToClick(MTGCardInstance * card, ManaCost * mana, ManaCost *alternateManaCost);
@@ -101,8 +104,6 @@ protected:
 public:
     int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
     int reactToClick(MTGCardInstance * card);
-
-    int testDestroy();
     virtual ostream& toString(ostream& out) const;
     MTGAlternativeCostRule(GameObserver* observer, int _id);
     const char * getMenuText()
@@ -119,7 +120,6 @@ class MTGBuyBackRule: public MTGAlternativeCostRule
 public:
     int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
     int reactToClick(MTGCardInstance * card);
-    int testDestroy();
     virtual ostream& toString(ostream& out) const;
     MTGBuyBackRule(GameObserver* observer, int _id);
     const char * getMenuText()
@@ -135,7 +135,6 @@ public:
 
     int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
     int reactToClick(MTGCardInstance * card);
-    int testDestroy();
     virtual ostream& toString(ostream& out) const;
     MTGFlashBackRule(GameObserver* observer, int _id);
     const char * getMenuText()
@@ -150,7 +149,6 @@ class MTGRetraceRule: public MTGAlternativeCostRule
 public:
     int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
     int reactToClick(MTGCardInstance * card);
-    int testDestroy();
     virtual ostream& toString(ostream& out) const;
     MTGRetraceRule(GameObserver* observer, int _id);
     const char * getMenuText()
@@ -160,13 +158,12 @@ public:
     virtual MTGRetraceRule * clone() const;
 };
 
-class MTGMorphCostRule: public MTGAbility
+class MTGMorphCostRule: public PermanentAbility
 {
 public:
  
     int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
     int reactToClick(MTGCardInstance * card);
-    int testDestroy();
     virtual ostream& toString(ostream& out) const;
     MTGMorphCostRule(GameObserver* observer, int _id);
     const char * getMenuText()
@@ -182,7 +179,6 @@ public:
     int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
     int receiveEvent(WEvent *e);
     int reactToClick(MTGCardInstance * card);
-    int testDestroy();
     string suspendmenu;
     virtual ostream& toString(ostream& out) const;
     MTGSuspendRule(GameObserver* observer, int _id);
@@ -198,7 +194,7 @@ public:
     virtual MTGSuspendRule * clone() const;
 };
 
-class MTGAttackRule: public MTGAbility, public Limitor
+class MTGAttackRule: public PermanentAbility, public Limitor
 {
 public:
  
@@ -206,7 +202,6 @@ public:
     virtual bool greyout(Target*);
     int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
     int reactToClick(MTGCardInstance * card);
-    int testDestroy();
     virtual ostream& toString(ostream& out) const;
     MTGAttackRule(GameObserver* observer, int _id);
     const char * getMenuText()
@@ -218,22 +213,20 @@ public:
 };
 
 /* handles combat trigger send recieve events*/
-class MTGCombatTriggersRule: public MTGAbility
+class MTGCombatTriggersRule: public PermanentAbility
 {
 public:
     MTGCombatTriggersRule(GameObserver* observer, int _id);
     int receiveEvent(WEvent * event);
     virtual ostream& toString(ostream& out) const;
-    int testDestroy();
     virtual MTGCombatTriggersRule * clone() const;
 };
 
-class MTGBlockRule: public MTGAbility
+class MTGBlockRule: public PermanentAbility
 {
 public:
     int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
     int reactToClick(MTGCardInstance * card);
-    int testDestroy();
     virtual ostream& toString(ostream& out) const;
     MTGBlockRule(GameObserver* observer, int _id);
     const char * getMenuText()
@@ -244,43 +237,39 @@ public:
 };
 
 /* Persist Rule */
-class MTGPersistRule: public MTGAbility
+class MTGPersistRule: public PermanentAbility
 {
 public:
     MTGPersistRule(GameObserver* observer, int _id);
     int receiveEvent(WEvent * event);
     virtual ostream& toString(ostream& out) const;
-    int testDestroy();
     virtual MTGPersistRule * clone() const;
 };
 /* vampire Rule */
-class MTGVampireRule: public MTGAbility
+class MTGVampireRule: public PermanentAbility
 {
 public:
     MTGVampireRule(GameObserver* observer, int _id);
     map<MTGCardInstance*,vector<MTGCardInstance*> > victems;
     int receiveEvent(WEvent * event);
     virtual ostream& toString(ostream& out) const;
-    int testDestroy();
     virtual MTGVampireRule * clone() const;
 };
 //unearths destruction if leaves play effect
-class MTGUnearthRule: public MTGAbility
+class MTGUnearthRule: public PermanentAbility
 {
 public:
     MTGUnearthRule(GameObserver* observer, int _id);
     int receiveEvent(WEvent * event);
     virtual ostream& toString(ostream& out) const;
-    int testDestroy();
     virtual MTGUnearthRule * clone() const;
 };
-class MTGTokensCleanup: public MTGAbility
+class MTGTokensCleanup: public PermanentAbility
 {
 public:
     vector<MTGCardInstance *> list;
     MTGTokensCleanup(GameObserver* observer, int _id);
     int receiveEvent(WEvent * event);
-    int testDestroy();
     virtual MTGTokensCleanup * clone() const;
 };
 
@@ -313,7 +302,7 @@ public:
     virtual MTGPlaneWalkerRule * clone() const;
 };
 
-class MTGMomirRule: public MTGAbility
+class MTGMomirRule: public PermanentAbility
 {
 private:
     int genRandomCreatureId(int convertedCost);
@@ -327,7 +316,6 @@ public:
     int alreadyplayed;
     MTGAllCards * collection;
     MTGCardInstance * genCreature(int id);
-    int testDestroy();
     void Update(float dt);
     void Render();
     MTGMomirRule(GameObserver* observer, int _id, MTGAllCards * _collection);
@@ -343,7 +331,7 @@ public:
 };
 
 //stone hewer gaint avatar mode
-class MTGStoneHewerRule: public MTGAbility
+class MTGStoneHewerRule: public PermanentAbility
 {
 private:
     int genRandomEquipId(int convertedCost);
@@ -352,8 +340,7 @@ private:
 public:
 	MTGAllCards * collection;
 	MTGCardInstance * genEquip(int id);
-	int testDestroy();
-        MTGStoneHewerRule(GameObserver* observer, int _id, MTGAllCards * _collection);
+    MTGStoneHewerRule(GameObserver* observer, int _id, MTGAllCards * _collection);
 	int receiveEvent(WEvent * event);
 	const char * getMenuText()
 	{
@@ -363,11 +350,10 @@ public:
 	virtual MTGStoneHewerRule * clone() const;
 };
 //Hermit Druid avatar mode
-class MTGHermitRule: public MTGAbility
+class MTGHermitRule: public PermanentAbility
 {
 public:
-	int testDestroy();
-        MTGHermitRule(GameObserver* observer, int _id);
+    MTGHermitRule(GameObserver* observer, int _id);
 	int receiveEvent(WEvent * event);
 	const char * getMenuText()
 	{
@@ -377,14 +363,12 @@ public:
 };
 //
 /* LifeLink */
-class MTGLifelinkRule: public MTGAbility
+class MTGLifelinkRule: public PermanentAbility
 {
 public:
     MTGLifelinkRule(GameObserver* observer, int _id);
 
     int receiveEvent(WEvent * event);
-
-    int testDestroy();
 
     virtual ostream& toString(ostream& out) const;
 
@@ -392,14 +376,13 @@ public:
 };
 
 /* Deathtouch */
-class MTGDeathtouchRule: public MTGAbility
+class MTGDeathtouchRule: public PermanentAbility
 {
 public:
     MTGDeathtouchRule(GameObserver* observer, int _id);
 
     int receiveEvent(WEvent * event);
 
-    int testDestroy();
     const char * getMenuText()
     {
         return "Deathtouch";
@@ -409,13 +392,12 @@ public:
 };
 
 /* handling parentchild */
-class ParentChildRule: public MTGAbility
+class ParentChildRule: public PermanentAbility
 {
 public:
     ParentChildRule(GameObserver* observer, int _id);
     int receiveEvent(WEvent * event);
     virtual ostream& toString(ostream& out) const;
-    int testDestroy();
     virtual ParentChildRule * clone() const;
 };
 /* HUD Display */
@@ -434,7 +416,7 @@ public:
     ;
 };
 
-class HUDDisplay: public MTGAbility
+class HUDDisplay: public PermanentAbility
 {
 private:
     list<HUDString *> events;
@@ -444,7 +426,6 @@ private:
     float maxWidth;
     int addEvent(string s);
 public:
-    int testDestroy();
     int receiveEvent(WEvent * event);
     void Update(float dt);
     void Render();

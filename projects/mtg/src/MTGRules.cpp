@@ -7,8 +7,12 @@
 #include "Credits.h"
 #include "AllAbilities.h"
 
+PermanentAbility::PermanentAbility(GameObserver* observer, int _id) : MTGAbility(observer, _id,NULL)
+{
+}
+
 MTGEventBonus::MTGEventBonus(GameObserver* observer, int _id) :
-MTGAbility(observer, _id,NULL)
+PermanentAbility(observer, _id)
 {
     textAlpha = 0;
     text = "";
@@ -245,11 +249,6 @@ void MTGEventBonus::grantAward(string awardName,int amount)
     Credits::addCreditBonus(amount);
 }
 
-int MTGEventBonus::testDestroy()
-{
-    return 0;
-}
-
 void MTGEventBonus::Update(float dt)
 {
     if (textAlpha)
@@ -278,7 +277,7 @@ MTGEventBonus * MTGEventBonus::clone() const
 
 //
 MTGPutInPlayRule::MTGPutInPlayRule(GameObserver* observer, int _id) :
-MTGAbility(observer, _id, NULL)
+PermanentAbility(observer, _id)
 {
     aType = MTGAbility::PUT_INTO_PLAY;
 }
@@ -459,12 +458,6 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card)
     return 1;
 }
 
-//The Put into play rule is never destroyed
-int MTGPutInPlayRule::testDestroy()
-{
-    return 0;
-}
-
 ostream& MTGPutInPlayRule::toString(ostream& out) const
 {
     out << "MTGPutInPlayRule ::: (";
@@ -597,11 +590,6 @@ int MTGKickerRule::reactToClick(MTGCardInstance * card)
     return 1;
 }
 
-int MTGKickerRule::testDestroy()
-{
-    return 0;
-}
-
 ostream& MTGKickerRule::toString(ostream& out) const
 {
     out << "MTGKickerRule ::: (";
@@ -625,7 +613,7 @@ MTGKickerRule * MTGKickerRule::clone() const
 //-------------------------------------------------------------------------
 
 MTGAlternativeCostRule::MTGAlternativeCostRule(GameObserver* observer, int _id) :
-MTGAbility(observer, _id, NULL)
+PermanentAbility(observer, _id)
 {
     aType = MTGAbility::ALTERNATIVE_COST;
 }
@@ -757,13 +745,6 @@ int MTGAlternativeCostRule::reactToClick(MTGCardInstance * card, ManaCost *alter
     return 1;
 }
 
-
-//The Put into play rule is never destroyed
-int MTGAlternativeCostRule::testDestroy()
-{
-    return 0;
-}
-
 ostream& MTGAlternativeCostRule::toString(ostream& out) const
 {
     out << "MTGAlternativeCostRule ::: (";
@@ -810,12 +791,6 @@ int MTGBuyBackRule::reactToClick(MTGCardInstance * card)
 
 }
 
-//The Put into play rule is never destroyed
-int MTGBuyBackRule::testDestroy()
-{
-    return 0;
-}
-
 ostream& MTGBuyBackRule::toString(ostream& out) const
 {
     out << "MTGBuyBackRule ::: (";
@@ -856,12 +831,6 @@ int MTGFlashBackRule::reactToClick(MTGCardInstance * card)
 
     return MTGAlternativeCostRule::reactToClick(card, alternateCost, ManaCost::MANA_PAID_WITH_FLASHBACK);
 
-}
-
-//The Put into play rule is never destroyed
-int MTGFlashBackRule::testDestroy()
-{
-    return 0;
 }
 
 ostream& MTGFlashBackRule::toString(ostream& out) const
@@ -908,13 +877,6 @@ int MTGRetraceRule::reactToClick(MTGCardInstance * card)
     card->paymenttype = MTGAbility::RETRACE_COST;
 
     return MTGAlternativeCostRule::reactToClick(card, alternateCost, ManaCost::MANA_PAID_WITH_RETRACE);
-}
-
-
-//The Put into play rule is never destroyed
-int MTGRetraceRule::testDestroy()
-{
-    return 0;
 }
 
 ostream& MTGRetraceRule::toString(ostream& out) const
@@ -1027,13 +989,6 @@ int MTGSuspendRule::reactToClick(MTGCardInstance * card)
     return 1;
 }
 
-
-//The Put into play rule is never destroyed
-int MTGSuspendRule::testDestroy()
-{
-    return 0;
-}
-
 ostream& MTGSuspendRule::toString(ostream& out) const
 {
     out << "MTGSuspendRule ::: (";
@@ -1052,7 +1007,7 @@ MTGSuspendRule * MTGSuspendRule::clone() const
 
 
 MTGMorphCostRule::MTGMorphCostRule(GameObserver* observer, int _id) :
-    MTGAbility(observer, _id, NULL)
+    PermanentAbility(observer, _id)
 {
     aType = MTGAbility::MORPH_COST;
 }
@@ -1155,12 +1110,6 @@ int MTGMorphCostRule::reactToClick(MTGCardInstance * card)
     return 1;
 }
 
-//The morph rule is never destroyed
-int MTGMorphCostRule::testDestroy()
-{
-    return 0;
-}
-
 ostream& MTGMorphCostRule::toString(ostream& out) const
 {
     out << "MTGMorphCostRule ::: (";
@@ -1196,7 +1145,7 @@ bool MTGAttackRule::greyout(Target* t)
 }
 
 MTGAttackRule::MTGAttackRule(GameObserver* observer, int _id) :
-MTGAbility(observer, _id, NULL)
+PermanentAbility(observer, _id)
 {
     aType = MTGAbility::MTG_ATTACK_RULE;
 }
@@ -1258,12 +1207,6 @@ int MTGAttackRule::reactToClick(MTGCardInstance * card)
     return 1;
 }
 
-//The Attack rule is never destroyed
-int MTGAttackRule::testDestroy()
-{
-    return 0;
-}
-
 ostream& MTGAttackRule::toString(ostream& out) const
 {
     out << "MTGAttackRule ::: (";
@@ -1277,7 +1220,7 @@ MTGAttackRule * MTGAttackRule::clone() const
 
 //this rules handles returning cards to combat triggers for activations.
 MTGCombatTriggersRule::MTGCombatTriggersRule(GameObserver* observer, int _id) :
-MTGAbility(observer, _id, NULL)
+PermanentAbility(observer, _id)
 {
     aType = MTGAbility::MTG_COMBATTRIGGERS_RULE;
 }
@@ -1376,12 +1319,6 @@ int MTGCombatTriggersRule::receiveEvent(WEvent *e)
     return 0;
 }
 
-//trigger rules are never distroyed
-int MTGCombatTriggersRule::testDestroy()
-{
-    return 0;
-}
-
 ostream& MTGCombatTriggersRule::toString(ostream& out) const
 {
     out << "MTGCombatTriggersRule ::: (";
@@ -1395,7 +1332,7 @@ MTGCombatTriggersRule * MTGCombatTriggersRule::clone() const
 ///------------
 
 OtherAbilitiesEventReceiver::OtherAbilitiesEventReceiver(GameObserver* observer, int _id) :
-MTGAbility(observer, _id, NULL)
+PermanentAbility(observer, _id)
 {
 }
 
@@ -1418,18 +1355,13 @@ int OtherAbilitiesEventReceiver::receiveEvent(WEvent *e)
     return 0;
 }
 
-int OtherAbilitiesEventReceiver::testDestroy()
-{
-    return 0;
-}
-
 OtherAbilitiesEventReceiver * OtherAbilitiesEventReceiver::clone() const
 {
     return NEW OtherAbilitiesEventReceiver(*this);
 }
 
 MTGBlockRule::MTGBlockRule(GameObserver* observer, int _id) :
-MTGAbility(observer, _id, NULL)
+PermanentAbility(observer, _id)
 {
     aType = MTGAbility::MTG_BLOCK_RULE;
 }
@@ -1466,12 +1398,6 @@ int MTGBlockRule::reactToClick(MTGCardInstance * card)
     return 1;
 }
 
-//The Block rule is never destroyed
-int MTGBlockRule::testDestroy()
-{
-    return 0;
-}
-
 ostream& MTGBlockRule::toString(ostream& out) const
 {
     out << "MTGBlockRule ::: (";
@@ -1494,7 +1420,7 @@ int MTGMomirRule::initialized = 0;
 vector<int> MTGMomirRule::pool[20];
 
 MTGMomirRule::MTGMomirRule(GameObserver* observer, int _id, MTGAllCards * _collection) :
-MTGAbility(observer, _id, NULL)
+PermanentAbility(observer, _id)
 {
     collection = _collection;
     if (!initialized)
@@ -1595,12 +1521,6 @@ int MTGMomirRule::genRandomCreatureId(int convertedCost)
     return pool[convertedCost][start];
 }
 
-//The Momir rule is never destroyed
-int MTGMomirRule::testDestroy()
-{
-    return 0;
-}
-
 void MTGMomirRule::Update(float dt)
 {
     if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_UNTAP)
@@ -1649,7 +1569,7 @@ int MTGStoneHewerRule::initialized = 0;
 vector<int> MTGStoneHewerRule::pool[20];
 
 MTGStoneHewerRule::MTGStoneHewerRule(GameObserver* observer, int _id, MTGAllCards * _collection) :
-MTGAbility(observer, _id, NULL)
+PermanentAbility(observer, _id)
 {
     collection = _collection;
     if (!initialized)
@@ -1728,12 +1648,6 @@ int MTGStoneHewerRule::genRandomEquipId(int convertedCost)
     return pool[convertedCost][start];
 }
 
-//The StoneHewer is never destroyed
-int MTGStoneHewerRule::testDestroy()
-{
-    return 0;
-}
-
 ostream& MTGStoneHewerRule::toString(ostream& out) const
 {
     out << "MTGStoneHewerRule ::: pool : " << pool << " ; initialized : " << initialized 
@@ -1749,7 +1663,7 @@ MTGStoneHewerRule * MTGStoneHewerRule::clone() const
 //------------------
 //Hermit druid mode places a random land from your deck into play during each of your upkeeps
 MTGHermitRule::MTGHermitRule(GameObserver* observer, int _id) :
-MTGAbility(observer, _id, NULL)
+PermanentAbility(observer, _id)
 {
 }
 
@@ -1780,12 +1694,6 @@ int MTGHermitRule::receiveEvent(WEvent * event)
 	return 0;
 }
 
-//The hermit is never destroyed
-int MTGHermitRule::testDestroy()
-{
-    return 0;
-}
-
 MTGHermitRule * MTGHermitRule::clone() const
 {
     return NEW MTGHermitRule(*this);
@@ -1793,10 +1701,6 @@ MTGHermitRule * MTGHermitRule::clone() const
 //--------------------
 
 //HUDDisplay
-int HUDDisplay::testDestroy()
-{
-    return 0;
-}
 
 void HUDDisplay::Update(float dt)
 {
@@ -1886,7 +1790,7 @@ void HUDDisplay::Render()
     }
 }
 HUDDisplay::HUDDisplay(GameObserver* observer, int _id) :
-MTGAbility(observer, _id, NULL)
+PermanentAbility(observer, _id)
 {
     timestamp = 0;
     popdelay = 2;
@@ -1912,7 +1816,7 @@ HUDDisplay * HUDDisplay::clone() const
 
 /* Persist */
 MTGPersistRule::MTGPersistRule(GameObserver* observer, int _id) :
-MTGAbility(observer, _id, NULL)
+PermanentAbility(observer, _id)
 {
 }
 ;
@@ -1962,10 +1866,7 @@ ostream& MTGPersistRule::toString(ostream& out) const
     out << "MTGPersistRule ::: (";
     return MTGAbility::toString(out) << ")";
 }
-int MTGPersistRule::testDestroy()
-{
-    return 0;
-}
+
 MTGPersistRule * MTGPersistRule::clone() const
 {
     return NEW MTGPersistRule(*this);
@@ -1975,7 +1876,7 @@ MTGPersistRule * MTGPersistRule::clone() const
 //handled seperately as a rule since we only want one object to send out events that a card was "vampired".
 //otherwise vampire event is sent per instance of @vampired on the battlefield, multipling the results.
 MTGVampireRule::MTGVampireRule(GameObserver* observer, int _id) :
-MTGAbility(observer, _id, NULL)
+PermanentAbility(observer, _id)
 {
 }
 ;
@@ -2038,10 +1939,7 @@ ostream& MTGVampireRule::toString(ostream& out) const
     out << "MTGVampireRule ::: (";
     return MTGAbility::toString(out) << ")";
 }
-int MTGVampireRule::testDestroy()
-{
-    return 0;
-}
+
 MTGVampireRule * MTGVampireRule::clone() const
 {
     return NEW MTGVampireRule(*this);
@@ -2050,7 +1948,7 @@ MTGVampireRule * MTGVampireRule::clone() const
 //unearth rule----------------------------------
 //if the card leaves play, exile it instead.
 MTGUnearthRule::MTGUnearthRule(GameObserver* observer, int _id) :
-MTGAbility(observer, _id, NULL)
+PermanentAbility(observer, _id)
 {
 }
 ;
@@ -2100,17 +1998,14 @@ ostream& MTGUnearthRule::toString(ostream& out) const
     out << "MTGUnearthRule ::: (";
     return MTGAbility::toString(out) << ")";
 }
-int MTGUnearthRule::testDestroy()
-{
-    return 0;
-}
+
 MTGUnearthRule * MTGUnearthRule::clone() const
 {
     return NEW MTGUnearthRule(*this);
 }
 //token clean up
 MTGTokensCleanup::MTGTokensCleanup(GameObserver* observer, int _id) :
-MTGAbility(observer, _id, NULL)
+PermanentAbility(observer, _id)
 {
 }
 
@@ -2128,11 +2023,6 @@ int MTGTokensCleanup::receiveEvent(WEvent * e)
         c->controller()->game->putInZone(c, c->currentZone, c->controller()->game->garbage);
         return 1;
     }
-    return 0;
-}
-
-int MTGTokensCleanup::testDestroy()
-{
     return 0;
 }
 
@@ -2257,7 +2147,7 @@ MTGPlaneWalkerRule * MTGPlaneWalkerRule::clone() const
 
 /* Lifelink */
 MTGLifelinkRule::MTGLifelinkRule(GameObserver* observer, int _id) :
-MTGAbility(observer, _id, NULL)
+PermanentAbility(observer, _id)
 {
 }
 ;
@@ -2278,11 +2168,6 @@ int MTGLifelinkRule::receiveEvent(WEvent * event)
     return 0;
 }
 
-int MTGLifelinkRule::testDestroy()
-{
-    return 0;
-}
-
 ostream& MTGLifelinkRule::toString(ostream& out) const
 {
     out << "MTGLifelinkRule ::: (";
@@ -2295,7 +2180,7 @@ MTGLifelinkRule * MTGLifelinkRule::clone() const
 
 /* Deathtouch */
 MTGDeathtouchRule::MTGDeathtouchRule(GameObserver* observer, int _id) :
-MTGAbility(observer, _id, NULL)
+PermanentAbility(observer, _id)
 {
 }
 ;
@@ -2327,11 +2212,6 @@ int MTGDeathtouchRule::receiveEvent(WEvent * event)
     return 0;
 }
 
-int MTGDeathtouchRule::testDestroy()
-{
-    return 0;
-}
-
 MTGDeathtouchRule * MTGDeathtouchRule::clone() const
 {
     return NEW MTGDeathtouchRule(*this);
@@ -2339,7 +2219,7 @@ MTGDeathtouchRule * MTGDeathtouchRule::clone() const
 //
 //kai mod
 ParentChildRule::ParentChildRule(GameObserver* observer, int _id) :
-MTGAbility(observer, _id, NULL)
+PermanentAbility(observer, _id)
 {
 }
 ;
@@ -2398,10 +2278,7 @@ ostream& ParentChildRule::toString(ostream& out) const
     out << "ParentChildRule ::: (";
     return MTGAbility::toString(out) << ")";
 }
-int ParentChildRule::testDestroy()
-{
-    return 0;
-}
+
 ParentChildRule * ParentChildRule::clone() const
 {
     return NEW ParentChildRule(*this);
