@@ -634,6 +634,8 @@ MTGCardInstance * AIPlayerBaka::chooseCard(TargetChooser * tc, MTGCardInstance *
                 }
             }
         }
+        //switch player->zones to the other player and check there if we haven't found one yet.
+        playerZones = source->controller()->opponent()->game;
     }
     return NULL;
 }
