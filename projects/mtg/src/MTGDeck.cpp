@@ -201,7 +201,7 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
                     {
                         size_t endName = value.find(")",name);
                         theName = value.substr(name + 5,endName - name - 5);
-                        s.erase(name, endName - name + 1);
+                        value.erase(name, endName - name + 1);
                     }
                     cost->alternative = ManaCost::parseManaCost(value);
                     if(theName.size())
