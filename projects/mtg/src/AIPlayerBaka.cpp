@@ -408,7 +408,12 @@ int OrderedAIAction::getEfficiency()
             AbilityFactory af(g);
             int suggestion = af.abilityEfficiency(a, p, MODE_ABILITY);
 
-            if ((suggestion == BAKA_EFFECT_BAD && _t == p) || (suggestion == BAKA_EFFECT_GOOD && _t != p))
+            if(_t->typeAsTarget() == TARGET_CARD)
+            {
+                if((suggestion == BAKA_EFFECT_BAD && ((MTGCardInstance*)_t)->controller() == p) || (suggestion == BAKA_EFFECT_GOOD && ((MTGCardInstance*)_t)->controller() != p))
+                    efficiency = 0;
+            }
+            else if ((suggestion == BAKA_EFFECT_BAD && _t == p) || (suggestion == BAKA_EFFECT_GOOD && _t != p))
             {
                 efficiency = 0;
             }
@@ -617,9 +622,9 @@ int AIPlayerBaka::getEfficiency(OrderedAIAction * action)
 MTGCardInstance * AIPlayerBaka::chooseCard(TargetChooser * tc, MTGCardInstance * source, int random)
 {
     MTGPlayerCards * playerZones = source->controller()->game;
-    MTGGameZone * zones[] = { playerZones->hand, playerZones->library, playerZones->inPlay, playerZones->graveyard,playerZones->stack };
     for(int players = 0; players < 2;++players)
     {
+        MTGGameZone * zones[] = { playerZones->hand, playerZones->library, playerZones->inPlay, playerZones->graveyard,playerZones->stack };
         for (int j = 0; j < 5; j++)
         {
             MTGGameZone * zone = zones[j];
