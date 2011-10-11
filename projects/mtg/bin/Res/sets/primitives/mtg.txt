@@ -951,7 +951,7 @@ type=Enchantment
 [/card]
 [card]
 name=Ajani's Pridemate
-auto=@lifed(controller):may counter(1/1)
+auto=@lifed(controller):may counter(1/1,1)
 text=Whenever you gain life, you may put a +1/+1 counter on Ajani's Pridemate.
 mana={1}{W}
 type=Creature
@@ -1142,7 +1142,7 @@ toughness=4
 [card]
 name=Aku Djinn
 abilities=trample
-auto=@each my upkeep:lord(creature|opponentBattlefield) counter(1/1)
+auto=@each my upkeep:lord(creature|opponentBattlefield) counter(1/1,1)
 text=Trample -- At the beginning of your upkeep, put a +1/+1 counter on each creature each opponent controls.
 mana={3}{B}{B}
 type=Creature
@@ -1370,7 +1370,7 @@ subtype=Aura
 [card]
 name=Algae Gharial
 abilities=shroud
-auto=@movedTo(graveyard) from(other creature|battlefield):may counter(1/1)
+auto=@movedTo(graveyard) from(other creature|battlefield):may counter(1/1,1)
 text=Shroud -- Whenever another creature dies, you may put a +1/+1 counter on Algae Gharial.
 mana={3}{G}
 type=Creature
@@ -2659,7 +2659,7 @@ toughness=*
 [card]
 name=Aquastrand Spider
 auto=counter(1/1,2)
-auto=@movedto(creature|battlefield):may this(counter{1/1}) all(trigger) counter(1/1) && this(counter{1/1})  counter(1/1,-1)
+auto=@movedto(creature|battlefield):may this(counter{1/1}) all(trigger) counter(1/1,1) && this(counter{1/1})  counter(1/1,-1)
 auto={G}:reach target(creature[counter{1/1.1}])
 text=Graft 2 (This creature enters the battlefield with two +1/+1 counters on it. Whenever another creature enters the battlefield, you may move a +1/+1 counter from this creature onto it.) -- {G}: Target creature with a +1/+1 counter on it gains reach until end of turn. (It can block creatures with flying.)
 mana={1}{G}
@@ -3388,7 +3388,7 @@ toughness=2
 [/card]
 [card]
 name=Armor Thrull
-auto={T}{S}:counter(1/2) target(creature)
+auto={T}{S}:counter(1/2,1) target(creature)
 text={T}, Sacrifice Armor Thrull: Put a +1/+2 counter on target creature.
 mana={2}{B}
 type=Creature
@@ -4527,7 +4527,7 @@ toughness=1
 [card]
 name=Avenger of Zendikar
 auto=foreach(land|myBattlefield) token(Plant,creature plant, 0/1,green)
-auto=@movedTo(land|myBattlefield):may counter(1/1) all(plant|myBattlefield)
+auto=@movedTo(land|myBattlefield):may counter(1/1,1) all(plant|myBattlefield)
 text=When Avenger of Zendikar enters the battlefield, put a 0/1 green Plant creature token onto the battlefield for each land you control. -- Landfall - Whenever a land enters the battlefield under your control, you may put a +1/+1 counter on each Plant creature you control.
 mana={5}{G}{G}
 type=Creature
@@ -4677,7 +4677,7 @@ toughness=2
 [card]
 name=Azorius Herald
 abilities=unblockable
-other={1}{W}{U} (Spend {U} to Cast)
+other={1}{W}{U} name(Spend U to Cast)
 auto=alternative 99/99
 auto=life:4
 auto=-99/-99
@@ -7562,8 +7562,8 @@ toughness=2
 [/card]
 [card]
 name=Bloodhall Ooze
-auto=@each my upkeep restriction{type(*[black]|myBattlefield)~morethan~0}:may counter(1/1)
-auto=@each my upkeep restriction{type(*[green]|myBattlefield)~morethan~0}:may counter(1/1)
+auto=@each my upkeep restriction{type(*[black]|myBattlefield)~morethan~0}:may counter(1/1,1)
+auto=@each my upkeep restriction{type(*[green]|myBattlefield)~morethan~0}:may counter(1/1,1)
 text=At the beginning of your upkeep, if you control a black permanent, you may put a +1/+1 counter on Bloodhall Ooze. -- At the beginning of your upkeep, if you control a green permanent, you may put a +1/+1 counter on Bloodhall Ooze.
 mana={R}
 type=Creature
@@ -8140,8 +8140,8 @@ type=Land
 [card]
 name=Bojuka Brigand
 abilities=cantblock
-auto=may counter(1/1)
-auto=@movedTo(other ally|myBattlefield):may counter(1/1)
+auto=may counter(1/1,1)
+auto=@movedTo(other ally|myBattlefield):may counter(1/1,1)
 text=Bojuka Brigand can't block. -- Whenever Bojuka Brigand or another Ally enters the battlefield under your control, you may put a +1/+1 counter on Bojuka Brigand.
 mana={1}{B}
 type=Creature
@@ -8432,7 +8432,7 @@ toughness=2
 [card]
 name=Boros Fury-Shield
 target=creature[attacking;blocking]
-other={1}{W}{R} name(Spend {R} to Cast)
+other={1}{W}{R} name(Spend R to Cast)
 auto=0/0 && fog from(mytgt) oneshot
 auto=alternative dynamicability<!mytgt powerstrike targetcontroller!>
 text=Prevent all combat damage that would be dealt by target attacking or blocking creature this turn. If {R} was spent to cast Boros Fury-Shield, it deals damage to that creature's controller equal to the creature's power.
@@ -12492,7 +12492,7 @@ toughness=0
 name=Clockwork Dragon
 abilities=flying
 auto=counter(1/1,6)
-auto={3}:counter(1/1)
+auto={3}:counter(1/1,1)
 auto=@combat(attacking) source(this):phaseaction[combatends once] counter(1/1,-1)
 auto=@combat(blocking) source(this):phaseaction[combatends once] counter(1/1,-1)
 text=Flying -- Clockwork Dragon enters the battlefield with six +1/+1 counters on it. -- Whenever Clockwork Dragon attacks or blocks, remove a +1/+1 counter from it at end of combat. -- {3}: Put a +1/+1 counter on Clockwork Dragon.
@@ -15248,7 +15248,7 @@ toughness=3
 [card]
 name=Cytoplast Root-Kin
 auto=counter(1/1,4)
-auto=@movedto(creature|battlefield):may this(counter{1/1}) all(trigger) counter(1/1) && this(counter{1/1})  counter(1/1,-1)
+auto=@movedto(creature|battlefield):may this(counter{1/1}) all(trigger) counter(1/1,1) && this(counter{1/1})  counter(1/1,-1)
 auto=counter(1/1,1) all(other creature[counter{1/1.1}]|myBattlefield)
 auto={2}:counter(1/1,-1) target(creature[counter{1/1.1}]|myBattlefield) && counter(1/1,1) all(this)
 text=Graft 4 (This creature enters the battlefield with four +1/+1 counters on it. Whenever another creature enters the battlefield, you may move a +1/+1 counter from this creature onto it.) -- When Cytoplast Root-Kin enters the battlefield, put a +1/+1 counter on each other creature you control that has a +1/+1 counter on it. -- {2}: Move a +1/+1 counter from target creature you control onto Cytoplast Root-Kin.
@@ -15261,7 +15261,7 @@ toughness=0
 [card]
 name=Cytospawn Shambler
 auto=counter(1/1,6)
-auto=@movedto(creature|battlefield):may this(counter{1/1}) all(trigger) counter(1/1) && this(counter{1/1})  counter(1/1,-1)
+auto=@movedto(creature|battlefield):may this(counter{1/1}) all(trigger) counter(1/1,1) && this(counter{1/1})  counter(1/1,-1)
 auto={G}:trample target(creature[counter{1/1.1}])
 text=Graft 6 (This creature enters the battlefield with six +1/+1 counters on it. Whenever another creature enters the battlefield, you may move a +1/+1 counter from this creature onto it.) -- {G}: Target creature with a +1/+1 counter on it gains trample until end of turn.
 mana={6}{G}
@@ -19610,7 +19610,7 @@ toughness=1
 [/card]
 [card]
 name=Dryad's Caress
-other={3}{G}{W} name(Spend {W} to Cast) 
+other={3}{G}{W} name(Spend W to Cast) 
 auto=alternative untap all(creature|mybattlefield)
 auto=foreach(creature|battlefield) life:1 controller
 text=You gain 1 life for each creature on the battlefield. If {W} was spent to cast Dryad's Caress, untap all creatures you control.
@@ -26278,7 +26278,7 @@ auto={G}{G}:counter(0/0,1,Spore) target(fungus)
 [/card]
 [card]
 name=Fungus Sliver
-auto=@damaged(sliver):all(trigger[to]) counter(1/1)
+auto=@damaged(sliver):all(trigger[to]) counter(1/1,1)
 text=All Sliver creatures have "Whenever this creature is dealt damage, put a +1/+1 counter on it." (The damage is dealt before the counter is put on.)
 mana={3}{G}
 type=Creature
@@ -32153,7 +32153,7 @@ type=Artifact
 [card]
 name=Helium Squirter
 auto=counter(1/1,3)
-auto=@movedto(creature|battlefield):may this(counter{1/1}) all(trigger) counter(1/1) && this(counter{1/1})  counter(1/1,-1)
+auto=@movedto(creature|battlefield):may this(counter{1/1}) all(trigger) counter(1/1,1) && this(counter{1/1})  counter(1/1,-1)
 auto={1}:flying target(creature[counter{1/1.1}])
 text=Graft 3 (This creature enters the battlefield with three +1/+1 counters on it. Whenever another creature enters the battlefield, you may move a +1/+1 counter from this creature onto it.) -- {1}: Target creature with a +1/+1 counter on it gains flying until end of turn.
 mana={4}{U}
@@ -35353,7 +35353,7 @@ toughness=5
 [/card]
 [card]
 name=Ironshell Beetle
-auto=counter(1/1) target(creature)
+auto=counter(1/1,1) target(creature)
 text=When Ironshell Beetle enters the battlefield, put a +1/+1 counter on target creature.
 mana={1}{G}
 type=Creature
@@ -35821,7 +35821,7 @@ toughness=5
 [card]
 name=Jenara, Asura of War
 abilities=flying
-auto={1}{W}:counter(1/1)
+auto={1}{W}:counter(1/1,1)
 text=Flying -- {1}{W}: Put a +1/+1 counter on Jenara, Asura of War.
 mana={G}{W}{U}
 type=Legendary Creature
@@ -36422,7 +36422,7 @@ toughness=1
 [card]
 name=Juniper Order Ranger
 auto=@movedto(other creature|myBattlefield):counter(1/1,1)
-auto=@movedto(other creature|myBattlefield):all(trigger) counter(1/1)
+auto=@movedto(other creature|myBattlefield):all(trigger) counter(1/1,1)
 text=Whenever another creature enters the battlefield under your control, put a +1/+1 counter on that creature and a +1/+1 counter on Juniper Order Ranger.
 mana={3}{G}{W}
 type=Creature
@@ -36445,7 +36445,7 @@ toughness=1
 name=Junk Golem
 auto=counter(1/1,3)
 auto=upcost[{C(1/1,-1)}] sacrifice
-auto={discard(*|myhand)}:counter(1/1)
+auto={discard(*|myhand)}:counter(1/1,1)
 text=Junk Golem enters the battlefield with three +1/+1 counters on it. -- At the beginning of your upkeep, sacrifice Junk Golem unless you remove a +1/+1 counter from it. -- {1}, Discard a card: Put a +1/+1 counter on Junk Golem.
 mana={4}
 type=Artifact Creature
@@ -40973,7 +40973,7 @@ name=Llanowar Reborn
 auto=tap
 auto={T}:Add{G}
 auto=counter(1/1,1)
-auto=@movedto(creature|battlefield):may this(counter{1/1}) all(trigger) counter(1/1) && this(counter{1/1})  counter(1/1,-1)
+auto=@movedto(creature|battlefield):may this(counter{1/1}) all(trigger) counter(1/1,1) && this(counter{1/1})  counter(1/1,-1)
 text=Llanowar Reborn enters the battlefield tapped. -- {T}: Add {G} to your mana pool. -- Graft 1 (This land enters the battlefield with a +1/+1 counter on it. Whenever a creature enters the battlefield, you may move a +1/+1 counter from this land onto it.)
 type=Land
 [/card]
@@ -41272,7 +41272,7 @@ toughness=4
 [/card]
 [card]
 name=Lorescale Coatl
-auto=@drawn(controller):may counter(1/1)
+auto=@drawn(controller):may counter(1/1,1)
 text=Whenever you draw a card, you may put a +1/+1 counter on Lorescale Coatl.
 mana={1}{G}{U}
 type=Creature
@@ -44481,7 +44481,7 @@ type=Sorcery
 [card]
 name=Mindless Automaton
 auto=counter(1/1,2)
-auto={1}{discard(*|myhand)}:counter(1/1)
+auto={1}{discard(*|myhand)}:counter(1/1,1)
 auto={C(1/1,-2)}:draw:1 controller
 text=Mindless Automaton enters the battlefield with two +1/+1 counters on it. -- {1}, Discard a card: Put a +1/+1 counter on Mindless Automaton. -- Remove two +1/+1 counters from Mindless Automaton: Draw a card.
 mana={4}
@@ -44641,7 +44641,7 @@ toughness=3
 [card]
 name=Miraculous Recovery
 target=creature|mygraveyard
-auto=transforms((,newability[moveTo(mybattlefield)],newability[counter(1/1)]))
+auto=transforms((,newability[moveTo(mybattlefield)],newability[counter(1/1,1)]))
 text=Return target creature card from your graveyard to the battlefield with a +1/+1 counter on it.
 mana={4}{W}
 type=Instant
@@ -45249,7 +45249,7 @@ toughness=2
 [/card]
 [card]
 name=Mold Adder
-auto=@movedTo(*[black;blue]|opponentStack):may counter(1/1)
+auto=@movedTo(*[black;blue]|opponentStack):may counter(1/1,1)
 text=Whenever an opponent casts a blue or black spell, you may put a +1/+1 counter on Mold Adder.
 mana={G}
 type=Creature
@@ -46057,7 +46057,7 @@ toughness=1
 [/card]
 [card]
 name=Mountain Titan
-auto={1}{R}{R}:transforms((,newability[@movedTo(*[black]|mystack):counter(1/1) ueot] ueot)) ueot
+auto={1}{R}{R}:transforms((,newability[@movedTo(*[black]|mystack):counter(1/1,1) ueot] ueot)) ueot
 text={1}{R}{R}: Until end of turn, whenever you cast a black spell, put a +1/+1 counter on Mountain Titan.
 mana={2}{B}{R}
 type=Creature
@@ -46628,7 +46628,7 @@ toughness=1
 [/card]
 [card]
 name=Myr Prototype
-auto=@each my upkeep:counter(1/1)
+auto=@each my upkeep:counter(1/1,1)
 auto=this(counter{1/1.1}=) {1}:-cantattack myAttackersOnly
 auto=this(counter{1/1.2}=) {2}:-cantattack myAttackersOnly
 auto=this(counter{1/1.3}=) {3}:-cantattack myAttackersOnly
@@ -48501,7 +48501,7 @@ type=Land
 [card]
 name=Novijen Sages
 auto=counter(1/1,4)
-auto=@movedto(creature|battlefield):may this(counter{1/1}) all(trigger) counter(1/1) && this(counter{1/1}) counter(1/1,-1)
+auto=@movedto(creature|battlefield):may this(counter{1/1}) all(trigger) counter(1/1,1) && this(counter{1/1}) counter(1/1,-1)
 auto={1}{C(1/1,-1),creature|mybattlefield}{C(1/1,-1),creature|mybattlefield}:draw:1 controller
 text=Graft 4 (This creature enters the battlefield with four +1/+1 counters on it. Whenever another creature enters the battlefield, you may move a +1/+1 counter from this creature onto it.) -- {1}, Remove two +1/+1 counters from among creatures you control: Draw a card.
 mana={4}{U}{U}
@@ -49013,7 +49013,7 @@ toughness=3
 [/card]
 [card]
 name=Ogre Savant
-other={3}{U}{R} name(Spend {U} to Cast)
+other={3}{U}{R} name(Spend U to Cast)
 auto=alternative moveTo(ownerhand) target(creature)
 text=When Ogre Savant enters the battlefield, if {U} was spent to cast Ogre Savant, return target creature to its owner's hand.
 mana={4}{R}
@@ -50751,7 +50751,7 @@ toughness=3
 [card]
 name=Patagia Viper
 abilities=flying
-other={2}{U}{G} name(Spend {U} to Cast)
+other={2}{U}{G} name(Spend U to Cast)
 auto=alternative 99/99
 auto=-99/-99
 auto=token(Snake,Creature Snake,1/1,greenblue)*2
@@ -51774,7 +51774,7 @@ subtype=Aura
 [/card]
 [card]
 name=Phyrexian Broodlings
-auto={1}{S(creature|myBattlefield)}:counter(1/1)
+auto={1}{S(creature|myBattlefield)}:counter(1/1,1)
 text={1}, Sacrifice a creature: Put a +1/+1 counter on Phyrexian Broodlings.
 mana={1}{B}{B}
 type=Creature
@@ -52746,7 +52746,7 @@ toughness=4
 name=Plaxcaster Frogling
 auto=counter(1/1,3)
 auto={2}:shroud target(creature[counter{1/1.1}])
-auto=@movedto(creature|battlefield):may this(counter{1/1}) all(trigger) counter(1/1) && this(counter{1/1}) counter(1/1,-1)
+auto=@movedto(creature|battlefield):may this(counter{1/1}) all(trigger) counter(1/1,1) && this(counter{1/1}) counter(1/1,-1)
 text=Graft 3 (This creature enters the battlefield with three +1/+1 counters on it. Whenever another creature enters the battlefield, you may move a +1/+1 counter from this creature onto it.) -- {2}: Target creature with a +1/+1 counter on it gains shroud until end of turn. (It can't be the target of spells or abilities.)
 mana={1}{G}{U}
 type=Creature
@@ -52757,7 +52757,7 @@ toughness=0
 [card]
 name=Plaxmanta
 abilities=flash
-other={U}{G} name(Spend {G} to Cast)
+other={U}{G} name(Spend G to Cast)
 auto=lord(creature|myBattlefield) shroud ueot
 auto=-99/-99
 auto=alternative 99/99
@@ -53167,7 +53167,7 @@ type=Legendary Artifact
 [card]
 name=Predatory Hunger
 target=creature
-auto=@movedTo(creature|opponentstack):counter(1/1)
+auto=@movedTo(creature|opponentstack):counter(1/1,1)
 text=Enchant creature -- Whenever an opponent casts a creature spell, put a +1/+1 counter on enchanted creature.
 mana={G}
 type=Enchantment
@@ -54597,7 +54597,7 @@ toughness=2
 [/card]
 [card]
 name=Quirion Dryad
-auto=@movedTo(*[white;blue;black;red]|myStack):counter(1/1)
+auto=@movedTo(*[white;blue;black;red]|myStack):counter(1/1,1)
 text=Whenever you cast a white, blue, black, or red spell, put a +1/+1 counter on Quirion Dryad.
 mana={1}{G}
 type=Creature
@@ -57381,7 +57381,7 @@ toughness=4
 [card]
 name=Ribbons of Night
 target=creature
-other={3}{U}{B} name(Spend {U} to Cast)
+other={3}{U}{B} name(Spend U to Cast)
 auto=damage:4
 auto=life:4 controller
 auto=alternative draw:1 controller
@@ -57746,7 +57746,7 @@ type=Sorcery
 [/card]
 [card]
 name=Rite of Passage
-auto=@damaged(creature|mybattlefield):all(trigger[to]) counter(1/1)
+auto=@damaged(creature|mybattlefield):all(trigger[to]) counter(1/1,1)
 text=Whenever a creature you control is dealt damage, put a +1/+1 counter on it. (The damage is dealt before the counter is put on.)
 mana={2}{G}
 type=Enchantment
@@ -58049,7 +58049,7 @@ toughness=3
 [card]
 name=Rockslide Elemental
 abilities=first strike
-auto=@movedTo(graveyard) from(other creature|battlefield):may counter(1/1)
+auto=@movedTo(graveyard) from(other creature|battlefield):may counter(1/1,1)
 text=First strike -- Whenever another creature dies, you may put a +1/+1 counter on Rockslide Elemental.
 mana={2}{R}
 type=Creature
@@ -58133,7 +58133,7 @@ type=Sorcery
 [card]
 name=Rolling Spoil
 target=land
-other={1}{B}{G}{G} name(Spend {G} to Cast)
+other={1}{B}{G}{G} name(Spend G to Cast)
 auto=destroy
 auto=alternative -1/-1 all(creature)
 text=Destroy target land. If {B} was spent to cast Rolling Spoil, all creatures get -1/-1 until end of turn.
@@ -58818,7 +58818,7 @@ toughness=1
 [card]
 name=Rushwood Elemental
 abilities=trample
-auto=@each my upkeep:may counter(1/1)
+auto=@each my upkeep:may counter(1/1,1)
 text=Trample -- At the beginning of your upkeep, you may put a +1/+1 counter on Rushwood Elemental.
 mana={G}{G}{G}{G}{G}
 type=Creature
@@ -59157,7 +59157,7 @@ type=Instant
 [card]
 name=Sadistic Glee
 target=creature
-auto=@movedTo(graveyard) from(creature|battlefield):counter(1/1)
+auto=@movedTo(graveyard) from(creature|battlefield):counter(1/1,1)
 text=Enchant creature -- Whenever a creature dies, put a +1/+1 counter on enchanted creature.
 mana={B}
 type=Enchantment
@@ -60130,7 +60130,7 @@ toughness=2
 [/card]
 [card]
 name=Scarland Thrinax
-auto={S(creature|myBattlefield)}:counter(1/1)
+auto={S(creature|myBattlefield)}:counter(1/1,1)
 text=Sacrifice a creature: Put a +1/+1 counter on Scarland Thrinax.
 mana={B}{R}{G}
 type=Creature
@@ -60237,7 +60237,7 @@ subtype=Aura
 [card]
 name=Scavenger Drake
 abilities=flying
-auto=@movedTo(graveyard) from(other creature|battlefield):may counter(1/1)
+auto=@movedTo(graveyard) from(other creature|battlefield):may counter(1/1,1)
 text=Flying -- Whenever another creature dies, you may put a +1/+1 counter on Scavenger Drake.
 mana={3}{B}
 type=Creature
@@ -61162,7 +61162,7 @@ toughness=2
 [card]
 name=Seed Spark
 target=artifact,enchantment
-other={2}{G}{W} name(Spend {W} to cast)
+other={2}{G}{W} name(Spend W to cast)
 auto=destroy
 auto=alternative token(Saproling,Creature Saproling,1/1,green)*2
 text=Destroy target artifact or enchantment. If {G} was spent to cast Seed Spark, put two 1/1 green Saproling creature tokens onto the battlefield.
@@ -62364,7 +62364,7 @@ name=Shauku, Endbringer
 abilities=flying
 auto=@each my upkeep:life:-3 controller
 auto=aslongas(other creature|battlefield) cantattack
-auto={T}:counter(1/1) all(this) && moveTo(exile) target(creature)
+auto={T}:counter(1/1,1) all(this) && moveTo(exile) target(creature)
 text=Flying -- Shauku, Endbringer can't attack if there's another creature on the battlefield. -- At the beginning of your upkeep, you lose 3 life. -- {T}: Exile target creature and put a +1/+1 counter on Shauku.
 mana={5}{B}{B}
 type=Legendary Creature
@@ -62405,7 +62405,7 @@ type=Land
 [card]
 name=Sheltering Ancient
 abilities=trample
-auto=@each my upkeep:thisforeach(counter{0/0.1.Age}) counter(1/1) target(creature|opponentBattlefield)
+auto=@each my upkeep:thisforeach(counter{0/0.1.Age}) counter(1/1,1) target(creature|opponentBattlefield)
 auto=@each my upkeep:may moveTo(mygraveyard)
 auto=@each my upkeep:counter(0/0,1,Age)
 text=Trample -- Cumulative upkeep - Put a +1/+1 counter on a creature an opponent controls. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)
@@ -63714,7 +63714,7 @@ toughness=2
 [card]
 name=Simic Basilisk
 auto=counter(1/1,3)
-auto=@movedto(creature|battlefield):may this(counter{1/1}) all(trigger) counter(1/1) && this(counter{1/1})  counter(1/1,-1)
+auto=@movedto(creature|battlefield):may this(counter{1/1}) all(trigger) counter(1/1,1) && this(counter{1/1})  counter(1/1,-1)
 auto={1}{G}:target(creature[counter{1/1.1}]) transforms((,newability[auto=@combatdamaged(creature) from(this):all(trigger[to]) phaseaction[combatends once] destroy])) ueot
 text=Graft 3 (This creature enters the battlefield with three +1/+1 counters on it. Whenever another creature enters the battlefield, you may move a +1/+1 counter from this creature onto it.) -- {1}{G}: Until end of turn, target creature with a +1/+1 counter on it gains "Whenever this creature deals combat damage to a creature, destroy that creature at end of combat."
 mana={4}{G}{G}
@@ -63734,8 +63734,8 @@ type=Land
 [card]
 name=Simic Initiate
 text=Graft 1 (This creature enters the battlefield with a +1/+1 counter on it. Whenever another creature enters the battlefield, you may move a +1/+1 counter from this creature onto it.)
-auto=counter(1/1)
-auto=@movedto(creature|battlefield):may this(counter{1/1}) all(trigger) counter(1/1) && this(counter{1/1}) counter(1/1,-1)
+auto=counter(1/1,1)
+auto=@movedto(creature|battlefield):may this(counter{1/1}) all(trigger) counter(1/1,1) && this(counter{1/1}) counter(1/1,-1)
 mana={G}
 type=Creature
 subtype=Human Mutant
@@ -66393,7 +66393,7 @@ toughness=1
 [card]
 name=Soulcatcher
 abilities=flying
-auto=@movedTo(graveyard) from(creature[flying]|battlefield):counter(1/1)
+auto=@movedTo(graveyard) from(creature[flying]|battlefield):counter(1/1,1)
 text=Flying -- Whenever a creature with flying dies, put a +1/+1 counter on Soulcatcher.
 mana={1}{W}
 type=Creature
@@ -66411,7 +66411,7 @@ type=Enchantment
 [/card]
 [card]
 name=Souldrinker
-auto={L}{L}{L}:counter(1/1)
+auto={L}{L}{L}:counter(1/1,1)
 text=Pay 3 life: Put a +1/+1 counter on Souldrinker.
 mana={3}{B}
 type=Creature
@@ -67088,7 +67088,7 @@ type=Creature
 subtype=Spike
 auto=counter(1/1,3)
 auto={2}{C(1/1,-1)}:counter(1/1,1) target(creature)
-auto={2}{C(1/1,-1)}:target(land) becomes(Creature,2/2,green) && counter(1/1)
+auto={2}{C(1/1,-1)}:target(land) becomes(Creature,2/2,green) && counter(1/1,1)
 power=0
 toughness=0
 [/card]
@@ -67741,7 +67741,7 @@ toughness=1
 [card]
 name=Sporeback Troll
 auto=counter(1/1,2)
-auto=@movedto(creature|battlefield):may this(counter{1/1}) all(trigger) counter(1/1) && this(counter{1/1})  counter(1/1,-1)
+auto=@movedto(creature|battlefield):may this(counter{1/1}) all(trigger) counter(1/1,1) && this(counter{1/1})  counter(1/1,-1)
 auto={1}{G}:regenerate target(creature[counter{1/1.1}])
 text=Graft 2 (This creature enters the battlefield with two +1/+1 counters on it. Whenever another creature enters the battlefield, you may move a +1/+1 counter from this creature onto it.) -- {1}{G}: Regenerate target creature with a +1/+1 counter on it.
 mana={3}{G}
@@ -68496,7 +68496,7 @@ type=Artifact
 [/card]
 [card]
 name=Steamcore Weird
-other={2}{U}{R} name(Spend {R} to Cast)
+other={2}{U}{R} name(Spend R to Cast)
 auto=alternative damage:2 target(creature,player)
 text=When Steamcore Weird enters the battlefield, if {R} was spent to cast Steamcore Weird, it deals 2 damage to target creature or player.
 mana={3}{U}
@@ -71127,8 +71127,8 @@ toughness=3
 [/card]
 [card]
 name=Talus Paladin
-auto=may counter(1/1) all(this) && lord(ally|myBattlefield) lifelink ueot
-auto=@movedTo(other ally|myBattlefield):may counter(1/1) all(this) && lord(ally|myBattlefield) lifelink ueot
+auto=may counter(1/1,1) all(this) && lord(ally|myBattlefield) lifelink ueot
+auto=@movedTo(other ally|myBattlefield):may counter(1/1,1) all(this) && lord(ally|myBattlefield) lifelink ueot
 text=Whenever Talus Paladin or another Ally enters the battlefield under your control, you may have Allies you control gain lifelink until end of turn, and you may put a +1/+1 counter on Talus Paladin.
 mana={3}{W}
 type=Creature
@@ -73715,7 +73715,7 @@ toughness=3
 [/card]
 [card]
 name=Tin Street Hooligan
-other={R}{G} name(Spend {G} to Cast)
+other={R}{G} name(Spend G to Cast)
 auto=alternative destroy target(artifact)
 text=When Tin Street Hooligan enters the battlefield, if {G} was spent to cast Tin Street Hooligan, destroy target artifact.
 mana={1}{R}
@@ -73790,14 +73790,14 @@ type=Artifact
 [/card]
 [card]
 name=Titania's Boon
-auto=lord(creature|mybattlefield) counter(1/1)
+auto=lord(creature|mybattlefield) counter(1/1,1)
 text=Put a +1/+1 counter on each creature you control.
 mana={3}{G}
 type=Sorcery
 [/card]
 [card]
 name=Titania's Chosen
-auto=@movedTo(*[green]|stack):counter(1/1)
+auto=@movedTo(*[green]|stack):counter(1/1,1)
 text=Whenever a player casts a green spell, put a +1/+1 counter on Titania's Chosen.
 mana={2}{G}
 type=Creature
@@ -75502,8 +75502,8 @@ toughness=2
 [card]
 name=Tuktuk Grunts
 abilities=haste
-auto=may counter(1/1)
-auto=@movedTo(other ally|myBattlefield):may counter(1/1)
+auto=may counter(1/1,1)
+auto=@movedTo(other ally|myBattlefield):may counter(1/1,1)
 text=Haste -- Whenever Tuktuk Grunts or another Ally enters the battlefield under your control, you may put a +1/+1 counter on Tuktuk Grunts.
 mana={4}{R}
 type=Creature
@@ -75645,9 +75645,9 @@ type=Land
 [/card]
 [card]
 name=Turntimber Ranger
-auto=counter(1/1)
+auto=counter(1/1,1)
 auto=may token(Wolf,Creature Wolf,2/2,green)
-auto=@movedTo(ally|myBattlefield):may token(Wolf,Creature Wolf,2/2,green) && counter(1/1)
+auto=@movedTo(ally|myBattlefield):may token(Wolf,Creature Wolf,2/2,green) && counter(1/1,1)
 text=Whenever Turntimber Ranger or another Ally enters the battlefield under your control, you may put a 2/2 green Wolf creature token onto the battlefield. If you do, put a +1/+1 counter on Turntimber Ranger.
 mana={3}{G}{G}
 type=Creature
@@ -75884,7 +75884,7 @@ toughness=*
 [card]
 name=Umara Raptor
 abilities=flying
-auto=may counter(1/1)
+auto=may counter(1/1,1)
 auto=@movedTo(other ally|myBattlefield):may counter(1/1,1) all(this)
 text=Flying -- Whenever Umara Raptor or another Ally enters the battlefield under your control, you may put a +1/+1 counter on Umara Raptor.
 mana={2}{U}
@@ -77162,8 +77162,8 @@ type=Instant
 [/card]
 [card]
 name=Vebulid
-auto=counter(1/1)
-auto=@each my upkeep:may counter(1/1)
+auto=counter(1/1,1)
+auto=@each my upkeep:may counter(1/1,1)
 auto=@combat(attacking) source(this):phaseaction[combatends,sourceinplay] destroy
 auto=@combat(blocking) source(this):phaseaction[combatends,sourceinplay] destroy
 text=Vebulid enters the battlefield with a +1/+1 counter on it. -- At the beginning of your upkeep, you may put a +1/+1 counter on Vebulid. -- When Vebulid attacks or blocks, destroy it at end of combat.
@@ -78122,7 +78122,7 @@ toughness=2
 [card]
 name=Vigean Graftmage
 auto=counter(1/1,2)
-auto=@movedto(creature|battlefield):may this(counter{1/1}) all(trigger) counter(1/1) && this(counter{1/1})  counter(1/1,-1)
+auto=@movedto(creature|battlefield):may this(counter{1/1}) all(trigger) counter(1/1,1) && this(counter{1/1})  counter(1/1,-1)
 auto={1}{U}:untap target(creature[counter{1/1.1}])
 text=Graft 2 (This creature enters the battlefield with two +1/+1 counters on it. Whenever another creature enters the battlefield, you may move a +1/+1 counter from this creature onto it.) -- {1}{U}: Untap target creature with a +1/+1 counter on it.
 mana={2}{U}
@@ -78135,7 +78135,7 @@ toughness=0
 name=Vigean Hydropon
 abilities=cantattack,cantblock
 auto=counter(1/1,5)
-auto=@movedto(creature|battlefield):may this(counter{1/1}) all(trigger) counter(1/1) && this(counter{1/1})  counter(1/1,-1)
+auto=@movedto(creature|battlefield):may this(counter{1/1}) all(trigger) counter(1/1,1) && this(counter{1/1})  counter(1/1,-1)
 text=Graft 5 (This creature enters the battlefield with five +1/+1 counters on it. Whenever another creature enters the battlefield, you may move a +1/+1 counter from this creature onto it.) -- Vigean Hydropon can't attack or block.
 mana={1}{G}{U}
 type=Creature
@@ -78199,9 +78199,9 @@ toughness=6
 [card]
 name=Vigor Mortis
 target=creature|mygraveyard
-other={1}{B}{B}{G} name(Spend {G} to Cast)
+other={1}{B}{B}{G} name(Spend G to Cast)
 auto=moveTo(myBattlefield)
-auto=alternative counter(1/1)
+auto=alternative counter(1/1,1)
 text=Return target creature card from your graveyard to the battlefield. If {G} was spent to cast Vigor Mortis, that creature enters the battlefield with an additional +1/+1 counter on it.
 mana={2}{B}{B}
 type=Sorcery
@@ -78327,7 +78327,7 @@ toughness=4
 [/card]
 [card]
 name=Vinelasher Kudzu
-auto=@movedTo(land|myBattlefield):counter(1/1)
+auto=@movedTo(land|myBattlefield):counter(1/1,1)
 text=Whenever a land enters the battlefield under your control, put a +1/+1 counter on Vinelasher Kudzu.
 mana={1}{G}
 type=Creature
@@ -79402,7 +79402,7 @@ toughness=5
 [card]
 name=Vulturous Zombie
 abilities=flying
-auto=@movedTo(*|opponentgraveyard):counter(1/1)
+auto=@movedTo(*|opponentgraveyard):counter(1/1,1)
 text=Flying -- Whenever a card is put into an opponent's graveyard from anywhere, put a +1/+1 counter on Vulturous Zombie.
 mana={3}{B}{G}
 type=Creature
