@@ -250,7 +250,7 @@ ManaCost::ManaCost(vector<int8_t>& _cost, int nb_elems)
     init();
     for (int i = 0; i < nb_elems; i++)
     {
-        cost[_cost._Myfirst[i * 2]] = _cost._Myfirst[i * 2 + 1];
+        cost[_cost[i * 2]] = _cost[i * 2 + 1];
     }
 
 }
@@ -638,7 +638,7 @@ int ManaCost::isPositive()
     for (int i = 0; i < Constants::NB_Colors; i++)
     {
 
-        if (cost._Myfirst[i] < 0)
+        if (cost[i] < 0)
         {
             return 0;
         }
@@ -696,7 +696,7 @@ ManaCost * ManaCost::Diff(ManaCost * _cost)
     for (int i = 0; i < Constants::NB_Colors; i++)
     {
         diff[i * 2] = i;
-        diff[i * 2 + 1] = cost._Myfirst[i] - _cost->getCost(i);
+        diff[i * 2 + 1] = cost[i] - _cost->getCost(i);
     }
     int hybridResult = tryToPayHybrids(_cost->hybrids, _cost->hybrids.size(), diff);
     if (!hybridResult)

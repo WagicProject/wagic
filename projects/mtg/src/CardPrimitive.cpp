@@ -134,7 +134,7 @@ void CardPrimitive::setColor(const string& _color, int removeAllOthers)
 {
     for( size_t i =0 ; i< Constants::MTGColorStrings.size(); i++)
     {
-        if (_color.compare(Constants::MTGColorStrings._Myfirst[i]) == 0)
+        if (_color.compare(Constants::MTGColorStrings[i]) == 0)
             return setColor(i, removeAllOthers);
     }
     //Keep artifact compare, to Remove this we need change all MTG.txt
