@@ -1403,9 +1403,15 @@ bool GameObserver::processActions(bool undo)
 
 void GameObserver::logAction(Player* player, const string& s) {
     if(player == players[0])
-        logAction("p1." + s);
+        if(s != "")
+            logAction("p1." + s);
+        else
+            logAction("p1");
     else
-        logAction("p2." + s);
+        if(s != "")
+            logAction("p2." + s);
+        else
+            logAction("p2");
 }
 
 void GameObserver::logAction(MTGCardInstance* card, MTGGameZone* zone) {
