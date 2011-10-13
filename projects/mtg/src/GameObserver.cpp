@@ -1288,7 +1288,7 @@ bool GameObserver::load(const string& ss, bool undo)
             }
             else
             {
-                if(!players[0])
+                if(players.size() == 0 || !players[0])
                     players.push_back(new HumanPlayer(this, deckFile, deckFileSmall));
                 players[0]->parseLine(s);
             }
@@ -1300,7 +1300,7 @@ bool GameObserver::load(const string& ss, bool undo)
             }
             else
             {
-                if(!players[1]) {
+                if(players.size() == 1 || !players[1]) {
                     AIPlayerFactory playerCreator;
                     players.push_back(playerCreator.createAIPlayer(this, MTGCollection(), players[0]));
                 }
@@ -1345,7 +1345,7 @@ bool GameObserver::processActions(bool undo)
     float counter = 0.0f;
 
     // To handle undo, we'll remove the last P1 action and all P2 actions after.
-    if(undo) {
+    if(undo && copyList.size()) {
         while(copyList.back().find("p2") != string::npos)
             copyList.pop_back();
         copyList.pop_back();
