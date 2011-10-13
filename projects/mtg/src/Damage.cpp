@@ -305,6 +305,10 @@ ostream& DamageStack::toString(ostream& out) const
 
 ostream& operator<<(ostream& out, const Damageable& p)
 {
+    out << "life=" << p.life << endl;
+    out << "poisoncount=" << p.poisonCount << endl;
+    out << "damagecount=" << p.damageCount << endl;
+    out << "preventable=" << p.preventable << endl;
     return out;
 }
 

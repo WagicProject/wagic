@@ -38,22 +38,6 @@ enum
 #endif //NETWORK_SUPPORT
 };
 
-enum
-{
-    GAME_TYPE_CLASSIC,
-    GAME_TYPE_MOMIR,
-    GAME_TYPE_RANDOM1,
-    GAME_TYPE_RANDOM2,
-    GAME_TYPE_STORY,
-    GAME_TYPE_DEMO,
-	GAME_TYPE_STONEHEWER,
-	GAME_TYPE_HERMIT,
-
-#ifdef NETWORK_SUPPORT
-    GAME_TYPE_SLAVE,
-#endif //NETWORK_SUPPORT
-};
-
 class MTGAllCards;
 class TransitionBase;
 
@@ -73,7 +57,7 @@ private:
     GameState* mGameStates[GAME_STATE_MAX];
 public:
 
-    int gameType;
+    GameType gameType;
     Rules * rules;
     CardEffect *effect;
 #ifdef NETWORK_SUPPORT

@@ -19,14 +19,35 @@ namespace wagic
 }
 
 using std::vector;
+using std::queue;
 
 int randValuesCursor = -1;
 vector<int> randValues;
 
-int loadRandValues(string s)
+queue<int> loadedRandomValues;
+queue<int> usedRandomValues;
+
+ostream& saveRandValues(ostream& out)
 {
-    randValues.clear();
-    randValuesCursor = -1;
+    while(usedRandomValues.size())
+    {
+        out << usedRandomValues.front();
+        if(usedRandomValues.size() >= 1)
+            out << ",";
+
+        usedRandomValues.pop();
+    }
+
+    return out;
+}
+
+void loadRandValues(string s)
+{
+    while(loadedRandomValues.size())
+        loadedRandomValues.pop();
+    while(usedRandomValues.size())
+        usedRandomValues.pop();
+
     while (s.size())
     {
         unsigned int value;
@@ -41,18 +62,28 @@ int loadRandValues(string s)
             value = atoi(s.c_str());
             s = "";
         }
-        if (value) randValues.push_back(value);
+        if (value) loadedRandomValues.push(value);
     }
-    if (randValues.size()) randValuesCursor = 0;
-    return 1;
+}
+
+ptrdiff_t MRand (ptrdiff_t i)
+{
+    return WRand()%i;
 }
 
 int WRand()
 {
-    if (randValuesCursor == -1) return rand();
-    int result = randValues[randValuesCursor];
-    randValuesCursor++;
-    if ((size_t) randValuesCursor >= randValues.size()) randValuesCursor = 0;
+    int result;
+    if (!loadedRandomValues.size())
+    {
+        result = rand();
+    }
+    else
+    {
+        result = loadedRandomValues.front();
+        loadedRandomValues.pop();
+    }
+    usedRandomValues.push(result);
     return result;
 }
 

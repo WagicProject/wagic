@@ -63,9 +63,11 @@ std::string wordWrap(const std::string& s, float width, int fontId);
 //basic hash function
 unsigned long hash_djb2(const char *str);
 
-int loadRandValues(string s);
+void loadRandValues(string s);
+ostream& saveRandValues(ostream& out);
 int filesize(const char * filename);
 int WRand();
+ptrdiff_t MRand (ptrdiff_t i);
 
 #ifdef LINUX
 void dumpStack();

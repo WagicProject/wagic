@@ -498,6 +498,18 @@ MTGCardInstance * MTGGameZone::hasCard(MTGCardInstance * card)
 
 }
 
+size_t MTGGameZone::getIndex(MTGCardInstance * card)
+{
+    size_t i;
+    for(i = 0; i < cards.size(); i++)
+    {
+        if(cards[i] == card)
+            return i;
+    }
+    return -1;
+}
+
+
 unsigned int MTGGameZone::countByType(const char * value)
 {
     int result = 0;
@@ -669,7 +681,7 @@ void MTGGameZone::cleanupPhase()
 
 void MTGGameZone::shuffle()
 {
-    std::random_shuffle(cards.begin(), cards.end());
+    std::random_shuffle(cards.begin(), cards.end(), MRand );
 }
 
 void MTGGameZone::addCard(MTGCardInstance * card)
@@ -999,16 +1011,15 @@ ostream& MTGInPlay::toString(ostream& out) const
 }
 ostream& operator<<(ostream& out, const MTGGameZone& z)
 {
-    return z.toString(out);
-}
-
-ostream& operator<<(ostream& out, const MTGPlayerCards& z)
-{
-    out << z.library->nb_cards << " ";
-    for (int i = 0; i < z.library->nb_cards; i++)
-        out << z.library->cards[i]->getMTGId() << " ";
-
+    for (int i = 0; i < z.nb_cards; i++)
+    {
+        out << z.cards[i]->getMTGId();
+        if(i < z.nb_cards - 1)
+            out << ",";
+    }
     return out;
+
+//    return z.toString(out);
 }
 
 bool MTGGameZone::parseLine(const string& ss)
@@ -1022,6 +1033,7 @@ bool MTGGameZone::parseLine(const string& ss)
     }
     cards.clear();
     cardsMap.clear();
+    nb_cards = 0;
 
     while(s.size())
     {
@@ -1070,6 +1082,28 @@ bool MTGGameZone::parseLine(const string& ss)
     }
 
     return result;
+}
+
+ostream& operator<<(ostream& out, const MTGPlayerCards& z)
+{
+    if(z.library->cards.size()) {
+        out << "library=";
+        out << *(z.library) << endl;
+    }
+    if(z.battlefield->cards.size()) {
+        out << "inplay=";
+        out << *(z.battlefield) << endl;
+    }
+    if(z.graveyard->cards.size()) {
+        out << "graveyard=";
+        out << *(z.graveyard) << endl;
+    }
+    if(z.hand->cards.size()) {
+        out << "hand=";
+        out << *(z.hand) << endl;
+    }
+
+    return out;
 }
 
 bool MTGPlayerCards::parseLine(const string& s)

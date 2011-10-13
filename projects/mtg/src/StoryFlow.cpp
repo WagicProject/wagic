@@ -324,7 +324,7 @@ void StoryDuel::init()
     game = new GameObserver(players);
 
     rules->gamemode = GAME_TYPE_STORY;
-    game->startGame(rules);
+    game->startGame(GAME_TYPE_STORY, rules);
 }
 
 StoryDuel::StoryDuel(TiXmlElement* root, StoryFlow * mParent) :

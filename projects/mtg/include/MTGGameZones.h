@@ -83,6 +83,7 @@ class MTGGameZone {
    void debugPrint();
    MTGCardInstance * removeCard(MTGCardInstance * card, int createCopy = 1);
    MTGCardInstance * hasCard(MTGCardInstance * card);
+   size_t getIndex(MTGCardInstance * card);
    void cleanupPhase();
    void beforeBeginPhase();
 

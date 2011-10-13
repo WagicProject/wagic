@@ -7,6 +7,23 @@ const float DEFAULT_TEXT_FONT_SCALE = 1.0f;
 
 #include <string>
 using std::string;
+
+typedef enum
+{
+    GAME_TYPE_CLASSIC,
+    GAME_TYPE_MOMIR,
+    GAME_TYPE_RANDOM1,
+    GAME_TYPE_RANDOM2,
+    GAME_TYPE_STORY,
+    GAME_TYPE_DEMO,
+    GAME_TYPE_STONEHEWER,
+    GAME_TYPE_HERMIT,
+
+#ifdef NETWORK_SUPPORT
+    GAME_TYPE_SLAVE,
+#endif //NETWORK_SUPPORT
+} GameType;
+
 class Constants
 {
  public:

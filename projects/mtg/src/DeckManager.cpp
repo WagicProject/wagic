@@ -182,8 +182,13 @@ DeckManager* DeckManager::GetInstance()
 //  p2 is the opponent
 int DeckManager::getDifficultyRating(Player *statsPlayer, Player *player)
 {
-    DeckMetaData *meta = DeckManager::GetInstance()->getDeckMetaDataByFilename(player->deckFile, (player->isAI() == 1) );
-    return meta->getDifficulty();
+    if(player->deckFile != "")
+    {
+        DeckMetaData *meta = DeckManager::GetInstance()->getDeckMetaDataByFilename(player->deckFile, (player->isAI() == 1) );
+        return meta->getDifficulty();
+    }
+    else
+        return EASY;
 }
 
 DeckManager::~DeckManager()

@@ -67,7 +67,7 @@ public:
 
 public:
     int startTime, endTime;
-    int gameType;
+    GameType gameType;
     unsigned int seed;
     int nbFailed, nbTests, nbAIFailed, nbAITests;
     TestSuite(const char * filename);

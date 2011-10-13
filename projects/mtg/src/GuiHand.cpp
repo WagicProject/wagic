@@ -64,6 +64,12 @@ bool GuiHand::isInHand(CardView* card)
 GuiHandOpponent::GuiHandOpponent(GameObserver* observer, MTGHand* hand) :
     GuiHand(observer, hand)
 {
+    vector<MTGCardInstance *>::iterator ite;
+    for(ite = hand->cards.begin(); ite != hand->cards.end(); ite++)
+    {
+        WEventZoneChange event(*ite, NULL, hand);
+        receiveEventPlus(&event);
+    }
 }
 
 void GuiHandOpponent::Render()
@@ -91,6 +97,13 @@ GuiHandSelf::GuiHandSelf(GameObserver* observer, MTGHand* hand) :
         backpos.y = ClosedY;
         backpos.x = SCREEN_WIDTH - 30 * 7 - 14;
         backpos.UpdateNow();
+    }
+
+    vector<MTGCardInstance *>::iterator ite;
+    for(ite = hand->cards.begin(); ite != hand->cards.end(); ite++)
+    {
+        WEventZoneChange event(*ite, NULL, hand);
+        receiveEventPlus(&event);
     }
 }
 

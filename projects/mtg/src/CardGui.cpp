@@ -661,7 +661,6 @@ void CardGui::AlternateRender(MTGCard * card, const Pos& pos)
                     formattedfield = FormattedData(formattedfield, "expansion", setlist[card->setId].c_str());
                 }
 
-                float w = font->GetStringWidth(formattedfield.c_str()) * kWidthScaleFactor;
                 font->DrawString(formattedfield.c_str(), x + (Carditem->mPosX  - BigWidth / 2) * pos.actZ, pos.actY + (Carditem->mPosY) * pos.actZ);
             
             }
@@ -994,7 +993,6 @@ void CardGui::TinyCropRender(MTGCard * card, const Pos& pos, JQuad * quad)
                     formattedfield = FormattedData(formattedfield, "expansion", setlist[card->setId].c_str());
                 }
 
-                float w = font->GetStringWidth(formattedfield.c_str()) * kWidthScaleFactor;
                 font->DrawString(formattedfield.c_str(), x + (Carditem->mPosX  - BigWidth / 2) * pos.actZ, pos.actY + (Carditem->mPosY) * pos.actZ);
             
             }

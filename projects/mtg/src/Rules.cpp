@@ -1,7 +1,7 @@
 #include "PrecompiledHeader.h"
 
-#include "Rules.h"
 #include "MTGDefinitions.h"
+#include "Rules.h"
 #include "ManaCost.h"
 #include "Player.h"
 #include "AIMomirPlayer.h"
@@ -303,6 +303,8 @@ Player * Rules::initPlayer(GameObserver *g, int playerId)
             return loadPlayerRandom(g, isAI, GAME_TYPE_RANDOM1);
         case GAME_TYPE_RANDOM2:
             return loadPlayerRandom(g, isAI, GAME_TYPE_RANDOM2);
+        default:
+            return NULL;
         }
     }
     //TODO p may still be NULL, what do we do to handle this? Above switch has no default case to handle the case where p is NULL 
@@ -385,7 +387,7 @@ void Rules::initGame(GameObserver *g)
         p->preventable = initState.playerData[i].player->preventable;
         if (initState.playerData[i].player->mAvatarName.size())
         {
-            p->loadAvatar(initState.playerData[i].player->mAvatarName);
+            p->mAvatarName = initState.playerData[i].player->mAvatarName;
         }
         MTGGameZone * playerZones[] = { p->game->graveyard, p->game->library, p->game->hand, p->game->inPlay };
         MTGGameZone * loadedPlayerZones[] = { initState.playerData[i].player->game->graveyard,
@@ -590,7 +592,7 @@ int Rules::load(string _filename)
     return 1;
 }
 
-int Rules::strToGameMode(string s)
+GameType Rules::strToGameMode(string s)
 {
     if (s.compare("momir") == 0) return GAME_TYPE_MOMIR;
     if (s.compare("random1") == 0) return GAME_TYPE_RANDOM1;

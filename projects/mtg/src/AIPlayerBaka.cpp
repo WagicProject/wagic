@@ -1410,7 +1410,7 @@ int AIPlayerBaka::chooseTarget(TargetChooser * _tc, Player * forceTarget,MTGCard
         if(tc->belongsToAbility.size())
         {
             AbilityFactory af(observer);
-            MTGAbility * withoutGuessing = af.parseMagicLine(tc->belongsToAbility,NULL,NULL,tc->source);
+            MTGAbility * withoutGuessing = af.parseMagicLine(tc->belongsToAbility,0,NULL,tc->source);
             cardEffect = af.abilityEfficiency(withoutGuessing,this,MODE_TARGET,tc,NULL);
             delete withoutGuessing;
         }
@@ -1458,7 +1458,7 @@ int AIPlayerBaka::chooseTarget(TargetChooser * _tc, Player * forceTarget,MTGCard
                         if(tc->maxtargets != 1 && tc->belongsToAbility.size())
                         {
                             AbilityFactory af(observer);
-                            MTGAbility * withoutGuessing = af.parseMagicLine(tc->belongsToAbility,NULL,NULL,tc->source);
+                            MTGAbility * withoutGuessing = af.parseMagicLine(tc->belongsToAbility,0,NULL,tc->source);
                             OrderedAIAction * effCheck = NEW OrderedAIAction(this, withoutGuessing,(MTGCardInstance*)tc->source,card);
                             if(effCheck->getEfficiency())
                             {
@@ -2200,16 +2200,15 @@ AIPlayerBaka::AIPlayerBaka(GameObserver *observer, string file, string fileSmall
     }
 
 
-    mAvatarTex = WResourceManager::Instance()->RetrieveTexture(avatarFile, RETRIEVE_LOCK, TEXTURE_SUB_AVATAR);
-    if (!mAvatarTex)
+    if(avatarFile != "")
     {
-        avatarFile = "baka.jpg";
-        mAvatarTex = WResourceManager::Instance()->RetrieveTexture(avatarFile, RETRIEVE_LOCK, TEXTURE_SUB_AVATAR);
+        if(!loadAvatar(avatarFile, "bakaAvatar"))
+        {
+            avatarFile = "baka.jpg";
+            loadAvatar(avatarFile, "bakaAvatar");
+        }
+        mAvatarName = avatarFile;
     }
-
-    if (mAvatarTex)
-        mAvatar = WResourceManager::Instance()->RetrieveQuad(avatarFile, 0, 0, 35, 50, "bakaAvatar", RETRIEVE_NORMAL,
-    	    TEXTURE_SUB_AVATAR);
 
     if (fileSmall == "ai_baka_eviltwin")
         mAvatar->SetHFlip(true);

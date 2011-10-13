@@ -389,8 +389,8 @@ void GuiCombat::Render()
             damage = 0;
         if (activeAtk->card->has(Constants::TRAMPLE))
         {
-            observer->opponent()->mAvatar->SetHotSpot(18, 25);
-            enemy_avatar.Render(observer->opponent()->mAvatar.get());
+            observer->opponent()->getIcon()->SetHotSpot(18, 25);
+            enemy_avatar.Render(observer->opponent()->getIcon().get());
             WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
             mFont->SetColor(ARGB(255, 255, 64, 0));
             {

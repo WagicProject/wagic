@@ -2360,6 +2360,7 @@ int MenuAbility::reactToChoiceClick(Targetable * object,int choice,int control)
         game->mLayers->stackLayer()->cancelInterruptOffer();
     this->forceDestroy = 1;
     removeMenu = true;
+    game->logAction(source->controller(), "choice " + choice);
     return reactToTargetClick(object);
 }
 

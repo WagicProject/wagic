@@ -10,7 +10,6 @@
 #include "DeckManager.h"
 
 #include "DeckMetaData.h"
-#include "MTGRules.h"
 #include "Credits.h"
 #include "Translate.h"
 #include "Rules.h"
@@ -267,11 +266,7 @@ void GameStateDuel::loadTestSuitePlayers()
     game->setPlayers(mPlayers);
     mParent->gameType = testSuite->gameType;
 
-    game->startGame(mParent->rules);
-    if (mParent->gameType == GAME_TYPE_MOMIR)
-    {
-        game->addObserver(NEW MTGMomirRule(game, -1, MTGCollection()));
-    }
+    game->startGame(mParent->gameType, mParent->rules);
 }
 #endif
 
@@ -447,19 +442,7 @@ void GameStateDuel::Update(float dt)
         if (!game)
         {
             game = new GameObserver(mPlayers);
-            game->startGame(mParent->rules);
-            if (mParent->gameType == GAME_TYPE_MOMIR)
-            {
-                game->addObserver(NEW MTGMomirRule(game, -1, MTGCollection()));
-            }
-            if (mParent->gameType == GAME_TYPE_STONEHEWER)
-            {
-                    game->addObserver(NEW MTGStoneHewerRule(game, -1,MTGCollection()));
-            }
-            if (mParent->gameType == GAME_TYPE_HERMIT)
-            {
-                    game->addObserver(NEW MTGHermitRule(game, -1));
-            }
+            game->startGame(mParent->gameType, mParent->rules);
 
             //start of in game music code
             musictrack = "";
@@ -539,6 +522,7 @@ void GameStateDuel::Update(float dt)
                 }
                 //END almosthumane - mulligan
                 menu->Add(MENUITEM_MAIN_MENU, "Back to main menu");
+                menu->Add(MENUITEM_UNDO, "Undo");
                 menu->Add(MENUITEM_CANCEL, "Cancel");
             }
             setGamePhase(DUEL_STATE_MENU);
@@ -922,10 +906,14 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
             menu->Close();
             setGamePhase(DUEL_STATE_CANCEL);
             break;
-
-            //END almosthumane - mulligan
+        case MENUITEM_UNDO:
+            {
+            game->undo();
+            menu->Close();
+            setGamePhase(DUEL_STATE_CANCEL);
+            break;
+            }
         }
-
     }
 }
 

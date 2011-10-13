@@ -43,7 +43,7 @@ protected:
     Player * loadPlayerRandom(GameObserver* observer, int isAI, int mode);
     Player * initPlayer(GameObserver *observer, int playerId);
     MTGDeck * buildDeck(int playerId);
-    int strToGameMode(string s);
+    GameType strToGameMode(string s);
     bool postUpdateInitDone;
 public:
     enum
@@ -57,7 +57,7 @@ public:
 
     string bg;
 	string filename;
-    int gamemode;
+    GameType gamemode;
     bool hidden;
 	string displayName;
 	int unlockOption;

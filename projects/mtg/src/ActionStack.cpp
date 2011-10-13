@@ -589,6 +589,7 @@ int ActionStack::setIsInterrupting(Player * player)
     int playerId = (player == observer->players[1]) ? 1 : 0;
     interruptDecision[playerId] = -1;
     observer->isInterrupting = player;
+    observer->logAction(player, "yes");
     return 1;
 }
 
@@ -960,6 +961,7 @@ void ActionStack::cancelInterruptOffer(int cancelMode)
     askIfWishesToInterrupt = NULL;
     observer->isInterrupting = NULL;
     timer = -1;
+    observer->logAction(playerId, "no");
 }
 
 void ActionStack::endOfInterruption()
@@ -967,6 +969,7 @@ void ActionStack::endOfInterruption()
     int playerId = (observer->isInterrupting == observer->players[1]) ? 1 : 0;
     interruptDecision[playerId] = 0;
     observer->isInterrupting = NULL;
+    observer->logAction(playerId, "endinterruption");
 }
 
 bool ActionStack::CheckUserInput(JButton key)

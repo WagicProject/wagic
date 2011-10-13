@@ -79,8 +79,9 @@ void DuelLayers::Update(float dt, Player * currentPlayer)
     for (int i = 0; i < nbitems; ++i)
         objects[i]->Update(dt);
     int isAI = currentPlayer->isAI();
-    if (isAI)
+    if (isAI && !currentPlayer->getObserver()->isLoading())
         currentPlayer->Act(dt);
+
     CheckUserInput(isAI);
 }
 

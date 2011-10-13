@@ -210,9 +210,8 @@ public:
 
     static MTGCardInstance ExtraRules[2];
 
+    bool parseLine(const string& ss);
 };
-
-ostream& operator<<(ostream&, const MTGCardInstance&);
 
 
 #endif

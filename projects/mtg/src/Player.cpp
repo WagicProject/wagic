@@ -10,7 +10,7 @@
 #endif
 
 Player::Player(GameObserver *observer, string file, string fileSmall, MTGDeck * deck) :
-    Damageable(observer, 20), mAvatarName("")
+    Damageable(observer, 20), mAvatarName(""), offerInterruptOnPhase(Constants::MTG_PHASE_DRAW)
 {
     if(deck == NULL && file != "testsuite" && file != "remote" && file != "")
         deck = NEW MTGDeck(file.c_str(), MTGCollection());
@@ -18,7 +18,7 @@ Player::Player(GameObserver *observer, string file, string fileSmall, MTGDeck * 
     game = NULL;
     deckFile = file;
     deckFileSmall = fileSmall;
-	handsize = 0;
+    handsize = 0;
     manaPool = NEW ManaPool(this);
     nomaxhandsize = false;
     poisonCount = 0;
@@ -33,6 +33,11 @@ Player::Player(GameObserver *observer, string file, string fileSmall, MTGDeck * 
         // This automatically sets the observer pointer on all the deck cards
         game->setOwner(this);
         deckName = deck->meta_name;
+    }
+    else
+    {
+        game = new MTGPlayerCards();
+        game->setOwner(this);
     }
     mDeck = deck;
 }
@@ -59,7 +64,7 @@ Player::~Player()
     SAFE_DELETE(mDeck);
 }
 
-void Player::loadAvatar(string file)
+bool Player::loadAvatar(string file, string resName)
 {
     if (mAvatarTex)
     {
@@ -67,8 +72,12 @@ void Player::loadAvatar(string file)
         mAvatarTex = NULL;
     }
     mAvatarTex = WResourceManager::Instance()->RetrieveTexture(file, RETRIEVE_LOCK, TEXTURE_SUB_AVATAR);
-    if (mAvatarTex)
-        mAvatar = WResourceManager::Instance()->RetrieveQuad(file, 0, 0, 35, 50, "playerAvatar", RETRIEVE_NORMAL, TEXTURE_SUB_AVATAR);
+    if (mAvatarTex) {
+        mAvatar = WResourceManager::Instance()->RetrieveQuad(file, 0, 0, 35, 50, resName, RETRIEVE_NORMAL, TEXTURE_SUB_AVATAR);
+        return true;
+    }
+
+    return false;
 }
 
 const string Player::getDisplayName() const
@@ -93,6 +102,9 @@ int Player::getId()
 
 JQuadPtr Player::getIcon()
 {
+    if(!mAvatarTex)
+        loadAvatar(mAvatarName);
+
     return mAvatar;
 }
 
@@ -105,7 +117,7 @@ Player * Player::opponent()
 HumanPlayer::HumanPlayer(GameObserver *observer, string file, string fileSmall, MTGDeck * deck) :
     Player(observer, file, fileSmall, deck)
 {
-    loadAvatar("avatar.jpg");
+    mAvatarName = "avatar.jpg";
     playMode = MODE_HUMAN;
 }
 
@@ -231,6 +243,11 @@ bool Player::parseLine(const string& s)
             phaseRing = s.substr(limiter + 1);
             return true;
         }
+        else if (areaS.compare("deckfile") == 0)
+        {
+            deckFile = s.substr(limiter + 1);
+            return true;
+        }
         else if (areaS.compare("offerinterruptonphase") == 0)
         {
             for (int i = 0; i < Constants::NB_MTG_PHASES; i++)
@@ -259,5 +276,22 @@ bool Player::parseLine(const string& s)
 
 ostream& operator<<(ostream& out, const Player& p)
 {
-    return out << *(p.game);
+    out << *(Damageable*)&p;
+    string manapoolstring = p.manaPool->toString();
+    if(manapoolstring != "")
+        out << "manapool=" << manapoolstring << endl;
+    if(p.mAvatarName != "")
+        out << "avatar=" << p.mAvatarName << endl;
+    if(p.phaseRing != "")
+        out << "customphasering=" << p.phaseRing << endl;
+    out << "offerinterruptonphase=" << Constants::MTGPhaseCodeNames[p.offerInterruptOnPhase] << endl;
+    if(p.deckFile != "")
+        out << "deckfile=" << p.deckFile << endl;
+
+    if(p.game)
+    {
+        out << *(p.game);
+    }
+
+    return out;
 }

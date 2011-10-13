@@ -78,9 +78,10 @@ public:
         MENUITEM_MAIN_MENU = -13,
         MENUITEM_EVIL_TWIN = kEvilTwinMenuID,
         MENUITEM_MULLIGAN = -15,
+        MENUITEM_UNDO = -16,
 #ifdef NETWORK_SUPPORT
-        MENUITEM_REMOTE_CLIENT = -16,
-        MENUITEM_REMOTE_SERVER = -17,
+        MENUITEM_REMOTE_CLIENT = -17,
+        MENUITEM_REMOTE_SERVER = -18,
 #endif
         MENUITEM_MORE_INFO = kInfoMenuID
     };

@@ -26,10 +26,21 @@ class GameObserver{
  protected:
   MTGCardInstance * cardWaitingForTargets;
   queue<WEvent *> eventsQueue;
+  list<string> actionsList;
 
   int untap(MTGCardInstance * card);
   bool WaitForExtraPayment(MTGCardInstance* card);
   void initialize();
+  void cleanup();
+  string startupGameSerialized;
+  bool parseLine(const string& s);
+  void logAction(const string& s) {
+      actionsList.push_back(s);
+  };
+  bool processActions(bool undo);
+  friend ostream& operator<<(ostream&, GameObserver&);
+  bool load(const string& s, bool undo);
+  bool mLoading;
 
  public:
   int currentPlayerId;
@@ -49,6 +60,7 @@ class GameObserver{
   vector<Player *> players; //created outside
   time_t startedAt;
   Rules * mRules;
+  GameType mGameType;
 
   TargetChooser * getCurrentTargetChooser();
   void stackObjectClicked(Interruptible * action);
@@ -74,10 +86,9 @@ class GameObserver{
   void gameStateBasedEffects();
   void enchantmentStatus();
   void Affinity();
-  void eventOccured();
   void addObserver(MTGAbility * observer);
   bool removeObserver(ActionElement * observer);
-  void startGame(Rules * rules);
+  void startGame(GameType, Rules * rules);
   void untapPhase();
   MTGCardInstance * isCardWaiting(){ return cardWaitingForTargets; }
   int isInPlay(MTGCardInstance *  card);
@@ -90,6 +101,14 @@ class GameObserver{
 
   int receiveEvent(WEvent * event);
   bool connectRule;
+
+  void logAction(Player* player, const string& s="");
+  void logAction(int playerId, const string& s="") {
+      logAction(players[playerId], s);
+  };
+  void logAction(MTGCardInstance* card, MTGGameZone* zone = NULL);
+  bool undo();
+  bool isLoading(){ return mLoading; };
 };
 
 #endif

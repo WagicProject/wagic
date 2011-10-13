@@ -15,6 +15,10 @@ class Player: public Damageable
 {
 protected:
     ManaPool * manaPool;
+    JTexture * mAvatarTex;
+    JQuadPtr mAvatar;
+    bool loadAvatar(string file, string resName = "playerAvatar");
+
 
 public:
     enum ENUM_PLAY_MODE
@@ -25,8 +29,6 @@ public:
     };
 
     string mAvatarName;
-    JTexture * mAvatarTex;
-    JQuadPtr mAvatar;
     int playMode;
     bool nomaxhandsize;
     MTGPlayerCards * game;
@@ -35,7 +37,7 @@ public:
     string deckFileSmall;
     string deckName;
     string phaseRing;
-	  int offerInterruptOnPhase;
+    int offerInterruptOnPhase;
     Player(GameObserver *observer, string deckFile, string deckFileSmall, MTGDeck * deck = NULL);
     virtual ~Player();
     virtual void setObserver(GameObserver*g);
@@ -89,22 +91,18 @@ public:
     {
     }
 
-    void loadAvatar(string file);
-
     /**
     ** Returns the path to the stats file of currently selected deck. 
     */
     std::string GetCurrentDeckStatsFile();
     bool parseLine(const string& s);
+    friend ostream& operator<<(ostream&, const Player&);
 };
 
 class HumanPlayer: public Player
 {
 public:
-    HumanPlayer(GameObserver *observer, string deckFile, string deckFileSmall = "", MTGDeck * deck = NULL);
-
+    HumanPlayer(GameObserver *observer, string deckFile, string deckFileSmall, MTGDeck * deck = NULL);
 };
-
-ostream& operator<<(ostream&, const Player&);
 
 #endif
