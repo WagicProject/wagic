@@ -950,7 +950,7 @@ void TaskMassiveBurial::restoreCustomAttribs()
 
 void TaskMassiveBurial::randomize()
 {
-    color = rand() % (Constants::MTG_NB_COLORS - 1) + 1;
+    color = rand() % (Constants::NB_Colors - 1) + 1;
     bodyCount = 5 + ((Constants::MTG_COLOR_LAND == color) ? rand() % 10 : rand() % 20);
     Task::randomize();
 }
@@ -1044,7 +1044,7 @@ void TaskWisdom::restoreCustomAttribs()
 
 void TaskWisdom::randomize()
 {
-    color = rand() % (Constants::MTG_NB_COLORS - 1) + 1;
+    color = rand() % (Constants::NB_Colors - 1) + 1;
     cardCount = 2 + ((Constants::MTG_COLOR_LAND == color) ? rand() % 5 : rand() % 7);
     Task::randomize();
 }

@@ -402,7 +402,7 @@ void StatsWrapper::updateStats(DeckDataWrapper *myDeck)
         this->countSpellsPerCost[i] = 0;
     }
 
-    for (int i = 0; i <= Constants::MTG_NB_COLORS; i++)
+    for (int i = 0; i <= Constants::NB_Colors; i++)
     {
         this->totalCostPerColor[i] = 0;
         this->countLandsPerColor[i] = 0;
@@ -412,7 +412,7 @@ void StatsWrapper::updateStats(DeckDataWrapper *myDeck)
 
     for (int i = 0; i <= Constants::STATS_MAX_MANA_COST; i++)
     {
-        for (int k = 0; k <= Constants::MTG_NB_COLORS; k++)
+        for (int k = 0; k <= Constants::NB_Colors; k++)
         {
             this->countCardsPerCostAndColor[i][k] = 0;
             this->countCreaturesPerCostAndColor[i][k] = 0;
@@ -481,7 +481,7 @@ void StatsWrapper::updateStats(DeckDataWrapper *myDeck)
             {
                 s = s.substr(t + 3);
                 ManaCost * mc = ManaCost::parseManaCost(s);
-                for (int j = 0; j < Constants::MTG_NB_COLORS; j++)
+                for (int j = 0; j < Constants::NB_Colors; j++)
                 {
                     if (mc->hasColor(j))
                     {
@@ -508,7 +508,7 @@ void StatsWrapper::updateStats(DeckDataWrapper *myDeck)
 
         // Add to the per color counters
         //  a. regular costs
-        for (int j = 0; j < Constants::MTG_NB_COLORS; j++)
+        for (int j = 0; j < Constants::NB_Colors; j++)
         {
             this->totalCostPerColor[j] += currentCost->getCost(j) * currentCount;
             if (current->data->hasColor(j))
@@ -539,7 +539,7 @@ void StatsWrapper::updateStats(DeckDataWrapper *myDeck)
     }
 
     this->totalColoredSymbols = 0;
-    for (int j = 1; j < Constants::MTG_NB_COLORS; j++)
+    for (int j = 1; j < Constants::NB_Colors; j++)
     {
         this->totalColoredSymbols += this->totalCostPerColor[j];
     }

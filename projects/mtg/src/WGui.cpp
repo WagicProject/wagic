@@ -1686,7 +1686,7 @@ bool WGuiFilters::Finish(bool emptyset)
         {
             WCFilterFactory * wc = WCFilterFactory::GetInstance();
             WCardFilter * f = wc->Construct(src);
-            if (recolorTo > -1 && recolorTo < Constants::MTG_NB_COLORS)
+            if (recolorTo > -1 && recolorTo < Constants::NB_Colors)
             {
                 f = NEW WCFilterAND(f, NEW WCFilterColor(recolorTo));
             }
@@ -1694,7 +1694,7 @@ bool WGuiFilters::Finish(bool emptyset)
         }
         else
         {
-            if (recolorTo > -1 && recolorTo < Constants::MTG_NB_COLORS)
+            if (recolorTo > -1 && recolorTo < Constants::NB_Colors)
             {
                 WCardFilter * f = NEW WCFilterColor(recolorTo);
                 source->addFilter(f);

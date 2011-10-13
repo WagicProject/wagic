@@ -240,7 +240,7 @@ Interruptible(observer, id), tc(tc), cost(_cost), payResult(payResult)
 int Spell::computeX(MTGCardInstance * card)
 {
     ManaCost * c = cost->Diff(card->getManaCost());
-    int x = c->getCost(Constants::MTG_NB_COLORS);
+    int x = c->getCost(Constants::NB_Colors);
     delete c;
     return x;
 }

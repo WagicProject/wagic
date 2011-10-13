@@ -225,14 +225,8 @@ void GameStateDeckViewer::Start()
     displayed_deck = myCollection;
 
     //Icons
-    mIcons[Constants::MTG_COLOR_ARTIFACT] = WResourceManager::Instance()->GetQuad("c_artifact");
-    mIcons[Constants::MTG_COLOR_LAND] = WResourceManager::Instance()->GetQuad("c_land");
-    mIcons[Constants::MTG_COLOR_WHITE] = WResourceManager::Instance()->GetQuad("c_white");
-    mIcons[Constants::MTG_COLOR_RED] = WResourceManager::Instance()->GetQuad("c_red");
-    mIcons[Constants::MTG_COLOR_BLACK] = WResourceManager::Instance()->GetQuad("c_black");
-    mIcons[Constants::MTG_COLOR_BLUE] = WResourceManager::Instance()->GetQuad("c_blue");
-    mIcons[Constants::MTG_COLOR_GREEN] = WResourceManager::Instance()->GetQuad("c_green");
-    for (int i = 0; i < 7; i++)
+    mIcons = manaIcons;
+    for (int i = 0; i < Constants::NB_Colors; i++)
     {
         mIcons[i]->SetHotSpot(16, 16);
     }
@@ -723,7 +717,7 @@ void GameStateDeckViewer::renderDeckBackground()
     int max2 = 0;
     int maxC2 = 4;
 
-    for (int i = 0; i < Constants::MTG_NB_COLORS - 1; i++)
+    for (int i = 0; i < Constants::NB_Colors - 1; i++)
     {
         int value = myDeck->getCount(i);
         if (value > max1)
@@ -816,7 +810,7 @@ void GameStateDeckViewer::renderOnScreenMenu()
         //Your Deck Information
         char buffer[300];
         int nb_letters = 0;
-        for (int j = 0; j < Constants::MTG_NB_COLORS; j++)
+        for (int j = 0; j < Constants::NB_Colors; j++)
         {
             int value = myDeck->getCount(j);
             if (value > 0)
@@ -890,7 +884,7 @@ void GameStateDeckViewer::renderOnScreenMenu()
             posY += 10;
 
             // Counts by color
-            for (int j = 0; j < Constants::MTG_NB_COLORS; j++)
+            for (int j = 0; j < Constants::NB_Colors; j++)
             {
                 int value = myDeck->getCount(j);
                 if (value > 0)
@@ -1008,7 +1002,7 @@ void GameStateDeckViewer::renderOnScreenMenu()
             posY = 70;
 
             // Column titles
-            for (int j = 0; j < Constants::MTG_NB_COLORS - 1; j++)
+            for (int j = 0; j < Constants::NB_Colors - 1; j++)
             {
                 r->RenderQuad(mIcons[j].get(), 52 + j * 15 + leftTransition, posY - 10, 0, 0.5, 0.5);
             }
@@ -1017,20 +1011,20 @@ void GameStateDeckViewer::renderOnScreenMenu()
             //font->DrawString(_("Ty"), 27 + leftTransition, posY-16);
 
             // Horizontal table lines
-            r->DrawLine(27 + leftTransition, posY - 20, 60 + (Constants::MTG_NB_COLORS - 2) * 15 + leftTransition, posY - 20,
+            r->DrawLine(27 + leftTransition, posY - 20, 60 + (Constants::NB_Colors - 2) * 15 + leftTransition, posY - 20,
                     ARGB(128, 255, 255, 255));
-            r->DrawLine(27 + leftTransition, posY - 1, 60 + (Constants::MTG_NB_COLORS - 2) * 15 + leftTransition, posY - 1,
+            r->DrawLine(27 + leftTransition, posY - 1, 60 + (Constants::NB_Colors - 2) * 15 + leftTransition, posY - 1,
                     ARGB(128, 255, 255, 255));
-            r->DrawLine(27 + leftTransition, 2 * 10 + posY + 12, 60 + (Constants::MTG_NB_COLORS - 2) * 15 + leftTransition, 2 * 10
+            r->DrawLine(27 + leftTransition, 2 * 10 + posY + 12, 60 + (Constants::NB_Colors - 2) * 15 + leftTransition, 2 * 10
                     + posY + 12, ARGB(128, 255, 255, 255));
-            r->DrawLine(27 + leftTransition, 3 * 10 + posY + 14, 60 + (Constants::MTG_NB_COLORS - 2) * 15 + leftTransition, 3 * 10
+            r->DrawLine(27 + leftTransition, 3 * 10 + posY + 14, 60 + (Constants::NB_Colors - 2) * 15 + leftTransition, 3 * 10
                     + posY + 14, ARGB(128, 255, 255, 255));
 
             // Vertical table lines
             r->DrawLine(26 + leftTransition, posY - 20, 26 + leftTransition, 3 * 10 + posY + 14, ARGB(128, 255, 255, 255));
             r->DrawLine(43 + leftTransition, posY - 20, 43 + leftTransition, 3 * 10 + posY + 14, ARGB(128, 255, 255, 255));
-            r->DrawLine(60 + leftTransition + (Constants::MTG_NB_COLORS - 2) * 15, posY - 20, 60 + leftTransition
-                    + (Constants::MTG_NB_COLORS - 2) * 15, 3 * 10 + posY + 14, ARGB(128, 255, 255, 255));
+            r->DrawLine(60 + leftTransition + (Constants::NB_Colors - 2) * 15, posY - 20, 60 + leftTransition
+                    + (Constants::NB_Colors - 2) * 15, 3 * 10 + posY + 14, ARGB(128, 255, 255, 255));
 
             font->DrawString(_("BL"), 27 + leftTransition, posY);
             font->DrawString(_("NB"), 27 + leftTransition, posY + 10);
@@ -1039,7 +1033,7 @@ void GameStateDeckViewer::renderOnScreenMenu()
 
             int curCount;
 
-            for (int j = 0; j < Constants::MTG_NB_COLORS - 1; j++)
+            for (int j = 0; j < Constants::NB_Colors - 1; j++)
             {
                 curCount = stw->countBasicLandsPerColor[j];
                 sprintf(buffer, (curCount == 0 ? "." : "%i"), curCount);
@@ -1076,13 +1070,13 @@ void GameStateDeckViewer::renderOnScreenMenu()
 
             int totalProducedSymbols;
             totalProducedSymbols = 0;
-            for (int i = 1; i < Constants::MTG_NB_COLORS - 1; i++)
+            for (int i = 1; i < Constants::NB_Colors - 1; i++)
             {
                 totalProducedSymbols += stw->countLandsPerColor[i] + stw->countBasicLandsPerColor[i]; //!! Move to updatestats!
             }
 
             posY = 50;
-            for (int i = 1; i < Constants::MTG_NB_COLORS - 1; i++)
+            for (int i = 1; i < Constants::NB_Colors - 1; i++)
             {
                 if (stw->countLandsPerColor[i] + stw->countBasicLandsPerColor[i] > 0)
                 {
@@ -1154,7 +1148,7 @@ void GameStateDeckViewer::renderOnScreenMenu()
             posY = 70;
 
             // Column titles
-            for (int j = 0; j < Constants::MTG_NB_COLORS - 1; j++)
+            for (int j = 0; j < Constants::NB_Colors - 1; j++)
             {
                 r->RenderQuad(mIcons[j].get(), 67 + j * 15 + leftTransition, posY - 10, 0, 0.5, 0.5);
             }
@@ -1163,11 +1157,11 @@ void GameStateDeckViewer::renderOnScreenMenu()
             font->DrawString(_("#"), 45 + leftTransition, posY - 16);
 
             // Horizontal table lines
-            r->DrawLine(27 + leftTransition, posY - 20, 75 + (Constants::MTG_NB_COLORS - 2) * 15 + leftTransition, posY - 20,
+            r->DrawLine(27 + leftTransition, posY - 20, 75 + (Constants::NB_Colors - 2) * 15 + leftTransition, posY - 20,
                     ARGB(128, 255, 255, 255));
-            r->DrawLine(27 + leftTransition, posY - 1, 75 + (Constants::MTG_NB_COLORS - 2) * 15 + leftTransition, posY - 1,
+            r->DrawLine(27 + leftTransition, posY - 1, 75 + (Constants::NB_Colors - 2) * 15 + leftTransition, posY - 1,
                     ARGB(128, 255, 255, 255));
-            r->DrawLine(27 + leftTransition, Constants::STATS_MAX_MANA_COST * 10 + posY + 12, 75 + (Constants::MTG_NB_COLORS - 2)
+            r->DrawLine(27 + leftTransition, Constants::STATS_MAX_MANA_COST * 10 + posY + 12, 75 + (Constants::NB_Colors - 2)
                     * 15 + leftTransition, Constants::STATS_MAX_MANA_COST * 10 + posY + 12, ARGB(128, 255, 255, 255));
 
             // Vertical table lines
@@ -1177,8 +1171,8 @@ void GameStateDeckViewer::renderOnScreenMenu()
                     ARGB(128, 255, 255, 255));
             r->DrawLine(58 + leftTransition, posY - 20, 58 + leftTransition, Constants::STATS_MAX_MANA_COST * 10 + posY + 12,
                     ARGB(128, 255, 255, 255));
-            r->DrawLine(75 + leftTransition + (Constants::MTG_NB_COLORS - 2) * 15, posY - 20, 75 + leftTransition
-                    + (Constants::MTG_NB_COLORS - 2) * 15, Constants::STATS_MAX_MANA_COST * 10 + posY + 12,
+            r->DrawLine(75 + leftTransition + (Constants::NB_Colors - 2) * 15, posY - 20, 75 + leftTransition
+                    + (Constants::NB_Colors - 2) * 15, Constants::STATS_MAX_MANA_COST * 10 + posY + 12,
                     ARGB(128, 255, 255, 255));
 
             for (int i = 0; i <= Constants::STATS_MAX_MANA_COST; i++)
@@ -1187,12 +1181,12 @@ void GameStateDeckViewer::renderOnScreenMenu()
                 font->DrawString(buffer, 30 + leftTransition, posY);
                 sprintf(buffer, ((*countPerCost)[i] > 0) ? _("%i").c_str() : ".", (*countPerCost)[i]);
                 font->DrawString(buffer, 45 + leftTransition, posY);
-                for (int j = 0; j < Constants::MTG_NB_COLORS - 1; j++)
+                for (int j = 0; j < Constants::NB_Colors - 1; j++)
                 {
                     sprintf(buffer, ((*countPerCostAndColor)[i][j] > 0) ? _("%i").c_str() : ".", (*countPerCostAndColor)[i][j]);
                     font->DrawString(buffer, 64 + leftTransition + j * 15, posY);
                 }
-                r->FillRect(77.f + leftTransition + (Constants::MTG_NB_COLORS - 2) * 15.0f, posY + 2.0f, (*countPerCost)[i] * 5.0f,
+                r->FillRect(77.f + leftTransition + (Constants::NB_Colors - 2) * 15.0f, posY + 2.0f, (*countPerCost)[i] * 5.0f,
                         8.0f, graphColor);
                 posY += 10;
             }
@@ -1257,7 +1251,7 @@ void GameStateDeckViewer::renderOnScreenMenu()
             font->DrawString(_("Total colored manasymbols in cards' casting costs:"), 20 + leftTransition, 30);
 
             posY = 50;
-            for (int i = 1; i < Constants::MTG_NB_COLORS - 1; i++)
+            for (int i = 1; i < Constants::NB_Colors - 1; i++)
             {
                 if (stw->totalCostPerColor[i] > 0)
                 {

@@ -75,13 +75,13 @@ enum DECK_VIEWER_MENU_ITEMS
 #define MED_SPEED 5.0f
 #define LOW_SPEED 1.5
 
-#define MAX_SAVED_FILTERS 8
-#define CARDS_DISPLAYED 7
+#define MAX_SAVED_FILTERS Constants::NB_Colors + 1
+#define CARDS_DISPLAYED 10
 
 class GameStateDeckViewer: public GameState, public JGuiListener
 {
 private:
-    JQuadPtr mIcons[CARDS_DISPLAYED];
+    vector<JQuadPtr> mIcons;
     JQuadPtr pspIcons[8];
     JTexture * pspIconsTexture;
     float last_user_activity;

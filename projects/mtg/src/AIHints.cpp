@@ -187,7 +187,7 @@ string AIHints::constraintsNotFulfilled(AIAction * action, AIHint * hint, ManaCo
     {
         //Not enough Mana, try to find which mana we should get in priority
         ManaCost * diff = potentialMana->Diff(a->getCost());
-        for (int i = 0; i < Constants::MTG_NB_COLORS; i++)
+        for (int i = 0; i < Constants::NB_Colors; i++)
         {
             if(diff->getCost(i) < 0)
             {

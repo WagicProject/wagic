@@ -14,6 +14,7 @@
 #include "GameObserver.h"
 #include <Vector2D.h>
 #include "Counters.h"
+#include "ModRules.h"
 
 const float CardGui::Width = 28.0;
 const float CardGui::Height = 40.0;
@@ -247,7 +248,7 @@ void CardGui::Render()
         if (icon.get())
         {
             icon->SetColor(ARGB(static_cast<unsigned char>(actA),255,255,255));
-            renderer->RenderQuad(icon.get(), actX, actY, 0);
+            renderer->RenderQuad(icon.get(), actX, actY, actT);
             icon->SetColor(ARGB(255,255,255,255)); //Putting color back as this quad is shared
         }
 
@@ -336,41 +337,21 @@ void CardGui::Render()
 JQuadPtr CardGui::AlternateThumbQuad(MTGCard * card)
 {
     JQuadPtr q;
-
+    vector<ModRulesBackGroundCardGuiItem *>items = gModRules.cardgui.background;
+    ModRulesBackGroundCardGuiItem * item;
+    int numItems = (int)items.size();
     if (card->data->countColors() > 1)
     {
-        q = WResourceManager::Instance()->RetrieveTempQuad("gold_thumb.jpg");
+         item = items[numItems-1];
     }
     else
     {
-        switch (card->data->getColor())
-        {
-        case Constants::MTG_COLOR_ARTIFACT:
-            q = WResourceManager::Instance()->RetrieveTempQuad("artifact_thumb.jpg");
-            break;
-        case Constants::MTG_COLOR_GREEN:
-            q = WResourceManager::Instance()->RetrieveTempQuad("green_thumb.jpg");
-            break;
-        case Constants::MTG_COLOR_BLUE:
-            q = WResourceManager::Instance()->RetrieveTempQuad("blue_thumb.jpg");
-            break;
-        case Constants::MTG_COLOR_RED:
-            q = WResourceManager::Instance()->RetrieveTempQuad("red_thumb.jpg");
-            break;
-        case Constants::MTG_COLOR_BLACK:
-            q = WResourceManager::Instance()->RetrieveTempQuad("black_thumb.jpg");
-            break;
-        case Constants::MTG_COLOR_WHITE:
-            q = WResourceManager::Instance()->RetrieveTempQuad("white_thumb.jpg");
-            break;
-        case Constants::MTG_COLOR_LAND:
-            q = WResourceManager::Instance()->RetrieveTempQuad("land_thumb.jpg");
-            break;
-        default:
-            q = WResourceManager::Instance()->RetrieveTempQuad("gold_thumb.jpg");
-            break;
-        }
+        item = items[card->data->getColor()];
     }
+    
+    
+    q = WResourceManager::Instance()->RetrieveTempQuad(item->mDisplayThumb);
+    items.clear();  
     if (q && q->mTex)
         q->SetHotSpot(static_cast<float> (q->mTex->mWidth / 2), static_cast<float> (q->mTex->mHeight / 2));
     return q;
@@ -383,41 +364,22 @@ void CardGui::AlternateRender(MTGCard * card, const Pos& pos)
     JQuadPtr q;
 
     float x = pos.actX;
-
+   
+    vector<ModRulesBackGroundCardGuiItem *>items = gModRules.cardgui.background;
+    ModRulesBackGroundCardGuiItem * item;
+    int numItems = (int)items.size();
     if (card->data->countColors() > 1)
     {
-        q = WResourceManager::Instance()->RetrieveTempQuad("gold.jpg", TEXTURE_SUB_5551);
+         item = items[numItems-1];
     }
     else
     {
-        switch (card->data->getColor())
-        {
-        case Constants::MTG_COLOR_ARTIFACT:
-            q = WResourceManager::Instance()->RetrieveTempQuad("artifact.jpg", TEXTURE_SUB_5551);
-            break;
-        case Constants::MTG_COLOR_GREEN:
-            q = WResourceManager::Instance()->RetrieveTempQuad("green.jpg", TEXTURE_SUB_5551);
-            break;
-        case Constants::MTG_COLOR_BLUE:
-            q = WResourceManager::Instance()->RetrieveTempQuad("blue.jpg", TEXTURE_SUB_5551);
-            break;
-        case Constants::MTG_COLOR_RED:
-            q = WResourceManager::Instance()->RetrieveTempQuad("red.jpg", TEXTURE_SUB_5551);
-            break;
-        case Constants::MTG_COLOR_BLACK:
-            q = WResourceManager::Instance()->RetrieveTempQuad("black.jpg", TEXTURE_SUB_5551);
-            break;
-        case Constants::MTG_COLOR_WHITE:
-            q = WResourceManager::Instance()->RetrieveTempQuad("white.jpg", TEXTURE_SUB_5551);
-            break;
-        case Constants::MTG_COLOR_LAND:
-            q = WResourceManager::Instance()->RetrieveTempQuad("land.jpg", TEXTURE_SUB_5551);
-            break;
-        default:
-            q = WResourceManager::Instance()->RetrieveTempQuad("gold.jpg", TEXTURE_SUB_5551);
-            break;
-        }
+        item = items[card->data->getColor()];
     }
+    
+    q = WResourceManager::Instance()->RetrieveTempQuad(item->mDisplayImg,TEXTURE_SUB_5551);
+
+    items.clear();
     if (q.get() && q->mTex)
     {
         q->SetHotSpot(static_cast<float> (q->mTex->mWidth / 2), static_cast<float> (q->mTex->mHeight / 2));
@@ -426,180 +388,288 @@ void CardGui::AlternateRender(MTGCard * card, const Pos& pos)
         q->SetColor(ARGB((int)pos.actA,255,255,255));
         renderer->RenderQuad(q.get(), x, pos.actY, pos.actT, scale, scale);
     }
-    // Write the title
+
+    vector<ModRulesRenderCardGuiItem *>Carditems = gModRules.cardgui.renderbig;
+    
     WFont * font = WResourceManager::Instance()->GetWFont(Fonts::MAGIC_FONT);
     float backup_scale = font->GetScale();
     font->SetColor(ARGB((int)pos.actA, 0, 0, 0));
-    font->SetScale(kWidthScaleFactor * pos.actZ);
-
+    string sFormattedData = "";
+    for( size_t i =0 ; i < Carditems.size(); i ++)
     {
-        char name[4096];
-        sprintf(name, "%s", _(card->data->getName()).c_str());
-        float w = font->GetStringWidth(name) * kWidthScaleFactor * pos.actZ;
-        if (w > BigWidth - 30)
-            font->SetScale((BigWidth - 30) / w);
-        font->DrawString(name, x + (22 - BigWidth / 2) * pos.actZ, pos.actY + (25 - BigHeight / 2) * pos.actZ);
-    }
-
-    // Write the description
-    {
-        font->SetScale(kWidthScaleFactor * pos.actZ);
-
-        std::vector<string> txt = card->data->getFormattedText();
-
-        unsigned i = 0;
-        unsigned h = neofont ? 14 : 11;
-        for (std::vector<string>::const_iterator it = txt.begin(); it != txt.end(); ++it, ++i)
-            font->DrawString(it->c_str(), x + (22 - BigWidth / 2) * pos.actZ, pos.actY + (-BigHeight / 2 + 80 + h * i) * pos.actZ);
-    }
-
-    // Write the strength
-    if (card->data->isCreature())
-    {
-        char buffer[32];
-        sprintf(buffer, "%i/%i", card->data->power, card->data->toughness);
-        float w = font->GetStringWidth(buffer) * kWidthScaleFactor;
-        font->DrawString(buffer, x + (65 - w / 2) * pos.actZ, pos.actY + (106) * pos.actZ);
-    }
-
-    // Mana
-    {
-        ManaCost* manacost = card->data->getManaCost();
-        ManaCostHybrid* h;
-        unsigned int j = 0;
-        unsigned char t = (JGE::GetInstance()->GetTime() / 3) & 0xFF;
-        unsigned char v = t + 127;
-        float yOffset = -112;
-        while ((h = manacost->getHybridCost(j)))
+        ModRulesRenderCardGuiItem * Carditem = Carditems[i];
+        if (Carditem->mType.length() == 0 || card->data->hasType(Carditem->mType.c_str()))
         {
-            float scale = pos.actZ * 0.05f * cosf(2 * M_PI * ((float) t) / 256.0f);
 
-            if (scale < 0)
+            if (Carditem->mName == "title")
             {
-                renderer->RenderQuad(manaIcons[h->color1].get(), x + (-12 * j + 75 + 3 * SineHelperFunction((float) t)) * pos.actZ,
-                    pos.actY + (yOffset + 3 * CosineHelperFunction((float) t)) * pos.actZ, 0, 0.4f + scale, 0.4f
-                    + scale);
-                renderer->RenderQuad(manaIcons[h->color2].get(), x + (-12 * j + 75 + 3 * SineHelperFunction((float) v)) * pos.actZ,
-                    pos.actY + (yOffset + 3 * CosineHelperFunction((float) v)) * pos.actZ, 0, 0.4f - scale, 0.4f
-                    - scale);
-            }
-            else
-            {
-                renderer->RenderQuad(manaIcons[h->color2].get(), x + (-12 * j + 75 + 3 * SineHelperFunction((float) v)) * pos.actZ,
-                    pos.actY + (yOffset + 3 * CosineHelperFunction((float) v)) * pos.actZ, 0, 0.4f - scale, 0.4f
-                    - scale);
-                renderer->RenderQuad(manaIcons[h->color1].get(), x + (-12 * j + 75 + 3 * SineHelperFunction((float) t)) * pos.actZ,
-                    pos.actY + (yOffset + 3 * CosineHelperFunction((float) t)) * pos.actZ, 0, 0.4f + scale, 0.4f
-                    + scale);
-            }
-            ++j;
-        }
-        for (int i = Constants::MTG_NB_COLORS - 2; i >= 1; --i)
-        {
-            int cost;
+                // Write the title
+                
+                font->SetScale(kWidthScaleFactor * pos.actZ);
 
-            for (cost = manacost->getCost(i); cost > 0; --cost)
-            {
-                renderer->RenderQuad(manaIcons[i].get(), x + (-12 * j + 75) * pos.actZ, pos.actY + (yOffset) * pos.actZ, 0.0f, 0.4f
-                    * pos.actZ, 0.4f * pos.actZ);
-                ++j;
+                char name[4096];
+                sprintf(name, FormattedData(Carditem->mFormattedData,"title","%s").c_str(), _(card->data->getName()).c_str());
+                float w = font->GetStringWidth(name) * kWidthScaleFactor * pos.actZ;
+                if (w > BigWidth - 30)
+                    font->SetScale((BigWidth - 30) / w);
+                font->DrawString(name, x + (Carditem->mPosX - BigWidth / 2) * pos.actZ, pos.actY + (Carditem->mPosY - BigHeight / 2) * pos.actZ);
+                
             }
-        }
-        // Colorless mana
-        if (int cost = manacost->getCost(0))
-        {
-            char buffer[10];
-            sprintf(buffer, "%d", cost);
-            renderer->RenderQuad(manaIcons[0].get(), x + (-12 * j + 75) * pos.actZ, pos.actY + (yOffset) * pos.actZ, 0, 0.4f * pos.actZ,
-                0.4f * pos.actZ);
-            float w = font->GetStringWidth(buffer);
-            font->DrawString(buffer, x + (-12 * j + 76 - w / 2) * pos.actZ, pos.actY + (yOffset - 5) * pos.actZ);
-            ++j;
-        }
-        //Has X?
-        if (manacost->hasX())
-        {
-            char buffer[10];
-            sprintf(buffer, "X");
-            renderer->RenderQuad(manaIcons[0].get(), x + (-12 * j + 75) * pos.actZ, pos.actY + (yOffset) * pos.actZ, 0, 0.4f * pos.actZ,
-                0.4f * pos.actZ);
-            float w = font->GetStringWidth(buffer);
-            font->DrawString(buffer, x + (-12 * j + 76 - w / 2) * pos.actZ, pos.actY + (yOffset - 5) * pos.actZ);
+            else if (Carditem->mName == "description")
+            {
+                // Write the description
+                font->SetScale(kWidthScaleFactor * pos.actZ);
+
+                std::vector<string> txt = card->data->getFormattedText();
+
+                unsigned i = 0;
+                unsigned h = neofont ? 14 : 11;
+                for (std::vector<string>::const_iterator it = txt.begin(); it != txt.end(); ++it, ++i)
+                    font->DrawString(it->c_str(), x + (Carditem->mPosX - BigWidth / 2) * pos.actZ, pos.actY + (-BigHeight / 2 + Carditem->mPosY + h * i) * pos.actZ);
+            }
+            else if (Carditem->mName == "power")
+            {
+                 // Write the strength
+                char buffer[32];
+                sprintf(buffer, FormattedData(Carditem->mFormattedData,"power","%i").c_str(), card->data->power);
+                float w = font->GetStringWidth(buffer) * kWidthScaleFactor;
+                font->DrawString(buffer, x + (Carditem->mPosX - w / 2) * pos.actZ, pos.actY + (Carditem->mPosY) * pos.actZ);
+                
+            }
+            else if (Carditem->mName == "life")
+            {
+                 // Write the strength
+                if (card->data->hasType(Carditem->mType.c_str()))
+                {
+                    char buffer[32];
+                    sprintf(buffer, FormattedData(Carditem->mFormattedData,"life","%i").c_str(), card->data->toughness);
+                    float w = font->GetStringWidth(buffer) * kWidthScaleFactor;
+                    font->DrawString(buffer, x + (Carditem->mPosX - w / 2) * pos.actZ, pos.actY + (Carditem->mPosY) * pos.actZ);
+                }
+            }
+            else if (Carditem->mName == "mana")
+            {
+                // Mana
+                ManaCost* manacost = card->data->getManaCost();
+                ManaCostHybrid* h;
+                unsigned int j = 0;
+                unsigned char t = (JGE::GetInstance()->GetTime() / 3) & 0xFF;
+                unsigned char v = t + 127;
+                float yOffset = (float)Carditem->mPosY;
+                while ((h = manacost->getHybridCost(j)))
+                {
+                    float scale = pos.actZ * 0.05f * cosf(2 * M_PI * ((float) t) / 256.0f);
+
+                    if (scale < 0)
+                    {
+                        renderer->RenderQuad(manaIcons[h->color1].get(), x + (-12 * j + Carditem->mPosX + 3 * SineHelperFunction((float) t)) * pos.actZ,
+                            pos.actY + (yOffset + 3 * CosineHelperFunction((float) t)) * pos.actZ, 0, 0.4f + scale, 0.4f
+                            + scale);
+                        renderer->RenderQuad(manaIcons[h->color2].get(), x + (-12 * j + Carditem->mPosX + 3 * SineHelperFunction((float) v)) * pos.actZ,
+                            pos.actY + (yOffset + 3 * CosineHelperFunction((float) v)) * pos.actZ, 0, 0.4f - scale, 0.4f
+                            - scale);
+                    }
+                    else
+                    {
+                        renderer->RenderQuad(manaIcons[h->color2].get(), x + (-12 * j + Carditem->mPosX + 3 * SineHelperFunction((float) v)) * pos.actZ,
+                            pos.actY + (yOffset + 3 * CosineHelperFunction((float) v)) * pos.actZ, 0, 0.4f - scale, 0.4f
+                            - scale);
+                        renderer->RenderQuad(manaIcons[h->color1].get(), x + (-12 * j + Carditem->mPosX + 3 * SineHelperFunction((float) t)) * pos.actZ,
+                            pos.actY + (yOffset + 3 * CosineHelperFunction((float) t)) * pos.actZ, 0, 0.4f + scale, 0.4f
+                            + scale);
+                    }
+                    ++j;
+                }
+                for (int i = Constants::NB_Colors - 2; i >= 1; --i)
+                {
+                     int cost;
+                    for (cost = manacost->getCost(i); cost > 0; --cost)
+                    {
+                        renderer->RenderQuad(manaIcons[i].get(), x + (-12 * j + Carditem->mPosX) * pos.actZ, pos.actY + (yOffset) * pos.actZ, 0, 0.4f
+                            * pos.actZ, 0.4f * pos.actZ);
+                        ++j;
+                    }
+                    
+                }
+                // Colorless mana
+                if (int cost = manacost->getCost(0))
+                {
+                    char buffer[10];
+                    sprintf(buffer, "%d", cost);
+                    renderer->RenderQuad(manaIcons[0].get(), x + (-12 * j + Carditem->mPosX) * pos.actZ, pos.actY + (yOffset) * pos.actZ, 0, 0.4f * pos.actZ,
+                        0.4f * pos.actZ);
+                    float w = font->GetStringWidth(buffer);
+                    font->DrawString(buffer, x + (-12 * j + (Carditem->mPosX +1) - w / 2) * pos.actZ, pos.actY + (yOffset - 5) * pos.actZ);
+                    ++j;
+                }
+                //Has X?
+                if (manacost->hasX())
+                {
+                    char buffer[10];
+                    sprintf(buffer, "X");
+                    renderer->RenderQuad(manaIcons[0].get(), x + (-12 * j + Carditem->mPosX) * pos.actZ, pos.actY + (yOffset) * pos.actZ, 0, 0.4f * pos.actZ,
+                        0.4f * pos.actZ);
+                    float w = font->GetStringWidth(buffer);
+                    font->DrawString(buffer, x + (-12 * j + (Carditem->mPosX + 1) - w / 2) * pos.actZ, pos.actY + (yOffset - 5) * pos.actZ);
+                }
+    
+            }
+            else if (Carditem->mName == "types")
+            {
+                //types
+                string s = "";
+                for (int i = card->data->types.size() - 1; i > 0; --i)
+                {
+                    if (card->data->basicAbilities[(int)Constants::CHANGELING])
+                    {// this avoids drawing the list of subtypes on changeling cards.
+                        s += _("Shapeshifter - ");
+                        break;
+                    }
+                    else
+                    {
+                        s += _(Subtypes::subtypesList->find(card->data->types[i]));
+                        s += _(" - ");
+                    }
+                }
+                if (card->data->types.size())
+                    s += _(Subtypes::subtypesList->find(card->data->types[0]));
+                else
+                {
+                    DebugTrace("Typeless card: " << setlist[card->setId].c_str() << card->data->getName() << card->getId());
+                }
+
+                font->DrawString(s.c_str(), x + (Carditem->mPosX - BigWidth / 2)*pos.actZ, pos.actY + (Carditem->mPosY - BigHeight / 2)*pos.actZ);
+
+            }
+            else if (Carditem->mName == "rarity")
+            {
+                font->SetColor(ARGB((int)pos.actA, 0, 0, 0));
+                
+                string sRarity;
+                switch(card->getRarity())
+                {
+                case Constants::RARITY_M:
+                    sRarity ="Mythic";
+                    break;
+                case Constants::RARITY_R:
+                    sRarity ="Rare";
+                    break;
+                case Constants::RARITY_U:
+                    sRarity ="Uncommon";
+                    break;
+                case Constants::RARITY_C:
+                    sRarity ="Common";
+                    break;
+                case Constants::RARITY_L:
+                    sRarity ="Land";
+                    break;
+                case Constants::RARITY_T:
+                    sRarity ="Token";
+                    break;
+                default:
+                case Constants::RARITY_S:
+                    sRarity ="Special";
+                    break;
+                }
+                
+                switch(card->data->getColor())
+                {
+                case Constants::MTG_COLOR_BLACK:
+                case Constants::MTG_COLOR_GREEN:
+                case Constants::MTG_COLOR_BLUE:
+                case Constants::MTG_COLOR_LAND:
+                    font->SetColor(ARGB((int)pos.actA,255,255,255));
+                    font->DrawString(FormattedData(Carditem->mFormattedData,"rarity",sRarity).c_str(), x + (Carditem->mPosX - BigWidth / 2)*pos.actZ, pos.actY + (BigHeight / 2 - Carditem->mPosY)*pos.actZ);
+                    break;
+                default:
+                    font->DrawString(FormattedData(Carditem->mFormattedData,"rarity",sRarity).c_str(), x + (Carditem->mPosX - BigWidth / 2)*pos.actZ, pos.actY + (BigHeight / 2 - Carditem->mPosY)*pos.actZ);
+                    break; //Leave black
+                }
+            }
+            else if (Carditem->mName == "expansion")
+            {
+                    string formattedfield = FormattedData(Carditem->mFormattedData, "expansion", setlist[card->setId].c_str());
+                    float w = font->GetStringWidth(formattedfield.c_str()) * kWidthScaleFactor;
+                    font->DrawString(formattedfield.c_str(), x + (Carditem->mPosX - w / 2) * pos.actZ, pos.actY + (Carditem->mPosY) * pos.actZ);
+
+            }
+            else 
+            {
+                string formattedfield = Carditem->mFormattedData;
+
+                size_t found = Carditem->mName.find("title");
+                if (found != string::npos)
+                {
+                    stringstream st;
+                    st << card->data->name;
+                    formattedfield = FormattedData(formattedfield, "title", st.str());
+                
+                }
+
+                found = Carditem->mName.find("power");
+                if (found != string::npos)
+                {
+                    stringstream st;
+                    st << card->data->power;
+                    formattedfield = FormattedData(formattedfield, "power", st.str());
+                }
+                found = Carditem->mName.find("life");
+                if (found != string::npos)
+                {
+                    stringstream st;
+                    st << card->data->toughness;
+                    formattedfield = FormattedData(formattedfield, "life", st.str());
+
+                }
+
+                found = Carditem->mName.find("rarity");
+                if (found != string::npos)
+                {
+                    
+                    string sRarity;
+                    switch(card->getRarity())
+                    {
+                    case Constants::RARITY_M:
+                        sRarity ="Mythic";
+                        break;
+                    case Constants::RARITY_R:
+                        sRarity ="Rare";
+                        break;
+                    case Constants::RARITY_U:
+                        sRarity ="Uncommon";
+                        break;
+                    case Constants::RARITY_C:
+                        sRarity ="Common";
+                        break;
+                    case Constants::RARITY_L:
+                        sRarity ="Land";
+                        break;
+                    case Constants::RARITY_T:
+                        sRarity ="Token";
+                        break;
+                    default:
+                    case Constants::RARITY_S:
+                        sRarity ="Special";
+                        break;
+                    }
+                    formattedfield = FormattedData(formattedfield, "rarity", sRarity);
+                }
+
+                 found = Carditem->mName.find("expansion");
+                if (found != string::npos)
+                {
+                    formattedfield = FormattedData(formattedfield, "expansion", setlist[card->setId].c_str());
+                }
+
+                float w = font->GetStringWidth(formattedfield.c_str()) * kWidthScaleFactor;
+                font->DrawString(formattedfield.c_str(), x + (Carditem->mPosX  - BigWidth / 2) * pos.actZ, pos.actY + (Carditem->mPosY) * pos.actZ);
+            
+            }
         }
     }
 
-    //types
-    {
-        string s = "";
-        for (int i = card->data->types.size() - 1; i > 0; --i)
-        {
-            if (card->data->basicAbilities[(int)Constants::CHANGELING])
-            {// this avoids drawing the list of subtypes on changeling cards.
-                s += _("Shapeshifter - ");
-                break;
-            }
-            else
-            {
-                s += _(Subtypes::subtypesList->find(card->data->types[i]));
-                s += _(" - ");
-            }
-        }
-        if (card->data->types.size())
-            s += _(Subtypes::subtypesList->find(card->data->types[0]));
-        else
-        {
-            DebugTrace("Typeless card: " << setlist[card->setId].c_str() << card->data->getName() << card->getId());
-        }
 
-        font->DrawString(s.c_str(), x + (22 - BigWidth / 2)*pos.actZ, pos.actY + (49 - BigHeight / 2)*pos.actZ);
-    }
-
-    //expansion and rarity
-    font->SetColor(ARGB((int)pos.actA, 0, 0, 0));
-    {
-        char buf[512];
-        switch(card->getRarity())
-        {
-        case Constants::RARITY_M:
-            sprintf(buf,_("%s Mythic").c_str(),setlist[card->setId].c_str());
-            break;
-        case Constants::RARITY_R:
-            sprintf(buf,_("%s Rare").c_str(),setlist[card->setId].c_str());
-            break;
-        case Constants::RARITY_U:
-            sprintf(buf,_("%s Uncommon").c_str(),setlist[card->setId].c_str());
-            break;
-        case Constants::RARITY_C:
-            sprintf(buf,_("%s Common").c_str(),setlist[card->setId].c_str());
-            break;
-        case Constants::RARITY_L:
-            sprintf(buf,_("%s Land").c_str(),setlist[card->setId].c_str());
-            break;
-        case Constants::RARITY_T:
-            sprintf(buf,_("%s Token").c_str(),setlist[card->setId].c_str());
-            break;
-        default:
-        case Constants::RARITY_S:
-            sprintf(buf,_("%s Special").c_str(),setlist[card->setId].c_str());
-            break;
-        }
-
-        switch(card->data->getColor())
-        {
-        case Constants::MTG_COLOR_BLACK:
-        case Constants::MTG_COLOR_GREEN:
-        case Constants::MTG_COLOR_BLUE:
-        case Constants::MTG_COLOR_LAND:
-            font->SetColor(ARGB((int)pos.actA,255,255,255));
-            font->DrawString(buf, x + (22 - BigWidth / 2)*pos.actZ, pos.actY + (BigHeight / 2 - 30)*pos.actZ);
-            break;
-        default:
-            font->DrawString(buf, x + (22 - BigWidth / 2)*pos.actZ, pos.actY + (BigHeight / 2 - 30)*pos.actZ);
-            break; //Leave black
-        }
-
-    }
-
+    
     font->SetScale(backup_scale);
 
     RenderCountersBig(card, pos, DrawMode::kText);
@@ -615,41 +685,21 @@ void CardGui::TinyCropRender(MTGCard * card, const Pos& pos, JQuad * quad)
 
     float x = pos.actX;
     float displayScale = 250 / BigHeight;
-
+   
+    vector<ModRulesBackGroundCardGuiItem *>items = gModRules.cardgui.background;
+    ModRulesBackGroundCardGuiItem * item;
+    int numItems = (int)items.size();
     if (card->data->countColors() > 1)
     {
-        q = WResourceManager::Instance()->RetrieveTempQuad("gold.jpg", TEXTURE_SUB_5551);
+         item = items[numItems-1];
     }
     else
     {
-        switch (card->data->getColor())
-        {
-        case Constants::MTG_COLOR_ARTIFACT:
-            q = WResourceManager::Instance()->RetrieveTempQuad("artifact.jpg", TEXTURE_SUB_5551);
-            break;
-        case Constants::MTG_COLOR_GREEN:
-            q = WResourceManager::Instance()->RetrieveTempQuad("green.jpg", TEXTURE_SUB_5551);
-            break;
-        case Constants::MTG_COLOR_BLUE:
-            q = WResourceManager::Instance()->RetrieveTempQuad("blue.jpg", TEXTURE_SUB_5551);
-            break;
-        case Constants::MTG_COLOR_RED:
-            q = WResourceManager::Instance()->RetrieveTempQuad("red.jpg", TEXTURE_SUB_5551);
-            break;
-        case Constants::MTG_COLOR_BLACK:
-            q = WResourceManager::Instance()->RetrieveTempQuad("black.jpg", TEXTURE_SUB_5551);
-            break;
-        case Constants::MTG_COLOR_WHITE:
-            q = WResourceManager::Instance()->RetrieveTempQuad("white.jpg", TEXTURE_SUB_5551);
-            break;
-        case Constants::MTG_COLOR_LAND:
-            q = WResourceManager::Instance()->RetrieveTempQuad("land.jpg", TEXTURE_SUB_5551);
-            break;
-        default:
-            q = WResourceManager::Instance()->RetrieveTempQuad("gold.jpg", TEXTURE_SUB_5551);
-            break;
-        }
+        item = items[card->data->getColor()];
     }
+    
+    q = WResourceManager::Instance()->RetrieveTempQuad(item->mDisplayImg,TEXTURE_SUB_5551);
+    items.clear();
     if (q.get() && q->mTex)
     {
         q->SetHotSpot(static_cast<float> (q->mTex->mWidth / 2), static_cast<float> (q->mTex->mHeight / 2));
@@ -658,7 +708,7 @@ void CardGui::TinyCropRender(MTGCard * card, const Pos& pos, JQuad * quad)
         q->SetColor(ARGB((int)pos.actA,255,255,255));
         renderer->RenderQuad(q.get(), x, pos.actY, pos.actT, scale, scale);
     }
-
+    
     std::vector<string> txt = card->data->getFormattedText();
     size_t nbTextLines = txt.size();
 
@@ -673,168 +723,286 @@ void CardGui::TinyCropRender(MTGCard * card, const Pos& pos, JQuad * quad)
     }
     renderer->RenderQuad(quad, x, imgY, pos.actT, imgScale, imgScale);
 
-    // Write the title
+
+
+    vector<ModRulesRenderCardGuiItem *>Carditems = gModRules.cardgui.rendertinycrop;
+    
     WFont * font = WResourceManager::Instance()->GetWFont(Fonts::MAGIC_FONT);
     float backup_scale = font->GetScale();
-    font->SetColor(ARGB((int)pos.actA, 0, 0, 0));
-    font->SetScale(kWidthScaleFactor * pos.actZ);
-
+    string sFormattedData = "";
+    for( size_t i =0 ; i < Carditems.size(); i ++)
     {
-        char name[4096];
-        sprintf(name, "%s", _(card->data->getName()).c_str());
-        float w = font->GetStringWidth(name) * kWidthScaleFactor * pos.actZ;
-        if (w > BigWidth - 30)
-            font->SetScale((BigWidth - 30) / w);
-        font->DrawString(name, x + (22 - BigWidth / 2) * pos.actZ, pos.actY + (25 - BigHeight / 2) * pos.actZ);
-    }
-
-    // Write the description
-    {
-        font->SetScale(kWidthScaleFactor * pos.actZ);
-        float imgBottom = imgY + (imgScale * quad->mHeight / 2);
-        unsigned i = 0;
-        unsigned h = neofont ? 14 : 11;
-        for (std::vector<string>::const_iterator it = txt.begin(); it != txt.end(); ++it, ++i)
-            font->DrawString(it->c_str(), x + (22 - BigWidth / 2) * pos.actZ, imgBottom + (h * i * pos.actZ));
-    }
-
-    // Write the strength
-    if (card->data->isCreature())
-    {
-        char buffer[32];
-        sprintf(buffer, "%i/%i", card->data->power, card->data->toughness);
-        float w = font->GetStringWidth(buffer) * kWidthScaleFactor;
-        font->DrawString(buffer, x + (65 - w / 2) * pos.actZ, pos.actY + (106) * pos.actZ);
-    }
-
-    // Mana
-    {
-        ManaCost* manacost = card->data->getManaCost();
-        ManaCostHybrid* h;
-        unsigned int j = 0;
-        unsigned char t = (JGE::GetInstance()->GetTime() / 3) & 0xFF;
-        unsigned char v = t + 127;
-        float yOffset = -112;
-        while ((h = manacost->getHybridCost(j)))
+        ModRulesRenderCardGuiItem * Carditem = Carditems[i];
+        if (Carditem->mType.length() == 0 || card->data->hasType(Carditem->mType.c_str()))
         {
-            float scale = pos.actZ * 0.05f * cosf(2 * M_PI * ((float) t) / 256.0f);
 
-            if (scale < 0)
+            if (Carditem->mName == "title")
             {
-                renderer->RenderQuad(manaIcons[h->color1].get(), x + (-12 * j + 75 + 3 * SineHelperFunction((float) t)) * pos.actZ,
-                    pos.actY + (yOffset + 3 * CosineHelperFunction((float) t)) * pos.actZ, 0, 0.4f + scale, 0.4f
-                    + scale);
-                renderer->RenderQuad(manaIcons[h->color2].get(), x + (-12 * j + 75 + 3 * SineHelperFunction((float) v)) * pos.actZ,
-                    pos.actY + (yOffset + 3 * CosineHelperFunction((float) v)) * pos.actZ, 0, 0.4f - scale, 0.4f
-                    - scale);
+                // Write the title
+                font->SetColor(ARGB((int)pos.actA, 0, 0, 0));
+                font->SetScale(kWidthScaleFactor * pos.actZ);
+
+                char name[4096];
+                sprintf(name, FormattedData(Carditem->mFormattedData,"title","%s").c_str(), _(card->data->getName()).c_str());
+                float w = font->GetStringWidth(name) * kWidthScaleFactor * pos.actZ;
+                if (w > BigWidth - 30)
+                    font->SetScale((BigWidth - 30) / w);
+                font->DrawString(name, x + (Carditem->mPosX - BigWidth / 2) * pos.actZ, pos.actY + (Carditem->mPosY - BigHeight / 2) * pos.actZ);
+                
             }
-            else
+            else if (Carditem->mName == "description")
             {
-                renderer->RenderQuad(manaIcons[h->color2].get(), x + (-12 * j + 75 + 3 * SineHelperFunction((float) v)) * pos.actZ,
-                    pos.actY + (yOffset + 3 * CosineHelperFunction((float) v)) * pos.actZ, 0, 0.4f - scale, 0.4f
-                    - scale);
-                renderer->RenderQuad(manaIcons[h->color1].get(), x + (-12 * j + 75 + 3 * SineHelperFunction((float) t)) * pos.actZ,
-                    pos.actY + (yOffset + 3 * CosineHelperFunction((float) t)) * pos.actZ, 0, 0.4f + scale, 0.4f
-                    + scale);
+                // Write the description
+                font->SetScale(kWidthScaleFactor * pos.actZ);
+
+                float imgBottom = imgY + (imgScale * quad->mHeight / 2);
+
+                unsigned i = 0;
+                unsigned h = neofont ? 14 : 11;
+                for (std::vector<string>::const_iterator it = txt.begin(); it != txt.end(); ++it, ++i)
+                    font->DrawString(it->c_str(), x + (Carditem->mPosX - BigWidth / 2) * pos.actZ, imgBottom + (-BigHeight / 2 + Carditem->mPosY + h * i) * pos.actZ);
             }
-            ++j;
-        }
-        for (int i = Constants::MTG_NB_COLORS - 2; i >= 1; --i)
-        {
-            for (int cost = manacost->getCost(i); cost > 0; --cost)
+            else if (Carditem->mName == "power")
             {
-                renderer->RenderQuad(manaIcons[i].get(), x + (-12 * j + 75) * pos.actZ, pos.actY + (yOffset) * pos.actZ, 0, 0.4f
-                    * pos.actZ, 0.4f * pos.actZ);
-                ++j;
+                 // Write the strength
+                char buffer[32];
+                sprintf(buffer, FormattedData(Carditem->mFormattedData,"power","%s").c_str(), card->data->power);
+                float w = font->GetStringWidth(buffer) * kWidthScaleFactor;
+                font->DrawString(buffer, x + (Carditem->mPosX - w / 2) * pos.actZ, pos.actY + (Carditem->mPosY) * pos.actZ);
+                
+            }
+            else if (Carditem->mName == "life")
+            {
+                 // Write the strength
+                if (card->data->hasType(Carditem->mType.c_str()))
+                {
+                    char buffer[32];
+                    sprintf(buffer, FormattedData(Carditem->mFormattedData,"life","%s").c_str(), card->data->toughness);
+                    float w = font->GetStringWidth(buffer) * kWidthScaleFactor;
+                    font->DrawString(buffer, x + (Carditem->mPosX - w / 2) * pos.actZ, pos.actY + (Carditem->mPosY) * pos.actZ);
+                }
+            }
+            else if (Carditem->mName == "mana")
+            {
+                // Mana
+                ManaCost* manacost = card->data->getManaCost();
+                ManaCostHybrid* h;
+                unsigned int j = 0;
+                unsigned char t = (JGE::GetInstance()->GetTime() / 3) & 0xFF;
+                unsigned char v = t + 127;
+                float yOffset = (float)Carditem->mPosY;
+                while ((h = manacost->getHybridCost(j)))
+                {
+                    float scale = pos.actZ * 0.05f * cosf(2 * M_PI * ((float) t) / 256.0f);
+
+                    if (scale < 0)
+                    {
+                        renderer->RenderQuad(manaIcons[h->color1].get(), x + (-12 * j + Carditem->mPosX + 3 * SineHelperFunction((float) t)) * pos.actZ,
+                            pos.actY + (yOffset + 3 * CosineHelperFunction((float) t)) * pos.actZ, 0, 0.4f + scale, 0.4f
+                            + scale);
+                        renderer->RenderQuad(manaIcons[h->color2].get(), x + (-12 * j + Carditem->mPosX + 3 * SineHelperFunction((float) v)) * pos.actZ,
+                            pos.actY + (yOffset + 3 * CosineHelperFunction((float) v)) * pos.actZ, 0, 0.4f - scale, 0.4f
+                            - scale);
+                    }
+                    else
+                    {
+                        renderer->RenderQuad(manaIcons[h->color2].get(), x + (-12 * j + Carditem->mPosX + 3 * SineHelperFunction((float) v)) * pos.actZ,
+                            pos.actY + (yOffset + 3 * CosineHelperFunction((float) v)) * pos.actZ, 0, 0.4f - scale, 0.4f
+                            - scale);
+                        renderer->RenderQuad(manaIcons[h->color1].get(), x + (-12 * j + Carditem->mPosX + 3 * SineHelperFunction((float) t)) * pos.actZ,
+                            pos.actY + (yOffset + 3 * CosineHelperFunction((float) t)) * pos.actZ, 0, 0.4f + scale, 0.4f
+                            + scale);
+                    }
+                    ++j;
+                }
+                for (int i = Constants::NB_Colors - 2; i >= 1; --i)
+                {
+                    for (int cost = manacost->getCost(i); cost > 0; --cost)
+                    {
+                        renderer->RenderQuad(manaIcons[i].get(), x + (-12 * j + Carditem->mPosX) * pos.actZ, pos.actY + (yOffset) * pos.actZ, 0, 0.4f
+                            * pos.actZ, 0.4f * pos.actZ);
+                        ++j;
+                    }
+                }
+                // Colorless mana
+                if (int cost = manacost->getCost(0))
+                {
+                    char buffer[10];
+                    sprintf(buffer, "%d", cost);
+                    renderer->RenderQuad(manaIcons[0].get(), x + (-12 * j + Carditem->mPosX) * pos.actZ, pos.actY + (yOffset) * pos.actZ, 0, 0.4f * pos.actZ,
+                        0.4f * pos.actZ);
+                    float w = font->GetStringWidth(buffer);
+                    font->DrawString(buffer, x + (-12 * j + (Carditem->mPosX +1) - w / 2) * pos.actZ, pos.actY + (yOffset - 5) * pos.actZ);
+                    ++j;
+                }
+                //Has X?
+                if (manacost->hasX())
+                {
+                    char buffer[10];
+                    sprintf(buffer, "X");
+                    renderer->RenderQuad(manaIcons[0].get(), x + (-12 * j + Carditem->mPosX) * pos.actZ, pos.actY + (yOffset) * pos.actZ, 0, 0.4f * pos.actZ,
+                        0.4f * pos.actZ);
+                    float w = font->GetStringWidth(buffer);
+                    font->DrawString(buffer, x + (-12 * j + (Carditem->mPosX + 1) - w / 2) * pos.actZ, pos.actY + (yOffset - 5) * pos.actZ);
+                }
+    
+            }
+            else if (Carditem->mName == "types")
+            {
+                //types
+                string s = "";
+                for (int i = card->data->types.size() - 1; i > 0; --i)
+                {
+                    if (card->data->basicAbilities[(int)Constants::CHANGELING])
+                    {// this avoids drawing the list of subtypes on changeling cards.
+                        s += _("Shapeshifter - ");
+                        break;
+                    }
+                    else
+                    {
+                        s += _(Subtypes::subtypesList->find(card->data->types[i]));
+                        s += _(" - ");
+                    }
+                }
+                if (card->data->types.size())
+                    s += _(Subtypes::subtypesList->find(card->data->types[0]));
+                else
+                {
+                    DebugTrace("Typeless card: " << setlist[card->setId].c_str() << card->data->getName() << card->getId());
+                }
+
+                font->DrawString(s.c_str(), x + (Carditem->mPosX - BigWidth / 2)*pos.actZ, pos.actY + (Carditem->mPosY - BigHeight / 2)*pos.actZ);
+
+            }
+            else if (Carditem->mName == "rarity")
+            {
+                font->SetColor(ARGB((int)pos.actA, 0, 0, 0));
+                
+                string sRarity;
+                switch(card->getRarity())
+                {
+                case Constants::RARITY_M:
+                    sRarity ="Mythic";
+                    break;
+                case Constants::RARITY_R:
+                    sRarity ="Rare";
+                    break;
+                case Constants::RARITY_U:
+                    sRarity ="Uncommon";
+                    break;
+                case Constants::RARITY_C:
+                    sRarity ="Common";
+                    break;
+                case Constants::RARITY_L:
+                    sRarity ="Land";
+                    break;
+                case Constants::RARITY_T:
+                    sRarity ="Token";
+                    break;
+                default:
+                case Constants::RARITY_S:
+                    sRarity ="Special";
+                    break;
+                }
+                
+                switch(card->data->getColor())
+                {
+                case Constants::MTG_COLOR_BLACK:
+                case Constants::MTG_COLOR_GREEN:
+                case Constants::MTG_COLOR_BLUE:
+                case Constants::MTG_COLOR_LAND:
+                    font->SetColor(ARGB((int)pos.actA,255,255,255));
+                    font->DrawString(FormattedData(Carditem->mFormattedData,"rarity",sRarity).c_str(), x + (Carditem->mPosX - BigWidth / 2)*pos.actZ, pos.actY + (BigHeight / 2 - Carditem->mPosY)*pos.actZ);
+                    break;
+                default:
+                    font->DrawString(FormattedData(Carditem->mFormattedData,"rarity",sRarity).c_str(), x + (Carditem->mPosX - BigWidth / 2)*pos.actZ, pos.actY + (BigHeight / 2 - Carditem->mPosY)*pos.actZ);
+                    break; //Leave black
+                }
+            }
+            else if (Carditem->mName == "expansion")
+            {
+                    string formattedfield = FormattedData(Carditem->mFormattedData, "expansion", setlist[card->setId].c_str());
+                    float w = font->GetStringWidth(formattedfield.c_str()) * kWidthScaleFactor;
+                    font->DrawString(formattedfield.c_str(), x + (Carditem->mPosX - w / 2) * pos.actZ, pos.actY + (Carditem->mPosY) * pos.actZ);
+
+            }
+            else 
+            {
+                string formattedfield = Carditem->mFormattedData;
+
+                size_t found = Carditem->mName.find("title");
+                if (found != string::npos)
+                {
+                    stringstream st;
+                    st << card->data->name;
+                    formattedfield = FormattedData(formattedfield, "title", st.str());
+                
+                }
+
+                found = Carditem->mName.find("power");
+                if (found != string::npos)
+                {
+                    stringstream st;
+                    st << card->data->power;
+                    formattedfield = FormattedData(formattedfield, "power", st.str());
+                }
+                found = Carditem->mName.find("life");
+                if (found != string::npos)
+                {
+                    stringstream st;
+                    st << card->data->toughness;
+                    formattedfield = FormattedData(formattedfield, "life", st.str());
+
+                }
+
+                found = Carditem->mName.find("rarity");
+                if (found != string::npos)
+                {
+                    
+                    string sRarity;
+                    switch(card->getRarity())
+                    {
+                    case Constants::RARITY_M:
+                        sRarity ="Mythic";
+                        break;
+                    case Constants::RARITY_R:
+                        sRarity ="Rare";
+                        break;
+                    case Constants::RARITY_U:
+                        sRarity ="Uncommon";
+                        break;
+                    case Constants::RARITY_C:
+                        sRarity ="Common";
+                        break;
+                    case Constants::RARITY_L:
+                        sRarity ="Land";
+                        break;
+                    case Constants::RARITY_T:
+                        sRarity ="Token";
+                        break;
+                    default:
+                    case Constants::RARITY_S:
+                        sRarity ="Special";
+                        break;
+                    }
+                    formattedfield = FormattedData(formattedfield, "rarity", sRarity);
+                }
+
+                 found = Carditem->mName.find("expansion");
+                if (found != string::npos)
+                {
+                    formattedfield = FormattedData(formattedfield, "expansion", setlist[card->setId].c_str());
+                }
+
+                float w = font->GetStringWidth(formattedfield.c_str()) * kWidthScaleFactor;
+                font->DrawString(formattedfield.c_str(), x + (Carditem->mPosX  - BigWidth / 2) * pos.actZ, pos.actY + (Carditem->mPosY) * pos.actZ);
+            
             }
         }
-        // Colorless mana
-        if (int cost = manacost->getCost(0))
-        {
-            char buffer[10];
-            sprintf(buffer, "%d", cost);
-            renderer->RenderQuad(manaIcons[0].get(), x + (-12 * j + 75) * pos.actZ, pos.actY + (yOffset) * pos.actZ, 0, 0.4f * pos.actZ,
-                0.4f * pos.actZ);
-            float w = font->GetStringWidth(buffer);
-            font->DrawString(buffer, x + (-12 * j + 76 - w / 2) * pos.actZ, pos.actY + (yOffset - 5) * pos.actZ);
-            ++j;
-        }
-        //Has X?
-        if (manacost->hasX())
-        {
-            char buffer[10];
-            sprintf(buffer, "X");
-            renderer->RenderQuad(manaIcons[0].get(), x + (-12 * j + 75) * pos.actZ, pos.actY + (yOffset) * pos.actZ, 0, 0.4f * pos.actZ,
-                0.4f * pos.actZ);
-            float w = font->GetStringWidth(buffer);
-            font->DrawString(buffer, x + (-12 * j + 76 - w / 2) * pos.actZ, pos.actY + (yOffset - 5) * pos.actZ);
-        }
     }
 
-    //types
-    {
-        string s = "";
-        for (int i = card->data->types.size() - 1; i > 0; --i)
-        {
-            s += _(Subtypes::subtypesList->find(card->data->types[i]));
-            s += _(" - ");
-        }
-        if (card->data->types.size())
-            s += _(Subtypes::subtypesList->find(card->data->types[0]));
-        else
-        {
-            DebugTrace("Typeless card: " << setlist[card->setId].c_str() << card->data->getName() << card->getId());
-        }
 
-        font->DrawString(s.c_str(), x + (22 - BigWidth / 2)*pos.actZ, pos.actY + (49 - BigHeight / 2)*pos.actZ);
-    }
-
-    //expansion and rarity
-    font->SetColor(ARGB((int)pos.actA, 0, 0, 0));
-    {
-        char buf[512];
-        switch(card->getRarity())
-        {
-        case Constants::RARITY_M:
-            sprintf(buf,_("%s Mythic").c_str(),setlist[card->setId].c_str());
-            break;
-        case Constants::RARITY_R:
-            sprintf(buf,_("%s Rare").c_str(),setlist[card->setId].c_str());
-            break;
-        case Constants::RARITY_U:
-            sprintf(buf,_("%s Uncommon").c_str(),setlist[card->setId].c_str());
-            break;
-        case Constants::RARITY_C:
-            sprintf(buf,_("%s Common").c_str(),setlist[card->setId].c_str());
-            break;
-        case Constants::RARITY_L:
-            sprintf(buf,_("%s Land").c_str(),setlist[card->setId].c_str());
-            break;
-        case Constants::RARITY_T:
-            sprintf(buf,_("%s Token").c_str(),setlist[card->setId].c_str());
-            break;
-        default:
-        case Constants::RARITY_S:
-            sprintf(buf,_("%s Special").c_str(),setlist[card->setId].c_str());
-            break;
-        }
-
-        switch(card->data->getColor())
-        {
-        case Constants::MTG_COLOR_BLACK:
-        case Constants::MTG_COLOR_GREEN:
-        case Constants::MTG_COLOR_BLUE:
-        case Constants::MTG_COLOR_LAND:
-            font->SetColor(ARGB((int)pos.actA,255,255,255));
-            font->DrawString(buf, x + (22 - BigWidth / 2)*pos.actZ, pos.actY + (BigHeight / 2 - 30)*pos.actZ);
-            break;
-        default:
-            font->DrawString(buf, x + (22 - BigWidth / 2)*pos.actZ, pos.actY + (BigHeight / 2 - 30)*pos.actZ);
-            break; //Leave black
-        }
-
-    }
-
+    
     font->SetScale(backup_scale);
 
     RenderCountersBig(card, pos);
@@ -868,6 +1036,22 @@ void CardGui::RenderBig(MTGCard* card, const Pos& pos)
 
     // If we come here, we do not have the picture.
     AlternateRender(card, pos);
+}
+
+string CardGui::FormattedData(string data, string replace, string value)
+{
+    size_t found = data.find(replace.c_str());
+    if (found != string::npos)
+    {
+        size_t len = replace.length();
+        string teste = data.replace(found,len,value);
+        return teste;
+    }
+    else
+    {
+        return value;
+    }
+
 }
 
 void CardGui::RenderCountersBig(MTGCard * mtgcard, const Pos& pos, int drawMode)
@@ -1033,3 +1217,4 @@ void SimpleCardEffectMask::undoEffect(Pos * card)
 {
     card->mask = 0;
 }
+

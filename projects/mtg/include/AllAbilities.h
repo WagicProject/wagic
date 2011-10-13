@@ -71,7 +71,7 @@ private:
         if(s == "prex")
         {
             ManaCost * cX = card->controller()->getManaPool()->Diff(card->getManaCost());
-            intValue = cX->getCost(Constants::MTG_NB_COLORS);
+            intValue = cX->getCost(Constants::NB_Colors);
             delete cX;
         }
         else if (s == "x" || s == "X")
@@ -2533,7 +2533,7 @@ public:
         if(sabilities.find("battleready") != string::npos)
             battleReady = true;
 
-        for (int j = 0; j < Constants::MTG_NB_COLORS; j++)
+        for (int j = 0; j < Constants::NB_Colors; j++)
         {
             size_t found = sabilities.find(Constants::MTGColorStrings[j]);
             if (found != string::npos)
@@ -3834,7 +3834,9 @@ public:
         MTGAbility(observer, id, _source)
     {
         counters = 0;
-        int8_t _cost[] = { Constants::MTG_COLOR_ARTIFACT, 4 };
+        std::vector<int8_t> _cost;
+        _cost.push_back(Constants::MTG_COLOR_ARTIFACT);
+        _cost.push_back(4);
         cost = ManaCost(_cost, 1);
     }
 
@@ -3896,7 +3898,9 @@ public:
         MTGAbility(observer, _id, _source)
     {
         canprevent = 0;
-        int8_t _cost[] = { Constants::MTG_COLOR_ARTIFACT, 2 };
+        std::vector<int8_t> _cost;
+        _cost.push_back(Constants::MTG_COLOR_ARTIFACT);
+        _cost.push_back(2);
         cost = ManaCost(_cost, 1);
     }
 
@@ -3990,7 +3994,9 @@ public:
     AFarmstead(GameObserver* observer, int _id, MTGCardInstance * source, MTGCardInstance * _target) :
         ActivatedAbility(observer, _id, source, 0, 1)
     {
-        int8_t _cost[] = { Constants::MTG_COLOR_WHITE, 2 };
+         std::vector<int8_t> _cost;
+        _cost.push_back(Constants::MTG_COLOR_WHITE);
+        _cost.push_back(2);
         setCost(NEW ManaCost(_cost, 1), true);
         target = _target;
         usedThisTurn = 0;

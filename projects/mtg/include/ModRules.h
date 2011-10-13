@@ -84,6 +84,42 @@ public:
     ~ModRulesMenu();
 };
 
+
+class ModRulesBackGroundCardGuiItem
+{
+protected:
+    static int strToint(string str);
+public:
+    int mColorId;
+    string MColorName;
+    string mDisplayImg;
+    string mDisplayThumb;
+    int mMenuIcon;
+    ModRulesBackGroundCardGuiItem(string ColorId,string ColorName, string DisplayImg, string DisplayThumb,string MenuIcon);
+};
+
+class ModRulesRenderCardGuiItem
+{
+public:
+    string mName;
+    int mPosX;
+    int mPosY;
+    string mType;
+    string mFormattedData;
+    
+    ModRulesRenderCardGuiItem(string Name, string PosX, string PosY, string FormattedData, string Type);
+};
+
+class ModRulesCardGui
+{
+public:
+    vector<ModRulesBackGroundCardGuiItem *> background;
+    vector<ModRulesRenderCardGuiItem *> renderbig;
+    vector<ModRulesRenderCardGuiItem *> rendertinycrop;
+    void parse(TiXmlElement* element);
+    ~ModRulesCardGui();
+};
+
 class ModRulesGame
 {
 public:
@@ -123,7 +159,7 @@ public:
     ModRulesCards cards;
     ModRulesMenu menu;
     ModRulesGame game;
-
+    ModRulesCardGui cardgui;
     bool load(string filename);
     static int getValueAsInt(TiXmlElement* element, string childName);
 

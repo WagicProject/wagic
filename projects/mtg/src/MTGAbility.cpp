@@ -2983,7 +2983,10 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
 
     case 1103: //Crystal Rod
     {
-        int8_t cost[] = { Constants::MTG_COLOR_ARTIFACT, 1 };
+        
+        std::vector<int8_t> cost;
+        cost.push_back(Constants::MTG_COLOR_ARTIFACT);
+        cost.push_back(1);
         ASpellCastLife* ability = NEW ASpellCastLife(observer, _id, card, Constants::MTG_COLOR_BLUE, NEW ManaCost(cost, 1), 1);
         observer->addObserver(ability);
         break;
@@ -3015,7 +3018,10 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
     }
     case 1113: //Iron Star
     {
-        int8_t cost[] = { Constants::MTG_COLOR_ARTIFACT, 1 };
+        
+        std::vector<int8_t> cost;
+        cost.push_back(Constants::MTG_COLOR_ARTIFACT);
+        cost.push_back(1);
         ASpellCastLife* ability = NEW ASpellCastLife(observer, _id, card, Constants::MTG_COLOR_RED, NEW ManaCost(cost, 1), 1);
         observer->addObserver(ability);
         break;
@@ -3027,7 +3033,9 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
     }
     case 1114: //Ivory cup
     {
-        int8_t cost[] = { Constants::MTG_COLOR_ARTIFACT, 1 };
+        std::vector<int8_t> cost;
+        cost.push_back(Constants::MTG_COLOR_ARTIFACT);
+        cost.push_back(1);
         ASpellCastLife* ability = NEW ASpellCastLife(observer, _id, card, Constants::MTG_COLOR_WHITE, NEW ManaCost(cost, 1), 1);
         observer->addObserver(ability);
         break;
@@ -3100,7 +3108,9 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
 
     case 1140: //Throne of Bone
     {
-        int8_t cost[] = { Constants::MTG_COLOR_ARTIFACT, 1 };
+        std::vector<int8_t> cost;
+        cost.push_back(Constants::MTG_COLOR_ARTIFACT);
+        cost.push_back(1);
         ASpellCastLife* ability = NEW ASpellCastLife(observer, _id, card, Constants::MTG_COLOR_BLACK, NEW ManaCost(cost, 1), 1);
         observer->addObserver(ability);
         break;
@@ -3108,7 +3118,9 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
 
     case 1142: //Wooden Sphere
     {
-        int8_t cost[] = { Constants::MTG_COLOR_ARTIFACT, 1 };
+        std::vector<int8_t> cost;
+        cost.push_back(Constants::MTG_COLOR_ARTIFACT);
+        cost.push_back(1);
         ASpellCastLife* ability = NEW ASpellCastLife(observer, _id, card, Constants::MTG_COLOR_GREEN, NEW ManaCost(cost, 1), 1);
         observer->addObserver(ability);
         break;

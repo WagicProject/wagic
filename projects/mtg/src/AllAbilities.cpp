@@ -1952,7 +1952,7 @@ int AARemoveMana::resolve()
         {
             if (mManaDesc) // Remove all mana Matching a description
             {
-                    for (unsigned int i = 0; i < Constants::MTG_NB_COLORS; i++)
+                    for (int i = 0; i < Constants::NB_Colors; i++)
                     {
                         if (mManaDesc->hasColor(i))
                             manaPool->removeAll(i);
@@ -2635,7 +2635,7 @@ void AAlterCost::increaseTheCost(MTGCardInstance * card)
 {
     if(card->getIncreasedManaCost()->getConvertedCost())
     {
-        for(int k = Constants::MTG_COLOR_ARTIFACT; k < Constants::MTG_NB_COLORS;k++)
+        for(int k = Constants::MTG_COLOR_ARTIFACT; k < Constants::NB_Colors;k++)
         {
             card->getManaCost()->add(k,card->getIncreasedManaCost()->getCost(k));
             if (card->getManaCost()->alternative)
@@ -2655,7 +2655,7 @@ void AAlterCost::decreaseTheCost(MTGCardInstance * card)
 {
     if(card->getReducedManaCost()->getConvertedCost())
     {
-        for(int k = Constants::MTG_COLOR_ARTIFACT; k < Constants::MTG_NB_COLORS;k++)
+        for(int k = Constants::MTG_COLOR_ARTIFACT; k < Constants::NB_Colors;k++)
         {
             card->getManaCost()->remove(k,card->getReducedManaCost()->getCost(k));
             if (card->getManaCost()->alternative)
@@ -2739,7 +2739,7 @@ int ATransformer::addToGame()
     while (_target->next)
         _target = _target->next;
 
-    for (int j = 0; j < Constants::MTG_NB_COLORS; j++)
+    for (int j = 0; j < Constants::NB_Colors; j++)
     {
         if (_target->hasColor(j))
             oldcolors.push_back(j);
@@ -4210,7 +4210,7 @@ void PopulateColorIndexVector(list<int>& colors, const string& colorStringList, 
     vector<string> abilitiesList = split(colorStringList, delimiter);
     for (vector<string>::iterator iter = abilitiesList.begin(); iter != abilitiesList.end(); ++iter)
     {
-        for (int colorIndex = Constants::MTG_COLOR_ARTIFACT; colorIndex < Constants::MTG_NB_COLORS; ++colorIndex)
+        for (int colorIndex = Constants::MTG_COLOR_ARTIFACT; colorIndex < Constants::NB_Colors; ++colorIndex)
         {
             // if the text is not a basic ability but contains a valid color add it to the color vector
             if ((Constants::GetBasicAbilityIndex(*iter) == -1)

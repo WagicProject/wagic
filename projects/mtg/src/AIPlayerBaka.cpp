@@ -773,7 +773,7 @@ bool AIPlayerBaka::payTheManaCost(ManaCost * cost, MTGCardInstance * target,vect
             {
                 used[card] = true;
                 int doUse = 1;
-                for (int i = Constants::MTG_NB_COLORS - 1; i >= 0; i--)
+                for (int i = Constants::NB_Colors - 1; i >= 0; i--)
                 {
                     if (diff->getCost(i) && amp->output->getCost(i))
                     {
@@ -908,7 +908,7 @@ vector<MTGAbility*> AIPlayerBaka::canPayMana(MTGCardInstance * target,ManaCost *
         }
         else if (amp && canHandleCost(amp) && amp->isReactingToClick(amp->source,amp->getCost()))
         {
-            for (int k = Constants::MTG_NB_COLORS-1; k > 0 ; k--)//go backwards.
+            for (int k = Constants::NB_Colors-1; k > 0 ; k--)//go backwards.
             {
                 if (cost->hasColor(k) && amp->output->hasColor(k) && result->getCost(k) < cost->getCost(k))
                 {
@@ -993,7 +993,7 @@ vector<MTGAbility*> AIPlayerBaka::canPayMana(MTGCardInstance * target,ManaCost *
         ManaCost * checkResult = NEW ManaCost();
         check->init();
         checkResult->init();
-        for (int k = 1; k < Constants::MTG_NB_COLORS; k++)
+        for (int k = 1; k < Constants::NB_Colors; k++)
         {
             check->add(k,cost->getCost(k));
             checkResult->add(k,result->getCost(k));
@@ -1056,7 +1056,7 @@ vector<MTGAbility*> AIPlayerBaka::canPaySunBurst(ManaCost * cost)
             continue;//pentid prism, has no cost but contains a counter cost, without this check ai will think it can still use this mana.
         if (amp && canHandleCost(amp) && amp->isReactingToClick(amp->source,amp->getCost()))
         {
-            for (int k = Constants::MTG_NB_COLORS-1; k > 0 ; k--)
+            for (int k = Constants::NB_Colors-1; k > 0 ; k--)
             {
                 if (amp->output->hasColor(k) && result->getCost(k) < 1 && result->getConvertedCost() < cost->getConvertedCost())
                 {

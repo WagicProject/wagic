@@ -5,7 +5,7 @@ using std::string;
 #include "MTGDefinitions.h"
 
 char Constants::MTGColorChars[] = {'x','g','u','r','b','w','l'};
-const char* Constants::MTGColorStrings[] = {"artifact", "green", "blue", "red", "black", "white", "land"};
+vector <const char*> Constants::MTGColorStrings;
 
 const string Constants::kManaColorless      = "colorless";
 const string Constants::kManaGreen          = "green";
@@ -25,6 +25,8 @@ const string Constants::kFlashBackKeyword = "flashback";
 const string Constants::kRetraceKeyword = "retrace";
 const string Constants::kKickerKeyword = "kicker";
 const string Constants::kMorphKeyword = "facedown";
+
+int Constants::NB_Colors; //Store de Max number of colors
 
 const char* Constants::MTGBasicAbilities[] = {
     "trample",
@@ -141,7 +143,7 @@ int Constants::GetBasicAbilityIndex(string basicAbllity)
 
 int Constants::GetColorStringIndex(string mtgColor)
 {
-    for (int idx = 0; idx < Constants::MTG_NB_COLORS; ++idx)
+    for (int idx = 0; idx < Constants::NB_Colors; ++idx)
     {
         if (Constants::MTGColorStrings[idx])
             return idx;

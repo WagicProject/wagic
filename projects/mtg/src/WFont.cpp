@@ -516,7 +516,7 @@ void WFBFont::DrawString(const char *s, float x, float y, int align, float leftO
                             mRenderer->RenderQuad(manaIcons[mana].get(), xx + 3 * sinf(2 * M_PI * ((float) t) / 256.0f), yy + 3 * cosf(2
                                             * M_PI * ((float) (t - 35)) / 256.0f), 0, 0.5f * mScale, 0.5f * mScale);
                         }
-                        mana = Constants::MTG_NB_COLORS + 1; // do not draw colorless cost in hybrid mana cost
+                        mana = Constants::NB_Colors + 1; // do not draw colorless cost in hybrid mana cost
                     }
                     else
                         mRenderer->RenderQuad(manaIcons[mana].get(), xx, yy, 0, 0.5f * mScale, 0.5f * mScale);
@@ -935,7 +935,7 @@ void WGBKFont::DrawString(const char *s, float x, float y, int align, float left
                             mRenderer->RenderQuad(manaIcons[mana].get(), xx + 3 * sinf(2 * M_PI * ((float) t) / 256.0f), yy + 3 * cosf(2
                                             * M_PI * ((float) (t - 35)) / 256.0f), 0, 0.5f * mScale, 0.5f * mScale);
                         }
-                        mana = Constants::MTG_NB_COLORS + 1; // donot draw colorless cost in hybrid mana cost
+                        mana = Constants::NB_Colors + 1; // donot draw colorless cost in hybrid mana cost
                     }
                     else
                         mRenderer->RenderQuad(manaIcons[mana].get(), xx, yy, 0, 0.5f * mScale, 0.5f * mScale);

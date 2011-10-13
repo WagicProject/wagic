@@ -132,16 +132,12 @@ const string CardPrimitive::getOtherRestrictions()
 
 void CardPrimitive::setColor(const string& _color, int removeAllOthers)
 {
-    if (_color.compare(Constants::kManaBlue) == 0)
-        return setColor(Constants::MTG_COLOR_BLUE, removeAllOthers);
-    if (_color.compare(Constants::kManaRed) == 0)
-        return setColor(Constants::MTG_COLOR_RED, removeAllOthers);
-    if (_color.compare(Constants::kManaGreen) == 0)
-        return setColor(Constants::MTG_COLOR_GREEN, removeAllOthers);
-    if (_color.compare(Constants::kManaBlack) == 0)
-        return setColor(Constants::MTG_COLOR_BLACK, removeAllOthers);
-    if (_color.compare(Constants::kManaWhite) == 0)
-        return setColor(Constants::MTG_COLOR_WHITE, removeAllOthers);
+    for( size_t i =0 ; i< Constants::MTGColorStrings.size(); i++)
+    {
+        if (_color.compare(Constants::MTGColorStrings._Myfirst[i]) == 0)
+            return setColor(i, removeAllOthers);
+    }
+    //Keep artifact compare, to Remove this we need change all MTG.txt
     if (_color.compare("artifact") == 0)
         return setColor(Constants::MTG_COLOR_ARTIFACT, removeAllOthers);
 }
@@ -164,7 +160,7 @@ int CardPrimitive::getColor()
 {
     if (colors)
     {
-        for (int i = 1; i < Constants::MTG_NB_COLORS; i++)
+        for (int i = 1; i < Constants::NB_Colors; i++)
             if (hasColor(i))
                 return i;
     }

@@ -552,7 +552,7 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                 {
                     int attributefound = 0;
                     //Colors - remove Artifact and Land from the loop
-                    for (int cid = 1; cid < Constants::MTG_NB_COLORS - 1; cid++)
+                    for (int cid = 1; cid < Constants::NB_Colors - 1; cid++)
                     { 
                         if (attribute.find(Constants::MTGColorStrings[cid]) != string::npos)
                         {

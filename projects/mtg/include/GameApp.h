@@ -108,6 +108,6 @@ public:
 
 };
 
-extern JQuadPtr manaIcons[7];
+extern vector<JQuadPtr> manaIcons;
 
 #endif

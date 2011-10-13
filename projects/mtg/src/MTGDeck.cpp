@@ -308,8 +308,9 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
 
 void MTGAllCards::initCounters()
 {
-    for (int i = 0; i < Constants::MTG_NB_COLORS; i++)
-        colorsCount[i] = 0;
+    colorsCount.erase(colorsCount.begin(),colorsCount.end());
+    for (int i = 0; i < Constants::NB_Colors; i++)
+        colorsCount.push_back(0);
 }
 
 void MTGAllCards::init()
@@ -480,7 +481,7 @@ int MTGAllCards::countByColor(int color)
 {
     if (colorsCount[color] == 0)
     {
-        for (int i = 0; i < Constants::MTG_NB_COLORS; i++)
+        for (int i = 0; i < Constants::NB_Colors; i++)
         {
             colorsCount[i] = 0;
         }
@@ -811,8 +812,9 @@ int MTGDeck::addRandomCards(int howmany, int * setIds, int nbSets, int rarity, c
 {
     if (howmany <= 0) return 1;
 
-    int unallowedColors[Constants::MTG_NB_COLORS + 1];
-    for (int i = 0; i < Constants::MTG_NB_COLORS; ++i)
+    vector<int> unallowedColors;
+    unallowedColors.resize(Constants::NB_Colors + 1);
+    for (int i = 0; i < Constants::NB_Colors; ++i)
     {
         if (nbcolors)
             unallowedColors[i] = 1;
@@ -854,7 +856,7 @@ int MTGDeck::addRandomCards(int howmany, int * setIds, int nbSets, int rarity, c
 
             if (ok)
             {
-                for (int j = 0; j < Constants::MTG_NB_COLORS; ++j)
+                for (int j = 0; j < Constants::NB_Colors; ++j)
                 {
                     if (unallowedColors[j] && card->data->hasColor(j))
                     {

@@ -41,6 +41,10 @@ bool ModRules::load(string filename)
             {
                  game.parse(element);
             }
+            else if (strcmp(element->Value(), "cardgui") == 0)
+            {
+                 cardgui.parse(element);
+            }
         }
     }
     return true;
@@ -276,4 +280,83 @@ void  ModRulesCards::parse(TiXmlElement* element)
 ModRulesCards::~ModRulesCards()
 {
     SAFE_DELETE(activateEffect);
+}
+
+ModRulesBackGroundCardGuiItem::ModRulesBackGroundCardGuiItem(string ColorId,string ColorName, string DisplayImg, string DisplayThumb,string MenuIcon)
+{
+    mColorId = atoi(ColorId.c_str());
+    MColorName = ColorName;
+    mDisplayImg = DisplayImg;
+    mDisplayThumb = DisplayThumb;
+    mMenuIcon = atoi(MenuIcon.c_str());
+}
+
+ModRulesRenderCardGuiItem::ModRulesRenderCardGuiItem(string Name, string PosX, string PosY, string FormattedData, string Type)
+{
+    mName = Name;
+    mPosX = atoi(PosX.c_str());
+    mPosY = atoi(PosY.c_str());
+    mFormattedData = FormattedData;
+    mType = Type;
+}
+
+void ModRulesCardGui::parse(TiXmlElement* element)
+{
+    TiXmlNode* mainNode = element->FirstChild("background");
+    if (mainNode) {
+        for (TiXmlNode* node = mainNode->ToElement()->FirstChild("card"); node; node = node->NextSibling("card"))
+        {
+            TiXmlElement* element = node->ToElement();
+            {
+                background.push_back(NEW ModRulesBackGroundCardGuiItem(
+                    element->Attribute("id"), 
+                    element->Attribute("color"),
+                    element->Attribute("img"), 
+                    element->Attribute("thumb"),
+                    element->Attribute("menuicon")));
+            }
+        }
+    }
+    mainNode = element->FirstChild("renderbig");
+    if (mainNode) {
+        for (TiXmlNode* node = mainNode->ToElement()->FirstChild("item"); node; node = node->NextSibling("item"))
+        {
+            TiXmlElement* element = node->ToElement();
+            {
+                renderbig.push_back(NEW ModRulesRenderCardGuiItem(
+                    element->Attribute("name"), 
+                    element->Attribute("posx"), 
+                    element->Attribute("posy"),
+                    element->Attribute("formattedtext"), 
+                    element->Attribute("type")));
+            }
+        }
+    }
+    mainNode = element->FirstChild("rendertinycrop");
+    if (mainNode) {
+        for (TiXmlNode* node = mainNode->ToElement()->FirstChild("item"); node; node = node->NextSibling("item"))
+        {
+            TiXmlElement* element = node->ToElement();
+            {
+                renderbig.push_back(NEW ModRulesRenderCardGuiItem(
+                    element->Attribute("name"), 
+                    element->Attribute("posx"), 
+                    element->Attribute("posy"),
+                    element->Attribute("formattedtext"), 
+                    element->Attribute("type")));
+            }
+        }
+    }
+}
+
+ModRulesCardGui::~ModRulesCardGui()
+{
+    for (size_t i = 0; i < background.size(); ++i)
+        SAFE_DELETE(background[i]);
+    for (size_t i = 0; i < renderbig.size(); ++i)
+        SAFE_DELETE(renderbig[i]);
+
+    background.clear();
+    renderbig.clear(); 
+    
 }

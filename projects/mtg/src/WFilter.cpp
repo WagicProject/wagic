@@ -218,7 +218,7 @@ string WCFilterColor::getCode()
 {
     char buf[12];
     char c = '?';
-    if (color < 0 || color >= Constants::MTG_NB_COLORS) c = Constants::MTGColorChars[color];
+    if (color < 0 || color >= Constants::NB_Colors) c = Constants::MTGColorChars[color];
     sprintf(buf, "color:%c;", c);
     return buf;
 }
@@ -227,7 +227,7 @@ WCFilterColor::WCFilterColor(string arg)
 {
     color = -1;
     char c = tolower(arg[0]);
-    for (int i = 0; i < Constants::MTG_NB_COLORS; i++)
+    for (int i = 0; i < Constants::NB_Colors; i++)
     {
         if (Constants::MTGColorChars[i] == c)
         {
@@ -240,7 +240,7 @@ WCFilterColor::WCFilterColor(string arg)
 bool WCFilterOnlyColor::isMatch(MTGCard * c)
 {
     if (!c || !c->data) return false;
-    for (int i = 0; i < Constants::MTG_NB_COLORS; i++)
+    for (int i = 0; i < Constants::NB_Colors; i++)
     {
         if (i == color) continue;
         if (c->data->hasColor(i)) return false;
@@ -251,7 +251,7 @@ string WCFilterOnlyColor::getCode()
 {
     char buf[12];
     char c = '?';
-    if (color < 0 || color >= Constants::MTG_NB_COLORS) c = Constants::MTGColorChars[color];
+    if (color < 0 || color >= Constants::NB_Colors) c = Constants::MTGColorChars[color];
     sprintf(buf, "xcolor:%c;", c);
     return buf;
 }
@@ -290,7 +290,7 @@ string WCFilterProducesColor::getCode()
 {
     char buf[12];
     char c = '?';
-    if (color < 0 || color >= Constants::MTG_NB_COLORS) c = Constants::MTGColorChars[color];
+    if (color < 0 || color >= Constants::NB_Colors) c = Constants::MTGColorChars[color];
     sprintf(buf, "produces:%c;", c);
     return buf;
 }

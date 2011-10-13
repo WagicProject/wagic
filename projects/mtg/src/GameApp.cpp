@@ -39,7 +39,7 @@ JMusic * GameApp::music = NULL;
 string GameApp::currentMusicFile = "";
 string GameApp::systemError = "";
 
-JQuadPtr manaIcons[7];
+vector<JQuadPtr > manaIcons;
 
 GameState::GameState(GameApp* parent, string id) :
     mParent(parent), mStringID(id)
@@ -161,22 +161,25 @@ void GameApp::Create()
     LOG("--Loading menuicons.png");
     WResourceManager::Instance()->RetrieveTexture("menuicons.png", RETRIEVE_MANAGE);
     LOG("---Gettings menuicons.png quads");
-    //Creating thes quad in this specific order allows us to have them in the correct order to call them by integer id
-    manaIcons[Constants::MTG_COLOR_GREEN] = WResourceManager::Instance()->RetrieveQuad("menuicons.png", 2 + 0 * 36, 38, 32, 32, "c_green",
-                    RETRIEVE_MANAGE);
-    manaIcons[Constants::MTG_COLOR_BLUE] = WResourceManager::Instance()->RetrieveQuad("menuicons.png", 2 + 1 * 36, 38, 32, 32, "c_blue",
-                    RETRIEVE_MANAGE);
-    manaIcons[Constants::MTG_COLOR_RED] = WResourceManager::Instance()->RetrieveQuad("menuicons.png", 2 + 3 * 36, 38, 32, 32, "c_red", RETRIEVE_MANAGE);
-    manaIcons[Constants::MTG_COLOR_BLACK] = WResourceManager::Instance()->RetrieveQuad("menuicons.png", 2 + 2 * 36, 38, 32, 32, "c_black",
-                    RETRIEVE_MANAGE);
-    manaIcons[Constants::MTG_COLOR_WHITE] = WResourceManager::Instance()->RetrieveQuad("menuicons.png", 2 + 4 * 36, 38, 32, 32, "c_white",
-                    RETRIEVE_MANAGE);
-    manaIcons[Constants::MTG_COLOR_LAND] = WResourceManager::Instance()->RetrieveQuad("menuicons.png", 2 + 5 * 36, 38, 32, 32, "c_land",
-                    RETRIEVE_MANAGE);
-    manaIcons[Constants::MTG_COLOR_ARTIFACT] = WResourceManager::Instance()->RetrieveQuad("menuicons.png", 2 + 6 * 36, 38, 32, 32, "c_artifact",
-                    RETRIEVE_MANAGE);
+   
+    //Load all icons from gModRules and save in manaIcons -> todo. Change the icons positions on menuicons.png to avoid use item->mColorId
+    vector<ModRulesBackGroundCardGuiItem *>items = gModRules.cardgui.background;
+    for(size_t i= 0; i < items.size(); i ++)
+    {
+        
+        ModRulesBackGroundCardGuiItem * item = items[i];
+        if (item->mMenuIcon == 1)
+        {
+            manaIcons.push_back(WResourceManager::Instance()->RetrieveQuad("menuicons.png", 2 + (float)item->mColorId * 36, 38, 32, 32, "c_" + item->MColorName, RETRIEVE_MANAGE));
+            Constants::MTGColorStrings.push_back(item->MColorName.c_str());
+        }
+    }
+    Constants::NB_Colors = (int)Constants::MTGColorStrings.size();
+    
+    items.erase(items.begin(),items.end());
+    
 
-    for (int i = sizeof(manaIcons) / sizeof(manaIcons[0]) - 1; i >= 0; --i)
+    for (int i = manaIcons.size()-1; i >= 0; --i)
         if (manaIcons[i].get())
             manaIcons[i]->SetHotSpot(16, 16);
 

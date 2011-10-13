@@ -240,11 +240,12 @@ GuiMana::~GuiMana()
 
 void GuiMana::RenderStatic()
 {
-    int values[Constants::MTG_NB_COLORS];
+    vector<int> values;
+    values.resize(Constants::NB_Colors);
     int totalColors = 0;
     WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
     JRenderer * r = JRenderer::GetInstance();
-    for (int i = 0; i < Constants::MTG_NB_COLORS; ++i)
+    for (int i = 0; i < Constants::NB_Colors; ++i)
         values[i] = 0;
     for (vector<ManaIcon*>::iterator it = manas.begin(); it != manas.end(); ++it)
         if (ManaIcon::ALIVE == (*it)->mode)
@@ -263,7 +264,7 @@ void GuiMana::RenderStatic()
     r->FillRoundRect(x0, y - 5, static_cast<float> (20 * totalColors + 5), 20, 2, ARGB(128,0,0,0));
 
     int offset = 0;
-    for (int i = 0; i < Constants::MTG_NB_COLORS; ++i)
+    for (int i = 0; i < Constants::NB_Colors; ++i)
     {
         if (values[i])
         {
@@ -273,7 +274,7 @@ void GuiMana::RenderStatic()
     }
     r->FillRoundRect(x0, y, static_cast<float> (20 * totalColors + 5), 8, 2, ARGB(100,0,0,0));
     offset = 0;
-    for (int i = 0; i < Constants::MTG_NB_COLORS; ++i)
+    for (int i = 0; i < Constants::NB_Colors; ++i)
     {
         if (values[i])
         {

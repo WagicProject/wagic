@@ -99,7 +99,7 @@ private:
 
 protected:
     int conf_read_mode;
-    int colorsCount[Constants::MTG_NB_COLORS];
+    vector <int> colorsCount;
     int total_cards;
     void init();
     void initCounters();

@@ -249,7 +249,7 @@ class Constants
     };
 
   static char MTGColorChars[];
-  static const char* MTGColorStrings[];
+  static vector <const char*> MTGColorStrings;
   static int _r[], _g[], _b[];
 
   static map<string,int> MTGBasicAbilitiesMap;
@@ -259,7 +259,7 @@ class Constants
 
   static int GetBasicAbilityIndex(string mtgAbility);
   static int GetColorStringIndex(string mtgColor);
-   
+  static int NB_Colors; 
 };
 
 #endif

@@ -208,7 +208,7 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
                                 }
                                 else
                                 {
-                                    for (int j = 0; j < Constants::MTG_NB_COLORS; j++)
+                                    for (int j = 0; j < Constants::NB_Colors; j++)
                                     {
                                         if (c == Constants::MTGColorChars[j])
                                         {
@@ -245,12 +245,12 @@ ManaCost::ManaCost()
     init();
 }
 
-ManaCost::ManaCost(int8_t _cost[], int nb_elems)
+ManaCost::ManaCost(vector<int8_t>& _cost, int nb_elems)
 {
     init();
     for (int i = 0; i < nb_elems; i++)
     {
-        cost[_cost[i * 2]] = _cost[i * 2 + 1];
+        cost[_cost._Myfirst[i * 2]] = _cost._Myfirst[i * 2 + 1];
     }
 
 }
@@ -262,7 +262,7 @@ ManaCost::ManaCost(ManaCost * manaCost)
     init();
     if ( !manaCost ) 
         return;
-    for (int i = 0; i <= Constants::MTG_NB_COLORS; i++)
+    for (int i = 0; i <= Constants::NB_Colors; i++)
     {
         cost[i] = manaCost->getCost(i);
     }
@@ -288,9 +288,9 @@ ManaCost::ManaCost(const ManaCost& manaCost)
     : InstanceCounter<ManaCost>(manaCost)
 #endif
 {
-    for (int i = 0; i <= Constants::MTG_NB_COLORS; i++)
+    for (int i = 0; i <= Constants::NB_Colors; i++)
     {
-        cost[i] = manaCost.cost[i];      
+        cost.push_back(manaCost.cost[i]);      
     }
  
     hybrids = manaCost.hybrids;
@@ -312,7 +312,7 @@ ManaCost & ManaCost::operator= (const ManaCost & manaCost)
 {
     if ( this != &manaCost )
     {
-        for (int i = 0; i < Constants::MTG_NB_COLORS; i++)
+        for (int i = 0; i < Constants::NB_Colors; i++)
             cost[i] = manaCost.cost[i];
 
         hybrids = manaCost.hybrids;
@@ -338,24 +338,27 @@ ManaCost::~ManaCost()
     SAFE_DELETE(Retrace);
     SAFE_DELETE(morph);
     SAFE_DELETE(suspend);
+
+    cost.erase(cost.begin() ,cost.end());
 }
 
 void ManaCost::x()
 {
-    cost[Constants::MTG_NB_COLORS] = 1;
+    cost[Constants::NB_Colors] = 1;
 }
 
 int ManaCost::hasX()
 {
-    return cost[Constants::MTG_NB_COLORS];
+    return cost[Constants::NB_Colors];
 }
 
 void ManaCost::init()
 {
     int i;
-    for (i = 0; i <= Constants::MTG_NB_COLORS; i++)
+    cost.erase(cost.begin(),cost.end());
+    for (i = 0; i <= Constants::NB_Colors; i++)
     {
-        cost[i] = 0;
+        cost.push_back(0);
     }
     extraCosts = NULL;
     kicker = NULL;
@@ -371,9 +374,12 @@ void ManaCost::init()
 void ManaCost::reinit()
 {
     int i;
-    for (i = 0; i <= Constants::MTG_NB_COLORS; i++)
+    
+    cost.erase(cost.begin() ,cost.end());
+
+    for (i = 0; i <= Constants::NB_Colors; i++)
     {
-        cost[i] = 0;
+        cost.push_back(0);
     }
     SAFE_DELETE(extraCosts);
     SAFE_DELETE(kicker);
@@ -389,9 +395,12 @@ void ManaCost::copy(ManaCost * _manaCost)
 {
     if (!_manaCost)
         return;
-    for (unsigned int i = 0; i <= Constants::MTG_NB_COLORS; i++)
+
+    cost.erase(cost.begin() ,cost.end());
+
+    for (int i = 0; i <= Constants::NB_Colors; i++)
     {
-        cost[i] = _manaCost->getCost(i);
+        cost.push_back(_manaCost->getCost(i));
     }
 
     hybrids = _manaCost->hybrids;
@@ -483,7 +492,7 @@ int ManaCost::isNull()
 int ManaCost::getConvertedCost()
 {
     int result = 0;
-    for (unsigned int i = 0; i < Constants::MTG_NB_COLORS; i++)
+    for ( int i = 0; i < Constants::NB_Colors; i++)
     {
         result += cost[i];
     }
@@ -524,7 +533,7 @@ int ManaCost::add(ManaCost * _cost)
 {
     if (!_cost)
         return 0;
-    for (unsigned int i = 0; i < Constants::MTG_NB_COLORS; i++)
+    for ( int i = 0; i < Constants::NB_Colors; i++)
     {
         cost[i] += _cost->getCost(i);
     }
@@ -538,7 +547,7 @@ int ManaCost::remove(ManaCost * _cost)
 {
     if (!_cost)
         return 0;
-    for (unsigned int i = 0; i < Constants::MTG_NB_COLORS; i++)
+    for ( int i = 0; i < Constants::NB_Colors; i++)
     {
         int8_t toRemove = min(cost[i], (int8_t)_cost->getCost(i)); //we don't want to be negative
         cost[i] -= toRemove;
@@ -601,7 +610,7 @@ int ManaCost::pay(ManaCost * _cost)
     ManaCost * toPay = NEW ManaCost();
     toPay->copy(_cost);
     ManaCost * diff = Diff(toPay);
-    for (int i = 0; i < Constants::MTG_NB_COLORS; i++)
+    for (int i = 0; i < Constants::NB_Colors; i++)
     {
         cost[i] = diff->getCost(i);
     }
@@ -626,10 +635,10 @@ int ManaCost::canAfford(ManaCost * _cost)
 
 int ManaCost::isPositive()
 {
-    for (int i = 0; i < Constants::MTG_NB_COLORS; i++)
+    for (int i = 0; i < Constants::NB_Colors; i++)
     {
 
-        if (cost[i] < 0)
+        if (cost._Myfirst[i] < 0)
         {
             return 0;
         }
@@ -638,7 +647,7 @@ int ManaCost::isPositive()
 
 }
 
-void ManaCost::randomDiffHybrids(ManaCost * _cost, int8_t diff[])
+void ManaCost::randomDiffHybrids(ManaCost * _cost, std::vector<int8_t>& diff)
 {
     for (size_t i = 0; i < _cost->hybrids.size(); i++)
     {
@@ -650,7 +659,7 @@ void ManaCost::randomDiffHybrids(ManaCost * _cost, int8_t diff[])
 /**
     starting from the end of the array (diff) 
 */
-int ManaCost::tryToPayHybrids(std::vector<ManaCostHybrid>& _hybrids, int _nbhybrids, int8_t diff[])
+int ManaCost::tryToPayHybrids(std::vector<ManaCostHybrid>& _hybrids, int _nbhybrids, std::vector<int8_t>& diff)
 {
     if (!_nbhybrids)
         return 1;
@@ -681,12 +690,13 @@ ManaCost * ManaCost::Diff(ManaCost * _cost)
     if (!_cost) 
         return NEW ManaCost(*this); //diff with null is equivalent to diff with 0
 
-    int8_t diff[(Constants::MTG_NB_COLORS + 1) * 2];
-    diff[Constants::MTG_NB_COLORS * 2] = Constants::MTG_NB_COLORS;
-    for (int i = 0; i < Constants::MTG_NB_COLORS; i++)
+    vector<int8_t> diff;
+    diff.resize((Constants::NB_Colors + 1) * 2);
+    diff[Constants::NB_Colors * 2] = Constants::NB_Colors;
+    for (int i = 0; i < Constants::NB_Colors; i++)
     {
         diff[i * 2] = i;
-        diff[i * 2 + 1] = cost[i] - _cost->getCost(i);
+        diff[i * 2 + 1] = cost._Myfirst[i] - _cost->getCost(i);
     }
     int hybridResult = tryToPayHybrids(_cost->hybrids, _cost->hybrids.size(), diff);
     if (!hybridResult)
@@ -696,7 +706,7 @@ ManaCost * ManaCost::Diff(ManaCost * _cost)
     int colorless_idx = Constants::MTG_COLOR_ARTIFACT * 2 + 1;
     if (diff[colorless_idx] < 0)
     {
-        for (int i = 0; i < Constants::MTG_NB_COLORS; i++)
+        for (int i = 0; i < Constants::NB_Colors; i++)
         {
             if (diff[i * 2 + 1] > 0)
             {
@@ -718,18 +728,18 @@ ManaCost * ManaCost::Diff(ManaCost * _cost)
     //Cost X
     if (_cost->hasX())
     {
-        diff[Constants::MTG_NB_COLORS * 2 + 1] = 0;
-        for (int i = 0; i < Constants::MTG_NB_COLORS; i++)
+        diff[Constants::NB_Colors * 2 + 1] = 0;
+        for (int i = 0; i < Constants::NB_Colors; i++)
         {
             if (diff[i * 2 + 1] > 0)
             {
-                diff[Constants::MTG_NB_COLORS * 2 + 1] += diff[i * 2 + 1];
+                diff[Constants::NB_Colors * 2 + 1] += diff[i * 2 + 1];
                 diff[i * 2 + 1] = 0;
             }
         }
     }
 
-    ManaCost * result = NEW ManaCost(diff, Constants::MTG_NB_COLORS + 1);
+    ManaCost * result = NEW ManaCost(diff, Constants::NB_Colors + 1);
     return result;
 
 }
@@ -737,7 +747,7 @@ ManaCost * ManaCost::Diff(ManaCost * _cost)
 string ManaCost::toString()
 {
     ostringstream oss;
-    for (int i = 0; i <= Constants::MTG_NB_COLORS; i++)
+    for (int i = 0; i <= Constants::NB_Colors; i++)
     {
         if (cost[i])
         {
@@ -828,7 +838,7 @@ int ManaPool::add(ManaCost * _cost, MTGCardInstance * source)
     if (!_cost)
         return 0;
     int result = ManaCost::add(_cost);
-    for (unsigned int i = 0; i < Constants::MTG_NB_COLORS; i++)
+    for (int i = 0; i < Constants::NB_Colors; i++)
     {
         for (int j = 0; j < _cost->getCost(i); j++)
         {
@@ -841,14 +851,14 @@ int ManaPool::add(ManaCost * _cost, MTGCardInstance * source)
 
 int ManaPool::pay(ManaCost * _cost)
 {
-    int current[Constants::MTG_NB_COLORS];
-    for (unsigned int i = 0; i < Constants::MTG_NB_COLORS; i++)
+    vector<int> current;
+    for (int i = 0; i < Constants::NB_Colors; i++)
     {
-        current[i] = cost[i];
+        current.push_back(cost[i]);
     }
 
     int result = ManaCost::pay(_cost);
-    for (unsigned int i = 0; i < Constants::MTG_NB_COLORS; i++)
+    for (int i = 0; i < Constants::NB_Colors; i++)
     {
         int value = current[i] - cost[i];
         for (int j = 0; j < value; j++)
@@ -858,5 +868,6 @@ int ManaPool::pay(ManaCost * _cost)
 
         }
     }
+    current.erase(current.begin(),current.end());
     return result;
 }
