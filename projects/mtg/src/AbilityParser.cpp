@@ -10,13 +10,14 @@ using std::vector;
 vector<AutoLineMacro *> AutoLineMacro::gAutoLineMacros;
 map<string, bool> AutoLineMacro::gAutoLineMacrosIndex;
 
-AutoLineMacro::AutoLineMacro(string& s)
+AutoLineMacro::AutoLineMacro(const string& s)
 {
     parse(s);
 }
 
-void AutoLineMacro::parse(string& s)
+void AutoLineMacro::parse(const string& stringMacro)
 {
+    string s = stringMacro;
     //we convert to lower, because the counterpart (auto strings) is converted to lower at parse time
     std::transform(s.begin(), s.end(), s.begin(), ::tolower);
 
@@ -48,7 +49,7 @@ void AutoLineMacro::parse(string& s)
     boost::replace_all(mResult, "\\n", "\n");
 }
 
-string AutoLineMacro::process(string& s)
+string AutoLineMacro::process(const string& s)
 {
     string temp = s;
     if (!mParams.size())
@@ -92,7 +93,7 @@ string AutoLineMacro::process(string& s)
         
 }
 
-bool AutoLineMacro::AddMacro(string& s)
+bool AutoLineMacro::AddMacro(const string& s)
 {
     AutoLineMacro * alm = NEW AutoLineMacro(s);
     if (gAutoLineMacrosIndex[alm->mName])
@@ -115,7 +116,7 @@ void AutoLineMacro::Destroy()
     }
 }
 
-string AutoLineMacro::Process(string& s)
+string AutoLineMacro::Process(const string& s)
 {
     string result = s;
     for (size_t i = 0; i < gAutoLineMacros.size(); ++i)

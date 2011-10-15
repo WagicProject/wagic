@@ -12,15 +12,16 @@ private:
     string mName;
     string mResult;
     vector<string> mParams;
-    void parse(string& s);
-    string process(string& s);
+    void parse(const string& s);
+    string process(const string& s);
+
     static vector<AutoLineMacro *> gAutoLineMacros;
     static map<string, bool> gAutoLineMacrosIndex;
 public:
-    AutoLineMacro(string& s);
+    AutoLineMacro(const string& s);
     static void Destroy();
-    static bool AddMacro(string& s);
-    static string Process(string& s);
+    static bool AddMacro(const string& s);
+    static string Process(const string& s);
 };
 
 #endif
