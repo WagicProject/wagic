@@ -30,6 +30,7 @@
 #include "ModRules.h"
 #include "JFileSystem.h"
 #include "Credits.h"
+#include "AbilityParser.h"
 
 #define DEFAULT_DURATION .25
 
@@ -327,6 +328,8 @@ void GameApp::Destroy()
 
     options.theGame = NULL;
     Unlockable::Destroy();
+
+    AutoLineMacro::Destroy();
 
     Rules::unloadAllRules();
     LOG("==Destroying GameApp Successful==");

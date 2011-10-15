@@ -946,7 +946,6 @@ class GenericActivatedAbility: public ActivatedAbility, public NestedAbility
 public:
     MTGGameZone * activeZone;
     string newName;
-    string castRestriction;
 
     GenericActivatedAbility(GameObserver* observer, string newName,string castRestriction,int _id, MTGCardInstance * card, MTGAbility * a, ManaCost * _cost, string limit = "",MTGAbility * sideEffects = NULL,string usesBeforeSideEffects = "",
             int restrictions = 0, MTGGameZone * dest = NULL);
@@ -1059,7 +1058,6 @@ public:
     int counters;
     MTGGameZone * activeZone;
     string newName;
-    string castRestriction;
 
     GenericTargetAbility(GameObserver* observer, string newName, string castRestriction, int _id, MTGCardInstance * _source, TargetChooser * _tc, MTGAbility * a, ManaCost * _cost = NULL, string limit = "",MTGAbility * sideEffects = NULL,string usesBeforeSideEffects = "", int restrictions = 0, MTGGameZone * dest = NULL);
     const char * getMenuText();

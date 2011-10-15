@@ -12,6 +12,7 @@
 #include "ThisDescriptor.h"
 #include "ExtraCost.h"
 #include "MTGRules.h"
+#include "AbilityParser.h"
 
 
 //Used for Lord/This parsing
@@ -2777,6 +2778,9 @@ int AbilityFactory::getAbilities(vector<MTGAbility *> * v, Spell * spell, MTGCar
     size_t found;
     int result = id;
 
+    magicText = AutoLineMacro::Process(magicText);
+
+
     while (magicText.size())
     {
         found = magicText.find("\n");
@@ -3891,13 +3895,13 @@ ostream& ActivatedAbility::toString(ostream& out) const
 }
 
 TargetAbility::TargetAbility(GameObserver* observer, int id, MTGCardInstance * card, TargetChooser * _tc, ManaCost * _cost, int _playerturnonly, string castRestriction) :
-    ActivatedAbility(observer, id, card, _cost, _playerturnonly, castRestriction), NestedAbility(NULL)
+    ActivatedAbility(observer, id, card, _cost, _playerturnonly, "", NULL, "", castRestriction), NestedAbility(NULL) //Todo fix this mess, why do we have to pass "", NULL, "" here before cast restrictions?
 {
     tc = _tc;
 }
 
 TargetAbility::TargetAbility(GameObserver* observer, int id, MTGCardInstance * card, ManaCost * _cost, int _playerturnonly, string castRestriction) :
-    ActivatedAbility(observer, id, card, _cost, _playerturnonly, castRestriction), NestedAbility(NULL)
+    ActivatedAbility(observer, id, card, _cost, _playerturnonly,  "", NULL, "", castRestriction), NestedAbility(NULL) //Todo fix this mess, why do we have to pass "", NULL, "" here before cast restrictions?
 {
     tc = NULL;
 }

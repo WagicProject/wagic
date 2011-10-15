@@ -41,6 +41,7 @@ PRECOMPILED_HEADER = include/PrecompiledHeader.h
 
 # MGT
 SOURCES += \
+        src/AbilityParser.cpp\
         src/ActionElement.cpp\
         src/ActionLayer.cpp\
         src/ActionStack.cpp\

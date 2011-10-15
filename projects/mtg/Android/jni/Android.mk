@@ -28,6 +28,7 @@ LOCAL_C_INCLUDES := \
 	$(LOCAL_PATH)/$(PNG_PATH) \
 
 LOCAL_SRC_FILES := $(SDL_PATH)/src/main/android/SDL_android_main.cpp \
+        $(MTG_PATH)/src/AbilityParser.cpp \
         $(MTG_PATH)/src/ActionElement.cpp \
         $(MTG_PATH)/src/ActionLayer.cpp \
         $(MTG_PATH)/src/ActionStack.cpp \

@@ -302,6 +302,7 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\AbilityParser.cpp" />
     <ClCompile Include="src\ActionElement.cpp" />
     <ClCompile Include="src\ActionLayer.cpp" />
     <ClCompile Include="src\ActionStack.cpp" />
@@ -438,6 +439,7 @@
     <None Include="Windows\Wagic.ico" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\AbilityParser.h" />
     <ClInclude Include="include\ActionElement.h" />
     <ClInclude Include="include\ActionLayer.h" />
     <ClInclude Include="include\ActionStack.h" />

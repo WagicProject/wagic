@@ -11,6 +11,7 @@
 #include "utils.h"
 #include "DeckManager.h"
 #include <iomanip>
+#include "AbilityParser.h"
 
 #if defined (WIN32) || defined (LINUX)
 #include <time.h>
@@ -341,6 +342,12 @@ int MTGAllCards::load(const char * config_file, const char * set_name, int autol
         if (!s.size()) continue;
         if (s[s.size() - 1] == '\r') s.erase(s.size() - 1); // Handle DOS files
         if (!s.size()) continue;
+        if (s.find("#AUTO_DEFINE ") == 0)
+        {
+            AutoLineMacro::AddMacro(s.substr(13));
+            continue;
+        }
+
         switch (conf_read_mode)
         {
         case MTGAllCards::READ_ANYTHING:

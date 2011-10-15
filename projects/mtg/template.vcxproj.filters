@@ -319,6 +319,9 @@
     <ClCompile Include="src\AIPlayerBakaB.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\AbilityParser.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\ActionElement.h">
@@ -661,6 +664,9 @@
       <Filter>inc</Filter>
     </ClInclude>
     <ClInclude Include="include\AIPlayerBakaB.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\AbilityParser.h">
       <Filter>inc</Filter>
     </ClInclude>
   </ItemGroup>

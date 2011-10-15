@@ -26,7 +26,7 @@ const string Constants::kRetraceKeyword = "retrace";
 const string Constants::kKickerKeyword = "kicker";
 const string Constants::kMorphKeyword = "facedown";
 
-int Constants::NB_Colors; //Store de Max number of colors
+int Constants::NB_Colors = 0; //Store the Max number of colors.
 
 const char* Constants::MTGBasicAbilities[] = {
     "trample",

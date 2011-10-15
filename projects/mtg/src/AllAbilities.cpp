@@ -8,7 +8,7 @@
 //Generic Activated Abilities
 GenericActivatedAbility::GenericActivatedAbility(GameObserver* observer, string newName, string castRestriction, int _id, MTGCardInstance * card, MTGAbility * a, ManaCost * _cost,
         string limit,MTGAbility * sideEffects,string usesBeforeSideEffects, int restrictions, MTGGameZone * dest) :
-    ActivatedAbility(observer, _id, card, _cost, restrictions,limit,sideEffects,usesBeforeSideEffects,castRestriction), NestedAbility(a), activeZone(dest),newName(newName),castRestriction(castRestriction)
+    ActivatedAbility(observer, _id, card, _cost, restrictions,limit,sideEffects,usesBeforeSideEffects,castRestriction), NestedAbility(a), activeZone(dest),newName(newName)
 {
     counters = 0;
     target = ability->target;
@@ -2486,9 +2486,9 @@ MultiAbility::~MultiAbility()
 }
 
 //Generic Target Ability
-GenericTargetAbility::GenericTargetAbility(GameObserver* observer, string newName, string castRestriction,int _id, MTGCardInstance * _source, TargetChooser * _tc, MTGAbility * a,
+GenericTargetAbility::GenericTargetAbility(GameObserver* observer, string newName, string castRestriction, int _id, MTGCardInstance * _source, TargetChooser * _tc, MTGAbility * a,
         ManaCost * _cost, string limit,MTGAbility * sideEffects,string usesBeforeSideEffects, int restrictions, MTGGameZone * dest) :
-    TargetAbility(observer, _id, _source, _tc, _cost, restrictions,castRestriction), limit(limit), activeZone(dest),newName(newName),castRestriction(castRestriction)
+    TargetAbility(observer, _id, _source, _tc, _cost, restrictions, castRestriction), limit(limit), activeZone(dest),newName(newName)
 {
     ability = a;
     MTGAbility * core = AbilityFactory::getCoreAbility(a);

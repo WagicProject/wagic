@@ -828,6 +828,7 @@ int TargetChooser::countValidTargets()
     int result = 0;
     for (int i = 0; i < 2; ++i)
     {
+        assert(observer);
         Player *p = observer->players[i];
         if(canTarget(p))
             result++;
