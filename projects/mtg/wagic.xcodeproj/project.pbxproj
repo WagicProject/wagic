@@ -24,6 +24,7 @@
 		12B8123F1404B9E20092E303 /* zstream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12B812311404B9E10092E303 /* zstream.cpp */; };
 		12B8124D1404BD0D0092E303 /* IconButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12B8124A1404BD0D0092E303 /* IconButton.cpp */; };
 		12B8124F1404BD0D0092E303 /* ObjectAnalytics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12B8124C1404BD0D0092E303 /* ObjectAnalytics.cpp */; };
+		12CCA030144A05D100E343A0 /* AbilityParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12CCA02F144A05D100E343A0 /* AbilityParser.cpp */; };
 		12D095E114417D0500F69056 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 12D095E014417D0500F69056 /* libstdc++.dylib */; settings = {ATTRIBUTES = (Required, ); }; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
@@ -219,6 +220,8 @@
 		12B8124A1404BD0D0092E303 /* IconButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IconButton.cpp; sourceTree = "<group>"; };
 		12B8124C1404BD0D0092E303 /* ObjectAnalytics.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ObjectAnalytics.cpp; sourceTree = "<group>"; };
 		12B812501404BDB50092E303 /* Threading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Threading.h; sourceTree = "<group>"; };
+		12CCA02F144A05D100E343A0 /* AbilityParser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AbilityParser.cpp; sourceTree = "<group>"; };
+		12CCA032144A05DF00E343A0 /* AbilityParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbilityParser.h; sourceTree = "<group>"; };
 		12D095E014417D0500F69056 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D6058910D05DD3D006BFB54 /* wagic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wagic.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -677,6 +680,7 @@
 		CEA376851291C60500B9016A /* include */ = {
 			isa = PBXGroup;
 			children = (
+				12CCA032144A05DF00E343A0 /* AbilityParser.h */,
 				127694891441274D0088F6D3 /* AIPlayerBaka.h */,
 				1276948A1441274D0088F6D3 /* AIPlayerBakaB.h */,
 				12B812411404BCE30092E303 /* AIHints.h */,
@@ -797,6 +801,7 @@
 		CEA376ED1291C60500B9016A /* src */ = {
 			isa = PBXGroup;
 			children = (
+				12CCA02F144A05D100E343A0 /* AbilityParser.cpp */,
 				12769483144127380088F6D3 /* AIPlayerBaka.cpp */,
 				12769484144127380088F6D3 /* AIPlayerBakaB.cpp */,
 				12769485144127380088F6D3 /* TestSuiteAI.cpp */,
@@ -1270,6 +1275,7 @@
 				12769486144127380088F6D3 /* AIPlayerBaka.cpp in Sources */,
 				12769487144127380088F6D3 /* AIPlayerBakaB.cpp in Sources */,
 				12769488144127380088F6D3 /* TestSuiteAI.cpp in Sources */,
+				12CCA030144A05D100E343A0 /* AbilityParser.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
