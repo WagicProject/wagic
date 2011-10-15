@@ -121,7 +121,6 @@ class MTGGameZone {
 
 class MTGLibrary: public MTGGameZone {
  public:
-  void shuffleTopToBottom(int nbcards);
   virtual ostream& toString(ostream&) const;
   const char * getName(){return "library";}
 };

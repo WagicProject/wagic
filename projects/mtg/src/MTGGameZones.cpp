@@ -749,32 +749,6 @@ void MTGInPlay::untapAll()
 }
 
 
-// pointer object to random number generator.  MRand( ptrdiff_t) defined in utils.cpp
-ptrdiff_t (*p_wagicRandomizer)(ptrdiff_t) = MRand;
-
-//--------------------------
-void MTGLibrary::shuffleTopToBottom(int nbcards)
-{
-    if (!nbcards) return;
-    
-    if (nbcards > nb_cards)
-        nbcards = nb_cards;
-    vector<MTGCardInstance *>::iterator it = cards.begin();
-    it += nbcards;
-    
-    random_shuffle( cards.begin(), it, p_wagicRandomizer);
-    
-    if (nbcards < nb_cards)
-    {
-        // move the top nbcards to the bottom of the deck;
-        for (int i = 0; i < nbcards; ++i)
-        {
-            cards.push_back( cards[i]);
-        }
-        cards.erase(cards.begin(), it);
-    }
-}
-
 MTGGameZone * MTGGameZone::intToZone(int zoneId, Player * p, Player * p2)
 {
 
