@@ -18,6 +18,7 @@ using std::string;
 TestSuiteAI::TestSuiteAI(GameObserver *observer, TestSuite * _suite, int playerId) :
     AIPlayerBaka(observer, "testsuite", "testsuite", "baka.jpg", NULL)
 {
+    SAFE_DELETE(game); //game might have been set in the parent with default values
     game = _suite->buildDeck(this, playerId);
     game->setOwner(this);
 
