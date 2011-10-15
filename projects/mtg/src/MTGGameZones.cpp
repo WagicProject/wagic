@@ -748,33 +748,30 @@ void MTGInPlay::untapAll()
     }
 }
 
+
+// pointer object to random number generator.  MRand( ptrdiff_t) defined in utils.cpp
+ptrdiff_t (*p_wagicRandomizer)(ptrdiff_t) = MRand;
+
 //--------------------------
 void MTGLibrary::shuffleTopToBottom(int nbcards)
 {
+    if (!nbcards) return;
+    
     if (nbcards > nb_cards)
         nbcards = nb_cards;
-    if (nbcards < 0)
-        return;
-    MTGCardInstance * _cards[MTG_MAX_PLAYER_CARDS];
-    for (int i = nb_cards - nbcards; i < (nb_cards); i++)
+    vector<MTGCardInstance *>::iterator it = cards.begin();
+    it += nbcards;
+    
+    random_shuffle( cards.begin(), it, p_wagicRandomizer);
+    
+    if (nbcards < nb_cards)
     {
-        int r = i + (WRand() % (nbcards - i)); // Random remaining position.
-        MTGCardInstance * temp = cards[i];
-        cards[i] = cards[r];
-        cards[r] = temp;
-    }
-    for (int i = 0; i < nbcards; i++)
-    {
-        _cards[i] = cards[nb_cards - 1 - i];
-    }
-    for (int i = nbcards; i < nb_cards; i++)
-    {
-        _cards[i] = cards[i - nb_cards];
-    }
-    //TODO Logic error here: the final value of cards[i] will always be garbage. possible optimization: use vectors to push and pop
-    for (int i = 0; i < nb_cards; i++)
-    {
-        cards[i] = _cards[i];
+        // move the top nbcards to the bottom of the deck;
+        for (int i = 0; i < nbcards; ++i)
+        {
+            cards.push_back( cards[i]);
+        }
+        cards.erase(cards.begin(), it);
     }
 }
 
