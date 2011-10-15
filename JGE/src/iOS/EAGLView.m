@@ -406,7 +406,7 @@ void DestroyGame(void)
         int yOffset = ((currentLocation.y-es2renderer.viewPort.top)*SCREEN_HEIGHT)/actualHeight;
         
         g_engine->LeftClicked(xOffset, yOffset);
-/*
+
     // doesn't work as expected.  Need to figure out correct algorithm.  Double tap or double swipe down will execute OK button.
         NSInteger xDiff = abs(static_cast<int>(currentX) - xOffset);
         NSInteger yDiff = abs(static_cast<int>(currentY) - yOffset);
@@ -415,10 +415,9 @@ void DestroyGame(void)
         {
             g_engine->HoldKey_NoRepeat(JGE_BTN_OK);
         }
-*/
+
         currentX = xOffset;
         currentY = yOffset;
-        
 	}
         
     else if(currentLocation.y < es2renderer.viewPort.top) {
@@ -461,6 +460,7 @@ void DestroyGame(void)
     CGPoint translatedPoint = [recognizer locationInView: self];
     currentX = translatedPoint.x;
     currentY = translatedPoint.y;
+    g_engine->LeftClicked( currentX, currentY);
 }
 
 - (void)handleHand:(UITapGestureRecognizer *)recognizer {
@@ -513,73 +513,6 @@ void DestroyGame(void)
 
 - (void)handleCancel:(UISwipeGestureRecognizer *) recognizer {
     g_engine->HoldKey_NoRepeat(JGE_BTN_CANCEL);
-}
-
-
-- (void) handleTouchEvent: (NSSet *) touches withEvent: (UIEvent *) event
-{
-    UITouch     *touch = [[event touchesForView:self] anyObject];
-    NSUInteger  numberOfTouches = [[event touchesForView: self] count];
-	
-    // Convert touch point from UIView referential to OpenGL one (upside-down flip)
-    currentLocation = [touch previousLocationInView:self];
-	ES2Renderer* es2renderer = (ES2Renderer*)renderer;
-	
-	int actualWidth = (int) JRenderer::GetInstance()->GetActualWidth();
-	int actualHeight = (int) JRenderer::GetInstance()->GetActualHeight();
-	
-    if (currentLocation.y > es2renderer.viewPort.top && 
-		currentLocation.y < es2renderer.viewPort.bottom &&
-		currentLocation.x < es2renderer.viewPort.right &&
-		currentLocation.x > es2renderer.viewPort.left) 
-    {
-        int xOffset = ((currentLocation.x-es2renderer.viewPort.left)*SCREEN_WIDTH)/actualWidth;
-        int yOffset = ((currentLocation.y-es2renderer.viewPort.top)*SCREEN_HEIGHT)/actualHeight;
-        
-        if (touch.tapCount == 1 && numberOfTouches == 1)
-        {
-            g_engine->LeftClicked(xOffset, yOffset);
-            if ( touch.phase == UITouchPhaseEnded)
-                g_engine->HoldKey_NoRepeat(JGE_BTN_OK);
-        }
-        
-	}
-    
-    else if((currentLocation.y > es2renderer.viewPort.bottom) && (currentLocation.x < actualWidth/2)) {
-
-        if (touch.phase == UITouchPhaseEnded)
-            g_engine->HoldKey_NoRepeat(JGE_BTN_PREV);
-	}
-    else if((currentLocation.y > es2renderer.viewPort.bottom) && (currentLocation.x >= actualWidth/2)) {
-
-        if (touch.phase == UITouchPhaseEnded)
-            g_engine->HoldKey_NoRepeat(JGE_BTN_NEXT);
-	}    
-}
-
-// Handles the start of a touch
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    [self handleTouchEvent: touches withEvent: event];
-}
-
-
-// Handles the continuation of a touch.
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
-{  
-    //[self handleTouchEvent: touches withEvent: event];
-}
-
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    //[self handleTouchEvent:touches withEvent:event];
-}
-
-// Handles the end of a touch event.
-- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    // If appropriate, add code necessary to save the state of the application.
-    // This application is not saving state.
 }
 
 #pragma mark -
