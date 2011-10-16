@@ -183,11 +183,14 @@ bool JFileSystem::DirExists(const string& strDirname)
 
 bool JFileSystem::FileExists(const string& strFilename)
 { 
-    izfstream temp;
-    bool result = openForRead(temp, strFilename);
-    if (temp)
-        temp.close();
-
+    bool result = false;
+    if(strFilename != "")
+    {
+        izfstream temp;
+        result = openForRead(temp, strFilename);
+        if (temp)
+            temp.close();
+    }
     return result;
 }
 

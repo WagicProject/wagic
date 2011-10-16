@@ -53,7 +53,7 @@ int AIAction::Act()
     }
     if (ability)
     {
-        g->mLayers->actionLayer()->reactToClick(ability, click);
+        g->cardClick(click, ability);
         if (target && !mAbilityTargets.size())
         {
             g->cardClick(target);

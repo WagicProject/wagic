@@ -26,7 +26,11 @@ class GameObserver{
  protected:
   MTGCardInstance * cardWaitingForTargets;
   queue<WEvent *> eventsQueue;
+  // used when we're running to log actions
   list<string> actionsList;
+  // used when we're loading to know what to load
+  list<string> loadingList;
+  list<string>::iterator loadingite;
 
   int untap(MTGCardInstance * card);
   bool WaitForExtraPayment(MTGCardInstance* card);
@@ -34,9 +38,7 @@ class GameObserver{
   void cleanup();
   string startupGameSerialized;
   bool parseLine(const string& s);
-  void logAction(const string& s) {
-      actionsList.push_back(s);
-  };
+  void logAction(const string& s);
   bool processActions(bool undo);
   friend ostream& operator<<(ostream&, GameObserver&);
   bool load(const string& s, bool undo);
@@ -65,6 +67,8 @@ class GameObserver{
   TargetChooser * getCurrentTargetChooser();
   void stackObjectClicked(Interruptible * action);
 
+  int cardClick(MTGCardInstance * card, MTGAbility *ability);
+  int cardClick(MTGCardInstance * card, int abilityType);
   int cardClick(MTGCardInstance * card,Targetable * _object = NULL );
   int getCurrentGamePhase();
   const char * getCurrentGamePhaseName();
@@ -106,7 +110,7 @@ class GameObserver{
   void logAction(int playerId, const string& s="") {
       logAction(players[playerId], s);
   };
-  void logAction(MTGCardInstance* card, MTGGameZone* zone = NULL);
+  void logAction(MTGCardInstance* card, MTGGameZone* zone, size_t index, int result);
   bool undo();
   bool isLoading(){ return mLoading; };
 };

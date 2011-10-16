@@ -1985,10 +1985,9 @@ int AIPlayerBaka::chooseAttackers()
         cd.init();
         cd.setType("creature");
         MTGCardInstance * card = NULL;
-        MTGAbility * a = observer->mLayers->actionLayer()->getAbility(MTGAbility::MTG_ATTACK_RULE);
         while ((card = cd.nextmatch(game->inPlay, card)))
         {
-            observer->mLayers->actionLayer()->reactToClick(a, card);
+            observer->cardClick(card, MTGAbility::MTG_ATTACK_RULE);
         }
     }
     return 1;
@@ -2033,12 +2032,11 @@ int AIPlayerBaka::chooseBlockers()
     cd.setType("Creature");
     cd.unsecureSetTapped(-1);
     card = NULL;
-    MTGAbility * a = observer->mLayers->actionLayer()->getAbility(MTGAbility::MTG_BLOCK_RULE);
 
     // We first try to block the major threats, those that are marked in the Top 3 of our stats
     while ((card = cd.nextmatch(game->inPlay, card)))
     {
-        observer->mLayers->actionLayer()->reactToClick(a, card);
+        observer->cardClick(card, MTGAbility::MTG_BLOCK_RULE);
         int set = 0;
         while (!set)
         {
@@ -2062,7 +2060,7 @@ int AIPlayerBaka::chooseBlockers()
                 }
                 else
                 {
-                    observer->mLayers->actionLayer()->reactToClick(a, card);
+                    observer->cardClick(card, MTGAbility::MTG_BLOCK_RULE);
                 }
             }
         }
@@ -2077,7 +2075,7 @@ int AIPlayerBaka::chooseBlockers()
         {
             while (card->defenser)
             {
-                observer->mLayers->actionLayer()->reactToClick(a, card);
+                observer->cardClick(card, MTGAbility::MTG_BLOCK_RULE);
             }
         }
     }
@@ -2088,7 +2086,7 @@ int AIPlayerBaka::chooseBlockers()
     {
         if (!card->defenser)
         {
-            observer->mLayers->actionLayer()->reactToClick(a, card);
+            observer->cardClick(card, MTGAbility::MTG_BLOCK_RULE);
             int set = 0;
             while (!set)
             {
@@ -2102,7 +2100,7 @@ int AIPlayerBaka::chooseBlockers()
                     if (opponentsToughness[attacker] <= 0 || (card->toughness <= attacker->power && opponentForce * 2 < life
                             && !canFirstStrikeKill(card, attacker)) || attacker->nbOpponents() > 1)
                     {
-                        observer->mLayers->actionLayer()->reactToClick(a, card);
+                        observer->cardClick(card, MTGAbility::MTG_BLOCK_RULE);
                     }
                     else
                     {

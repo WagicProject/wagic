@@ -245,6 +245,8 @@ void GameObserver::nextCombatStep()
 
 void GameObserver::userRequestNextGamePhase()
 {
+    stringstream stream;
+    stream << "next " << currentGamePhase;
     if(getCurrentTargetChooser() && getCurrentTargetChooser()->maxtargets == 1000)
     {
         getCurrentTargetChooser()->done = true;
@@ -278,7 +280,9 @@ void GameObserver::userRequestNextGamePhase()
     {
        nextGamePhase(); 
     }
-    logAction(currentPlayer, "next");
+
+    stream << " " << currentGamePhase ;
+    logAction(currentPlayer, stream.str());
 }
 
 int GameObserver::forceShuffleLibraries()
@@ -406,7 +410,7 @@ void GameObserver::Update(float dt)
     Player * player = currentPlayer;
     if (Constants::MTG_PHASE_COMBATBLOCKERS == currentGamePhase && BLOCKERS == combatStep)
     {
-            player = player->opponent();
+        player = player->opponent();
     }
     if(getCurrentTargetChooser() && getCurrentTargetChooser()->Owner && player != getCurrentTargetChooser()->Owner)
     {
@@ -945,121 +949,174 @@ bool GameObserver::WaitForExtraPayment(MTGCardInstance * card)
     return result;
 }
 
+int GameObserver::cardClick(MTGCardInstance * card, MTGAbility *ability)
+{
+    MTGGameZone* zone = card->currentZone;
+    size_t index = card->currentZone->getIndex(card);
+    int result = ability->reactToClick(card);
+    logAction(card, zone, index, result);
+    return result;
+}
+
+int GameObserver::cardClick(MTGCardInstance * card, int abilityType)
+{
+    int result = 0;
+    MTGAbility * a = mLayers->actionLayer()->getAbility(abilityType);
+
+    if(a)
+    {
+        result = cardClick(card, a);
+    }
+
+    return result;
+}
+
 int GameObserver::cardClick(MTGCardInstance * card, Targetable * object)
 {
     Player * clickedPlayer = NULL;
+    int toReturn;
+    MTGGameZone* zone;
+    size_t index;
+    MTGCardInstance* backup;
+
     if (!card) {
     	clickedPlayer = ((Player *) object);
         logAction(clickedPlayer);
     } else {
-        logAction(card);
+        backup = card;
+        zone = card->currentZone;
+        index = zone->getIndex(card);
     }
-    if (targetChooser)
-    {
-        int result;
-        if (card)
+
+    do {
+        if (targetChooser)
         {
-            if (card == cardWaitingForTargets)
+            int result;
+            if (card)
             {
-                int _result = targetChooser->ForceTargetListReady();
-                if(targetChooser->targetMin && int(targetChooser->targets.size()) < targetChooser->maxtargets)
-                    _result = 0;
-                if (_result)
+                if (card == cardWaitingForTargets)
                 {
-                    result = TARGET_OK_FULL;
+                    int _result = targetChooser->ForceTargetListReady();
+                    if(targetChooser->targetMin && int(targetChooser->targets.size()) < targetChooser->maxtargets)
+                        _result = 0;
+                    if (_result)
+                    {
+                        result = TARGET_OK_FULL;
+                    }
+                    else
+                    {
+                        result = targetChooser->targetsReadyCheck();
+                    }
                 }
                 else
                 {
-                    result = targetChooser->targetsReadyCheck();
+                    result = targetChooser->toggleTarget(card);
+                    WEvent * e = NEW WEventTarget(card,cardWaitingForTargets);
+                    receiveEvent(e);
                 }
             }
             else
             {
-                result = targetChooser->toggleTarget(card);
-                WEvent * e = NEW WEventTarget(card,cardWaitingForTargets);
-                receiveEvent(e);
+                result = targetChooser->toggleTarget(clickedPlayer);
+            }
+            if (result == TARGET_OK_FULL)
+                card = cardWaitingForTargets;
+            else {
+                toReturn = 1;
+                break;
+            }
+        }
+
+        if (WaitForExtraPayment(card)) {
+            toReturn = 1;
+            break;
+        }
+
+        int reaction = 0;
+
+        if (ORDER == combatStep)
+        {
+            //TODO it is possible at this point that card is NULL. if so, what do we return since card->defenser would result in a crash?
+            card->defenser->raiseBlockerRankOrder(card);
+            toReturn = 1;
+            break;
+        }
+
+        if (card)
+        {
+            //card played as normal, alternative cost, buyback, flashback, retrace.
+
+            //the variable "paymenttype = int" only serves one purpose, to tell this bug fix what menu item you clicked on...
+            // all alternative cost or play methods suffered from the fix because if the card contained "target="
+            // it would automatically force the play method to putinplayrule...even charge you the original mana cost.
+
+            /* Fix for Issue http://code.google.com/p/wagic/issues/detail?id=270
+             put into play is hopefully the only ability causing that kind of trouble
+             If the same kind of issue occurs with other abilities, let's think of a cleaner solution
+             */
+            if (targetChooser)
+            {
+                MTGAbility * a = mLayers->actionLayer()->getAbility(card->paymenttype);
+                toReturn = a->reactToClick(card);
+                break;
+            }
+
+            reaction = mLayers->actionLayer()->isReactingToClick(card);
+            if (reaction == -1) {
+                toReturn = mLayers->actionLayer()->reactToClick(card);
+                break;
             }
         }
         else
-        {
-            result = targetChooser->toggleTarget(clickedPlayer);
-        }
-        if (result == TARGET_OK_FULL)
-            card = cardWaitingForTargets;
-        else
-            return 1;
-    }
-
-    if (WaitForExtraPayment(card))
-        return 1;
-
-    int reaction = 0;
-
-    if (ORDER == combatStep)
-    {
-        //TODO it is possible at this point that card is NULL. if so, what do we return since card->defenser would result in a crash?
-        card->defenser->raiseBlockerRankOrder(card);
-        return 1;
-    }
-
-    if (card)
-    {
-        //card played as normal, alternative cost, buyback, flashback, retrace.
-
-        //the variable "paymenttype = int" only serves one purpose, to tell this bug fix what menu item you clicked on...
-        // all alternative cost or play methods suffered from the fix because if the card contained "target=" 
-        // it would automatically force the play method to putinplayrule...even charge you the original mana cost.
-
-        /* Fix for Issue http://code.google.com/p/wagic/issues/detail?id=270
-         put into play is hopefully the only ability causing that kind of trouble
-         If the same kind of issue occurs with other abilities, let's think of a cleaner solution
-         */
-        if (targetChooser)
-        {
-            MTGAbility * a = mLayers->actionLayer()->getAbility(card->paymenttype);
-            return a->reactToClick(card);
+        {//this handles abilities on a menu...not just when card is being played
+            reaction = mLayers->actionLayer()->isReactingToTargetClick(object);
+            if (reaction == -1) {
+                toReturn = mLayers->actionLayer()->reactToTargetClick(object);
+                break;
+            }
         }
 
-        reaction = mLayers->actionLayer()->isReactingToClick(card);
-        if (reaction == -1)
-            return mLayers->actionLayer()->reactToClick(card);
-    }
-    else
-    {//this handles abilities on a menu...not just when card is being played
-        reaction = mLayers->actionLayer()->isReactingToTargetClick(object);
-        if (reaction == -1)
-            return mLayers->actionLayer()->reactToTargetClick(object);
-    }
-
-    if (!card)
-        return 0;
-
-    //Current player's hand
-    if (currentPlayer->game->hand->hasCard(card) && currentGamePhase == Constants::MTG_PHASE_CLEANUP
-		&& currentPlayer->game->hand->nb_cards > currentPlayer->handsize && currentPlayer->nomaxhandsize == false)
-    {
-        WEvent * e = NEW WEventCardDiscard(currentPlayer->game->hand->cards[0]);
-        receiveEvent(e);
-        currentPlayer->game->putInGraveyard(card);
-    }
-    else if (reaction)
-    {
-        if (reaction == 1)
-        {
-            return mLayers->actionLayer()->reactToClick(card);
+        if (!card) {
+            toReturn = 0;
+            break;
         }
-        else
+
+        //Current player's hand
+        if (currentPlayer->game->hand->hasCard(card) && currentGamePhase == Constants::MTG_PHASE_CLEANUP
+                    && currentPlayer->game->hand->nb_cards > currentPlayer->handsize && currentPlayer->nomaxhandsize == false)
         {
-            mLayers->actionLayer()->setMenuObject(object);
-            return 1;
+            WEvent * e = NEW WEventCardDiscard(currentPlayer->game->hand->cards[0]);
+            receiveEvent(e);
+            currentPlayer->game->putInGraveyard(card);
         }
-    }
-    else if (card->isTapped() && card->controller() == currentPlayer)
-    {
-        return untap(card);
+        else if (reaction)
+        {
+            if (reaction == 1)
+            {
+                toReturn = mLayers->actionLayer()->reactToClick(card);
+                break;
+            }
+            else
+            {
+                mLayers->actionLayer()->setMenuObject(object);
+                toReturn = 1;
+                break;
+            }
+        }
+        else if (card->isTapped() && card->controller() == currentPlayer)
+        {
+            toReturn = untap(card);
+            break;
+        }
+    } while(0);
+
+    if (clickedPlayer) {
+        logAction(clickedPlayer);
+    } else {
+        logAction(backup, zone, index, toReturn);
     }
 
-    return 0;
+    return toReturn;
 }
 
 int GameObserver::untap(MTGCardInstance * card)
@@ -1337,22 +1394,21 @@ bool GameObserver::processActions(bool undo)
 {
     bool result = false;
 
-    list<string> copyList = actionsList;
+    loadingList = actionsList;
     actionsList.clear();
 
     mLoading = true;
-    list<string>::iterator ite;
     float counter = 0.0f;
 
     // To handle undo, we'll remove the last P1 action and all P2 actions after.
-    if(undo && copyList.size()) {
-        while(copyList.back().find("p2") != string::npos)
-            copyList.pop_back();
-        copyList.pop_back();
+    if(undo && loadingList.size()) {
+        while(loadingList.back().find("p2") != string::npos)
+            loadingList.pop_back();
+        loadingList.pop_back();
     }
-    for(ite = copyList.begin(); ite != copyList.end(); ite++)
+    for(loadingite = loadingList.begin(); loadingite != loadingList.end(); loadingite++)
     {
-        string s = *ite;
+        string s = *loadingite;
         Player* p = players[1];
         if (s.find("p1") != string::npos)
             p = players[0];
@@ -1370,7 +1426,8 @@ bool GameObserver::processActions(bool undo)
         if(zone) {
             size_t begin = s.find("[")+1;
             size_t size = s.find("]")-begin;
-            int index = atoi(s.substr(begin, size).c_str());
+            size_t index = atoi(s.substr(begin, size).c_str());
+            assert(index < zone->cards.size());
             cardClick(zone->cards[index], zone->cards[index]);
         } else if (s.find("yes") != string::npos) {
             mLayers->stackLayer()->setIsInterrupting(p);
@@ -1389,12 +1446,12 @@ bool GameObserver::processActions(bool undo)
             assert(0);
         }
 
-        // let's fake an update
-        Update(counter);
-        counter += 1.000f;
-        // or two
-        Update(counter);
-        counter += 1.000f;
+        for (int i = 0; i<10; i++)
+        {
+            // let's fake an update
+            Update(counter);
+            counter += 1.000f;
+        }
     }
 
     mLoading = false;
@@ -1414,13 +1471,25 @@ void GameObserver::logAction(Player* player, const string& s) {
             logAction("p2");
 }
 
-void GameObserver::logAction(MTGCardInstance* card, MTGGameZone* zone) {
+void GameObserver::logAction(MTGCardInstance* card, MTGGameZone* zone, size_t index, int result) {
     stringstream stream;
     if(zone == NULL) zone = card->currentZone;
     stream << "p" << ((card->controller()==players[0])?"1.":"2.")
-           << zone->getName()<< "[" << zone->getIndex(card) << "]";
+           << zone->getName()<< "[" << index << "] "
+           << result << card->getLCName();
     logAction(stream.str());
 }
+
+void GameObserver::logAction(const string& s)
+{
+    if(mLoading)
+    {
+        string toCheck = *loadingite;
+        if(toCheck != s)
+                assert(0);
+    }
+    actionsList.push_back(s);
+};
 
 bool GameObserver::undo()
 {
