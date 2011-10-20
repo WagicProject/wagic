@@ -974,10 +974,10 @@ int GameObserver::cardClick(MTGCardInstance * card, int abilityType)
 int GameObserver::cardClick(MTGCardInstance * card, Targetable * object)
 {
     Player * clickedPlayer = NULL;
-    int toReturn;
-    MTGGameZone* zone;
-    size_t index;
-    MTGCardInstance* backup;
+    int toReturn = 0;
+    MTGGameZone* zone = NULL;
+    size_t index = 0;
+    MTGCardInstance* backup = NULL;
 
     if (!card) {
     	clickedPlayer = ((Player *) object);
