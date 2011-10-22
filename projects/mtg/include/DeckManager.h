@@ -28,6 +28,7 @@ public:
     vector<DeckMetaData*> * getAIDeckOrderList();
 
     void AddMetaData( const std::string& filename, bool isAI);
+    void DeleteMetaData( const std::string& filename, bool isAI);
     DeckMetaData* getDeckMetaDataById(int deckId, bool isAI);
     DeckMetaData* getDeckMetaDataByFilename(const std::string& filename, bool isAI);
     StatsWrapper* getExtendedStatsForDeckId(int deckId, MTGAllCards* collection, bool isAI);

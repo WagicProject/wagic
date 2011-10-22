@@ -51,6 +51,7 @@ vector<DeckMetaData *> GameState::BuildDeckList(const string& path, const string
 
         if (meta)
         {
+            found = 1;
             //Check if the deck is unlocked based on sets etc...
             bool unlocked = true;
             vector<int> unlockRequirements = meta->getUnlockRequirements();
@@ -65,7 +66,6 @@ vector<DeckMetaData *> GameState::BuildDeckList(const string& path, const string
 
             if (unlocked)
             {
-                found = 1;
                 if (statsPlayer)
                 {
                     std::ostringstream aiStatsDeckName;
@@ -85,10 +85,17 @@ vector<DeckMetaData *> GameState::BuildDeckList(const string& path, const string
                     meta->mStatsFilename = options.profileFile(playerStatsDeckName.str());
                     meta->mIsAI = false;
                 }
-
                 retList.push_back(meta);
-                nbDecks++;
             }
+            else
+            {
+                //updateMetaDataList in DeckManager.cpp performs some weird magic, swapping data between its cache and the "retList" from this function
+                //Bottom line, we need to guarantee retList contains exactly the same items as (or updated versions of) the items in DeckManager Cache
+                //In other words, any meta data that didn't make it to retList in this function must be erased from the DeckManager cache
+                deckManager->DeleteMetaData(filename.str(), isAI);
+            }
+
+            nbDecks++;
         }
         meta = NULL;
     }

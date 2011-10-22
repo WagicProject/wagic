@@ -119,6 +119,52 @@ void DeckManager::AddMetaData( const string& filename, bool isAI )
     }
 }
 
+void DeckManager::DeleteMetaData( const string& filename, bool isAI )
+{
+    map<string, StatsWrapper *>::iterator it;
+    vector<DeckMetaData *>::iterator metaDataIter;
+
+    if (isAI)
+    {
+        it = aiDeckStatsMap.find(filename);
+        if (it != aiDeckStatsMap.end())
+        {
+            SAFE_DELETE(it->second);
+            aiDeckStatsMap.erase(it);
+        }
+
+        for( metaDataIter =  mInstance->aiDeckOrderList.begin(); metaDataIter !=  mInstance->aiDeckOrderList.end(); ++metaDataIter)
+        {
+            if ((*metaDataIter)->getFilename() == filename)
+            {
+                SAFE_DELETE( *metaDataIter );
+                aiDeckOrderList.erase(metaDataIter);
+                break;
+            }
+        }
+    }
+    else 
+    {
+        it = playerDeckStatsMap.find(filename);
+        if (it != playerDeckStatsMap.end())
+        {
+            SAFE_DELETE(it->second);
+            playerDeckStatsMap.erase(it);
+        }
+
+        for( metaDataIter =  mInstance->playerDeckOrderList.begin(); metaDataIter !=  mInstance->playerDeckOrderList.end(); ++metaDataIter)
+        {
+            if ((*metaDataIter)->getFilename() == filename)
+            {
+                SAFE_DELETE( *metaDataIter );
+                playerDeckOrderList.erase(metaDataIter);
+                break;
+            }
+        }
+    }
+}
+
+
 StatsWrapper * DeckManager::getExtendedStatsForDeckId( int deckId, MTGAllCards *collection, bool isAI )
 {
     DeckMetaData *selectedDeck = getDeckMetaDataById( deckId, isAI );

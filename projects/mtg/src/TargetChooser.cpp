@@ -826,6 +826,13 @@ bool TargetChooser::validTargetsExist(int maxTargets)
 int TargetChooser::countValidTargets()
 {
     int result = 0;
+
+    //Some TargetChooser objects are created at a point where no observer is available
+    // see  ManaCost::parseManaCost which sets observer to NULL in some cases (namely: when the cards database is loaded at game start)
+    // This is a workaround for this situation
+    if (!observer && source) 
+        observer = source->getObserver();
+
     for (int i = 0; i < 2; ++i)
     {
         assert(observer);
