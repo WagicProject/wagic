@@ -279,11 +279,11 @@ void GameStateDuel::End()
 #endif
 
     JRenderer::GetInstance()->EnableVSync(false);
-    if (!premadeDeck && mPlayers.size() && mPlayers[0] && mPlayers[1])
+    if (!premadeDeck && mPlayers.size() > 1 && mPlayers[0] && mPlayers[1])
     { // save the stats for the game
         mPlayers[0]->End();
     }
-    else if (mPlayers.size() &&  !mPlayers[1] && mPlayers[0] )
+    else if (mPlayers.size() &&  mPlayers.size() == 1 && mPlayers[0] )
         // clean up player object
         SAFE_DELETE( mPlayers[0] );
 
