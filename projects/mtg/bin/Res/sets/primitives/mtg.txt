@@ -1639,7 +1639,7 @@ name=Amphin Cutthroat
 text=
 mana={3}{U}
 type=Creature
-subtype=Salamandar Rogue
+subtype=Salamander Rogue
 power=2
 toughness=4
 [/card]
@@ -8130,7 +8130,7 @@ mana={3}{R}
 type=Sorcery
 [/card]
 [card]
-name=Bojuka Bog 
+name=Bojuka Bog
 auto=tap
 auto={T}:Add {B}
 auto=choice name(opponentgraveyard) moveTo(exile) all(*|opponentgraveyard)
@@ -9082,7 +9082,7 @@ toughness=2
 [/card]
 [card]
 name=Brimstone Volley
-target=creature
+target=creature,player
 auto=ifnot morbid then damage:3
 auto=if morbid then damage:5
 text=Brimstone Volley deals 3 damage to target creature or player. -- Morbid - Brimstone Volley deals 5 damage to that creature or player instead if a creature died this turn.
@@ -22955,7 +22955,7 @@ toughness=1
 [card]
 name=Falkenrath Marauders
 abilities=flying,haste
-auto=@combatdamaged(player) from(this):counter(1/1,1)
+auto=@combatdamaged(player) from(this):counter(1/1,2)
 text=Flying, haste -- Whenever Falkenrath Marauders deals combat damage to a player, put two +1/+1 counters on it.
 mana={3}{R}{R}
 type=Creature
@@ -27692,6 +27692,16 @@ type=Creature
 subtype=Human Soldier
 power=2
 toughness=2
+[/card]
+[card]
+name=Gideon's Lawkeeper
+auto={W}{T}:tap target(creature)
+text={W}, {T}: Tap target creature.
+mana={W}
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=1
 [/card]
 [card]
 name=Gift of Estates
@@ -48121,7 +48131,7 @@ auto={X}{U}{R}{T}:damage:x target(creature) && draw:X targetcontroller
 text={X}{U}{R}, {T}: Nin, the Pain Artist deals X damage to target creature. That creature's controller draws X cards.
 mana={U}{R}
 type=Legendary Creature
-subtype=Nin, the Oain Artist
+subtype=Vedalken Wizard
 power=1
 toughness=1
 [/card]
@@ -61765,7 +61775,7 @@ toughness=*
 [card]
 name=Serra Avenger
 abilities=flying,vigilance
-restriction=fourth turn
+restriction=Seventh turn
 text=You can't cast Serra Avenger during your first, second, or third turns of the game. -- Flying, vigilance
 mana={W}{W}
 type=Creature
@@ -79509,7 +79519,7 @@ power=1
 toughness=1
 [/card]
 [card]
-name=walking Corpse
+name=Walking Corpse
 text=
 mana={1}{B}
 type=Creature
@@ -81977,7 +81987,7 @@ abilities=playershroud
 auto=destroy all(curse|mybattlefield)
 text=When Witchbane Orb enters the battlefield, destroy all Curses attached to you. -- You have hexproof.
 mana={4}
-type=Arifact
+type=Artifact
 [/card]
 [card]
 name=Witch-Maw Nephilim
