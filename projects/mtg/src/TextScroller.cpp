@@ -46,22 +46,22 @@ void TextScroller::Update(float dt)
 {
     if (!strings.size()) return;
 
-	start += mScrollSpeed * dt;
-	WFont * mFont = WResourceManager::Instance()->GetWFont(fontId);
-	if (start > mFont->GetStringWidth(mText.c_str()))
-	{
-		start = -mWidth;
-		if (mRandom)
-		{
-			currentId = (rand() % strings.size());
-		}
-		else
-		{
-			currentId++;
-			if (currentId >= strings.size()) currentId = 0;
-		}
-		mText = strings[currentId];
-	}
+    start += mScrollSpeed * dt;
+    WFont * mFont = WResourceManager::Instance()->GetWFont(fontId);
+    if (start > mFont->GetStringWidth(mText.c_str()))
+    {
+            start = -mWidth;
+            if (mRandom)
+            {
+                    currentId = (rand() % strings.size());
+            }
+            else
+            {
+                    currentId++;
+                    if (currentId >= strings.size()) currentId = 0;
+            }
+            mText = strings[currentId];
+    }
 }
 
 void TextScroller::Render()
@@ -119,27 +119,27 @@ void VerticalTextScroller::Add( string text )
 */
 void VerticalTextScroller::Update(float dt)
 {
-	if (!strings.size()) return;
+    if (!strings.size()) return;
 
-	float currentYOffset = mScrollSpeed * dt;
+    float currentYOffset = mScrollSpeed * dt;
 
-	if ( mY <= mMarginY ) // top line has disappeared
-	{			
-		timer = 0;
-		// now readjust mText 
-		size_t nbLines = 1;
-		vector<string> displayText = split( mText, '\n');
-		vector<string> newDisplayText;
-		for ( size_t i = nbLines; i < displayText.size(); ++i )
-			newDisplayText.push_back( displayText[i] );
-		for ( size_t i = 0; i < nbLines; ++i )
-			newDisplayText.push_back( displayText[i] );
+    if ( mY <= mMarginY ) // top line has disappeared
+    {
+            timer = 0;
+            // now readjust mText
+            size_t nbLines = 1;
+            vector<string> displayText = split( mText, '\n');
+            vector<string> newDisplayText;
+            for ( size_t i = nbLines; i < displayText.size(); ++i )
+                    newDisplayText.push_back( displayText[i] );
+            for ( size_t i = 0; i < nbLines; ++i )
+                    newDisplayText.push_back( displayText[i] );
 
-		mText = join( newDisplayText, "\n" );
-		mY = mOriginalY;
-	}
-	++timer;
-	mY -= currentYOffset;
+            mText = join( newDisplayText, "\n" );
+            mY = mOriginalY;
+    }
+    ++timer;
+    mY -= currentYOffset;
 }
 
 void VerticalTextScroller::Render()

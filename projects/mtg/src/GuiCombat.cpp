@@ -16,6 +16,13 @@ const float kZoom_level1 = 1.4f;
 const float kZoom_level2 = 2.2f;
 const float kZoom_level3 = 2.7f;
 
+struct True: public Exp
+{
+    static inline bool test(DamagerDamaged* ref, DamagerDamaged* test)
+    {
+        return true;
+    }
+};
 struct Left: public Exp
 {
     static inline bool test(DamagerDamaged* ref, DamagerDamaged* test)
@@ -107,7 +114,7 @@ void GuiCombat::validateDamage()
         observer->nextCombatStep();
         break;
     case DAMAGE:
-        observer->nextGamePhase();
+        observer->userRequestNextGamePhase(false, false);
         break;
     default:
         cout << "COMBAT : Cannot validate damage in this phase" << endl;
@@ -168,11 +175,11 @@ bool GuiCombat::clickOK()
     {
     case BLOCKERS:
     case TRIGGERS:
-			assert(false);//this is an assert for "do i show the screen that lets you select multiple blocker damage assignment.
+        assert(false);//this is an assert for "do i show the screen that lets you select multiple blocker damage assignment.
         return false; // that should not happen
 
     case ORDER:
-        observer->nextGamePhase();
+        observer->userRequestNextGamePhase();
         return true;
     case FIRST_STRIKE:
         return false;
@@ -192,6 +199,21 @@ bool GuiCombat::CheckUserInput(JButton key)
     if (NONE == cursor_pos)
         return false;
     DamagerDamaged* oldActive = active;
+/* This is untested
+    int x,y;
+    if(JGE::GetInstance()->GetLeftClickCoordinates(x, y))
+    {
+        DamagerDamaged* old = active;
+        active = closest<True> (activeAtk->blockers, NULL, static_cast<float> (x), static_cast<float> (y));
+        if (old != active)
+        {
+            if (old)
+                old->zoom = kZoom_none;
+            if (active)
+                active->zoom = kZoom_level1;
+        }
+    }
+*/
     switch (key)
     {
     case JGE_BTN_OK:
@@ -608,7 +630,7 @@ int GuiCombat::receiveEventMinus(WEvent* e)
                 step = ORDER;
             }
             else
-                observer->nextGamePhase();
+                observer->userRequestNextGamePhase(false, false);
             return 1;
         }
         case FIRST_STRIKE:
@@ -631,7 +653,7 @@ int GuiCombat::receiveEventMinus(WEvent* e)
             if (!observer->currentPlayer->displayStack())
             {
                 ((AIPlayer *) observer->currentPlayer)->affectCombatDamages(step);
-                observer->nextGamePhase();
+                observer->userRequestNextGamePhase(false, false);
                 return 1;
             }
             for (inner_iterator attacker = attackers.begin(); attacker != attackers.end(); ++attacker)
@@ -661,7 +683,7 @@ int GuiCombat::receiveEventMinus(WEvent* e)
         case END_DAMAGE:
             step = END_DAMAGE;
             if (0 == resolve())
-                observer->nextGamePhase();
+                observer->userRequestNextGamePhase(false, false);
             return 1;
         }
     return 0;

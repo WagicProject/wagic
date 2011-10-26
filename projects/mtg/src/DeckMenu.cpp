@@ -338,7 +338,7 @@ void DeckMenu::Update(float dt)
         timeOpen += dt * 10;
     }
     if (mScroller) 
-		mScroller->Update(dt);
+        mScroller->Update(dt);
 }
 
 void DeckMenu::Add(int id, const char * text, string desc, bool forceFocus, DeckMetaData * deckMetaData)

@@ -110,12 +110,12 @@ JQuadPtr Player::getIcon()
 
 Player * Player::opponent()
 {
-    if (!observer) return NULL;
+    if (!observer || (observer->players.size() < 2 )) return NULL;
     return this == observer->players[0] ? observer->players[1] : observer->players[0];
 }
 
-HumanPlayer::HumanPlayer(GameObserver *observer, string file, string fileSmall, MTGDeck * deck) :
-    Player(observer, file, fileSmall, deck)
+HumanPlayer::HumanPlayer(GameObserver *observer, string file, string fileSmall, bool premade, MTGDeck * deck) :
+    Player(observer, file, fileSmall, deck), premade(premade)
 {
     mAvatarName = "avatar.jpg";
     playMode = MODE_HUMAN;
@@ -248,6 +248,11 @@ bool Player::parseLine(const string& s)
             deckFile = s.substr(limiter + 1);
             return true;
         }
+        else if (areaS.compare("deckfilesmall") == 0)
+        {
+            deckFileSmall = s.substr(limiter + 1);
+            return true;
+        }
         else if (areaS.compare("offerinterruptonphase") == 0)
         {
             for (int i = 0; i < Constants::NB_MTG_PHASES; i++)
@@ -287,6 +292,8 @@ ostream& operator<<(ostream& out, const Player& p)
     out << "offerinterruptonphase=" << Constants::MTGPhaseCodeNames[p.offerInterruptOnPhase] << endl;
     if(p.deckFile != "")
         out << "deckfile=" << p.deckFile << endl;
+    if(p.deckFileSmall != "")
+        out << "deckfilesmall=" << p.deckFileSmall << endl;
 
     if(p.game)
     {
@@ -295,3 +302,4 @@ ostream& operator<<(ostream& out, const Player& p)
 
     return out;
 }
+

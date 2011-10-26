@@ -44,7 +44,6 @@ public:
     void setMenuObject(Targetable * object, bool must = false);
     void setCustomMenuObject(Targetable * object, bool must = false,vector<MTGAbility*>abilities = vector<MTGAbility*>());
     void ButtonPressed(int controllerid, int controlid);
-    void doMultipleChoice(int choice = -1);
     void ButtonPressedOnMultipleChoice(int choice = -1);
     void doReactTo(int menuIndex);
     TargetChooser * getCurrentTargetChooser();

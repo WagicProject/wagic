@@ -344,7 +344,8 @@ int MTGAllCards::load(const char * config_file, const char * set_name, int autol
         if (!s.size()) continue;
         if (s.find("#AUTO_DEFINE ") == 0)
         {
-            AutoLineMacro::AddMacro(s.substr(13));
+            string toAdd = s.substr(13);
+            AutoLineMacro::AddMacro(toAdd);
             continue;
         }
 

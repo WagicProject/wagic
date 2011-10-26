@@ -254,8 +254,8 @@ Player * Rules::loadPlayerMomir(GameObserver* observer, int isAI)
 
 Player * Rules::loadPlayerRandom(GameObserver* observer, int isAI, int mode)
 {
-    int color1 = 1 + WRand() % 5;
-    int color2 = 1 + WRand() % 5;
+    int color1 = 1 + WRand(true) % 5;
+    int color2 = 1 + WRand(true) % 5;
     int color0 = Constants::MTG_COLOR_ARTIFACT;
     if (mode == GAME_TYPE_RANDOM1) color2 = color1;
     int colors[] = { color1, color2, color0 };
@@ -367,7 +367,7 @@ void Rules::initGame(GameObserver *g)
     if (g->currentPlayer->playMode!= Player::MODE_TEST_SUITE &&  g->mRules->gamemode!= GAME_TYPE_STORY)
     {
         if(OptionWhosFirst::WHO_R == options[Options::FIRSTPLAYER].number)
-            initState.player = WRand() % 2;
+            initState.player = WRand(true) % 2;
         if(OptionWhosFirst::WHO_O == options[Options::FIRSTPLAYER].number)
             initState.player = 1;
     }

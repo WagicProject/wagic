@@ -1751,10 +1751,7 @@ int AIPlayerBaka::computeActions()
         int doThis = selectMenuOption();
         if(doThis >= 0)
         {
-            if(object->abilitiesMenu->isMultipleChoice)
-                observer->mLayers->actionLayer()->doMultipleChoice(doThis);
-            else
-                observer->mLayers->actionLayer()->doReactTo(doThis);
+            observer->mLayers->actionLayer()->ButtonPressed(0, doThis);
         }
         else if(doThis < 0 || object->checkCantCancel())
             observer->mLayers->actionLayer()->doReactTo(object->abilitiesMenu->mObjects.size()-1);

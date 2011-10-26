@@ -97,7 +97,7 @@ int AIAction::clickMultiAct(vector<Targetable*>& actionTargets)
             actionTargets.erase(actionTargets.begin() + f);
         }
     }
-    std::random_shuffle(actionTargets.begin(), actionTargets.end(), MRand);
+    std::random_shuffle(actionTargets.begin(), actionTargets.end());
     //shuffle to make it less predictable, otherwise ai will always seem to target from right to left. making it very obvious.
     for(int k = 0;k < int(actionTargets.size());k++)
     {
@@ -172,7 +172,7 @@ int AIPlayer::clickMultiTarget(TargetChooser * tc, vector<Targetable*>& potentia
             potentialTargets.erase(potentialTargets.begin() + f);
         }
     }
-    std::random_shuffle(potentialTargets.begin(), potentialTargets.end(), MRand);
+    std::random_shuffle(potentialTargets.begin(), potentialTargets.end());
     if(potentialTargets.size())
         clickstream.push(NEW AIAction(this, NULL,tc->source,potentialTargets));
     while(clickstream.size())

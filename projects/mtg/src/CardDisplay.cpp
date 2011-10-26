@@ -92,7 +92,8 @@ void CardDisplay::Update(float dt)
         }
     }
     PlayGuiObjectController::Update(dt);
-    if (update) init(zone);
+    if (update)
+        init(zone);
 }
 
 bool CardDisplay::CheckUserInput(JButton key)

@@ -28,7 +28,6 @@ private:
     Credits * credits;
     int mGamePhase;
     Player * mCurrentPlayer;
-    vector<Player *> mPlayers;
     GameObserver * game;
     DeckMenu * deckmenu;
     DeckMenu * opponentMenu;
@@ -42,7 +41,6 @@ private:
     string musictrack;
 
     bool MusicExist(string FileName);
-    void loadPlayer(int playerId, int decknb = 0, bool isAI = false, bool isNetwork = false);
     void ConstructOpponentMenu(); //loads the opponentMenu if it doesn't exist
     void initScroller();
     void setGamePhase(int newGamePhase);
@@ -79,9 +77,12 @@ public:
         MENUITEM_EVIL_TWIN = kEvilTwinMenuID,
         MENUITEM_MULLIGAN = -15,
         MENUITEM_UNDO = -16,
+#ifdef TESTSUITE
+        MENUITEM_LOAD = -17,
+#endif
 #ifdef NETWORK_SUPPORT
-        MENUITEM_REMOTE_CLIENT = -17,
-        MENUITEM_REMOTE_SERVER = -18,
+        MENUITEM_REMOTE_CLIENT = -18,
+        MENUITEM_REMOTE_SERVER = -19,
 #endif
         MENUITEM_MORE_INFO = kInfoMenuID
     };

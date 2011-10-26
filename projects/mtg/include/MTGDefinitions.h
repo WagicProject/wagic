@@ -24,6 +24,17 @@ typedef enum
 #endif //NETWORK_SUPPORT
 } GameType;
 
+typedef enum
+{
+    PLAYER_TYPE_CPU = 0,
+    PLAYER_TYPE_HUMAN = 1,
+    PLAYER_TYPE_TESTSUITE = 2,
+    PLAYER_TYPE_CPU_TEST = 3,
+#ifdef NETWORK_SUPPORT
+    PLAYER_TYPE_REMOTE = 4
+#endif //NETWORK_SUPPORT
+} PlayerType;
+
 class Constants
 {
  public:

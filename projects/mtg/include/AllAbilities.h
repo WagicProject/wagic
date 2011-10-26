@@ -1655,8 +1655,8 @@ public:
     
         void Update(float dt)
         {
-        if(!nonstatic)
-        return;
+            if(!nonstatic)
+                return;
             ((MTGCardInstance *) target)->power -= wppt->power.getValue();
             ((MTGCardInstance *) target)->addToToughness(-wppt->toughness.getValue());
             if(PT.size())
@@ -1980,9 +1980,9 @@ public:
     void Update(float dt)
     {
         ListMaintainerAbility::Update(dt);
-        if(!ability->oneShot)
+        if(!ability->oneShot) {
             SorterFunction();
-
+        }
     }
 
     void findMatchingAmount()

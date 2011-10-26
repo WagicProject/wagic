@@ -407,17 +407,12 @@ void ActionLayer::doReactTo(int menuIndex)
     }
 }
 
-void ActionLayer::doMultipleChoice(int choice)
-{
-    if (menuObject)
-    {
-        DebugTrace("ActionLayer::doReactToChoice " << choice);
-        ButtonPressedOnMultipleChoice(choice);
-    }
-}
-
 void ActionLayer::ButtonPressed(int controllerid, int controlid)
 {
+    stringstream stream;
+    stream << "choice " << controlid;
+    observer->logAction(observer->currentActionPlayer, stream.str());
+
     if(this->abilitiesMenu && this->abilitiesMenu->isMultipleChoice)
     {
         return ButtonPressedOnMultipleChoice();
@@ -430,7 +425,7 @@ void ActionLayer::ButtonPressed(int controllerid, int controlid)
     }
     else if (controlid == kCancelMenuID)
     {
-        observer->mLayers->stackLayer()->endOfInterruption();
+        observer->mLayers->stackLayer()->endOfInterruption(false);
         menuObject = 0;
     }
     else
@@ -464,7 +459,7 @@ void ActionLayer::ButtonPressedOnMultipleChoice(int choice)
     }
     else if (currentMenuObject == kCancelMenuID)
     {
-        observer->mLayers->stackLayer()->endOfInterruption();
+        observer->mLayers->stackLayer()->endOfInterruption(false);
     }
     menuObject = 0;
 }

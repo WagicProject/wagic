@@ -34,7 +34,7 @@
 
 #define DEFAULT_DURATION .25
 
-int GameApp::players[] = { 0, 0 };
+PlayerType GameApp::players[] = { PLAYER_TYPE_CPU, PLAYER_TYPE_CPU };
 bool GameApp::HasMusic = true;
 JMusic * GameApp::music = NULL;
 string GameApp::currentMusicFile = "";
@@ -69,8 +69,8 @@ GameApp::GameApp() :
         mGameStates[i] = NULL;
 
     mShowDebugInfo = false;
-    players[0] = 0;
-    players[1] = 0;
+    players[0] = PLAYER_TYPE_CPU;
+    players[1] = PLAYER_TYPE_CPU;
     gameType = GAME_TYPE_CLASSIC;
 
     mCurrentState = NULL;

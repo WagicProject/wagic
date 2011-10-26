@@ -66,7 +66,7 @@ unsigned long hash_djb2(const char *str);
 void loadRandValues(string s);
 ostream& saveRandValues(ostream& out);
 int filesize(const char * filename);
-int WRand();
+int WRand(bool log = false);
 ptrdiff_t MRand (ptrdiff_t i);
 
 #ifdef LINUX

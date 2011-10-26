@@ -20,6 +20,7 @@ struct CardGui;
 class Player;
 class TargetChooser;
 class Rules;
+class TestSuite;
 using namespace std;
 
 class GameObserver{
@@ -41,8 +42,9 @@ class GameObserver{
   void logAction(const string& s);
   bool processActions(bool undo);
   friend ostream& operator<<(ostream&, GameObserver&);
-  bool load(const string& s, bool undo);
   bool mLoading;
+  void nextGamePhase();
+  void shuffleLibrary(Player* p);
 
  public:
   int currentPlayerId;
@@ -74,11 +76,15 @@ class GameObserver{
   const char * getCurrentGamePhaseName();
   const char * getNextGamePhaseName();
   void nextCombatStep();
-  void userRequestNextGamePhase();
-  void nextGamePhase();
+  void userRequestNextGamePhase(bool allowInterrupt = true, bool log = true);
   void cleanupPhase();
   void nextPlayer();
   void setPlayers(vector<Player *> _players);
+
+#ifdef TESTSUITE
+  void loadTestSuitePlayer(int playerId, TestSuite* testSuite);
+#endif //TESTSUITE
+  void loadPlayer(int playerId, PlayerType playerType = PLAYER_TYPE_HUMAN, int decknb=0, bool premadeDeck=false);
   Player * currentPlayer;
   Player * currentActionPlayer;
   Player * isInterrupting;
@@ -111,8 +117,12 @@ class GameObserver{
       logAction(players[playerId], s);
   };
   void logAction(MTGCardInstance* card, MTGGameZone* zone, size_t index, int result);
+  bool load(const string& s, bool undo = false);
   bool undo();
   bool isLoading(){ return mLoading; };
+  void Mulligan(Player* player = NULL);
+  Player* getPlayer(size_t index) { return players[index];};
+  bool isStarted() { return (mLayers!=NULL);};
 };
 
 #endif

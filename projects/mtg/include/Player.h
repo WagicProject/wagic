@@ -101,8 +101,14 @@ public:
 
 class HumanPlayer: public Player
 {
+protected:
+    bool premade;
 public:
-    HumanPlayer(GameObserver *observer, string deckFile, string deckFileSmall, MTGDeck * deck = NULL);
+    HumanPlayer(GameObserver *observer, string deckFile, string deckFileSmall, bool premade = false, MTGDeck * deck = NULL);
+    void End(){
+        if(!premade && opponent())
+            DeckStats::GetInstance()->saveStats(this, opponent(), observer);
+    };
 };
 
 #endif

@@ -67,7 +67,6 @@ int GameStateDuel::selectedAIDeckId = 0;
 GameStateDuel::GameStateDuel(GameApp* parent) :
 GameState(parent, "duel")
 {
-    mPlayers.clear();
     premadeDeck = false;
     game = NULL;
     deckmenu = NULL;
@@ -119,6 +118,8 @@ void GameStateDuel::Start()
     JRenderer * renderer = JRenderer::GetInstance();
     renderer->EnableVSync(true);
     OpponentsDeckid = 0;
+
+    game = NEW GameObserver();
 
 #ifdef TESTSUITE
     SAFE_DELETE(testSuite);
@@ -184,64 +185,6 @@ void GameStateDuel::Start()
         }
         deckmenu->Add(MENUITEM_CANCEL, "Main Menu", "Return to Main Menu");
     }
-
-    mPlayers.clear();
-}
-
-void GameStateDuel::loadPlayer(int playerId, int decknb, bool isAI, bool isNetwork)
-{
-    if (decknb)
-    {
-        if (!isAI)
-        { //Human Player
-            if(playerId == 0)
-            {
-                char deckFile[255];
-                if (premadeDeck)
-                    sprintf(deckFile, "player/premade/deck%i.txt", decknb);
-                else
-                    sprintf(deckFile, "%s/deck%i.txt", options.profileFile().c_str(), decknb);
-                char deckFileSmall[255];
-                sprintf(deckFileSmall, "player_deck%i", decknb);
-                mPlayers.push_back(NEW HumanPlayer(game, deckFile, deckFileSmall));
-#ifdef NETWORK_SUPPORT
-                if(isNetwork)
-                {
-                    ProxyPlayer* mProxy;
-                    mProxy = NEW ProxyPlayer(mPlayers[playerId], mParent->mpNetwork);
-                }
-            }
-            else
-            {   //Remote player
-                mPlayers.push_back(NEW RemotePlayer(mParent->mpNetwork));
-#endif //NETWORK_SUPPORT
-            }
-        }
-        else
-        { //AI Player, chooses deck
-            AIPlayerFactory playerCreator;
-            Player * opponent = NULL;
-            if (playerId == 1) opponent = mPlayers[0];
-            mPlayers.push_back(playerCreator.createAIPlayer(game, MTGCollection(), opponent, decknb));
-        }
-    }
-    else
-    { //Random deck
-        AIPlayerFactory playerCreator;
-        Player * opponent = NULL;
-        if (playerId == 1) opponent = mPlayers[0];
-#ifdef AI_CHANGE_TESTING
-        if (mParent->players[0] == PLAYER_TYPE_CPU_TEST)
-            mPlayers.push_back(playerCreator.createAIPlayerTest(game, MTGCollection(), opponent, playerId == 0 ? "ai/bakaA/" : "ai/bakaB/"));
-        else
-#endif
-        {
-            mPlayers.push_back(playerCreator.createAIPlayer(game, MTGCollection(), opponent));
-        }
-
-        if (mParent->players[playerId] == PLAYER_TYPE_CPU_TEST)
-            ((AIPlayer *) mPlayers[playerId])->setFastTimerMode();
-    }
 }
 
 void GameStateDuel::initRand(unsigned int seed)
@@ -258,12 +201,10 @@ void GameStateDuel::loadTestSuitePlayers()
     initRand(testSuite->seed);
     SAFE_DELETE(game);
     game = new GameObserver();
-    mPlayers.clear();
     for (int i = 0; i < 2; i++)
     {
-        mPlayers.push_back(new TestSuiteAI(game, testSuite, i));
+        game->loadTestSuitePlayer(i, testSuite);
     }
-    game->setPlayers(mPlayers);
     mParent->gameType = testSuite->gameType;
 
     game->startGame(mParent->gameType, mParent->rules);
@@ -279,22 +220,9 @@ void GameStateDuel::End()
 #endif
 
     JRenderer::GetInstance()->EnableVSync(false);
-    if (!premadeDeck && mPlayers.size() > 1 && mPlayers[0] && mPlayers[1])
-    { // save the stats for the game
-        mPlayers[0]->End();
-    }
-    else if (mPlayers.size() &&  mPlayers.size() == 1 && mPlayers[0] )
-        // clean up player object
-        SAFE_DELETE( mPlayers[0] );
 
     SAFE_DELETE(game);
     premadeDeck = false;
-    if(mPlayers.size())
-    for (size_t i = 0; i < mPlayers.size(); i++)
-    {
-        mPlayers[i] = NULL;
-    }
-    mPlayers.clear();
     SAFE_DELETE(credits);
 
     SAFE_DELETE(menu);
@@ -325,7 +253,7 @@ void GameStateDuel::ConstructOpponentMenu()
         DeckManager * deckManager = DeckManager::GetInstance();
         vector<DeckMetaData*> opponentDeckList;
         int nbUnlockedDecks = options[Options::CHEATMODEAIDECK].number ? 1000 : options[Options::AIDECKS_UNLOCKED].number;
-        opponentDeckList = fillDeckMenu(opponentMenu, "ai/baka", "ai_baka", mPlayers[0], nbUnlockedDecks);
+        opponentDeckList = fillDeckMenu(opponentMenu, "ai/baka", "ai_baka", game->getPlayer(0), nbUnlockedDecks);
         deckManager->updateMetaDataList(&opponentDeckList, true);
         opponentMenu->Add(MENUITEM_CANCEL, "Cancel", _("Choose a different player deck").c_str());
         opponentDeckList.clear();
@@ -393,7 +321,7 @@ void GameStateDuel::Update(float dt)
             }
             else
             {
-                loadPlayer(0);
+                game->loadPlayer(0, mParent->players[0]);
                 setGamePhase(DUEL_STATE_CHOOSE_DECK2);
             }
         }
@@ -416,7 +344,7 @@ void GameStateDuel::Update(float dt)
             }
             else
             {
-                loadPlayer(1);
+                game->loadPlayer(1, mParent->players[1]);
                 setGamePhase(DUEL_STATE_PLAY);
             }
         }
@@ -439,9 +367,8 @@ void GameStateDuel::Update(float dt)
         }
         break;
     case DUEL_STATE_PLAY:
-        if (!game)
+        if (!game->isStarted())
         {
-            game = new GameObserver(mPlayers);
             game->startGame(mParent->gameType, mParent->rules);
 
             //start of in game music code
@@ -523,6 +450,9 @@ void GameStateDuel::Update(float dt)
                 //END almosthumane - mulligan
                 menu->Add(MENUITEM_MAIN_MENU, "Back to main menu");
                 menu->Add(MENUITEM_UNDO, "Undo");
+#ifdef TESTSUITE
+                menu->Add(MENUITEM_LOAD, "Load");
+#endif
                 menu->Add(MENUITEM_CANCEL, "Cancel");
             }
             setGamePhase(DUEL_STATE_MENU);
@@ -763,7 +693,7 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
         switch (controlId)
         {
         case MENUITEM_RANDOM_AI:
-            loadPlayer(1);
+            game->loadPlayer(1, mParent->players[1]);
             opponentMenu->Close();
             setGamePhase(DUEL_STATE_CHOOSE_DECK2_TO_PLAY);
             break;
@@ -803,7 +733,7 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
             }
             else if (controlId != MENUITEM_EVIL_TWIN && aiDeckSize > 0) // evil twin
                 deckNumber = deckManager->getAIDeckOrderList()->at(controlId - 1)->getDeckId();
-            loadPlayer(1, deckNumber, 1);
+            game->loadPlayer(1, mParent->players[1], deckNumber, premadeDeck);
             OpponentsDeckid = deckNumber;
             opponentMenu->Close();
             setGamePhase(DUEL_STATE_CHOOSE_DECK2_TO_PLAY);
@@ -817,7 +747,7 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
         {
             vector<DeckMetaData *> * playerDeckList = deckManager->getPlayerDeckOrderList();
             deckNumber = playerDeckList->at(WRand() % (playerDeckList->size()))->getDeckId();
-            loadPlayer(0, deckNumber);
+            game->loadPlayer(0, mParent->players[0], deckNumber, premadeDeck);
             deckmenu->Close();
             setGamePhase(DUEL_STATE_CHOOSE_DECK2_TO_PLAY);
             break;
@@ -860,11 +790,7 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
             vector<DeckMetaData *> * playerDeck = deckManager->getPlayerDeckOrderList();
             if (!premadeDeck && controlId > 0) 
                 deckNumber = playerDeck->at(controlId - 1)->getDeckId();
-            loadPlayer(0, deckNumber, false
-#ifdef NETWORK_SUPPORT
-                       ,(mParent->players[1] == PLAYER_TYPE_REMOTE)
-#endif //NETWORK_SUPPORT
-                       );
+            game->loadPlayer(0, mParent->players[0], deckNumber, premadeDeck);
             deckmenu->Close();
 #ifdef NETWORK_SUPPORT
             if(mParent->players[1] == PLAYER_TYPE_REMOTE)
@@ -880,7 +806,7 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
         }
         else
         {
-            loadPlayer(1, controlId);
+            game->loadPlayer(1, mParent->players[1], controlId, premadeDeck);
             deckmenu->Close();
             setGamePhase(DUEL_STATE_CHOOSE_DECK2_TO_PLAY);
         }
@@ -901,7 +827,7 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
             break;
         case MENUITEM_MULLIGAN:
             //almosthumane - mulligan
-            game->currentPlayer->takeMulligan();
+            game->Mulligan();
             
             menu->Close();
             setGamePhase(DUEL_STATE_CANCEL);
@@ -913,6 +839,19 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
             setGamePhase(DUEL_STATE_CANCEL);
             break;
             }
+#ifdef TESTSUITE
+        case MENUITEM_LOAD:
+            {
+            std::string theGame;
+            if (JFileSystem::GetInstance()->readIntoString("test/game/timetwister.txt", theGame))
+            {
+                game->load(theGame);
+            }
+            menu->Close();
+            setGamePhase(DUEL_STATE_CANCEL);
+            break;
+            }
+#endif
         }
     }
 }

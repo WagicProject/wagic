@@ -207,7 +207,7 @@ public:
         DONT_INTERRUPT_ALL = 2,
     };
     Player * lastActionController;
-    int setIsInterrupting(Player * player);
+    int setIsInterrupting(Player * player, bool log = true);
     int count( int type = 0 , int state = 0 , int display = -1);
     Interruptible * getActionElementFromCard(MTGCardInstance * card);
     Interruptible * getPrevious(Interruptible * next, int type = 0, int state = 0 , int display = -1);
@@ -217,7 +217,7 @@ public:
     void Fizzle(Interruptible * action);
     Interruptible * getAt(int id);
     void cancelInterruptOffer(int cancelMode = 1);
-    void endOfInterruption();
+    void endOfInterruption(bool log = true);
     Interruptible * getLatest(int state);
     Player * askIfWishesToInterrupt;
     int garbageCollect();

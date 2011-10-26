@@ -68,13 +68,13 @@ void loadRandValues(string s)
 
 ptrdiff_t MRand (ptrdiff_t i)
 {
-    return WRand()%i;
+    return WRand(true)%i;
 }
 
-int WRand()
+int WRand(bool log)
 {
     int result;
-    if (!loadedRandomValues.size())
+    if (!loadedRandomValues.size() || !log)
     {
         result = rand();
     }
@@ -83,7 +83,8 @@ int WRand()
         result = loadedRandomValues.front();
         loadedRandomValues.pop();
     }
-    usedRandomValues.push(result);
+    if(log)
+        usedRandomValues.push(result);
     return result;
 }
 

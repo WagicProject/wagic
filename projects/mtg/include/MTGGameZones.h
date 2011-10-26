@@ -120,85 +120,85 @@ class MTGGameZone {
 };
 
 class MTGLibrary: public MTGGameZone {
- public:
-  virtual ostream& toString(ostream&) const;
-  const char * getName(){return "library";}
+public:
+    virtual ostream& toString(ostream&) const;
+    const char * getName(){return "library";}
 };
 
 class MTGGraveyard: public MTGGameZone {
- public:
-  virtual ostream& toString(ostream&) const;
-  const char * getName(){return "graveyard";}
+public:
+    virtual ostream& toString(ostream&) const;
+    const char * getName(){return "graveyard";}
 };
 
 class MTGHand: public MTGGameZone {
- public:
-  virtual ostream& toString(ostream&) const;
-  const char * getName(){return "hand";}
+public:
+    virtual ostream& toString(ostream&) const;
+    const char * getName(){return "hand";}
 };
 
 class MTGRemovedFromGame: public MTGGameZone {
- public:
-  virtual ostream& toString(ostream&) const;
-  const char * getName(){return "exile";}
+public:
+    virtual ostream& toString(ostream&) const;
+    const char * getName(){return "exile";}
 };
 
 class MTGStack: public MTGGameZone {
- public:
-  virtual ostream& toString(ostream&) const;
-  const char * getName(){return "stack";}
+public:
+    virtual ostream& toString(ostream&) const;
+    const char * getName(){return "stack";}
 };
 
 class MTGInPlay: public MTGGameZone {
- public:
-  void untapAll();
-  MTGCardInstance * getNextAttacker(MTGCardInstance * previous);
-  virtual ostream& toString(ostream&) const;
-  const char * getName(){return "battlefield";}
+public:
+    void untapAll();
+    MTGCardInstance * getNextAttacker(MTGCardInstance * previous);
+    virtual ostream& toString(ostream&) const;
+    const char * getName(){return "battlefield";}
 };
 
 
 class MTGPlayerCards {
- protected:
-  void init();
+protected:
+    void init();
 
 public:
     Player * owner;
     PlayRestrictions * playRestrictions;
-  MTGLibrary * library;
-  MTGGraveyard * graveyard;
-  MTGHand * hand;
-  MTGInPlay * inPlay;
-  MTGInPlay * battlefield; //alias to inPlay
+    MTGLibrary * library;
+    MTGGraveyard * graveyard;
+    MTGHand * hand;
+    MTGInPlay * inPlay;
+    MTGInPlay * battlefield; //alias to inPlay
 
-  MTGStack * stack;
-  MTGRemovedFromGame * removedFromGame;
-  MTGRemovedFromGame * exile; //alias to removedFromZone
-  MTGGameZone * garbage;
-  MTGGameZone * temp;
+    MTGStack * stack;
+    MTGRemovedFromGame * removedFromGame;
+    MTGRemovedFromGame * exile; //alias to removedFromZone
+    MTGGameZone * garbage;
+    MTGGameZone * temp;
 
-  MTGPlayerCards();
-  MTGPlayerCards(Player*, int * idList, int idListSize);
-  MTGPlayerCards(MTGDeck * deck);
-  ~MTGPlayerCards();
-  void initGame(int shuffle = 1, int draw = 1);
-	void OptimizedHand(Player * who,int amount = 7,int lands = 3,int creatures = 0,int othercards = 4);
-  void setOwner(Player * player);
-  void discardRandom(MTGGameZone * from,MTGCardInstance * source);
-  void drawFromLibrary();
-  void showHand();
-  void resetLibrary();
-  void initDeck(MTGDeck * deck);
-  void beforeBeginPhase();
-  MTGCardInstance * putInGraveyard(MTGCardInstance * card);
-  MTGCardInstance * putInExile(MTGCardInstance * card);
-  MTGCardInstance * putInLibrary(MTGCardInstance * card);
-  MTGCardInstance * putInHand(MTGCardInstance * card);
-  MTGCardInstance * putInZone(MTGCardInstance * card, MTGGameZone * from, MTGGameZone * to);
-  int isInPlay(MTGCardInstance * card);
-  int isInGrave(MTGCardInstance * card);
-  int isInZone(MTGCardInstance * card,MTGGameZone * zone);
-  bool parseLine(const string& s);
+    MTGPlayerCards();
+    MTGPlayerCards(Player*, int * idList, int idListSize);
+    MTGPlayerCards(MTGDeck * deck);
+    ~MTGPlayerCards();
+    void initGame(int shuffle = 1, int draw = 1);
+        void OptimizedHand(Player * who,int amount = 7,int lands = 3,int creatures = 0,int othercards = 4);
+    void setOwner(Player * player);
+    void discardRandom(MTGGameZone * from,MTGCardInstance * source);
+    void drawFromLibrary();
+    void showHand();
+    void resetLibrary();
+    void initDeck(MTGDeck * deck);
+    void beforeBeginPhase();
+    MTGCardInstance * putInGraveyard(MTGCardInstance * card);
+    MTGCardInstance * putInExile(MTGCardInstance * card);
+    MTGCardInstance * putInLibrary(MTGCardInstance * card);
+    MTGCardInstance * putInHand(MTGCardInstance * card);
+    MTGCardInstance * putInZone(MTGCardInstance * card, MTGGameZone * from, MTGGameZone * to);
+    int isInPlay(MTGCardInstance * card);
+    int isInGrave(MTGCardInstance * card);
+    int isInZone(MTGCardInstance * card,MTGGameZone * zone);
+    bool parseLine(const string& s);
 };
 
 ostream& operator<<(ostream&, const MTGGameZone&);

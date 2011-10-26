@@ -34,7 +34,7 @@ NextGamePhase requested by user
 */
 int NextGamePhase::resolve()
 {
-    observer->nextGamePhase();
+    observer->userRequestNextGamePhase(false, false);
     return 1;
 }
 
@@ -568,7 +568,7 @@ int ActionStack::AddNextCombatStep()
     return 1;
 }
 
-int ActionStack::setIsInterrupting(Player * player)
+int ActionStack::setIsInterrupting(Player * player, bool log)
 {
     askIfWishesToInterrupt = NULL;
 
@@ -589,7 +589,8 @@ int ActionStack::setIsInterrupting(Player * player)
     int playerId = (player == observer->players[1]) ? 1 : 0;
     interruptDecision[playerId] = -1;
     observer->isInterrupting = player;
-    observer->logAction(player, "yes");
+    if(log)
+        observer->logAction(player, "yes");
     return 1;
 }
 
@@ -826,7 +827,6 @@ int ActionStack::receiveEventPlus(WEvent * event)
 
 void ActionStack::Update(float dt)
 {
-
     //This is a hack to avoid updating the stack while tuto messages are being shown
     //Ideally, the tuto messages should be moved to a layer above this one
     if (ATutorialMessage::Current)
@@ -845,6 +845,7 @@ void ActionStack::Update(float dt)
     if (mode == ACTIONSTACK_STANDARD && tc && !checked)
     {
         checked = 1;
+
         for (size_t i = 0; i < mObjects.size(); i++)
         {
             Interruptible * current = (Interruptible *) mObjects[i];
@@ -946,7 +947,7 @@ void ActionStack::Update(float dt)
 	            extraTime = 1;//we never want this int to be 0.
 
             if (timer < 0)
-			    timer = static_cast<float>(options[Options::INTERRUPT_SECONDS].number * extraTime);
+                timer = static_cast<float>(options[Options::INTERRUPT_SECONDS].number * extraTime);
             timer -= dt;
             if (timer < 0)
                 cancelInterruptOffer();
@@ -964,12 +965,13 @@ void ActionStack::cancelInterruptOffer(int cancelMode)
     observer->logAction(playerId, "no");
 }
 
-void ActionStack::endOfInterruption()
+void ActionStack::endOfInterruption(bool log)
 {
     int playerId = (observer->isInterrupting == observer->players[1]) ? 1 : 0;
     interruptDecision[playerId] = 0;
     observer->isInterrupting = NULL;
-    observer->logAction(playerId, "endinterruption");
+    if(log)
+        observer->logAction(playerId, "endinterruption");
 }
 
 bool ActionStack::CheckUserInput(JButton key)

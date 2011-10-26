@@ -2219,7 +2219,7 @@ void MayAbility::Update(float dt)
         }
         game->mLayers->actionLayer()->setMenuObject(source, must);
         previousInterrupter = game->isInterrupting;
-        game->mLayers->stackLayer()->setIsInterrupting(source->controller());
+        game->mLayers->stackLayer()->setIsInterrupting(source->controller(), false);
     }
 }
 
@@ -3669,7 +3669,7 @@ void ABlink::Update(float dt)
 
             MTGGameZone * inplay = spell->source->owner->game->inPlay;
             spell->source->target = NULL;
-            for(int i = WRand()%inplay->nb_cards;;i = WRand()%inplay->nb_cards)
+            for(int i = WRand(true)%inplay->nb_cards;;i = WRand(true)%inplay->nb_cards)
             {
                 if(tc->canTarget(inplay->cards[i]) && spell->source->target == NULL)
                 {
@@ -3768,7 +3768,7 @@ void ABlink::resolveBlink()
 
                 MTGGameZone * inplay = spell->source->owner->game->inPlay;
                 spell->source->target = NULL;
-                for(int i = WRand()%inplay->nb_cards;;i = WRand()%inplay->nb_cards)
+                for(int i = WRand(true)%inplay->nb_cards;;i = WRand(true)%inplay->nb_cards)
                 {
                     if(tc->canTarget(inplay->cards[i]) && spell->source->target == NULL)
                     {

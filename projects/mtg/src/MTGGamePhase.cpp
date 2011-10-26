@@ -17,7 +17,6 @@ MTGGamePhase::MTGGamePhase(GameObserver* g, int id) :
 
 void MTGGamePhase::Update(float dt)
 {
-
     int newState = observer->getCurrentGamePhase();
     if (newState != currentState)
     {
@@ -34,9 +33,7 @@ void MTGGamePhase::Update(float dt)
     {
         activeState = INACTIVE;
         animation = 0;
-
     }
-
 }
 
 bool MTGGamePhase::NextGamePhase()

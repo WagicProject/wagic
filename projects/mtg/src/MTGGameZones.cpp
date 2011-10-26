@@ -390,7 +390,7 @@ void MTGPlayerCards::discardRandom(MTGGameZone * from, MTGCardInstance * source)
 {
     if (!from->nb_cards)
         return;
-    int r = WRand() % (from->nb_cards);
+    int r = WRand(true) % (from->nb_cards);
     WEvent * e = NEW WEventCardDiscard(from->cards[r]);
     GameObserver * game = owner->getObserver();
     game->receiveEvent(e);

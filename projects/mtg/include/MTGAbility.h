@@ -293,7 +293,7 @@ public:
         {
             counters = 0;
         }
-        return MTGAbility::Update(dt);
+        MTGAbility::Update(dt);
     }
     virtual int reactToClick(MTGCardInstance * card);
     virtual int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
