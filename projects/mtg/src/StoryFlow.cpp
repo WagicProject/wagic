@@ -310,7 +310,8 @@ void StoryDuel::init()
 
     sprintf(deckFile, "%s/deck.txt", folder);
     sprintf(deckFileSmall, "campaign_%s", mParent->folder.c_str());
-    players.push_back(NEW HumanPlayer(0, deckFile, deckFileSmall));
+    players.push_back(NEW HumanPlayer(0, deckFile, deckFileSmall, true));
+    
 
     sprintf(deckFile, "%s/opponent_deck.txt", folder);
     sprintf(deckFileSmall, "campaign_ennemy_%s_%s", mParent->folder.c_str(), pageId.c_str());

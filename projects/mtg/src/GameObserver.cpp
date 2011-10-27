@@ -1582,7 +1582,7 @@ void GameObserver::loadPlayer(int playerId, PlayerType playerType, int decknb, b
                     sprintf(deckFile, "%s/deck%i.txt", options.profileFile().c_str(), decknb);
                 char deckFileSmall[255];
                 sprintf(deckFileSmall, "player_deck%i", decknb);
-                players.push_back(NEW HumanPlayer(this, deckFile, deckFileSmall));
+                players.push_back(NEW HumanPlayer(this, deckFile, deckFileSmall, premadeDeck));
 #ifdef NETWORK_SUPPORT
                 // FIXME, this is broken
                 if(isNetwork)

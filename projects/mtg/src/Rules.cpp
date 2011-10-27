@@ -245,7 +245,7 @@ Player * Rules::loadPlayerMomir(GameObserver* observer, int isAI)
 
     Player *player = NULL;
     if (!isAI) // Human Player
-        player = NEW HumanPlayer(observer, options.profileFile("momir.txt", "", true).c_str(), deckFileSmall, tempDeck);
+        player = NEW HumanPlayer(observer, options.profileFile("momir.txt", "", true).c_str(), deckFileSmall, false, tempDeck);
     else
         player = NEW AIMomirPlayer(observer, options.profileFile("momir.txt", "", true).c_str(), deckFileSmall, empty, tempDeck);
 
@@ -279,7 +279,7 @@ Player * Rules::loadPlayerRandom(GameObserver* observer, int isAI, int mode)
 
     Player *player = NULL;
     if (!isAI) // Human Player
-        player = NEW HumanPlayer(observer, deckFile, deckFileSmall, tempDeck);
+        player = NEW HumanPlayer(observer, deckFile, deckFileSmall, false, tempDeck);
     else
         player = NEW AIPlayerBaka(observer, deckFile, deckFileSmall, "", tempDeck);
 
