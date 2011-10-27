@@ -1749,9 +1749,14 @@ int AIPlayerBaka::computeActions()
     if (object->menuObject)
     {
         int doThis = selectMenuOption();
+
+        // FIXME, action logging is broken in the multiplechoice case.
         if(doThis >= 0)
         {
-            observer->mLayers->actionLayer()->ButtonPressed(0, doThis);
+            if(object->abilitiesMenu->isMultipleChoice)
+                  observer->mLayers->actionLayer()->ButtonPressedOnMultipleChoice(doThis);
+            else
+                observer->mLayers->actionLayer()->doReactTo(doThis);
         }
         else if(doThis < 0 || object->checkCantCancel())
             observer->mLayers->actionLayer()->doReactTo(object->abilitiesMenu->mObjects.size()-1);
