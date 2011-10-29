@@ -61775,7 +61775,7 @@ toughness=*
 [card]
 name=Serra Avenger
 abilities=flying,vigilance
-restriction=Seventh turn
+restriction=turn:7
 text=You can't cast Serra Avenger during your first, second, or third turns of the game. -- Flying, vigilance
 mana={W}{W}
 type=Creature
