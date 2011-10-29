@@ -282,11 +282,6 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
         {
             restriction.push_back("type(creature|mybattlefield)~lessthan~type(creature|opponentbattlefield)");
         }
-        check = restriction[i].find("fourth turn");
-        if(check != string::npos)
-        {
-            restriction.push_back("turn:4");
-        }
     }
     return 1;
 }
