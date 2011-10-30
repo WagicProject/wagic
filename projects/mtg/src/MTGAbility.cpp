@@ -2708,7 +2708,6 @@ int AbilityFactory::getAbilities(vector<MTGAbility *> * v, Spell * spell, MTGCar
                 break;
             }
             //Other zones needed ?
-            return 0;
         }
     }
     else

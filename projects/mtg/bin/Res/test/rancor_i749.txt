@@ -1,0 +1,27 @@
+#http://code.google.com/p/wagic/issues/detail?id=749
+# @movedTo triggers don't trigger for the AI
+#When Rancor is put into a graveyard from the battlefield, return Rancor to its owner's hand.
+[INIT]
+SECONDMAIN
+[PLAYER1]
+[PLAYER2]
+inplay:Llanowar Elves,forest,mountain
+hand:Rancor,Shock
+[DO]
+eot
+goto firstmain
+Forest
+Rancor
+Llanowar Elves
+Mountain
+Shock
+Llanowar Elves
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+[PLAYER2]
+graveyard:Llanowar Elves,Shock
+hand:Rancor
+inplay:forest,mountain
+manapool:{0}
+[END]

@@ -512,6 +512,7 @@ rampant_growth.txt
 rancid_earth_with_threshold.txt
 rancid_earth_without_threshold.txt
 rancor.txt
+rancor_i749.txt
 ray_of_command.txt
 ray_of_command_i176.txt
 razor_golem.txt
