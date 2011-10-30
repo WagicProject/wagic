@@ -247,7 +247,7 @@ bool Player::parseLine(const string& s)
         }
         else if (areaS.compare("premade") == 0)
         {
-            premade = atoi(s.substr(limiter + 1).c_str());
+            premade = (atoi(s.substr(limiter + 1).c_str())==1);
             return true;
         }
         else if (areaS.compare("deckfile") == 0)
