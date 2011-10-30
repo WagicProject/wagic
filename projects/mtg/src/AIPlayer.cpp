@@ -19,7 +19,7 @@ const char * const MTG_LAND_TEXTS[] = { "artifact", "forest", "island", "mountai
 
 int AIAction::currentId = 0;
 
-AIAction::AIAction(Player * owner, MTGCardInstance * c, MTGCardInstance * t)
+AIAction::AIAction(AIPlayer * owner, MTGCardInstance * c, MTGCardInstance * t)
     : owner(owner), ability(NULL), player(NULL), click(c), target(t)
 {
     id = currentId++;
@@ -88,16 +88,19 @@ int AIAction::clickMultiAct(vector<Targetable*>& actionTargets)
     GameObserver * g = owner->getObserver();
     TargetChooser * tc = g->getCurrentTargetChooser();
     if(!tc) return 0;
-    for(size_t f = 0;f < actionTargets.size();f++)
+    vector<Targetable*>::iterator ite = actionTargets.begin();
+    while(ite != actionTargets.end())
     {
-        MTGCardInstance * card = ((MTGCardInstance *) actionTargets[f]);
+        MTGCardInstance * card = ((MTGCardInstance *) (*ite));
         if(card == (MTGCardInstance*)tc->source)//click source first.
         {
             g->cardClick(card);
-            actionTargets.erase(actionTargets.begin() + f);
+            ite = actionTargets.erase(ite);
+            continue;
         }
+        ite++;
     }
-    std::random_shuffle(actionTargets.begin(), actionTargets.end());
+    owner->getRandomGenerator()->random_shuffle(actionTargets.begin(), actionTargets.end());
     //shuffle to make it less predictable, otherwise ai will always seem to target from right to left. making it very obvious.
     for(int k = 0;k < int(actionTargets.size());k++)
     {
@@ -152,27 +155,31 @@ int AIPlayer::Act(float dt)
 
 
 
-
 int AIPlayer::clickMultiTarget(TargetChooser * tc, vector<Targetable*>& potentialTargets)
 {
-    for(int f = 0;f < int(potentialTargets.size());f++)
+    vector<Targetable*>::iterator ite = potentialTargets.begin();
+    while(ite != potentialTargets.end())
     {
-        MTGCardInstance * card = ((MTGCardInstance *) potentialTargets[f]);
-        Player * pTarget = (Player*)potentialTargets[f];
+        MTGCardInstance * card = ((MTGCardInstance *) (*ite));
+        Player * pTarget = (Player*)(*ite);
         if(card && card == (MTGCardInstance*)tc->source)//if the source is part of the targetting deal with it first. second click is "confirming click".
         {
             clickstream.push(NEW AIAction(this, card));
             DebugTrace("Ai clicked source as a target: " << (card ? card->name : "None" ) << endl );
-            potentialTargets.erase(potentialTargets.begin() + f);
+            ite = potentialTargets.erase(ite);
+            continue;
         }
         if(pTarget && pTarget->typeAsTarget() == TARGET_PLAYER)
         {
             clickstream.push(NEW AIAction(this, pTarget));
             DebugTrace("Ai clicked Player as a target");
-            potentialTargets.erase(potentialTargets.begin() + f);
+            ite = potentialTargets.erase(ite);
+            continue;
         }
+        ite++;
     }
-    std::random_shuffle(potentialTargets.begin(), potentialTargets.end());
+
+    randomGenerator.random_shuffle(potentialTargets.begin(), potentialTargets.end());
     if(potentialTargets.size())
         clickstream.push(NEW AIAction(this, NULL,tc->source,potentialTargets));
     while(clickstream.size())
@@ -187,7 +194,7 @@ int AIPlayer::clickMultiTarget(TargetChooser * tc, vector<Targetable*>& potentia
 
 int AIPlayer::clickSingleTarget(TargetChooser * tc, vector<Targetable*>& potentialTargets, MTGCardInstance * chosenCard)
 {
-        int i = WRand() % potentialTargets.size();
+        int i = randomGenerator.random() % potentialTargets.size();
         int type = potentialTargets[i]->typeAsTarget();
         switch (type)
         {
@@ -276,6 +283,25 @@ void AIPlayer::Render()
 {
 
 }
+
+bool AIPlayer::parseLine(const string& s)
+{
+    size_t limiter = s.find("=");
+    if (limiter == string::npos) limiter = s.find(":");
+    string areaS;
+    if (limiter != string::npos)
+    {
+        areaS = s.substr(0, limiter);
+        if (areaS.compare("rvalues") == 0)
+        {
+            randomGenerator.loadRandValues(s.substr(limiter + 1));
+            return true;
+        }
+    }
+
+    return Player::parseLine(s);
+}
+
 
 #ifdef AI_CHANGE_TESTING
 AIPlayer * AIPlayerFactory::createAIPlayerTest(GameObserver *observer, MTGAllCards * collection, Player * opponent, string _folder)

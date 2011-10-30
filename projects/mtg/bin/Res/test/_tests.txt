@@ -664,5 +664,5 @@ momir/overcost.txt
 ########################
 #AI Tests
 ########################
-#Removed until we can have these tests work on all machines :(
-#ai/goblin_artillery.txt
+ai/goblin_artillery.txt
+ai/proliferate_simple.txt

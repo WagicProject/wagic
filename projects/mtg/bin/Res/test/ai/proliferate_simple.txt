@@ -1,0 +1,24 @@
+FORCEABILITY
+AICALLS 18
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+life:20
+# to check that AI does not target itself
+poisoncount:1
+inplay:Thrummingbird
+[PLAYER2]
+life:20
+poisoncount:1
+[DO]
+ai
+[ASSERT]
+COMBATEND
+[PLAYER1]
+life:20
+poisoncount:1
+inplay:Thrummingbird
+[PLAYER2]
+life:19
+poisoncount:2
+[END]

@@ -18,24 +18,24 @@ protected:
 public:
     int efficiency;
     
-    OrderedAIAction(Player * owner, MTGAbility * a, MTGCardInstance * c, MTGCardInstance * t = NULL)
+    OrderedAIAction(AIPlayer * owner, MTGAbility * a, MTGCardInstance * c, MTGCardInstance * t = NULL)
         : AIAction(owner, a, c, t), efficiency(-1)
     {
     };
 
-    OrderedAIAction(Player * owner, MTGCardInstance * c, MTGCardInstance * t = NULL);
+    OrderedAIAction(AIPlayer * owner, MTGCardInstance * c, MTGCardInstance * t = NULL);
 
-    OrderedAIAction(Player * owner, Player * p)//player targeting through spells
+    OrderedAIAction(AIPlayer * owner, Player * p)//player targeting through spells
         : AIAction(owner,p), efficiency(-1)
     {
     };
 
-    OrderedAIAction(Player * owner, MTGAbility * a, MTGCardInstance * c, vector<Targetable*>targetCards)
+    OrderedAIAction(AIPlayer * owner, MTGAbility * a, MTGCardInstance * c, vector<Targetable*>targetCards)
         : AIAction(owner,a,  c, targetCards), efficiency(-1)
     {
     };
 
-    OrderedAIAction(Player * owner, MTGAbility * a, Player * p, MTGCardInstance * c)//player targeting through abilities.
+    OrderedAIAction(AIPlayer * owner, MTGAbility * a, Player * p, MTGCardInstance * c)//player targeting through abilities.
         : AIAction(owner, a, p, c), efficiency(-1)
     {
     };

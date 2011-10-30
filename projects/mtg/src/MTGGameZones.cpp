@@ -390,7 +390,7 @@ void MTGPlayerCards::discardRandom(MTGGameZone * from, MTGCardInstance * source)
 {
     if (!from->nb_cards)
         return;
-    int r = WRand(true) % (from->nb_cards);
+    int r = owner->getObserver()->getRandomGenerator()->random() % (from->nb_cards);
     WEvent * e = NEW WEventCardDiscard(from->cards[r]);
     GameObserver * game = owner->getObserver();
     game->receiveEvent(e);
@@ -681,7 +681,7 @@ void MTGGameZone::cleanupPhase()
 
 void MTGGameZone::shuffle()
 {
-    std::random_shuffle(cards.begin(), cards.end(), MRand );
+    owner->getObserver()->getRandomGenerator()->random_shuffle(cards.begin(), cards.end());
 }
 
 void MTGGameZone::addCard(MTGCardInstance * card)

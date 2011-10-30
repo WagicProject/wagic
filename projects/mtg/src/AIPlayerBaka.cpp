@@ -509,12 +509,12 @@ int OrderedAIAction::getEfficiency()
             else
             {
             //without a base to start with Wrand % 5 almost always returns 0.
-                efficiency = 10 + (WRand() % 20); //Small percentage of chance for unknown abilities
+                efficiency = 10 + (owner->getRandomGenerator()->random() % 20); //Small percentage of chance for unknown abilities
             }
         }
         else
         {
-            efficiency = 10 + (WRand() % 30);
+            efficiency = 10 + (owner->getRandomGenerator()->random() % 30);
         }
         break;
     }
@@ -539,11 +539,11 @@ int OrderedAIAction::getEfficiency()
             else if( target->currentZone == p->game->inPlay && (MTGCardInstance*)target == a->source)
             {
                 if (z == p->game->hand)
-                    efficiency = 10 + (WRand() % 10);//random chance to bounce their own card;
+                    efficiency = 10 + (owner->getRandomGenerator()->random() % 10);//random chance to bounce their own card;
             }
             else
             {
-                efficiency = 10 + (WRand() % 5);
+                efficiency = 10 + (owner->getRandomGenerator()->random() % 5);
             }
         }
     }
@@ -584,7 +584,7 @@ int OrderedAIAction::getEfficiency()
     {
         AIPlayer * chk = (AIPlayer*)p;
         if(may->ability->getActionTc() && chk->chooseTarget(may->ability->getActionTc(),NULL,NULL,true))
-        efficiency = 50 + (WRand() % 50);
+        efficiency = 50 + (owner->getRandomGenerator()->random() % 50);
     }
     if (p->game->hand->nb_cards == 0)
         efficiency = (int) ((float) efficiency * 1.3); //increase chance of using ability if hand is empty
@@ -1237,7 +1237,7 @@ int AIPlayerBaka::selectHintAbility()
     ManaCost * totalPotentialMana = getPotentialMana(); 
     totalPotentialMana->add(this->getManaPool());
     AIAction * action = hints->suggestAbility(totalPotentialMana);
-    if (action && ((WRand() % 100) < 95)) //95% chance
+    if (action && ((randomGenerator.random() % 100) < 95)) //95% chance
     {
         if (!clickstream.size())
         {
@@ -1327,7 +1327,7 @@ int AIPlayerBaka::selectAbility()
         OrderedAIAction action = ranking.begin()->first;
         int chance = 1;
         if (!forceBestAbilityUse)
-            chance = 1 + WRand() % 100;
+            chance = 1 + randomGenerator.random() % 100;
         int actionScore = action.getEfficiency();
         if(action.ability->getCost() && action.ability->getCost()->hasX() && this->game->hand->cards.size())
             actionScore = actionScore/int(this->game->hand->cards.size());//reduce chance for "x" abilities if cards are in hand.
@@ -1705,7 +1705,7 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
                 if(!canPlay)
                     continue;
             }
-            if (WRand() % 100 > shouldPlayPercentage)
+            if (randomGenerator.random() % 100 > shouldPlayPercentage)
                 continue;
             nextCardToPlay = card;
             maxCost = currentCost;

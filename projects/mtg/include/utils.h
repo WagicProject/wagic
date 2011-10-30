@@ -63,11 +63,31 @@ std::string wordWrap(const std::string& s, float width, int fontId);
 //basic hash function
 unsigned long hash_djb2(const char *str);
 
-void loadRandValues(string s);
-ostream& saveRandValues(ostream& out);
+// This class wraps random generation and the pre-loading/saving of randoms
+// The idea is to make it instantiable to be able to handle randoms differently per class of group of classes.
+// In particular, to be able to control the AI randoms independently of the other game randoms so that we can actually test AI
+class RandomGenerator
+{
+protected:
+    queue<int> loadedRandomValues;
+    queue<int> usedRandomValues;
+    bool log;
+public:
+    RandomGenerator(bool doLog = false) : log(doLog) {};
+    void loadRandValues(string s);
+    ostream& saveUsedRandValues(ostream& out);
+    ostream& saveLoadedRandValues(ostream& out);
+    int random();
+    template<typename Iter> void random_shuffle(Iter first, Iter last)
+    {
+        ptrdiff_t i, n;
+        n = (last-first);
+        for (i=n-1; i>0; --i) swap (first[i],first[random()%(i+1)]);
+    };
+};
+
 int filesize(const char * filename);
 int WRand(bool log = false);
-ptrdiff_t MRand (ptrdiff_t i);
 
 #ifdef LINUX
 void dumpStack();

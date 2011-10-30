@@ -86,11 +86,13 @@ GameObserver::~GameObserver()
 }
 
 GameObserver::GameObserver()
+    : randomGenerator(true)
 {
     initialize();
 }
 
 GameObserver::GameObserver(vector<Player *> _players)
+    : randomGenerator(true)
 {
     initialize();
     setPlayers(_players);
@@ -1279,7 +1281,7 @@ ostream& operator<<(ostream& out, GameObserver& g)
     else
     {
         out << "rvalues:";
-        out << saveRandValues(out);
+        out << g.randomGenerator.saveUsedRandValues(out);
         out << endl;
         out << g.startupGameSerialized;
     }
@@ -1327,7 +1329,7 @@ bool GameObserver::load(const string& ss, bool undo)
     string deckFileSmall = "";//players[0]->deckFileSmall;
 
     DebugTrace("Loading " + ss);
-    loadRandValues("");
+    randomGenerator.loadRandValues("");
 
     cleanup();
 
@@ -1345,7 +1347,7 @@ bool GameObserver::load(const string& ss, bool undo)
         }
         if (s.find("rvalues:") == 0)
         {
-            loadRandValues(s.substr(8).c_str());
+            randomGenerator.loadRandValues(s.substr(8).c_str());
             continue;
         }
         switch (state)
@@ -1612,7 +1614,7 @@ void GameObserver::loadPlayer(int playerId, PlayerType playerType, int decknb, b
         Player * opponent = NULL;
 
         // Reset the random logging.
-        loadRandValues("");
+        randomGenerator.loadRandValues("");
 
         if (playerId == 1) opponent = players[0];
 #ifdef AI_CHANGE_TESTING

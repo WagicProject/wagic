@@ -559,6 +559,7 @@ AARemoveAllCounter * AARemoveAllCounter::clone() const
 AAProliferate::AAProliferate(GameObserver* observer, int id, MTGCardInstance * source, Targetable * target,ManaCost * cost) :
 ActivatedAbility(observer, id, source, cost, 0)
 {
+    this->GetId();
 }
  
 int AAProliferate::resolve()
@@ -3669,7 +3670,7 @@ void ABlink::Update(float dt)
 
             MTGGameZone * inplay = spell->source->owner->game->inPlay;
             spell->source->target = NULL;
-            for(int i = WRand(true)%inplay->nb_cards;;i = WRand(true)%inplay->nb_cards)
+            for(int i = game->getRandomGenerator()->random()%inplay->nb_cards;;i = game->getRandomGenerator()->random()%inplay->nb_cards)
             {
                 if(tc->canTarget(inplay->cards[i]) && spell->source->target == NULL)
                 {
@@ -3768,7 +3769,7 @@ void ABlink::resolveBlink()
 
                 MTGGameZone * inplay = spell->source->owner->game->inPlay;
                 spell->source->target = NULL;
-                for(int i = WRand(true)%inplay->nb_cards;;i = WRand(true)%inplay->nb_cards)
+                for(int i = game->getRandomGenerator()->random()%inplay->nb_cards;;i = game->getRandomGenerator()->random()%inplay->nb_cards)
                 {
                     if(tc->canTarget(inplay->cards[i]) && spell->source->target == NULL)
                     {

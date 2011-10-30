@@ -21,13 +21,24 @@ namespace wagic
 using std::vector;
 using std::queue;
 
-int randValuesCursor = -1;
-vector<int> randValues;
+int RandomGenerator::random()
+{
+    int result;
+    if (!loadedRandomValues.size() || !log)
+    {
+        result = rand();
+    }
+    else
+    {
+        result = loadedRandomValues.front();
+        loadedRandomValues.pop();
+    }
+    if(log)
+        usedRandomValues.push(result);
+    return result;
+}
 
-queue<int> loadedRandomValues;
-queue<int> usedRandomValues;
-
-ostream& saveRandValues(ostream& out)
+ostream& RandomGenerator::saveUsedRandValues(ostream& out)
 {
     while(usedRandomValues.size())
     {
@@ -41,7 +52,21 @@ ostream& saveRandValues(ostream& out)
     return out;
 }
 
-void loadRandValues(string s)
+ostream& RandomGenerator::saveLoadedRandValues(ostream& out)
+{
+    while(loadedRandomValues.size())
+    {
+        out << loadedRandomValues.front();
+        if(loadedRandomValues.size() >= 1)
+            out << ",";
+
+        loadedRandomValues.pop();
+    }
+
+    return out;
+}
+
+void RandomGenerator::loadRandValues(string s)
 {
     while(loadedRandomValues.size())
         loadedRandomValues.pop();
@@ -66,26 +91,9 @@ void loadRandValues(string s)
     }
 }
 
-ptrdiff_t MRand (ptrdiff_t i)
-{
-    return WRand(true)%i;
-}
-
 int WRand(bool log)
 {
-    int result;
-    if (!loadedRandomValues.size() || !log)
-    {
-        result = rand();
-    }
-    else
-    {
-        result = loadedRandomValues.front();
-        loadedRandomValues.pop();
-    }
-    if(log)
-        usedRandomValues.push(result);
-    return result;
+    return rand();
 }
 
 int filesize(const char * filename)

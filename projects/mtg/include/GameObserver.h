@@ -45,6 +45,7 @@ class GameObserver{
   bool mLoading;
   void nextGamePhase();
   void shuffleLibrary(Player* p);
+  RandomGenerator randomGenerator;
 
  public:
   int currentPlayerId;
@@ -123,6 +124,7 @@ class GameObserver{
   void Mulligan(Player* player = NULL);
   Player* getPlayer(size_t index) { return players[index];};
   bool isStarted() { return (mLayers!=NULL);};
+  RandomGenerator* getRandomGenerator() { return &randomGenerator; };
 };
 
 #endif

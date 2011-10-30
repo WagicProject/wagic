@@ -1517,7 +1517,7 @@ int MTGMomirRule::genRandomCreatureId(int convertedCost)
     }
     if (!total_cards)
         return 0;
-    int start = (WRand(true) % total_cards);
+    int start = (game->getRandomGenerator()->random() % total_cards);
     return pool[convertedCost][start];
 }
 
@@ -1635,7 +1635,7 @@ int MTGStoneHewerRule::genRandomEquipId(int convertedCost)
 	if (convertedCost >= 20)
 		convertedCost = 19;
     int total_cards = 0;
-    int i = (WRand(true) % int(convertedCost+1));//+1 becuase we want to generate a random "<=" the coverted.
+    int i = (game->getRandomGenerator()->random() % int(convertedCost+1));//+1 becuase we want to generate a random "<=" the coverted.
     while (!total_cards && i >= 0)
     {
         total_cards = pool[i].size();
@@ -1644,7 +1644,7 @@ int MTGStoneHewerRule::genRandomEquipId(int convertedCost)
     }
     if (!total_cards)
         return 0;
-    int start = (WRand(true) % total_cards);
+    int start = (game->getRandomGenerator()->random() % total_cards);
     return pool[convertedCost][start];
 }
 
@@ -1681,7 +1681,7 @@ int MTGHermitRule::receiveEvent(WEvent * event)
 				lands.push_back(temp);
 		}
 		if(lands.size())
-                        lcard = lands[WRand(true) % lands.size()];
+                        lcard = lands[game->getRandomGenerator()->random() % lands.size()];
 		if(lcard)
 		{
 			MTGCardInstance * copy = game->currentPlayer->game->putInZone(lcard,game->currentPlayer->game->library, game->currentPlayer->game->temp);

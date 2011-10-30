@@ -18,7 +18,7 @@ protected:
     JTexture * mAvatarTex;
     JQuadPtr mAvatar;
     bool loadAvatar(string file, string resName = "playerAvatar");
-
+    bool premade;
 
 public:
     enum ENUM_PLAY_MODE
@@ -95,20 +95,19 @@ public:
     ** Returns the path to the stats file of currently selected deck. 
     */
     std::string GetCurrentDeckStatsFile();
-    bool parseLine(const string& s);
+    virtual bool parseLine(const string& s);
     friend ostream& operator<<(ostream&, const Player&);
 };
 
 class HumanPlayer: public Player
 {
-protected:
-    bool premade;
 public:
     HumanPlayer(GameObserver *observer, string deckFile, string deckFileSmall, bool premade = false, MTGDeck * deck = NULL);
     void End(){
         if(!premade && opponent())
             DeckStats::GetInstance()->saveStats(this, opponent(), observer);
     };
+    friend ostream& operator<<(ostream&, const HumanPlayer&);
 };
 
 #endif

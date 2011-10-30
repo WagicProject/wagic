@@ -15,6 +15,7 @@ Player::Player(GameObserver *observer, string file, string fileSmall, MTGDeck * 
     if(deck == NULL && file != "testsuite" && file != "remote" && file != "")
         deck = NEW MTGDeck(file.c_str(), MTGCollection());
 
+    premade = false;
     game = NULL;
     deckFile = file;
     deckFileSmall = fileSmall;
@@ -114,11 +115,12 @@ Player * Player::opponent()
     return this == observer->players[0] ? observer->players[1] : observer->players[0];
 }
 
-HumanPlayer::HumanPlayer(GameObserver *observer, string file, string fileSmall, bool premade, MTGDeck * deck) :
-    Player(observer, file, fileSmall, deck), premade(premade)
+HumanPlayer::HumanPlayer(GameObserver *observer, string file, string fileSmall, bool isPremade, MTGDeck * deck) :
+    Player(observer, file, fileSmall, deck)
 {
     mAvatarName = "avatar.jpg";
     playMode = MODE_HUMAN;
+    premade = isPremade;
 }
 
 ManaPool * Player::getManaPool()
@@ -243,6 +245,11 @@ bool Player::parseLine(const string& s)
             phaseRing = s.substr(limiter + 1);
             return true;
         }
+        else if (areaS.compare("premade") == 0)
+        {
+            premade = atoi(s.substr(limiter + 1).c_str());
+            return true;
+        }
         else if (areaS.compare("deckfile") == 0)
         {
             deckFile = s.substr(limiter + 1);
@@ -290,6 +297,7 @@ ostream& operator<<(ostream& out, const Player& p)
     if(p.phaseRing != "")
         out << "customphasering=" << p.phaseRing << endl;
     out << "offerinterruptonphase=" << Constants::MTGPhaseCodeNames[p.offerInterruptOnPhase] << endl;
+    out << "premade=" << p.premade << endl;
     if(p.deckFile != "")
         out << "deckfile=" << p.deckFile << endl;
     if(p.deckFileSmall != "")
@@ -302,4 +310,5 @@ ostream& operator<<(ostream& out, const Player& p)
 
     return out;
 }
+
 

@@ -22,13 +22,14 @@
 using std::queue;
 
 class AIStats;
+class AIPlayer;
 
 class AIAction
 {
 protected:
     static int currentId;
 public:
-    Player * owner;
+    AIPlayer * owner;
     MTGAbility * ability;
     NestedAbility * nability;
     Player * player;
@@ -39,26 +40,26 @@ public:
     Targetable * playerAbilityTarget;
     //player targeting through abilities is handled completely seperate from spell targeting.
     
-    AIAction(Player * owner, MTGAbility * a, MTGCardInstance * c, MTGCardInstance * t = NULL)
+    AIAction(AIPlayer * owner, MTGAbility * a, MTGCardInstance * c, MTGCardInstance * t = NULL)
         : owner(owner), ability(a), player(NULL), click(c), target(t),playerAbilityTarget(NULL)
     {
         id = currentId++;
     };
 
-    AIAction(Player * owner, MTGCardInstance * c, MTGCardInstance * t = NULL);
+    AIAction(AIPlayer * owner, MTGCardInstance * c, MTGCardInstance * t = NULL);
 
-    AIAction(Player * owner, Player * p)//player targeting through spells
+    AIAction(AIPlayer * owner, Player * p)//player targeting through spells
         :  owner(owner), ability(NULL), player(p), click(NULL), target(NULL),playerAbilityTarget(NULL)
     {
     };
 
-    AIAction(Player * owner, MTGAbility * a, MTGCardInstance * c, vector<Targetable*>targetCards)
+    AIAction(AIPlayer * owner, MTGAbility * a, MTGCardInstance * c, vector<Targetable*>targetCards)
         :  owner(owner), ability(a), player(NULL), click(c), mAbilityTargets(targetCards),playerAbilityTarget(NULL)
     {
         id = currentId++;
     };
 
-    AIAction(Player * owner, MTGAbility * a, Player * p, MTGCardInstance * c)//player targeting through abilities.
+    AIAction(AIPlayer * owner, MTGAbility * a, Player * p, MTGCardInstance * c)//player targeting through abilities.
         : owner(owner), ability(a), click(c),target(NULL), playerAbilityTarget(p)
     {
         id = currentId++;
@@ -76,6 +77,7 @@ protected:
     queue<AIAction *> clickstream;
     int clickMultiTarget(TargetChooser * tc,vector<Targetable*>&potentialTargets);
     int clickSingleTarget(TargetChooser * tc,vector<Targetable*>&potentialTargets, MTGCardInstance * Choosencard = NULL);
+    RandomGenerator randomGenerator;
 
 public:
 
@@ -98,8 +100,9 @@ public:
     int isAI(){return 1;};
 
     void setFastTimerMode(bool mode = true) { mFastTimerMode = mode; };
+    RandomGenerator* getRandomGenerator(){return &randomGenerator;};
 
-
+    bool parseLine(const string& s);
 };
 
 

@@ -77,7 +77,7 @@ int TestSuiteAI::displayStack()
 
 int TestSuiteAI::Act(float dt)
 {
-observer->gameOver = NULL; // Prevent draw rule from losing the game
+    observer->gameOver = NULL; // Prevent draw rule from losing the game
 
     //Last bits of initialization require to be done here, after the first "update" call of the game
     if (suite->currentAction == 0)
@@ -88,9 +88,10 @@ observer->gameOver = NULL; // Prevent draw rule from losing the game
 
     if (playMode == MODE_AI && suite->aiMaxCalls)
     {
+        float static counter = 1.0f;
         suite->aiMaxCalls--;
         suite->timerLimit = 40; //TODO Remove this limitation when AI is not using a stupid timer anymore...
-        AIPlayerBaka::Act(dt);
+        AIPlayerBaka::Act(counter++);//dt);
     }
     if (playMode == MODE_HUMAN)
     {
@@ -341,6 +342,10 @@ void TestSuite::initGame(GameObserver* g)
         AIPlayerBaka * p = (AIPlayerBaka *) (g->players[i]);
         p->forceBestAbilityUse = forceAbility;
         p->life = initState.players[i]->life;
+        p->poisonCount = initState.players[i]->poisonCount;
+        stringstream stream;
+        stream << initState.players[i]->getRandomGenerator()->saveLoadedRandValues(stream);
+        p->getRandomGenerator()->loadRandValues(stream.str());
         MTGGameZone * playerZones[] = { p->game->graveyard, p->game->library, p->game->hand, p->game->inPlay };
         MTGGameZone * loadedPlayerZones[] = { initState.players[i]->game->graveyard,
                                               initState.players[i]->game->library,
@@ -430,7 +435,13 @@ int TestSuite::assertGame(GameObserver* g)
             Log(result);
             error++;
         }
-        if (!p->getManaPool()->canAfford(endState.players[i]->getManaPool()))
+        if (p->poisonCount != endState.players[i]->poisonCount)
+        {
+            sprintf(result, "<span class=\"error\">==poison counter problem for player %i. Expected %i, got %i==</span><br />", i,
+                            endState.players[i]->poisonCount, p->poisonCount);
+            Log(result);
+            error++;
+        }        if (!p->getManaPool()->canAfford(endState.players[i]->getManaPool()))
         {
             sprintf(result, "<span class=\"error\">==Mana problem. Was expecting %i but got %i for player %i==</span><br />",
                             endState.players[i]->getManaPool()->getConvertedCost(), p->getManaPool()->getConvertedCost(), i);
@@ -611,7 +622,6 @@ void TestSuite::cleanup()
     initState.cleanup(this);
     endState.cleanup(this);
     actions.cleanup();
-    loadRandValues("");
 }
 
 int TestSuite::load(const char * _filename)
@@ -623,7 +633,6 @@ int TestSuite::load(const char * _filename)
     sprintf(filename, "test/%s", _filename);
     
     std::string s;
-    loadRandValues("");
 
     int state = -1;
 
@@ -653,11 +662,6 @@ int TestSuite::load(const char * _filename)
             if (s.find("seed ") == 0)
             {
                 seed = atoi(s.substr(5).c_str());
-                continue;
-            }
-            if (s.find("rvalues:") == 0)
-            {
-                loadRandValues(s.substr(8).c_str());
                 continue;
             }
             if (s.find("aicalls ") == 0)
