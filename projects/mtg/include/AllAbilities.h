@@ -850,7 +850,7 @@ public:
  Generic classes
  */
 //if/ifnot Cond then EFFECT
-class IfThenAbility: public MTGAbility
+class IfThenAbility: public ActivatedAbility
 {
 public:
     MTGAbility * delayedAbility;

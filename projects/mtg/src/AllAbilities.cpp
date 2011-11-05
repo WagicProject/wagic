@@ -2137,8 +2137,9 @@ AAWinGame * AAWinGame::clone() const
 
 //IfThenEffect
 IfThenAbility::IfThenAbility(GameObserver* observer, int _id, MTGAbility * delayedAbility, MTGCardInstance * _source, Targetable * _target, int type,string Cond) :
-MTGAbility(observer, _id, _source,_target),delayedAbility(delayedAbility), type(type),Cond(Cond)
+ActivatedAbility(observer, _id, _source),delayedAbility(delayedAbility), type(type),Cond(Cond)
 {
+    target = _target;
 }
 
 int IfThenAbility::resolve()
@@ -2156,8 +2157,8 @@ int IfThenAbility::resolve()
             TargetChooserFactory tcf(game);
             condTc = tcf.createTargetChooser(splitTarget[1], source);
             condTc->targetter = NULL;
-            if(source->target)
-                checkCond = condTc->canTarget(source->target);
+            if(aTarget)
+                checkCond = condTc->canTarget(aTarget);
             SAFE_DELETE(condTc);
         }
 
