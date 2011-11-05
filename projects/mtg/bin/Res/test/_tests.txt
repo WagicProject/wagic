@@ -80,7 +80,7 @@ generic/tokens2.txt
 generic/trample.txt
 generic/trample_vs_indestructible.txt
 generic/trample_vs_multiblock.txt
-generic/trigger_at_movedto_i179.txt
+generic/triggers_at_movedto_i179.txt
 generic/trigger_attacking.txt
 generic/trigger_blocking.txt
 generic/trigger_combatdamaged_1.txt
@@ -285,7 +285,6 @@ enchanted evening.txt
 endrek_sahr.txt
 enervate.txt
 enchantress_s_presence.txt
-Eradicate.txt
 erg_raiders_i157.txt
 evil_presence.txt
 evil_presence2.txt
@@ -322,10 +321,10 @@ force_of_nature.txt
 force_of_nature2.txt
 force_of_nature3.txt
 fountain_of_youth.txt
-frogmite.txt
+Frogmite.txt
 fungus_sliver.txt
 gamble.txt
-gelatinous_generation.txt
+gelatinous_genesis.txt
 gempalm_avenger.txt
 ghost_warden.txt
 glen_elendra_archmage_i222.txt
@@ -360,7 +359,6 @@ high_tide.txt
 hollowhenge scavenger2_MORBID.txt
 hollowhenge scavenger_MORBID.txt
 holy_day_i226.txt
-hope_charm_i267.txt
 hopping_automaton_i232.txt
 horned_helm.txt
 howl_from_beyond.txt
@@ -417,7 +415,7 @@ lhurgoyf.txt
 liability.txt
 lifeforce.txt
 lifetap.txt
-lightmine_field1.txt
+lightmine_field.txt
 lightmine_field2.txt
 living_artifact_i169.txt
 living_lands.txt
@@ -426,8 +424,6 @@ lord_of_the_pit.txt
 lord_of_the_pit2.txt
 magma_spray.txt
 manabarbs_dual_lands_i562.txt
-martial_coup.txt
-martial_coup2.txt
 master_decoy.txt
 master_of_etherium.txt
 masticore.txt
@@ -534,7 +530,7 @@ rootwalla.txt
 royal_assassin.txt
 sacred_foundry_i275.txt
 safehold_duo.txt
-safe_passage.txt
+safe passage.txt
 samite_healer.txt
 scourge_of_kher_ridges.txt
 scourge_of_kher_ridges2.txt
@@ -575,7 +571,7 @@ sneak_attack.txt
 solfatara.txt
 soulblast.txt
 souls_attendant_i489.txt
-soul's_grace_POWERLIFEGAIN.txt
+soul's grace_POWERLIFEGAIN.txt
 spark_elemental.txt
 spectral_shield_CANTBETARGETOF.txt
 sphinx_summoner.txt
@@ -606,7 +602,7 @@ terror.txt
 terror2.txt
 thallid.txt
 the_tabernacle_at_pendrell_vale.txt
-thellon_of_havenwood.txt
+thelon_of_havenwood.txt
 threaten.txt
 throne_of_bone.txt
 thunder-thrash_elder.txt
@@ -614,7 +610,6 @@ tidal_warrior_i646.txt
 tidal_warrior_i649.txt
 tidal_warrior_i652.txt
 titanic_ultimatum.txt
-tolsimir_wolfblood.txt
 torture.txt
 tranquil_domain.txt
 twinstrike.txt
@@ -643,12 +638,11 @@ walking_wall.txt
 wall_of_diffusion.txt
 wall_of_diffusion2.txt
 warren_instigator.txt
-wave_of_reckoning.txt
 welkin_hawk.txt
 whispers_of_the_muse.txt
 white_knight1.txt
 windswept_heath.txt
-winds_of_Rath.txt
+Winds_of_Rath.txt
 wrath_of_god.txt
 wrath_of_god2.txt
 wreak_havoc.txt

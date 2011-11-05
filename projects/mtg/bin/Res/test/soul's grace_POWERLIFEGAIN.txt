@@ -14,7 +14,7 @@ Giant Spider
 FIRSTMAIN
 [PLAYER1]
 graveyard:Soul's Grace
-inplay:Giant Spider
+inplay:Giant Spider,Gaea's Anthem
 life:23
 manapool:{0}
 [PLAYER2]
