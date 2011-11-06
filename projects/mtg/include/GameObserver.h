@@ -13,6 +13,7 @@
 #include <queue>
 #include <time.h>
 
+
 class MTGGamePhase;
 class MTGAbility;
 class MTGCardInstance;
@@ -20,7 +21,8 @@ struct CardGui;
 class Player;
 class TargetChooser;
 class Rules;
-class TestSuite;
+class TestSuiteGame;
+class Trash;
 using namespace std;
 
 class GameObserver{
@@ -46,6 +48,7 @@ class GameObserver{
   void nextGamePhase();
   void shuffleLibrary(Player* p);
   RandomGenerator randomGenerator;
+  WResourceManager* mResourceManager;
 
  public:
   int currentPlayerId;
@@ -66,6 +69,8 @@ class GameObserver{
   time_t startedAt;
   Rules * mRules;
   GameType mGameType;
+  MTGCardInstance* ExtraRules;
+  Trash* mTrash;
 
   TargetChooser * getCurrentTargetChooser();
   void stackObjectClicked(Interruptible * action);
@@ -80,19 +85,19 @@ class GameObserver{
   void userRequestNextGamePhase(bool allowInterrupt = true, bool log = true);
   void cleanupPhase();
   void nextPlayer();
-  void setPlayers(vector<Player *> _players);
 
 #ifdef TESTSUITE
-  void loadTestSuitePlayer(int playerId, TestSuite* testSuite);
+  void loadTestSuitePlayer(int playerId, TestSuiteGame* testSuite);
 #endif //TESTSUITE
   void loadPlayer(int playerId, PlayerType playerType = PLAYER_TYPE_HUMAN, int decknb=0, bool premadeDeck=false);
+  void loadPlayer(int playerId, Player* player);
+
   Player * currentPlayer;
   Player * currentActionPlayer;
   Player * isInterrupting;
   Player * opponent();
   Player * currentlyActing();
-  GameObserver();
-  GameObserver(vector<Player *> _players);
+  GameObserver(WResourceManager* resourceManager = NULL);
   ~GameObserver();
   void gameStateBasedEffects();
   void enchantmentStatus();
@@ -125,6 +130,8 @@ class GameObserver{
   Player* getPlayer(size_t index) { return players[index];};
   bool isStarted() { return (mLayers!=NULL);};
   RandomGenerator* getRandomGenerator() { return &randomGenerator; };
+  WResourceManager* getResourceManager() { if(this) return mResourceManager;else return 0;};
+  CardSelectorBase* getCardSelector() { return mLayers->mCardSelector;};
 };
 
 #endif

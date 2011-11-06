@@ -130,7 +130,7 @@ void CardGui::DrawCard(MTGCard* inCard, const Pos& inPosition, int inMode)
 
 void CardGui::Render()
 {
-    WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
+    WFont * mFont = card->getObserver()->getResourceManager()->GetWFont(Fonts::MAIN_FONT);
 
     JRenderer * renderer = JRenderer::GetInstance();
     GameObserver * game = card->getObserver();
@@ -140,7 +140,7 @@ void CardGui::Render()
         tc = game->getCurrentTargetChooser();
 
     bool alternate = true;
-    JQuadPtr quad = WResourceManager::Instance()->RetrieveCard(card, CACHE_THUMB);
+    JQuadPtr quad = card->getObserver()->getResourceManager()->RetrieveCard(card, CACHE_THUMB);
 
     if (quad.get())
         alternate = false;
@@ -153,7 +153,7 @@ void CardGui::Render()
     JQuadPtr shadow;
     if (actZ > 1)
     {
-        shadow = WResourceManager::Instance()->GetQuad("shadow");
+        shadow = card->getObserver()->getResourceManager()->GetQuad("shadow");
         shadow->SetColor(ARGB(static_cast<unsigned char>(actA)/2,255,255,255));
         renderer->RenderQuad(shadow.get(), actX + (actZ - 1) * 15, actY + (actZ - 1) * 15, actT, 28 * actZ / 16, 40 * actZ / 16);
     }
@@ -161,7 +161,7 @@ void CardGui::Render()
     JQuadPtr extracostshadow;
     if (card->isExtraCostTarget)
     {
-        extracostshadow = WResourceManager::Instance()->GetQuad("extracostshadow");
+        extracostshadow = card->getObserver()->getResourceManager()->GetQuad("extracostshadow");
         extracostshadow->SetColor(ARGB(static_cast<unsigned char>(actA)/2,100,0,0));
         renderer->RenderQuad(extracostshadow.get(), actX + (actZ - 1) * 15, actY + (actZ - 1) * 15, actT, 28 * actZ / 16, 40 * actZ / 16);
     }
@@ -185,7 +185,7 @@ void CardGui::Render()
     }
     if (isActiveConnectedParent)
     {
-        JQuadPtr white = WResourceManager::Instance()->GetQuad("white");
+        JQuadPtr white = card->getObserver()->getResourceManager()->GetQuad("white");
         if(white)
         {
             white->SetColor(ARGB(255,230,50,50));
@@ -212,7 +212,7 @@ void CardGui::Render()
     }
     if (isActiveConnectedChild)
     {
-        JQuadPtr white = WResourceManager::Instance()->GetQuad("white");
+        JQuadPtr white = card->getObserver()->getResourceManager()->GetQuad("white");
         if(white)
         {
         white->SetColor(ARGB(255,0,0,255));
@@ -235,15 +235,15 @@ void CardGui::Render()
 
         JQuadPtr icon;
         if (card->hasSubtype("plains"))
-            icon = WResourceManager::Instance()->GetQuad("c_white");
+            icon = card->getObserver()->getResourceManager()->GetQuad("c_white");
         else if (card->hasSubtype("swamp"))
-            icon = WResourceManager::Instance()->GetQuad("c_black");
+            icon = card->getObserver()->getResourceManager()->GetQuad("c_black");
         else if (card->hasSubtype("forest"))
-            icon = WResourceManager::Instance()->GetQuad("c_green");
+            icon = card->getObserver()->getResourceManager()->GetQuad("c_green");
         else if (card->hasSubtype("mountain"))
-            icon = WResourceManager::Instance()->GetQuad("c_red");
+            icon = card->getObserver()->getResourceManager()->GetQuad("c_red");
         else if (card->hasSubtype("island"))
-            icon = WResourceManager::Instance()->GetQuad("c_blue");
+            icon = card->getObserver()->getResourceManager()->GetQuad("c_blue");
 
         if (icon.get())
         {
@@ -256,7 +256,7 @@ void CardGui::Render()
     JQuadPtr mor;
     if(card->isMorphed && !alternate)
     {
-        mor = WResourceManager::Instance()->GetQuad("morph");
+        mor = card->getObserver()->getResourceManager()->GetQuad("morph");
         mor->SetColor(ARGB(255,255,255,255));
         renderer->RenderQuad(mor.get(), actX, actY, actT,scale, scale);
     }
@@ -299,7 +299,7 @@ void CardGui::Render()
     if (tc && !tc->canTarget(card))
     {
         if (!shadow)
-            shadow = WResourceManager::Instance()->GetQuad("shadow");
+            shadow = card->getObserver()->getResourceManager()->GetQuad("shadow");
         shadow->SetColor(ARGB(200,255,255,255));
         renderer->RenderQuad(shadow.get(), actX, actY, actT, (28 * actZ + 1) / 16, 40 * actZ / 16);
     }

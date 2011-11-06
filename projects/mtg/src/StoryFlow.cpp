@@ -303,26 +303,23 @@ StoryChoice::StoryChoice(string pageId, string text, int JGOid, float mX, float 
 //Actually loads a duel
 void StoryDuel::init()
 {
-    vector<Player *> players;
+    game = new GameObserver();
 
     char folder[255], deckFile[255], deckFileSmall[255];
     sprintf(folder, CAMPAIGNS_FOLDER"%s/%s", mParent->folder.c_str(), pageId.c_str());
 
     sprintf(deckFile, "%s/deck.txt", folder);
     sprintf(deckFileSmall, "campaign_%s", mParent->folder.c_str());
-    players.push_back(NEW HumanPlayer(0, deckFile, deckFileSmall, true));
-    
+    game->loadPlayer(0, NEW HumanPlayer(game, deckFile, deckFileSmall, true));
 
     sprintf(deckFile, "%s/opponent_deck.txt", folder);
     sprintf(deckFileSmall, "campaign_ennemy_%s_%s", mParent->folder.c_str(), pageId.c_str());
-    players.push_back(NEW AIPlayerBaka(0, deckFile, deckFileSmall, "baka.jpg"));
+    game->loadPlayer(1, NEW AIPlayerBaka(game, deckFile, deckFileSmall, "baka.jpg"));
 
     string rulesFile = folder;
     rulesFile.append("/rules.txt");
     rules = NEW Rules(bg);
     rules->load(rulesFile);
-
-    game = new GameObserver(players);
 
     rules->gamemode = GAME_TYPE_STORY;
     game->startGame(GAME_TYPE_STORY, rules);

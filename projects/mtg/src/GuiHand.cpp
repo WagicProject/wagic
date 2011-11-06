@@ -35,11 +35,14 @@ HandLimitor::HandLimitor(GuiHand* hand) :
 GuiHand::GuiHand(GameObserver* observer, MTGHand* hand) :
     GuiLayer(observer), hand(hand)
 {
-    back = WResourceManager::Instance()->RetrieveTempQuad("handback.png");
-    if (back.get())
-        back->SetTextureRect(1, 0, 100, 250);
-    else
-        GameApp::systemError = "Error loading hand texture : " __FILE__;
+    if(observer->getResourceManager())
+    {
+        back = observer->getResourceManager()->RetrieveTempQuad("handback.png");
+        if (back.get())
+            back->SetTextureRect(1, 0, 100, 250);
+        else
+            GameApp::systemError = "Error loading hand texture : " __FILE__;
+    }
 }
 
 GuiHand::~GuiHand()
@@ -175,10 +178,10 @@ bool GuiHandSelf::CheckUserInput(JButton key)
     {
         state = (Open == state ? Closed : Open);
         if (Open == state)
-            CardSelectorSingleton::Instance()->Push();
-        CardSelectorSingleton::Instance()->Limit(Open == state ? limitor : NULL, CardView::handZone);
+            observer->getCardSelector()->Push();
+        observer->getCardSelector()->Limit(Open == state ? limitor : NULL, CardView::handZone);
         if (Closed == state)
-            CardSelectorSingleton::Instance()->Pop();
+            observer->getCardSelector()->Pop();
         if (OptionHandDirection::HORIZONTAL == options[Options::HANDDIRECTION].number)
             backpos.y = Open == state ? OpenY : ClosedY;
         else
@@ -264,7 +267,7 @@ int GuiHandSelf::receiveEventPlus(WEvent* e)
                 card = NEW CardView(CardView::handZone, ev->card, ClosedRowX, 0);
             card->t = 6 * M_PI;
             cards.push_back(card);
-            CardSelectorSingleton::Instance()->Add(card);
+            observer->getCardSelector()->Add(card);
             Repos();
             return 1;
         }
@@ -279,10 +282,10 @@ int GuiHandSelf::receiveEventMinus(WEvent* e)
                 if (event->card->previous == (*it)->card)
                 {
                     CardView* cv = *it;
-                    CardSelectorSingleton::Instance()->Remove(cv);
+                    observer->getCardSelector()->Remove(cv);
                     cards.erase(it);
                     Repos();
-                    trash(cv);
+                    observer->mTrash->trash(cv);
                     return 1;
                 }
         return 1;
@@ -317,7 +320,7 @@ int GuiHandOpponent::receiveEventMinus(WEvent* e)
                 {
                     CardView* cv = *it;
                     cards.erase(it);
-                    trash(cv);
+                    observer->mTrash->trash(cv);
                     return 1;
                 }
         return 0;

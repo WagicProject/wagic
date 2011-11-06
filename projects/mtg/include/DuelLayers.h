@@ -26,6 +26,7 @@ protected:
     ActionStack* stack;
     GuiHandSelf *hand;
     GuiAvatars * avatars;
+    GameObserver* observer;
 
 public:
     DuelLayers();

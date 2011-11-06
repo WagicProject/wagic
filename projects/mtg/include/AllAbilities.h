@@ -781,9 +781,6 @@ public:
 
     //JGuiListener Implementation
     void ButtonPressed(int controllerId, int controlId);
-
-    static ATutorialMessage * Current;
-
 };
 
 

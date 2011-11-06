@@ -48,7 +48,7 @@ const string NextGamePhase::getDisplayName() const
 
 void NextGamePhase::Render()
 {
-    WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
+    WFont * mFont = observer->getResourceManager()->GetWFont(Fonts::MAIN_FONT);
     mFont->SetBase(0);
     mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
     char buffer[200];
@@ -81,20 +81,20 @@ const string Interruptible::getDisplayName() const
 
 float Interruptible::GetVerticalTextOffset() const
 {
-    static const float kTextVerticalOffset = (mHeight - WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT)->GetHeight()) / 2;
+    static const float kTextVerticalOffset = (mHeight - observer->getResourceManager()->GetWFont(Fonts::MAIN_FONT)->GetHeight()) / 2;
     return kTextVerticalOffset;
 }
 
 void Interruptible::Render(MTGCardInstance * source, JQuad * targetQuad, string alt1, string alt2, string action,
     bool bigQuad)
 {
-    WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
+    WFont * mFont = observer->getResourceManager()->GetWFont(Fonts::MAIN_FONT);
     mFont->SetColor(ARGB(255,255,255,255));
     mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
 
     mFont->DrawString(_(action).c_str(), x + 35, y + GetVerticalTextOffset(), JGETEXT_LEFT);
     JRenderer * renderer = JRenderer::GetInstance();
-    JQuadPtr quad = WResourceManager::Instance()->RetrieveCard(source, CACHE_THUMB);
+    JQuadPtr quad = observer->getResourceManager()->RetrieveCard(source, CACHE_THUMB);
     if (!quad.get())
         quad = CardGui::AlternateThumbQuad(source);
     if (quad.get())
@@ -111,7 +111,7 @@ void Interruptible::Render(MTGCardInstance * source, JQuad * targetQuad, string 
     if (bigQuad)
     {
         Pos pos = Pos(CardGui::BigWidth / 2, CardGui::BigHeight / 2 - 10, 1.0, 0.0, 220);
-        CardGui::DrawCard(source, pos, CardSelectorSingleton::Instance()->GetDrawMode());
+        CardGui::DrawCard(source, pos, observer->getCardSelector()->GetDrawMode());
     }
 
     if (targetQuad)
@@ -409,7 +409,7 @@ int PutInGraveyard::resolve()
 
 void PutInGraveyard::Render()
 {
-    WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
+    WFont * mFont = observer->getResourceManager()->GetWFont(Fonts::MAIN_FONT);
     mFont->SetBase(0);
     mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
     if (!removeFromGame)
@@ -421,7 +421,7 @@ void PutInGraveyard::Render()
         mFont->DrawString(_("is exiled").c_str(), x + 30, y, JGETEXT_LEFT);
     }
     JRenderer * renderer = JRenderer::GetInstance();
-    JQuadPtr quad = WResourceManager::Instance()->RetrieveCard(card, CACHE_THUMB);
+    JQuadPtr quad = observer->getResourceManager()->RetrieveCard(card, CACHE_THUMB);
     if (quad.get())
     {
         quad->SetColor(ARGB(255,255,255,255));
@@ -457,7 +457,7 @@ int DrawAction::resolve()
 
 void DrawAction::Render()
 {
-    WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
+    WFont * mFont = observer->getResourceManager()->GetWFont(Fonts::MAIN_FONT);
     mFont->SetBase(0);
     mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
     char buffer[200];
@@ -487,7 +487,7 @@ target->life += amount;
 
 void LifeAction::Render()
 {
-    WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
+    WFont * mFont = observer->getResourceManager()->GetWFont(Fonts::MAIN_FONT);
     mFont->SetBase(0);
     mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
     char buffer[200];
@@ -574,7 +574,7 @@ int ActionStack::setIsInterrupting(Player * player, bool log)
 
     if (!gModRules.game.canInterrupt())
     {
-        cancelInterruptOffer();
+        cancelInterruptOffer(1, log);
         return 0;
     }
 
@@ -632,7 +632,7 @@ Interruptible * ActionStack::getAt(int id)
 }
 
 ActionStack::ActionStack(GameObserver* game)
-    : GuiLayer(game)
+    : GuiLayer(game), currentTutorial(0)
 {
     for (int i = 0; i < 2; i++)
         interruptDecision[i] = 0;
@@ -642,11 +642,12 @@ ActionStack::ActionStack(GameObserver* game)
     mode = ACTIONSTACK_STANDARD;
     checked = 0;
 
+    if(!observer->getResourceManager()) return;
     for (int i = 0; i < 8; ++i)
     {
         std::ostringstream stream;
         stream << "iconspsp" << i;
-        pspIcons[i] = WResourceManager::Instance()->RetrieveQuad("iconspsp.png", (float) i * 32, 0, 32, 32, stream.str(), RETRIEVE_MANAGE);
+        pspIcons[i] = observer->getResourceManager()->RetrieveQuad("iconspsp.png", (float) i * 32, 0, 32, 32, stream.str(), RETRIEVE_MANAGE);
         pspIcons[i]->SetHotSpot(16, 16);
     }
 }
@@ -829,7 +830,7 @@ void ActionStack::Update(float dt)
 {
     //This is a hack to avoid updating the stack while tuto messages are being shown
     //Ideally, the tuto messages should be moved to a layer above this one
-    if (ATutorialMessage::Current)
+    if (getCurrentTutorial())
         return;
 
     askIfWishesToInterrupt = NULL;
@@ -955,14 +956,15 @@ void ActionStack::Update(float dt)
     }
 }
 
-void ActionStack::cancelInterruptOffer(int cancelMode)
+void ActionStack::cancelInterruptOffer(int cancelMode, bool log)
 {
     int playerId = (observer->isInterrupting == observer->players[1]) ? 1 : 0;
     interruptDecision[playerId] = cancelMode;
     askIfWishesToInterrupt = NULL;
     observer->isInterrupting = NULL;
     timer = -1;
-    observer->logAction(playerId, "no");
+    if(log)
+        observer->logAction(playerId, "no");
 }
 
 void ActionStack::endOfInterruption(bool log)
@@ -1101,7 +1103,7 @@ void ActionStack::Render()
 {
     //This is a hack to avoid rendering the stack above the tuto messages
     //Ideally, the tuto messages should be moved to a layer above this one
-    if (ATutorialMessage::Current)
+    if (getCurrentTutorial())
         return;
 
     static const float kSpacer = 8;
@@ -1123,7 +1125,7 @@ void ActionStack::Render()
                 height += current->mHeight;
         }
 
-        WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
+        WFont * mFont = observer->getResourceManager()->GetWFont(Fonts::MAIN_FONT);
         mFont->SetBase(0);
         mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
         mFont->SetColor(ARGB(255,255,255,255));
@@ -1201,7 +1203,7 @@ void ActionStack::Render()
                 height += current->mHeight;
         }
 
-        WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
+        WFont * mFont = observer->getResourceManager()->GetWFont(Fonts::MAIN_FONT);
         mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
         mFont->SetColor(ARGB(255,255,255,255));
 

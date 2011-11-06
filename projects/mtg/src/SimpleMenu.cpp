@@ -27,8 +27,6 @@ JTexture* SimpleMenu::spadeRTex = NULL;
 JTexture* SimpleMenu::spadeLTex = NULL;
 JTexture* SimpleMenu::jewelTex = NULL;
 JTexture* SimpleMenu::sideTex = NULL;
-WFont* SimpleMenu::titleFont = NULL;
-hgeParticleSystem* SimpleMenu::stars = NULL;
 
 SimpleMenu::SimpleMenu(int id, JGuiListener* listener, int fontId, float x, float y, const char * _title, int _maxItems, bool centerHorizontal, bool centerVertical)
     : JGuiController(id, listener), fontId(fontId), mCenterHorizontal(centerHorizontal), mCenterVertical(centerVertical)
@@ -58,14 +56,14 @@ SimpleMenu::SimpleMenu(int id, JGuiListener* listener, int fontId, float x, floa
     jewel.reset(NEW JQuad(jewelTex, 1, 1, 3, 3));
     side = WResourceManager::Instance()->RetrieveQuad("menuside.png", 1, 1, 1, kPoleWidth, "menuside", RETRIEVE_MANAGE);
 
-    if (NULL == stars)
-        stars = NEW hgeParticleSystem(WResourceManager::Instance()->RetrievePSI("stars.psi", WResourceManager::Instance()->GetQuad("stars").get()));
+    stars = NEW hgeParticleSystem(WResourceManager::Instance()->RetrievePSI("stars.psi", WResourceManager::Instance()->GetQuad("stars").get()));
 
     stars->FireAt(mX, mY);
 }
 
 SimpleMenu::~SimpleMenu()
 {
+    SAFE_DELETE(stars);
 }
 
 void SimpleMenu::drawHorzPole(float x, float y, float width)
@@ -247,6 +245,5 @@ void SimpleMenu::Close()
 void SimpleMenu::destroy()
 {
     SimpleMenu::jewel.reset();
-    SAFE_DELETE(SimpleMenu::stars);
     SAFE_DELETE(SimpleMenu::jewelTex);
 }

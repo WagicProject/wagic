@@ -6,8 +6,6 @@
 #include "AIStats.h"
 #include "AllAbilities.h"
 
-MTGAbility * AIMomirPlayer::momirAbility = NULL;
-
 AIMomirPlayer::AIMomirPlayer(GameObserver *observer, string file, string fileSmall, string avatarFile, MTGDeck * deck) :
     AIPlayerBaka(observer, file, fileSmall, avatarFile, deck)
 {

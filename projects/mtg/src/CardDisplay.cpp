@@ -265,7 +265,7 @@ void CardDisplay::Render()
         {
             pos.actY = 150;
             if (x < (CardGui::BigWidth / 2)) pos.actX = SCREEN_WIDTH - 10 - CardGui::BigWidth / 2;
-            drawMode = CardSelectorSingleton::Instance()->GetDrawMode();
+            drawMode = observer->getCardSelector()->GetDrawMode();
         }
 
         cardg->DrawCard(pos, drawMode);

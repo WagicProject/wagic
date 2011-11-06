@@ -26,13 +26,13 @@ GuiAvatars::GuiAvatars(GameObserver* observer) :
     Add(opponentLibrary = NEW GuiLibrary(5 + GuiAvatar::Width * 1.4 - GuiGameZone::Width / 2, 5 + GuiGameZone::Height + 5, false,
                     observer->players[1], this));
 
-    CardSelectorSingleton::Instance()->Add(self);
-    CardSelectorSingleton::Instance()->Add(selfGraveyard);
-    CardSelectorSingleton::Instance()->Add(selfLibrary);
-    CardSelectorSingleton::Instance()->Add(opponent);
-    CardSelectorSingleton::Instance()->Add(opponentGraveyard);
-    CardSelectorSingleton::Instance()->Add(opponentLibrary);
-    CardSelectorSingleton::Instance()->Add(opponentHand);
+    observer->getCardSelector()->Add(self);
+    observer->getCardSelector()->Add(selfGraveyard);
+    observer->getCardSelector()->Add(selfLibrary);
+    observer->getCardSelector()->Add(opponent);
+    observer->getCardSelector()->Add(opponentGraveyard);
+    observer->getCardSelector()->Add(opponentLibrary);
+    observer->getCardSelector()->Add(opponentHand);
     selfGraveyard->alpha = selfLibrary->alpha = opponentGraveyard->alpha = opponentLibrary->alpha = opponentHand->alpha = 0;
 }
 

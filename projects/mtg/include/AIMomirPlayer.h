@@ -10,7 +10,7 @@ public:
     int getEfficiency(OrderedAIAction * action);
     int momir();
     int computeActions();
-    static MTGAbility * momirAbility;
+    MTGAbility * momirAbility;
     MTGAbility * getMomirAbility();
 };
 

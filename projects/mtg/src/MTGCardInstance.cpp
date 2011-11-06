@@ -19,8 +19,6 @@ SUPPORT_OBJECT_ANALYTICS(MTGCardInstance)
 MTGCardInstance MTGCardInstance::AnyCard = MTGCardInstance();
 MTGCardInstance MTGCardInstance::NoCard = MTGCardInstance();
 
-MTGCardInstance MTGCardInstance::ExtraRules[] = { MTGCardInstance(), MTGCardInstance() };
-
 MTGCardInstance::MTGCardInstance() :
     CardPrimitive(), MTGCard(), Damageable(0, 0), view(NULL)
 {

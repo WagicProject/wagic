@@ -26,8 +26,6 @@ class AIPlayer;
 
 class AIAction
 {
-protected:
-    static int currentId;
 public:
     AIPlayer * owner;
     MTGAbility * ability;
@@ -43,7 +41,6 @@ public:
     AIAction(AIPlayer * owner, MTGAbility * a, MTGCardInstance * c, MTGCardInstance * t = NULL)
         : owner(owner), ability(a), player(NULL), click(c), target(t),playerAbilityTarget(NULL)
     {
-        id = currentId++;
     };
 
     AIAction(AIPlayer * owner, MTGCardInstance * c, MTGCardInstance * t = NULL);
@@ -56,13 +53,11 @@ public:
     AIAction(AIPlayer * owner, MTGAbility * a, MTGCardInstance * c, vector<Targetable*>targetCards)
         :  owner(owner), ability(a), player(NULL), click(c), mAbilityTargets(targetCards),playerAbilityTarget(NULL)
     {
-        id = currentId++;
     };
 
     AIAction(AIPlayer * owner, MTGAbility * a, Player * p, MTGCardInstance * c)//player targeting through abilities.
         : owner(owner), ability(a), click(c),target(NULL), playerAbilityTarget(p)
     {
-        id = currentId++;
     };
     int Act();
     int clickMultiAct(vector<Targetable*>&actionTargets);

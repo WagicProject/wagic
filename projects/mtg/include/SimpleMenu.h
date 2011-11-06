@@ -28,8 +28,7 @@ private:
 
     static JQuadPtr spadeR, spadeL, jewel, side;
     static JTexture *spadeRTex, *spadeLTex, *jewelTex, *sideTex;
-    static WFont* titleFont;
-    static hgeParticleSystem* stars;
+    hgeParticleSystem* stars;
 
     inline void MogrifyJewel();
     void drawHorzPole(float x, float y, float width);

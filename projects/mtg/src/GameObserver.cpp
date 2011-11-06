@@ -12,6 +12,7 @@
 #include "GuiPhaseBar.h"
 #include "AIPlayerBaka.h"
 #include "MTGRules.h"
+#include "Trash.h"
 #ifdef TESTSUITE
 #include "TestSuiteAI.h"
 #endif
@@ -35,6 +36,7 @@ void GameObserver::initialize()
     connectRule = false;
     mLoading = false;
     mLayers = NULL;
+    mTrash = new Trash();
 }
 
 void GameObserver::cleanup()
@@ -63,7 +65,6 @@ void GameObserver::cleanup()
     combatStep = BLOCKERS;
     connectRule = false;
     actionsList.clear();
-
 }
 
 GameObserver::~GameObserver()
@@ -82,29 +83,19 @@ GameObserver::~GameObserver()
         SAFE_DELETE(players[i]);
     }
     players.clear();
+    delete[] ExtraRules;
+    ExtraRules = 0;
     LOG("==GameObserver Destroyed==");
+    SAFE_DELETE(mTrash);
 }
 
-GameObserver::GameObserver()
-    : randomGenerator(true)
+GameObserver::GameObserver(WResourceManager *resourceManager)
+    : randomGenerator(true), mResourceManager(resourceManager)
+
 {
+    ExtraRules = new MTGCardInstance[2]();
+
     initialize();
-}
-
-GameObserver::GameObserver(vector<Player *> _players)
-    : randomGenerator(true)
-{
-    initialize();
-    setPlayers(_players);
-}
-
-void GameObserver::setPlayers(vector<Player *> _players)
-{
-    for (size_t i = 0; i < _players.size(); i++)
-    {
-        players.push_back(_players[i]);
-        players[i]->setObserver(this);
-    }
 }
 
 int GameObserver::getCurrentGamePhase()
@@ -1009,7 +1000,10 @@ int GameObserver::cardClick(MTGCardInstance * card, Targetable * object)
     } else {
         backup = card;
         zone = card->currentZone;
-        index = zone->getIndex(card);
+        if(zone)
+        {
+            index = zone->getIndex(card);
+        }
     }
 
     do {
@@ -1136,7 +1130,7 @@ int GameObserver::cardClick(MTGCardInstance * card, Targetable * object)
 
     if (clickedPlayer) {
         logAction(clickedPlayer);
-    } else {
+    } else if(zone)  {
         logAction(backup, zone, index, toReturn);
     }
 
@@ -1451,7 +1445,7 @@ bool GameObserver::processActions(bool undo)
         if (s.find("p1") != string::npos)
             p = players[0];
 
-        for (int i = 0; i<5; i++)
+        for (int i = 0; i<1; i++)
         {
             // let's fake an update
             Update(counter);
@@ -1500,7 +1494,7 @@ bool GameObserver::processActions(bool undo)
 
         size_t nb = actionsList.size();
 
-        for (int i = 0; i<5; i++)
+        for (int i = 0; i<3; i++)
         {
             // let's fake an update
             Update(counter);
@@ -1563,11 +1557,16 @@ void GameObserver::Mulligan(Player* player)
 }
 
 #ifdef TESTSUITE
-void GameObserver::loadTestSuitePlayer(int playerId, TestSuite* testSuite)
+void GameObserver::loadTestSuitePlayer(int playerId, TestSuiteGame* testSuite)
 {
-    players.push_back(new TestSuiteAI(this, testSuite, playerId));
+    players.push_back(new TestSuiteAI(testSuite, playerId));
 }
 #endif //TESTSUITE
+
+void GameObserver::loadPlayer(int playerId, Player* player)
+{
+    players.push_back(player);
+}
 
 void GameObserver::loadPlayer(int playerId, PlayerType playerType, int decknb, bool premadeDeck)
 {

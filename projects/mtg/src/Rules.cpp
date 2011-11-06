@@ -144,8 +144,8 @@ void Rules::addExtraRules(GameObserver* g)
     {
         Player * p = g->players[i];
         //Trick so that the abilities don't die;
-        MTGCardInstance::ExtraRules[i].currentZone = p->game->inPlay;
-        MTGCardInstance::ExtraRules[i].lastController = p;
+        g->ExtraRules[i].currentZone = p->game->inPlay;
+        g->ExtraRules[i].lastController = p;
         for (size_t j = 0; j < initState.playerData[i].extraRules.size(); ++j)
         {
             AbilityFactory af(g);
@@ -153,7 +153,7 @@ void Rules::addExtraRules(GameObserver* g)
             int handsize = 7;
             int difficultyRating = 0;
             int Optimizedhandcheat = options[Options::OPTIMIZE_HAND].number;
-            MTGAbility * a = af.parseMagicLine(initState.playerData[i].extraRules[j], id++, NULL, &MTGCardInstance::ExtraRules[i]);
+            MTGAbility * a = af.parseMagicLine(initState.playerData[i].extraRules[j], id++, NULL, &(g->ExtraRules[i]));
             if (p->playMode != Player::MODE_TEST_SUITE && g->mRules->gamemode != GAME_TYPE_MOMIR && g->mRules->gamemode
                 != GAME_TYPE_RANDOM1 && g->mRules->gamemode != GAME_TYPE_RANDOM2 && g->mRules->gamemode
                 != GAME_TYPE_STORY && 
@@ -214,7 +214,7 @@ void Rules::addExtraRules(GameObserver* g)
     for (size_t j = 0; j < extraRules.size(); ++j)
     {
         AbilityFactory af(g);
-        MTGAbility * a = af.parseMagicLine(extraRules[j], id++, NULL, &MTGCardInstance::ExtraRules[0]);
+        MTGAbility * a = af.parseMagicLine(extraRules[j], id++, NULL, &(g->ExtraRules[0]));
         if (a)
         {
             if (a->oneShot)

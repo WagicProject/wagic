@@ -1,7 +1,7 @@
 #include "PrecompiledHeader.h"
 
 #include "MTGRules.h"
-#include "CardSelectorSingleton.h"
+#include "CardSelector.h"
 #include "GuiCombat.h"
 #include "GuiBackground.h"
 #include "GuiFrame.h"
@@ -15,7 +15,8 @@
 
 void DuelLayers::init(GameObserver* go)
 {
-    mCardSelector = CardSelectorSingleton::Create(go, this);
+    observer = go;
+    mCardSelector = NEW CardSelector(go, this);
     //1 Action Layer
     action = NEW ActionLayer(go);
     action->Add(NEW MTGGamePhase(go, action->getMaxId()));
@@ -65,7 +66,7 @@ void DuelLayers::CheckUserInput(int isAI)
                 JGE::GetInstance()->LeftClickedProcessed();
                 break;
             }
-            if (CardSelectorSingleton::Instance()->CheckUserInput(key)) {
+            if (mCardSelector->CheckUserInput(key)) {
                 JGE::GetInstance()->LeftClickedProcessed();
                 break;
             }
@@ -126,10 +127,9 @@ DuelLayers::~DuelLayers()
 
     for (size_t i = 0; i < waiters.size(); ++i)
         delete (waiters[i]);
-    Trash::cleanup();
+    observer->mTrash->cleanup();
 
-    CardSelectorSingleton::Terminate();
-    mCardSelector = NULL;
+    SAFE_DELETE(mCardSelector);
 }
 
 void DuelLayers::Add(GuiLayer * layer)
@@ -203,7 +203,7 @@ int DuelLayers::receiveEvent(WEvent * e)
 
     if (WEventPhaseChange *event = dynamic_cast<WEventPhaseChange*>(e))
         if (Constants::MTG_PHASE_BEFORE_BEGIN == event->to->id)
-            Trash::cleanup();
+            observer->mTrash->cleanup();
 
     return 1;
 }

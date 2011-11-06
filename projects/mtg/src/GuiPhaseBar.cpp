@@ -55,7 +55,7 @@ GuiPhaseBar::GuiPhaseBar(GameObserver* observer) :
         GameApp::systemError = "Error loading phasebar texture : " __FILE__;
 
     zoom = ICONSCALE;
-    CardSelectorSingleton::Instance()->Add(this);
+    observer->getCardSelector()->Add(this);
 
 }
 

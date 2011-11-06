@@ -44,17 +44,17 @@ GuiCombat::GuiCombat(GameObserver* go) :
     GuiLayer(go), active(false), activeAtk(NULL), ok(SCREEN_WIDTH - MARGIN, 210, 1, 0, 255), enemy_avatar(SCREEN_WIDTH
                     - MARGIN, TOP_LINE, 2, 0, 255), cursor_pos(NONE), step(DAMAGE)
 {
-    if (NULL == ok_tex)
+    if (NULL == ok_tex && go->getResourceManager())
     {
-        ok_tex = WResourceManager::Instance()->RetrieveTexture("Ok.png", RETRIEVE_LOCK);
+        ok_tex = go->getResourceManager()->RetrieveTexture("Ok.png", RETRIEVE_LOCK);
     }
 }
 
 GuiCombat::~GuiCombat()
 {
-    if (ok_tex)
+    if (ok_tex && observer->getResourceManager())
     {
-        WResourceManager::Instance()->Release(ok_tex);
+        observer->getResourceManager()->Release(ok_tex);
         ok_tex = NULL;
     }
 
@@ -199,7 +199,7 @@ bool GuiCombat::CheckUserInput(JButton key)
     if (NONE == cursor_pos)
         return false;
     DamagerDamaged* oldActive = active;
-/* This is untested
+/*
     int x,y;
     if(JGE::GetInstance()->GetLeftClickCoordinates(x, y))
     {
@@ -537,7 +537,7 @@ int GuiCombat::receiveEventMinus(WEvent* e)
                     if (activeAtk == *it)
                         activeAtk = NULL;
                     attackers.erase(it);
-                    trash(d);
+                    observer->mTrash->trash(d);
                     return 1;
                 }
                 else
@@ -546,7 +546,7 @@ int GuiCombat::receiveEventMinus(WEvent* e)
                         {
                             DefenserDamaged* d = *q;
                             (*it)->blockers.erase(q);
-                            trash(d);
+                            observer->mTrash->trash(d);
                             return 1;
                         }
             return 0;
@@ -560,7 +560,7 @@ int GuiCombat::receiveEventMinus(WEvent* e)
             {
                 AttackerDamaged* d = *it;
                 attackers.erase(it);
-                trash(d);
+                observer->mTrash->trash(d);
                 return 1;
             }
         return 0;
@@ -574,7 +574,7 @@ int GuiCombat::receiveEventMinus(WEvent* e)
                     {
                         DefenserDamaged* d = *q;
                         (*it)->blockers.erase(q);
-                        trash(d);
+                        observer->mTrash->trash(d);
                         return 1;
                     }
         return 0;

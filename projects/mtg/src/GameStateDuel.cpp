@@ -119,7 +119,7 @@ void GameStateDuel::Start()
     renderer->EnableVSync(true);
     OpponentsDeckid = 0;
 
-    game = NEW GameObserver();
+    game = NEW GameObserver(WResourceManager::Instance());
 
 #ifdef TESTSUITE
     SAFE_DELETE(testSuite);
@@ -200,12 +200,13 @@ void GameStateDuel::loadTestSuitePlayers()
     if (!testSuite) return;
     initRand(testSuite->seed);
     SAFE_DELETE(game);
-    game = new GameObserver();
+    game = new GameObserver(WResourceManager::Instance());
+    testSuite->setObserver(game);
     for (int i = 0; i < 2; i++)
     {
         game->loadTestSuitePlayer(i, testSuite);
     }
-    mParent->gameType = testSuite->gameType;
+    mParent->gameType = testSuite->getGameType();
 
     game->startGame(mParent->gameType, mParent->rules);
 }
@@ -294,6 +295,8 @@ void GameStateDuel::Update(float dt)
 #ifdef TESTSUITE
         else if (mParent->players[1] == PLAYER_TYPE_TESTSUITE)
         {
+            testSuite->setRules(mParent->rules);
+
             if (testSuite && testSuite->loadNext())
             {
                 loadTestSuitePlayers();

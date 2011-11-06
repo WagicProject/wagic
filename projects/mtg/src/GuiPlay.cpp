@@ -356,7 +356,7 @@ int GuiPlay::receiveEventPlus(WEvent * e)
             // Make sure that the card is repositioned before adding it to the CardSelector, as
             // the card's position is a cue for certain CardSelector variants as to what zone the card is placed in
             Replace();
-            CardSelectorSingleton::Instance()->Add(card);
+            observer->getCardSelector()->Add(card);
             return 1;
         }
     }
@@ -420,9 +420,9 @@ int GuiPlay::receiveEventMinus(WEvent * e)
                     else if (event->card->attacker)
                         battleField.removeAttacker(event->card);
                     CardView* cv = *it;
-                    CardSelectorSingleton::Instance()->Remove(cv);
+                    observer->getCardSelector()->Remove(cv);
                     cards.erase(it);
-                    trash(cv);
+                    observer->mTrash->trash(cv);
                     Replace();
                     return 1;
                 }

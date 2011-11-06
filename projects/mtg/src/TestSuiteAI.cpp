@@ -15,14 +15,14 @@ using std::string;
 
 // NULL is sent in place of a MTGDeck since there is no way to create a MTGDeck without a proper deck file.
 // TestSuiteAI will be responsible for managing its own deck state.
-TestSuiteAI::TestSuiteAI(GameObserver *observer, TestSuite * _suite, int playerId) :
-    AIPlayerBaka(observer, "testsuite", "testsuite", "baka.jpg", NULL)
+TestSuiteAI::TestSuiteAI(TestSuiteGame *tsGame, int playerId) :
+    AIPlayerBaka(tsGame->observer, "testsuite", "testsuite", "baka.jpg", NULL)
 {
     SAFE_DELETE(game); //game might have been set in the parent with default values
-    game = _suite->buildDeck(this, playerId);
+    game = tsGame->buildDeck(this, playerId);
     game->setOwner(this);
 
-    suite = _suite;
+    suite = tsGame;
     timer = 0;
     playMode = MODE_TEST_SUITE;
     this->deckName = "Test Suite AI";
@@ -55,7 +55,7 @@ MTGCardInstance * TestSuiteAI::getCard(string action)
     return NULL;
 }
 
-Interruptible * TestSuite::getActionByMTGId(GameObserver* observer, int mtgid)
+Interruptible * TestSuiteGame::getActionByMTGId(int mtgid)
 {
     ActionStack * as = observer->mLayers->stackLayer();
     Interruptible * action = NULL;
@@ -121,7 +121,7 @@ int TestSuiteAI::Act(float dt)
     if (action == "")
     {
         //end of game
-        suite->assertGame(observer);
+        suite->assertGame();
         observer->gameOver = observer->players[0];
         DebugTrace("================================    END OF TEST   =======================\n");
         return 1;
@@ -221,7 +221,7 @@ int TestSuiteAI::Act(float dt)
         if (mtgid)
         {
             DebugTrace("TESTSUITE CARD ID:" << mtgid);
-            toInterrupt = suite->getActionByMTGId(observer, mtgid);
+            toInterrupt = suite->getActionByMTGId(mtgid);
         }
 
         if (toInterrupt)
@@ -277,7 +277,7 @@ void TestSuiteState::parsePlayerState(int playerId, string s)
 }
 
 
-string TestSuite::getNextAction()
+string TestSuiteGame::getNextAction()
 {
     currentAction++;
     if (actions.nbitems && currentAction <= actions.nbitems)
@@ -287,40 +287,15 @@ string TestSuite::getNextAction()
     return "";
 }
 
-MTGPlayerCards * TestSuite::buildDeck(Player* player, int playerId)
+void TestSuiteGame::handleResults(bool wasAI, int error)
 {
-    int list[100];
-    int nbcards = 0;
-    MTGPlayerCards * deck = NULL;
+    testsuite->handleResults(wasAI, error);
+};
 
-    if(initState.players.size() > (size_t)playerId)
-    {
-        MTGGameZone * loadedPlayerZones[] = { initState.players[playerId]->game->graveyard,
-            initState.players[playerId]->game->library,
-            initState.players[playerId]->game->hand,
-            initState.players[playerId]->game->inPlay };
-
-        for (int j = 0; j < 4; j++)
-        {
-            for (size_t k = 0; k < loadedPlayerZones[j]->cards.size(); k++)
-            {
-                int cardid = loadedPlayerZones[j]->cards[k]->getId();
-                list[nbcards] = cardid;
-                nbcards++;
-            }
-        }
-        deck = NEW MTGPlayerCards(player, list, nbcards);
-    }
-    else
-    {
-        deck = NEW MTGPlayerCards();
-    }
-
-    return deck;
-}
 
 void TestSuite::initGame(GameObserver* g)
 {
+    observer = g;
     //The first test runs slowly, the other ones run faster.
     //This way a human can see what happens when testing a specific file,
     // or go faster when it comes to the whole test suite.
@@ -334,64 +309,10 @@ void TestSuite::initGame(GameObserver* g)
         timerLimit = 3;
     }
 
-    DebugTrace("TESTSUITE Init Game");
-    g->phaseRing->goToPhase(initState.phase, g->players[0]);
-    g->currentGamePhase = initState.phase;
-    for (int i = 0; i < 2; i++)
-    {
-        AIPlayerBaka * p = (AIPlayerBaka *) (g->players[i]);
-        p->forceBestAbilityUse = forceAbility;
-        p->life = initState.players[i]->life;
-        p->poisonCount = initState.players[i]->poisonCount;
-        stringstream stream;
-        stream << initState.players[i]->getRandomGenerator()->saveLoadedRandValues(stream);
-        p->getRandomGenerator()->loadRandValues(stream.str());
-        MTGGameZone * playerZones[] = { p->game->graveyard, p->game->library, p->game->hand, p->game->inPlay };
-        MTGGameZone * loadedPlayerZones[] = { initState.players[i]->game->graveyard,
-                                              initState.players[i]->game->library,
-                                              initState.players[i]->game->hand,
-                                              initState.players[i]->game->inPlay };
-        for (int j = 0; j < 4; j++)
-        {
-            MTGGameZone * zone = playerZones[j];
-            for (size_t k = 0; k < loadedPlayerZones[j]->cards.size(); k++)
-            {
-                MTGCardInstance * card = Rules::getCardByMTGId(g, loadedPlayerZones[j]->cards[k]->getId());
-                if (card && zone != p->game->library)
-                {
-                    if (zone == p->game->inPlay)
-                    {
-                        MTGCardInstance * copy = p->game->putInZone(card, p->game->library, p->game->stack);
-                        Spell * spell = NEW Spell(g, copy);
-                        spell->resolve();
-                        if (!summoningSickness && (size_t)p->game->inPlay->nb_cards > k) p->game->inPlay->cards[k]->summoningSickness = 0;
-                        delete spell;
-                    }
-                    else
-                    {
-                        if (!p->game->library->hasCard(card))
-                        {
-                            LOG ("TESTUITE ERROR, CARD NOT FOUND IN LIBRARY\n");
-                        }
-                        p->game->putInZone(card, p->game->library, zone);
-                    }
-                }
-                else
-                {
-                    if (!card)
-                    {
-                        LOG ("TESTUITE ERROR, card is NULL\n");
-                    }
-                }
-            }
-            zone->cardsSeenThisTurn.clear(); //don't consider those cards as having moved in this area during this turn
-        }
-        p->game->stack->cardsSeenThisTurn.clear(); //don't consider those cards as having moved in this area during this turn
-
-    }
-    DebugTrace("TESTUITE Init Game Done !");
+    TestSuiteGame::initGame();
 }
-int TestSuite::Log(const char * text)
+
+int TestSuiteGame::Log(const char * text)
 {
     ofstream file;
     if (JFileSystem::GetInstance()->openForWrite(file, "test/results.html", ios_base::app))
@@ -405,27 +326,29 @@ int TestSuite::Log(const char * text)
     return 1;
 
 }
-int TestSuite::assertGame(GameObserver* g)
+
+void TestSuiteGame::assertGame()
 {
+    mMutex.lock();
     //compare the game state with the results
     char result[4096];
-    sprintf(result, "<h3>%s</h3>", files[currentfile - 1].c_str());
+    sprintf(result, "<h3>%s</h3>", filename.c_str());
     Log(result);
 
     int error = 0;
     bool wasAI = false;
 
-    if (g->currentGamePhase != endState.phase)
+    if (observer->currentGamePhase != endState.phase)
     {
         sprintf(result, "<span class=\"error\">==phase problem. Expected [ %s ](%i), got [ %s ](%i)==</span><br />", 
             Constants::MTGPhaseNames[endState.phase],endState.phase,
-            Constants::MTGPhaseNames[g->currentGamePhase], g->currentGamePhase);
+            Constants::MTGPhaseNames[observer->currentGamePhase], observer->currentGamePhase);
         Log(result);
         error++;
     }
     for (int i = 0; i < 2; i++)
     {
-        TestSuiteAI * p = (TestSuiteAI *) (g->players[i]);
+        TestSuiteAI * p = (TestSuiteAI *) (observer->players[i]);
         if (p->playMode == Player::MODE_AI) wasAI = true;
 
         if (p->life != endState.players[i]->life)
@@ -484,7 +407,7 @@ int TestSuite::assertGame(GameObserver* g)
                 MTGCardInstance* cardToCheck = (k<endstateZones[j]->cards.size())?endstateZones[j]->cards[k]:0;
                 if(cardToCheck)
                 {   // Can be NULL if used "*" in the testcase.
-                    MTGCardInstance* card = Rules::getCardByMTGId(g, cardToCheck->getId());
+                    MTGCardInstance* card = Rules::getCardByMTGId(observer, cardToCheck->getId());
                     if (card != 0 && !zone->hasCard(card))
                     {
                         sprintf(result, "<span class=\"error\">==Card ID not the same. Didn't find %i</span><br />", card->getId());
@@ -495,13 +418,23 @@ int TestSuite::assertGame(GameObserver* g)
             }
         }
     }
+    handleResults(wasAI, error);
+
+    if(!error)
+        Log("<span class=\"success\">==Test Succesful !==</span>");
+    else
+        Log("<span class=\"error\">==Test Failed !==</span>");
+    mMutex.unlock();
+}
+
+void TestSuite::handleResults(bool wasAI, int error)
+{
     if (wasAI)
     {
         nbAITests++;
         if (error)
         {
             nbAIFailed++;
-            return 0;
         }
     }
     else
@@ -510,14 +443,13 @@ int TestSuite::assertGame(GameObserver* g)
         if (error)
         {
             nbFailed++;
-            return 0;
         }
     }
-    Log("<span class=\"success\">==Test Succesful !==</span>");
-    return 1;
 }
 
+
 TestSuite::TestSuite(const char * filename)
+    : TestSuiteGame(this), mRules(0), mProcessing(false)
 {
     timerLimit = 0;
     
@@ -572,26 +504,46 @@ TestSuite::TestSuite(const char * filename)
         file2.close();
     }
 
+    SAFE_DELETE(observer);
 }
 
 int TestSuite::loadNext()
 {
+
     endTime = JGEGetTime();
     summoningSickness = 0;
     seed = 0;
     aiMaxCalls = -1;
     if (!nbfiles) return 0;
-    if (currentfile >= nbfiles) return 0;
-    currentfile++;
 
-    string currFilename = files[currentfile - 1];
-    if (currFilename == "+pregametests")
+    filename = getNextFile();
+    if (filename == "") {
+        // we let GameStateDuel delete the latest gameObserver.
+        mProcessing = false;
+        observer = 0;
+        return 0;
+    }
+
+    if (filename == "+pregametests")
     {
         pregameTests();
         return loadNext();
     }
 
-    if (!load(currFilename.c_str()))
+    if(!mProcessing)
+    {   // "I don't like to wait" mode
+        mProcessing = true;
+        mWorkerThread.clear();
+        size_t thread_count = 1;
+#ifdef QT_CONFIG
+        thread_count = QThread::idealThreadCount();
+#endif
+        for(size_t i = 0; i < (thread_count-1); i++)
+            mWorkerThread.push_back(boost::thread(ThreadProc, this));
+    }
+
+    cleanup();
+    if (!load())
         return loadNext();
     else
         cout << "Starting test : " << files[currentfile - 1] << endl;
@@ -603,8 +555,7 @@ void TestSuiteActions::cleanup()
     nbitems = 0;
 }
 
-
-void TestSuiteState::cleanup(TestSuite* suite)
+void TestSuiteState::cleanup(TestSuiteGame* tsGame)
 {
     for (size_t i = 0; i < players.size(); i++)
     {
@@ -612,36 +563,34 @@ void TestSuiteState::cleanup(TestSuite* suite)
     }
     players.clear();
 
-    players.push_back(new TestSuiteAI(0, suite, 0));
-    players.push_back(new TestSuiteAI(0, suite, 1));
+    players.push_back(new TestSuiteAI(tsGame, 0));
+    players.push_back(new TestSuiteAI(tsGame, 1));
 }
 
 void TestSuite::cleanup()
 {
     currentAction = 0;
+    observer = 0;
     initState.cleanup(this);
     endState.cleanup(this);
     actions.cleanup();
 }
 
-int TestSuite::load(const char * _filename)
+
+bool TestSuiteGame::load()
 {
     summoningSickness = 0;
     forceAbility = false;
     gameType = GAME_TYPE_CLASSIC;
-    char filename[4096];
-    sprintf(filename, "test/%s", _filename);
-    
+
     std::string s;
 
     int state = -1;
 
     std::string contents;
-    if (JFileSystem::GetInstance()->readIntoString(filename, contents))
+    if (JFileSystem::GetInstance()->readIntoString("test/"+filename, contents))
     {
         std::stringstream stream(contents);
-
-        cleanup();
         while (std::getline(stream, s))
         {
             if (!s.size()) continue;
@@ -754,9 +703,9 @@ int TestSuite::load(const char * _filename)
     }
     else
     {
-        return 0;
+        return false;
     }
-    return 1;
+    return true;
 }
 
 void TestSuite::pregameTests()
@@ -773,4 +722,155 @@ void TestSuite::pregameTests()
         if (!sb.unitTest()) nbFailed++;
     }
 }
+
+void TestSuite::ThreadProc(void* inParam)
+{
+    LOG("Entering TestSuite::ThreadProc");
+    TestSuite* instance = reinterpret_cast<TestSuite*>(inParam);
+    if (instance)
+    {
+        string filename;
+        float counter = 1.0f;
+//        while(instance->mProcessing)
+        {
+            while((filename = instance->getNextFile()) != "")
+            {
+                TestSuiteGame theGame(instance, filename);
+                if(theGame.isOK)
+                {
+                    theGame.observer->loadTestSuitePlayer(0, &theGame);
+                    theGame.observer->loadTestSuitePlayer(1, &theGame);
+
+                    theGame.observer->startGame(theGame.gameType, instance->mRules);
+                    theGame.initGame();
+
+                    while(!theGame.observer->gameOver)
+                        theGame.observer->Update(counter++);
+                }
+            }
+
+            boost::this_thread::sleep(100);
+        }
+    }
+    LOG("Leaving TestSuite::ThreadProc");
+}
+
+boost::mutex TestSuiteGame::mMutex;
+
+TestSuiteGame::~TestSuiteGame()
+{
+    SAFE_DELETE(observer);
+}
+
+TestSuiteGame::TestSuiteGame(TestSuite* testsuite)
+    : summoningSickness(0), forceAbility(false), gameType(GAME_TYPE_CLASSIC), timerLimit(0),
+      currentAction(0), observer(0), testsuite(testsuite)
+{
+}
+
+TestSuiteGame::TestSuiteGame(TestSuite* testsuite, string _filename)
+    : summoningSickness(0), forceAbility(false), gameType(GAME_TYPE_CLASSIC), timerLimit(3),
+      currentAction(0), observer(0), testsuite(testsuite)
+{
+    filename = _filename;
+    observer = new GameObserver();
+
+    initState.cleanup(this);
+    endState.cleanup(this);
+
+    isOK = load();
+}
+
+void TestSuiteGame::initGame()
+{
+    DebugTrace("TESTSUITE Init Game");
+    observer->phaseRing->goToPhase(initState.phase, observer->players[0]);
+    observer->currentGamePhase = initState.phase;
+    for (int i = 0; i < 2; i++)
+    {
+        AIPlayerBaka * p = (AIPlayerBaka *) (observer->players[i]);
+        p->forceBestAbilityUse = forceAbility;
+        p->life = initState.players[i]->life;
+        p->poisonCount = initState.players[i]->poisonCount;
+        stringstream stream;
+        stream << initState.players[i]->getRandomGenerator()->saveLoadedRandValues(stream);
+        p->getRandomGenerator()->loadRandValues(stream.str());
+        MTGGameZone * playerZones[] = { p->game->graveyard, p->game->library, p->game->hand, p->game->inPlay };
+        MTGGameZone * loadedPlayerZones[] = { initState.players[i]->game->graveyard,
+                                              initState.players[i]->game->library,
+                                              initState.players[i]->game->hand,
+                                              initState.players[i]->game->inPlay };
+        for (int j = 0; j < 4; j++)
+        {
+            MTGGameZone * zone = playerZones[j];
+            for (size_t k = 0; k < loadedPlayerZones[j]->cards.size(); k++)
+            {
+                MTGCardInstance * card = Rules::getCardByMTGId(observer, loadedPlayerZones[j]->cards[k]->getId());
+                if (card && zone != p->game->library)
+                {
+                    if (zone == p->game->inPlay)
+                    {
+                        MTGCardInstance * copy = p->game->putInZone(card, p->game->library, p->game->stack);
+                        Spell * spell = NEW Spell(observer, copy);
+                        spell->resolve();
+                        if (!summoningSickness && (size_t)p->game->inPlay->nb_cards > k) p->game->inPlay->cards[k]->summoningSickness = 0;
+                        delete spell;
+                    }
+                    else
+                    {
+                        if (!p->game->library->hasCard(card))
+                        {
+                            LOG ("TESTUITE ERROR, CARD NOT FOUND IN LIBRARY\n");
+                        }
+                        p->game->putInZone(card, p->game->library, zone);
+                    }
+                }
+                else
+                {
+                    if (!card)
+                    {
+                        LOG ("TESTUITE ERROR, card is NULL\n");
+                    }
+                }
+            }
+            zone->cardsSeenThisTurn.clear(); //don't consider those cards as having moved in this area during this turn
+        }
+        p->game->stack->cardsSeenThisTurn.clear(); //don't consider those cards as having moved in this area during this turn
+
+    }
+    DebugTrace("TESTUITE Init Game Done !");
+}
+
+MTGPlayerCards * TestSuiteGame::buildDeck(Player* player, int playerId)
+{
+    int list[100];
+    int nbcards = 0;
+    MTGPlayerCards * deck = NULL;
+
+    if(initState.players.size() > (size_t)playerId)
+    {
+        MTGGameZone * loadedPlayerZones[] = { initState.players[playerId]->game->graveyard,
+            initState.players[playerId]->game->library,
+            initState.players[playerId]->game->hand,
+            initState.players[playerId]->game->inPlay };
+
+        for (int j = 0; j < 4; j++)
+        {
+            for (size_t k = 0; k < loadedPlayerZones[j]->cards.size(); k++)
+            {
+                int cardid = loadedPlayerZones[j]->cards[k]->getId();
+                list[nbcards] = cardid;
+                nbcards++;
+            }
+        }
+        deck = NEW MTGPlayerCards(player, list, nbcards);
+    }
+    else
+    {
+        deck = NEW MTGPlayerCards();
+    }
+
+    return deck;
+}
+
 #endif

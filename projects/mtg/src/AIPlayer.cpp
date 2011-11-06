@@ -17,28 +17,24 @@
 
 const char * const MTG_LAND_TEXTS[] = { "artifact", "forest", "island", "mountain", "swamp", "plains", "other lands" };
 
-int AIAction::currentId = 0;
-
 AIAction::AIAction(AIPlayer * owner, MTGCardInstance * c, MTGCardInstance * t)
     : owner(owner), ability(NULL), player(NULL), click(c), target(t)
 {
-    id = currentId++;
-
     // useability tweak - assume that the user is probably going to want to see the full res card,
     // so prefetch it. The idea is that we do it here as we want to start the prefetch before it's time to render,
     // and waiting for it to actually go into play is too late, as we start drawing the card during the interrupt window.
     // This is a good intercept point, as the AI has committed to using this card.
 
     // if we're not in text mode, always get the thumb
-    if (CardSelectorSingleton::Instance()->GetDrawMode() != DrawMode::kText)
+    if (owner->getObserver()->getCardSelector()->GetDrawMode() != DrawMode::kText)
     {
         //DebugTrace("Prefetching AI card going into play: " << c->getImageName());
-        WResourceManager::Instance()->RetrieveCard(c, RETRIEVE_THUMB);
+        owner->getObserver()->getResourceManager()->RetrieveCard(c, RETRIEVE_THUMB);
         
         // also cache the large image if we're using kNormal mode
-        if (CardSelectorSingleton::Instance()->GetDrawMode() == DrawMode::kNormal)
+        if (owner->getObserver()->getCardSelector()->GetDrawMode() == DrawMode::kNormal)
         {
-            WResourceManager::Instance()->RetrieveCard(c);
+            owner->getObserver()->getResourceManager()->RetrieveCard(c);
         }
     }
 }

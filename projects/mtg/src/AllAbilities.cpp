@@ -2241,7 +2241,7 @@ int MayAbility::testDestroy()
     if(game->currentPlayer == source->controller() && game->isInterrupting == source->controller() && dynamic_cast<AManaProducer*>(AbilityFactory::getCoreAbility(ability)))
     //if its my turn, and im interrupting myself(why?) then set interrupting to previous interrupter if the ability was a manaability
     //special case since they don't use the stack.
-    game->mLayers->stackLayer()->setIsInterrupting(previousInterrupter);
+    game->mLayers->stackLayer()->setIsInterrupting(previousInterrupter, false);
     return 1;
 }
 
@@ -2305,7 +2305,7 @@ void MenuAbility::Update(float dt)
     {
         game->mLayers->actionLayer()->setCustomMenuObject(source, must,abilities);
         previousInterrupter = game->isInterrupting;
-        game->mLayers->stackLayer()->setIsInterrupting(source->controller());
+        game->mLayers->stackLayer()->setIsInterrupting(source->controller(), false);
     }
 }
 
@@ -2359,10 +2359,9 @@ int MenuAbility::reactToChoiceClick(Targetable * object,int choice,int control)
         mClone->resolve();
     SAFE_DELETE(mClone);
     if (source->controller() == game->isInterrupting)
-        game->mLayers->stackLayer()->cancelInterruptOffer();
+        game->mLayers->stackLayer()->cancelInterruptOffer(1, false);
     this->forceDestroy = 1;
     removeMenu = true;
-    game->logAction(source->controller(), "choice " + choice);
     return reactToTargetClick(object);
 }
 
@@ -3913,8 +3912,6 @@ AAConnect * AAConnect::clone() const
 
 //Tutorial Messaging
 
-ATutorialMessage * ATutorialMessage::Current = NULL;
-
 ATutorialMessage::ATutorialMessage(GameObserver* observer, MTGCardInstance * source, string message, int limit)
     : MTGAbility(observer, 0, source), IconButtonsController(0, 0), mLimit(limit)
 {
@@ -3926,7 +3923,7 @@ ATutorialMessage::ATutorialMessage(GameObserver* observer, MTGCardInstance * sou
     for (int i = 0; i < 9; i++)
         mBg[i] = NULL;
 
-    string gfx = WResourceManager::Instance()->graphicsFile(message);
+    string gfx = game->getResourceManager()->graphicsFile(message);
     if (fileExists(gfx.c_str()))
     {
         mIsImage = true;
@@ -3987,10 +3984,10 @@ bool ATutorialMessage::CheckUserInput(JButton key)
 
 void ATutorialMessage::Update(float dt)
 {
-    if (!Current && !mDontShow)
-        Current = this;
+    if (!game->mLayers->stackLayer()->getCurrentTutorial() && !mDontShow)
+        game->mLayers->stackLayer()->setCurrentTutorial(this);
 
-    if (Current != this)
+    if (game->mLayers->stackLayer()->getCurrentTutorial() != this)
         return;
 
     if (mUserCloseRequest && mY < -SCREEN_HEIGHT)
@@ -3998,7 +3995,7 @@ void ATutorialMessage::Update(float dt)
 
     if (mDontShow)
     {
-        Current = NULL;
+        game->mLayers->stackLayer()->setCurrentTutorial(0);
         forceDestroy = 1;
         return;
     }
@@ -4048,14 +4045,14 @@ void ATutorialMessage::Render()
     {
         if (mIsImage)
         {
-            mBgTex = WResourceManager::Instance()->RetrieveTexture(mMessage, RETRIEVE_LOCK);
+            mBgTex = game->getResourceManager()->RetrieveTexture(mMessage, RETRIEVE_LOCK);
             if (mBgTex)
             {
                 mBg[0] = NEW JQuad(mBgTex, 0, 0, (float) mBgTex->mWidth, (float) mBgTex->mHeight);
                 mBg[0]->SetHotSpot(mBg[0]->mWidth / 2, mBg[0]->mHeight / 2);
 
                 //Continue Button
-                JQuadPtr quad =  WResourceManager::Instance()->RetrieveQuad("iconspsp.png", 4 * 32, 0, 32, 32, "iconpsp4", RETRIEVE_MANAGE);
+                JQuadPtr quad =  game->getResourceManager()->RetrieveQuad("iconspsp.png", 4 * 32, 0, 32, 32, "iconpsp4", RETRIEVE_MANAGE);
                 quad->SetHotSpot(16, 16);
                 IconButton * iconButton = NEW IconButton(1, this, quad.get(), 0, mBg[0]->mHeight / 2, 0.7f, Fonts::MAGIC_FONT, _("continue"), 0, 16, true);
                 Add(iconButton);
@@ -4063,14 +4060,14 @@ void ATutorialMessage::Render()
 
             if (options[Options::SFXVOLUME].number > 0)
             {
-                JSample * sample = WResourceManager::Instance()->RetrieveSample("tutorial.wav");
+                JSample * sample = game->getResourceManager()->RetrieveSample("tutorial.wav");
                 if (sample)
                     JSoundSystem::GetInstance()->PlaySample(sample);
             }
         }
         else
         {
-            mBgTex = WResourceManager::Instance()->RetrieveTexture("taskboard.png", RETRIEVE_LOCK);
+            mBgTex = game->getResourceManager()->RetrieveTexture("taskboard.png", RETRIEVE_LOCK);
 
             float unitH = static_cast<float> (mBgTex->mHeight / 4);
             float unitW = static_cast<float> (mBgTex->mWidth / 4);
@@ -4090,7 +4087,7 @@ void ATutorialMessage::Render()
             }
 
             //Continue Button
-            JQuadPtr quad =  WResourceManager::Instance()->RetrieveQuad("iconspsp.png", 4 * 32, 0, 32, 32, "iconpsp4", RETRIEVE_MANAGE);
+            JQuadPtr quad =  game->getResourceManager()->RetrieveQuad("iconspsp.png", 4 * 32, 0, 32, 32, "iconpsp4", RETRIEVE_MANAGE);
             quad->SetHotSpot(16, 16);
             IconButton * iconButton = NEW IconButton(1, this, quad.get(), SCREEN_WIDTH_F / 2,  SCREEN_HEIGHT_F - 60, 0.7f, Fonts::MAGIC_FONT, _("continue"), 0, 16, true);
             Add(iconButton);
@@ -4100,7 +4097,7 @@ void ATutorialMessage::Render()
 
             if (options[Options::SFXVOLUME].number > 0)
             {
-                JSample * sample = WResourceManager::Instance()->RetrieveSample("chain.wav");
+                JSample * sample = game->getResourceManager()->RetrieveSample("chain.wav");
                 if (sample)
                     JSoundSystem::GetInstance()->PlaySample(sample);
             }
@@ -4126,7 +4123,7 @@ void ATutorialMessage::Render()
         else 
         {
             //Setup fonts.
-            WFont * f2 = WResourceManager::Instance()->GetWFont(Fonts::MAGIC_FONT);
+            WFont * f2 = game->getResourceManager()->GetWFont(Fonts::MAGIC_FONT);
             f2->SetColor(ARGB(255, 205, 237, 240));
 
             r->FillRect(0, mY, SCREEN_WIDTH, SCREEN_HEIGHT, ARGB(128,0,0,0));
@@ -4159,8 +4156,8 @@ void ATutorialMessage::Render()
         float posX = 40, posY = mY + 20;
         string title = _("Help");
 
-        WFont * f = WResourceManager::Instance()->GetWFont(Fonts::MAGIC_FONT);
-        WFont * f3 = WResourceManager::Instance()->GetWFont(Fonts::MENU_FONT); //OPTION_FONT
+        WFont * f = game->getResourceManager()->GetWFont(Fonts::MAGIC_FONT);
+        WFont * f3 = game->getResourceManager()->GetWFont(Fonts::MENU_FONT); //OPTION_FONT
         f->SetColor(ARGB(255, 55, 46, 34));
         f3->SetColor(ARGB(255, 219, 206, 151));
 
@@ -4187,7 +4184,7 @@ ATutorialMessage::~ATutorialMessage()
 {
     if (mBgTex)
     {
-        WResourceManager::Instance()->Release(mBgTex);
+        game->getResourceManager()->Release(mBgTex);
         for (int i = 0; i < 9; i++)
             SAFE_DELETE(mBg[i]);
     }

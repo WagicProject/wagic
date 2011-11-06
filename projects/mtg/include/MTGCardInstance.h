@@ -208,8 +208,6 @@ public:
     static MTGCardInstance AnyCard;
     static MTGCardInstance NoCard;
 
-    static MTGCardInstance ExtraRules[2];
-
     bool parseLine(const string& ss);
 };
 

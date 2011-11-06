@@ -247,15 +247,16 @@ void MTGPlayerCards::drawFromLibrary()
     // so prefetch it.
 
     // if we're not in text mode, always get the thumb
-    if (CardSelectorSingleton::Instance()->GetDrawMode() != DrawMode::kText)
+    if (library->owner->getObserver()->getCardSelector()->GetDrawMode() != DrawMode::kText
+            && library->owner->getObserver()->getResourceManager())
     {
         DebugTrace("Prefetching AI card going into play: " << toMove->getImageName());
-        WResourceManager::Instance()->RetrieveCard(toMove, RETRIEVE_THUMB);
+        library->owner->getObserver()->getResourceManager()->RetrieveCard(toMove, RETRIEVE_THUMB);
 
         // also cache the large image if we're using kNormal mode
-        if (CardSelectorSingleton::Instance()->GetDrawMode() == DrawMode::kNormal)
+        if (library->owner->getObserver()->getCardSelector()->GetDrawMode() == DrawMode::kNormal)
         {
-            WResourceManager::Instance()->RetrieveCard(toMove);
+            library->owner->getObserver()->getResourceManager()->RetrieveCard(toMove);
         }
     }
 
@@ -339,9 +340,9 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
     {
         if (to == g->players[0]->game->graveyard || to == g->players[1]->game->graveyard)
         {
-            if (card->isCreature())
+            if (card->isCreature() && g->getResourceManager())
             {
-                JSample * sample = WResourceManager::Instance()->RetrieveSample("graveyard.wav");
+                JSample * sample = g->getResourceManager()->RetrieveSample("graveyard.wav");
                 if (sample)
                     JSoundSystem::GetInstance()->PlaySample(sample);
             }

@@ -213,7 +213,7 @@ void GuiGameZone::Update(float dt)
         if (fabs(c->actX - c->x) < 0.01 && fabs(c->actY - c->y) < 0.01)
         {
             cards.erase(it);
-            trash(c);
+            zone->owner->getObserver()->mTrash->trash(c);
             return;
         }
     }
@@ -275,7 +275,7 @@ int GuiGraveyard::receiveEventMinus(WEvent* e)
                 {
                     CardView* cv = *it;
                     cards.erase(it);
-                    trash(cv);
+                    zone->owner->getObserver()->mTrash->trash(cv);
                     return 1;
                 }
     return 0;
@@ -322,7 +322,7 @@ int GuiOpponentHand::receiveEventMinus(WEvent* e)
                 {
                     CardView* cv = *it;
                     cards.erase(it);
-                    trash(cv);
+                    zone->owner->getObserver()->mTrash->trash(cv);
                     return 1;
                 }
     return 0;

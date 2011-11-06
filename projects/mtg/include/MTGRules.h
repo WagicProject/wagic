@@ -306,8 +306,8 @@ class MTGMomirRule: public PermanentAbility
 {
 private:
     int genRandomCreatureId(int convertedCost);
-    static vector<int> pool[20];
-    static int initialized;
+    vector<int> pool[20];
+    int initialized;
 
     int textAlpha;
     string text;
@@ -335,8 +335,8 @@ class MTGStoneHewerRule: public PermanentAbility
 {
 private:
     int genRandomEquipId(int convertedCost);
-    static vector<int> pool[20];
-    static int initialized;
+    vector<int> pool[20];
+    int initialized;
 public:
 	MTGAllCards * collection;
 	MTGCardInstance * genEquip(int id);

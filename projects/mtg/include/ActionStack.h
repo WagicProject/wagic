@@ -176,6 +176,7 @@ public:
     DrawAction(GameObserver* observer, int id, Player *  _player, int _nbcards);
 };
 
+class ATutorialMessage;
 class LifeAction: public Interruptible
 {
 public:
@@ -196,6 +197,7 @@ protected:
     int currentState;
     int mode;
     int checked;
+    ATutorialMessage* currentTutorial;
 
 public:
 
@@ -216,7 +218,7 @@ public:
     int getNextIndex(Interruptible * previous, int type = 0, int state = 0 , int display = -1);
     void Fizzle(Interruptible * action);
     Interruptible * getAt(int id);
-    void cancelInterruptOffer(int cancelMode = 1);
+    void cancelInterruptOffer(int cancelMode = 1, bool log = true);
     void endOfInterruption(bool log = true);
     Interruptible * getLatest(int state);
     Player * askIfWishesToInterrupt;
@@ -241,7 +243,8 @@ public:
 #if defined (WIN32) || defined (LINUX) || defined (IOS)
     void Dump();
 #endif
-
+    void setCurrentTutorial(ATutorialMessage* message) {currentTutorial = message;};
+    ATutorialMessage* getCurrentTutorial() {return currentTutorial;};
 };
 
 #endif

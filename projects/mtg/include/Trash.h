@@ -4,22 +4,39 @@
 #include <vector>
 #include "Pos.h"
 #include "WEvent.h"
+#include "DamagerDamaged.h"
+
+class CardView;
+class AttackerDamaged;
+class DamagerDamaged;
+typedef DamagerDamaged DefenserDamaged;
 
 template<class T> void trash(T*);
-class Trash
-{
-public:
-    static void cleanup();
-};
 
 template<class T>
 class TrashBin
 {
-    std::vector<T*> bin;
+    std::vector<T> bin;
     void put_out();
     int receiveEvent(WEvent* e);
     template<class Q> friend void trash(Q*);
     friend class Trash;
+};
+
+
+class Trash
+{
+private:
+    TrashBin<CardView*> CardViewTrash;
+    TrashBin<DefenserDamaged*> DefenserDamagedTrash;
+    TrashBin<AttackerDamaged*> AttackerDamagedTrash;
+
+public:
+    Trash(){};
+    void cleanup();
+    void trash(CardView* garbage);
+    void trash(DefenserDamaged* garbage);
+    void trash(AttackerDamaged* garbage);
 };
 
 #endif // _TRASH_H_

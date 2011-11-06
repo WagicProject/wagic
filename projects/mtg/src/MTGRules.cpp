@@ -1197,11 +1197,11 @@ int MTGAttackRule::reactToClick(MTGCardInstance * card)
     //Graphically select the next card that can attack
     if (!card->isAttacker())
     {
-        CardSelectorSingleton::Instance()->PushLimitor();
-        CardSelectorSingleton::Instance()->Limit(this, CardView::playZone);
-        CardSelectorSingleton::Instance()->CheckUserInput(JGE_BTN_RIGHT);
-        CardSelectorSingleton::Instance()->Limit(NULL, CardView::playZone);
-        CardSelectorSingleton::Instance()->PopLimitor();
+        game->getCardSelector()->PushLimitor();
+        game->getCardSelector()->Limit(this, CardView::playZone);
+        game->getCardSelector()->CheckUserInput(JGE_BTN_RIGHT);
+        game->getCardSelector()->Limit(NULL, CardView::playZone);
+        game->getCardSelector()->PopLimitor();
     }
     card->toggleAttacker();
     return 1;
@@ -1416,11 +1416,8 @@ MTGBlockRule * MTGBlockRule::clone() const
 // * Momir
 //
 
-int MTGMomirRule::initialized = 0;
-vector<int> MTGMomirRule::pool[20];
-
 MTGMomirRule::MTGMomirRule(GameObserver* observer, int _id, MTGAllCards * _collection) :
-PermanentAbility(observer, _id)
+    PermanentAbility(observer, _id), initialized(false)
 {
     collection = _collection;
     if (!initialized)
@@ -1565,11 +1562,8 @@ MTGMomirRule * MTGMomirRule::clone() const
 //less than or equal to the creature.
 //note this can kill your creature if the equipment contains negitive toughness
 
-int MTGStoneHewerRule::initialized = 0;
-vector<int> MTGStoneHewerRule::pool[20];
-
 MTGStoneHewerRule::MTGStoneHewerRule(GameObserver* observer, int _id, MTGAllCards * _collection) :
-PermanentAbility(observer, _id)
+    PermanentAbility(observer, _id), initialized(false)
 {
     collection = _collection;
     if (!initialized)

@@ -449,15 +449,15 @@ namespace boost
     {
       detail::thread_data_ptr mThreadInfo;
     public:
-      static threadImpl* spThreadImpl;
       threadImpl(detail::thread_data_ptr threadInfo) : mThreadInfo(threadInfo)
       {
         setTerminationEnabled();
-        spThreadImpl = this;
       };
       static void mymsleep(unsigned long msecs)
       {
-        spThreadImpl->msleep(msecs);
+          QThread* currentThread = QThread::currentThread();
+          if(currentThread)
+              currentThread->msleep(msecs);
       }
     protected:
       void run()
@@ -466,8 +466,6 @@ namespace boost
         mThreadInfo->run();
       }
     };
-
-    threadImpl* threadImpl::spThreadImpl = 0;
 
     /**
     ** A simplistic implementation of boost::thread, using QThread.
