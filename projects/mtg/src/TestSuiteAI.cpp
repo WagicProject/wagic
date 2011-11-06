@@ -447,11 +447,23 @@ void TestSuite::handleResults(bool wasAI, int error)
     }
 }
 
+TestSuite::~TestSuite()
+{
+  mProcessing = false;
+  while(mWorkerThread.size())
+  {
+    mWorkerThread.back().join();
+    mWorkerThread.pop_back();
+  }
+
+  observer = 0;
+}
 
 TestSuite::TestSuite(const char * filename)
-    : TestSuiteGame(this), mRules(0), mProcessing(false)
+    : TestSuiteGame(0), mRules(0), mProcessing(false)
 {
     timerLimit = 0;
+    testsuite = this;
     
     std::string s;
     nbfiles = 0;
@@ -731,25 +743,20 @@ void TestSuite::ThreadProc(void* inParam)
     {
         string filename;
         float counter = 1.0f;
-//        while(instance->mProcessing)
+        while(instance->mProcessing && (filename = instance->getNextFile()) != "")
         {
-            while((filename = instance->getNextFile()) != "")
+            TestSuiteGame theGame(instance, filename);
+            if(theGame.isOK)
             {
-                TestSuiteGame theGame(instance, filename);
-                if(theGame.isOK)
-                {
-                    theGame.observer->loadTestSuitePlayer(0, &theGame);
-                    theGame.observer->loadTestSuitePlayer(1, &theGame);
+                theGame.observer->loadTestSuitePlayer(0, &theGame);
+                theGame.observer->loadTestSuitePlayer(1, &theGame);
 
-                    theGame.observer->startGame(theGame.gameType, instance->mRules);
-                    theGame.initGame();
+                theGame.observer->startGame(theGame.gameType, instance->mRules);
+                theGame.initGame();
 
-                    while(!theGame.observer->gameOver)
-                        theGame.observer->Update(counter++);
-                }
+                while(!theGame.observer->gameOver)
+                    theGame.observer->Update(counter++);
             }
-
-            boost::this_thread::sleep(100);
         }
     }
     LOG("Leaving TestSuite::ThreadProc");

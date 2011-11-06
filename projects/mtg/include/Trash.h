@@ -7,8 +7,8 @@
 #include "DamagerDamaged.h"
 
 class CardView;
-class AttackerDamaged;
-class DamagerDamaged;
+struct AttackerDamaged;
+struct DamagerDamaged;
 typedef DamagerDamaged DefenserDamaged;
 
 template<class T> void trash(T*);

@@ -60,7 +60,7 @@ protected:
     bool load();
 
 public:
-    ~TestSuiteGame();
+    virtual ~TestSuiteGame();
     TestSuiteGame(TestSuite* testsuite);
     TestSuiteGame(TestSuite* testsuite, string _filename);
     void initGame();
@@ -90,6 +90,7 @@ public:
     unsigned int seed;
     int nbFailed, nbTests, nbAIFailed, nbAITests;
     TestSuite(const char * filename);
+    ~TestSuite();
     void initGame(GameObserver* g);
     void pregameTests();
     int loadNext();
