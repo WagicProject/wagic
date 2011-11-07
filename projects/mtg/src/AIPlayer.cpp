@@ -3,7 +3,7 @@
 #include "AIPlayer.h"
 #include "GameStateDuel.h"
 #include "DeckManager.h"
-#include "CardSelectorSingleton.h"
+#include "CardSelector.h"
 
 
 // Instances for Factory

@@ -51,7 +51,8 @@ filesystem::filesystem(const char * BasePath, const char * FileExt, bool Default
 
 	// Init m_BasePath and be sure the base path finish with a '/' or a '\'
 	if (! m_BasePath.empty()) {
-		string::iterator c = --(m_BasePath.end());
+		string::iterator c = m_BasePath.end();
+		c--;
 		if ((*c != '/') && (*c != '\\'))
 			m_BasePath += '/';
 	}

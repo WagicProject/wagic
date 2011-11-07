@@ -2,7 +2,7 @@
 
 #include "CardDisplay.h"
 #include "CardGui.h"
-#include "CardSelectorSingleton.h"
+#include "CardSelector.h"
 #include "TargetChooser.h"
 #include "MTGGameZones.h"
 #include "GameObserver.h"

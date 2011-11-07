@@ -1,6 +1,6 @@
 #include "PrecompiledHeader.h"
 
-#include "CardSelectorSingleton.h"
+#include "CardSelector.h"
 #include "MTGRules.h"
 #include "Translate.h"
 #include "Subtypes.h"

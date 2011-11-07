@@ -142,14 +142,16 @@ JFileSystem::JFileSystem(const string & _userPath, const string & _systemPath)
 
 	// Make sure the base paths finish with a '/' or a '\'
 	if (! userPath.empty()) {
-		string::iterator c = --(userPath.end());
+                string::iterator c = userPath.end();//userPath.at(userPath.size()-1);
+                c--;
 		if ((*c != '/') && (*c != '\\'))
 			userPath += '/';
 	}
 
 	if (! systemPath.empty()) {
-		string::iterator c = --(systemPath.end());
-		if ((*c != '/') && (*c != '\\'))
+                string::iterator c = systemPath.end();//systemPath.at(systemPath.size()-1);
+                c--;
+                if ((*c != '/') && (*c != '\\'))
 			systemPath += '/';
 	}
 

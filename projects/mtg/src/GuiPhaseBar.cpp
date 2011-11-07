@@ -4,7 +4,7 @@
 #include "GuiPhaseBar.h"
 #include "GameObserver.h"
 #include "Translate.h"
-#include "CardSelectorSingleton.h"
+#include "CardSelector.h"
 
 /*
  static int colors[] =

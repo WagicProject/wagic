@@ -5,7 +5,6 @@ The Action Stack contains all information for Game Events that can be interrupte
 
 #include "ActionStack.h"
 #include "CardGui.h"
-#include "CardSelectorSingleton.h"
 #include "Damage.h"
 #include "GameObserver.h"
 #include "ManaCost.h"
@@ -16,7 +15,7 @@ The Action Stack contains all information for Game Events that can be interrupte
 #include "WResourceManager.h"
 #include "ModRules.h"
 #include "AllAbilities.h"
-
+#include "CardSelector.h"
 #include <typeinfo>
 
 namespace

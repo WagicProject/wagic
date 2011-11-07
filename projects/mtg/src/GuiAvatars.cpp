@@ -1,6 +1,6 @@
 #include "PrecompiledHeader.h"
 
-#include "CardSelectorSingleton.h"
+#include "CardSelector.h"
 #include "GameApp.h"
 #include "GuiAvatars.h"
 #include "GameObserver.h"

@@ -1,6 +1,6 @@
 #include "PrecompiledHeader.h"
 
-#include "CardSelectorSingleton.h"
+#include "CardSelector.h"
 #include "MTGGameZones.h"
 #include "Player.h"
 #include "WEvent.h"

@@ -44,7 +44,9 @@ u8 JGE::GetAnalogY()
 
 #elif defined (LINUX)    // Unix specific code
 #include <sys/time.h>
+#ifdef WITH_FMOD
 #include "../Dependencies/include/fmod.h"
+#endif //WITH_FMOD
 
 
 u8 JGE::GetAnalogX()
