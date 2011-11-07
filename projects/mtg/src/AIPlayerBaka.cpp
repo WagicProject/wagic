@@ -2209,6 +2209,20 @@ AIPlayerBaka::AIPlayerBaka(GameObserver *observer, string file, string fileSmall
         }
         mAvatarName = avatarFile;
     }
+    else //load a random avatar.
+    {
+        avatarFile = "avatar";
+        char buffer[3];
+        sprintf(buffer, "%i", int(rand()%100));
+        avatarFile.append(buffer);
+        avatarFile.append(".jpg");
+        if(!loadAvatar(avatarFile, "bakaAvatar"))
+        {
+            avatarFile = "baka.jpg";
+            loadAvatar(avatarFile, "bakaAvatar");
+        }
+        mAvatarName = avatarFile;
+    }
 
     if (fileSmall == "ai_baka_eviltwin")
         mAvatar->SetHFlip(true);

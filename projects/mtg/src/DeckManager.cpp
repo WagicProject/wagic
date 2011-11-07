@@ -185,8 +185,8 @@ StatsWrapper * DeckManager::getExtendedDeckStats( DeckMetaData *selectedDeck, MT
 {
     StatsWrapper* stats = NULL;
 
-    string deckName = selectedDeck->getFilename();
-    int deckId = selectedDeck->getDeckId();
+    string deckName = selectedDeck?selectedDeck->getFilename():"";
+    int deckId = selectedDeck?selectedDeck->getDeckId():0;
 
     map<string, StatsWrapper*>* statsMap = isAI ? &aiDeckStatsMap : &playerDeckStatsMap;
     if ( statsMap->find(deckName) == statsMap->end())
