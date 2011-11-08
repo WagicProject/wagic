@@ -1,0 +1,39 @@
+#Bug: the +1/+1 bonus stays on a creature if the card that exalted it is killed before the end of the turn
+# see http://code.google.com/p/wagic/issues/detail?id=754
+[INIT]
+COMBATATTACKERS
+[PLAYER1]
+hand:shock
+inplay:Sigiled Paladin,raging goblin,mountain
+[PLAYER2]
+[DO]
+raging goblin
+next
+#blockers
+next
+#damage
+next
+#combat end
+next
+#second main
+mountain
+shock
+Sigiled Paladin
+eot
+eot
+goto combatattackers
+raging goblin
+next
+#blockers
+next
+#damage
+next
+#combat end
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:raging goblin,mountain
+graveyard:Shock,Sigiled Paladin
+[PLAYER2]
+life:17
+[END]
