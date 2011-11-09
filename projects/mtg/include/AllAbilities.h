@@ -1886,71 +1886,6 @@ public:
     }
 };
 
-//ExaltedAbility (Shards of Alara)
-class AExalted: public TriggeredAbility
-{
-public:
-    int power, toughness;
-    MTGCardInstance * luckyWinner;
-    AExalted(GameObserver* observer, int _id, MTGCardInstance * _source, int _power = 1, int _toughness = 1) :
-        TriggeredAbility(observer, _id, _source), power(_power), toughness(_toughness)
-    {
-        luckyWinner = NULL;
-    }
-
-    int triggerOnEvent(WEvent * event)
-    {
-        if (WEventPhaseChange* pe = dynamic_cast<WEventPhaseChange*>(event))
-        {
-            if (luckyWinner && Constants::MTG_PHASE_AFTER_EOT == pe->from->id)
-            {
-                luckyWinner->addToToughness(-toughness);
-                luckyWinner->power -= power;
-                luckyWinner = NULL;
-            }
-
-            if (Constants::MTG_PHASE_COMBATATTACKERS == pe->from->id)
-            {
-                int nbattackers = 0;
-                MTGGameZone * z = source->controller()->game->inPlay;
-                int nbcards = z->nb_cards;
-                for (int i = 0; i < nbcards; ++i)
-                {
-                    MTGCardInstance * c = z->cards[i];
-                    if (c->attacker)
-                    {
-                        nbattackers++;
-                        luckyWinner = c;
-                    }
-                }
-                if (nbattackers == 1)
-                    return 1;
-                else
-                    luckyWinner = NULL;
-            }
-        }
-        return 0;
-    }
-
-    int resolve()
-    {
-        if (!luckyWinner) return 0;
-        luckyWinner->addToToughness(toughness);
-        luckyWinner->power += power;
-        return 1;
-    }
-
-    const char * getMenuText()
-    {
-        return "Exalted";
-    }
-
-    AExalted * clone() const
-    {
-        return NEW AExalted(*this);
-    }
-};
-
 //Generic Kird Ape
 class AAsLongAs: public ListMaintainerAbility, public NestedAbility
 {
@@ -3528,6 +3463,71 @@ public:
     const char * getMenuText();
     PTInstant * clone() const;
     ~PTInstant();
+};
+
+//ExaltedAbility (Shards of Alara)
+class AExalted: public TriggeredAbility
+{
+public:
+    int power, toughness;
+    MTGCardInstance * luckyWinner;
+    AExalted(GameObserver* observer, int _id, MTGCardInstance * _source, int _power = 1, int _toughness = 1) :
+        TriggeredAbility(observer, _id, _source), power(_power), toughness(_toughness)
+    {
+        luckyWinner = NULL;
+    }
+
+    int triggerOnEvent(WEvent * event)
+    {
+        if (WEventPhaseChange* pe = dynamic_cast<WEventPhaseChange*>(event))
+        {
+            if (luckyWinner && Constants::MTG_PHASE_AFTER_EOT == pe->from->id)
+            {
+                luckyWinner = NULL;
+            }
+
+            if (Constants::MTG_PHASE_COMBATATTACKERS == pe->from->id)
+            {
+                int nbattackers = 0;
+                MTGGameZone * z = source->controller()->game->inPlay;
+                int nbcards = z->nb_cards;
+                for (int i = 0; i < nbcards; ++i)
+                {
+                    MTGCardInstance * c = z->cards[i];
+                    if (c->attacker)
+                    {
+                        nbattackers++;
+                        luckyWinner = c;
+                    }
+                }
+                if (nbattackers == 1)
+                    return 1;
+                else
+                    luckyWinner = NULL;
+            }
+        }
+        return 0;
+    }
+
+    int resolve()
+    {
+        if (!luckyWinner) return 0;
+        PTInstant * a = NEW PTInstant(game, this->GetId(), source, luckyWinner,NEW WParsedPT(1,1));
+        GenericInstantAbility * wrapper = NEW GenericInstantAbility(game, 1, source,luckyWinner, a);
+        wrapper->addToGame();
+        luckyWinner = NULL;
+        return 1;
+    }
+
+    const char * getMenuText()
+    {
+        return "Exalted";
+    }
+
+    AExalted * clone() const
+    {
+        return NEW AExalted(*this);
+    }
 };
 
 //switch p/t ueot
