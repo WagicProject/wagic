@@ -291,6 +291,7 @@ evil_presence2.txt
 evil_presence3.txt
 evil_presence_i647.txt
 evil_presence_i647_2.txt
+exaltedsourcekilled.txt
 explore.txt
 Faceless_Butcher.txt
 fangren_pathcutter.txt
