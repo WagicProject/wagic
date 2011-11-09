@@ -320,7 +320,7 @@ name=Absorb Vis
 target=player
 auto=life:-4
 auto=life:4 controller
-autohand={1}{B}{cycle}:moveTo(myhand) target(land[basic]|mylibrary)
+autohand={1}{B}{cycle}:name(basic landcycling) moveTo(myhand) target(land[basic]|mylibrary)
 text=Target player loses 4 life and you gain 4 life. -- Basic landcycling {1}{B} ({1}{B}, Discard this card: Search your library for a basic land card, reveal it, and put it into your hand. Then shuffle your library.)
 mana={6}{B}
 type=Sorcery
@@ -1070,7 +1070,7 @@ auto=choice name(protection from blue) lord(creature|myBattlefield) protection f
 auto=choice name(protection from black) lord(creature|myBattlefield) protection from black
 auto=choice name(protection from red) lord(creature|myBattlefield) protection from red
 auto=choice name(protection from green) lord(creature|myBattlefield) protection from green
-autohand={W}{cycle}:draw:1
+autohand={W}{cycle}:name(cycling) draw:1
 text=Creatures you control gain protection from the color of your choice until end of turn. -- Cycling {W} ({W}, Discard this card: Draw a card.)
 mana={2}{W}
 type=Instant
@@ -1101,7 +1101,7 @@ type=Legendary Artifact
 [card]
 name=Akroma's Vengeance
 auto=destroy all(artifact,creature,enchantment)
-autohand={3}{cycle}:draw:1
+autohand={3}{cycle}:name(cycling) draw:1
 text=Destroy all artifacts, creatures, and enchantments. -- Cycling {3} ({3}, Discard this card: Draw a card.)
 mana={4}{W}{W}
 type=Sorcery
@@ -2276,7 +2276,7 @@ toughness=4
 [card]
 name=Angelsong
 auto=preventAllcombatDamage ueot
-autohand={2}{cycle}:draw:1
+autohand={2}{cycle}:name(cycling) draw:1
 text=Prevent all combat damage that would be dealt this turn. -- Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={1}{W}
 type=Instant
@@ -2476,6 +2476,7 @@ toughness=3
 [/card]
 [card]
 name=Apathy
+target=creature
 auto=teach(creature) doesnotuntap
 auto=teach(creature) {d}:untap myupkeeponly
 text=Enchant creature -- Enchanted creature doesn't untap during its controller's untap step. -- At the beginning of the upkeep of enchanted creature's controller, that player may discard a card at random. If he or she does, untap that creature.
@@ -3866,6 +3867,13 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Astral Slide
+auto=@cycled(*|hand):may (blink)ueot target(creature)
+text=Whenever a player cycles a card, you may exile target creature. If you do, return the exiled card to the battlefield under its owner's control at the beginning of the next end step.
+mana={2}{W}
+type=Enchantment
+[/card]
+[card]
 name=Astral Steel
 abilities=storm
 auto=1/2 target(creature)
@@ -3934,7 +3942,7 @@ type=Instant
 name=Aura Extraction
 target=enchantment
 auto=moveTo(ownerlibrary)
-autohand={2}{cycle}:draw:1
+autohand={2}{cycle}:name(cycling) draw:1
 text=Put target enchantment on top of its owner's library. -- Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={1}{W}
 type=Instant
@@ -5146,8 +5154,8 @@ type=Land
 [card]
 name=Bant Sojourners
 auto=@movedTo(this|graveyard) from(battlefield):may token(Soldier,Creature Soldier,1/1,white)
-autohand={2}{W}{cycle}:draw:1
-autohand={2}{W}:token(Soldier,Creature Soldier,1/1,white) && cycling
+autohand={2}{W}{cycle}:name(cycle) draw:1
+autohand={2}{W}:name(cycle + effect) token(Soldier,Creature Soldier,1/1,white) && draw:1 controller
 text=When you cycle Bant Sojourners or it's put into a graveyard from the battlefield, you may put a 1/1 white Soldier creature token onto the battlefield. -- Cycling {2}{W} ({2}{W}, Discard this card: Draw a card.)
 mana={1}{G}{W}{U}
 type=Creature
@@ -5343,7 +5351,7 @@ toughness=3
 [/card]
 [card]
 name=Barkhide Mauler
-autohand={2}{cycle}:draw:1
+autohand={2}{cycle}:name(cycling) draw:1
 text=Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={4}{G}
 type=Creature
@@ -5420,7 +5428,7 @@ type=Instant
 name=Barren Moor
 auto=tap
 auto={T}:Add {B}
-autohand={B}{cycle}:draw:1
+autohand={B}{cycle}:name(cycling) draw:1
 text=Barren Moor enters the battlefield tapped. -- {T}: Add {B} to your mana pool. -- Cycling {B} ({B}, Discard this card: Draw a card.)
 type=Land
 [/card]
@@ -6582,7 +6590,7 @@ subtype=Aura
 [/card]
 [card]
 name=Blackcleave Cliffs
-auto=aslongas(other land|myBattlefield) tap >2 oneshot 
+auto=aslongas(other land|myBattlefield) tap >2 oneshot
 auto={T}:Add {B}
 auto={T}:Add {R}
 text=Blackcleave Cliffs enters the battlefield tapped unless you control two or fewer other lands. -- {T}: Add {B} or {R} to your mana pool.
@@ -6597,6 +6605,15 @@ type=Creature
 subtype=Goblin Zombie
 power=2
 toughness=1
+[/card]
+[card]
+name=Blade of the Bloodchief
+auto={1}:equip
+auto=@movedto(creature|graveyard) from(creature|battlefield):counter(1/1,1) && if cantargetcard(vampire) then counter(1/1,1)
+text=Whenever a creature is put into a graveyard from the battlefield, put a +1/+1 counter on equipped creature. If equipped creature is a Vampire, put two +1/+1 counters on it instead. -- Equip {1}
+mana={1}
+type=Artifact
+subtype=Equipment
 [/card]
 [card]
 name=Blade of the Sixth Pride
@@ -6746,7 +6763,7 @@ type=Enchantment
 [card]
 name=Blasted Landscape
 auto={T}:Add {1}
-autohand={2}{cycle}:draw:1
+autohand={2}{cycle}:name(cycling) draw:1
 text={T}: Add {1} to your mana pool. -- Cycling {2} ({2}, Discard this card: Draw a card.)
 type=Land
 [/card]
@@ -7216,7 +7233,7 @@ toughness=5
 [card]
 name=Bloated Toad
 abilities=protection from blue
-autohand={2}{cycle}:draw:1
+autohand={2}{cycle}:name(cycling) draw:1
 text=Protection from blue -- Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={2}{G}
 type=Creature
@@ -7383,6 +7400,13 @@ type=Creature
 subtype=Hound
 power=1
 toughness=1
+[/card]
+[card]
+name=Bloodbond March
+auto=lord(creature) transforms((,newability[if casted(this) then all(*[share!name!]|targetcontrollergraveyard) moveto(battlefield)])) forever
+text=Whenever a player casts a creature spell, each player returns all cards with the same name as that spell from his or her graveyard to the battlefield.
+mana={2}{B}{G}
+type=Enchantment
 [/card]
 [card]
 name=Bloodchief Ascension
@@ -8862,7 +8886,7 @@ type=Instant
 name=Break Asunder
 target=artifact,enchantment
 auto=destroy
-autohand={2}{cycle}:draw:1
+autohand={2}{cycle}:name(cycling) draw:1
 text=Destroy target artifact or enchantment. -- Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={2}{G}{G}
 type=Sorcery
@@ -11631,7 +11655,7 @@ toughness=6
 [card]
 name=Chartooth Cougar
 auto={R}:1/0
-autohand={2}{discard(this|myhand)}:moveTo(myhand) target(mountain|mylibrary)
+autohand={2}{cycle}:name(mountaincycling) moveTo(myhand) target(mountain|mylibrary)
 text={R}: Chartooth Cougar gets +1/+0 until end of turn. -- Mountaincycling {2} ({2}, Discard this card: Search your library for a Mountain card, reveal it, and put it into your hand. Then shuffle your library.)
 mana={5}{R}
 type=Creature
@@ -11844,8 +11868,8 @@ type=Sorcery
 name=Choking Tethers
 target=<upto:4>creature
 auto=tap
-autohand={1}{U}{cycle}:draw:1
-autohand={1}{U}:tap target(creature) && cycling
+autohand={1}{U}{cycle}:name(cycling) draw:1
+autohand={1}{U}{cycle}:name(cycling + effect) tap target(creature) && draw:1 controller
 text=Tap up to four target creatures. -- Cycling {1}{U} ({1}{U}, Discard this card: Draw a card.) -- When you cycle Choking Tethers, you may tap target creature.
 mana={3}{U}
 type=Instant
@@ -12267,7 +12291,7 @@ subtype=Aura
 name=Claws of Wirewood
 auto=damage:3 all(creature[flying])
 auto=damage:3 all(player)
-autohand={2}{cycle}:draw:1
+autohand={2}{cycle}:name(cycling) draw:1
 text=Claws of Wirewood deals 3 damage to each creature with flying and each player. -- Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={3}{G}
 type=Sorcery
@@ -12309,7 +12333,7 @@ type=Instant
 name=Clear
 target=enchantment
 auto=destroy
-autohand={2}{cycle}:draw:1
+autohand={2}{cycle}:name(cycling) draw:1
 text=Destroy target enchantment. -- Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={1}{W}
 type=Instant
@@ -12649,7 +12673,7 @@ toughness=3
 [card]
 name=Cloud of Faeries
 abilities=flying
-autohand={2}{cycle}:draw:1
+autohand={2}{cycle}:name(cycling) draw:1
 auto=untap target(<upto:2>land)
 text=Flying -- When Cloud of Faeries enters the battlefield, untap up to two lands. -- Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={1}{U}
@@ -13372,7 +13396,7 @@ type=Instant
 name=Constricting Tendrils
 target=creature
 auto=-3/-0
-autohand={2}{cycle}:draw:1
+autohand={2}{cycle}:name(cycling) draw:1
 text=Target creature gets -3/-0 until end of turn. -- Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={U}
 type=Instant
@@ -15825,7 +15849,7 @@ toughness=2
 [card]
 name=Darkwatch Elves
 abilities=protection from black
-autohand={2}{cycle}:draw:1
+autohand={2}{cycle}:name(cycling) draw:1
 text=Protection from black -- Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={2}{G}
 type=Creature
@@ -16256,7 +16280,7 @@ toughness=2
 name=Deadshot
 target=creature
 auto=tap
-auto=transforms((,newability[dynamicability<!powerstrike!> target(other creature)])) 
+auto=transforms((,newability[dynamicability<!powerstrike!> target(other creature)]))
 text=Tap target creature. It deals damage equal to its power to another target creature.
 mana={3}{R}
 type=Sorcery
@@ -16264,7 +16288,7 @@ type=Sorcery
 [card]
 name=Deadshot Minotaur
 auto=damage:3 target(creature[flying])
-autohand={RG}{cycle}:draw:1
+autohand={RG}{cycle}:name(cycling) draw:1
 text=When Deadshot Minotaur enters the battlefield, it deals 3 damage to target creature with flying. -- Cycling {(r/g)} ({(r/g)}, Discard this card: Draw a card.)
 mana={3}{R}{G}
 type=Creature
@@ -16452,8 +16476,8 @@ type=Enchantment
 name=Death Pulse
 target=creature
 auto=-4/-4
-autohand={1}{B}{B}{cycle}:draw:1
-autohand={1}{B}{B}:-1/-1 target(creature) && cycling
+autohand={1}{B}{B}{cycle}:name(cycling) draw:1
+autohand={1}{B}{B}{cycle}:name(cycling + effect) -1/-1 target(creature) && draw:1 controller
 text=Target creature gets -4/-4 until end of turn. -- Cycling {1}{B}{B} ({1}{B}{B}, Discard this card: Draw a card.) -- When you cycle Death Pulse, you may have target creature get -1/-1 until end of turn.
 mana={2}{B}{B}
 type=Instant
@@ -16703,7 +16727,7 @@ auto=moveTo(exile) all(*|mygraveyard)
 auto=moveTo(exile) all(*|opponentgraveyard)
 auto=moveTo(exile) all(*|myhand)
 auto=moveTo(exile) all(*|opponenthand)
-autohand={5}{R}{R}:destroy all(land) && cycling
+autohand={5}{R}{R}{cycle}:name(cycling) destroy all(land) && draw:1 controller
 text=Exile all artifacts, creatures, and lands from the battlefield, all cards from all graveyards, and all cards from all hands. -- Cycling {5}{R}{R} ({5}{R}{R}, Discard this card: Draw a card.) -- When you cycle Decree of Annihilation, destroy all lands.
 mana={8}{R}{R}
 type=Sorcery
@@ -16711,8 +16735,8 @@ type=Sorcery
 [card]
 name=Decree of Justice
 auto=token(-4514111)*XX
-autohand={2}{W}{cycle}:draw:1
-autohand={X}{2}{W}:name(cycle and soldier tokens) cycling && token(-4514112)*X
+autohand={2}{W}{cycle}:name(cycling) draw:1
+autohand={X}{2}{W}:name(cycle + effect) token(-4514112)*X && draw:1 controller
 text=Put X 4/4 white Angel creature tokens with flying onto the battlefield. -- Cycling {2}{W} ({2}{W}, Discard this card: Draw a card.) -- When you cycle Decree of Justice, you may pay {X}. If you do, put X 1/1 white Soldier creature tokens onto the battlefield.
 mana={X}{X}{2}{W}{W}
 type=Sorcery
@@ -16738,8 +16762,8 @@ color=white
 [card]
 name=Decree of Savagery
 auto=lord(creature|myBattlefield) counter(1/1,4)
-autohand={4}{G}{G}{cycle}:draw:1
-autohand={4}{G}{G}:name(cycle and 4 counters) counter(1/1,4) target(creature) && cycling
+autohand={4}{G}{G}{cycle}:name(cycling) draw:1
+autohand={4}{G}{G}{cycle}:name(cycling + four counters) counter(1/1,4) target(creature) && draw:1 controller
 text=Put four +1/+1 counters on each creature you control. -- Cycling {4}{G}{G} ({4}{G}{G}, Discard this card: Draw a card.) -- When you cycle Decree of Savagery, you may put four +1/+1 counters on target creature.
 mana={7}{G}{G}
 type=Instant
@@ -17097,10 +17121,10 @@ toughness=1
 [/card]
 [card]
 name=Dega Sanctuary
-text=At the beginning of your upkeep, if you control a black or red permanent, you gain 2 life. If you control a black permanent and a red permanent, you gain 4 life instead.
 auto=@each my upkeep restriction{type(*[black]|myBattlefield)~morethan~0,type(*[red]|myBattlefield)~lessthan~1}}:life:2
 auto=@each my upkeep restriction{type(*[red]|myBattlefield)~morethan~0,type(*[black]|myBattlefield)~lessthan~1}}:life:2
 auto=@each my upkeep restriction{type(*[black]|myBattlefield)~morethan~0,type(*[red]|myBattlefield)~morethan~0}:life:4
+text=At the beginning of your upkeep, if you control a black or red permanent, you gain 2 life. If you control a black permanent and a red permanent, you gain 4 life instead.
 mana={2}{W}
 type=Enchantment
 [/card]
@@ -17794,8 +17818,8 @@ toughness=2
 [card]
 name=Dirge of Dread
 auto=lord(creature) fear
-autohand={1}{B}{cycle}:draw:1
-autohand={1}{B}:fear target(creature) && cycling
+autohand={1}{B}{cycle}:name(cycling) draw:1
+autohand={1}{B}:name(cycling + effect) fear target(creature) && draw:1 controller
 text=All creatures gain fear until end of turn. (They can't be blocked except by artifact creatures and/or black creatures.) -- Cycling {1}{B} ({1}{B}, Discard this card: Draw a card.) -- When you cycle Dirge of Dread, you may have target creature gain fear until end of turn.
 mana={2}{B}
 type=Sorcery
@@ -17845,7 +17869,7 @@ subtype=Aura
 [card]
 name=Disciple of Grace
 auto=protection from black
-autohand={2}{cycle}:draw:1
+autohand={2}{cycle}:name(cycling) draw:1
 text=Protection from black -- Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={1}{W}
 type=Creature
@@ -17866,7 +17890,7 @@ toughness=2
 [card]
 name=Disciple of Law
 auto=protection from red
-autohand={2}{cycle}:draw:1
+autohand={2}{cycle}:name(cycling) draw:1
 text=Protection from red -- Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={1}{W}
 type=Creature
@@ -17877,7 +17901,7 @@ toughness=2
 [card]
 name=Disciple of Malice
 auto=protection from white
-autohand={2}{cycle}:draw:1
+autohand={2}{cycle}:name(cycling) draw:1
 text=Protection from white -- Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={1}{B}
 type=Creature
@@ -18740,7 +18764,7 @@ name=Dragon Wings
 target=creature
 auto=flying
 auto=1/0
-autohand={1}{U}{cycle}:draw:1
+autohand={1}{U}{cycle}:name(cycling) draw:1
 autograveyard=@movedto(creature[manacost >=6]|mybattlefield):may all(trigger[to]) retarget
 text=Enchant creature -- Enchanted creature has flying. -- Cycling {1}{U} ({1}{U}, Discard this card: Draw a card.) -- When a creature with converted mana cost 6 or more enters the battlefield, you may return Dragon Wings from your graveyard to the battlefield attached to that creature.
 mana={1}{U}
@@ -19245,7 +19269,7 @@ toughness=1
 name=Drifting Djinn
 abilities=flying
 auto=upcost[{1}{U}] sacrifice
-autohand={2}{cycle}:draw:1
+autohand={2}{cycle}:name(cycling) draw:1
 text=Flying -- At the beginning of your upkeep, sacrifice Drifting Djinn unless you pay {1}{U}. -- Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={4}{U}{U}
 type=Creature
@@ -19257,7 +19281,7 @@ toughness=5
 name=Drifting Meadow
 auto=tap
 auto={T}:Add {W}
-autohand={2}{cycle}:draw:1
+autohand={2}{cycle}:name(cycling) draw:1
 text=Drifting Meadow enters the battlefield tapped. -- {T}: Add {W} to your mana pool. -- Cycling {2} ({2}, Discard this card: Draw a card.)
 type=Land
 [/card]
@@ -20852,7 +20876,7 @@ toughness=1
 [card]
 name=Elvish Aberration
 auto={T}:add{G}{G}{G}
-autohand={2}{discard(this|myhand)}:moveTo(myhand) target(forest|mylibrary)
+autohand={2}{cycle}:name(forestcycling) moveTo(myhand) target(forest|mylibrary)
 text={T}: Add {G}{G}{G} to your mana pool. -- Forestcycling {2} ({2}, Discard this card: Search your library for a Forest card, reveal it, and put it into your hand. Then shuffle your library.)
 mana={5}{G}
 type=Creature
@@ -20890,6 +20914,28 @@ type=Creature
 subtype=Elf Berserker
 power=1
 toughness=1
+[/card]
+[card]
+name=Noetic Scales
+auto=@each my upkeep restriction{type(*|myhand)~equalto~7}:moveTo(ownerhand) all(creature[power>=8]|mybattlefield)
+auto=@each my upkeep restriction{type(*|myhand)~equalto~6}:moveTo(ownerhand) all(creature[power>=7]|mybattlefield)
+auto=@each my upkeep restriction{type(*|myhand)~equalto~5}:moveTo(ownerhand) all(creature[power>=6]|mybattlefield)
+auto=@each my upkeep restriction{type(*|myhand)~equalto~4}:moveTo(ownerhand) all(creature[power>=5]|mybattlefield)
+auto=@each my upkeep restriction{type(*|myhand)~equalto~3}:moveTo(ownerhand) all(creature[power>=4]|mybattlefield)
+auto=@each my upkeep restriction{type(*|myhand)~equalto~2}:moveTo(ownerhand) all(creature[power>=3]|mybattlefield)
+auto=@each my upkeep restriction{type(*|myhand)~equalto~1}:moveTo(ownerhand) all(creature[power>=2]|mybattlefield)
+auto=@each my upkeep restriction{type(*|myhand)~lessthan~1}:moveTo(ownerhand) all(creature[power>=1]|mybattlefield)
+auto=@each opponent upkeep restriction{type(*|opponenthand)~equalto~7}:moveTo(ownerhand) all(creature[power>=8]|opponentbattlefield)
+auto=@each opponent upkeep restriction{type(*|opponenthand)~equalto~6}:moveTo(ownerhand) all(creature[power>=7]|opponentbattlefield)
+auto=@each opponent upkeep restriction{type(*|opponenthand)~equalto~5}:moveTo(ownerhand) all(creature[power>=6]|opponentbattlefield)
+auto=@each opponent upkeep restriction{type(*|opponenthand)~equalto~4}:moveTo(ownerhand) all(creature[power>=5]|opponentbattlefield)
+auto=@each opponent upkeep restriction{type(*|opponenthand)~equalto~3}:moveTo(ownerhand) all(creature[power>=4]|opponentbattlefield)
+auto=@each opponent upkeep restriction{type(*|opponenthand)~equalto~2}:moveTo(ownerhand) all(creature[power>=3]|opponentbattlefield)
+auto=@each opponent upkeep restriction{type(*|opponenthand)~equalto~1}:moveTo(ownerhand) all(creature[power>=2]|opponentbattlefield)
+auto=@each opponent upkeep restriction{type(*|opponenthand)~lessthan~1}:moveTo(ownerhand) all(creature[power>=1]|opponentbattlefield)
+text=At the beginning of each player's upkeep, return to its owner's hand each creature that player controls with power greater than the number of cards in his or her hand.
+mana={4}
+type=Artifact
 [/card]
 [card]
 name=Elvish Branchbender
@@ -21136,9 +21182,8 @@ type=Enchantment
 [/card]
 [card]
 name=Ember Beast
-abilities=cantattack,cantblock
-auto=aslongas(creature[attacking]|myBattlefield) -cantattack
-auto=aslongas(creature[blocking]|myBattlefield) -cantblock
+auto=@combat(attacking) source(this) restriction{type(creature[attacking]|myBattlefield)~equalto~1}:all(this) removefromcombat && untap
+auto=@combat(blocking) source(this) restriction{type(creature[blocking]|myBattlefield)~equalto~1}:all(this) removefromcombat && untap
 text=Ember Beast can't attack or block alone.
 mana={2}{R}
 type=Creature
@@ -22088,7 +22133,7 @@ subtype=Aura
 name=Essence Fracture
 target=<2>creature
 auto=moveTo(ownerhand)
-autohand={2}{U}{cycle}:draw:1
+autohand={2}{U}{cycle}:name(cycling) draw:1
 text=Return two target creatures to their owners' hands. -- Cycling {2}{U} ({2}{U}, Discard this card: Draw a card.)
 mana={3}{U}{U}
 type=Sorcery
@@ -22161,7 +22206,7 @@ toughness=0
 [card]
 name=Eternal Dragon
 abilities=flying
-autohand={2}{discard(this|myhand)}:moveTo(myhand) target(plains|mylibrary)
+autohand={2}{cycle}:name(plainscycling) moveTo(myhand) target(plains|mylibrary)
 autograveyard={3}{W}{W}:moveTo(myhand) myUpkeepOnly
 text=Flying -- {3}{W}{W}: Return Eternal Dragon from your graveyard to your hand. Activate this ability only during your upkeep. -- Plainscycling {2} ({2}, Discard this card: Search your library for a Plains card, reveal it, and put it into your hand. Then shuffle your library.)
 mana={5}{W}{W}
@@ -22636,7 +22681,7 @@ type=Sorcery
 name=Expunge
 target=creature[-black;-artifact]
 auto=bury
-autohand={2}{cycle}:draw:1
+autohand={2}{cycle}:name(cycling) draw:1
 text=Destroy target nonartifact, nonblack creature. It can't be regenerated. -- Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={2}{B}
 type=Instant
@@ -22883,7 +22928,7 @@ toughness=1
 name=Fade from Memory
 target=*|graveyard
 auto=moveTo(exile)
-autohand={B}{cycle}:draw:1
+autohand={B}{cycle}:name(cycling) draw:1
 text=Exile target card from a graveyard. -- Cycling {B} ({B}, Discard this card: Draw a card.)
 mana={B}
 type=Instant
@@ -23598,7 +23643,7 @@ toughness=5
 name=Fend Off
 target=creature
 auto=0/0 && fog from(mytgt) oneshot
-autohand={2}{cycle}:draw:1
+autohand={2}{cycle}:name(cycling) draw:1
 text=Prevent all combat damage that would be dealt by target creature this turn. -- Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={1}{W}
 type=Instant
@@ -23939,7 +23984,7 @@ type=Instant
 name=Fiery Fall
 target=creature
 auto=damage:5
-autohand={1}{R}{discard(this|myhand)}:moveTo(myhand) target(land[basic]|mylibrary)
+autohand={1}{R}{cycle}:name(basic landcycling) moveTo(myhand) target(land[basic]|mylibrary)
 text=Fiery Fall deals 5 damage to target creature. -- Basic landcycling {1}{R} ({1}{R}, Discard this card: Search your library for a basic land card, reveal it, and put it into your hand. Then shuffle your library.)
 mana={5}{R}
 type=Instant
@@ -24526,7 +24571,7 @@ type=Instant
 name=Flame Jet
 target=player
 auto=damage:3
-autohand={2}{cycle}:draw:1
+autohand={2}{cycle}:name(cycling) draw:1
 text=Flame Jet deals 3 damage to target player. -- Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={1}{R}
 type=Sorcery
@@ -24847,6 +24892,17 @@ type=Creature
 subtype=Cat
 power=3
 toughness=4
+[/card]
+[card]
+name=Fleeting Aven
+abilities=flying
+auto=@cycled(*|hand):moveTo(ownerhand)
+text=Flying -- Whenever a player cycles a card, return Fleeting Aven to its owner's hand.
+mana={1}{U}{U}
+type=Creature
+subtype=Bird Wizard
+power=2
+toughness=2
 [/card]
 [card]
 name=Fleeting Distraction
@@ -25722,7 +25778,7 @@ toughness=3
 name=Forgotten Cave
 auto=tap
 auto={T}:Add {R}
-autohand={R}{cycle}:draw:1
+autohand={R}{cycle}:name(cycling) draw:1
 text=Forgotten Cave enters the battlefield tapped. -- {T}: Add {R} to your mana pool. -- Cycling {R} ({R}, Discard this card: Draw a card.)
 type=Land
 [/card]
@@ -26327,7 +26383,7 @@ toughness=5
 [/card]
 [card]
 name=Furnace Scamp
-auto=@combatdamaged(player) from(this):may sacrifice all(this) && all(trigger[to]) damage:3
+auto=@combatdamaged(player) from(this):may sacrifice all(this) && all(trigger[to]) damage:3 opponent
 text=Whenever Furnace Scamp deals combat damage to a player, you may sacrifice it. If you do, Furnace Scamp deals 3 damage to that player.
 mana={R}
 type=Creature
@@ -26929,7 +26985,7 @@ toughness=1
 [/card]
 [card]
 name=Gempalm Avenger
-autohand={2}{W}:lord(soldier|mybattlefield) 1/1 && lord(soldier|myBattlefield) first strike && cycling
+autohand={2}{W}{cycle}:name(cycling) all(soldier|mybattlefield) 1/1 && all(soldier|myBattlefield) first strike && draw:1 controller
 text=Cycling {2}{W} ({2}{W}, Discard this card: Draw a card.) -- When you cycle Gempalm Avenger, Soldier creatures get +1/+1 and gain first strike until end of turn.
 mana={5}{W}
 type=Creature
@@ -26939,8 +26995,8 @@ toughness=5
 [/card]
 [card]
 name=Gempalm Incinerator
-autohand={1}{R}{cycle}:draw:1
-autohand={1}{R}:damage:type:goblin:mybattlefield target(creature) && cycling
+autohand={1}{R}{cycle}:name(cycling) draw:1
+autohand={1}{R}{cycle}:name(cycling + effect) damage:type:goblin:mybattlefield target(creature) && draw:1 controller
 text=Cycling {1}{R} ({1}{R}, Discard this card: Draw a card.) -- When you cycle Gempalm Incinerator, you may have it deal X damage to target creature, where X is the number of Goblins on the battlefield.
 mana={2}{R}
 type=Creature
@@ -26950,8 +27006,8 @@ toughness=1
 [/card]
 [card]
 name=Gempalm Polluter
-autohand={1}{B}{cycle}:draw:1
-autohand={1}{B}:foreach(zombie|battlefield) life:-1 target(player) && cycling
+autohand={1}{B}{cycle}:name(cycling) draw:1
+autohand={1}{B}{cycle}:name(cycling + effect) foreach(zombie|battlefield) life:-1 target(player) && draw:1 controller
 text=Cycling {B}{B} ({B}{B}, Discard this card: Draw a card.) -- When you cycle Gempalm Polluter, you may have target player lose 1 life for each Zombie on the battlefield.
 mana={5}{B}
 type=Creature
@@ -26961,7 +27017,7 @@ toughness=3
 [/card]
 [card]
 name=Gempalm Sorcerer
-autohand={2}{U}:lord(creature[wizard]) flying && cycling
+autohand={2}{U}{cycle}:name(cycling) lord(creature[wizard]) flying && draw:1 controller
 text=Cycling {2}{U} ({2}{U}, Discard this card: Draw a card.) -- When you cycle Gempalm Sorcerer, Wizard creatures gain flying until end of turn.
 mana={2}{U}
 type=Creature
@@ -26971,7 +27027,7 @@ toughness=2
 [/card]
 [card]
 name=Gempalm Strider
-autohand={2}{G}{G}:lord(creature[elf]) 2/2 && cycling
+autohand={2}{G}{G}{cycle}:name(cycling) lord(creature[elf]) 2/2 && draw:1 controller
 text=Cycling {2}{G}{G} ({2}{G}{G}, Discard this card: Draw a card.) -- When you cycle Gempalm Strider, Elf creatures get +2/+2 until end of turn.
 mana={1}{G}
 type=Creature
@@ -27540,6 +27596,7 @@ toughness=3
 name=Giant Growth
 target=creature
 auto=3/3
+autohand={G}{cycle}:draw:1
 text=Target creature gets +3/+3 until end of turn.
 mana={G}
 type=Instant
@@ -27899,7 +27956,7 @@ toughness=2
 name=Glassdust Hulk
 auto=@movedTo(other artifact|myBattlefield):1/1 ueot
 auto=@movedTo(other artifact|myBattlefield):unblockable ueot
-autohand={WU}{cycle}:draw:1
+autohand={WU}{cycle}:name(cycling) draw:1
 text=Whenever another artifact enters the battlefield under your control, Glassdust Hulk gets +1/+1 until end of turn and is unblockable this turn. -- Cycling {(w/u)} ({(w/u)}, Discard this card: Draw a card.)
 mana={3}{W}{U}
 type=Artifact Creature
@@ -27927,9 +27984,9 @@ toughness=1
 [/card]
 [card]
 name=Gleam of Resistance
-auto=lord(creature|myBattlefield) 1/2
+auto=all(creature|myBattlefield) 1/2
 auto=untap all(creature|myBattlefield)
-autohand={1}{W}{discard(this|myhand)}:moveTo(myhand) target(land[basic]|mylibrary)
+autohand={1}{W}{cycle}:name(basic landcycling) moveTo(myhand) target(land[basic]|mylibrary)
 text=Creatures you control get +1/+2 until end of turn. Untap those creatures. -- Basic landcycling {1}{W} ({1}{W}, Discard this card: Search your library for a basic land card, reveal it, and put it into your hand. Then shuffle your library.)
 mana={4}{W}
 type=Instant
@@ -30450,8 +30507,8 @@ toughness=4
 [card]
 name=Grixis Sojourners
 auto=@movedTo(this|graveyard) from(battlefield):may moveTo(exile) target(*|graveyard)
-autohand={2}{B}{cycle}:draw:1
-autohand={2}{B}:moveTo(exile) target(*|graveyard) && cycling
+autohand={2}{B}{cycle}:name(cycling) draw:1
+autohand={2}{B}{cycle}:name(cycling + effect) moveTo(exile) target(*|graveyard) && draw:1 controller
 text=When you cycle Grixis Sojourners or it's put into a graveyard from the battlefield, you may exile target card from a graveyard. -- Cycling {2}{B} ({2}{B}, Discard this card: Draw a card.)
 mana={1}{U}{B}{R}
 type=Creature
@@ -33487,7 +33544,7 @@ toughness=3
 [/card]
 [card]
 name=Hundroog
-autohand={3}{cycle}:draw:1
+autohand={3}{cycle}:name(cycling) draw:1
 text=Cycling {3} ({3}, Discard this card: Draw a card.)
 mana={6}{G}
 type=Creature
@@ -33718,7 +33775,7 @@ type=Sorcery
 [card]
 name=Hush
 auto=destroy all(enchantment)
-autohand={2}{cycle}:draw:1
+autohand={2}{cycle}:name(cycling) draw:1
 text=Destroy all enchantments. -- Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={3}{G}
 type=Sorcery
@@ -34065,7 +34122,7 @@ toughness=4
 [card]
 name=Igneous Pouncer
 abilities=haste
-autohand={2}{discard(this|myhand)}:moveTo(myHand) target(mountain,swamp|myLibrary)
+autohand={2}{cycle}:name(swampcycling or mountaincycling) moveTo(myHand) target(mountain,swamp|myLibrary)
 text=Haste -- Swampcycling {2}, mountaincycling {2} ({2}, Discard this card: Search your library for a Swamp or Mountain card, reveal it, and put it into your hand. Then shuffle your library.)
 mana={4}{B}{R}
 type=Creature
@@ -34323,7 +34380,7 @@ type=Sorcery
 name=Improvised Armor
 target=creature
 auto=2/5
-autohand={3}{cycle}:draw:1
+autohand={3}{cycle}:name(cycling) draw:1
 text=Enchant creature -- Enchanted creature gets +2/+5. -- Cycling {3} ({3}, Discard this card: Draw a card.)
 mana={3}{W}
 type=Enchantment
@@ -35118,6 +35175,13 @@ mana={2}{G}
 type=Instant
 [/card]
 [card]
+name=Invigorating Boon
+auto=@cycled(*|hand):may counter(1/1,1) target(creature)
+text=Whenever a player cycles a card, you may put a +1/+1 counter on target creature.
+mana={1}{G}
+type=Enchantment
+[/card]
+[card]
 name=Invigorating Falls
 auto=foreach(creature|myGraveyard)life:1 controller
 auto=foreach(creature|opponentGraveyard)life:1 controller
@@ -35297,7 +35361,7 @@ toughness=3
 name=Iron Will
 target=creature
 auto=0/4
-autohand={2}{cycle}:draw:1
+autohand={2}{cycle}:name(cycling) draw:1
 text=Target creature gets +0/+4 until end of turn. -- Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={W}
 type=Instant
@@ -35599,9 +35663,8 @@ type=Instant
 [/card]
 [card]
 name=Jackal Familiar
-abilities=cantattack,cantblock
-auto=aslongas(creature[attacking]|myBattlefield) -cantattack
-auto=aslongas(creature[blocking]|myBattlefield) -cantblock
+auto=@combat(attacking) source(this) restriction{type(creature[attacking]|myBattlefield)~equalto~1}:all(this) removefromcombat && untap
+auto=@combat(blocking) source(this) restriction{type(creature[blocking]|myBattlefield)~equalto~1}:all(this) removefromcombat && untap
 text=Jackal Familiar can't attack or block alone.
 mana={R}
 type=Creature
@@ -35921,7 +35984,7 @@ toughness=1
 [card]
 name=Jhessian Zombies
 abilities=fear
-autohand={2}{discard(this|myhand)}:moveTo(myhand) target(island,swamp|mylibrary)
+autohand={2}{cycle}:name(islandcycling or swampcycling) moveTo(myhand) target(island,swamp|mylibrary)
 text=Fear (This creature can't be blocked except by artifact creatures and/or black creatures.) -- Islandcycling {2}, swampcycling {2} ({2}, Discard this card: Search your library for an Island or Swamp card, reveal it, and put it into your hand. Then shuffle your library.)
 mana={4}{U}{B}
 type=Creature
@@ -36320,8 +36383,8 @@ type=Land
 [card]
 name=Jund Sojourners
 auto=@movedTo(this|graveyard) from(battlefield):may damage:1 target(creature,player)
-autohand={2}{R}{cycle}:draw:1
-autohand={2}{R}:damage:1 target(creature,player) && cycling
+autohand={2}{R}{cycle}:name(cycling) draw:1
+autohand={2}{R}{cycle}:name(cycling + effect) damage:1 target(creature,player) && draw:1 controller
 text=When you cycle Jund Sojourners or it's put into a graveyard from the battlefield, you may have it deal 1 damage to target creature or player. -- Cycling {2}{R} ({2}{R}, Discard this card: Draw a card.)
 mana={B}{R}{G}
 type=Creature
@@ -36392,7 +36455,7 @@ toughness=1
 [card]
 name=Jungle Weaver
 abilities=reach
-autohand={2}{cycle}:draw:1
+autohand={2}{cycle}:name(cycling) draw:1
 text=Reach (This can block creatures with flying.) -- Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={5}{G}{G}
 type=Creature
@@ -37355,7 +37418,7 @@ toughness=2
 [card]
 name=Keeneye Aven
 abilities=flying
-autohand={2}{cycle}:draw:1
+autohand={2}{cycle}:name(cycling) draw:1
 text=Flying -- Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={3}{U}
 type=Creature
@@ -38970,8 +39033,8 @@ toughness=2
 [/card]
 [card]
 name=Krosan Tusker
-autohand={2}{G}{cycle}:draw:1
-autohand={2}{G}:moveTo(myhand) target(land[basic]|myLibrary) && cycling
+autohand={2}{G}{cycle}:name(cycling) draw:1
+autohand={2}{G}{cycle}:name(cycling + effect) moveTo(myhand) target(land[basic]|myLibrary) && draw:1 controller
 text=Cycling {2}{G} ({2}{G}, Discard this card: Draw a card.) -- When you cycle Krosan Tusker, you may search your library for a basic land card, reveal that card, put it into your hand, then shuffle your library.
 mana={5}{G}{G}
 type=Creature
@@ -39805,7 +39868,7 @@ type=Instant
 name=Lay Waste
 target=land
 auto=destroy
-autohand={2}{cycle}:draw:1
+autohand={2}{cycle}:name(cycling) draw:1
 text=Destroy target land. -- Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={3}{R}
 type=Sorcery
@@ -40420,7 +40483,7 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-name=Life's Final
+name=Life's Finale
 auto=destroy all creature
 auto=target(<upto:3>creature|opponentlibrary) moveTo(ownergraveyard)
 text=Destroy all creatures, then search target opponent's library for up to three creature cards and put them into his or her graveyard. Then that player shuffles his or her library.
@@ -40725,7 +40788,7 @@ target=land
 auto=loseabilities
 auto=losesubtypesof(land)
 auto=transforms((island))
-autohand={2}{cycle}:draw:1
+autohand={2}{cycle}:name(cycling) draw:1
 text=Enchant land -- Enchanted land is an Island. -- Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={1}{U}
 type=Enchantment
@@ -41134,7 +41197,7 @@ toughness=2
 name=Lonely Sandbar
 auto=tap
 auto={T}:Add {U}
-autohand={U}{cycle}:draw:1
+autohand={U}{cycle}:name(cycling) draw:1
 text=Lonely Sandbar enters the battlefield tapped. -- {T}: Add {U} to your mana pool. -- Cycling {U} ({U}, Discard this card: Draw a card.)
 type=Land
 [/card]
@@ -41238,7 +41301,7 @@ toughness=3
 [card]
 name=Lord of the Pit
 abilities=flying,trample
-auto=@each myupkeep:sacrifice notatarget(other creature|mybattlefield)
+auto=@each myupkeep restriction{type(creature|myBattlefield)~morethan~1}:sacrifice notatarget(other creature|mybattlefield)
 auto=@each myupkeep restriction{type(creature|myBattlefield)~lessthan~2}:damage:7 controller
 text=Flying, trample -- At the beginning of your upkeep, sacrifice a creature other than Lord of the Pit. If you can't, Lord of the Pit deals 7 damage to you.
 mana={4}{B}{B}{B}
@@ -41649,7 +41712,7 @@ toughness=3
 [card]
 name=Lull
 auto=preventAllcombatDamage ueot
-autohand={2}{cycle}:draw:1
+autohand={2}{cycle}:name(cycling) draw:1
 text=Prevent all combat damage that would be dealt this turn. -- Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={1}{G}
 type=Instant
@@ -41928,7 +41991,7 @@ type=Sorcery
 [card]
 name=Macetail Hystrodon
 abilities=haste, first strike
-autohand={3}{cycle}:draw:1
+autohand={3}{cycle}:name(cycling) draw:1
 text=First strike, haste -- Cycling {3} ({3}, Discard this card: Draw a card.)
 mana={6}{R}
 type=Creature
@@ -42021,7 +42084,7 @@ subtype=Equipment
 name=Mage's Guile
 target=creature
 auto=shroud
-autohand={U}{cycle}:draw:1
+autohand={U}{cycle}:name(cycling) draw:1
 text=Target creature gains shroud until end of turn. (It can't be the target of spells or abilities.) -- Cycling {U} ({U}, Discard this card: Draw a card.)
 mana={1}{U}
 type=Instant
@@ -43147,7 +43210,7 @@ type=Enchantment
 name=Marshaling Cry
 auto=lord(creature|myBattlefield) 1/1
 auto=lord(creature|myBattlefield) vigilance
-autohand={2}{cycle}:draw:1
+autohand={2}{cycle}:name(cycling) draw:1
 flashback={3}{W}
 text=Creatures you control get +1/+1 and gain vigilance until end of turn. -- Cycling {2} ({2}, Discard this card: Draw a card.) -- Flashback {3}{W} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={1}{W}{W}
@@ -45148,8 +45211,8 @@ toughness=1
 [/card]
 [card]
 name=Mogg Flunkies
-auto=@combat(attackedalone) source(this):all(this) removefromcombat
-auto=@combat(blocking) source(this): aslongas(creature[blocking]|mybattlefield) all(this) removefromcombat <2
+auto=@combat(attacking) source(this) restriction{type(creature[attacking]|myBattlefield)~equalto~1}:all(this) removefromcombat && untap
+auto=@combat(blocking) source(this) restriction{type(creature[blocking]|myBattlefield)~equalto~1}:all(this) removefromcombat && untap
 text=Mogg Flunkies can't attack or block alone.
 mana={1}{R}
 type=Creature
@@ -45324,7 +45387,7 @@ toughness=*
 name=Molten Frame
 target=creature[artifact]
 auto=destroy
-autohand={2}{cycle}:draw:1
+autohand={2}{cycle}:name(cycling) draw:1
 text=Destroy target artifact creature. -- Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={1}{R}
 type=Instant
@@ -45497,7 +45560,7 @@ type=Sorcery
 [card]
 name=Monstrous Carabid
 abilities=mustattack
-autohand={BR}{cycle}:draw:1
+autohand={BR}{cycle}:name(cycling) draw:1
 text=Monstrous Carabid attacks each turn if able. -- Cycling {(b/r)} ({(b/r)}, Discard this card: Draw a card.)
 mana={3}{B}{R}
 type=Creature
@@ -47263,8 +47326,8 @@ type=Land
 [card]
 name=Naya Sojourners
 auto=@movedTo(this|graveyard) from(battlefield):may counter(1/1,1) target(creature)
-autohand={2}{G}{cycle}:draw:1
-autohand={2}{G}:counter(1/1,1) target(creature) && cycling
+autohand={2}{G}{cycle}:name(cycling) draw:1
+autohand={2}{G}{cycle}:name(cycling + effect) counter(1/1,1) target(creature) && draw:1 controller
 text=When you cycle Naya Sojourners or it's put into a graveyard from the battlefield, you may put a +1/+1 counter on target creature. -- Cycling {2}{G} ({2}{G}, Discard this card: Draw a card.)
 mana={2}{R}{G}{W}
 type=Creature
@@ -48293,7 +48356,7 @@ type=Enchantment
 [card]
 name=Noble Templar
 abilities=vigilance
-autohand={2}{discard(this|myhand)}:moveTo(myhand) target(plains|mylibrary)
+autohand={2}{cycle}:name(plainscycling) moveTo(myhand) target(plains|mylibrary)
 text=Vigilance -- Plainscycling {2} ({2}, Discard this card: Search your library for a Plains card, reveal it, and put it into your hand. Then shuffle your library.)
 mana={5}{W}
 type=Creature
@@ -50335,7 +50398,7 @@ toughness=2
 [card]
 name=Pale Recluse
 abilities=reach
-autohand={2}{discard(this|myhand)}:moveTo(myhand) target(plains,forest|mylibrary)
+autohand={2}{cycle}:name(forestcycling or plainscycling) moveTo(myhand) target(plains,forest|mylibrary)
 text=Reach (This can block creatures with flying.) -- Forestcycling {2}, plainscycling {2} ({2}, Discard this card: Search your library for a Forest or Plains card, reveal it, and put it into your hand. Then shuffle your library.)
 mana={4}{G}{W}
 type=Creature
@@ -51035,7 +51098,7 @@ toughness=1
 [card]
 name=Pendrell Drake
 auto=flying
-autohand={2}{cycle}:draw:1
+autohand={2}{cycle}:name(cycling) draw:1
 text=Flying -- Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={3}{U}
 type=Creature
@@ -51457,7 +51520,9 @@ toughness=2
 [card]
 name=Phage the Untouchable
 auto=ifnot casted(this) then wingame opponent
-text=When Phage the Untouchable enters the battlefield, if you didn't cast it from your hand, you lose the game. Whenever Phage deals combat damage to a creature, destroy that creature. It can't be regenerated. Whenever Phage deals combat damage to a player, that player loses the game.
+auto=@combatdamaged(creature) from(this):all(trigger[to]) bury
+auto=@combatdamaged(player) from(this):winGame controller
+text=When Phage the Untouchable enters the battlefield, if you didn't cast it from your hand, you lose the game. Whenever Phage deals combat damage to a creature, destroy that creature. It can't be regenerated. -- Whenever Phage deals combat damage to a player, that player loses the game.
 mana={3}{B}{B}{B}{B}
 type=Legendary Creature
 subtype=Minion
@@ -52915,7 +52980,7 @@ type=Land
 name=Polluted Mire
 auto=tap
 auto={T}:Add {B}
-autohand={2}{cycle}:draw:1
+autohand={2}{cycle}:name(cycling) draw:1
 text=Polluted Mire enters the battlefield tapped. -- {T}: Add {B} to your mana pool. -- Cycling {2} ({2}, Discard this card: Draw a card.)
 type=Land
 [/card]
@@ -53114,7 +53179,7 @@ subtype=Aura
 [card]
 name=Power Taint
 auto=teach(creature) upcost[{2}] life:-2 controller
-autohand={2}{cycle}:draw:1
+autohand={2}{cycle}:name(cycling) draw:1
 text=Enchant enchantment -- At the beginning of the upkeep of enchanted enchantment's controller, that player loses 2 life unless he or she pays {2}. -- Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={1}{U}
 type=Enchantment
@@ -53346,8 +53411,8 @@ type=Instant
 name=Primal Boost
 target=creature
 auto=4/4
-autohand={2}{G}{cycle}:draw:1
-autohand={2}{G}:1/1 target(creature) && cycling
+autohand={2}{G}{cycle}:name(cycling) draw:1
+autohand={2}{G}{cycle}:name(cycling + effect) 1/1 target(creature) && draw:1 controller
 text=Target creature gets +4/+4 until end of turn. -- Cycling {2}{G} ({2}{G}, Discard this card: Draw a card.) -- When you cycle Primal Boost, you may have target creature get +1/+1 until end of turn.
 mana={2}{G}
 type=Instant
@@ -53475,7 +53540,7 @@ toughness=6
 [card]
 name=Primoc Escapee
 abilities=flying
-autohand={2}{cycle}:draw:1
+autohand={2}{cycle}:name(cycling) draw:1
 text=Flying -- Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={6}{U}
 type=Creature
@@ -54796,7 +54861,7 @@ toughness=5
 name=Radiant's Judgment
 target=creature[power>=4]
 auto=destroy
-autohand={2}{cycle}:draw:1
+autohand={2}{cycle}:name(cycling) draw:1
 text=Destroy target creature with power 4 or greater. -- Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={2}{W}
 type=Instant
@@ -55127,6 +55192,15 @@ type=Creature
 subtype=Minotaur Wizard
 power=1
 toughness=1
+[/card]
+[card]
+name=Raka Sanctuary
+auto=@each my upkeep restriction{type(*[white]|myBattlefield)~morethan~0,type(*[blue]|myBattlefield)~lessthan~1}:target(creature) damage:1
+auto=@each my upkeep restriction{type(*[blue]|myBattlefield)~morethan~0,type(*[white]|myBattlefield)~lessthan~1}:target(creature) damage:1
+auto=@each my upkeep restriction{type(*[white]|myBattlefield)~morethan~0,type(*[blue]|myBattlefield)~morethan~0}:target(creature) damage:3
+text=At the beginning of your upkeep, if you control a white or blue permanent, Raka Sanctuary deals 1 damage to target creature. If you control a white permanent and a blue permanent, Raka Sanctuary deals 3 damage to that creature instead.
+mana={2}{R}
+type=Enchantment
 [/card]
 [card]
 name=Rakdos Carnarium
@@ -55465,7 +55539,7 @@ toughness=4
 name=Rapid Decay
 target=<upto:3>*|graveyard
 auto=moveTo(exile)
-autohand={2}{cycle}:draw:1
+autohand={2}{cycle}:name(cycling) draw:1
 text=Exile up to three target cards from a single graveyard. -- Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={1}{B}
 type=Instant
@@ -56088,7 +56162,7 @@ type=Sorcery
 [card]
 name=Rebuild
 auto=moveTo(ownerhand) all(artifact)
-autohand={2}{cycle}:draw:1
+autohand={2}{cycle}:name(cycling) draw:1
 text=Return all artifacts to their owners' hands. -- Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={2}{U}
 type=Instant
@@ -56524,7 +56598,7 @@ toughness=6
 [card]
 name=Rejuvenate
 auto=life:6
-autohand={2}{cycle}:draw:1
+autohand={2}{cycle}:name(cycling) draw:1
 text=You gain 6 life. -- Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={3}{G}
 type=Sorcery
@@ -56655,7 +56729,7 @@ type=Land
 name=Remote Isle
 auto=tap
 auto={T}:Add {U}
-autohand={2}{cycle}:draw:1
+autohand={2}{cycle}:name(cycling) draw:1
 text=Remote Isle enters the battlefield tapped. -- {T}: Add {U} to your mana pool. -- Cycling {2} ({2}, Discard this card: Draw a card.)
 type=Land
 [/card]
@@ -56746,8 +56820,8 @@ type=Sorcery
 [card]
 name=Renewed Faith
 auto=life:6
-autohand={1}{W}{cycle}:draw:1
-autohand={1}{W}:life:2 && cycling
+autohand={1}{W}{cycle}:name(cycling) draw:1
+autohand={1}{W}{cycle}:name(cycling + effect) life:2 && draw:1 controller
 text=You gain 6 life. -- Cycling {1}{W} ({1}{W}, Discard this card: Draw a card.) -- When you cycle Renewed Faith, you may gain 2 life.
 mana={2}{W}
 type=Instant
@@ -56875,7 +56949,7 @@ type=Enchantment
 name=Rescind
 target=*
 auto=moveTo(ownerhand)
-autohand={2}{cycle}:draw:1
+autohand={2}{cycle}:name(cycling) draw:1
 text=Return target permanent to its owner's hand. -- Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={1}{U}{U}
 type=Instant
@@ -56932,7 +57006,7 @@ toughness=1
 name=Resounding Roar
 target=creature
 auto=3/3
-autohand={5}{R}{G}{W}{cycle}:draw:1 && 6/6 target(creature)
+autohand={5}{R}{G}{W}{cycle}:name(cycling) draw:1 controller && 6/6 target(creature)
 text=Target creature gets +3/+3 until end of turn. -- Cycling {5}{R}{G}{W} ({5}{R}{G}{W}, Discard this card: Draw a card.) -- When you cycle Resounding Roar, target creature gets +6/+6 until end of turn.
 mana={1}{G}
 type=Instant
@@ -56941,7 +57015,7 @@ type=Instant
 name=Resounding Scream
 target=player
 auto=discard:1
-autohand={5}{U}{B}{R}{cycle}:draw:1 && discard:2 opponent
+autohand={5}{U}{B}{R}{cycle}:name(cycling) draw:1 controller && discard:2 opponent
 text=Target player discards a card at random. -- Cycling {5}{U}{B}{R} ({5}{U}{B}{R}, Discard this card: Draw a card.) -- When you cycle Resounding Scream, target player discards two cards at random.
 mana={2}{B}
 type=Sorcery
@@ -56950,7 +57024,7 @@ type=Sorcery
 name=Resounding Thunder
 target=creature,player
 auto=damage:3
-autohand={5}{B}{R}{G}{cycle}:draw:1 controller && damage:6 target(creature,player)
+autohand={5}{B}{R}{G}{cycle}:name(cycling) draw:1 controller && damage:6 target(creature,player)
 text=Resounding Thunder deals 3 damage to target creature or player. -- Cycling {5}{B}{R}{G} ({5}{B}{R}{G}, Discard this card: Draw a card.) -- When you cycle Resounding Thunder, it deals 6 damage to target creature or player.
 mana={2}{R}
 type=Instant
@@ -57430,7 +57504,7 @@ toughness=1
 [/card]
 [card]
 name=Ridge Rannet
-autohand={2}{cycle}:draw:1
+autohand={2}{cycle}:name(cycling) draw:1
 text=Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={5}{R}{R}
 type=Creature
@@ -59479,7 +59553,7 @@ toughness=3
 [card]
 name=Sanctum Plowbeast
 abilities=defender
-autohand={2}{discard(this|myhand)}:moveTo(myhand) target(plains,island|mylibrary)
+autohand={2}{cycle}:name(plainscycling or islandcycling) moveTo(myhand) target(plains,island|mylibrary)
 text=Defender -- Plainscycling {2}, islandcycling {2} ({2}, Discard this card: Search your library for a Plains or Island card, reveal it, and put it into your hand. Then shuffle your library.)
 mana={4}{W}{U}
 type=Artifact Creature
@@ -59518,7 +59592,7 @@ toughness=5
 [/card]
 [card]
 name=Sandbar Merfolk
-autohand={2}{cycle}:draw:1
+autohand={2}{cycle}:name(cycling) draw:1
 text=Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={U}
 type=Creature
@@ -59528,7 +59602,7 @@ toughness=1
 [/card]
 [card]
 name=Sandbar Serpent
-autohand={2}{cycle}:draw:1
+autohand={2}{cycle}:name(cycling) draw:1
 text=Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={4}{U}
 type=Creature
@@ -59898,7 +59972,7 @@ name=Savage Hunger
 target=creature
 auto=1/0
 auto=trample
-autohand={2}{cycle}:draw:1
+autohand={2}{cycle}:name(cycling) draw:1
 text=Enchant creature -- Enchanted creature gets +1/+0 and has trample. -- Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={2}{G}
 type=Enchantment
@@ -60344,7 +60418,7 @@ type=Land
 name=Scion of Darkness
 abilities=trample
 auto=@combatdamaged(player) from(this):may moveTo(myBattlefield) target(creature|opponentgraveyard)
-autohand={3}{cycle}:draw:1
+autohand={3}{cycle}:name(cycling) draw:1
 text=Trample -- Whenever Scion of Darkness deals combat damage to a player, you may put target creature card from that player's graveyard onto the battlefield under your control. -- Cycling {3} ({3}, Discard this card: Draw a card.)
 mana={5}{B}{B}{B}
 type=Creature
@@ -60574,7 +60648,7 @@ toughness=4
 name=Scrap
 target=artifact
 auto=destroy
-autohand={2}{cycle}:draw:1
+autohand={2}{cycle}:name(cycling) draw:1
 text=Destroy target artifact. -- Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={2}{R}
 type=Instant
@@ -61100,7 +61174,7 @@ type=Land
 name=Secluded Steppe
 auto=tap
 auto={T}:Add {W}
-autohand={W}{cycle}:draw:1
+autohand={W}{cycle}:name(cycling) draw:1
 text=Secluded Steppe enters the battlefield tapped. -- {T}: Add {W} to your mana pool. -- Cycling {W} ({W}, Discard this card: Draw a card.)
 type=Land
 [/card]
@@ -62640,7 +62714,7 @@ toughness=2
 [card]
 name=Shimmering Barrier
 auto=defender,first strike
-autohand={2}{cycle}:draw:1
+autohand={2}{cycle}:name(cycling) draw:1
 text=Defender (This creature can't attack.) -- First strike -- Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={1}{W}
 type=Creature
@@ -62949,7 +63023,7 @@ toughness=2
 [card]
 name=Shoreline Ranger
 abilities=flying
-autohand={2}{discard(this|myhand)}:moveTo(myhand) target(island|mylibrary)
+autohand={2}{cycle}:name(islandcycling) moveTo(myhand) target(island|mylibrary)
 text=Flying -- Islandcycling {2} ({2}, Discard this card: Search your library for an Island card, reveal it, and put it into your hand. Then shuffle your library.)
 mana={5}{U}
 type=Creature
@@ -63212,7 +63286,7 @@ type=Instant
 name=Sicken
 target=creature
 auto=-1/-1
-autohand={2}{cycle}:draw:1
+autohand={2}{cycle}:name(cycling) draw:1
 text=Enchant creature -- Enchanted creature gets -1/-1. -- Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={B}
 type=Enchantment
@@ -63337,7 +63411,7 @@ type=Enchantment
 name=Sigil of the Nayan Gods
 target=creature
 auto=foreach(creature|mybattlefield) 1/1
-autohand={GW}{cycle}:draw:1
+autohand={GW}{cycle}:name(cycling) draw:1
 text=Enchant creature -- Enchanted creature gets +1/+1 for each creature you control. -- Cycling {(g/w)} ({(g/w)}, Discard this card: Draw a card.)
 mana={1}{G}{W}
 type=Enchantment
@@ -64958,6 +65032,16 @@ mana={2}{R}
 type=Instant
 [/card]
 [card]
+name=Slaughter Pact
+target=creature[-black]
+auto=destroy
+auto=if casted(this) then all(this) transforms((,newability[upcost[{2}{B};next upkeep] wingame opponent])) forever
+color=black
+text=Slaughter Pact is black. -- Destroy target nonblack creature. -- At the beginning of your next upkeep, pay {2}{B}. If you don't, you lose the game.
+mana={0}
+type=Instant
+[/card]
+[card]
 name=Slaughterhouse Bouncer
 autograveyard=@movedTo(this|mygraveyard) from(battlefield) restriction{type(*|myhand)~lessthan~1}:target(creature) -3/-3 ueot
 text=Hellbent - When Slaughterhouse Bouncer dies, if you have no cards in hand, target creature gets -3/-3 until end of turn.
@@ -65050,8 +65134,8 @@ subtype=Aura
 [card]
 name=Slice and Dice
 auto=damage:4 all(creature)
-autohand={2}{R}{cycle}:draw:1
-autohand={2}{R}:damage:1 all(creature) && cycling
+autohand={2}{R}{cycle}:name(cycling) draw:1
+autohand={2}{R}{cycle}:name(cycling + effect) damage:1 all(creature) && draw:1 controller
 text=Slice and Dice deals 4 damage to each creature. -- Cycling {2}{R} ({2}{R}, Discard this card: Draw a card.) -- When you cycle Slice and Dice, you may have it deal 1 damage to each creature.
 mana={4}{R}{R}
 type=Sorcery
@@ -65142,7 +65226,7 @@ toughness=1
 name=Slippery Karst
 auto=tap
 auto={T}:Add {G}
-autohand={2}{cycle}:draw:1
+autohand={2}{cycle}:name(cycling) draw:1
 text=Slippery Karst enters the battlefield tapped. -- {T}: Add {G} to your mana pool. -- Cycling {2} ({2}, Discard this card: Draw a card.)
 type=Land
 [/card]
@@ -65150,7 +65234,7 @@ type=Land
 name=Slipstream Eel
 abilities=cantattack
 auto=aslongas(island|opponentbattlefield) -cantattack
-autohand={1}{U}{cycle}:draw:1
+autohand={1}{U}{cycle}:name(cycling) draw:1
 text=Slipstream Eel can't attack unless defending player controls an Island. -- Cycling {1}{U} ({1}{U}, Discard this card: Draw a card.)
 mana={5}{U}{U}
 type=Creature
@@ -65390,7 +65474,7 @@ toughness=2
 name=Smoldering Crater
 auto=tap
 auto={T}:Add {R}
-autohand={2}{cycle}:draw:1
+autohand={2}{cycle}:name(cycling) draw:1
 text=Smoldering Crater enters the battlefield tapped. -- {T}: Add {R} to your mana pool. -- Cycling {2} ({2}, Discard this card: Draw a card.)
 type=Land
 [/card]
@@ -65723,8 +65807,8 @@ toughness=5
 name=Solar Blast
 target=creature,player
 auto=damage:3
-autohand={1}{R}{R}{cycle}:draw:1
-autohand={1}{R}{R}:damage:1 target(creature,player) && cycling
+autohand={1}{R}{R}{cycle}:name(cycling) draw:1
+autohand={1}{R}{R}{cycle}:name(cycling + effect) damage:1 target(creature,player) && draw:1 controller
 text=Solar Blast deals 3 damage to target creature or player. -- Cycling {1}{R}{R} ({1}{R}{R}, Discard this card: Draw a card.) -- When you cycle Solar Blast, you may have it deal 1 damage to target creature or player.
 mana={3}{R}
 type=Instant
@@ -66344,7 +66428,7 @@ toughness=1
 [card]
 name=Soul's Fire
 target=creature|mybattlefield
-auto=transforms((,newability[dynamicability<!powerstrike!> target(creature,player)])) 
+auto=transforms((,newability[dynamicability<!powerstrike!> target(creature)])) 
 text=Target creature you control on the battlefield deals damage equal to its power to target creature or player.
 mana={2}{R}
 type=Instant
@@ -66577,7 +66661,7 @@ toughness=1
 name=Spark Spray
 target=creature,player
 auto=damage:1
-autohand={R}{cycle}:draw:1
+autohand={R}{cycle}:name(cycling) draw:1
 text=Spark Spray deals 1 damage to target creature or player. -- Cycling {R} ({R}, Discard this card: Draw a card.)
 mana={R}
 type=Instant
@@ -68337,7 +68421,7 @@ type=Land
 [card]
 name=Starstorm
 auto=damage:X all(creature)
-autohand={3}{cycle}:draw:1
+autohand={3}{cycle}:name(cycling) draw:1
 text=Starstorm deals X damage to each creature. -- Cycling {3} ({3}, Discard this card: Draw a card.)
 mana={X}{R}{R}
 type=Instant
@@ -68817,6 +68901,16 @@ mana={1}{U}
 type=Creature
 subtype=Homunculus
 power=1
+toughness=2
+[/card]
+[card]
+name=Stoic Champion
+auto=@cycled(*|hand):2/2 ueot
+text=Whenever a player cycles a card, Stoic Champion gets +2/+2 until end of turn.
+mana={W}{W}
+type=Creature
+subtype=Human Soldier
+power=2
 toughness=2
 [/card]
 [card]
@@ -69310,7 +69404,7 @@ toughness=3
 [card]
 name=Street Wraith
 abilities=swampwalk
-autohand={L}{L}{discard(this|myhand)}:draw:1
+autohand={L}{L}{cycle}:draw:1
 text=Swampwalk -- Cycling - Pay 2 life. (Pay 2 life, Discard this card: Draw a card.)
 mana={3}{B}{B}
 type=Creature
@@ -69892,8 +69986,8 @@ subtype=Arcane
 name=Sunfire Balm
 target=creature,player
 auto=prevent:4
-autohand={1}{W}{cycle}:draw:1
-autohand={1}{W}:prevent:1 target(creature,player) && cycling
+autohand={1}{W}{cycle}:name(cycling) draw:1
+autohand={1}{W}{cycle}:name(cycling + effect) prevent:1 target(creature,player) && draw:1 controller
 text=Prevent the next 4 damage that would be dealt to target creature or player this turn. -- Cycling {1}{W} ({1}{W}, Discard this card: Draw a card.) -- When you cycle Sunfire Balm, you may prevent the next 1 damage that would be dealt to target creature or player this turn.
 mana={2}{W}
 type=Instant
@@ -70390,7 +70484,7 @@ type=Land
 name=Swat
 target=creature[power<=2]
 auto=destroy
-autohand={2}{cycle}:draw:1
+autohand={2}{cycle}:name(cycling) draw:1
 text=Destroy target creature with power 2 or less. -- Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={1}{B}{B}
 type=Instant
@@ -70619,7 +70713,7 @@ toughness=4
 name=Sylvan Bounty
 target=player
 auto=life:8
-autohand={1}{G}{discard(this|myhand)}:moveTo(myhand) target(land[basic]|mylibrary)
+autohand={1}{G}{cycle}:name(basic landcycling) moveTo(myhand) target(land[basic]|mylibrary)
 text=Target player gains 8 life. -- Basic landcycling {1}{G} ({1}{G}, Discard this card: Search your library for a basic land card, reveal it, and put it into your hand. Then shuffle your library.)
 mana={5}{G}
 type=Instant
@@ -74739,7 +74833,7 @@ type=Sorcery
 name=Tranquil Thicket
 auto=tap
 auto={T}:Add {G}
-autohand={G}{cycle}:draw:1
+autohand={G}{cycle}:name(cycling) draw:1
 text=Tranquil Thicket enters the battlefield tapped. -- {T}: Add {G} to your mana pool. -- Cycling {G} ({G}, Discard this card: Draw a card.)
 type=Land
 [/card]
@@ -74855,7 +74949,7 @@ type=Sorcery
 name=Traumatic Visions
 target=*|stack
 auto=fizzle
-autohand={1}{U}{discard(this|myhand)}:moveTo(myhand) target(land[basic]|mylibrary)
+autohand={1}{U}{cycle}:name(basic landcycling) moveTo(myhand) target(land[basic]|mylibrary)
 text=Counter target spell. -- Basic landcycling {1}{U} ({1}{U}, Discard this card: Search your library for a basic land card, reveal it, and put it into your hand. Then shuffle your library.)
 mana={3}{U}{U}
 type=Instant
@@ -75756,7 +75850,7 @@ type=Sorcery
 [card]
 name=Twisted Abomination
 auto={B}:regenerate
-autohand={2}{discard(this|myhand)}:moveTo(myhand) target(swamp|mylibrary)
+autohand={2}{cycle}:name(swampcycling) moveTo(myhand) target(swamp|mylibrary)
 text={B}: Regenerate Twisted Abomination. -- Swampcycling {2} ({2}, Discard this card: Search your library for a Swamp card, reveal it, and put it into your hand. Then shuffle your library.)
 mana={5}{B}
 type=Creature
@@ -75784,8 +75878,8 @@ type=Instant
 [/card]
 [card]
 name=Twisted Justice
-target=creature
-auto=sacrifice && draw:p controller
+auto=choice name(opponent) all(*|opponentlibrary) transforms((,newability[notatarget(creature|mybattlefield) dynamicability<!mytgt toughnessdraw targetopponent!> sacrifice])) ueot
+auto=choice name(you) all(*|mylibrary) transforms((,newability[notatarget(creature|mybattlefield) dynamicability<!mytgt toughnessdraw targetcontroller!> sacrifice])) ueot
 text=Target player sacrifices a creature. You draw cards equal to that creature's power.
 mana={4}{U}{B}
 type=Sorcery
@@ -76017,7 +76111,7 @@ toughness=4
 [/card]
 [card]
 name=Undead Gladiator
-autohand={1}{B}{cycle}:draw:1
+autohand={1}{B}{cycle}:name(cycling) draw:1
 autograveyard={1}{B}{discard(*|myhand)}:moveTo(myhand) myUpkeepOnly
 text={1}{B}, Discard a card: Return Undead Gladiator from your graveyard to your hand. Activate this ability only during your upkeep. -- Cycling {1}{B} ({1}{B}, Discard this card: Draw a card.)
 mana={1}{B}{B}
@@ -76147,7 +76241,7 @@ subtype=Aura
 name=Unearth
 target=creature[manacost<=3]|mygraveyard
 auto=moveTo(myBattlefield)
-autohand={2}{cycle}:draw:1
+autohand={2}{cycle}:name(cycling) draw:1
 text=Return target creature card with converted mana cost 3 or less from your graveyard to the battlefield. -- Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={B}
 type=Sorcery
@@ -76827,7 +76921,7 @@ toughness=3
 [/card]
 [card]
 name=Valley Rannet
-autohand={2}{discard(this|myhand)}:moveTo(myhand) target(mountain,forest|mylibrary)
+autohand={2}{cycle}:name(mountaincycling or forestcycling) moveTo(myhand) target(mountain,forest|mylibrary)
 text=Mountaincycling {2}, forestcycling {2} ({2}, Discard this card: Search your library for a Mountain or Forest card, reveal it, and put it into your hand. Then shuffle your library.)
 mana={4}{R}{G}
 type=Creature
@@ -77226,7 +77320,7 @@ toughness=1
 name=Vedalken AEthermage
 abilities=flash
 auto=moveto(ownerhand) target(sliver)
-autohand={3}{discard(this|myhand)}:moveTo(myhand) target(wizard|mylibrary)
+autohand={3}{cycle}:name(wizardcycling) moveTo(myhand) target(wizard|mylibrary)
 text=Flash (You may cast this spell any time you could cast an instant.) -- When Vedalken AEthermage enters the battlefield, return target Sliver to its owner's hand. -- Wizardcycling {3} ({3}, Discard this card: Search your library for a Wizard card, reveal it, and put it into your hand. Then shuffle your library.)
 mana={1}{U}
 type=Creature
@@ -77359,7 +77453,7 @@ type=Enchantment
 [card]
 name=Veiled Serpent
 abilities=cantattack
-autohand={2}{cycle}:draw:1
+autohand={2}{cycle}:name(cycling) draw:1
 auto=aslongas(island|opponentbattlefield) -cantattack
 auto=@movedto(*|opponentstack) once:transforms((removetypes)) forever && transforms((Serpent Creature,setpower=4,settoughness=4)) forever
 text=When an opponent casts a spell, if Veiled Serpent is an enchantment, Veiled Serpent becomes a 4/4 Serpent creature that can't attack unless defending player controls an Island. -- Cycling {2} ({2}, Discard this card: Draw a card.)
@@ -78561,7 +78655,7 @@ toughness=5
 [/card]
 [card]
 name=Viscera Dragger
-autohand={2}{cycle}:draw:1
+autohand={2}{cycle}:name(cycling) draw:1
 autograveyard={1}{B}:moveto(mybattlefield) && transforms((,unearth,haste)) asSorcery forever
 text=Cycling {2} ({2}, Discard this card: Draw a card.) -- Unearth {1}{B} ({1}{B}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
 mana={3}{B}
@@ -79074,7 +79168,7 @@ subtype=Aura
 name=Volcanic Submersion
 target=artifact,land
 auto=destroy
-autohand={2}{cycle}:draw:1
+autohand={2}{cycle}:name(cycling) draw:1
 text=Destroy target artifact or land. -- Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={4}{R}
 type=Sorcery
@@ -80320,6 +80414,16 @@ type=Creature
 subtype=Zombie
 power=3
 toughness=2
+[/card]
+[card]
+name=Warped Researcher
+auto=@cycled(*|hand):shroud ueot && flying ueot
+text=Whenever a player cycles a card, Warped Researcher gains flying and shroud until end of turn. (It can't be the target of spells or abilities.)
+mana={4}{U}
+type=Creature
+subtype=Human Wizard Mutant
+power=3
+toughness=4
 [/card]
 [card]
 name=Warren Instigator
@@ -81824,7 +81928,7 @@ abilities=split second
 name=Wipe Clean
 target=enchantment
 auto=moveto(exile)
-autohand={3}{cycle}:draw:1
+autohand={3}{cycle}:name(cycling) draw:1
 text=Exile target enchantment. -- Cycling {3} ({3}, Discard this card: Draw a card.)
 mana={1}{W}
 type=Instant
@@ -81866,7 +81970,7 @@ toughness=2
 [/card]
 [card]
 name=Wirewood Guardian
-autohand={2}{discard(this|myhand)}:moveTo(myhand) target(forest|mylibrary)
+autohand={2}{cycle}:name(forestcycling) moveTo(myhand) target(forest|mylibrary)
 text=Forestcycling {2} ({2}, Discard this card: Search your library for a Forest card, reveal it, and put it into your hand. Then shuffle your library.)
 mana={5}{G}{G}
 type=Creature
@@ -83036,7 +83140,7 @@ subtype=Aura
 [/card]
 [card]
 name=Yoked Plowbeast
-autohand={2}{cycle}:draw:1
+autohand={2}{cycle}:name(cycling) draw:1
 text=Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={5}{W}{W}
 type=Creature
@@ -83154,6 +83258,16 @@ type=Creature
 subtype=Human Rebel
 power=1
 toughness=1
+[/card]
+[card]
+name=Zealots en-Dal
+auto=@each my upkeep restriction{type(*[white]|myBattlefield)~equalto~type(*[-land]|myBattlefield)}:life:1 controller
+text=At the beginning of your upkeep, if all nonland permanents you control are white, you gain 1 life.
+mana={3}{W}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=4
 [/card]
 [card]
 name=Zealous Guardian
