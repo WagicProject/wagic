@@ -106,6 +106,15 @@ public:
   virtual DiscardCost * clone() const;
 };
 
+//cycle
+class CycleCost : public ExtraCost
+{
+public:
+  CycleCost(TargetChooser *_tc = NULL);
+  virtual int doPay();
+  virtual CycleCost * clone() const;
+};
+
 //tolibrary cost 
 class ToLibraryCost : public ExtraCost
 {

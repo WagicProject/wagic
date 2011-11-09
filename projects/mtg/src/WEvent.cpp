@@ -97,6 +97,11 @@ WEventCardDiscard::WEventCardDiscard(MTGCardInstance * card) :
 {
 }
 
+WEventCardCycle::WEventCardCycle(MTGCardInstance * card) :
+WEventCardUpdate(card)
+{
+}
+
 WEventVampire::WEventVampire(MTGCardInstance * card,MTGCardInstance * source,MTGCardInstance * victem) :
     WEventCardUpdate(card),source(source),victem(victem)
 {
@@ -227,6 +232,12 @@ Targetable * WEventCardSacrifice::getTarget(int target)
 }
 
 Targetable * WEventCardDiscard::getTarget(int target)
+{
+    if (target) return card;
+    return NULL;
+}
+
+Targetable * WEventCardCycle::getTarget(int target)
 {
     if (target) return card;
     return NULL;

@@ -598,6 +598,10 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string magicText, int 
     if (TargetChooser * tc = parseSimpleTC(s, "discarded", card))
         return NEW TrCardDiscarded(observer, id, card, tc,once);
 
+    //Card is cycled
+    if (TargetChooser * tc = parseSimpleTC(s, "cycled", card))
+        return NEW TrCardDiscarded(observer, id, card, tc,once,true);
+
     //Card Damaging non combat
     if (TargetChooser * tc = parseSimpleTC(s, "noncombatdamaged", card))
     {
@@ -1509,14 +1513,6 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     if (found != string::npos)
     {
        return AbilityFactory::parseUpkeepAbility(s,card,spell,restrictions,id);
-    }
-    //Cycling
-    found = s.find("cycling");
-    if (found != string::npos)
-    {
-        MTGAbility * a = NEW ACycle(observer, id, card, target);
-        a->oneShot = 1;
-        return a;
     }
 
     //ninjutsu

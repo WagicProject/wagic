@@ -183,6 +183,12 @@ struct WEventCardDiscard : public WEventCardUpdate {
 	virtual Targetable * getTarget(int target);
 };
 
+//event when card is cycled.
+struct WEventCardCycle : public WEventCardUpdate {
+  WEventCardCycle(MTGCardInstance * card);
+	virtual Targetable * getTarget(int target);
+};
+
 //Event when a card's "defenser" status changes
 //before : attacker that card was blocking previously
 //after: attacker that card is blocking now

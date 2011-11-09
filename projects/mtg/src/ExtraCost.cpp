@@ -225,8 +225,40 @@ int DiscardCost::doPay()
     }
     return 0;
 }
-//to library cost
 
+//cycling
+CycleCost * CycleCost::clone() const
+{
+    CycleCost * ec = NEW CycleCost(*this);
+    if (tc)
+        ec->tc = tc->clone();
+    return ec;
+}
+
+CycleCost::CycleCost(TargetChooser *_tc) :
+ExtraCost("Cycle", _tc)
+{
+}
+
+int CycleCost::doPay()
+{
+    MTGCardInstance * _source = (MTGCardInstance *) source;
+    if (_source)
+    {
+        WEvent * e = NEW WEventCardDiscard(target);//cycling sends 2 events one for the discard and one for the specific cycle trigger
+        GameObserver * game = _source->owner->getObserver();
+        game->receiveEvent(e);
+        WEvent * e2 = NEW WEventCardCycle(_source);
+        game->receiveEvent(e2);
+        _source->controller()->game->putInGraveyard(_source);
+        if (tc)
+            tc->initTargets();
+        return 1;
+    }
+    return 0;
+}
+
+//to library cost
 ToLibraryCost * ToLibraryCost::clone() const
 {
     ToLibraryCost * ec = NEW ToLibraryCost(*this);

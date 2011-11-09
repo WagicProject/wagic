@@ -549,16 +549,28 @@ public:
 class TrCardDiscarded: public Trigger
 {
 public:
-    TrCardDiscarded(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc,bool once = false) :
-        Trigger(observer, id, source, once, tc)
+    bool cycledTrigger;
+    TrCardDiscarded(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc,bool once = false, bool cycledTrigger = false) :
+    Trigger(observer, id, source, once, tc)
     {
     }
 
     int triggerOnEventImpl(WEvent * event)
     {
-        WEventCardDiscard * e = dynamic_cast<WEventCardDiscard *> (event);
-        if (!e) return 0;
-        if (!tc->canTarget(e->card)) return 0;
+        MTGCardInstance * targetCard = NULL;
+        if(cycledTrigger)
+        {
+            WEventCardCycle * c = dynamic_cast<WEventCardCycle *> (event);
+            if (!c) return 0;
+            targetCard = c->card;
+        }
+        else
+        {
+            WEventCardDiscard * e = dynamic_cast<WEventCardDiscard *> (event);
+            if (!e) return 0;
+            targetCard = e->card;
+        }
+        if (!targetCard || !tc->canTarget(targetCard)) return 0;
         return 1;
     }
 
@@ -1064,38 +1076,6 @@ public:
     int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
     void Update(float dt);
     int testDestroy();
-
-};
-
-//Cycling
-
-class ACycle: public ActivatedAbility
-{
-public:
-    ACycle(GameObserver* observer, int _id, MTGCardInstance * card, Targetable * _target) :
-        ActivatedAbility(observer, _id, card)
-    {
-        target = _target;
-    }
-
-    int resolve()
-    {
-        WEvent * e = NEW WEventCardDiscard(source);
-        game->receiveEvent(e);
-        source->controller()->game->putInGraveyard(source);
-        source->controller()->game->drawFromLibrary();
-        return 1;
-    }
-
-    const char * getMenuText()
-    {
-        return "Cycling";
-    }
-
-    ACycle * clone() const
-    {
-        return NEW ACycle(*this);
-    }
 
 };
 
