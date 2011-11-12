@@ -895,13 +895,6 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         observer->addObserver(NEW MTGDeathtouchRule(observer, -1));
         return NULL;
     }
-    //this handles all other events reciever, this one is essential for the game to play.
-    found = s.find("otherabilitiesrule");
-    if(found != string::npos)
-    {
-        observer->addObserver(NEW OtherAbilitiesEventReceiver(observer, -1));
-        return NULL;
-    }
 
     //need to remove the section inside the transforms ability from the string before parsing
     //TODO: store string values of "&&" so we can remove the classes added just to add support

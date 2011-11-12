@@ -213,31 +213,14 @@ void MTGPlayerCards::drawFromLibrary()
 {
     if (!library->nb_cards)
     {
-        int cantlosers = 0;
-        MTGGameZone * z = library->owner->game->inPlay;
-        int nbcards = z->nb_cards;
-        for (int i = 0; i < nbcards; ++i)
+        if (inPlay->hasAbility(Constants::CANTLOSE)
+            || inPlay->hasAbility(Constants::CANTMILLLOSE)
+            || owner->opponent()->game->inPlay->hasAbility(Constants::CANTWIN))
         {
-            MTGCardInstance * c = z->cards[i];
-            if (c->has(Constants::CANTLOSE) || c->has(Constants::CANTMILLLOSE))
-            {
-                cantlosers++;
-            }
+            return;
         }
-        MTGGameZone * k = library->owner->opponent()->game->inPlay;
-        int onbcards = k->nb_cards;
-        for (int m = 0; m < onbcards; ++m)
-        {
-            MTGCardInstance * e = k->cards[m];
-            if (e->has(Constants::CANTWIN))
-            {
-                cantlosers++;
-            }
-        }
-        if (cantlosers < 1)
-        {
-            library->owner->getObserver()->gameOver = library->owner;
-        }
+
+        library->owner->getObserver()->gameOver = library->owner;
         return;
     }
     MTGCardInstance * toMove = library->cards[library->nb_cards - 1];

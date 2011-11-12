@@ -19,7 +19,8 @@ void DuelLayers::init(GameObserver* go)
     mCardSelector = NEW CardSelector(go, this);
     //1 Action Layer
     action = NEW ActionLayer(go);
-    action->Add(NEW MTGGamePhase(go, action->getMaxId()));
+    action->Add(NEW MTGGamePhase(go, action->getMaxId())); //Phases handler
+    action->Add(NEW OtherAbilitiesEventReceiver(go, -1)); //autohand, etc... handler
     //Other display elements
     action->Add(NEW HUDDisplay(go, -1));
 
