@@ -27596,7 +27596,6 @@ toughness=3
 name=Giant Growth
 target=creature
 auto=3/3
-autohand={G}{cycle}:draw:1
 text=Target creature gets +3/+3 until end of turn.
 mana={G}
 type=Instant
