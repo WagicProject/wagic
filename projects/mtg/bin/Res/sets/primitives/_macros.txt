@@ -1,0 +1,12 @@
+# Important note:
+# Macros are *global*, it doesn't matter where they are defined
+# Macro names are case insensitive, and the replacement algorithm does an exact match inside a string
+# it means that if you have a macro named MACRO and a macro named MACRO2, you'll run into trouble because MACRO2 will match MACRO
+# Because of that, you need to use a unique delimiter at the beginning and the end of a macro, I personally use "__"
+
+# Standard Cycling
+#AUTO_DEFINE __CYCLING__($cost) $cost{cycle}:name(cycling) draw:1
+
+# Basic Landcycling
+#AUTO_DEFINE __BASIC_LANDCYCLING__($cost) $cost{cycle}:name(basic landcycling) moveTo(myhand) target(land[basic]|mylibrary)
+
