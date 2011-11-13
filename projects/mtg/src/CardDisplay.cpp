@@ -178,7 +178,8 @@ bool CardDisplay::CheckUserInput(JButton key)
       int n = mCurr;
       int x1,y1;
       JButton key;
-      if (JGE::GetInstance()->GetLeftClickCoordinates(x1, y1))
+      JGE* jge = observer->getInput();
+      if (jge &&  jge->GetLeftClickCoordinates(x1, y1))
       {
           for (size_t i = 0; i < mObjects.size(); i++)
           {
@@ -218,7 +219,7 @@ bool CardDisplay::CheckUserInput(JButton key)
               mObjects[mCurr]->Entering();
               result = true;
           }
-          JGE::GetInstance()->LeftClickedProcessed();
+          jge->LeftClickedProcessed();
       }
       return result;
     }

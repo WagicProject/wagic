@@ -34,7 +34,7 @@ hgeParticleSystem* DeckMenu::stars = NULL;
 //    *** Need to make this configurable in a file somewhere to allow for class reuse
 
 DeckMenu::DeckMenu(int id, JGuiListener* listener, int fontId, const string _title, const int& startIndex, bool showDetailsOverride) :
-JGuiController(id, listener), fontId(fontId), mShowDetailsScreen( showDetailsOverride )
+JGuiController(JGE::GetInstance(), id, listener), fontId(fontId), mShowDetailsScreen( showDetailsOverride )
 {
 
     backgroundName = "DeckMenuBackdrop";

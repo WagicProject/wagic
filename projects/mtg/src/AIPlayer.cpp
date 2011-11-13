@@ -29,12 +29,14 @@ AIAction::AIAction(AIPlayer * owner, MTGCardInstance * c, MTGCardInstance * t)
     if (owner->getObserver()->getCardSelector()->GetDrawMode() != DrawMode::kText)
     {
         //DebugTrace("Prefetching AI card going into play: " << c->getImageName());
-        owner->getObserver()->getResourceManager()->RetrieveCard(c, RETRIEVE_THUMB);
+        if(owner->getObserver()->getResourceManager())
+            owner->getObserver()->getResourceManager()->RetrieveCard(c, RETRIEVE_THUMB);
         
         // also cache the large image if we're using kNormal mode
         if (owner->getObserver()->getCardSelector()->GetDrawMode() == DrawMode::kNormal)
         {
-            owner->getObserver()->getResourceManager()->RetrieveCard(c);
+            if(owner->getObserver()->getResourceManager())
+                owner->getObserver()->getResourceManager()->RetrieveCard(c);
         }
     }
 }

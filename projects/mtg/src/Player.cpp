@@ -292,6 +292,7 @@ bool Player::parseLine(const string& s)
 
 ostream& operator<<(ostream& out, const Player& p)
 {
+    out << "mode=" << p.playMode << endl;
     out << *(Damageable*)&p;
     string manapoolstring = p.manaPool->toString();
     if(manapoolstring != "")

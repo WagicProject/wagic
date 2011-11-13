@@ -34,10 +34,16 @@ class GameObserver{
   // used when we're loading to know what to load
   list<string> loadingList;
   list<string>::iterator loadingite;
+  RandomGenerator randomGenerator;
+  WResourceManager* mResourceManager;
+  JGE* mJGE;
+  size_t updateCtr;
+#ifdef ACTION_LOGGING_TESTING
+  GameObserver* oldGame;
+#endif //ACTION_LOGGING_TESTING
 
   int untap(MTGCardInstance * card);
   bool WaitForExtraPayment(MTGCardInstance* card);
-  void initialize();
   void cleanup();
   string startupGameSerialized;
   bool parseLine(const string& s);
@@ -47,8 +53,7 @@ class GameObserver{
   bool mLoading;
   void nextGamePhase();
   void shuffleLibrary(Player* p);
-  RandomGenerator randomGenerator;
-  WResourceManager* mResourceManager;
+  void createPlayer(const string& playerMode);
 
  public:
   int currentPlayerId;
@@ -97,7 +102,7 @@ class GameObserver{
   Player * isInterrupting;
   Player * opponent();
   Player * currentlyActing();
-  GameObserver(WResourceManager* resourceManager = NULL);
+  GameObserver(WResourceManager* output = 0, JGE* input = 0);
   ~GameObserver();
   void gameStateBasedEffects();
   void enchantmentStatus();
@@ -132,6 +137,9 @@ class GameObserver{
   RandomGenerator* getRandomGenerator() { return &randomGenerator; };
   WResourceManager* getResourceManager() { if(this) return mResourceManager;else return 0;};
   CardSelectorBase* getCardSelector() { return mLayers->mCardSelector;};
+  bool operator==(const GameObserver& aGame);
+  JGE* getInput(){return mJGE;};
+
 };
 
 #endif

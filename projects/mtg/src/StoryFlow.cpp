@@ -303,7 +303,7 @@ StoryChoice::StoryChoice(string pageId, string text, int JGOid, float mX, float 
 //Actually loads a duel
 void StoryDuel::init()
 {
-    game = new GameObserver();
+    game = new GameObserver(WResourceManager::Instance(), JGE::GetInstance());
 
     char folder[255], deckFile[255], deckFileSmall[255];
     sprintf(folder, CAMPAIGNS_FOLDER"%s/%s", mParent->folder.c_str(), pageId.c_str());
@@ -410,7 +410,7 @@ int StoryPage::loadElement(TiXmlElement* element)
 }
 
 StoryDialog::StoryDialog(TiXmlElement* root, StoryFlow * mParent) :
-    StoryPage(mParent), JGuiListener(), JGuiController(1, NULL)
+    StoryPage(mParent), JGuiListener(), JGuiController(JGE::GetInstance(), 1, NULL)
 {
 
     currentY = 0;

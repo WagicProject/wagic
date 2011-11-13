@@ -69,8 +69,8 @@ unsigned long hash_djb2(const char *str);
 class RandomGenerator
 {
 protected:
-    queue<int> loadedRandomValues;
-    queue<int> usedRandomValues;
+    list<int> loadedRandomValues;
+    list<int> usedRandomValues;
     bool log;
 public:
     RandomGenerator(bool doLog = false) : log(doLog) {};

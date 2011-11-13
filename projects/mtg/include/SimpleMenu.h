@@ -37,7 +37,7 @@ private:
 public:
     bool autoTranslate;
     bool isMultipleChoice;
-    SimpleMenu(int id, JGuiListener* listener, int fontId, float x, float y, const char * _title = "", int _maxItems = 7, bool centerHorizontal = true, bool centerVertical = true);
+    SimpleMenu(JGE*, int id, JGuiListener* listener, int fontId, float x, float y, const char * _title = "", int _maxItems = 7, bool centerHorizontal = true, bool centerVertical = true);
     virtual ~SimpleMenu();
     void Render();
     void Update(float dt);

@@ -353,7 +353,7 @@ void GameStateMenu::setLang(int id)
 void GameStateMenu::loadLangMenu()
 {
     LOG("GameStateMenu::loadLangMenu");
-    subMenuController = NEW SimpleMenu(MENU_LANGUAGE_SELECTION, this, Fonts::MENU_FONT, 150, 60);
+    subMenuController = NEW SimpleMenu(JGE::GetInstance(), MENU_LANGUAGE_SELECTION, this, Fonts::MENU_FONT, 150, 60);
     if (!subMenuController)
         return;
 
@@ -418,7 +418,7 @@ void GameStateMenu::ensureMGuiController()
 {
     if (!mGuiController)
     {
-        mGuiController = NEW JGuiController(100, this);
+        mGuiController = NEW JGuiController(JGE::GetInstance(), 100, this);
         if (mGuiController)
         {
             WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MENU_FONT);
@@ -617,7 +617,7 @@ void GameStateMenu::Update(float dt)
             if (!hasChosenGameType)
             {
                 currentState = MENU_STATE_MAJOR_SUBMENU;
-                subMenuController = NEW SimpleMenu(MENU_FIRST_DUEL_SUBMENU, this, Fonts::MENU_FONT, 150, 60);
+                subMenuController = NEW SimpleMenu(JGE::GetInstance(), MENU_FIRST_DUEL_SUBMENU, this, Fonts::MENU_FONT, 150, 60);
                 if (subMenuController)
                 {
                     for (size_t i = 0; i < Rules::RulesList.size(); ++i)
@@ -791,7 +791,7 @@ void GameStateMenu::ButtonPressed(int controllerId, int controlId)
         switch (controlId)
         {
         case MENUITEM_PLAY:
-            subMenuController = NEW SimpleMenu(MENU_FIRST_DUEL_SUBMENU, this, Fonts::MENU_FONT, 150, 60);
+            subMenuController = NEW SimpleMenu(JGE::GetInstance(), MENU_FIRST_DUEL_SUBMENU, this, Fonts::MENU_FONT, 150, 60);
             if (subMenuController)
             {
                 subMenuController->Add(SUBMENUITEM_1PLAYER, "1 Player");

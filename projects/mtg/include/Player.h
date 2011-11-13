@@ -21,7 +21,7 @@ protected:
     bool premade;
 
 public:
-    enum ENUM_PLAY_MODE
+    enum Mode
     {
         MODE_TEST_SUITE,
         MODE_HUMAN,
@@ -29,7 +29,7 @@ public:
     };
 
     string mAvatarName;
-    int playMode;
+    Mode playMode;
     bool nomaxhandsize;
     MTGPlayerCards * game;
     MTGDeck * mDeck;

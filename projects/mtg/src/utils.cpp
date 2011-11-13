@@ -31,22 +31,19 @@ int RandomGenerator::random()
     else
     {
         result = loadedRandomValues.front();
-        loadedRandomValues.pop();
+        loadedRandomValues.pop_front();
     }
     if(log)
-        usedRandomValues.push(result);
+        usedRandomValues.push_back(result);
     return result;
 }
 
 ostream& RandomGenerator::saveUsedRandValues(ostream& out)
 {
-    while(usedRandomValues.size())
+    list<int>::iterator ite;
+    for(ite=usedRandomValues.begin(); ite != usedRandomValues.end(); ite++)
     {
-        out << usedRandomValues.front();
-        if(usedRandomValues.size() >= 1)
-            out << ",";
-
-        usedRandomValues.pop();
+        out << *ite << ",";
     }
 
     return out;
@@ -54,13 +51,10 @@ ostream& RandomGenerator::saveUsedRandValues(ostream& out)
 
 ostream& RandomGenerator::saveLoadedRandValues(ostream& out)
 {
-    while(loadedRandomValues.size())
+    list<int>::iterator ite;
+    for(ite=loadedRandomValues.begin(); ite != loadedRandomValues.end(); ite++)
     {
-        out << loadedRandomValues.front();
-        if(loadedRandomValues.size() >= 1)
-            out << ",";
-
-        loadedRandomValues.pop();
+        out << *ite << ",";
     }
 
     return out;
@@ -68,10 +62,8 @@ ostream& RandomGenerator::saveLoadedRandValues(ostream& out)
 
 void RandomGenerator::loadRandValues(string s)
 {
-    while(loadedRandomValues.size())
-        loadedRandomValues.pop();
-    while(usedRandomValues.size())
-        usedRandomValues.pop();
+    loadedRandomValues.clear();
+    usedRandomValues.clear();
 
     while (s.size())
     {
@@ -87,7 +79,7 @@ void RandomGenerator::loadRandValues(string s)
             value = atoi(s.c_str());
             s = "";
         }
-        if (value) loadedRandomValues.push(value);
+        if (value) loadedRandomValues.push_back(value);
     }
 }
 

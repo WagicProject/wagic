@@ -542,7 +542,7 @@ void WDecoConfirm::Entering(JButton key)
 
     SAFE_DELETE(confirmMenu);
     mState = OP_CONFIRMED;
-    confirmMenu = NEW SimpleMenu(444, listener, Fonts::MENU_FONT, 50, 170);
+    confirmMenu = NEW SimpleMenu(JGE::GetInstance(), 444, listener, Fonts::MENU_FONT, 50, 170);
     confirmMenu->Add(1, confirm.c_str());
     confirmMenu->Add(2, cancel.c_str());
 }
@@ -1965,7 +1965,7 @@ void WGuiFilterItem::updateValue()
         SAFE_DELETE(mParent->subMenu);
         mState = STATE_CHOOSE_TYPE;
         SAFE_DELETE(mParent->subMenu);
-        mParent->subMenu = NEW SimpleMenu(-1234, this, Fonts::MENU_FONT, 20, 20, "Filter By...", 10);
+        mParent->subMenu = NEW SimpleMenu(JGE::GetInstance(), -1234, this, Fonts::MENU_FONT, 20, 20, "Filter By...", 10);
         if (mParent->isAvailable(FILTER_SET))
         {
             mParent->subMenu->Add(FILTER_SET, "Set");
@@ -2033,7 +2033,7 @@ void WGuiFilterItem::updateValue()
         SAFE_DELETE(mParent->subMenu);
         mParent->clearArgs();
         mState = STATE_CHOOSE_VAL;
-        mParent->subMenu = NEW SimpleMenu(-1234, this, Fonts::MENU_FONT, 20, 20, "Filter:");
+        mParent->subMenu = NEW SimpleMenu(JGE::GetInstance(), -1234, this, Fonts::MENU_FONT, 20, 20, "Filter:");
         if (filterType == FILTER_TYPE)
         {
             mParent->addArg("Artifact", "t:Artifact;");
@@ -2341,7 +2341,7 @@ WGuiBase::CONFIRM_TYPE WGuiKeyBinder::needsConfirm()
             confirmationString = ss.str();
 
             // Then create the menu.
-            confirmMenu = NEW SimpleMenu(0, this, Fonts::MENU_FONT, 40, 130, "Conflict");
+            confirmMenu = NEW SimpleMenu(JGE::GetInstance(), 0, this, Fonts::MENU_FONT, 40, 130, "Conflict");
             confirmMenu->Add(1, _("Cancel and return to the options menu").c_str());
             confirmMenu->Add(2, _("This is okay, validate and save").c_str());
             return CONFIRM_NEED;
@@ -2369,7 +2369,7 @@ WGuiBase::CONFIRM_TYPE WGuiKeyBinder::needsConfirm()
         confirmationString = s;
 
         confirmingButton = btnToCheck[i];
-        confirmMenu = NEW SimpleMenu(1, this, Fonts::MENU_FONT, 40, 130, "Binding missing");
+        confirmMenu = NEW SimpleMenu(JGE::GetInstance(), 1, this, Fonts::MENU_FONT, 40, 130, "Binding missing");
         confirmMenu->Add(1, _("Cancel and return to the options menu").c_str());
         confirmMenu->Add(2, _("This is okay, validate and save").c_str());
         return CONFIRM_NEED;

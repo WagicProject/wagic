@@ -201,7 +201,7 @@ bool GuiCombat::CheckUserInput(JButton key)
     DamagerDamaged* oldActive = active;
 /*
     int x,y;
-    if(JGE::GetInstance()->GetLeftClickCoordinates(x, y))
+    if(observer->getInput()->GetLeftClickCoordinates(x, y))
     {
         DamagerDamaged* old = active;
         active = closest<True> (activeAtk->blockers, NULL, static_cast<float> (x), static_cast<float> (y));

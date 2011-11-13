@@ -28,8 +28,8 @@ JTexture* SimpleMenu::spadeLTex = NULL;
 JTexture* SimpleMenu::jewelTex = NULL;
 JTexture* SimpleMenu::sideTex = NULL;
 
-SimpleMenu::SimpleMenu(int id, JGuiListener* listener, int fontId, float x, float y, const char * _title, int _maxItems, bool centerHorizontal, bool centerVertical)
-    : JGuiController(id, listener), fontId(fontId), mCenterHorizontal(centerHorizontal), mCenterVertical(centerVertical)
+SimpleMenu::SimpleMenu(JGE* jge, int id, JGuiListener* listener, int fontId, float x, float y, const char * _title, int _maxItems, bool centerHorizontal, bool centerVertical)
+    : JGuiController(jge, id, listener), fontId(fontId), mCenterHorizontal(centerHorizontal), mCenterVertical(centerVertical)
 {
     autoTranslate = true;
     isMultipleChoice = false;

@@ -11,7 +11,7 @@ class IconButtonsController: public JGuiController, public JGuiListener
 public:
     float mX;
     float mY;
-    IconButtonsController(float x, float y);
+    IconButtonsController(JGE* jge, float x, float y);
     void SetColor(PIXEL_TYPE color);
 };
 

@@ -553,7 +553,7 @@ int ActionStack::AddNextGamePhase()
     NextGamePhase * next = NEW NextGamePhase(observer, mObjects.size());
     addAction(next);
     int playerId = (observer->currentActionPlayer == observer->players[1]) ? 1 : 0;
-    interruptDecision[playerId] = 1;
+    interruptDecision[playerId] = DONT_INTERRUPT;
     return 1;
 }
 
@@ -573,7 +573,7 @@ int ActionStack::setIsInterrupting(Player * player, bool log)
 
     if (!gModRules.game.canInterrupt())
     {
-        cancelInterruptOffer(1, log);
+        cancelInterruptOffer(DONT_INTERRUPT, log);
         return 0;
     }
 
@@ -586,7 +586,7 @@ int ActionStack::setIsInterrupting(Player * player, bool log)
     }
 
     int playerId = (player == observer->players[1]) ? 1 : 0;
-    interruptDecision[playerId] = -1;
+    interruptDecision[playerId] = INTERRUPT;
     observer->isInterrupting = player;
     if(log)
         observer->logAction(player, "yes");
@@ -597,7 +597,7 @@ int ActionStack::addAction(Interruptible * action)
 {
     for (int i = 0; i < 2; i++)
     {
-        interruptDecision[i] = 0;
+        interruptDecision[i] = NOT_DECIDED;
     }
     Add(action);
     lastActionController = observer->currentlyActing();
@@ -634,7 +634,7 @@ ActionStack::ActionStack(GameObserver* game)
     : GuiLayer(game), currentTutorial(0)
 {
     for (int i = 0; i < 2; i++)
-        interruptDecision[i] = 0;
+        interruptDecision[i] = NOT_DECIDED;
     askIfWishesToInterrupt = NULL;
     timer = -1;
     currentState = -1;
@@ -698,15 +698,15 @@ int ActionStack::resolve()
         for (int i = 0; i < 2; i++)
         {
 					if (interruptDecision[i] != 2)
-            interruptDecision[i] = 0;
+            interruptDecision[i] = NOT_DECIDED;
         }
     }
     else
     {
         for (int i = 0; i < 2; i++)
         {
-            if (interruptDecision[i] != 2)
-                interruptDecision[i] = 0;
+            if (interruptDecision[i] != DONT_INTERRUPT_ALL)
+                interruptDecision[i] = NOT_DECIDED;
         }
     }
     lastActionController = NULL;
@@ -955,7 +955,7 @@ void ActionStack::Update(float dt)
     }
 }
 
-void ActionStack::cancelInterruptOffer(int cancelMode, bool log)
+void ActionStack::cancelInterruptOffer(InterruptDecision cancelMode, bool log)
 {
     int playerId = (observer->isInterrupting == observer->players[1]) ? 1 : 0;
     interruptDecision[playerId] = cancelMode;
@@ -969,7 +969,7 @@ void ActionStack::cancelInterruptOffer(int cancelMode, bool log)
 void ActionStack::endOfInterruption(bool log)
 {
     int playerId = (observer->isInterrupting == observer->players[1]) ? 1 : 0;
-    interruptDecision[playerId] = 0;
+    interruptDecision[playerId] = NOT_DECIDED;
     observer->isInterrupting = NULL;
     if(log)
         observer->logAction(playerId, "endinterruption");
@@ -994,7 +994,7 @@ bool ActionStack::CheckUserInput(JButton key)
             }
             else if ((JGE_BTN_PRI == key))
             {
-                cancelInterruptOffer(2);
+                cancelInterruptOffer(DONT_INTERRUPT_ALL);
                 return true;
             }
             return true;

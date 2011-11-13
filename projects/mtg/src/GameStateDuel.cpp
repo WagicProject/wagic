@@ -119,7 +119,7 @@ void GameStateDuel::Start()
     renderer->EnableVSync(true);
     OpponentsDeckid = 0;
 
-    game = NEW GameObserver(WResourceManager::Instance());
+    game = NEW GameObserver(WResourceManager::Instance(), JGE::GetInstance());
 
 #ifdef TESTSUITE
     SAFE_DELETE(testSuite);
@@ -200,7 +200,7 @@ void GameStateDuel::loadTestSuitePlayers()
     if (!testSuite) return;
     initRand(testSuite->seed);
     SAFE_DELETE(game);
-    game = new GameObserver(WResourceManager::Instance());
+    game = new GameObserver(WResourceManager::Instance(), JGE::GetInstance());
     testSuite->setObserver(game);
     for (int i = 0; i < 2; i++)
     {
@@ -273,6 +273,28 @@ void GameStateDuel::setGamePhase(int newGamePhase) {
     if (mGamePhase )
         JGE::GetInstance()->SendCommand("enterduelphase:" +  string(stateStrings[mGamePhase]));
 }
+
+#ifdef AI_CHANGE_TESTING
+boost::mutex GameStateDuel::mMutex;
+
+void GameStateDuel::ThreadProc(void* inParam)
+{
+    GameStateDuel* instance = reinterpret_cast<GameStateDuel*>(inParam);
+    float counter = 1.0f;
+    while(instance->mGamePhase != DUEL_STATE_BACK_TO_MAIN_MENU)
+    {
+        GameObserver observer;
+        observer.loadPlayer(0, PLAYER_TYPE_TESTSUITE);
+        observer.loadPlayer(1, PLAYER_TYPE_TESTSUITE);
+        observer.startGame(instance->mParent->gameType, instance->mParent->rules);
+
+        while(!observer.gameOver)
+            observer.Update(counter++);
+
+        instance->handleResults(&observer);
+    }
+}
+#endif //AI_CHANGE_TESTING
 
 void GameStateDuel::Update(float dt)
 {
@@ -421,12 +443,20 @@ void GameStateDuel::Update(float dt)
 #ifdef AI_CHANGE_TESTING
             if (mParent->players[0] == PLAYER_TYPE_CPU_TEST && mParent->players[1] == PLAYER_TYPE_CPU_TEST)
             {
-                totalTestGames++;
-                if (game->gameOver == game->players[0])
-                    testPlayer2Victories++;
+                handleResults(game);
                 End();
                 Start();
             }
+            if(mWorkerThread.empty())
+            {   // "I don't like to wait" mode
+                size_t thread_count = 1;
+        #ifdef QT_CONFIG
+                thread_count = QThread::idealThreadCount();
+        #endif
+                for(size_t i = 0; i < (thread_count-1); i++)
+                    mWorkerThread.push_back(boost::thread(ThreadProc, this));
+            }
+
 #endif
             if (mParent->players[0] == PLAYER_TYPE_CPU && mParent->players[1] == PLAYER_TYPE_CPU)
             {
@@ -438,7 +468,7 @@ void GameStateDuel::Update(float dt)
         {
             if (!menu)
             {
-                menu = NEW SimpleMenu(DUEL_MENU_GAME_MENU, this, Fonts::MENU_FONT, SCREEN_WIDTH / 2 - 100, 25,
+                menu = NEW SimpleMenu(JGE::GetInstance(), DUEL_MENU_GAME_MENU, this, Fonts::MENU_FONT, SCREEN_WIDTH / 2 - 100, 25,
                     game->players[1]->deckName.c_str());
                 int cardsinhand = game->currentPlayer->game->hand->nb_cards;
 
@@ -498,6 +528,14 @@ void GameStateDuel::Update(float dt)
     case DUEL_STATE_BACK_TO_MAIN_MENU:
         if (menu)
         {
+#ifdef AI_CHANGE_TESTING
+            while(mWorkerThread.size())
+            {
+              mWorkerThread.back().join();
+              mWorkerThread.pop_back();
+            }
+#endif //AI_CHANGE_TESTING
+
             menu->Update(dt);
             if (menu->isClosed())
             {

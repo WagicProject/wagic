@@ -1223,7 +1223,7 @@ int AIPlayerBaka::createAbilityTargets(MTGAbility * a, MTGCardInstance * c, Rank
         if(!realTargets.size() || (int(realTargets.size()) < a->getActionTc()->maxtargets && a->getActionTc()->targetMin))
             return 0;
         OrderedAIAction aiAction(this, a, c,realTargets);
-        aiAction.target = (MTGCardInstance*)realTargets[0];
+        aiAction.target = dynamic_cast<MTGCardInstance*>(realTargets[0]);
         ranking[aiAction] = 1;
     }
     return 1;
@@ -1770,6 +1770,7 @@ int AIPlayerBaka::computeActions()
             return 1;
     }
 
+#ifndef AI_CHANGE_TESTING
     static bool findingCard = false;
     //this guard is put in place to prevent Ai from
     //ever running computeActions() function WHILE its already doing so.
@@ -1779,6 +1780,8 @@ int AIPlayerBaka::computeActions()
     {//is already looking kick me out of this function!
         return 0;
     } 
+#endif //AI_CHANGE_TESTING
+
     Interruptible * action = observer->mLayers->stackLayer()->getAt(-1);
     Spell * spell = dynamic_cast<Spell *>(action);
     Player * lastStackActionController = spell ? spell->source->controller() : NULL;         
@@ -1791,7 +1794,9 @@ int AIPlayerBaka::computeActions()
         bool ipotential = false;
         if(p->game->hand->hasType("instant") || p->game->hand->hasAbility(Constants::FLASH))
         {
+#ifndef AI_CHANGE_TESTING
             findingCard = true;
+#endif //AI_CHANGE_TESTING
             ManaCost * icurrentMana = getPotentialMana();
             icurrentMana->add(this->getManaPool());
             if (icurrentMana->getConvertedCost())
@@ -1822,12 +1827,16 @@ int AIPlayerBaka::computeActions()
                     gotPayments.clear();
                 }
             }
+#ifndef AI_CHANGE_TESTING
             findingCard = false;
+#endif //AI_CHANGE_TESTING
             nextCardToPlay = NULL;
             return 1;
         }
         nextCardToPlay = NULL;
+#ifndef AI_CHANGE_TESTING
         findingCard = false;
+#endif //AI_CHANGE_TESTING
         return 1;
     }
     else if(observer->mLayers->stackLayer()->count(0, NOT_RESOLVED) == 0)

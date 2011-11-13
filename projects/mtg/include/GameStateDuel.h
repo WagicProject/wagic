@@ -7,6 +7,10 @@
 #include "DeckMenu.h"
 #include "MTGDeck.h"
 #include "GameObserver.h"
+#ifdef AI_CHANGE_TESTING
+#include "Threading.h"
+#endif //AI_CHANGE_TESTING
+
 
 #define CHOOSE_OPPONENT 7
 
@@ -56,6 +60,16 @@ public:
     int totalTestGames;
     int testPlayer2Victories;
     int totalAIDecks;
+    static boost::mutex mMutex;
+    vector<boost::thread> mWorkerThread;
+    static void ThreadProc(void* inParam);
+    void handleResults(GameObserver* aGame){
+        mMutex.lock();
+        totalTestGames++;
+        if (aGame->gameOver == aGame->players[0])
+            testPlayer2Victories++;
+        mMutex.unlock();
+    };
 #endif
 
     virtual void ButtonPressed(int ControllerId, int ControlId);

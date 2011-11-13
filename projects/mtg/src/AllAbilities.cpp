@@ -2359,7 +2359,7 @@ int MenuAbility::reactToChoiceClick(Targetable * object,int choice,int control)
         mClone->resolve();
     SAFE_DELETE(mClone);
     if (source->controller() == game->isInterrupting)
-        game->mLayers->stackLayer()->cancelInterruptOffer(1, false);
+        game->mLayers->stackLayer()->cancelInterruptOffer(ActionStack::DONT_INTERRUPT, false);
     this->forceDestroy = 1;
     removeMenu = true;
     return reactToTargetClick(object);
@@ -3913,7 +3913,7 @@ AAConnect * AAConnect::clone() const
 //Tutorial Messaging
 
 ATutorialMessage::ATutorialMessage(GameObserver* observer, MTGCardInstance * source, string message, int limit)
-    : MTGAbility(observer, 0, source), IconButtonsController(0, 0), mLimit(limit)
+    : MTGAbility(observer, 0, source), IconButtonsController(observer->getInput(), 0, 0), mLimit(limit)
 {
     mBgTex = NULL;
 
@@ -3923,16 +3923,19 @@ ATutorialMessage::ATutorialMessage(GameObserver* observer, MTGCardInstance * sou
     for (int i = 0; i < 9; i++)
         mBg[i] = NULL;
 
-    string gfx = game->getResourceManager()->graphicsFile(message);
-    if (fileExists(gfx.c_str()))
+    if(game->getResourceManager())
     {
-        mIsImage = true;
-        mMessage = message;
-    }
-    else
-    {
-        mMessage = _(message); //translate directly here, remove this and translate at rendering time if it bites us
-        boost::replace_all(mMessage, "\\n", "\n");
+        string gfx = game->getResourceManager()->graphicsFile(message);
+        if (fileExists(gfx.c_str()))
+        {
+            mIsImage = true;
+            mMessage = message;
+        }
+        else
+        {
+            mMessage = _(message); //translate directly here, remove this and translate at rendering time if it bites us
+            boost::replace_all(mMessage, "\\n", "\n");
+        }
     }
 
     if (mIsImage)

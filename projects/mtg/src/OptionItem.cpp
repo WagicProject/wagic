@@ -614,7 +614,7 @@ void OptionKey::KeyPressed(LocalKeySym key)
     g->UngrabKeyboard(this);
     grabbed = false;
 
-    btnMenu = NEW SimpleMenu(0, this, Fonts::MENU_FONT, 80, 10);
+    btnMenu = NEW SimpleMenu(JGE::GetInstance(), 0, this, Fonts::MENU_FONT, 80, 10);
     for (int i = sizeof(btnList) / sizeof(btnList[0]) - 1; i >= 0; --i)
     {
         const KeyRep& rep = translateKey(btnList[i]);

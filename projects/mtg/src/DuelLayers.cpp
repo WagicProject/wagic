@@ -43,36 +43,39 @@ void DuelLayers::CheckUserInput(int isAI)
 {
     JButton key;
     int x, y;
-    while ((key = JGE::GetInstance()->ReadButton()) || JGE::GetInstance()->GetLeftClickCoordinates(x, y))
+    JGE* jge = observer->getInput();
+    if(!jge) return;
+
+    while ((key = jge->ReadButton()) || jge->GetLeftClickCoordinates(x, y))
     {
-        if ((!isAI) && ((0 != key) ||  JGE::GetInstance()->GetLeftClickCoordinates(x, y)))
+        if ((!isAI) && ((0 != key) ||  jge->GetLeftClickCoordinates(x, y)))
         {
             if (stack->CheckUserInput(key)) {
-                JGE::GetInstance()->LeftClickedProcessed();
+                jge->LeftClickedProcessed();
                 break;
             }
             if (combat->CheckUserInput(key)) {
-                JGE::GetInstance()->LeftClickedProcessed();
+                jge->LeftClickedProcessed();
                 break;
             }
             if (avatars->CheckUserInput(key)) {
-                JGE::GetInstance()->LeftClickedProcessed();
+                jge->LeftClickedProcessed();
                 break; //avatars need to check their input before action (CTRL_CROSS)
             }
             if (action->CheckUserInput(key)) {
-                JGE::GetInstance()->LeftClickedProcessed();
+                jge->LeftClickedProcessed();
                 break;
             }
             if (hand->CheckUserInput(key)) {
-                JGE::GetInstance()->LeftClickedProcessed();
+                jge->LeftClickedProcessed();
                 break;
             }
             if (mCardSelector->CheckUserInput(key)) {
-                JGE::GetInstance()->LeftClickedProcessed();
+                jge->LeftClickedProcessed();
                 break;
             }
         }
-        JGE::GetInstance()->LeftClickedProcessed();
+        jge->LeftClickedProcessed();
     }
 }
 

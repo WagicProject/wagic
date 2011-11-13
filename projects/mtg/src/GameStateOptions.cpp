@@ -117,7 +117,7 @@ void GameStateOptions::Start()
     optionsList->failMsg = "";
     optionsTabs->Add(optionsList);
 
-    optionsMenu = NEW SimpleMenu(-102, this, Fonts::MENU_FONT, 50, 170);
+    optionsMenu = NEW SimpleMenu(JGE::GetInstance(), -102, this, Fonts::MENU_FONT, 50, 170);
     optionsMenu->Add(kBackToMainMenuID, "Back to Main Menu");
     optionsMenu->Add(kSaveAndBackToMainMenuID, "Save & Back to Main Menu");
     optionsMenu->Add(kCancelMenuID, "Cancel");

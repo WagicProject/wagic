@@ -17,28 +17,6 @@
 #include "TestSuiteAI.h"
 #endif
 
-void GameObserver::initialize()
-{
-    mGameType = GAME_TYPE_CLASSIC;
-    currentPlayer = NULL;
-    currentActionPlayer = NULL;
-    isInterrupting = NULL;
-    currentPlayerId = 0;
-    currentGamePhase = -1;
-    targetChooser = NULL;
-    cardWaitingForTargets = NULL;
-    mExtraPayment = NULL;
-    gameOver = NULL;
-    phaseRing = NULL;
-    replacementEffects = NEW ReplacementEffects();
-    combatStep = BLOCKERS;
-    mRules = NULL;
-    connectRule = false;
-    mLoading = false;
-    mLayers = NULL;
-    mTrash = new Trash();
-}
-
 void GameObserver::cleanup()
 {
     SAFE_DELETE(targetChooser);
@@ -69,6 +47,10 @@ void GameObserver::cleanup()
 
 GameObserver::~GameObserver()
 {
+#ifdef ACTION_LOGGING_TESTING
+    if(oldGame) SAFE_DELETE(oldGame);
+#endif //ACTION_LOGGING_TESTING
+
     LOG("==Destroying GameObserver==");
     for (size_t i = 0; i < players.size(); ++i)
     {
@@ -89,13 +71,34 @@ GameObserver::~GameObserver()
     SAFE_DELETE(mTrash);
 }
 
-GameObserver::GameObserver(WResourceManager *resourceManager)
-    : randomGenerator(true), mResourceManager(resourceManager)
+GameObserver::GameObserver(WResourceManager *output, JGE* input)
+    : randomGenerator(true), mResourceManager(output), mJGE(input)
 
 {
+    updateCtr = 0;
+#ifdef ACTION_LOGGING_TESTING
+    oldGame = 0;
+#endif //ACTION_LOGGING_TESTING
     ExtraRules = new MTGCardInstance[2]();
 
-    initialize();
+    mGameType = GAME_TYPE_CLASSIC;
+    currentPlayer = NULL;
+    currentActionPlayer = NULL;
+    isInterrupting = NULL;
+    currentPlayerId = 0;
+    currentGamePhase = -1;
+    targetChooser = NULL;
+    cardWaitingForTargets = NULL;
+    mExtraPayment = NULL;
+    gameOver = NULL;
+    phaseRing = NULL;
+    replacementEffects = NEW ReplacementEffects();
+    combatStep = BLOCKERS;
+    mRules = NULL;
+    connectRule = false;
+    mLoading = false;
+    mLayers = NULL;
+    mTrash = new Trash();
 }
 
 int GameObserver::getCurrentGamePhase()
@@ -417,9 +420,80 @@ bool GameObserver::removeObserver(ActionElement * observer)
 
 }
 
+bool GameObserver::operator==(const GameObserver& aGame)
+{
+    int error = 0;
+
+    if (aGame.currentGamePhase != currentGamePhase)
+    {
+        error++;
+    }
+    for (int i = 0; i < 2; i++)
+    {
+        TestSuiteAI * p = (TestSuiteAI *) (aGame.players[i]);
+
+        if (p->life != players[i]->life)
+        {
+            error++;
+        }
+        if (p->poisonCount != players[i]->poisonCount)
+        {
+            error++;
+        }
+        if (!p->getManaPool()->canAfford(players[i]->getManaPool()))
+        {
+            error++;
+        }
+        if (!players[i]->getManaPool()->canAfford(p->getManaPool()))
+        {
+            error++;
+        }
+        MTGGameZone * aZones[] = { p->game->graveyard, p->game->library, p->game->hand, p->game->inPlay };
+        MTGGameZone * thisZones[] = { players[i]->game->graveyard,
+                                         players[i]->game->library,
+                                         players[i]->game->hand,
+                                         players[i]->game->inPlay };
+        for (int j = 0; j < 4; j++)
+        {
+            MTGGameZone * zone = aZones[j];
+            if (zone->nb_cards != thisZones[j]->nb_cards)
+            {
+                error++;
+            }
+            for (size_t k = 0; k < (size_t)thisZones[j]->nb_cards; k++)
+            {
+                MTGCardInstance* cardToCheck = (k<thisZones[j]->cards.size())?thisZones[j]->cards[k]:0;
+                MTGCardInstance* card = (k<aZones[j]->cards.size())?aZones[j]->cards[k]:0;
+                if(!card || !cardToCheck || cardToCheck->getId() != card->getId())
+                {
+                    error++;
+                }
+            }
+        }
+    }
+
+    return (error == 0);
+}
+
 void GameObserver::Update(float dt)
 {
+    /*******************/
+    updateCtr++;
+#ifdef ACTION_LOGGING_TESTING
+    if(!oldGame || (!(*oldGame == *this) &&
+            !mLoading && mLayers->stackLayer()->isCalm()))
+    {   // constant game check
+        stringstream stream;
+        stream << *this;
+        if(oldGame) SAFE_DELETE(oldGame);
+        oldGame = new GameObserver();
+        oldGame->mRules = mRules;
+        oldGame->load(stream.str());
+        assert(*this == *oldGame);
+    }
+#endif // ACTION_LOGGING_TESTING
 
+    /*******************/
     Player * player = currentPlayer;
     if (Constants::MTG_PHASE_COMBATBLOCKERS == currentGamePhase && BLOCKERS == combatStep)
     {
@@ -1368,7 +1442,12 @@ bool GameObserver::load(const string& ss, bool undo)
             else
             {
                 if(players.size() == 0 || !players[0])
-                    players.push_back(new HumanPlayer(this, deckFile, deckFileSmall));
+                {
+                    if (s.find("mode=") == 0)
+                    {
+                        createPlayer(s.substr(5));
+                    }
+                }
                 players[0]->parseLine(s);
             }
             break;
@@ -1379,9 +1458,12 @@ bool GameObserver::load(const string& ss, bool undo)
             }
             else
             {
-                if(players.size() == 1 || !players[1]) {
-                    AIPlayerFactory playerCreator;
-                    players.push_back(playerCreator.createAIPlayer(this, MTGCollection(), players[0]));
+                if(players.size() == 1 || !players[1])
+                {
+                    if (s.find("mode=") == 0)
+                    {
+                        createPlayer(s.substr(5));
+                    }
                 }
                 players[1]->parseLine(s);
             }
@@ -1554,6 +1636,27 @@ void GameObserver::Mulligan(Player* player)
     if(!player) player = currentPlayer;
     logAction(player, "mulligan");
     player->takeMulligan();
+}
+
+void GameObserver::createPlayer(const string& playerMode)
+{
+    Player::Mode aMode = (Player::Mode)atoi(playerMode.c_str());
+    switch(aMode)
+    {
+    case Player::MODE_AI:
+        AIPlayerFactory playerCreator;
+        // FIXME: gonna break in AI vs AI mode
+        players.push_back(playerCreator.createAIPlayer(this, MTGCollection(), players[0]));
+        break;
+    case Player::MODE_HUMAN:
+        players.push_back(new HumanPlayer(this, "", ""));
+        break;
+    case Player::MODE_TEST_SUITE:
+        // FIXME, not real TestPlayer, but we don't care here.
+        players.push_back(new Player(this, "", ""));
+        players.back()->playMode = Player::MODE_TEST_SUITE;
+        break;
+    }
 }
 
 #ifdef TESTSUITE

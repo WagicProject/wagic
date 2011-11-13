@@ -349,7 +349,7 @@ void ActionLayer::setMenuObject(Targetable * object, bool must)
 
     SAFE_DELETE(abilitiesMenu);
 
-    abilitiesMenu = NEW SimpleMenu(10, this, Fonts::MAIN_FONT, 100, 100, object->getDisplayName().c_str());
+    abilitiesMenu = NEW SimpleMenu(observer->getInput(), 10, this, Fonts::MAIN_FONT, 100, 100, object->getDisplayName().c_str());
     currentActionCard = NULL;
     for (size_t i = 0; i < mObjects.size(); i++)
     {
@@ -375,7 +375,7 @@ void ActionLayer::setCustomMenuObject(Targetable * object, bool must,vector<MTGA
     }
     menuObject = object;
     SAFE_DELETE(abilitiesMenu);
-    abilitiesMenu = NEW SimpleMenu(10, this, Fonts::MAIN_FONT, 100, 100, object->getDisplayName().c_str());
+    abilitiesMenu = NEW SimpleMenu(observer->getInput(), 10, this, Fonts::MAIN_FONT, 100, 100, object->getDisplayName().c_str());
     currentActionCard = NULL;
     abilitiesMenu->isMultipleChoice = false;
     if(abilities.size())

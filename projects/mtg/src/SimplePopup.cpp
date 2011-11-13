@@ -14,7 +14,7 @@
 #include <iomanip>
 
 SimplePopup::SimplePopup(int id, JGuiListener* listener, const int fontId, const char * _title, DeckMetaData* deckMetaData, MTGAllCards * collection) :
-    JGuiController(id, listener), mFontId(fontId), mCollection(collection)
+    JGuiController(JGE::GetInstance(), id, listener), mFontId(fontId), mCollection(collection)
 {
     mX = 19;
     mY = 66;

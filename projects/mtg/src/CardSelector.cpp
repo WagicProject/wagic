@@ -187,7 +187,9 @@ bool CardSelector::CheckUserInput(JButton key)
     Target* oldactive = active;
 
     int x,y;
-    if(JGE::GetInstance()->GetLeftClickCoordinates(x, y))
+    JGE* jge = observer->getInput();
+    if(!jge) return false;
+    if(jge->GetLeftClickCoordinates(x, y))
     {
         active = closest<True> (cards, limitor, static_cast<float> (x), static_cast<float> (y));
     }
@@ -223,7 +225,7 @@ bool CardSelector::CheckUserInput(JButton key)
         return true;
     default:
       {
-        if(!JGE::GetInstance()->GetLeftClickCoordinates(x, y))
+        if(!jge->GetLeftClickCoordinates(x, y))
         {
           return false;
         }

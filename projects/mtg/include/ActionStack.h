@@ -190,9 +190,18 @@ public:
 
 class ActionStack :public GuiLayer
 {
+public:
+    typedef enum
+    {
+        NOT_DECIDED = 0,
+        INTERRUPT = -1,
+        DONT_INTERRUPT = 1,
+        DONT_INTERRUPT_ALL = 2
+    } InterruptDecision;
+
 protected:
     JQuadPtr pspIcons[8];
-    int interruptDecision[2];
+    InterruptDecision interruptDecision[2];
     float timer;
     int currentState;
     int mode;
@@ -201,13 +210,6 @@ protected:
 
 public:
 
-    enum
-    {
-        NOT_DECIDED = 0,
-        INTERRUPT = -1,
-        DONT_INTERRUPT = 1,
-        DONT_INTERRUPT_ALL = 2,
-    };
     Player * lastActionController;
     int setIsInterrupting(Player * player, bool log = true);
     int count( int type = 0 , int state = 0 , int display = -1);
@@ -218,7 +220,7 @@ public:
     int getNextIndex(Interruptible * previous, int type = 0, int state = 0 , int display = -1);
     void Fizzle(Interruptible * action);
     Interruptible * getAt(int id);
-    void cancelInterruptOffer(int cancelMode = 1, bool log = true);
+    void cancelInterruptOffer(InterruptDecision cancelMode = DONT_INTERRUPT, bool log = true);
     void endOfInterruption(bool log = true);
     Interruptible * getLatest(int state);
     Player * askIfWishesToInterrupt;
@@ -245,6 +247,7 @@ public:
 #endif
     void setCurrentTutorial(ATutorialMessage* message) {currentTutorial = message;};
     ATutorialMessage* getCurrentTutorial() {return currentTutorial;};
+    bool isCalm() {return interruptDecision[0] == NOT_DECIDED && interruptDecision[1] == NOT_DECIDED;};
 };
 
 #endif
