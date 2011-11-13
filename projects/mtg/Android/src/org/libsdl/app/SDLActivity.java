@@ -7,7 +7,11 @@ import javax.microedition.khronos.egl.EGLDisplay;
 import javax.microedition.khronos.egl.EGLSurface;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Canvas;
 import android.graphics.PixelFormat;
 import android.hardware.Sensor;
@@ -17,7 +21,9 @@ import android.hardware.SensorManager;
 import android.media.AudioFormat;
 import android.media.AudioManager;
 import android.media.AudioTrack;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
@@ -34,12 +40,21 @@ import android.widget.FrameLayout.LayoutParams;
 import com.google.ads.*;
 
 
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URL;
+import java.net.URLConnection;
+
 
 /**
     SDL Activity
 */
 public class SDLActivity extends Activity {
 
+	
     // Main components
     private static AdView mAdView;	
     private static SDLActivity mSingleton;
@@ -49,6 +64,55 @@ public class SDLActivity extends Activity {
     private static Thread mAudioThread;
     private static AudioTrack mAudioTrack;
 
+    //Resource download 
+    public static final int DIALOG_DOWNLOAD_PROGRESS = 0;
+    public static final int DIALOG_DOWNLOAD_ERROR = 1;    
+    private ProgressDialog mProgressDialog;
+    private AlertDialog mErrorDialog;
+    public String mErrorMessage = "";
+    public Boolean mErrorHappened = false;
+	public final static String RES_FOLDER = "/sdcard/Wagic/Res/";
+    public static final String RES_FILENAME = "core_017.zip";
+    public static final String RES_URL = "http://wololo.net/files/wagic/";
+   
+    private void startDownload() {
+        String url = RES_URL + RES_FILENAME;
+        new DownloadFileAsync().execute(url);
+    }
+    
+    public void downloadError(String errorMessage) {
+    	mErrorHappened = true;
+    	mErrorMessage = errorMessage;
+    }
+    
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        switch (id) {
+		case DIALOG_DOWNLOAD_PROGRESS:
+			mProgressDialog = new ProgressDialog(this);
+			mProgressDialog.setMessage("Downloading resource files (" + RES_FILENAME + ")");
+			mProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+			mProgressDialog.setCancelable(false);
+			mProgressDialog.show();
+			return mProgressDialog;
+		case DIALOG_DOWNLOAD_ERROR:
+	        //prepare alertDialog
+	    	AlertDialog.Builder builder = new AlertDialog.Builder(this);
+	    	builder.setMessage(mErrorMessage)
+	    	       .setCancelable(false)
+	    	       .setPositiveButton("Exit", new DialogInterface.OnClickListener() {
+	    	           public void onClick(DialogInterface dialog, int id) {
+	    	        	   System.exit(0);
+	    	           }
+	    	       });
+	    	mErrorDialog = builder.create(); 			
+			mErrorDialog.show();
+			return mErrorDialog;
+		default:
+			return null;
+        }
+    }   
+    
     // Load the .so
     static {
         System.loadLibrary("SDL");
@@ -58,16 +122,9 @@ public class SDLActivity extends Activity {
         System.loadLibrary("main");
     }
 
-    // Setup
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        //Log.v("SDL", "onCreate()");
-        super.onCreate(savedInstanceState);
-        
-        // So we can call stuff from static callbacks
-        mSingleton = this;
-
-        
+    
+    //create main application
+    public void mainDisplay() {
         FrameLayout _videoLayout = new FrameLayout(this);
         
         //mGLView = new DemoGLSurfaceView(this);
@@ -102,7 +159,27 @@ public class SDLActivity extends Activity {
         request.addTestDevice("C386F3830A9789C649098A817BF54C04"); //xawotihs's tablet
              
         // Initiate a generic request to load it with an ad
-        mAdView.loadAd(request);                
+        mAdView.loadAd(request);      	
+    }
+    // Setup
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        //Log.v("SDL", "onCreate()");
+        super.onCreate(savedInstanceState);
+        
+        // So we can call stuff from static callbacks
+        mSingleton = this;
+          
+        File file = new File(RES_FOLDER + RES_FILENAME);
+        if (file.exists()) {
+        	mainDisplay();
+        } else {
+        	FrameLayout _videoLayout = new FrameLayout(this);
+        	setContentView(_videoLayout,
+                new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
+        	startDownload();        	
+        }
+             
     }
 
     // Events
@@ -299,6 +376,90 @@ public class SDLActivity extends Activity {
             mAudioTrack = null;
         }
     }
+    
+    
+    class DownloadFileAsync extends AsyncTask<String, String, String> {
+    	@Override
+    	protected void onPreExecute() {
+    		super.onPreExecute();
+    		showDialog(DIALOG_DOWNLOAD_PROGRESS);   		
+    	}
+
+    	@Override
+    	protected String doInBackground(String... aurl) {
+    		int count;
+
+	    	try {
+	
+	    		//
+	    		// Prepare the sdcard folders in order to download the resource file
+	    		//
+	    		String state = Environment.getExternalStorageState();
+	    		if (! Environment.MEDIA_MOUNTED.equals(state)) {
+	    			mSingleton.downloadError("cannot write to SD Card, please check your sd card");
+	    			return null;
+	    		}
+	    		File resDirectory = new File(RES_FOLDER); //TODO use getExternalStorageDirectory() and update the C++ code
+	    		resDirectory.mkdirs(); 	    		
+	    		
+		    	URL url = new URL(aurl[0]);
+		    	URLConnection conexion = url.openConnection();
+		    	conexion.connect();
+		
+		    	int lenghtOfFile = conexion.getContentLength();
+		    	Log.d("ANDRO_ASYNC", "Length of file: " + lenghtOfFile);
+		
+		    	InputStream input = new BufferedInputStream(url.openStream());
+	    		// create a File object for the output file
+	    		File outputFile = new File(resDirectory, RES_FILENAME + ".tmp");
+
+		    	
+		    	OutputStream output = new FileOutputStream(outputFile);
+		
+		    	byte data[] = new byte[1024];
+		
+		    	long total = 0;
+	
+	    		while ((count = input.read(data)) != -1) {
+	    			total += count;
+	    			publishProgress(""+(int)((total*100)/lenghtOfFile));
+	    			output.write(data, 0, count);
+	    		}
+	
+	    		output.flush();
+	    		output.close();
+	    		input.close();
+	    	} catch (Exception e) {
+	    		mSingleton.downloadError("An error happened while downloading the resources. It could be that our server is temporarily down, that your device is not connected to a network, or that we cannot write to " + RES_FOLDER + ". Please check your phone settings and try again. For more help please go to http://wagic.net");
+	    	}
+	    	return null;
+    	}
+    	
+    	protected void onProgressUpdate(String... progress) {
+    		 Log.d("ANDRO_ASYNC",progress[0]);
+    		 mProgressDialog.setProgress(Integer.parseInt(progress[0]));
+    	}
+
+    	@Override
+    	protected void onPostExecute(String unused) {
+    		if (mErrorHappened) {
+    			dismissDialog(DIALOG_DOWNLOAD_PROGRESS); 
+    			showDialog(DIALOG_DOWNLOAD_ERROR);
+    			return;
+    		}
+    		//rename the temporary file into the final filename
+    		File preFile = new File(RES_FOLDER + RES_FILENAME + ".tmp");
+    		File postFile = new File(RES_FOLDER + RES_FILENAME);
+    		preFile.renameTo(postFile);
+    		
+    		dismissDialog(DIALOG_DOWNLOAD_PROGRESS); 
+    		//Start game;
+    		mSingleton.mainDisplay();
+    	}
+    }
+       
+    
+    
 }
 
 /**
@@ -673,7 +834,9 @@ class SDLSurface extends SurfaceView implements SurfaceHolder.Callback,
                                       event.values[1],
                                       event.values[2]);
         }
-    }
-
+    }    
 }
+
+
+
 
