@@ -166,57 +166,60 @@ void CardGui::Render()
         renderer->RenderQuad(extracostshadow.get(), actX + (actZ - 1) * 15, actY + (actZ - 1) * 15, actT, 28 * actZ / 16, 40 * actZ / 16);
     }
 
-    // Am I a parent of a selected card, or am I a parent and myself being selected?
-    bool isActiveConnectedParent = mHasFocus && card->childrenCards.size();
-    if (!isActiveConnectedParent)
+    if(game->connectRule)
     {
-        for (size_t i = 0; i < card->childrenCards.size(); ++i)
+        // Am I a parent of a selected card, or am I a parent and myself being selected?
+        bool isActiveConnectedParent = mHasFocus && card->childrenCards.size();
+        if (!isActiveConnectedParent)
         {
-            MTGCardInstance * child = card->childrenCards[i];
-            if (CardView* cv = dynamic_cast<CardView*>(child->view))
+            for (size_t i = 0; i < card->childrenCards.size(); ++i)
             {
-                if (cv->mHasFocus)
+                MTGCardInstance * child = card->childrenCards[i];
+                if (CardView* cv = dynamic_cast<CardView*>(child->view))
                 {
-                    isActiveConnectedParent = true;
-                    break;
+                    if (cv->mHasFocus)
+                    {
+                        isActiveConnectedParent = true;
+                        break;
+                    }
                 }
             }
         }
-    }
-    if (isActiveConnectedParent)
-    {
-        JQuadPtr white = card->getObserver()->getResourceManager()->GetQuad("white");
-        if(white)
+        if (isActiveConnectedParent)
         {
-            white->SetColor(ARGB(255,230,50,50));
-            renderer->RenderQuad(white.get(), actX, actY, actT, 30 * actZ / 16, 42 * actZ / 16);
+            JQuadPtr white = card->getObserver()->getResourceManager()->GetQuad("white");
+            if(white)
+            {
+                white->SetColor(ARGB(255,230,50,50));
+                renderer->RenderQuad(white.get(), actX, actY, actT, 30 * actZ / 16, 42 * actZ / 16);
+            }
         }
-    }
 
-    // Am I a child of a selected card, or am I a child and myself being selected?
-    bool isActiveConnectedChild = mHasFocus && card->parentCards.size();
-    if (!isActiveConnectedChild)
-    {
-        for (size_t i = 0; i < card->parentCards.size(); ++i)
+        // Am I a child of a selected card, or am I a child and myself being selected?
+        bool isActiveConnectedChild = mHasFocus && card->parentCards.size();
+        if (!isActiveConnectedChild)
         {
-            MTGCardInstance * parent = card->parentCards[i];
-            if (CardView* cv = dynamic_cast<CardView*>(parent->view))
+            for (size_t i = 0; i < card->parentCards.size(); ++i)
             {
-                if (cv->mHasFocus)
+                MTGCardInstance * parent = card->parentCards[i];
+                if (CardView* cv = dynamic_cast<CardView*>(parent->view))
                 {
-                    isActiveConnectedChild = true;
-                    break;
+                    if (cv->mHasFocus)
+                    {
+                        isActiveConnectedChild = true;
+                        break;
+                    }
                 }
             }
         }
-    }
-    if (isActiveConnectedChild)
-    {
-        JQuadPtr white = card->getObserver()->getResourceManager()->GetQuad("white");
-        if(white)
+        if (isActiveConnectedChild)
         {
-        white->SetColor(ARGB(255,0,0,255));
-        renderer->RenderQuad(white.get(), actX, actY, actT, 30 * actZ / 16, 42 * actZ / 16);
+            JQuadPtr white = card->getObserver()->getResourceManager()->GetQuad("white");
+            if(white)
+            {
+                white->SetColor(ARGB(255,0,0,255));
+                renderer->RenderQuad(white.get(), actX, actY, actT, 30 * actZ / 16, 42 * actZ / 16);
+            }
         }
     }
 
