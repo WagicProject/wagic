@@ -13,8 +13,6 @@
 
 JGE* JGuiObject::mEngine = NULL;
 
-JGE* JGuiController::mEngine = NULL;
-
 JGuiObject::JGuiObject(int id) :
     mId(id)
 {
@@ -55,11 +53,9 @@ ostream& operator<<(ostream &out, const JGuiObject &j)
     return j.toString(out);
 }
 
-JGuiController::JGuiController(int id, JGuiListener* listener) :
-    mId(id), mListener(listener)
+JGuiController::JGuiController(JGE* jge, int id, JGuiListener* listener) :
+    mEngine(jge), mId(id), mListener(listener)
 {
-    mEngine = JGE::GetInstance();
-
     mBg = NULL;
     mShadingBg = NULL;
 
@@ -189,10 +185,14 @@ bool JGuiController::CheckUserInput(JButton key)
 void JGuiController::Update(float dt)
 {
     for (int i = 0; i < mCount; i++)
-        if (mObjects[i] != NULL) mObjects[i]->Update(dt);
+        if (mObjects[i] != NULL)
+            mObjects[i]->Update(dt);
 
-    JButton key = mEngine->ReadButton();
-    CheckUserInput(key);
+    if(mEngine)
+    {
+        JButton key = mEngine->ReadButton();
+        CheckUserInput(key);
+    }
 }
 
 void JGuiController::Add(JGuiObject* ctrl)

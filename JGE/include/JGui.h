@@ -73,7 +73,7 @@ public:
 class JGuiController
 {
 protected:
-    static JGE* mEngine;
+    JGE* mEngine;
 
     int mId;
     bool mActive;
@@ -101,7 +101,7 @@ public:
     vector<JGuiObject*> mObjects;
     int mCount;
 
-    JGuiController(int id, JGuiListener* listener);
+    JGuiController(JGE* jge, int id, JGuiListener* listener);
     ~JGuiController();
 
     virtual void Render();
