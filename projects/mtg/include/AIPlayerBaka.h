@@ -112,8 +112,7 @@ class AIPlayerBaka: public AIPlayer{
         INFO_CREATURESATTACKINGPOWER
     };
 
-     vector<MTGAbility*>gotPayments;
-    int deckId;
+    vector<MTGAbility*>gotPayments;
     AIPlayerBaka(GameObserver *observer, string deckFile, string deckfileSmall, string avatarFile, MTGDeck * deck = NULL);
     virtual int Act(float dt);
     void initTimer();

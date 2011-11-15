@@ -28,6 +28,7 @@ public:
         MODE_AI
     };
 
+    int deckId;
     string mAvatarName;
     Mode playMode;
     bool nomaxhandsize;

@@ -4,6 +4,8 @@
 #include "GameObserver.h"
 #include "DeckStats.h"
 #include "ManaCost.h"
+#include "DeckMetaData.h"
+#include "DeckManager.h"
 
 #ifdef TESTSUITE
 #include "TestSuiteAI.h"
@@ -240,8 +242,9 @@ bool Player::parseLine(const string& s)
             return true;
         }
         else if (areaS.compare("avatar") == 0)
-        {   // We don't load directly for now
+        {
             mAvatarName = s.substr(limiter + 1);
+            loadAvatar(mAvatarName, "bakaAvatar");
             return true;
         }
         else if (areaS.compare("customphasering") == 0)
@@ -257,6 +260,27 @@ bool Player::parseLine(const string& s)
         else if (areaS.compare("deckfile") == 0)
         {
             deckFile = s.substr(limiter + 1);
+            if(playMode == Player::MODE_AI)
+            {
+                sscanf(deckFile.c_str(), "ai/baka/deck%i.txt", &deckId);
+
+                int deckSetting = EASY;
+                if ( opponent() )
+                {
+                    bool isOpponentAI = opponent()->isAI() == 1;
+                    DeckMetaData *meta = DeckManager::GetInstance()->getDeckMetaDataByFilename( opponent()->deckFile, isOpponentAI);
+                    if ( meta && meta->getVictoryPercentage() >= 65)
+                        deckSetting = HARD;
+                }
+
+                SAFE_DELETE(mDeck);
+                SAFE_DELETE(game);
+                mDeck = NEW MTGDeck(deckFile.c_str(), MTGCollection(),0, deckSetting);
+                game = NEW MTGPlayerCards(mDeck);
+                // This automatically sets the observer pointer on all the deck cards
+                game->setOwner(this);
+                deckName = mDeck->meta_name;
+            }
             return true;
         }
         else if (areaS.compare("deckfilesmall") == 0)

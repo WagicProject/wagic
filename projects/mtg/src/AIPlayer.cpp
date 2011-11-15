@@ -249,7 +249,7 @@ AIPlayer * AIPlayerFactory::createAIPlayer(GameObserver *observer, MTGAllCards *
             }
             if (!nbdecks)
                 return NULL;
-            deckid = 1 + observer->getRandomGenerator()->random() % (nbdecks);
+            deckid = 1 + WRand() % (nbdecks);
         }
         sprintf(deckFile, "ai/baka/deck%i.txt", deckid);
         DeckMetaData *aiMeta = DeckManager::GetInstance()->getDeckMetaDataByFilename( deckFile, true);
