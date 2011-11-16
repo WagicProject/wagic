@@ -452,7 +452,8 @@ TestSuite::~TestSuite()
   mProcessing = false;
   while(mWorkerThread.size())
   {
-    mWorkerThread.back().join();
+    mWorkerThread.back()->join();
+    SAFE_DELETE(mWorkerThread.back());
     mWorkerThread.pop_back();
   }
 
@@ -545,13 +546,18 @@ int TestSuite::loadNext()
     if(!mProcessing)
     {   // "I don't like to wait" mode
         mProcessing = true;
-        mWorkerThread.clear();
+        while(mWorkerThread.size())
+        {
+          mWorkerThread.back()->join();
+          SAFE_DELETE(mWorkerThread.back());
+          mWorkerThread.pop_back();
+        }
         size_t thread_count = 1;
 #ifdef QT_CONFIG
         thread_count = QThread::idealThreadCount();
 #endif
         for(size_t i = 0; i < (thread_count-1); i++)
-            mWorkerThread.push_back(boost::thread(ThreadProc, this));
+            mWorkerThread.push_back(new boost::thread(ThreadProc, this));
     }
 
     cleanup();

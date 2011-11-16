@@ -81,7 +81,7 @@ private:
     string files[1024];
 
     void cleanup();
-    vector<boost::thread> mWorkerThread;
+    vector<boost::thread*> mWorkerThread;
     Rules* mRules;
     bool mProcessing;
 
