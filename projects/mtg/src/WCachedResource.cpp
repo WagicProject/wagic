@@ -349,7 +349,7 @@ bool WCachedParticles::Attempt(const string& filename, int submode, int & error)
     // we're actually trying to read more than the file size now, but it's no problem.
     // Note that this fix is only to avoid the largest problems, filling a structure
     // by directly reading a file, is really a bad idea ...
-    fileSys->ReadFile(&(particles->nEmission), sizeof(hgeParticleSystemInfo) - 4);
+    fileSys->ReadFile(&(particles->nEmission), sizeof(hgeParticleSystemInfo) - sizeof(void*));
     fileSys->CloseFile();
 
     particles->sprite = NULL;
