@@ -10,6 +10,7 @@ manapool:{5}{R}{G}{W}
 [DO]
 Resounding Roar
 choice 1
+choice 0
 Runeclaw Bear
 next
 next
