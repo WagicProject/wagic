@@ -544,7 +544,7 @@ int OrderedAIAction::getEfficiency()
             }
         }
     }
-    else if (AAProliferate * aap = dynamic_cast<AAProliferate *>(a))
+    else if (dynamic_cast<AAProliferate *>(a))
     {
         if (playerAbilityTarget && playerAbilityTarget != p)
         {
@@ -553,7 +553,7 @@ int OrderedAIAction::getEfficiency()
         else
             efficiency = 90;
     }
-    else if (AAAlterPoison * aaap = dynamic_cast<AAAlterPoison *>(a))
+    else if (dynamic_cast<AAAlterPoison *>(a))
     {
         if (playerAbilityTarget && playerAbilityTarget != p)
         {
@@ -1912,7 +1912,6 @@ int AIPlayerBaka::computeActions()
     }
     else
     {
-        cout << "my turn" << endl;
         switch (observer->getCurrentGamePhase())
         {
         case Constants::MTG_PHASE_UPKEEP:
