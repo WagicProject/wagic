@@ -77,11 +77,6 @@ public:
     virtual void Render()
     {
     }
-
-    int typeAsTarget()
-    {
-        return TARGET_STACKACTION;
-    }
     
     Interruptible(GameObserver* observer, int inID = 0, bool hasFocus = false)
         : PlayGuiObject(40, x, y, inID, hasFocus), Targetable(observer), state(NOT_RESOLVED), display(0), source(NULL)
@@ -139,7 +134,7 @@ public:
     Interruptible * getNextInterruptible(Interruptible * previous, int type);
     Spell * getNextSpellTarget(Spell * previous = 0);
     Damage * getNextDamageTarget(Damage * previous = 0);
-    Targetable * getNextTarget(Targetable * previous = 0, int type = -1);
+    Targetable * getNextTarget(Targetable * previous = 0);
     int getNbTargets();
 };
 

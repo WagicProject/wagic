@@ -39,14 +39,14 @@ int ActionElement::getActivity()
 
 int ActionElement::isReactingToTargetClick(Targetable * object)
 {
-    if (object && object->typeAsTarget() == TARGET_CARD)
-        return isReactingToClick((MTGCardInstance *) object);
+    if (MTGCardInstance * cObject = dynamic_cast<MTGCardInstance *>(object))
+        return isReactingToClick(cObject);
     return 0;
 }
 
 int ActionElement::reactToTargetClick(Targetable * object)
 {
-    if (object->typeAsTarget() == TARGET_CARD)
-        return reactToClick((MTGCardInstance *) object);
+    if (MTGCardInstance * cObject = dynamic_cast<MTGCardInstance *>(object))
+        return reactToClick(cObject);
     return 0;
 }

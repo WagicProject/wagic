@@ -98,24 +98,17 @@ int AIAction::clickMultiAct(vector<Targetable*>& actionTargets)
         }
         ite++;
     }
-    owner->getRandomGenerator()->random_shuffle(actionTargets.begin(), actionTargets.end());
+
     //shuffle to make it less predictable, otherwise ai will always seem to target from right to left. making it very obvious.
-    for(int k = 0;k < int(actionTargets.size());k++)
+    owner->getRandomGenerator()->random_shuffle(actionTargets.begin(), actionTargets.end());
+
+    for(int k = 0 ;k < int(actionTargets.size()) && k < tc->maxtargets; k++)
     {
-        int type = actionTargets[k]->typeAsTarget();
-        switch (type)
+        if (MTGCardInstance * card = dynamic_cast<MTGCardInstance *>(actionTargets[k]))
         {
-        case TARGET_CARD:
-            {
-                if(k < tc->maxtargets)
-                {
-                    MTGCardInstance * card = ((MTGCardInstance *) actionTargets[k]);
-                    if(k+1 == int(actionTargets.size()))
-                        tc->done = true;
-                    g->cardClick(card);
-                }
-            }
-            break;
+            if(k+1 == int(actionTargets.size()))
+                tc->done = true;
+            g->cardClick(card);
         }
     }
     tc->attemptsToFill++;
@@ -158,16 +151,15 @@ int AIPlayer::clickMultiTarget(TargetChooser * tc, vector<Targetable*>& potentia
     vector<Targetable*>::iterator ite = potentialTargets.begin();
     while(ite != potentialTargets.end())
     {
-        MTGCardInstance * card = ((MTGCardInstance *) (*ite));
-        Player * pTarget = (Player*)(*ite);
-        if(card && card == (MTGCardInstance*)tc->source)//if the source is part of the targetting deal with it first. second click is "confirming click".
+        MTGCardInstance * card = dynamic_cast<MTGCardInstance *>(*ite);
+        if(card && card == tc->source)//if the source is part of the targetting deal with it first. second click is "confirming click".
         {
             clickstream.push(NEW AIAction(this, card));
             DebugTrace("Ai clicked source as a target: " << (card ? card->name : "None" ) << endl );
             ite = potentialTargets.erase(ite);
             continue;
         }
-        if(pTarget && pTarget->typeAsTarget() == TARGET_PLAYER)
+        else if(Player * pTarget = dynamic_cast<Player *>(*ite))
         {
             clickstream.push(NEW AIAction(this, pTarget));
             DebugTrace("Ai clicked Player as a target");
@@ -192,26 +184,18 @@ int AIPlayer::clickMultiTarget(TargetChooser * tc, vector<Targetable*>& potentia
 
 int AIPlayer::clickSingleTarget(TargetChooser * tc, vector<Targetable*>& potentialTargets, MTGCardInstance * chosenCard)
 {
-        int i = randomGenerator.random() % potentialTargets.size();
-        int type = potentialTargets[i]->typeAsTarget();
-        switch (type)
-        {
-        case TARGET_CARD:
-            {
-                if(!chosenCard)
-                {
-                    MTGCardInstance * card = ((MTGCardInstance *) potentialTargets[i]);
-                    clickstream.push(NEW AIAction(this, card));
-                }
-                break;
-            }
-        case TARGET_PLAYER:
-            {
-                Player * player = ((Player *) potentialTargets[i]);
-                clickstream.push(NEW AIAction(this, player));
-                break;
-            }
-        }
+    int i = randomGenerator.random() % potentialTargets.size();
+
+    if(MTGCardInstance * card = dynamic_cast<MTGCardInstance *>(potentialTargets[i]))
+    {
+        if (!chosenCard)
+            clickstream.push(NEW AIAction(this, card));
+    }
+    else if(Player * player = dynamic_cast<Player *>(potentialTargets[i]))
+    {
+        clickstream.push(NEW AIAction(this, player));
+    }
+
     return 1;
 }
 

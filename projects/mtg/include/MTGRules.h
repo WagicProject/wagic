@@ -250,7 +250,7 @@ class MTGVampireRule: public PermanentAbility
 {
 public:
     MTGVampireRule(GameObserver* observer, int _id);
-    map<MTGCardInstance*,vector<MTGCardInstance*> > victems;
+    map<MTGCardInstance*,vector<MTGCardInstance*> > victims;
     int receiveEvent(WEvent * event);
     virtual ostream& toString(ostream& out) const;
     virtual MTGVampireRule * clone() const;

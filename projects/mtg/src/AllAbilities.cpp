@@ -568,19 +568,23 @@ int AAProliferate::resolve()
         return 0;
 
     vector<MTGAbility*>pcounters;
-    if(target->typeAsTarget() == TARGET_PLAYER && ((Player*)target)->poisonCount && target != source->controller())
+    
+    Player * pTarget = dynamic_cast<Player *>(target);
+    MTGCardInstance * cTarget = dynamic_cast<MTGCardInstance *>(target);
+
+    if(pTarget && pTarget->poisonCount && pTarget != source->controller())
     {
         MTGAbility * a = NEW AAAlterPoison(game, game->mLayers->actionLayer()->getMaxId(), source, target, 1, NULL);
         a->oneShot = true;
         pcounters.push_back(a);
     }
-    else if (target->typeAsTarget() == TARGET_CARD && ((MTGCardInstance*)target)->counters)
+    else if (cTarget && cTarget->counters)
     {
-        Counters * counters = ((MTGCardInstance*)target)->counters;
+        Counters * counters = cTarget->counters;
         for(size_t i = 0; i < counters->counters.size(); ++i)
         {
             Counter * counter = counters->counters[i];
-            MTGAbility * a = NEW AACounter(game, game->mLayers->actionLayer()->getMaxId(), source, (MTGCardInstance*)target,"", counter->name.c_str(), counter->power, counter->toughness, 1,0);
+            MTGAbility * a = NEW AACounter(game, game->mLayers->actionLayer()->getMaxId(), source, cTarget,"", counter->name.c_str(), counter->power, counter->toughness, 1,0);
             a->oneShot = true;
             pcounters.push_back(a);
         }
@@ -651,13 +655,13 @@ int AAFizzler::resolve()
 		//ai is casting a spell from its hand to fizzle.
 		target = stack->getActionElementFromCard(source->target);
 	}
-	else if(target->typeAsTarget() == TARGET_CARD)
+	else if(MTGCardInstance * cTarget = dynamic_cast<MTGCardInstance *>(target))
 	{
 		//ai targeted using an ability on a card to fizzle.
-		target = stack->getActionElementFromCard((MTGCardInstance*)target);
+		target = stack->getActionElementFromCard(cTarget);
 	}
 	Spell * sTarget = (Spell *) target;
-	MTGCardInstance* sCard = (MTGCardInstance*)sTarget->source;
+	MTGCardInstance* sCard = sTarget->source;
 	if(!sCard || !sTarget || sCard->has(Constants::NOFIZZLE))
 		return 0;
 	stack->Fizzle(sTarget);
@@ -1062,7 +1066,7 @@ int AADynamic::resolve()
         _target = OriginalSrc->controller()->opponent();//looking at controllers opponent for amount
     if(!_target)
         return 0;
-    while (_target->typeAsTarget() == TARGET_CARD && ((MTGCardInstance *)_target)->next)
+    while (dynamic_cast<MTGCardInstance *>(_target) && ((MTGCardInstance *)_target)->next)
         _target = ((MTGCardInstance *)_target)->next;
 
     //find the amount variables that will be used
@@ -1178,7 +1182,7 @@ int AADynamic::resolve()
     }
     if (_target)
     {
-        while (_target->typeAsTarget() == TARGET_CARD && ((MTGCardInstance *)_target)->next)
+        while (dynamic_cast<MTGCardInstance *>(_target) && ((MTGCardInstance *)_target)->next)
             _target = ((MTGCardInstance *)_target)->next;
         if(sourceamount < 0)
             sourceamount = 0;
@@ -1306,7 +1310,7 @@ int AADynamic::resolve()
             }
         case DYNAMIC_ABILITY_EFFECT_COUNTERSONEONE:
             {
-                if(_target->typeAsTarget() != TARGET_CARD)
+                if(!dynamic_cast<MTGCardInstance *>(_target))
                     _target = OriginalSrc;
                 for(int j = 0;j < sourceamount;j++)
                     ((MTGCardInstance*)_target)->counters->addCounter(1,1);
@@ -2168,8 +2172,10 @@ int IfThenAbility::resolve()
         MTGAbility * a1 = delayedAbility->clone();
         if (!a1)
             return 0;
-        if(a1->target && a1->target->typeAsTarget() != TARGET_PLAYER)
-        a1->target = aTarget;
+
+        if(a1->target && !dynamic_cast<Player *>(a1->target))
+            a1->target = aTarget;
+        
         if(a1->oneShot)
         {
             a1->resolve();

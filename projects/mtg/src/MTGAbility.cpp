@@ -1043,7 +1043,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             if (amp)
             {
                 amp->setCost(cost);
-                if (cost && card->typeAsTarget() == TARGET_CARD)
+                if (cost)
                     cost->setExtraCostsAction(a, card);
                 amp->oneShot = 0;
                 amp->tap = doTap;
@@ -3620,10 +3620,13 @@ Player * MTGAbility::getPlayerFromTarget(Targetable * target)
     if (!target)
         return NULL;
 
-    if (target->typeAsTarget() == TARGET_CARD)
-        return ((MTGCardInstance *) target)->controller();
+    if (MTGCardInstance * cTarget = dynamic_cast<MTGCardInstance *>(target))
+        return cTarget->controller();
 
-    return (Player *) target;
+    if (Player * cPlayer = dynamic_cast<Player *>(target))
+        return cPlayer;
+
+    return ((Interruptible *) target)->source->controller();
 }
 
 Player * MTGAbility::getPlayerFromDamageable(Damageable * target)
@@ -3770,8 +3773,8 @@ int ActivatedAbility::reactToTargetClick(Targetable * object)
     ManaCost * cost = getCost();
     if (cost)
     {
-        if (object->typeAsTarget() == TARGET_CARD)
-            cost->setExtraCostsAction(this, (MTGCardInstance *) object);
+        if (MTGCardInstance * cObject = dynamic_cast<MTGCardInstance *>(object))
+            cost->setExtraCostsAction(this, cObject);
         if (!cost->isExtraPaymentSet())
         {
             game->mExtraPayment = cost->extraCosts;
@@ -3891,8 +3894,9 @@ TargetAbility::TargetAbility(GameObserver* observer, int id, MTGCardInstance * c
 
 int TargetAbility::reactToTargetClick(Targetable * object)
 {
-    if (object->typeAsTarget() == TARGET_CARD)
-        return reactToClick((MTGCardInstance *) object);
+    if (MTGCardInstance * cObject = dynamic_cast<MTGCardInstance *>(object))
+        return reactToClick(cObject);
+
     if (waitingForAnswer)
     {
         if (tc->toggleTarget(object) == TARGET_OK_FULL)
@@ -3976,7 +3980,7 @@ int TargetAbility::resolve()
 
         ability->target = t;
         //do nothing if the target controller responded by phasing out the target.
-        if (t->typeAsTarget() == TARGET_CARD && ((MTGCardInstance*)t)->isPhased)
+        if (dynamic_cast<MTGCardInstance *>(t) && ((MTGCardInstance*)t)->isPhased)
             return 0;
         if (ability->oneShot)
         {
@@ -4575,21 +4579,12 @@ int AManaProducer::isReactingToClick(MTGCardInstance * _card, ManaCost * mana)
 int AManaProducer::resolve()
 {
     Targetable * _target = getTarget();
-    Player * player;
-    if (_target)
-    {
-        if (_target->typeAsTarget() == TARGET_CARD)
-        {
-            player = ((MTGCardInstance *) _target)->controller();
-        }
-        else
-        {
-            player = (Player *) _target;
-        }
-        player->getManaPool()->add(output, source);
-        return 1;
-    }
-    return 0;
+    Player * player = getPlayerFromTarget(_target);
+    if (!player)
+        return 0;
+
+    player->getManaPool()->add(output, source);
+    return 1;
 }
 
 int AManaProducer::reactToClick(MTGCardInstance * _card)
@@ -4672,19 +4667,7 @@ Targetable * AbilityTP::getTarget()
     switch (who)
     {
     case TargetChooser::TARGET_CONTROLLER:
-        if (target)
-        {
-            switch (target->typeAsTarget())
-            {
-            case TARGET_CARD:
-                return ((MTGCardInstance *) target)->controller();
-            case TARGET_STACKACTION:
-                return ((Interruptible *) target)->source->controller();
-            default:
-                return (Player *) target;
-            }
-        }
-        return NULL;
+        return getPlayerFromTarget(target);
     case TargetChooser::CONTROLLER:
         return source->controller();
     case TargetChooser::OPPONENT:
@@ -4709,19 +4692,7 @@ Targetable * ActivatedAbilityTP::getTarget()
     switch (who)
     {
     case TargetChooser::TARGET_CONTROLLER:
-        if (target)
-        {
-            switch (target->typeAsTarget())
-            {
-            case TARGET_CARD:
-                return ((MTGCardInstance *) target)->controller();
-            case TARGET_STACKACTION:
-                return ((Interruptible *) target)->source->controller();
-            default:
-                return (Player *) target;
-            }
-        }
-        return NULL;
+        return getPlayerFromTarget(target);
     case TargetChooser::CONTROLLER:
         return source->controller();
     case TargetChooser::OPPONENT:
@@ -4747,19 +4718,7 @@ Targetable * InstantAbilityTP::getTarget()
     switch (who)
     {
     case TargetChooser::TARGET_CONTROLLER:
-        if (target)
-        {
-            switch (target->typeAsTarget())
-            {
-            case TARGET_CARD:
-                return ((MTGCardInstance *) target)->controller();
-            case TARGET_STACKACTION:
-                return ((Interruptible *) target)->source->controller();
-            default:
-                return (Player *) target;
-            }
-        }
-        return NULL;
+        return getPlayerFromTarget(target);
     case TargetChooser::CONTROLLER:
         return source->controller();
     case TargetChooser::OPPONENT:

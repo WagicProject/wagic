@@ -24,7 +24,7 @@ int TargetsList::addTarget(Targetable * target)
         if(!tc || (tc && tc->maxtargets == 1))
         {
             //because this was originally coded with targets as an array
-            //we have to add this condiational to insure that cards with single target effects
+            //we have to add this conditional to insure that cards with single target effects
             //and abilities that seek the nextcardtarget still work correctly.
             targets.clear();
             targets.push_back(target);
@@ -76,46 +76,66 @@ int TargetsList::toggleTarget(Targetable * target)
     }
 }
 
-Targetable * TargetsList::getNextTarget(Targetable * previous, int type)
-{
-    int found = 0;
-    if (!previous) found = 1;
-    for (size_t i = 0; i < targets.size(); i++)
-    {
-        if (found && (type == -1 || targets[i]->typeAsTarget() == type))
-        {
-            return targets[i];
-        }
-        if (targets[i] == previous) found = 1;
+size_t TargetsList::iterateTarget(Targetable * previous){
+    if (!previous)
+        return 0;
+
+    for (size_t i = 0; i < targets.size(); i++) {
+        if (targets[i] == previous)
+            return i + 1;
     }
+
+    return targets.size() + 1;
+
+}
+
+Targetable * TargetsList::getNextTarget(Targetable * previous)
+{
+    size_t nextIndex = iterateTarget(previous);
+
+    if (nextIndex < targets.size())
+        return targets[nextIndex];
+
     return NULL;
 }
 
 MTGCardInstance * TargetsList::getNextCardTarget(MTGCardInstance * previous)
 {
-    return ((MTGCardInstance *) getNextTarget(previous, TARGET_CARD));
+    size_t nextIndex = iterateTarget(previous);
+    for (size_t i = nextIndex; i < targets.size(); ++i)
+    {
+        if (MTGCardInstance * c = dynamic_cast<MTGCardInstance *>(targets[i]))
+            return c;
+    }
+
+    return NULL;
 }
 
 Player * TargetsList::getNextPlayerTarget(Player * previous)
 {
-    return ((Player *) getNextTarget(previous, TARGET_PLAYER));
+    size_t nextIndex = iterateTarget(previous);
+    for (size_t i = nextIndex; i < targets.size(); ++i)
+    {
+        if (Player * p = dynamic_cast<Player *>(targets[i]))
+            return p;
+    }
+
+    return NULL;
 }
 
 Interruptible * TargetsList::getNextInterruptible(Interruptible * previous, int type)
 {
-    int found = 0;
-    if (!previous) found = 1;
-    for (size_t i = 0; i < targets.size(); i++)
+    size_t nextIndex = iterateTarget(previous);
+
+    for (size_t i = nextIndex; i < targets.size(); i++)
     {
-        if (found && targets[i]->typeAsTarget() == TARGET_STACKACTION)
+        if (Interruptible * action = dynamic_cast<Interruptible *>(targets[i]))
         {
-            Interruptible * action = (Interruptible *) targets[i];
             if (action->type == type)
             {
                 return action;
             }
         }
-        if (targets[i] == previous) found = 1;
     }
     return NULL;
 }
@@ -135,32 +155,17 @@ Damage * TargetsList::getNextDamageTarget(Damage * previous)
 
 Damageable * TargetsList::getNextDamageableTarget(Damageable * previous)
 {
-    int found = 0;
-    if (!previous) found = 1;
-    for (size_t i = 0; i < targets.size(); i++)
+    size_t nextIndex = iterateTarget(previous);
+    for (size_t i = nextIndex; i < targets.size(); i++)
     {
 
-        if (targets[i]->typeAsTarget() == TARGET_PLAYER)
+        if (Player * pTarget = dynamic_cast<Player *>(targets[i]))
         {
-            if (found)
-            {
-                return ((Player *) targets[i]);
-            }
-            else
-            {
-                if ((Player *) targets[i] == previous) found = 1;
-            }
+            return pTarget;
         }
-        else if (targets[i]->typeAsTarget() == TARGET_CARD)
+        else if (MTGCardInstance * cTarget = dynamic_cast<MTGCardInstance *>(targets[i]))
         {
-            if (found)
-            {
-                return ((MTGCardInstance *) targets[i]);
-            }
-            else
-            {
-                if ((MTGCardInstance *) targets[i] == previous) found = 1;
-            }
+            return cTarget;
         }
     }
     return NULL;

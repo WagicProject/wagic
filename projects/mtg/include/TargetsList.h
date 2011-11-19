@@ -14,6 +14,8 @@ using std::vector;
 
 class TargetsList
 {
+private:
+    size_t iterateTarget(Targetable * previous);
 public:
     TargetsList();
     TargetsList(Targetable * _targets[], int nbtargets);
@@ -28,7 +30,7 @@ public:
     Interruptible * getNextInterruptible(Interruptible * previous, int type);
     Spell * getNextSpellTarget(Spell * previous = 0);
     Damage * getNextDamageTarget(Damage * previous = 0);
-    Targetable * getNextTarget(Targetable * previous = 0, int type = -1);
+    Targetable * getNextTarget(Targetable * previous = 0);
     void initTargets()
     {
         targets.clear();

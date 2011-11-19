@@ -1877,52 +1877,53 @@ PermanentAbility(observer, _id)
 
 int MTGVampireRule::receiveEvent(WEvent * event)
 {
-    WEventDamage * e = dynamic_cast<WEventDamage *> (event);
-    WEventZoneChange * z = dynamic_cast<WEventZoneChange *> (event);
-    WEventPhaseChange * pe = dynamic_cast<WEventPhaseChange*>(event);
-    if (e)
+    if (WEventDamage * e = dynamic_cast<WEventDamage *> (event))
     {
         if(!e->damage->damage)
             return 0;
         if (!e->damage->target) 
             return 0;
-        if(e->damage->target->typeAsTarget() != TARGET_CARD)
+
+        MTGCardInstance * newVictim = dynamic_cast<MTGCardInstance*>(e->damage->target);
+        if(!newVictim)
             return 0;
-        MTGCardInstance * newVictem = (MTGCardInstance*)(e->damage->target);
+        
         MTGCardInstance * vampire = (MTGCardInstance*)(e->damage->source);
 
-        victems[newVictem].push_back(vampire);
+        victims[newVictim].push_back(vampire);
 
     }
-    else if (z)
+    else if ( WEventZoneChange * z = dynamic_cast<WEventZoneChange *> (event))
     {
         MTGCardInstance * card = z->card->previous;
-        if(card && victems[card].empty())
+        if(card && victims[card].empty())
             return 0;
-        std::sort(victems[card].begin(), victems[card].end());
-        victems[card].erase(std::unique(victems[card].begin(), victems[card].end()), victems[card].end());
+
         //sort and remove duplicates, we only want one event of a vampire damaging a card stored per victem.
-        for(unsigned int w = 0;w < victems[card].size();w++)
+        std::sort(victims[card].begin(), victims[card].end());
+        victims[card].erase(std::unique(victims[card].begin(), victims[card].end()), victims[card].end());
+
+        for(unsigned int w = 0;w < victims[card].size();w++)
         {
-            if(victems[card].at(w) == NULL) 
+            if(victims[card].at(w) == NULL) 
                 continue;
             Player * p = card->controller();
             if (z->from == p->game->inPlay && z->to == p->game->graveyard)
             {
                 if(card == z->card->previous)
                 {
-                    WEvent * e = NEW WEventVampire(card,victems[card].at(w),card);
+                    WEvent * e = NEW WEventVampire(card,victims[card].at(w),card);
                     game->receiveEvent(e);
                 }
             }
         }
         return 0;
     }
-    else if (pe)
+    else if (WEventPhaseChange * pe = dynamic_cast<WEventPhaseChange*>(event))
     {
         if( pe->from->id == Constants::MTG_PHASE_ENDOFTURN)
         {
-            victems.clear();
+            victims.clear();
         }
     }
     return 0;

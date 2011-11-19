@@ -148,8 +148,7 @@ void StackAbility::Render()
             _target = t;
     }
     Damageable * target = NULL;
-    if (_target != ability->source && (_target->typeAsTarget() == TARGET_CARD || _target->typeAsTarget()
-        == TARGET_PLAYER))
+    if (_target != ability->source && (dynamic_cast<MTGCardInstance *>(_target) || dynamic_cast<Player *>(_target)))
     {
         target = (Damageable *) _target;
     }
@@ -346,11 +345,11 @@ Damage * Spell::getNextDamageTarget(Damage * previous)
         return NULL;
     return tc->getNextDamageTarget(previous);
 }
-Targetable * Spell::getNextTarget(Targetable * previous, int type)
+Targetable * Spell::getNextTarget(Targetable * previous)
 {
     if (!tc)
         return NULL;
-    return tc->getNextTarget(previous, type);
+    return tc->getNextTarget(previous);
 }
 
 int Spell::getNbTargets()

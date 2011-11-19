@@ -467,16 +467,17 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                     size_t start = attribute.find("share!");
                     size_t end = attribute.rfind("!");
                     string CDtype = attribute.substr(start + 6,end - start);
-                    if( card && card->isSpell() && card->backupTargets.size() && card->backupTargets[0]->typeAsTarget() == TARGET_STACKACTION)
+                    
+                    if( card && card->isSpell() && card->backupTargets.size())
                     {
-                    //spells always store their targets in :targets[]
-                    //however they are all erased as the spell resolves
-                    //added a array to store these backups incase theyre needed
-                    //again for effects such as these.
-                        Spell * spell;
-                        spell = (Spell*)card->backupTargets[0];
-                        if(spell)
-                        card->target = spell->source;
+                        if (Spell * targetSpell = dynamic_cast<Spell *>(card->backupTargets[0]))
+                        {
+                            //spells always store their targets in :targets[]
+                            //however they are all erased as the spell resolves
+                            //added a array to store these backups incase theyre needed
+                            //again for effects such as these.
+                            card->target = targetSpell->source;
+                        }
                     }
                     if( CDtype.find("name") != string::npos )
                     {
@@ -715,9 +716,8 @@ TargetChooser::TargetChooser(GameObserver *observer, MTGCardInstance * card, int
 bool TargetChooser::canTarget(Targetable * target,bool withoutProtections)
 {
     if (!target) return false;
-    if (target->typeAsTarget() == TARGET_CARD)
+    if (MTGCardInstance * card = dynamic_cast<MTGCardInstance *>(target))
     {
-        MTGCardInstance * card = (MTGCardInstance *) target;
         if (other)
         {
             MTGCardInstance * tempcard = card;
@@ -747,7 +747,9 @@ bool TargetChooser::canTarget(Targetable * target,bool withoutProtections)
         }
         return true;
     }
-    else if (target->typeAsTarget() == TARGET_STACKACTION) return true;
+    else if (dynamic_cast<Interruptible *>(target))
+        return true;
+
     return false;
 }
 
@@ -875,10 +877,12 @@ CardTargetChooser::CardTargetChooser(GameObserver *observer, MTGCardInstance * _
 bool CardTargetChooser::canTarget(Targetable * target,bool withoutProtections)
 {
     if (!target) return false;
-    if (target->typeAsTarget() != TARGET_CARD) return false;
+
+    MTGCardInstance * card = dynamic_cast<MTGCardInstance *>(target);
+    if (!card) return false;
     if (!nbzones && !TargetChooser::canTarget(target,withoutProtections)) return false;
     if (nbzones && !TargetZoneChooser::canTarget(target,withoutProtections)) return false;
-    MTGCardInstance * card = (MTGCardInstance *) target;
+    
     while (card)
     {
         if (card == validTarget) return true;
@@ -953,9 +957,8 @@ void TypeTargetChooser::addType(int type)
 bool TypeTargetChooser::canTarget(Targetable * target,bool withoutProtections)
 {
     if (!TargetZoneChooser::canTarget(target,withoutProtections)) return false;
-    if (target->typeAsTarget() == TARGET_CARD)
+    if (MTGCardInstance * card = dynamic_cast<MTGCardInstance *>(target))
     {
-        MTGCardInstance * card = (MTGCardInstance *) target;
         for (int i = 0; i < nbtypes; i++)
         {
 
@@ -967,9 +970,9 @@ bool TypeTargetChooser::canTarget(Targetable * target,bool withoutProtections)
         }
         return false;
     }
-    else if (target->typeAsTarget() == TARGET_STACKACTION)
+    else if (Interruptible * action = dynamic_cast<Interruptible *>(target))
     {
-        Interruptible * action = (Interruptible *) target;
+        
         if (action->type == ACTION_SPELL && action->state == NOT_RESOLVED)
         {
             Spell * spell = (Spell *) action;
@@ -1049,15 +1052,13 @@ DescriptorTargetChooser::DescriptorTargetChooser(GameObserver *observer, CardDes
 bool DescriptorTargetChooser::canTarget(Targetable * target,bool withoutProtections)
 {
     if (!TargetZoneChooser::canTarget(target,withoutProtections)) return false;
-    if (target->typeAsTarget() == TARGET_CARD)
+    if (MTGCardInstance * _target = dynamic_cast<MTGCardInstance *>(target))
     {
-        MTGCardInstance * _target = (MTGCardInstance *) target;
         if (cd->match(_target)) 
         return true;
     }
-    else if (target->typeAsTarget() == TARGET_STACKACTION)
+    else if (Interruptible * action = dynamic_cast<Interruptible *>(target))
     {
-        Interruptible * action = (Interruptible *) target;
         if (action->type == ACTION_SPELL && action->state == NOT_RESOLVED)
         {
             Spell * spell = (Spell *) action;
@@ -1126,22 +1127,19 @@ int TargetZoneChooser::setAllZones()
 bool TargetZoneChooser::canTarget(Targetable * target,bool withoutProtections)
 {
     if (!TargetChooser::canTarget(target,withoutProtections)) return false;
-    if (target->typeAsTarget() == TARGET_CARD)
+    if (MTGCardInstance * card = dynamic_cast<MTGCardInstance *>(target))
     {
-        MTGCardInstance * card = (MTGCardInstance *) target;
         for (int i = 0; i < nbzones; i++)
         {
             if (zones[i] == MTGGameZone::ALL_ZONES) return true;
             if (MTGGameZone::intToZone(observer, zones[i], source, card)->hasCard(card)) return true;
         }
     }
-    else if (target->typeAsTarget() == TARGET_STACKACTION)
+    else if (Spell * spell = dynamic_cast<Spell *>(target))
     {
-        DebugTrace("CHECKING INTERRUPTIBLE\n");
-        Interruptible * action = (Interruptible *) target;
-        if (action->type == ACTION_SPELL && action->state == NOT_RESOLVED)
+        DebugTrace("CHECKING Spell\n");
+        if (spell->state == NOT_RESOLVED)
         {
-            Spell * spell = (Spell *) action;
             MTGCardInstance * card = spell->source;
             for (int i = 0; i < nbzones; i++)
                 if (MTGGameZone::intToZone(Owner->getObserver(), zones[i], source, card)->hasCard(card)) return true;
@@ -1217,7 +1215,9 @@ bool PlayerTargetChooser::canTarget(Targetable * target,bool withoutProtections)
     if (source && targetter && (targetter->controller() == targetter->controller())
                     && (targetter->controller()->game->inPlay->hasAbility(Constants::PLAYERSHROUD)) && targetter->controller()
                     == target) return false;
-    return (target->typeAsTarget() == TARGET_PLAYER) && (!p || p == (Player*) target);
+
+    Player * pTarget = dynamic_cast<Player *>(target);
+    return (pTarget && (!p || p == pTarget));
 }
 
 PlayerTargetChooser* PlayerTargetChooser::clone() const
@@ -1251,7 +1251,7 @@ bool DamageableTargetChooser::canTarget(Targetable * target,bool withoutProtecti
     if (source && targetter && (targetter->controller() == targetter->controller())
                     && (targetter->controller()->game->inPlay->hasAbility(Constants::PLAYERSHROUD)) && targetter->controller()
                     == target) return false;
-    if (target->typeAsTarget() == TARGET_PLAYER)
+    if (dynamic_cast<Player *>(target))
     {
         return true;
     }
@@ -1284,16 +1284,14 @@ SpellTargetChooser::SpellTargetChooser(GameObserver *observer, MTGCardInstance *
 
 bool SpellTargetChooser::canTarget(Targetable * target,bool withoutProtections)
 {
-    MTGCardInstance * card = NULL;
-    if (target->typeAsTarget() == TARGET_STACKACTION)
+    Spell * spell = dynamic_cast<Spell *>(target);
+    if (!spell)
+        return false;
+
+    if (spell->state == NOT_RESOLVED)
     {
-        Interruptible * action = (Interruptible *) target;
-        if (action->type == ACTION_SPELL && action->state == NOT_RESOLVED)
-        {
-            Spell * spell = (Spell *) action;
-            card = spell->source;
-            if (card && (color == -1 || card->hasColor(color))) return true;
-        }
+        MTGCardInstance * card = spell->source;
+        if (card && (color == -1 || card->hasColor(color))) return true;
     }
 
     return false;
@@ -1329,19 +1327,16 @@ SpellOrPermanentTargetChooser::SpellOrPermanentTargetChooser(GameObserver *obser
 
 bool SpellOrPermanentTargetChooser::canTarget(Targetable * target,bool withoutProtections)
 {
-    MTGCardInstance * card = NULL;
-    if (target->typeAsTarget() == TARGET_CARD)
+
+    if (MTGCardInstance * card = dynamic_cast<MTGCardInstance *>(target))
     {
-        card = (MTGCardInstance *) target;
         if (color == -1 || card->hasColor(color)) return TargetZoneChooser::canTarget(target,withoutProtections);
     }
-    else if (target->typeAsTarget() == TARGET_STACKACTION)
+    else if (Spell * spell = dynamic_cast<Spell *>(target))
     {
-        Interruptible * action = (Interruptible *) target;
-        if (action->type == ACTION_SPELL && action->state == NOT_RESOLVED)
+        if (spell->state == NOT_RESOLVED)
         {
-            Spell * spell = (Spell *) action;
-            card = spell->source;
+            MTGCardInstance * card = spell->source;
             if (card && (color == -1 || card->hasColor(color))) return true;
         }
     }
@@ -1377,14 +1372,11 @@ DamageTargetChooser::DamageTargetChooser(GameObserver *observer, MTGCardInstance
 
 bool DamageTargetChooser::canTarget(Targetable * target,bool withoutProtections)
 {
-    MTGCardInstance * card = NULL;
-    if (target->typeAsTarget() == TARGET_STACKACTION)
+    if ( Damage * damage = dynamic_cast<Damage *>(target))
     {
-        Interruptible * action = (Interruptible *) target;
-        if (action->type == ACTION_DAMAGE && (action->state == state || state == -1))
+        if (damage->state == state || state == -1)
         {
-            Damage * damage = (Damage *) action;
-            card = damage->source;
+            MTGCardInstance * card = damage->source;
             if (card && (color == -1 || card->hasColor(color))) return true;
         }
     }
@@ -1450,16 +1442,14 @@ bool TriggerTargetChooser::equals(TargetChooser * tc)
 /*Proliferate Target */
 bool ProliferateChooser::canTarget(Targetable * target,bool withoutProtections)
 {
-    if (target->typeAsTarget() == TARGET_CARD)
+    if (MTGCardInstance * card = dynamic_cast<MTGCardInstance*>(target))
     {
-        MTGCardInstance * card = (MTGCardInstance*)target;
         if(card->counters && card->counters->counters.empty())
             return false;
         return true;
     }
-    if (target->typeAsTarget() == TARGET_PLAYER)
+    else if (Player * p = dynamic_cast<Player*>(target))
     {
-        Player * p = (Player*)target;
         if(!p->poisonCount)
             return false;
         return true;
@@ -1486,9 +1476,8 @@ bool ProliferateChooser::equals(TargetChooser * tc)
 /*parents or children Target */
 bool ParentChildChooser::canTarget(Targetable * target,bool withoutProtections)
 {
-    if (target->typeAsTarget() == TARGET_CARD)
-    {
-        MTGCardInstance * card = (MTGCardInstance*)target;
+    if (MTGCardInstance * card = dynamic_cast<MTGCardInstance*>(target))
+    {        
         if(type == 1)
         {
             if(!source->childrenCards.size())

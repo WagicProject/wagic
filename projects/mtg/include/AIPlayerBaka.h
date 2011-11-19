@@ -98,6 +98,7 @@ class AIPlayerBaka: public AIPlayer{
 
     //used by MomirPlayer, hence protected instead of private
     virtual int getEfficiency(OrderedAIAction * action);
+    virtual int getEfficiency(MTGAbility * ability);
     virtual bool payTheManaCost(ManaCost * cost, MTGCardInstance * card = NULL,vector<MTGAbility*> gotPayment = vector<MTGAbility*>());
     virtual int getCreaturesInfo(Player * player, int neededInfo = INFO_NBCREATURES , int untapMode = 0, int canAttack = 0);
     virtual ManaCost * getPotentialMana(MTGCardInstance * card = NULL);

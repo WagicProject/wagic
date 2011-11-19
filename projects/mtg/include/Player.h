@@ -48,10 +48,6 @@ public:
         return 1;
     }
     const string getDisplayName() const;
-    int typeAsTarget()
-    {
-        return TARGET_PLAYER;
-    }
 
     int afterDamage();
 

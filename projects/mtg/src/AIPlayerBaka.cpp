@@ -19,9 +19,6 @@ Player * OrderedAIAction::getPlayerTarget()
     if (playerAbilityTarget)
         return (Player *)playerAbilityTarget;
 
-    if (target && target->typeAsTarget() == TARGET_PLAYER)
-        return (Player *)target;
-
     return NULL;
 }
 
@@ -408,9 +405,9 @@ int OrderedAIAction::getEfficiency()
             AbilityFactory af(g);
             int suggestion = af.abilityEfficiency(a, p, MODE_ABILITY);
 
-            if(_t->typeAsTarget() == TARGET_CARD)
+            if(MTGCardInstance * cTarget = dynamic_cast<MTGCardInstance *>(_t))
             {
-                if((suggestion == BAKA_EFFECT_BAD && ((MTGCardInstance*)_t)->controller() == p) || (suggestion == BAKA_EFFECT_GOOD && ((MTGCardInstance*)_t)->controller() != p))
+                if((suggestion == BAKA_EFFECT_BAD && (cTarget)->controller() == p) || (suggestion == BAKA_EFFECT_GOOD && (cTarget)->controller() != p))
                     efficiency = 0;
             }
             else if ((suggestion == BAKA_EFFECT_BAD && _t == p) || (suggestion == BAKA_EFFECT_GOOD && _t != p))
@@ -549,16 +546,16 @@ int OrderedAIAction::getEfficiency()
     }
     else if (AAProliferate * aap = dynamic_cast<AAProliferate *>(a))
     {
-        if (aap && target && target->typeAsTarget() == TARGET_PLAYER && (Player*)target != p)
+        if (playerAbilityTarget && playerAbilityTarget != p)
         {
             efficiency = 60;//ai determines if the counters are good or bad on menu check.
         }
-        else if (aap)
+        else
             efficiency = 90;
     }
     else if (AAAlterPoison * aaap = dynamic_cast<AAAlterPoison *>(a))
     {
-        if (aaap && target && target->typeAsTarget() == TARGET_PLAYER && (Player*)target != p)
+        if (playerAbilityTarget && playerAbilityTarget != p)
         {
             efficiency = 90;
         }
@@ -566,7 +563,7 @@ int OrderedAIAction::getEfficiency()
     else if (ATokenCreator * atc = dynamic_cast<ATokenCreator *>(a))
     {
         efficiency = 80;
-        if(atc && atc->name.length() && atc->sabilities.length() && atc->types.size() && p->game->inPlay->findByName(atc->name))
+        if(atc->name.length() && atc->sabilities.length() && atc->types.size() && p->game->inPlay->findByName(atc->name))
         {
             list<int>::iterator it;
             for (it = atc->types.begin(); it != atc->types.end(); it++)
@@ -1196,23 +1193,22 @@ int AIPlayerBaka::createAbilityTargets(MTGAbility * a, MTGCardInstance * c, Rank
             a->getActionTc()->done = true;
             return 0;
         }
-        int targetThis = 0;
         while(potentialTargets.size())
         {
             OrderedAIAction * check = NULL;
 
-            MTGCardInstance * targeting = dynamic_cast<MTGCardInstance*>(potentialTargets[0]);
-            if(targeting && targeting->typeAsTarget() == TARGET_CARD)
-             check = NEW OrderedAIAction(this, a,c,targeting);
+            MTGCardInstance * cTargeting = dynamic_cast<MTGCardInstance*>(potentialTargets[0]);
+            if(cTargeting)
+             check = NEW OrderedAIAction(this, a,c,cTargeting);
 
-            Player * ptargeting = dynamic_cast<Player*>(potentialTargets[0]);
-            if(ptargeting && ptargeting->typeAsTarget() == TARGET_PLAYER)
-                check = NEW OrderedAIAction(this, a,ptargeting,c);
+            Player * pTargeting = dynamic_cast<Player*>(potentialTargets[0]);
+            if(pTargeting)
+                check = NEW OrderedAIAction(this, a,pTargeting,c);
 
-            targetThis = getEfficiency(check);
-            if(targetThis && ptargeting && ptargeting->typeAsTarget() == TARGET_PLAYER)
+            int targetThis = getEfficiency(check);
+            if(targetThis && pTargeting)
             {
-                OrderedAIAction aiAction(this, a,ptargeting,c);
+                OrderedAIAction aiAction(this, a,pTargeting,c);
                 ranking[aiAction] = 1;
             }
             if(targetThis)
@@ -1223,7 +1219,9 @@ int AIPlayerBaka::createAbilityTargets(MTGAbility * a, MTGCardInstance * c, Rank
         if(!realTargets.size() || (int(realTargets.size()) < a->getActionTc()->maxtargets && a->getActionTc()->targetMin))
             return 0;
         OrderedAIAction aiAction(this, a, c,realTargets);
+
         aiAction.target = dynamic_cast<MTGCardInstance*>(realTargets[0]);
+        aiAction.playerAbilityTarget = dynamic_cast<Player*>(realTargets[0]);
         ranking[aiAction] = 1;
     }
     return 1;
@@ -1508,6 +1506,29 @@ int AIPlayerBaka::chooseTarget(TargetChooser * _tc, Player * forceTarget,MTGCard
     return 1;
 }
 
+//Returns -1 if error, a number between 0 and 100 otherwise
+int AIPlayerBaka::getEfficiency(MTGAbility * ability)
+{
+    if (!ability)
+        return -1;
+
+    OrderedAIAction * check = NULL;
+
+    if(MTGCardInstance * cTarget = dynamic_cast<MTGCardInstance *>(ability->target))
+        check = NEW OrderedAIAction(this, ability, ability->source, cTarget);
+    else if(Player * pTarget = dynamic_cast<Player *>(ability->target))
+        check = NEW OrderedAIAction(this, ability, pTarget, ability->source);
+    else
+        check = NEW OrderedAIAction(this, ability, ability->source);
+    
+    if (!check)
+        return -1;
+    
+    int result = getEfficiency(check);
+    SAFE_DELETE(check);
+    return result;
+}
+
 int AIPlayerBaka::selectMenuOption()
 {
     ActionLayer * object = observer->mLayers->actionLayer();
@@ -1515,10 +1536,10 @@ int AIPlayerBaka::selectMenuOption()
     if (object->menuObject)
     {
         int checkedLast = 0;
-        int checked = 0;
-        MenuAbility * currentMenu = NULL;
+        
         if(object->abilitiesMenu->isMultipleChoice && object->currentActionCard)
         {
+            MenuAbility * currentMenu = NULL;
             for(size_t m = object->mObjects.size()-1;m > 0;m--)
             {
                 MenuAbility * ability = dynamic_cast<MenuAbility *>(object->mObjects[m]);
@@ -1531,60 +1552,28 @@ int AIPlayerBaka::selectMenuOption()
             if(currentMenu)
                 for(unsigned int mk = 0;mk < currentMenu->abilities.size();mk++)
                 {
-                    MTGAbility * checkEff = NULL;
-                    OrderedAIAction * check = NULL;
-                    checkEff = currentMenu->abilities[mk];
-                    if(checkEff)
-                    {
-                        if(checkEff->target && checkEff->target->typeAsTarget() == TARGET_CARD)
-                            check = NEW OrderedAIAction(this, checkEff,checkEff->source,(MTGCardInstance*)checkEff->target);
-                        else if(checkEff->target && checkEff->target->typeAsTarget() == TARGET_PLAYER)
-                            check = NEW OrderedAIAction(this, checkEff,(Player*)checkEff->target,checkEff->source);
-                        else
-                            check = NEW OrderedAIAction(this, checkEff,checkEff->source);
-                    }
-                    if(check)
-                    {
-                        checked = getEfficiency(check);
-                        SAFE_DELETE(check);
-                    }
+                    int checked = getEfficiency(currentMenu->abilities[mk]);
                     if(checked > 60 && checked > checkedLast)
                     {
                         doThis = mk;
                         checkedLast = checked;
                     }
-                    checked = 0;
                 }
         }
         else
         {
             for(unsigned int k = 0;k < object->abilitiesMenu->mObjects.size();k++)
             {
-                MTGAbility * checkEff = NULL;
-                OrderedAIAction * check = NULL;
-                if(object->abilitiesMenu->mObjects[k]->GetId() >= 0)
-                    checkEff = (MTGAbility *)object->mObjects[object->abilitiesMenu->mObjects[k]->GetId()];
-                if(checkEff)
-                {
-                    Targetable * checkTarget = checkEff->target;
-                    if(checkTarget && checkTarget->typeAsTarget() == TARGET_CARD)
-                        check = NEW OrderedAIAction(this, checkEff,checkEff->source,(MTGCardInstance*)checkTarget);
-                    else if(checkTarget && checkTarget->typeAsTarget() == TARGET_PLAYER)
-                        check = NEW OrderedAIAction(this, checkEff,(Player*)checkTarget,checkEff->source);
-                    else
-                        check = NEW OrderedAIAction(this, checkEff,checkEff->source);
-                }
-                if(check)
-                {
-                    checked = getEfficiency(check);
-                    SAFE_DELETE(check);
-                }
+                if(object->abilitiesMenu->mObjects[k]->GetId() <= 0)
+                    continue;
+
+                MTGAbility * checkEff = (MTGAbility *)object->mObjects[object->abilitiesMenu->mObjects[k]->GetId()];
+                int checked = getEfficiency(checkEff);
                 if(checked > 60 && checked > checkedLast)
                 {
                     doThis = k;
                     checkedLast = checked;
                 }
-                checked = 0;
             }
         }
     }

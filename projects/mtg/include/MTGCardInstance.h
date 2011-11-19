@@ -113,7 +113,6 @@ public:
     MTGCardInstance * changeController(Player * newcontroller);
     Player * owner;
     Counters * counters;
-    int typeAsTarget(){return TARGET_CARD;}
     const string getDisplayName() const;
     MTGCardInstance * target;
     vector<Targetable *> backupTargets;
