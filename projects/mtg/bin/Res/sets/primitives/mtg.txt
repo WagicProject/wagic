@@ -24110,7 +24110,7 @@ id=-1111121
 type=Nothing
 [/card]
 [card]
-name=Fire Bolt
+name=Firebolt
 target=creature,player
 auto=damage:2
 flashback={4}{R}
@@ -53420,7 +53420,7 @@ type=Instant
 name=Primal Clay
 auto=choice transforms((,setpower=3,settoughness=3)) forever
 auto=choice transforms((,flying,setpower=2,settoughness=2)) forever
-auto=choice transforms((Wall,defender,setpower=1,settoughness=5)) forever
+auto=choice transforms((Wall,defender,setpower=1,settoughness=6)) forever
 text=As Primal Clay enters the battlefield, it becomes your choice of a 3/3 artifact creature, a 2/2 artifact creature with flying, or a 1/6 Shapeshifter Wall artifact creature with defender.
 mana={4}
 type=Artifact Creature
@@ -68895,7 +68895,7 @@ toughness=4
 [/card]
 [card]
 name=Stitcher's Apprentice
-auto={T}:token(Homunculus,Creature Homunculus,2/2,blue) && transforms((,newability[target(creature|mybattlefield) sacrifice])) forever
+auto={1}{U}{T}:token(Homunculus,Creature Homunculus,2/2,blue) && transforms((,newability[target(creature|mybattlefield) sacrifice])) forever
 text={1}{U}, {T}: Put a 2/2 blue Homunculus creature token onto the battlefield, then sacrifice a creature.
 mana={1}{U}
 type=Creature
@@ -75899,7 +75899,7 @@ abilities=deathtouch
 text=Deathtouch
 mana={B}
 type=Creature
-subtype=Rats
+subtype=Rat
 power=1
 toughness=1
 [/card]
@@ -79384,10 +79384,10 @@ subtype=Aura
 [card]
 name=Vow of Wildness
 target=creature
-auto=2/2
+auto=3/3
 auto=trample
 auto=teach(creature|opponentbattlefield) cantattack
-text=Enchant creature -- Enchanted creature gets +2/+2, has trample, and can't attack you or a planeswalker you control.
+text=Enchant creature -- Enchanted creature gets +3/+3, has trample, and can't attack you or a planeswalker you control.
 mana={2}{G}
 type=Enchantment
 subtype=Aura
