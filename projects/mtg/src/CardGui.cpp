@@ -762,7 +762,7 @@ void CardGui::TinyCropRender(MTGCard * card, const Pos& pos, JQuad * quad)
                 unsigned i = 0;
                 unsigned h = neofont ? 14 : 11;
                 for (std::vector<string>::const_iterator it = txt.begin(); it != txt.end(); ++it, ++i)
-                    font->DrawString(it->c_str(), x + (Carditem->mPosX - BigWidth / 2) * pos.actZ, imgBottom + (-BigHeight / 2 + Carditem->mPosY + h * i) * pos.actZ);
+                    font->DrawString(it->c_str(), x + (Carditem->mPosX - BigWidth / 2) * pos.actZ, imgBottom + (Carditem->mPosY + h * i) * pos.actZ);
             }
             else if (Carditem->mName == "power")
             {

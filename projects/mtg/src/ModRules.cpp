@@ -338,7 +338,7 @@ void ModRulesCardGui::parse(TiXmlElement* element)
         {
             TiXmlElement* element = node->ToElement();
             {
-                renderbig.push_back(NEW ModRulesRenderCardGuiItem(
+                rendertinycrop.push_back(NEW ModRulesRenderCardGuiItem(
                     element->Attribute("name"), 
                     element->Attribute("posx"), 
                     element->Attribute("posy"),

@@ -35,7 +35,7 @@
   </renderbig>
   <rendertinycrop>
     	<item name="title" posx="22" posy="25" formattedtext="" type=""/>
-    	<item name="description" posx="22" posy="80" formattedtext="" type=""/>
+    	<item name="description" posx="22" posy="0" formattedtext="" type=""/>
     	<item name="powerlife" posx="158" posy="106" formattedtext="power/life" type="creature"/>
     	<item name="mana" posx="75" posy="-112" formattedtext="" type=""/>
     	<item name="types" posx="22" posy="49" formattedtext="" type=""/>
