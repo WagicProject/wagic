@@ -163,7 +163,7 @@ void Rules::addExtraRules(GameObserver* g)
 #endif //NETWORK_SUPPORT
                     )//keep this out of momir and other game modes.
             {
-                difficultyRating = DeckManager::getDifficultyRating(g->players[0], g->players[1]);
+                difficultyRating = g->getDeckManager()->getDifficultyRating(g->players[0], g->players[1]);
             }
 
             if (a)

@@ -23,6 +23,7 @@ class TargetChooser;
 class Rules;
 class TestSuiteGame;
 class Trash;
+class DeckManager;
 using namespace std;
 
 class GameObserver{
@@ -37,6 +38,8 @@ class GameObserver{
   RandomGenerator randomGenerator;
   WResourceManager* mResourceManager;
   JGE* mJGE;
+  DeckManager* mDeckManager;
+
   size_t updateCtr;
 #ifdef ACTION_LOGGING_TESTING
   GameObserver* oldGame;
@@ -139,6 +142,8 @@ class GameObserver{
   CardSelectorBase* getCardSelector() { return mLayers->mCardSelector;};
   bool operator==(const GameObserver& aGame);
   JGE* getInput(){return mJGE;};
+  DeckManager* getDeckManager(){ return mDeckManager; };
+  void dumpAssert(bool val);
 
 };
 

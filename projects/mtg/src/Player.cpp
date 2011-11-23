@@ -268,7 +268,7 @@ bool Player::parseLine(const string& s)
                 if ( opponent() )
                 {
                     bool isOpponentAI = opponent()->isAI() == 1;
-                    DeckMetaData *meta = DeckManager::GetInstance()->getDeckMetaDataByFilename( opponent()->deckFile, isOpponentAI);
+                    DeckMetaData *meta = observer->getDeckManager()->getDeckMetaDataByFilename( opponent()->deckFile, isOpponentAI);
                     if ( meta && meta->getVictoryPercentage() >= 65)
                         deckSetting = HARD;
                 }

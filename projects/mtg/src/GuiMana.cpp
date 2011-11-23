@@ -303,6 +303,7 @@ bool remove_dead(ManaIcon* m)
 
 void GuiMana::Update(float dt)
 {
+    if(observer->getResourceManager())
     {
         float shift = 0;
         for (vector<ManaIcon*>::iterator it = manas.begin(); it != manas.end(); ++it)

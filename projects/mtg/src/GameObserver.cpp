@@ -13,6 +13,7 @@
 #include "AIPlayerBaka.h"
 #include "MTGRules.h"
 #include "Trash.h"
+#include "DeckManager.h"
 #ifdef TESTSUITE
 #include "TestSuiteAI.h"
 #endif
@@ -69,6 +70,8 @@ GameObserver::~GameObserver()
     ExtraRules = 0;
     LOG("==GameObserver Destroyed==");
     SAFE_DELETE(mTrash);
+    SAFE_DELETE(mDeckManager);
+
 }
 
 GameObserver::GameObserver(WResourceManager *output, JGE* input)
@@ -99,6 +102,7 @@ GameObserver::GameObserver(WResourceManager *output, JGE* input)
     mLoading = false;
     mLayers = NULL;
     mTrash = new Trash();
+    mDeckManager = new DeckManager();
 }
 
 int GameObserver::getCurrentGamePhase()
@@ -475,6 +479,16 @@ bool GameObserver::operator==(const GameObserver& aGame)
     return (error == 0);
 }
 
+void GameObserver::dumpAssert(bool val)
+{
+    if(!val)
+    {
+        cerr << *this << endl;
+        assert(0);
+    }
+}
+
+
 void GameObserver::Update(float dt)
 {
     /*******************/
@@ -489,7 +503,7 @@ void GameObserver::Update(float dt)
         oldGame = new GameObserver();
         oldGame->mRules = mRules;
         oldGame->load(stream.str());
-        assert(*this == *oldGame);
+        DumpAssert(*this == *oldGame);
     }
 #endif // ACTION_LOGGING_TESTING
 
@@ -526,7 +540,7 @@ void GameObserver::Update(float dt)
 //Handles game state based effects
 void GameObserver::gameStateBasedEffects()
 {
-    if(getCurrentTargetChooser() && int(getCurrentTargetChooser()->targets.size()) == getCurrentTargetChooser()->maxtargets)
+    if(getCurrentTargetChooser() && int(getCurrentTargetChooser()->getNbTargets()) == getCurrentTargetChooser()->maxtargets)
         getCurrentTargetChooser()->done = true;
     if (mLayers->stackLayer()->count(0, NOT_RESOLVED) != 0)
     	return;
@@ -993,7 +1007,7 @@ void GameObserver::ButtonPressed(PlayGuiObject * target)
     }
     else if (dynamic_cast<GuiPhaseBar*>(target))
     {
-        MTGGamePhase::GetInstance()->NextGamePhase();
+        mLayers->getPhaseHandler()->NextGamePhase();
     }
 }
 
@@ -1042,9 +1056,20 @@ bool GameObserver::WaitForExtraPayment(MTGCardInstance * card)
 int GameObserver::cardClick(MTGCardInstance * card, MTGAbility *ability)
 {
     MTGGameZone* zone = card->currentZone;
-    size_t index = card->currentZone->getIndex(card);
+    size_t index  = 0;
+    if(zone)
+        index = zone->getIndex(card);
+    int choice;
+    bool logChoice = mLayers->actionLayer()->getMenuIdFromCardAbility(card, ability, choice);
     int result = ability->reactToClick(card);
     logAction(card, zone, index, result);
+
+    if(logChoice) {
+        stringstream stream;
+        stream << "choice " << choice;
+        logAction(currentActionPlayer, stream.str());
+    }
+
     return result;
 }
 
@@ -1089,7 +1114,7 @@ int GameObserver::cardClick(MTGCardInstance * card, Targetable * object)
                 if (card == cardWaitingForTargets)
                 {
                     int _result = targetChooser->ForceTargetListReady();
-                    if(targetChooser->targetMin && int(targetChooser->targets.size()) < targetChooser->maxtargets)
+                    if(targetChooser->targetMin && int(targetChooser->getNbTargets()) < targetChooser->maxtargets)
                         _result = 0;
                     if (_result)
                     {
@@ -1548,7 +1573,7 @@ bool GameObserver::processActions(bool undo)
             size_t begin = s.find("[")+1;
             size_t size = s.find("]")-begin;
             size_t index = atoi(s.substr(begin, size).c_str());
-            assert(index < zone->cards.size());
+            dumpAssert(index < zone->cards.size());
             cardClick(zone->cards[index], zone->cards[index]);
         } else if (s.find("yes") != string::npos) {
             mLayers->stackLayer()->setIsInterrupting(p);
@@ -1571,20 +1596,20 @@ bool GameObserver::processActions(bool undo)
             // that would allow the AI to use it as well.
             shuffleLibrary(p);
         } else {
-            assert(0);
+            dumpAssert(0);
         }
 
         size_t nb = actionsList.size();
 
-        for (int i = 0; i<3; i++)
+        for (int i = 0; i<5; i++)
         {
             // let's fake an update
             Update(counter);
             counter += 1.000f;
         }
-        assert(actionsList.back() == *loadingite);
-        assert(nb == actionsList.size());
-        assert(cmdIndex == (actionsList.size()-1));
+        dumpAssert(actionsList.back() == *loadingite);
+        dumpAssert(nb == actionsList.size());
+        dumpAssert(cmdIndex == (actionsList.size()-1));
     }
 
     mLoading = false;
@@ -1618,7 +1643,7 @@ void GameObserver::logAction(const string& s)
     if(mLoading)
     {
         string toCheck = *loadingite;
-        assert(toCheck == s);
+        dumpAssert(toCheck == s);
     }
     actionsList.push_back(s);
 };
@@ -1645,8 +1670,10 @@ void GameObserver::createPlayer(const string& playerMode)
     {
     case Player::MODE_AI:
         AIPlayerFactory playerCreator;
-        // FIXME: gonna break in AI vs AI mode
-        players.push_back(playerCreator.createAIPlayer(this, MTGCollection(), players[0]));
+        if(players.size())
+            players.push_back(playerCreator.createAIPlayer(this, MTGCollection(), players[0]));
+        else
+            players.push_back(playerCreator.createAIPlayer(this, MTGCollection(), 0));
         break;
     case Player::MODE_HUMAN:
         players.push_back(new HumanPlayer(this, "", ""));

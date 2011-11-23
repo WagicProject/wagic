@@ -284,12 +284,28 @@ void GameStateDuel::ThreadProc(void* inParam)
     while(instance->mGamePhase != DUEL_STATE_BACK_TO_MAIN_MENU)
     {
         GameObserver observer;
+        int oldTurn = -1;
+        int oldPhase = -1;
+        int stagnationCounter = -1;
+
         observer.loadPlayer(0, PLAYER_TYPE_TESTSUITE);
         observer.loadPlayer(1, PLAYER_TYPE_TESTSUITE);
         observer.startGame(instance->mParent->gameType, instance->mParent->rules);
 
-        while(!observer.gameOver)
+        while(!observer.gameOver) {
+            if(observer.turn == oldTurn && observer.currentGamePhase == oldPhase) {
+                stagnationCounter++;
+            } else {
+                stagnationCounter = 0;
+                oldTurn = observer.turn;
+                oldPhase = observer.currentGamePhase;
+            }
+            if(stagnationCounter >= 1000)
+            {
+                observer.dumpAssert(false);
+            }
             observer.Update(counter++);
+        }
 
         instance->handleResults(&observer);
     }
@@ -441,22 +457,25 @@ void GameStateDuel::Update(float dt)
             else
 #endif
 #ifdef AI_CHANGE_TESTING
-            if (mParent->players[0] == PLAYER_TYPE_CPU_TEST && mParent->players[1] == PLAYER_TYPE_CPU_TEST)
             {
-                handleResults(game);
-                End();
-                Start();
-            }
-            if(mWorkerThread.empty())
-            {   // "I don't like to wait" mode
-                size_t thread_count = 1;
-        #ifdef QT_CONFIG
-                thread_count = QThread::idealThreadCount();
-        #endif
-                for(size_t i = 0; i < (thread_count-1); i++)
-                    mWorkerThread.push_back(boost::thread(ThreadProc, this));
-            }
+                if (mParent->players[0] == PLAYER_TYPE_CPU_TEST && mParent->players[1] == PLAYER_TYPE_CPU_TEST)
+                {
+                    handleResults(game);
+                    End();
+                    Start();
+                }
+                if(mWorkerThread.empty())
+                {   // "I don't like to wait" mode
+                    size_t thread_count = 1;
+                    startTime = JGEGetTime();
 
+            #ifdef QT_CONFIG
+                    thread_count = QThread::idealThreadCount();
+            #endif
+                    for(size_t i = 0; i < (thread_count-1); i++)
+                        mWorkerThread.push_back(boost::thread(ThreadProc, this));
+                }
+            }
 #endif
             if (mParent->players[0] == PLAYER_TYPE_CPU && mParent->players[1] == PLAYER_TYPE_CPU)
             {
@@ -566,6 +585,7 @@ void GameStateDuel::Render()
       if (game && totalTestGames)
       {
           char buf[4096];
+          int currentTime = JGEGetTime();
 
           if (totalTestGames < 2.5 * totalAIDecks)
           {
@@ -580,7 +600,8 @@ void GameStateDuel::Render()
               mFont->SetColor(ARGB(255,255,0,0));
           if (ratio > 0.52)
               mFont->SetColor(ARGB(255,0,255,0));
-          sprintf(buf, "Victories Player 2/total Games: %i/%i", testPlayer2Victories, totalTestGames);
+          sprintf(buf, "Victories Player 2/total Games: %i/%i - Games/second: %f",
+                  testPlayer2Victories, totalTestGames, (float)(1000*totalTestGames)/(currentTime - startTime));
           mFont->DrawString(buf,0,SCREEN_HEIGHT/2);
       }
 #endif

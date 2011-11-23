@@ -236,7 +236,7 @@ AIPlayer * AIPlayerFactory::createAIPlayer(GameObserver *observer, MTGAllCards *
             deckid = 1 + WRand() % (nbdecks);
         }
         sprintf(deckFile, "ai/baka/deck%i.txt", deckid);
-        DeckMetaData *aiMeta = DeckManager::GetInstance()->getDeckMetaDataByFilename( deckFile, true);
+        DeckMetaData *aiMeta = observer->getDeckManager()->getDeckMetaDataByFilename( deckFile, true);
         avatarFilename = aiMeta->getAvatarFilename();
         sprintf(deckFileSmall, "ai_baka_deck%i", deckid);
     }
@@ -245,7 +245,7 @@ AIPlayer * AIPlayerFactory::createAIPlayer(GameObserver *observer, MTGAllCards *
     if ( opponent ) 
     {
         bool isOpponentAI = opponent->isAI() == 1;
-        DeckMetaData *meta = DeckManager::GetInstance()->getDeckMetaDataByFilename( opponent->deckFile, isOpponentAI);
+        DeckMetaData *meta = observer->getDeckManager()->getDeckMetaDataByFilename( opponent->deckFile, isOpponentAI);
         if ( meta && meta->getVictoryPercentage() >= 65)
             deckSetting = HARD;
     }
@@ -320,7 +320,7 @@ AIPlayer * AIPlayerFactory::createAIPlayerTest(GameObserver *observer, MTGAllCar
     deckid = 1 + WRand() % (nbdecks);
 
     sprintf(deckFile, "%sdeck%i.txt", folder.c_str(), deckid);
-    DeckMetaData *aiMeta = DeckManager::GetInstance()->getDeckMetaDataByFilename( deckFile, true);
+    DeckMetaData *aiMeta = observer->getDeckManager()->getDeckMetaDataByFilename( deckFile, true);
     avatarFilename = aiMeta->getAvatarFilename();
     sprintf(deckFileSmall, "ai_baka_deck%i", deckid);
 
@@ -329,7 +329,7 @@ AIPlayer * AIPlayerFactory::createAIPlayerTest(GameObserver *observer, MTGAllCar
     if ( opponent ) 
     {
         bool isOpponentAI = opponent->isAI() == 1;
-        DeckMetaData *meta = DeckManager::GetInstance()->getDeckMetaDataByFilename( opponent->deckFile, isOpponentAI);
+        DeckMetaData *meta = observer->getDeckManager()->getDeckMetaDataByFilename( opponent->deckFile, isOpponentAI);
         if ( meta->getVictoryPercentage() >= 65)
             deckSetting = HARD;
     }

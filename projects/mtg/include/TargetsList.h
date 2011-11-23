@@ -14,15 +14,16 @@ using std::vector;
 
 class TargetsList
 {
-private:
+protected:
     size_t iterateTarget(Targetable * previous);
+    vector<Targetable*> targets;
 public:
     TargetsList();
     TargetsList(Targetable * _targets[], int nbtargets);
-    vector<Targetable*> targets;
     int alreadyHasTarget(Targetable * target);
     int removeTarget(Targetable * _card);
     int toggleTarget(Targetable * _card);
+    size_t getNbTargets() {return targets.size();};
     virtual int addTarget(Targetable * _target);
     MTGCardInstance * getNextCardTarget(MTGCardInstance * previous = 0);
     Player * getNextPlayerTarget(Player * previous = 0);

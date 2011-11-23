@@ -3,8 +3,6 @@
 #include "MTGGamePhase.h"
 #include "GuiPhaseBar.h"
 
-MTGGamePhase* MTGGamePhase::instance = 0;
-
 MTGGamePhase::MTGGamePhase(GameObserver* g, int id) :
     ActionElement(id), observer(g)
 {
@@ -12,7 +10,6 @@ MTGGamePhase::MTGGamePhase(GameObserver* g, int id) :
     currentState = -1;
     mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
     mFont->SetBase(0); // using 2nd font
-    instance = this;
 }
 
 void MTGGamePhase::Update(float dt)

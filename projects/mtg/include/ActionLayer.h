@@ -37,6 +37,7 @@ public:
     int receiveEventPlus(WEvent * event);
     int reactToTargetClick(Targetable * card);
     int isReactingToClick(MTGCardInstance * card);
+    bool getMenuIdFromCardAbility(MTGCardInstance *card, MTGAbility *ability, int& menuId);
     int reactToClick(MTGCardInstance * card);
     int reactToClick(ActionElement * ability, MTGCardInstance * card);
     int reactToTargetClick(ActionElement * ability, Targetable * card);

@@ -206,7 +206,6 @@ StatsWrapper * DeckManager::getExtendedDeckStats( DeckMetaData *selectedDeck, MT
 
 
 DeckManager * DeckManager::mInstance = NULL;
-bool DeckManager::instanceFlag = false;
 
 void DeckManager::EndInstance()
 {
@@ -215,10 +214,9 @@ void DeckManager::EndInstance()
 
 DeckManager* DeckManager::GetInstance()
 {
-    if (!instanceFlag)
+    if (!mInstance)
     {
         mInstance = NEW DeckManager();
-        instanceFlag = true;
     }
 
     return mInstance;
@@ -230,7 +228,7 @@ int DeckManager::getDifficultyRating(Player *statsPlayer, Player *player)
 {
     if(player->deckFile != "")
     {
-        DeckMetaData *meta = DeckManager::GetInstance()->getDeckMetaDataByFilename(player->deckFile, (player->isAI() == 1) );
+        DeckMetaData *meta = getDeckMetaDataByFilename(player->deckFile, (player->isAI() == 1) );
         return meta->getDifficulty();
     }
     else
@@ -239,23 +237,22 @@ int DeckManager::getDifficultyRating(Player *statsPlayer, Player *player)
 
 DeckManager::~DeckManager()
 {
-    instanceFlag = false;
     map<string, StatsWrapper *>::iterator it;
     vector<DeckMetaData *>::iterator metaDataIter;
     
-    for (it = mInstance->aiDeckStatsMap.begin(); it != mInstance->aiDeckStatsMap.end(); it++){
+    for (it = aiDeckStatsMap.begin(); it != aiDeckStatsMap.end(); it++){
         SAFE_DELETE(it->second);
     }
-    for (it = mInstance->playerDeckStatsMap.begin(); it != mInstance->playerDeckStatsMap.end(); it++){
+    for (it = playerDeckStatsMap.begin(); it != playerDeckStatsMap.end(); it++){
         SAFE_DELETE(it->second);
     }
 
-    for( metaDataIter =  mInstance->aiDeckOrderList.begin(); metaDataIter !=  mInstance->aiDeckOrderList.end(); ++metaDataIter)
+    for( metaDataIter = aiDeckOrderList.begin(); metaDataIter !=  aiDeckOrderList.end(); ++metaDataIter)
     {
         SAFE_DELETE( *metaDataIter );
     }
     
-    for( metaDataIter = mInstance->playerDeckOrderList.begin(); metaDataIter !=  mInstance->playerDeckOrderList.end(); ++metaDataIter)
+    for( metaDataIter = playerDeckOrderList.begin(); metaDataIter !=  playerDeckOrderList.end(); ++metaDataIter)
     {
         SAFE_DELETE( *metaDataIter );
     }

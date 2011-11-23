@@ -8,21 +8,19 @@ using namespace std;
 class DeckManager
 {
 private:
-    static bool instanceFlag;
+    vector<DeckMetaData*> playerDeckOrderList;
+    vector<DeckMetaData*> aiDeckOrderList;
+    map<string, StatsWrapper*> playerDeckStatsMap;
+    map<string, StatsWrapper*> aiDeckStatsMap;
+
     static DeckManager *mInstance;
+
+public:
     DeckManager()
     {
         //private constructor
     }
 
-public:
-
-    vector<DeckMetaData*> playerDeckOrderList;
-    vector<DeckMetaData*> aiDeckOrderList;
-    
-    map<string, StatsWrapper*> playerDeckStatsMap;
-    map<string, StatsWrapper*> aiDeckStatsMap;
-    
     void updateMetaDataList(vector<DeckMetaData*>* refList, bool isAI);
     vector<DeckMetaData*> * getPlayerDeckOrderList();
     vector<DeckMetaData*> * getAIDeckOrderList();
@@ -40,7 +38,7 @@ public:
     //convenience method to get the difficulty rating between two decks.  This should be refined a little more
     //since the eventual move of all deck meta data should be managed by this class
 
-    static int getDifficultyRating(Player *statsPlayer, Player *player);
+    int getDifficultyRating(Player *statsPlayer, Player *player);
     
     ~DeckManager();
 

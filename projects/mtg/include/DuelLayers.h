@@ -14,6 +14,7 @@ class GuiCombat;
 class GuiAvatars;
 class CardSelectorBase;
 struct Pos;
+class MTGGamePhase;
 
 class DuelLayers
 {
@@ -27,6 +28,7 @@ protected:
     GuiHandSelf *hand;
     GuiAvatars * avatars;
     GameObserver* observer;
+    MTGGamePhase* phaseHandler;
 
 public:
     DuelLayers();
@@ -36,6 +38,7 @@ public:
     ActionStack * stackLayer();
     GuiCombat * combatLayer();
     GuiAvatars * GetAvatars();
+    MTGGamePhase* getPhaseHandler() {return phaseHandler;};
     void init(GameObserver* go);
     virtual void Update(float dt, Player * player);
     void CheckUserInput(int isAI);

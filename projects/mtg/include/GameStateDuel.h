@@ -57,6 +57,7 @@ public:
 #endif
 
 #ifdef AI_CHANGE_TESTING
+    int startTime;
     int totalTestGames;
     int testPlayer2Victories;
     int totalAIDecks;

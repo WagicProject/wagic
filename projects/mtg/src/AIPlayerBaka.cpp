@@ -1188,7 +1188,7 @@ int AIPlayerBaka::createAbilityTargets(MTGAbility * a, MTGCardInstance * c, Rank
     vector<Targetable*>realTargets;
     if(a->getActionTc()->maxtargets != 1)
     {
-        if(a->getActionTc()->targets.size() && a->getActionTc()->attemptsToFill > 4)
+        if(a->getActionTc()->getNbTargets() && a->getActionTc()->attemptsToFill > 4)
         {
             a->getActionTc()->done = true;
             return 0;

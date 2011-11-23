@@ -216,8 +216,12 @@ Interruptible(observer, id), tc(tc), cost(_cost), payResult(payResult)
     _source->backupTargets.clear();
     if (tc)
     {
-        for(size_t i = 0;i < tc->targets.size();i++)
-            _source->backupTargets.push_back(tc->targets[i]);
+        Targetable* t = NULL;
+        for(size_t i = 0;i < tc->getNbTargets();i++)
+        {
+            t = tc->getNextTarget(t);
+            _source->backupTargets.push_back(t);
+        }
     }
 
     // fill information on how the card came into this zone. Right now the quickest way is to do it here, based on how the mana was paid...
@@ -356,7 +360,7 @@ int Spell::getNbTargets()
 {
     if (!tc)
         return 0;
-    return (int) (tc->targets.size());
+    return (int) (tc->getNbTargets());
 }
 
 void Spell::Render()

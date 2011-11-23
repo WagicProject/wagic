@@ -2834,7 +2834,7 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card, int
                 a->canBeInterrupted = false;
         }
 
-        bool moreThanOneTarget = spell && spell->tc && spell->tc->targets.size() > 1;
+        bool moreThanOneTarget = spell && spell->tc && spell->tc->getNbTargets() > 1;
 
         if(moreThanOneTarget)
             a->target = spell->getNextTarget();
@@ -2850,7 +2850,7 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card, int
                 }
                 else
                 {
-                    if(!aMay || (aMay && a->target == spell->tc->targets[0]))
+                    if(!aMay || (aMay && a->target == spell->tc->getNextTarget(0)))
                     {
                         MTGAbility * mClone = a->clone();
                         mClone->addToGame();
@@ -3990,7 +3990,7 @@ int TargetAbility::resolve()
                 t = tc->getNextTarget(t);
                 ability->target = t;
             }
-            tc->targets.clear();
+            tc->initTargets();
             return 1;
         }
         else
@@ -4002,7 +4002,7 @@ int TargetAbility::resolve()
                 t = tc->getNextTarget(t);
                 ability->target = t;
             }
-            tc->targets.clear();
+            tc->initTargets();
             return 1;
         }
     }

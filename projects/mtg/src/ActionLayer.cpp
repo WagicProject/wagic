@@ -178,7 +178,7 @@ void ActionLayer::Update(float dt)
                 without this, the game locks into a freeze state while you try to select the targets and dont have enough to
                 fill the maxtargets list.
                 */
-                if(int(ae->getActionTc()->targets.size()) == countTargets-1)
+                if(int(ae->getActionTc()->getNbTargets()) == countTargets-1)
                     ae->getActionTc()->done = true;
             }
         }
@@ -192,7 +192,7 @@ void ActionLayer::Render()
         abilitiesMenu->Render();
         return;
     }
-    currentActionCard = NULL;
+
     for (size_t i = 0; i < mObjects.size(); i++)
     {
         if (mObjects[i] != NULL)
@@ -288,6 +288,29 @@ int ActionLayer::reactToTargetClick(Targetable * card)
         result += currentAction->reactToTargetClick(card);
     }
     return result;
+}
+
+bool ActionLayer::getMenuIdFromCardAbility(MTGCardInstance *card, MTGAbility *ability, int& menuId)
+{
+    int ctr = 0;
+    for (size_t i = 0; i < mObjects.size(); i++)
+    {
+        ActionElement * currentAction = (ActionElement *) mObjects[i];
+        if (currentAction->isReactingToClick(card))
+        {
+            if(currentAction == ability) {
+                menuId = ctr;
+            }
+            ctr++;
+        }
+    }
+
+    // ability not working with card or only one ability possible
+    if(ctr == 0 || ctr == 1)
+        return false;
+    else
+        // several abilities working with card, menuId set
+        return true;
 }
 
 //TODO Simplify with only object !!!
@@ -422,11 +445,13 @@ void ActionLayer::ButtonPressed(int controllerid, int controlid)
         ActionElement * currentAction = (ActionElement *) mObjects[controlid];
         currentAction->reactToTargetClick(menuObject);
         menuObject = 0;
+        currentActionCard = NULL;
     }
     else if (controlid == kCancelMenuID)
     {
         observer->mLayers->stackLayer()->endOfInterruption(false);
         menuObject = 0;
+        currentActionCard = NULL;
     }
     else
     {
@@ -462,6 +487,7 @@ void ActionLayer::ButtonPressedOnMultipleChoice(int choice)
         observer->mLayers->stackLayer()->endOfInterruption(false);
     }
     menuObject = 0;
+    currentActionCard = NULL;
 }
 
 ActionLayer::ActionLayer(GameObserver *observer)
