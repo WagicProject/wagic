@@ -178,48 +178,51 @@ bool CardDisplay::CheckUserInput(JButton key)
       int n = mCurr;
       int x1,y1;
       JButton key;
-      JGE* jge = observer->getInput();
-      if (jge &&  jge->GetLeftClickCoordinates(x1, y1))
+      JGE* jge = observer?observer->getInput():JGE::GetInstance();
+      if(jge)
       {
-          for (size_t i = 0; i < mObjects.size(); i++)
+          if (jge->GetLeftClickCoordinates(x1, y1))
           {
-              float top, left;
-              if (mObjects[i]->getTopLeft(top, left))
+              for (size_t i = 0; i < mObjects.size(); i++)
               {
-                  distance2 = static_cast<unsigned int>((top - y1) * (top - y1) + (left - x1) * (left - x1));
-                  if (distance2 < minDistance2)
+                  float top, left;
+                  if (mObjects[i]->getTopLeft(top, left))
                   {
-                      minDistance2 = distance2;
-                      n = i;
+                      distance2 = static_cast<unsigned int>((top - y1) * (top - y1) + (left - x1) * (left - x1));
+                      if (distance2 < minDistance2)
+                      {
+                          minDistance2 = distance2;
+                          n = i;
+                      }
                   }
               }
-          }
 
-          if (n < mCurr)
-              key = JGE_BTN_LEFT;
-          else
-              key = JGE_BTN_RIGHT;
+              if (n < mCurr)
+                  key = JGE_BTN_LEFT;
+              else
+                  key = JGE_BTN_RIGHT;
 
-          if (n < start_item)
-          {
-              rotateLeft();
-          }
-          else if (n >= (int)(mObjects.size()) && mObjects.size())
-          {
-              n = mObjects.size() - 1;
-          }
-          if (n >= start_item + nb_displayed_items)
-          {
-              rotateRight();
-          }
+              if (n < start_item)
+              {
+                  rotateLeft();
+              }
+              else if (n >= (int)(mObjects.size()) && mObjects.size())
+              {
+                  n = mObjects.size() - 1;
+              }
+              if (n >= start_item + nb_displayed_items)
+              {
+                  rotateRight();
+              }
 
-          if (n != mCurr && mObjects[mCurr] != NULL && mObjects[mCurr]->Leaving(key))
-          {
-              mCurr = n;
-              mObjects[mCurr]->Entering();
-              result = true;
+              if (n != mCurr && mObjects[mCurr] != NULL && mObjects[mCurr]->Leaving(key))
+              {
+                  mCurr = n;
+                  mObjects[mCurr]->Entering();
+                  result = true;
+              }
+              jge->LeftClickedProcessed();
           }
-          jge->LeftClickedProcessed();
       }
       return result;
     }

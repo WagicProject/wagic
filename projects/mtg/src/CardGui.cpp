@@ -130,17 +130,16 @@ void CardGui::DrawCard(MTGCard* inCard, const Pos& inPosition, int inMode)
 
 void CardGui::Render()
 {
-    WFont * mFont = card->getObserver()->getResourceManager()->GetWFont(Fonts::MAIN_FONT);
-
-    JRenderer * renderer = JRenderer::GetInstance();
     GameObserver * game = card->getObserver();
-
+    WFont * mFont = game?game->getResourceManager()->GetWFont(Fonts::MAIN_FONT):WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
+    JRenderer * renderer = JRenderer::GetInstance();
     TargetChooser * tc = NULL;
+
     if (game)
         tc = game->getCurrentTargetChooser();
 
     bool alternate = true;
-    JQuadPtr quad = card->getObserver()->getResourceManager()->RetrieveCard(card, CACHE_THUMB);
+    JQuadPtr quad = game? game->getResourceManager()->RetrieveCard(card, CACHE_THUMB):WResourceManager::Instance()->RetrieveCard(card, CACHE_THUMB);
 
     if (quad.get())
         alternate = false;
@@ -153,7 +152,7 @@ void CardGui::Render()
     JQuadPtr shadow;
     if (actZ > 1)
     {
-        shadow = card->getObserver()->getResourceManager()->GetQuad("shadow");
+        shadow = game? game->getResourceManager()->GetQuad("shadow"):WResourceManager::Instance()->GetQuad("shadow");
         shadow->SetColor(ARGB(static_cast<unsigned char>(actA)/2,255,255,255));
         renderer->RenderQuad(shadow.get(), actX + (actZ - 1) * 15, actY + (actZ - 1) * 15, actT, 28 * actZ / 16, 40 * actZ / 16);
     }
@@ -166,7 +165,7 @@ void CardGui::Render()
         renderer->RenderQuad(extracostshadow.get(), actX + (actZ - 1) * 15, actY + (actZ - 1) * 15, actT, 28 * actZ / 16, 40 * actZ / 16);
     }
 
-    if(game->connectRule)
+    if(game && game->connectRule)
     {
         // Am I a parent of a selected card, or am I a parent and myself being selected?
         bool isActiveConnectedParent = mHasFocus && card->childrenCards.size();
@@ -238,15 +237,15 @@ void CardGui::Render()
 
         JQuadPtr icon;
         if (card->hasSubtype("plains"))
-            icon = card->getObserver()->getResourceManager()->GetQuad("c_white");
+            icon = game?game->getResourceManager()->GetQuad("c_white"):WResourceManager::Instance()->GetQuad("c_white");
         else if (card->hasSubtype("swamp"))
-            icon = card->getObserver()->getResourceManager()->GetQuad("c_black");
+            icon = game?game->getResourceManager()->GetQuad("c_black"):WResourceManager::Instance()->GetQuad("c_black");
         else if (card->hasSubtype("forest"))
-            icon = card->getObserver()->getResourceManager()->GetQuad("c_green");
+            icon = game?game->getResourceManager()->GetQuad("c_green"):WResourceManager::Instance()->GetQuad("c_green");
         else if (card->hasSubtype("mountain"))
-            icon = card->getObserver()->getResourceManager()->GetQuad("c_red");
+            icon = game?game->getResourceManager()->GetQuad("c_red"):WResourceManager::Instance()->GetQuad("c_red");
         else if (card->hasSubtype("island"))
-            icon = card->getObserver()->getResourceManager()->GetQuad("c_blue");
+            icon = game?game->getResourceManager()->GetQuad("c_blue"):WResourceManager::Instance()->GetQuad("c_blue");
 
         if (icon.get())
         {
