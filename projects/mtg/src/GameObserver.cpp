@@ -434,7 +434,7 @@ bool GameObserver::operator==(const GameObserver& aGame)
     }
     for (int i = 0; i < 2; i++)
     {
-        TestSuiteAI * p = (TestSuiteAI *) (aGame.players[i]);
+        Player * p = aGame.players[i];
 
         if (p->life != players[i]->life)
         {

@@ -355,8 +355,11 @@ ModRulesCardGui::~ModRulesCardGui()
         SAFE_DELETE(background[i]);
     for (size_t i = 0; i < renderbig.size(); ++i)
         SAFE_DELETE(renderbig[i]);
+    for (size_t i = 0; i < rendertinycrop.size(); ++i)
+        SAFE_DELETE(rendertinycrop[i]);
 
     background.clear();
     renderbig.clear(); 
+    rendertinycrop.clear();
     
 }
