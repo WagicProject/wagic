@@ -7453,7 +7453,7 @@ toughness=1
 [card]
 name=Bloodgift Demon
 abilities=flying
-auto=@each my upkeep:target(player) draw:1 && life:-1
+auto=@each my upkeep:transforms((,newability[choice name(opponent) life:-1 opponent && draw:1 opponent],newability[choice name(controller) life:-1 controller && draw:1 controller]))
 text=Flying -- At the beginning of your upkeep, target player draws a card and loses 1 life.
 mana={3}{B}{B}
 type=Creature
@@ -15198,7 +15198,7 @@ subtype=Aura
 [/card]
 [card]
 name=Cut the Earthly Bond
-target=creature[enchanted]
+target=*[enchanted]
 auto=moveTo(ownerhand)
 text=Return target enchanted permanent to its owner's hand.
 mana={U}
@@ -54072,7 +54072,7 @@ mana={4}{R}{R}
 type=Sorcery
 [/card]
 [card]
-name=Punctute Blast
+name=Puncture Blast
 abilities=wither
 target=creature,player
 auto=damage:3
