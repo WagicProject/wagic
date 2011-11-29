@@ -794,7 +794,7 @@ int MTGCardInstance::removeBlocker(MTGCardInstance * blocker)
     // Blockers can be removed "manually" (by the blocking player) at the Blockers step,
     // Or "automatically" in the damage phase, when they die and regenerate (see http://code.google.com/p/wagic/issues/detail?id=563 )
     // In the second case, we still want the card to be marked as "blocked" this turn
-    if (!blockers.size() && observer->currentGamePhase == Constants::MTG_PHASE_COMBATBLOCKERS)
+    if (!blockers.size() && observer->currentGamePhase == MTG_PHASE_COMBATBLOCKERS)
     {
         blocked = false;
     }
@@ -1095,4 +1095,9 @@ std::ostream& MTGCardInstance::toString(std::ostream& out) const
 std::ostream& operator<<(std::ostream& out, const MTGCardInstance& c)
 {
     return c.toString(out);
+}
+
+MTGCardInstance* MTGCardInstance::clone()
+{
+    return new MTGCardInstance(model, owner->game);
 }

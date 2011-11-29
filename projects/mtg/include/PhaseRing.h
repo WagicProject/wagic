@@ -3,6 +3,7 @@
 
 #include <list>
 #include <string>
+#include "MTGDefinitions.h"
 using namespace std;
 
 /*
@@ -26,9 +27,9 @@ typedef enum
 class Phase
 {
 public:
-    int id;
+    GamePhase id;
     Player * player;
-    Phase(int id, Player *player) :
+    Phase(GamePhase id, Player *player) :
         id(id), player(player)
     {
     }
@@ -49,10 +50,10 @@ public:
     PhaseRing(GameObserver* observer);
     ~PhaseRing();
     int addPhase(Phase * phase);
-    int addPhaseBefore(int id, Player* player, int after_id, Player * after_player, int allOccurences = 1);
+    int addPhaseBefore(GamePhase id, Player* player, int after_id, Player * after_player, int allOccurences = 1);
     int removePhase(int id, Player * player, int allOccurences = 1);
     const char * phaseName(int id);
-    static int phaseStrToInt(string s);
+    static GamePhase phaseStrToInt(string s);
 
 };
 

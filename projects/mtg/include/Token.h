@@ -9,6 +9,8 @@ class Token: public MTGCardInstance
 public:
     Token(string _name, MTGCardInstance * source, int _power = 0, int _toughness = 0);
     Token(int id);
+    Token(const Token& source);
+    virtual MTGCardInstance* clone();
 };
 
 #endif

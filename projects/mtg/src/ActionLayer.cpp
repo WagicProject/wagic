@@ -140,7 +140,7 @@ void ActionLayer::Update(float dt)
                 observer->removeObserver(currentAction);
         }
     }
-    int newPhase = observer->getCurrentGamePhase();
+    GamePhase newPhase = observer->getCurrentGamePhase();
     for (size_t i = 0; i < mObjects.size(); i++)
     {
         if (mObjects[i] != NULL)
@@ -299,17 +299,18 @@ bool ActionLayer::getMenuIdFromCardAbility(MTGCardInstance *card, MTGAbility *ab
         if (currentAction->isReactingToClick(card))
         {
             if(currentAction == ability) {
+                // code corresponding to that is in setMenuObject
                 menuId = ctr;
+                ctr++;
             }
-            ctr++;
         }
     }
 
-    // ability not working with card or only one ability possible
     if(ctr == 0 || ctr == 1)
+    {
         return false;
+    }
     else
-        // several abilities working with card, menuId set
         return true;
 }
 
@@ -433,8 +434,15 @@ void ActionLayer::doReactTo(int menuIndex)
 void ActionLayer::ButtonPressed(int controllerid, int controlid)
 {
     stringstream stream;
-    stream << "choice " << controlid;
-    observer->logAction(observer->currentActionPlayer, stream.str());
+    for(size_t i = 0; i < abilitiesMenu->mObjects.size(); i++)
+    {   // this computes the reverse from the doReactTo method
+        if(abilitiesMenu->mObjects[i]->GetId() == controlid)
+        {
+            stream << "choice " << i;
+            observer->logAction(observer->currentActionPlayer, stream.str());
+            break;
+        }
+    }
 
     if(this->abilitiesMenu && this->abilitiesMenu->isMultipleChoice)
     {

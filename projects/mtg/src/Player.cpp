@@ -12,7 +12,7 @@
 #endif
 
 Player::Player(GameObserver *observer, string file, string fileSmall, MTGDeck * deck) :
-    Damageable(observer, 20), mAvatarName(""), offerInterruptOnPhase(Constants::MTG_PHASE_DRAW)
+    Damageable(observer, 20), mAvatarName(""), offerInterruptOnPhase(MTG_PHASE_DRAW)
 {
     if(deck == NULL && file != "testsuite" && file != "remote" && file != "")
         deck = NEW MTGDeck(file.c_str(), MTGCollection());
@@ -290,7 +290,7 @@ bool Player::parseLine(const string& s)
         }
         else if (areaS.compare("offerinterruptonphase") == 0)
         {
-            for (int i = 0; i < Constants::NB_MTG_PHASES; i++)
+            for (int i = 0; i < NB_MTG_PHASES; i++)
             {
                 string phaseStr = Constants::MTGPhaseCodeNames[i];
                 if (s.find(phaseStr) != string::npos)

@@ -289,7 +289,7 @@ public:
 
     virtual void Update(float dt)
     {
-        if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_AFTER_EOT)
+        if (newPhase != currentPhase && newPhase == MTG_PHASE_AFTER_EOT)
         {
             counters = 0;
         }

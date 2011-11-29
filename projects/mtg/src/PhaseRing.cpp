@@ -5,26 +5,26 @@
 #include "Player.h"
 #include "WEvent.h"
 //Parses a string and gives phase numer
-int PhaseRing::phaseStrToInt(string s)
+GamePhase PhaseRing::phaseStrToInt(string s)
 {
-    if (s.compare("untap") == 0) return Constants::MTG_PHASE_UNTAP;
-    if (s.compare("upkeep") == 0) return Constants::MTG_PHASE_UPKEEP;
-    if (s.compare("draw") == 0) return Constants::MTG_PHASE_DRAW;
-    if (s.compare("firstmain") == 0) return Constants::MTG_PHASE_FIRSTMAIN;
-    if (s.compare("combatbegin") == 0) return Constants::MTG_PHASE_COMBATBEGIN;
-    if (s.compare("combatbegins") == 0) return Constants::MTG_PHASE_COMBATBEGIN;
-    if (s.compare("combatattackers") == 0) return Constants::MTG_PHASE_COMBATATTACKERS;
-    if (s.compare("combatblockers") == 0) return Constants::MTG_PHASE_COMBATBLOCKERS;
-    if (s.compare("combatdamage") == 0) return Constants::MTG_PHASE_COMBATDAMAGE;
-    if (s.compare("combatend") == 0) return Constants::MTG_PHASE_COMBATEND;
-    if (s.compare("combatends") == 0) return Constants::MTG_PHASE_COMBATEND;
-    if (s.compare("secondmain") == 0) return Constants::MTG_PHASE_SECONDMAIN;
-    if (s.compare("endofturn") == 0) return Constants::MTG_PHASE_ENDOFTURN;
-    if (s.compare("end") == 0) return Constants::MTG_PHASE_ENDOFTURN;
-    if (s.compare("cleanup") == 0) return Constants::MTG_PHASE_CLEANUP;
+    if (s.compare("untap") == 0) return MTG_PHASE_UNTAP;
+    if (s.compare("upkeep") == 0) return MTG_PHASE_UPKEEP;
+    if (s.compare("draw") == 0) return MTG_PHASE_DRAW;
+    if (s.compare("firstmain") == 0) return MTG_PHASE_FIRSTMAIN;
+    if (s.compare("combatbegin") == 0) return MTG_PHASE_COMBATBEGIN;
+    if (s.compare("combatbegins") == 0) return MTG_PHASE_COMBATBEGIN;
+    if (s.compare("combatattackers") == 0) return MTG_PHASE_COMBATATTACKERS;
+    if (s.compare("combatblockers") == 0) return MTG_PHASE_COMBATBLOCKERS;
+    if (s.compare("combatdamage") == 0) return MTG_PHASE_COMBATDAMAGE;
+    if (s.compare("combatend") == 0) return MTG_PHASE_COMBATEND;
+    if (s.compare("combatends") == 0) return MTG_PHASE_COMBATEND;
+    if (s.compare("secondmain") == 0) return MTG_PHASE_SECONDMAIN;
+    if (s.compare("endofturn") == 0) return MTG_PHASE_ENDOFTURN;
+    if (s.compare("end") == 0) return MTG_PHASE_ENDOFTURN;
+    if (s.compare("cleanup") == 0) return MTG_PHASE_CLEANUP;
     DebugTrace("PHASERING: Unknown Phase name: " << s);
 
-    return Constants::MTG_PHASE_FIRSTMAIN;
+    return MTG_PHASE_FIRSTMAIN;
 }
 
 /* Creates a New phase ring with the default rules */
@@ -35,21 +35,21 @@ PhaseRing::PhaseRing(GameObserver* observer)
     {
         if(observer->players[i]->phaseRing.size())
         {
-            addPhase(NEW Phase(Constants::MTG_PHASE_BEFORE_BEGIN, observer->players[i]));
+            addPhase(NEW Phase(MTG_PHASE_BEFORE_BEGIN, observer->players[i]));
             vector<string>customRing = split(observer->players[i]->phaseRing,',');
             for (unsigned int k = 0;k < customRing.size(); k++)
             {
-                int customOrder = phaseStrToInt(customRing[k]);
+                GamePhase customOrder = phaseStrToInt(customRing[k]);
                 Phase * phase = NEW Phase(customOrder, observer->players[i]);
                 addPhase(phase);
             }
-            addPhase( NEW Phase(Constants::MTG_PHASE_AFTER_EOT, observer->players[i]));
+            addPhase( NEW Phase(MTG_PHASE_AFTER_EOT, observer->players[i]));
         }
         else
         {
-            for (int j = 0; j < Constants::NB_MTG_PHASES; j++)
+            for (int j = 0; j < NB_MTG_PHASES; j++)
             {
-                Phase * phase = NEW Phase(j, observer->players[i]);
+                Phase * phase = NEW Phase((GamePhase)j, observer->players[i]);
                 addPhase(phase);
             }
         }
@@ -70,7 +70,7 @@ PhaseRing::~PhaseRing()
 //Tells if next phase will be another Damage phase rather than combat ends
 bool PhaseRing::extraDamagePhase(int id)
 {
-    if (id != Constants::MTG_PHASE_COMBATEND) return false;
+    if (id != MTG_PHASE_COMBATEND) return false;
     if (observer->combatStep != END_FIRST_STRIKE) return false;
     for (int j = 0; j < 2; ++j)
     {
@@ -135,7 +135,7 @@ int PhaseRing::addPhase(Phase * phase)
     return 1;
 }
 
-int PhaseRing::addPhaseBefore(int id, Player* player, int after_id, Player * after_player, int allOccurences)
+int PhaseRing::addPhaseBefore(GamePhase id, Player* player, int after_id, Player * after_player, int allOccurences)
 {
     int result = 0;
     list<Phase *>::iterator it;

@@ -38,9 +38,9 @@ int RandomGenerator::random()
     return result;
 }
 
-ostream& RandomGenerator::saveUsedRandValues(ostream& out)
+ostream& RandomGenerator::saveUsedRandValues(ostream& out) const
 {
-    list<int>::iterator ite;
+    list<int>::const_iterator ite;
     for(ite=usedRandomValues.begin(); ite != usedRandomValues.end(); ite++)
     {
         out << *ite << ",";

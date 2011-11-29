@@ -80,6 +80,7 @@ int TestSuiteAI::Act(float dt)
     observer->gameOver = NULL; // Prevent draw rule from losing the game
 
     //Last bits of initialization require to be done here, after the first "update" call of the game
+
     if (suite->currentAction == 0)
     {
         for (int i = 0; i < 2; ++ i)
@@ -129,7 +130,7 @@ int TestSuiteAI::Act(float dt)
 
     if (action.compare("eot") == 0)
     {
-        if (observer->getCurrentGamePhase() != Constants::MTG_PHASE_CLEANUP) suite->currentAction--;
+        if (observer->getCurrentGamePhase() != MTG_PHASE_CLEANUP) suite->currentAction--;
         observer->userRequestNextGamePhase();
     }
     else if (action.compare("human") == 0)
@@ -151,7 +152,7 @@ int TestSuiteAI::Act(float dt)
             size_t found = action.find("goto ");
             string phase = action.substr(found + 5);
             int phaseToGo = 0;
-            for (int i = 0; i < Constants::NB_MTG_PHASES; i++)
+            for (int i = 0; i < NB_MTG_PHASES; i++)
             {
                 if (phase.find(Constants::MTGPhaseCodeNames[i]) != string::npos)
                 {
@@ -552,6 +553,7 @@ int TestSuite::loadNext()
           SAFE_DELETE(mWorkerThread.back());
           mWorkerThread.pop_back();
         }
+
         size_t thread_count = 1;
 #ifdef QT_CONFIG
         thread_count = QThread::idealThreadCount();
@@ -762,6 +764,14 @@ void TestSuite::ThreadProc(void* inParam)
 
                 while(!theGame.observer->gameOver)
                     theGame.observer->Update(counter++);
+
+                if(theGame.observer->mGameType != GAME_TYPE_MOMIR)
+                {
+                    stringstream stream;
+                    stream << *(theGame.observer);
+                    theGame.observer->load(stream.str(), false, &theGame);
+                    theGame.assertGame();
+                }
             }
         }
     }
@@ -794,13 +804,23 @@ TestSuiteGame::TestSuiteGame(TestSuite* testsuite, string _filename)
     isOK = load();
 }
 
+void TestSuiteGame::ResetManapools()
+{
+    for (int i = 0; i < 2; ++ i)
+        observer->players[i]->getManaPool()->copy(initState.players[i]->getManaPool());
+}
+
+
 void TestSuiteGame::initGame()
 {
     DebugTrace("TESTSUITE Init Game");
-    observer->phaseRing->goToPhase(initState.phase, observer->players[0]);
+    observer->phaseRing->goToPhase(initState.phase, observer->players[0], false);
     observer->currentGamePhase = initState.phase;
+
+    observer->resetStartupGame();
+
     for (int i = 0; i < 2; i++)
-    {
+    {        
         AIPlayerBaka * p = (AIPlayerBaka *) (observer->players[i]);
         p->forceBestAbilityUse = forceAbility;
         p->life = initState.players[i]->life;

@@ -34,3 +34,32 @@ Token::Token(int id) :
     name = "dummyToken";
     setMTGId(id);
 }
+
+Token::Token(const Token& source) :
+    MTGCardInstance(source.model, source.owner->game)
+{
+    isToken = source.isToken;
+    tokenSource = source.tokenSource;
+    power = source.power;
+    toughness = source.toughness;
+    life = source.life;
+    lifeOrig = source.life;
+    origpower = source.origpower;
+    origtoughness = source.origpower;
+    rarity = source.rarity;
+    name = source.name;
+    setId = source.setId;
+    model = source.model;
+    data = source.data;
+    owner = source.owner;
+    belongs_to = source.belongs_to;
+    attacker = source.attacker;
+    defenser = source.defenser;
+    banding = source.banding;
+}
+
+
+MTGCardInstance* Token::clone()
+{
+    return new Token(*this);
+}

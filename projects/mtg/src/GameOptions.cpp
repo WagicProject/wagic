@@ -141,46 +141,46 @@ int Options::optionInterrupt(int gamePhase)
     //Huge, nearly illegible switch block spread out to improve readability.
     switch (gamePhase)
     {
-    case Constants::MTG_PHASE_BEFORE_BEGIN:
+    case MTG_PHASE_BEFORE_BEGIN:
         return INTERRUPT_BEFOREBEGIN;
 
-    case Constants::MTG_PHASE_UNTAP:
+    case MTG_PHASE_UNTAP:
         return INTERRUPT_UNTAP;
 
-    case Constants::MTG_PHASE_UPKEEP:
+    case MTG_PHASE_UPKEEP:
         return INTERRUPT_UPKEEP;
 
-    case Constants::MTG_PHASE_DRAW:
+    case MTG_PHASE_DRAW:
         return INTERRUPT_DRAW;
 
-    case Constants::MTG_PHASE_FIRSTMAIN:
+    case MTG_PHASE_FIRSTMAIN:
         return INTERRUPT_FIRSTMAIN;
 
-    case Constants::MTG_PHASE_COMBATBEGIN:
+    case MTG_PHASE_COMBATBEGIN:
         return INTERRUPT_BEGINCOMBAT;
 
-    case Constants::MTG_PHASE_COMBATATTACKERS:
+    case MTG_PHASE_COMBATATTACKERS:
         return INTERRUPT_ATTACKERS;
 
-    case Constants::MTG_PHASE_COMBATBLOCKERS:
+    case MTG_PHASE_COMBATBLOCKERS:
         return INTERRUPT_BLOCKERS;
 
-    case Constants::MTG_PHASE_COMBATDAMAGE:
+    case MTG_PHASE_COMBATDAMAGE:
         return INTERRUPT_DAMAGE;
 
-    case Constants::MTG_PHASE_COMBATEND:
+    case MTG_PHASE_COMBATEND:
         return INTERRUPT_ENDCOMBAT;
 
-    case Constants::MTG_PHASE_SECONDMAIN:
+    case MTG_PHASE_SECONDMAIN:
         return INTERRUPT_SECONDMAIN;
 
-    case Constants::MTG_PHASE_ENDOFTURN:
+    case MTG_PHASE_ENDOFTURN:
         return INTERRUPT_ENDTURN;
 
-    case Constants::MTG_PHASE_CLEANUP:
+    case MTG_PHASE_CLEANUP:
         return INTERRUPT_CLEANUP;
 
-    case Constants::MTG_PHASE_AFTER_EOT:
+    case MTG_PHASE_AFTER_EOT:
         return INTERRUPT_AFTEREND;
     }
 

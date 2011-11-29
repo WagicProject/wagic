@@ -1769,7 +1769,7 @@ public:
 
     void Update(float dt)
     {
-        if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_UNTAP) clear();
+        if (newPhase != currentPhase && newPhase == MTG_PHASE_UNTAP) clear();
         TargetAbility::Update(dt);
     }
 
@@ -3259,7 +3259,7 @@ public:
 
     void Update(float dt)
     {
-        if (newPhase != currentPhase && (newPhase == Constants::MTG_PHASE_COMBATBEGIN || newPhase == Constants::MTG_PHASE_COMBATATTACKERS))
+        if (newPhase != currentPhase && (newPhase == MTG_PHASE_COMBATBEGIN || newPhase == MTG_PHASE_COMBATATTACKERS))
         {
             if (source->controller()->opponent()->game->inPlay->hasType(land))
             {
@@ -3461,12 +3461,12 @@ public:
     {
         if (WEventPhaseChange* pe = dynamic_cast<WEventPhaseChange*>(event))
         {
-            if (luckyWinner && Constants::MTG_PHASE_AFTER_EOT == pe->from->id)
+            if (luckyWinner && MTG_PHASE_AFTER_EOT == pe->from->id)
             {
                 luckyWinner = NULL;
             }
 
-            if (Constants::MTG_PHASE_COMBATATTACKERS == pe->from->id)
+            if (MTG_PHASE_COMBATATTACKERS == pe->from->id)
             {
                 int nbattackers = 0;
                 MTGGameZone * z = source->controller()->game->inPlay;
@@ -3627,7 +3627,7 @@ public:
     ManaCost * backupMana;
 
     AUpkeep(GameObserver* observer, int _id, MTGCardInstance * card, MTGAbility * a, ManaCost * _cost, int restrictions = 0, int _phase =
-        Constants::MTG_PHASE_UPKEEP, int _once = 0,bool Cumulative = false);
+        MTG_PHASE_UPKEEP, int _once = 0,bool Cumulative = false);
     int receiveEvent(WEvent * event);
     void Update(float dt);
     int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
@@ -3655,7 +3655,7 @@ public:
     Player * abilityOwner;
 
     APhaseAction(GameObserver* observer, int _id, MTGCardInstance * card, MTGCardInstance * target, string sAbility, int restrictions = 0, int _phase =
-        Constants::MTG_PHASE_UPKEEP,bool forcedestroy = false,bool next = true,bool myturn = true,bool opponentturn = true,bool once = false);
+        MTG_PHASE_UPKEEP,bool forcedestroy = false,bool next = true,bool myturn = true,bool opponentturn = true,bool once = false);
     void Update(float dt);
     int resolve();
     const char * getMenuText();
@@ -3670,7 +3670,7 @@ public:
     string sAbility;
     APhaseAction * ability;
     APhaseActionGeneric(GameObserver* observer, int _id, MTGCardInstance * card, MTGCardInstance * target, string sAbility, int restrictions = 0, int _phase =
-            Constants::MTG_PHASE_UPKEEP,bool forcedestroy = false,bool next = true,bool myturn = false,bool opponentturn = false,bool once = false);
+            MTG_PHASE_UPKEEP,bool forcedestroy = false,bool next = true,bool myturn = false,bool opponentturn = false,bool once = false);
     int resolve();
     const char * getMenuText();
     APhaseActionGeneric * clone() const;
@@ -3819,11 +3819,11 @@ public:
     {
         if (newPhase != currentPhase)
         {
-            if (newPhase == Constants::MTG_PHASE_UPKEEP && game->currentPlayer->game->inPlay->hasCard(source))
+            if (newPhase == MTG_PHASE_UPKEEP && game->currentPlayer->game->inPlay->hasCard(source))
             {
                 counters++;
             }
-            else if (newPhase == Constants::MTG_PHASE_DRAW && counters > 0 && game->currentPlayer->game->inPlay->hasCard(source))
+            else if (newPhase == MTG_PHASE_DRAW && counters > 0 && game->currentPlayer->game->inPlay->hasCard(source))
             { //End of upkeep = beginning of draw
                 game->mLayers->stackLayer()->addDamage(source, game->players[0],
                         counters);
@@ -3834,7 +3834,7 @@ public:
     }
     int isReactingToClick(MTGCardInstance * _card, ManaCost * mana = NULL)
     {
-        if (counters > 0 && _card == source && currentPhase == Constants::MTG_PHASE_UPKEEP)
+        if (counters > 0 && _card == source && currentPhase == MTG_PHASE_UPKEEP)
         {
             if (game->currentlyActing()->getManaPool()->canAfford(&cost))
             {
@@ -3979,7 +3979,7 @@ public:
 
     void Update(float dt)
     {
-        if (newPhase != currentPhase && newPhase != Constants::MTG_PHASE_UPKEEP)
+        if (newPhase != currentPhase && newPhase != MTG_PHASE_UPKEEP)
         {
             usedThisTurn = 0;
         }
@@ -3989,7 +3989,7 @@ public:
     int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL)
     {
         if (!ActivatedAbility::isReactingToClick(card, mana)) return 0;
-        if (currentPhase != Constants::MTG_PHASE_UPKEEP) return 0;
+        if (currentPhase != MTG_PHASE_UPKEEP) return 0;
         if (usedThisTurn) return 0;
         return 1;
     }
@@ -4028,7 +4028,7 @@ public:
     {
         if (newPhase != currentPhase)
         {
-            if (newPhase == Constants::MTG_PHASE_COMBATEND)
+            if (newPhase == MTG_PHASE_COMBATEND)
             {
                 nbOpponents = 0;
                 MTGCardInstance * opponent = source->getNextOpponent();
@@ -4051,7 +4051,7 @@ public:
 
     int testDestroy()
     {
-        if (!game->isInPlay(source) && currentPhase != Constants::MTG_PHASE_UNTAP)
+        if (!game->isInPlay(source) && currentPhase != MTG_PHASE_UNTAP)
         {
             return 0;
         }
@@ -4129,12 +4129,12 @@ public:
             if (newPhase != currentPhase)
             {
                 Player * controller = source->controller();
-                if(newPhase == Constants::MTG_PHASE_ENDOFTURN)
+                if(newPhase == MTG_PHASE_ENDOFTURN)
                 {
                     if(!attackedThisTurn && game->currentPlayer == source->controller() && !source->fresh)
                         game->mLayers->stackLayer()->addDamage(source, controller, 2);
                 }
-                else if (newPhase == Constants::MTG_PHASE_UNTAP)
+                else if (newPhase == MTG_PHASE_UNTAP)
                 {
 
                     if (game->currentPlayer == controller)
@@ -4184,7 +4184,7 @@ public:
 
     void Update(float dt)
     {
-        if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_UNTAP)
+        if (newPhase != currentPhase && newPhase == MTG_PHASE_UNTAP)
         {
             landsPlayedThisTurn = 0;
         }
@@ -4358,7 +4358,7 @@ public:
     void Update(float dt)
     {
         MTGCardInstance * _target = (MTGCardInstance *) target;
-        if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_UPKEEP && _target->controller() == game->currentPlayer)
+        if (newPhase != currentPhase && newPhase == MTG_PHASE_UPKEEP && _target->controller() == game->currentPlayer)
         {
             damagesToDealThisTurn = 2;
         }
@@ -4368,7 +4368,7 @@ public:
     int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL)
     {
         MTGCardInstance * _target = (MTGCardInstance *) target;
-        if (damagesToDealThisTurn && currentPhase == Constants::MTG_PHASE_UPKEEP && card == source && _target->controller()
+        if (damagesToDealThisTurn && currentPhase == MTG_PHASE_UPKEEP && card == source && _target->controller()
                 == game->currentPlayer)
         {
             if (game->currentPlayer->getManaPool()->canAfford(&cost)) return 1;
@@ -4386,7 +4386,7 @@ public:
     int trigger()
     {
         MTGCardInstance * _target = (MTGCardInstance *) target;
-        if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_DRAW && _target->controller() == game->currentPlayer)
+        if (newPhase != currentPhase && newPhase == MTG_PHASE_DRAW && _target->controller() == game->currentPlayer)
         {
             if (damagesToDealThisTurn) return 1;
         }
@@ -4513,14 +4513,14 @@ public:
 
     void Update(float dt)
     {
-        if (currentPhase == Constants::MTG_PHASE_UNTAP && game->currentPlayer == source->controller())
+        if (currentPhase == MTG_PHASE_UNTAP && game->currentPlayer == source->controller())
         {
             initThisTurn = 0;
             for(unsigned int i = 0; i < effectedCards.size(); i++)
             effectedCards.at(i)->basicAbilities[(int)Constants::CANTATTACK] = 0;
             effectedCards.clear();
         }
-        if (initThisTurn && currentPhase == Constants::MTG_PHASE_COMBATBEGIN && game->currentPlayer != source->controller())
+        if (initThisTurn && currentPhase == MTG_PHASE_COMBATBEGIN && game->currentPlayer != source->controller())
         {
             MTGGameZone * zone = game->currentPlayer->game->inPlay;
             for (int i = 0; i < zone->nb_cards; i++)
@@ -4584,11 +4584,11 @@ public:
         //Upkeep Cost
         if (newPhase != currentPhase)
         {
-            if (newPhase == Constants::MTG_PHASE_UPKEEP)
+            if (newPhase == MTG_PHASE_UPKEEP)
             {
                 paidThisTurn = 0;
             }
-            else if (!paidThisTurn && newPhase > Constants::MTG_PHASE_UPKEEP && game->currentPlayer == source->controller())
+            else if (!paidThisTurn && newPhase > MTG_PHASE_UPKEEP && game->currentPlayer == source->controller())
             {
                 game->currentPlayer->game->putInGraveyard(source);
                 paidThisTurn = 1;
@@ -4597,7 +4597,7 @@ public:
         //Stasis Effect
         for (int i = 0; i < 2; i++)
         {
-            game->phaseRing->removePhase(Constants::MTG_PHASE_UNTAP, game->players[i]);
+            game->phaseRing->removePhase(MTG_PHASE_UNTAP, game->players[i]);
         }
 
         //Parent Class Method Call
@@ -4606,7 +4606,7 @@ public:
 
     int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL)
     {
-        return (!paidThisTurn && currentPhase == Constants::MTG_PHASE_UPKEEP && ActivatedAbility::isReactingToClick(card, mana));
+        return (!paidThisTurn && currentPhase == MTG_PHASE_UPKEEP && ActivatedAbility::isReactingToClick(card, mana));
     }
 
     int resolve()
@@ -4619,7 +4619,7 @@ public:
     {
         for (int i = 0; i < 2; i++)
         {
-            game->phaseRing->addPhaseBefore(Constants::MTG_PHASE_UNTAP, game->players[i], Constants::MTG_PHASE_UPKEEP,
+            game->phaseRing->addPhaseBefore(MTG_PHASE_UNTAP, game->players[i], MTG_PHASE_UPKEEP,
                     game->players[i]);
         }
         return 1;
@@ -4654,7 +4654,7 @@ public:
     {
         if (newPhase != currentPhase)
         {
-            if (newPhase == Constants::MTG_PHASE_COMBATDAMAGE)
+            if (newPhase == MTG_PHASE_COMBATDAMAGE)
             {
                 nbOpponents = 0;
                 MTGCardInstance * opponent = source->getNextOpponent();
@@ -4665,7 +4665,7 @@ public:
                     opponent = source->getNextOpponent(opponent);
                 }
             }
-            else if (newPhase == Constants::MTG_PHASE_COMBATEND)
+            else if (newPhase == MTG_PHASE_COMBATEND)
             {
                 for (int i = 0; i < nbOpponents; i++)
                 {
@@ -4753,11 +4753,11 @@ public:
     {
         if (newPhase != currentPhase && source->controller() == game->currentPlayer)
         {
-            if (newPhase == Constants::MTG_PHASE_UNTAP)
+            if (newPhase == MTG_PHASE_UNTAP)
             {
                 paidThisTurn = 0;
             }
-            else if (newPhase == Constants::MTG_PHASE_UPKEEP + 1 && !paidThisTurn)
+            else if (newPhase == MTG_PHASE_UPKEEP + 1 && !paidThisTurn)
             {
                 game->mLayers->stackLayer()->addDamage(source, source->controller(), 5);
                 source->tap();
@@ -4768,7 +4768,7 @@ public:
 
     int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL)
     {
-        if (currentPhase != Constants::MTG_PHASE_UPKEEP || paidThisTurn) return 0;
+        if (currentPhase != MTG_PHASE_UPKEEP || paidThisTurn) return 0;
         return TargetAbility::isReactingToClick(card, mana);
     }
 
@@ -4824,7 +4824,7 @@ public:
         }
         else if (WEventPhaseChange* pe = dynamic_cast<WEventPhaseChange*>(event))
         {
-            if (Constants::MTG_PHASE_AFTER_EOT == pe->to->id && nbOpponents > MaxOpponent)
+            if (MTG_PHASE_AFTER_EOT == pe->to->id && nbOpponents > MaxOpponent)
             {
                 source->power -= PowerModifier * (nbOpponents - MaxOpponent);
                 source->addToToughness(-ToughnessModifier * (nbOpponents - MaxOpponent));
@@ -4922,7 +4922,7 @@ public:
         }
         else if (WEventPhaseChange* pe = dynamic_cast<WEventPhaseChange*>(event))
         {
-            if (Constants::MTG_PHASE_AFTER_EOT == pe->to->id && nbOpponents)
+            if (MTG_PHASE_AFTER_EOT == pe->to->id && nbOpponents)
             {
                 source->power -= PowerModifier;
                 source->addToToughness(-ToughnessModifier);

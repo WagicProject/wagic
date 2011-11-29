@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include "MTGDefinitions.h"
 
 using namespace std;
 class ManaCost;
@@ -28,7 +29,7 @@ public:
 class RulesState
 {
 public:
-    int phase;
+    GamePhase phase;
     int player;
     void parsePlayerState(int playerId, string s);
     RulesState();

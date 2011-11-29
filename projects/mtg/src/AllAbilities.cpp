@@ -2542,7 +2542,7 @@ int GenericTargetAbility::isReactingToClick(MTGCardInstance * card, ManaCost * m
 
 void GenericTargetAbility::Update(float dt)
 {
-    if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_AFTER_EOT)
+    if (newPhase != currentPhase && newPhase == MTG_PHASE_AFTER_EOT)
     {
         counters = 0;
     }
@@ -3345,7 +3345,7 @@ void AVanishing::Update(float dt)
 {
     if (newPhase != currentPhase && source->controller() == game->currentPlayer)
     {
-        if(newPhase == Constants::MTG_PHASE_UPKEEP)
+        if(newPhase == MTG_PHASE_UPKEEP)
         {
             source->counters->removeCounter(counterName.c_str(),0,0);
             Counter * targetCounter = NULL;
@@ -3367,7 +3367,7 @@ void AVanishing::Update(float dt)
                 {
                     next = 0;
                 }
-                if (newPhase == Constants::MTG_PHASE_UPKEEP && timeLeft <= 0 && next == 0)
+                if (newPhase == MTG_PHASE_UPKEEP && timeLeft <= 0 && next == 0)
                 {
                     WEvent * e = NEW WEventCardSacrifice(source);
                     game->receiveEvent(e);
@@ -3415,7 +3415,7 @@ AUpkeep::AUpkeep(GameObserver* observer, int _id, MTGCardInstance * card, MTGAbi
     {
         if (WEventPhaseChange* pe = dynamic_cast<WEventPhaseChange*>(event))
         {
-            if (Constants::MTG_PHASE_DRAW == pe->to->id)
+            if (MTG_PHASE_DRAW == pe->to->id)
             {
                 if (source->controller() == game->currentPlayer && once < 2 && paidThisTurn < 1)
                 {
@@ -3431,11 +3431,11 @@ void AUpkeep::Update(float dt)
     // once: 0 means always go off, 1 means go off only once, 2 means go off only once and already has.
     if (newPhase != currentPhase && source->controller() == game->currentPlayer && once < 2)
     {
-        if (newPhase == Constants::MTG_PHASE_UNTAP)
+        if (newPhase == MTG_PHASE_UNTAP)
         {
             paidThisTurn = 0;
         }
-        else if(newPhase == Constants::MTG_PHASE_UPKEEP && Cumulative )
+        else if(newPhase == MTG_PHASE_UPKEEP && Cumulative )
         {
             source->counters->addCounter("age",0,0);
                 Counter * targetCounter = NULL;
@@ -3644,7 +3644,7 @@ void ABlink::Update(float dt)
         resolveBlink();
     }
 
-    if ((blinkueot && currentPhase == Constants::MTG_PHASE_ENDOFTURN)||(blinkForSource && !source->isInPlay(game)))
+    if ((blinkueot && currentPhase == MTG_PHASE_ENDOFTURN)||(blinkForSource && !source->isInPlay(game)))
     {
         if(Blinked == NULL)
             MTGAbility::Update(dt);

@@ -20,7 +20,7 @@ int AIMomirPlayer::getEfficiency(OrderedAIAction * action)
     if (cost && !(cost->isExtraPaymentSet())) return 0; //Does not handle abilities with sacrifice yet
     int efficiency = AIPlayerBaka::getEfficiency(action);
 
-    if (observer->getCurrentGamePhase() < Constants::MTG_PHASE_FIRSTMAIN) return 0;
+    if (observer->getCurrentGamePhase() < MTG_PHASE_FIRSTMAIN) return 0;
     return efficiency;
 }
 
@@ -95,7 +95,7 @@ int AIMomirPlayer::computeActions()
 
         switch (currentGamePhase)
         {
-        case Constants::MTG_PHASE_FIRSTMAIN:
+        case MTG_PHASE_FIRSTMAIN:
         {
             ManaCost * potentialMana = getPotentialMana();
             int converted = potentialMana->getConvertedCost();
@@ -120,7 +120,7 @@ int AIMomirPlayer::computeActions()
             return 1;
             break;
         }
-        case Constants::MTG_PHASE_SECONDMAIN:
+        case MTG_PHASE_SECONDMAIN:
             selectAbility();
             return 1;
             break;

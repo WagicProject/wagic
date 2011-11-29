@@ -399,7 +399,7 @@ int GuiPlay::receiveEventPlus(WEvent * e)
     }
     else if (WEventPhaseChange *event = dynamic_cast<WEventPhaseChange*>(e))
     {
-        if (Constants::MTG_PHASE_COMBATEND == event->to->id)
+        if (MTG_PHASE_COMBATEND == event->to->id)
             battleField.colorFlow = -1;
     }
     else if (dynamic_cast<WEventCardChangeType*> (e))

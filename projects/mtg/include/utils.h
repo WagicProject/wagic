@@ -75,7 +75,7 @@ protected:
 public:
     RandomGenerator(bool doLog = false) : log(doLog) {};
     void loadRandValues(string s);
-    ostream& saveUsedRandValues(ostream& out);
+    ostream& saveUsedRandValues(ostream& out) const;
     ostream& saveLoadedRandValues(ostream& out);
     int random();
     template<typename Iter> void random_shuffle(Iter first, Iter last)

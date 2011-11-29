@@ -14,6 +14,7 @@
 #include "MTGRules.h"
 #include "Trash.h"
 #include "DeckManager.h"
+#include "GuiCombat.h"
 #ifdef TESTSUITE
 #include "TestSuiteAI.h"
 #endif
@@ -34,7 +35,7 @@ void GameObserver::cleanup()
     currentActionPlayer = NULL;
     isInterrupting = NULL;
     currentPlayerId = 0;
-    currentGamePhase = -1;
+    currentGamePhase = MTG_PHASE_INVALID;
     targetChooser = NULL;
     cardWaitingForTargets = NULL;
     mExtraPayment = NULL;
@@ -89,7 +90,7 @@ GameObserver::GameObserver(WResourceManager *output, JGE* input)
     currentActionPlayer = NULL;
     isInterrupting = NULL;
     currentPlayerId = 0;
-    currentGamePhase = -1;
+    currentGamePhase = MTG_PHASE_INVALID;
     targetChooser = NULL;
     cardWaitingForTargets = NULL;
     mExtraPayment = NULL;
@@ -105,7 +106,7 @@ GameObserver::GameObserver(WResourceManager *output, JGE* input)
     mDeckManager = new DeckManager();
 }
 
-int GameObserver::getCurrentGamePhase()
+GamePhase GameObserver::getCurrentGamePhase()
 {
     return currentGamePhase;
 }
@@ -117,7 +118,7 @@ const char* GameObserver::getCurrentGamePhaseName()
 
 const char* GameObserver::getNextGamePhaseName()
 {
-    return phaseRing->phaseName((currentGamePhase + 1) % Constants::MTG_PHASE_CLEANUP);
+    return phaseRing->phaseName((currentGamePhase + 1) % MTG_PHASE_CLEANUP);
 }
 
 Player * GameObserver::opponent()
@@ -137,14 +138,14 @@ void GameObserver::nextPlayer()
 void GameObserver::nextGamePhase()
 {
     Phase * cPhaseOld = phaseRing->getCurrentPhase();
-    if (cPhaseOld->id == Constants::MTG_PHASE_COMBATDAMAGE) 
+    if (cPhaseOld->id == MTG_PHASE_COMBATDAMAGE)
     	if ((FIRST_STRIKE == combatStep) || (END_FIRST_STRIKE == combatStep) || (DAMAGE == combatStep))
     	{
         	nextCombatStep();
         	return;
     	}
 
-    if (cPhaseOld->id == Constants::MTG_PHASE_COMBATBLOCKERS) 
+    if (cPhaseOld->id == MTG_PHASE_COMBATBLOCKERS)
     	if (BLOCKERS == combatStep || TRIGGERS == combatStep)
     	{
         	nextCombatStep();
@@ -154,7 +155,7 @@ void GameObserver::nextGamePhase()
     phaseRing->forward();
 
     //Go directly to end of combat if no attackers
-    if (cPhaseOld->id == Constants::MTG_PHASE_COMBATATTACKERS && !(currentPlayer->game->inPlay->getNextAttacker(NULL)))
+    if (cPhaseOld->id == MTG_PHASE_COMBATATTACKERS && !(currentPlayer->game->inPlay->getNextAttacker(NULL)))
     {
         phaseRing->forward();
         phaseRing->forward();
@@ -163,14 +164,14 @@ void GameObserver::nextGamePhase()
     Phase * cPhase = phaseRing->getCurrentPhase();
     currentGamePhase = cPhase->id;
 
-    if (Constants::MTG_PHASE_COMBATDAMAGE == currentGamePhase)
+    if (MTG_PHASE_COMBATDAMAGE == currentGamePhase)
     	nextCombatStep();
 
     if (currentPlayer != cPhase->player)
     	nextPlayer();
 
     //init begin of turn
-    if (currentGamePhase == Constants::MTG_PHASE_BEFORE_BEGIN)
+    if (currentGamePhase == MTG_PHASE_BEFORE_BEGIN)
     {
         cleanupPhase();
         currentPlayer->damageCount = 0;
@@ -187,7 +188,7 @@ void GameObserver::nextGamePhase()
         return nextGamePhase();
     }
 
-    if (currentGamePhase == Constants::MTG_PHASE_AFTER_EOT)
+    if (currentGamePhase == MTG_PHASE_AFTER_EOT)
     {
         //Auto Hand cleaning, in case the player didn't do it himself
 		while (currentPlayer->game->hand->nb_cards > currentPlayer->handsize && currentPlayer->nomaxhandsize == false)
@@ -205,11 +206,11 @@ void GameObserver::nextGamePhase()
     //Phase Specific actions
     switch (currentGamePhase)
     {
-    case Constants::MTG_PHASE_UNTAP:
+    case MTG_PHASE_UNTAP:
         DebugTrace("Untap Phase -------------   Turn " << turn );
         untapPhase();
         break;
-    case Constants::MTG_PHASE_COMBATBLOCKERS:
+    case MTG_PHASE_COMBATBLOCKERS:
         receiveEvent(NEW WEventAttackersChosen());
         break;
     default:
@@ -264,7 +265,7 @@ void GameObserver::userRequestNextGamePhase(bool allowInterrupt, bool log)
     {
         getCurrentTargetChooser()->done = true;
         if(getCurrentTargetChooser()->source)
-            cardClick(getCurrentTargetChooser()->source);
+            cardClick(getCurrentTargetChooser()->source, 0, false);
     }
     if (allowInterrupt && mLayers->stackLayer()->getNext(NULL, 0, NOT_RESOLVED))
     	return;
@@ -279,9 +280,9 @@ void GameObserver::userRequestNextGamePhase(bool allowInterrupt, bool log)
     	return;
 
     Phase * cPhaseOld = phaseRing->getCurrentPhase();
-    if (allowInterrupt && ((cPhaseOld->id == Constants::MTG_PHASE_COMBATBLOCKERS && combatStep == ORDER)
-    	|| (cPhaseOld->id == Constants::MTG_PHASE_COMBATBLOCKERS && combatStep == TRIGGERS) 
-    	|| (cPhaseOld->id == Constants::MTG_PHASE_COMBATDAMAGE)
+    if (allowInterrupt && ((cPhaseOld->id == MTG_PHASE_COMBATBLOCKERS && combatStep == ORDER)
+        || (cPhaseOld->id == MTG_PHASE_COMBATBLOCKERS && combatStep == TRIGGERS)
+        || (cPhaseOld->id == MTG_PHASE_COMBATDAMAGE)
         || opponent()->isAI() 
         || options[Options::optionInterrupt(currentGamePhase)].number
 		|| currentPlayer->offerInterruptOnPhase - 1 == currentGamePhase
@@ -318,6 +319,17 @@ int GameObserver::forceShuffleLibraries()
     return result;
 }
 
+void GameObserver::resetStartupGame()
+{
+    stringstream stream;
+    startupGameSerialized = "";
+    stream << *this;
+    startupGameSerialized = stream.str();
+    DebugTrace("startGame\n");
+    DebugTrace(startupGameSerialized);
+}
+
+
 void GameObserver::startGame(GameType gtype, Rules * rules)
 {
     mGameType = gtype;
@@ -336,11 +348,7 @@ void GameObserver::startGame(GameType gtype, Rules * rules)
     currentActionPlayer = currentPlayer;
     phaseRing = NEW PhaseRing(this);
 
-    stringstream stream;
-    stream << *this;
-    startupGameSerialized = stream.str();
-    DebugTrace("startGame\n");
-    DebugTrace(startupGameSerialized);
+    resetStartupGame();
 
     if (rules) 
         rules->initGame(this);
@@ -509,7 +517,7 @@ void GameObserver::Update(float dt)
 
     /*******************/
     Player * player = currentPlayer;
-    if (Constants::MTG_PHASE_COMBATBLOCKERS == currentGamePhase && BLOCKERS == combatStep)
+    if (MTG_PHASE_COMBATBLOCKERS == currentGamePhase && BLOCKERS == combatStep)
     {
         player = player->opponent();
     }
@@ -602,7 +610,7 @@ void GameObserver::gameStateBasedEffects()
             //////////////////////////
             //handles phasing events//
             //////////////////////////
-            if(card->has(Constants::PHASING)&& currentGamePhase == Constants::MTG_PHASE_UNTAP && currentPlayer == card->controller() && card->phasedTurn != turn && !card->isPhased)
+            if(card->has(Constants::PHASING)&& currentGamePhase == MTG_PHASE_UNTAP && currentPlayer == card->controller() && card->phasedTurn != turn && !card->isPhased)
             {
                 card->isPhased = true;
                 card->phasedTurn = turn;
@@ -610,7 +618,7 @@ void GameObserver::gameStateBasedEffects()
                     card->view->alpha = 50;
                 card->initAttackersDefensers();
             }
-            else if((card->has(Constants::PHASING) || card->isPhased)&& currentGamePhase == Constants::MTG_PHASE_UNTAP && currentPlayer == card->controller() && card->phasedTurn != turn)
+            else if((card->has(Constants::PHASING) || card->isPhased)&& currentGamePhase == MTG_PHASE_UNTAP && currentPlayer == card->controller() && card->phasedTurn != turn)
             {
                 card->isPhased = false;
                 card->phasedTurn = turn;
@@ -714,7 +722,7 @@ void GameObserver::gameStateBasedEffects()
         /////////////////////////////////////////////////
         //handle end of turn effects while we're at it.//
         /////////////////////////////////////////////////
-        if (currentGamePhase == Constants::MTG_PHASE_ENDOFTURN+1)
+        if (currentGamePhase == MTG_PHASE_ENDOFTURN+1)
         {
             for (int j = 0; j < nbcards; ++j)
             {
@@ -812,17 +820,17 @@ void GameObserver::gameStateBasedEffects()
 
     if (skipLevel == Constants::ASKIP_SAFE || skipLevel == Constants::ASKIP_FULL)
     {
-        if ((opponent()->isAI() && !(isInterrupting)) && ((currentGamePhase == Constants::MTG_PHASE_UNTAP)
-            || (currentGamePhase == Constants::MTG_PHASE_DRAW) || (currentGamePhase == Constants::MTG_PHASE_COMBATBEGIN) 
-            || ((currentGamePhase == Constants::MTG_PHASE_COMBATATTACKERS) && (nrCreatures == 0)) 
-            || currentGamePhase == Constants::MTG_PHASE_COMBATEND || currentGamePhase == Constants::MTG_PHASE_ENDOFTURN 
-            || ((currentGamePhase == Constants::MTG_PHASE_CLEANUP) && (currentPlayer->game->hand->nb_cards < 8)))) 
+        if ((opponent()->isAI() && !(isInterrupting)) && ((currentGamePhase == MTG_PHASE_UNTAP)
+            || (currentGamePhase == MTG_PHASE_DRAW) || (currentGamePhase == MTG_PHASE_COMBATBEGIN)
+            || ((currentGamePhase == MTG_PHASE_COMBATATTACKERS) && (nrCreatures == 0))
+            || currentGamePhase == MTG_PHASE_COMBATEND || currentGamePhase == MTG_PHASE_ENDOFTURN
+            || ((currentGamePhase == MTG_PHASE_CLEANUP) && (currentPlayer->game->hand->nb_cards < 8))))
             userRequestNextGamePhase();
     }
     if (skipLevel == Constants::ASKIP_FULL)
     {
-        if ((opponent()->isAI() && !(isInterrupting)) && (currentGamePhase == Constants::MTG_PHASE_UPKEEP 
-            || currentGamePhase == Constants::MTG_PHASE_COMBATDAMAGE)) 
+        if ((opponent()->isAI() && !(isInterrupting)) && (currentGamePhase == MTG_PHASE_UPKEEP
+            || currentGamePhase == MTG_PHASE_COMBATDAMAGE))
             userRequestNextGamePhase();
     }
 }
@@ -1013,12 +1021,16 @@ void GameObserver::ButtonPressed(PlayGuiObject * target)
 
 void GameObserver::stackObjectClicked(Interruptible * action)
 {
+    stringstream stream;
+    stream << "stack[" << mLayers->stackLayer()->getIndexOf(action) << "]";
+    logAction(currentlyActing(), stream.str());
+
     if (targetChooser != NULL)
     {
         int result = targetChooser->toggleTarget(action);
         if (result == TARGET_OK_FULL)
         {
-            cardClick(cardWaitingForTargets);
+            cardClick(cardWaitingForTargets, 0, false);
         }
         else
         {
@@ -1086,7 +1098,20 @@ int GameObserver::cardClick(MTGCardInstance * card, int abilityType)
     return result;
 }
 
-int GameObserver::cardClick(MTGCardInstance * card, Targetable * object)
+int GameObserver::cardClickLog(bool log, Player* clickedPlayer, MTGGameZone* zone, MTGCardInstance*backup, size_t index, int toReturn)
+{
+    if(log)
+    {
+        if (clickedPlayer) {
+            this->logAction(clickedPlayer);
+        } else if(zone)  {
+            this->logAction(backup, zone, index, toReturn);
+        }
+    }
+    return toReturn;
+}
+
+int GameObserver::cardClick(MTGCardInstance * card, Targetable * object, bool log)
 {
     Player * clickedPlayer = NULL;
     int toReturn = 0;
@@ -1175,13 +1200,13 @@ int GameObserver::cardClick(MTGCardInstance * card, Targetable * object)
             {
                 MTGAbility * a = mLayers->actionLayer()->getAbility(card->paymenttype);
                 toReturn = a->reactToClick(card);
-                break;
+                return cardClickLog(log, clickedPlayer, zone, backup, index, toReturn);
             }
 
             reaction = mLayers->actionLayer()->isReactingToClick(card);
             if (reaction == -1) {
                 toReturn = mLayers->actionLayer()->reactToClick(card);
-                break;
+                return cardClickLog(log, clickedPlayer, zone, backup, index, toReturn);
             }
         }
         else
@@ -1189,17 +1214,17 @@ int GameObserver::cardClick(MTGCardInstance * card, Targetable * object)
             reaction = mLayers->actionLayer()->isReactingToTargetClick(object);
             if (reaction == -1) {
                 toReturn = mLayers->actionLayer()->reactToTargetClick(object);
-                break;
+                return cardClickLog(log, clickedPlayer, zone, backup, index, toReturn);
             }
         }
 
         if (!card) {
             toReturn = 0;
-            break;
+            return cardClickLog(log, clickedPlayer, zone, backup, index, toReturn);
         }
 
         //Current player's hand
-        if (currentPlayer->game->hand->hasCard(card) && currentGamePhase == Constants::MTG_PHASE_CLEANUP
+        if (currentPlayer->game->hand->hasCard(card) && currentGamePhase == MTG_PHASE_CLEANUP
                     && currentPlayer->game->hand->nb_cards > currentPlayer->handsize && currentPlayer->nomaxhandsize == false)
         {
             WEvent * e = NEW WEventCardDiscard(currentPlayer->game->hand->cards[0]);
@@ -1211,29 +1236,24 @@ int GameObserver::cardClick(MTGCardInstance * card, Targetable * object)
             if (reaction == 1)
             {
                 toReturn = mLayers->actionLayer()->reactToClick(card);
-                break;
+                return cardClickLog(log, clickedPlayer, zone, backup, index, toReturn);
             }
             else
             {
                 mLayers->actionLayer()->setMenuObject(object);
                 toReturn = 1;
-                break;
+                return cardClickLog(log, clickedPlayer, zone, backup, index, toReturn);
             }
         }
         else if (card->isTapped() && card->controller() == currentPlayer)
         {
             toReturn = untap(card);
-            break;
+            return cardClickLog(log, clickedPlayer, zone, backup, index, toReturn);
         }
     } while(0);
 
-    if (clickedPlayer) {
-        logAction(clickedPlayer);
-    } else if(zone)  {
-        logAction(backup, zone, index, toReturn);
-    }
 
-    return toReturn;
+    return cardClickLog(log, clickedPlayer, zone, backup, index, toReturn);
 }
 
 int GameObserver::untap(MTGCardInstance * card)
@@ -1357,7 +1377,7 @@ int GameObserver::targetListIsSet(MTGCardInstance * card)
     
 }
 
-ostream& operator<<(ostream& out, GameObserver& g)
+ostream& operator<<(ostream& out, const GameObserver& g)
 {
     if(g.startupGameSerialized == "")
     {
@@ -1380,7 +1400,7 @@ ostream& operator<<(ostream& out, GameObserver& g)
     }
 
     out << "[do]" << endl;
-    list<string>::iterator it;
+    list<string>::const_iterator it;
 
     for(it = (g.actionsList.begin()); it != (g.actionsList.end()); it++)
     {
@@ -1413,13 +1433,15 @@ bool GameObserver::parseLine(const string& s)
     return false;
 }
 
-bool GameObserver::load(const string& ss, bool undo)
+bool GameObserver::load(const string& ss, bool undo
+#ifdef TESTSUITE
+                    , TestSuiteGame* testgame
+#endif
+                        )
 {
     int state = -1;
     string s;
     stringstream stream(ss);
-    string deckFile = "";//players[0]->deckFile;
-    string deckFileSmall = "";//players[0]->deckFileSmall;
 
     DebugTrace("Loading " + ss);
     randomGenerator.loadRandValues("");
@@ -1470,7 +1492,11 @@ bool GameObserver::load(const string& ss, bool undo)
                 {
                     if (s.find("mode=") == 0)
                     {
-                        createPlayer(s.substr(5));
+                        createPlayer(s.substr(5)
+             #ifdef TESTSUITE
+                                     , testgame
+             #endif //TESTSUITE
+                                     );
                     }
                 }
                 players[0]->parseLine(s);
@@ -1487,7 +1513,11 @@ bool GameObserver::load(const string& ss, bool undo)
                 {
                     if (s.find("mode=") == 0)
                     {
-                        createPlayer(s.substr(5));
+                        createPlayer(s.substr(5)
+#ifdef TESTSUITE
+                                     , testgame
+#endif //TESTSUITE
+                                     );
                     }
                 }
                 players[1]->parseLine(s);
@@ -1504,16 +1534,22 @@ bool GameObserver::load(const string& ss, bool undo)
                 startedAt = time(0);
 
                 // take a snapshot before processing the actions
-                startupGameSerialized = "";
-                stringstream stream;
-                stream << *this;
-                startupGameSerialized = stream.str();
+                resetStartupGame();
 
                 mRules->initGame(this);
                 phaseRing->goToPhase(0, currentPlayer, false);
                 phaseRing->goToPhase(currentGamePhase, currentPlayer);
 
-                processActions(undo);
+#ifdef TESTSUITE
+                if(testgame)
+                    testgame->initGame();
+#endif //TESTSUITE
+
+                processActions(undo
+               #ifdef TESTSUITE
+                               , testgame
+               #endif //TESTSUITE
+                               );
             }
             else
             {
@@ -1526,7 +1562,11 @@ bool GameObserver::load(const string& ss, bool undo)
     return true;
 }
 
-bool GameObserver::processActions(bool undo)
+bool GameObserver::processActions(bool undo
+                                  #ifdef TESTSUITE
+                                  , TestSuiteGame* testgame
+                                  #endif
+                                  )
 {
     bool result = false;
     size_t cmdIndex = 0;
@@ -1545,6 +1585,19 @@ bool GameObserver::processActions(bool undo)
         if(loadingList.back().find("next") == string::npos)
             loadingList.pop_back();
     }
+
+    // We fake here cause the initialization before caused mana pool reset events to be triggered
+    // So, we need them flushed to be able to set the manapool to whatever we need
+    Update(counter);
+    counter += 1.000f;
+
+#ifdef TESTSUITE
+    if(testgame)
+    {
+        testgame->ResetManapools();
+    }
+#endif
+
     for(loadingite = loadingList.begin(); loadingite != loadingList.end(); loadingite++, cmdIndex++)
     {
         string s = *loadingite;
@@ -1552,21 +1605,14 @@ bool GameObserver::processActions(bool undo)
         if (s.find("p1") != string::npos)
             p = players[0];
 
-        for (int i = 0; i<1; i++)
-        {
-            // let's fake an update
-            Update(counter);
-            counter += 1.000f;
-        }
-
         MTGGameZone* zone = NULL;
-        if(s.find(p->game->hand->getName()) != string::npos)
+        if(s.find(string(p->game->hand->getName())+"[") != string::npos)
             zone = p->game->hand;
-        else if(s.find(p->game->battlefield->getName()) != string::npos)
+        else if(s.find(string(p->game->battlefield->getName())+"[") != string::npos)
             zone = p->game->battlefield;
-        else if(s.find(p->game->graveyard->getName()) != string::npos)
+        else if(s.find(string(p->game->graveyard->getName())+"[") != string::npos)
             zone = p->game->graveyard;
-        else if(s.find(p->game->library->getName()) != string::npos)
+        else if(s.find(string(p->game->library->getName())+"[") != string::npos)
             zone = p->game->library;
 
         if(zone) {
@@ -1575,6 +1621,11 @@ bool GameObserver::processActions(bool undo)
             size_t index = atoi(s.substr(begin, size).c_str());
             dumpAssert(index < zone->cards.size());
             cardClick(zone->cards[index], zone->cards[index]);
+        } else if (s.find("stack") != string::npos) {
+            size_t begin = s.find("[")+1;
+            size_t size = s.find("]")-begin;
+            size_t index = atoi(s.substr(begin, size).c_str());
+            stackObjectClicked((Interruptible*)mLayers->stackLayer()->getByIndex(index));
         } else if (s.find("yes") != string::npos) {
             mLayers->stackLayer()->setIsInterrupting(p);
         } else if (s.find("no") != string::npos) {
@@ -1583,10 +1634,13 @@ bool GameObserver::processActions(bool undo)
             mLayers->stackLayer()->endOfInterruption();
         } else if (s.find("next") != string::npos) {
             userRequestNextGamePhase();
+        } else if (s.find("combatok") != string::npos) {
+            mLayers->combatLayer()->clickOK();
+        } else if (s == "p1" || s == "p2") {
+            cardClick(NULL, p);
         } else if (s.find("choice") != string::npos) {
             int choice = atoi(s.substr(s.find("choice ") + 7).c_str());
-            //menuSelect(choice);
-             mLayers->actionLayer()->ButtonPressed(0, choice);
+             mLayers->actionLayer()->doReactTo(choice);
         } else if (s == "p1" || s == "p2") {
             cardClick(NULL, p);
         } else if(s.find("mulligan") != string::npos) {
@@ -1601,7 +1655,7 @@ bool GameObserver::processActions(bool undo)
 
         size_t nb = actionsList.size();
 
-        for (int i = 0; i<5; i++)
+        for (int i = 0; i<6; i++)
         {
             // let's fake an update
             Update(counter);
@@ -1663,7 +1717,11 @@ void GameObserver::Mulligan(Player* player)
     player->takeMulligan();
 }
 
-void GameObserver::createPlayer(const string& playerMode)
+void GameObserver::createPlayer(const string& playerMode
+                                #ifdef TESTSUITE
+                                , TestSuiteGame* testgame
+                                #endif //TESTSUITE
+                                )
 {
     Player::Mode aMode = (Player::Mode)atoi(playerMode.c_str());
     switch(aMode)
@@ -1679,9 +1737,12 @@ void GameObserver::createPlayer(const string& playerMode)
         players.push_back(new HumanPlayer(this, "", ""));
         break;
     case Player::MODE_TEST_SUITE:
-        // FIXME, not real TestPlayer, but we don't care here.
-        players.push_back(new Player(this, "", ""));
-        players.back()->playMode = Player::MODE_TEST_SUITE;
+#ifdef TESTSUITE
+        if(players.size())
+            players.push_back(new TestSuiteAI(testgame, 1));
+        else
+            players.push_back(new TestSuiteAI(testgame, 0));
+#endif //TESTSUITE
         break;
     }
 }

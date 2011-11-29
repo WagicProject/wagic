@@ -104,7 +104,7 @@ int OrderedAIAction::getEfficiency()
             if (!coreAbilityCardTarget)
                 break;
 
-            if (!coreAbilityCardTarget->regenerateTokens && currentPhase == Constants::MTG_PHASE_COMBATBLOCKERS
+            if (!coreAbilityCardTarget->regenerateTokens && currentPhase == MTG_PHASE_COMBATBLOCKERS
                     && (coreAbilityCardTarget->defenser || coreAbilityCardTarget->blockers.size())
             )
             {
@@ -122,7 +122,7 @@ int OrderedAIAction::getEfficiency()
 
             bool NeedPreventing;
             NeedPreventing = false;
-            if (currentPhase == Constants::MTG_PHASE_COMBATBLOCKERS)
+            if (currentPhase == MTG_PHASE_COMBATBLOCKERS)
             {
                 MTGCardInstance * nextOpponent = target->getNextOpponent();
                 if(!nextOpponent)
@@ -210,7 +210,7 @@ int OrderedAIAction::getEfficiency()
                     //it should always try playing more cards before deciding
                 }
 
-                if (g->getCurrentGamePhase() == Constants::MTG_PHASE_SECONDMAIN)
+                if (g->getCurrentGamePhase() == MTG_PHASE_SECONDMAIN)
                 {
                     efficiency = 100;
                     //in 2nd main, go all out and try to max stuff.
@@ -272,7 +272,7 @@ int OrderedAIAction::getEfficiency()
             int suggestion = af.abilityEfficiency(a, p, MODE_ABILITY);
             //i do not set a starting eff. on this ability, this allows Ai to sometimes randomly do it as it normally does.
             int currentPhase = g->getCurrentGamePhase();
-            if ((currentPhase == Constants::MTG_PHASE_COMBATBLOCKERS) || (currentPhase == Constants::MTG_PHASE_COMBATATTACKERS))
+            if ((currentPhase == MTG_PHASE_COMBATBLOCKERS) || (currentPhase == MTG_PHASE_COMBATATTACKERS))
             {
                 if (suggestion == BAKA_EFFECT_GOOD && target->controller() == p)
                 {
@@ -309,7 +309,7 @@ int OrderedAIAction::getEfficiency()
                 break;
 
             //nothing huge here, just ensuring that Ai makes his noncreature becomers into creatures during first main, so it can actually use them in combat.
-            if (coreAbilityCardTarget && !coreAbilityCardTarget->isCreature() && currentPhase == Constants::MTG_PHASE_FIRSTMAIN)
+            if (coreAbilityCardTarget && !coreAbilityCardTarget->isCreature() && currentPhase == MTG_PHASE_FIRSTMAIN)
             {
                 efficiency = 100;
             }
@@ -343,7 +343,7 @@ int OrderedAIAction::getEfficiency()
                 efficiency += efficiencyModifier;
             }
 
-            if (!target->has(a->abilitygranted) && g->getCurrentGamePhase() == Constants::MTG_PHASE_COMBATBEGIN
+            if (!target->has(a->abilitygranted) && g->getCurrentGamePhase() == MTG_PHASE_COMBATBEGIN
                     && p == target->controller()
             )
             {
@@ -518,7 +518,7 @@ int OrderedAIAction::getEfficiency()
     if(AUpkeep * auk = dynamic_cast<AUpkeep *>(ability))
     {
         //hello, Ai pay your upcost please :P, this entices Ai into paying upcost, the conditional isAi() is required strangely ai is able to pay upcost during YOUR upkeep.
-        if (auk && g->getCurrentGamePhase() == Constants::MTG_PHASE_UPKEEP && g->currentPlayer == p && p == a->source->controller())
+        if (auk && g->getCurrentGamePhase() == MTG_PHASE_UPKEEP && g->currentPlayer == p && p == a->source->controller())
         {
             efficiency = 100;
         }
@@ -1832,11 +1832,11 @@ int AIPlayerBaka::computeActions()
     { //standard actions
         switch (observer->getCurrentGamePhase())
         {
-        case Constants::MTG_PHASE_UPKEEP:
+        case MTG_PHASE_UPKEEP:
             selectAbility();
             break;
-        case Constants::MTG_PHASE_FIRSTMAIN:
-        case Constants::MTG_PHASE_SECONDMAIN:
+        case MTG_PHASE_FIRSTMAIN:
+        case MTG_PHASE_SECONDMAIN:
             {
                 ManaCost * currentMana = getPotentialMana();
                 currentMana->add(this->getManaPool());
@@ -1891,19 +1891,19 @@ int AIPlayerBaka::computeActions()
                 }
                 break;
             }
-        case Constants::MTG_PHASE_COMBATATTACKERS:
+        case MTG_PHASE_COMBATATTACKERS:
             {
                 if(observer->currentPlayer == this)//only on my turns.
                     chooseAttackers();
                 break;
             }
-        case Constants::MTG_PHASE_COMBATBLOCKERS:
+        case MTG_PHASE_COMBATBLOCKERS:
             {
                 if(observer->currentPlayer != this)//only on my opponents turns.
                     chooseBlockers();
                 break;
             }
-        case Constants::MTG_PHASE_ENDOFTURN:
+        case MTG_PHASE_ENDOFTURN:
             selectAbility();
             break;
         default:
@@ -1914,11 +1914,11 @@ int AIPlayerBaka::computeActions()
     {
         switch (observer->getCurrentGamePhase())
         {
-        case Constants::MTG_PHASE_UPKEEP:
-        case Constants::MTG_PHASE_FIRSTMAIN:
-        case Constants::MTG_PHASE_COMBATATTACKERS:
-        case Constants::MTG_PHASE_COMBATBLOCKERS:
-        case Constants::MTG_PHASE_SECONDMAIN:
+        case MTG_PHASE_UPKEEP:
+        case MTG_PHASE_FIRSTMAIN:
+        case MTG_PHASE_COMBATATTACKERS:
+        case MTG_PHASE_COMBATBLOCKERS:
+        case MTG_PHASE_SECONDMAIN:
             {
                 selectAbility();
                 break;
@@ -2138,10 +2138,10 @@ int AIPlayerBaka::combatDamages()
 {
     int currentGamePhase =  observer->getCurrentGamePhase();
 
-    if (currentGamePhase == Constants::MTG_PHASE_COMBATBLOCKERS)
+    if (currentGamePhase == MTG_PHASE_COMBATBLOCKERS)
         return orderBlockers();
 
-    if (currentGamePhase != Constants::MTG_PHASE_COMBATDAMAGE)
+    if (currentGamePhase != MTG_PHASE_COMBATDAMAGE)
         return 0;
 
     return 0;

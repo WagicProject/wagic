@@ -7,6 +7,7 @@
 #ifndef _ACTIONELEMENT_H_
 #define _ACTIONELEMENT_H_
 #include <JGui.h>
+#include "MTGDefinitions.h"
 
 #define INACTIVE 0
 #define ACTION_REQUESTED 1
@@ -24,8 +25,8 @@ protected:
     int activeState;
     TargetChooser * tc;
 public:
-    int currentPhase;
-    int newPhase;
+    GamePhase currentPhase;
+    GamePhase newPhase;
     int modal;
     int waitingForAnswer;
     int getActivity();

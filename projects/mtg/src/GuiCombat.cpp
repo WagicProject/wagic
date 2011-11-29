@@ -169,6 +169,7 @@ void GuiCombat::removeOne(DefenserDamaged* blocker, CombatStep step)
 
 bool GuiCombat::clickOK()
 {
+    observer->logAction(observer->currentlyActing(), "combatok");
     active = activeAtk = NULL;
     cursor_pos = NONE;
     switch (step)
@@ -179,7 +180,7 @@ bool GuiCombat::clickOK()
         return false; // that should not happen
 
     case ORDER:
-        observer->userRequestNextGamePhase();
+        observer->userRequestNextGamePhase(true, false);
         return true;
     case FIRST_STRIKE:
         return false;
@@ -581,7 +582,7 @@ int GuiCombat::receiveEventMinus(WEvent* e)
     }
     else if (WEventPhaseChange* event = dynamic_cast<WEventPhaseChange*>(e))
     {
-        if (Constants::MTG_PHASE_COMBATDAMAGE == event->to->id)
+        if (MTG_PHASE_COMBATDAMAGE == event->to->id)
             step = BLOCKERS;
         else
             cursor_pos = NONE;

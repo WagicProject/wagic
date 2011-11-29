@@ -26,7 +26,7 @@ class TestSuiteAI;
 class TestSuiteState
 {
 public:
-    int phase;
+    GamePhase phase;
     void parsePlayerState(int playerId, string s);
     TestSuiteState();
     ~TestSuiteState();
@@ -63,6 +63,7 @@ public:
     virtual ~TestSuiteGame();
     TestSuiteGame(TestSuite* testsuite);
     TestSuiteGame(TestSuite* testsuite, string _filename);
+    void ResetManapools();
     void initGame();
     void assertGame();
     MTGPlayerCards * buildDeck(Player* player, int playerId);

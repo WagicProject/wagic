@@ -11,8 +11,8 @@ ActionElement::ActionElement(int id) :
     activeState = INACTIVE;
     modal = 0;
     waitingForAnswer = 0;
-    currentPhase = -1;
-    newPhase = -1;
+    currentPhase = MTG_PHASE_INVALID;
+    newPhase = MTG_PHASE_INVALID;
     tc = NULL;
 }
 

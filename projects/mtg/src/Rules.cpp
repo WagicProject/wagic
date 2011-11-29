@@ -105,7 +105,7 @@ RulesPlayerData::~RulesPlayerData()
 
 RulesState::RulesState()
 {
-    phase = Constants::MTG_PHASE_FIRSTMAIN;
+    phase = MTG_PHASE_FIRSTMAIN;
     player = 0;
 }
 
@@ -228,7 +228,6 @@ void Rules::addExtraRules(GameObserver* g)
             }
         }
     }
-
 }
 
 Player * Rules::loadPlayerMomir(GameObserver* observer, int isAI)

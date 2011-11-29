@@ -206,7 +206,7 @@ int DuelLayers::receiveEvent(WEvent * e)
         objects[i]->receiveEventMinus(e);
 
     if (WEventPhaseChange *event = dynamic_cast<WEventPhaseChange*>(e))
-        if (Constants::MTG_PHASE_BEFORE_BEGIN == event->to->id)
+        if (MTG_PHASE_BEFORE_BEGIN == event->to->id)
             observer->mTrash->cleanup();
 
     return 1;

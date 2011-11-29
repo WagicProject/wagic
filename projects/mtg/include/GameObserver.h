@@ -51,12 +51,20 @@ class GameObserver{
   string startupGameSerialized;
   bool parseLine(const string& s);
   void logAction(const string& s);
-  bool processActions(bool undo);
-  friend ostream& operator<<(ostream&, GameObserver&);
+  bool processActions(bool undo
+                    #ifdef TESTSUITE
+                    , TestSuiteGame* testgame
+                    #endif
+                      );
+  friend ostream& operator<<(ostream&, const GameObserver&);
   bool mLoading;
   void nextGamePhase();
   void shuffleLibrary(Player* p);
-  void createPlayer(const string& playerMode);
+  void createPlayer(const string& playerMode
+                  #ifdef TESTSUITE
+                  , TestSuiteGame* testgame
+                  #endif //TESTSUITE
+                    );
 
  public:
   int currentPlayerId;
@@ -66,7 +74,7 @@ class GameObserver{
   int targetListIsSet(MTGCardInstance * card);
   PhaseRing * phaseRing;
   int cancelCurrentAction();
-  int currentGamePhase;
+  GamePhase currentGamePhase;
   ExtraCosts * mExtraPayment;
   int oldGamePhase;
   TargetChooser * targetChooser;
@@ -83,10 +91,11 @@ class GameObserver{
   TargetChooser * getCurrentTargetChooser();
   void stackObjectClicked(Interruptible * action);
 
+  int cardClickLog(bool log, Player* clickedPlayer, MTGGameZone* zone, MTGCardInstance*backup, size_t index, int toReturn);
   int cardClick(MTGCardInstance * card, MTGAbility *ability);
   int cardClick(MTGCardInstance * card, int abilityType);
-  int cardClick(MTGCardInstance * card,Targetable * _object = NULL );
-  int getCurrentGamePhase();
+  int cardClick(MTGCardInstance * card,Targetable * _object = NULL, bool log = true);
+  GamePhase getCurrentGamePhase();
   const char * getCurrentGamePhaseName();
   const char * getNextGamePhaseName();
   void nextCombatStep();
@@ -131,7 +140,11 @@ class GameObserver{
       logAction(players[playerId], s);
   };
   void logAction(MTGCardInstance* card, MTGGameZone* zone, size_t index, int result);
-  bool load(const string& s, bool undo = false);
+  bool load(const string& s, bool undo = false
+#ifdef TESTSUITE
+            , TestSuiteGame* testgame = 0
+#endif
+          );
   bool undo();
   bool isLoading(){ return mLoading; };
   void Mulligan(Player* player = NULL);
@@ -144,7 +157,7 @@ class GameObserver{
   JGE* getInput(){return mJGE;};
   DeckManager* getDeckManager(){ return mDeckManager; };
   void dumpAssert(bool val);
-
+  void resetStartupGame();
 };
 
 #endif

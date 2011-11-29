@@ -208,6 +208,7 @@ public:
     static MTGCardInstance NoCard;
 
     bool parseLine(const string& ss);
+    virtual MTGCardInstance* clone();
 };
 
 

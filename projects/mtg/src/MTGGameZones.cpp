@@ -451,7 +451,7 @@ MTGCardInstance * MTGGameZone::removeCard(MTGCardInstance * card, int createCopy
             //card->lastController = card->controller();
             if (createCopy)
             {
-                copy = NEW MTGCardInstance(card->model, card->owner->game);
+                copy = card->clone();
                 copy->previous = card;
                 copy->view = card->view;
                 copy->isToken = card->isToken;

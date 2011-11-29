@@ -93,7 +93,7 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
         case MTGAbility::AS_SORCERY:
             if (player != observer->currentPlayer)
                 return 0;
-            if (cPhase != Constants::MTG_PHASE_FIRSTMAIN && cPhase != Constants::MTG_PHASE_SECONDMAIN)
+            if (cPhase != MTG_PHASE_FIRSTMAIN && cPhase != MTG_PHASE_SECONDMAIN)
                 return 0;
             break;
         }
@@ -101,19 +101,19 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
         {
             if (player != observer->currentPlayer)
                 return 0;
-            if (cPhase != checkPhaseBased - MTGAbility::MY_BEFORE_BEGIN + Constants::MTG_PHASE_BEFORE_BEGIN)
+            if (cPhase != checkPhaseBased - MTGAbility::MY_BEFORE_BEGIN + MTG_PHASE_BEFORE_BEGIN)
                 return 0;
         }
         if (checkPhaseBased >= MTGAbility::OPPONENT_BEFORE_BEGIN && checkPhaseBased <= MTGAbility::OPPONENT_AFTER_EOT)
         {
             if (player == observer->currentPlayer)
                 return 0;
-            if (cPhase != checkPhaseBased - MTGAbility::OPPONENT_BEFORE_BEGIN + Constants::MTG_PHASE_BEFORE_BEGIN)
+            if (cPhase != checkPhaseBased - MTGAbility::OPPONENT_BEFORE_BEGIN + MTG_PHASE_BEFORE_BEGIN)
                 return 0;
         }
         if (checkPhaseBased >= MTGAbility::BEFORE_BEGIN && checkPhaseBased <= MTGAbility::AFTER_EOT)
         {
-            if (cPhase != checkPhaseBased - MTGAbility::BEFORE_BEGIN + Constants::MTG_PHASE_BEFORE_BEGIN)
+            if (cPhase != checkPhaseBased - MTGAbility::BEFORE_BEGIN + MTG_PHASE_BEFORE_BEGIN)
                 return 0;
         }
         
@@ -251,19 +251,19 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
         check = restriction[i].find("before battle damage");
         if(check != string::npos)
         {
-            if(cPhase > Constants::MTG_PHASE_COMBATBLOCKERS)
+            if(cPhase > MTG_PHASE_COMBATBLOCKERS)
                 return 0;
         }
         check = restriction[i].find("after battle");
         if(check != string::npos)
         {
-            if(cPhase < Constants::MTG_PHASE_COMBATBLOCKERS)
+            if(cPhase < MTG_PHASE_COMBATBLOCKERS)
                 return 0;
         }
         check = restriction[i].find("during battle");
         if(check != string::npos)
         {
-            if(cPhase < Constants::MTG_PHASE_COMBATBEGIN ||cPhase > Constants::MTG_PHASE_COMBATEND )
+            if(cPhase < MTG_PHASE_COMBATBEGIN ||cPhase > MTG_PHASE_COMBATEND )
                 return 0;
         }
         check = restriction[i].find("control snow land");
@@ -302,7 +302,7 @@ int AbilityFactory::parseRestriction(string s)
         size_t found = s.find(types[j]);
         if (found != string::npos)
         {
-            for (int i = 0; i < Constants::NB_MTG_PHASES; i++)
+            for (int i = 0; i < NB_MTG_PHASES; i++)
             {
                 string toFind = types[j];
                 toFind.append(Constants::MTGPhaseCodeNames[i]).append("only");
@@ -679,7 +679,7 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string magicText, int 
     found = s.find("next");
     if (found != string::npos)
     {
-        for (int i = 0; i < Constants::NB_MTG_PHASES; i++)
+        for (int i = 0; i < NB_MTG_PHASES; i++)
         {
             found = s.find(Constants::MTGPhaseCodeNames[i]);
             if (found != string::npos)
@@ -693,7 +693,7 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string magicText, int 
     found = s.find("each");
     if (found != string::npos)
     {
-        for (int i = 0; i < Constants::NB_MTG_PHASES; i++)
+        for (int i = 0; i < NB_MTG_PHASES; i++)
         {
             found = s.find(Constants::MTGPhaseCodeNames[i]);
             if (found != string::npos)
@@ -2429,11 +2429,11 @@ MTGAbility * AbilityFactory::parseUpkeepAbility(string s,MTGCardInstance * card,
     size_t end = s.find("]", start);
     string s1 = s.substr(start + 1, end - start - 1);
     size_t seperator = s1.find(";");
-    int phase = Constants::MTG_PHASE_UPKEEP;
+    int phase = MTG_PHASE_UPKEEP;
     int once = 0;
     if (seperator != string::npos)
     {
-        for (int i = 0; i < Constants::NB_MTG_PHASES; i++)
+        for (int i = 0; i < NB_MTG_PHASES; i++)
         {
             if (s1.find("next") != string::npos)
                 once = 1;
@@ -2477,8 +2477,8 @@ MTGAbility * AbilityFactory::parsePhaseActionAbility(string s,MTGCardInstance * 
             return NULL;
         }
         string s1 = splitActions[1];
-        int phase = Constants::MTG_PHASE_UPKEEP;
-        for (int i = 0; i < Constants::NB_MTG_PHASES; i++)
+        int phase = MTG_PHASE_UPKEEP;
+        for (int i = 0; i < NB_MTG_PHASES; i++)
         {
             string phaseStr = Constants::MTGPhaseCodeNames[i];
             if (s1.find(phaseStr) != string::npos)
@@ -3052,7 +3052,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
     }
     case 1124: //Mana Vault (the rest is softcoded!)
     {
-        observer->addObserver(NEW ARegularLifeModifierAura(observer, _id + 2, card, card, Constants::MTG_PHASE_DRAW, -1, 1));
+        observer->addObserver(NEW ARegularLifeModifierAura(observer, _id + 2, card, card, MTG_PHASE_DRAW, -1, 1));
         break;
     }
     case 1215: //Power Leak
@@ -3089,7 +3089,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
 
     case 1139: //The Rack
     {
-        observer->addObserver(NEW ALifeZoneLink(observer, _id, card, Constants::MTG_PHASE_UPKEEP, -3));
+        observer->addObserver(NEW ALifeZoneLink(observer, _id, card, MTG_PHASE_UPKEEP, -3));
         break;
     }
 
@@ -3678,7 +3678,7 @@ int ActivatedAbility::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
     case AS_SORCERY:
         if (player != game->currentPlayer)
             return 0;
-        if (cPhase != Constants::MTG_PHASE_FIRSTMAIN && cPhase != Constants::MTG_PHASE_SECONDMAIN)
+        if (cPhase != MTG_PHASE_FIRSTMAIN && cPhase != MTG_PHASE_SECONDMAIN)
             return 0;
         break;
     }
@@ -3686,7 +3686,7 @@ int ActivatedAbility::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
     {
         if (player != game->currentPlayer)
             return 0;
-        if (cPhase != restrictions - MY_BEFORE_BEGIN + Constants::MTG_PHASE_BEFORE_BEGIN)
+        if (cPhase != restrictions - MY_BEFORE_BEGIN + MTG_PHASE_BEFORE_BEGIN)
             return 0;
     }
 
@@ -3694,13 +3694,13 @@ int ActivatedAbility::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
     {
         if (player == game->currentPlayer)
             return 0;
-        if (cPhase != restrictions - OPPONENT_BEFORE_BEGIN + Constants::MTG_PHASE_BEFORE_BEGIN)
+        if (cPhase != restrictions - OPPONENT_BEFORE_BEGIN + MTG_PHASE_BEFORE_BEGIN)
             return 0;
     }
 
     if (restrictions >= BEFORE_BEGIN && restrictions <= AFTER_EOT)
     {
-        if (cPhase != restrictions - BEFORE_BEGIN + Constants::MTG_PHASE_BEFORE_BEGIN)
+        if (cPhase != restrictions - BEFORE_BEGIN + MTG_PHASE_BEFORE_BEGIN)
             return 0;
     }
     limitPerTurn = 0;
@@ -4126,8 +4126,8 @@ InstantAbility::InstantAbility(GameObserver* observer, int _id, MTGCardInstance 
 //Instant abilities last generally until the end of the turn
 int InstantAbility::testDestroy()
 {
-    int newPhase = game->getCurrentGamePhase();
-    if (newPhase != currentPhase && newPhase == Constants::MTG_PHASE_AFTER_EOT)
+    GamePhase newPhase = game->getCurrentGamePhase();
+    if (newPhase != currentPhase && newPhase == MTG_PHASE_AFTER_EOT)
         return 1;
     currentPhase = newPhase;
     return 0;
@@ -4490,7 +4490,7 @@ void GenericTriggeredAbility::setTriggerTargets(Targetable * ta, MTGAbility * a)
 
 void GenericTriggeredAbility::Update(float dt)
 {
-    int newPhase = game->getCurrentGamePhase();
+    GamePhase newPhase = game->getCurrentGamePhase();
     t->newPhase = newPhase;
     TriggeredAbility::Update(dt);
     t->currentPhase = newPhase;

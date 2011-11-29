@@ -492,7 +492,7 @@ void GameStateDuel::Update(float dt)
                 int cardsinhand = game->currentPlayer->game->hand->nb_cards;
 
                 //almosthumane - mulligan
-                if ((game->turn < 1) && (cardsinhand != 0) && game->currentGamePhase == Constants::MTG_PHASE_FIRSTMAIN
+                if ((game->turn < 1) && (cardsinhand != 0) && game->currentGamePhase == MTG_PHASE_FIRSTMAIN
                     && game->currentPlayer->game->inPlay->nb_cards == 0 && game->currentPlayer->game->graveyard->nb_cards == 0
 					&& game->currentPlayer->game->exile->nb_cards == 0 && game->currentlyActing() == (Player*)game->currentPlayer) //1st Play Check
                     //IF there was no play at the moment automatically mulligan
