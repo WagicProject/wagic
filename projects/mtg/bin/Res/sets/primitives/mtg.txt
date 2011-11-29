@@ -82238,7 +82238,7 @@ color=green
 [/card]
 [card]
 name=Wolfbriar Elemental
-auto=kicked token(Wolf,creature wolf,2/2)*kicked
+auto=kicked token(Wolf,creature wolf,2/2,green)*kicked
 kicker=multi{G}
 text=Multikicker {G} (You may pay an additional {G} any number of times as you cast this spell.) -- When Wolfbriar Elemental enters the battlefield, put a 2/2 green Wolf creature token onto the battlefield for each time it was kicked.
 mana={2}{G}{G}
