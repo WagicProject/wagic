@@ -551,7 +551,7 @@ class TrCardDiscarded: public Trigger
 public:
     bool cycledTrigger;
     TrCardDiscarded(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc,bool once = false, bool cycledTrigger = false) :
-    Trigger(observer, id, source, once, tc)
+    Trigger(observer, id, source, once, tc),cycledTrigger(cycledTrigger)
     {
     }
 
