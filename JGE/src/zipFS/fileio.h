@@ -197,6 +197,7 @@ inline search_iterator & search_iterator::begin(const char * FileSpec) {
 		DirectoryName.assign(FileSpec + 0, FileSpec + i++);
 
 	m_Extension = FileSpec + i + 1;
+    std::transform(m_Extension.begin(), m_Extension.end(), m_Extension.begin(), ::tolower);
 	m_Valid = ((m_Directory = opendir(DirectoryName.c_str())) != NULL);
 	
 	if (! m_Valid)
@@ -225,8 +226,11 @@ inline search_iterator & search_iterator::next() {
 				Found = false;
 			else if (FileName.size() <= m_Extension.size())
 				Found = false;
-			else if (std::equal(m_Extension.rbegin(), m_Extension.rend(), FileName.rbegin()))
-				Found = true;
+			else {
+                std::transform(FileName.begin(), FileName.end(), FileName.begin(), ::tolower);
+                if (std::equal(m_Extension.rbegin(), m_Extension.rend(), FileName.rbegin()))
+				    Found = true;
+            }
 		}
 		else
 			break;

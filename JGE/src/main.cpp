@@ -169,7 +169,9 @@ void ExceptionHandler(PspDebugRegBlock * regs)
             FILE *log = fopen("exception.log", "w");
             if (log != NULL)
             {
-                char testo[512];
+                char testo[1024];
+				pspDebugScreenPrintf("Last Log Message: \n%s\n\n", JLogger::lastLog.c_str());
+				fwrite(testo, 1, strlen(testo), log);
                 sprintf(testo, "Exception details:\n\n");
                 fwrite(testo, 1, strlen(testo), log);
                 sprintf(testo, "Exception - %s\n", codeTxt[(regs->cause >> 2) & 31]);

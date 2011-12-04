@@ -12,6 +12,9 @@
 #include "stdafx.h"
 #include "zfsystem.h"
 
+// Debug
+#include "../../include/JLogger.h"
+
 #include "fileio.h"		// I/O facilities
 
 
@@ -58,6 +61,9 @@ filesystem::filesystem(const char * BasePath, const char * FileExt, bool Default
 	}
 
 	// Search all *.zip files (or whatever the ZipExt specify as the file extension)
+    // Search is case insensitive (see fileio.h for details)
+    // The case insensitive state is mostly because some of the filesystems we support such as FAT32 are case insensitive
+    // Being case sensitive would lead to weird bugs on these systems.
 	vector<string> ZipFiles;
 
 	for (search_iterator ZSrch = (m_BasePath + "*." + m_FileExt).c_str(); ZSrch != ZSrch.end(); ++ZSrch)
@@ -285,11 +291,15 @@ void filesystem::InsertZip(const char * Filename, const size_t PackID)
 	// Open zip
 	ifstream File(ZipPath.c_str(), ios::binary);
 
+    LOG(("opening zip:" + ZipPath).c_str());
+
 	if (! File)
 		return;
 
 	// Find the start of the central directory
 	if (! File.seekg(CentralDir(File))) return;
+
+    LOG("open zip ok");
 
 	// Check every headers within the zip file
 	file_header FileHdr;
