@@ -115,15 +115,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Abyssal Horror
-text=Flying -- When Abyssal Horror enters the battlefield, target player discards two cards.
-mana={4}{B}{B}
-type=Creature
-subtype=Horror
-power=2
-toughness=2
-[/card]
-[card]
 name=Acidic Dagger
 text={4}, {T}: Whenever target creature deals combat damage to a non-Wall creature this turn, destroy that non-Wall creature. When the targeted creature leaves the battlefield this turn, sacrifice Acidic Dagger. Activate this ability only during combat before blockers are declared.
 mana={4}
@@ -5932,15 +5923,6 @@ type=Artifact Creature
 subtype=Leviathan
 power=9
 toughness=8
-[/card]
-[card]
-name=Ebon Dragon
-text=Flying -- When Ebon Dragon enters the battlefield, you may have target opponent discard a card.
-mana={5}{B}{B}
-type=Creature
-subtype=Dragon
-power=5
-toughness=4
 [/card]
 [card]
 name=Ebon Praetor

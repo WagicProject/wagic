@@ -52480,7 +52480,7 @@ auto=counter(-1/-1,1) target(creature)
 text=({p(B)} may be paid for with either {B} or 2 life.) -- When Pith Driller enters the battlefield, put a -1/-1 counter on target creature.
 mana={4}{p(B)}
 color=black
-type=Creature
+type=Artifact Creature
 subtype=Horror
 power=2
 toughness=4
@@ -59074,7 +59074,7 @@ name=Ruthless Invasion
 auto=all(creature[-artifact]) cantblock
 text=({p(R)} may be paid for with either {R} or 2 life.) -- Nonartifact creatures can't block this turn.
 color=red
-mana={2}{p(R)}
+mana={3}{p(R)}
 type=Sorcery
 [/card]
 [card]

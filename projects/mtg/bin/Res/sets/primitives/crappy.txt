@@ -1,6 +1,17 @@
 grade=crappy
 ##the following are not added becuase theyre not choosen discard.
 [card]
+name=Abyssal Horror
+target=player
+auto=discard:2
+text=Flying -- When Abyssal Horror enters the battlefield, target player discards two cards.
+mana={4}{B}{B}
+type=Creature
+subtype=Horror
+power=2
+toughness=2
+[/card]
+[card]
 name=Abyssal Nightstalker
 auto=@notblocked(this):discard:1 opponent
 text=Whenever Abyssal Nightstalker attacks and isn't blocked, defending player discards a card.
@@ -240,6 +251,17 @@ type=Creature
 subtype=Rat
 power=2
 toughness=1
+[/card]
+[card]
+name=Ebon Dragon
+abilities=flying
+auto=discard:1 opponent
+text=Flying -- When Ebon Dragon enters the battlefield, you may have target opponent discard a card.
+mana={5}{B}{B}
+type=Creature
+subtype=Dragon
+power=5
+toughness=4
 [/card]
 [card]
 name=Entropic Specter
