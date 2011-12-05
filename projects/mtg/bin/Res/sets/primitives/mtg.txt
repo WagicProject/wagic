@@ -3540,6 +3540,7 @@ type=Sorcery
 [/card]
 [card]
 name=Zombie
+id=-666666666
 type=Creature
 subtype=Zombie
 auto=tap
@@ -32105,7 +32106,7 @@ toughness=2
 [/card]
 [card]
 name=Hedron Crab
-auto=@movedTo(land|myBattlefield):deplete:3 opponent
+auto=@movedTo(land|myBattlefield):deplete:3 target(player)
 text=Landfall - Whenever a land enters the battlefield under your control, target player puts the top three cards of his or her library into his or her graveyard.
 mana={U}
 type=Creature
@@ -40461,7 +40462,7 @@ subtype=Aura
 [/card]
 [card]
 name=Life's Finale
-auto=destroy all creature
+auto=destroy all(creature)
 auto=target(<upto:3>creature|opponentlibrary) moveTo(ownergraveyard)
 text=Destroy all creatures, then search target opponent's library for up to three creature cards and put them into his or her graveyard. Then that player shuffles his or her library.
 mana={4}{B}{B}
@@ -41397,7 +41398,7 @@ type=Artifact
 [/card]
 [card]
 name=Lotus Cobra
-auto=@movedTo(land|myBattlefield):may token(-1111129)
+auto=@movedTo(land|myBattlefield):token(-1111129)
 text=Landfall - Whenever a land enters the battlefield under your control, you may add one mana of any color to your mana pool.
 mana={1}{G}
 type=Creature
