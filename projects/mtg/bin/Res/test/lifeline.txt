@@ -1,0 +1,21 @@
+#Test:Lifeline.
+#"Whenever a creature is put into a graveyard from the battlefield, if another creature is on the battlefield, return the first card to the battlefield under its owner's control at the beginning of the next end step."
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Lightning Bolt
+inplay:Lifeline,Grizzly Bears,Wall of Blossoms
+manapool:{R}
+[PLAYER2]
+[DO]
+Lightning Bolt
+Grizzly Bears
+eot
+[ASSERT]
+UNTAP
+[PLAYER1]
+inplay:Lifeline,Grizzly Bears,Wall of Blossoms
+graveyard:Lightning Bolt
+
+[PLAYER2]
+[END]

@@ -1,0 +1,18 @@
+Testin Library of Alexandria: {T}: Draw a card. Activate this ability only if you have exactly seven cards in hand.
+[INIT]
+firstmain
+[PLAYER1]
+hand:Elvish Berserker,White Knight,Llanowar Elves,Rancor,Tranquility,Lotus Petal,Lhurgoyf
+inplay:Library of Alexandria
+library:Soul Warden
+[PLAYER2]
+[DO]
+Library of Alexandria
+choice 1
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+hand:Elvish Berserker,White Knight,Llanowar Elves,Rancor,Tranquility,Lotus Petal,Lhurgoyf,Soul Warden
+inplay:Library of Alexandria
+[PLAYER2]
+[END]

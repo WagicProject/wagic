@@ -1,0 +1,22 @@
+#Testing Razor Hippogriff
+#"When Razor Hippogriff enters the battlefield, return target artifact card from your graveyard to your hand. You gain life equal to that card's converted mana cost."
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Razor Hippogriff
+graveyard:Altar Golem
+manapool:{3}{W}{W}
+life:20
+[PLAYER2]
+[DO]
+Razor Hippogriff
+choice 0
+Altar Golem
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Razor Hippogriff
+hand:Altar Golem
+life:27
+[PLAYER2]
+[END]

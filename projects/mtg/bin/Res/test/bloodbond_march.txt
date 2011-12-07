@@ -1,0 +1,19 @@
+[INIT]
+firstmain
+[PLAYER1]
+hand:Elvish Berserker
+inplay:Bloodbond March
+graveyard:Elvish Berserker,Elvish Berserker,White Knight
+manapool:{G}
+[PLAYER2]
+[DO]
+Elvish Berserker
+next
+[ASSERT]
+Combatbegins
+[PLAYER1]
+inplay:Elvish Berserker,Elvish Berserker,Elvish Berserker,Bloodbond March
+graveyard:White Knight
+manapool:{0}
+[PLAYER2]
+[END]

@@ -1,0 +1,33 @@
+#Test:Knight of New Alara.
+#Each other multicolored creature you control gets +1/+1 for each of its colors.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Knight of New Alara,Watchwolf
+inplay:Woolly Thoctar,Fervor
+manapool:{2}{G}{G}{W}{W}
+[PLAYER2]
+life:20
+[DO]
+Knight of New Alara
+Watchwolf
+next
+#begin
+next
+#attackers
+Woolly Thoctar
+Knight of New Alara
+Watchwolf
+next
+#blockers
+next
+#damage
+next
+#end combat
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:Knight of New Alara,Watchwolf,Woolly Thoctar,Fervor
+[PLAYER2]
+life:5
+[END]

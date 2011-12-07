@@ -1,0 +1,33 @@
+#Testing Adarkar Valkyrie
+#Adarkar Valkyrie's rules text: "{T}: When target creature other than Adarkar Valkyrie is put into a graveyard this turn, return that card to the battlefield under your control."
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Lightning Bolt
+inplay:Adarkar Valkyrie,Fervor
+manapool:{R}
+[PLAYER2]
+inplay:Hill Giant
+life:20
+[DO]
+Adarkar Valkyrie
+choice 1
+Hill Giant
+Lightning Bolt
+Hill Giant
+next
+#combatbegins
+next
+#attackers
+Hill Giant
+next
+eot
+[ASSERT]
+UNTAP
+[PLAYER1]
+inplay:Adarkar Valkyrie,Hill Giant,Fervor
+graveyard:Lightning Bolt
+manapool:{0}
+[PLAYER2]
+life:17
+[END]

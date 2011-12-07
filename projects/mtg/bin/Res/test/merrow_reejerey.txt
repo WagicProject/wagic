@@ -1,0 +1,25 @@
+#Testing Merrow Reejerey
+#Whenever you cast a Merfolk spell, you may tap or untap target permanent.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Death Stroke,Coral Merfolk
+inplay:Merrow Reejerey
+manapool:{B}{B}{B}{U}
+[PLAYER2]
+inplay:Wall of Blossoms
+[DO]
+Coral Merfolk
+Merrow Reejerey
+choice 0
+Wall of Blossoms
+Death Stroke
+Wall of Blossoms
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Merrow Reejerey,Coral Merfolk
+graveyard:Death Stroke
+[PLAYER2]
+graveyard:Wall of Blossoms
+[END]

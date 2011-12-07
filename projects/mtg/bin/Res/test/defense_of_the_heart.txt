@@ -1,0 +1,25 @@
+#Testing Defense of the Heart
+#Adarkar Defense of the Heart text: "At the beginning of your upkeep, if an opponent controls three or more creatures, sacrifice Defense of the Heart. If you do, search your library for up to two creature cards and put those creatures onto the battlefield. Then shuffle your library."
+[INIT]
+UNTAP
+[PLAYER1]
+inplay:Defense of the Heart
+library:Shivan Dragon,Shivan Hellkite
+[PLAYER2]
+inplay:Hill Giant,Llanowar Elves,Atog
+[DO]
+next
+#untap
+Defense of the Heart
+choice 0
+Shivan Dragon
+choice 0
+Shivan Hellkite
+[ASSERT]
+UPKEEP
+[PLAYER1]
+inplay:Shivan Dragon,Shivan Hellkite
+graveyard:Defense of the Heart
+[PLAYER2]
+inplay:Hill Giant,Llanowar Elves,Atog
+[END]

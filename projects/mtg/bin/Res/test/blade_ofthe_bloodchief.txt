@@ -1,0 +1,36 @@
+#Test:Blade of the Bloodchief
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Blade of the Bloodchief,Shock
+inplay:Markov Patrician,Runeclaw Bear,Fervor
+manapool:{R}{R}{R}
+life:20
+[PLAYER2]
+life:20
+[DO]
+Blade of the Bloodchief
+Blade of the Bloodchief
+Markov Patrician
+Shock
+Runeclaw Bear
+next
+#begin
+next
+#attackers
+Markov Patrician
+next
+#blockers
+next
+#damage
+next
+#end combat
+[ASSERT]
+COMBATEND
+[PLAYER1]
+life:25
+inplay:Markov Patrician,Blade of the Bloodchief,Fervor
+graveyard:Shock,Runeclaw Bear
+[PLAYER2]
+life:15
+[END]

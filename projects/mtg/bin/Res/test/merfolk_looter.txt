@@ -1,0 +1,21 @@
+#Testing Merfolk Looter
+#Merfolk Looter's rules text: "text={T}: Draw a card, then discard a card."
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Grizzly Bears
+library:Plains
+inplay:Merfolk Looter
+[PLAYER2]
+[DO]
+Merfolk Looter
+choice 0
+plains
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+hand:Grizzly Bears
+inplay:Merfolk Looter
+graveyard:Plains
+[PLAYER2]
+[END]

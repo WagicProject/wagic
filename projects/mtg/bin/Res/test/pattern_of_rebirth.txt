@@ -1,0 +1,24 @@
+#Testing Pattern Rebirth
+#"When enchanted creature is put into a graveyard, that creature's controller may search his or her library for a creature card and put that card onto the battlefield. If that player does, he or she then shuffles his or her library."
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Llanowar Elves
+hand:Shock,Pattern of Rebirth
+library:Craw Wurm
+manapool:{3}{G}{R}
+[PLAYER2]
+[DO]
+Pattern of Rebirth
+Llanowar Elves
+Shock
+Llanowar Elves
+choice 0
+Craw Wurm
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:Llanowar Elves,Shock,Pattern of Rebirth
+inplay:Craw Wurm
+manapool:{0}
+[END]

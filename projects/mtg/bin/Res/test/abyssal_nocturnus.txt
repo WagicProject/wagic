@@ -1,0 +1,33 @@
+#Test:Abyssal Nocturnus.
+#Whenever an opponent discards a card, Abyssal Nocturnus gets +2/+2 and gains fear until end of turn. (It can't be blocked except by artifact creatures and/or black creatures.)
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Mind Knives
+inplay:Abyssal Nocturnus
+manapool:{1}{B}
+[PLAYER2]
+hand:Giant Growth
+life:20
+[DO]
+Mind Knives
+next
+#begin
+next
+#attackers
+Abyssal Nocturnus
+next
+#blockers
+next
+#damage
+next
+#end combat
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:Abyssal Nocturnus
+graveyard:Mind Knives
+[PLAYER2]
+life:16
+graveyard:Giant Growth
+[END]

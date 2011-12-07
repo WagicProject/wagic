@@ -1,0 +1,23 @@
+Testing Library of Alexandria: {T}: Draw a card. Activate this ability only if you have exactly seven cards in hand.
+#Test3: You have 8 cards in hand. You should not be able to tap Library of Alexandria to draw a card.
+#Instead Library of Alexandria should be tapped by test suite to add {1} to your mana pool.
+[INIT]
+firstmain
+[PLAYER1]
+hand:Elvish Berserker,White Knight,Llanowar Elves,Rancor,Tranquility,Lotus Petal,Lhurgoyf,Mawcor
+inplay:Library of Alexandria
+library:Soul Warden
+manapool:{0}
+[PLAYER2]
+[DO]
+Library of Alexandria
+choice 1
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+hand:Elvish Berserker,White Knight,Llanowar Elves,Rancor,Tranquility,Lotus Petal,Lhurgoyf,Mawcor
+inplay:Library of Alexandria
+library:Soul Warden
+manapool:{1}
+[PLAYER2]
+[END]

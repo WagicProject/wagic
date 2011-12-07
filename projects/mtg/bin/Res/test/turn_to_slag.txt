@@ -1,0 +1,21 @@
+#Testing Turn to Slag. --- This card uses "children" keyword.
+#"Turn to Slag deals 5 damage to target creature. Destroy all Equipment attached to that creature."
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Grizzly Bears
+hand:Turn to Slag,Bonesplitter
+manapool:{5}{R}{R}
+[PLAYER2]
+[DO]
+Bonesplitter
+Bonesplitter
+Grizzly Bears
+Turn to Slag
+Grizzly Bears
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:Bonesplitter,Grizzly Bears,Turn to Slag
+manapool:{0}
+[END]

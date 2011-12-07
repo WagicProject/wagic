@@ -93,9 +93,11 @@ generic/wither.txt
 #Specific Cards
 ########################
 abyssal_hunter_POWERSTRIKE.txt
+abyssal_nocturnus.txt
 academy_rector.txt
 accelerated_mutation.txt
 act_of_treason.txt
+adarkar_valkyrie.txt
 aegis_of_the_meek.txt
 aether_mutation.txt
 aether_flash.txt
@@ -147,6 +149,7 @@ aura_mutation.txt
 auriok_bladewarden_POWERPUMPBOTH.txt
 Auriok_Sunchaser_ASLONGAS_1.txt
 Auriok_Sunchaser_ASLONGAS_2.txt
+aven_shrine.txt
 avarice_totem.txt
 avatar_of_woe1.txt
 avatar_of_woe2.txt
@@ -156,6 +159,7 @@ aysen_bureaucrats.txt
 balduvian_conjurer.txt
 baneslayer_angel.txt
 baneslayer_angel2.txt
+barbed_shocker.txt
 barbed_sliver.txt
 basal_sliver.txt
 beacon_of_creation.txt
@@ -173,12 +177,14 @@ berserk2.txt
 biorhythm.txt
 black_market.txt
 black_vise.txt
+blade_ofthe_bloodchief.txt
 blessed_wind.txt
 blessed_wine.txt
 blinking_spirit.txt
 blinkmoth_nexus.txt
 bloated_toad1.txt
 bloated_toad2.txt
+bloodbond_march.txt
 bloodfire_colossus.txt
 bloodhall_ooze.txt
 bloodscale_prowler.txt
@@ -248,6 +254,7 @@ deadshot.txt
 death_grasp.txt
 death_ward.txt
 decree_of_justice.txt
+defense_of_the_heart.txt
 deja_vu.txt
 delusions_of_mediocrity.txt
 dematerialize_flashback.txt
@@ -414,7 +421,11 @@ Lethargy_Trap2.txt
 leveler.txt
 lhurgoyf.txt
 liability.txt
+library_of_alexandria1.txt
+library_of_alexandria2.txt
+library_of_alexandria3.txt
 lifeforce.txt
+lifeline.txt
 lifetap.txt
 lightmine_field.txt
 lightmine_field2.txt
@@ -435,6 +446,8 @@ meliras_keepers.txt
 memnarch.txt
 memory_erosion.txt
 mephidross_vampire.txt
+merfolk_looter.txt
+merrow_reejerey.txt
 millstone.txt
 Mimics#1.txt
 Mimics#2.txt
@@ -474,6 +487,7 @@ ovinize2.txt
 paradise_mantle.txt
 paralysis.txt
 paralysis2.txt
+pattern_of_rebirth.txt
 persuasion.txt
 phytohydra.txt
 pillory_of_the_sleepless1_i188.txt
@@ -501,6 +515,9 @@ Rack_and_Ruin2.txt
 rain_of_filth_i206.txt
 rain_of_filth_i283.txt
 rainbow_efreet_phase_out.txt
+Raka_Sanctuary.txt
+Raka_Sanctuary2.txt
+Raka_Sanctuary3.txt
 rakdos_pit_dragon_i555_1.txt
 rakdos_pit_dragon_i555_2.txt
 rakdos_pit_dragon_i555_3.txt
@@ -513,6 +530,7 @@ rancor_i749.txt
 ray_of_command.txt
 ray_of_command_i176.txt
 razor_golem.txt
+razor_hippogriff.txt
 reclusive_wight.txt
 reclusive_wight2.txt
 recover.txt
@@ -613,6 +631,8 @@ tidal_warrior_i652.txt
 titanic_ultimatum.txt
 torture.txt
 tranquil_domain.txt
+turn_to_slag.txt
+turn_to_slag2.txt
 twinstrike.txt
 twinstrike2.txt
 twinstrike3.txt

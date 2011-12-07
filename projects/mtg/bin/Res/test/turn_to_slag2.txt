@@ -1,0 +1,22 @@
+#Testing Turn to Slag.
+#"Turn to Slag deals 5 damage to target creature. Destroy all Equipment attached to that creature."
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Deathcoil Wurm
+hand:Turn to Slag,Bonesplitter
+manapool:{5}{R}{R}
+[PLAYER2]
+[DO]
+Bonesplitter
+Bonesplitter
+Deathcoil Wurm
+Turn to Slag
+Deathcoil Wurm
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Deathcoil Wurm
+graveyard:Bonesplitter,Turn to Slag
+manapool:{0}
+[END]

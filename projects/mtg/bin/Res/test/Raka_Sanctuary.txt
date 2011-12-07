@@ -1,0 +1,21 @@
+#Testing Raka Sanctuary.
+#Raka Sanctuary's rules text:
+#"At the beginning of your upkeep, if you control a white or blue permanent, Raka Sanctuary deals 1 damage to target creature. If you control a white permanent and a blue permanent, Raka Sanctuary deals 3 damage to that creature instead."
+#Test 1:You control only a blue permanent, so the target (Grizzly Bears,2/2) should only get 1 damage and thus not die.
+[INIT]
+UNTAP
+[PLAYER1]
+inplay:Raka Sanctuary,Merfolk Looter,Grizzly Bears
+[PLAYER2]
+[DO]
+next
+#Upkeep
+Raka Sanctuary
+choice 0
+Grizzly Bears
+[ASSERT]
+UPKEEP
+[PLAYER1]
+inplay:Raka Sanctuary,Merfolk Looter,Grizzly Bears
+[PLAYER2]
+[END]

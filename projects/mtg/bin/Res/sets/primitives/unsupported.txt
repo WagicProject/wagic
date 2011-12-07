@@ -16652,12 +16652,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Plague Spores
-text=Destroy target nonblack creature and target land. They can't be regenerated.
-mana={4}{B}{R}
-type=Sorcery
-[/card]
-[card]
 name=Plague of Vermin
 text=Starting with you, each player may pay any amount of life. Repeat this process until no one pays life. Each player puts a 1/1 black Rat creature token onto the battlefield for each 1 life he or she paid this way.
 mana={6}{B}
@@ -16783,12 +16777,6 @@ name=Portcullis
 text=Whenever a creature enters the battlefield, if there are two or more other creatures on the battlefield, exile that creature. Return that card to the battlefield under its owner's control when Portcullis leaves the battlefield.
 mana={4}
 type=Artifact
-[/card]
-[card]
-name=Portent
-text=Look at the top three cards of target player's library, then put them back in any order. You may have that player shuffle his or her library. -- Draw a card at the beginning of the next turn's upkeep.
-mana={U}
-type=Sorcery
 [/card]
 [card]
 name=Possessed Portal
@@ -17290,28 +17278,10 @@ mana={1}{R}{R}
 type=Instant
 [/card]
 [card]
-name=Pulse of the Grid
-mana={1}{U}{U}
-type=Instant
-text=Draw two cards, then discard a card. Then if an opponent has more cards in hand than you, return Pulse of the Grid to its owner's hand.
-[/card]
-[card]
-name=Pulse of the Tangle
-mana={1}{G}{G}
-type=Sorcery
-text=Put a 3/3 green Beast creature token onto the battlefield. Then if an opponent controls more creatures than you, return Pulse of the Tangle to its owner's hand.
-[/card]
-[card]
 name=Punctuate
 mana={3}{R}
 type=Instant
 text=Punctuate deals damage to target creature equal to half the number of punctuation marks in that creature's text box. (The punctuation marks are  ? , ; : - ( ) / " ' & .)
-[/card]
-[card]
-name=Puncture Blast
-mana={2}{R}
-type=Instant
-text=Wither (This deals damage to creatures in the form of -1/-1 counters.) Puncture Blast deals 3 damage to target creature or player.
 [/card]
 [card]
 name=Punishing Fire
@@ -22143,10 +22113,10 @@ mana={X}{G}{G}
 type=Instant
 [/card]
 [card]
-name=Strip Bare
-text=Destroy all Auras and Equipment attached to target creature.
-mana={W}
-type=Instant
+name=Storage Matrix
+text=As long as Storage Matrix is untapped, each player chooses artifact, creature, or land during his or her untap step. That player can untap only permanents of the chosen type this step.
+mana={3}
+type=Artifact
 [/card]
 [card]
 name=Stromgald Spy
@@ -22408,7 +22378,6 @@ type=Instant
 [/card]
 [card]
 name=Surgespanner
-auto=@tapped(this):may {1}{U}:moveto(ownerhand) target(*)
 text=Whenever Surgespanner becomes tapped, you may pay {1}{U}. If you do, return target permanent to its owner's hand.
 mana={2}{U}{U}
 type=Creature

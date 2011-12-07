@@ -1,0 +1,31 @@
+#Test:Barbed Shocker.
+#Whenever Barbed Shocker deals damage to a player, that player discards all the cards in his or her hand, then draws that many cards.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Barbed Shocker
+[PLAYER2]
+hand:Giant Growth,Elvish Berserker,Grollub
+library:Kird Ape,Priest of Gix,Dark Ritual
+life:20
+[DO]
+next
+#begin
+next
+#attackers
+Barbed Shocker
+next
+#blockers
+next
+#damage
+next
+#end combat
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:Barbed Shocker
+[PLAYER2]
+life:18
+graveyard:Giant Growth,Elvish Berserker,Grollub
+hand:Kird Ape,Priest of Gix,Dark Ritual
+[END]
