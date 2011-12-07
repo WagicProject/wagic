@@ -67,6 +67,9 @@ public:
 
 class AIPlayer: public Player{
 
+private:
+    static int totalAIDecks; //a cache that counts the number of AI deck files in the AI folder. see getTotalAIDecks() below.
+
 protected:
     bool mFastTimerMode;
     queue<AIAction *> clickstream;
@@ -98,6 +101,9 @@ public:
     RandomGenerator* getRandomGenerator(){return &randomGenerator;};
 
     bool parseLine(const string& s);
+
+    static int getTotalAIDecks();
+    static void invalidateTotalAIDecks();
 };
 
 

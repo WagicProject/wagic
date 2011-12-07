@@ -86,7 +86,6 @@ public:
     };
 };
 
-int filesize(const char * filename);
 int WRand(bool log = false);
 
 #ifdef LINUX

@@ -8,7 +8,7 @@
 #include "MTGDeck.h"
 #include "GameObserver.h"
 #include "GameStateShop.h"
-#include "PlayerData.h"
+#include "AIPlayer.h"
 
 
 map <string, Unlockable *> Unlockable::unlockables;
@@ -440,27 +440,19 @@ int Credits::isDifficultyUnlocked(DeckStats * stats)
 {
     if (options[Options::DIFFICULTY_MODE_UNLOCKED].number)
         return 0;
-    int nbAIDecks = 0;
-    int found = 1;
+    int nbAIDecks = AIPlayer::getTotalAIDecks();
+
     int wins = 0;
 
-    while (found)
+    for (int i = 0; i < nbAIDecks; ++i) 
     {
-        found = 0;
-        char buffer[512];
         char aiSmallDeckName[512];
-        sprintf(buffer, "ai/baka/deck%i.txt", nbAIDecks + 1);
-        if (fileExists(buffer))
-        {
-            found = 1;
-            nbAIDecks++;
-            sprintf(aiSmallDeckName, "ai_baka_deck%i", nbAIDecks);
-            int percentVictories = stats->percentVictories(string(aiSmallDeckName));
-            if (percentVictories >= 67)
-                wins++;
-            if (wins >= 10)
-                return 1;
-        }
+        sprintf(aiSmallDeckName, "ai_baka_deck%i", i+1);
+        int percentVictories = stats->percentVictories(string(aiSmallDeckName));
+        if (percentVictories >= 67)
+            wins++;
+        if (wins >= 10)
+            return 1;
     }
     return 0;
 }
@@ -566,20 +558,8 @@ int Credits::IsMoreAIDecksUnlocked(DeckStats * stats) {
     // the number of currently unlocked decks in order to go through.
     if (stats->nbGames() < currentlyUnlocked * 1.2) return 0;
 
-    int nbdecks = 0;
-    int found = 1;
-    while (found)
-    {
-        found = 0;
-        char buffer[512];
-        sprintf(buffer, "ai/baka/deck%i.txt", nbdecks + 1);
-        if (JFileSystem::GetInstance()->FileExists(buffer))
-        {
-            found = 1;
-            nbdecks++;
-            if (nbdecks > currentlyUnlocked)
-                return 1;
-        }
-    }
+    if (AIPlayer::getTotalAIDecks() > currentlyUnlocked)
+        return 1;
+
     return 0;
 }

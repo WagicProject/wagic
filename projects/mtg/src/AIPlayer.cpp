@@ -14,6 +14,7 @@
 #endif
 
 
+int AIPlayer::totalAIDecks = -1;
 
 const char * const MTG_LAND_TEXTS[] = { "artifact", "forest", "island", "mountain", "swamp", "plains", "other lands" };
 
@@ -218,19 +219,7 @@ AIPlayer * AIPlayerFactory::createAIPlayer(GameObserver *observer, MTGAllCards *
         if (!deckid)
         {
             //random deck
-            int nbdecks = 0;
-            int found = 1;
-            while (found && nbdecks < options[Options::AIDECKS_UNLOCKED].number)
-            {
-                found = 0;
-                char buffer[512];
-                sprintf(buffer, "ai/baka/deck%i.txt", nbdecks + 1);
-                if (FileExists(buffer))
-                {
-                    found = 1;
-                    nbdecks++;
-                }
-            }
+            int nbdecks = MIN(AIPlayer::getTotalAIDecks(), options[Options::AIDECKS_UNLOCKED].number);
             if (!nbdecks)
                 return NULL;
             deckid = 1 + WRand() % (nbdecks);
@@ -343,3 +332,32 @@ AIPlayer * AIPlayerFactory::createAIPlayerTest(GameObserver *observer, MTGAllCar
     return baka;
 }
 #endif
+
+
+int AIPlayer::getTotalAIDecks() 
+{
+    if (totalAIDecks != -1)
+        return totalAIDecks;
+
+    totalAIDecks = 0;
+    bool found = true;
+    while (found)
+    {
+        found = false;
+        char buffer[512];
+        sprintf(buffer, "ai/baka/deck%i.txt", totalAIDecks + 1);
+        if (JFileSystem::GetInstance()->FileExists(buffer))
+        {
+            found = true;
+            totalAIDecks++;
+        }
+    }
+
+    return totalAIDecks;
+}
+
+void AIPlayer::invalidateTotalAIDecks() 
+{
+    totalAIDecks = -1;
+}
+

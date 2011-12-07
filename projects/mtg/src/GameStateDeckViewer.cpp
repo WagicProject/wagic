@@ -20,6 +20,7 @@
 #include "DeckEditorMenu.h"
 #include "SimpleMenu.h"
 #include "utils.h"
+#include "AIPlayer.h"
 
 
 
@@ -315,24 +316,22 @@ void GameStateDeckViewer::saveDeck()
 void GameStateDeckViewer::saveAsAIDeck(string deckName)
 {
 
-    vector<DeckMetaData *> aiDecks = GameState::BuildDeckList("ai/baka", "ai_baka", NULL);
-    int nbAiDecks = aiDecks.size() + 1;
-    aiDecks.clear();
+    int deckId = AIPlayer::getTotalAIDecks() + 1;
 
-    string defaultAiDeckName = "deck";
     std::ostringstream oss;
-    oss << "deck" << nbAiDecks;
-    defaultAiDeckName = oss.str();
+    oss << "deck" <<deckId;
+    string aiDeckName = oss.str();
     oss.str("");
     if (myDeck->parent->meta_desc == "")
-        oss << endl << "Can you beat your own creations?" << endl << "User created AI Deck # " << nbAiDecks;
+        oss << endl << "Can you beat your own creations?" << endl << "User created AI Deck # " << deckId;
     else
         oss << myDeck->parent->meta_desc;
     string deckDesc = oss.str();
     string filepath = "ai/baka/";
-    filepath.append(defaultAiDeckName).append(".txt");
+    filepath.append(aiDeckName).append(".txt");
     DebugTrace("saving AI deck " << filepath);
     myDeck->save(filepath, true, deckName, deckDesc);
+    AIPlayer::invalidateTotalAIDecks(); //We added one AI deck, so we need to invalidate the count cache
 }
 
 void GameStateDeckViewer::Update(float dt)

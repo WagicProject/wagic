@@ -88,28 +88,6 @@ int WRand(bool log)
     return rand();
 }
 
-int filesize(const char * filename)
-{
-    int file_size = 0;
-#if defined (PSP)
-    int file = sceIoOpen(filename, PSP_O_RDONLY, 0777);
-    if (file > 0)
-    {
-        file_size = sceIoLseek(file, 0, PSP_SEEK_END);
-        sceIoClose(file);
-    }
-#else
-    FILE * file = fopen(filename, "rb");
-    if (file != NULL)
-    {
-        fseek(file, 0, SEEK_END);
-        file_size = ftell(file);
-        fclose(file);
-    }
-#endif
-    return file_size;
-}
-
 bool fileExists(const char * filename)
 {
     return JFileSystem::GetInstance()->FileExists(filename);
