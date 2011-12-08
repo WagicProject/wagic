@@ -11,6 +11,8 @@
 
 - (void) applicationDidFinishLaunching:(UIApplication *)application   
 {
+    glViewController = [[EAGLViewController alloc] init];
+    
     [self.window addSubview:self.glViewController.view];
     [self.window makeKeyAndVisible];
 }
@@ -46,6 +48,26 @@
 	EAGLView *eaglView = (EAGLView *)self.glViewController.view;
 	[eaglView stopAnimation];
 }
+
+
+- (void)handleWEngineCommand:(NSString *) command
+{
+    BOOL isDevicePhone = (UI_USER_INTERFACE_IDIOM()) == UIUserInterfaceIdiomPhone;
+
+    if ([command isEqualToString: @"entergamestate:menu"] )
+        [glViewController.eaglView displayAds];
+    
+    else if ([command isEqualToString: @"enterduelphase:end"] && isDevicePhone)
+        [glViewController.eaglView displayAds];
+    
+    else if ([command isEqualToString: @"leaveduelphase:end"] || 
+                [command isEqualToString: @"leavegamestate:menu"])
+    {
+        if (isDevicePhone)
+            [glViewController.eaglView removeAds];
+    }
+}
+
 
 - (void)dealloc
 {

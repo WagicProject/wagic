@@ -557,6 +557,8 @@ int TestSuite::loadNext()
         size_t thread_count = 1;
 #ifdef QT_CONFIG
         thread_count = QThread::idealThreadCount();
+#elif defined(IOS)
+        thread_count = 6;
 #endif
         for(size_t i = 0; i < (thread_count-1); i++)
             mWorkerThread.push_back(new boost::thread(ThreadProc, this));

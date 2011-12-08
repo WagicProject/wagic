@@ -2,7 +2,6 @@
 #import "EAGLView.h"
 
 
-
 @interface EAGLViewController (PrivateMethods)
 - (NSString*)interfaceOrientationName:(UIInterfaceOrientation) interfaceOrientation;
 - (NSString*)deviceOrientationName:(UIDeviceOrientation) deviceOrientation;
@@ -10,43 +9,43 @@
 
 @implementation EAGLViewController
 
+@synthesize bannerIsVisible;
+@synthesize eaglView;
+
+#pragma mark initialization / deallocation methods
+
 - (id)init {
     self = [super init];
     if (self) {
-        // Custom initialization.
+        CGRect frame = [[UIScreen mainScreen] applicationFrame];
+        eaglView = [[EAGLView alloc] initWithFrame:frame];
+        [self setView: eaglView];
     }
     return self;
 }
 
 - (void)dealloc {
+    [eaglView setDelegate: nil];
+    [eaglView release], eaglView = nil;
     [super dealloc];
 }
 
 
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView {
-	NSLog(@"EAGL ViewController - loadView");
-	
-	CGRect frame = [[UIScreen mainScreen] applicationFrame];
-	
-	EAGLView *eaglView = [[[EAGLView alloc] initWithFrame:frame] autorelease];
-	
-	self.view = eaglView;
-}
-
-
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
 	NSLog(@"EAGL ViewController - view Did Load");
+
 	[super viewDidLoad];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-	
 	NSLog(@"EAGL ViewController - view Will Appear");
 	
 }
 
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+}
 
 - (void)viewDidAppear:(BOOL)animated {
 	
@@ -60,41 +59,6 @@
 		  [self deviceOrientationName:currentDeviceOrientation]);
 }
 
-
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Overriden to allow any orientation.
-    bool isSmallScreen = (UI_USER_INTERFACE_IDIOM()) == UIUserInterfaceIdiomPhone;
-
-    if ( isSmallScreen && UIInterfaceOrientationIsPortrait(interfaceOrientation))
-        return NO;
-    
-    return YES;
-}
-
-- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-    
-	UIDeviceOrientation currentDeviceOrientation = [UIDevice currentDevice].orientation;
-	UIInterfaceOrientation currentInterfaceOrientation	= self.interfaceOrientation;
-	
-	NSLog(@"EAGL ViewController - will Rotate To Interface: %@. Current Interface: %@. Current Device: %@", 
-		  [self interfaceOrientationName:toInterfaceOrientation], 
-		  [self interfaceOrientationName:currentInterfaceOrientation], 
-		  [self deviceOrientationName:currentDeviceOrientation]);
-	
-}
-
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-	
-	UIDeviceOrientation currentDeviceOrientation = [UIDevice currentDevice].orientation;
-	UIInterfaceOrientation currentInterfaceOrientation	= self.interfaceOrientation;
-	
-	NSLog(@"EAGL ViewController - did Rotate From Interface: %@. Current Interface: %@. Current Device: %@", 
-		  [self interfaceOrientationName:fromInterfaceOrientation], 
-		  [self interfaceOrientationName:currentInterfaceOrientation], 
-		  [self deviceOrientationName:currentDeviceOrientation]);
-	
-}
 
 
 - (void)didReceiveMemoryWarning {
@@ -112,6 +76,37 @@
 }
 
 
+#pragma mark -
+
+#pragma mark device orientation handlers
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    // Overriden to allow any orientation.
+    bool isSmallScreen = (UI_USER_INTERFACE_IDIOM()) == UIUserInterfaceIdiomPhone;
+
+    if ( isSmallScreen && UIInterfaceOrientationIsPortrait(interfaceOrientation))
+        return NO;
+    
+    return YES;
+}
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    [[eaglView adView] rotateToOrientation: toInterfaceOrientation];
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+	
+	UIDeviceOrientation currentDeviceOrientation = [UIDevice currentDevice].orientation;
+	UIInterfaceOrientation currentInterfaceOrientation	= self.interfaceOrientation;
+	
+	NSLog(@"EAGL ViewController - did Rotate From Interface: %@. Current Interface: %@. Current Device: %@", 
+		  [self interfaceOrientationName:fromInterfaceOrientation], 
+		  [self interfaceOrientationName:currentInterfaceOrientation], 
+		  [self deviceOrientationName:currentDeviceOrientation]);	
+}
+
+#pragma mark -
+#pragma mark Orientation Information
 - (NSString*)interfaceOrientationName:(UIInterfaceOrientation) interfaceOrientation {
 	
 	NSString* result = nil;
@@ -171,6 +166,6 @@
 	return result;
 };
 
-
+#pragma mark -
 
 @end

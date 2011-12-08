@@ -915,6 +915,8 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
             }
 #endif
         }
+            mEngine->ReleaseKey( JGE_BTN_MENU );
+
     }
 }
 

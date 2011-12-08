@@ -7,8 +7,10 @@
     EAGLViewController *glViewController;
 }
 
+- (void) handleWEngineCommand:(NSString *) command;
+
 @property (nonatomic, retain) IBOutlet UIWindow *window;
-@property (nonatomic, retain) IBOutlet EAGLViewController *glViewController;
+@property (nonatomic, retain) EAGLViewController *glViewController;
 
 @end
 

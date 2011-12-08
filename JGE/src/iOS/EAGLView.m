@@ -10,6 +10,10 @@
 #include "JRenderer.h"
 #include "JGameLauncher.h"
 
+#import "AdWhirlView.h"
+#import "wagicAppDelegate.h"
+
+
 uint64_t		lastTickCount;
 JGE*		g_engine = NULL;
 static JApp*	g_app = NULL;
@@ -29,7 +33,10 @@ void JGECreateDefaultBindings()
 
 int JGEGetTime()
 {
-	return CFAbsoluteTimeGetCurrent() * 1000;
+    timeval time;
+    gettimeofday(&time, NULL);
+    long millis = ((time.tv_sec * 1000) + (time.tv_usec / 1000)/ 1000);
+    return millis;
 }
 
 bool InitGame(void)
@@ -43,7 +50,7 @@ bool InitGame(void)
 	struct timeval tv;
 	gettimeofday(&tv, NULL);
 	lastTickCount = tv.tv_sec * 1000 + tv.tv_usec / 1000;
-	
+    
 	return true;
 }
 
@@ -63,8 +70,17 @@ void DestroyGame(void)
 }
 
 
+#pragma mark Ad management constants
+static NSString *ADMOB_PUBLISHERID_IPHONE = @"a14edb722890ca1"; // Erwans-a14e9009f88864f
+static NSString *ADMOB_PUBLISHERID_IPAD = @"a14edb7c59598f7";
+static NSString *_MY_AD_WHIRL_APPLICATION_KEY_IPHONE = @"b86aba511597401ca6b41c1626aa3013";
+static NSString *_MY_AD_WHIRL_APPLICATION_KEY_IPAD = @"2e70e3f3da40408588b9a3170c8d268f";
+
+#pragma mark -
+
 @implementation EAGLView
 
+@synthesize adView;
 @synthesize animating;
 @dynamic animationFrameInterval;
 @synthesize currentLocation;
@@ -80,7 +96,7 @@ void DestroyGame(void)
 - (void)dealloc
 {
     [renderer release];
-	
+    [self removeAds];	
     [super dealloc];
 }
 
@@ -211,7 +227,7 @@ void DestroyGame(void)
     UITapGestureRecognizer *singleTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
     singleTapRecognizer.numberOfTapsRequired = 1;
     singleTapRecognizer.numberOfTouchesRequired = 1;
-    
+
     [self addGestureRecognizer: singleTapRecognizer];
 
     
@@ -368,7 +384,6 @@ void DestroyGame(void)
 			//return 1;
 		}
 		
-		
 		started = TRUE;
 	}
 }
@@ -456,11 +471,12 @@ void DestroyGame(void)
         default:
             break;
     }
-
+/*
     CGPoint translatedPoint = [recognizer locationInView: self];
     currentX = translatedPoint.x;
     currentY = translatedPoint.y;
     g_engine->LeftClicked( currentX, currentY);
+ */
 }
 
 - (void)handleHand:(UITapGestureRecognizer *)recognizer {
@@ -516,5 +532,136 @@ void DestroyGame(void)
 }
 
 #pragma mark -
+
+//These are the methods for the AdWhirl Delegate, you have to implement them
+#pragma mark AdWhirlDelegate methods
+- (void) resumeGame {
+    g_engine->Resume();
+}
+
+- (void) pauseGame
+{
+    g_engine->Pause();
+}
+
+- (void)adWhirlWillPresentFullScreenModal {
+    //It's recommended to invoke whatever you're using as a "Pause Menu" so your
+    //game won't keep running while the user is "playing" with the Ad (for example, iAds)
+    [self pauseGame];
+
+}
+
+- (void)adWhirlDidDismissFullScreenModal {
+    //Once the user closes the Ad he'll want to return to the game and continue where
+    //he left it
+    [self resumeGame];
+}
+
+- (NSString *)adWhirlApplicationKey {
+    if ((UI_USER_INTERFACE_IDIOM()) == UIUserInterfaceIdiomPad)
+        return _MY_AD_WHIRL_APPLICATION_KEY_IPAD;
+    
+    return _MY_AD_WHIRL_APPLICATION_KEY_IPHONE;
+}
+
+- (UIViewController *)viewControllerForPresentingModalView {
+    //Remember that UIViewController we created in the Game.h file? AdMob will use it.
+    //If you want to use "return self;" instead, AdMob will cancel the Ad requests.
+    return viewController;
+}
+
+
+- (void)adWhirlDidReceiveAd:(AdWhirlView *)adWhirlView {
+    [UIView beginAnimations:@"AdWhirlDelegate.adWhirlDidReceiveAd:"
+                    context:nil];
+    BOOL isLandscape = UIDeviceOrientationIsLandscape( [UIDevice currentDevice].orientation);
+    [UIView setAnimationDuration:0.7];
+    
+    CGSize adSize = [adWhirlView actualAdSize];
+    CGRect newFrame = [adWhirlView frame];
+    CGSize screenSize = [self.window bounds].size;
+    
+    newFrame.size = adSize;
+    // ads are 320 x 50
+    newFrame.origin.x = ( (isLandscape ? screenSize.height : screenSize.width) - adSize.width)/ 2;
+    newFrame.origin.y =  0;
+    
+    [adWhirlView setFrame: newFrame];
+    
+    [UIView commitAnimations];
+}
+
+-(void)adWhirlDidFailToReceiveAd:(AdWhirlView *)adWhirlView usingBackup:(BOOL)yesOrNo {
+    //The code to show my own Ad banner again
+    NSLog(@"failed to get an Ad");
+}
+
+-(void) removeAds {
+    //There's something weird about AdWhirl because setting the adView delegate
+    //to "nil" doesn't stops the Ad requests and also it doesn't remove the adView
+    //from superView; do the following to remove AdWhirl from your scene.
+    //
+    //If adView exists, remove everything
+    if (adView) {
+        //Remove adView from superView
+        [adView removeFromSuperview];
+        //Replace adView's view with "nil"
+        [adView replaceBannerViewWith:nil];
+        //Tell AdWhirl to stop requesting Ads
+        [adView ignoreNewAdRequests];
+        //Set adView delegate to "nil"
+        [adView setDelegate:nil];
+        //Release adView
+        [adView release];
+        //set adView to "nil"
+        adView = nil;
+    }
+}
+
+
+
+-(void) displayAds 
+{
+    BOOL isLandscape = UIDeviceOrientationIsLandscape( [UIDevice currentDevice].orientation);
+    
+    //Assign the AdWhirl Delegate to our adView
+    if ( adView != nil )
+        [self removeAds];
+    
+    //Let's allocate the viewController (it's the same RootViewController as declared
+    //in our AppDelegate; will be used for the Ads)
+    viewController = [(wagicAppDelegate *)[[UIApplication sharedApplication] delegate] glViewController];
+
+    self.adView = [AdWhirlView requestAdWhirlViewWithDelegate:self];
+    //Set auto-resizing mask
+    self.adView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin;
+    //This isn't really needed but also it makes no harm. It just retrieves the configuration
+    //from adwhirl.com so it knows what Ad networks to use
+    [adView updateAdWhirlConfig];
+    //Get the actual size for the requested Ad
+    CGSize adSize = [adView actualAdSize];
+    //
+    //Set the position; remember that we are using 4 values (in this order): X, Y, Width, Height
+    //You can comment this line if your game is in portrait mode and you want your Ad on the top
+    //if you want the Ad in other position (portrait or landscape), use the following code,
+    //for this example, the Ad will be positioned in the bottom+center of the screen
+    //(in landscape mode):
+    //Same explanation as the one in the method "adjustAdSize" for the Ad's width
+    int screenWidth = [viewController.parentViewController.view bounds].size.width;
+    if ( isLandscape )
+        screenWidth = [viewController.parentViewController.view bounds].size.height;
+    
+    self.adView.frame = CGRectMake((screenWidth - adSize.width) / 2, 0, adSize.width, adSize.height);
+    
+    //Trying to keep everything inside the Ad bounds
+    self.adView.clipsToBounds = YES;
+    //Adding the adView (used for our Ads) to our viewController
+    [viewController.view addSubview:adView];
+    //Bring our view to front
+    [viewController.view bringSubviewToFront:adView];
+    
+}
+
+
 @end
 

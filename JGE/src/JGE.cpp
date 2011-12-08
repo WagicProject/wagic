@@ -7,7 +7,7 @@
 // Copyright (c) 2007 James Hui (a.k.a. Dr.Watson) <jhkhui@gmail.com>
 //
 //-------------------------------------------------------------------------------------
-
+#include "PrecompiledHeader.h"
 #include <iostream>
 #include <map>
 #include <set>
@@ -22,6 +22,9 @@
 #include "../include/JFileSystem.h"
 //#include "../include/JParticleSystem.h"
 
+#if defined (IOS)
+#import "wagicAppDelegate.h"
+#endif
 
 //////////////////////////////////////////////////////////////////////////
 #if defined (WIN32)    // WIN32 specific code
@@ -576,9 +579,16 @@ void JGE::Scroll(int inXVelocity, int inYVelocity)
 
 void JGE::SendCommand(string command)
 {
- #if defined (ANDROID)
+#if defined (ANDROID)
     sendJNICommand(command);
- #endif
+#endif
+#ifdef IOS
+    // get the app delegate and have it handle the command
+    wagicAppDelegate *delegate = [ [UIApplication sharedApplication] delegate];
+    const char* commandString = command.c_str();
+    DebugTrace("Command: "<< command << endl); 
+    [delegate handleWEngineCommand:[NSString stringWithUTF8String: commandString]];
+#endif
 }
 
  #if defined (ANDROID)
