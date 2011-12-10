@@ -380,7 +380,7 @@ toughness=6
 [card]
 name=Academy Rector
 auto=@movedTo(this|graveyard) from(battlefield):may all(trigger[to]) moveto(exile) && target(enchantment|mylibrary) moveTo(mybattlefield)
-text=When Academy Rector is put dies, you may exile it. If you do, search your library for an enchantment card and put that card onto the battlefield. Then shuffle your library.
+text=When Academy Rector dies, you may exile it. If you do, search your library for an enchantment card, put that card onto the battlefield, then shuffle your library.
 mana={3}{W}
 type=Creature
 subtype=Human Cleric
@@ -707,7 +707,7 @@ subtype=Equipment
 [card]
 name=Aegis Angel
 abilities=flying
-auto=target(other creature) transforms((,indestructible))
+auto=target(other *) transforms((,indestructible))
 text=Flying -- When Aegis Angel enters the battlefield, another target permanent is indestructible for as long as you control Aegis Angel.
 mana={4}{W}{W}
 type=Creature
@@ -732,7 +732,7 @@ type=Artifact
 [card]
 name=Aerie Mystics
 abilities=flying
-auto={1}{G}{U}:lord(creature|myBattlefield) shroud
+auto={1}{G}{U}:lord(creature|myBattlefield) shroud ueot
 text=Flying -- {1}{G}{U}: Creatures you control gain shroud until end of turn.
 mana={4}{W}
 type=Creature
@@ -5605,9 +5605,9 @@ power=6
 toughness=5
 [/card]
 [card]
-name=Baru Fist of Krosa
+name=Baru, Fist of Krosa
 auto=@movedto(forest|battlefield):all(creature[green]|mybattlefield) +1/+1 ueot && all(creature[green]|mybattlefield) trample ueot
-auto={discard(Baru Fist of Krosa|myhand)}:token(Wurm,creature Wurm,type:land:mybattlefield/type:land:mybattlefield,green) controller
+auto={discard(Baru, Fist of Krosa|myhand)}:token(Wurm,creature Wurm,type:land:mybattlefield/type:land:mybattlefield,green) controller
 text=Whenever a Forest enters the battlefield, green creatures you control get +1/+1 and gain trample until end of turn. -- Grandeur - Discard another card named Baru, Fist of Krosa: Put an X/X green Wurm creature token onto the battlefield, where X is the number of lands you control.
 mana={3}{G}{G}
 type=Legendary Creature
@@ -74101,7 +74101,7 @@ subtype=Aura
 [card]
 name=Thirst for Knowledge
 auto=draw:3
-auto=transforms((,newability[choice name(discard 2 nonartifact cards) reject target(<2>*[-creature]|myhand)],newability[choice name(discard an artifact card) reject target(creature|myhand)]))
+auto=transforms((,newability[choice name(discard 2 nonartifact cards) reject target(<2>*[-artifact]|myhand)],newability[choice name(discard an artifact card) reject target(artifact|myhand)]))
 text=Draw three cards. Then discard two cards unless you discard an artifact card.
 mana={2}{U}
 type=Instant
@@ -76822,7 +76822,7 @@ target=creature
 auto=2/2
 auto=teach(creature) {1}{G}:regenerate
 text=Enchant creature -- Enchanted creature gets +2/+2 and has "{1}{G}: Regenerate this creature."
-mana={1}{G}
+mana={2}{G}
 type=Enchantment
 subtype=Aura
 [/card]
