@@ -180,7 +180,7 @@ void DeckStats::save(const std::string& filename)
         string playerDeckFilePath= options.profileFile( buffer);
         DeckManager *deckManager = DeckManager::GetInstance();
         DeckMetaData *playerDeckMeta = deckManager->getDeckMetaDataByFilename(playerDeckFilePath, false);
-        if ( playerDeckMeta->getColorIndex() == "" )
+        if (playerDeckMeta && playerDeckMeta->getColorIndex() == "" )
         {
             StatsWrapper *stw = deckManager->getExtendedDeckStats( playerDeckMeta, MTGAllCards::getInstance(), false);
             manaColorIndex = stw->getManaColorIndex();
@@ -198,8 +198,8 @@ void DeckStats::save(const std::string& filename)
             file << "MANA:" << it->second->manaColorIndex <<endl;
         }
         file.close();
-
-        playerDeckMeta->Invalidate();
+        if(playerDeckMeta)
+            playerDeckMeta->Invalidate();
     }
 }
 
