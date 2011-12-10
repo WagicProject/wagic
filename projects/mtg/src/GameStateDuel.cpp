@@ -38,6 +38,7 @@ enum ENUM_DUEL_STATE
     DUEL_STATE_DECK1_DETAILED_INFO,
     DUEL_STATE_DECK2_DETAILED_INFO,
     DUEL_STATE_CHOOSE_DECK1_TO_2,
+    DUEL_STATE_CHOOSE_DECK2_TO_1,
     DUEL_STATE_CHOOSE_DECK2,
     DUEL_STATE_CHOOSE_DECK2_TO_PLAY,
     DUEL_STATE_ERROR_NO_DECK,
@@ -373,6 +374,12 @@ void GameStateDuel::Update(float dt)
         else
             deckmenu->Update(dt);
         break;
+    case DUEL_STATE_CHOOSE_DECK2_TO_1:
+        if (opponentMenu->isClosed())
+            setGamePhase(DUEL_STATE_CHOOSE_DECK1);
+        else
+            opponentMenu->Update(dt);
+        break;
     case DUEL_STATE_CHOOSE_DECK2:
         if (mParent->players[1] == PLAYER_TYPE_HUMAN)
             deckmenu->Update(dt);
@@ -674,7 +681,7 @@ void GameStateDuel::Render()
             mFont->DrawString(_("LOADING DECKS").c_str(), 0, SCREEN_HEIGHT / 2);
         else
         {
-            if (opponentMenu)
+            if (opponentMenu && !opponentMenu->isClosed())
                 opponentMenu->Render();
             else if (deckmenu && !deckmenu->isClosed()) deckmenu->Render();
 
@@ -766,8 +773,7 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
             {
                 opponentMenu->Close();
                 deckmenu->Close();
-                mParent->SetNextState(DUEL_STATE_CHOOSE_DECK1);
-                setGamePhase(DUEL_STATE_CHOOSE_DECK1);
+                setGamePhase(DUEL_STATE_CHOOSE_DECK2_TO_1);
                 break;
             }
 
