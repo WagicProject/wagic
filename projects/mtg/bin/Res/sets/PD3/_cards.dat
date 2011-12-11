@@ -1,0 +1,156 @@
+[meta]
+author=Wagic Team
+name=Premium Deck: Graveborn 
+block=Premium 
+year=2011
+[/meta]
+[card]
+primitive=Animate Dead
+id=265167
+rarity=U
+[/card]
+[card]
+primitive=Avatar of Woe
+id=270448
+rarity=R
+[/card]
+[card]
+primitive=Blazing Archon
+id=270449
+rarity=R
+[/card]
+[card]
+primitive=Buried Alive
+id=270455
+rarity=U
+[/card]
+[card]
+primitive=Cabal Therapy
+id=265166
+rarity=U
+[/card]
+[card]
+primitive=Crosis, the Purger 
+id=270140
+rarity=R
+[/card]
+[card]
+primitive=Crystal Vein
+id=270466
+rarity=U
+[/card]
+[card]
+primitive=Diabolic Servitude
+id=270461
+rarity=U
+[/card]
+[card]
+primitive=Dread Return
+id=270463
+rarity=U
+[/card]
+[card]
+primitive=Duress
+id=270465
+rarity=C
+[/card]
+[card]
+primitive=Ebon Stronghold
+id=270467
+rarity=U
+[/card]
+[card]
+primitive=Entomb
+id=270456
+rarity=R
+[/card]
+[card]
+primitive=Exhume
+id=270462
+rarity=C
+[/card]
+[card]
+primitive=Faceless Butcher
+id=270458
+rarity=C
+[/card]
+[card]
+primitive=Hidden Horror
+id=270464
+rarity=U
+[/card]
+[card]
+primitive=Inkwell Leviathan
+id=270447
+rarity=R
+[/card]
+[card]
+primitive=Last Rites
+id=234707
+rarity=C
+[/card]
+[card]
+primitive=Polluted Mire
+id=270468
+rarity=C
+[/card]
+[card]
+primitive=Putrid Imp
+id=270459
+rarity=C
+[/card]
+[card]
+primitive=Reanimate
+id=270452
+rarity=U
+[/card]
+[card]
+primitive=Sickening Dreams
+id=270460
+rarity=U
+[/card]
+[card]
+primitive=Sphinx of the Steel Wind
+id=270446
+rarity=M
+[/card]
+[card]
+primitive=Swamp
+id=270473
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=270474
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=270475
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=270476
+rarity=L
+[/card]
+[card]
+primitive=Terastodon
+id=270451
+rarity=R
+[/card]
+[card]
+primitive=Twisted Abomination
+id=270453
+rarity=C
+[/card]
+[card]
+primitive=Verdant Force
+id=270450
+rarity=R
+[/card]
+[card]
+primitive=Zombie Infestation
+id=270454
+rarity=U
+[/card]
