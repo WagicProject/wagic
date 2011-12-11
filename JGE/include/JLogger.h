@@ -19,6 +19,7 @@
 class JLogger{
  public:
   static void Log(const char * text);
+  static void Log(std::string text);
 
   JLogger(const char* text);
   ~JLogger();
@@ -26,6 +27,7 @@ class JLogger{
   const char* mText;
 
   static std::string lastLog;
+  static int lastTime;
 };
 
 #endif

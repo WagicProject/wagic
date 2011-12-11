@@ -69,6 +69,7 @@ class AIPlayer: public Player{
 
 private:
     static int totalAIDecks; //a cache that counts the number of AI deck files in the AI folder. see getTotalAIDecks() below.
+    static int countTotalDecks(int lower, int higher, int current);
 
 protected:
     bool mFastTimerMode;

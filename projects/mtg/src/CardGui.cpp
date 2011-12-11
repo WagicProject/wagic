@@ -258,9 +258,12 @@ void CardGui::Render()
     JQuadPtr mor;
     if(card->isMorphed && !alternate)
     {
-        mor = card->getObserver()->getResourceManager()->GetQuad("morph");
-        mor->SetColor(ARGB(255,255,255,255));
-        renderer->RenderQuad(mor.get(), actX, actY, actT,scale, scale);
+        mor = card->getObserver()->getResourceManager()->RetrieveTempQuad("morph.jpg");
+        if (mor &&  mor->mTex) {
+            mor->SetHotSpot(static_cast<float> (mor->mTex->mWidth / 2), static_cast<float> (mor->mTex->mHeight / 2));
+            mor->SetColor(ARGB(255,255,255,255));
+            renderer->RenderQuad(mor.get(), actX, actY, actT,scale, scale);
+        }
     }
 
     //draws the numbers power/toughness

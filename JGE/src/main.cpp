@@ -49,7 +49,7 @@ bool done = false;
 JApp *game = NULL;
 JGE *g_engine = NULL;
 
-u32 gTickFrequency;
+u32 gTickFrequency = 1;
 
 //------------------------------------------------------------------------------------------------
 // Exit callback
@@ -293,6 +293,14 @@ u8 JGEGetAnalogY() { return gCtrlPad.Ly; }
 // The main loop
 int main(int argc, char *argv[])
 {
+    pspDebugScreenInit();
+
+    pspDebugScreenSetBackColor(0x00000000);
+    pspDebugScreenSetTextColor(0xFFFFFFFF);
+    pspDebugScreenClear();
+
+    pspDebugScreenPrintf("Wagic:Loading core...");
+
     JLOG("SetupCallbacks()");
     SetupCallbacks();
 #ifdef DEVHOOK

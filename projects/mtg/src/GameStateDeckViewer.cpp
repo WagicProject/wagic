@@ -246,7 +246,7 @@ void GameStateDeckViewer::Start()
     //init welcome menu
     updateDecks();
 
-    GameApp::playMusic("track1.mp3");
+    GameApp::playMusic("Track1.mp3");
 
     loadIndexes();
     mEngine->ResetInput();

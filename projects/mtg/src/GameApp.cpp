@@ -92,6 +92,7 @@ void GameApp::Create()
     _CrtSetDbgFlag ( _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF );
 #elif defined (PSP)
     pspFpuSetEnable(0); //disable FPU Exceptions until we find where the FPU errors come from
+    pspDebugScreenPrintf("Wagic:Loading resources...");
 #endif
 #endif //QT_CONFIG
     //_CrtSetBreakAlloc(368);
@@ -122,7 +123,7 @@ void GameApp::Create()
         }
         mfile.close();
     }
-
+    LOG("init Res Folder at " + foldersRoot);
     JFileSystem::init(foldersRoot + "User/", foldersRoot + systemFolder);
 
     // Create User Folders (for write access) if they don't exist
@@ -135,9 +136,11 @@ void GameApp::Create()
         }
     }
 
+    LOG("Loading Modrules");
     //Load Mod Rules before everything else
     gModRules.load("rules/modrules.xml");
 
+    LOG("Loading Unlockables");
     //Load awards (needs to be loaded before any option are accessed)
     Unlockable::load();
 
@@ -210,38 +213,27 @@ void GameApp::Create()
     // The translator is ready now.
 
     LOG("--Loading various textures");
+    // Load in this function only textures that are used frequently throughout the game. These textures will constantly stay in Ram, so be frugal
     WResourceManager::Instance()->RetrieveTexture("phasebar.png", RETRIEVE_MANAGE);
     WResourceManager::Instance()->RetrieveTexture("wood.png", RETRIEVE_MANAGE);
     WResourceManager::Instance()->RetrieveTexture("gold.png", RETRIEVE_MANAGE);
     WResourceManager::Instance()->RetrieveTexture("goldglow.png", RETRIEVE_MANAGE);
     WResourceManager::Instance()->RetrieveTexture("backdrop.jpg", RETRIEVE_MANAGE);
     WResourceManager::Instance()->RetrieveTexture("handback.png", RETRIEVE_MANAGE);
-    WResourceManager::Instance()->RetrieveTexture("BattleIcon.png", RETRIEVE_MANAGE);
-    WResourceManager::Instance()->RetrieveTexture("DefenderIcon.png", RETRIEVE_MANAGE);
-    WResourceManager::Instance()->RetrieveTexture("shadow.png", RETRIEVE_MANAGE);
-    WResourceManager::Instance()->RetrieveTexture("white.png", RETRIEVE_MANAGE);
-    WResourceManager::Instance()->RetrieveTexture("extracostshadow.png", RETRIEVE_MANAGE);
-    WResourceManager::Instance()->RetrieveTexture("morph.jpg", RETRIEVE_MANAGE);
+    WResourceManager::Instance()->RetrieveTexture("shadows.png", RETRIEVE_MANAGE);
 
-    jq = WResourceManager::Instance()->RetrieveQuad("BattleIcon.png", 0, 0, 25, 25, "BattleIcon", RETRIEVE_MANAGE);
-    if (jq)
-        jq->SetHotSpot(12, 12);
-    jq = WResourceManager::Instance()->RetrieveQuad("DefenderIcon.png", 0, 0, 24, 23, "DefenderIcon", RETRIEVE_MANAGE);
-    if (jq)
-        jq->SetHotSpot(12, 12);
-    jq = WResourceManager::Instance()->RetrieveQuad("shadow.png", 0, 0, 16, 16, "shadow", RETRIEVE_MANAGE);
+    jq = WResourceManager::Instance()->RetrieveQuad("shadows.png", 2, 2, 16, 16, "white", RETRIEVE_MANAGE);
     if (jq)
         jq->SetHotSpot(8, 8);
-    jq = WResourceManager::Instance()->RetrieveQuad("white.png", 0, 0, 16, 16, "white", RETRIEVE_MANAGE);
+    jq = WResourceManager::Instance()->RetrieveQuad("shadows.png", 20, 2, 16, 16, "shadow", RETRIEVE_MANAGE);
     if (jq)
         jq->SetHotSpot(8, 8);
-    jq = WResourceManager::Instance()->RetrieveQuad("extracostshadow.png", 0, 0, 16, 16, "extracostshadow", RETRIEVE_MANAGE);
+    jq = WResourceManager::Instance()->RetrieveQuad("shadows.png", 38, 2, 16, 16, "extracostshadow", RETRIEVE_MANAGE);
     if (jq)
         jq->SetHotSpot(8, 8);
-    jq = WResourceManager::Instance()->RetrieveQuad("morph.jpg", 0, 0, MTG_MINIIMAGE_WIDTH, MTG_MINIIMAGE_HEIGHT, "morph", RETRIEVE_MANAGE);
-    if (jq)
-        jq->SetHotSpot(static_cast<float> (jq->mTex->mWidth / 2), static_cast<float> (jq->mTex->mHeight / 2));
+
     jq = WResourceManager::Instance()->RetrieveQuad("phasebar.png", 0, 0, 0, 0, "phasebar", RETRIEVE_MANAGE);
+
 
     LOG("Init Collection");
     MTGAllCards::loadInstance();

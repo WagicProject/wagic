@@ -88,11 +88,6 @@ public:
 	//////////////////////////////////////////////////////////////////////////
 	static JRenderer* GetInstance();
 
-  /*
-//START PurpleScreen Debug
-  static int debugged;
-//END PurpleScreen Debug
-*/
 	static void Destroy();
 
 	static void Set3DFlag(bool flag);

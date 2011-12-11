@@ -336,24 +336,32 @@ AIPlayer * AIPlayerFactory::createAIPlayerTest(GameObserver *observer, MTGAllCar
 
 int AIPlayer::getTotalAIDecks() 
 {
-    if (totalAIDecks != -1)
-        return totalAIDecks;
-
-    totalAIDecks = 0;
-    bool found = true;
-    while (found)
-    {
-        found = false;
-        char buffer[512];
-        sprintf(buffer, "ai/baka/deck%i.txt", totalAIDecks + 1);
-        if (JFileSystem::GetInstance()->FileExists(buffer))
-        {
-            found = true;
-            totalAIDecks++;
-        }
-    }
-
+    if (totalAIDecks == -1)
+        totalAIDecks = countTotalDecks(0,0,1);
     return totalAIDecks;
+}
+
+int AIPlayer::countTotalDecks(int lower, int higher, int current) {
+
+    char buffer[512];
+    sprintf(buffer, "ai/baka/deck%i.txt", current);
+    if (JFileSystem::GetInstance()->FileExists(buffer))
+    {
+        if (higher == current + 1)
+            return current;
+        int newlower = current;
+        int newcurrent = higher ? (higher + newlower)/2 : current * 2;
+        return countTotalDecks(newlower, higher, newcurrent);
+    } else {
+        if (!lower)
+            return 0;
+        if (lower == current - 1)
+            return lower;
+
+        int newhigher = current;
+        int newcurrent = (lower + newhigher) / 2;
+        return countTotalDecks(lower, newhigher, newcurrent);
+    }
 }
 
 void AIPlayer::invalidateTotalAIDecks() 

@@ -12,6 +12,7 @@ class GameStateMenu: public GameState, public JGuiListener
 private:
     TextScroller * scroller;
     int scrollerSet;
+    int mPercentComplete;
     JGuiController* mGuiController;
     SimpleMenu* subMenuController;
     SimpleMenu* gameTypeMenu;
@@ -50,6 +51,7 @@ private:
     string loadRandomWallpaper(); //loads a list of string of textures that can be randolmy shown on the loading screen
 
     void RenderTopMenu();
+    int gamePercentComplete();
 public:
 
     GameStateMenu(GameApp* parent);

@@ -21,6 +21,7 @@
 #include "Rules.h"
 #include "ModRules.h"
 #include "Credits.h"
+#include "AIPlayer.h"
 
 #ifdef NETWORK_SUPPORT
 #include <JNetwork.h>
@@ -108,7 +109,6 @@ void GameStateMenu::Create()
     }
     scroller = NEW TextScroller(Fonts::MAIN_FONT, SCREEN_WIDTH / 2 - 90, SCREEN_HEIGHT - 17, 180);
     scrollerSet = 0;
-
     splashTex = NULL;
 
     JFileSystem::GetInstance()->scanfolder("sets/", setFolders);
@@ -150,6 +150,8 @@ void GameStateMenu::Start()
         currentState = currentState | MENU_STATE_MINOR_FADEIN;
 
     wallpaper = "";
+    scrollerSet = 0; // This will force-update the scroller text
+    mPercentComplete = 0;
 }
 
 void GameStateMenu::genNbCardsStr()
@@ -182,36 +184,7 @@ void GameStateMenu::genNbCardsStr()
 void GameStateMenu::fillScroller()
 {
     scroller->Reset();
-    char buffer[4096];
     char buff2[512];
-
-    DeckStats * stats = DeckStats::GetInstance();
-	vector<DeckMetaData *> playerDecks = BuildDeckList(options.profileFile(), "", NULL, 6);
-    int totalGames = 0;
-	for (size_t j = 0; j < playerDecks.size(); j++)
-    {
-		DeckMetaData* meta = playerDecks[j];
-        if (meta)
-            meta->LoadStats();
-		sprintf(buffer, "stats/player_deck%i.txt", meta->getDeckId());
-        string deckstats = options.profileFile(buffer);
-        if (fileExists(deckstats.c_str()))
-        {
-            stats->load(deckstats.c_str());
-            int percentVictories = stats->percentVictories();
-
-			sprintf(buff2, _("You have a %i%% victory ratio with \"%s\"").c_str(), percentVictories, meta->getName().c_str());
-            scroller->Add(buff2);
-			sprintf(buff2, _("You have played %i games with \"%s\"").c_str(), meta->getGamesPlayed(), meta->getName().c_str());
-            scroller->Add(buff2);
-			totalGames += meta->getGamesPlayed();
-        }
-    }
-    if (totalGames)
-    {
-        sprintf(buff2, _("You have played a total of %i games").c_str(), totalGames);
-        scroller->Add(buff2);
-    }
 
     if (!options[Options::DIFFICULTY_MODE_UNLOCKED].number)
         scroller->Add(_("Unlock the difficult mode for more challenging duels!"));
@@ -240,35 +213,54 @@ void GameStateMenu::fillScroller()
     sprintf(buff2, _("You have unlocked %i expansions out of %i").c_str(), nbunlocked, setlist.size());
     scroller->Add(buff2);
 
-    PlayerData * playerdata = NEW PlayerData(MTGCollection());
-
-    if (gModRules.general.hasDeckEditor() && gModRules.general.hasShop())
-    {
-        int totalCards = playerdata->collection->totalCards();
-        if (totalCards)
-        {
-            sprintf(buff2, _("You have a total of %i cards in your collection").c_str(), totalCards);
-            scroller->Add(buff2);
-
-            int estimatedValue = playerdata->collection->totalPrice();
-            sprintf(buff2, _("The shopkeeper would buy your entire collection for around %i credits").c_str(), estimatedValue / 2);
-            scroller->Add(buff2);
-
-            sprintf(buff2, _("The cards in your collection have an average value of %i credits").c_str(), estimatedValue / totalCards);
-            scroller->Add(buff2);
-        }
-    }
-
-    sprintf(buff2, _("You currently have %i credits").c_str(), playerdata->credits);
-    SAFE_DELETE(playerdata);
-    scroller->Add(buff2);
-
     scroller->Add(_("More cards and mods at http://wololo.net/wagic"));
-
-    scroller->Add(_("These stats will be updated next time you run Wagic"));
 
     scrollerSet = 1;
     scroller->setRandom();
+}
+
+int GameStateMenu::gamePercentComplete() {
+    if (mPercentComplete)
+        return mPercentComplete;
+
+    int done = 0;
+    int total = 0;
+
+    total++;
+    if (options[Options::DIFFICULTY_MODE_UNLOCKED].number)
+        done++;
+
+    for (map<string, Unlockable *>::iterator it = Unlockable::unlockables.begin(); it !=  Unlockable::unlockables.end(); ++it) {
+        total++;
+        if (it->second->isUnlocked())
+            total++;
+    }
+
+    total++;
+    if (options[Options::RANDOMDECK_MODE_UNLOCKED].number)
+        done++;
+
+    total++;
+    if (options[Options::EVILTWIN_MODE_UNLOCKED].number)
+        done++;
+
+    //Unlocked sets
+    total+= setlist.size();
+    for (int i = 0; i < setlist.size(); i++)
+    {
+        if (1 == options[Options::optionSet(i)].number)
+            done++;
+    }
+
+    //unlocked AI decks
+    int currentlyUnlocked = options[Options::AIDECKS_UNLOCKED].number;
+    int totalAIDecks = AIPlayer::getTotalAIDecks();
+    int reallyUnlocked = MIN(currentlyUnlocked, totalAIDecks);
+    total+= totalAIDecks / 10;
+    done+= reallyUnlocked / 10;
+
+    mPercentComplete = 100 * done / total;
+    return mPercentComplete;
 }
 
 int GameStateMenu::nextSetFolder(const string & root, const string & file)
@@ -678,6 +670,7 @@ void GameStateMenu::RenderTopMenu()
 {
     float leftTextPos = 10;
     float rightTextPos = SCREEN_WIDTH - 10;
+    JRenderer * renderer = JRenderer::GetInstance();
 
     vector<ModRulesOtherMenuItem *>items = gModRules.menu.other;
     for (size_t i = 0; i < items.size(); ++i)
@@ -701,6 +694,11 @@ void GameStateMenu::RenderTopMenu()
     mFont->SetColor(ARGB(128,255,255,255));
     mFont->DrawString(GAME_VERSION, rightTextPos, 5, JGETEXT_RIGHT);
     mFont->DrawString(nbcardsStr, leftTextPos, 5);
+    renderer->FillRect(leftTextPos, 26, 104, 8, ARGB(255, 100, 90, 60));
+    renderer->FillRect(leftTextPos + 2, 28, (float)(gamePercentComplete()), 4, ARGB(255,220,200, 125));
+    char buf[512];
+    sprintf(buf, _("achieved: %i%%").c_str(), gamePercentComplete());
+    mFont->DrawString(buf, (leftTextPos + 104) / 2, 35, JGETEXT_CENTER);
     mFont->SetScale(1.f);
     mFont->SetColor(ARGB(255,255,255,255));
 }

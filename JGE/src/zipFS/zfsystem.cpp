@@ -289,9 +289,10 @@ void filesystem::InsertZip(const char * Filename, const size_t PackID)
 	string ZipPath = m_BasePath + Filename;
 
 	// Open zip
-	ifstream File(ZipPath.c_str(), ios::binary);
-
     LOG(("opening zip:" + ZipPath).c_str());
+    ifstream File(ZipPath.c_str(), ios::binary);
+
+
 
 	if (! File)
 		return;
@@ -331,6 +332,8 @@ void filesystem::InsertZip(const char * Filename, const size_t PackID)
 	// Add zip file to Zips data base (only if not empty)
 	if (ZipInfo.m_NbEntries != 0)
 		m_Zips[PackID] = ZipInfo;
+
+    LOG("--zip file loading DONE");
 }
 
 

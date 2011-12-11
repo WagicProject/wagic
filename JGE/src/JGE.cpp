@@ -7,7 +7,13 @@
 // Copyright (c) 2007 James Hui (a.k.a. Dr.Watson) <jhkhui@gmail.com>
 //
 //-------------------------------------------------------------------------------------
+
+ 
+// Should we add PrecompiledHeader.h to more platforms here? PSP Doesn't support it in JGE (erwan 2011/12/11) 
+#if defined (IOS)
 #include "PrecompiledHeader.h"
+#endif
+
 #include <iostream>
 #include <map>
 #include <set>
@@ -357,7 +363,7 @@ void JGE::Init()
     sceCtrlSetSamplingCycle(0);
     sceCtrlSetSamplingMode(PSP_CTRL_MODE_ANALOG);
 
-    JRenderer::GetInstance();
+    //JRenderer::GetInstance(); Lazy loading
     //JFileSystem::GetInstance(); Lazy loading
     //JSoundSystem::GetInstance(); let's do lazy loading
 
@@ -451,7 +457,7 @@ void JGE::Init()
     mDone = false;
     mPaused = false;
     mCriticalAssert = false;
-    JRenderer::GetInstance();
+    //JRenderer::GetInstance(); Lazy loading
     //JFileSystem::GetInstance(); Lazy loading
     JSoundSystem::GetInstance();
     LeftClickedProcessed();
