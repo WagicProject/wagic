@@ -68,9 +68,11 @@ static NSString *kDownloadFileName = @"core_017_iOS.zip";
 {
     self = [super init];
     if (self) {
+        bool isPhone = (UI_USER_INTERFACE_IDIOM()) == UIUserInterfaceIdiomPhone;
 
         [self.view setFrame: CGRectMake(0, 0, 320, 480)];
         [self.view setAutoresizingMask: UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
+        [[self view] setBackgroundColor: [UIColor clearColor]];
         // Initialization code
 
         downloadMessageStatus = [[UITextView alloc] initWithFrame: CGRectMake(0, 0, 320, 320)];        
@@ -82,7 +84,12 @@ static NSString *kDownloadFileName = @"core_017_iOS.zip";
         self.downloadMessageStatus.clipsToBounds = YES;
         self.downloadMessageStatus.layer.cornerRadius = 10.0f;
         [self.downloadMessageStatus setAutoresizingMask: UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight ];
-        [self.downloadMessageStatus setFont: [UIFont systemFontOfSize: 20]];
+        
+        if (isPhone)
+            [self.downloadMessageStatus setFont: [UIFont systemFontOfSize: 20]];
+        else
+            [self.downloadMessageStatus setFont: [UIFont systemFontOfSize: 35]];
+        
         [self.downloadMessageStatus setText: @"Please wait while the core files are being downloaded."];
 
         downloadProgressView = [[UIProgressView alloc] initWithProgressViewStyle: UIProgressViewStyleDefault];
@@ -137,16 +144,24 @@ static NSString *kDownloadFileName = @"core_017_iOS.zip";
     bool isPhone = (UI_USER_INTERFACE_IDIOM()) == UIUserInterfaceIdiomPhone;
     bool isLandscapeOrientation = (UIInterfaceOrientationIsLandscape(interfaceOrientation));
 
-    if (isLandscapeOrientation)
-    {
-        CGFloat height = self.view.bounds.size.width;
-        [self.downloadProgressView setCenter: CGPointMake( height/2, 150)];
-    }
     if (!isPhone)
     {
-        CGFloat messageStatusHeight = [self.downloadMessageStatus.text sizeWithFont: [downloadMessageStatus font]].height;
-        CGFloat logoCenterPointX = isLandscapeOrientation ? 512 : 384;
-        [downloadProgressView setCenter: CGPointMake( logoCenterPointX, messageStatusHeight )];
+        CGSize messageSize = [self.downloadMessageStatus.text sizeWithFont: [downloadMessageStatus font]];
+        CGFloat messageStatusWidth = messageSize.width;
+        CGFloat messageStatusHeight = messageSize.height;
+        CGFloat screenWidth = isLandscapeOrientation ? 1024 : 768;
+        CGFloat barWidth = MIN(messageStatusWidth, screenWidth) - 100;
+        CGFloat xOffset =  (MAX(messageStatusWidth, screenWidth) - barWidth)/2;
+        [self.downloadProgressView setFrame: CGRectMake( xOffset, messageStatusHeight + 60, barWidth, 50)];
+    }
+    else
+    {
+        if (isLandscapeOrientation)
+        {
+            CGFloat height = self.view.bounds.size.width;
+            [self.downloadProgressView setCenter: CGPointMake( height/2, 150)];
+        }
+
     }
 }
 
