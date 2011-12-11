@@ -1,0 +1,175 @@
+// !$*UTF8*$!
+{
+	1D6058900D05DD3D006BFB54 /* Reachability */ = {
+		activeExec = 0;
+		executables = (
+			CEAC717A10E9227C00087CCD /* Reachability */,
+		);
+	};
+	29B97313FDCFA39411CA2CEA /* Project object */ = {
+		activeBuildConfigurationName = Debug;
+		activeExecutable = CEAC717A10E9227C00087CCD /* Reachability */;
+		activeSDKPreference = iphonesimulator3.1.2;
+		activeTarget = 1D6058900D05DD3D006BFB54 /* Reachability */;
+		addToTargets = (
+			1D6058900D05DD3D006BFB54 /* Reachability */,
+		);
+		breakpoints = (
+			CEAC722610E92B0F00087CCD /* Reachability.m:426 */,
+		);
+		codeSenseManager = CEAC718410E9228600087CCD /* Code sense */;
+		executables = (
+			CEAC717A10E9227C00087CCD /* Reachability */,
+		);
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					341,
+					20,
+					48,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 287943446;
+			PBXWorkspaceStateSaveDate = 287943446;
+		};
+		perUserProjectItems = {
+			CE244DDA10E963A000FF3178 /* PBXTextBookmark */ = CE244DDA10E963A000FF3178 /* PBXTextBookmark */;
+			CE417BDF10E960A7002374BB /* PBXBookmark */ = CE417BDF10E960A7002374BB /* PBXBookmark */;
+			CE6EB7691129AC3300A4FF2B /* PBXTextBookmark */ = CE6EB7691129AC3300A4FF2B /* PBXTextBookmark */;
+			CE6EB7851129AC9D00A4FF2B /* PBXTextBookmark */ = CE6EB7851129AC9D00A4FF2B /* PBXTextBookmark */;
+		};
+		sourceControlManager = CEAC718310E9228600087CCD /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	CE244DDA10E963A000FF3178 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = CE417BD310E96042002374BB /* Reachability.h */;
+		name = "Reachability.h: 6";
+		rLen = 0;
+		rLoc = 131;
+		rType = 0;
+		vrLen = 490;
+		vrLoc = 0;
+	};
+	CE417BD310E96042002374BB /* Reachability.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {614, 3000}}";
+			sepNavSelRange = "{131, 0}";
+			sepNavVisRange = "{27, 463}";
+			sepNavWindowFrame = "{{15, 0}, {898, 1177}}";
+		};
+	};
+	CE417BD410E96042002374BB /* Reachability.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1013, 11085}}";
+			sepNavSelRange = "{16378, 0}";
+			sepNavVisRange = "{0, 3271}";
+			sepNavWindowFrame = "{{779, 1}, {898, 1177}}";
+		};
+	};
+	CE417BDF10E960A7002374BB /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = CEAC71AF10E9255500087CCD /* Airport.png */;
+	};
+	CE6EB7691129AC3300A4FF2B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = CE417BD410E96042002374BB /* Reachability.m */;
+		name = "Reachability.m: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 356;
+		vrLoc = 0;
+	};
+	CE6EB7851129AC9D00A4FF2B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = CE417BD310E96042002374BB /* Reachability.h */;
+		name = "Reachability.h: 6";
+		rLen = 0;
+		rLoc = 131;
+		rType = 0;
+		vrLen = 463;
+		vrLoc = 27;
+	};
+	CEAC717A10E9227C00087CCD /* Reachability */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 1;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		dataTipCustomDataFormattersEnabled = 1;
+		dataTipShowTypeColumn = 1;
+		dataTipSortType = 0;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		dylibVariantSuffix = "";
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = Reachability;
+		savedGlobals = {
+		};
+		showTypeColumn = 0;
+		sourceDirectories = (
+		);
+		variableFormatDictionary = {
+			"flags-SCNetworkReachabilityFlags--[Reachability networkStatusForFlags:]" = 1;
+		};
+	};
+	CEAC718310E9228600087CCD /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+			repositoryNamesForRoots = {
+				"" = "";
+			};
+		};
+	};
+	CEAC718410E9228600087CCD /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	CEAC722610E92B0F00087CCD /* Reachability.m:426 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = CE417BD410E96042002374BB /* Reachability.m */;
+		functionName = "-networkStatusForFlags:";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 426;
+		location = Reachability;
+		modificationTime = 287943736.833593;
+		originalNumberOfMultipleMatches = 1;
+		state = 2;
+	};
+}

@@ -9,6 +9,29 @@
 /* Begin PBXBuildFile section */
 		1216D633148F7411000F2295 /* libc++abi.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1216D632148F7411000F2295 /* libc++abi.dylib */; };
 		1216D634148F747D000F2295 /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 128ED379148BAE7B00C58E83 /* libGoogleAdMobAds.a */; };
+		12211E7914931CBB00641703 /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 12211E2814931CBB00641703 /* ASIAuthenticationDialog.m */; };
+		12211E7A14931CBB00641703 /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 12211E2B14931CBB00641703 /* ASIDataCompressor.m */; };
+		12211E7B14931CBB00641703 /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 12211E2D14931CBB00641703 /* ASIDataDecompressor.m */; };
+		12211E7C14931CBB00641703 /* ASIDownloadCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 12211E2F14931CBB00641703 /* ASIDownloadCache.m */; };
+		12211E7D14931CBB00641703 /* ASIFormDataRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 12211E3114931CBB00641703 /* ASIFormDataRequest.m */; };
+		12211E7E14931CBB00641703 /* ASIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 12211E3314931CBB00641703 /* ASIHTTPRequest.m */; };
+		12211E7F14931CBB00641703 /* ASIInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 12211E3714931CBB00641703 /* ASIInputStream.m */; };
+		12211E8014931CBB00641703 /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 12211E3914931CBB00641703 /* ASINetworkQueue.m */; };
+		12211EAA14933D4A00641703 /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 12211EA214933D4A00641703 /* ioapi.c */; };
+		12211EAB14933D4A00641703 /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = 12211EA414933D4A00641703 /* mztools.c */; };
+		12211EAC14933D4A00641703 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 12211EA614933D4A00641703 /* unzip.c */; };
+		12211EAD14933D4A00641703 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = 12211EA814933D4A00641703 /* zip.c */; };
+		12211EAF14933D6600641703 /* ZipArchive.mm in Sources */ = {isa = PBXBuildFile; fileRef = 12211EAE14933D6600641703 /* ZipArchive.mm */; };
+		12211EB71493483C00641703 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 12211EB61493483C00641703 /* Reachability.m */; };
+		12211EB914934A1900641703 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12211EB814934A1800641703 /* MobileCoreServices.framework */; };
+		12211EBB14934A2C00641703 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12211EBA14934A2C00641703 /* CFNetwork.framework */; };
+		12211EC91494360C00641703 /* WagicDownloadProgressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 12211EC81494360C00641703 /* WagicDownloadProgressViewController.m */; };
+		12211ECB1494811D00641703 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 12211ECA1494811D00641703 /* Default.png */; };
+		12211ECD149481B600641703 /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 12211ECC149481B600641703 /* Default-Landscape~ipad.png */; };
+		12211ECF149481C400641703 /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 12211ECE149481C300641703 /* Default-Portrait~ipad.png */; };
+		12211ED11494823F00641703 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 12211ED01494823E00641703 /* Default@2x.png */; };
+		12211ED41494916D00641703 /* Default-Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 12211ED21494916D00641703 /* Default-Landscape.png */; };
+		12211ED51494916D00641703 /* Default-Portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = 12211ED31494916D00641703 /* Default-Portrait.png */; };
 		12769486144127380088F6D3 /* AIPlayerBaka.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12769483144127380088F6D3 /* AIPlayerBaka.cpp */; };
 		12769487144127380088F6D3 /* AIPlayerBakaB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12769484144127380088F6D3 /* AIPlayerBakaB.cpp */; };
 		12769488144127380088F6D3 /* TestSuiteAI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12769485144127380088F6D3 /* TestSuiteAI.cpp */; };
@@ -226,7 +249,6 @@
 		CEE23330128A01F400C34032 /* Vector2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEE232F4128A01F400C34032 /* Vector2D.cpp */; };
 		CEE23331128A01F400C34032 /* vram.c in Sources */ = {isa = PBXBuildFile; fileRef = CEE232F5128A01F400C34032 /* vram.c */; };
 		F233DC3812A111EB008594F2 /* wagic-64x64.png in Resources */ = {isa = PBXBuildFile; fileRef = F233DC3712A111EB008594F2 /* wagic-64x64.png */; };
-		F2494AC912A1BBFD00D6284A /* Res in Resources */ = {isa = PBXBuildFile; fileRef = F24944BE12A1BBFD00D6284A /* Res */; };
 		F2494ADC12A1BD4100D6284A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F2494ADB12A1BD4100D6284A /* libz.dylib */; };
 		F2CDD5E312A6F7A2007B35AF /* EAGLViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2CDD5E212A6F7A2007B35AF /* EAGLViewController.xib */; };
 /* End PBXBuildFile section */
@@ -247,6 +269,49 @@
 
 /* Begin PBXFileReference section */
 		1216D632148F7411000F2295 /* libc++abi.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++abi.dylib"; path = "usr/lib/libc++abi.dylib"; sourceTree = SDKROOT; };
+		12211E2714931CBB00641703 /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIAuthenticationDialog.h; sourceTree = "<group>"; };
+		12211E2814931CBB00641703 /* ASIAuthenticationDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIAuthenticationDialog.m; sourceTree = "<group>"; };
+		12211E2914931CBB00641703 /* ASICacheDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASICacheDelegate.h; sourceTree = "<group>"; };
+		12211E2A14931CBB00641703 /* ASIDataCompressor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIDataCompressor.h; sourceTree = "<group>"; };
+		12211E2B14931CBB00641703 /* ASIDataCompressor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIDataCompressor.m; sourceTree = "<group>"; };
+		12211E2C14931CBB00641703 /* ASIDataDecompressor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIDataDecompressor.h; sourceTree = "<group>"; };
+		12211E2D14931CBB00641703 /* ASIDataDecompressor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIDataDecompressor.m; sourceTree = "<group>"; };
+		12211E2E14931CBB00641703 /* ASIDownloadCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIDownloadCache.h; sourceTree = "<group>"; };
+		12211E2F14931CBB00641703 /* ASIDownloadCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIDownloadCache.m; sourceTree = "<group>"; };
+		12211E3014931CBB00641703 /* ASIFormDataRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIFormDataRequest.h; sourceTree = "<group>"; };
+		12211E3114931CBB00641703 /* ASIFormDataRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIFormDataRequest.m; sourceTree = "<group>"; };
+		12211E3214931CBB00641703 /* ASIHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIHTTPRequest.h; sourceTree = "<group>"; };
+		12211E3314931CBB00641703 /* ASIHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIHTTPRequest.m; sourceTree = "<group>"; };
+		12211E3414931CBB00641703 /* ASIHTTPRequestConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIHTTPRequestConfig.h; sourceTree = "<group>"; };
+		12211E3514931CBB00641703 /* ASIHTTPRequestDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIHTTPRequestDelegate.h; sourceTree = "<group>"; };
+		12211E3614931CBB00641703 /* ASIInputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIInputStream.h; sourceTree = "<group>"; };
+		12211E3714931CBB00641703 /* ASIInputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIInputStream.m; sourceTree = "<group>"; };
+		12211E3814931CBB00641703 /* ASINetworkQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASINetworkQueue.h; sourceTree = "<group>"; };
+		12211E3914931CBB00641703 /* ASINetworkQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASINetworkQueue.m; sourceTree = "<group>"; };
+		12211E3A14931CBB00641703 /* ASIProgressDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIProgressDelegate.h; sourceTree = "<group>"; };
+		12211E9F14933D0600641703 /* ZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZipArchive.h; path = iOS/ZipArchive/ZipArchive.h; sourceTree = "<group>"; };
+		12211EA114933D4A00641703 /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
+		12211EA214933D4A00641703 /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
+		12211EA314933D4A00641703 /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi.h; sourceTree = "<group>"; };
+		12211EA414933D4A00641703 /* mztools.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mztools.c; sourceTree = "<group>"; };
+		12211EA514933D4A00641703 /* mztools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mztools.h; sourceTree = "<group>"; };
+		12211EA614933D4A00641703 /* unzip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = unzip.c; sourceTree = "<group>"; };
+		12211EA714933D4A00641703 /* unzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unzip.h; sourceTree = "<group>"; };
+		12211EA814933D4A00641703 /* zip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zip.c; sourceTree = "<group>"; };
+		12211EA914933D4A00641703 /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
+		12211EAE14933D6600641703 /* ZipArchive.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ZipArchive.mm; sourceTree = "<group>"; };
+		12211EB51493483C00641703 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = "iOS/Reachability/Reachability 2.0.4ddg/Reachability/Reachability.h"; sourceTree = "<group>"; };
+		12211EB61493483C00641703 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = "iOS/Reachability/Reachability 2.0.4ddg/Reachability/Reachability.m"; sourceTree = "<group>"; };
+		12211EB814934A1800641703 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		12211EBA14934A2C00641703 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		12211EC71494360C00641703 /* WagicDownloadProgressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WagicDownloadProgressViewController.h; path = UI/WagicDownloadProgressViewController.h; sourceTree = "<group>"; };
+		12211EC81494360C00641703 /* WagicDownloadProgressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WagicDownloadProgressViewController.m; path = UI/WagicDownloadProgressViewController.m; sourceTree = "<group>"; };
+		12211ECA1494811D00641703 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		12211ECC149481B600641703 /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
+		12211ECE149481C300641703 /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
+		12211ED01494823E00641703 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		12211ED21494916D00641703 /* Default-Landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape.png"; sourceTree = "<group>"; };
+		12211ED31494916D00641703 /* Default-Portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait.png"; sourceTree = "<group>"; };
 		12769483144127380088F6D3 /* AIPlayerBaka.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AIPlayerBaka.cpp; sourceTree = "<group>"; };
 		12769484144127380088F6D3 /* AIPlayerBakaB.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AIPlayerBakaB.cpp; sourceTree = "<group>"; };
 		12769485144127380088F6D3 /* TestSuiteAI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestSuiteAI.cpp; sourceTree = "<group>"; };
@@ -687,6 +752,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12211EBB14934A2C00641703 /* CFNetwork.framework in Frameworks */,
+				12211EB914934A1900641703 /* MobileCoreServices.framework in Frameworks */,
 				1216D634148F747D000F2295 /* libGoogleAdMobAds.a in Frameworks */,
 				1216D633148F7411000F2295 /* libc++abi.dylib in Frameworks */,
 				128ED510148BCC1900C58E83 /* libsqlite3.dylib in Frameworks */,
@@ -712,9 +779,104 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		12211E2614931CBB00641703 /* asi-http-request */ = {
+			isa = PBXGroup;
+			children = (
+				12211E2714931CBB00641703 /* ASIAuthenticationDialog.h */,
+				12211E2814931CBB00641703 /* ASIAuthenticationDialog.m */,
+				12211E2914931CBB00641703 /* ASICacheDelegate.h */,
+				12211E2A14931CBB00641703 /* ASIDataCompressor.h */,
+				12211E2B14931CBB00641703 /* ASIDataCompressor.m */,
+				12211E2C14931CBB00641703 /* ASIDataDecompressor.h */,
+				12211E2D14931CBB00641703 /* ASIDataDecompressor.m */,
+				12211E2E14931CBB00641703 /* ASIDownloadCache.h */,
+				12211E2F14931CBB00641703 /* ASIDownloadCache.m */,
+				12211E3014931CBB00641703 /* ASIFormDataRequest.h */,
+				12211E3114931CBB00641703 /* ASIFormDataRequest.m */,
+				12211E3214931CBB00641703 /* ASIHTTPRequest.h */,
+				12211E3314931CBB00641703 /* ASIHTTPRequest.m */,
+				12211E3414931CBB00641703 /* ASIHTTPRequestConfig.h */,
+				12211E3514931CBB00641703 /* ASIHTTPRequestDelegate.h */,
+				12211E3614931CBB00641703 /* ASIInputStream.h */,
+				12211E3714931CBB00641703 /* ASIInputStream.m */,
+				12211E3814931CBB00641703 /* ASINetworkQueue.h */,
+				12211E3914931CBB00641703 /* ASINetworkQueue.m */,
+				12211E3A14931CBB00641703 /* ASIProgressDelegate.h */,
+			);
+			name = "asi-http-request";
+			path = "iOS/asi-http-request";
+			sourceTree = "<group>";
+		};
+		12211E9E14933CC200641703 /* ZipArchive */ = {
+			isa = PBXGroup;
+			children = (
+				12211EAE14933D6600641703 /* ZipArchive.mm */,
+				12211E9F14933D0600641703 /* ZipArchive.h */,
+			);
+			name = ZipArchive;
+			sourceTree = "<group>";
+		};
+		12211EA014933D4A00641703 /* minizip */ = {
+			isa = PBXGroup;
+			children = (
+				12211EA114933D4A00641703 /* crypt.h */,
+				12211EA214933D4A00641703 /* ioapi.c */,
+				12211EA314933D4A00641703 /* ioapi.h */,
+				12211EA414933D4A00641703 /* mztools.c */,
+				12211EA514933D4A00641703 /* mztools.h */,
+				12211EA614933D4A00641703 /* unzip.c */,
+				12211EA714933D4A00641703 /* unzip.h */,
+				12211EA814933D4A00641703 /* zip.c */,
+				12211EA914933D4A00641703 /* zip.h */,
+			);
+			path = minizip;
+			sourceTree = "<group>";
+		};
+		12211EB01493449A00641703 /* Networking Packages */ = {
+			isa = PBXGroup;
+			children = (
+				12211EB41493464400641703 /* Reachability */,
+				12211E2614931CBB00641703 /* asi-http-request */,
+			);
+			name = "Networking Packages";
+			sourceTree = "<group>";
+		};
+		12211EB41493464400641703 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				12211EB51493483C00641703 /* Reachability.h */,
+				12211EB61493483C00641703 /* Reachability.m */,
+			);
+			name = Reachability;
+			sourceTree = "<group>";
+		};
+		12211EC51494358300641703 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				CE9A477512B514BA00C9F38A /* EAGLView.h */,
+				CE9A477612B514BA00C9F38A /* EAGLView.m */,
+				12211EC71494360C00641703 /* WagicDownloadProgressViewController.h */,
+				12211EC81494360C00641703 /* WagicDownloadProgressViewController.m */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		12211EC6149435A300641703 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				CE9A477712B514BA00C9F38A /* EAGLViewController.h */,
+				CE9A477812B514BA00C9F38A /* EAGLViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
 		125C5CF213B09AA200DF2F2C /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				128ED3ED148BC94B00C58E83 /* AdWhirlSDK_iOS_3.1.1 */,
+				128ED372148BAE7B00C58E83 /* GoogleAdMobAdsSDKiOS-5.0.5 */,
+				12211EA014933D4A00641703 /* minizip */,
+				12211E9E14933CC200641703 /* ZipArchive */,
 			);
 			name = Tools;
 			sourceTree = "<group>";
@@ -880,6 +1042,8 @@
 		129654D2148AA2390031100B /* iOS */ = {
 			isa = PBXGroup;
 			children = (
+				12211EC6149435A300641703 /* Controllers */,
+				12211EC51494358300641703 /* UI */,
 				129654D3148AA2390031100B /* Res */,
 			);
 			path = iOS;
@@ -954,15 +1118,18 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				128ED3ED148BC94B00C58E83 /* AdWhirlSDK_iOS_3.1.1 */,
-				128ED372148BAE7B00C58E83 /* GoogleAdMobAdsSDKiOS-5.0.5 */,
+				12211ED21494916D00641703 /* Default-Landscape.png */,
+				12211ED31494916D00641703 /* Default-Portrait.png */,
+				12211ED01494823E00641703 /* Default@2x.png */,
+				12211ECE149481C300641703 /* Default-Portrait~ipad.png */,
+				12211ECC149481B600641703 /* Default-Landscape~ipad.png */,
+				12211ECA1494811D00641703 /* Default.png */,
+				12211EBA14934A2C00641703 /* CFNetwork.framework */,
+				12211EB814934A1800641703 /* MobileCoreServices.framework */,
+				12211EB01493449A00641703 /* Networking Packages */,
 				129654D2148AA2390031100B /* iOS */,
 				125C5CF213B09AA200DF2F2C /* Tools */,
 				CE9E71DB1375A53600759DDC /* Boost */,
-				CE9A477512B514BA00C9F38A /* EAGLView.h */,
-				CE9A477612B514BA00C9F38A /* EAGLView.m */,
-				CE9A477712B514BA00C9F38A /* EAGLViewController.h */,
-				CE9A477812B514BA00C9F38A /* EAGLViewController.m */,
 				CE9A477C12B514BA00C9F38A /* ES2Renderer.h */,
 				CE9A477D12B514BA00C9F38A /* ES2Renderer.m */,
 				CE9A477E12B514BA00C9F38A /* ESRenderer.h */,
@@ -1459,7 +1626,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F233DC3812A111EB008594F2 /* wagic-64x64.png in Resources */,
-				F2494AC912A1BBFD00D6284A /* Res in Resources */,
 				F2CDD5E312A6F7A2007B35AF /* EAGLViewController.xib in Resources */,
 				CECB67E112B517C000321D5A /* MainWindow.xib in Resources */,
 				127D4C6F1376B33200109AB4 /* mtg.txt in Resources */,
@@ -1475,6 +1641,12 @@
 				128ED4C6148BC94D00C58E83 /* AdWhirlWebBrowser.xib in Resources */,
 				128ED4E8148BC94D00C58E83 /* Changelog.txt in Resources */,
 				128ED4F0148BC94D00C58E83 /* README in Resources */,
+				12211ECB1494811D00641703 /* Default.png in Resources */,
+				12211ECD149481B600641703 /* Default-Landscape~ipad.png in Resources */,
+				12211ECF149481C400641703 /* Default-Portrait~ipad.png in Resources */,
+				12211ED11494823F00641703 /* Default@2x.png in Resources */,
+				12211ED41494916D00641703 /* Default-Landscape.png in Resources */,
+				12211ED51494916D00641703 /* Default-Portrait.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1671,6 +1843,21 @@
 				128ED4F8148BC94D00C58E83 /* CJSONScanner.m in Sources */,
 				128ED4F9148BC94D00C58E83 /* CJSONSerializer.m in Sources */,
 				128ED4FA148BC94D00C58E83 /* CSerializedJSONData.m in Sources */,
+				12211E7914931CBB00641703 /* ASIAuthenticationDialog.m in Sources */,
+				12211E7A14931CBB00641703 /* ASIDataCompressor.m in Sources */,
+				12211E7B14931CBB00641703 /* ASIDataDecompressor.m in Sources */,
+				12211E7C14931CBB00641703 /* ASIDownloadCache.m in Sources */,
+				12211E7D14931CBB00641703 /* ASIFormDataRequest.m in Sources */,
+				12211E7E14931CBB00641703 /* ASIHTTPRequest.m in Sources */,
+				12211E7F14931CBB00641703 /* ASIInputStream.m in Sources */,
+				12211E8014931CBB00641703 /* ASINetworkQueue.m in Sources */,
+				12211EAA14933D4A00641703 /* ioapi.c in Sources */,
+				12211EAB14933D4A00641703 /* mztools.c in Sources */,
+				12211EAC14933D4A00641703 /* unzip.c in Sources */,
+				12211EAD14933D4A00641703 /* zip.c in Sources */,
+				12211EAF14933D6600641703 /* ZipArchive.mm in Sources */,
+				12211EB71493483C00641703 /* Reachability.m in Sources */,
+				12211EC91494360C00641703 /* WagicDownloadProgressViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1701,6 +1888,8 @@
 					../../JGE/include/,
 					include/,
 					../../Boost,
+					./minizip,
+					"iOS/Reachability/Reachability\\ 2.0.4ddg/DDG\\ Reachability/Classes/",
 				);
 				INFOPLIST_FILE = "wagic-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
@@ -1732,9 +1921,11 @@
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				GCC_VERSION = "";
 				HEADER_SEARCH_PATHS = (
-					../../Boost/,
-					../../JGE/include,
+					../../JGE/include/,
 					include/,
+					../../Boost,
+					./minizip,
+					"iOS/Reachability/Reachability\\ 2.0.4ddg/DDG\\ Reachability/Classes/",
 				);
 				INFOPLIST_FILE = "wagic-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;

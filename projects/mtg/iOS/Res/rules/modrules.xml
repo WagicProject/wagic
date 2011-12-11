@@ -1,0 +1,45 @@
+<?xml version="1.0" ?>
+
+
+<menu>
+  <main>
+    <item iconId="5" displayName="Play" action="playMenu" particleFile="particle1.psi" />
+    <item iconId="2" displayName="Deck Editor" action="deckEditor" particleFile="particle2.psi" />
+    <item iconId="1" displayName="Shop" action="shop" particleFile="particle3.psi" />
+    <item iconId="4" displayName="Options" action="options" particleFile="particle4.psi" />
+    <item iconId="3" displayName="Credits" action="credits" particleFile="particle5.psi" />
+  </main>
+
+  <other>
+      <item displayName="Trophy Room" action="trophies" />
+  </other>
+
+</menu>
+<cardgui>
+  <background>
+     <card id="6" color="artifact" img="artifact.jpg" thumb="artifact_thumb.jpg" menuicon="1"/>
+     <card id="0" color="green" img="green.jpg" thumb="green_thumb.jpg" menuicon="1"/>
+     <card id="1" color="blue" img="blue.jpg" thumb="blue_thumb.jpg" menuicon="1"/>
+     <card id="3" color="red" img="red.jpg" thumb="red_thumb.jpg" menuicon="1"/>
+     <card id="2" color="black" img="black.jpg" thumb="black_thumb.jpg" menuicon="1"/>
+     <card id="4" color="white" img="white.jpg" thumb="white_thumb.jpg" menuicon="1"/>
+     <card id="5" color="land" img="land.jpg" thumb="land_thumb.jpg" menuicon="1"/>
+     <card id="7" color="gold" img="gold.jpg" thumb="gold_thumb.jpg" menuicon="0"/>
+    </background>
+  <renderbig>
+  	<item name="title" posx="22" posy="25" formattedtext="" type=""/>
+  	<item name="description" posx="22" posy="80" formattedtext="" type=""/>
+  	<item name="powerlife" posx="158" posy="106" formattedtext="power/life" type="creature"/>
+  	<item name="mana" posx="75" posy="-112" formattedtext="" type=""/>
+  	<item name="types" posx="22" posy="49" formattedtext="" type=""/>
+  	<item name="expansionrarity" posx="22" posy="113" formattedtext="expansion rarity" type=""/>
+  </renderbig>
+  <rendertinycrop>
+    	<item name="title" posx="22" posy="25" formattedtext="" type=""/>
+    	<item name="description" posx="22" posy="80" formattedtext="" type=""/>
+    	<item name="powerlife" posx="158" posy="106" formattedtext="power/life" type="creature"/>
+    	<item name="mana" posx="75" posy="-112" formattedtext="" type=""/>
+    	<item name="types" posx="22" posy="49" formattedtext="" type=""/>
+    	<item name="expansionrarity" posx="22" posy="113" formattedtext="expansion rarity" type=""/>
+  </rendertinycrop>
+</cardgui>
