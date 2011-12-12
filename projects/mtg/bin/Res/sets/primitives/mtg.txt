@@ -5605,9 +5605,9 @@ power=6
 toughness=5
 [/card]
 [card]
-name=Baru, Fist of Krosa
+name=Baru Fist of Krosa
 auto=@movedto(forest|battlefield):all(creature[green]|mybattlefield) +1/+1 ueot && all(creature[green]|mybattlefield) trample ueot
-auto={discard(Baru, Fist of Krosa|myhand)}:token(Wurm,creature Wurm,type:land:mybattlefield/type:land:mybattlefield,green) controller
+auto={discard(Baru Fist of Krosa|myhand)}:token(Wurm,creature Wurm,type:land:mybattlefield/type:land:mybattlefield,green) controller
 text=Whenever a Forest enters the battlefield, green creatures you control get +1/+1 and gain trample until end of turn. -- Grandeur - Discard another card named Baru, Fist of Krosa: Put an X/X green Wurm creature token onto the battlefield, where X is the number of lands you control.
 mana={3}{G}{G}
 type=Legendary Creature
@@ -13525,6 +13525,14 @@ auto={1}{U}{S}:draw:1 controller
 text={1}{U}, Discard a card: Draw a card. -- {1}{U}, Sacrifice Compulsion: Draw a card.
 mana={1}{U}
 type=Enchantment
+[/card]
+[card]
+name=Compulsive Research
+auto=draw:3
+auto=transforms((,newability[choice name(discard 2 cards) reject target(<2>*|myhand)], newability[aslongas(land|myhand) choice name(discard a land card) reject target(land|myhand)]))
+text=Target player draws three cards. Then that player discards two cards unless he or she discards a land card.
+mana={2}{U}
+type=Sorcery
 [/card]
 [card]
 name=Concentrate
@@ -24085,7 +24093,7 @@ subtype=Aura
 [/card]
 [card]
 name=Fendeep Summoner
-auto={T}:target(<upto:2>swamp) becomes(Treefolk Warrior,Creature Treefolk Warrior,3/5) ueot
+auto={T}:target(<upto:2>swamp) becomes(Treefolk Warrior,3/5) ueot
 text={T}: Up to two target Swamps each become 3/5 Treefolk Warrior creatures in addition to their other types until end of turn.
 mana={4}{B}
 type=Creature
@@ -24551,7 +24559,7 @@ toughness=2
 [/card]
 [card]
 name=Fire Ambush
-target=creature;player
+target=creature,player
 auto=Damage:3
 text=Fire Ambush deals 3 damage to target creature or player.
 mana={1}{R}
@@ -42680,6 +42688,7 @@ toughness=2
 [/card]
 [card]
 name=Madblind Mountain
+auto=tap
 auto={T}:add{R}
 auto={R}{T}:shuffle controller restriction{type(*[red]|mybattlefield)~morethan~1}
 text=({T}: Add {R} to your mana pool.) -- Madblind Mountain enters the battlefield tapped. -- {R}, {T}: Shuffle your library. Activate this ability only if you control two or more red permanents.
@@ -48259,7 +48268,6 @@ toughness=1
 [card]
 name=Necropouncer
 auto={2}:equip
-auto={3}:moveTo(ownerhand)
 auto=3/1
 auto=haste
 auto=livingweapontoken(Germ,Creature Germ,0/0,black)
@@ -74101,7 +74109,7 @@ subtype=Aura
 [card]
 name=Thirst for Knowledge
 auto=draw:3
-auto=transforms((,newability[choice name(discard 2 nonartifact cards) reject target(<2>*[-artifact]|myhand)],newability[choice name(discard an artifact card) reject target(artifact|myhand)]))
+auto=transforms((,newability[choice name(discard 2 cards) reject target(<2>*|myhand)],newability[aslongas(artifact|myHand) choice name(discard an artifact card) reject target(artifact|myhand)]))
 text=Draw three cards. Then discard two cards unless you discard an artifact card.
 mana={2}{U}
 type=Instant
@@ -76039,7 +76047,7 @@ type=Enchantment
 [card]
 name=Tradewind Rider
 abilitiees=flying
-auto={T}{T(creature|myBattlefield)}{T(creature|myBattlefield)}:moveTo(ownerhand) target(creature)
+auto={T}{T(creature|myBattlefield)}{T(creature|myBattlefield)}:moveTo(ownerhand) target(*)
 text=Flying -- {T}, Tap two untapped creatures you control: Return target permanent to its owner's hand.
 mana={3}{U}
 type=Creature

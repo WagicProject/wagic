@@ -1,5 +1,5 @@
 grade=crappy
-##the following are not added becuase theyre not choosen discard.
+##the following are not added becuase they are not choosen discard.
 [card]
 name=Abyssal Horror
 target=player
@@ -54,6 +54,17 @@ power=1
 toughness=2
 [/card]
 [card]
+name=Augur of Skulls
+auto={1}{B}:regenerate
+auto={S}:discard:2 target(player) myUpkeepOnly
+text={1}{B}: Regenerate Augur of Skulls. -- Sacrifice Augur of Skulls: Target player discards two cards. Activate this ability only during your upkeep.
+mana={1}{B}
+type=Creature
+subtype=Skeleton Wizard
+power=1
+toughness=1
+[/card]
+[card]
 name=Bereavement
 auto=@movedto(graveyard) from(creature[green]|battlefield):all(trigger[to]) discard:1 targetcontroller
 text=Whenever a green creature is put into a graveyard from the battlefield, its controller discards a card.
@@ -79,6 +90,27 @@ auto=discard:2
 text=Blightning deals 3 damage to target player. That player discards two cards.
 mana={1}{B}{R}
 type=Sorcery
+[/card]
+[card]
+name=Bog Down
+target=player
+auto=discard:2
+auto=alternative discard:1
+text=Kicker - Sacrifice two lands. (You may sacrifice two lands in addition to any other costs as you cast this spell.) -- Target player discards two cards. If Bog Down was kicked, that player discards three cards instead.
+mana={2}{B}
+other={2}{B}{s(land|mybattlefield)}{s(land|mybattlefield)} name(Pay Kicker)
+type=Sorcery
+[/card]
+[card]
+name=Brain Weevil 
+abilities=intimidate
+auto={S}:discard:2 target(player) asSorcery
+text=Intimidate (This creature can't be blocked except by artifact creatures and/or creatures that share a color with it.) -- Sacrifice Brain Weevil: Target player discards two cards. Activate this ability only any time you could cast a sorcery.
+mana={3}{B}
+type=Creature
+subtype=Insect 
+power=1
+toughness=1
 [/card]
 [card]
 name=Cabal Inquisitor
@@ -109,6 +141,16 @@ type=Creature
 subtype=Zombie
 power=2
 toughness=1
+[/card]
+[card]
+name=Cao Cao, Lord of Wei
+auto=discard:2 opponent MyTurnOnly
+text={T}: Target opponent discards two cards. Activate this ability only during your turn, before attackers are declared.
+mana={3}{B}{B}
+type=Legendary Creature
+subtype=Human Soldier
+power=3
+toughness=3
 [/card]
 [card]
 name=Cat Burglar
@@ -152,6 +194,14 @@ power=3
 toughness=2
 [/card]
 [card]
+name=Consult the Necrosages
+auto=choice draw:2 target(player)
+auto=choice discard:2 target(player)
+text=Choose one - Target player draws two cards; or target player discards two cards.
+mana={1}{U}{B}
+type=Sorcery
+[/card]
+[card]
 name=Corrupt Court Official
 auto=discard:1 opponent
 text=When Corrupt Court Official enters the battlefield, target opponent discards a card.
@@ -169,9 +219,19 @@ mana={3}{B}
 type=Enchantment
 [/card]
 [card]
+name=Cunning Advisor
+auto=discard:1 opponent MyTurnOnly
+text={T}: Target opponent discards a card. Activate this ability only during your turn, before attackers are declared.
+mana={3}{B}
+type=Creature
+subtype=Human Advisor
+power=1
+toughness=1
+[/card]
+[card]
 name=Cunning Lethemancer
 auto=@each myupkeep:discard:1
-auto=@each opponentupkeep:discard:1 opponent
+auto=@each myupkeep:discard:1 opponent
 text=At the beginning of your upkeep, each player discards a card.
 mana={2}{B}
 type=Creature
@@ -264,6 +324,17 @@ power=5
 toughness=4
 [/card]
 [card]
+name=Elder Mastery
+target=creature
+auto=3/3
+auto=flying
+auto=@damaged(player) from(mytgt):discard:2 opponent
+text=Enchant creature -- Enchanted creature gets +3/+3 and has flying. -- Whenever enchanted creature deals damage to a player, that player discards two cards.
+mana={3}{U}{B}{R}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 name=Entropic Specter
 auto=foreach(*|opponenthand) 1/1
 auto=@damaged(opponent) from(this): discard:1 opponent
@@ -273,6 +344,15 @@ type=Creature
 subtype=Specter Spirit
 power=*
 toughness=*
+[/card]
+[card]
+name=Esper Charm
+auto=aslongas(enchantment|battlefield) choice destroy target(enchantment)
+auto=choice draw:2 controller
+auto=choice discard:2 target(player)
+text=Choose one - Destroy target enchantment; or draw two cards; or target player discards two cards.
+mana={W}{U}{B}
+type=Instant
 [/card]
 [card]
 name=Forget
@@ -290,6 +370,15 @@ auto=discard:3
 text=Target player discards three cards.
 mana={3}{B}{B}
 type=Sorcery
+[/card]
+[card]
+name=Funeral Charm
+auto=choice discard:1 target(player)
+auto=aslongas(creature|battlefield) choice 2/-1 target(creature) ueot
+auto=aslongas(creature|battlefield) choice swampwalk target(creature) ueot
+text=Choose one - Target player discards a card; or target creature gets +2/-1 until end of turn; or target creature gains swampwalk until end of turn.
+mana={B}
+type=Instant
 [/card]
 [card]
 name=Fungal Shambler
@@ -458,6 +547,18 @@ power=0
 toughness=0
 [/card]
 [card]
+name=Mournwhelk
+other={3}{B} name(Evoke)
+auto=discard:2 target(player)
+auto=alternative sacrifice
+text=When Mournwhelk enters the battlefield, target player discards two cards. -- Evoke {3}{B} (You may cast this spell for its evoke cost. If you do, it's sacrificed when it enters the battlefield.)
+mana={6}{B}
+type=Creature
+subtype=Elemental
+power=3
+toughness=3
+[/card]
+[card]
 name=Necrogen Mists
 auto=@each myupkeep:discard:1 controller
 auto=@each opponentupkeep:discard:1 opponent
@@ -518,9 +619,19 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Piracy Charm
+auto=aslongas(creature|battlefield) choice islandwalk target(creature) ueot
+auto=aslongas(creature|battlefield) choice 2/-1 target(creature) ueot
+auto=choice discard:1 target(player)
+text=Choose one - Target creature gains islandwalk until end of turn; or target creature gets +2/-1 until end of turn; or target player discards a card.
+mana={U}
+type=Instant
+[/card]
+[card]
 name=Raven's Crime
 retrace={b}{S(land|myhand)}
 target=player
+auto=discard:1
 text=Target player discards a card. -- Retrace (You may cast this card from your graveyard by discarding a land card in addition to paying its other costs.)
 mana={B}
 type=Sorcery
@@ -684,12 +795,35 @@ mana={3}{B}
 type=Sorcery
 [/card]
 [card]
+name=Tendrils of Despair
+auto=discard:2 opponent
+text=As an additional cost to cast Tendrils of Despair, sacrifice a creature. -- Target opponent discards two cards.
+mana={B}{S(creature|mybattlefield)}
+type=Sorcery
+[/card]
+[card]
+name=Three Tragedies
+target=player
+auto=discard:3
+text=Target player discards three cards.
+mana={3}{B}{B}
+type=Sorcery
+subtype=Arcane
+[/card]
+[card]
 name=Unhinge
 target=player
 auto=discard:1
 auto=draw:1 controller
 text=Target player discards a card. -- Draw a card.
 mana={2}{B}
+type=Sorcery
+[/card]
+[card]
+name=Unnerve
+auto=discard:2 opponent
+text=Each opponent discards two cards.
+mana={3}{B}
 type=Sorcery
 [/card]
 [card]
@@ -701,6 +835,27 @@ type=Creature
 subtype=Merfolk Wizard
 power=1
 toughness=1
+[/card]
+[card]
+name=Voices from the Void
+target=player
+auto=aslongas(forest|myBattlefield) discard:1
+auto=aslongas(island|myBattlefield) discard:1
+auto=aslongas(plains|myBattlefield) discard:1
+auto=aslongas(mountain|myBattlefield) discard:1
+auto=aslongas(swamp|myBattlefield) discard:1
+text=Domain - Target player discards a card for each basic land type among lands you control.
+mana={4}{B}
+type=Sorcery
+[/card]
+[card]
+name=Waking Nightmare
+target=player
+auto=discard:2
+text=Target player discards two cards.
+mana={2}{B}
+type=Sorcery
+subtype=Arcane
 [/card]
 [card]
 name=Wall of Distortion
@@ -725,6 +880,14 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Wit's End
+target=player
+auto=discard:99
+text=Target player discards his or her hand.
+mana={5}{B}{B}
+type=Sorcery
+[/card]
+[card]
 name=Zhang Liao, Hero of Hefei
 abilities=horsemanship
 auto=@damaged(opponent) from(this):discard:1 opponent
@@ -737,7 +900,7 @@ toughness=3
 [/card]
 [card]
 name=Zuran Enchanter
-auto={2}{b}{t}:target(player) discard:1 myturnonly
+auto={2}{B}{t}:target(player) discard:1 myTurnOnly
 text={2}{B}, {T}: Target player discards a card. Activate this ability only during your turn.
 mana={1}{U}
 type=Creature
