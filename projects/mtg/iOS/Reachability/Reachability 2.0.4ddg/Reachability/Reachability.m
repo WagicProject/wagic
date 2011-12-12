@@ -364,6 +364,25 @@ static void ReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReach
 } // reachabilityWithAddress
 
 
+#define	INADDR_GOOGLE_DNS	(u_int32_t)0x08080808	/* 8.8.8.8 */
+
+
++ (Reachability *) reachabilityForGoogleDNS {
+	
+	struct sockaddr_in googleDnsAddress;
+	bzero(&googleDnsAddress, sizeof(googleDnsAddress));
+	googleDnsAddress.sin_len = sizeof(googleDnsAddress);
+	googleDnsAddress.sin_family = AF_INET;
+    googleDnsAddress.sin_addr.s_addr = htonl(INADDR_GOOGLE_DNS);
+    
+	Reachability *r = [self reachabilityWithAddress: &googleDnsAddress];
+    
+	r.key = kInternetConnection;
+	
+	return r;
+}
+
+
 + (Reachability *) reachabilityForInternetConnection {
 	
 	struct sockaddr_in zeroAddress;

@@ -306,12 +306,12 @@
 		12211EBA14934A2C00641703 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		12211EC71494360C00641703 /* WagicDownloadProgressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WagicDownloadProgressViewController.h; path = UI/WagicDownloadProgressViewController.h; sourceTree = "<group>"; };
 		12211EC81494360C00641703 /* WagicDownloadProgressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WagicDownloadProgressViewController.m; path = UI/WagicDownloadProgressViewController.m; sourceTree = "<group>"; };
-		12211ECA1494811D00641703 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		12211ECC149481B600641703 /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
-		12211ECE149481C300641703 /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
-		12211ED01494823E00641703 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		12211ED21494916D00641703 /* Default-Landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape.png"; sourceTree = "<group>"; };
-		12211ED31494916D00641703 /* Default-Portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait.png"; sourceTree = "<group>"; };
+		12211ECA1494811D00641703 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
+		12211ECC149481B600641703 /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape~ipad.png"; path = "../Default-Landscape~ipad.png"; sourceTree = "<group>"; };
+		12211ECE149481C300641703 /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait~ipad.png"; path = "../Default-Portrait~ipad.png"; sourceTree = "<group>"; };
+		12211ED01494823E00641703 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
+		12211ED21494916D00641703 /* Default-Landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape.png"; path = "../Default-Landscape.png"; sourceTree = "<group>"; };
+		12211ED31494916D00641703 /* Default-Portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait.png"; path = "../Default-Portrait.png"; sourceTree = "<group>"; };
 		12769483144127380088F6D3 /* AIPlayerBaka.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AIPlayerBaka.cpp; sourceTree = "<group>"; };
 		12769484144127380088F6D3 /* AIPlayerBakaB.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AIPlayerBakaB.cpp; sourceTree = "<group>"; };
 		12769485144127380088F6D3 /* TestSuiteAI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestSuiteAI.cpp; sourceTree = "<group>"; };
@@ -855,8 +855,6 @@
 			children = (
 				CE9A477512B514BA00C9F38A /* EAGLView.h */,
 				CE9A477612B514BA00C9F38A /* EAGLView.m */,
-				12211EC71494360C00641703 /* WagicDownloadProgressViewController.h */,
-				12211EC81494360C00641703 /* WagicDownloadProgressViewController.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -864,6 +862,11 @@
 		12211EC6149435A300641703 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				12211EC71494360C00641703 /* WagicDownloadProgressViewController.h */,
+				12211EC81494360C00641703 /* WagicDownloadProgressViewController.m */,
+				CE9A477C12B514BA00C9F38A /* ES2Renderer.h */,
+				CE9A477D12B514BA00C9F38A /* ES2Renderer.m */,
+				CE9A477E12B514BA00C9F38A /* ESRenderer.h */,
 				CE9A477712B514BA00C9F38A /* EAGLViewController.h */,
 				CE9A477812B514BA00C9F38A /* EAGLViewController.m */,
 			);
@@ -1039,9 +1042,25 @@
 			path = JSON;
 			sourceTree = "<group>";
 		};
+		128FB96A149537A600ED4EE6 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				12211ED21494916D00641703 /* Default-Landscape.png */,
+				12211ED31494916D00641703 /* Default-Portrait.png */,
+				12211ED01494823E00641703 /* Default@2x.png */,
+				12211ECE149481C300641703 /* Default-Portrait~ipad.png */,
+				12211ECC149481B600641703 /* Default-Landscape~ipad.png */,
+				12211ECA1494811D00641703 /* Default.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 		129654D2148AA2390031100B /* iOS */ = {
 			isa = PBXGroup;
 			children = (
+				CE9A478312B514BA00C9F38A /* wagicAppDelegate.h */,
+				CE9A478412B514BA00C9F38A /* wagicAppDelegate.m */,
+				128FB96A149537A600ED4EE6 /* Images */,
 				12211EC6149435A300641703 /* Controllers */,
 				12211EC51494358300641703 /* UI */,
 				129654D3148AA2390031100B /* Res */,
@@ -1118,28 +1137,15 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				12211ED21494916D00641703 /* Default-Landscape.png */,
-				12211ED31494916D00641703 /* Default-Portrait.png */,
-				12211ED01494823E00641703 /* Default@2x.png */,
-				12211ECE149481C300641703 /* Default-Portrait~ipad.png */,
-				12211ECC149481B600641703 /* Default-Landscape~ipad.png */,
-				12211ECA1494811D00641703 /* Default.png */,
-				12211EBA14934A2C00641703 /* CFNetwork.framework */,
-				12211EB814934A1800641703 /* MobileCoreServices.framework */,
-				12211EB01493449A00641703 /* Networking Packages */,
 				129654D2148AA2390031100B /* iOS */,
-				125C5CF213B09AA200DF2F2C /* Tools */,
-				CE9E71DB1375A53600759DDC /* Boost */,
-				CE9A477C12B514BA00C9F38A /* ES2Renderer.h */,
-				CE9A477D12B514BA00C9F38A /* ES2Renderer.m */,
-				CE9A477E12B514BA00C9F38A /* ESRenderer.h */,
-				CE9A477F12B514BA00C9F38A /* main.m */,
-				CE9A478112B514BA00C9F38A /* wagic_Prefix.pch */,
-				CE9A478312B514BA00C9F38A /* wagicAppDelegate.h */,
-				CE9A478412B514BA00C9F38A /* wagicAppDelegate.m */,
 				CEA376841291C5CD00B9016A /* Wagic */,
 				CEE2320D128A00EC00C34032 /* JGE */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
+				12211EB01493449A00641703 /* Networking Packages */,
+				CE9E71DB1375A53600759DDC /* Boost */,
+				CE9A477F12B514BA00C9F38A /* main.m */,
+				CE9A478112B514BA00C9F38A /* wagic_Prefix.pch */,
+				125C5CF213B09AA200DF2F2C /* Tools */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
@@ -1162,6 +1168,8 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				12211EBA14934A2C00641703 /* CFNetwork.framework */,
+				12211EB814934A1800641703 /* MobileCoreServices.framework */,
 				1216D632148F7411000F2295 /* libc++abi.dylib */,
 				128ED518148BF0E000C58E83 /* MediaPlayer.framework */,
 				128ED50F148BCC1900C58E83 /* libsqlite3.dylib */,
@@ -1914,6 +1922,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = wagic_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
+					FT2_BUILD_LIBRARY,
 					IOS,
 					DEBUG,
 					TESTSUITE,

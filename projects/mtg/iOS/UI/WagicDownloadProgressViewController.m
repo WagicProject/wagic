@@ -22,10 +22,30 @@ static NSString *kDownloadUrlPath = @"http://forevernow.net/wagic/";
 static NSString *kDownloadFileName = @"core_017_iOS.zip";
 
 
+
+- (void) handleFailedDownload: (NSNotification *) sender
+{
+    NSString *downloadType = [sender object];
+    // figure out what to do.  There could be other types of downloads, for now there is only "core"
+    if ( [downloadType isEqualToString: @"core"] )
+    {
+        NSLog(@"Download Core files failed.  Retrying... ");
+        [self.downloadMessageStatus setText: @"Download Core files failed.  Retrying... "];
+
+            UIAlertView *noNetworkConnectionAlert = [[UIAlertView alloc] initWithTitle: @"No Network Connection" message: @"Internet connection not found.  Download can not continue until it is restored. Restore Wifi or Cellular connection and retry" delegate: self cancelButtonTitle: @"Retry Download" otherButtonTitles: nil];
+            [self.view addSubview: noNetworkConnectionAlert];
+            [noNetworkConnectionAlert show];
+            [noNetworkConnectionAlert release];
+    }
+    
+}
+
+
 - (void) unpackageResources
 {
+    [self.downloadMessageStatus setText: @"Installing Game Resource Files"];
     NSError *error = nil;
-    
+
     NSFileManager *fm = [NSFileManager defaultManager];
     NSArray *paths = NSSearchPathForDirectoriesInDomains( NSDocumentDirectory,
                                                          NSUserDomainMask, YES);
@@ -39,6 +59,7 @@ static NSString *kDownloadFileName = @"core_017_iOS.zip";
         if (ret == NO)
         {
             // some error occurred
+            NSLog(@"An Error occurred while unpacking zip file.");
         }
         [za UnzipCloseFile];
         
@@ -50,22 +71,88 @@ static NSString *kDownloadFileName = @"core_017_iOS.zip";
             {
                 NSLog(@"error occurred while trying to delete zip file! %@\n%@", downloadFilePath, [error localizedDescription] );
             }
-            else
-            {
-                wagicAppDelegate *appDelegate = (wagicAppDelegate *)[[UIApplication sharedApplication] delegate];
-
-                NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
-                [dnc postNotificationName:@"readyToStartGame" object: appDelegate];
-            }
         }
     }
     [za release], za = nil;
+
 }
 
 
+- (void)alertView:(UIAlertView *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    // the user clicked one of the OK/Cancel buttons
+    if (buttonIndex == 0 && [[actionSheet buttonTitleAtIndex: 0] isEqualToString: @"Retry Download"])
+    {
+        [self startDownload: @"core"];
+    }
+    else
+    {
+        NSLog(@"cancel");
+    }
+}
+
+- (void) startDownload: (NSString *) downloadType
+{
+    wagicAppDelegate *appDelegate = [(wagicAppDelegate *)[UIApplication sharedApplication] delegate];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains( NSDocumentDirectory,
+                                                         NSUserDomainMask, YES);
+    NSString *userResourceDirectory = [[paths objectAtIndex:0] stringByAppendingString: @"/Res"];
+    NSString *downloadFilePath =  [userResourceDirectory stringByAppendingString: [NSString stringWithFormat: @"/%@",  kDownloadFileName]];
+    NSError *error = nil;
+    // make sure Res directory exists
+    if ( ![[NSFileManager defaultManager] fileExistsAtPath: userResourceDirectory] ) 
+        [[NSFileManager defaultManager] createDirectoryAtPath:userResourceDirectory withIntermediateDirectories: YES attributes:nil error: &error];
+    
+    // if an error occurred while creating the directory, game can't really run so do something
+    // TODO: throw out a notification and deal with error
+    
+    NSURL *url = nil;
+    // determine which file to download
+    if ([downloadType isEqualToString: @"core"])
+    {
+        url = [NSURL URLWithString: [NSString stringWithFormat: @"%@/%@", kDownloadUrlPath, kDownloadFileName]];    
+    }
+    else if ( [downloadType isEqualToString: @"someOtherType"] )
+    {
+        NSLog( @"Not Implemented for type: %@", downloadType);
+    }
+    
+    __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
+    [request setTemporaryFileDownloadPath: [NSString stringWithFormat: @"%@.tmp", userResourceDirectory]];
+    
+    [request setDownloadDestinationPath: downloadFilePath];
+    [request setDownloadProgressDelegate: downloadProgressView];
+    [request setShouldContinueWhenAppEntersBackground: YES];
+    [request setAllowCompressedResponse: YES];
+    
+    [request setCompletionBlock:^{
+        [self unpackageResources];
+        wagicAppDelegate *appDelegate = (wagicAppDelegate *)[[UIApplication sharedApplication] delegate];        
+        NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
+        [dnc postNotificationName:@"readyToStartGame" object: appDelegate];
+
+    }];
+    [request setFailedBlock:^{
+        // if there is an error in downloading the package what do we do?
+        // TODO: do something useful if there's an error in the download
+        // perhaps restart the download
+
+        NSError *error = [request error];
+        NSString *errorMessage = [NSString stringWithFormat: @"There was an error in downloading your files. %@", [error localizedDescription]];
+        NSLog(@"Error with download: %@", errorMessage);
+        // post a notification that a download error has occurred.
+        NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
+        [dnc postNotificationName:@"fileDownloadFailed" object: downloadType];
+        
+    }];
+    
+    [request startAsynchronous];
+}
 
 - (id) init
 {
+    NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
+    [dnc addObserver: self selector: @selector(handleFailedDownload:) name: @"fileDownloadFailed" object: nil];
+
     self = [super init];
     if (self) {
         bool isPhone = (UI_USER_INTERFACE_IDIOM()) == UIUserInterfaceIdiomPhone;
@@ -96,26 +183,7 @@ static NSString *kDownloadFileName = @"core_017_iOS.zip";
         [self.downloadProgressView setFrame: CGRectMake(0, 0, 250, 50)];
         [self.downloadProgressView setAutoresizingMask: UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight ];
 
-        NSArray *paths = NSSearchPathForDirectoriesInDomains( NSDocumentDirectory,
-                                                             NSUserDomainMask, YES);
-        NSString *userResourceDirectory = [[paths objectAtIndex:0] stringByAppendingString: @"/Res"];
-        NSString *downloadFilePath =  [[paths objectAtIndex: 0] stringByAppendingString: [NSString stringWithFormat: @"/%@",  kDownloadFileName]];
-        
-        // download the zip file but show a splash screen
-        NSURL *url = [NSURL URLWithString: [NSString stringWithFormat: @"%@/%@", kDownloadUrlPath, kDownloadFileName]];
-        __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
-        [request setTemporaryFileDownloadPath: [NSString stringWithFormat: @"%@.tmp", userResourceDirectory]];
-        [request setDownloadDestinationPath: downloadFilePath];
-        [request setDownloadProgressDelegate: downloadProgressView];
-        
-        [request setCompletionBlock:^{
-            [self unpackageResources];        
-        }];
-        [request setFailedBlock:^{
-            NSError *error = [request error];
-        }];
-        
-        [request startAsynchronous];
+        [self startDownload: @"core"];
         [self.view addSubview: downloadMessageStatus];
         [self.view addSubview: downloadProgressView];
 
@@ -125,6 +193,7 @@ static NSString *kDownloadFileName = @"core_017_iOS.zip";
 
 
 #pragma mark Application Lifecycle
+
 
 - (void) didReceiveMemoryWarning 
 {
@@ -183,8 +252,14 @@ static NSString *kDownloadFileName = @"core_017_iOS.zip";
 {
     [super viewDidLoad];
     [self handleRotation: self.interfaceOrientation];
+
 }
 
+- (void) viewDidUnload
+{
+    NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
+    [dnc removeObserver: self name: @"coreFileDownloadFailed" object: nil];
+}
 
 // Only allow auto rotation on iPads.
 - (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation

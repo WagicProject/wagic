@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WagicDownloadProgressViewController : UIViewController
+@interface WagicDownloadProgressViewController : UIViewController<UIAlertViewDelegate>
 {
  
 }

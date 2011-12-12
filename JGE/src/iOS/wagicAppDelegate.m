@@ -62,10 +62,24 @@
 }
 
 
-- (void) applicationDidFinishLaunching:(UIApplication *)application   
+- (void) setupNetworkListeners
+{
+    hostReach = [[Reachability reachabilityForGoogleDNS] retain];
+    internetReach = [[Reachability reachabilityForInternetConnection] retain];
+    wifiReach = [[Reachability reachabilityForLocalWiFi] retain];
+    
+    [hostReach startNotifier];
+    [internetReach startNotifier];
+    [wifiReach startNotifier];
+}
+
+
+- (BOOL) application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions 
 {
     self.glViewController = nil;
     
+    [self setupNetworkListeners];
+
     NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
 	[dnc addObserver:self selector:@selector(startGame) name:@"readyToStartGame" object: nil];
     
@@ -82,6 +96,7 @@
         [self startGame];
     }
     
+    [self.window setBackgroundColor: [UIColor blackColor]];
     [self.window makeKeyAndVisible];
 }
 

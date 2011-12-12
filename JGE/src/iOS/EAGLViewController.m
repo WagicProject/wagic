@@ -1,7 +1,6 @@
 #import "EAGLViewController.h"
 #import "EAGLView.h"
 
-
 @interface EAGLViewController (PrivateMethods)
 - (NSString*)interfaceOrientationName:(UIInterfaceOrientation) interfaceOrientation;
 - (NSString*)deviceOrientationName:(UIDeviceOrientation) deviceOrientation;
@@ -94,16 +93,6 @@
     [[eaglView adView] rotateToOrientation: toInterfaceOrientation];
 }
 
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-	
-	UIDeviceOrientation currentDeviceOrientation = [UIDevice currentDevice].orientation;
-	UIInterfaceOrientation currentInterfaceOrientation	= self.interfaceOrientation;
-	
-	NSLog(@"EAGL ViewController - did Rotate From Interface: %@. Current Interface: %@. Current Device: %@", 
-		  [self interfaceOrientationName:fromInterfaceOrientation], 
-		  [self interfaceOrientationName:currentInterfaceOrientation], 
-		  [self deviceOrientationName:currentDeviceOrientation]);	
-}
 
 #pragma mark -
 #pragma mark Orientation Information
