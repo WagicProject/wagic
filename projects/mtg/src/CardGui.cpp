@@ -153,16 +153,22 @@ void CardGui::Render()
     if (actZ > 1)
     {
         shadow = game? game->getResourceManager()->GetQuad("shadow"):WResourceManager::Instance()->GetQuad("shadow");
-        shadow->SetColor(ARGB(static_cast<unsigned char>(actA)/2,255,255,255));
-        renderer->RenderQuad(shadow.get(), actX + (actZ - 1) * 15, actY + (actZ - 1) * 15, actT, 28 * actZ / 16, 40 * actZ / 16);
+        if (shadow) 
+        {
+            shadow->SetColor(ARGB(static_cast<unsigned char>(actA)/2,255,255,255));
+            renderer->RenderQuad(shadow.get(), actX + (actZ - 1) * 15, actY + (actZ - 1) * 15, actT, 28 * actZ / 16, 40 * actZ / 16);
+        }
     }
 
     JQuadPtr extracostshadow;
     if (card->isExtraCostTarget)
     {
         extracostshadow = card->getObserver()->getResourceManager()->GetQuad("extracostshadow");
-        extracostshadow->SetColor(ARGB(static_cast<unsigned char>(actA)/2,100,0,0));
-        renderer->RenderQuad(extracostshadow.get(), actX + (actZ - 1) * 15, actY + (actZ - 1) * 15, actT, 28 * actZ / 16, 40 * actZ / 16);
+        if (extracostshadow) 
+        {
+            extracostshadow->SetColor(ARGB(static_cast<unsigned char>(actA)/2,100,0,0));
+            renderer->RenderQuad(extracostshadow.get(), actX + (actZ - 1) * 15, actY + (actZ - 1) * 15, actT, 28 * actZ / 16, 40 * actZ / 16);
+        }
     }
 
     if(game && game->connectRule)
@@ -305,8 +311,11 @@ void CardGui::Render()
     {
         if (!shadow)
             shadow = card->getObserver()->getResourceManager()->GetQuad("shadow");
-        shadow->SetColor(ARGB(200,255,255,255));
-        renderer->RenderQuad(shadow.get(), actX, actY, actT, (28 * actZ + 1) / 16, 40 * actZ / 16);
+        if (shadow)
+        {
+            shadow->SetColor(ARGB(200,255,255,255));
+            renderer->RenderQuad(shadow.get(), actX, actY, actT, (28 * actZ + 1) / 16, 40 * actZ / 16);
+        }
     }
 
     // Render a mask over the card, if set

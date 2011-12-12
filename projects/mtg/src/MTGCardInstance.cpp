@@ -1056,6 +1056,7 @@ JSample * MTGCardInstance::getSample()
     if(!types.size())
         return NULL;   
     type = Subtypes::subtypesList->find(types[0]);
+    std::transform(type.begin(), type.end(), type.begin(), ::tolower);
     type.append(".wav");
     js = WResourceManager::Instance()->RetrieveSample(type);
     if (js)
