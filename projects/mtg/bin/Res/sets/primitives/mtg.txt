@@ -78611,7 +78611,7 @@ toughness=4
 [/card]
 [card]
 name=Varchild's Crusader
-auto={0}:cantbeblockedby(creature[-wall]) && treason
+auto={0}:name(Block Protection) treason && ueot cantbeblockedby(creature[-wall])
 text={0}: Varchild's Crusader can't be blocked this turn except by Walls. Sacrifice Varchild's Crusader at the beginning of the next end step.
 mana={3}{R}
 type=Creature
