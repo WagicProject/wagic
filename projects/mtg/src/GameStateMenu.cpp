@@ -137,7 +137,6 @@ void GameStateMenu::Start()
     mParent->gameType = GAME_TYPE_CLASSIC;
 
     //Manual clean up of some cache Data. Ideally those should clean themselves up, so this is kind of a hack for now
-    JFileSystem::GetInstance()->clearZipCache();
     WResourceManager::Instance()->ClearUnlocked();
 
     bgTexture = WResourceManager::Instance()->RetrieveTexture("menutitle.png", RETRIEVE_LOCK);

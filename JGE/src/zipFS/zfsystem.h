@@ -120,13 +120,25 @@ public:
 		bool	m_Directory;
 	};
 
+	class limited_file_info
+	{
+	public:
+		limited_file_info() :  m_Offset(0), m_Size(0) { }
+		limited_file_info(size_t Offset, size_t Size) :
+			m_Offset(Offset), m_Size(Size) { }
+
+		size_t	m_Offset;
+		size_t	m_Size;
+	};
+
 	filesystem(const char * BasePath = "", const char * FileExt = "zip", bool DefaultFS = true); 
 	~filesystem();
 
 	void MakeDefault();
 	void Open(izfstream & File, const char * Filename);
     bool DirExists(const std::string & folderName);
-    bool PreloadZip(const char * Filename, std::map<std::string, file_info>& target);
+    bool FileExists(const std::string & fileName);
+    bool PreloadZip(const char * Filename, std::map<std::string, limited_file_info>& target);
     static std::string getCurrentZipName();
     static filesystem * getCurrentFS();
     static std::streamoff SkipLFHdr(std::istream & File, std::streamoff LFHdrPos);

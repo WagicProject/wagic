@@ -63,7 +63,6 @@ class GameStateShop: public GameState, public JGuiListener
 private:
     JQuadPtr pspIcons[8];
     WSrcCards * srcCards;
-    JTexture * altThumb[8];
     TaskList * taskList;
     float mElapsed;
     WGuiMenu * shopMenu;

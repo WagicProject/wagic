@@ -172,6 +172,13 @@ void filesystem::Open(izfstream & File, const char * Filename)
 bool filesystem::DirExists(const std::string & folderName)
 {
 
+    //Check in zip
+	file_info FileInfo;
+
+	// Check whether the file is zipped, whether the file is a directory and try to open.
+    if (FindFile(folderName.c_str(), &FileInfo) && (FileInfo.m_Directory))
+        return true;
+
     //check real folder
     string FullPath = m_BasePath + folderName;
 
@@ -186,16 +193,37 @@ bool filesystem::DirExists(const std::string & folderName)
         return true;
 #endif
 
+    //Neither in real folder nor in zip
+    return false;
+}
+
+bool filesystem::FileExists(const std::string & fileName)
+{
+
     //Check in zip
 	file_info FileInfo;
 
 	// Check whether the file is zipped, whether the file is a directory and try to open.
-    if (FindFile(folderName.c_str(), &FileInfo) && (FileInfo.m_Directory))
+    if (FindFile(fileName.c_str(), &FileInfo) && (!FileInfo.m_Directory))
         return true;
+
+    //check real folder
+    string FullPath = m_BasePath + fileName;
+
+#if defined (WIN32)
+    struct _stat statBuffer;
+    if (_stat(FullPath.c_str(), &statBuffer) >= 0) // make sure it exists
+        return true;
+#else
+    struct stat st;
+    if (stat(FullPath.c_str(), &st) == 0) 
+        return true;
+#endif
 
     //Neither in real folder nor in zip
     return false;
 }
+
 
 // Note: this doesn't scan the folders outside of the zip...should we add that here ?
 std::vector<std::string>& filesystem::scanfolder(const std::string& folderName, std::vector<std::string>& results)
@@ -337,7 +365,7 @@ void filesystem::InsertZip(const char * Filename, const size_t PackID)
 }
 
 
-bool filesystem::PreloadZip(const char * Filename, map<string, file_info>& target)
+bool filesystem::PreloadZip(const char * Filename, map<string, limited_file_info>& target)
 {
 	zipfile_info ZipInfo;
 	
@@ -369,13 +397,9 @@ bool filesystem::PreloadZip(const char * Filename, map<string, file_info>& targe
                 if ((FileHdr.m_UncompSize != FileHdr.m_CompSize) || FileHdr.m_CompMethod != STORED)
                     continue;
 
-			    target[Name] = file_info(
-				    1,									// Package ID
+			    target[Name] = limited_file_info(
 				    realBeginOfFile + FileHdr.m_RelOffset,					// "Local File" header offset position
-				    FileHdr.m_UncompSize,					// File Size
-				    FileHdr.m_CompSize,						// Compressed File Size
-				    FileHdr.m_CompMethod,					// Compression Method;
-				    ((Name[i] == '/') || (Name[i] == '\\'))	// Is a directory?
+				    FileHdr.m_UncompSize					// File Size
 			    );
 		    }
 	    }	
@@ -402,13 +426,9 @@ bool filesystem::PreloadZip(const char * Filename, map<string, file_info>& targe
                 if ((FileHdr.m_UncompSize != FileHdr.m_CompSize) || FileHdr.m_CompMethod != STORED)
                     continue;
 
-			    target[Name] = file_info(
-				    1,									// Package ID
+			    target[Name] = limited_file_info(
 				    FileHdr.m_RelOffset,					// "Local File" header offset position
-				    FileHdr.m_UncompSize,					// File Size
-				    FileHdr.m_CompSize,						// Compressed File Size
-				    FileHdr.m_CompMethod,					// Compression Method;
-				    ((Name[i] == '/') || (Name[i] == '\\'))	// Is a directory?
+				    FileHdr.m_UncompSize					// File Size
 			    );
 		    }
 	    }	

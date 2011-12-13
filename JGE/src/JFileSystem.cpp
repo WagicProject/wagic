@@ -46,6 +46,14 @@ void JFileSystem::preloadZip(const string& filename)
     map<string,JZipCache *>::iterator it = mZipCache.find(filename);
     if (it != mZipCache.end()) return;
 
+    //random number of files stored in the cache.
+    // This is based on the idea that an average filepath (in Wagic) for image is 37 characters (=bytes) + 8 bytes to store the fileinfo = 45 bytes,
+    //so 4500 files represent roughly 200kB, an "ok" size for the PSP
+    if (mZipCachedElementsCount > 4500) 
+    {
+        clearZipCache();
+    }
+
     JZipCache * cache = new JZipCache();
     mZipCache[filename] = cache;
 
@@ -54,7 +62,11 @@ void JFileSystem::preloadZip(const string& filename)
 		if (!mZipAvailable || !mZipFile) return;
 	}
 
-    if (! (mUserFS->PreloadZip(filename.c_str(), cache->dir) || (mSystemFS && mSystemFS->PreloadZip(filename.c_str(), cache->dir))))
+    if ((mUserFS->PreloadZip(filename.c_str(), cache->dir) || (mSystemFS && mSystemFS->PreloadZip(filename.c_str(), cache->dir))))
+    {
+        mZipCachedElementsCount+= cache->dir.size();
+    }
+    else
     {
         DetachZipFile();
     }
@@ -155,6 +167,7 @@ JFileSystem::JFileSystem(const string & _userPath, const string & _systemPath)
     mSystemFS = (mSystemFSPath.size() && (mSystemFSPath.compare(mUserFSPath) != 0)) ? new filesystem(systemPath.c_str()) : NULL;
 
     mZipAvailable = false;
+    mZipCachedElementsCount = 0;
     mPassword = NULL;
     mFileSize = 0;
     mCurrentFileInZip = NULL;
@@ -171,20 +184,12 @@ void JFileSystem::Destroy()
 
 bool JFileSystem::DirExists(const string& strDirname)
 { 
-    return mUserFS->DirExists(strDirname) || (mSystemFS && mSystemFS->DirExists(strDirname));
+    return (mSystemFS && mSystemFS->DirExists(strDirname)) || mUserFS->DirExists(strDirname);
 }
 
 bool JFileSystem::FileExists(const string& strFilename)
 { 
-    bool result = false;
-    if(strFilename != "")
-    {
-        izfstream temp;
-        result = openForRead(temp, strFilename);
-        if (temp)
-            temp.close();
-    }
-    return result;
+    return (mSystemFS && mSystemFS->FileExists(strFilename)) || mUserFS->FileExists(strFilename);
 }
 
 bool JFileSystem::MakeDir(const string & dir)
@@ -210,7 +215,8 @@ void JFileSystem::clearZipCache()
     for (it = mZipCache.begin(); it != mZipCache.end(); ++it){
         delete(it->second);
     }
-    mZipCache.clear();	
+    mZipCache.clear();
+    mZipCachedElementsCount = 0;
 }
 
 bool JFileSystem::AttachZipFile(const string &zipfile, char *password /* = NULL */)
@@ -318,7 +324,7 @@ bool JFileSystem::OpenFile(const string &filename)
         return openForRead(mFile, filename);
     }
     JZipCache * zc = it->second;
-    map<string,  filesystem::file_info>::iterator it2 = zc->dir.find(filename);
+    map<string,  filesystem::limited_file_info>::iterator it2 = zc->dir.find(filename);
     if (it2 == zc->dir.end())
     {
         /*DetachZipFile();
@@ -350,7 +356,7 @@ int JFileSystem::ReadFile(void *buffer, int size)
     if (mCurrentFileInZip)
     {
         assert(mZipFile);
-        if((size_t)size > mCurrentFileInZip->m_CompSize) //only support "store" method for zip inside zips
+        if((size_t)size > mCurrentFileInZip->m_Size) //only support "store" method for zip inside zips
             return 0;
         std::streamoff offset = filesystem::SkipLFHdr(mZipFile, mCurrentFileInZip->m_Offset);
         if (!mZipFile.seekg(offset))

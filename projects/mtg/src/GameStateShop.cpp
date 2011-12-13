@@ -52,8 +52,6 @@ GameStateShop::GameStateShop(GameApp* parent) :
     GameState(parent, "shop")
 {
     menu = NULL;
-    for (int i = 0; i < 8; i++)
-        altThumb[i] = NULL;
     boosterDisplay = NULL;
     taskList = NULL;
     srcCards = NULL;
@@ -130,16 +128,6 @@ void GameStateShop::Start()
         bigDisplay->setX(385);
         bigDisplay->setY(135);
     }
-
-    //alternateRender doesn't lock, so lock our thumbnails for hgeDistort.
-    altThumb[0] = WResourceManager::Instance()->RetrieveTexture("artifact_thumb.jpg", RETRIEVE_LOCK);
-    altThumb[1] = WResourceManager::Instance()->RetrieveTexture("green_thumb.jpg", RETRIEVE_LOCK);
-    altThumb[2] = WResourceManager::Instance()->RetrieveTexture("blue_thumb.jpg", RETRIEVE_LOCK);
-    altThumb[3] = WResourceManager::Instance()->RetrieveTexture("red_thumb.jpg", RETRIEVE_LOCK);
-    altThumb[4] = WResourceManager::Instance()->RetrieveTexture("black_thumb.jpg", RETRIEVE_LOCK);
-    altThumb[5] = WResourceManager::Instance()->RetrieveTexture("white_thumb.jpg", RETRIEVE_LOCK);
-    altThumb[6] = WResourceManager::Instance()->RetrieveTexture("land_thumb.jpg", RETRIEVE_LOCK);
-    altThumb[7] = WResourceManager::Instance()->RetrieveTexture("gold_thumb.jpg", RETRIEVE_LOCK);
 
     for (int i = 0; i < 8; ++i)
     {
@@ -440,13 +428,6 @@ void GameStateShop::End()
     SAFE_DELETE(filterMenu);
     SAFE_DELETE(packlist);
     deleteDisplay();
-
-    //Release alternate thumbnails.
-    for (int i = 0; i < 8; i++)
-    {
-        WResourceManager::Instance()->Release(altThumb[i]);
-        altThumb[i] = NULL;
-    }
 
     SAFE_DELETE(menu);
     SAFE_DELETE(taskList);

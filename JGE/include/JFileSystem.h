@@ -23,7 +23,7 @@ class JZipCache {
 public:
   JZipCache();
   ~JZipCache();
-  map<string, filesystem::file_info> dir;
+  map<string, filesystem::limited_file_info> dir;
   
 };
 
@@ -35,13 +35,14 @@ private:
     izfstream mFile;
 
 	map<string,JZipCache *>mZipCache;
+    unsigned int mZipCachedElementsCount;
 	string mZipFileName;
     int mFileSize;
 	char *mPassword;
 	bool mZipAvailable;
   	void preloadZip(const string& filename);
 	izfstream mZipFile;
-    filesystem::file_info * mCurrentFileInZip;
+    filesystem::limited_file_info * mCurrentFileInZip;
 
     std::vector<std::string>& scanRealFolder(const std::string& folderName, std::vector<std::string>& results);
 
