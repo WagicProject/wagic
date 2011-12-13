@@ -31,7 +31,9 @@ bool checkFramebufferStatus();
 		backingHeight = -1;
 
         context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
-
+        if ( context == nil)
+            context = [[EAGLContext alloc] initWithAPI: kEAGLRenderingAPIOpenGLES1];
+                       
         if (!context || ![EAGLContext setCurrentContext:context])
         {
             [self release];

@@ -92,7 +92,6 @@ static NSString *kDownloadFileName = @"core_017_iOS.zip";
 
 - (void) startDownload: (NSString *) downloadType
 {
-    wagicAppDelegate *appDelegate = [(wagicAppDelegate *)[UIApplication sharedApplication] delegate];
     NSArray *paths = NSSearchPathForDirectoriesInDomains( NSDocumentDirectory,
                                                          NSUserDomainMask, YES);
     NSString *userResourceDirectory = [[paths objectAtIndex:0] stringByAppendingString: @"/Res"];

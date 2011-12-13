@@ -15,7 +15,7 @@
 	<key>CFBundleIconFile</key>
 	<string>wagic-64x64.png</string>
 	<key>CFBundleIdentifier</key>
-	<string>net.wagic.game.app</string>
+	<string>net.wagic.core</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>

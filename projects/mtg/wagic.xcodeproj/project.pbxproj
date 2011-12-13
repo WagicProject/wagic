@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1216D633148F7411000F2295 /* libc++abi.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1216D632148F7411000F2295 /* libc++abi.dylib */; };
-		1216D634148F747D000F2295 /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 128ED379148BAE7B00C58E83 /* libGoogleAdMobAds.a */; };
+		1216D633148F7411000F2295 /* libc++abi.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1216D632148F7411000F2295 /* libc++abi.dylib */; settings = {ATTRIBUTES = (Weak, ); }; };
+		1216D634148F747D000F2295 /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 128ED379148BAE7B00C58E83 /* libGoogleAdMobAds.a */; settings = {ATTRIBUTES = (Weak, ); }; };
 		12211E7914931CBB00641703 /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 12211E2814931CBB00641703 /* ASIAuthenticationDialog.m */; };
 		12211E7A14931CBB00641703 /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 12211E2B14931CBB00641703 /* ASIDataCompressor.m */; };
 		12211E7B14931CBB00641703 /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 12211E2D14931CBB00641703 /* ASIDataDecompressor.m */; };
@@ -23,8 +23,8 @@
 		12211EAD14933D4A00641703 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = 12211EA814933D4A00641703 /* zip.c */; };
 		12211EAF14933D6600641703 /* ZipArchive.mm in Sources */ = {isa = PBXBuildFile; fileRef = 12211EAE14933D6600641703 /* ZipArchive.mm */; };
 		12211EB71493483C00641703 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 12211EB61493483C00641703 /* Reachability.m */; };
-		12211EB914934A1900641703 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12211EB814934A1800641703 /* MobileCoreServices.framework */; };
-		12211EBB14934A2C00641703 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12211EBA14934A2C00641703 /* CFNetwork.framework */; };
+		12211EB914934A1900641703 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12211EB814934A1800641703 /* MobileCoreServices.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		12211EBB14934A2C00641703 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12211EBA14934A2C00641703 /* CFNetwork.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		12211EC91494360C00641703 /* WagicDownloadProgressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 12211EC81494360C00641703 /* WagicDownloadProgressViewController.m */; };
 		12211ECB1494811D00641703 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 12211ECA1494811D00641703 /* Default.png */; };
 		12211ECD149481B600641703 /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 12211ECC149481B600641703 /* Default-Landscape~ipad.png */; };
@@ -32,6 +32,250 @@
 		12211ED11494823F00641703 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 12211ED01494823E00641703 /* Default@2x.png */; };
 		12211ED41494916D00641703 /* Default-Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 12211ED21494916D00641703 /* Default-Landscape.png */; };
 		12211ED51494916D00641703 /* Default-Portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = 12211ED31494916D00641703 /* Default-Portrait.png */; };
+		126351081497C24000D79ED5 /* wagic-64x64.png in Resources */ = {isa = PBXBuildFile; fileRef = F233DC3712A111EB008594F2 /* wagic-64x64.png */; };
+		126351091497C24000D79ED5 /* EAGLViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2CDD5E212A6F7A2007B35AF /* EAGLViewController.xib */; };
+		1263510A1497C24000D79ED5 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = CECB67E012B517C000321D5A /* MainWindow.xib */; };
+		1263510B1497C24000D79ED5 /* mtg.txt in Resources */ = {isa = PBXBuildFile; fileRef = 127D4C6E1376B33200109AB4 /* mtg.txt */; };
+		1263510C1497C24000D79ED5 /* !Pak0.cpk in Resources */ = {isa = PBXBuildFile; fileRef = 12B8121F1404B9E10092E303 /* !Pak0.cpk */; };
+		1263510D1497C24000D79ED5 /* !Pak1.cpk in Resources */ = {isa = PBXBuildFile; fileRef = 12B812201404B9E10092E303 /* !Pak1.cpk */; };
+		1263510E1497C24000D79ED5 /* zfs.sln in Resources */ = {isa = PBXBuildFile; fileRef = 12B812291404B9E10092E303 /* zfs.sln */; };
+		1263510F1497C24000D79ED5 /* zfs.vcproj in Resources */ = {isa = PBXBuildFile; fileRef = 12B8122A1404B9E10092E303 /* zfs.vcproj */; };
+		126351101497C24000D79ED5 /* zfs.vcxproj in Resources */ = {isa = PBXBuildFile; fileRef = 12B8122B1404B9E10092E303 /* zfs.vcxproj */; };
+		126351111497C24000D79ED5 /* zfs.vcxproj.filters in Resources */ = {isa = PBXBuildFile; fileRef = 12B8122C1404B9E10092E303 /* zfs.vcxproj.filters */; };
+		126351121497C24000D79ED5 /* modrules.xml in Resources */ = {isa = PBXBuildFile; fileRef = 129654D5148AA2390031100B /* modrules.xml */; };
+		126351131497C24000D79ED5 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 128ED37A148BAE7B00C58E83 /* README.txt */; };
+		126351141497C24000D79ED5 /* README in Resources */ = {isa = PBXBuildFile; fileRef = 128ED3EF148BC94B00C58E83 /* README */; };
+		126351151497C24000D79ED5 /* AdWhirlWebBrowser.xib in Resources */ = {isa = PBXBuildFile; fileRef = 128ED42D148BC94B00C58E83 /* AdWhirlWebBrowser.xib */; };
+		126351161497C24000D79ED5 /* Changelog.txt in Resources */ = {isa = PBXBuildFile; fileRef = 128ED475148BC94B00C58E83 /* Changelog.txt */; };
+		126351171497C24000D79ED5 /* README in Resources */ = {isa = PBXBuildFile; fileRef = 128ED481148BC94C00C58E83 /* README */; };
+		126351181497C24000D79ED5 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 12211ECA1494811D00641703 /* Default.png */; };
+		126351191497C24000D79ED5 /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 12211ECC149481B600641703 /* Default-Landscape~ipad.png */; };
+		1263511A1497C24000D79ED5 /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 12211ECE149481C300641703 /* Default-Portrait~ipad.png */; };
+		1263511B1497C24000D79ED5 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 12211ED01494823E00641703 /* Default@2x.png */; };
+		1263511C1497C24000D79ED5 /* Default-Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 12211ED21494916D00641703 /* Default-Landscape.png */; };
+		1263511D1497C24000D79ED5 /* Default-Portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = 12211ED31494916D00641703 /* Default-Portrait.png */; };
+		1263511F1497C24000D79ED5 /* Encoding.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEE232B1128A01F400C34032 /* Encoding.cpp */; };
+		126351201497C24000D79ED5 /* hgecolor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEE232B4128A01F400C34032 /* hgecolor.cpp */; };
+		126351211497C24000D79ED5 /* hgedistort.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEE232B5128A01F400C34032 /* hgedistort.cpp */; };
+		126351221497C24000D79ED5 /* hgefont.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEE232B6128A01F400C34032 /* hgefont.cpp */; };
+		126351231497C24000D79ED5 /* hgeparticle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEE232B7128A01F400C34032 /* hgeparticle.cpp */; };
+		126351241497C24000D79ED5 /* hgepmanager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEE232B8128A01F400C34032 /* hgepmanager.cpp */; };
+		126351251497C24000D79ED5 /* hgerect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEE232B9128A01F400C34032 /* hgerect.cpp */; };
+		126351261497C24000D79ED5 /* hgevector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEE232BA128A01F400C34032 /* hgevector.cpp */; };
+		126351271497C24000D79ED5 /* JAnimator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEE232BB128A01F400C34032 /* JAnimator.cpp */; };
+		126351281497C24000D79ED5 /* JApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEE232BC128A01F400C34032 /* JApp.cpp */; };
+		126351291497C24000D79ED5 /* JDistortionMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEE232BF128A01F400C34032 /* JDistortionMesh.cpp */; };
+		1263512A1497C24000D79ED5 /* JFileSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEE232C0128A01F400C34032 /* JFileSystem.cpp */; };
+		1263512B1497C24000D79ED5 /* JGameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEE232C1128A01F400C34032 /* JGameObject.cpp */; };
+		1263512C1497C24000D79ED5 /* JGE.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEE232C3128A01F400C34032 /* JGE.cpp */; };
+		1263512D1497C24000D79ED5 /* JGui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEE232C5128A01F400C34032 /* JGui.cpp */; };
+		1263512E1497C24000D79ED5 /* JLBFont.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEE232C6128A01F400C34032 /* JLBFont.cpp */; };
+		1263512F1497C24000D79ED5 /* JLogger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEE232C7128A01F400C34032 /* JLogger.cpp */; };
+		126351301497C24000D79ED5 /* JMD2Model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEE232C8128A01F400C34032 /* JMD2Model.cpp */; };
+		126351311497C24000D79ED5 /* JOBJModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEE232CB128A01F400C34032 /* JOBJModel.cpp */; };
+		126351321497C24000D79ED5 /* JParticle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEE232CC128A01F400C34032 /* JParticle.cpp */; };
+		126351331497C24000D79ED5 /* JParticleEffect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEE232CD128A01F400C34032 /* JParticleEffect.cpp */; };
+		126351341497C24000D79ED5 /* JParticleEmitter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEE232CE128A01F400C34032 /* JParticleEmitter.cpp */; };
+		126351351497C24000D79ED5 /* JParticleSystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEE232CF128A01F400C34032 /* JParticleSystem.cpp */; };
+		126351361497C24000D79ED5 /* JResourceManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEE232D0128A01F400C34032 /* JResourceManager.cpp */; };
+		126351371497C24000D79ED5 /* JSpline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEE232D3128A01F400C34032 /* JSpline.cpp */; };
+		126351381497C24000D79ED5 /* JSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEE232D4128A01F400C34032 /* JSprite.cpp */; };
+		126351391497C24000D79ED5 /* JGfx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEE232D8128A01F400C34032 /* JGfx.cpp */; };
+		1263513A1497C24000D79ED5 /* JSfx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEE232D9128A01F400C34032 /* JSfx.cpp */; };
+		1263513B1497C24000D79ED5 /* tinystr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEE232DE128A01F400C34032 /* tinystr.cpp */; };
+		1263513C1497C24000D79ED5 /* tinyxml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEE232E0128A01F400C34032 /* tinyxml.cpp */; };
+		1263513D1497C24000D79ED5 /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEE232E2128A01F400C34032 /* tinyxmlerror.cpp */; };
+		1263513E1497C24000D79ED5 /* tinyxmlparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEE232E3128A01F400C34032 /* tinyxmlparser.cpp */; };
+		1263513F1497C24000D79ED5 /* Vector2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEE232F4128A01F400C34032 /* Vector2D.cpp */; };
+		126351401497C24000D79ED5 /* vram.c in Sources */ = {isa = PBXBuildFile; fileRef = CEE232F5128A01F400C34032 /* vram.c */; };
+		126351411497C24000D79ED5 /* ActionElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA376EE1291C60500B9016A /* ActionElement.cpp */; };
+		126351421497C24000D79ED5 /* ActionLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA376EF1291C60500B9016A /* ActionLayer.cpp */; };
+		126351431497C24000D79ED5 /* ActionStack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA376F01291C60500B9016A /* ActionStack.cpp */; };
+		126351441497C24000D79ED5 /* AIMomirPlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA376F11291C60500B9016A /* AIMomirPlayer.cpp */; };
+		126351451497C24000D79ED5 /* AIPlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA376F21291C60500B9016A /* AIPlayer.cpp */; };
+		126351461497C24000D79ED5 /* AIStats.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA376F31291C60500B9016A /* AIStats.cpp */; };
+		126351471497C24000D79ED5 /* AllAbilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA376F41291C60500B9016A /* AllAbilities.cpp */; };
+		126351481497C24000D79ED5 /* CardDescriptor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA376F51291C60500B9016A /* CardDescriptor.cpp */; };
+		126351491497C24000D79ED5 /* CardDisplay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA376F61291C60500B9016A /* CardDisplay.cpp */; };
+		1263514A1497C24000D79ED5 /* CardEffect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA376F71291C60500B9016A /* CardEffect.cpp */; };
+		1263514B1497C24000D79ED5 /* CardGui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA376F81291C60500B9016A /* CardGui.cpp */; };
+		1263514C1497C24000D79ED5 /* CardPrimitive.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA376F91291C60500B9016A /* CardPrimitive.cpp */; };
+		1263514D1497C24000D79ED5 /* CardSelector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA376FA1291C60500B9016A /* CardSelector.cpp */; };
+		1263514E1497C24000D79ED5 /* CardSelectorSingleton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA376FB1291C60500B9016A /* CardSelectorSingleton.cpp */; };
+		1263514F1497C24000D79ED5 /* Closest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA376FC1291C60500B9016A /* Closest.cpp */; };
+		126351501497C24000D79ED5 /* Counters.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA376FD1291C60500B9016A /* Counters.cpp */; };
+		126351511497C24000D79ED5 /* Credits.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA376FE1291C60500B9016A /* Credits.cpp */; };
+		126351521497C24000D79ED5 /* Damage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA376FF1291C60500B9016A /* Damage.cpp */; };
+		126351531497C24000D79ED5 /* DamagerDamaged.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA377001291C60500B9016A /* DamagerDamaged.cpp */; };
+		126351541497C24000D79ED5 /* DeckDataWrapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA377011291C60500B9016A /* DeckDataWrapper.cpp */; };
+		126351551497C24000D79ED5 /* DeckEditorMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA377021291C60500B9016A /* DeckEditorMenu.cpp */; };
+		126351561497C24000D79ED5 /* DeckManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA377031291C60500B9016A /* DeckManager.cpp */; };
+		126351571497C24000D79ED5 /* DeckMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA377041291C60500B9016A /* DeckMenu.cpp */; };
+		126351581497C24000D79ED5 /* DeckMenuItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA377051291C60500B9016A /* DeckMenuItem.cpp */; };
+		126351591497C24000D79ED5 /* DeckMetaData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA377061291C60500B9016A /* DeckMetaData.cpp */; };
+		1263515A1497C24000D79ED5 /* DeckStats.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA377071291C60500B9016A /* DeckStats.cpp */; };
+		1263515B1497C24000D79ED5 /* DuelLayers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA377081291C60500B9016A /* DuelLayers.cpp */; };
+		1263515C1497C24000D79ED5 /* Effects.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA377091291C60500B9016A /* Effects.cpp */; };
+		1263515D1497C24000D79ED5 /* ExtraCost.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA3770A1291C60500B9016A /* ExtraCost.cpp */; };
+		1263515E1497C24000D79ED5 /* GameApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA3770B1291C60500B9016A /* GameApp.cpp */; };
+		1263515F1497C24000D79ED5 /* GameLauncher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA3770C1291C60500B9016A /* GameLauncher.cpp */; };
+		126351601497C24000D79ED5 /* GameObserver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA3770D1291C60500B9016A /* GameObserver.cpp */; };
+		126351611497C24000D79ED5 /* GameOptions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA3770E1291C60500B9016A /* GameOptions.cpp */; };
+		126351621497C24000D79ED5 /* GameState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA3770F1291C60500B9016A /* GameState.cpp */; };
+		126351631497C24000D79ED5 /* GameStateAwards.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA377101291C60500B9016A /* GameStateAwards.cpp */; };
+		126351641497C24000D79ED5 /* GameStateDeckViewer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA377111291C60500B9016A /* GameStateDeckViewer.cpp */; };
+		126351651497C24000D79ED5 /* GameStateDuel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA377121291C60500B9016A /* GameStateDuel.cpp */; };
+		126351661497C24000D79ED5 /* GameStateMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA377131291C60500B9016A /* GameStateMenu.cpp */; };
+		126351671497C24000D79ED5 /* GameStateOptions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA377141291C60500B9016A /* GameStateOptions.cpp */; };
+		126351681497C24000D79ED5 /* GameStateShop.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA377151291C60500B9016A /* GameStateShop.cpp */; };
+		126351691497C24000D79ED5 /* GameStateStory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA377161291C60500B9016A /* GameStateStory.cpp */; };
+		1263516A1497C24000D79ED5 /* GameStateTransitions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA377171291C60500B9016A /* GameStateTransitions.cpp */; };
+		1263516B1497C24000D79ED5 /* GuiAvatars.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA377181291C60500B9016A /* GuiAvatars.cpp */; };
+		1263516C1497C24000D79ED5 /* GuiBackground.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA377191291C60500B9016A /* GuiBackground.cpp */; };
+		1263516D1497C24000D79ED5 /* GuiCardsController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA3771A1291C60500B9016A /* GuiCardsController.cpp */; };
+		1263516E1497C24000D79ED5 /* GuiCombat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA3771B1291C60500B9016A /* GuiCombat.cpp */; };
+		1263516F1497C24000D79ED5 /* GuiFrame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA3771C1291C60500B9016A /* GuiFrame.cpp */; };
+		126351701497C24000D79ED5 /* GuiHand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA3771D1291C60500B9016A /* GuiHand.cpp */; };
+		126351711497C24000D79ED5 /* GuiLayers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA3771E1291C60500B9016A /* GuiLayers.cpp */; };
+		126351721497C24000D79ED5 /* GuiMana.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA3771F1291C60500B9016A /* GuiMana.cpp */; };
+		126351731497C24000D79ED5 /* GuiPhaseBar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA377211291C60500B9016A /* GuiPhaseBar.cpp */; };
+		126351741497C24000D79ED5 /* GuiPlay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA377221291C60500B9016A /* GuiPlay.cpp */; };
+		126351751497C24000D79ED5 /* GuiStatic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA377231291C60500B9016A /* GuiStatic.cpp */; };
+		126351761497C24000D79ED5 /* ManaCost.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA377241291C60500B9016A /* ManaCost.cpp */; };
+		126351771497C24000D79ED5 /* ManaCostHybrid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA377251291C60500B9016A /* ManaCostHybrid.cpp */; };
+		126351781497C24000D79ED5 /* MenuItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA377261291C60500B9016A /* MenuItem.cpp */; };
+		126351791497C24000D79ED5 /* MTGAbility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA377271291C60500B9016A /* MTGAbility.cpp */; };
+		1263517A1497C24000D79ED5 /* MTGCard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA377291291C60500B9016A /* MTGCard.cpp */; };
+		1263517B1497C24000D79ED5 /* MTGCardInstance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA3772A1291C60500B9016A /* MTGCardInstance.cpp */; };
+		1263517C1497C24000D79ED5 /* MTGDeck.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA3772B1291C60500B9016A /* MTGDeck.cpp */; };
+		1263517D1497C24000D79ED5 /* MTGDefinitions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA3772C1291C60500B9016A /* MTGDefinitions.cpp */; };
+		1263517E1497C24000D79ED5 /* MTGGamePhase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA3772D1291C60500B9016A /* MTGGamePhase.cpp */; };
+		1263517F1497C24000D79ED5 /* MTGGameZones.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA3772E1291C60500B9016A /* MTGGameZones.cpp */; };
+		126351801497C24000D79ED5 /* MTGPack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA3772F1291C60500B9016A /* MTGPack.cpp */; };
+		126351811497C24000D79ED5 /* MTGRules.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA377301291C60500B9016A /* MTGRules.cpp */; };
+		126351821497C24000D79ED5 /* Navigator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA377321291C60500B9016A /* Navigator.cpp */; };
+		126351831497C24000D79ED5 /* OptionItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA377331291C60500B9016A /* OptionItem.cpp */; };
+		126351841497C24000D79ED5 /* PhaseRing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA377341291C60500B9016A /* PhaseRing.cpp */; };
+		126351851497C24000D79ED5 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA377351291C60500B9016A /* Player.cpp */; };
+		126351861497C24000D79ED5 /* PlayerData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA377361291C60500B9016A /* PlayerData.cpp */; };
+		126351871497C24000D79ED5 /* PlayGuiObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA377371291C60500B9016A /* PlayGuiObject.cpp */; };
+		126351881497C24000D79ED5 /* PlayGuiObjectController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA377381291C60500B9016A /* PlayGuiObjectController.cpp */; };
+		126351891497C24000D79ED5 /* Pos.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA377391291C60500B9016A /* Pos.cpp */; };
+		1263518A1497C24000D79ED5 /* PrecompiledHeader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA3773A1291C60500B9016A /* PrecompiledHeader.cpp */; };
+		1263518B1497C24000D79ED5 /* PriceList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA3773B1291C60500B9016A /* PriceList.cpp */; };
+		1263518C1497C24000D79ED5 /* ReplacementEffects.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA3773C1291C60500B9016A /* ReplacementEffects.cpp */; };
+		1263518D1497C24000D79ED5 /* Rules.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA3773D1291C60500B9016A /* Rules.cpp */; };
+		1263518E1497C24000D79ED5 /* SimpleMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA3773F1291C60500B9016A /* SimpleMenu.cpp */; };
+		1263518F1497C24000D79ED5 /* SimpleMenuItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA377401291C60500B9016A /* SimpleMenuItem.cpp */; };
+		126351901497C24000D79ED5 /* SimplePad.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA377411291C60500B9016A /* SimplePad.cpp */; };
+		126351911497C24000D79ED5 /* StoryFlow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA377421291C60500B9016A /* StoryFlow.cpp */; };
+		126351921497C24000D79ED5 /* StyleManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA377431291C60500B9016A /* StyleManager.cpp */; };
+		126351931497C24000D79ED5 /* Subtypes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA377441291C60500B9016A /* Subtypes.cpp */; };
+		126351941497C24000D79ED5 /* TargetChooser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA377451291C60500B9016A /* TargetChooser.cpp */; };
+		126351951497C24000D79ED5 /* TargetsList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA377461291C60500B9016A /* TargetsList.cpp */; };
+		126351961497C24000D79ED5 /* Tasks.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA377471291C60500B9016A /* Tasks.cpp */; };
+		126351971497C24000D79ED5 /* TextScroller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA3774A1291C60500B9016A /* TextScroller.cpp */; };
+		126351981497C24000D79ED5 /* ThisDescriptor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA3774B1291C60500B9016A /* ThisDescriptor.cpp */; };
+		126351991497C24000D79ED5 /* Token.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA3774C1291C60500B9016A /* Token.cpp */; };
+		1263519A1497C24000D79ED5 /* Translate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA3774D1291C60500B9016A /* Translate.cpp */; };
+		1263519B1497C24000D79ED5 /* TranslateKeys.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA3774E1291C60500B9016A /* TranslateKeys.cpp */; };
+		1263519C1497C24000D79ED5 /* Trash.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA3774F1291C60500B9016A /* Trash.cpp */; };
+		1263519D1497C24000D79ED5 /* utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA377501291C60500B9016A /* utils.cpp */; };
+		1263519E1497C24000D79ED5 /* WCachedResource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA377511291C60500B9016A /* WCachedResource.cpp */; };
+		1263519F1497C24000D79ED5 /* WDataSrc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA377521291C60500B9016A /* WDataSrc.cpp */; };
+		126351A01497C24000D79ED5 /* WEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA377531291C60500B9016A /* WEvent.cpp */; };
+		126351A11497C24000D79ED5 /* WFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA377541291C60500B9016A /* WFilter.cpp */; };
+		126351A21497C24000D79ED5 /* WFont.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA377551291C60500B9016A /* WFont.cpp */; };
+		126351A31497C24000D79ED5 /* WGui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA377561291C60500B9016A /* WGui.cpp */; };
+		126351A41497C24000D79ED5 /* WResourceManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA377571291C60500B9016A /* WResourceManager.cpp */; };
+		126351A51497C24000D79ED5 /* SimplePopup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE97CD1D1295AB4300FDFD3B /* SimplePopup.cpp */; };
+		126351A61497C24000D79ED5 /* EAGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9A477612B514BA00C9F38A /* EAGLView.m */; };
+		126351A71497C24000D79ED5 /* EAGLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9A477812B514BA00C9F38A /* EAGLViewController.m */; };
+		126351A81497C24000D79ED5 /* ES2Renderer.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9A477D12B514BA00C9F38A /* ES2Renderer.m */; };
+		126351A91497C24000D79ED5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9A477F12B514BA00C9F38A /* main.m */; };
+		126351AA1497C24000D79ED5 /* wagicAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9A478412B514BA00C9F38A /* wagicAppDelegate.m */; };
+		126351AB1497C24000D79ED5 /* thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE9E71DC1375A58600759DDC /* thread.cpp */; };
+		126351AC1497C24000D79ED5 /* once.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE9E71DE1375A5A000759DDC /* once.cpp */; };
+		126351AD1497C24000D79ED5 /* AIHints.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE9E71E21375A5CC00759DDC /* AIHints.cpp */; };
+		126351AE1497C24000D79ED5 /* PlayRestrictions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE9E71E61375A5FF00759DDC /* PlayRestrictions.cpp */; };
+		126351AF1497C24000D79ED5 /* ModRules.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE9E71EA1375A62300759DDC /* ModRules.cpp */; };
+		126351B01497C24000D79ED5 /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = 12B812231404B9E10092E303 /* Makefile */; };
+		126351B11497C24000D79ED5 /* stdafx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12B812251404B9E10092E303 /* stdafx.cpp */; };
+		126351B21497C24000D79ED5 /* zfsystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12B8122D1404B9E10092E303 /* zfsystem.cpp */; };
+		126351B31497C24000D79ED5 /* ziphdr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12B8122F1404B9E10092E303 /* ziphdr.cpp */; };
+		126351B41497C24000D79ED5 /* zstream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12B812311404B9E10092E303 /* zstream.cpp */; };
+		126351B51497C24000D79ED5 /* IconButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12B8124A1404BD0D0092E303 /* IconButton.cpp */; };
+		126351B61497C24000D79ED5 /* ObjectAnalytics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12B8124C1404BD0D0092E303 /* ObjectAnalytics.cpp */; };
+		126351B71497C24000D79ED5 /* AIPlayerBaka.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12769483144127380088F6D3 /* AIPlayerBaka.cpp */; };
+		126351B81497C24000D79ED5 /* AIPlayerBakaB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12769484144127380088F6D3 /* AIPlayerBakaB.cpp */; };
+		126351B91497C24000D79ED5 /* TestSuiteAI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12769485144127380088F6D3 /* TestSuiteAI.cpp */; };
+		126351BA1497C24000D79ED5 /* AbilityParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12CCA02F144A05D100E343A0 /* AbilityParser.cpp */; };
+		126351BB1497C24000D79ED5 /* AdWhirlAdapterGoogleAdMobAds.m in Sources */ = {isa = PBXBuildFile; fileRef = 128ED3F5148BC94B00C58E83 /* AdWhirlAdapterGoogleAdMobAds.m */; };
+		126351BC1497C24000D79ED5 /* AdWhirlAdapterIAd.m in Sources */ = {isa = PBXBuildFile; fileRef = 128ED3FB148BC94B00C58E83 /* AdWhirlAdapterIAd.m */; };
+		126351BD1497C24000D79ED5 /* AdWhirlAdapterCustom.m in Sources */ = {isa = PBXBuildFile; fileRef = 128ED413148BC94B00C58E83 /* AdWhirlAdapterCustom.m */; };
+		126351BE1497C24000D79ED5 /* AdWhirlAdapterEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 128ED415148BC94B00C58E83 /* AdWhirlAdapterEvent.m */; };
+		126351BF1497C24000D79ED5 /* AdWhirlAdapterGeneric.m in Sources */ = {isa = PBXBuildFile; fileRef = 128ED417148BC94B00C58E83 /* AdWhirlAdapterGeneric.m */; };
+		126351C01497C24000D79ED5 /* AdWhirlAdNetworkAdapter+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 128ED419148BC94B00C58E83 /* AdWhirlAdNetworkAdapter+Helpers.m */; };
+		126351C11497C24000D79ED5 /* AdWhirlAdNetworkAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 128ED41A148BC94B00C58E83 /* AdWhirlAdNetworkAdapter.m */; };
+		126351C21497C24000D79ED5 /* AdWhirlAdNetworkConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 128ED41C148BC94B00C58E83 /* AdWhirlAdNetworkConfig.m */; };
+		126351C31497C24000D79ED5 /* AdWhirlAdNetworkRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 128ED41E148BC94B00C58E83 /* AdWhirlAdNetworkRegistry.m */; };
+		126351C41497C24000D79ED5 /* AdWhirlClassWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 128ED420148BC94B00C58E83 /* AdWhirlClassWrapper.m */; };
+		126351C51497C24000D79ED5 /* AdWhirlConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 128ED422148BC94B00C58E83 /* AdWhirlConfig.m */; };
+		126351C61497C24000D79ED5 /* AdWhirlConfigStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 128ED424148BC94B00C58E83 /* AdWhirlConfigStore.m */; };
+		126351C71497C24000D79ED5 /* AdWhirlCustomAdView.m in Sources */ = {isa = PBXBuildFile; fileRef = 128ED426148BC94B00C58E83 /* AdWhirlCustomAdView.m */; };
+		126351C81497C24000D79ED5 /* AdWhirlError.m in Sources */ = {isa = PBXBuildFile; fileRef = 128ED428148BC94B00C58E83 /* AdWhirlError.m */; };
+		126351C91497C24000D79ED5 /* AdWhirlLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 128ED42A148BC94B00C58E83 /* AdWhirlLog.m */; };
+		126351CA1497C24000D79ED5 /* AdWhirlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 128ED42C148BC94B00C58E83 /* AdWhirlView.m */; };
+		126351CB1497C24000D79ED5 /* AdWhirlWebBrowserController.m in Sources */ = {isa = PBXBuildFile; fileRef = 128ED42F148BC94B00C58E83 /* AdWhirlWebBrowserController.m */; };
+		126351CC1497C24000D79ED5 /* ARRollerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 128ED430148BC94B00C58E83 /* ARRollerView.m */; };
+		126351CD1497C24000D79ED5 /* AWNetworkReachabilityWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 128ED433148BC94B00C58E83 /* AWNetworkReachabilityWrapper.m */; };
+		126351CE1497C24000D79ED5 /* UIColor+AdWhirlConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 128ED435148BC94B00C58E83 /* UIColor+AdWhirlConfig.m */; };
+		126351CF1497C24000D79ED5 /* CDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 128ED484148BC94C00C58E83 /* CDataScanner.m */; };
+		126351D01497C24000D79ED5 /* CDataScanner_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 128ED487148BC94C00C58E83 /* CDataScanner_Extensions.m */; };
+		126351D11497C24000D79ED5 /* NSCharacterSet_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 128ED489148BC94C00C58E83 /* NSCharacterSet_Extensions.m */; };
+		126351D21497C24000D79ED5 /* NSDictionary_JSONExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 128ED48B148BC94C00C58E83 /* NSDictionary_JSONExtensions.m */; };
+		126351D31497C24000D79ED5 /* NSScanner_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 128ED48D148BC94C00C58E83 /* NSScanner_Extensions.m */; };
+		126351D41497C24000D79ED5 /* CJSONDataSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 128ED490148BC94C00C58E83 /* CJSONDataSerializer.m */; };
+		126351D51497C24000D79ED5 /* CJSONDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 128ED492148BC94C00C58E83 /* CJSONDeserializer.m */; };
+		126351D61497C24000D79ED5 /* CJSONScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 128ED494148BC94C00C58E83 /* CJSONScanner.m */; };
+		126351D71497C24000D79ED5 /* CJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 128ED496148BC94C00C58E83 /* CJSONSerializer.m */; };
+		126351D81497C24000D79ED5 /* CSerializedJSONData.m in Sources */ = {isa = PBXBuildFile; fileRef = 128ED498148BC94C00C58E83 /* CSerializedJSONData.m */; };
+		126351D91497C24000D79ED5 /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 12211E2814931CBB00641703 /* ASIAuthenticationDialog.m */; };
+		126351DA1497C24000D79ED5 /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 12211E2B14931CBB00641703 /* ASIDataCompressor.m */; };
+		126351DB1497C24000D79ED5 /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 12211E2D14931CBB00641703 /* ASIDataDecompressor.m */; };
+		126351DC1497C24000D79ED5 /* ASIDownloadCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 12211E2F14931CBB00641703 /* ASIDownloadCache.m */; };
+		126351DD1497C24000D79ED5 /* ASIFormDataRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 12211E3114931CBB00641703 /* ASIFormDataRequest.m */; };
+		126351DE1497C24000D79ED5 /* ASIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 12211E3314931CBB00641703 /* ASIHTTPRequest.m */; };
+		126351DF1497C24000D79ED5 /* ASIInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 12211E3714931CBB00641703 /* ASIInputStream.m */; };
+		126351E01497C24000D79ED5 /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 12211E3914931CBB00641703 /* ASINetworkQueue.m */; };
+		126351E11497C24000D79ED5 /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 12211EA214933D4A00641703 /* ioapi.c */; };
+		126351E21497C24000D79ED5 /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = 12211EA414933D4A00641703 /* mztools.c */; };
+		126351E31497C24000D79ED5 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 12211EA614933D4A00641703 /* unzip.c */; };
+		126351E41497C24000D79ED5 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = 12211EA814933D4A00641703 /* zip.c */; };
+		126351E51497C24000D79ED5 /* ZipArchive.mm in Sources */ = {isa = PBXBuildFile; fileRef = 12211EAE14933D6600641703 /* ZipArchive.mm */; };
+		126351E61497C24000D79ED5 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 12211EB61493483C00641703 /* Reachability.m */; };
+		126351E71497C24000D79ED5 /* WagicDownloadProgressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 12211EC81494360C00641703 /* WagicDownloadProgressViewController.m */; };
+		126351E91497C24000D79ED5 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 12D095E014417D0500F69056 /* libstdc++.dylib */; settings = {ATTRIBUTES = (Weak, ); }; };
+		126351EA1497C24000D79ED5 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12211EBA14934A2C00641703 /* CFNetwork.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		126351EB1497C24000D79ED5 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12211EB814934A1800641703 /* MobileCoreServices.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		126351EC1497C24000D79ED5 /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 128ED379148BAE7B00C58E83 /* libGoogleAdMobAds.a */; settings = {ATTRIBUTES = (Weak, ); }; };
+		126351ED1497C24000D79ED5 /* libc++abi.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1216D632148F7411000F2295 /* libc++abi.dylib */; settings = {ATTRIBUTES = (Weak, ); }; };
+		126351EE1497C24000D79ED5 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 128ED50F148BCC1900C58E83 /* libsqlite3.dylib */; settings = {ATTRIBUTES = (Weak, ); }; };
+		126351EF1497C24000D79ED5 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 129654D0148A52730031100B /* iAd.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		126351F01497C24000D79ED5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		126351F11497C24000D79ED5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		126351F21497C24000D79ED5 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FD14FF0DC6FC520079059D /* OpenGLES.framework */; };
+		126351F31497C24000D79ED5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FD15070DC6FC5B0079059D /* QuartzCore.framework */; };
+		126351F41497C24000D79ED5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CED2152B128DFAFF0050149E /* CoreGraphics.framework */; };
+		126351F51497C24000D79ED5 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F2494ADB12A1BD4100D6284A /* libz.dylib */; settings = {ATTRIBUTES = (Weak, ); }; };
+		126351F61497C24000D79ED5 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 128ED37D148BAEC900C58E83 /* AudioToolbox.framework */; };
+		126351F71497C24000D79ED5 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 128ED37E148BAEC900C58E83 /* MessageUI.framework */; };
+		126351F81497C24000D79ED5 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 128ED37F148BAEC900C58E83 /* SystemConfiguration.framework */; };
+		126351F91497C24000D79ED5 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 128ED507148BCB7D00C58E83 /* CoreLocation.framework */; };
+		126351FA1497C24000D79ED5 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 128ED509148BCBBC00C58E83 /* AddressBook.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		126351FB1497C24000D79ED5 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 128ED50A148BCBBC00C58E83 /* AVFoundation.framework */; };
+		126351FC1497C24000D79ED5 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 128ED50B148BCBBC00C58E83 /* MapKit.framework */; };
+		126351FD1497C24000D79ED5 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 128ED518148BF0E000C58E83 /* MediaPlayer.framework */; };
 		12769486144127380088F6D3 /* AIPlayerBaka.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12769483144127380088F6D3 /* AIPlayerBaka.cpp */; };
 		12769487144127380088F6D3 /* AIPlayerBakaB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12769484144127380088F6D3 /* AIPlayerBakaB.cpp */; };
 		12769488144127380088F6D3 /* TestSuiteAI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12769485144127380088F6D3 /* TestSuiteAI.cpp */; };
@@ -75,10 +319,10 @@
 		128ED4F9148BC94D00C58E83 /* CJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 128ED496148BC94C00C58E83 /* CJSONSerializer.m */; };
 		128ED4FA148BC94D00C58E83 /* CSerializedJSONData.m in Sources */ = {isa = PBXBuildFile; fileRef = 128ED498148BC94C00C58E83 /* CSerializedJSONData.m */; };
 		128ED508148BCB7D00C58E83 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 128ED507148BCB7D00C58E83 /* CoreLocation.framework */; };
-		128ED50C148BCBBC00C58E83 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 128ED509148BCBBC00C58E83 /* AddressBook.framework */; };
+		128ED50C148BCBBC00C58E83 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 128ED509148BCBBC00C58E83 /* AddressBook.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		128ED50D148BCBBC00C58E83 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 128ED50A148BCBBC00C58E83 /* AVFoundation.framework */; };
 		128ED50E148BCBBC00C58E83 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 128ED50B148BCBBC00C58E83 /* MapKit.framework */; };
-		128ED510148BCC1900C58E83 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 128ED50F148BCC1900C58E83 /* libsqlite3.dylib */; };
+		128ED510148BCC1900C58E83 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 128ED50F148BCC1900C58E83 /* libsqlite3.dylib */; settings = {ATTRIBUTES = (Weak, ); }; };
 		128ED519148BF0E000C58E83 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 128ED518148BF0E000C58E83 /* MediaPlayer.framework */; };
 		129654D1148A52740031100B /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 129654D0148A52730031100B /* iAd.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		129654D6148AA23A0031100B /* modrules.xml in Resources */ = {isa = PBXBuildFile; fileRef = 129654D5148AA2390031100B /* modrules.xml */; };
@@ -96,7 +340,7 @@
 		12B8124D1404BD0D0092E303 /* IconButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12B8124A1404BD0D0092E303 /* IconButton.cpp */; };
 		12B8124F1404BD0D0092E303 /* ObjectAnalytics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12B8124C1404BD0D0092E303 /* ObjectAnalytics.cpp */; };
 		12CCA030144A05D100E343A0 /* AbilityParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12CCA02F144A05D100E343A0 /* AbilityParser.cpp */; };
-		12D095E114417D0500F69056 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 12D095E014417D0500F69056 /* libstdc++.dylib */; settings = {ATTRIBUTES = (Required, ); }; };
+		12D095E114417D0500F69056 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 12D095E014417D0500F69056 /* libstdc++.dylib */; settings = {ATTRIBUTES = (Weak, ); }; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		28FD15000DC6FC520079059D /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FD14FF0DC6FC520079059D /* OpenGLES.framework */; };
@@ -249,11 +493,22 @@
 		CEE23330128A01F400C34032 /* Vector2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEE232F4128A01F400C34032 /* Vector2D.cpp */; };
 		CEE23331128A01F400C34032 /* vram.c in Sources */ = {isa = PBXBuildFile; fileRef = CEE232F5128A01F400C34032 /* vram.c */; };
 		F233DC3812A111EB008594F2 /* wagic-64x64.png in Resources */ = {isa = PBXBuildFile; fileRef = F233DC3712A111EB008594F2 /* wagic-64x64.png */; };
-		F2494ADC12A1BD4100D6284A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F2494ADB12A1BD4100D6284A /* libz.dylib */; };
+		F2494ADC12A1BD4100D6284A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F2494ADB12A1BD4100D6284A /* libz.dylib */; settings = {ATTRIBUTES = (Weak, ); }; };
 		F2CDD5E312A6F7A2007B35AF /* EAGLViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2CDD5E212A6F7A2007B35AF /* EAGLViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
+		126351FE1497C24000D79ED5 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			filePatterns = modrules.xml;
+			fileType = pattern.proxy;
+			isEditable = 1;
+			outputFiles = (
+				"",
+			);
+			script = "cp -rp iOS/Res bin/Res";
+		};
 		129654D7148AA2690031100B /* PBXBuildRule */ = {
 			isa = PBXBuildRule;
 			compilerSpec = com.apple.compilers.proxy.script;
@@ -312,6 +567,7 @@
 		12211ED01494823E00641703 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
 		12211ED21494916D00641703 /* Default-Landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape.png"; path = "../Default-Landscape.png"; sourceTree = "<group>"; };
 		12211ED31494916D00641703 /* Default-Portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait.png"; path = "../Default-Portrait.png"; sourceTree = "<group>"; };
+		126352021497C24000D79ED5 /* wagic-opengl1.1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "wagic-opengl1.1.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		12769483144127380088F6D3 /* AIPlayerBaka.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AIPlayerBaka.cpp; sourceTree = "<group>"; };
 		12769484144127380088F6D3 /* AIPlayerBakaB.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AIPlayerBakaB.cpp; sourceTree = "<group>"; };
 		12769485144127380088F6D3 /* TestSuiteAI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestSuiteAI.cpp; sourceTree = "<group>"; };
@@ -748,17 +1004,45 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		126351E81497C24000D79ED5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				126351E91497C24000D79ED5 /* libstdc++.dylib in Frameworks */,
+				126351EA1497C24000D79ED5 /* CFNetwork.framework in Frameworks */,
+				126351EB1497C24000D79ED5 /* MobileCoreServices.framework in Frameworks */,
+				126351EC1497C24000D79ED5 /* libGoogleAdMobAds.a in Frameworks */,
+				126351ED1497C24000D79ED5 /* libc++abi.dylib in Frameworks */,
+				126351EE1497C24000D79ED5 /* libsqlite3.dylib in Frameworks */,
+				126351EF1497C24000D79ED5 /* iAd.framework in Frameworks */,
+				126351F01497C24000D79ED5 /* Foundation.framework in Frameworks */,
+				126351F11497C24000D79ED5 /* UIKit.framework in Frameworks */,
+				126351F21497C24000D79ED5 /* OpenGLES.framework in Frameworks */,
+				126351F31497C24000D79ED5 /* QuartzCore.framework in Frameworks */,
+				126351F41497C24000D79ED5 /* CoreGraphics.framework in Frameworks */,
+				126351F51497C24000D79ED5 /* libz.dylib in Frameworks */,
+				126351F61497C24000D79ED5 /* AudioToolbox.framework in Frameworks */,
+				126351F71497C24000D79ED5 /* MessageUI.framework in Frameworks */,
+				126351F81497C24000D79ED5 /* SystemConfiguration.framework in Frameworks */,
+				126351F91497C24000D79ED5 /* CoreLocation.framework in Frameworks */,
+				126351FA1497C24000D79ED5 /* AddressBook.framework in Frameworks */,
+				126351FB1497C24000D79ED5 /* AVFoundation.framework in Frameworks */,
+				126351FC1497C24000D79ED5 /* MapKit.framework in Frameworks */,
+				126351FD1497C24000D79ED5 /* MediaPlayer.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1D60588F0D05DD3D006BFB54 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12D095E114417D0500F69056 /* libstdc++.dylib in Frameworks */,
 				12211EBB14934A2C00641703 /* CFNetwork.framework in Frameworks */,
 				12211EB914934A1900641703 /* MobileCoreServices.framework in Frameworks */,
 				1216D634148F747D000F2295 /* libGoogleAdMobAds.a in Frameworks */,
 				1216D633148F7411000F2295 /* libc++abi.dylib in Frameworks */,
 				128ED510148BCC1900C58E83 /* libsqlite3.dylib in Frameworks */,
 				129654D1148A52740031100B /* iAd.framework in Frameworks */,
-				12D095E114417D0500F69056 /* libstdc++.dylib in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				28FD15000DC6FC520079059D /* OpenGLES.framework in Frameworks */,
@@ -1130,6 +1414,7 @@
 			isa = PBXGroup;
 			children = (
 				1D6058910D05DD3D006BFB54 /* wagic.app */,
+				126352021497C24000D79ED5 /* wagic-opengl1.1.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1583,6 +1868,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		126351061497C24000D79ED5 /* wagic-opengl1.1 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 126351FF1497C24000D79ED5 /* Build configuration list for PBXNativeTarget "wagic-opengl1.1" */;
+			buildPhases = (
+				126351071497C24000D79ED5 /* Resources */,
+				1263511E1497C24000D79ED5 /* Sources */,
+				126351E81497C24000D79ED5 /* Frameworks */,
+			);
+			buildRules = (
+				126351FE1497C24000D79ED5 /* PBXBuildRule */,
+			);
+			dependencies = (
+			);
+			name = "wagic-opengl1.1";
+			productName = testproject;
+			productReference = 126352021497C24000D79ED5 /* wagic-opengl1.1.app */;
+			productType = "com.apple.product-type.application";
+		};
 		1D6058900D05DD3D006BFB54 /* wagic */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "wagic" */;
@@ -1624,11 +1927,41 @@
 			projectRoot = "";
 			targets = (
 				1D6058900D05DD3D006BFB54 /* wagic */,
+				126351061497C24000D79ED5 /* wagic-opengl1.1 */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		126351071497C24000D79ED5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				126351081497C24000D79ED5 /* wagic-64x64.png in Resources */,
+				126351091497C24000D79ED5 /* EAGLViewController.xib in Resources */,
+				1263510A1497C24000D79ED5 /* MainWindow.xib in Resources */,
+				1263510B1497C24000D79ED5 /* mtg.txt in Resources */,
+				1263510C1497C24000D79ED5 /* !Pak0.cpk in Resources */,
+				1263510D1497C24000D79ED5 /* !Pak1.cpk in Resources */,
+				1263510E1497C24000D79ED5 /* zfs.sln in Resources */,
+				1263510F1497C24000D79ED5 /* zfs.vcproj in Resources */,
+				126351101497C24000D79ED5 /* zfs.vcxproj in Resources */,
+				126351111497C24000D79ED5 /* zfs.vcxproj.filters in Resources */,
+				126351121497C24000D79ED5 /* modrules.xml in Resources */,
+				126351131497C24000D79ED5 /* README.txt in Resources */,
+				126351141497C24000D79ED5 /* README in Resources */,
+				126351151497C24000D79ED5 /* AdWhirlWebBrowser.xib in Resources */,
+				126351161497C24000D79ED5 /* Changelog.txt in Resources */,
+				126351171497C24000D79ED5 /* README in Resources */,
+				126351181497C24000D79ED5 /* Default.png in Resources */,
+				126351191497C24000D79ED5 /* Default-Landscape~ipad.png in Resources */,
+				1263511A1497C24000D79ED5 /* Default-Portrait~ipad.png in Resources */,
+				1263511B1497C24000D79ED5 /* Default@2x.png in Resources */,
+				1263511C1497C24000D79ED5 /* Default-Landscape.png in Resources */,
+				1263511D1497C24000D79ED5 /* Default-Portrait.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1D60588D0D05DD3D006BFB54 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1661,6 +1994,214 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		1263511E1497C24000D79ED5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1263511F1497C24000D79ED5 /* Encoding.cpp in Sources */,
+				126351201497C24000D79ED5 /* hgecolor.cpp in Sources */,
+				126351211497C24000D79ED5 /* hgedistort.cpp in Sources */,
+				126351221497C24000D79ED5 /* hgefont.cpp in Sources */,
+				126351231497C24000D79ED5 /* hgeparticle.cpp in Sources */,
+				126351241497C24000D79ED5 /* hgepmanager.cpp in Sources */,
+				126351251497C24000D79ED5 /* hgerect.cpp in Sources */,
+				126351261497C24000D79ED5 /* hgevector.cpp in Sources */,
+				126351271497C24000D79ED5 /* JAnimator.cpp in Sources */,
+				126351281497C24000D79ED5 /* JApp.cpp in Sources */,
+				126351291497C24000D79ED5 /* JDistortionMesh.cpp in Sources */,
+				1263512A1497C24000D79ED5 /* JFileSystem.cpp in Sources */,
+				1263512B1497C24000D79ED5 /* JGameObject.cpp in Sources */,
+				1263512C1497C24000D79ED5 /* JGE.cpp in Sources */,
+				1263512D1497C24000D79ED5 /* JGui.cpp in Sources */,
+				1263512E1497C24000D79ED5 /* JLBFont.cpp in Sources */,
+				1263512F1497C24000D79ED5 /* JLogger.cpp in Sources */,
+				126351301497C24000D79ED5 /* JMD2Model.cpp in Sources */,
+				126351311497C24000D79ED5 /* JOBJModel.cpp in Sources */,
+				126351321497C24000D79ED5 /* JParticle.cpp in Sources */,
+				126351331497C24000D79ED5 /* JParticleEffect.cpp in Sources */,
+				126351341497C24000D79ED5 /* JParticleEmitter.cpp in Sources */,
+				126351351497C24000D79ED5 /* JParticleSystem.cpp in Sources */,
+				126351361497C24000D79ED5 /* JResourceManager.cpp in Sources */,
+				126351371497C24000D79ED5 /* JSpline.cpp in Sources */,
+				126351381497C24000D79ED5 /* JSprite.cpp in Sources */,
+				126351391497C24000D79ED5 /* JGfx.cpp in Sources */,
+				1263513A1497C24000D79ED5 /* JSfx.cpp in Sources */,
+				1263513B1497C24000D79ED5 /* tinystr.cpp in Sources */,
+				1263513C1497C24000D79ED5 /* tinyxml.cpp in Sources */,
+				1263513D1497C24000D79ED5 /* tinyxmlerror.cpp in Sources */,
+				1263513E1497C24000D79ED5 /* tinyxmlparser.cpp in Sources */,
+				1263513F1497C24000D79ED5 /* Vector2D.cpp in Sources */,
+				126351401497C24000D79ED5 /* vram.c in Sources */,
+				126351411497C24000D79ED5 /* ActionElement.cpp in Sources */,
+				126351421497C24000D79ED5 /* ActionLayer.cpp in Sources */,
+				126351431497C24000D79ED5 /* ActionStack.cpp in Sources */,
+				126351441497C24000D79ED5 /* AIMomirPlayer.cpp in Sources */,
+				126351451497C24000D79ED5 /* AIPlayer.cpp in Sources */,
+				126351461497C24000D79ED5 /* AIStats.cpp in Sources */,
+				126351471497C24000D79ED5 /* AllAbilities.cpp in Sources */,
+				126351481497C24000D79ED5 /* CardDescriptor.cpp in Sources */,
+				126351491497C24000D79ED5 /* CardDisplay.cpp in Sources */,
+				1263514A1497C24000D79ED5 /* CardEffect.cpp in Sources */,
+				1263514B1497C24000D79ED5 /* CardGui.cpp in Sources */,
+				1263514C1497C24000D79ED5 /* CardPrimitive.cpp in Sources */,
+				1263514D1497C24000D79ED5 /* CardSelector.cpp in Sources */,
+				1263514E1497C24000D79ED5 /* CardSelectorSingleton.cpp in Sources */,
+				1263514F1497C24000D79ED5 /* Closest.cpp in Sources */,
+				126351501497C24000D79ED5 /* Counters.cpp in Sources */,
+				126351511497C24000D79ED5 /* Credits.cpp in Sources */,
+				126351521497C24000D79ED5 /* Damage.cpp in Sources */,
+				126351531497C24000D79ED5 /* DamagerDamaged.cpp in Sources */,
+				126351541497C24000D79ED5 /* DeckDataWrapper.cpp in Sources */,
+				126351551497C24000D79ED5 /* DeckEditorMenu.cpp in Sources */,
+				126351561497C24000D79ED5 /* DeckManager.cpp in Sources */,
+				126351571497C24000D79ED5 /* DeckMenu.cpp in Sources */,
+				126351581497C24000D79ED5 /* DeckMenuItem.cpp in Sources */,
+				126351591497C24000D79ED5 /* DeckMetaData.cpp in Sources */,
+				1263515A1497C24000D79ED5 /* DeckStats.cpp in Sources */,
+				1263515B1497C24000D79ED5 /* DuelLayers.cpp in Sources */,
+				1263515C1497C24000D79ED5 /* Effects.cpp in Sources */,
+				1263515D1497C24000D79ED5 /* ExtraCost.cpp in Sources */,
+				1263515E1497C24000D79ED5 /* GameApp.cpp in Sources */,
+				1263515F1497C24000D79ED5 /* GameLauncher.cpp in Sources */,
+				126351601497C24000D79ED5 /* GameObserver.cpp in Sources */,
+				126351611497C24000D79ED5 /* GameOptions.cpp in Sources */,
+				126351621497C24000D79ED5 /* GameState.cpp in Sources */,
+				126351631497C24000D79ED5 /* GameStateAwards.cpp in Sources */,
+				126351641497C24000D79ED5 /* GameStateDeckViewer.cpp in Sources */,
+				126351651497C24000D79ED5 /* GameStateDuel.cpp in Sources */,
+				126351661497C24000D79ED5 /* GameStateMenu.cpp in Sources */,
+				126351671497C24000D79ED5 /* GameStateOptions.cpp in Sources */,
+				126351681497C24000D79ED5 /* GameStateShop.cpp in Sources */,
+				126351691497C24000D79ED5 /* GameStateStory.cpp in Sources */,
+				1263516A1497C24000D79ED5 /* GameStateTransitions.cpp in Sources */,
+				1263516B1497C24000D79ED5 /* GuiAvatars.cpp in Sources */,
+				1263516C1497C24000D79ED5 /* GuiBackground.cpp in Sources */,
+				1263516D1497C24000D79ED5 /* GuiCardsController.cpp in Sources */,
+				1263516E1497C24000D79ED5 /* GuiCombat.cpp in Sources */,
+				1263516F1497C24000D79ED5 /* GuiFrame.cpp in Sources */,
+				126351701497C24000D79ED5 /* GuiHand.cpp in Sources */,
+				126351711497C24000D79ED5 /* GuiLayers.cpp in Sources */,
+				126351721497C24000D79ED5 /* GuiMana.cpp in Sources */,
+				126351731497C24000D79ED5 /* GuiPhaseBar.cpp in Sources */,
+				126351741497C24000D79ED5 /* GuiPlay.cpp in Sources */,
+				126351751497C24000D79ED5 /* GuiStatic.cpp in Sources */,
+				126351761497C24000D79ED5 /* ManaCost.cpp in Sources */,
+				126351771497C24000D79ED5 /* ManaCostHybrid.cpp in Sources */,
+				126351781497C24000D79ED5 /* MenuItem.cpp in Sources */,
+				126351791497C24000D79ED5 /* MTGAbility.cpp in Sources */,
+				1263517A1497C24000D79ED5 /* MTGCard.cpp in Sources */,
+				1263517B1497C24000D79ED5 /* MTGCardInstance.cpp in Sources */,
+				1263517C1497C24000D79ED5 /* MTGDeck.cpp in Sources */,
+				1263517D1497C24000D79ED5 /* MTGDefinitions.cpp in Sources */,
+				1263517E1497C24000D79ED5 /* MTGGamePhase.cpp in Sources */,
+				1263517F1497C24000D79ED5 /* MTGGameZones.cpp in Sources */,
+				126351801497C24000D79ED5 /* MTGPack.cpp in Sources */,
+				126351811497C24000D79ED5 /* MTGRules.cpp in Sources */,
+				126351821497C24000D79ED5 /* Navigator.cpp in Sources */,
+				126351831497C24000D79ED5 /* OptionItem.cpp in Sources */,
+				126351841497C24000D79ED5 /* PhaseRing.cpp in Sources */,
+				126351851497C24000D79ED5 /* Player.cpp in Sources */,
+				126351861497C24000D79ED5 /* PlayerData.cpp in Sources */,
+				126351871497C24000D79ED5 /* PlayGuiObject.cpp in Sources */,
+				126351881497C24000D79ED5 /* PlayGuiObjectController.cpp in Sources */,
+				126351891497C24000D79ED5 /* Pos.cpp in Sources */,
+				1263518A1497C24000D79ED5 /* PrecompiledHeader.cpp in Sources */,
+				1263518B1497C24000D79ED5 /* PriceList.cpp in Sources */,
+				1263518C1497C24000D79ED5 /* ReplacementEffects.cpp in Sources */,
+				1263518D1497C24000D79ED5 /* Rules.cpp in Sources */,
+				1263518E1497C24000D79ED5 /* SimpleMenu.cpp in Sources */,
+				1263518F1497C24000D79ED5 /* SimpleMenuItem.cpp in Sources */,
+				126351901497C24000D79ED5 /* SimplePad.cpp in Sources */,
+				126351911497C24000D79ED5 /* StoryFlow.cpp in Sources */,
+				126351921497C24000D79ED5 /* StyleManager.cpp in Sources */,
+				126351931497C24000D79ED5 /* Subtypes.cpp in Sources */,
+				126351941497C24000D79ED5 /* TargetChooser.cpp in Sources */,
+				126351951497C24000D79ED5 /* TargetsList.cpp in Sources */,
+				126351961497C24000D79ED5 /* Tasks.cpp in Sources */,
+				126351971497C24000D79ED5 /* TextScroller.cpp in Sources */,
+				126351981497C24000D79ED5 /* ThisDescriptor.cpp in Sources */,
+				126351991497C24000D79ED5 /* Token.cpp in Sources */,
+				1263519A1497C24000D79ED5 /* Translate.cpp in Sources */,
+				1263519B1497C24000D79ED5 /* TranslateKeys.cpp in Sources */,
+				1263519C1497C24000D79ED5 /* Trash.cpp in Sources */,
+				1263519D1497C24000D79ED5 /* utils.cpp in Sources */,
+				1263519E1497C24000D79ED5 /* WCachedResource.cpp in Sources */,
+				1263519F1497C24000D79ED5 /* WDataSrc.cpp in Sources */,
+				126351A01497C24000D79ED5 /* WEvent.cpp in Sources */,
+				126351A11497C24000D79ED5 /* WFilter.cpp in Sources */,
+				126351A21497C24000D79ED5 /* WFont.cpp in Sources */,
+				126351A31497C24000D79ED5 /* WGui.cpp in Sources */,
+				126351A41497C24000D79ED5 /* WResourceManager.cpp in Sources */,
+				126351A51497C24000D79ED5 /* SimplePopup.cpp in Sources */,
+				126351A61497C24000D79ED5 /* EAGLView.m in Sources */,
+				126351A71497C24000D79ED5 /* EAGLViewController.m in Sources */,
+				126351A81497C24000D79ED5 /* ES2Renderer.m in Sources */,
+				126351A91497C24000D79ED5 /* main.m in Sources */,
+				126351AA1497C24000D79ED5 /* wagicAppDelegate.m in Sources */,
+				126351AB1497C24000D79ED5 /* thread.cpp in Sources */,
+				126351AC1497C24000D79ED5 /* once.cpp in Sources */,
+				126351AD1497C24000D79ED5 /* AIHints.cpp in Sources */,
+				126351AE1497C24000D79ED5 /* PlayRestrictions.cpp in Sources */,
+				126351AF1497C24000D79ED5 /* ModRules.cpp in Sources */,
+				126351B01497C24000D79ED5 /* Makefile in Sources */,
+				126351B11497C24000D79ED5 /* stdafx.cpp in Sources */,
+				126351B21497C24000D79ED5 /* zfsystem.cpp in Sources */,
+				126351B31497C24000D79ED5 /* ziphdr.cpp in Sources */,
+				126351B41497C24000D79ED5 /* zstream.cpp in Sources */,
+				126351B51497C24000D79ED5 /* IconButton.cpp in Sources */,
+				126351B61497C24000D79ED5 /* ObjectAnalytics.cpp in Sources */,
+				126351B71497C24000D79ED5 /* AIPlayerBaka.cpp in Sources */,
+				126351B81497C24000D79ED5 /* AIPlayerBakaB.cpp in Sources */,
+				126351B91497C24000D79ED5 /* TestSuiteAI.cpp in Sources */,
+				126351BA1497C24000D79ED5 /* AbilityParser.cpp in Sources */,
+				126351BB1497C24000D79ED5 /* AdWhirlAdapterGoogleAdMobAds.m in Sources */,
+				126351BC1497C24000D79ED5 /* AdWhirlAdapterIAd.m in Sources */,
+				126351BD1497C24000D79ED5 /* AdWhirlAdapterCustom.m in Sources */,
+				126351BE1497C24000D79ED5 /* AdWhirlAdapterEvent.m in Sources */,
+				126351BF1497C24000D79ED5 /* AdWhirlAdapterGeneric.m in Sources */,
+				126351C01497C24000D79ED5 /* AdWhirlAdNetworkAdapter+Helpers.m in Sources */,
+				126351C11497C24000D79ED5 /* AdWhirlAdNetworkAdapter.m in Sources */,
+				126351C21497C24000D79ED5 /* AdWhirlAdNetworkConfig.m in Sources */,
+				126351C31497C24000D79ED5 /* AdWhirlAdNetworkRegistry.m in Sources */,
+				126351C41497C24000D79ED5 /* AdWhirlClassWrapper.m in Sources */,
+				126351C51497C24000D79ED5 /* AdWhirlConfig.m in Sources */,
+				126351C61497C24000D79ED5 /* AdWhirlConfigStore.m in Sources */,
+				126351C71497C24000D79ED5 /* AdWhirlCustomAdView.m in Sources */,
+				126351C81497C24000D79ED5 /* AdWhirlError.m in Sources */,
+				126351C91497C24000D79ED5 /* AdWhirlLog.m in Sources */,
+				126351CA1497C24000D79ED5 /* AdWhirlView.m in Sources */,
+				126351CB1497C24000D79ED5 /* AdWhirlWebBrowserController.m in Sources */,
+				126351CC1497C24000D79ED5 /* ARRollerView.m in Sources */,
+				126351CD1497C24000D79ED5 /* AWNetworkReachabilityWrapper.m in Sources */,
+				126351CE1497C24000D79ED5 /* UIColor+AdWhirlConfig.m in Sources */,
+				126351CF1497C24000D79ED5 /* CDataScanner.m in Sources */,
+				126351D01497C24000D79ED5 /* CDataScanner_Extensions.m in Sources */,
+				126351D11497C24000D79ED5 /* NSCharacterSet_Extensions.m in Sources */,
+				126351D21497C24000D79ED5 /* NSDictionary_JSONExtensions.m in Sources */,
+				126351D31497C24000D79ED5 /* NSScanner_Extensions.m in Sources */,
+				126351D41497C24000D79ED5 /* CJSONDataSerializer.m in Sources */,
+				126351D51497C24000D79ED5 /* CJSONDeserializer.m in Sources */,
+				126351D61497C24000D79ED5 /* CJSONScanner.m in Sources */,
+				126351D71497C24000D79ED5 /* CJSONSerializer.m in Sources */,
+				126351D81497C24000D79ED5 /* CSerializedJSONData.m in Sources */,
+				126351D91497C24000D79ED5 /* ASIAuthenticationDialog.m in Sources */,
+				126351DA1497C24000D79ED5 /* ASIDataCompressor.m in Sources */,
+				126351DB1497C24000D79ED5 /* ASIDataDecompressor.m in Sources */,
+				126351DC1497C24000D79ED5 /* ASIDownloadCache.m in Sources */,
+				126351DD1497C24000D79ED5 /* ASIFormDataRequest.m in Sources */,
+				126351DE1497C24000D79ED5 /* ASIHTTPRequest.m in Sources */,
+				126351DF1497C24000D79ED5 /* ASIInputStream.m in Sources */,
+				126351E01497C24000D79ED5 /* ASINetworkQueue.m in Sources */,
+				126351E11497C24000D79ED5 /* ioapi.c in Sources */,
+				126351E21497C24000D79ED5 /* mztools.c in Sources */,
+				126351E31497C24000D79ED5 /* unzip.c in Sources */,
+				126351E41497C24000D79ED5 /* zip.c in Sources */,
+				126351E51497C24000D79ED5 /* ZipArchive.mm in Sources */,
+				126351E61497C24000D79ED5 /* Reachability.m in Sources */,
+				126351E71497C24000D79ED5 /* WagicDownloadProgressViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1D60588E0D05DD3D006BFB54 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1872,11 +2413,115 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		126352001497C24000D79ED5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				ARCHS = (
+					armv6,
+					"$(ARCHS_STANDARD_32_BIT)",
+				);
+				CODE_SIGN_IDENTITY = "iPhone Developer: Michael Nguyen (7TJ3VJJPJ5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Michael Nguyen (7TJ3VJJPJ5)";
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = wagic_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					TESTSUITE,
+					_DEBUG,
+					IOS,
+					DEBUG,
+					DARWIN_NO_CARBON,
+					FT2_BUILD_LIBRARY,
+					FORCE_GLES,
+				);
+				GCC_THUMB_SUPPORT = NO;
+				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				HEADER_SEARCH_PATHS = (
+					../../JGE/include/,
+					include/,
+					../../Boost,
+					./minizip,
+					"iOS/Reachability/Reachability\\ 2.0.4ddg/DDG\\ Reachability/Classes/",
+				);
+				INFOPLIST_FILE = "wagic-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../admobsdk/iOS/GoogleAdMobAdsSDKiOS-5.0.5\"",
+				);
+				"New Setting" = "";
+				OTHER_LDFLAGS = (
+					"-no_implicit_dylibs",
+					"-Wl",
+				);
+				PRODUCT_NAME = "wagic-opengl1.1";
+				PROVISIONING_PROFILE = "BF1E6F95-EE3F-4637-A85E-86E5ED84D2E4";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BF1E6F95-EE3F-4637-A85E-86E5ED84D2E4";
+				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		126352011497C24000D79ED5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = (
+					armv6,
+					"$(ARCHS_STANDARD_32_BIT)",
+				);
+				CODE_SIGN_IDENTITY = "iPhone Developer: Michael Nguyen (7TJ3VJJPJ5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Michael Nguyen (7TJ3VJJPJ5)";
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = wagic_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					FT2_BUILD_LIBRARY,
+					IOS,
+					FORCE_GLES,
+				);
+				GCC_THUMB_SUPPORT = NO;
+				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				HEADER_SEARCH_PATHS = (
+					../../JGE/include/,
+					include/,
+					../../Boost,
+					./minizip,
+					"iOS/Reachability/Reachability\\ 2.0.4ddg/DDG\\ Reachability/Classes/",
+				);
+				INFOPLIST_FILE = "wagic-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../admobsdk/iOS/GoogleAdMobAdsSDKiOS-5.0.5\"",
+				);
+				OTHER_LDFLAGS = (
+					"-no_implicit_dylibs",
+					"-Wl",
+				);
+				PRODUCT_NAME = "wagic-opengl1.1";
+				PROVISIONING_PROFILE = "BF1E6F95-EE3F-4637-A85E-86E5ED84D2E4";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BF1E6F95-EE3F-4637-A85E-86E5ED84D2E4";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = (
+					armv6,
+					"$(ARCHS_STANDARD_32_BIT)",
+				);
+				CODE_SIGN_IDENTITY = "iPhone Developer: Michael Nguyen (7TJ3VJJPJ5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Michael Nguyen (7TJ3VJJPJ5)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1891,7 +2536,7 @@
 					FT2_BUILD_LIBRARY,
 				);
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
-				GCC_VERSION = "";
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				HEADER_SEARCH_PATHS = (
 					../../JGE/include/,
 					include/,
@@ -1906,7 +2551,13 @@
 					"\"$(SRCROOT)/../../admobsdk/iOS/GoogleAdMobAdsSDKiOS-5.0.5\"",
 				);
 				"New Setting" = "";
+				OTHER_LDFLAGS = (
+					"-no_implicit_dylibs",
+					"-Wl",
+				);
 				PRODUCT_NAME = wagic;
+				PROVISIONING_PROFILE = "BF1E6F95-EE3F-4637-A85E-86E5ED84D2E4";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BF1E6F95-EE3F-4637-A85E-86E5ED84D2E4";
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
 				SDKROOT = iphoneos;
 			};
@@ -1916,19 +2567,22 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ARCHS = (
+					armv6,
+					"$(ARCHS_STANDARD_32_BIT)",
+				);
+				CODE_SIGN_IDENTITY = "iPhone Developer: Michael Nguyen (7TJ3VJJPJ5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Michael Nguyen (7TJ3VJJPJ5)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = wagic_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					FT2_BUILD_LIBRARY,
 					IOS,
-					DEBUG,
 					TESTSUITE,
 				);
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
-				GCC_VERSION = "";
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				HEADER_SEARCH_PATHS = (
 					../../JGE/include/,
 					include/,
@@ -1942,8 +2596,13 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/../../admobsdk/iOS/GoogleAdMobAdsSDKiOS-5.0.5\"",
 				);
+				OTHER_LDFLAGS = (
+					"-no_implicit_dylibs",
+					"-Wl",
+				);
 				PRODUCT_NAME = wagic;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "BF1E6F95-EE3F-4637-A85E-86E5ED84D2E4";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BF1E6F95-EE3F-4637-A85E-86E5ED84D2E4";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1962,7 +2621,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = ../../Boost/boost;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1979,7 +2638,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = ../../Boost/boost;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -1991,6 +2650,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		126351FF1497C24000D79ED5 /* Build configuration list for PBXNativeTarget "wagic-opengl1.1" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				126352001497C24000D79ED5 /* Debug */,
+				126352011497C24000D79ED5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "wagic" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

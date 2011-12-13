@@ -41,8 +41,13 @@
 
 - (void) startGame
 {
+    if (glViewController != nil) 
+        [glViewController release];
     glViewController = [[EAGLViewController alloc] init];
-    [self.wagicDownloadController release];
+    
+    if (wagicDownloadController != nil)
+        [wagicDownloadController release];
+
     [self.window addSubview:self.glViewController.view];
 
     NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
@@ -183,7 +188,7 @@
 - (BOOL) isNetworkAvailable
 {
 	BOOL netAvailable = NO;
-    NSDate *startTime = [[[NSDate alloc ] init] autorelease];
+    //NSDate *startTime = [[[NSDate alloc ] init] autorelease];
 	
     hostReach = [[Reachability reachabilityForGoogleDNS] retain];
     
