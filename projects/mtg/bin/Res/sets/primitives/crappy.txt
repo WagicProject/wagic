@@ -102,15 +102,25 @@ other={2}{B}{s(land|mybattlefield)}{s(land|mybattlefield)} name(Pay Kicker)
 type=Sorcery
 [/card]
 [card]
-name=Brain Weevil 
+name=Brain Weevil
 abilities=intimidate
 auto={S}:discard:2 target(player) asSorcery
 text=Intimidate (This creature can't be blocked except by artifact creatures and/or creatures that share a color with it.) -- Sacrifice Brain Weevil: Target player discards two cards. Activate this ability only any time you could cast a sorcery.
 mana={3}{B}
 type=Creature
-subtype=Insect 
+subtype=Insect
 power=1
 toughness=1
+[/card]
+[card]
+name=Brutal Nightstalker
+auto=may discard:1 opponent
+text=When Brutal Nightstalker enters the battlefield, you may have target opponent discard a card.
+mana={3}{B}{B}
+type=Creature
+subtype=Nightstalker
+power=3
+toughness=2
 [/card]
 [card]
 name=Cabal Inquisitor
@@ -144,7 +154,7 @@ toughness=1
 [/card]
 [card]
 name=Cao Cao, Lord of Wei
-auto=discard:2 opponent MyTurnOnly
+auto={T}:discard:2 opponent MyTurnOnly
 text={T}: Target opponent discards two cards. Activate this ability only during your turn, before attackers are declared.
 mana={3}{B}{B}
 type=Legendary Creature
@@ -220,7 +230,7 @@ type=Enchantment
 [/card]
 [card]
 name=Cunning Advisor
-auto=discard:1 opponent MyTurnOnly
+auto={T}:discard:1 opponent MyTurnOnly
 text={T}: Target opponent discards a card. Activate this ability only during your turn, before attackers are declared.
 mana={3}{B}
 type=Creature
@@ -238,6 +248,17 @@ type=Creature
 subtype=Human Wizard
 power=2
 toughness=2
+[/card]
+[card]
+name=Dauthi Mindripper
+abilities=shadow
+auto=@combat(notblocked) source(this):may discard:3 opponent && sacrifice all(this)
+text=Shadow (This creature can block or be blocked by only creatures with shadow.) -- Whenever Dauthi Mindripper attacks and isn't blocked, you may sacrifice it. If you do, defending player discards three cards.
+mana={3}{B}
+type=Creature
+subtype=Dauthi Minion
+power=2
+toughness=1
 [/card]
 [card]
 name=Deception
@@ -296,10 +317,19 @@ type=Instant
 [/card]
 [card]
 name=Disrupting Scepter
-auto={3}{t}:target(player) discard:1 myturnonly
+auto={3}{T}:target(player) discard:1 myTurnOnly
 text={3}{T}: Target player discards a card. Activate this ability only during your turn.
 mana={3}
 type=Artifact
+[/card]
+[card]
+name=Dying Wail
+target=creature
+auto=@movedTo(mytgt|mygraveyard):discard:2 target(player)
+text=Enchant creature -- When enchanted creature is put into a graveyard, target player discards two cards.
+mana={1}{B}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 name=Earsplitting Rats
@@ -401,6 +431,17 @@ mana={3}{B}{B}
 type=Sorcery
 [/card]
 [card]
+name=Ghost-Lit Stalker
+auto={4}{B}:discard:2 target(player) asSorcery
+autohand={5}{B}{B}{discard(this|myhand)}:discard:4 target(player) asSorcery
+text={4}{B}, {T}: Target player discards two cards. Activate this ability only any time you could cast a sorcery. -- Channel - {5}{B}{B}, Discard Ghost-Lit Stalker: Target player discards four cards. Activate this ability only any time you could cast a sorcery.
+mana={B}
+type=Creature
+subtype=Spirit
+power=1
+toughness=1
+[/card]
+[card]
 name=Guul Draz Specter
 abilities=flying
 auto=aslongas(*|opponenthand) 3/3 while <1
@@ -409,6 +450,18 @@ text=Flying -- Guul Draz Specter gets +3/+3 as long as an opponent has no cards 
 mana={2}{B}{B}
 type=Creature
 subtype=Specter
+power=2
+toughness=2
+[/card]
+[card]
+name=Haunted Cadaver
+auto=@combatdamaged(player) from(this):may discard:3 opponent && sacrifice all(this)
+facedown={3}
+autofacedown={1}{B}:morph
+text=Whenever Haunted Cadaver deals combat damage to a player, you may sacrifice it. If you do, that player discards three cards. -- Morph {1}{B} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
+mana={3}{B}
+type=Creature
+subtype=Zombie
 power=2
 toughness=2
 [/card]
@@ -423,6 +476,18 @@ type=Creature
 subtype=Human Cleric
 power=1
 toughness=1
+[/card]
+[card]
+name=Helm of the Ghastlord
+target=creature
+auto=teach(creature[blue]) 1/1
+auto=teach(creature[blue]) @damaged(opponent) from(this):draw:1 controller
+auto=teach(creature[black]) 1/1
+auto=teach(creature[black]) @damaged(opponent) from(this):discard:1 opponent
+text=Enchant creature -- As long as enchanted creature is blue, it gets +1/+1 and has "Whenever this creature deals damage to an opponent, draw a card." -- As long as enchanted creature is black, it gets +1/+1 and has "Whenever this creature deals damage to an opponent, that player discards a card."
+mana={3}{UB}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 name=Honden of Night's Reach
@@ -536,9 +601,19 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Mindstab Thrull
+auto=@combat(notblocked) source(this):may discard:3 opponent && sacrifice all(this)
+text=Whenever Mindstab Thrull attacks and isn't blocked, you may sacrifice it. If you do, defending player discards three cards.
+mana={1}{B}{B}
+type=Creature
+subtype=Thrull
+power=2
+toughness=2
+[/card]
+[card]
 name=Mindwarper
 auto=counter(1/1,3)
-auto={2}{b}{c(1/1,-1)}:target(player) discard:1 asSorcery
+auto={2}{B}{c(1/1,-1)}:target(player) discard:1 asSorcery
 text=Mindwarper enters the battlefield with three +1/+1 counters on it. -- {2}{B}, Remove a +1/+1 counter from Mindwarper: Target player discards a card. Activate this ability only any time you could cast a sorcery.
 mana={2}{B}{B}
 type=Creature
@@ -573,6 +648,17 @@ auto={1}{s}:draw:1
 text={B}, Sacrifice Necrogen Spellbomb: Target player discards a card. -- {1}, Sacrifice Necrogen Spellbomb: Draw a card.
 mana={1}
 type=Artifact
+[/card]
+[card]
+name=Needle Specter
+abilities=flying,wither
+auto=@combatdamaged(opponent) from(this):discard:thatmuch opponent
+text=Flying -- Wither (This deals damage to creatures in the form of -1/-1 counters.) -- Whenever Needle Specter deals combat damage to a player, that player discards that many cards.
+mana={1}{B}{B}
+type=Creature
+subtype=Specter
+power=1
+toughness=1
 [/card]
 [card]
 name=Nezumi Bone-Reader
@@ -686,6 +772,16 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Sadistic Hypnotist
+auto={S(creature|myBattlefield)}:discard:2 target(player) asSorcery
+text=Sacrifice a creature: Target player discards two cards. Activate this ability only any time you could cast a sorcery.
+mana={3}{B}{B}
+type=Creature
+subtype=Human Minion
+power=2
+toughness=2
+[/card]
+[card]
 name=Scepter of Fugue
 auto={1}{b}{t}:target(player) discard:1 myturnonly
 text={1}{B}, {T}: Target player discards a card. Activate this ability only during your turn.
@@ -726,6 +822,31 @@ power=3
 toughness=2
 [/card]
 [card]
+name=Silent Specter
+abilities=flying
+auto=@combatdamaged(player) from(this):discard:2 opponent
+facedown={3}
+autofacedown={3}{B}{B}:morph
+text=Flying -- Whenever Silent Specter deals combat damage to a player, that player discards two cards. -- Morph {3}{B}{B} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
+mana={4}{B}{B}
+type=Creature
+subtype=Specter
+power=4
+toughness=4
+[/card]
+[card]
+name=Shrieking Grotesque 
+abilities=flying
+auto=alternative discard:1 target(player)
+text=Flying -- When Shrieking Grotesque enters the battlefield, if {B} was spent to cast Shrieking Grotesque, target player discards a card.
+mana={2}{W}
+other={1}{B}{W} name(Spend B to Cast)
+type=Creature
+subtype=Gargoyle
+power=2
+toughness=1
+[/card]
+[card]
 name=Shrieking Specter
 auto=@attacking(this):discard:1 opponent
 text=Flying -- Whenever Shrieking Specter attacks, defending player discards a card.
@@ -736,10 +857,19 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Shrine of Limitless Power
+auto=@each my upkeep:counter(0/0,1,Charge)
+auto=@movedTo(*[black]|mystack):counter(0/0,1,Charge)
+auto={4}{T}{S}:thisforeach(counter{0/0.1.Charge}) discard:1 target(player)
+mana={3}
+type=Artifact
+text=At the beginning of your upkeep or whenever you cast a black spell, put a charge counter on Shrine of Limitless Power. {4}, {T}, Sacrifice Shrine of Limitless Power: Target player discards a card for each charge counter on Shrine of Limitless Power.
+[/card]
+[card]
 name=Skull Fracture
 target=player
 auto=discard:1
-flashback={3}{b}
+flashback={3}{B}
 text=Target player discards a card. -- Flashback {3}{B} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={B}
 type=Sorcery
@@ -752,6 +882,14 @@ text=Equipped creature gets +1/+0. -- Whenever equipped creature deals combat da
 mana={2}
 type=Artifact
 subtype=Equipment
+[/card]
+[card]
+name=Splitting Headache
+auto=choice discard:2 target(player)
+auto=choice reject target(*|hand)
+text=Choose one - Target player discards two cards; or target player reveals his or her hand, you choose a card from it, then that player discards that card.
+mana={3}{B}
+type=Sorcery
 [/card]
 [card]
 name=Stronghold Rats
@@ -809,6 +947,15 @@ text=Target player discards three cards.
 mana={3}{B}{B}
 type=Sorcery
 subtype=Arcane
+[/card]
+[card]
+name=Unburden
+target=player
+auto=discard:2
+autohand=__CYCLING__({2})
+text=Target player discards two cards. -- Cycling {2} ({2}, Discard this card: Draw a card.)
+mana={1}{B}{B}
+type=Sorcery
 [/card]
 [card]
 name=Unhinge

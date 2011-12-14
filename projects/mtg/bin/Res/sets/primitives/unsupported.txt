@@ -2244,15 +2244,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Brutal Nightstalker
-text=When Brutal Nightstalker enters the battlefield, you may have target opponent discard a card.
-mana={3}{B}{B}
-type=Creature
-subtype=Nightstalker
-power=3
-toughness=2
-[/card]
-[card]
 name=Brutal Suppression
 text=Activated abilities of nontoken Rebels cost an additional "Sacrifice a land" to activate.
 mana={R}
@@ -4542,15 +4533,6 @@ power=2
 toughness=4
 [/card]
 [card]
-name=Dauthi Mindripper
-text=Shadow (This creature can block or be blocked by only creatures with shadow.) -- Whenever Dauthi Mindripper attacks and isn't blocked, you may sacrifice it. If you do, defending player discards three cards.
-mana={3}{B}
-type=Creature
-subtype=Dauthi Minion
-power=2
-toughness=1
-[/card]
-[card]
 name=Dawn Charm
 text=Choose one - Prevent all combat damage that would be dealt this turn; or regenerate target creature; or counter target spell that targets you.
 mana={1}{W}
@@ -5685,13 +5667,6 @@ name=Dwell on the Past
 text=Target player shuffles up to four target cards from his or her graveyard into his or her library.
 mana={G}
 type=Sorcery
-[/card]
-[card]
-name=Dying Wail
-text=Enchant creature -- When enchanted creature is put into a graveyard, target player discards two cards.
-mana={1}{B}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
 name=Dystopia
@@ -7838,15 +7813,6 @@ text={T}: Add {1} to your mana pool. -- {T}, Sacrifice Ghost Quarter: Destroy ta
 type=Land
 [/card]
 [card]
-name=Ghost-Lit Stalker
-text={4}{B}, {T}: Target player discards two cards. Activate this ability only any time you could cast a sorcery. -- Channel - {5}{B}{B}, Discard Ghost-Lit Stalker: Target player discards four cards. Activate this ability only any time you could cast a sorcery.
-mana={B}
-type=Creature
-subtype=Spirit
-power=1
-toughness=1
-[/card]
-[card]
 name=Ghost-Lit Warder
 text={3}{U}, {T}: Counter target spell unless its controller pays {2}. -- Channel - {3}{U}, Discard Ghost-Lit Warder: Counter target spell unless its controller pays {4}.
 mana={1}{U}
@@ -9189,15 +9155,6 @@ mana={3}{B}{B}
 type=Instant
 [/card]
 [card]
-name=Haunted Cadaver
-text=Whenever Haunted Cadaver deals combat damage to a player, you may sacrifice it. If you do, that player discards three cards. -- Morph {1}{B} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
-mana={3}{B}
-type=Creature
-subtype=Zombie
-power=2
-toughness=2
-[/card]
-[card]
 name=Haunting Hymn
 text=Target player discards two cards. If you cast this spell during your main phase, that player discards four cards instead.
 mana={4}{B}{B}
@@ -9340,13 +9297,6 @@ name=Helm of Possession
 text=You may choose not to untap Helm of Possession during your untap step. -- {2}, {T}, Sacrifice a creature: Gain control of target creature for as long as you control Helm of Possession and Helm of Possession remains tapped.
 mana={4}
 type=Artifact
-[/card]
-[card]
-name=Helm of the Ghastlord
-text=Enchant creature -- As long as enchanted creature is blue, it gets +1/+1 and has "Whenever this creature deals damage to an opponent, draw a card." -- As long as enchanted creature is black, it gets +1/+1 and has "Whenever this creature deals damage to an opponent, that player discards a card."
-mana={3}{UB}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
 name=Hematite Talisman
@@ -13319,15 +13269,6 @@ mana={5}{B}
 type=Sorcery
 [/card]
 [card]
-name=Mindstab Thrull
-text=Whenever Mindstab Thrull attacks and isn't blocked, you may sacrifice it. If you do, defending player discards three cards.
-mana={1}{B}{B}
-type=Creature
-subtype=Thrull
-power=2
-toughness=2
-[/card]
-[card]
 name=Mine Excavation
 mana={1}{W}
 type=Sorcery
@@ -14349,16 +14290,6 @@ name=Needle Drop
 text=Needle Drop deals 1 damage to target creature or player that was dealt damage this turn. -- Draw a card.
 mana={R}
 type=Instant
-[/card]
-[card]
-name=Needle Specter
-abilities=flying,wither
-text=Flying -- Wither (This deals damage to creatures in the form of -1/-1 counters.) -- Whenever Needle Specter deals combat damage to a player, that player discards that many cards.
-mana={1}{B}{B}
-type=Creature
-subtype=Specter
-power=1
-toughness=1
 [/card]
 [card]
 name=Needlebite Trap
@@ -18379,15 +18310,6 @@ power=3
 toughness=1
 [/card]
 [card]
-name=Sadistic Hypnotist
-text=Sacrifice a creature: Target player discards two cards. Activate this ability only any time you could cast a sorcery.
-mana={3}{B}{B}
-type=Creature
-subtype=Human Minion
-power=2
-toughness=2
-[/card]
-[card]
 name=Sage Aven
 text=Flying (This creature can't be blocked except by creatures with flying or reach.) -- When Sage Aven enters the battlefield, look at the top four cards of your library, then put them back in any order.
 mana={3}{U}
@@ -19524,21 +19446,6 @@ power=6
 toughness=6
 [/card]
 [card]
-name=Shrieking Grotesque
-text=Flying -- When Shrieking Grotesque enters the battlefield, if {B} was spent to cast Shrieking Grotesque, target player discards a card.
-mana={2}{W}
-type=Creature
-subtype=Gargoyle
-power=2
-toughness=1
-[/card]
-[card]
-name=Shrine of Limitless Power
-mana={3}
-type=Artifact
-text=At the beginning of your upkeep or whenever you cast a black spell, put a charge counter on Shrine of Limitless Power. {4}, {T}, Sacrifice Shrine of Limitless Power: Target player discards a card for each charge counter on Shrine of Limitless Power.
-[/card]
-[card]
 name=Shrine of Piercing Vision
 mana={2}
 type=Artifact
@@ -19669,15 +19576,6 @@ type=Artifact Creature
 subtype=Construct
 power=1
 toughness=5
-[/card]
-[card]
-name=Silent Specter
-text=Flying -- Whenever Silent Specter deals combat damage to a player, that player discards two cards. -- Morph {3}{B}{B} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
-mana={4}{B}{B}
-type=Creature
-subtype=Specter
-power=4
-toughness=4
 [/card]
 [card]
 name=Silhouette
@@ -20082,20 +19980,6 @@ type=Artifact Creature
 subtype=Soldier
 power=1
 toughness=1
-[/card]
-[card]
-name=Soldier of Fortune
-auto={R}{T}:shuffle target(player)
-text={R}, {T}: Target player shuffles his or her library.
-mana={R}
-type=Creature
-subtype=Human Mercenary
-power=1
-toughness=1
-[/card]
-[card]
-name=Soldier token card
-mana=
 [/card]
 [card]
 name=Solitary Confinement
@@ -20637,15 +20521,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Spirit
-mana=
-type=Creature
-subtype=Spirit
-power=1
-toughness=1
-text=Flying
-[/card]
-[card]
 name=Spirit Cairn
 text=Whenever a player discards a card, you may pay {W}. If you do, put a 1/1 white Spirit creature token with flying onto the battlefield.
 mana={2}{W}
@@ -20831,10 +20706,6 @@ name=Squirrel Farm
 mana={2}{G}
 type=Enchantment
 text=o1oG: Choose a card in your hand. Covering the artist's name, reveal the card to target player. If that player cannot name the artist, reveal the artist's name and put a Squirrel token into play. Treat this token as a 1/1 green creature.
-[/card]
-[card]
-name=Squirrel token card
-mana=
 [/card]
 [card]
 name=Stabilizer
@@ -22791,12 +22662,6 @@ type=Creature
 subtype=Human Soldier
 power=2
 toughness=3
-[/card]
-[card]
-name=Trapfinder's Trick
-text=Target player reveals his or her hand and discards all Trap cards.
-mana={1}{U}
-type=Sorcery
 [/card]
 [card]
 name=Traveling Plague
@@ -24945,10 +24810,6 @@ type=Creature
 subtype=Zombie
 power=3
 toughness=1
-[/card]
-[card]
-name=Zombie token card
-mana=
 [/card]
 [card]
 name=Zoologist

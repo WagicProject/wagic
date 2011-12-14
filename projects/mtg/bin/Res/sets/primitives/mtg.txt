@@ -841,7 +841,7 @@ toughness=3
 [/card]
 [card]
 name=Agent of Shauku
-auto={S(land|myBattlefield)}:2/0 target(creature)
+auto={1}{B}{S(land|myBattlefield)}:2/0 target(creature)
 text={1}{B}, Sacrifice a land: Target creature gets +2/+0 until end of turn.
 mana={1}{B}
 type=Creature
@@ -10715,8 +10715,8 @@ type=Sorcery
 [card]
 name=Casting of Bones
 target=creature
-auto=@movedto(graveyard) from(mytgt|Battlefield):reject target(*|hand)
 auto=@movedto(graveyard) from(mytgt|Battlefield):draw:3 controller
+auto=@movedto(graveyard) from(mytgt|Battlefield):reject target(*|hand)
 text=Enchant creature -- When enchanted creature is put into a graveyard, draw three cards, then discard one of them.
 mana={2}{B}
 type=Enchantment
@@ -18210,6 +18210,16 @@ type=Creature
 subtype=Human Cleric
 power=1
 toughness=2
+[/card]
+[card]
+name=Disciple of Griselbrand
+auto={1}:notatarget(creature|mybattlefield) dynamicability<!mytgt toughnesslifegain targetcontroller!> sacrifice
+text={1}, Sacrifice a creature: You gain life equal to the sacrificed creature's toughness.
+mana={1}{B}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=1
 [/card]
 [card]
 name=Disciple of Kangee
@@ -27340,6 +27350,15 @@ text=Enchant creature -- Prevent all combat damage that would be dealt to and de
 mana={2}{U}
 type=Enchantment
 subtype=Aura
+[/card]ard]
+name=Ghastly Discovery
+auto=draw:2 
+auto=reject target(*|myhand)
+auto=alternative draw:2 reject target(*|myhand)
+other={2}{U}{T(creature[blue]|mybattlefield)}{T(creature[blue]|mybattlefield)} name(Pay Conspire)
+text=Draw two cards, then discard a card. -- Conspire (As you cast this spell, you may tap two untapped creatures you control that share a color with it. When you do, copy it.)
+mana={2}{U}
+type=Sorcery
 [/card]
 [card]
 name=Gate Hound
@@ -67104,6 +67123,16 @@ power=4
 toughness=2
 [/card]
 [card]
+name=Soldier of Fortune
+auto={R}{T}:shuffle target(player)
+text={R}, {T}: Target player shuffles his or her library.
+mana={R}
+type=Creature
+subtype=Human Mercenary
+power=1
+toughness=1
+[/card]
+[card]
 name=Soldier Replica
 auto={1}{W}{S}:Damage:3 target(creature[attacking;blocking])
 text={1}{W}, Sacrifice Soldier Replica: Soldier Replica deals 3 damage to target attacking or blocking creature.
@@ -76291,6 +76320,14 @@ type=Creature
 subtype=Human Soldier
 power=1
 toughness=3
+[/card]
+[card]
+name=Trapfinder's Trick
+target=*|hand
+auto=reject all(trap|targetcontrollerhand)
+text=Target player reveals his or her hand and discards all Trap cards.
+mana={1}{U}
+type=Sorcery
 [/card]
 [card]
 name=Trapjaw Kelpie
