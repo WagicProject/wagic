@@ -140,7 +140,11 @@ void SimplePad::pressKey(unsigned char key)
 {
     string input = "";
 
+#ifdef IOS
+    if (isalnum(key))
+#else
     if (isalpha(key))
+#endif
     {
         if (bCapslock)
             input += toupper(key);
@@ -186,6 +190,9 @@ void SimplePad::pressKey(unsigned char key)
 
 void SimplePad::CancelEdit()
 {
+#ifdef IOS
+    selected = KPD_CANCEL;
+#endif
     bCanceled = true;
     Finish();
 }
