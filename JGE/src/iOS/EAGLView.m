@@ -73,8 +73,6 @@ void DestroyGame(void)
 
 
 #pragma mark Ad management constants
-static NSString *ADMOB_PUBLISHERID_IPHONE = @"a14edb722890ca1"; // Erwans-a14e9009f88864f
-static NSString *ADMOB_PUBLISHERID_IPAD = @"a14edb7c59598f7";
 static NSString *_MY_AD_WHIRL_APPLICATION_KEY_IPHONE = @"b86aba511597401ca6b41c1626aa3013";
 static NSString *_MY_AD_WHIRL_APPLICATION_KEY_IPAD = @"2e70e3f3da40408588b9a3170c8d268f";
 

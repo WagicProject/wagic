@@ -410,11 +410,6 @@ int GameOptions::save()
     return 1;
 }
 
-GameSettings GameOptions::getGameSettings()
-{
-    return options;
-}
-
 
 GameOption& GameOptions::operator[](int optionID)
 {
