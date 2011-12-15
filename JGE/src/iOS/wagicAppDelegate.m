@@ -103,6 +103,8 @@
     
     [self.window setBackgroundColor: [UIColor blackColor]];
     [self.window makeKeyAndVisible];
+
+    return YES;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -137,8 +139,13 @@
         [self.glViewController.view stopAnimation];
 }
 
+- (void)initializeKeyboard: (id) initialState
+{
+    [self.glViewController toggleKeyboardWithState: initialState];
+}
 
-- (void)handleWEngineCommand:(NSString *) command
+
+- (void)handleWEngineCommand:(NSString *) command withParameter: (NSString *) parameter
 {
     BOOL isDevicePhone = (UI_USER_INTERFACE_IDIOM()) == UIUserInterfaceIdiomPhone;
 
@@ -154,8 +161,11 @@
         if (isDevicePhone)
             [glViewController.eaglView removeAds];
     }
+    else if ([command isEqualToString: @"displayKeyboard"])
+    {
+        [self initializeKeyboard: parameter];
+    }
 }
-
 
 
 - (void) rotateBackgroundImage:(UIInterfaceOrientation)fromInterfaceOrientation toInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation

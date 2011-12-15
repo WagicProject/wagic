@@ -44,7 +44,11 @@ SimplePad::SimplePad()
 {
     nbitems = 0;
     bActive = false;
+#ifdef IOS
+    selected = KPD_OK;
+#else
     selected = 0;
+#endif
     priorKey = 0;
     cursor = 0;
     bShowCancel = false;
@@ -175,10 +179,15 @@ void SimplePad::pressKey(unsigned char key)
         Finish();
     else if (key == KPD_CANCEL)
     {
-        bCanceled = true;
-        Finish();
+        CancelEdit();
     }
 
+}
+
+void SimplePad::CancelEdit()
+{
+    bCanceled = true;
+    Finish();
 }
 void SimplePad::MoveSelection(unsigned char moveto)
 {
@@ -370,7 +379,8 @@ void SimplePad::Render()
     offY += kH + 12;
 
     if (!bShowNumpad) vSpacing -= kH + 12;
-
+#ifndef IOS
+    
     for (int x = 0; x < nbitems; x++)
         if (keys[x])
         {
@@ -445,6 +455,7 @@ void SimplePad::Render()
                 mFont->DrawString(keys[x]->displayValue.c_str(), mX + offX, mY + offY);
             offX += kW + 14;
         }
+#endif
 }
 
 unsigned int SimplePad::cursorPos()

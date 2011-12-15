@@ -369,6 +369,7 @@ class JGE
   /// Sends a message through JGE
   /// Currently used only to communicate with the JNI Layer in Android
   void SendCommand(std::string command);
+  void SendCommand(std::string command, std::string parameter);
   
  #if defined (ANDROID)
    /// Access to JNI Environment

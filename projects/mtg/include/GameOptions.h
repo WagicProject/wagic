@@ -347,7 +347,7 @@ public:
     string mFilename;
     int save();
     int load();
-
+    
     GameOption * get(int);
     GameOption * get(string optionName);
     GameOption& operator[](int);
@@ -381,6 +381,31 @@ public:
             return keypad->isActive();
         
         return false;
+    }
+    
+    void keypadUpdateText(unsigned char key)
+    {
+        if (keypad)
+        {
+            switch (key)
+            {
+                case 1: // save the current text
+                    keypad->pressKey( key);
+                    break;
+                case 10: // cancel the edit
+                    keypad->CancelEdit();
+                    break;
+                case 32:
+                    keypad->pressKey( KPD_SPACE );
+                    break;
+                case 127: 
+                    keypad->pressKey( KPD_DEL );
+                    break;
+                default:
+                    keypad->pressKey( key );
+                    break;
+            }
+        }
     }
     
     void keypadUpdate(float dt)
@@ -422,6 +447,7 @@ public:
 private:
     GameApp* theGame;  
     SimplePad* keypad;
+    
     StyleManager* styleMan;
     void createProfileFolders();
 };

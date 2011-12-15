@@ -44,7 +44,8 @@ public:
     void Render();
     void Update(float dt);
     void pressKey(unsigned char id);
-
+    void CancelEdit();
+    
     SimplePad();
     ~SimplePad();
 

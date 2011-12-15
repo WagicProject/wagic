@@ -7,6 +7,10 @@
 #include "StyleManager.h"
 #include "Credits.h"
 
+#ifdef IOS
+#include "JGE.h"
+#endif
+
 const string Options::optionNames[] = {
 //Global options
   "Profile",
@@ -71,6 +75,8 @@ const string Options::optionNames[] = {
   "aw_collector",
 
 };
+
+#pragma mark Options
 int Options::getID(string name)
 {
     if (0 == name.size())
@@ -186,6 +192,10 @@ int Options::optionInterrupt(int gamePhase)
 
     return INVALID_OPTION;
 }
+
+#pragma mark -
+
+#pragma mark GameOption
 
 GameOption::GameOption(int value) :
     number(value)
@@ -307,6 +317,9 @@ bool GameOption::write(std::ofstream * file, string name)
     return true;
 }
 
+#pragma mark -
+
+#pragma mark GameOptions
 GameOptions::GameOptions(string filename)
 {
     mFilename = filename;
@@ -396,6 +409,12 @@ int GameOptions::save()
     }
     return 1;
 }
+
+GameSettings GameOptions::getGameSettings()
+{
+    return options;
+}
+
 
 GameOption& GameOptions::operator[](int optionID)
 {
@@ -523,6 +542,10 @@ GameOptions::~GameOptions()
         SAFE_DELETE(it->second);
     unknownMap.clear();
 }
+
+#pragma mark - 
+
+#pragma mark GameSettings
 
 GameSettings options;
 
@@ -828,6 +851,14 @@ SimplePad * GameSettings::keypadStart(string input, string * _dest, bool _cancel
 {
     if (keypad == NULL)
         keypad = NEW SimplePad();
+    // show keyboard
+#ifdef IOS
+    JGE *engine = JGE::GetInstance();
+    engine->SendCommand( "displayKeyboard", input);
+#elif ANDROID
+    JGE *engine = JGE::GetInstance();
+    engine->SendCommand( "displayKeyboard:" << input);    
+#endif
     keypad->bShowCancel = _cancel;
     keypad->bShowNumpad = _numpad;
     keypad->mX = _x;
@@ -847,6 +878,10 @@ void GameSettings::keypadShutdown()
 {
     SAFE_DELETE(keypad);
 }
+
+#pragma mark - 
+
+#pragma mark EnumDefinition
 
 //EnumDefinition
 int EnumDefinition::findIndex(int value)
@@ -908,6 +943,10 @@ bool GameOptionEnum::read(string input)
     return false;
 }
 
+#pragma mark - 
+
+#pragma mark OptionMaxGrade
+
 //Enum Definitions
 OptionMaxGrade OptionMaxGrade::mDef;
 OptionMaxGrade::OptionMaxGrade()
@@ -921,6 +960,10 @@ OptionMaxGrade::OptionMaxGrade()
 
 }
 ;
+#pragma mark - 
+
+#pragma mark OptionASkipPhase
+
 OptionASkipPhase OptionASkipPhase::mDef;
 OptionASkipPhase::OptionASkipPhase()
 {
@@ -929,6 +972,9 @@ OptionASkipPhase::OptionASkipPhase()
     mDef.values.push_back(EnumDefinition::assoc(Constants::ASKIP_FULL, "Full"));
 }
 ;
+#pragma mark - 
+
+#pragma mark OptionWhosFirst
 
 OptionWhosFirst OptionWhosFirst::mDef;
 OptionWhosFirst::OptionWhosFirst()
@@ -996,6 +1042,10 @@ OptionKicker::OptionKicker()
     mDef.values.push_back(EnumDefinition::assoc(Constants::KICKER_CHOICE, "Offer Choice"));
 }
 ;
+#pragma mark - 
+
+#pragma mark GameOptionAward
+
 //GameOptionAward
 GameOptionAward::GameOptionAward()
 {
@@ -1131,6 +1181,10 @@ static JButton u32_to_button(u32 b)
         return JGE_BTN_NONE;
 }
 
+#pragma mark - 
+
+#pragma mark GameOptionKeyBindings
+
 bool GameOptionKeyBindings::read(string input)
 {
     istringstream iss(input);
@@ -1178,3 +1232,4 @@ bool GameOptionKeyBindings::write(std::ofstream* file, string name)
     *file << endl;
     return true;
 }
+#pragma mark -

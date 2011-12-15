@@ -10,6 +10,8 @@
 #include "JRenderer.h"
 #include "JGameLauncher.h"
 
+#include "GameApp.h"
+
 #import "AdWhirlView.h"
 #import "wagicAppDelegate.h"
 
@@ -532,6 +534,31 @@ static NSString *_MY_AD_WHIRL_APPLICATION_KEY_IPAD = @"2e70e3f3da40408588b9a3170
 }
 
 #pragma mark -
+#include "GameOptions.h"
+#pragma mark Keyboard related methods
+
+- (void) updateKeyboard:( NSString *) inputString
+{
+    // send the new string to JGE to update the string
+    unsigned char key = [inputString characterAtIndex: 0];
+    if ([inputString length] > 1)
+    {
+        if ([inputString isEqualToString: @"DELETE"])
+            key = 127;
+        else if ([inputString isEqualToString:@"SPACE"])
+            key = 32;
+        else if ([inputString isEqualToString: @"SAVE"])
+            key = 1;
+        else if ([inputString isEqualToString: @"CANCEL"])
+            key = 10;
+    }
+    
+    options.keypadUpdateText( key );
+    if ( key < 11 )
+        g_engine->HoldKey_NoRepeat( JGE_BTN_OK) ;
+    
+}
+
 
 //These are the methods for the AdWhirl Delegate, you have to implement them
 #pragma mark AdWhirlDelegate methods

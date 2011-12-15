@@ -588,12 +588,17 @@ void JGE::SendCommand(string command)
 #if defined (ANDROID)
     sendJNICommand(command);
 #endif
-#ifdef IOS
+}
+
+void JGE::SendCommand(std::string command, std::string parameter)
+{
+#if defined (IOS)
     // get the app delegate and have it handle the command
     wagicAppDelegate *delegate = [ [UIApplication sharedApplication] delegate];
-    const char* commandString = command.c_str();
-    DebugTrace("Command: "<< command << endl); 
-    [delegate handleWEngineCommand:[NSString stringWithUTF8String: commandString]];
+    DebugTrace("Command: "<< command << " with parameter: " << parameter << endl);
+    [delegate handleWEngineCommand:[NSString stringWithCString: command.c_str() encoding: NSUTF8StringEncoding]
+                     withParameter: [NSString stringWithCString: parameter.c_str() encoding:NSUTF8StringEncoding]];
+    
 #endif
 }
 

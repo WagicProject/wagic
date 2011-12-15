@@ -10,15 +10,26 @@
 
 @synthesize bannerIsVisible;
 @synthesize eaglView;
+@synthesize inputField;
 
 #pragma mark initialization / deallocation methods
 
 - (id)init {
     self = [super init];
     if (self) {
+        inputField = [[UITextField alloc] initWithFrame: CGRectMake(-50, -50, 25, 25)] ;
+        [self.inputField setEnablesReturnKeyAutomatically: YES];
+        [self.inputField setEnabled: YES];
+        [self.inputField setDelegate: self];
+        [inputField setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
+        [inputField setAutocapitalizationType:UITextAutocapitalizationTypeNone];
+        [inputField setAutocorrectionType:UITextAutocorrectionTypeNo];
+        [inputField setKeyboardType: UIKeyboardTypeNamePhonePad];
         CGRect frame = [[UIScreen mainScreen] applicationFrame];
         eaglView = [[EAGLView alloc] initWithFrame:frame];
         [self setView: eaglView];
+        [self.view addSubview: inputField];
+        [inputField release];
     }
     return self;
 }
@@ -26,6 +37,7 @@
 - (void)dealloc {
     [eaglView setDelegate: nil];
     [eaglView release], eaglView = nil;
+    [inputField release], inputField = nil;
     [super dealloc];
 }
 
@@ -157,4 +169,46 @@
 
 #pragma mark -
 
+#pragma mark UITextFieldDelegate methods
+- (void)toggleKeyboardWithState: (NSString *) initialText
+{
+    UIView *blockerView = [[[UIView alloc] initWithFrame: [self.view frame]] autorelease];
+    [blockerView setBackgroundColor: [UIColor clearColor]];
+    [self.view addSubview: blockerView];
+    if ([[self inputField] becomeFirstResponder])
+    {
+        [inputField setText: initialText];
+        // success in displaying the keyboard
+    }
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if ([string isEqualToString:@" "])
+        [eaglView updateKeyboard: @"SPACE"];
+    else if ( (string == nil || [string isEqualToString: @""]) && (1 == range.length))
+        [eaglView updateKeyboard: @"DELETE"];
+    else if ( (string == nil || [string isEqualToString: @""]) && (range.location == (range.length-1)))
+        [eaglView updateKeyboard: @"CLEAR"];
+    else
+        [eaglView updateKeyboard: string];
+    
+    return YES;
+}
+
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField
+{
+    [eaglView updateKeyboard: @"SAVE"];
+    return YES;
+}
+
+
+- (BOOL) textFieldShouldReturn:(UITextField *)textField 
+{
+	[textField resignFirstResponder];
+	return YES;
+}
+
+
+#pragma mark -
 @end

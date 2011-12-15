@@ -2,6 +2,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "AdWhirlDelegateProtocol.h"
 #import "EAGLViewController.h"
+#import "EAGLView.h"
 #import "ESRenderer.h"
 
 // This class wraps the CAEAGLLayer from CoreAnimation into a convenient UIView subclass.
@@ -35,6 +36,7 @@
 - (void)stopAnimation;
 - (void)drawView:(id)sender;
 
+- (void)updateKeyboard: (NSString *) inputString;
 - (void)removeAds;
 - (void)displayAds;
 
