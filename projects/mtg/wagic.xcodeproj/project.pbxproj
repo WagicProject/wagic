@@ -2447,7 +2447,7 @@
 					./minizip,
 					"iOS/Reachability/Reachability\\ 2.0.4ddg/DDG\\ Reachability/Classes/",
 				);
-				INFOPLIST_FILE = "wagic copy-Info.plist";
+				INFOPLIST_FILE = "wagic-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2492,7 +2492,7 @@
 					./minizip,
 					"iOS/Reachability/Reachability\\ 2.0.4ddg/DDG\\ Reachability/Classes/",
 				);
-				INFOPLIST_FILE = "wagic copy-Info.plist";
+				INFOPLIST_FILE = "wagic-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

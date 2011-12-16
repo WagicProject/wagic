@@ -23,12 +23,6 @@ static JGameLauncher* g_launcher = NULL;
 CGFloat lastScale;
 CGFloat lastRotation;
 
-CGFloat firstX;
-CGFloat firstY;
-
-CGFloat currentX;
-CGFloat currentY;
-
 void JGECreateDefaultBindings()
 {
 }
@@ -109,6 +103,7 @@ static NSString *_MY_AD_WHIRL_APPLICATION_KEY_IPAD = @"2e70e3f3da40408588b9a3170
     /*
      create swipe handlers for single swipe
      */
+
     UISwipeGestureRecognizer *singleFlickGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget: self action: @selector(handleFlickGesture:)];
     singleFlickGestureRecognizer.numberOfTouchesRequired = 1;
     singleFlickGestureRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
@@ -230,6 +225,10 @@ static NSString *_MY_AD_WHIRL_APPLICATION_KEY_IPAD = @"2e70e3f3da40408588b9a3170
 
     [self addGestureRecognizer: singleTapRecognizer];
 
+    UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget: self action: @selector(handlePanMotion:)];
+    [panGestureRecognizer setMaximumNumberOfTouches: 1];
+    [self addGestureRecognizer: panGestureRecognizer];
+    [panGestureRecognizer release];
     
     /*
      Use the pinch gesture recognizer to zoom in and out of a location on the screen.
@@ -403,6 +402,36 @@ static NSString *_MY_AD_WHIRL_APPLICATION_KEY_IPAD = @"2e70e3f3da40408588b9a3170
 
 #pragma mark Gesture Recognizer callbacks
 
+- (BOOL) gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    return YES;
+}
+
+
+- (void)handlePanMotion: (UIPanGestureRecognizer *) panGesture
+{
+    [[[panGesture view] layer] removeAllAnimations];
+    currentLocation = [panGesture locationInView: self];
+    ES2Renderer* es2renderer = (ES2Renderer*)renderer;
+	
+	int actualWidth = (int) JRenderer::GetInstance()->GetActualWidth();
+	int actualHeight = (int) JRenderer::GetInstance()->GetActualHeight();
+    int xOffset = ((currentLocation.x-es2renderer.viewPort.left)*SCREEN_WIDTH)/actualWidth;
+    int yOffset = ((currentLocation.y-es2renderer.viewPort.top)*SCREEN_HEIGHT)/actualHeight;
+    CGPoint newLocation = CGPointMake(xOffset, yOffset);
+    
+    if (panGesture.state == UIGestureRecognizerStateBegan || panGesture.state == UIGestureRecognizerStateChanged) 
+    {
+        g_engine->LeftClicked(newLocation.x, newLocation.y);
+    }
+    else if ( [panGesture state] == UIGestureRecognizerStateEnded)
+    {
+        CGPoint velocity = [panGesture velocityInView:panGesture.view.superview];
+		if (!(( ((int)abs( (int) velocity.x)) > 300) || ((int) (abs( (int) velocity.y)) > 300)))
+            g_engine->HoldKey_NoRepeat( JGE_BTN_OK );
+    }
+}
+
 - (void)handleSingleTap: (UITapGestureRecognizer *) recognizer {
     [[[recognizer view] layer] removeAllAnimations];
     currentLocation = [recognizer locationInView: self];
@@ -421,18 +450,9 @@ static NSString *_MY_AD_WHIRL_APPLICATION_KEY_IPAD = @"2e70e3f3da40408588b9a3170
         int yOffset = ((currentLocation.y-es2renderer.viewPort.top)*SCREEN_HEIGHT)/actualHeight;
         
         g_engine->LeftClicked(xOffset, yOffset);
-
-    // doesn't work as expected.  Need to figure out correct algorithm.  Double tap or double swipe down will execute OK button.
-        NSInteger xDiff = abs(static_cast<int>(currentX) - xOffset);
-        NSInteger yDiff = abs(static_cast<int>(currentY) - yOffset);
         
-        if (xDiff <= 60 && yDiff <= 60)
-        {
+        if ( recognizer.state == UIGestureRecognizerStateEnded )
             g_engine->HoldKey_NoRepeat(JGE_BTN_OK);
-        }
-
-        currentX = xOffset;
-        currentY = yOffset;
 	}
         
     else if(currentLocation.y < es2renderer.viewPort.top) {
@@ -471,12 +491,6 @@ static NSString *_MY_AD_WHIRL_APPLICATION_KEY_IPAD = @"2e70e3f3da40408588b9a3170
         default:
             break;
     }
-/*
-    CGPoint translatedPoint = [recognizer locationInView: self];
-    currentX = translatedPoint.x;
-    currentY = translatedPoint.y;
-    g_engine->LeftClicked( currentX, currentY);
- */
 }
 
 - (void)handleHand:(UITapGestureRecognizer *)recognizer {
@@ -532,6 +546,8 @@ static NSString *_MY_AD_WHIRL_APPLICATION_KEY_IPAD = @"2e70e3f3da40408588b9a3170
 }
 
 #pragma mark -
+
+
 #include "GameOptions.h"
 #pragma mark Keyboard related methods
 
