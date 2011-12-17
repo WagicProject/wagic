@@ -76,7 +76,7 @@ const string Options::optionNames[] = {
 
 };
 
-#pragma mark Options
+// MARK:  Options
 int Options::getID(string name)
 {
     if (0 == name.size())
@@ -193,9 +193,9 @@ int Options::optionInterrupt(int gamePhase)
     return INVALID_OPTION;
 }
 
-#pragma mark -
+// MARK:  -
 
-#pragma mark GameOption
+// MARK:  GameOption
 
 GameOption::GameOption(int value) :
     number(value)
@@ -317,9 +317,9 @@ bool GameOption::write(std::ofstream * file, string name)
     return true;
 }
 
-#pragma mark -
+// MARK:  -
 
-#pragma mark GameOptions
+// MARK:  GameOptions
 GameOptions::GameOptions(string filename)
 {
     mFilename = filename;
@@ -538,9 +538,9 @@ GameOptions::~GameOptions()
     unknownMap.clear();
 }
 
-#pragma mark - 
+// MARK:  - 
 
-#pragma mark GameSettings
+// MARK:  GameSettings
 
 GameSettings options;
 
@@ -874,9 +874,9 @@ void GameSettings::keypadShutdown()
     SAFE_DELETE(keypad);
 }
 
-#pragma mark - 
+// MARK:  - 
 
-#pragma mark EnumDefinition
+// MARK:  EnumDefinition
 
 //EnumDefinition
 int EnumDefinition::findIndex(int value)
@@ -938,9 +938,9 @@ bool GameOptionEnum::read(string input)
     return false;
 }
 
-#pragma mark - 
+// MARK:  - 
 
-#pragma mark OptionMaxGrade
+// MARK:  OptionMaxGrade
 
 //Enum Definitions
 OptionMaxGrade OptionMaxGrade::mDef;
@@ -955,9 +955,9 @@ OptionMaxGrade::OptionMaxGrade()
 
 }
 ;
-#pragma mark - 
+// MARK:  - 
 
-#pragma mark OptionASkipPhase
+// MARK:  OptionASkipPhase
 
 OptionASkipPhase OptionASkipPhase::mDef;
 OptionASkipPhase::OptionASkipPhase()
@@ -967,9 +967,9 @@ OptionASkipPhase::OptionASkipPhase()
     mDef.values.push_back(EnumDefinition::assoc(Constants::ASKIP_FULL, "Full"));
 }
 ;
-#pragma mark - 
+// MARK:  - 
 
-#pragma mark OptionWhosFirst
+// MARK:  OptionWhosFirst
 
 OptionWhosFirst OptionWhosFirst::mDef;
 OptionWhosFirst::OptionWhosFirst()
@@ -1037,9 +1037,9 @@ OptionKicker::OptionKicker()
     mDef.values.push_back(EnumDefinition::assoc(Constants::KICKER_CHOICE, "Offer Choice"));
 }
 ;
-#pragma mark - 
+// MARK:  - 
 
-#pragma mark GameOptionAward
+// MARK:  GameOptionAward
 
 //GameOptionAward
 GameOptionAward::GameOptionAward()
@@ -1176,9 +1176,9 @@ static JButton u32_to_button(u32 b)
         return JGE_BTN_NONE;
 }
 
-#pragma mark - 
+// MARK:  - 
 
-#pragma mark GameOptionKeyBindings
+// MARK:  GameOptionKeyBindings
 
 bool GameOptionKeyBindings::read(string input)
 {
@@ -1227,4 +1227,4 @@ bool GameOptionKeyBindings::write(std::ofstream* file, string name)
     *file << endl;
     return true;
 }
-#pragma mark -
+// MARK:  -
