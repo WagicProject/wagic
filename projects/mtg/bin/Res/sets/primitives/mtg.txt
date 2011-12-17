@@ -27350,7 +27350,8 @@ text=Enchant creature -- Prevent all combat damage that would be dealt to and de
 mana={2}{U}
 type=Enchantment
 subtype=Aura
-[/card]ard]
+[/card]
+[card]
 name=Ghastly Discovery
 auto=draw:2 
 auto=reject target(*|myhand)
@@ -45146,7 +45147,7 @@ type=Instant
 name=Mikaeus, the Lunarch
 auto=counter(1/1,X)
 auto={T}:counter(1/1,1)
-auto={T}{C(0/0,-1,Fade)}:counter(1/1,1) all(other creature|mybattlefield)
+auto={T}{C(-1/-1,-1)}:counter(1/1,1) all(other creature|mybattlefield)
 text=Mikaeus, the Lunarch enters the battlefield with X +1/+1 counters on it. -- {T}: Put a +1/+1 counter on Mikaeus. -- {T}, Remove a +1/+1 counter from Mikaeus: Put a +1/+1 counter on each other creature you control.
 mana={X}{W}
 type=Legendary Creature
@@ -55708,7 +55709,7 @@ toughness=3
 [/card]
 [card]
 name=Quillspike
-auto={BG}{C(1/1,-1),creature|mybattlefield}:3/3
+auto={BG}{C(-1/-1,-1),creature|mybattlefield}:3/3
 text={BG}, Remove a -1/-1 counter from a creature you control: Quillspike gets +3/+3 until end of turn.
 mana={2}{BG}
 type=Creature

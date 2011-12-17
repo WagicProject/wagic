@@ -1,0 +1,406 @@
+[meta]
+author=Wagic Team
+name=AVN
+block=Duel
+year=2011
+[/meta]
+[card]
+primitive=Ageless Entity
+id=249411
+rarity=R
+[/card]
+[card]
+primitive=Agonizing Demise
+id=259268
+rarity=C
+[/card]
+[card]
+primitive=Ajani Vengeant
+id=266299
+rarity=M
+[/card]
+[card]
+primitive=Ajani's Mantra
+id=249398
+rarity=C
+[/card]
+[card]
+primitive=Ajani's Pridemate
+id=249413
+rarity=U
+[/card]
+[card]
+primitive=Behemoth Sledge
+id=249396
+rarity=U
+[/card]
+[card]
+primitive=Blazing Specter
+id=259274
+rarity=R
+[/card]
+[card]
+primitive=Brackwater Elemental
+id=249390
+rarity=C
+[/card]
+[card]
+primitive=Briarhorn
+id=249383
+rarity=U
+[/card]
+[card]
+primitive=Canyon Wildcat
+id=249412
+rarity=C
+[/card]
+[card]
+primitive=Countersquall
+id=249406
+rarity=U
+[/card]
+[card]
+primitive=Cruel Ultimatum
+id=259262
+rarity=R
+[/card]
+[card]
+primitive=Crumbling Necropolis
+id=259265
+rarity=U
+[/card]
+[card]
+primitive=Deep Analysis
+id=249365
+rarity=U
+[/card]
+[card]
+primitive=Dimir Cutpurse
+id=259269
+rarity=R
+[/card]
+[card]
+primitive=Elder Mastery
+id=249407
+rarity=U
+[/card]
+[card]
+primitive=Essence Warden
+id=249374
+rarity=C
+[/card]
+[card]
+primitive=Evolving Wilds
+id=249395
+rarity=C
+[/card]
+[card]
+primitive=Rise // Fall
+id=259266
+rarity=U
+[/card]
+[card]
+primitive=Fire-Field Ogre
+id=259270
+rarity=U
+[/card]
+[card]
+primitive=Firemane Angel
+id=249366
+rarity=R
+[/card]
+[card]
+primitive=Fleetfoot Panther
+id=249391
+rarity=U
+[/card]
+[card]
+primitive=Forest
+id=262651
+rarity=C
+[/card]
+[card]
+primitive=Forest
+id=259285
+rarity=C
+[/card]
+[card]
+primitive=Graypelt Refuge
+id=249379
+rarity=U
+[/card]
+[card]
+primitive=Grazing Gladehart
+id=249378
+rarity=C
+[/card]
+[card]
+primitive=Griffin Guide
+id=249372
+rarity=U
+[/card]
+[card]
+primitive=Grixis Charm
+id=259271
+rarity=U
+[/card]
+[card]
+primitive=Hellfire Mongrel
+id=249408
+rarity=U
+[/card]
+[card]
+primitive=Icy Manipulator
+id=249384
+rarity=U
+[/card]
+[card]
+primitive=Igneous Pouncer
+id=249410
+rarity=C
+[/card]
+[card]
+primitive=Island
+id=259287
+rarity=C
+[/card]
+[card]
+primitive=Jade Mage
+id=249397
+rarity=U
+[/card]
+[card]
+primitive=Jhessian Zombies
+id=259277
+rarity=C
+[/card]
+[card]
+primitive=Jungle Shrine
+id=249403
+rarity=U
+[/card]
+[card]
+primitive=Kazandu Refuge
+id=249402
+rarity=U
+[/card]
+[card]
+primitive=Kird Ape
+id=249382
+rarity=U
+[/card]
+[card]
+primitive=Lead the Stampede
+id=249369
+rarity=U
+[/card]
+[card]
+primitive=Lightning Helix
+id=249386
+rarity=U
+[/card]
+[card]
+primitive=Loam Lion
+id=249377
+rarity=U
+[/card]
+[card]
+primitive=Loxodon Hierarch
+id=249414
+rarity=R
+[/card]
+[card]
+primitive=Spite // Malice
+id=249394
+rarity=U
+[/card]
+[card]
+primitive=Marisi's Twinclaws
+id=249375
+rarity=U
+[/card]
+[card]
+primitive=Morgue Toad
+id=259264
+rarity=C
+[/card]
+[card]
+primitive=Moroii
+id=249367
+rarity=U
+[/card]
+[card]
+primitive=Mountain
+id=259286
+rarity=C
+[/card]
+[card]
+primitive=Mountain
+id=259284
+rarity=C
+[/card]
+[card]
+primitive=Nacatl Hunt-Pride
+id=249409
+rarity=U
+[/card]
+[card]
+primitive=Naya Charm
+id=249385
+rarity=U
+[/card]
+[card]
+primitive=Nicol Bolas, Planeswalker
+id=266154
+rarity=M
+[/card]
+[card]
+primitive=Nightscape Familiar
+id=259263
+rarity=C
+[/card]
+[card]
+primitive=Obelisk of Grixis
+id=259279
+rarity=C
+[/card]
+[card]
+primitive=Ogre Savant
+id=249387
+rarity=C
+[/card]
+[card]
+primitive=Pain // Suffering
+id=259281
+rarity=U
+[/card]
+[card]
+primitive=Plains
+id=249376
+rarity=C
+[/card]
+[card]
+primitive=Pride of Lions
+id=249371
+rarity=U
+[/card]
+[card]
+primitive=Profane Command
+id=259275
+rarity=R
+[/card]
+[card]
+primitive=Qasali Pridemage
+id=249405
+rarity=C
+[/card]
+[card]
+primitive=Recoil
+id=266305
+rarity=C
+[/card]
+[card]
+primitive=Recumbent Bliss
+id=249400
+rarity=C
+[/card]
+[card]
+primitive=Rupture Spire
+id=259282
+rarity=C
+[/card]
+[card]
+primitive=Sapseep Forest
+id=249389
+rarity=U
+[/card]
+[card]
+primitive=Searing Meditation
+id=249380
+rarity=R
+[/card]
+[card]
+primitive=Shriekmaw
+id=259272
+rarity=U
+[/card]
+[card]
+primitive=Slave of Bolas
+id=259276
+rarity=U
+[/card]
+[card]
+primitive=Slavering Nulls
+id=249404
+rarity=U
+[/card]
+[card]
+primitive=Spitemare
+id=249388
+rarity=U
+[/card]
+[card]
+primitive=Steamcore Weird
+id=259273
+rarity=C
+[/card]
+[card]
+primitive=Surveilling Sprite
+id=259267
+rarity=C
+[/card]
+[card]
+primitive=Swamp
+id=262652
+rarity=C
+[/card]
+[card]
+primitive=Swamp
+id=259283
+rarity=C
+[/card]
+[card]
+primitive=Sylvan Bounty
+id=249392
+rarity=C
+[/card]
+[card]
+primitive=Sylvan Ranger
+id=249399
+rarity=C
+[/card]
+[card]
+primitive=Terramorphic Expanse
+id=249381
+rarity=C
+[/card]
+[card]
+primitive=Titanic Ultimatum
+id=249370
+rarity=R
+[/card]
+[card]
+primitive=Undermine
+id=259278
+rarity=R
+[/card]
+[card]
+primitive=Vapor Snag
+id=249373
+rarity=C
+[/card]
+[card]
+primitive=Vitu-Ghazi, the City-Tree
+id=249393
+rarity=U
+[/card]
+[card]
+primitive=Wild Nacatl
+id=249401
+rarity=C
+[/card]
+[card]
+primitive=Woolly Thoctar
+id=249368
+rarity=U
+[/card]

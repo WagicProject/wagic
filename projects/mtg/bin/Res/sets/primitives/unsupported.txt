@@ -7779,12 +7779,6 @@ type=Instant
 text=Target player sacrifices a creature and loses 1 life.
 [/card]
 [card]
-name=Ghastly Discovery
-text=Draw two cards, then discard a card. -- Conspire (As you cast this spell, you may tap two untapped creatures you control that share a color with it. When you do, copy it.)
-mana={2}{U}
-type=Sorcery
-[/card]
-[card]
 name=Ghazban Ogre
 text=At the beginning of your upkeep, if a player has more life than each other player, that player gains control of Ghazban Ogre.
 mana={G}
@@ -20574,12 +20568,6 @@ type=Creature
 subtype=Slug
 power=2
 toughness=4
-[/card]
-[card]
-name=Splitting Headache
-text=Choose one - Target player discards two cards; or target player reveals his or her hand, you choose a card from it, then that player discards that card.
-mana={3}{B}
-type=Sorcery
 [/card]
 [card]
 name=Spoils of War
