@@ -7,15 +7,6 @@
 #include "Closest.cpp"
 #include "GameObserver.h"
 
-//using std::cout;
-
-// The X lib annoyingly defines True to be 1, leading to
-// hard to understand syntax errors. Not using it, so it's
-// safe to undefine it.
-#ifdef True
-#undef True
-#endif
-
 struct Left: public Exp
 {
     static inline bool test(CardSelector::Target* ref, CardSelector::Target* test)

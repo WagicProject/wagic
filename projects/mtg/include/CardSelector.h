@@ -12,6 +12,13 @@ using std::vector;
 class PlayGuiObject;
 class DuelLayers;
 
+// The X lib annoyingly defines True to be 1, leading to
+// hard to understand syntax errors. Not using it, so it's
+// safe to undefine it.
+#ifdef True
+#undef True
+#endif
+
 template<typename T>
 struct LimitorFunctor
 {
