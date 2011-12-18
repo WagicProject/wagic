@@ -5,7 +5,7 @@ RESULT = $(shell psp-config --psp-prefix 2> Makefile.cache)
 QMAKE = qmake
 QMAKEFILE = wagic-qt.pro
 ifeq ($(RESULT),)
-DEFAULT_RULE = linux
+DEFAULT_RULE = qt
 TARGET_ARCHITECTURE = linux
 TARGET = bin/wagic
 else
@@ -18,8 +18,13 @@ endif
 ifeq ($(MAKECMDGOALS),debug)
 DEFAULT_RULE = debug
 endif
-ifeq ($(MAKECMDGOALS),linux)
-DEFAULT_RULE = linux
+ifeq ($(MAKECMDGOALS),qt)
+DEFAULT_RULE = qt
+TARGET_ARCHITECTURE = linux
+endif
+ifeq ($(MAKECMDGOALS),x11)
+# TODO: take other X11 platforms into account. Or not.
+DEFAULT_RULE = linux.x11
 TARGET_ARCHITECTURE = linux
 endif
 
@@ -81,7 +86,10 @@ else
 $(TARGET): Makefile.$(TARGET_ARCHITECTURE) $(OBJS) ../../JGE/lib/linux/libjge.a
 	$(CXX) -o $(TARGET) $(OBJS) $(LIBS) $(LIBDIR)
 
-linux: $(TARGET)
+x11: $(TARGET)
+
+qt: Makefile.qt
+	$(MAKE) -f Makefile.qt
 
 debug: linux
 
