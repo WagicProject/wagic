@@ -22,6 +22,7 @@ static JApp*	g_app = NULL;
 static JGameLauncher* g_launcher = NULL;
 CGFloat lastScale;
 CGFloat lastRotation;
+CGPoint oldCoordinates;
 
 void JGECreateDefaultBindings()
 {
@@ -208,19 +209,15 @@ static NSString *_MY_AD_WHIRL_APPLICATION_KEY_IPAD = @"2e70e3f3da40408588b9a3170
     menuKeyRecognizer.delaysTouchesBegan = YES;
     [self addGestureRecognizer:menuKeyRecognizer];
     
-    /*
-     Create a double tap recognizer to handle OK.
-     */
-    UITapGestureRecognizer *doubleTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleOK:)];
-    doubleTapRecognizer.numberOfTapsRequired = 2;
-    doubleTapRecognizer.numberOfTouchesRequired = 1; 
-    [self addGestureRecognizer: doubleTapRecognizer];
 
     /*
      Create a single tap recognizer to select the nearest object.
      */
+
     UITapGestureRecognizer *singleTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
     singleTapRecognizer.numberOfTapsRequired = 1;
+    [singleTapRecognizer requireGestureRecognizerToFail: menuKeyRecognizer];
+    [singleTapRecognizer setDelaysTouchesEnded: YES];
     singleTapRecognizer.numberOfTouchesRequired = 1;
 
     [self addGestureRecognizer: singleTapRecognizer];
@@ -229,18 +226,16 @@ static NSString *_MY_AD_WHIRL_APPLICATION_KEY_IPAD = @"2e70e3f3da40408588b9a3170
     [panGestureRecognizer setMaximumNumberOfTouches: 1];
     [self addGestureRecognizer: panGestureRecognizer];
     [panGestureRecognizer release];
-    
+
     /*
      Use the pinch gesture recognizer to zoom in and out of a location on the screen.
      */
     UIPinchGestureRecognizer *pinchGestureRecognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(pinchDetected:)];
-    [pinchGestureRecognizer setDelaysTouchesEnded: YES];
     [self addGestureRecognizer: pinchGestureRecognizer];
     [pinchGestureRecognizer release];
     
     [menuKeyRecognizer release];
     [selectKeyRecognizer release];
-    [doubleTapRecognizer release];
     [singleTapRecognizer release];
 }
 
@@ -407,19 +402,24 @@ static NSString *_MY_AD_WHIRL_APPLICATION_KEY_IPAD = @"2e70e3f3da40408588b9a3170
     return YES;
 }
 
+- (CGPoint) normalizeClickCoordinatesWithPoint: (CGPoint) location
+{
+    ES2Renderer* es2renderer = (ES2Renderer*)renderer;
+	int actualWidth = (int) JRenderer::GetInstance()->GetActualWidth();
+	int actualHeight = (int) JRenderer::GetInstance()->GetActualHeight();
+    int xOffset = ((location.x-es2renderer.viewPort.left)*SCREEN_WIDTH)/actualWidth;
+    int yOffset = ((location.y-es2renderer.viewPort.top)*SCREEN_HEIGHT)/actualHeight;
+    CGPoint newLocation = CGPointMake(xOffset, yOffset);
+    
+    return newLocation;
+}
 
 - (void)handlePanMotion: (UIPanGestureRecognizer *) panGesture
 {
     [[[panGesture view] layer] removeAllAnimations];
     currentLocation = [panGesture locationInView: self];
-    ES2Renderer* es2renderer = (ES2Renderer*)renderer;
 	
-	int actualWidth = (int) JRenderer::GetInstance()->GetActualWidth();
-	int actualHeight = (int) JRenderer::GetInstance()->GetActualHeight();
-    int xOffset = ((currentLocation.x-es2renderer.viewPort.left)*SCREEN_WIDTH)/actualWidth;
-    int yOffset = ((currentLocation.y-es2renderer.viewPort.top)*SCREEN_HEIGHT)/actualHeight;
-    CGPoint newLocation = CGPointMake(xOffset, yOffset);
-    
+    CGPoint newLocation = [self normalizeClickCoordinatesWithPoint: currentLocation];
     if (panGesture.state == UIGestureRecognizerStateBegan || panGesture.state == UIGestureRecognizerStateChanged) 
     {
         g_engine->LeftClicked(newLocation.x, newLocation.y);
@@ -427,33 +427,42 @@ static NSString *_MY_AD_WHIRL_APPLICATION_KEY_IPAD = @"2e70e3f3da40408588b9a3170
     else if ( [panGesture state] == UIGestureRecognizerStateEnded)
     {
         CGPoint velocity = [panGesture velocityInView:panGesture.view.superview];
+        // we want to differentiate between a pan motion vs a flick gesture.
 		if (!(( ((int)abs( (int) velocity.x)) > 300) || ((int) (abs( (int) velocity.y)) > 300)))
             g_engine->HoldKey_NoRepeat( JGE_BTN_OK );
     }
+}
+
+- (int) distanceBetweenPointA: (CGPoint) cp1 andPointB: (CGPoint) cp2
+{
+    int xDist = cp1.x - cp2.x;
+    int yDist = cp1.y - cp2.y;
+    int distance = (int) sqrt( (float) ((xDist * xDist) + (yDist + yDist)));
+
+    NSLog(@"distance between Point A: %@ and Point B: %@ is %i", NSStringFromCGPoint(cp1), NSStringFromCGPoint(cp2), distance);
+    return distance;
 }
 
 - (void)handleSingleTap: (UITapGestureRecognizer *) recognizer {
     [[[recognizer view] layer] removeAllAnimations];
     currentLocation = [recognizer locationInView: self];
     ES2Renderer* es2renderer = (ES2Renderer*)renderer;
-	
 	int actualWidth = (int) JRenderer::GetInstance()->GetActualWidth();
-	int actualHeight = (int) JRenderer::GetInstance()->GetActualHeight();
-	
-    if (currentLocation.y > es2renderer.viewPort.top && 
-		currentLocation.y < es2renderer.viewPort.bottom &&
-		currentLocation.x < es2renderer.viewPort.right &&
-		currentLocation.x > es2renderer.viewPort.left) 
+
+    CGPoint newCoordinates = [self normalizeClickCoordinatesWithPoint: currentLocation];
+    
+    g_engine->LeftClicked( newCoordinates.x, newCoordinates.y);
+    g_engine->HoldKey_NoRepeat(JGE_BTN_NONE);
+
+    BOOL clickedWithinGameArea = (currentLocation.y > es2renderer.viewPort.top && 
+                                  currentLocation.y < es2renderer.viewPort.bottom &&
+                                  currentLocation.x < es2renderer.viewPort.right &&
+                                  currentLocation.x > es2renderer.viewPort.left);
+    if (clickedWithinGameArea) 
     {
-        
-        int xOffset = ((currentLocation.x-es2renderer.viewPort.left)*SCREEN_WIDTH)/actualWidth;
-        int yOffset = ((currentLocation.y-es2renderer.viewPort.top)*SCREEN_HEIGHT)/actualHeight;
-        
-        g_engine->LeftClicked(xOffset, yOffset);
-        
-        if ( recognizer.state == UIGestureRecognizerStateEnded )
-            g_engine->HoldKey_NoRepeat(JGE_BTN_OK);
-	}
+        // we want some delay for the left click to take place before clicking on OK.
+        [self performSelector: @selector(handleOK:) withObject: nil afterDelay: 0.1];
+    }
         
     else if(currentLocation.y < es2renderer.viewPort.top) {
         NSLog(@"Menu Button");
@@ -470,6 +479,11 @@ static NSString *_MY_AD_WHIRL_APPLICATION_KEY_IPAD = @"2e70e3f3da40408588b9a3170
 		if (recognizer.state == UIGestureRecognizerStateEnded)
             g_engine->HoldKey_NoRepeat(JGE_BTN_NEXT);
 	}
+    
+    oldCoordinates = newCoordinates;
+    g_engine->ReleaseKey( JGE_BTN_NONE );
+
+
 }
 
 - (void)handleFlickGesture: (UISwipeGestureRecognizer *) recognizer {
@@ -533,11 +547,11 @@ static NSString *_MY_AD_WHIRL_APPLICATION_KEY_IPAD = @"2e70e3f3da40408588b9a3170
 }
 
 - (void)handleSecondary: (UISwipeGestureRecognizer *)recognizer {
-    g_engine->HoldKey_NoRepeat(JGE_BTN_PRI);
+    g_engine->HoldKey_NoRepeat(JGE_BTN_SEC);
 }
 
 - (void)handleInterrupt:(UISwipeGestureRecognizer *)recognizer {
-	g_engine->HoldKey_NoRepeat(JGE_BTN_SEC);
+	g_engine->HoldKey_NoRepeat(JGE_BTN_PRI);
     
 }
 

@@ -368,6 +368,7 @@ class JGE
 
   /// Sends a message through JGE
   /// Currently used only to communicate with the JNI Layer in Android
+  /// and in IOS to communicate with the EAGL layer
   void SendCommand(std::string command);
   void SendCommand(std::string command, std::string parameter);
   
