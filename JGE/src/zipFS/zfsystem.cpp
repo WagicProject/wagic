@@ -2,8 +2,8 @@
 //
 
 // zfsystem.cpp: implementation of the zip file system classes.
-// 
-// Copyright (C) 2004 Tanguy Fautré.
+//
+// Copyright (C) 2004 Tanguy FautrÃ©.
 // For conditions of distribution and use,
 // see copyright notice in zfsystem.h
 //
@@ -72,7 +72,7 @@ filesystem::filesystem(const char * BasePath, const char * FileExt, bool Default
 	// Open each zip files that have been found, in alphabetic order
 	sort(ZipFiles.begin(), ZipFiles.end());
 
-	for (vector<string>::const_iterator ZipIt = ZipFiles.begin(); ZipIt != ZipFiles.end(); ++ZipIt)		
+	for (vector<string>::const_iterator ZipIt = ZipFiles.begin(); ZipIt != ZipFiles.end(); ++ZipIt)
 		InsertZip(ZipIt->c_str(), ZipIt - ZipFiles.begin());
 
 	// Should we make this the default File System for ifile?
@@ -98,7 +98,7 @@ void filesystem::Open(izfstream & File, const char * Filename)
 	// File is not zipped
 	if (FileNotZipped(FullPath.c_str())) {
 
-		// Link the izfile object with an opened filebuf  
+		// Link the izfile object with an opened filebuf
 		filebuf * FileBuf = new filebuf;
 		FileBuf->open(FullPath.c_str(), ios::binary | ios::in);
 
@@ -164,7 +164,7 @@ void filesystem::Open(izfstream & File, const char * Filename)
                     File.m_Offset = FileInfo.m_Offset;
 				}
 			}
-			
+
 		}
 	}
 }
@@ -189,7 +189,7 @@ bool filesystem::DirExists(const std::string & folderName)
         return true;
 #else
     struct stat st;
-    if (stat(FullPath.c_str(), &st) == 0) 
+    if (stat(FullPath.c_str(), &st) == 0)
         return true;
 #endif
 
@@ -216,7 +216,7 @@ bool filesystem::FileExists(const std::string & fileName)
         return true;
 #else
     struct stat st;
-    if (stat(FullPath.c_str(), &st) == 0) 
+    if (stat(FullPath.c_str(), &st) == 0)
         return true;
 #endif
 
@@ -239,12 +239,12 @@ std::vector<std::string>& filesystem::scanfolder(const std::string& folderName, 
     std::transform(folderNameLC.begin(), folderNameLC.end(), folderNameLC.begin(), ::tolower);
     size_t length = folderNameLC.length();
 
-    while(++It != m_Files.end()) 
+    while(++It != m_Files.end())
     {
         string currentFile = (* It).first;
         string currentFileLC = currentFile;
         std::transform(currentFileLC.begin(), currentFileLC.end(), currentFileLC.begin(), ::tolower);
-        if (currentFileLC.find(folderNameLC) == 0) 
+        if (currentFileLC.find(folderNameLC) == 0)
         {
             string relativePath = currentFile.substr(length);
             size_t pos = relativePath.find_first_of("/\\");
@@ -275,7 +275,7 @@ bool filesystem::FileNotZipped(const char * FilePath) const
 
 	if (! File)
 		return false;
-	
+
 	return true;
 }
 
@@ -311,7 +311,7 @@ const string & filesystem::FindZip(size_t PackID) const
 void filesystem::InsertZip(const char * Filename, const size_t PackID)
 {
 	zipfile_info ZipInfo;
-	
+
 	// Get full path to the zip file and prepare ZipInfo
 	ZipInfo.m_Filename = Filename;
 	string ZipPath = m_BasePath + Filename;
@@ -353,7 +353,7 @@ void filesystem::InsertZip(const char * Filename, const size_t PackID)
 			ZipInfo.m_FilesSize += FileHdr.m_UncompSize;
 			ZipInfo.m_FilesCompSize += FileHdr.m_CompSize;
 		}
-	}	
+	}
 
 	File.close();
 
@@ -368,7 +368,7 @@ void filesystem::InsertZip(const char * Filename, const size_t PackID)
 bool filesystem::PreloadZip(const char * Filename, map<string, limited_file_info>& target)
 {
 	zipfile_info ZipInfo;
-	
+
 	// Open zip
 	izfstream File;
     File.open(Filename, this);
@@ -380,7 +380,7 @@ bool filesystem::PreloadZip(const char * Filename, map<string, limited_file_info
     if (File.Zipped())
     {
         streamoff realBeginOfFile =  SkipLFHdr(CurrentZipFile, File.getOffset());
-        if (! CurrentZipFile.seekg(CentralDirZipped(CurrentZipFile, realBeginOfFile, File.getCompSize()))) 
+        if (! CurrentZipFile.seekg(CentralDirZipped(CurrentZipFile, realBeginOfFile, File.getCompSize())))
             return false;
 
 	    // Check every headers within the zip file
@@ -390,7 +390,6 @@ bool filesystem::PreloadZip(const char * Filename, map<string, limited_file_info
 
 		    // Include files into Files map
 		    const char * Name = &(* FileHdr.m_Filename.begin());
-		    const unsigned short i = FileHdr.m_FilenameSize - 1;
 		    if (FileHdr.m_FilenameSize != 0) {
 
                 // The zip in zip method only supports stored Zips because of JFileSystem limitations
@@ -402,14 +401,14 @@ bool filesystem::PreloadZip(const char * Filename, map<string, limited_file_info
 				    FileHdr.m_UncompSize					// File Size
 			    );
 		    }
-	    }	
+	    }
 
 	    File.close();
         return (target.size() ? true : false);
     }
     else
     {
-	    if (! File.seekg(CentralDir(File))) 
+	    if (! File.seekg(CentralDir(File)))
             return false;
 
 	    // Check every headers within the zip file
@@ -419,7 +418,6 @@ bool filesystem::PreloadZip(const char * Filename, map<string, limited_file_info
 
 		    // Include files into Files map
 		    const char * Name = &(* FileHdr.m_Filename.begin());
-		    const unsigned short i = FileHdr.m_FilenameSize - 1;
 		    if (FileHdr.m_FilenameSize != 0) {
 
                 // The zip in zip method only supports stored Zips because of JFileSystem limitations
@@ -431,7 +429,7 @@ bool filesystem::PreloadZip(const char * Filename, map<string, limited_file_info
 				    FileHdr.m_UncompSize					// File Size
 			    );
 		    }
-	    }	
+	    }
 
 	    File.close();
         return (target.size() ? true : false);
@@ -527,25 +525,25 @@ streamoff filesystem::CentralDirZipped(std::istream & File, std::streamoff begin
     std::streamoff eof = begin + size;
 
 	// Look for the "end of central dir" header. Start minimum 22 bytes before end.
-    if (! File.seekg(eof - 22, ios::beg)) 
+    if (! File.seekg(eof - 22, ios::beg))
         return -1;
 
 	streamoff EndPos;
 	streamoff StartPos = File.tellg();
 
-	if (StartPos == streamoff(0)) 
+	if (StartPos == streamoff(0))
         return -1;
 
 	if (StartPos <= begin + streamoff(65536))
 		EndPos = 1;
 	else
 		EndPos = StartPos - streamoff(65536);
-		
+
 	// Start the scan
 	do {
 		unsigned int RawSignature;
 
-		if (! readvar(File, RawSignature, 4)) 
+		if (! readvar(File, RawSignature, 4))
             return -1;
 
 		eofcd_header Header;
@@ -556,9 +554,9 @@ streamoff filesystem::CentralDirZipped(std::istream & File, std::streamoff begin
 
 			// Check invariant values (1 disk only)
 			if ((Header.m_NbDisks == 0) && (0 == Header.m_DirDisk) && (Header.m_LocalEntries == Header.m_TotalEntries)) {
-			
+
 				// Check comment ends at eof
-				if (! File.seekg(eof - 1 , ios::beg)) 
+				if (! File.seekg(eof - 1 , ios::beg))
                     return -1;
 				if ((File.tellg() + streamoff(1)) == (Pos + streamoff(Header.m_CommentSize + 22 - 4))) {
 
@@ -594,7 +592,7 @@ streamoff filesystem::CentralDir(istream & File) const
 		EndPos = 1;
 	else
 		EndPos = StartPos - streamoff(65536);
-		
+
 	// Start the scan
 	do {
 		unsigned int RawSignature;
@@ -609,7 +607,7 @@ streamoff filesystem::CentralDir(istream & File) const
 
 			// Check invariant values (1 disk only)
 			if ((Header.m_NbDisks == 0) && (0 == Header.m_DirDisk) && (Header.m_LocalEntries == Header.m_TotalEntries)) {
-			
+
 				// Check comment ends at eof
 				if (! File.seekg(-1, ios::end)) return -1;
 				if ((File.tellg() + streamoff(1)) == (Pos + streamoff(Header.m_CommentSize + 22 - 4))) {
