@@ -2,6 +2,8 @@ OBJS = objs/AbilityParser.o objs/ActionElement.o objs/ActionLayer.o objs/ActionS
 DEPS = $(patsubst objs/%.o, deps/%.d, $(OBJS))
 
 RESULT = $(shell psp-config --psp-prefix 2> Makefile.cache)
+QMAKE = qmake
+QMAKEFILE = wagic-qt.pro
 ifeq ($(RESULT),)
 DEFAULT_RULE = linux
 TARGET_ARCHITECTURE = linux
@@ -106,6 +108,9 @@ $(DEPS): deps/%.d: src/%.cpp
 
 Makefile.linux:
 	$(CXX) -o /dev/null src/testfeatures.c $(LIBDIR) -lfmod-3.75 > /dev/null 2>&1 ; if [ "0" = "$$?" ]; then echo 'FMOD=-lfmod-3.75'; else echo 'FMOD='; fi > $@
+
+Makefile.qt:
+	$(QMAKE) -o $@ $(QMAKEFILE)
 
 -include $(DEPS)
 -include Makefile.$(TARGET_ARCHITECTURE)
