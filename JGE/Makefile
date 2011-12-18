@@ -81,7 +81,7 @@ ifeq ($(TARGET_ARCHITECTURE),linux)
 OBJS = $(GENERIC_OBJS) $(LINUX_OBJS)
 TARGET_LIB = libjge.a
 TARGET_HGE = libhgetools.a
-INCDIR = $(shell freetype-config --cflags 2> /dev/null) -I/usr/X11/include -I../Boost
+INCDIR = $(shell freetype-config --cflags 2> /dev/null) -I/usr/X11/include -I../Boost -Isrc/zipFS -Iinclude/
 CXXFLAGS += -DLINUX $(FMOD)
 CXXFLAGS += $(INCDIR)
 LIBDIR = lib/linux
