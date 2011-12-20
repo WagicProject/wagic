@@ -3,15 +3,15 @@
 [INIT]
 FIRSTMAIN
 [PLAYER1]
-inplay:Quillspike,Spike Feeder
+inplay:Quillspike,Sturdy Hatchling
 manapool:{B}{B}
 [PLAYER2]
 life:20
 [DO]
 Quillspike
-Spike Feeder
+Sturdy Hatchling
 Quillspike
-Spike Feeder
+Sturdy Hatchling
 next
 #combatbegins
 next
@@ -23,8 +23,7 @@ next
 [ASSERT]
 COMBATEND
 [PLAYER1]
-inplay:Quillspike
-graveyard:Spike Feeder
+inplay:Quillspike,Sturdy Hatchling
 manapool:{0}
 [PLAYER2]
 life:13
