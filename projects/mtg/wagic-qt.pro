@@ -1,45 +1,47 @@
-#-------------------------------------------------
-#
-# Project created by QtCreator 2010-06-30T19:48:30
-#
-#-------------------------------------------------
+# Add more folders to ship with the application, here
+folder_01.source = qml/QmlWagic
+folder_01.target = qml
+DEPLOYMENTFOLDERS = folder_01
 
-QT       += core gui opengl phonon
+TARGET = wagic
 
-#CONFIG += warn_off precompile_header // causes some massives errors on mac.
-VERSION = 0.16.0
+QT += core gui opengl network
+!android:QT += phonon
+maemo5:QT += dbus
+
 TARGET = wagic
 TEMPLATE = app
+
+#!macx:CONFIG += precompile_header
 unix|macx:QMAKE_CXXFLAGS += -Wno-unused-parameter
-unix|macx:!maemo5:QMAKE_CXXFLAGS += -Werror
+unix|macx:!maemo5:!symbian:QMAKE_CXXFLAGS += -Werror
 windows:DEFINES += WIN32
 windows:DEFINES += _CRT_SECURE_NO_WARNINGS
 unix|macx:DEFINES += LINUX
 CONFIG(debug, debug|release):DEFINES += _DEBUG
 DEFINES += QT_CONFIG
-DEFINES += USE_PHONON
-maemo5 {
-QT += dbus
-}
+!android:DEFINES += USE_PHONON
+DEFINES += QT_NO_DEBUG_OUTPUT
 
 windows:INCLUDEPATH += ../../JGE/Dependencies/include
 windows:INCLUDEPATH += extra
 unix:!symbian:INCLUDEPATH += /usr/include/GL
 macx:INCLUDEPATH += /opt/include
+INCLUDEPATH += ../../JGE/include/qt
 INCLUDEPATH += ../../JGE/include
 INCLUDEPATH += ../../JGE/src/zipFS
 INCLUDEPATH += ../../Boost
 INCLUDEPATH += include
-OBJECTS_DIR = objs
-MOC_DIR = objs
-DESTDIR = bin
-symbian:DEFINES += FORCE_GLES
-symbian:DEFINES += QT_OPENGL_ES_1
+!symbian:DESTDIR = bin
 
-unix:LIBS += -lz
+unix:!symbian:LIBS += -lz
 PRECOMPILED_HEADER = include/PrecompiledHeader.h
 
-# MGT
+#DEFINES += TESTSUITE
+#DEFINES += TRACK_OBJECT_USAGE
+DEFINES += AI_CHANGE_TESTING
+#DEFINES += ACTION_LOGGING_TESTING
+
 SOURCES += \
         src/AbilityParser.cpp\
         src/ActionElement.cpp\
@@ -48,7 +50,7 @@ SOURCES += \
         src/AIHints.cpp\
         src/AIMomirPlayer.cpp\
         src/AIPlayer.cpp\
-		src/AIPlayerBaka.cpp\
+        src/AIPlayerBaka.cpp\
         src/AIStats.cpp\
         src/AllAbilities.cpp\
         src/CardDescriptor.cpp\
@@ -57,7 +59,6 @@ SOURCES += \
         src/CardGui.cpp\
         src/CardPrimitive.cpp\
         src/CardSelector.cpp\
-        src/CardSelectorSingleton.cpp\
         src/Closest.cpp\
         src/Counters.cpp\
         src/Credits.cpp\
@@ -146,12 +147,26 @@ SOURCES += \
         src/WFilter.cpp\
         src/WFont.cpp\
         src/WGui.cpp\
-        src/WResourceManager.cpp
+        src/WResourceManager.cpp \
+        src/GameSerializer.cpp \
+        src/AIPlayerBakaB.cpp
 
-CONFIG(debug, debug|release):SOURCES += src/TestSuiteAI.cpp
+CONFIG(debug, debug|release):
+SOURCES += src/TestSuiteAI.cpp
 
 HEADERS  += \
+        include/CacheEngine.h\
         include/AllAbilities.h\
+        include/AbilityParser.h\
+        include/PrecompiledHeader.h\
+        include/WResource_Fwd.h\
+        include/PlayRestrictions.h\
+        include/ModRules.h\
+        include/AIHints.h\
+        include/AIPlayerBaka.h\
+        include/AIPlayerBakaB.h\
+        include/DeckEditorMenu.h\
+        include/WResourceManagerImpl.h\
         include/DeckMenu.h\
         include/DeckMenuItem.h\
         include/ExtraCost.h\
@@ -209,7 +224,6 @@ HEADERS  += \
         include/OSD.h\
         include/Translate.h\
         include/CardSelector.h\
-        include/CardSelectorSingleton.h\
         include/GuiBackground.h\
         include/PhaseRing.h\
         include/TranslateKeys.h\
@@ -253,10 +267,12 @@ HEADERS  += \
         include/DeckManager.h\
         include/SimplePopup.h\
         include/SimpleMenu.h\
-        include/ObjectAnalytics.h
+        include/ObjectAnalytics.h \
+        include/GameSerializer.h
 
 # JGE, could probably be moved outside
 SOURCES += \
+        ../../JGE/src/qt/filedownloader.cpp\
         ../../JGE/src/Qtmain.cpp\
         ../../JGE/src/Encoding.cpp\
         ../../JGE/src/JAnimator.cpp\
@@ -288,13 +304,15 @@ SOURCES += \
         ../../JGE/src/hge/hgeparticle.cpp\
         ../../JGE/src/hge/hgerect.cpp\
         ../../JGE/src/hge/hgevector.cpp\
-		../../JGE/src/zipFS/zfsystem.cpp\
-		../../JGE/src/zipFS/ziphdr.cpp\
-		../../JGE/src/zipFS/zstream.cpp\
+        ../../JGE/src/zipFS/zfsystem.cpp\
+        ../../JGE/src/zipFS/ziphdr.cpp\
+        ../../JGE/src/zipFS/zstream.cpp\
         ../../JGE/src/pc/JSfx.cpp\
         ../../JGE/src/pc/JGfx.cpp
 
 HEADERS += \
+        ../../JGE/include/qt/filedownloader.h\
+        ../../JGE/include/Threading.h\
         ../../JGE/include/decoder_prx.h\
         ../../JGE/include/DebugRoutines.h\
         ../../JGE/include/Encoding.h\
@@ -328,9 +346,27 @@ HEADERS += \
         ../../JGE/include/Vector2D.h\
         ../../JGE/include/Vector3D.h\
         ../../JGE/include/vram.h\
+        ../../JGE/include/hge/hgecolor.h\
+        ../../JGE/include/hge/hgedistort.h\
+        ../../JGE/include/hge/hgefont.h\
+        ../../JGE/include/hge/hgeparticle.h\
+        ../../JGE/include/hge/hgerect.h\
+        ../../JGE/include/hge/hgevector.h\
+        ../../JGE/src/unzip/unzip.h\
+        ../../JGE/src/unzip/ioapi.h\
+        ../../JGE/src/zipFS/zstream_zlib.h\
+        ../../JGE/src/zipFS/zfsystem.h\
+        ../../JGE/src/zipFS/zstream.h\
+        ../../JGE/src/zipFS/ziphdr.h\
+        ../../JGE/src/zipFS/stdafx.h\
+        ../../JGE/src/zipFS/fileio.h\
         ../../JGE/src/tinyxml/tinystr.h\
         ../../JGE/src/tinyxml/tinyxml.h\
         ../../JGE/include/vram.h
+
+# Please do not modify the following two lines. Required for deployment.
+include(qml/qmlapplicationviewer/qmlapplicationviewer.pri)
+qtcAddDeployment()
 
 # maemo 5 packaging
 maemo5: {
@@ -364,16 +400,9 @@ maemo5: {
 
     launcher.path = $$BINDIR
     launcher.files += debian/launcher
-}
 
 # Meego/maemo 6 packaging (no launcher)
-#unix:!symbian:!maemo5 {
-exists($$QMAKE_INCDIR_QT"/../qmsystem2/qmkeys.h"):!contains(MEEGO_EDITION,harmattan): {
-    MEEGO_VERSION_MAJOR     = 1
-    MEEGO_VERSION_MINOR     = 2
-    MEEGO_VERSION_PATCH     = 0
-    MEEGO_EDITION           = harmattan
-    DEFINES += MEEGO_EDITION_HARMATTAN
+} else:contains(MEEGO_EDITION,harmattan): {
 
     # Variables
     BINDIR = /opt/wagic/bin
@@ -443,10 +472,76 @@ exists($$QMAKE_INCDIR_QT"/../qmsystem2/qmkeys.h"):!contains(MEEGO_EDITION,harmat
 
     res_themes.path = $$RESDIR/themes
     res_themes.files += bin/Res/themes/*
+
+} else:symbian {
+    TARGET.UID3 = 0xE1D807D3
+
+    # Smart Installer package's UID
+    # This UID is from the protected range
+    # and therefore the package will fail to install if self-signed
+    # By default qmake uses the unprotected range value if unprotected UID is defined for the application
+    # and 0x2002CCCF value if protected UID is given to the application
+    #symbian:DEPLOYMENT.installer_header = 0x2002CCCF
+
+    # Allow network access on Symbian... that's probably pointless
+    TARGET.CAPABILITY += NetworkServices
+
+    RESDIR = some/res/dir
+    USERDIR = some/user/dir
+    DEFINES += RESDIR=\"$$RESDIR\"
+    DEFINES += USERDIR=\"$$USERDIR\"
+
+} else:android {
+    DEFINES += Q_WS_ANDROID
+    RESDIR = Res
+    USERDIR = /sdcard/Wagic/Res
+    DEFINES += RESDIR=\\\"$$RESDIR\\\"
+    DEFINES += USERDIR=\\\"$$USERDIR\\\"
 } else:unix {
-  RESDIR = Res
-  USERDIR = ~/.Wagic
-  DEFINES += RESDIR=\\\"$$RESDIR\\\"
-  DEFINES += USERDIR=\\\"$$USERDIR\\\"
+    RESDIR = Res
+    USERDIR = ~/.Wagic
+    DEFINES += RESDIR=\\\"$$RESDIR\\\"
+    DEFINES += USERDIR=\\\"$$USERDIR\\\"
+
+} else:windows {
+    RESDIR = ./Res
+    USERDIR = ./user
+    DEFINES += RESDIR=\\\"$$RESDIR\\\"
+    DEFINES += USERDIR=\\\"$$USERDIR\\\"
 }
+
+OTHER_FILES += \
+    android/AndroidManifest.xml \
+    android/res/layout/splash.xml \
+    android/res/values-ru/strings.xml \
+    android/res/values-it/strings.xml \
+    android/res/values/strings.xml \
+    android/res/values/libs.xml \
+    android/res/values-id/strings.xml \
+    android/res/values-rs/strings.xml \
+    android/res/values-nl/strings.xml \
+    android/res/values-zh-rCN/strings.xml \
+    android/res/values-ro/strings.xml \
+    android/res/drawable-ldpi/icon.png \
+    android/res/drawable-mdpi/icon.png \
+    android/res/values-et/strings.xml \
+    android/res/values-fr/strings.xml \
+    android/res/values-ja/strings.xml \
+    android/res/values-el/strings.xml \
+    android/res/values-pt-rBR/strings.xml \
+    android/res/values-fa/strings.xml \
+    android/res/drawable/logo.png \
+    android/res/drawable/icon.png \
+    android/res/values-nb/strings.xml \
+    android/res/values-ms/strings.xml \
+    android/res/values-de/strings.xml \
+    android/res/values-zh-rTW/strings.xml \
+    android/res/values-pl/strings.xml \
+    android/res/drawable-hdpi/icon.png \
+    android/src/org/kde/necessitas/origo/QtApplication.java \
+    android/src/org/kde/necessitas/origo/QtActivity.java \
+    android/src/org/kde/necessitas/ministro/IMinistroCallback.aidl \
+    android/src/org/kde/necessitas/ministro/IMinistro.aidl
+
+
 

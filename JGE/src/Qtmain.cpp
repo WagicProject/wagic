@@ -1,6 +1,10 @@
 #define GL_GLEXT_PROTOTYPES
 #include <QtOpenGL>
 #include <QTime>
+#include <QtGui/QApplication>
+#include <QtDeclarative>
+#include "qmlapplicationviewer.h"
+#include "filedownloader.h"
 
 #if (defined FORCE_GLES)
 #undef GL_ES_VERSION_2_0
@@ -107,7 +111,7 @@ protected:
   {
       if (event->type() == QEvent::Gesture)
           return gestureEvent(static_cast<QGestureEvent*>(event));
-#if (defined Q_WS_MAEMO_5) || (defined MEEGO_EDITION_HARMATTAN)
+#if (defined Q_WS_MAEMO_5) || (defined MEEGO_EDITION_HARMATTAN) || (defined Q_WS_ANDROID)
       else if (event->type() == QEvent::WindowActivate)
       {
           JGE::GetInstance()->Resume();
@@ -165,7 +169,7 @@ protected:
   bool timerStarted;
   QRect viewPort;
 
-#if (defined Q_WS_MAEMO_5) || (defined MEEGO_EDITION_HARMATTAN)
+#if (defined Q_WS_MAEMO_5) || (defined MEEGO_EDITION_HARMATTAN) || (defined Q_WS_ANDROID)
   int mMouseDownX;
   int mMouseDownY;
   qint64 mLastFingerDownTime;
@@ -398,7 +402,7 @@ void JGEQtRenderer::paintGL()
 void JGEQtRenderer::timerEvent( QTimerEvent* )
 {
   if(this->isVisible()
-#if (defined Q_WS_MAEMO_5) || (defined MEEGO_EDITION_HARMATTAN)
+#if (defined Q_WS_MAEMO_5) || (defined MEEGO_EDITION_HARMATTAN) || (defined Q_WS_ANDROID)
      // This one is funny, this gives us 0% CPU when the app is in background for 1 line of code =)
      && this->isActiveWindow()
 #endif
@@ -416,7 +420,9 @@ void JGEQtRenderer::timerEvent( QTimerEvent* )
     g_engine->SetDelta((float)dt / 1000.0f);
     g_engine->Update((float)dt / 1000.0f);
 
-    updateGL();
+    // we stop rendering if the window is hidden
+    if(!isHidden())
+        updateGL();
   }
 }
 
@@ -444,7 +450,7 @@ void JGEQtRenderer::mousePressEvent(QMouseEvent *event)
       g_engine->LeftClicked(
                   ((lastPos.x()-viewPort.left())*SCREEN_WIDTH)/actualWidth,
                   ((lastPos.y()-viewPort.top())*SCREEN_HEIGHT)/actualHeight);
-#if (!defined Q_WS_MAEMO_5) && (!defined MEEGO_EDITION_HARMATTAN)
+#if (!defined Q_WS_MAEMO_5) && (!defined MEEGO_EDITION_HARMATTAN) && (!defined Q_WS_ANDROID)
       g_engine->HoldKey_NoRepeat(JGE_BTN_OK);
 #else
       mMouseDownX = lastPos.x();
@@ -486,7 +492,7 @@ void JGEQtRenderer::mouseReleaseEvent(QMouseEvent *event)
       lastPos.y() <= viewPort.bottom() &&
       lastPos.x() <= viewPort.right() &&
       lastPos.x() >= viewPort.left()) {
-#if (defined Q_WS_MAEMO_5) || (defined MEEGO_EDITION_HARMATTAN)
+#if (defined Q_WS_MAEMO_5) || (defined MEEGO_EDITION_HARMATTAN) || (defined Q_WS_ANDROID)
       if(g_startTimer.elapsed() - mLastFingerDownTime <= kTapEventTimeout )
       {
         if(abs(mMouseDownX - lastPos.x()) < kHitzonePliancy &&
@@ -629,7 +635,7 @@ void JGEQtRenderer::showEvent ( QShowEvent * event )
 {
   if(!timerStarted)
   {
-#if (defined Q_WS_MAEMO_5) || (defined MEEGO_EDITION_HARMATTAN)
+#if (defined Q_WS_MAEMO_5) || (defined MEEGO_EDITION_HARMATTAN) || (defined Q_WS_ANDROID)
     // 30 fps max on mobile
     timerId = startTimer(33);
 #else
@@ -642,61 +648,76 @@ void JGEQtRenderer::showEvent ( QShowEvent * event )
 
 void JGEQtRenderer::hideEvent ( QHideEvent * event )
 {
+#if (defined Q_WS_MAEMO_5) || (defined MEEGO_EDITION_HARMATTAN) || (defined Q_WS_ANDROID)
   if(timerStarted)
   {
     killTimer(timerId);
     timerStarted = false;
   }
+#endif
 }
 
 int main(int argc, char* argv[])
 {
-  QApplication a( argc, argv );
-  QDir::setCurrent(QCoreApplication::applicationDirPath () );
+    QScopedPointer<QApplication> app(createApplication(argc, argv));
+    QDir::setCurrent(QCoreApplication::applicationDirPath () );
+    qDebug() << "Current path : " << QCoreApplication::applicationDirPath ();
 
-  qDebug() << "Current path : " << QCoreApplication::applicationDirPath ();
+    QScopedPointer<QmlApplicationViewer> viewer(QmlApplicationViewer::create());
+    // FIXME with something actually useful
+    FileDownloader fileDownloader(QUrl("http://wagic.googlecode.com/files/wagic_0.16.0meego0_armel.deb"), "w00t.dat", 0);
 
-  g_launcher = new JGameLauncher();
+    if(!fileDownloader.isDone()){
+        viewer->setOrientation(QmlApplicationViewer::ScreenOrientationAuto);
+        viewer->setMainQmlFile(QLatin1String("qml/QmlWagic/main.qml"));
+        viewer->rootContext()->setContextProperty("fileDownloader", &fileDownloader);
+        viewer->showExpanded();
 
-  u32 flags = g_launcher->GetInitFlags();
+        // FIXME we're actually have to close the QML app to start the native app...
+        app->exec();
+    }
 
-  if ((flags&JINIT_FLAG_ENABLE3D)!=0)
-  {
-    JRenderer::Set3DFlag(true);
-  }
+    g_launcher = new JGameLauncher();
 
-  g_glwidget = new JGEQtRenderer(NULL);
-  g_glwidget->resize(ACTUAL_SCREEN_WIDTH, ACTUAL_SCREEN_HEIGHT);
+    u32 flags = g_launcher->GetInitFlags();
 
-  a.setApplicationName(g_launcher->GetName());
-  //a.setAutoSipEnabled(true);
+    if ((flags&JINIT_FLAG_ENABLE3D)!=0)
+    {
+        JRenderer::Set3DFlag(true);
+    }
 
-#if (defined Q_WS_MAEMO_5) || (defined MEEGO_EDITION_HARMATTAN)
-  // We start in fullscreen on mobile
-  g_glwidget->showFullScreen();
+    g_glwidget = new JGEQtRenderer(NULL);
+    g_glwidget->resize(ACTUAL_SCREEN_WIDTH, ACTUAL_SCREEN_HEIGHT);
+
+    app->setApplicationName(g_launcher->GetName());
+    //a.setAutoSipEnabled(true);
+
+#if (defined Q_WS_MAEMO_5) || (defined MEEGO_EDITION_HARMATTAN) || (defined Q_WS_ANDROID)
+    // We start in fullscreen on mobile
+    g_glwidget->showFullScreen();
 #else
-  // not on desktop
-  g_glwidget->show();
+    // not on desktop
+    g_glwidget->show();
 #endif
 
-  JGECreateDefaultBindings();
+    JGECreateDefaultBindings();
 
-  if (!InitGame())
-  {
-      qCritical("Could not init the game\n");
-      return 1;
-  }
+    if (!InitGame())
+    {
+        qCritical("Could not init the game\n");
+        return 1;
+    }
 
-  a.exec();
+    app->exec();
 
-  if (g_launcher)
-    delete g_launcher;
+    if (g_launcher)
+        delete g_launcher;
 
-  if(g_glwidget)
-    delete g_glwidget;
+    if(g_glwidget)
+        delete g_glwidget;
 
-  // Shutdown
-  DestroyGame();
+    // Shutdown
+    DestroyGame();
 
-  return 0;
+    return 0;
 }
