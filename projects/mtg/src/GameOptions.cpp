@@ -852,7 +852,7 @@ SimplePad * GameSettings::keypadStart(string input, string * _dest, bool _cancel
     engine->SendCommand( "displayKeyboard", input);
 #elif ANDROID
     JGE *engine = JGE::GetInstance();
-    engine->SendCommand( "displayKeyboard:" << input);    
+    engine->SendCommand( "displayKeyboard:" + input);    
 #endif
     keypad->bShowCancel = _cancel;
     keypad->bShowNumpad = _numpad;
