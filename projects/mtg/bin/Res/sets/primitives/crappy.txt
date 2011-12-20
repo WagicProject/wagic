@@ -134,7 +134,7 @@ toughness=1
 [/card]
 [card]
 name=Cabal Slaver
-auto=@combatdamaged(opponent) from(this):discard:1 opponent
+auto=@combatdamaged(opponent) from(goblin|mybattlefield):discard:1 opponent
 text=Whenever a Goblin deals combat damage to a player, that player discards a card.
 mana={2}{B}
 type=Creature
@@ -345,7 +345,7 @@ toughness=1
 [card]
 name=Ebon Dragon
 abilities=flying
-auto=discard:1 opponent
+auto=may discard:1 opponent
 text=Flying -- When Ebon Dragon enters the battlefield, you may have target opponent discard a card.
 mana={5}{B}{B}
 type=Creature
@@ -424,7 +424,7 @@ toughness=4
 [card]
 name=Gloomlance
 target=creature
-auto=teach(creature[green]) discard:1
+auto=teach(creature[green;white]) discard:1
 auto=destroy
 text=Destroy target creature. If that creature was green or white, its controller discards a card.
 mana={3}{B}{B}
@@ -783,7 +783,7 @@ toughness=2
 [/card]
 [card]
 name=Scepter of Fugue
-auto={1}{b}{t}:target(player) discard:1 myturnonly
+auto={1}{B}{T}:target(player) discard:1 myTurnOnly
 text={1}{B}, {T}: Target player discards a card. Activate this ability only during your turn.
 mana={B}{B}
 type=Artifact
@@ -802,7 +802,7 @@ toughness=2
 name=Sedraxis Specter
 abilities=flying
 auto=@combatdamaged(opponent) from(this):discard:1 opponent
-autograveyard={1}{b}:moveto(mybattlefield) && transforms((,unearth,haste)) asSorcery forever
+autograveyard={1}{B}:moveto(mybattlefield) && transforms((,unearth,haste)) asSorcery forever
 text=Flying -- Whenever Sedraxis Specter deals combat damage to a player, that player discards a card. -- Unearth {1}{B} ({1}{B}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
 mana={U}{B}{R}
 type=Creature
@@ -975,7 +975,7 @@ type=Sorcery
 [/card]
 [card]
 name=Vodalian Hypnotist
-auto={2}{b}{t}:target(player) discard:1 asSorcery
+auto={2}{B}{T}:target(player) discard:1 asSorcery
 text={2}{B}, {T}: Target player discards a card. Activate this ability only any time you could cast a sorcery.
 mana={1}{U}
 type=Creature
@@ -1007,7 +1007,7 @@ subtype=Arcane
 [card]
 name=Wall of Distortion
 abilities=defender
-auto={2}{b}{t}:target(player) discard:1 asSorcery
+auto={2}{B}{T}:target(player) discard:1 asSorcery
 text=Defender (This creature can't attack.) -- {2}{B}, {T}: Target player discards a card. Activate this ability only any time you could cast a sorcery.
 mana={2}{B}{B}
 type=Creature
@@ -1047,7 +1047,7 @@ toughness=3
 [/card]
 [card]
 name=Zuran Enchanter
-auto={2}{B}{t}:target(player) discard:1 myTurnOnly
+auto={2}{B}{T}:target(player) discard:1 myTurnOnly
 text={2}{B}, {T}: Target player discards a card. Activate this ability only during your turn.
 mana={1}{U}
 type=Creature

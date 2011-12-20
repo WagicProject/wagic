@@ -14062,12 +14062,6 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-name=Mystical Teachings
-text=Search your library for an instant card or a card with flash, reveal it, and put it into your hand. Then shuffle your library. -- Flashback {5}{B} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
-mana={3}{U}
-type=Instant
-[/card]
-[card]
 name=Mystical Tutor
 text=Search your library for an instant or sorcery card and reveal that card. Shuffle your library, then put the card on top of it.
 mana={U}

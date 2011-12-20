@@ -39248,9 +39248,10 @@ toughness=4
 [/card]
 [card]
 name=Kodama's Reach
-target=<upto:2>land[basic]|myLibrary
+target=land[basic]|myLibrary
 auto=moveTo(myBattlefield)
 auto=tap
+auto=moveTo(myhand) target(land[basic]|mylibrary)
 text=Search your library for two basic land cards, reveal those cards, and put one onto the battlefield tapped and the other into your hand. Then shuffle your library.
 mana={2}{G}
 type=Sorcery
@@ -47754,6 +47755,15 @@ type=Creature
 subtype=Human Nomad Mystic
 power=2
 toughness=4
+[/card]
+[card]
+name=Mystical Teachings
+auto=choice moveTo(myhand) target(instant|myLibrary)
+auto=choice moveTo(myhand) target(*[flash]|myLibrary)
+flashback={5}{B} 
+text=Search your library for an instant card or a card with flash, reveal it, and put it into your hand. Then shuffle your library. -- Flashback {5}{B} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+mana={3}{U}
+type=Instant
 [/card]
 [card]
 name=Mythic Proportions
