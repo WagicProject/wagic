@@ -18213,11 +18213,6 @@ mana={6}
 type=Artifact
 [/card]
 [card]
-name=Rupture Spire
-text=Rupture Spire enters the battlefield tapped. -- When Rupture Spire enters the battlefield, sacrifice it unless you pay {1}. -- {T}: Add one mana of any color to your mana pool.
-type=Land
-[/card]
-[card]
 name=Rushing-Tide Zubera
 text=When Rushing-Tide Zubera is put into a graveyard from the battlefield, if 4 or more damage was dealt to it this turn, draw three cards.
 mana={2}{U}{U}

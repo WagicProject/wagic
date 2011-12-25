@@ -48267,7 +48267,7 @@ type=Enchantment
 [/card]
 [card]
 name=Necromancer's Magemark
-target(creature)
+target=creature
 auto=lord(creature[enchanted]|myBattlefield) 1/1
 auto=lord(creature[enchanted]|myBattlefield) transforms((,newability[@movedTo(this|graveyard) from(battlefield):all(trigger[to]) moveto(ownerhand)]))
 text=Enchant creature -- Creatures you control that are enchanted get +1/+1. -- If a creature you control that's enchanted would be put into a graveyard, return it to its owner's hand instead.
@@ -60025,6 +60025,19 @@ mana={2}{R}
 type=Sorcery
 [/card]
 [card]
+name=Rupture Spire
+auto=tap
+auto=choice sacrifice
+auto=choice pay({1}) name(Keep Rupture Spire) 0/0
+auto={T}:Add{B}
+auto={T}:Add{G}
+auto={T}:Add{R}
+auto={T}:Add{U}
+auto={T}:Add{W}
+text=Rupture Spire enters the battlefield tapped. When Rupture Spire enters the battlefield, sacrifice it unless you pay .{t}: Add one mana of any color to your mana pool.
+type=land
+[/card]
+[card]
 name=Rushing River
 target=*[-land]|battlefield
 auto=moveto(ownerhand)
@@ -69901,7 +69914,7 @@ toughness=5
 [card]
 name=Steam Vents
 auto=tap
-auto=may untap && life:-2 controller
+auto=may pay({l}{l}) untap
 text=({T}: Add {U} or {R} to your mana pool.) -- As Steam Vents enters the battlefield, you may pay 2 life. If you don't, Steam Vents enters the battlefield tapped.
 type=Land
 subtype=Island Mountain
@@ -70281,7 +70294,7 @@ toughness=3
 [card]
 name=Stomping Ground
 auto=tap
-auto=may untap && life:-2 controller
+auto=may pay({l}{l}) untap
 text=({T}: Add {R} or {G} to your mana pool.) -- As Stomping Ground enters the battlefield, you may pay 2 life. If you don't, Stomping Ground enters the battlefield tapped.
 type=Land
 subtype=Mountain Forest
@@ -73371,7 +73384,7 @@ toughness=2
 [card]
 name=Temple Garden
 auto=tap
-auto=may untap && life:-2 controller
+auto=may pay({l}{l}) untap
 text=({T}: Add {G} or {W} to your mana pool.) -- As Temple Garden enters the battlefield, you may pay 2 life. If you don't, Temple Garden enters the battlefield tapped.
 type=Land
 subtype=Forest Plains
@@ -82136,7 +82149,7 @@ type=Land
 [card]
 name=Watery Grave
 auto=tap
-auto=may untap && life:-2 controller
+auto=may pay({L}{L}) untap
 text=({T}: Add {U} or {B} to your mana pool.) -- As Watery Grave enters the battlefield, you may pay 2 life. If you don't, Watery Grave enters the battlefield tapped.
 type=Land
 subtype=Island Swamp
