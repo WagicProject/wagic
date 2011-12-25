@@ -80,6 +80,7 @@ public:
     bool morphed;
     bool turningOver;
     bool isMorphed;
+    bool isFlipped;
     bool isPhased;
     int phasedTurn;
     bool graveEffects;

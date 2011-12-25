@@ -1009,6 +1009,108 @@ AAMorph * AAMorph::clone() const
     a->forceDestroy = 1;
     return a;
 }
+// flip a card
+AAFlip::AAFlip(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target,string flipStats) :
+InstantAbility(observer, id, card, _target),flipStats(flipStats)
+{
+    target = _target;
+}
+
+int AAFlip::resolve()
+{
+    MTGCardInstance * Flipper = (MTGCardInstance*)source;
+    if(Flipper->isFlipped)
+    {
+        game->removeObserver(this);
+        return 0;
+    }
+    MTGCardInstance * _target = (MTGCardInstance *) target;
+    if (_target)
+    {
+        while (_target->next)
+            _target = _target->next; 
+
+        AbilityFactory af(game);
+        _target->isFlipped = true;
+        GameObserver * game = _target->getObserver();
+        if(flipStats.size())
+        {
+            MTGCard * fcard = MTGCollection()->getCardByName(flipStats);
+            MTGCardInstance * myFlip = NEW MTGCardInstance(fcard, _target->controller()->game);
+            _target->name = myFlip->name;
+            _target->colors = myFlip->colors;
+            _target->power = (myFlip->power + _target->power) - _target->origpower;
+            _target->addToToughness(myFlip->toughness - _target->origtoughness);
+            _target->types = myFlip->types;
+            _target->text = myFlip->text;
+            _target->formattedText = myFlip->formattedText;
+            ActionLayer * al = game->mLayers->actionLayer();
+            for (int k = (int)(al->mObjects.size()) - 1; k > 0; k--) 
+            {
+                MTGAbility * a = dynamic_cast<MTGAbility*>(game->mLayers->actionLayer()->mObjects[k]);
+                if(a && a->source == _target)
+                {
+                    a->forceDestroy = 1;
+                    a->destroy();
+                    a->removeFromGame();
+                    al->removeFromGame(a);
+                }
+            }
+            _target->magicText = myFlip->magicText;
+            af.getAbilities(&currentAbilities, NULL, _target);
+            for (size_t i = 0; i < currentAbilities.size(); ++i)
+            {
+                MTGAbility * a = currentAbilities[i];
+                a->source = (MTGCardInstance *) _target;
+                if (a)
+                {
+                    if (a->oneShot)
+                    {
+                        a->resolve();
+                        delete (a);
+                    }
+                    else
+                    {
+                        a->addToGame();
+                    }
+                }
+            }
+             SAFE_DELETE(myFlip);
+        }
+        _target->mPropertiesChangedSinceLastUpdate = true;
+        currentAbilities.clear();
+        testDestroy();
+    }
+    return 1;
+}
+
+int AAFlip::testDestroy()
+{
+    MTGCardInstance * _target = (MTGCardInstance *) target;
+    if(target)
+    {
+        if(_target->isFlipped)
+        {
+            this->forceDestroy = 1;
+            _target->getObserver()->removeObserver(this);
+            _target->isFlipped = false;
+            return 1;
+        }
+    }
+    return 0;
+}
+
+const char * AAFlip::getMenuText()
+{
+    return "Flip";
+}
+
+AAFlip * AAFlip::clone() const
+{
+    AAFlip * a = NEW AAFlip(*this);
+    a->forceDestroy = 1;
+    return a;
+}
 // AADYNAMIC: dynamic ability builder
 AADynamic::AADynamic(GameObserver* observer, int id, MTGCardInstance * card, Damageable * _target,int type,int effect,int who,int amountsource,MTGAbility * storedAbility, ManaCost * _cost) :
 ActivatedAbility(observer, id, card, _cost, 0),type(type),effect(effect),who(who),amountsource(amountsource),storedAbility(storedAbility)
@@ -2212,6 +2314,7 @@ MayAbility::MayAbility(GameObserver* observer, int _id, MTGAbility * _ability, M
 {
     triggered = 0;
     mClone = NULL;
+    optionalCost = NULL;
 }
 
 void MayAbility::Update(float dt)
@@ -2220,6 +2323,8 @@ void MayAbility::Update(float dt)
     if (!triggered && !game->getCurrentTargetChooser())
     {
         triggered = 1;
+        if(optionalCost && !source->controller()->getManaPool()->canAfford(optionalCost))
+            return;
         if (TargetAbility * ta = dynamic_cast<TargetAbility *>(ability))
         {
             if (!ta->getActionTc()->validTargetsExist())
@@ -2254,13 +2359,22 @@ int MayAbility::testDestroy()
 int MayAbility::isReactingToTargetClick(Targetable * card)
 {
     if (card == source)
-        return 1;
+    {
+        if(!optionalCost || source->controller()->getManaPool()->canAfford(optionalCost))
+            return 1;
+    }
     return 0;
 }
 
 int MayAbility::reactToTargetClick(Targetable * object)
 {
     mClone = ability->clone();
+    if(optionalCost)
+    {
+        source->controller()->getManaPool()->pay(optionalCost);
+        optionalCost->setExtraCostsAction(this, source);
+        optionalCost->doPayExtra();
+    }
     mClone->addToGame();
     mClone->forceDestroy = 1;
     return mClone->reactToTargetClick(object);
@@ -2270,12 +2384,14 @@ MayAbility * MayAbility::clone() const
 {
     MayAbility * a = NEW MayAbility(*this);
     a->ability = ability->clone();
+    a->optionalCost = this->optionalCost;
     return a;
 }
 
 MayAbility::~MayAbility()
 {
     SAFE_DELETE(ability);
+    SAFE_DELETE(optionalCost);
 }
 
 //Menu building ability Abilities
@@ -2466,7 +2582,7 @@ int MultiAbility::destroy()
 
 const char * MultiAbility::getMenuText()
 {
-    if (abilities.size())
+    if (abilities.size() && abilities[0])
         return abilities[0]->getMenuText();
     return "";
 }

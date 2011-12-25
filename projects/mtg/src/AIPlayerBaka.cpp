@@ -1619,7 +1619,7 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
         {
             TargetChooserFactory tcf(observer);
             TargetChooser * tc = tcf.createTargetChooser(card);
-            int shouldPlayPercentage = 10;
+            int shouldPlayPercentage = 0;
             if (tc)
             {
                 int hasTarget = chooseTarget(tc,NULL,NULL,true);
@@ -1662,8 +1662,18 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
                 }
                 else if (BAKA_EFFECT_DONTKNOW == shouldPlay)
                 {
-                    shouldPlayPercentage = 80;
+                    //previously shouldPlayPercentage = 80;, I found this a little to high
+                    //for cards which AI had no idea how to use.
+                    shouldPlayPercentage = 60;
                 }
+                else
+                {
+                    // shouldPlay == baka_effect_bad giving it a 1 for odd ball lottery chance.
+                    shouldPlayPercentage = 1;
+                }
+                DebugTrace("Should I play " << (card ? card->name : "Nothing" ) << "?" << endl 
+                    <<"shouldPlayPercentage = "<< shouldPlayPercentage);
+
             }
             //Reduce the chances of playing a spell with X cost if available mana is low
             if (hasX)
@@ -1694,8 +1704,14 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
                 if(!canPlay)
                     continue;
             }
-            if (randomGenerator.random() % 100 > shouldPlayPercentage)
+            int randomChance = randomGenerator.random();
+            int chance = randomChance % 100;
+            if (chance > shouldPlayPercentage)
                 continue;
+            if(shouldPlayPercentage < 10)
+            {
+                DebugTrace("shouldPlayPercentage was less than 10 this was a lottery roll on RNG");
+            }
             nextCardToPlay = card;
             maxCost = currentCost;
             if (hasX)

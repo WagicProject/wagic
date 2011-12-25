@@ -24,6 +24,7 @@ public:
     vector<ActionElement *> garbage;
     Targetable * menuObject;
     SimpleMenu * abilitiesMenu;
+    SimpleMenu * abilitiesTriggered;
     MTGCardInstance * currentActionCard;
     int stuffHappened;
     virtual void Render();

@@ -5,6 +5,7 @@
 #include "Targetable.h"
 #include "WEvent.h"
 #include "AllAbilities.h"
+#include "MTGRules.h"
 
 MTGAbility* ActionLayer::getAbility(int type)
 {
@@ -372,16 +373,41 @@ void ActionLayer::setMenuObject(Targetable * object, bool must)
     menuObject = object;
 
     SAFE_DELETE(abilitiesMenu);
+    abilitiesTriggered = NULL;
 
     abilitiesMenu = NEW SimpleMenu(observer->getInput(), 10, this, Fonts::MAIN_FONT, 100, 100, object->getDisplayName().c_str());
+    abilitiesTriggered = NEW SimpleMenu(observer->getInput(), 10, this, Fonts::MAIN_FONT, 100, 100, object->getDisplayName().c_str());
     currentActionCard = NULL;
     for (size_t i = 0; i < mObjects.size(); i++)
     {
         ActionElement * currentAction = (ActionElement *) mObjects[i];
         if (currentAction->isReactingToTargetClick(object))
         {
-            abilitiesMenu->Add(i, currentAction->getMenuText());
+            if(dynamic_cast<MTGAbility*>(currentAction)->getCost()||dynamic_cast<PermanentAbility*>(currentAction))
+            {
+                abilitiesMenu->Add(i, currentAction->getMenuText());
+            }
+            else
+            {
+                //the only time this condiation is hit is when we are about to display a menu of abilities
+                //which were triggered through a triggered ability or abilities such as multiple target(
+                //and may abilities appearing on cards ie: auto=may draw:1
+                //this prevents abilities activated otherwise from displaying on the same menu as "triggered" and
+                //"put in play" abilities. an activated ability of a card should never share a menu with
+                //a triggered or may ability as it leads to exploits.
+                //only exception is perminent abilities such as "cast card normally" which can share the menu with autohand=
+                abilitiesTriggered->Add(i, currentAction->getMenuText());
+            }
         }
+    }
+    if(abilitiesTriggered->mCount)
+    {
+        SAFE_DELETE(abilitiesMenu);
+        abilitiesMenu = abilitiesTriggered;
+    }
+    else
+    {
+        SAFE_DELETE(abilitiesTriggered);
     }
     if (!must)
         abilitiesMenu->Add(kCancelMenuID, "Cancel");
@@ -503,6 +529,7 @@ ActionLayer::ActionLayer(GameObserver *observer)
 {
     menuObject = NULL;
     abilitiesMenu = NULL;
+    abilitiesTriggered = NULL;
     stuffHappened = 0;
     currentWaitingAction = NULL;
     cantCancel = 0;

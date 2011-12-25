@@ -1120,12 +1120,24 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     //When...comes into play, choose one...
     const string mayKeywords[] = {"may ", "choice "};
     const bool mayMust[] = { false, true };
+    ManaCost * mayCost = NULL;
     for (size_t i =0; i < sizeof(mayMust)/sizeof(mayMust[0]); ++i)
     {
         if (sWithoutTc.find(mayKeywords[i]) == 0)
         {
             string s1 = sWithoutTc.substr(mayKeywords[i].length());
-            MTGAbility * a1 = parseMagicLine(s1, id, spell, card);
+            MTGAbility * a1 = NULL;
+            //may pay a cost for this ability
+            vector<string> splitMayPay = parseBetween(s1, "pay(", ")", true);
+            if(splitMayPay.size())
+            {
+                a1 = parseMagicLine(splitMayPay[2], id, spell, card);
+                mayCost =  ManaCost::parseManaCost(splitMayPay[1], NULL, card);
+            }
+            else
+            {
+                a1 = parseMagicLine(s1, id, spell, card);
+            }
             if (!a1)
                 return NULL;
 
@@ -1133,7 +1145,10 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
                 a1 = NEW GenericTargetAbility(observer, newName,castRestriction,id, card, tc, a1);
             else
                 a1 = NEW GenericActivatedAbility(observer, newName,castRestriction,id, card, a1, NULL);
-            return NEW MayAbility(observer, id, a1, card,mayMust[i]);
+            MayAbility * mainAbility = NEW MayAbility(observer, id, a1, card,mayMust[i]);
+            if(mayCost)
+                mainAbility->optionalCost = mayCost;
+            return mainAbility;
         }
     }
 
@@ -1147,7 +1162,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
 
         return NEW GenericInstantAbility(observer, 1, card, (Damageable *) target, a1);
     }
-    
+
     //Upkeep Cost
     found = s.find("upcostmulti");
     if (found != string::npos)
@@ -2194,6 +2209,21 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
 
     }
     
+    //flip
+    vector<string> splitFlipStat = parseBetween(s, "flip(", ")", true);
+    if(splitFlipStat.size())
+    {
+        string flipStats = "";
+        if(splitFlipStat[1].size())
+        {
+            /*vector<string>FlipStats = split(splitFlipStat[1],'%');*/
+            flipStats = splitFlipStat[1];
+        }
+        MTGAbility * a = NEW AAFlip(observer, id, card, target,flipStats);
+        a->oneShot = 1;
+        return a;
+    }
+
     //Change Power/Toughness
     WParsedPT * wppt = NEW WParsedPT(s, spell, card);
     bool nonstatic = false;
@@ -2529,9 +2559,20 @@ int AbilityFactory::abilityEfficiency(MTGAbility * a, Player * p, int mode, Targ
         int myCards = countCards(abi->getActionTc(), p);
         int theirCards = countCards(abi->getActionTc(), p->opponent());
         int efficiency = abilityEfficiency(abi->ability, p, mode, tc);
-        if ( ((myCards < theirCards) && efficiency == BAKA_EFFECT_GOOD) || ((myCards > theirCards) && efficiency == BAKA_EFFECT_BAD)   )
-            return efficiency;
-        return -efficiency;
+        if (efficiency == BAKA_EFFECT_GOOD)
+        {
+            myCards < theirCards? efficiency = BAKA_EFFECT_BAD : efficiency = BAKA_EFFECT_GOOD;
+        }
+        else if (efficiency == BAKA_EFFECT_BAD)
+        {
+            myCards >= theirCards? efficiency = BAKA_EFFECT_BAD : efficiency = BAKA_EFFECT_GOOD;
+        }
+        return efficiency;
+        /*this method below leads to too many undesired effects, basically it doesn't work how the original coder thought it would.
+        leaving it for reference to avoid it reaccuring during a refactor.
+        if ( ((myCards <= theirCards) && efficiency == BAKA_EFFECT_GOOD) || ((myCards >= theirCards) && efficiency == BAKA_EFFECT_BAD)   )
+        return efficiency;
+        return -efficiency; */
     }
     if (AAsLongAs * abi = dynamic_cast<AAsLongAs *>(a))
         return abilityEfficiency(abi->ability, p, mode, tc);
@@ -3572,7 +3613,7 @@ int MTGAbility::addToGame()
 
 int MTGAbility::removeFromGame()
 {
-    game->addObserver(this);
+    game->removeObserver(this);
     return 1;
 }
 

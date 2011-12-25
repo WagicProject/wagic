@@ -43,8 +43,6 @@ class CardPrimitive
 #endif
 {
 private:
-    string text;
-    vector<string> formattedText;
     CastRestrictions * restrictions;
 
 protected:
@@ -52,6 +50,8 @@ protected:
     ManaCost manaCost;
 
 public:
+    vector<string> formattedText;
+    string text;
     string name;
     int init();
 

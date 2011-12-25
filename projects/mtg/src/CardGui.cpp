@@ -140,7 +140,11 @@ void CardGui::Render()
 
     bool alternate = true;
     JQuadPtr quad = game? game->getResourceManager()->RetrieveCard(card, CACHE_THUMB):WResourceManager::Instance()->RetrieveCard(card, CACHE_THUMB);
-
+    if(card && card->name != card->model->data->name)
+    {
+        MTGCard * fcard = MTGCollection()->getCardByName(card->name);
+        quad = game->getResourceManager()->RetrieveCard(fcard, CACHE_THUMB);
+    }
     if (quad.get())
         alternate = false;
     else
@@ -227,7 +231,6 @@ void CardGui::Render()
             }
         }
     }
-
     if (quad)
     {
         quad->SetColor(ARGB(static_cast<unsigned char>(actA),255,255,255));
@@ -1031,6 +1034,12 @@ void CardGui::RenderBig(MTGCard* card, const Pos& pos)
     float x = pos.actX;
 
     JQuadPtr quad = WResourceManager::Instance()->RetrieveCard(card);
+    MTGCardInstance * kcard =  dynamic_cast<MTGCardInstance*>(card);
+    if(kcard && kcard->name != kcard->model->data->name)
+    {
+        MTGCard * fcard = MTGCollection()->getCardByName(kcard->name);
+        quad = WResourceManager::Instance()->RetrieveCard(fcard);
+    }
     if (quad.get())
     {
         if (quad->mHeight < quad->mWidth)
@@ -1043,7 +1052,6 @@ void CardGui::RenderBig(MTGCard* card, const Pos& pos)
         RenderCountersBig(card, pos);
         return;
     }
-
     //DebugTrace("Unable to fetch image: " << card->getImageName());
 
     // If we come here, we do not have the picture.

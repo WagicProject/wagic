@@ -880,6 +880,7 @@ public:
     bool must;
     Player * previousInterrupter;
     MTGAbility * mClone;
+    ManaCost * optionalCost;
 
     MayAbility(GameObserver* observer, int _id, MTGAbility * _ability, MTGCardInstance * _source, bool must = false);
 
@@ -3053,6 +3054,18 @@ public:
     int testDestroy();
     const char * getMenuText();
     AAMorph * clone() const;
+};
+/* flip*/
+class AAFlip: public InstantAbility
+{
+public:
+    vector<MTGAbility *> currentAbilities;
+    string flipStats;
+    AAFlip(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target,string flipStats);
+    int resolve();
+    int testDestroy();
+    const char * getMenuText();
+    AAFlip * clone() const;
 };
 /* dynamic ability build*/
 class AADynamic: public ActivatedAbility

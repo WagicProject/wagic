@@ -131,6 +131,7 @@ void MTGCardInstance::initMTGCI()
     morphed = false;
     turningOver = false;
     isMorphed = false;
+    isFlipped = false;
     isPhased = false;
     phasedTurn = -1;
     didattacked = 0;
