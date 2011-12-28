@@ -556,6 +556,8 @@ void JGE::Pause()
 
     mPaused = true;
     if (mApp != NULL) mApp->Pause();
+
+    JFileSystem::GetInstance()->Pause();
 }
 
 void JGE::Resume()

@@ -69,17 +69,25 @@ public:
 	virtual zbuffer * close() = 0;
 
 	bool is_open() const	{ return m_Opened; }
+    bool is_used() const {return m_Used;}
+    void unuse() { m_Used = false;}
+    bool use(std::streamoff Offset, std::streamoff Size);
+    std::string getFilename() { return m_Filename; }
 
 protected:
-	zbuffer() : m_Size(0), m_Opened(false) { }
+	zbuffer() : m_Size(0), m_Opened(false), m_Used(false) { }
 
 	static const int BUFFERSIZE = 4092;
+
+    std::string m_Filename;
+
 
 	std::ifstream	m_ZipFile;
 	std::streamoff	m_Pos;
 	std::streamoff	m_Size;
 	char			m_Buffer[BUFFERSIZE];
 	bool			m_Opened;
+    bool m_Used;
 };
 
 
@@ -88,7 +96,7 @@ protected:
 class zbuffer_stored : public zbuffer
 {
 public:
-	virtual ~zbuffer_stored() { }
+	virtual ~zbuffer_stored() { close(); }
 
     virtual zbuffer_stored * open(const char * Filename, std::streamoff Offset, std::streamoff Size);
     virtual zbuffer_stored * close();
@@ -112,8 +120,7 @@ class zbuffer_deflated : public zbuffer
 public:
 
 	virtual ~zbuffer_deflated() {	
-		if (m_Opened)
-			inflateEnd(&m_ZStream);
+        close();
 	}
 
     virtual zbuffer_deflated * open(const char * Filename, std::streamoff Offset, std::streamoff Size);
@@ -144,23 +151,25 @@ class izstream : public std::istream
 public:
 
 	izstream() : std::istream(NULL), m_CompMethod(-1) { setstate(std::ios::badbit); }
-	virtual ~izstream()					{ delete rdbuf(); }
+	virtual ~izstream()					{ rdbuf(NULL); } //This doesn't delete the buffer, deletion is handled by zfsystem;
 
-	void open(const char * Filename, std::streamoff Offset, std::streamoff Size, int CompMethod);
-	void close()						{ SetCompMethod(-1); }
+	//void open(const char * Filename, std::streamoff Offset, std::streamoff Size, int CompMethod);
+	//void close()						{ SetCompMethod(-1); }
+    
+    void SetCompMethod(int CompMethod) { m_CompMethod = CompMethod; };
 
 protected:
 	static const int STORED = 0;
 	static const int DEFLATED = 8;
 
-	zbuffer * GetRightBuffer(int CompMethod) const;
+	//zbuffer * GetRightBuffer(int CompMethod) const;
 
-	void SetCompMethod(int CompMethod) {
+	/*void SetCompMethod(int CompMethod) {
         delete rdbuf(GetRightBuffer(m_CompMethod = CompMethod));
 
 		if (rdbuf() == NULL)
 			setstate(std::ios::badbit);
-	}
+	}*/
 
 	int	m_CompMethod;
 };

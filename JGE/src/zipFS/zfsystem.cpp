@@ -3,7 +3,7 @@
 
 // zfsystem.cpp: implementation of the zip file system classes.
 //
-// Copyright (C) 2004 Tanguy FautrÃ©.
+// Copyright (C) 2004 Tanguy Fautré.
 // For conditions of distribution and use,
 // see copyright notice in zfsystem.h
 //
@@ -39,6 +39,7 @@ filesystem * izfstream::pDefaultFS = NULL;
 string filesystem::CurrentZipName = "";
 ifstream filesystem::CurrentZipFile;
 filesystem * filesystem::pCurrentFS = NULL;
+std::vector<filesystem::pooledBuffer *> filesystem::m_Buffers;
 
 static const int STORED = 0;
 static const int DEFLATED = 8;
@@ -86,6 +87,90 @@ filesystem::filesystem(const char * BasePath, const char * FileExt, bool Default
 // File System Member Functions
 //////////////////////////////////////////////////////////////////////
 
+zbuffer * filesystem::getValidBuffer(const std::string & filename, const std::string & externalFilename, std::streamoff Offset, std::streamoff Size )
+{
+    //if exists filename in pool and is not in use, return that
+    for (size_t i = 0; i < m_Buffers.size(); ++i)
+    {
+        if (m_Buffers[i]->filename != filename)
+            continue;
+        zbuffer * buffer = m_Buffers[i]->buffer;
+        if (buffer && !buffer->is_used())
+        {
+            buffer->use(Offset, Size);
+            return buffer;
+        }
+    }
+
+    // if more than 3 objects in the pool, delete and close the first one that is unused
+    if (m_Buffers.size() > 3) 
+    {
+        for (size_t i = 0; i < m_Buffers.size(); ++i)
+        {
+            zbuffer * buffer = m_Buffers[i]->buffer;
+            if (buffer && !buffer->is_used())
+            {
+                delete m_Buffers[i];
+                m_Buffers.erase(m_Buffers.begin() + i);
+                break;
+            }
+        }
+    }
+
+    //No possiblility to open more files for now
+    if (m_Buffers.size() > 3)
+        return NULL;
+
+    //create a new buffer object, add it to the pool, and return that
+    pooledBuffer * pb = new pooledBuffer(filename, externalFilename);
+
+        zbuffer * buffer = new zbuffer_stored();
+        buffer->open(filename.c_str(), Offset, Size);
+        pb->buffer = buffer;
+
+    m_Buffers.push_back(pb);
+    return pb->buffer;
+
+
+}
+
+
+void filesystem::closeBufferPool()
+{
+    for (size_t i = 0; i < m_Buffers.size(); ++i)
+    {
+        if (m_Buffers[i])
+        {
+            if (m_Buffers[i]->buffer && m_Buffers[i]->buffer->is_used())
+            {
+                LOG("FATAL: File Buffer still in use but need to close");
+            }
+
+            delete m_Buffers[i];
+        }
+    }
+    m_Buffers.clear();
+}
+
+void filesystem::unuse(izfstream & File)
+{
+
+    File.setstate(std::ios::badbit);
+
+    if (!File.Zipped())
+    {
+        std::streambuf * buffer = File.rdbuf(NULL);
+        if (buffer)
+            delete(buffer);
+    }
+    else
+    {
+        zbuffer * buffer = static_cast<zbuffer *>(File.rdbuf());
+        if (buffer)
+            buffer->unuse();
+    }
+}
+
 void filesystem::Open(izfstream & File, const char * Filename)
 {
 	// Close the file if it was opened;
@@ -99,11 +184,11 @@ void filesystem::Open(izfstream & File, const char * Filename)
 	if (FileNotZipped(FullPath.c_str())) {
 
 		// Link the izfile object with an opened filebuf
-		filebuf * FileBuf = new filebuf;
+        filebuf * FileBuf = new filebuf;
 		FileBuf->open(FullPath.c_str(), ios::binary | ios::in);
 
 		if (FileBuf->is_open()) {
-			delete File.rdbuf(FileBuf);
+			File.rdbuf(FileBuf);
 			File.clear(ios::goodbit);
 			File.m_FilePath = Filename;
 			File.m_FullFilePath = FullPath;
@@ -148,14 +233,12 @@ void filesystem::Open(izfstream & File, const char * Filename)
 			if (DataPos != streamoff(-1)) {
                 string zipName = m_BasePath + CurrentZipName;
 				// Open the file at the right position
-				((izstream &) File).open(
-					zipName.c_str(),
-					streamoff(DataPos),
-					streamoff(FileInfo.m_CompSize),
-					FileInfo.m_CompMethod
-				);
+                zbuffer * buffer = getValidBuffer(zipName, Filename,  streamoff(DataPos), streamoff(FileInfo.m_CompSize));
 
-				if (File) {
+				if (buffer) {
+                    File.rdbuf(buffer);
+                    File.SetCompMethod(FileInfo.m_CompMethod);
+
 					File.m_FilePath = Filename;
 					File.m_FullFilePath = FullPath;
 					File.m_Zipped = true;
@@ -163,6 +246,10 @@ void filesystem::Open(izfstream & File, const char * Filename)
                     File.m_CompSize = FileInfo.m_CompSize;
                     File.m_Offset = FileInfo.m_Offset;
 				}
+                else
+                {
+                    File.setstate(ios::badbit);
+                }
 			}
 
 		}
@@ -326,7 +413,11 @@ void filesystem::InsertZip(const char * Filename, const size_t PackID)
 		return;
 
 	// Find the start of the central directory
-	if (! File.seekg(CentralDir(File))) return;
+	if (! File.seekg(CentralDir(File)))
+    {
+        File.close();
+        return;
+    }
 
     LOG("open zip ok");
 
@@ -381,7 +472,10 @@ bool filesystem::PreloadZip(const char * Filename, map<string, limited_file_info
     {
         streamoff realBeginOfFile =  SkipLFHdr(CurrentZipFile, File.getOffset());
         if (! CurrentZipFile.seekg(CentralDirZipped(CurrentZipFile, realBeginOfFile, File.getCompSize())))
+        {
+            File.close();
             return false;
+        }
 
 	    // Check every headers within the zip file
 	    file_header FileHdr;
@@ -409,7 +503,10 @@ bool filesystem::PreloadZip(const char * Filename, map<string, limited_file_info
     else
     {
 	    if (! File.seekg(CentralDir(File)))
+        {
+            File.close();
             return false;
+        }
 
 	    // Check every headers within the zip file
 	    file_header FileHdr;

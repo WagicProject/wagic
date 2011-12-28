@@ -22,6 +22,7 @@ using namespace std;
 // zstream Member Functions
 //////////////////////////////////////////////////////////////////////
 
+/*
 void izstream::open(const char * Filename, streamoff Offset, streamoff Size, int CompMethod)
 {
 	// Change the buffer if need
@@ -67,8 +68,33 @@ zbuffer * izstream::GetRightBuffer(int CompMethod) const
 	default:
 		return NULL;
 	}
-}
+}*/
 
+bool zbuffer::use(std::streamoff Offset, std::streamoff Size)
+{
+	if (! m_ZipFile)
+		return false;
+
+    //Don't use a buffer already used;
+    if (m_Used)
+        return false;
+
+	// adjust file position
+	if (! m_ZipFile.seekg(Offset, ios::beg))
+		return false;
+
+	setg( m_Buffer,					// beginning of putback area
+          m_Buffer,					// read position
+          m_Buffer);		// end of buffer
+
+    m_Buffer[0] = 0;
+
+	m_Pos = -1;
+	m_Size = Size;
+    m_Used = true;
+
+    return true;
+}
 
 
 //////////////////////////////////////////////////////////////////////
@@ -83,13 +109,11 @@ zbuffer_stored * zbuffer_stored::open(const char * Filename, streamoff Offset, s
 		return NULL;
 
 	// adjust file position
-	if (! m_ZipFile.seekg(Offset, ios::beg))
+	if (! use(Offset, Size))
 		return NULL;
 
 	m_Opened = true;
-	m_Pos = -1;
-	m_Size = Size;
-
+    m_Filename = Filename;
 	return this;
 }
 
@@ -101,6 +125,7 @@ zbuffer_stored * zbuffer_stored::close()
 		return NULL;
 	else {
 		m_Opened = false;
+        m_Used = false;
 		m_ZipFile.close();
 	}
 
@@ -127,15 +152,15 @@ int zbuffer_stored::underflow()
 		return static_cast<unsigned char>(* gptr());
 
 	// Refill de buffer.
-	streamoff ToRead = ((m_Size - m_Pos) < BUFFERSIZE) ? (m_Size - m_Pos) : BUFFERSIZE; 
-	if ((ToRead == 0) || (! m_ZipFile.read(m_Buffer, BUFFERSIZE)))
-		return EOF;
-
 	// Set the real position of the beginning of the buffer.
 	if (m_Pos == streamoff(-1))
 		m_Pos = 0;
-	else
-		m_Pos += ToRead; 
+
+	streamoff ToRead = ((m_Size - m_Pos) < BUFFERSIZE) ? (m_Size - m_Pos) : BUFFERSIZE; 
+	if ((ToRead == 0) || (! m_ZipFile.read(m_Buffer, ToRead)))
+		return EOF;
+
+    m_Pos += ToRead; 
 	
 	// Reset buffer pointers.
 	setg( m_Buffer,					// beginning of putback area
@@ -188,7 +213,7 @@ streampos zbuffer_stored::seekoff(streamoff off, ios::seekdir dir,  ios::openmod
 
 	if (ToRead == 0)
 		return WantedPos;
-	if (! m_ZipFile.read(m_Buffer, BUFFERSIZE))
+	if (! m_ZipFile.read(m_Buffer, ToRead))
 		return streambuf::seekoff(off, dir, nMode);
 
  	// Set the buffer at the right position
@@ -225,7 +250,7 @@ zbuffer_deflated * zbuffer_deflated::open(const char * Filename, streamoff Offse
 		return NULL;
 
 	// adjust file position
-	if (! m_ZipFile.seekg(Offset, ios::beg))
+	if (! use(Offset, Size))
 		return NULL;
 
 	// z_stream (NULL) Initialization 
@@ -247,7 +272,7 @@ zbuffer_deflated * zbuffer_deflated::open(const char * Filename, streamoff Offse
 	m_StreamEnd = false;
 	m_Pos = 0;
 	m_CompPos = 0;
-	m_Size = Size;
+    m_Filename = Filename;
 
 	return this;
 }
@@ -260,6 +285,7 @@ zbuffer_deflated * zbuffer_deflated::close()
 		return NULL;
 	else {
 		m_Opened = false;
+        m_Used = false;
 		m_ZipFile.close();
 
 		// z_stream unitialization.

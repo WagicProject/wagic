@@ -394,11 +394,9 @@ void GameStateMenu::listPrimitives()
     {
         string filename = "sets/primitives/";
         filename.append(primitiveFiles[i]);
-        izfstream file;
-        if (! JFileSystem::GetInstance()->openForRead(file, filename))
-            continue;
 
-        file.close();
+        if (! JFileSystem::GetInstance()->FileExists(filename))
+            continue;
         primitives.push_back(filename);
     }
     primitivesLoadCounter = 0;

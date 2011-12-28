@@ -41,6 +41,11 @@ JZipCache::~JZipCache()
     dir.clear();
 }
 
+void JFileSystem::Pause() 
+{
+    filesystem::closeTempFiles();
+}
+
 void JFileSystem::preloadZip(const string& filename)
 {
     map<string,JZipCache *>::iterator it = mZipCache.find(filename);
@@ -202,6 +207,7 @@ bool JFileSystem::MakeDir(const string & dir)
 JFileSystem::~JFileSystem()
 {
     clearZipCache();
+    filesystem::closeTempFiles();
     SAFE_DELETE(mUserFS);
     SAFE_DELETE(mSystemFS);
 }
@@ -286,7 +292,12 @@ bool JFileSystem::readIntoString(const string & FilePath, string & target)
 
     int fileSize = GetFileSize(file);
 
-    target.resize((std::string::size_type) fileSize);
+    try {
+        target.resize((std::string::size_type) fileSize);
+    } catch (bad_alloc&) {
+        return false;
+    }
+
 
     if (fileSize)
         file.read(&target[0], fileSize);

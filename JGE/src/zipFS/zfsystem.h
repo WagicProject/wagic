@@ -75,6 +75,7 @@ public:
     void setFS(filesystem * pFS = pDefaultFS);
 
 	bool Zipped() const;
+    bool isBeingUsed() const;
 	const std::string & FilePath() const;
 	const std::string & FullFilePath() const;
     size_t getUncompSize();
@@ -94,6 +95,7 @@ protected:
     size_t m_UncompSize;
 	size_t	m_Offset;
 	size_t	m_CompSize;
+    bool m_Used;
         
 };
 
@@ -131,6 +133,17 @@ public:
 		size_t	m_Size;
 	};
 
+    class pooledBuffer
+    {
+    public:
+        pooledBuffer(std::string filename, std::string externalFilename ) : filename(filename), externalFilename(externalFilename), buffer(NULL) {}
+        ~pooledBuffer() { if (buffer) { delete buffer; } }
+        std::string filename;
+        std::string externalFilename;
+        zbuffer * buffer;
+    };
+
+
 	filesystem(const char * BasePath = "", const char * FileExt = "zip", bool DefaultFS = true); 
 	~filesystem();
 
@@ -142,13 +155,17 @@ public:
     static std::string getCurrentZipName();
     static filesystem * getCurrentFS();
     static std::streamoff SkipLFHdr(std::istream & File, std::streamoff LFHdrPos);
+    void unuse(izfstream & File);
 
     //Fills the vector results with a list of children of the given folder
     std::vector<std::string>& scanfolder(const std::string& folderName, std::vector<std::string>& results);
 
 	friend std::ostream & operator << (std::ostream & Out, const filesystem & FS);
-
+    static void closeTempFiles();
+    
 protected:
+
+
 
 	// Zip file info class
 	class zipfile_info
@@ -181,6 +198,9 @@ protected:
 	const std::string & FindZip(size_t PackID) const;
 	void InsertZip(const char * Filename, const size_t PackID);
 
+    static zbuffer * getValidBuffer(const std::string & filename, const std::string & externalFilename, std::streamoff Offset = 0, std::streamoff Size = 0);
+    static void closeBufferPool();
+
 	// New type definitions
 	typedef std::map<size_t, zipfile_info>								zipmap;
 	typedef std::map<size_t, zipfile_info>::iterator					zipmap_iterator;
@@ -194,6 +214,7 @@ protected:
 	std::string	m_FileExt;
 	zipmap		m_Zips;
 	filemap		m_Files;
+    static std::vector<pooledBuffer *> m_Buffers;
     static std::ifstream CurrentZipFile;
     static std::string CurrentZipName;
     static filesystem * pCurrentFS;
@@ -242,7 +263,8 @@ inline void izfstream::open(const char * FilePath, filesystem * pFS) {
 }
 
 inline void izfstream::close() {
-	izstream::close();
+	if (m_pFS)
+        m_pFS->unuse( * this);
 	m_FilePath = m_FullFilePath = "";
     m_UncompSize = 0;
 }
@@ -253,6 +275,10 @@ inline bool izfstream::is_open() const {
 
 inline bool izfstream::Zipped() const {
 	return m_Zipped;
+}
+
+inline bool izfstream::isBeingUsed() const {
+	return m_Used;
 }
 
 inline const std::string & izfstream::FilePath() const {
@@ -273,14 +299,16 @@ inline filesystem::~filesystem() {
 	// Security mesure with izfile::pDefaultFS
 	if (izfstream::pDefaultFS == this)
 		izfstream::pDefaultFS = NULL;
+}
 
+inline void filesystem::closeTempFiles() {
     if (CurrentZipName.size())
     {
         CurrentZipFile.close();
         CurrentZipName = "";
     }
+    closeBufferPool();
 }
-
 inline void filesystem::MakeDefault() {
 	izfstream::pDefaultFS = this;
 }

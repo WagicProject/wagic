@@ -1750,17 +1750,33 @@ void GameObserver::createPlayer(const string& playerMode
 #ifdef TESTSUITE
 void GameObserver::loadTestSuitePlayer(int playerId, TestSuiteGame* testSuite)
 {
-    players.push_back(new TestSuiteAI(testSuite, playerId));
+    loadPlayer(playerId, new TestSuiteAI(testSuite, playerId));
 }
 #endif //TESTSUITE
 
 void GameObserver::loadPlayer(int playerId, Player* player)
 {
-    players.push_back(player);
+    //Because we're using a vector instead of an array (why?),
+    // we have to prepare the vector in order to be the right size to accomodate the playerId variable
+    // see http://code.google.com/p/wagic/issues/detail?id=772
+    if (players.size() > (size_t) playerId) {
+        SAFE_DELETE(players[playerId]);
+        players[playerId] = NULL;
+    } else {
+        while (players.size() <= (size_t) playerId)
+        {
+            players.push_back(NULL);
+        }
+    }
+
+    players[playerId] = player;
 }
 
 void GameObserver::loadPlayer(int playerId, PlayerType playerType, int decknb, bool premadeDeck)
 {
+
+
+
     if (decknb)
     {
         if (playerType == PLAYER_TYPE_HUMAN)
@@ -1774,7 +1790,8 @@ void GameObserver::loadPlayer(int playerId, PlayerType playerType, int decknb, b
                     sprintf(deckFile, "%s/deck%i.txt", options.profileFile().c_str(), decknb);
                 char deckFileSmall[255];
                 sprintf(deckFileSmall, "player_deck%i", decknb);
-                players.push_back(NEW HumanPlayer(this, deckFile, deckFileSmall, premadeDeck));
+
+                loadPlayer(playerId, NEW HumanPlayer(this, deckFile, deckFileSmall, premadeDeck));
 #ifdef NETWORK_SUPPORT
                 // FIXME, this is broken
                 if(isNetwork)
@@ -1785,7 +1802,7 @@ void GameObserver::loadPlayer(int playerId, PlayerType playerType, int decknb, b
             }
             else
             {   //Remote player
-                mPlayers.push_back(NEW RemotePlayer(mParent->mpNetwork));
+                loadPlayer(playerId, NEW RemotePlayer(mParent->mpNetwork));
 #endif //NETWORK_SUPPORT
             }
         }
@@ -1794,7 +1811,8 @@ void GameObserver::loadPlayer(int playerId, PlayerType playerType, int decknb, b
             AIPlayerFactory playerCreator;
             Player * opponent = NULL;
             if (playerId == 1) opponent = players[0];
-            players.push_back(playerCreator.createAIPlayer(this, MTGCollection(), opponent, decknb));
+
+            loadPlayer(playerId, playerCreator.createAIPlayer(this, MTGCollection(), opponent, decknb));
         }
     }
     else
@@ -1809,11 +1827,11 @@ void GameObserver::loadPlayer(int playerId, PlayerType playerType, int decknb, b
         if (playerId == 1) opponent = players[0];
 #ifdef AI_CHANGE_TESTING
         if (playerType == PLAYER_TYPE_CPU_TEST)
-            players.push_back(playerCreator.createAIPlayerTest(this, MTGCollection(), opponent, playerId == 0 ? "ai/bakaA/" : "ai/bakaB/"));
+            loadPlayer(playerId, playerCreator.createAIPlayerTest(this, MTGCollection(), opponent, playerId == 0 ? "ai/bakaA/" : "ai/bakaB/"));
         else
 #endif
         {
-            players.push_back(playerCreator.createAIPlayer(this, MTGCollection(), opponent));
+            loadPlayer(playerId, playerCreator.createAIPlayer(this, MTGCollection(), opponent));
         }
 
         if (playerType == PLAYER_TYPE_CPU_TEST)

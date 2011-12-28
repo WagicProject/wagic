@@ -126,6 +126,7 @@ void GameApp::Create()
     LOG("init Res Folder at " + foldersRoot);
     JFileSystem::init(foldersRoot + "User/", foldersRoot + systemFolder);
 
+    
     // Create User Folders (for write access) if they don't exist
     {
         const char* folders[] = { "ai", "ai/baka", "ai/baka/stats", "campaigns", "graphics", "lang", "packs", "player", "player/stats", "profiles", "rules", "sets", "settings", "sound", "sound/sfx", "themes", "test"};
@@ -160,6 +161,13 @@ void GameApp::Create()
     //Test for Music files presence
     JFileSystem * jfs = JFileSystem::GetInstance();
     HasMusic = jfs->FileExists(WResourceManager::Instance()->musicFile("Track0.mp3")) && jfs->FileExists(WResourceManager::Instance()->musicFile("Track1.mp3"));
+    
+    LOG("Init Collection");
+    MTGAllCards::loadInstance();
+
+    LOG("Loading rules");
+    Rules::loadAllRules();
+
 
     LOG("Loading Textures");
     LOG("--Loading menuicons.png");
@@ -235,8 +243,6 @@ void GameApp::Create()
     jq = WResourceManager::Instance()->RetrieveQuad("phasebar.png", 0, 0, 0, 0, "phasebar", RETRIEVE_MANAGE);
 
 
-    LOG("Init Collection");
-    MTGAllCards::loadInstance();
 
     LOG("Creating Game States");
     mGameStates[GAME_STATE_DECK_VIEWER] = NEW GameStateDeckViewer(this);
@@ -264,9 +270,6 @@ void GameApp::Create()
 
     mCurrentState = NULL;
     mNextState = mGameStates[GAME_STATE_MENU];
-
-    LOG("--Load Game rules");
-    Rules::loadAllRules();
 
     //Set Audio volume
     JSoundSystem::GetInstance()->SetSfxVolume(options[Options::SFXVOLUME].number);

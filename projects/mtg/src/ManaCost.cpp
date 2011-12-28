@@ -351,11 +351,23 @@ ManaCost::~ManaCost()
 
 void ManaCost::x()
 {
+    if (cost.size() <= (size_t)Constants::NB_Colors)
+    {
+        DebugTrace("Seems ManaCost was not properly initialized");
+        return;
+    }
+
     cost[Constants::NB_Colors] = 1;
 }
 
 int ManaCost::hasX()
 {
+    if (cost.size() <= (size_t)Constants::NB_Colors)
+    {
+        DebugTrace("Seems ManaCost was not properly initialized");
+        return 0;
+    }
+
     return cost[Constants::NB_Colors];
 }
 
@@ -465,6 +477,11 @@ void ManaCost::copy(ManaCost * _manaCost)
 
 int ManaCost::getCost(int color)
 {
+    if (cost.size() <= (size_t)color)
+    {
+        DebugTrace("Seems ManaCost was not properly initialized");
+        return 0;
+    }
     return cost[color];
 }
 
@@ -477,7 +494,7 @@ ManaCostHybrid * ManaCost::getHybridCost(unsigned int i)
 
 int ManaCost::hasColor(int color)
 {
-    if (cost[color])
+    if (getCost(color))
         return 1;
     for (size_t i = 0; i < hybrids.size(); i++)
     {

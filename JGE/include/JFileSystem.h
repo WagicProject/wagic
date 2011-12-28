@@ -77,6 +77,8 @@ public:
 
 	static void Destroy();
 
+    // closes temporary files when the machine goes to sleep
+    void Pause();
 	//////////////////////////////////////////////////////////////////////////
 	/// Open file for reading.
 	///
