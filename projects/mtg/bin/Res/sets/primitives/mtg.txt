@@ -77547,17 +77547,6 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-name=Undead Alchemist
-auto=@combatdamaged(player) from(zombie|mybattlefield):deplete:thatmuch opponent && life:thatmuch opponent
-auto=@movedTo(creature|opponentgraveyard) from(opponentlibrary):token(Zombie,Creature Zombie,2/2,black)
-text=If a Zombie you control would deal combat damage to a player, instead that player puts that many cards from the top of his or her library into his or her graveyard. -- Whenever a creature card is put into an opponent's graveyard from his or her library, exile that card and put a 2/2 black Zombie creature token onto the battlefield.
-mana={3}{U}
-type=Creature
-subtype=Zombie
-power=4
-toughness=2
-[/card]
-[card]
 name=Undead Leotau
 auto={R}:1/-1
 autograveyard={2}{B}:moveto(mybattlefield) && transforms((,unearth,haste)) asSorcery forever
