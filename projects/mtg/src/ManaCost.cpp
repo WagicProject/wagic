@@ -600,6 +600,15 @@ int ManaCost::addExtraCost(ExtraCost * _cost)
     return 1;
 }
 
+int ManaCost::addExtraCosts(ExtraCosts *_ecost)
+{
+    if (!extraCosts)
+        extraCosts = NEW ExtraCosts();
+    for(size_t i = 0; i < _ecost->costs.size(); i++)
+        extraCosts->costs.push_back(_ecost->costs[i]->clone());
+    return 1;
+}
+
 int ManaCost::isExtraPaymentSet()
 {
     if (!extraCosts)

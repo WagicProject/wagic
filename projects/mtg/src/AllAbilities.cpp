@@ -1019,6 +1019,7 @@ InstantAbility(observer, id, card, _target),flipStats(flipStats)
 int AAFlip::resolve()
 {
     MTGCardInstance * Flipper = (MTGCardInstance*)source;
+    this->oneShot = true;
     if(Flipper->isFlipped)
     {
         game->removeObserver(this);
@@ -3569,6 +3570,7 @@ void AUpkeep::Update(float dt)
                 for(int age = 0;age < currentage;age++)
                 {
                     this->getCost()->add(backupMana); 
+                    this->getCost()->addExtraCosts(backupMana->extraCosts);
                 }
             }
         }

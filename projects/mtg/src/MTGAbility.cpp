@@ -2220,7 +2220,6 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             flipStats = splitFlipStat[1];
         }
         MTGAbility * a = NEW AAFlip(observer, id, card, target,flipStats);
-        a->oneShot = 1;
         return a;
     }
 

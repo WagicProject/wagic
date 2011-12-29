@@ -25,6 +25,15 @@ public:
   ThisDescriptor * createThisDescriptor(GameObserver* observer, string s);
 };
 
+class ThisTargetCompare:public ThisDescriptor{
+ public:
+  TargetChooser * targetComp;
+  virtual int match(MTGCardInstance * card);
+  ThisTargetCompare(TargetChooser * tcc = NULL);
+  ~ThisTargetCompare();
+  ThisTargetCompare * clone() const;
+};
+
 class ThisCounter:public ThisDescriptor{
  public:
   Counter * counter;

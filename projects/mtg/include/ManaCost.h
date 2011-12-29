@@ -77,6 +77,7 @@ public:
     // Extra Costs (sacrifice,counters...)
     //
     int addExtraCost(ExtraCost * _cost);
+    int addExtraCosts(ExtraCosts *_cost);
     int setExtraCostsAction(MTGAbility * action, MTGCardInstance * card);
     int isExtraPaymentSet();
     int canPayExtra();

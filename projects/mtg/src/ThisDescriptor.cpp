@@ -4,6 +4,7 @@
 #include "Counters.h"
 #include "MTGCardInstance.h"
 #include "CardDescriptor.h"
+#include "AllAbilities.h"
 
 ThisDescriptor::~ThisDescriptor()
 {
@@ -330,8 +331,44 @@ ThisDescriptor * ThisDescriptorFactory::createThisDescriptor(GameObserver* obser
         }
         return NULL;
     }
+    vector<string>splitTargetComparison = parseBetween(s,"cantargetcard(",")",false);
+    if (splitTargetComparison.size())
+    {
+        TargetChooserFactory tf(observer);
+        TargetChooser * tcc = tf.createTargetChooser(splitTargetComparison[1],NULL);
+        ThisTargetCompare * td = NEW ThisTargetCompare(tcc);
+        if (td)
+        {
+            return td;
+        }
+        return NULL;
+    }
 
     return NULL;
+}
+
+ThisTargetCompare::ThisTargetCompare(TargetChooser * _tcc)
+{
+    targetComp = _tcc;
+}
+
+int ThisTargetCompare::match(MTGCardInstance * card)
+{
+    if(targetComp->canTarget(card))
+        return 1;
+    return 0;
+}
+
+ThisTargetCompare::~ThisTargetCompare()
+{
+    SAFE_DELETE(targetComp);
+}
+
+ThisTargetCompare* ThisTargetCompare::clone() const 
+{
+    ThisTargetCompare * a =  NEW ThisTargetCompare(*this);
+
+    return a;
 }
 
 ThisCounter::ThisCounter(Counter * _counter)
