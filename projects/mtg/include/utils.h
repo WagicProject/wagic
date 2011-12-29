@@ -117,7 +117,6 @@ u32 ramAvailable(void);
 
 bool fileExists(const char * filename);
 bool FileExists(const string & filename);
-
 std::string buildFilePath(const vector<string> & folders, const string & filename);
 std::string ensureFolder(const string & folderName);
 /*

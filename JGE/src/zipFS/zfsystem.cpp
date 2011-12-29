@@ -159,9 +159,7 @@ void filesystem::unuse(izfstream & File)
 
     if (!File.Zipped())
     {
-        std::streambuf * buffer = File.rdbuf(NULL);
-        if (buffer)
-            delete(buffer);
+        delete(File.rdbuf(NULL));
     }
     else
     {
@@ -188,7 +186,11 @@ void filesystem::Open(izfstream & File, const char * Filename)
 		FileBuf->open(FullPath.c_str(), ios::binary | ios::in);
 
 		if (FileBuf->is_open()) {
+#ifdef USE_ZBUFFER_POOL 
 			File.rdbuf(FileBuf);
+#else
+            delete File.rdbuf(FileBuf);
+#endif
 			File.clear(ios::goodbit);
 			File.m_FilePath = Filename;
 			File.m_FullFilePath = FullPath;
@@ -233,12 +235,27 @@ void filesystem::Open(izfstream & File, const char * Filename)
 			if (DataPos != streamoff(-1)) {
                 string zipName = m_BasePath + CurrentZipName;
 				// Open the file at the right position
+
+#ifdef USE_ZBUFFER_POOL 
                 zbuffer * buffer = getValidBuffer(zipName, Filename,  streamoff(DataPos), streamoff(FileInfo.m_CompSize));
 
-				if (buffer) {
+				if (!buffer) 
+                {
+                    File.setstate(ios::badbit);
+                } 
+                else
+                {
                     File.rdbuf(buffer);
-                    File.SetCompMethod(FileInfo.m_CompMethod);
-
+                    File._SetCompMethod(FileInfo.m_CompMethod);
+#else
+                ((izstream &) File).open(
+                    zipName.c_str(),
+                    streamoff(DataPos),
+                    streamoff(FileInfo.m_CompSize),
+                    FileInfo.m_CompMethod
+                    );
+                if (File) {
+#endif
 					File.m_FilePath = Filename;
 					File.m_FullFilePath = FullPath;
 					File.m_Zipped = true;
@@ -246,10 +263,6 @@ void filesystem::Open(izfstream & File, const char * Filename)
                     File.m_CompSize = FileInfo.m_CompSize;
                     File.m_Offset = FileInfo.m_Offset;
 				}
-                else
-                {
-                    File.setstate(ios::badbit);
-                }
 			}
 
 		}

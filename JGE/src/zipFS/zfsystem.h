@@ -263,8 +263,12 @@ inline void izfstream::open(const char * FilePath, filesystem * pFS) {
 }
 
 inline void izfstream::close() {
+#ifdef USE_ZBUFFER_POOL 
 	if (m_pFS)
         m_pFS->unuse( * this);
+#else
+    izstream::close();
+#endif
 	m_FilePath = m_FullFilePath = "";
     m_UncompSize = 0;
 }

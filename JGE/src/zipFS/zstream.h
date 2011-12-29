@@ -51,7 +51,9 @@
 
 #include "zstream_zlib.h" // Zlib dependencies
 
-
+#ifdef PSP
+#define USE_ZBUFFER_POOL
+#endif
 
 // Zip File System Namespace
 namespace zip_file_system {
@@ -151,25 +153,31 @@ class izstream : public std::istream
 public:
 
 	izstream() : std::istream(NULL), m_CompMethod(-1) { setstate(std::ios::badbit); }
-	virtual ~izstream()					{ rdbuf(NULL); } //This doesn't delete the buffer, deletion is handled by zfsystem;
+	virtual ~izstream()					{ 
+#ifdef USE_ZBUFFER_POOL 
+        rdbuf(NULL); //This doesn't delete the buffer, deletion is handled by zfsystem;
+#else
+        delete(rdbuf());
+#endif
+    } 
 
-	//void open(const char * Filename, std::streamoff Offset, std::streamoff Size, int CompMethod);
-	//void close()						{ SetCompMethod(-1); }
+	void open(const char * Filename, std::streamoff Offset, std::streamoff Size, int CompMethod);
+	void close()						{ SetCompMethod(-1); }
     
-    void SetCompMethod(int CompMethod) { m_CompMethod = CompMethod; };
+    void _SetCompMethod(int CompMethod) { m_CompMethod = CompMethod; };
 
 protected:
 	static const int STORED = 0;
 	static const int DEFLATED = 8;
 
-	//zbuffer * GetRightBuffer(int CompMethod) const;
+	zbuffer * GetRightBuffer(int CompMethod) const;
 
-	/*void SetCompMethod(int CompMethod) {
+	void SetCompMethod(int CompMethod) {
         delete rdbuf(GetRightBuffer(m_CompMethod = CompMethod));
 
 		if (rdbuf() == NULL)
 			setstate(std::ios::badbit);
-	}*/
+	}
 
 	int	m_CompMethod;
 };

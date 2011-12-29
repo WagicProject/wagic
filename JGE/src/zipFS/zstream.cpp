@@ -22,7 +22,7 @@ using namespace std;
 // zstream Member Functions
 //////////////////////////////////////////////////////////////////////
 
-/*
+
 void izstream::open(const char * Filename, streamoff Offset, streamoff Size, int CompMethod)
 {
 	// Change the buffer if need
@@ -68,7 +68,7 @@ zbuffer * izstream::GetRightBuffer(int CompMethod) const
 	default:
 		return NULL;
 	}
-}*/
+}
 
 bool zbuffer::use(std::streamoff Offset, std::streamoff Size)
 {
