@@ -79,7 +79,6 @@ public slots:
   void displayStateChanged(const QDBusMessage &message);
 #endif //Q_WS_MAEMO_5
 
-
 protected:
   void initializeGL();
 
@@ -664,17 +663,19 @@ int main(int argc, char* argv[])
     qDebug() << "Current path : " << QCoreApplication::applicationDirPath ();
 
     QScopedPointer<QmlApplicationViewer> viewer(QmlApplicationViewer::create());
-    // FIXME with something actually useful
-    FileDownloader fileDownloader(QUrl("http://wagic.googlecode.com/files/wagic_0.16.0meego0_armel.deb"), "w00t.dat", 0);
+    FileDownloader fileDownloader(QUrl("http://wagic.googlecode.com/files/core_017.zip"),
+                                  QDir::toNativeSeparators(QDir::homePath()) + "/.wagic/core_017.zip", 0);
 
     if(!fileDownloader.isDone()){
+        app->connect(&fileDownloader, SIGNAL(downloaded()), SLOT(quit()));
         viewer->setOrientation(QmlApplicationViewer::ScreenOrientationAuto);
         viewer->setMainQmlFile(QLatin1String("qml/QmlWagic/main.qml"));
         viewer->rootContext()->setContextProperty("fileDownloader", &fileDownloader);
         viewer->showExpanded();
 
-        // FIXME we're actually have to close the QML app to start the native app...
         app->exec();
+
+        viewer->close();
     }
 
     g_launcher = new JGameLauncher();
