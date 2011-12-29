@@ -26,7 +26,13 @@ class ZipUtilities:
 
 def main():
     utilities = ZipUtilities()
-    filename = 'Res.zip'
+    filename = 'core_017.zip'
+    if not os.path.isfile('settings/options.txt'):
+        os.rename('settings/options.orig.txt', 'settings/options.txt')
+    if not os.path.isfile('player/options.txt'):
+        os.rename('player/options.orig.txt', 'player/options.txt')
+        
+    
     zip_file = zipfile.ZipFile(filename, 'w', zipfile.ZIP_DEFLATED)
     utilities.addFolderToZip(zip_file, 'themes')
     utilities.addFolderToZip(zip_file, 'sound')
