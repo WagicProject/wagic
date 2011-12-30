@@ -47,6 +47,7 @@ GuiCombat::GuiCombat(GameObserver* go) :
     if (NULL == ok_tex && go->getResourceManager())
     {
         ok_tex = go->getResourceManager()->RetrieveTexture("Ok.png", RETRIEVE_LOCK);
+        // send a message out to listeners that we created the GO button and it's location
     }
 }
 
@@ -190,6 +191,7 @@ bool GuiCombat::clickOK()
     case END_FIRST_STRIKE:
         return false;
     case END_DAMAGE:
+        JGE::GetInstance()->SendCommand("combatGuiEndDamage");
         return false; // nothing;
     }
     return false;
@@ -428,6 +430,7 @@ void GuiCombat::Render()
         JQuadPtr ok_quad = WResourceManager::Instance()->RetrieveTempQuad("Ok.png");
         ok_quad->SetHotSpot(28, 22);
         ok.Render(ok_quad.get());
+        JGE::GetInstance()->SendCommand("okbuttoncreated:", ok.x, ok.y, ok_quad->mWidth, ok_quad->mHeight);
     }
     renderer->DrawLine(0, SCREEN_HEIGHT / 2 + 10, SCREEN_WIDTH, SCREEN_HEIGHT / 2 + 10, ARGB(255, 255, 64, 0));
     if (FIRST_STRIKE == step)

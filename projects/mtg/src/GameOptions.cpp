@@ -7,10 +7,6 @@
 #include "StyleManager.h"
 #include "Credits.h"
 
-#ifdef IOS
-#include "JGE.h"
-#endif
-
 const string Options::optionNames[] = {
 //Global options
   "Profile",

@@ -190,8 +190,7 @@ static NSString *kDownloadFileName = @"core_017_iOS.zip";
     return self;
 }
 
-
-#pragma mark Application Lifecycle
+#pragma mark - Application Lifecycle
 
 
 - (void) didReceiveMemoryWarning 
@@ -203,8 +202,7 @@ static NSString *kDownloadFileName = @"core_017_iOS.zip";
 }
 
 
-#pragma mark -
-#pragma mark UIView Delegate
+#pragma mark - UIView Delegate
 
 - (void) handleRotation: (UIInterfaceOrientation) interfaceOrientation
 {

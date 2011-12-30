@@ -498,17 +498,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
-		12059E5F14980B7300DAC43B /* PBXBuildRule */ = {
-			isa = PBXBuildRule;
-			compilerSpec = com.apple.compilers.proxy.script;
-			filePatterns = modrules.xml;
-			fileType = pattern.proxy;
-			isEditable = 1;
-			outputFiles = (
-				"",
-			);
-			script = "cp -rp iOS/Res bin/Res";
-		};
 		129654D7148AA2690031100B /* PBXBuildRule */ = {
 			isa = PBXBuildRule;
 			compilerSpec = com.apple.compilers.proxy.script;
@@ -1879,7 +1868,6 @@
 				12059E4914980B7300DAC43B /* Frameworks */,
 			);
 			buildRules = (
-				12059E5F14980B7300DAC43B /* PBXBuildRule */,
 			);
 			dependencies = (
 			);
@@ -2437,6 +2425,7 @@
 					DEBUG,
 					DARWIN_NO_CARBON,
 					FT2_BUILD_LIBRARY,
+					FORCE_GLES,
 				);
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
@@ -2482,6 +2471,7 @@
 					FT2_BUILD_LIBRARY,
 					IOS,
 					TESTSUITE,
+					FORCE_GLES,
 				);
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				GCC_VERSION = com.apple.compilers.llvmgcc42;

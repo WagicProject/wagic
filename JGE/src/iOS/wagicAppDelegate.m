@@ -144,6 +144,16 @@
     [self.glViewController toggleKeyboardWithState: initialState];
 }
 
+- (void) handleWEngineCommand:(NSString *) command 
+             withUIParameters: (CGFloat) x 
+                  yCoordinate: (CGFloat) y 
+                        width: (CGFloat) width 
+                       height: (CGFloat) height
+{
+    CGRect uiFrame = CGRectMake(x, y, width, height);
+    if ( [command isEqualToString: @"okbuttoncreated"] )
+        [glViewController addOkButtonListener: uiFrame];
+}
 
 - (void)handleWEngineCommand:(NSString *) command withParameter: (NSString *) parameter
 {
@@ -164,6 +174,10 @@
     else if ([command isEqualToString: @"displayKeyboard"])
     {
         [self initializeKeyboard: parameter];
+    }
+    else if ([command isEqualToString: @"combatGuiEndDamage"])
+    {
+        [glViewController removeOkButtonListener];
     }
 }
 

@@ -589,6 +589,8 @@ void JGE::SendCommand(string command)
 {
 #if defined (ANDROID)
     sendJNICommand(command);
+#elif defined (IOS)
+    SendCommand(command, "");
 #endif
 }
 
@@ -597,29 +599,42 @@ void JGE::SendCommand(std::string command, std::string parameter)
 #if defined (IOS)
     // get the app delegate and have it handle the command
     wagicAppDelegate *delegate = [ [UIApplication sharedApplication] delegate];
-    DebugTrace("Command: "<< command << " with parameter: " << parameter << endl);
     [delegate handleWEngineCommand:[NSString stringWithCString: command.c_str() encoding: NSUTF8StringEncoding]
                      withParameter: [NSString stringWithCString: parameter.c_str() encoding:NSUTF8StringEncoding]];
     
 #endif
 }
 
- #if defined (ANDROID)
-   /// Access to JNI Environment
-    void JGE::SetJNIEnv(JNIEnv * env, jclass cls)
-    {
-        mJNIEnv = env;
-        mJNIClass = cls;
-        midSendCommand = mJNIEnv->GetStaticMethodID(mJNIClass,"jgeSendCommand","(Ljava/lang/String;)V");
-    }
-	
-    void JGE::sendJNICommand(string command)
-    {
-        if (midSendCommand) {
-            mJNIEnv->CallStaticVoidMethod(mJNIClass, midSendCommand, mJNIEnv->NewStringUTF(command.c_str()));
-        }       
-	}
+// this controls commands meant to modify/interact with UI
+void JGE::SendCommand(std::string command, float& x, float& y, float& width, float& height)
+{
+#ifdef ANDROID
+
+#elif IOS
+    wagicAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+    [delegate handleWEngineCommand: [NSString stringWithCString: command.c_str() encoding: NSUTF8StringEncoding] withUIParameters: x yCoordinate: y width: width height: height];
+#endif
+    
+}
+
+
+#if defined (ANDROID)
+/// Access to JNI Environment
+void JGE::SetJNIEnv(JNIEnv * env, jclass cls)
+{
+    mJNIEnv = env;
+    mJNIClass = cls;
+    midSendCommand = mJNIEnv->GetStaticMethodID(mJNIClass,"jgeSendCommand","(Ljava/lang/String;)V");
+}
+
+void JGE::sendJNICommand(string command)
+{
+    if (midSendCommand) {
+        mJNIEnv->CallStaticVoidMethod(mJNIClass, midSendCommand, mJNIEnv->NewStringUTF(command.c_str()));
+    }       
+}
 #endif 
+
 
 std::queue< pair< pair<LocalKeySym, JButton>, bool> > JGE::keyBuffer;
 std::multimap<LocalKeySym, JButton> JGE::keyBinds;

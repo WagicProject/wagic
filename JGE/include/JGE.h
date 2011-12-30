@@ -371,7 +371,8 @@ class JGE
   /// and in IOS to communicate with the EAGL layer
   void SendCommand(std::string command);
   void SendCommand(std::string command, std::string parameter);
-  
+  void SendCommand(std::string command, float& x, float& y, float& width, float& height);
+
  #if defined (ANDROID)
    /// Access to JNI Environment
    void SetJNIEnv(JNIEnv * env, jclass cls);

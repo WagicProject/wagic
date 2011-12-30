@@ -14,6 +14,7 @@
 - (void) rotateBackgroundImage:(UIInterfaceOrientation)fromInterfaceOrientation toInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation;
 
 - (void) handleWEngineCommand:(NSString *) command withParameter: (NSString *) parameter;
+- (void) handleWEngineCommand:(NSString *) command withUIParameters: (CGFloat) x yCoordinate: (CGFloat) y width: (CGFloat) width height: (CGFloat) height;
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) EAGLViewController *glViewController;
