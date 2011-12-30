@@ -28,6 +28,8 @@ protected:
     void addOne(DefenserDamaged* blocker, CombatStep);
     void removeOne(DefenserDamaged* blocker, CombatStep);
     void remaskBlkViews(AttackerDamaged* before, AttackerDamaged* after);
+    void shiftLeft( DamagerDamaged* oldActive );
+    void shiftRight( DamagerDamaged* oldActive );
     int resolve();
 
 public:
@@ -43,7 +45,6 @@ public:
     virtual bool CheckUserInput(JButton key);
     virtual int receiveEventPlus(WEvent* e);
     virtual int receiveEventMinus(WEvent* e);
-
     typedef vector<AttackerDamaged*>::iterator inner_iterator;
 };
 

@@ -197,26 +197,133 @@ bool GuiCombat::clickOK()
     return false;
 }
 
+
+void GuiCombat::shiftLeft( DamagerDamaged* oldActive)
+{
+    switch (cursor_pos)
+    {
+        case NONE:
+            break;
+        case OK:
+            for (vector<AttackerDamaged*>::reverse_iterator it = attackers.rbegin(); it != attackers.rend(); ++it)
+                if ((*it)->show)
+                {
+                    active = *it;
+                    break;
+                }
+            activeAtk = static_cast<AttackerDamaged*> (active);
+            cursor_pos = ATK;
+            break;
+        case ATK:
+        {
+            DamagerDamaged* old = active;
+            active = closest<Left> (attackers, NULL, static_cast<AttackerDamaged*> (active));
+            activeAtk = static_cast<AttackerDamaged*> (active);
+            if (old != active)
+            {
+                if (old)
+                    old->zoom = kZoom_none;
+                if (active)
+                    active->zoom = kZoom_level1;
+            }
+        }
+            break;
+        case BLK:
+        {
+            DamagerDamaged* old = active;
+            active = closest<Left> (activeAtk->blockers, NULL, static_cast<DefenserDamaged*> (active));
+            if (old != active)
+            {
+                if (old)
+                    old->zoom = kZoom_none;
+                if (active)
+                    active->zoom = kZoom_level1;
+            }
+        }
+            break;
+    }
+    
+}
+void GuiCombat::shiftRight( DamagerDamaged* oldActive )
+{
+    switch (cursor_pos)
+    {
+        case NONE:
+        case OK:
+            break;
+        case BLK:
+        {
+            DamagerDamaged* old = active;
+            active = closest<Right> (activeAtk->blockers, NULL, static_cast<DefenserDamaged*> (active));
+            if (old != active)
+            {
+                if (old)
+                    old->zoom = kZoom_none;
+                if (active)
+                    active->zoom = kZoom_level1;
+            }
+        }
+            break;
+        case ATK:
+        {
+            DamagerDamaged* old = active;
+            active = closest<Right> (attackers, NULL, static_cast<AttackerDamaged*> (active));
+            if (active == oldActive)
+            {
+                active = activeAtk = NULL;
+                cursor_pos = OK;
+            }
+            else
+            {
+                if (old != active)
+                {
+                    if (old)
+                        old->zoom = kZoom_none;
+                    if (active)
+                        active->zoom = kZoom_level1;
+                }
+                activeAtk = static_cast<AttackerDamaged*> (active);
+            }
+        }
+            break;
+    }
+}
+
 bool GuiCombat::CheckUserInput(JButton key)
 {
     if (NONE == cursor_pos)
         return false;
     DamagerDamaged* oldActive = active;
-/*
+
     int x,y;
-    if(observer->getInput()->GetLeftClickCoordinates(x, y))
+    if(observer->getInput()->GetLeftClickCoordinates(x, y) && (BLK == cursor_pos))
     {
-        DamagerDamaged* old = active;
-        active = closest<True> (activeAtk->blockers, NULL, static_cast<float> (x), static_cast<float> (y));
-        if (old != active)
+        DamagerDamaged* selectedCard = closest<True> (activeAtk->blockers, NULL, static_cast<float> (x), static_cast<float> (y));
+        // find the index into the vector where the current selected card is.
+        int c1 = 0, c2 = 0;
+        int i = 0;
+        for ( vector<DamagerDamaged*>::iterator it = activeAtk->blockers.begin(); it != activeAtk->blockers.end(); ++it)
         {
-            if (old)
-                old->zoom = kZoom_none;
-            if (active)
-                active->zoom = kZoom_level1;
+            if ( *it == selectedCard )
+                c2 = i;
+            else if ( *it == active)
+                c1 = i;
+            i++;
+        }
+        // simulate pressing the "Left/Right D-Pad" control c1 - c2 times
+        if ( c1 > c2 ) // card selected is to the left of the current active card
+        {
+            for (int x = 0; x < c1 - c2; x++)
+                shiftLeft( oldActive );
+        }
+        else if ( c1 < c2 )
+        {
+            for (int x = 0; x < c2 - c1; x++)
+                shiftRight( oldActive );
+       
         }
     }
-*/
+
     switch (key)
     {
     case JGE_BTN_OK:
