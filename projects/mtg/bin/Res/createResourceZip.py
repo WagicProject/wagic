@@ -1,5 +1,45 @@
-import zipfile
+import sys
 import os
+import zipfile
+from optparse import OptionParser
+
+def createResZipFile(filename): 
+
+        utilities = ZipUtilities()
+        if not os.path.isfile('settings/options.txt'):
+            os.rename('settings/options.orig.txt', 'settings/options.txt')
+        if not os.path.isfile('player/options.txt'):
+            os.rename('player/options.orig.txt', 'player/options.txt')
+
+        zip_file = zipfile.ZipFile(filename, 'w', zipfile.ZIP_DEFLATED)
+        utilities.addFolderToZip(zip_file, 'themes')
+        utilities.addFolderToZip(zip_file, 'sound')
+        utilities.addFolderToZip(zip_file, 'settings')
+        utilities.addFolderToZip(zip_file, 'sets')
+        utilities.addFolderToZip(zip_file, 'rules')
+        utilities.addFolderToZip(zip_file, 'player')
+        utilities.addFolderToZip(zip_file, 'packs')
+        utilities.addFolderToZip(zip_file, 'lang')
+        utilities.addFolderToZip(zip_file, 'graphics')
+        utilities.addFolderToZip(zip_file, 'campaigns')
+        utilities.addFolderToZip(zip_file, 'ai')
+        zip_file.close()
+
+def createStandardResFile():
+    filename = 'core_017.zip'
+    createResZipFile( filename )
+    print >> sys.stderr, 'Created Resource Package for Standard Distribution: {0}'.format( filename)
+
+def createIosResFile():
+    print 'Preparing Resource Package for iOS'
+    utilities = ZipUtilities()
+    filename = 'core_017_iOS.zip'
+    createResZipFile( filename )
+    zip_file = zipfile.ZipFile(filename, 'a', zipfile.ZIP_DEFLATED)
+    zip_file.write("../../iOS/Res/rules/modrules.xml", "rules/modrules.xml", zipfile.ZIP_DEFLATED)
+    zip_file.close()
+
+    print >> sys.stderr, 'Created Resource Package for iOS Distribution: {0}'.format( filename)
 
 
 class ZipUtilities:
@@ -24,27 +64,22 @@ class ZipUtilities:
                         print 'Entering folder: ' + str(full_path)
                         self.addFolderToZip(zip_file, full_path)
 
-def main():
-    utilities = ZipUtilities()
-    filename = 'core_017.zip'
-    if not os.path.isfile('settings/options.txt'):
-        os.rename('settings/options.orig.txt', 'settings/options.txt')
-    if not os.path.isfile('player/options.txt'):
-        os.rename('player/options.orig.txt', 'player/options.txt')
-        
-    
-    zip_file = zipfile.ZipFile(filename, 'w', zipfile.ZIP_DEFLATED)
-    utilities.addFolderToZip(zip_file, 'themes')
-    utilities.addFolderToZip(zip_file, 'sound')
-    utilities.addFolderToZip(zip_file, 'settings')
-    utilities.addFolderToZip(zip_file, 'sets')
-    utilities.addFolderToZip(zip_file, 'rules')
-    utilities.addFolderToZip(zip_file, 'player')
-    utilities.addFolderToZip(zip_file, 'packs')
-    utilities.addFolderToZip(zip_file, 'lang')
-    utilities.addFolderToZip(zip_file, 'graphics')
-    utilities.addFolderToZip(zip_file, 'campaigns')
-    utilities.addFolderToZip(zip_file, 'ai')
-    zip_file.close()
 
-main()
+def main():
+## using optparse instead of argParse for now since python 2.7 may not be installed.
+
+    parser = OptionParser()
+    parser.add_option("-p", "--platform", help="PLATFORM: specify custom build. (eg ios, android, etc)", metavar="PLATFORM", dest="platform")
+
+    (options, args) = parser.parse_args()
+	
+    if (options.platform):
+		if (options.platform == "ios"): 
+				createIosResFile()
+		else:
+				createStandardResFile()
+    else:
+		createStandardResFile()
+
+if __name__ == "__main__":
+	main()
