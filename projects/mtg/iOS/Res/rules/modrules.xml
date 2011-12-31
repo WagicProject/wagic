@@ -7,13 +7,8 @@
     <item iconId="2" displayName="Deck Editor" action="deckEditor" particleFile="particle2.psi" />
     <item iconId="1" displayName="Shop" action="shop" particleFile="particle3.psi" />
     <item iconId="4" displayName="Options" action="options" particleFile="particle4.psi" />
-    <item iconId="3" displayName="Credits" action="credits" particleFile="particle5.psi" />
+    <item iconId="3" displayName="Trophy Room" action="trophies" particleFile="particle5.psi" />
   </main>
-
-  <other>
-      <item displayName="Trophy Room" action="trophies" />
-  </other>
-
 </menu>
 <cardgui>
   <background>

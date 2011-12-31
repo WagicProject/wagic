@@ -17,8 +17,7 @@
 @synthesize downloadProgressView;
 @synthesize downloadMessageStatus;
 
-//static NSString *kDownloadUrlPath = @"http://wololo.net/files/wagic/";
-static NSString *kDownloadUrlPath = @"http://forevernow.net/wagic/";
+static NSString *kDownloadUrlPath = @"http://wagic.googlecode.com/files/";
 static NSString *kDownloadFileName = @"core_017_iOS.zip";
 
 
