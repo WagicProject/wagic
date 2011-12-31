@@ -21,21 +21,40 @@
 
 }
 
-
+/**
+ check for any zip files dropped into the documents directory.  If so move them into the "Res" directory.
+ check for a "core" zip file in the Res directory. If it exists, then return YES. Otherwise, return NO.
+ */
 - (BOOL) hasResourceFiles
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];
     
-    NSArray *paths = NSSearchPathForDirectoriesInDomains( NSDocumentDirectory,
-                                                         NSUserDomainMask, YES);
-    NSString *userResourceDirectory = [[paths objectAtIndex:0] stringByAppendingString: @"/Res"];
-    
-    if (![fileManager fileExistsAtPath: userResourceDirectory] )
+    NSArray *paths = NSSearchPathForDirectoriesInDomains( NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *docsPath = [paths objectAtIndex: 0];
+    NSArray *docsPathContents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath: docsPath error:nil];
+    NSArray *resourceZipFiles = [docsPathContents filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self ENDSWITH '.zip'"]];
+    NSString *resPath = [NSString stringWithFormat: @"%@/Res", docsPath];
+    NSError *error = nil;
+    for (NSString *zipFile in resourceZipFiles)
     {
-        return NO;
+        NSString *oldPath = [NSString stringWithFormat: @"%@/%@", docsPath, zipFile];
+        NSString *newPath = [NSString stringWithFormat: @"%@/%@", resPath, zipFile];
+        
+        [fileManager moveItemAtPath: oldPath toPath:newPath error: &error];
+        if ( error != nil )
+        {
+            NSLog(@"Error happened while trying to move %@ to %@: \n%@", oldPath, newPath, [error localizedDescription]);
+        }
     }
     
-    return YES;
+    NSArray *resDirContents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath: resPath error:nil];
+    NSArray *coreFiles = [resDirContents filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self BEGINSWITH 'core_'"]];
+    if ([coreFiles count] > 0)
+    {
+        return YES;
+    }
+    
+    return NO;
 }
 
 

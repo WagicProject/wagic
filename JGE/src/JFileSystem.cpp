@@ -106,8 +106,7 @@ JFileSystem::JFileSystem(const string & _userPath, const string & _systemPath)
     string userPath = _userPath;
 
 #ifdef IOS
-    NSArray *paths = NSSearchPathForDirectoriesInDomains( NSDocumentDirectory,
-                                                         NSUserDomainMask, YES);
+    NSArray *paths = NSSearchPathForDirectoriesInDomains( NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [[paths objectAtIndex:0] stringByAppendingString: @"/Res"];
     
     userPath = [documentsDirectory cStringUsingEncoding:1];
