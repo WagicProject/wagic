@@ -10,7 +10,6 @@
 
 @synthesize bannerIsVisible;
 @synthesize eaglView;
-@synthesize okButtonView;
 @synthesize inputField;
 
 #pragma mark initialization / deallocation methods
@@ -39,7 +38,6 @@
     [eaglView setDelegate: nil];
     [eaglView release], eaglView = nil;
     [inputField release], inputField = nil;
-    [okButtonView release], okButtonView = nil;
     [super dealloc];
 }
 
@@ -87,31 +85,6 @@
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
-
-#pragma mark - UIView Creation
-- (void)addOkButtonListener: (CGRect) frame
-{
-    // create an invisible view to handle the pressing of the OK button.
-    if ( okButtonView == nil )
-    {
-        okButtonView = [[UIButton alloc] initWithFrame: frame];
-        [okButtonView setBackgroundColor: [UIColor clearColor]];
-        [okButtonView setEnabled: YES];
-        [okButtonView addTarget: self.view action:@selector(handleOK:) forControlEvents: UIControlEventTouchUpInside];
-        [self.view addSubview: okButtonView];
-    }
-    else
-    {
-        [self.view bringSubviewToFront: okButtonView];
-    }
-}
-
-- (void)removeOkButtonListener
-{
-    [[self.view.subviews lastObject] removeFromSuperview];
-    [okButtonView release], okButtonView = nil;
-}
-
 
 #pragma mark - device orientation handlers
 

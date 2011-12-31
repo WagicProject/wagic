@@ -28,8 +28,9 @@ protected:
     void addOne(DefenserDamaged* blocker, CombatStep);
     void removeOne(DefenserDamaged* blocker, CombatStep);
     void remaskBlkViews(AttackerDamaged* before, AttackerDamaged* after);
-    void shiftLeft( DamagerDamaged* oldActive );
+    void shiftLeft();
     void shiftRight( DamagerDamaged* oldActive );
+    bool didClickOnButton( Pos buttonPosition, int& x, int& y);
     int resolve();
 
 public:

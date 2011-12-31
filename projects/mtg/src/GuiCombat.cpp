@@ -198,7 +198,7 @@ bool GuiCombat::clickOK()
 }
 
 
-void GuiCombat::shiftLeft( DamagerDamaged* oldActive)
+void GuiCombat::shiftLeft()
 {
     switch (cursor_pos)
     {
@@ -242,8 +242,9 @@ void GuiCombat::shiftLeft( DamagerDamaged* oldActive)
         }
             break;
     }
-    
 }
+
+
 void GuiCombat::shiftRight( DamagerDamaged* oldActive )
 {
     switch (cursor_pos)
@@ -289,199 +290,142 @@ void GuiCombat::shiftRight( DamagerDamaged* oldActive )
     }
 }
 
+bool GuiCombat::didClickOnButton( Pos buttonPosition, int& x, int& y)
+{
+    int x1 = buttonPosition.x - MARGIN;
+    int y1 = buttonPosition.y;
+    int x2 = static_cast<int>(buttonPosition.x + buttonPosition.width);
+    int y2 = static_cast<int>(buttonPosition.y + buttonPosition.height);
+    if ( (x >= x1 && x < x2) && (y >= y1 && y < y2))
+        return true;
+    return false;
+}
+
 bool GuiCombat::CheckUserInput(JButton key)
 {
     if (NONE == cursor_pos)
         return false;
     DamagerDamaged* oldActive = active;
-
+    
     int x,y;
-    if(observer->getInput()->GetLeftClickCoordinates(x, y) && (BLK == cursor_pos))
+    if(observer->getInput()->GetLeftClickCoordinates(x, y))
     {
-        DamagerDamaged* selectedCard = closest<True> (activeAtk->blockers, NULL, static_cast<float> (x), static_cast<float> (y));
-        // find the index into the vector where the current selected card is.
-        int c1 = 0, c2 = 0;
-        int i = 0;
-        for ( vector<DamagerDamaged*>::iterator it = activeAtk->blockers.begin(); it != activeAtk->blockers.end(); ++it)
+        // determine if OK button was clicked on
+        if (ok.width)
         {
-            if ( *it == selectedCard )
-                c2 = i;
-            else if ( *it == active)
-                c1 = i;
-            i++;
-        }
-        // simulate pressing the "Left/Right D-Pad" control c1 - c2 times
-        if ( c1 > c2 ) // card selected is to the left of the current active card
-        {
-            for (int x = 0; x < c1 - c2; x++)
-                shiftLeft( oldActive );
-        }
-        else if ( c1 < c2 )
-        {
-            for (int x = 0; x < c2 - c1; x++)
-                shiftRight( oldActive );
-       
-        }
-    }
-
-    switch (key)
-    {
-    case JGE_BTN_OK:
-        if (BLK == cursor_pos)
-        {
-            if (ORDER == step)
-                observer->cardClick(active->card); //  { activeAtk->card->raiseBlockerRankOrder(active->card); }
-            else
+            if (didClickOnButton(ok, x, y))
             {
-                signed damage = activeAtk->card->stepPower(step);
-                for (vector<DamagerDamaged*>::iterator it = activeAtk->blockers.begin(); *it != active; ++it)
-                    damage -= (*it)->sumDamages();
-                signed now = active->sumDamages();
-                damage -= now;
-                if (damage > 0)
-                    addOne(active, step);
-                else if (activeAtk->card->has(Constants::DEATHTOUCH))
-                    for (; now >= 1; --now)
-                        removeOne(active, step);
-                else
-                    for (now -= active->card->toughness; now >= 0; --now)
-                        removeOne(active, step);
-            }
-        }
-        else if (ATK == cursor_pos)
-        {
-            active = activeAtk->blockers.front();
-            active->zoom = kZoom_level3;
-            cursor_pos = BLK;
-        }
-        else if (OK == cursor_pos)
-        {
-            clickOK();
-        }
-        break;
-    case JGE_BTN_CANCEL:
-        if (BLK == cursor_pos)
-        {
-            oldActive->zoom = kZoom_level2;
-            active = activeAtk;
-            cursor_pos = ATK;
-        }
-        return true;
-    case JGE_BTN_LEFT:
-        switch (cursor_pos)
-        {
-        case NONE:
-            break;
-        case OK:
-            for (vector<AttackerDamaged*>::reverse_iterator it = attackers.rbegin(); it != attackers.rend(); ++it)
-                if ((*it)->show)
-                {
-                    active = *it;
-                    break;
-                }
-            activeAtk = static_cast<AttackerDamaged*> (active);
-            cursor_pos = ATK;
-            break;
-        case ATK:
-        {
-            DamagerDamaged* old = active;
-            active = closest<Left> (attackers, NULL, static_cast<AttackerDamaged*> (active));
-            activeAtk = static_cast<AttackerDamaged*> (active);
-            if (old != active)
-            {
-                if (old)
-                    old->zoom = kZoom_none;
-                if (active)
-                    active->zoom = kZoom_level1;
-            }
-        }
-            break;
-        case BLK:
-        {
-            DamagerDamaged* old = active;
-            active = closest<Left> (activeAtk->blockers, NULL, static_cast<DefenserDamaged*> (active));
-            if (old != active)
-            {
-                if (old)
-                    old->zoom = kZoom_none;
-                if (active)
-                    active->zoom = kZoom_level1;
-            }
-        }
-            break;
-        }
-        break;
-    case JGE_BTN_RIGHT:
-        switch (cursor_pos)
-        {
-        case NONE:
-        case OK:
-            break;
-        case BLK:
-        {
-            DamagerDamaged* old = active;
-            active = closest<Right> (activeAtk->blockers, NULL, static_cast<DefenserDamaged*> (active));
-            if (old != active)
-            {
-                if (old)
-                    old->zoom = kZoom_none;
-                if (active)
-                    active->zoom = kZoom_level1;
-            }
-        }
-            break;
-        case ATK:
-        {
-            DamagerDamaged* old = active;
-            active = closest<Right> (attackers, NULL, static_cast<AttackerDamaged*> (active));
-            if (active == oldActive)
-            {
-                active = activeAtk = NULL;
                 cursor_pos = OK;
             }
-            else
+        }
+        // position selected card
+        if (BLK == cursor_pos)
+        {
+            DamagerDamaged* selectedCard = closest<True> (activeAtk->blockers, NULL, static_cast<float> (x), static_cast<float> (y));
+            // find the index into the vector where the current selected card is.
+            int c1 = 0, c2 = 0;
+            int i = 0;
+            for ( vector<DamagerDamaged*>::iterator it = activeAtk->blockers.begin(); it != activeAtk->blockers.end(); ++it)
             {
-                if (old != active)
-                {
-                    if (old)
-                        old->zoom = kZoom_none;
-                    if (active)
-                        active->zoom = kZoom_level1;
-                }
-                activeAtk = static_cast<AttackerDamaged*> (active);
+                if ( *it == selectedCard )
+                    c2 = i;
+                else if ( *it == active)
+                    c1 = i;
+                i++;
+            }
+            // simulate pressing the "Left/Right D-Pad" control c1 - c2 times
+            if ( c1 > c2 ) // card selected is to the left of the current active card
+            {
+                for (int x = 0; x < c1 - c2; x++)
+                    shiftLeft();
+            }
+            else if ( c1 < c2 )
+            {
+                for (int x = 0; x < c2 - c1; x++)
+                    shiftRight( oldActive );
             }
         }
+    }
+    
+    switch (key)
+    {
+        case JGE_BTN_OK:
+            if (BLK == cursor_pos)
+            {
+                if (ORDER == step)
+                    observer->cardClick(active->card); //  { activeAtk->card->raiseBlockerRankOrder(active->card); }
+                else
+                {
+                    signed damage = activeAtk->card->stepPower(step);
+                    for (vector<DamagerDamaged*>::iterator it = activeAtk->blockers.begin(); *it != active; ++it)
+                        damage -= (*it)->sumDamages();
+                    signed now = active->sumDamages();
+                    damage -= now;
+                    if (damage > 0)
+                        addOne(active, step);
+                    else if (activeAtk->card->has(Constants::DEATHTOUCH))
+                        for (; now >= 1; --now)
+                            removeOne(active, step);
+                    else
+                        for (now -= active->card->toughness; now >= 0; --now)
+                            removeOne(active, step);
+                }
+            }
+            else if (ATK == cursor_pos)
+            {
+                active = activeAtk->blockers.front();
+                active->zoom = kZoom_level3;
+                cursor_pos = BLK;
+            }
+            else if (OK == cursor_pos)
+            {
+                clickOK();
+            }
             break;
-        }
-        break;
-    case JGE_BTN_DOWN:
-        if (ORDER == step || BLK != cursor_pos || active->sumDamages() <= 0)
+        case JGE_BTN_CANCEL:
+            if (BLK == cursor_pos)
+            {
+                oldActive->zoom = kZoom_level2;
+                active = activeAtk;
+                cursor_pos = ATK;
+            }
+            return true;
+        case JGE_BTN_LEFT:
+            shiftLeft();
             break;
-        removeOne(active, step);
-        break;
-    case JGE_BTN_UP:
-        if (ORDER == step || BLK != cursor_pos)
+            
+        case JGE_BTN_RIGHT:
+            shiftRight( oldActive );
             break;
-        addOne(active, step);
-        break;
-    case JGE_BTN_PRI:
-        active = activeAtk = NULL;
-        cursor_pos = OK;
-        break;
-    case JGE_BTN_NEXT:
-        if (!options[Options::REVERSETRIGGERS].number)
-            return false;
-        active = activeAtk = NULL;
-        cursor_pos = OK;
-        break;
-    case JGE_BTN_PREV:
-        if (options[Options::REVERSETRIGGERS].number)
-            return false;
-        active = activeAtk = NULL;
-        cursor_pos = OK;
-        break;
-    default:
-        ;
+            
+        case JGE_BTN_DOWN:
+            if (ORDER == step || BLK != cursor_pos || active->sumDamages() <= 0)
+                break;
+            removeOne(active, step);
+            break;
+        case JGE_BTN_UP:
+            if (ORDER == step || BLK != cursor_pos)
+                break;
+            addOne(active, step);
+            break;
+        case JGE_BTN_PRI:
+            active = activeAtk = NULL;
+            cursor_pos = OK;
+            break;
+        case JGE_BTN_NEXT:
+            if (!options[Options::REVERSETRIGGERS].number)
+                return false;
+            active = activeAtk = NULL;
+            cursor_pos = OK;
+            break;
+        case JGE_BTN_PREV:
+            if (options[Options::REVERSETRIGGERS].number)
+                return false;
+            active = activeAtk = NULL;
+            cursor_pos = OK;
+            break;
+        default:
+            ;
     }
     if (oldActive != active)
     {
@@ -537,7 +481,6 @@ void GuiCombat::Render()
         JQuadPtr ok_quad = WResourceManager::Instance()->RetrieveTempQuad("Ok.png");
         ok_quad->SetHotSpot(28, 22);
         ok.Render(ok_quad.get());
-        JGE::GetInstance()->SendCommand("okbuttoncreated:", ok.x, ok.y, ok_quad->mWidth, ok_quad->mHeight);
     }
     renderer->DrawLine(0, SCREEN_HEIGHT / 2 + 10, SCREEN_WIDTH, SCREEN_HEIGHT / 2 + 10, ARGB(255, 255, 64, 0));
     if (FIRST_STRIKE == step)

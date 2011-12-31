@@ -35,5 +35,7 @@ void Pos::Render(JQuad* quad)
     JRenderer::GetInstance()->RenderQuad(quad, actX, actY, actT, actZ, actZ);
     if (mask && !actT)
         JRenderer::GetInstance()->FillRect(actX,actY,actZ * quad->mWidth, actZ* quad->mHeight, mask);
+    width = quad->mWidth;
+    height = quad->mHeight;
         
 }
