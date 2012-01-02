@@ -10,7 +10,10 @@
 #	cards in Wagic for use in the Miki.
 #	http://wololo.net/.
 ####################################################
+# create a summary of the borderline and fully supported cards
 grep '^name=' ../../bin/Res/sets/primitives/mtg.txt ../../bin/Res/sets/primitives/borderline.txt|sed s/name=// | sed s/.*txt:// |sort -iu > supported_cards.txt
+
+# create a summary of the TODO card sets
 grep '^name=' ../../bin/Res/sets/mtg_todo.dat |sed s/name=// | sed s/.*txt:// |sort -iu > todo_cards.txt
 
 perl createHTMLList_SupportedCards.pl -i supported_cards.txt 
