@@ -107,11 +107,11 @@ JFileSystem::JFileSystem(const string & _userPath, const string & _systemPath)
 
 #ifdef IOS
     NSArray *paths = NSSearchPathForDirectoriesInDomains( NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [[paths objectAtIndex:0] stringByAppendingString: @"/Res"];
+    NSString *documentsDirectory = [paths objectAtIndex:0];
     
-    userPath = [documentsDirectory cStringUsingEncoding:1];
-    userPath += "/";
-    systemPath = "";
+    userPath = [[documentsDirectory  stringByAppendingString: @"/User/"] cStringUsingEncoding:1];
+    systemPath = [[documentsDirectory  stringByAppendingString: @"/Res/"] cStringUsingEncoding:1];
+
 #elif defined (ANDROID)
     userPath = "/sdcard/Wagic/Res/";
     systemPath = "";

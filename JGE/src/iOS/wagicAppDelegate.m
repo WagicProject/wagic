@@ -22,7 +22,7 @@
 }
 
 /**
- check for any zip files dropped into the documents directory.  If so move them into the "Res" directory.
+ check for any zip files dropped into the documents directory.  If so move them into the "User" directory.
  check for a "core" zip file in the Res directory. If it exists, then return YES. Otherwise, return NO.
  */
 - (BOOL) hasResourceFiles
@@ -32,18 +32,26 @@
     NSArray *paths = NSSearchPathForDirectoriesInDomains( NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docsPath = [paths objectAtIndex: 0];
     NSArray *docsPathContents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath: docsPath error:nil];
-    NSArray *resourceZipFiles = [docsPathContents filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self ENDSWITH '.zip'"]];
+    NSCompoundPredicate *compoundPredicate = [[NSCompoundPredicate alloc] initWithType:NSAndPredicateType subpredicates: [NSArray arrayWithObjects: [NSPredicate predicateWithFormat:@"self ENDSWITH '.zip'"], [NSPredicate predicateWithFormat:@"NOT (self  BEGINSWITH 'core_')"], nil]];
+    
+    NSArray *resourceZipFiles = [docsPathContents filteredArrayUsingPredicate: compoundPredicate];
+    NSString *userPath = [NSString stringWithFormat: @"%@/User", docsPath];
     NSString *resPath = [NSString stringWithFormat: @"%@/Res", docsPath];
     NSError *error = nil;
+    
+    if ( ([resourceZipFiles count]  > 0 ) &&  ![fileManager fileExistsAtPath: userPath] )
+        [fileManager createDirectoryAtPath: userPath withIntermediateDirectories: YES attributes:nil error:nil ];
+    
     for (NSString *zipFile in resourceZipFiles)
     {
         NSString *oldPath = [NSString stringWithFormat: @"%@/%@", docsPath, zipFile];
-        NSString *newPath = [NSString stringWithFormat: @"%@/%@", resPath, zipFile];
+        NSString *newPath = [NSString stringWithFormat: @"%@/%@", userPath, zipFile];
         
         [fileManager moveItemAtPath: oldPath toPath:newPath error: &error];
         if ( error != nil )
         {
             NSLog(@"Error happened while trying to move %@ to %@: \n%@", oldPath, newPath, [error localizedDescription]);
+            error = nil;
         }
     }
     

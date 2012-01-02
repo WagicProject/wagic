@@ -39,7 +39,7 @@ static NSString *kDownloadFileName = @"core_017_iOS.zip";
     
 }
 
-
+// No longer needed.
 - (void) unpackageResources
 {
     [self.downloadMessageStatus setText: @"Installing Game Resource Files"];
@@ -93,12 +93,16 @@ static NSString *kDownloadFileName = @"core_017_iOS.zip";
 {
     NSArray *paths = NSSearchPathForDirectoriesInDomains( NSDocumentDirectory,
                                                          NSUserDomainMask, YES);
-    NSString *userResourceDirectory = [[paths objectAtIndex:0] stringByAppendingString: @"/Res"];
-    NSString *downloadFilePath =  [userResourceDirectory stringByAppendingString: [NSString stringWithFormat: @"/%@",  kDownloadFileName]];
+    NSString *systemResourceDirectory = [[paths objectAtIndex:0] stringByAppendingString: @"/Res"];
+    NSString *userResourceDirectory = [[paths objectAtIndex: 0] stringByAppendingString: @"/User"];
+    NSString *downloadFilePath =  [systemResourceDirectory stringByAppendingString: [NSString stringWithFormat: @"/%@",  kDownloadFileName]];
     NSError *error = nil;
     // make sure Res directory exists
-    if ( ![[NSFileManager defaultManager] fileExistsAtPath: userResourceDirectory] ) 
-        [[NSFileManager defaultManager] createDirectoryAtPath:userResourceDirectory withIntermediateDirectories: YES attributes:nil error: &error];
+    if ( ![[NSFileManager defaultManager] fileExistsAtPath: systemResourceDirectory] ) 
+        [[NSFileManager defaultManager] createDirectoryAtPath:systemResourceDirectory withIntermediateDirectories: YES attributes:nil error: &error];
+    // make sure the User directory exists as well
+    if ( ![[NSFileManager defaultManager] fileExistsAtPath: userResourceDirectory] )
+        [[NSFileManager defaultManager] createDirectoryAtPath: userResourceDirectory withIntermediateDirectories: YES attributes:nil error: &error];
     
     // if an error occurred while creating the directory, game can't really run so do something
     // TODO: throw out a notification and deal with error
@@ -123,7 +127,7 @@ static NSString *kDownloadFileName = @"core_017_iOS.zip";
     [request setAllowCompressedResponse: YES];
     
     [request setCompletionBlock:^{
-        [self unpackageResources];
+//        [self unpackageResources];
         wagicAppDelegate *appDelegate = (wagicAppDelegate *)[[UIApplication sharedApplication] delegate];        
         NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
         [dnc postNotificationName:@"readyToStartGame" object: appDelegate];
