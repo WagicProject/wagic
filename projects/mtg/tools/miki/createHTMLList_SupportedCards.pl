@@ -1,6 +1,17 @@
 #!/bin/perl 
-
 use Getopt::Std;
+#############################################################
+#  creates the Wiki page for supported cards.  
+#  MUST EDIT THE pageName and VERSION variables for each release
+#
+#############################################################
+
+my $pageName = "SupportedCardList017";
+my $VERSION = "0.17";
+
+#############################################################
+#--- DO NOT EDIT BEYOND THIS LINE UNLESS YOU WANT TO CHANGE THE FORMAT!#
+#############################################################
 
 # declare the perl command line flags/options we want to allow
 my %options=();
@@ -27,7 +38,6 @@ while ( <INFILE> )
 	{
 		push @{$data->{"0-9"}}, $line;
 	}
-
 	else
 	{
 		push @{$data->{$currentIndex}}, $line;
@@ -51,11 +61,17 @@ open OUTFILE, ">$outputFile" || die "$0: Can't write to $outputFile. $!\n";
 
 # print the miki card count information
 
-print OUTFILE<<MIKI;
+print OUTFILE<<WIKI;
+#summary Supported Card List for $VERSION
+
+= Introduction =
+
+Supported Card list for $VERSION, includes Borderline cards
+
+= Details =
 $summaryMessage
 
-MIKI
-
+WIKI
 
 print OUTFILE $headerRow . "\n";;
 
@@ -64,27 +80,30 @@ foreach my $key ( @keys )
 	my $cardCount = $#{$data->{$key}} + 1;
 	print "Processing $key ($cardCount cards)\n";
 
-	print OUTFILE "<h2 style=\"width: 100%\"><span id=\"$key\">";
-	print OUTFILE "$key" ;
-	print OUTFILE " ($cardCount)" if ($cardCount > 10 );
-	print OUTFILE "</span> <span style=\"font-size:small; float: right;\">Back to [[#Top]]</span></h2>\n";
+	print OUTFILE "==$key";
+	print OUTFILE " ($cardCount cards)";
+	print OUTFILE "  _Back to [$pageName#Details Top]_" if ( $key ne "A");
+	print OUTFILE "==\n";
 
-	print OUTFILE "<ul id=\"index_$key\">\n";
-	print OUTFILE map "\t<li>$_</li>\n", @{$data->{$key}};
-	print OUTFILE "</ul>\n\n";
+	print OUTFILE map "  # $_\n", @{$data->{$key}};
 }
 close OUTFILE;
 print "$totalCardCount Processed\n";
 
-
 sub getHeader
 {
 	my $listRef = shift;
-	my @list =  map "<li style=\"display:inline; list-style-type: none; right-padding: 5px\" >[[#$_]]</li>", @{$listRef};
-
+	my @list = ();
+	my $header;
+foreach my $key ( @keys )
+{
+	my $cardCount = $#{$data->{$key}} + 1;
+	$header = "[$pageName#${key}_(${cardCount}_cards)_Back_to $key]";
+	push @list, $header;
+}
 	shift( @list ); # remove the link to the first set of cards
-	my $listItems =  join "\n", @list;
+	my $listItems =  join " ", @list;
 
-	return "__NOTOC__ \n<ul id=\"Top\">\n$listItems\n</ul>\n";
+	return "\n$listItems\n";
 
 }
