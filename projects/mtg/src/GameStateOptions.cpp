@@ -109,10 +109,10 @@ void GameStateOptions::Start()
     WDecoEnum * oKickerPay = NEW WDecoEnum(NEW OptionInteger(Options::KICKERPAYMENT, "Kicker Cost", Constants::KICKER_CHOICE, 1,
         Constants::KICKER_ALWAYS, "", Constants::KICKER_ALWAYS));
     optionsList->Add(oKickerPay);
-
+#ifndef IOS
     optionsList = NEW WGuiKeyBinder("Key Bindings", this);
     optionsTabs->Add(optionsList);
-
+#endif
     optionsList = NEW WGuiList("Credits");
     optionsList->failMsg = "";
     optionsTabs->Add(optionsList);
