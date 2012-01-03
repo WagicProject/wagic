@@ -100,36 +100,7 @@ static NSString *_MY_AD_WHIRL_APPLICATION_KEY_IPAD = @"2e70e3f3da40408588b9a3170
 
     
     UIGestureRecognizer *recognizer;
-    
-    /*
-     create swipe handlers for single swipe
-     */
-
-    UISwipeGestureRecognizer *singleFlickGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget: self action: @selector(handleFlickGesture:)];
-    singleFlickGestureRecognizer.numberOfTouchesRequired = 1;
-    singleFlickGestureRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
-    [self addGestureRecognizer: singleFlickGestureRecognizer];
-    [singleFlickGestureRecognizer release];	
-    
-    singleFlickGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget: self action: @selector(handleFlickGesture:)];
-    singleFlickGestureRecognizer.numberOfTouchesRequired = 1;
-    singleFlickGestureRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
-    [self addGestureRecognizer: singleFlickGestureRecognizer];
-    [singleFlickGestureRecognizer release];	
-    
-    singleFlickGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget: self action: @selector(handleFlickGesture:)];
-    singleFlickGestureRecognizer.numberOfTouchesRequired = 1;
-    singleFlickGestureRecognizer.direction = UISwipeGestureRecognizerDirectionUp;
-    [self addGestureRecognizer: singleFlickGestureRecognizer];
-    [singleFlickGestureRecognizer release];	
-    
-    singleFlickGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget: self action: @selector(handleFlickGesture:)];
-    singleFlickGestureRecognizer.numberOfTouchesRequired = 1;
-    singleFlickGestureRecognizer.direction = UISwipeGestureRecognizerDirectionDown;
-    [self addGestureRecognizer: singleFlickGestureRecognizer];
-    [singleFlickGestureRecognizer release];	
-
-    
+        
     /*
      Create a 3 fingers left swipe gesture recognizer to handle left trigger operations
      */
@@ -196,7 +167,6 @@ static NSString *_MY_AD_WHIRL_APPLICATION_KEY_IPAD = @"2e70e3f3da40408588b9a3170
     UILongPressGestureRecognizer *selectKeyRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleSelectKey:)];
     selectKeyRecognizer.minimumPressDuration =2;
     selectKeyRecognizer.numberOfTouchesRequired = 2;
-    selectKeyRecognizer.delaysTouchesBegan = YES;
     [self addGestureRecognizer:selectKeyRecognizer];
 
     /* 
@@ -206,7 +176,6 @@ static NSString *_MY_AD_WHIRL_APPLICATION_KEY_IPAD = @"2e70e3f3da40408588b9a3170
     menuKeyRecognizer.minimumPressDuration =2;
     menuKeyRecognizer.numberOfTouchesRequired = 1;
     [menuKeyRecognizer requireGestureRecognizerToFail: selectKeyRecognizer];
-    menuKeyRecognizer.delaysTouchesBegan = YES;
     [self addGestureRecognizer:menuKeyRecognizer];
     
 
@@ -414,11 +383,12 @@ static NSString *_MY_AD_WHIRL_APPLICATION_KEY_IPAD = @"2e70e3f3da40408588b9a3170
     return newLocation;
 }
 
+
 - (void)handlePanMotion: (UIPanGestureRecognizer *) panGesture
 {
     [[[panGesture view] layer] removeAllAnimations];
     currentLocation = [panGesture locationInView: self];
-	
+
     CGPoint newLocation = [self normalizeClickCoordinatesWithPoint: currentLocation];
     if (panGesture.state == UIGestureRecognizerStateBegan || panGesture.state == UIGestureRecognizerStateChanged) 
     {
@@ -430,6 +400,26 @@ static NSString *_MY_AD_WHIRL_APPLICATION_KEY_IPAD = @"2e70e3f3da40408588b9a3170
         // we want to differentiate between a pan motion vs a flick gesture.
 		if (!(( ((int)abs( (int) velocity.x)) > 300) || ((int) (abs( (int) velocity.y)) > 300)))
             g_engine->HoldKey_NoRepeat( JGE_BTN_OK );
+        else 
+        {   
+            CGPoint v2 = [panGesture velocityInView: self];
+            BOOL isVerticalSwipe = (fabsf(v2.x) > fabsf( v2.y)) ? NO : YES;
+            
+            if ( !isVerticalSwipe )
+            {
+                if (v2.x > 0) // swipe right
+                    g_engine->HoldKey_NoRepeat( JGE_BTN_RIGHT );
+                else
+                    g_engine->HoldKey_NoRepeat( JGE_BTN_LEFT );
+            }
+            else
+            {
+                if (v2.y > 0) // swipe up
+                    g_engine->HoldKey_NoRepeat( JGE_BTN_UP );
+                else
+                    g_engine->HoldKey_NoRepeat( JGE_BTN_DOWN );
+            }
+        }
     }
 }
 
@@ -461,13 +451,14 @@ static NSString *_MY_AD_WHIRL_APPLICATION_KEY_IPAD = @"2e70e3f3da40408588b9a3170
     if (clickedWithinGameArea) 
     {
         // we want some delay for the left click to take place before clicking on OK.
-        [self performSelector: @selector(handleOK:) withObject: nil afterDelay: 0.1];
+        [self performSelector: @selector(handleOK:) withObject: nil afterDelay: 0.25];
     }
         
     else if(currentLocation.y < es2renderer.viewPort.top) {
-        NSLog(@"Menu Button");
         if (recognizer.state == UIGestureRecognizerStateEnded)
-            g_engine->HoldKey_NoRepeat(JGE_BTN_MENU);		
+        {
+            [self displayGameMenu];
+        }
 	} 
     
     else if((currentLocation.y > es2renderer.viewPort.bottom) && (currentLocation.x < actualWidth/2)) {
@@ -482,30 +473,8 @@ static NSString *_MY_AD_WHIRL_APPLICATION_KEY_IPAD = @"2e70e3f3da40408588b9a3170
     
     oldCoordinates = newCoordinates;
     g_engine->ReleaseKey( JGE_BTN_NONE );
-
-
 }
 
-- (void)handleFlickGesture: (UISwipeGestureRecognizer *) recognizer {
-
-    switch (recognizer.direction) {
-        case UISwipeGestureRecognizerDirectionDown:
-            g_engine->HoldKey_NoRepeat( JGE_BTN_DOWN );
-            break;
-        case UISwipeGestureRecognizerDirectionUp:
-            g_engine->HoldKey_NoRepeat( JGE_BTN_UP);
-            break;
-        case UISwipeGestureRecognizerDirectionLeft:
-            g_engine->HoldKey_NoRepeat( JGE_BTN_LEFT );
-            break;
-        case UISwipeGestureRecognizerDirectionRight:
-            g_engine->HoldKey_NoRepeat( JGE_BTN_RIGHT );
-            break;
-            
-        default:
-            break;
-    }
-}
 
 - (void)handleHand:(UITapGestureRecognizer *)recognizer {
 	g_engine->HoldKey_NoRepeat(JGE_BTN_NEXT);
@@ -531,10 +500,15 @@ static NSString *_MY_AD_WHIRL_APPLICATION_KEY_IPAD = @"2e70e3f3da40408588b9a3170
     }
 }
 
+- (void)displayGameMenu
+{
+    g_engine->LeftClicked(-1, -1); // set the click pressed to offscreen
+    g_engine->HoldKey_NoRepeat( JGE_BTN_MENU);
+}
 
 - (void)handleMenuWithLongPress:(UILongPressGestureRecognizer *)recognizer {
     if (recognizer.state == UIGestureRecognizerStateEnded) {
-        g_engine->HoldKey_NoRepeat(JGE_BTN_MENU);
+        [self displayGameMenu];
     }
 }
 
