@@ -404,29 +404,13 @@ static NSString *_MY_AD_WHIRL_APPLICATION_KEY_IPAD = @"2e70e3f3da40408588b9a3170
         CGPoint velocity = [panGesture velocityInView:panGesture.view.superview];
         // we want to differentiate between a pan motion vs a flick gesture.
 		if (!(( ((int)abs( (int) velocity.x)) > 300) || ((int) (abs( (int) velocity.y)) > 300)))
+        {
             g_engine->HoldKey_NoRepeat( JGE_BTN_OK );
+        }
         else 
         {   
-            CGPoint v2 = [panGesture velocityInView: self];
-            BOOL isVerticalSwipe = (fabsf(v2.x) > fabsf( v2.y)) ? NO : YES;
-            g_engine->LeftClicked(-1, -1);
-            
-            if ( !isVerticalSwipe )
-            {
-                if (v2.x > 0) // swipe right
-                    g_engine->HoldKey_NoRepeat( JGE_BTN_RIGHT );
-                else
-                    g_engine->HoldKey_NoRepeat( JGE_BTN_LEFT );
-            }
-            else
-            {
-                if (v2.y > 0) // swipe up
-                    g_engine->HoldKey_NoRepeat( JGE_BTN_UP );
-                else
-                    g_engine->HoldKey_NoRepeat( JGE_BTN_DOWN );
-            }
-            [self performSelector: @selector(resetInput) withObject: nil afterDelay: 0.1];
-
+            CGPoint v2 = [panGesture velocityInView: self];            
+            g_engine->Scroll( static_cast<int>(v2.x), static_cast<int>(v2.y));
         }
     }
 }
