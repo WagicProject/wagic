@@ -62,6 +62,8 @@ print OUTFILE $headerRow . "\n";;
 foreach my $key ( @keys )
 {
 	my $cardCount = $#{$data->{$key}} + 1;
+	print "Processing $key ($cardCount cards)\n";
+
 	print OUTFILE "<h2 style=\"width: 100%\"><span id=\"$key\">";
 	print OUTFILE "$key" ;
 	print OUTFILE " ($cardCount)" if ($cardCount > 10 );
@@ -70,10 +72,8 @@ foreach my $key ( @keys )
 	print OUTFILE "<ul id=\"index_$key\">\n";
 	print OUTFILE map "\t<li>$_</li>\n", @{$data->{$key}};
 	print OUTFILE "</ul>\n\n";
-	close OUTFILE;
-
 }
-
+close OUTFILE;
 print "$totalCardCount Processed\n";
 
 
