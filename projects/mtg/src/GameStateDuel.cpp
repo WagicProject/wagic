@@ -186,6 +186,8 @@ void GameStateDuel::Start()
         }
         deckmenu->Add(MENUITEM_CANCEL, "Main Menu", "Return to Main Menu");
     }
+    
+    mEngine->ResetInput();
 }
 
 void GameStateDuel::initRand(unsigned int seed)
@@ -710,7 +712,8 @@ void GameStateDuel::Render()
             mFont->SetColor(ARGB(255,255,255,255));
             mFont->DrawString(buffer, SCREEN_WIDTH / 2, 0, JGETEXT_CENTER);
         }
-        if (menu) menu->Render();
+        if (menu) 
+            menu->Render();
     }
 }
 

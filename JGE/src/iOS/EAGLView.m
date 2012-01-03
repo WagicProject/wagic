@@ -383,6 +383,11 @@ static NSString *_MY_AD_WHIRL_APPLICATION_KEY_IPAD = @"2e70e3f3da40408588b9a3170
     return newLocation;
 }
 
+-(void)resetInput
+{
+    g_engine->ResetInput();
+}
+
 
 - (void)handlePanMotion: (UIPanGestureRecognizer *) panGesture
 {
@@ -404,6 +409,7 @@ static NSString *_MY_AD_WHIRL_APPLICATION_KEY_IPAD = @"2e70e3f3da40408588b9a3170
         {   
             CGPoint v2 = [panGesture velocityInView: self];
             BOOL isVerticalSwipe = (fabsf(v2.x) > fabsf( v2.y)) ? NO : YES;
+            g_engine->LeftClicked(-1, -1);
             
             if ( !isVerticalSwipe )
             {
@@ -419,6 +425,8 @@ static NSString *_MY_AD_WHIRL_APPLICATION_KEY_IPAD = @"2e70e3f3da40408588b9a3170
                 else
                     g_engine->HoldKey_NoRepeat( JGE_BTN_DOWN );
             }
+            [self performSelector: @selector(resetInput) withObject: nil afterDelay: 0.1];
+
         }
     }
 }
@@ -498,12 +506,14 @@ static NSString *_MY_AD_WHIRL_APPLICATION_KEY_IPAD = @"2e70e3f3da40408588b9a3170
     {
         g_engine->HoldKey_NoRepeat(JGE_BTN_CTRL);
     }
+    [self performSelector:@selector(resetInput) withObject: nil afterDelay: 0.1];    
 }
 
 - (void)displayGameMenu
 {
     g_engine->LeftClicked(-1, -1); // set the click pressed to offscreen
     g_engine->HoldKey_NoRepeat( JGE_BTN_MENU);
+    [self performSelector:@selector(resetInput) withObject: nil afterDelay: 0.1];
 }
 
 - (void)handleMenuWithLongPress:(UILongPressGestureRecognizer *)recognizer {
