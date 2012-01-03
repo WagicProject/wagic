@@ -810,7 +810,28 @@ void GameStateShop::ButtonPressed(int controllerId, int controlId)
 
 void GameStateShop::OnScroll(int inXVelocity, int inYVelocity)
 {
-    if (abs(inXVelocity) > 200)
+    if (mStage == STAGE_ASK_ABOUT)
+    {
+        bool flickHorizontal = (abs(inXVelocity) > abs(inYVelocity));
+        if (flickHorizontal)
+        {
+            bool flickRight = inXVelocity > 0 ? true : false;
+            if (flickRight)
+                mEngine->HoldKey_NoRepeat(JGE_BTN_RIGHT);
+            else
+                mEngine->HoldKey_NoRepeat(JGE_BTN_LEFT);
+        }
+        else
+        {
+            bool flickUp = inYVelocity < 0 ? true : false;
+            if (flickUp)
+                mEngine->HoldKey_NoRepeat(JGE_BTN_UP);
+            else
+                mEngine->HoldKey_NoRepeat(JGE_BTN_DOWN);
+        }
+        
+    }
+    else if (abs(inXVelocity) > 200)
     {
         bool flickRight = (inXVelocity >= 0);
         if (flickRight)

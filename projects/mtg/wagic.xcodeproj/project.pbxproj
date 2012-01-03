@@ -2568,7 +2568,6 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					FT2_BUILD_LIBRARY,
 					IOS,
-					TESTSUITE,
 				);
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
 				GCC_VERSION = com.apple.compilers.llvmgcc42;

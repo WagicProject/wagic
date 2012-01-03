@@ -1690,13 +1690,22 @@ void GameStateDeckViewer::ButtonPressed(int controllerId, int controlId)
 
 void GameStateDeckViewer::OnScroll(int inXVelocity, int inYVelocity)
 {
-    if (abs(inYVelocity) > 300)
-    {
-        bool flickUpwards = (inYVelocity < 0);
-        mEngine->HoldKey_NoRepeat(flickUpwards ? JGE_BTN_DOWN : JGE_BTN_UP);
+    bool flickHorizontal = (abs(inXVelocity) > abs(inYVelocity));
+    bool flickUp = inYVelocity < 0 ? true : false;
+    bool flickRight = inXVelocity > 0 ? true : false;
 
-    } else if (abs(inXVelocity) > 300)
+    if (mStage == STAGE_FILTERS)
     {
-        mEngine->HoldKey_NoRepeat(JGE_BTN_PRI);
+        if (flickHorizontal)
+            mEngine->HoldKey_NoRepeat( flickRight ? JGE_BTN_RIGHT : JGE_BTN_LEFT);
+        else
+            mEngine->HoldKey_NoRepeat(flickUp ? JGE_BTN_UP : JGE_BTN_DOWN);
+    }
+    else
+    {
+        if (flickHorizontal && (abs(inXVelocity) > 300))
+            mEngine->HoldKey_NoRepeat(JGE_BTN_PRI);
+        else if (!flickHorizontal && (abs(inYVelocity) > 300))
+            mEngine->HoldKey_NoRepeat(flickUp ? JGE_BTN_UP : JGE_BTN_DOWN);
     }
 }

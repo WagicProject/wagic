@@ -411,6 +411,7 @@ static NSString *_MY_AD_WHIRL_APPLICATION_KEY_IPAD = @"2e70e3f3da40408588b9a3170
         {   
             CGPoint v2 = [panGesture velocityInView: self];            
             g_engine->Scroll( static_cast<int>(v2.x), static_cast<int>(v2.y));
+            [self performSelector: @selector(resetInput) withObject: nil afterDelay: 0.1];
         }
     }
 }
