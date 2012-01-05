@@ -202,6 +202,9 @@ protected:
     int mode;
     int checked;
     ATutorialMessage* currentTutorial;
+    int interruptBtnXOffset, noBtnXOffset, noToAllBtnXOffset, interruptDialogWidth;
+
+    JButton handleInterruptRequest( JButton inputKey, int& x, int& y );
 
 public:
 

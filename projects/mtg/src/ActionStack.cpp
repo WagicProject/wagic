@@ -26,6 +26,8 @@ namespace
     std::string kInterruptString(": Interrupt");
     std::string kNoString(": No");
     std::string kNoToAllString(": No To All");
+    static const float kIconVerticalOffset = 24;
+
 }
 
 /*
@@ -508,6 +510,7 @@ ostream& LifeAction::toString(ostream& out) const
     return out;
 }
 /* The Action Stack itself */
+
 int ActionStack::addPutInGraveyard(MTGCardInstance * card)
 {
     PutInGraveyard * death = NEW PutInGraveyard(observer, mObjects.size(), card);
@@ -978,13 +981,38 @@ void ActionStack::endOfInterruption(bool log)
         observer->logAction(playerId, "endinterruption");
 }
 
-bool ActionStack::CheckUserInput(JButton key)
+JButton ActionStack::handleInterruptRequest( JButton inputKey, int& x, int& y )
 {
+    if ( gModRules.game.canInterrupt() && y >= 10 && y < (kIconVerticalOffset + 16))
+    {
+        if (x >= interruptBtnXOffset && x < noBtnXOffset )
+            return JGE_BTN_SEC;
+        
+        if (x >= noBtnXOffset && x < noToAllBtnXOffset)
+            return JGE_BTN_OK;
+        
+        if (x >= noToAllBtnXOffset && x < interruptDialogWidth)
+            return JGE_BTN_PRI;
+    }
+    
+    return inputKey;
+}
+
+
+bool ActionStack::CheckUserInput(JButton inputKey)
+{
+    JButton key = inputKey;
     JButton trigger = (options[Options::REVERSETRIGGERS].number ? JGE_BTN_NEXT : JGE_BTN_PREV);
     if (mode == ACTIONSTACK_STANDARD)
-    {
+    {        
         if (askIfWishesToInterrupt)
         {
+            int x,y;
+            if(observer->getInput()->GetLeftClickCoordinates(x, y))
+            {
+                key = handleInterruptRequest(inputKey, x, y);
+            }
+            
             if (JGE_BTN_SEC == key && gModRules.game.canInterrupt())
             {
                 setIsInterrupting(askIfWishesToInterrupt);
@@ -1151,14 +1179,15 @@ void ActionStack::Render()
 
         mFont->DrawString(stream.str(), x0 + 5, currenty);
 
-        static const float kIconVerticalOffset = 24;
+//        static const float kIconVerticalOffset = 24;
         static const float kIconHorizontalOffset = 9;
         static const float kBeforeIconSpace = 10;
   
         //Render "interrupt?" text + possible actions
         {
             float currentx = x0 + 10;
-      
+            interruptBtnXOffset = static_cast<int>(currentx);
+            
             if (gModRules.game.canInterrupt())
             {
                 renderer->RenderQuad(pspIcons[7].get(), currentx, kIconVerticalOffset, 0, kGamepadIconSize, kGamepadIconSize);
@@ -1167,11 +1196,14 @@ void ActionStack::Render()
                 currentx+= mFont->GetStringWidth(_(kInterruptString).c_str()) + kBeforeIconSpace;
             }
 
+            noBtnXOffset = static_cast<int>(currentx);
+            
             renderer->RenderQuad(pspIcons[4].get(), currentx, kIconVerticalOffset, 0, kGamepadIconSize, kGamepadIconSize);
             currentx+= kIconHorizontalOffset;
             mFont->DrawString(_(kNoString), currentx, kIconVerticalOffset - 6);
             currentx+= mFont->GetStringWidth(_(kNoString).c_str()) + kBeforeIconSpace;
 
+            noToAllBtnXOffset = static_cast<int>(currentx);
             if (mObjects.size() > 1)
             {
                 renderer->RenderQuad(pspIcons[6].get(), currentx, kIconVerticalOffset, 0, kGamepadIconSize, kGamepadIconSize);
@@ -1179,6 +1211,8 @@ void ActionStack::Render()
                 mFont->DrawString(_(kNoToAllString), currentx, kIconVerticalOffset - 6);
                 currentx+= mFont->GetStringWidth(_(kNoToAllString).c_str()) + kBeforeIconSpace;
             }
+            
+            interruptDialogWidth = static_cast<int>(currentx);
         }
 
         currenty += kIconVerticalOffset + kSpacer;
