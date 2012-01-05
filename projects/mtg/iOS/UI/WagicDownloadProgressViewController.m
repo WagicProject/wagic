@@ -40,21 +40,20 @@ static NSString *kDownloadFileName = @"core_017_iOS.zip";
 }
 
 // No longer needed.
-- (void) unpackageResources
+- (void) unpackageResources: (NSString *) folderName
 {
-    [self.downloadMessageStatus setText: @"Installing Game Resource Files"];
+    [self.downloadMessageStatus setText: [NSString stringWithFormat: @"Updating User Game Resource Files: %@", folderName]];
     NSError *error = nil;
 
     NSFileManager *fm = [NSFileManager defaultManager];
-    NSArray *paths = NSSearchPathForDirectoriesInDomains( NSDocumentDirectory,
-                                                         NSUserDomainMask, YES);
+    NSArray *paths = NSSearchPathForDirectoriesInDomains( NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *userDocumentsDirectory = [paths objectAtIndex:0];
-    NSString *downloadFilePath =  [[paths objectAtIndex: 0] stringByAppendingString: [NSString stringWithFormat: @"/%@", kDownloadFileName]];
+    NSString *downloadFilePath =  [userDocumentsDirectory stringByAppendingString: [NSString stringWithFormat: @"/%@.zip", folderName]];
     
     ZipArchive *za = [[ZipArchive alloc] init];
     if ([za UnzipOpenFile: downloadFilePath])
     {
-        BOOL ret = [za UnzipFileTo: [NSString stringWithFormat: @"%@/Res/",userDocumentsDirectory] overWrite: YES];
+        BOOL ret = [za UnzipFileTo: [NSString stringWithFormat: @"%@/User/",userDocumentsDirectory] overWrite: YES];
         if (ret == NO)
         {
             // some error occurred
@@ -127,7 +126,6 @@ static NSString *kDownloadFileName = @"core_017_iOS.zip";
     [request setAllowCompressedResponse: YES];
     
     [request setCompletionBlock:^{
-//        [self unpackageResources];
         wagicAppDelegate *appDelegate = (wagicAppDelegate *)[[UIApplication sharedApplication] delegate];        
         NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
         [dnc postNotificationName:@"readyToStartGame" object: appDelegate];

@@ -21,10 +21,40 @@
 
 }
 
+- (NSString *) getDirContents: (NSString *) path
+{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSArray *dirContents = [fileManager contentsOfDirectoryAtPath: path error:nil];
+    NSMutableString *data = [[NSMutableString alloc] init ];
+    for (NSString *filename in dirContents)
+    {
+        NSString *pathname = [NSString stringWithFormat: @"%@/%@", path, filename];
+        [data appendFormat: @"%@\n", pathname];
+        
+        BOOL isDirectory = [[fileManager attributesOfItemAtPath: pathname error: nil] objectForKey: NSFileType] == NSFileTypeDirectory;
+        if (isDirectory)
+            [data appendString: [self getDirContents: pathname]];
+    }
+    
+    NSString *manifestList = [data stringByAppendingFormat: @"\n"];
+    [data release];
+    
+    return manifestList;
+}
+
+- (void) createManifest: (NSString *)docsPath
+{
+    NSString *manifestFile = [docsPath stringByAppendingPathComponent:@"Manifest"];
+    [[self getDirContents: docsPath] writeToFile:manifestFile atomically:YES encoding:NSUTF8StringEncoding error: nil];
+   
+}
+
 /**
  check for any zip files dropped into the documents directory.  If so move them into the "User" directory.
  check for a "core" zip file in the Res directory. If it exists, then return YES. Otherwise, return NO.
  */
+
+
 - (BOOL) hasResourceFiles
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -57,6 +87,8 @@
     
     NSArray *resDirContents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath: resPath error:nil];
     NSArray *coreFiles = [resDirContents filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self BEGINSWITH 'core_'"]];
+    
+    [self createManifest: docsPath];
     if ([coreFiles count] > 0)
     {
         return YES;
