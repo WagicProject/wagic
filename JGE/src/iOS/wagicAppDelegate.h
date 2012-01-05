@@ -16,6 +16,8 @@
 - (void) handleWEngineCommand:(NSString *) command withParameter: (NSString *) parameter;
 - (void) handleWEngineCommand:(NSString *) command withUIParameters: (CGFloat) x yCoordinate: (CGFloat) y width: (CGFloat) width height: (CGFloat) height;
 
+- (void) unpackageResources: (NSString *) folderName pathPrefixName: (NSString *) pathPrefixName;
+
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) EAGLViewController *glViewController;
 @property (nonatomic, retain) WagicDownloadProgressViewController *wagicDownloadController;

@@ -8,7 +8,6 @@
 
 #import "WagicDownloadProgressViewController.h"
 #import "wagicAppDelegate.h"
-#import "ZipArchive.h"
 #import "ASIHTTPRequest.h"
 #import "QuartzCore/QuartzCore.h"
 
@@ -39,43 +38,6 @@ static NSString *kDownloadFileName = @"core_017_iOS.zip";
     
 }
 
-// No longer needed.
-- (void) unpackageResources: (NSString *) folderName
-{
-    [self.downloadMessageStatus setText: [NSString stringWithFormat: @"Updating User Game Resource Files: %@", folderName]];
-    NSError *error = nil;
-
-    NSFileManager *fm = [NSFileManager defaultManager];
-    NSArray *paths = NSSearchPathForDirectoriesInDomains( NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *userDocumentsDirectory = [paths objectAtIndex:0];
-    NSString *downloadFilePath =  [userDocumentsDirectory stringByAppendingString: [NSString stringWithFormat: @"/%@.zip", folderName]];
-    
-    ZipArchive *za = [[ZipArchive alloc] init];
-    if ([za UnzipOpenFile: downloadFilePath])
-    {
-        BOOL ret = [za UnzipFileTo: [NSString stringWithFormat: @"%@/User/",userDocumentsDirectory] overWrite: YES];
-        if (ret == NO)
-        {
-            // some error occurred
-            NSLog(@"An Error occurred while unpacking zip file.");
-        }
-        [za UnzipCloseFile];
-        
-        if (ret == YES)
-        {
-            // delete the archive
-            [fm removeItemAtPath: downloadFilePath error: &error];
-            if (error != nil)
-            {
-                NSLog(@"error occurred while trying to delete zip file! %@\n%@", downloadFilePath, [error localizedDescription] );
-            }
-        }
-    }
-    [za release], za = nil;
-
-}
-
-
 - (void)alertView:(UIAlertView *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     // the user clicked one of the OK/Cancel buttons
     if (buttonIndex == 0 && [[actionSheet buttonTitleAtIndex: 0] isEqualToString: @"Retry Download"])
@@ -90,6 +52,14 @@ static NSString *kDownloadFileName = @"core_017_iOS.zip";
 
 - (void) startDownload: (NSString *) downloadType
 {
+    [self.downloadMessageStatus setText: [NSString stringWithFormat: @"Please wait while the %@ files are being downloaded.", downloadType]];
+    
+    downloadProgressView = [[UIProgressView alloc] initWithProgressViewStyle: UIProgressViewStyleDefault];
+    [self.downloadProgressView setFrame: CGRectMake(0, 0, 250, 50)];
+    [self.downloadProgressView setAutoresizingMask: UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight ];
+    
+    [self.view addSubview: downloadProgressView];
+
     NSArray *paths = NSSearchPathForDirectoriesInDomains( NSDocumentDirectory,
                                                          NSUserDomainMask, YES);
     NSString *systemResourceDirectory = [[paths objectAtIndex:0] stringByAppendingString: @"/Res"];
@@ -128,7 +98,7 @@ static NSString *kDownloadFileName = @"core_017_iOS.zip";
     [request setCompletionBlock:^{
         wagicAppDelegate *appDelegate = (wagicAppDelegate *)[[UIApplication sharedApplication] delegate];        
         NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
-        [dnc postNotificationName:@"readyToStartGame" object: appDelegate];
+        [dnc postNotificationName:@"initializeGame" object: appDelegate];
 
     }];
     [request setFailedBlock:^{
@@ -177,15 +147,7 @@ static NSString *kDownloadFileName = @"core_017_iOS.zip";
         else
             [self.downloadMessageStatus setFont: [UIFont systemFontOfSize: 35]];
         
-        [self.downloadMessageStatus setText: @"Please wait while the core files are being downloaded."];
-
-        downloadProgressView = [[UIProgressView alloc] initWithProgressViewStyle: UIProgressViewStyleDefault];
-        [self.downloadProgressView setFrame: CGRectMake(0, 0, 250, 50)];
-        [self.downloadProgressView setAutoresizingMask: UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight ];
-
-        [self startDownload: @"core"];
         [self.view addSubview: downloadMessageStatus];
-        [self.view addSubview: downloadProgressView];
 
     }
     return self;

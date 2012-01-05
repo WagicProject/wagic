@@ -13,6 +13,8 @@
  
 }
 
+- (void) startDownload: (NSString *) downloadType;
+
 @property (nonatomic, retain) UITextView     *downloadMessageStatus;
 @property (nonatomic, retain) UIProgressView *downloadProgressView;
 

@@ -11,15 +11,59 @@
 @synthesize wagicDownloadController;
 @synthesize hostReach, wifiReach, internetReach;
 
-
 - (void) downloadResources
 {
     wagicDownloadController = [[WagicDownloadProgressViewController alloc] init];
-
+    [wagicDownloadController startDownload: @"core"];
+    
     [self.window addSubview: wagicDownloadController.view];
     [self.window makeKeyWindow];
 
 }
+
+/* unpackage the zip file and delete it afterwards */
+- (void) unpackageResources: (NSString *) folderName pathPrefixName: (NSString *) pathNamePrefix
+{
+    NSString *pathPrefix = nil;
+    if ( pathNamePrefix == nil ) // default to User
+        pathPrefix = @"User";
+    else 
+        pathPrefix = pathNamePrefix;
+    
+    NSError *error = nil;
+    
+    NSFileManager *fm = [NSFileManager defaultManager];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains( NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *userDocumentsDirectory = [paths objectAtIndex:0];
+    NSString *downloadFilePath =  [userDocumentsDirectory stringByAppendingString: [NSString stringWithFormat: @"/%@/%@.zip", pathPrefix, folderName]];
+    
+    ZipArchive *za = [[ZipArchive alloc] init];
+    if ([za UnzipOpenFile: downloadFilePath])
+    {
+        NSString *destinationFilePath = [NSString stringWithFormat: @"%@/%@/",userDocumentsDirectory, pathPrefix];
+        NSLog(@"Unzipping %@ to %@", downloadFilePath, destinationFilePath);
+        BOOL ret = [za UnzipFileTo: destinationFilePath overWrite: YES];
+        if (ret == NO)
+        {
+            // some error occurred
+            NSLog(@"An Error occurred while unpacking zip file.");
+        }
+        [za UnzipCloseFile];
+        
+        if (ret == YES)
+        {
+            // delete the archive
+            [fm removeItemAtPath: downloadFilePath error: &error];
+            if (error != nil)
+            {
+                NSLog(@"error occurred while trying to delete zip file! %@\n%@", downloadFilePath, [error localizedDescription] );
+            }
+        }
+    }
+    [za release], za = nil;
+    
+}
+
 
 - (NSString *) getDirContents: (NSString *) path
 {
@@ -50,12 +94,12 @@
 }
 
 /**
- check for any zip files dropped into the documents directory.  If so move them into the "User" directory.
- check for a "core" zip file in the Res directory. If it exists, then return YES. Otherwise, return NO.
+ check for any zip files dropped into the documents directory before loading the game.  
+ If so, move the "core" files into the "Res" directory and move all other zip files into the "User" directory. 
+ Check for a "core" zip file in the Res directory. If it exists, then return YES. Otherwise, return NO.
  */
 
-
-- (BOOL) hasResourceFiles
+- (void) initializeResources
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];
     
@@ -64,6 +108,8 @@
     NSArray *docsPathContents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath: docsPath error:nil];
     NSCompoundPredicate *compoundPredicate = [[NSCompoundPredicate alloc] initWithType:NSAndPredicateType subpredicates: [NSArray arrayWithObjects: [NSPredicate predicateWithFormat:@"self ENDSWITH '.zip'"], [NSPredicate predicateWithFormat:@"NOT (self  BEGINSWITH 'core_')"], nil]];
     
+    NSArray *coreFiles = [docsPathContents filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self BEGINSWITH 'core_'"]];
+
     NSArray *resourceZipFiles = [docsPathContents filteredArrayUsingPredicate: compoundPredicate];
     NSString *userPath = [NSString stringWithFormat: @"%@/User", docsPath];
     NSString *resPath = [NSString stringWithFormat: @"%@/Res", docsPath];
@@ -78,23 +124,91 @@
         NSString *newPath = [NSString stringWithFormat: @"%@/%@", userPath, zipFile];
         
         [fileManager moveItemAtPath: oldPath toPath:newPath error: &error];
+        NSLog(@"Moving %@ to %@", oldPath, newPath);
         if ( error != nil )
         {
             NSLog(@"Error happened while trying to move %@ to %@: \n%@", oldPath, newPath, [error localizedDescription]);
             error = nil;
         }
     }
+
+    for (NSString *zipFile in coreFiles)
+    {
+        NSString *oldPath = [NSString stringWithFormat: @"%@/%@", docsPath, zipFile];
+        NSString *newPath = [NSString stringWithFormat: @"%@/%@", resPath, zipFile];
+        
+        [fileManager moveItemAtPath: oldPath toPath:newPath error: &error];
+        NSLog(@"Moving %@ to %@", oldPath, newPath);
+        if ( error != nil )
+        {
+            NSLog(@"Error happened while trying to move %@ to %@: \n%@", oldPath, newPath, [error localizedDescription]);
+            error = nil;
+        }
+    }
+}
+
+- (BOOL) hasResourceFiles
+{   
+    NSArray *paths = NSSearchPathForDirectoriesInDomains( NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *docsPath = [paths objectAtIndex: 0];
+    NSString *resPath = [NSString stringWithFormat: @"%@/Res", docsPath];
     
     NSArray *resDirContents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath: resPath error:nil];
     NSArray *coreFiles = [resDirContents filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self BEGINSWITH 'core_'"]];
     
-    [self createManifest: docsPath];
     if ([coreFiles count] > 0)
     {
         return YES;
     }
     
     return NO;
+}
+
+
+- (void)preGameInitialization
+{
+    NSString *docsPath = [NSSearchPathForDirectoriesInDomains( NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex: 0];
+    NSFileManager *fm = [NSFileManager defaultManager];
+    NSString *userPath = [docsPath stringByAppendingString: @"/User"];
+    
+    NSArray *userDirectories = [fm contentsOfDirectoryAtPath: userPath error: nil];
+
+    for (NSString *userFilename in userDirectories)
+    {
+        NSString *userPathname = [userPath stringByAppendingFormat: @"/%@", userFilename];
+        NSString *zipFileName = [userPathname stringByAppendingString: @".zip"];
+        
+        if ([[fm attributesOfItemAtPath: userPathname error: nil] objectForKey: NSFileType] == NSFileTypeDirectory && ([fm fileExistsAtPath:zipFileName]))
+        {
+            [self unpackageResources: userFilename pathPrefixName: @"User"];
+            [fm removeItemAtPath: zipFileName error: nil];
+        }
+        
+        else if ( [userFilename hasPrefix: @"ai_decks"] ) // special case to allow manual override of AI decks in User directory
+        {
+            [self unpackageResources: @"ai_decks" pathPrefixName: @"User/ai/baka"];
+        }
+    }
+    // scan for deck*.txt and collection.dat as well as options.txt in the Documents directory and copy them into the player directory
+    NSArray *playerDataFilePredicates = [NSArray arrayWithObjects: 
+                                         [NSPredicate predicateWithFormat: @"SELF BEGINSWITH[cd] 'deck' AND SELF ENDSWITH '.txt'"], 
+                                         [NSPredicate predicateWithFormat: @"SELF BEGINSWITH[cd] 'options' AND SELF ENDSWITH '.txt'"], 
+                                         [NSPredicate predicateWithFormat: @"SELF BEGINSWITH[cd] 'tasks' AND SELF ENDSWITH '.dat'"], 
+                                         [NSPredicate predicateWithFormat: @"SELF BEGINSWITH[cd] 'collection' AND SELF ENDSWITH '.dat'"], nil];
+
+    NSCompoundPredicate *playerDataPredicate = [[NSCompoundPredicate alloc] initWithType:NSOrPredicateType subpredicates: playerDataFilePredicates];
+    NSArray *playerDataFiles = [[fm contentsOfDirectoryAtPath: docsPath error: nil] filteredArrayUsingPredicate: playerDataPredicate];
+
+    for (NSString *file in playerDataFiles)
+    {
+        NSString *fromPath = [docsPath stringByAppendingFormat: @"/%@", file];
+        NSString *toPath = [docsPath stringByAppendingFormat: @"/User/player/%@", [file lowercaseString]];
+        [fm moveItemAtPath: fromPath toPath: toPath error: nil];
+    }
+    
+    [self createManifest: docsPath];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName: @"readyToStartGame" object: nil];
 }
 
 
@@ -110,6 +224,7 @@
     [self.window addSubview:self.glViewController.view];
 
     NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
+	[dnc removeObserver: self name: @"intializeGame" object: nil];
 	[dnc removeObserver: self name: @"readyToStartGame" object: nil];
 }
 
@@ -145,8 +260,10 @@
     [self setupNetworkListeners];
 
     NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
+	[dnc addObserver:self selector:@selector(preGameInitialization) name:@"initializeGame" object: nil];
 	[dnc addObserver:self selector:@selector(startGame) name:@"readyToStartGame" object: nil];
     
+    [self initializeResources];
     // check to see if the Res folder exists.  If it does continue
     // otherwise bring up the download dialog and download the core files
     // once downloaded, extract the files and kick off the game.
@@ -157,7 +274,7 @@
     }
     else
     {
-        [self startGame];
+        [self preGameInitialization];
     }
     
     [self.window setBackgroundColor: [UIColor blackColor]];
@@ -233,7 +350,6 @@
     }
     else if ([command isEqualToString: @"combatGuiEndDamage"])
     {
-        [glViewController removeOkButtonListener];
     }
 }
 
