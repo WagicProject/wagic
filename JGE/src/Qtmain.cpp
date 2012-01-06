@@ -629,14 +629,13 @@ int main(int argc, char* argv[])
     QScopedPointer<QApplication> app(createApplication(argc, argv));
     app->setApplicationName(g_launcher->GetName());
 
-    FileDownloader fileDownloader(QUrl("http://wagic.googlecode.com/files/core_017.zip"),
-                                  QDir::toNativeSeparators(QDir::homePath()) + "/.wagic/core_017.zip", 0);
+    FileDownloader fileDownloader(USERDIR);
 
     QScopedPointer<QmlApplicationViewer> viewer(QmlApplicationViewer::create());
     g_glwidget = viewer.data();
-    viewer->setMainQmlFile(QLatin1String("qml/QmlWagic/main.qml"));
 
     viewer->rootContext()->setContextProperty("fileDownloader", &fileDownloader);
+    viewer->setMainQmlFile(QLatin1String("qml/QmlWagic/main.qml"));
 
     viewer->setOrientation(QmlApplicationViewer::ScreenOrientationAuto);
     QGLWidget *glWidget = new QGLWidget;

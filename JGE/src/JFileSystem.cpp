@@ -116,10 +116,11 @@ JFileSystem::JFileSystem(const string & _userPath, const string & _systemPath)
     userPath = "/sdcard/Wagic/Res/";
     systemPath = "";
 #elif defined (QT_CONFIG)
-    //    userPath = USERDIR;
-    //    systemPath = RESDIR;
-        userPath = QDir::toNativeSeparators(QDir::homePath()).toStdString() + "/.wagic/";
-        systemPath = "";
+    QDir dir(QDir::homePath());
+    dir.cd(USERDIR);
+
+    userPath = QDir::toNativeSeparators(dir.absolutePath()).toStdString();
+    systemPath = "";
 #else
     //Find the Res.txt file and matching Res folders for backwards compatibility
     ifstream mfile("Res.txt");

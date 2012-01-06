@@ -17,6 +17,9 @@ Rectangle {
             PropertyChanges {
                 target: wagic; visible: false
             }
+            PropertyChanges {
+                target:fileDownloader; url: "http://wagic.googlecode.com/files/core_017.zip"
+            }
         },
         State {
             name: "NORMAL"

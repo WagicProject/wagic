@@ -373,8 +373,11 @@ maemo5: {
     # Variables
     BINDIR = /opt/wagic
     RESDIR = /home/user/wagic/Res
+    USERDIR = MyDocs/.Wagic
     ICONDIR = /usr/share
+
     DEFINES += RESDIR=\\\"$$RESDIR\\\"
+    DEFINES += USERDIR=\\\"$$USERDIR\\\"
 
     INSTALLS += target \
         desktop \
@@ -407,7 +410,7 @@ maemo5: {
     # Variables
     BINDIR = /opt/wagic/bin
     RESDIR = /opt/wagic/Res
-    USERDIR = /home/user/MyDocs/.Wagic
+    USERDIR = MyDocs/.Wagic
     ICONDIR = /usr/share
 
     DEFINES += RESDIR=\\\"$$RESDIR\\\"
@@ -443,7 +446,7 @@ maemo5: {
     TARGET.CAPABILITY += NetworkServices
 
     RESDIR = some/res/dir
-    USERDIR = some/user/dir
+    USERDIR = .Wagic
     DEFINES += RESDIR=\"$$RESDIR\"
     DEFINES += USERDIR=\"$$USERDIR\"
 
@@ -455,13 +458,13 @@ maemo5: {
     DEFINES += USERDIR=\\\"$$USERDIR\\\"
 } else:unix {
     RESDIR = Res
-    USERDIR = ~/.Wagic
+    USERDIR = .Wagic
     DEFINES += RESDIR=\\\"$$RESDIR\\\"
     DEFINES += USERDIR=\\\"$$USERDIR\\\"
 
 } else:windows {
     RESDIR = ./Res
-    USERDIR = ./user
+    USERDIR = .Wagic
     DEFINES += RESDIR=\\\"$$RESDIR\\\"
     DEFINES += USERDIR=\\\"$$USERDIR\\\"
 }

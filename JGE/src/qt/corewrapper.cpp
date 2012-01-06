@@ -78,7 +78,9 @@ WagicCore::~WagicCore()
         m_launcher = NULL;
     }
 
-    m_engine->SetApp(NULL);
+    if(m_engine)
+        m_engine->SetApp(NULL);
+
     if (m_app)
     {
       m_app->Destroy();

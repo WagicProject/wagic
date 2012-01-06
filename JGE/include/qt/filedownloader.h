@@ -15,15 +15,18 @@ class FileDownloader : public QObject
     Q_OBJECT
     Q_PROPERTY(bool done READ isDone NOTIFY downloaded)
     Q_PROPERTY(qint64 received READ received NOTIFY receivedChanged)
+    Q_PROPERTY(QUrl url READ getDownloadUrl WRITE setDownloadUrl NOTIFY downloadUrlChanged)
 public:
-    explicit FileDownloader(QUrl url, QString localPath, QObject *parent = 0);
+    explicit FileDownloader(QString localPath, QUrl url=QUrl(""), QObject *parent = 0);
     virtual ~FileDownloader();
     qint64 received() const {return m_received;};
     bool isDone() {return m_done;};
+    QUrl getDownloadUrl() {return m_downloadUrl;};
 
 signals:
     void downloaded();
     void receivedChanged();
+    void downloadUrlChanged();
 
 private slots:
     void fileDownloaded(QNetworkReply* pReply){
@@ -41,6 +44,7 @@ private slots:
         m_received = bytesReceived*100/bytesTotal;
         emit receivedChanged();
     };
+    void setDownloadUrl(QUrl url);
 
 private:
 
@@ -48,6 +52,7 @@ private:
     qint64 m_received;
     QTemporaryFile m_tmp;
     QString m_localPath;
+    QUrl m_downloadUrl;
     bool m_OK;
     bool m_done;
 };
