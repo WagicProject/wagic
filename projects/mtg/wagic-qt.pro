@@ -32,7 +32,7 @@ INCLUDEPATH += ../../JGE/include
 INCLUDEPATH += ../../JGE/src/zipFS
 INCLUDEPATH += ../../Boost
 INCLUDEPATH += include
-!symbian:DESTDIR = bin
+#!symbian:DESTDIR = bin
 
 unix:!symbian:LIBS += -lz
 PRECOMPILED_HEADER = include/PrecompiledHeader.h
@@ -148,7 +148,6 @@ SOURCES += \
         src/WFont.cpp\
         src/WGui.cpp\
         src/WResourceManager.cpp \
-        src/GameSerializer.cpp \
         src/AIPlayerBakaB.cpp
 
 CONFIG(debug, debug|release):
@@ -267,12 +266,12 @@ HEADERS  += \
         include/DeckManager.h\
         include/SimplePopup.h\
         include/SimpleMenu.h\
-        include/ObjectAnalytics.h \
-        include/GameSerializer.h
+        include/ObjectAnalytics.h
 
 # JGE, could probably be moved outside
 SOURCES += \
         ../../JGE/src/qt/filedownloader.cpp\
+        ../../JGE/src/qt/corewrapper.cpp\
         ../../JGE/src/Qtmain.cpp\
         ../../JGE/src/Encoding.cpp\
         ../../JGE/src/JAnimator.cpp\
@@ -312,6 +311,7 @@ SOURCES += \
 
 HEADERS += \
         ../../JGE/include/qt/filedownloader.h\
+        ../../JGE/include/qt/corewrapper.h\
         ../../JGE/include/Threading.h\
         ../../JGE/include/decoder_prx.h\
         ../../JGE/include/DebugRoutines.h\
@@ -416,18 +416,7 @@ maemo5: {
     INSTALLS += target \
         desktop \
         icon \
-        policy \
-        res_ai \
-        res_campaigns \
-        res_graphics \
-        res_lang \
-        res_packs \
-        res_player \
-        res_rules \
-        res_sets \
-        res_settings \
-        res_sound \
-        res_themes \
+        policy
 
     target.path = $$BINDIR
 
@@ -439,39 +428,6 @@ maemo5: {
 
     policy.files = debian_harmattan/wagic.conf
     policy.path = /usr/share/policy/etc/syspart.conf.d
-
-    res_ai.path = $$RESDIR/ai
-    res_ai.files += bin/Res/ai/*
-
-    res_campaigns.path = $$RESDIR/campaigns
-    res_campaigns.files += bin/Res/campaigns/*
-
-    res_graphics.path = $$RESDIR/graphics
-    res_graphics.files += bin/Res/graphics/*
-
-    res_lang.path = $$RESDIR/lang
-    res_lang.files += bin/Res/lang/*
-
-    res_packs.path = $$RESDIR/packs
-    res_packs.files += bin/Res/packs/*
-
-    res_player.path = $$RESDIR/player
-    res_player.files += bin/Res/player/*
-
-    res_rules.path = $$RESDIR/rules
-    res_rules.files += bin/Res/rules/*
-
-    res_sets.path = $$RESDIR/sets
-    res_sets.files += bin/Res/sets/*
-
-    res_settings.path = $$RESDIR/settings
-    res_settings.files += bin/Res/settings/*
-
-    res_sound.path = $$RESDIR/sound
-    res_sound.files += bin/Res/sound/*
-
-    res_themes.path = $$RESDIR/themes
-    res_themes.files += bin/Res/themes/*
 
 } else:symbian {
     TARGET.UID3 = 0xE1D807D3

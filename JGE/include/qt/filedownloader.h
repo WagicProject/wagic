@@ -13,6 +13,7 @@
 class FileDownloader : public QObject
 {
     Q_OBJECT
+    Q_PROPERTY(bool done READ isDone NOTIFY downloaded)
     Q_PROPERTY(qint64 received READ received NOTIFY receivedChanged)
 public:
     explicit FileDownloader(QUrl url, QString localPath, QObject *parent = 0);
@@ -32,6 +33,7 @@ private slots:
 
         m_tmp.setAutoRemove(false);
 
+        m_done = true;
         //emit a signal
         emit downloaded();
     };

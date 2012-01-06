@@ -40,12 +40,7 @@
 #define glClearDepthf glClearDepth
 #endif
 
-#include "../include/JGE.h"
-#include "../include/JTypes.h"
-#include "../include/JApp.h"
-#include "../include/JFileSystem.h"
-#include "../include/JRenderer.h"
-#include "../include/JGameLauncher.h"
+#include "corewrapper.h"
 
 #define ACTUAL_SCREEN_WIDTH (SCREEN_WIDTH)
 #define ACTUAL_SCREEN_HEIGHT (SCREEN_HEIGHT)
@@ -91,8 +86,6 @@ protected:
   void keyPressEvent(QKeyEvent *event);
 
   void keyReleaseEvent(QKeyEvent *event);
-
-  void mouseDoubleClickEvent(QMouseEvent *event);
 
   void mousePressEvent(QMouseEvent *event);
 
@@ -186,7 +179,7 @@ qint64	lastTickCount;
 JGE* g_engine = NULL;
 JApp* g_app = NULL;
 JGameLauncher* g_launcher = NULL;
-JGEQtRenderer *g_glwidget = NULL;
+QWidget *g_glwidget = NULL;
 
 static const struct { LocalKeySym keysym; JButton keycode; } gDefaultBindings[] =
 {
@@ -208,16 +201,10 @@ static const struct { LocalKeySym keysym; JButton keycode; } gDefaultBindings[] 
 //    { Qt::Key_F,            JGE_BTN_FULLSCREEN },
 };
 
-
 void JGECreateDefaultBindings()
 {
   for (signed int i = sizeof(gDefaultBindings)/sizeof(gDefaultBindings[0]) - 1; i >= 0; --i)
     g_engine->BindKey(gDefaultBindings[i].keysym, gDefaultBindings[i].keycode);
-}
-
-int JGEGetTime()
-{
-    return (int)g_startTimer.elapsed();
 }
 
 bool JGEToggleFullscreen()
@@ -388,7 +375,6 @@ void JGEQtRenderer::resizeGL(int width, int height)
   glLoadIdentity ();													// Reset The Modelview Matrix
 
   glDisable (GL_DEPTH_TEST);
-
 #endif
 }
 
@@ -552,26 +538,6 @@ void JGEQtRenderer::mouseMoveEvent(QMouseEvent *event)
   }
 }
 
-void JGEQtRenderer::mouseDoubleClickEvent(QMouseEvent *event)
-{
-/*
-    QEvent SIPevent(QEvent::RequestSoftwareInputPanel);
-    QApplication::sendEvent(this, &SIPevent);
-
-#if (defined Q_WS_MAEMO_5) || (defined MEEGO_EDITION_HARMATTAN)
-  if(event->button() == Qt::LeftButton)
-  {
-    g_engine->HoldKey_NoRepeat(JGE_BTN_OK);
-    event->accept();
-  }
-  else
-#endif
-*/
-  {
-    QGLWidget::mouseDoubleClickEvent(event);
-  }
-}
-
 void JGEQtRenderer::wheelEvent(QWheelEvent *event)
 {
     if(event->orientation() == Qt::Vertical)
@@ -658,67 +624,25 @@ void JGEQtRenderer::hideEvent ( QHideEvent * event )
 
 int main(int argc, char* argv[])
 {
-    QScopedPointer<QApplication> app(createApplication(argc, argv));
-    QDir::setCurrent(QCoreApplication::applicationDirPath () );
-    qDebug() << "Current path : " << QCoreApplication::applicationDirPath ();
+    qmlRegisterType<WagicCore>("CustomComponents", 1, 0, "WagicCore");
 
-    QScopedPointer<QmlApplicationViewer> viewer(QmlApplicationViewer::create());
+    QScopedPointer<QApplication> app(createApplication(argc, argv));
+    app->setApplicationName(g_launcher->GetName());
+
     FileDownloader fileDownloader(QUrl("http://wagic.googlecode.com/files/core_017.zip"),
                                   QDir::toNativeSeparators(QDir::homePath()) + "/.wagic/core_017.zip", 0);
 
-    if(!fileDownloader.isDone()){
-        app->connect(&fileDownloader, SIGNAL(downloaded()), SLOT(quit()));
-        viewer->setOrientation(QmlApplicationViewer::ScreenOrientationAuto);
-        viewer->setMainQmlFile(QLatin1String("qml/QmlWagic/main.qml"));
-        viewer->rootContext()->setContextProperty("fileDownloader", &fileDownloader);
-        viewer->showExpanded();
+    QScopedPointer<QmlApplicationViewer> viewer(QmlApplicationViewer::create());
+    g_glwidget = viewer.data();
+    viewer->setMainQmlFile(QLatin1String("qml/QmlWagic/main.qml"));
 
-        app->exec();
+    viewer->rootContext()->setContextProperty("fileDownloader", &fileDownloader);
 
-        viewer->close();
-    }
+    viewer->setOrientation(QmlApplicationViewer::ScreenOrientationAuto);
+    QGLWidget *glWidget = new QGLWidget;
+    viewer->setViewport(glWidget);
 
-    g_launcher = new JGameLauncher();
-
-    u32 flags = g_launcher->GetInitFlags();
-
-    if ((flags&JINIT_FLAG_ENABLE3D)!=0)
-    {
-        JRenderer::Set3DFlag(true);
-    }
-
-    g_glwidget = new JGEQtRenderer(NULL);
-    g_glwidget->resize(ACTUAL_SCREEN_WIDTH, ACTUAL_SCREEN_HEIGHT);
-
-    app->setApplicationName(g_launcher->GetName());
-    //a.setAutoSipEnabled(true);
-
-#if (defined Q_WS_MAEMO_5) || (defined MEEGO_EDITION_HARMATTAN) || (defined Q_WS_ANDROID)
-    // We start in fullscreen on mobile
-    g_glwidget->showFullScreen();
-#else
-    // not on desktop
-    g_glwidget->show();
-#endif
-
-    JGECreateDefaultBindings();
-
-    if (!InitGame())
-    {
-        qCritical("Could not init the game\n");
-        return 1;
-    }
-
-    app->exec();
-
-    if (g_launcher)
-        delete g_launcher;
-
-    if(g_glwidget)
-        delete g_glwidget;
-
-    // Shutdown
-    DestroyGame();
-
-    return 0;
+    viewer->showExpanded();
+    viewer->setResizeMode(QDeclarativeView::SizeRootObjectToView);
+    return app->exec();
 }
