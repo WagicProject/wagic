@@ -115,6 +115,8 @@
     NSString *resPath = [NSString stringWithFormat: @"%@/Res", docsPath];
     NSError *error = nil;
     
+    [compoundPredicate release], compoundPredicate = nil;
+    
     if ( ([resourceZipFiles count]  > 0 ) &&  ![fileManager fileExistsAtPath: userPath] )
         [fileManager createDirectoryAtPath: userPath withIntermediateDirectories: YES attributes:nil error:nil ];
     
@@ -206,6 +208,8 @@
         [fm moveItemAtPath: fromPath toPath: toPath error: nil];
     }
     
+    [playerDataPredicate release], playerDataPredicate = nil;
+    
     [self createManifest: docsPath];
     
     [[NSNotificationCenter defaultCenter] postNotificationName: @"readyToStartGame" object: nil];
@@ -243,6 +247,8 @@
 
 - (void) setupNetworkListeners
 {
+    NSLog(@"App checking network connections");
+
     hostReach = [[Reachability reachabilityForGoogleDNS] retain];
     internetReach = [[Reachability reachabilityForInternetConnection] retain];
     wifiReach = [[Reachability reachabilityForLocalWiFi] retain];

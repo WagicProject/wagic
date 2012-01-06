@@ -14,12 +14,15 @@ private:
     bool mHasFocus;
     bool mScrollEnabled;
     bool mDisplayInitialized;
-
+    bool mIsValidSelection;
+    
     DeckMenu* parent;
     int fontId;
     string mText;
     float mTitleResetWidth;
     static float mYOffset;
+
+    void checkUserClick();
 
 public:
     string imageFilename;

@@ -6,6 +6,8 @@
 #include <algorithm>
 
 #define ITEM_PX_WIDTH 190.0f
+#define kItemXOffset 22
+#define kItemYHeight 20
 
 const int kHorizontalScrollSpeed = 30; // higher numbers mean faster scrolling
 
@@ -17,6 +19,8 @@ DeckMenuItem::DeckMenuItem(DeckMenu* _parent, int id, int fontId, string text, f
 	WFont * mFont = WResourceManager::Instance()->GetWFont(fontId);
     meta = deckMetaData;
 	mText = trim(text);
+    mIsValidSelection = false;
+    
 	if (autoTranslate)
 		mText = _(mText);	
     
@@ -113,25 +117,46 @@ void DeckMenuItem::Render()
     RenderWithOffset(0);
 }
 
+void DeckMenuItem::checkUserClick()
+{
+#ifdef IOS
+    int x1 = 0, y1 = 0;
+    if ( mEngine->GetLeftClickCoordinates(x1, y1))
+    {   
+        mIsValidSelection = false;
+        int x2 = kItemXOffset, y2 = static_cast<int>(mY + mYOffset);
+        if ( (x1 >= x2) && (x1 <= (x2 + ITEM_PX_WIDTH)) && (y1 >= y2) && (y1 < (y2 + kItemYHeight)))
+            mIsValidSelection = true;
+    }
+    else
+        mIsValidSelection = true;
+#endif
+}
+
+
 void DeckMenuItem::Entering()
 {
+    checkUserClick();
     mHasFocus = true;
     parent->mSelectionTargetY = mY;
 }
 
 bool DeckMenuItem::Leaving(JButton key)
 {
+    // check to see if the user clicked on the object, if so return true.  
+    checkUserClick();
     mHasFocus = false;
     return true;
 }
 
 bool DeckMenuItem::ButtonPressed()
 {
-    return true;
+    return mIsValidSelection;
 }
 
 void DeckMenuItem::Relocate(float x, float y)
 {
+    checkUserClick();
     mX = x;
     mY = y;
 }
