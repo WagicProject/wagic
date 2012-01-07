@@ -405,6 +405,7 @@ static NSString *_MY_AD_WHIRL_APPLICATION_KEY_IPAD = @"2e70e3f3da40408588b9a3170
         // we want to differentiate between a pan motion vs a flick gesture.
 		if (!(( ((int)abs( (int) velocity.x)) > 300) || ((int) (abs( (int) velocity.y)) > 300)))
         {
+            g_engine->LeftClicked(newLocation.x, newLocation.y);
             g_engine->HoldKey_NoRepeat( JGE_BTN_OK );
         }
         else 
@@ -433,7 +434,6 @@ static NSString *_MY_AD_WHIRL_APPLICATION_KEY_IPAD = @"2e70e3f3da40408588b9a3170
 	int actualWidth = (int) JRenderer::GetInstance()->GetActualWidth();
 
     CGPoint newCoordinates = [self normalizeClickCoordinatesWithPoint: currentLocation];
-    
     g_engine->LeftClicked( newCoordinates.x, newCoordinates.y);
     g_engine->HoldKey_NoRepeat(JGE_BTN_NONE);
 
@@ -444,7 +444,8 @@ static NSString *_MY_AD_WHIRL_APPLICATION_KEY_IPAD = @"2e70e3f3da40408588b9a3170
     if (clickedWithinGameArea) 
     {
         // we want some delay for the left click to take place before clicking on OK.
-        [self performSelector: @selector(handleOK:) withObject: nil afterDelay: 0.25];
+        g_engine->LeftClicked( newCoordinates.x, newCoordinates.y);
+        [self performSelector: @selector(handleOK:) withObject: recognizer afterDelay: 0.25];
     }
         
     else if(currentLocation.y < es2renderer.viewPort.top) {

@@ -1,4 +1,4 @@
-#include "PrecompiledHeader.h"
+    #include "PrecompiledHeader.h"
 
 #include "DeckMenuItem.h"
 #include "Translate.h"
@@ -7,7 +7,7 @@
 
 #define ITEM_PX_WIDTH 190.0f
 #define kItemXOffset 22
-#define kItemYHeight 20
+#define kItemYHeight 30
 
 const int kHorizontalScrollSpeed = 30; // higher numbers mean faster scrolling
 
@@ -43,8 +43,11 @@ DeckMenuItem::DeckMenuItem(DeckMenu* _parent, int id, int fontId, string text, f
 	mScrollerOffset = 0.0f;
 
 	if (hasFocus)
+    {
+        mIsValidSelection = true;
         Entering();
-
+    }
+    
     if (meta && meta->getAvatarFilename().size() > 0)
         this->imageFilename = meta->getAvatarFilename();
     else 
@@ -120,19 +123,17 @@ void DeckMenuItem::Render()
 void DeckMenuItem::checkUserClick()
 {
 #ifdef IOS
-    int x1 = 0, y1 = 0;
-    if ( mEngine->GetLeftClickCoordinates(x1, y1))
+    int x1 = -1, y1 = -1;
+    if (mEngine->GetLeftClickCoordinates(x1, y1))
     {   
         mIsValidSelection = false;
         int x2 = kItemXOffset, y2 = static_cast<int>(mY + mYOffset);
         if ( (x1 >= x2) && (x1 <= (x2 + ITEM_PX_WIDTH)) && (y1 >= y2) && (y1 < (y2 + kItemYHeight)))
             mIsValidSelection = true;
     }
-    else
+#else
+    mIsValidSelection = true;
 #endif
-    {
-        mIsValidSelection = true;
-    }
 }
 
 
@@ -158,7 +159,6 @@ bool DeckMenuItem::ButtonPressed()
 
 void DeckMenuItem::Relocate(float x, float y)
 {
-    checkUserClick();
     mX = x;
     mY = y;
 }

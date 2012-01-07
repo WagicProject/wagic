@@ -150,7 +150,7 @@ bool JGuiController::CheckUserInput(JButton key)
     }
     else
     { // a dude may have clicked somewhere, we're gonna select the closest object from where he clicked
-        int x, y;
+        int x = -1, y = -1;
         unsigned int distance2;
         unsigned int minDistance2 = -1;
         int n = mCurr;
@@ -173,6 +173,11 @@ bool JGuiController::CheckUserInput(JButton key)
             if (n != mCurr && mObjects[mCurr] != NULL && mObjects[mCurr]->Leaving(JGE_BTN_DOWN))
             {
                 mCurr = n;
+                mObjects[mCurr]->Entering();
+            }
+            // if the same object was selected process click
+            else if (n == mCurr && mObjects[mCurr] != NULL && mObjects[mCurr]->Leaving(JGE_BTN_OK))
+            {
                 mObjects[mCurr]->Entering();
             }
             mEngine->LeftClickedProcessed();

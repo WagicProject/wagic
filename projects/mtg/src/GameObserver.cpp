@@ -1774,9 +1774,6 @@ void GameObserver::loadPlayer(int playerId, Player* player)
 
 void GameObserver::loadPlayer(int playerId, PlayerType playerType, int decknb, bool premadeDeck)
 {
-
-
-
     if (decknb)
     {
         if (playerType == PLAYER_TYPE_HUMAN)
