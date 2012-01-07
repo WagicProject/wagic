@@ -7,10 +7,13 @@ Rectangle {
     height: 272
     state: "DOWNLOADING"
     color: "black"
+    property url resource: "http://wagic.googlecode.com/files/core_017.zip"
+    property string hash: "cc6f9415f747acea500cdce190f0df6ee41db7cb"
 
     states: [
         State {
             name: "DOWNLOADING"
+            when: (fileDownloader.hash != hash)
             PropertyChanges {
                 target: column1; visible: true
             }
@@ -18,12 +21,12 @@ Rectangle {
                 target: wagic; visible: false
             }
             PropertyChanges {
-                target:fileDownloader; url: "http://wagic.googlecode.com/files/core_017.zip"
+                target:fileDownloader; url: resource
             }
         },
         State {
             name: "NORMAL"
-            when: (fileDownloader.done == true)
+            when: (fileDownloader.hash == hash)
             PropertyChanges {
                 target: column1; visible: false
             }
@@ -72,7 +75,7 @@ Rectangle {
         id: wagic
         anchors.fill: parent
         visible: false
-        active: Qt.WindowActive
+        active: Qt.application.active
     }
 /*
     Rectangle {
@@ -87,6 +90,9 @@ Rectangle {
         hoverEnabled: true
         anchors.fill: parent
         acceptedButtons: Qt.LeftButton | Qt.RightButton | Qt.MiddleButton
+        property int lastTick: 0
+        property int lastX: 0
+        property int lastY: 0
 
         onPositionChanged: {
             wagic.pixelInput(
@@ -95,18 +101,36 @@ Rectangle {
         }
 
         onPressed: {
-            if(mouse.button == Qt.LeftButton)
-                wagic.doOK()
-            else if(mouse.button == Qt.MiddleButton)
+            wagic.pixelInput(
+                        (mouse.x*wagic.nominalWidth)/width,
+                        (mouse.y*wagic.nominalHeight)/height)
+
+            if(mouse.button == Qt.LeftButton) {
+                lastTick = wagic.getTick()
+                lastX = mouse.x
+                lastY = mouse.y
+            } else if(mouse.button == Qt.MiddleButton)
                 wagic.doCancel()
             else if(mouse.button == Qt.RightButton)
                 wagic.doNext()
         }
 
         onReleased: {
-            if(mouse.button == Qt.LeftButton)
-                wagic.done()
-            else if(mouse.button == Qt.MiddleButton)
+            if(mouse.button == Qt.LeftButton) {
+                var currentTick = wagic.getTick()
+                if(currentTick - lastTick <= 250 )
+                {
+                    if(Math.abs(lastX-mouse.x) < 50 && Math.abs(lastY-mouse.y) < 50 )
+                    {
+                        wagic.doOK()
+//                        wagic.done()
+                    }
+                }
+                else if(currentTick - lastTick >= 250)
+                {
+                    wagic.doScroll(mouse.x - lastX, mouse.y - lastY)
+                }
+            } else if(mouse.button == Qt.MiddleButton)
                 wagic.done()
             else if(mouse.button == Qt.RightButton)
                 wagic.done()

@@ -49,6 +49,12 @@ public:
         }
     };
     Q_INVOKABLE void pixelInput(int x, int y);
+    Q_INVOKABLE qint64 getTick() {
+        return g_startTimer.elapsed();
+    };
+    Q_INVOKABLE void doScroll(int x, int y) {
+        m_engine->Scroll(x, y);
+    };
     int getNominalHeight(){ return SCREEN_HEIGHT;};
     int getNominalWidth(){ return SCREEN_WIDTH;};
     float getNominalRatio() { return ((float)SCREEN_WIDTH / (float)SCREEN_HEIGHT);};

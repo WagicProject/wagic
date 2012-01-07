@@ -1,3 +1,25 @@
+#include <qplatformdefs.h>
+#include <QtOpenGL>
+
+#if (defined FORCE_GLES)
+#undef GL_ES_VERSION_2_0
+#undef GL_VERSION_2_0
+#define GL_VERSION_ES_CM_1_1 1
+#ifndef GL_OES_VERSION_1_1
+#define glOrthof glOrtho
+#define glClearDepthf glClearDepth
+#endif
+#endif
+
+#if (defined FORCE_GLES)
+#undef GL_ES_VERSION_2_0
+#undef GL_VERSION_2_0
+#define GL_VERSION_ES_CM_1_1 1
+#define glOrthof glOrtho
+#define glClearDepthf glClearDepth
+#endif
+
+
 #include "corewrapper.h"
 
 #define ACTUAL_SCREEN_WIDTH (SCREEN_WIDTH)
@@ -37,10 +59,6 @@ WagicCore::WagicCore(QDeclarativeItem *parent) :
     setFlag(QGraphicsItem::ItemHasNoContents, false);
     setWidth(480);
     setHeight(272);
-
-    // BindKey is a static method, m_engine is not even initialized
-    for (signed int i = sizeof(gDefaultBindings)/sizeof(gDefaultBindings[0]) - 1; i >= 0; --i)
-      m_engine->BindKey(gDefaultBindings[i].keysym, gDefaultBindings[i].keycode);
 
     g_startTimer.restart();
     m_lastTickCount = g_startTimer.elapsed();
@@ -125,7 +143,7 @@ void WagicCore::setActive(bool active)
     if(!m_active && active)
     {
         m_engine->Resume();
-    #if (defined Q_WS_MAEMO_5) || (defined MEEGO_EDITION_HARMATTAN) || (defined Q_WS_ANDROID)
+    #if (defined Q_WS_MAEMO_5) || defined(MEEGO_EDITION_HARMATTAN) || (defined Q_WS_ANDROID)
         // 30 fps max on mobile
         m_timerId = startTimer(33);
     #else
@@ -138,8 +156,8 @@ void WagicCore::setActive(bool active)
     else if(m_active && !active)
     {
         m_engine->Pause();
-    #if (defined Q_WS_MAEMO_5) || (defined MEEGO_EDITION_HARMATTAN) || (defined Q_WS_ANDROID)
-        killTimer(timerId);
+    #if (defined Q_WS_MAEMO_5) || defined(MEEGO_EDITION_HARMATTAN) || (defined Q_WS_ANDROID)
+        killTimer(m_timerId);
     #endif
         m_active = active;
         emit activeChanged();
@@ -250,11 +268,11 @@ void WagicCore::keyPressEvent(QKeyEvent *event)
 #if (defined Q_WS_MAEMO_5)
   case Qt::Key_F7:
     /* interrupt please */
-    g_engine->HoldKey_NoRepeat(JGE_BTN_SEC);
+    m_engine->HoldKey_NoRepeat(JGE_BTN_SEC);
     break;
   case Qt::Key_F8:
     /* next phase please */
-    g_engine->HoldKey_NoRepeat(JGE_BTN_PREV);
+    m_engine->HoldKey_NoRepeat(JGE_BTN_PREV);
     break;
 #endif // Q_WS_MAEMO_5
   case Qt::Key_F:

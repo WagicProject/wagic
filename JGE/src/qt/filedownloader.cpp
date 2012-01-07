@@ -1,8 +1,9 @@
 #include "filedownloader.h"
 #include <QDir>
+#include <QCryptographicHash>
  
-FileDownloader::FileDownloader(QString localPath, QUrl url, QObject *parent) :
-    QObject(parent), m_received(0), m_OK(false), m_done(false)
+FileDownloader::FileDownloader(QString localPath, QObject *parent) :
+    QObject(parent), m_received(0), m_hash(""), m_OK(false)
 
 {
     QDir dir(QDir::homePath());
@@ -16,29 +17,45 @@ FileDownloader::FileDownloader(QString localPath, QUrl url, QObject *parent) :
 
     QFile local(m_localPath);
     if(local.exists()) {
-        m_done = true;
-        return;
+        computeHash(local);
     }
-    if(!url.isEmpty())
-        setDownloadUrl(url);
 }
 
 void FileDownloader::setDownloadUrl(QUrl url)
 {
-    connect(&m_WebCtrl, SIGNAL(finished(QNetworkReply*)),
-                SLOT(fileDownloaded(QNetworkReply*)));
+    if((!url.isEmpty()) && url.toString() != m_downloadUrl.toString())
+    {
+        connect(&m_WebCtrl, SIGNAL(finished(QNetworkReply*)),
+                    SLOT(fileDownloaded(QNetworkReply*)));
 
-    QNetworkRequest request(url);
-    QNetworkReply* reply = m_WebCtrl.get(request);
+        QNetworkRequest request(url);
+        QNetworkReply* reply = m_WebCtrl.get(request);
 
-    connect(reply, SIGNAL(downloadProgress(qint64, qint64)),
-                SLOT(downloadProgress(qint64, qint64)));
+        connect(reply, SIGNAL(downloadProgress(qint64, qint64)),
+                    SLOT(downloadProgress(qint64, qint64)));
 
-    m_OK = m_tmp.open();
+        m_OK = m_tmp.open();
+
+        m_downloadUrl.setUrl(url.toString());
+        emit downloadUrlChanged();
+    }
 }
 
 
 FileDownloader::~FileDownloader()
 {
 
+}
+
+void FileDownloader::computeHash(QFile& file)
+{
+    QCryptographicHash crypto(QCryptographicHash::Sha1);
+    file.open(QFile::ReadOnly);
+    while(!file.atEnd()){
+    crypto.addData(file.read(8192));
+    }
+    QByteArray hash = crypto.result();
+
+    m_hash = hash.toHex();
+    emit hashChanged();
 }
