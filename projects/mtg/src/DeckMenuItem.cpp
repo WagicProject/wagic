@@ -129,8 +129,10 @@ void DeckMenuItem::checkUserClick()
             mIsValidSelection = true;
     }
     else
-        mIsValidSelection = true;
 #endif
+    {
+        mIsValidSelection = true;
+    }
 }
 
 
