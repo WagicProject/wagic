@@ -449,7 +449,7 @@ maemo5: {
     USERDIR = .Wagic
     DEFINES += RESDIR=\"$$RESDIR\"
     DEFINES += USERDIR=\"$$USERDIR\"
-
+    ICON = wagic.svg
 } else:android {
     DEFINES += Q_WS_ANDROID
     RESDIR = Res
