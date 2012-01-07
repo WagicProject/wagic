@@ -77,7 +77,7 @@ bool Unlockable::tryToUnlock(GameObserver * game) {
 void Unlockable::load()
 {
     std::string contents;
-    if (! JFileSystem::GetInstance()->readIntoString("Rules/awards.dat", contents))
+    if (! JFileSystem::GetInstance()->readIntoString("rules/awards.dat", contents))
         return;
 
     std::stringstream stream(contents);
