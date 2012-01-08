@@ -273,7 +273,7 @@ bool WGuiMenu::yieldFocus()
 
 //WGuiList
 WGuiList::WGuiList(string name, WSyncable * syncme) :
-    WGuiMenu(JGE_BTN_DOWN, JGE_BTN_UP, false, syncme)
+    WGuiMenu(JGE_BTN_DOWN, JGE_BTN_UP, false, syncme), startWindow(-1), endWindow(-1)
 {
     failMsg = "NO OPTIONS AVAILABLE";
     width = SCREEN_WIDTH - 10;
@@ -432,9 +432,11 @@ bool WGuiList::CheckUserInput(JButton key)
         int n = currentItem;
         unsigned int distance2;
         unsigned int minDistance2 = -1;
-        for(int k = startWindow; k < endWindow; k++)
+        int begin = (startWindow == -1) ? 0 : startWindow;
+        int end = (endWindow == -1) ? items.size() : endWindow;
+        for(int k = begin; k < end; k++)
         {
-          WGuiItem* pItem = (WGuiItem*)items[k];
+          WGuiBase* pItem = (items[k]);
           distance2 = static_cast<unsigned int>((pItem->getY() - j) * (pItem->getY() - j) + (pItem->getX() - i) * (pItem->getX() - i));
           if (distance2 < minDistance2 && pItem->Selectable())
           {
@@ -452,7 +454,7 @@ bool WGuiList::CheckUserInput(JButton key)
         }
     }
 
-    mEngine->LeftClickedProcessed();
+//    mEngine->LeftClickedProcessed();
     return WGuiMenu::CheckUserInput(key);
 }
 
@@ -972,7 +974,7 @@ bool WGuiMenu::CheckUserInput(JButton key)
         unsigned int minDistance2 = -1;
         for(size_t k = 0; k < items.size(); k++)
         {
-          WGuiItem* pItem = (WGuiItem*)items[k];
+          WGuiBase* pItem = items[k];
           distance2 = static_cast<unsigned int>((pItem->getY() - j) * (pItem->getY() - j) + (pItem->getX() - i) * (pItem->getX() - i));
           if (distance2 < minDistance2 && pItem->Selectable())
           {
