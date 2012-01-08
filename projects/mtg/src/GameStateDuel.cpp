@@ -377,9 +377,10 @@ void GameStateDuel::Update(float dt)
             deckmenu->Update(dt);
         break;
     case DUEL_STATE_CHOOSE_DECK2_TO_1:
-        if (opponentMenu->isClosed())
+        if (opponentMenu->isClosed()) {
             setGamePhase(DUEL_STATE_CHOOSE_DECK1);
-        else
+            SAFE_DELETE(opponentMenu);
+        } else
             opponentMenu->Update(dt);
         break;
     case DUEL_STATE_CHOOSE_DECK2:
