@@ -43,6 +43,7 @@ public:
     void Update(float dt);
     void Add(int id, const char * Text, string desc = "", bool forceFocus = false);
     int getmCurr(){return mCurr;}
+    float getWidth(){return mWidth; }
     void Close();
 
     void RecenterMenu();

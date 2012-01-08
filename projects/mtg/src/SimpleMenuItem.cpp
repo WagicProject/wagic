@@ -94,7 +94,7 @@ bool SimpleMenuItem::ButtonPressed()
 
 void SimpleMenuItem::Relocate(float x, float y)
 {
-    mXOffset = x;
+    mXOffset = x - (parent->getWidth()/2); // determines the leftmost point of the text;
     mX = x;
     mY = y;
 }
