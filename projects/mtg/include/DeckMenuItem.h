@@ -5,24 +5,18 @@
 #include <JLBFont.h>
 #include <JGui.h>
 #include "DeckMenu.h"
+#include "SimpleMenuItem.h"
 
 using std::string;
 
-class DeckMenuItem: public JGuiObject
+class DeckMenuItem: public SimpleMenuItem
 {
 private:
-    bool mHasFocus;
     bool mScrollEnabled;
     bool mDisplayInitialized;
-    bool mIsValidSelection;
     
     DeckMenu* parent;
-    int fontId;
-    string mText;
     float mTitleResetWidth;
-    static float mYOffset;
-
-    void checkUserClick();
 
 public:
     string imageFilename;
@@ -30,11 +24,9 @@ public:
     float mScrollerOffset;
     DeckMetaData *meta;
 
-    float mX;
-    float mY;
-
     void Relocate(float x, float y);
     float GetWidth();
+    
     string GetText()
     {
         return mText;

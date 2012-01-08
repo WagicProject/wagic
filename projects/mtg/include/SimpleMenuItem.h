@@ -14,16 +14,25 @@ using std::string;
 class SimpleMenuItem: public JGuiObject
 {
 private:
-    bool mHasFocus;
+
     SimpleMenu* parent;
-    int fontId;
-    string mText;
     float mScale;
     float mTargetScale;
+
+protected:
+    int fontId;
+    string mText;
+    bool mHasFocus;
     static float mYOffset;
+    float mXOffset;
+    
+    bool mIsValidSelection;    
+    void checkUserClick();
+
 
 public:
     string desc;
+    SimpleMenuItem(int id);
     SimpleMenuItem(SimpleMenu* _parent, int id, int fontId, string text, float x, float y, bool hasFocus = false, bool autoTranslate = false);
 
     float mX;

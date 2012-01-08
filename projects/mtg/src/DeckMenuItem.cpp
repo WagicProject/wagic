@@ -1,4 +1,4 @@
-    #include "PrecompiledHeader.h"
+#include "PrecompiledHeader.h"
 
 #include "DeckMenuItem.h"
 #include "Translate.h"
@@ -11,19 +11,22 @@
 
 const int kHorizontalScrollSpeed = 30; // higher numbers mean faster scrolling
 
-float DeckMenuItem::mYOffset = 0;
-
-DeckMenuItem::DeckMenuItem(DeckMenu* _parent, int id, int fontId, string text, float x, float y, bool hasFocus, bool autoTranslate, DeckMetaData *deckMetaData)
-                        : JGuiObject(id), parent(_parent), fontId(fontId), mX(x), mY(y)
+DeckMenuItem::DeckMenuItem(DeckMenu* _parent, int id, int iFontId, string text, float x, float y, bool hasFocus, bool autoTranslate, DeckMetaData *deckMetaData): SimpleMenuItem(id)
 {
+    mEngine = JGE::GetInstance();
+    parent = _parent;
+    fontId = iFontId;
+    mY = y;
+    mX = x;
 	WFont * mFont = WResourceManager::Instance()->GetWFont(fontId);
     meta = deckMetaData;
 	mText = trim(text);
-    mIsValidSelection = false;
+    SimpleMenuItem::mIsValidSelection = false;
     
 	if (autoTranslate)
 		mText = _(mText);	
     
+    mXOffset = kItemXOffset;
 
     mHasFocus = hasFocus;
 	float newImageWidth = 0.0f;
@@ -89,7 +92,7 @@ void DeckMenuItem::Update(float dt)
 
 void DeckMenuItem::RenderWithOffset(float yOffset)
 {
-  mYOffset = yOffset;
+    SimpleMenuItem::mYOffset = yOffset;
 
     WFont * mFont = WResourceManager::Instance()->GetWFont(fontId);
 	
@@ -120,26 +123,10 @@ void DeckMenuItem::Render()
     RenderWithOffset(0);
 }
 
-void DeckMenuItem::checkUserClick()
-{
-#ifdef IOS
-    int x1 = -1, y1 = -1;
-    if (mEngine->GetLeftClickCoordinates(x1, y1))
-    {   
-        mIsValidSelection = false;
-        int x2 = kItemXOffset, y2 = static_cast<int>(mY + mYOffset);
-        if ( (x1 >= x2) && (x1 <= (x2 + ITEM_PX_WIDTH)) && (y1 >= y2) && (y1 < (y2 + kItemYHeight)))
-            mIsValidSelection = true;
-    }
-#else
-    mIsValidSelection = true;
-#endif
-}
-
 
 void DeckMenuItem::Entering()
 {
-    checkUserClick();
+    SimpleMenuItem::checkUserClick();
     mHasFocus = true;
     parent->mSelectionTargetY = mY;
 }
@@ -147,14 +134,14 @@ void DeckMenuItem::Entering()
 bool DeckMenuItem::Leaving(JButton key)
 {
     // check to see if the user clicked on the object, if so return true.  
-    checkUserClick();
+    SimpleMenuItem::checkUserClick();
     mHasFocus = false;
     return true;
 }
 
 bool DeckMenuItem::ButtonPressed()
 {
-    return mIsValidSelection;
+    return SimpleMenuItem::mIsValidSelection;
 }
 
 void DeckMenuItem::Relocate(float x, float y)

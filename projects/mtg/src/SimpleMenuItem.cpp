@@ -6,6 +6,11 @@
 
 float SimpleMenuItem::mYOffset = 0;
 
+SimpleMenuItem::SimpleMenuItem(int id): JGuiObject(id)
+{
+    
+}
+
 SimpleMenuItem::SimpleMenuItem(SimpleMenu* _parent, int id, int fontId, string text, float x, float y, bool hasFocus, bool autoTranslate) :
     JGuiObject(id), parent(_parent), fontId(fontId), mX(x), mY(y)
 {
@@ -17,7 +22,8 @@ SimpleMenuItem::SimpleMenuItem(SimpleMenu* _parent, int id, int fontId, string t
 
     mScale = 1.0f;
     mTargetScale = 1.0f;
-
+    
+    mXOffset = mX;
     if (hasFocus) Entering();
 }
 
@@ -45,6 +51,20 @@ void SimpleMenuItem::Update(float dt)
         mScale -= 8.0f * dt;
         if (mScale < mTargetScale) mScale = mTargetScale;
     }
+}
+
+void SimpleMenuItem::checkUserClick()
+{
+    int x1 = -1, y1 = -1;
+    if (mEngine->GetLeftClickCoordinates(x1, y1))
+    {   
+        mIsValidSelection = false;
+        int x2 = mXOffset, y2 = static_cast<int>(mY + mYOffset);
+        if ( (x1 >= x2) && (x1 <= (x2 + 200)) && (y1 >= y2) && (y1 < (y2 + 30)))
+            mIsValidSelection = true;
+    }
+    else
+        mIsValidSelection = true;
 }
 
 void SimpleMenuItem::Entering()
