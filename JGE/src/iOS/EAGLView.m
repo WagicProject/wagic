@@ -406,7 +406,6 @@ static NSString *_MY_AD_WHIRL_APPLICATION_KEY_IPAD = @"2e70e3f3da40408588b9a3170
 		if (!(( ((int)abs( (int) velocity.x)) > 300) || ((int) (abs( (int) velocity.y)) > 300)))
         {
             g_engine->LeftClicked(newLocation.x, newLocation.y);
-            g_engine->HoldKey_NoRepeat( JGE_BTN_OK );
         }
         else 
         {   
