@@ -23,9 +23,18 @@ public:
     string desc;
     float mScrollerOffset;
     DeckMetaData *meta;
+    
+    virtual bool hasFocus();
 
-    void Relocate(float x, float y);
-    float GetWidth();
+    virtual void Relocate(float x, float y);
+    virtual float GetWidth();
+    virtual void Render();
+    virtual void Update(float dt);
+    
+    virtual bool getTopLeft(float& top, float& left)
+    {
+        return SimpleMenuItem::getTopLeft(top, left);
+    }
     
     string GetText()
     {
@@ -35,25 +44,15 @@ public:
     {
         return desc;
     }
-    bool hasFocus();
 
     DeckMenuItem(DeckMenu* _parent, int id, int fontId, string text, float x, float y, bool hasFocus = false, bool autoTranslate = false, DeckMetaData *meta = NULL);
     ~DeckMenuItem();
-
-    void RenderWithOffset(float yOffset);
-    virtual void Render();
-    virtual void Update(float dt);
     virtual void Entering();
     virtual bool Leaving(JButton key);
     virtual bool ButtonPressed();
     virtual ostream& toString(ostream& out) const;
-    virtual bool getTopLeft(float& top, float& left)
-    {
-        top = mY + mYOffset;
-        left = mX;
-        return true;
-    }
-    ;
+    virtual void RenderWithOffset(float yOffset);
+
 };
 
 #endif

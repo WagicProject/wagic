@@ -8,7 +8,7 @@ float SimpleMenuItem::mYOffset = 0;
 
 SimpleMenuItem::SimpleMenuItem(int id): JGuiObject(id)
 {
-    
+    mIsValidSelection = false;
 }
 
 SimpleMenuItem::SimpleMenuItem(SimpleMenu* _parent, int id, int fontId, string text, float x, float y, bool hasFocus, bool autoTranslate) :
@@ -24,7 +24,12 @@ SimpleMenuItem::SimpleMenuItem(SimpleMenu* _parent, int id, int fontId, string t
     mTargetScale = 1.0f;
     
     mXOffset = mX;
-    if (hasFocus) Entering();
+
+	if (hasFocus)
+    {
+        mIsValidSelection = true;
+        Entering();
+    }
 }
 
 void SimpleMenuItem::RenderWithOffset(float yOffset)
@@ -59,7 +64,7 @@ void SimpleMenuItem::checkUserClick()
     if (mEngine->GetLeftClickCoordinates(x1, y1))
     {   
         mIsValidSelection = false;
-        int x2 = mXOffset, y2 = static_cast<int>(mY + mYOffset);
+        int x2 = static_cast<int>(mXOffset), y2 = static_cast<int>(mY + mYOffset);
         if ( (x1 >= x2) && (x1 <= (x2 + 200)) && (y1 >= y2) && (y1 < (y2 + 30)))
             mIsValidSelection = true;
     }
@@ -69,23 +74,27 @@ void SimpleMenuItem::checkUserClick()
 
 void SimpleMenuItem::Entering()
 {
+    checkUserClick();
     mHasFocus = true;
     parent->selectionTargetY = mY;
 }
 
 bool SimpleMenuItem::Leaving(JButton key)
 {
+    checkUserClick();
     mHasFocus = false;
     return true;
 }
 
 bool SimpleMenuItem::ButtonPressed()
 {
-    return true;
+    return mIsValidSelection;
 }
+
 
 void SimpleMenuItem::Relocate(float x, float y)
 {
+    mXOffset = x;
     mX = x;
     mY = y;
 }

@@ -21,7 +21,6 @@ DeckMenuItem::DeckMenuItem(DeckMenu* _parent, int id, int iFontId, string text, 
 	WFont * mFont = WResourceManager::Instance()->GetWFont(fontId);
     meta = deckMetaData;
 	mText = trim(text);
-    SimpleMenuItem::mIsValidSelection = false;
     
 	if (autoTranslate)
 		mText = _(mText);	
@@ -77,7 +76,6 @@ DeckMenuItem::DeckMenuItem(DeckMenu* _parent, int id, int iFontId, string text, 
         
     }
     
-    
 	mDisplayInitialized = false;
 
 }
@@ -118,36 +116,33 @@ void DeckMenuItem::RenderWithOffset(float yOffset)
     }
 }
 
-void DeckMenuItem::Render()
+void DeckMenuItem::Render() 
 {
     RenderWithOffset(0);
-}
-
-
-void DeckMenuItem::Entering()
-{
-    SimpleMenuItem::checkUserClick();
-    mHasFocus = true;
-    parent->mSelectionTargetY = mY;
-}
-
-bool DeckMenuItem::Leaving(JButton key)
-{
-    // check to see if the user clicked on the object, if so return true.  
-    SimpleMenuItem::checkUserClick();
-    mHasFocus = false;
-    return true;
-}
-
-bool DeckMenuItem::ButtonPressed()
-{
-    return SimpleMenuItem::mIsValidSelection;
 }
 
 void DeckMenuItem::Relocate(float x, float y)
 {
     mX = x;
     mY = y;
+}
+
+void DeckMenuItem::Entering()
+{
+    checkUserClick();
+    mHasFocus = true;
+    parent->mSelectionTargetY = mY;
+}
+
+
+bool DeckMenuItem::Leaving(JButton key)
+{
+    return SimpleMenuItem::Leaving(key);
+}
+
+bool DeckMenuItem::ButtonPressed()
+{
+    return SimpleMenuItem::ButtonPressed();
 }
 
 float DeckMenuItem::GetWidth()

@@ -38,9 +38,12 @@ public:
     float mX;
     float mY;
 
-    void Relocate(float x, float y);
-    float GetWidth();
-    bool hasFocus();
+    
+    
+    virtual void Relocate(float x, float y);
+    virtual float GetWidth();
+    
+    virtual bool hasFocus();
 
     void RenderWithOffset(float yOffset);
     virtual void Render();
