@@ -472,17 +472,18 @@ void GameStateDuel::Update(float dt)
                     handleResults(game);
                     End();
                     Start();
-                }
-                if(mWorkerThread.empty())
-                {   // "I don't like to wait" mode
-                    size_t thread_count = 1;
-                    startTime = JGEGetTime();
 
-            #ifdef QT_CONFIG
-                    thread_count = QThread::idealThreadCount();
-            #endif
-                    for(size_t i = 0; i < (thread_count-1); i++)
-                        mWorkerThread.push_back(boost::thread(ThreadProc, this));
+                    if(mWorkerThread.empty())
+                    {   // "I don't like to wait" mode
+                        size_t thread_count = 1;
+                        startTime = JGEGetTime();
+
+                #ifdef QT_CONFIG
+                        thread_count = QThread::idealThreadCount();
+                #endif
+                        for(size_t i = 0; i < (thread_count-1); i++)
+                            mWorkerThread.push_back(boost::thread(ThreadProc, this));
+                    }
                 }
             }
 #endif
