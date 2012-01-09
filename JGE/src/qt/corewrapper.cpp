@@ -133,6 +133,7 @@ void WagicCore::timerEvent( QTimerEvent* )
     m_engine->SetDelta((float)dt / 1000.0f);
     m_engine->Update((float)dt / 1000.0f);
 
+    done();
     update();
 }
 

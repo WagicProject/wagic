@@ -137,7 +137,10 @@ Rectangle {
         }
 
         onPressAndHold: {
-            wagic.doMenu()
+            if(Math.abs(lastX-mouse.x)<50 && Math.abs(lastY-mouse.y)<50)
+            {
+                wagic.doMenu()
+            }
         }
     }
     function resize(){
