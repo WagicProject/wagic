@@ -251,7 +251,8 @@ PIXEL_TYPE GameOption::asColor(PIXEL_TYPE fallback)
         color[subpixel] = (unsigned char) atoi(temp.c_str());
     if (subpixel == 2)
         color[3] = 255;
-
+    
+    // TODO: WARNING - not all the values of color may be initialized at this point.  Do we need to initialize the array to some value?
     return ARGB(color[3],color[0],color[1],color[2]);
 }
 

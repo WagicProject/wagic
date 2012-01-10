@@ -327,7 +327,8 @@ BOOL awDoubleVal(double *var, id val) {
       case 3:
         // general config map
         if (![self parseExtraConfig:configDict error:error]) {
-          return NO;
+            [adNetConfigDicts release];
+            return NO;
         }
         break; // general config map
       default:
