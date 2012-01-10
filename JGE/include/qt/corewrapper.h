@@ -64,6 +64,7 @@ public:
     void resize ( const QRectF &rect);
     void keyPressEvent(QKeyEvent *event);
     void keyReleaseEvent(QKeyEvent *event);
+    void wheelEvent ( QGraphicsSceneWheelEvent * event);
 
 signals:
     void activeChanged();

@@ -310,3 +310,13 @@ void WagicCore::keyReleaseEvent(QKeyEvent *event)
     return;
 }
 
+void WagicCore::wheelEvent ( QGraphicsSceneWheelEvent * event)
+{
+    if(event->orientation() == Qt::Vertical)
+        m_engine->Scroll(0, 3*event->delta());
+    else
+
+        m_engine->Scroll(3*event->delta(), 0);
+
+    event->accept();
+}
