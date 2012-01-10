@@ -17,6 +17,9 @@ private:
     
     DeckMenu* parent;
     float mTitleResetWidth;
+    
+protected:
+    virtual void checkUserClick();
 
 public:
     string imageFilename;

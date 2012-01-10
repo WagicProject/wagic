@@ -27,7 +27,7 @@ protected:
     float mXOffset;
     
     bool mIsValidSelection;    
-    void checkUserClick();
+    virtual void checkUserClick();
 
 
 public:

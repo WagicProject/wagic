@@ -444,7 +444,8 @@ static NSString *_MY_AD_WHIRL_APPLICATION_KEY_IPAD = @"2e70e3f3da40408588b9a3170
     {
         // we want some delay for the left click to take place before clicking on OK.
         g_engine->LeftClicked( newCoordinates.x, newCoordinates.y);
-        [self performSelector: @selector(handleOK:) withObject: recognizer afterDelay: 0.25];
+        if (recognizer.state == UIGestureRecognizerStateEnded)
+            [self performSelector: @selector(handleOK:) withObject: recognizer afterDelay: 0.25];
     }
         
     else if(currentLocation.y < es2renderer.viewPort.top) {

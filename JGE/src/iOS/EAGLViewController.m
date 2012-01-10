@@ -195,13 +195,13 @@
 
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField
 {
-    [eaglView updateKeyboard: @"SAVE"];
     return YES;
 }
 
 
 - (BOOL) textFieldShouldReturn:(UITextField *)textField 
 {
+    [eaglView updateKeyboard: @"SAVE"];
 	[textField resignFirstResponder];
 	return YES;
 }

@@ -60,16 +60,7 @@ void SimpleMenuItem::Update(float dt)
 
 void SimpleMenuItem::checkUserClick()
 {
-    int x1 = -1, y1 = -1;
-    if (mEngine->GetLeftClickCoordinates(x1, y1))
-    {   
-        mIsValidSelection = false;
-        int x2 = static_cast<int>(mXOffset), y2 = static_cast<int>(mY + mYOffset);
-        if ( (x1 >= x2) && (x1 <= (x2 + 200)) && (y1 >= y2) && (y1 < (y2 + 30)))
-            mIsValidSelection = true;
-    }
-    else
-        mIsValidSelection = true;
+    mIsValidSelection = true;
 }
 
 void SimpleMenuItem::Entering()
