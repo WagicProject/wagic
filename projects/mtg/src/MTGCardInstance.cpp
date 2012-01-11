@@ -1018,7 +1018,7 @@ int MTGCardInstance::cantBeBlockedBy(MTGCardInstance * card)
 /* Choose a sound sample to associate to that card */
 JSample * MTGCardInstance::getSample()
 {
-    JSample * js;
+    JSample * js = 0;
 
     if (sample.size())
         return WResourceManager::Instance()->RetrieveSample(sample);
@@ -1028,11 +1028,14 @@ JSample * MTGCardInstance::getSample()
         string type = Subtypes::subtypesList->find(types[i]);
         std::transform(type.begin(), type.end(), type.begin(), ::tolower);
         type = type + ".wav";
-        js = WResourceManager::Instance()->RetrieveSample(type);
-        if (js)
+        if(getObserver() && getObserver()->getResourceManager())
         {
-            sample = string(type);
-            return js;
+            js = WResourceManager::Instance()->RetrieveSample(type);
+            if (js)
+            {
+                sample = string(type);
+                return js;
+            }
         }
     }
 
@@ -1044,11 +1047,14 @@ JSample * MTGCardInstance::getSample()
                 continue;
             string type = Constants::MTGBasicAbilities[x];
             type = type + ".wav";
-            js = WResourceManager::Instance()->RetrieveSample(type);
-            if (js)
+            if(getObserver() && getObserver()->getResourceManager())
             {
-                sample = string(type);
-                return js;
+                js = WResourceManager::Instance()->RetrieveSample(type);
+                if (js)
+                {
+                    sample = string(type);
+                    return js;
+                }
             }
         }
     }
@@ -1059,11 +1065,14 @@ JSample * MTGCardInstance::getSample()
     type = Subtypes::subtypesList->find(types[0]);
     std::transform(type.begin(), type.end(), type.begin(), ::tolower);
     type.append(".wav");
-    js = WResourceManager::Instance()->RetrieveSample(type);
-    if (js)
+    if(getObserver() && getObserver()->getResourceManager())
     {
-        sample = string(type);
-        return js;
+        js = WResourceManager::Instance()->RetrieveSample(type);
+        if (js)
+        {
+            sample = string(type);
+            return js;
+        }
     }
 
     return NULL;
