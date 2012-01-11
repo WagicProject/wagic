@@ -302,7 +302,7 @@ MillCost::MillCost(TargetChooser *_tc)
 
 int MillCost::canPay()
 {
-    MTGGameZone * z = target->controller()->game->library;
+    MTGGameZone * z = target?target->controller()->game->library:source->controller()->game->library;
     int nbcards = z->nb_cards;
     if (nbcards < 1)
         return 0;
