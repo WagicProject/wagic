@@ -9083,6 +9083,15 @@ type=Artifact
 subtype=Equipment
 [/card]
 [card]
+name=Harmonic Sliver
+text=All Slivers have "When this permanent enters the battlefield, destroy target artifact or enchantment."
+mana={1}{G}{W}
+type=Creature
+subtype=Sliver
+power=1
+toughness=1
+[/card]
+[card]
 name=Harm's Way
 text=The next 2 damage that a source of your choice would deal to you and/or permanents you control this turn is dealt to target creature or player instead.
 mana={W}

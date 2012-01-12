@@ -6440,7 +6440,7 @@ toughness=4
 name=Bestial Fury
 target=creature
 auto=@next upkeep:draw:1 controller
-auto=@combat(blocked,turnlimited) source(mytgt):4/0 ueot && trample ueot
+auto=@combat(blocked,turnlimited) source(mytgt):transforms((,trample,newability[4/0])) ueot
 text=Enchant creature -- When Bestial Fury enters the battlefield, draw a card at the beginning of the next turn's upkeep. -- Whenever enchanted creature becomes blocked, it gets +4/+0 and gains trample until end of turn.
 mana={2}{R}
 type=Enchantment
@@ -20940,7 +20940,7 @@ toughness=2
 [/card]
 [card]
 name=Elder Cathar
-auto=@movedTo(this|graveyard) from(battlefield):target(creature) transforms((,newability[counter(1/1,1)],newability[if cantargetcard(human) then counter(1/1,1)])) forever
+auto=@movedTo(this|graveyard) from(battlefield):target(creature) transforms((,newability[counter(1/1.1)],newability[if cantargetcard(human) then counter(1/1.1)])) forever
 text=When Elder Cathar dies, put a +1/+1 counter on target creature you control. If that creature is a Human, put two +1/+1 counters on it instead.
 mana={2}{W}
 type=Creature
@@ -32095,16 +32095,6 @@ mana={2}{G}
 type=Instant
 [/card]
 [card]
-name=Harmonic Sliver
-auto=lord(sliver) transforms((,newability[destroy target(artifact,enchantment) oneshot]))
-text=All Slivers have "When this permanent enters the battlefield, destroy target artifact or enchantment."
-mana={1}{G}{W}
-type=Creature
-subtype=Sliver
-power=1
-toughness=1
-[/card]
-[card]
 name=Harmonize
 auto=draw:3
 text=Draw three cards.
@@ -39837,7 +39827,8 @@ toughness=3
 [/card]
 [card]
 name=Kuldotha Forgemaster
-auto={T}{S(artifact|myBattlefield)}{S(artifact|myBattlefield)}{S(artifact|myBattlefield)}:moveTo(myBattlefield) target(artifact|mylibrary)
+auto={T}{S(artifact|myBattlefield)}{S(artifact|myBattlefield)}{S}:name(sacrifice 2 artifacts + Kuldotha Forgemaster):moveTo(myBattlefield) target(artifact|mylibrary)
+auto={T}{S(artifact|myBattlefield)}{S(artifact|myBattlefield)}{S(artifact|myBattlefield)}:name(sacrifice 3 other artifacts)moveTo(myBattlefield) target(artifact|mylibrary)
 text={T}, Sacrifice three artifacts: Search your library for an artifact card and put it onto the battlefield. Then shuffle your library.
 mana={5}
 type=Artifact Creature
@@ -42417,8 +42408,9 @@ toughness=4
 [/card]
 [card]
 name=Lumberknot
+abilities=hexproof
 auto=@movedTo(creature|graveyard) from(battlefield):counter(1/1,1)
-text=Whenever a creature dies, put a +1/+1 counter on Lumberknot.
+text=Hexproof (This creature can't be the target of spells or abilities your opponents control.) -- Whenever a creature dies, put a +1/+1 counter on Lumberknot.
 mana={2}{G}{G}
 type=Creature
 subtype=Treefolk
