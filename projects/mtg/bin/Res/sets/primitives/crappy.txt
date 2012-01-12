@@ -754,6 +754,18 @@ power=1
 toughness=1
 [/card]
 [card]
+name=River Kelpie
+abilities=persist
+auto=@movedTo(creature,artifact,enchantment,land|battlefield) from(graveyard):draw:1
+auto=@movedTo(sorcery,instant|stack) from(graveyard):draw:1
+text=Whenever River Kelpie or another permanent is put onto the battlefield from a graveyard, draw a card. -- Whenever a player casts a spell from a graveyard, draw a card. -- Persist (When this creature dies, if it had no -1/-1 counters on it, return it to the battlefield under its owner's control with a -1/-1 counter on it.)
+mana={3}{U}{U}
+type=Creature
+subtype=Beast
+power=3
+toughness=3
+[/card]
+[card]
 name=Rix Maadi, Dungeon Palace
 auto={t}:add{1}
 auto={1}{b}{r}{t}:all(player) discard:1 asSorcery
