@@ -2240,7 +2240,7 @@ type=Instant
 [card]
 name=Angelic Overseer
 abilities=flying
-auto=aslongas(human|mybattlefield) hexproof
+auto=aslongas(human|mybattlefield) opponentshroud
 auto=aslongas(human|mybattlefield) indestructible
 text=Flying -- As long as you control a Human, Angelic Overseer has hexproof and is indestructible.
 mana={3}{W}{W}
@@ -42408,7 +42408,7 @@ toughness=4
 [/card]
 [card]
 name=Lumberknot
-abilities=hexproof
+abilities=opponentshroud
 auto=@movedTo(creature|graveyard) from(battlefield):counter(1/1,1)
 text=Hexproof (This creature can't be the target of spells or abilities your opponents control.) -- Whenever a creature dies, put a +1/+1 counter on Lumberknot.
 mana={2}{G}{G}
@@ -43997,7 +43997,7 @@ type=Enchantment
 [card]
 name=Mask of Avacyn
 auto={3}:equip
-auto=hexproof
+auto=opponentshroud
 auto=1/2
 text=Equipped creature gets +1/+2 and has hexproof. -- Equip {3}
 mana={2}
