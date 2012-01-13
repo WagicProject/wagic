@@ -702,9 +702,11 @@ int MTGAlternativeCostRule::reactToClick(MTGCardInstance * card, ManaCost *alter
         return 0;
     }
     //------------------------------------------------------------------------
-    
+    ManaCost * previousManaPool = NEW ManaCost(playerMana); 
     playerMana->pay(alternateCost);
     alternateCost->doPayExtra();
+    ManaCost *spellCost = previousManaPool->Diff(player->getManaPool());
+    SAFE_DELETE(previousManaPool);
 
     card->alternateCostPaid[alternateCostType] = 1;
 
@@ -719,9 +721,6 @@ int MTGAlternativeCostRule::reactToClick(MTGCardInstance * card, ManaCost *alter
     }
     else
     {   
-        ManaCost * previousManaPool = NEW ManaCost(playerMana); 
-        ManaCost *spellCost = previousManaPool->Diff(player->getManaPool());
-        SAFE_DELETE(previousManaPool);
         MTGCardInstance * copy = player->game->putInZone(card, card->currentZone, player->game->stack);
         copy->alternateCostPaid[alternateCostType] = 1;
         Spell * spell = game->mLayers->stackLayer()->addSpell(copy, game->targetChooser, spellCost, alternateCostType, 0);
@@ -737,7 +736,9 @@ int MTGAlternativeCostRule::reactToClick(MTGCardInstance * card, ManaCost *alter
         }//end of storm
         else
         {
-            copy->X = spell->computeX(copy);
+            ManaCost * c = spellCost->Diff(alternateCost);
+            copy->X = c->getCost(Constants::NB_Colors);
+            delete c;
         }
     }
 
