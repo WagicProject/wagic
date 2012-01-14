@@ -11,7 +11,7 @@ def createResZipFile(filename):
         if not os.path.isfile('player/options.txt'):
             os.rename('player/options.orig.txt', 'player/options.txt')
 
-        zip_file = zipfile.ZipFile(filename, 'w', zipfile.ZIP_DEFLATED)
+        zip_file = zipfile.ZipFile(filename, 'w', zipfile.ZIP_STORED)
         utilities.addFolderToZip(zip_file, 'themes')
         utilities.addFolderToZip(zip_file, 'sound')
         utilities.addFolderToZip(zip_file, 'settings')
@@ -35,8 +35,8 @@ def createIosResFile():
     utilities = ZipUtilities()
     filename = 'core_017_iOS.zip'
     createResZipFile( filename )
-    zip_file = zipfile.ZipFile(filename, 'a', zipfile.ZIP_DEFLATED)
-    zip_file.write("../../iOS/Res/rules/modrules.xml", "rules/modrules.xml", zipfile.ZIP_DEFLATED)
+    zip_file = zipfile.ZipFile(filename, 'a', zipfile.ZIP_STORED)
+    zip_file.write("../../iOS/Res/rules/modrules.xml", "rules/modrules.xml", zipfile.ZIP_STORED)
     zip_file.close()
 
     print >> sys.stderr, 'Created Resource Package for iOS Distribution: {0}'.format( filename)
