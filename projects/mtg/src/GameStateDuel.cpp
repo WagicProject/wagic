@@ -512,7 +512,7 @@ void GameStateDuel::Update(float dt)
                 }
                 //END almosthumane - mulligan
                 menu->Add(MENUITEM_MAIN_MENU, "Back to main menu");
-                menu->Add(MENUITEM_UNDO, "Undo");
+                //menu->Add(MENUITEM_UNDO, "Undo");
 #ifdef TESTSUITE
                 menu->Add(MENUITEM_LOAD, "Load");
 #endif

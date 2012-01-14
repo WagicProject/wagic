@@ -72,7 +72,7 @@ public class SDLActivity extends Activity {
     public String mErrorMessage = "";
     public Boolean mErrorHappened = false;
 	public final static String RES_FOLDER = "/sdcard/Wagic/Res/";
-    public static final String RES_FILENAME = "core_017.zip";
+    public static final String RES_FILENAME = "core_0171.zip";
     public static final String RES_URL = "http://wagic.googlecode.com/files/";
    
     private void startDownload() {

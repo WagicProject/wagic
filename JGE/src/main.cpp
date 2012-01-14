@@ -10,6 +10,10 @@
 #include <malloc.h>
 #include <string.h>
 
+//Profiling
+//#include <pspprof.h>
+
+
 #include <pspctrl.h>
 #include <unistd.h>
 #include <stdio.h>
@@ -299,7 +303,7 @@ int main(int argc, char *argv[])
     pspDebugScreenSetTextColor(0xFFFFFFFF);
     pspDebugScreenClear();
 
-    pspDebugScreenPrintf("Wagic:Loading core...");
+    pspDebugScreenPrintf("JGE:Loading application...");
 
     JLOG("SetupCallbacks()");
     SetupCallbacks();
@@ -343,6 +347,8 @@ int main(int argc, char *argv[])
     JGE::Destroy();
     g_engine = NULL;
 
+    //Profiling
+	//gprof_cleanup();
     sceKernelExitGame();
 
     return 0;
