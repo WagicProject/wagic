@@ -26,9 +26,20 @@
 #endif //NETWORK_SUPPORT
 #include "GameObserver.h"
 
+/* Wagic versions */
+#define WAGIC_VERSION_MAJOR     0
+#define WAGIC_VERSION_MEDIUM    17
+#define WAGIC_VERSION_MINOR     1
+
+#define VERSION_DOT(a, b, c) a ##.## b ##.## c
+#define VERSION(a, b, c) VERSION_DOT(a, b, c)
+#define VERSION_TOSTRING(a) #a
+#define VERSION_STRINGIFY(a) VERSION_TOSTRING(a)
+
+#define WAGIC_VERSION   VERSION(WAGIC_VERSION_MAJOR, WAGIC_VERSION_MEDIUM, WAGIC_VERSION_MINOR)
+#define WAGIC_VERSION_STRING   VERSION_STRINGIFY(WAGIC_VERSION)
+
 class Rules;
-
-
 class MTGAllCards;
 class TransitionBase;
 

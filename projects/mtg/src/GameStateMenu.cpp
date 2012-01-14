@@ -27,7 +27,7 @@
 #include <JNetwork.h>
 #endif//NETWORK_SUPPORT
 
-static const char* GAME_VERSION = "WTH?! 0.17.1 - wololo.net";
+static const char* GAME_VERSION = "WTH?! " WAGIC_VERSION_STRING " - wololo.net";
 
 enum ENUM_MENU_STATE_MAJOR
 {
