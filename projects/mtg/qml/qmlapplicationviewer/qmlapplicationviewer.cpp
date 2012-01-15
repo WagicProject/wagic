@@ -102,7 +102,11 @@ QmlApplicationViewer *QmlApplicationViewer::create()
 void QmlApplicationViewer::setMainQmlFile(const QString &file)
 {
     d->mainQmlFile = QmlApplicationViewerPrivate::adjustPath(file);
+#ifndef Q_OS_ANDROID
     setSource(QUrl::fromLocalFile(d->mainQmlFile));
+#else
+    setSource(QUrl::fromLocalFile(file));
+#endif
 }
 
 void QmlApplicationViewer::addImportPath(const QString &path)
@@ -155,7 +159,7 @@ void QmlApplicationViewer::setOrientation(ScreenOrientation orientation)
 
 void QmlApplicationViewer::showExpanded()
 {
-#if defined(Q_OS_SYMBIAN) || defined(MEEGO_EDITION_HARMATTAN) || defined(Q_WS_SIMULATOR)
+#if defined(Q_OS_SYMBIAN) || defined(MEEGO_EDITION_HARMATTAN) || defined(Q_WS_SIMULATOR) || defined(Q_OS_ANDROID)
     showFullScreen();
 #elif defined(Q_WS_MAEMO_5)
     showMaximized();

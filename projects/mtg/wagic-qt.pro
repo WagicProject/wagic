@@ -6,7 +6,7 @@ DEPLOYMENTFOLDERS = folder_01
 TARGET = wagic
 
 QT += core gui opengl network
-!android:QT += phonon
+!android:!symbian:QT += phonon
 maemo5:QT += dbus
 
 TARGET = wagic
@@ -20,8 +20,10 @@ windows:DEFINES += _CRT_SECURE_NO_WARNINGS
 unix|macx:DEFINES += LINUX
 CONFIG(debug, debug|release):DEFINES += _DEBUG
 DEFINES += QT_CONFIG
-!android:DEFINES += USE_PHONON
-DEFINES += QT_NO_DEBUG_OUTPUT
+!android:!symbian:DEFINES += USE_PHONON
+android:INCLUDEPATH += $$ANDROID_NDK_ROOT/platforms/android-9/arch-arm/usr/include
+#DEFINES += QT_NO_DEBUG_OUTPUT
+DEFINES += QT_WIDGET
 
 windows:INCLUDEPATH += ../../JGE/Dependencies/include
 windows:INCLUDEPATH += extra
@@ -39,7 +41,7 @@ PRECOMPILED_HEADER = include/PrecompiledHeader.h
 
 #DEFINES += TESTSUITE
 #DEFINES += TRACK_OBJECT_USAGE
-DEFINES += AI_CHANGE_TESTING
+#DEFINES += AI_CHANGE_TESTING
 #DEFINES += ACTION_LOGGING_TESTING
 
 SOURCES += \
@@ -365,13 +367,13 @@ HEADERS += \
         ../../JGE/include/vram.h
 
 # Please do not modify the following two lines. Required for deployment.
-include(qml/qmlapplicationviewer/qmlapplicationviewer.pri)
-qtcAddDeployment()
+!maemo5:include(qml/qmlapplicationviewer/qmlapplicationviewer.pri)
+!maemo5:qtcAddDeployment()
 
 # maemo 5 packaging
 maemo5: {
     # Variables
-    BINDIR = /opt/wagic
+    BINDIR = /opt/wagic/bin
     RESDIR = /home/user/wagic/Res
     USERDIR = MyDocs/.Wagic
     ICONDIR = /usr/share
@@ -381,10 +383,7 @@ maemo5: {
 
     INSTALLS += target \
         desktop \
-        icon \
-        restxt \
-        launcher \
-        res \
+        icon
 
     target.path = $$BINDIR
 
@@ -393,16 +392,6 @@ maemo5: {
 
     icon.path = $$ICONDIR/icons/hicolor/64x64/apps
     icon.files += wagic-64x64.png
-
-    res.path = $$RESDIR
-    res.files += bin/Res/*
-    # res.extra = tar -C ../../../../src/projects/mtg/bin -czf Res.tgz Res
-
-    restxt.path = $$BINDIR
-    restxt.files += debian/Res.txt
-
-    launcher.path = $$BINDIR
-    launcher.files += debian/launcher
 
 # Meego/maemo 6 packaging (no launcher)
 } else:contains(MEEGO_EDITION,harmattan): {
@@ -500,7 +489,40 @@ OTHER_FILES += \
     android/src/org/kde/necessitas/origo/QtApplication.java \
     android/src/org/kde/necessitas/origo/QtActivity.java \
     android/src/org/kde/necessitas/ministro/IMinistroCallback.aidl \
+    android/src/org/kde/necessitas/ministro/IMinistro.aidl \
+    android/AndroidManifest.xml \
+    android/res/layout/splash.xml \
+    android/res/values-ru/strings.xml \
+    android/res/values-es/strings.xml \
+    android/res/values-it/strings.xml \
+    android/res/values/strings.xml \
+    android/res/values/libs.xml \
+    android/res/values-id/strings.xml \
+    android/res/values-rs/strings.xml \
+    android/res/values-nl/strings.xml \
+    android/res/values-zh-rCN/strings.xml \
+    android/res/values-ro/strings.xml \
+    android/res/drawable-ldpi/icon.png \
+    android/res/drawable-mdpi/icon.png \
+    android/res/values-et/strings.xml \
+    android/res/values-fr/strings.xml \
+    android/res/values-ja/strings.xml \
+    android/res/values-el/strings.xml \
+    android/res/values-pt-rBR/strings.xml \
+    android/res/values-fa/strings.xml \
+    android/res/drawable/logo.png \
+    android/res/drawable/icon.png \
+    android/res/values-nb/strings.xml \
+    android/res/values-ms/strings.xml \
+    android/res/values-de/strings.xml \
+    android/res/values-zh-rTW/strings.xml \
+    android/res/values-pl/strings.xml \
+    android/res/drawable-hdpi/icon.png \
+    android/src/org/kde/necessitas/origo/QtApplication.java \
+    android/src/org/kde/necessitas/origo/QtActivity.java \
+    android/src/org/kde/necessitas/ministro/IMinistroCallback.aidl \
     android/src/org/kde/necessitas/ministro/IMinistro.aidl
+
 
 
 

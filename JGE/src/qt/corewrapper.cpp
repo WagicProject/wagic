@@ -1,5 +1,7 @@
 #include <qplatformdefs.h>
 #include <QtOpenGL>
+#include "corewrapper.h"
+#include <QElapsedTimer>
 
 #if (defined FORCE_GLES)
 #undef GL_ES_VERSION_2_0
@@ -19,47 +21,42 @@
 #define glClearDepthf glClearDepth
 #endif
 
-
-#include "corewrapper.h"
-
 #define ACTUAL_SCREEN_WIDTH (SCREEN_WIDTH)
 #define ACTUAL_SCREEN_HEIGHT (SCREEN_HEIGHT)
 #define ACTUAL_RATIO ((GLfloat)ACTUAL_SCREEN_WIDTH / (GLfloat)ACTUAL_SCREEN_HEIGHT)
 
-static const struct { LocalKeySym keysym; JButton keycode; } gDefaultBindings[] =
-{
-  { Qt::Key_Enter,        JGE_BTN_MENU },
-  { Qt::Key_Return,       JGE_BTN_MENU },
-  { Qt::Key_Escape,       JGE_BTN_MENU },
-  { Qt::Key_Backspace,    JGE_BTN_CTRL },
-  { Qt::Key_Up,           JGE_BTN_UP },
-  { Qt::Key_Down,         JGE_BTN_DOWN },
-  { Qt::Key_Left,         JGE_BTN_LEFT },
-  { Qt::Key_Right,        JGE_BTN_RIGHT },
-  { Qt::Key_Space,        JGE_BTN_OK },
-  { Qt::Key_Tab,          JGE_BTN_CANCEL },
-  { Qt::Key_J,            JGE_BTN_PRI },
-  { Qt::Key_K,            JGE_BTN_SEC },
-  { Qt::Key_Q,            JGE_BTN_PREV },
-  { Qt::Key_A,            JGE_BTN_NEXT },
-// fullscreen management seems somehow broken in JGE, it works fine with Qt directly
-//    { Qt::Key_F,            JGE_BTN_FULLSCREEN },
-};
+// in pixels
+#define kHitzonePliancy 50
 
-int JGEGetTime()
-{
-    return (int)WagicCore::g_startTimer.elapsed();
-}
+// tick value equates to ms
+#define kTapEventTimeout 250
+
+// swipe duration
+#define kSwipeEventMinDuration 250
+// swipe distance in pixel (from top to down)
+#define kSwipeMinDistance 200
+
 
 QElapsedTimer WagicCore::g_startTimer;
 
-WagicCore::WagicCore(QDeclarativeItem *parent) :
-    QDeclarativeItem(parent), m_engine(0), m_app(0), m_launcher(0), m_active(false)
+WagicCore::WagicCore(super *parent) :
+    super(parent), m_engine(0), m_app(0), m_launcher(0), m_active(false)
 {
-    setFlag(QGraphicsItem::ItemHasNoContents, false);
+#ifdef QT_WIDGET
+#if (defined Q_WS_MAEMO_5)
+    setAttribute(Qt::WA_Maemo5AutoOrientation);
+    setAttribute(Qt::WA_Maemo5NonComposited);
+#endif //Q_WS_MAEMO_5
+    setAttribute(Qt::WA_AcceptTouchEvents);
+  //  setAttribute(Qt::WA_InputMethodEnabled);
+    setMouseTracking(true);
+    grabGesture(Qt::TapAndHoldGesture);
+    resize(ACTUAL_SCREEN_WIDTH, ACTUAL_SCREEN_HEIGHT);
+#else
     setWidth(480);
     setHeight(272);
-
+    setFlag(QGraphicsItem::ItemHasNoContents, false);
+#endif //QT_WIDGET
     g_startTimer.restart();
     m_lastTickCount = g_startTimer.elapsed();
 }
@@ -75,9 +72,7 @@ void WagicCore::initApp()
             JRenderer::Set3DFlag(true);
         }
 
-        // BindKey is a static method, m_engine is not even initialized
-        for (signed int i = sizeof(gDefaultBindings)/sizeof(gDefaultBindings[0]) - 1; i >= 0; --i)
-          m_engine->BindKey(gDefaultBindings[i].keysym, gDefaultBindings[i].keycode);
+        JGECreateDefaultBindings();
 
         m_engine = JGE::GetInstance();
         m_app = m_launcher->GetGameApp();
@@ -165,15 +160,8 @@ void WagicCore::setActive(bool active)
     }
 }
 
-void WagicCore::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+void WagicCore::initializeGL()
 {
-    painter->beginNativePainting();
-
-    initApp();
-
-    QRectF rectf = boundingRect();
-    resize ( rectf);
-
     glClearColor(0.0f, 0.0f, 0.0f, 0.0f);		// Black Background (yes that's the way fuckers)
   #if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
   #if (defined GL_ES_VERSION_2_0)
@@ -209,57 +197,71 @@ void WagicCore::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     glEnable(GL_SCISSOR_TEST);				// Enable Clipping
+}
 
-    render();
+#ifndef QT_WIDGET
+void WagicCore::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+{
+    painter->beginNativePainting();
+
+    initApp();
+
+    resizeGL ( boundingRect().size().width(), boundingRect().size().height());
+
+    initializeGL();
+
+    paintGL();
 
     painter->endNativePainting();
 }
+#endif //QT_WIDGET
 
-void WagicCore::resize ( const QRectF &rect)
+void WagicCore::paintGL()
 {
-    int width = rect.size().width();
-    int height= rect.size().height();
-    if(width && height)
+    if(m_engine)
+        m_engine->Render();
+}
+
+
+void WagicCore::resizeGL(int width, int height)
+{
+    if ((GLfloat)width / (GLfloat)height <= ACTUAL_RATIO)
     {
-        if ((GLfloat)width / (GLfloat)height <= ACTUAL_RATIO)
-        {
-          m_viewPort.setLeft(0);
-          m_viewPort.setTop(-((width/ACTUAL_RATIO)-height)/2);
-          m_viewPort.setRight(width);
-          m_viewPort.setBottom(-((width/ACTUAL_RATIO)-height)/2 + width / ACTUAL_RATIO);
-        }
-        else
-        {
-          m_viewPort.setLeft(-(height*ACTUAL_RATIO-width)/2);
-          m_viewPort.setTop(0);
-          m_viewPort.setRight(-(height*ACTUAL_RATIO-width)/2 + height * ACTUAL_RATIO);
-          m_viewPort.setBottom(height);
-        }
+      m_viewPort.setLeft(0);
+      m_viewPort.setTop(-((width/ACTUAL_RATIO)-height)/2);
+      m_viewPort.setRight(width);
+      m_viewPort.setBottom(-((width/ACTUAL_RATIO)-height)/2 + width / ACTUAL_RATIO);
+    }
+    else
+    {
+      m_viewPort.setLeft(-(height*ACTUAL_RATIO-width)/2);
+      m_viewPort.setTop(0);
+      m_viewPort.setRight(-(height*ACTUAL_RATIO-width)/2 + height * ACTUAL_RATIO);
+      m_viewPort.setBottom(height);
+    }
 
-        glViewport(m_viewPort.left(), m_viewPort.top(), m_viewPort.right()-m_viewPort.left(), m_viewPort.bottom()-m_viewPort.top());
+    glViewport(m_viewPort.left(), m_viewPort.top(), m_viewPort.right()-m_viewPort.left(), m_viewPort.bottom()-m_viewPort.top());
 
-        JRenderer::GetInstance()->SetActualWidth(m_viewPort.right()-m_viewPort.left());
-        JRenderer::GetInstance()->SetActualHeight(m_viewPort.bottom()-m_viewPort.top());
-        glScissor(0, 0, width, height);
+    JRenderer::GetInstance()->SetActualWidth(m_viewPort.right()-m_viewPort.left());
+    JRenderer::GetInstance()->SetActualHeight(m_viewPort.bottom()-m_viewPort.top());
+    glScissor(0, 0, width, height);
 
 #if (!defined GL_ES_VERSION_2_0) && (!defined GL_VERSION_2_0)
 
-        glMatrixMode (GL_PROJECTION);										// Select The Projection Matrix
-        glLoadIdentity ();													// Reset The Projection Matrix
+    glMatrixMode (GL_PROJECTION);										// Select The Projection Matrix
+    glLoadIdentity ();													// Reset The Projection Matrix
 
 #if (defined GL_VERSION_ES_CM_1_1 || defined GL_OES_VERSION_1_1)
-        glOrthof(0.0f, (float) (m_viewPort.right()-m_viewPort.left())-1.0f, 0.0f, (float) (m_viewPort.bottom()-m_viewPort.top())-1.0f, -1.0f, 1.0f);
+    glOrthof(0.0f, (float) (m_viewPort.right()-m_viewPort.left())-1.0f, 0.0f, (float) (m_viewPort.bottom()-m_viewPort.top())-1.0f, -1.0f, 1.0f);
 #else
-        gluOrtho2D(0.0f, (float) (m_viewPort.right()-m_viewPort.left())-1.0f, 0.0f, (float) (m_viewPort.bottom()-m_viewPort.top())-1.0f);
+    gluOrtho2D(0.0f, (float) (m_viewPort.right()-m_viewPort.left())-1.0f, 0.0f, (float) (m_viewPort.bottom()-m_viewPort.top())-1.0f);
 #endif
 
-        glMatrixMode (GL_MODELVIEW);										// Select The Modelview Matrix
-        glLoadIdentity ();													// Reset The Modelview Matrix
+    glMatrixMode (GL_MODELVIEW);										// Select The Modelview Matrix
+    glLoadIdentity ();													// Reset The Modelview Matrix
 
-        glDisable (GL_DEPTH_TEST);
+    glDisable (GL_DEPTH_TEST);
 #endif
-
-    }
 }
 
 void WagicCore::keyPressEvent(QKeyEvent *event)
@@ -283,8 +285,7 @@ void WagicCore::keyPressEvent(QKeyEvent *event)
     m_engine->HoldKey_NoRepeat((LocalKeySym)event->key());
   }
   event->accept();
-  QGraphicsItem::keyPressEvent(event);
-  return;
+  super::keyPressEvent(event);
 }
 
 void WagicCore::keyReleaseEvent(QKeyEvent *event)
@@ -306,11 +307,14 @@ void WagicCore::keyReleaseEvent(QKeyEvent *event)
     }
 
     event->accept();
-    QGraphicsItem::keyReleaseEvent(event);
-    return;
+    super::keyReleaseEvent(event);
 }
 
+#ifdef QT_WIDGET
+void WagicCore::wheelEvent(QWheelEvent *event)
+#else
 void WagicCore::wheelEvent ( QGraphicsSceneWheelEvent * event)
+#endif
 {
     if(event->orientation() == Qt::Vertical)
         m_engine->Scroll(0, 3*event->delta());
@@ -320,3 +324,177 @@ void WagicCore::wheelEvent ( QGraphicsSceneWheelEvent * event)
 
     event->accept();
 }
+
+#ifdef QT_WIDGET
+void WagicCore::tapAndHoldTriggered(QTapAndHoldGesture* gesture)
+{
+    if (gesture->state() == Qt::GestureFinished) {
+        m_engine->HoldKey_NoRepeat(JGE_BTN_MENU);
+    }
+}
+
+void WagicCore::mousePressEvent(QMouseEvent *event)
+{
+  if(event->button() == Qt::LeftButton)
+  {
+    QPoint lastPos = event->pos();
+    // this is intended to convert window coordinate into game coordinate.
+    // this is correct only if the game and window have the same aspect ratio, otherwise, it's just wrong
+    int actualWidth = (int) JRenderer::GetInstance()->GetActualWidth();
+    int actualHeight = (int) JRenderer::GetInstance()->GetActualHeight();
+
+    if (lastPos.y() >= m_viewPort.top() &&
+      lastPos.y() <= m_viewPort.bottom() &&
+      lastPos.x() <= m_viewPort.right() &&
+      lastPos.x() >= m_viewPort.left()) {
+      m_engine->LeftClicked(
+                  ((lastPos.x()-m_viewPort.left())*SCREEN_WIDTH)/actualWidth,
+                  ((lastPos.y()-m_viewPort.top())*SCREEN_HEIGHT)/actualHeight);
+#if (!defined Q_WS_MAEMO_5) && (!defined MEEGO_EDITION_HARMATTAN) && (!defined Q_WS_ANDROID)
+      m_engine->HoldKey_NoRepeat(JGE_BTN_OK);
+#else
+      mMouseDownX = lastPos.x();
+      mMouseDownY = lastPos.y();
+      mLastFingerDownTime = g_startTimer.elapsed();
+#endif
+    } else if(lastPos.y()<m_viewPort.top()) {
+      m_engine->HoldKey_NoRepeat(JGE_BTN_MENU);
+    } else if(lastPos.y()>m_viewPort.bottom()) {
+      m_engine->HoldKey_NoRepeat(JGE_BTN_NEXT);
+    }
+    event->accept();
+  }
+  else if(event->button() == Qt::RightButton)
+  { /* next phase please */
+    m_engine->HoldKey_NoRepeat(JGE_BTN_PREV);
+    event->accept();
+  }
+  else if(event->button() == Qt::MidButton)
+  { /* interrupt please */
+    m_engine->HoldKey_NoRepeat(JGE_BTN_SEC);
+    event->accept();
+  }
+  else
+  {
+    super::mousePressEvent(event);
+  }
+}
+
+void WagicCore::mouseReleaseEvent(QMouseEvent *event)
+{
+  if(event->button() == Qt::LeftButton)
+  {
+    QPoint lastPos = event->pos();
+
+    if (lastPos.y() >= m_viewPort.top() &&
+      lastPos.y() <= m_viewPort.bottom() &&
+      lastPos.x() <= m_viewPort.right() &&
+      lastPos.x() >= m_viewPort.left()) {
+#if (defined Q_WS_MAEMO_5) || (defined MEEGO_EDITION_HARMATTAN) || (defined Q_WS_ANDROID)
+      if(g_startTimer.elapsed() - mLastFingerDownTime <= kTapEventTimeout )
+      {
+        if(abs(mMouseDownX - lastPos.x()) < kHitzonePliancy &&
+           abs(mMouseDownY - lastPos.y()) < kHitzonePliancy)
+        {
+          m_engine->HoldKey_NoRepeat(JGE_BTN_OK);
+        }
+      }
+      else if (g_startTimer.elapsed() - mLastFingerDownTime >= kSwipeEventMinDuration)
+      { // Let's swipe
+        m_engine->Scroll(lastPos.x()-mMouseDownX, lastPos.y()-mMouseDownY);
+      }
+#else
+//#if (!defined Q_WS_MAEMO_5) && (!defined MEEGO_EDITION_HARMATTAN)
+      m_engine->ReleaseKey(JGE_BTN_OK);
+#endif
+      m_engine->ReleaseKey(JGE_BTN_MENU);
+    } else if(lastPos.y() < m_viewPort.top()) {
+      m_engine->ReleaseKey(JGE_BTN_MENU);
+    } else if(lastPos.y() > m_viewPort.bottom()) {
+      m_engine->ReleaseKey(JGE_BTN_NEXT);
+    }
+    event->accept();
+  }
+  else if(event->button() == Qt::RightButton)
+  { /* next phase please */
+    m_engine->ReleaseKey(JGE_BTN_PREV);
+    event->accept();
+  }
+  else if(event->button() == Qt::MidButton)
+  { /* interrupt please */
+    m_engine->ReleaseKey(JGE_BTN_SEC);
+    event->accept();
+  }
+  else
+  {
+    super::mouseReleaseEvent(event);
+  }
+}
+
+void WagicCore::mouseMoveEvent(QMouseEvent *event)
+{
+  int actualWidth = (int) JRenderer::GetInstance()->GetActualWidth();
+  int actualHeight = (int) JRenderer::GetInstance()->GetActualHeight();
+
+  QPoint lastPos = event->pos();
+
+  if (lastPos.y() >= m_viewPort.top() &&
+    lastPos.y() <= m_viewPort.bottom() &&
+    lastPos.x() <= m_viewPort.right() &&
+    lastPos.x() >= m_viewPort.left()) {
+    m_engine->LeftClicked(
+                ((lastPos.x()-m_viewPort.left())*SCREEN_WIDTH)/actualWidth,
+                ((lastPos.y()-m_viewPort.top())*SCREEN_HEIGHT)/actualHeight);
+    event->accept();
+  } else {
+    super::mouseMoveEvent(event);
+  }
+}
+
+void WagicCore::showEvent ( QShowEvent * event )
+{
+  setActive(true);
+}
+
+void WagicCore::hideEvent ( QHideEvent * event )
+{
+  setActive(false);
+}
+
+bool WagicCore::event(QEvent *event)
+{
+    if (event->type() == QEvent::Gesture)
+        return gestureEvent(static_cast<QGestureEvent*>(event));
+#if (defined Q_WS_MAEMO_5) || (defined MEEGO_EDITION_HARMATTAN) || (defined Q_WS_ANDROID)
+    else if (event->type() == QEvent::WindowActivate)
+    {
+        showEvent(NULL);
+    }
+    else if (event->type() == QEvent::WindowDeactivate)
+    {
+        hideEvent(NULL);
+    }
+#endif
+
+    return QGLWidget::event(event);
+}
+
+bool WagicCore::gestureEvent(QGestureEvent* event)
+{
+    if (QGesture *tapAndHold = event->gesture(Qt::TapAndHoldGesture))
+        tapAndHoldTriggered(static_cast<QTapAndHoldGesture *>(tapAndHold));
+
+    return true;
+}
+
+void WagicCore::start(int)
+{
+#if (defined Q_WS_MAEMO_5) || (defined MEEGO_EDITION_HARMATTAN) || (defined Q_WS_ANDROID)
+    showFullScreen();
+#else
+    show();
+#endif
+    initApp();
+}
+
+#endif //QT_WIDGET

@@ -5,28 +5,30 @@ Rectangle {
     id: main
     width: 480
     height: 272
-    state: "DOWNLOADING"
+    state: fileDownloader.state_string
     color: "black"
-    property url resource: "http://wagic.googlecode.com/files/core_017.zip"
-    property string hash: "cc6f9415f747acea500cdce190f0df6ee41db7cb"
 
     states: [
         State {
-            name: "DOWNLOADING"
-            when: (fileDownloader.hash != hash)
+            name: "DOWNLOADING_HASH"
+            PropertyChanges {
+                target: column1; visible: false
+            }
+            PropertyChanges {
+                target: wagic; visible: false
+            }
+        },
+        State {
+            name: "DOWNLOADING_FILE"
             PropertyChanges {
                 target: column1; visible: true
             }
             PropertyChanges {
                 target: wagic; visible: false
             }
-            PropertyChanges {
-                target:fileDownloader; url: resource
-            }
         },
         State {
-            name: "NORMAL"
-            when: (fileDownloader.hash == hash)
+            name: "DOWNLOADED"
             PropertyChanges {
                 target: column1; visible: false
             }

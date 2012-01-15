@@ -723,7 +723,7 @@ int MTGAlternativeCostRule::reactToClick(MTGCardInstance * card, ManaCost *alter
     {   
         MTGCardInstance * copy = player->game->putInZone(card, card->currentZone, player->game->stack);
         copy->alternateCostPaid[alternateCostType] = 1;
-        Spell * spell = game->mLayers->stackLayer()->addSpell(copy, game->targetChooser, spellCost, alternateCostType, 0);
+        game->mLayers->stackLayer()->addSpell(copy, game->targetChooser, spellCost, alternateCostType, 0);
         game->targetChooser = NULL;
 
         if (card->has(Constants::STORM))
