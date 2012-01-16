@@ -38330,7 +38330,7 @@ toughness=1
 [card]
 name=Kessig Wolf Run
 auto={T}:Add{1}
-auto={X}{R}{G}{T}:X/0 && trample target(creature)
+auto={X}{R}{G}{T}:target(creature) +x/0 ueot && trample ueot
 text={T}: Add {1} to your mana pool. -- {X}{R}{G}, {T}: Target creature gets +X/+0 and gains trample until end of turn.
 type=Land
 [/card]
