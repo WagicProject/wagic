@@ -15538,7 +15538,7 @@ auto=@combat(attacking) source(this):may target(creature) dynamicability<!powers
 text=When Cyclops Gladiator attacks, you may have it deal damage equal to its power to target creature defending player controls. If you do, that creature deals damage equal to its power to Cyclops Gladiator.
 mana={1}{R}{R}{R}
 type=Creature
-subtype=Giant
+subtype=Cyclops Warrior
 power=4
 toughness=4
 [/card]
