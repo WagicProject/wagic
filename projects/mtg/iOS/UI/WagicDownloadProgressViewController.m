@@ -17,7 +17,8 @@
 @synthesize downloadMessageStatus;
 
 static NSString *kDownloadUrlPath = @"http://wagic.googlecode.com/files/";
-static NSString *kDownloadFileName = @"core_017_iOS.zip";
+static NSString *kDownloadFileName = @"core_0171.zip";
+static NSString *kDownloadIosUpdateFileName = @"core_0171_iOS.zip";
 
 
 
@@ -52,44 +53,76 @@ static NSString *kDownloadFileName = @"core_017_iOS.zip";
 
 - (void) startDownload: (NSString *) downloadType
 {
-    [self.downloadMessageStatus setText: [NSString stringWithFormat: @"Please wait while the %@ files are being downloaded.", downloadType]];
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    
+    [self.downloadMessageStatus performSelectorOnMainThread:@selector(setText:) withObject:[NSString stringWithFormat: @"Please wait while the %@ files are being downloaded.", downloadType] waitUntilDone: NO ];
+    
+    if ( downloadProgressView != nil )
+    {
+        [downloadProgressView removeFromSuperview];
+        [downloadProgressView release], downloadProgressView = nil;
+    }
     
     downloadProgressView = [[UIProgressView alloc] initWithProgressViewStyle: UIProgressViewStyleDefault];
     [self.downloadProgressView setFrame: CGRectMake(0, 0, 250, 50)];
     [self.downloadProgressView setAutoresizingMask: UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight ];
     
     [self.view addSubview: downloadProgressView];
+    [self handleRotation: self.interfaceOrientation];
 
     NSArray *paths = NSSearchPathForDirectoriesInDomains( NSDocumentDirectory,
                                                          NSUserDomainMask, YES);
     NSString *systemResourceDirectory = [[paths objectAtIndex:0] stringByAppendingString: @"/Res"];
     NSString *userResourceDirectory = [[paths objectAtIndex: 0] stringByAppendingString: @"/User"];
-    NSString *downloadFilePath =  [systemResourceDirectory stringByAppendingString: [NSString stringWithFormat: @"/%@",  kDownloadFileName]];
+
     NSError *error = nil;
     // make sure Res directory exists
     if ( ![[NSFileManager defaultManager] fileExistsAtPath: systemResourceDirectory] ) 
         [[NSFileManager defaultManager] createDirectoryAtPath:systemResourceDirectory withIntermediateDirectories: YES attributes:nil error: &error];
+
+    if (error != nil)
+    {
+        NSLog(@"Error in creating System Directory! %@", [error localizedDescription]);
+        error = nil;
+    }
+    
     // make sure the User directory exists as well
     if ( ![[NSFileManager defaultManager] fileExistsAtPath: userResourceDirectory] )
         [[NSFileManager defaultManager] createDirectoryAtPath: userResourceDirectory withIntermediateDirectories: YES attributes:nil error: &error];
+
+    if (error != nil)
+    {
+        NSLog(@"Error in creating User Directory! %@", [error localizedDescription]);
+        error = nil;
+    }
     
     // if an error occurred while creating the directory, game can't really run so do something
     // TODO: throw out a notification and deal with error
     
     NSURL *url = nil;
+    NSString *downloadFilename = nil;
     // determine which file to download
     if ([downloadType isEqualToString: @"core"])
     {
-        url = [NSURL URLWithString: [NSString stringWithFormat: @"%@/%@", kDownloadUrlPath, kDownloadFileName]];    
+        downloadFilename = kDownloadFileName;
+    }
+    else if ( [downloadType isEqualToString: @"iosConfig"] )
+    {
+        downloadFilename = kDownloadIosUpdateFileName;
     }
     else if ( [downloadType isEqualToString: @"someOtherType"] )
     {
         NSLog( @"Not Implemented for type: %@", downloadType);
     }
+
+    url = [NSURL URLWithString: [NSString stringWithFormat: @"%@/%@", kDownloadUrlPath, downloadFilename]];    
+    NSString *downloadFilePath =  [systemResourceDirectory stringByAppendingString: [NSString stringWithFormat: @"/%@",  downloadFilename]];
+
+    NSLog(@"Downloading %@", [url absoluteURL]);
     
     __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
-    [request setTemporaryFileDownloadPath: [NSString stringWithFormat: @"%@.tmp", userResourceDirectory]];
-    
+    [request setTemporaryFileDownloadPath: [NSString stringWithFormat: @"%@/%@.tmp", systemResourceDirectory, downloadFilename]];
+
     [request setDownloadDestinationPath: downloadFilePath];
     [request setDownloadProgressDelegate: downloadProgressView];
     [request setShouldContinueWhenAppEntersBackground: YES];
@@ -98,7 +131,8 @@ static NSString *kDownloadFileName = @"core_017_iOS.zip";
     [request setCompletionBlock:^{
         wagicAppDelegate *appDelegate = (wagicAppDelegate *)[[UIApplication sharedApplication] delegate];        
         NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
-        [dnc postNotificationName:@"initializeGame" object: appDelegate];
+        NSLog(@"Saving to %@", downloadFilePath);
+        [dnc postNotificationName: [NSString stringWithFormat: @"%@Complete", downloadType] object: appDelegate];
 
     }];
     [request setFailedBlock:^{
@@ -116,6 +150,8 @@ static NSString *kDownloadFileName = @"core_017_iOS.zip";
     }];
     
     [request startAsynchronous];
+    
+    [pool drain], pool = nil;
 }
 
 - (id) init

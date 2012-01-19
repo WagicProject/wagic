@@ -4,6 +4,8 @@
 #import "ASIHTTPRequest.h"
 #import "ZipArchive.h"
 
+#include <CommonCrypto/CommonDigest.h>
+
 @implementation wagicAppDelegate
 
 @synthesize window;
@@ -11,10 +13,31 @@
 @synthesize wagicDownloadController;
 @synthesize hostReach, wifiReach, internetReach;
 
+- (void) updateComplete: (id) notificationMsg
+{
+    NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
+ 
+    [dnc postNotificationName: @"initializeGame" object: self];
+    [dnc removeObserver: self name: @"coreComplete" object: nil];
+    [dnc removeObserver: self name: @"iosConfigComplete" object: nil];
+
+}
+
+- (void) initIosUpdate: (id) notificationMsg
+{
+    NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
+    [dnc addObserver: self selector: @selector(updateComplete:) name: @"iosConfigComplete" object: nil];
+    [wagicDownloadController performSelectorInBackground: @selector(startDownload:) withObject:@"iosConfig"];
+}
+
 - (void) downloadResources
 {
+    NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
+    
+	[dnc addObserver:self selector:@selector(initIosUpdate:) name:@"coreComplete" object: nil];
+
     wagicDownloadController = [[WagicDownloadProgressViewController alloc] init];
-    [wagicDownloadController startDownload: @"core"];
+    [wagicDownloadController performSelectorInBackground: @selector(startDownload:) withObject:@"core"];
     
     [self.window addSubview: wagicDownloadController.view];
     [self.window makeKeyWindow];
@@ -108,7 +131,7 @@
     NSArray *docsPathContents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath: docsPath error:nil];
     NSCompoundPredicate *compoundPredicate = [[NSCompoundPredicate alloc] initWithType:NSAndPredicateType subpredicates: [NSArray arrayWithObjects: [NSPredicate predicateWithFormat:@"self ENDSWITH '.zip'"], [NSPredicate predicateWithFormat:@"NOT (self  BEGINSWITH 'core_')"], nil]];
     
-    NSArray *coreFiles = [docsPathContents filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self BEGINSWITH 'core_'"]];
+    NSArray *coreFiles = [docsPathContents filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self BEGINSWITH 'core_0171'"]];
 
     NSArray *resourceZipFiles = [docsPathContents filteredArrayUsingPredicate: compoundPredicate];
     NSString *userPath = [NSString stringWithFormat: @"%@/User", docsPath];
@@ -158,7 +181,7 @@
     NSArray *resDirContents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath: resPath error:nil];
     NSArray *coreFiles = [resDirContents filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self BEGINSWITH 'core_'"]];
     
-    if ([coreFiles count] > 0)
+    if ([coreFiles count] >= 2)
     {
         return YES;
     }

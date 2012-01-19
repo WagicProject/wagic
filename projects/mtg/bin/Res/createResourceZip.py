@@ -33,8 +33,8 @@ def createStandardResFile():
 def createIosResFile():
     print 'Preparing Resource Package for iOS'
     utilities = ZipUtilities()
-    filename = 'core_017_iOS.zip'
-    createResZipFile( filename )
+    filename = 'core_0171_iOS.zip'
+    #createResZipFile( filename )
     zip_file = zipfile.ZipFile(filename, 'a', zipfile.ZIP_STORED)
     zip_file.write("../../iOS/Res/rules/modrules.xml", "rules/modrules.xml", zipfile.ZIP_STORED)
     zip_file.close()
