@@ -299,7 +299,6 @@ bool filesystem::DirExists(const std::string & folderName)
 
 bool filesystem::FileExists(const std::string & fileName)
 {
-
     //Check in zip
 	file_info FileInfo;
 
@@ -443,7 +442,6 @@ void filesystem::InsertZip(const char * Filename, const size_t PackID)
 		const char * Name = &(* FileHdr.m_Filename.begin());
 		const unsigned short i = FileHdr.m_FilenameSize - 1;
 		if (FileHdr.m_FilenameSize != 0) {
-
 			m_Files[Name] = file_info(
 				PackID,									// Package ID
 				FileHdr.m_RelOffset,					// "Local File" header offset position
@@ -453,7 +451,7 @@ void filesystem::InsertZip(const char * Filename, const size_t PackID)
 				((Name[i] == '/') || (Name[i] == '\\'))	// Is a directory?
 			);
 
-			++(ZipInfo.m_NbEntries);
+            ++(ZipInfo.m_NbEntries);
 			ZipInfo.m_FilesSize += FileHdr.m_UncompSize;
 			ZipInfo.m_FilesCompSize += FileHdr.m_CompSize;
 		}
@@ -604,15 +602,13 @@ bool filesystem::lt_path::operator () (const string & s1, const  string & s2) co
 		if ((A[i] == '\0') && (B[i] == '\0'))
 			return false;
 
-		// case insensitive and '/' is the same as '\'
+        // '/' is the same as '\'
 		if (! (
-				(A[i] == B[i] + ('a' - 'A'))		||
-				(A[i] == B[i] - ('a' - 'A'))		||
 				(A[i] == B[i])						||
 				((A[i] == '\\') && (B[i] == '/'))	||
 				((A[i] == '/') && (B[i] == '\\'))
 			)) {
-
+// This line puts uppercases first
 			if ((A[i] == '\0') || (A[i] < B[i]))
 				return true;
 			else
