@@ -14,6 +14,15 @@
 #include "../include/JRenderer.h"
 #include "../include/JGameLauncher.h"
 
+#if (defined Q_WS_MAEMO_5)
+// For screen on/off events support
+#include <mce/dbus-names.h>
+#include <mce/mode-names.h>
+#include <QDBusConnection>
+#include <QDBusMessage>
+#include <QDBusInterface>
+#endif //Q_WS_MAEMO_5
+
 #ifdef QT_WIDGET
 class WagicCore : public QGLWidget
 #else
@@ -100,6 +109,12 @@ public slots:
     void start(int);
 #endif
 
+#ifdef Q_WS_MAEMO_5
+public slots:
+    void displayStateChanged(const QDBusMessage &message);
+#endif //Q_WS_MAEMO_5
+
+
 signals:
     void activeChanged();
 
@@ -131,6 +146,11 @@ private:
   qint64 mLastFingerDownTime;
 #endif //Q_WS_MAEMO_5
 #endif //QT_WIDGET
+
+#ifdef Q_WS_MAEMO_5
+    QDBusConnection dBusConnection;
+    QDBusInterface* dBusInterface;
+ #endif //Q_WS_MAEMO_5
 };
 #ifndef QT_WIDGET
 QML_DECLARE_TYPE(WagicCore)

@@ -23,7 +23,7 @@ DEFINES += QT_CONFIG
 !android:!symbian:DEFINES += USE_PHONON
 android:INCLUDEPATH += $$ANDROID_NDK_ROOT/platforms/android-9/arch-arm/usr/include
 #DEFINES += QT_NO_DEBUG_OUTPUT
-DEFINES += QT_WIDGET
+maemo5:DEFINES += QT_WIDGET
 
 windows:INCLUDEPATH += ../../JGE/Dependencies/include
 windows:INCLUDEPATH += extra

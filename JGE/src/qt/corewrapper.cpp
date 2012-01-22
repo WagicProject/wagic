@@ -41,6 +41,9 @@ QElapsedTimer WagicCore::g_startTimer;
 
 WagicCore::WagicCore(super *parent) :
     super(parent), m_engine(0), m_app(0), m_launcher(0), m_active(false)
+#ifdef Q_WS_MAEMO_5
+  , dBusConnection(QDBusConnection::systemBus()), dBusInterface(0)
+#endif //Q_WS_MAEMO_5
 {
 #ifdef QT_WIDGET
 #if (defined Q_WS_MAEMO_5)
@@ -59,6 +62,14 @@ WagicCore::WagicCore(super *parent) :
 #endif //QT_WIDGET
     g_startTimer.restart();
     m_lastTickCount = g_startTimer.elapsed();
+
+#ifdef Q_WS_MAEMO_5
+    dBusInterface = new QDBusInterface(MCE_SERVICE, MCE_REQUEST_PATH,
+                                        MCE_REQUEST_IF, dBusConnection);
+
+    // Handle screen state on / off
+    dBusConnection.connect(MCE_SERVICE, MCE_SIGNAL_PATH, MCE_SIGNAL_IF, MCE_DISPLAY_SIG, this, SLOT(displayStateChanged(const QDBusMessage &)));
+#endif
 }
 
 void WagicCore::initApp()
@@ -85,6 +96,9 @@ void WagicCore::initApp()
 
 WagicCore::~WagicCore()
 {
+    if(dBusInterface)
+        delete dBusInterface;
+
     if(m_launcher)
     {
         delete m_launcher;
@@ -498,3 +512,18 @@ void WagicCore::start(int)
 }
 
 #endif //QT_WIDGET
+
+#ifdef Q_WS_MAEMO_5
+void WagicCore::displayStateChanged(const QDBusMessage &message)
+{
+  QString state = message.arguments().at(0).toString();
+  if (!state.isEmpty()) {
+    if (state == MCE_DISPLAY_ON_STRING && isActiveWindow()) {
+       setActive(true);
+    }
+    else if (state == MCE_DISPLAY_OFF_STRING) {
+        setActive(false);
+    }
+  }
+}
+#endif

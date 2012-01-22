@@ -1,6 +1,6 @@
-wagic (0.16.0maemo0) unstable; urgency=low
+wagic (0.17.1maemo0) unstable; urgency=low
 
-  * Fixed Phonon sound problem
-  * Improved upgrade script
-  * Wagic 0.16.0
- -- Xawotihs <xawotihs@gmail.com>  Mon, 18 Jul 2011 14:11:42 +0200
+  * Merged UI with Android and Meego versions
+  * Resources are now downloaded seperately
+  * Wagic 0.17.1
+ -- Xawotihs <xawotihs@gmail.com>  Mon, 21 Jan 2012 14:11:42 +0200
