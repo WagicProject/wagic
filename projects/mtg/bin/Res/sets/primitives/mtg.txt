@@ -5277,6 +5277,7 @@ name=Banshee's Blade
 auto={2}:equip
 auto=thisforeach(counter{0/0.1.charge}) 1/1
 auto=@combatdamaged(creature) from(mytgt):all(this) counter(0/0,1,charge)
+auto=@combatdamaged(player) from(mytgt):all(this) counter(0/0,1,charge)
 text=Equipped creature gets +1/+1 for each charge counter on Banshee's Blade. -- Whenever equipped creature deals combat damage, put a charge counter on Banshee's Blade. -- Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery. This card enters the battlefield unattached and stays on the battlefield if the creature leaves.)
 mana={2}
 type=Artifact
@@ -30127,7 +30128,7 @@ subtype=Equipment
 [/card]
 [card]
 name=Gorilla Chieftain
-auto={1}G}:regenerate
+auto={1}{G}:regenerate
 text={1}{G}: Regenerate Gorilla Chieftain.
 mana={2}{G}{G}
 type=Creature
@@ -44040,6 +44041,7 @@ name=Mask of Memory
 auto=@damaged(opponent) from(mytgt):reject target(*|myHand)
 auto=@damaged(opponent) from(mytgt):draw:1 controller
 text=Whenever equipped creature deals combat damage to a player, you may draw two cards. If you do, discard a card. -- Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery. This card enters the battlefield unattached and stays on the battlefield if the creature leaves.)
+auto={1}:equip
 mana={2}
 type=Artifact
 subtype=Equipment
