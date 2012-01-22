@@ -96,8 +96,10 @@ void WagicCore::initApp()
 
 WagicCore::~WagicCore()
 {
+#ifdef Q_WS_MAEMO_5
     if(dBusInterface)
         delete dBusInterface;
+#endif //Q_WS_MAEMO_5
 
     if(m_launcher)
     {
