@@ -12,7 +12,7 @@ SimpleMenuItem::SimpleMenuItem(int id): JGuiObject(id)
 }
 
 SimpleMenuItem::SimpleMenuItem(SimpleMenu* _parent, int id, int fontId, string text, float x, float y, bool hasFocus, bool autoTranslate) :
-    JGuiObject(id), parent(_parent), mFontId(fontId), mX(x), mY(y)
+    JGuiObject(id), parent(_parent), mX(x), mY(y), mFontId(fontId)
 {
     if (autoTranslate)
         mText = _(text);
