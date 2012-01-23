@@ -11,13 +11,11 @@
 
 const int kHorizontalScrollSpeed = 30; // higher numbers mean faster scrolling
 
-DeckMenuItem::DeckMenuItem(DeckMenu* _parent, int id, int iFontId, string text, float x, float y, bool hasFocus, bool autoTranslate, DeckMetaData *deckMetaData): SimpleMenuItem(id)
+DeckMenuItem::DeckMenuItem(DeckMenu* _parent, int id, int fontId, string text, float x, float y, bool hasFocus, bool autoTranslate, DeckMetaData *deckMetaData): SimpleMenuItem(NULL, id, fontId, text, x, y, hasFocus, autoTranslate)
 {
     mEngine = JGE::GetInstance();
     parent = _parent;
-    fontId = iFontId;
-    mY = y;
-    mX = x;
+
 	WFont * mFont = WResourceManager::Instance()->GetWFont(fontId);
     meta = deckMetaData;
 	mText = trim(text);
@@ -27,7 +25,6 @@ DeckMenuItem::DeckMenuItem(DeckMenu* _parent, int id, int iFontId, string text, 
     
     mXOffset = kItemXOffset;
 
-    mHasFocus = hasFocus;
 	float newImageWidth = 0.0f;
     if (meta && !meta->getGamesPlayed())
     {
@@ -46,7 +43,7 @@ DeckMenuItem::DeckMenuItem(DeckMenu* _parent, int id, int iFontId, string text, 
 
 	if (hasFocus)
     {
-        mIsValidSelection = true;
+        setIsSelectionValid( true );
         Entering();
     }
     
@@ -92,15 +89,15 @@ void DeckMenuItem::RenderWithOffset(float yOffset)
 {
     SimpleMenuItem::mYOffset = yOffset;
 
-    WFont * mFont = WResourceManager::Instance()->GetWFont(fontId);
+    WFont * mFont = WResourceManager::Instance()->GetWFont(getFontId());
 	
-	if (!( mHasFocus && mScrollEnabled ))
+	if (!( hasFocus() && mScrollEnabled ))
 		mScrollerOffset = 0;
-	if (!mHasFocus && mScrollEnabled)
+	if (!hasFocus() && mScrollEnabled)
 		mScrollerOffset = -1 * ( GetWidth() - ITEM_PX_WIDTH )/2;
 	float offSet = mScrollerOffset;
 
-	mFont->DrawString(mText.c_str(), mX, mY + yOffset, JGETEXT_CENTER, offSet, ITEM_PX_WIDTH);
+	mFont->DrawString( getText().c_str(), getX(), getY() + yOffset, JGETEXT_CENTER, offSet, ITEM_PX_WIDTH);
 	mDisplayInitialized = true;
 	//Render a "new" icon for decks that have never been played yet
     if (meta && !meta->getGamesPlayed())
@@ -110,8 +107,9 @@ void DeckMenuItem::RenderWithOffset(float yOffset)
         {
             JQuadPtr quad = WResourceManager::Instance()->RetrieveQuad("new.png", 2.0f, 2.0f, tex->mWidth - 4.0f, tex->mHeight - 4.0f); //avoids weird rectangle aroudn the texture because of bilinear filtering
             quad->SetHotSpot(quad->mWidth/2.0f, quad->mHeight/2.0f);
-            float x = mX + min(ITEM_PX_WIDTH - quad->mWidth, GetWidth() )/2 + quad->mWidth/2;
-            if (quad) JRenderer::GetInstance()->RenderQuad(quad.get(), x , mY + yOffset + quad->mHeight/2, 0.5);
+            float x = getX() + min(ITEM_PX_WIDTH - quad->mWidth, GetWidth() )/2 + quad->mWidth/2;
+            if (quad) 
+                JRenderer::GetInstance()->RenderQuad(quad.get(), x , getY() + yOffset + quad->mHeight/2, 0.5);
         }
     }
 }
@@ -123,15 +121,15 @@ void DeckMenuItem::Render()
 
 void DeckMenuItem::Relocate(float x, float y)
 {
-    mX = x;
-    mY = y;
+    setX( x );
+    setY( y );
 }
 
 void DeckMenuItem::Entering()
 {
     checkUserClick();
-    mHasFocus = true;
-    parent->mSelectionTargetY = mY;
+    setFocus(true);
+    parent->mSelectionTargetY = getY();
 }
 
 
@@ -151,33 +149,28 @@ void DeckMenuItem::checkUserClick()
     int x1 = -1, y1 = -1;
     if (mEngine->GetLeftClickCoordinates(x1, y1))
     {   
-        mIsValidSelection = false;
-        int x2 = static_cast<int>(mXOffset), y2 = static_cast<int>(mY + mYOffset);
+        SimpleMenuItem::setIsSelectionValid( false );
+        int x2 = static_cast<int>(mXOffset), y2 = static_cast<int>(getY() + mYOffset);
         if ( (x1 >= x2) && (x1 <= (x2 + 200)) && (y1 >= y2) && (y1 < (y2 + 30)))
-            mIsValidSelection = true;
+            setIsSelectionValid( true );
     }
     else
-        mIsValidSelection = true;
+        setIsSelectionValid( true );
 }
 
 // Accessors
 float DeckMenuItem::GetWidth()
 {
-    WFont * mFont = WResourceManager::Instance()->GetWFont(fontId);
-    return mFont->GetStringWidth(mText.c_str());
-}
-
-bool DeckMenuItem::hasFocus()
-{
-    return mHasFocus;
+    WFont * mFont = WResourceManager::Instance()->GetWFont(getFontId());
+    return mFont->GetStringWidth(getText().c_str());
 }
 
 ostream& DeckMenuItem::toString(ostream& out) const
 {
-    return out << "DeckMenuItem ::: mHasFocus : " << mHasFocus
+    return out << "DeckMenuItem ::: mHasFocus : " << hasFocus()
                  << " ; parent : " << parent
-                 << " ; mText : " << mText
-                 << " ; mX,mY : " << mX << "," << mY;
+                 << " ; mText : " << getText()
+                 << " ; mX,mY : " << getX() << "," << getY();
 }
 
 DeckMenuItem::~DeckMenuItem()

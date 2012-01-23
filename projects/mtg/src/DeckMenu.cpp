@@ -8,6 +8,8 @@
 #include "Translate.h"
 #include "TextScroller.h"
 #include "Tasks.h"
+#include "IconButton.h"
+
 #include <iomanip>
 
 namespace
@@ -22,6 +24,7 @@ namespace
 	const float kVerticalScrollSpeed = 7.0f;
 
     const int DETAILED_INFO_THRESHOLD = 20;
+    const int kDetailedInfoButtonId = 10000;
 
     const PIXEL_TYPE kRedColor = ARGB(0xFF, 0xFF, 0x00, 0x00);
 }
@@ -218,8 +221,11 @@ void DeckMenu::Render()
     for (int i = startId; i < startId + maxItems; i++)
     {
         if (i > mCount - 1) break;
+        if (mObjects[i]->GetId() >= kDetailedInfoButtonId) 
+            break; // objects with id > 9999 are clickable buttons
+        
         DeckMenuItem *currentMenuItem = static_cast<DeckMenuItem*> (mObjects[i]);
-        if (currentMenuItem->mY - kLineHeight * startId < mY + height - kLineHeight + 7)
+        if (currentMenuItem->getY() - kLineHeight * startId < mY + height - kLineHeight + 7)
         {
             // only load stats for visible items in the list
             if (currentMenuItem->meta && !currentMenuItem->meta->mStatsLoaded)
@@ -272,7 +278,7 @@ void DeckMenu::Render()
                 }
                 
                 // fill in the description part of the screen
-				string text = wordWrap(_(currentMenuItem->desc), descWidth, mainFont->mFontID );
+				string text = wordWrap(_(currentMenuItem->getDescription()), descWidth, mainFont->mFontID );
                 mainFont->DrawString(text.c_str(), descX, descY);
                 mFont->SetColor(ARGB(255,255,255,255));
                 
@@ -347,10 +353,14 @@ void DeckMenu::Add(int id, const char * text, string desc, bool forceFocus, Deck
             mY + kVerticalMargin + mCount * kLineHeight, (mCount == 0), mAutoTranslate, deckMetaData);
     Translator * t = Translator::GetInstance();
     map<string, string>::iterator it = t->deckValues.find(text);
+    string deckDescription = "";
+    
     if (it != t->deckValues.end()) //translate decks desc
-        menuItem->desc = it->second;
+        deckDescription = it->second;
     else
-        menuItem->desc = deckMetaData ? deckMetaData->getDescription() : desc;
+        deckDescription = deckMetaData ? deckMetaData->getDescription() : desc;
+    
+    menuItem->setDescription(deckDescription);
 
     JGuiController::Add(menuItem);
     if (mCount <= maxItems) mHeight += kLineHeight;

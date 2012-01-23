@@ -62,14 +62,9 @@ public:
     DeckMetaData * getSelectedDeck();
     void enableDisplayDetailsOverride();
     bool showDetailsScreen();
-    bool isClosed()
-    {
-        return mClosed;
-    }
-    int getSelectedDeckId()
-    {
-        return mSelectedDeckId;
-    }
+
+    bool isClosed() const { return mClosed; }
+    int getSelectedDeckId() const { return mSelectedDeckId; }
 
     void Render();
     void Update(float dt);

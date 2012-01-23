@@ -22,13 +22,13 @@ protected:
     virtual void checkUserClick();
 
 public:
+    DeckMenuItem(DeckMenu* _parent, int id, int fontId, string text, float x, float y, bool hasFocus = false, bool autoTranslate = false, DeckMetaData *meta = NULL);
+    ~DeckMenuItem();
+
     string imageFilename;
-    string desc;
     float mScrollerOffset;
     DeckMetaData *meta;
     
-    virtual bool hasFocus();
-
     virtual void Relocate(float x, float y);
     virtual float GetWidth();
     virtual void Render();
@@ -38,18 +38,7 @@ public:
     {
         return SimpleMenuItem::getTopLeft(top, left);
     }
-    
-    string GetText()
-    {
-        return mText;
-    }
-    string GetDescription()
-    {
-        return desc;
-    }
-
-    DeckMenuItem(DeckMenu* _parent, int id, int fontId, string text, float x, float y, bool hasFocus = false, bool autoTranslate = false, DeckMetaData *meta = NULL);
-    ~DeckMenuItem();
+  
     virtual void Entering();
     virtual bool Leaving(JButton key);
     virtual bool ButtonPressed();

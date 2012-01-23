@@ -177,11 +177,11 @@ void SimpleMenu::Render()
     for (int i = startId; i < startId + maxItems; i++)
     {
         if (i > mCount - 1) break;
-        if ((static_cast<SimpleMenuItem*> (mObjects[i]))->mY - kLineHeight * startId < mY + height - kLineHeight + 7)
+        if ((static_cast<SimpleMenuItem*> (mObjects[i]))->getY() - kLineHeight * startId < mY + height - kLineHeight + 7)
         {
             if (static_cast<SimpleMenuItem*> (mObjects[i])->hasFocus())
             {
-                WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT)->DrawString(static_cast<SimpleMenuItem*> (mObjects[i])->desc.c_str(), mX
+                WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT)->DrawString(static_cast<SimpleMenuItem*> (mObjects[i])->getDescription().c_str(), mX
                                 + mWidth + 10, mY + 15);
                 mFont->SetColor(ARGB(255,255,255,0));
             }
@@ -225,7 +225,7 @@ void SimpleMenu::Add(int id, const char * text, string desc, bool forceFocus)
     SimpleMenuItem * smi = NEW SimpleMenuItem(this, id, fontId, text, 0, mY + kVerticalMargin + mCount * kLineHeight,
                     (mCount == 0), autoTranslate);
 
-    smi->desc = desc;
+    smi->setDescription(desc);
     JGuiController::Add(smi);
     if (mCount <= maxItems) mHeight += kLineHeight;
     if (forceFocus)

@@ -12,12 +12,15 @@ SimpleMenuItem::SimpleMenuItem(int id): JGuiObject(id)
 }
 
 SimpleMenuItem::SimpleMenuItem(SimpleMenu* _parent, int id, int fontId, string text, float x, float y, bool hasFocus, bool autoTranslate) :
-    JGuiObject(id), parent(_parent), fontId(fontId), mX(x), mY(y)
+    JGuiObject(id), parent(_parent), mFontId(fontId), mX(x), mY(y)
 {
     if (autoTranslate)
         mText = _(text);
     else
         mText = text;
+    
+    mDescription = "";
+    
     mHasFocus = hasFocus;
 
     mScale = 1.0f;
@@ -27,15 +30,19 @@ SimpleMenuItem::SimpleMenuItem(SimpleMenu* _parent, int id, int fontId, string t
 
 	if (hasFocus)
     {
-        mIsValidSelection = true;
+        setIsSelectionValid(true);
         Entering();
+    }
+    else
+    {
+        setIsSelectionValid(false);
     }
 }
 
 void SimpleMenuItem::RenderWithOffset(float yOffset)
 {
   mYOffset = yOffset;
-  WFont * mFont = WResourceManager::Instance()->GetWFont(fontId);
+  WFont * mFont = WResourceManager::Instance()->GetWFont(mFontId);
   mFont->DrawString(mText.c_str(), mX, mY + yOffset, JGETEXT_CENTER);
 }
 
@@ -60,14 +67,15 @@ void SimpleMenuItem::Update(float dt)
 
 void SimpleMenuItem::checkUserClick()
 {
-    mIsValidSelection = true;
+    setIsSelectionValid(true);
 }
 
 void SimpleMenuItem::Entering()
 {
     checkUserClick();
     mHasFocus = true;
-    parent->selectionTargetY = mY;
+    if (parent != NULL)
+        parent->selectionTargetY = mY;
 }
 
 bool SimpleMenuItem::Leaving(JButton key)
@@ -90,16 +98,73 @@ void SimpleMenuItem::Relocate(float x, float y)
     mY = y;
 }
 
-float SimpleMenuItem::GetWidth()
+
+/* Accessors */
+float SimpleMenuItem::getX() const
 {
-    WFont * mFont = WResourceManager::Instance()->GetWFont(fontId);
-    mFont->SetScale(1.0);
-    return mFont->GetStringWidth(mText.c_str());
+    return mX;
 }
 
-bool SimpleMenuItem::hasFocus()
+float SimpleMenuItem::getY() const
+{
+    return mY;
+}
+
+void SimpleMenuItem::setFontId(const int &fontId)
+{
+    mFontId = fontId;
+}
+
+int SimpleMenuItem::getFontId() const
+{
+    return mFontId;
+}
+
+void SimpleMenuItem::setIsSelectionValid( bool validSelection )
+{
+    mIsValidSelection = validSelection;
+}
+
+bool SimpleMenuItem::isSelectionValid() const
+{
+    return mIsValidSelection;
+}
+
+void SimpleMenuItem::setFocus(bool value)
+{
+    mHasFocus = value;
+}
+
+bool SimpleMenuItem::hasFocus() const
 {
     return mHasFocus;
+}
+
+string SimpleMenuItem::getDescription() const
+{
+    return mDescription;
+}
+
+void SimpleMenuItem::setDescription( const string& desc )
+{
+    mDescription = desc;
+}
+
+string SimpleMenuItem::getText() const
+{
+    return mText;
+}
+
+void SimpleMenuItem::setText( const string& text)
+{
+    mText = text;
+}
+
+float SimpleMenuItem::GetWidth() const
+{
+    WFont * mFont = WResourceManager::Instance()->GetWFont(mFontId);
+    mFont->SetScale(1.0);
+    return mFont->GetStringWidth(mText.c_str());
 }
 
 ostream& SimpleMenuItem::toString(ostream& out) const
