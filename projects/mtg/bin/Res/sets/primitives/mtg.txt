@@ -15472,7 +15472,7 @@ subtype=Aura
 [card]
 name=Cursed Monstrosity
 abilities=flying
-auto=@targeted(this):all(this) transforms((,newability[may reject target(*|myhand)],newability[may sacrifice])) ueot
+auto=@targeted(this):all(this) transforms((,newability[may reject target(*[land]|myhand)],newability[may sacrifice])) ueot
 text=Flying -- Whenever Cursed Monstrosity becomes the target of a spell or ability, sacrifice it unless you discard a land card.
 mana={4}{B}
 type=Creature
