@@ -1,6 +1,4 @@
-wagic (0.17.1maemo0) unstable; urgency=low
+wagic (0.17.1maemo1) unstable; urgency=low
 
-  * Merged UI with Android and Meego versions
-  * Resources are now downloaded seperately
-  * Wagic 0.17.1
- -- Xawotihs <xawotihs@gmail.com>  Mon, 21 Jan 2012 14:11:42 +0200
+  * Fixed offline mode and resource package download
+ -- Xawotihs <xawotihs@gmail.com>  Mon, 25 Jan 2012 14:11:42 +0200
