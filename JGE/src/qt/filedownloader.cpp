@@ -13,8 +13,9 @@ FileDownloader::FileDownloader(QString localPath, QString targetFile, QObject *p
 {
 #ifdef QT_WIDGET
     setCancelButton(0);
-#endif //QT_WIDGET
     connect(this, SIGNAL(receivedChanged(int)), SLOT(setValue(int)));
+    connect(this, SIGNAL(canceled()), SLOT(handleCancel()));
+#endif //QT_WIDGET
     connect(this, SIGNAL(stateChanged(DownloadState)), SLOT(handleStateChange(DownloadState)));
 
     QDir dir(QDir::homePath());
@@ -81,18 +82,22 @@ void FileDownloader::requestHash(QUrl url)
 
 void FileDownloader::computeRemoteHash()
 {
-    QString aString = m_hashReply->readAll();
+    if(m_hashReply->error() != QNetworkReply::NoError) {
+        m_state = NETWORK_ERROR;
+    } else {
+        QString aString = m_hashReply->readAll();
 
-    int index = aString.indexOf("SHA1 Checksum: ");
-    m_remoteHash = aString.mid(index+52, 40);
-    if(m_localHash != m_remoteHash)
-    {   /* We download the real file */
-        m_state = DOWNLOADING_FILE;
-        setDownloadUrl(QUrl("http://wagic.googlecode.com/files/" + m_targetFile));
-    }
-    else
-    {
-        m_state = DOWNLOADED;
+        int index = aString.indexOf("SHA1 Checksum: ");
+        m_remoteHash = aString.mid(index+52, 40);
+        if(m_localHash != m_remoteHash)
+        {   /* We download the real file */
+            m_state = DOWNLOADING_FILE;
+            setDownloadUrl(QUrl("http://wagic.googlecode.com/files/" + m_targetFile));
+        }
+        else
+        {
+            m_state = DOWNLOADED;
+        }
     }
     emit stateChanged(m_state);
 }
@@ -100,9 +105,10 @@ void FileDownloader::computeRemoteHash()
 void FileDownloader::computeLocalHash(QFile& file)
 {
     QCryptographicHash crypto(QCryptographicHash::Sha1);
-    file.open(QFile::ReadOnly);
-    while(!file.atEnd()){
-        crypto.addData(file.read(8192));
+    QFile myFile(file.fileName());
+    myFile.open(QFile::ReadOnly);
+    while(!myFile.atEnd()){
+        crypto.addData(myFile.read(8192));
     }
     QByteArray hash = crypto.result();
     m_localHash = hash.toHex();

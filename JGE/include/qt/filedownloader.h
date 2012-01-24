@@ -9,6 +9,8 @@
 #include <QTemporaryFile>
 #ifdef QT_WIDGET
 #include <QProgressDialog>
+#include <QPushButton>
+#include <QCoreApplication>
 #else
 #include <qdeclarative.h>
 #endif //QT_WIDGET
@@ -60,19 +62,30 @@ signals:
 
 private slots:
     void fileDownloaded(){
-        if(m_tmp.write(m_downloadReply->readAll()) == -1) return;
-        if(QFile(m_localPath).exists())
-            QFile::remove(m_localPath);
+        // let's check some error
+        if(m_downloadReply->error() != QNetworkReply::NoError) {
+            m_state = NETWORK_ERROR;
+        } else {
+            if(m_tmp.write(m_downloadReply->readAll()) == -1) return;
+            if(QFile(m_localPath).exists())
+                QFile::remove(m_localPath);
 
-        if(!m_tmp.rename(m_localPath)) return;
-
-        computeLocalHash(m_tmp);
-        m_tmp.setAutoRemove(false);
-        m_state = DOWNLOADED;
+            m_tmp.close();
+            computeLocalHash(m_tmp);
+            if(m_localHash == m_remoteHash) {
+                if(!m_tmp.rename(m_localPath)) return;
+                m_tmp.setAutoRemove(false);
+                m_state = DOWNLOADED;
+            }
+            else {
+                m_state = NETWORK_ERROR;
+            }
+        }
         emit stateChanged(m_state);
     };
     void downloadProgress(qint64 bytesReceived, qint64 bytesTotal){
         if(m_tmp.write(m_downloadReply->readAll()) == -1) return;
+        if(!bytesTotal) return;
         m_received = bytesReceived*100/bytesTotal;
         emit receivedChanged(m_received);
     };
@@ -83,8 +96,16 @@ private slots:
     void handleStateChange(DownloadState state){
 #ifdef QT_WIDGET
         switch(state) {
-        case DOWNLOADED:
         case NETWORK_ERROR:
+            if(m_localHash == "") {
+                setLabelText("Network Error");
+                setCancelButton(new QPushButton("OK"));
+                show();
+            } else {
+                emit finished(0);
+            }
+            break;
+        case DOWNLOADED:
             emit finished(0);
             break;
         case DOWNLOADING_HASH:
@@ -98,6 +119,11 @@ private slots:
         emit stateStringChanged();
 #endif //QT_WIDGET
     };
+#ifdef QT_WIDGET
+    void handleCancel(){
+        QCoreApplication::instance()->exit(1);
+    }
+#endif //QT_WIDGET
 
 
 private:
