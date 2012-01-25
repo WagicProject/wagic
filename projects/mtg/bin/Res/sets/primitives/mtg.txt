@@ -11920,7 +11920,7 @@ toughness=3
 name=Chastise
 target=creature[attacking]
 auto=destroy
-auto=dynamicability<!mytgt powerstrike targetopponent!>
+auto=dynamicability<!mytgt powerlifegain srccontroller!>
 text=Destroy target attacking creature. You gain life equal to its power.
 mana={3}{W}
 type=Instant
@@ -15472,7 +15472,7 @@ subtype=Aura
 [card]
 name=Cursed Monstrosity
 abilities=flying
-auto=@targeted(this):all(this) transforms((,newability[may reject target(*[land]|myhand)],newability[may sacrifice])) ueot
+auto=@targeted(this):all(this) transforms((,newability[may reject target(land|myhand)],newability[may sacrifice])) ueot
 text=Flying -- Whenever Cursed Monstrosity becomes the target of a spell or ability, sacrifice it unless you discard a land card.
 mana={4}{B}
 type=Creature
@@ -19161,7 +19161,7 @@ toughness=1
 [/card]
 [card]
 name=Dragonmaster Outcast
-auto=@each my upkeep restriction{type(land|myBattlefield)~morethan~5:token(Dragon,creature dragon, 5/5,flying red)
+auto=@each my upkeep restriction{type(land|myBattlefield)~morethan~5}:token(Dragon,creature dragon, 5/5,flying red)
 text=At the beginning of your upkeep, if you control six or more lands, put a 5/5 red Dragon creature token with flying onto the battlefield.
 mana={R}
 type=Creature
@@ -47755,8 +47755,8 @@ toughness=4
 [/card]
 [card]
 name=Mystical Teachings
-auto=choice moveTo(myhand) target(instant|myLibrary)
-auto=choice moveTo(myhand) target(*[flash]|myLibrary)
+auto=choice name(instant card) moveTo(myhand) target(instant|myLibrary)
+auto=choice name(card with flash) moveTo(myhand) target(*[flash]|myLibrary)
 flashback={5}{B} 
 text=Search your library for an instant card or a card with flash, reveal it, and put it into your hand. Then shuffle your library. -- Flashback {5}{B} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={3}{U}
@@ -67752,7 +67752,7 @@ toughness=1
 [card]
 name=Soul's Fire
 target=creature|mybattlefield
-auto=transforms((,newability[dynamicability<!powerstrike!> target(creature)])) 
+auto=transforms((,newability[dynamicability<!powerstrike!> target(creature,player)])) 
 text=Target creature you control on the battlefield deals damage equal to its power to target creature or player.
 mana={2}{R}
 type=Instant
