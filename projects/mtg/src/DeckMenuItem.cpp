@@ -14,7 +14,7 @@ const int kHorizontalScrollSpeed = 30; // higher numbers mean faster scrolling
 DeckMenuItem::DeckMenuItem(DeckMenu* _parent, int id, int fontId, string text, float x, float y, bool hasFocus, bool autoTranslate, DeckMetaData *deckMetaData): SimpleMenuItem(NULL, id, fontId, text, x, y, hasFocus, autoTranslate)
 {
     mEngine = JGE::GetInstance();
-    parent = _parent;
+    deckController = _parent;
 
 	WFont * mFont = WResourceManager::Instance()->GetWFont(fontId);
     meta = deckMetaData;
@@ -129,7 +129,7 @@ void DeckMenuItem::Entering()
 {
     checkUserClick();
     setFocus(true);
-    parent->mSelectionTargetY = getY();
+    deckController->mSelectionTargetY = getY();
 }
 
 
@@ -168,10 +168,16 @@ float DeckMenuItem::GetWidth()
 ostream& DeckMenuItem::toString(ostream& out) const
 {
     return out << "DeckMenuItem ::: mHasFocus : " << hasFocus()
-                 << " ; parent : " << parent
+                 << " ; parent : " << deckController
                  << " ; mText : " << getText()
                  << " ; mX,mY : " << getX() << "," << getY();
 }
+
+JGuiController* DeckMenuItem::getParent() const
+{
+    return deckController;
+}
+
 
 DeckMenuItem::~DeckMenuItem()
 {

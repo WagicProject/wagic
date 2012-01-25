@@ -3,12 +3,12 @@
 #include "DeckMenu.h"
 #include "DeckMenuItem.h"
 #include "DeckMetaData.h"
+#include "InteractiveButton.h"
 #include "JTypes.h"
 #include "GameApp.h"
 #include "Translate.h"
 #include "TextScroller.h"
 #include "Tasks.h"
-#include "IconButton.h"
 
 #include <iomanip>
 
@@ -100,6 +100,13 @@ JGuiController(JGE::GetInstance(), id, listener), fontId(fontId), mShowDetailsSc
     if (NULL == stars)
 		stars = NEW hgeParticleSystem(WResourceManager::Instance()->RetrievePSI("stars.psi", WResourceManager::Instance()->GetQuad("stars").get()));
     stars->FireAt(mX, mY);
+    
+    const string detailedInfoString = _("Detailed Info");
+    float stringWidth = mFont->GetStringWidth(detailedInfoString.c_str());
+    float boxStartX = detailedInfoBoxX - stringWidth / 2 + 20;
+
+    dismissButton = NEW InteractiveButton( this, kDetailedInfoButtonId, Fonts::MAIN_FONT, detailedInfoString, boxStartX, detailedInfoBoxY, JGE_BTN_CANCEL);
+    JGuiController::Add(dismissButton, true);
 
     updateScroller();
 }
@@ -201,7 +208,7 @@ void DeckMenu::initMenuItems()
         pspIcons[i] = WResourceManager::Instance()->RetrieveQuad("iconspsp.png", (float) i * 32, 0, 32, 32, buf);
         pspIcons[i]->SetHotSpot(16, 16);
     }
-
+    dismissButton->setImage(pspIcons[5]);
 }
 
 void DeckMenu::Render()
@@ -216,14 +223,12 @@ void DeckMenu::Render()
         timeOpen = 0;
         menuInitialized = true;
     }
+    
     if (timeOpen < 1) height *= timeOpen > 0 ? timeOpen : -timeOpen;
-
+    
     for (int i = startId; i < startId + maxItems; i++)
     {
-        if (i > mCount - 1) break;
-        if (mObjects[i]->GetId() >= kDetailedInfoButtonId) 
-            break; // objects with id > 9999 are clickable buttons
-        
+        if (i > mCount - 1) break;        
         DeckMenuItem *currentMenuItem = static_cast<DeckMenuItem*> (mObjects[i]);
         if (currentMenuItem->getY() - kLineHeight * startId < mY + height - kLineHeight + 7)
         {
@@ -242,17 +247,13 @@ void DeckMenu::Render()
                 // display the "more info" button if special condition is met
                 if (showDetailsScreen())
                 {                    
-                    float pspIconsSize = 0.5;
-                    const string detailedInfoString = _("Detailed Info");
-                    float stringWidth = mainFont->GetStringWidth(detailedInfoString.c_str());
-                    float boxStartX = detailedInfoBoxX - stringWidth / 2;
-                    DWORD currentColor = mainFont->GetColor();
-                    renderer->FillRoundRect( boxStartX, detailedInfoBoxY - 5, stringWidth, mainFont->GetHeight() + 15, .5, ARGB( 255, 0, 0, 0) );
-                    renderer->RenderQuad(pspIcons[5].get(), detailedInfoBoxX, detailedInfoBoxY + 2, 0, pspIconsSize, pspIconsSize);
-                    mainFont->SetColor(currentColor);
-                    mainFont->DrawString(detailedInfoString, boxStartX, detailedInfoBoxY + 10);
+                    dismissButton->setIsSelectionValid(true);
+                    dismissButton->Render();
                 }
-
+                else
+                {
+                    dismissButton->setIsSelectionValid(false);
+                }
                 // display the avatar image
                 if (currentMenuItem->imageFilename.size() > 0)
                 {
@@ -318,9 +319,12 @@ void DeckMenu::Render()
 void DeckMenu::Update(float dt)
 {
     JGuiController::Update(dt);
+    
     if (mCurr > startId + maxItems - 1)
         startId = mCurr - maxItems + 1;
-    else if (mCurr < startId) startId = mCurr;
+    else if (mCurr < startId) 
+        startId = mCurr;
+
     stars->Update(dt);
     selectionT += 3 * dt;
     selectionY += (mSelectionTargetY - selectionY) * 8 * dt;
@@ -345,6 +349,7 @@ void DeckMenu::Update(float dt)
     }
     if (mScroller) 
         mScroller->Update(dt);
+    
 }
 
 void DeckMenu::Add(int id, const char * text, string desc, bool forceFocus, DeckMetaData * deckMetaData)
@@ -405,4 +410,5 @@ DeckMenu::~DeckMenu()
 {
     WResourceManager::Instance()->Release(pspIconsTexture);
     SAFE_DELETE(mScroller);
+    dismissButton = NULL;
 }

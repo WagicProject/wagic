@@ -39,17 +39,17 @@ public:
     bool isMultipleChoice;
     SimpleMenu(JGE*, int id, JGuiListener* listener, int fontId, float x, float y, const char * _title = "", int _maxItems = 7, bool centerHorizontal = true, bool centerVertical = true);
     virtual ~SimpleMenu();
-    void Render();
-    void Update(float dt);
-    void Add(int id, const char * Text, string desc = "", bool forceFocus = false);
+    virtual void Render();
+    virtual void Update(float dt);
+    virtual void Add(int id, const char * Text, string desc = "", bool forceFocus = false);
     int getmCurr(){return mCurr;}
     float getWidth(){return mWidth; }
-    void Close();
+    virtual void Close();
 
     void RecenterMenu();
 
     float selectionTargetY;
-    bool isClosed()
+    virtual bool isClosed() const
     {
         return mClosed;
     }

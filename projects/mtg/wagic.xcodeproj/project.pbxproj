@@ -276,6 +276,10 @@
 		12211ED11494823F00641703 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 12211ED01494823E00641703 /* Default@2x.png */; };
 		12211ED41494916D00641703 /* Default-Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 12211ED21494916D00641703 /* Default-Landscape.png */; };
 		12211ED51494916D00641703 /* Default-Portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = 12211ED31494916D00641703 /* Default-Portrait.png */; };
+		12272FC414CD57CF00192DC7 /* SimpleButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12272FC314CD57CF00192DC7 /* SimpleButton.cpp */; };
+		12272FC514CD57CF00192DC7 /* SimpleButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12272FC314CD57CF00192DC7 /* SimpleButton.cpp */; };
+		12272FC814CD6A3900192DC7 /* InteractiveButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12272FC714CD6A3900192DC7 /* InteractiveButton.cpp */; };
+		12272FC914CD6A3900192DC7 /* InteractiveButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12272FC714CD6A3900192DC7 /* InteractiveButton.cpp */; };
 		12769486144127380088F6D3 /* AIPlayerBaka.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12769483144127380088F6D3 /* AIPlayerBaka.cpp */; };
 		12769487144127380088F6D3 /* AIPlayerBakaB.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12769484144127380088F6D3 /* AIPlayerBakaB.cpp */; };
 		12769488144127380088F6D3 /* TestSuiteAI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12769485144127380088F6D3 /* TestSuiteAI.cpp */; };
@@ -558,6 +562,10 @@
 		12211ED01494823E00641703 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
 		12211ED21494916D00641703 /* Default-Landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape.png"; path = "../Default-Landscape.png"; sourceTree = "<group>"; };
 		12211ED31494916D00641703 /* Default-Portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait.png"; path = "../Default-Portrait.png"; sourceTree = "<group>"; };
+		12272FC114CD558C00192DC7 /* SimpleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleButton.h; sourceTree = "<group>"; };
+		12272FC314CD57CF00192DC7 /* SimpleButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimpleButton.cpp; sourceTree = "<group>"; };
+		12272FC614CD68FB00192DC7 /* InteractiveButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InteractiveButton.h; sourceTree = "<group>"; };
+		12272FC714CD6A3900192DC7 /* InteractiveButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InteractiveButton.cpp; sourceTree = "<group>"; };
 		12769483144127380088F6D3 /* AIPlayerBaka.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AIPlayerBaka.cpp; sourceTree = "<group>"; };
 		12769484144127380088F6D3 /* AIPlayerBakaB.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AIPlayerBakaB.cpp; sourceTree = "<group>"; };
 		12769485144127380088F6D3 /* TestSuiteAI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestSuiteAI.cpp; sourceTree = "<group>"; };
@@ -1489,6 +1497,7 @@
 		CEA376851291C60500B9016A /* include */ = {
 			isa = PBXGroup;
 			children = (
+				12272FC114CD558C00192DC7 /* SimpleButton.h */,
 				12CCA032144A05DF00E343A0 /* AbilityParser.h */,
 				127694891441274D0088F6D3 /* AIPlayerBaka.h */,
 				1276948A1441274D0088F6D3 /* AIPlayerBakaB.h */,
@@ -1603,6 +1612,7 @@
 				CEA376EA1291C60500B9016A /* WFont.h */,
 				CEA376EB1291C60500B9016A /* WGui.h */,
 				CEA376EC1291C60500B9016A /* WResourceManager.h */,
+				12272FC614CD68FB00192DC7 /* InteractiveButton.h */,
 			);
 			path = include;
 			sourceTree = "<group>";
@@ -1720,6 +1730,8 @@
 				CEA377551291C60500B9016A /* WFont.cpp */,
 				CEA377561291C60500B9016A /* WGui.cpp */,
 				CEA377571291C60500B9016A /* WResourceManager.cpp */,
+				12272FC314CD57CF00192DC7 /* SimpleButton.cpp */,
+				12272FC714CD6A3900192DC7 /* InteractiveButton.cpp */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -2189,6 +2201,8 @@
 				12059E4614980B7300DAC43B /* ZipArchive.mm in Sources */,
 				12059E4714980B7300DAC43B /* Reachability.m in Sources */,
 				12059E4814980B7300DAC43B /* WagicDownloadProgressViewController.m in Sources */,
+				12272FC514CD57CF00192DC7 /* SimpleButton.cpp in Sources */,
+				12272FC914CD6A3900192DC7 /* InteractiveButton.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2397,6 +2411,8 @@
 				12211EAF14933D6600641703 /* ZipArchive.mm in Sources */,
 				12211EB71493483C00641703 /* Reachability.m in Sources */,
 				12211EC91494360C00641703 /* WagicDownloadProgressViewController.m in Sources */,
+				12272FC414CD57CF00192DC7 /* SimpleButton.cpp in Sources */,
+				12272FC814CD6A3900192DC7 /* InteractiveButton.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

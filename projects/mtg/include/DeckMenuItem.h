@@ -15,7 +15,7 @@ private:
     bool mScrollEnabled;
     bool mDisplayInitialized;
     
-    DeckMenu* parent;
+    DeckMenu* deckController;
     float mTitleResetWidth;
     
 protected:
@@ -43,6 +43,7 @@ public:
     virtual bool Leaving(JButton key);
     virtual bool ButtonPressed();
     virtual ostream& toString(ostream& out) const;
+    virtual JGuiController* getParent() const;
     virtual void RenderWithOffset(float yOffset);
 
 };

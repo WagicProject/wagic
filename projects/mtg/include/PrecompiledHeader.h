@@ -23,4 +23,8 @@
 
 #include <boost/shared_ptr.hpp>
 
+#if defined (IOS) || defined (ANDROID)
+#define TOUCH_ENABLED
+#endif
+
 #endif //PRECOMPILEDHEADER_H

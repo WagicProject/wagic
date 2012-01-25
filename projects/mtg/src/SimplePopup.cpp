@@ -3,6 +3,7 @@
  *
  *  Created on: Nov 18, 2010
  *      Author: Michael
+ *  The popups all have a default button created to act as the dismiss button, mapped to JGE_BTN_CANCEL (triangle) with "Detailed Info" to use for the button width.
  */
 
 #include "PrecompiledHeader.h"
@@ -13,7 +14,9 @@
 #include "DeckManager.h"
 #include <iomanip>
 
-SimplePopup::SimplePopup(int id, JGuiListener* listener, const int fontId, const char * _title, DeckMetaData* deckMetaData, MTGAllCards * collection) :
+const int kDismissButtonId = 10000;
+
+SimplePopup::SimplePopup(int id, JGuiListener* listener, const int fontId, const char * _title, DeckMetaData* deckMetaData, MTGAllCards * collection, int cancelX, int cancelY) :
     JGuiController(JGE::GetInstance(), id, listener), mFontId(fontId), mCollection(collection)
 {
     mX = 19;
@@ -25,6 +28,8 @@ SimplePopup::SimplePopup(int id, JGuiListener* listener, const int fontId, const
     mTextFont = WResourceManager::Instance()->GetWFont(fontId);
     this->mCount = 1; // a hack to ensure the menus do book keeping correctly.  Since we aren't adding items to the menu, this is required
     mStatsWrapper = NULL;
+    
+    JGuiController::Add(NEW InteractiveButton(this, kDismissButtonId, Fonts::MAIN_FONT, "Detailed Info", cancelX, cancelY, JGE_BTN_CANCEL), true);
     Update(deckMetaData);
 }
 
@@ -36,15 +41,15 @@ void SimplePopup::Render()
     string detailedInformation = getDetailedInformation(mDeckInformation->getFilename());
 
     const float textHeight = mTextFont->GetHeight() * mMaxLines;
-    r->DrawRoundRect(mX, mY, mWidth, textHeight, 2.0f, ARGB( 255, 125, 255, 0) );
-    r->FillRoundRect(mX, mY, mWidth, textHeight, 2.0f, ARGB( 255, 0, 0, 0 ) );
+    r->FillRoundRect(mX, mY + 2, mWidth + 11, textHeight - 12, 2.0f, ARGB( 255, 0, 0, 0 ) );
 
 	// currently causes a crash on the PSP when drawing the corners.
 	// TODO: clean up the image ot make it loook cleaner. Find solution to load gfx to not crash PSP
 #if 0
-	drawBoundingBox( mX, mY, mWidth, textHeight );
+    r->DrawRoundRect(mX, mY + 2, mWidth + 11, textHeight - 12, 2.0f, ARGB( 255, 125, 255, 0) );
+	drawBoundingBox( mX-3, mY, mWidth + 3, textHeight );
 #endif
-    mTextFont->DrawString(detailedInformation.c_str(), mX + 9 , mY + 15);
+    mTextFont->DrawString(detailedInformation.c_str(), mX + 9 , mY + 10);
 
 }
 
@@ -117,10 +122,11 @@ string SimplePopup::getDetailedInformation(string filename)
     return oss.str();
 }
 
-  void SimplePopup::Update(float dt)
+void SimplePopup::Update(float dt)
 {
     JButton key = mEngine->ReadButton();
     CheckUserInput(key);
+ 
 }
 
 // drawing routines

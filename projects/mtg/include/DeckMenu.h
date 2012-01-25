@@ -9,9 +9,13 @@
 #include "hge/hgeparticle.h"
 #include "DeckMetaData.h"
 #include "TextScroller.h"
+#include "InteractiveButton.h"
 
 class DeckMenu: public JGuiController
 {
+private:
+    InteractiveButton *dismissButton;
+    
 protected:
 
     float mHeight, mWidth, mX, mY;
@@ -62,14 +66,14 @@ public:
     DeckMetaData * getSelectedDeck();
     void enableDisplayDetailsOverride();
     bool showDetailsScreen();
+    
+    virtual bool isClosed() const { return mClosed; }
+    virtual int getSelectedDeckId() const { return mSelectedDeckId; }
 
-    bool isClosed() const { return mClosed; }
-    int getSelectedDeckId() const { return mSelectedDeckId; }
-
-    void Render();
-    void Update(float dt);
-    void Add(int id, const char * Text, string desc = "", bool forceFocus = false, DeckMetaData *deckMetaData = NULL);
-    void Close();
+    virtual void Render();
+    virtual void Update(float dt);
+    virtual void Add(int id, const char * Text, string desc = "", bool forceFocus = false, DeckMetaData *deckMetaData = NULL);
+    virtual void Close();
     void updateScroller();
     void RenderBackground();
     void RenderDeckManaColors();
