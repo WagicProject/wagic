@@ -99,6 +99,8 @@ protected:
 
 public:
     vector<JGuiObject*> mObjects;
+
+    vector<JGuiObject*> mButtons;
     int mCount;
 
     JGuiController(JGE* jge, int id, JGuiListener* listener);
@@ -108,8 +110,8 @@ public:
     virtual void Update(float dt);
     virtual bool CheckUserInput(JButton key);
 
-    void Add(JGuiObject* ctrl);
-    void RemoveAt(int i);
+    void Add(JGuiObject* ctrl, bool isButton = false);
+    void RemoveAt(int i, bool isButton = false);
     void Remove(int id);
     void Remove(JGuiObject* ctrl);
 

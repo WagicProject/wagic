@@ -78,6 +78,8 @@ JGuiController::~JGuiController()
 {
     for (int i = 0; i < mCount; i++)
         if (mObjects[i] != NULL) delete mObjects[i];
+    for (size_t i = 0; i < mButtons.size(); i++)
+        if (mButtons[i] != NULL) delete mButtons[i];
 
 }
 
@@ -156,32 +158,46 @@ bool JGuiController::CheckUserInput(JButton key)
         int n = mCurr;
         if (mEngine->GetLeftClickCoordinates(x, y))
         {
-            for (int i = 0; i < mCount; i++)
+            // first scan the buttons on the screen and then process the other gui elements
+            for (size_t i = 0; i < mButtons.size(); i++)
             {
-                float top, left;
-                if (mObjects[i]->getTopLeft(top, left))
+                if (mButtons[i]->ButtonPressed())
                 {
-                    distance2 = (top - y) * (top - y) + (left - x) * (left - x);
-                    if (distance2 < minDistance2)
-                    {
-                        minDistance2 = distance2;
-                        n = i;
-                    }
+                    mEngine->LeftClickedProcessed();
+                    return true;
                 }
             }
-
-            if (n != mCurr && mObjects[mCurr] != NULL && mObjects[mCurr]->Leaving(JGE_BTN_DOWN))
+            
+            if (mObjects.size())
             {
-                mCurr = n;
-                mObjects[mCurr]->Entering();
-            }
-            // if the same object was selected process click
-            else if (n == mCurr && mObjects[mCurr] != NULL && mObjects[mCurr]->Leaving(JGE_BTN_OK))
-            {
-                mObjects[mCurr]->Entering();
+                for (int i = 0; i < mCount; i++)
+                {
+                    float top, left;
+                    if (mObjects[i]->getTopLeft(top, left))
+                    {
+                        distance2 = (top - y) * (top - y) + (left - x) * (left - x);
+                        if (distance2 < minDistance2)
+                        {
+                            minDistance2 = distance2;
+                            n = i;
+                        }
+                    }
+                }
+                
+                if (n != mCurr && mObjects[mCurr] != NULL && mObjects[mCurr]->Leaving(JGE_BTN_DOWN))
+                {
+                    mCurr = n;
+                    mObjects[mCurr]->Entering();
+                }
+                // if the same object was selected process click
+                else if (n == mCurr && mObjects[mCurr] != NULL && mObjects[mCurr]->Leaving(JGE_BTN_OK))
+                {
+                    mObjects[mCurr]->Entering();
+                }
+                mEngine->LeftClickedProcessed();
+                return true;
             }
             mEngine->LeftClickedProcessed();
-            return true;
         }
     }
     return false;
@@ -192,6 +208,9 @@ void JGuiController::Update(float dt)
     for (int i = 0; i < mCount; i++)
         if (mObjects[i] != NULL)
             mObjects[i]->Update(dt);
+    
+    for (size_t i = 0; i < mButtons.size(); i++ )
+        mButtons[i]->Update(dt);
 
     if(mEngine)
     {
@@ -200,14 +219,30 @@ void JGuiController::Update(float dt)
     }
 }
 
-void JGuiController::Add(JGuiObject* ctrl)
+void JGuiController::Add(JGuiObject* ctrl, bool isButton)
 {
-    mObjects.push_back(ctrl);
-    mCount++;
+    if (!isButton)
+    {
+        mObjects.push_back(ctrl);
+        mCount++;
+    }
+    else
+    {
+        mButtons.push_back(ctrl);
+    }
 }
 
-void JGuiController::RemoveAt(int i)
+void JGuiController::RemoveAt(int i, bool isButton)
 {
+    if (isButton)
+    {
+        if (!mButtons[i]) return;
+        mButtons.erase(mButtons.begin() + i);
+        delete mButtons[i];
+        
+        return;
+    }
+    
     if (!mObjects[i]) return;
     mObjects.erase(mObjects.begin() + i);
     delete mObjects[i];
@@ -226,6 +261,15 @@ void JGuiController::Remove(int id)
             return;
         }
     }
+    
+    for (size_t i = 0; i < mButtons.size(); i++)
+    {
+        if (mButtons[i] != NULL && mButtons[i]->GetId() == id)
+        {
+            RemoveAt(i, true);
+            return;
+        }
+    }
 }
 
 void JGuiController::Remove(JGuiObject* ctrl)
@@ -235,6 +279,16 @@ void JGuiController::Remove(JGuiObject* ctrl)
         if (mObjects[i] != NULL && mObjects[i] == ctrl)
         {
             RemoveAt(i);
+            return;
+        }
+    }
+
+    
+    for (size_t i = 0; i < mButtons.size(); i++)
+    {
+        if (mButtons[i] != NULL && mButtons[i] == ctrl)
+        {
+            RemoveAt(i, true);
             return;
         }
     }
