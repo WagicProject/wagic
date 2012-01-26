@@ -110,10 +110,10 @@ public:
     virtual void Update(float dt);
     virtual bool CheckUserInput(JButton key);
 
-    void Add(JGuiObject* ctrl, bool isButton = false);
-    void RemoveAt(int i, bool isButton = false);
-    void Remove(int id);
-    void Remove(JGuiObject* ctrl);
+    virtual void Add(JGuiObject* ctrl, bool isButton = false);
+    virtual void RemoveAt(int i, bool isButton = false);
+    virtual void Remove(int id);
+    virtual void Remove(JGuiObject* ctrl);
 
     void SetActionButton(JButton button);
     void SetStyle(int style);

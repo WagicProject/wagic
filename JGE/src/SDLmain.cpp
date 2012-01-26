@@ -17,7 +17,7 @@
 #include "DebugRoutines.h"
 #include <stdexcept>
 #include <iostream>
-
+#include <math.h>
 
 #if (defined FORCE_GLES)
 #undef GL_ES_VERSION_2_0
@@ -253,7 +253,9 @@ public:
 
         case SDL_JOYBALLMOTION:
             DebugTrace("Flick gesture detected, x: " << Event->jball.xrel << ", y: " << Event->jball.yrel);
-            g_engine->Scroll(Event->jball.xrel, Event->jball.yrel);
+			int magnitude = static_cast<int>(sqrt( powf( Event->jball.xrel, 2) + powf( Event->jball.yrel, 2)));
+
+            g_engine->Scroll(Event->jball.xrel, Event->jball.yrel, magnitude);
             break;
         }
     }
