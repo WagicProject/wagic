@@ -85,7 +85,7 @@ enum {
 	#define BLEND_OPTION_BLEND	GU_TFX_BLEND
 #endif
 
-#ifdef WIN32
+#if (defined WIN32) && (!defined LINUX)
 	#include <windows.h>
 #endif
 #if defined(LINUX) || defined(IOS) || defined (ANDROID)

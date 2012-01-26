@@ -333,10 +333,10 @@ void WagicCore::wheelEvent ( QGraphicsSceneWheelEvent * event)
 #endif
 {
     if(event->orientation() == Qt::Vertical)
-        m_engine->Scroll(0, 3*event->delta());
+        m_engine->Scroll(0, 3*event->delta(), static_cast<int>(sqrt(9*event->delta()*event->delta())));
     else
 
-        m_engine->Scroll(3*event->delta(), 0);
+        m_engine->Scroll(3*event->delta(), 0, static_cast<int>(sqrt(9*event->delta()*event->delta())));
 
     event->accept();
 }
