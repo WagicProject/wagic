@@ -931,8 +931,9 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
     }
 }
 
-void GameStateDuel::OnScroll(int inXVelocity, int inYVelocity)
+void GameStateDuel::OnScroll(int inXVelocity, int inYVelocity, int magnitude)
 {
+    // ignore magnitude for now, since no action requires scrolling
     if (abs(inYVelocity) > 300)
     {
         bool flickUpwards = (inYVelocity < 0);

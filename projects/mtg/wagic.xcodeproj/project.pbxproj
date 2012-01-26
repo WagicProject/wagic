@@ -2541,7 +2541,10 @@
 					FT2_BUILD_LIBRARY,
 				);
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_SIGN_COMPARE = YES;
+				GCC_WARN_UNUSED_PARAMETER = NO;
 				HEADER_SEARCH_PATHS = (
 					../../JGE/include/,
 					include/,
@@ -2586,7 +2589,10 @@
 					IOS,
 				);
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_SIGN_COMPARE = YES;
+				GCC_WARN_UNUSED_PARAMETER = NO;
 				HEADER_SEARCH_PATHS = (
 					../../JGE/include/,
 					include/,

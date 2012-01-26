@@ -808,8 +808,9 @@ void GameStateShop::ButtonPressed(int controllerId, int controlId)
     menu->Close();
 }
 
-void GameStateShop::OnScroll(int inXVelocity, int inYVelocity)
+void GameStateShop::OnScroll(int inXVelocity, int inYVelocity, int magnitude)
 {
+    // we ignore magnitude since there isn't any scrolling in the shop
     if (abs(inXVelocity) > 200)
     {
         bool flickRight = (inXVelocity >= 0);

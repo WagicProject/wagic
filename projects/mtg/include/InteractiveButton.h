@@ -19,6 +19,10 @@ using std::string;
 #define SCALE_SELECTED		1.2f
 #define SCALE_NORMAL		1.0f
 
+const int kDismissButtonId       = 10000;
+const int kToggleDeckActionId    = 10001;
+const int kSellCardActionId      = 10002;
+
 class InteractiveButton: public SimpleButton
 {
 private:

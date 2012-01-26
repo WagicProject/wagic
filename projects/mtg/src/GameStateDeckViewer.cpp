@@ -58,11 +58,17 @@ GameStateDeckViewer::GameStateDeckViewer(GameApp* parent) :
     mAlpha = 255;
     menu = NULL;
     stw = NULL;
+    
+    toggleDeckButton = NEW InteractiveButton(NULL, kToggleDeckActionId, Fonts::MAIN_FONT, "View Deck", 10, 10, JGE_BTN_PRI);
+    sellCardButton = NEW InteractiveButton(NULL, kSellCardActionId, Fonts::MAIN_FONT, "Sell Card", (SCREEN_WIDTH_F/ 2) - 100, SCREEN_HEIGHT_F - 40, JGE_BTN_SEC);
 }
 
 GameStateDeckViewer::~GameStateDeckViewer()
 {
     SAFE_DELETE(bgMusic);
+    SAFE_DELETE(toggleDeckButton);
+    SAFE_DELETE(sellCardButton);
+    
     if (myDeck)
     {
         SAFE_DELETE(myDeck->parent);
@@ -153,9 +159,11 @@ void GameStateDeckViewer::switchDisplay()
     if (displayed_deck == myCollection)
     {
         displayed_deck = myDeck;
+        toggleDeckButton->setText("View Collection");
     }
     else
     {
+        toggleDeckButton->setText("View Deck");
         displayed_deck = myCollection;
     }
     source->swapSrc();
@@ -334,6 +342,41 @@ void GameStateDeckViewer::saveAsAIDeck(string deckName)
     AIPlayer::invalidateTotalAIDecks(); //We added one AI deck, so we need to invalidate the count cache
 }
 
+void GameStateDeckViewer::sellCard()
+{
+    last_user_activity = 0;
+    SAFE_DELETE(subMenu);
+    char buffer[4096];
+    {
+        MTGCard * card = cardIndex[2];
+        if (card && displayed_deck->count(card))
+        {
+            price = pricelist->getSellPrice(card->getMTGId());
+            sprintf(buffer, "%s : %i %s", _(card->data->getName()).c_str(), price, _("credits").c_str());
+            const float menuXOffset = SCREEN_WIDTH_F - 300;
+            const float menuYOffset = SCREEN_HEIGHT_F / 2;
+            subMenu = NEW SimpleMenu(JGE::GetInstance(), MENU_CARD_PURCHASE, this, Fonts::MAIN_FONT, menuXOffset, menuYOffset, buffer);
+            subMenu->Add(MENU_ITEM_YES, "Yes");
+            subMenu->Add(MENU_ITEM_NO, "No", "", true);
+        }
+    }
+    stw->needUpdate = true;
+}
+
+bool GameStateDeckViewer::userPressedButton()
+{
+    return (
+            (toggleDeckButton->ButtonPressed()) 
+            || (sellCardButton->ButtonPressed())
+            );
+  }
+
+void GameStateDeckViewer::setButtonState(bool state)
+{
+    toggleDeckButton->setIsSelectionValid(state);
+    sellCardButton->setIsSelectionValid(state);    
+}
+
 void GameStateDeckViewer::Update(float dt)
 {
 
@@ -341,7 +384,7 @@ void GameStateDeckViewer::Update(float dt)
     unsigned int distance2;
     unsigned int minDistance2 = -1;
     int n = 0;
-
+    
     if (options.keypadActive())
     {
         options.keypadUpdate(dt);
@@ -418,47 +461,41 @@ void GameStateDeckViewer::Update(float dt)
         case JGE_BTN_OK:
             if (mEngine->GetLeftClickCoordinates(x, y))
             {
-              for(int i=0; i < CARDS_DISPLAYED; i++)
-              {
-                distance2 = static_cast<unsigned int>((cardsCoordinates[i].second - y) * (cardsCoordinates[i].second - y) + (cardsCoordinates[i].first - x) * (cardsCoordinates[i].first - x));
-                if (distance2 < minDistance2)
+                // verify that none of the buttons fired
+                if (userPressedButton())
                 {
-                    minDistance2 = distance2;
-                    n = i;
+                    Update(dt);
+                    break;
                 }
-              }
 
-              if(n!=2) {
-                mSelected = n;
-                last_user_activity = 0;
-                mStage = STAGE_TRANSITION_SELECTED;
-              }
-              mEngine->LeftClickedProcessed();
+                for(int i=0; i < CARDS_DISPLAYED; i++)
+                {
+                    distance2 = static_cast<unsigned int>((cardsCoordinates[i].second - y) * (cardsCoordinates[i].second - y) + (cardsCoordinates[i].first - x) * (cardsCoordinates[i].first - x));
+                    if (distance2 < minDistance2)
+                    {
+                        minDistance2 = distance2;
+                        n = i;
+                    }
+                }
+
+                if(n != 2) 
+                {
+                    mSelected = n;
+                    last_user_activity = 0;
+                    mStage = STAGE_TRANSITION_SELECTED;
+                }
+                mEngine->LeftClickedProcessed();
             }
+                
             if(mStage != STAGE_TRANSITION_SELECTED)
             {
                 last_user_activity = 0;
                 addRemove(cardIndex[2]);
             }
+                
             break;
         case JGE_BTN_SEC:
-            last_user_activity = 0;
-            SAFE_DELETE(subMenu);
-            char buffer[4096];
-            {
-                MTGCard * card = cardIndex[2];
-                if (card && displayed_deck->count(card))
-                {
-                    price = pricelist->getSellPrice(card->getMTGId());
-                    sprintf(buffer, "%s : %i %s", _(card->data->getName()).c_str(), price, _("credits").c_str());
-                    const float menuXOffset = SCREEN_WIDTH_F - 300;
-                    const float menuYOffset = SCREEN_HEIGHT_F / 2;
-                    subMenu = NEW SimpleMenu(JGE::GetInstance(), MENU_CARD_PURCHASE, this, Fonts::MAIN_FONT, menuXOffset, menuYOffset, buffer);
-                    subMenu->Add(MENU_ITEM_YES, "Yes");
-                    subMenu->Add(MENU_ITEM_NO, "No", "", true);
-                }
-            }
-            stw->needUpdate = true;
+            sellCard();
             break;
 
         case JGE_BTN_MENU:
@@ -506,6 +543,8 @@ void GameStateDeckViewer::Update(float dt)
             }
             else
                 last_user_activity += dt;
+                
+            break;
         }
 
     }
@@ -747,7 +786,6 @@ void GameStateDeckViewer::renderDeckBackground()
 
 void GameStateDeckViewer::renderOnScreenMenu()
 {
-
     WFont * font = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
     font->SetColor(ARGB(255,255,255,255));
     JRenderer * r = JRenderer::GetInstance();
@@ -1416,9 +1454,8 @@ void GameStateDeckViewer::renderCard(int id)
 
 void GameStateDeckViewer::Render()
 {
-
-    WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
-
+    setButtonState(false);
+    WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);    
     JRenderer::GetInstance()->ClearScreen(ARGB(0,0,0,0));
     if (displayed_deck == myDeck && mStage != STAGE_MENU) 
 		renderDeckBackground();
@@ -1475,19 +1512,28 @@ void GameStateDeckViewer::Render()
     }
     else
     {
+        setButtonState(true);
         renderOnScreenBasicInfo();
-
     }
+    
     if (mStage == STAGE_MENU)
     {
+        setButtonState(false);
         menu->Render();
     }
+    
     if (subMenu) subMenu->Render();
 
-    if (filterMenu && !filterMenu->isFinished()) filterMenu->Render();
-
+    if (filterMenu && !filterMenu->isFinished()) 
+    {
+        setButtonState(false);
+        filterMenu->Render();
+    }
+    
     if (options.keypadActive()) options.keypadRender();
 
+    toggleDeckButton->Render();
+    sellCardButton->Render();
 }
 
 int GameStateDeckViewer::loadDeck(int deckid)
@@ -1688,11 +1734,11 @@ void GameStateDeckViewer::ButtonPressed(int controllerId, int controlId)
     }
 }
 
-void GameStateDeckViewer::OnScroll(int inXVelocity, int inYVelocity)
+void GameStateDeckViewer::OnScroll(int inXVelocity, int inYVelocity, int magnitude)
 {
     bool flickHorizontal = (abs(inXVelocity) > abs(inYVelocity));
-    bool flickUp = inYVelocity < 0 ? true : false;
-    bool flickRight = inXVelocity > 0 ? true : false;
+    bool flickUp = !flickHorizontal && (inYVelocity < 0) ? true : false;
+    bool flickRight = flickHorizontal && (inXVelocity > 0) ? true : false;
 
     if (mStage == STAGE_FILTERS)
     {
@@ -1703,9 +1749,27 @@ void GameStateDeckViewer::OnScroll(int inXVelocity, int inYVelocity)
     }
     else
     {
-        if (flickHorizontal && (abs(inXVelocity) > 300))
-            mEngine->HoldKey_NoRepeat(JGE_BTN_PRI);
-        else if (!flickHorizontal && (abs(inYVelocity) > 300))
+        if (flickHorizontal)
+        {
+            //determine how many cards to move, the faster the velocity the more cards to move.
+            // the display is setup so that there is a max of 2 cards to the left and 7 cards to the right 
+            // of the current card.  
+            int numCards = (magnitude / 500) % 8;
+            int offset = 0;
+            if ( (numCards == 0) && magnitude) numCards = 7;
+            if ( !flickRight) 
+            {
+                if (numCards > 1) 
+                    offset = 0;
+            }
+            else
+                offset = 2 + numCards;
+            
+            mEngine->LeftClickedProcessed();
+            mEngine->LeftClicked(cardsCoordinates[offset].first, cardsCoordinates[offset].second);
+            mEngine->HoldKey_NoRepeat(JGE_BTN_OK);
+        }
+        else
             mEngine->HoldKey_NoRepeat(flickUp ? JGE_BTN_UP : JGE_BTN_DOWN);
     }
 }

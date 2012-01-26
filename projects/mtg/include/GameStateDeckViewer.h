@@ -17,6 +17,7 @@
 #include "DeckStats.h"
 #include "WDataSrc.h"
 #include "WGui.h"
+#include "InteractiveButton.h"
 
 #define NO_USER_ACTIVITY_HELP_DELAY 10
 #define NO_USER_ACTIVITY_SHOWCARD_DELAY 0.1
@@ -95,6 +96,8 @@ private:
     int lastPos;
     int lastTotal;
     int mSelected;
+    
+    InteractiveButton *toggleDeckButton, *sellCardButton;
 
     WGuiFilters * filterMenu;
     WSrcDeckViewer * source;
@@ -118,6 +121,10 @@ private:
     void saveDeck(); //Saves the deck and additional necessary information
     void saveAsAIDeck(string deckName); // saves deck as an AI Deck
     int getCurrentPos();
+    void sellCard();
+    void setButtonState(bool state);
+    bool userPressedButton();
+    
     pair<float, float> cardsCoordinates[CARDS_DISPLAYED];
 
 public:
@@ -143,7 +150,7 @@ public:
     int loadDeck(int deckid);
     void LoadDeckStatistics(int deckId);
 
-    void OnScroll(int inXVelocity, int inYVelocity);
+    void OnScroll(int inXVelocity, int inYVelocity, int magnitude = 0);
 
     void buildEditorMenu();
     virtual void ButtonPressed(int controllerId, int controlId);

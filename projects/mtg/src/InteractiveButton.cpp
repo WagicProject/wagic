@@ -15,6 +15,7 @@
 #include "WResourceManager.h"
 #include "WFont.h"
 
+const int kButtonHeight = 60;
 
 InteractiveButton::InteractiveButton(JGuiController* _parent, int id, int fontId, string text, float x, float y, JButton actionKey, bool hasFocus, bool autoTranslate) :
 SimpleButton( _parent, id, fontId, text, x, y, hasFocus, autoTranslate)
@@ -35,7 +36,7 @@ void InteractiveButton::checkUserClick()
         setIsSelectionValid(false);
         int buttonImageWidth = static_cast<int>(GetWidth());
         int x2 = static_cast<int>(getX()), y2 = static_cast<int>(getY() + mYOffset);
-        int buttonHeight = 50;
+        int buttonHeight = kButtonHeight;
         if ( (x1 >= x2) && (x1 <= (x2 + buttonImageWidth)) && (y1 >= y2) && (y1 < (y2 + buttonHeight)))
             setIsSelectionValid( true );
     }

@@ -14,9 +14,7 @@
 #include "DeckManager.h"
 #include <iomanip>
 
-const int kDismissButtonId = 10000;
-
-SimplePopup::SimplePopup(int id, JGuiListener* listener, const int fontId, const char * _title, DeckMetaData* deckMetaData, MTGAllCards * collection, int cancelX, int cancelY) :
+SimplePopup::SimplePopup(int id, JGuiListener* listener, const int fontId, const char * _title, DeckMetaData* deckMetaData, MTGAllCards * collection, float cancelX, float cancelY) :
     JGuiController(JGE::GetInstance(), id, listener), mFontId(fontId), mCollection(collection)
 {
     mX = 19;

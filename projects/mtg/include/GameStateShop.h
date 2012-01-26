@@ -115,7 +115,7 @@ public:
     virtual void Update(float dt);
     virtual void Render();
     virtual void ButtonPressed(int controllerId, int controlId);
-    virtual void OnScroll(int inXVelocity, int inYVelocity);
+    virtual void OnScroll(int inXVelocity, int inYVelocity, int magnitude = 0);
     static float _x1[], _y1[], _x2[], _y2[], _x3[], _y3[], _x4[], _y4[];
 };
 

@@ -388,6 +388,15 @@ static NSString *_MY_AD_WHIRL_APPLICATION_KEY_IPAD = @"2e70e3f3da40408588b9a3170
     g_engine->ResetInput();
 }
 
+- (int) distanceBetweenPointA: (CGPoint) cp1 andPointB: (CGPoint) cp2
+{
+    int xDist = cp1.x - cp2.x;
+    int yDist = cp1.y - cp2.y;
+    int distance = (int) sqrt( (float) ((xDist * xDist) + (yDist + yDist)));
+
+    return distance;
+}
+
 
 - (void)handlePanMotion: (UIPanGestureRecognizer *) panGesture
 {
@@ -410,21 +419,14 @@ static NSString *_MY_AD_WHIRL_APPLICATION_KEY_IPAD = @"2e70e3f3da40408588b9a3170
         else 
         {   
             CGPoint v2 = [panGesture velocityInView: self];            
-            g_engine->Scroll( static_cast<int>(v2.x), static_cast<int>(v2.y));
-            [self performSelector: @selector(resetInput) withObject: nil afterDelay: 0.1];
+            int magnitude = [self distanceBetweenPointA: currentLocation andPointB: v2];
+            g_engine->Scroll( 0 - static_cast<int>(v2.x), 0 - static_cast<int>(v2.y), static_cast<int>(magnitude));
+            [self performSelector: @selector(resetInput) withObject: nil afterDelay: 0.5];
+
         }
     }
 }
 
-- (int) distanceBetweenPointA: (CGPoint) cp1 andPointB: (CGPoint) cp2
-{
-    int xDist = cp1.x - cp2.x;
-    int yDist = cp1.y - cp2.y;
-    int distance = (int) sqrt( (float) ((xDist * xDist) + (yDist + yDist)));
-
-    NSLog(@"distance between Point A: %@ and Point B: %@ is %i", NSStringFromCGPoint(cp1), NSStringFromCGPoint(cp2), distance);
-    return distance;
-}
 
 - (void)handleSingleTap: (UITapGestureRecognizer *) recognizer {
     [[[recognizer view] layer] removeAllAnimations];

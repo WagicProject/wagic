@@ -445,11 +445,11 @@ void GameApp::Render()
 
 }
 
-void GameApp::OnScroll(int inXVelocity, int inYVelocity)
+void GameApp::OnScroll(int inXVelocity, int inYVelocity, int magnitude)
 {
     if (mCurrentState != NULL)
     {
-        mCurrentState->OnScroll(inXVelocity, inYVelocity);
+        mCurrentState->OnScroll(inXVelocity, inYVelocity, magnitude);
     }
 }
 

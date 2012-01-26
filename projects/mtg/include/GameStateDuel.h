@@ -80,7 +80,7 @@ public:
     virtual void Render();
     void initRand(unsigned seed = 0);
 
-    void OnScroll(int inXVelocity, int inYVelocity);
+    void OnScroll(int inXVelocity, int inYVelocity, int magnitude = 0);
 
     enum ENUM_DUEL_STATE_MENU_ITEM
     {
