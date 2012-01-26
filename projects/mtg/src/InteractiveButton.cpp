@@ -68,13 +68,22 @@ void InteractiveButton::Render()
     float stringWidth = mainFont->GetStringWidth(detailedInfoString.c_str());
     DWORD currentColor = mainFont->GetColor();
 #ifndef TOUCH_ENABLED
-    mXOffset = 5;
+    mXOffset = -5
     mYOffset = 10;
     float boxStartX = getX() - 5;
     float pspIconsSize = 0.5;
-    renderer->FillRoundRect( boxStartX, getY() - 5, stringWidth, mainFont->GetHeight() + 15, .5, ARGB( 255, 0, 0, 0) );
     if (buttonImage != NULL)
-        renderer->RenderQuad(buttonImage.get(), getX(), getY() + 2, 0, pspIconsSize, pspIconsSize);
+    {
+        renderer->FillRoundRect( boxStartX, getY() - 5, stringWidth, mainFont->GetHeight() + 15, .5, ARGB(255, 0, 0, 0) );
+        renderer->RenderQuad(buttonImage.get(), boxStartX + (stringWidth/2), getY() + 2, 0, pspIconsSize, pspIconsSize);
+    }
+    else
+    {
+        mYOffset = -3;
+        mXOffset = 0;
+        renderer->FillRoundRect( boxStartX, getY() - 5, stringWidth + 6, mainFont->GetHeight(), .5, ARGB(255, 192, 172, 119));
+        renderer->DrawRoundRect( boxStartX, getY() - 5, stringWidth + 6, mainFont->GetHeight(), .75, ARGB(255,255,255,255));
+    }
 #else
     mXOffset = 0;
     mYOffset = 0;

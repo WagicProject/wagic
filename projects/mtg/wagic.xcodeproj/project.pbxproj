@@ -1683,6 +1683,7 @@
 				CEA377211291C60500B9016A /* GuiPhaseBar.cpp */,
 				CEA377221291C60500B9016A /* GuiPlay.cpp */,
 				CEA377231291C60500B9016A /* GuiStatic.cpp */,
+				12272FC714CD6A3900192DC7 /* InteractiveButton.cpp */,
 				CEA377241291C60500B9016A /* ManaCost.cpp */,
 				CEA377251291C60500B9016A /* ManaCostHybrid.cpp */,
 				CEA377261291C60500B9016A /* MenuItem.cpp */,
@@ -1707,6 +1708,7 @@
 				CEA3773B1291C60500B9016A /* PriceList.cpp */,
 				CEA3773C1291C60500B9016A /* ReplacementEffects.cpp */,
 				CEA3773D1291C60500B9016A /* Rules.cpp */,
+				12272FC314CD57CF00192DC7 /* SimpleButton.cpp */,
 				CEA3773F1291C60500B9016A /* SimpleMenu.cpp */,
 				CEA377401291C60500B9016A /* SimpleMenuItem.cpp */,
 				CEA377411291C60500B9016A /* SimplePad.cpp */,
@@ -1730,8 +1732,6 @@
 				CEA377551291C60500B9016A /* WFont.cpp */,
 				CEA377561291C60500B9016A /* WGui.cpp */,
 				CEA377571291C60500B9016A /* WResourceManager.cpp */,
-				12272FC314CD57CF00192DC7 /* SimpleButton.cpp */,
-				12272FC714CD6A3900192DC7 /* InteractiveButton.cpp */,
 			);
 			path = src;
 			sourceTree = "<group>";
