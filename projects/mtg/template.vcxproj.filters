@@ -322,6 +322,12 @@
     <ClCompile Include="src\AbilityParser.cpp">
       <Filter>src</Filter>
     </ClCompile>
+     <ClCompile Include="src\InteractiveButton.cpp">
+       <Filter>src</Filter>
+     </ClCompile>
+     <ClCompile Include="src\SimpleButton.cpp">
+       <Filter>src</Filter>
+     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\ActionElement.h">
@@ -658,6 +664,12 @@
       <Filter>res</Filter>
     </ClInclude>
     <ClInclude Include="include\IconButton.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\InteractiveButton.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SimpleButton.h">
       <Filter>inc</Filter>
     </ClInclude>
     <ClInclude Include="include\AIPlayerBaka.h">

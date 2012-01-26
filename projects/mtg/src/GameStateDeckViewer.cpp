@@ -1766,7 +1766,7 @@ void GameStateDeckViewer::OnScroll(int inXVelocity, int inYVelocity, int magnitu
                 offset = 2 + numCards;
             
             mEngine->LeftClickedProcessed();
-            mEngine->LeftClicked(cardsCoordinates[offset].first, cardsCoordinates[offset].second);
+            mEngine->LeftClicked(static_cast<int>(cardsCoordinates[offset].first), static_cast<int>(cardsCoordinates[offset].second));
             mEngine->HoldKey_NoRepeat(JGE_BTN_OK);
         }
         else
