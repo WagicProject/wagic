@@ -68,7 +68,7 @@ void InteractiveButton::Render()
     float stringWidth = mainFont->GetStringWidth(detailedInfoString.c_str());
     DWORD currentColor = mainFont->GetColor();
 #ifndef TOUCH_ENABLED
-    mXOffset = -5
+    mXOffset = -5;
     mYOffset = 10;
     float boxStartX = getX() - 5;
     float pspIconsSize = 0.5;
