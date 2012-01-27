@@ -389,7 +389,7 @@ void GameStateAwards::ButtonPressed(int controllerId, int controlId)
     }
 }
 
-void GameStateAwards::OnScroll(int inXVelocity, int inYVelocity, int magnitude)
+void GameStateAwards::OnScroll(int inXVelocity, int inYVelocity)
 {
     if (abs(inYVelocity) > 300)
     {

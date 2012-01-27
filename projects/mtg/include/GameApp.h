@@ -80,7 +80,7 @@ public:
     virtual void Pause();
     virtual void Resume();
 
-    virtual void OnScroll(int inXVelocity, int inYVelocity, int magnitude = 0);
+    virtual void OnScroll(int inXVelocity, int inYVelocity);
 
     void LoadGameStates();
     void SetNextState(int state);

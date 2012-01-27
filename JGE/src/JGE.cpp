@@ -577,11 +577,11 @@ void JGE::Assert(const char *filename, long lineNumber)
     mCriticalAssert = true;
 }
 
-void JGE::Scroll(int inXVelocity, int inYVelocity, int magnitude)
+void JGE::Scroll(int inXVelocity, int inYVelocity)
 {
     if (mApp != NULL)
     {
-        mApp->OnScroll(inXVelocity, inYVelocity, magnitude);
+        mApp->OnScroll(inXVelocity, inYVelocity);
     }
 }
 

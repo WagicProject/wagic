@@ -331,7 +331,7 @@ class JGE
 
 
   // Scroll events - currently triggered by SDL JOYBALL events
-  void Scroll(int inXVelocity, int inYVelocity, int magnitude);
+  void Scroll(int inXVelocity, int inYVelocity);
 
   //////////////////////////////////////////////////////////////////////////
   /// Get if the system is ended/paused or not.

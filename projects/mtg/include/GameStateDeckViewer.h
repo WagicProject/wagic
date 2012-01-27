@@ -150,7 +150,7 @@ public:
     int loadDeck(int deckid);
     void LoadDeckStatistics(int deckId);
 
-    void OnScroll(int inXVelocity, int inYVelocity, int magnitude = 0);
+    void OnScroll(int inXVelocity, int inYVelocity);
 
     void buildEditorMenu();
     virtual void ButtonPressed(int controllerId, int controlId);

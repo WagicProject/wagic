@@ -931,7 +931,7 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
     }
 }
 
-void GameStateDuel::OnScroll(int inXVelocity, int inYVelocity, int magnitude)
+void GameStateDuel::OnScroll(int inXVelocity, int inYVelocity)
 {
     // ignore magnitude for now, since no action requires scrolling
     if (abs(inYVelocity) > 300)

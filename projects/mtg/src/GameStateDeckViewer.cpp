@@ -1734,8 +1734,10 @@ void GameStateDeckViewer::ButtonPressed(int controllerId, int controlId)
     }
 }
 
-void GameStateDeckViewer::OnScroll(int inXVelocity, int inYVelocity, int magnitude)
+void GameStateDeckViewer::OnScroll(int inXVelocity, int inYVelocity)
 {
+    int magnitude = static_cast<int>( sqrtf( (float )( (inXVelocity * inXVelocity) + (inXVelocity * inXVelocity))));
+    
     bool flickHorizontal = (abs(inXVelocity) > abs(inYVelocity));
     bool flickUp = !flickHorizontal && (inYVelocity < 0) ? true : false;
     bool flickRight = flickHorizontal && (inXVelocity > 0) ? true : false;
