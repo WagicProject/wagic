@@ -66,7 +66,7 @@ void InteractiveButton::Render()
     WFont *mainFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
     const string detailedInfoString = _(getText());
     float stringWidth = mainFont->GetStringWidth(detailedInfoString.c_str());
-    DWORD currentColor = mainFont->GetColor();
+    
 #ifndef TOUCH_ENABLED
     mXOffset = -5;
     mYOffset = 10;
@@ -81,16 +81,16 @@ void InteractiveButton::Render()
     {
         mYOffset = -3;
         mXOffset = 0;
-        renderer->FillRoundRect( boxStartX, getY() - 5, stringWidth + 6, mainFont->GetHeight(), .5, ARGB(255, 192, 172, 119));
+        renderer->FillRoundRect( boxStartX, getY() - 5, stringWidth , mainFont->GetHeight(), .5, ARGB(255, 192, 172, 119));
         renderer->DrawRoundRect( boxStartX, getY() - 5, stringWidth + 6, mainFont->GetHeight(), .75, ARGB(255,255,255,255));
     }
 #else
     mXOffset = 0;
     mYOffset = 0;
-    renderer->FillRoundRect(getX() - 5, getY(), stringWidth + 6, mainFont->GetHeight(), .5, ARGB(255, 192, 172, 119));
-    renderer->DrawRoundRect(getX() - 5, getY(), stringWidth + 6, mainFont->GetHeight(), .75, ARGB(255,255,255,255));
+    renderer->FillRoundRect(getX() - 5, getY(), stringWidth - 3, mainFont->GetHeight() - 9, 5, ARGB(255, 192, 172, 119));
+    renderer->DrawRoundRect(getX() - 5, getY(), stringWidth - 3, mainFont->GetHeight() - 9, 5, ARGB(255,255,255,255));
 #endif
-    mainFont->SetColor(currentColor);
+    mainFont->SetColor( ARGB(255, 200, 200, 200) );
     mainFont->DrawString(detailedInfoString, getX() - mXOffset, getY() + mYOffset);
     
 }
