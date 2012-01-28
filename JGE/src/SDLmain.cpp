@@ -253,9 +253,7 @@ public:
 
         case SDL_JOYBALLMOTION:
             DebugTrace("Flick gesture detected, x: " << Event->jball.xrel << ", y: " << Event->jball.yrel);
-			int magnitude = static_cast<int>(sqrt( powf( Event->jball.xrel, 2) + powf( Event->jball.yrel, 2)));
-
-            g_engine->Scroll(Event->jball.xrel, Event->jball.yrel, magnitude);
+            g_engine->Scroll(Event->jball.xrel, Event->jball.yrel);
             break;
         }
     }
