@@ -1,4 +1,4 @@
-#include "PrecompiledHeader.h"
+    #include "PrecompiledHeader.h"
 
 #include "DeckMenuItem.h"
 #include "Translate.h"
@@ -11,22 +11,23 @@
 
 const int kHorizontalScrollSpeed = 30; // higher numbers mean faster scrolling
 
-DeckMenuItem::DeckMenuItem(DeckMenu* _parent, int id, int fontId, string text, float x, float y, bool hasFocus, bool autoTranslate, DeckMetaData *deckMetaData): SimpleMenuItem(NULL, id, fontId, text, x, y, hasFocus, autoTranslate)
-{
-    mEngine = JGE::GetInstance();
-    deckController = _parent;
+float DeckMenuItem::mYOffset = 0;
 
+DeckMenuItem::DeckMenuItem(DeckMenu* _parent, int id, int fontId, string text, float x, float y, bool hasFocus, bool autoTranslate, DeckMetaData *deckMetaData)
+                        : JGuiObject(id), parent(_parent), fontId(fontId), mX(x), mY(y)
+{
 	WFont * mFont = WResourceManager::Instance()->GetWFont(fontId);
-    meta = deckMetaData;
+    mMetaData = deckMetaData;
 	mText = trim(text);
+    mIsValidSelection = false;
     
 	if (autoTranslate)
 		mText = _(mText);	
     
-    mXOffset = kItemXOffset;
 
+    mHasFocus = hasFocus;
 	float newImageWidth = 0.0f;
-    if (meta && !meta->getGamesPlayed())
+    if (mMetaData && !mMetaData->getGamesPlayed())
     {
         JTexture * tex = WResourceManager::Instance()->RetrieveTexture("new.png");
         if (tex)
@@ -43,35 +44,36 @@ DeckMenuItem::DeckMenuItem(DeckMenu* _parent, int id, int fontId, string text, f
 
 	if (hasFocus)
     {
-        setIsSelectionValid( true );
+        mIsValidSelection = true;
         Entering();
     }
     
-    if (meta && meta->getAvatarFilename().size() > 0)
-        this->imageFilename = meta->getAvatarFilename();
+    if (mMetaData && mMetaData->getAvatarFilename().size() > 0)
+        mImageFilename = mMetaData->getAvatarFilename();
     else 
     {
         // this is a non-deck menu item (ie "Random", "Cancel", etc
         switch(id)
         {
             case kRandomPlayerMenuID:
-                this->imageFilename = "noavatar.jpg";
+                mImageFilename = "noavatar.jpg";
                 break;
             case kRandomAIPlayerMenuID:
-                this->imageFilename = "noavatar.jpg";
+                mImageFilename = "noavatar.jpg";
                 break;
             case kEvilTwinMenuID:
                 {
-                    this->imageFilename = "EvilTwinAvatar";
+                    mImageFilename = "EvilTwinAvatar";
                     break;
                 }
             default:
-                this->imageFilename = "noavatar.jpg";
+				 mImageFilename = "noavatar.jpg";
                 // do nothing.  
                 break;
         }
         
     }
+    
     
 	mDisplayInitialized = false;
 
@@ -87,99 +89,105 @@ void DeckMenuItem::Update(float dt)
 
 void DeckMenuItem::RenderWithOffset(float yOffset)
 {
-    SimpleMenuItem::mYOffset = yOffset;
+  mYOffset = yOffset;
 
-    WFont * mFont = WResourceManager::Instance()->GetWFont(getFontId());
+    WFont * mFont = WResourceManager::Instance()->GetWFont(fontId);
 	
-	if (!( hasFocus() && mScrollEnabled ))
+	if (!( mHasFocus && mScrollEnabled ))
 		mScrollerOffset = 0;
-	if (!hasFocus() && mScrollEnabled)
-		mScrollerOffset = -1 * ( GetWidth() - ITEM_PX_WIDTH )/2;
+	if (!mHasFocus && mScrollEnabled)
+		mScrollerOffset = -1 * ( getWidth() - ITEM_PX_WIDTH )/2;
 	float offSet = mScrollerOffset;
 
-	mFont->DrawString( getText().c_str(), getX(), getY() + yOffset, JGETEXT_CENTER, offSet, ITEM_PX_WIDTH);
+	mFont->DrawString(mText.c_str(), mX, mY + yOffset, JGETEXT_CENTER, offSet, ITEM_PX_WIDTH);
 	mDisplayInitialized = true;
 	//Render a "new" icon for decks that have never been played yet
-    if (meta && !meta->getGamesPlayed())
+    if (mMetaData && !mMetaData->getGamesPlayed())
     {
         JTexture * tex = WResourceManager::Instance()->RetrieveTexture("new.png");
         if (tex)
         {
             JQuadPtr quad = WResourceManager::Instance()->RetrieveQuad("new.png", 2.0f, 2.0f, tex->mWidth - 4.0f, tex->mHeight - 4.0f); //avoids weird rectangle aroudn the texture because of bilinear filtering
             quad->SetHotSpot(quad->mWidth/2.0f, quad->mHeight/2.0f);
-            float x = getX() + min(ITEM_PX_WIDTH - quad->mWidth, GetWidth() )/2 + quad->mWidth/2;
-            if (quad) 
-                JRenderer::GetInstance()->RenderQuad(quad.get(), x , getY() + yOffset + quad->mHeight/2, 0.5);
+            float x = mX + min(ITEM_PX_WIDTH - quad->mWidth, getWidth() )/2 + quad->mWidth/2;
+            if (quad) JRenderer::GetInstance()->RenderQuad(quad.get(), x , mY + yOffset + quad->mHeight/2, 0.5);
         }
     }
 }
 
-void DeckMenuItem::Render() 
+void DeckMenuItem::Render()
 {
     RenderWithOffset(0);
 }
 
-void DeckMenuItem::Relocate(float x, float y)
+void DeckMenuItem::checkUserClick()
 {
-    setX( x );
-    setY( y );
+	int x1 = -1, y1 = -1;
+    if (mEngine->GetLeftClickCoordinates(x1, y1))
+    {   
+        mIsValidSelection = false;
+        int x2 = kItemXOffset, y2 = static_cast<int>(mY + mYOffset);
+        if ( (x1 >= x2) && (x1 <= (x2 + ITEM_PX_WIDTH)) && (y1 >= y2) && (y1 < (y2 + kItemYHeight)))
+            mIsValidSelection = true;
+    }
+	else
+		mIsValidSelection = true;
 }
+
 
 void DeckMenuItem::Entering()
 {
     checkUserClick();
-    setFocus(true);
-    deckController->mSelectionTargetY = getY();
+    mHasFocus = true;
+    parent->mSelectionTargetY = mY;
 }
-
 
 bool DeckMenuItem::Leaving(JButton key)
 {
-    return SimpleMenuItem::Leaving(key);
+    // check to see if the user clicked on the object, if so return true.  
+    checkUserClick();
+    mHasFocus = false;
+    return true;
 }
 
 bool DeckMenuItem::ButtonPressed()
 {
-    return SimpleMenuItem::ButtonPressed();
+    return mIsValidSelection;
 }
 
-
-void DeckMenuItem::checkUserClick()
+void DeckMenuItem::Relocate(float x, float y)
 {
-    int x1 = -1, y1 = -1;
-    if (mEngine->GetLeftClickCoordinates(x1, y1))
-    {   
-        SimpleMenuItem::setIsSelectionValid( false );
-        int x2 = static_cast<int>(mXOffset), y2 = static_cast<int>(getY() + mYOffset);
-        if ( (x1 >= x2) && (x1 <= (x2 + 200)) && (y1 >= y2) && (y1 < (y2 + 30)))
-            setIsSelectionValid( true );
-    }
-    else
-        setIsSelectionValid( true );
+    mX = x;
+    mY = y;
 }
 
-// Accessors
-float DeckMenuItem::GetWidth()
+float DeckMenuItem::getWidth() const
 {
-    WFont * mFont = WResourceManager::Instance()->GetWFont(getFontId());
-    return mFont->GetStringWidth(getText().c_str());
+    WFont * mFont = WResourceManager::Instance()->GetWFont(fontId);
+    return mFont->GetStringWidth(mText.c_str());
+}
+
+string DeckMenuItem::getDeckName() const
+{
+	if (mMetaData)
+		return mMetaData->getName();
+
+	std::string s;
+	std::stringstream out;
+	out << mMetaData->getDeckId();
+	s = out.str();
+	return "[deck" + s + "]";
 }
 
 ostream& DeckMenuItem::toString(ostream& out) const
 {
-    return out << "DeckMenuItem ::: mHasFocus : " << hasFocus()
-                 << " ; parent : " << deckController
-                 << " ; mText : " << getText()
-                 << " ; mX,mY : " << getX() << "," << getY();
+    return out << "DeckMenuItem ::: mHasFocus : " << mHasFocus
+                 << " ; parent : " << parent
+                 << " ; mText : " << mText
+                 << " ; mX,mY : " << mX << "," << mY;
 }
-
-JGuiController* DeckMenuItem::getParent() const
-{
-    return deckController;
-}
-
 
 DeckMenuItem::~DeckMenuItem()
 {
-    meta = NULL;
+    mMetaData = NULL;
 }

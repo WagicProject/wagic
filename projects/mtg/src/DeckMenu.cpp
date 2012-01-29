@@ -233,15 +233,16 @@ void DeckMenu::Render()
         if (currentMenuItem->getY() - kLineHeight * startId < mY + height - kLineHeight + 7)
         {
             // only load stats for visible items in the list
-            if (currentMenuItem->meta && !currentMenuItem->meta->mStatsLoaded)
+			DeckMetaData* metaData = currentMenuItem->getMetaData();
+            if (metaData && !metaData->mStatsLoaded)
             {
-                currentMenuItem->meta->LoadStats();
+                metaData->LoadStats();
 			}
 
             if (currentMenuItem->hasFocus())
             {
                 mSelectedDeckId = i;
-                mSelectedDeck = currentMenuItem->meta;
+                mSelectedDeck = metaData;
                 WFont *mainFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
 
                 // display the "more info" button if special condition is met
@@ -255,10 +256,10 @@ void DeckMenu::Render()
                     dismissButton->setIsSelectionValid(false);
                 }
                 // display the avatar image
-                if (currentMenuItem->imageFilename.size() > 0)
+                if (currentMenuItem->getImageFilename().size() > 0)
                 {
                     JQuadPtr quad;
-                    if(currentMenuItem->imageFilename == "EvilTwinAvatar")
+                    if(currentMenuItem->getImageFilename() == "EvilTwinAvatar")
                     {
                         quad = WResourceManager::Instance()->RetrieveTempQuad("avatar.jpg", TEXTURE_SUB_AVATAR);
                         if(quad.get())
@@ -271,7 +272,7 @@ void DeckMenu::Render()
                     }
                     else
                     {
-                        quad = WResourceManager::Instance()->RetrieveTempQuad(currentMenuItem->imageFilename, TEXTURE_SUB_AVATAR);
+                        quad = WResourceManager::Instance()->RetrieveTempQuad(currentMenuItem->getImageFilename(), TEXTURE_SUB_AVATAR);
                         if (quad.get())
                             renderer->RenderQuad(quad.get(), avatarX, avatarY);
 
@@ -284,11 +285,11 @@ void DeckMenu::Render()
                 mFont->SetColor(ARGB(255,255,255,255));
                 
                 // fill in the statistical portion
-                if (currentMenuItem->meta)
+                if (currentMenuItem->hasMetaData())
                 {
                     ostringstream oss;
-                    oss << _("Deck: ") << currentMenuItem->meta->getName() << endl;
-                    oss << currentMenuItem->meta->getStatsSummary();
+                    oss << _("Deck: ") << currentMenuItem->getDeckName() << endl;
+                    oss << currentMenuItem->getDeckStatsSummary();
                     mainFont->DrawString(oss.str(), statsX, statsY);
                 }
             }
