@@ -73,7 +73,7 @@ public:
         return g_startTimer.elapsed();
     };
     Q_INVOKABLE void doScroll(int x, int y, int magnitude) {
-        m_engine->Scroll(x, y, magnitude);
+        m_engine->Scroll(x, y);
     };
     int getNominalHeight(){ return SCREEN_HEIGHT;};
     int getNominalWidth(){ return SCREEN_WIDTH;};
