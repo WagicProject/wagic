@@ -19,7 +19,7 @@ SimpleButton::SimpleButton(int id): JGuiObject(id)
 }
 
 SimpleButton::SimpleButton(JGuiController* _parent, int id, int fontId, string text, float x, float y, bool hasFocus, bool autoTranslate) :
-JGuiObject(id), parent(_parent), mX(x), mY(y), mFontId(fontId)
+JGuiObject(id), mX(x), mY(y), parent(_parent), mFontId(fontId)
 {
     mYOffset = 0;
     if (autoTranslate)
