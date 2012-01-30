@@ -15,7 +15,7 @@
 #include "WResourceManager.h"
 #include "WFont.h"
 
-const int kButtonHeight = 60;
+const int kButtonHeight = 30;
 
 InteractiveButton::InteractiveButton(JGuiController* _parent, int id, int fontId, string text, float x, float y, JButton actionKey, bool hasFocus, bool autoTranslate) :
 SimpleButton( _parent, id, fontId, text, x, y, hasFocus, autoTranslate)
@@ -66,40 +66,39 @@ void InteractiveButton::Render()
     WFont *mainFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
     const string detailedInfoString = _(getText());
     float stringWidth = mainFont->GetStringWidth(detailedInfoString.c_str());
+    float pspIconsSize = 0.5;
+    float mainFontHeight = mainFont->GetHeight();
+    float boxStartX = 0;
     
 #ifndef TOUCH_ENABLED
     mXOffset = -5;
     mYOffset = 10;
-    float boxStartX = getX() - 5;
-    float pspIconsSize = 0.5;
-    if (buttonImage != NULL)
-    {
-        renderer->FillRoundRect( boxStartX, getY() - 5, stringWidth, mainFont->GetHeight() + 15, .5, ARGB(255, 0, 0, 0) );
-        renderer->RenderQuad(buttonImage.get(), boxStartX + (stringWidth/2), getY() + 2, 0, pspIconsSize, pspIconsSize);
-    }
-    else
-    {
-        mYOffset = -3;
-        mXOffset = 0;
-        renderer->FillRoundRect( boxStartX, getY() - 5, stringWidth , mainFont->GetHeight(), .5, ARGB(255, 192, 172, 119));
-        renderer->DrawRoundRect( boxStartX, getY() - 5, stringWidth + 6, mainFont->GetHeight(), .75, ARGB(255,255,255,255));
-    }
+    boxStartX = getX() - 5;
+    renderer->FillRoundRect( boxStartX, getY() - 5, stringWidth, mainFontHeight + 15, .5, ARGB( 255, 0, 0, 0) );
 #else
     mXOffset = 0;
     mYOffset = 0;
-    renderer->FillRoundRect(getX() - 5, getY(), stringWidth - 3, mainFont->GetHeight() - 9, 5, ARGB(255, 192, 172, 119));
-    renderer->DrawRoundRect(getX() - 5, getY(), stringWidth - 3, mainFont->GetHeight() - 9, 5, ARGB(255,255,255,255));
+    boxStartX = getX() - 5;
+    renderer->FillRoundRect(boxStartX, getY(), stringWidth - 3, mainFont->GetHeight() - 9, 5, ARGB(255, 192, 172, 119));
+    renderer->DrawRoundRect(boxStartX, getY(), stringWidth - 3, mainFont->GetHeight() - 9, 5, ARGB(255, 255, 255, 255));
 #endif
-    mainFont->SetColor( ARGB(255, 200, 200, 200) );
-    mainFont->DrawString(detailedInfoString, getX() - mXOffset, getY() + mYOffset);
-    
+    float buttonXOffset = getX() - mXOffset;
+    float buttonYOffset = getY() + mYOffset;
+    if (buttonImage != NULL)
+    {
+        renderer->RenderQuad(buttonImage.get(), buttonXOffset - buttonImage.get()->mWidth/2, buttonYOffset + mainFontHeight/2, 0, pspIconsSize, pspIconsSize);
+    }
+    mainFont->SetColor(ARGB(255, 200, 200, 200));
+    mainFont->DrawString(detailedInfoString, buttonXOffset, buttonYOffset);
 }
 
-void InteractiveButton::setImage( const JQuadPtr imagePtr, float xOffset, float yOffset)
+void InteractiveButton::setImage( const JQuadPtr imagePtr )
 {
     buttonImage = imagePtr;
-    mXOffset = xOffset;
-    mYOffset = yOffset;
+    float imageXOffset = getX() - buttonImage.get()->mWidth;
+    
+    if (imageXOffset < 0)
+        setX( getX() - imageXOffset/2 + 5 );
 }
 
 /* Accessors */

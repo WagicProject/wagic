@@ -198,6 +198,7 @@ void DeckMenu::initMenuItems()
     }
     mSelectionTargetY = selectionY = sY;
 
+#ifndef TOUCH_ENABLED
     //Grab a texture in VRAM.
     pspIconsTexture = WResourceManager::Instance()->RetrieveTexture("iconspsp.png", RETRIEVE_MANAGE);
 
@@ -209,6 +210,7 @@ void DeckMenu::initMenuItems()
         pspIcons[i]->SetHotSpot(16, 16);
     }
     dismissButton->setImage(pspIcons[5]);
+#endif
 }
 
 void DeckMenu::Render()

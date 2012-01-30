@@ -59,8 +59,12 @@ GameStateDeckViewer::GameStateDeckViewer(GameApp* parent) :
     menu = NULL;
     stw = NULL;
     
-    toggleDeckButton = NEW InteractiveButton(NULL, kToggleDeckActionId, Fonts::MAIN_FONT, "View Deck", 10, 10, JGE_BTN_PRI);
-    sellCardButton = NEW InteractiveButton(NULL, kSellCardActionId, Fonts::MAIN_FONT, "Sell Card", (SCREEN_WIDTH_F/ 2) - 100, SCREEN_HEIGHT_F - 40, JGE_BTN_SEC);
+    toggleDeckButton = NEW InteractiveButton(NULL, kToggleDeckActionId, Fonts::MAIN_FONT, "View Deck", 10, SCREEN_HEIGHT_F - 15, JGE_BTN_PRI);
+    sellCardButton = NEW InteractiveButton(NULL, kSellCardActionId, Fonts::MAIN_FONT, "Sell Card", (SCREEN_WIDTH_F/ 2) - 100, SCREEN_HEIGHT_F - 15, JGE_BTN_SEC);
+    statsNextButton = NEW InteractiveButton(NULL, kNextStatsButtonId, Fonts::MAIN_FONT, "Stats ->", SCREEN_WIDTH_F - 50, SCREEN_HEIGHT_F - 40, JGE_BTN_NEXT);
+    statsPrevButton = NEW InteractiveButton(NULL, kPrevStatsButtonId, Fonts::MAIN_FONT, "<- Stats", SCREEN_WIDTH_F - 115, SCREEN_HEIGHT_F - 40, JGE_BTN_PREV);
+    menuButton = NEW InteractiveButton(NULL, kMenuButtonId, Fonts::MAIN_FONT, "menu", SCREEN_WIDTH_F - 35, SCREEN_HEIGHT_F - 15, JGE_BTN_MENU);
+    filterButton = NEW InteractiveButton(NULL, kFilterButtonId, Fonts::MAIN_FONT, "filter", (SCREEN_WIDTH_F - 95), SCREEN_HEIGHT_F - 15, JGE_BTN_CTRL);
 }
 
 GameStateDeckViewer::~GameStateDeckViewer()
@@ -68,6 +72,10 @@ GameStateDeckViewer::~GameStateDeckViewer()
     SAFE_DELETE(bgMusic);
     SAFE_DELETE(toggleDeckButton);
     SAFE_DELETE(sellCardButton);
+    SAFE_DELETE(statsPrevButton);
+    SAFE_DELETE(statsNextButton);
+    SAFE_DELETE(menuButton);
+    SAFE_DELETE(filterButton);
     
     if (myDeck)
     {
@@ -250,7 +258,11 @@ void GameStateDeckViewer::Start()
         pspIcons[i] = WResourceManager::Instance()->RetrieveQuad("iconspsp.png", (float) i * 32, 0, 32, 32, buf);
         pspIcons[i]->SetHotSpot(16, 16);
     }
-
+#ifndef TOUCH_ENABLED
+    toggleDeckButton->setImage( pspIcons[6] );
+    sellCardButton->setImage( pspIcons[7] );
+#endif
+    
     //init welcome menu
     updateDecks();
 
@@ -368,13 +380,32 @@ bool GameStateDeckViewer::userPressedButton()
     return (
             (toggleDeckButton->ButtonPressed()) 
             || (sellCardButton->ButtonPressed())
+            || (statsNextButton->ButtonPressed())
+            || (statsPrevButton->ButtonPressed())
+            || (menuButton->ButtonPressed())
+            || (filterButton->ButtonPressed())
             );
   }
 
 void GameStateDeckViewer::setButtonState(bool state)
 {
     toggleDeckButton->setIsSelectionValid(state);
-    sellCardButton->setIsSelectionValid(state);    
+    sellCardButton->setIsSelectionValid(state);
+    statsNextButton->setIsSelectionValid(state);
+    statsPrevButton->setIsSelectionValid(state);
+    filterButton->setIsSelectionValid(state);
+    menuButton->setIsSelectionValid(state);
+    
+}
+
+void GameStateDeckViewer::RenderButtons()
+{
+    toggleDeckButton->Render();
+    sellCardButton->Render();
+    menuButton->Render();
+    filterButton->Render();
+    statsNextButton->Render();
+    statsPrevButton->Render();
 }
 
 void GameStateDeckViewer::Update(float dt)
@@ -840,10 +871,12 @@ void GameStateDeckViewer::renderOnScreenMenu()
             font->DrawString(_("View Collection"), rightPspX - 20, rightPspY - 15, JGETEXT_RIGHT);
         }
         font->DrawString(_("Sell card"), rightPspX - 30, rightPspY + 20);
+
         //Bottom menus
+#ifndef TOUCH_ENABLED
         font->DrawString(_("menu"), SCREEN_WIDTH - 35 + rightTransition, SCREEN_HEIGHT - 15);
         font->DrawString(_("filter"), SCREEN_WIDTH - 95 + rightTransition, SCREEN_HEIGHT - 15);
-
+#endif
         //Your Deck Information
         char buffer[300];
         int nb_letters = 0;
@@ -897,9 +930,10 @@ void GameStateDeckViewer::renderOnScreenMenu()
         r->FillRect(SCREEN_WIDTH / 2 + rightTransition, 0, SCREEN_WIDTH / 2, SCREEN_HEIGHT, ARGB(128,0,0,0));
         r->FillRect(10 + leftTransition, 10, SCREEN_WIDTH / 2 - 10, SCREEN_HEIGHT - 20, ARGB(128,0,0,0));
         r->FillRect(SCREEN_WIDTH / 2 + rightTransition, 10, SCREEN_WIDTH / 2 - 10, SCREEN_HEIGHT - 20, ARGB(128,0,0,0));
+#ifndef TOUCH_ENABLED
         font->DrawString(_("menu"), SCREEN_WIDTH - 35 + rightTransition, SCREEN_HEIGHT - 15);
         font->DrawString(_("filter"), SCREEN_WIDTH - 95 + rightTransition, SCREEN_HEIGHT - 15);
-
+#endif
         int nb_letters = 0;
         float posX, posY;
         DWORD graphColor;
@@ -1496,6 +1530,7 @@ void GameStateDeckViewer::Render()
 
     if (displayed_deck->Size() > 0)
     {
+        setButtonState(true);
         renderSlideBar();
     }
     else
@@ -1508,6 +1543,7 @@ void GameStateDeckViewer::Render()
     }
     else if (mStage == STAGE_WELCOME)
     {
+        setButtonState(false);
         welcome_menu->Render();
     }
     else
@@ -1532,8 +1568,7 @@ void GameStateDeckViewer::Render()
     
     if (options.keypadActive()) options.keypadRender();
 
-    toggleDeckButton->Render();
-    sellCardButton->Render();
+    RenderButtons();
 }
 
 int GameStateDeckViewer::loadDeck(int deckid)

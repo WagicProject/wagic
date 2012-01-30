@@ -97,7 +97,7 @@ private:
     int lastTotal;
     int mSelected;
     
-    InteractiveButton *toggleDeckButton, *sellCardButton;
+    InteractiveButton *toggleDeckButton, *sellCardButton, *statsNextButton, *statsPrevButton, *menuButton, *filterButton;
 
     WGuiFilters * filterMenu;
     WSrcDeckViewer * source;
@@ -124,6 +124,7 @@ private:
     void sellCard();
     void setButtonState(bool state);
     bool userPressedButton();
+    void RenderButtons();
     
     pair<float, float> cardsCoordinates[CARDS_DISPLAYED];
 

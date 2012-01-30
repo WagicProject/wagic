@@ -22,6 +22,10 @@ using std::string;
 const int kDismissButtonId       = 10000;
 const int kToggleDeckActionId    = 10001;
 const int kSellCardActionId      = 10002;
+const int kMenuButtonId          = 10003;
+const int kFilterButtonId        = 10004;
+const int kNextStatsButtonId     = 10005;
+const int kPrevStatsButtonId     = 10006;
 
 class InteractiveButton: public SimpleButton
 {
@@ -34,9 +38,8 @@ public:
     
     virtual void Entering();
     virtual bool ButtonPressed();
-    virtual void setImage( const JQuadPtr imagePtr, float xOffset = 0, float yOffset = 0);
+    virtual void setImage( const JQuadPtr imagePtr );
     virtual void checkUserClick();
-//virtual void Update(float dt);
     virtual void Render();
     virtual ostream& toString(ostream& out) const;
     
