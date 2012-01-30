@@ -1769,14 +1769,24 @@ void GameStateDeckViewer::ButtonPressed(int controllerId, int controlId)
     }
 }
 
+/*
+  to keep actions consistent across the different platforms, we need to branch the way swipes are interpreted.  iOS5 changes
+ the way a swipe moves a document on the page.  swipe down is to simulate dragging the page down instead of moving down 
+ on a page.
+ */
 void GameStateDeckViewer::OnScroll(int inXVelocity, int inYVelocity)
 {
     int magnitude = static_cast<int>( sqrtf( (float )( (inXVelocity * inXVelocity) + (inXVelocity * inXVelocity))));
     
     bool flickHorizontal = (abs(inXVelocity) > abs(inYVelocity));
+#ifdef IOS
+    bool flickUp = !flickHorizontal && (inYVelocity > 0) ? true : false;
+    bool flickRight = flickHorizontal && (inXVelocity < 0) ? true : false;
+#else
     bool flickUp = !flickHorizontal && (inYVelocity < 0) ? true : false;
     bool flickRight = flickHorizontal && (inXVelocity > 0) ? true : false;
-
+#endif
+    
     if (mStage == STAGE_FILTERS)
     {
         if (flickHorizontal)
