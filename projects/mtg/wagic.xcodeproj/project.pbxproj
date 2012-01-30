@@ -1562,6 +1562,7 @@
 				CEA376B71291C60500B9016A /* GuiPhaseBar.h */,
 				CEA376B81291C60500B9016A /* GuiPlay.h */,
 				CEA376B91291C60500B9016A /* GuiStatic.h */,
+				12272FC614CD68FB00192DC7 /* InteractiveButton.h */,
 				CEA376BA1291C60500B9016A /* ManaCost.h */,
 				CEA376BB1291C60500B9016A /* ManaCostHybrid.h */,
 				CEA376BC1291C60500B9016A /* MenuItem.h */,
@@ -1612,7 +1613,6 @@
 				CEA376EA1291C60500B9016A /* WFont.h */,
 				CEA376EB1291C60500B9016A /* WGui.h */,
 				CEA376EC1291C60500B9016A /* WResourceManager.h */,
-				12272FC614CD68FB00192DC7 /* InteractiveButton.h */,
 			);
 			path = include;
 			sourceTree = "<group>";

@@ -435,7 +435,6 @@ static NSString *_MY_AD_WHIRL_APPLICATION_KEY_IPAD = @"2e70e3f3da40408588b9a3170
 
     CGPoint newCoordinates = [self normalizeClickCoordinatesWithPoint: currentLocation];
     g_engine->LeftClicked( newCoordinates.x, newCoordinates.y);
-    g_engine->HoldKey_NoRepeat(JGE_BTN_NONE);
 
     BOOL clickedWithinGameArea = (currentLocation.y > es2renderer.viewPort.top && 
                                   currentLocation.y < es2renderer.viewPort.bottom &&
@@ -467,7 +466,6 @@ static NSString *_MY_AD_WHIRL_APPLICATION_KEY_IPAD = @"2e70e3f3da40408588b9a3170
 	}
     
     oldCoordinates = newCoordinates;
-    g_engine->ReleaseKey( JGE_BTN_NONE );
 }
 
 

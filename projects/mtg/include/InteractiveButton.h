@@ -26,6 +26,8 @@ const int kMenuButtonId          = 10003;
 const int kFilterButtonId        = 10004;
 const int kNextStatsButtonId     = 10005;
 const int kPrevStatsButtonId     = 10006;
+const int kCycleCardsButtonId    = 10007;
+const int kShowCardListButtonId  = 10008;
 
 class InteractiveButton: public SimpleButton
 {

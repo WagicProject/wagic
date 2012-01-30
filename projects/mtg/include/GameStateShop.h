@@ -10,6 +10,7 @@
 #include "CardDisplay.h"
 #include "DeckDataWrapper.h"
 #include "Tasks.h"
+#include "InteractiveButton.h"
 
 #define STATE_BUY 1
 #define STATE_SELL 2
@@ -72,10 +73,14 @@ private:
     vector<MTGCardInstance*> subBooster;
     MTGDeck * booster;
     bool bListCards;
+    InteractiveButton *cycleCardsButton, *showCardListButton;
+    bool disablePurchase;
 
     void beginFilters();
     void deleteDisplay();
-
+    void enableButtons();
+    void renderButtons();
+    
     WSyncable bigSync;
     SimpleMenu * menu;
     PriceList * pricelist;

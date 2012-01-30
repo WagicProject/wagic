@@ -12,6 +12,7 @@
 #include "TestSuiteAI.h"
 
 #include <hge/hgedistort.h>
+#include "WFont.h"
 
 float GameStateShop::_x1[] = { 79, 19, 27, 103, 154, 187, 102, 144, 198, 133, 183 };
 float GameStateShop::_y1[] = { 150, 194, 222, 167, 164, 156, 195, 190, 175, 220, 220 };
@@ -74,10 +75,17 @@ GameStateShop::GameStateShop(GameApp* parent) :
 
     kOtherCardsString = _(kOtherCardsString);
     kCreditsString = _(kCreditsString);
+    
+    cycleCardsButton = NEW InteractiveButton(NULL, kCycleCardsButtonId, Fonts::MAIN_FONT, "New Cards", SCREEN_WIDTH_F - 80, SCREEN_HEIGHT_F - 15, JGE_BTN_PRI);
+    
+    showCardListButton = NEW InteractiveButton(NULL, kShowCardListButtonId, Fonts::MAIN_FONT, "Show List", SCREEN_WIDTH_F - 150, SCREEN_HEIGHT_F - 15, JGE_BTN_SEC);
+    disablePurchase = false;
 }
 
 GameStateShop::~GameStateShop()
 {
+    SAFE_DELETE( cycleCardsButton );
+    SAFE_DELETE( showCardListButton );
     End();
 }
 
@@ -619,8 +627,18 @@ void GameStateShop::Update(float dt)
             bListCards = !bListCards;
         else if (shopMenu)
         {
-            if (shopMenu->CheckUserInput(btn))
-                srcCards->Touch();
+            if (cycleCardsButton->ButtonPressed() || showCardListButton->ButtonPressed())
+            {
+                disablePurchase = true;
+                return;
+            }
+            else if (btn == JGE_BTN_OK && disablePurchase)
+            {
+                disablePurchase = false;
+            }
+            else
+                if (shopMenu->CheckUserInput(btn))
+                    srcCards->Touch();
         }
         if (shopMenu)
             shopMenu->Update(dt);
@@ -645,6 +663,19 @@ void GameStateShop::deleteDisplay()
     subBooster.clear();
     SAFE_DELETE(boosterDisplay);
 }
+
+void GameStateShop::enableButtons()
+{
+    cycleCardsButton->setIsSelectionValid(true);
+    showCardListButton->setIsSelectionValid(true);
+}
+
+void GameStateShop::renderButtons()
+{
+    cycleCardsButton->Render();
+    showCardListButton->Render();
+}
+
 void GameStateShop::Render()
 {
     //Erase
@@ -719,10 +750,14 @@ void GameStateShop::Render()
     mFont->SetColor(ARGB(255,255,255,255));
     mFont->DrawString(stream.str(), 5, SCREEN_HEIGHT - 14);
 
+#ifndef TOUCH_ENABLED
     float len = 4 + mFont->GetStringWidth(kOtherCardsString.c_str());
 	r->RenderQuad(pspIcons[6].get(), SCREEN_WIDTH - len - kGamepadIconSize - 10, SCREEN_HEIGHT - 8, 0, kGamepadIconSize, kGamepadIconSize);
     mFont->DrawString(kOtherCardsString, SCREEN_WIDTH - len, SCREEN_HEIGHT - 14);
-
+#else
+    enableButtons();
+#endif
+    
     mFont->SetColor(ARGB(255,255,255,0));
     mFont->DrawString(descPurchase(bigSync.getPos()).c_str(), SCREEN_WIDTH / 2, SCREEN_HEIGHT - 14, JGETEXT_CENTER);
     mFont->SetColor(ARGB(255,255,255,255));
@@ -733,12 +768,13 @@ void GameStateShop::Render()
     }
     if (menu)
         menu->Render();
+    
+    renderButtons();
 }
 
 void GameStateShop::ButtonPressed(int controllerId, int controlId)
 {
     int sel = bigSync.getOffset();
-
     switch (controllerId)
     {
     case -102: //Buying something...
