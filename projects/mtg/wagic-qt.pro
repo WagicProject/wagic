@@ -101,6 +101,7 @@ SOURCES += \
         src/GuiPlay.cpp\
         src/GuiStatic.cpp\
         src/IconButton.cpp\
+        src/InteractiveButton.cpp\
         src/ManaCost.cpp\
         src/ManaCostHybrid.cpp\
         src/MenuItem.cpp\
@@ -126,6 +127,7 @@ SOURCES += \
         src/PriceList.cpp\
         src/ReplacementEffects.cpp\
         src/Rules.cpp\
+        src/SimpleButton.cpp\
         src/SimpleMenu.cpp\
         src/SimpleMenuItem.cpp\
         src/SimplePad.cpp\
@@ -268,6 +270,8 @@ HEADERS  += \
         include/DeckManager.h\
         include/SimplePopup.h\
         include/SimpleMenu.h\
+        include/SimpleButton.h\
+        include/InteractiveButton.h\
         include/ObjectAnalytics.h
 
 # JGE, could probably be moved outside

@@ -835,7 +835,8 @@ void ActionStack::Update(float dt)
 {
     //This is a hack to avoid updating the stack while tuto messages are being shown
     //Ideally, the tuto messages should be moved to a layer above this one
-    if (getCurrentTutorial())
+    //No need for Tuto when no human in game
+    if (getCurrentTutorial() && (observer->players[0]->isHuman() || observer->players[1]->isHuman() ) )
         return;
 
     askIfWishesToInterrupt = NULL;

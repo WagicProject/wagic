@@ -75,6 +75,11 @@ public:
         return 0;
     }
 
+    bool isHuman()
+    {
+        return (playMode == MODE_HUMAN);
+    }
+
     Player * opponent();
     int getId();
     JQuadPtr getIcon();

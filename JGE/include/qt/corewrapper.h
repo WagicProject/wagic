@@ -67,6 +67,7 @@ public:
             m_engine->ReleaseKey(m_buttonQueue.front());
             m_buttonQueue.pop();
         }
+        m_engine->ResetInput();
     };
     Q_INVOKABLE void pixelInput(int x, int y);
     Q_INVOKABLE qint64 getTick() {
