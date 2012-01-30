@@ -68,21 +68,18 @@ void InteractiveButton::Render()
     float stringWidth = mainFont->GetStringWidth(detailedInfoString.c_str());
     float pspIconsSize = 0.5;
     float mainFontHeight = mainFont->GetHeight();
-    float boxStartX = 0;
-    
-#ifndef TOUCH_ENABLED
-    mXOffset = -5;
-    mYOffset = 10;
-    boxStartX = getX() - 5;
-    renderer->FillRoundRect( boxStartX, getY() - 5, stringWidth, mainFontHeight + 15, .5, ARGB( 255, 0, 0, 0) );
-#else
+    float boxStartX =  getX() - 5;
     mXOffset = 0;
     mYOffset = 0;
-    boxStartX = getX() - 5;
-    renderer->FillRoundRect(boxStartX, getY(), stringWidth - 3, mainFont->GetHeight() - 9, 5, ARGB(255, 192, 172, 119));
-    renderer->DrawRoundRect(boxStartX, getY(), stringWidth - 3, mainFont->GetHeight() - 9, 5, ARGB(255, 255, 255, 255));
+
+#ifndef TOUCH_ENABLED
+    renderer->FillRoundRect(boxStartX, getY(), stringWidth - 3, mainFontHeight - 9, 5, ARGB(0, 0, 0, 0));
+#else
+    renderer->FillRoundRect(boxStartX, getY(), stringWidth - 3, mainFontHeight - 9, 5, ARGB(255, 192, 172, 119));
+    renderer->DrawRoundRect(boxStartX, getY(), stringWidth - 3, mainFontHeight - 9, 5, ARGB(255, 255, 255, 255));
 #endif
-    float buttonXOffset = getX() - mXOffset;
+
+	float buttonXOffset = getX() - mXOffset;
     float buttonYOffset = getY() + mYOffset;
     if (buttonImage != NULL)
     {

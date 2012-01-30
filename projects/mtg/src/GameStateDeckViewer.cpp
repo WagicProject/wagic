@@ -63,8 +63,8 @@ GameStateDeckViewer::GameStateDeckViewer(GameApp* parent) :
     sellCardButton = NEW InteractiveButton(NULL, kSellCardActionId, Fonts::MAIN_FONT, "Sell Card", (SCREEN_WIDTH_F/ 2) - 100, SCREEN_HEIGHT_F - 15, JGE_BTN_SEC);
     statsNextButton = NEW InteractiveButton(NULL, kNextStatsButtonId, Fonts::MAIN_FONT, "Stats ->", SCREEN_WIDTH_F - 50, SCREEN_HEIGHT_F - 40, JGE_BTN_NEXT);
     statsPrevButton = NEW InteractiveButton(NULL, kPrevStatsButtonId, Fonts::MAIN_FONT, "<- Stats", SCREEN_WIDTH_F - 115, SCREEN_HEIGHT_F - 40, JGE_BTN_PREV);
-    menuButton = NEW InteractiveButton(NULL, kMenuButtonId, Fonts::MAIN_FONT, "menu", SCREEN_WIDTH_F - 35, SCREEN_HEIGHT_F - 15, JGE_BTN_MENU);
-    filterButton = NEW InteractiveButton(NULL, kFilterButtonId, Fonts::MAIN_FONT, "filter", (SCREEN_WIDTH_F - 95), SCREEN_HEIGHT_F - 15, JGE_BTN_CTRL);
+    menuButton = NEW InteractiveButton(NULL, kMenuButtonId, Fonts::MAIN_FONT, "menu", SCREEN_WIDTH_F - 40, SCREEN_HEIGHT_F - 15, JGE_BTN_MENU);
+    filterButton = NEW InteractiveButton(NULL, kFilterButtonId, Fonts::MAIN_FONT, "filter", (SCREEN_WIDTH_F - 110), SCREEN_HEIGHT_F - 15, JGE_BTN_CTRL);
 }
 
 GameStateDeckViewer::~GameStateDeckViewer()

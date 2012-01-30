@@ -23,7 +23,7 @@
 
 #include <boost/shared_ptr.hpp>
 
-#if defined (IOS) || defined (ANDROID) || defined (QT_CONFIG)
+#if defined (IOS) || defined (ANDROID) || defined (QT_CONFIG) || defined (SDL_CONFIG)
 #define TOUCH_ENABLED
 #endif
 
