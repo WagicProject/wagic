@@ -2273,7 +2273,7 @@ toughness=2
 [/card]
 [card]
 name=Angelic Renewal
-auto=@movedTo(creature|mygraveyard) from(battlefield):may all(trigger[to]) moveTo(battlefield) && sacrifice all(this)
+auto=@movedTo(creature|mygraveyard) from(battlefield) once:may all(trigger[to]) moveTo(battlefield) && sacrifice all(this)
 text=Whenever a creature is put into your graveyard from the battlefield, you may sacrifice Angelic Renewal. If you do, return that card to the battlefield.
 mana={1}{W}
 type=Enchantment
@@ -18565,8 +18565,8 @@ type=Sorcery
 [/card]
 [card]
 name=Divine Congregation
-auto=choice name(My Creatures) life:type:creature:mybattlefield
-auto=choice name(Opponents Creatures) life:type:creature:opponentbattlefield
+auto=choice name(My Creatures) life:type:creature:mybattlefield && life:type:creature:mybattlefield
+auto=choice name(Opponents Creatures) life:type:creature:opponentbattlefield && life:type:creature:opponentbattlefield
 text=You gain 2 life for each creature target player controls. -- Suspend 5 - {1}{W} (Rather than cast this card from your hand, you may pay {1}{W} and exile it with five time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.)
 mana={3}{W}
 suspend(5)={1}{w}
@@ -34493,7 +34493,9 @@ type=Instant
 [card]
 name=Hystrodon
 abilities=trample
-auto=@combatdamaged(player):may draw:1 controller
+auto=@combatdamaged(player) from(this):may draw:1 controller
+facedown={3}
+autofacedown={1}{G}{G}:morph
 text=Trample -- Whenever Hystrodon deals combat damage to a player, you may draw a card. -- Morph {1}{G}{G} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
 mana={4}{G}
 type=Creature
@@ -48219,7 +48221,7 @@ type=Enchantment
 [/card]
 [card]
 name=Necrite
-auto=@combat(notblocked) source(this):may bury target(creature|opponentBattlefield) target(artifact|opponentBattlefield) && moveTo(mygraveyard) all(this)
+auto=@combat(notblocked) source(this):may bury target(creature|opponentBattlefield) && moveTo(mygraveyard) all(this)
 text=Whenever Necrite attacks and isn't blocked, you may sacrifice it. If you do, destroy target creature defending player controls. It can't be regenerated.
 mana={1}{B}{B}
 type=Creature
@@ -49206,7 +49208,7 @@ toughness=3
 [/card]
 [card]
 name=Noble Purpose
-auto=lord(creature|mybattlefield) combatspiritlink
+auto=lord(creature|myBattlefield) transforms((,newability[combatspiritlink]))
 text=Whenever a creature you control deals combat damage, you gain that much life.
 mana={3}{W}{W}
 type=Enchantment
@@ -52754,7 +52756,7 @@ toughness=3
 [/card]
 [card]
 name=Phthisis
-auto=choice target(creature) destroy && life:-p targetcontroller && life:-t targetcontroller
+auto=name(destroy) target(creature) transforms((,newability[destroy],newability[life:-p controller],newability[life:-t controller]))
 text=Destroy target creature. Its controller loses life equal to its power plus its toughness. -- Suspend 5 - {1}{B} (Rather than cast this card from your hand, you may pay {1}{B} and exile it with five time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.)
 mana={3}{B}{B}{B}{B}
 suspend(5)={1}{b}
@@ -56392,7 +56394,7 @@ auto=all(creature|mybattlefield) 2/0
 flashback={2}{R}
 text=Creatures you control get +2/+0 until end of turn. -- Flashback {2}{R}
 mana={2}{W}
-type=Sorcery
+type=Instant
 [/card]
 [card]
 name=Rally the Righteous
@@ -62445,7 +62447,7 @@ toughness=1
 [/card]
 [card]
 name=Seedguide Ash
-auto=@movedTo(this) from(graveyard):all(trigger[to]) moveTo(myBattlefield) and((tap)) target(<upto:3>forest|mylibrary)
+auto=@movedTo(this|graveyard) from(battlefield):target(<upto:3>forest|mylibrary) moveTo(myBattlefield) and((tap))
 text=When Seedguide Ash is put into a graveyard from the battlefield, you may search your library for up to three Forest cards and put them onto the battlefield tapped. If you do, shuffle your library.
 mana={4}{G}
 type=Creature
@@ -69745,7 +69747,7 @@ type=Land
 [card]
 name=Starstorm
 auto=damage:X all(creature)
-autohand=__CYCLING__({3)
+autohand=__CYCLING__({3})
 text=Starstorm deals X damage to each creature. -- Cycling {3} ({3}, Discard this card: Draw a card.)
 mana={X}{R}{R}
 type=Instant
@@ -79825,7 +79827,7 @@ toughness=4
 [/card]
 [card]
 name=Village Cannibals
-auto=@movedTo(other human|ownergraveyard) from(battlefield):counter(1/1,1)
+auto=@movedTo(other human|graveyard) from(battlefield):counter(1/1,1)
 text=Whenever another Human creature dies, put a +1/+1 counter on Village Cannibals.
 mana={2}{B}
 type=Creature
