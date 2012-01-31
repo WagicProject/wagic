@@ -1747,7 +1747,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         a->oneShot = 1;
         if(s.find("and(") != string::npos)
         {
-            vector<string> splitAnd = parseBetween(s, "and((", "))");
+            vector<string> splitAnd = parseBetween(s, "and((", " ))",false);
             if(splitAnd.size())
             {
                ((AAMover*)a)->andAbility = parseMagicLine(splitAnd[1], id, spell, card);
