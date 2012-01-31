@@ -195,6 +195,7 @@ bool JGuiController::CheckUserInput(JButton key)
                     mObjects[mCurr]->Entering();
                 }
                 mEngine->LeftClickedProcessed();
+				mEngine->ResetInput();
                 return true;
             }
             mEngine->LeftClickedProcessed();
