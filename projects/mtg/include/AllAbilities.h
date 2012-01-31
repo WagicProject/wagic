@@ -183,6 +183,14 @@ private:
         {
             intValue = target->controller()->opponent()->damageCount;
         }
+        else if (s == "playerpoisoncount")
+        {
+            intValue = target->controller()->poisonCount;
+        }
+        else if (s == "opponentpoisoncount")
+        {
+            intValue = target->controller()->opponent()->poisonCount;
+        }
         else if (s == "opponentlifetotal")
         {
             intValue = target->controller()->opponent()->life;
