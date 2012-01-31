@@ -377,7 +377,7 @@ void ActionLayer::setMenuObject(Targetable * object, bool must)
 
     abilitiesMenu = NEW SimpleMenu(observer->getInput(), 10, this, Fonts::MAIN_FONT, 100, 100, object->getDisplayName().c_str());
     abilitiesTriggered = NEW SimpleMenu(observer->getInput(), 10, this, Fonts::MAIN_FONT, 100, 100, object->getDisplayName().c_str());
-    currentActionCard = NULL;
+    currentActionCard = (MTGCardInstance*)object;
     for (size_t i = 0; i < mObjects.size(); i++)
     {
         ActionElement * currentAction = (ActionElement *) mObjects[i];

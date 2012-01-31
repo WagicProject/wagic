@@ -1148,7 +1148,9 @@ int AAFlip::testDestroy()
 
 const char * AAFlip::getMenuText()
 {
-    return "Flip";
+    string s = flipStats;
+    sprintf(menuText, "Transform into %s", s.c_str());
+    return menuText;
 }
 
 AAFlip * AAFlip::clone() const
