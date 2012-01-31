@@ -88,16 +88,17 @@ void MTGCardInstance::copy(MTGCardInstance * card)
     delete spell;
     mtgid = backupid;
     castMethod = castMethodBackUP;
+    backupTargets = this->backupTargets;
 }
 
 MTGCardInstance::~MTGCardInstance()
 {
     SAFE_DELETE(counters);
-	if (previous != NULL)
-	{
-		//DebugTrace("MTGCardInstance::~MTGCardInstance():  deleting " << ToHex(previous));
-	    SAFE_DELETE(previous);
-	}
+    if (previous != NULL)
+    {
+        //DebugTrace("MTGCardInstance::~MTGCardInstance():  deleting " << ToHex(previous));
+        SAFE_DELETE(previous);
+    }
 }
 
 int MTGCardInstance::init()
@@ -147,6 +148,7 @@ void MTGCardInstance::initMTGCI()
     suspended = false;
     castMethod = Constants::NOT_CAST;
     mPropertiesChangedSinceLastUpdate = false;
+    stillNeeded = true;
     kicked = 0;
 
 
@@ -171,6 +173,7 @@ void MTGCardInstance::initMTGCI()
     regenerateTokens = 0;
     blocked = false;
     currentZone = NULL;
+    cardsAbilities = vector<MTGAbility *>();
     data = this; //an MTGCardInstance point to itself for data, allows to update it without killing the underlying database item
 
     if (basicAbilities[(int)Constants::CHANGELING])
@@ -487,7 +490,11 @@ int MTGCardInstance::stillInUse()
         return 1;
     if (!previous)
         return 0;
-
+    if (previous->stillNeeded)
+    {
+        previous->stillNeeded = false;
+        return 1;
+    }
     return previous->stillInUse();
 }
 

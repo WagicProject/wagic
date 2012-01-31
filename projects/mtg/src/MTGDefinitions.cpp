@@ -121,7 +121,8 @@ const char* Constants::MTGBasicAbilities[] = {
     "snowislandlandwalk",
     "snowswamplandwalk",
     "canattack",
-    "hydra"
+    "hydra",
+    "undying"
 };
 
 map<string,int> Constants::MTGBasicAbilitiesMap;

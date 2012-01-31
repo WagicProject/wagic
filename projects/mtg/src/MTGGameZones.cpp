@@ -80,8 +80,8 @@ MTGPlayerCards::~MTGPlayerCards()
 
 void MTGPlayerCards::beforeBeginPhase()
 {
-    delete garbage;
-    garbage = NEW MTGGameZone();
+    SAFE_DELETE(garbageLastTurn);
+    garbageLastTurn = garbage = NEW MTGGameZone();
     garbage->setOwner(this->owner);
 
     library->beforeBeginPhase();
@@ -104,6 +104,7 @@ void MTGPlayerCards::setOwner(Player * player)
     removedFromGame->setOwner(player);
     stack->setOwner(player);
     garbage->setOwner(player);
+    garbageLastTurn->setOwner(player);
     temp->setOwner(player);
 }
 
@@ -243,7 +244,8 @@ void MTGPlayerCards::drawFromLibrary()
         }
     }
 
-    putInZone(toMove, library, hand);
+    if(putInZone(toMove, library, hand))
+        toMove->currentZone = hand;
 }
 
 void MTGPlayerCards::resetLibrary()
@@ -264,6 +266,7 @@ void MTGPlayerCards::init()
     removedFromGame = NEW MTGRemovedFromGame();
     exile = removedFromGame;
     garbage = NEW MTGGameZone();
+    garbageLastTurn = garbage;
     temp = NEW MTGGameZone();
 
     playRestrictions = NEW PlayRestrictions();
@@ -297,7 +300,6 @@ MTGCardInstance * MTGPlayerCards::putInHand(MTGCardInstance * card)
 {
     return putInZone(card, card->currentZone, card->owner->game->hand);
 }
-
 
 // Moves a card from one zone to another
 // If the card is not actually in the expected "from" zone, does nothing and returns null 
@@ -410,6 +412,8 @@ MTGGameZone::~MTGGameZone()
 {
     for (size_t i = 0; i < cards.size(); i++)
     {
+        cards[i]->stillNeeded = false;
+        SAFE_DELETE(cards[i]->previous);
         SAFE_DELETE( cards[i] );
     }
     cards.clear();
@@ -419,6 +423,11 @@ MTGGameZone::~MTGGameZone()
 
 void MTGGameZone::beforeBeginPhase()
 {
+    cardsSeenLastTurn.clear();
+    for(size_t k = 0; k < cardsSeenThisTurn.size(); k++)
+    {
+        cardsSeenLastTurn.push_back(cardsSeenThisTurn[k]);
+    }
     cardsSeenThisTurn.clear();
 };
 
@@ -631,18 +640,30 @@ bool MTGGameZone::hasAbility(int ability)
     return false;
 }
 
-int MTGGameZone::seenThisTurn(TargetChooser * tc, int castMethod)
+int MTGGameZone::seenThisTurn(TargetChooser * tc, int castMethod, bool lastTurn)
 {
     //The following 2 lines modify the passed TargetChooser. Call this function with care :/
     tc->setAllZones(); // This is to allow targetting cards without caring about the actual zone
     tc->targetter = NULL;
 
     int count = 0;
-    for (vector<MTGCardInstance *>::iterator iter = cardsSeenThisTurn.begin(); iter != cardsSeenThisTurn.end(); ++iter)
+    if (lastTurn)
     {
-        MTGCardInstance * c = (*iter);
-        if (c->matchesCastFilter(castMethod) &&  tc->canTarget(c))
-            count++;
+        for (vector<MTGCardInstance *>::iterator iter = cardsSeenLastTurn.begin(); iter != cardsSeenLastTurn.end(); ++iter)
+        {
+            MTGCardInstance * c = (*iter);
+            if (c && c->matchesCastFilter(castMethod) &&  tc->canTarget(c))
+                count++;
+        }
+    }
+    else
+    {
+        for (vector<MTGCardInstance *>::iterator iter = cardsSeenThisTurn.begin(); iter != cardsSeenThisTurn.end(); ++iter)
+        {
+            MTGCardInstance * c = (*iter);
+            if (c->matchesCastFilter(castMethod) &&  tc->canTarget(c))
+                count++;
+        }
     }
     return count;
 }
@@ -651,11 +672,19 @@ int MTGGameZone::seenThisTurn(string targetChooserDefinition, int castMethod)
 {
     TargetChooserFactory tcf(owner->getObserver());
     TargetChooser *tc = tcf.createTargetChooser(targetChooserDefinition, NULL);
-    int result = seenThisTurn(tc, castMethod);
-    delete(tc);
+    int result = seenThisTurn(tc, castMethod,false);
+    SAFE_DELETE(tc);
     return result;
 }
 
+int MTGGameZone::seenLastTurn(string targetChooserDefinition, int castMethod)
+{
+    TargetChooserFactory tcf(owner->getObserver());
+    TargetChooser *tc = tcf.createTargetChooser(targetChooserDefinition, NULL);
+    int result = seenThisTurn(tc, castMethod,true);
+    SAFE_DELETE(tc);
+    return result;
+}
 
 void MTGGameZone::cleanupPhase()
 {

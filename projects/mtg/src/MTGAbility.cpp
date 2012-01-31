@@ -118,13 +118,19 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
         }
         
         size_t typeRelated = restriction[i].find("type(");
+        size_t seenType = restriction[i].find("lastturn(");
+        size_t seenRelated = restriction[i].find("lastturn(");
+        if(seenRelated == string::npos)
+            seenRelated = restriction[i].find("thisturn(");
+        size_t compRelated = restriction[i].find("compare(");
+
         size_t check = 0;
-        if(typeRelated != string::npos)
+        if(typeRelated != string::npos || seenRelated != string::npos || compRelated != string::npos)
         {
             int firstAmount = 0;
             int secondAmount = 0;
             int mod=0;
-            string type;
+            string rtc;
             vector<string> comparasion = split(restriction[i],'~');
             if(comparasion.size() != 3)
                 return 0;//it was incorrectly coded, user should proofread card code.
@@ -134,16 +140,26 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
             for(unsigned int i = 0; i < comparasion.size(); i++)
             {
                 check = comparasion[i].find("type(");
+                if(check == string::npos)
+                    check = comparasion[i].find("lastturn(");
+                if(check == string::npos)
+                    check = comparasion[i].find("thisturn(");
+                if(check == string::npos)
+                    check = comparasion[i].find("compare(");
                 if( check != string::npos)
                 {
                     size_t end = 0;
-                    size_t found = comparasion[i].find("type(");
-                    if (found != string::npos)
+                    size_t foundType = comparasion[i].find("type(");
+                    size_t foundComp = comparasion[i].find("compare(");
+                    size_t foundSeen = comparasion[i].find("lastturn(");
+                    if(foundSeen == string::npos)
+                        foundSeen = comparasion[i].find("thisturn(");
+                    if (foundType != string::npos)
                     {
-                        end = comparasion[i].find(")", found);
-                        type = comparasion[i].substr(found + 5, end - found - 5).c_str();
+                        end = comparasion[i].find(")", foundType);
+                        rtc = comparasion[i].substr(foundType + 5, end - foundType - 5).c_str();
                         TargetChooserFactory tcf(observer);
-                        TargetChooser * ttc = tcf.createTargetChooser(type,card);
+                        TargetChooser * ttc = tcf.createTargetChooser(rtc,card);
                         mod = atoi(comparasion[i].substr(end+1).c_str());
                         if(i == 2)
                         {
@@ -157,6 +173,59 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
                         }
 
                         SAFE_DELETE(ttc);
+                    }
+                    if (foundComp != string::npos)
+                    {
+                        end = comparasion[i].find(")", foundComp);
+                        rtc = comparasion[i].substr(foundComp + 8, end - foundComp - 8).c_str();
+                        mod = atoi(comparasion[i].substr(end+1).c_str());
+                        if(i == 2)
+                        {
+                            WParsedInt * newAmount = NEW WParsedInt(rtc,card);
+                            secondAmount = newAmount->getValue();
+                            secondAmount += mod;
+                            SAFE_DELETE(newAmount);
+                        }
+                        else
+                        {
+                            WParsedInt * newAmount = NEW WParsedInt(rtc,card);
+                            firstAmount = newAmount->getValue();
+                            firstAmount += mod;
+                            SAFE_DELETE(newAmount);
+                        }
+                    }
+                    if (foundSeen != string::npos)
+                    {
+                        end = comparasion[i].find(")", foundSeen);
+                        rtc = comparasion[i].substr(foundSeen + 9, end - foundSeen - 9).c_str();
+                        mod = atoi(comparasion[i].substr(end+1).c_str());
+
+                        TargetChooserFactory tcf(observer);
+                        TargetChooser * stc = tcf.createTargetChooser(rtc,card);
+                        for (int w = 0; w < 2; ++w)
+                        {
+                            Player *p = observer->players[w];
+                            MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->stack, p->game->exile };
+                            for (int k = 0; k < 6; k++)
+                            {
+                                MTGGameZone * z = zones[k];
+                                if (stc->targetsZone(z))
+                                {
+                                    if(i == 2)
+                                    {
+                                        secondAmount += seenType != string::npos ? z->seenLastTurn(rtc,Constants::CAST_ALL):z->seenThisTurn(rtc,Constants::CAST_ALL);
+
+                                    }
+                                    else
+                                    {
+                                        firstAmount += seenType != string::npos ? z->seenLastTurn(rtc,Constants::CAST_ALL):z->seenThisTurn(rtc,Constants::CAST_ALL);
+
+                                    }
+                                }
+                            }
+                        }
+                        i == 2 ? secondAmount += mod:firstAmount += mod;
+                        SAFE_DELETE(stc);
                     }
                 }
                 else if (i == 2)
@@ -1094,8 +1163,6 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             return parseMagicLine(s.substr(kAlternateCostKeywords[i].length()), id, spell, card);
         }
     }
-    
-
     //if/ifnot COND then DO EFFECT.
     const string ifKeywords[] = {"if ", "ifnot "};
     int checkIf[] = { 1, 2 };
@@ -1174,24 +1241,6 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     if (found != string::npos)
     {
         return parsePhaseActionAbility(s,card,spell,target,restrictions,id);
-    }
-    //Multiple abilities for ONE cost
-    found = s.find("&&");
-    if (found != string::npos)
-    {
-        SAFE_DELETE(tc);
-        vector<string> multiEffects = split(s,'&');
-        MultiAbility * multi = NEW MultiAbility(observer, id, card, target, NULL);
-        for(unsigned int i = 0;i < multiEffects.size();i++)
-        {
-            if(!multiEffects[i].empty())
-            {
-                MTGAbility * addAbility = parseMagicLine(multiEffects[i], id, spell, card, activated);
-                multi->Add(addAbility);
-            }
-        }
-        multi->oneShot = 1;
-        return multi;
     }
 
     int forcedalive = 0;
@@ -1299,6 +1348,26 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         }
         return NULL;
     }
+
+    //Multiple abilities for ONE cost
+    found = s.find("&&");
+    if (found != string::npos)
+    {
+        SAFE_DELETE(tc);
+        vector<string> multiEffects = split(s,'&');
+        MultiAbility * multi = NEW MultiAbility(observer, id, card, target, NULL);
+        for(unsigned int i = 0;i < multiEffects.size();i++)
+        {
+            if(!multiEffects[i].empty())
+            {
+                MTGAbility * addAbility = parseMagicLine(multiEffects[i], id, spell, card, activated);
+                multi->Add(addAbility);
+            }
+        }
+        multi->oneShot = 1;
+        return multi;
+    }
+
 
     //Lord, foreach, aslongas
 
@@ -1710,12 +1779,18 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     if (found != string::npos)
     {
         string with = "";
+        string types = "";
         vector<string> splitWith = parseBetween(s, "with(", ")");
         if (splitWith.size())
         {
             with = splitWith[1];
         }
-        MTGAbility * a = NEW AACloner(observer, id, card, target, 0, who, with);
+        vector<string> splitTypes = parseBetween(s, "addtype(", ")");
+        if (splitTypes.size())
+        {
+            types = splitTypes[1];
+        }
+        MTGAbility * a = NEW AACloner(observer, id, card, target, 0, who, with,types);
         a->oneShot = 1;
         return a;
     }
@@ -1988,7 +2063,11 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     //combat damage spirit link
     if (s.find("spiritlink") != string::npos)
     {
-        bool combatOnly = (s.find("combatspiritlink") != string::npos);
+        bool combatOnly = false;
+        if(s.find("combatspiritlink") != string::npos)
+        {
+            combatOnly = true;
+        }
         return NEW ASpiritLinkAbility(observer, id, card, combatOnly);
     }
 
@@ -1996,13 +2075,11 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     vector<string> splitBushido = parseBetween(s, "bushido(", ")");
     if (splitBushido.size())
     {
-        int power, toughness;
-        if (!parsePowerToughness(splitBushido[1], &power, &toughness))
-        {
-            DebugTrace("MTGAbility Parse error in bushido" << s);
+        string power, toughness;
+        vector<string>splitPT = split(splitBushido[1],'/');
+        if(!splitPT.size())
             return NULL;
-        }
-        return NEW ABushidoAbility(observer, id, card, power, toughness);
+        return NEW ABushidoAbility(observer, id, card,splitBushido[1]);
     }
 
     //loseAbilities
@@ -2271,7 +2348,8 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         {
             if (card->hasType(Subtypes::TYPE_INSTANT) || card->hasType(Subtypes::TYPE_SORCERY) || forceUEOT)
             {
-                return NULL; //TODO
+                MTGAbility * aPF = NEW AProtectionFrom(observer, id, card, target, fromTc, splitProtection[1]);
+                return NEW GenericInstantAbility(observer, 1, card, (Damageable *) target, aPF);
             }
             return NEW AProtectionFrom(observer, id, card, target, fromTc, splitProtection[1]);
         }
@@ -2316,6 +2394,20 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             return NEW ACantBeBlockedBy(observer, id, card, target, fromTc);
         }
         return NULL; //TODO
+    }
+   
+    //affinity based on targetchooser
+    vector<string> splitNewAffinity = parseBetween(s, "affinity(", ")");
+    if (splitNewAffinity.size())
+    {
+        string tcString = splitNewAffinity[1];
+        string manaString = "";
+        vector<string> splitNewAffinityMana = parseBetween(splitNewAffinity[2], "reduce(", ")");
+        if(splitNewAffinityMana.size())
+            manaString = splitNewAffinityMana[1];
+        if(!manaString.size())
+            return NULL;
+        return NEW ANewAffinity(observer, id, card, tcString, manaString);
     }
 
     //proliferate
@@ -2444,6 +2536,15 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         a->oneShot = 1;
         return a;
     }
+
+    found = s.find("steal");
+    if (found != string::npos)
+    {
+        MTGAbility * a = NEW AInstantControlSteal(observer, id, card, target);
+        a->oneShot = 1;
+        return a;
+    }
+
     DebugTrace(" no matching ability found. " << s);
     return NULL;
 }
@@ -2910,6 +3011,13 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card, int
             else
             {
                 a->addToGame();
+                if (a->source)
+                    a->source->cardsAbilities.push_back(a);
+                else if(spell && spell->source)
+                    spell->source->cardsAbilities.push_back(a);
+                    
+                //keep track of abilities being added to the game on each card it belongs to, this ignores p/t bonuses given
+                //from other cards, or ability bonuses, making it generally easier to strip a card of it's abilities.
             }
         }
     }

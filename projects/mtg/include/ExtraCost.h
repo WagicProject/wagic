@@ -197,6 +197,7 @@ class Ninja : public ExtraCost
 {
 public:
   Ninja(TargetChooser *_tc = NULL);
+  virtual int canPay();
   virtual int isPaymentSet();
   virtual int doPay();
   virtual Ninja * clone() const;

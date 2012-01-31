@@ -54,6 +54,11 @@ private:
             s = s.substr(1);
             multiplier = -1;
         }
+        if(s[0] == '+')
+        {
+            //ignore "+" signs....
+            s = s.substr(1);
+        }
         //rounding values, the words can be written anywhere in the line,
         //they are erased after parsing.
         if(s.find("halfup") != string::npos)
@@ -858,6 +863,18 @@ public:
 /*
  Generic classes
  */
+
+class ANewAffinity: public MTGAbility
+{
+public:
+    string tcString;
+    string manaString;
+    ANewAffinity(GameObserver* observer, int _id, MTGCardInstance * _source,string Tc = "", string mana ="");
+    void Update(float dt);
+    int testDestroy();
+    ANewAffinity * clone() const;
+};
+
 //if/ifnot Cond then EFFECT
 class IfThenAbility: public ActivatedAbility
 {
@@ -993,11 +1010,13 @@ class AACloner: public ActivatedAbility
 public:
     int who;
     string with;
+    string types;
     list<int> awith;
     list<int> colors;
+    list<int> typesToAdd;
 
     AACloner(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target = NULL, ManaCost * _cost = NULL, int who = 0,
-            string abilitiesStringList = "");
+            string abilitiesStringList = "",string typeslist = "");
     int resolve();
     const char * getMenuText();
     virtual ostream& toString(ostream& out) const;
@@ -1650,6 +1669,11 @@ public:
     int addToGame()
     {
         MTGCardInstance * _target = (MTGCardInstance *) target;
+        if(PT.size())
+        {
+            SAFE_DELETE(wppt);
+            wppt = NEW WParsedPT(PT,NULL,(MTGCardInstance *) source);
+        }
         _target->power += wppt->power.getValue();
         _target->addToToughness(wppt->toughness.getValue());
         if(_target->has(Constants::INDESTRUCTIBLE) && wppt->toughness.getValue() < 0 && _target->toughness <= 0)
@@ -4906,50 +4930,25 @@ public:
 class ABushidoAbility: public MTGAbility
 {
 public:
-    MTGCardInstance * opponents[20];
-    int nbOpponents;
-    int PowerModifier;
-    int ToughnessModifier;
+    string PowerToughnessModifier;
 
-    ABushidoAbility(GameObserver* observer, int _id, MTGCardInstance * _source, int _PowerModifier, int _ToughnessModifier) :
+    ABushidoAbility(GameObserver* observer, int _id, MTGCardInstance * _source, string _PowerToughnessModifier) :
         MTGAbility(observer, _id, _source)
     {
-        PowerModifier = _PowerModifier;
-        ToughnessModifier = _ToughnessModifier;
-        nbOpponents = 0;
+        PowerToughnessModifier = _PowerToughnessModifier;
     }
-    int receiveEvent(WEvent * event)
-    {
-        if (dynamic_cast<WEventBlockersChosen*> (event))
+        int receiveEvent(WEvent * event)
         {
-            MTGCardInstance * opponent = source->getNextOpponent();
-            if (!opponent) return 0;
-            source->power += PowerModifier;
-            source->addToToughness(ToughnessModifier);
-            while (opponent)
+            if (dynamic_cast<WEventBlockersChosen*> (event))
             {
-                opponents[nbOpponents] = opponent;
-                nbOpponents++;
-                opponent = source->getNextOpponent(opponent);
+                MTGCardInstance * opponent = source->getNextOpponent();
+                if (!opponent) return 0;
+                PTInstant * a = NEW PTInstant(game, this->GetId(), source, source,NEW WParsedPT(PowerToughnessModifier,NULL,source));
+                GenericInstantAbility * wrapper = NEW GenericInstantAbility(game, 1, source,source, a);
+                wrapper->addToGame();
             }
+            return 1;
         }
-        else if (WEventPhaseChange* pe = dynamic_cast<WEventPhaseChange*>(event))
-        {
-            if (MTG_PHASE_AFTER_EOT == pe->to->id && nbOpponents)
-            {
-                source->power -= PowerModifier;
-                source->addToToughness(-ToughnessModifier);
-                nbOpponents = 0;
-            }
-        }
-        return 1;
-    }
-
-    virtual ostream& toString(ostream& out) const
-    {
-        out << "ABushidoAbility ::: opponents : " << opponents << " ; nbOpponents : " << nbOpponents << " (";
-        return MTGAbility::toString(out) << ")";
-    }
 
     ABushidoAbility * clone() const
     {
@@ -4999,13 +4998,23 @@ public:
     AInstantControlSteal(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target) :
         InstantAbility(observer, _id, _source, _target)
     {
-        TrueController = _target->controller();
-        TheftController = source->controller();
-        MTGCardInstance * copy = _target->changeController(TheftController);
-        target = copy;
-        source->target = copy;
-        copy->summoningSickness = 0;
+
     }
+
+        int resolve()
+        {
+            MTGCardInstance * _theftTarget = (MTGCardInstance*)target;
+            if(_theftTarget)
+            {
+                TrueController = _theftTarget->controller();
+                TheftController = source->controller();
+                MTGCardInstance * copy = _theftTarget->changeController(TheftController);
+                target = copy;
+                source->target = copy;
+                copy->summoningSickness = 0;
+            }
+            return 1;
+        }
 
     int destroy()
     {

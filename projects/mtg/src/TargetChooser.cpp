@@ -26,6 +26,19 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
         return NEW CardTargetChooser(observer, target, card);
     };
 
+    found = s.find("targetedplayer");
+    if (found == 0)
+    {
+        if(card && card->backupTargets.size())
+        {
+            Player * pTarget = dynamic_cast<Player*>(card->backupTargets[0]);
+            if (ability) 
+                pTarget = dynamic_cast<Player*>(ability->target);
+            if(pTarget)
+                return NEW PlayerTargetChooser(observer, card, 1, pTarget);
+        }
+    };
+
     found = s.find("opponent");
     if (found == 0)
     {

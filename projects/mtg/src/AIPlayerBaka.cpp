@@ -8,6 +8,7 @@
 #include "GuiCombat.h"
 #include "AIHints.h"
 #include "ManaCostHybrid.h"
+#include "MTGRules.h"
 
 //
 // AIAction
@@ -602,7 +603,10 @@ int OrderedAIAction::getEfficiency()
             //Decrease chance of using ability if there is an extra cost to use the ability, ignore tap
         }
     }
-
+    if (MTGPutInPlayRule * pip = dynamic_cast<MTGPutInPlayRule *>(a))
+    {
+        efficiency += 65;
+    }
     return efficiency;
 }
 
@@ -714,7 +718,7 @@ bool AIPlayerBaka::payTheManaCost(ManaCost * cost, MTGCardInstance * target,vect
             }
             if(k == gotPayments.size()-1)//only add it once, and at the end.
             paid->add(this->getManaPool());//incase some of our payments were mana already in the pool/.
-            if(paid->canAfford(cost) && (!cost->hasX() || k == gotPayments.size()-1))
+            if(paid->canAfford(cost) && (!cost->hasX() && !cost->hasAnotherCost()) || k == gotPayments.size()-1)
             {
                 SAFE_DELETE(paid);
                 for(size_t clicking = 0; clicking < clicks.size(); ++clicking)
@@ -830,12 +834,12 @@ ManaCost * AIPlayerBaka::getPotentialMana(MTGCardInstance * target)
     return result;
 }
 
-vector<MTGAbility*> AIPlayerBaka::canPayMana(MTGCardInstance * target,ManaCost * cost)
+vector<MTGAbility*> AIPlayerBaka::canPayMana(MTGCardInstance * target,ManaCost * cost, map<MTGCardInstance*,bool>usedCards )
 {
     if(!cost || (cost && !cost->getConvertedCost()))
         return vector<MTGAbility*>();
     ManaCost * result = NEW ManaCost();
-    map<MTGCardInstance *, bool> used;
+    map<MTGCardInstance *, bool> used = usedCards;
     vector<MTGAbility*>payments = vector<MTGAbility*>();
     if (this->getManaPool()->getConvertedCost())
     {
@@ -1002,6 +1006,34 @@ vector<MTGAbility*> AIPlayerBaka::canPayMana(MTGCardInstance * target,ManaCost *
                 payments.clear();
                 return payments;//we didn't meet one of the color cost requirements.
             }
+        }
+        if(cost->kicker && !usedCards.size())
+        {
+
+            ManaCost * withKickerCost= NEW ManaCost(cost->kicker);
+            int canKick = 0;
+            vector<MTGAbility*>kickerPayment;
+            bool keepLooking = true;
+            while(keepLooking)
+            {
+                kickerPayment = canPayMana(target,withKickerCost,used);
+                if(kickerPayment.size())
+                {
+                    for(unsigned int w = 0;w < kickerPayment.size();++w)
+                    {
+                        if(!used[kickerPayment[w]->source])
+                        {
+                            payments.push_back(kickerPayment[w]);
+                            used[kickerPayment[w]->source] = true;
+                        }
+                    }
+                    canKick += 1;
+                    keepLooking = cost->kicker->isMulti;
+                }
+                else
+                    keepLooking = false;
+            }
+            SAFE_DELETE(withKickerCost);
         }
         SAFE_DELETE(check);
         SAFE_DELETE(checkResult);
@@ -1612,7 +1644,7 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
         int currentCost = card->getManaCost()->getConvertedCost();
         int hasX = card->getManaCost()->hasX();
         gotPayments.clear();
-        if(!pMana->canAfford(card->getManaCost()))
+        if((!pMana->canAfford(card->getManaCost()) || card->getManaCost()->kicker))
             gotPayments = canPayMana(card,card->getManaCost());
             //for preformence reason we only look for specific mana if the payment couldn't be made with pmana.
         if ((currentCost > maxCost || hasX) && (gotPayments.size() || pMana->canAfford(card->getManaCost())))
@@ -1671,8 +1703,6 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
                     // shouldPlay == baka_effect_bad giving it a 1 for odd ball lottery chance.
                     shouldPlayPercentage = 1;
                 }
-                DebugTrace("Should I play " << (card ? card->name : "Nothing" ) << "?" << endl 
-                    <<"shouldPlayPercentage = "<< shouldPlayPercentage);
 
             }
             //Reduce the chances of playing a spell with X cost if available mana is low
@@ -1685,18 +1715,12 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
             }
             if(card->getManaCost() && card->getManaCost()->kicker && card->getManaCost()->kicker->isMulti)
             {
-
-                ManaCost * withKickerCost= NEW ManaCost(card->getManaCost());
-                withKickerCost->add(withKickerCost->kicker);
-                int canKick = 0;
-                while(pMana->canAfford(withKickerCost))
-                {
-                    withKickerCost->add(withKickerCost->kicker);
-                    canKick += 1;
-                }
-                SAFE_DELETE(withKickerCost);
-                shouldPlayPercentage = 10*canKick;
+                shouldPlayPercentage = 10* size_t(gotPayments.size())/int(1+(card->getManaCost()->getConvertedCost()+card->getManaCost()->kicker->getConvertedCost()));
+                if(shouldPlayPercentage < 40)
+                    shouldPlayPercentage = shouldPlayPercentage/3;
             }
+            DebugTrace("Should I play " << (card ? card->name : "Nothing" ) << "?" << endl 
+                <<"shouldPlayPercentage = "<< shouldPlayPercentage);
             if(card->getRestrictions().size())
             {
                 AbilityFactory af(observer);
@@ -1708,7 +1732,7 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
             int chance = randomChance % 100;
             if (chance > shouldPlayPercentage)
                 continue;
-            if(shouldPlayPercentage < 10)
+            if(shouldPlayPercentage <= 10)
             {
                 DebugTrace("shouldPlayPercentage was less than 10 this was a lottery roll on RNG");
             }
@@ -1720,7 +1744,7 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
     }
     if(nextCardToPlay)
     {
-        if(!pMana->canAfford(nextCardToPlay->getManaCost()))
+        if(!pMana->canAfford(nextCardToPlay->getManaCost()) || nextCardToPlay->getManaCost()->kicker)
             gotPayments = canPayMana(nextCardToPlay,nextCardToPlay->getManaCost());
    DebugTrace(" AI wants to play card." << endl
             << "- Next card to play: " << (nextCardToPlay ? nextCardToPlay->name : "None" ) << endl );
@@ -2002,6 +2026,8 @@ int AIPlayerBaka::chooseAttackers()
         MTGCardInstance * card = NULL;
         while ((card = cd.nextmatch(game->inPlay, card)))
         {
+            if(hints && hints->HintSaysDontAttack(observer,card))
+                continue;
             observer->cardClick(card, MTGAbility::MTG_ATTACK_RULE);
         }
     }

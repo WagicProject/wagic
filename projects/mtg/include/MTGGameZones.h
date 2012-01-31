@@ -75,6 +75,8 @@ class MTGGameZone {
 
     //list of cards that have been through this zone in the current turn
     vector<MTGCardInstance *> cardsSeenThisTurn;
+    //list of cards that have been through this zone in the last turn
+    vector<MTGCardInstance *> cardsSeenLastTurn;
    int nb_cards;
    MTGGameZone();
    ~MTGGameZone();
@@ -104,8 +106,9 @@ class MTGGameZone {
    bool hasX();
 
    //How many cards matching a TargetChooser have been put in this zone during the turn
-   int seenThisTurn(TargetChooser * tc, int castFilter = Constants::CAST_DONT_CARE); 
-   int seenThisTurn(string s, int castFilter = Constants::CAST_DONT_CARE); 
+   int seenThisTurn(TargetChooser * tc, int castFilter = Constants::CAST_DONT_CARE,bool lastTurn = false); 
+   int seenThisTurn(string s, int castFilter = Constants::CAST_DONT_CARE);
+   int seenLastTurn(string s, int castFilter = Constants::CAST_DONT_CARE); 
 
    void setOwner(Player * player);
    MTGCardInstance * lastCardDrawn;
@@ -175,6 +178,7 @@ public:
     MTGRemovedFromGame * removedFromGame;
     MTGRemovedFromGame * exile; //alias to removedFromZone
     MTGGameZone * garbage;
+    MTGGameZone * garbageLastTurn;
     MTGGameZone * temp;
 
     MTGPlayerCards();

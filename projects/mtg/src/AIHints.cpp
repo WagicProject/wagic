@@ -31,6 +31,12 @@ AIHint::AIHint(string _line)
         mAction = action;
         mSourceId = 0;
     }
+    
+    vector<string> splitDontAttack = parseBetween(action, "dontattackwith(", ")");
+    if(splitDontAttack.size())
+    {
+        mCombatAttackTip = splitDontAttack[1];
+    }
 }
 
 AIHints::AIHints(AIPlayerBaka * player): mPlayer(player)
@@ -60,6 +66,27 @@ AIHint * AIHints::getByCondition (string condition)
             return hints[i];
     }
     return NULL;
+}
+
+bool AIHints::HintSaysDontAttack(GameObserver* observer,MTGCardInstance * card)
+{
+    int count = 0;
+    TargetChooserFactory tfc(observer);
+    TargetChooser * hintTc = NULL;
+    for(unsigned int i = 0; i < hints.size();i++)
+    {
+        if (hints[i]->mCombatAttackTip.size())
+        {
+            hintTc = tfc.createTargetChooser(hints[i]->mCombatAttackTip,card);
+            if(hintTc && hintTc->canTarget(card,true))
+            {
+                SAFE_DELETE(hintTc);
+                return true;
+            }
+            SAFE_DELETE(hintTc);
+        }
+    }
+    return false;
 }
 
 //return true if a given ability matches a hint's description
@@ -159,6 +186,11 @@ string AIHints::constraintsNotFulfilled(AIAction * action, AIHint * hint, ManaCo
 
     if (!action)
     {
+        if (hint->mCombatAttackTip.size())
+        {
+            out << "to see if this can attack[" << hint->mCombatAttackTip << "]";
+            return out.str();
+        }
         if (hint->mSourceId && !findSource(hint->mSourceId))
         {
             out << "needcardinplay[" << hint->mSourceId << "]";
@@ -220,6 +252,8 @@ AIAction * AIHints::findAbilityRecursive(AIHint * hint, ManaCost * potentialMana
         }
 
         string s = constraintsNotFulfilled(a, hint, potentialMana);
+        if (hint->mCombatAttackTip.size())
+            return NULL;
         if (s.size())
         {
             SAFE_DELETE(a);

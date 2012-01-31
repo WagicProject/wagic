@@ -290,9 +290,9 @@ AACounter::AACounter(GameObserver* observer, int id, MTGCardInstance * source, M
             AbilityFactory af(game);
             if(counterstring.size())
             {
-            Counter * checkcounter = af.parseCounter(counterstring, source, NULL);
-            nb = checkcounter->nb;
-            delete checkcounter;
+                Counter * checkcounter = af.parseCounter(counterstring, source, NULL);
+                nb = checkcounter->nb;
+                delete checkcounter;
             }
             if (nb > 0)
             {
@@ -314,22 +314,40 @@ AACounter::AACounter(GameObserver* observer, int id, MTGCardInstance * source, M
                     }
                 }
             }
-        else
-        {
-            for (int i = 0; i < -nb; i++)
+            else
             {
-                while (_target->next)
-                    _target = _target->next;
-                _target->counters->removeCounter(name.c_str(), power, toughness);
+                for (int i = 0; i < -nb; i++)
+                {
+                    while (_target->next)
+                        _target = _target->next;
+                    _target->counters->removeCounter(name.c_str(), power, toughness);
+                }
             }
+
+            _target->doDamageTest = 1;
+            if(!_target->afterDamage())
+            {
+                //If a creature with +1/+1 counters on it gets enough -1/-1 counters to kill it, 
+                //it dies before the two counters have the chance to cancel out. For example, 
+                //if your Strangleroot Geist with a +1/+1 counter on it got three -1/-1 counters 
+                //from Skinrender's "enters the battlefield" ability, the Geist would die with //
+                //one +1/+1 counter and three -1/-1 counters and wouldn't return to the battlefield.
+                for (int i = 0; i < _target->counters->mCount; i++)
+                {
+                    if (_target->counters->counters[i]->cancels(power, toughness) && !name.size() && _target->counters->counters[i]->nb > 0)
+                    {
+                        _target->counters->counters[i]->cancelCounter(power,toughness);
+                    }
+                }
+            }
+
+            //specail cases, indestructible creatures which recieve enough counters to kill it are destroyed as a state based effect
+            if(_target->toughness <= 0 && _target->has(Constants::INDESTRUCTIBLE) && toughness < 0)
+                _target->controller()->game->putInGraveyard(_target);
+            return nb;
         }
-        //specail cases, indestructible creatures which recieve enough counters to kill it are destroyed as a state based effect
-        if(_target->toughness <= 0 && _target->has(Constants::INDESTRUCTIBLE) && toughness < 0)
-            _target->controller()->game->putInGraveyard(_target);
-        return nb;
+        return 0;
     }
-    return 0;
-}
 
 const char* AACounter::getMenuText()
 {
@@ -975,6 +993,7 @@ int AAMorph::resolve()
                 else
                 {
                     a->addToGame();
+                    _target->cardsAbilities.push_back(a);
                 }
             }
         }
@@ -1040,23 +1059,16 @@ int AAFlip::resolve()
             MTGCardInstance * myFlip = NEW MTGCardInstance(fcard, _target->controller()->game);
             _target->name = myFlip->name;
             _target->colors = myFlip->colors;
-            _target->power = (myFlip->power + _target->power) - _target->origpower;
-            _target->addToToughness(myFlip->toughness - _target->origtoughness);
             _target->types = myFlip->types;
             _target->text = myFlip->text;
             _target->formattedText = myFlip->formattedText;
             ActionLayer * al = game->mLayers->actionLayer();
-            for (int k = (int)(al->mObjects.size()) - 1; k > 0; k--) 
+            for(unsigned int i = 0;i < _target->cardsAbilities.size();i++)
             {
-                MTGAbility * a = dynamic_cast<MTGAbility*>(game->mLayers->actionLayer()->mObjects[k]);
-                if(a && a->source == _target)
-                {
-                    a->forceDestroy = 1;
-                    a->destroy();
-                    a->removeFromGame();
-                    al->removeFromGame(a);
-                }
+                MTGAbility * a = dynamic_cast<MTGAbility *>(_target->cardsAbilities[i]);
+                if(a) game->removeObserver(a);
             }
+            _target->cardsAbilities.clear();
             _target->magicText = myFlip->magicText;
             af.getAbilities(&currentAbilities, NULL, _target);
             for (size_t i = 0; i < currentAbilities.size(); ++i)
@@ -1073,12 +1085,43 @@ int AAFlip::resolve()
                     else
                     {
                         a->addToGame();
+                        _target->cardsAbilities.push_back(a);
                     }
                 }
             }
-             SAFE_DELETE(myFlip);
+            //power
+            int powerMod = 0;
+            int toughMod = 0;
+            bool powerlessThanOriginal = false;
+            bool toughLessThanOriginal = false;
+            if(_target->power < _target->origpower)
+            {
+                powerMod = _target->origpower - _target->power;
+                powerlessThanOriginal = true;
+            }
+            else
+            {
+                powerMod =_target->power - _target->origpower;
+            }
+            //toughness
+            if(_target->toughness <= _target->origtoughness)
+            {
+                toughMod = _target->origtoughness - _target->toughness;
+                toughLessThanOriginal = true;
+            }
+            else
+            {
+                toughMod =_target->toughness - _target->origtoughness;
+            }
+            _target->power = powerlessThanOriginal?myFlip->power - powerMod:myFlip->power + powerMod;
+            _target->life = toughLessThanOriginal?myFlip->toughness - toughMod:myFlip->toughness + toughMod;
+            _target->toughness = toughLessThanOriginal?myFlip->toughness - toughMod:myFlip->toughness + toughMod;
+            _target->origpower = myFlip->origpower;
+            _target->origtoughness = myFlip->origtoughness;
+            SAFE_DELETE(myFlip);
+            _target->mPropertiesChangedSinceLastUpdate = true;
         }
-        _target->mPropertiesChangedSinceLastUpdate = true;
+
         currentAbilities.clear();
         testDestroy();
     }
@@ -1642,7 +1685,7 @@ AALifeSet::~AALifeSet()
 //AACloner 
 //cloning...this makes a token thats a copy of the target.
 AACloner::AACloner(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target, ManaCost * _cost, int who,
-        string abilitiesStringList) :
+        string abilitiesStringList,string TypesList) :
     ActivatedAbility(observer, _id, _source, _cost, 0), who(who)
 {
     aType = MTGAbility::CLONING;
@@ -1652,6 +1695,10 @@ AACloner::AACloner(GameObserver* observer, int _id, MTGCardInstance * _source, M
     {
         PopulateAbilityIndexVector(awith, abilitiesStringList);
         PopulateColorIndexVector(colors, abilitiesStringList);
+    }
+    if (TypesList.size())
+    {
+        PopulateSubtypesIndexVector(typesToAdd,TypesList);
     }
 
 }
@@ -1687,6 +1734,10 @@ int AACloner::resolve()
     for (it = colors.begin(); it != colors.end(); it++)
     {
         spell->source->setColor(*it);
+    }
+    for (it = typesToAdd.begin(); it != typesToAdd.end(); it++)
+    {
+        spell->source->addType(*it);
     }
     delete spell;
     return 1;
@@ -2241,6 +2292,28 @@ AAWinGame * AAWinGame::clone() const
 
 //Generic Abilities
 
+//a new affinity
+ANewAffinity::ANewAffinity(GameObserver* observer, int _id, MTGCardInstance * _source, string Tc, string mana) :
+MTGAbility(observer, _id, _source), tcString(Tc), manaString(mana)
+{
+}
+
+void ANewAffinity::Update(float dt)
+{
+    testDestroy();
+    return;
+}
+
+int ANewAffinity::testDestroy()
+{
+    if(this->source->isInPlay(game))
+        return 1;
+    return 0;
+}
+ANewAffinity * ANewAffinity::clone() const
+{
+    return NEW ANewAffinity(*this);
+}
 
 //IfThenEffect
 IfThenAbility::IfThenAbility(GameObserver* observer, int _id, MTGAbility * delayedAbility, MTGCardInstance * _source, Targetable * _target, int type,string Cond) :
@@ -3713,7 +3786,7 @@ APhaseAction::~APhaseAction()
 
 // the main ability
 APhaseActionGeneric::APhaseActionGeneric(GameObserver* observer, int _id, MTGCardInstance * card, MTGCardInstance * target, string sAbility, int restrictions, int _phase,bool forcedestroy,bool next,bool myturn,bool opponentturn,bool once) :
-    InstantAbility(observer, _id, source, target)
+    InstantAbility(observer, _id, card, target)
 {
     MTGCardInstance * _target = target;
     ability = NEW APhaseAction(game, _id, card,_target, sAbility, restrictions, _phase,forcedestroy,next,myturn,opponentturn,once);

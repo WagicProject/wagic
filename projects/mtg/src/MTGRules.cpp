@@ -1822,9 +1822,10 @@ int MTGPersistRule::receiveEvent(WEvent * event)
     {
         WEventZoneChange * e = (WEventZoneChange *) event;
         MTGCardInstance * card = e->card->previous;
-        if (card && card->basicAbilities[(int)Constants::PERSIST] && !card->counters->hasCounter(-1, -1))
+        if (!card) return 0;
+        int ok = 0;
+        if((card->basicAbilities[(int)Constants::PERSIST] && !card->counters->hasCounter(-1, -1))||(card->basicAbilities[(int)Constants::UNDYING] && !card->counters->hasCounter(1, 1)))
         {
-            int ok = 0;
             for (int i = 0; i < 2; i++)
             {
                 Player * p = game->players[i];
@@ -1833,20 +1834,24 @@ int MTGPersistRule::receiveEvent(WEvent * event)
             }
             if (!ok)
                 return 0;
+
             for (int i = 0; i < 2; i++)
             {
                 Player * p = game->players[i];
                 if (e->to == p->game->graveyard)
                 {
-					MTGCardInstance * copy = p->game->putInZone(e->card, p->game->graveyard, e->card->owner->game->temp);
+                    MTGCardInstance * copy = p->game->putInZone(e->card, p->game->graveyard, e->card->owner->game->temp);
                     if (!copy)
                     {
-                        DebugTrace("MTGRULES: couldn't move card for persist");
+                        DebugTrace("MTGRULES: couldn't move card for persist/undying");
                         return 0;
                     }
                     Spell * spell = NEW Spell(game, copy);
                     spell->resolve();
-                    spell->source->counters->addCounter(-1, -1);
+                    if(card->basicAbilities[(int)Constants::PERSIST])
+                        spell->source->counters->addCounter(-1, -1);
+                    else
+                        spell->source->counters->addCounter(1,1);
                     delete spell;
                     return 1;
                 }

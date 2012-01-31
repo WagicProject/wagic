@@ -210,8 +210,9 @@ class Constants
       SNOWSWAMPWALK = 90,
       CANATTACK = 91,
       HYDRA = 92,
+      UNDYING = 93,
 
-      NB_BASIC_ABILITIES = 93,
+      NB_BASIC_ABILITIES = 94,
 
 
     RARITY_S = 'S',   //Special Rarity

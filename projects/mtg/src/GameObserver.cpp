@@ -893,6 +893,48 @@ void GameObserver::Affinity()
                     }
                 }
             }
+            int reducem = 0;
+            bool resetCost = false;
+            for(unsigned int na = 0; na < card->cardsAbilities.size();na++)
+            {
+                ANewAffinity * newAff = dynamic_cast<ANewAffinity*>(card->cardsAbilities[na]);
+                if(newAff)
+                {
+                    if(!resetCost)
+                    {
+                        resetCost = true;
+                        card->getManaCost()->copy(original);
+                        if(card->getManaCost()->extraCosts)
+                        {
+                            for(unsigned int i = 0; i < card->getManaCost()->extraCosts->costs.size();i++)
+                            {
+                                card->getManaCost()->extraCosts->costs[i]->setSource(card);
+                            }
+                        }
+                    }
+                    TargetChooserFactory tf(this);
+                    TargetChooser * tcn = tf.createTargetChooser(newAff->tcString,card,NULL);
+
+                    for (int w = 0; w < 2; ++w)
+                    {
+                        Player *p = this->players[w];
+                        MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->stack, p->game->exile };
+                        for (int k = 0; k < 6; k++)
+                        {
+                            MTGGameZone * z = zones[k];
+                            if (tcn->targetsZone(z))
+                            {
+                                reducem += z->countByCanTarget(tcn);
+                            }
+                        }
+                    }
+                    SAFE_DELETE(tcn);
+                    ManaCost * removingCost = ManaCost::parseManaCost(newAff->manaString);
+                    for(int j = 0; j < reducem; j++)
+                        card->getManaCost()->remove(removingCost);
+                    SAFE_DELETE(removingCost);
+                }
+            }
             if(card->has(Constants::AFFINITYARTIFACTS)||
                 card->has(Constants::AFFINITYFOREST)||
                 card->has(Constants::AFFINITYGREENCREATURES)||
@@ -930,6 +972,13 @@ void GameObserver::Affinity()
                         type = "creature";
                     }
                     card->getManaCost()->copy(original);
+                    if(card->getManaCost()->extraCosts)
+                    {
+                        for(unsigned int i = 0; i < card->getManaCost()->extraCosts->costs.size();i++)
+                        {
+                            card->getManaCost()->extraCosts->costs[i]->setSource(card);
+                        }
+                    }
                     int reduce = 0;
                     if(card->has(Constants::AFFINITYGREENCREATURES))
                     {
@@ -947,6 +996,7 @@ void GameObserver::Affinity()
                         if(card->getManaCost()->getCost(color) > 0)
                             card->getManaCost()->remove(color,1);
                     }
+
             }
             SAFE_DELETE(original);
         }

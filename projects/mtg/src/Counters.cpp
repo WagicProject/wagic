@@ -37,6 +37,21 @@ bool Counter::cancels(int _power, int _toughness)
     return (power == -_power && toughness == -_toughness);
 }
 
+int Counter::cancelCounter(int power, int toughness)
+{
+    while(this->target->counters->hasCounter(power,toughness) && this->target->counters->hasCounter(power*-1,toughness*-1))
+    {
+        GameObserver *g = this->target->getObserver();
+        this->removed();
+        this->nb--;
+        WEvent * t = NEW WEventCounters(NULL,"",power*-1,toughness*-1,false,true);
+        dynamic_cast<WEventCounters*>(t)->targetCard = this->target;
+        g->receiveEvent(t);
+        this->target->counters->removeCounter(power,toughness);
+    }
+    return 1;
+}
+
 int Counter::added()
 {
     if (power != 0 || toughness != 0)
@@ -80,19 +95,6 @@ int Counters::addCounter(const char * _name, int _power, int _toughness)
     {
         for (int i = 0; i < mCount; i++)
         {
-            if (counters[i]->cancels(_power, _toughness) && !counters[i]->name.size() && counters[i]->nb > 0)
-            {
-                counters[i]->removed();
-                counters[i]->nb--;
-                WEvent * t = NEW WEventCounters(this,_name,_power*-1,_toughness*-1,false,true);
-                dynamic_cast<WEventCounters*>(t)->targetCard = this->target;
-                g->receiveEvent(t);
-                delete(e);
-                return mCount;
-            }
-        }
-        for (int i = 0; i < mCount; i++)
-        {
             if (counters[i]->sameAs(_name, _power, _toughness))
             {
                 counters[i]->added();
@@ -111,6 +113,8 @@ int Counters::addCounter(const char * _name, int _power, int _toughness)
         dynamic_cast<WEventCounters*>(w)->targetCard = this->target;
         g->receiveEvent(w);
         mCount++;
+        this->target->doDamageTest = 1;
+        this->target->afterDamage();
     }
     delete(e);
     return mCount;

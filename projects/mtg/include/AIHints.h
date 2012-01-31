@@ -16,6 +16,7 @@ class AIHint
 public:
     string mCondition;
     string mAction;
+    string mCombatAttackTip;
     int mSourceId;
     AIHint(string line);
 };
@@ -36,6 +37,7 @@ protected:
 public:
     AIHints (AIPlayerBaka * player);
     AIAction * suggestAbility(ManaCost * potentialMana);
+    bool HintSaysDontAttack(GameObserver* observer,MTGCardInstance * card = NULL);
     void add(string line);
     ~AIHints();
 };

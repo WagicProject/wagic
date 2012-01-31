@@ -371,6 +371,20 @@ int ManaCost::hasX()
     return cost[Constants::NB_Colors];
 }
 
+int ManaCost::hasAnotherCost()
+{
+    if (cost.size() <= (size_t)Constants::NB_Colors)
+    {
+        DebugTrace("Seems ManaCost was not properly initialized");
+        return 0;
+    }
+    int result = 0;
+    if(kicker)
+        result = 1;
+    //kicker is the only one ai knows for now, later hasAnotherCost() can be used to determine other cost types.
+    return result;
+}
+
 void ManaCost::init()
 {
     int i;

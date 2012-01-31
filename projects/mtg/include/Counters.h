@@ -19,6 +19,7 @@ public:
     int init(MTGCardInstance * _target, const char * _name, int _power, int _toughness);
     bool sameAs(const char * _name, int _power, int _toughness);
     bool cancels(int _power, int _toughness);
+    int cancelCounter(int power, int toughness);
     int added();
     int removed();
 };

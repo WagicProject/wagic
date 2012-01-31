@@ -56,6 +56,7 @@ public:
     virtual void reinit();
     void x();
     int hasX();
+    int hasAnotherCost();
     ManaCost(std::vector<int8_t>& _cost, int nb_elems = 1);
     ManaCost();
     ~ManaCost();

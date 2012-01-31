@@ -200,6 +200,7 @@ Interruptible(observer, 0)
     mHeight = 40;
     type = ACTION_SPELL;
     cost = NEW ManaCost();
+    cost->extraCosts = NULL;
     tc = NULL;
     from = _source->getCurrentZone();
     payResult = ManaCost::MANA_UNPAID;
@@ -209,7 +210,11 @@ Interruptible(observer, 0)
 Spell::Spell(GameObserver* observer, int id, MTGCardInstance * _source, TargetChooser * tc, ManaCost * _cost, int payResult) :
 Interruptible(observer, id), tc(tc), cost(_cost), payResult(payResult)
 {
-    if (!cost) cost = NEW ManaCost();
+    if (!cost)
+    {
+        cost = NEW ManaCost();
+        cost->extraCosts = NULL;
+    }
     source = _source;
     mHeight = 40;
     type = ACTION_SPELL;
@@ -291,12 +296,13 @@ int Spell::resolve()
     {
         Player * p = source->controller();
         int castMethod = source->castMethod;
+        vector<Targetable*>backupTgt = source->backupTargets;
         source = p->game->putInZone(source, from, p->game->battlefield);
         
         // We need to get the information about the cast method on both the card in the stack AND the card in play,
         //so we copy it from the previous card (in the stack) to the new one (in play).
         source->castMethod = castMethod; 
-
+        source->backupTargets = backupTgt;
         from = p->game->battlefield;
     }
 
@@ -309,7 +315,6 @@ int Spell::resolve()
             JSoundSystem::GetInstance()->PlaySample(sample);
         }
     }
-
     AbilityFactory af(observer);
     af.addAbilities(observer->mLayers->actionLayer()->getMaxId(), this);
     return 1;

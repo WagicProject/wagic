@@ -47,6 +47,7 @@ protected:
 public:
     vector<MTGCardInstance*>parentCards;
     vector<MTGCardInstance*>childrenCards;
+    vector<MTGAbility *>cardsAbilities;
 
     int setAttacker(int value);
     int setDefenser(MTGCardInstance * c);
@@ -95,6 +96,7 @@ public:
     int MaxLevelUp;
     int kicked;
     bool isDualWielding;
+    bool stillNeeded;
     Player * lastController;
     MTGGameZone * getCurrentZone();
     MTGGameZone * previousZone;
