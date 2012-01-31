@@ -608,6 +608,7 @@ void GameStateShop::Update(float dt)
         {
             srcCards->Shuffle();
             load();
+            disablePurchase = false;
         }
         else if (btn == JGE_BTN_CANCEL)
             options[Options::DISABLECARDS].number = !options[Options::DISABLECARDS].number;
@@ -623,10 +624,13 @@ void GameStateShop::Update(float dt)
             return;
         }
         else if (btn == JGE_BTN_SEC)
+		{
             bListCards = !bListCards;
+            disablePurchase = false;
+		}
         else if (shopMenu)
         {
-            if (cycleCardsButton->ButtonPressed() || showCardListButton->ButtonPressed())
+            if (btn == JGE_BTN_OK && (cycleCardsButton->ButtonPressed() || showCardListButton->ButtonPressed()))
             {
                 disablePurchase = true;
                 return;
