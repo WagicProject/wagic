@@ -173,4 +173,12 @@ class ThisX:public ThisDescriptor{
     ThisX * clone() const;
 };
 
+class ThisVariable:public ThisDescriptor{
+  public:
+      string vWord;
+      virtual int match(MTGCardInstance * card);
+      ThisVariable(int comp,string vWord = "");
+      ThisVariable * clone() const;
+};
+
 #endif

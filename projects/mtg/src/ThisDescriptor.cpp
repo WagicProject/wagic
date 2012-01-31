@@ -331,6 +331,20 @@ ThisDescriptor * ThisDescriptorFactory::createThisDescriptor(GameObserver* obser
         }
         return NULL;
     }
+
+    //this Variable
+    vector<string>splitVComparison = parseBetween(s,"variable{","}",false);
+    if (splitVComparison.size())
+    {
+        ThisVariable * td = NEW ThisVariable(criterion,splitVComparison[1]);
+        if (td)
+        {
+            td->comparisonMode = mode;
+            return td;
+        }
+        return NULL;
+    }
+
     vector<string>splitTargetComparison = parseBetween(s,"cantargetcard(",")",false);
     if (splitTargetComparison.size())
     {
@@ -678,4 +692,25 @@ int ThisX::match(MTGCardInstance * card)
 ThisX * ThisX::clone() const 
 {
     return NEW ThisX(*this);
+}
+
+//
+ThisVariable::ThisVariable(int comp,string _vWord)
+{
+    vWord = _vWord;
+    comparisonCriterion = comp;
+}
+
+int ThisVariable::match(MTGCardInstance * card)
+{
+    int result = 0;
+    WParsedInt * res = NEW WParsedInt(vWord,NULL,card);
+    result = res->getValue();
+    SAFE_DELETE(res);
+    return matchValue(result);
+}
+
+ThisVariable * ThisVariable::clone() const 
+{
+    return NEW ThisVariable(*this);
 }
