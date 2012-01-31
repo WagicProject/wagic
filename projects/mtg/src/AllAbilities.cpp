@@ -85,7 +85,9 @@ int AAAlterPoison::resolve()
     Damageable * _target = (Damageable *) getTarget();
     if (_target)
     {
-        _target->poisonCount += poison;
+        Player * pTarget = (Player*)_target;
+        if(!pTarget->inPlay()->hasAbility(Constants::POISONSHROUD) || poison < 0)
+            _target->poisonCount += poison;
     }
     return 0;
 }

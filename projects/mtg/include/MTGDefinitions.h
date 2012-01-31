@@ -211,8 +211,9 @@ class Constants
       CANATTACK = 91,
       HYDRA = 92,
       UNDYING = 93,
+      POISONSHROUD = 94,
 
-      NB_BASIC_ABILITIES = 94,
+      NB_BASIC_ABILITIES = 95,
 
 
     RARITY_S = 'S',   //Special Rarity

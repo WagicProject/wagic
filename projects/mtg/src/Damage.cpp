@@ -150,7 +150,8 @@ int Damage::resolve()
     {
         // Poison on player
         Player * _target = (Player *) target;
-        _target->poisonCount += damage;//this will be changed to poison counters.
+        if(!_target->inPlay()->hasAbility(Constants::POISONSHROUD))
+            _target->poisonCount += damage;//this will be changed to poison counters.
         _target->damageCount += damage;
     }
     else if (target->type_as_damageable == DAMAGEABLE_PLAYER && (source->has(Constants::POISONTOXIC) ||
@@ -160,17 +161,20 @@ int Damage::resolve()
         Player * _target = (Player *) target;
         a = target->dealDamage(damage);
         target->damageCount += damage;
-        if (source->has(Constants::POISONTOXIC))
+        if(!_target->inPlay()->hasAbility(Constants::POISONSHROUD))
         {
-            _target->poisonCount += 1;
-        }
-        else if (source->has(Constants::POISONTWOTOXIC))
-        {
-            _target->poisonCount += 2;
-        }
-        else
-        {
-            _target->poisonCount += 3;
+            if (source->has(Constants::POISONTOXIC))
+            {
+                _target->poisonCount += 1;
+            }
+            else if (source->has(Constants::POISONTWOTOXIC))
+            {
+                _target->poisonCount += 2;
+            }
+            else
+            {
+                _target->poisonCount += 3;
+            }
         }
 
     }
