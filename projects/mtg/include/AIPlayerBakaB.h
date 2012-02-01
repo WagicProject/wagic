@@ -28,9 +28,6 @@ protected:
     //Tries to play an ability recommended by the deck creator
     int selectHintAbility();
 
-    vector<MTGAbility*> canPayMana(MTGCardInstance * card = NULL,ManaCost * mCost = NULL);
-    vector<MTGAbility*> canPaySunBurst(ManaCost * mCost = NULL);
-
     MTGCardInstance * chooseCard(TargetChooser * tc, MTGCardInstance * source, int random = 0);
     int selectMenuOption();
     int useAbility();

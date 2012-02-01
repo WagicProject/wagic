@@ -81,7 +81,8 @@ class AIPlayerBaka: public AIPlayer{
     //Tries to play an ability recommended by the deck creator
     virtual int selectHintAbility();
 
-    virtual vector<MTGAbility*> canPayMana(MTGCardInstance * card = NULL,ManaCost * mCost = NULL, map<MTGCardInstance*, bool>usedCards = map<MTGCardInstance*,bool>());
+    virtual vector<MTGAbility*> canPayMana(MTGCardInstance * card = NULL, ManaCost * mCost = NULL);
+    virtual vector<MTGAbility*> canPayMana(MTGCardInstance * card, ManaCost * mCost, map<MTGCardInstance*, bool> &usedCards);
     virtual vector<MTGAbility*> canPaySunBurst(ManaCost * mCost = NULL);
 
     virtual MTGCardInstance * chooseCard(TargetChooser * tc, MTGCardInstance * source, int random = 0);

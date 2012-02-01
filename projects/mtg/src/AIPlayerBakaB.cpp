@@ -25,8 +25,6 @@ bool AIPlayerBakaB::payTheManaCost(ManaCost * cost, MTGCardInstance * target, ve
     return AIPlayerBaka::payTheManaCost(cost, target, gotPayments);
 }
 
-
-
 int AIPlayerBakaB::getEfficiency(OrderedAIAction * action)
 {
    return AIPlayerBaka::getEfficiency(action);
@@ -36,17 +34,6 @@ ManaCost * AIPlayerBakaB::getPotentialMana(MTGCardInstance * target)
 {
   return AIPlayerBaka::getPotentialMana(target);
 }
-
-vector<MTGAbility*> AIPlayerBakaB::canPayMana(MTGCardInstance * target,ManaCost * cost)
-{
-    return AIPlayerBaka::canPayMana(target, cost);
-}
-
-vector<MTGAbility*> AIPlayerBakaB::canPaySunBurst(ManaCost * cost)
-{
-    return AIPlayerBaka::canPaySunBurst(cost);
-}
-
 
 int AIPlayerBakaB::CanHandleCost(ManaCost * cost)
 {

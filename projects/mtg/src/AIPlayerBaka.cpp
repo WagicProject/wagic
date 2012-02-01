@@ -834,19 +834,28 @@ ManaCost * AIPlayerBaka::getPotentialMana(MTGCardInstance * target)
     return result;
 }
 
-vector<MTGAbility*> AIPlayerBaka::canPayMana(MTGCardInstance * target,ManaCost * cost, map<MTGCardInstance*,bool>usedCards )
+vector<MTGAbility*> AIPlayerBaka::canPayMana(MTGCardInstance * target,ManaCost * cost)
 {
-    if(!cost || (cost && !cost->getConvertedCost()))
+    if(!cost || (cost && !cost->getConvertedCost()) || !target)
+        return vector<MTGAbility*>();
+    map<MTGCardInstance*, bool> usedCards;
+ 
+    return canPayMana(target, cost, usedCards);
+}
+
+vector<MTGAbility*> AIPlayerBaka::canPayMana(MTGCardInstance * target,ManaCost * cost, map<MTGCardInstance*,bool> &used )
+{
+    if(!cost->getConvertedCost())
         return vector<MTGAbility*>();
     ManaCost * result = NEW ManaCost();
-    map<MTGCardInstance *, bool> used = usedCards;
+
     vector<MTGAbility*>payments = vector<MTGAbility*>();
     if (this->getManaPool()->getConvertedCost())
     {
         //adding the current manapool if any.
         result->add(this->getManaPool());
     }
-    int needColorConverted = cost->getConvertedCost()-int(cost->getCost(0)+cost->getCost(7));
+    int needColorConverted = cost->getConvertedCost() - int(cost->getCost(0)+cost->getCost(7));
     int fullColor = 0;
     for (size_t i = 0; i < observer->mLayers->actionLayer()->manaObjects.size(); i++)
     {
@@ -1007,7 +1016,7 @@ vector<MTGAbility*> AIPlayerBaka::canPayMana(MTGCardInstance * target,ManaCost *
                 return payments;//we didn't meet one of the color cost requirements.
             }
         }
-        if(cost->kicker && !usedCards.size())
+        if(cost->kicker && !used.size())
         {
 
             ManaCost * withKickerCost= NEW ManaCost(cost->kicker);
@@ -1016,7 +1025,7 @@ vector<MTGAbility*> AIPlayerBaka::canPayMana(MTGCardInstance * target,ManaCost *
             bool keepLooking = true;
             while(keepLooking)
             {
-                kickerPayment = canPayMana(target,withKickerCost,used);
+                kickerPayment = canPayMana(target, withKickerCost, used);
                 if(kickerPayment.size())
                 {
                     for(unsigned int w = 0;w < kickerPayment.size();++w)
