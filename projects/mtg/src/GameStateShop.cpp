@@ -770,7 +770,7 @@ void GameStateShop::Render()
 
 #ifndef TOUCH_ENABLED
     float len = 4 + mFont->GetStringWidth(kOtherCardsString.c_str());
-	r->RenderQuad(pspIcons[6].get(), SCREEN_WIDTH - len - kGamepadIconSize - 10, SCREEN_HEIGHT - 8, 0, kGamepadIconSize, kGamepadIconSize);
+	r->RenderQuad(pspIcons[6].get(), SCREEN_WIDTH - len - 0.5f - 10, SCREEN_HEIGHT - 8, 0, 0.5f, 0.5f);
     mFont->DrawString(kOtherCardsString, SCREEN_WIDTH - len, SCREEN_HEIGHT - 14);
 #else
     enableButtons();
