@@ -64,6 +64,11 @@ id=74536
 rarity=U
 [/card]
 [card]
+primitive=Ichiga, Who Topples Oaks
+id=7453611
+rarity=T
+[/card]
+[card]
 primitive=Call for Blood
 id=74616
 rarity=C
@@ -72,6 +77,11 @@ rarity=C
 primitive=Callow Jushi
 id=74489
 rarity=U
+[/card]
+[card]
+primitive=Jaraku the Interloper
+id=7448911
+rarity=T
 [/card]
 [card]
 primitive=Child of Thorns
@@ -104,6 +114,11 @@ id=74671
 rarity=U
 [/card]
 [card]
+primitive=Azamuki, Treachery Incarnate
+id=7467111
+rarity=T
+[/card]
+[card]
 primitive=Day of Destiny
 id=74517
 rarity=R
@@ -133,12 +148,11 @@ primitive=Faithful Squire
 id=74093
 rarity=U
 [/card]
-# Need to find a way to deal with multipart cards
-#[card]
-#primitive=Faithful Squire (Kaiso, Memory of Loyalty)
-#id=74093
-#rarity=U
-#[/card]
+[card]
+primitive=Kaiso, Memory of Loyalty
+id=7409311
+rarity=T
+[/card]
 [card]
 primitive=Final Judgment
 id=81991
@@ -263,6 +277,11 @@ rarity=R
 primitive=Hired Muscle
 id=74476
 rarity=U
+[/card]
+[card]
+primitive=Scarmaker
+id=7447611
+rarity=T
 [/card]
 [card]
 primitive=Hokori, Dust Drinker

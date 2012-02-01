@@ -135,12 +135,11 @@ primitive=Bushi Tenderfoot
 id=78600
 rarity=U
 [/card]
-# need to find a way to deal with multipart cards
-#[card]
-#primitive=Bushi Tenderfoot (Kenzo the Hardhearted)
-#id=78600
-#rarity=U
-#[/card]
+[card]
+primitive=Kenzo the Hardhearted
+id=7860011
+rarity=T
+[/card]
 [card]
 primitive=Cage of Hands
 id=50233
@@ -556,12 +555,11 @@ primitive=Initiate of Blood
 id=78688
 rarity=U
 [/card]
-# need to find a way to deal with multipart cards
-#[card]
-#primitive=Initiate of Blood (Goka the Unjust)
-#id=78688
-#rarity=U
-#[/card]
+[card]
+primitive=Goka the Unjust
+id=7868811
+rarity=T
+[/card]
 [card]
 primitive=Innocence Kami
 id=76636
@@ -627,12 +625,11 @@ primitive=Jushi Apprentice
 id=78686
 rarity=R
 [/card]
-# need to find a way to deal with multipart cards
-#[card]
-#primitive=Jushi Apprentice (Tomoya the Revealer)
-#id=78686
-#rarity=R
-#[/card]
+[card]
+primitive=Tomoya the Revealer
+id=7868611
+rarity=T
+[/card]
 [card]
 primitive=Kabuto Moth
 id=79105
@@ -733,12 +730,11 @@ primitive=Kitsune Mystic
 id=78695
 rarity=R
 [/card]
-# need to find a way to deal with multipart cards
-#[card]
-#primitive=Kitsune Mystic (Autumn-Tail, Kitsune Sage)
-#id=78695
-#rarity=R
-#[/card]
+[card]
+primitive=Autumn-Tail, Kitsune Sage
+id=7869511
+rarity=T
+[/card]
 [card]
 primitive=Kitsune Riftwalker
 id=50412
@@ -964,12 +960,11 @@ primitive=Nezumi Graverobber
 id=78678
 rarity=U
 [/card]
-# need to find a way to deal with multipart cards
-#[card]
-#primitive=Nezumi Graverobber (Nighteyes the Desecrator)
-#id=78678
-#rarity=U
-#[/card]
+[card]
+primitive=Nighteyes the Desecrator
+id=7867811
+rarity=T
+[/card]
 [card]
 primitive=Nezumi Ronin
 id=50512
@@ -980,12 +975,11 @@ primitive=Nezumi Shortfang
 id=78679
 rarity=R
 [/card]
-#need to find a way to deal with multipart cards
-#[card]
-#primitive=Nezumi Shortfang (Stabwhisker the Odious)
-#id=78679
-#rarity=R
-#[/card]
+[card]
+primitive=Stabwhisker the Odious
+id=7867911
+rarity=R
+[/card]
 [card]
 primitive=Night Dealings
 id=75334
@@ -1046,12 +1040,11 @@ primitive=Orochi Eggwatcher
 id=78975
 rarity=U
 [/card]
-# need to find a way to deal with multipart cards
-#[card]
-#primitive=Orochi Eggwatcher (Shidako, Broodmistress)
-#id=78975
-#rarity=U
-#[/card]
+[card]
+primitive=Shidako, Broodmistress
+id=7897511
+rarity=T
+[/card]
 [card]
 primitive=Orochi Hatchery
 id=80241
@@ -1392,16 +1385,15 @@ primitive=Struggle for Sanity
 id=79168
 rarity=U
 [/card]
-# need to find a way to deal with multipart cards
-#[card]
-#primitive=Student of Elements
-#id=78691
-#rarity=U
-#[/card]
 [card]
-primitive=Student of Elements (Tobita, Master of Winds)
+primitive=Student of Elements
 id=78691
 rarity=U
+[/card]
+[card]
+primitive=Tobita, Master of Winds
+id=7869111
+rarity=T
 [/card]
 [card]
 primitive=Swallowing Plague

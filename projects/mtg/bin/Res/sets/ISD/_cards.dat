@@ -104,16 +104,15 @@ id=226885
 rarity=R
 [/card]
 [card]
-primitive=Bloodline Keeper // Lord of Lineage (Bloodline Keeper)
+primitive=Bloodline Keeper
 id=227061
 rarity=R
 [/card]
-#Need to find a way to deal with multipart cards
-#[card]
-#primitive=Bloodline Keeper // Lord of Lineage (Lord of Lineage)
-#id=227072
-#rarity=R
-#[/card]
+[card]
+primitive=Lord of Lineage
+id=227072
+rarity=T
+[/card]
 [card]
 primitive=Bonds of Faith
 id=221216
@@ -185,16 +184,15 @@ id=227668
 rarity=R
 [/card]
 [card]
-primitive=Civilized Scholar // Homicidal Brute (Civilized Scholar)
+primitive=Civilized Scholar
 id=221209
 rarity=U
 [/card]
-#Need to find a way to deal with multipart cards
-#[card]
-#primitive=Civilized Scholar // Homicidal Brute (Homicidal Brute)
-#id=221185
-#rarity=U
-#[/card]
+[card]
+primitive=Homicidal Brute
+id=221185
+rarity=T
+[/card]
 [card]
 primitive=Claustrophobia
 id=235601
@@ -206,16 +204,15 @@ id=241980
 rarity=R
 [/card]
 [card]
-primitive=Cloistered Youth // Unholy Fiend (Cloistered Youth)
+primitive=Cloistered Youth
 id=221212
 rarity=U
 [/card]
-#Need to find a way to deal with multipart cards
-#[card]
-#primitive=Cloistered Youth // Unholy Fiend (Unholy Fiend)
-#id=221222
-#rarity=U
-#[/card]
+[card]
+primitive=Unholy Fiend
+id=221222
+rarity=T
+[/card]
 [card]
 primitive=Cobbled Wings
 id=220649
@@ -282,16 +279,15 @@ id=241986
 rarity=C
 [/card]
 [card]
-primitive=Daybreak Ranger // Nightfall Predator (Daybreak Ranger)
+primitive=Daybreak Ranger
 id=222118
 rarity=R
 [/card]
-#Need to find a way to deal with multipart cards
-#[card]
-#primitive=Daybreak Ranger // Nightfall Predator (Nightfall Predator)
-#id=222114
-#rarity=R
-#[/card]
+[card]
+primitive=Nightfall Predator
+id=222114
+rarity=T
+[/card]
 [card]
 primitive=Dead Weight
 id=220393
@@ -303,16 +299,15 @@ id=222194
 rarity=R
 [/card]
 [card]
-primitive=Delver of Secrets // Insectile Aberration (Delver of Secrets)
+primitive=Delver of Secrets
 id=226749
 rarity=C
 [/card]
-#Need to find a way to deal with multipart cards
-#[card]
-#primitive=Delver of Secrets // Insectile Aberration (Insectile Aberration)
-#id=226755
-#rarity=C
-#[/card]
+[card]
+primitive=Insectile Aberration
+id=226755
+rarity=C
+[/card]
 [card]
 primitive=Demonmail Hauberk
 id=227291
@@ -474,27 +469,25 @@ id=230772
 rarity=U
 [/card]
 [card]
-primitive=Garruk Relentless // Garruk, the Veil-Cursed (Garruk Relentless)
+primitive=Garruk Relentless
 id=245250
 rarity=M
 [/card]
-#Need to find a way to deal with multipart cards
-#[card]
-#primitive=Garruk Relentless // Garruk, the Veil-Cursed (Garruk, the Veil-Cursed)
-#id=245251
-#rarity=M
-#[/card]
 [card]
-primitive=Gatstaf Shepherd // Gatstaf Howler (Gatstaf Shepherd)
+primitive=Garruk, the Veil-Cursed
+id=245251
+rarity=T
+[/card]
+[card]
+primitive=Gatstaf Shepherd
 id=227409
 rarity=U
 [/card]
-#Need to find a way to deal with multipart cards
-#[card]
-#primitive=Gatstaf Shepherd // Gatstaf Howler (Gatstaf Howler)
-#id=227290
-#rarity=U
-#[/card]
+[card]
+primitive=Gatstaf Howler
+id=227290
+rarity=T
+[/card]
 [card]
 primitive=Gavony Township
 id=233242
@@ -576,16 +569,15 @@ id=230792
 rarity=M
 [/card]
 [card]
-primitive=Grizzled Outcasts // Krallenhorde Wantons (Grizzled Outcasts)
+primitive=Grizzled Outcasts
 id=222124
 rarity=C
 [/card]
-#Need to find a way to deal with multipart cards
-#[card]
-#primitive=Grizzled Outcasts // Krallenhorde Wantons (Krallenhorde Wantons)
-#id=222123
-#rarity=C
-#[/card]
+[card]
+primitive=Krallenhorde Wantons
+id=222123
+rarity=T
+[/card]
 [card]
 primitive=Gruesome Deformity
 id=246945
@@ -602,16 +594,15 @@ id=234446
 rarity=U
 [/card]
 [card]
-primitive=Hanweir Watchkeep // Bane of Hanweir (Hanweir Watchkeep)
+primitive=Hanweir Watchkeep
 id=244683
 rarity=U
 [/card]
-#Need to find a way to deal with multipart cards
-#[card]
-#primitive=Hanweir Watchkeep // Bane of Hanweir (Bane of Hanweir)
-#id=244687
-#rarity=U
-#[/card]
+[card]
+primitive=Bane of Hanweir
+id=244687
+rarity=T
+[/card]
 [card]
 primitive=Harvest Pyre
 id=220010
@@ -653,16 +644,15 @@ id=222196
 rarity=U
 [/card]
 [card]
-primitive=Instigator Gang // Wildblood Pack (Instigator Gang)
+primitive=Instigator Gang
 id=227415
 rarity=R
 [/card]
-#Need to find a way to deal with multipart cards
-#[card]
-#primitive=Instigator Gang // Wildblood Pack (Wildblood Pack)
-#id=227419
-#rarity=R
-#[/card]
+[card]
+primitive=Wildblood Pack
+id=227419
+rarity=T
+[/card]
 [card]
 primitive=Intangible Virtue
 id=243217
@@ -719,16 +709,15 @@ id=227088
 rarity=C
 [/card]
 [card]
-primitive=Kruin Outlaw // Terror of Kruin Pass (Kruin Outlaw)
+primitive=Kruin Outlaw
 id=227084
 rarity=R
 [/card]
-#Need to find a way to deal with multipart cards
-#[card]
-#primitive=Kruin Outlaw // Terror of Kruin Pass (Terror of Kruin Pass)
-#id=227090
-#rarity=R
-#[/card]
+[card]
+primitive=Terror of Kruin Pass
+id=227090
+rarity=R
+[/card]
 [card]
 primitive=Laboratory Maniac
 id=230788
@@ -750,16 +739,15 @@ id=241982
 rarity=C
 [/card]
 [card]
-primitive=Ludevic's Test Subject // Ludevic's Abomination (Ludevic's Test Subject)
+primitive=Ludevic's Test Subject
 id=221179
 rarity=R
 [/card]
-#Need to find a way to deal with multipart cards
-#[card]
-#primitive=Ludevic's Test Subject // Ludevic's Abomination (Ludevic's Abomination)
-#id=221173
-#rarity=R
-#[/card]
+[card]
+primitive=Ludevic's Abomination
+id=221173
+rarity=R
+[/card]
 [card]
 primitive=Lumberknot
 id=230624
@@ -806,16 +794,15 @@ id=246952
 rarity=U
 [/card]
 [card]
-primitive=Mayor of Avabruck // Howlpack Alpha (Mayor of Avabruck)
+primitive=Mayor of Avabruck
 id=222189
 rarity=R
 [/card]
-#Need to find a way to deal with multipart cards
-#[card]
-#primitive=Mayor of Avabruck // Howlpack Alpha (Howlpack Alpha)
-#id=222183
-#rarity=R
-#[/card]
+[card]
+primitive=Howlpack Alpha
+id=222183
+rarity=R
+[/card]
 [card]
 primitive=Memory's Journey
 id=254134
@@ -1027,16 +1014,15 @@ id=247423
 rarity=C
 [/card]
 [card]
-primitive=Reckless Waif // Merciless Predator (Reckless Waif)
+primitive=Reckless Waif
 id=222111
 rarity=U
 [/card]
-#Need to find a way to deal with multipart cards
-#[card]
-#primitive=Reckless Waif // Merciless Predator (Merciless Predator)
-#id=222115
-#rarity=U
-#[/card]
+[card]
+primitive=Merciless Predator
+id=222115
+rarity=T
+[/card]
 [card]
 primitive=Riot Devils
 id=220648
@@ -1073,16 +1059,15 @@ id=227077
 rarity=U
 [/card]
 [card]
-primitive=Screeching Bat // Stalking Vampire (Screeching Bat)
+primitive=Screeching Bat
 id=221211
 rarity=U
 [/card]
-#Need to find a way to deal with multipart cards
-#[card]
-#primitive=Screeching Bat // Stalking Vampire (Stalking Vampire)
-#id=221215
-#rarity=U
-#[/card]
+[card]
+primitive=Stalking Vampire
+id=221215
+rarity=T
+[/card]
 [card]
 primitive=Selfless Cathar
 id=221219
@@ -1269,27 +1254,25 @@ id=230625
 rarity=C
 [/card]
 [card]
-primitive=Thraben Sentry // Thraben Militia (Thraben Sentry)
+primitive=Thraben Sentry
 id=222016
 rarity=C
 [/card]
-#Need to find a way to deal with multipart cards
-#[card]
-#primitive=Thraben Sentry // Thraben Militia (Thraben Militia)
-#id=221190
-#rarity=C
-#[/card]
 [card]
-primitive=Tormented Pariah // Rampaging Werewolf (Tormented Pariah)
+primitive=Thraben Militia
+id=221190
+rarity=C
+[/card]
+[card]
+primitive=Tormented Pariah
 id=222186
 rarity=C
 [/card]
-#Need to find a way to deal with multipart cards
-#[card]
-#primitive=Tormented Pariah // Rampaging Werewolf  (Rampaging Werewolf)
-#id=222117
-#rarity=C
-#[/card]
+[card]
+primitive=Rampaging Werewolf
+id=222117
+rarity=T
+[/card]
 [card]
 primitive=Traitorous Blood
 id=234438
@@ -1326,16 +1309,15 @@ id=220634
 rarity=C
 [/card]
 [card]
-primitive=Ulvenwald Mystics // Ulvenwald Primordials (Ulvenwald Mystics)
+primitive=Ulvenwald Mystics
 id=222105
 rarity=U
 [/card]
-#Need to find a way to deal with multipart cards
-#[card]
-#primitive=Ulvenwald Mystics // Ulvenwald Primordials (Ulvenwald Primordials)
-#id=222108
-#rarity=U
-#[/card]
+[card]
+primitive=Ulvenwald Primordials
+id=222108
+rarity=T
+[/card]
 [card]
 primitive=Unbreathing Horde
 id=230786
@@ -1387,27 +1369,25 @@ id=222903
 rarity=U
 [/card]
 [card]
-primitive=Village Ironsmith // Ironfang (Village Ironsmith)
+primitive=Village Ironsmith
 id=222112
 rarity=C
 [/card]
-#Need to find a way to deal with multipart cards
-#[card]
-#primitive=Village Ironsmith // Ironfang (Ironfang)
-#id=222107
-#rarity=C
-#[/card]
 [card]
-primitive=Villagers of Estwald // Howlpack of Estwald (Villagers of Estwald)
+primitive=Ironfang
+id=222107
+rarity=C
+[/card]
+[card]
+primitive=Villagers of Estwald
 id=222915
 rarity=C
 [/card]
-#Need to find a way to deal with multipart cards
-#[card]
-#primitive=Villagers of Estwald // Howlpack of Estwald (Howlpack of Estwald)
-#id=222906
-#rarity=C
-#[/card]
+[card]
+primitive=Howlpack of Estwald
+id=222906
+rarity=T
+[/card]
 [card]
 primitive=Voiceless Spirit
 id=243215

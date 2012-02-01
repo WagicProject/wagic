@@ -1,0 +1,871 @@
+[meta]
+author=Wagic Team
+name=Dark Ascension
+year=2012
+block=ISD
+[/meta]
+[card]
+primitive=Afflicted Deserter
+id=262675
+rarity=U
+[/card]
+[card]
+primitive=Werewolf Ransacker
+id=262698
+rarity=T
+[/card]
+[card]
+primitive=Alpha Brawl
+id=262657
+rarity=R
+[/card]
+[card]
+primitive=Altar of the Lost
+id=262846
+rarity=U
+[/card]
+[card]
+primitive=Archangel's Light
+id=244691
+rarity=M
+[/card]
+[card]
+primitive=Artful Dodge
+id=262840
+rarity=C
+[/card]
+[card]
+primitive=Avacyn's Collar
+id=262863
+rarity=C
+[/card]
+[card]
+primitive=Bar the Door
+id=262858
+rarity=C
+[/card]
+[card]
+primitive=Beguiler of Wills
+id=227080
+rarity=R
+[/card]
+[card]
+primitive=Black Cat
+id=262862
+rarity=C
+[/card]
+[card]
+primitive=Blood Feud
+id=244731
+rarity=U
+[/card]
+[card]
+primitive=Bone to Ash
+id=262845
+rarity=C
+[/card]
+[card]
+primitive=Break of Day
+id=262702
+rarity=C
+[/card]
+[card]
+primitive=Briarpack Alpha
+id=262664
+rarity=U
+[/card]
+[card]
+primitive=Burden of Guilt
+id=262873
+rarity=C
+[/card]
+[card]
+primitive=Burning Oil
+id=262705
+rarity=U
+[/card]
+[card]
+primitive=Call to the Kindred
+id=262706
+rarity=R
+[/card]
+[card]
+primitive=Chalice of Life
+id=226735
+rarity=U
+[/card]
+[card]
+primitive=Chalice of Death
+id=226721
+rarity=T
+[/card]
+[card]
+primitive=Chant of Skifsang
+id=262829
+rarity=C
+[/card]
+[card]
+primitive=Chill of Foreboding
+id=242511
+rarity=U
+[/card]
+[card]
+primitive=Chosen of Markov
+id=243229
+rarity=C
+[/card]
+[card]
+primitive=Markov's Servant
+id=244712
+rarity=T
+[/card]
+[card]
+primitive=Clinging Mists
+id=262844
+rarity=C
+[/card]
+[card]
+primitive=Counterlash
+id=262830
+rarity=R
+[/card]
+[card]
+primitive=Crushing Vines
+id=262867
+rarity=C
+[/card]
+[card]
+primitive=Curse of Bloodletting
+id=227091
+rarity=R
+[/card]
+[card]
+primitive=Curse of Echoes
+id=262841
+rarity=U
+[/card]
+[card]
+primitive=Curse of Exhaustion
+id=226729
+rarity=U
+[/card]
+[card]
+primitive=Curse of Misfortunes
+id=262874
+rarity=U
+[/card]
+[card]
+primitive=Curse of Thirst
+id=220003
+rarity=U
+[/card]
+[card]
+primitive=Dawntreader Elk
+id=242532
+rarity=C
+[/card]
+[card]
+primitive=Deadly Allure
+id=262690
+rarity=U
+[/card]
+[card]
+primitive=Death's Caress
+id=262854
+rarity=C
+[/card]
+[card]
+primitive=Deranged Outcast
+id=249901
+rarity=R
+[/card]
+[card]
+primitive=Diregraf Captain
+id=262663
+rarity=U
+[/card]
+[card]
+primitive=Divination
+id=262848
+rarity=C
+[/card]
+[card]
+primitive=Drogskol Captain
+id=244773
+rarity=U
+[/card]
+[card]
+primitive=Drogskol Reaver
+id=262860
+rarity=M
+[/card]
+[card]
+primitive=Dungeon Geists
+id=249875
+rarity=R
+[/card]
+[card]
+primitive=Elbrus, the Binding Blade
+id=244740
+rarity=M
+[/card]
+[card]
+primitive=Withengar Unbound
+id=244738
+rarity=T
+[/card]
+[card]
+primitive=Elguad Inquisitor
+id=245219
+rarity=C
+[/card]
+[card]
+primitive=Erdwal Ripper
+id=249979
+rarity=C
+[/card]
+[card]
+primitive=Evolving Wilds
+id=262680
+rarity=C
+[/card]
+[card]
+primitive=Executioner's Hood
+id=244737
+rarity=C
+[/card]
+[card]
+primitive=Faithless Looting
+id=245299
+rarity=C
+[/card]
+[card]
+primitive=Faith's Shield
+id=262696
+rarity=U
+[/card]
+[card]
+primitive=Falkenrath Aristocrat
+id=262847
+rarity=M
+[/card]
+[card]
+primitive=Falkenrath Torturer
+id=262697
+rarity=C
+[/card]
+[card]
+primitive=Farbog Boneflinger
+id=262677
+rarity=U
+[/card]
+[card]
+primitive=Favor of the Woods
+id=262687
+rarity=C
+[/card]
+[card]
+primitive=Feed the Pack
+id=262857
+rarity=R
+[/card]
+[card]
+primitive=Fiend of the Shadows
+id=262837
+rarity=R
+[/card]
+[card]
+primitive=Fires of Undeath
+id=262832
+rarity=C
+[/card]
+[card]
+primitive=Flayer of the Hatebound
+id=262853
+rarity=R
+[/card]
+[card]
+primitive=Fling
+id=262871
+rarity=C
+[/card]
+[card]
+primitive=Forge Devil
+id=221174
+rarity=C
+[/card]
+[card]
+primitive=Gather the Townsfolk
+id=262686
+rarity=C
+[/card]
+[card]
+primitive=Gavony Ironwright
+id=262685
+rarity=U
+[/card]
+[card]
+primitive=Geralf's Messenger
+id=243250
+rarity=R
+[/card]
+[card]
+primitive=Geralf's Mindcrusher
+id=262839
+rarity=R
+[/card]
+[card]
+primitive=Ghastly Haunting
+id=242498
+rarity=U
+[/card]
+[card]
+primitive=Ghoultree
+id=262662
+rarity=R
+[/card]
+[card]
+primitive=Grafdigger's Cage
+id=278452
+rarity=R
+[/card]
+[card]
+primitive=Gravecrawler
+id=222902
+rarity=R
+[/card]
+[card]
+primitive=Gravepurge
+id=220056
+rarity=C
+[/card]
+[card]
+primitive=Gravetiller Wurm
+id=262673
+rarity=U
+[/card]
+[card]
+primitive=Grim Backwoods
+id=270939
+rarity=R
+[/card]
+[card]
+primitive=Grim Flowering
+id=262842
+rarity=U
+[/card]
+[card]
+primitive=Griptide
+id=243224
+rarity=C
+[/card]
+[card]
+primitive=Gruesome Discovery
+id=262843
+rarity=C
+[/card]
+[card]
+primitive=Harrowing Journey
+id=262689
+rarity=U
+[/card]
+[card]
+primitive=Haunted Fengraf
+id=245289
+rarity=C
+[/card]
+[card]
+primitive=Havengul Lich
+id=262852
+rarity=M
+[/card]
+[card]
+primitive=Havengul Runebinder
+id=249878
+rarity=R
+[/card]
+[card]
+primitive=Headless Skaab
+id=244761
+rarity=C
+[/card]
+[card]
+primitive=Heavy Mattock
+id=244766
+rarity=C
+[/card]
+[card]
+primitive=Heckling Fiends
+id=262704
+rarity=U
+[/card]
+[card]
+primitive=Hellrider
+id=226874
+rarity=R
+[/card]
+[card]
+primitive=Helvault
+id=262679
+rarity=M
+[/card]
+[card]
+primitive=Highborn Ghoul
+id=242503
+rarity=C
+[/card]
+[card]
+primitive=Hinterland Hermit
+id=247125
+rarity=C
+[/card]
+[card]
+primitive=Hinterland Savage
+id=247122
+rarity=T
+[/card]
+[card]
+primitive=Hollowhenge Beast
+id=262868
+rarity=C
+[/card]
+[card]
+primitive=Hollowhenge Spirit
+id=222001
+rarity=U
+[/card]
+[card]
+primitive=Hunger of the Howlpack
+id=243257
+rarity=C
+[/card]
+[card]
+primitive=Huntmaster of the Fells
+id=262875
+rarity=M
+[/card]
+[card]
+primitive=Ravager of the Fells
+id=262699
+rarity=T
+[/card]
+[card]
+primitive=Immerwolf
+id=262700
+rarity=U
+[/card]
+[card]
+primitive=Increasing Ambition
+id=262833
+rarity=R
+[/card]
+[card]
+primitive=Increasing Confusion
+id=262856
+rarity=R
+[/card]
+[card]
+primitive=Increasing Devotion
+id=262870
+rarity=R
+[/card]
+[card]
+primitive=Increasing Savagery
+id=262834
+rarity=R
+[/card]
+[card]
+primitive=Increasing Vengeance
+id=262661
+rarity=R
+[/card]
+[card]
+primitive=Jar of Eyeballs
+id=244695
+rarity=R
+[/card]
+[card]
+primitive=Kessig Recluse
+id=243233
+rarity=C
+[/card]
+[card]
+primitive=Lambholt Elder
+id=242537
+rarity=U
+[/card]
+[card]
+primitive=Silverpelt Werewolf
+id=242509
+rarity=T
+[/card]
+[card]
+primitive=Lingering Souls
+id=262695
+rarity=U
+[/card]
+[card]
+primitive=Lost in the Woods
+id=242539
+rarity=R
+[/card]
+[card]
+primitive=Loyal Cathar
+id=244724
+rarity=C
+[/card]
+[card]
+primitive=Unhallowed Cathar
+id=244734
+rarity=T
+[/card]
+[card]
+primitive=Markov Blademaster
+id=249419
+rarity=R
+[/card]
+[card]
+primitive=Markov Warlord
+id=262693
+rarity=U
+[/card]
+[card]
+primitive=Midnight Guard
+id=262859
+rarity=C
+[/card]
+[card]
+primitive=Mikaeus, the Unhallowed
+id=249896
+rarity=M
+[/card]
+[card]
+primitive=Mondronen Shaman
+id=253433
+rarity=R
+[/card]
+[card]
+primitive=Tovolar's Magehunter
+id=253429
+rarity=T
+[/card]
+[card]
+primitive=Moonveil Dragon
+id=249885
+rarity=M
+[/card]
+[card]
+primitive=Mystic Retrieval
+id=262678
+rarity=U
+[/card]
+[card]
+primitive=Nearheath Stalker
+id=262681
+rarity=C
+[/card]
+[card]
+primitive=Nephalia Seakite
+id=247126
+rarity=C
+[/card]
+[card]
+primitive=Niblis of the Breath
+id=226724
+rarity=U
+[/card]
+[card]
+primitive=Niblis of the Mist
+id=245292
+rarity=C
+[/card]
+[card]
+primitive=Niblis of the Urn
+id=244744
+rarity=U
+[/card]
+[card]
+primitive=Predator Ooze
+id=262866
+rarity=R
+[/card]
+[card]
+primitive=Pyreheart Wolf
+id=249983
+rarity=U
+[/card]
+[card]
+primitive=Ravenous Demon
+id=227417
+rarity=R
+[/card]
+[card]
+primitive=Archdemon of Greed
+id=227405
+rarity=T
+[/card]
+[card]
+primitive=Ray of Revelation
+id=245288
+rarity=C
+[/card]
+[card]
+primitive=Reap the Seagraf
+id=244759
+rarity=C
+[/card]
+[card]
+primitive=Relentless Skaabs
+id=262701
+rarity=U
+[/card]
+[card]
+primitive=Requiem Angel
+id=270779
+rarity=R
+[/card]
+[card]
+primitive=Russet Wolves
+id=244726
+rarity=C
+[/card]
+[card]
+primitive=Sanctuary Cat
+id=262864
+rarity=C
+[/card]
+[card]
+primitive=Saving Grasp
+id=245296
+rarity=C
+[/card]
+[card]
+primitive=Scorch the Fields
+id=262828
+rarity=C
+[/card]
+[card]
+primitive=Scorned Villager
+id=262694
+rarity=C
+[/card]
+[card]
+primitive=Moonscarred Werewolf
+id=262659
+rarity=T
+[/card]
+[card]
+primitive=Screeching Skaab
+id=245207
+rarity=C
+[/card]
+[card]
+primitive=Séance
+id=249422
+rarity=R
+[/card]
+[card]
+primitive=Secrets of the Dead
+id=230621
+rarity=U
+[/card]
+[card]
+primitive=Shattered Perception
+id=254058
+rarity=U
+[/card]
+[card]
+primitive=Shriekgeist
+id=242525
+rarity=C
+[/card]
+[card]
+primitive=Sightless Ghoul
+id=262682
+rarity=C
+[/card]
+[card]
+primitive=Silverclaw Griffin
+id=262876
+rarity=C
+[/card]
+[card]
+primitive=Skillful Lunge
+id=262877
+rarity=C
+[/card]
+[card]
+primitive=Skirsdag Flayer
+id=262667
+rarity=U
+[/card]
+[card]
+primitive=Somberwald Dryad
+id=244768
+rarity=C
+[/card]
+[card]
+primitive=Sorin, Lord of Innistrad
+id=249985
+rarity=M
+[/card]
+[card]
+primitive=Soul Seizer
+id=222178
+rarity=U
+[/card]
+[card]
+primitive=Ghastly Haunting 
+id=
+rarity=T
+[/card]
+[card]
+primitive=Spiteful Shadows
+id=262668
+rarity=C
+[/card]
+[card]
+primitive=Stormbound Geist
+id=262660
+rarity=C
+[/card]
+[card]
+primitive=Strangleroot Geist
+id=262671
+rarity=U
+[/card]
+[card]
+primitive=Stromkirk Captain
+id=262676
+rarity=U
+[/card]
+[card]
+primitive=Sudden Disappearance
+id=262865
+rarity=R
+[/card]
+[card]
+primitive=Talons of Falkenrath
+id=262855
+rarity=C
+[/card]
+[card]
+primitive=Thalia, Guardian of Thraben
+id=270445
+rarity=R
+[/card]
+[card]
+primitive=Thought Scour
+id=262838
+rarity=C
+[/card]
+[card]
+primitive=Thraben Doomsayer
+id=262692
+rarity=R
+[/card]
+[card]
+primitive=Thraben Heretic
+id=244709
+rarity=U
+[/card]
+[card]
+primitive=Torch Fiend
+id=244702
+rarity=C
+[/card]
+[card]
+primitive=Tower Geist
+id=262665
+rarity=U
+[/card]
+[card]
+primitive=Tracker's Instincts
+id=247116
+rarity=U
+[/card]
+[card]
+primitive=Tragic Slip
+id=242500
+rarity=C
+[/card]
+[card]
+primitive=Ulvenwald Bear
+id=244727
+rarity=C
+[/card]
+[card]
+primitive=Undying Evil
+id=262835
+rarity=C
+[/card]
+[card]
+primitive=Vault of the Archangel
+id=270938
+rarity=R
+[/card]
+[card]
+primitive=Vengeful Vampire
+id=262691
+rarity=U
+[/card]
+[card]
+primitive=Village Survivors
+id=262688
+rarity=C
+[/card]
+[card]
+primitive=Vorapede
+id=262850
+rarity=M
+[/card]
+[card]
+primitive=Wakedancer
+id=262836
+rarity=U
+[/card]
+[card]
+primitive=Warden of the Wall
+id=247130
+rarity=U
+[/card]
+[card]
+primitive=Wild Hunger
+id=245291
+rarity=C
+[/card]
+[card]
+primitive=Wolf T2
+id=-262857
+rarity=T
+[/card]
+[card]
+primitive=Wolfbitten Captive
+id=253426
+rarity=R
+[/card]
+[card]
+primitive=Krallenhorde Killer
+id=253431
+rarity=T
+[/card]
+[card]
+primitive=Wolfhunter's Quiver
+id=247124
+rarity=U
+[/card]
+[card]
+primitive=Wrack with Madness
+id=243231
+rarity=C
+[/card]
+[card]
+primitive=Young Wolf
+id=262872
+rarity=C
+[/card]
+[card]
+primitive=Zombie Apocalypse
+id=262669
+rarity=R
+[/card]

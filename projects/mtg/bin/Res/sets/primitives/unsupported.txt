@@ -1697,12 +1697,6 @@ mana={W}{W}{W}
 type=Instant
 [/card]
 [card]
-name=Bloodbond March
-text=Whenever a player casts a creature spell, each player returns all cards with the same name as that spell from his or her graveyard to the battlefield.
-mana={2}{B}{G}
-type=Enchantment
-[/card]
-[card]
 name=Bloodbraid Elf
 text=Haste -- Cascade (When you cast this spell, exile cards from the top of your library until you exile a nonland card that costs less. You may cast it without paying its mana cost. Put the exiled cards on the bottom in a random order.)
 mana={2}{R}{G}
@@ -1710,15 +1704,6 @@ type=Creature
 subtype=Elf Berserker
 power=3
 toughness=2
-[/card]
-[card]
-name=Bloodcurdler
-text=Flying -- At the beginning of your upkeep, put the top card of your library into your graveyard. -- Threshold - As long as seven or more cards are in your graveyard, Bloodcurdler gets +1/+1 and has "At the beginning of your end step, exile two cards from your graveyard."
-mana={1}{B}
-type=Creature
-subtype=Horror
-power=1
-toughness=1
 [/card]
 [card]
 name=Bloodfire Infusion
@@ -2283,15 +2268,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Budoka Pupil
-text=Whenever you cast a Spirit or Arcane spell, you may put a ki counter on Budoka Pupil. -- At the beginning of the end step, if there are two or more ki counters on Budoka Pupil, you may flip it. -- ---- -- Ichiga, Who Topples Oaks -- Legendary Creature - Spirit -- 4/3 -- Trample -- Remove a ki counter from Ichiga, Who Topples Oaks: Target creature gets +2/+2 until end of turn.
-mana={1}{G}{G}
-type=Creature
-subtype=Human Monk
-power=2
-toughness=2
-[/card]
-[card]
 name=Builder's Bane
 mana={X}{X}{R}
 type=Sorcery
@@ -2376,24 +2352,6 @@ type=Creature — Beeble
 power=2
 toughness=2
 text=Bursting Beebles is unblockable as long as defending player controls two or more nonland permanents that share an artist.
-[/card]
-[card]
-name=Bushi Tenderfoot
-text=When a creature dealt damage by Bushi Tenderfoot this turn is put into a graveyard, flip Bushi Tenderfoot.
-mana={W}
-type=Creature
-subtype=Human Soldier
-power=1
-toughness=1
-[/card]
-[card]
-name=Bushi Tenderfoot (Kenzo the Hardhearted)
-text=Double strike; bushido 2 (When this blocks or becomes blocked, it gets +2/+2 until end of turn.)
-mana={W}
-type=Legendary Creature
-subtype=Human Samurai
-power=3
-toughness=4
 [/card]
 [card]
 name=Butcher Orgg
@@ -2912,15 +2870,6 @@ name=Chain of Vapor
 text=Return target nonland permanent to its owner's hand. Then that permanent's controller may sacrifice a land. If the player does, he or she may copy this spell and may choose a new target for that copy.
 mana={U}
 type=Instant
-[/card]
-[card]
-name=Chained Throatseeker
-mana={5}{U}
-type=Creature
-subtype=Horror
-power=5
-toughness=5
-text=Infect (This creature deals damage to creatures in the form of -1/-1 counters and to players in the form of poison counters.) Chained Throatseeker can't attack unless defending player is poisoned.
 [/card]
 [card]
 name=Chainer's Edict
@@ -4239,15 +4188,6 @@ name=Cultural Exchange
 text=Choose any number of creatures target player controls. Choose the same number of creatures another target player controls. Those players exchange control of those creatures. (This effect lasts indefinitely.)
 mana={4}{U}{U}
 type=Sorcery
-[/card]
-[card]
-name=Cunning Bandit
-text=Whenever you cast a Spirit or Arcane spell, you may put a ki counter on Cunning Bandit. -- At the beginning of the end step, if there are two or more ki counters on Cunning Bandit, you may flip it. -- ---- -- Azamuki, Treachery Incarnate -- Legendary Creature - Spirit -- 5/2 -- Remove a ki counter from Azamuki, Treachery Incarnate: Gain control of target creature until end of turn.
-mana={1}{R}{R}
-type=Creature
-subtype=Human Warrior
-power=2
-toughness=2
 [/card]
 [card]
 name=Cunning Wish
@@ -6553,24 +6493,6 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-name=Faithful Squire
-text=Whenever you cast a Spirit or Arcane spell, you may put a ki counter on Faithful Squire. -- At the beginning of the end step, if there are two or more ki counters on Faithful Squire, you may flip it.
-mana={1}{W}{W}
-type=Creature
-subtype=Human Soldier
-power=2
-toughness=2
-[/card]
-[card]
-name=Faithful Squire (Kaiso, Memory of Loyalty)
-text=Flying -- Remove a ki counter from Kaiso, Memory of Loyalty: Prevent all damage that would be dealt to target creature this turn.
-mana={1}{W}{W}
-type=Legendary Creature
-subtype=Spirit
-power=3
-toughness=4
-[/card]
-[card]
 name=Falling Star
 text=Flip Falling Star onto the playing area from a height of at least one foot. Falling Star deals 3 damage to each creature it lands on. Tap all creatures dealt damage by Falling Star. If Falling Star doesn't turn completely over at least once during the flip, it has no effect.
 mana={2}{R}
@@ -6775,13 +6697,6 @@ name=Festival of the Guildpact
 text=Prevent the next X damage that would be dealt to you this turn. -- Draw a card.
 mana={X}{W}
 type=Instant
-[/card]
-[card]
-name=Feudkiller's Verdict
-text=You gain 10 life. Then if you have more life than an opponent, put a 5/5 white Giant Warrior creature token onto the battlefield.
-mana={4}{W}{W}
-type=Tribal Sorcery
-subtype=Giant
 [/card]
 [card]
 name=Fickle Efreet
@@ -7777,15 +7692,6 @@ name=Geth's Verdict
 mana={B}{B}
 type=Instant
 text=Target player sacrifices a creature and loses 1 life.
-[/card]
-[card]
-name=Ghazban Ogre
-text=At the beginning of your upkeep, if a player has more life than each other player, that player gains control of Ghazban Ogre.
-mana={G}
-type=Creature
-subtype=Ogre
-power=2
-toughness=2
 [/card]
 [card]
 name=Ghazban Ogress
@@ -9427,15 +9333,6 @@ power=4
 toughness=4
 [/card]
 [card]
-name=Hired Muscle
-text=Whenever you cast a Spirit or Arcane spell, you may put a ki counter on Hired Muscle. -- At the beginning of the end step, if there are two or more ki counters on Hired Muscle, you may flip it. -- ---- -- Scarmaker -- Legendary Creature - Spirit -- 4/4 -- Remove a ki counter from Scarmaker: Target creature gains fear until end of turn. (It can't be blocked except by artifact creatures and/or black creatures.)
-mana={1}{B}{B}
-type=Creature
-subtype=Human Warrior
-power=2
-toughness=2
-[/card]
-[card]
 name=Hisoka's Guard
 text=You may choose not to untap Hisoka's Guard during your untap step. -- {1}{U}, {T}: Target creature you control other than Hisoka's Guard has shroud for as long as Hisoka's Guard remains tapped. (It can't be the target of spells or abilities.)
 mana={1}{U}
@@ -9546,23 +9443,6 @@ text=Each Sliver card in each player's hand has slivercycling {3}. -- Slivercycl
 mana={2}{R}
 type=Creature
 subtype=Sliver
-power=2
-toughness=2
-[/card]
-[card]
-name=Homura, Human Ascendant
-text=Homura, Human Ascendant can't block. -- When Homura is put into a graveyard from the battlefield, return it to the battlefield flipped.
-mana={4}{R}{R}
-type=Legendary Creature
-subtype=Human Monk
-power=4
-toughness=4
-[/card]
-[card]
-name=Homura, Human Ascendant (Homura's Essence)
-text=Creatures you control get +2/+2 and have flying and {R}: This creature gets +1/+0 until end of turn
-mana={4}{R}{R}
-type=Legendary Enchantment
 power=2
 toughness=2
 [/card]
@@ -10720,24 +10600,6 @@ power=0
 toughness=6
 [/card]
 [card]
-name=Jushi Apprentice
-text={2}{U}, {T}: Draw a card. If you have nine or more cards in hand, flip Jushi Apprentice.
-mana={1}{U}
-type=Creature
-subtype=Human Wizard
-power=1
-toughness=2
-[/card]
-[card]
-name=Jushi Apprentice (Tomoya the Revealer)
-text={3}{U}{U}, {T}: Target player draws X cards, where X is the number of cards in your hand.
-mana={1}{U}
-type=Legendary Creature
-subtype=Human Wizard
-power=2
-toughness=3
-[/card]
-[card]
 name=Justice
 text=At the beginning of your upkeep, sacrifice Justice unless you pay {W}{W}. -- Whenever a red creature or spell deals damage, Justice deals that much damage to that creature's or spell's controller.
 mana={2}{W}{W}
@@ -10926,24 +10788,6 @@ type=Creature
 subtype=Elf Druid
 power=1
 toughness=3
-[/card]
-[card]
-name=Keeper of the Flame
-text={R}, {T}: Choose target opponent who had more life than you did as you activated this ability. Keeper of the Flame deals 2 damage to him or her.
-mana={R}{R}
-type=Creature
-subtype=Human Wizard
-power=1
-toughness=2
-[/card]
-[card]
-name=Keeper of the Light
-text={W}, {T}: Choose target opponent who had more life than you did as you activated this ability. You gain 3 life.
-mana={W}{W}
-type=Creature
-subtype=Human Wizard
-power=1
-toughness=2
 [/card]
 [card]
 name=Keeper of the Sacred Word
@@ -11231,15 +11075,6 @@ text=Flanking (Whenever a creature without flanking blocks this creature, the bl
 mana={W}{W}
 type=Creature
 subtype=Human Rebel Knight
-power=2
-toughness=2
-[/card]
-[card]
-name=Knight of the Mists
-text=Flanking (Whenever a creature without flanking blocks this creature, the blocking creature gets -1/-1 until end of turn.) -- When Knight of the Mists enters the battlefield, you may pay {U}. If you don't, destroy target Knight and it can't be regenerated.
-mana={2}{U}
-type=Creature
-subtype=Human Knight
 power=2
 toughness=2
 [/card]
@@ -12074,18 +11909,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Llanowar Sentinel
-kicker={1}{G}
-auto=kicker moveto(mybattlefield) target(Llanowar Sentinel|mylibrary)
-####Cannot be integrated for now because normally you should be able to search for a sentinel EACH time a sentinel enters the battlefield. Read Gatherer-Card-Info for more information. (0.10.1)
-text=When Llanowar Sentinel enters the battlefield, you may pay {1}{G}. If you do, search your library for a card named Llanowar Sentinel and put that card onto the battlefield. Then shuffle your library.
-mana={2}{G}
-type=Creature
-subtype=Elf
-power=2
-toughness=3
-[/card]
-[card]
 name=Loafing Giant
 text=Whenever Loafing Giant attacks or blocks, put the top card of your library into your graveyard. If that card is a land card, prevent all combat damage that Loafing Giant would deal this turn.
 mana={4}{R}
@@ -12217,15 +12040,6 @@ type=Creature
 subtype=Human Soldier
 power=2
 toughness=2
-[/card]
-[card]
-name=Loxodon Peacekeeper
-text=At the beginning of your upkeep, the player with the lowest life total gains control of Loxodon Peacekeeper. If two or more players are tied for lowest life total, you choose one of them, and that player gains control of Loxodon Peacekeeper.
-mana={1}{W}
-type=Creature
-subtype=Elephant Soldier
-power=4
-toughness=4
 [/card]
 [card]
 name=Lullmage Mentor
@@ -12901,15 +12715,6 @@ name=Melee
 text=Cast Melee only during your combat phase before blockers are declared. -- Instead of defending player, you choose how each creature blocks this turn. -- Whenever a creature attacks and isn't blocked this turn, untap it and remove it from combat.
 mana={4}{R}
 type=Instant
-[/card]
-[card]
-name=Melira, Sylvok Outcast
-mana={1}{G}
-type=Legendary Creature
-subtype=Human Scout
-power=2
-toughness=2
-text=You can't get poison counters. Creatures you control can't have -1/-1 counters placed on them. Creatures your opponents control lose infect.
 [/card]
 [card]
 name=Melting
@@ -13977,15 +13782,6 @@ type=Artifact
 text={1}, {T}: Say the flavor text on a card in your hand. Target opponent guesses that card's name. You may reveal that card. If you do and your opponent guessed wrong, draw a card.
 [/card]
 [card]
-name=Mycosynth Fiend
-mana={2}{G}
-type=Creature
-subtype=Horror
-power=2
-toughness=2
-text=Mycosynth Fiend gets +1/+1 for each poison counter your opponents have.
-[/card]
-[card]
 name=Mycosynth Golem
 text=Affinity for artifacts (This spell costs {1} less to cast for each artifact you control.) -- Artifact creature spells you cast have affinity for artifacts. (They cost {1} less to cast for each artifact you control.)
 mana={11}
@@ -14399,24 +14195,6 @@ mana={X}{G}
 type=Sorcery
 [/card]
 [card]
-name=Nezumi Graverobber
-text={1}{B}: Exile target card from an opponent's graveyard. If no cards are in that graveyard, flip Nezumi Graverobber.
-mana={1}{B}
-type=Creature
-subtype=Rat Rogue
-power=2
-toughness=1
-[/card]
-[card]
-name=Nezumi Graverobber (Nighteyes the Desecrator)
-text={4}{B}: Put target creature card in a graveyard onto the battlefield under your control.
-mana={1}{B}
-type=Legendary Creature
-subtype=Rat Wizard
-power=4
-toughness=2
-[/card]
-[card]
 name=Nezumi Shortfang
 text={1}{B}, {T}: Target opponent discards a card. Then if that player has no cards in hand, flip Nezumi Shortfang.
 mana={1}{B}
@@ -14785,12 +14563,6 @@ type=Enchantment
 name=Oath of Lim-Dul
 text=Whenever you lose life, for each 1 life you lost, sacrifice a permanent other than Oath of Lim-Dul unless you discard a card. (Damage dealt to you causes you to lose life.) -- {B}{B}: Draw a card.
 mana={3}{B}
-type=Enchantment
-[/card]
-[card]
-name=Oath of Mages
-text=At the beginning of each player's upkeep, that player chooses target player who has more life than he or she does and is his or her opponent. The first player may have Oath of Mages deal 1 damage to the second player.
-mana={1}{R}
 type=Enchantment
 [/card]
 [card]
@@ -15171,24 +14943,6 @@ name=Ornate Kanzashi
 text={2}, {T}: Target opponent exiles the top card of his or her library. You may play that card this turn.
 mana={5}
 type=Artifact
-[/card]
-[card]
-name=Orochi Eggwatcher
-text={2}{G}, {T}: Put a 1/1 green Snake creature token onto the battlefield. If you control ten or more creatures, flip Orochi Eggwatcher.
-mana={2}{G}
-type=Creature
-subtype=Snake Shaman
-power=1
-toughness=1
-[/card]
-[card]
-name=Orochi Eggwatcher (Shidako, Broodmistress)
-text={G}, Sacrifice a creature: Target creature gets +3/+3 until end of turn.
-mana={2}{G}
-type=Legendary Creature
-subtype=Snake Shaman
-power=3
-toughness=3
 [/card]
 [card]
 name=Oros, the Avenger
@@ -15880,15 +15634,6 @@ mana={2}
 type=Artifact
 [/card]
 [card]
-name=Phyrexian Swarmlord
-mana={4}{G}{G}
-type=Creature
-subtype=Insect Horror
-power=4
-toughness=4
-text=Infect (This creature deals damage to creatures in the form of -1/-1 counters and to players in the form of poison counters.) At the beginning of your upkeep, put a 1/1 green Insect creature token with infect onto the battlefield for each poison counter your opponents have.
-[/card]
-[card]
 name=Phyrexian Totem
 text={T}: Add {B} to your mana pool. -- {2}{B}: Phyrexian Totem becomes a 5/5 black Horror artifact creature with trample until end of turn. -- Whenever Phyrexian Totem is dealt damage, if it's a creature, sacrifice that many permanents.
 mana={3}
@@ -16561,18 +16306,6 @@ name=Pulse of the Dross
 text=Target player reveals three cards from his or her hand and you choose one of them. That player discards that card. Then if that player has more cards in hand than you, return Pulse of the Dross to its owner's hand.
 mana={1}{B}{B}
 type=Sorcery
-[/card]
-[card]
-name=Pulse of the Fields
-text=You gain 4 life. Then if an opponent has more life than you, return Pulse of the Fields to its owner's hand.
-mana={1}{W}{W}
-type=Instant
-[/card]
-[card]
-name=Pulse of the Forge
-text=Pulse of the Forge deals 4 damage to target player. Then if that player has more life than you, return Pulse of the Forge to its owner's hand.
-mana={1}{R}{R}
-type=Instant
 [/card]
 [card]
 name=Punctuate
@@ -20906,13 +20639,6 @@ power=3
 toughness=4
 [/card]
 [card]
-name=Stone Idol Trap
-text=Stone Idol Trap costs {1} less to cast for each attacking creature. -- Put a 6/12 colorless Construct artifact creature token with trample onto the battlefield. Exile it at the beginning of your next end step.
-mana={5}{R}
-type=Instant
-subtype=Trap
-[/card]
-[card]
 name=Stone-Cold Basilisk
 mana={4}{G}
 type=Creature — Basilisk
@@ -22407,12 +22133,6 @@ mana={X}{R}
 type=Instant
 [/card]
 [card]
-name=Timely Reinforcements
-mana={2}{W}
-type=Sorcery
-text=If you have less life than an opponent, you gain 6 life. If you control fewer creatures than an opponent, put three 1/1 white Soldier creature tokens onto the battlefield.
-[/card]
-[card]
 name=Timesifter
 text=At the beginning of each upkeep, each player exiles the top card of his or her library. The player who exiled the card with the highest converted mana cost takes an extra turn after this one. If two or more players' cards are tied for highest cost, the tied players repeat this process until the tie is broken.
 mana={5}
@@ -23506,15 +23226,6 @@ mana={1}{R}{G}
 type=Instant
 [/card]
 [card]
-name=Viridian Betrayers
-mana={1}{G}{G}
-type=Creature
-subtype=Elf Warrior
-power=3
-toughness=1
-text=Viridian Betrayers has infect as long as an opponent is poisoned. (It deals damage to creatures in the form of -1/-1 counters and to players in the form of poison counters.)
-[/card]
-[card]
 name=Virulent Swipe
 mana={B}
 type=Instant
@@ -24190,15 +23901,6 @@ type=Creature
 subtype=Spirit
 power=2
 toughness=2
-[/card]
-[card]
-name=Wild Dogs
-text=At the beginning of your upkeep, if a player has more life than each other player, that player gains control of Wild Dogs. -- Cycling {2} ({2}, Discard this card: Draw a card.)
-mana={G}
-type=Creature
-subtype=Hound
-power=2
-toughness=1
 [/card]
 [card]
 name=Wild Evocation
