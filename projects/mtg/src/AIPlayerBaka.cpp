@@ -1724,7 +1724,7 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
             if(card->getManaCost() && card->getManaCost()->kicker && card->getManaCost()->kicker->isMulti)
             {
                 shouldPlayPercentage = 10* size_t(gotPayments.size())/int(1+(card->getManaCost()->getConvertedCost()+card->getManaCost()->kicker->getConvertedCost()));
-                if(shouldPlayPercentage < 40)
+                if(shouldPlayPercentage <= 10)
                     shouldPlayPercentage = shouldPlayPercentage/3;
             }
             DebugTrace("Should I play " << (card ? card->name : "Nothing" ) << "?" << endl 
