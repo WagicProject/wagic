@@ -843,7 +843,7 @@ vector<MTGAbility*> AIPlayerBaka::canPayMana(MTGCardInstance * target,ManaCost *
     return canPayMana(target, cost, usedCards);
 }
 
-vector<MTGAbility*> AIPlayerBaka::canPayMana(MTGCardInstance * target,ManaCost * cost, map<MTGCardInstance*,bool> &used )
+vector<MTGAbility*> AIPlayerBaka::canPayMana(MTGCardInstance * target,ManaCost * cost, map<MTGCardInstance*,bool> &used ,bool searchingAgain)
 {
     if(!cost->getConvertedCost())
         return vector<MTGAbility*>();
@@ -1016,7 +1016,7 @@ vector<MTGAbility*> AIPlayerBaka::canPayMana(MTGCardInstance * target,ManaCost *
                 return payments;//we didn't meet one of the color cost requirements.
             }
         }
-        if(cost->kicker && !used.size())
+        if(cost->kicker && !searchingAgain)
         {
 
             ManaCost * withKickerCost= NEW ManaCost(cost->kicker);
@@ -1025,15 +1025,14 @@ vector<MTGAbility*> AIPlayerBaka::canPayMana(MTGCardInstance * target,ManaCost *
             bool keepLooking = true;
             while(keepLooking)
             {
-                kickerPayment = canPayMana(target, withKickerCost, used);
+                kickerPayment = canPayMana(target, withKickerCost, used,true);
                 if(kickerPayment.size())
                 {
                     for(unsigned int w = 0;w < kickerPayment.size();++w)
                     {
-                        if(!used[kickerPayment[w]->source])
+                        if(used[kickerPayment[w]->source])
                         {
                             payments.push_back(kickerPayment[w]);
-                            used[kickerPayment[w]->source] = true;
                         }
                     }
                     canKick += 1;
