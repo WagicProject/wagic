@@ -79,6 +79,7 @@ GameStateShop::GameStateShop(GameApp* parent) :
     
     showCardListButton = NEW InteractiveButton(NULL, kShowCardListButtonId, Fonts::MAIN_FONT, "Show List", SCREEN_WIDTH_F - 150, SCREEN_HEIGHT_F - 15, JGE_BTN_SEC);
     disablePurchase = false;
+    clearInput = false;
 }
 
 GameStateShop::~GameStateShop()
@@ -609,6 +610,9 @@ void GameStateShop::Update(float dt)
             srcCards->Shuffle();
             load();
             disablePurchase = false;
+            clearInput = true;
+            return;
+
         }
         else if (btn == JGE_BTN_CANCEL)
             options[Options::DISABLECARDS].number = !options[Options::DISABLECARDS].number;
@@ -627,19 +631,30 @@ void GameStateShop::Update(float dt)
 		{
             bListCards = !bListCards;
             disablePurchase = false;
+            clearInput = true;
+            return;
 		}
         else if (shopMenu)
         {
-            if (btn == JGE_BTN_OK && (cycleCardsButton->ButtonPressed() || showCardListButton->ButtonPressed()))
+#if defined (IOS) || defined (ANDROID)
+            if ((cycleCardsButton->ButtonPressed() || showCardListButton->ButtonPressed()))
+#else 
+            if ( (btn == JGE_BTN_OK) && (cycleCardsButton->ButtonPressed() || showCardListButton->ButtonPressed()))
+#endif
             {
                 disablePurchase = true;
                 return;
             }
-            else if (btn == JGE_BTN_OK && disablePurchase)
-            {
-                disablePurchase = false;
-            }
+            else 
+#if defined (IOS) || defined (ANDROID)
+                if (clearInput && (btn == JGE_BTN_OK))
+                {
+                    clearInput = false;
+                    disablePurchase = false;
+                    return;
+                }
             else
+#endif
                 if (shopMenu->CheckUserInput(btn))
                     srcCards->Touch();
         }

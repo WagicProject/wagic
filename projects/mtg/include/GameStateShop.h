@@ -74,7 +74,7 @@ private:
     MTGDeck * booster;
     bool bListCards;
     InteractiveButton *cycleCardsButton, *showCardListButton;
-    bool disablePurchase;
+    bool disablePurchase, clearInput;
 
     void beginFilters();
     void deleteDisplay();
