@@ -603,7 +603,7 @@ int OrderedAIAction::getEfficiency()
             //Decrease chance of using ability if there is an extra cost to use the ability, ignore tap
         }
     }
-    if (MTGPutInPlayRule * pip = dynamic_cast<MTGPutInPlayRule *>(a))
+    if (dynamic_cast<MTGPutInPlayRule *>(a))
     {
         efficiency += 65;
     }
@@ -931,10 +931,8 @@ vector<MTGAbility*> AIPlayerBaka::canPayMana(MTGCardInstance * target,ManaCost *
                     if (!used[card] && amp->isReactingToClick(card) && amp->output->getConvertedCost() >= 1)
                     {
                         ManaCost * check = NEW ManaCost();
-                        check->init();
                         check->add(k,cost->getCost(k));
                         ManaCost * checkResult = NEW ManaCost();
-                        checkResult->init();
                         checkResult->add(k,result->getCost(k));
                         if(!(checkResult->canAfford(check)))
                         {
@@ -979,10 +977,8 @@ vector<MTGAbility*> AIPlayerBaka::canPayMana(MTGCardInstance * target,ManaCost *
                         if (!used[card] && amp->isReactingToClick(card) && amp->output->getConvertedCost() >= 1)
                         {
                             ManaCost * check = NEW ManaCost();
-                            check->init();
                             check->add(foundColor1?hybridCost->color1:hybridCost->color2,foundColor1?hybridCost->value1:hybridCost->value2);
                             ManaCost * checkResult = NEW ManaCost();
-                            checkResult->init();
                             checkResult->add(foundColor1?hybridCost->color1:hybridCost->color2,result->getCost(foundColor1?hybridCost->color1:hybridCost->color2));
                             if(((foundColor1 && !foundColor2)||(!foundColor1 && foundColor2)) &&!(checkResult->canAfford(check)))
                             {
@@ -1004,8 +1000,6 @@ vector<MTGAbility*> AIPlayerBaka::canPayMana(MTGCardInstance * target,ManaCost *
     {
         ManaCost * check = NEW ManaCost();
         ManaCost * checkResult = NEW ManaCost();
-        check->init();
-        checkResult->init();
         for (int k = 1; k < Constants::NB_Colors; k++)
         {
             check->add(k,cost->getCost(k));
@@ -1104,10 +1098,8 @@ vector<MTGAbility*> AIPlayerBaka::canPaySunBurst(ManaCost * cost)
                     if (!used[card] && amp->isReactingToClick(card) && amp->output->getConvertedCost() >= 1)
                     {
                         ManaCost * check = NEW ManaCost();
-                        check->init();
                         check->add(k,1);
                         ManaCost * checkResult = NEW ManaCost();
-                        checkResult->init();
                         checkResult->add(k,result->getCost(k));
                         if(!(checkResult->canAfford(check)))
                         {
@@ -1340,7 +1332,6 @@ int AIPlayerBaka::selectAbility()
                 if (abilityPayment.size())
                 {
                     fullPayment = NEW ManaCost();
-                    fullPayment->init();
                     for(int ch = 0; ch < int(abilityPayment.size());ch++)
                     {
                         AManaProducer * ampp = dynamic_cast<AManaProducer*> (abilityPayment[ch]);

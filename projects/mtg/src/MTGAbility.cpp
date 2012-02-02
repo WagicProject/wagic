@@ -2854,7 +2854,7 @@ int AbilityFactory::getAbilities(vector<MTGAbility *> * v, Spell * spell, MTGCar
             string cre = "Creature";
             card->setType(cre.c_str());
             card->basicAbilities.reset();
-            card->getManaCost()->reinit();
+            card->getManaCost()->resetCosts();
         }
         else if(card && !card->morphed && card->turningOver)
         {
@@ -3315,7 +3315,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
                 if (current->hasType(Subtypes::TYPE_LAND))
                     current->tap();
             }
-            player->getManaPool()->init();
+            player->getManaPool()->Empty();
         }
         break;
     }

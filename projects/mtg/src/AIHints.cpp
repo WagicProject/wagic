@@ -70,7 +70,6 @@ AIHint * AIHints::getByCondition (string condition)
 
 bool AIHints::HintSaysDontAttack(GameObserver* observer,MTGCardInstance * card)
 {
-    int count = 0;
     TargetChooserFactory tfc(observer);
     TargetChooser * hintTc = NULL;
     for(unsigned int i = 0; i < hints.size();i++)

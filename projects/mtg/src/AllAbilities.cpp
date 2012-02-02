@@ -1064,7 +1064,7 @@ int AAFlip::resolve()
             _target->types = myFlip->types;
             _target->text = myFlip->text;
             _target->formattedText = myFlip->formattedText;
-            ActionLayer * al = game->mLayers->actionLayer();
+
             for(unsigned int i = 0;i < _target->cardsAbilities.size();i++)
             {
                 MTGAbility * a = dynamic_cast<MTGAbility *>(_target->cardsAbilities[i]);
@@ -2123,7 +2123,7 @@ int AARemoveMana::resolve()
             }
             else //Remove all mana
             {
-                manaPool->init();
+                manaPool->Empty();
             }
         }
         else //remove a "standard" mana Description

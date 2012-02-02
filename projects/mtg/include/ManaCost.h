@@ -21,11 +21,12 @@ class ManaCost
     friend std::ostream& operator<<(std::ostream& out, ManaCost& m);
     friend std::ostream& operator<<(std::ostream& out, ManaCost* m);
     friend std::ostream& operator<<(std::ostream& out, ManaCost m);
-
+    
 protected:
     std::vector<int8_t> cost;
     std::vector<ManaCostHybrid> hybrids;
 
+    virtual void init();
 
 public:
     enum
@@ -52,8 +53,7 @@ public:
     string alternativeName;
     bool isMulti;
     static ManaCost * parseManaCost(string value, ManaCost * _manacost = NULL, MTGCardInstance * c = NULL);
-    virtual void init();
-    virtual void reinit();
+    virtual void resetCosts();
     void x();
     int hasX();
     int hasAnotherCost();
@@ -108,7 +108,7 @@ class ManaPool:public ManaCost{
 protected:
     Player * player;
 public:
-    void init();
+    void Empty();
     ManaPool(Player * player);
     ManaPool(ManaCost * _manaCost, Player * player);
     int remove (int color, int value);

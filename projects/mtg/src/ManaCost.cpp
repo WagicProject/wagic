@@ -388,11 +388,14 @@ int ManaCost::hasAnotherCost()
 void ManaCost::init()
 {
     int i;
-    cost.erase(cost.begin(),cost.end());
+    
+    cost.erase(cost.begin() ,cost.end());
+    
     for (i = 0; i <= Constants::NB_Colors; i++)
     {
         cost.push_back(0);
     }
+    
     extraCosts = NULL;
     kicker = NULL;
     alternative = NULL;
@@ -404,7 +407,7 @@ void ManaCost::init()
     isMulti = false;
 }
 
-void ManaCost::reinit()
+void ManaCost::resetCosts()
 {
     int i;
     
@@ -414,6 +417,7 @@ void ManaCost::reinit()
     {
         cost.push_back(0);
     }
+    
     SAFE_DELETE(extraCosts);
     SAFE_DELETE(kicker);
     SAFE_DELETE(alternative);
@@ -841,9 +845,9 @@ ostream& operator<<(ostream& out, ManaCost m)
     return out << m.toString();
 }
 
-void ManaPool::init()
+void ManaPool::Empty()
 {
-    ManaCost::init();
+    init();
     WEvent * e = NEW WEventEmptyManaPool(this);
     player->getObserver()->receiveEvent(e);
 }
