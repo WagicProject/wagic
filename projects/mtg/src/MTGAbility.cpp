@@ -1744,7 +1744,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             target = card;
 
         MTGAbility * a = NEW AAMover(observer, id, card, target, splitMove[1]);
-        a->oneShot = 1;
+        a->oneShot = true;
         if(s.find("and(") != string::npos)
         {
             vector<string> splitAnd = parseBetween(s, "and((", " ))",false);
@@ -1754,6 +1754,19 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             }
         }
         return a;
+    }
+
+    //random mover
+     vector<string> splitRandomMove = parseBetween(s, "moverandom(", ")");
+    if (splitRandomMove.size())
+    {
+         vector<string> splitfrom = parseBetween(splitRandomMove[2], "from(", ")");
+         vector<string> splitto = parseBetween(splitRandomMove[2], "to(", ")");
+         if(!splitfrom.size() || !splitto.size())
+             return NULL;
+         MTGAbility * a = NEW AARandomMover(observer, id, card, target, splitRandomMove[1],splitfrom[1],splitto[1]);
+         a->oneShot = true;
+         return a;
     }
 
     //Copy a target

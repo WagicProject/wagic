@@ -2028,6 +2028,86 @@ AAMover::~AAMover()
 SAFE_DELETE(andAbility);
 }
 
+//random movement of a card from zone to zone
+AARandomMover::AARandomMover(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target, string _tcs, string _from, string _to) :
+    ActivatedAbility(observer, _id, _source, NULL, 0), abilityTC(_tcs),fromZone(_from),toZone(_to)
+{
+    if (_target)
+        target = _target;
+}
+
+MTGGameZone * AARandomMover::destinationZone(Targetable * target,string zone)
+{
+    MTGCardInstance * _target = (MTGCardInstance *) target;
+    return MTGGameZone::stringToZone(game, zone, source, _target);
+}
+
+int AARandomMover::resolve()
+{
+    MTGCardInstance * _target = (MTGCardInstance *) target;
+    if (target)
+    {
+        Player* p = _target->controller();
+        if (p)
+        {
+            MTGGameZone * fromDest = destinationZone(target,fromZone);
+            MTGGameZone * toDest = destinationZone(target,toZone);
+
+            if (!fromDest->nb_cards)
+                return 0;
+
+            TargetChooserFactory tcf(game);
+            TargetChooser * rTc = tcf.createTargetChooser(abilityTC, source);
+            rTc->targetter = NULL;
+            rTc->setAllZones();
+            vector<MTGCardInstance*>selectedCards;
+            for(unsigned int i = 0; i < fromDest->cards.size();++i)
+            {
+                if(rTc->canTarget(fromDest->cards[i]))
+                    selectedCards.push_back(fromDest->cards[i]);
+            }
+            SAFE_DELETE(rTc);
+            if(!selectedCards.size())
+                return 0;
+            int r = fromDest->owner->getObserver()->getRandomGenerator()->random() % (selectedCards.size());
+            MTGCardInstance * toMove = selectedCards[r];
+
+
+            //inplay is a special zone !
+            for (int i = 0; i < 2; i++)
+            {
+                if (toDest == game->players[i]->game->inPlay && fromDest != game->players[i]->game->inPlay && fromDest
+                        != game->players[i]->opponent()->game->inPlay)
+                {
+                    MTGCardInstance * copy = game->players[i]->game->putInZone(toMove, fromDest, game->players[i]->game->temp);
+                    Spell * spell = NEW Spell(game, copy);
+                    spell->resolve();
+                    delete spell;
+                    return 1;
+                }
+            }
+            p->game->putInZone(toMove, fromDest, toDest);
+            return 1;
+        }
+    }
+    return 0;
+}
+
+const char * AARandomMover::getMenuText()
+{
+    return "Dig";
+}
+
+AARandomMover * AARandomMover::clone() const
+{
+    AARandomMover * a = NEW AARandomMover(*this);
+    return a;
+}
+
+AARandomMover::~AARandomMover()
+{
+}
+
 //Random Discard
 AARandomDiscarder::AARandomDiscarder(GameObserver* observer, int _id, MTGCardInstance * card, Targetable * _target,string nbcardsStr, ManaCost * _cost,
          int who) :

@@ -1047,6 +1047,21 @@ public:
     ~AAMover();
 };
 
+// AARandomMover
+class AARandomMover: public ActivatedAbility
+{
+public:
+    string abilityTC;
+    string fromZone;
+    string toZone;
+    AARandomMover(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target, string tcs, string from, string to);
+    MTGGameZone * destinationZone(Targetable * target = NULL,string zone = "");
+    int resolve();
+    const char * getMenuText();
+    AARandomMover * clone() const;
+    ~AARandomMover();
+};
+
 //-----------------------------------------------------------------------------------------------
 
 class AABuryCard: public ActivatedAbility
