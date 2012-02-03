@@ -56,7 +56,6 @@
 		12059D9814980B7300DAC43B /* JSpline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEE232D3128A01F400C34032 /* JSpline.cpp */; };
 		12059D9914980B7300DAC43B /* JSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEE232D4128A01F400C34032 /* JSprite.cpp */; };
 		12059D9A14980B7300DAC43B /* JGfx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEE232D8128A01F400C34032 /* JGfx.cpp */; };
-		12059D9B14980B7300DAC43B /* JSfx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEE232D9128A01F400C34032 /* JSfx.cpp */; };
 		12059D9C14980B7300DAC43B /* tinystr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEE232DE128A01F400C34032 /* tinystr.cpp */; };
 		12059D9D14980B7300DAC43B /* tinyxml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEE232E0128A01F400C34032 /* tinyxml.cpp */; };
 		12059D9E14980B7300DAC43B /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEE232E2128A01F400C34032 /* tinyxmlerror.cpp */; };
@@ -323,11 +322,8 @@
 		128ED4F9148BC94D00C58E83 /* CJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 128ED496148BC94C00C58E83 /* CJSONSerializer.m */; };
 		128ED4FA148BC94D00C58E83 /* CSerializedJSONData.m in Sources */ = {isa = PBXBuildFile; fileRef = 128ED498148BC94C00C58E83 /* CSerializedJSONData.m */; };
 		128ED508148BCB7D00C58E83 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 128ED507148BCB7D00C58E83 /* CoreLocation.framework */; };
-		128ED50C148BCBBC00C58E83 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 128ED509148BCBBC00C58E83 /* AddressBook.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		128ED50D148BCBBC00C58E83 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 128ED50A148BCBBC00C58E83 /* AVFoundation.framework */; };
-		128ED50E148BCBBC00C58E83 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 128ED50B148BCBBC00C58E83 /* MapKit.framework */; };
 		128ED510148BCC1900C58E83 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 128ED50F148BCC1900C58E83 /* libsqlite3.dylib */; settings = {ATTRIBUTES = (Weak, ); }; };
-		128ED519148BF0E000C58E83 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 128ED518148BF0E000C58E83 /* MediaPlayer.framework */; };
 		129654D1148A52740031100B /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 129654D0148A52730031100B /* iAd.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		129654D6148AA23A0031100B /* modrules.xml in Resources */ = {isa = PBXBuildFile; fileRef = 129654D5148AA2390031100B /* modrules.xml */; };
 		12B812341404B9E20092E303 /* !Pak0.cpk in Resources */ = {isa = PBXBuildFile; fileRef = 12B8121F1404B9E10092E303 /* !Pak0.cpk */; };
@@ -345,6 +341,14 @@
 		12B8124F1404BD0D0092E303 /* ObjectAnalytics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12B8124C1404BD0D0092E303 /* ObjectAnalytics.cpp */; };
 		12CCA030144A05D100E343A0 /* AbilityParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12CCA02F144A05D100E343A0 /* AbilityParser.cpp */; };
 		12D095E114417D0500F69056 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 12D095E014417D0500F69056 /* libstdc++.dylib */; settings = {ATTRIBUTES = (Weak, ); }; };
+		12DCD02114DB917F0023B966 /* MyOpenALSupport.c in Sources */ = {isa = PBXBuildFile; fileRef = 12DCD01C14DB917F0023B966 /* MyOpenALSupport.c */; };
+		12DCD02214DB917F0023B966 /* MyOpenALSupport.c in Sources */ = {isa = PBXBuildFile; fileRef = 12DCD01C14DB917F0023B966 /* MyOpenALSupport.c */; };
+		12DCD02314DB917F0023B966 /* SoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 12DCD01F14DB917F0023B966 /* SoundManager.m */; };
+		12DCD02414DB917F0023B966 /* SoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 12DCD01F14DB917F0023B966 /* SoundManager.m */; };
+		12DCD02D14DBE1F90023B966 /* JSfx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12DCD02C14DBE1F90023B966 /* JSfx.cpp */; };
+		12DCD02E14DBE1F90023B966 /* JSfx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12DCD02C14DBE1F90023B966 /* JSfx.cpp */; };
+		12DCD03414DBECC50023B966 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12DCD03114DBECC50023B966 /* CoreAudio.framework */; };
+		12DCD03514DBECC50023B966 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12DCD03214DBECC50023B966 /* OpenAL.framework */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		28FD15000DC6FC520079059D /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FD14FF0DC6FC520079059D /* OpenGLES.framework */; };
@@ -489,7 +493,6 @@
 		CEE2331A128A01F400C34032 /* JSpline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEE232D3128A01F400C34032 /* JSpline.cpp */; };
 		CEE2331B128A01F400C34032 /* JSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEE232D4128A01F400C34032 /* JSprite.cpp */; };
 		CEE2331E128A01F400C34032 /* JGfx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEE232D8128A01F400C34032 /* JGfx.cpp */; };
-		CEE2331F128A01F400C34032 /* JSfx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEE232D9128A01F400C34032 /* JSfx.cpp */; };
 		CEE23323128A01F400C34032 /* tinystr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEE232DE128A01F400C34032 /* tinystr.cpp */; };
 		CEE23324128A01F400C34032 /* tinyxml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEE232E0128A01F400C34032 /* tinyxml.cpp */; };
 		CEE23325128A01F400C34032 /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEE232E2128A01F400C34032 /* tinyxmlerror.cpp */; };
@@ -694,6 +697,15 @@
 		12CCA02F144A05D100E343A0 /* AbilityParser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AbilityParser.cpp; sourceTree = "<group>"; };
 		12CCA032144A05DF00E343A0 /* AbilityParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbilityParser.h; sourceTree = "<group>"; };
 		12D095E014417D0500F69056 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
+		12DCD01C14DB917F0023B966 /* MyOpenALSupport.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = MyOpenALSupport.c; sourceTree = "<group>"; };
+		12DCD01D14DB917F0023B966 /* MyOpenALSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyOpenALSupport.h; sourceTree = "<group>"; };
+		12DCD01E14DB917F0023B966 /* SoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundManager.h; sourceTree = "<group>"; };
+		12DCD01F14DB917F0023B966 /* SoundManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundManager.m; sourceTree = "<group>"; };
+		12DCD02014DB917F0023B966 /* SynthesizeSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynthesizeSingleton.h; sourceTree = "<group>"; };
+		12DCD02C14DBE1F90023B966 /* JSfx.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = JSfx.cpp; path = ../../JGE/src/iOS/JSfx.cpp; sourceTree = SOURCE_ROOT; };
+		12DCD03014DBECC40023B966 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
+		12DCD03114DBECC50023B966 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		12DCD03214DBECC50023B966 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D6058910D05DD3D006BFB54 /* wagic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wagic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -952,7 +964,7 @@
 		CEE2323A128A01DD00C34032 /* JParticleSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JParticleSystem.h; sourceTree = "<group>"; };
 		CEE2323B128A01DD00C34032 /* JRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRenderer.h; sourceTree = "<group>"; };
 		CEE2323C128A01DD00C34032 /* JResourceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JResourceManager.h; sourceTree = "<group>"; };
-		CEE2323E128A01DD00C34032 /* JSoundSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSoundSystem.h; sourceTree = "<group>"; };
+		CEE2323E128A01DD00C34032 /* JSoundSystem.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = JSoundSystem.h; sourceTree = "<group>"; };
 		CEE2323F128A01DD00C34032 /* JSpline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSpline.h; sourceTree = "<group>"; };
 		CEE23240128A01DD00C34032 /* JSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSprite.h; sourceTree = "<group>"; };
 		CEE23242128A01DD00C34032 /* JTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTypes.h; sourceTree = "<group>"; };
@@ -1034,6 +1046,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12DCD03414DBECC50023B966 /* CoreAudio.framework in Frameworks */,
+				12DCD03514DBECC50023B966 /* OpenAL.framework in Frameworks */,
+				128ED380148BAEC900C58E83 /* AudioToolbox.framework in Frameworks */,
+				128ED50D148BCBBC00C58E83 /* AVFoundation.framework in Frameworks */,
 				12D095E114417D0500F69056 /* libstdc++.dylib in Frameworks */,
 				12211EBB14934A2C00641703 /* CFNetwork.framework in Frameworks */,
 				12211EB914934A1900641703 /* MobileCoreServices.framework in Frameworks */,
@@ -1047,14 +1063,9 @@
 				28FD15080DC6FC5B0079059D /* QuartzCore.framework in Frameworks */,
 				CED2152C128DFAFF0050149E /* CoreGraphics.framework in Frameworks */,
 				F2494ADC12A1BD4100D6284A /* libz.dylib in Frameworks */,
-				128ED380148BAEC900C58E83 /* AudioToolbox.framework in Frameworks */,
 				128ED381148BAEC900C58E83 /* MessageUI.framework in Frameworks */,
 				128ED382148BAEC900C58E83 /* SystemConfiguration.framework in Frameworks */,
 				128ED508148BCB7D00C58E83 /* CoreLocation.framework in Frameworks */,
-				128ED50C148BCBBC00C58E83 /* AddressBook.framework in Frameworks */,
-				128ED50D148BCBBC00C58E83 /* AVFoundation.framework in Frameworks */,
-				128ED50E148BCBBC00C58E83 /* MapKit.framework in Frameworks */,
-				128ED519148BF0E000C58E83 /* MediaPlayer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1340,6 +1351,7 @@
 		129654D2148AA2390031100B /* iOS */ = {
 			isa = PBXGroup;
 			children = (
+				12DCD01A14DB913B0023B966 /* Managers */,
 				CE9A478312B514BA00C9F38A /* wagicAppDelegate.h */,
 				CE9A478412B514BA00C9F38A /* wagicAppDelegate.m */,
 				128FB96A149537A600ED4EE6 /* Images */,
@@ -1408,6 +1420,34 @@
 			path = Debug;
 			sourceTree = "<group>";
 		};
+		12DCD01A14DB913B0023B966 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				12DCD01B14DB917F0023B966 /* SoundManager */,
+			);
+			name = Managers;
+			sourceTree = "<group>";
+		};
+		12DCD01B14DB917F0023B966 /* SoundManager */ = {
+			isa = PBXGroup;
+			children = (
+				12DCD01C14DB917F0023B966 /* MyOpenALSupport.c */,
+				12DCD01D14DB917F0023B966 /* MyOpenALSupport.h */,
+				12DCD01E14DB917F0023B966 /* SoundManager.h */,
+				12DCD01F14DB917F0023B966 /* SoundManager.m */,
+				12DCD02014DB917F0023B966 /* SynthesizeSingleton.h */,
+			);
+			path = SoundManager;
+			sourceTree = "<group>";
+		};
+		12DCD02B14DBE1AF0023B966 /* ios */ = {
+			isa = PBXGroup;
+			children = (
+				12DCD02C14DBE1F90023B966 /* JSfx.cpp */,
+			);
+			name = ios;
+			sourceTree = "<group>";
+		};
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -1452,6 +1492,9 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				12DCD03014DBECC40023B966 /* AudioUnit.framework */,
+				12DCD03114DBECC50023B966 /* CoreAudio.framework */,
+				12DCD03214DBECC50023B966 /* OpenAL.framework */,
 				12211EBA14934A2C00641703 /* CFNetwork.framework */,
 				12211EB814934A1800641703 /* MobileCoreServices.framework */,
 				1216D632148F7411000F2295 /* libc++abi.dylib */,
@@ -1802,6 +1845,7 @@
 		CEE232AF128A01F400C34032 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				12DCD02B14DBE1AF0023B966 /* ios */,
 				12B8121D1404B9E10092E303 /* zipFS */,
 				CEE232B3128A01F400C34032 /* hge */,
 				CEE232D7128A01F400C34032 /* pc */,
@@ -2027,7 +2071,6 @@
 				12059D9814980B7300DAC43B /* JSpline.cpp in Sources */,
 				12059D9914980B7300DAC43B /* JSprite.cpp in Sources */,
 				12059D9A14980B7300DAC43B /* JGfx.cpp in Sources */,
-				12059D9B14980B7300DAC43B /* JSfx.cpp in Sources */,
 				12059D9C14980B7300DAC43B /* tinystr.cpp in Sources */,
 				12059D9D14980B7300DAC43B /* tinyxml.cpp in Sources */,
 				12059D9E14980B7300DAC43B /* tinyxmlerror.cpp in Sources */,
@@ -2203,6 +2246,9 @@
 				12059E4814980B7300DAC43B /* WagicDownloadProgressViewController.m in Sources */,
 				12272FC514CD57CF00192DC7 /* SimpleButton.cpp in Sources */,
 				12272FC914CD6A3900192DC7 /* InteractiveButton.cpp in Sources */,
+				12DCD02214DB917F0023B966 /* MyOpenALSupport.c in Sources */,
+				12DCD02414DB917F0023B966 /* SoundManager.m in Sources */,
+				12DCD02E14DBE1F90023B966 /* JSfx.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2237,7 +2283,6 @@
 				CEE2331A128A01F400C34032 /* JSpline.cpp in Sources */,
 				CEE2331B128A01F400C34032 /* JSprite.cpp in Sources */,
 				CEE2331E128A01F400C34032 /* JGfx.cpp in Sources */,
-				CEE2331F128A01F400C34032 /* JSfx.cpp in Sources */,
 				CEE23323128A01F400C34032 /* tinystr.cpp in Sources */,
 				CEE23324128A01F400C34032 /* tinyxml.cpp in Sources */,
 				CEE23325128A01F400C34032 /* tinyxmlerror.cpp in Sources */,
@@ -2413,6 +2458,9 @@
 				12211EC91494360C00641703 /* WagicDownloadProgressViewController.m in Sources */,
 				12272FC414CD57CF00192DC7 /* SimpleButton.cpp in Sources */,
 				12272FC814CD6A3900192DC7 /* InteractiveButton.cpp in Sources */,
+				12DCD02114DB917F0023B966 /* MyOpenALSupport.c in Sources */,
+				12DCD02314DB917F0023B966 /* SoundManager.m in Sources */,
+				12DCD02D14DBE1F90023B966 /* JSfx.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
