@@ -18321,7 +18321,7 @@ toughness=9
 [/card]
 [card]
 name=Devouring Swarm
-abilities=flyng
+abilities=flying
 auto={S(creature|mybattlefield)}:1/1
 text=Flying -- Sacrifice a creature: Devouring Swarm gets +1/+1 until end of turn.
 mana={1}{B}{B}
