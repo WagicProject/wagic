@@ -824,7 +824,7 @@ string TaskImmortal::getShortDesc()
 bool TaskImmortal::isDone(GameObserver *observer, GameApp * _app)
 {
     return (!observer->players[0]->isAI()) && (observer->players[1]->isAI()) && (observer->gameOver != observer->players[0]) // Human player wins
-                    && (observer->players[1]->life >= targetLife);
+                    && (observer->players[0]->life >= targetLife);
 }
 
 void TaskImmortal::storeCustomAttribs()
