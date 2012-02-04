@@ -3060,6 +3060,7 @@ toughness=5
 [card]
 name=Archangel's Light
 auto=foreach(*|mygraveyard) life:2
+auto=moveto(myLibrary) all(*|myGraveyard) && shuffle
 text=You gain 2 life for each card in your graveyard, then shuffle your graveyard into your library.
 mana={7}{W}
 type=Sorcery
@@ -9336,7 +9337,7 @@ toughness=3
 [card]
 name=Briarpack Alpha
 abilities=flash
-auto=2/2 target(creature)
+auto=2/2 target(creature) ueot
 text=Flash -- When Briarpack Alpha enters the battlefield, target creature gets +2/+2 until end of turn.
 mana={3}{G}
 type=Creature
@@ -12392,7 +12393,7 @@ type=Sorcery
 ###The 2 cards below should stay together (Flip Card)###
 [card]
 name=Chosen of Markov
-auto={T}{T(vampire[-tapped]):flip(Markov's Servant)
+abilities={T}{T(vampire[-tapped]):flip(Markov's Servant)
 text={T}, Tap an untapped Vampire you control: Transform Chosen of Markov.
 mana={2}{B}
 type=Creature
@@ -23959,8 +23960,8 @@ type=Sorcery
 [card]
 name=Falkenrath Aristocrat
 abilities=flying,haste
-auto={S(creature[-human]):name(sacrifice a non-human creature):indestructible
-auto={S(creature[human]):name(sacrifice a human):indestructible && counter(1/1,1)
+abilities={S(creature[-human]):name(sacrifice a non-human creature):indestructible
+abilities={S(creature[human]):name(sacrifice a human):indestructible && counter(1/1,1)
 text=Flying, haste -- Sacrifice a creature: Falkenrath Aristocrat is indestructible this turn. If the sacrificed creature was a Human, put a +1/+1 counter on Falkenrath Aristocrat.
 mana={2}{B}{R}
 type=Creature
@@ -23992,8 +23993,8 @@ toughness=2
 [/card]
 [card]
 name=Falkenrath Torturer
-auto={S(creature[-human]):name(sacrifice a non-human creature):flying
-auto={S(creature[human]):name(sacrifice a human):flying && counter(1/1,1)
+abilities={S(creature[-human]):name(sacrifice a non-human creature):flying
+abilities={S(creature[human]):name(sacrifice a human):flying && counter(1/1,1)
 text=Sacrifice a creature: Falkenrath Torturer gains flying until end of turn. If the sacrificed creature was a Human, put a +1/+1 counter on Falkenrath Torturer.
 mana={2}{B}
 type=Creature
@@ -24535,7 +24536,7 @@ type=Instant
 name=Feed the Pack
 auto=@each my endofturn:may name(sacrifice a non-token creature) target(creature[-token]|mybattlefield) transforms((,newability[token(-262857)*p],newability[sacrifice])) forever
 text=At the beginning of your end step, you may sacrifice a nontoken creature. If you do, put X 2/2 green Wolf creature tokens onto the battlefield where X is the sacrificed creature's toughness.
-mana={4}{G}
+mana={5}{G}
 type=Enchantment
 [/card]
 [card]
@@ -32756,7 +32757,6 @@ toughness=5
 [card]
 name=Bane of Hanweir
 abilities=mustattack
-auto=@movedTo(*|opponentstack):damage:2 opponent
 auto=@each upkeep restriction{lastturn(*|stack)~morethan~1}:flip(Hanweir Watchkeep)
 text=Bane of Hanweir attacks each turn if able. -- At the beginning of each upkeep, if a player cast two or more spells last turn, transform Bane of Hanweir.
 type=Creature
@@ -34370,7 +34370,7 @@ toughness=6
 [card]
 name=Hollowhenge Beast
 text=
-mana={5}{G}{G}
+mana={3}{G}{G}
 type=Creature
 subtype=Beast
 power=5
@@ -43538,8 +43538,6 @@ toughness=3
 [card]
 name=Ludevic's Abomination
 abilities=trample
-auto=lord(creature[attacking]|mybattlefield) 3/0
-auto=@each upkeep restriction{lastturn(*|stack)~morethan~1}:flip(Instigator Gang)
 text=Trample
 type=Creature
 subtype=Lizard Horror
@@ -58666,7 +58664,7 @@ type=Sorcery
 [/card]
 [card]
 name=Reap the Seagraf
-target=token(Zombie,Creature Zombie,2/2,black)
+auto=token(Zombie,Creature Zombie,2/2,black)
 flashback={4}{U}
 text=Put a 2/2 black Zombie creature token onto the battlefield. -- Flashback {4}{U}
 mana={2}{B}
@@ -63164,7 +63162,7 @@ target=land
 auto=destroy
 auto=damage:1 all(creature[human])
 text=Destroy target land. Scorch the Fields deals 1 damage to each Human creature.
-mana={4}{W}
+mana={4}{R}
 type=Sorcery
 [/card]
 [card]
@@ -81016,7 +81014,7 @@ mana={4}{B}{B}
 type=Creature
 subtype=Vampire
 power=3
-toughnes=2
+toughness=2
 [/card]
 [card]
 name=Venom
@@ -85015,7 +85013,7 @@ toughness=2
 [card]
 name=Wild Dogs
 auto=@each my upkeep:if compare(lifetotal)~lessthan~compare(opponentlifetotal) then moveTo(opponentbattlefield)
-autohand=__CYCLING__({G})
+autohand=__CYCLING__({2})
 text=At the beginning of your upkeep, if a player has more life than each other player, that player gains control of Wild Dogs. -- Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={G}
 type=Creature
@@ -85955,8 +85953,8 @@ toughness=4
 name=Wolfhunter's Quiver
 auto={5}:equip
 auto=teach(creature) {T}:damage:1 target(creature,player)
-auto=teach(creature) {T}:damage:2 target(werewolf)
-text=Equipped creature has "{T}: This creature deals 1 damage to target creature or player" and "{T}: This creature deals 2 damage to target Werewolf creature." -- Equip {5}
+auto=teach(creature) {T}:damage:3 target(werewolf)
+text=Equipped creature has "{T}: This creature deals 1 damage to target creature or player" and "{T}: This creature deals 3 damage to target Werewolf creature." -- Equip {5}
 mana={1}
 type=Artifact
 subtype=Equipment
