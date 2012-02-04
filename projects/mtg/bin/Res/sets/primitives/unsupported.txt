@@ -7242,12 +7242,6 @@ power=0
 toughness=1
 [/card]
 [card]
-name=Fossil Find
-text=Return a card at random from your graveyard to your hand, then reorder your graveyard as you choose.
-mana={RG}
-type=Sorcery
-[/card]
-[card]
 name=Foster
 text=Whenever a creature you control is put into a graveyard from the battlefield, you may pay {1}. If you do, reveal cards from the top of your library until you reveal a creature card. Put that card into your hand and the rest into your graveyard.
 mana={2}{G}{G}
@@ -21396,15 +21390,6 @@ type=Creature
 subtype=Elemental
 power=4
 toughness=4
-[/card]
-[card]
-name=Tariel, Reckoner of Souls
-mana={4}{W}{B}{R}
-type=Legendary Creature
-subtype=Angel
-power=4
-toughness=7
-text=Flying, vigilance {T}: Choose a creature card at random from target opponent's graveyard. Put that card onto the battlefield under your control.
 [/card]
 [card]
 name=Tariff

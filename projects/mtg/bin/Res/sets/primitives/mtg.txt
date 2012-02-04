@@ -12073,6 +12073,16 @@ mana={3}
 type=Artifact
 [/card]
 [card]
+name=Charmbreaker Devils
+auto=@each my upkeep:moverandom(instant,sorcery) from(mygraveyard) to(myhand)
+text=At the beginning of your upkeep, return an instant or sorcery card at random from your graveyard to your hand. -- Whenever you cast an instant or sorcery spell, Charmbreaker Devils gets +4/+0 until end of turn.
+mana={5}{R}
+type=Creature
+subtype=Devil
+power=4
+toughness=4
+[/card]
+[card]
 name=Charnelhoard Wurm
 abilities=trample
 auto=@damaged(opponent) from(this):may moveTo(myhand) target(*|mygraveyard)
@@ -26904,6 +26914,13 @@ power=1
 toughness=6
 [/card]
 [card]
+name=Fossil Find
+auto=moverandom(*) from(mygraveyard) to(myhand)
+text=Return a card at random from your graveyard to your hand, then reorder your graveyard as you choose.
+mana={RG}
+type=Sorcery
+[/card]
+[card]
 name=Foul Familiar
 abilities=cantblock
 auto={L}{B}:moveto(ownerhand)
@@ -28714,6 +28731,16 @@ auto=choice moveTo(ownerhand) target(<2>zombie|mygraveyard)
 text=Choose one - Return target creature card from your graveyard to your hand; or return two target Zombie cards from your graveyard to your hand.
 mana={B}
 type=Sorcery
+[/card]
+[card]
+name=Ghoulraiser
+auto=moverandom(zombie) from(mygraveyard) to(myhand)
+text=When Ghoulraiser enters the battlefield, return a Zombie card at random from your graveyard to your hand.
+mana={1}{B}{B}
+type=Creature
+subtype=Zombie
+power=2
+toughness=2
 [/card]
 [card]
 name=Ghoultree
@@ -32971,6 +32998,13 @@ auto={B}:moveTo(myLibrary) target(creature|myGraveyard)
 text={B}: Put target creature card from your graveyard on top of your library.
 mana={2}{B}
 type=Enchantment
+[/card]
+[card]
+name=Haunted Fengraf
+auto={T}:Add{1}
+auto={3}{T}{S}:moverandom(creature) from(mygraveyard) to(myhand)
+text={T}: Add 1 to your mana pool. -- {3}, {T}, Sacrifice Haunted Fengraf: Return a creature card at random from your graveyard to your hand.
+type=Land
 [/card]
 [card]
 name=Haunting Apparition
@@ -44287,6 +44321,13 @@ power=2
 toughness=3
 [/card]
 [card]
+name=Make a Wish
+auto=moverandom(*) from(mygraveyard) to(myhand) && moverandom(*) from(mygraveyard) to(myhand)
+text=Return a card at random from your graveyard to your hand, then reorder your graveyard as you choose.
+mana={3}{G}
+type=Sorcery
+[/card]
+[card]
 name=Makeshift Mauler
 text=As an additional cost to cast Makeshift Mauler, exile a creature card from your graveyard.
 mana={3}{U}{E(creature|mygraveyard)}
@@ -47359,6 +47400,17 @@ power=6
 toughness=6
 [/card]
 [card]
+name=Mold Shambler
+kicker={1}{G}
+auto=kicker destroy target(*[-creature])
+text=Kicker {1}{G} (You may pay an additional {1}{G} as you cast this spell.) -- When Mold Shambler enters the battlefield, if it was kicked, destroy target noncreature permanent.
+mana={3}{G}
+type=Creature
+subtype=Fungus Beast
+power=3
+toughness=3
+[/card]
+[card]
 name=Molder
 auto=destroy target(*[artifact;enchantment;manacost <=X])
 auto=life:x
@@ -47378,15 +47430,15 @@ power=5
 toughness=3
 [/card]
 [card]
-name=Mold Shambler
-kicker={1}{G}
-auto=kicker destroy target(*[-creature])
-text=Kicker {1}{G} (You may pay an additional {1}{G} as you cast this spell.) -- When Mold Shambler enters the battlefield, if it was kicked, destroy target noncreature permanent.
-mana={3}{G}
+name=Moldgraf Monstrosity
+abilities=trample
+auto=@movedTo(this|graveyard) from(battlefield):moveto(exile) && moverandom(creature) from(mygraveyard) to(myhand) && moverandom(creature) from(mygraveyard)
+text=Trample -- When Moldgraf Monstrosity dies, exile it, then return two creature cards at random from your graveyard to the battlefield.
+mana={4}{G}{G}{G}
 type=Creature
-subtype=Fungus Beast
-power=3
-toughness=3
+subtype=Insect
+power=8
+toughness=8
 [/card]
 [card]
 name=Molimo, Maro-Sorcerer
@@ -74539,6 +74591,17 @@ type=Tribal Instant
 subtype=Goblin
 [/card]
 [card]
+name=Tariel, Reckoner of Souls
+abilities=flying,vigilance
+auto={T}:moverandom(creature) from(opponentgraveyard) to(mybattlefield)
+text=Flying, vigilance -- {T}: Choose a creature card at random from target opponent's graveyard. Put that card onto the battlefield under your control.
+mana={4}{W}{B}{R}
+type=Legendary Creature
+subtype=Angel
+power=4
+toughness=7
+[/card]
+[card]
 name=Tarmogoyf
 auto=aslongas(artifact|graveyard) 1/1
 auto=aslongas(creature|graveyard) 1/1
@@ -86020,6 +86083,16 @@ type=Creature
 subtype=Human Druid
 power=1
 toughness=2
+[/card]
+[card]
+name=Woodland Sleuth
+auto=if morbid then moverandom(creature) from(mygraveyard) to(myhand)
+text=Morbid — When Woodland Sleuth enters the battlefield, if a creature died this turn, return a creature card at random from your graveyard to your hand.
+mana={3}{G}
+type=Creature
+subtype=Human Scout
+power=2
+toughness=3
 [/card]
 [card]
 name=Woodlurker Mimic
