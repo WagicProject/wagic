@@ -1779,44 +1779,32 @@ void GameStateDeckViewer::OnScroll(int inXVelocity, int inYVelocity)
     int magnitude = static_cast<int>( sqrtf( (float )( (inXVelocity * inXVelocity) + (inXVelocity * inXVelocity))));
     
     bool flickHorizontal = (abs(inXVelocity) > abs(inYVelocity));
-#ifdef IOS
     bool flickUp = !flickHorizontal && (inYVelocity > 0) ? true : false;
     bool flickRight = flickHorizontal && (inXVelocity < 0) ? true : false;
-#else
-    bool flickUp = !flickHorizontal && (inYVelocity < 0) ? true : false;
-    bool flickRight = flickHorizontal && (inXVelocity > 0) ? true : false;
-#endif
     
-    if (mStage == STAGE_FILTERS)
+    if (flickHorizontal)
     {
-        if (flickHorizontal)
-            mEngine->HoldKey_NoRepeat( flickRight ? JGE_BTN_RIGHT : JGE_BTN_LEFT);
-        else
-            mEngine->HoldKey_NoRepeat(flickUp ? JGE_BTN_UP : JGE_BTN_DOWN);
-    }
-    else
-    {
-        if (flickHorizontal)
+        if(abs(inXVelocity) > 300)
         {
             //determine how many cards to move, the faster the velocity the more cards to move.
-            // the display is setup so that there is a max of 2 cards to the left and 7 cards to the right 
-            // of the current card.  
+            // the display is setup so that there is a max of 2 cards to the left and 7 cards to the right
+            // of the current card.
             int numCards = (magnitude / 500) % 8;
             int offset = 0;
             if ( (numCards == 0) && magnitude) numCards = 7;
-            if ( !flickRight) 
+            if ( !flickRight)
             {
-                if (numCards > 1) 
+                if (numCards > 1)
                     offset = 0;
             }
             else
                 offset = 2 + numCards;
-            
+
             mEngine->LeftClickedProcessed();
             mEngine->LeftClicked(static_cast<int>(cardsCoordinates[offset].first), static_cast<int>(cardsCoordinates[offset].second));
             mEngine->HoldKey_NoRepeat(JGE_BTN_OK);
         }
-        else
-            mEngine->HoldKey_NoRepeat(flickUp ? JGE_BTN_UP : JGE_BTN_DOWN);
     }
+    else
+        mEngine->HoldKey_NoRepeat(flickUp ? JGE_BTN_UP : JGE_BTN_DOWN);
 }
