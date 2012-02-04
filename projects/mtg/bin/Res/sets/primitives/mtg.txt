@@ -21337,7 +21337,6 @@ subtype=Elf Warrior
 power=2
 toughness=2
 [/card]
-[/card]
 ###The 2 cards below should stay together (Flip Card)###
 [card]
 name=Elbrus, the Binding Blade
@@ -81789,7 +81788,7 @@ power=2
 toughness=3
 [/card]
 [card]
-name=Howlpack Alpha
+name=Howlpack of Estwald
 auto=@each upkeep restriction{lastturn(*|stack)~morethan~1}:flip(Villagers of Estwald)
 text=At the beginning of each upkeep, if a player cast two or more spells last turn, transform Howlpack of Estwald.
 type=Creature
