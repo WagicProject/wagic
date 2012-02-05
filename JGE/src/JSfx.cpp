@@ -144,6 +144,16 @@ JSample *JSoundSystem::LoadSample(const char *fileName)
 }
 
 
+void JSoundSystem::PauseMusic(JMusic *music)
+{
+    StopMusic(music);
+}
+
+
+void JSoundSystem::ResumeMusic(JMusic *music)
+{
+    PlayMusic(music);
+}
 
 
 void JSoundSystem::PlayMusic(JMusic *music, bool looping)
