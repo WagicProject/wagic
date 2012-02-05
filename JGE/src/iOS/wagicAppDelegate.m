@@ -41,6 +41,7 @@
     [wagicDownloadController performSelectorInBackground: @selector(startDownload:) withObject:@"core"];
     
     [self.window addSubview: wagicDownloadController.view];
+    [wagicDownloadController.view release];
     [self.window makeKeyWindow];
 
 }
@@ -249,7 +250,7 @@
         [glViewController release];
     glViewController = [[EAGLViewController alloc] init];
     
-
+    [[[self.window subviews] lastObject] removeFromSuperview];
     [self.window addSubview:self.glViewController.view];
 
     NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
@@ -259,7 +260,6 @@
     [dnc addObserver: glViewController selector:@selector(resumeGame) name: UIApplicationDidBecomeActiveNotification object: nil];
     [dnc addObserver: glViewController selector:@selector(resumeGame) name:UIApplicationWillEnterForegroundNotification object: nil];
     [dnc addObserver: glViewController selector:@selector(destroyGame) name:UIApplicationWillTerminateNotification object: nil];
-
 }
 
 
@@ -273,8 +273,8 @@
     [hostReach release];
     [wifiReach release];
     [internetReach release];
-    [wagicDownloadController release];
     [glViewController release];
+    [wagicDownloadController release];
     
     [super dealloc];
 }

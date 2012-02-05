@@ -120,12 +120,14 @@ JMusic *JSoundSystem::LoadMusic(const char *fileName)
 
 void JSoundSystem::ResumeMusic(JMusic *music)
 {
+    NSLog(@"Resuming Music");
     [[SoundManager sharedSoundManager] resumeMusic];
 }
 
 
 void JSoundSystem::PauseMusic(JMusic *music)
 {
+    NSLog(@"Pausing Music");
     [[SoundManager sharedSoundManager] pauseMusic];
 }
 
@@ -133,12 +135,14 @@ void JSoundSystem::PauseMusic(JMusic *music)
 void JSoundSystem::PlayMusic(JMusic *music, bool looping)
 {
     NSString *key = [NSString stringWithCString: music->key.c_str() encoding: NSUTF8StringEncoding];
+    NSLog(@"Playing music file %@", [NSString stringWithCString: music->filename.c_str() encoding:NSUTF8StringEncoding]);
     [[SoundManager sharedSoundManager] playMusicWithKey: key timesToRepeat: looping? -1 : 1];
 }
 
 
 void JSoundSystem::StopMusic(JMusic *music)
 {
+    NSLog(@"Stopping Music");
     [[SoundManager sharedSoundManager] stopMusic];
 }
 
