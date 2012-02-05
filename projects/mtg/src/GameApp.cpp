@@ -474,12 +474,12 @@ void GameApp::SetCurrentState(GameState * state)
 
 void GameApp::Pause()
 {
-    stopMusic();
+    pauseMusic();
 }
 
 void GameApp::Resume()
 {
-    playMusic();
+    resumeMusic();
 }
 
 void GameApp::DoTransition(int trans, int tostate, float dur, bool animonly)
@@ -552,6 +552,24 @@ void GameApp::playMusic(string filename, bool loop)
         if (music)
             JSoundSystem::GetInstance()->PlayMusic(music, loop);
         currentMusicFile = filename;
+    }
+}
+
+void GameApp::pauseMusic()
+{
+    if (music && currentMusicFile != "")
+    {
+        JSoundSystem::GetInstance()->PauseMusic(music);
+    }
+}
+
+
+
+void GameApp::resumeMusic()
+{
+    if (music && currentMusicFile != "")
+    {
+        JSoundSystem::GetInstance()->ResumeMusic(music);
     }
 }
 

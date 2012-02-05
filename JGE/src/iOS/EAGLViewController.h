@@ -5,6 +5,8 @@
 
     BOOL bannerIsVisible;
 }
+void pauseGame();
+void resumeGame();
 
 @property (nonatomic, retain) id eaglView;
 @property (nonatomic, retain) UITextField *inputField;

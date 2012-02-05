@@ -220,6 +220,18 @@ void JSoundSystem::StopMusic(JMusic *music)
 }
 
 
+void JSoundSystem::PauseMusic(JMusic *music)
+{
+    StopMusic(music);
+}
+
+
+void JSoundSystem::ResumeMusic(JMusic *music)
+{
+    PlayMusic(music);
+}
+
+
 void JSoundSystem::SetVolume(int volume)
 {
   SetMusicVolume(volume);

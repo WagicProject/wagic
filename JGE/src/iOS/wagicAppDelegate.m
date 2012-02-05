@@ -253,11 +253,20 @@
     NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
 	[dnc removeObserver: self name: @"intializeGame" object: nil];
 	[dnc removeObserver: self name: @"readyToStartGame" object: nil];
+    [dnc addObserver: glViewController selector:@selector(pauseGame) name: UIApplicationWillResignActiveNotification object: nil];
+    [dnc addObserver: glViewController selector:@selector(resumeGame) name: UIApplicationDidBecomeActiveNotification object: nil];
+    [dnc addObserver: glViewController selector:@selector(resumeGame) name:UIApplicationWillEnterForegroundNotification object: nil];
+    [dnc addObserver: glViewController selector:@selector(destroyGame) name:UIApplicationWillTerminateNotification object: nil];
 }
 
 
 - (void)dealloc
 {
+    NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
+	[dnc removeObserver: glViewController name: UIApplicationDidBecomeActiveNotification object: nil];
+	[dnc removeObserver: glViewController name: UIApplicationDidEnterBackgroundNotification object: nil];
+	[dnc removeObserver: glViewController name: UIApplicationWillTerminateNotification object: nil];
+	[dnc removeObserver: glViewController name: UIApplicationWillResignActiveNotification object: nil];
     [window release];
     [glViewController release];
     [hostReach release];
@@ -312,36 +321,9 @@
     return YES;
 }
 
-- (void)applicationWillResignActive:(UIApplication *)application
-{
-    if ( [self.glViewController.view respondsToSelector: @selector(stopAnimation)])
-        [self.glViewController.view stopAnimation];
-}
-
-- (void)applicationDidBecomeActive:(UIApplication *)application
-{
-    if ( [self.glViewController.view respondsToSelector: @selector(stopAnimation)])
-        [self.glViewController.view startAnimation];
-}
-
-
-- (void)applicationWillEnterForeground:(UIApplication *)application
-{
-    if ( [self.glViewController.view respondsToSelector: @selector(stopAnimation)])
-        [self.glViewController.view startAnimation];
-}
-
-- (void)applicationDidEnterBackground:(UIApplication *)application
-{
-    if ( [self.glViewController.view respondsToSelector: @selector(stopAnimation)])
-        [self.glViewController.view stopAnimation];
-}
-
-
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-    if ( [self.glViewController.view respondsToSelector: @selector(stopAnimation)])
-        [self.glViewController.view stopAnimation];
+        [self.glViewController.view destroyGame];
 }
 
 - (void)initializeKeyboard: (id) initialState

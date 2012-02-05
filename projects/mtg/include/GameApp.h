@@ -94,6 +94,8 @@ public:
     static string currentMusicFile;
     static void playMusic(string filename = "", bool loop = true);
     static void stopMusic();
+    static void pauseMusic();
+    static void resumeMusic();
     static PlayerType players[2];
 
 };

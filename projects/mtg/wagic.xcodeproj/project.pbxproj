@@ -569,6 +569,7 @@
 		12272FC314CD57CF00192DC7 /* SimpleButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimpleButton.cpp; sourceTree = "<group>"; };
 		12272FC614CD68FB00192DC7 /* InteractiveButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InteractiveButton.h; sourceTree = "<group>"; };
 		12272FC714CD6A3900192DC7 /* InteractiveButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InteractiveButton.cpp; sourceTree = "<group>"; };
+		1235D03C14DE396D00B02B42 /* JSfx.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = JSfx.cpp; path = android/JSfx.cpp; sourceTree = "<group>"; };
 		12769483144127380088F6D3 /* AIPlayerBaka.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AIPlayerBaka.cpp; sourceTree = "<group>"; };
 		12769484144127380088F6D3 /* AIPlayerBakaB.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AIPlayerBakaB.cpp; sourceTree = "<group>"; };
 		12769485144127380088F6D3 /* TestSuiteAI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestSuiteAI.cpp; sourceTree = "<group>"; };
@@ -1164,6 +1165,14 @@
 				CE9A477812B514BA00C9F38A /* EAGLViewController.m */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		1235D03D14DE397200B02B42 /* android */ = {
+			isa = PBXGroup;
+			children = (
+				1235D03C14DE396D00B02B42 /* JSfx.cpp */,
+			);
+			name = android;
 			sourceTree = "<group>";
 		};
 		125C5CF213B09AA200DF2F2C /* Tools */ = {
@@ -1845,6 +1854,7 @@
 		CEE232AF128A01F400C34032 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				1235D03D14DE397200B02B42 /* android */,
 				12DCD02B14DBE1AF0023B966 /* ios */,
 				12B8121D1404B9E10092E303 /* zipFS */,
 				CEE232B3128A01F400C34032 /* hge */,

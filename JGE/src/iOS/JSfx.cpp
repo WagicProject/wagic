@@ -118,6 +118,18 @@ JMusic *JSoundSystem::LoadMusic(const char *fileName)
 }
 
 
+void JSoundSystem::ResumeMusic(JMusic *music)
+{
+    [[SoundManager sharedSoundManager] resumeMusic];
+}
+
+
+void JSoundSystem::PauseMusic(JMusic *music)
+{
+    [[SoundManager sharedSoundManager] pauseMusic];
+}
+
+
 void JSoundSystem::PlayMusic(JMusic *music, bool looping)
 {
     NSString *key = [NSString stringWithCString: music->key.c_str() encoding: NSUTF8StringEncoding];
@@ -156,10 +168,13 @@ JSample *JSoundSystem::LoadSample(const char *fileName)
     {
         NSArray *components = [[NSString stringWithCString:fileName encoding:NSUTF8StringEncoding] componentsSeparatedByString:@"."];
         string fullpath = JFileSystem::GetInstance()->GetResourceFile(fileName);
-        sample->filename = fullpath;
-        sample->ext = [[components lastObject] cStringUsingEncoding: NSUTF8StringEncoding];
         NSString *key = [components objectAtIndex:0];
         NSString *musicFile = [NSString stringWithCString: fullpath.c_str() encoding:NSUTF8StringEncoding];
+        sample->filename = fullpath;
+        sample->ext = [[components lastObject] cStringUsingEncoding: NSUTF8StringEncoding];
+        if ([key isEqualToString: @""])
+            return sample;
+        sample->key = [key cStringUsingEncoding: NSUTF8StringEncoding];
         [[SoundManager sharedSoundManager] loadSoundWithKey: key musicFile: musicFile];
     }
     return sample;

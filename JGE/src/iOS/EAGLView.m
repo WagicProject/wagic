@@ -363,6 +363,37 @@ static NSString *_MY_AD_WHIRL_APPLICATION_KEY_IPAD = @"2e70e3f3da40408588b9a3170
 }
 
 #pragma mark -
+#pragma mark Game life cycle methods
+
+- (void)destroyGame
+{
+	g_engine->SetApp(NULL);
+	if (g_app)
+	{
+		g_app->Destroy();
+		delete g_app;
+		g_app = NULL;
+	}
+	
+	JGE::Destroy();
+	
+	g_engine = NULL;
+}
+
+
+- (void)pauseGame
+{
+    [self stopAnimation];
+    g_engine->Pause();
+}
+
+- (void)resumeGame
+{
+    [self startAnimation];
+    g_engine->Resume();
+}
+
+#pragma mark -
 
 #pragma mark Gesture Recognizer callbacks
 
@@ -429,6 +460,11 @@ static NSString *_MY_AD_WHIRL_APPLICATION_KEY_IPAD = @"2e70e3f3da40408588b9a3170
 
 - (void)handleSingleTap: (UITapGestureRecognizer *) recognizer {
     [[[recognizer view] layer] removeAllAnimations];
+    if (g_engine->IsPaused())
+    {
+        [self resumeGame];
+        return;
+    }
     currentLocation = [recognizer locationInView: self];
     ES2Renderer* es2renderer = (ES2Renderer*)renderer;
 	int actualWidth = (int) JRenderer::GetInstance()->GetActualWidth();
@@ -559,14 +595,6 @@ static NSString *_MY_AD_WHIRL_APPLICATION_KEY_IPAD = @"2e70e3f3da40408588b9a3170
 
 //These are the methods for the AdWhirl Delegate, you have to implement them
 #pragma mark AdWhirlDelegate methods
-- (void) resumeGame {
-    g_engine->Resume();
-}
-
-- (void) pauseGame
-{
-    g_engine->Pause();
-}
 
 - (void)adWhirlWillPresentFullScreenModal {
     //It's recommended to invoke whatever you're using as a "Pause Menu" so your

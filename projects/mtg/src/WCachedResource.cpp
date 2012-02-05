@@ -278,8 +278,8 @@ void WCachedSample::Refresh()
 bool WCachedSample::Attempt(const string& filename, int submode, int & error)
 {
     loadedMode = submode;
-
-    sample = JSoundSystem::GetInstance()->LoadSample(WResourceManager::Instance()->sfxFile(filename).c_str());
+    string sfxFile = WResourceManager::Instance()->sfxFile(filename);
+    sample = JSoundSystem::GetInstance()->LoadSample(sfxFile.c_str());
 
     if (!isGood())
     {
