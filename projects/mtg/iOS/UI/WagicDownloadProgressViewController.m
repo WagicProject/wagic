@@ -10,17 +10,18 @@
 #import "wagicAppDelegate.h"
 #import "ASIHTTPRequest.h"
 #import "QuartzCore/QuartzCore.h"
+#include "Wagic_Version.h"
 
 @implementation WagicDownloadProgressViewController
 
 @synthesize downloadProgressView;
 @synthesize downloadMessageStatus;
+@synthesize kDownloadIosUpdateFileName;
+@synthesize kDownloadFileName;
+
+#define WAGIC_IOS_RESOURCE_NAME WAGIC_CORE_VERSION_STRING "_iOS.zip"
 
 static NSString *kDownloadUrlPath = @"http://wagic.googlecode.com/files/";
-static NSString *kDownloadFileName = @"core_0171.zip";
-static NSString *kDownloadIosUpdateFileName = @"core_0171_iOS.zip";
-
-
 
 - (void) handleFailedDownload: (NSNotification *) sender
 {
@@ -102,6 +103,9 @@ static NSString *kDownloadIosUpdateFileName = @"core_0171_iOS.zip";
     NSURL *url = nil;
     NSString *downloadFilename = nil;
     // determine which file to download
+    kDownloadFileName = [NSString stringWithCString: WAGIC_RESOURCE_NAME encoding:NSUTF8StringEncoding];
+    kDownloadIosUpdateFileName = [NSString stringWithCString: WAGIC_IOS_RESOURCE_NAME encoding:NSUTF8StringEncoding];
+
     if ([downloadType isEqualToString: @"core"])
     {
         downloadFilename = kDownloadFileName;
@@ -152,6 +156,19 @@ static NSString *kDownloadIosUpdateFileName = @"core_0171_iOS.zip";
     [request startAsynchronous];
     
     [pool drain], pool = nil;
+}
+
+- (void) dealloc
+{
+    [kDownloadFileName release], kDownloadFileName = nil;
+    [kDownloadIosUpdateFileName release], kDownloadIosUpdateFileName = nil;
+    if (downloadProgressView)
+        [downloadProgressView release], downloadProgressView = nil;
+    if (downloadMessageStatus)
+        [downloadMessageStatus release], downloadMessageStatus = nil;
+    
+    [super dealloc];
+    
 }
 
 - (id) init

@@ -570,6 +570,7 @@
 		12272FC614CD68FB00192DC7 /* InteractiveButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InteractiveButton.h; sourceTree = "<group>"; };
 		12272FC714CD6A3900192DC7 /* InteractiveButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InteractiveButton.cpp; sourceTree = "<group>"; };
 		1235D03C14DE396D00B02B42 /* JSfx.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = JSfx.cpp; path = android/JSfx.cpp; sourceTree = "<group>"; };
+		1235D03E14DE859D00B02B42 /* Wagic_Version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Wagic_Version.h; sourceTree = "<group>"; };
 		12769483144127380088F6D3 /* AIPlayerBaka.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AIPlayerBaka.cpp; sourceTree = "<group>"; };
 		12769484144127380088F6D3 /* AIPlayerBakaB.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AIPlayerBakaB.cpp; sourceTree = "<group>"; };
 		12769485144127380088F6D3 /* TestSuiteAI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestSuiteAI.cpp; sourceTree = "<group>"; };
@@ -1665,6 +1666,7 @@
 				CEA376EA1291C60500B9016A /* WFont.h */,
 				CEA376EB1291C60500B9016A /* WGui.h */,
 				CEA376EC1291C60500B9016A /* WResourceManager.h */,
+				1235D03E14DE859D00B02B42 /* Wagic_Version.h */,
 			);
 			path = include;
 			sourceTree = "<group>";

@@ -17,5 +17,7 @@
 
 @property (nonatomic, retain) UITextView     *downloadMessageStatus;
 @property (nonatomic, retain) UIProgressView *downloadProgressView;
+@property (nonatomic, retain) NSString       *kDownloadFileName;
+@property (nonatomic, retain) NSString       *kDownloadIosUpdateFileName;
 
 @end

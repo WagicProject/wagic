@@ -3,6 +3,7 @@
 #import "EAGLViewController.h"
 #import "ASIHTTPRequest.h"
 #import "ZipArchive.h"
+#include "Wagic_Version.h"
 
 #include <CommonCrypto/CommonDigest.h>
 
@@ -17,9 +18,9 @@
 {
     NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
  
-    [dnc postNotificationName: @"initializeGame" object: self];
     [dnc removeObserver: self name: @"coreComplete" object: nil];
     [dnc removeObserver: self name: @"iosConfigComplete" object: nil];
+    [dnc postNotificationName: @"initializeGame" object: self];
 
 }
 
@@ -129,9 +130,10 @@
     NSArray *paths = NSSearchPathForDirectoriesInDomains( NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docsPath = [paths objectAtIndex: 0];
     NSArray *docsPathContents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath: docsPath error:nil];
-    NSCompoundPredicate *compoundPredicate = [[NSCompoundPredicate alloc] initWithType:NSAndPredicateType subpredicates: [NSArray arrayWithObjects: [NSPredicate predicateWithFormat:@"self ENDSWITH '.zip'"], [NSPredicate predicateWithFormat:@"NOT (self  BEGINSWITH 'core_')"], nil]];
+    NSString *versionPredicate = [NSString stringWithFormat: @"(self  BEGINSWITH '%@')", [NSString stringWithCString: WAGIC_CORE_VERSION_STRING encoding:NSUTF8StringEncoding]];
+    NSCompoundPredicate *compoundPredicate = [[NSCompoundPredicate alloc] initWithType:NSAndPredicateType subpredicates: [NSArray arrayWithObjects: [NSPredicate predicateWithFormat:@"self ENDSWITH '.zip'"], [NSPredicate predicateWithFormat: [NSString stringWithFormat: @" NOT ( %@ ) ", versionPredicate]], nil]];
     
-    NSArray *coreFiles = [docsPathContents filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self BEGINSWITH 'core_0171'"]];
+    NSArray *coreFiles = [docsPathContents filteredArrayUsingPredicate:[NSPredicate predicateWithFormat: versionPredicate]];
 
     NSArray *resourceZipFiles = [docsPathContents filteredArrayUsingPredicate: compoundPredicate];
     NSString *userPath = [NSString stringWithFormat: @"%@/User", docsPath];
@@ -179,7 +181,9 @@
     NSString *resPath = [NSString stringWithFormat: @"%@/Res", docsPath];
     
     NSArray *resDirContents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath: resPath error:nil];
-    NSArray *coreFiles = [resDirContents filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self BEGINSWITH 'core_'"]];
+    NSString *versionPredicate = [NSString stringWithFormat: @"(self  BEGINSWITH '%@')", [NSString stringWithCString: WAGIC_CORE_VERSION_STRING encoding:NSUTF8StringEncoding]];
+
+    NSArray *coreFiles = [resDirContents filteredArrayUsingPredicate:[NSPredicate predicateWithFormat: versionPredicate]];
     
     if ([coreFiles count] >= 2)
     {
@@ -245,8 +249,6 @@
         [glViewController release];
     glViewController = [[EAGLViewController alloc] init];
     
-    if (wagicDownloadController != nil)
-        [wagicDownloadController release];
 
     [self.window addSubview:self.glViewController.view];
 
@@ -257,6 +259,7 @@
     [dnc addObserver: glViewController selector:@selector(resumeGame) name: UIApplicationDidBecomeActiveNotification object: nil];
     [dnc addObserver: glViewController selector:@selector(resumeGame) name:UIApplicationWillEnterForegroundNotification object: nil];
     [dnc addObserver: glViewController selector:@selector(destroyGame) name:UIApplicationWillTerminateNotification object: nil];
+
 }
 
 
@@ -267,11 +270,11 @@
 	[dnc removeObserver: glViewController name: UIApplicationDidEnterBackgroundNotification object: nil];
 	[dnc removeObserver: glViewController name: UIApplicationWillTerminateNotification object: nil];
 	[dnc removeObserver: glViewController name: UIApplicationWillResignActiveNotification object: nil];
-    [window release];
-    [glViewController release];
     [hostReach release];
     [wifiReach release];
     [internetReach release];
+    [wagicDownloadController release];
+    [glViewController release];
     
     [super dealloc];
 }
