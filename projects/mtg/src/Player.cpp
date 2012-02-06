@@ -314,6 +314,12 @@ bool Player::parseLine(const string& s)
     return false;
 }
 
+void HumanPlayer::End()
+{
+    if(!premade && opponent() && (observer->gameType() == GAME_TYPE_CLASSIC))
+        DeckStats::GetInstance()->saveStats(this, opponent(), observer);
+}
+
 ostream& operator<<(ostream& out, const Player& p)
 {
     out << "mode=" << p.playMode << endl;

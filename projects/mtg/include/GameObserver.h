@@ -28,6 +28,8 @@ using namespace std;
 
 class GameObserver{
  protected:
+
+  GameType mGameType;
   MTGCardInstance * cardWaitingForTargets;
   queue<WEvent *> eventsQueue;
   // used when we're running to log actions
@@ -84,10 +86,13 @@ class GameObserver{
   vector<Player *> players; //created outside
   time_t startedAt;
   Rules * mRules;
-  GameType mGameType;
   MTGCardInstance* ExtraRules;
   Trash* mTrash;
 
+  GameType gameType() const
+  {
+        return mGameType;
+  };
   TargetChooser * getCurrentTargetChooser();
   void stackObjectClicked(Interruptible * action);
 

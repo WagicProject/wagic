@@ -767,7 +767,7 @@ void TestSuite::ThreadProc(void* inParam)
                 while(!theGame.observer->gameOver)
                     theGame.observer->Update(counter++);
 
-                if(theGame.observer->mGameType != GAME_TYPE_MOMIR)
+                if(theGame.observer->gameType() != GAME_TYPE_MOMIR)
                 {
                     stringstream stream;
                     stream << *(theGame.observer);

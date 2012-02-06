@@ -105,10 +105,7 @@ class HumanPlayer: public Player
 {
 public:
     HumanPlayer(GameObserver *observer, string deckFile, string deckFileSmall, bool premade = false, MTGDeck * deck = NULL);
-    void End(){
-        if(!premade && opponent())
-            DeckStats::GetInstance()->saveStats(this, opponent(), observer);
-    };
+    void End();
     friend ostream& operator<<(ostream&, const HumanPlayer&);
 };
 
