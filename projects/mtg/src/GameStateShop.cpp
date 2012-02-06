@@ -28,6 +28,7 @@ float GameStateShop::_y4[] = { 169, 188, 250, 182, 182, 168, 220, 208, 198, 259,
 
 namespace
 {
+	float kGamepadIconSize = 0.5f;
     std::string kOtherCardsString(": Other cards");
     std::string kCreditsString("Credits: ");
 }
