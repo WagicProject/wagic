@@ -28,7 +28,7 @@ float GameStateShop::_y4[] = { 169, 188, 250, 182, 182, 168, 220, 208, 198, 259,
 
 namespace
 {
-	float kGamepadIconSize = 0.5f;
+	float kPspIconScaleFactor = 0.5f;
     std::string kOtherCardsString(": Other cards");
     std::string kCreditsString("Credits: ");
 }
@@ -771,7 +771,7 @@ void GameStateShop::Render()
 
 #ifndef TOUCH_ENABLED
     float len = 4 + mFont->GetStringWidth(kOtherCardsString.c_str());
-	r->RenderQuad(pspIcons[6].get(), SCREEN_WIDTH - len - kGamepadIconSize - 10, SCREEN_HEIGHT - 8, 0, kGamepadIconSize, kGamepadIconSize);
+	r->RenderQuad(pspIcons[6].get(), SCREEN_WIDTH - len - 0.5 - 10, SCREEN_HEIGHT - 8, 0, kPspIconScaleFactor, kPspIconScaleFactor);
     mFont->DrawString(kOtherCardsString, SCREEN_WIDTH - len, SCREEN_HEIGHT - 14);
 #else
     enableButtons();
