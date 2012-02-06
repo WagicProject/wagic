@@ -20534,8 +20534,7 @@ toughness=*
 [/card]
 [card]
 name=Duress
-target=*[-creature;-land]|opponenthand
-auto=reject
+auto=target(*[-creature;-land]|opponenthand) reject
 text=Target opponent reveals his or her hand. You choose a noncreature, nonland card from it. That player discards that card.
 mana={B}
 type=Sorcery
@@ -51983,22 +51982,22 @@ type=Enchantment
 [card]
 name=Orcish Settlers
 auto={R}{T}{S}:name(X = 0) life{S}:0
-auto={1}{R}{T}{S}:name(X = 1) target(land) destroy
-auto={2}{R}{T}{S}:name(X = 2) target(<2>land) destroy
-auto={3}{R}{T}{S}:name(X = 3) target(<3>land) destroy
-auto={4}{R}{T}{S}:name(X = 4) target(<4>land) destroy
-auto={5}{R}{T}{S}:name(X = 5) target(<5>land) destroy
-auto={6}{R}{T}{S}:name(X = 6) target(<6>land) destroy
-auto={7}{R}{T}{S}:name(X = 7) target(<7>land) destroy
-auto={8}{R}{T}{S}:name(X = 8) target(<8>land) destroy
-auto={9}{R}{T}{S}:name(X = 9) target(<9>land) destroy
-auto={10}{R}{T}{S}:name(X = 10) target(<10>land) destroy
-auto={11}{R}{T}{S}:name(X = 11) target(<11>land) destroy
-auto={12}{R}{T}{S}:name(X = 12) target(<12>land) destroy
-auto={13}{R}{T}{S}:name(X = 13) target(<13>land) destroy
-auto={14}{R}{T}{S}:name(X = 14) target(<14>land) destroy
-auto={15}{R}{T}{S}:name(X = 15) target(<15>land) destroy
-auto={16}{R}{T}{S}:name(X = 16) target(<16>land) destroy
+auto={2}{R}{T}{S}:name(X = 1) target(land) destroy
+auto={4}{R}{T}{S}:name(X = 2) target(<2>land) destroy
+auto={6}{R}{T}{S}:name(X = 3) target(<3>land) destroy
+auto={8}{R}{T}{S}:name(X = 4) target(<4>land) destroy
+auto={10}{R}{T}{S}:name(X = 5) target(<5>land) destroy
+auto={12}{R}{T}{S}:name(X = 6) target(<6>land) destroy
+auto={14}{R}{T}{S}:name(X = 7) target(<7>land) destroy
+auto={16}{R}{T}{S}:name(X = 8) target(<8>land) destroy
+auto={18}{R}{T}{S}:name(X = 9) target(<9>land) destroy
+auto={20}{R}{T}{S}:name(X = 10) target(<10>land) destroy
+auto={22}{R}{T}{S}:name(X = 11) target(<11>land) destroy
+auto={24}{R}{T}{S}:name(X = 12) target(<12>land) destroy
+auto={26}{R}{T}{S}:name(X = 13) target(<13>land) destroy
+auto={28}{R}{T}{S}:name(X = 14) target(<14>land) destroy
+auto={30}{R}{T}{S}:name(X = 15) target(<15>land) destroy
+auto={32}{R}{T}{S}:name(X = 16) target(<16>land) destroy
 text={X}{X}{R}, {T}, Sacrifice Orcish Settlers: Destroy X target lands.
 mana={1}{R}
 type=Creature
