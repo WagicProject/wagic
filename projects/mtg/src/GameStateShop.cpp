@@ -28,7 +28,9 @@ float GameStateShop::_y4[] = { 169, 188, 250, 182, 182, 168, 220, 208, 198, 259,
 
 namespace
 {
-	float kPspIconScaleFactor = 0.5f;
+#ifndef TOUCH_ENABLED
+    float kPspIconScaleFactor = 0.5f;
+#endif // TOUCH_ENABLED
     std::string kOtherCardsString(": Other cards");
     std::string kCreditsString("Credits: ");
 }
