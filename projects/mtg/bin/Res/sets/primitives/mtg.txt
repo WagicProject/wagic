@@ -5145,7 +5145,7 @@ text=Flying -- {B}: Balshan Collaborator gets +1/+1 until end of turn.
 mana={3}{U}
 type=Creature
 subtype=Bird Soldier
-power=2
+power=2buyback
 toughness=2
 [/card]
 [card]
@@ -15710,7 +15710,7 @@ name=Curse of Oblivion
 auto=choice name(enchant opponent) transforms((,newability[moveTo(opponentbattlefield)],newability[@each my upkeep:target(<2>*|graveyard) moveTo(exile)])) forever
 auto=choice name(enchant yourself) transforms((,newability[@each my upkeep:target(<2>*|graveyard) moveTo(exile)])) forever
 text=Enchant Player -- Creatures enchanted player controls gets -1/-1.
-mana={3}{B}{B}
+mana={3}{B}
 type=Enchantment
 subtype=Aura Curse
 [/card]
@@ -17972,7 +17972,7 @@ subtype=Aura
 name=Demonic Collusion
 target=*|mylibrary
 auto=moveTo(myhand)
-buyback={discard(*|myhand)}{discard(*|myhand)}
+buyback={3}{B}{B}{discard(*|myhand)}{discard(*|myhand)}
 text=Buyback - Discard two cards. (You may discard two cards in addition to any other costs as you cast this spell. If you do, put this card into your hand as it resolves.) -- Search your library for a card and put that card into your hand. Then shuffle your library.
 mana={3}{B}{B}
 type=Sorcery
@@ -33768,7 +33768,7 @@ name=Hellrider
 abilities=haste
 auto=@combat(attacking) source(creature|myBattlefield):damage:1 opponent
 text=Haste -- Whenever a creature you control attacks, Hellrider deals 1 damage to defending player.
-mana={3}{R}{R}
+mana={2}{R}{R}
 type=Creature
 subtype=Devil
 power=3
@@ -36245,7 +36245,7 @@ toughness=4
 name=Infernal Plunge
 auto=add{R}{R}{R}
 text=As an additional cost to cast Infernal Plunge, sacrifice a creature. -- Add {R}{R}{R} to your mana pool.
-mana={1}{R}{S(creature|myBattlefield)}
+mana={R}{S(creature|myBattlefield)}
 type=Instant
 [/card]
 [card]
@@ -37786,7 +37786,7 @@ type=Instant
 name=Jolting Merfolk
 auto={1}{C(0/0,-1,Fade)}:tap target(creature)
 auto=fading:4
-text=Fading 4 (This creature enters the battlefield with five fade counters on it. At the beginning of your upkeep, remove a fade counter from it. If you can't, sacrifice it.) -- {1}, Remove a fade counter from Jolting Merfolk: Tap target creature.
+text=Fading 4 (This creature enters the battlefield with four fade counters on it. At the beginning of your upkeep, remove a fade counter from it. If you can't, sacrifice it.) -- {1}, Remove a fade counter from Jolting Merfolk: Tap target creature.
 mana={2}{U}{U}
 type=Creature
 subtype=Merfolk
@@ -43886,7 +43886,7 @@ toughness=4
 [/card]
 [card]
 name=Maelstrom Djinn
-abilties=flying
+abilities=flying
 facedown={3}
 autofacedown={2}{u}:morph
 autofaceup=vanishing:2
@@ -50013,11 +50013,11 @@ abilities=flying
 auto={U}{T}:may tap target(creature)
 auto={U}{T}:may untap target(creature)
 text=Flying -- Whenever Niblis of the Urn attacks, you may tap target creature.
-mana={1}{U}
+mana={2}{U}
 type=Creature
 subtype=Spirit
 power=2
-toughness=3
+toughness=1
 [/card]
 [card]
 name=Niblis of the Mist
@@ -59260,7 +59260,7 @@ toughness=2
 name=Relentless Skaabs
 abilities=undying
 text=As an additional cost to cast Relentless Skaabs, exile a creature card from your graveyard. -- Undying
-mana={4}{U}{U}{E(creature|mygraveyard)}
+mana={3}{U}{U}{E(creature|mygraveyard)}
 type=Creature
 subtype=Zombie
 power=4
@@ -63250,11 +63250,11 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Moonscarred Werewolf 
+name=Moonscarred Werewolf
+auto=vigilance
 auto={T}:Add{G}{G}
 auto=@each upkeep restriction{lastturn(*|stack)~morethan~1}:flip(Scorned Villager)
 text={T}: Add {G}{G} to your mana pool. -- At the beginning of each upkeep, if a player cast two or more spells last turn, transform Moonscarred Werewolf.
-mana={1}{G}
 type=Creature
 subtype=Werewolf
 power=2
@@ -76003,7 +76003,7 @@ abilities=flying
 auto=counter(1/1,3)
 auto={1}{C(1/1,-1)}:token(Thopter,Artifact Creature Thopter,1/1,flying) asSorcery
 auto={1}{S(other thopter|myBattlefield)}:counter(1/1,1) asSorcery
-text=Pentavus enters the battlefield with five +1/+1 counters on it. -- {1}, Remove a +1/+1 counter from Pentavus: Put a 1/1 colorless Pentavite artifact creature token with flying onto the battlefield. -- {1}, Sacrifice a Pentavite: Put a +1/+1 counter on Pentavus.
+text=Flying -- Thopter Squadron enters the battlefield with three +1/+1 counters on it. -- {1}, Remove a +1/+1 counter from Thopter Squadron: Put a 1/1 colorless Thopter artifact creature token with flying onto the battlefield. Activate this ability only any time you could cast a sorcery. -- {1}, Sacrifice another Thopter: Put a +1/+1 counter on Thopter Squadron. Activate this ability only any time you could cast a sorcery.
 mana={5}
 type=Artifact Creature
 subtype=Thopter
