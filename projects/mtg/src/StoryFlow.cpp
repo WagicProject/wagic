@@ -175,11 +175,7 @@ void StoryReward::Update(float dt)
 
     if (!rewardSoundPlayed && options[Options::SFXVOLUME].number > 0)
     {
-        JSample * sample = WResourceManager::Instance()->RetrieveSample("bonus.wav");
-        if (sample)
-        {
-            JSoundSystem::GetInstance()->PlaySample(sample);
-        }
+        WResourceManager::Instance()->PlaySample("bonus.wav");
         rewardSoundPlayed = 1;
     }
     rewardDone = 1;

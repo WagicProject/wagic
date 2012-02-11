@@ -201,7 +201,7 @@ public:
     void eventblocked(MTGCardInstance * opponent);
 
     int isInPlay(GameObserver* game);
-    JSample * getSample();
+    const string& getSample();
 
     JQuadPtr getIcon();
 

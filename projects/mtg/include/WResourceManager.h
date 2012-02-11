@@ -73,7 +73,12 @@ public:
 	}
 
     virtual bool IsThreaded() = 0;
-
+	void PlaySample(const string& fileName) {
+		JSample*sample = RetrieveSample(fileName);
+		if(sample) {
+            JSoundSystem::GetInstance()->PlaySample(sample);			
+		}
+	};
     virtual JQuadPtr RetrieveCard(MTGCard * card, int style = RETRIEVE_NORMAL,int submode = CACHE_NORMAL) = 0;
     virtual JSample * RetrieveSample(const string& filename, int style = RETRIEVE_NORMAL, int submode = CACHE_NORMAL) = 0;
     virtual JTexture * RetrieveTexture(const string& filename, int style = RETRIEVE_NORMAL, int submode = CACHE_NORMAL) = 0;

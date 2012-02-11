@@ -4344,9 +4344,7 @@ void ATutorialMessage::Render()
 
             if (options[Options::SFXVOLUME].number > 0)
             {
-                JSample * sample = game->getResourceManager()->RetrieveSample("tutorial.wav");
-                if (sample)
-                    JSoundSystem::GetInstance()->PlaySample(sample);
+				game->getResourceManager()->PlaySample("tutorial.wav");
             }
         }
         else
@@ -4381,9 +4379,7 @@ void ATutorialMessage::Render()
 
             if (options[Options::SFXVOLUME].number > 0)
             {
-                JSample * sample = game->getResourceManager()->RetrieveSample("chain.wav");
-                if (sample)
-                    JSoundSystem::GetInstance()->PlaySample(sample);
+                game->getResourceManager()->PlaySample("chain.wav");
             }
         }
     }

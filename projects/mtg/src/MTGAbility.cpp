@@ -4770,9 +4770,7 @@ int AManaProducer::reactToClick(MTGCardInstance * _card)
 
     if (options[Options::SFXVOLUME].number > 0)
     {
-        JSample * sample = WResourceManager::Instance()->RetrieveSample("mana.wav");
-        if (sample)
-            JSoundSystem::GetInstance()->PlaySample(sample);
+        WResourceManager::Instance()->PlaySample("mana.wav");
     }
     return ActivatedAbility::activateAbility();
 }

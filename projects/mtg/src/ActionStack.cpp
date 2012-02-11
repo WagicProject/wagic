@@ -309,11 +309,9 @@ int Spell::resolve()
     //Play SFX
     if (options[Options::SFXVOLUME].number > 0)
     {
-        JSample * sample = source->getSample();
-        if (sample)
-        {
-            JSoundSystem::GetInstance()->PlaySample(sample);
-        }
+
+		if(observer->getResourceManager())
+			observer->getResourceManager()->PlaySample(source->getSample());
     }
     AbilityFactory af(observer);
     af.addAbilities(observer->mLayers->actionLayer()->getMaxId(), this);
@@ -967,15 +965,26 @@ void ActionStack::Update(float dt)
     }
 }
 
-void ActionStack::cancelInterruptOffer(InterruptDecision cancelMode, bool log)
+void ActionStack::cancelInterruptOffer(InterruptDecision cancelMode, bool log, Player* cancelMe)
 {
-    int playerId = (observer->isInterrupting == observer->players[1]) ? 1 : 0;
+    int playerId;
+    if(cancelMe != NULL) {
+        if(observer->players[1] == cancelMe)
+            playerId = 1;
+        else
+            playerId = 0;
+    } else {
+        playerId = (observer->isInterrupting == observer->players[1]) ? 1 : 0;
+    }
     interruptDecision[playerId] = cancelMode;
     askIfWishesToInterrupt = NULL;
     observer->isInterrupting = NULL;
     timer = -1;
-    if(log)
-        observer->logAction(playerId, "no");
+    if(log) {
+        stringstream stream;
+        stream << "no " << cancelMode;
+        observer->logAction(playerId, stream.str());
+    }
 }
 
 void ActionStack::endOfInterruption(bool log)

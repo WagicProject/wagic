@@ -1023,12 +1023,10 @@ int MTGCardInstance::cantBeBlockedBy(MTGCardInstance * card)
 }
 
 /* Choose a sound sample to associate to that card */
-JSample * MTGCardInstance::getSample()
+const string& MTGCardInstance::getSample()
 {
-    JSample * js = 0;
-
     if (sample.size())
-        return WResourceManager::Instance()->RetrieveSample(sample);
+        return sample;
 
     for (int i = types.size() - 1; i > 0; i--)
     {
@@ -1037,11 +1035,10 @@ JSample * MTGCardInstance::getSample()
         type = type + ".wav";
         if(getObserver() && getObserver()->getResourceManager())
         {
-            js = WResourceManager::Instance()->RetrieveSample(type);
-            if (js)
+            if (getObserver()->getResourceManager()->RetrieveSample(type))
             {
                 sample = string(type);
-                return js;
+                return sample;
             }
         }
     }
@@ -1056,11 +1053,10 @@ JSample * MTGCardInstance::getSample()
             type = type + ".wav";
             if(getObserver() && getObserver()->getResourceManager())
             {
-                js = WResourceManager::Instance()->RetrieveSample(type);
-                if (js)
+                if (getObserver()->getResourceManager()->RetrieveSample(type))
                 {
                     sample = string(type);
-                    return js;
+                    return sample;
                 }
             }
         }
@@ -1068,21 +1064,20 @@ JSample * MTGCardInstance::getSample()
 
     string type = "";
     if(!types.size())
-        return NULL;   
+        return sample;   
     type = Subtypes::subtypesList->find(types[0]);
     std::transform(type.begin(), type.end(), type.begin(), ::tolower);
     type.append(".wav");
     if(getObserver() && getObserver()->getResourceManager())
     {
-        js = WResourceManager::Instance()->RetrieveSample(type);
-        if (js)
+        if (getObserver()->getResourceManager()->RetrieveSample(type))
         {
             sample = string(type);
-            return js;
+            return sample;
         }
     }
 
-    return NULL;
+    return sample;
 }
 
 int MTGCardInstance::stepPower(CombatStep step)
