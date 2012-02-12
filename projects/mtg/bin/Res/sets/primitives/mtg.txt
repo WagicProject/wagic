@@ -5145,7 +5145,7 @@ text=Flying -- {B}: Balshan Collaborator gets +1/+1 until end of turn.
 mana={3}{U}
 type=Creature
 subtype=Bird Soldier
-power=2buyback
+power=2
 toughness=2
 [/card]
 [card]
@@ -24243,7 +24243,7 @@ mana={2}{G}
 type=Sorcery
 [/card]
 [card]
-name=Farbig Boneflinger
+name=Farbog Boneflinger
 auto=-2/-2 target(creature)
 text=When Fargog Boneflinger enters the battlefield, target creature gets -2/-2 until end of turn.
 mana={4}{B}
@@ -31585,6 +31585,13 @@ auto=target(proliferation) proliferate
 text=Put a -1/-1 counter on target creature, then proliferate.
 mana={2}{B}
 type=Instant
+[/card]
+[card]
+name=Grim Backwoods
+auto={T}:Add{1}
+auto={2}{B}{G}{T}{S(creature|myBattlefield)}:draw:1
+text={T}: Add 1 to your mana pool. -- {2}{B}{G},{T},Sacrifice a creature: Draw a card.
+type=Land
 [/card]
 [card]
 name=Grim Feast
@@ -46383,12 +46390,12 @@ power=0
 toughness=0
 [/card]
 [card]
-name=Mikaeus the Unhallowed
+name=Mikaeus, the Unhallowed
 abilities=intimidate
 auto=lord(other creature[-human]|mybattlefield) 1/1
 auto=lord(other creature[-human]|mybattlefield) undying
 auto=@damaged(controller) from(human):all(trigger[from]) destroy
-text=Whenever an opponent casts a spell, Tovolar's Magehunter deals 2 damage to that player. -- At the beginning of each upkeep, if a player cast two or more spells last turn, transform Silverpelt Werewolf.
+text=Intimidate -- Whenever a Human deals damage to you, destroy it. -- Other non-Human creatures you control get +1/+1 and have undying. (When a creature with undying dies, if it had no +1/+1 counters on it, return it to the battlefield under its owner's control with a +1/+1 counter on it.)
 mana={3}{B}{B}{B}
 type=Legendary Creature
 subtype=Zombie Cleric
@@ -49030,7 +49037,7 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-name=Mystic Revival
+name=Mystic Retrieval
 target=instant,sorcery|mygraveyard
 auto=moveTo(ownerhand)
 flashback={2}{R}
@@ -79390,9 +79397,9 @@ subtype=Equipment
 name=Umezawa's Jitte
 auto={2}:equip
 auto=@combatdamaged(creature,player) from(mytgt):counter(0/0,2,Charge) all(this)
-auto={C(0/0,-1,Charge)}:2/2
-auto={C(0/0,-1,Charge)}:-1/-1 target(creature)
-auto={C(0/0,-1,Charge)}:life:2 controller
+auto=choice {C(0/0,-1,Charge)}:2/2
+auto=choice {C(0/0,-1,Charge)}:-1/-1 target(creature)
+auto=choice {C(0/0,-1,Charge)}:life:2 controller
 text=Whenever equipped creature deals combat damage, put two charge counters on Umezawa's Jitte. -- Remove a charge counter from Umezawa's Jitte: Choose one - Equipped creature gets +2/+2 until end of turn; or target creature gets -1/-1 until end of turn; or you gain 2 life. -- Equip {2}
 mana={2}
 type=Legendary Artifact
@@ -80642,7 +80649,7 @@ subtype=Aura
 [card]
 name=Vault of the Archangel
 auto={T}:Add{1}
-auto={2}{W}{B}:all(creature|mybattlefield) deathtouch && all(creature|mybattlefield) lifelink
+auto={2}{W}{B}{T}:all(creature|mybattlefield) deathtouch && all(creature|mybattlefield) lifelink
 text={T}: Add 1 to your mana pool. -- {2}{W}{B}, {T}: Creatures you control gain deathtouch and lifelink until end of turn.
 type=Land
 [/card]
