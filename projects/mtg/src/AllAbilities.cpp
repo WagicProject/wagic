@@ -2978,10 +2978,10 @@ ATransformer::ATransformer(GameObserver* observer, int id, MTGCardInstance * sou
 
 	if (stypes.find("allsubtypes") != string::npos || stypes.find("removecreaturesubtypes") != string::npos)
 	{
-        const vector<string> values = Subtypes::subtypesList->getValuesById();
+        const vector<string> values = MTGAllCards::getValuesById();
         for (size_t i = 0; i <values.size(); ++i)
         {
-            if (!Subtypes::subtypesList->isSubtypeOfType(i,Subtypes::TYPE_CREATURE))
+            if (!MTGAllCards::isSubtypeOfType(i,Subtypes::TYPE_CREATURE))
 				continue;
 
 			types.push_back(i);
@@ -3482,7 +3482,7 @@ int ALoseSubtypes::addToGame()
     for (int i = ((int)_target->types.size())-1; i >= 0; --i)
     {
         int subtype = _target->types[i];
-        if (Subtypes::subtypesList->isSubtypeOfType(subtype, parentType))
+        if (MTGAllCards::isSubtypeOfType(subtype, parentType))
         {
             storedSubtypes.push_back(subtype);
             _target->removeType(subtype);
@@ -4506,7 +4506,7 @@ void PopulateSubtypesIndexVector(list<int>& types, const string& subTypesStringL
     for (vector<string>::iterator it = subTypesList.begin(); it != subTypesList.end(); ++it)
     {
         string subtype = *it;
-        size_t id = Subtypes::subtypesList->find(subtype);
+        size_t id = MTGAllCards::findType(subtype);
         if (id != string::npos)
             types.push_back(id);
     }

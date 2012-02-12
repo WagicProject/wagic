@@ -4,6 +4,7 @@
 #include <string>
 #include <map>
 #include <vector>
+
 using namespace std;
 
 class Subtypes
@@ -37,7 +38,6 @@ protected:
     vector<string> valuesById;
     vector<unsigned int> subtypesToType;
 public:
-    static Subtypes * subtypesList;
     Subtypes();
     int find(string subtype, bool forceAdd = true);
     string find(unsigned int id);

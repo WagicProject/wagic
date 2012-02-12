@@ -2008,7 +2008,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     vector<string> splitLoseTypes = parseBetween(s, "losesubtypesof(", ")");
     if (splitLoseTypes.size())
     {
-        int parentType = Subtypes::subtypesList->find(splitLoseTypes[1]);
+        int parentType = MTGAllCards::findType(splitLoseTypes[1]);
         return NEW ALoseSubtypes(observer, id, card, target, parentType);
     }
 

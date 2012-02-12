@@ -311,8 +311,6 @@ void GameApp::Destroy()
     DeckManager::EndInstance();
     DeckStats::EndInstance();
 
-    SAFE_DELETE(Subtypes::subtypesList);
-
     stopMusic();
 
     Translator::EndInstance();

@@ -544,12 +544,12 @@ void CardGui::AlternateRender(MTGCard * card, const Pos& pos)
                     }
                     else
                     {
-                        s += _(Subtypes::subtypesList->find(card->data->types[i]));
+                        s += _(MTGAllCards::findType(card->data->types[i]));
                         s += _(" - ");
                     }
                 }
                 if (card->data->types.size())
-                    s += _(Subtypes::subtypesList->find(card->data->types[0]));
+                    s += _(MTGAllCards::findType(card->data->types[0]));
                 else
                 {
                     DebugTrace("Typeless card: " << setlist[card->setId].c_str() << card->data->getName() << card->getId());
@@ -876,12 +876,12 @@ void CardGui::TinyCropRender(MTGCard * card, const Pos& pos, JQuad * quad)
                     }
                     else
                     {
-                        s += _(Subtypes::subtypesList->find(card->data->types[i]));
+                        s += _(MTGAllCards::findType(card->data->types[i]));
                         s += _(" - ");
                     }
                 }
                 if (card->data->types.size())
-                    s += _(Subtypes::subtypesList->find(card->data->types[0]));
+                    s += _(MTGAllCards::findType(card->data->types[0]));
                 else
                 {
                     DebugTrace("Typeless card: " << setlist[card->setId].c_str() << card->data->getName() << card->getId());

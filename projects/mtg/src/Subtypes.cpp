@@ -2,8 +2,6 @@
 
 #include "Subtypes.h"
 
-Subtypes * Subtypes::subtypesList = NEW Subtypes();
-
 Subtypes::Subtypes()
 {
     //Add the more common types, so that they can be accessed through ints

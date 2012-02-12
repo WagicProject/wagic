@@ -930,7 +930,7 @@ bool CardTargetChooser::equals(TargetChooser * tc)
 TypeTargetChooser::TypeTargetChooser(GameObserver *observer, const char * _type, MTGCardInstance * card, int _maxtargets, bool other,bool targetMin) :
     TargetZoneChooser(observer, card, _maxtargets, other,targetMin)
 {
-    int id = Subtypes::subtypesList->find(_type);
+    int id = MTGAllCards::findType(_type);
     nbtypes = 0;
     addType(id);
     int default_zones[] = { MTGGameZone::MY_BATTLEFIELD, MTGGameZone::OPPONENT_BATTLEFIELD };
@@ -941,7 +941,7 @@ TypeTargetChooser::TypeTargetChooser(GameObserver *observer, const char * _type,
                 bool other,bool targetMin) :
     TargetZoneChooser(observer, card, _maxtargets, other,targetMin)
 {
-    int id = Subtypes::subtypesList->find(_type);
+    int id = MTGAllCards::findType(_type);
     nbtypes = 0;
     addType(id);
     if (nbzones == 0)
@@ -957,7 +957,7 @@ TypeTargetChooser::TypeTargetChooser(GameObserver *observer, const char * _type,
 
 void TypeTargetChooser::addType(const char * _type)
 {
-    int id = Subtypes::subtypesList->find(_type);
+    int id = MTGAllCards::findType(_type);
     addType(id);
 }
 
@@ -978,7 +978,7 @@ bool TypeTargetChooser::canTarget(Targetable * target,bool withoutProtections)
             if (card->hasSubtype(types[i])) return true;
 			if(card->getLCName().size())
 			{
-            if (Subtypes::subtypesList->find(card->getLCName()) == types[i]) return true;
+            if (MTGAllCards::findType(card->getLCName()) == types[i]) return true;
 			}
         }
         return false;
@@ -993,7 +993,7 @@ bool TypeTargetChooser::canTarget(Targetable * target,bool withoutProtections)
             for (int i = 0; i < nbtypes; i++)
             {
                 if (card->hasSubtype(types[i])) return true;
-                if (Subtypes::subtypesList->find(card->name) == types[i]) return true;
+                if (MTGAllCards::findType(card->name) == types[i]) return true;
             }
             return false;
         }

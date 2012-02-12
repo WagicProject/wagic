@@ -55,7 +55,7 @@ void CardDescriptor::setisMultiColored(int w)
     
 void CardDescriptor::setNegativeSubtype(string value)
 {
-    int id = Subtypes::subtypesList->find(value);
+    int id = MTGAllCards::findType(value);
     addType(-id);
 }
 
@@ -91,7 +91,7 @@ MTGCardInstance * CardDescriptor::match_or(MTGCardInstance * card)
         if (types[i] >= 0)
         {
 
-            if (card->hasSubtype(types[i]) || (Subtypes::subtypesList->find(card->getLCName(), false) == types[i]))
+            if (card->hasSubtype(types[i]) || (MTGAllCards::findType(card->getLCName(), false) == types[i]))
             {
                 found = 1;
                 break;
@@ -99,7 +99,7 @@ MTGCardInstance * CardDescriptor::match_or(MTGCardInstance * card)
         }
         else
         {
-            if (!card->hasSubtype(-types[i]) && (Subtypes::subtypesList->find(card->getLCName(), false) != -types[i]))
+            if (!card->hasSubtype(-types[i]) && (MTGAllCards::findType(card->getLCName(), false) != -types[i]))
             {
                 found = 1;
                 break;
@@ -142,14 +142,14 @@ MTGCardInstance * CardDescriptor::match_and(MTGCardInstance * card)
     {
         if (types[i] >= 0)
         {
-            if (!card->hasSubtype(types[i]) && !(Subtypes::subtypesList->find(card->getLCName(), false) == types[i]))
+            if (!card->hasSubtype(types[i]) && !(MTGAllCards::findType(card->getLCName(), false) == types[i]))
             {
                 match = NULL;
             }
         }
         else
         {
-            if (card->hasSubtype(-types[i]) || (Subtypes::subtypesList->find(card->getLCName(), false) == -types[i]))
+            if (card->hasSubtype(-types[i]) || (MTGAllCards::findType(card->getLCName(), false) == -types[i]))
             {
                 match = NULL;
             }

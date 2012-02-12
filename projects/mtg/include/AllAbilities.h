@@ -2506,13 +2506,13 @@ public:
             size_t found = s.find(" ");
             if (found != string::npos)
             {
-                int id = Subtypes::subtypesList->find(s.substr(0, found));
+                int id = MTGAllCards::findType(s.substr(0, found));
                 types.push_back(id);
                 s = s.substr(found + 1);
             }
             else
             {
-                int id = Subtypes::subtypesList->find(s);
+                int id = MTGAllCards::findType(s);
                 types.push_back(id);
                 s = "";
             }
@@ -5066,6 +5066,6 @@ public:
 
 void PopulateColorIndexVector(list<int>& colors, const string& colorsString, char delimiter = ',');
 void PopulateAbilityIndexVector(list<int>& abilities, const string& abilitiesString, char delimiter = ',');
-void PopulateSubtypesIndexVector(list<int>& subtypes, const string& subtypesString, char delimiter = ' ');
+void PopulateSubtypesIndexVector(list<int>& types, const string& subtypesString, char delimiter = ' ');
 
 #endif

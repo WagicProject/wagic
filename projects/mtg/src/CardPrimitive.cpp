@@ -209,13 +209,13 @@ void CardPrimitive::setSubtype(const string& value)
     int parentType = 0;
     for (size_t i = 0; i < types.size(); ++i)
     {
-        if (Subtypes::subtypesList->isType(types[i]))
+        if (MTGAllCards::isType(types[i]))
         {
             parentType = types[i];
             break;
         }
     }
-    int id = Subtypes::subtypesList->add(value, parentType);
+    int id = MTGAllCards::add(value, parentType);
     addType(id);
 }
 
@@ -230,7 +230,7 @@ void CardPrimitive::addType(int id)
 int CardPrimitive::removeType(string value, int removeAll)
 {
 
-    int id = Subtypes::subtypesList->find(value);
+    int id = MTGAllCards::findType(value);
     return removeType(id, removeAll);
 }
 
@@ -335,19 +335,19 @@ bool CardPrimitive::hasSubtype(int _subtype)
 
 bool CardPrimitive::hasType(const char * _type)
 {
-    int id = Subtypes::subtypesList->find(_type);
+    int id = MTGAllCards::findType(_type);
     return hasType(id);
 }
 
 bool CardPrimitive::hasSubtype(const char * _subtype)
 {
-    int id = Subtypes::subtypesList->find(_subtype);
+    int id = MTGAllCards::findType(_subtype);
     return hasType(id);
 }
 
 bool CardPrimitive::hasSubtype(const string& _subtype)
 {
-    int id = Subtypes::subtypesList->find(_subtype);
+    int id = MTGAllCards::findType(_subtype);
     return hasType(id);
 }
 

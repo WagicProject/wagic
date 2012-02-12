@@ -504,7 +504,7 @@ size_t MTGGameZone::getIndex(MTGCardInstance * card)
 unsigned int MTGGameZone::countByType(const char * value)
 {
     int result = 0;
-    int subTypeId = Subtypes::subtypesList->find(value);
+    int subTypeId = MTGAllCards::findType(value);
     for (int i = 0; i < (nb_cards); i++)
     {
         if (cards[i]->hasType(subTypeId))

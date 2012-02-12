@@ -178,10 +178,10 @@ void MTGCardInstance::initMTGCI()
 
     if (basicAbilities[(int)Constants::CHANGELING])
     {//if the card is a changeling, it gains all creature subtypes
-        const vector<string> values = Subtypes::subtypesList->getValuesById();
+        const vector<string> values = MTGAllCards::getValuesById();
         for (size_t i = 0; i < values.size(); ++i)
         {
-            if (!Subtypes::subtypesList->isSubtypeOfType(i,Subtypes::TYPE_CREATURE))
+            if (!MTGAllCards::isSubtypeOfType(i,Subtypes::TYPE_CREATURE))
                 continue;
 
             //Don' want to send any event to the gameObserver inside of initMCGI, so calling the parent addType method instead of mine
@@ -225,7 +225,7 @@ void MTGCardInstance::addType(int type)
     //This is a hack for "transform", used in combination with "losesubtypes" on Basic Lands
     //See removeType below
     if (!name.length())
-        setName(Subtypes::subtypesList->find(type));
+        setName(MTGAllCards::findType(type));
 
     WEvent * e = NEW WEventCardChangeType(this, type, before, true);
     if (observer)
@@ -246,12 +246,12 @@ void MTGCardInstance::setType(const char * type_text)
 
 void MTGCardInstance::setSubtype(string value)
 {
-    int id = Subtypes::subtypesList->find(value);
+    int id = MTGAllCards::findType(value);
     addType(id);
 }
 int MTGCardInstance::removeType(string value, int removeAll)
 {
-    int id = Subtypes::subtypesList->find(value);
+    int id = MTGAllCards::findType(value);
     return removeType(id, removeAll);
 }
 
@@ -267,7 +267,7 @@ int MTGCardInstance::removeType(int id, int removeAll)
         // so if we remove a subtype "Forest", we also need to remove its name.
         //This means the card might lose its name, but usually when we force remove a type, we add another one just after that.
         //see "AddType" above which force sets a name if necessary
-        if (name.compare(Subtypes::subtypesList->find(id)) == 0)
+        if (name.compare(MTGAllCards::findType(id)) == 0)
             setName("");
     }
     WEvent * e = NEW WEventCardChangeType(this, id, before, after);
@@ -1030,7 +1030,7 @@ const string& MTGCardInstance::getSample()
 
     for (int i = types.size() - 1; i > 0; i--)
     {
-        string type = Subtypes::subtypesList->find(types[i]);
+        string type = MTGAllCards::findType(types[i]);
         std::transform(type.begin(), type.end(), type.begin(), ::tolower);
         type = type + ".wav";
         if(getObserver() && getObserver()->getResourceManager())
@@ -1065,7 +1065,7 @@ const string& MTGCardInstance::getSample()
     string type = "";
     if(!types.size())
         return sample;   
-    type = Subtypes::subtypesList->find(types[0]);
+    type = MTGAllCards::findType(types[0]);
     std::transform(type.begin(), type.end(), type.begin(), ::tolower);
     type.append(".wav");
     if(getObserver() && getObserver()->getResourceManager())

@@ -2057,7 +2057,7 @@ void WGuiFilterItem::updateValue()
             vector<string> stlist;
             for (int i = Subtypes::LAST_TYPE + 1;; i++)
             {
-                string s = Subtypes::subtypesList->find(i);
+                string s = MTGAllCards::findType(i);
                 if (s == "") break;
                 if (s.find(" ") != string::npos) continue;
                 if (s == "Nothing")

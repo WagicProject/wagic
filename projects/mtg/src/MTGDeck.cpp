@@ -419,12 +419,6 @@ MTGAllCards::MTGAllCards()
     init();
 }
 
-MTGAllCards::MTGAllCards(const char * config_file, const char * set_name)
-{
-    init();
-    load(config_file, set_name, 0);
-}
-
 MTGAllCards::~MTGAllCards()
 {
     for (map<int, MTGCard *>::iterator it = collection.begin(); it != collection.end(); it++)
@@ -637,6 +631,7 @@ void MTGAllCards::prefetchCardNameCache()
 
 MTGCard * MTGAllCards::getCardByName(string nameDescriptor)
 {
+    boost::mutex::scoped_lock lock(instance->mMutex);
     if (!nameDescriptor.size()) return NULL;
     if (nameDescriptor[0] == '#') return NULL;
 
@@ -1085,7 +1080,7 @@ void MTGDeck::printDetailedDeckText(std::ofstream& file )
         // Add the card's types 
         vector<int>::iterator typeIter;
         for ( typeIter = card->data->types.begin(); typeIter != card->data->types.end(); ++typeIter )
-            types << Subtypes::subtypesList->find( *typeIter ) << " ";
+            types << MTGAllCards::findType( *typeIter ) << " ";
 
         currentCard << trim(types.str()) << ", ";
         types.str(""); // reset the buffer.

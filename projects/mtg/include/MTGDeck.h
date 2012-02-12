@@ -7,7 +7,8 @@
 #include "GameApp.h"
 #include "WResourceManager.h"
 #include <dirent.h>
-
+#include <Threading.h>
+#include <Subtypes.h>
 #include <string>
 
 using std::string;
@@ -104,7 +105,6 @@ protected:
     void init();
     void initCounters();
     MTGAllCards();
-    MTGAllCards(const char * config_file, const char * set_name);
     ~MTGAllCards();
 
 public:
@@ -132,11 +132,40 @@ public:
     int totalCards();
     int randomCardId();
 
+    static int findType(string subtype, bool forceAdd = true) {
+        boost::mutex::scoped_lock lock(instance->mMutex);
+        return instance->subtypesList.find(subtype, forceAdd);
+    };
+    static int add(string value, unsigned int parentType) {
+        boost::mutex::scoped_lock lock(instance->mMutex);
+        return instance->subtypesList.add(value, parentType);
+    };
+    static string findType(unsigned int id) {
+        return instance->subtypesList.find(id);
+    };
+    static const vector<string>& getValuesById() {
+        return instance->subtypesList.getValuesById();
+    };
+    static bool isSubtypeOfType(unsigned int subtype, unsigned int type) {
+        return instance->subtypesList.isSubtypeOfType(subtype, type);
+    };
+    static bool isSuperType(unsigned int type) {
+        return instance->subtypesList.isSuperType(type);
+    };
+    static bool isType(unsigned int type) {
+        return instance->subtypesList.isType(type);
+    };
+    static bool isSubType(unsigned int type) {
+        return instance->subtypesList.isSubType(type);
+    };
+
     static void loadInstance();
     static void unloadAll();
     static inline MTGAllCards* getInstance() { return instance; };
 
 private:
+    boost::mutex mMutex;
+    Subtypes subtypesList;
     map<string, MTGCard *> mtgCardByNameCache;
     int processConfLine(string &s, MTGCard* card, CardPrimitive * primitive);
     bool addCardToCollection(MTGCard * card, int setId);
