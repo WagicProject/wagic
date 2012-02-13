@@ -8,6 +8,7 @@
 #include "JGE.h"
 #include "CardGui.h"
 #include "ManaCostHybrid.h"
+#include "ExtraCost.h"
 #include "Subtypes.h"
 #include "Translate.h"
 #include "MTGDefinitions.h"
@@ -15,6 +16,7 @@
 #include <Vector2D.h>
 #include "Counters.h"
 #include "ModRules.h"
+#include "CardDescriptor.h"
 
 const float CardGui::Width = 28.0;
 const float CardGui::Height = 40.0;
@@ -412,30 +414,28 @@ void CardGui::AlternateRender(MTGCard * card, const Pos& pos)
     float backup_scale = font->GetScale();
     font->SetColor(ARGB((int)pos.actA, 0, 0, 0));
     string sFormattedData = "";
+    
     for( size_t i =0 ; i < Carditems.size(); i ++)
     {
         ModRulesRenderCardGuiItem * Carditem = Carditems[i];
-        if (Carditem->mType.length() == 0 || card->data->hasType(Carditem->mType.c_str()))
+        if (Carditem->mFilter.length() == 0 || FilterCard(card,Carditem->mFilter.c_str()))
         {
 
-            if (Carditem->mName == "title")
+           if (Carditem->mFont) 
             {
-                // Write the title
-                
-                font->SetScale(kWidthScaleFactor * pos.actZ);
-
-                char name[4096];
-                sprintf(name, FormattedData(Carditem->mFormattedData,"title","%s").c_str(), _(card->data->getName()).c_str());
-                float w = font->GetStringWidth(name) * kWidthScaleFactor * pos.actZ;
-                if (w > BigWidth - 30)
-                    font->SetScale((BigWidth - 30) / w);
-                font->DrawString(name, x + (Carditem->mPosX - BigWidth / 2) * pos.actZ, pos.actY + (Carditem->mPosY - BigHeight / 2) * pos.actZ);
+                font->SetColor(Carditem->mFontColor);
+                font->SetScale(((float)Carditem->mFontSize / 100) * pos.actZ);
                 
             }
-            else if (Carditem->mName == "description")
+            else
             {
-                // Write the description
+                font->SetColor(ARGB((int)pos.actA, 0, 0, 0));
                 font->SetScale(kWidthScaleFactor * pos.actZ);
+
+            }
+            
+            if (Carditem->mName == "description")
+            {
 
                 std::vector<string> txt = card->data->getFormattedText();
 
@@ -444,36 +444,39 @@ void CardGui::AlternateRender(MTGCard * card, const Pos& pos)
                 for (std::vector<string>::const_iterator it = txt.begin(); it != txt.end(); ++it, ++i)
                     font->DrawString(it->c_str(), x + (Carditem->mPosX - BigWidth / 2) * pos.actZ, pos.actY + (-BigHeight / 2 + Carditem->mPosY + h * i) * pos.actZ);
             }
-            else if (Carditem->mName == "power")
-            {
-                 // Write the strength
-                char buffer[32];
-                sprintf(buffer, FormattedData(Carditem->mFormattedData,"power","%i").c_str(), card->data->power);
-                float w = font->GetStringWidth(buffer) * kWidthScaleFactor;
-                font->DrawString(buffer, x + (Carditem->mPosX - w / 2) * pos.actZ, pos.actY + (Carditem->mPosY) * pos.actZ);
-                
-            }
-            else if (Carditem->mName == "life")
-            {
-                 // Write the strength
-                if (card->data->hasType(Carditem->mType.c_str()))
-                {
-                    char buffer[32];
-                    sprintf(buffer, FormattedData(Carditem->mFormattedData,"life","%i").c_str(), card->data->toughness);
-                    float w = font->GetStringWidth(buffer) * kWidthScaleFactor;
-                    font->DrawString(buffer, x + (Carditem->mPosX - w / 2) * pos.actZ, pos.actY + (Carditem->mPosY) * pos.actZ);
-                }
-            }
             else if (Carditem->mName == "mana")
             {
                 // Mana
+                // Need Create a realy generic struct for mana render
                 ManaCost* manacost = card->data->getManaCost();
                 ManaCostHybrid* h;
+                ExtraCost* e;
                 unsigned int j = 0;
+                unsigned int z = 0;
                 unsigned char t = (JGE::GetInstance()->GetTime() / 3) & 0xFF;
                 unsigned char v = t + 127;
                 float yOffset = (float)Carditem->mPosY;
-                while ((h = manacost->getHybridCost(j)))
+                
+                JQuadPtr quad = WResourceManager::Instance()->RetrieveQuad("menuicons.png", 0, 0, 0, 0, "", RETRIEVE_NORMAL, TEXTURE_SUB_5551, 1);
+                if (quad.get())
+                    if (quad->mHeight >= 78)
+                    while ((e = manacost->getExtraCost(z)))
+                    {
+                            if(e->mCostRenderString == "Phyrexian Mana")
+                            {
+                                float _color = (float)card->data->getColor() -1;
+                                JQuadPtr ExtraManas = WResourceManager::Instance()->RetrieveQuad("menuicons.png", 2 + _color * 36, 76, 32, 32, "c_extra", RETRIEVE_MANAGE);
+                                ExtraManas->SetHotSpot(16, 16);
+                                renderer->RenderQuad(ExtraManas.get(), x + (-12 * j + Carditem->mPosX) * pos.actZ, pos.actY + (yOffset) * pos.actZ, 0, 0.4f
+                                * pos.actZ, 0.4f * pos.actZ);
+                            }
+                   
+                        ++j;
+                        ++z;
+                    }
+               
+                z=0;
+                while ((h = manacost->getHybridCost(z)))
                 {
                     float scale = pos.actZ * 0.05f * cosf(2 * M_PI * ((float) t) / 256.0f);
 
@@ -496,6 +499,7 @@ void CardGui::AlternateRender(MTGCard * card, const Pos& pos)
                             + scale);
                     }
                     ++j;
+                    ++z;
                 }
                 for (int i = Constants::NB_Colors - 2; i >= 1; --i)
                 {
@@ -531,90 +535,19 @@ void CardGui::AlternateRender(MTGCard * card, const Pos& pos)
                 }
     
             }
-            else if (Carditem->mName == "types")
+            else if (Carditem->mName == "icon")
             {
-                //types
-                string s = "";
-                for (int i = card->data->types.size() - 1; i > 0; --i)
-                {
-                    if (card->data->basicAbilities[(int)Constants::CHANGELING])
-                    {// this avoids drawing the list of subtypes on changeling cards.
-                        s += _("Shapeshifter - ");
-                        break;
-                    }
-                    else
-                    {
-                        s += _(MTGAllCards::findType(card->data->types[i]));
-                        s += _(" - ");
-                    }
-                }
-                if (card->data->types.size())
-                    s += _(MTGAllCards::findType(card->data->types[0]));
-                else
-                {
-                    DebugTrace("Typeless card: " << setlist[card->setId].c_str() << card->data->getName() << card->getId());
-                }
-
-                font->DrawString(s.c_str(), x + (Carditem->mPosX - BigWidth / 2)*pos.actZ, pos.actY + (Carditem->mPosY - BigHeight / 2)*pos.actZ);
-
-            }
-            else if (Carditem->mName == "rarity")
-            {
-                font->SetColor(ARGB((int)pos.actA, 0, 0, 0));
-                
-                string sRarity;
-                switch(card->getRarity())
-                {
-                case Constants::RARITY_M:
-                    sRarity ="Mythic";
-                    break;
-                case Constants::RARITY_R:
-                    sRarity ="Rare";
-                    break;
-                case Constants::RARITY_U:
-                    sRarity ="Uncommon";
-                    break;
-                case Constants::RARITY_C:
-                    sRarity ="Common";
-                    break;
-                case Constants::RARITY_L:
-                    sRarity ="Land";
-                    break;
-                case Constants::RARITY_T:
-                    sRarity ="Token";
-                    break;
-                default:
-                case Constants::RARITY_S:
-                    sRarity ="Special";
-                    break;
-                }
-                
-                switch(card->data->getColor())
-                {
-                case Constants::MTG_COLOR_BLACK:
-                case Constants::MTG_COLOR_GREEN:
-                case Constants::MTG_COLOR_BLUE:
-                case Constants::MTG_COLOR_LAND:
-                    font->SetColor(ARGB((int)pos.actA,255,255,255));
-                    font->DrawString(FormattedData(Carditem->mFormattedData,"rarity",sRarity).c_str(), x + (Carditem->mPosX - BigWidth / 2)*pos.actZ, pos.actY + (BigHeight / 2 - Carditem->mPosY)*pos.actZ);
-                    break;
-                default:
-                    font->DrawString(FormattedData(Carditem->mFormattedData,"rarity",sRarity).c_str(), x + (Carditem->mPosX - BigWidth / 2)*pos.actZ, pos.actY + (BigHeight / 2 - Carditem->mPosY)*pos.actZ);
-                    break; //Leave black
-                }
-            }
-            else if (Carditem->mName == "expansion")
-            {
-                    string formattedfield = FormattedData(Carditem->mFormattedData, "expansion", setlist[card->setId].c_str());
-                    float w = font->GetStringWidth(formattedfield.c_str()) * kWidthScaleFactor;
-                    font->DrawString(formattedfield.c_str(), x + (Carditem->mPosX - w / 2) * pos.actZ, pos.actY + (Carditem->mPosY) * pos.actZ);
+                float yOffseticon = (float)Carditem->mPosY;
+                JQuadPtr ExtraIcons = WResourceManager::Instance()->RetrieveQuad(Carditem->mFileName.c_str(), 2 + (float)(Carditem->mIconPosX - 1) * 36, (float)(Carditem->mIconPosY -1) * 38 , 32, 32, "", RETRIEVE_MANAGE);
+                ExtraIcons->SetHotSpot(16,16);
+                renderer->RenderQuad(ExtraIcons.get(), x + (Carditem->mPosX) * pos.actZ, pos.actY + (yOffseticon) * pos.actZ, 0, (float)Carditem->mSizeIcon * 0.4f
+                * pos.actZ, (float)Carditem->mSizeIcon* 0.4f * pos.actZ);
 
             }
             else 
             {
                 string formattedfield = Carditem->mFormattedData;
-
-                size_t found = Carditem->mName.find("title");
+                size_t found = Carditem->mName.find("title"); // Write the title
                 if (found != string::npos)
                 {
                     stringstream st;
@@ -623,20 +556,47 @@ void CardGui::AlternateRender(MTGCard * card, const Pos& pos)
                 
                 }
 
-                found = Carditem->mName.find("power");
+                found = Carditem->mName.find("power"); // Write the strength
                 if (found != string::npos)
                 {
                     stringstream st;
                     st << card->data->power;
                     formattedfield = FormattedData(formattedfield, "power", st.str());
                 }
-                found = Carditem->mName.find("life");
+                found = Carditem->mName.find("life"); // Write the toughness
                 if (found != string::npos)
                 {
                     stringstream st;
                     st << card->data->toughness;
                     formattedfield = FormattedData(formattedfield, "life", st.str());
 
+                }
+
+                found = Carditem->mName.find("types"); //types
+                if (found != string::npos)
+                {
+                    string s = "";
+                    for (int i = card->data->types.size() - 1; i > 0; --i)
+                    {
+                        if (card->data->basicAbilities[(int)Constants::CHANGELING])
+                        {// this avoids drawing the list of subtypes on changeling cards.
+                            s += _("Shapeshifter - ");
+                            break;
+                        }
+                        else
+                        {
+                            s += _(MTGAllCards::findType(card->data->types[i]));
+                            s += _(" - ");
+                        }
+                    }
+                    if (card->data->types.size())
+                        s += _(MTGAllCards::findType(card->data->types[0]));
+                    else
+                    {
+                        DebugTrace("Typeless card: " << setlist[card->setId].c_str() << card->data->getName() << card->getId());
+                    }
+
+                    formattedfield = FormattedData(formattedfield, "types", s);
                 }
 
                 found = Carditem->mName.find("rarity");
@@ -678,9 +638,16 @@ void CardGui::AlternateRender(MTGCard * card, const Pos& pos)
                     formattedfield = FormattedData(formattedfield, "expansion", setlist[card->setId].c_str());
                 }
 
-                font->DrawString(formattedfield.c_str(), x + (Carditem->mPosX  - BigWidth / 2) * pos.actZ, pos.actY + (Carditem->mPosY) * pos.actZ);
+                if (!Carditem->mFont) 
+                {          
+                    float w = font->GetStringWidth(formattedfield.c_str()) * kWidthScaleFactor * pos.actZ;
+                    if (w > BigWidth - 30)
+                        font->SetScale((BigWidth - 30) / w);
+                }
+                font->DrawString(formattedfield.c_str(), x + (Carditem->mPosX  - BigWidth / 2) * pos.actZ, pos.actY + (Carditem->mPosY - BigHeight / 2) * pos.actZ);
             
             }
+         
         }
     }
 
@@ -749,28 +716,26 @@ void CardGui::TinyCropRender(MTGCard * card, const Pos& pos, JQuad * quad)
     for( size_t i =0 ; i < Carditems.size(); i ++)
     {
         ModRulesRenderCardGuiItem * Carditem = Carditems[i];
-        if (Carditem->mType.length() == 0 || card->data->hasType(Carditem->mType.c_str()))
+        if (Carditem->mFilter.length() == 0 || FilterCard(card,Carditem->mFilter.c_str()))
         {
 
-            if (Carditem->mName == "title")
+           if (Carditem->mFont) 
             {
-                // Write the title
+                font->SetColor(Carditem->mFontColor);
+                font->SetScale(((float)Carditem->mFontSize / 100) * pos.actZ);
+                    
+            }
+            else
+            {
                 font->SetColor(ARGB((int)pos.actA, 0, 0, 0));
                 font->SetScale(kWidthScaleFactor * pos.actZ);
 
-                char name[4096];
-                sprintf(name, FormattedData(Carditem->mFormattedData,"title","%s").c_str(), _(card->data->getName()).c_str());
-                float w = font->GetStringWidth(name) * kWidthScaleFactor * pos.actZ;
-                if (w > BigWidth - 30)
-                    font->SetScale((BigWidth - 30) / w);
-                font->DrawString(name, x + (Carditem->mPosX - BigWidth / 2) * pos.actZ, pos.actY + (Carditem->mPosY - BigHeight / 2) * pos.actZ);
-                
             }
-            else if (Carditem->mName == "description")
+            
+            if (Carditem->mName == "description")
             {
-                // Write the description
-                font->SetScale(kWidthScaleFactor * pos.actZ);
 
+                std::vector<string> txt = card->data->getFormattedText();
                 float imgBottom = imgY + (imgScale * quad->mHeight / 2);
 
                 unsigned i = 0;
@@ -778,36 +743,39 @@ void CardGui::TinyCropRender(MTGCard * card, const Pos& pos, JQuad * quad)
                 for (std::vector<string>::const_iterator it = txt.begin(); it != txt.end(); ++it, ++i)
                     font->DrawString(it->c_str(), x + (Carditem->mPosX - BigWidth / 2) * pos.actZ, imgBottom + (Carditem->mPosY + h * i) * pos.actZ);
             }
-            else if (Carditem->mName == "power")
-            {
-                 // Write the strength
-                char buffer[32];
-                sprintf(buffer, FormattedData(Carditem->mFormattedData,"power","%s").c_str(), card->data->power);
-                float w = font->GetStringWidth(buffer) * kWidthScaleFactor;
-                font->DrawString(buffer, x + (Carditem->mPosX - w / 2) * pos.actZ, pos.actY + (Carditem->mPosY) * pos.actZ);
-                
-            }
-            else if (Carditem->mName == "life")
-            {
-                 // Write the strength
-                if (card->data->hasType(Carditem->mType.c_str()))
-                {
-                    char buffer[32];
-                    sprintf(buffer, FormattedData(Carditem->mFormattedData,"life","%s").c_str(), card->data->toughness);
-                    float w = font->GetStringWidth(buffer) * kWidthScaleFactor;
-                    font->DrawString(buffer, x + (Carditem->mPosX - w / 2) * pos.actZ, pos.actY + (Carditem->mPosY) * pos.actZ);
-                }
-            }
             else if (Carditem->mName == "mana")
             {
                 // Mana
+                // Need Create a realy generic struct for mana render
                 ManaCost* manacost = card->data->getManaCost();
                 ManaCostHybrid* h;
+                ExtraCost* e;
                 unsigned int j = 0;
+                unsigned int z = 0;
                 unsigned char t = (JGE::GetInstance()->GetTime() / 3) & 0xFF;
                 unsigned char v = t + 127;
                 float yOffset = (float)Carditem->mPosY;
-                while ((h = manacost->getHybridCost(j)))
+                
+                JQuadPtr quad = WResourceManager::Instance()->RetrieveQuad("menuicons.png", 0, 0, 0, 0, "", RETRIEVE_NORMAL, TEXTURE_SUB_5551, 1);
+                if (quad.get())
+                    if (quad->mHeight >= 78)
+                    while ((e = manacost->getExtraCost(z)))
+                    {
+                            if(e->mCostRenderString == "Phyrexian Mana")
+                            {
+                                float _color = (float)card->data->getColor() -1;
+                                JQuadPtr ExtraManas = WResourceManager::Instance()->RetrieveQuad("menuicons.png", 2 + _color * 36, 76, 32, 32, "c_extra", RETRIEVE_MANAGE);
+                                ExtraManas->SetHotSpot(16, 16);
+                                renderer->RenderQuad(ExtraManas.get(), x + (-12 * j + Carditem->mPosX) * pos.actZ, pos.actY + (yOffset) * pos.actZ, 0, 0.4f
+                                * pos.actZ, 0.4f * pos.actZ);
+                            }
+                   
+                        ++j;
+                        ++z;
+                    }
+               
+                z=0;
+                while ((h = manacost->getHybridCost(z)))
                 {
                     float scale = pos.actZ * 0.05f * cosf(2 * M_PI * ((float) t) / 256.0f);
 
@@ -830,15 +798,18 @@ void CardGui::TinyCropRender(MTGCard * card, const Pos& pos, JQuad * quad)
                             + scale);
                     }
                     ++j;
+                    ++z;
                 }
                 for (int i = Constants::NB_Colors - 2; i >= 1; --i)
                 {
-                    for (int cost = manacost->getCost(i); cost > 0; --cost)
+                     int cost;
+                    for (cost = manacost->getCost(i); cost > 0; --cost)
                     {
                         renderer->RenderQuad(manaIcons[i].get(), x + (-12 * j + Carditem->mPosX) * pos.actZ, pos.actY + (yOffset) * pos.actZ, 0, 0.4f
                             * pos.actZ, 0.4f * pos.actZ);
                         ++j;
                     }
+                    
                 }
                 // Colorless mana
                 if (int cost = manacost->getCost(0))
@@ -863,90 +834,19 @@ void CardGui::TinyCropRender(MTGCard * card, const Pos& pos, JQuad * quad)
                 }
     
             }
-            else if (Carditem->mName == "types")
+            else if (Carditem->mName == "icon")
             {
-                //types
-                string s = "";
-                for (int i = card->data->types.size() - 1; i > 0; --i)
-                {
-                    if (card->data->basicAbilities[(int)Constants::CHANGELING])
-                    {// this avoids drawing the list of subtypes on changeling cards.
-                        s += _("Shapeshifter - ");
-                        break;
-                    }
-                    else
-                    {
-                        s += _(MTGAllCards::findType(card->data->types[i]));
-                        s += _(" - ");
-                    }
-                }
-                if (card->data->types.size())
-                    s += _(MTGAllCards::findType(card->data->types[0]));
-                else
-                {
-                    DebugTrace("Typeless card: " << setlist[card->setId].c_str() << card->data->getName() << card->getId());
-                }
-
-                font->DrawString(s.c_str(), x + (Carditem->mPosX - BigWidth / 2)*pos.actZ, pos.actY + (Carditem->mPosY - BigHeight / 2)*pos.actZ);
-
-            }
-            else if (Carditem->mName == "rarity")
-            {
-                font->SetColor(ARGB((int)pos.actA, 0, 0, 0));
-                
-                string sRarity;
-                switch(card->getRarity())
-                {
-                case Constants::RARITY_M:
-                    sRarity ="Mythic";
-                    break;
-                case Constants::RARITY_R:
-                    sRarity ="Rare";
-                    break;
-                case Constants::RARITY_U:
-                    sRarity ="Uncommon";
-                    break;
-                case Constants::RARITY_C:
-                    sRarity ="Common";
-                    break;
-                case Constants::RARITY_L:
-                    sRarity ="Land";
-                    break;
-                case Constants::RARITY_T:
-                    sRarity ="Token";
-                    break;
-                default:
-                case Constants::RARITY_S:
-                    sRarity ="Special";
-                    break;
-                }
-                
-                switch(card->data->getColor())
-                {
-                case Constants::MTG_COLOR_BLACK:
-                case Constants::MTG_COLOR_GREEN:
-                case Constants::MTG_COLOR_BLUE:
-                case Constants::MTG_COLOR_LAND:
-                    font->SetColor(ARGB((int)pos.actA,255,255,255));
-                    font->DrawString(FormattedData(Carditem->mFormattedData,"rarity",sRarity).c_str(), x + (Carditem->mPosX - BigWidth / 2)*pos.actZ, pos.actY + (BigHeight / 2 - Carditem->mPosY)*pos.actZ);
-                    break;
-                default:
-                    font->DrawString(FormattedData(Carditem->mFormattedData,"rarity",sRarity).c_str(), x + (Carditem->mPosX - BigWidth / 2)*pos.actZ, pos.actY + (BigHeight / 2 - Carditem->mPosY)*pos.actZ);
-                    break; //Leave black
-                }
-            }
-            else if (Carditem->mName == "expansion")
-            {
-                    string formattedfield = FormattedData(Carditem->mFormattedData, "expansion", setlist[card->setId].c_str());
-                    float w = font->GetStringWidth(formattedfield.c_str()) * kWidthScaleFactor;
-                    font->DrawString(formattedfield.c_str(), x + (Carditem->mPosX - w / 2) * pos.actZ, pos.actY + (Carditem->mPosY) * pos.actZ);
+                float yOffseticon = (float)Carditem->mPosY;
+                JQuadPtr ExtraIcons = WResourceManager::Instance()->RetrieveQuad(Carditem->mFileName.c_str(), 2 + (float)(Carditem->mIconPosX - 1) * 36, (float)(Carditem->mIconPosY -1) * 38 , 32, 32, "", RETRIEVE_MANAGE);
+                ExtraIcons->SetHotSpot(16,16);
+                renderer->RenderQuad(ExtraIcons.get(), x + (Carditem->mPosX) * pos.actZ, pos.actY + (yOffseticon) * pos.actZ, 0, (float)Carditem->mSizeIcon * 0.4f
+                * pos.actZ, (float)Carditem->mSizeIcon* 0.4f * pos.actZ);
 
             }
             else 
             {
                 string formattedfield = Carditem->mFormattedData;
-
-                size_t found = Carditem->mName.find("title");
+                size_t found = Carditem->mName.find("title"); // Write the title
                 if (found != string::npos)
                 {
                     stringstream st;
@@ -955,20 +855,47 @@ void CardGui::TinyCropRender(MTGCard * card, const Pos& pos, JQuad * quad)
                 
                 }
 
-                found = Carditem->mName.find("power");
+                found = Carditem->mName.find("power"); // Write the strength
                 if (found != string::npos)
                 {
                     stringstream st;
                     st << card->data->power;
                     formattedfield = FormattedData(formattedfield, "power", st.str());
                 }
-                found = Carditem->mName.find("life");
+                found = Carditem->mName.find("life"); // Write the toughness
                 if (found != string::npos)
                 {
                     stringstream st;
                     st << card->data->toughness;
                     formattedfield = FormattedData(formattedfield, "life", st.str());
 
+                }
+
+                found = Carditem->mName.find("types"); //types
+                if (found != string::npos)
+                {
+                    string s = "";
+                    for (int i = card->data->types.size() - 1; i > 0; --i)
+                    {
+                        if (card->data->basicAbilities[(int)Constants::CHANGELING])
+                        {// this avoids drawing the list of subtypes on changeling cards.
+                            s += _("Shapeshifter - ");
+                            break;
+                        }
+                        else
+                        {
+                            s += _(MTGAllCards::findType(card->data->types[i]));
+                            s += _(" - ");
+                        }
+                    }
+                    if (card->data->types.size())
+                        s += _(MTGAllCards::findType(card->data->types[0]));
+                    else
+                    {
+                        DebugTrace("Typeless card: " << setlist[card->setId].c_str() << card->data->getName() << card->getId());
+                    }
+
+                    formattedfield = FormattedData(formattedfield, "types", s);
                 }
 
                 found = Carditem->mName.find("rarity");
@@ -1010,9 +937,16 @@ void CardGui::TinyCropRender(MTGCard * card, const Pos& pos, JQuad * quad)
                     formattedfield = FormattedData(formattedfield, "expansion", setlist[card->setId].c_str());
                 }
 
-                font->DrawString(formattedfield.c_str(), x + (Carditem->mPosX  - BigWidth / 2) * pos.actZ, pos.actY + (Carditem->mPosY) * pos.actZ);
+                if (!Carditem->mFont) 
+                {          
+                    float w = font->GetStringWidth(formattedfield.c_str()) * kWidthScaleFactor * pos.actZ;
+                    if (w > BigWidth - 30)
+                        font->SetScale((BigWidth - 30) / w);
+                }
+                font->DrawString(formattedfield.c_str(), x + (Carditem->mPosX  - BigWidth / 2) * pos.actZ, pos.actY + (Carditem->mPosY - BigHeight / 2) * pos.actZ);
             
             }
+         
         }
     }
 
@@ -1052,6 +986,7 @@ void CardGui::RenderBig(MTGCard* card, const Pos& pos)
         RenderCountersBig(card, pos);
         return;
     }
+
     //DebugTrace("Unable to fetch image: " << card->getImageName());
 
     // If we come here, we do not have the picture.
@@ -1072,6 +1007,331 @@ string CardGui::FormattedData(string data, string replace, string value)
         return value;
     }
 
+}
+
+bool CardGui::FilterCard(MTGCard * _card,string filter)
+{
+    CardDescriptor  cd;
+    MTGCardInstance * card = (MTGCardInstance*) _card->data;
+    cd.init();
+    cd.mode = CD_OR;
+    while (filter.size())
+    {
+        
+        string typeName;
+        //Advanced cards caracteristics ?
+         size_t found = filter.find("[");
+        if (found != string::npos)
+        {
+            int nbminuses = 0;
+            int end = filter.find("]");
+            string attributes = filter.substr(found + 1, end - found - 1);
+            
+            while (attributes.size())
+            {
+                size_t found2 = attributes.find(";");
+                size_t foundAnd = attributes.find("&");
+                string attribute;
+                if (found2 != string::npos)
+                {
+                    cd.mode = CD_OR;
+                    attribute = attributes.substr(0, found2);
+                    attributes = attributes.substr(found2 + 1);
+                }
+                else if (foundAnd != string::npos)
+                {
+                    cd.mode = CD_AND;
+                    attribute = attributes.substr(0, foundAnd);
+                    attributes = attributes.substr(foundAnd + 1);
+                }
+                else
+                {
+                    attribute = attributes;
+                    attributes = "";
+                }
+                int minus = 0;
+                if (attribute[0] == '-')
+                {
+                    minus = 1;
+                    nbminuses++;
+                    attribute = attribute.substr(1);
+                }
+                int comparisonMode = COMPARISON_NONE;
+                int comparisonCriterion = 0;
+                if (attribute.size() > 1)
+                {
+                    size_t operatorPosition = attribute.find("=", 1);
+                    if (operatorPosition != string::npos)
+                    {
+                        string numberCD = attribute.substr(operatorPosition + 1, attribute.size() - operatorPosition - 1);
+                        
+                        switch (attribute[operatorPosition - 1])
+                        {
+                        case '<':
+                            if (minus)
+                            {
+                                comparisonMode = COMPARISON_GREATER;
+                            }
+                            else
+                            {
+                                comparisonMode = COMPARISON_AT_MOST;
+                            }
+                            operatorPosition--;
+                            break;
+                        case '>':
+                            if (minus)
+                            {
+                                comparisonMode = COMPARISON_LESS;
+                            }
+                            else
+                            {
+                                comparisonMode = COMPARISON_AT_LEAST;
+                            }
+                            operatorPosition--;
+                            break;
+                        default:
+                            if (minus)
+                            {
+                                comparisonMode = COMPARISON_UNEQUAL;
+                            }
+                            else
+                            {
+                                comparisonMode = COMPARISON_EQUAL;
+                            }
+                        }
+                        attribute = attribute.substr(0, operatorPosition);
+                    }
+                }
+
+                //Attacker
+                if (attribute.find("attacking") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd.attacker = -1;
+                    }
+                    else
+                    {
+                        cd.attacker = 1;
+                    }
+                }
+                //Blocker
+                else if (attribute.find("blocking") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd.defenser = &MTGCardInstance::NoCard;
+                    }
+                    else
+                    {
+                        cd.defenser = &MTGCardInstance::AnyCard;
+                    }
+                }
+                //Tapped, untapped
+                else if (attribute.find("tapped") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd.unsecureSetTapped(-1);
+                    }
+                    else
+                    {
+                        cd.unsecureSetTapped(1);
+                    }
+                    //Token
+                }
+                else if (attribute.find("token") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd.isToken = -1;
+                    }
+                    else
+                    {
+                        cd.isToken = 1;
+                    }
+                    //put in its zone this turn
+                }
+                else if (attribute.find("fresh") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd.unsecuresetfresh(-1);
+                    }
+                    else
+                    {
+                        cd.unsecuresetfresh(1);
+                    }
+                }
+                //creature is a level up creature
+                else if (attribute.find("leveler") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd.isLeveler = -1;
+                    }
+                    else
+                    {
+                        cd.isLeveler = 1;
+                    }
+                }
+                //creature is enchanted
+                else if (attribute.find("enchanted") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd.CDenchanted = -1;
+                    }
+                    else
+                    {
+                        cd.CDenchanted = 1;
+                    }
+                }
+                //creature was damaged
+                else if (attribute.find("damaged") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd.CDdamaged = -1;
+                    }
+                    else
+                    {
+                        cd.CDdamaged = 1;
+                    }
+                }
+                //creature dealt damage to opponent
+                else if (attribute.find("opponentdamager") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd.CDopponentDamaged = -1;
+                    }
+                    else
+                    {
+                        cd.CDopponentDamaged = 1;
+                    }
+                }
+                //creature dealt damage to controller
+                else if (attribute.find("controllerdamager") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd.CDcontrollerDamaged = -1;
+                    }
+                    else
+                    {
+                        cd.CDcontrollerDamaged = 1;
+                    }
+                }
+                else if (attribute.find("multicolor") != string::npos)
+                {
+                    //card is multicolored?
+                    if (minus)
+                    {
+                        cd.setisMultiColored(-1);
+                    }
+                    else
+                    {
+                        cd.setisMultiColored(1);
+                    }
+
+                }
+                else if (attribute.find("power") != string::npos)
+                {
+                    //Power restrictions
+                    cd.setPower(comparisonCriterion);
+                    cd.powerComparisonMode = comparisonMode;
+                    //Toughness restrictions
+                }
+                else if (attribute.find("toughness") != string::npos)
+                {
+                    cd.setToughness(comparisonCriterion);
+                    cd.toughnessComparisonMode = comparisonMode;
+                    //Manacost restrictions
+                }
+                else if (attribute.find("manacost") != string::npos)
+                {
+                    cd.convertedManacost = comparisonCriterion;
+                    cd.manacostComparisonMode = comparisonMode;
+                    //Counter Restrictions
+                }
+                
+                else
+                {
+                    int attributefound = 0;
+                    ////Colors - remove Artifact and Land from the loop
+                    
+                    for (int cid = 1; cid < Constants::NB_Colors - 1; cid++)
+                    { 
+                        if (attribute.find(Constants::MTGColorStrings[cid]) != string::npos)
+                        {
+                            attributefound = 1;
+                            if (minus)
+                                cd.SetExclusionColor(cid);
+                            else
+                                cd.setColor(cid);
+                        }
+                    }
+                    if (!attributefound)
+                    {
+                        //Abilities
+                        for (int j = 0; j < Constants::NB_BASIC_ABILITIES; j++)
+                        {
+                            if (attribute.find(Constants::MTGBasicAbilities[j]) != string::npos)
+                            {
+                                attributefound = 1;
+                                if (minus)
+                                    cd.mAbilityExclusions.set(j);
+                                else
+                                    cd.basicAbilities.set(j);
+                            }
+                        }
+                    }
+
+                    if (!attributefound)
+                    {
+                        //Subtypes
+                        if (minus)
+                        {
+                            cd.setNegativeSubtype(attribute);
+                        }
+                        else
+                        {
+                            cd.setSubtype(attribute);
+                        }
+                    }
+                }
+            }
+            if (nbminuses)
+                cd.mode = CD_AND;
+            filter = filter.substr(0, found);
+        }
+        else
+        {
+            
+            found = filter.find(",");
+            
+            if (found != string::npos)
+            {
+                cd.mode = CD_OR;
+                typeName = filter.substr(0, found);
+                filter = filter.substr(found + 1);
+            }
+            else
+            {
+                typeName = filter;
+                filter = "";
+            }
+            
+             cd.setSubtype(typeName);
+        }
+
+        
+     } 
+     if(cd.match(card)) 
+         return TRUE;
+    return FALSE;
+    
 }
 
 void CardGui::RenderCountersBig(MTGCard * mtgcard, const Pos& pos, int drawMode)

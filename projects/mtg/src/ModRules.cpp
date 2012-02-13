@@ -291,17 +291,42 @@ ModRulesBackGroundCardGuiItem::ModRulesBackGroundCardGuiItem(string ColorId,stri
     mMenuIcon = atoi(MenuIcon.c_str());
 }
 
-ModRulesRenderCardGuiItem::ModRulesRenderCardGuiItem(string Name, string PosX, string PosY, string FormattedData, string Type)
+
+
+ModRulesRenderCardGuiItem::ModRulesRenderCardGuiItem(string name, int posX, int posY, string formattedData, string filter, bool font, int fontSize, PIXEL_TYPE fontColor, int SizeIcon,int IconPosX,int IconPosY,string FileName)
 {
-    mName = Name;
-    mPosX = atoi(PosX.c_str());
-    mPosY = atoi(PosY.c_str());
-    mFormattedData = FormattedData;
-    mType = Type;
+    mName = name;
+    mPosX = posX;
+    mPosY = posY;
+    mFormattedData = formattedData;
+    mFilter = filter;
+    mFontSize = fontSize;
+	mFont = font;
+    mFontColor = fontColor;
+    mSizeIcon = SizeIcon;
+	mIconPosX = IconPosX;
+	mIconPosY = IconPosY;
+	mFileName = FileName;
+
 }
 
 void ModRulesCardGui::parse(TiXmlElement* element)
 {
+    string _Name;
+    int _Posx;
+    int _Posy;
+    string _FormattedText;
+    string _Filter;
+    int _FontSize;
+	bool _Font;
+	PIXEL_TYPE _FontColor;
+	int _SizeIcon;
+	int _IconPosX;
+	int _IconPosY;
+	string _FileName;
+    
+
+
     TiXmlNode* mainNode = element->FirstChild("background");
     if (mainNode) {
         for (TiXmlNode* node = mainNode->ToElement()->FirstChild("card"); node; node = node->NextSibling("card"))
@@ -319,32 +344,142 @@ void ModRulesCardGui::parse(TiXmlElement* element)
     }
     mainNode = element->FirstChild("renderbig");
     if (mainNode) {
+        TiXmlNode* ChildNode;
         for (TiXmlNode* node = mainNode->ToElement()->FirstChild("item"); node; node = node->NextSibling("item"))
         {
-            TiXmlElement* element = node->ToElement();
-            {
-                renderbig.push_back(NEW ModRulesRenderCardGuiItem(
-                    element->Attribute("name"), 
-                    element->Attribute("posx"), 
-                    element->Attribute("posy"),
-                    element->Attribute("formattedtext"), 
-                    element->Attribute("type")));
+            _Name =  node->ToElement()->Attribute("name");
+            _Posx = 0;
+            _Posy = 0;
+            _FormattedText = "";
+            _Filter = "";
+            _FontSize = 0;
+			_Font = FALSE;
+			_FontColor = NULL;
+            _SizeIcon = 0;
+			_IconPosX = 0;
+			_IconPosY = 0 ;
+			_FileName = "";
+
+
+            TiXmlElement* ItemElement = node->ToElement();
+            ChildNode = ItemElement->FirstChild("position");
+            if (ChildNode) {
+                 _Posx = atoi(ChildNode->ToElement()->Attribute("x"));
+                 _Posy = atoi(ChildNode->ToElement()->Attribute("y"));
             }
+           ChildNode = ItemElement->FirstChild("formattedtext");
+            if (ChildNode) {
+                 _FormattedText = ChildNode->ToElement()->GetText();
+
+            }
+           ChildNode = ItemElement->FirstChild("filter");
+            if (ChildNode) {
+                 _Filter = ChildNode->ToElement()->GetText();
+
+            }
+
+            ChildNode = ItemElement->FirstChild("font");
+			if (ChildNode) {
+			   _Font = TRUE;
+			   _FontSize = atoi(ChildNode->ToElement()->Attribute("size"));
+			   vector<string> argb = split( ChildNode->ToElement()->Attribute("color"), ',');
+			   _FontColor = ARGB(
+                                atoi(argb[0].c_str()),
+                                atoi(argb[1].c_str()),
+                                atoi(argb[2].c_str()),
+                                atoi(argb[3].c_str())
+                                );
+
+            }
+            ChildNode = ItemElement->FirstChild("iconposition");
+			if (ChildNode) {
+                 _IconPosX = atoi(ChildNode->ToElement()->Attribute("x"));
+                 _IconPosY = atoi(ChildNode->ToElement()->Attribute("y"));
+            }
+
+            ChildNode = ItemElement->FirstChild("filename");
+            if (ChildNode) {
+                 _FileName = ChildNode->ToElement()->GetText();
+
+            }
+            ChildNode = ItemElement->FirstChild("sizeicon");
+            if (ChildNode) {
+                 _SizeIcon = atoi(ChildNode->ToElement()->GetText());
+
+            }
+               
+		
+            renderbig.push_back(NEW ModRulesRenderCardGuiItem( _Name, _Posx, _Posy, _FormattedText, _Filter,_Font, _FontSize, _FontColor,_SizeIcon,_IconPosX,_IconPosY,_FileName ));
         }
     }
     mainNode = element->FirstChild("rendertinycrop");
     if (mainNode) {
+       TiXmlNode* ChildNode;
         for (TiXmlNode* node = mainNode->ToElement()->FirstChild("item"); node; node = node->NextSibling("item"))
         {
-            TiXmlElement* element = node->ToElement();
-            {
-                rendertinycrop.push_back(NEW ModRulesRenderCardGuiItem(
-                    element->Attribute("name"), 
-                    element->Attribute("posx"), 
-                    element->Attribute("posy"),
-                    element->Attribute("formattedtext"), 
-                    element->Attribute("type")));
+            _Name =  node->ToElement()->Attribute("name");
+            _Posx = 0;
+            _Posy = 0;
+            _FormattedText = "";
+            _Filter = "";
+            _FontSize = 0;
+			_Font = FALSE;
+			_FontColor = NULL;
+            _SizeIcon = 0;
+			_IconPosX = 0;
+			_IconPosY = 0 ;
+			_FileName = "";
+
+
+            TiXmlElement* ItemElement = node->ToElement();
+            ChildNode = ItemElement->FirstChild("position");
+            if (ChildNode) {
+                 _Posx = atoi(ChildNode->ToElement()->Attribute("x"));
+                 _Posy = atoi(ChildNode->ToElement()->Attribute("y"));
             }
+           ChildNode = ItemElement->FirstChild("formattedtext");
+            if (ChildNode) {
+                 _FormattedText = ChildNode->ToElement()->GetText();
+
+            }
+           ChildNode = ItemElement->FirstChild("filter");
+            if (ChildNode) {
+                 _Filter = ChildNode->ToElement()->GetText();
+
+            }
+
+            ChildNode = ItemElement->FirstChild("font");
+			if (ChildNode) {
+			   _Font = TRUE;
+			   _FontSize = atoi(ChildNode->ToElement()->Attribute("size"));
+			   vector<string> argb = split( ChildNode->ToElement()->Attribute("color"), ',');
+			   _FontColor = ARGB(
+                                atoi(argb[0].c_str()),
+                                atoi(argb[1].c_str()),
+                                atoi(argb[2].c_str()),
+                                atoi(argb[3].c_str())
+                                );
+
+            }
+            ChildNode = ItemElement->FirstChild("iconposition");
+			if (ChildNode) {
+                 _IconPosX = atoi(ChildNode->ToElement()->Attribute("x"));
+                 _IconPosY = atoi(ChildNode->ToElement()->Attribute("y"));
+            }
+
+            ChildNode = ItemElement->FirstChild("filename");
+            if (ChildNode) {
+                 _FileName = ChildNode->ToElement()->GetText();
+
+            }
+            ChildNode = ItemElement->FirstChild("sizeicon");
+            if (ChildNode) {
+                 _SizeIcon = atoi(ChildNode->ToElement()->GetText());
+
+            }
+               
+		
+            rendertinycrop.push_back(NEW ModRulesRenderCardGuiItem( _Name, _Posx, _Posy, _FormattedText, _Filter,_Font, _FontSize, _FontColor,_SizeIcon,_IconPosX,_IconPosY,_FileName ));
         }
     }
 }

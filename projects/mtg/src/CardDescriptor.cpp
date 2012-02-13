@@ -225,6 +225,8 @@ MTGCardInstance * CardDescriptor::match(MTGCardInstance * card)
         {
             match = NULL;
         }
+    if(CDopponentDamaged == -1 || CDopponentDamaged == 1)
+    {
         Player * p = card->controller()->opponent();//controller()->opponent();
         if ((CDopponentDamaged == -1 && card->damageToOpponent && card->controller() == p) || (CDopponentDamaged == 1 && !card->damageToOpponent && card->controller() == p)
             || (CDopponentDamaged == -1 && card->damageToController && card->controller() == p->opponent()) || (CDopponentDamaged == 1 && !card->damageToController && card->controller() == p->opponent()))
@@ -236,6 +238,7 @@ MTGCardInstance * CardDescriptor::match(MTGCardInstance * card)
         {
             match = NULL;
         }
+    }
         if ((isToken == -1 && card->isToken) || (isToken == 1 && !card->isToken))
         {
             match = NULL;

@@ -83,6 +83,7 @@ public:
     int isExtraPaymentSet();
     int canPayExtra();
     int doPayExtra();
+    ExtraCost * getExtraCost(unsigned int i);
 
     int addHybrid(int c1, int v1, int c2, int v2);
     int tryToPayHybrids(std::vector<ManaCostHybrid>& _hybrids, int _nbhybrids,std::vector<int8_t>& diff);

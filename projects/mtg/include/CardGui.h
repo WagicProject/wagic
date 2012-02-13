@@ -39,6 +39,7 @@ protected:
     static void AlternateRender(MTGCard * card, const Pos& pos);
     static void TinyCropRender(MTGCard * card, const Pos& pos, JQuad * quad);
     static string FormattedData (string data, string replace, string value);
+    static bool FilterCard (MTGCard * card,string filter);
 
 public:
     static const float Width;

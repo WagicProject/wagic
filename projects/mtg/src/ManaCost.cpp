@@ -510,6 +510,17 @@ ManaCostHybrid * ManaCost::getHybridCost(unsigned int i)
     return &hybrids[i];
 }
 
+ExtraCost * ManaCost::getExtraCost(unsigned int i)
+{
+    if(extraCosts && extraCosts->costs.size())
+	{
+        if (extraCosts->costs.size() <= i)
+            return NULL;
+        return extraCosts->costs[i];
+    }
+    return NULL;
+}
+
 int ManaCost::hasColor(int color)
 {
     if (getCost(color))

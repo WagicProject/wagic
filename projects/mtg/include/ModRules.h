@@ -104,10 +104,18 @@ public:
     string mName;
     int mPosX;
     int mPosY;
-    string mType;
+    string mFilter;
     string mFormattedData;
-    
-    ModRulesRenderCardGuiItem(string Name, string PosX, string PosY, string FormattedData, string Type);
+    int mFontSize;
+    bool mFont;
+    PIXEL_TYPE mFontColor;
+	/*Icons attributes*/
+    int mSizeIcon;
+	int mIconPosX;
+	int mIconPosY;
+	string mFileName;
+    ModRulesRenderCardGuiItem(string name, int posX, int posY, string formattedData, string filter, bool font, int fontSize, PIXEL_TYPE fontColor, int SizeIcon,int IconPosX,int IconPosY,string FileName);
+   
 };
 
 class ModRulesCardGui

@@ -1616,7 +1616,7 @@ int GameStateDeckViewer::loadDeck(int deckid)
             }
             else
             {
-                myDeck->Remove(current); //Nope. Remove it from deck.
+                myDeck->Remove(current,howmanyinDeck-i); //Nope. Remove it from deck.
                 break;
             }
         }
