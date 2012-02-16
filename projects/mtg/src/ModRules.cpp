@@ -353,7 +353,7 @@ void ModRulesCardGui::parse(TiXmlElement* element)
             _FormattedText = "";
             _Filter = "";
             _FontSize = 0;
-			_Font = FALSE;
+			_Font = false;
 			_FontColor = NULL;
             _SizeIcon = 0;
 			_IconPosX = 0;
@@ -380,7 +380,7 @@ void ModRulesCardGui::parse(TiXmlElement* element)
 
             ChildNode = ItemElement->FirstChild("font");
 			if (ChildNode) {
-			   _Font = TRUE;
+			   _Font = true;
 			   _FontSize = atoi(ChildNode->ToElement()->Attribute("size"));
 			   vector<string> argb = split( ChildNode->ToElement()->Attribute("color"), ',');
 			   _FontColor = ARGB(
@@ -423,7 +423,7 @@ void ModRulesCardGui::parse(TiXmlElement* element)
             _FormattedText = "";
             _Filter = "";
             _FontSize = 0;
-			_Font = FALSE;
+			_Font = false;
 			_FontColor = NULL;
             _SizeIcon = 0;
 			_IconPosX = 0;
@@ -450,7 +450,7 @@ void ModRulesCardGui::parse(TiXmlElement* element)
 
             ChildNode = ItemElement->FirstChild("font");
 			if (ChildNode) {
-			   _Font = TRUE;
+			   _Font = true;
 			   _FontSize = atoi(ChildNode->ToElement()->Attribute("size"));
 			   vector<string> argb = split( ChildNode->ToElement()->Attribute("color"), ',');
 			   _FontColor = ARGB(

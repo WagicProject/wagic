@@ -1329,8 +1329,8 @@ bool CardGui::FilterCard(MTGCard * _card,string filter)
         
      } 
      if(cd.match(card)) 
-         return TRUE;
-    return FALSE;
+         return true;
+    return false;
     
 }
 
