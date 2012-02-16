@@ -354,7 +354,7 @@ void ModRulesCardGui::parse(TiXmlElement* element)
             _Filter = "";
             _FontSize = 0;
 			_Font = false;
-			_FontColor = NULL;
+            _FontColor = 0;
             _SizeIcon = 0;
 			_IconPosX = 0;
 			_IconPosY = 0 ;
@@ -424,7 +424,7 @@ void ModRulesCardGui::parse(TiXmlElement* element)
             _Filter = "";
             _FontSize = 0;
 			_Font = false;
-			_FontColor = NULL;
+            _FontColor = 0;
             _SizeIcon = 0;
 			_IconPosX = 0;
 			_IconPosY = 0 ;
