@@ -362,13 +362,14 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SoundManager);
 	NSMutableArray *playlistTracks = [musicPlaylists objectForKey:aPlaylistName];
 	
 	if (!playlistTracks) {
-		playlistTracks = [[NSMutableArray alloc] init];
+		playlistTracks = [NSMutableArray arrayWithCapacity: 1];
 	}
 	
 	[playlistTracks addObject:aTrackName];
 	
 	// Add the track key to the play list
 	[musicPlaylists setObject:playlistTracks forKey:aPlaylistName];
+
 }
 
 - (void)startPlaylistNamed:(NSString*)aPlaylistName {
@@ -391,14 +392,15 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SoundManager);
 
 	NSMutableArray *playlistTracks = [musicPlaylists objectForKey:aPlaylistName];
 	if (playlistTracks) {
-		int indexToRemove;
-		for (int index=0; index < [currentPlaylistTracks count]; index++) {
+		int indexToRemove = -1;
+		for (NSUInteger index=0; index < [currentPlaylistTracks count]; index++) {
 			if ([[currentPlaylistTracks objectAtIndex:index] isEqualToString:aTrackName]) {
 				indexToRemove = index;
 				break;
 			}
 		}
-		[currentPlaylistTracks removeObjectAtIndex:indexToRemove];
+        if (indexToRemove >= 0)
+            [currentPlaylistTracks removeObjectAtIndex:indexToRemove];
 	}
 }
 

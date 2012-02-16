@@ -41,7 +41,6 @@
     [wagicDownloadController performSelectorInBackground: @selector(startDownload:) withObject:@"core"];
     
     [self.window addSubview: wagicDownloadController.view];
-    [wagicDownloadController.view release];
     [self.window makeKeyWindow];
 
 }

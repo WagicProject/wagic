@@ -1156,7 +1156,7 @@ static NSOperationQueue *sharedQueue = nil;
 	// Create the stream for the request
 	//
 
-	NSFileManager *fileManager = [[[NSFileManager alloc] init] autorelease];
+	NSFileManager *fileManager = [NSFileManager defaultManager];
 
 	[self setReadStreamIsScheduled:NO];
 	
@@ -1214,6 +1214,7 @@ static NSOperationQueue *sharedQueue = nil;
             CFReadStreamSetProperty((CFReadStreamRef)[self readStream], 
                                     kCFStreamPropertySSLSettings, 
                                     (CFTypeRef)sslProperties);
+            [sslProperties release];
         } 
         
         // Tell CFNetwork to use a client certificate
