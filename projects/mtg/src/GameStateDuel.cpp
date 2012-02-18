@@ -498,8 +498,7 @@ void GameStateDuel::Update(float dt)
         {
             if (!menu)
             {
-                menu = NEW SimpleMenu(JGE::GetInstance(), DUEL_MENU_GAME_MENU, this, Fonts::MENU_FONT, SCREEN_WIDTH / 2 - 100, 25,
-                    game->players[1]->deckName.c_str());
+                menu = NEW SimpleMenu(JGE::GetInstance(), DUEL_MENU_GAME_MENU, this, Fonts::MENU_FONT, SCREEN_WIDTH / 2 - 100, 25);
                 int cardsinhand = game->currentPlayer->game->hand->nb_cards;
 
                 //almosthumane - mulligan
@@ -686,7 +685,12 @@ void GameStateDuel::Render()
         else
         {
             if (opponentMenu && !opponentMenu->isClosed())
+            {
                 opponentMenu->Render();
+                // display the selected player deck name too
+                string selectedPlayerDeckName = "Player Deck: " + deckmenu->getSelectedDeck()->getName();
+                mFont->DrawString( selectedPlayerDeckName.c_str(), 30, 40);
+            }
             else if (deckmenu && !deckmenu->isClosed()) deckmenu->Render();
 
             if (menu) menu->Render();
@@ -715,7 +719,16 @@ void GameStateDuel::Render()
             mFont->DrawString(buffer, SCREEN_WIDTH / 2, 0, JGETEXT_CENTER);
         }
         if (menu) 
+        {
             menu->Render();
+            
+            // display the player deck names in their respective corners
+            string playerDeckName =  game->players[0]->deckName;
+            string opponentDeckName = game->players[1]->deckName;
+            float playerDeckNamePixelLength = mFont->GetStringWidth(playerDeckName.c_str());
+            mFont->DrawString( opponentDeckName, 0, 50);
+            mFont->DrawString( playerDeckName, SCREEN_WIDTH_F - playerDeckNamePixelLength, SCREEN_HEIGHT_F - 50);
+        }
     }
 }
 
