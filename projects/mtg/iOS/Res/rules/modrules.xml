@@ -22,19 +22,61 @@
      <card id="7" color="gold" img="gold.jpg" thumb="gold_thumb.jpg" menuicon="0"/>
     </background>
   <renderbig>
-  	<item name="title" posx="22" posy="25" formattedtext="" type=""/>
-  	<item name="description" posx="22" posy="80" formattedtext="" type=""/>
-  	<item name="powerlife" posx="158" posy="106" formattedtext="power/life" type="creature"/>
-  	<item name="mana" posx="75" posy="-112" formattedtext="" type=""/>
-  	<item name="types" posx="22" posy="49" formattedtext="" type=""/>
-  	<item name="expansionrarity" posx="22" posy="113" formattedtext="expansion rarity" type=""/>
+  	<item name="title" >
+  	    <position x="22" y="25"/>
+  	</item>
+  	<item name="description" >
+  	    <position x="22" y="80"/>
+  	</item>    
+    	<item name="powerlife" >
+    	    <position x="158" y="247"/>
+  	    <formattedtext>power/life</formattedtext>
+    	    <filter>creature</filter>
+    	</item>
+  	<item name="mana" >
+	    <position x="75" y="-112"/>
+  	</item>
+  	<item name="types" >
+  	    <position x="22" y="49"/>
+  	</item>
+  	<item name="expansionrarity" >
+	    <position x="22" y="255"/>
+  	    <formattedtext>expansion rarity</formattedtext>
+  	</item>
+  	<item name="expansionrarity2" >
+	    <position x="22" y="255"/>
+	    <formattedtext>expansion rarity</formattedtext>
+	    <font size="80" color="255,255,255,255" />
+	    <filter>[black;green;blue]</filter>
+  	</item>
   </renderbig>
   <rendertinycrop>
-    	<item name="title" posx="22" posy="25" formattedtext="" type=""/>
-    	<item name="description" posx="22" posy="80" formattedtext="" type=""/>
-    	<item name="powerlife" posx="158" posy="106" formattedtext="power/life" type="creature"/>
-    	<item name="mana" posx="75" posy="-112" formattedtext="" type=""/>
-    	<item name="types" posx="22" posy="49" formattedtext="" type=""/>
-    	<item name="expansionrarity" posx="22" posy="113" formattedtext="expansion rarity" type=""/>
+    	<item name="title" >
+  	    <position x="22" y="25"/>
+  	</item>
+  	<item name="description" >
+  	    <position x="22" y="0"/>
+  	</item>    
+    	<item name="powerlife" >
+    	    <position x="158" y="247"/>
+  	    <formattedtext>power/life</formattedtext>
+    	    <filter>creature</filter>
+    	</item>
+  	<item name="mana" >
+	    <position x="75" y="-112"/>
+  	</item>
+  	<item name="types" >
+  	    <position x="22" y="49"/>
+  	</item>
+  	<item name="expansionrarity" >
+	    <position x="22" y="255"/>
+  	    <formattedtext>expansion rarity</formattedtext>
+  	</item>
+  	<item name="expansionrarity2" >
+	    <position x="22" y="255"/>
+	    <formattedtext>expansion rarity</formattedtext>
+	    <font size="80" color="255,255,255,255" />
+	    <filter>[black;green;blue]</filter>
+  	</item>
   </rendertinycrop>
 </cardgui>
