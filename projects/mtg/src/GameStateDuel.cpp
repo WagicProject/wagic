@@ -688,7 +688,7 @@ void GameStateDuel::Render()
             {
                 opponentMenu->Render();
                 // display the selected player deck name too
-                string selectedPlayerDeckName = "Player Deck: " + deckmenu->getSelectedDeck()->getName();
+                string selectedPlayerDeckName = "Player Deck: " + game->players[0]->deckName;
                 mFont->DrawString( selectedPlayerDeckName.c_str(), 30, 40);
             }
             else if (deckmenu && !deckmenu->isClosed()) deckmenu->Render();
@@ -831,9 +831,9 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
 
         if (controlId == MENUITEM_RANDOM_PLAYER) // Random Player Deck Selection
         {
-            vector<DeckMetaData *> * playerDeckList = deckManager->getPlayerDeckOrderList();
-            deckNumber = playerDeckList->at(WRand() % (playerDeckList->size()))->getDeckId();
-            game->loadPlayer(0, mParent->players[0], deckNumber, premadeDeck);
+            deckmenu->selectRandomDeck(false);
+            
+            game->loadPlayer(0, mParent->players[0], deckmenu->getSelectedDeckId(), premadeDeck);
             deckmenu->Close();
             setGamePhase(DUEL_STATE_CHOOSE_DECK2_TO_PLAY);
             break;

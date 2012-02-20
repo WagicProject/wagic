@@ -3,6 +3,7 @@
 #include "DeckMenu.h"
 #include "DeckMenuItem.h"
 #include "DeckMetaData.h"
+#include "DeckManager.h"
 #include "InteractiveButton.h"
 #include "JTypes.h"
 #include "GameApp.h"
@@ -64,8 +65,6 @@ JGuiController(JGE::GetInstance(), id, listener), fontId(fontId), mShowDetailsSc
     statsY = 15;
     statsHeight = 50;
     statsWidth = 227;
-
-    mSelectedDeckId = startIndex;
 
     avatarX = 232;
     avatarY = 11;
@@ -213,6 +212,21 @@ void DeckMenu::initMenuItems()
 #endif
 }
 
+void DeckMenu::selectRandomDeck(bool isAi)
+{
+    DeckManager *deckManager = DeckManager::GetInstance();
+    vector<DeckMetaData *> *deckList = isAi ? deckManager->getAIDeckOrderList() : deckManager->getPlayerDeckOrderList();
+    int random = (WRand() * 1000) % deckList->size();
+    selectDeck( random, isAi );
+}
+
+void DeckMenu::selectDeck(int deckId, bool isAi)
+{
+    DeckManager *deckManager = DeckManager::GetInstance();
+    vector<DeckMetaData *> *deckList = isAi ? deckManager->getAIDeckOrderList() : deckManager->getPlayerDeckOrderList();
+    mSelectedDeck = deckList->at(deckId);
+}
+
 void DeckMenu::Render()
 {
     JRenderer * renderer = JRenderer::GetInstance();
@@ -243,7 +257,6 @@ void DeckMenu::Render()
 
             if (currentMenuItem->hasFocus())
             {
-                mSelectedDeckId = i;
                 mSelectedDeck = metaData;
                 WFont *mainFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
 

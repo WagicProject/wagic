@@ -46,7 +46,6 @@ protected:
     string getDescription();
     string getMetaInformation();
     DeckMetaData *mSelectedDeck;
-    int mSelectedDeckId;
     bool mShowDetailsScreen;
     bool mAlwaysShowDetailsButton;
     bool mClosed;
@@ -55,7 +54,15 @@ public:
     VerticalTextScroller * mScroller;
     bool mAutoTranslate;
     float mSelectionTargetY;
-
+    
+    int getSelectedDeckId() const 
+    {
+        return mSelectedDeck->getDeckId();
+    }
+    
+    void selectDeck(int deckId, bool isAi);
+    void selectRandomDeck(bool isAi);
+    
     //used for detailed info button
     JQuadPtr pspIcons[8];
     JTexture * pspIconsTexture;
@@ -68,7 +75,6 @@ public:
     bool showDetailsScreen();
     
     virtual bool isClosed() const { return mClosed; }
-    virtual int getSelectedDeckId() const { return mSelectedDeckId; }
 
     virtual void Render();
     virtual void Update(float dt);
