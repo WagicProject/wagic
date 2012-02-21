@@ -801,8 +801,10 @@ class SDLSurface extends SurfaceView implements SurfaceHolder.Callback,
 
 				// calc velocity
 				mVelocityTracker.computeCurrentVelocity(1000);
-				
-				SDLActivity.onNativeFlickGesture(mVelocityTracker.getXVelocity(), mVelocityTracker.getYVelocity());
+				float xVelocity = mVelocityTracker.getXVelocity(0);
+				float yVelocity = mVelocityTracker.getYVelocity(0);
+				if ( Math.abs(xVelocity) > 300 || Math.abs(yVelocity) > 300)
+					SDLActivity.onNativeFlickGesture(xVelocity, yVelocity);
 
 				mVelocityTracker.recycle();
 			}

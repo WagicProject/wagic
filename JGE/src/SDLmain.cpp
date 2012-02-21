@@ -239,6 +239,7 @@ public:
         case SDL_FINGERMOTION:
         case SDL_FINGERDOWN:
         case SDL_FINGERUP:
+        	DebugTrace("Finger Up/Down/Motion detected:" );
             OnTouchEvent(Event->tfinger);
             break;
 
@@ -581,11 +582,6 @@ void SdlApp::OnTouchEvent(const SDL_TouchFingerEvent& event)
             int actualWidth = (int) JRenderer::GetInstance()->GetActualWidth();
             int actualHeight = (int) JRenderer::GetInstance()->GetActualHeight();
 
-            g_engine->LeftClicked(
-                ((event.x - viewPort.x) * SCREEN_WIDTH) / actualWidth,
-                ((event.y - viewPort.y) * SCREEN_HEIGHT) / actualHeight);
-
-
             Uint32 eventTime = SDL_GetTicks();
             if (event.type == SDL_FINGERDOWN)
             {
@@ -595,6 +591,7 @@ void SdlApp::OnTouchEvent(const SDL_TouchFingerEvent& event)
                 lastFingerDownTime = eventTime;
             }
 
+
 #if (defined ANDROID) || (defined IOS)
             if (event.type == SDL_FINGERUP)
             {
@@ -603,11 +600,17 @@ void SdlApp::OnTouchEvent(const SDL_TouchFingerEvent& event)
                     // treat an up finger within 50 pixels of the down finger coords as a double click event
                     if (abs(mMouseDownX - event.x) < kHitzonePliancy && abs(mMouseDownY - event.y) < kHitzonePliancy)
                     {
+                    	DebugTrace("Pressing OK BUtton");
                         g_engine->HoldKey_NoRepeat(JGE_BTN_OK);
                     }
                 }
             }
+      		else      
 #endif
+			g_engine->LeftClicked(
+                ((event.x - viewPort.x) * SCREEN_WIDTH) / actualWidth,
+                ((event.y - viewPort.y) * SCREEN_HEIGHT) / actualHeight);
+	
         }
     }
 }
