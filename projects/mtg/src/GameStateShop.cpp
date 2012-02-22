@@ -78,9 +78,9 @@ GameStateShop::GameStateShop(GameApp* parent) :
     kOtherCardsString = _(kOtherCardsString);
     kCreditsString = _(kCreditsString);
     
-    cycleCardsButton = NEW InteractiveButton(NULL, kCycleCardsButtonId, Fonts::MAIN_FONT, "New Cards", SCREEN_WIDTH_F - 80, SCREEN_HEIGHT_F - 15, JGE_BTN_PRI);
+    cycleCardsButton = NEW InteractiveButton(NULL, kCycleCardsButtonId, Fonts::MAIN_FONT, "New Cards", SCREEN_WIDTH_F - 80, SCREEN_HEIGHT_F - 20, JGE_BTN_PRI);
     
-    showCardListButton = NEW InteractiveButton(NULL, kShowCardListButtonId, Fonts::MAIN_FONT, "Show List", SCREEN_WIDTH_F - 150, SCREEN_HEIGHT_F - 15, JGE_BTN_SEC);
+    showCardListButton = NEW InteractiveButton(NULL, kShowCardListButtonId, Fonts::MAIN_FONT, "Show List", SCREEN_WIDTH_F - 150, SCREEN_HEIGHT_F - 20, JGE_BTN_SEC);
     disablePurchase = false;
     clearInput = false;
 }
