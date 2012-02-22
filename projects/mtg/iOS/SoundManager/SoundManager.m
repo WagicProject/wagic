@@ -419,7 +419,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SoundManager);
 #pragma mark -
 #pragma mark Sound control
 
-- (NSUInteger)playSoundWithKey:(NSString*)aSoundKey gain:(float)aGain pitch:(float)aPitch location:(CGPoint)aLocation shouldLoop:(BOOL)aLoop sourceID:(NSUInteger)aSourceID {
+- (NSUInteger)playSoundWithKey:(NSString*)aSoundKey gain:(float)aGain pitch:(float)aPitch location:(CGPoint)aLocation shouldLoop:(BOOL)aLoop sourceID:(NSInteger)aSourceID {
 	
 	// Find the buffer linked to the key which has been passed in
 	NSNumber *numVal = [soundLibrary objectForKey:aSoundKey];
@@ -795,7 +795,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SoundManager);
         // Set the audio session state to true and report any errors
 		[audioSession setActive:YES error:&audioSessionError];
 		if (audioSessionError) {
-            NSLog(@"ERROR - SoundManager: Unable to set the audio session state to YES with error %d.", result);
+            NSLog(@"ERROR - SoundManager: Unable to set the audio session state to YES with error %@.", [audioSessionError localizedDescription]);
             return;
         }
 		

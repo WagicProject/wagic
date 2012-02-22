@@ -83,7 +83,7 @@
 // |aLocation| is used to set the location of the sound source in relation to the listener
 // and |aLoop| specifies if the sound should be continuously looped or not.
 - (NSUInteger)playSoundWithKey:(NSString*)aSoundKey gain:(float)aGain pitch:(float)aPitch 
-                       location:(CGPoint)aLocation shouldLoop:(BOOL)aLoop sourceID:(NSUInteger)aSourceID;
+                       location:(CGPoint)aLocation shouldLoop:(BOOL)aLoop sourceID:(NSInteger)aSourceID;
 
 // Stops all sounds playing with the supplied sound key
 - (void)stopSoundWithKey:(NSString*)aSoundKey;
