@@ -149,6 +149,12 @@
     {
         NSString *oldPath = [NSString stringWithFormat: @"%@/%@", docsPath, zipFile];
         NSString *newPath = [NSString stringWithFormat: @"%@/%@", userPath, zipFile];
+        if ( [fileManager fileExistsAtPath: newPath] )
+        {
+            NSLog(@"Removing old file at %@", newPath);
+            [fileManager removeItemAtPath: newPath error: &error];
+        }
+        error = nil;
         
         [fileManager moveItemAtPath: oldPath toPath:newPath error: &error];
         NSLog(@"Moving %@ to %@", oldPath, newPath);
@@ -163,6 +169,12 @@
     {
         NSString *oldPath = [NSString stringWithFormat: @"%@/%@", docsPath, zipFile];
         NSString *newPath = [NSString stringWithFormat: @"%@/%@", resPath, zipFile];
+        if ( [fileManager fileExistsAtPath: newPath] )
+        {
+            NSLog(@"Removing old file at %@", newPath);
+            [fileManager removeItemAtPath: newPath error: &error];
+        }
+        error = nil;
         
         [fileManager moveItemAtPath: oldPath toPath:newPath error: &error];
         NSLog(@"Moving %@ to %@", oldPath, newPath);
