@@ -299,6 +299,7 @@ bool filesystem::DirExists(const std::string & folderName)
 
 bool filesystem::FileExists(const std::string & fileName)
 {
+    if (fileName.length() < 1) return false;
     //Check in zip
 	file_info FileInfo;
 

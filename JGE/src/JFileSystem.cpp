@@ -196,6 +196,8 @@ bool JFileSystem::DirExists(const string& strDirname)
 
 bool JFileSystem::FileExists(const string& strFilename)
 { 
+    if (strFilename.length() < 1 ) return false;
+    
     return (mSystemFS && mSystemFS->FileExists(strFilename)) || mUserFS->FileExists(strFilename);
 }
 

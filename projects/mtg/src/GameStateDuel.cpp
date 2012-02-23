@@ -242,7 +242,10 @@ void GameStateDuel::End()
 //TODO Move This to utils or ResourceManager. Don't we have more generic functions that can do that?
 bool GameStateDuel::MusicExist(string FileName)
 {
-    return FileExists(WResourceManager::Instance()->musicFile(FileName));
+    string musicFilename = WResourceManager::Instance()->musicFile(FileName);
+    if (musicFilename.length() < 1) return false;
+    
+    return FileExists(musicFilename);
 }
 
 void GameStateDuel::ConstructOpponentMenu()
@@ -438,7 +441,8 @@ void GameStateDuel::Update(float dt)
             else if (mParent->gameType == GAME_TYPE_RANDOM1 || mParent->gameType == GAME_TYPE_RANDOM2) musictrack
                 = "ai_baka_music_random.mp3";
 
-            if (!MusicExist(musictrack)) musictrack = "ai_baka_music.mp3";
+            if (!MusicExist(musictrack)) 
+                musictrack = "ai_baka_music.mp3";
 
             GameApp::playMusic(musictrack);
         }

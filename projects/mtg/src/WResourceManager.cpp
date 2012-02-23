@@ -754,7 +754,7 @@ string ResourceManagerImpl::musicFile(const string& filename)
     sprintf(defdir, "sound/%s", filename.c_str());
     if (fileOK(defdir)) return defdir;
 
-    //Failure. Check raw faile.
+    //Failure. Check raw file.
     sprintf(defdir, "%s", filename.c_str());
     if (fileOK(defdir)) return defdir;
 
