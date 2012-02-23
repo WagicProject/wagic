@@ -153,6 +153,9 @@ extern NSString *const kReachabilityChangedNotification;
 // Use to check the reachability of a particular IP address. 
 + (Reachability *) reachabilityWithAddress: (const struct sockaddr_in*) hostAddress;
 
+// Use to check the reachability of the Google DNS Servers. 
++ (Reachability *) reachabilityForGoogleDNS;
+
 // Use to check whether the default route is available.  
 // Should be used to, at minimum, establish network connectivity.
 + (Reachability *) reachabilityForInternetConnection;

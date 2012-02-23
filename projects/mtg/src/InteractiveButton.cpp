@@ -75,8 +75,9 @@ void InteractiveButton::Render()
 #ifndef TOUCH_ENABLED
     renderer->FillRoundRect(boxStartX, getY(), stringWidth - 3, mainFontHeight - 9, 5, ARGB(0, 0, 0, 0));
 #else
-    renderer->FillRoundRect(boxStartX, getY(), stringWidth - 3, mainFontHeight - 9, 5, ARGB(255, 192, 172, 119));
-    renderer->DrawRoundRect(boxStartX, getY(), stringWidth - 3, mainFontHeight - 9, 5, ARGB(255, 255, 255, 255));
+    renderer->FillRoundRect(boxStartX, getY(), stringWidth - 3, mainFontHeight - 5, 5, ARGB(255, 192, 172, 119));
+    renderer->DrawRoundRect(boxStartX, getY(), stringWidth - 3, mainFontHeight - 5, 5, ARGB(255, 255, 255, 255));
+    mYOffset += 2;
 #endif
 
 	float buttonXOffset = getX() - mXOffset;

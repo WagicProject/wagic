@@ -59,12 +59,12 @@ GameStateDeckViewer::GameStateDeckViewer(GameApp* parent) :
     menu = NULL;
     stw = NULL;
     
-    toggleDeckButton = NEW InteractiveButton(NULL, kToggleDeckActionId, Fonts::MAIN_FONT, "View Deck", 10, SCREEN_HEIGHT_F - 15, JGE_BTN_PRI);
-    sellCardButton = NEW InteractiveButton(NULL, kSellCardActionId, Fonts::MAIN_FONT, "Sell Card", (SCREEN_WIDTH_F/ 2) - 100, SCREEN_HEIGHT_F - 15, JGE_BTN_SEC);
-    statsNextButton = NEW InteractiveButton(NULL, kNextStatsButtonId, Fonts::MAIN_FONT, "Stats ->", SCREEN_WIDTH_F - 50, SCREEN_HEIGHT_F - 40, JGE_BTN_NEXT);
-    statsPrevButton = NEW InteractiveButton(NULL, kPrevStatsButtonId, Fonts::MAIN_FONT, "<- Stats", SCREEN_WIDTH_F - 115, SCREEN_HEIGHT_F - 40, JGE_BTN_PREV);
-    menuButton = NEW InteractiveButton(NULL, kMenuButtonId, Fonts::MAIN_FONT, "menu", SCREEN_WIDTH_F - 40, SCREEN_HEIGHT_F - 15, JGE_BTN_MENU);
-    filterButton = NEW InteractiveButton(NULL, kFilterButtonId, Fonts::MAIN_FONT, "filter", (SCREEN_WIDTH_F - 110), SCREEN_HEIGHT_F - 15, JGE_BTN_CTRL);
+    statsNextButton = NEW InteractiveButton(NULL, kNextStatsButtonId, Fonts::MAIN_FONT, "Stats ->", SCREEN_WIDTH_F - 50, 5, JGE_BTN_NEXT);
+    statsPrevButton = NEW InteractiveButton(NULL, kPrevStatsButtonId, Fonts::MAIN_FONT, "<- Stats",  10, 5, JGE_BTN_PREV);
+    toggleDeckButton = NEW InteractiveButton(NULL, kToggleDeckActionId, Fonts::MAIN_FONT, "View Deck", 10, SCREEN_HEIGHT_F - 20, JGE_BTN_PRI);
+    sellCardButton = NEW InteractiveButton(NULL, kSellCardActionId, Fonts::MAIN_FONT, "Sell Card", (SCREEN_WIDTH_F/ 2) - 100, SCREEN_HEIGHT_F - 20, JGE_BTN_SEC);
+    menuButton = NEW InteractiveButton(NULL, kMenuButtonId, Fonts::MAIN_FONT, "menu", SCREEN_WIDTH_F - 40, SCREEN_HEIGHT_F - 20, JGE_BTN_MENU);
+    filterButton = NEW InteractiveButton(NULL, kFilterButtonId, Fonts::MAIN_FONT, "filter", (SCREEN_WIDTH_F - 110), SCREEN_HEIGHT_F - 20, JGE_BTN_CTRL);
 }
 
 GameStateDeckViewer::~GameStateDeckViewer()
@@ -727,9 +727,16 @@ void GameStateDeckViewer::renderOnScreenBasicInfo()
                 WSrcDeck::UNFILTERED_UNIQUE));
 
     float w = mFont->GetStringWidth(buffer);
+    
+#ifdef TOUCH_ENABLED
+    float textXOffset = SCREEN_WIDTH - (statsNextButton->GetWidth() + w + 30);
+    renderer->FillRoundRect( textXOffset - 5, y, w + 10, mFont->GetHeight() + 4, 5, ARGB(128,0,0,0));
+    mFont->DrawString(buffer, textXOffset, y + 5, JGETEXT_LEFT);
+#else
     renderer->FillRoundRect(SCREEN_WIDTH - (w + 27), y + 5, w + 10, 15, 5, ARGB(128,0,0,0));
-
     mFont->DrawString(buffer, SCREEN_WIDTH - 22, y + 15, JGETEXT_RIGHT);
+#endif
+    
     if (useFilter != 0) renderer->RenderQuad(mIcons[useFilter - 1].get(), SCREEN_WIDTH - 10, y + 15, 0.0f, 0.5, 0.5);
 }
 
@@ -830,56 +837,90 @@ void GameStateDeckViewer::renderOnScreenMenu()
     float rightPspX = SCREEN_WIDTH - 100 + rightTransition;
     float rightPspY = SCREEN_HEIGHT / 2 - 20;
 
+#ifdef TOUCH_ENABLED
+    bool renderPSPIcons = false;
+#else
+    bool renderPSPIcons = true;
+#endif
+    
     if (stw->currentPage == 0)
     {
         //FillRects
         r->FillRect(0 - (onScreenTransition * 84), 0, 84, SCREEN_HEIGHT, ARGB(128,0,0,0));
         r->FillRect(SCREEN_WIDTH - 204 + (onScreenTransition * 204), 0, 200, SCREEN_HEIGHT, ARGB(128,0,0,0));
-
-        //LEFT PSP CIRCLE render
-        r->FillCircle(leftPspX, leftPspY, 40, ARGB(128,50,50,50));
-
-        r->RenderQuad(pspIcons[0].get(), leftPspX, leftPspY - 20, 0, pspIconsSize, pspIconsSize);
-        r->RenderQuad(pspIcons[1].get(), leftPspX, leftPspY + 20, 0, pspIconsSize, pspIconsSize);
-        r->RenderQuad(pspIcons[2].get(), leftPspX - 20, leftPspY, 0, pspIconsSize, pspIconsSize);
-        r->RenderQuad(pspIcons[3].get(), leftPspX + 20, leftPspY, 0, pspIconsSize, pspIconsSize);
-
-        font->DrawString(_("Prev."), leftPspX - 35, leftPspY - 15);
-        font->DrawString(_("Next"), leftPspX + 15, leftPspY - 15);
-        font->DrawString(_("card"), leftPspX - 35, leftPspY);
-        font->DrawString(_("card"), leftPspX + 15, leftPspY);
-        font->DrawString(_("Next edition"), leftPspX - 33, leftPspY - 35);
-        font->DrawString(_("Prev. edition"), leftPspX - 33, leftPspY + 25);
-
-        //RIGHT PSP CIRCLE render
-        r->FillCircle(rightPspX + (onScreenTransition * 204), rightPspY, 40, ARGB(128,50,50,50));
-        r->RenderQuad(pspIcons[4].get(), rightPspX + 20, rightPspY, 0, pspIconsSize, pspIconsSize);
-        r->RenderQuad(pspIcons[5].get(), rightPspX, rightPspY - 20, 0, pspIconsSize, pspIconsSize);
-        r->RenderQuad(pspIcons[6].get(), rightPspX - 20, rightPspY, 0, pspIconsSize, pspIconsSize);
-        r->RenderQuad(pspIcons[7].get(), rightPspX, rightPspY + 20, 0, pspIconsSize, pspIconsSize);
-
-        font->DrawString(_("Toggle Images"), rightPspX - 35, rightPspY - 40);
-
-        if (displayed_deck == myCollection)
+        if (renderPSPIcons)
         {
-            font->DrawString(_("Add card"), rightPspX + 20, rightPspY - 15);
-            font->DrawString(_("View Deck"), rightPspX - 20, rightPspY - 15, JGETEXT_RIGHT);
+            //LEFT PSP CIRCLE render
+            r->FillCircle(leftPspX, leftPspY, 40, ARGB(128,50,50,50));
+            
+            r->RenderQuad(pspIcons[0].get(), leftPspX, leftPspY - 20, 0, pspIconsSize, pspIconsSize);
+            r->RenderQuad(pspIcons[1].get(), leftPspX, leftPspY + 20, 0, pspIconsSize, pspIconsSize);
+            r->RenderQuad(pspIcons[2].get(), leftPspX - 20, leftPspY, 0, pspIconsSize, pspIconsSize);
+            r->RenderQuad(pspIcons[3].get(), leftPspX + 20, leftPspY, 0, pspIconsSize, pspIconsSize);
+            
+            font->DrawString(_("Prev."), leftPspX - 35, leftPspY - 15);
+            font->DrawString(_("Next"), leftPspX + 15, leftPspY - 15);
+            font->DrawString(_("card"), leftPspX - 35, leftPspY);
+            font->DrawString(_("card"), leftPspX + 15, leftPspY);
+            font->DrawString(_("Next edition"), leftPspX - 33, leftPspY - 35);
+            font->DrawString(_("Prev. edition"), leftPspX - 33, leftPspY + 25);
+            
+            //RIGHT PSP CIRCLE render
+            r->FillCircle(rightPspX + (onScreenTransition * 204), rightPspY, 40, ARGB(128,50,50,50));
+            r->RenderQuad(pspIcons[4].get(), rightPspX + 20, rightPspY, 0, pspIconsSize, pspIconsSize);
+            r->RenderQuad(pspIcons[5].get(), rightPspX, rightPspY - 20, 0, pspIconsSize, pspIconsSize);
+            r->RenderQuad(pspIcons[6].get(), rightPspX - 20, rightPspY, 0, pspIconsSize, pspIconsSize);
+            r->RenderQuad(pspIcons[7].get(), rightPspX, rightPspY + 20, 0, pspIconsSize, pspIconsSize);
+            
+            font->DrawString(_("Toggle Images"), rightPspX - 35, rightPspY - 40);
+            
+            if (displayed_deck == myCollection)
+            {
+                font->DrawString(_("Add card"), rightPspX + 20, rightPspY - 15);
+                font->DrawString(_("View Deck"), rightPspX - 20, rightPspY - 15, JGETEXT_RIGHT);
+            }
+            else
+            {
+                font->DrawString(_("Remove card"), rightPspX + 20, rightPspY - 15);
+                font->DrawString(_("View Collection"), rightPspX - 20, rightPspY - 15, JGETEXT_RIGHT);
+            }
+            font->DrawString(_("Sell card"), rightPspX - 30, rightPspY + 20);
+            //Bottom menus
+            font->DrawString(_("menu"), SCREEN_WIDTH - 35 + rightTransition, SCREEN_HEIGHT - 15);
+            font->DrawString(_("filter"), SCREEN_WIDTH - 95 + rightTransition, SCREEN_HEIGHT - 15);
+
+            if (displayed_deck == myCollection)
+            {
+                font->DrawString(_("in: collection"), 5 - leftTransition, 5);
+                font->DrawString(_("Use SQUARE to view your deck,"), SCREEN_WIDTH - 200 + rightTransition, 5);
+            }
+            else
+            {
+                font->DrawString(_("in: deck"), 5 - leftTransition, 5);
+                font->DrawString(_("Use SQUARE to view collection,"), SCREEN_WIDTH - 200 + rightTransition, 5);
+            }
+            
+            font->DrawString(_("Press L/R to cycle through"), SCREEN_WIDTH - 200 + rightTransition, 5 + fH);
+            font->DrawString(_("deck statistics."), SCREEN_WIDTH - 200 + rightTransition, 5 + fH * 2);
         }
         else
         {
-            font->DrawString(_("Remove card"), rightPspX + 20, rightPspY - 15);
-            font->DrawString(_("View Collection"), rightPspX - 20, rightPspY - 15, JGETEXT_RIGHT);
+            // print stuff here about the editor commands
+            float textYOffset = SCREEN_HEIGHT_F/2;
+            font->DrawString(_("Click on the card image"), SCREEN_WIDTH - 200 + rightTransition, textYOffset - (2 * fH));
+            if (displayed_deck == myCollection)
+                font->DrawString(_("to add card to deck."), SCREEN_WIDTH - 200 + rightTransition, textYOffset - fH);
+            else
+                font->DrawString(_("to remove card from deck."), SCREEN_WIDTH - 200 + rightTransition, textYOffset - fH);
         }
-        font->DrawString(_("Sell card"), rightPspX - 30, rightPspY + 20);
-
-        //Bottom menus
-#ifndef TOUCH_ENABLED
-        font->DrawString(_("menu"), SCREEN_WIDTH - 35 + rightTransition, SCREEN_HEIGHT - 15);
-        font->DrawString(_("filter"), SCREEN_WIDTH - 95 + rightTransition, SCREEN_HEIGHT - 15);
-#endif
         //Your Deck Information
         char buffer[300];
         int nb_letters = 0;
+        int value = myDeck->getCount(WSrcDeck::UNFILTERED_COPIES);
+        
+        sprintf(buffer, _("Your Deck: %i cards").c_str(), value);
+        font->DrawString(buffer, SCREEN_WIDTH - 200 + rightTransition, SCREEN_HEIGHT / 2 + 25);
+
         for (int j = 0; j < Constants::NB_Colors; j++)
         {
             int value = myDeck->getCount(j);
@@ -888,7 +929,7 @@ void GameStateDeckViewer::renderOnScreenMenu()
                 sprintf(buffer, "%i", value);
                 font->DrawString(buffer, SCREEN_WIDTH - 190 + rightTransition + nb_letters * 13, SCREEN_HEIGHT / 2 + 40);
                 r->RenderQuad(mIcons[j].get(), SCREEN_WIDTH - 197 + rightTransition + nb_letters * 13, SCREEN_HEIGHT / 2 + 46, 0, 0.5,
-                                0.5);
+                              0.5);
                 if (value > 9)
                 {
                     nb_letters += 3;
@@ -899,22 +940,6 @@ void GameStateDeckViewer::renderOnScreenMenu()
                 }
             }
         }
-        int value = myDeck->getCount(WSrcDeck::UNFILTERED_COPIES);
-        sprintf(buffer, _("Your Deck: %i cards").c_str(), value);
-        font->DrawString(buffer, SCREEN_WIDTH - 200 + rightTransition, SCREEN_HEIGHT / 2 + 25);
-
-        if (displayed_deck == myCollection)
-        {
-            font->DrawString(_("in: collection"), 5 - leftTransition, 5);
-            font->DrawString(_("Use SQUARE to view your deck,"), SCREEN_WIDTH - 200 + rightTransition, 5);
-        }
-        else
-        {
-            font->DrawString(_("in: deck"), 5 - leftTransition, 5);
-            font->DrawString(_("Use SQUARE to view collection,"), SCREEN_WIDTH - 200 + rightTransition, 5);
-        }
-        font->DrawString(_("Press L/R to cycle through"), SCREEN_WIDTH - 200 + rightTransition, 5 + fH);
-        font->DrawString(_("deck statistics."), SCREEN_WIDTH - 200 + rightTransition, 5 + fH * 2);
 
     }
     else
