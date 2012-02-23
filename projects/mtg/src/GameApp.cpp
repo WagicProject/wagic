@@ -426,7 +426,7 @@ void GameApp::Render()
     WResourceManager::Instance()->DebugRender();
 #endif
 
-#ifdef DEBUG
+#if defined(DEBUG) && !defined(IOS)
     JGE* mEngine = JGE::GetInstance();
     float fps = mEngine->GetFPS();
     totalFPS += fps;
