@@ -4,6 +4,7 @@ grade=crappy
 name=Abyssal Horror
 target=player
 auto=discard:2
+abilities=flying
 text=Flying -- When Abyssal Horror enters the battlefield, target player discards two cards.
 mana={4}{B}{B}
 type=Creature
@@ -174,6 +175,7 @@ toughness=2
 [/card]
 [card]
 name=Chilling Apparition
+auto={B}:regenerate
 auto=@combatdamaged(opponent) from(this):discard:1 opponent
 text={B}: Regenerate Chilling Apparition. -- Whenever Chilling Apparition deals combat damage to a player, that player discards a card.
 mana={2}{B}
@@ -223,7 +225,7 @@ toughness=1
 [/card]
 [card]
 name=Cryptwailing
-auto={1}{e(*|mygraveyard)}{e(*|mygraveyard)}:discard:1 target(player)
+auto={1}{e(*|mygraveyard)}{e(*|mygraveyard)}:discard:1 target(player) asSorcery
 text={1}, Exile two creature cards from your graveyard: Target player discards a card. Activate this ability only any time you could cast a sorcery.
 mana={3}{B}
 type=Enchantment

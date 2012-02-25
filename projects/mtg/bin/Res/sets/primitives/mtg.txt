@@ -13101,7 +13101,7 @@ toughness=1
 [/card]
 [card]
 name=Unholy Fiend
-auto=@each my upkeep:life:-1 controller
+auto=@each my end:life:-1 controller
 text=At the beginning of your end step, you lose 1 life.
 type=Creature
 subtype=Horror
@@ -14374,6 +14374,7 @@ name=Corrosive Gale
 auto=damage:X all(creature[flying])
 text=({p(G)} may be paid for with either {G} or 2 life.) -- Corrosive Gale deals X damage to each creature with flying.
 mana={X}{p(G)}
+color=green
 type=Sorcery
 [/card]
 [card]
@@ -19382,6 +19383,7 @@ text=Flying -- Devour 2 (As this enters the battlefield, you may sacrifice any n
 power=1
 toughness=1
 color=Red,Green
+id=22222220
 [/card]
 [card]
 name=Dragon Engine
@@ -20506,7 +20508,7 @@ toughness=1
 [card]
 name=Dungeon Geists
 abilities=flying
-auto=target(creature|opponentbattlefield) transforms((,newability[tap],newability[frozen]))
+auto=target(creature|opponentbattlefield) transforms((,doesnotuntap,newability[tap]))
 text=Flying -- When Dungeon Geists enters the battlefield, tap target creature an opponent controls. That creature doesn't untap for as long as you control Dungeon Geists.
 mana={2}{U}{U}
 type=Creature
@@ -23964,8 +23966,8 @@ type=Sorcery
 [card]
 name=Falkenrath Aristocrat
 abilities=flying,haste
-abilities={S(creature[-human]):name(sacrifice a non-human creature):indestructible
-abilities={S(creature[human]):name(sacrifice a human):indestructible && counter(1/1,1)
+auto={S(creature[-human]):name(sacrifice a non-human creature):indestructible ueot
+auto={S(creature[human]):name(sacrifice a human):indestructible && counter(1/1,1)
 text=Flying, haste -- Sacrifice a creature: Falkenrath Aristocrat is indestructible this turn. If the sacrificed creature was a Human, put a +1/+1 counter on Falkenrath Aristocrat.
 mana={2}{B}{R}
 type=Creature
@@ -51696,14 +51698,14 @@ type=Enchantment
 [/card]
 [card]
 name=Opal Champion
-auto=@movedto(creature|opponentstack) once:transforms((removetypes)) forever && transforms((Soldier Creature,setpower=3,settoughness=3,first strike)) forever
+auto=@movedto(creature|opponentstack) once:transforms((removetypes)) forever && transforms((Knight Creature,setpower=3,settoughness=3,first strike)) forever
 text=When an opponent casts a creature spell, if Opal Champion is an enchantment, Opal Champion becomes a 3/3 Knight creature with first strike.
 mana={2}{W}
 type=Enchantment
 [/card]
 [card]
 name=Opal Gargoyle
-auto=@movedto(creature|opponentstack) once:transforms((removetypes)) forever && transforms((Soldier Creature,setpower=2,settoughness=2,flying)) forever
+auto=@movedto(creature|opponentstack) once:transforms((removetypes)) forever && transforms((Gargoyle Creature,setpower=2,settoughness=2,flying)) forever
 text=When an opponent casts a creature spell, if Opal Gargoyle is an enchantment, Opal Gargoyle becomes a 2/2 Gargoyle creature with flying.
 mana={1}{W}
 type=Enchantment
@@ -71972,7 +71974,6 @@ toughness=2
 [card]
 name=Stoic Ephemera
 abilities=flying,defender
-auto=@combat(attacking) source(this):phaseaction[combatends,sourceinplay] sacrifice
 auto=@combat(blocking) source(this):phaseaction[combatends,sourceinplay] sacrifice
 text=Defender (This creature can't attack.) -- Flying -- When Stoic Ephemera blocks, sacrifice it at end of combat.
 mana={2}{W}
@@ -73681,8 +73682,8 @@ type=Instant
 [card]
 name=Swiftfoot Boots
 auto={1}:equip
-auto=haste
-auto=opponentshroud
+auto=teach(creature) haste
+auto=teach(creature) opponentshroud
 text=Equipped creature has hexproof and haste. -- Equip {1}
 mana={2}
 type=Artifact
@@ -84991,6 +84992,7 @@ type=Sorcery
 [/card]
 [card]
 name=Wiitigo
+auto=counter(1/1,6)
 auto=@combat(blocking,blocked) source(this):phaseaction[my upkeep once] counter(1/1,2)
 auto=@each my upkeep:counter(1/1,-1)
 text=Wiitigo enters the battlefield with six +1/+1 counters on it. -- At the beginning of your upkeep, put a +1/+1 counter on Wiitigo if it has blocked or been blocked since your last upkeep. Otherwise, remove a +1/+1 counter from it.
