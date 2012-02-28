@@ -876,7 +876,7 @@ auto=teach(creature) flanking
 text=Enchant creature -- Enchanted creature gets +1/+1 and has flanking. (Whenever a creature without flanking blocks this creature, the blocking creature gets -1/-1 until end of turn.)
 mana={1}{R}
 type=Enchantment
-subtype=Aura
+subtype=AuraFvish
 [/card]
 [card]
 name=Agonizing Demise
@@ -1048,7 +1048,7 @@ toughness=1
 name=Akoum Battlesinger
 abilities=haste
 auto=may lord(ally|myBattlefield) 1/0 ueot
-auto=@movedTo(other ally|myBattlefield):may lord(ally|myBattlefield) 1/0 ueot
+auto=@movedTo(other ally|myBattlefield):may all(ally|myBattlefield) 1/0 ueot
 text=Haste -- Whenever Akoum Battlesinger or another Ally enters the battlefield under your control, you may have Ally creatures you control get +1/+0 until end of turn.
 mana={1}{R}
 type=Creature
@@ -1334,11 +1334,7 @@ toughness=3
 [/card]
 [card]
 name=Alchor's Tomb
-auto={2}{T}:name(White) target(*|myBattlefield) transforms((,white)) forever
-auto={2}{T}:name(Blue) target(*|myBattlefield) transforms((,blue)) forever
-auto={2}{T}:name(Black) target(*|myBattlefield) transforms((,black)) forever
-auto={2}{T}:name(Red) target(*|myBattlefield) transforms((,red)) forever
-auto={2}{T}:name(Green) target(*|myBattlefield) transforms((,green)) forever
+auto={2}{T}:activatechooseacolor target(*|mybattlefield) becomes(,chosencolor) activatechooseend
 text={2}, {T}: Target permanent you control becomes the color of your choice. (This effect lasts indefinitely.)
 mana={4}
 type=Artifact
@@ -8613,6 +8609,8 @@ toughness=1
 [card]
 name=Bonesplitter
 auto={1}:equip
+zethfox
+auto=teach(creature) type:*[instant]:mygraveyard/0 nonstatic
 auto=2/0
 text=Equipped creature gets +2/+0. -- Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery. This card enters the battlefield unattached and stays on the battlefield if the creature leaves.)
 mana={1}
@@ -8880,6 +8878,7 @@ subtype=Rebel Aura
 [/card]
 [card]
 name=Bounteous Kirin
+abilities=flying
 auto=@movedTo(*[arcane;spirit;manacost=1]|mystack):may life:1 controller
 auto=@movedTo(*[arcane;spirit;manacost=2]|mystack):may life:2 controller
 auto=@movedTo(*[arcane;spirit;manacost=3]|mystack):may life:3 controller
@@ -10256,11 +10255,7 @@ toughness=4
 [card]
 name=Caldera Kavu
 auto={1}{B}:1/1
-auto={G}:name(becomes white ueot) transforms((,white)) ueot
-auto={G}:name(becomes blue ueot) transforms((,blue)) ueot
-auto={G}:name(becomes black ueot) transforms((,black)) ueot
-auto={G}:name(becomes red ueot) transforms((,red)) ueot
-auto={G}:name(becomes green ueot) transforms((,green)) ueot
+auto={G}:activatechooseacolor all(this) becomes(,chosencolor) ueot activatechooseend
 text={1}{B}: Caldera Kavu gets +1/+1 until end of turn. -- {G}: Caldera Kavu becomes the color of your choice until end of turn.
 mana={2}{R}
 type=Creature
@@ -11756,16 +11751,7 @@ toughness=4
 [/card]
 [card]
 name=Chameleon Spirit
-auto=choice name(White) counter(0/0,1,White) all(this)
-auto=choice name(Blue) counter(0/0,1,Blue) all(this)
-auto=choice name(Black) counter(0/0,1,Black) all(this)
-auto=choice name(Red) counter(0/0,1,Red) all(this)
-auto=choice name(Green) counter(0/0,1,Green) all(this)
-auto=this(counter{0/0.1.White}) foreach(*[white]|opponentBattlefield) 1/1
-auto=this(counter{0/0.1.Blue}) foreach(*[blue]|opponentBattlefield) 1/1
-auto=this(counter{0/0.1.Black}) foreach(*[black]|opponentBattlefield) 1/1 
-auto=this(counter{0/0.1.Red}) foreach(*[red]|opponentBattlefield) 1/1
-auto=this(counter{0/0.1.Green}) foreach(*[green]|opponentBattlefield) 1/1
+auto=chooseacolor foreach(*[chosencolor]|opponentBattlefield) 1/1 chooseend
 text=As Chameleon Spirit enters the battlefield, choose a color. -- Chameleon Spirit's power and toughness are each equal to the number of permanents of the chosen color your opponents control.
 mana={3}{U}
 type=Creature
@@ -12363,16 +12349,7 @@ toughness=2
 name=Cho-Manno's Blessing
 target=creature
 abilities=flash
-auto=choice name(White) counter(0/0,1,White) all(this)
-auto=choice name(Blue) counter(0/0,1,Blue) all(this)
-auto=choice name(Black) counter(0/0,1,Black) all(this)
-auto=choice name(Red) counter(0/0,1,Red) all(this)
-auto=choice name(Green) counter(0/0,1,Green) all(this)
-auto=this(counter{0/0.1.White}) teach(creature) protection from white
-auto=this(counter{0/0.1.Blue}) teach(creature) protection from blue
-auto=this(counter{0/0.1.Black}) teach(creature) protection from black
-auto=this(counter{0/0.1.Red}) teach(creature) protection from red
-auto=this(counter{0/0.1.Green}) teach(creature) protection from green
+auto=choice chooseacolor teach(creature) protection from(*[chosencolor]) chooseend
 text=Flash -- Enchant creature -- As Cho-Manno's Blessing enters the battlefield, choose a color. -- Enchanted creature has protection from the chosen color. This effect doesn't remove Cho-Manno's Blessing.
 mana={W}{W}
 type=Enchantment
@@ -13626,17 +13603,8 @@ type=Artifact
 [/card]
 [card]
 name=Coldsteel Heart
-auto=choice name(White) counter(0/0,1,White) all(this)
-auto=choice name(Blue) counter(0/0,1,Blue) all(this)
-auto=choice name(Black) counter(0/0,1,Black) all(this)
-auto=choice name(Red) counter(0/0,1,Red) all(this)
-auto=choice name(Green) counter(0/0,1,Green) all(this)
 auto=tap
-auto=this(counter{0/0.1.White}) {T}:add{W}
-auto=this(counter{0/0.1.Blue}) {T}:add{U}
-auto=this(counter{0/0.1.Black}) {T}:add{B}
-auto=this(counter{0/0.1.Red}) {T}:add{R}
-auto=this(counter{0/0.1.Green}) {T}:add{G}
+auto=choice chooseacolor {T}:add{chosencolor} chooseend
 text=Coldsteel Heart enters the battlefield tapped. -- As Coldsteel Heart enters the battlefield, choose a color. -- {T}: Add one mana of the chosen color to your mana pool.
 mana={2}
 type=Artifact
@@ -16930,7 +16898,7 @@ toughness=2
 name=Deadshot
 target=creature
 auto=tap
-auto=transforms((,newability[dynamicability<!powerstrike!> target(other creature)]))
+auto=transforms((,newability[dynamicability<!powerstrike!> target(other creature)])) ueot
 text=Tap target creature. It deals damage equal to its power to another target creature.
 mana={3}{R}
 type=Sorcery
@@ -18850,11 +18818,7 @@ text=Whenever a permanent deals damage to you, return it to its owner's hand.
 [/card]
 [card]
 name=Distorting Lens
-auto={T}:name(target permanent becomes white) transforms((,white)) target(*) ueot
-auto={T}:name(target permanent becomes blue) transforms((,blue)) target(*) ueot
-auto={T}:name(target permanent becomes black) transforms((,black)) target(*) ueot
-auto={T}:name(target permanent becomes red) transforms((,red)) target(*) ueot
-auto={T}:name(target permanent becomes green) transforms((,green)) target(*) ueot
+auto={T}:activatechooseacolor target(*) becomes(,chosencolor) ueot activatechooseend
 text={T}: Target permanent becomes the color of your choice until end of turn.
 mana={2}
 type=Artifact
@@ -18918,11 +18882,11 @@ toughness=2
 [/card]
 [card]
 name=Divergent Growth
-auto=lord(land|myBattlefield) {T}:add {G}
-auto=lord(land|myBattlefield) {T}:add {W}
-auto=lord(land|myBattlefield) {T}:add {B}
-auto=lord(land|myBattlefield) {T}:add {U}
-auto=lord(land|myBattlefield) {T}:add {R}
+auto=all(land|myBattlefield) {T}:add {G}
+auto=all(land|myBattlefield) {T}:add {W}
+auto=all(land|myBattlefield) {T}:add {B}
+auto=all(land|myBattlefield) {T}:add {U}
+auto=all(land|myBattlefield) {T}:add {R}
 text=Until end of turn, lands you control gain "{T}: Add one mana of any color to your mana pool."
 mana={G}
 type=Instant
@@ -20540,7 +20504,8 @@ toughness=*
 [/card]
 [card]
 name=Duress
-auto=target(*[-creature;-land]|opponenthand) reject
+target=*[-creature;-land]|opponenthand
+auto=reject
 text=Target opponent reveals his or her hand. You choose a noncreature, nonland card from it. That player discards that card.
 mana={B}
 type=Sorcery
@@ -24710,12 +24675,12 @@ toughness=2
 [/card]
 [card]
 name=Feral Thallid
+auto=@each my upkeep:counter(0/0,1,Spore)
+auto={C(0/0,-3,Spore)}:regenerate
 text=At the beginning of your upkeep, put a spore counter on Feral Thallid. -- Remove three spore counters from Feral Thallid: Regenerate Feral Thallid.
 mana={3}{G}{G}{G}
 type=Creature
-subtype=Thallid
-auto=@each my upkeep:counter(0/0,1,Spore)
-auto={C(0/0,-3,Spore)}:regenerate
+subtype=Fungus
 power=6
 toughness=3
 [/card]
@@ -24758,22 +24723,11 @@ toughness=2
 [card]
 name=Fertile Ground
 target=land
-auto=@tappedformana(mytgt):token(-9876543)
+auto=teach(land) transforms((,newability[@tappedformana(this):chooseacolor add{chosencolor} chooseend]))
 text=Enchant land -- Whenever enchanted land is tapped for mana, its controller adds one mana of any color to his or her mana pool (in addition to the mana the land produces).
 mana={1}{G}
 type=Enchantment
 subtype=Aura
-[/card]
-[card]
-name=Additional Mana
-auto=choice add{W}
-auto=choice add{U}
-auto=choice add{B}
-auto=choice add{R}
-auto=choice add{G}
-auto=moveto(exile) all(this)
-id=-9876543
-type=nothing
 [/card]
 [card]
 name=Fertilid
@@ -26061,16 +26015,7 @@ toughness=2
 [card]
 name=Flickering Ward
 target=creature
-auto=choice name(White) counter(0/0,1,White) all(this)
-auto=choice name(Blue) counter(0/0,1,Blue) all(this)
-auto=choice name(Black) counter(0/0,1,Black) all(this)
-auto=choice name(Red) counter(0/0,1,Red) all(this)
-auto=choice name(Green) counter(0/0,1,Green) all(this)
-auto=this(counter{0/0.1.White}) teach(creature) protection from white
-auto=this(counter{0/0.1.Blue}) teach(creature) protection from blue
-auto=this(counter{0/0.1.Black}) teach(creature) protection from black
-auto=this(counter{0/0.1.Red}) teach(creature) protection from red
-auto=this(counter{0/0.1.Green}) teach(creature) protection from green
+auto=chooseacolor teach(creature) protection from(*[chosencolor]) chooseend
 auto={W}:moveTo(ownerhand)
 text=Enchant creature -- As Flickering Ward enters the battlefield, choose a color. -- Enchanted creature has protection from the chosen color. This effect doesn't remove Flickering Ward. -- {W}: Return Flickering Ward to its owner's hand.
 mana={W}
@@ -26120,16 +26065,7 @@ toughness=3
 [card]
 name=Floating Shield
 target=creature
-auto=choice name(White) counter(0/0,1,White) all(this)
-auto=choice name(Blue) counter(0/0,1,Blue) all(this)
-auto=choice name(Black) counter(0/0,1,Black) all(this)
-auto=choice name(Red) counter(0/0,1,Red) all(this)
-auto=choice name(Green) counter(0/0,1,Green) all(this)
-auto=this(counter{0/0.1.White}) teach(creature) protection from white
-auto=this(counter{0/0.1.Blue}) teach(creature) protection from blue
-auto=this(counter{0/0.1.Black}) teach(creature) protection from black
-auto=this(counter{0/0.1.Red}) teach(creature) protection from red
-auto=this(counter{0/0.1.Green}) teach(creature) protection from green
+auto=chooseacolor teach(creature) protection from(*[chosencolor]) chooseend
 auto={S}:protection from white target(creature)
 auto={S}:protection from blue target(creature)
 auto={S}:protection from black target(creature)
@@ -29500,11 +29436,7 @@ type=Instant
 [card]
 name=Glory
 abilities=flying
-autograveyard={2}{W}:lord(creature|myBattlefield) protection from white ueot
-autograveyard={2}{W}:lord(creature|myBattlefield) protection from blue ueot
-autograveyard={2}{W}:lord(creature|myBattlefield) protection from black ueot
-autograveyard={2}{W}:lord(creature|myBattlefield) protection from red ueot
-autograveyard={2}{W}:lord(creature|myBattlefield) protection from green ueot
+autograveyard={2}{W}:choice chooseacolor all(creature|mybattlefield) protection from(*[chosencolor]) chooseend
 text=Flying -- {2}{W}: Creatures you control gain protection from the color of your choice until end of turn. Activate this ability only if Glory is in your graveyard.
 mana={3}{W}{W}
 type=Creature
@@ -36862,16 +36794,7 @@ type=Sorcery
 [card]
 name=Iona, Shield of Emeria
 abilities=flying
-auto=choice name(White) counter(0/0,1,White) all(this)
-auto=choice name(Blue) counter(0/0,1,Blue) all(this)
-auto=choice name(Black) counter(0/0,1,Black) all(this)
-auto=choice name(Red) counter(0/0,1,Red) all(this)
-auto=choice name(Green) counter(0/0,1,Green) all(this)
-auto=this(counter{0/0.1.White}) maxCast(*[white])0 opponent
-auto=this(counter{0/0.1.Blue}) maxCast(*[blue])0 opponent
-auto=this(counter{0/0.1.Black}) maxCast(*[black])0 opponent
-auto=this(counter{0/0.1.Red}) maxCast(*[red])0 opponent
-auto=this(counter{0/0.1.Green}) maxCast(*[green])0 opponent
+auto=choice choosecolor maxcast(*[chosencolor])0 opponent chooseend
 text=Flying -- As Iona, Shield of Emeria enters the battlefield, choose a color. -- Your opponents can't cast spells of the chosen color.
 mana={6}{W}{W}{W}
 type=Legendary Creature
@@ -37340,11 +37263,11 @@ type=Artifact
 name=Jaddi Lifestrider
 auto=tap target(<anyamount>creature[-tapped]|mybattlefield) && life:2
 text=tap any amount of creatures and gain 2 life for each creature tapped this way
-mana={4}{B}{B}
-type=Legendary Creature
-subtype=Spirit
-power=4
-toughness=4
+mana={4}{G}
+type=Creature
+subtype=Elemental
+power=2
+toughness=8
 [/card]
 [card]
 name=Jade Leech
@@ -38854,11 +38777,7 @@ toughness=2
 [card]
 name=Kavu Chameleon
 abilities=nofizzle
-auto={G}:name(becomes white ueot) transforms((,white)) ueot
-auto={G}:name(becomes blue ueot) transforms((,blue)) ueot
-auto={G}:name(becomes black ueot) transforms((,black)) ueot
-auto={G}:name(becomes red ueot) transforms((,red)) ueot
-auto={G}:name(becomes green ueot) transforms((,green)) ueot
+auto={G}:activatechooseacolor all(this) becomes(,chosencolor) ueot activatechooseend
 text=Kavu Chameleon can't be countered. -- {G}: Kavu Chameleon becomes the color of your choice until end of turn.
 mana={3}{G}{G}
 type=Creature
@@ -43218,24 +43137,13 @@ type=Artifact
 [/card]
 [card]
 name=Lotus Cobra
-auto=@movedTo(land|myBattlefield):token(-1111129)
+auto=@movedTo(land|mybattlefield):chooseacolor add{chosencolor} chooseend
 text=Landfall - Whenever a land enters the battlefield under your control, you may add one mana of any color to your mana pool.
 mana={1}{G}
 type=Creature
 subtype=Snake
 power=2
 toughness=1
-[/card]
-[card]
-name=Lotus Cobra's Mana
-auto=may Add{W}
-auto=may Add{U}
-auto=may Add{B}
-auto=may Add{R}
-auto=may Add{G}
-auto=moveto(exile) all(this)
-id=-1111129
-type=nothing
 [/card]
 [card]
 name=Lotus Guardian
@@ -50158,7 +50066,7 @@ toughness=4
 [/card]
 [card]
 name=Night Soil
-auto={1}{E(*|mygraveyard)}{E(*|mygraveyard)}:name(from opponent's graveyard) token(Saproling,Creature Saproling,1/1,green)
+auto={1}{E(*|mygraveyard)}{E(*|mygraveyard)}:name(from your graveyard) token(Saproling,Creature Saproling,1/1,green)
 auto={1}{E(*|opponentgraveyard)}{E(*|opponentgraveyard)}:name(from opponent's graveyard) token(Saproling,Creature Saproling,1/1,green)
 text={1}, Exile two creature cards from a single graveyard: Put a 1/1 green Saproling creature token onto the battlefield.
 mana={G}{G}
@@ -51522,7 +51430,7 @@ auto=may moveTo(myBattlefield) and((tap)) target(basic|mylibrary)
 text=When Ondu Giant enters the battlefield, search your library for a basic land card and put that card onto the battlefield tapped. Then shuffle your library.
 mana={3}{G}
 type=Creature
-subtype=Giant
+subtype=Giant Druid
 power=2
 toughness=4
 [/card]
@@ -52002,22 +51910,22 @@ type=Enchantment
 [card]
 name=Orcish Settlers
 auto={R}{T}{S}:name(X = 0) life{S}:0
-auto={2}{R}{T}{S}:name(X = 1) target(land) destroy
-auto={4}{R}{T}{S}:name(X = 2) target(<2>land) destroy
-auto={6}{R}{T}{S}:name(X = 3) target(<3>land) destroy
-auto={8}{R}{T}{S}:name(X = 4) target(<4>land) destroy
-auto={10}{R}{T}{S}:name(X = 5) target(<5>land) destroy
-auto={12}{R}{T}{S}:name(X = 6) target(<6>land) destroy
-auto={14}{R}{T}{S}:name(X = 7) target(<7>land) destroy
-auto={16}{R}{T}{S}:name(X = 8) target(<8>land) destroy
-auto={18}{R}{T}{S}:name(X = 9) target(<9>land) destroy
-auto={20}{R}{T}{S}:name(X = 10) target(<10>land) destroy
-auto={22}{R}{T}{S}:name(X = 11) target(<11>land) destroy
-auto={24}{R}{T}{S}:name(X = 12) target(<12>land) destroy
-auto={26}{R}{T}{S}:name(X = 13) target(<13>land) destroy
-auto={28}{R}{T}{S}:name(X = 14) target(<14>land) destroy
-auto={30}{R}{T}{S}:name(X = 15) target(<15>land) destroy
-auto={32}{R}{T}{S}:name(X = 16) target(<16>land) destroy
+auto={1}{R}{T}{S}:name(X = 1) target(land) destroy
+auto={2}{R}{T}{S}:name(X = 2) target(<2>land) destroy
+auto={3}{R}{T}{S}:name(X = 3) target(<3>land) destroy
+auto={4}{R}{T}{S}:name(X = 4) target(<4>land) destroy
+auto={5}{R}{T}{S}:name(X = 5) target(<5>land) destroy
+auto={6}{R}{T}{S}:name(X = 6) target(<6>land) destroy
+auto={7}{R}{T}{S}:name(X = 7) target(<7>land) destroy
+auto={8}{R}{T}{S}:name(X = 8) target(<8>land) destroy
+auto={9}{R}{T}{S}:name(X = 9) target(<9>land) destroy
+auto={10}{R}{T}{S}:name(X = 10) target(<10>land) destroy
+auto={11}{R}{T}{S}:name(X = 11) target(<11>land) destroy
+auto={12}{R}{T}{S}:name(X = 12) target(<12>land) destroy
+auto={13}{R}{T}{S}:name(X = 13) target(<13>land) destroy
+auto={14}{R}{T}{S}:name(X = 14) target(<14>land) destroy
+auto={15}{R}{T}{S}:name(X = 15) target(<15>land) destroy
+auto={16}{R}{T}{S}:name(X = 16) target(<16>land) destroy
 text={X}{X}{R}, {T}, Sacrifice Orcish Settlers: Destroy X target lands.
 mana={1}{R}
 type=Creature
@@ -52963,21 +52871,7 @@ subtype=Equipment
 [/card]
 [card]
 name=Paradise Plume
-auto=choice name(White) counter(0/0,1,White) all(this)
-auto=choice name(Blue) counter(0/0,1,Blue) all(this)
-auto=choice name(Black) counter(0/0,1,Black) all(this)
-auto=choice name(Red) counter(0/0,1,Red) all(this)
-auto=choice name(Green) counter(0/0,1,Green) all(this)
-auto=this(counter{0/0.1.White}) {T}:add{W}
-auto=this(counter{0/0.1.Blue}) {T}:add{U}
-auto=this(counter{0/0.1.Black}) {T}:add{B}
-auto=this(counter{0/0.1.Red}) {T}:add{R}
-auto=this(counter{0/0.1.Green}) {T}:add{G}
-auto=@movedto(*[white]|stack):this(counter{0/0.1.White}) life:1 controller
-auto=@movedto(*[blue]|stack):this(counter{0/0.1.Blue}) life:1 controller
-auto=@movedto(*[black]|stack):this(counter{0/0.1.Black}) life:1 controller
-auto=@movedto(*[red]|stack):this(counter{0/0.1.Red}) life:1 controller
-auto=@movedto(*[green]|stack):this(counter{0/0.1.Green}) life:1 controller
+auto=chooseacolor transforms((,newability[{T}:add{chosencolor}],newability[@movedto(*[chosencolor]|stack):life:1 controller])) forever chooseend
 text=As Paradise Plume enters the battlefield, choose a color. -- Whenever a player casts a spell of the chosen color, you may gain 1 life. -- {T}: Add one mana of the chosen color to your mana pool.
 mana={4}
 type=Artifact
@@ -53550,16 +53444,7 @@ type=Artifact
 [card]
 name=Pentarch Paladin
 abilities=flanking
-auto=choice name(White) counter(0/0,1,White) all(this)
-auto=choice name(Blue) counter(0/0,1,Blue) all(this)
-auto=choice name(Black) counter(0/0,1,Black) all(this)
-auto=choice name(Red) counter(0/0,1,Red) all(this)
-auto=choice name(Green) counter(0/0,1,Green) all(this)
-auto=this(counter{0/0.1.White}) {W}{W}{T}:destroy target(*[white])
-auto=this(counter{0/0.1.Blue}) {W}{W}{T}:destroy target(*[blue])
-auto=this(counter{0/0.1.Black}) {W}{W}{T}:destroy target(*[black])
-auto=this(counter{0/0.1.Red}) {W}{W}{T}:destroy target(*[red])
-auto=this(counter{0/0.1.Green}) {W}{W}{T}:destroy target(*[green])
+auto=chooseacolor transforms((,newability[{W}{W}{T}:destroy target(*[chosencolor])])) forever chooseend
 text=Flanking (Whenever a creature without flanking blocks this creature, the blocking creature gets -1/-1 until end of turn.) -- As Pentarch Paladin enters the battlefield, choose a color. -- {W}{W}, {T}: Destroy target permanent of the chosen color.
 mana={2}{W}{W}{W}
 type=Creature
@@ -53570,16 +53455,7 @@ toughness=3
 [card]
 name=Pentarch Ward
 target=creature
-auto=choice name(White) counter(0/0,1,White) all(this)
-auto=choice name(Blue) counter(0/0,1,Blue) all(this)
-auto=choice name(Black) counter(0/0,1,Black) all(this)
-auto=choice name(Red) counter(0/0,1,Red) all(this)
-auto=choice name(Green) counter(0/0,1,Green) all(this)
-auto=this(counter{0/0.1.White}) teach(creature) protection from white
-auto=this(counter{0/0.1.Blue}) teach(creature) protection from blue
-auto=this(counter{0/0.1.Black}) teach(creature) protection from black
-auto=this(counter{0/0.1.Red}) teach(creature) protection from red
-auto=this(counter{0/0.1.Green}) teach(creature) protection from green
+auto=chooseacolor teach(creature) protection from(*[chosencolor]) chooseend
 auto=draw:1
 text=Enchant creature -- As Pentarch Ward enters the battlefield, choose a color. -- When Pentarch Ward enters the battlefield, draw a card. -- Enchanted creature has protection from the chosen color. This effect doesn't remove Pentarch Ward.
 mana={2}{W}
@@ -57221,16 +57097,6 @@ toughness=1
 [card]
 name=Quirion Elves
 auto={T}:Add{G}
-auto=choice name(White) counter(0/0,1,White) all(this)
-auto=choice name(Blue) counter(0/0,1,Blue) all(this)
-auto=choice name(Black) counter(0/0,1,Black) all(this)
-auto=choice name(Red) counter(0/0,1,Red) all(this)
-auto=choice name(Green) counter(0/0,1,Green) all(this)
-auto=this(counter{0/0.1.White}) {T}:Add{W}
-auto=this(counter{0/0.1.Blue}) {T}:Add{U}
-auto=this(counter{0/0.1.Black}) {T}:Add{B}
-auto=this(counter{0/0.1.Red}) {T}:Add{R}
-auto=this(counter{0/0.1.Green}) {T}:Add{G}
 text=As Quirion Elves enters the battlefield, choose a color. -- {T}: Add {G} to your mana pool. -- {T}: Add one mana of the chosen color to your mana pool.
 mana={1}{G}
 type=Creature
@@ -61455,8 +61321,8 @@ type=Instant
 name=Runechanter's Pike
 auto={2}:equip
 auto=first strike
-auto=teach(creature) foreach(instant|mygraveyard) 1/0
-auto=teach(creature) foreach(sorcery|mygraveyard) 1/0
+auto=teach(creature) type:*[instant]:mygraveyard/0 nonstatic
+auto=teach(creature) type:*[sorcery]:mygraveyard/0 nonstatic
 text=Equipped creature has first strike and gets +X/+0 where X is the number of instant and sorcery cards in your graveyard. -- Equip {2}
 mana={2}
 type=Artifact
@@ -66429,16 +66295,7 @@ toughness=1
 [card]
 name=Silhana Starfletcher
 abilities=reach
-auto=choice name(White) counter(0/0,1,White) all(this)
-auto=choice name(Blue) counter(0/0,1,Blue) all(this)
-auto=choice name(Black) counter(0/0,1,Black) all(this)
-auto=choice name(Red) counter(0/0,1,Red) all(this)
-auto=choice name(Green) counter(0/0,1,Green) all(this)
-auto=this(counter{0/0.1.White}) {T}:Add{W}
-auto=this(counter{0/0.1.Blue}) {T}:Add{U}
-auto=this(counter{0/0.1.Black}) {T}:Add{B}
-auto=this(counter{0/0.1.Red}) {T}:Add{R}
-auto=this(counter{0/0.1.Green}) {T}:Add{G}
+auto=chooseacolor transforms((,newability[{T}:add{chosencolor}])) forever chooseend
 text=Reach (This creature can block creatures with flying.) -- As Silhana Starfletcher enters the battlefield, choose a color. -- {T}: Add one mana of the chosen color to your mana pool.
 mana={2}{G}
 type=Creature
@@ -68740,16 +68597,7 @@ toughness=3
 [/card]
 [card]
 name=Sol Grail
-auto=choice name(White) counter(0/0,1,White) all(this)
-auto=choice name(Blue) counter(0/0,1,Blue) all(this)
-auto=choice name(Black) counter(0/0,1,Black) all(this)
-auto=choice name(Red) counter(0/0,1,Red) all(this)
-auto=choice name(Green) counter(0/0,1,Green) all(this)
-auto=this(counter{0/0.1.White}) {T}:Add{W}
-auto=this(counter{0/0.1.Blue}) {T}:Add{U}
-auto=this(counter{0/0.1.Black}) {T}:Add{B}
-auto=this(counter{0/0.1.Red}) {T}:Add{R}
-auto=this(counter{0/0.1.Green}) {T}:Add{G}
+auto=chooseacolor transforms((,newability[{T}:add{chosencolor}])) forever chooseend
 text=As Sol Grail enters the battlefield, choose a color. -- {T}: Add one mana of the chosen color to your mana pool.
 mana={3}
 type=Artifact
@@ -70567,11 +70415,7 @@ toughness=5
 name=Spiritmonger
 auto=@damaged(creature) from(this):counter(1/1,1)
 auto={B}:regenerate
-auto={G}:name(becomes white ueot) transforms((,white)) ueot
-auto={G}:name(becomes blue ueot) transforms((,blue)) ueot
-auto={G}:name(becomes black ueot) transforms((,black)) ueot
-auto={G}:name(becomes red ueot) transforms((,red)) ueot
-auto={G}:name(becomes green ueot) transforms((,green)) ueot
+auto={G}:activatechooseacolor all(this) becomes(,chosencolor) ueot activatechooseend
 text=Whenever Spiritmonger deals damage to a creature, put a +1/+1 counter on Spiritmonger. -- {B}: Regenerate Spiritmonger. -- {G}: Spiritmonger becomes the color of your choice until end of turn.
 mana={3}{B}{G}
 type=Creature
@@ -71496,7 +71340,8 @@ toughness=1
 [/card]
 [card]
 name=Stasis
-alias=1225
+auto=upcost[{U}] sacrifice
+auto=phasealter(remove,untap,player)
 text=Players skip their untap steps. -- At the beginning of your upkeep, sacrifice Stasis unless you pay {U}.
 mana={1}{U}
 type=Enchantment
@@ -71505,7 +71350,7 @@ type=Enchantment
 name=Stasis Cell
 text=Enchant creature -- Enchanted creature doesn't untap during its controller's untap step. -- {3}{U}: Attach Stasis Cell to target creature.
 auto=doesnotuntap
-auto={3}{u}:retarget target(creature)
+auto={3}{U}:retarget target(creature)
 mana={4}{U}
 type=Enchantment
 subtype=Aura
@@ -74913,16 +74758,7 @@ type=Legendary Land
 [/card]
 [card]
 name=Teferi's Moat
-auto=choice name(White) counter(0/0,1,White) all(this)
-auto=choice name(Blue) counter(0/0,1,Blue) all(this)
-auto=choice name(Black) counter(0/0,1,Black) all(this)
-auto=choice name(Red) counter(0/0,1,Red) all(this)
-auto=choice name(Green) counter(0/0,1,Green) all(this)
-auto=this(counter{0/0.1.White}) lord(creature[white;-flying]|opponentBattlefield) cantattack
-auto=this(counter{0/0.1.Blue}) lord(creature[blue;-flying]|opponentBattlefield) cantattack
-auto=this(counter{0/0.1.Black}) lord(creature[black;-flying]|opponentBattlefield) cantattack
-auto=this(counter{0/0.1.Red}) lord(creature[red;-flying]|opponentBattlefield) cantattack
-auto=this(counter{0/0.1.Green}) lord(creature[green;-flying]|opponentBattlefield) cantattack
+auto=choosecolor lord(creature[chosencolor&-flying]|opponentBattlefield) cantattack chooseend
 text=As Teferi's Moat enters the battlefield, choose a color. -- Creatures of the chosen color without flying can't attack you.
 mana={3}{W}{U}
 type=Enchantment
@@ -76813,11 +76649,7 @@ type=Sorcery
 [/card]
 [card]
 name=Tidal Visionary
-auto={T}:name(target creature becomes white ueot) transforms((,white)) target(creature) ueot
-auto={T}:name(target creature becomes blue ueot) transforms((,blue)) target(creature) ueot
-auto={T}:name(target creature becomes black ueot) transforms((,black)) target(creature) ueot
-auto={T}:name(target creature becomes red ueot) transforms((,red)) target(creature) ueot
-auto={T}:name(target creature becomes green ueot) transforms((,green)) target(creature) ueot
+auto={T}:activatechooseacolor target(creature) becomes(,chosencolor) ueot activatechooseend
 text={T}: Target creature becomes the color of your choice until end of turn.
 mana={U}
 type=Creature
@@ -77965,7 +77797,7 @@ toughness=1
 name=Trace of Abundance
 target=land
 auto=shroud
-auto=@tappedformana(mytgt):token(-9876543)
+auto=teach(land) transforms((,newability[@tappedformana(this):chooseacolor add{chosencolor} chooseend]))
 text=Enchant land -- Enchanted land has shroud. (It can't be the target of spells or abilities.) -- Whenever enchanted land is tapped for mana, its controller adds one mana of any color to his or her mana pool (in addition to the mana the land produces).
 mana={RW}{G}
 type=Enchantment
@@ -80230,16 +80062,7 @@ toughness=2
 [card]
 name=Utopia Sprawl
 target=forest
-auto=choice name(White) counter(0/0,1,White) all(this)
-auto=choice name(Blue) counter(0/0,1,Blue) all(this)
-auto=choice name(Black) counter(0/0,1,Black) all(this)
-auto=choice name(Red) counter(0/0,1,Red) all(this)
-auto=choice name(Green) counter(0/0,1,Green) all(this)
-auto=this(counter{0/0.1.White}) {T}:Add{W}
-auto=this(counter{0/0.1.Blue}) {T}:Add{U}
-auto=this(counter{0/0.1.Black}) {T}:Add{B}
-auto=this(counter{0/0.1.Red}) {T}:Add{R}
-auto=this(counter{0/0.1.Green}) {T}:Add{G}
+auto=choosecolor transforms((,newability[@tappedformana(mytgt):add{chosencolor}])) forever chooseend
 text=Enchant Forest -- As Utopia Sprawl enters the battlefield, choose a color. -- Whenever enchanted Forest is tapped for mana, its controller adds one mana of the chosen color to his or her mana pool (in addition to the mana the land produces).
 mana={G}
 type=Enchantment
@@ -82485,16 +82308,7 @@ toughness=2
 [card]
 name=Voice of All
 abilities=flying
-auto=choice name(White) counter(0/0,1,White) all(this)
-auto=choice name(Blue) counter(0/0,1,Blue) all(this)
-auto=choice name(Black) counter(0/0,1,Black) all(this)
-auto=choice name(Red) counter(0/0,1,Red) all(this)
-auto=choice name(Green) counter(0/0,1,Green) all(this)
-auto=this(counter{0/0.1.White}) protection from white
-auto=this(counter{0/0.1.Blue}) protection from blue
-auto=this(counter{0/0.1.Black}) protection from black
-auto=this(counter{0/0.1.Red}) protection from red
-auto=this(counter{0/0.1.Green}) protection from green
+auto=chooseacolor transforms((,newability[protection from(*[chosencolor]) chooseend])) forever chooseend
 text=Flying (This creature can't be blocked except by creatures with flying or reach.) -- As Voice of All enters the battlefield, choose a color. -- Voice of All has protection from the chosen color. (It can't be blocked, targeted, dealt damage, or enchanted by anything of the chosen color.)
 mana={2}{W}{W}
 type=Creature
@@ -83899,16 +83713,7 @@ toughness=1
 [/card]
 [card]
 name=Ward Sliver
-auto=choice name(White) counter(0/0,1,White) all(this)
-auto=choice name(Blue) counter(0/0,1,Blue) all(this)
-auto=choice name(Black) counter(0/0,1,Black) all(this)
-auto=choice name(Red) counter(0/0,1,Red) all(this)
-auto=choice name(Green) counter(0/0,1,Green) all(this)
-auto=this(counter{0/0.1.White}) lord(sliver) protection from white
-auto=this(counter{0/0.1.Blue}) lord(sliver) protection from blue
-auto=this(counter{0/0.1.Black}) lord(sliver) protection from black
-auto=this(counter{0/0.1.Red}) lord(sliver) protection from red
-auto=this(counter{0/0.1.Green}) lord(sliver) protection from green
+auto=chooseacolor transforms((,newability[lord(sliver) protection from(*[chosencolor]) chooseend])) forever chooseend
 text=As Ward Sliver enters the battlefield, choose a color. -- All Slivers have protection from the chosen color.
 mana={4}{W}
 type=Creature
@@ -87419,11 +87224,7 @@ toughness=2
 [/card]
 [card]
 name=Zombie Boa
-auto={1}{B}:name(white) transforms((,newability[auto=@combat(blocked) source(this) from(creature[white]):all(trigger[from]) destroy])) ueot asSorcery
-auto={1}{B}:name(blue) transforms((,newability[auto=@combat(blocked) source(this) from(creature[blue]):all(trigger[from]) destroy])) ueot asSorcery
-auto={1}{B}:name(black) transforms((,newability[auto=@combat(blocked) source(this) from(creature[black]):all(trigger[from]) destroy])) ueot asSorcery
-auto={1}{B}:name(red) transforms((,newability[auto=@combat(blocked) source(this) from(creature[red]):all(trigger[from]) destroy])) ueot asSorcery
-auto={1}{B}:name(green) transforms((,newability[auto=@combat(blocked) source(this) from(creature[green]):all(trigger[from]) destroy])) ueot asSorcery
+auto={1}{B}:choosecolor transforms((,newability[auto=@combat(blocked) source(this) from(creature[white]):all(trigger[from]) destroy])) ueot asSorcery chooseend
 text={1}{B}: Choose a color. Whenever Zombie Boa becomes blocked by a creature of that color this turn, destroy that creature. Activate this ability only any time you could cast a sorcery.
 mana={4}{B}
 type=Creature
