@@ -10,7 +10,7 @@
 
  
 // Should we add PrecompiledHeader.h to more platforms here? PSP Doesn't support it in JGE (erwan 2011/12/11) 
-#if defined (IOS)
+#if defined (IOS) || defined (ANDROID)
 #include "PrecompiledHeader.h"
 #endif
 
@@ -619,6 +619,51 @@ void JGE::SendCommand(std::string command, float& x, float& y, float& width, flo
 
 
 #if defined (ANDROID)
+int getJNIEnv(JNIEnv *env)
+{
+    int status = mJavaVM->GetEnv((void **)&env, JNI_VERSION_1_4);
+    if(status < 0)
+    {
+        DebugTrace("Failed to get JNI environment, assuming native thread");
+        status = mJavaVM->AttachCurrentThread(&env, NULL);
+        if(status < 0)
+        {
+            LogNativeToAndroidExt("callback_handler: failed to attach current thread");
+            return JNI_ERR;
+        }
+    }
+    
+    return JNI_VERSION_1_4;
+}
+
+string JGE::getFileSystemLocation()
+{
+    char result[512];
+    JNIEnv * env;
+    if (getJNIEnv(env) == JNI_ERR)
+    {
+        DebugTrace("An Error Occurred in getting the JNI Environment whie trying to get the system folder location.  Defaulting to /mnt/sdcard/net.wagic.app/Wagic"); 
+    	return "/mnt/sdcard/net.wagic.app/Wagic";
+    };
+    jmethodID methodId = env->GetStaticMethodID(mJNIClass, "getSystemFolderPath", "()Ljava/lang/String;");
+    if (methodId == 0)
+    {
+        DebugTrace("An Error Occurred in getting the JNI methodID for getSystemFolderPath. Defaulting to /mnt/sdcard/net.wagic.app/Wagic"); 
+    	return "/mnt/sdcard/net.wagic.app/Wagic";
+    };
+    	
+    jstring systemPath = (jstring) env->CallStaticObjectMethod(mJNIClass, methodId);
+    string retVal = "/mnt/sdcard/net.wagic.app/Wagic/";
+        // Now convert the Java String to C++ char array 
+	const char* cstr = env->GetStringUTFChars(systemPath, 0); 
+	string val (cstr);
+	retVal = val;
+	env->ReleaseStringUTFChars(systemPath, cstr); 
+	env->DeleteLocalRef(systemPath); 
+	
+    return retVal;
+}
+
 /// Access to JNI Environment
 void JGE::SetJNIEnv(JNIEnv * env, jclass cls)
 {
