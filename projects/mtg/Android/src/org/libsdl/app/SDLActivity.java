@@ -1,17 +1,28 @@
 package org.libsdl.app;
 
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URL;
+import java.net.URLConnection;
+
 import javax.microedition.khronos.egl.EGL10;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.egl.EGLContext;
 import javax.microedition.khronos.egl.EGLDisplay;
 import javax.microedition.khronos.egl.EGLSurface;
 
+import net.wagic.app.R;
+import net.wagic.utils.StorageOptions;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.graphics.Canvas;
 import android.graphics.PixelFormat;
 import android.hardware.Sensor;
@@ -29,31 +40,30 @@ import android.os.Message;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
+import android.view.SubMenu;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.VelocityTracker;
 import android.view.View;
+import android.view.View.OnKeyListener;
 import android.widget.FrameLayout;
 import android.widget.FrameLayout.LayoutParams;
 
-import com.google.ads.*;
-
-
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.URL;
-import java.net.URLConnection;
+import com.google.ads.AdRequest;
+import com.google.ads.AdSize;
+import com.google.ads.AdView;
 
 
 /**
     SDL Activity
 */
-public class SDLActivity extends Activity {
+public class SDLActivity extends Activity implements OnKeyListener{
 
+	// TAG used for debugging in DDMS
+	public static String TAG = Activity.class.getCanonicalName();
 	
     // Main components
     private static AdView mAdView;	
@@ -74,15 +84,269 @@ public class SDLActivity extends Activity {
 	public final static String RES_FOLDER = "/sdcard/Wagic/Res/";
     public static final String RES_FILENAME = "core_0180.zip";
     public static final String RES_URL = "http://wagic.googlecode.com/files/";
-   
+    
+    public String systemFolder = "/sdcard/Wagic/Res/";
+    private String userFolder;
+    
+    // path to the onboard sd card that is not removable (typically /mnt/sdcard )
+    private String internalPath;
+    // path to removable sd card (on motorala devices /mnt/sdcard-ext, samsung devices: /mnt/sdcard/external_sd )
+    private String sdcardPath;
+    
+    // Android only supports internal memory and internal sdcard.  removable media is not currently accessible via API
+    // using StorageOptions for now gives us a temporary interface to scan all available mounted drives.
+    private Context mContext;
+
+    // Preferences
+	public static final String 	kWagicSharedPreferencesKey 				= "net.wagic.app.preferences.wagic";
+    public static final String 	kStoreDataOnRemovableSdCardPreference  	= "StoreDataOnRemovableStorage";
+    public static final String 	kSaveDataPathPreference					= "StorageDataLocation";
+    public static final String 	kWagicDataStorageOptionsKey				= "dataStorageOptions";
+    public static final int 	kStorageDataOptionsMenuId				= 2000;
+    public static final int 	kOtherOptionsMenuId						= 3000;
+    
+    //Accessors
+    public String getSystemStorageLocation() {
+    	return systemFolder;
+    }
+
+    public String getUserStorageLocation() {
+    	return userFolder;
+    }
+
+    //setters
+    public void updateStorageLocations() {
+    	boolean usesInternalSdCard = (!getSharedPreferences(kWagicSharedPreferencesKey, MODE_PRIVATE).getBoolean(kStoreDataOnRemovableSdCardPreference, false)) && Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState());
+
+    	systemFolder = (usesInternalSdCard ? sdcardPath : internalPath) + "/Res/";
+    	userFolder = (usesInternalSdCard ? sdcardPath : internalPath) + "/User/";
+    }
+
+    /**
+     * checks to see if the device has a memory card to write to that is in a valid state.
+     * 
+     * @return true if the device can write to the sdcard, false if not.
+     */
+    public boolean checkStorageState()
+    {
+    	SharedPreferences settings = getSharedPreferences(kWagicSharedPreferencesKey, MODE_PRIVATE);
+    	boolean useSdCard = (!settings.getBoolean(kStoreDataOnRemovableSdCardPreference, false)) && Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState());
+    	String systemStoragePath = getSystemStorageLocation();
+    	
+    	if (useSdCard && (systemStoragePath.indexOf(sdcardPath) != -1))
+    	{
+    		Log.i(TAG, "Data will be written to sdcard.");
+    		return true;
+    	}
+    	
+    	if (!useSdCard && (systemStoragePath.indexOf(internalPath) != -1))
+    	{
+    		Log.i(TAG, "Data will be written to internal storage.");
+    		return true;
+    	}
+
+    	return false;
+    }
+
+    private boolean getRemovableMediaStorageState()
+    {
+    	for (String extMediaPath: StorageOptions.paths)
+    	{
+    		File mediaPath = new File(extMediaPath);
+    		if (mediaPath.canWrite())
+    			return true;
+    	}
+    	
+    	return false;
+    }
+    
+    
+    private void displayStorageOptions()
+    {
+    	AlertDialog.Builder setStorage = new AlertDialog.Builder(this);
+		setStorage.setTitle("Where would you like to store your data? On your removable SD Card or the built-in memory?");
+		StorageOptions.determineStorageOptions();
+		setStorage.setSingleChoiceItems(StorageOptions.labels, -1, new DialogInterface.OnClickListener() {
+		    public void onClick(DialogInterface dialog, int item) {
+		    	savePathPreference(item);
+		    }
+		});
+		
+		setStorage.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+				initStorage();
+				if (mSurface == null)
+					mSingleton.initializeGame();
+            }
+		});
+
+		setStorage.create().show();
+    }
+    
+    
+    private void checkStorageLocationPreference()
+    {
+    	SharedPreferences settings = getSharedPreferences(kWagicSharedPreferencesKey, MODE_PRIVATE);
+    	final SharedPreferences.Editor prefsEditor = settings.edit();
+		boolean hasRemovableMediaMounted = getRemovableMediaStorageState();
+		
+    	if ( !settings.contains(kStoreDataOnRemovableSdCardPreference))
+    	{
+    		if (hasRemovableMediaMounted)
+    		{
+    			displayStorageOptions();
+    		}
+    		else
+    		{
+    			prefsEditor.putBoolean(kStoreDataOnRemovableSdCardPreference, false);
+    			prefsEditor.commit();
+    			initStorage();
+    			mSingleton.initializeGame();
+    		}
+    	}
+    	else
+    	{
+    		boolean storeOnRemovableMedia = settings.getBoolean(kStoreDataOnRemovableSdCardPreference, false);
+    		if ( storeOnRemovableMedia && !hasRemovableMediaMounted )
+    		{
+    			AlertDialog setStorage = new AlertDialog.Builder(this).create();
+    			setStorage.setTitle("Storage Preference");
+    			setStorage.setMessage("Removable Sd Card not detected.  Saving data to internal memory.");
+
+				prefsEditor.putBoolean(kStoreDataOnRemovableSdCardPreference, false);
+				prefsEditor.commit();
+
+				initStorage();
+				mSingleton.initializeGame();
+    			setStorage.show();
+    		}
+    		else
+    		{
+    			initStorage();
+    			mSingleton.initializeGame();
+    		}
+    	}
+    }
+    
+    private void initStorage()
+    {
+    	//check the state of the external storage to ensure we can even write to it.
+    	// we are going to assume that if an external location exists, and can be written to, use it.  
+    	// Otherwise use internal storage
+    	try
+    	{
+    		//
+    		// initialize where all the files are going to be stored.
+    		//
+    		File wagicMediaPath = null;
+
+    		String packageName = mContext.getPackageName(); 
+    		File externalFilesDir = Environment.getExternalStorageDirectory();
+    		if ( externalFilesDir != null) {
+    			internalPath = externalFilesDir.getAbsolutePath() + "/" + packageName + "/Wagic";
+    		}
+    		
+    		String state = Environment.getExternalStorageState();
+    		if (Environment.MEDIA_MOUNTED.equals(state))
+    		{
+    			wagicMediaPath = new File(internalPath);
+    			if (wagicMediaPath.canWrite())
+    				wagicMediaPath.mkdirs();
+    		}
+
+    		// initialize the external mount
+        	SharedPreferences settings = getSharedPreferences(kWagicSharedPreferencesKey, MODE_PRIVATE);
+        	String selectedRemovableCardPath = settings.getString(kSaveDataPathPreference, internalPath);
+    		if (selectedRemovableCardPath != null && !internalPath.equalsIgnoreCase(selectedRemovableCardPath))
+    		{
+    			wagicMediaPath = new File(selectedRemovableCardPath);
+    			if (!wagicMediaPath.exists() || !wagicMediaPath.canWrite() )
+    			{
+    				Log.e(TAG, "Error in initializing system folder: " + selectedRemovableCardPath);
+    			}
+    			else
+    			{	// found a removable media location
+    				sdcardPath = selectedRemovableCardPath + "/" + packageName + "/Wagic";
+    			}
+    		}
+
+    		updateStorageLocations();
+    	}
+    	catch (Exception ioex)
+    	{
+    		Log.e( "SDL", "An error occurred in setting up the storage locations.");
+    	}  	
+    }
+    
+    private void savePathPreference( int selectedOption )
+    {
+		SharedPreferences settings = getSharedPreferences(kWagicSharedPreferencesKey, MODE_PRIVATE);
+		String selectedMediaPath = StorageOptions.paths[selectedOption];
+    	final SharedPreferences.Editor prefsEditor = settings.edit();
+    	boolean saveToRemovableMedia = !"/mnt/sdcard".equalsIgnoreCase(selectedMediaPath);
+		
+    	prefsEditor.putBoolean(kStoreDataOnRemovableSdCardPreference, saveToRemovableMedia);
+		prefsEditor.putString(kSaveDataPathPreference, selectedMediaPath);
+		prefsEditor.commit();
+
+    }
+
     private void startDownload() {
         String url = RES_URL + RES_FILENAME;
+        if ( !checkStorageState())
+		{
+			Log.e(TAG, "Error in initializing storage space.");
+			mSingleton.downloadError("Failed to initialize storage space for game. Please verify that your sdcard or internal memory is mounted properly.");
+		}
         new DownloadFileAsync().execute(url);
     }
     
     public void downloadError(String errorMessage) {
     	mErrorHappened = true;
     	mErrorMessage = errorMessage;
+    }
+    
+    
+    private void buildStorageOptionsMenu(Menu menu)
+    {
+    	StorageOptions.determineStorageOptions();
+    	for (int idx = 0; idx < StorageOptions.count; idx++)
+    	{
+    		menu.add(kStorageDataOptionsMenuId, kStorageDataOptionsMenuId + idx, idx, StorageOptions.labels[idx]);
+    	}	
+    }
+    
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+    	SubMenu settingsMenu = menu.addSubMenu(Menu.NONE, 1, 1, "Settings");
+    	menu.add(Menu.NONE, 2, 2, "About");
+    	settingsMenu.add(kStorageDataOptionsMenuId, kStorageDataOptionsMenuId, Menu.NONE, "Storage Data Options");
+//    	buildStorageOptionsMenu(settingsMenu);
+    	
+        return true;
+    }
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+    	int itemId = item.getItemId();
+    	if ( itemId == kStorageDataOptionsMenuId)
+    	{
+    		displayStorageOptions();
+    	}
+    	else if ( itemId == 2)
+    	{
+    		//display some info about the app
+			AlertDialog.Builder infoDialog = new AlertDialog.Builder(this);
+			infoDialog.setTitle("Wagic Info");
+			infoDialog.setMessage("Version 0.180");
+			infoDialog.show();
+
+    	}
+    	else
+    		return super.onOptionsItemSelected(item);
+        return true;
     }
     
     @Override
@@ -169,8 +433,18 @@ public class SDLActivity extends Activity {
         
         // So we can call stuff from static callbacks
         mSingleton = this;
-          
-        File file = new File(RES_FOLDER + RES_FILENAME);
+        mContext = this.getApplicationContext();
+        
+    	StorageOptions.determineStorageOptions();
+        checkStorageLocationPreference();  
+    }
+
+    public void initializeGame()
+    {
+        String coreFileLocation = getSystemStorageLocation() + RES_FILENAME;
+        
+        File file = new File(coreFileLocation);
+        
         if (file.exists()) {
         	mainDisplay();
         } else {
@@ -179,9 +453,9 @@ public class SDLActivity extends Activity {
                 new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
         	startDownload();        	
         }
-             
     }
-
+    
+    
     // Events
     @Override
     protected void onPause() {
@@ -232,7 +506,7 @@ public class SDLActivity extends Activity {
             if (msg.arg1 == COMMAND_CHANGE_TITLE) {
                 setTitle((String)msg.obj);
             }   
-            if (msg.arg1 == COMMAND_JGE_MSG) {
+            else if (msg.arg1 == COMMAND_JGE_MSG) {
                 processJGEMsg((String)msg.obj);
             }                
         }
@@ -260,9 +534,19 @@ public class SDLActivity extends Activity {
     public static native void onNativeAccel(float x, float y, float z);
     public static native void nativeRunAudioThread();
 
-
     // Java functions called from C
     // Receive a message from the SDLMain thread
+    public static String getSystemFolderPath()
+    {
+    	return mSingleton.getSystemStorageLocation();
+    }
+    
+    public static String getUserFolderPath()
+    {
+    	return mSingleton.getUserStorageLocation();
+    }
+    
+    
     public static void jgeSendCommand(String command) {
     	mSingleton.sendCommand(COMMAND_JGE_MSG, command);
     }    
@@ -378,7 +662,9 @@ public class SDLActivity extends Activity {
     }
     
     
-    class DownloadFileAsync extends AsyncTask<String, String, String> {
+    class DownloadFileAsync extends AsyncTask<String, Integer, Long> {
+    	final String TAG1 = DownloadFileAsync.class.getCanonicalName();
+    	
     	@Override
     	protected void onPreExecute() {
     		super.onPreExecute();
@@ -386,43 +672,47 @@ public class SDLActivity extends Activity {
     	}
 
     	@Override
-    	protected String doInBackground(String... aurl) {
+    	protected Long doInBackground(String... aurl) {
     		int count;
-
+    		long totalBytes = 0;
+    		OutputStream output = null;
+    		InputStream input = null;
+    		
 	    	try {
 	
 	    		//
 	    		// Prepare the sdcard folders in order to download the resource file
 	    		//
-	    		String state = Environment.getExternalStorageState();
-	    		if (! Environment.MEDIA_MOUNTED.equals(state)) {
-	    			mSingleton.downloadError("cannot write to SD Card, please check your sd card");
-	    			return null;
+	    	
+	    		String storageLocation = mSingleton.getSystemStorageLocation();
+	    		
+	    		File resDirectory = new File(storageLocation);
+	    		File userDirectory = new File(mSingleton.getUserStorageLocation());
+	    		
+	    		if (!resDirectory.exists() && !resDirectory.mkdirs() || (!userDirectory.exists() && !userDirectory.mkdirs()))
+	    		{
+	    			throw new Exception ("Failed to initialize system and user directories.");
 	    		}
-	    		File resDirectory = new File(RES_FOLDER); //TODO use getExternalStorageDirectory() and update the C++ code
-	    		resDirectory.mkdirs(); 	    		
 	    		
 		    	URL url = new URL(aurl[0]);
+		    	String filename = url.getPath().substring( url.getPath().lastIndexOf( '/') + 1);
 		    	URLConnection conexion = url.openConnection();
 		    	conexion.connect();
 		
-		    	int lenghtOfFile = conexion.getContentLength();
-		    	Log.d("ANDRO_ASYNC", "Length of file: " + lenghtOfFile);
+		    	int lengthOfFile = conexion.getContentLength();
+		    	Log.d("Wagic - " + TAG1, " Length of file: " + lengthOfFile);
 		
-		    	InputStream input = new BufferedInputStream(url.openStream());
+		    	input = new BufferedInputStream(url.openStream());
 	    		// create a File object for the output file
-	    		File outputFile = new File(resDirectory, RES_FILENAME + ".tmp");
+	    		File outputFile = new File(resDirectory, filename + ".tmp");
 
 		    	
-		    	OutputStream output = new FileOutputStream(outputFile);
+		    	output = new FileOutputStream(outputFile);
 		
 		    	byte data[] = new byte[1024];
-		
-		    	long total = 0;
-	
 	    		while ((count = input.read(data)) != -1) {
-	    			total += count;
-	    			publishProgress(""+(int)((total*100)/lenghtOfFile));
+	    			totalBytes += count;
+	    			publishProgress((int)((totalBytes*100)/lengthOfFile));
 	    			output.write(data, 0, count);
 	    		}
 	
@@ -430,33 +720,61 @@ public class SDLActivity extends Activity {
 	    		output.close();
 	    		input.close();
 	    	} catch (Exception e) {
-	    		mSingleton.downloadError("An error happened while downloading the resources. It could be that our server is temporarily down, that your device is not connected to a network, or that we cannot write to " + RES_FOLDER + ". Please check your phone settings and try again. For more help please go to http://wagic.net");
+	    		String errorMessage = "An error happened while downloading the resources. It could be that our server is temporarily down, that your device is not connected to a network, or that we cannot write to " + mSingleton.getSystemStorageLocation() + ". Please check your phone settings and try again. For more help please go to http://wagic.net";
+	    		mSingleton.downloadError(errorMessage);
+	    		Log.e(TAG1, errorMessage);
+	    		Log.e(TAG1, e.getMessage());
 	    	}
-	    	return null;
+	    	
+	    	return new Long(totalBytes);
     	}
     	
-    	protected void onProgressUpdate(String... progress) {
-    		 Log.d("ANDRO_ASYNC",progress[0]);
-    		 mProgressDialog.setProgress(Integer.parseInt(progress[0]));
+    	protected void onProgressUpdate(Integer... progress) {
+    		if (progress[0] != mProgressDialog.getProgress())
+    		{
+    			Log.d("Wagic - " + TAG1, "current progress : " + progress[0]);
+    			mProgressDialog.setProgress(progress[0]);
+    		}
     	}
 
     	@Override
-    	protected void onPostExecute(String unused) {
+    	protected void onPostExecute(Long unused) {
     		if (mErrorHappened) {
     			dismissDialog(DIALOG_DOWNLOAD_PROGRESS); 
     			showDialog(DIALOG_DOWNLOAD_ERROR);
     			return;
     		}
     		//rename the temporary file into the final filename
-    		File preFile = new File(RES_FOLDER + RES_FILENAME + ".tmp");
-    		File postFile = new File(RES_FOLDER + RES_FILENAME);
-    		preFile.renameTo(postFile);
+    		String storageLocation = getSystemStorageLocation();
+    		
+    		File preFile = new File(storageLocation + RES_FILENAME + ".tmp");
+    		File postFile = new File(storageLocation + RES_FILENAME);
+    		
+    		if (preFile.exists())
+    			preFile.renameTo(postFile);
     		
     		dismissDialog(DIALOG_DOWNLOAD_PROGRESS); 
     		//Start game;
     		mSingleton.mainDisplay();
     	}
     }
+
+
+	@Override
+	public boolean onKey(View v, int keyCode, KeyEvent event) {
+		if ((keyCode == KeyEvent.KEYCODE_MENU) && (KeyEvent.ACTION_DOWN == event.getAction()))
+		{
+			super.onKeyDown(keyCode, event);
+			return true;
+		}
+		else if ((keyCode == KeyEvent.KEYCODE_MENU) && (KeyEvent.ACTION_UP == event.getAction()))
+		{
+			super.onKeyUp(keyCode, event);
+			return true;
+		}
+
+		return false;
+	}
        
     
     
@@ -753,15 +1071,17 @@ class SDLSurface extends SurfaceView implements SurfaceHolder.Callback,
 
     // Key events
     public boolean onKey(View  v, int keyCode, KeyEvent event) {
+    	if (keyCode == KeyEvent.KEYCODE_MENU)
+    		return false;
 
         if (event.getAction() == KeyEvent.ACTION_DOWN) {
-            //Log.v("SDL", "key down: " + keyCode);
-            SDLActivity.onNativeKeyDown(keyCode);
+            //Log.d("SDL", "key down: " + keyCode);
+        	SDLActivity.onNativeKeyDown(keyCode);
             return true;
         }
         else if (event.getAction() == KeyEvent.ACTION_UP) {
-            //Log.v("SDL", "key up: " + keyCode);
-            SDLActivity.onNativeKeyUp(keyCode);
+            //Log.d("SDL", "key up: " + keyCode);
+       		SDLActivity.onNativeKeyUp(keyCode);
             return true;
         }
         
@@ -838,7 +1158,3 @@ class SDLSurface extends SurfaceView implements SurfaceHolder.Callback,
         }
     }    
 }
-
-
-
-

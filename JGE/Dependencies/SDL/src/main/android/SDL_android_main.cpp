@@ -1,6 +1,7 @@
 
 /* Include the SDL main definition header */
 #include "SDL_main.h"
+#include "JGE.h"
 
 /*******************************************************************************
                  Functions called by JNI
@@ -13,6 +14,8 @@ extern "C" void SDL_Android_Init(JNIEnv* env, jclass cls);
 // Library init
 extern "C" jint JNI_OnLoad(JavaVM* vm, void* reserved)
 {
+    JGE *mEngine = JGE::GetInstance();
+    mEngine->setJVM(vm);
     return JNI_VERSION_1_4;
 }
 

@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Wagic</string>
+    <string name="info_text">Wagic v0.180\\nAll Rights Reserved.</string>
 </resources>

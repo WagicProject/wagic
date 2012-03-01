@@ -17,9 +17,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.google.ads.AdActivity"
-          android:configChanges="keyboard|keyboardHidden|orientation"/>
         
+        <activity android:name="com.google.ads.AdActivity" android:configChanges="keyboard|keyboardHidden|orientation"/>
     </application>
-    <uses-sdk android:minSdkVersion="9" />
+    <uses-sdk android:minSdkVersion="9" android:targetSdkVersion="11"/>
 </manifest> 

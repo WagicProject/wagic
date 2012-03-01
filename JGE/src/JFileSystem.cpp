@@ -16,6 +16,9 @@ User folder is the only one that is really needed to guarantee both read and wri
 The content that users should not be touching.
 */
 
+#if defined(ANDROID)
+#include "../../include/PrecompiledHeader.h"
+#endif
 
 #ifdef WIN32
 #pragma warning(disable : 4786)
@@ -113,8 +116,10 @@ JFileSystem::JFileSystem(const string & _userPath, const string & _systemPath)
     systemPath = [[documentsDirectory  stringByAppendingString: @"/Res/"] cStringUsingEncoding:1];
 
 #elif defined (ANDROID)
-    userPath = "/sdcard/Wagic/Res/";
+    userPath = JGE::GetInstance()->getFileSystemLocation();
     systemPath = "";
+
+	DebugTrace("User path " << userPath);
 #elif defined (QT_CONFIG)
     QDir dir(QDir::homePath());
     dir.cd(USERDIR);
@@ -165,7 +170,7 @@ JFileSystem::JFileSystem(const string & _userPath, const string & _systemPath)
 			systemPath += '/';
 	}
 
-    mUserFSPath = userPath;
+	mUserFSPath = userPath;
     MAKEDIR(userPath.c_str());
 
     mSystemFSPath = systemPath;
@@ -178,6 +183,7 @@ JFileSystem::JFileSystem(const string & _userPath, const string & _systemPath)
     mPassword = NULL;
     mFileSize = 0;
     mCurrentFileInZip = NULL;
+
 };
 
 void JFileSystem::Destroy()

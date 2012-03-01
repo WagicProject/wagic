@@ -77,7 +77,7 @@ enum DECK_VIEWER_MENU_ITEMS
 #define LOW_SPEED 1.5
 
 #define MAX_SAVED_FILTERS Constants::NB_Colors + 1
-#define CARDS_DISPLAYED 10
+#define CARDS_DISPLAYED 5
 
 class GameStateDeckViewer: public GameState, public JGuiListener
 {

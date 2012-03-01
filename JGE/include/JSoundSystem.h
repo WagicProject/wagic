@@ -82,6 +82,7 @@ public:
     SLObjectItf playerObject;
     SLPlayItf playInterface;
     SLSeekItf seekInterface;
+    SLVolumeItf musicVolumeInterface;
 #else
     void* mTrack;
 #endif  //WITH_FMOD
@@ -115,6 +116,7 @@ class JSample
 #elif defined ANDROID
     SLObjectItf playerObject;
     SLPlayItf playInterface;
+    SLVolumeItf sampleVolumeInterface;
     void* mSample;
 #else
     void* mSample;
@@ -242,9 +244,8 @@ protected:
 
 private:
 
-#ifdef WIN32
 	JMusic *mCurrentMusic;
-#endif
+    JSample *mCurrentSample;
 
 	int mVolume;
   int mMusicVolume;

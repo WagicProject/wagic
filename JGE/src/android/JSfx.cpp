@@ -22,7 +22,7 @@ static SLObjectItf outputMixObject = NULL;
 //////////////////////////////////////////////////////////////////////////
 
 JMusic::JMusic()
-    : playerObject(0), playInterface(0), seekInterface(0)
+    : playerObject(0), playInterface(0), seekInterface(0), musicVolumeInterface(0)
 {
 }
 
@@ -42,6 +42,7 @@ JMusic::~JMusic()
         playerObject = NULL;
         playInterface = NULL;
         seekInterface = NULL;
+        musicVolumeInterface = NULL;
     }
 }
 
@@ -194,9 +195,13 @@ JMusic *JSoundSystem::LoadMusic(const char *fileName)
         DebugTrace("result " << result);
 
         // get the volume interface
-        //result = (*music->playerObject)->GetInterface(music->playerObject, SL_IID_VOLUME, &musicVolumeInterface);
+        //result = (*music->playerObject)->GetInterface(music->playerObject, SL_IID_VOLUME, (void *)&music->musicVolumeInterface);
+        
         DebugTrace("result " << result);
     }
+    
+    mCurrentMusic = music;
+    
     return music;
 }
 
@@ -207,6 +212,8 @@ void JSoundSystem::PlayMusic(JMusic *music, bool looping)
     {
         SLresult result;
 
+        //(*music->musicVolumeInterface)->SetVolumeLevel(music->musicVolumeInterface, -1 * mVolume);
+        
         // enable whole file looping
         result = (*music->seekInterface)->SetLoop(music->seekInterface,
                                                   looping?SL_BOOLEAN_TRUE:SL_BOOLEAN_FALSE, 0, SL_TIME_UNKNOWN);
@@ -250,10 +257,13 @@ void JSoundSystem::SetVolume(int volume)
 void JSoundSystem::SetMusicVolume(int volume)
 {
     mVolume = volume;
+    //(*mCurrentMusic->musicVolumeInterface)->SetVolumeLevel(mCurrentMusic->musicVolumeInterface, -1 * mVolume);
 }
 
 void JSoundSystem::SetSfxVolume(int volume){
   mSampleVolume = volume;
+            
+    //(*mCurrentSample->sampleVolumeInterface)->SetVolumeLevel(mCurrentSample->sampleVolumeInterface, -1 * mSampleVolume);
   SetMusicVolume(mVolume);
 }
 
@@ -296,8 +306,11 @@ JSample *JSoundSystem::LoadSample(const char *fileName)
         DebugTrace("result " << result);
 
         // get the volume interface
-        //result = (*sample->playerObject)->GetInterface(sample->playerObject, SL_IID_VOLUME, &sampleVolumeInterface);
+        //result = (*sample->playerObject)->GetInterface(sample->playerObject, SL_IID_VOLUME, &sample->sampleVolumeInterface);
     }
+    
+    mCurrentSample = sample;
+    
     return sample;
 }
 
@@ -307,7 +320,7 @@ void JSoundSystem::PlaySample(JSample *sample)
     if(sample && sample->playerObject && sample->playInterface)
     {
         SLresult result;
-
+        //(*sample->sampleVolumeInterface)->SetVolumeLevel(sample->sampleVolumeInterface, mSampleVolume);
         result = (*sample->playInterface)->SetPlayState(sample->playInterface,
                                                        SL_PLAYSTATE_PLAYING);
     }

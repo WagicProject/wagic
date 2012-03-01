@@ -126,6 +126,7 @@ class JGE
 #endif
 
 #if defined (ANDROID)
+    JavaVM * mJavaVM;
     JNIEnv * mJNIEnv;
     jclass mJNIClass;
     jmethodID midSendCommand;
@@ -164,6 +165,10 @@ class JGE
   static JGE* GetInstance();
   static void Destroy();
 
+#ifdef ANDROID
+    JNIEnv * getJNIEnv();
+  void setJVM (JavaVM * vm);
+#endif
   void Init();
   void End();
 
@@ -377,6 +382,7 @@ class JGE
    /// Access to JNI Environment
    void SetJNIEnv(JNIEnv * env, jclass cls);
    void sendJNICommand(std::string command);
+   std::string getFileSystemLocation();
 #endif 
   
  protected:

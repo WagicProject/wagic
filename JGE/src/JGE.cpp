@@ -619,48 +619,68 @@ void JGE::SendCommand(std::string command, float& x, float& y, float& width, flo
 
 
 #if defined (ANDROID)
-int getJNIEnv(JNIEnv *env)
+JNIEnv * JGE::getJNIEnv()
 {
+	JNIEnv *env;
     int status = mJavaVM->GetEnv((void **)&env, JNI_VERSION_1_4);
-    if(status < 0)
+    if(status == JNI_ERR)
     {
         DebugTrace("Failed to get JNI environment, assuming native thread");
         status = mJavaVM->AttachCurrentThread(&env, NULL);
-        if(status < 0)
+        if(status == JNI_ERR)
         {
-            LogNativeToAndroidExt("callback_handler: failed to attach current thread");
-            return JNI_ERR;
+            DebugTrace("callback_handler: failed to attach current thread");
+            return NULL;
         }
     }
-    
-    return JNI_VERSION_1_4;
+    else if (status == JNI_EDETACHED)
+    {
+    	DebugTrace("env is detached.  trying to attach it to the current thread");
+        jint attachSuccess = mJavaVM->AttachCurrentThread(&env,NULL);
+        if(attachSuccess == 0)
+        {
+            return env;
+        }
+        else
+        {
+            return NULL;
+        }//end if/els
+    }
+    else if (status == JNI_OK)
+    {
+    	return env;
+    }
+
+    return NULL;
 }
 
 string JGE::getFileSystemLocation()
 {
     char result[512];
-    JNIEnv * env;
-    if (getJNIEnv(env) == JNI_ERR)
+    JNIEnv * env = getJNIEnv();
+    if (env == NULL)
     {
         DebugTrace("An Error Occurred in getting the JNI Environment whie trying to get the system folder location.  Defaulting to /mnt/sdcard/net.wagic.app/Wagic"); 
     	return "/mnt/sdcard/net.wagic.app/Wagic";
     };
-    jmethodID methodId = env->GetStaticMethodID(mJNIClass, "getSystemFolderPath", "()Ljava/lang/String;");
+
+    jclass jniClass = env->FindClass("org/libsdl/app/SDLActivity");
+    jmethodID methodId = env->GetStaticMethodID( jniClass, "getSystemFolderPath", "()Ljava/lang/String;");
+
     if (methodId == 0)
     {
         DebugTrace("An Error Occurred in getting the JNI methodID for getSystemFolderPath. Defaulting to /mnt/sdcard/net.wagic.app/Wagic"); 
     	return "/mnt/sdcard/net.wagic.app/Wagic";
     };
-    	
-    jstring systemPath = (jstring) env->CallStaticObjectMethod(mJNIClass, methodId);
-    string retVal = "/mnt/sdcard/net.wagic.app/Wagic/";
-        // Now convert the Java String to C++ char array 
+
+    jstring systemPath = (jstring) env->CallStaticObjectMethod(jniClass, methodId);
+
+    // Now convert the Java String to C++ char array
 	const char* cstr = env->GetStringUTFChars(systemPath, 0); 
-	string val (cstr);
-	retVal = val;
+	string retVal (cstr);
 	env->ReleaseStringUTFChars(systemPath, cstr); 
-	env->DeleteLocalRef(systemPath); 
-	
+	env->DeleteLocalRef(systemPath);
+
     return retVal;
 }
 
@@ -670,6 +690,11 @@ void JGE::SetJNIEnv(JNIEnv * env, jclass cls)
     mJNIEnv = env;
     mJNIClass = cls;
     midSendCommand = mJNIEnv->GetStaticMethodID(mJNIClass,"jgeSendCommand","(Ljava/lang/String;)V");
+}
+
+void JGE::setJVM( JavaVM *vm)
+{
+	mJavaVM = vm;
 }
 
 void JGE::sendJNICommand(string command)

@@ -44,7 +44,7 @@ BoosterDisplay::BoosterDisplay(int id, GameObserver* game, int x, int y, JGuiLis
 
 bool BoosterDisplay::CheckUserInput(JButton key)
 {
-    if (JGE_BTN_UP == key || JGE_BTN_DOWN == key)
+    if (JGE_BTN_UP == key || JGE_BTN_DOWN == key || JGE_BTN_PRI == key)
         return false;
 
     return CardDisplay::CheckUserInput(key);
@@ -608,17 +608,6 @@ void GameStateShop::Update(float dt)
                 taskList = NEW TaskList();
             taskList->Start();
         }
-        else if (btn == JGE_BTN_PRI)
-        {
-            srcCards->Shuffle();
-            load();
-            disablePurchase = false;
-            clearInput = true;
-            return;
-
-        }
-        else if (btn == JGE_BTN_CANCEL)
-            options[Options::DISABLECARDS].number = !options[Options::DISABLECARDS].number;
         else if (boosterDisplay)
         {
             if (btn == JGE_BTN_SEC)
@@ -630,6 +619,17 @@ void GameStateShop::Update(float dt)
             }
             return;
         }
+        else if (btn == JGE_BTN_PRI) // so we don't shuffle while we view our newly purchased booster display.
+        {
+            srcCards->Shuffle();
+            load();
+            disablePurchase = false;
+            clearInput = true;
+            return;
+
+        }
+        else if (btn == JGE_BTN_CANCEL)
+            options[Options::DISABLECARDS].number = !options[Options::DISABLECARDS].number;
         else if (btn == JGE_BTN_SEC)
 		{
             bListCards = !bListCards;
