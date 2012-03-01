@@ -661,7 +661,7 @@ string JGE::getFileSystemLocation()
     if (env == NULL)
     {
         DebugTrace("An Error Occurred in getting the JNI Environment whie trying to get the system folder location.  Defaulting to /mnt/sdcard/net.wagic.app/Wagic"); 
-    	return "/mnt/sdcard/net.wagic.app/Wagic";
+    	return "/mnt/sdcard/Wagic";
     };
 
     jclass jniClass = env->FindClass("org/libsdl/app/SDLActivity");
@@ -669,8 +669,8 @@ string JGE::getFileSystemLocation()
 
     if (methodId == 0)
     {
-        DebugTrace("An Error Occurred in getting the JNI methodID for getSystemFolderPath. Defaulting to /mnt/sdcard/net.wagic.app/Wagic"); 
-    	return "/mnt/sdcard/net.wagic.app/Wagic";
+        DebugTrace("An Error Occurred in getting the JNI methodID for getSystemFolderPath. Defaulting to /mnt/sdcard/Wagic"); 
+    	return "/mnt/sdcard/Wagic";
     };
 
     jstring systemPath = (jstring) env->CallStaticObjectMethod(jniClass, methodId);

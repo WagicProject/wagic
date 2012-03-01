@@ -240,10 +240,10 @@ public class SDLActivity extends Activity implements OnKeyListener{
     		//
     		File wagicMediaPath = null;
 
-    		String packageName = mContext.getPackageName(); 
+    		//String packageName = mContext.getPackageName(); // possibly use this to differentiate between different mods of Wagic. 
     		File externalFilesDir = Environment.getExternalStorageDirectory();
     		if ( externalFilesDir != null) {
-    			internalPath = externalFilesDir.getAbsolutePath() + "/" + packageName + "/Wagic";
+    			internalPath = externalFilesDir.getAbsolutePath() + "/Wagic";
     		}
     		
     		String state = Environment.getExternalStorageState();
@@ -266,7 +266,7 @@ public class SDLActivity extends Activity implements OnKeyListener{
     			}
     			else
     			{	// found a removable media location
-    				sdcardPath = selectedRemovableCardPath + "/" + packageName + "/Wagic";
+    				sdcardPath = selectedRemovableCardPath + "/Wagic";
     			}
     		}
 
