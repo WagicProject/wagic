@@ -84,15 +84,15 @@ public class StorageOptions {
 				mMounts.remove(i--);
 		}
 
-		// don’t need this anymore, clear the vold list to reduce memory
-		// use and to prepare it for the next time it’s needed.
+		// don't need this anymore, clear the vold list to reduce memory
+		// use and to prepare it for the next time it's needed.
 		mVold.clear();
 	}
 
 	private static void testAndCleanMountsList() {
 		/*
 		 * Now that we have a cleaned list of mount paths
-		 * Test each one to make sure it’s a valid and
+		 * Test each one to make sure it's a valid and
 		 * available path. If it is not, remove it from
 		 * the list. 
 		 */
@@ -130,8 +130,8 @@ public class StorageOptions {
 
 		count = Math.min(labels.length, paths.length);
 
-		// don’t need this anymore, clear the mounts list to reduce memory
-		// use and to prepare it for the next time it’s needed.
+		// don't need this anymore, clear the mounts list to reduce memory
+		// use and to prepare it for the next time it's needed.
 		mMounts.clear();
 	}
 }
