@@ -876,7 +876,7 @@ auto=teach(creature) flanking
 text=Enchant creature -- Enchanted creature gets +1/+1 and has flanking. (Whenever a creature without flanking blocks this creature, the blocking creature gets -1/-1 until end of turn.)
 mana={1}{R}
 type=Enchantment
-subtype=AuraFvish
+subtype=Aura
 [/card]
 [card]
 name=Agonizing Demise
@@ -1175,7 +1175,7 @@ toughness=6
 [card]
 name=Akuta, Born of Ash
 abilities=haste
-autograveyard=@each my upkeep:if type(*|opponenthand)~morethan~type(*|myhand) then if type(forest|mybattlefield)~morethan~0 then may transforms((,newability[destroy target(forest)],newability[moveto(mybattlefield)])) ueot
+autograveyard=@each my upkeep:if type(*|opponenthand)~morethan~type(*|myhand) then if type(swamp|mybattlefield)~morethan~0 then may transforms((,newability[destroy target(swamp)],newability[moveto(mybattlefield)])) ueot
 text=Haste -- At the beginning of your upkeep, if you have more cards in hand than each opponent, you may sacrifice a Swamp. If you do, return Akuta, Born of Ash from your graveyard to the battlefield.
 mana={2}{B}{B}
 type=Legendary Creature
@@ -1580,7 +1580,7 @@ toughness=3
 [/card]
 [card]
 name=Ambassador Oak
-auto=token(Elf Warrior,creature elf,1/1,green)
+auto=token(Elf Warrior,creature elf warrior,1/1,green)
 text=When Ambassador Oak enters the battlefield, put a 1/1 green Elf Warrior creature token onto the battlefield.
 mana={3}{G}
 type=Creature
@@ -8609,8 +8609,6 @@ toughness=1
 [card]
 name=Bonesplitter
 auto={1}:equip
-zethfox
-auto=teach(creature) type:*[instant]:mygraveyard/0 nonstatic
 auto=2/0
 text=Equipped creature gets +2/+0. -- Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery. This card enters the battlefield unattached and stays on the battlefield if the creature leaves.)
 mana={1}
@@ -49625,7 +49623,7 @@ toughness=6
 [/card]
 [card]
 name=Nefashu
-auto=@combat(attacking) source(this):target(<5>creature) -1/-1 ueot
+auto=@combat(attacking) source(this):target(<upto:5>creature) -1/-1 ueot
 text=Whenever Nefashu attacks, up to five target creatures each get -1/-1 until end of turn.
 mana={4}{B}{B}
 type=Creature
