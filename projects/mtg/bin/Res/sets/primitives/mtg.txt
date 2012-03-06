@@ -2585,7 +2585,7 @@ toughness=1
 [card]
 name=Aphetto Vulture
 abilities=flying
-auto=@movedTo(graveyard) from(this|battlefield):may moveto(mylibrary) target(other zombie|mygraveyard)
+auto=@movedTo(graveyard) from(this|battlefield):may moveto(mylibrary) target(zombie|mygraveyard)
 text=Flying -- When Aphetto Vulture dies, you may put target Zombie card from your graveyard on top of your library.
 mana={4}{B}{B}
 type=Creature
@@ -63536,7 +63536,7 @@ toughness=2
 name=Scythe of the Wretched
 auto=teach(creature) +2/+2
 auto={4}:equip
-auto=@vampired(creature) from(mytgt):all(trigger[to]) moveto(mybattlefield) && all(trigger[to]) retarget
+auto=@vampired(creature) from(mytgt):all(trigger[to]) moveto(mybattlefield) and((retarget))
 text=Equipped creature gets +2/+2. -- Whenever a creature dealt damage by equipped creature this turn is put into a graveyard, return that card to the battlefield under your control. Attach Scythe of the Wretched to that creature. -- Equip {4}
 mana={2}
 type=Artifact
