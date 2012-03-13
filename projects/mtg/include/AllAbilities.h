@@ -4796,72 +4796,159 @@ public:
     }
 };
 
-//Stasis
-class AStasis: public ActivatedAbility
+//remove or add a phase.
+class APhaseAlter: public TriggeredAbility
 {
 public:
-    int paidThisTurn;
-    AStasis(GameObserver* observer, int _id, MTGCardInstance * card) :
-        ActivatedAbility(observer, _id, card, NEW ManaCost(), 0)
+    Targetable * targetPlayerWho;
+    bool adding;
+    bool applied;
+    Player * who;
+    string phaseToAlter;
+    int phasetoAlter;
+    string targetingString;
+    string after;
+    bool aNext;
+    APhaseAlter(GameObserver* observer, int _id, MTGCardInstance * card,Targetable * targetPlayer, bool _adding,string _phaseToAlter,string targeting, bool _aNext,string _after = "") :
+        TriggeredAbility(observer, _id, card),targetPlayerWho(targetPlayer),adding(_adding),phaseToAlter(_phaseToAlter),targetingString(targeting),aNext(_aNext),after(_after)
     {
-        paidThisTurn = 1;
-        getCost()->add(Constants::MTG_COLOR_BLUE, 1);
+            applied = false;
+            who = NULL;
+            phasetoAlter = PhaseRing::phaseStrToInt(phaseToAlter);
     }
 
-    void Update(float dt)
-    {
-        //Upkeep Cost
-        if (newPhase != currentPhase)
+        int triggerOnEvent(WEvent * event)
         {
-            if (newPhase == MTG_PHASE_UPKEEP)
+            if(!who)
             {
-                paidThisTurn = 0;
+                Player * targetedPlayer = dynamic_cast<Player*>(target);
+                if (targetingString.find("targetedplayer") != string::npos && targetedPlayer)
+                {
+                    who = targetedPlayer;
+                }
+                if (targetingString.find("controller") != string::npos)
+                    who = source->controller();
+                if (targetingString.find("opponent") != string::npos)
+                    who = source->controller()->opponent();
+                if (targetingString.find("targetcontroller") != string::npos)
+                    who = source->target?source->target->controller():source->controller();
+                if (targetingString.find("owner") != string::npos)
+                    who = source->owner;
             }
-            else if (!paidThisTurn && newPhase > MTG_PHASE_UPKEEP && game->currentPlayer == source->controller())
+
+            if (after == "this")//apply it right now.
             {
-                game->currentPlayer->game->putInGraveyard(source);
-                paidThisTurn = 1;
+                if(!applied)
+                    if (who == game->currentPlayer)
+                    {
+                        after = game->phaseRing->phaseIntToStr(game->oldGamePhase);
+                        addTheEffect(game->currentPlayer->getId());
+                        return 1;
+                    }
             }
-        }
-        //Stasis Effect
-        for (int i = 0; i < 2; i++)
-        {
-            game->phaseRing->removePhase(MTG_PHASE_UNTAP, game->players[i]);
-        }
 
-        //Parent Class Method Call
-        ActivatedAbility::Update(dt);
-    }
-
-    int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL)
-    {
-        return (!paidThisTurn && currentPhase == MTG_PHASE_UPKEEP && ActivatedAbility::isReactingToClick(card, mana));
-    }
+            if (WEventPhasePreChange* pe = dynamic_cast<WEventPhasePreChange*>(event))
+            {
+                if (MTG_PHASE_CLEANUP == pe->to->id)
+                {
+                    if( aNext && applied && who != game->currentPlayer)
+                    {
+                        forceDestroy = 1;
+                    }
+                }
+                if(adding)
+                {
+                    if(!applied)
+                        if (PhaseRing::phaseStrToInt(after) == pe->to->id && who == game->currentPlayer)
+                        {
+                            pe->eventChanged = true;
+                            return 1;
+                        }
+                }
+                else if (PhaseRing::phaseStrToInt(phaseToAlter) == pe->to->id && who == game->currentPlayer)
+                {
+                    pe->eventChanged = true;
+                    return 1;
+                }
+            }
+            return 0;
+        }
 
     int resolve()
     {
-        paidThisTurn = 1;
+        for (int i = 0; i < 2; i++)
+        {
+            if(who == game->players[i] && game->currentPlayer == game->players[i])
+            {
+                addTheEffect(i);
+            }
+        }
         return 1;
+    }
+    void addTheEffect(int i)
+    {
+        int turnSteps = game->phaseRing->turn.size();
+        if(adding && !applied)
+        {
+            if(phaseToAlter == "combatphases")
+            {
+                game->phaseRing->addCombatAfter(game->players[i], PhaseRing::phaseStrToInt(after));
+            }
+            else if(phaseToAlter == "combatphaseswithmain")
+            {
+                game->phaseRing->addCombatAfter(game->players[i], PhaseRing::phaseStrToInt(after),true);
+            }
+            else
+                game->phaseRing->addPhaseAfter(PhaseRing::phaseStrToInt(phaseToAlter), game->players[i], PhaseRing::phaseStrToInt(after));
+        }
+        else if(!adding)
+            game->phaseRing->removePhase(PhaseRing::phaseStrToInt(phaseToAlter));
+        int turnAfterChange = game->phaseRing->turn.size();
+        if(turnSteps != turnAfterChange)
+            applied = true;
+        return;
+    }
+
+    void removeTheEffect(int i)//readd this!!!!!!!!!!!!!
+    {
+        if(applied)
+        {
+            if(adding)
+                game->phaseRing->removePhase(PhaseRing::phaseStrToInt(phaseToAlter));
+            else
+                game->phaseRing->addPhaseAfter(PhaseRing::phaseStrToInt(phaseToAlter), game->players[i], PhaseRing::phaseStrToInt(after));
+            applied = false;
+        }
+        return;
+    }
+
+    int testDestroy()
+    {
+        if(forceDestroy != -1)
+            return 1;
+        return 0;
     }
 
     int destroy()
     {
         for (int i = 0; i < 2; i++)
         {
-            game->phaseRing->addPhaseBefore(MTG_PHASE_UNTAP, game->players[i], MTG_PHASE_UPKEEP,
-                    game->players[i]);
+            if(who == game->players[i] && game->currentPlayer == game->players[i])
+            {
+                removeTheEffect(i);
+            }
         }
         return 1;
     }
 
-    virtual ostream& toString(ostream& out) const
+    const char * getMenuText()
     {
-        out << "AStasis ::: paidThisTurn : " << paidThisTurn << " (";
-        return ActivatedAbility::toString(out) << ")";
+        return "phase alter";
     }
-    AStasis * clone() const
+
+    APhaseAlter * clone() const
     {
-        return NEW AStasis(*this);
+        return NEW APhaseAlter(*this);
     }
 };
 

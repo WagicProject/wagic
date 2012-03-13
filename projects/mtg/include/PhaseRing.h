@@ -29,8 +29,9 @@ class Phase
 public:
     GamePhase id;
     Player * player;
-    Phase(GamePhase id, Player *player) :
-        id(id), player(player)
+    bool isExtra;
+    Phase(GamePhase id, Player *player, bool _isExtra = false) :
+        id(id), player(player), isExtra(_isExtra)
     {
     }
     ;
@@ -44,16 +45,26 @@ private:
 public:
     list<Phase *> ring;
     list<Phase *>::iterator current;
+    list<Phase*>turn;
+    list<Phase*>currentTurnList;
+    list<Phase*>nextTurnList;
+    list<Phase*> currentTurn();
+    list<Phase*> nextTurn();
+    list<Phase*> extraPhases;
     Phase * getCurrentPhase();
     Phase * forward(bool sendEvents = true);
     Phase * goToPhase(int id, Player * player, bool sendEvents = true);
+    Phase * getPhase(int id);
     PhaseRing(GameObserver* observer);
     ~PhaseRing();
+    void deleteOldTurn();
     int addPhase(Phase * phase);
-    int addPhaseBefore(GamePhase id, Player* player, int after_id, Player * after_player, int allOccurences = 1);
-    int removePhase(int id, Player * player, int allOccurences = 1);
+    int addCombatAfter(Player* player, int after_id, bool withMain = false);
+    int addPhaseAfter(GamePhase id, Player* player, int after_id);
+    int removePhase(int id);
     const char * phaseName(int id);
     static GamePhase phaseStrToInt(string s);
+    static string phaseIntToStr(int id);
 
 };
 

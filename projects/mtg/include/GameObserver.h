@@ -75,6 +75,7 @@ class GameObserver{
   int forceShuffleLibraries();
   int targetListIsSet(MTGCardInstance * card);
   PhaseRing * phaseRing;
+  vector<list<Phase*> >gameTurn;
   int cancelCurrentAction();
   GamePhase currentGamePhase;
   ExtraCosts * mExtraPayment;
@@ -118,6 +119,7 @@ class GameObserver{
   Player * currentActionPlayer;
   Player * isInterrupting;
   Player * opponent();
+  Player * nextTurnsPlayer();
   Player * currentlyActing();
   GameObserver(WResourceManager* output = 0, JGE* input = 0);
   ~GameObserver();

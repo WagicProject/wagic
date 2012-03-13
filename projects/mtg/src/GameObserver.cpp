@@ -127,14 +127,41 @@ Player * GameObserver::opponent()
     return players[index];
 }
 
+Player * GameObserver::nextTurnsPlayer()
+{
+    int nextTurnsId = 0;
+    if(!players[currentPlayerId]->extraTurn)
+        nextTurnsId = (currentPlayerId + 1) % players.size();
+    else
+    {
+        nextTurnsId = currentPlayerId;
+    }
+    if(players[currentPlayerId]->skippingTurn)
+    {
+        nextTurnsId = (currentPlayerId + 1) % players.size();
+    }
+    return players[nextTurnsId];
+}
+
 void GameObserver::nextPlayer()
 {
     turn++;
-    currentPlayerId = (currentPlayerId + 1) % players.size();
+    if(!players[currentPlayerId]->extraTurn)
+        currentPlayerId = (currentPlayerId + 1) % players.size();
+    else
+    {
+        players[currentPlayerId]->extraTurn--;
+    }
+    if(players[currentPlayerId]->skippingTurn)
+    {
+        players[currentPlayerId]->skippingTurn--;
+        currentPlayerId = (currentPlayerId + 1) % players.size();
+    }
     currentPlayer = players[currentPlayerId];
     currentActionPlayer = currentPlayer;
     combatStep = BLOCKERS;
 }
+
 void GameObserver::nextGamePhase()
 {
     Phase * cPhaseOld = phaseRing->getCurrentPhase();
@@ -166,9 +193,11 @@ void GameObserver::nextGamePhase()
 
     if (MTG_PHASE_COMBATDAMAGE == currentGamePhase)
     	nextCombatStep();
+    if (MTG_PHASE_COMBATEND == currentGamePhase)
+        combatStep = BLOCKERS;
 
-    if (currentPlayer != cPhase->player)
-    	nextPlayer();
+    //if (currentPlayer != cPhase->player)
+    //	nextPlayer();//depreciated; we call this at EOT step now. unsure what the purpose of this was originally.fix for a bug?
 
     //init begin of turn
     if (currentGamePhase == MTG_PHASE_BEFORE_BEGIN)
@@ -200,6 +229,7 @@ void GameObserver::nextGamePhase()
         mLayers->actionLayer()->Update(0);
         currentPlayer->lifeLostThisTurn = 0;
         currentPlayer->opponent()->lifeLostThisTurn = 0;
+        nextPlayer();
         return nextGamePhase();
     }
 
@@ -298,8 +328,28 @@ void GameObserver::userRequestNextGamePhase(bool allowInterrupt, bool log)
 
 void GameObserver::shuffleLibrary(Player* p)
 {
+    if(!p)
+    {
+        DebugTrace("FATAL: No Player To Shuffle");
+        return;
+    }
     logAction(p, "shufflelib");
-    p->game->library->shuffle();
+    MTGLibrary * library = p->game->library;
+    if(!library)
+    {
+        DebugTrace("FATAL: Player has no zones");
+        return;
+    }
+    library->shuffle();
+
+    for(unsigned int k = 0;k < library->placeOnTop.size();k++)
+    {
+        MTGCardInstance * toMove = library->placeOnTop[k];
+        assert(toMove);
+        p->game->putInZone(toMove,  p->game->temp, library);
+    }
+    library->placeOnTop.clear();
+
 }
 
 
@@ -569,12 +619,14 @@ void GameObserver::gameStateBasedEffects()
             MTGCardInstance * card = zone->cards[j];
             card->afterDamage();
             card->mPropertiesChangedSinceLastUpdate = false;
-
+            if(card->hasType(Subtypes::TYPE_PLANESWALKER) && (!card->counters||!card->counters->hasCounter("loyalty",0,0)))
+                players[i]->game->putInGraveyard(card);
             ///////////////////////////////////////////////////////
             //Remove auras that don't have a valid target anymore//
             ///////////////////////////////////////////////////////
-            if (card->target && !isInPlay(card->target) && !card->hasType(Subtypes::TYPE_EQUIPMENT))
+            if ((card->target||card->playerTarget) && !card->hasType(Subtypes::TYPE_EQUIPMENT))
             {
+                if(card->target && !isInPlay(card->target))
                 players[i]->game->putInGraveyard(card);
             }
             card->enchanted = false;
@@ -743,6 +795,7 @@ void GameObserver::gameStateBasedEffects()
                     c->wasDealtDamage = false;
                 c->damageToController = false;
                 c->damageToOpponent = false;
+                c->isAttacking = NULL;
             }
             for (int t = 0; t < nbcards; t++)
             {

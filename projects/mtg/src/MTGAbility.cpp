@@ -3408,11 +3408,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
         observer->addObserver(NEW AFastbond(observer, _id, card));
         break;
     }
-    case 1225: //Stasis
-    {
-        observer->addObserver(NEW AStasis(observer, _id, card));
-        break;
-    }
     case 1227: //Toughtlace
     {
         if (card->target)
