@@ -88,6 +88,9 @@ public:
     bool graveEffects;
     bool exileEffects;
     bool suspended;
+    int chooseacolor;
+    string chooseasubtype;
+    int coinSide;//1 = tails
         
     int stillInUse();
     int didattacked;
@@ -104,6 +107,7 @@ public:
     MTGCardInstance * previous;
     MTGCardInstance * next;
     int doDamageTest;
+    bool skipDamageTestOnce;
     int summoningSickness;
     ManaCost reducedCost;
     ManaCost increasedCost;
@@ -149,6 +153,7 @@ public:
     int canBlock(MTGCardInstance * opponent);
     int canAttack();
     int isAttacker();
+    Targetable * isAttacking;
     MTGCardInstance * isDefenser();
     int initAttackersDefensers();
     MTGCardInstance * getNextOpponent(MTGCardInstance * previous=NULL);

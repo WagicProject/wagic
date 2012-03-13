@@ -146,6 +146,9 @@ public:
     static const vector<string>& getValuesById() {
         return instance->subtypesList.getValuesById();
     };
+    static const vector<string>& getCreatureValuesById() {
+        return instance->subtypesList.getCreatureValuesById();
+    };
     static bool isSubtypeOfType(unsigned int subtype, unsigned int type) {
         return instance->subtypesList.isSubtypeOfType(subtype, type);
     };
@@ -158,6 +161,15 @@ public:
     static bool isSubType(unsigned int type) {
         return instance->subtypesList.isSubType(type);
     };
+
+    static void sortSubtypeList()
+    {
+        return instance->subtypesList.sortSubTypes();
+    }
+
+    static int findSubtypeId(string value){
+        return instance->subtypesList.find(value,false);
+    }
 
     static void loadInstance();
     static void unloadAll();

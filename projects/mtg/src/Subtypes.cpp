@@ -52,6 +52,11 @@ int Subtypes::add(string value, unsigned int parentType)
             subtypesToType.resize(1 + subtype * 2, 0); //multiplying by 2 to avoid resizing at every insertion
         subtypesToType[subtype] = parentType;
     }
+    if (isSubType(subtype) && (parentType == TYPE_CREATURE))
+    {
+        if(value != "forest" && value != "Forest")//http://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=136196 one creature with a land subtype exist, but the card has special ruling.
+            subtypesCreature.push_back(value);
+    }
     return subtype;
 }
 
@@ -100,3 +105,18 @@ const vector<string>& Subtypes::getValuesById()
 {
     return valuesById;
 }
+
+void Subtypes::sortSubTypes()
+{
+    sort(subtypesCreature.begin(),subtypesCreature.end());
+    subtypesCreature.erase(unique(subtypesCreature.begin(),subtypesCreature.end()),subtypesCreature.end());
+    return;
+}
+
+const vector<string>& Subtypes::getCreatureValuesById()
+{
+    sort(subtypesCreature.begin(),subtypesCreature.end());
+    subtypesCreature.erase(unique(subtypesCreature.begin(),subtypesCreature.end()),subtypesCreature.end());
+    return subtypesCreature;
+}
+

@@ -38,6 +38,7 @@ protected:
     vector<string> valuesById;
     vector<unsigned int> subtypesToType;
 public:
+    vector<string> subtypesCreature;
     Subtypes();
     int find(string subtype, bool forceAdd = true);
     string find(unsigned int id);
@@ -45,8 +46,11 @@ public:
     bool isSuperType(unsigned int type);
     bool isType(unsigned int type);
     bool isSubType(unsigned int type);
+    void sortSubTypes();
     int add(string value, unsigned int parentType);
     const vector<string>& getValuesById();
+    const vector<string>& getCreatureValuesById();
+    const map<string, int>& getValuesByMap();
 };
 
 #endif

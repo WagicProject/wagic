@@ -472,6 +472,7 @@ public:
     void addAbilities(int _id, Spell * spell);
     MTGAbility * parseUpkeepAbility(string s = "", MTGCardInstance * card = NULL, Spell * spell = NULL, int restrictions = 0, int id = -1);
     MTGAbility * parsePhaseActionAbility(string s = "", MTGCardInstance * card = NULL, Spell * spell = NULL,MTGCardInstance * target = NULL, int restrictions = 0, int id = -1);
+    MTGAbility * parseChooseActionAbility(string s = "", MTGCardInstance * card = NULL, Spell * spell = NULL,MTGCardInstance * target = NULL, int restrictions = 0, int id = -1);
 
 };
 

@@ -107,6 +107,7 @@ int MTGCardInstance::init()
     CardPrimitive::init();
     data = this;
     X = 0;
+    castX = 0;
     return 1;
 }
 
@@ -117,6 +118,7 @@ void MTGCardInstance::initMTGCI()
     isToken = false;
     lifeOrig = 0;
     doDamageTest = 1;
+    skipDamageTestOnce = false;
     belongs_to = NULL;
     tapped = 0;
     untapping = 0;
@@ -150,7 +152,10 @@ void MTGCardInstance::initMTGCI()
     mPropertiesChangedSinceLastUpdate = false;
     stillNeeded = true;
     kicked = 0;
-
+    chooseacolor = -1;
+    chooseasubtype = "";
+    coinSide = -1;
+    isAttacking = NULL;
 
     for (int i = 0; i < ManaCost::MANA_PAID_WITH_RETRACE +1; i++)
         alternateCostPaid[i] = 0;
@@ -162,6 +167,7 @@ void MTGCardInstance::initMTGCI()
     thatmuch = 0;
     flanked = 0;
     target = NULL;
+    playerTarget = NULL;
     playerTarget = NULL;
     type_as_damageable = DAMAGEABLE_MTGCARDINSTANCE;
     banding = NULL;
@@ -177,16 +183,13 @@ void MTGCardInstance::initMTGCI()
     cardsAbilities = vector<MTGAbility *>();
     data = this; //an MTGCardInstance point to itself for data, allows to update it without killing the underlying database item
 
-    if (basicAbilities[(int)Constants::CHANGELING])
+    if (observer && basicAbilities[(int)Constants::CHANGELING])
     {//if the card is a changeling, it gains all creature subtypes
-        const vector<string> values = MTGAllCards::getValuesById();
+        vector<string> values = MTGAllCards::getCreatureValuesById();
         for (size_t i = 0; i < values.size(); ++i)
         {
-            if (!MTGAllCards::isSubtypeOfType(i,Subtypes::TYPE_CREATURE))
-                continue;
-
-            //Don' want to send any event to the gameObserver inside of initMCGI, so calling the parent addType method instead of mine
-            CardPrimitive::addType(i);
+            //Don' want to send any event to the gameObserver inside of initMCGI, so calling the parent setSubtype method instead of mine
+            CardPrimitive::setSubtype(values[i].c_str());
         }
     }
 
@@ -292,6 +295,11 @@ int MTGCardInstance::isInPlay(GameObserver* game)
 
 int MTGCardInstance::afterDamage()
 {
+    if(skipDamageTestOnce)
+    {
+        skipDamageTestOnce = false;
+        return 0;
+    }
     if (!doDamageTest)
         return 0;
     doDamageTest = 0;
@@ -520,9 +528,7 @@ int MTGCardInstance::hasSummoningSickness()
 MTGCardInstance * MTGCardInstance::changeController(Player * newController)
 {
     Player * originalOwner = controller();
-    if (originalOwner == newController)
-        return this;
-    MTGCardInstance * copy = originalOwner->game->putInZone(this, originalOwner->game->inPlay, newController->game->inPlay);
+    MTGCardInstance * copy = originalOwner->game->putInZone(this, this->currentZone, newController->game->inPlay);
     copy->summoningSickness = 1;
     return copy;
 }
@@ -738,6 +744,7 @@ int MTGCardInstance::toggleAttacker()
     {
         //untap();
         setAttacker(0);
+        isAttacking = NULL;
         return 1;
     }
     return 0;
@@ -1113,5 +1120,5 @@ std::ostream& operator<<(std::ostream& out, const MTGCardInstance& c)
 
 MTGCardInstance* MTGCardInstance::clone()
 {
-    return new MTGCardInstance(model, owner->game);
+    return NEW MTGCardInstance(model, owner->game);
 }
