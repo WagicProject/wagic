@@ -168,7 +168,6 @@ void MTGCardInstance::initMTGCI()
     flanked = 0;
     target = NULL;
     playerTarget = NULL;
-    playerTarget = NULL;
     type_as_damageable = DAMAGEABLE_MTGCARDINSTANCE;
     banding = NULL;
     owner = NULL;

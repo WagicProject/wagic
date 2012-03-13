@@ -1004,9 +1004,10 @@ class IfThenAbility: public InstantAbility
 {
 public:
     MTGAbility * delayedAbility;
+    MTGAbility * delayedElseAbility;
     int type;
     string Cond;
-    IfThenAbility(GameObserver* observer, int _id,MTGAbility * delayedAbility = NULL, MTGCardInstance * _source=NULL, Targetable * target = NULL, int type = 1,string Cond = "");
+    IfThenAbility(GameObserver* observer, int _id,MTGAbility * delayedAbility = NULL,MTGAbility * delayedElseAbility = NULL, MTGCardInstance * _source=NULL, Targetable * target = NULL, int type = 1,string Cond = "");
     int resolve();
     const char * getMenuText();
     IfThenAbility * clone() const;
@@ -1108,6 +1109,16 @@ public:
     GenericActivatedAbility * clone() const;
     ~GenericActivatedAbility();
 
+};
+
+//place a card on the bottom of owners library
+class AALibraryBottom: public ActivatedAbility
+{
+public:
+    AALibraryBottom(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target = NULL, ManaCost * _cost = NULL);
+    int resolve();
+    const char * getMenuText();
+    AALibraryBottom * clone() const;
 };
 
 //Copier. ActivatedAbility
@@ -2659,6 +2670,11 @@ public:
         if(sabilities.find("battleready") != string::npos)
             battleReady = true;
 
+        if(sabilities.find("chosencolor") != string::npos)
+        {
+            colors.push_back(source->chooseacolor);
+        }
+
         for (int j = 0; j < Constants::NB_Colors; j++)
         {
             size_t found = sabilities.find(Constants::MTGColorStrings[j]);
@@ -2674,12 +2690,21 @@ public:
             size_t found = s.find(" ");
             if (found != string::npos)
             {
-                int id = MTGAllCards::findType(s.substr(0, found));
+                string toCheck = s.substr(0, found);
+                if(toCheck.find("chosentype") != string::npos || toCheck.find("Chosentype") != string::npos)
+                {
+                    toCheck = source->chooseasubtype;
+                }
+                int id = MTGAllCards::findType(toCheck);
                 types.push_back(id);
                 s = s.substr(found + 1);
             }
             else
             {
+                if(s.find("chosentype") != string::npos || s.find("Chosentype") != string::npos)
+                {
+                    s = source->chooseasubtype;
+                }
                 int id = MTGAllCards::findType(s);
                 types.push_back(id);
                 s = "";
@@ -3404,6 +3429,17 @@ public:
     {
         return NEW ASwapPT(*this);
     }
+};
+
+class AAExchangeLife: public ActivatedAbilityTP
+{
+public:
+    AAExchangeLife(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable * _target, ManaCost * _cost = NULL,
+             int who = TargetChooser::UNSET);
+    int resolve();
+    const char * getMenuText();
+    AAExchangeLife * clone() const;
+
 };
 
 // Add life of gives damage if a given zone has more or less than [condition] cards at the beginning of [phase]
@@ -4951,9 +4987,6 @@ public:
         return NEW APhaseAlter(*this);
     }
 };
-
-//--------------Addon Abra------------------
-
 //Basilik --> needs to be made more generic to avoid duplicate (also something like if opponent=type then ...)
 class ABasilik: public MTGAbility
 {
@@ -5013,6 +5046,19 @@ public:
     int resolve();
     const char * getMenuText();
     AADepleter * clone() const;
+};
+
+//Generic skip turn/extra turn
+class AAModTurn: public ActivatedAbilityTP
+{
+public:
+    string nbTurnStr;
+
+    AAModTurn(GameObserver* observer, int _id, MTGCardInstance * card, Targetable * _target,string nbTurnStr, ManaCost * _cost = NULL,
+            int who = TargetChooser::UNSET);
+    int resolve();
+    const char * getMenuText();
+    AAModTurn * clone() const;
 };
 
 //Shuffle
@@ -5283,6 +5329,15 @@ public:
         int resolve()
         {
             MTGCardInstance * _theftTarget = (MTGCardInstance*)target;
+            bool recast = false;
+            if(!_theftTarget->isInPlay(game))
+            {
+                recast = true;
+            }
+            while(_theftTarget->next)
+            {
+                _theftTarget= _theftTarget->next;
+            }
             if(_theftTarget)
             {
                 TrueController = _theftTarget->controller();
@@ -5291,7 +5346,13 @@ public:
                 target = copy;
                 source->target = copy;
                 copy->summoningSickness = 0;
+                if(recast)
+                {
+                    Spell * spell = NEW Spell(game, copy);
+                    spell->resolve();
+                    SAFE_DELETE(spell);
                 }
+            }
             return 1;
         }
 
@@ -5318,6 +5379,76 @@ public:
     }
 };
 
+//----------------------------------------------
+class AASetColorChosen: public InstantAbility
+{
+public:
+    int color;
+    string abilityToAlter;
+    MTGAbility * abilityAltered;
+    AASetColorChosen(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target, int _color = 0 ,string toAdd = "");
+    int resolve();
+    const char* getMenuText();
+    AASetColorChosen * clone() const;
+    ~AASetColorChosen();
+};
+class AASetTypeChosen: public InstantAbility
+{
+public:
+    int type;
+    string menutext;
+    string abilityToAlter;
+    MTGAbility * abilityAltered;
+    AASetTypeChosen(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target, int _type = 0,string menu = "error" ,string toAdd = "");
+    int resolve();
+    const char* getMenuText();
+    AASetTypeChosen * clone() const;
+    ~AASetTypeChosen();
+};
+class GenericChooseTypeColor: public ActivatedAbility
+{
+public:
+    string baseAbility;
+    bool chooseColor;
+    AASetColorChosen * setColor;
+    AASetTypeChosen * setType;
+    bool ANonWall;
+    GenericChooseTypeColor(GameObserver* observer, int id, MTGCardInstance * source, Targetable * target, string toAdd = "",bool chooseColor = false,bool nonwall = false, ManaCost * cost = NULL);
+    int resolve();
+    const char* getMenuText();
+    GenericChooseTypeColor * clone() const;
+    ~GenericChooseTypeColor();
+
+};
+//------------------------------------------------
+//flip a coin and call it, with win or lose abilities
+class AASetCoin: public InstantAbility
+{
+public:
+    int side;
+    string abilityToAlter;
+    string abilityWin;
+    string abilityLose;
+    MTGAbility * abilityAltered;
+    AASetCoin(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target, int side = -1,string toAdd = "");
+    int resolve();
+    const char* getMenuText();
+    AASetCoin * clone() const;
+    ~AASetCoin();
+};
+class GenericFlipACoin: public ActivatedAbility
+{
+public:
+    string baseAbility;
+    bool chooseColor;
+    AASetCoin * setCoin;
+    GenericFlipACoin(GameObserver* observer, int id, MTGCardInstance * source, Targetable * target, string toAdd = "", ManaCost * cost = NULL);
+    int resolve();
+    const char* getMenuText();
+    GenericFlipACoin * clone() const;
+    ~GenericFlipACoin();
+
+};
 // utility functions
 
 void PopulateColorIndexVector(list<int>& colors, const string& colorsString, char delimiter = ',');

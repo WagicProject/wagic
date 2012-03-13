@@ -165,7 +165,11 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
                         }
                     case 'c': //Counters or cycle
                         {
-                            if(value == "cycle")
+                            if(value == "chosencolor")
+                            {
+                                manaCost->add(c->chooseacolor, 1);
+                            }
+                            else if(value == "cycle")
                             {
                                 manaCost->addExtraCost(NEW CycleCost(tc));
                             }
@@ -631,6 +635,11 @@ int ManaCost::addExtraCost(ExtraCost * _cost)
 
 int ManaCost::addExtraCosts(ExtraCosts *_ecost)
 {
+    if(!_ecost)
+    {
+        extraCosts = NULL;
+        return 1;
+    }
     if (!extraCosts)
         extraCosts = NEW ExtraCosts();
     for(size_t i = 0; i < _ecost->costs.size(); i++)

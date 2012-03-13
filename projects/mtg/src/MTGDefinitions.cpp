@@ -123,7 +123,11 @@ const char* Constants::MTGBasicAbilities[] = {
     "canattack",
     "hydra",
     "undying",
-    "poisonshroud"
+    "poisonshroud",
+    "noactivatedability",
+    "notapability",
+    "nomanaability",
+    "onlymanaability"
 };
 
 map<string,int> Constants::MTGBasicAbilitiesMap;

@@ -203,6 +203,33 @@ public:
     virtual MTGAttackRule * clone() const;
 };
 
+
+class MTGPlaneswalkerAttackRule: public PermanentAbility, public Limitor
+{
+public:
+ 
+    virtual bool select(Target*);
+    virtual bool greyout(Target*);
+    int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
+    int reactToClick(MTGCardInstance * card);
+    MTGPlaneswalkerAttackRule(GameObserver* observer, int _id);
+    const char * getMenuText()
+    {
+        return "Attack Planeswalker";
+    }
+    virtual MTGPlaneswalkerAttackRule * clone() const;
+};
+class AAPlaneswalkerAttacked: public InstantAbility
+{
+public:
+    string menuText;
+    MTGCardInstance* attacker;
+    AAPlaneswalkerAttacked(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target);
+    int resolve();
+    const char* getMenuText();
+    AAPlaneswalkerAttacked * clone() const;
+    ~AAPlaneswalkerAttacked();
+};
 /* handles combat trigger send recieve events*/
 class MTGCombatTriggersRule: public PermanentAbility
 {
@@ -292,7 +319,16 @@ public:
     virtual ostream& toString(ostream& out) const;
     virtual MTGPlaneWalkerRule * clone() const;
 };
+/* LifeLink */
+class MTGPlaneswalkerDamage: public PermanentAbility
+{
+public:
+    MTGPlaneswalkerDamage(GameObserver* observer, int _id);
 
+    int receiveEvent(WEvent * event);
+
+    virtual MTGPlaneswalkerDamage * clone() const;
+};
 class MTGMomirRule: public PermanentAbility
 {
 private:

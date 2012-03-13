@@ -183,6 +183,7 @@ AADamager::AADamager(GameObserver* observer, int _id, MTGCardInstance * _source,
     ActivatedAbilityTP(observer, _id, _source, _target, _cost, who), d(d)
 {
     aType = MTGAbility::DAMAGER;
+    redirected = false;
     }
 
     int AADamager::resolve()
@@ -191,6 +192,33 @@ AADamager::AADamager(GameObserver* observer, int _id, MTGCardInstance * _source,
         if (_target)
         {
             WParsedInt damage(d, NULL, (MTGCardInstance *)source);
+            if(_target == game->opponent() && game->opponent()->inPlay()->hasType("planeswalker") && !redirected)
+            {
+                vector<MTGAbility*>selection;
+                MTGCardInstance * check = NULL;
+                this->redirected = true;
+                MTGAbility * setPlayer = this->clone();
+                selection.push_back(setPlayer);
+                int checkWalkers = ((Player*)_target)->game->battlefield->cards.size();
+                for(int i = 0; i < checkWalkers;++i)
+                {
+                    check = ((Player*)_target)->game->battlefield->cards[i];
+                    if(check->hasType(Subtypes::TYPE_PLANESWALKER))
+                    {
+                        MTGAbility * setWalker = this->clone();
+                        setWalker->oneShot = true;
+                        setWalker->target = check;
+                        selection.push_back(setWalker);
+                    }
+                }
+                if(selection.size())
+                {
+                    MTGAbility * a1 = NEW MenuAbility(game, this->GetId(), source, source,true,selection);
+                    game->mLayers->actionLayer()->currentActionCard = source;
+                    a1->resolve();
+                }
+                return 1;
+            }
             game->mLayers->stackLayer()->addDamage(source, _target, damage.getValue());
             game->mLayers->stackLayer()->resolve();
             return 1;
@@ -206,6 +234,11 @@ AADamager::AADamager(GameObserver* observer, int _id, MTGCardInstance * _source,
 
     const char * AADamager::getMenuText()
     {
+        MTGCardInstance * _target = dynamic_cast<MTGCardInstance*>(target);
+        if(_target && _target->hasType(Subtypes::TYPE_PLANESWALKER))
+            return _target->name.c_str();
+        if(redirected)
+            return "Damage Player";
         return "Damage";
     }
 
@@ -246,6 +279,83 @@ const char * AADepleter::getMenuText()
 AADepleter * AADepleter::clone() const
 {
     return NEW AADepleter(*this);
+}
+
+//take extra turns or skip turns, values in the negitive will make you skip.
+AAModTurn::AAModTurn(GameObserver* observer, int _id, MTGCardInstance * card, Targetable * _target,string nbTurnStr, ManaCost * _cost, int who) :
+    ActivatedAbilityTP(observer, _id, card, _target, _cost, who),nbTurnStr(nbTurnStr)
+{
+
+}
+    int AAModTurn::resolve()
+    {
+        Player * player = getPlayerFromTarget(getTarget());
+        if (player)
+        {
+            WParsedInt numTurns(nbTurnStr, NULL, source);
+            if(numTurns.getValue() > 0)
+            {
+                player->extraTurn += numTurns.getValue();
+            }
+            else
+            {
+                player->skippingTurn += abs(numTurns.getValue());
+
+            }
+        }
+        return 1;
+    }
+
+    const char * AAModTurn::getMenuText()
+    {
+        WParsedInt numTurns(nbTurnStr, NULL, source);
+        if(numTurns.getValue() > 0)
+            return "Take Extra Turn(s)";
+        else
+            return "Skip A Turn(s)";
+    }
+
+AAModTurn * AAModTurn::clone() const
+{
+    return NEW AAModTurn(*this);
+}
+
+//move target to bottom of owners library
+AALibraryBottom::AALibraryBottom(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target, ManaCost * _cost) :
+ActivatedAbility(observer, _id, _source, _cost, 0)
+{
+    target = _target;
+}
+
+int AALibraryBottom::resolve()
+{
+    MTGCardInstance * _target = (MTGCardInstance *) target;
+    if (_target = _target->owner->game->putInLibrary(_target))
+    {
+        MTGLibrary * library = _target->owner->game->library;
+        vector<MTGCardInstance *>oldOrder = library->cards;
+        vector<MTGCardInstance *>newOrder;
+        newOrder.push_back(_target);
+        for(unsigned int k = 0;k < oldOrder.size();++k)
+        {
+            MTGCardInstance * rearranged = oldOrder[k];
+            if(rearranged != _target)
+                newOrder.push_back(rearranged);
+        }
+        library->cards = newOrder;
+        return 1;
+    }
+    return 0;
+}
+
+const char * AALibraryBottom::getMenuText()
+{
+    return "Bottom Of Library";
+}
+
+AALibraryBottom * AALibraryBottom::clone() const
+{
+    return NEW AALibraryBottom(*this);
 }
 
 //AACopier
@@ -670,8 +780,318 @@ AAProliferate * AAProliferate::clone() const
 AAProliferate::~AAProliferate()
 {
 }
+//
+//choosing a type or color
+GenericChooseTypeColor::GenericChooseTypeColor(GameObserver* observer, int id, MTGCardInstance * source, Targetable * target,string _toAdd,bool chooseColor,bool nonwall, ManaCost * cost) :
+ActivatedAbility(observer, id, source, cost, 0), baseAbility(_toAdd),chooseColor(chooseColor),ANonWall(nonwall)
+{
+    this->GetId();
+    setColor = NULL;
+}
+int GenericChooseTypeColor::resolve()
+{
+    if (!target)
+        return 0;
+    vector<MTGAbility*>selection;
+    if(chooseColor)
+    {
+        for (int i = Constants::MTG_COLOR_GREEN; i <= Constants::MTG_COLOR_WHITE; ++i)
+        {
+            setColor = NEW AASetColorChosen(game, game->mLayers->actionLayer()->getMaxId(), source,(MTGCardInstance*)target, i, baseAbility);
+            MTGAbility * set = setColor->clone();
+            set->oneShot = true;
+            selection.push_back(set);
+            SAFE_DELETE(setColor);
+        }
+    }
+    else
+    {
+        vector<string> values = MTGAllCards::getCreatureValuesById();
+        for (size_t i = 0; i < values.size(); ++i)
+        {
+            string menu = values[i];
+            if(!ANonWall || (menu != "wall" && menu != "Wall"))
+            {
+            setType = NEW AASetTypeChosen(game, game->mLayers->actionLayer()->getMaxId(), source,(MTGCardInstance*)target, i,menu,baseAbility);
+            MTGAbility * set = setType->clone();
+            set->oneShot = true;
+            selection.push_back(set);
+            SAFE_DELETE(setType);
+            }
+        }
+    }
+
+    if(selection.size())
+    {
+        MTGAbility * a1 = NEW MenuAbility(game, this->GetId(), target, source,true,selection);
+        game->mLayers->actionLayer()->currentActionCard = (MTGCardInstance *)target;
+        a1->resolve();
+    }
+    return 1;
+
+}
+
+const char* GenericChooseTypeColor::getMenuText()
+{
+    if(chooseColor)
+        return "Choose a color";
+    else
+        return "Choose a type";
+}
+
+GenericChooseTypeColor * GenericChooseTypeColor::clone() const
+{
+    GenericChooseTypeColor * a = NEW GenericChooseTypeColor(*this);
+    return a;
+}
+
+GenericChooseTypeColor::~GenericChooseTypeColor()
+{
+}
+
+//set color choosen
+ AASetColorChosen::AASetColorChosen(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * _target,int _color , string toAlter):
+    InstantAbility(observer, id, source),color(_color), abilityToAlter(toAlter)
+{
+    this->target = _target;
+    abilityAltered = NULL;
+}
+int AASetColorChosen::resolve()
+{
+    MTGCardInstance * _target =  (MTGCardInstance *)target; 
+    _target->chooseacolor = color;
+
+    if(abilityToAlter.size())
+    {
+        AbilityFactory af(game);
+        abilityAltered = af.parseMagicLine(abilityToAlter, 0, NULL, _target);
+        if(!abilityAltered)
+            return 0;
+        abilityAltered->canBeInterrupted = false;
+        if(abilityAltered->oneShot)
+        {
+            abilityAltered->resolve();
+            SAFE_DELETE(abilityAltered);
+        }
+        else
+        {
+            abilityAltered->target = _target;
+            MayAbility * dontAdd = dynamic_cast<MayAbility*>(abilityAltered);
+            if (!dontAdd)
+            {
+                _target->cardsAbilities.push_back(abilityAltered);
+                for(unsigned int j = 0;j < _target->cardsAbilities.size();++j)
+                {
+                    if(_target->cardsAbilities[j] == this)
+                        _target->cardsAbilities.erase(_target->cardsAbilities.begin() + j);
+                }
+            }
+            abilityAltered->addToGame();
+        }
+        _target->skipDamageTestOnce = true;//some cards rely on this ability updating before damage test are run. otherwise they die before toughnes bonus applies.
+    }
+    return 1;
+}
+
+const char* AASetColorChosen::getMenuText()
+{
+    return Constants::MTGColorStrings[color];
+}
+
+AASetColorChosen * AASetColorChosen::clone() const
+{
+    return NEW AASetColorChosen(*this);
+}
+
+AASetColorChosen::~AASetColorChosen()
+{
+}
+
+//set type choosen
+ AASetTypeChosen::AASetTypeChosen(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * _target,int _type ,string _menu,string toAlter):
+    InstantAbility(observer, id, source),type(_type), abilityToAlter(toAlter), menutext(_menu)
+{
+    this->target = _target;
+    abilityAltered = NULL;
+}
+int AASetTypeChosen::resolve()
+{
+    MTGCardInstance * _target =  (MTGCardInstance *)target; 
+    string typeChoosen = menutext;
+    _target->chooseasubtype = typeChoosen;
+
+    if(abilityToAlter.size())
+    {
+        AbilityFactory af(game);
+        abilityAltered = af.parseMagicLine(abilityToAlter, 0, NULL, _target);
+        if(abilityAltered->oneShot)
+        {
+            abilityAltered->resolve();
+            SAFE_DELETE(abilityAltered);
+        }
+        else
+        {
+            abilityAltered->target = _target;
+            MayAbility * dontAdd = dynamic_cast<MayAbility*>(abilityAltered);
+            if (!dontAdd)
+            {
+                _target->cardsAbilities.push_back(abilityAltered);
+                for(unsigned int j = 0;j < _target->cardsAbilities.size();++j)
+                {
+                    if(_target->cardsAbilities[j] == this)
+                        _target->cardsAbilities.erase(_target->cardsAbilities.begin() + j);
+                }
+            }
+
+            abilityAltered->addToGame();
+        }
+         _target->skipDamageTestOnce = true;//some cards rely on this ability updating before damage test are run. otherwise they die before toughnes bonus applies.
+    }
+    return 1;
+}
+
+const char* AASetTypeChosen::getMenuText()
+{
+    return menutext.c_str();
+}
+
+AASetTypeChosen * AASetTypeChosen::clone() const
+{
+    return NEW AASetTypeChosen(*this);
+}
+
+AASetTypeChosen::~AASetTypeChosen()
+{
+}
 
 //
+//choosing a type or color
+GenericFlipACoin::GenericFlipACoin(GameObserver* observer, int id, MTGCardInstance * source, Targetable * target,string _toAdd, ManaCost * cost) :
+ActivatedAbility(observer, id, source, cost, 0), baseAbility(_toAdd),chooseColor(chooseColor)
+{
+    this->GetId();
+    setCoin = NULL;
+}
+
+int GenericFlipACoin::resolve()
+{
+    if (!target)
+        return 0;
+    vector<MTGAbility*>selection;
+    for (int i = 0; i <2; ++i)
+    {
+        setCoin = NEW AASetCoin(game, game->mLayers->actionLayer()->getMaxId(), source,(MTGCardInstance*)target, i, baseAbility);
+        MTGAbility * set = setCoin->clone();
+        set->oneShot = true;
+        selection.push_back(set);
+        SAFE_DELETE(setCoin);
+    }
+
+    if(selection.size())
+    {
+        MTGAbility * a1 = NEW MenuAbility(game, this->GetId(), target, source,false,selection);
+        game->mLayers->actionLayer()->currentActionCard = (MTGCardInstance *)target;
+        a1->resolve();
+    }
+    return 1;
+
+}
+
+const char* GenericFlipACoin::getMenuText()
+{
+return "Flip A Coin";
+}
+
+GenericFlipACoin * GenericFlipACoin::clone() const
+{
+    GenericFlipACoin * a = NEW GenericFlipACoin(*this);
+    return a;
+}
+
+GenericFlipACoin::~GenericFlipACoin()
+{
+}
+
+//set color choosen
+ AASetCoin::AASetCoin(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * _target,int _side , string toAlter):
+    InstantAbility(observer, id, source),side(_side), abilityToAlter(toAlter)
+{
+    this->target = _target;
+    abilityAltered = NULL;
+}
+
+int AASetCoin::resolve()
+{
+    MTGCardInstance * _target =  (MTGCardInstance *)target; 
+    _target->coinSide = side;
+
+    int flip = game->getRandomGenerator()->random() % 2;
+    vector<string>Win = parseBetween(abilityToAlter,"winability "," winabilityend");
+    if(Win.size())
+    {
+        abilityWin = Win[1];
+    }
+    vector<string>Lose = parseBetween(abilityToAlter,"loseability "," loseabilityend");
+    if(Lose.size())
+    {
+        abilityLose = Lose[1];
+    }
+
+    if(abilityWin.size() && flip == side)
+    {
+        AbilityFactory af(game);
+        abilityAltered = af.parseMagicLine(abilityWin, 0, NULL, _target);
+        abilityAltered->canBeInterrupted = false;
+        if(abilityAltered->oneShot)
+        {
+            abilityAltered->resolve();
+            SAFE_DELETE(abilityAltered);
+        }
+        else
+        {
+            abilityAltered->addToGame();
+        }
+        MTGAbility * message = NEW MTGEventText(game,this->GetId(), source, "You Won The Flip");
+        message->oneShot = true;
+        message->addToGame();
+    }
+    else if(abilityLose.size() && flip != side)
+    {
+        AbilityFactory af(game);
+        abilityAltered = af.parseMagicLine(abilityLose, 0, NULL, _target);
+        abilityAltered->canBeInterrupted = false;
+        if(abilityAltered->oneShot)
+        {
+            abilityAltered->resolve();
+            SAFE_DELETE(abilityAltered);
+        }
+        else
+        {
+            abilityAltered->addToGame();
+        }
+        MTGAbility * message = NEW MTGEventText(game,this->GetId(), source, "You Lost The Flip");
+        message->oneShot = true;
+        message->addToGame();
+    }
+    _target->skipDamageTestOnce = true;
+    return 1;
+}
+
+const char* AASetCoin::getMenuText()
+{
+    if(side == 1)
+        return "Tails";
+    return "Heads";
+}
+
+AASetCoin * AASetCoin::clone() const
+{
+    return NEW AASetCoin(*this);
+}
+
+AASetCoin::~AASetCoin()
+{
+}
 
 //Reset Damage on creatures
  AAResetDamage::AAResetDamage(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * _target, ManaCost * cost):
@@ -2548,8 +2968,8 @@ ANewAffinity * ANewAffinity::clone() const
 }
 
 //IfThenEffect
-IfThenAbility::IfThenAbility(GameObserver* observer, int _id, MTGAbility * delayedAbility, MTGCardInstance * _source, Targetable * _target, int type,string Cond) :
-InstantAbility(observer, _id, _source),delayedAbility(delayedAbility), type(type),Cond(Cond)
+IfThenAbility::IfThenAbility(GameObserver* observer, int _id, MTGAbility * delayedAbility, MTGAbility * delayedElseAbility, MTGCardInstance * _source, Targetable * _target, int type,string Cond) :
+InstantAbility(observer, _id, _source),delayedAbility(delayedAbility),delayedElseAbility(delayedElseAbility), type(type),Cond(Cond)
 {
     target = _target;
 }
@@ -2575,15 +2995,22 @@ int IfThenAbility::resolve()
         }
 
     }
+    MTGAbility * a1 = NULL;
     if((checkCond && type == 1)||(!checkCond && type == 2))
     {
-        MTGAbility * a1 = delayedAbility->clone();
-        if (!a1)
-            return 0;
-
+        a1 = delayedAbility->clone();
+    }
+    else if(delayedElseAbility)
+    {
+        delayedElseAbility->clone();
+    }
+    if (!a1)
+        return 0;
+    else
+    {
         if(a1->target && !dynamic_cast<Player *>(a1->target))
             a1->target = aTarget;
-        
+
         if(a1->oneShot)
         {
             a1->resolve();
@@ -2820,6 +3247,9 @@ MenuAbility::~MenuAbility()
     {
         for(int i = 0;i < int(abilities.size());i++)
         {
+            AASetColorChosen * chooseA = dynamic_cast<AASetColorChosen *>(abilities[i]);
+            if(chooseA && chooseA->abilityAltered)
+                SAFE_DELETE(chooseA->abilityAltered);
             SAFE_DELETE(abilities[i]);
         }
     }
@@ -3128,6 +3558,10 @@ ATransformer::ATransformer(GameObserver* observer, int id, MTGCardInstance * sou
 
     PopulateAbilityIndexVector(abilities, sabilities);
     PopulateColorIndexVector(colors, sabilities);
+    if(sabilities.find("chosencolor") != string::npos)
+    {
+        colors.push_back(source->chooseacolor);
+    }
    
     //this subkeyword adds a color without removing the existing colors.
     addNewColors = (sabilities.find("newcolors") != string::npos);
@@ -3148,6 +3582,10 @@ ATransformer::ATransformer(GameObserver* observer, int id, MTGCardInstance * sou
 	}
     else
     {
+        if(stypes.find("chosentype") != string::npos)
+        {
+            stypes = source->chooseasubtype;
+        }
         PopulateSubtypesIndexVector(types, stypes);
     }
 
@@ -3520,6 +3958,68 @@ ASwapPTUEOT::~ASwapPTUEOT()
     SAFE_DELETE(ability);
 }
 
+//exhange life with targetchooser
+AAExchangeLife::AAExchangeLife(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable * _target, ManaCost * _cost,
+    int who) :
+ActivatedAbilityTP(observer, _id, _source, _target, _cost, who)
+{
+}
+
+int AAExchangeLife::resolve()
+{
+    Damageable * _target = (Damageable *) getTarget();
+    if (_target)
+    {
+        Player *player = source->controller();
+        int oldlife = player->getLife();
+        int targetOldLife = _target->getLife();
+        int modifier = oldlife > targetOldLife? oldlife - targetOldLife:targetOldLife - oldlife;
+        if (_target->type_as_damageable == DAMAGEABLE_MTGCARDINSTANCE)
+        {
+            int increaser = 0;
+            MTGCardInstance * card = ((MTGCardInstance*)_target);
+            int toughMod = 0;
+            targetOldLife <= card->origtoughness?toughMod = card->origtoughness - targetOldLife: toughMod = targetOldLife - card->origtoughness;
+            if(oldlife > targetOldLife)
+            {
+                increaser = oldlife - targetOldLife;
+                player->gainOrLoseLife(modifier * -1);
+                card->addToToughness(increaser+toughMod);
+            }
+            else
+            {
+                _target->life = oldlife;
+                card->toughness = oldlife;
+                player->gainOrLoseLife(modifier);
+            }
+
+            return 1;
+        }
+        Player * opponent = (Player*)_target;
+        if(oldlife > targetOldLife)
+        {
+            player->gainOrLoseLife(modifier * -1);
+            opponent->gainOrLoseLife(modifier);
+        }
+        else
+        {
+            player->gainOrLoseLife(modifier);
+            opponent->gainOrLoseLife(modifier * -1);
+        }
+        return 1;
+    }
+    return 0;
+}
+
+const char * AAExchangeLife::getMenuText()
+{
+    return "Exchange life";
+}
+
+AAExchangeLife * AAExchangeLife::clone() const
+{
+    return NEW AAExchangeLife(*this);
+}
 
 //ALoseAbilities
 ALoseAbilities::ALoseAbilities(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * _target) :

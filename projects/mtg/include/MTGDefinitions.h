@@ -212,8 +212,12 @@ class Constants
       HYDRA = 92,
       UNDYING = 93,
       POISONSHROUD = 94,
+      NOACTIVATED = 95,
+      NOACTIVATEDTAP = 96,
+      NOMANA = 97,
+      ONLYMANA = 98,
 
-      NB_BASIC_ABILITIES = 95,
+      NB_BASIC_ABILITIES = 99,
 
 
     RARITY_S = 'S',   //Special Rarity

@@ -455,18 +455,37 @@ void GuiCombat::Render()
             (*it)->Render(step);
     if (activeAtk)
     {
+        float setH = 0;
+        float setW = 0;
         signed damage = activeAtk->card->stepPower(step);
         for (vector<DefenserDamaged*>::iterator q = activeAtk->blockers.begin(); q != activeAtk->blockers.end(); ++q)
         {
             (*q)->Render(step);
             damage -= (*q)->sumDamages();
+            setH = (*q)->Height;
+            setW = (*q)->Width;
         }
         if (damage < 0)
             damage = 0;
         if (activeAtk->card->has(Constants::TRAMPLE))
         {
-            observer->opponent()->getIcon()->SetHotSpot(18, 25);
-            enemy_avatar.Render(observer->opponent()->getIcon().get());
+            if(activeAtk->card->isAttacking && activeAtk->card->isAttacking != observer->opponent())
+            {
+                JQuadPtr enemy = WResourceManager::Instance()->RetrieveCard((MTGCardInstance*)activeAtk->card->isAttacking, CACHE_THUMB);
+                float oldH = enemy->mHeight;
+                float oldW = enemy->mWidth;
+                enemy->mHeight = setH;
+                enemy->mWidth = setW;
+                enemy->SetHotSpot(18, 25);
+                enemy_avatar.Render(enemy.get());
+                enemy->mHeight = oldH;
+                enemy->mWidth = oldW;
+            }
+            else
+            {
+                observer->opponent()->getIcon()->SetHotSpot(18, 25);
+                enemy_avatar.Render(observer->opponent()->getIcon().get());
+            }
             WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
             mFont->SetColor(ARGB(255, 255, 64, 0));
             {
@@ -474,6 +493,7 @@ void GuiCombat::Render()
                 sprintf(buf, "%i", damage);
                 mFont->DrawString(buf, enemy_avatar.actX - 25, enemy_avatar.actY - 40);
             }
+
         }
     }
     if (ok_tex)
@@ -506,7 +526,8 @@ int GuiCombat::resolve() // Returns the number of damage objects dealt this turn
         }
 
         if (dmg > 0 && ((!attacker->isBlocked()) || attacker->has(Constants::TRAMPLE)))
-            stack->Add(NEW Damage(observer, (*it)->card, observer->opponent(), dmg, DAMAGE_COMBAT));
+            stack->Add(NEW Damage(observer, (*it)->card, (Damageable*)attacker->isAttacking?(Damageable*)attacker->isAttacking:observer->opponent(), dmg, DAMAGE_COMBAT));
+
         for (vector<Damage>::iterator d = (*it)->damages.begin(); d != (*it)->damages.end(); ++d)
             stack->Add(NEW Damage(*d));
     }

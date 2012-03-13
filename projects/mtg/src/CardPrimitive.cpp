@@ -39,8 +39,6 @@ CardPrimitive::CardPrimitive(CardPrimitive * source)
 {
     if(!source)
         return;
-    if(!source)
-        return;
     basicAbilities = source->basicAbilities;
 
     for (size_t i = 0; i < source->types.size(); ++i)

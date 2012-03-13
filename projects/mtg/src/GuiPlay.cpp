@@ -190,7 +190,7 @@ void GuiPlay::Replace()
     for (iterator it = cards.begin(); it != end_spells; ++it)
         if (!(*it)->card->target)
         {
-            if(!(*it)->card->hasSubtype(Subtypes::TYPE_AURA) && !(*it)->card->hasType(Subtypes::TYPE_PLANESWALKER))
+            if((!(*it)->card->hasSubtype(Subtypes::TYPE_AURA)|| ((*it)->card->hasSubtype(Subtypes::TYPE_AURA) && (*it)->card->playerTarget)) && !(*it)->card->hasType(Subtypes::TYPE_PLANESWALKER))
             {
                 if (observer->players[0] == (*it)->card->controller())
                     ++selfSpellsN;
@@ -226,7 +226,7 @@ void GuiPlay::Replace()
     for (iterator it = cards.begin(); it != end_spells; ++it)
         if (!(*it)->card->target)
         {
-            if(!(*it)->card->hasSubtype(Subtypes::TYPE_AURA) && !(*it)->card->hasType(Subtypes::TYPE_PLANESWALKER))
+            if((!(*it)->card->hasSubtype(Subtypes::TYPE_AURA)|| ((*it)->card->hasSubtype(Subtypes::TYPE_AURA) && (*it)->card->playerTarget)) && !(*it)->card->hasType(Subtypes::TYPE_PLANESWALKER))
             {
                 if (observer->players[0] == (*it)->card->controller())
                     selfSpells.Enstack(*it);

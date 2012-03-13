@@ -423,58 +423,59 @@ Counter * AbilityFactory::parseCounter(string s, MTGCardInstance * target, Spell
     int nb = 1;
     int maxNb = 0;
     string name = "";
-    size_t start = 0;
-    size_t end = s.length();
-    size_t separator = s.find(",", start);
-    if (separator == string::npos)
-        separator = s.find(".", start);
-    if (separator != string::npos)
-    {
-        size_t separator2 = s.find(",", separator + 1);
-        if (separator2 == string::npos)
-            separator2 = s.find(".", separator + 1);
-        size_t separator3 = string::npos;
-        if (separator2 != string::npos)
-        {
-            name = s.substr(separator2 + 1, end - separator2 - 1);
-            separator3 = s.find(",", separator2 + 1);
-            if (separator3 != string::npos)
-            {
-                name = s.substr(separator2 + 1,separator3 - separator2 - 1);
-            }
-        }
-        string nbstr = s.substr(separator + 1, separator2 - separator - 1);
-        WParsedInt * wpi;
-        if (target)
-        {
-            wpi = NEW WParsedInt(nbstr, spell, target);
-        }
-        else
-        {
-            wpi = NEW WParsedInt(atoi(nbstr.c_str()));
-        }
-        nb = wpi->getValue();
-        delete (wpi);
-        string maxNbstr;
-        if (separator3 != string::npos)
-        {
-            maxNbstr = s.substr(separator3 + 1, end - separator3 - 1);
-            WParsedInt * wpinb;
-            if (target)
-            {
-                wpinb = NEW WParsedInt(maxNbstr, spell, target);
-            }
-            else
-            {
-                wpinb = NEW WParsedInt(atoi(maxNbstr.c_str()));
-            }
-            maxNb = wpinb->getValue();
-            delete(wpinb);
-        }
-        end = separator;
-    }
+    string nbstr = "1";
+    string maxNbstr = "0";
+    string spt = "";
 
-    string spt = s.substr(start, end - start);
+    vector<string>splitCounter = split(s,',');
+    vector<string>splitCounterCheck = split(s,'.');
+    if(splitCounter.size() < splitCounterCheck.size())
+    {
+        splitCounter = splitCounterCheck;//use the one with the most results.
+    }
+    if(!splitCounter.size())
+    {
+        return NULL;
+    }
+    if(splitCounter.size() > 0)//counter(1/1)
+    {
+        spt = splitCounter[0];
+    }
+    if(splitCounter.size() > 1)//counter(1/1,1)
+    {
+        nbstr = splitCounter[1];
+    }
+    if(splitCounter.size() > 2)//counter(0/0,1,charge)
+    {
+        name = splitCounter[2];
+    }
+    if(splitCounter.size() > 3)//counter(0/0,1,charge,2)
+    {
+        maxNbstr = splitCounter[3];
+    }
+    WParsedInt * wpi;
+    if (target)
+    {
+        wpi = NEW WParsedInt(nbstr, spell, target);
+    }
+    else
+    {
+        wpi = NEW WParsedInt(atoi(nbstr.c_str()));
+    }
+    nb = wpi->getValue();
+    delete (wpi);
+    WParsedInt * wpinb;
+    if (target)
+    {
+        wpinb = NEW WParsedInt(maxNbstr, spell, target);
+    }
+    else
+    {
+        wpinb = NEW WParsedInt(atoi(maxNbstr.c_str()));
+    }
+    maxNb = wpinb->getValue();
+    delete(wpinb);
+
     int power, toughness;
     if (parsePowerToughness(spt, &power, &toughness))
     {
@@ -488,22 +489,19 @@ Counter * AbilityFactory::parseCounter(string s, MTGCardInstance * target, Spell
 
 int AbilityFactory::parsePowerToughness(string s, int *power, int *toughness)
 {
-    size_t found = s.find("/");
-    if (found != string::npos)
+    vector<string>splitPT = split(s,'/');
+    vector<string>splitPTCheck = split(s,'%');
+    if(splitPT.size() < 2 && splitPT.size() < splitPTCheck.size())
     {
-        size_t end = s.find(" ", found);
-        if (end == string::npos)
-            end = s.size();
-        size_t start = s.find_last_of(" ", found);
-        if (start == string::npos)
-            start = -1;
-
-        *power = atoi(s.substr(start + 1, s.size() - found).c_str());
-        *toughness = atoi(s.substr(found + 1, end - found - 1).c_str());
-
-        return 1;
+        splitPT = splitPTCheck;
     }
-    return 0;
+    if(!splitPT.size())
+    {
+        return 0;
+    }
+    *power = atoi(splitPT[0].c_str());
+    *toughness = atoi(splitPT[1].c_str());
+    return 1;
 }
 
 TargetChooser * AbilityFactory::parseSimpleTC(const std::string& s, const std::string& _starter, MTGCardInstance * card, bool forceNoTarget)
@@ -551,6 +549,7 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string magicText, int 
     bool opponentPoisoned = (s.find("opponentpoisoned") != string::npos);
 	bool lifelost = (s.find("foelost(") != string::npos);
 	int lifeamount = lifelost ? atoi(s.substr(s.find("foelost(") + 8,')').c_str()) : 0;
+    bool neverRemove = (s.find("dontremove") != string::npos);
 
     //Card Changed Zone
     found = s.find("movedto(");
@@ -602,7 +601,13 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string magicText, int 
             fromTc = tcf.createTargetChooser(starget, card);
             fromTc->targetter = NULL; //avoid protection from
         }
-        return NEW TrCardAddedToZone(observer, id, card, (TargetZoneChooser *) toTc, toTcCard, (TargetZoneChooser *) fromTc, fromTcCard,once,sourceUntapped,isSuspended);
+        TriggeredAbility * mover = NEW TrCardAddedToZone(observer, id, card, (TargetZoneChooser *) toTc, toTcCard, (TargetZoneChooser *) fromTc, fromTcCard,once,sourceUntapped,isSuspended);
+        if(neverRemove)
+        {
+            mover->forcedAlive = 1;
+            mover->forceDestroy = -1;
+        }
+        return mover;
     }
 
     //Card unTapped
@@ -922,6 +927,19 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         observer->addObserver(NEW MTGPlaneWalkerRule(observer, -1));
         return NULL;
     }
+    found = s.find("planeswalkerdamage");
+    if(found != string::npos)
+    {
+        observer->addObserver(NEW MTGPlaneswalkerDamage(observer, -1));
+        return NULL;
+    }
+    found = s.find("planeswalkerattack");
+    if(found != string::npos)
+    {
+        observer->addObserver(NEW MTGPlaneswalkerAttackRule(observer, -1));
+        return NULL;
+    }
+    
         //this handles the clean up of tokens !!MUST BE ADDED BEFORE PERSIST RULE!!
     found = s.find("tokencleanuprule");
     if(found != string::npos)
@@ -965,10 +983,21 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         return NULL;
     }
 
+    
+    if(strncmp(s.c_str(), "chooseacolor ", strlen("chooseacolor ")) == 0 || strncmp(s.c_str(), "chooseatype ", strlen("chooseatype ")) == 0)
+    {
+        MTGAbility * choose = parseChooseActionAbility(s,card,spell,target,0,id);
+        choose = NEW GenericActivatedAbility(observer, "","",id, card,choose,NULL);
+        MayAbility * mainAbility = NEW MayAbility(observer, id, choose, card,true);
+        return mainAbility;
+    }
+
     //need to remove the section inside the transforms ability from the string before parsing
     //TODO: store string values of "&&" so we can remove the classes added just to add support
     //the current parser finds other abilities inside what should be nested abilities, and converts them into
     //actual abilities, this is a limitation.
+    string unchangedS = "";
+    unchangedS.append(s);
     found = s.find("transforms((");
     if (found != string::npos && storedString.empty())
     {
@@ -1040,7 +1069,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
 
     TargetChooser * tc = NULL;
     string sWithoutTc = s;
-
+    string tcString = "";
     //Target Abilities - We also handle the case "notatarget" here, for things such as copy effects
     bool isTarget = true;
     vector<string> splitTarget = parseBetween(s, "notatarget(", ")");
@@ -1053,6 +1082,8 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     {
         TargetChooserFactory tcf(observer);
         tc = tcf.createTargetChooser(splitTarget[1], card);
+        tcString = splitTarget[1];
+
         if (!isTarget)
             tc->targetter = NULL;
         sWithoutTc = splitTarget[0];
@@ -1139,7 +1170,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             if (tc)
             {
                 tc->belongsToAbility = sWithoutTc;
-                return NEW GenericTargetAbility(observer, newName,castRestriction,id, card, tc, a, cost, limit,sideEffect,usesBeforeSideEffect, restrictions, dest);
+                return NEW GenericTargetAbility(observer, newName,castRestriction,id, card, tc, a, cost, limit,sideEffect,usesBeforeSideEffect, restrictions, dest,tcString);
             }
             return NEW GenericActivatedAbility(observer, newName,castRestriction,id, card, a, cost, limit,sideEffect,usesBeforeSideEffect,restrictions, dest);
         }
@@ -1171,10 +1202,20 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         if (sWithoutTc.find(ifKeywords[i]) == 0)
         {
             string cond = sWithoutTc.substr(ifKeywords[i].length(),ifKeywords[i].length() + sWithoutTc.find(" then ")-6);
-            string s1 = s.substr(s.find(" then ")+6);
+            size_t foundElse = s.find(" else ");
+            MTGAbility * a2 = NULL;
+            if(foundElse != string::npos)
+            {
+                string s2 = s.substr(foundElse+6);
+                if(s2.size())
+                    s.erase(s.find(" else ")+1);
+                a2 = parseMagicLine(s2, id, spell, card);
+            }
+            string s1 = s.substr(foundElse+6);
             MTGAbility * a1 = parseMagicLine(s1, id, spell, card);
+            
             if(!a1) return NULL;
-            MTGAbility * a = NEW IfThenAbility(observer, id, a1, card,(Targetable*)target,checkIf[i],cond);
+            MTGAbility * a = NEW IfThenAbility(observer, id, a1,a2, card,(Targetable*)target,checkIf[i],cond);
             a->canBeInterrupted = false;
             a->oneShot = true;
             if(tc)
@@ -1182,7 +1223,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             return a;
         }
     }
-
+    
     //When...comes into play, you may...
     //When...comes into play, choose one...
     const string mayKeywords[] = {"may ", "choice "};
@@ -1218,7 +1259,6 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             return mainAbility;
         }
     }
-
     // Generic "Until end of turn" effect
     if (s.find("ueot ") == 0)
     {
@@ -1228,6 +1268,31 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             return NULL;
 
         return NEW GenericInstantAbility(observer, 1, card, (Damageable *) target, a1);
+    }
+
+        // neverending effect
+    if (s.find("emblem ") == 0)
+    {
+        string s1 = s.substr(7);
+        MTGAbility * a1 = parseMagicLine(s1, id, spell, card);
+        if (!a1)
+            return NULL;
+
+        return NEW GenericAbilityMod(observer, 1, card,spell?spell->getNextDamageableTarget():(Damageable *) target, a1);;
+    }
+
+    //choose a color
+    vector<string> splitChooseAColor = parseBetween(s, "activatechooseacolor ", " activatechooseend");
+    if (splitChooseAColor.size())
+    {
+        return parseChooseActionAbility(unchangedS,card,spell,target,restrictions,id);
+    }
+
+    //choose a type
+    vector<string> splitChooseAType = parseBetween(s, "activatechooseatype ", " activatechooseend");
+    if (splitChooseAType.size())
+    {
+        return parseChooseActionAbility(unchangedS,card,spell,target,restrictions,id);
     }
 
     //Upkeep Cost
@@ -1249,7 +1314,10 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     found = s.find("forcedalive");
     if (found != string::npos)
         forcedalive = 1;
-
+    bool neverRemove = false;
+    found = s.find("dontremove");
+    if (found != string::npos)
+        neverRemove = true;
     //rather dirty way to stop thises and lords from conflicting with each other.
     size_t lord = string::npos;
     for (size_t j = 0; j < kLordKeywordsCount; ++j)
@@ -1343,6 +1411,14 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             {
                 result->oneShot = oneShot;
                 a->forcedAlive = forcedalive;
+                if(neverRemove)
+                {
+                    result->forceDestroy = -1;
+                    result->forcedAlive = 1;
+                    a->forceDestroy = -1;
+                    a->forcedAlive = 1;
+                }
+
             }
             return result;
         }
@@ -1495,6 +1571,14 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             {
                 result->oneShot = oneShot;
                 a->forcedAlive = forcedalive;
+                if(neverRemove)
+                {
+                    result->oneShot = false;
+                    result->forceDestroy = -1;
+                    result->forcedAlive = 1;
+                    a->forceDestroy = -1;
+                    a->forcedAlive = 1;
+                }
             }
             return result;
         }
@@ -1585,6 +1669,18 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     {
         return parsePhaseActionAbility(s,card,spell,target,restrictions,id);
     }
+
+    //flip a coin
+    vector<string> splitFlipCoin = parseBetween(s, "flipacoin ", " flipend");
+    if (splitFlipCoin.size())
+    {
+        string a1 = splitFlipCoin[1];
+        MTGAbility * a = NEW GenericFlipACoin(observer, id, card, target,a1);
+        a->oneShot = 1;
+        a->canBeInterrupted = false;
+        return a;
+    }
+
     //Upkeep Cost
     found = s.find("upcost");
     if (found != string::npos)
@@ -1769,6 +1865,15 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
          return a;
     }
 
+    //put a card on bottom of library
+    found = s.find("bottomoflibrary");
+    if (found != string::npos)
+    {
+        MTGAbility * a = NEW AALibraryBottom(observer, id, card, target);
+        a->oneShot = 1;
+        return a;
+    }
+
     //Copy a target
     found = s.find("copy");
     if (found != string::npos)
@@ -1813,6 +1918,14 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     {
         MTGAbility *a = NEW AABuryCard(observer, id, card, target);
         a->oneShot = 1;
+        if(s.find("and(") != string::npos)
+        {
+            vector<string> splitAnd = parseBetween(s, "and((", " ))",false);
+            if(splitAnd.size())
+            {
+                ((AABuryCard*)a)->andAbility = parseMagicLine(splitAnd[1], id, spell, card);
+            }
+        }
         return a;
     }
 
@@ -1820,6 +1933,14 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     {
         MTGAbility * a = NEW AADestroyCard(observer, id, card, target);
         a->oneShot = 1;
+        if(s.find("and(") != string::npos)
+        {
+            vector<string> splitAnd = parseBetween(s, "and((", " ))",false);
+            if(splitAnd.size())
+            {
+                ((AADestroyCard*)a)->andAbility = parseMagicLine(splitAnd[1], id, spell, card);
+            }
+        }
         return a;
     }
 
@@ -1827,6 +1948,14 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     {
         MTGAbility *a = NEW AASacrificeCard(observer, id, card, target);
         a->oneShot = 1;
+        if(s.find("and(") != string::npos)
+        {
+            vector<string> splitAnd = parseBetween(s, "and((", " ))",false);
+            if(splitAnd.size())
+            {
+                ((AASacrificeCard*)a)->andAbility = parseMagicLine(splitAnd[1], id, spell, card);
+            }
+        }
         return a;
     }
 
@@ -1834,6 +1963,14 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     {
         MTGAbility *a = NEW AADiscardCard(observer, id, card, target);
         a->oneShot = 1;
+        if(s.find("and(") != string::npos)
+        {
+            vector<string> splitAnd = parseBetween(s, "and((", " ))",false);
+            if(splitAnd.size())
+            {
+                ((AADiscardCard*)a)->andAbility = parseMagicLine(splitAnd[1], id, spell, card);
+            }
+        }
         return a;
     }
     bool oneShot = false;
@@ -1984,6 +2121,16 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         return a;
     }
 
+    //modify turns
+    vector<string> splitModTurn = parseBetween(s, "turns:", " ", false);
+    if (splitModTurn.size())
+    {
+        Targetable * t = spell ? spell->getNextTarget() : NULL;
+        MTGAbility * a = NEW AAModTurn(observer, id, card, t , splitModTurn[1], NULL, who);
+        a->oneShot = 1;
+        return a;
+    }
+
     //Shuffle
     found = s.find("shuffle");
     if (found != string::npos)
@@ -2094,6 +2241,24 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             return NULL;
         return NEW ABushidoAbility(observer, id, card,splitBushido[1]);
     }
+    vector<string> splitPhaseAlter = parseBetween(s, "phasealter(", ")");
+    if (splitPhaseAlter.size())
+    {
+        string power, toughness;
+        vector<string>splitPhaseAlter2 = split(splitPhaseAlter[1],',');
+        if(splitPhaseAlter2.size() < 3)
+            return NULL;
+        string after = "";
+        if(splitPhaseAlter2.size() > 3)
+        {
+            vector<string> splitPhaseAlterAfter = parseBetween(splitPhaseAlter2[3], "after<", ">");
+            if(splitPhaseAlterAfter.size())
+                after = splitPhaseAlterAfter[1];
+        }
+        MTGAbility * a1 = NEW APhaseAlter(observer, id, card, target,splitPhaseAlter2[0].find("add") != string::npos, splitPhaseAlter2[1],splitPhaseAlter2[2], s.find("nextphase") != string::npos,after);
+        a1->canBeInterrupted = false;
+        return NEW GenericAbilityMod(observer, 1, card,spell?spell->getNextDamageableTarget():(Damageable *) target, a1);
+    }
 
     //loseAbilities
     if (s.find("loseabilities") != string::npos)
@@ -2184,17 +2349,21 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
 		string newPower = "";
         string newToughness = "";
 		bool ptFound = false;
-		if(becomesParameters.size() >1)
-		{
-        vector<string> pt = split(becomesParameters[1], '/');
-        newPower = pt[0];
-        newToughness = pt[1];
-		ptFound = true;
-		}
+        if(becomesParameters.size() >1)
+        {
+            vector<string> pt = split(becomesParameters[1], '/');
+            if(pt.size() > 1)
+            {
+                newPower = pt[0];
+                newToughness = pt[1];
+                ptFound = true;
+            }
+        }
 		string sabilities = "";
-		if(becomesParameters.size() > 2)
+        unsigned int becomesSize = ptFound?2:1;
+		if(becomesParameters.size() > becomesSize)
 		{
-			for(unsigned int i = 2;i < becomesParameters.size();i++)
+			for(unsigned int i = becomesSize;i < becomesParameters.size();i++)
 			{ 
 				sabilities.append(becomesParameters[i].c_str());
 				if(i+1 < becomesParameters.size())
@@ -2339,7 +2508,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     found = s.find("add");
     if (found != string::npos)
     {
-        ManaCost * output = ManaCost::parseManaCost(s.substr(found));
+        ManaCost * output = ManaCost::parseManaCost(s.substr(found),NULL,card);
         Targetable * t = spell ? spell->getNextTarget() : NULL;
         MTGAbility * a = NEW AManaProducer(observer, id, card, t, output, NULL, who);
         a->oneShot = 1;
@@ -2476,7 +2645,16 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         a->oneShot = 1;
         return a;
     }
-    
+    //exchange life with target; if creature then toughness is life.
+    found = s.find("exchangelife");
+    if (found != string::npos)
+    {
+        Targetable * t = spell ? spell->getNextTarget() : NULL;
+        MTGAbility * a = NEW AAExchangeLife(observer, id, card, t, NULL, who);
+        a->oneShot = 1;
+        return a;
+    }
+
     //Regeneration
     found = s.find("regenerate");
     if (found != string::npos)
@@ -2643,6 +2821,50 @@ MTGAbility * AbilityFactory::parsePhaseActionAbility(string s,MTGCardInstance * 
         if(!_target)
             _target = target;
           return NEW APhaseActionGeneric(observer, id, card,_target, trim(splitActions[2]), restrictions, phase,sourceinPlay,next,myturn,opponentturn,once);
+}
+
+MTGAbility * AbilityFactory::parseChooseActionAbility(string s,MTGCardInstance * card,Spell * spell,MTGCardInstance * target, int restrictions,int id)
+{
+    vector<string> splitChooseAColor2 = parseBetween(s, "activatechooseacolor ", " activatechooseend");
+    if (splitChooseAColor2.size())
+    {
+        string a1 = splitChooseAColor2[1];
+        MTGAbility * a = NEW GenericChooseTypeColor(observer, id, card, target,a1,true);
+        a->oneShot = 1;
+        a->canBeInterrupted = false;
+        return a;
+    }
+    //choose a type
+    vector<string> splitChooseAType2 = parseBetween(s, "activatechooseatype ", " activatechooseend");
+    if (splitChooseAType2.size())
+    {
+        string a1 = splitChooseAType2[1];
+        MTGAbility * a = NEW GenericChooseTypeColor(observer, id, card, target,a1,false,s.find("nonwall")!=string::npos);
+        a->oneShot = 1;
+        a->canBeInterrupted = false;
+        return a;
+    }
+        //choose a color
+    vector<string> splitChooseAColor = parseBetween(s, "chooseacolor ", " chooseend");
+    if (splitChooseAColor.size())
+    {
+        string a1 = splitChooseAColor[1];
+        MTGAbility * a = NEW GenericChooseTypeColor(observer, id, card, target,a1,true);
+        a->oneShot = 1;
+        a->canBeInterrupted = false;
+        return a;
+    }
+    //choose a type
+    vector<string> splitChooseAType = parseBetween(s, "chooseatype ", " chooseend");
+    if (splitChooseAType.size())
+    {
+        string a1 = splitChooseAType[1];
+        MTGAbility * a = NEW GenericChooseTypeColor(observer, id, card, target,a1,false,s.find("nonwall")!=string::npos);
+        a->oneShot = 1;
+        a->canBeInterrupted = false;
+        return a;
+    }
+    return NULL;
 }
 
 //Tells the AI if the ability should target itself or an ennemy
@@ -3024,11 +3246,14 @@ int AbilityFactory::magicText(int id, Spell * spell, MTGCardInstance * card, int
             else
             {
                 a->addToGame();
+                MayAbility * dontAdd = dynamic_cast<MayAbility*>(a);
+                if(!dontAdd)
+                {
                 if (a->source)
                     a->source->cardsAbilities.push_back(a);
                 else if(spell && spell->source)
                     spell->source->cardsAbilities.push_back(a);
-                    
+                }
                 //keep track of abilities being added to the game on each card it belongs to, this ignores p/t bonuses given
                 //from other cards, or ability bonuses, making it generally easier to strip a card of it's abilities.
             }
@@ -3051,6 +3276,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
             zones->putInZone(card, spell->from, card->owner->game->graveyard);
             return; //fizzle
         }
+        card->playerTarget = spell->getNextPlayerTarget();
     } 
     _id = magicText(_id, spell);
 
@@ -3818,7 +4044,6 @@ int ActivatedAbility::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
 {        
     if(card->isPhased)
         return 0;
-        
     Player * player = game->currentlyActing();
     int cPhase = game->getCurrentGamePhase();
     switch (restrictions)
@@ -3886,7 +4111,44 @@ int ActivatedAbility::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
         ManaCost * cost = getCost();
         if (!cost)
             return 1;
+        if(card->hasType(Subtypes::TYPE_PLANESWALKER))
+        {
+            for(unsigned int k = 0;k < card->cardsAbilities.size();++k)
+            {
+                ActivatedAbility * check = dynamic_cast<ActivatedAbility*>(card->cardsAbilities[k]);
+                if(check && check->counters)
+                    return 0;
+            }
+            if (player != game->currentPlayer)
+                return 0;
+            if (cPhase != MTG_PHASE_FIRSTMAIN && cPhase != MTG_PHASE_SECONDMAIN)
+                return 0;
+        }
+        if (source->has(Constants::NOACTIVATED))
+            return 0;
+        AbilityFactory af(game);
+        MTGAbility * fmp = NULL;
+        fmp = af.getCoreAbility(this);
+        AManaProducer * amp = dynamic_cast<AManaProducer *> (this);
+        AManaProducer * femp = dynamic_cast<AManaProducer *> (fmp);
+        if (source->has(Constants::NOMANA) && (amp||femp))
+            return 0;
+        if(source->has(Constants::ONLYMANA) && !(amp||femp))
+            return 0;
         cost->setExtraCostsAction(this, card);
+        if (source->has(Constants::NOACTIVATEDTAP) && cost->extraCosts)
+        {
+            for(unsigned int i = 0;i < cost->extraCosts->costs.size();++i)
+            {
+                ExtraCost * eCost = cost->getExtraCost(i);
+                if(dynamic_cast<TapCost *>(eCost))
+                {
+                    return 0;
+                }
+            }
+
+        }
+
         if (!mana)
             mana = player->getManaPool();
         if (!mana->canAfford(cost))
@@ -4126,9 +4388,9 @@ int TargetAbility::resolve()
     Targetable * t = tc->getNextTarget();
     if (t && ability)
     {
-        source->X = 0;
         if (abilityCost)
         {
+            source->X = 0;
             ManaCost * diff = abilityCost->Diff(getCost());
             source->X = diff->hasX();
             delete (diff);
@@ -4275,20 +4537,19 @@ void InstantAbility::Update(float dt)
 
 InstantAbility::InstantAbility(GameObserver* observer, int _id, MTGCardInstance * source, Targetable * _target) :
     MTGAbility(observer, _id, source, _target)
-{
-    init = 0;
-}
+    {
+        init = 0;
+    }
 
 //Instant abilities last generally until the end of the turn
-int InstantAbility::testDestroy()
-{
-    GamePhase newPhase = game->getCurrentGamePhase();
-    if (newPhase != currentPhase && newPhase == MTG_PHASE_AFTER_EOT)
-        return 1;
-    currentPhase = newPhase;
-    return 0;
-
-}
+    int InstantAbility::testDestroy()
+    {
+        GamePhase newPhase = game->getCurrentGamePhase();
+        if (newPhase != currentPhase && newPhase == MTG_PHASE_AFTER_EOT)
+            return 1;
+        currentPhase = newPhase;
+        return 0;
+    }
 
 ostream& InstantAbility::toString(ostream& out) const
 {
@@ -4328,9 +4589,7 @@ void ListMaintainerAbility::updateTargets()
         cards.erase(card);
         removed(card);
     }
-
     temp.clear();
-
     //add New valid ones
     for (int i = 0; i < 2; i++)
     {

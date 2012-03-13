@@ -1190,7 +1190,7 @@ int MTGAttackRule::receiveEvent(WEvent *e)
             for (int i = 0; i < z->nb_cards; i++)
             {
                 MTGCardInstance * card = z->cards[i];
-                if (!card->isAttacker() && card->has(Constants::MUSTATTACK))
+                if (!card->isAttacker() && !event->from->isExtra && card->has(Constants::MUSTATTACK))//cards are only required to attack in the real attack phase of a turn.
                     reactToClick(card);
                 if (!card->isAttacker() && card->has(Constants::TREASON) && p->isAI())
                     reactToClick(card);
@@ -1231,6 +1231,121 @@ ostream& MTGAttackRule::toString(ostream& out) const
 MTGAttackRule * MTGAttackRule::clone() const
 {
     return NEW MTGAttackRule(*this);
+}
+//handling for planeswalker attacking choice
+MTGPlaneswalkerAttackRule::MTGPlaneswalkerAttackRule(GameObserver* observer, int _id) :
+PermanentAbility(observer, _id)
+{
+    aType = MTGAbility::MTG_ATTACK_RULE;
+}
+
+int MTGPlaneswalkerAttackRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
+{
+    if (currentPhase == MTG_PHASE_COMBATATTACKERS && card->controller() == game->currentPlayer && card->controller() == game->currentlyActing())//on my turn and when I am the acting player.
+    {
+        if(!card->controller()->opponent()->game->inPlay->hasType("planeswalker"))
+            return 0;
+        if(card->isPhased)
+            return 0;
+        if (card->isAttacker())
+            return 1;
+        if (card->canAttack())
+            return 1;
+    }
+    return 0;
+}
+
+int MTGPlaneswalkerAttackRule::reactToClick(MTGCardInstance * card)
+{
+    if (!isReactingToClick(card))
+        return 0;
+    //Graphically select the next card that can attack
+    if (!card->isAttacker())
+    {
+        game->getCardSelector()->PushLimitor();
+        game->getCardSelector()->Limit(this, CardView::playZone);
+        game->getCardSelector()->CheckUserInput(JGE_BTN_RIGHT);
+        game->getCardSelector()->Limit(NULL, CardView::playZone);
+        game->getCardSelector()->PopLimitor();
+    }
+
+    vector<MTGAbility*>selection;
+    MTGCardInstance * check = NULL;
+    int checkWalkers = card->controller()->opponent()->game->battlefield->cards.size();
+    for(int i = 0; i < checkWalkers;++i)
+    {
+        check = card->controller()->opponent()->game->battlefield->cards[i];
+        if(check->hasType(Subtypes::TYPE_PLANESWALKER))
+        {
+            MTGAbility * setPw = NEW AAPlaneswalkerAttacked(game, game->mLayers->actionLayer()->getMaxId(), card,check);
+            MTGAbility * setWalker = setPw->clone();
+            setWalker->oneShot = true;
+            selection.push_back(setWalker);
+            SAFE_DELETE(setPw);
+        }
+    }
+
+
+    if(selection.size())
+    {
+        MTGAbility * a1 = NEW MenuAbility(game, this->GetId(), card, card,false,selection);
+        game->mLayers->actionLayer()->currentActionCard = card;
+        a1->resolve();
+    }
+
+    return 1;
+}
+
+MTGPlaneswalkerAttackRule * MTGPlaneswalkerAttackRule::clone() const
+{
+    return NEW MTGPlaneswalkerAttackRule(*this);
+}
+
+bool MTGPlaneswalkerAttackRule::select(Target* t)
+{
+    if (CardView* c = dynamic_cast<CardView*>(t))
+    {
+        MTGCardInstance * card = c->getCard();
+        if (card->canAttack() && !card->isPhased)
+            return true;
+    }
+    return false;
+}
+bool MTGPlaneswalkerAttackRule::greyout(Target* t)
+{
+    return true;
+}
+
+//setting combat against planeswalker menu handling
+ AAPlaneswalkerAttacked::AAPlaneswalkerAttacked(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target):
+    InstantAbility(observer, id, source)
+{
+    this->target = _target;
+    menuText = _target->name.c_str();
+    attacker = card;
+}
+
+int AAPlaneswalkerAttacked::resolve()
+{
+    if(!attacker)
+        return 0;
+    attacker->isAttacking = this->target;
+    attacker->toggleAttacker();
+    return 1;
+}
+
+const char* AAPlaneswalkerAttacked::getMenuText()
+{
+    return menuText.c_str();
+}
+
+AAPlaneswalkerAttacked * AAPlaneswalkerAttacked::clone() const
+{
+    return NEW AAPlaneswalkerAttacked(*this);
+}
+
+AAPlaneswalkerAttacked::~AAPlaneswalkerAttacked()
+{
 }
 
 //this rules handles returning cards to combat triggers for activations.
@@ -2158,6 +2273,49 @@ ostream& MTGPlaneWalkerRule::toString(ostream& out) const
 MTGPlaneWalkerRule * MTGPlaneWalkerRule::clone() const
 {
     return NEW MTGPlaneWalkerRule(*this);
+}
+/* planeswalker damage rule */
+MTGPlaneswalkerDamage::MTGPlaneswalkerDamage(GameObserver* observer, int _id) :
+PermanentAbility(observer, _id)
+{
+}
+;
+
+int MTGPlaneswalkerDamage::receiveEvent(WEvent * event)
+{
+    
+    if (event->type == WEvent::DAMAGE)
+    {
+        WEventDamage * e = (WEventDamage *) event;
+        Damage * d = e->damage;
+        MTGCardInstance * card = dynamic_cast<MTGCardInstance*>(e->getTarget(WEvent::TARGET_TO));
+        if (d->damage > 0 && card && card->hasType(Subtypes::TYPE_PLANESWALKER))
+        {
+            int howMany = d->damage;
+            for(int k = 0;k < howMany;k++)
+            {
+                card->counters->removeCounter("loyalty",0,0);
+            }
+            d->damage = 0;
+            return 1;
+        }
+    }
+    if (WEventCounters * removel = dynamic_cast<WEventCounters*>(event))
+    {
+        if(removel->removed && removel->targetCard && removel->targetCard->hasType(Subtypes::TYPE_PLANESWALKER))
+            if(!removel->targetCard->counters->hasCounter("loyalty",0,0))
+            {
+                removel->targetCard->bury();
+                return 1;
+            }
+
+    }
+    return 0;
+}
+
+MTGPlaneswalkerDamage * MTGPlaneswalkerDamage::clone() const
+{
+    return NEW MTGPlaneswalkerDamage(*this);
 }
 
 /* Lifelink */

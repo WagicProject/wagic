@@ -574,6 +574,29 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                                 cd->setColor(cid);
                         }
                     }
+
+                    if (attribute.find("chosencolor") != string::npos)
+                    {
+                        attributefound = 1;
+                        if (minus)
+                            cd->SetExclusionColor(card->chooseacolor);
+                        else
+                            cd->setColor(card->chooseacolor);
+                    }
+
+                    if (attribute.find("chosentype") != string::npos)
+                    {
+                        attributefound = 1;
+                        if (minus)
+                        {
+                            cd->setNegativeSubtype(card->chooseasubtype);
+                        }
+                        else
+                        {
+                            cd->setSubtype(card->chooseasubtype);
+                        }
+                    }
+
                     if (!attributefound)
                     {
                         //Abilities

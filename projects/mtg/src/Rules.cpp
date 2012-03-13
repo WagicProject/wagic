@@ -140,6 +140,7 @@ void RulesState::parsePlayerState(int playerId, string s)
 void Rules::addExtraRules(GameObserver* g)
 {
     int id = g->mLayers->actionLayer()->getMaxId();
+    MTGAllCards::sortSubtypeList();
     for (int i = 0; i < 2; ++i)
     {
         Player * p = g->players[i];

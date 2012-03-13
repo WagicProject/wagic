@@ -5,7 +5,7 @@
 #include "Player.h"
 #include "GameObserver.h"
 #include "MTGDeck.h"
-#include "ManaCostHybrid.h"
+#include "ManacostHybrid.h"
 
 DeckStats * DeckStats::mInstance = NULL;
     
