@@ -32,6 +32,14 @@ public:
     Spell * getNextSpellTarget(Spell * previous = 0);
     Damage * getNextDamageTarget(Damage * previous = 0);
     Targetable * getNextTarget(Targetable * previous = 0);
+    vector<Targetable*> getTargetsFrom()
+    {
+        return targets;
+    }
+    void setTargetsTo(vector<Targetable*>targetTo)
+    {
+        targets = targetTo;
+    }
     void initTargets()
     {
         targets.clear();

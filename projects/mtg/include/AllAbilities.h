@@ -26,6 +26,17 @@ using std::map;
 //
 // Misc classes
 //
+class MTGEventText: public MTGAbility
+{
+public:
+    int textAlpha;
+    string text;
+    void Update(float dt);
+    void Render();
+    MTGEventText(GameObserver* observer, int _id,MTGCardInstance * card, string text);
+    virtual MTGEventText * clone() const;
+};
+
 class WParsedInt
 {
 public:
@@ -41,6 +52,8 @@ public:
 private:
     void init(string s, Spell * spell, MTGCardInstance * card)
     {
+        if(!s.size())
+            return;
         if(!card)
             return;
         MTGCardInstance * target = card->target;
@@ -91,6 +104,10 @@ private:
             if(intValue < 0)
                 intValue = 0;
         }
+        else if (s == "castx")
+        {
+            intValue = card->castX;
+        }
         else if (s == "gear")
         {
             intValue = target->equipment;
@@ -135,6 +152,97 @@ private:
             }
             SAFE_DELETE(tc);
         }
+        else if (s.find("counter{") != string::npos)
+        {
+            intValue = 0;
+            vector<string>counterName = parseBetween(s,"counter{","}");
+            if(counterName.size())
+            {
+                AbilityFactory abf(target->getObserver());
+                Counter * counter = abf.parseCounter(counterName[1], NULL);
+                if(counter && target->counters && target->counters->hasCounter(counter->name.c_str(),counter->power,counter->toughness))
+                {
+                    Counter * targetCounter = target->counters->hasCounter(counter->name.c_str(), counter->power, counter->toughness);
+                    intValue = targetCounter->nb;
+                }
+                SAFE_DELETE(counter);
+            }
+        }
+        else if (s.find("convertedcost:") != string::npos || s.find("power:") != string::npos || s.find("toughness:") != string::npos)
+        {
+            bool powerCheck = false;
+            bool toughnessCheck = false;
+            bool costCheck = false;
+            intValue = 0;
+            vector<string>convertedType = parseBetween(s,"convertedcost:",":");
+            if(convertedType.size())
+                costCheck = true;
+            else
+            {
+                convertedType = parseBetween(s,"power:",":");
+                if(convertedType.size())
+                    powerCheck = true;
+                else
+                {
+                    convertedType = parseBetween(s,"toughness:",":");
+                    if(convertedType.size())
+                        toughnessCheck = true;
+                }
+            }
+            if(!convertedType.size())
+                return;
+            bool high = false;
+            int highest = 0;
+            int lowest = 5000;
+            if(convertedType[1].find("highest") != string::npos)
+                high = true;
+
+            string theType = convertedType[2];
+            size_t zoned = theType.find(":");
+            if(zoned == string::npos)
+            {
+                theType.append("|mybattlefield");
+            }
+            else
+            {
+                replace(theType.begin(), theType.end(), ':', '|');
+            }
+            TargetChooserFactory tf(card->getObserver());
+            TargetChooser * tc = tf.createTargetChooser(theType.c_str(),NULL);
+            int check = 0;
+            for (int i = 0; i < 2; i++)
+            {
+                Player * p = card->getObserver()->players[i];
+                MTGGameZone * zones[] = { p->game->battlefield, p->game->graveyard, p->game->hand, p->game->library };
+                for (int k = 0; k < 4; k++)
+                {
+                    MTGGameZone * zone = zones[k];
+                    if(tc->targetsZone(zone,target))
+                    {
+                        for(unsigned int w = 0;w < zone->cards.size();++w)
+                        {
+                            MTGCardInstance * cCard = zone->cards[w];
+                            if(tc->canTarget(cCard))
+                            {
+                                if(costCheck)
+                                    check = cCard->getManaCost()->getConvertedCost();
+                                if(powerCheck)
+                                    check = cCard->power;
+                                if(toughnessCheck)
+                                    check = cCard->toughness;
+
+                                check > highest?highest = check:highest = highest;
+                                check <= lowest?lowest = check:lowest = lowest;
+                            }
+                        }
+                    }
+                }
+            }
+            if(lowest == 5000)
+                lowest = 0;
+            SAFE_DELETE(tc);
+            intValue = high?highest:lowest;
+        }
         else if (s == "sunburst")
         {
             intValue = 0;
@@ -146,6 +254,14 @@ private:
         else if (s == "lifetotal")
         {
             intValue = target->controller()->life;
+        }
+        else if (s == "highestlifetotal")
+        {
+            intValue = target->controller()->life <= target->controller()->opponent()->life? target->controller()->opponent()->life:target->controller()->life;
+        }
+        else if (s == "lowestlifetotal")
+        {
+            intValue = target->controller()->life <= target->controller()->opponent()->life? target->controller()->life:target->controller()->opponent()->life;
         }
         else if (s == "thatmuch")
         {
@@ -884,7 +1000,7 @@ public:
 };
 
 //if/ifnot Cond then EFFECT
-class IfThenAbility: public ActivatedAbility
+class IfThenAbility: public InstantAbility
 {
 public:
     MTGAbility * delayedAbility;
@@ -1067,37 +1183,45 @@ public:
 class AABuryCard: public ActivatedAbility
 {
 public:
+    MTGAbility * andAbility;
     AABuryCard(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target);
     int resolve();
     const char * getMenuText();
     AABuryCard * clone() const;
+    ~AABuryCard();
 };
 
 class AADestroyCard: public ActivatedAbility
 {
 public:
+    MTGAbility * andAbility;
     AADestroyCard(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target);
     int resolve();
     const char * getMenuText();
     AADestroyCard * clone() const;
+    ~AADestroyCard();
 };
 
 class AASacrificeCard: public ActivatedAbility
 {
 public:
+    MTGAbility * andAbility;
     AASacrificeCard(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target);
     int resolve();
     const char * getMenuText();
     AASacrificeCard * clone() const;
+    ~AASacrificeCard();
 };
 
 class AADiscardCard: public ActivatedAbility
 {
 public:
+    MTGAbility * andAbility;
     AADiscardCard(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target);
     int resolve();
     const char * getMenuText();
     AADiscardCard * clone() const;
+    ~AADiscardCard();
 };
 
 /* Generic Target Ability */
@@ -1110,8 +1234,9 @@ public:
     int counters;
     MTGGameZone * activeZone;
     string newName;
+    string tcString;
 
-    GenericTargetAbility(GameObserver* observer, string newName, string castRestriction, int _id, MTGCardInstance * _source, TargetChooser * _tc, MTGAbility * a, ManaCost * _cost = NULL, string limit = "",MTGAbility * sideEffects = NULL,string usesBeforeSideEffects = "", int restrictions = 0, MTGGameZone * dest = NULL);
+    GenericTargetAbility(GameObserver* observer, string newName, string castRestriction, int _id, MTGCardInstance * _source, TargetChooser * _tc, MTGAbility * a, ManaCost * _cost = NULL, string limit = "",MTGAbility * sideEffects = NULL,string usesBeforeSideEffects = "", int restrictions = 0, MTGGameZone * dest = NULL,string tcString ="");
     const char * getMenuText();
     ~GenericTargetAbility();
     GenericTargetAbility * clone() const;
@@ -1773,6 +1898,49 @@ public:
     {
         SAFE_DELETE(ability);
     }
+};
+
+//this generic ability assumes that what is added will take care of its own removel.
+class GenericAbilityMod: public InstantAbility, public NestedAbility
+{
+public:
+    GenericAbilityMod(GameObserver* observer, int _id, MTGCardInstance * _source, Damageable * _target, MTGAbility * ability) :
+      InstantAbility(observer, _id, _source,_target), NestedAbility(ability)
+      {
+          ability->target = _target;
+      }
+
+      int addToGame()
+      {
+          InstantAbility::addToGame();
+          return 1;
+      }
+
+      int resolve()
+      {
+          MTGAbility * toAdd = ability->clone();
+          toAdd->forceDestroy = -1;
+          toAdd->target = target;
+          toAdd->addToGame();
+          return 1;
+      }
+
+      const char * getMenuText()
+      {
+          return ability->getMenuText();
+      }
+
+      GenericAbilityMod * clone() const
+      {
+          GenericAbilityMod * a = NEW GenericAbilityMod(*this);
+          a->ability = ability->clone();
+          return a;
+      }
+
+      ~GenericAbilityMod()
+      {
+          SAFE_DELETE(ability);
+      }
 };
 
 //Circle of Protections
@@ -2987,6 +3155,7 @@ class AADamager: public ActivatedAbilityTP
 {
 public:
     string d;
+    bool redirected;
 
     AADamager(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable * _target, string d, ManaCost * _cost = NULL,
              int who = TargetChooser::UNSET);
@@ -5035,7 +5204,7 @@ public:
                 target = copy;
                 source->target = copy;
                 copy->summoningSickness = 0;
-            }
+                }
             return 1;
         }
 

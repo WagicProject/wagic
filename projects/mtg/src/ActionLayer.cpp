@@ -38,10 +38,10 @@ int ActionLayer::removeFromGame(ActionElement * e)
     AbilityFactory af(observer);
 
     MTGAbility * a = dynamic_cast<MTGAbility*>(e);
-    
     if (a != NULL)
     {
-        AManaProducer * manaObject = dynamic_cast<AManaProducer*>(af.getCoreAbility(a));
+        MTGAbility * toCheck = af.getCoreAbility(a);
+        AManaProducer * manaObject = dynamic_cast<AManaProducer*>(toCheck);
         if(manaObject)
         {
             for (size_t i = 0; i < manaObjects.size(); i++)
@@ -53,7 +53,6 @@ int ActionLayer::removeFromGame(ActionElement * e)
     }
     mObjects.erase(mObjects.begin() + i);
     return 1;
-
 }
 
 bool ActionLayer::moveToGarbage(ActionElement * e)
@@ -71,7 +70,7 @@ void ActionLayer::cleanGarbage()
 {
     for (size_t i = 0; i < garbage.size(); ++i)
     {
-        delete (garbage[i]);
+        SAFE_DELETE(garbage[i]);
     }
     garbage.clear();
 }
