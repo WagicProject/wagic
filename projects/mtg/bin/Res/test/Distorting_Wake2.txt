@@ -14,7 +14,7 @@ Mox Pearl
 Ornithopter
 next
 [ASSERT]
-BEGINOFCOMBAT
+mainphase
 [PLAYER1]
 inplay:Mox Pearl,Ornithopter,Grizzly Bears
 hand:Distorting Wake

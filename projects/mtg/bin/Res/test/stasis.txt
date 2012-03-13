@@ -19,6 +19,7 @@ next
 #attackers
 1250
 next
+next
 #combat end
 [ASSERT]
 COMBATEND
