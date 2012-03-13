@@ -39,6 +39,8 @@ public:
     string deckName;
     string phaseRing;
     int offerInterruptOnPhase;
+    int skippingTurn;
+    int extraTurn;
     Player(GameObserver *observer, string deckFile, string deckFileSmall, MTGDeck * deck = NULL);
     virtual ~Player();
     virtual void setObserver(GameObserver*g);

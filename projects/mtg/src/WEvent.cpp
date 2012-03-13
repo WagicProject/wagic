@@ -47,6 +47,12 @@ WEventPhaseChange::WEventPhaseChange(Phase * from, Phase * to) :
 {
 }
 
+WEventPhasePreChange::WEventPhasePreChange(Phase * from, Phase * to) :
+WEvent(CHANGE_PHASE), from(from), to(to)
+{
+    eventChanged = false;
+}
+
 WEventCardTap::WEventCardTap(MTGCardInstance * card, bool before, bool after) :
     WEventCardUpdate(card), before(before), after(after)
 {

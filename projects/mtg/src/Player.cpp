@@ -30,6 +30,8 @@ Player::Player(GameObserver *observer, string file, string fileSmall, MTGDeck * 
     mAvatarTex = NULL;
     type_as_damageable = DAMAGEABLE_PLAYER;
     playMode = MODE_HUMAN;
+    skippingTurn = 0;
+    extraTurn = 0;
     if (deck != NULL)
     {
         game = NEW MTGPlayerCards(deck);

@@ -274,8 +274,6 @@ MTGEventBonus * MTGEventBonus::clone() const
 {
     return NEW MTGEventBonus(*this);
 }
-
-//
 MTGPutInPlayRule::MTGPutInPlayRule(GameObserver* observer, int _id) :
 PermanentAbility(observer, _id)
 {
@@ -452,6 +450,7 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card)
         if (!card->has(Constants::STORM))
         {
             copy->X = spell->computeX(copy);
+            copy->castX = copy->X;
         }
     }
 
@@ -584,6 +583,7 @@ int MTGKickerRule::reactToClick(MTGCardInstance * card)
         if (!card->has(Constants::STORM))
         {
             copy->X = spell->computeX(copy);
+            copy->castX = copy->X;
         }
     }
 
@@ -738,6 +738,7 @@ int MTGAlternativeCostRule::reactToClick(MTGCardInstance * card, ManaCost *alter
         {
             ManaCost * c = spellCost->Diff(alternateCost);
             copy->X = c->getCost(Constants::NB_Colors);
+            copy->castX = copy->X;
             delete c;
         }
     }
@@ -908,8 +909,15 @@ int MTGSuspendRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
     Player * player = game->currentlyActing();
     ManaCost * alternateManaCost = card->getManaCost()->suspend;
 
-    if (!player->game->hand->hasCard(card))
+    if (!player->game->hand->hasCard(card) || !alternateManaCost)
         return 0;
+    suspendmenu = "suspend";
+    char buffer[20];
+    if(alternateManaCost->hasX())
+        sprintf(buffer,"- X");
+    else
+        sprintf(buffer,"-%i",card->suspendedTime);
+    suspendmenu.append(buffer);
     return MTGAlternativeCostRule::isReactingToClick( card, mana, alternateManaCost  );
 }
 
@@ -988,6 +996,11 @@ int MTGSuspendRule::reactToClick(MTGCardInstance * card)
     for(signed int i = 0; i < card->suspendedTime;i++)
     card->next->counters->addCounter("time",0,0);
     return 1;
+}
+
+const char * MTGSuspendRule::getMenuText()
+{
+    return suspendmenu.c_str();
 }
 
 ostream& MTGSuspendRule::toString(ostream& out) const
@@ -1107,6 +1120,7 @@ int MTGMorphCostRule::reactToClick(MTGCardInstance * card)
     if (!card->has(Constants::STORM))
     {
         copy->X = spell->computeX(copy);
+        copy->castX = copy->X;
     }
     return 1;
 }

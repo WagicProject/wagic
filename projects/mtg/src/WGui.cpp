@@ -1967,7 +1967,7 @@ void WGuiFilterItem::updateValue()
         SAFE_DELETE(mParent->subMenu);
         mState = STATE_CHOOSE_TYPE;
         SAFE_DELETE(mParent->subMenu);
-        mParent->subMenu = NEW SimpleMenu(JGE::GetInstance(), -1234, this, Fonts::MENU_FONT, 20, 20, "Filter By...", 10);
+        mParent->subMenu = NEW SimpleMenu(JGE::GetInstance(), -1234, this, Fonts::MAIN_FONT, 30, 30, "Filter By...", 6);
         if (mParent->isAvailable(FILTER_SET))
         {
             mParent->subMenu->Add(FILTER_SET, "Set");
@@ -2050,6 +2050,7 @@ void WGuiFilterItem::updateValue()
             mParent->addArg("Legendary", "t:Legendary;");
             mParent->addArg("Sorcery", "t:Sorcery;");
             mParent->addArg("Tribal", "t:Tribal;");
+            mParent->addArg("Planeswalker", "t:Planeswalker;");
 
         }
         else if (filterType == FILTER_SUBTYPE)

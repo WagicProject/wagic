@@ -66,7 +66,6 @@ public:
     MTGEventBonus(GameObserver* observer, int _id);
     virtual MTGEventBonus * clone() const;
 };
-
 class MTGPutInPlayRule: public PermanentAbility
 {
 public:
@@ -182,15 +181,7 @@ public:
     string suspendmenu;
     virtual ostream& toString(ostream& out) const;
     MTGSuspendRule(GameObserver* observer, int _id);
-    const char * getMenuText()
-    {
-        suspendmenu = "suspend";
-        //char buffer[20];
-        //sprintf(buffer,"-%i",card->suspendedTime);
-        //suspendmenu.append(buffer);
-        //TODO:make this work so it shows "Suspend-the amount of turns"
-        return suspendmenu.c_str();
-    }
+    const char * getMenuText();
     virtual MTGSuspendRule * clone() const;
 };
 

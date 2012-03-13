@@ -76,6 +76,12 @@ struct WEventDamageStackResolved : public WEvent {
   WEventDamageStackResolved();
 };
 
+struct WEventPhasePreChange : public WEvent {
+  Phase * from;
+  Phase * to;
+  bool eventChanged;
+  WEventPhasePreChange(Phase * from,Phase * to);
+};
 struct WEventPhaseChange : public WEvent {
   Phase * from;
   Phase * to;

@@ -11,8 +11,13 @@ namespace
     const float kPoleWidth = 7;
     const float kVerticalMargin = 16;
     const float kHorizontalMargin = 30;
-    const float kLineHeight = 20;
 
+    
+#ifdef TOUCH_ENABLED
+    const float kLineHeight = 30;
+#else
+    const float kLineHeight = 20;
+#endif
     //For the "Classic" Theme
     const float kSpadeHeightOffset = 4;
     const float kSpadeWidthOffset = 9;
@@ -130,7 +135,7 @@ void SimpleMenu::Render()
 
         for (int i = 0; i < mCount; ++i)
         {
-            float width = (static_cast<SimpleMenuItem*> (mObjects[i]))->GetWidth();
+            float width = (static_cast<SimpleMenuItem*> (mObjects[i]))->GetWidth() + 15;
             if (mWidth < width) mWidth = width;
         }
         if ((!title.empty()) && (mWidth < titleFont->GetStringWidth(title.c_str()))) 
@@ -145,7 +150,7 @@ void SimpleMenu::Render()
 
         for (int i = 0; i < mCount; ++i)
         {
-            float y = mY + kVerticalMargin + i * kLineHeight;
+            float y = mY + kVerticalMargin + i * kLineHeight + 3;//spacing between first object and title bar
             SimpleMenuItem * smi = static_cast<SimpleMenuItem*> (mObjects[i]);
             smi->Relocate(mX + mWidth / 2, y);
             if (smi->hasFocus()) sY = y;
@@ -163,17 +168,24 @@ void SimpleMenu::Render()
     renderer->FillRect(mX, mY, mWidth, height, ARGB(180,0,0,0));
 
     renderer->SetTexBlend(BLEND_SRC_ALPHA, BLEND_ONE_MINUS_SRC_ALPHA);
-    drawVertPole(mX, mY - 16, height + 32);
-    drawVertPole(mX + mWidth, mY - 16, height + 32);
-    drawHorzPole(mX - 16, mY, mWidth + 32);
-    drawHorzPole(mX - 25, mY + height, mWidth + 50);
+    drawVertPole(mX, mY, height);
+    drawVertPole(mX + mWidth, mY, height);
+    drawHorzPole(mX, mY, mWidth);
+    drawHorzPole(mX, mY + height, mWidth);
+    //drawVertPole(mX, mY - 16, height + 32);
+    //drawVertPole(mX + mWidth, mY - 16, height + 32);
+    //drawHorzPole(mX - 16, mY, mWidth + 32);
+    //drawHorzPole(mX - 25, mY + height, mWidth + 50);
 
     renderer->SetTexBlend(BLEND_SRC_ALPHA, BLEND_ONE);
     stars->Render();
     renderer->SetTexBlend(BLEND_SRC_ALPHA, BLEND_ONE_MINUS_SRC_ALPHA);
 
-    mFont->SetScale(1.0f);
-    if (!title.empty()) titleFont->DrawString(title.c_str(), mX + mWidth / 2, mY - 3, JGETEXT_CENTER);
+    if (!title.empty()) 
+    {
+        mFont->SetScale(1.5f);
+        titleFont->DrawString(title.c_str(), mX + mWidth / 2, mY - 3, JGETEXT_CENTER);
+    }
     for (int i = startId; i < startId + maxItems; i++)
     {
         if (i > mCount - 1) break;
@@ -190,6 +202,7 @@ void SimpleMenu::Render()
             (static_cast<SimpleMenuItem*> (mObjects[i]))->RenderWithOffset(-kLineHeight * startId);
         }
     }
+    mFont->SetScale(1.0f);
 }
 
 void SimpleMenu::Update(float dt)
