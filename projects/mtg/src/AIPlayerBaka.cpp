@@ -74,6 +74,17 @@ int OrderedAIAction::getEfficiency()
     if (s->has(ability))
         return 0;
     MTGAbility * a = AbilityFactory::getCoreAbility(ability);
+    MTGAbility * transAbility = NULL;
+    if(ATransformerInstant * atia = dynamic_cast<ATransformerInstant *>(a))
+    {
+        if(atia->newAbilityFound)
+        {
+            AbilityFactory af(g);
+            transAbility = af.parseMagicLine(atia->newAbilitiesList[atia->newAbilitiesList.size()-1], 0, NULL, atia->source);
+            transAbility->target = ability->target;
+            a = transAbility;
+        }
+    }
     if (!a)
     {
         DebugTrace("FATAL: Ability is NULL in AIAction::getEfficiency()");
@@ -81,8 +92,10 @@ int OrderedAIAction::getEfficiency()
     }
 
     if (!((AIPlayerBaka *)owner)->canHandleCost(ability))
+    {
+        SAFE_DELETE(transAbility);
         return 0;
-
+    }
     MTGCardInstance * coreAbilityCardTarget = dynamic_cast<MTGCardInstance *>(a->target);
 
     //CoreAbility shouldn't return a Lord, but it does.
@@ -183,6 +196,9 @@ int OrderedAIAction::getEfficiency()
                 efficiency = 15 * (target->DangerRanking());
                 efficiency -= 5 * (target->equipment);
             }
+
+            if ( efficiency < 20 && efficiency > 0 )
+                efficiency += target->controller()->getObserver()->getRandomGenerator()->random() % 30;
             break;
         }
     case MTGAbility::STANDARD_LEVELUP:
@@ -544,6 +560,12 @@ int OrderedAIAction::getEfficiency()
                 efficiency = 10 + (owner->getRandomGenerator()->random() % 5);
             }
         }
+        else
+        {
+            efficiency = 50;
+            //may abilities target the source until thier nested ability is activated, so 50% chance to use this
+            //mover, until we can come up with something more elegent....
+        }
     }
     else if (dynamic_cast<AAProliferate *>(a))
     {
@@ -574,7 +596,6 @@ int OrderedAIAction::getEfficiency()
             }
         }
     }
-
     //At this point the "basic" efficiency is computed, we further tweak it depending on general decisions, independent of theAbility type
 
     MayAbility * may = dynamic_cast<MayAbility*>(ability);
@@ -607,6 +628,7 @@ int OrderedAIAction::getEfficiency()
     {
         efficiency += 65;
     }
+    SAFE_DELETE(transAbility);
     return efficiency;
 }
 
@@ -1643,6 +1665,9 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
         if (card->hasType(Subtypes::TYPE_LEGENDARY) && game->inPlay->findByName(card->name))
             continue;
 
+        if (card->hasType(Subtypes::TYPE_PLANESWALKER) && card->types.size() > 0 && game->inPlay->hasTypeSpecificInt(Subtypes::TYPE_PLANESWALKER,card->types[1]))
+            continue;
+
         int currentCost = card->getManaCost()->getConvertedCost();
         int hasX = card->getManaCost()->hasX();
         gotPayments.clear();
@@ -1885,9 +1910,9 @@ int AIPlayerBaka::computeActions()
 
                 nextCardToPlay = FindCardToPlay(currentMana, "land");
                 //look for the most expensive creature we can afford. If not found, try enchantment, then artifact, etc...
-                const char* types[] = {"creature", "enchantment", "artifact", "sorcery", "instant"};
+                const char* types[] = {"planeswalker","creature", "enchantment", "artifact", "sorcery", "instant"};
                 int count = 0;
-                while (!nextCardToPlay && count < 5)
+                while (!nextCardToPlay && count < 6)
                 {
                     if(clickstream.size()) //don't find cards while we have clicking to do.
                     {

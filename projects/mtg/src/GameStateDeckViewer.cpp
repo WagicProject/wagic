@@ -1416,7 +1416,7 @@ void GameStateDeckViewer::renderCard(int id, float rotation)
 
     float max_scale = 0.96f;
     float x_center_0 = 180;
-    float right_border = SCREEN_WIDTH - 20;
+    float right_border = SCREEN_WIDTH + 180;
 
     float x_center = x_center_0 + cos((rotation + 8 - id) * M_PI / 12) * (right_border - x_center_0);
     float scale = max_scale / 1.12f * cos((x_center - x_center_0) * 1.5f / (right_border - x_center_0)) + 0.2f * max_scale * cos(

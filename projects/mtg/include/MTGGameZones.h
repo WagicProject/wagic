@@ -98,6 +98,7 @@ class MTGGameZone {
 
    //returns true if one of the cards in the zone has the type
    bool hasType(const char * value);
+   bool hasTypeSpecificInt(int value1,int value);
    bool hasSpecificType(const char* value, const char* secondvalue);
    bool hasPrimaryType(const char* value, const char* secondvalue);
    bool hasTypeButNotType(const char* value, const char* secondvalue);
@@ -124,6 +125,7 @@ class MTGGameZone {
 
 class MTGLibrary: public MTGGameZone {
 public:
+    vector<MTGCardInstance*>placeOnTop;
     virtual ostream& toString(ostream&) const;
     const char * getName(){return "library";}
 };

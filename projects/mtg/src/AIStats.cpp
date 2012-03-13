@@ -102,9 +102,9 @@ int AIStats::receiveEvent(WEvent * event)
     }
 
     stats.sort(compare_aistats); //this could be slow, if it is, let's run it only at the end of the turn
-    return 1; //is this meant to return 0 or 1?
+    return 1;
 }
-//TODO:what does this do?
+//the following tells ai if a creature should be blocked or targeted
 bool AIStats::isInTop(MTGCardInstance * card, unsigned int max, bool tooSmallCountsForTrue)
 {
 	//return true; 

@@ -789,7 +789,11 @@ void GameStateMenu::ButtonPressed(int controllerId, int controlId)
             subMenuController = NEW SimpleMenu(JGE::GetInstance(), MENU_FIRST_DUEL_SUBMENU, this, Fonts::MENU_FONT, 150, 60);
             if (subMenuController)
             {
+#ifdef NETWORK_SUPPORT
                 subMenuController->Add(SUBMENUITEM_1PLAYER, "1 Player");
+#else
+                subMenuController->Add(SUBMENUITEM_1PLAYER, "Play Game");
+#endif
                 // TODO Put 2 players mode back
                 // This requires to fix the hand (to accept 2 players) OR to implement network game
 #ifdef NETWORK_SUPPORT

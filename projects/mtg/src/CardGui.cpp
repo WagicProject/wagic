@@ -142,7 +142,7 @@ void CardGui::Render()
 
     bool alternate = true;
     JQuadPtr quad = game? game->getResourceManager()->RetrieveCard(card, CACHE_THUMB):WResourceManager::Instance()->RetrieveCard(card, CACHE_THUMB);
-    if(card && card->name != card->model->data->name)
+    if(card && !card->isToken && card->name != card->model->data->name)
     {
         MTGCard * fcard = MTGCollection()->getCardByName(card->name);
         quad = game->getResourceManager()->RetrieveCard(fcard, CACHE_THUMB);
@@ -969,7 +969,7 @@ void CardGui::RenderBig(MTGCard* card, const Pos& pos)
 
     JQuadPtr quad = WResourceManager::Instance()->RetrieveCard(card);
     MTGCardInstance * kcard =  dynamic_cast<MTGCardInstance*>(card);
-    if(kcard && kcard->name != kcard->model->data->name)
+    if(kcard && !kcard->isToken && kcard->name != kcard->model->data->name)
     {
         MTGCard * fcard = MTGCollection()->getCardByName(kcard->name);
         quad = WResourceManager::Instance()->RetrieveCard(fcard);

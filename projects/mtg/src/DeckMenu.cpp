@@ -17,8 +17,8 @@ namespace
 {
     const float kVerticalMargin = 16;
     const float kHorizontalMargin = 20;
-    const float kLineHeight = 20;
-	const float kDescriptionVerticalBoxPadding = 5;
+    const float kLineHeight = 25;
+	const float kDescriptionVerticalBoxPadding = 35;
     const float kDescriptionHorizontalBoxPadding = 5;
 	
     const float kDefaultFontScale = 1.0f;
@@ -76,7 +76,7 @@ JGuiController(JGE::GetInstance(), id, listener), fontId(fontId), mShowDetailsSc
     mScroller = NEW VerticalTextScroller(Fonts::MAIN_FONT, 14, 235, scrollerWidth, scrollerHeight, kVerticalScrollSpeed);
 
     mAutoTranslate = true;
-    maxItems = 7;
+    maxItems = 6;
     mHeight = 2 * kVerticalMargin + (maxItems * kLineHeight);
 
     // we want to cap the deck titles to 15 characters to avoid overflowing deck names

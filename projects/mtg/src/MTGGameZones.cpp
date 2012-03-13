@@ -333,9 +333,16 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
     }
 
     MTGCardInstance * ret = copy;
-
+    for(int i = 0; i < 2; ++i)
+    {
+        if(to == g->players[i]->game->library && from == g->players[i]->game->library)//if its going to the library from the library we intend to put it on top.
+        {
+            g->players[i]->game->temp->addCard(copy);
+            g->players[i]->game->library->placeOnTop.push_back(copy);
+            return ret;//don't send event
+        }
+    }
     to->addCard(copy);
-
     //The "Temp" zone are purely for code purposes, and we don't want the abilities engine to
     //Trigger when cards move in this zone
     // Additionally, when they move "from" this zone,
@@ -456,6 +463,8 @@ MTGCardInstance * MTGGameZone::removeCard(MTGCardInstance * card, int createCopy
             //if (card->isToken) //TODO better than this ?
             //  return card;
             //card->lastController = card->controller();
+            if(!card)
+                return NULL;
             if (createCopy)
             {
                 copy = card->clone();
@@ -463,6 +472,7 @@ MTGCardInstance * MTGGameZone::removeCard(MTGCardInstance * card, int createCopy
                 copy->view = card->view;
                 copy->isToken = card->isToken;
                 copy->X = card->X;
+                copy->castX = card->castX;
                 copy->kicked = card->kicked;
 
                 //stupid bug with tokens...
@@ -547,6 +557,18 @@ bool MTGGameZone::hasType(const char * value)
     for (int i = 0; i < (nb_cards); i++)
     {
         if (cards[i]->hasType(value))
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool MTGGameZone::hasTypeSpecificInt(int value1,int value)
+{
+    for (int i = 0; i < (nb_cards); i++)
+    {
+        if (cards[i]->hasType(value1) && cards[i]->hasType(value))
         {
             return true;
         }
@@ -802,7 +824,6 @@ MTGGameZone * MTGGameZone::intToZone(int zoneId, Player * p, Player * p2)
     case STACK:
         return p->game->stack;
     }
-
     if (!p2) return NULL;
     switch (zoneId)
     {    
