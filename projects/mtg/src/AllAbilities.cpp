@@ -3003,7 +3003,7 @@ int IfThenAbility::resolve()
     }
     else if(delayedElseAbility)
     {
-        delayedElseAbility->clone();
+        a1 = delayedElseAbility->clone();
     }
     if (!a1)
         return 0;
@@ -3039,6 +3039,7 @@ IfThenAbility * IfThenAbility::clone() const
 IfThenAbility::~IfThenAbility()
 {
     SAFE_DELETE(delayedAbility);
+    SAFE_DELETE(delayedElseAbility);
 }
 //
 

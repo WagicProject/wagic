@@ -1208,11 +1208,13 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             {
                 string s2 = s.substr(foundElse+6);
                 if(s2.size())
+                {
                     s.erase(s.find(" else ")+1);
-                a2 = parseMagicLine(s2, id, spell, card);
+                    a2 = parseMagicLine(s2, id, spell, card);
+                }
             }
-            string s1 = s.substr(foundElse+6);
-            MTGAbility * a1 = parseMagicLine(s1, id, spell, card);
+            string s1 = s;
+            MTGAbility * a1 = parseMagicLine(s1.substr(s1.find(" then "+1)), id, spell, card);
             
             if(!a1) return NULL;
             MTGAbility * a = NEW IfThenAbility(observer, id, a1,a2, card,(Targetable*)target,checkIf[i],cond);
