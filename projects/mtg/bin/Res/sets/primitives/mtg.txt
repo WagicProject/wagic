@@ -15497,7 +15497,7 @@ subtype=Aura
 [/card]
 [card]
 name=Crown of Empires
-auto={3}{T}:tap target(creature) && aslongas(scepter of empires|mybattlefield) aslongas(throne of empires|mybattlefield) untap && aslongas(scepter of empires|mybattlefield) aslongas(throne of empires|mybattlefield)
+auto={3}{t}:name(steal or tap) target(creature) if type(scepter of empires|mybattlefield)~morethan~0,type(Throne of Empires|mybattlefield)~morethan~0 then moveto(mybattlefield) and((untap)) else tap
 text={3}, {T}: Tap target creature. Gain control of that creature instead if you control artifacts named Scepter of Empires and Throne of Empires.
 mana={2}
 type=Artifact
@@ -64508,7 +64508,7 @@ type=Artifact
 [/card]
 [card]
 name=Scepter of Empires
-auto={T}:damage:1 target(player) && aslongas(crown of empires|mybattlefield) aslongas(throne of empires|mybattlefield) damage:2
+auto={t}:name(damage) target(player) if type(Crown of Empires|mybattlefield)~morethan~0,type(Throne of Empires|mybattlefield)~morethan~0 then damage:3 else damage:1
 text={T}:Scepter of Empires deals 1 damage to target player. It deals 3 damage to that player instead if you control artifacts named Crown of Empires and Throne of Empires.
 mana={3}
 type=Artifact
@@ -78087,7 +78087,7 @@ type=Artifact
 [/card]
 [card]
 name=Throne of Empires
-auto={1}{T}:token(Soldier,Creature Soldier,1/1,white) && aslongas(crown of empires|mybattlefield) aslongas(scepter of empires|mybattlefield) token(Soldier,Creature Soldier,1/1,white)*4
+auto={1}{t}:name(create Soldiers) if type(Crown of Empires|mybattlefield)~morethan~0,type(Scepter of Empires|mybattlefield)~morethan~0 then token(Soldier,Creature Soldier,1/1,white)*5 controller else token(Soldier,Creature Soldier,1/1,white) controller
 text={1}, {T}: Put a 1/1 white Soldier creature token onto the battlefield. Put five of those tokens onto the battlefield instead if you control artifacts named Crown of Empires and Scepter of Empires.
 mana={4}
 type=Artifact
@@ -81881,19 +81881,19 @@ type=Artifact
 [/card]
 [card]
 name=Urza's Mine
-auto={T}:add {1} && aslongas(Urza's Power Plant|mybattlefield) aslongas(Urza's Tower|mybattlefield) add{1}
+auto={t}:name(Add Mana) if type(Urza's Tower|mybattlefield)~morethan~0,type(Urza's Power Plant|mybattlefield)~morethan~0 then add{2} else add{1}
 text={T}: Add {1} to your mana pool. If you control an Urza's Power-Plant and an Urza's Tower, add {2} to your mana pool instead.
 type=Land
 [/card]
 [card]
 name=Urza's Power Plant
-auto={T}:add {1} && aslongas(Urza's Mine|mybattlefield) aslongas(Urza's Tower|mybattlefield) add{1}
+auto={t}:name(Add Mana) if type(Urza's Tower|mybattlefield)~morethan~0,type(Urza's Mine|mybattlefield)~morethan~0 then add{2} else add{1}
 text={T}: Add {1} to your mana pool. If you control an Urza's Mine and an Urza's Tower, add {2} to your mana pool instead.
 type=Land
 [/card]
 [card]
 name=Urza's Tower
-auto={T}:add {1} && aslongas(Urza's Power Plant|mybattlefield) aslongas(Urza's Mine|mybattlefield) add{2}
+auto={t}:name(Add Mana) if type(Urza's Power Plant|mybattlefield)~morethan~0,type(Urza's Mine|mybattlefield)~morethan~0 then add{3} else add{1}
 text={T}: Add {1} to your mana pool. If you control an Urza's Mine and an Urza's Power-Plant, add {3} to your mana pool instead.
 type=Land
 [/card]
