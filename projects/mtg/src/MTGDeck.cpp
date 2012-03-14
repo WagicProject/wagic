@@ -296,7 +296,11 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
         break;
 
     default:
-        DebugTrace( endl << "MTGDECK Parsing Error: " << " [" << primitive->getName() << "]" << s << std::endl);
+        if(primitive) {
+            DebugTrace( endl << "MTGDECK Parsing Error: " << " [" << primitive->getName() << "]" << s << std::endl);
+        } else {
+            DebugTrace( endl << "MTGDECK Parsing Generic Error: " << s << std::endl);
+        }
         break;
     }
 
