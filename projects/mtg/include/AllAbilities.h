@@ -4846,7 +4846,7 @@ public:
     string after;
     bool aNext;
     APhaseAlter(GameObserver* observer, int _id, MTGCardInstance * card,Targetable * targetPlayer, bool _adding,string _phaseToAlter,string targeting, bool _aNext,string _after = "") :
-        TriggeredAbility(observer, _id, card),targetPlayerWho(targetPlayer),adding(_adding),phaseToAlter(_phaseToAlter),targetingString(targeting),aNext(_aNext),after(_after)
+        TriggeredAbility(observer, _id, card),targetPlayerWho(targetPlayer),adding(_adding),phaseToAlter(_phaseToAlter),targetingString(targeting),after(_after),aNext(_aNext)
     {
             applied = false;
             who = NULL;
@@ -5396,8 +5396,8 @@ class AASetTypeChosen: public InstantAbility
 {
 public:
     int type;
-    string menutext;
     string abilityToAlter;
+    string menutext;
     MTGAbility * abilityAltered;
     AASetTypeChosen(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target, int _type = 0,string menu = "error" ,string toAdd = "");
     int resolve();

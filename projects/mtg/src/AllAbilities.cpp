@@ -330,7 +330,8 @@ ActivatedAbility(observer, _id, _source, _cost, 0)
 int AALibraryBottom::resolve()
 {
     MTGCardInstance * _target = (MTGCardInstance *) target;
-    if (_target = _target->owner->game->putInLibrary(_target))
+    _target = _target->owner->game->putInLibrary(_target);
+    if (_target)
     {
         MTGLibrary * library = _target->owner->game->library;
         vector<MTGCardInstance *>oldOrder = library->cards;
