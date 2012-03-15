@@ -992,7 +992,7 @@ name=Ajani Vengeant
 auto=counter(0/0,3,loyalty)
 auto={C(0/0,1,Loyalty)}:frozen target(*)
 auto={C(0/0,-2,Loyalty)}:damage:3 target(creature,player) && life:3 controller
-auto={C(0/0,-7,Loyalty)}:destroy all(land|opponentbattlefield)
+auto={C(0/0,-7,Loyalty)}:target(player) destroy all(land|targetedpersonsbattlefield)
 text=+1: Target permanent doesn't untap during its controller's next untap step. -- -2: Ajani Vengeant deals 3 damage to target creature or player and you gain 3 life. -- -7: Destroy all lands target player controls.
 mana={2}{R}{W}
 type=Planeswalker
@@ -1582,8 +1582,8 @@ type=Sorcery
 [/card]
 [card]
 name=Altar of Dementia
-auto={0}:name(opponent) notatarget(creature|mybattlefield) dynamicability<!mytgt powerdeplete targetopponent!> sacrifice
-auto={0}:name(you) notatarget(creature|mybattlefield) dynamicability<!mytgt powerdeplete targetcontroller!> sacrifice
+auto={s(creature|mybattlefield)}:name(opponent) notatarget(creature|mybattlefield) dynamicability<!mytgt powerdeplete targetopponent!> sacrifice
+auto={s(creature|mybattlefield)}:name(you) notatarget(creature|mybattlefield) dynamicability<!mytgt powerdeplete targetcontroller!> sacrifice
 text=Sacrifice a creature: Target player puts a number of cards equal to the sacrificed creature's power from the top of his or her library into his or her graveyard.
 mana={2}
 type=Artifact
@@ -8571,8 +8571,7 @@ type=Sorcery
 name=Bojuka Bog
 auto=tap
 auto={T}:Add {B}
-auto=choice name(opponentgraveyard) moveTo(exile) all(*|opponentgraveyard)
-auto=choice name(mygraveyard) moveTo(exile) all(*|mygraveyard)
+auto=choice target(player) moveTo(exile) all(*|targetedpersonsgraveyard)
 text=Bojuka Bog enters the battlefield tapped. -- When Bojuka Bog enters the battlefield, exile all cards from target player's graveyard. -- {T}: Add {B} to your mana pool.
 type=Land
 [/card]
@@ -9556,8 +9555,7 @@ type=Instant
 [card]
 name=Brigid, Hero of Kinsbaile
 abilities=first strike
-auto={T}:name(opponent) damage:2 all(creature[attacking;blocking]|opponentBattlefield)
-auto={T}:name(you) damage:2 all(creature[attacking;blocking]|myBattlefield)
+auto={T}:target(player) damage:2 all(creature[attacking;blocking]|targetedpersonsBattlefield)
 text=First strike -- {T}: Brigid, Hero of Kinsbaile deals 2 damage to each attacking or blocking creature target player controls.
 mana={2}{W}{W}
 type=Legendary Creature
@@ -12044,7 +12042,7 @@ auto={C(0/0,-7,Loyalty)}:name(7 damage to creature) damage:1 target(creature)
 auto={C(0/0,-8,Loyalty)}:name(8 damage to creature) damage:1 target(creature)
 auto={C(0/0,-9,Loyalty)}:name(9 damage to creature) damage:1 target(creature)
 auto={C(0/0,-10,Loyalty)}:name(10 damage to creature) damage:1 target(creature)
-auto={C(0/0,-8,Loyalty)}:name(10 damage to player and all of his creatures) damage:10 opponent && damage:10 all(creature|opponentbattlefield)
+auto={C(0/0,-8,Loyalty)}:name(10 damage to player and all of his creatures) target(player) damage:10 && damage:10 all(creature|targetedpersonsbattlefield)
 text=+1: Chandra Nalaar deals 1 damage to target player. -- -X: Chandra Nalaar deals X damage to target creature. -- -8: Chandra Nalaar deals 10 damage to target player and each creature he or she controls.
 mana={3}{R}{R}
 type=Planeswalker
@@ -16012,8 +16010,8 @@ subtype=Aura
 [/card]
 [card]
 name=Curse of Death's Hold
-auto=choice name(enchant opponent) transforms((,newability[moveTo(opponentbattlefield)],newability[lord(creature|myBattlefield) -1/-1])) forever
-auto=choice name(enchant yourself) transforms((,newability[lord(creature|myBattlefield) -1/-1])) forever
+target=player
+auto=lord(creature|targetedpersonsbattlefield) -1/-1
 text=Enchant Player -- Creatures enchanted player controls gets -1/-1.
 mana={3}{B}{B}
 type=Enchantment
@@ -16021,8 +16019,8 @@ subtype=Aura Curse
 [/card]
 [card]
 name=Curse of Exhaustion
-auto=choice name(enchant opponent) transforms((,newability[moveTo(opponentbattlefield)],newability[maxCast(*)1])) forever
-auto=choice name(enchant yourself) transforms((,newability[maxCast(*)1])) forever
+target=player
+auto=maxCast(*)1 targetedplayer
 text=Enchant player -- Enchanted player can't cast more than one spell each turn.
 mana={2}{W}{W}
 type=Enchantment
@@ -16037,18 +16035,9 @@ mana={3}{R}{R}
 type=Enchantment
 [/card]
 [card]
-name=Curse of Oblivion
-auto=choice name(enchant opponent) transforms((,newability[moveTo(opponentbattlefield)],newability[@each my upkeep:target(<2>*|graveyard) moveTo(exile)])) forever
-auto=choice name(enchant yourself) transforms((,newability[@each my upkeep:target(<2>*|graveyard) moveTo(exile)])) forever
-text=Enchant Player -- Creatures enchanted player controls gets -1/-1.
-mana={3}{B}
-type=Enchantment
-subtype=Aura Curse
-[/card]
-[card]
 name=Curse of Stalked Prey
-auto=choice name(enchant opponent) transforms((,newability[moveTo(opponentbattlefield)],newability[@combatdamaged(controller) from(creature):all(trigger[from]) counter(1/1,1)])) forever
-auto=choice name(enchant yourself) transforms((,newability[@combatdamaged(controller) from(creature):all(trigger[from]) counter(1/1,1)])) forever
+target=player
+auto=@combatdamaged(targetedplayer) from(creature):all(trigger[from]) counter(1/1,1)
 text=Enchant player -- Whenever a creature deals combat damage to enchanted player, put a +1/+1 counter on that creature.
 mana={1}{R}
 type=Enchantment
@@ -16056,8 +16045,8 @@ subtype=Aura Curse
 [/card]
 [card]
 name=Curse of the Bloody Tome
-auto=choice name(enchant opponent) transforms((,newability[moveTo(opponentbattlefield)],newability[@each my upkeep:deplete:2 controller])) forever
-auto=choice name(enchant yourself) transforms((,newability[@each my upkeep:deplete:2 controller])) forever
+target=player
+auto=@each targetedplayer upkeep:deplete:2 targetedplayer
 text=Enchant player -- At the beginning of enchanted player's upkeep, that player puts the top two cards of his or her library into his or her graveyard.
 mana={2}{U}
 type=Enchantment
@@ -16065,8 +16054,8 @@ subtype=Aura Curse
 [/card]
 [card]
 name=Curse of the Nightly Haunt
-auto=choice name(enchant opponent) transforms((,newability[moveTo(opponentbattlefield)],newability[lord(creature|myBattlefield) mustattack])) forever
-auto=choice name(enchant yourself) transforms((,newability[lord(creature|myBattlefield) mustattack])) forever
+target=player
+auto=lord(creature|targetedpersonsBattlefield) mustattack
 text=Enchant Player -- Creatures enchanted palyer controls attack each turn if able.
 mana={2}{R}
 type=Enchantment
@@ -16074,8 +16063,8 @@ subtype=Aura Curse
 [/card]
 [card]
 name=Curse of the Pierced Heart
-auto=choice name(enchant opponent) transforms((,newability[moveTo(opponentbattlefield)],newability[@each my upkeep:damage:1 controller])) forever
-auto=choice name(enchant yourself) transforms((,newability[@each my upkeep:damage:1 controller])) forever
+target=player
+auto=@each targetedplayer upkeep:damage:1 targetedplayer
 text=Enchant player -- At the beginning of enchanted player's upkeep, Curse of the Pierced Heart deals 1 damage to that player.
 mana={1}{R}
 type=Enchantment
@@ -16083,8 +16072,8 @@ subtype=Aura Curse
 [/card]
 [card]
 name=Curse of Thirst
-auto=choice name(enchant opponent) transforms((,newability[moveTo(opponentbattlefield)],newability[@each my upkeep:foreach(curse|mybattlefield) damage:1])) forever
-auto=choice name(enchant yourself) transforms((,newability[@each my upkeep:foreach(curse|mybattlefield) damage:1])) forever
+target=player
+auto=@each targetedplayer upkeep:damage:targetedcurses
 text=Enchant player -- At the beginning of enchanted player's upkeep, Curse of Thirst deals damage to that player equal to the number of Curses attached to him or her.
 mana={4}{B}
 type=Enchantment
@@ -19347,8 +19336,8 @@ type=Sorcery
 [/card]
 [card]
 name=Divine Congregation
-auto=choice name(My Creatures) life:type:creature:mybattlefield && life:type:creature:mybattlefield
-auto=choice name(Opponents Creatures) life:type:creature:opponentbattlefield && life:type:creature:opponentbattlefield
+target=player
+auto=life:type:creature:targetedpersonsbattlefield && life:type:creature:targetedpersonsbattlefield
 text=You gain 2 life for each creature target player controls. -- Suspend 5 - {1}{W} (Rather than cast this card from your hand, you may pay {1}{W} and exile it with five time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.)
 mana={3}{W}
 suspend(5)={1}{w}
@@ -19675,6 +19664,13 @@ mana={U}{U}{R}
 type=Instant
 [/card]
 [card]
+name=Doubling Cube
+auto={3}{t}:add{manapool}
+text={3}, {T}: Double the amount of each type of mana in your mana pool.
+mana={2}
+type=Artifact
+[/card]
+[card]
 name=Doubtless One
 auto=spiritlink
 auto=foreach(cleric) 1/1
@@ -19749,8 +19745,8 @@ type=Instant
 [/card]
 [card]
 name=Drafna's Restoration
-auto=choice name(your graveyard) && moveTo(mylibrary) target(<anyamount>artifact|mygraveyard)
-auto=choice name(opponent's graveyard) && moveTo(opponentlibrary) target(<anyamount>artifact|opponentgraveyard)
+target=player
+auto=choice moveTo(targetedpersonslibrary) target(<anyamount>artifact|targetedpersonsgraveyard)
 text=Return any number of target artifact cards from target player's graveyard to the top of his or her library in any order.
 mana={U}
 type=Sorcery
@@ -21389,8 +21385,8 @@ type=Instant
 [/card]
 [card]
 name=Early Harvest
-auto=choice name(untap all your basic lands) untap all(land[basic]|mybattlefield)
-auto=choice name(untap all opponent's basic lands) untap all(land[basic]|opponentbattlefield)
+target=player
+auto=choice untap all(land[basic]|targetedpersonsbattlefield)
 text=Target player untaps all basic lands he or she controls.
 mana={1}{G}{G}
 type=Instant
@@ -36461,8 +36457,8 @@ subtype=Arcane
 [/card]
 [card]
 name=Identity Crisis
-auto=choice name(opponent) moveTo(exile) all(*|opponenthand,opponentgraveyard)
-auto=choice name(self) moveTo(exile) all(*|myhand,mygraveyard)
+target=player
+auto=moveTo(exile) all(*|targetedpersonshand,targetedpersonsgraveyard)
 text=Exile all cards from target player's hand and graveyard.
 mana={2}{W}{W}{B}{B}
 type=Sorcery
@@ -38609,8 +38605,7 @@ type=Sorcery
 [/card]
 [card]
 name=Jolrael, Empress of Beasts
-auto={2}{G}{T}{discard(*|myhand)}{discard(*|myhand)}:name(your lands become 3/3 creatures) lord(land|mybattlefield) becomes(Creature,3/3) ueot
-auto={2}{G}{T}{discard(*|myhand)}{discard(*|myhand)}:name(your opponent's lands become 3/3 creatures) lord(land|opponentbattlefield) becomes(Creature,3/3) ueot
+auto={2}{G}{T}{discard(*|myhand)}{discard(*|myhand)}:name(lands become 3/3 creatures)target(player) all(land|targetedpersonsbattlefield) becomes(Creature,3/3) ueot
 text={2}{G}, {T}, Discard two cards: All lands target player controls become 3/3 creatures until end of turn. They're still lands.
 mana={3}{G}{G}
 type=Legendary Creature
@@ -39997,8 +39992,7 @@ toughness=2
 [/card]
 [card]
 name=Keening Stone
-auto={5}{T}:name(opponent) deplete:type:*:opponentgraveyard opponent
-auto={5}{T}:name(you) deplete:type:*:mygraveyard controller
+auto={5}{T}:target(player) deplete:type:*:targetedpersonsgraveyard targetedplayer
 text={5}, {T}: Target player puts the top X cards of his or her library into his or her graveyard where X is the number of cards in that player's graveyard.
 mana={6}
 type=Artifact
@@ -45555,8 +45549,8 @@ toughness=2
 [/card]
 [card]
 name=Mana Vapors
-auto=choice name(your opponent's lands don't untap during his next upkeep) frozen all(land|opponentBattlefield)
-auto=choice name(your lands don't untap during your next upkeep) frozen all(land|myBattlefield)
+target=player
+auto=frozen all(land|targetedpersonsBattlefield)
 text=Lands target player controls don't untap during his or her next untap step.
 mana={1}{U}
 type=Sorcery
@@ -48087,9 +48081,9 @@ toughness=1
 [/card]
 [card]
 name=Misstep
+target=player
 text=Creatures target player controls don't untap during that player's next untap step.
-auto=choice name(your opponent's creatures don't untap during his next upkeep) frozen all(creature|opponentBattlefield)
-auto=choice name(your creatures don't untap during your next upkeep) frozen all(creature|myBattlefield)
+auto=frozen all(creature|targetedpersonsBattlefield)
 mana={1}{U}
 type=Sorcery
 [/card]
@@ -59720,8 +59714,8 @@ toughness=1
 [/card]
 [card]
 name=Ravenous Trap
-auto=choice name(opponent's graveyard) moveTo(exile) all(*|opponentgraveyard)
-auto=choice name(your graveyard) moveTo(exile) all(*|mygraveyard)
+target=player
+auto=moveTo(exile) all(*|targetedpersonsgraveyard)
 other={0}
 otherrestriction=type(*[fresh]|opponentgraveyard)~morethan~2
 text=If an opponent had three or more cards put into his or her graveyard from anywhere this turn, you may pay {0} rather than pay Ravenous Trap's mana cost. -- Exile all cards from target player's graveyard.
@@ -61375,8 +61369,8 @@ type=Sorcery
 [/card]
 [card]
 name=Reward the Faithful
-auto=choice name(you gain life) life:convertedcost:highest:*:mybattlefield controller
-auto=choice name(you and opponent gain life) life:convertedcost:highest:*:mybattlefield controller && life:convertedcost:highest:*:mybattlefield opponent
+target=players
+auto=life:convertedcost:highest:*:mybattlefield
 text=Any number of target players each gains life equal to the highest converted mana cost among permanents you control.
 mana={W}
 type=Instant
@@ -69530,8 +69524,8 @@ toughness=2
 [/card]
 [card]
 name=Sleep
-auto=choice name(your opponent's creatures don't untap during his next upkeep) frozen all(creature|opponentBattlefield) && tap all(creature|opponentBattlefield)
-auto=choice name(your creatures don't untap during your next upkeep) frozen all(creature|myBattlefield) && tap all(creature||myBattlefield)
+target=player
+auto=choice frozen all(creature|targetedpersonsBattlefield) && tap all(creature|targetedpersonsBattlefield)
 text=Tap all creatures target player controls. Those creatures don't untap during that player's next untap step.
 mana={2}{U}{U}
 type=Sorcery
@@ -74464,8 +74458,8 @@ abilities=split second
 [/card]
 [card]
 name=Sudden Disappearance
-auto=choice name(opponent) (blink)ueot all(*[-land]|opponentbattlefield)
-auto=choice name(you) (blink)ueot all(*[-land]|mybattlefield)
+target=player
+auto=(blink)ueot all(*[-land]|targetedpersonsbattlefield)
 text=Exile all nonland permanents target player controls. Return the exiled cards to the battlefield under their owners control at the beginning of the next end step.
 mana={5}{W}
 type=Sorcery
@@ -79286,8 +79280,7 @@ toughness=2
 [/card]
 [card]
 name=Tormod's Crypt
-auto={T}{S}:name(opponent's graveyard) moveTo(exile) all(*|opponentgraveyard)
-auto={T}{S}:name(my graveyard) moveTo(exile) all(*|mygraveyard)
+auto={T}{S}:target(player) moveTo(exile) all(*|targetedpersonsgraveyard)
 text={T}, Sacrifice Tormod's Crypt: Exile all cards from target player's graveyard.
 mana={0}
 type=Artifact
@@ -80733,18 +80726,13 @@ type=Instant
 [/card]
 [card]
 name=Turnabout
-auto=choice name(tap all opponents creatures) tap all(creature|opponentbattlefield)
-auto=choice name(tap all opponents artifacts) tap all(artifact|opponentbattlefield)
-auto=choice name(tap all opponents lands) tap all(land|opponentbattlefield)
-auto=choice name(untap all opponents creatures) untap all(creature|opponentbattlefield)
-auto=choice name(untap all opponents artifacts) untap all(artifact|opponentbattlefield)
-auto=choice name(untap all opponents lands) untap all(land|opponentbattlefield)
-auto=choice name(tap all your creatures) tap all(creature|mybattlefield)
-auto=choice name(tap all your artifacts) tap all(artifact|mybattlefield)
-auto=choice name(tap all your lands) tap all(land|mybattlefield)
-auto=choice name(untap all your creatures) untap all(creature|mybattlefield)
-auto=choice name(untap all your artifacts) untap all(artifact|mybattlefield)
-auto=choice name(untap all your lands) untap all(land|mybattlefield)
+target=player
+auto=choice name(tap all creatures) tap all(creature|targetedpersonsbattlefield)
+auto=choice name(tap all artifacts) tap all(artifact|targetedpersonsbattlefield)
+auto=choice name(tap all lands) tap all(land|targetedpersonsbattlefield)
+auto=choice name(untap all creatures) untap all(creature|targetedpersonsbattlefield)
+auto=choice name(untap all artifacts) untap all(artifact|targetedpersonsbattlefield)
+auto=choice name(untap all lands) untap all(land|targetedpersonsbattlefield)
 text=Choose artifact, creature, or land. Tap all untapped permanents of the chosen type target player controls, or untap all tapped permanents of that type that player controls.
 type=instant
 mana={2}{U}{U}
@@ -87598,7 +87586,7 @@ toughness=1
 [card]
 name=Witchbane Orb
 abilities=playershroud
-auto=destroy all(curse|mybattlefield)
+auto=destroy all(mycurses)
 text=When Witchbane Orb enters the battlefield, destroy all Curses attached to you. -- You have hexproof.
 mana={4}
 type=Artifact

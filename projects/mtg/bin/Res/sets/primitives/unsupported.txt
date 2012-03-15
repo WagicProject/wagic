@@ -4034,6 +4034,16 @@ mana={9}{B}
 type=Sorcery
 [/card]
 [card]
+name=Curse of Oblivion
+target=
+auto=choice name(enchant opponent) transforms((,newability[moveTo(opponentbattlefield)],newability[@each my upkeep:target(<2>*|graveyard) moveTo(exile)])) forever
+auto=choice name(enchant yourself) transforms((,newability[@each my upkeep:target(<2>*|graveyard) moveTo(exile)])) forever
+text=At the beginning of enchanted player's upkeep, that player exiles two cards from his or her graveyard.
+mana={3}{B}
+type=Enchantment
+subtype=Aura Curse
+[/card]
+[card]
 name=Curse of the Fire Penguin
 mana={4}{R}{R}
 type=Enchant Creature
