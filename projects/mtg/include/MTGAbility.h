@@ -516,7 +516,8 @@ public:
     string menutext;
     ManaCost * output;
     int tap;
-    AManaProducer(GameObserver* observer, int id, MTGCardInstance * card, Targetable * t, ManaCost * _output, ManaCost * _cost = NULL, int who = TargetChooser::UNSET);
+    string Producing;
+    AManaProducer(GameObserver* observer, int id, MTGCardInstance * card, Targetable * t, ManaCost * _output, ManaCost * _cost = NULL, int who = TargetChooser::UNSET,string producing = "");
     int isReactingToClick(MTGCardInstance *  _card, ManaCost * mana = NULL);
     int resolve();
     int reactToClick(MTGCardInstance* _card);

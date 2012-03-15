@@ -748,6 +748,8 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string magicText, int 
         who = -1;
     if (s.find(" targetcontroller") != string::npos)
         who = -2;
+    if (s.find(" targetedplayer") != string::npos)
+        who = -3;
 
     //Next Time...
     found = s.find("next");
@@ -1747,6 +1749,8 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         who = TargetChooser::OPPONENT;
     if (s.find(" targetcontroller") != string::npos)
         who = TargetChooser::TARGET_CONTROLLER;
+    if (s.find(" targetedplayer") != string::npos)
+        who = TargetChooser::TARGETED_PLAYER;
     if (s.find(" owner") != string::npos)
         who = TargetChooser::OWNER;
 
@@ -2512,7 +2516,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     {
         ManaCost * output = ManaCost::parseManaCost(s.substr(found),NULL,card);
         Targetable * t = spell ? spell->getNextTarget() : NULL;
-        MTGAbility * a = NEW AManaProducer(observer, id, card, t, output, NULL, who);
+        MTGAbility * a = NEW AManaProducer(observer, id, card, t, output, NULL, who,s.substr(found));
         a->oneShot = 1;
         if(newName.size())
             ((AManaProducer*)a)->menutext = newName;
@@ -3649,13 +3653,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
         }
         break;
     }
-        //Addons ICE-AGE Cards
-
-    case 2474: //Minion of Leshrac
-    {
-        observer->addObserver(NEW AMinionofLeshrac(observer, _id, card));
-        break;
-    }
 
     case 2732: //Kjeldoran Frostbeast
     {
@@ -4402,6 +4399,11 @@ int TargetAbility::resolve()
         //do nothing if the target controller responded by phasing out the target.
         if (dynamic_cast<MTGCardInstance *>(t) && ((MTGCardInstance*)t)->isPhased)
             return 0;
+        Player * targetedPlyr = dynamic_cast<Player *>(t);
+        if (targetedPlyr)
+        {
+            source->playerTarget = targetedPlyr;
+        }
         if (ability->oneShot)
         {
             while(t)
@@ -4774,6 +4776,13 @@ TriggerAtPhase::TriggerAtPhase(GameObserver* observer, int id, MTGCardInstance *
                     result = 1;
             }
             break;
+        case -3:
+            if (source->playerTarget)
+            {
+                if (game->currentPlayer == source->playerTarget)
+                    result = 1;
+            }
+            break;
         default:
             result = 1;
             break;
@@ -4965,14 +4974,14 @@ GenericTriggeredAbility* GenericTriggeredAbility::clone() const
  */
 
 AManaProducer::AManaProducer(GameObserver* observer, int id, MTGCardInstance * card, Targetable * t, ManaCost * _output, ManaCost * _cost,
-                int who) :
+                int who,string producing) :
     ActivatedAbilityTP(observer, id, card, t, _cost, who)
 {
 
     aType = MTGAbility::MANA_PRODUCER;
     setCost(_cost);
     output = _output;
-
+    Producing = producing;
     menutext = "";
 }
 
@@ -5028,6 +5037,9 @@ int AManaProducer::reactToClick(MTGCardInstance * _card)
     {
         WResourceManager::Instance()->PlaySample("mana.wav");
     }
+    if(Producing.size())
+        if(Producing.find("manapool") != string::npos)//unique card doubling cube.
+            output->copy(source->controller()->getManaPool());
     return ActivatedAbility::activateAbility();
 }
 
@@ -5089,6 +5101,8 @@ Targetable * AbilityTP::getTarget()
         return source->controller()->opponent();
     case TargetChooser::OWNER:
         return source->owner;
+    case TargetChooser::TARGETED_PLAYER:
+        return source->playerTarget;
     default:
         return target;
     }
@@ -5114,6 +5128,8 @@ Targetable * ActivatedAbilityTP::getTarget()
         return source->controller()->opponent();
     case TargetChooser::OWNER:
         return source->owner;
+    case TargetChooser::TARGETED_PLAYER:
+        return source->playerTarget;
     default:
         return target;
     }

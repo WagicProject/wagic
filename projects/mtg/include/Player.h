@@ -41,6 +41,7 @@ public:
     int offerInterruptOnPhase;
     int skippingTurn;
     int extraTurn;
+    vector<MTGCardInstance*>curses;
     Player(GameObserver *observer, string deckFile, string deckFileSmall, MTGDeck * deck = NULL);
     virtual ~Player();
     virtual void setObserver(GameObserver*g);

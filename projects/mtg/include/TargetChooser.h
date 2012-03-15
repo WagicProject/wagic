@@ -32,7 +32,8 @@ public:
         OPPONENT = -1,
         CONTROLLER = 1,
         TARGET_CONTROLLER = 2,
-        OWNER = 3
+        OWNER = 3,
+        TARGETED_PLAYER = 4
     };
     bool other;
     bool withoutProtections;
@@ -256,6 +257,25 @@ public:
     ;
     virtual bool canTarget(Targetable * target, bool withoutProtections = false);
     virtual ProliferateChooser * clone() const;
+    virtual bool equals(TargetChooser * tc);
+};
+
+class myCursesChooser: public TypeTargetChooser
+{
+public:
+    bool withoutProtections;
+    myCursesChooser(GameObserver *observer, int * _zones, int _nbzones, MTGCardInstance * card = NULL, int _maxtargets = 1, bool other = false, bool targetMin = false) :
+    TypeTargetChooser(observer, "*",_zones, _nbzones, card, _maxtargets, other, targetMin)
+    {
+    }
+    ;
+    myCursesChooser(GameObserver *observer, MTGCardInstance * card = NULL, int _maxtargets = 1, bool other = false,bool targetMin = false) :
+        TypeTargetChooser(observer, "*", card, _maxtargets, other,targetMin)
+    {
+    }
+    ;
+    virtual bool canTarget(Targetable * target, bool withoutProtections = false);
+    virtual myCursesChooser * clone() const;
     virtual bool equals(TargetChooser * tc);
 };
 

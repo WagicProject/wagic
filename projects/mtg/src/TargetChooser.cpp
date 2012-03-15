@@ -82,11 +82,18 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
         return NEW PlayerTargetChooser(observer, card, maxtargets); //Any player
     }
 
+    found = s.find("mycurses");
+    if (found != string::npos)
+    {
+        int maxtargets = TargetChooser::UNLITMITED_TARGETS;
+        return NEW myCursesChooser(observer, card, maxtargets);
+    }
+
     found = s.find("proliferation");
     if (found != string::npos)
     {
         int maxtargets = TargetChooser::UNLITMITED_TARGETS;
-        return NEW ProliferateChooser(observer, card, maxtargets); //Any player
+        return NEW ProliferateChooser(observer, card, maxtargets);
     }
 
     string s1;
@@ -1470,6 +1477,34 @@ bool TriggerTargetChooser::equals(TargetChooser * tc)
         return false;
 
     return TargetChooser::equals(tc);
+}
+
+/*my curses */
+bool myCursesChooser::canTarget(Targetable * target,bool withoutProtections)
+{
+    for(unsigned int i = 0;i < source->controller()->curses.size();++i)
+    {
+        MTGCardInstance * compare = source->controller()->curses[i];
+        if(compare == dynamic_cast<MTGCardInstance*>(target))
+            return true;
+    }
+    return false;
+}
+
+myCursesChooser* myCursesChooser::clone() const
+{
+    myCursesChooser * a = NEW myCursesChooser(*this);
+    return a;
+}
+
+bool myCursesChooser::equals(TargetChooser * tc)
+{
+
+    myCursesChooser  * dtc = dynamic_cast<myCursesChooser  *> (tc);
+    if (!dtc)
+        return false;
+
+    return TypeTargetChooser::equals(tc);
 }
 
 /*Proliferate Target */

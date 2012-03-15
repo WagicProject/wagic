@@ -251,6 +251,11 @@ private:
                 intValue = card->previous->previous->sunburst;
             }
         }
+        else if (s == "targetedcurses")
+        {
+            if(card->playerTarget)
+                intValue = card->playerTarget->curses.size();
+        }
         else if (s == "lifetotal")
         {
             intValue = target->controller()->life;
@@ -5098,64 +5103,6 @@ public:
     int resolve();
     const char * getMenuText();
     AARandomDiscarder * clone() const;
-};
-
-//Minion of Leshrac
-class AMinionofLeshrac: public TargetAbility
-{
-public:
-    int paidThisTurn;
-    AMinionofLeshrac(GameObserver* observer, int _id, MTGCardInstance * source) :
-        TargetAbility(observer, _id, source, NEW TypeTargetChooser(game, "creature"), 0, 1)
-    {
-        paidThisTurn = 1;
-    }
-
-    void Update(float dt)
-    {
-        if (newPhase != currentPhase && source->controller() == game->currentPlayer)
-        {
-            if (newPhase == MTG_PHASE_UNTAP)
-            {
-                paidThisTurn = 0;
-            }
-            else if (newPhase == MTG_PHASE_UPKEEP + 1 && !paidThisTurn)
-            {
-                game->mLayers->stackLayer()->addDamage(source, source->controller(), 5);
-                source->tap();
-            }
-        }
-        TargetAbility::Update(dt);
-    }
-
-    int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL)
-    {
-        if (currentPhase != MTG_PHASE_UPKEEP || paidThisTurn) return 0;
-        return TargetAbility::isReactingToClick(card, mana);
-    }
-
-    int resolve()
-    {
-        MTGCardInstance * card = tc->getNextCardTarget();
-        if (card && card != source && card->controller() == source->controller())
-        {
-            card->controller()->game->putInGraveyard(card);
-            paidThisTurn = 1;
-            return 1;
-        }
-        return 0;
-    }
-
-    virtual ostream& toString(ostream& out) const
-    {
-        out << "AMinionofLeshrac ::: paidThisTurn : " << paidThisTurn << " (";
-        return TargetAbility::toString(out) << ")";
-    }
-
-    AMinionofLeshrac * clone() const
-    {
-        return NEW AMinionofLeshrac(*this);
-    }
 };
 
 //Rampage ability

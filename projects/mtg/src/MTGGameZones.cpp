@@ -881,7 +881,6 @@ MTGGameZone * MTGGameZone::intToZone(GameObserver *g, int zoneId, MTGCardInstanc
 
     MTGGameZone * result = intToZone(zoneId, p, p2);
     if (result) return result;
-
     switch (zoneId)
     {
     case TARGET_OWNER_GRAVEYARD:
@@ -890,11 +889,19 @@ MTGGameZone * MTGGameZone::intToZone(GameObserver *g, int zoneId, MTGCardInstanc
         return target->owner->game->graveyard;
     case OWNER_GRAVEYARD:
         return target->owner->game->graveyard;
+    case TARGETED_PLAYER_GRAVEYARD:
+        if(source->playerTarget)
+        return source->playerTarget->game->graveyard;
+        else return source->controller()->game->graveyard;
 
     case TARGET_OWNER_BATTLEFIELD:
         return target->owner->game->inPlay;
     case OWNER_BATTLEFIELD:
         return target->owner->game->inPlay;
+    case TARGETED_PLAYER_BATTLEFIELD:
+        if(source->playerTarget)
+            return source->playerTarget->game->inPlay;
+        else return source->controller()->game->inPlay;
 
     case TARGET_OWNER_HAND:
         return target->owner->game->hand;
@@ -902,6 +909,10 @@ MTGGameZone * MTGGameZone::intToZone(GameObserver *g, int zoneId, MTGCardInstanc
         return target->owner->game->hand;
     case OWNER_HAND:
         return target->owner->game->hand;
+    case TARGETED_PLAYER_HAND:
+        if(source->playerTarget)
+            return source->playerTarget->game->hand;
+        else return source->controller()->game->hand;
 
     case TARGET_OWNER_EXILE:
         return target->owner->game->removedFromGame;
@@ -909,16 +920,28 @@ MTGGameZone * MTGGameZone::intToZone(GameObserver *g, int zoneId, MTGCardInstanc
         return target->owner->game->removedFromGame;
     case OWNER_EXILE:
         return target->owner->game->removedFromGame;
+    case TARGETED_PLAYER_EXILE:
+        if(source->playerTarget)
+            return source->playerTarget->game->removedFromGame;
+        else return source->controller()->game->removedFromGame;
 
     case TARGET_OWNER_LIBRARY:
         return target->owner->game->library;
     case OWNER_LIBRARY:
         return target->owner->game->library;
+    case TARGETED_PLAYER_LIBRARY:
+        if(source->playerTarget)
+            return source->playerTarget->game->library;
+        else return source->controller()->game->library;
 
     case TARGET_OWNER_STACK:
         return target->owner->game->stack;
     case OWNER_STACK:
         return target->owner->game->stack;
+    case TARGETED_PLAYER_STACK:
+        if(source->playerTarget)
+            return source->playerTarget->game->stack;
+        else return source->controller()->game->stack;
     default:
         return NULL;
     }
@@ -928,44 +951,44 @@ MTGGameZone * MTGGameZone::intToZone(GameObserver *g, int zoneId, MTGCardInstanc
 int MTGGameZone::zoneStringToId(string zoneName)
 {
     const char * strings[] = { "mygraveyard", "opponentgraveyard", "targetownergraveyard", "targetcontrollergraveyard",
-                    "ownergraveyard", "graveyard",
+                    "ownergraveyard", "graveyard","targetedpersonsgraveyard",
 
-                    "myinplay", "opponentinplay", "targetownerinplay", "targetcontrollerinplay", "ownerinplay", "inplay",
+                    "myinplay", "opponentinplay", "targetownerinplay", "targetcontrollerinplay", "ownerinplay", "inplay","targetedpersonsinplay",
 
                     "mybattlefield", "opponentbattlefield", "targetownerbattlefield", "targetcontrollerbattlefield",
-                    "ownerbattlefield", "battlefield",
+                    "ownerbattlefield", "battlefield","targetedpersonsbattlefield",
 
-                    "myhand", "opponenthand", "targetownerhand", "targetcontrollerhand", "ownerhand", "hand",
+                    "myhand", "opponenthand", "targetownerhand", "targetcontrollerhand", "ownerhand", "hand","targetedpersonshand",
 
-                    "mylibrary", "opponentlibrary", "targetownerlibrary", "targetcontrollerlibrary", "ownerlibrary", "library",
+                    "mylibrary", "opponentlibrary", "targetownerlibrary", "targetcontrollerlibrary", "ownerlibrary", "library","targetedpersonslibrary",
 
                     "myremovedfromgame", "opponentremovedfromgame", "targetownerremovedfromgame",
-                    "targetcontrollerremovedfromgame", "ownerremovedfromgame", "removedfromgame",
+                    "targetcontrollerremovedfromgame", "ownerremovedfromgame", "removedfromgame","targetedpersonsremovefromgame",
 
-                    "myexile", "opponentexile", "targetownerexile", "targetcontrollerexile", "ownerexile", "exile",
+                    "myexile", "opponentexile", "targetownerexile", "targetcontrollerexile", "ownerexile", "exile","targetedpersonsexile",
 
-                    "mystack", "opponentstack", "targetownerstack", "targetcontrollerstack", "ownerstack", "stack",
+                    "mystack", "opponentstack", "targetownerstack", "targetcontrollerstack", "ownerstack", "stack","targetedpersonsstack",
 
     };
 
     int values[] = { MY_GRAVEYARD, OPPONENT_GRAVEYARD, TARGET_OWNER_GRAVEYARD, TARGET_CONTROLLER_GRAVEYARD, OWNER_GRAVEYARD,
-                    GRAVEYARD,
+                    GRAVEYARD,TARGETED_PLAYER_GRAVEYARD,
 
                     MY_BATTLEFIELD, OPPONENT_BATTLEFIELD, TARGET_OWNER_BATTLEFIELD, TARGET_CONTROLLER_BATTLEFIELD,
-                    OWNER_BATTLEFIELD, BATTLEFIELD,
+                    OWNER_BATTLEFIELD, BATTLEFIELD,TARGETED_PLAYER_BATTLEFIELD,
 
                     MY_BATTLEFIELD, OPPONENT_BATTLEFIELD, TARGET_OWNER_BATTLEFIELD, TARGET_CONTROLLER_BATTLEFIELD,
-                    OWNER_BATTLEFIELD, BATTLEFIELD,
+                    OWNER_BATTLEFIELD, BATTLEFIELD,TARGETED_PLAYER_BATTLEFIELD,
 
-                    MY_HAND, OPPONENT_HAND, TARGET_OWNER_HAND, TARGET_CONTROLLER_HAND, OWNER_HAND, HAND,
+                    MY_HAND, OPPONENT_HAND, TARGET_OWNER_HAND, TARGET_CONTROLLER_HAND, OWNER_HAND, HAND,TARGETED_PLAYER_HAND,
 
-                    MY_LIBRARY, OPPONENT_LIBRARY, TARGET_OWNER_LIBRARY, TARGET_CONTROLLER_LIBRARY, OWNER_LIBRARY, LIBRARY,
+                    MY_LIBRARY, OPPONENT_LIBRARY, TARGET_OWNER_LIBRARY, TARGET_CONTROLLER_LIBRARY, OWNER_LIBRARY, LIBRARY,TARGETED_PLAYER_LIBRARY,
 
-                    MY_EXILE, OPPONENT_EXILE, TARGET_OWNER_EXILE, TARGET_CONTROLLER_EXILE, OWNER_EXILE, EXILE,
+                    MY_EXILE, OPPONENT_EXILE, TARGET_OWNER_EXILE, TARGET_CONTROLLER_EXILE, OWNER_EXILE, EXILE,TARGETED_PLAYER_EXILE,
 
-                    MY_EXILE, OPPONENT_EXILE, TARGET_OWNER_EXILE, TARGET_CONTROLLER_EXILE, OWNER_EXILE, EXILE,
+                    MY_EXILE, OPPONENT_EXILE, TARGET_OWNER_EXILE, TARGET_CONTROLLER_EXILE, OWNER_EXILE, EXILE,TARGETED_PLAYER_EXILE,
 
-                    MY_STACK, OPPONENT_STACK, TARGET_OWNER_STACK, TARGET_CONTROLLER_STACK, OWNER_STACK, STACK, };
+                    MY_STACK, OPPONENT_STACK, TARGET_OWNER_STACK, TARGET_CONTROLLER_STACK, OWNER_STACK, STACK,TARGETED_PLAYER_STACK };
 
     int max = sizeof(values) / sizeof *(values);
 
