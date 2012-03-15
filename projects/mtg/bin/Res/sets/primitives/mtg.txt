@@ -31240,7 +31240,7 @@ toughness=2
 [/card]
 [card]
 name=Goblin Warrens
-auto={2}{R}{S(creature|myBattlefield)}{S(creature|myBattlefield)}:token(Goblin,Creature Goblin,1/1,red)*3
+auto={2}{R}{S(goblin|myBattlefield)}{S(goblin|myBattlefield)}:token(Goblin,Creature Goblin,1/1,red)*3
 text={2}{R}, Sacrifice two Goblins: Put three 1/1 red Goblin creature tokens onto the battlefield.
 mana={2}{R}
 type=Enchantment
@@ -88834,6 +88834,7 @@ toughness=1
 [/card]
 [card]
 name=Yuan Shao, the Indecisive
+abilities=horsemanship
 auto=lord(creature|myBattlefield) oneblocker
 text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.) -- Each creature you control can't be blocked by more than one creature.
 mana={4}{R}
