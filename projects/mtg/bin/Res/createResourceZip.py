@@ -26,14 +26,14 @@ def createResZipFile(filename):
         zip_file.close()
 
 def createStandardResFile():
-    filename = 'core_0180.zip'
+    filename = 'core_0181.zip'
     createResZipFile( filename )
     print >> sys.stderr, 'Created Resource Package for Standard Distribution: {0}'.format( filename)
 
 def createIosResFile():
     print 'Preparing Resource Package for iOS'
     utilities = ZipUtilities()
-    filename = 'core_0180_iOS.zip'
+    filename = 'core_0181_iOS.zip'
     #createResZipFile( filename )
     zip_file = zipfile.ZipFile(filename, 'a', zipfile.ZIP_STORED)
     zip_file.write("../../iOS/Res/rules/modrules.xml", "rules/modrules.xml", zipfile.ZIP_STORED)
