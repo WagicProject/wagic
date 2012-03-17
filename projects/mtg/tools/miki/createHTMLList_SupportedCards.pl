@@ -6,8 +6,8 @@ use Getopt::Std;
 #
 #############################################################
 
-my $pageName = "SupportedCardList017";
-my $VERSION = "0.17";
+my $pageName = "SupportedCardList0181";
+my $VERSION = "0.181";
 
 #############################################################
 #--- DO NOT EDIT BEYOND THIS LINE UNLESS YOU WANT TO CHANGE THE FORMAT!#
