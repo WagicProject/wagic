@@ -26,6 +26,7 @@ generic/equipment_i252.txt
 generic/exalted.txt
 generic/exalted_i143.txt
 generic/exalted_i310.txt
+generic/extra_turn.txt
 generic/fear.txt
 generic/fear_i147.txt
 generic/first_and_double_strike1_i187.txt
@@ -68,6 +69,7 @@ generic/rampage_vs_first_strike.txt
 generic/regenerate.txt
 generic/regenerate_wither_i146.txt
 generic/sacrifice.txt
+generic/skip_turn.txt
 generic/summoning_sickness.txt
 generic/sunburst.txt
 generic/tap_other_card_as_cost.txt
