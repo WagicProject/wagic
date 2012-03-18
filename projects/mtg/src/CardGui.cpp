@@ -257,7 +257,6 @@ void CardGui::Render()
             icon = game?game->getResourceManager()->GetQuad("c_red"):WResourceManager::Instance()->GetQuad("c_red");
         else if (card->hasSubtype("island"))
             icon = game?game->getResourceManager()->GetQuad("c_blue"):WResourceManager::Instance()->GetQuad("c_blue");
-
         if (icon.get())
         {
             icon->SetColor(ARGB(static_cast<unsigned char>(actA),255,255,255));

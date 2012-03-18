@@ -669,8 +669,15 @@ public:
     {
         WEventCardSacrifice * e = dynamic_cast<WEventCardSacrifice *> (event);
         if (!e) return 0;
-        if (!tc->canTarget(e->card)) return 0;
-
+        MTGCardInstance * check = e->cardAfter;
+        MTGGameZone * oldZone = e->cardAfter->currentZone;
+        check->currentZone = check->previousZone;
+        if (!tc->canTarget(check,true))
+        {
+            check->currentZone = oldZone;
+            return 0;
+        }
+        check->currentZone = oldZone;
         return 1;
     }
 
@@ -2809,6 +2816,11 @@ public:
                 tokenReciever = ((MTGCardInstance*)target)->controller();
                 break;
             }
+        case TargetChooser::TARGETED_PLAYER:
+            {
+                tokenReciever = source->playerTarget;
+                break;
+            }
         default:
             tokenReciever = source->controller();
             break;
@@ -2865,6 +2877,95 @@ public:
 
 };
 
+//targetable abilities which are added to targeted players game.
+class ATargetedAbilityCreator: public ActivatedAbility
+{
+public:
+    string sabilities;
+    string name;
+    int who;
+    MTGCardInstance * myDummy;
+    Player * abilityReciever;
+    ATargetedAbilityCreator(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable * _target, ManaCost * _cost,string _name, string abilityToAdd, int who = 0) :
+    ActivatedAbility(observer, _id, _source, _cost, 0),name(_name),sabilities(abilityToAdd), who(who)
+    {
+    }
+
+    int resolve()
+    {
+        setAbilityOwner();
+        myDummy = NEW MTGCardInstance();
+        setAbilityOwner();
+        myDummy->setObserver(abilityReciever->getObserver());
+        myDummy->owner = abilityReciever;
+        vector<string>magictextlines = split(sabilities,'_');
+        if(magictextlines.size())
+        {
+            string newMagicText = "";
+            for(unsigned int i = 0; i < magictextlines.size(); i++)
+            {
+                newMagicText.append(magictextlines[i]);
+                newMagicText.append("\n");
+            }
+            myDummy->magicText = newMagicText;
+        }
+        else
+        myDummy->magicText = sabilities;
+        abilityReciever->game->garbage->addCard(myDummy);
+        Spell * spell = NEW Spell(game, myDummy);
+        spell->resolve();
+        myDummy = spell->source;
+        spell->source->owner = abilityReciever;
+        delete spell;
+        return 1;
+    }
+
+    void setAbilityOwner()
+    {
+        switch(who)
+        {
+        case TargetChooser::CONTROLLER:
+            abilityReciever = source->controller();
+            break;
+        case TargetChooser::OPPONENT:
+            abilityReciever = source->controller()->opponent();
+            break;
+        case TargetChooser::TARGET_CONTROLLER:
+            if(target)
+            {
+                abilityReciever = ((MTGCardInstance*)target)->controller();
+                break;
+            }
+        case TargetChooser::TARGETED_PLAYER:
+            {
+                abilityReciever = source->playerTarget;
+                break;
+            }
+        default:
+            abilityReciever = source->controller()->opponent();
+            break;
+        }
+    }
+    
+    const char * getMenuText()
+    {
+        if(name.size())
+            return name.c_str();
+        return "Ability";
+    }
+
+    ATargetedAbilityCreator * clone() const
+    {
+        ATargetedAbilityCreator * a = NEW ATargetedAbilityCreator(*this);
+        return a;
+    }
+
+    ~ATargetedAbilityCreator()
+    {
+    }
+
+};
+///
 //Foreach (plague rats...)
 class AForeach: public ListMaintainerAbility, public NestedAbility
 {

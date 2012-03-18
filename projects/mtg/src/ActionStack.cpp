@@ -292,7 +292,7 @@ Spell::~Spell()
 
 int Spell::resolve()
 {
-    if (!source->hasType(Subtypes::TYPE_INSTANT) && !source->hasType(Subtypes::TYPE_SORCERY))
+    if (!source->hasType(Subtypes::TYPE_INSTANT) && !source->hasType(Subtypes::TYPE_SORCERY) && source->name.size())
     {
         Player * p = source->controller();
         int castMethod = source->castMethod;

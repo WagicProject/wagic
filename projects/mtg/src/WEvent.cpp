@@ -93,8 +93,8 @@ WEventcardDraw::WEventcardDraw(Player * player, int nb_cards) :
 {
 }
 
-WEventCardSacrifice::WEventCardSacrifice(MTGCardInstance * card) :
-    WEventCardUpdate(card)
+WEventCardSacrifice::WEventCardSacrifice(MTGCardInstance * card, MTGCardInstance * after) :
+    WEventCardUpdate(card),cardAfter(after)
 {
 }
 
@@ -233,7 +233,10 @@ Targetable * WEventCardAttackedAlone::getTarget(int target)
 
 Targetable * WEventCardSacrifice::getTarget(int target)
 {
-    if (target) return card;
+    if (target)
+    {
+            return cardAfter;
+    }
     return NULL;
 }
 

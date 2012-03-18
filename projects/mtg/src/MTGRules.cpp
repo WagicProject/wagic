@@ -1110,7 +1110,7 @@ int MTGMorphCostRule::reactToClick(MTGCardInstance * card)
     spell = game->mLayers->stackLayer()->addSpell(copy, NULL, spellCost, payResult, 0);
     spell->source->morphed = true;
     spell->source->isMorphed = true;
-    spell->source->name = "";
+    spell->source->name = "Morph";
     spell->source->power = 2;
     spell->source->toughness = 2;
     copy->morphed = true;

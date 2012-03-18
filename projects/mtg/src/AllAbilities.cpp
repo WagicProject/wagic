@@ -1279,11 +1279,12 @@ int AASacrificeCard::resolve()
     if (_target)
     {
         Player * p = _target->controller();
-        WEvent * e = NEW WEventCardSacrifice(_target);
-        game->receiveEvent(e);
+        MTGCardInstance * beforeCard = _target;
         p->game->putInGraveyard(_target);
         while(_target->next)
             _target = _target->next;
+        WEvent * e = NEW WEventCardSacrifice(beforeCard,_target);
+        game->receiveEvent(e);
         if(andAbility)
         {
             MTGAbility * andAbilityClone = andAbility->clone();
@@ -1619,6 +1620,7 @@ int AAFlip::resolve()
         if(flipStats.size())
         {
             MTGCard * fcard = MTGCollection()->getCardByName(flipStats);
+            if(!fcard) return 0;
             MTGCardInstance * myFlip = NEW MTGCardInstance(fcard, _target->controller()->game);
             _target->name = myFlip->name;
             _target->colors = myFlip->colors;
@@ -1629,6 +1631,7 @@ int AAFlip::resolve()
             for(unsigned int i = 0;i < _target->cardsAbilities.size();i++)
             {
                 MTGAbility * a = dynamic_cast<MTGAbility *>(_target->cardsAbilities[i]);
+
                 if(a) game->removeObserver(a);
             }
             _target->cardsAbilities.clear();
@@ -1714,7 +1717,7 @@ int AAFlip::testDestroy()
 const char * AAFlip::getMenuText()
 {
     string s = flipStats;
-    sprintf(menuText, "Transform into %s", s.c_str());
+    sprintf(menuText, "Transform:%s", s.c_str());
     return menuText;
 }
 
@@ -4307,9 +4310,10 @@ void AVanishing::Update(float dt)
                 }
                 if (newPhase == MTG_PHASE_UPKEEP && timeLeft <= 0 && next == 0)
                 {
-                    WEvent * e = NEW WEventCardSacrifice(source);
-                    game->receiveEvent(e);
+                    MTGCardInstance * beforeCard = source;
                     source->controller()->game->putInGraveyard(source);
+                    WEvent * e = NEW WEventCardSacrifice(beforeCard,source);
+                    game->receiveEvent(e);
                 }
             }
         }

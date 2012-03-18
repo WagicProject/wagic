@@ -810,10 +810,10 @@ void GameObserver::gameStateBasedEffects()
                 {
                     if (c->has(Constants::TREASON))
                     {
-                        WEvent * e = NEW WEventCardSacrifice(c);
-                        receiveEvent(e);
-
+                        MTGCardInstance * beforeCard = c;
                         p->game->putInGraveyard(c);
+                        WEvent * e = NEW WEventCardSacrifice(beforeCard,c);
+                        receiveEvent(e);
                     }
                     if (c->has(Constants::UNEARTH))
                     {

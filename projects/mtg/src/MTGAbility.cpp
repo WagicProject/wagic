@@ -1009,6 +1009,15 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         s.erase(stypesStartIndex, real_end - stypesStartIndex);
     }
 
+    found = s.find("ability$!");
+    if (found != string::npos && storedString.empty())
+    {
+        size_t real_end = s.find("!$", found);
+        size_t sIndex = found + 9;
+        storedString.append(s.substr(sIndex, real_end - sIndex).c_str());
+        s.erase(sIndex, real_end - sIndex);
+    }
+
     vector<string> splitTrigger = parseBetween(s, "@", ":");
     if (splitTrigger.size())
     {
@@ -1754,6 +1763,17 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     if (s.find(" owner") != string::npos)
         who = TargetChooser::OWNER;
 
+    //ability creator the target has to do the ability.
+    if(s.find("ability$") != string::npos)
+    {
+        if (storedString.size())
+        {
+            ATargetedAbilityCreator * abl = NEW ATargetedAbilityCreator(observer, id, card,target, NULL,newName, storedString, who);
+            abl->oneShot = 1;
+            storedString.clear();
+            return abl;
+        }
+    }
     //livingweapon (used for token below)
     bool aLivingWeapon = (s.find("livingweapon") != string::npos);
 
@@ -3090,7 +3110,7 @@ int AbilityFactory::getAbilities(vector<MTGAbility *> * v, Spell * spell, MTGCar
             card->life = 2;
             card->toughness = 2;
             card->setColor(0,1);
-            card->name = "";
+            card->name = "Morph";
             card->types.clear();
             string cre = "Creature";
             card->setType(cre.c_str());
