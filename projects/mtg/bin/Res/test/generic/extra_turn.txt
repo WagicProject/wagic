@@ -1,0 +1,46 @@
+#Extra Turn:
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Time Walk
+inplay:Grizzly Bears,Honden of Cleansing Fire
+library:Island
+manapool:{1}{U}
+life:20
+[PLAYER2]
+life:20
+[DO]
+Time Walk
+next
+#combatbegins
+next
+#combatattackers
+Grizzly Bears
+eot
+#Extra Turn starting
+#untap player 1
+next
+#upkeep
+next
+#draw
+next
+#firstmain
+next
+#combat begins
+next
+#attackers
+Grizzly Bears
+next
+next
+next
+#combat end
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:Grizzly Bears,Honden of Cleansing Fire
+graveyard:Time Walk
+hand:Island
+life:22
+[PLAYER2]
+life:16
+[END]

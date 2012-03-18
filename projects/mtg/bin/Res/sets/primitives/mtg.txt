@@ -3257,6 +3257,13 @@ power=4
 toughness=5
 [/card]
 [card]
+name=Arcum's Sleigh
+auto={2}{T}:vigilance target(creature) restriction{duringcombat,type(land[snow]|opponentbattlefield)~morethan~0}
+text={2}, {T}: Target creature gains vigilance until end of turn. Activate this ability only during combat and only if defending player controls a snow land.
+mana={1}
+type=Artifact
+[/card]
+[card]
 name=Ardent Militia
 abilities=vigilance
 text=Vigilance
@@ -4638,7 +4645,7 @@ type=Creature
 subtype=Bird Cleric
 power=2
 toughness=2
-[/card
+[/card]
 [card]
 name=Aven Riftwatcher
 abilities=flying
@@ -18253,7 +18260,7 @@ name=Dematerialize
 target=*
 auto=moveTo(ownerhand)
 flashback={5}{U}{U}
-text=Return target permanent to its owner's hand. -- Flashback {4}{G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+text=Return target permanent to its owner's hand. -- Flashback {5}{U}{U} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={3}{U}
 type=Sorcery
 [/card]
@@ -21818,7 +21825,7 @@ toughness=2
 name=Elbrus, the Binding Blade
 auto={1}:equip
 auto=1/0
-auto=@combatdamaged(player) from(mytgt):all(this) flip(Withengar Unbound)
+auto=@combatdamaged(player) from(mytgt):all(this) moveto(mybattlefield) and((flip(Withengar Unbound)))
 text=Equipped creature gets +1/+0. -- Whenever equipped creature deals combat damage to a player, transform Elbrus, the Binding Blade. -- Equip {1}
 mana={7}
 type=Legendary Artifact
@@ -21952,7 +21959,7 @@ toughness=3
 name=Elephant Ambush
 auto=token(Elephant,creature elephant, 3/3,green)
 flashback={6}{G}{G}
-text=Put a 3/3 green Elephant creature token onto the battlefield. -- Flashback {2}{G}{G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+text=Put a 3/3 green Elephant creature token onto the battlefield. -- Flashback {6}{G}{G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={2}{G}{G}
 type=Instant
 [/card]
@@ -22128,6 +22135,18 @@ text=+1: Put a 1/1 white Soldier creature token onto the battlefield. -- +1: Tar
 mana={2}{W}{W}
 type=Planeswalker
 subtype=Elspeth
+[/card]
+[card]
+name=Elsewhere Flask
+auto=draw:1
+auto={S}:name(plains) all(land|mybattlefield) loseabilities && all(land|mybattlefield) losesubtypesof(land) && transforms((plains)) ueot all(land|mybattlefield)
+auto={S}:ueot name(island)  all(land|mybattlefield) loseabilities && all(land|mybattlefield) losesubtypesof(land) && transforms((island)) ueot all(land|mybattlefield)
+auto={S}:ueot name(swamp)  all(land|mybattlefield) loseabilities && all(land|mybattlefield) losesubtypesof(land) && transforms((swamp)) ueot all(land|mybattlefield)
+auto={S}:ueot name(forest)  all(land|mybattlefield) loseabilities && all(land|mybattlefield) losesubtypesof(land) && transforms((mountain)) ueot all(land|mybattlefield)
+auto={S}:ueot name(forest)  all(land|mybattlefield) loseabilities && all(land|mybattlefield) losesubtypesof(land) && transforms((forest)) ueot all(land|mybattlefield)
+text=When Elsewhere Flask enters the battlefield, draw a card. -- Sacrifice Elsewhere Flask: Choose a basic land type. Each land you control becomes that type until end of turn.
+mana={2}
+type=Artifact
 [/card]
 [card]
 name=Elven Cache
@@ -27184,7 +27203,7 @@ type=Instant
 name=Folk Medicine
 auto=foreach(creature|mybattlefield) life:1
 flashback={1}{W}
-text=You gain 1 life for each creature you control. -- Flashback {2}{G}{G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+text=You gain 1 life for each creature you control. -- Flashback {1}{W} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={2}{G}
 type=Instant
 [/card]
@@ -28602,7 +28621,7 @@ auto={C(0/0,1,Loyalty)}:untap target(<2>land)
 auto={C(0/0,-1,Loyalty)}:token(Beast,Creature Beast,3/3,green)
 auto={C(0/0,-4,Loyalty)}:all(creature|mybattlefield) 3/3 && all(creature|mybattlefield) trample
 text=+1: Untap two target lands. -- -1: Put a 3/3 green Beast creature token onto the battlefield. -- -4: Creatures you control get +3/+3 and gain trample until end of turn.
-mana={2}{G}
+mana={2}{G}{G}
 type=Planeswalker
 subtype=Garruk
 [/card]
@@ -35272,7 +35291,6 @@ subtype=Homarid Warrior
 power=3
 toughness=3
 [/card]
-###The 2 cards below should stay together (Flip Card)###
 [card]
 name=Homura, Human Ascendant
 abilities=cantblock
@@ -49123,7 +49141,7 @@ target=creature|mygraveyard
 auto=moveTo(myhand)
 text=Return target creature card from your graveyard to your hand. -- Flashback {4}{B} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={1}{B}
-flashback={4}{b}
+flashback={4}{B}
 type=Sorcery
 [/card]
 [card]
@@ -54007,7 +54025,7 @@ type=Sorcery
 [/card]
 [card]
 name=Painsmith
-auto=@movedTo(artifact|mystack):may 2/0 target(creature) && deathtouch ueot
+auto=@movedTo(artifact|mystack):may 2/0 target(creature) ueot && deathtouch ueot
 text=Whenever you cast an artifact spell, you may have target creature get +2/+0 and gain deathtouch until end of turn.
 mana={1}{B}
 type=Creature
@@ -59778,7 +59796,7 @@ type=Instant
 name=Ray of Revelation
 target=enchantment
 auto=destroy
-flashback={g}
+flashback={G}
 text=Destroy target enchantment. -- Flashback {G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={1}{W}
 type=Instant
@@ -62303,7 +62321,7 @@ type=Enchantment
 name=Rolling Temblor
 auto=damage:2 all(creature[-flying])
 flashback={4}{R}{R}
-text=Rolling Temblor deals 2 damage to each creature without flying.
+text=Rolling Temblor deals 2 damage to each creature without flying. -- Flashback {4}{R}{R} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={2}{R}
 type=Sorcery
 [/card]
@@ -62621,7 +62639,7 @@ type=Creature
 subtype=Zombie Snake
 power=5
 toughness=1
-[/card
+[/card]
 [card]
 name=Rotting Legion
 auto=tap
@@ -62937,6 +62955,25 @@ subtype=Demon
 power=6
 toughness=6
 [/card]
+###The 2 cards below should stay together (Flip Card)###
+[card]
+name=Rune-Tail, Kitsune Ascendant
+auto=this(controllerlife >30) all(this) flip(Rune-Tail's Essence)
+text=When you have 30 or more life, flip Rune-Tail, Kitsune Ascendant.
+mana={2}{W}
+type=Legendary Creature
+subtype=Fox Monk
+power=2
+toughness=2
+[/card]
+[card]
+name=Rune-Tail, Kitsune Ascendant (Rune-Tail's Essence)
+auto=preventalldamage to(creature|mybattlefield)
+text=Prevent all damage that would be dealt to creatures you control.
+mana={2}{W}
+type=Legendary Enchantment
+[/card]
+###The 2 cards above should stay together (Flip Card)###
 [card]
 name=Rupture
 target=creature|myBattlefield
@@ -66350,7 +66387,7 @@ target=creature
 auto=moveTo(exile)
 auto=all(*[share!name!]|targetcontrollerbattlefield) moveto(exile)
 flashback={5}{B}{B}
-text=Exile target nonblack creature. Search its controller's graveyard, hand, and library for all cards with the same name as that creature and exile them. That player then shuffles his or her library.
+text=Exile target nonblack creature. Search its controller's graveyard, hand, and library for all cards with the same name as that creature and exile them. That player then shuffles his or her library. -- Flashback {5}{B}{B} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={3}{B}
 type=Sorcery
 [/card]
@@ -84385,7 +84422,7 @@ name=Volcanic Spray
 auto=damage:1 all(creature[-flying])
 auto=damage:1 all(player)
 flashback={1}{R}
-text=Volcanic Spray deals 1 damage to each creature without flying and each player. -- Flashback {1}{G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+text=Volcanic Spray deals 1 damage to each creature without flying and each player. -- Flashback {1}{R} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={1}{R}
 type=Sorcery
 [/card]

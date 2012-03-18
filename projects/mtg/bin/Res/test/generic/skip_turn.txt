@@ -1,0 +1,54 @@
+#Skip Turn:Ai should be able to attack you 2 times during this test after you casted Meditate to draw 4 cards.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Meditate
+library:Island,Dark Ritual,Black Knight,Naturalize
+manapool:{2}{U}
+life:20
+[PLAYER2]
+inplay:Grizzly Bears,Honden of Cleansing Fire
+life:20
+[DO]
+Meditate
+eot
+#First Turn player 2 
+#untap
+next
+#upkeep
+next
+#draw
+next
+#firstmain
+next
+#combat begins
+next
+#attackers
+Grizzly Bears
+eot
+#First Turn player 2 
+#untap
+next
+#upkeep
+next
+#draw
+next
+#firstmain
+next
+#combat begins
+next
+#attackers
+Grizzly Bears
+next
+next
+next
+[ASSERT]
+COMBATEND
+[PLAYER1]
+graveyard:Meditate
+hand:Island,Dark Ritual,Black Knight,Naturalize
+life:16
+[PLAYER2]
+inplay:Grizzly Bears,Honden of Cleansing Fire
+life:24
+[END]

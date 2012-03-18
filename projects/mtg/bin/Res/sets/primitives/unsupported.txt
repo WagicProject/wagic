@@ -198,12 +198,6 @@ power=0
 toughness=2
 [/card]
 [card]
-name=Aggravated Assault
-text={3}{R}{R}: Untap all creatures you control. After this main phase, there is an additional combat phase followed by an additional main phase. Activate this ability only any time you could cast a sorcery.
-mana={2}{R}
-type=Enchantment
-[/card]
-[card]
 name=Aggression
 text=Enchant non-Wall creature -- Enchanted creature has first strike and trample. -- At the beginning of the end step of enchanted creature's controller, destroy that creature if it didn't attack this turn.
 mana={2}{R}
@@ -562,12 +556,6 @@ type=Legendary Creature
 subtype=Human Artificer
 power=2
 toughness=2
-[/card]
-[card]
-name=Arcum's Sleigh
-text={2}, {T}: Target creature gains vigilance until end of turn. Activate this ability only during combat and only if defending player controls a snow land.
-mana={1}
-type=Artifact
 [/card]
 [card]
 name=Arcum's Weathervane
@@ -976,15 +964,6 @@ power=1
 toughness=3
 [/card]
 [card]
-name=Avizoa
-text=Flying -- {0}: Avizoa gets +2/+2 until end of turn. You skip your next untap step. Activate this ability only once each turn.
-mana={3}{U}
-type=Creature
-subtype=Jellyfish
-power=2
-toughness=2
-[/card]
-[card]
 name=Avoid Fate
 text=Counter target instant or Aura spell that targets a permanent you control.
 mana={G}
@@ -1304,12 +1283,6 @@ power=1
 toughness=3
 [/card]
 [card]
-name=Beacon of Tomorrows
-text=Target player takes an extra turn after this one. Shuffle Beacon of Tomorrows into its owner's library.
-mana={6}{U}{U}
-type=Sorcery
-[/card]
-[card]
 name=Bear Umbra
 mana={2}{G}{G}
 type=Enchantment
@@ -1555,15 +1528,6 @@ type=Legendary Creature
 subtype=Human Wizard
 power=3
 toughness=3
-[/card]
-[card]
-name=Blinding Angel
-text=Flying (This creature can't be blocked except by creatures with flying or reach.) -- Whenever Blinding Angel deals combat damage to a player, that player skips his or her next combat phase.
-mana={3}{W}{W}
-type=Creature
-subtype=Angel
-power=2
-toughness=4
 [/card]
 [card]
 name=Blinding Beam
@@ -1961,13 +1925,6 @@ mana={X}{U}
 type=Sorcery
 [/card]
 [card]
-name=Breath of Fury
-text=Enchant creature you control -- When enchanted creature deals combat damage to a player, sacrifice it and attach Breath of Fury to a creature you control. If you do, untap all creatures you control and after this phase, there is an additional combat phase.
-mana={2}{R}{R}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Breathstealer's Crypt
 text=If a player would draw a card, instead he or she draws a card and reveals it. If it's a creature card, that player discards it unless he or she pays 3 life.
 mana={2}{U}{B}
@@ -1984,15 +1941,6 @@ name=Brilliant Ultimatum
 text=Exile the top five cards of your library. An opponent separates those cards into two piles. You may play any number of cards from one of those piles without paying their mana costs.
 mana={W}{W}{U}{U}{U}{B}{B}
 type=Sorcery
-[/card]
-[card]
-name=Brine Elemental
-text=Morph {5}{U}{U} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- When Brine Elemental is turned face up, each opponent skips his or her next untap step.
-mana={4}{U}{U}
-type=Creature
-subtype=Elemental
-power=5
-toughness=4
 [/card]
 [card]
 name=Brine Hag
@@ -2458,12 +2406,6 @@ text=Enchant creature -- At the beginning of your end step, clash with an oppone
 mana={2}{U}
 type=Enchantment
 subtype=Aura
-[/card]
-[card]
-name=Capture of Jingzhou
-text=Take an extra turn after this one.
-mana={3}{U}{U}
-type=Sorcery
 [/card]
 [card]
 name=Captured Sunlight
@@ -3075,21 +3017,6 @@ type=Creature
 subtype=Crab Beast
 power=3
 toughness=3
-[/card]
-[card]
-name=Chronatog
-text={0}: Chronatog gets +3/+3 until end of turn. You skip your next turn. Activate this ability only once each turn.
-mana={1}{U}
-type=Creature
-subtype=Atog
-power=1
-toughness=2
-[/card]
-[card]
-name=Chronatog Totem
-text={T}: Add {U} to your mana pool. -- {1}{U}: Chronatog Totem becomes a 1/2 blue Atog artifact creature until end of turn. -- {0}: Chronatog Totem gets +3/+3 until end of turn. You skip your next turn. Activate this ability only once each turn and only if Chronatog Totem is a creature.
-mana={3}
-type=Artifact
 [/card]
 [card]
 name=Chronomantic Escape
@@ -4142,15 +4069,6 @@ text=Dakmor Salvage enters the battlefield tapped. -- {T}: Add {B} to your mana 
 type=Land
 [/card]
 [card]
-name=Damia, Sage of Stone
-mana={4}{G}{U}{B}
-type=Legendary Creature
-subtype=Gorgon Wizard
-power=4
-toughness=4
-text=Deathtouch Skip your draw step. At the beginning of your upkeep, if you have fewer than seven cards in hand, draw cards equal to the difference.
-[/card]
-[card]
 name=Dampen Thought
 text=Target player puts the top four cards of his or her library into his or her graveyard. -- Splice onto Arcane {1}{U} (As you cast an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
 mana={1}{U}
@@ -5092,12 +5010,6 @@ power=0
 toughness=0
 [/card]
 [card]
-name=Dragon Appeasement
-text=Skip your draw step. -- Whenever you sacrifice a creature, you may draw a card.
-mana={3}{B}{R}{G}
-type=Enchantment
-[/card]
-[card]
 name=Drain Power
 text=Target player activates a mana ability of each land he or she controls, then empties his or her mana pool. Add mana to your mana pool equal to the type and amount emptied from that player's mana pool this way.
 mana={U}{U}
@@ -5366,15 +5278,6 @@ power=5
 toughness=3
 [/card]
 [card]
-name=Eater of Days
-text=Flying, trample -- When Eater of Days enters the battlefield, you skip your next two turns.
-mana={4}
-type=Artifact Creature
-subtype=Leviathan
-power=9
-toughness=8
-[/card]
-[card]
 name=Ebon Praetor
 text=First strike, trample -- At the beginning of your upkeep, put a -2/-2 counter on Ebon Praetor. -- Sacrifice a creature: Remove a -2/-2 counter from Ebon Praetor. If the sacrificed creature was a Thrull, put a +1/+0 counter on Ebon Praetor. Activate this ability only during your upkeep and only once each turn.
 mana={4}{B}{B}
@@ -5419,9 +5322,7 @@ subtype=Aura
 text=Flash (You may cast this spell any time you could cast an instant.) Enchant creature Enchanted creature gets +1/+1. Totem armor (If enchanted creature would be destroyed, instead remove all damage from it and destroy this Aura.)
 [/card]
 [card]
-name=Ego Erasure
-abilities=changeling
-auto=choice 
+name=Ego Erasure 
 text=Changeling (This card is every creature type at all times.) -- Creatures target player controls get -2/-0 and lose all creature types until end of turn.
 mana={2}{U}
 type=Tribal Instant
@@ -5452,7 +5353,6 @@ text=Enchant creature Enchanted creature gets +10/+10 and has trample and annihi
 [/card]
 [card]
 name=Eldrazi Temple
-mana=
 type=Land
 text={T}: Add {1} to your mana pool. {T}: Add {2} to your mana pool. Spend this mana only to cast colorless Eldrazi spells or activate abilities of colorless Eldrazi.
 [/card]
@@ -5495,12 +5395,6 @@ mana={G}
 type=Enchantment
 [/card]
 [card]
-name=Elfhame Sanctuary
-text=At the beginning of your upkeep, you may search your library for a basic land card, reveal that card, and put it into your hand. If you do, you skip your draw step this turn and shuffle your library.
-mana={1}{G}
-type=Enchantment
-[/card]
-[card]
 name=Elkin Bottle
 text={3}, {T}: Exile the top card of your library. Until the beginning of your next upkeep, you may play that card.
 mana={3}
@@ -5511,12 +5405,6 @@ name=Elkin Lair
 text=At the beginning of each player's upkeep, that player exiles a card at random from his or her hand. The player may play that card this turn. At the beginning of the next end step, if the player hasn't played the card, he or she puts it into his or her graveyard.
 mana={3}{R}
 type=World Enchantment
-[/card]
-[card]
-name=Elsewhere Flask
-text=When Elsewhere Flask enters the battlefield, draw a card. -- Sacrifice Elsewhere Flask: Choose a basic land type. Each land you control becomes that type until end of turn.
-mana={2}
-type=Artifact
 [/card]
 [card]
 name=Elvish Bard
@@ -5598,12 +5486,6 @@ name=Emerge Unscathed
 mana={W}
 type=Instant
 text=Target creature you control gains protection from the color of your choice until end of turn. Rebound (If you cast this spell from your hand, exile it as it resolves. At the beginning of your next upkeep, you may cast this card from exile without paying its mana cost.)
-[/card]
-[card]
-name=Empty City Ruse
-text=Target opponent skips all combat phases of his or her next turn.
-mana={W}
-type=Sorcery
 [/card]
 [card]
 name=Empyrial Archangel
@@ -5747,12 +5629,6 @@ name=Enter the Dungeon
 mana={B}{B}
 type=Sorcery
 text=Players play a Magic subgame under the table starting at 5 life, using their libraries as their decks. After the subgame ends, the winner searches his or her library for two cards, puts those cards into his or her hand, then shuffles his or her library.
-[/card]
-[card]
-name=Eon Hub
-text=Players skip their upkeep steps.
-mana={5}
-type=Artifact
 [/card]
 [card]
 name=Epicenter
@@ -6277,12 +6153,6 @@ mana={3}{U}{U}
 type=Sorcery
 [/card]
 [card]
-name=Fatigue
-text=Target player skips his or her next draw step.
-mana={1}{U}
-type=Sorcery
-[/card]
-[card]
 name=Favor of the Mighty
 text=Each creature with the highest converted mana cost has protection from all colors.
 mana={1}{W}
@@ -6426,12 +6296,6 @@ mana={3}{B}
 type=Sorcery
 [/card]
 [card]
-name=Final Fortune
-text=Take an extra turn after this one. At the beginning of that turn's end step, you lose the game.
-mana={R}{R}
-type=Instant
-[/card]
-[card]
 name=Final Punishment
 text=Target player loses life equal to the damage already dealt to him or her this turn.
 mana={3}{B}{B}
@@ -6442,12 +6306,6 @@ name=Final Strike
 text=As an additional cost to cast Final Strike, sacrifice a creature. -- Final Strike deals damage to target opponent equal to the sacrificed creature's power.
 mana={2}{B}{B}
 type=Sorcery
-[/card]
-[card]
-name=Finest Hour
-text=Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.) -- Whenever a creature you control attacks alone, if it's the first combat phase of the turn, untap that creature. After this phase, there is an additional combat phase.
-mana={2}{G}{W}{U}
-type=Enchantment
 [/card]
 [card]
 name=Fire // Ice (Fire)
@@ -6574,12 +6432,6 @@ type=Creature
 subtype=Human Soldier
 power=2
 toughness=2
-[/card]
-[card]
-name=Flame Wave
-text=Flame Wave deals 4 damage to target player and each creature he or she controls.
-mana={3}{R}{R}{R}{R}
-type=Sorcery
 [/card]
 [card]
 name=Flamekin Bladewhirl
@@ -7050,12 +6902,6 @@ name=Furnace of Rath
 text=If a source would deal damage to a creature or player, it deals double that damage to that creature or player instead.
 mana={1}{R}{R}{R}
 type=Enchantment
-[/card]
-[card]
-name=Fury of the Horde
-text=You may exile two red cards from your hand rather than pay Fury of the Horde's mana cost. -- Untap all creatures that attacked this turn. After this main phase, there is an additional combat phase followed by an additional main phase.
-mana={5}{R}{R}
-type=Sorcery
 [/card]
 [card]
 name=Future Sight
@@ -7887,15 +7733,6 @@ type=Creature
 subtype=Human Warrior
 power=1
 toughness=1
-[/card]
-[card]
-name=Godo, Bandit Warlord
-text=When Godo, Bandit Warlord enters the battlefield, you may search your library for an Equipment card and put it onto the battlefield. If you do, shuffle your library. -- Whenever Godo attacks for the first time each turn, untap it and all Samurai you control. After this phase, you get an additional combat phase.
-mana={5}{R}
-type=Legendary Creature
-subtype=Human Barbarian
-power=3
-toughness=3
 [/card]
 [card]
 name=Goham Djinn
@@ -9826,15 +9663,6 @@ toughness=11
 text=Annihilator 2 (Whenever this creature attacks, defending player sacrifices two permanents.) Whenever an opponent sacrifices a nontoken permanent, put that card onto the battlefield under your control.
 [/card]
 [card]
-name=Ivory Gargoyle
-text=Flying -- When Ivory Gargoyle is put into a graveyard from the battlefield, return it to the battlefield under its owner's control at the beginning of the next end step and you skip your next draw step. -- {4}{W}: Exile Ivory Gargoyle.
-mana={4}{W}
-type=Creature
-subtype=Gargoyle
-power=2
-toughness=2
-[/card]
-[card]
 name=Iwamori of the Open Fist
 text=Trample -- When Iwamori of the Open Fist enters the battlefield, each opponent may put a legendary creature card from his or her hand onto the battlefield.
 mana={2}{G}{G}
@@ -10846,12 +10674,6 @@ mana={1}{R}
 type=Instant
 [/card]
 [card]
-name=Last Chance
-text=Take an extra turn after this one. At the beginning of that turn's end step, you lose the game.
-mana={R}{R}
-type=Sorcery
-[/card]
-[card]
 name=Last Rites
 text=Discard any number of cards. Target player reveals his or her hand, then you choose a nonland card from it for each card discarded this way. That player discards those cards.
 mana={2}{B}
@@ -11141,15 +10963,6 @@ name=Light from Within
 text=Chroma - Each creature you control gets +1/+1 for each white mana symbol in its mana cost.
 mana={2}{W}{W}
 type=Enchantment
-[/card]
-[card]
-name=Lighthouse Chronologist
-mana={1}{U}
-type=Creature
-subtype=Human Wizard
-power=1
-toughness=3
-text=Level up {U} ({U}: Put a level counter on this. Level up only as a sorcery.) LEVEL 4-6 2/4  LEVEL 7+ 3/5 At the beginning of each end step, if it's not your turn, take an extra turn after this one.
 [/card]
 [card]
 name=Lightning Axe
@@ -11602,12 +11415,6 @@ toughness=2
 text={U}: Change the text of target spell or permanent by replacing all instances of + with -, and vice versa, until end of turn.
 [/card]
 [card]
-name=Magistrate's Scepter
-text={4}, {T}: Put a charge counter on Magistrate's Scepter. -- {T}, Remove three charge counters from Magistrate's Scepter: Take an extra turn after this one.
-mana={3}
-type=Artifact
-[/card]
-[card]
 name=Magma Jet
 text=Magma Jet deals 2 damage to target creature or player. -- Scry 2. (To scry 2, look at the top two cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)
 mana={1}{R}
@@ -11636,11 +11443,6 @@ name=Magnetic Web
 text=If a creature with a magnet counter on it attacks, all creatures with magnet counters on them attack if able. -- Whenever a creature with a magnet counter on it attacks, all creatures with magnet counters on them block that creature this turn if able. -- {1}, {T}: Put a magnet counter on target creature.
 mana={2}
 type=Artifact
-[/card]
-[card]
-name=Magosi, the Waterveil
-text=Magosi, the Waterveil enters the battlefield tapped. -- {T}: Add {U} to your mana pool. -- {U}, {T}: Put an eon counter on Magosi, the Waterveil. Skip your next turn. -- {T}, Remove an eon counter from Magosi, the Waterveil and return it to its owner's hand: Take an extra turn after this one.
-type=Land
 [/card]
 [card]
 name=Magus of the Abyss
@@ -12083,12 +11885,6 @@ type=Creature
 subtype=Elf Cleric
 power=2
 toughness=1
-[/card]
-[card]
-name=Meditate
-text=Draw four cards. You skip your next turn.
-mana={2}{U}
-type=Instant
 [/card]
 [card]
 name=Megatherium
@@ -12723,15 +12519,6 @@ mana={X}{R}{R}
 type=Sorcery
 [/card]
 [card]
-name=Molten Firebird
-text=Flying -- When Molten Firebird is put into a graveyard from the battlefield, return it to the battlefield under its owner's control at the beginning of the next end step and you skip your next draw step. -- {4}{R}: Exile Molten Firebird.
-mana={4}{R}
-type=Creature
-subtype=Phoenix
-power=2
-toughness=2
-[/card]
-[card]
 name=Molten Influence
 text=Counter target instant or sorcery spell unless its controller has Molten Influence deal 4 damage to him or her.
 mana={1}{R}
@@ -12756,12 +12543,6 @@ toughness=*
 name=Molten Slagheap
 text={T}: Add {1} to your mana pool. -- {1}, {T}: Put a storage counter on Molten Slagheap. -- {1}, Remove X storage counters from Molten Slagheap: Add X mana in any combination of {B} and/or {R} to your mana pool.
 type=Land
-[/card]
-[card]
-name=Moment of Silence
-text=Target player skips his or her next combat phase this turn.
-mana={W}
-type=Instant
 [/card]
 [card]
 name=Momir Vig, Simic Visionary
@@ -15360,13 +15141,6 @@ type=Enchantment
 text=Each player reveals the top card of his or her library to all other players by continuously holding it against his or her forehead. This does not allow a player to look at his or her own card. (That card still counts as the top card of your library. Whenever you draw a card, draw that one and replace it with the next card of your library.)
 [/card]
 [card]
-name=Psychic Possession
-text=Enchant opponent -- Skip your draw step. -- Whenever enchanted opponent draws a card, you may draw a card.
-mana={2}{U}{U}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Psychic Puppetry
 text=You may tap or untap target permanent. -- Splice onto Arcane {U} (As you cast an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
 mana={1}{U}
@@ -16308,15 +16082,6 @@ mana={G}
 type=World Enchantment
 [/card]
 [card]
-name=Revenant Patriarch
-text=When Revenant Patriarch enters the battlefield, if {W} was spent to cast Revenant Patriarch, target player skips his or her next combat phase. -- Revenant Patriarch can't block.
-mana={4}{B}
-type=Creature
-subtype=Spirit
-power=4
-toughness=3
-[/card]
-[card]
 name=Reverberate
 text=Copy target instant or sorcery spell. You may choose new targets for the copy.
 mana={R}{R}
@@ -17008,21 +16773,6 @@ mana={1}{W}
 type=Enchantment
 [/card]
 [card]
-name=Rune-Tail, Kitsune Ascendant
-text=When you have 30 or more life, flip Rune-Tail, Kitsune Ascendant.
-mana={2}{W}
-type=Legendary Creature
-subtype=Fox Monk
-power=2
-toughness=2
-[/card]
-[card]
-name=Rune-Tail, Kitsune Ascendant (Rune-Tail's Essence)
-text=Prevent all damage that would be dealt to creatures you control.
-mana={2}{W}
-type=Legendary Enchantment
-[/card]
-[card]
 name=Runeboggle
 text=Counter target spell unless its controller pays {1}. -- Draw a card.
 mana={2}{U}
@@ -17401,12 +17151,6 @@ type=Instant
 text=Choose one Target player gains 2{1/2} life; or prevent the next 2{1/2} damage that would be dealt to target creature this turn. Gotcha Whenever an opponent says "Save" or "Life," you may say "Gotcha" If you do, return Save Life from your graveyard to your hand.
 [/card]
 [card]
-name=Savor the Moment
-text=Take an extra turn after this one. Skip the untap step of that turn.
-mana={1}{U}{U}
-type=Sorcery
-[/card]
-[card]
 name=Savra, Queen of the Golgari
 text=Whenever you sacrifice a black creature, you may pay 2 life. If you do, each other player sacrifices a creature. -- Whenever you sacrifice a green creature, you may gain 2 life.
 mana={2}{B}{G}
@@ -17675,12 +17419,6 @@ power=1
 toughness=3
 [/card]
 [card]
-name=Second Chance
-text=At the beginning of your upkeep, if you have 5 or less life, sacrifice Second Chance. If you do, take an extra turn after this one.
-mana={2}{U}
-type=Enchantment
-[/card]
-[card]
 name=Second Sight
 text=Choose one - Look at the top five cards of target opponent's library, then put them back in any order; or look at the top five cards of your library, then put them back in any order. -- Entwine {U} (Choose both if you pay the entwine cost.)
 mana={2}{U}
@@ -17711,12 +17449,6 @@ mana={G}{W}
 type=Instant
 [/card]
 [card]
-name=Seedtime
-text=Cast Seedtime only during your turn. -- Take an extra turn after this one if an opponent cast a blue spell this turn.
-mana={1}{G}
-type=Instant
-[/card]
-[card]
 name=Seer's Sundial
 text=Landfall - Whenever a land enters the battlefield under your control, you may pay {2}. If you do, draw a card.
 mana={4}
@@ -17736,12 +17468,6 @@ type=Creature
 subtype=Cat
 power=3
 toughness=3
-[/card]
-[card]
-name=Seize the Day
-text=Untap target creature. After this main phase, there is an additional combat phase followed by an additional main phase. -- Flashback {2}{R} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
-mana={3}{R}
-type=Sorcery
 [/card]
 [card]
 name=Seize the Soul
@@ -18163,15 +17889,6 @@ text=Whenever a creature with power 1 or less is put into your graveyard from th
 mana={4}{B}
 type=Legendary Creature
 subtype=Spirit
-power=2
-toughness=2
-[/card]
-[card]
-name=Shisato, Whispering Hunter
-text=At the beginning of your upkeep, sacrifice a Snake. -- Whenever Shisato, Whispering Hunter deals combat damage to a player, that player skips his or her next untap step.
-mana={3}{G}
-type=Legendary Creature
-subtype=Snake Warrior
 power=2
 toughness=2
 [/card]
@@ -18750,19 +18467,12 @@ toughness=1
 [/card]
 [card]
 name=Soldevi Sentry
-auto={1}:regenerate && may draw:1 opponent
 text={1}: Choose target opponent. Regenerate Soldevi Sentry. When it regenerates this way, that player may draw a card.
 mana={1}
 type=Artifact Creature
 subtype=Soldier
 power=1
 toughness=1
-[/card]
-[card]
-name=Solitary Confinement
-text=At the beginning of your upkeep, sacrifice Solitary Confinement unless you discard a card. -- Skip your draw step. -- You have shroud. (You can't be the target of spells or abilities.) -- Prevent all damage that would be dealt to you.
-mana={2}{W}
-type=Enchantment
 [/card]
 [card]
 name=Soltari Guerrillas
@@ -19681,14 +19391,6 @@ power=4
 toughness=4
 [/card]
 [card]
-name=Stonehorn Dignitary
-mana={3}{W}
-type=Creature — Rhino Soldier
-power=1
-toughness=4
-text=When Stonehorn Dignitary enters the battlefield, target opponent skips his or her next combat phase.
-[/card]
-[card]
 name=Stoneshaker Shaman
 text=At the beginning of each player's end step, that player sacrifices an untapped land.
 mana={2}{R}
@@ -20264,12 +19966,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Symbiotic Deployment
-text=Skip your draw step. -- {1}, Tap two untapped creatures you control: Draw a card.
-mana={2}{G}
-type=Enchantment
-[/card]
-[card]
 name=Symbol Status
 mana={2}{G}{G}
 type=Sorcery
@@ -20569,12 +20265,6 @@ type=Sorcery
 name=Temporal Extortion
 text=When you cast Temporal Extortion, any player may pay half his or her life, rounded up. If a player does, counter Temporal Extortion. -- Take an extra turn after this one.
 mana={B}{B}{B}{B}
-type=Sorcery
-[/card]
-[card]
-name=Temporal Manipulation
-text=Take an extra turn after this one.
-mana={3}{U}{U}
 type=Sorcery
 [/card]
 [card]
@@ -21048,40 +20738,16 @@ type=Artifact
 text={T}: Remove Time Machine and target nontoken creature you own from the game. Return both cards to play at the beginning of your upkeep on your turn X of the next game you play with the same opponent, where X is the removed creature's converted mana cost.
 [/card]
 [card]
-name=Time Sieve
-text={T}, Sacrifice five artifacts: Take an extra turn after this one.
-mana={U}{B}
-type=Artifact
-[/card]
-[card]
 name=Time Stop
 text=End the turn. (Exile all spells and abilities on the stack, including this card. The player whose turn it is discards down to his or her maximum hand size. Damage wears off, and "this turn" and "until end of turn" effects end.)
 mana={4}{U}{U}
 type=Instant
 [/card]
 [card]
-name=Time Stretch
-text=Target player takes two extra turns after this one.
-mana={8}{U}{U}
-type=Sorcery
-[/card]
-[card]
 name=Time Vault
 text=Time Vault enters the battlefield tapped. -- Time Vault doesn't untap during your untap step. -- If you would begin your turn while Time Vault is tapped, you may skip that turn instead. If you do, untap Time Vault. -- {T}: Take an extra turn after this one.
 mana={2}
 type=Artifact
-[/card]
-[card]
-name=Time Walk
-text=Take an extra turn after this one.
-mana={1}{U}
-type=Sorcery
-[/card]
-[card]
-name=Time Warp
-text=Target player takes an extra turn after this one.
-mana={3}{U}{U}
-type=Sorcery
 [/card]
 [card]
 name=Time and Tide
@@ -21710,15 +21376,6 @@ mana={R}
 type=Instant
 [/card]
 [card]
-name=Unstable Hulk
-text=Morph {3}{R}{R} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- When Unstable Hulk is turned face up, it gets +6/+6 and gains trample until end of turn. You skip your next turn.
-mana={1}{R}{R}
-type=Creature
-subtype=Goblin Mutant
-power=2
-toughness=2
-[/card]
-[card]
 name=Unstable Shapeshifter
 text=Whenever another creature enters the battlefield, Unstable Shapeshifter becomes a copy of that creature and gains this ability.
 mana={3}{U}
@@ -22335,12 +21992,6 @@ mana={2}{B}
 type=Instant
 [/card]
 [card]
-name=Walk the Aeons
-text=Buyback - Sacrifice three Islands. (You may sacrifice three Islands in addition to any other costs as you cast this spell. If you do, put this card into your hand as it resolves.) -- Target player takes an extra turn after this one.
-mana={4}{U}{U}
-type=Sorcery
-[/card]
-[card]
 name=Wall of Caltrops
 text=Defender (This creature can't attack.) -- Whenever Wall of Caltrops blocks a creature, if no non-Wall creatures are blocking that creature, Wall of Caltrops gains banding until end of turn. (If any creatures with banding you control are blocking a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by.)
 mana={1}{W}
@@ -22440,15 +22091,6 @@ text=Kinship - At the beginning of your upkeep, you may look at the top card of 
 mana={3}{W}{W}
 type=Creature
 subtype=Giant Wizard
-power=4
-toughness=4
-[/card]
-[card]
-name=Wanderwine Prophets
-text=Champion a Merfolk (When this enters the battlefield, sacrifice it unless you exile another Merfolk you control. When this leaves the battlefield, that card returns to the battlefield.) -- Whenever Wanderwine Prophets deals combat damage to a player, you may sacrifice a Merfolk. If you do, take an extra turn after this one.
-mana={4}{U}{U}
-type=Creature
-subtype=Merfolk Wizard
 power=4
 toughness=4
 [/card]
@@ -22555,12 +22197,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Warrior's Oath
-text=Take an extra turn after this one. At the beginning of that turn's end step, you lose the game.
-mana={R}{R}
-type=Sorcery
-[/card]
-[card]
 name=Watchdog
 text=Watchdog blocks each turn if able. -- As long as Watchdog is untapped, all creatures attacking you get -1/-0.
 mana={3}
@@ -22576,15 +22212,6 @@ type=Artifact
 text=As Water Gun Balloon Game comes into play, each player puts a pop counter on a 0. Whenever a player plays a spell, move that player's pop counter up 1. Whenever a player's pop counter hits 5, that player puts a 5/5 pink Giant Teddy Bear creature token into play and resets all pop counters to 0.
 [/card]
 [card]
-name=Waterspout Elemental
-text=Kicker {U} (You may pay an additional {U} as you cast this spell.) -- Flying -- When Waterspout Elemental enters the battlefield, if it was kicked, return all other creatures to their owners' hands and you skip your next turn.
-mana={3}{U}{U}
-type=Creature
-subtype=Elemental
-power=3
-toughness=4
-[/card]
-[card]
 name=Waterspout Weavers
 text=Kinship - At the beginning of your upkeep, you may look at the top card of your library. If it shares a creature type with Waterspout Weavers, you may reveal it. If you do, each creature you control gains flying until end of turn.
 mana={3}{U}{U}
@@ -22598,13 +22225,6 @@ name=Wave of Terror
 text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- At the beginning of your draw step, destroy each creature with converted mana cost equal to the number of age counters on Wave of Terror. They can't be regenerated.
 mana={2}{B}
 type=Enchantment
-[/card]
-[card]
-name=Waves of Aggression
-abilities=retrace
-text=Untap all creatures that attacked this turn. After this main phase, there is an additional combat phase followed by an additional main phase. -- Retrace (You may cast this card from your graveyard by discarding a land card in addition to paying its other costs.)
-mana={3}{RW}{RW}
-type=Sorcery
 [/card]
 [card]
 name=Wax // Wane (Wane)
@@ -23129,15 +22749,6 @@ power=3
 toughness=6
 [/card]
 [card]
-name=Wormfang Manta
-text=Flying -- When Wormfang Manta enters the battlefield, you skip your next turn. -- When Wormfang Manta leaves the battlefield, you take an extra turn after this one.
-mana={5}{U}{U}
-type=Creature
-subtype=Nightmare Fish Beast
-power=6
-toughness=1
-[/card]
-[card]
 name=Worms of the Earth
 text=Players can't play lands. -- If a land would enter the battlefield, instead it doesn't. -- At the beginning of each upkeep, any player may sacrifice two lands or pay 5 life. If a player does either, destroy Worms of the Earth.
 mana={2}{B}{B}{B}
@@ -23225,12 +22836,6 @@ type=Instant
 name=Yawgmoth's Agenda
 text=You can't cast more than one spell each turn. -- You may play cards from your graveyard. -- If a card would be put into your graveyard from anywhere, exile it instead.
 mana={3}{B}{B}
-type=Enchantment
-[/card]
-[card]
-name=Yawgmoth's Bargain
-text=Skip your draw step. -- Pay 1 life: Draw a card.
-mana={4}{B}{B}
 type=Enchantment
 [/card]
 [card]
