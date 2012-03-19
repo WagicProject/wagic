@@ -2881,8 +2881,8 @@ public:
 class ATargetedAbilityCreator: public ActivatedAbility
 {
 public:
-    string sabilities;
     string name;
+    string sabilities;
     int who;
     MTGCardInstance * myDummy;
     Player * abilityReciever;
