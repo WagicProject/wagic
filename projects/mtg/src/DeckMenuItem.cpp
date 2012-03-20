@@ -118,6 +118,7 @@ void DeckMenuItem::RenderWithOffset(float yOffset)
             if (quad) JRenderer::GetInstance()->RenderQuad(quad.get(), x , mY + yOffset + quad->mHeight/2, 0.5);
         }
     }
+    mFont->SetScale(SCALE_NORMAL);
 }
 
 void DeckMenuItem::Render()

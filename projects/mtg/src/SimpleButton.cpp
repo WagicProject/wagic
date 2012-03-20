@@ -50,10 +50,20 @@ void SimpleButton::RenderWithOffset(float yOffset)
 {
     mYOffset = yOffset;
     WFont * mFont = WResourceManager::Instance()->GetWFont(mFontId);
-    if (mHasFocus)
-        mFont->SetScale(SCALE_SELECTED);
+    if(mText.size() < 20)
+    {
+        if (mHasFocus)
+            mFont->SetScale(SCALE_SELECTED_LARGE);
+        else
+            mFont->SetScale(SCALE_LARGE_NORMAL);
+    }
     else
-        mFont->SetScale(SCALE_NORMAL);
+    {
+        if (mHasFocus)
+            mFont->SetScale(SCALE_SELECTED);
+        else
+            mFont->SetScale(SCALE_NORMAL);
+    }
 
     mFont->DrawString(mText.c_str(), mX, mY + yOffset, JGETEXT_CENTER);
 }

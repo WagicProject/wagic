@@ -198,7 +198,7 @@ void WGuiHeader::Render()
 {
     WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::OPTION_FONT);
     // save the current scaling factor.  We don't want the lists to change font size these lists should stay the same no matter what
-    int currentScale = mFont->GetScale();
+    float currentScale = mFont->GetScale();
     mFont->SetScale(SCALE_NORMAL);
     mFont->SetColor(getColor(WGuiColor::TEXT));
     mFont->DrawString(_(displayValue).c_str(), x + width / 2, y, JGETEXT_CENTER);
@@ -310,7 +310,7 @@ void WGuiList::Render()
     {
         WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::OPTION_FONT);
         // save the current scaling factor.  We don't want the lists to change font size these lists should stay the same no matter what
-        int fontScaleFactor = mFont->GetScale();
+        float fontScaleFactor = mFont->GetScale();
         mFont->SetScale(SCALE_NORMAL);
         mFont->SetColor(getColor(WGuiColor::TEXT_FAIL));
         mFont->DrawString(_(failMsg).c_str(), x + width / 2, y, JGETEXT_RIGHT);

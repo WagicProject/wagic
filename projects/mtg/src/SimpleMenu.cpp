@@ -14,7 +14,7 @@ namespace
 
     
 #ifdef TOUCH_ENABLED
-    const float kLineHeight = 25;
+    const float kLineHeight = 30;
 #else
     const float kLineHeight = 20;
 #endif
@@ -136,7 +136,7 @@ void SimpleMenu::Render()
         for (int i = 0; i < mCount; ++i)
         {
             float width = (static_cast<SimpleMenuItem*> (mObjects[i]))->GetWidth() + 15;
-            if (mWidth < width) mWidth = width;
+            if (mWidth < width) mWidth = width *  float(1.5);
         }
         if ((!title.empty()) && (mWidth < titleFont->GetStringWidth(title.c_str()))) 
 			mWidth = titleFont->GetStringWidth(title.c_str());
@@ -183,7 +183,7 @@ void SimpleMenu::Render()
 
     if (!title.empty()) 
     {
-        int scaleFactor = titleFont->GetScale();
+        float scaleFactor = titleFont->GetScale();
         titleFont->SetScale(SCALE_NORMAL);
         titleFont->DrawString(title.c_str(), mX + mWidth / 2, mY - 3, JGETEXT_CENTER);
         titleFont->SetScale(scaleFactor);
@@ -207,8 +207,10 @@ void SimpleMenu::Render()
                 mFont->SetColor(ARGB(150,255,255,255));
             }
             (static_cast<SimpleMenuItem*> (mObjects[i]))->RenderWithOffset(-kLineHeight * startId);
+            mFont->SetScale(SCALE_NORMAL);
         }
     }
+    mFont->SetScale(SCALE_NORMAL);
 }
 
 void SimpleMenu::Update(float dt)
