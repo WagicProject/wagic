@@ -101,7 +101,6 @@ void SimpleMenu::drawVertPole(float x, float y, float height)
 {
     JRenderer* renderer = JRenderer::GetInstance();
 
-
     float xOffset = (spadeR->mWidth - kPoleWidth) / 2;
     float topYOffset = xOffset;
     float bottomYOffset = xOffset;
@@ -213,12 +212,78 @@ void SimpleMenu::Render()
     mFont->SetScale(SCALE_NORMAL);
 }
 
+bool SimpleMenu::CheckUserInput(JButton key)
+{
+    // a dude may have clicked somewhere, we're gonna select the closest object from where he clicked
+    int x = -1, y = -1;
+    unsigned int distance2;
+    unsigned int minDistance2 = -1;
+    int n = mCurr;
+    
+    if ((key == JGE_BTN_NONE) && mEngine->GetLeftClickCoordinates(x, y))
+    {
+
+        // first scan the buttons on the screen and then process the other gui elements
+        for (size_t i = 0; i < mButtons.size(); i++)
+        {
+            if (mButtons[i]->ButtonPressed())
+            {
+                mEngine->LeftClickedProcessed();
+                return true;
+            }
+        }
+        
+        if (mObjects.size())
+        {
+            float top, left;
+            
+            for (int i = 0; i < mCount; i++)
+            {
+                if (mObjects[i]->getTopLeft(top, left))
+                {
+                    distance2 = (top - y) * (top - y) + (left - x) * (left - x);
+                    if ( (distance2 < minDistance2) )
+                    {
+                        minDistance2 = distance2;
+                        n = i;
+                    }
+                    else if (y > mHeight) // this will scroll downwards in a list.  
+                    {
+                        n =  mCurr + 1;
+                    }
+                }   
+            }
+            
+            if (n != mCurr && mObjects[mCurr] != NULL && mObjects[mCurr]->Leaving(JGE_BTN_DOWN))
+            {
+                mCurr = n;
+                mObjects[mCurr]->Entering();
+            }
+            // if the same object was selected process click
+            else if (n == mCurr && mObjects[mCurr] != NULL && mObjects[mCurr]->Leaving(JGE_BTN_OK))
+            {
+                mObjects[mCurr]->Entering();
+            }
+            mEngine->LeftClickedProcessed();
+            mEngine->ResetInput();
+            return true;
+        }
+        mEngine->LeftClickedProcessed();
+    }
+    else
+        return JGuiController::CheckUserInput(key);
+    
+    return false;
+}
+
+
 void SimpleMenu::Update(float dt)
 {
     JGuiController::Update(dt);
     if (mCurr > startId + maxItems - 1)
         startId = mCurr - maxItems + 1;
     else if (mCurr < startId) startId = mCurr;
+ 
     stars->Update(dt);
     selectionT += 3 * dt;
     selectionY += (selectionTargetY - selectionY) * 8 * dt;

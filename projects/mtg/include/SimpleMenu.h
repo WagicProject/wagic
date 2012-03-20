@@ -40,6 +40,7 @@ public:
     SimpleMenu(JGE*, int id, JGuiListener* listener, int fontId, float x, float y, const char * _title = "", int _maxItems = 7, bool centerHorizontal = true, bool centerVertical = true);
     virtual ~SimpleMenu();
     virtual void Render();
+    virtual bool CheckUserInput(JButton key);
     virtual void Update(float dt);
     virtual void Add(int id, const char * Text, string desc = "", bool forceFocus = false);
     int getmCurr(){return mCurr;}

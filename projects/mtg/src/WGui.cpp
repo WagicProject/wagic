@@ -1854,6 +1854,7 @@ void WGuiFilters::Render()
 bool WGuiFilters::CheckUserInput(JButton key)
 {
     if (subMenu && !subMenu->isClosed() && subMenu->CheckUserInput(key)) return true;
+    
     if (key == JGE_BTN_SEC)
     {//|| key == JGE_BTN_MENU){
         //TODO Pop up a "Are you sure?" dialog.
