@@ -636,7 +636,7 @@ static NSString *_MY_AD_WHIRL_APPLICATION_KEY_IPAD = @"2e70e3f3da40408588b9a3170
     newFrame.size = adSize;
     // ads are 320 x 50
     newFrame.origin.x = ( (isLandscape ? screenSize.height : screenSize.width) - adSize.width)/ 2;
-    newFrame.origin.y =  0;
+    newFrame.origin.y =  ( (isLandscape ? screenSize.width : screenSize.height) - 50);
     
     [adWhirlView setFrame: newFrame];
     
@@ -700,10 +700,14 @@ static NSString *_MY_AD_WHIRL_APPLICATION_KEY_IPAD = @"2e70e3f3da40408588b9a3170
     //(in landscape mode):
     //Same explanation as the one in the method "adjustAdSize" for the Ad's width
     int screenWidth = [viewController.parentViewController.view bounds].size.width;
+    float yOffset = [viewController.parentViewController.view bounds].size.height - 50;
     if ( isLandscape )
+    {
+        yOffset = screenWidth - 50;
         screenWidth = [viewController.parentViewController.view bounds].size.height;
-    
-    self.adView.frame = CGRectMake((screenWidth - adSize.width) / 2, 0, adSize.width, adSize.height);
+    }
+
+    self.adView.frame = CGRectMake((screenWidth - adSize.width) / 2, yOffset, adSize.width, adSize.height);
     
     //Trying to keep everything inside the Ad bounds
     self.adView.clipsToBounds = YES;

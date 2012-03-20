@@ -63,7 +63,7 @@ DeckMenuItem::DeckMenuItem(DeckMenu* _parent, int id, int fontId, string text, f
                 break;
             case kEvilTwinMenuID:
                 {
-                    mImageFilename = "EvilTwinAvatar";
+                    mImageFilename = "avatar.jpg";
                     break;
                 }
             default:
@@ -99,7 +99,12 @@ void DeckMenuItem::RenderWithOffset(float yOffset)
 		mScrollerOffset = -1 * ( getWidth() - ITEM_PX_WIDTH )/2;
 	float offSet = mScrollerOffset;
 
-	mFont->DrawString(mText.c_str(), mX, mY + yOffset, JGETEXT_CENTER, offSet, ITEM_PX_WIDTH);
+    if (mHasFocus)
+        mFont->SetScale(SCALE_SELECTED);
+    else
+        mFont->SetScale(SCALE_NORMAL);
+    
+    mFont->DrawString(mText.c_str(), mX, mY + yOffset, JGETEXT_CENTER, offSet, ITEM_PX_WIDTH);
 	mDisplayInitialized = true;
 	//Render a "new" icon for decks that have never been played yet
     if (mMetaData && !mMetaData->getGamesPlayed())

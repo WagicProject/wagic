@@ -17,6 +17,7 @@ using std::string;
 
 #define SCALE_SELECTED		1.2f
 #define SCALE_NORMAL		1.0f
+#define SCALE_SHRINK        0.75f
 
 class SimpleButton: public JGuiObject
 {

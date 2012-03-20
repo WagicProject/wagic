@@ -209,7 +209,7 @@ string GameStateShop::descPurchase(int controlId, bool tiny)
 void GameStateShop::beginPurchase(int controlId)
 {
     WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MENU_FONT);
-    mFont->SetScale(DEFAULT_MENU_FONT_SCALE);
+    mFont->SetScale(SCALE_NORMAL);
     SAFE_DELETE(menu);
     if (mInventory[controlId] <= 0)
     {

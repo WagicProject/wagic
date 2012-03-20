@@ -9,12 +9,12 @@
 namespace
 {
     const float kPoleWidth = 7;
-    const float kVerticalMargin = 16;
+    const float kVerticalMargin = 20;
     const float kHorizontalMargin = 30;
 
     
 #ifdef TOUCH_ENABLED
-    const float kLineHeight = 30;
+    const float kLineHeight = 25;
 #else
     const float kLineHeight = 20;
 #endif
@@ -150,7 +150,7 @@ void SimpleMenu::Render()
 
         for (int i = 0; i < mCount; ++i)
         {
-            float y = mY + kVerticalMargin + i * kLineHeight + 3;//spacing between first object and title bar
+            float y = mY + kVerticalMargin + i * kLineHeight;
             SimpleMenuItem * smi = static_cast<SimpleMenuItem*> (mObjects[i]);
             smi->Relocate(mX + mWidth / 2, y);
             if (smi->hasFocus()) sY = y;
@@ -183,26 +183,32 @@ void SimpleMenu::Render()
 
     if (!title.empty()) 
     {
-        mFont->SetScale(1.5f);
+        int scaleFactor = titleFont->GetScale();
+        titleFont->SetScale(SCALE_NORMAL);
         titleFont->DrawString(title.c_str(), mX + mWidth / 2, mY - 3, JGETEXT_CENTER);
+        titleFont->SetScale(scaleFactor);
     }
     for (int i = startId; i < startId + maxItems; i++)
     {
         if (i > mCount - 1) break;
-        if ((static_cast<SimpleMenuItem*> (mObjects[i]))->getY() - kLineHeight * startId < mY + height - kLineHeight + 7)
+        SimpleMenuItem *currentMenuItem = static_cast<SimpleMenuItem*>(mObjects[i]);
+        float currentY = currentMenuItem->getY() - kLineHeight * startId;
+        float menuBottomEdge = mY + height - kLineHeight + 7;
+        if (currentY < menuBottomEdge)
         {
-            if (static_cast<SimpleMenuItem*> (mObjects[i])->hasFocus())
+            if (currentMenuItem->hasFocus())
             {
-                WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT)->DrawString(static_cast<SimpleMenuItem*> (mObjects[i])->getDescription().c_str(), mX
+                WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT)->DrawString(currentMenuItem->getDescription().c_str(), mX
                                 + mWidth + 10, mY + 15);
                 mFont->SetColor(ARGB(255,255,255,0));
             }
             else
+            {
                 mFont->SetColor(ARGB(150,255,255,255));
+            }
             (static_cast<SimpleMenuItem*> (mObjects[i]))->RenderWithOffset(-kLineHeight * startId);
         }
     }
-    mFont->SetScale(1.0f);
 }
 
 void SimpleMenu::Update(float dt)

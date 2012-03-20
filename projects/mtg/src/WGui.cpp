@@ -197,8 +197,12 @@ PIXEL_TYPE WDecoStyled::getColor(int type)
 void WGuiHeader::Render()
 {
     WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::OPTION_FONT);
+    // save the current scaling factor.  We don't want the lists to change font size these lists should stay the same no matter what
+    int currentScale = mFont->GetScale();
+    mFont->SetScale(SCALE_NORMAL);
     mFont->SetColor(getColor(WGuiColor::TEXT));
     mFont->DrawString(_(displayValue).c_str(), x + width / 2, y, JGETEXT_CENTER);
+    mFont->SetScale(currentScale);
 }
 
 bool WGuiMenu::Leaving(JButton key)
@@ -300,13 +304,17 @@ void WGuiList::Render()
     int adjustedCurrent = 0;
     int start = 0, nowPos = 0, vHeight = 0;
     int nbitems = (int) items.size();
-
+    
     //List is empty.
     if (!items.size() && failMsg != "")
     {
         WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::OPTION_FONT);
+        // save the current scaling factor.  We don't want the lists to change font size these lists should stay the same no matter what
+        int fontScaleFactor = mFont->GetScale();
+        mFont->SetScale(SCALE_NORMAL);
         mFont->SetColor(getColor(WGuiColor::TEXT_FAIL));
         mFont->DrawString(_(failMsg).c_str(), x + width / 2, y, JGETEXT_RIGHT);
+        mFont->SetScale(fontScaleFactor);
         return;
     }
 
@@ -1967,7 +1975,8 @@ void WGuiFilterItem::updateValue()
         SAFE_DELETE(mParent->subMenu);
         mState = STATE_CHOOSE_TYPE;
         SAFE_DELETE(mParent->subMenu);
-        mParent->subMenu = NEW SimpleMenu(JGE::GetInstance(), -1234, this, Fonts::MAIN_FONT, 30, 30, "Filter By...", 6);
+        mParent->subMenu = NEW SimpleMenu(JGE::GetInstance(), -1234, this, Fonts::MENU_FONT, 20, 20, "Filter By...", 6);
+            
         if (mParent->isAvailable(FILTER_SET))
         {
             mParent->subMenu->Add(FILTER_SET, "Set");

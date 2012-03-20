@@ -18,7 +18,7 @@ namespace
     const float kVerticalMargin = 16;
     const float kHorizontalMargin = 20;
     const float kLineHeight = 25;
-	const float kDescriptionVerticalBoxPadding = 35;
+	const float kDescriptionVerticalBoxPadding = -5;
     const float kDescriptionHorizontalBoxPadding = 5;
 	
     const float kDefaultFontScale = 1.0f;
@@ -52,10 +52,10 @@ JGuiController(JGE::GetInstance(), id, listener), fontId(fontId), mShowDetailsSc
     titleY = 15;
     titleWidth = 180; // width of inner box of title
 
-    descX = 260 + kDescriptionVerticalBoxPadding;
-    descY = 100 + kDescriptionHorizontalBoxPadding;
+    descX = 260 + kDescriptionHorizontalBoxPadding;
+    descY = 100 + kDescriptionVerticalBoxPadding;
     descHeight = 145;
-    descWidth = 200;
+    descWidth = 195;
 
     detailedInfoBoxX = 400;
     detailedInfoBoxY = 235;
@@ -90,9 +90,9 @@ JGuiController(JGE::GetInstance(), id, listener), fontId(fontId), mShowDetailsSc
     mClosed = false;
 
     if (mFont->GetStringWidth(title.c_str()) > titleWidth)
-        titleFontScale = 0.75f;
+        titleFontScale = SCALE_SHRINK;
     else
-        titleFontScale = 1.0f;
+        titleFontScale = SCALE_NORMAL;
 
     mSelectionTargetY = selectionY = kVerticalMargin;
 
@@ -101,7 +101,9 @@ JGuiController(JGE::GetInstance(), id, listener), fontId(fontId), mShowDetailsSc
     stars->FireAt(mX, mY);
     
     const string detailedInfoString = _("Detailed Info");
-    float stringWidth = mFont->GetStringWidth(detailedInfoString.c_str());
+    WFont *descriptionFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
+
+    float stringWidth = descriptionFont->GetStringWidth(detailedInfoString.c_str());
     float boxStartX = detailedInfoBoxX - stringWidth / 2 + 20;
 
     dismissButton = NEW InteractiveButton( this, kDetailedInfoButtonId, Fonts::MAIN_FONT, detailedInfoString, boxStartX, detailedInfoBoxY, JGE_BTN_CANCEL);
@@ -258,7 +260,7 @@ void DeckMenu::Render()
             if (currentMenuItem->hasFocus())
             {
                 mSelectedDeck = metaData;
-                WFont *mainFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
+                WFont *descriptionFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
 
                 // display the "more info" button if special condition is met
                 if (showDetailsScreen())
@@ -271,33 +273,27 @@ void DeckMenu::Render()
                     dismissButton->setIsSelectionValid(false);
                 }
                 // display the avatar image
-                if (currentMenuItem->getImageFilename().size() > 0)
+                string currentAvatarImageName = currentMenuItem->getImageFilename();
+                if (currentAvatarImageName.size() > 0)
                 {
-                    JQuadPtr quad;
-                    if(currentMenuItem->getImageFilename() == "EvilTwinAvatar")
+                    JQuadPtr quad = WResourceManager::Instance()->RetrieveTempQuad(currentAvatarImageName, TEXTURE_SUB_AVATAR);
+                    if(quad.get())
                     {
-                        quad = WResourceManager::Instance()->RetrieveTempQuad("avatar.jpg", TEXTURE_SUB_AVATAR);
-                        if(quad.get())
+                        if (currentMenuItem->getText() == "Evil Twin")
                         {
                             JQuad * evil = quad.get();
                             evil->SetHFlip(true);
                             renderer->RenderQuad(quad.get(), avatarX, avatarY);
                             evil = NULL;
                         }
-                    }
-                    else
-                    {
-                        quad = WResourceManager::Instance()->RetrieveTempQuad(currentMenuItem->getImageFilename(), TEXTURE_SUB_AVATAR);
-                        if (quad.get())
+                        else
                             renderer->RenderQuad(quad.get(), avatarX, avatarY);
-
                     }
                 }
                 
                 // fill in the description part of the screen
-				string text = wordWrap(_(currentMenuItem->getDescription()), descWidth, mainFont->mFontID );
-                mainFont->DrawString(text.c_str(), descX, descY);
-                mFont->SetColor(ARGB(255,255,255,255));
+				string text = wordWrap(_(currentMenuItem->getDescription()), descWidth, descriptionFont->mFontID );
+                descriptionFont->DrawString(text.c_str(), descX, descY);
                 
                 // fill in the statistical portion
                 if (currentMenuItem->hasMetaData())
@@ -305,13 +301,14 @@ void DeckMenu::Render()
                     ostringstream oss;
                     oss << _("Deck: ") << currentMenuItem->getDeckName() << endl;
                     oss << currentMenuItem->getDeckStatsSummary();
-                    mainFont->DrawString(oss.str(), statsX, statsY);
+                    descriptionFont->DrawString(oss.str(), statsX, statsY);
                 }
+                
+                // change the font color of the current menu item
+                mFont->SetColor(ARGB(255,255,255,255));
             }
-            else
-            {
+            else // reset the font color to be slightly muted
                 mFont->SetColor(ARGB(150,255,255,255));
-            }
             currentMenuItem->RenderWithOffset(-kLineHeight * startId);
         }
     }
@@ -348,6 +345,9 @@ void DeckMenu::Update(float dt)
     float starsX = starsOffsetX + ((mWidth - 2 * kHorizontalMargin) * (1 + cos(selectionT)) / 2);
     float starsY = selectionY + 5 * cos(selectionT * 2.35f) + kLineHeight / 2 - kLineHeight * startId;
     stars->MoveTo(starsX, starsY);
+    
+    // 
+    
     if (timeOpen < 0)
     {
         timeOpen += dt * 10;
