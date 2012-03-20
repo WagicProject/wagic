@@ -82,7 +82,7 @@ public class SDLActivity extends Activity implements OnKeyListener{
     public String mErrorMessage = "";
     public Boolean mErrorHappened = false;
 	public final static String RES_FOLDER = "/sdcard/Wagic/Res/";
-    public static final String RES_FILENAME = "core_0180.zip";
+    public static final String RES_FILENAME = "core_0181.zip";
     public static final String RES_URL = "http://wagic.googlecode.com/files/";
     
     public String systemFolder = "/sdcard/Wagic/Res/";
@@ -760,7 +760,6 @@ public class SDLActivity extends Activity implements OnKeyListener{
     }
 
 
-	@Override
 	public boolean onKey(View v, int keyCode, KeyEvent event) {
 		if ((keyCode == KeyEvent.KEYCODE_MENU) && (KeyEvent.ACTION_DOWN == event.getAction()))
 		{
