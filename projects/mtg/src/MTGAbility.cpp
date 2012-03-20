@@ -2330,7 +2330,13 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
                 return NULL;
             }
         }
-        MTGAbility * a = NEW ACounterShroud(observer, id, card, target,counter);
+        TargetChooser * csTc = NULL;
+        if(splitCounterShroud[2].size() > 1)
+        {
+            TargetChooserFactory af(card->getObserver());
+            csTc = af.createTargetChooser(splitCounterShroud[2],card);
+        }
+        MTGAbility * a = NEW ACounterShroud(observer, id, card, target,csTc,counter);
         return a;
     }
     //use counters to track by counters to track an efect by counter name.

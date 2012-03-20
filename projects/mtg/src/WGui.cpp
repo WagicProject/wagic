@@ -2044,7 +2044,7 @@ void WGuiFilterItem::updateValue()
         SAFE_DELETE(mParent->subMenu);
         mParent->clearArgs();
         mState = STATE_CHOOSE_VAL;
-        mParent->subMenu = NEW SimpleMenu(JGE::GetInstance(), -1234, this, Fonts::MENU_FONT, 20, 20, "Filter:");
+        mParent->subMenu = NEW SimpleMenu(JGE::GetInstance(), -1234, this, Fonts::MAIN_FONT, 20, 20, "Filter:");
         if (filterType == FILTER_TYPE)
         {
             mParent->addArg("Artifact", "t:Artifact;");

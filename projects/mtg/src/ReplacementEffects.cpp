@@ -49,8 +49,8 @@ REDamagePrevention::~REDamagePrevention()
     SAFE_DELETE(tcTarget);
 }
 //counters replacement effect///////////////////
-RECountersPrevention::RECountersPrevention(MTGAbility * source,MTGCardInstance * cardSource,MTGCardInstance * cardTarget,Counter * counter) :
-    source(source),cardSource(cardSource),cardTarget(cardTarget),counter(counter)
+RECountersPrevention::RECountersPrevention(MTGAbility * source,MTGCardInstance * cardSource,MTGCardInstance * cardTarget,TargetChooser * tc,Counter * counter) :
+    source(source),cardSource(cardSource),cardTarget(cardTarget),TargetingCards(tc),counter(counter)
 {
 }
 
@@ -68,12 +68,14 @@ RECountersPrevention::RECountersPrevention(MTGAbility * source,MTGCardInstance *
             }
             else if((MTGCardInstance*)e->targetCard == cardSource)
                 return event = NULL;
+            else if(TargetingCards && TargetingCards->canTarget((MTGCardInstance*)e->targetCard))
+                return event = NULL;
         }
         return event;
     }
 RECountersPrevention::~RECountersPrevention()
 {
-
+    SAFE_DELETE(TargetingCards);
 }
 //////////////////////////////////////////////
 ReplacementEffects::ReplacementEffects()

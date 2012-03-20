@@ -3910,9 +3910,10 @@ public:
 class ACounterShroud: public MTGAbility
 {
 public:
+    TargetChooser * csTc;
     Counter * counter;
     RECountersPrevention * re;
-    ACounterShroud(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target, Counter * counter = NULL);
+    ACounterShroud(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target,TargetChooser * tc, Counter * counter = NULL);
     int addToGame();
     int destroy();
     ACounterShroud * clone() const;

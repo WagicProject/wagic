@@ -538,15 +538,15 @@ AACounter * AACounter::clone() const
 }
 
 //shield a card from a certain type of counter.
-ACounterShroud::ACounterShroud(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target, Counter * counter) :
-MTGAbility(observer, id, source),counter(counter),re(NULL)
+ACounterShroud::ACounterShroud(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target,TargetChooser * tc, Counter * counter) :
+MTGAbility(observer, id, source),csTc(tc),counter(counter),re(NULL)
 {
 }
 
 int ACounterShroud::addToGame()
 {
     SAFE_DELETE(re);
-    re = NEW RECountersPrevention(this,source,(MTGCardInstance*)target,counter);
+    re = NEW RECountersPrevention(this,source,(MTGCardInstance*)target,csTc,counter);
     if (re)
     {
         game->replacementEffects->add(re);
