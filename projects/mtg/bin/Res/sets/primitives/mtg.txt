@@ -46683,7 +46683,7 @@ toughness=3
 [card]
 name=Melira, Sylvok Outcast
 abilities=poisonshroud
-auto=lord(creature|mybattlefield) transforms((,newability[countershroud(-1/-1)]))
+auto=countershroud(-1/-1)creature
 auto=lord(creature|opponentbattlefield) -infect
 text=You can't get poison counters. Creatures you control can't have -1/-1 counters placed on them. Creatures your opponents control lose infect.
 mana={1}{G}
