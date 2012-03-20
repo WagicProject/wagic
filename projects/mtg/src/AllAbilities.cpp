@@ -2930,7 +2930,7 @@ int AAWinGame::resolve()
 
     if (canwin)
     {
-        game->gameOver = p->opponent();
+        game->setLoser(p->opponent());
     }
 
     return 1;

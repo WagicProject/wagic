@@ -221,7 +221,7 @@ void MTGPlayerCards::drawFromLibrary()
             return;
         }
 
-        library->owner->getObserver()->gameOver = library->owner;
+        library->owner->getObserver()->setLoser(library->owner);
         return;
     }
     MTGCardInstance * toMove = library->cards[library->nb_cards - 1];

@@ -348,4 +348,32 @@ ostream& operator<<(ostream& out, const Player& p)
     return out;
 }
 
+// Method comparing "this" to "aPlayer", each in their own gameObserver
+bool Player::operator<(Player& aPlayer)
+{
+    // if this is dead and aPlayer is not dead then this < aPlayer
+    if(isDead() && !aPlayer.isDead())
+        return true;
 
+    // heuristics for min-max
+
+    // if this is more poisoined than aPlayer then this < aPlayer
+    if(poisonCount > aPlayer.poisonCount)
+        return true;
+
+    // if this has less life than aPlayer then this < aPlayer
+    if(life < aPlayer.life)
+        return true;
+
+    // if this has less parmanents in game that aPlayer then this < aPlayer
+    if(game->battlefield->cards.size() < aPlayer.game->battlefield->cards.size())
+        return true;
+
+    return false;
+}
+
+bool Player::isDead() {
+    if(observer)
+        return observer->didWin(opponent());
+    return false;
+};

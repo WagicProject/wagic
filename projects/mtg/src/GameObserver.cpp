@@ -45,14 +45,11 @@ void GameObserver::cleanup()
     combatStep = BLOCKERS;
     connectRule = false;
     actionsList.clear();
+    gameTurn.clear();
 }
 
 GameObserver::~GameObserver()
 {
-#ifdef ACTION_LOGGING_TESTING
-    if(oldGame) SAFE_DELETE(oldGame);
-#endif //ACTION_LOGGING_TESTING
-
     LOG("==Destroying GameObserver==");
     for (size_t i = 0; i < players.size(); ++i)
     {
@@ -79,10 +76,6 @@ GameObserver::GameObserver(WResourceManager *output, JGE* input)
     : randomGenerator(true), mResourceManager(output), mJGE(input)
 
 {
-    updateCtr = 0;
-#ifdef ACTION_LOGGING_TESTING
-    oldGame = 0;
-#endif //ACTION_LOGGING_TESTING
     ExtraRules = new MTGCardInstance[2]();
 
     mGameType = GAME_TYPE_CLASSIC;
@@ -549,23 +542,6 @@ void GameObserver::dumpAssert(bool val)
 
 void GameObserver::Update(float dt)
 {
-    /*******************/
-    updateCtr++;
-#ifdef ACTION_LOGGING_TESTING
-    if(!oldGame || (!(*oldGame == *this) &&
-            !mLoading && mLayers->stackLayer()->isCalm()))
-    {   // constant game check
-        stringstream stream;
-        stream << *this;
-        if(oldGame) SAFE_DELETE(oldGame);
-        oldGame = new GameObserver();
-        oldGame->mRules = mRules;
-        oldGame->load(stream.str());
-        DumpAssert(*this == *oldGame);
-    }
-#endif // ACTION_LOGGING_TESTING
-
-    /*******************/
     Player * player = currentPlayer;
     if (MTG_PHASE_COMBATBLOCKERS == currentGamePhase && BLOCKERS == combatStep)
     {
@@ -757,7 +733,7 @@ void GameObserver::gameStateBasedEffects()
             }
             if (cantlosers < 1)
             {
-                gameOver = players[i];
+                setLoser(players[i]);
             }
         }
     }

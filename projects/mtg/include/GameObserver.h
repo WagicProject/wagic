@@ -41,11 +41,7 @@ class GameObserver{
   WResourceManager* mResourceManager;
   JGE* mJGE;
   DeckManager* mDeckManager;
-
-  size_t updateCtr;
-#ifdef ACTION_LOGGING_TESTING
-  GameObserver* oldGame;
-#endif //ACTION_LOGGING_TESTING
+  Player * gameOver;
 
   int untap(MTGCardInstance * card);
   bool WaitForExtraPayment(MTGCardInstance* card);
@@ -83,7 +79,6 @@ class GameObserver{
   TargetChooser * targetChooser;
   DuelLayers * mLayers;
   ReplacementEffects *replacementEffects;
-  Player * gameOver;
   vector<Player *> players; //created outside
   time_t startedAt;
   Rules * mRules;
@@ -165,6 +160,25 @@ class GameObserver{
   DeckManager* getDeckManager(){ return mDeckManager; };
   void dumpAssert(bool val);
   void resetStartupGame();
+  void setLoser(Player* aPlayer) {
+      gameOver = aPlayer;
+  };
+
+  bool didWin(Player* aPlayer = 0) const {
+      if(!gameOver) {
+          // nobody won
+          return false;
+      } else if(!aPlayer) {
+          // somebody won and we don't care who
+          return true;
+      } else if(gameOver == aPlayer) {
+          // aPlayer lost
+          return false;
+      } else {
+          // aPlayer won
+          return true;
+      }
+  };
 };
 
 #endif

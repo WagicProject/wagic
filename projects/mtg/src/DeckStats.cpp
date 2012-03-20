@@ -206,12 +206,12 @@ void DeckStats::save(const std::string& filename)
 void DeckStats::saveStats(Player *player, Player *opponent, GameObserver * game)
 {
     int victory = 1;
-    if (!game->gameOver)
+    if (!game->didWin())
     {
         if (player->life == opponent->life) return;
         if (player->life < opponent->life) victory = 0;
     }
-    else if (game->gameOver == player)
+    else if (!game->didWin(player))
     {
         victory = 0;
     }

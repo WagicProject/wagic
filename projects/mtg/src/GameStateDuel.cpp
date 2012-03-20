@@ -294,11 +294,11 @@ void GameStateDuel::ThreadProc(void* inParam)
         int oldPhase = -1;
         int stagnationCounter = -1;
 
-        observer.loadPlayer(0, PLAYER_TYPE_TESTSUITE);
-        observer.loadPlayer(1, PLAYER_TYPE_TESTSUITE);
+        observer.loadPlayer(0, PLAYER_TYPE_CPU_TEST);
+        observer.loadPlayer(1, PLAYER_TYPE_CPU_TEST);
         observer.startGame(instance->mParent->gameType, instance->mParent->rules);
 
-        while(!observer.gameOver) {
+        while(!observer.didWin()) {
             if(observer.turn == oldTurn && observer.currentGamePhase == oldPhase) {
                 stagnationCounter++;
             } else {
@@ -451,7 +451,7 @@ void GameStateDuel::Update(float dt)
         // That's mostly because of a legacy bug, where we use the update sequence for some things when we should use events (such as phase changes)
         mParent->rules->postUpdateInit(game);
 
-        if (game->gameOver)
+        if (game->didWin())
         {
             if (game->players[1]->playMode != Player::MODE_TEST_SUITE) credits->compute(game, mParent);
             setGamePhase(DUEL_STATE_END);
@@ -486,7 +486,7 @@ void GameStateDuel::Update(float dt)
                 #ifdef QT_CONFIG
                         thread_count = QThread::idealThreadCount();
                 #endif
-                        for(size_t i = 0; i < (thread_count-1); i++)
+                        for(size_t i = 0; i < (thread_count); i++)
                             mWorkerThread.push_back(boost::thread(ThreadProc, this));
                     }
                 }
@@ -515,7 +515,7 @@ void GameStateDuel::Update(float dt)
                 }
                 //END almosthumane - mulligan
                 menu->Add(MENUITEM_MAIN_MENU, "Back to main menu");
-                //menu->Add(MENUITEM_UNDO, "Undo");
+                menu->Add(MENUITEM_UNDO, "Undo");
 #ifdef TESTSUITE
                 menu->Add(MENUITEM_LOAD, "Load");
 #endif

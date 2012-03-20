@@ -102,6 +102,8 @@ public:
     std::string GetCurrentDeckStatsFile();
     virtual bool parseLine(const string& s);
     friend ostream& operator<<(ostream&, const Player&);
+    bool operator<(Player& aPlayer);
+    bool isDead();
 };
 
 class HumanPlayer: public Player

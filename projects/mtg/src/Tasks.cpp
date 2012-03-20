@@ -617,7 +617,7 @@ string TaskWinAgainst::getShortDesc()
 bool TaskWinAgainst::isDone(GameObserver* observer, GameApp * _app)
 {
     AIPlayerBaka * baka = (AIPlayerBaka*) observer->players[1];
-    return ((baka) && (!observer->players[0]->isAI()) && (observer->players[1]->isAI()) && (observer->gameOver != observer->players[0]) // Human player wins
+    return ((baka) && (!observer->players[0]->isAI()) && (observer->players[1]->isAI()) && (observer->didWin(observer->players[0])) // Human player wins
                     && (baka->deckId == opponent));
 }
 
@@ -823,7 +823,7 @@ string TaskImmortal::getShortDesc()
 
 bool TaskImmortal::isDone(GameObserver *observer, GameApp * _app)
 {
-    return (!observer->players[0]->isAI()) && (observer->players[1]->isAI()) && (observer->gameOver != observer->players[0]) // Human player wins
+    return (!observer->players[0]->isAI()) && (observer->players[1]->isAI()) && (observer->didWin(observer->players[0])) // Human player wins
                     && (observer->players[0]->life >= targetLife);
 }
 
@@ -1022,7 +1022,7 @@ bool TaskWisdom::isDone(GameObserver* observer, GameApp * _app)
         }
     }
 
-    return (!observer->players[0]->isAI()) && (observer->players[1]->isAI()) && (observer->gameOver != observer->players[0]) // Human player wins
+    return (!observer->players[0]->isAI()) && (observer->players[1]->isAI()) && (observer->didWin(observer->players[0])) // Human player wins
                     && (countColor >= cardCount);
 }
 
@@ -1092,7 +1092,7 @@ string TaskPacifism::getShortDesc()
 
 bool TaskPacifism::isDone(GameObserver* observer, GameApp * _app)
 {
-    return (!observer->players[0]->isAI()) && (observer->players[1]->isAI()) && (observer->gameOver != observer->players[0]) // Human player wins
+    return (!observer->players[0]->isAI()) && (observer->players[1]->isAI()) && (observer->didWin(observer->players[0])) // Human player wins
                     && (observer->players[1]->life >= lifeSlashCardMin) && ((int) observer->players[1]->game->library->cards.size() >= lifeSlashCardMin);
 }
 

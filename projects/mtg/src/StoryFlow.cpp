@@ -365,9 +365,9 @@ void StoryDuel::Update(float dt)
 {
     if (!game) init();
     game->Update(dt);
-    if (game->gameOver)
+    if (game->didWin())
     {
-        if (game->gameOver == game->players[1])
+        if (game->didWin(game->players[0]))
             mParent->gotoPage(onWin);
         else
             mParent->gotoPage(onLose);

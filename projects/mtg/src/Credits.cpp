@@ -173,7 +173,7 @@ void Credits::compute(GameObserver* g, GameApp * _app)
         return;
 
     PlayerData * playerdata = NEW PlayerData(MTGCollection());
-    if (p2->isAI() && p1 != g->gameOver)
+    if (p2->isAI() && g->didWin(p1))
     {
         gameLength = time(0) - g->startedAt;
         value = 400;
@@ -367,7 +367,7 @@ void Credits::Render()
     {
         if (!p1->isAI() && p2->isAI())
         {
-            if (observer->gameOver != p1)
+            if (observer->didWin(p1))
             {
                 sprintf(buffer, _("Congratulations! You earn %i credits").c_str(), value);
                 JQuadPtr unlockedQuad = GetUnlockedQuad(unlockedTextureName);
@@ -389,7 +389,7 @@ void Credits::Render()
         else
         {
             int winner = 2;
-            if (observer->gameOver != p1)
+            if (observer->didWin(p1))
             {
                 winner = 1;
             }
@@ -412,7 +412,7 @@ void Credits::Render()
     y += 15;
 
     //!!
-    if (observer->gameOver != p1 && this->gameLength != 0)
+    if (observer->didWin(p1) && this->gameLength != 0)
     {
         sprintf(buffer, _("Game length: %i turns (%i seconds)").c_str(), observer->turn, this->gameLength);
         f->DrawString(buffer, 10, y);

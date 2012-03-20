@@ -67,7 +67,7 @@ public:
     void handleResults(GameObserver* aGame){
         mMutex.lock();
         totalTestGames++;
-        if (aGame->gameOver == aGame->players[0])
+        if (aGame->didWin(aGame->players[1]))
             testPlayer2Victories++;
         mMutex.unlock();
     };

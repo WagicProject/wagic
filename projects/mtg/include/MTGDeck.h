@@ -164,7 +164,8 @@ public:
 
     static void sortSubtypeList()
     {
-        return instance->subtypesList.sortSubTypes();
+        boost::mutex::scoped_lock lock(instance->mMutex);
+        instance->subtypesList.sortSubTypes();
     }
 
     static int findSubtypeId(string value){
