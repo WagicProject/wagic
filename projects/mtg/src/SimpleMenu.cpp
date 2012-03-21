@@ -137,8 +137,12 @@ void SimpleMenu::Render()
             float width = (static_cast<SimpleMenuItem*> (mObjects[i]))->GetEnlargedWidth() + 15;
             if (mWidth < width) mWidth = width;
         }
+
+        float scaleFactor = titleFont->GetScale();
+        titleFont->SetScale(SCALE_NORMAL);
         if ((!title.empty()) && (mWidth < titleFont->GetStringWidth(title.c_str()))) 
 			mWidth = titleFont->GetStringWidth(title.c_str());
+         titleFont->SetScale(scaleFactor);
         mWidth += 2 * kHorizontalMargin;
 
         if (mCenterHorizontal)
@@ -249,7 +253,8 @@ bool SimpleMenu::CheckUserInput(JButton key)
                     }
                     else if (y > mHeight) // this will scroll downwards in a list.  
                     {
-                        n =  mCurr + 1;
+                        if (mCurr < mCount-1)
+                            n =  mCurr + 1;
                     }
                 }   
             }
