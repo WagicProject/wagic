@@ -241,7 +241,7 @@ bool SimpleMenu::CheckUserInput(JButton key)
             {
                 if (mObjects[i]->getTopLeft(top, left))
                 {
-                    distance2 = (top - y) * (top - y) + (left - x) * (left - x);
+                    distance2 = unsigned int((top - y) * (top - y) + (left - x) * (left - x));
                     if ( (distance2 < minDistance2) )
                     {
                         minDistance2 = distance2;
