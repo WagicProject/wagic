@@ -65,6 +65,7 @@ public:
     virtual void checkUserClick();
     
     virtual float GetWidth();
+    virtual float GetEnlargedWidth();
     virtual void Relocate(float x, float y);
     
     virtual void RenderWithOffset(float yOffset);

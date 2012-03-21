@@ -29,8 +29,16 @@ JGuiObject(id), mX(x), mY(y), parent(_parent), mFontId(fontId)
     
     mHasFocus = hasFocus;
     
-    mScale = 1.0f;
-    mTargetScale = 1.0f;
+    mScale = (mText.size() < 20) ? SCALE_LARGE_NORMAL : SCALE_NORMAL;
+
+    if (mHasFocus) {
+        mTargetScale = (mText.size() < 20) ? SCALE_SELECTED_LARGE : SCALE_SELECTED;
+    }
+    else
+    {
+         mTargetScale = (mText.size() < 20) ? SCALE_LARGE_NORMAL : SCALE_NORMAL;
+    }
+
     
     mXOffset = mX;
     
@@ -50,20 +58,8 @@ void SimpleButton::RenderWithOffset(float yOffset)
 {
     mYOffset = yOffset;
     WFont * mFont = WResourceManager::Instance()->GetWFont(mFontId);
-    if(mText.size() < 20)
-    {
-        if (mHasFocus)
-            mFont->SetScale(SCALE_SELECTED_LARGE);
-        else
-            mFont->SetScale(SCALE_LARGE_NORMAL);
-    }
-    else
-    {
-        if (mHasFocus)
-            mFont->SetScale(SCALE_SELECTED);
-        else
-            mFont->SetScale(SCALE_NORMAL);
-    }
+
+    mFont->SetScale(mScale);
 
     mFont->DrawString(mText.c_str(), mX, mY + yOffset, JGETEXT_CENTER);
 }
@@ -95,13 +91,13 @@ void SimpleButton::checkUserClick()
 void SimpleButton::Entering()
 {
     checkUserClick();
-    mHasFocus = true;
+    setFocus(true);
 }
 
 bool SimpleButton::Leaving(JButton key)
 {
     checkUserClick();
-    mHasFocus = false;
+    setFocus(false);
     return true;
 }
 
@@ -167,6 +163,21 @@ bool SimpleButton::isSelectionValid() const
 void SimpleButton::setFocus(bool value)
 {
     mHasFocus = value;
+
+    if (mHasFocus) {
+        if(mText.size() < 20)
+            mTargetScale = (SCALE_SELECTED_LARGE);
+        else
+            mTargetScale = (SCALE_SELECTED);
+    }
+    else
+    {
+        if(mText.size() < 20)
+            mTargetScale = (SCALE_LARGE_NORMAL);
+        else
+            mTargetScale = (SCALE_NORMAL);
+    }
+
 }
 
 bool SimpleButton::hasFocus() const
@@ -190,6 +201,17 @@ float SimpleButton::GetWidth()
     WFont * mFont = WResourceManager::Instance()->GetWFont(mFontId);
     mFont->SetScale(1.0);
     return mFont->GetStringWidth(mText.c_str());
+}
+
+float SimpleButton::GetEnlargedWidth()
+{
+    WFont * mFont = WResourceManager::Instance()->GetWFont(mFontId);
+    float backup = mFont->GetScale();
+    mFont->SetScale(SCALE_SELECTED);
+    if(mText.size() < 20)
+        mFont->SetScale(SCALE_SELECTED_LARGE);
+    return mFont->GetStringWidth(mText.c_str());
+    mFont->SetScale(backup);
 }
 
 ostream& SimpleButton::toString(ostream& out) const

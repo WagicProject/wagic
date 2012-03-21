@@ -134,8 +134,8 @@ void SimpleMenu::Render()
 
         for (int i = 0; i < mCount; ++i)
         {
-            float width = (static_cast<SimpleMenuItem*> (mObjects[i]))->GetWidth() + 15;
-            if (mWidth < width) mWidth = width *  float(1.5);
+            float width = (static_cast<SimpleMenuItem*> (mObjects[i]))->GetEnlargedWidth() + 15;
+            if (mWidth < width) mWidth = width;
         }
         if ((!title.empty()) && (mWidth < titleFont->GetStringWidth(title.c_str()))) 
 			mWidth = titleFont->GetStringWidth(title.c_str());
