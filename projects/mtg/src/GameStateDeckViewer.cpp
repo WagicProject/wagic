@@ -59,11 +59,9 @@ GameStateDeckViewer::GameStateDeckViewer(GameApp* parent) :
     menu = NULL;
     stw = NULL;
     
-    statsNextButton = NEW InteractiveButton(NULL, kNextStatsButtonId, Fonts::MAIN_FONT, "Stats ->", SCREEN_WIDTH_F - 50, 5, JGE_BTN_NEXT);
-    statsPrevButton = NEW InteractiveButton(NULL, kPrevStatsButtonId, Fonts::MAIN_FONT, "<- Stats",  10, 5, JGE_BTN_PREV);
+    statsPrevButton = NEW InteractiveButton(NULL, kPrevStatsButtonId, Fonts::MAIN_FONT, "Stats",  SCREEN_WIDTH_F - 50, SCREEN_HEIGHT_F - 20, JGE_BTN_PREV);
     toggleDeckButton = NEW InteractiveButton(NULL, kToggleDeckActionId, Fonts::MAIN_FONT, "View Deck", 10, SCREEN_HEIGHT_F - 20, JGE_BTN_PRI);
     sellCardButton = NEW InteractiveButton(NULL, kSellCardActionId, Fonts::MAIN_FONT, "Sell Card", (SCREEN_WIDTH_F/ 2) - 100, SCREEN_HEIGHT_F - 20, JGE_BTN_SEC);
-    menuButton = NEW InteractiveButton(NULL, kMenuButtonId, Fonts::MAIN_FONT, "menu", SCREEN_WIDTH_F - 40, SCREEN_HEIGHT_F - 20, JGE_BTN_MENU);
     filterButton = NEW InteractiveButton(NULL, kFilterButtonId, Fonts::MAIN_FONT, "filter", (SCREEN_WIDTH_F - 110), SCREEN_HEIGHT_F - 20, JGE_BTN_CTRL);
 }
 
@@ -73,8 +71,6 @@ GameStateDeckViewer::~GameStateDeckViewer()
     SAFE_DELETE(toggleDeckButton);
     SAFE_DELETE(sellCardButton);
     SAFE_DELETE(statsPrevButton);
-    SAFE_DELETE(statsNextButton);
-    SAFE_DELETE(menuButton);
     SAFE_DELETE(filterButton);
     
     if (myDeck)
@@ -380,9 +376,7 @@ bool GameStateDeckViewer::userPressedButton()
     return (
             (toggleDeckButton->ButtonPressed()) 
             || (sellCardButton->ButtonPressed())
-            || (statsNextButton->ButtonPressed())
             || (statsPrevButton->ButtonPressed())
-            || (menuButton->ButtonPressed())
             || (filterButton->ButtonPressed())
             );
   }
@@ -391,10 +385,8 @@ void GameStateDeckViewer::setButtonState(bool state)
 {
     toggleDeckButton->setIsSelectionValid(state);
     sellCardButton->setIsSelectionValid(state);
-    statsNextButton->setIsSelectionValid(state);
     statsPrevButton->setIsSelectionValid(state);
     filterButton->setIsSelectionValid(state);
-    menuButton->setIsSelectionValid(state);
     
 }
 
@@ -402,9 +394,7 @@ void GameStateDeckViewer::RenderButtons()
 {
     toggleDeckButton->Render();
     sellCardButton->Render();
-    menuButton->Render();
     filterButton->Render();
-    statsNextButton->Render();
     statsPrevButton->Render();
 }
 
@@ -727,15 +717,12 @@ void GameStateDeckViewer::renderOnScreenBasicInfo()
                 WSrcDeck::UNFILTERED_UNIQUE));
 
     float w = mFont->GetStringWidth(buffer);
-    
-#ifdef TOUCH_ENABLED
-    float textXOffset = SCREEN_WIDTH - (statsNextButton->GetWidth() + w + 30);
-    renderer->FillRoundRect( textXOffset - 5, y, w + 10, mFont->GetHeight() + 4, 5, ARGB(128,0,0,0));
-    mFont->DrawString(buffer, textXOffset, y + 5, JGETEXT_LEFT);
-#else
-    renderer->FillRoundRect(SCREEN_WIDTH - (w + 27), y + 5, w + 10, 15, 5, ARGB(128,0,0,0));
+    PIXEL_TYPE backupColor = mFont->GetColor();
+
+    renderer->FillRoundRect(SCREEN_WIDTH - (w + 27), y + 5, w + 10, 15, 5, ARGB(hudAlpha/2,0,0,0));
+    mFont->SetColor(ARGB(hudAlpha,255,255,255));
     mFont->DrawString(buffer, SCREEN_WIDTH - 22, y + 15, JGETEXT_RIGHT);
-#endif
+    mFont->SetColor(backupColor);
     
     if (useFilter != 0) renderer->RenderQuad(mIcons[useFilter - 1].get(), SCREEN_WIDTH - 10, y + 15, 0.0f, 0.5, 0.5);
 }
@@ -847,7 +834,7 @@ void GameStateDeckViewer::renderOnScreenMenu()
     {
         //FillRects
         r->FillRect(0 - (onScreenTransition * 84), 0, 84, SCREEN_HEIGHT, ARGB(128,0,0,0));
-        r->FillRect(SCREEN_WIDTH - 204 + (onScreenTransition * 204), 0, 200, SCREEN_HEIGHT, ARGB(128,0,0,0));
+        r->FillRect(SCREEN_WIDTH - 204 + (onScreenTransition * 204), 0, 204, SCREEN_HEIGHT, ARGB(128,0,0,0));
         if (renderPSPIcons)
         {
             //LEFT PSP CIRCLE render

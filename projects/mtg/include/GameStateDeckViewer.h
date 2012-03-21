@@ -97,7 +97,7 @@ private:
     int lastTotal;
     int mSelected;
     
-    InteractiveButton *toggleDeckButton, *sellCardButton, *statsNextButton, *statsPrevButton, *menuButton, *filterButton;
+    InteractiveButton *toggleDeckButton, *sellCardButton, *statsPrevButton, *filterButton;
 
     WGuiFilters * filterMenu;
     WSrcDeckViewer * source;
