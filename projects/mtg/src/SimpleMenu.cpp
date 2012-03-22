@@ -210,8 +210,8 @@ void SimpleMenu::Render()
                 mFont->SetColor(ARGB(150,255,255,255));
             }
             (static_cast<SimpleMenuItem*> (mObjects[i]))->RenderWithOffset(-kLineHeight * startId);
-            mFont->SetScale(SCALE_NORMAL);
         }
+        mFont->SetScale(SCALE_NORMAL);
     }
     mFont->SetScale(SCALE_NORMAL);
 }
