@@ -58,6 +58,10 @@ private:
             return;
         MTGCardInstance * target = card->target;
         intValue = 0;
+        if(s.find("stored") != string::npos)
+        {
+            return init(s.substr(+6),spell,card->storedCard);
+        }
         bool halfup = false;
         bool halfdown = false;
         if (!target) target = card;
@@ -2898,6 +2902,7 @@ public:
         setAbilityOwner();
         myDummy->setObserver(abilityReciever->getObserver());
         myDummy->owner = abilityReciever;
+        myDummy->storedCard = source;
         vector<string>magictextlines = split(sabilities,'_');
         if(magictextlines.size())
         {

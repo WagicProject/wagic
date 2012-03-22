@@ -664,6 +664,10 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                 {
                     return NEW CardTargetChooser(observer, card, card, zones, nbzones);
                 }
+                else if (typeName.compare("mystored") == 0)
+                {
+                    return NEW CardTargetChooser(observer, card->storedCard, card, zones, nbzones);
+                }
                 else
                 {
                     tc = NEW TypeTargetChooser(observer, typeName.c_str(), zones, nbzones, card, maxtargets, other, targetMin);

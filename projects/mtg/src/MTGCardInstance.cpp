@@ -156,6 +156,7 @@ void MTGCardInstance::initMTGCI()
     chooseasubtype = "";
     coinSide = -1;
     isAttacking = NULL;
+    storedCard = NULL;
 
     for (int i = 0; i < ManaCost::MANA_PAID_WITH_RETRACE +1; i++)
         alternateCostPaid[i] = 0;
