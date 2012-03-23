@@ -210,7 +210,6 @@ float SimpleButton::GetEnlargedWidth()
     mFont->SetScale(SCALE_SELECTED);
     if(mText.size() < 20)
         mFont->SetScale(SCALE_SELECTED_LARGE);
-    mFont->SetScale(backup);
     return mFont->GetStringWidth(mText.c_str());
 }
 
