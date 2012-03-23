@@ -56,6 +56,23 @@ while (<>)
 	{
 		my $cardName = $1;
 		$cardName =~ s/^\s*|\s*$//g;
+		if ($cardName =~ /\((.*?)\)/ )
+		{
+			my $m = $1;
+			my $pre = $`;
+			$m =~ s/^\s*|\s*$//g;
+			$pre =~ s/^\s*|\s*$//g;
+			if ( ($knownCards{$m} == 1)  || ($knownCards{$pre} == 1) )
+			{
+				$skip = 1;
+				print STDERR "*$cardName\n";
+				next;
+			}
+			else
+			{
+			#	print STDERR "No Match. $cardName\n";	
+			}
+		}	
 		if ($knownCards{$cardName} == 1)
 		{
 			$skip = 1;			
@@ -165,6 +182,7 @@ sub getKnownCards
 		chomp;
 		s///g;
 		s/^\s*|\s*$//g;
+		next if (/Token$/);
 		$m->{$_} = 1;
 	}
 }
