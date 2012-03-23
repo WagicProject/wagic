@@ -181,6 +181,8 @@ bool JGuiController::CheckUserInput(JButton key)
                             minDistance2 = distance2;
                             n = i;
                         }
+                        else
+                            break;
                     }
                 }
                 

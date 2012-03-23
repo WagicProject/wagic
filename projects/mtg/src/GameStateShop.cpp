@@ -723,6 +723,7 @@ void GameStateShop::Render()
 
     if (shopMenu)
         shopMenu->Render();
+    
     if (filterMenu && !filterMenu->isFinished())
         filterMenu->Render();
     else
@@ -790,7 +791,8 @@ void GameStateShop::Render()
     if (menu)
         menu->Render();
     
-    renderButtons();
+    if (filterMenu && filterMenu->isFinished())
+        renderButtons();
 }
 
 void GameStateShop::ButtonPressed(int controllerId, int controlId)

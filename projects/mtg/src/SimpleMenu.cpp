@@ -240,25 +240,35 @@ bool SimpleMenu::CheckUserInput(JButton key)
         if (mObjects.size())
         {
             float top, left;
+            SimpleMenuItem * currentItem = static_cast<SimpleMenuItem *>(mObjects[mCurr]);
+            float fontHeight = WResourceManager::Instance()->GetWFont(currentItem->getFontId())->GetHeight();
+            float menuTopEdge = fontHeight + mY + spadeR->mHeight;
+            float menuBottomEdge = menuTopEdge + (maxItems * fontHeight);
             
             for (int i = 0; i < mCount; i++)
             {
                 if (mObjects[i]->getTopLeft(top, left))
                 {
                     distance2 = (unsigned int)((top - y) * (top - y) + (left - x) * (left - x));
-                    if ( (distance2 < minDistance2) )
+                    if ( (distance2 <= minDistance2) )
                     {
                         minDistance2 = distance2;
-                        n = i;
-                    }
-                    else if (y > mHeight) // this will scroll downwards in a list.  
-                    {
-                        if (mCurr < mCount-1)
-                            n =  mCurr + 1;
+                        if (y < menuTopEdge)
+                        {
+                            n = (mCurr - 1) > 0 ? mCurr - 1 : 0;
+                            break;
+                        }
+                        else if (y > menuBottomEdge)
+                        {
+                            n = (mCurr + 1) < mCount ? mCurr + 1 : mCount - 1;
+                            break;
+                        }
+                        else
+                            n = i;
                     }
                 }   
             }
-            
+            // check to see if the user clicked 
             if (n != mCurr && mObjects[mCurr] != NULL && mObjects[mCurr]->Leaving(JGE_BTN_DOWN))
             {
                 mCurr = n;
