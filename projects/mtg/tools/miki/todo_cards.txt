@@ -26,7 +26,6 @@ Aeon Chronicler
 Aerial Caravan
 Aesthetic Consultation
 Agadeem Occultist
-Aggravated Assault
 Aggression
 Airdrop Condor
 Akki Blizzard-Herder
@@ -77,7 +76,6 @@ Architects of Will
 Archive Trap
 Archmage Ascension
 Arcum Dagsson
-Arcum's Sleigh
 Arcum's Weathervane
 Arcum's Whistle
 Ardent Plea
@@ -131,7 +129,6 @@ Aven Shrine
 Aven Soulgazer
 Aven Windreader
 Avenging Druid
-Avizoa
 Avoid Fate
 Awe Strike
 Awesome Presence
@@ -175,7 +172,6 @@ Battletide Alchemist
 Batwing Brume
 Bazaar of Wonders
 Beacon of Destiny
-Beacon of Tomorrows
 Bear Umbra
 Beast Hunt
 Beast Walkers
@@ -209,7 +205,6 @@ Blessed Breath
 Blind Fury
 Blind Hunter
 Blind Seer
-Blinding Angel
 Blinding Beam
 Blinding Powder
 Blizzard Specter
@@ -264,11 +259,9 @@ Break Open
 Breaking Point
 Breaking Wave
 Breakthrough
-Breath of Fury
 Breathstealer's Crypt
 Brightflame
 Brilliant Ultimatum
-Brine Elemental
 Brine Hag
 Brine Seer
 Brion Stoutarm
@@ -331,7 +324,6 @@ Canopy Crawler
 Capricious Efreet
 Captain's Maneuver
 Captivating Glance
-Capture of Jingzhou
 Captured Sunlight
 Cardboard Carapace
 Cardpecker
@@ -416,8 +408,6 @@ Chromatic Armor
 Chrome Mox
 Chromescale Drake
 Chromeshell Crab
-Chronatog
-Chronatog Totem
 Chronomantic Escape
 Chronosavant
 Churning Eddy
@@ -568,7 +558,6 @@ Cyclopean Tomb
 Cytoplast Manipulator
 Cytoshape
 Dakmor Salvage
-Damia, Sage of Stone
 Dampen Thought
 Damping Engine
 Damping Field
@@ -703,7 +692,6 @@ Doubling Season
 Dovescape
 Draco
 Dracoplasm
-Dragon Appeasement
 Drain Power
 Draining Whelk
 Drake Umbra
@@ -741,14 +729,13 @@ Dwarven Sea Clan
 Dwell on the Past
 Dystopia
 Earwig Squad
-Eater of Days
 Ebon Praetor
 Echo Chamber
 Echo Circlet
 Echo Mage
 Edge of Autumn
 Eel Umbra
-Ego Erasure
+Ego Erasure 
 Eland Umbra
 Elder Pine of Jukai
 Eldrazi Conscription
@@ -759,10 +746,8 @@ Elemental Augury
 Elemental Mastery
 Elemental Resonance
 Elephant Grass
-Elfhame Sanctuary
 Elkin Bottle
 Elkin Lair
-Elsewhere Flask
 Elvish Bard
 Elvish House Party
 Elvish Impersonators
@@ -773,7 +758,6 @@ Emblazoned Golem
 Embolden
 Emcee
 Emerge Unscathed
-Empty City Ruse
 Empyrial Archangel
 Emrakul, the Aeons Torn
 Enchantment Alteration
@@ -794,7 +778,6 @@ Ensouled Scimitar
 Entangler
 Entangling Trap
 Enter the Dungeon
-Eon Hub
 Epicenter
 Epochrasite
 Equal Treatment
@@ -872,7 +855,6 @@ Fatal Mutation
 Fate Transfer
 Fatespinner
 Fathom Trawl
-Fatigue
 Favor of the Mighty
 Feast of Worms
 Feint
@@ -894,10 +876,8 @@ Fight or Flight
 Fight to the Death
 Figure of Destiny
 Fill with Fright
-Final Fortune
 Final Punishment
 Final Strike
-Finest Hour
 Fire // Ice (Fire)
 Fire // Ice (Ice)
 Fire Covenant
@@ -916,7 +896,6 @@ Flaccify
 Flailing Manticore
 Flailing Ogre
 Flailing Soldier
-Flame Wave
 Flamekin Bladewhirl
 Flames of the Blood Hand
 Flameshot
@@ -986,7 +965,6 @@ Fungal Reaches
 Fungus Elemental
 Furnace Celebration
 Furnace of Rath
-Fury of the Horde
 Future Sight
 Fyndhorn Druid
 Gabriel Angelfire
@@ -1097,7 +1075,6 @@ Goblin Vandal
 Goblin War Cry
 Goblin War Drums
 Godo's Irregulars
-Godo, Bandit Warlord
 Goham Djinn
 Golden Wish
 Goldmeadow Stalwart
@@ -1364,7 +1341,6 @@ Isochron Scepter
 Isolation Cell
 Isperia the Inscrutable
 It That Betrays
-Ivory Gargoyle
 Iwamori of the Open Fist
 Ixidor's Will
 Ixidor, Reality Sculptor
@@ -1496,7 +1472,6 @@ Laquatus's Champion
 Laquatus's Creativity
 Laquatus's Disdain
 Lash Out
-Last Chance
 Last Rites
 Last-Ditch Effort
 Latchkey Faerie
@@ -1539,7 +1514,6 @@ Life from the Loam
 Lifesmith
 Lifted by Clouds
 Light from Within
-Lighthouse Chronologist
 Lightning Axe
 Lightning Cloud
 Lightning Reflexes
@@ -1603,13 +1577,11 @@ Mages' Contest
 Magewright's Stone
 Magical Hack
 Magical Hacker
-Magistrate's Scepter
 Magma Jet
 Magmatic Core
 Magnetic Mountain
 Magnetic Theft
 Magnetic Web
-Magosi, the Waterveil
 Magus of the Abyss
 Magus of the Arena
 Magus of the Future
@@ -1668,7 +1640,6 @@ Meddle
 Meddling Kids
 Meddling Mage
 Medicine Runner
-Meditate
 Megatherium
 Melee
 Melting
@@ -1758,12 +1729,10 @@ Molder Slug
 Moldervine Cloak
 Mole Worms
 Molten Disaster
-Molten Firebird
 Molten Influence
 Molten Psyche
 Molten Sentry
 Molten Slagheap
-Moment of Silence
 Momir Vig, Simic Visionary
 Moniker Mage
 Monkey Cage
@@ -2122,7 +2091,6 @@ Prowling Pangolin
 Psychic Battle
 Psychic Miasma
 Psychic Network
-Psychic Possession
 Psychic Puppetry
 Psychic Purge
 Psychic Surgery
@@ -2261,7 +2229,6 @@ Rethink
 Retribution
 Return to Dust
 Revelation
-Revenant Patriarch
 Reverberate
 Reverberation
 Reversal of Fortune
@@ -2359,8 +2326,6 @@ Rune of Protection: Green
 Rune of Protection: Lands
 Rune of Protection: Red
 Rune of Protection: White
-Rune-Tail, Kitsune Ascendant
-Rune-Tail, Kitsune Ascendant (Rune-Tail's Essence)
 Runeboggle
 Runed Halo
 Runeflare Trap
@@ -2411,7 +2376,6 @@ Saute
 Savaen Elves
 Savage Beating
 Save Life
-Savor the Moment
 Savra, Queen of the Golgari
 Scalpelexis
 Scandalmonger
@@ -2449,16 +2413,13 @@ Searing Meditation
 Searing Spear Askari
 Seasinger
 Seasoned Tactician
-Second Chance
 Second Sight
 Secretkeeper
 Sedris, the Traitor King
 Seeds of Strength
-Seedtime
 Seer's Sundial
 Seer's Vision
 Seht's Tiger
-Seize the Day
 Seize the Soul
 Seizures
 Sekki, Seasons' Guide
@@ -2515,7 +2476,6 @@ Shimmering Glasskite
 Shinen of Life's Roar
 Shining Shoal
 Shirei, Shizo's Caretaker
-Shisato, Whispering Hunter
 Shivan Sand-Mage
 Shivan Wumpus
 Shizuko, Caller of Autumn
@@ -2593,7 +2553,6 @@ Soldevi Digger
 Soldevi Excavations
 Soldevi Machinist
 Soldevi Sentry
-Solitary Confinement
 Soltari Guerrillas
 Song of Blood
 Soothsaying
@@ -2720,7 +2679,6 @@ Stone-Cold Basilisk
 Stone-Tongue Basilisk
 Stonecloaker
 Stonehewer Giant
-Stonehorn Dignitary
 Stoneshaker Shaman
 Stop That
 Storage Matrix
@@ -2802,7 +2760,6 @@ Sylvan Echoes
 Sylvan Library
 Sylvan Messenger
 Sylvok Explorer
-Symbiotic Deployment
 Symbol Status
 Syncopate
 Synod Artificer
@@ -2846,7 +2803,6 @@ Tempest Efreet
 Temporal Aperture
 Temporal Cascade
 Temporal Extortion
-Temporal Manipulation
 Temporary Truce
 Tempting Licid
 Tempting Wurm
@@ -2910,12 +2866,8 @@ Tidal Flats
 Tide of War
 Timber Wolves
 Time Machine
-Time Sieve
 Time Stop
-Time Stretch
 Time Vault
-Time Walk
-Time Warp
 Time and Tide
 Timebender
 Timecrafting
@@ -3004,7 +2956,6 @@ Unifying Theory
 Unliving Psychopath
 Unnerving Assault
 Unstable Footing
-Unstable Hulk
 Unstable Shapeshifter
 Untaidake, the Cloud Keeper
 Upwelling
@@ -3088,7 +3039,6 @@ Voracious Dragon
 Vorinclex, Voice of Hunger
 Vorosh, the Hunter
 Wail of the Nim
-Walk the Aeons
 Wall of Caltrops
 Wall of Corpses
 Wall of Deceit
@@ -3101,7 +3051,6 @@ Wand of Denial
 Wand of Ith
 Wandering Eye
 Wandering Graybeard
-Wanderwine Prophets
 War Barge
 War Cadence
 War Elephant
@@ -3116,13 +3065,10 @@ Warping Wurm
 Warren Pilferers
 Warren Weirding
 Warrior en-Kor
-Warrior's Oath
 Watchdog
 Water Gun Balloon Game
-Waterspout Elemental
 Waterspout Weavers
 Wave of Terror
-Waves of Aggression
 Wax // Wane (Wane)
 Wax // Wane (Wax)
 Wear Away
@@ -3196,7 +3142,6 @@ World-Bottling Kit
 Worldly Counsel
 Worldpurge
 Wormfang Crab
-Wormfang Manta
 Worms of the Earth
 Worship
 Wort, the Raidmother
@@ -3209,7 +3154,6 @@ Wurmskin Forger
 Xenic Poltergeist
 Yare
 Yawgmoth's Agenda
-Yawgmoth's Bargain
 Yawgmoth's Will
 Yawning Fissure
 Ydwen Efreet

@@ -325,6 +325,7 @@ Arctic Foxes
 Arctic Merfolk
 Arctic Nishoba
 Arctic Wolves
+Arcum's Sleigh
 Ardent Militia
 Ardent Recruit
 Ardent Soldier
@@ -2246,6 +2247,7 @@ Elite Javelineer
 Elite Vanguard
 Elixir of Immortality
 Elixir of Vitality
+Elsewhere Flask
 Elspeth Tirel
 Elspeth, Knight-Errant
 Elven Cache
@@ -6398,6 +6400,8 @@ Rumbling Slum
 Run Wild
 Rune-Cervin Rider
 Rune-Scarred Demon
+Rune-Tail, Kitsune Ascendant
+Rune-Tail, Kitsune Ascendant (Rune-Tail's Essence)
 Runechanter's Pike
 Runeclaw Bear
 Runed Arch
