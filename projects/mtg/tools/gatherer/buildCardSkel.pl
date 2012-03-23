@@ -32,6 +32,8 @@ while (<>)
 	s/\x92/'/g;
 	s/\xC6/AE/g;
 	s/\xF6/o/g; # o with two dots
+	s/\xE8/e/g; # for Seance
+	s/\xE9/e/g; # for Seance
 	s/Text=/text=/;
 
 	next if (/\[card/ );
