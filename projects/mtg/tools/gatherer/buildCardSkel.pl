@@ -19,6 +19,8 @@ my %costNumberMap = (
 			"three" => 3,
 			"four" => 4
 		);
+my %knownCards = ();
+getKnownCards(\%knownCards);
 
 my %extraCosts = ();
 my $cardCost;
@@ -26,21 +28,43 @@ while (<>)
 {
 	chomp;
 	s///g;
+	s/\x97/\-\-/g;
+	s/\x92/'/g;
+	s/\xC6/AE/g;
+	s/\xF6/o/g; # o with two dots
 	s/Text=/text=/;
+
+	next if (/\[card/ );
 
 	if (/\[\/card/ )
 	{
 		foreach $extraCost (keys %extraCosts)
 		{
 			my $cost = $extraCost eq "Multikicker" ? "multi" : "";
-			print lc ($extraCost) . "=$cost" . subCosts($extraCosts{$extraCost}) . "\n";
+			print lc ($extraCost) ;
+			print "=$cost" . subCosts($extraCosts{$extraCost}) . "\n";
 			delete $extraCosts{$extraCost};
 		}
-		print "[/card]\n";
+		print "[/card]\n" if (!$skip);
+		$skip = 0;
+	}
+	elsif ($skip == 1)
+	{
+		next;;
 	}
 	elsif (/^Name=(.*)/)
 	{
-		print "name=$1\n";
+		my $cardName = $1;
+		$cardName =~ s/^\s*|\s*$//g;
+		if ($knownCards{$cardName} == 1)
+		{
+			$skip = 1;			
+			print STDERR "$cardName\n";
+		}
+		else
+		{
+			print "[card]\nname=$cardName\n";
+		}
 	}
 	elsif (/Mana=/)
 	{
@@ -54,7 +78,7 @@ while (<>)
 
 	elsif (/^Type=/ )
 	{
-		my ($type, $subtype) = split /\s*\x97\s*/, $';
+		my ($type, $subtype) = split /\s*\-\-\s*/, $';
 		print "type=$type\n";
 		print "subtype=$subtype\n" if ($subtype);
 	}
@@ -80,7 +104,7 @@ while (<>)
 			}
 		}	
 	}
-	elsif ( /(Multikicker|Kicker|Buyback|Flashback)\s*\x97?\s*(.*?)\(You may/)
+	elsif ( /(Multikicker|Kicker|Buyback|Flashback)\s*\-\-?\s*(.*?)\(You may/)
 	{
 		print "$_\n";
 		$extraCosts{$1} = $2;
@@ -128,4 +152,19 @@ sub subCosts
 	$cost =~ s/Return (a|one|two|three) creature(.*?) .*/"{H(creature|mybattlefield)}" x $costNumberMap{$1}/ei;
 
 	return $cost;	
+}
+
+
+sub getKnownCards
+{
+	my $m = shift (@_);
+	open INFILE,"<../miki/supported_cards.txt" or die "Can't open file! $!\n";
+	my @cards = <INFILE>;
+	foreach (@cards)
+	{
+		chomp;
+		s///g;
+		s/^\s*|\s*$//g;
+		$m->{$_} = 1;
+	}
 }
