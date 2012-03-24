@@ -241,9 +241,11 @@ bool SimpleMenu::CheckUserInput(JButton key)
         {
             float top, left;
             SimpleMenuItem * currentItem = static_cast<SimpleMenuItem *>(mObjects[mCurr]);
-            float fontHeight = WResourceManager::Instance()->GetWFont(currentItem->getFontId())->GetHeight();
+            WFont * currentFont = WResourceManager::Instance()->GetWFont(currentItem->getFontId());
+            float scaledFontHeight = currentFont->GetHeight() * currentFont->GetScale();
+            float fontHeight = scaledFontHeight > kLineHeight ? scaledFontHeight : kLineHeight;
             float menuTopEdge = fontHeight + mY + spadeR->mHeight;
-            float menuBottomEdge = menuTopEdge + (maxItems * fontHeight);
+            float menuBottomEdge = menuTopEdge + ( (maxItems -1) * fontHeight);
             
             for (int i = 0; i < mCount; i++)
             {
