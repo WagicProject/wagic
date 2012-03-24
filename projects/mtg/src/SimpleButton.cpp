@@ -199,8 +199,11 @@ void SimpleButton::setText( const string& text)
 float SimpleButton::GetWidth()
 {
     WFont * mFont = WResourceManager::Instance()->GetWFont(mFontId);
+    float backup = mFont->GetScale();
     mFont->SetScale(1.0);
-    return mFont->GetStringWidth(mText.c_str());
+    float result = mFont->GetStringWidth(mText.c_str());
+    mFont->SetScale(backup);
+    return result;
 }
 
 float SimpleButton::GetEnlargedWidth()
@@ -210,7 +213,9 @@ float SimpleButton::GetEnlargedWidth()
     mFont->SetScale(SCALE_SELECTED);
     if(mText.size() < 20)
         mFont->SetScale(SCALE_SELECTED_LARGE);
-    return mFont->GetStringWidth(mText.c_str());
+    float result = mFont->GetStringWidth(mText.c_str());
+    mFont->SetScale(backup);
+    return result;
 }
 
 ostream& SimpleButton::toString(ostream& out) const
