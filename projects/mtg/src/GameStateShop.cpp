@@ -791,7 +791,7 @@ void GameStateShop::Render()
     if (menu)
         menu->Render();
     
-    if (filterMenu && filterMenu->isFinished())
+    if (!filterMenu || (filterMenu && filterMenu->isFinished()))
         renderButtons();
 }
 
