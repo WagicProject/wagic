@@ -247,14 +247,7 @@ bool SimpleMenu::CheckUserInput(JButton key)
             if (y < menuTopEdge)
                 n = (mCurr - 1) > 0 ? mCurr -1 : 0;
             else if (y >= menuBottomEdge)
-            {
-                if(mCurr +1 < mCount)
-                    n = mCurr + 1;
-                else if(mCurr - 1 > 0)
-                    n = mCurr - 1;
-                else
-                    n = 0;
-            }
+                n = (mCurr + 1) < mCount ? mCurr + 1 : mCurr - 1;
             else
             {
                 for (int i = 0; i < mCount; i++)
@@ -266,6 +259,13 @@ bool SimpleMenu::CheckUserInput(JButton key)
                     }   
                 }
             }
+            
+            // check bounds of n. 
+            if ( n < 0 ) 
+                n = 0;
+            if ( n >= mCount ) 
+                n = mCount - 1;
+            
             // check to see if the user clicked 
             if (n != mCurr && mObjects[mCurr] != NULL && mObjects[mCurr]->Leaving(JGE_BTN_DOWN))
             {
