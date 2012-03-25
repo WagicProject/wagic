@@ -17,6 +17,7 @@ void MTGEventText::Update(float dt)
     if (textAlpha)
     {
         textAlpha -= static_cast<int> (200 * dt);
+        Render();
         if (textAlpha < 0)
         {
             textAlpha = 0;
@@ -31,9 +32,11 @@ void MTGEventText::Render()
     if (!textAlpha)
         return;
     WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::OPTION_FONT);
+    float backup = mFont->GetScale();
     mFont->SetScale(2 - (float) textAlpha / 130);
     mFont->SetColor(ARGB(255,255,255,255));
     mFont->DrawString(text.c_str(), SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, JGETEXT_CENTER);
+    mFont->SetScale(backup);
 }
 
 MTGEventText * MTGEventText::clone() const
@@ -198,6 +201,7 @@ AADamager::AADamager(GameObserver* observer, int _id, MTGCardInstance * _source,
                 MTGCardInstance * check = NULL;
                 this->redirected = true;
                 MTGAbility * setPlayer = this->clone();
+                this->redirected = false;
                 selection.push_back(setPlayer);
                 int checkWalkers = ((Player*)_target)->game->battlefield->cards.size();
                 for(int i = 0; i < checkWalkers;++i)
@@ -205,7 +209,9 @@ AADamager::AADamager(GameObserver* observer, int _id, MTGCardInstance * _source,
                     check = ((Player*)_target)->game->battlefield->cards[i];
                     if(check->hasType(Subtypes::TYPE_PLANESWALKER))
                     {
+                        this->redirected = true;
                         MTGAbility * setWalker = this->clone();
+                        this->redirected = false;
                         setWalker->oneShot = true;
                         setWalker->target = check;
                         selection.push_back(setWalker);
@@ -1056,6 +1062,12 @@ int AASetCoin::resolve()
         message->oneShot = true;
         message->addToGame();
     }
+    else if(abilityWin.size() && !abilityLose.size())
+    {
+        MTGAbility * message = NEW MTGEventText(game,this->GetId(), source, "You Lost The Flip");
+        message->oneShot = true;
+        message->addToGame();
+    }
     else if(abilityLose.size() && flip != side)
     {
         AbilityFactory af(game);
@@ -1071,6 +1083,12 @@ int AASetCoin::resolve()
             abilityAltered->addToGame();
         }
         MTGAbility * message = NEW MTGEventText(game,this->GetId(), source, "You Lost The Flip");
+        message->oneShot = true;
+        message->addToGame();
+    }
+    else if(abilityLose.size())
+    {
+        MTGAbility * message = NEW MTGEventText(game,this->GetId(), source, "You Won The Flip");
         message->oneShot = true;
         message->addToGame();
     }
@@ -3151,6 +3169,7 @@ void MenuAbility::Update(float dt)
     {
 
         triggered = 1;
+        object->currentActionCard = (MTGCardInstance*)this->target;
         if (TargetAbility * ta = dynamic_cast<TargetAbility *>(ability))
         {
             if (!ta->getActionTc()->validTargetsExist())
