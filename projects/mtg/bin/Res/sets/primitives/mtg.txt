@@ -347,6 +347,17 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Abyssal Horror
+abilities=flying
+auto=target(player) ability$!name(discard 2 cards) target(<2>*|myhand) reject!$ targetedplayer
+text=Flying -- When Abyssal Horror enters the battlefield, target player discards two cards.
+mana={4}{B}{B}
+type=Creature
+subtype=Horror
+power=2
+toughness=2
+[/card]
+[card]
 name=Abyssal Hunter
 auto={B}{T}:target(creature) dynamicability<!powerstrike!> tap
 text={B}, {T}: Tap target creature. Abyssal Hunter deals damage equal to Abyssal Hunter's power to that creature.
@@ -355,6 +366,16 @@ type=Creature
 subtype=Human Assassin
 power=1
 toughness=1
+[/card]
+[card]
+name=Abyssal Nightstalker
+auto=@combat(notblocked) source(this):ability$!name(discard) target(*|myhand) reject!$ opponent
+text=Whenever Abyssal Nightstalker attacks and isn't blocked, defending player discards a card.
+mana={3}{B}
+type=Creature
+subtype=Nightstalker
+power=2
+toughness=2
 [/card]
 [card]
 name=Abyssal Nocturnus
@@ -376,6 +397,18 @@ type=Creature
 subtype=Demon
 power=6
 toughness=6
+[/card]
+[card]
+name=Abyssal Specter
+abilities=flying
+auto=@damaged(controller) from(this):ability$!name(discard) target(*|myhand) reject!$ controller
+auto=@damaged(opponent) from(this):ability$!name(discard) target(*|myhand) reject!$ opponent
+text=Flying -- Whenever Abyssal Specter deals damage to a player, that player discards a card.
+mana={2}{B}{B}
+type=Creature
+subtype=Specter
+power=2
+toughness=3
 [/card]
 [card]
 name=Academy Rector
@@ -969,7 +1002,7 @@ toughness=1
 [card]
 name=Ajani Goldmane
 auto=counter(0/0,4,loyalty)
-auto={C(0/0,1,Loyalty)}:life:2 controller)
+auto={C(0/0,1,Loyalty)}:life:2 controller
 auto={C(0/0,-1,Loyalty)}:all(creature|mybattlefield) counter(1/1,1) && all(creature|mybattlefield) vigilance ueot
 auto={C(0/0,-6,Loyalty)}:token(-140233)
 text=+1: You gain 2 life. -- -1: Put a +1/+1 counter on each creature you control. Those creatures gain vigilance until end of turn. -- -6: Put a white Avatar creature token onto the battlefield. It has "This creature's power and toughness are each equal to your life total."
@@ -1076,6 +1109,16 @@ mana={1}{R}
 type=Creature
 subtype=Goblin Warrior
 power=2
+toughness=1
+[/card]
+[card]
+name=Akki Underminer
+auto=@combatdamaged(player) from(this):ability$!name(sacrifice) notatarget(*|mybattefield) sacrifice!$ opponent
+text=Whenever Akki Underminer deals combat damage to a player, that player sacrifices a permanent.
+mana={3}{R}
+type=Creature
+subtype=Goblin Rogue Shaman
+power=1
 toughness=1
 [/card]
 [card]
@@ -1209,7 +1252,7 @@ toughness=6
 [card]
 name=Akuta, Born of Ash
 abilities=haste
-autograveyard=@each my upkeep:if type(*|opponenthand)~morethan~type(*|myhand) then if type(swamp|mybattlefield)~morethan~0 then may transforms((,newability[destroy target(swamp)],newability[moveto(mybattlefield)])) ueot
+autograveyard=@each my upkeep:if type(*|myhand)~morethan~type(*|opponenthand) then if type(swamp|mybattlefield)~morethan~0 then may transforms((,newability[destroy target(swamp)],newability[moveto(mybattlefield)])) ueot
 text=Haste -- At the beginning of your upkeep, if you have more cards in hand than each opponent, you may sacrifice a Swamp. If you do, return Akuta, Born of Ash from your graveyard to the battlefield.
 mana={2}{B}{B}
 type=Legendary Creature
@@ -1465,6 +1508,16 @@ buyback={1}{W}{3}
 text=Buyback {3} (You may pay an additional {3} as you cast this spell. If you do, put this card into your hand as it resolves.) -- Destroy target enchantment.
 mana={1}{W}
 type=Instant
+[/card]
+[card]
+name=Alley Grifters
+auto=@combat(blocked) source(this):ability$!name(discard) target(*|myhand) reject!$ opponent
+text=Whenever Alley Grifters becomes blocked, defending player discards a card.
+mana={1}{B}{B}
+type=Creature
+subtype=Human Mercenary
+power=2
+toughness=2
 [/card]
 [card]
 name=Allied Strategies
@@ -2579,6 +2632,16 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Anvil of Bogardan
+abilities=nomaxhand
+auto=lord(*|opponentlibrary) nomaxhand
+auto=@each my draw:ability$!draw:1 _ choice name(discard) target(*|myhand) reject!$ controller
+auto=@each oppoent draw:ability$!draw:1 _ choice name(discard) target(*|myhand) reject!$ opponent
+text=Players have no maximum hand size. -- At the beginning of each player's draw step, that player draws an additional card, then discards a card.
+mana={2}
+type=Artifact
+[/card]
+[card]
 name=Apathy
 target=creature
 auto=teach(creature) doesnotuntap
@@ -3257,6 +3320,16 @@ power=4
 toughness=5
 [/card]
 [card]
+name=Arcum Dagsson
+auto={T}:target(creature[artifact]|opponentbattlefield) sacrifice && ability$!name(fetch non-creature artifact) target(artifact[-creature]|mylibrary) moveTo(mybattlefield)!$ opponent
+text={T}: Target artifact creature's controller sacrifices it. That player may search his or her library for a noncreature artifact card, put it onto the battlefield, then shuffle his or her library.
+mana={3}{U}
+type=Legendary Creature
+subtype=Human Artificer
+power=2
+toughness=2
+[/card]
+[card]
 name=Arcum's Sleigh
 auto={2}{T}:vigilance target(creature) restriction{duringcombat,type(land[snow]|opponentbattlefield)~morethan~0}
 text={2}, {T}: Target creature gains vigilance until end of turn. Activate this ability only during combat and only if defending player controls a snow land.
@@ -3769,6 +3842,17 @@ mana={1}{U}
 type=Enchantment
 [/card]
 [card]
+name=Artisan of Kozilek
+autostack=may name(reanimate) target(creature|mygraveyard) moveTo(mybattlefield)
+auto=@combat(attacking) source(this):name(Annihilate) ability$!name(sacrifice) notatarget(<2>*|mybattlefield) sacrifice!$ opponent
+text=When you cast Artisan of Kozilek, you may return target creature card from your graveyard to the battlefield. -- Annihilator 2 (Whenever this creature attacks, defending player sacrifices two permanents.)
+mana={9}
+type=Creature
+subtype=Eldrazi
+power=10
+toughness=9
+[/card]
+[card]
 name=Artillerize
 auto=damage:5 target(creature,player)
 text=As an additional cost to cast Artillerize, sacrifice an artifact or creature. -- Artillerize deals 5 damage to target creature or player.
@@ -3888,6 +3972,16 @@ type=Creature
 subtype=Elemental Knight
 power=4
 toughness=1
+[/card]
+[card]
+name=Ashen-Skin Zubera
+auto=@movedto(mygraveyard) from(this|mybattlefield):target(opponent) ability$!name(discard) target(<type:zubera[fresh]:opponentgraveyard>*|myhand) reject !$ targetedplayer
+text=When Ashen-Skin Zubera dies, target opponent discards a card for each Zubera put into a graveyard from the battlefield this turn.
+mana={1}{B}
+type=Creature
+subtype=Zubera Spirit
+power=1
+toughness=2
 [/card]
 [card]
 name=Ashes of the Fallen
@@ -4101,6 +4195,17 @@ type=Creature
 subtype=Human Cleric
 power=1
 toughness=3
+[/card]
+[card]
+name=Augur of Skulls
+auto={1}{B}:regenerate
+auto={S}:target(player) ability$!name(discard 2 cards) target(<2>*|myhand) reject!$ targetedplayer myUpkeepOnly
+text={1}{B}: Regenerate Augur of Skulls. -- Sacrifice Augur of Skulls: Target player discards two cards. Activate this ability only during your upkeep.
+mana={1}{B}
+type=Creature
+subtype=Skeleton Wizard
+power=1
+toughness=1
 [/card]
 [card]
 name=Auntie's Hovel
@@ -6578,6 +6683,14 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Bereavement
+auto=@movedto(mygraveyard) from(creature[green]|battlefield):all(trigger[to]) target(*|myhand) reject
+auto=@movedto(opponentgraveyard) from(creature[green]|battlefield):all(trigger[to]) ability$!name(discard) target(*|myhand) reject!$ opponent
+text=Whenever a green creature dies, its controller discards a card.
+mana={1}{B}
+type=Enchantment
+[/card]
+[card]
 name=Berserk
 target=creature
 restriction=before battle damage
@@ -7206,6 +7319,17 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Blazing Specter
+abilities=flying,haste
+auto=@combatdamaged(opponent) from(this):ability$!name(discard) target(*|myhand) reject!$ opponent
+text=Flying, haste -- Whenever Blazing Specter deals combat damage to a player, that player discards a card.
+mana={2}{B}{R}
+type=Creature
+subtype=Specter
+power=2
+toughness=2
+[/card]
+[card]
 name=Bleak Coven Vampires
 auto=aslongas(artifact|myBattlefield) life:4 controller >2 oneshot
 auto=aslongas(artifact|myBattlefield) life:-4 target(player) >2 oneshot
@@ -7332,6 +7456,15 @@ type=Creature
 subtype=Human Cleric Shaman
 power=1
 toughness=1
+[/card]
+[card]
+name=Blightning
+target=player
+auto=damage:3
+auto=ability$!name(discard 2 cards) target(<2>*|myhand) reject!$targetedplayer
+text=Blightning deals 3 damage to target player. That player discards two cards.
+mana={1}{B}{R}
+type=Sorcery
 [/card]
 [card]
 name=Blightsoil Druid
@@ -7602,6 +7735,17 @@ power=5
 toughness=5
 [/card]
 [card]
+name=Blizzard Specter
+abilities=flying
+auto=@combatdamaged(player) from(this):all(this) transforms((,newability[choice name(bounce) ability$! target(*|mybattlefield) moveTo(ownerhand) !$opponent],newability[choice name(discard) ability$! target(*|myhand) reject !$opponent])) ueot
+text=Flying -- Whenever Blizzard Specter deals combat damage to a player, choose one - That player returns a permanent he or she controls to its owner's hand; or that player discards a card.
+mana={2}{U}{B}
+type=Snow Creature
+subtype=Specter
+power=2
+toughness=3
+[/card]
+[card]
 name=Bloated Toad
 abilities=protection from blue
 autohand=__CYCLING__({2})
@@ -7642,6 +7786,14 @@ type=Creature
 subtype=Human Cleric
 power=1
 toughness=1
+[/card]
+[card]
+name=Blood Clock
+auto=@each opponent upkeep:ability$!choice notatarget(*|mybattlefield) moveTo(ownerhand) _ choice life:-2 !$ opponent
+auto=@each my upkeep:transforms((,newability[choice name(bounce) notatarget(*|mybattlefield) moveTo(ownerhand)],newability[choice life:-2])) ueot
+text=At the beginning of each player's upkeep, that player returns a permanent he or she controls to its owner's hand unless he or she pays 2 life.
+mana={4}
+type=Artifact
 [/card]
 [card]
 name=Blood Crypt
@@ -7885,12 +8037,12 @@ toughness=3
 [/card]
 [card]
 name=Bloodhusk Ritualist
-auto=kicker target(player) discard:kicked
+auto=kicker target(opponent) ability$!name(discard) target(*|myhand) reject!$ targetedplayer
 kicker=multi{B}
-text=Multikicker {B} (You may pay an additional {B} any number of times as you cast this spell.) -- When Bloodhusk Ritualist enters the battlefield, target opponent discards a card for each time it was kicked.
-mana={2}{B}
+text=Multikicker {B} (You may pay an additional any number of times as you cast this spell.) -- When Bloodhusk Ritualist enters the battlefield, target opponent discards a card for each time it was kicked.
+mana={4}{B}{B}
 type=Creature
-subtype=Vampire Shaman
+subtype=Horror
 power=2
 toughness=2
 [/card]
@@ -8282,6 +8434,16 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Bog Down
+target=player
+auto=ability$!name(discard 2 cards) target(<2>*|myhand) reject!$ targetedplayer
+auto=alternative ability$!target(*|myhand) reject!$ targetedplayer
+text=Kicker - Sacrifice two lands. (You may sacrifice two lands in addition to any other costs as you cast this spell.) -- Target player discards two cards. If Bog Down was kicked, that player discards three cards instead.
+mana={2}{B}
+other={2}{B}{s(land|mybattlefield)}{s(land|mybattlefield)} name(Pay Kicker)
+type=Sorcery
+[/card]
+[card]
 name=Bog Elemental
 abilities=protection from white
 auto=upcost[{S(land|mybattlefield)}] sacrifice
@@ -8613,6 +8775,17 @@ auto=kicker lord(creature|myBattlefield) first strike
 text=Kicker {3}{W} (You may pay an additional {3}{W} as you cast this spell.) -- Creatures you control get +1/+1 until end of turn. If Bold Defense was kicked, instead creatures you control get +2/+2 and gain first strike until end of turn.
 mana={2}{W}
 type=Instant
+[/card]
+[card]
+name=Boldwyr Heavyweights
+abilities=trample
+auto=ability$!name(fetch creature) target(creature|mylibrary) moveto(mybattlefield)!$ opponent
+text=Trample -- When Boldwyr Heavyweights enters the battlefield, each opponent may search his or her library for a creature card and put it onto the battlefield. Then each player who searched his or her library this way shuffles it.
+mana={2}{R}{R}
+type=Creature
+subtype=Giant Warrior
+power=8
+toughness=8
 [/card]
 [card]
 name=Boldwyr Intimidator
@@ -9113,6 +9286,28 @@ mana={1}{R}
 type=Enchantment
 [/card]
 [card]
+name=Braids, Cabal Minion
+auto=@each opponent upkeep:ability$!name(sacrifice) notatarget(*[artifact,creature,land]|mybattlefield) sacrifice !$ opponent
+auto=@each my upkeep:notatarget(*[artifact,creature,land]|mybattlefield) sacrifice
+text=At the beginning of each player's upkeep, that player sacrifices an artifact, creature, or land.
+mana={2}{B}{B}
+type=Legendary Creature
+subtype=Human Minion
+power=2
+toughness=2
+[/card]
+[card]
+name=Braids, Conjurer Adept
+auto=@each opponent upkeep:ability$!name(put on battlefield) target(*[artifact,creature,land]|myhand) moveTo(mybattlefield) !$ opponent
+auto=@each my upkeep:target(*[artifact,creature,land]|myhand) moveTo(mybattlefield)
+text=At the beginning of each player's upkeep, that player may put an artifact, creature, or land card from his or her hand onto the battlefield.
+mana={2}{U}{U}
+type=Legendary Creature
+subtype=Human Wizard
+power=2
+toughness=2
+[/card]
+[card]
 name=Braidwood Cup
 auto={T}:life:1
 text={T}: You gain 1 life.
@@ -9133,6 +9328,17 @@ auto=deplete:3 target(player)
 text=Target player puts the top three cards of his or her library into his or her graveyard. -- Storm (When you cast this spell, copy it for each spell cast before it this turn. You may choose new targets for the copies.)
 mana={1}{U}
 type=Instant
+[/card]
+[card]
+name=Brain Weevil
+abilities=intimidate
+auto={S}:target(player) ability$!name(discard 2 cards) target(<2>*|myhand) reject!$ targetedplayer asSorcery
+text=Intimidate (This creature can't be blocked except by artifact creatures and/or creatures that share a color with it.) -- Sacrifice Brain Weevil: Target player discards two cards. Activate this ability only any time you could cast a sorcery.
+mana={3}{B}
+type=Creature
+subtype=Insect
+power=1
+toughness=1
 [/card]
 [card]
 name=Brainbite
@@ -9874,6 +10080,16 @@ power=3
 toughness=2
 [/card]
 [card]
+name=Brutal Nightstalker
+auto=may target(opponent) ability$!name(discard) target(*|myhand) reject!$ targetedplayer
+text=When Brutal Nightstalker enters the battlefield, you may have target opponent discard a card.
+mana={3}{B}{B}
+type=Creature
+subtype=Nightstalker
+power=3
+toughness=2
+[/card]
+[card]
 name=Brute Force
 target=creature
 auto=3/3
@@ -10217,6 +10433,17 @@ toughness=4
 [/card]
 ###The 2 cards above should stay together (Flip Card)###
 [card]
+name=Butcher of Malakir
+abilities=flying
+auto=@movedTo(creature|mygraveyard) from(mybattlefield):ability$!name(sacrifice) notatarget(creature|mybattlefield) sacrifice !$ opponent
+text=Flying -- Whenever Butcher of Malakir or another creature you control dies, each opponent sacrifices a creature.
+mana={5}{B}{B}
+type=Creature
+subtype=Vampire Warrior
+power=5
+toughness=4
+[/card]
+[card]
 name=Butcher's Cleaver
 auto={3}:equip
 auto=3/0
@@ -10243,6 +10470,28 @@ text={2}, {T}: Add {B} to your mana pool for each Swamp you control.
 type=Land
 [/card]
 [card]
+name=Cabal Executioner
+auto=@combatdamaged(player) from(this):ability$!name(sacrifice) notatarget(creature|mybattlefield) sacrifice!$ opponent
+facedown={3}
+autofacedown={3}{B}{B}:morph
+text=Whenever Cabal Executioner deals combat damage to a player, that player sacrifices a creature. -- Morph {3}{B}{B} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
+mana={2}{B}{B}
+type=Creature
+subtype=Human Cleric
+power=2
+toughness=2
+[/card]
+[card]
+name=Cabal Inquisitor
+auto=aslongas(*|mygraveyard) {1}{B}{E(*|mygraveyard)}{E(*|mygraveyard)}{T}:target(player) ability$!name(discard) target(*|myhand) reject!$ targetedplayer asSorcery >6
+text=Threshold - {1}{B}, {T}, Exile two cards from your graveyard: Target player discards a card. Activate this ability only any time you could cast a sorcery, and only if seven or more cards are in your graveyard.
+mana={1}{B}
+type=Creature
+subtype=Human Minion
+power=1
+toughness=1
+[/card]
+[card]
 name=Cabal Patriarch
 auto={2}{B}{S(creature|mybattlefield)}:-2/-2 target(creature)
 auto={2}{B}{E(creature|mygravevard)}:-2/-2 target(creature)
@@ -10267,6 +10516,16 @@ auto=aslongas(*|mygraveyard) add{B}{B} >6
 text=Add {B}{B}{B} to your mana pool. -- Threshold - Add {B}{B}{B}{B}{B} to your mana pool instead if seven or more cards are in your graveyard.
 mana={1}{B}
 type=Instant
+[/card]
+[card]
+name=Cabal Slaver
+auto=@combatdamaged(opponent) from(goblin|mybattlefield):ability$!name(discard) target(*|mybattefield) sacrifice !$ opponent
+text=Whenever a Goblin deals combat damage to a player, that player discards a card.
+mana={2}{B}
+type=Creature
+subtype=Human Cleric
+power=2
+toughness=1
 [/card]
 [card]
 name=Cabal Surgeon
@@ -10317,6 +10576,16 @@ flashback={5}{U}{U}
 text=Put a token onto the battlefield that's a copy of target creature you control. -- Flashback {5}{U}{U}
 mana={1}{U}{U}
 type=Instant
+[/card]
+[card]
+name=Cackling Fiend
+auto=ability$!name(discard) target(*|myhand) reject!$ opponent
+text=When Cackling Fiend enters the battlefield, each opponent discards a card.
+mana={2}{B}{B}
+type=Creature
+subtype=Zombie
+power=2
+toughness=1
 [/card]
 [card]
 name=Cackling Flames
@@ -10514,6 +10783,15 @@ mana={2}{U}
 type=Sorcery
 [/card]
 [card]
+name=Call to the Grave
+auto=@each opponent upkeep:ability$!name(sacrifice non-zombie) choice notatarget(creature[-zombie]|mybattlefield) sacrifice !$ opponent
+auto=@each my upkeep:notatarget(creature[-zombie]|mybattlefield) sacrifice
+auto=@each endofturn restriction{type(creature|battlefield)~lessthan~1}:sacrifice
+text=At the beginning of each player's upkeep, that player sacrifices a non-Zombie creature. -- At the beginning of the end step, if no creatures are on the battlefield, sacrifice Call to the Grave.
+mana={4}{B}
+type=Enchantment
+[/card]
+[card]
 name=Caller of Gales
 auto={1}{U}{T}:flying target(creature)
 text={1}{U}, {T}: Target creature gains flying until end of turn.
@@ -10691,6 +10969,16 @@ type=Creature
 subtype=Cat
 power=2
 toughness=1
+[/card]
+[card]
+name=Cao Cao, Lord of Wei
+auto={T}:target(opponent) ability$!name(discard 2 cards) target(<2>*|myhand) reject!$ targetedplayer MyTurnOnly
+text={T}: Target opponent discards two cards. Activate this ability only during your turn, before attackers are declared.
+mana={3}{B}{B}
+type=Legendary Creature
+subtype=Human Soldier
+power=3
+toughness=3
 [/card]
 [card]
 name=Cao Ren, Wei Commander
@@ -11135,6 +11423,16 @@ auto={2}{T}:Add{U}
 auto={2}{T}:Add{R}
 text={T}: Add {1} to your mana pool. -- {1}, {T}: Add {B} to your mana pool. -- {2}, {T}: Add {U} or {R} to your mana pool.
 type=Land
+[/card]
+[card]
+name=Cat Burglar
+auto={2}{B}{T}:target(player) ability$!name(discard) target(*|myhand) reject!$ targetedplayer asSorcery
+text={2}{B}, {T}: Target player discards a card. Activate this ability only any time you could cast a sorcery.
+mana={3}{B}
+type=Creature
+subtype=Kor Rogue Minion
+power=2
+toughness=2
 [/card]
 [card]
 name=Cat Warriors
@@ -11706,6 +12004,23 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Cephalid Broker
+auto={T}:name(discard 2 cards) target(player) ability$!draw:2 _ choice target(<2>*|myhand) reject!$ targetedplayer
+text={T}: Target player draws two cards, then discards two cards.
+mana={3}{U}
+type=Creature
+subtype=Cephalid
+power=2
+toughness=2
+[/card]
+[card]
+name=Cephalid Coliseum
+auto={T}:Add{U} && damage:1 controller
+auto=aslongas(*|mygraveyard) {U}{T}{S}:name(discard 3 cards) target(player) ability$!draw:3 _ choice target(<3>*|myhand) reject!$ targetedplayer >6
+text={T}: Add {U} to your mana pool. Cephalid Coliseum deals 1 damage to you. -- Threshold - {U}, {T}, Sacrifice Cephalid Coliseum: Target player draws three cards, then discards three cards. Activate this ability only if seven or more cards are in your graveyard.
+type=Land
+[/card]
+[card]
 name=Cephalid Illusionist
 auto={2}{U}{T}:0/0 target(creature|mybattlefield) && fog to(mytgt) oneshot && fog from(mytgt) oneshot
 auto=@targeted(this):deplete:3 controller
@@ -11723,6 +12038,16 @@ text=Discard a card: Cephalid Inkshrouder gains shroud until end of turn and is 
 mana={2}{U}
 type=Creature
 subtype=Cephalid
+power=2
+toughness=1
+[/card]
+[card]
+name=Cephalid Looter
+auto={T}:name(discard) target(player) ability$!draw:1 _ choice target(*|myhand) reject!$ targetedplayer
+text={T}: Target player draws a card, then discards a card.
+mana={2}{U}
+type=Creature
+subtype=Cephalid Rogue
 power=2
 toughness=1
 [/card]
@@ -11916,6 +12241,15 @@ power=3
 toughness=3
 type=Legendary Creature
 subtype=Human Minion
+[/card]
+[card]
+name=Chainer's Edict
+target=player
+auto=ability$!name(sacrifice creature) notatarget(creature|myBattlefield) sacrifice!$ targetedplayer
+flashback={5}{B}{B}
+text=Target player sacrifices a creature. -- Flashback {5}{B}{B} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+mana={1}{B}
+type=Sorcery
 [/card]
 [card]
 name=Chainflinger
@@ -12479,6 +12813,17 @@ mana={3}{B}
 type=Instant
 [/card]
 [card]
+name=Chilling Apparition
+auto={B}:regenerate
+auto=@combatdamaged(opponent) from(this):ability$!name(discard) target(*|myhand) reject!$ opponent
+text={B}: Regenerate Chilling Apparition. -- Whenever Chilling Apparition deals combat damage to a player, that player discards a card.
+mana={2}{B}
+type=Creature
+subtype=Spirit
+power=1
+toughness=1
+[/card]
+[card]
 name=Chime of Night
 target=creature
 auto=@movedTo(this|graveyard) from(battlefield):destroy target(creature[-black])
@@ -12535,6 +12880,17 @@ mana={4}
 type=Artifact
 [/card]
 [card]
+name=Chimney Imp
+abilities=flying
+auto=@movedto(mygraveyard) from(this|mybattlefield):target(opponent) ability$!name(put on top) target(*|myhand) moveTo(ownerlibrary) !$ targetedplayer
+text=Flying -- When Chimney Imp dies, target opponent puts a card from his or her hand on top of his or her library.
+mana={4}{B}
+type=Creature
+subtype=Imp
+power=1
+toughness=2
+[/card]
+[card]
 name=Chlorophant
 auto=@each myupkeep:may counter(1/1,1) && aslongas(*|myhand) counter(1/1,1) >6
 text=At the beginning of your upkeep, you may put a +1/+1 counter on Chlorophant. -- Threshold - As long as seven or more cards are in your graveyard, Chlorophant has "At the beginning of your upkeep, you may put another +1/+1 counter on Chlorophant."
@@ -12543,6 +12899,16 @@ type=Creature
 subtype=Elemental
 power=1
 toughness=1
+[/card]
+[card]
+name=Chittering Rats
+auto=target(opponent) ability$!name(put on top) target(*|myhand) moveTo(ownerlibrary) !$ targetedplayer
+text=When Chittering Rats enters the battlefield, target opponent puts a card from his or her hand on top of his or her library.
+mana={1}{B}{B}
+type=Creature
+subtype=Rat
+power=2
+toughness=2
 [/card]
 [card]
 name=Choking Fumes
@@ -12841,6 +13207,17 @@ type=Creature
 subtype=Elemental Skeleton
 power=1
 toughness=1
+[/card]
+[card]
+name=Cinderhaze Wretch
+auto={T}:name(discard) target(player) ability$!name(discard) target(*|myhand) reject!$ targetedplayer myturnonly
+auto={C(-1/-1,1)}:untap
+text={T}: Target player discards a card. Activate this ability only during your turn. -- Put a -1/-1 counter on Cinderhaze Wretch: Untap Cinderhaze Wretch.
+mana={4}{B}
+type=Creature
+subtype=Elemental Shaman
+power=3
+toughness=2
 [/card]
 [card]
 name=Circle of Flame
@@ -14048,8 +14425,8 @@ type=Enchantment
 [/card]
 [card]
 name=Compulsive Research
-auto=draw:3
-auto=transforms((,newability[choice name(discard 2 cards) reject target(<2>*|myhand)], newability[aslongas(land|myhand) choice name(discard a land card) reject target(land|myhand)]))
+target=player
+auto=ability$!draw:3 _ choice name(discard 2 cards) target(<2>*|myhand) reject _ choice name(discard land) target(land|myhand) reject!$ targetedplayer
 text=Target player draws three cards. Then that player discards two cards unless he or she discards a land card.
 mana={2}{U}
 type=Sorcery
@@ -14082,6 +14459,13 @@ auto=@each upkeep restriction{type(creature[vigilance]|mybattlefield)~morethan~0
 text=At the beginning of each upkeep, all creatures you control gain flying until end of turn if a creature you control has flying. The same is true for fear, first strike, double strike, landwalk, protection, trample, and vigilance.
 mana={2}{W}{W}
 type=Enchantment
+[/card]
+[card]
+name=Conch Horn
+auto={1}{T}{S}:name(put on library) ability$!draw:2 _ choice target(*|myhand) moveTo(mylibrary)!$ targetedplayer
+text={1}, {T}, Sacrifice Conch Horn: Draw two cards, then put a card from your hand on top of your library.
+mana={2}
+type=Artifact
 [/card]
 [card]
 name=Concordant Crossroads
@@ -14223,6 +14607,14 @@ autohand=__CYCLING__({2})
 text=Target creature gets -3/-0 until end of turn. -- Cycling {2} ({2}, Discard this card: Draw a card.)
 mana={U}
 type=Instant
+[/card]
+[card]
+name=Consult the Necrosages
+auto=choice draw:2 target(player)
+auto=choice name(discard) target(player) ability$!name(discard) target(<2>*|myhand) reject!$ targetedplayer
+text=Choose one - Target player draws two cards; or target player discards two cards.
+mana={1}{U}{B}
+type=Sorcery
 [/card]
 [card]
 name=Consume Spirit
@@ -14693,6 +15085,16 @@ auto=foreach(swamp|myBattlefield) life:1 controller
 text=Corrupt deals damage equal to the number of Swamps you control to target creature or player. You gain life equal to the damage dealt this way.
 mana={5}{B}
 type=Sorcery
+[/card]
+[card]
+name=Corrupt Court Official
+auto=name(discard) target(opponent) ability$!name(discard) target(*|myhand) reject!$ targetedplayer MyTurnOnly
+text=When Corrupt Court Official enters the battlefield, target opponent discards a card.
+mana={1}{B}
+type=Creature
+subtype=Human Advisor
+power=1
+toughness=1
 [/card]
 [card]
 name=Corrupt Eunuchs
@@ -15588,6 +15990,14 @@ mana={B}{B}{B}
 type=Sorcery
 [/card]
 [card]
+name=Cruel Edict
+target=opponent
+auto=ability$!name(sacrifice) notatarget(creature|mybattlefield) sacrifice!$ targetedplayer
+text=Target opponent sacrifices a creature.
+mana={1}{B}
+type=Sorcery
+[/card]
+[card]
 name=Cruel Revival
 target=creature[-zombie]
 auto=bury
@@ -15810,6 +16220,13 @@ text=Crypt of Agadeem enters the battlefield tapped. -- {T}: Add {B} to your man
 type=Land
 [/card]
 [card]
+name=Cryptwailing
+auto={1}{E(creature|mygraveyard)}{E(creature|mygraveyard)}:target(player) ability$!name(discard) target(*|myhand) reject!$ targetedplayer asSorcery
+text={1}, Exile two creature cards from your graveyard: Target player discards a card. Activate this ability only any time you could cast a sorcery.
+mana={3}{B}
+type=Enchantment
+[/card]
+[card]
 name=Crystal Chimes
 auto={3}{T}{S}:moveTo(myHand) all(enchantment|mygraveyard)
 text={3}, {T}, Sacrifice Crystal Chimes: Return all enchantment cards from your graveyard to your hand.
@@ -15944,6 +16361,16 @@ mana={1}{U}
 type=Enchantment
 subtype=Aura
 [/card]
+[card]
+name=Cunning Advisor
+auto={T}:target(opponent) ability$!name(discard) target(*|myhand) reject!$ targetedplayer MyTurnOnly
+text={T}: Target opponent discards a card. Activate this ability only during your turn, before attackers are declared.
+mana={3}{B}
+type=Creature
+subtype=Human Advisor
+power=1
+toughness=1
+[/card]
 ###The 2 cards below should stay together (Flip Card)###
 [card]
 name=Cunning Bandit
@@ -16040,6 +16467,15 @@ auto=lord(island) doesnotuntap
 text=When Curse of Marit Lage enters the battlefield, tap all Islands. -- Islands don't untap during their controllers' untap steps.
 mana={3}{R}{R}
 type=Enchantment
+[/card]
+[card]
+name=Curse of Oblivion
+target=player
+auto=@each targetedplayer upkeep:ability$!name(exile 2 cards fromg graveyard) target(<2>*|mygraveyard) moveTo(exile)!$ targetedplayer
+text=At the beginning of enchanted player's upkeep, that player exiles two cards from his or her graveyard.
+mana={3}{B}
+type=Enchantment
+subtype=Aura Curse
 [/card]
 [card]
 name=Curse of Stalked Prey
@@ -17051,6 +17487,17 @@ power=2
 toughness=1
 [/card]
 [card]
+name=Dauthi Mindripper
+abilities=shadow
+auto=@combat(notblocked) source(this):may ability$!name(discard 2 cards) target(<3>*|myhand) reject!$ opponent && sacrifice all(this)
+text=Shadow (This creature can block or be blocked by only creatures with shadow.) -- Whenever Dauthi Mindripper attacks and isn't blocked, you may sacrifice it. If you do, defending player discards three cards.
+mana={3}{B}
+type=Creature
+subtype=Dauthi Minion
+power=2
+toughness=1
+[/card]
+[card]
 name=Dauthi Slayer
 abilities=shadow,mustattack
 text=Shadow (This creature can block or be blocked by only creatures with shadow.) -- Dauthi Slayer attacks each turn if able.
@@ -17709,6 +18156,14 @@ power=1
 toughness=4
 [/card]
 [card]
+name=Deception
+target=opponent
+auto=ability$!name(discard 2 cards) target(<2>*|myhand) reject!$ targetedplayer
+text=Target opponent discards two cards.
+mana={2}{B}
+type=Sorcery
+[/card]
+[card]
 name=Decimator Web
 auto={4}{T}:life:-2 opponent && alterpoison:1 opponent && deplete:6 opponent
 text={4}, {T}: Target opponent loses 2 life, gets a poison counter, then puts the top six cards of his or her library into his or her graveyard.
@@ -18126,6 +18581,18 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Defiler of Souls
+abilities=flying
+auto=@each opponent upkeep:ability$!name(sacrifice monocolored creature) notatarget(creature[-muliticolor]|mybattlefield) sacrifice !$ opponent
+auto=@each my upkeep:notatarget(creature[-muliticolor]|mybattlefield) sacrifice
+text=Flying -- At the beginning of each player's upkeep, that player sacrifices a monocolored creature.
+mana={3}{B}{B}{R}
+type=Creature
+subtype=Demon
+power=5
+toughness=5
+[/card]
+[card]
 name=Defiling Tears
 target=creature
 auto=transforms((,black)) ueot
@@ -18267,7 +18734,7 @@ type=Sorcery
 [card]
 name=Dementia Bat
 abilities=flying
-auto={4}{B}{S}:discard:2 target(player)
+auto={4}{B}{S}:target(player) ability$!target(<2>*|myhand) reject!$ targetedplayer
 text=Flying -- {4}{B}, Sacrifice Dementia Bat: Target player discards two cards.
 mana={4}{B}
 type=Creature
@@ -18353,6 +18820,17 @@ mana={3}{B}{B}
 type=Sorcery
 [/card]
 [card]
+name=Demonic Hordes
+auto={T}:destroy target(land)
+auto=upcostmulti[{B}{B}{B}] tap && ability$!name(sacrifice land) notatarget(land|opponentbattlefield) sacrifice!$ opponent
+text={T}: Destroy target land. -- At the beginning of your upkeep, unless you pay {B}{B}{B}, tap Demonic Hordes and sacrifice a land of an opponent's choice.
+mana={3}{B}{B}{B}
+type=Creature
+subtype=Demon
+power=5
+toughness=5
+[/card]
+[card]
 name=Demonic Torment
 target=creature
 auto=cantattack
@@ -18376,6 +18854,15 @@ auto={S(creature|myBattlefield)}:equip
 auto=4/2
 text=Equipped creature gets +4/+2. -- Equip - Sacrifice a creature
 mana={4}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
+name=Demonspine Whip
+autoskill={x}:thisforeach(x) 1/0 ueot
+auto={1}:equip
+text={X}: Equipped creature gets +X/+0 until end of turn. -- Equip {1}
+mana={B}{R}
 type=Artifact
 subtype=Equipment
 [/card]
@@ -18494,6 +18981,15 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Desecrated Earth
+target=land
+auto=transforms((,newability[ability$!name(discard) target(*|myhand) reject!$ controller])) forever
+auto=destroy
+text=Destroy target land. Its controller discards a card.
+mana={4}{B}
+type=Sorcery
+[/card]
+[card]
 name=Desert
 auto={T}:Add {1}
 auto={T}:Damage:1 target(creature[attacking])
@@ -18586,6 +19082,14 @@ mana={1}{R}
 type=Instant
 [/card]
 [card]
+name=Despise
+target=creature|opponenthand
+auto=reject
+text=Target opponent reveals his or her hand. You choose a creature or plainswalker card from it. That player discards that card.
+mana={B}
+type=Sorcery
+[/card]
+[card]
 name=Despoil
 target=land
 auto=destroy
@@ -18610,6 +19114,23 @@ auto={T}:bury target(*|myBattlefield)
 text={T}: Destroy target permanent you own. It can't be regenerated.
 mana={1}
 type=Artifact
+[/card]
+[card]
+name=Destructive Flow
+auto=@each opponent upkeep:ability$!name(sacrifice non-basic land) choice target(land[-basic]|mybattlefield) sacrifice !$ opponent
+auto=@each my upkeep:target(land[-basic]|mybattlefield) sacrifice
+text=At the beginning of each player's upkeep, that player sacrifices a nonbasic land.
+mana={B}{R}{G}
+type=Enchantment
+[/card]
+[card]
+name=Destructive Urge
+target=creature
+auto=@combatdamaged(player) from(mytgt):ability$!name(sacrifice land) notatarget(land|mybattlefield) sacrifice!$ opponent
+text=Enchant creature -- Whenever enchanted creature deals combat damage to a player, that player sacrifices a land.
+mana={1}{R}{R}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 name=Detainment Spell
@@ -18768,6 +19289,14 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Diabolic Edict
+target=player
+auto=ability$!name(sacrifice) target(creature|mybattlefield) sacrifice!$ targetedplayer
+text=Target player sacrifices a creature.
+mana={1}{B}
+type=Instant
+[/card]
+[card]
 name=Diabolic Intent
 auto=moveTo(myhand) target(*|myLibrary)
 text=As an additional cost to cast Diabolic Intent, sacrifice a creature. -- Search your library for a card and put that card into your hand. Then shuffle your library.
@@ -18844,6 +19373,27 @@ text=Dimir Aqueduct enters the battlefield tapped. -- When Dimir Aqueduct enters
 type=Land
 [/card]
 [card]
+name=Dimir Cutpurse
+auto=@combatdamaged(opponent) from(this):ability$!name(discard) target(*|myhand) reject!$ opponent && draw:1 controller
+text=Whenever Dimir Cutpurse deals combat damage to a player, that player discards a card and you draw a card.
+mana={1}{U}{B}
+type=Creature
+subtype=Spirit
+power=2
+toughness=2
+[/card]
+[card]
+name=Dimir Guildmage
+auto={3}{U}:target(player) draw:1 asSorcery
+auto={3}{B}:target(player) ability$!name(discard) target(*|myhand) reject!$ targetedplayer asSorcery
+text=({(u/b)} can be paid with either {U} or {B}.) -- {3}{U}: Target player draws a card. Activate this ability only any time you could cast a sorcery. -- {3}{B}: Target player discards a card. Activate this ability only any time you could cast a sorcery.
+mana={UB}{UB}
+type=Creature
+subtype=Human Wizard
+power=2
+toughness=2
+[/card]
+[card]
 name=Dimir House Guard
 abilities=fear
 autohand={1}{B}{B}{discard(this|myhand)}:moveTo(myhand) target(*[manacost=4]|mylibrary) asSorcery
@@ -18897,6 +19447,14 @@ text=Enchant creature -- Shroud (This permanent can't be the target of spells or
 mana={1}{U}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+name=Dire Undercurrents
+auto=@movedTo(creature[blue]|mybattlefield):may name(draw) target(player) ability$!draw:1 !$ targetedplayer
+auto=@movedTo(creature[black]|mybattlefield):may name(discard) target(player) ability$!name(discard) target(*|myhand) reject!$ targetedplayer
+text=Whenever a blue creature enters the battlefield under your control, you may have target player draw a card. -- Whenever a black creature enters the battlefield under your control, you may have target player discard a card.
+mana={3}{UB}{UB}
+type=Enchantment
 [/card]
 [card]
 name=Diregraf Captain
@@ -19167,6 +19725,15 @@ mana={2}{W}
 type=Instant
 [/card]
 [card]
+name=Dismember
+target=creature
+auto=-5/-5
+text=({p(B)} may be paid for with either {B} or 2 life.) -- Target creature gets -5/-5 until end of turn.
+color=black
+mana={1}{p(B)}{p(B)}
+type=Instant
+[/card]
+[card]
 name=Dismiss
 target=*|stack
 auto=fizzle
@@ -19217,6 +19784,15 @@ mana={W}
 type=Artifact
 [/card]
 [card]
+name=Dispense Justice
+target=player
+auto=ability$!name(sacrifice) target(creature[attacking]|mybattlefield) sacrifice!$ targetedplayer
+auto=aslongas(artifact|mybattlefield) ability$!target(creature[attacking]|mybattlefield) sacrifice!$ targetedplayer >2
+text=Target player sacrifices an attacking creature. -- Metalcraft — That player sacrifices two attacking creatures instead if you control three or more artifacts.
+mana={2}{W}
+type=Instant
+[/card]
+[card]
 name=Dispersal Shield
 target=*[manacost<=convertedcost:highest:*:mybattlefield]|stack
 text=Counter target spell if its converted mana cost is less than or equal to the highest converted mana cost among permanents you control.
@@ -19244,6 +19820,13 @@ mana={2}{U}{U}
 auto=@damaged(controller) from(*|battlefield):all(trigger[from]) moveto(ownerhand)
 type=Enchantment
 text=Whenever a permanent deals damage to you, return it to its owner's hand.
+[/card]
+[card]
+name=Disrupting Scepter
+auto={3}{T}:target(player) ability$!target(*|myhand) reject!$ targetedplayer myTurnOnly
+text={3}{T}: Target player discards a card. Activate this ability only during your turn.
+mana={3}
+type=Artifact
 [/card]
 [card]
 name=Distant Melody
@@ -19888,32 +20471,6 @@ text=Enchant creature -- Enchanted creature gets +1/+0 and has fear. (It can't b
 mana={1}{B}
 type=Enchantment
 subtype=Aura
-[/card]
-[card]
-name=Demonspine Whip
-autoskill={x}:thisforeach(x) 1/0 ueot
-auto={1}:equip
-text={X}: Equipped creature gets +X/+0 until end of turn. -- Equip {1}
-mana={B}{R}
-type=Artifact
-subtype=Equipment
-[/card]
-[card]
-name=Despise
-target=creature|opponenthand
-auto=reject
-text=Target opponent reveals his or her hand. You choose a creature or plainswalker card from it. That player discards that card.
-mana={B}
-type=Sorcery
-[/card]
-[card]
-name=Dismember
-target=creature
-auto=-5/-5
-text=({p(B)} may be paid for with either {B} or 2 life.) -- Target creature gets -5/-5 until end of turn.
-color=black
-mana={1}{p(B)}{p(B)}
-type=Instant
 [/card]
 [card]
 name=Dragon Tyrant
@@ -21375,6 +21932,32 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Dwell on the Past
+target=player
+auto=ability$!name(return to library) target(<upto:4>*|mygraveyard) moveTo(ownerlibrary) && shuffle!$ targetedplayer
+text=Target player shuffles up to four target cards from his or her graveyard into his or her library.
+mana={G}
+type=Sorcery
+[/card]
+[card]
+name=Dying Wail
+target=creature
+auto=@movedTo(mytgt|graveyard) from(battlefield):target(player) ability$!name(discard 2 cards) target(<2>*|myhand) reject!$ targetedplayer
+text=Enchant creature -- When enchanted creature is put into a graveyard, target player discards two cards.
+mana={1}{B}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Dystopia
+auto=cumulativeupcost[{L}] sacrifice
+auto=@each opponent upkeep:ability$!name(sacrifice) notatarget(creature[green;white]|mybattlefield) sacrifice !$ opponent
+auto=@each my upkeep:name(sacrifice) notatarget(creature[green;white]|mybattlefield) sacrifice
+text=Cumulative upkeep - Pay 1 life. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- At the beginning of each player's upkeep, that player sacrifices a green or white permanent.
+mana={1}{B}{B}
+type=Enchantment
+[/card]
+[card]
 name=Eager Cadet
 mana={W}
 type=Creature
@@ -21554,6 +22137,17 @@ mana={4}{B}
 type=Creature
 subtype=Horror
 power=3
+toughness=4
+[/card]
+[card]
+name=Ebon Dragon
+abilities=flying
+auto=may target(opponent) ability$!name(discard) target(*|myhand) reject!$ targetedplayer
+text=Flying -- When Ebon Dragon enters the battlefield, you may have target opponent discard a card.
+mana={5}{B}{B}
+type=Creature
+subtype=Dragon
+power=5
 toughness=4
 [/card]
 [card]
@@ -21876,6 +22470,17 @@ power=5
 toughness=5
 [/card]
 [card]
+name=Elder Mastery
+target=creature
+auto=3/3
+auto=flying
+auto=@damaged(player) from(mytgt):ability$!name(discard 2 cards) target(<2>*|myhand) reject!$ opponent
+text=Enchant creature -- Enchanted creature gets +3/+3 and has flying. -- Whenever enchanted creature deals damage to a player, that player discards two cards.
+mana={3}{U}{B}{R}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 name=Elder of Laurels
 auto={3}{G}:target(creature) type:creature:mybattlefield/type:creature:mybattlefield ueot
 text={3}{G}: Target creature gets +X/+X until end of turn, where X is the number of creatures you control.
@@ -21895,6 +22500,17 @@ type=Creature
 subtype=Elemental
 power=6
 toughness=6
+[/card]
+[card]
+name=Eldrazi Conscription
+target=creature
+auto=10/10
+auto=trample
+auto=@combat(attacking) source(mytgt):ability$!name(sacrifice 2 permanents) notatarget(<2>*|mybattlefield) sacrifice!$ opponent
+text=Enchant creature -- Enchanted creature gets +10/+10 and has trample and annihilator 2. (Whenever it attacks, defending player sacrifices two permanents.)
+mana={8}
+type=Tribal Enchantment
+subtype=Eldrazi Aura
 [/card]
 [card]
 name=Eldrazi Monument
@@ -22758,6 +23374,24 @@ power=1
 toughness=3
 [/card]
 [card]
+name=Emrakul, the Aeons Torn
+abilities=nofizzle,flying
+autostack=turns:+1 controller
+autograveyard=moveTo(ownerlibrary) && shuffle
+auto=@combat(attacking) source(this):name(Annihilate) ability$!name(sacrifice 6 permanents) notatarget(<6>*|mybattlefield) sacrifice!$ opponent
+auto=protection from(*[white]|stack)
+auto=protection from(*[blue]|stack)
+auto=protection from(*[black]|stack)
+auto=protection from(*[red]|stack)
+auto=protection from(*[green]|stack)
+text=Emrakul, the Aeons Torn can't be countered. -- When you cast Emrakul, take an extra turn after this one. -- Flying, protection from colored spells, annihilator 6 -- When Emrakul is put into a graveyard from anywhere, its owner shuffles his or her graveyard into his or her library.
+mana={15}
+type=Legendary Creature
+subtype=Eldrazi
+power=15
+toughness=15
+[/card]
+[card]
 name=Emrakul's Hatcher
 auto=Token(-193507)*3
 text=When Emrakul's Hatcher enters the battlefield, put three 0/1 colorless Eldrazi Spawn creatures onto the battlefield. They have "Sacrifice this creature: Add {1} to your mana pool."
@@ -23193,6 +23827,16 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Enslaved Horror
+auto=ability$!name(return creature) target(*|mygraveyard) moveTo(mybattlefield)!$ opponent
+text=When Enslaved Horror enters the battlefield, each other player may return a creature card from his or her graveyard to the battlefield.
+mana={3}{B}
+type=Creature
+subtype=Horror
+power=4
+toughness=4
+[/card]
+[card]
 name=Enslaved Scout
 auto={2}:mountainwalk
 text={2}: Enslaved Scout gains mountainwalk until end of turn.
@@ -23286,6 +23930,18 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Entropic Specter
+auto=foreach(*|opponenthand) 1/1
+auto=@damaged(controller) from(this):ability$!name(discard) target(*|myhand) reject!$ controller
+auto=@damaged(opponent) from(this):ability$!name(discard) target(*|myhand) reject!$ opponent
+text=Flying -- As Entropic Specter enters the battlefield, choose an opponent. -- Entropic Specter's power and toughness are each equal to the number of cards in the chosen player's hand. -- Whenever Entropic Specter deals damage to a player, that player discards a card.
+mana={3}{B}{B}
+type=Creature
+subtype=Specter Spirit
+power=*
+toughness=*
+[/card]
+[card]
 name=Envelop
 target=sorcery|stack
 auto=fizzle
@@ -23311,6 +23967,14 @@ type=Creature
 subtype=Illusion
 power=4
 toughness=4
+[/card]
+[card]
+name=Epicenter
+auto=if type(*|mygraveyard)~morethan~6 then sacrifice all(land)
+auto=ifnot type(*|mygraveyard)~morethan~6 then target(player) ability$!name(sacrifice land) notatarget(land|mybattlefield) sacrifice!$ targetedplayer
+text=Target player sacrifices a land. -- Threshold - All players sacrifice all lands instead if seven or more cards are in your graveyard.
+mana={4}{R}
+type=Sorcery
 [/card]
 [card]
 name=Epic Proportions
@@ -23489,6 +24153,15 @@ type=Artifact Creature
 subtype=Human Wizard
 power=2
 toughness=2
+[/card]
+[card]
+name=Esper Charm
+auto=aslongas(enchantment|battlefield) choice destroy target(enchantment)
+auto=choice draw:2 controller
+auto=choice name(discard) target(player) ability$!name(discard 2 cards) target(<2>*|myhand) reject!$ targetedplayer
+text=Choose one - Destroy target enchantment; or draw two cards; or target player discards two cards.
+mana={W}{U}{B}
+type=Instant
 [/card]
 [card]
 name=Esper Cormorants
@@ -23845,6 +24518,14 @@ mana={3}{U}{U}
 type=Instant
 [/card]
 [card]
+name=Evangelize
+auto=ability$!name(choose a creature) target(creature|mybattlefield) moveTo(opponentbattlefield)!$ opponent
+buyback={4}{W}{2}{W}{W}
+text=Buyback {2}{W}{W} (You may pay an additional {2}{W}{W} as you cast this spell. If you do, put this card into your hand as it resolves.) -- Gain control of target creature of an opponent's choice that he or she controls.
+mana={4}{W}
+type=Sorcery
+[/card]
+[card]
 name=Evaporate
 auto=damage:1 all(creature[white;blue])
 text=Evaporate deals 1 damage to each creature that's white or blue.
@@ -24043,6 +24724,15 @@ auto=dynamicability<!mytgt toughnesslifegain srccontroller!>
 text=Exile target nonwhite attacking creature. You gain life equal to its toughness.
 mana={2}{W}
 type=Instant
+[/card]
+[card]
+name=Exile into Darkness
+target=player
+auto=ability$!name(sacrifice creature) notatarget(creature[manacost<=3]|mybattlefield) sacrifice!$ targetedplayer
+autograveyard=@each my upkeep:if type(*|myhand)~morethan~type(*|opponenthand) then may moveto(myhand)
+text=Target player sacrifices a creature with converted mana cost 3 or less. -- At the beginning of your upkeep, if you have more cards in hand than each opponent, you may return Exile into Darkness from your graveyard to your hand.
+mana={4}{B}
+type=Sorcery
 [/card]
 [card]
 name=Exiled Boggart
@@ -27469,6 +28159,14 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Forget
+target=player
+auto=ability$!target(<2>*|myhand) reject and((draw:1))!$ targetedplayer
+text=Target player discards two cards, then draws as many cards as he or she discarded this way.
+mana={U}{U}
+type=Sorcery
+[/card]
+[card]
 name=Forgotten Ancient
 auto=@movedTo(*|stack):may counter(1/1,1)
 auto={0}{counter(1/1,-1)}:counter(1/1,1) target(creature) myUpkeepOnly
@@ -28042,6 +28740,14 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Fugue
+target=player
+auto=ability$!name(discard 3 cards) target(<3>*|myhand) reject!$ targetedplayer
+text=Target player discards three cards.
+mana={3}{B}{B}
+type=Sorcery
+[/card]
+[card]
 name=Full Moon's Rise
 auto=lord(creature[werewolf]|mybattlefield) 1/0
 auto=lord(creature[werewolf]|mybattlefield) haste
@@ -28092,6 +28798,15 @@ power=3
 toughness=2
 [/card]
 [card]
+name=Funeral Charm
+auto=choice name(discard) target(player) ability$!target(*|myhand) reject!$ targetedplayer
+auto=aslongas(creature|battlefield) choice 2/-1 target(creature) ueot
+auto=aslongas(creature|battlefield) choice swampwalk target(creature) ueot
+text=Choose one - Target player discards a card; or target creature gets +2/-1 until end of turn; or target creature gains swampwalk until end of turn.
+mana={B}
+type=Instant
+[/card]
+[card]
 name=Funeral March
 target=creature
 auto=@movedTo(mytgt|graveyard) from(battlefield):all(trigger[to]) transforms((,newability[target(creature) sacrifice])) forever
@@ -28115,6 +28830,17 @@ text={G}{G}: Put a spore counter on target Fungus.
 mana={G}{G}
 type=Enchantment
 auto={G}{G}:counter(0/0,1,Spore) target(fungus)
+[/card]
+[card]
+name=Fungal Shambler
+abilities=trample
+auto=@damaged(opponent) from(this): draw:1 controller && ability$!name(discard) target(*|myhand) reject!$ opponent
+text=Trample -- Whenever Fungal Shambler deals damage to an opponent, you draw a card and that opponent discards a card.
+mana={4}{G}{U}{B}
+type=Creature
+subtype=Fungus Beast
+power=6
+toughness=4
 [/card]
 [card]
 name=Fungus Sliver
@@ -28705,6 +29431,17 @@ mana={B}{B}
 type=Enchantment
 [/card]
 [card]
+name=Gatekeeper of Malakir
+auto=kicker 
+kicker={B} target(player) ability$!name(sacrifice creature) notatarget(creature|mybattlefield) sacrifice!$ targetedplayer
+text=Kicker {B} (You may pay an additional {B} as you cast this spell.) -- When Gatekeeper of Malakir enters the battlefield, if it was kicked, target player sacrifices a creature.
+mana={B}{B}
+type=Creature
+subtype=Vampire Warrior
+power=2
+toughness=2
+[/card]
+[card]
 name=Gathan Raiders
 facedown={3}
 autofacedown={discard(*|myhand)}:morph
@@ -29132,6 +29869,15 @@ mana={4}
 type=Artifact
 [/card]
 [card]
+name=Geth's Verdict
+target=player
+auto=life:-1
+auto=ability$!name(sacrifice) target(creature|mybattlefield) sacrifice!$ targetedplayer
+text=Target player sacrifices a creature and loses 1 life.
+mana={B}{B}
+type=Instant
+[/card]
+[card]
 name=Geth, Lord of the Vault
 abilities=intimidate
 auto={0}{B}:name(X = 0) moveTo(myBattlefield) target(*[artifact;creature;manacost=0]|opponentgraveyard) && tap && deplete:0 opponent
@@ -29296,6 +30042,13 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Ghost Quarter
+auto={T}:Add{1}
+auto={T}{S}:name(destroy target land) target(land) transforms((,newability[destroy],newability[ability$!name(search for basic land) target(land[basic]|mylibrary) moveTo(mybattlefield)!$ controller])) ueot
+text={T}: Add {1} to your mana pool. -- {T}, Sacrifice Ghost Quarter: Destroy target land. Its controller may search his or her library for a basic land card, put it onto the battlefield, then shuffle his or her library.
+type=Land
+[/card]
+[card]
 name=Ghost Ship
 abilities=flying
 auto={U}{U}{U}:regenerate
@@ -29361,6 +30114,17 @@ auto={W}{T}:life:2
 autohand={1}{W}{discard(this|myhand)}:life:4
 text={W}, {T}: You gain 2 life. -- Channel - {1}{W}, Discard Ghost-Lit Redeemer: You gain 4 life.
 mana={W}
+type=Creature
+subtype=Spirit
+power=1
+toughness=1
+[/card]
+[card]
+name=Ghost-Lit Stalker
+auto={4}{B}:target(player) ability$!name(disacrd 2 cards) target(<2>*|myhand) reject!$ targetedplayer asSorcery
+autohand={5}{B}{B}{discard(this|myhand)}:target(player) ability$!target(<4>*|myhand) reject!$ targetedplayer asSorcery
+text={4}{B}, {T}: Target player discards two cards. Activate this ability only any time you could cast a sorcery. -- Channel - {5}{B}{B}, Discard Ghost-Lit Stalker: Target player discards four cards. Activate this ability only any time you could cast a sorcery.
+mana={B}
 type=Creature
 subtype=Spirit
 power=1
@@ -30180,6 +30944,15 @@ type=Creature
 subtype=Bat
 power=2
 toughness=1
+[/card]
+[card]
+name=Gloomlance
+target=creature
+auto=teach(creature[green;white]) transforms((,newability[ability$!name(discard) target(*|myhand) reject!$ controller]))
+auto=destroy
+text=Destroy target creature. If that creature was green or white, its controller discards a card.
+mana={3}{B}{B}
+type=Sorcery
 [/card]
 [card]
 name=Glistener Elf
@@ -31869,6 +32642,13 @@ power=3
 toughness=4
 [/card]
 [card]
+name=Grave Pact
+auto=@movedTo(creature|mygraveyard) from(battlefield):ability$!name(sacrifice) notatarget(creature|mybattlefield) reject!$ opponent
+text=Whenever a creature you control dies, each other player sacrifices a creature.
+mana={1}{B}{B}{B}
+type=Enchantment
+[/card]
+[card]
 name=Grave Peril
 auto=@movedTo(creature[-black]|battlefield):all(trigger[to]) destroy && moveTo(mygraveyard) all(this)
 text=When a nonblack creature enters the battlefield, sacrifice Grave Peril. If you do, destroy that creature.
@@ -31997,6 +32777,14 @@ type=Creature
 subtype=Zombie
 power=3
 toughness=3
+[/card]
+[card]
+name=Gravestorm
+auto=@each my upkeep restriction{type(*|opponentgraveyard)~morethan~0}:ability$!choice (exile card) target(*|mygraveyard) moveTo(exile) _ choice name(opponent draw) draw:1 opponent!$ opponent
+auto=@each my upkeep restriction{type(*|opponentgraveyard)~lessthan~1}:may draw:1 controller
+text=At the beginning of your upkeep, target opponent may exile a card from his or her graveyard. If that player doesn't, you may draw a card.
+mana={B}{B}{B}
+type=Enchantment
 [/card]
 [card]
 name=Gravetiller Wurm
@@ -32172,6 +32960,17 @@ type=Creature
 subtype=Elemental
 power=3
 toughness=4
+[/card]
+[card]
+name=Greater Harvester
+auto=@each my upkeep:sacrifice notatarget(creature|mybattlefield)
+auto=@combatdamaged(opponent) from(this):ability$!name(sacrifice 2 permanents) target(<2>*|mybattlefield) sacrifice!$ opponent
+text=At the beginning of your upkeep, sacrifice a permanent. -- Whenever Greater Harvester deals combat damage to a player, that player sacrifices two permanents.
+mana={2}{B}{B}{B}
+type=Creature
+subtype=Horror
+power=5
+toughness=6
 [/card]
 [card]
 name=Greater Stone Spirit
@@ -32814,6 +33613,15 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Gruesome Discovery
+target=player
+auto=ifnot morbid then ability$!name(discard 2 cards) target(<2>*|myhand) reject!$ targetedplayer
+auto=if morbid then target(<2>*|opponenthand) reject
+text=Target player discards two cards. -- Morbid - If a creature died this turn, instead that player reveals his or her hand, you choose two cards from it, then that player discards those cards.
+mana={2}{B}{B}
+type=Sorcery
+[/card]
+[card]
 name=Gruesome Encore
 target=creature|opponentGraveyard
 auto=moveto(myBattlefield)
@@ -33011,6 +33819,18 @@ text=Enchant creature -- Whenever enchanted creature deals damage, Guilty Consci
 mana={W}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+name=Guul Draz Specter
+abilities=flying
+auto=aslongas(*|opponenthand) 3/3 while <1
+auto=@combatdamaged(opponent) from(this):ability$!name(discard) target(*|myhand) reject!$ opponent
+text=Flying -- Guul Draz Specter gets +3/+3 as long as an opponent has no cards in hand. -- Whenever Guul Draz Specter deals combat damage to a player, that player discards a card.
+mana={2}{B}{B}
+type=Creature
+subtype=Specter
+power=2
+toughness=2
 [/card]
 [card]
 name=Guul Draz Vampire
@@ -33356,6 +34176,13 @@ power=0
 toughness=3
 [/card]
 [card]
+name=Hallowed Burial
+auto=all(creature) bottomoflibrary
+text=Put all creatures on the bottom of their owners' libraries.
+mana={3}{W}{W}
+type=Sorcery
+[/card]
+[card]
 name=Hallowed Fountain
 auto=tap
 auto=may untap && life:-2 controller
@@ -33517,6 +34344,17 @@ auto=destroy
 text=Destroy target nonblack creature.
 mana={2}{B}
 type=Sorcery
+[/card]
+[card]
+name=Hand of Emrakul
+other={S(eldrazi spawn|mybattlefield)}{S(eldrazi spawn|mybattlefield)}{S(eldrazi spawn|mybattlefield)}{S(eldrazi spawn|mybattlefield)} name(Sacrifice 4 Eldrazi Spawns)
+auto=@combat(attacking) source(this):name(Annihilate) ability$!name(sacrifice a permanent) notatarget(<1>*|mybattlefield) sacrifice!$ opponent
+text=You may sacrifice four Eldrazi Spawn rather than pay Hand of Emrakul's mana cost. -- Annihilator 1 (Whenever this creature attacks, defending player sacrifices a permanent.)
+mana={9}
+type=Creature
+subtype=Eldrazi
+power=7
+toughness=7
 [/card]
 [card]
 name=Hand of Honor
@@ -33820,6 +34658,18 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Haunted Cadaver
+auto=@combatdamaged(player) from(this):may ability$!name(discard 3 cards) target(<3>*|myhand) reject!$ opponent && sacrifice all(this)
+facedown={3}
+autofacedown={1}{B}:morph
+text=Whenever Haunted Cadaver deals combat damage to a player, you may sacrifice it. If you do, that player discards three cards. -- Morph {1}{B} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
+mana={3}{B}
+type=Creature
+subtype=Zombie
+power=2
+toughness=2
+[/card]
+[card]
 name=Haunted Crossroads
 auto={B}:moveTo(myLibrary) target(creature|myGraveyard)
 text={B}: Put target creature card from your graveyard on top of your library.
@@ -33970,6 +34820,18 @@ type=Legendary Creature
 subtype=Spirit
 power=3
 toughness=2
+[/card]
+[card]
+name=Headhunter
+auto=@combatdamaged(opponent) from(this):ability$!name(discard) target(*|myhand) reject!$ opponent
+autofacedown={B}:morph
+facedown={3}
+text=Whenever Headhunter deals combat damage to a player, that player discards a card. -- Morph {B} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
+mana={1}{B}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=1
 [/card]
 [card]
 name=Headless Horseman
@@ -34633,6 +35495,18 @@ type=Legendary Artifact
 subtype=Equipment
 [/card]
 [card]
+name=Helm of the Ghastlord
+target=creature
+auto=teach(creature[blue]) 1/1
+auto=teach(creature[blue]) transforms((,newability[@damaged(opponent) from(this):draw:1 controller]))
+auto=teach(creature[black]) 1/1
+auto=teach(creature[black]) transforms((,newability[@damaged(opponent) from(this):ability$!name(discard) target(*|myhand) reject!$ opponent]))
+text=Enchant creature -- As long as enchanted creature is blue, it gets +1/+1 and has "Whenever this creature deals damage to an opponent, draw a card." -- As long as enchanted creature is black, it gets +1/+1 and has "Whenever this creature deals damage to an opponent, that player discards a card."
+mana={3}{UB}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 name=Hematite Golem
 auto={1}{R}:2/0
 text={1}{R}: Hematite Golem gets +2/+0 until end of turn.
@@ -35225,6 +36099,16 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Hollowsage
+auto=@untapped(this):may name(discard) target(player) ability$!name(discard) target(*|myhand) reject!$ targetedplayer
+text=Whenever Hollowsage becomes untapped, you may have target player discard a card.
+mana={3}{B}
+type=Creature
+subtype=Merfolk Wizard
+power=2
+toughness=2
+[/card]
+[card]
 name=Holy Armor
 target=creature
 auto={W}:0/1
@@ -35333,6 +36217,14 @@ name=Honden of Life's Web
 auto=@each my upkeep:token(Spirit,Creature Spirit,1/1)*type:shrine
 text=At the beginning of your upkeep, put a 1/1 colorless Spirit creature token onto the battlefield for each Shrine you control.
 mana={4}{G}
+type=Legendary Enchantment
+subtype=Shrine
+[/card]
+[card]
+name=Honden of Night's Reach
+auto=@each myupkeep:target(opponent) ability$!name(discard) target(<type:shrine:opponentgraveyard>*|myhand) reject !$ targetedplayer
+text=At the beginning of your upkeep, target opponent discards a card for each Shrine you control.
+mana={3}{B}
 type=Legendary Enchantment
 subtype=Shrine
 [/card]
@@ -35650,6 +36542,15 @@ type=Artifact Creature
 subtype=Spirit
 power=2
 toughness=2
+[/card]
+[card]
+name=Horrifying Revelation
+target=player
+auto=ability$!name(discard) target(*|myhand) reject!$ targetedplayer
+auto=deplete:1
+text=Target player discards a card, then puts the top card of his or her library into his or her graveyard.
+mana={B}
+type=Sorcery
 [/card]
 [card]
 name=Horror of Horrors
@@ -35973,6 +36874,16 @@ power=8
 toughness=4
 [/card]
 [card]
+name=Hunted Wumpus
+auto=ability$!name(put in play) target(creature|myhand) moveTo(mybattlefield)!$ opponent
+text=When Hunted Wumpus enters the battlefield, each other player may put a creature card from his or her hand onto the battlefield.
+mana={3}{G}
+type=Creature
+subtype=Beast
+power=6
+toughness=6
+[/card]
+[card]
 name=Hunter of Eyeblights
 auto=counter(1/1,1) target(creature|opponentBattlefield)
 auto={2}{B}{T}:destroy target(creature[counter{any}])
@@ -36215,6 +37126,16 @@ text=Enchant creature -- Enchanted creature has "{T}: This creature deals 1 dama
 mana={2}{R}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+name=Hypnotic Cloud
+target=player
+auto=ability$!name(discard) target(*|myhand) reject!$ targetedplayer
+auto=kicker ability$!name(discard) target(<2>*|myhand) reject!$ targetedplayer
+kicker={4}
+text=Kicker {4} (You may pay an additional {4} as you cast this spell.) -- Target player discards a card. If Hypnotic Cloud was kicked, that player discards three cards instead.
+mana={1}{B}
+type=Sorcery
 [/card]
 [card]
 name=Hypnotic Specter
@@ -36713,6 +37634,14 @@ mana={1}{R}
 type=Enchantment
 [/card]
 [card]
+name=Imperial Edict
+target=opponent
+auto=ability$!name(sacrifice) target(creature|mybattlefield) destroy!$ targetedplayer
+text=Target opponent chooses a creature he or she controls. Destroy it.
+mana={1}{B}
+type=Sorcery
+[/card]
+[card]
 name=Imperial Hellkite
 abilities=flying
 facedown={3}
@@ -36935,6 +37864,17 @@ type=Creature
 subtype=Human Samurai
 power=2
 toughness=3
+[/card]
+[card]
+name=Indentured Djinn
+abilities=flying
+auto=ability$!choice name(draw 1) draw:1 _ choice name(draw 2) draw:2 _ choice name(draw 3) draw:3!$ opponent
+text=Flying -- When Indentured Djinn enters the battlefield, each other player may draw up to three cards.
+mana={1}{U}{U}
+type=Creature
+subtype=Djinn
+power=4
+toughness=4
 [/card]
 [card]
 name=Indentured Oaf
@@ -37984,6 +38924,17 @@ text=Isolated Chapel enters the battlefield tapped unless you control a Plains o
 type=Land
 [/card]
 [card]
+name=It That Betrays
+auto=@combat(attacking) source(this):name(Annihilate) ability$!name(sacrifice 2 permanents) notatarget(<2>*|mybattlefield) sacrifice !$ opponent
+auto=@sacrificed(*[-token]) from(*[-token]|opponentbattlefield):all(trigger[from]) moveto(mybattlefield)
+text=Annihilator 2 (Whenever this creature attacks, defending player sacrifices two permanents.) -- Whenever an opponent sacrifices a nontoken permanent, put that card onto the battlefield under your control.
+mana={12}
+type=Creature
+subtype=Eldrazi
+power=11
+toughness=11
+[/card]
+[card]
 name=Ith, High Arcanist
 abilities=vigilance
 auto={t}:target(creature[attacking]) removefromcombat
@@ -37993,6 +38944,17 @@ suspend(4)={w}{u}
 type=Legendary Creature
 subtype=Human Wizard
 power=3
+toughness=5
+[/card]
+[card]
+name=Iwamori of the Open Fist
+trample=abilities
+auto=ability$!name(put in play) target(creature[legendary]|myhand) moveTo(mybattlefield)!$ opponent
+text=Trample -- When Iwamori of the Open Fist enters the battlefield, each opponent may put a legendary creature card from his or her hand onto the battlefield.
+mana={2}{G}{G}
+type=Legendary Creature
+subtype=Human Monk
+power=5
 toughness=5
 [/card]
 [card]
@@ -40296,6 +41258,17 @@ power=2
 toughness=3
 [/card]
 [card]
+name=Kemuri-Onna
+auto=target(player) ability$!name(discard) target(*|myhand) reject!$ targetedplayer
+auto=@movedto(mystack) from(myhand):may moveto(myhand) all(this)
+text=When Kemuri-Onna enters the battlefield, target player discards a card. -- Whenever you cast a Spirit or Arcane spell, you may return Kemuri-Onna to its owner's hand.
+mana={4}{B}
+type=Creature
+subtype=Spirit
+power=3
+toughness=3
+[/card]
+[card]
 name=Kessig Wolf
 auto={1}{R}:first strike
 text={1}{R}: Kessig Wolf gains first strike until end of turn.
@@ -41477,6 +42450,18 @@ power=2
 toughness=3
 [/card]
 [card]
+name=Kozilek, Butcher of Truth
+autostack=draw:4 controller
+autograveyard=moveTo(ownerlibrary) && shuffle
+auto=@combat(attacking) source(this):name(Annihilate) ability$!name(sacrifice 4 permanents) notatarget(<4>*|mybattlefield) sacrifice!$ opponent
+text=When you cast Kozilek, Butcher of Truth, draw four cards. -- Annihilator 4 (Whenever this creature attacks, defending player sacrifices four permanents.) -- When Kozilek is put into a graveyard from anywhere, its owner shuffles his or her graveyard into his or her library.
+mana={10}
+type=Legendary Creature
+subtype=Eldrazi
+power=12
+toughness=12
+[/card]
+[card]
 name=Kozilek's Predator
 auto=Token(-193507)*2
 text=When Kozilek's Predator enters the battlefield, put two 0/1 colorless Eldrazi Spawn creature tokens onto the battlefield. They have "Sacrifice this creature: Add {1} to your mana pool."
@@ -41683,6 +42668,15 @@ type=Creature
 subtype=Beast
 power=6
 toughness=6
+[/card]
+[card]
+name=Krosan Reclamation
+target=player
+auto=ability$!(shuffle 2 cards into library) target(<upto:2>*|mygraveyard) moveTo(ownerlibrary) && shuffle!$ targetedplayer
+flashback={1}{G}
+text=Target player shuffles up to two target cards from his or her graveyard into his or her library. -- Flashback {1}{G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+mana={1}{G}
+type=Instant
 [/card]
 [card]
 name=Krosan Restorer
@@ -41909,6 +42903,27 @@ subtype=Human Shaman
 power=3
 toughness=3
 [/card]
+###The 2 cards below should stay together (Flip Card)###
+[card]
+name=Kuon, Ogre Ascendant
+auto=@each my endofturn restriction{type(creature[fresh]|graveyard)~morethan~2}:flip(Kuon's Essence)
+text=At the beginning of the end step, if three or more creatures were put into graveyards from the battlefield this turn, flip Kuon, Ogre Ascendant.
+mana={B}{B}{B}
+type=Legendary Creature
+subtype=Ogre Monk
+power=2
+toughness=4
+[/card]
+[card]
+name=Kuon's Essence
+auto=@each opponent upkeep:ability$!choice notatarget(creature|mybattlefield) sacrifice !$ opponent
+auto=@each my upkeep:notatarget(creature|mybattlefield) sacrifice
+text=At the beginning of each player's upkeep, that player sacrifices a creature.
+mana={B}{B}{B}
+type=Legendary Enchantment
+[/card]
+###The 2 cards above should stay together (Flip Card)###
+[card]
 [card]
 name=Kurgadon
 auto=@movedTo(creature[manacost>=6]|mystack):counter(1/1,3)
@@ -41950,6 +42965,16 @@ text=Equipped creature has "{2}: This creature gets +1/+0 until end of turn." --
 mana={3}
 type=Artifact
 subtype=Equipment
+[/card]
+[card]
+name=Kyoki, Sanity's Eclipse
+auto=@movedTo(spirit,arcane|mystack):target(opponent) ability$!name(exile card from hand) choice notatarget(*|myhand) moveTo(exile) !$ targetedplayer
+text=Whenever you cast a Spirit or Arcane spell, target opponent exiles a card from his or her hand.
+mana={4}{B}{B}
+type=Legendary Creature
+subtype=Demon Spirit
+power=6
+toughness=4
 [/card]
 [card]
 name=Kyren Glider
@@ -42265,6 +43290,13 @@ auto={T}:Add{B} && frozen
 auto={T}:Add{R} && frozen
 text={T}: Add {1} to your mana pool. -- {T}: Add {B} or {R} to your mana pool. Lantern-Lit Graveyard doesn't untap during your next untap step.
 type=Land
+[/card]
+[card]
+name=Larceny
+auto=@combatdamaged(player) from(creature|mybattlefield):all(trigger[to]) ability$!name(discard) target(*|myhand) reject!$ opponent 
+text=Whenever a creature you control deals combat damage to a player, that player discards a card.
+mana={3}{B}{B}
+type=Enchantment
 [/card]
 [card]
 name=Lashknife
@@ -42976,6 +44008,14 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Ley Line
+auto=@each opponent upkeep:ability$!may target(creature|mybattlefield) counter(1/1,1) !$ opponent
+auto=@each my upkeep:may target(creature|mybattlefield) counter(1/1,1)
+text=At the beginning of each player's upkeep, that player may put a +1/+1 counter on target creature of his or her choice.
+mana={3}{G}
+type=Enchantment
+[/card]
+[card]
 name=Leyline of Anticipation
 auto=@each beginofturn:all(*[-land]|myhand) flash
 auto=@movedto(*|myhand):all(*[-land]|myhand) flash
@@ -43450,11 +44490,33 @@ power=4
 toughness=4
 [/card]
 [card]
+name=Liliana Vess
+auto=counter(0/0,5,loyalty)
+auto={C(0/0,1,Loyalty)}:target(player) ability$!name(discard) target(*|myhand) reject!$ targetedplayer
+auto={C(0/0,-2,Loyalty)}:target(instant,sorcery|mylibrary) moveTo(library)
+auto={C(0/0,-8,Loyalty)}:moveTo(mybattlefield) all(creature|graveyard)
+text=+1: Target player discards a card. -- -2: Search your library for a card, then shuffle your library and put that card on top of it. -- -8: Put all creature cards in all graveyards onto the battlefield under your control.
+mana={3}{B}{B}
+type=Planeswalker
+subtype=Liliana
+[/card]
+[card]
 name=Liliana's Caress
 auto=@discarded(*|opponenthand):life:-2 opponent
 text=Whenever an opponent discards a card, that player loses 2 life.
 mana={1}{B}
 type=Enchantment
+[/card]
+[card]
+name=Liliana's Specter
+abilities=flying
+auto=ability$!name(discard) target(*|myhand) reject!$ opponent
+text=Flying -- When Liliana's Specter enters the battlefield, each opponent discards a card.
+mana={1}{B}{B}
+type=Creature
+subtype=Specter
+power=2
+toughness=1
 [/card]
 [card]
 name=Lim-Dul's Cohort
@@ -43890,6 +44952,16 @@ type=Creature
 subtype=Giant Warrior
 power=7
 toughness=6
+[/card]
+[card]
+name=Loaming Shaman
+auto=target(player) ability$!name(shuffle back) target(<anyamount>*|mygraveyard) moveTo(ownerlibrary) && shuffle!$ targetedplayer
+text=When Loaming Shaman enters the battlefield, target player shuffles any number of target cards from his or her graveyard into his or her library.
+mana={2}{G}
+type=Creature
+subtype=Centaur Shaman
+power=3
+toughness=2
 [/card]
 [card]
 name=Lobotomy
@@ -45201,6 +46273,17 @@ text=Magosi, the Waterveil enters the battlefield tapped. -- {T}: Add {U} to you
 type=Land
 [/card]
 [card]
+name=Magus of the Abyss
+auto=@each opponent upkeep:ability$!name(bury creature) notatarget(creature[-artifact]|mybattlefield) bury !$ opponent
+auto=@each my upkeep:notatarget(creature[-artifact]|mybattlefield) bury
+text=At the beginning of each player's upkeep, destroy target nonartifact creature that player controls of his or her choice. It can't be regenerated.
+mana={3}{B}
+type=Creature
+subtype=Human Wizard
+power=4
+toughness=3
+[/card]
+[card]
 name=Magus of the Bazaar
 auto={T}:draw:2 && transforms((,newability[target(<3>*|myhand) reject])) forever
 text={T}: Draw two cards, then discard three cards.
@@ -45467,6 +46550,14 @@ type=Creature
 subtype=Jellyfish
 power=2
 toughness=2
+[/card]
+[card]
+name=Mana Breach
+auto=@movedTo(*|opponentstack):ability$!(bounce land) notatarget(land|mybattlefield) moveTo(ownerhand) !$ opponent
+auto=@movedTo(*|mystack):notatarget(land|mybattlefield) moveTo(ownerhand)
+text=Whenever a player casts a spell, that player returns a land he or she controls to its owner's hand.
+mana={2}{U}
+type=Enchantment
 [/card]
 [card]
 name=Mana Chains
@@ -46514,6 +47605,16 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Mausoleum Turnkey
+auto=ability$!name(return creature to opponent) target(*|opponentgraveyard) moveTo(opponenthand)!$ opponent
+text=When Mausoleum Turnkey enters the battlefield, return target creature card of an opponent's choice from your graveyard to your hand.
+mana={3}{B}
+type=Creature
+subtype=Ogre Rogue
+power=3
+toughness=2
+[/card]
+[card]
 name=Maw of the Mire
 target=land
 auto=destroy
@@ -46764,6 +47865,15 @@ other={UB}{T(creature[black;blue]|mybattlefield)}{T(creature[black;blue]|mybattl
 text=Target player puts the top four cards of his or her library into his or her graveyard. -- Conspire (As you cast this spell, you may tap two untapped creatures you control that share a color with it. When you do, copy it and you may choose a new target for the copy.)
 mana={UB}
 type=Sorcery
+[/card]
+[card]
+name=Memory's Journey
+target=player
+auto=ability$!name(shuffle back) target(<upto:3>*|mygraveyard) moveTo(ownerlibrary) && shuffle!$ targetedplayer
+flashback={G}
+text=Target player shuffles up to three target cards from his or her graveyard into his or her library. -- Flashback {G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+mana={1}{U}
+type=Instant
 [/card]
 [card]
 name=Mending Hands
@@ -47197,6 +48307,15 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Metamorphose
+target=*|opponentbattlefield
+auto=moveTo(ownerhand)
+auto=ability$!target(*[-planeswalker]|myhand) moveTo(mybattlefield)!$ opponent
+text=Put target permanent an opponent controls on top of its owner's library. That opponent may put an artifact, creature, enchantment, or land card from his or her hand onto the battlefield.
+mana={1}{U}
+type=Instant
+[/card]
+[card]
 name=Metathran Aerostat
 abilities=flying
 auto={U}:name(X = 0) moveTo(ownerhand) all(this) && moveTo(mybattlefield) target(creature[manacost=0]|myhand)
@@ -47281,6 +48400,16 @@ auto={2}{R}{G}{D}{D}:damage:4 target(creature,player)
 text={2}{R}{G}, Discard two cards at random: Meteor Storm deals 4 damage to target creature or player.
 mana={R}{G}
 type=Enchantment
+[/card]
+[card]
+name=Michiko Konda, Truth Seeker
+auto=@combatdamaged(controller) from(creature|opponentbattlefield):ability$!name(sacrifice permanent) notatarget(*|mybattlefield) sacrifice!$ opponent
+text=Whenever a source an opponent controls deals damage to you, that player sacrifices a permanent.
+mana={3}{W}
+type=Legendary Creature
+subtype=Human Advisor
+power=2
+toughness=2
 [/card]
 [card]
 name=Midnight Banshee
@@ -47522,6 +48651,13 @@ text={T}: Add {U} to your mana pool. -- {U}, {T}: Untap target legendary permane
 type=Legendary Land
 [/card]
 [card]
+name=Mind Burst
+auto=target(player) ability$!name(discard) target(<type:mind burst:graveyard>*|myhand) reject!$ targetedplayer
+text=Target player discards X cards, where X is one plus the number of cards named Mind Burst in all graveyards.
+mana={1}{B}
+type=Sorcery
+[/card]
+[card]
 name=Mind Control
 target=creature
 alias=1194
@@ -47574,6 +48710,32 @@ mana={2}{U}{U}{U}{U}
 type=Enchantment
 [/card]
 [card]
+name=Mind Peel
+target=player
+auto=ability$!name(discard) target(*|myhand) reject!$ targetedplayer
+buyback={2}{B}{B}{B}
+text=Buyback {2}{B}{B} (You may pay an additional {2}{B}{B} as you cast this spell. If you do, put this card into your hand as it resolves.) -- Target player discards a card.
+mana={B}
+type=Sorcery
+[/card]
+[card]
+name=Mind Ravel
+target=player
+auto=ability$!name(discard) target(*|myhand) reject!$ targetedplayer
+auto=@next upkeep:draw:1 controller
+text=Target player discards a card. -- Draw a card at the beginning of the next turn's upkeep.
+mana={2}{B}
+type=Sorcery
+[/card]
+[card]
+name=Mind Rot
+target=player
+auto=ability$!name(discard 2 cards) target(<2>*|myhand) reject!$ targetedplayer
+text=Target player discards two cards.
+mana={2}{B}
+type=Sorcery
+[/card]
+[card]
 name=Mind Shatter
 target=player
 auto=discard:x
@@ -47587,6 +48749,14 @@ auto={B}{S(creature|mybattlefield)}:reject target(*|opponenthand) asSorcery
 text={B}, Sacrifice a creature: Target opponent reveals his or her hand. You choose a card from it. That player discards that card. Activate this ability only any time you could cast a sorcery.
 mana={1}{B}{B}
 type=Enchantment
+[/card]
+[card]
+name=Mind Sludge
+target=player
+auto=ability$!name(discard) target(<type:swamp:opponentbattlefield>*|myhand) reject!$ targetedplayer
+text=Target player discards a card for each Swamp you control.
+mana={4}{B}
+type=Sorcery
 [/card]
 [card]
 name=Mind Spring
@@ -47657,7 +48827,7 @@ type=Artifact
 [card]
 name=Mindculling
 auto=draw:2 controller
-auto=discard:2 opponent
+auto=target(opponent) ability$!name(discard 2 cards) target(*|myhand) reject!$ targetplayer 
 text=You draw two cards and target opponent discards two cards.
 mana={5}{U}
 type=Sorcery
@@ -47703,12 +48873,42 @@ power=4
 toughness=3
 [/card]
 [card]
+name=Mindstab
+target=player
+auto=ability$!name(discard 3 cards) target(<3>*|myhand) reject!$ targetedplayer
+suspend(4)={b}
+text=Target player discards three cards. -- Suspend 4 - {B} (Rather than cast this card from your hand, you may pay {B} and exile it with four time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.)
+mana={5}{B}
+type=Sorcery
+[/card]
+[card]
+name=Mindstab Thrull
+auto=@combat(notblocked) source(this):may ability$!name(discard 3 cards) target(<3>*|myhand) reject!$ opponent opponent && sacrifice all(this)
+text=Whenever Mindstab Thrull attacks and isn't blocked, you may sacrifice it. If you do, defending player discards three cards.
+mana={1}{B}{B}
+type=Creature
+subtype=Thrull
+power=2
+toughness=2
+[/card]
+[card]
 name=Mindstorm Crown
 auto=@each my beginofturn restriction{type(*|myhand)~morethan~1}:phaseaction[my upkeep once]:damage:1 controller
 auto=@each my beginofturn restriction{type(*|myhand)~lessthan~1}:phaseaction[my upkeep once]:draw:1 controller
 text=At the beginning of your upkeep, draw a card if you had no cards in hand at the beginning of this turn. If you had a card in hand, Mindstorm Crown deals 1 damage to you.
 mana={3}
 type=Artifact
+[/card]
+[card]
+name=Mindwarper
+auto=counter(1/1,3)
+auto={2}{B}{c(1/1,-1)}:target(player) ability$!name(discard) target(*|myhand) reject!$ targetedplayer asSorcery
+text=Mindwarper enters the battlefield with three +1/+1 counters on it. -- {2}{B}, Remove a +1/+1 counter from Mindwarper: Target player discards a card. Activate this ability only any time you could cast a sorcery.
+mana={2}{B}{B}
+type=Creature
+subtype=Spirit
+power=0
+toughness=0
 [/card]
 [card]
 name=Mindwhip Sliver
@@ -48034,6 +49234,13 @@ mana={B}
 type=Instant
 [/card]
 [card]
+name=Misfortune
+auto=ability$!choice name(opponent's creatures) all(creature|opponentbattlefield) counter(1/1,1) && life:4 opponent _ choice name(your creatures) all(creature|mybattlefield) counter(-1/-1,1) && life:-4 controller !$ opponent
+text=An opponent chooses one - You put a +1/+1 counter on each creature you control and gain 4 life; or you put a -1/-1 counter on each creature that player controls and Misfortune deals 4 damage to him or her.
+mana={1}{B}{R}{G}
+type=Sorcery
+[/card]
+[card]
 name=Misfortune's Gain
 target=creature
 auto=destroy && life:4 targetController
@@ -48048,6 +49255,14 @@ auto={1}:becomes(Artifact Creature Assembly-Worker,2/2) ueot
 auto={T}:1/1 target(assembly-worker)
 text={T}: Add {1} to your mana pool. -- {1}: Mishra's Factory becomes a 2/2 Assembly-Worker artifact creature until end of turn. It's still a land. -- {T}: Target Assembly-Worker creature gets +1/+1 until end of turn.
 type=Land
+[/card]
+[card]
+name=Misguided Rage
+target=player
+auto=ability$!name(sacrifice) target(*|mybattlefield) sacrifice!$ targetedplayer
+text=Target player sacrifices a permanent.
+mana={2}{R}
+type=Sorcery
 [/card]
 [card]
 name=Mishra's Groundbreaker
@@ -48643,6 +49858,17 @@ type=Creature
 subtype=Beast
 power=5
 toughness=3
+[/card]
+[card]
+name=Molder Slug
+auto=@each opponent upkeep:ability$!name(sacrifice) notatarget(artifact|mybattlefield) sacrifice !$ opponent
+auto=@each my upkeep:notatarget(artifact|mybattlefield) sacrifice
+text=At the beginning of each player's upkeep, that player sacrifices an artifact.
+mana={3}{G}{G}
+type=Creature
+subtype=Slug Beast
+power=4
+toughness=6
 [/card]
 [card]
 name=Moldgraf Monstrosity
@@ -49544,6 +50770,18 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Mournwhelk
+other={3}{B} name(Evoke)
+auto=target(player) ability$!target(<2>*|myhand) reject!$ targetedplayer
+auto=alternative sacrifice
+text=When Mournwhelk enters the battlefield, target player discards two cards. -- Evoke {3}{B} (You may cast this spell for its evoke cost. If you do, it's sacrificed when it enters the battlefield.)
+mana={6}{B}
+type=Creature
+subtype=Elemental
+power=3
+toughness=3
+[/card]
+[card]
 name=Mox Diamond
 auto=aslongas(land|myhand) reject target(land|myhand) oneshot && counter(0/0,-1,payment)
 auto=moveto(mygraveyard) notatarget(this|mybattlefield)
@@ -49669,6 +50907,14 @@ auto=fizzle
 autohand={1}{U}{U}{discard(this|myhand)}:moveTo(myhand) target(*[manacost=2]|mylibrary) asSorcery
 text=Counter target instant or sorcery spell. -- Transmute {1}{U}{U} ({1}{U}{U}, Discard this card: Search your library for a card with the same converted mana cost as this card, reveal it, and put it into your hand. Then shuffle your library. Transmute only as a sorcery.)
 mana={U}{U}
+type=Instant
+[/card]
+[card]
+name=Mudhole
+target=player
+auto=ability$!name(exile all lands from graveyard) moveTo(exile) all(*|mygraveyard) !$ targetedplayer
+text=Target player exiles all land cards from his or her graveyard.
+mana={2}{R}
 type=Instant
 [/card]
 [card]
@@ -50813,6 +52059,14 @@ mana={3}
 type=Artifact
 [/card]
 [card]
+name=Necrogen Mists
+auto=@each myupkeep:reject target(*|myhand)
+auto=@each opponentupkeep:ability$!name(discard) target(*|myhand) reject!$ opponent
+text=At the beginning of each player's upkeep, that player discards a card.
+mana={2}{B}
+type=Enchantment
+[/card]
+[card]
 name=Necrogen Scudder
 abilities=flying
 auto=life:-3
@@ -50822,6 +52076,14 @@ type=Creature
 subtype=Horror
 power=3
 toughness=3
+[/card]
+[card]
+name=Necrogen Spellbomb
+auto={B}{S}:target(player) ability$!name(discard) target(*|myhand) reject!$ targetedplayer
+auto={1}{S}:draw:1
+text={B}, Sacrifice Necrogen Spellbomb: Target player discards a card. -- {1}, Sacrifice Necrogen Spellbomb: Draw a card.
+mana={1}
+type=Artifact
 [/card]
 [card]
 name=Necrogenesis
@@ -51247,6 +52509,16 @@ mana={4}
 type=Artifact
 [/card]
 [card]
+name=Nezumi Bone-Reader
+auto={B}{S(creature|mybattlefield)}:target(player) ability$!name(discard) target(*|myhand) reject!$ targetedplayer asSorcery
+text={B}, Sacrifice a creature: Target player discards a card. Activate this ability only any time you could cast a sorcery.
+mana={1}{B}
+type=Creature
+subtype=Rat Shaman
+power=1
+toughness=1
+[/card]
+[card]
 name=Nezumi Cutthroat
 abilities=cantblock,fear
 text=Fear (This creature can't be blocked except by artifact creatures and/or black creatures.) -- Nezumi Cutthroat can't block.
@@ -51289,6 +52561,32 @@ subtype=Rat Warrior
 power=1
 toughness=1
 [/card]
+###The 2 cards below should stay together (Flip Card)###
+[card]
+name=Nezumi Shortfang
+auto={0}:target(opponent) ability$!name(discard) target(*|myhand) reject!$ targetedplayer restriction{type(*|opponenthand)~morethan~1}
+auto={0}:name(discard and flip) transforms((,newability[name(discard and flip) target(opponent) ability$!target(*|myhand) reject!$ targetedplayer],newability[@discarded(*|opponenthand) once:flip(Stabwhisker the Odious)])) ueot restriction{type(*|opponenthand)~lessthan~2}
+text={1}{B}, {T}: Target opponent discards a card. Then if that player has no cards in hand, flip Nezumi Shortfang.
+mana={1}{B}
+type=Creature
+subtype=Rat Rogue
+power=1
+toughness=1
+[/card]
+[card]
+name=Stabwhisker the Odious
+auto=@each opponent upkeep restriction{type(*|opponenthand)~lessthan~1}:life:-3 opponent
+auto=@each opponent upkeep restriction{type(*|opponenthand)~equalto~1}:life:-2 opponent
+auto=@each opponent upkeep restriction{type(*|opponenthand)~equalto~2}:life:-1 opponent
+text=At the beginning of each opponent's upkeep, that player loses 1 life for each card fewer than three in his or her hand.
+mana={1}{B}
+type=Legendary Creature
+subtype=Rat Shaman
+power=3
+toughness=3
+[/card]
+###The 2 cards above should stay together (Flip Card)###
+[card]
 [card]
 name=Niblis of the Breath
 abilities=flying
@@ -52186,6 +53484,16 @@ mana={p(G)}
 type=Instant
 [/card]
 [card]
+name=Noxious Toad
+auto=@movedto(mygraveyard) from(this|mybattlefield):ability$!name(discard) target(*|myhand) reject!$ opponent
+text=When Noxious Toad dies, each opponent discards a card.
+mana={2}{B}
+type=Creature
+subtype=Frog
+power=1
+toughness=1
+[/card]
+[card]
 name=Nuisance Engine
 auto={2}{T}:token(Pest,artifact creature pest, 0/1, artifact)
 text={2}, {T}: Put a 0/1 colorless Pest artifact creature token onto the battlefield.
@@ -52326,6 +53634,22 @@ name=Oasis
 auto={T}:prevent:1 target(creature)
 text={T}: Prevent the next 1 damage that would be dealt to target creature this turn.
 type=Land
+[/card]
+[card]
+name=Oath of Ghouls
+auto=@each my upkeep:if type(creature|mygraveyard)~morethan~type(creature|opponentgraveyard) then target(creature|mybattlefield) moveTo(myhand)
+auto=@each opponent upkeep:if type(creature|opponentgraveyard)~morethan~type(creature|mygraveyard) then ability$!name(return creature from graveyard) target(creature|mybattlefield) moveTo(myhand)!$ opponent
+text=At the beginning of each player's upkeep, that player chooses target player whose graveyard has fewer creature cards in it than his or her graveyard does and is his or her opponent. The first player may return a creature card from his or her graveyard to his or her hand.
+mana={1}{B}
+type=Enchantment
+[/card]
+[card]
+name=Oath of Lieges
+auto=@each my upkeep:if type(land|mygraveyard)~morethan~type(land|opponentgraveyard) then target(land[basic]|mylibrary) moveTo(mybattlefield)
+auto=@each opponent upkeep:if type(land|opponentgraveyard)~morethan~type(land|mygraveyard) then ability$!name(fetch basic land) target(land[basic]|mylibrary) moveTo(mybattlefield)!$ opponent
+text=At the beginning of each player's upkeep, that player chooses target player who controls more lands than he or she does and is his or her opponent. The first player may search his or her library for a basic land card, put that card onto the battlefield, then shuffle his or her library.
+mana={1}{W}
+type=Enchantment
 [/card]
 [card]
 name=Oath of Mages
@@ -52570,6 +53894,18 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Odylic Wraith
+abilities=swampwalk
+auto=@damaged(opponent) from(this):ability$!name(discard) target(*|myhand) reject!$ opponent
+auto=@damaged(controller) from(this):reject target(*|myhand)
+text=Swampwalk -- Whenever Odylic Wraith deals damage to a player, that player discards a card.
+mana={3}{B}
+type=Creature
+subtype=Wraith
+power=2
+toughness=2
+[/card]
+[card]
 name=Offalsnout
 abilities=flash
 other={B} name(Evoke)
@@ -52728,6 +54064,17 @@ type=Snow Creature
 subtype=Snake
 power=1
 toughness=3
+[/card]
+[card]
+name=Okiba-Gang Shinobi
+auto=@combatdamaged(opponent) from(this):ability$!name(discard 2 cards) target(<2>*|myhand) reject!$ opponent
+autohand={3}{B}{N}:ninjutsu
+text=Ninjutsu {3}{B} ({3}{B}, Return an unblocked attacker you control to hand: Put this card onto the battlefield from your hand tapped and attacking.) -- Whenever Okiba-Gang Shinobi deals combat damage to a player, that player discards two cards.
+mana={3}{B}{B}
+type=Creature
+subtype=Rat Ninja
+power=3
+toughness=2
 [/card]
 [card]
 name=Okina, Temple to the Grandfathers
@@ -52915,6 +54262,18 @@ power=2
 toughness=1
 [/card]
 [card]
+name=Oona's Blackguard
+abilities=flying
+auto=@movedto(other rogue|myBattlefield):all(trigger[to]) counter(1/1,1)
+auto=@combatdamaged(opponent) from(creature[counter{1/1.1}]|mybattlefield):ability$!name(discard) target(*|myhand) reject!$ opponent
+text=Flying -- Each other Rogue creature you control enters the battlefield with an additional +1/+1 counter on it. -- Whenever a creature you control with a +1/+1 counter on it deals combat damage to a player, that player discards a card.
+mana={1}{B}
+type=Creature
+subtype=Faerie Rogue
+power=1
+toughness=1
+[/card]
+[card]
 name=Oona's Gatewarden
 abilities=flying,defender,wither
 text=Defender, flying -- Wither (This deals damage to creatures in the form of -1/-1 counters.)
@@ -53072,6 +54431,14 @@ name=Opposition
 auto={T(creature|myBattlefield)}:tap target(artifact,creature,land)
 text=Tap an untapped creature you control: Tap target artifact, creature, or land.
 mana={2}{U}{U}
+type=Enchantment
+[/card]
+[card]
+name=Oppression
+auto=@movedTo(*|mystack):target(*|myhand) reject
+auto=@movedTo(*|opponentstack):ability$!name(discard) target(*|myhand) reject!$ opponent
+text=Whenever a player casts a spell, that player discards a card.
+mana={1}{B}{B}
 type=Enchantment
 [/card]
 [card]
@@ -53368,16 +54735,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Order of Whiteclay
-auto={1}{w}{w}{q}:target(creature[manacost <=3]|mygraveyard) moveto(mybattlefield)
-text={1}{W}{W}, {Q}: Return target creature card with converted mana cost 3 or less from your graveyard to the battlefield. ({Q} is the untap symbol.)
-mana={1}{W}{W}
-type=Creature
-subtype=Kithkin Cleric
-power=1
-toughness=4
-[/card]
-[card]
 name=Order of the Stars
 abilities=defender
 auto=choice name(White) transforms((,protection from white)) forever
@@ -53403,6 +54760,28 @@ type=Creature
 subtype=Human Knight
 power=2
 toughness=1
+[/card]
+[card]
+name=Order of Whiteclay
+auto={1}{w}{w}{q}:target(creature[manacost <=3]|mygraveyard) moveto(mybattlefield)
+text={1}{W}{W}, {Q}: Return target creature card with converted mana cost 3 or less from your graveyard to the battlefield. ({Q} is the untap symbol.)
+mana={1}{W}{W}
+type=Creature
+subtype=Kithkin Cleric
+power=1
+toughness=4
+[/card]
+[card]
+name=Order of Yawgmoth
+abilities=fear
+auto=@damaged(opponent) from(this):ability$!name(discard) target(*|myhand) reject!$ opponent
+auto=@damaged(controller) from(this):reject target(*|myhand)
+text=Fear (This creature can't be blocked except by artifact creatures and/or black creatures.) -- Whenever Order of Yawgmoth deals damage to a player, that player discards a card.
+mana={2}{B}{B}
+type=Creature
+subtype=Zombie Knight
+power=2
+toughness=2
 [/card]
 [card]
 name=Ordered Migration
@@ -53730,6 +55109,14 @@ power=*
 toughness=*
 [/card]
 [card]
+name=Overburden
+auto=@movedTo(creature[-token]|mybattlefield):target(land|mybattlefield) moveTo(myhand)
+auto=@movedTo(creature[-token]|opponentbattlefield):ability$!name(bounce land) target(land|mybattlefield) moveTo(myhand)!$ opponent
+text=Whenever a player puts a nontoken creature onto the battlefield, that player returns a land he or she controls to its owner's hand.
+mana={1}{U}
+type=Enchantment
+[/card]
+[card]
 name=Overeager Apprentice
 auto={S}{discard(*|myhand)}:Add {B}{B}{B}
 text=Discard a card, Sacrifice Overeager Apprentice: Add {B}{B}{B} to your mana pool.
@@ -54024,6 +55411,13 @@ mana={1}{B}
 type=Sorcery
 [/card]
 [card]
+name=Painful Quandary
+auto=@movedTo(*|opponentstack):ability$!choice name(loose 5 life) life:-5 _ choice name(discard) target(*|myhand) reject!$ opponent
+text=Whenever an opponent casts a spell, that player loses 5 life unless he or she discards a card.
+mana={3}{B}{B}
+type=Enchantment
+[/card]
+[card]
 name=Painsmith
 auto=@movedTo(artifact|mystack):may 2/0 target(creature) ueot && deathtouch ueot
 text=Whenever you cast an artifact spell, you may have target creature get +2/+0 and gain deathtouch until end of turn.
@@ -54301,6 +55695,14 @@ mana={2}
 type=Artifact
 [/card]
 [card]
+name=Parallax Nexus
+auto=fading:5
+auto={C(0/0,-1,Fade)}:target(opponent) ability$!name(exile card from hand) (blink)forsrc target(*|myhand)!$ targetedplayer
+text=Fading 5 (This enchantment enters the battlefield with five fade counters on it. At the beginning of your upkeep, remove a fade counter from it. If you can't, sacrifice it.) -- Remove a fade counter from Parallax Nexus: Target opponent exiles a card from his or her hand. Activate this ability only any time you could cast a sorcery. -- When Parallax Nexus leaves the battlefield, each player returns to his or her hand all cards he or she owns exiled with Parallax Nexus.
+mana={2}{B}
+type=Enchantment
+[/card]
+[card]
 name=Parallax Tide
 auto=fading:5
 auto={C(0/0,-1,Fade)}:(blink)forsrc target(land)
@@ -54535,6 +55937,15 @@ auto=life:4 targetController
 text=Destroy target creature. Its owner gains 4 life.
 mana={3}{W}
 type=Sorcery
+[/card]
+[card]
+name=Path to Exile
+target=creature
+auto=transforms((,newability[ability$!name(fetch basic land) target(land[basic]|mylibrary) moveTo(mybattlefield) !$ controller])) forever
+auto=moveTo(exile)
+text=Exile target creature. Its controller may search his or her library for a basic land card, put that card onto the battlefield tapped, then shuffle his or her library.
+mana={W}
+type=Instant
 [/card]
 [card]
 name=Patriarch's Desire
@@ -56075,6 +57486,15 @@ mana={G}
 type=Sorcery
 [/card]
 [card]
+name=Piracy Charm
+auto=aslongas(creature|battlefield) choice islandwalk target(creature) ueot
+auto=aslongas(creature|battlefield) choice 2/-1 target(creature) ueot
+auto=choice target(player) ability$!name(discard) target(*|myhand) reject!$ targetedplayer
+text=Choose one - Target creature gains islandwalk until end of turn; or target creature gets +2/-1 until end of turn; or target player discards a card.
+mana={U}
+type=Instant
+[/card]
+[card]
 name=Piranha Marsh
 auto=tap
 auto=life:-1 opponent
@@ -56993,6 +58413,16 @@ text=Enchant creature -- Whenever an opponent casts a creature spell, put a +1/+
 mana={G}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+name=Predatory Nightstalker
+auto=may target(opponent) ability$!name(sacrifice) notatarget(creature|mybattlefield) sacrifice!$ targetedplayer
+text=When Predatory Nightstalker enters the battlefield, you may have target opponent sacrifice a creature.
+mana={3}{B}{B}
+type=Creature
+subtype=Nightstalker
+power=3
+toughness=2
 [/card]
 [card]
 name=Predatory Urge
@@ -58045,6 +59475,14 @@ type=Creature
 subtype=Spirit
 power=3
 toughness=3
+[/card]
+[card]
+name=Putrefaction
+auto=@movedTo(*[green;white]|mystack):target(*|myhand) reject
+auto=@movedTo(*[green;white]|opponentstack):ability$!name(discard) target(*|myhand) reject!$ opponent
+text=Whenever a player casts a green or white spell, that player discards a card.
+mana={4}{B}
+type=Enchantment
 [/card]
 [card]
 name=Putrefax
@@ -59135,6 +60573,18 @@ mana={2}
 type=Artifact
 [/card]
 [card]
+name=Rakdos the Defiler
+abilities=flying,trample
+auto=@combat(attacking) source(this):choice target(<halfuptype:*[-demon]:mybattlefield>*|mybattlefield) sacrifice
+auto=@combatdamaged(player) from(this):ability$!name(sacrifice) target(<halfuptype:*[-demon]:opponentbattlefield>*|mybattlefield) sacrifice!$ opponent
+text=Flying, trample -- Whenever Rakdos the Defiler attacks, sacrifice half the non-Demon permanents you control, rounded up. -- Whenever Rakdos deals combat damage to a player, that player sacrifices half the non-Demon permanents he or she controls, rounded up.
+mana={2}{B}{B}{R}{R}
+type=Legendary Creature
+subtype=Demon
+power=7
+toughness=6
+[/card]
+[card]
 name=Rakeclaw Gargantuan
 auto={1}:first strike target(creature[power>=5])
 text={1}: Target creature with power 5 or greater gains first strike until end of turn.
@@ -59667,6 +61117,15 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Raven's Crime
+retrace={B}{S(land|myhand)}
+target=player
+auto=ability$!name(discard) target(*|myhand) reject!$ targetedplayer
+text=Target player discards a card. -- Retrace (You may cast this card from your graveyard by discarding a land card in addition to paying its other costs.)
+mana={B}
+type=Sorcery
+[/card]
+[card]
 name=Raven's Run Dragoon
 auto=cantbeblockedby(creature[black])
 text=Raven's Run Dragoon can't be blocked by black creatures.
@@ -59710,7 +61169,8 @@ toughness=4
 [card]
 name=Archdemon of Greed
 abilities=flying,trample
-auto=upcostmulti[{S(human|mybattlefield)}] tap && damage:9 controller
+auto=@each my upkeep restriction{type(human|mybattlefield)~morethan~0}:sacrifice notatarget(human|mybattlefield)
+auto=@each my upkeep restriction{type(human|mybattlefield)~lessthan~1}:tap && damage:9 controller
 text=Flying, trample -- At the beginning of your upkeep, sacrifice a Human. If you can't, tap Archdemon of Greed and it deals 9 damage to you.
 color=black
 type=Creature
@@ -59719,6 +61179,16 @@ power=9
 toughness=9
 [/card]
 ###The 2 cards above should stay together (Flip Card)###
+[card]
+name=Ravenous Rats
+auto=target(opponent) ability$!name(discard) target(*|myhand) reject!$ targetedplayer
+text=When Ravenous Rats enters the battlefield, target opponent discards a card.
+mana={1}{B}
+type=Creature
+subtype=Rat
+power=1
+toughness=1
+[/card]
 [card]
 name=Ravenous Skirge
 abilities=flying
@@ -60203,6 +61673,16 @@ power=*
 toughness=*
 [/card]
 [card]
+name=Reckless Scholar
+auto={T}:name(draw and discard) target(player) ability$!draw:1 _ choice target(*|myhand) reject!$ targetedplayer
+text={T}: Target player draws a card, then discards a card.
+mana={2}{U}
+type=Creature
+subtype=Human Wizard
+power=2
+toughness=1
+[/card]
+[card]
 name=Reckless Spite
 target=<2>creature[-black]
 auto=destroy
@@ -60250,6 +61730,15 @@ type=Creature
 subtype=Zombie Minion
 power=4
 toughness=4
+[/card]
+[card]
+name=Recoil
+target=*|battlefield
+auto=moveto(ownerhand)
+auto=transforms((,newability[ability$!name(discard) target(*|myhand) reject!$ controller]))
+text=Return target permanent to its owner's hand. Then that player discards a card.
+mana={1}{U}{B}
+type=Instant
 [/card]
 [card]
 name=Recollect
@@ -60673,6 +62162,14 @@ auto=destroy
 text=Destroy target artifact or enchantment and up to one other target artifact or enchantment.
 mana={4}{G}
 type=Instant
+[/card]
+[card]
+name=Relic of Progenitus
+auto={T}:target(player) ability$!name(exile card) target(*|mygraveyard) moveTo(exile)!$ targetedplayer
+auto={1}{E}:name(exile all cards in all graveyards) moveTo(exile) all(*|graveyard) && draw:1 controller
+text={T}: Target player exiles a card from his or her graveyard. -- {1}, Exile Relic of Progenitus: Exile all cards from all graveyards. Draw a card.
+mana={1}
+type=Artifact
 [/card]
 [card]
 name=Relic Putrescence
@@ -61836,6 +63333,18 @@ text={T}: Add {1} to your mana pool. -- {1}{U}, {T}: Return target Wizard you co
 type=Land
 [/card]
 [card]
+name=Riptide Pilferer
+auto=@combatdamaged(opponent) from(this):ability$!name(discard) target(*|myhand) reject!$ opponent
+autofacedown={U}:morph
+facedown={3}
+text=Whenever Riptide Pilferer deals combat damage to a player, that player discards a card. -- Morph {U} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
+mana={1}{U}
+type=Creature
+subtype=Merfolk Rogue
+power=1
+toughness=1
+[/card]
+[card]
 name=Riptide Replicator
 auto=counter(0/0,X,Charge)
 auto=choice activatechooseatype chooseacolor {4}{t}:token(Riptide,Creature chosentype,counter{0%0.1.charge}/counter{0%0.1.charge},chosencolor) chooseend activatechooseend
@@ -61866,6 +63375,15 @@ mana={X}{RW}{RW}
 type=Enchantment
 [/card]
 [card]
+name=Rise from the Grave
+target=creature|graveyard
+auto=moveto(myBattlefield)
+auto=transforms((Zombie,black)) forever
+text=Put target creature card in a graveyard onto the battlefield under your control. That creature is a black Zombie in addition to its other colors and types.
+mana={4}{B}
+type=Sorcery
+[/card]
+[card]
 name=Rishadan Airship
 abilities=flying,cloud
 text=Flying -- Rishadan Airship can block only creatures with flying.
@@ -61890,13 +63408,13 @@ text={T}: Add {1} to your mana pool. -- {1}, {T}: Tap target land.
 type=Land
 [/card]
 [card]
-name=Rise from the Grave
-target=creature|graveyard
-auto=moveto(myBattlefield)
-auto=transforms((Zombie,black)) forever
-text=Put target creature card in a graveyard onto the battlefield under your control. That creature is a black Zombie in addition to its other colors and types.
-mana={4}{B}
-type=Sorcery
+name=Rising Waters
+auto=lord(land) doesnotuntp
+auto=@each my upkeep:untap notatarget(land|mybattlefield)
+auto=@each opponent upkeep:ability$!name(untap land) untap notatarget(land|mybattlefield)!$ opponent
+text=Lands don't untap during their controllers' untap steps. -- At the beginning of each player's upkeep, that player untaps a land he or she controls.
+mana={3}{U}
+type=Enchantment
 [/card]
 [card]
 name=Rite of Flame
@@ -63360,6 +64878,16 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Sadistic Hypnotist
+auto={S(creature|myBattlefield)}:target(player) ability$!name(discard 2 cards) target(<2>*|myhand) reject!$ targetedplayer asSorcery
+text=Sacrifice a creature: Target player discards two cards. Activate this ability only any time you could cast a sorcery.
+mana={3}{B}{B}
+type=Creature
+subtype=Human Minion
+power=2
+toughness=2
+[/card]
+[card]
 name=Sadistic Sacrament
 target=<upto:3>*|library
 auto=moveto(exile)
@@ -64557,6 +66085,13 @@ mana={3}
 type=Artifact
 [/card]
 [card]
+name=Scepter of Fugue
+auto={1}{B}{T}:target(player) ability$!name(discard) target(*|myhand) reject!$ targetedplayer myTurnOnly
+text={1}{B}, {T}: Target player discards a card. Activate this ability only during your turn.
+mana={B}{B}
+type=Artifact
+[/card]
+[card]
 name=Scepter of Insight
 auto={3}{U}{T}:Draw:1
 text={3}{U}, {T}: Draw a card.
@@ -64849,6 +66384,14 @@ mana={W}
 type=Instant
 [/card]
 [card]
+name=Scrabbling Claws
+auto={T}:target(player) ability$!name(exile card) target(*|mygraveyard) moveTo(exile)!$ targetedplayer
+auto={1}{S}:moveTo(exile) target(*|graveyard) && draw:1 controller
+text={T}: Target player exiles a card from his or her graveyard. -- {1}, Sacrifice Scrabbling Claws: Exile target card from a graveyard. Draw a card.
+mana={1}
+type=Artifact
+[/card]
+[card]
 name=Scragnoth
 abilities=nofizzle,protection from blue
 text=Scragnoth can't be countered. -- Protection from blue
@@ -64938,6 +66481,16 @@ text=Flying -- At the beginning of your upkeep, you may pay {2}{B}{B}. If you do
 mana={2}{B}
 type=Creature
 subtype=Bat
+power=2
+toughness=2
+[/card]
+[card]
+name=Screeching Buzzard
+auto=@movedto(mygraveyard) from(this|mybattlefield):ability$!name(discard) target(*|myhand) reject!$ opponent
+text=Flying -- When Screeching Buzzard dies, each opponent discards a card.
+mana={3}{B}
+type=Creature
+subtype=Bird
 power=2
 toughness=2
 [/card]
@@ -65033,6 +66586,14 @@ type=Creature
 subtype=Merfolk Rogue
 power=1
 toughness=3
+[/card]
+[card]
+name=Scrounge
+target=opponent
+auto=ability$!name(choose artifact) target(artifact|mygraveyard) moveTo(opponentbattlefield) !$ opponent
+text=Target opponent chooses an artifact card in his or her graveyard. Put that card onto the battlefield under your control.
+mana={2}{B}
+type=Sorcery
 [/card]
 [card]
 name=Scrubland
@@ -65512,6 +67073,18 @@ mana={2}{B}
 type=Creature
 subtype=Zombie Wizard
 power=2
+toughness=2
+[/card]
+[card]
+name=Sedraxis Specter
+abilities=flying
+auto=@combatdamaged(opponent) from(this):ability$!name(discard) target(*|myhand) reject!$ opponent
+autograveyard={1}{B}:moveto(mybattlefield) && transforms((,unearth,haste)) asSorcery forever
+text=Flying -- Whenever Sedraxis Specter deals combat damage to a player, that player discards a card. -- Unearth {1}{B} ({1}{B}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
+mana={U}{B}{R}
+type=Creature
+subtype=Specter
+power=3
 toughness=2
 [/card]
 [card]
@@ -66867,6 +68440,18 @@ mana={W}
 type=Enchantment
 [/card]
 [card]
+name=Sheoldred, Whispering One
+abilities=swampwalk
+auto=@each my upkeep restriction{type(creature|mybattlefield)~morethan~0}:moveTo(myBattlefield) target(creature|mygraveyard)
+auto=@each opponent upkeep restriction{type(creature|opponentbattlefield)~morethan~0}:ability$!name(sacrifice creature) notatarget(creature|mybattlefield) sacrifice!$ opponent
+text=Swampwalk -- At the beginning of your upkeep, return target creature card from your graveyard to the battlefield. -- At the beginning of each opponent's upkeep, that player sacrifices a creature.
+mana={5}{B}{B}
+type=Legendary Creature
+subtype=Praetor
+power=6
+toughness=6
+[/card]
+[card]
 name=Shepherd of Rot
 auto={T}:foreach(zombie) life:-1 opponent && foreach(zombie) life:-1 controller
 text={T}: Each player loses 1 life for each Zombie on the battlefield.
@@ -67513,6 +69098,18 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Shrieking Grotesque 
+abilities=flying
+auto=alternative target(player) ability$!name(discard) target(*|myhand) reject!$ targetedplayer
+text=Flying -- When Shrieking Grotesque enters the battlefield, if {B} was spent to cast Shrieking Grotesque, target player discards a card.
+mana={2}{W}
+other={1}{B}{W} name(Spend B to Cast)
+type=Creature
+subtype=Gargoyle
+power=2
+toughness=1
+[/card]
+[card]
 name=Shrieking Mogg
 abilities=haste
 auto=tap all(other creature)
@@ -67522,6 +69119,17 @@ type=Creature
 subtype=Goblin
 power=1
 toughness=1
+[/card]
+[card]
+name=Shrieking Specter
+abilities=flying
+auto=@combat(attacking) source(this):ability$!name(discard) target(*|myhand) reject!$ opponent
+text=Flying -- Whenever Shrieking Specter attacks, defending player discards a card.
+mana={5}{B}
+type=Creature
+subtype=Specter
+power=2
+toughness=2
 [/card]
 [card]
 name=Shriekmaw
@@ -67553,6 +69161,15 @@ auto={3}{T}{S}:thisforeach(counter{0/0.1.Charge}) damage:1 target(creature,playe
 text=At the beginning of your upkeep or whenever you cast a red spell, put a charge counter on Shrine of Burning Rage. -- {3}, {T}, Sacrifice Shrine of Burning Rage: Shrine of Burning Rage deals damage equal to the number of charge counters on it to target creature or player.
 mana={2}
 type=Artifact
+[/card]
+[card]
+name=Shrine of Limitless Power
+auto=@each my upkeep:counter(0/0,1,Charge)
+auto=@movedTo(*[black]|mystack):counter(0/0,1,Charge)
+auto={4}{T}{S}:thisforeach(counter{0/0.1.Charge}) target(player) ability$!name(discard) target(*|myhand) reject!$ targetedplayer
+mana={3}
+type=Artifact
+text=At the beginning of your upkeep or whenever you cast a black spell, put a charge counter on Shrine of Limitless Power. {4}, {T}, Sacrifice Shrine of Limitless Power: Target player discards a card for each charge counter on Shrine of Limitless Power.
 [/card]
 [card]
 name=Shrine of Loyal Legions
@@ -67912,6 +69529,19 @@ flashback={4}{U}
 text=Return target creature to its owner's hand. -- Flashback {4}{U} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={U}
 type=Sorcery
+[/card]
+[card]
+name=Silent Specter
+abilities=flying
+auto=@combatdamaged(player) from(this):ability$!name(discard 2 cards) target(<2>*|myhand) reject!$ opponent
+facedown={3}
+autofacedown={3}{B}{B}:morph
+text=Flying -- Whenever Silent Specter deals combat damage to a player, that player discards two cards. -- Morph {3}{B}{B} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
+mana={4}{B}{B}
+type=Creature
+subtype=Specter
+power=4
+toughness=4
 [/card]
 [card]
 name=Silent-Chant Zubera
@@ -68922,6 +70552,15 @@ type=Creature
 subtype=Ogre Warrior
 power=3
 toughness=3
+[/card]
+[card]
+name=Skull Fracture
+target=player
+auto=ability$!name(discard) target(*|myhand) reject!$ targetedplayer
+flashback={3}{B}
+text=Target player discards a card. -- Flashback {3}{B} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+mana={B}
+type=Sorcery
 [/card]
 [card]
 name=Skull of Orm
@@ -71359,6 +72998,15 @@ power=5
 toughness=5
 [/card]
 [card]
+name=Specter's Shroud
+auto={1}:equip
+auto=@combatdamaged(player) from(mytgt):ability$!name(discard) target(*|myhand) reject!$ opponent
+text=Equipped creature gets +1/+0. -- Whenever equipped creature deals combat damage to a player, that player discards a card. -- Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery. This card enters the battlefield unattached and stays on the battlefield if the creature leaves.)
+mana={2}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
 name=Specter's Wail
 target=player
 auto=discard:1
@@ -72340,6 +73988,14 @@ auto=@movedTo(splinter token|nonbattlezone) from(mybattlefield):damage:1 all(cre
 text={2}{G}: Splintering Wind deals 1 damage to target creature. Put a 1/1 green Splinter creature token onto the battlefield. It has flying and "Cumulative upkeep {G}." (At the beginning of its controller's upkeep, that player puts an age counter on it, then sacrifices it unless he or she pays its upkeep cost for each age counter on it.) -- Whenever a Splinter token leaves the battlefield, it deals 1 damage to you and each creature you control.
 mana={2}{G}{G}
 type=Enchantment
+[/card]
+[card]
+name=Splitting Headache
+auto=choice target(player) ability$!name(discard 2 cards) target(<2>*|myhand) reject!$ targetedplayer
+auto=choice target(*|opponenthand) reject
+text=Choose one - Target player discards two cards; or target player reveals his or her hand, you choose a card from it, then that player discards that card.
+mana={3}{B}
+type=Sorcery
 [/card]
 [card]
 name=Split-Tail Miko
@@ -73730,6 +75386,17 @@ power=1
 toughness=4
 [/card]
 [card]
+name=Stoneshaker Shaman
+auto=@each opponent endofturn:ability$!name(sacrifice untapped land) notatarget(land[-tapped]|mybattlefield) sacrifice!$ opponent
+auto=@each my endofturn:notatarget(land[-tapped]|mybattlefield) sacrifice
+text=At the beginning of each player's end step, that player sacrifices an untapped land.
+mana={2}{R}
+type=Creature
+subtype=Human Shaman
+power=1
+toughness=1
+[/card]
+[card]
 name=Stonewood Invoker
 auto={7}{G}:5/5
 text={7}{G}: Stonewood Invoker gets +5/+5 until end of turn.
@@ -73992,6 +75659,16 @@ auto={L}{L}{B}{B}{S(swamp|myBattlefield)}:moveTo(myBattlefield) target(creature|
 text={B}{B}, Pay 2 life, Sacrifice a Swamp: Return target creature card from your graveyard to the battlefield.
 mana={2}{B}{B}
 type=Enchantment
+[/card]
+[card]
+name=Strands of Undeath
+target=creature
+auto=target(player) ability$!name(discard 2 cards) target(<2>*|myhand) reject!$ targetedplayer
+auto={B}:regenerate
+text=Enchant creature -- When Strands of Undeath enters the battlefield, target player discards two cards. -- {B}: Regenerate enchanted creature.
+mana={3}{B}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 name=Strandwalker
@@ -74381,6 +76058,15 @@ text=Enchant creature -- When Stupefying Touch enters the battlefield, draw a ca
 mana={1}{U}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+name=Stupor
+target=opponent
+auto=discard:1
+auto=ability$!name(discard) target(*|myhand) reject!$ targetedplayer
+text=Target opponent discards a card at random, then discards a card.
+mana={2}{B}
+type=Sorcery
 [/card]
 [card]
 name=Sturdy Hatchling
@@ -74793,6 +76479,14 @@ auto=upcost[{U}{U}] sacrifice
 auto=lord(creature[blue]) 1/1
 text=At the beginning of your upkeep, sacrifice Sunken City unless you pay {U}{U}. -- Blue creatures get +1/+1.
 mana={U}{U}
+type=Enchantment
+[/card]
+[card]
+name=Sunken Hope
+auto=@each opponent upkeep:ability$!name(bounce creature) notatarget(creature|mybattlefield) moveTo(ownerhand)!$ opponent
+auto=@each my upkeep:notatarget(creature|mybattlefield) moveTo(ownerhand)
+text=At the beginning of each player's upkeep, that player returns a creature he or she controls to its owner's hand.
+mana={3}{U}{U}
 type=Enchantment
 [/card]
 [card]
@@ -75322,6 +77016,19 @@ type=Artifact
 subtype=Equipment
 [/card]
 [card]
+name=Sword of Feast and Famine
+auto=2/2
+auto=teach(creature) protection from black
+auto=teach(creature) protection from green
+auto=@combatdamaged(player) from(mytgt):ability$!name(discard) target(*|myhand) reject!$ opponent
+auto=@combatdamaged(player) from(mytgt):untap all(land|mybattlefield)
+auto={2}:equip
+text=Equipped creature gets +2/+2 and has protection from black and from green. -- Whenever equipped creature deals combat damage to a player, that player discards a card and you untap all lands you control. -- Equip {2}
+mana={3}
+type=Artifact
+subtype=equipment
+[/card]
+[card]
 name=Sword of Fire and Ice
 auto={2}:equip
 auto=teach(creature) protection from red
@@ -75673,6 +77380,13 @@ mana={1}{B}{B}
 type=Sorcery
 [/card]
 [card]
+name=Syphon Mind
+auto=ability$!name(discard) target(*|myhand) reject and((draw:1 opponent))!$
+text=Each other player discards a card. You draw a card for each card discarded this way.
+mana={3}{B}
+type=Sorcery
+[/card]
+[card]
 name=Syphon Soul
 auto=damage:2 opponent
 auto=life:2 controller
@@ -75695,6 +77409,14 @@ toughness=5
 name=Taiga
 type=Land
 subtype=Mountain Forest
+[/card]
+[card]
+name=Tainted AEther
+auto=@movedTo(creature|mybattlefield):sacrifice notatarget(creature,land|mybattlefield)
+auto=@movedTo(creature|opponentbattlefield):ability$!name(sacrifice) sacrifice notatarget(creature,land|mybattlefield) !$ opponent
+text=Whenever a creature enters the battlefield, its controller sacrifices a creature or land.
+mana={2}{B}{B}
+type=Enchantment
 [/card]
 [card]
 name=Tainted Field
@@ -75726,6 +77448,17 @@ auto={T}{S}:life:lifelost controller && life:oplifelost controller
 text={T}, Sacrifice Tainted Sigil: You gain life equal to the total life lost by all players this turn. (Damage causes loss of life.)
 mana={1}{W}{B}
 type=Artifact
+[/card]
+[card]
+name=Tainted Specter
+abilities=flying
+auto={1}{B}{B}{T}:name(offer choice) ability$!choice name(discard) target(*|myhand) reject && damage:1 all(creature,player) _ choice name(put on library) target(*|myhand) moveto(library)!$ targetedplayer
+text=Flying -- {1}{B}{B}, {T}: Target player discards a card unless he or she puts a card from his or her hand on top of his or her library. If that player discards a card this way, Tainted Specter deals 1 damage to each creature and each player. Activate this ability only any time you could cast a sorcery.
+mana={3}{B}
+type=Creature
+subtype=Specter
+power=2
+toughness=2
 [/card]
 [card]
 name=Tainted Strike
@@ -76545,6 +78278,15 @@ mana={4}
 type=Artifact
 [/card]
 [card]
+name=Teferi's Realm
+auto=@each my upkeep:ability$!choice name(artifact) phaseout all(artifact) _ choice name(creature) phaseout all(creature) _ choice name(land) phaseout all(land) _ choice name(non-aura enchantment) phaseout all(enchantment[aura]) !$ controller
+auto=@each opponent upkeep:ability$!choice name(artifact) phaseout all(artifact) _ choice name(creature) phaseout all(creature) _ choice name(land) phaseout all(land) _ choice name(non-aura enchantment) phaseout all(enchantment[aura]) !$ opponent
+auto=@movedTo(enchantment[world]|battlefield):sacrifice all(this)
+text=At the beginning of each player's upkeep, that player chooses artifact, creature, land, or non-Aura enchantment. All nontoken permanents of that type phase out. (While they're phased out, they're treated as though they don't exist. Each one phases in before its controller untaps during his or her next untap step.)
+mana={1}{U}{U}
+type=World Enchantment
+[/card]
+[card]
 name=Teferi's Veil
 auto=@combat(attacking) source(creature|myBattlefield):all(trigger[to]) phaseaction[combatends,sourceinplay] phaseout
 text=Whenever a creature you control attacks, it phases out at end of combat. (While it's phased out, it's treated as though it doesn't exist. It phases in before you untap during your next untap step.)
@@ -76891,6 +78633,16 @@ mana={3}{R}
 type=Instant
 [/card]
 [card]
+name=Tempting Wurm
+auto=ability$!name(put onto battlefield) target(<anyamount>*[-planeswalker]|myhand) moveTo(mybattlefield)!$ opponent
+text=When Tempting Wurm enters the battlefield, each opponent may put any number of artifact, creature, enchantment, and/or land cards from his or her hand onto the battlefield.
+mana={1}{G}
+type=Creature
+subtype=Wurm
+power=5
+toughness=5
+[/card]
+[card]
 name=Tendo Ice Bridge
 auto=counter(0/0,1,Charge)
 auto={T}:add{1}
@@ -76919,6 +78671,14 @@ auto=foreach(swamp|myBattlefield) life:1 controller
 text=Tendrils of Corruption deals X damage to target creature and you gain X life, where X is the number of Swamps you control.
 mana={3}{B}
 type=Instant
+[/card]
+[card]
+name=Tendrils of Despair
+target=opponent
+auto=ability$!name(discard 2 cards) target(<2>*|myhand) reject!$ targetedplayer
+text=As an additional cost to cast Tendrils of Despair, sacrifice a creature. -- Target opponent discards two cards.
+mana={B}{S(creature|mybattlefield)}
+type=Sorcery
 [/card]
 [card]
 name=Teneb the Harvester
@@ -77391,6 +79151,15 @@ text=Thawing Glaciers enters the battlefield tapped. -- {1}, {T}: Search your li
 type=Land
 [/card]
 [card]
+name=The Abyss
+auto=@each opponent upkeep:ability$!name(bury creature) notatarget(creature[-artifact]|mybattlefield) bury !$ opponent
+auto=@each my upkeep:notatarget(creature[-artifact]|mybattlefield) bury
+auto=@movedTo(enchantment[world]|battlefield):sacrifice all(this)
+text=At the beginning of each player's upkeep, destroy target nonartifact creature that player controls of his or her choice. It can't be regenerated.
+mana={3}{B}
+type=World Enchantment
+[/card]
+[card]
 name=The Brute
 target=creature
 auto=1/0
@@ -77487,6 +79256,15 @@ type=Legendary Creature
 subtype=Elf Druid
 power=2
 toughness=2
+[/card]
+[card]
+name=Thelon's Chant
+auto=upcost[{G}] sacrifice
+auto=@movedTo(swamp|mybattlefield):ability$!choice name(3 damage) damage:3 controller _ choice name(counter) target(creature|mybattlefield) counter(-1/-1,1) !$ controller
+auto=@movedTo(swamp|opponentbattlefield):ability$!choice name(3 damage) damage:3 controller _ choice name(counter) target(creature|mybattlefield) counter(-1/-1,1) !$ opponent
+text=At the beginning of your upkeep, sacrifice Thelon's Chant unless you pay {G}. -- Whenever a player puts a Swamp onto the battlefield, Thelon's Chant deals 3 damage to that player unless he or she puts a -1/-1 counter on a creature he or she controls.
+mana={1}{G}{G}
+type=Enchantment
 [/card]
 [card]
 name=Thelonite Druid
@@ -78057,6 +79835,18 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Thraximundar
+abilities=haste
+auto=@combat(attacking) source(this):ability$!name(sacrifice) notatarget(creature|mybattlefield) sacrifice!$ opponent
+auto=@sacrificed(creature):counter(1/1,1)
+text=Haste -- Whenever Thraximundar attacks, defending player sacrifices a creature. -- Whenever a player sacrifices a creature, you may put a +1/+1 counter on Thraximundar.
+mana={4}{U}{B}{R}
+type=Legendary Creature
+subtype=Zombie Assassin
+power=6
+toughness=6
+[/card]
+[card]
 name=Threads of Disloyalty
 target=creature[manacost<=2]
 alias=1194
@@ -78076,12 +79866,31 @@ mana={2}{R}
 type=Sorcery
 [/card]
 [card]
+name=Three Tragedies
+target=player
+auto=ability$!name(discard 3 cards) target(<3>*|myhand) reject!$ targetedplayer
+text=Target player discards three cards.
+mana={3}{B}{B}
+type=Sorcery
+subtype=Arcane
+[/card]
+[card]
 name=Three Visits
 target=forest|mylibrary
 auto=moveTo(myBattlefield)
 text=Search your library for a Forest card and put that card onto the battlefield. Then shuffle your library.
 mana={1}{G}
 type=Sorcery
+[/card]
+[card]
+name=Thresher Beast
+auto=@combat(blocked) source(this):ability$!name(sacrifice) notatarget(land|mybattlefield) sacrifice!$ opponent
+text=Whenever Thresher Beast becomes blocked, defending player sacrifices a land.
+mana={3}{G}{G}
+type=Creature
+subtype=Beast
+power=4
+toughness=4
 [/card]
 [card]
 name=Thrill of the Hunt
@@ -79480,6 +81289,15 @@ mana={2}
 type=Artifact
 [/card]
 [card]
+name=Tourach's Chant
+auto=upcost[{B}] sacrifice
+auto=@movedTo(forest|mybattlefield):ability$!choice name(3 damage) damage:3 controller _ choice name(counter) target(creature|mybattlefield) counter(-1/-1,1) !$ controller
+auto=@movedTo(forest|opponentbattlefield):ability$!choice name(3 damage) damage:3 controller _ choice name(counter) target(creature|mybattlefield) counter(-1/-1,1) !$ opponent
+text=At the beginning of your upkeep, sacrifice Tourach's Chant unless you pay {B}. -- Whenever a player puts a Forest onto the battlefield, Tourach's Chant deals 3 damage to that player unless he or she puts a -1/-1 counter on a creature he or she controls.
+mana={1}{B}{B}
+type=Enchantment
+[/card]
+[card]
 name=Tourach's Gate
 target=land|myBattlefield
 auto=vanishing:3
@@ -80353,6 +82171,13 @@ mana={2}{B}
 type=Instant
 [/card]
 [card]
+name=Tribute to the Wild
+auto=ability$!name(sacrifice) notatarget(artifact,enchantment|myBattlefield) sacrifice!$ opponent
+text=Each opponent sacrifices an artifact or enchantment.
+mana={1}{G}
+type=Instant
+[/card]
+[card]
 name=Trickster Mage
 auto={U}{T}{discard(*|myhand)}:tap target(artifact,creature,land)
 auto={U}{T}{discard(*|myhand)}:untap target(artifact,creature,land)
@@ -80997,6 +82822,14 @@ power=5
 toughness=4
 [/card]
 [card]
+name=Tyrannize
+target=player
+auto=ability$!choice name(discard your hand) all(*|myhand) reject) _ choice name(pay 7 life) life:-7 controller!$ targetedplayer
+text=Target player discards his or her hand unless he or she pays 7 life.
+mana={3}{BR}{BR}
+type=Sorcery
+[/card]
+[card]
 name=Uktabi Drake
 abilities=flying,haste
 auto=upcost[{1}{G}{G};next upkeep] sacrifice
@@ -81048,6 +82881,30 @@ type=Creature
 subtype=Cat
 power=*
 toughness=*
+[/card]
+[card]
+name=Ulamog, the Infinite Gyre
+abilities=indestructible
+autostack=destroy target(*)
+autograveyard=moveTo(ownerlibrary) && shuffle
+auto=@combat(attacking) source(this):name(Annihilate) ability$!name(sacrifice 4 permanents) notatarget(<4>*|mybattlefield) sacrifice!$ opponent
+text=Annihilator 4 (Whenever this creature attacks, defending player sacrifices four permanents.) -- Ulamog is indestructible. -- When Ulamog is put into a graveyard from anywhere, its owner shuffles his or her graveyard into his or her library.
+mana={11}
+type=Legendary Creature
+subtype=Eldrazi
+power=10
+toughness=10
+[/card]
+[card]
+name=Ulamog's Crusher
+abilities=mustattack
+auto=@combat(attacking) source(this):name(Annihilate) ability$!name(sacrifice 2 permanents) notatarget(<2>*|mybattlefield) sacrifice!$ opponent
+text=Annihilator 2 (Whenever this creature attacks, defending player sacrifices two permanents.) -- Ulamog's Crusher attacks each turn if able.
+mana={8}
+type=Creature
+subtype=Eldrazi
+power=8
+toughness=8
 [/card]
 [card]
 name=Ulasht, the Hate Seed
@@ -81108,6 +82965,14 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Umbilicus
+auto=@each my upkeep:ability$!choice name(bounce) notatarget(*|mybattlefield) moveTo(ownerhand) _ choice name(pay 2 life) life:-2 controller!$ controller
+auto=@each opponent upkeep:ability$!choice name(bounce) notatarget(*|mybattlefield) moveTo(ownerhand) _ choice name(pay 2 life) life:-2 controller!$ opponent
+text=At the beginning of each player's upkeep, that player returns a permanent he or she controls to its owner's hand unless he or she pays 2 life.
+mana={4}
+type=Artifact
+[/card]
+[card]
 name=Umbral Mantle
 auto=teach(creature) {3}{q}:+2/+2 ueot
 auto={0}:equip
@@ -81154,6 +83019,15 @@ auto=moveTo(mybattlefield)
 flashback={3}{W}
 text=Return target creature card from your graveyard to the battlefield. -- Flashback {3}{W}
 mana={4}{B}
+type=Sorcery
+[/card]
+[card]
+name=Unburden
+target=player
+auto=ability$!name(discard) target(<2>*|myhand) reject!$ targetedplayer
+autohand=__CYCLING__({2})
+text=Target player discards two cards. -- Cycling {2} ({2}, Discard this card: Draw a card.)
+mana={1}{B}{B}
 type=Sorcery
 [/card]
 [card]
@@ -81377,6 +83251,15 @@ mana={1}{U}{B}
 type=Enchantment
 [/card]
 [card]
+name=Unhinge
+target=player
+auto=ability$!name(discard) target(*|myhand) reject!$ targetedplayer
+auto=draw:1 controller
+text=Target player discards a card. -- Draw a card.
+mana={2}{B}
+type=Sorcery
+[/card]
+[card]
 name=Unholy Grotto
 auto={T}:Add {1}
 auto={B}{T}:moveTo(mylibrary) target(zombie|mygraveyard)
@@ -81465,6 +83348,13 @@ text=Target creature gains haste until end of turn.
 mana={R}
 type=Instant
 subtype=Arcane
+[/card]
+[card]
+name=Unnerve
+auto=ability$!name(discard 2 cards) target(*|myhand) reject!$ opponent
+text=Each opponent discards two cards.
+mana={3}{B}
+type=Sorcery
 [/card]
 [card]
 name=Unquestioned Authority
@@ -81754,6 +83644,14 @@ type=Creature
 subtype=Human Wizard
 power=3
 toughness=1
+[/card]
+[card]
+name=Urborg Justice
+target=opponent
+auto=ability$!name(sacrifice) target(<type:creature[fresh]:opponentgraveyard>creature|mybattlefield) sacrifice !$ targetedplayer
+text=Target opponent sacrifices a creature for each creature that died this turn.
+mana={B}{B}
+type=Instant
 [/card]
 [card]
 name=Urborg Mindsucker
@@ -84185,6 +86083,16 @@ power=6
 toughness=6
 [/card]
 [card]
+name=Vodalian Hypnotist
+auto={2}{B}{T}:target(player) ability$!name(discard) target(*|myhand) reject!$ targetedplayer asSorcery
+text={2}{B}, {T}: Target player discards a card. Activate this ability only any time you could cast a sorcery.
+mana={1}{U}
+type=Creature
+subtype=Merfolk Wizard
+power=1
+toughness=1
+[/card]
+[card]
 name=Vodalian Illusionist
 auto={U}{U}{T}:phaseout target(creature)
 text={U}{U}, {T}: Target creature phases out. (While it's phased out, it's treated as though it doesn't exist. It phases in before its controller untaps during his or her next untap step.)
@@ -84327,6 +86235,18 @@ type=Creature
 subtype=Spirit
 power=2
 toughness=1
+[/card]
+[card]
+name=Voices from the Void
+target=player
+auto=aslongas(forest|myBattlefield) ability$!target(*|myhand) reject!$ targetedplayer
+auto=aslongas(island|myBattlefield) ability$!target(*|myhand) reject!$ targetedplayer
+auto=aslongas(plains|myBattlefield) ability$!target(*|myhand) reject!$ targetedplayer
+auto=aslongas(mountain|myBattlefield) ability$!target(*|myhand) reject!$ targetedplayer
+auto=aslongas(swamp|myBattlefield) ability$!target(*|myhand) reject!$ targetedplayer
+text=Domain - Target player discards a card for each basic land type among lands you control.
+mana={4}{B}
+type=Sorcery
 [/card]
 [card]
 name=Void
@@ -84864,6 +86784,15 @@ power=3
 toughness=4
 [/card]
 [card]
+name=Waking Nightmare
+target=player
+auto=ability$!name(discard 2 cards) target(<2>*|myhand) reject!$ targetedplayer
+text=Target player discards two cards.
+mana={2}{B}
+type=Sorcery
+subtype=Arcane
+[/card]
+[card]
 name=Walk the Aeons
 target=player
 auto=turns:+1
@@ -85056,6 +86985,17 @@ type=Creature
 subtype=Wall
 power=0
 toughness=5
+[/card]
+[card]
+name=Wall of Distortion
+abilities=defender
+auto={2}{B}{T}:target(player) ability$!name(discard) target(*|myhand) reject!$ targetedplayer asSorcery
+text=Defender (This creature can't attack.) -- {2}{B}, {T}: Target player discards a card. Activate this ability only any time you could cast a sorcery.
+mana={2}{B}{B}
+type=Creature
+subtype=Wall
+power=1
+toughness=3
 [/card]
 [card]
 name=Wall of Dust
@@ -85771,7 +87711,8 @@ toughness=2
 [/card]
 [card]
 name=Warped Devotion
-auto=lord(*|battlefield) transforms((,newability[@movedTo(ownerhand) from(this|battlefield):target(*|myhand) reject]))
+auto=@movedTo(*|opponenthand) from(battlefield):ability$!name(discard) target(*|myhand) reject!$ opponent
+auto=@movedTo(*|myhand) from(battlefield):target(*|myhand) reject
 text=Whenever a permanent is returned to a player's hand, that player discards a card.
 mana={2}{B}
 type=Enchantment
@@ -86199,6 +88140,14 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Web of Inertia
+auto=@each opponent combatbegins restriction{type(*|opponentgraveyard)~morethan~0}:ability$!choice name(exile card) target(*|mygraveyard) moveTo(exile) _ choice name(cantattack) all(creature|mybattlefield) cantattack ueot !$ opponent
+auto=@each opponent combatbegins:all(creature|opponentbattlefield) cantattack ueot
+text=At the beginning of each opponent's combat phase, that player may exile a card from his or her graveyard. If the player doesn't, creatures he or she controls can't attack you this turn.
+mana={2}{U}
+type=Enchantment
+[/card]
+[card]
 name=Wee Dragonauts
 abilities=flying
 auto=@movedTo(instant,sorcery|mystack):2/0 ueot
@@ -86230,6 +88179,15 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Wei Assassins
+auto=target(opponent) ability$!name(destroy creature) notatarget(creature|mybattlefield) destroy!$ targetedplayer
+text=When Wei Assassins enters the battlefield, target opponent chooses a creature he or she controls. Destroy it.
+mana={3}{B}{B}
+type=Creature
+subtype=Human Soldier Assassin
+power=3
+toughness=2
+[card]
 name=Wei Elite Companions
 abilities=horsemanship
 text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.)
@@ -86246,6 +88204,17 @@ type=Creature
 subtype=Human Soldier
 power=2
 toughness=1
+[/card]
+[card]
+name=Wei Night Raiders
+abilities=horsemanship
+auto=@damaged(opponent) from(this):ability$!name(discard) target(*|myhand) reject!$ opponent
+text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.) -- Whenever Wei Night Raiders deals damage to an opponent, that player discards a card.
+mana={2}{B}{B}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=2
 [/card]
 [card]
 name=Wei Scout
@@ -87302,11 +89271,20 @@ mana={3}
 type=Artifact
 [/card]
 [card]
-name=Wing Pincture
+name=Wing Puncture
 target=creature|mybattlefield
 auto=transforms((,newability[dynamicability<!powerstrike!> target(creature[flying])])) 
 text=Target creature you control deals damage equal to its power to target creature with flying.
 mana={G}
+type=Instant
+[/card]
+[card]
+name=Wing Shards
+target=player
+auto=ability$!name(sacrifice attacker) notatarget(creature[attacking]|mybattlefield) sacrifice!$ targetedplayer
+abilities=storm
+text=Target player sacrifices an attacking creature. -- Storm (When you cast this spell, copy it for each spell cast before it this turn.)
+mana={1}{W}{W}
 type=Instant
 [/card]
 [card]
@@ -87592,6 +89570,14 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Wistful Thinking
+target=player
+auto=ability$!name(discard 4 cards) draw:2 _ choice target(<4>*|myhand) reject!$ targetedplayer
+text=Target player draws two cards, then discards four cards.
+mana={2}{U}
+type=Sorcery
+[/card]
+[card]
 name=Witch Engine
 abilities=swampwalk
 auto={T}:Add{B}{B}{B}{B} && moveTo(opponentBattlefield)
@@ -87694,6 +89680,14 @@ power=9
 toughness=9
 [/card]
 [card]
+name=Wit's End
+target=player
+auto=ability$!all(*|myhand) reject!$ targetedplayer
+text=Target player discards his or her hand.
+mana={5}{B}{B}
+type=Sorcery
+[/card]
+[card]
 name=Wizard Mentor
 auto={T}:moveTo(ownerhand) all(this) && moveTo(ownerhand) target(creature|myBattlefield)
 text={T}: Return Wizard Mentor and target creature you control to their owner's hand.
@@ -87732,6 +89726,20 @@ type=Creature
 subtype=Zombie
 power=2
 toughness=3
+[/card]
+[card]
+name=Woebringer Demon
+abilities=flying
+auto=@each my upkeep restriction{type(creature|mybattlefield)~morethan~1}:sacrifice notatarget(other creature|mybattlefield)
+auto=@each my upkeep restriction{type(creature|mybattlefield)~lessthan~2}:sacrifice
+auto=@each opponent upkeep restriction{type(creature|opponentbattlefield)~morethan~0}:ability$!name(sacrifice) sacrifice notatarget(other creature|mybattlefield)!$ opponent
+auto=@each opponent upkeep restriction{type(creature|opponentbattlefield)~lessthan~1}:sacrifice
+text=Flying -- At the beginning of each player's upkeep, that player sacrifices a creature. If the player can't, sacrifice Woebringer Demon.
+mana={3}{B}{B}
+type=Creature
+subtype=Demon
+power=4
+toughness=4
 [/card]
 [card]
 name=Woeleecher
@@ -88324,6 +90332,14 @@ power=5
 toughness=5
 [/card]
 [card]
+name=Wrench Mind
+target=player
+auto=ability$!choice name(discard 2 cards) target(<2>*|myhand) reject _ choice name(discard artifact) target(artifact|myhand) reject !$ targetedplayer
+text=Target player discards two cards unless he or she discards an artifact card.
+mana={B}{B}
+type=Sorcery
+[/card]
+[card]
 name=Wretched Anurid
 auto=@movedTo(other creature|battlefield):life:-1 controller
 text=Whenever another creature enters the battlefield, you lose 1 life.
@@ -88761,6 +90777,13 @@ mana={1}{B}
 type=Enchantment
 [/card]
 [card]
+name=Yawning Fissure
+auto=ability$!name(sacrifice land) notatarget(land|mybattlefield) sacrifice!$ opponent
+text=Each opponent sacrifices a land.
+mana={4}{R}
+type=Sorcery
+[/card]
+[card]
 name=Yellow Scarves Cavalry
 abilities=horsemanship,cantblock
 text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.) -- Yellow Scarves Cavalry can't block.
@@ -89090,6 +91113,17 @@ type=Legendary Creature
 subtype=Human Soldier
 power=4
 toughness=2
+[/card]
+[card]
+name=Zhang Liao, Hero of Hefei
+abilities=horsemanship
+auto=@damaged(opponent) from(this):ability$!name(discard) target(*|myhand) reject!$ opponent
+text=Whenever Zhang Liao, Hero of Hefei deals damage to an opponent, that opponent discards a card.
+mana={4}{B}{B}
+type=Legendary Creature
+subtype=Human Soldier
+power=3
+toughness=3
 [/card]
 [card]
 name=Zhao Zilong, Tiger General
@@ -89443,6 +91477,16 @@ type=Legendary Creature
 subtype=Human Wizard
 power=1
 toughness=4
+[/card]
+[card]
+name=Zuran Enchanter
+auto={2}{B}{T}:target(player) ability$!name(discard) target(*|myhand) reject!$ targetedplayer myTurnOnly
+text={2}{B}, {T}: Target player discards a card. Activate this ability only during your turn.
+mana={1}{U}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=1
 [/card]
 [card]
 name=Zuran Orb
