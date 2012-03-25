@@ -168,13 +168,15 @@ void SimpleMenu::Render()
     float height = mHeight;
     if (timeOpen < 1) height *= timeOpen > 0 ? timeOpen : -timeOpen;
 
-    renderer->FillRect(mX, mY, mWidth, height, ARGB(180,0,0,0));
+    float heightPadding = kLineHeight/2; // this to reduce the bottom padding of the menu
+    renderer->FillRect(mX, mY, mWidth, height - heightPadding, ARGB(180,0,0,0));
 
     renderer->SetTexBlend(BLEND_SRC_ALPHA, BLEND_ONE_MINUS_SRC_ALPHA);
-    drawVertPole(mX, mY, height);
-    drawVertPole(mX + mWidth, mY, height);
+    
+    drawVertPole(mX, mY, height - heightPadding);
+    drawVertPole(mX + mWidth, mY, height - heightPadding);
     drawHorzPole(mX, mY, mWidth);
-    drawHorzPole(mX, mY + height, mWidth);
+    drawHorzPole(mX, mY + height - heightPadding, mWidth);
     //drawVertPole(mX, mY - 16, height + 32);
     //drawVertPole(mX + mWidth, mY - 16, height + 32);
     //drawHorzPole(mX - 16, mY, mWidth + 32);
@@ -219,9 +221,8 @@ void SimpleMenu::Render()
 bool SimpleMenu::CheckUserInput(JButton key)
 {
     // a dude may have clicked somewhere, we're gonna select the closest object from where he clicked
+    // since we know we are in a menu, we just need to check one cardinality
     int x = -1, y = -1;
-    unsigned int distance2;
-    unsigned int minDistance2 = -1;
     int n = mCurr;
     
     if ((key == JGE_BTN_NONE) && mEngine->GetLeftClickCoordinates(x, y))
@@ -240,36 +241,25 @@ bool SimpleMenu::CheckUserInput(JButton key)
         if (mObjects.size())
         {
             float top, left;
-            SimpleMenuItem * currentItem = static_cast<SimpleMenuItem *>(mObjects[mCurr]);
-            WFont * currentFont = WResourceManager::Instance()->GetWFont(currentItem->getFontId());
-            float scaledFontHeight = currentFont->GetHeight() * currentFont->GetScale();
-            float fontHeight = scaledFontHeight > kLineHeight ? scaledFontHeight : kLineHeight;
-            float menuTopEdge = fontHeight + mY + spadeR->mHeight;
-            float menuBottomEdge = menuTopEdge + ( (maxItems -1) * fontHeight);
+            float menuTopEdge =  mY + kLineHeight;
+            float menuBottomEdge = mY + mHeight - (kLineHeight/2);
             
-            for (int i = 0; i < mCount; i++)
+            if (y < menuTopEdge)
+                n = (mCurr - 1) > 0 ? mCurr -1 : 0;
+            else if (y >= menuBottomEdge)
+                n = (mCurr + 1) < mCount ? mCurr + 1 : mCurr - 1;
+            else
             {
-                if (mObjects[i]->getTopLeft(top, left))
+                for (int i = 0; i < mCount; i++)
                 {
-                    distance2 = (unsigned int)((top - y) * (top - y) + (left - x) * (left - x));
-                    if ( (distance2 <= minDistance2) )
+                    if (mObjects[i]->getTopLeft(top, left))
                     {
-                        minDistance2 = distance2;
-                        if (y < menuTopEdge)
-                        {
-                            n = (mCurr - 1) > 0 ? mCurr - 1 : 0;
-                            break;
-                        }
-                        else if (y > menuBottomEdge)
-                        {
-                            n = (mCurr + 1) < mCount ? mCurr + 1 : mCount - 1;
-                            break;
-                        }
-                        else
+                        if ( (y > top) && (y <= (top + kLineHeight)) )
                             n = i;
-                    }
-                }   
+                    }   
+                }
             }
+
             // check to see if the user clicked 
             if (n != mCurr && mObjects[mCurr] != NULL && mObjects[mCurr]->Leaving(JGE_BTN_DOWN))
             {
@@ -281,6 +271,7 @@ bool SimpleMenu::CheckUserInput(JButton key)
             {
                 mObjects[mCurr]->Entering();
             }
+
             mEngine->LeftClickedProcessed();
             mEngine->ResetInput();
             return true;
