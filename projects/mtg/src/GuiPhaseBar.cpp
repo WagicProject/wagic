@@ -97,8 +97,8 @@ bool GuiPhaseBar::Leaving(JButton key)
 void GuiPhaseBar::Render()
 {
     JQuadPtr quad = WResourceManager::Instance()->GetQuad("phasebar");
-
-    JRenderer::GetInstance()->DrawLine(0, CENTER, SCREEN_WIDTH, CENTER, ARGB(255, 255, 255, 255));
+    //uncomment to draw a hideous line across hires screens.
+   // JRenderer::GetInstance()->DrawLine(0, CENTER, SCREEN_WIDTH, CENTER, ARGB(255, 255, 255, 255));
 
     unsigned int p = (phase->id + kPhases - 4) * (int) (kWidth + 1);
     float centerYPosition = CENTER + (kWidth / 2) * angle * zoomFactor / (M_PI / 6) - zoomFactor * kWidth / 4;
