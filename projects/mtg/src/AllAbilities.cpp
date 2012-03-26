@@ -1645,6 +1645,7 @@ int AAFlip::resolve()
             _target->types = myFlip->types;
             _target->text = myFlip->text;
             _target->formattedText = myFlip->formattedText;
+            _target->basicAbilities = myFlip->basicAbilities;
 
             for(unsigned int i = 0;i < _target->cardsAbilities.size();i++)
             {
