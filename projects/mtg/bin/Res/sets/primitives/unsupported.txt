@@ -205,15 +205,6 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-name=Airdrop Condor
-text=Flying -- {1}{R}, Sacrifice a Goblin creature: Airdrop Condor deals damage equal to the sacrificed creature's power to target creature or player.
-mana={4}{R}
-type=Creature
-subtype=Bird
-power=2
-toughness=2
-[/card]
-[card]
 name=Akki Blizzard-Herder
 text=When Akki Blizzard-Herder is put into a graveyard from the battlefield, each player sacrifices a land.
 mana={1}{R}
@@ -287,12 +278,6 @@ name=Alms
 text={1}, Exile the top card of your graveyard: Prevent the next 1 damage that would be dealt to target creature this turn.
 mana={W}
 type=Enchantment
-[/card]
-[card]
-name=Altar Of Dementia (Altar of Dementia)
-mana={2}
-type=Artifact
-text=Sacrifice a creature: Target player puts a number of cards equal to the sacrificed creature's power from the top of his or her library into his or her graveyard.
 [/card]
 [card]
 name=Alter Reality
@@ -721,15 +706,6 @@ type=Eaturecray — Igpay
 power=3
 toughness=3
 text=Oubleday ikestray Eneverwhay Atinlay Igpay's ontrollercay eaksspay ay onnay-Igpay-Atinlay ordway, acrificesay Atinlay Igpay.
-[/card]
-[card]
-name=Atogatog
-text=Sacrifice an Atog creature: Atogatog gets +X/+X until end of turn, where X is the sacrificed creature's power.
-mana={W}{U}{B}{R}{G}
-type=Legendary Creature
-subtype=Atog
-power=5
-toughness=5
 [/card]
 [card]
 name=Augury Adept
@@ -1537,13 +1513,6 @@ power=3
 toughness=2
 [/card]
 [card]
-name=Bloodfire Infusion
-text=Enchant creature you control -- {R}, Sacrifice enchanted creature: Bloodfire Infusion deals damage equal to the sacrificed creature's power to each creature.
-mana={2}{R}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Bloodletter
 mana={2}{B}
 type=Creature — Zombie
@@ -1565,15 +1534,6 @@ name=Bloodscent
 text=All creatures able to block target creature this turn do so.
 mana={3}{G}
 type=Instant
-[/card]
-[card]
-name=Bloodshot Cyclops
-text={T}, Sacrifice a creature: Bloodshot Cyclops deals damage equal to the sacrificed creature's power to target creature or player.
-mana={5}{R}
-type=Creature
-subtype=Cyclops Giant
-power=4
-toughness=4
 [/card]
 [card]
 name=Bludgeon Brawl
@@ -1716,15 +1676,6 @@ toughness=2
 name=Boseiju, Who Shelters All
 text=Boseiju, Who Shelters All enters the battlefield tapped. -- {T}, Pay 2 life: Add {1} to your mana pool. If that mana is spent on an instant or sorcery spell, that spell can't be countered by spells or abilities.
 type=Legendary Land
-[/card]
-[card]
-name=Bosh, Iron Golem
-text=Trample -- {3}{R}, Sacrifice an artifact: Bosh, Iron Golem deals damage equal to the sacrificed artifact's converted mana cost to target creature or player.
-mana={8}
-type=Legendary Artifact Creature
-subtype=Golem
-power=6
-toughness=7
 [/card]
 [card]
 name=Bosium Strip
@@ -1878,15 +1829,6 @@ type=Creature
 subtype=Human Wizard
 power=1
 toughness=1
-[/card]
-[card]
-name=Brion Stoutarm
-text=Lifelink (Damage dealt by this creature also causes you to gain that much life.) -- {R}, {T}, Sacrifice a creature other than Brion Stoutarm: Brion Stoutarm deals damage equal to the sacrificed creature's power to target player.
-mana={2}{R}{W}
-type=Legendary Creature
-subtype=Giant Warrior
-power=4
-toughness=4
 [/card]
 [card]
 name=Broken Ambitions
@@ -2160,13 +2102,6 @@ type=Creature
 subtype=Hellion
 power=3
 toughness=3
-[/card]
-[card]
-name=Call for Blood
-text=As an additional cost to cast Call for Blood, sacrifice a creature. -- Target creature gets -X/-X until end of turn, where X is the sacrificed creature's power.
-mana={4}{B}
-type=Instant
-subtype=Arcane
 [/card]
 [card]
 name=Call of the Wild
@@ -4860,16 +4795,6 @@ name=Dream Salvage
 text=Draw cards equal to the number of cards target opponent discarded this turn.
 mana={UB}
 type=Instant
-[/card]
-[card]
-name=Dream Thief
-abilities=flying
-text=Flying -- When Dream Thief enters the battlefield, draw a card if you've cast another blue spell this turn.
-mana={2}{U}
-type=Creature
-subtype=Faerie Rogue
-power=2
-toughness=1
 [/card]
 [card]
 name=Dream Tides
@@ -7698,12 +7623,6 @@ power=9
 toughness=7
 [/card]
 [card]
-name=Greater Good
-text=Sacrifice a creature: Draw cards equal to the sacrificed creature's power, then discard three cards.
-mana={2}{G}{G}
-type=Enchantment
-[/card]
-[card]
 name=Greater Morphling
 mana={6}{U}{U}
 type=Creature — Shapeshifter
@@ -8375,15 +8294,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Hisoka, Minamo Sensei
-text={2}{U}, Discard a card: Counter target spell if it has the same converted mana cost as the discarded card.
-mana={2}{U}{U}
-type=Legendary Creature
-subtype=Human Wizard
-power=1
-toughness=3
-[/card]
-[card]
 name=Hit // Run (Hit)
 text=Target player sacrifices an artifact or creature. Hit deals damage to that player equal to that permanent's converted mana cost.
 mana={1}{B}{R}
@@ -8448,12 +8358,6 @@ type=Artifact Creature
 subtype=Golem Warrior
 power=4
 toughness=4
-[/card]
-[card]
-name=Homarid Spawning Bed
-text={1}{U}{U}, Sacrifice a blue creature: Put X 1/1 blue Camarid creature tokens onto the battlefield, where X is the sacrificed creature's converted mana cost.
-mana={U}{U}
-type=Enchantment
 [/card]
 [card]
 name=Homeward Path
@@ -10180,12 +10084,6 @@ type=Sorcery
 text=Search your library for a basic land card, put that card into play tapped, then shuffle your library. If you sang a song the whole time you were searching and shuffling, you may untap that land.
 [/card]
 [card]
-name=Land Equilibrium
-text=If an opponent who controls at least as many lands as you do would put a land onto the battlefield, that player instead puts that land onto the battlefield then sacrifices a land.
-mana={2}{U}{U}
-type=Enchantment
-[/card]
-[card]
 name=Land Grant
 mana={1}{G}
 type=Sorcery
@@ -10498,12 +10396,6 @@ name=Life // Death (Life)
 text=All lands you control become 1/1 creatures until end of turn. They're still lands.
 mana={G}
 type=Sorcery
-[/card]
-[card]
-name=Life Chisel
-text=Sacrifice a creature: You gain life equal to the sacrificed creature's toughness. Activate this ability only during your upkeep.
-mana={4}
-type=Artifact
 [/card]
 [card]
 name=Life from the Loam
@@ -13176,12 +13068,6 @@ power=5
 toughness=5
 [/card]
 [card]
-name=Ooze Garden
-text={1}{G}, Sacrifice a non-Ooze creature: Put an X/X green Ooze creature token onto the battlefield, where X is the sacrificed creature's power. Activate this ability only any time you could cast a sorcery.
-mana={1}{G}
-type=Enchantment
-[/card]
-[card]
 name=Opal Acrolith
 text=Whenever an opponent casts a creature spell, if Opal Acrolith is an enchantment, Opal Acrolith becomes a 2/4 Soldier creature. -- {0}: Opal Acrolith becomes an enchantment.
 mana={2}{W}
@@ -13907,24 +13793,6 @@ toughness=0
 text=({(u/p)} can be paid with either {U} or 2 life.) You may have Phyrexian Metamorph enter the battlefield as a copy of any artifact or creature on the battlefield, except it's an artifact in addition to its other types.
 [/card]
 [card]
-name=Phyrexian Negator
-text=Trample -- Whenever Phyrexian Negator is dealt damage, sacrifice that many permanents.
-mana={2}{B}
-type=Creature
-subtype=Horror
-power=5
-toughness=5
-[/card]
-[card]
-name=Phyrexian Obliterator
-mana={B}{B}{B}{B}
-type=Creature
-subtype=Horror
-power=5
-toughness=5
-text=Trample Whenever a source deals damage to Phyrexian Obliterator, that source's controller sacrifices that many permanents.
-[/card]
-[card]
 name=Phyrexian Portal
 text={3}: Target opponent looks at the top ten cards of your library and separates them into two face-down piles. Exile one of those piles. Search the other pile for a card, put it into your hand, then shuffle the rest of that pile into your library. Activate this ability only if your library has ten or more cards in it.
 mana={3}
@@ -13973,12 +13841,6 @@ mana={2}
 type=Artifact
 [/card]
 [card]
-name=Phyrexian Totem
-text={T}: Add {B} to your mana pool. -- {2}{B}: Phyrexian Totem becomes a 5/5 black Horror artifact creature with trample until end of turn. -- Whenever Phyrexian Totem is dealt damage, if it's a creature, sacrifice that many permanents.
-mana={3}
-type=Artifact
-[/card]
-[card]
 name=Phyrexian Tyranny
 text=Whenever a player draws a card, that player loses 2 life unless he or she pays {2}.
 mana={U}{B}{R}
@@ -14010,12 +13872,6 @@ type=Creature
 subtype=Human Cleric
 power=1
 toughness=3
-[/card]
-[card]
-name=Pillar Tombs of Aku
-text=At the beginning of each player's upkeep, that player may sacrifice a creature. If that player doesn't, he or she loses 5 life and you sacrifice Pillar Tombs of Aku.
-mana={2}{B}{B}
-type=World Enchantment
 [/card]
 [card]
 name=Pillar of the Paruns
@@ -16385,15 +16241,6 @@ mana={4}
 type=Artifact
 [/card]
 [card]
-name=Sanguine Praetor
-text={B}, Sacrifice a creature: Destroy each creature with the same converted mana cost as the sacrificed creature.
-mana={6}{B}{B}
-type=Creature
-subtype=Avatar
-power=7
-toughness=5
-[/card]
-[card]
 name=Sanity Grinding
 text=Chroma - Reveal the top ten cards of your library. For each blue mana symbol in the mana costs of the revealed cards, target opponent puts the top card of his or her library into his or her graveyard. Then put the cards you revealed this way on the bottom of your library in any order.
 mana={U}{U}{U}
@@ -17362,13 +17209,6 @@ mana={1}{R}
 type=Sorcery
 [/card]
 [card]
-name=Sift Through Sands
-text=Draw two cards, then discard a card. -- If you've cast a spell named Peer Through Depths and a spell named Reach Through Mists this turn, you may search your library for a card named The Unspeakable, put it onto the battlefield, then shuffle your library.
-mana={1}{U}{U}
-type=Instant
-subtype=Arcane
-[/card]
-[card]
 name=Sigil Tracer
 text={1}{U}, Tap two untapped Wizards you control: Copy target instant or sorcery spell. You may choose new targets for the copy.
 mana={1}{U}{U}
@@ -17659,12 +17499,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Slumbering Tora
-text={2}, Discard a Spirit or Arcane card: Slumbering Tora becomes an X/X Cat artifact creature until end of turn, where X is the discarded card's converted mana cost.
-mana={3}
-type=Artifact
-[/card]
-[card]
 name=Smallpox
 text=Each player loses 1 life, discards a card, sacrifices a creature, then sacrifices a land.
 mana={B}{B}
@@ -17906,13 +17740,6 @@ name=Soul Net
 text=Whenever a creature is put into a graveyard from the battlefield, you may pay {1}. If you do, you gain 1 life.
 mana={1}
 type=Artifact
-[/card]
-[card]
-name=Soul Reap
-target=creature
-text=Destroy target nongreen creature. Its controller loses 3 life if you've cast another black spell this turn.
-mana={1}{B}
-type=Sorcery
 [/card]
 [card]
 name=Soul Scourge
@@ -20547,12 +20374,6 @@ mana={4}{R}{R}
 type=Sorcery
 [/card]
 [card]
-name=Unerring Sling
-text={3}, {T}, Tap an untapped creature you control: Unerring Sling deals damage equal to the tapped creature's power to target attacking or blocking creature with flying.
-mana={3}
-type=Artifact
-[/card]
-[card]
 name=Unholy Citadel
 text=Black legendary creatures you control have "bands with other legendary creatures." (Any legendary creatures can attack in a band as long as at least one has "bands with other legendary creatures." Bands are blocked as a group. If at least two legendary creatures you control, one of which has "bands with other legendary creatures," are blocking or being blocked by the same creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
 type=Land
@@ -20819,15 +20640,6 @@ name=Vengeful Rebirth
 text=Return target card from your graveyard to your hand. If you return a nonland card to your hand this way, Vengeful Rebirth deals damage equal to that card's converted mana cost to target creature or player. -- Exile Vengeful Rebirth.
 mana={4}{R}{G}
 type=Sorcery
-[/card]
-[card]
-name=Vengevine
-mana={2}{G}{G}
-type=Creature
-subtype=Elemental
-power=4
-toughness=3
-text=Haste Whenever you cast a spell, if it's the second creature spell you cast this turn, you may return Vengevine from your graveyard to the battlefield.
 [/card]
 [card]
 name=Venomous Breath

@@ -990,6 +990,17 @@ mana={3}{U}
 type=Sorcery
 [/card]
 [card]
+name=Airdrop Condor
+abilities=flying
+auto={1}{R}{S(creature[goblin]|mybattlefield)}:damage:storedpower target(creature,player)
+text=Flying -- {1}{R}, Sacrifice a Goblin creature: Airdrop Condor deals damage equal to the sacrificed creature's power to target creature or player.
+mana={4}{R}
+type=Creature
+subtype=Bird
+power=2
+toughness=2
+[/card]
+[card]
 name=Aisling Leprechaun
 auto=@combat(blocking,blocked) source(this) from(creature):all(trigger[from]) transforms((,green)) forever
 text=Whenever Aisling Leprechaun blocks or becomes blocked by a creature, that creature becomes green. (This effect lasts indefinitely.)
@@ -1634,9 +1645,8 @@ mana={G}{W}{S(creature|mybattlefield)}
 type=Sorcery
 [/card]
 [card]
-name=Altar of Dementia
-auto={s(creature|mybattlefield)}:name(opponent) notatarget(creature|mybattlefield) dynamicability<!mytgt powerdeplete targetopponent!> sacrifice
-auto={s(creature|mybattlefield)}:name(you) notatarget(creature|mybattlefield) dynamicability<!mytgt powerdeplete targetcontroller!> sacrifice
+name=Altar Of Dementia
+auto={S(creature|mybattlefield)}:target(player) deplete:storedpower
 text=Sacrifice a creature: Target player puts a number of cards equal to the sacrificed creature's power from the top of his or her library into his or her graveyard.
 mana={2}
 type=Artifact
@@ -2990,6 +3000,15 @@ power=7
 toughness=7
 [/card]
 [card]
+name=Arcane Denial
+target=*|stack
+auto=@next upkeep:draw:1 controller
+auto=target(*|stack) transforms((,newability[fizzle],newability[phaseaction[upkeep once] draw:2 controller])) forcedalive
+text=Counter target spell. Its controller may draw up to two cards at the beginning of the next turn's upkeep. -- You draw a card at the beginning of the next turn's upkeep.
+mana={1}{U}
+type=Instant
+[/card]
+[card]
 name=Arcane Laboratory
 auto=maxCast(*)1
 auto=maxCast(*)1 opponent
@@ -4170,6 +4189,16 @@ type=Creature
 subtype=Atog
 power=1
 toughness=2
+[/card]
+[card]
+name=Atogatog
+auto={S(creature[atog]|mybattlefield)}:storedpower/storedpower
+text=Sacrifice an Atog creature: Atogatog gets +X/+X until end of turn, where X is the sacrificed creature's power.
+mana={W}{U}{B}{R}{G}
+type=Legendary Creature
+subtype=Atog
+power=5
+toughness=5
 [/card]
 [card]
 name=Attrition
@@ -7825,6 +7854,17 @@ mana={1}{R}
 type=Instant
 [/card]
 [card]
+name=Blood Hound
+auto=@damaged(controller):may counter(1/1,thatmuch)
+auto=@each my endofturn:removeallcounters(1/1)
+text=Whenever you're dealt damage, you may put that many +1/+1 counters on Blood Hound. -- At the beginning of your end step, remove all +1/+1 counters from Blood Hound.
+mana={2}{R}
+type=Creature
+subtype=Hound
+power=1
+toughness=1
+[/card]
+[card]
 name=Blood Knight
 abilities=first strike,protection from white
 text=First strike, protection from white
@@ -7914,15 +7954,35 @@ mana={3}{B}
 type=Sorcery
 [/card]
 [card]
-name=Blood Hound
-auto=@damaged(controller):may counter(1/1,thatmuch)
-auto=@each my endofturn:removeallcounters(1/1)
-text=Whenever you're dealt damage, you may put that many +1/+1 counters on Blood Hound. -- At the beginning of your end step, remove all +1/+1 counters from Blood Hound.
-mana={2}{R}
+name=Blood Tribute
+text=Kicker - Tap an untapped Vampire you control. (You may tap a Vampire you control in addition to any other costs as you cast this spell.) -- Target opponent loses half his or her life, rounded up. If Blood Tribute was kicked, you gain life equal to the life lost this way.
+auto=life:-halfupopponentlifetotal opponent
+auto=life:opponentlifetotal controller
+mana={4}{B}{B}
+other={4}{b}{b}{t(vampire|mybattlefield)} name(Pay Kicker)
+type=Sorcery
+[/card]
+[card]
+name=Blood Tyrant
+abilities=flying,trample
+auto=@each my upkeep:life:-1 opponent && life:-1 controller
+auto=@each my upkeep:counter(1/1,2)
+text=Flying, trample -- At the beginning of your upkeep, each player loses 1 life. Put a +1/+1 counter on Blood Tyrant for each 1 life lost this way. -- Whenever a player loses the game, put five +1/+1 counters on Blood Tyrant.
+mana={4}{U}{B}{R}
 type=Creature
-subtype=Hound
-power=1
-toughness=1
+subtype=Vampire
+power=5
+toughness=5
+[/card]
+[card]
+name=Blood Vassal
+auto={S}:Add {B}{B}
+text=Sacrifice Blood Vassal: Add {B}{B} to your mana pool.
+mana={2}{B}
+type=Creature
+subtype=Thrull
+power=2
+toughness=2
 [/card]
 [card]
 name=Bloodbond March
@@ -7975,6 +8035,64 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Bloodcurdling Scream
+target=creature
+auto=X/0
+text=Target creature gets +X/+0 until end of turn.
+mana={X}{B}
+type=Sorcery
+[/card]
+[card]
+name=Bloodfire Colossus
+auto={R}{S}:damage:6 all(creature,player)
+text={R}, Sacrifice Bloodfire Colossus: Bloodfire Colossus deals 6 damage to each creature and each player.
+mana={6}{R}{R}
+type=Creature
+subtype=Giant
+power=6
+toughness=6
+[/card]
+[card]
+name=Bloodfire Dwarf
+auto={R}{S}:damage:1 all(creature[-flying])
+text={R}, Sacrifice Bloodfire Dwarf: Bloodfire Dwarf deals 1 damage to each creature without flying.
+mana={R}
+type=Creature
+subtype=Dwarf
+power=1
+toughness=1
+[/card]
+[card]
+name=Bloodfire Infusion
+target=creature|mybattlefield
+auto=teach(creature) {R}{S}:all(creature) damage:storedpower
+text=Enchant creature you control -- {R}, Sacrifice enchanted creature: Bloodfire Infusion deals damage equal to the sacrificed creature's power to each creature.
+mana={2}{R}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Bloodfire Kavu
+auto={R}{S}:damage:2 all(creature)
+text={R}, Sacrifice Bloodfire Kavu: Bloodfire Kavu deals 2 damage to each creature.
+mana={2}{R}{R}
+type=Creature
+subtype=Kavu
+power=2
+toughness=2
+[/card]
+[card]
+name=Bloodhall Ooze
+auto=@each my upkeep restriction{type(*[black]|myBattlefield)~morethan~0}:may counter(1/1,1)
+auto=@each my upkeep restriction{type(*[green]|myBattlefield)~morethan~0}:may counter(1/1,1)
+text=At the beginning of your upkeep, if you control a black permanent, you may put a +1/+1 counter on Bloodhall Ooze. -- At the beginning of your upkeep, if you control a green permanent, you may put a +1/+1 counter on Bloodhall Ooze.
+mana={R}
+type=Creature
+subtype=Ooze
+power=1
+toughness=1
+[/card]
+[card]
 name=Bloodghast
 abilities=cantblock
 auto=this(opponentlife < 11) haste
@@ -7996,6 +8114,36 @@ type=Creature
 subtype=Demon
 power=5
 toughness=4
+[/card]
+[card]
+name=Bloodhusk Ritualist
+auto=kicker target(opponent) ability$!name(discard) target(*|myhand) reject!$ targetedplayer
+kicker=multi{B}
+text=Multikicker {B} (You may pay an additional any number of times as you cast this spell.) -- When Bloodhusk Ritualist enters the battlefield, target opponent discards a card for each time it was kicked.
+mana={4}{B}{B}
+type=Creature
+subtype=Horror
+power=2
+toughness=2
+[/card]
+[card]
+name=Bloodied Ghost
+abilities=flying
+auto=counter(-1/-1,1)
+text=Flying -- Bloodied Ghost enters the battlefield with a -1/-1 counter on it.
+mana={1}{WB}{WB}
+type=Creature
+subtype=Spirit
+power=3
+toughness=3
+[/card]
+[card]
+name=Bloodletter Quill
+auto={2}{T}{C(0/0,1,Blood)}:thisforeach(counter{0/0.1.Blood}) life:-1 controller && draw:1
+auto={U}{B}:counter(0/0,-1,Blood)
+text={2}, {T}, Put a blood counter on Bloodletter Quill: Draw a card, then lose 1 life for each blood counter on Bloodletter Quill. -- {U}{B}: Remove a blood counter from Bloodletter Quill.
+mana={3}
+type=Artifact
 [/card]
 ###The 2 cards below should stay together (Flip Card)###
 [card]
@@ -8036,148 +8184,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Bloodhusk Ritualist
-auto=kicker target(opponent) ability$!name(discard) target(*|myhand) reject!$ targetedplayer
-kicker=multi{B}
-text=Multikicker {B} (You may pay an additional any number of times as you cast this spell.) -- When Bloodhusk Ritualist enters the battlefield, target opponent discards a card for each time it was kicked.
-mana={4}{B}{B}
-type=Creature
-subtype=Horror
-power=2
-toughness=2
-[/card]
-[card]
-name=Bloodrage Vampire
-auto=bloodthirst:1
-text=Bloodthirst 1
-mana={2}{B}
-type=Creature
-subtype=Vampire
-power=3
-toughness=1
-[/card]
-[card]
-name=Bloodstoke Howler
-facedown={3}
-autofacedown={6}{R}:morph
-autofaceup=3/0 all(beast|mybattlefield)
-text=Morph {6}{R} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- When Bloodstoke Howler is turned face up, Beast creatures you control get +3/+0 until end of turn.
-mana={5}{R}
-type=Creature
-subtype=Beast
-power=3
-toughness=4
-[/card]
-[card]
-name=Bloodthrone Vampire
-auto={S(creature|myBattlefield)}:2/2
-text=Sacrifice a creature: Bloodthrone Vampire gets +2/+2 until end of turn.
-mana={1}{B}
-type=Creature
-subtype=Vampire
-power=1
-toughness=1
-[/card]
-[card]
-name=Blood Tribute
-text=Kicker - Tap an untapped Vampire you control. (You may tap a Vampire you control in addition to any other costs as you cast this spell.) -- Target opponent loses half his or her life, rounded up. If Blood Tribute was kicked, you gain life equal to the life lost this way.
-auto=life:-halfupopponentlifetotal opponent
-auto=life:opponentlifetotal controller
-mana={4}{B}{B}
-other={4}{b}{b}{t(vampire|mybattlefield)} name(Pay Kicker)
-type=Sorcery
-[/card]
-[card]
-name=Blood Tyrant
-abilities=flying,trample
-auto=@each my upkeep:life:-1 opponent && life:-1 controller
-auto=@each my upkeep:counter(1/1,2)
-text=Flying, trample -- At the beginning of your upkeep, each player loses 1 life. Put a +1/+1 counter on Blood Tyrant for each 1 life lost this way. -- Whenever a player loses the game, put five +1/+1 counters on Blood Tyrant.
-mana={4}{U}{B}{R}
-type=Creature
-subtype=Vampire
-power=5
-toughness=5
-[/card]
-[card]
-name=Blood Vassal
-auto={S}:Add {B}{B}
-text=Sacrifice Blood Vassal: Add {B}{B} to your mana pool.
-mana={2}{B}
-type=Creature
-subtype=Thrull
-power=2
-toughness=2
-[/card]
-[card]
-name=Bloodcurdling Scream
-target=creature
-auto=X/0
-text=Target creature gets +X/+0 until end of turn.
-mana={X}{B}
-type=Sorcery
-[/card]
-[card]
-name=Bloodfire Colossus
-auto={R}{S}:damage:6 all(creature,player)
-text={R}, Sacrifice Bloodfire Colossus: Bloodfire Colossus deals 6 damage to each creature and each player.
-mana={6}{R}{R}
-type=Creature
-subtype=Giant
-power=6
-toughness=6
-[/card]
-[card]
-name=Bloodfire Dwarf
-auto={R}{S}:damage:1 all(creature[-flying])
-text={R}, Sacrifice Bloodfire Dwarf: Bloodfire Dwarf deals 1 damage to each creature without flying.
-mana={R}
-type=Creature
-subtype=Dwarf
-power=1
-toughness=1
-[/card]
-[card]
-name=Bloodfire Kavu
-auto={R}{S}:damage:2 all(creature)
-text={R}, Sacrifice Bloodfire Kavu: Bloodfire Kavu deals 2 damage to each creature.
-mana={2}{R}{R}
-type=Creature
-subtype=Kavu
-power=2
-toughness=2
-[/card]
-[card]
-name=Bloodhall Ooze
-auto=@each my upkeep restriction{type(*[black]|myBattlefield)~morethan~0}:may counter(1/1,1)
-auto=@each my upkeep restriction{type(*[green]|myBattlefield)~morethan~0}:may counter(1/1,1)
-text=At the beginning of your upkeep, if you control a black permanent, you may put a +1/+1 counter on Bloodhall Ooze. -- At the beginning of your upkeep, if you control a green permanent, you may put a +1/+1 counter on Bloodhall Ooze.
-mana={R}
-type=Creature
-subtype=Ooze
-power=1
-toughness=1
-[/card]
-[card]
-name=Bloodied Ghost
-abilities=flying
-auto=counter(-1/-1,1)
-text=Flying -- Bloodied Ghost enters the battlefield with a -1/-1 counter on it.
-mana={1}{WB}{WB}
-type=Creature
-subtype=Spirit
-power=3
-toughness=3
-[/card]
-[card]
-name=Bloodletter Quill
-auto={2}{T}{C(0/0,1,Blood)}:thisforeach(counter{0/0.1.Blood}) life:-1 controller && draw:1
-auto={U}{B}:counter(0/0,-1,Blood)
-text={2}, {T}, Put a blood counter on Bloodletter Quill: Draw a card, then lose 1 life for each blood counter on Bloodletter Quill. -- {U}{B}: Remove a blood counter from Bloodletter Quill.
-mana={3}
-type=Artifact
-[/card]
-[card]
 name=Bloodmark Mentor
 auto=lord(creature[red]|myBattlefield) first strike
 text=Red creatures you control have first strike.
@@ -8195,6 +8201,16 @@ mana={4}{R}
 type=Creature
 subtype=Elemental
 power=4
+toughness=1
+[/card]
+[card]
+name=Bloodrage Vampire
+auto=bloodthirst:1
+text=Bloodthirst 1
+mana={2}{B}
+type=Creature
+subtype=Vampire
+power=3
 toughness=1
 [/card]
 [card]
@@ -8237,6 +8253,16 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Bloodshot Cyclops
+auto={T}{S(creature|mybattlefield)}:damage:storedpower target(creature,player)
+text={T}, Sacrifice a creature: Bloodshot Cyclops deals damage equal to the sacrificed creature's power to target creature or player.
+mana={5}{R}
+type=Creature
+subtype=Cyclops Giant
+power=4
+toughness=4
+[/card]
+[card]
 name=Bloodshot Trainee
 auto=this(power>=4) {T}:damage:4 target(creature)
 text={T}: Bloodshot Trainee deals 4 damage to target creature. Activate this ability only if Bloodshot Trainee's power is 4 or greater.
@@ -8251,6 +8277,18 @@ name=Bloodstained Mire
 auto={L}{T}{S}:moveTo(myBattlefield) target(swamp,mountain|mylibrary)
 text={T}, Pay 1 life, Sacrifice Bloodstained Mire: Search your library for a Swamp or Mountain card and put it onto the battlefield. Then shuffle your library.
 type=Land
+[/card]
+[card]
+name=Bloodstoke Howler
+facedown={3}
+autofacedown={6}{R}:morph
+autofaceup=3/0 all(beast|mybattlefield)
+text=Morph {6}{R} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- When Bloodstoke Howler is turned face up, Beast creatures you control get +3/+0 until end of turn.
+mana={5}{R}
+type=Creature
+subtype=Beast
+power=3
+toughness=4
 [/card]
 [card]
 name=Bloodstone Cameo
@@ -8279,6 +8317,16 @@ text=Haste -- {T}: Target creature with power 5 or greater gains haste until end
 mana={1}{R}
 type=Creature
 subtype=Human Scout
+power=1
+toughness=1
+[/card]
+[card]
+name=Bloodthrone Vampire
+auto={S(creature|myBattlefield)}:2/2
+text=Sacrifice a creature: Bloodthrone Vampire gets +2/+2 until end of turn.
+mana={1}{B}
+type=Creature
+subtype=Vampire
 power=1
 toughness=1
 [/card]
@@ -9142,6 +9190,17 @@ mana={X}{G}{G}
 type=Sorcery
 [/card]
 [card]
+name=Bosh, Iron Golem
+abilities=trample
+auto={3}{R}{S(artifact|mybattlefield)}:damage:storedmanacost target(creature,player)
+text=Trample -- {3}{R}, Sacrifice an artifact: Bosh, Iron Golem deals damage equal to the sacrificed artifact's converted mana cost to target creature or player.
+mana={8}
+type=Legendary Artifact Creature
+subtype=Golem
+power=6
+toughness=7
+[/card]
+[card]
 name=Bosk Banneret
 auto=lord(treefolk|myhand) altercost(colorless,-1)
 auto=lord(shaman|myhand) altercost(colorless, -1)
@@ -9935,6 +9994,17 @@ auto=@each my upkeep restriction{type(*|myhand)~lessthan~1}:all(*|opponenthand) 
 text=At the beginning of your upkeep, if you have no cards in hand, sacrifice Brink of Madness. If you do, target opponent discards his or her hand.
 mana={2}{B}{B}
 type=Enchantment
+[/card]
+[card]
+name=Brion Stoutarm
+abilities=lifelink
+auto={R}{T}{S(other creature|mybattlefield)}:damage:storedpower target(player)
+text=Lifelink (Damage dealt by this creature also causes you to gain that much life.) -- {R}, {T}, Sacrifice a creature other than Brion Stoutarm: Brion Stoutarm deals damage equal to the sacrificed creature's power to target player.
+mana={2}{R}{W}
+type=Legendary Creature
+subtype=Giant Warrior
+power=4
+toughness=4
 [/card]
 [card]
 name=Brittle Effigy
@@ -14565,6 +14635,16 @@ mana={2}{W}{W}{W}
 type=Sorcery
 [/card]
 [card]
+name=Consecrate Land
+target=land
+auto=indestructible
+auto=teach(land) cantbetargetof(aura)
+text=Enchant land -- Enchanted land is indestructible and can't be enchanted by other Auras.
+mana={W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 name=Consecrated Sphinx
 abilities=flying
 auto=@drawn(opponent):may draw:2 controller
@@ -14672,7 +14752,7 @@ type=Artifact
 name=Contagion Engine
 auto=may counter(-1/-1,1) all(creature|opponentbattlefield)
 auto=may counter(-1/-1,1) all(creature|mybattlefield)
-auto={4}{T}:target(proliferation) proliferate && all(proliferation) proliferate
+auto={4}{T}:all(proliferation) proliferate && target(proliferation) proliferate
 text=When Contagion Engine enters the battlefield, put a -1/-1 counter on each creature target player controls. -- {4},{T}: Proliferate, then proliferate again. (You choose any number of permanents and/or players with counters on them, then give each another counter of a kind already there. Then do it again.)
 mana={6}
 type=Artifact
@@ -19335,7 +19415,7 @@ type=Artifact
 [/card]
 [card]
 name=Diamond Valley
-auto={T}:target(creature|myBattlefield) dynamicability<!mytgt toughnesslifegain srccontroller!> sacrifice
+auto={T}{S(creature|myBattlefield)}:life:storedtoughness
 text={T}, Sacrifice a creature: You gain life equal to the sacrificed creature's toughness.
 type=Land
 [/card]
@@ -19542,7 +19622,7 @@ toughness=2
 [/card]
 [card]
 name=Disciple of Griselbrand
-auto={1}:notatarget(creature|mybattlefield) dynamicability<!mytgt toughnesslifegain targetcontroller!> sacrifice
+auto={1}{S(creature|myBattlefield)}:life:storedtoughness
 text={1}, Sacrifice a creature: You gain life equal to the sacrificed creature's toughness.
 mana={1}{B}
 type=Creature
@@ -20844,6 +20924,17 @@ type=Creature
 subtype=Illusion
 power=1
 toughness=5
+[/card]
+[card]
+name=Dream Thief
+abilities=flying
+auto=if thisturn(*[blue]|mystack)~morethan~1 then draw:1 controller
+text=Flying -- When Dream Thief enters the battlefield, draw a card if you've cast another blue spell this turn.
+mana={2}{U}
+type=Creature
+subtype=Faerie Rogue
+power=2
+toughness=1
 [/card]
 [card]
 name=Dream Thrush
@@ -23497,8 +23588,8 @@ type=Enchantment
 [card]
 name=Enclave Cryptologist
 auto={1}{U}:counter(0/0,1,Level) asSorcery
-auto=this(counter{0/0.1.Level}=1) {T}:draw:1 && transforms((,newability[target(*|myhand) reject])) forever
-auto=this(counter{0/0.1.Level}=2) {T}:draw:1 && transforms((,newability[target(*|myhand) reject])) forever
+auto=this(counter{0/0.1.Level}=1) {T}:transforms((,newability[draw:1],newability[target(*|myhand) reject])) forever
+auto=this(counter{0/0.1.Level}=2) {T}:transforms((,newability[draw:1],newability[target(*|myhand) reject])) forever
 auto=this(counter{0/0.1.Level}>2) {T}:draw:1 controller
 text=Level up {1}{U} -- [Level 1-2] {T}:Draw a card, then discard a card. -- [Level 3+] Draw a card.
 auto=maxlevel:2
@@ -25219,7 +25310,7 @@ subtype=Aura
 [/card]
 [card]
 name=Faith Healer
-auto={S}:notatarget(enchantment|mybattlefield) dynamicability<!mytgt manacostlifegain srccontroller!> sacrifice 
+auto={S(enchantment|myBattlefield)}:life:storedmanacost
 text=Sacrifice an enchantment: You gain life equal to the sacrificed enchantment's converted mana cost.
 mana={1}{W}
 type=Creature
@@ -29030,6 +29121,16 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Fyndhorn Druid
+auto=@combat(blocked) source(this) from(creature):all(trigger[to]) all(this) transforms((,newability[@movedto(this|mygraveyard) from(battlefield):life:4 controller])) ueot
+text=When Fyndhorn Druid is put into a graveyard from the battlefield, if it was blocked this turn, you gain 4 life.
+mana={2}{G}
+type=Creature
+subtype=Elf Druid
+power=2
+toughness=2
+[/card]
+[card]
 name=Fyndhorn Elder
 auto={T}:Add {G}{G}
 text={T}: Add {G}{G} to your mana pool.
@@ -29288,6 +29389,18 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Gargantuan Gorilla
+auto=upcostmulti[{S(forest|mybattlefield)}] sacrifice && damage:7 controller
+auto=@sacrificed(forest[snow]|mybattlefield) restriction{myupkeeponly}:trample ueot
+auto={T}:target(creature) dynamicability<!powerstrike eachother!>
+text=At the beginning of your upkeep, you may sacrifice a Forest. If you sacrifice a snow Forest this way, Gargantuan Gorilla gains trample until end of turn. If you don't sacrifice a Forest, sacrifice Gargantuan Gorilla and it deals 7 damage to you. -- {T}: Gargantuan Gorilla deals damage equal to its power to target creature. That creature deals damage equal to its power to Gargantuan Gorilla.
+mana={4}{G}{G}{G}
+type=Creature
+subtype=Ape
+power=7
+toughness=7
+[/card]
+[card]
 name=Gargoyle Castle
 auto={T}:Add{1}
 auto={5}{T}{S}:token(Gargoyle,Creature Gargoyle Artifact,3/4,flying artifact)
@@ -29340,14 +29453,26 @@ type=Planeswalker
 subtype=Garruk
 [/card]
 ###The 2 cards above should stay together (Flip Card)###
+#[card]
+#name=Garruk Wildspeaker
+#auto=counter(0/0,3,loyalty)
+#auto={C(0/0,1,Loyalty)}:untap target(<2>land)
+#auto={C(0/0,-1,Loyalty)}:token(Beast,Creature Beast,3/3,green)
+#auto={C(0/0,-4,Loyalty)}:all(creature|mybattlefield) 3/3 && all(creature|mybattlefield) trample
+#text=+1: Untap two target lands. -- -1: Put a 3/3 green Beast creature token onto the battlefield. -- -4: Creatures you control get +3/+3 and gain trample until end of turn.
+#mana={2}{G}{G}
+#type=Planeswalker
+#subtype=Garruk
+#[/card]
 [card]
 name=Garruk Wildspeaker
+auto=flipacoin winability turns:+1 controller winabilityend flipend
 auto=counter(0/0,3,loyalty)
 auto={C(0/0,1,Loyalty)}:untap target(<2>land)
 auto={C(0/0,-1,Loyalty)}:token(Beast,Creature Beast,3/3,green)
 auto={C(0/0,-4,Loyalty)}:all(creature|mybattlefield) 3/3 && all(creature|mybattlefield) trample
 text=+1: Untap two target lands. -- -1: Put a 3/3 green Beast creature token onto the battlefield. -- -4: Creatures you control get +3/+3 and gain trample until end of turn.
-mana={2}{G}{G}
+mana={X}{G}
 type=Planeswalker
 subtype=Garruk
 [/card]
@@ -32962,6 +33087,13 @@ power=3
 toughness=4
 [/card]
 [card]
+name=Greater Good
+auto={S(creature|mybattlefield)}:draw:storedmanacost && transforms((,newability[target(<3>*|myhand) reject])) forever
+text=Sacrifice a creature: Draw cards equal to the sacrificed creature's power, then discard three cards.
+mana={2}{G}{G}
+type=Enchantment
+[/card]
+[card]
 name=Greater Harvester
 auto=@each my upkeep:sacrifice notatarget(creature|mybattlefield)
 auto=@combatdamaged(opponent) from(this):ability$!name(sacrifice 2 permanents) target(<2>*|mybattlefield) sacrifice!$ opponent
@@ -35937,6 +36069,16 @@ toughness=4
 [/card]
 ###The 2 cards above should stay together (Flip Card)###
 [card]
+name=Hisoka, Minamo Sensei
+auto={2}{U}{discard(*|myhand)}:fizzle target(*[manacost=storemanacost]|stack)
+text={2}{U}, Discard a card: Counter target spell if it has the same converted mana cost as the discarded card.
+mana={2}{U}{U}
+type=Legendary Creature
+subtype=Human Wizard
+power=1
+toughness=3
+[/card]
+[card]
 name=Hisoka's Defiance
 target=spirit,arcane|stack
 auto=fizzle
@@ -36164,6 +36306,13 @@ type=Creature
 subtype=Homarid Shaman
 power=2
 toughness=1
+[/card]
+[card]
+name=Homarid Spawning Bed
+auto={1}{U}{U}{S(creature[blue]|mybattlefield)}:token(Camarid,Creature Camarid,1/1,blue)*storedmanacost
+text={1}{U}{U}, Sacrifice a blue creature: Put X 1/1 blue Camarid creature tokens onto the battlefield, where X is the sacrificed creature's converted mana cost.
+mana={U}{U}
+type=Enchantment
 [/card]
 [card]
 name=Homarid Warrior
@@ -39204,6 +39353,17 @@ mana={3}{R}{R}
 type=Sorcery
 [/card]
 [card]
+name=Jagged Poppet
+auto=@damaged(this):ability$!name(discard) target(<storedthatmuch>*|myhand) reject!$ controller
+auto=@combatdamaged(opponent) from(this) restriction{type(*|myhand)~lessthan~1}:ability$!name(discard) target(<storedthatmuch>*|myhand) reject!$ opponent
+text=Whenever Jagged Poppet is dealt damage, discard that many cards. -- Hellbent - Whenever Jagged Poppet deals combat damage to a player, if you have no cards in hand, that player discards cards equal to the damage.
+mana={1}{B}{R}
+type=Creature
+subtype=Ogre Warrior
+power=3
+toughness=4
+[/card]
+[card]
 name=Jagged-Scar Archers
 auto=foreach(elf|myBattlefield) 1/1
 auto={T}:target(creature[flying]) dynamicability<!powerstrike!>
@@ -41921,6 +42081,16 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Kjeldoran Pride
+target=Creature
+auto=1/2
+auto={2}{U}:retarget target(creature)
+text=Enchant creature -- Enchanted creature gets +1/+2. -- {2}{U}: Attach Kjeldoran Pride to target creature other than enchanted creature.
+mana={1}{W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 name=Kjeldoran War Cry
 auto=lord(creature|myBattlefield) 1/1
 auto=foreach(Kjeldoran War Cry|myGraveyard) lord(creature|myBattlefield) 1/1
@@ -43231,6 +43401,14 @@ text=Land Cap doesn't untap during your untap step if it has a depletion counter
 type=Land
 [/card]
 [card]
+name=Land Equilibrium
+auto=@movedTo(land|opponentbattlefield):if type(land|mybattlefield)~lessthan~type(land|opponentbattlefield) then ability$!name(sacrifice land) notatarget(land|mybattlefield) sacrifice!$ opponent
+auto=@movedTo(land|opponentbattlefield):if type(land|mybattlefield)~equalto~type(land|opponentbattlefield) then ability$!name(sacrifice land) notatarget(land|mybattlefield) sacrifice!$ opponent
+text=If an opponent who controls at least as many lands as you do would put a land onto the battlefield, that player instead puts that land onto the battlefield then sacrifices a land.
+mana={2}{U}{U}
+type=Enchantment
+[/card]
+[card]
 name=Land Leeches
 abilities=first strike
 text=First strike
@@ -44183,6 +44361,13 @@ auto=foreach(life burst|graveyard) life:4
 text=Target player gains 4 life, then gains 4 life for each card named Life Burst in each graveyard.
 mana={1}{W}
 type=Instant
+[/card]
+[card]
+name=Life Chisel
+auto={S(creature|myBattlefield)}:life:storedtoughness myUpkeepOnly
+text=Sacrifice a creature: You gain life equal to the sacrificed creature's toughness. Activate this ability only during your upkeep.
+mana={4}
+type=Artifact
 [/card]
 [card]
 name=Life Matrix
@@ -49088,7 +49273,7 @@ toughness=1
 [card]
 name=Miren, the Moaning Well
 auto={T}:add {1}
-auto={3}{T}:target(creature) dynamicability<!mytgt toughnesslifegain srccontroller!> sacrifice
+auto={3}{T}{S(creature|myBattlefield)}:life:storedtoughness
 text={T}: Add {1} to your mana pool. -- {3}, {T}, Sacrifice a creature: You gain life equal to the sacrificed creature's toughness.
 type=Legendary Land
 [/card]
@@ -54293,6 +54478,13 @@ mana={2}{U}
 type=Instant
 [/card]
 [card]
+name=Ooze Garden
+auto={1}{G}{S(creature|myBattlefield)}:token(Ooze,Creature Ooze,setpower=storedpower,settoughness=storedpower,green)
+text={1}{G}, Sacrifice a non-Ooze creature: Put an X/X green Ooze creature token onto the battlefield, where X is the sacrificed creature's power. Activate this ability only any time you could cast a sorcery.
+mana={1}{G}
+type=Enchantment
+[/card]
+[card]
 name=Ooze T1
 type=Creature
 subtype=Ooze
@@ -55228,7 +55420,7 @@ type=Sorcery
 [/card]
 [card]
 name=Overwhelming Instinct
-auto=@each my blockers restriction{type(creature[attacking]|myBattlefield)~morethan~0}:draw:1
+auto=@each my blockers restriction{type(creature[attacking]|myBattlefield)~morethan~2}:draw:1
 text=Whenever you attack with three or more creatures, draw a card.
 mana={2}{G}
 type=Enchantment
@@ -56650,6 +56842,16 @@ power=5
 toughness=5
 [/card]
 [card]
+name=Phantasmal Bear
+auto=@targeted(this):sacrifice
+text=When Phantasmal Bear becomes the target of a spell or ability, sacrifice it.
+mana={U}
+type=Creature
+subtype=Bear Illusion
+power=2
+toughness=2
+[/card]
+[card]
 name=Phantasmal Fiend
 auto={B}:1/-1
 auto={1}{U}:swap
@@ -56659,16 +56861,6 @@ type=Creature
 subtype=Illusion
 power=1
 toughness=5
-[/card]
-[card]
-name=Phantasmal Bear
-auto=@targeted(this):sacrifice
-text=When Phantasmal Bear becomes the target of a spell or ability, sacrifice it.
-mana={U}
-type=Creature
-subtype=Bear Illusion
-power=2
-toughness=2
 [/card]
 [card]
 name=Phantasmal Dragon
@@ -56703,6 +56895,41 @@ type=Creature
 subtype=Illusion
 power=0
 toughness=0
+[/card]
+[card]
+name=Phantasmal Sphere
+abilities=flying
+auto=@each my upkeep:counter(1/1,1)
+auto=this(counter{1/1.1}=) upcost[{1}] sacrifice
+auto=this(counter{1/1.2}=) upcost[{2}] sacrifice
+auto=this(counter{1/1.3}=) upcost[{3}] sacrifice
+auto=this(counter{1/1.4}=) upcost[{4}] sacrifice
+auto=this(counter{1/1.5}=) upcost[{5}] sacrifice
+auto=this(counter{1/1.6}=) upcost[{6}] sacrifice
+auto=this(counter{1/1.7}=) upcost[{7}] sacrifice
+auto=this(counter{1/1.8}=) upcost[{8}] sacrifice
+auto=this(counter{1/1.9}=) upcost[{9}] sacrifice
+auto=this(counter{1/1.10}=) upcost[{20}] sacrifice
+auto=this(counter{1/1.11}=) upcost[{11}] sacrifice
+auto=this(counter{1/1.12}=) upcost[{12}] sacrifice
+auto=@movedTo(this|nonbattlezone) from(myBattlefield):this(counter{1/1.1}=) token(Orb,Creature Orb,1/1,blue,flying)
+auto=@movedTo(this|nonbattlezone) from(myBattlefield):this(counter{1/1.2}=) token(Orb,Creature Orb,2/2,blue,flying)
+auto=@movedTo(this|nonbattlezone) from(myBattlefield):this(counter{1/1.3}=) token(Orb,Creature Orb,3/3,blue,flying)
+auto=@movedTo(this|nonbattlezone) from(myBattlefield):this(counter{1/1.4}=) token(Orb,Creature Orb,4/4,blue,flying)
+auto=@movedTo(this|nonbattlezone) from(myBattlefield):this(counter{1/1.5}=) token(Orb,Creature Orb,5/5,blue,flying)
+auto=@movedTo(this|nonbattlezone) from(myBattlefield):this(counter{1/1.6}=) token(Orb,Creature Orb,6/6,blue,flying)
+auto=@movedTo(this|nonbattlezone) from(myBattlefield):this(counter{1/1.7}=) token(Orb,Creature Orb,7/7,blue,flying)
+auto=@movedTo(this|nonbattlezone) from(myBattlefield):this(counter{1/1.8}=) token(Orb,Creature Orb,8/8,blue,flying)
+auto=@movedTo(this|nonbattlezone) from(myBattlefield):this(counter{1/1.9}=) token(Orb,Creature Orb,9/9,blue,flying)
+auto=@movedTo(this|nonbattlezone) from(myBattlefield):this(counter{1/1.10}=) token(Orb,Creature Orb,10/10,blue,flying)
+auto=@movedTo(this|nonbattlezone) from(myBattlefield):this(counter{1/1.11}=) token(Orb,Creature Orb,11/11,blue,flying)
+auto=@movedTo(this|nonbattlezone) from(myBattlefield):this(counter{1/1.12}=) token(Orb,Creature Orb,12/12,blue,flying)
+text=Flying -- At the beginning of your upkeep, put a +1/+1 counter on Phantasmal Sphere, then sacrifice Phantasmal Sphere unless you pay {1} for each +1/+1 counter on it. -- When Phantasmal Sphere leaves the battlefield, put a blue Orb creature token with flying onto the battlefield under an opponent's control. That creature's power and toughness are each equal to the number of +1/+1 counters on Phantasmal Sphere.
+mana={1}{U}
+type=Creature
+subtype=Illusion
+power=0
+toughness=1
 [/card]
 [card]
 name=Phantasmal Terrain
@@ -57154,6 +57381,29 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Phyrexian Negator
+abilities=trample
+auto=@damaged(this):ability$!name(sacrifice) notatarget(<storedthatmuch>*|mybattlefield) sacrifice!$ controller
+text=Trample -- Whenever Phyrexian Negator is dealt damage, sacrifice that many permanents.
+mana={2}{B}
+type=Creature
+subtype=Horror
+power=5
+toughness=5
+[/card]
+[card]
+name=Phyrexian Obliterator
+abilities=trample
+auto=@damaged(this) from(*|opponentstack,opponentbattlefield):ability$!name(sacrifice) notatarget(<storedthatmuch>*|mybattlefield) sacrifice!$ opponent
+auto=@damaged(this) from(*|controllerstack,controllerbattlefield):ability$!name(sacrifice) notatarget(<storedthatmuch>*|mybattlefield) sacrifice!$ controller
+text=Trample -- Whenever a source deals damage to Phyrexian Obliterator, that source's controller sacrifices that many permanents.
+mana={B}{B}{B}{B}
+type=Creature
+subtype=Horror
+power=5
+toughness=5
+[/card]
+[card]
 name=Phyrexian Plaguelord
 auto={T}{S}:-4/-4 target(creature)
 auto={S(creature|myBattlefield)}:-1/-1 target(creature)
@@ -57245,6 +57495,15 @@ type=Creature
 subtype=Insect Horror
 power=4
 toughness=4
+[/card]
+[card]
+name=Phyrexian Totem
+auto={T}:Add{B}
+auto={2}{B}:becomes(Artifact Creature Horror,5/5,trample,black) ueot
+auto=@damaged(this):ability$!name(sacrifice) notatarget(<storedthatmuch>*|mybattlefield) sacrifice!$ controller
+text={T}: Add {B} to your mana pool. -- {2}{B}: Phyrexian Totem becomes a 5/5 black Horror artifact creature with trample until end of turn. -- Whenever Phyrexian Totem is dealt damage, if it's a creature, sacrifice that many permanents.
+mana={3}
+type=Artifact
 [/card]
 [card]
 name=Phyrexian Tower
@@ -57396,6 +57655,16 @@ type=Creature
 subtype=Human Barbarian
 power=5
 toughness=5
+[/card]
+[card]
+name=Pillar Tombs of Aku
+auto=@movedTo(enchantment[world]|battlefield):sacrifice all(this)
+auto=@each my upkeep restriction{type(creature|mybattlefield)~lessthan~2}:sacrifice && life:-5 controller
+auto=@each opponent upkeep restriction{type(creature|opponentbattlefield)~morethan~0}:ability$!choice name(sacrifice creature) notatarget(creature|mybattefield) sacrifice _ choice name(life loss and sacrifice Tombs) sacrifice all(mystored) && life:-5!$ opponent
+auto=@each opponent upkeep restriction{type(creature|opponentbattlefield)~lessthan~1}:sacrifice && life:-5 opponent
+text=At the beginning of each player's upkeep, that player may sacrifice a creature. If that player doesn't, he or she loses 5 life and you sacrifice Pillar Tombs of Aku.
+mana={2}{B}{B}
+type=World Enchantment
 [/card]
 [card]
 name=Pillarfield Ox
@@ -63791,6 +64060,29 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Rogue Skycaptain
+abilities=flying
+auto=@each my upkeep:counter(0/0,1,Wage)
+auto=this(counter{0/0.1.Wage}=) upcostmulti[{2}] counter(0/0,-99,Wage) && moveTo(opponentbattlefield)
+auto=this(counter{0/0.2.Wage}=) upcostmulti[{4}] counter(0/0,-99,Wage) && moveTo(opponentbattlefield)
+auto=this(counter{0/0.3.Wage}=) upcostmulti[{6}] counter(0/0,-99,Wage) && moveTo(opponentbattlefield)
+auto=this(counter{0/0.4.Wage}=) upcostmulti[{8}] counter(0/0,-99,Wage) && moveTo(opponentbattlefield)
+auto=this(counter{0/0.5.Wage}=) upcostmulti[{10}] counter(0/0,-99,Wage) && moveTo(opponentbattlefield)
+auto=this(counter{0/0.6.Wage}=) upcostmulti[{12}] counter(0/0,-99,Wage) && moveTo(opponentbattlefield)
+auto=this(counter{0/0.7.Wage}=) upcostmulti[{14}] counter(0/0,-99,Wage) && moveTo(opponentbattlefield)
+auto=this(counter{0/0.8.Wage}=) upcostmulti[{16}] counter(0/0,-99,Wage) && moveTo(opponentbattlefield)
+auto=this(counter{0/0.9.Wage}=) upcostmulti[{18}] counter(0/0,-99,Wage) && moveTo(opponentbattlefield)
+auto=this(counter{0/0.10.Wage}=) upcostmulti[{20}] counter(0/0,-99,Wage) && moveTo(opponentbattlefield)
+auto=this(counter{0/0.11.Wage}=) upcostmulti[{22}] counter(0/0,-99,Wage) && moveTo(opponentbattlefield)
+auto=this(counter{0/0.12.Wage}=) upcostmulti[{24}] counter(0/0,-99,Wage) && moveTo(opponentbattlefield)
+text=Flying -- At the beginning of your upkeep, put a wage counter on Rogue Skycaptain. You may pay {2} for each wage counter on it. If you don't, remove all wage counters from Rogue Skycaptain and an opponent gains control of it.
+mana={2}{R}
+type=Creature
+subtype=Human Rogue Mercenary
+power=3
+toughness=4
+[/card]
+[card]
 name=Rohgahh of Kher Keep
 auto=upcostmulti[{R}{R}{R}] tap && moveTo(opponentbattlefield) all(Kobolds of Kher Keep|mybattlefield) && moveTo(opponentbattlefield) all(Rohgahh of Kher Keep|mybattlefield)
 auto=lord(Kobolds of Kher Keep|mybattlefield) 2/2
@@ -65393,6 +65685,16 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Sanguine Praetor
+auto={B}{S(creature|myBattlefield)}:destroy all(creature[manacost=storedmanacost])
+text={B}, Sacrifice a creature: Destroy each creature with the same converted mana cost as the sacrificed creature.
+mana={6}{B}{B}
+type=Creature
+subtype=Avatar
+power=7
+toughness=5
+[/card]
+[card]
 name=Sanity Gnawers
 auto=discard:1 target(player)
 text=When Sanity Gnawers enters the battlefield, target player discards a card at random.
@@ -66373,6 +66675,14 @@ auto={T}{S}:all(*[-artifact;-land]) destroy myUpkeepOnly
 text={T}, Sacrifice Scourglass: Destroy all permanents except for artifacts and lands. Activate this ability only during your upkeep.
 mana={3}{W}{W}
 type=Artifact
+[/card]
+[card]
+name=Scouting Trek
+target=<anyamount>land[basic]|mylibrary
+auto=moveTo(library)
+text=Search your library for any number of basic land cards. Reveal those cards, then shuffle your library and put them on top of it.
+mana={1}{G}
+type=Sorcery
 [/card]
 [card]
 name=Scout's Warning
@@ -69389,6 +69699,16 @@ mana={3}{U}
 type=Sorcery
 [/card]
 [card]
+name=Sift Through Sands
+auto=draw:2 controller
+auto=target(*|myhand) reject
+auto=if thisturn(*[Peer Through Depths]|mystack),thisturn(Reach Through Mists|mystack) then may name(search for Unspeakable) target(The Unspeakable|mylibrary) moveTo(mybattlefield)
+text=Draw two cards, then discard a card. -- If you've cast a spell named Peer Through Depths and a spell named Reach Through Mists this turn, you may search your library for a card named The Unspeakable, put it onto the battlefield, then shuffle your library.
+mana={1}{U}{U}
+type=Instant
+subtype=Arcane
+[/card]
+[card]
 name=Sighted-Caste Sorcerer
 abilities=exalted
 auto={U}:shroud
@@ -71532,6 +71852,13 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Slumbering Tora
+auto={2}{discard(*[spirit,arcane]|myhand)}:transforms((Creature Cat,setpower=storedmanacost,settoughness=storedtoughness)) ueot
+text={2}, Discard a Spirit or Arcane card: Slumbering Tora becomes an X/X Cat artifact creature until end of turn, where X is the discarded card's converted mana cost.
+mana={3}
+type=Artifact
+[/card]
+[card]
 name=Smash
 target=artifact
 auto=destroy
@@ -72546,6 +72873,15 @@ auto=transforms((,newability[moveTo(exile)],newability[moveTo(exile) all(childre
 text=Exile target attacking creature and all Equipment attached to it.
 mana={3}{W}{W}
 type=Instant
+[/card]
+[card]
+name=Soul Reap
+target=creature[-green]
+auto=destroy
+auto=if thisturn(*[black]|mystack)~morethan~1 then life:-3 targetcontroller
+text=Destroy target nongreen creature. Its controller loses 3 life if you've cast another black spell this turn.
+mana={1}{B}
+type=Sorcery
 [/card]
 [card]
 name=Soul Rend
@@ -74664,9 +75000,8 @@ toughness=4
 [card]
 name=Starlit Sanctum
 auto={T}:Add{1}
-auto={W}{T}:name(you gain life) notatarget(creature[cleric]|mybattlefield) dynamicability<!mytgt toughnesslifegain targetcontroller!> sacrifice 
-auto={B}{T}:name(opponent loses life) notatarget(creature[cleric]|mybattlefield) dynamicability<!mytgt powerlifeloss targetopponent!> sacrifice
-auto={B}{T}:name(you lose life) notatarget(creature[cleric]|mybattlefield) dynamicability<!mytgt powerlifeloss targetcontroller!> sacrifice
+auto={W}{T}{S(creature[cleric]|myBattlefield)}:name(you gain life) life:storedtoughness controller
+auto={B}{T}{S(creature[cleric]|myBattlefield)}:name(lose life) target(player) life:-storedpower
 text={T}: Add {1} to your mana pool. -- {W}, {T}, Sacrifice a Cleric creature: You gain life equal to the sacrificed creature's toughness. -- {B}, {T}, Sacrifice a Cleric creature: Target player loses life equal to the sacrificed creature's power.
 type=Land
 [/card]
@@ -78049,6 +78384,15 @@ mana={B}
 type=Instant
 [/card]
 [card]
+name=Taste of Paradise
+auto=life:3
+auto=kicker life:3
+kicker=multi{1}{G}
+text=As an additional cost to cast Taste of Paradise, you may pay {1}{G} any number of times. -- You gain 3 life plus an additional 3 life for each additional {1}{G} you paid.
+mana={3}{G}
+type=Sorcery
+[/card]
+[card]
 name=Tatsumasa, the Dragon's Fang
 auto={3}:equip
 auto=5/5
@@ -81132,6 +81476,16 @@ mana={0}
 type=Artifact
 [/card]
 [card]
+name=Tornado
+auto=cumulativeupcost[{G}] sacrifice
+auto=this(counter{0/0.1.Velocity}<1) {2}{G}:destroy target(*) && all(this) counter(0/0,1,Velocity)
+auto=this(counter{0/0.1.Velocity}=) {2}{G}{L}{L}{L}:destroy target(*) && all(this) counter(0/0,1,Velocity)
+auto=this(counter{0/0.2.Velocity}=) {2}{G}{L}{L}{L}{L}{L}{L}:destroy target(*) && all(this) counter(0/0,1,Velocity)
+text=Cumulative upkeep {G} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- {2}{G}, Pay 3 life for each velocity counter on Tornado: Destroy target permanent and put a velocity counter on Tornado. Activate this ability only once each turn.
+mana={4}{G}
+type=Enchantment
+[/card]
+[card]
 name=Tornado Elemental
 auto=damage:6 all(creature[flying])
 auto=@combat(blocked,turnlimited) source(this):may name(assign combat damage to defending player) thisforeach(power>=1) damage:1 opponent && fog from(this)
@@ -83236,6 +83590,13 @@ type=Sorcery
 subtype=Arcane
 [/card]
 [card]
+name=Unerring Sling
+auto={3}{T(creature|mybattlefield)}{T}:damage:storedpower target(creature[flying;attacking;blocking])
+text={3}, {T}, Tap an untapped creature you control: Unerring Sling deals damage equal to the tapped creature's power to target attacking or blocking creature with flying.
+mana={3}
+type=Artifact
+[/card]
+[card]
 name=Unforge
 target=equipment
 auto=transforms((,newability[destroy],newability[damage:2 all(parents)])) ueot
@@ -84681,6 +85042,17 @@ type=Creature
 subtype=Vampire
 power=3
 toughness=2
+[/card]
+[card]
+name=Vengevine
+abilities=haste
+autograveyard=@movedto(creature|mystack) from(creature|myhand) restriction{thisturn(creature|mystack)~equalto~1}:may moveto(mybattlefield)
+text=Haste -- Whenever you cast a spell, if it's the second creature spell you cast this turn, you may return Vengevine from your graveyard to the battlefield.
+mana={2}{G}{G}
+type=Creature
+subtype=Elemental
+power=4
+toughness=3
 [/card]
 [card]
 name=Venom
@@ -86388,7 +86760,7 @@ subtype=Aura
 [/card]
 [card]
 name=Volrath the Fallen
-auto={0}:target(*|myhand) dynamicability<!mytgt manacostpumppow tosrc!> reject
+auto={discard(creature|myhand)}:storedmanacost/storedmanacost ueot
 text={1}{B}, Discard a creature card: Volrath the Fallen gets +X/+X until end of turn, where X is the discarded card's converted mana cost.
 mana={3}{B}{B}{B}
 type=Legendary Creature
