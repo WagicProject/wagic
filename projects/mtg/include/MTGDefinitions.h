@@ -217,8 +217,9 @@ class Constants
       NOACTIVATEDTAP = 96,
       NOMANA = 97,
       ONLYMANA = 98,
+      POISONDAMAGER = 99,
 
-      NB_BASIC_ABILITIES = 99,
+      NB_BASIC_ABILITIES = 100,
 
 
     RARITY_S = 'S',   //Special Rarity

@@ -445,6 +445,7 @@ class AbilityFactory
 {
 private:
     string storedString;
+    string storedAbilityString;
     string storedAndAbility;
     int countCards(TargetChooser * tc, Player * player = NULL, int option = 0);
     TriggeredAbility * parseTrigger(string s, string magicText, int id, Spell * spell, MTGCardInstance *card, Targetable * target);

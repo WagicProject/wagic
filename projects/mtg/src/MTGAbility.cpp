@@ -1014,18 +1014,18 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     {
         size_t real_end = s.find("!$", found);
         size_t sIndex = found + 9;
-        storedString.append(s.substr(sIndex, real_end - sIndex).c_str());
+        storedAbilityString.append(s.substr(sIndex, real_end - sIndex).c_str());
         s.erase(sIndex, real_end - sIndex);
     }
 
-    found = s.find("and((");
+    found = s.find("and!(");
     if (found != string::npos && found + 6 != ')' && storedAndAbility.empty())
     {
-        vector<string> splitAnd = parseBetween(s, "and((", " ))",false);
+        vector<string> splitAnd = parseBetween(s, "and!(", ")!",false);
         if(splitAnd.size())
         {
             storedAndAbility.append(splitAnd[1]);
-            size_t real_end = s.find("))", found);
+            size_t real_end = s.find(")!", found);
             size_t sIndex = found + 5;
             s.erase(sIndex, real_end - sIndex);
         }
@@ -1779,9 +1779,9 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     //ability creator the target has to do the ability.
     if(s.find("ability$") != string::npos)
     {
-        if (storedString.size())
+        if (storedAbilityString.size())
         {
-            ATargetedAbilityCreator * abl = NEW ATargetedAbilityCreator(observer, id, card,target, NULL,newName, storedString, who);
+            ATargetedAbilityCreator * abl = NEW ATargetedAbilityCreator(observer, id, card,target, NULL,newName, storedAbilityString, who);
             abl->oneShot = 1;
             storedString.clear();
             return abl;

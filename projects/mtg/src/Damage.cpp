@@ -146,7 +146,7 @@ int Damage::resolve()
         if(_target->toughness <= 0 && _target->has(Constants::INDESTRUCTIBLE))
             _target->controller()->game->putInGraveyard(_target);
     }
-    else if (target->type_as_damageable == DAMAGEABLE_PLAYER && source->has(Constants::INFECT))
+    else if (target->type_as_damageable == DAMAGEABLE_PLAYER && (source->has(Constants::INFECT)||source->has(Constants::POISONDAMAGER)))
     {
         // Poison on player
         Player * _target = (Player *) target;
