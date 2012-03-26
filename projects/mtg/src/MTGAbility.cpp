@@ -1018,6 +1018,19 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         s.erase(sIndex, real_end - sIndex);
     }
 
+    found = s.find("and((");
+    if (found != string::npos && found + 6 != ')' && storedAndAbility.empty())
+    {
+        vector<string> splitAnd = parseBetween(s, "and((", " ))",false);
+        if(splitAnd.size())
+        {
+            storedAndAbility.append(splitAnd[1]);
+            size_t real_end = s.find("))", found);
+            size_t sIndex = found + 5;
+            s.erase(sIndex, real_end - sIndex);
+        }
+    }
+
     vector<string> splitTrigger = parseBetween(s, "@", ":");
     if (splitTrigger.size())
     {
@@ -1867,13 +1880,11 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
 
         MTGAbility * a = NEW AAMover(observer, id, card, target, splitMove[1]);
         a->oneShot = true;
-        if(s.find("and(") != string::npos)
+        if(storedAndAbility.size())
         {
-            vector<string> splitAnd = parseBetween(s, "and((", " ))",false);
-            if(splitAnd.size())
-            {
-               ((AAMover*)a)->andAbility = parseMagicLine(splitAnd[1], id, spell, card);
-            }
+            string stored = storedAndAbility;
+            storedAndAbility.clear();
+            ((AAMover*)a)->andAbility = parseMagicLine(stored, id, spell, card);
         }
         return a;
     }
@@ -1944,13 +1955,11 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     {
         MTGAbility *a = NEW AABuryCard(observer, id, card, target);
         a->oneShot = 1;
-        if(s.find("and(") != string::npos)
+        if(storedAndAbility.size())
         {
-            vector<string> splitAnd = parseBetween(s, "and((", " ))",false);
-            if(splitAnd.size())
-            {
-                ((AABuryCard*)a)->andAbility = parseMagicLine(splitAnd[1], id, spell, card);
-            }
+            string stored = storedAndAbility;
+            storedAndAbility.clear();
+            ((AABuryCard*)a)->andAbility = parseMagicLine(stored, id, spell, card);
         }
         return a;
     }
@@ -1959,13 +1968,11 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     {
         MTGAbility * a = NEW AADestroyCard(observer, id, card, target);
         a->oneShot = 1;
-        if(s.find("and(") != string::npos)
+        if(storedAndAbility.size())
         {
-            vector<string> splitAnd = parseBetween(s, "and((", " ))",false);
-            if(splitAnd.size())
-            {
-                ((AADestroyCard*)a)->andAbility = parseMagicLine(splitAnd[1], id, spell, card);
-            }
+            string stored = storedAndAbility;
+            storedAndAbility.clear();
+            ((AADestroyCard*)a)->andAbility = parseMagicLine(stored, id, spell, card);
         }
         return a;
     }
@@ -1974,13 +1981,11 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     {
         MTGAbility *a = NEW AASacrificeCard(observer, id, card, target);
         a->oneShot = 1;
-        if(s.find("and(") != string::npos)
+        if(storedAndAbility.size())
         {
-            vector<string> splitAnd = parseBetween(s, "and((", " ))",false);
-            if(splitAnd.size())
-            {
-                ((AASacrificeCard*)a)->andAbility = parseMagicLine(splitAnd[1], id, spell, card);
-            }
+            string stored = storedAndAbility;
+            storedAndAbility.clear();
+            ((AASacrificeCard*)a)->andAbility = parseMagicLine(stored, id, spell, card);
         }
         return a;
     }
@@ -1989,13 +1994,11 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     {
         MTGAbility *a = NEW AADiscardCard(observer, id, card, target);
         a->oneShot = 1;
-        if(s.find("and(") != string::npos)
+        if(storedAndAbility.size())
         {
-            vector<string> splitAnd = parseBetween(s, "and((", " ))",false);
-            if(splitAnd.size())
-            {
-                ((AADiscardCard*)a)->andAbility = parseMagicLine(splitAnd[1], id, spell, card);
-            }
+            string stored = storedAndAbility;
+            storedAndAbility.clear();
+            ((AADiscardCard*)a)->andAbility = parseMagicLine(stored, id, spell, card);
         }
         return a;
     }
