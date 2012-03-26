@@ -5479,7 +5479,7 @@ type=Instant
 [card]
 name=Bant Panorama
 auto={T}:Add {1}
-auto={1}{T}{S}:moveTo(myBattlefield) and((tap)) target(forest,plains,island|mylibrary)
+auto={1}{T}{S}:moveTo(myBattlefield) and!(tap)! target(forest,plains,island|mylibrary)
 text={T}: Add {1} to your mana pool. -- {1}, {T}, Sacrifice Bant Panorama: Search your library for a basic Forest, Plains, or Island card and put it onto the battlefield tapped. Then shuffle your library.
 type=Land
 [/card]
@@ -11964,7 +11964,7 @@ toughness=3
 [/card]
 [card]
 name=Centaur Rootcaster
-auto=@combatdamaged(player) from(this):may moveTo(myBattlefield) and((tap)) target(land[basic]|mylibrary)
+auto=@combatdamaged(player) from(this):may moveTo(myBattlefield) and!(tap)! target(land[basic]|mylibrary)
 text=Whenever Centaur Rootcaster deals combat damage to a player, you may search your library for a basic land card and put that card onto the battlefield tapped. If you do, shuffle your library.
 mana={3}{G}
 type=Creature
@@ -13079,7 +13079,7 @@ type=Artifact
 [/card]
 [card]
 name=Chronosavant
-autograveyard={1}{W}:moveTo(mybattlefield) and((turns:-1 controller))
+autograveyard={1}{W}:moveTo(mybattlefield) and!(turns:-1 controller)!
 text={1}{W}: Return Chronosavant from your graveyard to the battlefield tapped. You skip your next turn.
 mana={5}{W}
 type=Creature
@@ -15916,7 +15916,7 @@ subtype=Aura
 [/card]
 [card]
 name=Crown of Empires
-auto={3}{t}:name(steal or tap) target(creature) if type(scepter of empires|mybattlefield)~morethan~0,type(Throne of Empires|mybattlefield)~morethan~0 then moveto(mybattlefield) and((untap)) else tap
+auto={3}{t}:name(steal or tap) target(creature) if type(scepter of empires|mybattlefield)~morethan~0,type(Throne of Empires|mybattlefield)~morethan~0 then moveto(mybattlefield) and!(untap)! else tap
 text={3}, {T}: Tap target creature. Gain control of that creature instead if you control artifacts named Scepter of Empires and Throne of Empires.
 mana={2}
 type=Artifact
@@ -17606,7 +17606,7 @@ toughness=1
 [/card]
 [card]
 name=Dawntreader Elk
-auto={G}{S}:moveTo(myBattlefield) and((tap)) target(basic|mylibrary) && shuffle
+auto={G}{S}:moveTo(myBattlefield) and!(tap)! target(basic|mylibrary) && shuffle
 text={G}, Sacrifice Dawntrader Elk: Search your library for a basic land card, put it onto the battlefield tapped, then shuffle your library.
 mana={1}{G}
 type=Creature
@@ -18276,7 +18276,7 @@ type=Sorcery
 [card]
 name=Deep Reconnaissance
 target=land[basic]|mylibrary
-auto=moveTo(myBattlefield) and((tap))
+auto=moveTo(myBattlefield) and!(tap)!
 flashback={4}{G}
 text=Search your library for a basic land card and put that card onto the battlefield tapped. Then shuffle your library. -- Flashback {4}{G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={2}{G}
@@ -19348,7 +19348,7 @@ type=Artifact
 [/card]
 [card]
 name=Diligent Farmhand
-auto={1}{G}{S}:moveTo(myBattlefield) and((tap)) target(land[basic]|myLibrary)
+auto={1}{G}{S}:moveTo(myBattlefield) and!(tap)! target(land[basic]|myLibrary)
 text={1}{G}, Sacrifice Diligent Farmhand: Search your library for a basic land card and put that card onto the battlefield tapped. Then shuffle your library. -- If Diligent Farmhand is in a graveyard, effects from spells named Muscle Burst count it as a card named Muscle Burst.
 mana={G}
 type=Creature
@@ -22419,7 +22419,7 @@ toughness=2
 name=Elbrus, the Binding Blade
 auto={1}:equip
 auto=1/0
-auto=@combatdamaged(player) from(mytgt):all(this) moveto(mybattlefield) and((flip(Withengar Unbound)))
+auto=@combatdamaged(player) from(mytgt):all(this) moveto(mybattlefield) and!(flip(Withengar Unbound))!
 text=Equipped creature gets +1/+0. -- Whenever equipped creature deals combat damage to a player, transform Elbrus, the Binding Blade. -- Equip {1}
 mana={7}
 type=Legendary Artifact
@@ -22746,7 +22746,7 @@ name=Elspeth, Knight-Errant
 auto=counter(0/0,4,loyalty)
 auto={C(0/0,1,Loyalty)}:token(Soldier,Creature Soldier,1/1,white)
 auto={C(0/0,1,Loyalty)}:3/3 && flying target(creature)
-auto={C(0/0,-8,Loyalty)}:name(emblem) lord(*[-planeswalker]|mybattlefield) indestructible dontremove
+auto={C(0/0,-8,Loyalty)}:name(emblem)emblem lord(*[-planeswalker]|mybattlefield) indestructible dontremove
 text=+1: Put a 1/1 white Soldier creature token onto the battlefield. -- +1: Target creature gets +3/+3 and gains flying until end of turn. -- -8: For the rest of the game, artifacts, creatures, enchantments, and lands you control are indestructible.
 mana={2}{W}{W}
 type=Planeswalker
@@ -23035,7 +23035,7 @@ toughness=2
 [/card]
 [card]
 name=Elvish Pioneer
-auto=may moveTo(myBattlefield) and((tap)) target(land[basic]|myhand)
+auto=may moveTo(myBattlefield) and!(tap)! target(land[basic]|myhand)
 text=When Elvish Pioneer enters the battlefield, you may put a basic land card from your hand onto the battlefield tapped.
 mana={G}
 type=Creature
@@ -23101,7 +23101,7 @@ toughness=1
 [/card]
 [card]
 name=Elvish Soultiller
-auto=chooseatype moveTo(mylibrary) all(creature[chosentype]|mygraveyard) and((shuffle)) chooseend
+auto=chooseatype moveTo(mylibrary) all(creature[chosentype]|mygraveyard) and!(shuffle)! chooseend
 text=When Elvish Soultiller is put into a graveyard from the battlefield, choose a creature type. Shuffle all creature cards of that type from your graveyard into your library.
 mana={3}{G}{G}
 type=Creature
@@ -24176,7 +24176,7 @@ toughness=3
 [card]
 name=Esper Panorama
 auto={T}:Add {1}
-auto={1}{T}{S}:moveTo(myBattlefield) and((tap)) target(plains,island,swamp|mylibrary)
+auto={1}{T}{S}:moveTo(myBattlefield) and!(tap)! target(plains,island,swamp|mylibrary)
 text={T}: Add {1} to your mana pool. -- {1}, {T}, Sacrifice Esper Panorama: Search your library for a basic Plains, Island, or Swamp card and put it onto the battlefield tapped. Then shuffle your library.
 type=Land
 [/card]
@@ -24542,7 +24542,7 @@ type=Instant
 [/card]
 [card]
 name=Everbark Shaman
-auto={T}{E(treefolk|mygraveyard)}:target(<2>forest|mylibrary) and((tap)) moveTo(mybattlefield)
+auto={T}{E(treefolk|mygraveyard)}:target(<2>forest|mylibrary) and!(tap)! moveTo(mybattlefield)
 text={T}, Exile a Treefolk card from your graveyard: Search your library for two Forest cards and put them onto the battlefield tapped. Then shuffle your library.
 mana={4}{G}
 type=Creature
@@ -24638,7 +24638,7 @@ type=Artifact
 [/card]
 [card]
 name=Evolving Wilds
-auto={T}{S}:moveTo(myBattlefield) and((tap)) target(basic|mylibrary)
+auto={T}{S}:moveTo(myBattlefield) and!(tap)! target(basic|mylibrary)
 text={T}, Sacrifice Evolving Wilds: Search your library for a basic land card and put it onto the battlefield tapped. Then shuffle your library.
 type=Land
 [/card]
@@ -25552,8 +25552,8 @@ toughness=6
 [/card]
 [card]
 name=Far Wanderings
-auto=if type(*|mygraveyard)~morethan~6 then moveto(mybattlefield) and((tap))target(<3>land|mylibrary)
-auto=ifnot type(*|mygraveyard)~morethan~6 then moveto(mybattlefield) and((tap)) target(land|mylibrary)
+auto=if type(*|mygraveyard)~morethan~6 then moveto(mybattlefield) and!(tap)! target(<3>land|mylibrary)
+auto=ifnot type(*|mygraveyard)~morethan~6 then moveto(mybattlefield) and!(tap)! target(land|mylibrary)
 text=Search your library for a basic land card and put that card onto the battlefield tapped. Then shuffle your library. -- Threshold - If seven or more cards are in your graveyard, instead search your library for three basic land cards and put them onto the battlefield tapped. Then shuffle your library.
 mana={2}{G}
 type=Sorcery
@@ -25570,7 +25570,7 @@ toughness=2
 [/card]
 [card]
 name=Farhaven Elf
-auto=may moveTo(myBattlefield) and((tap)) target(basic|mylibrary)
+auto=may moveTo(myBattlefield) and!(tap)! target(basic|mylibrary)
 text=When Farhaven Elf enters the battlefield, you may search your library for a basic land card and put it onto the battlefield tapped. If you do, shuffle your library.
 mana={2}{G}
 type=Creature
@@ -26084,7 +26084,7 @@ subtype=Aura
 [card]
 name=Fertilid
 auto=counter(1/1,2)
-auto={1}{G}{C(1/1,-1)}:moveTo(myBattlefield) and((tap)) target(land[basic]|mylibrary)
+auto={1}{G}{C(1/1,-1)}:moveTo(myBattlefield) and!(tap)! target(land[basic]|mylibrary)
 text=Fertilid enters the battlefield with two +1/+1 counters on it. -- {1}{G}, Remove a +1/+1 counter from Fertilid: Target player searches his or her library for a basic land card and puts it onto the battlefield tapped. Then that player shuffles his or her library.
 mana={2}{G}
 type=Creature
@@ -26867,7 +26867,7 @@ type=Sorcery
 [card]
 name=Flagstones of Trokair
 auto={T}:Add {W}
-auto=@movedTo(this|graveyard) from(battlefield):may moveTo(myBattlefield) and((tap)) target(plains|mylibrary)
+auto=@movedTo(this|graveyard) from(battlefield):may moveTo(myBattlefield) and!(tap)! target(plains|mylibrary)
 text={T}: Add {W} to your mana pool. -- When Flagstones of Trokair is put into a graveyard from the battlefield, you may search your library for a Plains card and put it onto the battlefield tapped. If you do, shuffle your library.
 type=Legendary Land
 [/card]
@@ -28161,7 +28161,7 @@ toughness=1
 [card]
 name=Forget
 target=player
-auto=ability$!target(<2>*|myhand) reject and((draw:1))!$ targetedplayer
+auto=ability$!target(<2>*|myhand) reject and!(draw:1)!!$ targetedplayer
 text=Target player discards two cards, then draws as many cards as he or she discarded this way.
 mana={U}{U}
 type=Sorcery
@@ -28474,7 +28474,7 @@ toughness=1
 name=Frenzied Tilling
 target=land
 auto=destroy
-auto=target(land[basic]|mylibrary) and((tap)) moveto(mybattlefield)
+auto=target(land[basic]|mylibrary) and!(tap)! moveto(mybattlefield)
 text=Destroy target land. Search your library for a basic land card and put that card onto the battlefield tapped. Then shuffle your library.
 mana={3}{R}{G}
 type=Sorcery
@@ -28569,7 +28569,7 @@ toughness=1
 [/card]
 [card]
 name=Frontier Guide
-auto={3}{G}{T}:moveTo(myBattlefield) and((tap)) target(land[basic]|myLibrary)
+auto={3}{G}{T}:moveTo(myBattlefield) and!(tap)! target(land[basic]|myLibrary)
 text={3}{G}, {T}: Search your library for a basic land card and put it onto the battlefield tapped. Then shuffle your library.
 mana={1}{G}
 type=Creature
@@ -33392,7 +33392,7 @@ toughness=1
 [card]
 name=Grixis Panorama
 auto={T}:Add{1}
-auto={1}{T}{S}:moveTo(myBattlefield) and((tap)) target(island,swamp,mountain|mylibrary)
+auto={1}{T}{S}:moveTo(myBattlefield) and!(tap)! target(island,swamp,mountain|mylibrary)
 text={T}: Add {1} to your mana pool. -- {1}, {T}, Sacrifice Grixis Panorama: Search your library for a basic Island, Swamp, or Mountain card and put it onto the battlefield tapped. Then shuffle your library.
 type=Land
 [/card]
@@ -36980,7 +36980,7 @@ subtype=Elf
 [card]
 name=Hunting Wilds
 target=<upto:2>forest|mylibrary
-auto=moveto(mybattlefield) and((tap))
+auto=moveto(mybattlefield) and!(tap)!
 kicker={3}{G}
 auto=kicker all(forest|mybattlefield) untap
 auto=kicker all(forest|mybattlefield) becomes(Wilds Creature,3/3,haste) forever
@@ -39846,7 +39846,7 @@ toughness=1
 [card]
 name=Jund Panorama
 auto={T}:Add {1}
-auto={1}{T}{S}:moveTo(myBattlefield) and((tap)) target(swamp,mountain,forest|mylibrary)
+auto={1}{T}{S}:moveTo(myBattlefield) and!(tap)! target(swamp,mountain,forest|mylibrary)
 text={T}: Add {1} to your mana pool. -- {1}, {T}, Sacrifice Jund Panorama: Search your library for a basic Swamp, Mountain, or Forest card and put it onto the battlefield tapped. Then shuffle your library.
 type=Land
 [/card]
@@ -41329,7 +41329,7 @@ type=Artifact
 [card]
 name=Khalni Heart Expedition
 auto=@movedto(land|myBattlefield):counter(0/0,1,Quest)
-auto={C(0/0,-3,Quest)}{S}:target(<upto:2>land[basic]|mylibrary) and((tap)) moveTo(mybattlefield)
+auto={C(0/0,-3,Quest)}{S}:target(<upto:2>land[basic]|mylibrary) and!(tap)! moveTo(mybattlefield)
 text=Landfall - Whenever a land enters the battlefield under your control, you may put a quest counter on Khalni Heart Expedition. -- Remove three quest counters from Khalni Heart Expedition and sacrifice it: Search your library for up to two basic land cards, put them onto the battlefield tapped, then shuffle your library.
 mana={1}{G}
 type=Enchantment
@@ -42302,7 +42302,7 @@ toughness=2
 [/card]
 [card]
 name=Kor Cartographer
-auto=may moveTo(myBattlefield) and((tap)) target(plains|mylibrary)
+auto=may moveTo(myBattlefield) and!(tap)! target(plains|mylibrary)
 text=When Kor Cartographer enters the battlefield, you may search your library for a Plains card, put it onto the battlefield tapped, then shuffle your library.
 mana={3}{W}
 type=Creature
@@ -42402,7 +42402,7 @@ toughness=1
 [/card]
 [card]
 name=Korlash Heir to Blackblade
-auto={discard(korlash heir to blackblade|myhand)}:moveto(mybattlefield) and((tap)) target(<upto:2>swamp|mylibrary)
+auto={discard(korlash heir to blackblade|myhand)}:moveto(mybattlefield) and!(tap)! target(<upto:2>swamp|mylibrary)
 auto=foreach(swamp|mybattlefield) 1/1
 auto={1}{B}:regenerate
 text=Korlash, Heir to Blackblade's power and toughness are each equal to the number of Swamps you control. -- {1}{B}: Regenerate Korlash. -- Grandeur - Discard another card named Korlash, Heir to Blackblade: Search your library for up to two Swamp cards, put them onto the battlefield tapped, then shuffle your library.
@@ -42433,7 +42433,7 @@ name=Koth of the Hammer
 auto=counter(0/0,3,loyalty)
 auto={C(0/0,1,Loyalty)}:untap target(mountain) && becomes(Elemental Creature,4/4,red) ueot
 auto={C(0/0,-2,Loyalty)}:foreach(mountain|myBattlefield) add:{R}
-auto={C(0/0,-5,Loyalty)}:lord(mountain|mybattlefield) {T}:damage:1 target(creature,player) dontremove
+auto={C(0/0,-5,Loyalty)}:emblem lord(mountain|mybattlefield) {T}:damage:1 target(creature,player) dontremove
 text=+1: Untap target Mountain. It becomes a 4/4 red Elemental creature until end of turn. It's still a land. -- -2: Add {R} to your mana pool for each Mountain you control. -- -5: You get an emblem with "Mountains you control have ‘{T}: This land deals 1 damage to target creature or player.'"
 mana={2}{R}{R}
 type=Planeswalker
@@ -44927,7 +44927,7 @@ toughness=3
 [/card]
 [card]
 name=Loam Dweller
-auto=@movedto(arcane,spirit|mystack):may moveto(myBattlefield) and((tap)) target(land|myhand)
+auto=@movedto(arcane,spirit|mystack):may moveto(myBattlefield) and!(tap)! target(land|myhand)
 text=Whenever you cast a Spirit or Arcane spell, you may put a land card from your hand onto the battlefield tapped.
 mana={1}{G}
 type=Creature
@@ -51106,7 +51106,7 @@ subtype=Aura
 name=Mwonvuli Acid-Moss
 target=land
 auto=destroy
-auto=target(forest|mylibrary) moveto(mybattlefield) and((tap))
+auto=target(forest|mylibrary) moveto(mybattlefield) and!(tap)!
 text=Destroy target land. Search your library for a Forest card and put that card onto the battlefield tapped. Then shuffle your library.
 mana={2}{G}{G}
 type=Sorcery
@@ -51976,7 +51976,7 @@ toughness=1
 [card]
 name=Naya Panorama
 auto={T}:Add{1}
-auto={1}{T}{S}:moveTo(myBattlefield) and((tap)) target(mountain,forest,plains|mylibrary)
+auto={1}{T}{S}:moveTo(myBattlefield) and!(tap)! target(mountain,forest,plains|mylibrary)
 text={T}: Add {1} to your mana pool. -- {1}, {T}, Sacrifice Naya Panorama: Search your library for a basic Mountain, Forest, or Plains card and put it onto the battlefield tapped. Then shuffle your library.
 type=Land
 [/card]
@@ -54134,7 +54134,7 @@ toughness=1
 [/card]
 [card]
 name=Ondu Giant
-auto=may moveTo(myBattlefield) and((tap)) target(basic|mylibrary)
+auto=may moveTo(myBattlefield) and!(tap)! target(basic|mylibrary)
 text=When Ondu Giant enters the battlefield, search your library for a basic land card and put that card onto the battlefield tapped. Then shuffle your library.
 mana={3}{G}
 type=Creature
@@ -54180,7 +54180,7 @@ color=green
 [card]
 name=One with Nature
 target=creature
-auto=@damaged(player) from(mytgt):may moveto(myBattlefield) and((tap)) target(land[basic]|myLibrary)
+auto=@damaged(player) from(mytgt):may moveto(myBattlefield) and!(tap)! target(land[basic]|myLibrary)
 text=Enchant creature -- Whenever enchanted creature deals combat damage to a player, you may search your library for a basic land card, put that card onto the battlefield tapped, then shuffle your library.
 mana={G}
 type=Enchantment
@@ -56383,7 +56383,7 @@ subtype=Equipment
 [/card]
 [card]
 name=Perilous Forays
-auto={1}{S(creature|mybattlefield)}:moveTo(myBattlefield) and((tap)) target(basic|mylibrary)
+auto={1}{S(creature|mybattlefield)}:moveTo(myBattlefield) and!(tap)! target(basic|mylibrary)
 text={1}, Sacrifice a creature: Search your library for a land card with a basic land type and put it onto the battlefield tapped. Then shuffle your library.
 mana={3}{G}{G}
 type=Enchantment
@@ -57264,8 +57264,8 @@ type=Sorcery
 [card]
 name=Phyrexian Unlife
 abilities=cantlifelose
-auto=this(controllerlife < 1) lord(*|opponentbattlefield,opponentstack) infect
-text=You don't lose the game for having 0 or less life. -- As long as your life total is 0 or less, sources that deal damage to you have infect.
+auto=this(controllerlife < 1) lord(*|opponentbattlefield,opponentstack) poisondamager
+text=You don't lose the game for having 0 or less life. -- As long as your life total is 0 or less, all damage is dealt to you as though its source had infect.
 mana={2}{W}
 type=Enchantment
 [/card]
@@ -58719,8 +58719,8 @@ toughness=3
 [card]
 name=Primeval Titan
 abilities=trample
-auto=may target(<upto:2>land|mylibrary) and((tap)) moveTo(mybattlefield)
-auto=@combat(attacking) source(this):may target(<upto:2>land|mylibrary) moveTo(mybattlefield) and((tap))
+auto=may target(<upto:2>land|mylibrary) and!(tap)! moveTo(mybattlefield)
+auto=@combat(attacking) source(this):may target(<upto:2>land|mylibrary) moveTo(mybattlefield) and!(tap)!
 text=Trample -- Whenever Primeval Titan enters the battlefield or attacks, you may search your library for up to two land cards, put them onto the battlefield tapped, then shuffle your library.
 mana={4}{G}{G}
 type=Creature
@@ -59419,7 +59419,7 @@ toughness=2
 [card]
 name=Puppeteer Clique
 abilities=flying,persist
-auto=moveto(mybattlefield) and((transforms((,haste,newability[@my next endofturn:moveTo(exile)])))) target(creature|opponentgraveyard)
+auto=moveto(mybattlefield) and!(transforms((,haste,newability[@my next endofturn:moveTo(exile)])) forever)! target(creature|opponentgraveyard)
 text=Flying -- When Puppeteer Clique enters the battlefield, put target creature card in an opponent's graveyard onto the battlefield under your control. It has haste. At the beginning of your next end step, exile it. -- Persist (When this creature is put into a graveyard from the battlefield, if it had no -1/-1 counters on it, return it to the battlefield under its owner's control with a -1/-1 counter on it.)
 mana={3}{B}{B}
 type=Creature
@@ -60041,7 +60041,7 @@ toughness=1
 [/card]
 [card]
 name=Quirion Trailblazer
-auto=may moveTo(myBattlefield) and((tap)) target(land[basic]|mylibrary)
+auto=may moveTo(myBattlefield) and!(tap)! target(land[basic]|mylibrary)
 text=When Quirion Trailblazer enters the battlefield, you may search your library for a basic land card and put that card onto the battlefield tapped. If you do, shuffle your library.
 mana={3}{G}
 type=Creature
@@ -61303,7 +61303,7 @@ toughness=4
 [card]
 name=Razor Hippogriff
 abilities=flying
-auto=moveto(myhand) and((transforms((,newability[dynamicability<!manacostlifegain targetcontroller!>])))) target(artifact|mygraveyard)
+auto=moveto(myhand) and!(transforms((,newability[dynamicability<!manacostlifegain targetcontroller!>])))! target(artifact|mygraveyard) 
 text=Flying -- When Razor Hippogriff enters the battlefield, return target artifact card from your graveyard to your hand. You gain life equal to that card's converted mana cost.
 mana={3}{W}{W}
 type=Creature
@@ -64999,7 +64999,7 @@ type=Sorcery
 [/card]
 [card]
 name=Sakura-Tribe Elder
-auto={S}:moveTo(myBattlefield) and((tap)) target(basic|mylibrary)
+auto={S}:moveTo(myBattlefield) and!(tap)! target(basic|mylibrary)
 text=Sacrifice Sakura-Tribe Elder: Search your library for a basic land card, put that card onto the battlefield tapped, then shuffle your library.
 mana={1}{G}
 type=Creature
@@ -66685,7 +66685,7 @@ toughness=2
 name=Scythe of the Wretched
 auto=teach(creature) +2/+2
 auto={4}:equip
-auto=@vampired(creature) from(mytgt):all(trigger[to]) moveto(mybattlefield) and((retarget))
+auto=@vampired(creature) from(mytgt):all(trigger[to]) moveto(mybattlefield) and!(retarget)!
 text=Equipped creature gets +2/+2. -- Whenever a creature dealt damage by equipped creature this turn is put into a graveyard, return that card to the battlefield under your control. Attach Scythe of the Wretched to that creature. -- Equip {4}
 mana={2}
 type=Artifact
@@ -66867,7 +66867,7 @@ type=Enchantment
 [/card]
 [card]
 name=Seance
-auto=@each my upkeep:may target(creature|mygraveyard) moveto(exile) and((clone with(treason) addtype(spirit) ))
+auto=@each my upkeep:may target(creature|mygraveyard) moveto(exile) and!(clone with(treason) addtype(spirit))!
 text=At the beginning of each upkeep, you may exile target creature card from your graveyard. If you do, put a token onto the battlefield that's a copy of that card except it's a Spirit in addition to its other types. Exile it at the beginning of the next end step.
 mana={2}{W}{W}
 type=Enchantment
@@ -67135,7 +67135,7 @@ toughness=1
 [/card]
 [card]
 name=Seedguide Ash
-auto=@movedTo(this|graveyard) from(battlefield):target(<upto:3>forest|mylibrary) moveTo(myBattlefield) and((tap))
+auto=@movedTo(this|graveyard) from(battlefield):target(<upto:3>forest|mylibrary) moveTo(myBattlefield) and!(tap)!
 text=When Seedguide Ash is put into a graveyard from the battlefield, you may search your library for up to three Forest cards and put them onto the battlefield tapped. If you do, shuffle your library.
 mana={4}{G}
 type=Creature
@@ -69629,7 +69629,7 @@ toughness=7
 [card]
 name=Silkwing Scout
 abilities=flying
-auto={G}{S}:moveTo(myBattlefield) and((tap)) target(basic|mylibrary)
+auto={G}{S}:moveTo(myBattlefield) and!(tap)! target(basic|mylibrary)
 text=Flying -- {G}, Sacrifice Silkwing Scout: Search your library for a basic land card and put that card onto the battlefield tapped. Then shuffle your library.
 mana={2}{U}
 type=Creature
@@ -69757,7 +69757,7 @@ toughness=4
 [/card]
 [card]
 name=Silverglade Pathfinder
-auto={1}{G}{T}{discard(*|myhand)}:moveTo(myBattlefield) and((tap)) target(basic|myLibrary)
+auto={1}{G}{T}{discard(*|myhand)}:moveTo(myBattlefield) and!(tap)! target(basic|myLibrary)
 text={1}{G}, {T}, Discard a card: Search your library for a basic land card and put that card onto the battlefield tapped. Then shuffle your library.
 mana={1}{G}
 type=Creature
@@ -72017,7 +72017,7 @@ type=Sorcery
 [/card]
 [card]
 name=Solemn Simulacrum
-auto=may moveTo(myBattlefield) and((tap)) target(land[basic]|mylibrary)
+auto=may moveTo(myBattlefield) and!(tap)! target(land[basic]|mylibrary)
 auto=@movedTo(this|graveyard) from(Battlefield):may draw:1 controller
 text=When Solemn Simulacrum enters the battlefield, you may search your library for a basic land card and put that card onto the battlefield tapped. If you do, shuffle your library. -- When Solemn Simulacrum dies, you may draw a card.
 mana={4}
@@ -72430,7 +72430,7 @@ name=Sorin, Lord of Innistrad
 auto=counter(0/0,3,loyalty)
 auto={C(0/0,1,Loyalty)}:token(Vampire,Creature Vampire,1/1,black,lifelink)
 auto={C(0/0,-2,Loyalty)}:name(emblem)emblem lord(creature|mybattlefield) 1/0 dontremove
-auto={C(0/0,-6,Loyalty)}:target(<upto:3>other creature,planeswalker) destroy and(( moveto(mybattlefield) ))
+auto={C(0/0,-6,Loyalty)}:target(<upto:3>other creature,planeswalker) destroy and!(moveto(mybattlefield))!
 text=+1: Put a 1/1 black Vampire creature token with lifelink onto the battlefield. -- -2: You get an emblem with "Creatures you control get +1/+0." -- -6: Destroy up to three target creatures and/or other planeswalkers. Return each card put into a graveyard this way to the battlefield under your control.
 mana={2}{W}{B}
 type=Planeswalker
@@ -77381,7 +77381,7 @@ type=Sorcery
 [/card]
 [card]
 name=Syphon Mind
-auto=ability$!name(discard) target(*|myhand) reject and((draw:1 opponent))!$
+auto=ability$!name(discard) target(*|myhand) reject and!(draw:1 opponent)!!$
 text=Each other player discards a card. You draw a card for each card discarded this way.
 mana={3}{B}
 type=Sorcery
@@ -78757,7 +78757,7 @@ id=-19713711
 [card]
 name=Terminal Moraine
 auto={T}:Add{1}
-auto={2}{T}{S}:moveTo(myBattlefield) and((tap)) target(basic|mylibrary)
+auto={2}{T}{S}:moveTo(myBattlefield) and!(tap)! target(basic|mylibrary)
 text={T}: Add {1} to your mana pool. -- {2}, {T}, Sacrifice Terminal Moraine: Search your library for a basic land card and put that card onto the battlefield tapped. Then shuffle your library.
 type=Land
 [/card]
@@ -78810,13 +78810,13 @@ toughness=8
 [card]
 name=Terrain Generator
 auto={T}:Add {1}
-auto={2}{T}:moveTo(myBattlefield) and((tap)) target(land[basic]|myhand)
+auto={2}{T}:moveTo(myBattlefield) and!(tap)! target(land[basic]|myhand)
 text={T}: Add {1} to your mana pool. -- {2}, {T}: You may put a basic land card from your hand onto the battlefield tapped.
 type=Land
 [/card]
 [card]
 name=Terramorphic Expanse
-auto={T}{S}:moveTo(myBattlefield) and((tap)) target(basic|mylibrary)
+auto={T}{S}:moveTo(myBattlefield) and!(tap)! target(basic|mylibrary)
 text={T}, Sacrifice Terramorphic Expanse: Search your library for a basic land card and put it onto the battlefield tapped. Then shuffle your library.
 type=Land
 [/card]
@@ -79146,7 +79146,7 @@ toughness=2
 [card]
 name=Thawing Glaciers
 auto=tap
-auto={1}{T}:moveTo(mybattlefield) and((tap)) target(land[basic]|mylibrary) && phaseaction[cleanup,sourceinplay] moveto(myhand) all(this)
+auto={1}{T}:moveTo(mybattlefield) and!(tap)! target(land[basic]|mylibrary) && phaseaction[cleanup,sourceinplay] moveto(myhand) all(this)
 text=Thawing Glaciers enters the battlefield tapped. -- {1}, {T}: Search your library for a basic land card, put that card onto the battlefield tapped, then shuffle your library. Return Thawing Glaciers to its owner's hand at the beginning of the next cleanup step.
 type=Land
 [/card]
@@ -84736,7 +84736,7 @@ name=Venser, the Sojourner
 auto=counter(0/0,4,loyalty)
 auto={C(0/0,2,Loyalty)}:(blink)ueot target(*|mybattlefield)
 auto={C(0/0,-1,Loyalty)}:all(creature) unblockable ueot
-auto={C(0/0,-8,Loyalty)}:name(emblem) transforms((,newability[@movedto(*|mybattlefield) dontremove:choice target(*|battlefield) moveto(exile)])) forever
+auto={C(0/0,-8,Loyalty)}:name(emblem) emblem transforms((,newability[@movedto(*|mybattlefield) dontremove:choice target(*|battlefield) moveto(exile)])) forever
 text=+2: Exile target permanent you own. Return it to the battlefield under your control at the beginning of the next end step. -- -1: Creatures are unblockable this turn. -- -8: You get an emblem with "Whenever you cast a spell, exile target permanent."
 mana={3}{W}{U}
 type=Planeswalker
@@ -85714,7 +85714,7 @@ toughness=2
 [/card]
 [card]
 name=Viridian Emissary
-auto=@movedTo(this|graveyard) from(battlefield):may moveTo(mybattlefield) and((tap)) target(land[basic]|mylibrary)
+auto=@movedTo(this|graveyard) from(battlefield):may moveTo(mybattlefield) and!(tap)! target(land[basic]|mylibrary)
 text=When Viridian Emissary dies, you may search your library for a basic land card and put that card onto the battlefield tapped. If you do, shuffle your library.
 mana={1}{G}
 type=Creature
@@ -87334,7 +87334,7 @@ toughness=4
 [card]
 name=Wall of Tombstones
 abilities=defender
-auto=@each my upkeep:transforms((,settoughness=type:creature:mygraveyard and((0/1))))
+auto=@each my upkeep:transforms((,settoughness=type:creature:mygraveyard,newability[0/1])) forever
 text=Defender (This creature can't attack.) -- At the beginning of your upkeep, Wall of Tombstones's toughness becomes 1 plus the number of creature cards in your graveyard. (This effect lasts indefinitely.)
 mana={1}{B}
 type=Creature
@@ -88021,7 +88021,7 @@ toughness=2
 [/card]
 [card]
 name=Wayfarer's Bauble
-auto={2}{T}{S}:moveTo(myBattlefield) and((tap)) target(land[basic]|mylibrary)
+auto={2}{T}{S}:moveTo(myBattlefield) and!(tap)! target(land[basic]|mylibrary)
 text={2}, {T}, Sacrifice Wayfarer's Bauble: Search your library for a basic land card and put that card onto the battlefield tapped. Then shuffle your library.
 mana={1}
 type=Artifact
@@ -88569,8 +88569,8 @@ toughness=1
 [card]
 name=Whirlpool Drake
 abilities=flying
-auto=all(*|myhand) transforms((,newability[draw:1],newability[moveTo(mylibrary) and((shuffle))]))
-auto=@movedTo(this|ownergraveyard) from(battlefield):all(*|myhand) transforms((,newability[draw:1],newability[moveTo(mylibrary) and((shuffle))]))
+auto=all(*|myhand) transforms((,newability[draw:1],newability[moveTo(mylibrary) and!(shuffle)!]))
+auto=@movedTo(this|ownergraveyard) from(battlefield):all(*|myhand) transforms((,newability[draw:1],newability[moveTo(mylibrary) and!(shuffle)!]))
 text=Flying -- When Whirlpool Drake enters the battlefield, shuffle the cards from your hand into your library, then draw that many cards. -- When Whirlpool Drake dies, shuffle the cards from your hand into your library, then draw that many cards.
 mana={3}{U}
 type=Creature
@@ -88580,7 +88580,7 @@ toughness=2
 [/card]
 [card]
 name=Whirlpool Rider
-auto=all(*|myhand) transforms((,newability[draw:1],newability[moveTo(mylibrary) and((shuffle))]))
+auto=all(*|myhand) transforms((,newability[draw:1],newability[moveTo(mylibrary) and!(shuffle)!]))
 text=When Whirlpool Rider enters the battlefield, shuffle the cards from your hand into your library, then draw that many cards.
 mana={1}{U}
 type=Creature
@@ -88590,8 +88590,8 @@ toughness=1
 [/card]
 [card]
 name=Whirlpool Warrior
-auto=all(*|myhand) transforms((,newability[draw:1],newability[moveTo(mylibrary) and((shuffle))]))
-auto={R}{S}:all(*|myhand) transforms((,newability[draw:1],newability[moveTo(mylibrary) and((shuffle))])) && auto=all(*|opponenthand) transforms((,newability[draw:1 opponent],newability[moveTo(opponentlibrary) and((shuffle))]))
+auto=all(*|myhand) transforms((,newability[draw:1],newability[moveTo(mylibrary) and!(shuffle)!]))
+auto={R}{S}:all(*|myhand) transforms((,newability[draw:1],newability[moveTo(mylibrary) and!(shuffle)!])) && auto=all(*|opponenthand) transforms((,newability[draw:1 opponent],newability[moveTo(opponentlibrary) and!(shuffle)!]))
 text=When Whirlpool Warrior enters the battlefield, shuffle the cards from your hand into your library, then draw that many cards. -- {R}, Sacrifice Whirlpool Warrior: Each player shuffles the cards from his or her hand into his or her library, then draws that many cards.
 mana={2}{U}
 type=Creature
@@ -89205,8 +89205,8 @@ toughness=2
 [/card]
 [card]
 name=Winds of Change
-auto=all(*|myhand) transforms((,newability[draw:1],newability[moveTo(mylibrary) and((shuffle))]))
-auto=all(*|opponenthand) transforms((,newability[draw:1 opponent],newability[moveTo(opponentlibrary) and((shuffle))]))
+auto=all(*|myhand) transforms((,newability[draw:1],newability[moveTo(mylibrary) and!(shuffle)!]))
+auto=all(*|opponenthand) transforms((,newability[draw:1 opponent],newability[moveTo(opponentlibrary) and!(shuffle)!]))
 text=Each player shuffles the cards from his or her hand into his or her library, then draws that many cards.
 mana={R}
 type=Sorcery
@@ -90648,8 +90648,8 @@ type=Land
 [card]
 name=Yavimaya Dryad
 abilities=forestwalk
-auto=may name(my battlefield) moveTo(myBattlefield) and((tap)) target(forest|mylibrary)
-auto=may name(opponent's battlefield) moveTo(opponentBattlefield) and((tap)) target(forest|mylibrary)
+auto=may name(my battlefield) moveTo(myBattlefield) and!(tap)! target(forest|mylibrary)
+auto=may name(opponent's battlefield) moveTo(opponentBattlefield) and!(tap)! target(forest|mylibrary)
 text=Forestwalk -- When Yavimaya Dryad enters the battlefield, you may search your library for a Forest card and put it onto the battlefield tapped under target player's control. If you do, shuffle your library.
 mana={1}{G}{G}
 type=Creature
@@ -90691,7 +90691,7 @@ toughness=1
 [/card]
 [card]
 name=Yavimaya Granger
-auto=may moveTo(myBattlefield) and((tap)) target(land[basic]|myLibrary)
+auto=may moveTo(myBattlefield) and!(tap)! target(land[basic]|myLibrary)
 auto=upcost[{2}{G};next upkeep] sacrifice
 text=Echo {2}{G} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- When Yavimaya Granger enters the battlefield, you may search your library for a basic land card, put that card onto the battlefield tapped, then shuffle your library.
 mana={2}{G}
@@ -91319,7 +91319,7 @@ toughness=2
 [card]
 name=Zombie Apocalypse
 auto=destroy all(human)
-auto=moveTo(mybattlefield) all(creature[zombie]|mygraveyard) and((tap))
+auto=moveTo(mybattlefield) all(creature[zombie]|mygraveyard) and!(tap)!
 text=Return all Zombie creature cards from your graveyard to the battlefield tapped, then destroy all Humans.
 mana={3}{B}{B}{B}
 type=Sorcery
