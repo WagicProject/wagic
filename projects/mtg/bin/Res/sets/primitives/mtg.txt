@@ -13291,7 +13291,7 @@ toughness=2
 [/card]
 [card]
 name=Circle of Flame
-auto=@each my blockers:damage:1 all(creature[flying])
+auto=@each opponent blockers:damage:1 all(creature[-flying&attacking])
 text=Whenever a creature without flying attacks you or a planeswalker you control, Circle of Flame deals 1 damage to that creature.
 mana={1}{R}
 type=Enchantment
