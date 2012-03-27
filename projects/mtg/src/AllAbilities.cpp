@@ -1914,9 +1914,7 @@ int AADynamic::resolve()
     }
 
     if(secondaryTarget != NULL)
-    {
         _target = secondaryTarget;
-    }
     if (_target)
     {
         while (dynamic_cast<MTGCardInstance *>(_target) && ((MTGCardInstance *)_target)->next)
@@ -1925,124 +1923,69 @@ int AADynamic::resolve()
             sourceamount = 0;
         if(targetamount < 0)
             targetamount = 0;
+        std::stringstream out;
+        out << sourceamount;
+        string sourceamountstring = out.str();
+        out << targetamount;
+        string targetamountstring = out.str();
         //set values less then 0 to 0, it was reported that negitive numbers such as a creature who get -3/-3 having the power become
         //negitive, if then used as the amount, would cuase weird side effects on resolves.
         switch(effect)
         {
         case DYNAMIC_ABILITY_EFFECT_STRIKE://deal damage
-            if(storedAbility)
-                activateStored();
-            if(tosrc == false)
             {
-                game->mLayers->stackLayer()->addDamage((MTGCardInstance *)source, _target, sourceamount);
-                game->mLayers->stackLayer()->resolve();
+                AADamager * a = NEW AADamager(game, this->GetId(), source,tosrc == true?(Targetable*)OriginalSrc:(Targetable*)_target,sourceamountstring);
+                activateMainAbility(a,source,tosrc == true?OriginalSrc:(MTGCardInstance*)_target);
+                if(eachother)
+                {
+                    AADamager * a = NEW AADamager(game, this->GetId(), source,tosrc == true?(Targetable*)OriginalSrc:(Targetable*)_target,targetamountstring);
+                    activateMainAbility(a,source,tosrc == true?OriginalSrc:(MTGCardInstance*)_target);
+                }
+                return 1;
+                break;
             }
-            else
-            {
-                game->mLayers->stackLayer()->addDamage((MTGCardInstance *)source, OriginalSrc, sourceamount);
-                game->mLayers->stackLayer()->resolve();
-            }
-            if(eachother )
-            {
-                game->mLayers->stackLayer()->addDamage((MTGCardInstance *)_target, source, targetamount);
-                game->mLayers->stackLayer()->resolve();
-            }
-            return 1;
-            break;
         case DYNAMIC_ABILITY_EFFECT_DRAW://draw cards
-            if(storedAbility)
-                activateStored();
-            game->mLayers->stackLayer()->addDraw((Player *)_target,sourceamount);
-            game->mLayers->stackLayer()->resolve();
-            return 1;
-            break;
+            {
+                AADrawer * a = NEW AADrawer(game, this->GetId(), source,_target,NULL, sourceamountstring);
+                return activateMainAbility(a,source,_target);
+                break;
+            }
         case DYNAMIC_ABILITY_EFFECT_LIFEGAIN://gain life
-            if(storedAbility)
-                activateStored();
-            game->mLayers->stackLayer()->addLife(_target,sourceamount);
-            game->mLayers->stackLayer()->resolve();
-            return 1;
-            break;
+            {
+                AALifer * a = NEW AALifer(game, this->GetId(), source,_target, sourceamountstring);
+                return activateMainAbility(a,source,_target);
+                break;
+            }
         case DYNAMIC_ABILITY_EFFECT_PUMPPOWER://pump power
             {
-                if(storedAbility)
-                    activateStored();
-                if(tosrc == false)
-                {
-                    PTInstant * a = NEW PTInstant(game, this->GetId(), source, (MTGCardInstance*)_target,NEW WParsedPT(sourceamount,0));
-                    GenericInstantAbility * wrapper = NEW GenericInstantAbility(game, 1, source,(MTGCardInstance*)_target, a);
-                    wrapper->addToGame();
-                    return 1;
-                }
-                else
-                {
-                    PTInstant * a = NEW PTInstant(game, this->GetId(), source, OriginalSrc,NEW WParsedPT(sourceamount,0));
-                    GenericInstantAbility * wrapper = NEW GenericInstantAbility(game, 1, source,OriginalSrc, a);
-                    wrapper->addToGame();
-                    return 1;
-                }
+                PTInstant * a = NEW PTInstant(game, this->GetId(), source,tosrc == true?OriginalSrc:(MTGCardInstance*)_target,NEW WParsedPT(sourceamount,0));
+                return activateMainAbility(a,source,tosrc == true?OriginalSrc:(MTGCardInstance*)_target);
                 break;
             }
         case DYNAMIC_ABILITY_EFFECT_PUMPTOUGHNESS://pump toughness
             {
-                if(storedAbility)
-                    activateStored();
-                if(tosrc == false)
-                {
-                    PTInstant * a = NEW PTInstant(game, this->GetId(), source, (MTGCardInstance*)_target,NEW WParsedPT(0,sourceamount));
-                    GenericInstantAbility * wrapper = NEW GenericInstantAbility(game, 1, source,(MTGCardInstance*)_target, a);
-                    wrapper->addToGame();
-                    return 1;
-                }
-                else
-                {
-                    PTInstant * a = NEW PTInstant(game, this->GetId(), source, OriginalSrc,NEW WParsedPT(0,sourceamount));
-                    GenericInstantAbility * wrapper = NEW GenericInstantAbility(game, 1, source,OriginalSrc, a);
-                    wrapper->addToGame();
-                    return 1;
-                }
+                PTInstant * a = NEW PTInstant(game, this->GetId(), source,tosrc == true?OriginalSrc:(MTGCardInstance*)_target,NEW WParsedPT(0,sourceamount));
+                return activateMainAbility(a,source,tosrc == true?OriginalSrc:(MTGCardInstance*)_target);
                 break;
             }
         case DYNAMIC_ABILITY_EFFECT_PUMPBOTH://pump both
             {
-                if(storedAbility)
-                    activateStored();
-                if(tosrc == false)
-                {
-                    PTInstant * a = NEW PTInstant(game, this->GetId(), source, (MTGCardInstance*)_target,NEW WParsedPT(sourceamount,sourceamount));
-                    GenericInstantAbility * wrapper = NEW GenericInstantAbility(game, 1, source,(MTGCardInstance*)_target, a);
-                    wrapper->addToGame();
-                    return 1;
-                }
-                else
-                {
-                    PTInstant * a = NEW PTInstant(game, this->GetId(), source, OriginalSrc,NEW WParsedPT(sourceamount,sourceamount));
-                    GenericInstantAbility * wrapper = NEW GenericInstantAbility(game, 1, source,OriginalSrc, a);
-                    wrapper->addToGame();
-                    return 1;
-                }
+                PTInstant * a = NEW PTInstant(game, this->GetId(), source,tosrc == true?OriginalSrc:(MTGCardInstance*)_target,NEW WParsedPT(sourceamount,sourceamount));
+                return activateMainAbility(a,source,tosrc == true?OriginalSrc:(MTGCardInstance*)_target);
                 break;
             }
         case DYNAMIC_ABILITY_EFFECT_LIFELOSS://lose life
-            if(storedAbility)
-                activateStored();
-                game->mLayers->stackLayer()->addLife(_target,(sourceamount * -1));
-                game->mLayers->stackLayer()->resolve();
-            
-            return 1;
-            break;
+            {
+                string altered = "-";
+                altered.append(sourceamountstring);
+                AALifer * a = NEW AALifer(game, this->GetId(), source,_target, altered);
+                return activateMainAbility(a,source,_target);
+                break;
+            }
         case DYNAMIC_ABILITY_EFFECT_DEPLETE://deplete cards
             {
-                if(storedAbility)
-                    activateStored();
-                Player * player = (Player *)_target;
-                MTGLibrary * library = player->game->library;
-                for (int i = 0; i < sourceamount; i++)
-                {
-                    if (library->nb_cards)
-                        player->game->putInZone(library->cards[library->nb_cards - 1], library, player->game->graveyard);
-                }
-                return 1;
+                AADepleter * a = NEW AADepleter(game, this->GetId(), source,_target, sourceamountstring);
+                return activateMainAbility(a,source,_target);
                 break;
             }
         case DYNAMIC_ABILITY_EFFECT_COUNTERSONEONE:
@@ -2059,6 +2002,21 @@ int AADynamic::resolve()
     }
 
     return 0;
+}
+int AADynamic::activateMainAbility(MTGAbility * toActivate,MTGCardInstance * source , Damageable * target)
+{
+    if(storedAbility)
+        activateStored();
+    if(!toActivate)
+        return 0;
+    if(PTInstant * a = dynamic_cast<PTInstant *>(toActivate))
+    {
+        a->addToGame();
+        return 1;
+    }
+    toActivate->oneShot = true;
+    toActivate->resolve();
+    return 1;
 }
 
 int AADynamic::activateStored()
