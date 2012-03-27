@@ -20722,7 +20722,7 @@ type=Instant
 [card]
 name=Drana, Kalastria Bloodchief
 abilities=flying
-auto={X}{B}{B}:thisforeach(X) damage:1 target(creature) && thisforeach(X) 1/0 all(this)
+auto={X}{B}{B}:damage:x target(creature) && all(this) x/0 ueot
 text=Flying -- {X}{B}{B}: Target creature gets -0/-X until end of turn and Drana, Kalastria Bloodchief gets +X/+0 until end of turn.
 mana={3}{B}{B}
 type=Legendary Creature
