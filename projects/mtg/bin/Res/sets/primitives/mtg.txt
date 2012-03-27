@@ -26587,9 +26587,8 @@ type=Instant
 [/card]
 [card]
 name=Fire at Will's 3rd Damage
-auto=counter(0/0,1,Fire)
-auto=@damaged(creature,player):thisforeach(counter{0/0.1.Fire}>0) may damage:1 target(creature,player) && counter(0/0,-1,Fire) && counter(0/0,1,Bury)
-auto=thisforeach(counter{0/0.1.Bury}>0) bury
+auto=@movedto(exile) from(this):may damage:1 target(creature,player)
+auto=moveto(exile)
 id=-1111121
 type=Nothing
 [/card]
