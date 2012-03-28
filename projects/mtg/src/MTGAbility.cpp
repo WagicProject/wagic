@@ -283,6 +283,8 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
                     MTGCardInstance * stackCard = player->game->stack->cardsSeenThisTurn[k];
                     if(stackCard->next && stackCard->next == card)
                         count++;
+                    if(stackCard == card)
+                        count++;
                 }
                 if(!count)
                     return 0;
