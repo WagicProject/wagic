@@ -4005,7 +4005,7 @@ int MTGAbility::testDestroy()
         return 0;
     if (!game->isInPlay(source))
         return 1;
-    if (target && !game->isInPlay((MTGCardInstance *) target))
+    if (target && !dynamic_cast<Player*>(target) && !game->isInPlay((MTGCardInstance *) target))
         return 1;
     return 0;
 }
