@@ -48626,7 +48626,6 @@ subtype=Aura
 [/card]
 [card]
 name=Midnight Guard
-abilities=flash,flying
 auto=@movedTo(other creature|mybattlefield):untap
 text=Whenever another creature enters the battlefield, untap Midnight Guard.
 mana={2}{W}
