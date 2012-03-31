@@ -167,6 +167,7 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
                         {
                             if(value == "chosencolor")
                             {
+                                if(c)
                                 manaCost->add(c->chooseacolor, 1);
                             }
                             else if(value == "cycle")
