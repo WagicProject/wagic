@@ -469,6 +469,49 @@ int TapTargetCost::doPay()
     return 0;
 }
 
+//untap other as a cost
+UnTapTargetCost * UnTapTargetCost::clone() const
+{
+    UnTapTargetCost * ec = NEW UnTapTargetCost(*this);
+    if (tc)
+        ec->tc = tc->clone();
+    return ec;
+}
+
+UnTapTargetCost::UnTapTargetCost(TargetChooser *_tc)
+    : ExtraCost("Untap Target", _tc)
+{
+}
+
+int UnTapTargetCost::isPaymentSet()
+{
+    if (target && !target->isTapped())
+    {
+        tc->removeTarget(target);
+        target->isExtraCostTarget = false;
+        target = NULL;
+        return 0;
+    }
+    if (target)
+        return 1;
+    return 0;
+}
+
+int UnTapTargetCost::doPay()
+{
+    MTGCardInstance * _target = (MTGCardInstance *) target;
+    source->storedCard = target;
+    if (target)
+    {
+        _target->untap();
+        target = NULL;
+        if (tc)
+            tc->initTargets();
+        return 1;
+    }
+    return 0;
+}
+
 //exile as cost
 ExileTargetCost * ExileTargetCost::clone() const
 {

@@ -159,10 +159,15 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
                             break;
                         }
                     case 'q':
+                        if(value == "q")
                         {
                             manaCost->addExtraCost(NEW UnTapCost);
-                            break;
                         }
+                        else
+                        {
+                            manaCost->addExtraCost(NEW UnTapTargetCost(tc));
+                        }
+                        break;
                     case 'c': //Counters or cycle
                         {
                             if(value == "chosencolor")

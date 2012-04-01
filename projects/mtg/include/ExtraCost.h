@@ -173,6 +173,15 @@ public:
     virtual int doPay();
     virtual TapTargetCost * clone() const;
 };
+//untap a target as cost
+class UnTapTargetCost : public ExtraCost
+{
+public:
+    UnTapTargetCost(TargetChooser *_tc = NULL);
+    virtual int isPaymentSet();
+    virtual int doPay();
+    virtual UnTapTargetCost * clone() const;
+};
 
 //exile as cost
 class ExileTargetCost : public ExtraCost
