@@ -260,6 +260,25 @@ public:
     virtual bool equals(TargetChooser * tc);
 };
 
+class BlockableChooser: public TypeTargetChooser
+{
+public:
+    bool withoutProtections;
+    BlockableChooser(GameObserver *observer, int * _zones, int _nbzones, MTGCardInstance * card = NULL, int _maxtargets = 1, bool other = false, bool targetMin = false) :
+    TypeTargetChooser(observer, "creature",_zones, _nbzones, card, _maxtargets, other, targetMin)
+    {
+    }
+    ;
+    BlockableChooser(GameObserver *observer, MTGCardInstance * card = NULL, int _maxtargets = 1, bool other = false,bool targetMin = false) :
+        TypeTargetChooser(observer, "creature", card, _maxtargets, other,targetMin)
+    {
+    }
+    ;
+    virtual bool canTarget(Targetable * target, bool withoutProtections = false);
+    virtual BlockableChooser * clone() const;
+    virtual bool equals(TargetChooser * tc);
+};
+
 class myCursesChooser: public TypeTargetChooser
 {
 public:

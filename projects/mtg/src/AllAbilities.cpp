@@ -4798,6 +4798,31 @@ ABlinkGeneric::~ABlinkGeneric()
     SAFE_DELETE(ability);
 }
 
+// target becomes blocked by source
+AABlock::AABlock(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost) :
+InstantAbility(observer, id, card, target)
+{
+    target = _target;
+}
+
+int AABlock::resolve()
+{
+    MTGCardInstance * _target = (MTGCardInstance *) target;
+    source = (MTGCardInstance*)source;
+    if (_target && source->canBlock(_target))
+    {
+       source->toggleDefenser(_target);
+       source->getObserver()->isInterrupting = NULL;
+    }
+    return 1;
+}
+
+AABlock * AABlock::clone() const
+{
+    return NEW AABlock(*this);
+}
+
+
 // target becomes a parent of card(source)
 AAConnect::AAConnect(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost) :
 InstantAbility(observer, id, card, target)

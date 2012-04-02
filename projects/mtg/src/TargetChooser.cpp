@@ -18,6 +18,13 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
     size_t found;
     bool other = false;
 
+    found = s.find("blockable");
+    if (found != string::npos)
+    {
+        int maxtargets = 1;
+        return NEW BlockableChooser(observer, card, maxtargets);
+    }
+
     found = s.find("mytgt");
     if (found == 0)
     {
@@ -1511,6 +1518,35 @@ bool myCursesChooser::equals(TargetChooser * tc)
     return TypeTargetChooser::equals(tc);
 }
 
+/*display cards blockable by source */
+bool BlockableChooser::canTarget(Targetable * target,bool withoutProtections)
+{
+    if (MTGCardInstance * card = dynamic_cast<MTGCardInstance*>(target))
+    {
+        if(!card->isAttacker() || !source->canBlock(card))
+            return false;
+        return true;
+    }
+    return TypeTargetChooser::canTarget(target,withoutProtections);
+}
+
+BlockableChooser* BlockableChooser::clone() const
+{
+    BlockableChooser * a = NEW BlockableChooser(*this);
+    return a;
+}
+
+bool BlockableChooser::equals(TargetChooser * tc)
+{
+
+    BlockableChooser  * dtc = dynamic_cast<BlockableChooser  *> (tc);
+    if (!dtc)
+        return false;
+
+    return TypeTargetChooser::equals(tc);
+}
+
+//-----------
 /*Proliferate Target */
 bool ProliferateChooser::canTarget(Targetable * target,bool withoutProtections)
 {

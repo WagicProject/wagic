@@ -2515,6 +2515,15 @@ public:
 };
 //
 
+/* assign a creature to block a target */
+class AABlock: public InstantAbility
+{
+public:
+    AABlock(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost = NULL);
+    int resolve();
+    AABlock * clone() const;
+};
+
 /* create a parent child association between cards */
 class AAConnect: public InstantAbility
 {

@@ -1012,12 +1012,23 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     }
 
     found = s.find("ability$!");
-    if (found != string::npos && storedString.empty())
+    if (found != string::npos && storedAbilityString.empty())
     {
         size_t real_end = s.find("!$", found);
         size_t sIndex = found + 9;
         storedAbilityString.append(s.substr(sIndex, real_end - sIndex).c_str());
         s.erase(sIndex, real_end - sIndex);
+    }
+    else
+    {
+        found = unchangedS.find("ability$!");//did find it in a changed s, try unchanged.
+        if (found != string::npos && storedAbilityString.empty())
+        {
+            size_t real_end = unchangedS.find("!$", found);
+            size_t sIndex = found + 9;
+            storedAbilityString.append(unchangedS.substr(sIndex, real_end - sIndex).c_str());
+            unchangedS.erase(sIndex, real_end - sIndex);
+        }
     }
 
     found = s.find("and!(");
@@ -2756,6 +2767,15 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         observer->connectRule = true;
         return NULL;
     }
+    //standard block
+        found = s.find("block");
+    if (found != string::npos)
+    {
+        MTGAbility * a = NEW AABlock(observer, id, card, target);
+        a->oneShot = 1;
+        return a;
+    }
+
     //create an association between cards.
     found = s.find("connect");
     if (found != string::npos)
