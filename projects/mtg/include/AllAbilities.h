@@ -3483,6 +3483,7 @@ MTGCardInstance * OriginalSrc;
 MTGCardInstance * storedTarget;
 MTGAbility * storedAbility;
 MTGAbility * clonedStored;
+MTGAbility * mainAbility;
 string menu;
 
     AADynamic(GameObserver* observer, int id, MTGCardInstance * card, Damageable * _target,int type = 0,int effect = 0,int who = 0,int amountsource = 1,MTGAbility * storedAbility = NULL, ManaCost * _cost = NULL);

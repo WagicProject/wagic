@@ -317,7 +317,7 @@ int MillCost::doPay()
     MTGCardInstance * _target = (MTGCardInstance *) target;
     if (target)
     {
-        source->storedCard = target;
+        source->storedCard = (MTGCardInstance*)_target->controller()->game->library->cards[_target->controller()->game->library->nb_cards - 1];
         _target->controller()->game->putInZone(
             _target->controller()->game->library->cards[_target->controller()->game->library->nb_cards - 1],
             _target->controller()->game->library, _target->controller()->game->graveyard);
@@ -339,7 +339,7 @@ MillExileCost::MillExileCost(TargetChooser *_tc)
 int MillExileCost::doPay()
 {
     MTGCardInstance * _target = (MTGCardInstance *) target;
-    source->storedCard = target;
+    source->storedCard = (MTGCardInstance*)_target->controller()->game->library->cards[_target->controller()->game->library->nb_cards - 1];
     if (target)
     {
         _target->controller()->game->putInZone(

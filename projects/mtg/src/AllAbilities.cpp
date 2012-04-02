@@ -1758,6 +1758,7 @@ ActivatedAbility(observer, id, card, _cost, 0),type(type),effect(effect),who(who
     menu = "";
     OriginalSrc = source;
     clonedStored = NULL;
+    mainAbility = NULL;
 }
 
 int AADynamic::resolve()
@@ -1934,58 +1935,58 @@ int AADynamic::resolve()
         {
         case DYNAMIC_ABILITY_EFFECT_STRIKE://deal damage
             {
-                AADamager * a = NEW AADamager(game, this->GetId(), source,tosrc == true?(Targetable*)OriginalSrc:(Targetable*)_target,sourceamountstring);
-                activateMainAbility(a,source,tosrc == true?OriginalSrc:(MTGCardInstance*)_target);
+                mainAbility = NEW AADamager(game, this->GetId(), source,tosrc == true?(Targetable*)OriginalSrc:(Targetable*)_target,sourceamountstring);
+                activateMainAbility(mainAbility,source,tosrc == true?OriginalSrc:(MTGCardInstance*)_target);
                 if(eachother)
                 {
-                    AADamager * a = NEW AADamager(game, this->GetId(), source,tosrc == true?(Targetable*)OriginalSrc:(Targetable*)_target,targetamountstring);
-                    activateMainAbility(a,source,tosrc == true?OriginalSrc:(MTGCardInstance*)_target);
+                    mainAbility = NEW AADamager(game, this->GetId(), source,tosrc == true?(Targetable*)OriginalSrc:(Targetable*)_target,targetamountstring);
+                    activateMainAbility(mainAbility,source,tosrc == true?OriginalSrc:(MTGCardInstance*)_target);
                 }
                 return 1;
                 break;
             }
         case DYNAMIC_ABILITY_EFFECT_DRAW://draw cards
             {
-                AADrawer * a = NEW AADrawer(game, this->GetId(), source,_target,NULL, sourceamountstring);
-                return activateMainAbility(a,source,_target);
+                mainAbility = NEW AADrawer(game, this->GetId(), source,_target,NULL, sourceamountstring);
+                return activateMainAbility(mainAbility,source,_target);
                 break;
             }
         case DYNAMIC_ABILITY_EFFECT_LIFEGAIN://gain life
             {
-                AALifer * a = NEW AALifer(game, this->GetId(), source,_target, sourceamountstring);
-                return activateMainAbility(a,source,_target);
+                mainAbility = NEW AALifer(game, this->GetId(), source,_target, sourceamountstring);
+                return activateMainAbility(mainAbility,source,_target);
                 break;
             }
         case DYNAMIC_ABILITY_EFFECT_PUMPPOWER://pump power
             {
-                PTInstant * a = NEW PTInstant(game, this->GetId(), source,tosrc == true?OriginalSrc:(MTGCardInstance*)_target,NEW WParsedPT(sourceamount,0));
-                return activateMainAbility(a,source,tosrc == true?OriginalSrc:(MTGCardInstance*)_target);
+                mainAbility = NEW PTInstant(game, this->GetId(), source,tosrc == true?OriginalSrc:(MTGCardInstance*)_target,NEW WParsedPT(sourceamount,0));
+                return activateMainAbility(mainAbility,source,tosrc == true?OriginalSrc:(MTGCardInstance*)_target);
                 break;
             }
         case DYNAMIC_ABILITY_EFFECT_PUMPTOUGHNESS://pump toughness
             {
-                PTInstant * a = NEW PTInstant(game, this->GetId(), source,tosrc == true?OriginalSrc:(MTGCardInstance*)_target,NEW WParsedPT(0,sourceamount));
-                return activateMainAbility(a,source,tosrc == true?OriginalSrc:(MTGCardInstance*)_target);
+                mainAbility = NEW PTInstant(game, this->GetId(), source,tosrc == true?OriginalSrc:(MTGCardInstance*)_target,NEW WParsedPT(0,sourceamount));
+                return activateMainAbility(mainAbility,source,tosrc == true?OriginalSrc:(MTGCardInstance*)_target);
                 break;
             }
         case DYNAMIC_ABILITY_EFFECT_PUMPBOTH://pump both
             {
-                PTInstant * a = NEW PTInstant(game, this->GetId(), source,tosrc == true?OriginalSrc:(MTGCardInstance*)_target,NEW WParsedPT(sourceamount,sourceamount));
-                return activateMainAbility(a,source,tosrc == true?OriginalSrc:(MTGCardInstance*)_target);
+                mainAbility = NEW PTInstant(game, this->GetId(), source,tosrc == true?OriginalSrc:(MTGCardInstance*)_target,NEW WParsedPT(sourceamount,sourceamount));
+                return activateMainAbility(mainAbility,source,tosrc == true?OriginalSrc:(MTGCardInstance*)_target);
                 break;
             }
         case DYNAMIC_ABILITY_EFFECT_LIFELOSS://lose life
             {
                 string altered = "-";
                 altered.append(sourceamountstring);
-                AALifer * a = NEW AALifer(game, this->GetId(), source,_target, altered);
-                return activateMainAbility(a,source,_target);
+                mainAbility = NEW AALifer(game, this->GetId(), source,_target, altered);
+                return activateMainAbility(mainAbility,source,_target);
                 break;
             }
         case DYNAMIC_ABILITY_EFFECT_DEPLETE://deplete cards
             {
-                AADepleter * a = NEW AADepleter(game, this->GetId(), source,_target, sourceamountstring);
-                return activateMainAbility(a,source,_target);
+                mainAbility = NEW AADepleter(game, this->GetId(), source,_target, sourceamountstring);
+                return activateMainAbility(mainAbility,source,_target);
                 break;
             }
         case DYNAMIC_ABILITY_EFFECT_COUNTERSONEONE:
@@ -2015,7 +2016,9 @@ int AADynamic::activateMainAbility(MTGAbility * toActivate,MTGCardInstance * sou
         return 1;
     }
     toActivate->oneShot = true;
+    toActivate->forceDestroy = 1;
     toActivate->resolve();
+    SAFE_DELETE(toActivate);
     return 1;
 }
 

@@ -1494,6 +1494,9 @@ MTGBlockRule::MTGBlockRule(GameObserver* observer, int _id) :
 PermanentAbility(observer, _id)
 {
     aType = MTGAbility::MTG_BLOCK_RULE;
+    tcb = NULL;
+    blocker = NULL;
+    blockAbility = NULL;
 }
 
 int MTGBlockRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
@@ -1503,7 +1506,13 @@ int MTGBlockRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
         )
     {
         if (card->canBlock() && !card->isPhased)
+        {
+            if(card->isDefenser())
+                blockmenu = "Remove Blocker";
+            else
+                blockmenu = "Assign To Block";
             return 1;
+        }
     }
     return 0;
 }
@@ -1515,17 +1524,45 @@ int MTGBlockRule::reactToClick(MTGCardInstance * card)
     MTGCardInstance * currentOpponent = card->isDefenser();
     bool result = false;
     int canDefend = 0;
-    while (!result)
+    if(card->controller()->isHuman())
     {
-        currentOpponent = game->currentPlayer->game->inPlay->getNextAttacker(currentOpponent);
-        canDefend = card->toggleDefenser(currentOpponent);
+        if(!currentOpponent)
+        {
 
-        DebugTrace("Defenser Toggle: " << card->getName() << endl
-            << "- canDefend: " << (canDefend == 0) << endl
-            << "- currentOpponent: " << currentOpponent);
-        result = (canDefend || currentOpponent == NULL);
+            SAFE_DELETE(blockAbility);
+            TargetChooserFactory tf(card->getObserver());
+            tcb = tf.createTargetChooser("blockable",card);
+            tcb->targetter = NULL;
+            blocker = NEW AABlock(card->getObserver(),-1,card,NULL);
+            blocker->oneShot = true;
+            blocker->forceDestroy = 1;
+            blocker->canBeInterrupted = false;
+            blockAbility = NEW GenericTargetAbility(game, "choose attacker","blockers",-1, card,tcb, blocker);
+            blockAbility->oneShot = true;
+            blockAbility->forceDestroy = 1;
+            blockAbility->canBeInterrupted = false;
+            return blockAbility->reactToTargetClick(card);
+        }
+        else
+            card->toggleDefenser(NULL);
     }
-    return 1;
+    else
+        while (!result)
+        {
+            currentOpponent = game->currentPlayer->game->inPlay->getNextAttacker(currentOpponent);
+            canDefend = card->toggleDefenser(currentOpponent);
+
+            DebugTrace("Defenser Toggle: " << card->getName() << endl
+                << "- canDefend: " << (canDefend == 0) << endl
+                << "- currentOpponent: " << currentOpponent);
+            result = (canDefend || currentOpponent == NULL);
+        }
+        return 1;
+}
+
+const char * MTGBlockRule::getMenuText()
+{
+    return blockmenu.c_str();
 }
 
 ostream& MTGBlockRule::toString(ostream& out) const
@@ -1538,6 +1575,12 @@ MTGBlockRule * MTGBlockRule::clone() const
 {
     return NEW MTGBlockRule(*this);
 }
+
+MTGBlockRule::~MTGBlockRule()
+{
+    SAFE_DELETE(blockAbility);
+}
+
 //
 // Attacker chooses blockers order
 //

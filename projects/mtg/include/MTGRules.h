@@ -243,15 +243,17 @@ public:
 class MTGBlockRule: public PermanentAbility
 {
 public:
+    string blockmenu;
+    TargetChooser * tcb;
+    MTGAbility * blocker;
+    MTGAbility * blockAbility;
     int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
     int reactToClick(MTGCardInstance * card);
     virtual ostream& toString(ostream& out) const;
     MTGBlockRule(GameObserver* observer, int _id);
-    const char * getMenuText()
-    {
-        return "Blocker";
-    }
+    const char * getMenuText();
     virtual MTGBlockRule * clone() const;
+    ~MTGBlockRule();
 };
 
 /* Persist Rule */
