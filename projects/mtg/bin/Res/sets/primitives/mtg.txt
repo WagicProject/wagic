@@ -57174,7 +57174,7 @@ auto=this(counter{1/1.6}=) upcost[{6}] sacrifice
 auto=this(counter{1/1.7}=) upcost[{7}] sacrifice
 auto=this(counter{1/1.8}=) upcost[{8}] sacrifice
 auto=this(counter{1/1.9}=) upcost[{9}] sacrifice
-auto=this(counter{1/1.10}=) upcost[{20}] sacrifice
+auto=this(counter{1/1.10}=) upcost[{10}] sacrifice
 auto=this(counter{1/1.11}=) upcost[{11}] sacrifice
 auto=this(counter{1/1.12}=) upcost[{12}] sacrifice
 auto=@movedTo(this|nonbattlezone) from(myBattlefield):this(counter{1/1.1}=) token(Orb,Creature Orb,1/1,blue,flying)
