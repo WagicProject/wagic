@@ -81,6 +81,7 @@ void MTGCardInstance::copy(MTGCardInstance * card)
     int backupid = mtgid;
     int castMethodBackUP = this->castMethod;
     mtgid = source->getId();
+    MTGCardInstance * oldStored = this->storedCard;
     Spell * spell = NEW Spell(observer, this);
     observer = card->observer;
     AbilityFactory af(observer);
@@ -89,6 +90,7 @@ void MTGCardInstance::copy(MTGCardInstance * card)
     mtgid = backupid;
     castMethod = castMethodBackUP;
     backupTargets = this->backupTargets;
+    storedCard = oldStored;
 }
 
 MTGCardInstance::~MTGCardInstance()

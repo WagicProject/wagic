@@ -58,10 +58,6 @@ private:
             return;
         MTGCardInstance * target = card->target;
         intValue = 0;
-        if(s.find("stored") != string::npos)
-        {
-            return init(s.substr(+6),spell,card->storedCard);
-        }
         bool halfup = false;
         bool halfdown = false;
         if (!target) target = card;
@@ -70,11 +66,21 @@ private:
         {
             s = s.substr(1);
             multiplier = -1;
+            if(s.find("stored") != string::npos)
+            {
+                string altered ="-";
+                altered.append(s.substr(+6));
+                return init(altered,spell,card->storedCard);
+            }
         }
         if(s[0] == '+')
         {
             //ignore "+" signs....
             s = s.substr(1);
+        }
+        if(s.find("stored") != string::npos)
+        {
+            return init(s.substr(+6),spell,card->storedCard);
         }
         //rounding values, the words can be written anywhere in the line,
         //they are erased after parsing.
