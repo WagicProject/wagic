@@ -903,14 +903,6 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
         break;
 
     default:
-        if(game->mLayers->actionLayer()->abilitiesMenu && controlId == MENUITEM_CANCEL)
-        {
-            game->undo();
-            menu->Close();
-            setGamePhase(DUEL_STATE_CANCEL);
-            break;
-        }
-        else
         switch (controlId)
         {
 
