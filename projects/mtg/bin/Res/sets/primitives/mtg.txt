@@ -2462,7 +2462,7 @@ toughness=2
 [card]
 name=Animal Boneyard
 target=land
-auto=teach(land) {T}:notatarget(creature|mybattlefield) dynamicability<!mytgt toughnesslifegain targetcontroller!> sacrifice
+auto=teach(land) {T}{S(creature|mybattlefield)}:life:storedtoughness
 text=Enchant land -- Enchanted land has "{T}, Sacrifice a creature: You gain life equal to that creature's toughness."
 mana={2}{W}
 type=Enchantment
@@ -10833,6 +10833,15 @@ text=Caldera Lake enters the battlefield tapped. -- {T}: Add {1} to your mana po
 type=Land
 [/card]
 [card]
+name=Call for Blood
+target=creature
+auto=-storedpower/-storedpower
+text=As an additional cost to cast Call for Blood, sacrifice a creature. -- Target creature gets -X/-X until end of turn, where X is the sacrificed creature's power.
+mana={4}{B}{S(creature|mybattlefield)}
+type=Instant
+subtype=Arcane
+[/card]
+[card]
 name=Call of the Herd
 auto=token(Elephant,creature elephant, 3/3,green)
 flashback={3}{G}
@@ -11373,11 +11382,9 @@ toughness=1
 [/card]
 [card]
 name=Carrion
-target=creature|myBattlefield
-auto=sacrifice
-auto=token(Insect,Creature Insect,0/1,black)*p
+auto=token(Insect,Creature Insect,0/1,black)*storedpower
 text=As an additional cost to cast Carrion, sacrifice a creature. -- Put X 0/1 black Insect creature tokens onto the battlefield, where X is the sacrificed creature's power.
-mana={1}{B}{B}
+mana={1}{B}{B}{S(creature|mybattlefield)}
 type=Instant
 [/card]
 [card]
@@ -15149,6 +15156,14 @@ type=Artifact Creature
 subtype=Hound
 power=2
 toughness=2
+[/card]
+[card]
+name=Corpse Lunge
+target=creature
+auto=damage:storedpower
+text=As an additional cost to cast Corpse Lunge, exile a creature card from your graveyard. -- Corpse Lunge deals damage equal to the exiled card's power to target creature.
+mana={2}{B}{E(creature|mygraveyard)}
+type=Instant
 [/card]
 [card]
 name=Corpsehatch
@@ -26638,6 +26653,14 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Final Strike
+target=opponent
+auto=damage:storedpower
+text=As an additional cost to cast Final Strike, sacrifice a creature. -- Final Strike deals damage to target opponent equal to the sacrificed creature's power.
+mana={2}{B}{B}{S(creature|mybattlefield)}
+type=Sorcery
+[/card]
+[card]
 name=Finest Hour
 auto=@combat(attackedalone) source(creature|myBattlefield) turnlimited:all(trigger[to]) untap ueot
 auto=@combat(attackedalone) source(creature|myBattlefield) turnlimited:nextphasealter(add,combatphases,controller,after<combatends>)
@@ -27626,6 +27649,14 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Fling
+target=creature,player
+auto=damage:storedpower
+text=As an additional cost to cast Fling, sacrifice a creature. -- Fling deals damage equal to the sacrificed creature's power to target creature or player.
+mana={1}{R}{S(creature|mybattlefield)}
+type=Instant
+[/card]
+[card]
 name=Flint Golem
 auto=@combat(blocked,turnlimited) source(this):deplete:3 opponent
 text=Whenever Flint Golem becomes blocked, defending player puts the top three cards of his or her library into his or her graveyard.
@@ -28323,6 +28354,14 @@ name=Forfend
 auto=preventalldamage to(creature|battlefield) ueot
 text=Prevent all damage that would be dealt to creatures this turn.
 mana={1}{W}
+type=Instant
+[/card]
+[card]
+name=Forge Armor
+target=creature
+auto=counter(1/1,storedmanacost)
+text=As an additional cost to cast Forge Armor, sacrifice an artifact. -- Put X +1/+1 counters on target creature, where X is the sacrificed artifact's converted mana cost.
+mana={4}{R}{S(artifact|mybattlefield)}
 type=Instant
 [/card]
 [card]
@@ -37589,10 +37628,9 @@ type=Sorcery
 [card]
 name=Ichor Explosion
 target=creature|myBattlefield
-auto=moveTo(ownergraveyard)
-auto=all(creature) -p/-p
+auto=all(creature) -storedpower/-storedpower
 text=As an additional cost to cast Ichor Explosion, sacrifice a creature. -- All creatures get -X/-X until end of turn, where X is the sacrificed creature's power.
-mana={5}{B}{B}
+mana={5}{B}{B}{S(artifact|mybattlefield)}
 type=Sorcery
 [/card]
 [card]
@@ -50369,12 +50407,10 @@ type=Instant
 [/card]
 [card]
 name=Momentous Fall
-target=creature|myBattlefield
-auto=moveTo(ownergraveyard)
-auto=draw:p controller
-auto=life:t controller
+auto=draw:storedpower
+auto=life:storedtoughness
 text=As an additional cost to cast Momentous Fall, sacrifice a creature. -- You draw cards equal to the sacrificed creature's power, then you gain life equal to the its toughness.
-mana={2}{G}{G}
+mana={2}{G}{G}{S(creature|mybattlefield)}
 type=Instant
 [/card]
 [card]
@@ -63926,6 +63962,15 @@ mana={3}{U}
 type=Enchantment
 [/card]
 [card]
+name=Rite of Consumption
+target=player
+auto=damage:storedpower
+auto=life:storedpower controller
+text=As an additional cost to cast Rite of Consumption, sacrifice a creature. -- Rite of Consumption deals damage equal to the sacrificed creature's power to target player. You gain life equal to the damage dealt this way.
+mana={1}{B}{S(creature|mybattlefield)}
+type=Sorcery
+[/card]
+[card]
 name=Rite of Flame
 auto=Add{R}{R}
 auto=foreach(Rite of Flame|myGraveyard) add{R}
@@ -73621,6 +73666,7 @@ toughness=5
 [card]
 name=Specter's Shroud
 auto={1}:equip
+auto=1/0
 auto=@combatdamaged(player) from(mytgt):ability$!name(discard) target(*|myhand) reject!$ opponent
 text=Equipped creature gets +1/+0. -- Whenever equipped creature deals combat damage to a player, that player discards a card. -- Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery. This card enters the battlefield unattached and stays on the battlefield if the creature leaves.)
 mana={2}
@@ -77338,6 +77384,15 @@ auto={1}{T}{C(0/0,-1,Charge)}:counter(0/0,1,Charge) target(artifact)
 text=Surge Node enters the battlefield with six charge counters on it. -- {1}, {T}, Remove a charge counter from Surge Node: Put a charge counter on target artifact. 
 mana={1}
 type=Artifact
+[/card]
+[card]
+name=Surge of Strength
+target=auto
+auto=trample
+auto=storedmanacost/0
+text=As an additional cost to cast Surge of Strength, discard a red or green card. -- Target creature gains trample and gets +X/+0 until end of turn, where X is that creature's converted mana cost.
+mana={R}{G}{discard(*[red;green]|myhand)}
+type=Instant
 [/card]
 [card]
 name=Surge of Thoughtweft
@@ -90900,6 +90955,14 @@ auto=@each opponent upkeep:deplete:1 opponent
 text=At the beginning of each player's upkeep, that player puts the top card of his or her library into his or her graveyard.
 mana={3}
 type=Artifact
+[/card]
+[card]
+name=Worthy Cause
+auto=life:storedtoughness controller
+buyback={W}{2}
+text=Buyback {2} (You may pay an additional {2} as you cast this spell. If you do, put this card into your hand as it resolves.) -- As an additional cost to cast Worthy Cause, sacrifice a creature. -- You gain life equal to the sacrificed creature's toughness.
+mana={W}{S(creature|mybattlefield)}
+type=Instant
 [/card]
 [card]
 name=Wort, Boggart Auntie

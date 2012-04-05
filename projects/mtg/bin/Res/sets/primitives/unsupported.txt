@@ -5860,12 +5860,6 @@ mana={3}{B}{B}
 type=Sorcery
 [/card]
 [card]
-name=Final Strike
-text=As an additional cost to cast Final Strike, sacrifice a creature. -- Final Strike deals damage to target opponent equal to the sacrificed creature's power.
-mana={2}{B}{B}
-type=Sorcery
-[/card]
-[card]
 name=Fire // Ice (Fire)
 text=Fire deals 2 damage divided as you choose among one or two target creatures and/or players.
 mana={1}{R}
@@ -6086,12 +6080,6 @@ type=Artifact
 text={T}, Sacrifice Flight Spellbomb: Target creature gains flying until end of turn. When Flight Spellbomb is put into a graveyard from the battlefield, you may pay {U}. If you do, draw a card.
 [/card]
 [card]
-name=Fling
-text=As an additional cost to cast Fling, sacrifice a creature. -- Fling deals damage equal to the sacrificed creature's power to target creature or player.
-mana={1}{R}
-type=Instant
-[/card]
-[card]
 name=Flock of Rabid Sheep
 mana={X}{G}{G}
 type=Sorcery
@@ -6212,12 +6200,6 @@ name=Forethought Amulet
 text=At the beginning of your upkeep, sacrifice Forethought Amulet unless you pay {3}. -- If an instant or sorcery source would deal 3 or more damage to you, it deals 2 damage to you instead.
 mana={5}
 type=Artifact
-[/card]
-[card]
-name=Forge Armor
-text=As an additional cost to cast Forge Armor, sacrifice an artifact. -- Put X +1/+1 counters on target creature, where X is the sacrificed artifact's converted mana cost.
-mana={4}{R}
-type=Instant
 [/card]
 [card]
 name=Forgotten Lore
@@ -15449,12 +15431,6 @@ mana={3}{R}{R}{R}
 type=Enchantment
 [/card]
 [card]
-name=Rite of Consumption
-text=As an additional cost to cast Rite of Consumption, sacrifice a creature. -- Rite of Consumption deals damage equal to the sacrificed creature's power to target player. You gain life equal to the damage dealt this way.
-mana={1}{B}
-type=Sorcery
-[/card]
-[card]
 name=Rites of Initiation
 text=Discard any number of cards at random. Creatures you control get +1/+0 until end of turn for each card discarded this way.
 mana={R}
@@ -18516,19 +18492,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Stunted Growth
-text=Target player chooses three cards from his or her hand and puts them on top of his or her library in any order.
-mana={3}{G}{G}
-type=Sorcery
-[/card]
-[card]
-name=Stupefying Touch
-text=Enchant creature -- When Stupefying Touch enters the battlefield, draw a card. -- Enchanted creature's activated abilities can't be activated.
-mana={1}{U}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Sudden Spoiling
 text=Split second (As long as this spell is on the stack, players can't cast spells or activate abilities that aren't mana abilities.) -- Creatures target player controls become 0/2 and lose all abilities until end of turn.
 mana={1}{B}{B}
@@ -18702,12 +18665,6 @@ text=Equipped creature has first strike and "{T}, Unattach Surestrike Trident: T
 mana={2}
 type=Artifact
 subtype=Equipment
-[/card]
-[card]
-name=Surge of Strength
-text=As an additional cost to cast Surge of Strength, discard a red or green card. -- Target creature gains trample and gets +X/+0 until end of turn, where X is that creature's converted mana cost.
-mana={R}{G}
-type=Instant
 [/card]
 [card]
 name=Surgespanner
