@@ -42713,7 +42713,7 @@ toughness=1
 [/card]
 [card]
 name=Kor Outfitter
-target(equipment|mybattefield) transforms((,newability[retarget target(creature|mybattlefield)])) forever
+auto=target(equipment|mybattefield) transforms((,newability[retarget target(creature|mybattlefield)])) forever
 text=When Kor Outfitter enters the battlefield, you may attach target Equipment you control to target creature you control.
 mana={W}{W}
 type=Creature
