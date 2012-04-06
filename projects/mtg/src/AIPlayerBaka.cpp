@@ -1910,19 +1910,37 @@ int AIPlayerBaka::computeActions()
 
                 nextCardToPlay = FindCardToPlay(currentMana, "land");
                 //look for the most expensive creature we can afford. If not found, try enchantment, then artifact, etc...
-                const char* types[] = {"planeswalker","creature", "enchantment", "artifact", "sorcery", "instant"};
-                int count = 0;
-                while (!nextCardToPlay && count < 6)
+                if(hints && hints->mCastOrder().size())
                 {
-                    if(clickstream.size()) //don't find cards while we have clicking to do.
+                    vector<string>findType = hints->mCastOrder();
+                    for(unsigned int j = 0;j < findType.size();j++)
                     {
-                        SAFE_DELETE(currentMana);
-                        return 0;
+                        if(clickstream.size())
+                        {
+                            SAFE_DELETE(currentMana);
+                            return 0;
+                        }
+                        nextCardToPlay = FindCardToPlay(currentMana, findType[j].c_str());
+                        if (game->playRestrictions->canPutIntoZone(nextCardToPlay, game->stack) == PlayRestriction::CANT_PLAY)
+                            nextCardToPlay = NULL;
                     }
-                    nextCardToPlay = FindCardToPlay(currentMana, types[count]);
-                    if (game->playRestrictions->canPutIntoZone(nextCardToPlay, game->stack) == PlayRestriction::CANT_PLAY)
-                        nextCardToPlay = NULL;
-                    count++;
+                }
+                else
+                {
+                    const char* types[] = {"planeswalker","creature", "enchantment", "artifact", "sorcery", "instant"};
+                    int count = 0;
+                    while (!nextCardToPlay && count < 6)
+                    {
+                        if(clickstream.size()) //don't find cards while we have clicking to do.
+                        {
+                            SAFE_DELETE(currentMana);
+                            return 0;
+                        }
+                        nextCardToPlay = FindCardToPlay(currentMana, types[count]);
+                        if (game->playRestrictions->canPutIntoZone(nextCardToPlay, game->stack) == PlayRestriction::CANT_PLAY)
+                            nextCardToPlay = NULL;
+                        count++;
+                    }
                 }
 
                 SAFE_DELETE(currentMana);

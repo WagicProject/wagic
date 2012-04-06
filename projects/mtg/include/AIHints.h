@@ -17,6 +17,7 @@ public:
     string mCondition;
     string mAction;
     string mCombatAttackTip;
+    vector<string>castOrder;
     int mSourceId;
     AIHint(string line);
 };
@@ -38,6 +39,7 @@ public:
     AIHints (AIPlayerBaka * player);
     AIAction * suggestAbility(ManaCost * potentialMana);
     bool HintSaysDontAttack(GameObserver* observer,MTGCardInstance * card = NULL);
+    vector<string> mCastOrder();
     void add(string line);
     ~AIHints();
 };

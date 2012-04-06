@@ -37,6 +37,12 @@ AIHint::AIHint(string _line)
     {
         mCombatAttackTip = splitDontAttack[1];
     }
+
+    vector<string> splitCastOrder = parseBetween(action, "castpriority(", ")");
+    if(splitCastOrder.size())
+    {
+        castOrder = split(splitCastOrder[1],',');
+    }
 }
 
 AIHints::AIHints(AIPlayerBaka * player): mPlayer(player)
@@ -86,6 +92,18 @@ bool AIHints::HintSaysDontAttack(GameObserver* observer,MTGCardInstance * card)
         }
     }
     return false;
+}
+
+vector<string>AIHints::mCastOrder()
+{
+    for(unsigned int i = 0; i < hints.size();i++)
+    {
+        if (hints[i]->castOrder.size())
+        {
+            return hints[i]->castOrder;
+        }
+    }
+    return vector<string>();
 }
 
 //return true if a given ability matches a hint's description
@@ -251,7 +269,7 @@ AIAction * AIHints::findAbilityRecursive(AIHint * hint, ManaCost * potentialMana
         }
 
         string s = constraintsNotFulfilled(a, hint, potentialMana);
-        if (hint->mCombatAttackTip.size())
+        if (hint->mCombatAttackTip.size() || hint->castOrder.size())
             return NULL;
         if (s.size())
         {
