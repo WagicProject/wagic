@@ -3059,6 +3059,12 @@ int AbilityFactory::abilityEfficiency(MTGAbility * a, Player * p, int mode, Targ
     badAbilities[(int)Constants::DOESNOTUNTAP] = true;
     badAbilities[(int)Constants::MUSTATTACK] = true;
     badAbilities[(int)Constants::CANTREGEN] = true;
+    badAbilities[(int)Constants::NOACTIVATED] = true;
+    badAbilities[(int)Constants::NOACTIVATEDTAP] = true;
+    badAbilities[(int)Constants::NOMANA] = true;
+    badAbilities[(int)Constants::ONLYMANA] = true;
+    badAbilities[(int)Constants::EXILEDEATH] = true;
+    badAbilities[(int)Constants::WEAK] = true;
 
     if (AInstantBasicAbilityModifierUntilEOT * abi = dynamic_cast<AInstantBasicAbilityModifierUntilEOT *>(a))
     {
