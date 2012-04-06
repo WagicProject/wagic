@@ -2972,6 +2972,56 @@ int AbilityFactory::abilityEfficiency(MTGAbility * a, Player * p, int mode, Targ
         return abilityEfficiency(abi->ability, p, mode, tc);
     if (ATeach * abi = dynamic_cast<ATeach *>(a))
         return abilityEfficiency(abi->ability, p, mode, tc);
+    if (ATargetedAbilityCreator * atac = dynamic_cast<ATargetedAbilityCreator *>(a))
+    {
+        Player * targetedPlyr;
+        switch(atac->who)
+        {
+        case TargetChooser::CONTROLLER:
+            targetedPlyr = atac->source->controller();
+            break;
+        case TargetChooser::OPPONENT:
+            targetedPlyr = atac->source->controller()->opponent();
+            break;
+        case TargetChooser::TARGET_CONTROLLER:
+            if(dynamic_cast<MTGCardInstance*>(target))
+            {
+                targetedPlyr = ((MTGCardInstance*)atac->target)->controller();
+                break;
+            }
+        case TargetChooser::TARGETED_PLAYER:
+            {
+                targetedPlyr = atac->source->playerTarget?atac->source->playerTarget:p;
+                break;
+            }
+        default:
+            targetedPlyr = atac->source->controller()->opponent();
+            break;
+        }
+        int result = 0;
+        if(targetedPlyr)
+        {
+            MTGCardInstance  * testDummy = NEW MTGCardInstance();
+            testDummy->setObserver(targetedPlyr->getObserver());
+            testDummy->owner = targetedPlyr;
+            testDummy->storedCard = atac->source;
+            vector<string>magictextlines = split(atac->sabilities,'_');
+            if(magictextlines.size())
+            {
+                for(unsigned int i = 0; i < magictextlines.size(); i++)
+                {
+                    MTGAbility * ata = parseMagicLine(magictextlines[i],-1,NULL,testDummy);
+                    if(ata)
+                    {
+                        result += abilityEfficiency(getCoreAbility(ata), targetedPlyr,mode);
+                        SAFE_DELETE(ata);
+                    }
+                }
+            }
+            SAFE_DELETE(testDummy);
+        }
+        return result;
+    }
     if (dynamic_cast<AAFizzler *> (a))
         return BAKA_EFFECT_BAD;
     if (dynamic_cast<AADamagePrevent *> (a))
