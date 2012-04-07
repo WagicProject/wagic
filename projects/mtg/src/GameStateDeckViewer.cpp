@@ -508,7 +508,7 @@ void GameStateDeckViewer::Update(float dt)
                 mEngine->LeftClickedProcessed();
             }
                 
-            if(mStage != STAGE_TRANSITION_SELECTED)
+            if(mStage != STAGE_TRANSITION_SELECTED && last_user_activity > .05)
             {
                 last_user_activity = 0;
                 addRemove(cardIndex[2]);
