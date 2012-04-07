@@ -2462,7 +2462,7 @@ toughness=2
 [card]
 name=Animal Boneyard
 target=land
-auto=teach(land) {T}{S(creature|mybattlefield)}:life:storedtoughness
+auto=teach(land) transforms((,newability[{T}{S(creature|mybattlefield)}:life:storedtoughness]))
 text=Enchant land -- Enchanted land has "{T}, Sacrifice a creature: You gain life equal to that creature's toughness."
 mana={2}{W}
 type=Enchantment
@@ -14737,9 +14737,10 @@ type=Sorcery
 [card]
 name=Consume Spirit
 target=creature,player
-alias=1156
+auto=damage:castx
+auto=life:castx controller
 text=Spend only black mana on X. -- Consume Spirit deals X damage to target creature or player and you gain X life.
-mana={X}{1}{B}
+mana={1}{B}{X:black}
 type=Sorcery
 [/card]
 [card]
