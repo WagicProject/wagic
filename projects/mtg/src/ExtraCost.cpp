@@ -186,7 +186,7 @@ int DiscardRandomCost::doPay()
     MTGCardInstance * _target = (MTGCardInstance *) target;
     if (target)
     {
-        source->storedCard = target;
+        source->storedCard = target->createSnapShot();
         _target->controller()->game->discardRandom(_target->controller()->game->hand, source);
         target = NULL;
         if (tc)
@@ -215,7 +215,7 @@ int DiscardCost::doPay()
     MTGCardInstance * _target = (MTGCardInstance *) target;
     if (target)
     {
-        source->storedCard = target;
+        source->storedCard = target->createSnapShot();
         WEvent * e = NEW WEventCardDiscard(target);
         GameObserver * game = target->owner->getObserver();
         game->receiveEvent(e);
@@ -279,7 +279,7 @@ int ToLibraryCost::doPay()
     MTGCardInstance * _target = (MTGCardInstance *) target;
     if (target)
     {
-        source->storedCard = target;
+        source->storedCard = target->createSnapShot();
         _target->controller()->game->putInLibrary(target);
         target = NULL;
         if (tc)
@@ -317,7 +317,7 @@ int MillCost::doPay()
     MTGCardInstance * _target = (MTGCardInstance *) target;
     if (target)
     {
-        source->storedCard = (MTGCardInstance*)_target->controller()->game->library->cards[_target->controller()->game->library->nb_cards - 1];
+        source->storedCard = (MTGCardInstance*)_target->controller()->game->library->cards[_target->controller()->game->library->nb_cards - 1]->createSnapShot();
         _target->controller()->game->putInZone(
             _target->controller()->game->library->cards[_target->controller()->game->library->nb_cards - 1],
             _target->controller()->game->library, _target->controller()->game->graveyard);
@@ -339,7 +339,7 @@ MillExileCost::MillExileCost(TargetChooser *_tc)
 int MillExileCost::doPay()
 {
     MTGCardInstance * _target = (MTGCardInstance *) target;
-    source->storedCard = (MTGCardInstance*)_target->controller()->game->library->cards[_target->controller()->game->library->nb_cards - 1];
+    source->storedCard = (MTGCardInstance*)_target->controller()->game->library->cards[_target->controller()->game->library->nb_cards - 1]->createSnapShot();
     if (target)
     {
         _target->controller()->game->putInZone(
@@ -457,7 +457,7 @@ int TapTargetCost::isPaymentSet()
 int TapTargetCost::doPay()
 {
     MTGCardInstance * _target = (MTGCardInstance *) target;
-    source->storedCard = target;
+    source->storedCard = target->createSnapShot();
     if (target)
     {
         _target->tap();
@@ -500,7 +500,7 @@ int UnTapTargetCost::isPaymentSet()
 int UnTapTargetCost::doPay()
 {
     MTGCardInstance * _target = (MTGCardInstance *) target;
-    source->storedCard = target;
+    source->storedCard = target->createSnapShot();
     if (target)
     {
         _target->untap();
@@ -531,7 +531,7 @@ int ExileTargetCost::doPay()
 
     if (target)
     {
-        source->storedCard = target;
+        source->storedCard = target->createSnapShot();
         target->controller()->game->putInExile(target);
         target = NULL;
         if (tc)
@@ -560,7 +560,7 @@ int BounceTargetCost::doPay()
 
     if (target)
     {
-        source->storedCard = target;
+        source->storedCard = target->createSnapShot();
         target->controller()->game->putInHand(target);
         target = NULL;
         if (tc)
@@ -640,7 +640,7 @@ int SacrificeCost::doPay()
     if (target)
     {
         MTGCardInstance * beforeCard = target;
-        source->storedCard = target;
+        source->storedCard = target->createSnapShot();
         target->controller()->game->putInGraveyard(target);
         WEvent * e = NEW WEventCardSacrifice(beforeCard,target);
         GameObserver * game = target->owner->getObserver();
@@ -882,7 +882,9 @@ int ExtraCosts::doPay()
     for (size_t i = 0; i < costs.size(); i++)
     {
         if(costs[i]->target)
+        {
             costs[i]->target->isExtraCostTarget = false;
+        }
         result += costs[i]->doPay();
     }
     return result;

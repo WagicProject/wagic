@@ -155,6 +155,8 @@ public:
     int isAttacker();
     Targetable * isAttacking;
     MTGCardInstance * storedCard;
+    MTGCardInstance * createSnapShot();
+    MTGCardInstance * storedSourceCard;
     MTGCardInstance * isDefenser();
     int initAttackersDefensers();
     MTGCardInstance * getNextOpponent(MTGCardInstance * previous=NULL);

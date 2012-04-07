@@ -56,6 +56,9 @@ public:
     virtual void resetCosts();
     void x();
     int hasX();
+    void specificX(int color = 0);
+    int hasSpecificX();
+    int xColor;
     int hasAnotherCost();
     ManaCost(std::vector<int8_t>& _cost, int nb_elems = 1);
     ManaCost();

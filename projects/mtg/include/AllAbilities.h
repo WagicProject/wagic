@@ -2917,7 +2917,7 @@ public:
         setAbilityOwner();
         myDummy->setObserver(abilityReciever->getObserver());
         myDummy->owner = abilityReciever;
-        myDummy->storedCard = source;
+        myDummy->storedSourceCard = source;
         vector<string>magictextlines = split(sabilities,'_');
         if(magictextlines.size())
         {

@@ -25,6 +25,7 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
     {
         manaCost = NEW ManaCost();
     }
+    manaCost->xColor = -1;
     int state = 0;
     size_t start = 0;
     size_t end = 0;
@@ -91,8 +92,27 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
                     switch (value[0])
                     {
                     case 'x':
-                        manaCost->x();
+                        if(value == "x")
+                            manaCost->x();
+                        else
+                        {
+                            vector<string>colorSplit = parseBetween(value,"x:"," ",false);
+                            if(colorSplit.size())
+                            {
+                                int color = -1;
+                                const string ColorStrings[] = { Constants::kManaColorless, Constants::kManaGreen, Constants::kManaBlue, Constants::kManaRed, Constants::kManaBlack, Constants::kManaWhite };
+                                for (unsigned int i = 0; i < sizeof(ColorStrings)/sizeof(ColorStrings[0]); ++i)
+                                {
+                                    if (s.find(ColorStrings[i]) != string::npos)
+                                    {
+                                        color = i;
+                                    }
+                                }
+                                manaCost->specificX(color);
+                            }
+                        }
                         break;
+
                     case 't': //Tap
                         if (value == "t")
                         {
@@ -296,6 +316,7 @@ ManaCost::ManaCost(ManaCost * manaCost)
     suspend = NEW ManaCost( manaCost->suspend );
 
     extraCosts = manaCost->extraCosts ? manaCost->extraCosts->clone() : NULL;
+    xColor = manaCost->xColor;
 }
 
 // Copy Constructor 
@@ -322,6 +343,7 @@ ManaCost::ManaCost(const ManaCost& manaCost)
     suspend = NEW ManaCost( manaCost.suspend );
     
     extraCosts = manaCost.extraCosts ? manaCost.extraCosts->clone() : NULL;
+    xColor = manaCost.xColor;
 }
 
 // operator=
@@ -341,6 +363,7 @@ ManaCost & ManaCost::operator= (const ManaCost & manaCost)
         FlashBack = manaCost.FlashBack;
         morph = manaCost.morph;
         suspend = manaCost.suspend;
+        xColor = manaCost.xColor;
     }
     return *this;
 }
@@ -377,8 +400,32 @@ int ManaCost::hasX()
         DebugTrace("Seems ManaCost was not properly initialized");
         return 0;
     }
+    if(xColor > 0)
+        return 0;
 
     return cost[Constants::NB_Colors];
+}
+
+void ManaCost::specificX(int color)
+{
+    if (cost.size() <= (size_t)Constants::NB_Colors)
+    {
+        DebugTrace("Seems ManaCost was not properly initialized");
+        return;
+    }
+    xColor = color;
+    cost[Constants::NB_Colors] = 1;
+}
+int ManaCost::hasSpecificX()
+{
+    if (cost.size() <= (size_t)Constants::NB_Colors)
+    {
+        DebugTrace("Seems ManaCost was not properly initialized");
+        return 0;
+    }
+    if(xColor > 0)
+        return cost[Constants::NB_Colors];
+    return 0;
 }
 
 int ManaCost::hasAnotherCost()
@@ -501,6 +548,7 @@ void ManaCost::copy(ManaCost * _manaCost)
         suspend = NEW ManaCost();
         suspend->copy(_manaCost->suspend);
     }
+    xColor = _manaCost->xColor;
 }
 
 int ManaCost::getCost(int color)
@@ -813,6 +861,16 @@ ManaCost * ManaCost::Diff(ManaCost * _cost)
                 diff[Constants::NB_Colors * 2 + 1] += diff[i * 2 + 1];
                 diff[i * 2 + 1] = 0;
             }
+        }
+    }
+    //cost x where x is specific.
+    if (_cost->hasSpecificX())
+    {
+        diff[Constants::NB_Colors * 2 + 1] = 0;
+        if (diff[_cost->xColor * 2 + 1] > 0)
+        {
+            diff[Constants::NB_Colors * 2 + 1] += diff[_cost->xColor * 2 + 1];
+            diff[_cost->xColor * 2 + 1] = 0;
         }
     }
 

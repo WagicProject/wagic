@@ -3004,7 +3004,7 @@ int AbilityFactory::abilityEfficiency(MTGAbility * a, Player * p, int mode, Targ
             MTGCardInstance  * testDummy = NEW MTGCardInstance();
             testDummy->setObserver(targetedPlyr->getObserver());
             testDummy->owner = targetedPlyr;
-            testDummy->storedCard = atac->source;
+            testDummy->storedSourceCard = atac->source;
             vector<string>magictextlines = split(atac->sabilities,'_');
             if(magictextlines.size())
             {

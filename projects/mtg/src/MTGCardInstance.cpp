@@ -51,6 +51,15 @@ MTGCardInstance::MTGCardInstance(MTGCard * card, MTGPlayerCards * arg_belongs_to
     castMethod = Constants::NOT_CAST;
 }
 
+  MTGCardInstance * MTGCardInstance::createSnapShot()
+    {
+        MTGCardInstance * snapShot = NEW MTGCardInstance(*this);
+        snapShot->previous = NULL;
+        snapShot->counters = NEW Counters(snapShot);
+        controller()->game->garbage->addCard(snapShot);
+        return snapShot;
+    }
+
 void MTGCardInstance::copy(MTGCardInstance * card)
 {
     MTGCard * source = card->model;
@@ -81,7 +90,7 @@ void MTGCardInstance::copy(MTGCardInstance * card)
     int backupid = mtgid;
     int castMethodBackUP = this->castMethod;
     mtgid = source->getId();
-    MTGCardInstance * oldStored = this->storedCard;
+    MTGCardInstance * oldStored = this->storedSourceCard;
     Spell * spell = NEW Spell(observer, this);
     observer = card->observer;
     AbilityFactory af(observer);
@@ -159,6 +168,7 @@ void MTGCardInstance::initMTGCI()
     coinSide = -1;
     isAttacking = NULL;
     storedCard = NULL;
+    storedSourceCard = NULL;
 
     for (int i = 0; i < ManaCost::MANA_PAID_WITH_RETRACE +1; i++)
         alternateCostPaid[i] = 0;
