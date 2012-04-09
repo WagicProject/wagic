@@ -57,6 +57,8 @@ private:
         if(!card)
             return;
         MTGCardInstance * target = card->target;
+        if(!card->storedCard)
+            card->storedCard = card->storedSourceCard;
         intValue = 0;
         bool halfup = false;
         bool halfdown = false;
