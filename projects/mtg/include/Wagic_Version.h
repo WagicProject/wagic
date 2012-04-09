@@ -13,7 +13,7 @@
 /* Wagic versions */
 #define WAGIC_VERSION_MAJOR     0
 #define WAGIC_VERSION_MEDIUM    18
-#define WAGIC_VERSION_MINOR     1
+#define WAGIC_VERSION_MINOR     2
 
 #define VERSION_DOT(a, b, c) a ##.## b ##.## c
 #define VERSION_WITHOUT_DOT(a, b, c) a ## b ## c
