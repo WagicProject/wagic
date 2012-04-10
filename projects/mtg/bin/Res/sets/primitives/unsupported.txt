@@ -691,15 +691,6 @@ toughness=2}
 text=Each other Donkey gets +1{1/2}/+1{1/2}. Whenever another Donkey comes into play, untap target creature and gain control of it until end of turn. That creature gains haste until end of turn.
 [/card]
 [card]
-name=Atalya, Samite Master
-text={X}, {T}: Choose one - Prevent the next X damage that would be dealt to target creature this turn; or you gain X life. Spend only white mana this way.
-mana={3}{W}{W}
-type=Legendary Creature
-subtype=Human Cleric
-power=2
-toughness=3
-[/card]
-[card]
 name=Atinlay Igpay
 mana={5}{W}
 type=Eaturecray — Igpay
@@ -11631,12 +11622,6 @@ toughness=1
 text=Flying, first strike During each other player's turn, compliment that player on his or her game play or sacrifice Miss Demeanor.
 [/card]
 [card]
-name=Mist of Stagnation
-text=Permanents don't untap during their controllers' untap steps. -- At the beginning of each player's upkeep, that player chooses a permanent for each card in his or her graveyard, then untaps those permanents.
-mana={3}{U}{U}
-type=Enchantment
-[/card]
-[card]
 name=Mistfolk
 text={U}: Counter target spell that targets Mistfolk.
 mana={U}{U}
@@ -12484,8 +12469,6 @@ toughness=2
 [/card]
 [card]
 name=Noble Elephant
-abilities=trample,banding
-#banding not suppoerted
 text=Trample; banding (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding you control are blocking or being blocked by a creature, you divide that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
 mana={3}{W}
 type=Creature
@@ -12506,15 +12489,6 @@ text=When Noggle Hedge-Mage enters the battlefield, if you control two or more I
 mana={2}{UR}
 type=Creature
 subtype=Noggle Wizard
-power=2
-toughness=2
-[/card]
-[card]
-name=Nomad Mythmaker
-text={W}, {T}: Put target Aura card in a graveyard onto the battlefield attached to a creature you control. (You control that Aura.)
-mana={2}{W}
-type=Creature
-subtype=Human Nomad Cleric
 power=2
 toughness=2
 [/card]
@@ -14056,12 +14030,6 @@ name=Prismatic Circle
 text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- As Prismatic Circle enters the battlefield, choose a color. -- {1}: The next time a source of your choice of the chosen color would deal damage to you this turn, prevent that damage.
 mana={2}{W}
 type=Enchantment
-[/card]
-[card]
-name=Prismatic Strands
-text=Prevent all damage that sources of the color of your choice would deal this turn. -- Flashback - Tap an untapped white creature you control. (You may cast this card from your graveyard for its flashback cost. Then exile it.)
-mana={2}{W}
-type=Instant
 [/card]
 [card]
 name=Prismatic Wardrobe
@@ -21476,12 +21444,6 @@ type=Legendary Creature
 subtype=Goblin Shaman
 power=3
 toughness=3
-[/card]
-[card]
-name=Worthy Cause
-text=Buyback {2} (You may pay an additional {2} as you cast this spell. If you do, put this card into your hand as it resolves.) -- As an additional cost to cast Worthy Cause, sacrifice a creature. -- You gain life equal to the sacrificed creature's toughness.
-mana={W}
-type=Instant
 [/card]
 [card]
 name=Wren's Run Vanquisher

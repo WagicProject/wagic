@@ -1023,7 +1023,7 @@ subtype=Ajani
 [/card]
 [card]
 name=Avatar Token
-auto=controllerlife/controllerlife nonstatic
+auto=thisforeach(controllerlife) 1/1
 id=-140233
 type=Creature
 subtype=Avatar
@@ -4181,6 +4181,30 @@ mana={3}
 type=Artifact
 [/card]
 [card]
+name=Atalya, Samite Master
+auto={W}:name(x = 1) ability$!choice name(prevent damage) target(creature) prevent:1 ueot _ choice name(life) life:1 controller!$ controller
+auto={W}{W}:name(x = 2) ability$!choice name(prevent damage) target(creature) prevent:2 ueot_ choice name(life) life:2 controller!$ controller
+auto={W}{W}{W}:name(x = 3) ability$!choice name(prevent damage) target(creature) prevent:3 ueot _ choice name(life) life:3 controller!$ controller
+auto={W}{W}{W}{W}:name(x = 4) ability$!choice name(prevent damage) target(creature) prevent:4 ueot _ choice name(life) life:4 controller!$ controller
+auto={W}{W}{W}{W}{W}:name(x = 5) ability$!choice name(prevent damage) target(creature) prevent:5 ueot_ choice name(life) life:5 controller!$ controller
+auto={W}{W}{W}{W}{W}{W}:name(x = 6) ability$!choice name(prevent damage) target(creature) prevent:6 ueot _ choice name(life) life:6 controller!$ controller
+auto={W}{W}{W}{W}{W}{W}{W}:name(x = 7) ability$!choice name(prevent damage) target(creature) prevent:7 ueot _ choice name(life) life:7 controller!$ controller
+auto={W}{W}{W}{W}{W}{W}{W}{W}:name(x = 8) ability$!choice name(prevent damage) target(creature) prevent:8 ueot_ choice name(life) life:8 controller!$ controller
+auto={W}{W}{W}{W}{W}{W}{W}{W}{W}:name(x = 9) ability$!choice name(prevent damage) target(creature) prevent:9 ueot _ choice name(life) life:9 controller!$ controller
+auto={W}{W}{W}{W}{W}{W}{W}{W}{W}{W}:name(x = 10) ability$!choice name(prevent damage) target(creature) prevent:10 ueot _ choice name(life) life:10 controller!$ controller
+auto={W}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}:name(x = 11) ability$!choice name(prevent damage) target(creature) prevent:11 ueot_ choice name(life) life:11 controller!$ controller
+auto={W}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}:name(x = 12) ability$!choice name(prevent damage) target(creature) prevent:12 ueot _ choice name(life) life:12 controller!$ controller
+auto={W}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}:name(x = 13) ability$!choice name(prevent damage) target(creature) prevent:13 ueot _ choice name(life) life:13 controller!$ controller
+auto={W}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}:name(x = 14) ability$!choice name(prevent damage) target(creature) prevent:14 ueot_ choice name(life) life:14 controller!$ controller
+auto={W}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}:name(x = 15) ability$!choice name(prevent damage) target(creature) prevent:15 ueot _ choice name(life) life:15 controller!$ controller
+text={X}, {T}: Choose one - Prevent the next X damage that would be dealt to target creature this turn; or you gain X life. Spend only white mana this way.
+mana={3}{W}{W}
+type=Legendary Creature
+subtype=Human Cleric
+power=2
+toughness=3
+[/card]
+[card]
 name=Atog
 auto={S(artifact|myBattlefield)}:2/2
 text=Sacrifice an artifact: Atog gets +2/+2 until end of turn.
@@ -5527,7 +5551,7 @@ type=Land
 name=Bant Sojourners
 auto=@movedTo(this|graveyard) from(battlefield):may token(Soldier,Creature Soldier,1/1,white)
 autohand=__CYCLING__({2}{W})
-autohand={2}{W}:name(cycle + effect) token(Soldier,Creature Soldier,1/1,white) && draw:1 controller
+autohand={2}{W}{cycle}:name(cycle + effect) token(Soldier,Creature Soldier,1/1,white) && draw:1 controller
 text=When you cycle Bant Sojourners or it's put into a graveyard from the battlefield, you may put a 1/1 white Soldier creature token onto the battlefield. -- Cycling {2}{W} ({2}{W}, Discard this card: Draw a card.)
 mana={1}{G}{W}{U}
 type=Creature
@@ -12955,7 +12979,7 @@ type=Artifact
 [card]
 name=Chimeric Mass
 auto=counter(0/0,X,Charge)
-auto={1}:transforms((Creature Construct,setpower=0,settoughness=0)) ueot && thisforeach(counter{0/0.1.Charge}) all(this) 1/1
+auto={1}:counter{0%0.1.charge}/counter{0%0.1.charge} ueot && transforms((Artifact Creature Construct)) ueot 
 text=Chimeric Mass enters the battlefield with X charge counters. -- {1}: Until end of turn, Chimeric Mass becomes a Construct artifact creature with "This creature's power and toughness are each equal to the number of charge counters on it."
 mana={X}
 type=Artifact
@@ -18370,7 +18394,7 @@ type=Sorcery
 name=Decree of Justice
 auto=token(-4514111)*XX
 autohand=__CYCLING__({2}{W})
-autohand={X}{2}{W}:name(cycle + effect) token(-4514112)*X && draw:1 controller
+autohand={X}{2}{W}{cycle}:name(cycle + effect) token(-4514112)*X && draw:1 controller
 text=Put X 4/4 white Angel creature tokens with flying onto the battlefield. -- Cycling {2}{W} ({2}{W}, Discard this card: Draw a card.) -- When you cycle Decree of Justice, you may pay {X}. If you do, put X 1/1 white Soldier creature tokens onto the battlefield.
 mana={X}{X}{2}{W}{W}
 type=Sorcery
@@ -18397,7 +18421,7 @@ color=white
 name=Decree of Pain
 auto=@movedto(graveyard) from(creature|battlefield):draw:1
 auto=all(creature) bury
-autohand={3}{B}{B}:cycling && all(creature) -2/-2
+autohand={3}{B}{B}{cycle}:all(creature) -2/-2
 text=Destroy all creatures. They can't be regenerated. Draw a card for each creature destroyed this way. -- Cycling {3}{B}{B} ({3}{B}{B}, Discard this card: Draw a card.) -- When you cycle Decree of Pain, all creatures get -2/-2 until end of turn.
 mana={6}{B}{B}
 type=Sorcery
@@ -22896,7 +22920,7 @@ mana={4}
 type=Artifact
 [/card]
 [card]
-name=Elguad Inquisitor
+name=Elgaud Inquisitor
 abilities=lifelink
 auto=@movedTo(this|mygraveyard) from(battlefield):token(Spirit,Creature Spirit,1/1,white,flying)
 text=Lifelink -- When Elgaud Inquisitor dies, put a 1/1 white Spirit creature token with flying onto the battlefield.
@@ -24817,7 +24841,7 @@ type=Instant
 [/card]
 [card]
 name=Evolution Vat
-auto={3}{t}:target(creature) tap && counter(1/1,1) && transforms((,newability[{1}:thisforeach(counter{1/1.1}) counter(1/1,1)])) ueot
+auto={3}{t}:target(creature) tap && counter(1/1,1) && transforms((,newability[{2}{G}{U}:thisforeach(counter{1/1.1}) counter(1/1,1)])) ueot
 text={3}, {T}: Tap target creature and put a +1/+1 counter on it. Until end of turn, that creature gains "{2}{G}{U}: Double the number of +1/+1 counters on this creature."
 mana={3}
 type=Artifact
@@ -33022,7 +33046,7 @@ type=Instant
 [/card]
 [card]
 name=Gravespawn Sovereign
-auto={T(zombie|myBattlefield)}{T(zombie|myBattlefield)}{T(zombie|myBattlefield)}{T(zombie|myBattlefield)}{T(zombie|myBattlefield)}:moveTo(mabyttlefield) target(creature|graveyard)
+auto={T(zombie|myBattlefield)}{T(zombie|myBattlefield)}{T(zombie|myBattlefield)}{T(zombie|myBattlefield)}{T(zombie|myBattlefield)}:moveTo(mybattlefield) target(creature|graveyard)
 text=Tap five untapped Zombies you control: Put target creature card from a graveyard onto the battlefield under your control.
 mana={4}{B}{B}
 type=Creature
@@ -38952,7 +38976,7 @@ type=Sorcery
 [card]
 name=Iona, Shield of Emeria
 abilities=flying
-auto=choice choosecolor maxcast(*[chosencolor])0 opponent chooseend
+auto=choice chooseacolor maxcast(*[chosencolor])0 opponent chooseend
 text=Flying -- As Iona, Shield of Emeria enters the battlefield, choose a color. -- Your opponents can't cast spells of the chosen color.
 mana={6}{W}{W}{W}
 type=Legendary Creature
@@ -49754,6 +49778,15 @@ power=3
 toughness=2
 [/card]
 [card]
+name=Mist of Stagnation
+auto=lord(*) doesnotuntap
+auto=@each my upkeep:notatarget(<type:*:mygraveyard>*|mybattlefield) untap
+auto=@each my upkeep:ability$!notatarget(<type:*:mygraveyard>*|mybattlefield) untap!$ opponent
+text=Permanents don't untap during their controllers' untap steps. -- At the beginning of each player's upkeep, that player chooses a permanent for each card in his or her graveyard, then untaps those permanents.
+mana={3}{U}{U}
+type=Enchantment
+[/card]
+[card]
 name=Mistbind Clique
 abilities=flash,flying
 auto=aslongas(other faerie|mybattlefield) choice notatarget(other faerie|mybattlefield) (blink)forsrc oneshot && tap all(land|opponentbattlefield)
@@ -53724,6 +53757,16 @@ mana={2}{W}
 type=Creature
 subtype=Human Nomad
 power=1
+toughness=2
+[/card]
+[card]
+name=Nomad Mythmaker
+auto={W}{T}:target(aura|mygraveyard) transforms((,newability[retarget target(creature|mybattlefield)])) forever
+text={W}, {T}: Put target Aura card in a graveyard onto the battlefield attached to a creature you control. (You control that Aura.)
+mana={2}{W}
+type=Creature
+subtype=Human Nomad Cleric
+power=2
 toughness=2
 [/card]
 [card]
@@ -59171,7 +59214,7 @@ name=Primal Cocoon
 target=creature
 auto=@each my upkeep:counter(1/1,1)
 auto=@combat(attacking) source(mytgt):sacrifice all(this)
-auto=@combat(blockcking) source(mytgt):sacrifice all(this)
+auto=@combat(blocking) source(mytgt):sacrifice all(this)
 text=Enchant creature -- At the beginning of your upkeep, put a +1/+1 counter on enchanted creature. -- When enchanted creature attacks or blocks, sacrifice Primal Cocoon.
 mana={G}
 type=Enchantment
@@ -59358,6 +59401,14 @@ auto=lord(land|myBattlefield) transforms((plains forest mountain swamp island,ne
 text=Lands you control are every basic land type in addition to their other types.
 mana={1}{G}
 type=Enchantment
+[/card]
+[card]
+name=Prismatic Strands
+auto=chooseacolor preventAllDamage from(*[chosencolor]) chooseend
+flashback={T(creature[white]|mybattlefield)}
+text=Prevent all damage that sources of the color of your choice would deal this turn. -- Flashback - Tap an untapped white creature you control. (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+mana={2}{W}
+type=Instant
 [/card]
 [card]
 name=Prismatic Ward
@@ -78958,7 +79009,7 @@ type=Legendary Land
 [/card]
 [card]
 name=Teferi's Moat
-auto=choosecolor lord(creature[chosencolor&-flying]|opponentBattlefield) cantattack chooseend
+auto=chooseacolor lord(creature[chosencolor&-flying]|opponentBattlefield) cantattack chooseend
 text=As Teferi's Moat enters the battlefield, choose a color. -- Creatures of the chosen color without flying can't attack you.
 mana={3}{W}{U}
 type=Enchantment
@@ -84572,7 +84623,7 @@ toughness=2
 [card]
 name=Utopia Sprawl
 target=forest
-auto=choosecolor transforms((,newability[@tappedformana(mytgt):add{chosencolor}])) forever chooseend
+auto=chooseacolor transforms((,newability[@tappedformana(mytgt):add{chosencolor}])) forever chooseend
 text=Enchant Forest -- As Utopia Sprawl enters the battlefield, choose a color. -- Whenever enchanted Forest is tapped for mana, its controller adds one mana of the chosen color to his or her mana pool (in addition to the mana the land produces).
 mana={G}
 type=Enchantment
@@ -89928,7 +89979,7 @@ toughness=2
 [card]
 name=Winds of Change
 auto=all(*|myhand) transforms((,newability[draw:1],newability[moveTo(mylibrary) and!(shuffle)!]))
-auto=all(*|opponenthand) transforms((,newability[draw:1 opponent],newability[moveTo(opponentlibrary) and!(shuffle)!]))
+auto=all(*|opponenthand) transforms((,newability[draw:1],newability[moveTo(mylibrary) and!(shuffle)!]))
 text=Each player shuffles the cards from his or her hand into his or her library, then draws that many cards.
 mana={R}
 type=Sorcery
@@ -92066,7 +92117,7 @@ toughness=2
 [/card]
 [card]
 name=Zombie Boa
-auto={1}{B}:choosecolor transforms((,newability[auto=@combat(blocked) source(this) from(creature[white]):all(trigger[from]) destroy])) ueot asSorcery chooseend
+auto={1}{B}:chooseacolor transforms((,newability[auto=@combat(blocked) source(this) from(creature[white]):all(trigger[from]) destroy])) ueot asSorcery chooseend
 text={1}{B}: Choose a color. Whenever Zombie Boa becomes blocked by a creature of that color this turn, destroy that creature. Activate this ability only any time you could cast a sorcery.
 mana={4}{B}
 type=Creature
