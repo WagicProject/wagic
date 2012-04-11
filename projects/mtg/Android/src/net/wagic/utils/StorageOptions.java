@@ -1,7 +1,11 @@
 package net.wagic.utils;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import android.os.Environment;
+import android.util.Log;
 
 public class StorageOptions {
 	private static ArrayList<String> mMounts = new ArrayList<String>();
@@ -10,14 +14,32 @@ public class StorageOptions {
 	public static String[] labels;
 	public static String[] paths;
 	public static int count = 0;
-
+	public static String defaultMountPoint;
+	
 	public static void determineStorageOptions() {
+		initializeMountPoints();
 		readMountsFile();
 		readVoldFile();
 		compareMountsWithVold();
 		testAndCleanMountsList();
 		setProperties();
 	}
+	
+	
+	private static void initializeMountPoints()
+	{
+		try
+		{
+			defaultMountPoint = Environment.getExternalStorageDirectory().getCanonicalPath();
+		}
+		catch (Exception ioEx)
+		{
+			// an error occurred trying to get the canonical path, use '/mnt/sdcard' instead
+			defaultMountPoint = "/mnt/sdcard";
+		}
+	}
+	
+	
 	private static void readMountsFile() {
 		/*
 		 * Scan the /proc/mounts file and look for lines like this:
@@ -38,9 +60,14 @@ public class StorageOptions {
 					mMounts.add(lineElements[1]);
 				}
 			}
+		}
+		catch (FileNotFoundException fnfex){
+			// if proc/mount doesn't exist we just use 
+			Log.i(StorageOptions.class.getCanonicalName(), fnfex.getMessage() + ": assuming " + defaultMountPoint + " is the only mount point");
+			mMounts.add( defaultMountPoint );
 		} catch (Exception e) {
-			// Auto-generated catch block
-			e.printStackTrace();
+			Log.e(StorageOptions.class.getCanonicalName(), e.getMessage() + ": unknown exception while reading mounts file");
+			mMounts.add( defaultMountPoint );
 		}
 	}
 
@@ -64,9 +91,15 @@ public class StorageOptions {
 					mVold.add(lineElements[2]);
 				}
 			}
-		} catch (Exception e) {
-			// Auto-generated catch block
-			e.printStackTrace();
+		} 
+		catch (FileNotFoundException fnfex){
+			// if vold.fstab doesn't exist we use the value gathered from the Environment
+			Log.i(StorageOptions.class.getCanonicalName(), fnfex.getMessage() + ": assuming " + defaultMountPoint + " is the only mount point");
+			mMounts.add( defaultMountPoint );
+		} 
+		catch (Exception e) {
+			Log.e(StorageOptions.class.getCanonicalName(), e.getMessage() + ": unknown exception while reading mounts file");
+			mMounts.add( defaultMountPoint );
 		}
 	}
 
@@ -115,7 +148,7 @@ public class StorageOptions {
 
 		int i = 1;
 		for (String path: mMounts)
-		{
+		{ // TODO: /mnt/sdcard is assumed to always mean internal storage.  Use this comparison until there is a better way to do this
 			if ("/mnt/sdcard".equalsIgnoreCase(path))
 				mLabels.add("Built-in Storage");
 			else
