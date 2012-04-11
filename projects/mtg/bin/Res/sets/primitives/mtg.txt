@@ -18926,7 +18926,7 @@ toughness=2
 [card]
 name=Demigod of Revenge
 abilities=flying,haste
-auto=if casted(this) moveTo(mybattlefield) all(demigod of revenge|mygraveyard)
+auto=if casted(this) then moveTo(mybattlefield) all(demigod of revenge|mygraveyard)
 text=Flying, haste -- When you cast Demigod of Revenge, return all cards named Demigod of Revenge from your graveyard to the battlefield.
 mana={BR}{BR}{BR}{BR}{BR}
 type=Creature
