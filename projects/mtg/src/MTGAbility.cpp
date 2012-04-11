@@ -1251,8 +1251,9 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
                 }
             }
             string s1 = s;
-            MTGAbility * a1 = parseMagicLine(s1.substr(s1.find(" then "+1)), id, spell, card);
-            
+            MTGAbility * a1 = NULL;
+            if (s1.find(" then ") != string::npos)
+            a1 = parseMagicLine(s1.substr(s1.find(" then "+1)), id, spell, card);
             if(!a1) return NULL;
             MTGAbility * a = NEW IfThenAbility(observer, id, a1,a2, card,(Targetable*)target,checkIf[i],cond);
             a->canBeInterrupted = false;
