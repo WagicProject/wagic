@@ -340,7 +340,7 @@ public class SDLActivity extends Activity implements OnKeyListener{
     		//display some info about the app
 			AlertDialog.Builder infoDialog = new AlertDialog.Builder(this);
 			infoDialog.setTitle("Wagic Info");
-			infoDialog.setMessage("Version 0.180");
+			infoDialog.setMessage("Version 0.182");
 			infoDialog.show();
 
     	}
