@@ -73418,7 +73418,7 @@ toughness=5
 [/card]
 [card]
 name=Soulbright Flamekin
-auto={2}:target(creature) trample ueot limit^add{R}{R}{R}{R}{R}{R}{R}{R}^3
+auto={2}:target(creature) trample ueot limit^all(this) add{R}{R}{R}{R}{R}{R}{R}{R}^3
 text={2}: Target creature gains trample until end of turn. If this is the third time this ability has resolved this turn, you may add {R}{R}{R}{R}{R}{R}{R}{R} to your mana pool.
 mana={1}{R}
 type=Creature
