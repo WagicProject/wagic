@@ -1269,6 +1269,8 @@ public:
     int counters;
     MTGGameZone * activeZone;
     string newName;
+    MTGAbility * sideEffects;
+    string usesBeforeSideEffects;
     string tcString;
 
     GenericTargetAbility(GameObserver* observer, string newName, string castRestriction, int _id, MTGCardInstance * _source, TargetChooser * _tc, MTGAbility * a, ManaCost * _cost = NULL, string limit = "",MTGAbility * sideEffects = NULL,string usesBeforeSideEffects = "", int restrictions = 0, MTGGameZone * dest = NULL,string tcString ="");

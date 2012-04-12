@@ -3336,7 +3336,7 @@ MultiAbility::~MultiAbility()
 //Generic Target Ability
 GenericTargetAbility::GenericTargetAbility(GameObserver* observer, string newName, string castRestriction, int _id, MTGCardInstance * _source, TargetChooser * _tc, MTGAbility * a,
         ManaCost * _cost, string limit,MTGAbility * sideEffects,string usesBeforeSideEffects, int restrictions, MTGGameZone * dest,string _tcString) :
-    TargetAbility(observer, _id, _source, _tc, _cost, restrictions, castRestriction), limit(limit), activeZone(dest),newName(newName),tcString(_tcString)
+    TargetAbility(observer, _id, _source, _tc, _cost, restrictions, castRestriction), limit(limit), activeZone(dest),newName(newName),sideEffects(sideEffects),usesBeforeSideEffects(usesBeforeSideEffects),tcString(_tcString)
 {
     ability = a;
     MTGAbility * core = AbilityFactory::getCoreAbility(a);
@@ -3364,6 +3364,27 @@ int GenericTargetAbility::resolve()
 {
     counters++;
     tc->done = false;
+    if(sideEffects && usesBeforeSideEffects.size())
+    {
+        WParsedInt * use = NEW WParsedInt(usesBeforeSideEffects.c_str(),NULL,source);
+        uses = use->getValue();
+        delete use;
+        if(counters == uses)
+        {
+            sa = sideEffects->clone();
+            sa->target = this->target;
+            sa->source = this->source;
+            if(sa->oneShot)
+            {
+                sa->fireAbility();
+            }
+            else
+            {
+                GenericInstantAbility * wrapper = NEW GenericInstantAbility(game, 1, source, (Damageable *) (this->target), sa);
+                wrapper->addToGame();
+            }
+        }
+    }
     return TargetAbility::resolve();
 }
 
@@ -3418,6 +3439,7 @@ GenericTargetAbility * GenericTargetAbility::clone() const
 GenericTargetAbility::~GenericTargetAbility()
 {
     SAFE_DELETE(ability);
+    SAFE_DELETE(sideEffects);
 }
 
 //Alter Cost
