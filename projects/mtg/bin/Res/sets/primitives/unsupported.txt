@@ -11929,6 +11929,17 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Mungha Wurm
+auto=@each my untap:untap notatarget(land|myBattlefield)
+auto=lord(land|myBattlefield) doesnotuntap
+text=You can't untap more than one land during your untap step.
+mana={2}{G}{G}
+type=Creature
+subtype=Wurm
+power=6
+toughness=5
+[/card]
+[card]
 name=Muraganda Petroglyphs
 text=Creatures with no abilities get +2/+2.
 mana={3}{G}
