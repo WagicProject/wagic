@@ -99,73 +99,68 @@ static NSString *_MY_AD_WHIRL_APPLICATION_KEY_IPAD = @"2e70e3f3da40408588b9a3170
 - (void) initGestureRecognizers {
 
     
-    UIGestureRecognizer *recognizer;
-        
-    /*
-     Create a 3 fingers left swipe gesture recognizer to handle left trigger operations
-     */
-    UISwipeGestureRecognizer *threeFingerSwipeLeftRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleNextPhase:)];
-    threeFingerSwipeLeftRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
-    threeFingerSwipeLeftRecognizer.numberOfTouchesRequired = 3;
+    UISwipeGestureRecognizer *threeFingerSwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(mapDirectionalPad:)];
+    threeFingerSwipe.numberOfTouchesRequired = 3;
+    threeFingerSwipe.direction =  UISwipeGestureRecognizerDirectionRight;
+    [self addGestureRecognizer:threeFingerSwipe];
+    [threeFingerSwipe release];
     
-    [self addGestureRecognizer: threeFingerSwipeLeftRecognizer];
-    [threeFingerSwipeLeftRecognizer release];
+    UISwipeGestureRecognizer *swipeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(mapActionButtons:)];
     
-    /*
-     Create a 3 fingers right swipe gesture recognizer to handle opening and closing of hand. (right trigger)
-     */
-    UISwipeGestureRecognizer *threeFingerSwipeRightRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleHand:)];
-    threeFingerSwipeRightRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
-    threeFingerSwipeRightRecognizer.numberOfTouchesRequired = 3;
+    swipeRecognizer.numberOfTouchesRequired = 2;
+    [swipeRecognizer setDirection:UISwipeGestureRecognizerDirectionRight];
+    [self addGestureRecognizer: swipeRecognizer];
+    [swipeRecognizer requireGestureRecognizerToFail: threeFingerSwipe];
+    [swipeRecognizer release];
+
     
-    [self addGestureRecognizer: threeFingerSwipeRightRecognizer];
-    [threeFingerSwipeRightRecognizer release];
+    threeFingerSwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(mapDirectionalPad:)];
+    threeFingerSwipe.numberOfTouchesRequired = 3;
+    threeFingerSwipe.direction =  UISwipeGestureRecognizerDirectionLeft;
+    [self addGestureRecognizer:threeFingerSwipe];
+    [threeFingerSwipe release];
     
-    /*
-     Create a 2 fingers left swipe gesture recognizer to handle interruption. (square key)
-     */
-    recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleInterrupt:)];
-	((UISwipeGestureRecognizer*)recognizer).direction = UISwipeGestureRecognizerDirectionLeft;
-	((UISwipeGestureRecognizer*)recognizer).numberOfTouchesRequired = 2;
-    [self addGestureRecognizer:recognizer];
-    [recognizer requireGestureRecognizerToFail: threeFingerSwipeLeftRecognizer];
-    [recognizer release];	
+    swipeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(mapActionButtons:)];
+    swipeRecognizer.numberOfTouchesRequired = 2;
+    [swipeRecognizer setDirection:UISwipeGestureRecognizerDirectionLeft];
+    [self addGestureRecognizer: swipeRecognizer];
+    [swipeRecognizer requireGestureRecognizerToFail: threeFingerSwipe];
+    [swipeRecognizer release];
+
     
+    threeFingerSwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(mapDirectionalPad:)];
+    threeFingerSwipe.numberOfTouchesRequired = 3;
+    threeFingerSwipe.direction =  UISwipeGestureRecognizerDirectionUp;
+    [self addGestureRecognizer:threeFingerSwipe];
+    [threeFingerSwipe release];
     
-    /*
-     Create a 2 fingers right swipe gesture recognizer. (circle key)
-     */
-    recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSecondary:)];
-	((UISwipeGestureRecognizer*)recognizer).direction = UISwipeGestureRecognizerDirectionRight;
-	((UISwipeGestureRecognizer*)recognizer).numberOfTouchesRequired = 2;
-    [self addGestureRecognizer:recognizer];
-    [recognizer requireGestureRecognizerToFail: threeFingerSwipeRightRecognizer];
-    [recognizer release];	
+    swipeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(mapActionButtons:)];
+    swipeRecognizer.numberOfTouchesRequired = 2;
+    [swipeRecognizer setDirection:UISwipeGestureRecognizerDirectionUp];
+    [self addGestureRecognizer: swipeRecognizer];
+    [swipeRecognizer requireGestureRecognizerToFail: threeFingerSwipe];
+    [swipeRecognizer release];
+
     
-    /*
-     Create a 2 fingers down swipe gesture recognizer to handle interruption. (cross key)
-     */
-    recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleOK:)];
-	((UISwipeGestureRecognizer*)recognizer).direction = UISwipeGestureRecognizerDirectionDown;
-	((UISwipeGestureRecognizer*)recognizer).numberOfTouchesRequired = 2;
-    [self addGestureRecognizer:recognizer];
-    [recognizer release];	
+    threeFingerSwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(mapDirectionalPad:)];
+    threeFingerSwipe.numberOfTouchesRequired = 3;
+    threeFingerSwipe.direction =  UISwipeGestureRecognizerDirectionDown;
+    [self addGestureRecognizer:threeFingerSwipe];
+    [threeFingerSwipe release];
     
+    swipeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(mapActionButtons:)];
     
-    /*
-     Create a 2 fingers up swipe gesture recognizer. (triangle key)
-     */
-    recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleCancel:)];
-	((UISwipeGestureRecognizer*)recognizer).direction = UISwipeGestureRecognizerDirectionUp;
-	((UISwipeGestureRecognizer*)recognizer).numberOfTouchesRequired = 2;
-    [self addGestureRecognizer:recognizer];
-    [recognizer release];
+    swipeRecognizer.numberOfTouchesRequired = 2;
+    [swipeRecognizer setDirection:UISwipeGestureRecognizerDirectionDown];
+    [self addGestureRecognizer: swipeRecognizer];
+    [swipeRecognizer requireGestureRecognizerToFail: threeFingerSwipe];
+    [swipeRecognizer release];
 
     /*
      Create a recognizer for the select key functionality
      */
     UILongPressGestureRecognizer *selectKeyRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleSelectKey:)];
-    selectKeyRecognizer.minimumPressDuration =2;
+    selectKeyRecognizer.minimumPressDuration = 2;
     selectKeyRecognizer.numberOfTouchesRequired = 2;
     [self addGestureRecognizer:selectKeyRecognizer];
 
@@ -178,6 +173,11 @@ static NSString *_MY_AD_WHIRL_APPLICATION_KEY_IPAD = @"2e70e3f3da40408588b9a3170
     [menuKeyRecognizer requireGestureRecognizerToFail: selectKeyRecognizer];
     [self addGestureRecognizer:menuKeyRecognizer];
     
+    /*
+    UIPinchGestureRecognizer *pinchZoomRecognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinchZoom:)];
+    [self addGestureRecognizer:pinchZoomRecognizer];
+    [pinchZoomRecognizer release];
+    */
 
     /*
      Create a single tap recognizer to select the nearest object.
@@ -196,12 +196,6 @@ static NSString *_MY_AD_WHIRL_APPLICATION_KEY_IPAD = @"2e70e3f3da40408588b9a3170
     [self addGestureRecognizer: panGestureRecognizer];
     [panGestureRecognizer release];
 
-    /*
-     Use the pinch gesture recognizer to zoom in and out of a location on the screen.
-     */
-    UIPinchGestureRecognizer *pinchGestureRecognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(pinchDetected:)];
-    [self addGestureRecognizer: pinchGestureRecognizer];
-    [pinchGestureRecognizer release];
     
     [menuKeyRecognizer release];
     [selectKeyRecognizer release];
@@ -395,7 +389,16 @@ static NSString *_MY_AD_WHIRL_APPLICATION_KEY_IPAD = @"2e70e3f3da40408588b9a3170
 
 #pragma mark -
 
-#pragma mark Gesture Recognizer callbacks
+
+- (void)displayGameMenu
+{
+    g_engine->LeftClicked(-1, -1); // set the click pressed to offscreen
+    g_engine->HoldKey_NoRepeat( JGE_BTN_MENU);
+    [self performSelector:@selector(resetInput) withObject: nil afterDelay: 0.1];
+}
+
+
+
 
 - (BOOL) gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
 {
@@ -428,6 +431,7 @@ static NSString *_MY_AD_WHIRL_APPLICATION_KEY_IPAD = @"2e70e3f3da40408588b9a3170
     return distance;
 }
 
+#pragma mark Gesture Recognizer callbacks
 
 - (void)handlePanMotion: (UIPanGestureRecognizer *) panGesture
 {
@@ -510,15 +514,13 @@ static NSString *_MY_AD_WHIRL_APPLICATION_KEY_IPAD = @"2e70e3f3da40408588b9a3170
 }
 
 /* implement a zoom in /out function call */
-- (IBAction)pinchDetected:(UIGestureRecognizer *)sender {
-/*    
-    CGFloat scale = 
-    [(UIPinchGestureRecognizer *)sender scale];
-    CGFloat velocity = 
-    [(UIPinchGestureRecognizer *)sender velocity];
+- (void) pinchDetected:(UIGestureRecognizer *)sender {
+    CGFloat scale =  [(UIPinchGestureRecognizer *)sender scale];
+    CGFloat velocity = [(UIPinchGestureRecognizer *)sender velocity];
     
-    g_engine->Zoom( scale, velocity );
-*/
+//    g_engine->Zoom( scale, velocity );
+    if ( scale > 1.0 && ( ( velocity * velocity ) > 900))
+        [self displayGameMenu];
 }
 
 
@@ -528,13 +530,6 @@ static NSString *_MY_AD_WHIRL_APPLICATION_KEY_IPAD = @"2e70e3f3da40408588b9a3170
         g_engine->HoldKey_NoRepeat(JGE_BTN_CTRL);
     }
     [self performSelector:@selector(resetInput) withObject: nil afterDelay: 0.1];    
-}
-
-- (void)displayGameMenu
-{
-    g_engine->LeftClicked(-1, -1); // set the click pressed to offscreen
-    g_engine->HoldKey_NoRepeat( JGE_BTN_MENU);
-    [self performSelector:@selector(resetInput) withObject: nil afterDelay: 0.1];
 }
 
 - (void)handleMenuWithLongPress:(UILongPressGestureRecognizer *)recognizer {
@@ -563,6 +558,54 @@ static NSString *_MY_AD_WHIRL_APPLICATION_KEY_IPAD = @"2e70e3f3da40408588b9a3170
 - (void)handleCancel:(UISwipeGestureRecognizer *) recognizer {
     g_engine->HoldKey_NoRepeat(JGE_BTN_CANCEL);
 }
+
+/*
+ Action Buttons are the PSP triangle, cross, square and circle buttons
+ */
+- (void)mapActionButtons: (UISwipeGestureRecognizer *) recognizer 
+{
+    switch ([recognizer direction]) {
+        case UISwipeGestureRecognizerDirectionRight:
+            [self handleSecondary: recognizer];
+            break;
+            
+        case UISwipeGestureRecognizerDirectionLeft:
+            [self handleInterrupt:recognizer];
+            break;
+            
+        case UISwipeGestureRecognizerDirectionUp:
+            [self handleCancel:recognizer];
+            break;
+            
+        case UISwipeGestureRecognizerDirectionDown:
+            [self handleOK: nil];
+            break;
+            
+        default:
+            // ignore anything else
+            break;
+    }
+}
+
+/*
+    map the d-Pad to swipe actions.
+ */
+- (void)mapDirectionalPad: (UISwipeGestureRecognizer *) recognizer 
+{
+    switch ([recognizer direction]) {
+        case UISwipeGestureRecognizerDirectionRight:
+            [self handleHand: recognizer];
+            break;
+            
+        case UISwipeGestureRecognizerDirectionLeft:
+            [self handleNextPhase:recognizer];
+            break;
+        default:
+            // ignore anything else
+            break;
+    }
+}
+
 
 #pragma mark -
 
@@ -700,10 +743,10 @@ static NSString *_MY_AD_WHIRL_APPLICATION_KEY_IPAD = @"2e70e3f3da40408588b9a3170
     //(in landscape mode):
     //Same explanation as the one in the method "adjustAdSize" for the Ad's width
     int screenWidth = [viewController.parentViewController.view bounds].size.width;
-    float yOffset = [viewController.parentViewController.view bounds].size.height - 50;
+    float yOffset = [viewController.parentViewController.view bounds].size.height - adSize.height;
     if ( isLandscape )
     {
-        yOffset = screenWidth - 50;
+        yOffset = screenWidth - adSize.height;
         screenWidth = [viewController.parentViewController.view bounds].size.height;
     }
 
