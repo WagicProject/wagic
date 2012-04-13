@@ -671,11 +671,8 @@ type=Land
 [/card]
 [card]
 name=Addle
-auto=choice name(White) reject target(*[white]|hand)
-auto=choice name(Blue) reject target(*[blue]|hand)
-auto=choice name(Black) reject target(*[black]|hand)
-auto=choice name(Red) reject target(*[red]|hand)
-auto=choice name(Green) reject target(*[green]|hand)
+target=player
+auto=chooseacolor target(*[chosencolor]|targetedpersonshand) reject chooseend
 text=Choose a color. Target player reveals his or her hand and you choose a card of that color from it. That player discards that card.
 mana={1}{B}
 type=Sorcery
@@ -925,8 +922,8 @@ type=Instant
 [/card]
 [card]
 name=Agonizing Memories
-target=<2>*|opponenthand
-auto=moveTo(opponentlibrary)
+target=player
+auto=target(<2>*|targetedpersonshand) moveTo(opponentlibrary)
 text=Look at target player's hand and choose two cards from it. Put them on top of that player's library in any order.
 mana={2}{B}{B}
 type=Sorcery
@@ -1742,8 +1739,9 @@ toughness=1
 [/card]
 [card]
 name=Amnesia
-target=*[-land]|hand
-auto=reject all(*[-land]|targetcontrollerhand)
+target=player
+auto=target(*|targetedpersonshand) 0/0
+auto=reject all(*[-land]|targetedpersonshand)
 text=Target player reveals his or her hand and discards all nonland cards.
 mana={3}{U}{U}{U}
 type=Sorcery
@@ -5321,6 +5319,8 @@ toughness=4
 [/card]
 [card]
 name=Baleful Stare
+target=opponent
+auto=target(*|targetedpersonshand) 0/0
 auto=foreach(mountain|opponenthand) draw:1
 auto=foreach(*[red]|opponenthand) draw:1
 text=Target opponent reveals his or her hand. You draw a card for each Mountain and red card in it.
@@ -9436,8 +9436,8 @@ toughness=1
 [/card]
 [card]
 name=Brainbite
-target=*|opponenthand
-auto=reject
+target=opponent
+auto=target(*|targetedpersonshand) reject
 auto=draw:1 controller
 text=Target opponent reveals his or her hand. You choose a card from it. That player discards that card. -- Draw a card.
 mana={2}{U}{B}
@@ -11503,8 +11503,8 @@ type=Land
 [/card]
 [card]
 name=Castigate
-target=*[-land]|opponenthand
-auto=moveTo(exile)
+target=opponent
+auto=target(*[-land]|targetedpersonshand) moveTo(exile)
 text=Target opponent reveals his or her hand. You choose a nonland card from it and exile that card.
 mana={W}{B}
 type=Sorcery
@@ -13500,7 +13500,8 @@ toughness=2
 [/card]
 [card]
 name=Clairvoyance
-auto=name(look at opponents hand) target(*|opponenthand) 0/0 ueot
+target=player
+auto=target(*|targetedpersonshand) 0/0 ueot
 auto=@next upkeep:draw:1 controller
 text=Look at target player's hand. -- Draw a card at the beginning of the next turn's upkeep.
 mana={U}
@@ -14312,8 +14313,8 @@ toughness=4
 [/card]
 [card]
 name=Coercion
-target=*|opponenthand
-auto=reject
+target=opponent
+auto=target(*|targetedpersonshand) reject
 text=Target opponent reveals his or her hand. You choose a card from it. That player discards that card.
 mana={2}{B}
 type=Sorcery
@@ -19263,8 +19264,8 @@ type=Instant
 [/card]
 [card]
 name=Despise
-target=creature|opponenthand
-auto=reject
+target=opponent
+auto=target(creature,planeswalker|targetedpersonshand) reject
 text=Target opponent reveals his or her hand. You choose a creature or plainswalker card from it. That player discards that card.
 mana={B}
 type=Sorcery
@@ -20032,8 +20033,8 @@ type=Sorcery
 [/card]
 [card]
 name=Distress
-target=*[-land]|hand
-auto=reject
+target=player
+auto=target(*[-land]|targetedpersonshand) reject
 text=Target player reveals his or her hand. You choose a nonland card from it. That player discards that card.
 mana={B}{B}
 type=Sorcery
@@ -21733,8 +21734,8 @@ toughness=*
 [/card]
 [card]
 name=Duress
-target=*[-creature;-land]|opponenthand
-auto=reject
+target=opponent
+auto=target(*[-creature;-land]|targetedpersonshand) reject
 text=Target opponent reveals his or her hand. You choose a noncreature, nonland card from it. That player discards that card.
 mana={B}
 type=Sorcery
@@ -23721,8 +23722,8 @@ toughness=2
 [/card]
 [card]
 name=Encroach
-target=land[-basic]|hand
-auto=reject
+target=player
+auto=target(land[-basic]|targetedpersonshand) reject
 text=Target player reveals his or her hand. You choose a nonbasic land card from it. That player discards that card.
 mana={B}
 type=Sorcery
@@ -25095,8 +25096,8 @@ type=Instant
 [/card]
 [card]
 name=Extortion
-target=<upto:2>*|opponenthand
-auto=moveTo(opponentlibrary)
+target=player
+auto=target(<upto:2>*|targetedpersonshand) reject
 text=Look at target player's hand and choose up to two cards from it. That player discards those cards.
 mana={3}{B}{B}
 type=Sorcery
@@ -29584,7 +29585,7 @@ subtype=Garruk
 name=Garruk Relentless
 auto=counter(0/0,3,loyalty)
 auto=this(counter{0/0.1.loyalty}<3) flip(Garruk the Veil-Cursed)
-auto={0}:target(creature) damage:3 && dynamicability<!powerstrike eachother!>
+auto={0}:target(creature) dynamicability<!mytgt powerstrike tosrc!> damage:3
 auto={0}:token(Wolf,Creature Wolf,2/2,green)
 text=When Garruk Relentless has two or fewer loyalty counters on him, transform him. -- 0: Garruk Relentless deals 3 damage to target creature. That creature deals damage equal to its power to him. -- 0: Put a 2/2 green Wolf creature token onto the battlefield.
 mana={3}{G}
@@ -30829,7 +30830,8 @@ toughness=2
 [/card]
 [card]
 name=Gitaxian Probe
-auto=name(look at opponents hand) target(*|opponenthand) 0/0 ueot
+target=player
+auto=target(*|targetedpersonshand) 0/0
 auto=draw:1 controller
 text=({p(U)} may be paid for with either {U} or 2 life.) -- Look at target player's hand. -- Draw a card.
 color=blue
@@ -36169,8 +36171,9 @@ toughness=3
 [/card]
 [card]
 name=Hint of Insanity
-target=*[-land]|hand
-auto=reject all(*[share!name!]|targetcontrollerhand)
+target=player
+auto=target(*|targetedpersonshand) 0/0
+auto=all(*|targetedpersonshand) transforms((,newability[if type(*[share!name!]|myhand)~morethan~1 then reject])) forever
 text=Target player reveals his or her hand. That player discards all nonland cards with the same name as another card in his or her hand.
 mana={2}{B}
 type=Sorcery
@@ -38630,16 +38633,17 @@ toughness=3
 [/card]
 [card]
 name=Inquisition
-auto=name(look at opponents hand) target(*|opponenthand) 0/0 ueot
-auto=foreach(*[white]|opponenthand) damage:1 opponent
+target=player
+auto=target(*|targetedpersonshand) 0/0
+auto=foreach(*[white]|targetedpersonshand) damage:1 targetedplayer
 text=Target player reveals his or her hand. Inquisition deals damage to that player equal to the number of white cards in his or her hand.
 mana={2}{B}
 type=Sorcery
 [/card]
 [card]
 name=Inquisition of Kozilek
-target=*[manacost<=3;-land]|hand
-auto=reject
+target=player
+auto=target(*[manacost<=3;-land]|targetedpersonshand) reject
 text=Target player reveals his or her hand. You choose a nonland card from it with converted mana cost 3 or less. That player discards that card.
 mana={B}
 type=Sorcery
@@ -49213,8 +49217,8 @@ type=Enchantment
 [/card]
 [card]
 name=Mind Warp
-target=<prex>*|opponenthand
-auto=reject
+target=player
+auto=target(*<prex>|targetedpersonshand) reject
 text=Look at target player's hand and choose X cards from it. That player discards them.
 mana={X}{3}{B}
 type=Sorcery
@@ -53149,8 +53153,8 @@ type=Enchantment
 [/card]
 [card]
 name=Night Terrors
-target=*[-land]|opponenthand
-auto=moveTo(exile)
+target=player
+auto=target(*[-land]|targetedpersonshand) reject
 text=Target player reveals his or her hand. You choose a nonland card from it. Exile that card.
 mana={2}{B}
 type=Sorcery
@@ -55521,8 +55525,8 @@ toughness=2
 [/card]
 [card]
 name=Ostracize
-target=creature|opponenthand
-auto=reject
+target=opponent
+auto=target(creature|targetedpersonshand) reject
 text=Target opponent reveals his or her hand. You choose a creature card from it. That player discards that card.
 mana={B}
 type=Sorcery
@@ -55873,8 +55877,8 @@ toughness=1
 [/card]
 [card]
 name=Painful Memories
-target=*|opponenthand
-auto=moveTo(ownerlibrary)
+target=player
+auto=target(*|targetedpersonshand) moveTo(ownerlibrary)
 text=Look at target opponent's hand and choose a card from it. Put that card on top of that player's library.
 mana={1}{B}
 type=Sorcery
@@ -56601,7 +56605,8 @@ type=Land
 [/card]
 [card]
 name=Peek
-auto=name(look at opponents hand) target(*|opponenthand) 0/0 ueot
+target=player
+auto=target(*|targetedpersonshand) 0/0
 auto=draw:1 controller
 text=Look at target player's hand. -- Draw a card.
 mana={U}
@@ -56903,8 +56908,8 @@ type=Sorcery
 [/card]
 [card]
 name=Perish the Thought
-target=*|opponenthand
-auto=moveTo(ownerlibrary) && shuffle
+arget=opponent
+auto=target(*|targetedpersonshand) moveTo(ownerlibrary) && shuffle
 text=Target opponent reveals his or her hand. You choose a card from it. That player shuffles that card into his or her library.
 mana={2}{B}
 type=Sorcery
@@ -56946,11 +56951,9 @@ type=Enchantment
 [/card]
 [card]
 name=Persecute
-auto=choice name(white) target(*[white]|opponenthand) 0/0 ueot && reject all(*[white]|opponenthand)
-auto=choice name(Blue) target(*[blue]|opponenthand) 0/0 ueot && reject all(*[blue]|opponenthand)
-auto=choice name(Black) target(*[black]|opponenthand) 0/0 ueot && reject all(*[black]|opponenthand)
-auto=choice name(Red) target(*[red]|opponenthand) 0/0 ueot && reject all(*[red]|opponenthand)
-auto=choice name(Green) target(*[green]|opponenthand) 0/0 ueot && reject all(*[green]|opponenthand)
+target=player
+auto=target(*|targetedpersonshand) 0/0
+auto=chooseacolor all(*[chosencolor]|targetedpersonshand) reject chooseend
 text=Choose a color. Target player reveals his or her hand and discards all cards of that color.
 mana={2}{B}{B}
 type=Sorcery
@@ -59729,8 +59732,8 @@ subtype=Aura
 [/card]
 [card]
 name=Psychic Spear
-target=spirit,arcane|hand
-auto=reject
+target=player
+auto=target(spirit,arcane|targetedpersonshand) reject
 text=Target player reveals his or her hand. You choose a Spirit or Arcane card from it. That player discards that card.
 mana={B}
 type=Sorcery
@@ -68973,8 +68976,8 @@ type=Sorcery
 [/card]
 [card]
 name=Shattered Dreams
-target=artifact|opponenthand
-auto=reject
+target=opponent
+auto=target(artifact|targetedpersonshand) reject
 text=Target opponent reveals his or her hand. You choose an artifact card from it. That player discards that card.
 mana={B}
 type=Sorcery
@@ -73093,7 +73096,8 @@ toughness=1
 [/card]
 [card]
 name=Sorcerous Sight
-auto=name(look at opponents hand) target(*|opponenthand) 0/0 ueot
+target=opponent
+auto=target(*|targetedpersonshand) 0/0
 auto=draw:1 controller
 text=Look at target opponent's hand. -- Draw a card.
 mana={U}
@@ -80389,8 +80393,8 @@ type=Enchantment
 [/card]
 [card]
 name=Thoughtseize
-target=*[-land]|hand
-auto=reject
+target=player
+auto=target(*[-land]|targetedpersonshand) reject
 auto=life:-2 controller
 text=Target player reveals his or her hand. You choose a nonland card from it. That player discards that card. You lose 2 life.
 mana={B}
@@ -82468,8 +82472,9 @@ toughness=3
 [/card]
 [card]
 name=Trapfinder's Trick
-target=*|hand
-auto=reject all(trap|targetcontrollerhand)
+target=player
+auto=target(*|targetedpersonshand) 0/0
+auto=all(trap|targetedpersonshand) reject
 text=Target player reveals his or her hand and discards all Trap cards.
 mana={1}{U}
 type=Sorcery
@@ -84036,8 +84041,8 @@ type=Instant
 [/card]
 [card]
 name=Unmask
-target=*[-land]|hand
-auto=reject
+target=player
+auto=target(*[-land]|targetedpersonshand) reject
 other={E(other *[black]|myhand)} name(Exile a Black Card from Hand)
 text=You may exile a black card from your hand rather than pay Unmask's mana cost. -- Target player reveals his or her hand. You choose a nonland card from it. That player discards that card.
 mana={3}{B}
@@ -85302,7 +85307,8 @@ type=Land
 [/card]
 [card]
 name=Venarian Glimmer
-auto=reject target(*[-land;manacost <=X]|opponenthand)
+target=player
+auto=target(*[-land;manacost=prex]|targetedpersonshand) reject
 text=Target player reveals his or her hand. You choose a nonland card with converted mana cost X or less from it. That player discards that card.
 mana={X}{U}
 type=Instant
