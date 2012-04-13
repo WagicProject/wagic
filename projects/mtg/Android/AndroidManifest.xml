@@ -20,5 +20,5 @@
         
         <activity android:name="com.google.ads.AdActivity" android:configChanges="keyboard|keyboardHidden" android:screenOrientation="sensorLandscape"/>
     </application>
-    <uses-sdk android:minSdkVersion="9" android:targetSdkVersion="11"/>
+    <uses-sdk android:minSdkVersion="9" android:targetSdkVersion="9"/>
 </manifest> 
