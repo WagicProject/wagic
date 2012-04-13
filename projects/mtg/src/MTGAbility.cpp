@@ -3687,17 +3687,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
         observer->addObserver(ability);
         break;
     }
-    case 1224: //Spell Blast
-    {
-        int x = computeX(spell, card);
-        Spell * starget = spell->getNextSpellTarget();
-        if (starget)
-        {
-            if (starget->cost->getConvertedCost() <= x)
-                observer->mLayers->stackLayer()->Fizzle(starget);
-        }
-        break;
-    }
     case 1194: //Control Magic
     {
         observer->addObserver(NEW AControlStealAura(observer, _id, card, card->target));
