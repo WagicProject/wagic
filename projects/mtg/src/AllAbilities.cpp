@@ -3604,7 +3604,7 @@ int ATransformer::addToGame()
 {
     MTGCardInstance * _target = NULL;
         Interruptible * action = (Interruptible *) target;
-    if (action->type == ACTION_SPELL && action->state == NOT_RESOLVED)
+    if (action && action->type == ACTION_SPELL && action->state == NOT_RESOLVED)
     {
         Spell * spell = (Spell *) action;
         _target = spell->source;
