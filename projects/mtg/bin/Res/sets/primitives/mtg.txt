@@ -17199,9 +17199,8 @@ type=Instant
 [/card]
 [card]
 name=Dark Supplicant
-auto={T}{S(cleric|myBattlefield)}{S(cleric|myBattlefield)}{S(cleric|myBattlefield)}:name(take Scion of Darkness from library) moveTo(mybattlefield) target(scion of darkness|mylibrary)
-auto={T}{S(cleric|myBattlefield)}{S(cleric|myBattlefield)}{S(cleric|myBattlefield)}:name(take Scion of Darkness from hand) moveTo(mybattlefield) target(scion of darkness|myhand)
-auto={T}{S(cleric|myBattlefield)}{S(cleric|myBattlefield)}{S(cleric|myBattlefield)}:name(take Scion of Darkness from graveyard) moveTo(mybattlefield) target(scion of darkness|mygraveyard)
+auto={T}{S(cleric|myBattlefield)}{S(cleric|myBattlefield)}{S(cleric|myBattlefield)}:name(sacrifice 3 other clerics) moveTo(mybattlefield) target(scion of darkness|myhand,mylibrary,mygraveyard)
+auto={T}{S(cleric|myBattlefield)}{S(cleric|myBattlefield)}{S}:name(sacrifice 2 clerics + this) moveTo(mybattlefield) target(scion of darkness|myhand,mylibrary,mygraveyard)
 text={T}, Sacrifice three Clerics: Search your graveyard, hand, and/or library for a card named Scion of Darkness and put it onto the battlefield. If you search your library this way, shuffle it.
 mana={B}
 type=Creature
