@@ -88,9 +88,9 @@ public class SDLActivity extends Activity implements OnKeyListener{
     private String userFolder;
     
     // path to the onboard sd card that is not removable (typically /mnt/sdcard )
-    private String internalPath;
+    private String internalPath = "";
     // path to removable sd card (on motorala devices /mnt/sdcard-ext, samsung devices: /mnt/sdcard/external_sd )
-    private String sdcardPath;
+    private String sdcardPath = "";
     
     // Android only supports internal memory and internal sdcard.  removable media is not currently accessible via API
     // using StorageOptions for now gives us a temporary interface to scan all available mounted drives.
@@ -131,7 +131,7 @@ public class SDLActivity extends Activity implements OnKeyListener{
     	SharedPreferences settings = getSharedPreferences(kWagicSharedPreferencesKey, MODE_PRIVATE);
     	boolean useSdCard = (!settings.getBoolean(kStoreDataOnRemovableSdCardPreference, false)) && Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState());
     	String systemStoragePath = getSystemStorageLocation();
-    	
+
     	if (useSdCard && (systemStoragePath.indexOf(sdcardPath) != -1))
     	{
     		Log.i(TAG, "Data will be written to sdcard.");
