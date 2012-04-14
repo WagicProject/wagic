@@ -1072,6 +1072,8 @@ class SDLSurface extends SurfaceView implements SurfaceHolder.Callback,
     	if (keyCode == KeyEvent.KEYCODE_MENU)
     		return false;
 
+	if (keyCode == KeyEvent.KEYCODE_VOLUME_UP || keyCode == KeyEvent.KEYCODE_VOLUME_DOWN)
+		return false;
         if (event.getAction() == KeyEvent.ACTION_DOWN) {
             //Log.d("SDL", "key down: " + keyCode);
         	SDLActivity.onNativeKeyDown(keyCode);
