@@ -25473,8 +25473,8 @@ type=Sorcery
 [card]
 name=Falkenrath Aristocrat
 abilities=flying,haste
-auto={S(creature[-human]):name(sacrifice a non-human creature):indestructible ueot
-auto={S(creature[human]):name(sacrifice a human):indestructible && counter(1/1,1)
+auto={S(creature[-human]):name(sacrifice a non-human creature) indestructible ueot
+auto={S(creature[human]):name(sacrifice a human) indestructible ueot && counter(1/1,1)
 text=Flying, haste -- Sacrifice a creature: Falkenrath Aristocrat is indestructible this turn. If the sacrificed creature was a Human, put a +1/+1 counter on Falkenrath Aristocrat.
 mana={2}{B}{R}
 type=Creature
@@ -30308,7 +30308,7 @@ toughness=1
 [card]
 name=Ghost Quarter
 auto={T}:Add{1}
-auto={T}{S}:name(destroy target land) target(land) transforms((,newability[destroy],newability[ability$!name(search for basic land) target(land[basic]|mylibrary) moveTo(mybattlefield)!$ controller])) ueot
+auto={T}{S}:name(destroy target land) target(other land) transforms((,newability[destroy],newability[ability$!name(search for basic land) target(land[basic]|mylibrary) moveTo(mybattlefield)!$ controller])) ueot
 text={T}: Add {1} to your mana pool. -- {T}, Sacrifice Ghost Quarter: Destroy target land. Its controller may search his or her library for a basic land card, put it onto the battlefield, then shuffle his or her library.
 type=Land
 [/card]
