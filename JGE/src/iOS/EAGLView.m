@@ -509,7 +509,7 @@ static NSString *_MY_AD_WHIRL_APPLICATION_KEY_IPAD = @"2e70e3f3da40408588b9a3170
 }
 
 
-- (void)handleHand:(UITapGestureRecognizer *)recognizer {
+- (void)handleHand:(UIGestureRecognizer *)recognizer {
 	g_engine->HoldKey_NoRepeat(JGE_BTN_NEXT);
 }
 
@@ -538,7 +538,7 @@ static NSString *_MY_AD_WHIRL_APPLICATION_KEY_IPAD = @"2e70e3f3da40408588b9a3170
     }
 }
 
-- (void)handleNextPhase:(UISwipeGestureRecognizer *)recognizer {
+- (void)handleNextPhase:(UIGestureRecognizer *)recognizer {
 	g_engine->HoldKey_NoRepeat(JGE_BTN_PREV);
 }
 
@@ -594,7 +594,7 @@ static NSString *_MY_AD_WHIRL_APPLICATION_KEY_IPAD = @"2e70e3f3da40408588b9a3170
 {
     switch ([recognizer direction]) {
         case UISwipeGestureRecognizerDirectionRight:
-            [self handleHand: recognizer];
+            [self handleHand: nil];
             break;
             
         case UISwipeGestureRecognizerDirectionLeft:
@@ -746,8 +746,8 @@ static NSString *_MY_AD_WHIRL_APPLICATION_KEY_IPAD = @"2e70e3f3da40408588b9a3170
     float yOffset = [viewController.parentViewController.view bounds].size.height - adSize.height;
     if ( isLandscape )
     {
-        yOffset = screenWidth - adSize.height;
         screenWidth = [viewController.parentViewController.view bounds].size.height;
+        yOffset = screenWidth - adSize.height;
     }
 
     self.adView.frame = CGRectMake((screenWidth - adSize.width) / 2, yOffset, adSize.width, adSize.height);
