@@ -465,7 +465,7 @@ public class SDLActivity extends Activity implements OnKeyListener{
     
     @Override
     protected void onResume() {
-        Log.v("SDL", "onResume()");
+        //Log.v("SDL", "onResume()");
         super.onResume();
         SDLActivity.nativeResume();
     }
@@ -473,7 +473,7 @@ public class SDLActivity extends Activity implements OnKeyListener{
 
     @Override
     public void onDestroy() {   
-    	Log.v("SDL", "onDestroy()");
+    	//Log.v("SDL", "onDestroy()");
 
     	super.onDestroy();    	
     	mSurface.onDestroy();
@@ -571,7 +571,7 @@ public class SDLActivity extends Activity implements OnKeyListener{
         int audioFormat = is16Bit ? AudioFormat.ENCODING_PCM_16BIT : AudioFormat.ENCODING_PCM_8BIT;
         int frameSize = (isStereo ? 2 : 1) * (is16Bit ? 2 : 1);
         
-        Log.v("SDL", "SDL audio: wanted " + (isStereo ? "stereo" : "mono") + " " + (is16Bit ? "16-bit" : "8-bit") + " " + ((float)sampleRate / 1000f) + "kHz, " + desiredFrames + " frames buffer");
+        //Log.v("SDL", "SDL audio: wanted " + (isStereo ? "stereo" : "mono") + " " + (is16Bit ? "16-bit" : "8-bit") + " " + ((float)sampleRate / 1000f) + "kHz, " + desiredFrames + " frames buffer");
         
         // Let the user pick a larger buffer if they really want -- but ye
         // gods they probably shouldn't, the minimums are horrifyingly high
@@ -583,7 +583,7 @@ public class SDLActivity extends Activity implements OnKeyListener{
         
         audioStartThread();
         
-        Log.v("SDL", "SDL audio: got " + ((mAudioTrack.getChannelCount() >= 2) ? "stereo" : "mono") + " " + ((mAudioTrack.getAudioFormat() == AudioFormat.ENCODING_PCM_16BIT) ? "16-bit" : "8-bit") + " " + ((float)mAudioTrack.getSampleRate() / 1000f) + "kHz, " + desiredFrames + " frames buffer");
+        //Log.v("SDL", "SDL audio: got " + ((mAudioTrack.getChannelCount() >= 2) ? "stereo" : "mono") + " " + ((mAudioTrack.getAudioFormat() == AudioFormat.ENCODING_PCM_16BIT) ? "16-bit" : "8-bit") + " " + ((float)mAudioTrack.getSampleRate() / 1000f) + "kHz, " + desiredFrames + " frames buffer");
         
         if (is16Bit) {
             buf = new short[desiredFrames * (isStereo ? 2 : 1)];
@@ -699,13 +699,12 @@ public class SDLActivity extends Activity implements OnKeyListener{
 		    	conexion.connect();
 		
 		    	int lengthOfFile = conexion.getContentLength();
-		    	Log.d("Wagic - " + TAG1, " Length of file: " + lengthOfFile);
+		    	//Log.d("Wagic - " + TAG1, " Length of file: " + lengthOfFile);
 		
 		    	input = new BufferedInputStream(url.openStream());
 	    		// create a File object for the output file
 	    		File outputFile = new File(resDirectory, filename + ".tmp");
 
-		    	
 		    	output = new FileOutputStream(outputFile);
 		
 		    	byte data[] = new byte[1024];
@@ -731,7 +730,7 @@ public class SDLActivity extends Activity implements OnKeyListener{
     	protected void onProgressUpdate(Integer... progress) {
     		if (progress[0] != mProgressDialog.getProgress())
     		{
-    			Log.d("Wagic - " + TAG1, "current progress : " + progress[0]);
+    			//Log.d("Wagic - " + TAG1, "current progress : " + progress[0]);
     			mProgressDialog.setProgress(progress[0]);
     		}
     	}
@@ -884,50 +883,50 @@ class SDLSurface extends SurfaceView implements SurfaceHolder.Callback,
     // Called when the surface is resized
     public void surfaceChanged(SurfaceHolder holder,
                                int format, int width, int height) {
-        Log.v("SDL", "surfaceChanged()");
+        Log.d("SDL", "surfaceChanged()");
 
         int sdlFormat = 0x85151002; // SDL_PIXELFORMAT_RGB565 by default
         switch (format) {
         case PixelFormat.A_8:
-            Log.v("SDL", "pixel format A_8");
+            Log.d("SDL", "pixel format A_8");
             break;
         case PixelFormat.LA_88:
-            Log.v("SDL", "pixel format LA_88");
+            Log.d("SDL", "pixel format LA_88");
             break;
         case PixelFormat.L_8:
-            Log.v("SDL", "pixel format L_8");
+            Log.d("SDL", "pixel format L_8");
             break;
         case PixelFormat.RGBA_4444:
-            Log.v("SDL", "pixel format RGBA_4444");
+            Log.d("SDL", "pixel format RGBA_4444");
             sdlFormat = 0x85421002; // SDL_PIXELFORMAT_RGBA4444
             break;
         case PixelFormat.RGBA_5551:
-            Log.v("SDL", "pixel format RGBA_5551");
+            Log.d("SDL", "pixel format RGBA_5551");
             sdlFormat = 0x85441002; // SDL_PIXELFORMAT_RGBA5551
             break;
         case PixelFormat.RGBA_8888:
-            Log.v("SDL", "pixel format RGBA_8888");
+            Log.d("SDL", "pixel format RGBA_8888");
             sdlFormat = 0x86462004; // SDL_PIXELFORMAT_RGBA8888
             break;
         case PixelFormat.RGBX_8888:
-            Log.v("SDL", "pixel format RGBX_8888");
+            Log.d("SDL", "pixel format RGBX_8888");
             sdlFormat = 0x86262004; // SDL_PIXELFORMAT_RGBX8888
             break;
         case PixelFormat.RGB_332:
-            Log.v("SDL", "pixel format RGB_332");
+            Log.d("SDL", "pixel format RGB_332");
             sdlFormat = 0x84110801; // SDL_PIXELFORMAT_RGB332
             break;
         case PixelFormat.RGB_565:
-            Log.v("SDL", "pixel format RGB_565");
+            Log.d("SDL", "pixel format RGB_565");
             sdlFormat = 0x85151002; // SDL_PIXELFORMAT_RGB565
             break;
         case PixelFormat.RGB_888:
-            Log.v("SDL", "pixel format RGB_888");
+            Log.d("SDL", "pixel format RGB_888");
             // Not sure this is right, maybe SDL_PIXELFORMAT_RGB24 instead?
             sdlFormat = 0x86161804; // SDL_PIXELFORMAT_RGB888
             break;
         default:
-            Log.v("SDL", "pixel format unknown " + format);
+            Log.d("SDL", "pixel format unknown " + format);
             break;
         }
         SDLActivity.onNativeResize(width, height, sdlFormat);    
@@ -942,7 +941,7 @@ class SDLSurface extends SurfaceView implements SurfaceHolder.Callback,
 
     // EGL functions
     public boolean initEGL(int majorVersion, int minorVersion) {
-        Log.v("SDL", "Starting up OpenGL ES " + majorVersion + "." + minorVersion);
+        Log.d("SDL", "Starting up OpenGL ES " + majorVersion + "." + minorVersion);
 
         try {
         	
@@ -988,9 +987,9 @@ class SDLSurface extends SurfaceView implements SurfaceHolder.Callback,
             }
 
         } catch(Exception e) {
-            Log.v("SDL", e + "");
+            Log.e("SDL", e + "");
             for (StackTraceElement s : e.getStackTrace()) {
-                Log.v("SDL", s.toString());
+                Log.e("SDL", s.toString());
             }
         }
 
@@ -1059,9 +1058,9 @@ class SDLSurface extends SurfaceView implements SurfaceHolder.Callback,
 
             
         } catch(Exception e) {
-            Log.v("SDL", "flipEGL(): " + e);
+            Log.e("SDL", "flipEGL(): " + e);
             for (StackTraceElement s : e.getStackTrace()) {
-                Log.v("SDL", s.toString());
+                Log.e("SDL", s.toString());
             }
         }
                  
