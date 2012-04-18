@@ -22,6 +22,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.Canvas;
 import android.graphics.PixelFormat;
 import android.hardware.Sensor;
@@ -81,7 +82,7 @@ public class SDLActivity extends Activity implements OnKeyListener{
     public String mErrorMessage = "";
     public Boolean mErrorHappened = false;
 	public final static String RES_FOLDER = "/sdcard/Wagic/Res/";
-    public static final String RES_FILENAME = "core_0182.zip";
+    public static String RES_FILENAME = "core_0184.zip";
     public static final String RES_URL = "http://wagic.googlecode.com/files/";
     
     public String systemFolder = "/sdcard/Wagic/Res/";
@@ -433,6 +434,9 @@ public class SDLActivity extends Activity implements OnKeyListener{
         // So we can call stuff from static callbacks
         mSingleton = this;
         mContext = this.getApplicationContext();
+        // get the current version of the app to set the core filename
+        String versionCodeString = getApplicationCode();
+        RES_FILENAME = "core_" + versionCodeString + ".zip";
         
     	StorageOptions.determineStorageOptions();
         checkStorageLocationPreference();  
@@ -772,9 +776,18 @@ public class SDLActivity extends Activity implements OnKeyListener{
 
 		return false;
 	}
-       
     
-    
+    private String getApplicationCode()
+    {
+    	    int v = 0;
+    	    try {
+    	        v = getPackageManager().getPackageInfo(getPackageName(), 0).versionCode;
+    	    } catch (NameNotFoundException e) {
+    	        // Huh? Really?
+    	    	v = 184;  // shouldn't really happen but we need to default to something
+    	    }
+    	    return "0" + v;
+    }
 }
 
 /**
@@ -1155,5 +1168,5 @@ class SDLSurface extends SurfaceView implements SurfaceHolder.Callback,
                                       event.values[1],
                                       event.values[2]);
         }
-    }    
+    }
 }
