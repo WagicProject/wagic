@@ -11318,7 +11318,7 @@ toughness=1
 name=Caribou Range
 target=land|myBattlefield
 auto=teach(land) {W}{W}{T}:token(Caribou,Creature Caribou,0/1,white)
-auto=teach(land) {S(caribou[token]|myBattlefield}:life:1
+auto=teach(land) {S(caribou[token]|myBattlefield)}:life:1
 text=Enchant land you control -- Enchanted land has "{W}{W}, {T}: Put a 0/1 white Caribou creature token onto the battlefield." -- Sacrifice a Caribou token: You gain 1 life.
 mana={2}{W}{W}
 type=Enchantment
@@ -29697,7 +29697,8 @@ type=Enchantment
 [card]
 name=Gatekeeper of Malakir
 auto=kicker 
-kicker={B} target(player) ability$!name(sacrifice creature) notatarget(creature|mybattlefield) sacrifice!$ targetedplayer
+kicker={B} 
+auto=kicker target(player) ability$!name(sacrifice creature) notatarget(creature|mybattlefield) sacrifice!$ targetedplayer
 text=Kicker {B} (You may pay an additional {B} as you cast this spell.) -- When Gatekeeper of Malakir enters the battlefield, if it was kicked, target player sacrifices a creature.
 mana={B}{B}
 type=Creature
@@ -77937,8 +77938,7 @@ toughness=1
 [/card]
 [card]
 name=Sylvan Scrying
-target=land|mylibrary
-auto=moveTo(myHand)
+auto=name(search a land) moveTo(myHand) target(land|mylibrary)
 text=Search your library for a land card, reveal it, and put it into your hand. Then shuffle your library.
 mana={1}{G}
 type=Sorcery
@@ -88378,7 +88378,7 @@ toughness=1
 [/card]
 [card]
 name=Ward Sliver
-auto=chooseacolor transforms((,newability[lord(sliver) protection from(*[chosencolor]) chooseend])) forever chooseend
+auto=chooseacolor transforms((,newability[lord(sliver) protection from(*[chosencolor])])) forever chooseend
 text=As Ward Sliver enters the battlefield, choose a color. -- All Slivers have protection from the chosen color.
 mana={4}{W}
 type=Creature
