@@ -23576,8 +23576,8 @@ toughness=3
 [card]
 name=Emrakul, the Aeons Torn
 abilities=nofizzle,flying
-autostack=turns:+1 controller
-autograveyard=moveTo(ownerlibrary) && shuffle
+auto=if casted(this) then turns:+1 controller
+autograveyard=moveTo(ownerlibrary) all(*|ownergraveyard) && shuffle
 auto=@combat(attacking) source(this):name(Annihilate) ability$!name(sacrifice 6 permanents) notatarget(<6>*|mybattlefield) sacrifice!$ opponent
 auto=protection from(*[white]|stack)
 auto=protection from(*[blue]|stack)
@@ -42831,8 +42831,8 @@ toughness=3
 [/card]
 [card]
 name=Kozilek, Butcher of Truth
-autostack=draw:4 controller
-autograveyard=moveTo(ownerlibrary) && shuffle
+auto=if casted(this) then draw:4 controller
+autograveyard=moveTo(ownerlibrary) all(*|ownergraveyard) && shuffle
 auto=@combat(attacking) source(this):name(Annihilate) ability$!name(sacrifice 4 permanents) notatarget(<4>*|mybattlefield) sacrifice!$ opponent
 text=When you cast Kozilek, Butcher of Truth, draw four cards. -- Annihilator 4 (Whenever this creature attacks, defending player sacrifices four permanents.) -- When Kozilek is put into a graveyard from anywhere, its owner shuffles his or her graveyard into his or her library.
 mana={10}
@@ -83611,8 +83611,8 @@ toughness=*
 [card]
 name=Ulamog, the Infinite Gyre
 abilities=indestructible
-autostack=destroy target(*)
-autograveyard=moveTo(ownerlibrary) && shuffle
+auto=if casted(this) then destroy target(*)
+autograveyard=moveTo(ownerlibrary) all(*|ownergraveyard) && shuffle
 auto=@combat(attacking) source(this):name(Annihilate) ability$!name(sacrifice 4 permanents) notatarget(<4>*|mybattlefield) sacrifice!$ opponent
 text=Annihilator 4 (Whenever this creature attacks, defending player sacrifices four permanents.) -- Ulamog is indestructible. -- When Ulamog is put into a graveyard from anywhere, its owner shuffles his or her graveyard into his or her library.
 mana={11}
