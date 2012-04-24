@@ -13,17 +13,32 @@
 		<format property="TODAY" pattern="EEE, dd-MMM-yyyy HH::mm:ss" />
 	</tstamp>
 
-	<target name="setup.major" >
+	<target name="update.major" >
 		<echo message="incrementing Major Version number by 1" />
+                <!-- update the build.number.properties file -->
+                <propertyfile file="build.number.properties"
+                                          comment="build.number.properties (normally this file is maintained by build.xml)">
+                        <entry key="build.major" type="int" default="0" operation="+" pattern="0" />
+                </propertyfile>
 
 	</target>
 	
-	<target name="setup.minor" >
+	<target name="update.minor" >
 		<echo message="incrementing minor Version number by 1" />
+                <!-- update the build.number.properties file -->
+                <propertyfile file="build.number.properties"
+                                          comment="build.number.properties (normally this file is maintained by build.xml)">
+                        <entry key="build.minor" type="int" default="00" operation="+" pattern="00" />
+                </propertyfile>
 	</target>
 
-	<target name="setup.point" >
+	<target name="update.point" >
 		<echo message="incrementing point Version number by 1" />
+                <!-- update the build.number.properties file -->
+                <propertyfile file="build.number.properties"
+                                          comment="build.number.properties (normally this file is maintained by build.xml)">
+                        <entry key="build.point" type="int" default="0" operation="+" pattern="0" />
+                </propertyfile>
 
 	</target>
 
