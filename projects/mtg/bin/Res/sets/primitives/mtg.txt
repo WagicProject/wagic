@@ -24593,6 +24593,8 @@ subtype=Aura
 [/card]
 [card]
 name=Eternity Vessel
+text=Eternity Vessel enters the battlefield with X charge counters on it, where X is your life total.
+Landfall — Whenever a land enters the battlefield under your control, you may have your life total become the number of charge counters on Eternity Vessel.
 auto=counter(0/0,lifetotal,Charge)
 auto=@movedto(land|myBattlefield):may lifeset:0 controller && thisforeach(counter{0/0.1.Charge}) life:1
 auto=Eternity Vessel enters the battlefield with X charge counters on it, where X is your life total. -- Landfall - Whenever a land enters the battlefield under your control, you may have your life total become the number of charge counters on Eternity Vessel.
