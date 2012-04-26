@@ -2579,7 +2579,7 @@ toughness=5
 [card]
 name=Anthroplasm
 auto=counter(1/1,2)
-auto={X}{T}:removeallcounters(1/1) && thisforeach(X) all(this) counter(1/1,1)
+auto={X}{T}:removeallcounters(1/1) && counter(1/1,x)
 text=Anthroplasm enters the battlefield with two +1/+1 counters on it. -- {X}, {T}: Remove all +1/+1 counters from Anthroplasm and put X +1/+1 counters on it.
 mana={2}{U}{U}
 type=Creature
@@ -8336,7 +8336,7 @@ type=Artifact
 [card]
 name=Bloodthirsty Ogre
 auto={T}:counter(0/0,1,Devotion)
-auto=aslongas(demon|myBattlefield) {T}:thisforeach(counter{0/0.1.Devotion}) -1/-1 target(creature)
+auto=aslongas(demon|myBattlefield) {T}:target(creature) counter{0%0.1.Devotion}/counter{0%0.1.Devotion} ueot
 text={T}: Put a devotion counter on Bloodthirsty Ogre. -- {T}: Target creature gets -X/-X until end of turn, where X is the number of devotion counters on Bloodthirsty Ogre. Activate this ability only if you control a Demon.
 mana={2}{B}
 type=Creature
@@ -12496,15 +12496,15 @@ name=Chandra Nalaar
 auto=counter(0/0,6,loyalty)
 auto={C(0/0,1,Loyalty)}:name(1 damage to player) damage:1 target(player)
 auto={C(0/0,-1,Loyalty)}:name(1 damage to creature) damage:1 target(creature)
-auto={C(0/0,-2,Loyalty)}:name(2 damage to creature) damage:1 target(creature)
-auto={C(0/0,-3,Loyalty)}:name(3 damage to creature) damage:1 target(creature)
-auto={C(0/0,-4,Loyalty)}:name(4 damage to creature) damage:1 target(creature)
-auto={C(0/0,-5,Loyalty)}:name(5 damage to creature) damage:1 target(creature)
-auto={C(0/0,-6,Loyalty)}:name(6 damage to creature) damage:1 target(creature)
-auto={C(0/0,-7,Loyalty)}:name(7 damage to creature) damage:1 target(creature)
-auto={C(0/0,-8,Loyalty)}:name(8 damage to creature) damage:1 target(creature)
-auto={C(0/0,-9,Loyalty)}:name(9 damage to creature) damage:1 target(creature)
-auto={C(0/0,-10,Loyalty)}:name(10 damage to creature) damage:1 target(creature)
+auto={C(0/0,-2,Loyalty)}:name(2 damage to creature) damage:2 target(creature)
+auto={C(0/0,-3,Loyalty)}:name(3 damage to creature) damage:3 target(creature)
+auto={C(0/0,-4,Loyalty)}:name(4 damage to creature) damage:4 target(creature)
+auto={C(0/0,-5,Loyalty)}:name(5 damage to creature) damage:5 target(creature)
+auto={C(0/0,-6,Loyalty)}:name(6 damage to creature) damage:6 target(creature)
+auto={C(0/0,-7,Loyalty)}:name(7 damage to creature) damage:7 target(creature)
+auto={C(0/0,-8,Loyalty)}:name(8 damage to creature) damage:8 target(creature)
+auto={C(0/0,-9,Loyalty)}:name(9 damage to creature) damage:9 target(creature)
+auto={C(0/0,-10,Loyalty)}:name(10 damage to creature) damage:10 target(creature)
 auto={C(0/0,-8,Loyalty)}:name(10 damage to player and all of his creatures) target(player) damage:10 && damage:10 all(creature|targetedpersonsbattlefield)
 text=+1: Chandra Nalaar deals 1 damage to target player. -- -X: Chandra Nalaar deals X damage to target creature. -- -8: Chandra Nalaar deals 10 damage to target player and each creature he or she controls.
 mana={3}{R}{R}
@@ -22935,7 +22935,7 @@ name=Elspeth Tirel
 auto=counter(0/0,4,loyalty)
 auto={C(0/0,2,Loyalty)}:foreach(creature|mybattlefield) life:1 controller
 auto={C(0/0,-2,Loyalty)}:token(Soldier,Creature Soldier,1/1,white)*3
-auto={C(0/0,-5,Loyalty)}:destroy all(other *[-land,-token])
+auto={C(0/0,-5,Loyalty)}:destroy all(other *[-land;-token])
 text=+2: You gain 1 life for each creature you control. -- -2: Put three 1/1 white Soldier creature tokens onto the battlefield. -- -5: Destroy all other permanents except for lands and tokens.
 mana={3}{W}{W}
 type=Planeswalker
@@ -41641,7 +41641,7 @@ toughness=1
 [card]
 name=Kessig Wolf Run
 auto={T}:Add{1}
-auto={X}{R}{G}{T}:target(creature) +x/0 ueot && trample ueot
+auto={X}{R}{G}{T}:target(creature) ueot +x/0 && trample
 text={T}: Add {1} to your mana pool. -- {X}{R}{G}, {T}: Target creature gets +X/+0 and gains trample until end of turn.
 type=Land
 [/card]
@@ -44902,7 +44902,7 @@ toughness=4
 name=Liliana Vess
 auto=counter(0/0,5,loyalty)
 auto={C(0/0,1,Loyalty)}:target(player) ability$!name(discard) target(*|myhand) reject!$ targetedplayer
-auto={C(0/0,-2,Loyalty)}:target(instant,sorcery|mylibrary) moveTo(library)
+auto={C(0/0,-2,Loyalty)}:target(*|mylibrary) moveTo(library)
 auto={C(0/0,-8,Loyalty)}:moveTo(mybattlefield) all(creature|graveyard)
 text=+1: Target player discards a card. -- -2: Search your library for a card, then shuffle your library and put that card on top of it. -- -8: Put all creature cards in all graveyards onto the battlefield under your control.
 mana={3}{B}{B}
@@ -53528,7 +53528,7 @@ name=Nissa Revane
 auto=counter(0/0,2,loyalty)
 auto={C(0/0,1,Loyalty)}:moveTo(mybattlefield) target(Nissa's Chosen|mylibrary)
 auto={C(0/0,1,Loyalty)}:foreach(elf|myBattlefield) life:2 controller
-auto={C(0/0,-7,Loyalty)}:moveTo(mybattlefield) target(<anynumber>creature[elf]|mylibrary)
+auto={C(0/0,-7,Loyalty)}:moveTo(mybattlefield) target(<anyamount>creature[elf]|mylibrary)
 text=+1: Search your library for a card named Nissa's Chosen and put it onto the battlefield. Then shuffle your library. -- +1: You gain 2 life for each Elf you control. -- -7: Search your library for any number of Elf creature cards and put them onto the battlefield. Then shuffle your library.
 mana={2}{G}{G}
 type=Planeswalker
@@ -56740,7 +56740,7 @@ type=Artifact
 [card]
 name=Pentarch Paladin
 abilities=flanking
-auto=chooseacolor transforms((,newability[{W}{W}{T}:destroy target(*[chosencolor])])) forever chooseend
+auto=chooseacolor {W}{W}{T}:destroy target(*[chosencolor]) chooseend
 text=Flanking (Whenever a creature without flanking blocks this creature, the blocking creature gets -1/-1 until end of turn.) -- As Pentarch Paladin enters the battlefield, choose a color. -- {W}{W}, {T}: Destroy target permanent of the chosen color.
 mana={2}{W}{W}{W}
 type=Creature
@@ -56866,7 +56866,7 @@ subtype=Equipment
 [/card]
 [card]
 name=Perilous Forays
-auto={1}{S(creature|mybattlefield)}:moveTo(myBattlefield) and!(tap)! target(basic|mylibrary)
+auto={1}{S(creature|mybattlefield)}:target(*[swamp;island;mountain;forest;plains]|mylibrary) moveTo(myBattlefield) and!(tap)!
 text={1}, Sacrifice a creature: Search your library for a land card with a basic land type and put it onto the battlefield tapped. Then shuffle your library.
 mana={3}{G}{G}
 type=Enchantment
@@ -79452,7 +79452,7 @@ subtype=Arcane
 ###The token is needed here. A simple token in the first auto-line won't work. It seems that "," in a transforms((,newability...))-line causes problems.
 [card]
 name=Terastodon
-auto=name(destroy) may target(<upto:3>*[-creature]) transforms((,newability[token(-19713711)],newability[destroy])) oneshot
+auto=may name(destroy) target(<upto:3>*[-creature]|battlefield) transforms((,newability[token(-19713711)],newability[destroy])) forever
 text=When Terastodon enters the battlefield, you may destroy up to three target noncreature permanents. For each permanent put into a graveyard this way, its controller puts a 3/3 green Elephant creature token onto the battlefield.
 mana={6}{G}{G}
 type=Creature
@@ -80207,7 +80207,7 @@ toughness=2
 [/card]
 [card]
 name=Thornbite Staff
-auto=teach(creature) {2}{T}:damage:1 target(creature,player)
+auto=teach(creature) transforms((,newability[{2}{T}:damage:1 target(creature,player)]))
 auto=@movedto(creature|graveyard) from(creature|battlefield):teach(creature) untap
 auto=@movedto(creature[shaman]|battlefield):may all(trigger[to]) retarget
 auto={4}:equip
@@ -86903,7 +86903,7 @@ toughness=2
 [card]
 name=Voice of All
 abilities=flying
-auto=chooseacolor transforms((,newability[protection from(*[chosencolor]) chooseend])) forever chooseend
+auto=chooseacolor transforms((,newability[protection from(*[chosencolor])],newability[0/0])) forever chooseend
 text=Flying (This creature can't be blocked except by creatures with flying or reach.) -- As Voice of All enters the battlefield, choose a color. -- Voice of All has protection from the chosen color. (It can't be blocked, targeted, dealt damage, or enchanted by anything of the chosen color.)
 mana={2}{W}{W}
 type=Creature
@@ -92072,7 +92072,7 @@ toughness=2
 [card]
 name=Zombie Apocalypse
 auto=destroy all(human)
-auto=moveTo(mybattlefield) all(creature[zombie]|mygraveyard) and!(tap)!
+auto=all(creature[zombie]|mygraveyard) moveTo(mybattlefield) and!(tap)!
 text=Return all Zombie creature cards from your graveyard to the battlefield tapped, then destroy all Humans.
 mana={3}{B}{B}{B}
 type=Sorcery
