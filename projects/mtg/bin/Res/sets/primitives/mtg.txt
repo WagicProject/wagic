@@ -7018,7 +7018,7 @@ toughness=4
 [/card]
 [card]
 name=Black Cat
-auto=@movedTo(this|mygraveyard) from(battlefield):discard.1 opponent
+auto=@movedTo(this|mygraveyard) from(battlefield):discard:1 opponent
 text=When Black Cat dies, target opponent discards a card at random.
 mana={1}{B}
 type=Creature
@@ -55885,7 +55885,7 @@ type=Sorcery
 [/card]
 [card]
 name=Painful Quandary
-auto=@movedTo(*|opponentstack):ability$!choice name(loose 5 life) life:-5 _ choice name(discard) target(*|myhand) reject!$ opponent
+auto=@movedTo(*|opponentstack):choice name(make opponent choose) ability$!choice name(loose 5 life) life:-5 _ choice name(discard) target(*|myhand) reject!$ opponent
 text=Whenever an opponent casts a spell, that player loses 5 life unless he or she discards a card.
 mana={3}{B}{B}
 type=Enchantment
