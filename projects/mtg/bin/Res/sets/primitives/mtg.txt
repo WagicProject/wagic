@@ -24593,8 +24593,7 @@ subtype=Aura
 [/card]
 [card]
 name=Eternity Vessel
-text=Eternity Vessel enters the battlefield with X charge counters on it, where X is your life total.
-Landfall — Whenever a land enters the battlefield under your control, you may have your life total become the number of charge counters on Eternity Vessel.
+text=Eternity Vessel enters the battlefield with X charge counters on it, where X is your life total. Landfall — Whenever a land enters the battlefield under your control, you may have your life total become the number of charge counters on Eternity Vessel.
 auto=counter(0/0,lifetotal,Charge)
 auto=@movedto(land|myBattlefield):may lifeset:0 controller && thisforeach(counter{0/0.1.Charge}) life:1
 auto=Eternity Vessel enters the battlefield with X charge counters on it, where X is your life total. -- Landfall - Whenever a land enters the battlefield under your control, you may have your life total become the number of charge counters on Eternity Vessel.
@@ -29053,7 +29052,7 @@ type=Instant
 [card]
 name=Funeral March
 target=creature
-transforms((,newability[@movedTo(this|graveyard) from(battlefield):all(trigger[to]) ability$!name(sacrifice) notatarget(creature|mybattlefield) sacrifice!$ controller]))
+auto=transforms((,newability[@movedTo(this|graveyard) from(battlefield):all(trigger[to]) ability$!name(sacrifice) notatarget(creature|mybattlefield) sacrifice!$ controller]))
 text=Enchant creature -- When enchanted creature leaves the battlefield, its controller sacrifices a creature.
 mana={1}{B}{B}
 type=Enchantment
@@ -43306,7 +43305,6 @@ type=Legendary Enchantment
 [/card]
 ###The 2 cards above should stay together (Flip Card)###
 [card]
-[card]
 name=Kurgadon
 auto=@movedTo(creature[manacost>=6]|mystack):counter(1/1,3)
 text=Whenever you cast a creature spell with converted mana cost 6 or more, put three +1/+1 counters on Kurgadon.
@@ -53037,7 +53035,6 @@ power=3
 toughness=3
 [/card]
 ###The 2 cards above should stay together (Flip Card)###
-[card]
 [card]
 name=Niblis of the Breath
 abilities=flying
@@ -88934,6 +88931,7 @@ type=Creature
 subtype=Human Soldier Assassin
 power=3
 toughness=2
+[/card]
 [card]
 name=Wei Elite Companions
 abilities=horsemanship
