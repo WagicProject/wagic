@@ -7022,7 +7022,7 @@ auto=@movedTo(this|mygraveyard) from(battlefield):discard:1 opponent
 text=When Black Cat dies, target opponent discards a card at random.
 mana={1}{B}
 type=Creature
-subtype=Cat
+subtype=zombie Cat
 power=1
 toughness=1
 [/card]
@@ -13117,7 +13117,7 @@ type=Sorcery
 ###The 2 cards below should stay together (Flip Card)###
 [card]
 name=Chosen of Markov
-abilities={T}{T(vampire[-tapped]):flip(Markov's Servant)
+abilities={T}{T(creature[vampire])}:flip(Markov's Servant)
 text={T}, Tap an untapped Vampire you control: Transform Chosen of Markov.
 mana={2}{B}
 type=Creature
@@ -16261,8 +16261,8 @@ subtype=Arcane
 [/card]
 [card]
 name=Crushing Vines
-auto=choice destroy target(creature[flying])
-auto=choice destroy target(artifact)
+auto=choice name(Destroy flying creature) destroy target(creature[flying])
+auto=choice name(Destroy artifact) destroy target(artifact)
 text=Choose one - Destroy target creature with flying, or destroy target artifact.
 mana={2}{G}
 type=Instant
@@ -21292,7 +21292,7 @@ toughness=2
 name=Drogskol Captain
 abilities=flying
 auto=lord(other spirit|mybattlefield) 1/1
-auto=lord(other spirit|mybattlefield) hexproof
+auto=lord(other spirit|mybattlefield) opponentshroud
 text=Flying -- Other Spirit creatures you control get +1/+1 and have hexproof.
 mana={1}{W}{U}
 type=Creature
@@ -26523,7 +26523,7 @@ type=Artifact
 [/card]
 [card]
 name=Fiend Hunter
-auto=(blink)forsrc target(other creature|battlefield)
+auto=may (blink)forsrc target(other creature|battlefield)
 text=When Fiend Hunter enters the battlefield, you may exile another target creature. -- When Fiend Hunter leaves the battlefield, return the exiled card to the battlefield under its owner's control.
 mana={1}{W}{W}
 type=Creature
@@ -53535,7 +53535,7 @@ subtype=Nissa
 [/card]
 [card]
 name=Nissa's Chosen
-auto=@movedTo(this|raveyard) from(battlefield):bottomoflibrary
+auto=@movedTo(graveyard) from(this|battlefield):all(this) bottomoflibrary
 text=If Nissa's Chosen would die, put it on the bottom of its owner's library instead.
 mana={G}{G}
 type=Creature
@@ -76069,7 +76069,8 @@ auto=nextphasealter(remove,combatdamage,opponent)
 auto=nextphasealter(remove,combatends,opponent)
 text=When Stonehorn Dignitary enters the battlefield, target opponent skips his or her next combat phase.
 mana={3}{W}
-type=Creature — Rhino Soldier
+type=Creature
+subtype=Rhino Soldier
 power=1
 toughness=4
 [/card]
@@ -78685,6 +78686,7 @@ auto=aslongas(instant|graveyard) 1/1
 auto=aslongas(land|graveyard) 1/1
 auto=aslongas(sorcery|graveyard) 1/1
 auto=aslongas(tribal|graveyard) 1/1
+auto=aslongas(planeswalker|graveyard) 1/1
 text=Tarmogoyf's power is equal to the number of card types among cards in all graveyards and its toughness is equal to that number plus 1. (The card types are artifact, creature, enchantment, instant, land, planeswalker, sorcery, and tribal.)
 mana={1}{G}
 type=Creature
