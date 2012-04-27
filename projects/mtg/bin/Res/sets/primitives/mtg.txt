@@ -1110,7 +1110,7 @@ toughness=1
 [/card]
 [card]
 name=Akki Underminer
-auto=@combatdamaged(player) from(this):ability$!name(sacrifice) notatarget(*|mybattefield) sacrifice!$ opponent
+auto=@combatdamaged(player) from(this):choice name(player sacrifices) ability$!name(sacrifice) notatarget(*|mybattefield) sacrifice!$ opponent
 text=Whenever Akki Underminer deals combat damage to a player, that player sacrifices a permanent.
 mana={3}{R}
 type=Creature
