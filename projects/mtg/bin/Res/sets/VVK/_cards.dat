@@ -1,0 +1,385 @@
+[card]
+primitive=Æther Membrane
+id=270856
+rarity=U
+[/card]
+[card]
+primitive=Angelic Shield
+id=284487
+rarity=U
+[/card]
+[card]
+primitive=Anger
+id=266061
+rarity=U
+[/card]
+[card]
+primitive=Armillary Sphere
+id=270825
+rarity=C
+[/card]
+[card]
+primitive=Augury Owl
+id=270841
+rarity=C
+[/card]
+[card]
+primitive=Azorius Chancery
+id=270826
+rarity=C
+[/card]
+[card]
+primitive=Bloodfire Colossus
+id=270805
+rarity=R
+[/card]
+[card]
+primitive=Bloodfire Kavu
+id=270812
+rarity=U
+[/card]
+[card]
+primitive=Cache Raiders
+id=282599
+rarity=U
+[/card]
+[card]
+primitive=Chartooth Cougar
+id=270828
+rarity=C
+[/card]
+[card]
+primitive=Clone
+id=270842
+rarity=R
+[/card]
+[card]
+primitive=Coral Fighters
+id=282600
+rarity=U
+[/card]
+[card]
+primitive=Cosi's Ravager
+id=270871
+rarity=C
+[/card]
+[card]
+primitive=Cryptic Annelid
+id=270836
+rarity=U
+[/card]
+[card]
+primitive=Downhill Charge
+id=270854
+rarity=C
+[/card]
+[card]
+primitive=Earth Servant
+id=270843
+rarity=U
+[/card]
+[card]
+primitive=Fiery Hellhound
+id=279855
+rarity=C
+[/card]
+[card]
+primitive=Flood Plain
+id=270849
+rarity=U
+[/card]
+[card]
+primitive=Galepowder Mage
+id=270839
+rarity=R
+[/card]
+[card]
+primitive=Geyser Glider
+id=270874
+rarity=U
+[/card]
+[card]
+primitive=Greater Stone Spirit
+id=279857
+rarity=U
+[/card]
+[card]
+primitive=Island
+id=284491
+rarity=C
+[/card]
+[card]
+primitive=Jaws of Stone
+id=270833
+rarity=U
+[/card]
+[card]
+primitive=Jedit's Dragoons
+id=282601
+rarity=C
+[/card]
+[card]
+primitive=Journeyer's Kite
+id=282591
+rarity=R
+[/card]
+[card]
+primitive=Kor Cartographer
+id=270875
+rarity=C
+[/card]
+[card]
+primitive=Koth of the Hammer
+id=266362
+rarity=M
+[/card]
+[card]
+primitive=Lithophage
+id=270850
+rarity=R
+[/card]
+[card]
+primitive=Minamo Sightbender
+id=282602
+rarity=U
+[/card]
+[card]
+primitive=Mistmeadow Witch
+id=282603
+rarity=U
+[/card]
+[card]
+primitive=Mountain
+id=284496
+rarity=C
+[/card]
+[card]
+primitive=Neurok Invisimancer
+id=270868
+rarity=C
+[/card]
+[card]
+primitive=New Benalia
+id=270837
+rarity=U
+[/card]
+[card]
+primitive=Oblivion Ring
+id=270848
+rarity=U
+[/card]
+[card]
+primitive=Overrule
+id=270834
+rarity=C
+[/card]
+[card]
+primitive=Path to Exile
+id=266017
+rarity=U
+[/card]
+[card]
+primitive=Pilgrim's Eye
+id=270872
+rarity=C
+[/card]
+[card]
+primitive=Plains
+id=284497
+rarity=C
+[/card]
+[card]
+primitive=Plated Geopede
+id=266210
+rarity=C
+[/card]
+[card]
+primitive=Preordain
+id=265979
+rarity=C
+[/card]
+[card]
+primitive=Primal Plasma
+id=270857
+rarity=C
+[/card]
+[card]
+primitive=Pygmy Pyrosaur
+id=279859
+rarity=C
+[/card]
+[card]
+primitive=Revoke Existence
+id=284488
+rarity=C
+[/card]
+[card]
+primitive=Safe Passage
+id=270844
+rarity=C
+[/card]
+[card]
+primitive=Sawtooth Loon
+id=270861
+rarity=U
+[/card]
+[card]
+primitive=Scroll Thief
+id=270845
+rarity=C
+[/card]
+[card]
+primitive=Searing Blaze
+id=270873
+rarity=C
+[/card]
+[card]
+primitive=Seismic Strike
+id=270840
+rarity=C
+[/card]
+[card]
+primitive=Sejiri Refuge
+id=270876
+rarity=U
+[/card]
+[card]
+primitive=Sigil of Sleep
+id=270813
+rarity=C
+[/card]
+[card]
+primitive=Sky Spirit
+id=284485
+rarity=U
+[/card]
+[card]
+primitive=Slith Strider
+id=270851
+rarity=U
+[/card]
+[card]
+primitive=Soaring Seacliff
+id=270877
+rarity=C
+[/card]
+[card]
+primitive=Sphinx of Uthuun
+id=284486
+rarity=R
+[/card]
+[card]
+primitive=Spire Barrage
+id=270878
+rarity=C
+[/card]
+[card]
+primitive=Steel of the Godhead
+id=270866
+rarity=C
+[/card]
+[card]
+primitive=Stone Giant
+id=279856
+rarity=U
+[/card]
+[card]
+primitive=Sunblast Angel
+id=284489
+rarity=R
+[/card]
+[card]
+primitive=Torchling
+id=270858
+rarity=R
+[/card]
+[card]
+primitive=Vanish into Memory
+id=270831
+rarity=U
+[/card]
+[card]
+primitive=Venser, the Sojourner
+id=266078
+rarity=M
+[/card]
+[card]
+primitive=Volley of Boulders
+id=270855
+rarity=R
+[/card]
+[card]
+primitive=Vulshok Battlegear
+id=270852
+rarity=U
+[/card]
+[card]
+primitive=Vulshok Berserker
+id=270846
+rarity=C
+[/card]
+[card]
+primitive=Vulshok Morningstar
+id=270810
+rarity=U
+[/card]
+[card]
+primitive=Vulshok Sorcerer
+id=270806
+rarity=C
+[/card]
+[card]
+primitive=Wall of Denial
+id=270829
+rarity=U
+[/card]
+[card]
+primitive=Wayfarer's Bauble
+id=270807
+rarity=C
+[/card]
+[card]
+primitive=Whitemane Lion
+id=270859
+rarity=C
+[/card]
+[card]
+primitive=Windreaver
+id=270835
+rarity=R
+[/card]
+[card]
+primitive=Island
+id=284490
+rarity=C
+[/card]
+[card]
+primitive=Island
+id=284492
+rarity=C
+[/card]
+[card]
+primitive=Mountain
+id=284495
+rarity=C
+[/card]
+[card]
+primitive=Mountain
+id=284494
+rarity=C
+[/card]
+[card]
+primitive=Mountain
+id=284493
+rarity=C
+[/card]
+[card]
+primitive=Plains
+id=284498
+rarity=C
+[/card]
+[card]
+primitive=Plains
+id=284499
+rarity=C
+[/card]
