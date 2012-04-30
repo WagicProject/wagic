@@ -1,3 +1,9 @@
+[meta]
+author=Wagic Team
+name=Venser vs Koth
+block=Duel Decks
+year=2012
+[/meta]
 [card]
 primitive=Æther Membrane
 id=270856
@@ -351,35 +357,35 @@ rarity=R
 [card]
 primitive=Island
 id=284490
-rarity=C
+rarity=L
 [/card]
 [card]
 primitive=Island
 id=284492
-rarity=C
+rarity=L
 [/card]
 [card]
 primitive=Mountain
 id=284495
-rarity=C
+rarity=L
 [/card]
 [card]
 primitive=Mountain
 id=284494
-rarity=C
+rarity=L
 [/card]
 [card]
 primitive=Mountain
 id=284493
-rarity=C
+rarity=L
 [/card]
 [card]
 primitive=Plains
 id=284498
-rarity=C
+rarity=L
 [/card]
 [card]
 primitive=Plains
 id=284499
-rarity=C
+rarity=L
 [/card]
