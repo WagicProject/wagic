@@ -1925,10 +1925,11 @@ int AADynamic::resolve()
         if(targetamount < 0)
             targetamount = 0;
         std::stringstream out;
+        std::stringstream out2;
         out << sourceamount;
         string sourceamountstring = out.str();
-        out << targetamount;
-        string targetamountstring = out.str();
+        out2 << targetamount;
+        string targetamountstring = out2.str();
         //set values less then 0 to 0, it was reported that negitive numbers such as a creature who get -3/-3 having the power become
         //negitive, if then used as the amount, would cuase weird side effects on resolves.
         switch(effect)
@@ -1939,8 +1940,8 @@ int AADynamic::resolve()
                 activateMainAbility(mainAbility,source,tosrc == true?OriginalSrc:(MTGCardInstance*)_target);
                 if(eachother)
                 {
-                    mainAbility = NEW AADamager(game, this->GetId(), source,tosrc == true?(Targetable*)OriginalSrc:(Targetable*)_target,targetamountstring);
-                    activateMainAbility(mainAbility,source,tosrc == true?OriginalSrc:(MTGCardInstance*)_target);
+                    mainAbility = NEW AADamager(game, this->GetId(), source,(Targetable*)OriginalSrc,targetamountstring);
+                    activateMainAbility(mainAbility,source,OriginalSrc);
                 }
                 return 1;
                 break;
