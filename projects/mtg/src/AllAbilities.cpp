@@ -1641,6 +1641,7 @@ int AAFlip::resolve()
             if(!fcard) return 0;
             MTGCardInstance * myFlip = NEW MTGCardInstance(fcard, _target->controller()->game);
             _target->name = myFlip->name;
+            _target->setName(myFlip->name);
             _target->colors = myFlip->colors;
             _target->types = myFlip->types;
             _target->text = myFlip->text;
@@ -3849,9 +3850,13 @@ int ATransformer::destroy()
                     _target->addType(*it);
 			}
 		}
-		//in the case that we removed or added types to a card, so that it retains its original name when the effect is removed.
-		if(_target->model->data->name.size())//tokens don't have a model name.
-		    _target->setName(_target->model->data->name.c_str());
+		////in the case that we removed or added types to a card, so that it retains its original name when the effect is removed.
+		//if(_target->model->data->name.size())//tokens don't have a model name.
+		//    _target->setName(_target->model->data->name.c_str());
+
+        //edit: this ability shouldn't have to reset the name on a card becuase removing a subtype changes the name of a land.
+        //that should be handled in addType...not here.
+        //im sure commenting this out will reintroduce a bug somewhere but it needs to be handled correctly. furthermore, why does adding and removing a type touch the name of a card?
 	}
     return 1;
 }
