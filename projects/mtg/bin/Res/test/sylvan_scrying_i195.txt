@@ -13,6 +13,7 @@ manapool:{1}{G}
 [PLAYER2]
 [DO]
 Sylvan Scrying
+choice 0
 Plains
 [ASSERT]
 firstmain
