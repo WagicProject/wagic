@@ -147,6 +147,7 @@ void Rules::addExtraRules(GameObserver* g)
         //Trick so that the abilities don't die;
         g->ExtraRules[i].currentZone = p->game->inPlay;
         g->ExtraRules[i].lastController = p;
+        g->ExtraRules[i].owner = p;
         for (size_t j = 0; j < initState.playerData[i].extraRules.size(); ++j)
         {
             AbilityFactory af(g);

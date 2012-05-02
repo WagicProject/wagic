@@ -1318,7 +1318,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         if (!a1)
             return NULL;
 
-        return NEW GenericAbilityMod(observer, 1, card,spell?spell->getNextDamageableTarget():(Damageable *) target, a1);;
+        return NEW GenericAbilityMod(observer, 1, card->controller()->getObserver()->ExtraRules,card->controller()->getObserver()->ExtraRules, a1);
     }
 
     //choose a color

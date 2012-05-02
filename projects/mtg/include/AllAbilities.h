@@ -2378,7 +2378,7 @@ public:
 
     int removed(MTGCardInstance * card)
     {
-        if (abilities.find(card) != abilities.end())
+        if (abilities.find(card) != abilities.end() && !(forceDestroy == -1 && forcedAlive == 1))//only embelms have forcedestroy = -1 and forcedalive = 1
         { 
             game->removeObserver(abilities[card]);
             abilities.erase(card);
@@ -5094,6 +5094,8 @@ public:
     int testDestroy()
     {
         if(forceDestroy != -1)
+            return 1;
+        if(!(source->hasType(Subtypes::TYPE_INSTANT)||source->hasType(Subtypes::TYPE_INSTANT)) && !source->isInPlay(game))
             return 1;
         return 0;
     }
