@@ -11432,7 +11432,7 @@ type=Instant
 [card]
 name=Carrion Feeder
 abilities=cantblock
-auto={S(creature|myBattlefield)}:counter(1/1,1)
+auto={S(creature|myBattlefield)}:all(this) counter(1/1,1)
 text=Carrion Feeder can't block. -- Sacrifice a creature: Put a +1/+1 counter on Carrion Feeder.
 mana={B}
 type=Creature
@@ -15749,7 +15749,7 @@ type=Land
 [card]
 name=Creepy Doll
 abilities=indestructible
-auto=@combatdamaged(creature) from(this):flipacoin winability all(trigger[to]) destroy winabilityend flipend
+auto=@combatdamaged(creature) from(this): name(flip a coin) all(trigger[to]) flipacoin winability destroy winabilityend flipend
 text=Creepy Doll is indestructible. -- Whenever Creepy Doll deals combat damage to a creature, flip a coin. If you win the flip, destroy that creature.
 mana={5}
 type=Artifact Creature
@@ -42428,9 +42428,7 @@ toughness=2
 [card]
 name=Knight of the White Orchid
 abilities=first strike
-auto=alternative moveTo(mybattlefield) notatarget(plains|mylibrary)
-other={W}{W}
-otherrestriction=type(land|mybattlefield)~lessthan~type(land|opponentbattlefield)
+auto=if type(land|mybattlefield)~lessthan~type(land|opponentbattlefield) then choice name(fetch a plains) moveTo(mybattlefield) notatarget(plains|mylibrary)
 text=First strike -- When Knight of the White Orchid enters the battlefield, if an opponent controls more lands than you, you may search your library for a Plains card, put it onto the battlefield, then shuffle your library.
 mana={W}{W}
 type=Creature
