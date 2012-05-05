@@ -91,8 +91,9 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
                     //switch on the first letter. If two costs share their first letter, add an "if" within the switch
                     switch (value[0])
                     {
+                    case 'X':
                     case 'x':
-                        if(value == "x")
+                        if(value == "x" || value == "X")
                             manaCost->x();
                         else
                         {
