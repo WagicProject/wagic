@@ -9059,13 +9059,6 @@ mana={U}{U}
 type=Instant
 [/card]
 [card]
-name=Boon Reflection
-auto=@lifed(controller):dynamicability<!myself thatmuchlifegain srccontroller!>
-text=If you would gain life, you gain twice that much life instead.
-mana={4}{W}
-type=Enchantment
-[/card]
-[card]
 name=Borborygmos
 abilities=trample
 auto=@combatdamaged(player) from(this):lord(creature|mybattlefield) counter(1/1,1)
