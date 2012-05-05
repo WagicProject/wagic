@@ -28813,7 +28813,7 @@ toughness=1
 [card]
 name=Frontline Sage
 abilities=exalted
-auto={T}:draw:1 && transforms((,newability[target(*|myhand) reject])) forever
+auto={u}{T}:draw:1 && transforms((,newability[target(*|myhand) reject])) forever
 text=Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.) -- {U}, {T}: Draw a card, then discard a card.
 mana={2}{U}
 type=Creature
@@ -49643,8 +49643,8 @@ type=Artifact
 [/card]
 [card]
 name=Misery Charm
-auto=aslongas(cleric|battlefield) choice destroy target(cleric)
-auto=aslongas(cleric|battlefield) choice moveTo(myHand) target(cleric|myGraveyard)
+auto=if type(cleric|battlefield)~morethan~0 then choice destroy target(cleric)
+auto=if type(cleric|mygraveyard)~morethan~0 then choice moveTo(myHand) target(cleric|myGraveyard)
 auto=choice life:-2 target(player)
 text=Choose one - Destroy target Cleric; or return target Cleric card from your graveyard to your hand; or target player loses 2 life.
 mana={B}
@@ -49683,7 +49683,7 @@ type=Sorcery
 [/card]
 [card]
 name=Mishra's Groundbreaker
-auto={T}{S}:becomes(Artifact Creature,3/3) target(land|myBattlefield)
+auto={T}{S}:target(land|myBattlefield) becomes(Artifact Creature,3/3) forever
 text={T}, Sacrifice Mishra's Groundbreaker: Target land becomes a 3/3 artifact creature that's still a land. (This effect lasts indefinitely.)
 mana={4}
 type=Artifact
@@ -59168,9 +59168,9 @@ type=Instant
 [/card]
 [card]
 name=Primal Clay
-auto=choice transforms((,setpower=3,settoughness=3)) forever
-auto=choice transforms((,flying,setpower=2,settoughness=2)) forever
-auto=choice transforms((Wall,defender,setpower=1,settoughness=6)) forever
+auto=choice name(enter as 3/3) transforms((,setpower=3,settoughness=3)) forever
+auto=choice name(enter as 2/2 fly) transforms((,flying,setpower=2,settoughness=2)) forever
+auto=choice name(enter as a wall) transforms((Wall,defender,setpower=1,settoughness=6)) forever
 text=As Primal Clay enters the battlefield, it becomes your choice of a 3/3 artifact creature, a 2/2 artifact creature with flying, or a 1/6 Shapeshifter Wall artifact creature with defender.
 mana={4}
 type=Artifact Creature
@@ -67288,7 +67288,7 @@ toughness=1
 name=Scythe Tiger
 abilities=shroud
 auto=aslongas(land|myBattlefield) moveTo(graveyard) notatarget(land|myBattlefield) oneshot
-auto=moveTo(graveyard) notatarget(this|myBattlefield)
+auto=name(sacrifice Scythe Tiger) moveTo(graveyard) notatarget(this|myBattlefield)
 text=Shroud (This creature can't be the target of spells or abilities.) -- When Scythe Tiger enters the battlefield, sacrifice it unless you sacrifice a land.
 mana={G}
 type=Creature
