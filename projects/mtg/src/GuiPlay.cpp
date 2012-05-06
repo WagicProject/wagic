@@ -122,7 +122,7 @@ void GuiPlay::BattleField::reset(float x, float y)
 }
 void GuiPlay::BattleField::EnstackAttacker(CardView* card)
 {
-    card->x = currentAttacker * (HORZWIDTH - 20) / (attackers + 1);
+    card->x = CARD_WIDTH + 20 + (currentAttacker * (HORZWIDTH) / (attackers+1));
     card->y = baseY + (card->card->getObserver()->players[0] == card->card->controller() ? 20 + y : -20 - y);
     ++currentAttacker;
     //  JRenderer::GetInstance()->RenderQuad(WResourceManager::Instance()->GetQuad("BattleIcon"), card->actX, card->actY, 0, 0.5 + 0.1 * sinf(JGE::GetInstance()->GetTime()), 0.5 + 0.1 * sinf(JGE::GetInstance()->GetTime()));
@@ -159,7 +159,7 @@ void GuiPlay::BattleField::Update(float dt)
 void GuiPlay::BattleField::Render()
 {
     if (height > 3)
-        JRenderer::GetInstance()->FillRect(22, SCREEN_HEIGHT / 2 + 10 - height / 2, 250, height, ARGB(127, red, 0, 0));
+        JRenderer::GetInstance()->FillRect(44, SCREEN_HEIGHT / 2 + 10 - height / 2, 318, height, ARGB(127, red, 0, 0));
 }
 
 GuiPlay::GuiPlay(GameObserver* game) :
