@@ -526,19 +526,21 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                         if(card && card->target)
                         {
                             cd->types = card->target->types;
-                            //remove main types because we only care about subtypes here.
-                            cd->removeType("artifact");
-                            cd->removeType("land");
-                            cd->removeType("enchantment");
-                            cd->removeType("instant");
-                            cd->removeType("sorcery");
-                            cd->removeType("legendary");
-                            cd->removeType("creature");
                         }
                         else
                         {
                             cd->types = card->types;
                         }
+                        //remove main types because we only care about subtypes here.
+                        cd->removeType("artifact");
+                        cd->removeType("land");
+                        cd->removeType("enchantment");
+                        cd->removeType("instant");
+                        cd->removeType("sorcery");
+                        cd->removeType("legendary");
+                        cd->removeType("creature");
+                        cd->removeType("planeswalker");
+                        cd->removeType("tribal");
                         cd->mode = CD_OR;
                     }
                 }
