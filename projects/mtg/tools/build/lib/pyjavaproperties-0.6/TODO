@@ -1,0 +1,5 @@
+* Add PEP 8 interface, python properties.
+* Add in unit tests
+    - Have to find some really offensive .properties files
+* Switch to returning Unicode values
+* Possible coercion to python types (on ints/etc)

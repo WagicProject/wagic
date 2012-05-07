@@ -1,0 +1,109 @@
+Metadata-Version: 1.0
+Name: pyjavaproperties
+Version: 0.6
+Summary: Python replacement for java.util.Properties.
+Home-page: http://pypi.python.org/pypi/pyjavaproperties
+Author: Jesse Noller
+Author-email: jnoller@gmail.com
+License: PSF License
+Description: ================
+        pyjavaproperties
+        ================
+        
+        * Project hosting: <http://bitbucket.org/jnoller/pyjavaproperties/>
+        
+        .. contents::
+        
+        About
+        ------------------
+        
+        This is a "fork" of the "python replacement for java.util.Properties" recipe
+        on ASPN: <http://code.activestate.com/recipes/496795/> and uploaded by
+        Anand Balachandran Pillai.
+        
+        The project is maintained by Jesse Noller <jnoller@gmail.com>, Anand Pilla
+        <abpillai@gmail.com>.
+        
+        License
+        ------------------
+        As with all ASPN recipes not otherwise licensed prior to July 15, 2008 on
+        aspn.activestate.com, the original recipe is under PSF License. For more
+        information, see the ASPN terms of service here:
+        
+        <http://code.activestate.com/help/terms/>
+        
+        While the licensing under the PSF license is sub-optimal, it is what it is. See
+        <http://docs.python.org/license.html> for more information about the PSF
+        license.
+        
+        What this is
+        ------------------
+        This module is designed to be a python equivalent to the `java.util.Properties <http://java.sun.com/j2se/1.5.0/docs/api/java/util/Properties.html>`_ class.
+        Currently, the basic input/output methods are supported, and there are plans
+        to add the XML input/output methods found in J2SE 5.0.
+        
+        Fundamentally, this module is designed so that users can easily parse and
+        manipulate Java Properties files - that's it. There's a fair number of us
+        pythonistas who work in multi-language shops, and constantly writing your own
+        parsing mechanism is just painful. Not to mention Java guys are notoriously
+        unwilling to use anything which is cross-language for configuration, unless
+        it's XML, which is a form of self-punishment. :)
+        
+        Plans
+        ------------------
+        Here is a rough plan of features:
+        
+        - Keep/maintain blank lines and comments found in the original file
+        - Make the module compatible with the new methods in J2SE 5.0
+        - Switch to/add python property access rather than direct dictionary get/set
+        - Add unit tests
+        - Add unicode support
+        - When-Pigs-Fly: If running within Jython, switch to java.util.Properties
+        under the hood
+        - Coercion/conversion to python types for values
+        
+        Usage
+        ------------------
+        This is the easy part::
+        
+        from pyjavaproperties import Properties
+        p = Properties()
+        p.load(open('test2.properties'))
+        p.list()
+        print p
+        print p.items()
+        print p['name3']
+        p['name3'] = 'changed = value'
+        print p['name3']
+        p['new key'] = 'new value'
+        p.store(open('test2.properties','w'))
+        
+        See also the Properties.list() method, which will return an iterator over the
+        property keys
+        
+        Changes & News
+        --------------
+        
+        0.4:
+        - Patch from Pepper Lebeck-Jobe for handling ! style comments.
+        
+        0.3:
+        - Keys that are added which were not part of the original file
+        are simply appended to the index. Shenanigans.
+        
+        0.2:
+        - Added an internal list (self._keyorder) to keep an ordered index of keys
+        as they are encountered, so the file can we written-back out in the
+        same order.
+        
+        0.1:
+        - Initial release/fork.
+        - Added setup/packaging and doc
+        - added in {foo} style references for previous properties, thanks to N B
+        on ASPN.
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: Software Development :: Libraries :: Python Modules

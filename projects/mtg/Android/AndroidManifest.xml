@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="0185" android:versionName="0.18.5" package="net.wagic.app">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="0186" android:versionName="0.18.6" package="net.wagic.app">
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.INTERNET"/>

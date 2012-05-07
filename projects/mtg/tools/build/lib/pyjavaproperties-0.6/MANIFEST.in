@@ -1,0 +1,3 @@
+include TODO
+include README
+recursive-include testdata *.properties

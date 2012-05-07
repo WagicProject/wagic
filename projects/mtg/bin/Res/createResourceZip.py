@@ -1,6 +1,7 @@
 import sys
 import os
 import zipfile
+from pyjavaproperties import Properties
 from optparse import OptionParser
 
 def createResZipFile(filename): 
@@ -25,15 +26,27 @@ def createResZipFile(filename):
         utilities.addFolderToZip(zip_file, 'ai')
         zip_file.close()
 
+def getFilename():
+    p = Properties();
+    p.load(open('../../build.number.properties'));
+    minor = p['build.minor'];
+    major = p['build.major'];
+    point = p['build.point'];
+    filename = 'core_' + major + minor + point 
+    return filename
+
+
+
 def createStandardResFile():
-    filename = 'core_0184.zip'
+    print "Creating Standard Resource File"
+    filename = getFilename() + '.zip'
     createResZipFile( filename )
     print >> sys.stderr, 'Created Resource Package for Standard Distribution: {0}'.format( filename)
 
 def createIosResFile():
     print 'Preparing Resource Package for iOS'
     utilities = ZipUtilities()
-    filename = 'core_0184_iOS.zip'
+    filename = getFilename() + '_iOS.zip'
     #createResZipFile( filename )
     zip_file = zipfile.ZipFile(filename, 'a', zipfile.ZIP_STORED)
     zip_file.write("../../iOS/Res/rules/modrules.xml", "rules/modrules.xml", zipfile.ZIP_STORED)
