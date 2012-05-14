@@ -44,6 +44,8 @@
 
 	<target name="update" description="Updates the AndroidManifest and Wagic_Version.h with the current version information" >
 		
+		<antcall target="build.maemo.changelog"  />	
+		<antcall target="build.meego.changelog"  />	
 		<antcall target="build.wagic.header"  />	
 		<antcall target="update.android.manifest"  />	
 	</target>
@@ -92,7 +94,26 @@ Author: Michael Nguyen
 
 		</echo>
 	</target>
+	<target name="build.maemo.changelog" description="Create the maemo changelog file" >
+		<echo message="Creating maemo changelog" />
+		<echo file="${basedir}/debian/changelog" >
+wagic (${build.major}.${build.minor}.${build.point}maemo0) unstable; urgency=low
 
+  * {replace with some kickass changelog}
+    -- Xawotihs ${TODAY}
+
+		</echo>
+	</target>
+	<target name="build.meego.changelog" description="Create the meego changelog file" >
+		<echo message="Creating meego changelog" />
+		<echo file="${basedir}/debian_harmattan/changelog" >
+wagic (${build.major}.${build.minor}.${build.point}meego0) unstable; urgency=low
+
+  * {replace with some kickass changelog}
+ -- Xawotihs ${TODAY}
+
+		</echo>
+	</target>
 
 	<target name="current">
 		<echo message="Current version: ${build.major}.${build.minor}.${build.point} "/>
