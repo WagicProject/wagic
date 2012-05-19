@@ -1,7 +1,6 @@
-wagic (0.17.1meego0) unstable; urgency=low
+wagic (0.18.6maemo1) unstable; urgency=low
 
-  * Wagic 0.17.1
-  * New QML based interface
-  * Uses downloaded resources
+  * Wagic 0.18.6
+ -- Xawotihs Mon, 14 May 2012 23:36:27 +0200
 
- -- Xawotihs <xawotihs@gmail.com>  Fri, 29 Jul 2011 20:21:58 +0200
+		
