@@ -88,7 +88,7 @@ enum {
 #if (defined WIN32) && (!defined LINUX)
 	#include <windows.h>
 #endif
-#if defined(LINUX) || defined(IOS) || defined (ANDROID)
+#if defined(LINUX) && (!defined WIN32) || defined(IOS) || defined (ANDROID)
         typedef uint8_t byte;
         typedef uint32_t DWORD;
         typedef uint8_t BYTE;

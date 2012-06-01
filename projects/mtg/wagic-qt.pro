@@ -15,7 +15,6 @@ TEMPLATE = app
 #!macx:CONFIG += precompile_header
 unix|macx:QMAKE_CXXFLAGS += -Wno-unused-parameter
 unix|macx:!maemo5:!symbian:QMAKE_CXXFLAGS += -Werror
-windows:DEFINES += WIN32
 windows:DEFINES += _CRT_SECURE_NO_WARNINGS
 unix|macx:DEFINES += LINUX
 CONFIG(debug, debug|release):DEFINES += _DEBUG
@@ -26,7 +25,15 @@ android:INCLUDEPATH += $$ANDROID_NDK_ROOT/platforms/android-9/arch-arm/usr/inclu
 maemo5:DEFINES += QT_WIDGET
 
 windows:INCLUDEPATH += ../../JGE/Dependencies/include
-windows:INCLUDEPATH += extra
+windows{
+    *-g++* {
+        DEFINES += LINUX
+    }
+    *-msvc* {
+        INCLUDEPATH += extra
+        DEFINES += WIN32
+    }
+}
 unix:!symbian:INCLUDEPATH += /usr/include/GL
 macx:INCLUDEPATH += /opt/include
 INCLUDEPATH += ../../JGE/include/qt
