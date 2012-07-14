@@ -892,6 +892,7 @@ type=Enchantment
 [card]
 name=Agility
 target=creature
+auto=1/1
 auto=teach(creature) flanker
 auto=teach(creature) flanking
 text=Enchant creature -- Enchanted creature gets +1/+1 and has flanking. (Whenever a creature without flanking blocks this creature, the blocking creature gets -1/-1 until end of turn.)
@@ -1110,7 +1111,7 @@ toughness=1
 [/card]
 [card]
 name=Akki Underminer
-auto=@combatdamaged(player) from(this):choice name(player sacrifices) ability$!name(sacrifice) notatarget(*|mybattefield) sacrifice!$ opponent
+auto=@combatdamaged(player) from(this):choice name(player sacrifices) ability$!name(sacrifice) notatarget(*|mybattlefield) sacrifice!$ opponent
 text=Whenever Akki Underminer deals combat damage to a player, that player sacrifices a permanent.
 mana={3}{R}
 type=Creature
@@ -4470,7 +4471,7 @@ toughness=1
 [card]
 name=Auriok Windwalker
 abilities=flying
-auto={T}:target(equipment|mybattefield) transforms((,newability[retarget target(creature|mybattlefield)])) forever
+auto={T}:target(equipment|mybattlefield) transforms((,newability[retarget target(creature|mybattlefield)])) forever
 text=Flying -- {T}: Attach target Equipment you control to target creature you control.
 mana={3}{W}
 type=Creature
@@ -9578,7 +9579,7 @@ toughness=1
 [/card]
 [card]
 name=Brass Squire
-auto={T}:target(equipment|mybattefield) transforms((,newability[retarget target(creature|mybattlefield)])) forever
+auto={T}:target(equipment|mybattlefield) transforms((,newability[retarget target(creature|mybattlefield)])) forever
 text={T}: Attach target Equipment you control to target creature you control.
 mana={3}
 type=Artifact Creature
@@ -10416,6 +10417,13 @@ type=Creature
 subtype=Human Knight
 power=2
 toughness=2
+[/card]
+[card]
+name=Burning Vengeance
+auto=@movedTo(*|stack) from(mygraveyard):damage:2 target(creature,player)
+text=Whenever you cast a spell from your graveyard, Burning Vengeance deals 2 damage to target creature or player.
+mana={2}{R}
+type=Enchantment
 [/card]
 [card]
 name=Burnout
@@ -12997,7 +13005,7 @@ toughness=2
 [/card]
 [card]
 name=Chlorophant
-auto=@each myupkeep:may counter(1/1,1) && aslongas(*|myhand) counter(1/1,1) >6
+auto=@each myupkeep:may counter(1/1,1) && aslongas(*|mygraveyard) counter(1/1,1) >6
 text=At the beginning of your upkeep, you may put a +1/+1 counter on Chlorophant. -- Threshold - As long as seven or more cards are in your graveyard, Chlorophant has "At the beginning of your upkeep, you may put another +1/+1 counter on Chlorophant."
 mana={G}{G}{G}
 type=Creature
@@ -42712,7 +42720,7 @@ toughness=1
 [/card]
 [card]
 name=Kor Outfitter
-auto=target(equipment|mybattefield) transforms((,newability[retarget target(creature|mybattlefield)])) forever
+auto=target(equipment|mybattlefield) transforms((,newability[retarget target(creature|mybattlefield)])) forever
 text=When Kor Outfitter enters the battlefield, you may attach target Equipment you control to target creature you control.
 mana={W}{W}
 type=Creature
@@ -57940,7 +57948,7 @@ toughness=5
 name=Pillar Tombs of Aku
 auto=@movedTo(enchantment[world]|battlefield):sacrifice all(this)
 auto=@each my upkeep restriction{type(creature|mybattlefield)~lessthan~2}:sacrifice && life:-5 controller
-auto=@each opponent upkeep restriction{type(creature|opponentbattlefield)~morethan~0}:ability$!choice name(sacrifice creature) notatarget(creature|mybattefield) sacrifice _ choice name(life loss and sacrifice Tombs) sacrifice all(mystored) && life:-5!$ opponent
+auto=@each opponent upkeep restriction{type(creature|opponentbattlefield)~morethan~0}:ability$!choice name(sacrifice creature) notatarget(creature|mybattlefield) sacrifice _ choice name(life loss and sacrifice Tombs) sacrifice all(mystored) && life:-5!$ opponent
 auto=@each opponent upkeep restriction{type(creature|opponentbattlefield)~lessthan~1}:sacrifice && life:-5 opponent
 text=At the beginning of each player's upkeep, that player may sacrifice a creature. If that player doesn't, he or she loses 5 life and you sacrifice Pillar Tombs of Aku.
 mana={2}{B}{B}
