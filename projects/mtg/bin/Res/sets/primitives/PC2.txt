@@ -1,0 +1,141 @@
+[card]
+name=Baleful Strix
+auto=draw:1
+abilities=flying, deathtouch
+text=Flying, deathtouch -- When Baleful Strix enters the battlefield, draw a card.
+mana={B}{U}
+type=Artifact Creature
+subtype=Bird
+power=1
+toughness=1
+[/card]
+[card]
+name=Beetleback Chief
+auto=@movedTo(my|battlefield):token(Goblin,creature token goblin,1/1,red)*2
+text=When Beetleback Chief enters the battlefield, put two 1/1 red Goblin creature tokens onto the battlefield.
+mana={2}{R}{R}
+type=Creature
+subtype=Goblin Warrior
+power=2
+toughness=2
+[/card]
+[card]
+name=Brindle Shoat
+auto=@movedTo(this|graveyard) from(battlefield):token(Boar,creature Boar,3/3,green)
+text=When Brindle Shoat dies, put a 3/3 green Boar creature token onto the battlefield.
+mana={1}{G}
+type=Creature
+subtype=Boar
+power=1
+toughness=1
+[/card]
+[card]
+name=Dragonlair Spider
+auto=@movedTo(*|opponentstack): may token(Insect,Insect Creature, 1/1,green)
+abilities=reach
+text=Reach -- Whenever an opponent casts a spell, put a 1/1 green Insect creature token onto the battlefield.
+mana={2}{R}{R}{G}{G}
+type=Creature
+subtype=Spider
+power=5
+toughness=6
+[/card]
+[card]
+name=Dreampod Druid
+auto=this(auras >= 1) transforms((,newability[@each upkeep:may token(222222309)]))
+text=At the beginning of each upkeep, if Dreampod Druid is enchanted, put a 1/1 green Saproling creature token onto the battlefield.
+mana={1}{G}
+type=Creature
+subtype=Human Druid
+power=2
+toughness=2
+[/card]
+[card]
+name=Saproling
+type=Creature
+subtype=Saproling
+power=1
+toughness=1
+color=Green
+[/card]
+[card]
+name=Illusory Angel
+abilities=flying
+restriction=casted a spell
+text=Flying -- Cast Illusory Angel only if you've cast another spell this turn.
+mana={2}{U}
+type=Creature
+subtype=Angel Illusion
+power=4
+toughness=4
+[/card]
+[card]
+name=Krond the Dawn-Clad
+auto=this(auras >= 1) transforms((,newability[@combat(attacking) source(this):moveTo(exile) target(*|battlefield)]))
+abilities=flying,vigilance
+text=Flying, vigilance. -- Whenever Krond the Dawn-Clad attacks, if it's enchanted, exile target permanent.
+mana={G}{G}{G}{W}{W}{W}
+type=Legendary Creature
+subtype=Archon
+power=6
+toughness=6
+[/card]
+[card]
+name=Preyseizer Dragon
+auto=may target(<anyamount>other creature|mybattlefield) sacrifice && counter(1/1,2) all(this) 
+auto=this(attacking):target(creature,player) dynamicability<!chargestrike!>
+abilities=flying
+text=Flying -- Devour 2 (As this enters the battlefield, you may sacrifice any number of creatures. This creature enters the battlefield with twice that many +1/+1 counters on it.) -- Whenever Preyseizer Dragon attacks, it deals damage to target creature or player equal to the number of +1/+1 counters on Preyseizer Dragon.
+mana={4}{R}{R}
+type=Creature
+subtype=Dragon
+power=4
+toughness=4
+[/card]
+[card]
+name=Sai of the Shinobi
+auto=@movedto(creature|myBattlefield):choice all(trigger[to]) retarget
+auto=1/1
+text=Equipped creature gets +1/+1. -- Whenever a creature enters the battlefield under your control, you may attach Sai of the Shinobi to it.
+-- Equip {2 ({2}: Attach to target creature you control. Equip only as a sorcery.)
+mana={1}
+auto={2}:equip
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
+name=Sakashima's Student
+autohand={1}{U}:ninjutsu
+auto=transforms((Ninja))
+auto=transforms((,newability)) forever
+auto=may copy NotATarget(creature)
+text=You may have Sakashima's Student enter the battlefield as a copy of any creature on the battlefield, except it's still a Ninja in addition to its other types.
+mana={2}{U}{U}
+type=Creature
+subtype=Human Ninja
+power=0
+toughness=0
+[/card]
+[card]
+name=Thromok the Insatiable
+auto=may target(<anyamount>other creature|mybattlefield) sacrifice && counter(x/x,x) all(this)
+mana={3}{R}{G}
+type=Legendary Creature
+subtype=Hellion
+text=Devour X (As this enters the battlefield, you may sacrifice any number of creatures. This creature enters the battlefield with X +1/+1 counters on it.)
+power=0
+toughness=0
+[/card]
+[card]
+name=Vela the Night-Clad
+abilities=Intimidate
+auto=lord(other creature|mybattlefield) intimidate
+auto=@movedto(other creature|graveyard) from(battlefield): life:-1 opponent
+auto=@movedto(this|graveyard) from(battlefield): life:-1 opponent
+text=Other creatures you control have intimidate.--Whenever Vela the Night-Clad or another creature you control leaves the battlefield, each opponent loses 1 life.
+mana={4}{G}{B}
+type=Legendary Creature
+subtype=Human
+power=4
+toughness=4
+[/card]
