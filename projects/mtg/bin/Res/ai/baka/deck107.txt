@@ -1,0 +1,30 @@
+#NAME:Pointy Hats Society
+########################################
+#    Creatures                         #
+########################################
+Suq'Ata Firewalker (MIR) *3
+Zuran Spellcaster (ME2) *3
+Prodigal Sorcerer (*) *3
+Massacre Wurm (mbs) *2
+########################################
+#    Spells                            #
+########################################
+Font of Mythos (*) *3
+Grasp of Darkness (*) *3
+Doom Blade (*) *3
+Sorin's Vengeance (*) *2
+Mox Sapphire (*) *2
+Mox Jet (*) *2
+Boomerang (MIR)*2
+Cancel (DPA) *3
+Last Word (DST) *2
+Counterspell (JVC) *4
+Unsummon (M11) *2
+Disperse (SOM) *3
+########################################
+#    Lands                             #
+########################################
+Island (MIR) *11
+Swamp (*) *10
+
+
