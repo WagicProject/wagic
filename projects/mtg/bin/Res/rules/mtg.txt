@@ -29,6 +29,7 @@ auto=vampirerule
 auto=unearthrule
 auto=lifelinkrule
 auto=deathtouchrule
+auto=soulbondrule
 
 [PLAYERS]
 life:20
