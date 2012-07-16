@@ -598,6 +598,11 @@ void GameObserver::gameStateBasedEffects()
             card->mPropertiesChangedSinceLastUpdate = false;
             if(card->hasType(Subtypes::TYPE_PLANESWALKER) && (!card->counters||!card->counters->hasCounter("loyalty",0,0)))
                 players[i]->game->putInGraveyard(card);
+            if(card->myPair && !isInPlay(card->myPair))
+            {
+                card->myPair->myPair = NULL;
+                card->myPair = NULL;
+            }
             ///////////////////////////////////////////////////////
             //Remove auras that don't have a valid target anymore//
             ///////////////////////////////////////////////////////

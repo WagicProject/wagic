@@ -218,8 +218,9 @@ class Constants
       NOMANA = 97,
       ONLYMANA = 98,
       POISONDAMAGER = 99,
+      soulbond = 100,
 
-      NB_BASIC_ABILITIES = 100,
+      NB_BASIC_ABILITIES = 101,
 
 
     RARITY_S = 'S',   //Special Rarity

@@ -169,6 +169,7 @@ void MTGCardInstance::initMTGCI()
     isAttacking = NULL;
     storedCard = NULL;
     storedSourceCard = NULL;
+    myPair = NULL;
 
     for (int i = 0; i < ManaCost::MANA_PAID_WITH_RETRACE +1; i++)
         alternateCostPaid[i] = 0;

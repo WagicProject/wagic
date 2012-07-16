@@ -255,7 +255,24 @@ public:
     virtual MTGBlockRule * clone() const;
     ~MTGBlockRule();
 };
-
+//soulbond rule
+class MTGSoulbondRule: public PermanentAbility
+{
+public:
+    vector<MTGCardInstance*>soulbonders;
+    TargetChooser * tcb;
+    MTGAbility * pairAbility;
+    MTGAbility * targetAbility;
+    MTGAbility * targetAbility1;
+    MTGAbility * mod;
+    MTGAbility * activatePairing;
+    vector<MTGAbility*>pairing;
+    MTGSoulbondRule(GameObserver* observer, int _id);
+    int receiveEvent(WEvent * event);
+    virtual ostream& toString(ostream& out) const;
+    virtual MTGSoulbondRule * clone() const;
+    ~MTGSoulbondRule();
+};
 /* Persist Rule */
 class MTGPersistRule: public PermanentAbility
 {

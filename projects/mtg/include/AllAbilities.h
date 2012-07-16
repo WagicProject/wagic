@@ -1958,6 +1958,11 @@ public:
           MTGAbility * toAdd = ability->clone();
           toAdd->forceDestroy = -1;
           toAdd->target = target;
+          if(toAdd->getActionTc())
+          {
+              toAdd->reactToTargetClick(source);
+              return 1;
+          }
           toAdd->addToGame();
           return 1;
       }
@@ -1979,7 +1984,48 @@ public:
           SAFE_DELETE(ability);
       }
 };
+//generic addtogame
+class GenericAddToGame: public InstantAbility, public NestedAbility
+{
+public:
+    GenericAddToGame(GameObserver* observer, int _id, MTGCardInstance * _source, Damageable * _target, MTGAbility * ability) :
+      InstantAbility(observer, _id, _source,_target), NestedAbility(ability)
+      {
+          ability->target = _target;
+      }
 
+      int addToGame()
+      {
+          InstantAbility::addToGame();
+          return 1;
+      }
+
+      int resolve()
+      {
+          MTGAbility * toAdd = ability->clone();
+          toAdd->target = target;
+          if(toAdd->getActionTc())
+              return toAdd->reactToTargetClick(source);
+          return toAdd->addToGame();
+      }
+
+      const char * getMenuText()
+      {
+          return ability->getMenuText();
+      }
+
+      GenericAddToGame * clone() const
+      {
+          GenericAddToGame * a = NEW GenericAddToGame(*this);
+          a->ability = ability->clone();
+          return a;
+      }
+
+      ~GenericAddToGame()
+      {
+          SAFE_DELETE(ability);
+      }
+};
 //Circle of Protections
 class ACircleOfProtection: public TargetAbility
 {
@@ -2233,7 +2279,7 @@ public:
         if (a->oneShot)
         {
             a->resolve();
-            delete (a);
+            SAFE_DELETE(a);
         }
         else
         {
@@ -2344,7 +2390,7 @@ public:
         if (a->oneShot)
         {
             a->resolve();
-            delete (a);
+            SAFE_DELETE(a);
         }
         else
         {
@@ -2463,8 +2509,11 @@ public:
         if (skills.find(card) != skills.end())
         {
             if(!game->removeObserver(skills[card]))
+            {
                 skills[card]->destroy();
-            skills.erase(card);
+            }
+            if(skills[card])
+                skills.erase(card);
         }
         return 1;
     }
@@ -2489,7 +2538,7 @@ public:
         if (a->oneShot)
         {
             a->resolve();
-            delete (a);
+            SAFE_DELETE(a);
         }
         else
         {
@@ -2532,6 +2581,15 @@ public:
     AABlock(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost = NULL);
     int resolve();
     AABlock * clone() const;
+};
+
+/* assign a creature as a pair to target */
+class PairCard: public InstantAbility
+{
+public:
+    PairCard(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost = NULL);
+    int resolve();
+    PairCard * clone() const;
 };
 
 /* create a parent child association between cards */
@@ -2990,6 +3048,101 @@ public:
 
 };
 ///
+//a paired lord
+class APaired: public MTGAbility, public NestedAbility
+{
+public:
+    MTGAbility * a;
+    MTGAbility * b;
+    APaired(GameObserver* observer, int _id, MTGCardInstance * _source, Damageable * _target, MTGAbility * ability) :
+        MTGAbility(observer, _id, _source, _target), NestedAbility(ability)
+    {
+        ability->source = source;
+        ability->target = target;
+        a = NULL;
+    }
+
+    int removeFromGame()
+    {
+        return removeAbilityFromGame();
+    }
+
+    int addToGame()
+    {
+        return MTGAbility::addToGame();
+    }
+
+    void Update(float dt)
+    {
+        resolve();
+    }
+
+    int resolve()
+    {
+        if (source->myPair)
+        {
+            addAbilityToGame();
+        }
+        else
+        {
+            removeAbilityFromGame();
+        }
+        if (ability->oneShot) a = NULL; //allows to call the effect several times
+        return 1;
+    }
+
+    int addAbilityToGame()
+    {
+        if (a && b) return 0;
+        a = ability->clone();
+        b = ability->clone();
+        a->source = source;
+        a->target = source;
+        b->source = source->myPair;
+        b->target = source->myPair;
+        if (a->oneShot)
+        {
+            a->resolve();
+            b->resolve();
+            SAFE_DELETE(a);
+            SAFE_DELETE(b);
+        }
+        else
+        {
+            a->addToGame();
+            b->addToGame();
+        }
+        return 1;
+    }
+
+    int destroy()
+    {
+        return removeAbilityFromGame();
+    }
+
+    int removeAbilityFromGame()
+    {
+        if (!a && !b) return 0;
+        game->removeObserver(a);
+        a = NULL;
+        game->removeObserver(b);
+        b = NULL;
+        return 1;
+    }
+
+    ~APaired()
+    {
+        SAFE_DELETE(ability);
+    }
+
+    APaired * clone() const
+    {
+        APaired * a =  NEW APaired(*this);
+        a->ability = ability->clone();
+        return a;
+    }
+};
+
 //Foreach (plague rats...)
 class AForeach: public ListMaintainerAbility, public NestedAbility
 {
@@ -3028,7 +3181,7 @@ public:
         if (a->oneShot)
         {
             a->resolve();
-            delete (a);
+            SAFE_DELETE(a);
         }
         else
         {
@@ -3138,7 +3291,7 @@ public:
         if (a->oneShot)
         {
             a->resolve();
-            delete (a);
+            SAFE_DELETE(a);
         }
         else
         {
@@ -3229,7 +3382,7 @@ public:
         if (a->oneShot)
         {
             a->resolve();
-            delete (a);
+            SAFE_DELETE(a);
         }
         else
         {

@@ -1981,6 +1981,114 @@ HUDDisplay * HUDDisplay::clone() const
     return NEW HUDDisplay(*this);
 }
 
+/* soulbond */
+MTGSoulbondRule::MTGSoulbondRule(GameObserver* observer, int _id) :
+PermanentAbility(observer, _id)
+{
+    tcb = NULL;
+    pairAbility = NULL;
+    targetAbility = NULL;
+    mod = NULL;
+}
+;
+
+int MTGSoulbondRule::receiveEvent(WEvent * event)
+{
+    if (event->type == WEvent::CHANGE_ZONE)
+    {
+        WEventZoneChange * e = (WEventZoneChange *) event;
+        MTGCardInstance * card = e->card;
+        if (!card || !card->isCreature()) return 0;
+        int ok = 0;
+        if(card->basicAbilities[(int)Constants::soulbond] || soulbonders.size())
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                Player * p = game->players[i];
+                if (e->to == p->game->inPlay)
+                {
+                    ok = 1;
+                    if(card->basicAbilities[(int)Constants::soulbond])
+                        soulbonders.push_back(e->card);
+                }
+            }
+            if(!soulbonders.size())
+                ok = 0;
+            else
+            {
+                MTGCardInstance * pairable = NULL;
+                for(unsigned int k = 0;k < soulbonders.size();k++)
+                {
+                    MTGCardInstance * check = soulbonders[k];
+                    if(check->controller() == e->card->controller())
+                    {
+                        if(!check->myPair)
+                        {
+                            if(check != card)
+                                pairable = check;
+                            else
+                            {
+                                MTGInPlay * zone = check->controller()->game->battlefield;
+                                for(unsigned int d = 0;d < zone->cards.size();++d)
+                                {
+                                    if(zone->cards[d]->isCreature() && !zone->cards[d]->myPair && zone->cards[d] != check)
+                                    {
+                                        pairable = check;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                }
+                if(!pairable)
+                    ok = 0;
+            }
+            if (!ok)
+                return 0;
+
+            for (int i = 0; i < 2; i++)
+            {
+                Player * p = game->players[i];
+                if (e->to == p->game->inPlay)
+                {
+                    TargetChooserFactory tf(card->getObserver());
+                    tcb = tf.createTargetChooser("pairable",card);
+                    tcb->targetter = NULL;
+                    pairAbility = NEW PairCard(game, game->mLayers->actionLayer()->getMaxId(), card,NULL);
+                    targetAbility = NEW GenericTargetAbility(game, "Pair Creature","",game->mLayers->actionLayer()->getMaxId(), card,tcb,pairAbility);
+                    targetAbility1 = NEW MayAbility(game,game->mLayers->actionLayer()->getMaxId(),targetAbility,card,false);
+                    activatePairing = NEW GenericAddToGame(game, game->mLayers->actionLayer()->getMaxId(), card,NULL,targetAbility1);
+                    //this next line is ugly, but fixes a long running memleak which seems to be unfixable while maintaining the same order of activation.
+                    game->mLayers->actionLayer()->garbage.push_back(activatePairing);
+                    activatePairing->fireAbility();
+                    
+                    return 1;
+                }
+            }
+        }
+    }
+    return 0;
+}
+
+ostream& MTGSoulbondRule::toString(ostream& out) const
+{
+    out << "MTGSoulbondRule ::: (";
+    return MTGAbility::toString(out) << ")";
+}
+
+MTGSoulbondRule * MTGSoulbondRule::clone() const
+{
+    return NEW MTGSoulbondRule(*this);
+}
+MTGSoulbondRule::~MTGSoulbondRule()
+{
+    for(size_t k = pairing.size()-1;k > 0; k--)
+    {
+        //SAFE_DELETE(pairing[k]);
+    }
+}
 /* Persist */
 MTGPersistRule::MTGPersistRule(GameObserver* observer, int _id) :
 PermanentAbility(observer, _id)

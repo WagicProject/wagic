@@ -3161,9 +3161,9 @@ int MenuAbility::resolve()
 
 const char * MenuAbility::getMenuText()
 {
-    if(abilities.size())
+    if((abilities.size() > 1 && must)||(abilities.size() > 2 && !must))
         return "choose one";
-    return ability->getMenuText();
+    return "Action";
 }
 
 int MenuAbility::testDestroy()
@@ -3198,7 +3198,11 @@ int MenuAbility::reactToChoiceClick(Targetable * object,int choice,int control)
         //    abilities[i]->clone();//all get cloned for clean up purposes. EDIT:removed, cause memleaks.
     }
     if(!mClone)
+    {
+        if (source->controller() == game->isInterrupting)
+            game->mLayers->stackLayer()->cancelInterruptOffer(ActionStack::DONT_INTERRUPT, false);
         return 0;
+    }
     mClone->target = abilities[choice]->target;
     mClone->oneShot = true;
     mClone->forceDestroy = 1;
@@ -4851,6 +4855,32 @@ int AABlock::resolve()
 AABlock * AABlock::clone() const
 {
     return NEW AABlock(*this);
+}
+
+// target becomes pair of source
+PairCard::PairCard(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost) :
+InstantAbility(observer, id, card, target)
+{
+    target = _target;
+    oneShot = true;
+    forceDestroy = 1;
+}
+
+int PairCard::resolve()
+{
+    MTGCardInstance * _target = (MTGCardInstance *) target;
+    source = (MTGCardInstance*)source;
+    if (_target && !_target->myPair && source)
+    {
+        source->myPair = _target;
+        _target->myPair = source;
+    }
+    return 1;
+}
+
+PairCard * PairCard::clone() const
+{
+    return NEW PairCard(*this);
 }
 
 

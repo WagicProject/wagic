@@ -25,6 +25,13 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
         return NEW BlockableChooser(observer, card, maxtargets);
     }
 
+    found = s.find("pairable");
+    if (found != string::npos)
+    {
+        int maxtargets = 1;
+        return NEW pairableChooser(observer, card, maxtargets);
+    }
+
     found = s.find("mytgt");
     if (found == 0)
     {
@@ -1542,6 +1549,40 @@ bool BlockableChooser::equals(TargetChooser * tc)
 {
 
     BlockableChooser  * dtc = dynamic_cast<BlockableChooser  *> (tc);
+    if (!dtc)
+        return false;
+
+    return TypeTargetChooser::equals(tc);
+}
+
+/*display cards pairable by source */
+bool pairableChooser::canTarget(Targetable * target,bool withoutProtections)
+{
+    if (MTGCardInstance * card = dynamic_cast<MTGCardInstance*>(target))
+    {
+        if(card->myPair || card == source)
+            return false;
+        if(!card->isCreature() || !card->isInPlay(observer))
+            return false;
+        if(card->controller() != source->controller())
+            return false;
+        if(!card->has(Constants::soulbond) && !source->has(Constants::soulbond))
+            return false;
+        return true;
+    }
+    return false;
+}
+
+pairableChooser* pairableChooser::clone() const
+{
+    pairableChooser * a = NEW pairableChooser(*this);
+    return a;
+}
+
+bool pairableChooser::equals(TargetChooser * tc)
+{
+
+    pairableChooser  * dtc = dynamic_cast<pairableChooser  *> (tc);
     if (!dtc)
         return false;
 

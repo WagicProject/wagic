@@ -279,6 +279,25 @@ public:
     virtual bool equals(TargetChooser * tc);
 };
 
+class pairableChooser: public TypeTargetChooser
+{
+public:
+    bool withoutProtections;
+    pairableChooser(GameObserver *observer, int * _zones, int _nbzones, MTGCardInstance * card = NULL, int _maxtargets = 1, bool other = false, bool targetMin = false) :
+    TypeTargetChooser(observer, "creature|mybattlefield",_zones, _nbzones, card, _maxtargets, other, targetMin)
+    {
+    }
+    ;
+    pairableChooser(GameObserver *observer, MTGCardInstance * card = NULL, int _maxtargets = 1, bool other = false,bool targetMin = false) :
+        TypeTargetChooser(observer, "creature|mybattlefield", card, _maxtargets, other,targetMin)
+    {
+    }
+    ;
+    virtual bool canTarget(Targetable * target, bool withoutProtections = false);
+    virtual pairableChooser * clone() const;
+    virtual bool equals(TargetChooser * tc);
+};
+
 class myCursesChooser: public TypeTargetChooser
 {
 public:

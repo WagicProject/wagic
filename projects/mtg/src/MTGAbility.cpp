@@ -910,6 +910,13 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         observer->addObserver(NEW MTGBlockRule(observer, -1));
         return NULL;
     }
+    //this rule handles blocking ability during blocker phase
+    found = s.find("soulbondrule");
+    if(found != string::npos)
+    {
+        observer->addObserver(NEW MTGSoulbondRule(observer, -1));
+        return NULL;
+    }
     //this rule handles combat related triggers. note, combat related triggered abilities will not work without it.
     found = s.find("combattriggerrule");
     if(found != string::npos)
@@ -1622,6 +1629,17 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             }
             return result;
         }
+        return NULL;
+    }
+
+    //soulbond lord style ability.
+    found = s.find("soulbond ");
+    if (found != string::npos)
+    {
+        string s1 = s.substr(found + 9);
+        MTGAbility * a = parseMagicLine(s1, id, spell, card, false, activated);
+        if(a)
+            return NEW APaired(observer,id, card,card->myPair,a);
         return NULL;
     }
 
