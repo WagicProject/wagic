@@ -1,3 +1,4 @@
+grade=crappy
 [card]
 name=Ajani's Sunstriker
 abilities=lifelink
