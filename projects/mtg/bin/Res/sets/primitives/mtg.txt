@@ -1250,7 +1250,7 @@ toughness=6
 [card]
 name=Akuta, Born of Ash
 abilities=haste
-autograveyard=@each my upkeep:if type(*|myhand)~morethan~type(*|opponenthand) then if type(swamp|mybattlefield)~morethan~0 then may transforms((,newability[destroy target(swamp)],newability[moveto(mybattlefield)])) ueot
+autograveyard=@each my upkeep:if type(*|myhand)~morethan~type(*|opponenthand) then if type(swamp|mybattlefield)~morethan~0 then may transforms((,newability[destroy target(swamp|mybattlefield)],newability[moveto(mybattlefield)])) ueot
 text=Haste -- At the beginning of your upkeep, if you have more cards in hand than each opponent, you may sacrifice a Swamp. If you do, return Akuta, Born of Ash from your graveyard to the battlefield.
 mana={2}{B}{B}
 type=Legendary Creature
@@ -13108,7 +13108,7 @@ type=Sorcery
 ###The 2 cards below should stay together (Flip Card)###
 [card]
 name=Chosen of Markov
-abilities={T}{T(creature[vampire])}:flip(Markov's Servant)
+auto={T}{T(creature[vampire])}:flip(Markov's Servant)
 text={T}, Tap an untapped Vampire you control: Transform Chosen of Markov.
 mana={2}{B}
 type=Creature
@@ -28383,7 +28383,7 @@ type=Instant
 [/card]
 [card]
 name=Forge Devil
-auto=damage:1 target(creature,player)
+auto=damage:1 target(creature)
 auto=damage:1 controller
 text=When Forge Devil enters the battlefield, it deals 1 damage to target creature and 1 damage to you.
 mana={R}

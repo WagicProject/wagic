@@ -81,8 +81,8 @@ type=Enchantment
 [/card]
 [card]
 name=Archwing Dragon
-abilities=flying,haste
-auto=@end of turn:moveTo(ownerhand)
+abilities=flying, haste
+auto=@each endofturn:moveTo(ownerhand)
 text=Flying, haste -- At the beginning of the end step, return Archwing Dragon to its owner's hand.
 mana={2}{R}{R}
 type=Creature
@@ -161,6 +161,17 @@ mana={1}{G}
 type=Enchantment
 [/card]
 [card]
+name=Bruna, Light of Alabaster
+abilities=flying,vigilance
+auto=@combat(attacking,blocking) source(this):may name(attach auras) notatarget(<anyamount>aura|battlefield,myhand,mygraveyard) newtarget
+text=Flying, vigilance -- Whenever Bruna, Light of Alabaster attacks or blocks, you may attach to it any number of Auras on the battlefield and you may put onto the battlefield attached to it any number of Aura cards that could enchant it from your graveyard and/or hand.
+mana={3}{W}{W}{U}
+type=Legendary Creature
+subtype=Angel
+power=5
+toughness=5
+[/card]
+[card]
 name=Builder's Blessing
 auto=lord(creature[-tapped]|myBattlefield) 0/2
 text=Untapped creatures you control get +0/+2.
@@ -228,7 +239,7 @@ type=Instant
 [card]
 name=Commander's Authority
 target=creature
-auto=teach(creature) transforms((,newability[@each my upkeep:token(99887766)])) forever
+auto=@each my upkeep:may token(Human,Human Creature, 1/1,white)
 text=Enchant Creature -- Enchanted creature has "At the beginning of your upkeep, put a 1/1 white Human creature token onto the battlefield."
 mana={4}{W}
 type=Enchantment
@@ -311,7 +322,7 @@ subtype=Aura
 [card]
 name=Defy Death
 target=creature|mygraveyard
-auto=transforms((,newability[moveTo(mybattlefield)],newability[if cantargetcard(angel) then counter(1/1)]))
+auto=moveto(mybattlefield) && target(angel)counter(1/1,2)
 text=Return target creature card from your graveyard to the battlefield. If it's an Angel, put two +1/+1 counters on it.
 mana={3}{W}{W}
 type=Sorcery
@@ -433,7 +444,7 @@ name=Falkenrath Exterminator
 auto=@combatdamaged(opponent) from(this):counter(1/1,1)
 auto={2}{R}:thisforeach(counter{1/1.1}) damage:1 target(creature)
 text=Whenever Falkenrath Exterminator deals combat damage to a player, put a +1/+1 counter on it. -- {2}{R}: Falkenrath Exterminator deals damage to target creature equal to the number of +1/+1 counters on it.
-mana={2}{R}
+mana={1}{R}
 type=Creature
 subtype=Vampire Archer
 power=1
@@ -928,6 +939,7 @@ toughness=3
 [card]
 name=Otherworld Atlas
 auto={T}:counter(0/0,1,Charge)
+auto={T}:thisforeach(counter{0/0.1.charge}) draw:1 controller && draw:1 opponent
 auto=thisforeach(counter{0/0.1.Charge}) draw:1 controller && thisforeach(counter{0/0.1.Charge}) draw:1 opponent
 text={T}: Put a charge counter on Otherworld Atlas. -- {T}: Each player draws a card for each charge counter on Otherworld Atlas.
 mana={4}

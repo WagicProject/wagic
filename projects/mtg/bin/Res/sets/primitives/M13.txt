@@ -1,6 +1,7 @@
 [card]
 name=Ajani's Sunstriker
 abilities=lifelink
+text=Lifelink (Damage dealt by this creature also causes you to gain that much life.)
 mana={W}{W}
 type=Creature
 subtype=Cat Cleric
@@ -65,6 +66,13 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Blood Reckoning
+auto=@combat(attacking) source(creature|opponentBattlefield):life:-1 targetcontroller
+text=Whenever a creature attacks you or a planeswalker you control, that creature's controller loses 1 life.
+mana={3}{B}
+type=Enchantment
+[/card]
+[card]
 name=Bloodhunter Bat
 abilities=flying
 auto= life:-2 opponent
@@ -75,13 +83,6 @@ type=Creature
 subtype=Bat
 power=3
 toughness=3
-[/card]
-[card]
-name=Blood Reckoning
-auto=@combat(attacking) source(creature|opponentBattlefield):life:-1 targetcontroller
-text=Whenever a creature attacks you or a planeswalker you control, that creature's controller loses 1 life.
-mana={3}{B}
-type=Enchantment
 [/card]
 [card]
 name=Bond Beetle
@@ -370,9 +371,10 @@ toughness=3
 [/card]
 [card]
 name=Hellion Crucible
-auto={S(creature|myBattlefield)}:counter(0/0,1,Pressure)
-auto={1}{C(0/0,-2,Pressure)}:token(Hellion,artifact creature Hellion, 4/4, red,haste)
-text={1}{T}: Add to {1}your mana pool. -- {1},{T}: Put a pressure counter on Hellion Crucible. -- {1},{T}, Remove two pressure counters from Hellion Crucible and sacrifice it: Put a 4/4 red Hellion creature token with haste onto the battlefield. 
+auto={T}:Add {1}
+auto={1}{R}{T}:counter(0/0,1,Pressure)
+auto={1}{R}{T}{C(0/0,-2,Pressure)}{S}:token(Hellion,Creature Hellion,4/4,red,haste)
+text={T}: Add to {1}your mana pool. -- {1}{R},{T}: Put a pressure counter on Hellion Crucible. -- {1}{R},{T}, Remove two pressure counters from Hellion Crucible and sacrifice it: Put a 4/4 red Hellion creature token with haste onto the battlefield. 
 type=Land
 [/card]
 [card]
@@ -419,7 +421,7 @@ toughness=1
 name=Knight of Infamy
 abilities=protection from white,exalted
 text=Protection from White (This creature can't be blocked, targeted, dealt damage, or enchanted by anything white.) -- Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.)
-mana={B}{B}
+mana={1}{B}
 type=Creature
 subtype=Human Knight
 power=2
@@ -699,7 +701,7 @@ type=Instant
 [card]
 name=Spiked Baloth
 abilities=trample
-text=
+text=trample
 mana={3}{G}
 type=Creature
 subtype=Beast
@@ -727,7 +729,7 @@ toughness=3
 [/card]
 [card]
 name=Talrand, Sky Summoner
-auto=@movedTo(instant,sorcery|mystack):token(Creature Drake,2/2,flying,blue)
+auto=@movedTo(instant,sorcery|mystack):token(Drake,Creature Drake,2/2,flying,blue)
 text=Whenever you cast an instant or sorcery spell, put a 2/2 blue Drake creature token with flying onto the battlefield.
 mana={2}{U}{U}
 type=Legendary Creature
