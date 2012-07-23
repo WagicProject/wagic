@@ -3040,7 +3040,7 @@ MayAbility::MayAbility(GameObserver* observer, int _id, MTGAbility * _ability, M
 void MayAbility::Update(float dt)
 {
     MTGAbility::Update(dt);
-    if (!triggered && !game->getCurrentTargetChooser())
+    if (!triggered && !game->getCurrentTargetChooser() && !game->mLayers->actionLayer()->menuObject)
     {
         triggered = 1;
         if(optionalCost && !source->controller()->getManaPool()->canAfford(optionalCost))
