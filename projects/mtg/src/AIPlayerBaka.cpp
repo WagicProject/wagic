@@ -1667,6 +1667,7 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
 
         if (card->hasType(Subtypes::TYPE_PLANESWALKER) && card->types.size() > 0 && game->inPlay->hasTypeSpecificInt(Subtypes::TYPE_PLANESWALKER,card->types[1]))
             continue;
+        
 
         int currentCost = card->getManaCost()->getConvertedCost();
         int hasX = card->getManaCost()->hasX();
@@ -1909,12 +1910,16 @@ int AIPlayerBaka::computeActions()
                 currentMana->add(this->getManaPool());
 
                 nextCardToPlay = FindCardToPlay(currentMana, "land");
-                //look for the most expensive creature we can afford. If not found, try enchantment, then artifact, etc...
+                if (game->playRestrictions->canPutIntoZone(nextCardToPlay, game->stack) == PlayRestriction::CANT_PLAY)
+                    nextCardToPlay = NULL;//look for a land, did we find one we can play..if not set to null now.
+
                 if(hints && hints->mCastOrder().size())
                 {
                     vector<string>findType = hints->mCastOrder();
                     for(unsigned int j = 0;j < findType.size();j++)
                     {
+                        if(nextCardToPlay) 
+                            continue;//if there is a card to play on first run of this, it is most likly a land.
                         if(clickstream.size())
                         {
                             SAFE_DELETE(currentMana);
@@ -1927,6 +1932,7 @@ int AIPlayerBaka::computeActions()
                 }
                 else
                 {
+                    //look for the most expensive creature we can afford. If not found, try enchantment, then artifact, etc...
                     const char* types[] = {"planeswalker","creature", "enchantment", "artifact", "sorcery", "instant"};
                     int count = 0;
                     while (!nextCardToPlay && count < 6)
