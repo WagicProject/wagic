@@ -129,7 +129,7 @@ subtype=Equipment
 [/card]
 [card]
 name=Blood Artist
-auto=@movedTo(creature|graveyard) from(battlefield):target(player) life:-1 && life:1 controller
+auto=@movedTo(creature|graveyard) from(battlefield):life:-1 target(player) && life:1 controller
 text=Whenever Blood Artist or another creature dies, target player loses 1 life and you gain 1 life.
 mana={1}{B}
 type=Creature
@@ -1218,7 +1218,7 @@ toughness=1
 color=red
 [/card]
 [card]
-name=Thraben Stalwart
+name=Thraben Valiant
 abilities=vigilance
 text=Vigilance
 mana={1}{W}
@@ -1415,5 +1415,3 @@ text=Target creature gets +2/+2 and gains first strike until end of turn.
 mana={1}{W}
 type=Sorcery
 [/card]
-
-

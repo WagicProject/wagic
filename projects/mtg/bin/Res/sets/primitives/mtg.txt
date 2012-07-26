@@ -29297,7 +29297,7 @@ toughness=1
 name=Fyndhorn Pollen
 auto=lord(creature) -1/0
 auto={1}{G}:-1/0 all(creature)
-auto=cumulativeupcost[{U}{R}] sacrifice
+auto=cumulativeupcost[{1}] sacrifice
 text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- All creatures get -1/-0. -- {1}{G}: All creatures get -1/-0 until end of turn.
 mana={2}{G}
 type=Enchantment
@@ -80419,7 +80419,7 @@ toughness=2
 [/card]
 [card]
 name=Thraben Heretic
-auto={T}:moveTo(exile) target(creature)
+auto={T}:moveTo(exile) target(creature|graveyard)
 text={T}: Exile target creature card from a graveyard.
 mana={1}{W}
 type=Creature
