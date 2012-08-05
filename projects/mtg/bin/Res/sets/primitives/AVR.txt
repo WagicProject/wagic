@@ -255,7 +255,7 @@ toughness=1
 color=white
 [/card]
 [card]
-name=Conjurers's Closet
+name=Conjurer's Closet
 auto=@each my endofturn:may (blink) target(creature|mybattlefield)
 text=At the beginning of your end step, you may exile target creature you control, then return it to the battlefield under your control.
 mana={5}
@@ -308,6 +308,14 @@ auto=all(*|myhand) moveTo(mygraveyard)
 auto=draw:2 controller
 text=Discard your hand, then draw two cards.
 mana={1}{R}
+type=Instant
+[/card]
+[card]
+name=Death Wind
+target=creature
+auto=-X/-X
+text=Target creature gets -X/-X until end of turn.
+mana={X}{B}
 type=Instant
 [/card]
 [card]
@@ -463,7 +471,7 @@ toughness=3
 [/card]
 [card]
 name=Favourable Winds
-auto=lord(creature[flying]|mybattlefield) 171
+auto=lord(creature[flying]|mybattlefield) 1/1
 text=Creatures you control with flying gets +1/+1.
 mana={1}{U}
 type=Enchantment
@@ -617,7 +625,7 @@ subtype=Aura
 name=Harvester of Souls
 abilities=deathtouch
 auto=@movedTo(creature[-token]|graveyard) from(battlefield):may draw:1 controller
-text=Whenever a creature you control dies, each other player sacrifices a creature.
+text=Deathtouch -- Whenever another nontoken creature dies, you may draw a card.
 mana={4}{B}{B}
 type=Creature
 subtype=Demon
@@ -720,7 +728,7 @@ toughness=2
 [card]
 name=Human Frailty
 target=creature[human]
-auto=foreach(*|mygraveyard) life:2
+auto=destroy
 text=Destroy target Human creature. 
 mana={B}
 type=Instant
@@ -824,6 +832,17 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Marrow Bats
+abilities=flying
+auto={L}{L}{L}{L}:regenerate
+text=Flying -- Pay 4 life: Regenerate Marrow Bats.
+mana={4}{B}
+type=Creature
+subtype=Bat Skeleton
+power=4
+toughness=1
+[/card]
+[card]
 name=Mass Appeal
 auto=foreach(human|mybattlefield) draw:1
 text=Draw a card for each Human you control.
@@ -848,6 +867,16 @@ type=Creature
 subtype=Human Soldier
 power=1
 toughness=2
+[/card]
+[card]
+name=Midvast Protector
+auto=chooseacolor target(creature|mybattlefield) transforms((,newability[protection(*[chosencolor])])) ueot chooseend
+text=When Protector of Midvast enters the battlefield, target creature you control gains protection from the color of your choice until end of turn.
+mana={3}{W}
+type=Creature
+subtype=Human Wizard
+power=2
+toughness=3
 [/card]
 [card]
 name=Mist Raven
@@ -902,7 +931,7 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Natural Bite
+name=Natural End
 target=artifact,enchantment
 auto=life:3 controller
 text=Destroy target artifact or enchantment. You gain 3 life.
@@ -929,7 +958,7 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Nettle Boar
+name=Nettle Swine
 text=
 mana={3}{G}
 type=Creature
@@ -956,16 +985,6 @@ mana={R}
 type=Sorcery
 [/card]
 [card]
-name=Predator's Gambit
-target=creature
-auto=3/1
-auto=aslongas(creature|myBattlefield) lifelink <2
-text=As long as you control exactly one creature, that creature gets +3/+1 and has lifelink.
-mana={B}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Polluted Dead
 auto=@movedTo(this|graveyard) from(battlefield):destroy target(land)
 text=When Polluted Dead dies, destroy target land.
@@ -976,14 +995,16 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Protector of Midvast
-auto=chooseacolor target(creature|mybattlefield) transforms((,newability[protection(*[chosencolor])])) ueot chooseend
-text=When Protector of Midvast enters the battlefield, target creature you control gains protection from the color of your choice until end of turn.
-mana={3}{W}
-type=Creature
-subtype=Human Wizard
-power=1
-toughness=2
+name=Predator's Gambit
+target=creature
+auto=2/1
+auto=aslongas(creature|myBattlefield) intimidate <2
+text=Enchant creature -- 
+Enchanted creature gets +2/+1. -- 
+Enchanted creature has intimidate as long as its controller controls no other creatures. (It can't be blocked except by artifact creatures and/or creatures that share a color with it.)
+mana={B}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 name=Raging Poltergeist
@@ -1061,16 +1082,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Scorching Devil
-auto={2}{R}:damage:1 target(creature,player)
-text={2}{R}:Scorching Devil deals 1 damage to target creature or player. 
-mana={1}{R}
-type=Creature
-subtype=Devil
-power=1
-toughness=1
-[/card]
-[card]
 name=Scrapskin Drake
 abilities=flying,cloud
 text=Flying -- Scrapskin Drake can block only creatures with flying.
@@ -1082,7 +1093,6 @@ toughness=3
 [/card]
 [card]
 name=Scroll of Avacyn
-auto={T}:counter(0/0,1,Charge)
 auto={1}{S}:draw:1 controller && aslongas(angel|mybattlefield) life:5 controller
 text={1}, Sacrifice Scroll of Avacyn: Draw a card. If you control an Angel, you gain 5 life.
 mana={1}
@@ -1300,12 +1310,11 @@ toughness=2
 [/card]
 [card]
 name=Vessel of Endless Rest
-auto={T}:Add{G}
-# put {G} first so that the AI can produce it.
 auto={T}:Add{W}
 auto={T}:Add{U}
 auto={T}:Add{B}
 auto={T}:Add{R}
+auto={T}:Add{G}
 auto=bottomoflibrary target(*|graveyard)
 text=When Vessel of Endless Rest enters the battlefield, put target card in a graveyard on the bottom of its owner's library. -- {T}: Add one mana of any color to your mana pool.}
 mana={3}
@@ -1367,14 +1376,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Wind of Death
-target=creature
-auto=-X/-X
-text=Target creature gets -X/-X until end of turn.
-mana={X}{B}
-type=Instant
-[/card]
-[card]
 name=Wolfir Avenger
 abilities=flash
 auto={1}{G}:regenerate
@@ -1389,7 +1390,7 @@ toughness=3
 name=Yew Spirit
 auto={2}{G}{G}:dynamicability<!powerpumppow!> && dynamicability<!toughnesspumppow!>
 text={2}{G}{G}: Yew Spirit gets +X/+X until end of turn, where X is its power.
-mana={2}{G}{G}
+mana={4}{G}
 type=Creature
 subtype=Treefolk Spirit
 power=3
@@ -1398,7 +1399,7 @@ toughness=3
 [card]
 name=Zealous Conscripts
 abilities=haste
-auto=target(*|opponentbattlefield) transforms((,newability[moveTo(opponentbattlefield)],newability[phaseaction[endofturn sourceinplay] moveTo(ownerbattlefield)],newability[untap],haste)) ueot once
+auto=target(*|battlefield) transforms((,newability[moveTo(opponentbattlefield)],newability[phaseaction[endofturn sourceinplay] moveTo(ownerbattlefield)],newability[untap],haste)) ueot once
 text=Haste -- When Zealous Conscripts enters the battlefield, untap target permanent and gain control of it until end of turn. It gains haste until end of turn.
 mana={4}{R}
 type=Creature
