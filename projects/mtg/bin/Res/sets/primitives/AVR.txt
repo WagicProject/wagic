@@ -470,7 +470,7 @@ power=2
 toughness=3
 [/card]
 [card]
-name=Favourable Winds
+name=Favorable Winds
 auto=lord(creature[flying]|mybattlefield) 1/1
 text=Creatures you control with flying gets +1/+1.
 mana={1}{U}
@@ -1202,7 +1202,7 @@ name=Tamiyo, the Moon Sage
 auto=counter(0/0,4,loyalty)
 auto={C(0/0,1,Loyalty)}:tap && frozen target(*)
 auto={C(0/0,-2,Loyalty)}:target(player) draw:type:creature:targetedpersonsbattlefield controller
-auto={C(0/0,-5,Loyalty)}:emblem lord(*|mybattlefield) transforms((,nomaxhand,newability[@damaged(opponent) from(this):draw:1 controller])) dontremove
+auto={C(0/0,-8,Loyalty)}:name(Emblem) emblem transforms((,newability[lord(*|mybattlefield) nomaxhand],newability[@movedTo(mygraveyard):all(trigger[to]) moveTo(myHand)])) dontremove
 text=+1: Untap target Mountain. It becomes a 4/4 red Elemental creature until end of turn. It's still a land. -- -2: Add {R} to your mana pool for each Mountain you control. -- -5: You get an emblem with "Mountains you control have ‘{T}: This land deals 1 damage to target creature or player.'"
 mana={3}{U}{U}
 type=Planeswalker
@@ -1218,7 +1218,7 @@ type=Sorcery
 [card]
 name=Human
 abilities=haste
-auto=@end of turn:sacrifice
+auto=@next endofturn:sacrifice all(this)
 id=0011223344
 text=Sacrifice this at the beginnig of the next end step.
 type=Creature
@@ -1281,7 +1281,7 @@ toughness=3
 [/card]
 [card]
 name=Ulvenwald Tracker
-auto={1}{G}{T}:target=creature|mybattlefield transforms((,newability[target(creature) dynamicability<!powerstrike eachother!>])) ueot
+auto={1}{G}{T}:target(creature|mybattlefield) transforms((,newability[target(creature) dynamicability<!powerstrike eachother!>])) ueot
 text={1}{G}, {T}: Target creature you control fights another target creature.
 mana={G}
 type=Creature

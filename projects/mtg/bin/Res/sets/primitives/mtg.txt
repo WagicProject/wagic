@@ -21135,7 +21135,7 @@ toughness=3
 name=Dregs of Sorrow
 target=<prex>creature[-black]
 auto=destroy
-auto=draw:x controller
+auto=draw:X controller
 text=Destroy X target nonblack creatures. Draw X cards.
 mana={X}{4}{B}
 type=Sorcery
@@ -37601,7 +37601,7 @@ target=creature
 auto=cantattack
 auto=cantblock
 auto=noactivatedability
-auto=@targeted(mytgt):destroy
+auto=@targeted(mytgt):sacrifice all(this)
 text=Enchant creature -- Enchanted creature can't attack or block, and its activated abilities can't be activated. -- When enchanted creature becomes the target of a spell or ability, destroy Ice Cage.
 mana={1}{U}
 type=Enchantment
@@ -82879,7 +82879,7 @@ type=Instant
 [/card]
 [card]
 name=Tribute to Hunger
-auto=all(*|opponentlibrary) transforms((,newability[notatarget(creature|mybattlefield) dynamicability<!mytgt toughnesslifegain targetopponent!> sacrifice])) ueot
+auto=ability$!name(sacrifice) notatarget(creature|mybattlefield) dynamicability<!mytgt toughnesslifegain targetopponent!> sacrifice!$ targetedplayer
 text=Target opponent sacrifices a creature. You gain life equal to that creature's toughness.
 mana={2}{B}
 type=Instant
