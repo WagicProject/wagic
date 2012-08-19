@@ -16,10 +16,8 @@ AIHint::AIHint(string _line)
         return;
     }
     std::transform(line.begin(), line.end(), line.begin(), ::tolower);
-    vector<string> parameters = split(line,':');
-    mCondition = (parameters.size() == 1)? "" : parameters[0];
-    string action = parameters[parameters.size() - 1];
-
+    mCondition = line;
+    string action = line;
     vector<string> splitAction = parseBetween(action, "sourceid(", ")");
     if (splitAction.size())
     {
@@ -43,6 +41,14 @@ AIHint::AIHint(string _line)
     {
         castOrder = split(splitCastOrder[1],',');
     }
+
+    if(action.find( "combo ") != string::npos)
+    {
+        string Combo = "";
+        Combo = action.c_str() + 6;
+        combos.push_back(Combo);
+    }
+    
 }
 
 AIHints::AIHints(AIPlayerBaka * player): mPlayer(player)
@@ -93,6 +99,141 @@ bool AIHints::HintSaysDontAttack(GameObserver* observer,MTGCardInstance * card)
     }
     return false;
 }
+
+bool AIHints::HintSaysItsForCombo(GameObserver* observer,MTGCardInstance * card)
+{
+    TargetChooserFactory tfc(observer);
+    TargetChooser * hintTc = NULL;
+    bool forCombo = false;
+    for(unsigned int i = 0; i < hints.size();i++)
+    {
+        if (hints[i]->combos.size())
+        {
+            //time to find the parts and condiations of the combo.
+            string part = "";
+            if(!hints[i]->partOfCombo.size() && hints[i]->combos.size())
+            {
+                for(unsigned int cPart = 0; cPart < hints[i]->combos.size(); cPart++)
+                {
+                    //here we disect the different parts of a given combo
+                    part = hints[i]->combos[cPart];
+                    hints[i]->partOfCombo = split(part,'^');
+                    for(unsigned int dPart = 0; dPart < hints[i]->partOfCombo.size(); dPart++)
+                    {
+                        vector<string>asTc;
+                        asTc = parseBetween(hints[i]->partOfCombo[dPart],"hold(",")");
+                        if(asTc.size())
+                        {
+                            hints[i]->hold.push_back(asTc[1]);
+                            asTc.clear();
+                        }
+                        asTc = parseBetween(hints[i]->partOfCombo[dPart],"until(",")");
+                        if(asTc.size())
+                        {
+                            hints[i]->until.push_back(asTc[1]);
+                            asTc.clear();
+                        }
+                        asTc = parseBetween(hints[i]->partOfCombo[dPart],"restriction{","}");
+                        if(asTc.size())
+                        {
+                            hints[i]->restrict.push_back(asTc[1]);
+                            asTc.clear();
+                        }
+                        asTc = parseBetween(hints[i]->partOfCombo[dPart],"cast(",")");
+                        if(asTc.size())
+                        {
+                            hints[i]->cardTargets[asTc[1]] = parseBetween(hints[i]->partOfCombo[dPart],"targeting(",")")[1];
+                        }
+                        asTc = parseBetween(hints[i]->partOfCombo[dPart],"totalmananeeded(",")");
+                        if(asTc.size())
+                        {
+                            hints[i]->manaNeeded = asTc[1];
+                            asTc.clear();
+                        }
+                    }
+                }
+            }//we collect the peices of a combo on first run.
+            for(unsigned int hPart = 0; hPart < hints[i]->hold.size(); hPart++)
+            {
+                hintTc = tfc.createTargetChooser(hints[i]->hold[hPart],card);
+                if(hintTc && hintTc->canTarget(card,true) && hintTc->countValidTargets() <= hintTc->maxtargets)
+                {
+                    forCombo = true;
+                }
+                SAFE_DELETE(hintTc);
+            }
+        }
+    }
+    return forCombo;//return forCombo that way all hints that are combos are predisected.
+}
+//if it's not part of a combo or there is more to gather, then return false
+bool AIHints::canWeCombo(GameObserver* observer,MTGCardInstance * card,AIPlayerBaka * Ai)
+{
+    TargetChooserFactory tfc(observer);
+    TargetChooser * hintTc = NULL;
+    bool gotCombo = false;
+    int comboPartsHold = 0;
+    int comboPartsUntil = 0;
+    int comboPartsRestriction = 0;
+    for(unsigned int i = 0; i < hints.size();i++)
+    {
+        comboPartsHold = 0;
+        comboPartsUntil = 0;
+        comboPartsRestriction = 0;
+        if(gotCombo)
+            return gotCombo;//because more then one might be possible at any time.
+        if (hints[i]->hold.size())
+        {
+            for(unsigned int hPart = 0; hPart < hints[i]->hold.size(); hPart++)
+            {
+                hintTc = tfc.createTargetChooser(hints[i]->hold[hPart],card);
+                int TcCheck = hintTc->countValidTargets();
+                if(hintTc && TcCheck >= hintTc->maxtargets)
+                {
+                    comboPartsHold +=1;
+                }
+                SAFE_DELETE(hintTc);
+            }
+        }
+        if (hints[i]->until.size())
+        {
+            for(unsigned int hPart = 0; hPart < hints[i]->until.size(); hPart++)
+            {
+                hintTc = tfc.createTargetChooser(hints[i]->until[hPart],card);
+                int TcCheck = hintTc->countValidTargets();
+                if(hintTc && TcCheck >= hintTc->maxtargets)
+                {
+                    comboPartsUntil +=1;
+                }
+                SAFE_DELETE(hintTc);
+            }
+        }
+        if (hints[i]->restrict.size())
+        {
+            for(unsigned int hPart = 0; hPart < hints[i]->restrict.size(); hPart++)
+            {
+                AbilityFactory af(observer);
+                int checkCond = af.parseCastRestrictions(card,card->controller(),hints[i]->restrict[hPart]);
+                if(checkCond >= 1)
+                {
+                    comboPartsRestriction +=1;
+                }
+            }
+        }
+        if( comboPartsUntil >= int(hints[i]->until.size()) && comboPartsHold >= int(hints[i]->hold.size()) && comboPartsRestriction >= int(hints[i]->restrict.size()) && hints[i]->combos.size() )
+        {
+            ManaCost * needed = ManaCost::parseManaCost(hints[i]->manaNeeded, NULL, card);
+            if(Ai->canPayManaCost(card,needed).size()||!needed->getConvertedCost())
+            {
+                gotCombo = true;
+                Ai->comboHint = hints[i];//set the combo we are doing.
+            }
+            SAFE_DELETE(needed);
+        }
+    }
+    return gotCombo;
+}
+
 
 vector<string>AIHints::mCastOrder()
 {

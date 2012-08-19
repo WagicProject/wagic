@@ -66,9 +66,15 @@ public:
     static void ThreadProc(void* inParam);
     void handleResults(GameObserver* aGame){
         mMutex.lock();
-        totalTestGames++;
         if (aGame->didWin(aGame->players[1]))
+        {
             testPlayer2Victories++;
+            totalTestGames++;
+        }
+        else if( aGame->didWin(aGame->players[0]))
+        {
+            totalTestGames++;
+        }
         mMutex.unlock();
     };
 #endif

@@ -23,7 +23,7 @@ class ManaCost
     friend std::ostream& operator<<(std::ostream& out, ManaCost m);
     
 protected:
-    std::vector<int8_t> cost;
+    std::vector<int16_t> cost;
     std::vector<ManaCostHybrid> hybrids;
 
     virtual void init();
@@ -60,7 +60,7 @@ public:
     int hasSpecificX();
     int xColor;
     int hasAnotherCost();
-    ManaCost(std::vector<int8_t>& _cost, int nb_elems = 1);
+    ManaCost(std::vector<int16_t>& _cost, int nb_elems = 1);
     ManaCost();
     ~ManaCost();
     ManaCost(ManaCost * _manaCost);
@@ -89,8 +89,8 @@ public:
     ExtraCost * getExtraCost(unsigned int i);
 
     int addHybrid(int c1, int v1, int c2, int v2);
-    int tryToPayHybrids(std::vector<ManaCostHybrid>& _hybrids, int _nbhybrids,std::vector<int8_t>& diff);
-    void randomDiffHybrids(ManaCost * _cost, std::vector<int8_t>& diff);
+    int tryToPayHybrids(std::vector<ManaCostHybrid>& _hybrids, int _nbhybrids,std::vector<int16_t>& diff);
+    void randomDiffHybrids(ManaCost * _cost, std::vector<int16_t>& diff);
     int add(ManaCost * _cost);
     int remove(ManaCost * _cost);
     int removeAll(int color);

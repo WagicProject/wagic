@@ -26,6 +26,7 @@ TestSuiteAI::TestSuiteAI(TestSuiteGame *tsGame, int playerId) :
     timer = 0;
     playMode = MODE_TEST_SUITE;
     this->deckName = "Test Suite AI";
+    this->comboHint = NULL;
 }
 
 MTGCardInstance * TestSuiteAI::getCard(string action)

@@ -283,7 +283,7 @@ ManaCost::ManaCost()
     init();
 }
 
-ManaCost::ManaCost(vector<int8_t>& _cost, int nb_elems)
+ManaCost::ManaCost(vector<int16_t>& _cost, int nb_elems)
 {
     init();
     for (int i = 0; i < nb_elems; i++)
@@ -628,7 +628,7 @@ int ManaCost::getConvertedCost()
 int ManaCost::remove(int color, int value)
 {
     assert (value >= 0);
-    int8_t toRemove = min(cost[color], (int8_t)value);
+    int16_t toRemove = min(cost[color], (int16_t)value);
     cost[color] -= toRemove;
     return 1;
 }
@@ -661,7 +661,7 @@ int ManaCost::remove(ManaCost * _cost)
         return 0;
     for ( int i = 0; i < Constants::NB_Colors; i++)
     {
-        int8_t toRemove = min(cost[i], (int8_t)_cost->getCost(i)); //we don't want to be negative
+        int16_t toRemove = min(cost[i], (int16_t)_cost->getCost(i)); //we don't want to be negative
         cost[i] -= toRemove;
         assert(cost[i] >= 0);
     }
@@ -773,7 +773,7 @@ int ManaCost::isPositive()
 
 }
 
-void ManaCost::randomDiffHybrids(ManaCost * _cost, std::vector<int8_t>& diff)
+void ManaCost::randomDiffHybrids(ManaCost * _cost, std::vector<int16_t>& diff)
 {
     for (size_t i = 0; i < _cost->hybrids.size(); i++)
     {
@@ -785,7 +785,7 @@ void ManaCost::randomDiffHybrids(ManaCost * _cost, std::vector<int8_t>& diff)
 /**
     starting from the end of the array (diff) 
 */
-int ManaCost::tryToPayHybrids(std::vector<ManaCostHybrid>& _hybrids, int _nbhybrids, std::vector<int8_t>& diff)
+int ManaCost::tryToPayHybrids(std::vector<ManaCostHybrid>& _hybrids, int _nbhybrids, std::vector<int16_t>& diff)
 {
     if (!_nbhybrids)
         return 1;
@@ -816,7 +816,7 @@ ManaCost * ManaCost::Diff(ManaCost * _cost)
     if (!_cost) 
         return NEW ManaCost(*this); //diff with null is equivalent to diff with 0
 
-    vector<int8_t> diff;
+    vector<int16_t> diff;
     diff.resize((Constants::NB_Colors + 1) * 2);
     diff[Constants::NB_Colors * 2] = Constants::NB_Colors;
     for (int i = 0; i < Constants::NB_Colors; i++)

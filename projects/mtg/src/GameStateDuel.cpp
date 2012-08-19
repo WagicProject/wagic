@@ -293,18 +293,20 @@ void GameStateDuel::ThreadProc(void* inParam)
         int oldTurn = -1;
         int oldPhase = -1;
         int stagnationCounter = -1;
-
         observer.loadPlayer(0, PLAYER_TYPE_CPU_TEST);
         observer.loadPlayer(1, PLAYER_TYPE_CPU_TEST);
         observer.startGame(instance->mParent->gameType, instance->mParent->rules);
-
-        while(!observer.didWin()) {
-            if(observer.turn == oldTurn && observer.currentGamePhase == oldPhase) {
+        while(!observer.didWin()) 
+        {
+            if(observer.turn == oldTurn && observer.currentGamePhase == oldPhase) 
+            {
                 stagnationCounter++;
-            } else {
+            } 
+            else 
+            {
                 stagnationCounter = 0;
                 oldTurn = observer.turn;
-                oldPhase = observer.currentGamePhase;
+                oldPhase = observer.getCurrentGamePhase();
             }
             if(stagnationCounter >= 1000)
             {
@@ -606,7 +608,7 @@ void GameStateDuel::Render()
           if (totalTestGames < 2.5 * totalAIDecks)
           {
                mFont->SetColor(ARGB(255,255,255,0));
-               sprintf(buf, "Results are not significant, you should let at least %i more games run", (int)(totalAIDecks * 2.5) - totalTestGames);
+               sprintf(buf, "           Results are not significant, you should let at least %i more games run", (int)(totalAIDecks * 2.5) - totalTestGames);
                mFont->DrawString(buf,0,SCREEN_HEIGHT/2 - 20);
           }
 
@@ -616,8 +618,8 @@ void GameStateDuel::Render()
               mFont->SetColor(ARGB(255,255,0,0));
           if (ratio > 0.52)
               mFont->SetColor(ARGB(255,0,255,0));
-          sprintf(buf, "Victories Player 2/total Games: %i/%i - Games/second: %f",
-                  testPlayer2Victories, totalTestGames, (float)(1000*totalTestGames)/(currentTime - startTime));
+          sprintf(buf, "              Victories Player 2/total Games: %i/%i - Game Turn: %i",
+              testPlayer2Victories, totalTestGames, /*(float)(1000*totalTestGames)/(currentTime - startTime)*/game->turn);
           mFont->DrawString(buf,0,SCREEN_HEIGHT/2);
       }
 #endif

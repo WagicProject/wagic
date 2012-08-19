@@ -289,6 +289,18 @@ void GuiMana::RenderStatic()
 
 void GuiMana::Render()
 {
+    if (manas.size() > 20)
+    {
+        int count = 0;
+        for (vector<ManaIcon*>::iterator it = manas.begin(); it != manas.end(); ++it)
+        {
+            if (count > 20)
+                break;
+            count++;
+            (*it)->Render();
+        }
+    }
+    else
     for (vector<ManaIcon*>::iterator it = manas.begin(); it != manas.end(); ++it)
         (*it)->Render();
 

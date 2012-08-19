@@ -242,6 +242,7 @@ AIPlayer * AIPlayerFactory::createAIPlayer(GameObserver *observer, MTGAllCards *
     // AIPlayerBaka will delete MTGDeck when it's time
     AIPlayerBaka * baka = NEW AIPlayerBaka(observer, deckFile, deckFileSmall, avatarFilename, NEW MTGDeck(deckFile, collection,0, deckSetting));
     baka->deckId = deckid;
+    baka->comboHint = NULL;
     return baka;
 }
 

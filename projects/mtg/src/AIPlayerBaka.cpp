@@ -645,6 +645,10 @@ int AIPlayerBaka::getEfficiency(OrderedAIAction * action)
 MTGCardInstance * AIPlayerBaka::chooseCard(TargetChooser * tc, MTGCardInstance * source, int random)
 {
     MTGPlayerCards * playerZones = source->controller()->game;
+    if (comboHint && comboHint->cardTargets.size())
+    {
+       tc = GetComboTc(observer,tc);
+    }
     for(int players = 0; players < 2;++players)
     {
         MTGGameZone * zones[] = { playerZones->hand, playerZones->library, playerZones->inPlay, playerZones->graveyard,playerZones->stack };
@@ -654,11 +658,9 @@ MTGCardInstance * AIPlayerBaka::chooseCard(TargetChooser * tc, MTGCardInstance *
             for (int k = 0; k < zone->nb_cards; k++)
             {
                 MTGCardInstance * card = zone->cards[k];
-                if (card != source && !tc->alreadyHasTarget(card) && tc->canTarget(card))
+                if (card != source && card != tc->source && !tc->alreadyHasTarget(card) && tc->canTarget(card))
                 {
-
                     return card;
-
                 }
             }
         }
@@ -681,6 +683,8 @@ bool AIPlayerBaka::payTheManaCost(ManaCost * cost, MTGCardInstance * target,vect
     }
 
     ExtraCosts * ec = cost->extraCosts;
+    if(!ec && observer->mExtraPayment)
+        ec = observer->mExtraPayment;
     if (ec)
     {
         for (size_t i = 0; i < ec->costs.size(); ++i)
@@ -1206,6 +1210,10 @@ int AIPlayerBaka::createAbilityTargets(MTGAbility * a, MTGCardInstance * c, Rank
         ranking[aiAction] = 1;
         return 1;
     }
+    if (comboHint && comboHint->cardTargets.size())
+    {
+        a->setActionTC(GetComboTc(observer,a->getActionTc()));
+    }
     vector<Targetable*>potentialTargets;
     for (int i = 0; i < 2; i++)
     {
@@ -1284,6 +1292,37 @@ int AIPlayerBaka::createAbilityTargets(MTGAbility * a, MTGCardInstance * c, Rank
     return 1;
 }
 
+TargetChooser * AIPlayerBaka::GetComboTc( GameObserver * observer,TargetChooser * tc)
+{
+    TargetChooser * gathertc = NULL;
+    TargetChooserFactory tcf(observer);
+    map<string, string>::iterator it = comboHint->cardTargets.begin();
+    for(map<string, string>::iterator it = comboHint->cardTargets.begin();it != comboHint->cardTargets.end();it++)
+    {
+        gathertc = tcf.createTargetChooser(it->first.c_str(),tc->source);
+        gathertc->setAllZones();
+        if(gathertc->canTarget(tc->source))
+        {
+            MTGCardInstance * cardBackUp = tc->source;
+            Player * Oowner = tc->Owner;
+            TargetChooser * testTc = tcf.createTargetChooser(it->second.c_str(),cardBackUp);
+            if(testTc->countValidTargets())
+            {
+                tc = testTc;
+                tc->Owner = Oowner;
+                tc->other = true;
+            }
+            //I know I shouldn't redefine a passed variable,
+            //if anyone knows a way that doesn't add a major function for this that does this correctly
+            //then feel free to change this redefine. I do it this way becuase the method is the
+            //fastest I could find that doesn't produce a noticible lag on ai.
+            //recreate the targetchooser for this card becuase we planned to use it in a combo
+        }
+        SAFE_DELETE(gathertc);
+    }
+    return tc;
+}
+
 int AIPlayerBaka::selectHintAbility()
 {
     if (!hints)
@@ -1312,6 +1351,7 @@ int AIPlayerBaka::selectHintAbility()
 
 int AIPlayerBaka::selectAbility()
 {
+    observer->mExtraPayment = NULL;
    // Try Deck hints first
    if (selectHintAbility())
         return 1;
@@ -1428,6 +1468,9 @@ int AIPlayerBaka::effectBadOrGood(MTGCardInstance * card, int mode, TargetChoose
 
 int AIPlayerBaka::chooseTarget(TargetChooser * _tc, Player * forceTarget,MTGCardInstance * chosenCard,bool checkOnly)
 {
+    observer->mExtraPayment = NULL;
+    //there should never be a case where a extra cost target selection is happening at the same time as this..
+    //extracost uses "chooseCard()" to determine its targets.
     vector<Targetable *> potentialTargets;
     TargetChooser * tc = _tc;
     if (!(observer->currentlyActing() == this))
@@ -1439,6 +1482,10 @@ int AIPlayerBaka::chooseTarget(TargetChooser * _tc, Player * forceTarget,MTGCard
     if (!tc || !tc->source || tc->maxtargets < 1)
         return 0;
     assert(tc);
+    if (comboHint && comboHint->cardTargets.size())
+    {
+       tc = GetComboTc(observer,tc);
+    }
     if(!checkOnly && tc->maxtargets > 1)
     {
         tc->initTargets();//just incase....
@@ -1641,6 +1688,14 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
     int maxCost = -1;
     MTGCardInstance * nextCardToPlay = NULL;
     MTGCardInstance * card = NULL;
+    if(comboCards.size())
+    {
+        nextCardToPlay = comboCards.back();
+        comboCards.pop_back();
+        if(!comboHint->cardTargets.size() && !comboCards.size())
+            comboHint = NULL;//becuase it's no longer needed.
+        return nextCardToPlay;
+    }
     CardDescriptor cd;
     cd.init();
     cd.setType(type);
@@ -1668,7 +1723,24 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
         if (card->hasType(Subtypes::TYPE_PLANESWALKER) && card->types.size() > 0 && game->inPlay->hasTypeSpecificInt(Subtypes::TYPE_PLANESWALKER,card->types[1]))
             continue;
         
-
+        if(hints && hints->HintSaysItsForCombo(observer,card))
+        {
+            if(hints->canWeCombo(observer,card,this))
+            {
+                AbilityFactory af(observer);
+                int canPlay = af.parseCastRestrictions(card,card->controller(),card->getRestrictions());
+                if(!canPlay)
+                    continue;
+                nextCardToPlay = card;
+                return activateCombo();
+            }
+            else
+            {
+                int chance = int(getRandomGenerator()->random() % 100);
+                if(chance > 1)
+                    continue;//1% chance to just continue evaluating the card to cast.
+            }
+        }
         int currentCost = card->getManaCost()->getConvertedCost();
         int hasX = card->getManaCost()->hasX();
         gotPayments.clear();
@@ -1780,6 +1852,41 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
     return nextCardToPlay;
 }
 
+MTGCardInstance * AIPlayerBaka::activateCombo()
+{
+    if(!comboHint)
+        return NULL;
+    TargetChooser * hintTc = NULL;
+    TargetChooserFactory tfc(observer);
+    ManaCost * totalCost = ManaCost::parseManaCost(comboHint->manaNeeded);
+    for(unsigned int k = 0;k < comboHint->hold.size(); k++)
+    {
+        hintTc = tfc.createTargetChooser(comboHint->hold[k],nextCardToPlay);
+        for(unsigned int j = 0; j < game->hand->cards.size();j++)
+        {
+            if(!hintTc)
+                break;
+            if(hintTc->canTarget(game->hand->cards[j]))
+            {
+                comboCards.push_back(game->hand->cards[j]);
+                SAFE_DELETE(hintTc);
+            }
+        }
+        SAFE_DELETE(hintTc);
+    }
+    if(payTheManaCost(totalCost,nextCardToPlay,gotPayments))
+    {
+        if(comboCards.size())
+        {
+            nextCardToPlay = comboCards.back();
+            if (game->playRestrictions->canPutIntoZone(nextCardToPlay, game->stack) == PlayRestriction::CANT_PLAY)
+                return NULL;
+            comboCards.pop_back();
+        }
+    }
+    SAFE_DELETE(totalCost);
+    return nextCardToPlay;
+}
 
 void AIPlayerBaka::initTimer()
 {
@@ -1910,9 +2017,8 @@ int AIPlayerBaka::computeActions()
                 currentMana->add(this->getManaPool());
 
                 nextCardToPlay = FindCardToPlay(currentMana, "land");
-                if (game->playRestrictions->canPutIntoZone(nextCardToPlay, game->stack) == PlayRestriction::CANT_PLAY)
+                if (nextCardToPlay && nextCardToPlay->isLand() && game->playRestrictions->canPutIntoZone(nextCardToPlay, game->battlefield) == PlayRestriction::CANT_PLAY)
                     nextCardToPlay = NULL;//look for a land, did we find one we can play..if not set to null now.
-
                 if(hints && hints->mCastOrder().size())
                 {
                     vector<string>findType = hints->mCastOrder();
@@ -1927,6 +2033,8 @@ int AIPlayerBaka::computeActions()
                         }
                         nextCardToPlay = FindCardToPlay(currentMana, findType[j].c_str());
                         if (game->playRestrictions->canPutIntoZone(nextCardToPlay, game->stack) == PlayRestriction::CANT_PLAY)
+                            nextCardToPlay = NULL;
+                        if (nextCardToPlay && nextCardToPlay->isLand() && game->playRestrictions->canPutIntoZone(nextCardToPlay, game->battlefield) == PlayRestriction::CANT_PLAY)
                             nextCardToPlay = NULL;
                     }
                 }
@@ -1944,6 +2052,8 @@ int AIPlayerBaka::computeActions()
                         }
                         nextCardToPlay = FindCardToPlay(currentMana, types[count]);
                         if (game->playRestrictions->canPutIntoZone(nextCardToPlay, game->stack) == PlayRestriction::CANT_PLAY)
+                            nextCardToPlay = NULL;
+                        if (nextCardToPlay && nextCardToPlay->isLand() && game->playRestrictions->canPutIntoZone(nextCardToPlay, game->battlefield) == PlayRestriction::CANT_PLAY)
                             nextCardToPlay = NULL;
                         count++;
                     }
@@ -1978,6 +2088,11 @@ int AIPlayerBaka::computeActions()
                 }
                 else
                 {
+                    if(observer->mExtraPayment)
+                        //no extra payment should be waiting before selecting an ability.
+                        observer->mExtraPayment = NULL;
+                    //this is a fix for a rare bug that somehow ai trips over an extra payment without paying
+                    //then locks in a loop of trying to choose something different to do and trying to pay the extra payment.
                     selectAbility();
                 }
                 break;

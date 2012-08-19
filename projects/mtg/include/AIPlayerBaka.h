@@ -6,6 +6,7 @@
 
 class AIStats;
 class AIHints;
+class AIHint;
 
 
 //Would love to define those classes as private nested classes inside of AIPlayerBaka, but they are used by AIHints (which itself should be known only by AIPlayerBaka anyways)
@@ -91,11 +92,14 @@ class AIPlayerBaka: public AIPlayer{
     virtual AIStats * getStats();
 
     MTGCardInstance * nextCardToPlay;
+    MTGCardInstance * activateCombo();
+    TargetChooser * GetComboTc(GameObserver * observer, TargetChooser * tc = NULL);
     AIHints * hints;
     AIStats * stats;
     int oldGamePhase;
     float timer;
     virtual MTGCardInstance * FindCardToPlay(ManaCost * potentialMana, const char * type);
+    vector<MTGCardInstance*>comboCards;
 
     //used by MomirPlayer, hence protected instead of private
     virtual int getEfficiency(OrderedAIAction * action);
@@ -115,7 +119,9 @@ class AIPlayerBaka: public AIPlayer{
     };
 
     vector<MTGAbility*>gotPayments;
+
     AIPlayerBaka(GameObserver *observer, string deckFile, string deckfileSmall, string avatarFile, MTGDeck * deck = NULL);
+    AIHint * comboHint;
     virtual int Act(float dt);
     void initTimer();
     virtual int computeActions();
@@ -125,6 +131,7 @@ class AIPlayerBaka: public AIPlayer{
     virtual int affectCombatDamages(CombatStep step);
     virtual int canHandleCost(MTGAbility * ability);
     virtual int chooseTarget(TargetChooser * tc = NULL, Player * forceTarget = NULL,MTGCardInstance * Chosencard = NULL,bool checkonly = false);
+    virtual vector<MTGAbility*> canPayManaCost(MTGCardInstance * card = NULL, ManaCost * mCost = NULL){ return canPayMana(card, mCost);};
 
     //used by AIHInts, therefore public instead of private :/
     virtual int createAbilityTargets(MTGAbility * a, MTGCardInstance * c, RankingContainer& ranking);

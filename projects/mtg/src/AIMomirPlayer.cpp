@@ -51,7 +51,7 @@ int AIMomirPlayer::momir()
     if (efficiency >= chance)
     {
         
-        std::vector<int8_t> _cost;
+        std::vector<int16_t> _cost;
         _cost.push_back(Constants::MTG_COLOR_ARTIFACT);
         _cost.push_back(converted);
         ManaCost * cost = NEW ManaCost(_cost);

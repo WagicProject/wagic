@@ -3490,7 +3490,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
     case 1103: //Crystal Rod
     {
         
-        std::vector<int8_t> cost;
+        std::vector<int16_t> cost;
         cost.push_back(Constants::MTG_COLOR_ARTIFACT);
         cost.push_back(1);
         ASpellCastLife* ability = NEW ASpellCastLife(observer, _id, card, Constants::MTG_COLOR_BLUE, NEW ManaCost(cost, 1), 1);
@@ -3525,7 +3525,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
     case 1113: //Iron Star
     {
         
-        std::vector<int8_t> cost;
+        std::vector<int16_t> cost;
         cost.push_back(Constants::MTG_COLOR_ARTIFACT);
         cost.push_back(1);
         ASpellCastLife* ability = NEW ASpellCastLife(observer, _id, card, Constants::MTG_COLOR_RED, NEW ManaCost(cost, 1), 1);
@@ -3539,7 +3539,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
     }
     case 1114: //Ivory cup
     {
-        std::vector<int8_t> cost;
+        std::vector<int16_t> cost;
         cost.push_back(Constants::MTG_COLOR_ARTIFACT);
         cost.push_back(1);
         ASpellCastLife* ability = NEW ASpellCastLife(observer, _id, card, Constants::MTG_COLOR_WHITE, NEW ManaCost(cost, 1), 1);
@@ -3614,7 +3614,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
 
     case 1140: //Throne of Bone
     {
-        std::vector<int8_t> cost;
+        std::vector<int16_t> cost;
         cost.push_back(Constants::MTG_COLOR_ARTIFACT);
         cost.push_back(1);
         ASpellCastLife* ability = NEW ASpellCastLife(observer, _id, card, Constants::MTG_COLOR_BLACK, NEW ManaCost(cost, 1), 1);
@@ -3624,7 +3624,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
 
     case 1142: //Wooden Sphere
     {
-        std::vector<int8_t> cost;
+        std::vector<int16_t> cost;
         cost.push_back(Constants::MTG_COLOR_ARTIFACT);
         cost.push_back(1);
         ASpellCastLife* ability = NEW ASpellCastLife(observer, _id, card, Constants::MTG_COLOR_GREEN, NEW ManaCost(cost, 1), 1);
