@@ -23,6 +23,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.res.Configuration;
 import android.graphics.Canvas;
 import android.graphics.PixelFormat;
 import android.hardware.Sensor;
@@ -787,6 +788,13 @@ public class SDLActivity extends Activity implements OnKeyListener{
     	    	v = 184;  // shouldn't really happen but we need to default to something
     	    }
     	    return "0" + v;
+    }
+
+    // Empty onConfigurationChanged to stop the Activity from destroying/recreating on screen off
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) 
+    {
+        super.onConfigurationChanged(newConfig);
     }
 }
 
