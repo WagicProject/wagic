@@ -531,7 +531,7 @@ unsigned int MTGGameZone::countByCanTarget(TargetChooser * tc)
 {
     if(!tc)
         return 0;
-
+    tc->targetter = NULL;//becuase we are counting what can be targeted by this TC, we don't care if cards have protection.
     int result = 0;
     for (int i = 0; i < (nb_cards); i++)
     {
