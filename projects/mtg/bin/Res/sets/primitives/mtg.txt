@@ -22619,7 +22619,7 @@ toughness=13
 ###The 2 cards above should stay together (Flip Card)###
 [card]
 name=Elder Cathar
-auto=@movedTo(this|graveyard) from(battlefield):target(creature) transforms((,newability[counter(1/1)],newability[if cantargetcard(human) then counter(1/1)])) forever
+auto=@movedTo(this|graveyard) from(battlefield):target(creature|mybattlefield) transforms((,newability[counter(1/1)],newability[if cantargetcard(human) then counter(1/1)])) forever
 text=When Elder Cathar dies, put a +1/+1 counter on target creature you control. If that creature is a Human, put two +1/+1 counters on it instead.
 mana={2}{W}
 type=Creature
