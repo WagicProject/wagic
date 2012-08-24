@@ -2570,7 +2570,7 @@ toughness=5
 [card]
 name=Anthroplasm
 auto=counter(1/1,2)
-auto={X}{T}:removeallcounters(1/1) && counter(1/1,x)
+auto={X}{T}:+0/+1 all(this) && removeallcounters(1/1) && counter(1/1,x) && -0/-1 all(this)
 text=Anthroplasm enters the battlefield with two +1/+1 counters on it. -- {X}, {T}: Remove all +1/+1 counters from Anthroplasm and put X +1/+1 counters on it.
 mana={2}{U}{U}
 type=Creature
@@ -2925,18 +2925,10 @@ name=Arc Lightning
 target=creature,player
 auto=damage:1
 auto=damage:1 target(creature,player)
-auto=token(-1111112)
+auto=ability$!name(damage) choice target(creature,player) damage:1!$ controller
 text=Arc Lightning deals 3 damage divided as you choose among one, two, or three target creatures and/or players.
 mana={2}{R}
 type=Sorcery
-[/card]
-[card]
-name=Arc Lightning's 3rd Damage
-auto=counter(0/0,1,Arc Lightning)
-auto=@damaged(creature,player):thisforeach(counter{0/0.1.Arc Lightning}>0) damage:1 target(creature,player) && counter(0/0,-1,Arc Lightning) && counter(0/0,1,Bury)
-auto=thisforeach(counter{0/0.1.Bury}>0) bury
-type=Nothing
-id=-1111112
 [/card]
 [card]
 name=Arc Mage
@@ -6009,7 +6001,7 @@ type=Instant
 name=Baton of Courage
 abilities=flash,sunburst
 auto=counter(0/0,sunburst,charge)
-auto={C(0/0,1,charge)}:1/1 target(creature)
+auto={C(0/0,-1,charge)}:1/1 target(creature)
 text=Flash -- Sunburst (This enters the battlefield with a charge counter on it for each color of mana spent to cast it.) -- Remove a charge counter from Baton of Courage: Target creature gets +1/+1 until end of turn.
 mana={3}
 type=Artifact
@@ -13108,7 +13100,7 @@ type=Sorcery
 ###The 2 cards below should stay together (Flip Card)###
 [card]
 name=Chosen of Markov
-auto={T}{T(creature[vampire])}:flip(Markov's Servant)
+auto={T}{T(vampire|mybattlefield)}:all(this) flip(Markov's Servant)
 text={T}, Tap an untapped Vampire you control: Transform Chosen of Markov.
 mana={2}{B}
 type=Creature
@@ -13118,7 +13110,6 @@ toughness=2
 [/card]
 [card]
 name=Markov's Servant
-text=
 color=black
 type=Creature
 subtype=Vampire
@@ -13192,7 +13183,7 @@ type=Artifact
 [/card]
 [card]
 name=Chronosavant
-autograveyard={1}{W}:moveTo(mybattlefield) and!(turns:-1 controller)!
+autograveyard={1}{W}:turns:-1 controller && moveTo(mybattlefield) and!(tap)!
 text={1}{W}: Return Chronosavant from your graveyard to the battlefield tapped. You skip your next turn.
 mana={5}{W}
 type=Creature
@@ -14918,8 +14909,6 @@ type=Enchantment
 [card]
 name=Conversion
 auto=upcost[{W}{W}] sacrifice
-auto=lord(mountain) loseabilities
-auto=lord(mountain) transforms((plains))
 auto=lord(mountain) losesubtypesof(land)
 auto=lord(mountain) transforms((plains))
 text=At the beginning of your upkeep, sacrifice Conversion unless you pay {W}{W}. -- All Mountains are Plains.
@@ -20099,7 +20088,7 @@ type=Sorcery
 [card]
 name=Divine Congregation
 target=player
-auto=life:type:creature:targetedpersonsbattlefield && life:type:creature:targetedpersonsbattlefield
+auto=life:type:creature:targetedpersonsbattlefield controller && life:type:creature:targetedpersonsbattlefield controller
 text=You gain 2 life for each creature target player controls. -- Suspend 5 - {1}{W} (Rather than cast this card from your hand, you may pay {1}{W} and exile it with five time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.)
 mana={3}{W}
 suspend(5)={1}{w}
@@ -26044,7 +26033,7 @@ subtype=Aura
 [card]
 name=Feedback
 target=enchantment
-auto=@each my upkeep:damage:1 controller
+auto=@each targetController upkeep:damage:1 targetcontroller
 text=Enchant enchantment -- At the beginning of the upkeep of enchanted enchantment's controller, Feedback deals 1 damage to that player.
 mana={2}{U}
 type=Enchantment
@@ -29126,7 +29115,7 @@ toughness=5
 [/card]
 [card]
 name=Furnace Scamp
-auto=@combatdamaged(player) from(this):may sacrifice all(this) && all(trigger[to]) damage:3 opponent
+auto=@combatdamaged(player) from(this):may sacrifice all(this) && all(trigger[to]) damage:3
 text=Whenever Furnace Scamp deals combat damage to a player, you may sacrifice it. If you do, Furnace Scamp deals 3 damage to that player.
 mana={R}
 type=Creature
@@ -33221,7 +33210,7 @@ toughness=4
 [/card]
 [card]
 name=Greater Good
-auto={S(creature|mybattlefield)}:draw:storedmanacost && transforms((,newability[target(<3>*|myhand) reject])) forever
+auto={S(creature|mybattlefield)}:draw:storedpower && transforms((,newability[target(<3>*|myhand) reject])) forever
 text=Sacrifice a creature: Draw cards equal to the sacrificed creature's power, then discard three cards.
 mana={2}{G}{G}
 type=Enchantment
@@ -33379,7 +33368,7 @@ toughness=1
 [/card]
 [card]
 name=Grid Monitor
-abilities=cantcastcreature
+auto=maxCast(creature)0
 text=You can't cast creature spells.
 mana={4}
 type=Artifact Creature
@@ -38549,7 +38538,7 @@ toughness=11
 name=Ink-Eyes, Servant of Oni
 autohand={3}{B}{B}{N}:ninjutsu
 auto=@combatdamaged(player) from(this):may moveTo(myBattlefield) target(creature|opponentgraveyard)
-auto={1}{B}:regenerate
+auto={1}{B}:all(this) regenerate
 text=Ninjutsu {3}{B}{B} ({3}{B}{B}, Return an unblocked attacker you control to hand: Put this card onto the battlefield from your hand tapped and attacking.) -- Whenever Ink-Eyes, Servant of Oni deals combat damage to a player, you may put target creature card from that player's graveyard onto the battlefield under your control. -- {1}{B}: Regenerate Ink-Eyes.
 mana={4}{B}{B}
 type=Legendary Creature
@@ -43932,7 +43921,7 @@ name=Lavaclaw Reaches
 auto=tap
 auto={T}:Add{B}
 auto={T}:Add{R}
-auto={1}{B}{R}:transforms((Elemental Creature,setpower=2,settoughness=2,black red,newability[{X}:X/0])) ueot
+auto={1}{B}{R}:transforms((Elemental Creature,setpower=2,settoughness=2,black red,newability[{X}:+X/0 ueot])) ueot
 text=Lavaclaw Reaches enters the battlefield tapped. -- {T}: Add {B} or {R} to your mana pool. -- {1}{B}{R}: Until end of turn, Lavaclaw Reaches becomes a 2/2 black and red Elemental creature with "{X}: This creature gets +X/+0 until end of turn." It's still a land.
 type=Land
 [/card]
@@ -45988,7 +45977,8 @@ toughness=3
 [card]
 name=Ludevic's Test Subject
 abilities=defender
-auto={1}{U}:counter(0/0,1,Hatchling) && this(counter{0/0.5.Hatchling}) flip(Lidevic's Abomination)
+auto={1}{U}:counter(0/0,1,Hatchling)
+auto=this(counter{0/0.5.Hatchling}) flip(Lidevic's Abomination)
 text={1}{U}: Put a hatchling counter on Ludevic's Test Subject. Then if there are five or more hatchling counters on it, remove all of them and transform it.
 mana={1}{U}
 type=Creature
@@ -52101,7 +52091,7 @@ toughness=2
 [/card]
 [card]
 name=Nantuko Husk
-auto={S(creature|myBattlefield)}:2/2
+auto={S(creature|myBattlefield)}:2/2 ueot
 text=Sacrifice a creature: Nantuko Husk gets +2/+2 until end of turn.
 mana={2}{B}
 type=Creature
@@ -70213,7 +70203,7 @@ toughness=1
 [card]
 name=Silhana Starfletcher
 abilities=reach
-auto=choice chooseacolor {T}:add{chosencolor} chooseend
+auto=activatechooseacolor {T}:add{chosencolor} activatechooseend
 text=Reach (This creature can block creatures with flying.) -- As Silhana Starfletcher enters the battlefield, choose a color. -- {T}: Add one mana of the chosen color to your mana pool.
 mana={2}{G}
 type=Creature
@@ -70264,7 +70254,7 @@ toughness=5
 [card]
 name=Silklash Spider
 abilities=reach
-auto={X}{G}{G}:damage:X all(creature[flying])
+auto={X}{G}{G}:all(creature[flying]) damage:X
 text=Reach (This creature can block creatures with flying.) -- {X}{G}{G}: Silklash Spider deals X damage to each creature with flying.
 mana={3}{G}{G}
 type=Creature
@@ -75366,7 +75356,8 @@ toughness=1
 [card]
 name=Stasis
 auto=upcost[{U}] sacrifice
-auto=phasealter(remove,untap,player)
+auto=phasealter(remove,untap,controller)
+auto=phasealter(remove,untap,opponent)
 text=Players skip their untap steps. -- At the beginning of your upkeep, sacrifice Stasis unless you pay {U}.
 mana={1}{U}
 type=Enchantment
@@ -75552,7 +75543,7 @@ toughness=3
 [/card]
 [card]
 name=Steel Golem
-abilities=cantcastcreature
+auto=maxCast(creature)0
 text=You can't cast creature spells.
 mana={3}
 type=Artifact Creature
@@ -77015,7 +77006,7 @@ subtype=Aura
 [card]
 name=Sun Droplet
 auto=@damaged(controller):counter(0/0,thatmuch,Charge)
-auto=@each my upkeep:may counter(0/0,-1,Charge) && life:1 controller
+auto=@each my upkeep:may name(Gain Life) transforms((,[newability[counter(0/0,-1,Charge)],newability[life:1 controller]))
 text=Whenever you're dealt damage, put that many charge counters on Sun Droplet. -- At the beginning of each upkeep, you may remove a charge counter from Sun Droplet. If you do, you gain 1 life.
 mana={2}
 type=Artifact
@@ -85501,8 +85492,8 @@ toughness=3
 [/card]
 [card]
 name=Ventifact Bottle
-auto={X}{1}{T}:thisforeach(X) all(this) counter(0/0,1,Charge) asSorcery
-auto=@each my firstmain:tap all(ventifact bottle[counter{0/0.1.Charge}]|myBattlefield) && thisforeach(counter{0/0.1.Charge}) add{1} && removeallcounters(0/0,1,Charge)
+auto={x}{1}{T}:counter(0/0,x,Charge) asSorcery
+auto=@each my firstmain:tap all(this) && thisforeach(counter{0/0.1.Charge}) add{1} && removeallcounters(0/0,1,Charge)
 text={X}{1}, {T}: Put X charge counters on Ventifact Bottle. Activate this ability only any time you could cast a sorcery. -- At the beginning of your precombat main phase, if Ventifact Bottle has a charge counter on it, tap it and remove all charge counters from it. Add {1} to your mana pool for each charge counter removed this way.
 mana={3}
 type=Artifact
@@ -89325,7 +89316,7 @@ toughness=1
 [card]
 name=Whirlpool Warrior
 auto=all(*|myhand) transforms((,newability[draw:1],newability[moveTo(mylibrary) and!(shuffle)!]))
-auto={R}{S}:all(*|myhand) transforms((,newability[draw:1],newability[moveTo(mylibrary) and!(shuffle)!])) && auto=all(*|opponenthand) transforms((,newability[draw:1 opponent],newability[moveTo(opponentlibrary) and!(shuffle)!]))
+auto={R}{S}:all(*|myhand) transforms((,newability[draw:1],newability[moveTo(mylibrary) and!(shuffle)!])) && auto=all(*|opponenthand) transforms((,newability[draw:1],newability[moveTo(library) and!(shuffle)!]))
 text=When Whirlpool Warrior enters the battlefield, shuffle the cards from your hand into your library, then draw that many cards. -- {R}, Sacrifice Whirlpool Warrior: Each player shuffles the cards from his or her hand into his or her library, then draws that many cards.
 mana={2}{U}
 type=Creature
