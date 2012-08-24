@@ -4583,7 +4583,7 @@ public:
             {
                 nbOpponents = 0;
                 MTGCardInstance * opponent = source->getNextOpponent();
-                while (opponent && !opponent->hasSubtype("wall"))
+                while (opponent)
                 {
                     opponents[nbOpponents] = opponent;
                     nbOpponents++;
@@ -4816,80 +4816,6 @@ public:
     AJandorsRing * clone() const
     {
         return NEW AJandorsRing(*this);
-    }
-};
-
-//Kudzu.
-//What happens when there are no targets ???
-class AKudzu: public TargetAbility
-{
-public:
-    AKudzu(GameObserver* observer, int _id, MTGCardInstance * card, MTGCardInstance * _target) :
-        TargetAbility(observer, _id, card, NEW TypeTargetChooser(observer, "land", card))
-    {
-        tc->toggleTarget(_target);
-        target = _target;
-    }
-
-    int receiveEvent(WEvent * event)
-    {
-        if (WEventCardTap* wect =  dynamic_cast<WEventCardTap*>(event))
-        {
-            if (wect->before == false && wect->after == true && wect->card == target)
-            {
-                MTGCardInstance * _target = (MTGCardInstance *) target;
-                if (!_target->isInPlay(game)) return 0;
-                target = _target->controller()->game->putInGraveyard(_target);
-                reactToClick(source);
-                return 1;
-            }
-        }
-        return 0;
-
-    }
-
-    int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL)
-    {
-        MTGCardInstance * _target = (MTGCardInstance *) target;
-        if (card == source && (!_target || !_target->isInPlay(game)))
-        {
-            DebugTrace("Kudzu Reacts to click !");
-            return 1;
-        }
-        return 0;
-    }
-
-    int resolve()
-    {
-        target = tc->getNextCardTarget();
-        source->target = (MTGCardInstance *) target;
-        return 1;
-    }
-
-    int testDestroy()
-    {
-        int stillLandsInPlay = 0;
-        for (int i = 0; i < 2; i++)
-        {
-            if (game->players[i]->game->inPlay->hasType("Land")) stillLandsInPlay = 1;
-        }
-        if (!stillLandsInPlay)
-        {
-            source->controller()->game->putInGraveyard(source);
-            return 1;
-        }
-
-        if (!game->isInPlay(source))
-        {
-            return 1;
-        }
-
-        return 0;
-    }
-
-    AKudzu * clone() const
-    {
-        return NEW AKudzu(*this);
     }
 };
 
