@@ -195,8 +195,8 @@ void Credits::compute(GameObserver* g, GameApp * _app)
         int diff = p1->life - p2->life;
         if (diff < 0)
             diff = 0;
-        if (diff > 500)
-            diff = 500;
+        if (diff > 10000)
+            diff = 10000;
         if (diff)
         {
             CreditBonus * b = NEW CreditBonus(diff, _("Life Delta Bonus"));
