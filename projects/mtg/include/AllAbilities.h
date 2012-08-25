@@ -4512,57 +4512,6 @@ public:
     }
 };
 
-//1345 Farmstead
-class AFarmstead: public ActivatedAbility
-{
-public:
-    int usedThisTurn;
-    AFarmstead(GameObserver* observer, int _id, MTGCardInstance * source, MTGCardInstance * _target) :
-        ActivatedAbility(observer, _id, source, 0, 1)
-    {
-         std::vector<int16_t> _cost;
-        _cost.push_back(Constants::MTG_COLOR_WHITE);
-        _cost.push_back(2);
-        setCost(NEW ManaCost(_cost, 1), true);
-        target = _target;
-        usedThisTurn = 0;
-    }
-
-    void Update(float dt)
-    {
-        if (newPhase != currentPhase && newPhase != MTG_PHASE_UPKEEP)
-        {
-            usedThisTurn = 0;
-        }
-        ActivatedAbility::Update(dt);
-    }
-
-    int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL)
-    {
-        if (!ActivatedAbility::isReactingToClick(card, mana)) return 0;
-        if (currentPhase != MTG_PHASE_UPKEEP) return 0;
-        if (usedThisTurn) return 0;
-        return 1;
-    }
-
-    int resolve()
-    {
-        source->controller()->life++;
-        usedThisTurn = 1;
-        return 1;
-    }
-
-    virtual ostream& toString(ostream& out) const
-    {
-        out << "AFarmstead ::: usedThisTurn : " << usedThisTurn << " (";
-        return ActivatedAbility::toString(out) << ")";
-    }
-    AFarmstead * clone() const
-    {
-        return NEW AFarmstead(*this);
-    }
-};
-
 //Kjeldoran Frostbeast
 class AKjeldoranFrostbeast: public MTGAbility
 {

@@ -3511,11 +3511,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
         break;
     }
 
-    case 1345: //Farmstead
-    {
-        observer->addObserver(NEW AFarmstead(observer, _id, card, card->target));
-        break;
-    }
     case 1291: //Fireball
     {
         int x = computeX(spell, card);
@@ -3549,11 +3544,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
     case 1117: //Jandors Ring
     {
         observer->addObserver(NEW AJandorsRing(observer, _id, card));
-        break;
-    }
-    case 1254: //Kudzu
-    {
-        observer->addObserver(NEW AKudzu(observer, id, card, card->target));
         break;
     }
     case 1257: //Lifelace
