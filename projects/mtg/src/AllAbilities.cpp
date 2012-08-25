@@ -1941,7 +1941,7 @@ int AADynamic::resolve()
                 activateMainAbility(mainAbility,source,tosrc == true?OriginalSrc:(MTGCardInstance*)_target);
                 if(eachother)
                 {
-                    mainAbility = NEW AADamager(game, this->GetId(), source,(Targetable*)OriginalSrc,targetamountstring);
+                    mainAbility = NEW AADamager(game, this->GetId(), (MTGCardInstance*)_target,(Targetable*)OriginalSrc,targetamountstring);
                     activateMainAbility(mainAbility,source,OriginalSrc);
                 }
                 return 1;
