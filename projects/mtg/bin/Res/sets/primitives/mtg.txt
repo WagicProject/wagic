@@ -64236,7 +64236,7 @@ toughness=3
 [/card]
 [card]
 name=Rock Basilisk
-alias=1238
+auto=@combat(blocked,blocking) source(this) from(creature[-wall]):all(trigger[from]) phaseaction[combatends once] destroy
 text=Whenever Rock Basilisk blocks or becomes blocked by a non-Wall creature, destroy that creature at end of combat.
 mana={4}{R}{G}
 type=Creature
