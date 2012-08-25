@@ -5150,54 +5150,6 @@ public:
         return NEW APhaseAlter(*this);
     }
 };
-//Basilik --> needs to be made more generic to avoid duplicate (also something like if opponent=type then ...)
-class ABasilik: public MTGAbility
-{
-public:
-    MTGCardInstance * opponents[20];
-    int nbOpponents;
-    ABasilik(GameObserver* observer, int _id, MTGCardInstance * _source) :
-        MTGAbility(observer, _id, _source)
-    {
-        nbOpponents = 0;
-    }
-
-    void Update(float dt)
-    {
-        if (newPhase != currentPhase)
-        {
-            if (newPhase == MTG_PHASE_COMBATDAMAGE)
-            {
-                nbOpponents = 0;
-                MTGCardInstance * opponent = source->getNextOpponent();
-                while (opponent)
-                {
-                    opponents[nbOpponents] = opponent;
-                    nbOpponents++;
-                    opponent = source->getNextOpponent(opponent);
-                }
-            }
-            else if (newPhase == MTG_PHASE_COMBATEND)
-            {
-                for (int i = 0; i < nbOpponents; i++)
-                {
-                    game->mLayers->stackLayer()->addPutInGraveyard(opponents[i]);
-                }
-            }
-        }
-    }
-
-    virtual ostream& toString(ostream& out) const
-    {
-        out << "ABasilik ::: opponents : " << opponents << " ; nbOpponents : " << nbOpponents << " (";
-        return MTGAbility::toString(out) << ")";
-    }
-    ABasilik * clone() const
-    {
-        return NEW ABasilik(*this);
-    }
-};
-
 //Generic Millstone
 class AADepleter: public ActivatedAbilityTP
 {

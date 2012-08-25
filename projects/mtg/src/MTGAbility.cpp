@@ -3805,12 +3805,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
         }
         break;
     }
-
-    case 135215: //Sylvan Basilisk
-    {
-        observer->addObserver(NEW ABasilik(observer, _id, card));
-        break;
-    }
     case 130553:// Beacon of Immortality
     {
         Player * player = spell->getNextPlayerTarget();
