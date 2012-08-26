@@ -2397,6 +2397,7 @@ AIPlayerBaka::AIPlayerBaka(GameObserver *observer, string file, string fileSmall
 
     //Initialize "AIHints" system
     hints = NULL;
+    comboHint = NULL;
     if (mDeck && mDeck->meta_AIHints.size())
     {
         hints = NEW AIHints(this);

@@ -2000,7 +2000,7 @@ int MTGSoulbondRule::receiveEvent(WEvent * event)
         MTGCardInstance * card = e->card;
         if (!card || !card->isCreature()) return 0;
         int ok = 0;
-        if(card->basicAbilities[(int)Constants::soulbond] || soulbonders.size())
+        if(card->has(Constants::soulbond) || soulbonders.size())
         {
             for (int i = 0; i < 2; i++)
             {
@@ -2082,13 +2082,7 @@ MTGSoulbondRule * MTGSoulbondRule::clone() const
 {
     return NEW MTGSoulbondRule(*this);
 }
-MTGSoulbondRule::~MTGSoulbondRule()
-{
-    for(size_t k = pairing.size()-1;k > 0; k--)
-    {
-        //SAFE_DELETE(pairing[k]);
-    }
-}
+
 /* Persist */
 MTGPersistRule::MTGPersistRule(GameObserver* observer, int _id) :
 PermanentAbility(observer, _id)
