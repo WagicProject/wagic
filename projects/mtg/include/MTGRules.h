@@ -271,7 +271,6 @@ public:
     int receiveEvent(WEvent * event);
     virtual ostream& toString(ostream& out) const;
     virtual MTGSoulbondRule * clone() const;
-    ~MTGSoulbondRule();
 };
 /* Persist Rule */
 class MTGPersistRule: public PermanentAbility
