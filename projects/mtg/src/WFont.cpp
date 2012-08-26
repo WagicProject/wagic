@@ -1176,19 +1176,19 @@ int WUFont::GetMana(const u8 *ch) const
     ch += 2;
     switch (*ch)
     {
-    case 0xa7: // Ｇ : 0xefbca7
+    case 0xa7: // G: 0xefbca7
         return Constants::MTG_COLOR_GREEN;
-    case 0xb5: // Ｕ : 0xefbcb5
+    case 0xb5: // U: 0xefbcb5
         return Constants::MTG_COLOR_BLUE;
-    case 0xb2: // Ｒ : 0xefbcb2
+    case 0xb2: // R: 0xefbcb2
         return Constants::MTG_COLOR_RED;
-    case 0xa2: // Ｂ : 0xefbca2
+    case 0xa2: // B: 0xefbca2
         return Constants::MTG_COLOR_BLACK;
-    case 0xb7: // Ｗ : 0xefbcb7
+    case 0xb7: // W: 0xefbcb7
         return Constants::MTG_COLOR_WHITE;
-    case 0xb4: // Ｔ : 0xefbcb4
-    case 0xb8: // Ｘ : 0xefbcb8
-    case 0xb9: // Ｙ : 0xefbcb9
+    case 0xb4: // T: 0xefbcb4
+    case 0xb8: // X: 0xefbcb8
+    case 0xb9: // Y: 0xefbcb9
         return Constants::MTG_UNCOLORED;
     default:
         if (*ch >= 0x90 && *ch <= 0x99) return Constants::MTG_UNCOLORED;
