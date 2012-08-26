@@ -1,6 +1,6 @@
 // zstream.cpp: implementation of the zstream class.
 //
-// Copyright (C) 2002 Tanguy Fautré.
+// Copyright (C) 2002 Tanguy Fautre
 // For conditions of distribution and use,
 // see copyright notice in zfsystem.h
 //

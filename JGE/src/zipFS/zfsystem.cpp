@@ -3,7 +3,7 @@
 
 // zfsystem.cpp: implementation of the zip file system classes.
 //
-// Copyright (C) 2004 Tanguy Fautré.
+// Copyright (C) 2004 Tanguy Fautre
 // For conditions of distribution and use,
 // see copyright notice in zfsystem.h
 //

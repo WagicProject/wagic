@@ -1,6 +1,6 @@
 // ziphdr.cpp: implementation of the zip header classes.
 //
-// Copyright (C) 2002 Tanguy Fautré.
+// Copyright (C) 2002 Tanguy Fautre
 // For conditions of distribution and use,
 // see copyright notice in ziphdr.h
 //
