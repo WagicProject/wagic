@@ -889,7 +889,7 @@ toughness=6
 [card]
 name=Yeva, Nature's Herald
 abilities=flash
-auto=all(creature [green] cards|myhand) flash forcedalive ueot
+auto=lord(creature[green]|myhand) flash forcedalive
 text=Flash (You may cast this spell any time you could cast an instant.)-- You may cast green creature cards as though they had flash.
 mana={2}{G}{G}
 type=Legendary Creature
@@ -899,7 +899,7 @@ toughness=4
 [/card]
 [card]
 name=Yeva's Forcemage
-auto=@movedTo(this|myBattlefield):2/2 target(creature) ueot
+auto=2/2 target(creature) ueot
 text=WhenYeva's Forcemage enters the battlefield, target creature gets +2/+2 until end of turn.
 mana={2}{G}
 type=Creature
