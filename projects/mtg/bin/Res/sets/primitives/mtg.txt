@@ -15722,6 +15722,7 @@ auto=choice name(creature) moveTo(myhand) all(creature|mygraveyard)
 auto=choice name(artifact) moveTo(myhand) all(artifact|mygraveyard)
 auto=choice name(land) moveTo(myhand) all(land|mygraveyard)
 auto=choice name(enchantment) moveTo(myhand) all(enchantment|mygraveyard)
+auto=choice name(planeswalker) moveTo(myhand) all(planeswalker|mygraveyard)
 flashback={5}{G}{G}
 text=Choose a permanent type. Return all cards of the chosen type from your graveyard to your hand. -- Flashback {5}{G}{G}
 mana={3}{G}{G}
@@ -36641,8 +36642,8 @@ toughness=5
 [/card]
 [card]
 name=Horizon Canopy
-auto={L}{T}:Add{G}
-auto={L}{T}:Add{W}
+auto={T}{L}:Add{G}
+auto={T}{L}:Add{W}
 auto={1}{T}{S}:Draw:1
 text={T}, Pay 1 life: Add {G} or {W} to your mana pool. -- {1}, {T}, Sacrifice Horizon Canopy: Draw a card.
 type=Land

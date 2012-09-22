@@ -1,4 +1,14 @@
 [card]
+name=Ajani, Caller of the Pride
+auto=counter(0/0,4,loyalty)
+auto={C(0/0,1,Loyalty)}:target(creature|mybattlefield) counter(1/1,1)
+auto={C(0/0,-3,Loyalty)}:flying && double strike target(creature|mybattlefield)
+auto={C(0/0,-8,Loyalty)}:foreach(controllerlife) token(Cat,Creature Cat,2/2,white)
+text=+1: Put a +1/+1 counter on up to one target creature.  -3: Target creature gains flying and double strike until end of turn.  -8: Put X 2/2 white Cat creature tokens onto the battlefield, where X is your life total.
+mana={1}{W}{W}
+type=Planeswalker
+subtype=Ajani
+[/card][card]
 name=Ajani's Sunstriker
 abilities=lifelink
 text=Lifelink (Damage dealt by this creature also causes you to gain that much life.)
@@ -445,6 +455,18 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Liliana of the Dark Realms
+auto=counter(0/0,3,loyalty)
+auto={C(0/0,1,Loyalty)}:moveTo(hand) target(swamp|myLibrary)
+auto={C(0/0,-3,Loyalty)}:name(minus) foreach(swamp|myBattlefield)-1/-1 target(creature|*)
+auto={C(0/0,-3,Loyalty)}:name(plus) foreach(swamp|myBattlefield)1/1 target(creature|*)
+auto={C(0/0,-6,Loyalty)}:name(emblem) emblem lord(swamp|mybattlefield) {T}:{B}{B}{B}{B} dontremove
+text=+1: Search your library for a Swamp card, reveal it, and put it into your hand. Then shuffle your library.  -3: Target creature gets +X/+X or -X/-X until end of turn, where X is the number of Swamps you control.  -6: You get an emblem with "Swamps you control have ‘{T}: Add {B}{B}{B}{B} to your mana pool.'"
+mana={2}{B}{B}
+type=Planeswalker
+subtype=Liliana
+[/card]
+[card]
 name=Magmaquake
 auto=damage:X all(creature[-flying])
 text=Magmaquake deals X damage to each creature without flying and to each planeswalker.
@@ -718,7 +740,7 @@ type=Artifact
 [/card]
 [card]
 name=Sublime Archangel
-auto= lord(creature|myBattlefield) exalted
+auto=lord(creature|myBattlefield) exalted
 abilities=flying,exalted
 text=Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.) -- Other creatures you control have exalted.
 mana={2}{W}{W}
@@ -809,7 +831,9 @@ toughness=1
 [/card]
 [card]
 name=Vile Rebirth
-auto=moveTo(exile) target(creature|graveyard) && token(Zombie,Creature Zombie,2/2,black)
+target=creature|graveyard
+auto=moveTo(exile)
+auto=token(Zombie,Creature Zombie,2/2,black)
 text=Exile target creature card from a graveyard. Put a 2/2 black Zombie creature token onto the battlefield. 
 mana={B}
 type=Instant

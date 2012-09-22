@@ -1,0 +1,466 @@
+[meta]
+author=Wagic Team
+name=Izzet vs. Golgari
+block=Duel
+year=2012
+[/meta]
+[card]
+primitive=Barren Moor
+id=292964
+rarity=C
+[/card]
+[card]
+primitive=Boneyard Wurm
+id=338400
+rarity=U
+[/card]
+[card]
+primitive=Brain Weevil
+id=338401
+rarity=C
+[/card]
+[card]
+primitive=Brainstorm
+id=292751
+rarity=C
+[/card]
+[card]
+primitive=Call to Heel
+id=292748
+rarity=C
+[/card]
+[card]
+primitive=Dakmor Salvage
+id=292984
+rarity=U
+[/card]
+[card]
+primitive=Life//Death (Death)
+id=292976
+rarity=U
+[/card]
+[card]
+primitive=Dissipate
+id=292758
+rarity=U
+[/card]
+[card]
+primitive=Djinn Illuminatus
+id=292730
+rarity=R
+[/card]
+[card]
+primitive=Doomgape
+id=292979
+rarity=R
+[/card]
+[card]
+primitive=Dreg Mangler
+id=338412
+rarity=U
+[/card]
+[card]
+primitive=Elves of Deep Shadow
+id=292942
+rarity=C
+[/card]
+[card]
+primitive=Eternal Witness
+id=292966
+rarity=U
+[/card]
+[card]
+primitive=Feast or Famine
+id=338405
+rarity=C
+[/card]
+[card]
+primitive=Fire//Ice (Fire)
+id=292753
+rarity=U
+[/card]
+[card]
+primitive=Force Spike
+id=292750
+rarity=C
+[/card]
+[card]
+primitve=Forest
+id=292943
+rarity=L
+[/card]
+[card]
+primitve=Forest
+id=292946
+rarity=L
+[/card]
+[card]
+primitve=Forest
+id=292945
+rarity=L
+[/card]
+[card]
+primitve=Forest
+id=292944
+rarity=L
+[/card]
+[card]
+primitive=Forgotten Cave
+id=292761
+rarity=C
+[/card]
+[card]
+primitive=Galvanoth
+id=338469
+rarity=R
+[/card]
+[card]
+primitive=Gelectrode
+id=292731
+rarity=U
+[/card]
+[card]
+primitive=Ghoul's Feast
+id=338407
+rarity=U
+[/card]
+[card]
+primitive=Gleancrawler
+id=338391
+rarity=R
+[/card]
+[card]
+primitive=Goblin Electromancer
+id=338414
+rarity=C
+[/card]
+[card]
+primitive=Golgari Germination
+id=292948
+rarity=U
+[/card]
+[card]
+primitive=Golgari Grave-Troll
+id=338406
+rarity=R
+[/card]
+[card]
+primitive=Golgari Rot Farm
+id=292950
+rarity=C
+[/card]
+[card]
+primitive=Golgari Rotwurm
+id=292951
+rarity=C
+[/card]
+[card]
+primitive=Golgari Signet
+id=292952
+rarity=C
+[/card]
+[card]
+primitive=Golgari Thug
+id=292953
+rarity=U
+[/card]
+[card]
+primitive=Greater Mossdog
+id=338472
+rarity=C
+[/card]
+[card]
+primitive=Grim Flowering
+id=338390
+rarity=U
+[/card]
+[card]
+primitive=Ice//Fire(Ice)
+id=292754
+rarity=
+[/card]
+[card]
+primitive=Invoke the Firemind
+id=292732
+rarity=R
+[/card]
+[card]
+primitive=Island
+id=292765
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=292763
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=292766
+rarity=L
+[/card]
+[card]
+primitive=Island
+id=292764
+rarity=L
+[/card]
+[card]
+primitive=Isochron Scepter
+id=292752
+rarity=U
+[/card]
+[card]
+primitive=Izzet Boilerworks
+id=292733
+rarity=C
+[/card]
+[card]
+primitive=Izzet Charm
+id=338413
+rarity=U
+[/card]
+[card]
+primitive=Izzet Chronarch
+id=292734
+rarity=C
+[/card]
+[card]
+primitive=Izzet Guildmage
+id=292735
+rarity=U
+[/card]
+[card]
+primitive=Izzet Signet
+id=292736
+rarity=C
+[/card]
+[card]
+primitive=Jarad, Golgari Lich Lord
+id=292771
+rarity=M
+[/card]
+[card]
+primitive=Kiln Fiend
+id=292742
+rarity=C
+[/card]
+[card]
+primitive=Korozda Guildmage
+id=338415
+rarity=U
+[/card]
+[card]
+primitive=Life//Death (Life)
+id=292977
+rarity=U
+[/card]
+[card]
+primitive=Life from the Loam
+id=338409
+rarity=R
+[/card]
+[card]
+primitive=Lonely Sandbar
+id=292762
+rarity=C
+[/card]
+[card]
+primitive=Magma Spray
+id=338470
+rarity=C
+[/card]
+[card]
+primitive=Mountain
+id=292769
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=292767
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=292768
+rarity=L
+[/card]
+[card]
+primitive=Mountain
+id=292770
+rarity=
+[/card]
+[card]
+primitive=Nightmare Void
+id=338410
+rarity=U
+[/card]
+[card]
+primitive=Nivix, Aerie of the Firemind
+id=292737
+rarity=U
+[/card]
+[card]
+primitive=Niv-Mizzet, the Firemind
+id=292738
+rarity=M
+[/card]
+[card]
+primitive=Ogre Savant
+id=338389
+rarity=C
+[/card]
+[card]
+primitive=Overwhelming Intellect
+id=292759
+rarity=U
+[/card]
+[card]
+primitive=Plagued Rusalka
+id=338396
+rarity=U
+[/card]
+[card]
+primitive=Prophetic Bolt
+id=338392
+rarity=R
+[/card]
+[card]
+primitive=Putrefy
+id=292956
+rarity=U
+[/card]
+[card]
+primitive=Putrid Leech
+id=338388
+rarity=C
+[/card]
+[card]
+primitive=Pyromatics
+id=292739
+rarity=C
+[/card]
+[card]
+primitive=Quicksilver Dagger
+id=292757
+rarity=C
+[/card]
+[card]
+primitive=Ravenous Rats
+id=338404
+rarity=C
+[/card]
+[card]
+primitive=Reassembling Skeleton
+id=338402
+rarity=U
+[/card]
+[card]
+primitive=Reminisce
+id=338471
+rarity=U
+[/card]
+[card]
+primitive=Sadistic Hypnotist
+id=338408
+rarity=U
+[/card]
+[card]
+primitive=Shambling Shell
+id=292957
+rarity=U
+[/card]
+[card]
+primitive=Shrewd Hatchling
+id=338395
+rarity=U
+[/card]
+[card]
+primitive=Sphinx-Bone Wand
+id=292760
+rarity=R
+[/card]
+[card]
+primitive=Steamcore Weird
+id=338393
+rarity=C
+[/card]
+[card]
+primitive=Stingerfling Spider
+id=338403
+rarity=U
+[/card]
+[card]
+primitive=Stinkweed Imp
+id=292958
+rarity=C
+[/card]
+[card]
+primitive=Street Spasm
+id=338411
+rarity=U
+[/card]
+[card]
+primitive=Svogthos, the Restless Tomb
+id=292959
+rarity=U
+[/card]
+[card]
+primitive=Swamp
+id=292962
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=292961
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=292960
+rarity=L
+[/card]
+[card]
+primitive=Swamp
+id=292963
+rarity=L
+[/card]
+[card]
+primitive=Thunderheads
+id=338397
+rarity=U
+[/card]
+[card]
+primitive=Train of Thought
+id=292740
+rarity=C
+[/card]
+[card]
+primitive=Tranquil Thicket
+id=292969
+rarity=C
+[/card]
+[card]
+primitive=Twilight's Call
+id=338399
+rarity=R
+[/card]
+[card]
+primitive=Vacuumelt
+id=338398
+rarity=U
+[/card]
+[card]
+primitive=Vigor Mortis
+id=338473
+rarity=U
+[/card]
+[card]
+primitive=Wee Dragonauts
+id=292741
+rarity=C
+[/card]
+[card]
+primitive=Yoke of the Damned
+id=338474
+rarity=C
+[/card]

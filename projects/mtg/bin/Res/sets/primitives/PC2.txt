@@ -12,7 +12,7 @@ toughness=1
 [/card]
 [card]
 name=Beetleback Chief
-auto=@movedTo(my|battlefield):token(Goblin,creature token goblin,1/1,red)*2
+auto=token(Goblin,Creature Goblin,1/1,red)*2
 text=When Beetleback Chief enters the battlefield, put two 1/1 red Goblin creature tokens onto the battlefield.
 mana={2}{R}{R}
 type=Creature
@@ -82,6 +82,16 @@ power=6
 toughness=6
 [/card]
 [card]
+name=Mass Mutiny
+target=creature|opponentbattlefield
+auto=haste
+auto=untap
+alias=129767
+text=For each opponent, gain control of target creature that player controls until end of turn. Untap those creatures. They gain haste until end of turn. 
+mana={3}{R}{R}
+type=Sorcery
+[/card]
+[card]
 name=Preyseizer Dragon
 auto=may target(<anyamount>other creature|mybattlefield) sacrifice && counter(1/1,2) all(this) 
 auto=this(attacking):target(creature,player) dynamicability<!chargestrike!>
@@ -97,8 +107,7 @@ toughness=4
 name=Sai of the Shinobi
 auto=@movedto(creature|myBattlefield):choice all(trigger[to]) retarget
 auto=1/1
-text=Equipped creature gets +1/+1. -- Whenever a creature enters the battlefield under your control, you may attach Sai of the Shinobi to it.
--- Equip {2 ({2}: Attach to target creature you control. Equip only as a sorcery.)
+text=Equipped creature gets +1/+1. -- Whenever a creature enters the battlefield under your control, you may attach Sai of the Shinobi to it. -- Equip {2 ({2}: Attach to target creature you control. Equip only as a sorcery.)
 mana={1}
 auto={2}:equip
 type=Artifact

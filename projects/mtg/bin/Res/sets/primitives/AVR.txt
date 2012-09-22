@@ -479,7 +479,7 @@ type=Enchantment
 [card]
 name=Fervent Cathar
 abilities=haste
-auto=target(creature|mybattlefield) cantblock ueot
+auto=target(creature) cantblock ueot
 text=Haste -- When Fervent Cathar enters the battlefield, target creature can't block this turn.
 mana={2}{R}
 type=Creature
