@@ -371,8 +371,8 @@ toughness=2
 [/card]
 [card]
 name=Healer of the Pride
-auto=@movedTo(other creature|mybattlefield):may life:2 controller
-text=Whenever another creature enters the battlefield under your control, you may gain 2 life. 
+auto=@movedTo(other creature|mybattlefield):life:2 controller
+text=Whenever another creature enters the battlefield under your control, you gain 2 life. 
 mana={3}{W}
 type=Creature
 subtype=Cat Cleric

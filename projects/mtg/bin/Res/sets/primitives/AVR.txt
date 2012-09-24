@@ -1027,7 +1027,7 @@ toughness=3
 [card]
 name=Restoration Angel
 abilities=flash,flying
-auto=(blink) target(creature[-angel]|mybattlefield)
+auto=may (blink) target(creature[-angel]|mybattlefield)
 text=Flash -- Flying -- When Restoration Angel enters the battlefield, you may exile target non-Angel creature you control, then return that creature to the battlefield under your control.
 mana={3}{W}
 type=Creature

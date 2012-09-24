@@ -16650,7 +16650,7 @@ type=Enchantment
 subtype=Aura Curse
 [/card]
 [card]
-name=Curse of the Nightly Haunt
+name=Curse of the Nightly Hunt
 target=player
 auto=lord(creature|targetedpersonsBattlefield) mustattack
 text=Enchant Player -- Creatures enchanted palyer controls attack each turn if able.
@@ -25488,8 +25488,8 @@ toughness=2
 [/card]
 [card]
 name=Falkenrath Torturer
-abilities={S(creature[-human]):name(sacrifice a non-human creature):flying
-abilities={S(creature[human]):name(sacrifice a human):flying && counter(1/1,1)
+auto={S(creature[-human]):name(sacrifice a non-human creature):flying
+auto={S(creature[human]):name(sacrifice a human):flying && counter(1/1,1)
 text=Sacrifice a creature: Falkenrath Torturer gains flying until end of turn. If the sacrificed creature was a Human, put a +1/+1 counter on Falkenrath Torturer.
 mana={2}{B}
 type=Creature
@@ -52993,8 +52993,8 @@ toughness=1
 ###The 2 cards below should stay together (Flip Card)###
 [card]
 name=Nezumi Shortfang
-auto={0}:target(opponent) ability$!name(discard) target(*|myhand) reject!$ targetedplayer restriction{type(*|opponenthand)~morethan~1}
-auto={0}:name(discard and flip) transforms((,newability[name(discard and flip) target(opponent) ability$!target(*|myhand) reject!$ targetedplayer],newability[@discarded(*|opponenthand) once:flip(Stabwhisker the Odious)])) ueot restriction{type(*|opponenthand)~lessthan~2}
+auto={1}{B}:target(opponent) ability$!name(discard) target(*|myhand) reject!$ targetedplayer restriction{type(*|opponenthand)~morethan~1}
+auto={1}{B}:name(discard and flip) transforms((,newability[name(discard and flip) target(opponent) ability$!target(*|myhand) reject!$ targetedplayer],newability[@discarded(*|opponenthand) once:flip(Stabwhisker the Odious)])) ueot restriction{type(*|opponenthand)~lessthan~2}
 text={1}{B}, {T}: Target opponent discards a card. Then if that player has no cards in hand, flip Nezumi Shortfang.
 mana={1}{B}
 type=Creature
@@ -82871,6 +82871,7 @@ type=Instant
 [/card]
 [card]
 name=Tribute to Hunger
+target=opponen
 auto=ability$!name(sacrifice) notatarget(creature|mybattlefield) dynamicability<!mytgt toughnesslifegain targetopponent!> sacrifice!$ targetedplayer
 text=Target opponent sacrifices a creature. You gain life equal to that creature's toughness.
 mana={2}{B}

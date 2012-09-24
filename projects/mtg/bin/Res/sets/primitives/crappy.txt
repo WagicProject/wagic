@@ -21,7 +21,7 @@ type=Instant
 [/card]
 [card]
 name=Marsh Crocodile
-auto=target(creature[blue;black]) moveto(myhand)
+auto=target(creature[blue;black|myBattlefield]) moveto(myhand)
 auto=all(player) discard:1
 text=When Marsh Crocodile enters the battlefield, return a blue or black creature you control to its owner's hand. -- When Marsh Crocodile enters the battlefield, each player discards a card.
 mana={2}{U}{B}
