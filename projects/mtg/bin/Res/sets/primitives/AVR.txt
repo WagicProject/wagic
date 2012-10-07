@@ -1,15 +1,5 @@
 grade=crappy
 [card]
-name=Abundant Growth
-target=land|myBattlefield
-auto=draw:1 controller
-auto=teach(land) {T}:activatechooseacolor add{chosencolor} activatechooseend
-text=Enchant land -- When Abundant Growth enters the battlefield, draw a card. -- Enchanted land has "{T}: Add one mana of any colour to your mana pool."
-mana={G}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Alchemist's Apprentice
 auto={S}:draw:1
 text=Sacrifice Alchemist's Apprentice: Draw a card.
@@ -129,7 +119,7 @@ subtype=Equipment
 [/card]
 [card]
 name=Blood Artist
-auto=@movedTo(creature|graveyard) from(battlefield):life:-1 target(player) && life:1 controller
+auto=@movedTo(creature|graveyard) from(battlefield):life:-1 opponent && life:1 controller
 text=Whenever Blood Artist or another creature dies, target player loses 1 life and you gain 1 life.
 mana={1}{B}
 type=Creature
@@ -146,13 +136,6 @@ type=Creature
 subtype=Zombie
 power=1
 toughness=1
-[/card]
-[card]
-name=Desolate Lighthouse
-auto={T}:Add{1}
-auto={T}:draw:1 && transforms((,newability[target(*|myhand) reject])) forever
-text={T}: Add {1} to your mana pool. -- {1}{U}{R}, {T}: Draw a card, then discard a card.
-type=Land
 [/card]
 [card]
 name=Bower Passage
@@ -240,19 +223,11 @@ type=Instant
 [card]
 name=Commander's Authority
 target=creature
-auto=@each my upkeep:may token(Human,Human Creature, 1/1,white)
+auto=@each my upkeep:token(Human, Human Creature, 1/1, white)
 text=Enchant Creature -- Enchanted creature has "At the beginning of your upkeep, put a 1/1 white Human creature token onto the battlefield."
 mana={4}{W}
 type=Enchantment
 subtype=Aura
-[/card]
-[card]
-name=Human
-type=Creature
-subtype=Human
-power=1
-toughness=1
-color=white
 [/card]
 [card]
 name=Conjurer's Closet
@@ -367,6 +342,13 @@ power=5
 toughness=4
 [/card]
 [card]
+name=Desolate Lighthouse
+auto={T}:Add{1}
+auto={1}{U}{R}{T}:draw:1 && transforms((,newability[target(*|myhand) reject])) forever
+text={T}: Add {1} to your mana pool. -- {1}{U}{R}, {T}: Draw a card, then discard a card.
+type=Land
+[/card]
+[card]
 name=Devout Chaplain
 auto={T}{T(human|myBattlefield)}{T(human|myBattlefield)}:moveTo(exile) target(artifact,enchantent)
 text={T}, Tap two untapped humans you control: Exile target artifact or enchantment.
@@ -393,14 +375,6 @@ type=Creature
 subtype=Vampire
 power=3
 toughness=2
-[/card]
-[card]
-name=Druids' Repository
-auto=@combat(attacking) source(creature|mybattlefield):counter(0/0,1,Charge)
-auto={C(0/0,-1,Charge)}:chooseacolor Add{chosencolor} chooseend
-text=Whenever a creature you control attacks, put a charge counter on Druids' Repository. -- Remove a charge counter from Druids' Repository : Add one mana of any color to your mana pool.
-mana={1}{G}{G}
-type=Enchantment
 [/card]
 [card]
 name=Eaten by Spiders
@@ -1147,6 +1121,13 @@ power=2
 toughness=3
 [/card]
 [card]
+name=Slayers' Stronhold
+auto={T}:Add{1}
+auto={1}{R}{W}{T}: target(creature) 2/0 ueot && vigilance ueot && haste ueot
+text={T}: Add {1} to your mana pool. -- {1}{R}{W}, {T}: Target creature gets +2/+0 and gains vigilance and haste until end of turn
+type=Land
+[/card]
+[card]
 name=Snare the Skies
 target=creature
 auto=1/1
@@ -1356,14 +1337,6 @@ type=Creature
 subtype=Wolf
 power=2
 toughness=1
-[/card]
-[card]
-name=Wild Defiance
-auto=@targeted(creature) from(instant):all(trigger[to]) 3/3 ueot
-auto=@targeted(creature) from(sorcery):all(trigger[to]) 3/3 ueot
-text=Whenever a creature you control becomes the target of an instant or sorcery spell, it gets +3/+3 until end of turn.
-mana={2}{G}
-type=Enchantment
 [/card]
 [card]
 name=Wildwood Geist
