@@ -3948,10 +3948,13 @@ public:
     vector<string> newAbilitiesList;
     bool newAbilityFound;
     bool aForever;
+    bool UYNT;
+    int myCurrentTurn;
 
-    ATransformer(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target, string stypes, string sabilities,string newpower,bool newpowerfound,string newtoughness,bool newtoughnessfound,vector<string> newAbilitiesList,bool newAbilityFound = false,bool aForever = false);
+    ATransformer(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target, string stypes, string sabilities,string newpower,bool newpowerfound,string newtoughness,bool newtoughnessfound,vector<string> newAbilitiesList,bool newAbilityFound = false,bool aForever = false ,bool UYNT = false);
     int addToGame();
     int reapplyCountersBonus(MTGCardInstance * rtarget= NULL,bool powerapplied=false,bool toughnessapplied=false);
+    int testDestroy();
     int destroy();
     const char * getMenuText();
     ATransformer * clone() const;
@@ -3971,8 +3974,9 @@ public:
     map<Damageable *, vector<MTGAbility *> > newAbilities;
     bool newAbilityFound;
     bool aForever;
+    bool UYNT;
 
-    ATransformerInstant(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target, string types = "", string abilities = "",string newpower = "",bool newpowerfound = false,string newtoughness = "",bool newtoughnessfound = false,vector<string>newAbilitiesList = vector<string>(),bool newAbilityFound = false,bool aForever = false);
+    ATransformerInstant(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target, string types = "", string abilities = "",string newpower = "",bool newpowerfound = false,string newtoughness = "",bool newtoughnessfound = false,vector<string>newAbilitiesList = vector<string>(),bool newAbilityFound = false,bool aForever = false, bool UYNT = false);
     int resolve();
     const char * getMenuText();
     ATransformerInstant * clone() const;

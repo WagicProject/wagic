@@ -3566,8 +3566,8 @@ AAlterCost::~AAlterCost()
 }
 
 // ATransformer
-ATransformer::ATransformer(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target, string stypes, string sabilities,string newpower,bool newpowerfound,string newtoughness,bool newtoughnessfound,vector<string> newAbilitiesList,bool newAbilityFound,bool aForever) :
-    MTGAbility(observer, id, source, target),newpower(newpower),newpowerfound(newpowerfound),newtoughness(newtoughness),newtoughnessfound(newtoughnessfound),newAbilitiesList(newAbilitiesList),newAbilityFound(newAbilityFound),aForever(aForever)
+ATransformer::ATransformer(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target, string stypes, string sabilities,string newpower,bool newpowerfound,string newtoughness,bool newtoughnessfound,vector<string> newAbilitiesList,bool newAbilityFound,bool aForever, bool aUntilNext) :
+    MTGAbility(observer, id, source, target),newpower(newpower),newpowerfound(newpowerfound),newtoughness(newtoughness),newtoughnessfound(newtoughnessfound),newAbilitiesList(newAbilitiesList),newAbilityFound(newAbilityFound),aForever(aForever),UYNT(aUntilNext)
 {
 
     PopulateAbilityIndexVector(abilities, sabilities);
@@ -3576,7 +3576,7 @@ ATransformer::ATransformer(GameObserver* observer, int id, MTGCardInstance * sou
     {
         colors.push_back(source->chooseacolor);
     }
-   
+    myCurrentTurn = 1000;
     //this subkeyword adds a color without removing the existing colors.
     addNewColors = (sabilities.find("newcolors") != string::npos);
 	remove = (stypes.find("removealltypes") != string::npos);
@@ -3608,6 +3608,8 @@ ATransformer::ATransformer(GameObserver* observer, int id, MTGCardInstance * sou
 
 int ATransformer::addToGame()
 {
+    if(UYNT)
+        myCurrentTurn = game->turn;
     MTGCardInstance * _target = NULL;
         Interruptible * action = (Interruptible *) target;
     if (action && action->type == ACTION_SPELL && action->state == NOT_RESOLVED)
@@ -3781,6 +3783,19 @@ for (it = types.begin(); it != types.end(); it++)
             return rNewToughness;
         return rNewPower;
     }
+
+    int ATransformer::testDestroy()
+    {
+        if(UYNT)
+        {
+            if(myCurrentTurn != 1000 && game->turn > myCurrentTurn && source->controller()->getId() == game->currentPlayer->getId())
+            {
+                return 1;
+            }
+        }
+        return MTGAbility::testDestroy();
+    }
+
 int ATransformer::destroy()
 {
     if(aForever)
@@ -3882,10 +3897,10 @@ ATransformer::~ATransformer()
 }
 
 //ATransformerInstant
-ATransformerInstant::ATransformerInstant(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target, string types, string abilities,string newpower,bool newpowerfound,string newtoughness,bool newtoughnessfound,vector<string>newAbilitiesList,bool newAbilityFound,bool aForever) :
-    InstantAbility(observer, id, source, target),newpower(newpower),newpowerfound(newpowerfound),newtoughness(newtoughness),newtoughnessfound(newtoughnessfound),newAbilitiesList(newAbilitiesList),newAbilityFound(newAbilityFound),aForever(aForever)
+ATransformerInstant::ATransformerInstant(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target, string types, string abilities,string newpower,bool newpowerfound,string newtoughness,bool newtoughnessfound,vector<string>newAbilitiesList,bool newAbilityFound,bool aForever,bool aUntilNext) :
+    InstantAbility(observer, id, source, target),newpower(newpower),newpowerfound(newpowerfound),newtoughness(newtoughness),newtoughnessfound(newtoughnessfound),newAbilitiesList(newAbilitiesList),newAbilityFound(newAbilityFound),aForever(aForever),UYNT(aUntilNext)
 {
-    ability = NEW ATransformer(game, id, source, target, types, abilities,newpower,newpowerfound,newtoughness,newtoughnessfound,newAbilitiesList,newAbilityFound,aForever);
+    ability = NEW ATransformer(game, id, source, target, types, abilities,newpower,newpowerfound,newtoughness,newtoughnessfound,newAbilitiesList,newAbilityFound,aForever,aUntilNext);
     aType = MTGAbility::STANDARD_BECOMES;
 }
 

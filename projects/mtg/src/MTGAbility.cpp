@@ -2036,6 +2036,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     }
     bool oneShot = false;
     bool forceForever = false;
+    bool untilYourNextTurn = false;
     found = s.find("ueot");
     if (found != string::npos)
         forceUEOT = true;
@@ -2045,6 +2046,9 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     found = s.find("forever");
     if (found != string::npos)
         forceForever = true;
+    found = s.find("uynt");
+    if (found != string::npos)
+        untilYourNextTurn = true;
     //Prevent Damage
     const string preventDamageKeywords[] = { "preventallcombatdamage", "preventallnoncombatdamage", "preventalldamage", "fog" };
     const int preventDamageTypes[] = {0, 2, 1, 0}; //TODO enum ?
@@ -2438,9 +2442,9 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
 			}
 		}
         if (oneShot || forceUEOT || forceForever)
-            return NEW ATransformerInstant(observer, id, card, target, stypes, sabilities,newPower,ptFound,newToughness,ptFound,vector<string>(),false,forceForever);
+            return NEW ATransformerInstant(observer, id, card, target, stypes, sabilities,newPower,ptFound,newToughness,ptFound,vector<string>(),false,forceForever,untilYourNextTurn);
 
-        return  NEW ATransformer(observer, id, card, target, stypes, sabilities,newPower,ptFound,newToughness,ptFound,vector<string>(),false,forceForever);
+        return  NEW ATransformer(observer, id, card, target, stypes, sabilities,newPower,ptFound,newToughness,ptFound,vector<string>(),false,forceForever,untilYourNextTurn);
     }
 
     //bloodthirst
@@ -2529,9 +2533,9 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         }
 
         if (oneShot || forceUEOT || forceForever)
-            return NEW ATransformerInstant(observer, id, card, target, stypes, sabilities,newpower,newpowerfound,newtoughness,newtoughnessfound,newAbilitiesList,newAbilityFound,forceForever);
+            return NEW ATransformerInstant(observer, id, card, target, stypes, sabilities,newpower,newpowerfound,newtoughness,newtoughnessfound,newAbilitiesList,newAbilityFound,forceForever,untilYourNextTurn);
         
-        return NEW ATransformer(observer, id, card, target, stypes, sabilities,newpower,newpowerfound,newtoughness,newtoughnessfound,newAbilitiesList,newAbilityFound);
+        return NEW ATransformer(observer, id, card, target, stypes, sabilities,newpower,newpowerfound,newtoughness,newtoughnessfound,newAbilitiesList,newAbilityFound,forceForever,untilYourNextTurn);
 
     }
     
