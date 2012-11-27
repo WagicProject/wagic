@@ -1061,6 +1061,12 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             if (splitRest.size())
                 trigger->castRestriction = splitRest[1];
         }
+        if (splitTrigger[1].find("restriction{{") != string::npos)
+        {
+            vector<string> splitRest = parseBetween(s,"restriction{{","}}");
+            if (splitRest.size())
+                trigger->castRestriction = splitRest[1];
+        }
         //Dirty way to remove the trigger text (could get in the way)
         if (trigger)
         {
