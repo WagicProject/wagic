@@ -3844,7 +3844,7 @@ int ATransformer::destroy()
         }
         if(newtoughnessfound )
         {
-            _target->toughness = oldtoughness;
+            _target->setToughness(oldtoughness);
         }
         if(newAbilityFound)
         {
