@@ -5263,6 +5263,33 @@ public:
     }
 };
 
+//Evole ability
+class AEvoleAbility: public MTGAbility
+{
+public:
+    AEvoleAbility(GameObserver* observer, int _id, MTGCardInstance * _source) :
+        MTGAbility(observer, _id, _source)
+    {
+    }
+    int receiveEvent(WEvent * event)
+    {
+       WEventZoneChange * enters = (WEventZoneChange *) event;
+       if (enters->to == game->currentlyActing()->game->inPlay && game->currentlyActing() == source->controller() && enters->card->isCreature())
+        {
+            if(enters->card != source && (enters->card->power > source->power || enters->card->toughness > source->toughness))
+            {
+                source->counters->addCounter(1,1);
+            }
+        }
+        return 1;
+    }
+
+    AEvoleAbility * clone() const
+    {
+        return NEW AEvoleAbility(*this);
+    }
+};
+
 //flanking ability
 class AFlankerAbility: public MTGAbility
 {

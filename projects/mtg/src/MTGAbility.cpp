@@ -2284,6 +2284,12 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         return NEW ARampageAbility(observer, id, card, power, toughness, MaxOpponent);
     }
     
+    //evole
+    if (s.find("evole") != string::npos)
+    {
+        return NEW AEvoleAbility(observer, id, card);
+    }
+
     //flanking
     if (s.find("flanker") != string::npos)
     {
