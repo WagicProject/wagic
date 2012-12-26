@@ -87,8 +87,8 @@ void FileDownloader::computeRemoteHash()
     } else {
         QString aString = m_hashReply->readAll();
 
-        int index = aString.indexOf("SHA1 Checksum: ");
-        m_remoteHash = aString.mid(index+52, 40);
+        int index = aString.indexOf("<span id=\"sha1\">");
+        m_remoteHash = aString.mid(index+16, 40);
         if(m_localHash != m_remoteHash)
         {   /* We download the real file */
             m_state = DOWNLOADING_FILE;
