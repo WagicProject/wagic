@@ -5264,10 +5264,10 @@ public:
 };
 
 //Evole ability
-class AEvoleAbility: public MTGAbility
+class AEvolveAbility: public MTGAbility
 {
 public:
-    AEvoleAbility(GameObserver* observer, int _id, MTGCardInstance * _source) :
+    AEvolveAbility(GameObserver* observer, int _id, MTGCardInstance * _source) :
         MTGAbility(observer, _id, _source)
     {
     }
@@ -5284,9 +5284,9 @@ public:
         return 1;
     }
 
-    AEvoleAbility * clone() const
+    AEvolveAbility * clone() const
     {
-        return NEW AEvoleAbility(*this);
+        return NEW AEvolveAbility(*this);
     }
 };
 

@@ -2285,9 +2285,9 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     }
     
     //evole
-    if (s.find("evole") != string::npos)
+    if (s.find("evolve") != string::npos)
     {
-        return NEW AEvoleAbility(observer, id, card);
+        return NEW AEvolveAbility(observer, id, card);
     }
 
     //flanking
