@@ -71,7 +71,7 @@ rarity=C
 [card]
 primitive=Blinding Souleater
 id=233045
-rarity=U
+rarity=C
 [/card]
 [card]
 primitive=Bludgeon Brawl
@@ -481,7 +481,7 @@ rarity=R
 [card]
 primitive=Necropouncer
 id=214367
-rarity=
+rarity=U
 [/card]
 [card]
 primitive=Norn's Annex
@@ -621,7 +621,7 @@ rarity=C
 [card]
 primitive=Reaper of Sheoldred
 id=214374
-rarity=C
+rarity=U
 [/card]
 [card]
 primitive=Remember the Fallen
@@ -841,7 +841,7 @@ rarity=U
 [card]
 primitive=Volt Charge
 id=214381
-rarity=U
+rarity=C
 [/card]
 [card]
 primitive=Vorinclex, Voice of Hunger
