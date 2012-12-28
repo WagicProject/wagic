@@ -4,10 +4,10 @@ name=Wagic 2013
 block=Core
 year=2012
 [/meta]
-[card] 
+[card]
 primitive=Acidic Slime
 id=265718
-rarity=U  
+rarity=U
 [/card]
 [card]
 primitive=Ajani, Caller of the Pride
@@ -24,101 +24,101 @@ primitive=Akroma's Memorial
 id=279712
 rarity=M
 [/card]
-[card] 
+[card]
 primitive=Angelic Benediction
 id=279702
-rarity=C  
+rarity=U
 [/card]
-[card] 
+[card]
 primitive=Angel's Mercy
 id=259714
-rarity=R  
+rarity=C
 [/card]
-[card] 
+[card]
 primitive=Arbor Elf
 id=249840
-rarity=C 
+rarity=C
 [/card]
 [card]
 primitive=Archaeomancer
 id=265722
-rarity=C  
+rarity=C
 [/card]
-[card] 
+[card]
 primitive=Arctic Aven
 id=249710
-rarity=U 
+rarity=U
 [/card]
-[card] 
+[card]
 primitive=Arms Dealer
 id=265719
-rarity=U 
+rarity=U
 [/card]
-[card] 
+[card]
 primitive=Attended Knight
 id=265723
-rarity=C  
+rarity=C
 [/card]
-[card] 
+[card]
 primitive=Augur of Bolas
 id=249676
-rarity=U  
+rarity=U
 [/card]
-[card] 
+[card]
 primitive=Aven Squire
 id=265712
-rarity=C  
+rarity=C
 [/card]
-[card] 
+[card]
 primitive=Battle of Wits
 id=288878
-rarity=R  
+rarity=R
 [/card]
-[card] 
+[card]
 primitive=Battleflight Eagle
 id=259721
-rarity=C  
+rarity=C
 [/card]
-[card] 
+[card]
 primitive=Bladetusk Boar
 id=279707
-rarity=C  
+rarity=C
 [/card]
-[card] 
+[card]
 primitive=Blood Reckoning
 id=279991
-rarity=U  
+rarity=U
 [/card]
-[card] 
+[card]
 primitive=Bloodhunter Bat
 id=259705
-rarity=C  
+rarity=C
 [/card]
-[card] 
+[card]
 primitive=Bloodthrone Vampire
 id=280298
-rarity=C  
+rarity=C
 [/card]
-[card] 
+[card]
 primitive=Bond Beetle
 id=249696
-rarity=C  
-[/card] 
+rarity=C
+[/card]
 [card]
 primitive=Boundless Realms
 id=249667
-rarity=R  
-[/card] 
-[card] 
+rarity=R
+[/card]
+[card]
 primitive=Bountiful Harvest
 id=278074
 rarity=C
-[/card] 
+[/card]
 [card]
 primitive=Canyon Minotaur
 id=259211
 rarity=C
-[/card]        
+[/card]
 [card]
 primitive=Captain of the Watch
 id=259716
@@ -127,17 +127,17 @@ rarity=R
 [card]
 primitive=Captain's Call
 id=249689
-rarity=R
+rarity=C
 [/card]
 [card]
 primitive=Cathedral of War
 id=259680
 rarity=R
 [/card]
-[card] 
+[card]
 primitive=Centaur Courser
 id=279993
-rarity=U  
+rarity=C
 [/card]
 [card]
 primitive=Chandra, the Firebrand
@@ -147,22 +147,22 @@ rarity=M
 [card]
 primitive=Chandra's Fury
 id=249682
-rarity=C  
+rarity=C
 [/card]
 [card]
 primitive=Chronomaton
 id=259698
-rarity=U  
+rarity=U
 [/card]
-[card] 
+[card]
 primitive=Cleaver Riot
 id=276207
-rarity=U  
+rarity=U
 [/card]
-[card] 
+[card]
 primitive=Clock of Omens
 id=288877
-rarity=U  
+rarity=U
 [/card]
 [card]
 primitive=Clone
@@ -172,82 +172,82 @@ rarity=R
 [card]
 primitive=Courtly Provocateur
 id=276475
-rarity=R
+rarity=U
 [/card]
-[card] 
+[card]
 primitive=Cower in Fear
 id=280232
-rarity=U  
+rarity=U
 [/card]
-[card] 
+[card]
 primitive=Craterize
 id=253699
-rarity=U  
+rarity=C
 [/card]
-[card] 
+[card]
 primitive=Crimson Muckwader
 id=253739
-rarity=U 
+rarity=U
 [/card]
-[card] 
+[card]
 primitive=Crippling Blight
 id=253716
-rarity=C  
+rarity=C
 [/card]
-[card] 
+[card]
 primitive=Crusader of Odric
 id=253730
-rarity=C  
+rarity=U
 [/card]
-[card] 
+[card]
 primitive=Dark Favor
 id=260975
-rarity=C 
+rarity=C
 [/card]
-[card] 
+[card]
 primitive=Deadly Recluse
 id=265717
-rarity=C 
+rarity=C
 [/card]
-[card] 
+[card]
 primitive=Diabolic Revelation
 id=278196
-rarity=R 
+rarity=R
 [/card]
-[card] 
+[card]
 primitive=Disciple of Bolas
 id=253694
-rarity=R  
+rarity=R
 [/card]
-[card] 
+[card]
 primitive=Disentomb
 id=259701
-rarity=R  
+rarity=C
 [/card]
-[card] 
+[card]
 primitive=Divination
 id=254118
-rarity=C  
+rarity=C
 [/card]
-[card] 
+[card]
 primitive=Divine Favor
 id=259709
-rarity=C  
+rarity=C
 [/card]
-[card] 
+[card]
 primitive=Divine Verdict
 id=271367
-rarity=C  
+rarity=C
 [/card]
 [card]
 primitive=Door to Nothingness
 id=288992
 rarity=R
 [/card]
-[card] 
+[card]
 primitive=Downpour
 id=276208
-rarity=C  
+rarity=C
 [/card]
 [card]
 primitive=Dragon Hatchling
@@ -264,96 +264,96 @@ primitive=Drowned Catacomb
 id=249717
 rarity=R
 [/card]
-[card] 
+[card]
 primitive=Duress
 id=260979
-rarity=C  
-[/card] 
-[card] 
+rarity=C
+[/card]
+[card]
 primitive=Duskdale Wurm
 id=276474
-rarity=U  
+rarity=U
 [/card]
-[card] 
+[card]
 primitive=Duskmantle Prowler
 id=265728
-rarity=U  
+rarity=U
 [/card]
-[card] 
+[card]
 primitive=Duty-Bound Dead
 id=260988
-rarity=C  
-[/card] 
+rarity=C
+[/card]
 [card]
 primitive=Elderscale Wurm
 id=249703
 rarity=M
 [/card]
-[card] 
+[card]
 primitive=Elixir of Immortality
 id=279717
-rarity=U  
+rarity=U
 [/card]
-[card] 
+[card]
 primitive=Elvish Archdruid
 id=253678
-rarity=R 
+rarity=R
 [/card]
-[card] 
+[card]
 primitive=Elvish Visionary
 id=278193
-rarity=C  
+rarity=C
 [/card]
-[card] 
+[card]
 primitive=Encrust
 id=278194
-rarity=U  
+rarity=C
 [/card]
-[card] 
+[card]
 primitive=Erase
 id=259723
-rarity=C  
+rarity=C
 [/card]
-[card] 
+[card]
 primitive=Essence Drain
 id=276300
-rarity=C  
+rarity=C
 [/card]
-[card] 
+[card]
 primitive=Essence Scatter
 id=276209
-rarity=C  
+rarity=C
 [/card]
-[card] 
+[card]
 primitive=Evolving Wilds
 id=269666
-rarity=C  
+rarity=C
 [/card]
-[card] 
+[card]
 primitive=Faerie Invaders
 id=279988
-rarity=C  
+rarity=C
 [/card]
-[card] 
+[card]
 primitive=Faith's Reward
 id=259666
-rarity=R  
+rarity=R
 [/card]
-[card] 
+[card]
 primitive=Farseek
 id=277824
-rarity=C  
+rarity=C
 [/card]
-[card] 
+[card]
 primitive=Fervor
 id=279709
-rarity=R  
+rarity=R
 [/card]
-[card] 
+[card]
 primitive=Fire Elemental
 id=259212
-rarity=U  
-[/card] 
+rarity=C
+[/card]
 [card]
 primitive=Firewing Phoenix
 id=259202
@@ -362,26 +362,31 @@ rarity=R
 [card]
 primitive=Flames of the Firebrand
 id=259219
-rarity=U 
+rarity=U
 [/card]
-[card] 
+[card]
 primitive=Flinthoof Boar
 id=249712
-rarity=U 
+rarity=U
 [/card]
-[card] 
+[card]
 primitive=Fog
 id=253673
-rarity=C  
+rarity=C
 [/card]
-[card] 
+[card]
 primitive=Fog Bank
 id=270314
-rarity=U  
+rarity=U
 [/card]
 [card]
 primitive=Forest
 id=249719
+rarity=L
+[/card]
+[card]
+primitive=Forest
+id=249720
 rarity=L
 [/card]
 [card]
@@ -395,124 +400,124 @@ id=249721
 rarity=L
 [/card]
 [card]
-primitive=Forest
-id=249720
-rarity=L
-[/card]
-[card] 
 primitive=Fungal Sprouting
 id=249711
-rarity=U  
+rarity=U
 [/card]
-[card] 
+[card]
 primitive=Furnace Whelp
 id=288936
-rarity=U  
+rarity=U
 [/card]
-[card] 
+[card]
 primitive=Garruk, Primal Hunter
 id=253669
-rarity=M  
+rarity=M
 [/card]
-[card] 
+[card]
 primitive=Garruk's Packleader
 id=253687
-rarity=U  
+rarity=U
 [/card]
-[card] 
+[card]
 primitive=Gem of Becoming
 id=275727
-rarity=C  
+rarity=U
 [/card]
-[card] 
+[card]
 primitive=Giant Scorpion
 id=260986
-rarity=C  
+rarity=C
 [/card]
-[card] 
+[card]
 primitive=Gilded Lotus
 id=249742
-rarity=R  
+rarity=R
 [/card]
 [card]
 primitive=Glacial Fortress
 id=249722
 rarity=R
 [/card]
-[card] 
+[card]
 primitive=Glorious Charge
 id=265720
-rarity=C  
+rarity=C
 [/card]
-[card] 
+[card]
 primitive=Goblin Arsonist
 id=266050
-rarity=C  
+rarity=C
 [/card]
-[card] 
+[card]
 primitive=Goblin Battle Jester
 id=278070
-rarity=C  
+rarity=C
 [/card]
-[card] 
+[card]
 primitive=Griffin Protector
 id=259673
-rarity=C  
+rarity=C
 [/card]
-[card] 
+[card]
 primitive=Ground Seal
 id=289156
-rarity=R  
+rarity=R
 [/card]
-[card] 
+[card]
 primitive=Guardian Lions
 id=279701
-rarity=C  
+rarity=C
 [/card]
-[card] 
+[card]
 primitive=Guardians of Akrasa
 id=279861
-rarity=C  
+rarity=C
 [/card]
-[card] 
+[card]
 primitive=Hamletback Goliath
 id=279708
-rarity=U  
+rarity=R
 [/card]
-[card] 
+[card]
 primitive=Harbor Bandit
 id=259660
-rarity=U  
+rarity=U
 [/card]
-[card] 
+[card]
 primitive=Harbor Serpent
 id=254113
-rarity=C  
+rarity=C
 [/card]
-[card] 
+[card]
 primitive=Healer of the Pride
 id=276206
-rarity=U 
+rarity=U
 [/card]
-[card] 
+[card]
 primitive=Hellion Crucible
 id=253729
-rarity=R 
+rarity=R
 [/card]
-[card] 
+[card]
 primitive=Hydrosurge
 id=270378
-rarity=C  
+rarity=C
 [/card]
-[card] 
+[card]
 primitive=Index
 id=289098
-rarity=C  
+rarity=C
 [/card]
-[card] 
+[card]
 primitive=Intrepid Hero
 id=280320
-rarity=R  
+rarity=R
+[/card]
+[card]
+primitive=Island
+id=249725
+rarity=L
 [/card]
 [card]
 primitive=Island
@@ -526,118 +531,113 @@ rarity=L
 [/card]
 [card]
 primitive=Island
-id=249725
-rarity=L
-[/card]
-[card]
-primitive=Island
 id=249726
 rarity=L
 [/card]
-[card] 
+[card]
 primitive=Jace, Memory Adept
 id=254107
-rarity=M  
+rarity=M
 [/card]
-[card] 
+[card]
 primitive=Jace's Phantasm
 id=249672
-rarity=U 
+rarity=U
 [/card]
-[card] 
+[card]
 primitive=Jayemdae Tome
 id=275705
-rarity=U 
+rarity=U
 [/card]
-[card] 
+[card]
 primitive=Kindled Fury
 id=280221
-rarity=C  
+rarity=C
 [/card]
-[card] 
+[card]
 primitive=Kitesail
 id=278075
-rarity=U  
+rarity=U
 [/card]
 [card]
 primitive=Knight of Glory
 id=265731
 rarity=U
-[/card] 
+[/card]
 [card]
 primitive=Knight of Infamy
 id=265735
 rarity=U
 [/card]
-[card] 
+[card]
 primitive=Kraken Hatchling
 id=279699
-rarity=C  
+rarity=C
 [/card]
 [card]
 primitive=Krenko, Mob Boss
 id=253712
 rarity=R
-[/card]    
+[/card]
 [card]
 primitive=Krenko's Command
 id=259213
 rarity=C
-[/card] 
+[/card]
 [card]
 primitive=Liliana of the Dark Realms
 id=259695
 rarity=M
 [/card]
-[card] 
+[card]
 primitive=Liliana's Shade
 id=260992
-rarity=C  
+rarity=C
 [/card]
-[card] 
+[card]
 primitive=Magmaquake
 id=276205
-rarity=R  
+rarity=R
 [/card]
-[card] 
+[card]
 primitive=Mark of Mutiny
 id=282537
 rarity=U
 [/card]
-[card] 
+[card]
 primitive=Mark of the Vampire
 id=253723
-rarity=C  
+rarity=C
 [/card]
-[card] 
+[card]
 primitive=Master of the Pearl Trident
 id=279901
-rarity=R  
+rarity=R
 [/card]
-[card] 
+[card]
 primitive=Merfolk of the Pearl Trident
 id=278211
 rarity=C
 [/card]
-[card] 
+[card]
 primitive=Mind Rot
 id=260980
-rarity=C  
+rarity=C
 [/card]
-[card] 
+[card]
 primitive=Mind Sculpt
 id=266487
-rarity=C  
+rarity=C
 [/card]
-[card] 
+[card]
 primitive=Mindclaw Shaman
 id=249715
-rarity=U  
+rarity=U
 [/card]
-[card] 
+[card]
 primitive=Mogg Flunkies
 id=249706
-rarity=C  
+rarity=C
 [/card]
 [card]
 primitive=Mountain
@@ -669,65 +669,70 @@ primitive=Mutilate
 id=265134
 rarity=R
 [/card]
-[card] 
+[card]
 primitive=Mwonvuli Beast Tracker
 id=249699
-rarity=U  
+rarity=U
 [/card]
-[card] 
+[card]
 primitive=Naturalize
 id=253672
-rarity=C  
+rarity=C
 [/card]
-[card] 
-primitive=Nefarox, Overlord of Grix
+[card]
+primitive=Nefarox, Overlord of Grixis
 id=259679
-rarity=R  
+rarity=R
 [/card]
-[card] 
+[card]
 primitive=Negate
 id=254114
-rarity=C  
-[/card]  
-[card] 
+rarity=C
+[/card]
+[card]
 primitive=Nicol Bolas, Planeswalker
 id=260991
 rarity=M
 [/card]
-[card] 
+[card]
 primitive=Oblivion Ring
 id=259711
-rarity=U  
+rarity=U
 [/card]
-[card] 
+[card]
 primitive=Odric, Master Tactician
 id=259670
 rarity=R
 [/card]
-[card] 
+[card]
 primitive=Omniscience
 id=288937
 rarity=M
 [/card]
-[card] 
+[card]
 primitive=Pacifism
 id=259712
-rarity=C  
+rarity=C
 [/card]
-[card] 
+[card]
 primitive=Phylactery Lich
 id=271386
-rarity=R 
+rarity=R
 [/card]
-[card] 
+[card]
 primitive=Phyrexian Hulk
 id=279990
 rarity=U
 [/card]
-[card] 
+[card]
 primitive=Pillarfield Ox
 id=279700
-rarity=C  
+rarity=C
+[/card]
+[card]
+primitive=Plains
+id=249732
+rarity=L
 [/card]
 [card]
 primitive=Plains
@@ -745,11 +750,6 @@ id=249731
 rarity=L
 [/card]
 [card]
-primitive=Plains
-id=249732
-rarity=L
-[/card]
-[card]
 primitive=Planar Cleansing
 id=275269
 rarity=R
@@ -760,26 +760,26 @@ id=253675
 rarity=C
 [/card]
 [card]
-primitive=Predatory Rampage 
+primitive=Predatory Rampage
 id=249714
 rarity=R
 [/card]
-[card] 
+[card]
 primitive=Prey Upon
 id=271366
-rarity=C  
+rarity=C
 [/card]
 [card]
 primitive=Primal Clay
 id=268530
 rarity=U
 [/card]
-[card] 
+[card]
 primitive=Primal Huntbeast
 id=249677
-rarity=C 
+rarity=C
 [/card]
-[card] 
+[card]
 primitive=Primordial Hydra
 id=253670
 rarity=M
@@ -789,10 +789,10 @@ primitive=Prized Elephant
 id=253719
 rarity=U
 [/card]
-[card] 
+[card]
 primitive=Public Execution
 id=253738
-rarity=U  
+rarity=U
 [/card]
 [card]
 primitive=Quirion Dryad
@@ -809,15 +809,15 @@ primitive=Rancor
 id=253686
 rarity=U
 [/card]
-[card] 
+[card]
 primitive=Ranger's Path
 id=275699
-rarity=C 
+rarity=C
 [/card]
-[card] 
+[card]
 primitive=Ravenous Rats
 id=279715
-rarity=C  
+rarity=C
 [/card]
 [card]
 primitive=Reckless Brute
@@ -839,11 +839,11 @@ primitive=Reverberate
 id=290289
 rarity=R
 [/card]
-[card] 
+[card]
 primitive=Revive
 id=276223
-rarity=U  
-[/card] 
+rarity=U
+[/card]
 [card]
 primitive=Rewind
 id=280222
@@ -853,32 +853,32 @@ rarity=U
 primitive=Rhox Faithmender
 id=279987
 rarity=R
-[/card] 
+[/card]
 [card]
 primitive=Ring of Evos Isle
 id=253690
 rarity=U
-[/card] 
+[/card]
 [card]
 primitive=Ring of Kalonia
 id=259699
 rarity=U
-[/card] 
+[/card]
 [card]
 primitive=Ring of Thune
 id=253696
 rarity=U
-[/card] 
+[/card]
 [card]
 primitive=Ring of Valkas
 id=259689
 rarity=U
-[/card] 
+[/card]
 [card]
 primitive=Ring of Xathrid
 id=259692
 rarity=U
-[/card] 
+[/card]
 [card]
 primitive=Rise from the Grave
 id=260981
@@ -894,12 +894,12 @@ primitive=Rootbound Crag
 id=249735
 rarity=R
 [/card]
-[card] 
+[card]
 primitive=Rummaging Goblin
 id=249705
-rarity=C  
+rarity=C
 [/card]
-[card] 
+[card]
 primitive=Safe Passage
 id=276224
 rarity=C
@@ -909,248 +909,248 @@ primitive=Sands of Delirium
 id=265133
 rarity=R
 [/card]
-[card] 
+[card]
 primitive=Scroll Thief
 id=254130
-rarity=C  
-[/card] 
+rarity=C
+[/card]
 [card]
 primitive=Searing Spear
 id=249684
 rarity=C
-[/card] 
+[/card]
 [card]
 primitive=Sentinel Spider
 id=249681
 rarity=C
 [/card]
-[card] 
+[card]
 primitive=Serpent's Gift
 id=249666
 rarity=C
 [/card]
-[card] 
+[card]
 primitive=Serra Angel
 id=270376
-rarity=U 
-[/card]   
+rarity=U
+[/card]
 [card]
 primitive=Serra Avatar
 id=259706
-rarity=M 
+rarity=M
 [/card]
 [card]
 primitive=Serra Avenger
 id=288762
-rarity=R 
+rarity=R
 [/card]
-[card] 
+[card]
 primitive=Servant of Nefarox
 id=265714
-rarity=C  
+rarity=C
 [/card]
-[card] 
+[card]
 primitive=Shimian Specter
 id=278072
 rarity=R
 [/card]
-[card] 
+[card]
 primitive=Show of Valor
 id=265727
 rarity=C
 [/card]
-[card] 
+[card]
 primitive=Sign in Blood
 id=260982
-rarity=C 
+rarity=C
 [/card]
-[card] 
+[card]
 primitive=Silklash Spider
 id=292718
 rarity=R
 [/card]
-[card] 
+[card]
 primitive=Silvercoat Lion
 id=266132
-rarity=C  
+rarity=C
 [/card]
-[card] 
+[card]
 primitive=Sleep
 id=254119
-rarity=U  
+rarity=U
 [/card]
-[card] 
+[card]
 primitive=Slumbering Dragon
 id=253693
-rarity=R  
+rarity=R
 [/card]
-[card] 
+[card]
 primitive=Smelt
 id=249691
-rarity=C  
+rarity=C
 [/card]
-[card] 
+[card]
 primitive=Spelltwine
 id=280223
-rarity=R  
+rarity=R
 [/card]
-[card] 
+[card]
 primitive=Sphinx of Uthuun
 id=254108
-rarity=R  
+rarity=R
 [/card]
-[card] 
+[card]
 primitive=Spiked Baloth
 id=249702
-rarity=C  
+rarity=C
 [/card]
-[card] 
+[card]
 primitive=Staff of Nin
 id=249713
-rarity=R 
-[/card] 
-[card] 
+rarity=R
+[/card]
+[card]
 primitive=Stormtide Leviathan
 id=278198
-rarity=R  
+rarity=R
 [/card]
-[card] 
+[card]
 primitive=Stuffy Doll
 id=279711
-rarity=R 
+rarity=R
 [/card]
 [card]
 primitive=Sublime Archangel
 id=259725
-rarity=M 
+rarity=M
 [/card]
 [card]
 primitive=Sunpetal Grove
 id=249736
 rarity=R
 [/card]
-[card] 
-primitive=Swamp
-id=249739
-rarity=L  
-[/card]
-[card] 
+[card]
 primitive=Swamp
 id=249740
-rarity=L  
+rarity=L
 [/card]
-[card] 
+[card]
+primitive=Swamp
+id=249739
+rarity=L
+[/card]
+[card]
 primitive=Swamp
 id=249737
-rarity=L  
+rarity=L
 [/card]
-[card] 
+[card]
 primitive=Swamp
 id=249738
-rarity=L  
+rarity=L
 [/card]
-[card] 
+[card]
 primitive=Switcheroo
 id=253704
-rarity=U  
+rarity=U
 [/card]
-[card] 
+[card]
 primitive=Talrand, Sky Summoner
 id=253701
-rarity=R  
+rarity=R
 [/card]
-[card] 
+[card]
 primitive=Talrand's Invocation
 id=254117
-rarity=U  
+rarity=U
 [/card]
-[card] 
+[card]
 primitive=Thragtusk
 id=249685
-rarity=R 
+rarity=R
 [/card]
-[card] 
-primitive=Thundermaw Helkite
+[card]
+primitive=Thundermaw Hellkite
 id=253700
-rarity=M  
+rarity=M
 [/card]
-[card] 
+[card]
 primitive=Timberpack Wolf
 id=249694
-rarity=C  
+rarity=C
 [/card]
-[card] 
+[card]
 primitive=Titanic Growth
 id=288934
-rarity=C  
+rarity=C
 [/card]
-[card] 
+[card]
 primitive=Torch Fiend
 id=279989
-rarity=U  
+rarity=U
 [/card]
-[card] 
+[card]
 primitive=Tormented Soul
 id=249668
-rarity=C  
+rarity=C
 [/card]
-[card] 
+[card]
 primitive=Tormod's Crypt
 id=279713
-rarity=U  
+rarity=U
 [/card]
-[card] 
+[card]
 primitive=Touch of the Eternal
 id=278197
 rarity=R
 [/card]
-[card] 
+[card]
 primitive=Trading Post
 id=253710
-rarity=R  
+rarity=R
 [/card]
-[card] 
+[card]
 primitive=Tricks of the Trade
 id=253735
-rarity=C  
+rarity=C
 [/card]
-[card] 
+[card]
 primitive=Trumpet Blast
 id=276606
-rarity=C  
+rarity=C
 [/card]
-[card] 
+[card]
 primitive=Turn to Slag
 id=276212
-rarity=C  
+rarity=C
 [/card]
-[card] 
+[card]
 primitive=Unsummon
 id=265715
-rarity=C  
+rarity=C
 [/card]
-[card] 
+[card]
 primitive=Vampire Nighthawk
 id=260989
-rarity=U  
+rarity=U
 [/card]
 [card]
 primitive=Vampire Nocturnus
 id=275151
-rarity=M 
-[/card]
-[card] 
-primitive=Vastwood Gorger
-id=279992
-rarity=C 
-[/card]
-[card] 
-primitive=Vedalken Entrancer
-id=254121
-rarity=C  
+rarity=M
 [/card]
 [card]
-primitive=Veilborn Ghoul 
+primitive=Vastwood Gorger
+id=279992
+rarity=C
+[/card]
+[card]
+primitive=Vedalken Entrancer
+id=254121
+rarity=C
+[/card]
+[card]
+primitive=Veilborn Ghoul
 id=259676
 rarity=U
 [/card]
@@ -1159,93 +1159,93 @@ primitive=Vile Rebirth
 id=253703
 rarity=C
 [/card]
-[card] 
+[card]
 primitive=Void Stalker
 id=270997
-rarity=R 
+rarity=R
 [/card]
-[card] 
+[card]
 primitive=Volcanic Geyser
 id=276214
-rarity=U  
+rarity=U
 [/card]
-[card] 
+[card]
 primitive=Volcanic Strength
 id=259204
-rarity=C  
+rarity=C
 [/card]
-[card] 
+[card]
 primitive=Walking Corpse
 id=260987
-rarity=C  
+rarity=C
 [/card]
-[card] 
+[card]
 primitive=Wall of Fire
 id=271370
-rarity=C  
+rarity=C
 [/card]
-[card] 
+[card]
 primitive=War Falcon
 id=259697
-rarity=C  
+rarity=C
 [/card]
-[card] 
+[card]
 primitive=War Priest of Thune
 id=275698
 rarity=U
 [/card]
-[card] 
+[card]
 primitive=Warclamp Mastiff
 id=280224
-rarity=C  
+rarity=C
 [/card]
-[card] 
+[card]
 primitive=Watercourser
 id=254109
-rarity=C  
+rarity=C
 [/card]
-[card] 
+[card]
 primitive=Welkin Tern
 id=276416
-rarity=C  
+rarity=C
 [/card]
-[card] 
+[card]
 primitive=Wild Guess
 id=253695
 rarity=C
 [/card]
-[card] 
+[card]
 primitive=Wind Drake
 id=279860
-rarity=C  
+rarity=C
 [/card]
-[card] 
+[card]
 primitive=Wit's End
 id=278076
-rarity=C  
+rarity=R
 [/card]
 [card]
 primitive=Worldfire
 id=278195
 rarity=M
-[/card]     
+[/card]
 [card]
 primitive=Xathrid Gorgon
 id=253728
 rarity=R
-[/card]  
+[/card]
 [card]
 primitive=Yeva, Nature's Herald
 id=249680
 rarity=R
-[/card] 
+[/card]
 [card]
 primitive=Yeva's Forcemage
 id=265840
 rarity=C
-[/card] 
+[/card]
 [card]
 primitive=Zombie Goliath
 id=276299
 rarity=C
-[/card]                   
+[/card]
