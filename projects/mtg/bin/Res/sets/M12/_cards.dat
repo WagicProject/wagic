@@ -11,7 +11,7 @@ rarity=U
 [card]
 primitive=Act of Treason
 id=226589
-rarity=U
+rarity=C
 [/card]
 [card]
 primitive=Adaptive Automaton
@@ -44,6 +44,11 @@ id=220218
 rarity=C
 [/card]
 [card]
+primitive=Angelic Destiny
+id=220230
+rarity=M
+[/card]
+[card]
 primitive=Angel's Feather
 id=221520
 rarity=U
@@ -52,11 +57,6 @@ rarity=U
 primitive=Angel's Mercy
 id=238569
 rarity=C
-[/card]
-[card]
-primitive=Angelic Destiny
-id=220230
-rarity=M
 [/card]
 [card]
 primitive=Arachnus Spinner
@@ -274,14 +274,14 @@ id=221516
 rarity=U
 [/card]
 [card]
-primitive=Demystify
-id=238328
-rarity=C
-[/card]
-[card]
 primitive=Demon's Horn
 id=221522
 rarity=U
+[/card]
+[card]
+primitive=Demystify
+id=238328
+rarity=C
 [/card]
 [card]
 primitive=Devouring Swarm
@@ -304,13 +304,13 @@ id=236908
 rarity=C
 [/card]
 [card]
-primitive=Divine Favor
-id=220219
+primitive=Divination
+id=220194
 rarity=C
 [/card]
 [card]
-primitive=Divination
-id=220194
+primitive=Divine Favor
+id=220219
 rarity=C
 [/card]
 [card]
@@ -329,14 +329,9 @@ id=220152
 rarity=R
 [/card]
 [card]
-primitive=Drifting Shade
-id=220088
-rarity=C
-[/card]
-[card]
-primitive=Dungrove Elder
-id=220210
-rarity=R
+primitive=Dragon's Claw
+id=221523
+rarity=U
 [/card]
 [card]
 primitive=Dragonskull Summit
@@ -344,9 +339,9 @@ id=221921
 rarity=R
 [/card]
 [card]
-primitive=Dragon's Claw
-id=221523
-rarity=U
+primitive=Drifting Shade
+id=220088
+rarity=C
 [/card]
 [card]
 primitive=Drowned Catacomb
@@ -359,14 +354,14 @@ id=220098
 rarity=R
 [/card]
 [card]
+primitive=Dungrove Elder
+id=220210
+rarity=R
+[/card]
+[card]
 primitive=Duskhunter Bat
 id=220259
 rarity=C
-[/card]
-[card]
-primitive=Elvish Archdruid
-id=237007
-rarity=R
 [/card]
 [card]
 primitive=Elite Vanguard
@@ -377,6 +372,11 @@ rarity=U
 primitive=Elixir of Immortality
 id=221525
 rarity=U
+[/card]
+[card]
+primitive=Elvish Archdruid
+id=237007
+rarity=R
 [/card]
 [card]
 primitive=Fiery Hellhound
@@ -394,14 +394,14 @@ id=226588
 rarity=C
 [/card]
 [card]
-primitive=Flashfreeze
-id=220249
-rarity=U
-[/card]
-[card]
 primitive=Flameblast Dragon
 id=244720
 rarity=R
+[/card]
+[card]
+primitive=Flashfreeze
+id=220249
+rarity=U
 [/card]
 [card]
 primitive=Flight
@@ -630,11 +630,6 @@ rarity=L
 [/card]
 [card]
 primitive=Island
-id=244324
-rarity=L
-[/card]
-[card]
-primitive=Island
 id=244325
 rarity=L
 [/card]
@@ -642,6 +637,16 @@ rarity=L
 primitive=Island
 id=244326
 rarity=L
+[/card]
+[card]
+primitive=Island
+id=244324
+rarity=L
+[/card]
+[card]
+primitive=Jace, Memory Adept
+id=238263
+rarity=M
 [/card]
 [card]
 primitive=Jace's Archivist
@@ -652,11 +657,6 @@ rarity=R
 primitive=Jace's Erasure
 id=227227
 rarity=C
-[/card]
-[card]
-primitive=Jace, Memory Adept
-id=238263
-rarity=M
 [/card]
 [card]
 primitive=Jade Mage
@@ -780,6 +780,11 @@ rarity=R
 [/card]
 [card]
 primitive=Mountain
+id=244330
+rarity=L
+[/card]
+[card]
+primitive=Mountain
 id=244328
 rarity=L
 [/card]
@@ -791,11 +796,6 @@ rarity=L
 [card]
 primitive=Mountain
 id=244327
-rarity=L
-[/card]
-[card]
-primitive=Mountain
-id=244330
 rarity=L
 [/card]
 [card]
@@ -851,12 +851,17 @@ rarity=C
 [card]
 primitive=Phantasmal Dragon
 id=220068
-rarity=R
+rarity=U
 [/card]
 [card]
 primitive=Phantasmal Image
 id=220099
 rarity=R
+[/card]
+[card]
+primitive=Plains
+id=244331
+rarity=L
 [/card]
 [card]
 primitive=Plains
@@ -866,11 +871,6 @@ rarity=L
 [card]
 primitive=Plains
 id=244334
-rarity=L
-[/card]
-[card]
-primitive=Plains
-id=244331
 rarity=L
 [/card]
 [card]
@@ -1105,17 +1105,17 @@ rarity=R
 [/card]
 [card]
 primitive=Swamp
+id=244337
+rarity=L
+[/card]
+[card]
+primitive=Swamp
 id=244335
 rarity=L
 [/card]
 [card]
 primitive=Swamp
 id=244338
-rarity=L
-[/card]
-[card]
-primitive=Swamp
-id=244337
 rarity=L
 [/card]
 [card]
@@ -1151,7 +1151,7 @@ rarity=R
 [card]
 primitive=Time Reversal
 id=245187
-rarity=R
+rarity=M
 [/card]
 [card]
 primitive=Timely Reinforcements
@@ -1199,14 +1199,14 @@ id=220170
 rarity=R
 [/card]
 [card]
-primitive=Volcanic Dragon
-id=244719
-rarity=U
-[/card]
-[card]
 primitive=Visions of Beyond
 id=220226
 rarity=R
+[/card]
+[card]
+primitive=Volcanic Dragon
+id=244719
+rarity=U
 [/card]
 [card]
 primitive=Wall of Torches
