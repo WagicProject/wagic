@@ -36,7 +36,7 @@ rarity=R
 [card]
 primitive=Angelic Overseer
 id=220370
-rarity=R
+rarity=M
 [/card]
 [card]
 primitive=Armored Skaab
@@ -211,7 +211,7 @@ rarity=U
 [card]
 primitive=Unholy Fiend
 id=221222
-rarity=T
+rarity=U
 [/card]
 [card]
 primitive=Cobbled Wings
@@ -224,13 +224,13 @@ id=244680
 rarity=C
 [/card]
 [card]
-primitive=Creepy Doll
-id=220378
+primitive=Creeping Renaissance
+id=245198
 rarity=R
 [/card]
 [card]
-primitive=Creeping Renaissance
-id=245198
+primitive=Creepy Doll
+id=220378
 rarity=R
 [/card]
 [card]
@@ -306,7 +306,7 @@ rarity=C
 [card]
 primitive=Insectile Aberration
 id=226755
-rarity=C
+rarity=T
 [/card]
 [card]
 primitive=Demonmail Hauberk
@@ -430,12 +430,12 @@ rarity=L
 [/card]
 [card]
 primitive=Forest
-id=245246
+id=245248
 rarity=L
 [/card]
 [card]
 primitive=Forest
-id=245248
+id=245246
 rarity=L
 [/card]
 [card]
@@ -675,12 +675,12 @@ rarity=L
 [/card]
 [card]
 primitive=Island
-id=245236
+id=245237
 rarity=L
 [/card]
 [card]
 primitive=Island
-id=245237
+id=245236
 rarity=L
 [/card]
 [card]
@@ -716,7 +716,7 @@ rarity=R
 [card]
 primitive=Terror of Kruin Pass
 id=227090
-rarity=R
+rarity=T
 [/card]
 [card]
 primitive=Laboratory Maniac
@@ -746,7 +746,7 @@ rarity=R
 [card]
 primitive=Ludevic's Abomination
 id=221173
-rarity=R
+rarity=T
 [/card]
 [card]
 primitive=Lumberknot
@@ -791,7 +791,7 @@ rarity=U
 [card]
 primitive=Maw of the Mire
 id=246952
-rarity=U
+rarity=C
 [/card]
 [card]
 primitive=Mayor of Avabruck
@@ -801,7 +801,7 @@ rarity=R
 [card]
 primitive=Howlpack Alpha
 id=222183
-rarity=R
+rarity=T
 [/card]
 [card]
 primitive=Memory's Journey
@@ -875,12 +875,12 @@ rarity=L
 [/card]
 [card]
 primitive=Mountain
-id=245243
+id=245245
 rarity=L
 [/card]
 [card]
 primitive=Mountain
-id=245245
+id=245243
 rarity=L
 [/card]
 [card]
@@ -960,17 +960,17 @@ rarity=C
 [/card]
 [card]
 primitive=Plains
+id=245230
+rarity=L
+[/card]
+[card]
+primitive=Plains
 id=245231
 rarity=L
 [/card]
 [card]
 primitive=Plains
 id=245233
-rarity=L
-[/card]
-[card]
-primitive=Plains
-id=245230
 rarity=L
 [/card]
 [card]
@@ -1091,7 +1091,7 @@ rarity=R
 [card]
 primitive=Sharpened Pitchfork
 id=220642
-rarity=C
+rarity=U
 [/card]
 [card]
 primitive=Shimmering Grotto
@@ -1166,7 +1166,7 @@ rarity=C
 [card]
 primitive=Spectral Flight
 id=230775
-rarity=U
+rarity=C
 [/card]
 [card]
 primitive=Spectral Rider
@@ -1235,12 +1235,12 @@ rarity=L
 [/card]
 [card]
 primitive=Swamp
-id=245241
+id=245239
 rarity=L
 [/card]
 [card]
 primitive=Swamp
-id=245239
+id=245241
 rarity=L
 [/card]
 [card]
@@ -1261,7 +1261,7 @@ rarity=C
 [card]
 primitive=Thraben Militia
 id=221190
-rarity=C
+rarity=T
 [/card]
 [card]
 primitive=Tormented Pariah
@@ -1336,7 +1336,7 @@ rarity=R
 [card]
 primitive=Unruly Mob
 id=220389
-rarity=U
+rarity=C
 [/card]
 [card]
 primitive=Urgent Exorcism
@@ -1376,7 +1376,7 @@ rarity=C
 [card]
 primitive=Ironfang
 id=222107
-rarity=C
+rarity=T
 [/card]
 [card]
 primitive=Villagers of Estwald
