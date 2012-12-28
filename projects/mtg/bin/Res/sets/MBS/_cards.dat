@@ -186,7 +186,7 @@ rarity=C
 [card]
 primitive=Galvanoth
 id=214053
-rarity=C
+rarity=R
 [/card]
 [card]
 primitive=Glissa, the Traitor
@@ -331,7 +331,7 @@ rarity=C
 [card]
 primitive=Lumengrid Gargoyle
 id=214059
-rarity=C
+rarity=U
 [/card]
 [card]
 primitive=Magnetic Mine
@@ -391,7 +391,7 @@ rarity=C
 [card]
 primitive=Mortarpod
 id=213725
-rarity=C
+rarity=U
 [/card]
 [card]
 primitive=Mountain
@@ -501,7 +501,7 @@ rarity=U
 [card]
 primitive=Pistus Strike
 id=213744
-rarity=U
+rarity=C
 [/card]
 [card]
 primitive=Plague Myr
@@ -531,7 +531,7 @@ rarity=M
 [card]
 primitive=Priests of Norn
 id=213814
-rarity=U
+rarity=C
 [/card]
 [card]
 primitive=Psychosis Crawler
@@ -716,7 +716,7 @@ rarity=R
 [card]
 primitive=Training Drone
 id=213764
-rarity=U
+rarity=C
 [/card]
 [card]
 primitive=Treasure Mage
