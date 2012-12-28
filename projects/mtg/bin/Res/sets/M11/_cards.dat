@@ -11,7 +11,7 @@ rarity=U
 [card]
 primitive=Act of Treason
 id=205072
-rarity=U
+rarity=C
 [/card]
 [card]
 primitive=AEther Adept
@@ -101,7 +101,7 @@ rarity=U
 [card]
 primitive=Azure Drake
 id=204984
-rarity=U
+rarity=C
 [/card]
 [card]
 primitive=Back to Nature
@@ -446,7 +446,7 @@ rarity=L
 [card]
 primitive=Frost Titan
 id=204999
-rarity=R
+rarity=M
 [/card]
 [card]
 primitive=Gaea's Revenge
@@ -461,7 +461,7 @@ rarity=U
 [card]
 primitive=Garruk Wildspeaker
 id=205959
-rarity=U
+rarity=M
 [/card]
 [card]
 primitive=Garruk's Companion
@@ -586,7 +586,7 @@ rarity=C
 [card]
 primitive=Inferno Titan
 id=205042
-rarity=C
+rarity=M
 [/card]
 [card]
 primitive=Inspired Charge

@@ -176,7 +176,7 @@ rarity=C
 [card]
 primitive=Boros Guildmage
 id=247372
-rarity=C
+rarity=U
 [/card]
 [card]
 primitive=Boros Signet
@@ -851,7 +851,7 @@ rarity=C
 [card]
 primitive=Mortify
 id=247282
-rarity=C
+rarity=U
 [/card]
 [card]
 primitive=Mortivore
@@ -975,14 +975,14 @@ id=247285
 rarity=C
 [/card]
 [card]
-primitive=Patron of the Nezumi
-id=247171
-rarity=R
-[/card]
-[card]
 primitive=Path to Exile
 id=247180
 rarity=U
+[/card]
+[card]
+primitive=Patron of the Nezumi
+id=247171
+rarity=R
 [/card]
 [card]
 primitive=Penumbra Spider
@@ -1037,7 +1037,7 @@ rarity=U
 [card]
 primitive=Prophetic Bolt
 id=247162
-rarity=U
+rarity=R
 [/card]
 [card]
 primitive=Prophetic Prism
@@ -1285,13 +1285,13 @@ id=237005
 rarity=U
 [/card]
 [card]
-primitive=Spitebellows
-id=247336
+primitive=Spike Feeder
+id=247521
 rarity=U
 [/card]
 [card]
-primitive=Spike Feeder
-id=247521
+primitive=Spitebellows
+id=247336
 rarity=U
 [/card]
 [card]
@@ -1485,13 +1485,13 @@ id=247308
 rarity=U
 [/card]
 [card]
-primitive=Vivid Meadow
-id=247310
+primitive=Vivid Marsh
+id=247309
 rarity=U
 [/card]
 [card]
-primitive=Vivid Marsh
-id=247309
+primitive=Vivid Meadow
+id=247310
 rarity=U
 [/card]
 [card]
