@@ -923,4 +923,3 @@ subtype=Elf Shaman
 power=2
 toughness=2
 [/card]
-
