@@ -1298,8 +1298,8 @@ toughness=1
 [/card]
 [card]
 name=Alabaster Potion
-auto=choice life:x target(player)
-auto=choice prevent:x target(creature,player)
+auto=choice life:X target(player)
+auto=choice prevent:X target(creature,player)
 text=Choose one - Target player gains X life; or prevent the next X damage that would be dealt to target creature or player this turn.
 mana={X}{W}{W}
 type=Instant
@@ -2570,7 +2570,7 @@ toughness=5
 [card]
 name=Anthroplasm
 auto=counter(1/1,2)
-auto={X}{T}:+0/+1 all(this) && removeallcounters(1/1) && counter(1/1,x) && -0/-1 all(this)
+auto={X}{T}:+0/+1 all(this) && removeallcounters(1/1) && counter(1/1,X) && -0/-1 all(this)
 text=Anthroplasm enters the battlefield with two +1/+1 counters on it. -- {X}, {T}: Remove all +1/+1 counters from Anthroplasm and put X +1/+1 counters on it.
 mana={2}{U}{U}
 type=Creature
@@ -2635,7 +2635,7 @@ name=Anvil of Bogardan
 abilities=nomaxhand
 auto=lord(*|opponentlibrary) nomaxhand
 auto=@each my draw:ability$!draw:1 _ choice name(discard) target(*|myhand) reject!$ controller
-auto=@each oppoent draw:ability$!draw:1 _ choice name(discard) target(*|myhand) reject!$ opponent
+auto=@each opponent draw:ability$!draw:1 _ choice name(discard) target(*|myhand) reject!$ opponent
 text=Players have no maximum hand size. -- At the beginning of each player's draw step, that player draws an additional card, then discards a card.
 mana={2}
 type=Artifact
@@ -2826,7 +2826,7 @@ toughness=*
 [card]
 name=Aquastrand Spider
 auto=counter(1/1,2)
-auto=@movedto(creature|battlefield):may this(counter{1/1}) all(trigger) counter(1/1,1) && this(counter{1/1})  counter(1/1,-1)
+auto=this(counter{1/1.1}>0) transforms((,newability[@movedto(other creature|battlefield):may name(move 1/1 counter) all(trigger) counter(1/1.1) && counter(1/1.-1) all(this)]))
 auto={G}:reach target(creature[counter{1/1.1}])
 text=Graft 2 (This creature enters the battlefield with two +1/+1 counters on it. Whenever another creature enters the battlefield, you may move a +1/+1 counter from this creature onto it.) -- {G}: Target creature with a +1/+1 counter on it gains reach until end of turn. (It can block creatures with flying.)
 mana={1}{G}
@@ -5364,8 +5364,7 @@ toughness=2
 [/card]
 [card]
 name=Ballyrush Banneret
-auto=lord(kithkin|myhand) altercost(colorless, -1)
-auto=lord(soldier|myhand) altercost(colorless,-1)
+auto=lord(*[soldier;kithkin]|myhand) altercost(colorless, -1)
 text=Kithkin spells and Soldier spells you cast cost {1} less to cast.
 mana={1}{W}
 type=Creature
@@ -5556,7 +5555,7 @@ toughness=1
 [card]
 name=Banshee
 text={X}, {T}: Banshee deals half X damage, rounded down, to target creature or player, and half X damage, rounded up, to you.
-auto={x}{t}:target(creature,player) damage:halfdownX && damage:halfup controller
+auto={X}{t}:target(creature,player) damage:halfdownX && damage:halfup controller
 mana={2}{B}{B}
 type=Creature
 subtype=Spirit
@@ -6843,7 +6842,7 @@ type=Instant
 [card]
 name=Bifurcate
 target=creature[-token]
-auto=moveTo(mybattlefield) target(*[share!name!]|mylibrary)
+auto=moveTo(mybattlefield) notatarget(*[share!name!]|mylibrary)
 text=Search your library for a permanent card with the same name as target nontoken creature and put that card onto the battlefield. Then shuffle your library.
 mana={3}{G}
 type=Sorcery
@@ -6871,9 +6870,9 @@ subtype=Aura
 name=Binding Grasp
 target=creature
 alias=1194
-auto=upcost[{1}{U}] moveTo(graveyard)
+auto=upcost[{1}{U}] sacrifice
 auto=0/1
-text=Enchant creature -- You control enchanted creature.
+text=Enchant creature -- At the beginning of your upkeep, sacrifice Binding Grasp unless you pay {1}{U}. -- You control enchanted creature. -- Enchanted creature gets +0/+1.
 mana={3}{U}
 type=Enchantment
 subtype=Aura
@@ -9213,8 +9212,7 @@ toughness=7
 [/card]
 [card]
 name=Bosk Banneret
-auto=lord(treefolk|myhand) altercost(colorless,-1)
-auto=lord(shaman|myhand) altercost(colorless, -1)
+auto=lord(*[treefolk;shaman]|myhand) altercost(colorless, -1)
 text=Treefolk spells and Shaman spells you cast cost {1} less to cast.
 mana={1}{G}
 type=Creature
@@ -9348,9 +9346,7 @@ toughness=4
 [/card]
 [card]
 name=Braid of Fire
-auto=@each my upkeep:may sacrifice
-auto=@each my upkeep:thisforeach(counter{0/0.1.Age}) add{R}
-auto=@each my upkeep:counter(0/0,1,Age)
+auto=@each my upkeep:counter(0/0,1,Age) && all(this) transforms((,newability[choice sacrifice],newability[choice thisforeach(counter{0/0.1.Age}) add{R}]))
 text=Cumulative upkeep - Add {R} to your mana pool. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)
 mana={1}{R}
 type=Enchantment
@@ -9725,7 +9721,7 @@ toughness=2
 [card]
 name=Breeding Pit
 auto=upcost[{B}{B}] sacrifice
-auto=@each my endofturn:token(Thrull,creature token thrull,0/1,black)
+auto=@each my endofturn:token(Thrull,Creature Thrull,0/1,black)
 text=At the beginning of your upkeep, sacrifice Breeding Pit unless you pay {B}{B}. -- At the beginning of your end step, put a 0/1 black Thrull creature token onto the battlefield.
 mana={3}{B}
 type=Enchantment
@@ -9828,8 +9824,7 @@ type=Enchantment
 [/card]
 [card]
 name=Brighthearth Banneret
-auto=lord(elemental|myhand) altercost(colorless, -1)
-auto=lord(warrior|myhand) altercost(colorless, -1)
+auto=lord(*[elemental;warrior]|myhand) altercost(colorless, -1)
 autohand={1}{R}{discard(this|myhand)}:counter(1/1,1) target(creature)
 text=Elemental spells and Warrior spells you cast cost {1} less to cast. -- Reinforce 1 - {1}{R} ({1}{R}, Discard this card: Put a +1/+1 counter on target creature.)
 mana={1}{R}
@@ -10494,8 +10489,7 @@ type=Sorcery
 [/card]
 [card]
 name=Buried Alive
-target=<upto:3>creature|myLibrary
-auto=moveto(mygraveyard)
+auto=moveto(mygraveyard) notatarget(<upto:3>creature|mylibrary)
 text=Search your library for up to three creature cards and put them into your graveyard. Then shuffle your library.
 mana={2}{B}
 type=Sorcery
@@ -11252,9 +11246,8 @@ toughness=5
 [/card]
 [card]
 name=Caravan Vigil
-target=land[basic]|mylibrary
-auto=ifnot morbid then moveTo(myhand)
-auto=if morbid then moveTo(mybattlefield)
+auto=choice name(put in hand) moveTo(myhand) notatarget(land[basic]|mylibrary)
+auto=if morbid then choice name(put in play) moveTo(mybattlefield) notatarget(land[basic]|mylibrary)
 text=Search your library for a basic land card, reveal it, put it into your hand then shuffle your library. -- Morbid - You may put that card onto the battlefield instead of putting it into your hand if a creature died this turn.
 mana={G}
 type=Sorcery
@@ -11661,8 +11654,7 @@ toughness=5
 [/card]
 [card]
 name=Cateran Summons
-target=mercenary|myLibrary
-auto=moveTo(myHand)
+auto=moveTo(myHand) notatarget(mercenary|myLibrary)
 text=Search your library for a Mercenary card, reveal that card, and put it into your hand. Then shuffle your library.
 mana={B}
 type=Sorcery
@@ -12760,6 +12752,7 @@ type=Artifact
 [card]
 name=Charmbreaker Devils
 auto=@each my upkeep:moverandom(instant,sorcery) from(mygraveyard) to(myhand)
+auto=@movedTo(instant,sorcery|mystack):4/0 ueot
 text=At the beginning of your upkeep, return an instant or sorcery card at random from your graveyard to your hand. -- Whenever you cast an instant or sorcery spell, Charmbreaker Devils gets +4/+0 until end of turn.
 mana={5}{R}
 type=Creature
@@ -12939,7 +12932,7 @@ subtype=Aura
 [/card]
 [card]
 name=Chimeric Coils
-auto={X}{1}:transforms((Creature Construct,setpower=x,settoughness=x)) ueot && treason
+auto={X}{1}:transforms((Creature Construct,setpower=X,settoughness=X)) ueot && treason
 text={X}{1}: Chimeric Coils becomes an X/X Construct artifact creature. Sacrifice it at the beginning of the next end step.
 mana={1}
 type=Artifact
@@ -12962,12 +12955,11 @@ type=Artifact
 [card]
 name=Chimeric Mass
 auto=counter(0/0,X,Charge)
-auto={1}:counter{0%0.1.charge}/counter{0%0.1.charge} ueot && transforms((Artifact Creature Construct)) ueot 
+auto=counter{0%0.1.charge}/counter{0%0.1.charge} nonstatic
+auto={1}:transforms((Artifact Creature Construct,setpower=counter{0%0.1.charge},settoughness=counter{0%0.1.charge})) ueot 
 text=Chimeric Mass enters the battlefield with X charge counters. -- {1}: Until end of turn, Chimeric Mass becomes a Construct artifact creature with "This creature's power and toughness are each equal to the number of charge counters on it."
 mana={X}
 type=Artifact
-power=0
-toughness=0
 [/card]
 [card]
 name=Chimeric Sphere
@@ -12979,7 +12971,7 @@ type=Artifact
 [/card]
 [card]
 name=Chimeric Staff
-auto={X}:transforms((Creature Construct,setpower=x,settoughness=x)) ueot
+auto={X}:transforms((Creature Construct,setpower=X,settoughness=X)) ueot
 text={X}: Chimeric Staff becomes an X/X Construct artifact creature until end of turn.
 mana={4}
 type=Artifact
@@ -13077,7 +13069,7 @@ toughness=2
 name=Cho-Manno's Blessing
 target=creature
 abilities=flash
-auto=choice chooseacolor teach(creature) protection from(*[chosencolor]) chooseend
+auto=chooseacolor teach(creature) protection from(*[chosencolor]) chooseend
 text=Flash -- Enchant creature -- As Cho-Manno's Blessing enters the battlefield, choose a color. -- Enchanted creature has protection from the chosen color. This effect doesn't remove Cho-Manno's Blessing.
 mana={W}{W}
 type=Enchantment
@@ -14382,7 +14374,7 @@ type=Artifact
 [card]
 name=Coldsteel Heart
 auto=tap
-auto=choice chooseacolor {T}:add{chosencolor} chooseend
+auto=chooseacolor {T}:add{chosencolor} chooseend
 text=Coldsteel Heart enters the battlefield tapped. -- As Coldsteel Heart enters the battlefield, choose a color. -- {T}: Add one mana of the chosen color to your mana pool.
 mana={2}
 type=Artifact
@@ -14637,8 +14629,7 @@ type=Instant
 [/card]
 [card]
 name=Congregation at Dawn
-target=target(<upto:3>creature|mylibrary)
-auto=moveTo(library)
+auto=moveTo(ownerlibrary) notatarget(<upto:3>creature|mylibrary)
 text=Search your library for up to three creature cards and reveal them. Shuffle your library, then put those cards on top of it in any order.
 mana={G}{G}{W}
 type=Instant
@@ -16152,8 +16143,7 @@ type=Instant
 [/card]
 [card]
 name=Cruel Tutor
-target=*|mylibrary
-auto=moveTo(library)
+auto=moveTo(ownerlibrary) notatarget(*|mylibrary)
 auto=life:-2 controller
 text=Search your library for a card, then shuffle your library and put that card on top of it. You lose 2 life.
 mana={2}{B}
@@ -16480,10 +16470,7 @@ toughness=3
 [/card]
 [card]
 name=Cultivate
-target=land[basic]|mylibrary
-auto=moveTo(myBattlefield)
-auto=tap
-auto=may moveTo(myhand) target(land[basic]|mylibrary)
+auto=name(fetch to play) notatarget(land[basic]|mylibrary) transforms((,newability[name(move to hand) notatarget(land[basic]|mylibrary) moveTo(myhand)],newability[moveTo(myBattlefield) and!(tap)!])) oneshot
 text=Search your library for up to two basic land cards, reveal those cards, and put one onto the battlefield tapped and the other in your hand. Then shuffle your library.
 mana={2}{G}
 type=Sorcery
@@ -16816,7 +16803,7 @@ toughness=3
 [card]
 name=Cytoplast Root-Kin
 auto=counter(1/1,4)
-auto=@movedto(creature|battlefield):may this(counter{1/1}) all(trigger) counter(1/1,1) && this(counter{1/1})  counter(1/1,-1)
+auto=this(counter{1/1.1}>0) transforms((,newability[@movedto(other creature|battlefield):may name(move 1/1 counter) all(trigger) counter(1/1.1) && counter(1/1.-1) all(this)]))
 auto=counter(1/1,1) all(other creature[counter{1/1.1}]|myBattlefield)
 auto={2}:counter(1/1,-1) target(creature[counter{1/1.1}]|myBattlefield) && counter(1/1,1) all(this)
 text=Graft 4 (This creature enters the battlefield with four +1/+1 counters on it. Whenever another creature enters the battlefield, you may move a +1/+1 counter from this creature onto it.) -- When Cytoplast Root-Kin enters the battlefield, put a +1/+1 counter on each other creature you control that has a +1/+1 counter on it. -- {2}: Move a +1/+1 counter from target creature you control onto Cytoplast Root-Kin.
@@ -16829,7 +16816,7 @@ toughness=0
 [card]
 name=Cytospawn Shambler
 auto=counter(1/1,6)
-auto=@movedto(creature|battlefield):may this(counter{1/1}) all(trigger) counter(1/1,1) && this(counter{1/1})  counter(1/1,-1)
+auto=this(counter{1/1.1}>0) transforms((,newability[@movedto(other creature|battlefield):may name(move 1/1 counter) all(trigger) counter(1/1.1) && counter(1/1.-1) all(this)]))
 auto={G}:trample target(creature[counter{1/1.1}])
 text=Graft 6 (This creature enters the battlefield with six +1/+1 counters on it. Whenever another creature enters the battlefield, you may move a +1/+1 counter from this creature onto it.) -- {G}: Target creature with a +1/+1 counter on it gains trample until end of turn.
 mana={6}{G}
@@ -17870,7 +17857,7 @@ type=Enchantment
 [card]
 name=Deadly Grub
 auto=vanishing:3
-auto=@movedTo(this|graveyard) from(myBattlefield):this(counter{0/0.1.Time}<1) all(trigger) token(Insect,creature token insect,6/1,shroud green)
+auto=@movedTo(this|graveyard) from(myBattlefield):this(counter{0/0.1.Time}<1) all(trigger) token(Insect,Creature Insect,6/1,shroud green)
 text=Vanishing 3 (This permanent enters the battlefield with three time counters on it. At the beginning of your upkeep, remove a time counter from it. When the last is removed, sacrifice it.) -- When Deadly Grub dies, if it had no time counters on it, put a 6/1 green Insect creature token with shroud onto the battlefield. (It can't be the target of spells or abilities.)
 mana={2}{B}
 type=Creature
@@ -18437,8 +18424,7 @@ type=Sorcery
 [/card]
 [card]
 name=Deep Reconnaissance
-target=land[basic]|mylibrary
-auto=moveTo(myBattlefield) and!(tap)!
+auto=moveTo(myBattlefield) and!(tap)! notatarget(land[basic]|mylibrary)
 flashback={4}{G}
 text=Search your library for a basic land card and put that card onto the battlefield tapped. Then shuffle your library. -- Flashback {4}{G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={2}{G}
@@ -19004,8 +18990,7 @@ subtype=Aura
 [/card]
 [card]
 name=Demonic Tutor
-target=*|myLibrary
-auto=moveTo(hand)
+auto=moveTo(myhand) notatarget(*|myLibrary)
 text=Search your library for a card and put that card into your hand. Then shuffle your library.
 mana={1}{B}
 type=Sorcery
@@ -19021,7 +19006,7 @@ subtype=Equipment
 [/card]
 [card]
 name=Demonspine Whip
-autoskill={x}:thisforeach(x) 1/0 ueot
+autoskill={X}:thisforeach(X) 1/0 ueot
 auto={1}:equip
 text={X}: Equipped creature gets +X/+0 until end of turn. -- Equip {1}
 mana={B}{R}
@@ -19081,7 +19066,7 @@ toughness=1
 [/card]
 [card]
 name=Deranged Hermit
-auto=token(Squirrel,creature token squirrel,1/1,green)*4
+auto=token(Squirrel,Creature Squirrel,1/1,green)*4
 auto=lord(squirrel) 1/1
 auto=upcost[{3}{G}{G};next upkeep] sacrifice
 text=Echo {3}{G}{G} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- When Deranged Hermit enters the battlefield, put four 1/1 green Squirrel creature tokens onto the battlefield. -- Squirrel creatures get +1/+1.
@@ -19477,8 +19462,7 @@ toughness=4
 [/card]
 [card]
 name=Diabolic Tutor
-target=*|mylibrary
-auto=moveTo(myHand)
+auto=moveTo(myHand) notatarget(*|mylibrary)
 text=Search your library for a card and put that card into your hand. Then shuffle your library.
 mana={2}{B}{B}
 type=Sorcery
@@ -19871,7 +19855,7 @@ name=Disintegrate
 target=creature,player
 auto=cantregen
 auto=exiledeath
-auto=thisforeach(x) damage:1
+auto=thisforeach(X) damage:1
 text=Disintegrate deals X damage to target creature or player. That creature can't be regenerated this turn. If the creature would die this turn, exile it instead.
 mana={X}{R}
 type=Sorcery
@@ -20538,7 +20522,7 @@ subtype=Aura
 [/card]
 [card]
 name=Dragon Broodmother
-auto=@each upkeep: token(22222220)
+auto=@each upkeep: token(-22222220)
 mana={2}{R}{R}{R}{G}
 type=Creature
 subtype=Dragon
@@ -20740,7 +20724,7 @@ toughness=3
 [card]
 name=Dragonstorm
 abilities=storm
-auto=moveTo(myBattlefield) target(dragon|mylibrary)
+auto=moveTo(myBattlefield) notatarget(dragon|mylibrary)
 text=Search your library for a Dragon permanent card and put it onto the battlefield. Then shuffle your library. -- Storm (When you cast this spell, copy it for each spell cast before it this turn.)
 mana={8}{R}
 type=Sorcery
@@ -20804,7 +20788,7 @@ type=Instant
 [card]
 name=Drana, Kalastria Bloodchief
 abilities=flying
-auto={X}{B}{B}:damage:x target(creature) && all(this) x/0 ueot
+auto={X}{B}{B}:damage:X target(creature) && all(this) x/0 ueot
 text=Flying -- {X}{B}{B}: Target creature gets -0/-X until end of turn and Drana, Kalastria Bloodchief gets +X/+0 until end of turn.
 mana={3}{B}{B}
 type=Legendary Creature
@@ -20989,7 +20973,7 @@ subtype=Aura
 [/card]
 [card]
 name=Dream Prowler
-auto=@combat(attacking) source(this) restriction{type(creature[attacking]|myBattlefield)~lessthan~2:all(this) unblockable ueot oneShot
+auto=@combat(attacking) source(this) restriction{type(creature[attacking]|myBattlefield)~lessthan~2}:all(this) unblockable ueot oneShot
 text=Dream Prowler is unblockable as long as it's attacking alone.
 mana={2}{U}{U}
 type=Creature
@@ -22494,8 +22478,7 @@ toughness=2
 [/card]
 [card]
 name=Eerie Procession
-target=arcane|mylibrary
-auto=moveto(myhand)
+auto=moveto(myhand) notatarget(arcane|mylibrary)
 text=Search your library for an Arcane card, reveal that card, and put it into your hand. Then shuffle your library.
 mana={2}{U}
 type=Sorcery
@@ -22570,8 +22553,7 @@ toughness=1
 [/card]
 [card]
 name=Eladamri's Call
-target=creature|mylibrary
-auto=moveTo(myHand)
+auto=moveTo(myHand) notatarget(creature|mylibrary)
 text=Search your library for a creature card, reveal that card, and put it into your hand. Then shuffle your library.
 mana={G}{W}
 type=Instant
@@ -22927,7 +22909,7 @@ name=Elspeth, Knight-Errant
 auto=counter(0/0,4,loyalty)
 auto={C(0/0,1,Loyalty)}:token(Soldier,Creature Soldier,1/1,white)
 auto={C(0/0,1,Loyalty)}:3/3 && flying target(creature)
-auto={C(0/0,-8,Loyalty)}:name(emblem)emblem lord(*[-planeswalker]|mybattlefield) indestructible dontremove
+auto={C(0/0,-8,Loyalty)}:name(emblem) emblem transforms((,newability[lord(*[artifact;creature;land;enchantment]|mybattlefield) indestructible])) dontremove
 text=+1: Put a 1/1 white Soldier creature token onto the battlefield. -- +1: Target creature gets +3/+3 and gains flying until end of turn. -- -8: For the rest of the game, artifacts, creatures, enchantments, and lands you control are indestructible.
 mana={2}{W}{W}
 type=Planeswalker
@@ -23965,8 +23947,7 @@ toughness=2
 [/card]
 [card]
 name=Enlightened Tutor
-target=artifact,enchantment|mylibrary
-auto=moveTo(library)
+auto=moveTo(ownerlibrary) notatarget(artifact,enchantment|mylibrary)
 text=Search your library for an artifact or enchantment card and reveal that card. Shuffle your library, then put the card on top of it.
 mana={W}
 type=Instant
@@ -23990,7 +23971,7 @@ type=Instant
 [card]
 name=Enslave
 target=creature
-auto=@each my upkeep:life:-1 opponent
+auto=teach(creature) transforms((,newability[@each my upkeep:damage:1 owner]))
 alias=1194
 text=Enchant creature -- You control enchanted creature. -- At the beginning of your upkeep, enchanted creature deals 1 damage to its owner.
 mana={4}{B}{B}
@@ -24072,8 +24053,7 @@ subtype=Aura
 [/card]
 [card]
 name=Entomb
-target=*|myLibrary
-auto=moveTo(myGraveyard)
+auto=moveTo(myGraveyard) notatarget(*|myLibrary)
 text=Search your library for a card and put that card into your graveyard. Then shuffle your library.
 mana={B}
 type=Instant
@@ -24251,7 +24231,7 @@ toughness=4
 name=Errantry
 target=creature
 auto=3/0
-auto=auto=@combat(attacking) source(mytgt) restriction{type(creature[attacking]|myBattlefield)~morethan~1}:all(this) removefromcombat && untap
+auto=@combat(attacking) source(mytgt) restriction{type(creature[attacking]|myBattlefield)~morethan~1}:all(this) removefromcombat && untap
 text=Enchant creature -- Enchanted creature gets +3/+0 and can only attack alone.
 mana={1}{R}
 type=Enchantment
@@ -25037,9 +25017,7 @@ type=Instant
 [/card]
 [card]
 name=Explosive Vegetation
-target=<upto:2>land[basic]|mylibrary
-auto=moveTo(myBattlefield)
-auto=tap
+auto=moveTo(myBattlefield) and!(tap)! notatarget(<upto:2>land[basic]|mylibrary)
 text=Search your library for up to two basic land cards and put them onto the battlefield tapped. Then shuffle your library.
 mana={3}{G}
 type=Sorcery
@@ -25268,8 +25246,7 @@ color=blue
 [/card]
 [card]
 name=Fabricate
-target=artifact|myLibrary
-auto=moveTo(myHand)
+auto=moveTo(myHand) notatarget(artifact|myLibrary)
 text=Search your library for an artifact card, reveal it, and put it into your hand. Then shuffle your library.
 mana={2}{U}
 type=Sorcery
@@ -25488,8 +25465,8 @@ toughness=2
 [/card]
 [card]
 name=Falkenrath Torturer
-auto={S(creature[-human]):name(sacrifice a non-human creature):flying
-auto={S(creature[human]):name(sacrifice a human):flying && counter(1/1,1)
+auto={S(creature[-human])}:name(sacrifice a non-human creature):flying
+auto={S(creature[human])}:name(sacrifice a human):flying && counter(1/1,1)
 text=Sacrifice a creature: Falkenrath Torturer gains flying until end of turn. If the sacrificed creature was a Human, put a +1/+1 counter on Falkenrath Torturer.
 mana={2}{B}
 type=Creature
@@ -25810,9 +25787,7 @@ toughness=2
 [/card]
 [card]
 name=Farseek
-target=plains,island,swamp,mountain|mylibrary
-auto=moveto(myBattlefield)
-auto=tap
+auto=moveto(myBattlefield) and!(tap)! notatarget(plains,island,swamp,mountain|mylibrary)
 text=Search your library for a Plains, Island, Swamp, or Mountain card and put it onto the battlefield tapped. Then shuffle your library.
 mana={1}{G}
 type=Sorcery
@@ -25845,7 +25820,7 @@ subtype=Aura
 [card]
 name=Fatal Blow
 target=creature[damaged]
-auto=destroy
+auto=bury
 text=Destroy target creature that was dealt damage this turn. It can't be regenerated.
 mana={B}
 type=Instant
@@ -26477,7 +26452,7 @@ subtype=Aura
 [/card]
 [card]
 name=Field of Souls
-auto=@movedTo(creature[-token]|mygraveyard) from(battlefield):token(Spirit,creature token spirit, 1/1,flying white)
+auto=@movedTo(creature[-token]|mygraveyard) from(battlefield):token(Spirit,Creature Spirit, 1/1,flying white)
 text=Whenever a nontoken creature is put into your graveyard from the battlefield, put a 1/1 white Spirit creature token with flying onto the battlefield.
 mana={2}{W}{W}
 type=Enchantment
@@ -28335,8 +28310,7 @@ toughness=1
 [/card]
 [card]
 name=Foresight
-target=<3>*|mylibrary
-auto=moveTo(exile)
+auto=moveTo(exile) notatarget(<3>*|mylibrary)
 auto=@next upkeep:draw:1 controller
 text=Search your library for three cards, exile them, then shuffle your library. -- Draw a card at the beginning of the next turn's upkeep.
 mana={1}{U}
@@ -28782,8 +28756,7 @@ toughness=2
 [card]
 name=Frogtosser Banneret
 abilities=haste
-auto=lord(goblin|myhand) altercost(colorless,-1)
-auto=lord(rogue|myhand) altercost(colorless,-1)
+auto=lord(*[goblin;rogue]|myhand) altercost(colorless, -1)
 text=Haste -- Goblin spells and Rogue spells you cast cost {1} less to cast.
 mana={1}{B}
 type=Creature
@@ -29311,8 +29284,7 @@ toughness=1+*
 [/card]
 [card]
 name=Gaea's Bounty
-target=<upto:2>forest|myLibrary
-auto=moveTo(myhand)
+auto=moveTo(myhand) notatarget(<upto:2>forest|myLibrary)
 text=Search your library for up to two Forest cards, reveal those cards, and put them into your hand. Then shuffle your library.
 mana={2}{G}
 type=Sorcery
@@ -29474,8 +29446,7 @@ type=Artifact
 [/card]
 [card]
 name=Gamble
-target=*|myLibrary
-auto=moveTo(myHand)
+auto=moveTo(myHand) notatarget(*|myLibrary)
 auto=discard:1
 text=Search your library for a card, put that card into your hand, discard a card at random, then shuffle your library.
 mana={R}
@@ -29678,9 +29649,8 @@ type=Enchantment
 [/card]
 [card]
 name=Gatekeeper of Malakir
-auto=kicker 
-kicker={B} 
 auto=kicker target(player) ability$!name(sacrifice creature) notatarget(creature|mybattlefield) sacrifice!$ targetedplayer
+kicker={B} 
 text=Kicker {B} (You may pay an additional {B} as you cast this spell.) -- When Gatekeeper of Malakir enters the battlefield, if it was kicked, target player sacrifices a creature.
 mana={B}{B}
 type=Creature
@@ -29858,7 +29828,7 @@ toughness=4
 [/card]
 [card]
 name=Gemhide Sliver
-auto=lord(sliver) transforms((,newability[{t}:add{w}],newability[{t}:add{g}],newability[{t}:add{r}],newability[{t}:add{b}],newability[{t}:add{u}]))
+auto=lord(sliver) transforms((,newability[{t}:add{g}],newability[{t}:add{r}],newability[{t}:add{u}],newability[{t}:add{b}],newability[{t}:add{w}]))
 text=All Slivers have "{T}: Add one mana of any color to your mana pool."
 mana={1}{G}
 type=Creature
@@ -30814,7 +30784,7 @@ toughness=2
 [card]
 name=Gitaxian Probe
 target=player
-auto=target(*|targetedpersonshand) 0/0
+auto=name(look) target(*|targetedpersonshand) 0/0
 auto=draw:1 controller
 text=({p(U)} may be paid for with either {U} or 2 life.) -- Look at target player's hand. -- Draw a card.
 color=blue
@@ -31248,7 +31218,7 @@ type=Instant
 [card]
 name=Glory
 abilities=flying
-autograveyard={2}{W}:choice chooseacolor all(creature|mybattlefield) protection from(*[chosencolor]) chooseend
+autograveyard={2}{W}:chooseacolor all(creature|mybattlefield) protection from(*[chosencolor]) chooseend
 text=Flying -- {2}{W}: Creatures you control gain protection from the color of your choice until end of turn. Activate this ability only if Glory is in your graveyard.
 mana={3}{W}{W}
 type=Creature
@@ -31836,8 +31806,8 @@ type=Artifact
 [/card]
 [card]
 name=Goblin Marshal
-auto=token(Goblin,creature token goblin,1/1,red)*2
-auto=@movedTo(this|graveyard) from(battlefield):token(Goblin,creature token goblin,1/1,red)*2
+auto=token(Goblin,Creature Goblin,1/1,red)*2
+auto=@movedTo(this|graveyard) from(battlefield):token(Goblin,Creature Goblin,1/1,red)*2
 auto=upcost[{4}{R}{R};next upkeep] sacrifice
 text=Echo {4}{R}{R} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- When Goblin Marshal enters the battlefield or dies, put two 1/1 red Goblin creature tokens onto the battlefield.
 mana={4}{R}{R}
@@ -32041,7 +32011,7 @@ toughness=1
 [/card]
 [card]
 name=Goblin Scouts
-auto=token(Goblin Scout,creature token Goblin Scout, 1/1,mountainwalk red)*3
+auto=token(Goblin Scout,Creature Goblin Scout, 1/1,mountainwalk red)*3
 text=Put three 1/1 red Goblin Scout creature tokens with mountainwalk onto the battlefield.
 mana={3}{R}{R}
 type=Sorcery
@@ -33323,7 +33293,7 @@ subtype=Aura
 [/card]
 [card]
 name=Green Sun's Zenith
-auto=moveto(mybattlefield) target(creature[green;manacost <=X]|mylibrary)
+auto=moveto(mybattlefield) notatarget(creature[green;manacost <=X]|mylibrary)
 alias=135262
 text=Search your library for a green creature card with converted mana cost X or less, put it onto the battlefield, then shuffle your library. Shuffle Green Sun's Zenith into its owner's library.
 mana={X}{G}
@@ -33501,7 +33471,7 @@ toughness=4
 [/card]
 [card]
 name=Grim Tutor
-auto=moveTo(myhand) target(*|myLibrary)
+auto=moveTo(myhand) notatarget(*|myLibrary)
 auto=life:-3 controller
 text=Search your library for a card and put that card into your hand, then shuffle your library. You lose 3 life.
 mana={1}{B}{B}
@@ -33653,7 +33623,7 @@ type=Land
 [/card]
 [card]
 name=Grixis Slavedriver
-auto=@movedTo(this|nonbattlezone) from(battlefield):token(Zombie,Creature Token Zombie,2/2,black)
+auto=@movedTo(this|nonbattlezone) from(battlefield):token(Zombie,Creature Zombie,2/2,black)
 autograveyard={3}{B}:moveto(mybattlefield) && transforms((,unearth,haste)) asSorcery forever
 text=When Grixis Slavedriver leaves the battlefield, put a 2/2 black Zombie creature token onto the battlefield. -- Unearth {3}{B} ({3}{B}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
 mana={5}{B}
@@ -33837,9 +33807,7 @@ type=Land
 [/card]
 [card]
 name=Growth Spasm
-target=land[basic]|myLibrary
-auto=moveTo(myBattlefield)
-auto=tap
+auto=moveTo(myBattlefield) and!(tap)! notatarget(land[basic]|myLibrary)
 auto=Token(-193507)
 text=Search your library for a basic land card and put it onto the battlefield tapped. Then shuffle your library. -- Put a 0/1 colorless Eldrazi Spawn creature token onto the battlefield. It has "Sacrifice this creature: Add {1} to your mana pool."
 mana={2}{G}
@@ -35580,7 +35548,7 @@ type=Artifact
 [card]
 name=Helium Squirter
 auto=counter(1/1,3)
-auto=@movedto(creature|battlefield):may this(counter{1/1}) all(trigger) counter(1/1,1) && this(counter{1/1})  counter(1/1,-1)
+auto=this(counter{1/1.1}>0) transforms((,newability[@movedto(other creature|battlefield):may name(move 1/1 counter) all(trigger) counter(1/1.1) && counter(1/1.-1) all(this)]))
 auto={1}:flying target(creature[counter{1/1.1}])
 text=Graft 3 (This creature enters the battlefield with three +1/+1 counters on it. Whenever another creature enters the battlefield, you may move a +1/+1 counter from this creature onto it.) -- {1}: Target creature with a +1/+1 counter on it gains flying until end of turn.
 mana={4}{U}
@@ -37706,8 +37674,7 @@ type=Enchantment
 [/card]
 [card]
 name=Idyllic Tutor
-target=enchantment|myLibrary
-auto=moveTo(myhand) target(enchantment|myLibrary)
+auto=moveTo(myhand) notatarget(enchantment|myLibrary)
 text=Search your library for an enchantment card, reveal it, and put it into your hand. Then shuffle your library.
 mana={2}{W}
 type=Sorcery
@@ -37979,8 +37946,7 @@ toughness=1
 [/card]
 [card]
 name=Imperial Seal
-target=*|mylibrary
-auto=moveTo(library)
+auto=moveTo(ownerlibrary) notatarget(*|mylibrary)
 auto=life:-2 controller
 text=Search your library for a card, then shuffle your library and put that card on top of it. You lose 2 life.
 mana={B}
@@ -38127,7 +38093,7 @@ type=Sorcery
 name=Increasing Confusion
 target=player
 auto=deplete:X
-auto=flashback deplete:x
+auto=flashback deplete:X
 flashback={X}{U}
 text=Target player puts the top X cards of his or her library into his or her graveyard. If Increasing Confusion was cast from a graveyard, that player puts twice as many cards into his or her graveyard instead. -- Flashback {X}{U} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={X}{U}
@@ -38826,9 +38792,7 @@ type=Sorcery
 [/card]
 [card]
 name=Into the North
-target=land[snow]|mylibrary
-auto=moveto(mybattlefield)
-auto=tap
+auto=moveto(mybattlefield) and!(tap)! notatarget(land[snow]|mylibrary)
 text=Search your library for a snow land card and put it onto the battlefield tapped. Then shuffle your library.
 mana={1}{G}
 type=Sorcery
@@ -38950,7 +38914,7 @@ type=Sorcery
 [card]
 name=Iona, Shield of Emeria
 abilities=flying
-auto=choice chooseacolor maxcast(*[chosencolor])0 opponent chooseend
+auto=chooseacolor maxCast(*[chosencolor])0 opponent chooseend
 text=Flying -- As Iona, Shield of Emeria enters the battlefield, choose a color. -- Your opponents can't cast spells of the chosen color.
 mana={6}{W}{W}{W}
 type=Legendary Creature
@@ -40029,7 +39993,7 @@ toughness=1
 [card]
 name=Jotun Owl Keeper
 auto=cumulativeupcost[{W}{U}] sacrifice
-auto=@movedTo(this|graveyard) from(battlefield):thisforeach(counter{0/0.1.Age}) token(Bird,creature token bird,1/1,white flying)
+auto=@movedTo(this|graveyard) from(battlefield):thisforeach(counter{0/0.1.Age}) token(Bird,Creature Bird,1/1,white flying)
 text=Cumulative upkeep {W} or {U} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- When Jotun Owl Keeper dies, put a 1/1 white Bird creature token with flying onto the battlefield for each age counter on it.
 mana={2}{W}
 type=Creature
@@ -40546,7 +40510,7 @@ type=Sorcery
 [/card]
 [card]
 name=Kaervek's Purge
-auto=name(destroy target creature) target(creature[manacost=x]) transforms((,newability[destroy],newability[dynamicability<!powerstrike targetcontroller!>]))
+auto=name(destroy target creature) target(creature[manacost=X]) transforms((,newability[destroy],newability[dynamicability<!powerstrike targetcontroller!>]))
 text=Destroy target creature with converted mana cost X. If that creature dies this way, Kaervek's Purge deals damage equal to the creature's power to the creature's controller.
 mana={X}{B}{R}
 type=Sorcery
@@ -41040,7 +41004,7 @@ toughness=1
 [card]
 name=Kathari Bomber
 abilities=flying
-auto=@combatdamaged(player) from(this):token(Goblin,Creature Token Goblin,1/1,red)*2 && moveTo(ownergraveyard) all(this)
+auto=@combatdamaged(player) from(this):token(Goblin,Creature Goblin,1/1,red)*2 && moveTo(ownergraveyard) all(this)
 autograveyard={3}{B}{R}:moveto(mybattlefield) && transforms((,unearth,haste)) asSorcery forever
 text=Flying -- When Kathari Bomber deals combat damage to a player, put two 1/1 red Goblin creature tokens onto the battlefield and sacrifice Kathari Bomber. -- Unearth {3}{B}{R} ({3}{B}{R}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
 mana={1}{B}{R}
@@ -41623,7 +41587,7 @@ toughness=1
 [card]
 name=Kessig Wolf Run
 auto={T}:Add{1}
-auto={X}{R}{G}{T}:target(creature) ueot +x/0 && trample
+auto={X}{R}{G}{T}:target(creature) x/0 && trample ueot
 text={T}: Add {1} to your mana pool. -- {X}{R}{G}, {T}: Target creature gets +X/+0 and gains trample until end of turn.
 type=Land
 [/card]
@@ -41928,7 +41892,7 @@ subtype=Aura
 [card]
 name=Kirtar's Wrath
 auto=bury all(creature)
-auto=aslongas(*|mygraveyard) token(Spirit,creature token spirit, 1/1,flying,white)*2 >6
+auto=aslongas(*|mygraveyard) token(Spirit,Creature Spirit, 1/1,flying,white)*2 >6
 text=Destroy all creatures. They can't be regenerated. -- Threshold - If seven or more cards are in your graveyard, instead destroy all creatures, then put two 1/1 white Spirit creature tokens with flying onto the battlefield. Creatures destroyed this way can't be regenerated.
 mana={4}{W}{W}
 type=Sorcery
@@ -42561,10 +42525,7 @@ toughness=4
 [/card]
 [card]
 name=Kodama's Reach
-target=land[basic]|myLibrary
-auto=moveTo(myBattlefield)
-auto=tap
-auto=moveTo(myhand) target(land[basic]|mylibrary)
+auto=name(fetch to play) notatarget(land[basic]|mylibrary) transforms((,newability[name(move to hand) notatarget(land[basic]|mylibrary) moveTo(myhand)],newability[moveTo(myBattlefield) and!(tap)!])) oneshot
 text=Search your library for two basic land cards, reveal those cards, and put one onto the battlefield tapped and the other into your hand. Then shuffle your library.
 mana={2}{G}
 type=Sorcery
@@ -42793,7 +42754,7 @@ name=Koth of the Hammer
 auto=counter(0/0,3,loyalty)
 auto={C(0/0,1,Loyalty)}:untap target(mountain) && becomes(Elemental Creature,4/4,red) ueot
 auto={C(0/0,-2,Loyalty)}:foreach(mountain|myBattlefield) add:{R}
-auto={C(0/0,-5,Loyalty)}:emblem lord(mountain|mybattlefield) {T}:damage:1 target(creature,player) dontremove
+auto={C(0/0,-5,Loyalty)}:name(emblem) emblem transforms((,newability[lord(mountain|mybattlefield) {t}:target(*[creature;player]) damage:1])) dontremove
 text=+1: Untap target Mountain. It becomes a 4/4 red Elemental creature until end of turn. It's still a land. -- -2: Add {R} to your mana pool for each Mountain you control. -- -5: You get an emblem with "Mountains you control have ‘{T}: This land deals 1 damage to target creature or player.'"
 mana={2}{R}{R}
 type=Planeswalker
@@ -43318,7 +43279,7 @@ toughness=1
 [card]
 name=Kusari-Gama
 auto={3}:equip
-auto=teach(creature) {1}:1/0
+auto=teach(creature) {2}:1/0
 auto=@damaged(creature[blocking]|opponentbattlefield) from(mytgt):all(creature|opponentbattlefield) damage:thatmuch
 text=Equipped creature has "{2}: This creature gets +1/+0 until end of turn." -- Whenever equipped creature deals damage to a blocking creature, Kusari-Gama deals that much damage to each other creature defending player controls. -- Equip {3} ({3}: Attach to target creature you control. Equip only as a sorcery.)
 mana={3}
@@ -43405,7 +43366,7 @@ toughness=2
 [/card]
 [card]
 name=Lab Rats
-auto=token(Rat,creature token rat,1/1,black)
+auto=token(Rat,Creature Rat,1/1,black)
 buyback={B}{4}
 text=Buyback {4} (You may pay an additional {4} as you cast this spell. If you do, put this card into your hand as it resolves.) -- Put a 1/1 black Rat creature token onto the battlefield.
 mana={B}
@@ -43995,8 +43956,7 @@ type=Sorcery
 [/card]
 [card]
 name=Lay of the Land
-target=land[basic]|myLibrary
-auto=moveTo(myHand)
+auto=moveTo(myHand) notatarget(land[basic]|myLibrary)
 text=Search your library for a basic land card, reveal that card, and put it into your hand. Then shuffle your library.
 mana={G}
 type=Sorcery
@@ -45101,7 +45061,7 @@ subtype=Aura
 [card]
 name=Living Hive
 abilities=trample
-auto=@combatdamaged(player) from(this):token(Insect,creature token insect,1/1,green)*thatmuch
+auto=@combatdamaged(player) from(this):token(Insect,Creature Insect,1/1,green)*thatmuch
 text=Trample -- Whenever Living Hive deals combat damage to a player, put that many 1/1 green Insect creature tokens onto the battlefield.
 mana={6}{G}{G}
 type=Creature
@@ -45979,7 +45939,7 @@ toughness=3
 name=Ludevic's Test Subject
 abilities=defender
 auto={1}{U}:counter(0/0,1,Hatchling)
-auto=this(counter{0/0.5.Hatchling}) flip(Lidevic's Abomination)
+auto=this(counter{0/0.5.Hatchling}) flip(Ludevic's Abomination)
 text={1}{U}: Put a hatchling counter on Ludevic's Test Subject. Then if there are five or more hatchling counters on it, remove all of them and transform it.
 mana={1}{U}
 type=Creature
@@ -47028,7 +46988,7 @@ type=Sorcery
 [/card]
 [card]
 name=Mana Severance
-auto=target(<anyamount>land|mylibrary) moveTo(exile)
+auto=notatarget(<anyamount>land|mylibrary) moveTo(exile)
 text=Search your library for any number of land cards and exile them. Then shuffle your library.
 mana={1}{U}
 type=Sorcery
@@ -47210,8 +47170,7 @@ toughness=2
 [/card]
 [card]
 name=Manipulate Fate
-target=<3>*|mylibrary
-auto=moveTo(exile)
+auto=moveTo(exile) notatarget(<3>*|mylibrary)
 auto=draw:1 controller
 text=Search your library for three cards, exile them, then shuffle your library. -- Draw a card.
 mana={1}{U}
@@ -48421,8 +48380,7 @@ toughness=4
 [/card]
 [card]
 name=Merchant Scroll
-target=instant[blue]|mylibrary
-auto=moveTo(myhand)
+auto=moveTo(myhand) notatarget(instant[blue]|mylibrary)
 text=Search your library for a blue instant card, reveal that card, and put it into your hand. Then shuffle your library.
 mana={1}{U}
 type=Sorcery
@@ -48867,7 +48825,7 @@ type=Instant
 [/card]
 [card]
 name=Midnight Ritual
-target=<<prex>>creature|mygraveyard
+target=<prex>creature|mygraveyard
 auto=transforms((,newability[moveTo(exile)],newability[token(-1970711)]))
 text=Exile X target creature cards from your graveyard. For each creature card exiled this way, put a 2/2 black Zombie creature token onto the battlefield.
 mana={X}{2}{B}
@@ -49145,7 +49103,7 @@ type=Sorcery
 [card]
 name=Mind Shatter
 target=player
-auto=discard:x
+auto=discard:X
 text=Target player discards X cards at random.
 mana={X}{B}{B}
 type=Sorcery
@@ -49183,7 +49141,7 @@ type=Artifact
 [card]
 name=Mind Twist
 target=player
-auto=discard:x
+auto=discard:X
 text=Target player discards X cards at random.
 mana={X}{B}
 type=Sorcery
@@ -49233,8 +49191,9 @@ type=Artifact
 [/card]
 [card]
 name=Mindculling
+target=opponent 
 auto=draw:2 controller
-auto=target(opponent) ability$!name(discard 2 cards) target(*|myhand) reject!$ targetplayer 
+auto=ability$!name(discard 2 cards) target(*|myhand) reject!$ targetedplayer 
 text=You draw two cards and target opponent discards two cards.
 mana={5}{U}
 type=Sorcery
@@ -49575,7 +49534,7 @@ type=Land
 [/card]
 [card]
 name=Mirror Entity
-auto={x}:all(creature|mybattlefield) transforms((allsubtypes,setpower=x,settoughness=x)) ueot
+auto={X}:all(creature|mybattlefield) transforms((allsubtypes,setpower=X,settoughness=X)) ueot
 text=Changeling (This card is every creature type at all times.) -- {X}: Creatures you control become X/X and gain all creature types until end of turn.
 mana={2}{W}
 type=Creature
@@ -50204,8 +50163,8 @@ toughness=2
 [/card]
 [card]
 name=Mogg War Marshal
-auto=token(Goblin,creature token goblin,1/1,red)
-auto=@movedTo(this|graveyard) from(battlefield):token(Goblin,creature token goblin,1/1,red)
+auto=token(Goblin,Creature Goblin,1/1,red)
+auto=@movedTo(this|graveyard) from(battlefield):token(Goblin,Creature Goblin,1/1,red)
 auto=upcost[{1}{R};next upkeep] sacrifice
 text=Echo {1}{R} (At the beginning of your upkeep, if this came under your control since the beginning of your last upkeep, sacrifice it unless you pay its echo cost.) -- When Mogg War Marshal enters the battlefield or dies, put a 1/1 red Goblin creature token onto the battlefield.
 mana={1}{R}
@@ -50259,7 +50218,7 @@ toughness=3
 [card]
 name=Molder
 auto=destroy target(*[artifact;enchantment;manacost <=X])
-auto=life:x
+auto=life:X
 text=Destroy target artifact or enchantment with converted mana cost X. It can't be regenerated. You gain X life.
 mana={X}{G}
 type=Instant
@@ -51962,8 +51921,7 @@ type=Instant
 [/card]
 [card]
 name=Mystical Tutor
-target=instant,sorcery|mylibrary
-auto=moveTo(library)
+auto=moveTo(ownerlibrary) notatarget(instant,sorcery|mylibrary)
 text=Search your library for an instant or sorcery card and reveal that card. Shuffle your library, then put the card on top of it.
 mana={U}
 type=Instant
@@ -52295,8 +52253,7 @@ type=Sorcery
 [/card]
 [card]
 name=Nature's Lore
-target=forest|myLibrary
-auto=moveTo(myBattlefield)
+auto=moveTo(myBattlefield) notatarget(forest|myLibrary)
 text=Search your library for a Forest card and put that card onto the battlefield. Then shuffle your library.
 mana={1}{G}
 type=Sorcery
@@ -53440,7 +53397,7 @@ subtype=Aura
 [/card]
 [card]
 name=Nin, the Pain Artist
-auto={X}{U}{R}{T}:damage:x target(creature) && draw:X targetcontroller
+auto={X}{U}{R}{T}:damage:X target(creature) && draw:X targetcontroller
 text={X}{U}{R}, {T}: Nin, the Pain Artist deals X damage to target creature. That creature's controller draws X cards.
 mana={U}{R}
 type=Legendary Creature
@@ -53878,7 +53835,7 @@ type=Land
 [card]
 name=Novijen Sages
 auto=counter(1/1,4)
-auto=@movedto(creature|battlefield):may this(counter{1/1}) all(trigger) counter(1/1,1) && this(counter{1/1}) counter(1/1,-1)
+auto=this(counter{1/1.1}>0) transforms((,newability[@movedto(other creature|battlefield):may name(move 1/1 counter) all(trigger) counter(1/1.1) && counter(1/1.-1) all(this)]))
 auto={1}{C(1/1,-1),creature|mybattlefield}{C(1/1,-1),creature|mybattlefield}:draw:1 controller
 text=Graft 4 (This creature enters the battlefield with four +1/+1 counters on it. Whenever another creature enters the battlefield, you may move a +1/+1 counter from this creature onto it.) -- {1}, Remove two +1/+1 counters from among creatures you control: Draw a card.
 mana={4}{U}{U}
@@ -54986,7 +54943,7 @@ toughness=6
 [/card]
 [card]
 name=Orc General
-auto={T}{S(other orc other|myBattlefield)}:lord(orc) 1/1
+auto={T}{S(other orc|myBattlefield)}:lord(orc) 1/1
 auto={T}{S(other goblin|myBattlefield)}:lord(orc) 1/1
 text={T}, Sacrifice another Orc or Goblin: Other Orc creatures get +1/+1 until end of turn.
 mana={2}{R}
@@ -55393,7 +55350,7 @@ toughness=3
 ###The 2 cards above should stay together (Flip Card)###
 [card]
 name=Orochi Hatchery
-auto=counter(0/0,xx,Charge)
+auto=counter(0/0,XX,Charge)
 auto={5}{T}:thisforeach(counter{0/0,1,Charge}) token(Snake,Creature Snake,1/1,green)
 text=Orochi Hatchery enters the battlefield with X charge counters on it. -- {5}, {T}: Put a 1/1 green Snake creature token onto the battlefield for each charge counter on Orochi Hatchery.
 mana={X}{X}
@@ -56948,8 +56905,7 @@ type=Enchantment
 [/card]
 [card]
 name=Personal Tutor
-target=sorcery|mylibrary
-auto=moveTo(library)
+auto=moveTo(library) notatarget(sorcery|mylibrary)
 text=Search your library for a sorcery card and reveal that card. Shuffle your library, then put the card on top of it.
 mana={U}
 type=Sorcery
@@ -57155,7 +57111,7 @@ toughness=1
 [card]
 name=Phantasmal Image
 auto=transforms((Illusion))
-auto=transforms((,newability[auto=@targeted(this):sacrifice])) forever
+auto=transforms((,newability[@targeted(this):sacrifice])) forever
 auto=may copy NotATarget(creature)
 text=You may have Phantasmal Image enter the battlefield as a copy of any creature on the battlefield, except it's an Illusion in addition to its other types and it gains "When this creature becomes the target of a spell or ability, sacrifice it."
 mana={1}{U}
@@ -57357,7 +57313,7 @@ toughness=0
 [/card]
 [card]
 name=Phelddagrif
-auto={G}:trample && token(Hippo,Creature Token Hippo,1/1,green) && moveTo(opponentBattlefield) all(hippo[token]|myBattlefield)
+auto={G}:trample && token(Hippo,Creature Hippo,1/1,green) && moveTo(opponentBattlefield) all(hippo[token]|myBattlefield)
 auto={W}:flying && life:2 opponent
 auto={U}:moveTo(ownerhand) && draw:1 opponent
 text={G}: Phelddagrif gains trample until end of turn. Target opponent puts a 1/1 green Hippo creature token onto the battlefield. -- {W}: Phelddagrif gains flying until end of turn. Target opponent gains 2 life. -- {U}: Return Phelddagrif to its owner's hand. Target opponent may draw a card.
@@ -58509,7 +58465,7 @@ toughness=4
 name=Plaxcaster Frogling
 auto=counter(1/1,3)
 auto={2}:shroud target(creature[counter{1/1.1}])
-auto=@movedto(creature|battlefield):may this(counter{1/1}) all(trigger) counter(1/1,1) && this(counter{1/1}) counter(1/1,-1)
+auto=this(counter{1/1.1}>0) transforms((,newability[@movedto(other creature|battlefield):may name(move 1/1 counter) all(trigger) counter(1/1.1) && counter(1/1.-1) all(this)]))
 text=Graft 3 (This creature enters the battlefield with three +1/+1 counters on it. Whenever another creature enters the battlefield, you may move a +1/+1 counter from this creature onto it.) -- {2}: Target creature with a +1/+1 counter on it gains shroud until end of turn. (It can't be the target of spells or abilities.)
 mana={1}{G}{U}
 type=Creature
@@ -60374,7 +60330,7 @@ type=Enchantment
 [/card]
 [card]
 name=Questing Phelddagrif
-auto={G}:1/1 && token(Hippo,Creature Token Hippo,1/1,green) opponent
+auto={G}:1/1 && token(Hippo,Creature Hippo,1/1,green) opponent
 auto={W}:protection from black && protection from red && life:2 opponent
 auto={U}:flying && draw:1 opponent
 text={G}: Questing Phelddagrif gets +1/+1 until end of turn. Target opponent puts a 1/1 green Hippo creature token onto the battlefield. -- {W}: Questing Phelddagrif gains protection from black and from red until end of turn. Target opponent gains 2 life. -- {U}: Questing Phelddagrif gains flying until end of turn. Target opponent may draw a card.
@@ -60552,7 +60508,7 @@ toughness=1
 [card]
 name=Quirion Elves
 auto={T}:Add{G}
-auto=choice chooseacolor {T}:add{chosencolor} chooseend
+auto=chooseacolor {T}:add{chosencolor} chooseend
 text=As Quirion Elves enters the battlefield, choose a color. -- {T}: Add {G} to your mana pool. -- {T}: Add one mana of the chosen color to your mana pool.
 mana={1}{G}
 type=Creature
@@ -61313,9 +61269,7 @@ toughness=6
 [/card]
 [card]
 name=Rampant Growth
-target=basic|myLibrary
-auto=moveTo(myBattlefield)
-auto=tap
+auto=moveTo(myBattlefield) and!(tap)! notatarget(land[basic]|myLibrary)
 text=Search your library for a basic land card and put that card onto the battlefield tapped. Then shuffle your library.
 mana={1}{G}
 type=Sorcery
@@ -63892,7 +63846,7 @@ toughness=1
 [card]
 name=Riptide Replicator
 auto=counter(0/0,X,Charge)
-auto=choice activatechooseatype chooseacolor {4}{t}:token(Riptide,Creature chosentype,counter{0%0.1.charge}/counter{0%0.1.charge},chosencolor) chooseend activatechooseend
+auto=activatechooseatype chooseacolor {4}{t}:token(Riptide,Creature chosentype,counter{0%0.1.charge}/counter{0%0.1.charge},chosencolor) chooseend activatechooseend
 text=As Riptide Replicator enters the battlefield, choose a color and a creature type. -- Riptide Replicator enters the battlefield with X charge counters on it. -- {4}, {T}: Put an X/X creature token of the chosen color and type onto the battlefield, where X is the number of charge counters on Riptide Replicator.
 mana={X}{4}
 type=Artifact
@@ -64121,8 +64075,7 @@ toughness=1
 [/card]
 [card]
 name=River of Tears
-auto=aslongas(land[-fresh]|mybattlefield) {T}:add{U}
-auto=aslongas(land[fresh]|mybattlefield) {T}:add{B}
+auto={t}:name(Add Mana) if type(land[fresh]|mybattlefield)~morethan~0 then add{B} else add{U}
 text={T}: Add {U} to your mana pool. If you played a land this turn, add {B} to your mana pool instead.
 type=Land
 [/card]
@@ -64247,7 +64200,7 @@ toughness=5
 [/card]
 [card]
 name=Rock Hydra
-auto=counter(1/1,x)
+auto=counter(1/1,X)
 auto={r}:prevent:1 all(this)
 auto={r}{r}{r}:counter(1/1,1) all(this) myUpkeeponly
 abilities=wilting
@@ -64708,8 +64661,8 @@ toughness=2
 [/card]
 [card]
 name=Rotlung Reanimator
-auto=@movedTo(this|graveyard) from(battlefield):token(Zombie,creature token Zombie, 2/2,black)
-auto=@movedTo(graveyard) from(other cleric|battlefield):token(Zombie,creature token Zombie, 2/2,black)
+auto=@movedTo(this|graveyard) from(battlefield):token(Zombie,Creature Zombie, 2/2,black)
+auto=@movedTo(graveyard) from(other cleric|battlefield):token(Zombie,Creature Zombie, 2/2,black)
 text=Whenever Rotlung Reanimator or another Cleric dies, put a 2/2 black Zombie creature token onto the battlefield.
 mana={2}{B}
 type=Creature
@@ -65531,8 +65484,7 @@ toughness=2
 [/card]
 [card]
 name=Safewright Quest
-target=forest,plains|myLibrary
-auto=moveTo(myHand)
+auto=moveTo(myHand) notatarget(forest,plains|myLibrary)
 text=Search your library for a Forest or Plains card, reveal it, and put it into your hand. Then shuffle your library.
 mana={GW}
 type=Sorcery
@@ -66973,8 +66925,7 @@ type=Artifact
 [/card]
 [card]
 name=Scouting Trek
-target=<anyamount>land[basic]|mylibrary
-auto=moveTo(library)
+auto=moveTo(ownerlibrary) notatarget(<anyamount>land[basic]|mylibrary)
 text=Search your library for any number of basic land cards. Reveal those cards, then shuffle your library and put them on top of it.
 mana={1}{G}
 type=Sorcery
@@ -67503,7 +67454,7 @@ type=Enchantment
 [/card]
 [card]
 name=Search for Tomorrow
-auto=moveto(mybattlefield) target(basic|mylibrary)
+auto=moveto(mybattlefield) notatarget(basic|mylibrary)
 text=Search your library for a basic land card and put it onto the battlefield. Then shuffle your library. -- Suspend 2 - {G} (Rather than cast this card from your hand, you may pay {G} and exile it with two time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.)
 mana={2}{G}
 suspend(2)={g}
@@ -67818,8 +67769,7 @@ toughness=1
 [/card]
 [card]
 name=Seek the Horizon
-target=<upto:3>land[basic]|myLibrary
-auto=moveTo(myHand)
+auto=moveTo(myHand) notatarget(<upto:3>land[basic]|myLibrary)
 text=Search your library for up to three basic land cards, reveal them, and put them into your hand. Then shuffle your library.
 mana={3}{G}
 type=Sorcery
@@ -67984,8 +67934,7 @@ toughness=3
 [/card]
 [card]
 name=Selective Memory
-target=<anyamount>*[-land]|mylibrary
-auto=moveTo(exile)
+auto=moveTo(exile) notatarget(<anyamount>*[-land]|mylibrary)
 text=Search your library for any number of nonland cards and exile them. Then shuffle your library.
 mana={3}{U}
 type=Sorcery
@@ -70487,8 +70436,8 @@ toughness=2
 [card]
 name=Simic Basilisk
 auto=counter(1/1,3)
-auto=@movedto(creature|battlefield):may this(counter{1/1}) all(trigger) counter(1/1,1) && this(counter{1/1})  counter(1/1,-1)
-auto={1}{G}:target(creature[counter{1/1.1}]) transforms((,newability[auto=@combatdamaged(creature) from(this):all(trigger[to]) phaseaction[combatends once] destroy])) ueot
+auto=this(counter{1/1.1}>0) transforms((,newability[@movedto(other creature|battlefield):may name(move 1/1 counter) all(trigger) counter(1/1.1) && counter(1/1.-1) all(this)]))
+auto={1}{G}:target(creature[counter{1/1.1}]) transforms((,newability[@combatdamaged(creature) from(this):all(trigger[to]) phaseaction[combatends once] destroy])) ueot
 text=Graft 3 (This creature enters the battlefield with three +1/+1 counters on it. Whenever another creature enters the battlefield, you may move a +1/+1 counter from this creature onto it.) -- {1}{G}: Until end of turn, target creature with a +1/+1 counter on it gains "Whenever this creature deals combat damage to a creature, destroy that creature at end of combat."
 mana={4}{G}{G}
 type=Creature
@@ -70508,7 +70457,7 @@ type=Land
 name=Simic Initiate
 text=Graft 1 (This creature enters the battlefield with a +1/+1 counter on it. Whenever another creature enters the battlefield, you may move a +1/+1 counter from this creature onto it.)
 auto=counter(1/1,1)
-auto=@movedto(creature|battlefield):may this(counter{1/1}) all(trigger) counter(1/1,1) && this(counter{1/1}) counter(1/1,-1)
+auto=this(counter{1/1.1}>0) transforms((,newability[@movedto(other creature|battlefield):may name(move 1/1 counter) all(trigger) counter(1/1.1) && counter(1/1.-1) all(this)]))
 mana={G}
 type=Creature
 subtype=Human Mutant
@@ -70686,7 +70635,7 @@ toughness=4
 name=Sivvi's Ruse
 auto=preventalldamage to(creature|mybattlefield) ueot
 other={0} name(Cast without Paying its Mana Cost)
-otherrestriction=type(plains|mybattlefield)~morethan~0,type(moutain|opponentbattlefield)~morethan~0
+otherrestriction=type(plains|mybattlefield)~morethan~0,type(mountain|opponentbattlefield)~morethan~0
 text=If an opponent controls a Mountain and you control a Plains, you may cast Sivvi's Ruse without paying its mana cost. -- Prevent all damage that would be dealt this turn to creatures you control.
 mana={2}{W}{W}
 type=Instant
@@ -71524,8 +71473,7 @@ type=Instant
 [/card]
 [card]
 name=Skyshroud Claim
-target=<upto:2>forest|myLibrary
-auto=moveTo(myBattlefield)
+auto=moveTo(myBattlefield) notatarget(<upto:2>forest|myLibrary)
 text=Search your library for up to two Forest cards and put them onto the battlefield. Then shuffle your library.
 mana={3}{G}
 type=Sorcery
@@ -72276,7 +72224,7 @@ type=Instant
 [/card]
 [card]
 name=Snake Basket
-auto={X}{S}:thisforeach(X):token(Snake,creature token snake,1/1,green) asSorcery
+auto={X}{S}:thisforeach(X) token(Snake,Creature Snake,1/1,green) asSorcery
 text={X}, Sacrifice Snake Basket: Put X 1/1 green Snake creature tokens onto the battlefield. Activate this ability only any time you could cast a sorcery.
 mana={4}
 type=Artifact
@@ -73085,7 +73033,7 @@ type=Sorcery
 name=Sorin, Lord of Innistrad
 auto=counter(0/0,3,loyalty)
 auto={C(0/0,1,Loyalty)}:token(Vampire,Creature Vampire,1/1,black,lifelink)
-auto={C(0/0,-2,Loyalty)}:name(emblem)emblem lord(creature|mybattlefield) 1/0 dontremove
+auto={C(0/0,-2,Loyalty)}:name(emblem) emblem transforms((,newability[lord(creature|mybattlefield) 1/0])) forever dontremove
 auto={C(0/0,-6,Loyalty)}:target(<upto:3>other creature,planeswalker) destroy and!(moveto(mybattlefield))!
 text=+1: Put a 1/1 black Vampire creature token with lifelink onto the battlefield. -- -2: You get an emblem with "Creatures you control get +1/+0." -- -6: Destroy up to three target creatures and/or other planeswalkers. Return each card put into a graveyard this way to the battlefield under your control.
 mana={2}{W}{B}
@@ -74684,8 +74632,7 @@ type=Instant
 [/card]
 [card]
 name=Spoils of Victory
-target=plains,island,swamp,mountain,forest|mylibrary
-auto=moveTo(myBattlefield)
+auto=moveTo(myBattlefield) notatarget(plains,island,swamp,mountain,forest|mylibrary)
 text=Search your library for a Plains, Island, Swamp, Mountain, or Forest card and put that card onto the battlefield. Then shuffle your library.
 mana={2}{G}
 type=Sorcery
@@ -74748,7 +74695,7 @@ toughness=1
 [card]
 name=Sporeback Troll
 auto=counter(1/1,2)
-auto=@movedto(creature|battlefield):may this(counter{1/1}) all(trigger) counter(1/1,1) && this(counter{1/1})  counter(1/1,-1)
+auto=this(counter{1/1.1}>0) transforms((,newability[@movedto(other creature|battlefield):may name(move 1/1 counter) all(trigger) counter(1/1.1) && counter(1/1.-1) all(this)]))
 auto={1}{G}:regenerate target(creature[counter{1/1.1}])
 text=Graft 2 (This creature enters the battlefield with two +1/+1 counters on it. Whenever another creature enters the battlefield, you may move a +1/+1 counter from this creature onto it.) -- {1}{G}: Regenerate target creature with a +1/+1 counter on it.
 mana={3}{G}
@@ -74901,7 +74848,7 @@ toughness=3
 [card]
 name=Sprouting Vines
 abilities=storm
-auto=moveto(myHand) target(land[basic]|myLibrary)
+auto=moveto(myHand) notatarget(land[basic]|myLibrary)
 text=Search your library for a basic land card, reveal that card, and put it into your hand. Then shuffle your library. -- Storm (When you cast this spell, copy it for each spell cast before it this turn.)
 mana={2}{G}
 type=Instant
@@ -75634,7 +75581,7 @@ toughness=3
 [/card]
 [card]
 name=Steelshaper's Gift
-auto=moveTo(myhand) target(equipment|mylibrary)
+auto=moveTo(myhand) notatarget(equipment|mylibrary)
 text=Search your library for an Equipment card, reveal that card, and put it into your hand. Then shuffle your library.
 mana={W}
 type=Sorcery
@@ -76113,8 +76060,7 @@ toughness=2
 [card]
 name=Stonybrook Banneret
 abilities=islandwalk
-auto=lord(merfolk|myhand) altercost(colorless,-1)
-auto=lord(wizard|myhand) altercost(colorless,-1)
+auto=lord(*[merfolk;wizard]|myhand) altercost(colorless, -1)
 text=Islandwalk -- Merfolk spells and Wizard spells you cast cost {1} less to cast.
 mana={1}{U}
 type=Creature
@@ -77871,8 +77817,7 @@ toughness=2
 [/card]
 [card]
 name=Sylvan Tutor
-target=creature|mylibrary
-auto=moveTo(library)
+auto=moveTo(ownerlibrary) notatarget(creature|mylibrary)
 text=Search your library for a creature card and reveal that card. Shuffle your library, then put the card on top of it.
 mana={G}
 type=Sorcery
@@ -79585,7 +79530,7 @@ type=Enchantment
 [/card]
 [card]
 name=Testament of Faith
-auto={X}:transforms((Creature Wall,setpower=x,settoughness=x,defender)) ueot
+auto={X}:transforms((Creature Wall,setpower=X,settoughness=X,defender)) ueot
 text={X}: Testament of Faith becomes an X/X Wall creature with defender until end of turn. It's still an enchantment.
 mana={W}
 type=Enchantment
@@ -79609,7 +79554,7 @@ abilities=flying
 auto=cantbetargetof(aura)
 id=-67564534
 type=Artifact Creature
-subtype=Tertavite
+subtype=Tetravite
 power=1
 toughness=1
 [/card]
@@ -80571,8 +80516,7 @@ subtype=Arcane
 [/card]
 [card]
 name=Three Visits
-target=forest|mylibrary
-auto=moveTo(myBattlefield)
+auto=moveTo(myBattlefield) notatarget(forest|mylibrary)
 text=Search your library for a Forest card and put that card onto the battlefield. Then shuffle your library.
 mana={1}{G}
 type=Sorcery
@@ -81213,8 +81157,7 @@ type=Enchantment
 [/card]
 [card]
 name=Time of Need
-target=creature[legendary]|mylibrary
-auto=moveTo(myHand)
+auto=moveTo(myHand) notatarget(creature[legendary]|mylibrary)
 text=Search your library for a legendary creature card, reveal it, and put it into your hand. Then shuffle your library.
 mana={1}{G}
 type=Sorcery
@@ -81441,11 +81384,7 @@ toughness=3
 [/card]
 [card]
 name=Tithe
-target=plains|mylibrary
-auto=moveTo(myhand)
-auto=alternative moveTo(myhand) notatarget(plains|mylibrary)
-other={W}
-otherrestriction=type(land|mybattlefield)~lessthan~type(land|opponentbattlefield)
+auto=if type(land|mybattlefield)~lessthan~type(land|opponentbattlefield) then moveTo(myhand) notatarget(<upto:2>plains|mylibrary) else moveTo(myhand) notatarget(plains|mylibrary)
 text=Search your library for a Plains card. If you control fewer lands than an opponent, you may search your library for an additional Plains card. Reveal those cards and put them into your hand. Then shuffle your library.
 mana={W}
 type=Instant
@@ -82471,8 +82410,7 @@ toughness=3
 [/card]
 [card]
 name=Trapmaker's Snare
-target=trap|mylibrary
-auto=moveTo(myhand)
+auto=moveTo(myhand) notatarget(*[trap]|mylibrary)
 text=Search your library for a Trap card, reveal it, and put it into your hand. Then shuffle your library.
 mana={1}{U}
 type=Instant
@@ -83690,11 +83628,11 @@ subtype=Equipment
 [/card]
 [card]
 name=Umezawa's Jitte
-auto={2}:equip
+autoskill={C(0/0,-1,Charge)}:2/2
+autoskill={C(0/0,-1,Charge)}:-1/-1 target(creature)
+autoskill={C(0/0,-1,Charge)}:life:2 controller
 auto=@combatdamaged(creature,player) from(mytgt):counter(0/0,2,Charge) all(this)
-auto={C(0/0,-1,Charge)}:2/2
-auto={C(0/0,-1,Charge)}:-1/-1 target(creature)
-auto={C(0/0,-1,Charge)}:life:2 controller
+auto={2}:equip
 text=Whenever equipped creature deals combat damage, put two charge counters on Umezawa's Jitte. -- Remove a charge counter from Umezawa's Jitte: Choose one - Equipped creature gets +2/+2 until end of turn; or target creature gets -1/-1 until end of turn; or you gain 2 life. -- Equip {2}
 mana={2}
 type=Legendary Artifact
@@ -84186,8 +84124,7 @@ type=Instant
 [/card]
 [card]
 name=Untamed Wilds
-target=basic|myLibrary
-auto=moveTo(myBattlefield)
+auto=moveTo(myBattlefield) notatarget(land[basic]|mylibrary)
 text=Search your library for a basic land card and put that card onto the battlefield. Then shuffle your library.
 mana={2}{G}
 type=Sorcery
@@ -84657,7 +84594,7 @@ toughness=7
 [card]
 name=Valakut, the Molten Pinnacle
 auto=tap
-auto=@movedTo(mountain|myBattlefield): aslongas(other mountain|myBattlefield) may damage:3 target(creature,player) >4
+auto=@movedTo(mountain|myBattlefield) restriction{type(other mountain|myBattlefield)~morethan~4}: may damage:3 target(creature,player)
 auto={T}:Add {R}
 text=Valakut, the Molten Pinnacle enters the battlefield tapped. -- Whenever a Mountain enters the battlefield under your control, if you control at least five other Mountains, you may have Valakut, the Molten Pinnacle deal 3 damage to target creature or player. -- {T}: Add {R} to your mana pool.
 type=Land
@@ -84892,8 +84829,7 @@ type=Sorcery
 [/card]
 [card]
 name=Vampiric Tutor
-target=*|mylibrary
-auto=moveTo(library)
+auto=moveTo(ownerlibrary) notatarget(*|mylibrary)
 auto=life:-2 controller
 text=Search your library for a card, then shuffle your library and put that card on top of it. You lose 2 life.
 mana={B}
@@ -85494,7 +85430,7 @@ toughness=3
 [/card]
 [card]
 name=Ventifact Bottle
-auto={x}{1}{T}:counter(0/0,x,Charge) asSorcery
+auto={X}{1}{T}:counter(0/0,x,Charge) asSorcery
 auto=@each my firstmain:tap all(this) && thisforeach(counter{0/0.1.Charge}) add{1} && removeallcounters(0/0,1,Charge)
 text={X}{1}, {T}: Put X charge counters on Ventifact Bottle. Activate this ability only any time you could cast a sorcery. -- At the beginning of your precombat main phase, if Ventifact Bottle has a charge counter on it, tap it and remove all charge counters from it. Add {1} to your mana pool for each charge counter removed this way.
 mana={3}
@@ -85583,7 +85519,7 @@ auto=lord(treefolk) 1/1 other
 auto=lord(saproling) 1/1 other
 auto=token(saproling,creature saproling,1/1,green)*x
 text=Kicker {X} (You may pay an additional {X} as you cast this spell.) -- Saproling creatures and other Treefolk creatures get +1/+1. -- When Verdeloth the Ancient enters the battlefield, if it was kicked, put X 1/1 green Saproling creature tokens onto the battlefield.
-mana={4}{G}{G}{x}
+mana={4}{G}{G}{X}
 type=Legendary Creature
 subtype=Treefolk
 power=4
@@ -86065,7 +86001,7 @@ toughness=2
 [card]
 name=Vigean Graftmage
 auto=counter(1/1,2)
-auto=@movedto(creature|battlefield):may this(counter{1/1}) all(trigger) counter(1/1,1) && this(counter{1/1})  counter(1/1,-1)
+auto=this(counter{1/1.1}>0) transforms((,newability[@movedto(other creature|battlefield):may name(move 1/1 counter) all(trigger) counter(1/1.1) && counter(1/1.-1) all(this)]))
 auto={1}{U}:untap target(creature[counter{1/1.1}])
 text=Graft 2 (This creature enters the battlefield with two +1/+1 counters on it. Whenever another creature enters the battlefield, you may move a +1/+1 counter from this creature onto it.) -- {1}{U}: Untap target creature with a +1/+1 counter on it.
 mana={2}{U}
@@ -86078,7 +86014,7 @@ toughness=0
 name=Vigean Hydropon
 abilities=cantattack,cantblock
 auto=counter(1/1,5)
-auto=@movedto(creature|battlefield):may this(counter{1/1}) all(trigger) counter(1/1,1) && this(counter{1/1})  counter(1/1,-1)
+auto=this(counter{1/1.1}>0) transforms((,newability[@movedto(other creature|battlefield):may name(move 1/1 counter) all(trigger) counter(1/1.1) && counter(1/1.-1) all(this)]))
 text=Graft 5 (This creature enters the battlefield with five +1/+1 counters on it. Whenever another creature enters the battlefield, you may move a +1/+1 counter from this creature onto it.) -- Vigean Hydropon can't attack or block.
 mana={1}{G}{U}
 type=Creature
@@ -87131,7 +87067,7 @@ type=Enchantment
 [/card]
 [card]
 name=Volrath's Laboratory
-auto=choice activatechooseatype chooseacolor {5}{t}:token(Riptide,Creature chosentype,2/2,chosencolor) chooseend activatechooseend
+auto=activatechooseatype chooseacolor {5}{t}:token(Riptide,Creature chosentype,2/2,chosencolor) chooseend activatechooseend
 text=As Volrath's Laboratory enters the battlefield, choose a color and a creature type. -- {5}, {T}: Put a 2/2 creature token of the chosen color and type onto the battlefield.
 mana={5}
 type=Artifact
@@ -88348,8 +88284,8 @@ type=Enchantment
 [card]
 name=Warbreak Trumpeter
 facedown={3}
-autofaceup=token(blah,creature,1/1)*xx
-autofacedown={x}{x}{r}:morph
+autofaceup=token(Goblin,Creature Goblin, 1/1,red)*XX
+autofacedown={X}{X}{R}:morph
 text=Morph {X}{X}{R} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- When Warbreak Trumpeter is turned face up, put X 1/1 red Goblin creature tokens onto the battlefield.
 mana={R}
 type=Creature
@@ -89159,7 +89095,7 @@ type=Artifact
 name=Whetwheel
 facedown={3}
 autofacedown={3}:morph
-auto={x}{x}{T}:deplete:xx target(player)
+auto={X}{X}{T}:deplete:XX target(player)
 text={X}{X}, {T}: Target player puts the top X cards of his or her library into his or her graveyard. -- Morph {3} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
 mana={4}
 type=Artifact
@@ -90230,7 +90166,7 @@ toughness=1
 [/card]
 [card]
 name=Wirewood Hivemaster
-auto=@movedTo(elf[-token]|battlefield):may token(Insect,creature token insect, 1/1,green)
+auto=@movedTo(elf[-token]|battlefield):may token(Insect,Creature Insect, 1/1,green)
 text=Whenever another nontoken Elf enters the battlefield, you may put a 1/1 green Insect creature token onto the battlefield.
 mana={1}{G}
 type=Creature
@@ -90825,8 +90761,7 @@ toughness=7
 [/card]
 [card]
 name=Worldly Tutor
-target=creature|mylibrary
-auto=moveTo(library)
+auto=moveTo(ownerlibrary) notatarget(creature|mylibrary)
 text=Search your library for a creature card and reveal that card. Shuffle your library, then put the revealed card back on top of it.
 mana={G}
 type=Instant
@@ -92071,7 +92006,7 @@ toughness=2
 [/card]
 [card]
 name=Zombie Boa
-auto={1}{B}:chooseacolor transforms((,newability[auto=@combat(blocked) source(this) from(creature[white]):all(trigger[from]) destroy])) ueot asSorcery chooseend
+auto={1}{B}:chooseacolor transforms((,newability[@combat(blocked) source(this) from(creature[white]):all(trigger[from]) destroy])) ueot asSorcery chooseend
 text={1}{B}: Choose a color. Whenever Zombie Boa becomes blocked by a creature of that color this turn, destroy that creature. Activate this ability only any time you could cast a sorcery.
 mana={4}{B}
 type=Creature
