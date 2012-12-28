@@ -37,7 +37,7 @@ rarity=C
 [card]
 primitive=Avacyn's Collar
 id=262863
-rarity=C
+rarity=U
 [/card]
 [card]
 primitive=Bar the Door
@@ -47,7 +47,7 @@ rarity=C
 [card]
 primitive=Beguiler of Wills
 id=227080
-rarity=R
+rarity=M
 [/card]
 [card]
 primitive=Black Cat
@@ -142,7 +142,7 @@ rarity=R
 [card]
 primitive=Curse of Echoes
 id=262841
-rarity=U
+rarity=R
 [/card]
 [card]
 primitive=Curse of Exhaustion
@@ -152,7 +152,7 @@ rarity=U
 [card]
 primitive=Curse of Misfortunes
 id=262874
-rarity=U
+rarity=R
 [/card]
 [card]
 primitive=Curse of Thirst
@@ -315,11 +315,6 @@ id=262839
 rarity=R
 [/card]
 [card]
-primitive=Ghastly Haunting
-id=242498
-rarity=U
-[/card]
-[card]
 primitive=Ghoultree
 id=262662
 rarity=R
@@ -420,7 +415,7 @@ id=247125
 rarity=C
 [/card]
 [card]
-primitive=Hinterland Savage
+primitive=Hinterland Scourge
 id=247122
 rarity=T
 [/card]
@@ -715,8 +710,8 @@ id=222178
 rarity=U
 [/card]
 [card]
-primitive=Ghastly Haunting 
-id=
+primitive=Ghastly Haunting
+id=242498
 rarity=T
 [/card]
 [card]
@@ -812,7 +807,7 @@ rarity=U
 [card]
 primitive=Village Survivors
 id=262688
-rarity=C
+rarity=U
 [/card]
 [card]
 primitive=Vorapede
