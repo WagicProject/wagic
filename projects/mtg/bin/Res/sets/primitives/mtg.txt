@@ -10215,7 +10215,7 @@ toughness=2
 [card]
 name=Ichiga, Who Topples Oaks
 abilities=trample
-auto={C(0/0,-1,Ki)}:2/2
+auto={C(0/0,-1,Ki)}:2/2 target(creature) ueot
 text=Trample -- Remove a ki counter from Ichiga, Who Topples Oaks: Target creature gets +2/+2 until end of turn.
 color=green
 type=Legendary Creature
@@ -16506,7 +16506,7 @@ toughness=1
 [card]
 name=Cunning Bandit
 auto=@movedTo(spirit,arcane|mystack):may counter(0/0,1,Ki)
-auto=@each endofturn:this(counter{0/0.2.Ki}) flip(Ichiga, Who Topples Oaks)
+auto=@each endofturn:this(counter{0/0.2.Ki}) flip(Azamuki, Treachery Incarnate)
 text=Whenever you cast a Spirit or Arcane spell, you may put a ki counter on Cunning Bandit. -- At the beginning of the end step, if there are two or more ki counters on Cunning Bandit, you may flip it. -- ---- -- Azamuki, Treachery Incarnate -- Legendary Creature - Spirit -- 5/2 -- Remove a ki counter from Azamuki, Treachery Incarnate: Gain control of target creature until end of turn.
 mana={1}{R}{R}
 type=Creature
@@ -29545,14 +29545,12 @@ mana={3}{G}
 type=Planeswalker
 subtype=Garruk
 [/card]
-########
 [card]
 name=Garruk the Veil-Cursed
 auto={C(0/0,1,Loyalty)}:token(Wolf,Creature Wolf,1/1,black,deathtouch)
-auto={C(0/0,-1,Loyalty)}:notatarget(creature|mybattlefield) transforms((,newability[sacrifice],newability[target(creature|mylibrary) moveTo(myhand)]))
+auto={C(0/0,-1,Loyalty)}{S(creature|myBattlefield)}:name(fetch creature) moveTo(ownerhand) notatarget(creature|mylibrary)
 auto={C(0/0,-3,Loyalty)}:all(creature|mybattlefield)  trample ueot && all(creature|mybattlefield) foreach(creature|mybattlefield) 1/1 ueot
-text=When Garruk Relentless has two or fewer loyalty counters on him, transform him. -- 0: Garruk Relentless deals 3 damage to target creature. That creature deals damage equal to its power to him. -- 0: Put a 2/2 green Wolf creature token onto the battlefield.
-mana={3}{G}
+text=+1: Put a 1/1 black Wolf creature token with deathtouch onto the battlefield. -- -1: Sacrifice a creature. If you do, search your library for a creature card, reveal it, put it into your hand, then shuffle your library. -- -3: Creatures you control gain trample and get +X/+X until end of turn, where X is the number of creature cards in your graveyard.
 type=Planeswalker
 subtype=Garruk
 [/card]
@@ -36440,7 +36438,7 @@ power=4
 toughness=4
 [/card]
 [card]
-name=Homura, Human Ascendant (Homura's Essence)
+name=Homura's Essence
 auto=lord(creature|mybattlefield) 2/2
 auto=lord(creature|mybattlefield) flying
 auto=lord(creature|mybattlefield) {R}:1/0
@@ -65015,7 +65013,7 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Rune-Tail, Kitsune Ascendant (Rune-Tail's Essence)
+name=Rune-Tail's Essence
 auto=preventalldamage to(creature|mybattlefield)
 text=Prevent all damage that would be dealt to creatures you control.
 mana={2}{W}
@@ -67041,16 +67039,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Screeching Buzzard
-auto=@movedto(mygraveyard) from(this|mybattlefield):ability$!name(discard) target(*|myhand) reject!$ opponent
-text=Flying -- When Screeching Buzzard dies, each opponent discards a card.
-mana={3}{B}
-type=Creature
-subtype=Bird
-power=2
-toughness=2
-[/card]
-[card]
 name=Stalking Vampire
 abilities=flying
 auto={2}{B}{B}:flip(Screeching Bat) myUpkeepOnly
@@ -67062,6 +67050,16 @@ power=5
 toughness=5
 [/card]
 ###The 2 cards above should stay together (Flip Card)###
+[card]
+name=Screeching Buzzard
+auto=@movedto(mygraveyard) from(this|mybattlefield):ability$!name(discard) target(*|myhand) reject!$ opponent
+text=Flying -- When Screeching Buzzard dies, each opponent discards a card.
+mana={3}{B}
+type=Creature
+subtype=Bird
+power=2
+toughness=2
+[/card]
 [card]
 name=Screeching Skaab
 auto=deplete:2
@@ -81728,7 +81726,7 @@ toughness=2
 [/card]
 [card]
 name=Rampaging Werewolf
-auto=@each upkeep restriction{lastturn(*|stack)~morethan~1}:flip(Village Ironsmith)
+auto=@each upkeep restriction{lastturn(*|stack)~morethan~1}:flip(Tormented Pariah)
 text=At the beginning of each upkeep, if a player cast two or more spells last turn, transform Rampaging Werewolf.
 color=red
 type=Creature
