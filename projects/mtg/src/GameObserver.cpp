@@ -197,7 +197,7 @@ void GameObserver::nextGamePhase()
     {
         cleanupPhase();
         currentPlayer->damageCount = 0;
-		currentPlayer->opponent()->damageCount = 0; //added to clear odcount
+        currentPlayer->opponent()->damageCount = 0; //added to clear odcount
         currentPlayer->preventable = 0;
         mLayers->actionLayer()->cleanGarbage(); //clean abilities history for this turn;
         mLayers->stackLayer()->garbageCollect(); //clean stack history for this turn;
