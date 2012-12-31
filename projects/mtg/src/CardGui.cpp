@@ -441,7 +441,7 @@ void CardGui::AlternateRender(MTGCard * card, const Pos& pos)
                 unsigned i = 0;
                 unsigned h = neofont ? 14 : 11;
                 for (std::vector<string>::const_iterator it = txt.begin(); it != txt.end(); ++it, ++i)
-                    font->DrawString(it->c_str(), x + (Carditem->mPosX - BigWidth / 2) * pos.actZ, pos.actY + (-BigHeight / 2 + Carditem->mPosY + h * i) * pos.actZ);
+                    font->DrawString(_(it->c_str()), x + (Carditem->mPosX - BigWidth / 2) * pos.actZ, pos.actY + (-BigHeight / 2 + Carditem->mPosY + h * i) * pos.actZ);
             }
             else if (Carditem->mName == "mana")
             {
@@ -550,7 +550,7 @@ void CardGui::AlternateRender(MTGCard * card, const Pos& pos)
                 if (found != string::npos)
                 {
                     stringstream st;
-                    st << card->data->name;
+                    st << _(card->data->name);
                     formattedfield = FormattedData(formattedfield, "title", st.str());
                 
                 }
@@ -606,26 +606,26 @@ void CardGui::AlternateRender(MTGCard * card, const Pos& pos)
                     switch(card->getRarity())
                     {
                     case Constants::RARITY_M:
-                        sRarity ="Mythic";
+                        sRarity =_("Mythic");
                         break;
                     case Constants::RARITY_R:
-                        sRarity ="Rare";
+                        sRarity =_("Rare");
                         break;
                     case Constants::RARITY_U:
-                        sRarity ="Uncommon";
+                        sRarity =_("Uncommon");
                         break;
                     case Constants::RARITY_C:
-                        sRarity ="Common";
+                        sRarity =_("Common");
                         break;
                     case Constants::RARITY_L:
-                        sRarity ="Land";
+                        sRarity =_("Land");
                         break;
                     case Constants::RARITY_T:
-                        sRarity ="Token";
+                        sRarity =_("Token");
                         break;
                     default:
                     case Constants::RARITY_S:
-                        sRarity ="Special";
+                        sRarity =_("Special");
                         break;
                     }
                     formattedfield = FormattedData(formattedfield, "rarity", sRarity);
