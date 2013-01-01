@@ -153,8 +153,11 @@ void GuiPhaseBar::Render()
         }
     }
 
-    char buf[64];
-    sprintf(buf, _("(%s%s) %s").c_str(), currentP.c_str(), interrupt.c_str(), observer->phaseRing->phaseName(phase->id));
+    char buf[200];
+    //running this string through translate returns gibberish even though we defined the variables in the lang.txt
+    string phaseNameToTranslate = observer->phaseRing->phaseName(phase->id);
+    phaseNameToTranslate = _(phaseNameToTranslate);
+    sprintf(buf, _("(%s%s) %s").c_str(), currentP.c_str(), interrupt.c_str(),phaseNameToTranslate.c_str());
     font->DrawString(buf, SCREEN_WIDTH - 5, 2, JGETEXT_RIGHT);
 }
 
