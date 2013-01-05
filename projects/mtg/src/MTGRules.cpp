@@ -1547,17 +1547,33 @@ int MTGBlockRule::reactToClick(MTGCardInstance * card)
             card->toggleDefenser(NULL);
     }
     else
+    {
+        bool lured = false;
+        int lureFound = 0;
+        MTGCardInstance * lurers = NULL;
+        while(!lureFound)
+        {
+            lurers = game->currentPlayer->game->inPlay->getNextLurer(lurers);
+            lureFound = (lurers == NULL || lurers->attacker);
+            if(lurers)
+                lured = true;
+        }
         while (!result)
         {
             currentOpponent = game->currentPlayer->game->inPlay->getNextAttacker(currentOpponent);
-            canDefend = card->toggleDefenser(currentOpponent);
+
+            if(lured && currentOpponent && !currentOpponent->has(Constants::LURE))
+                currentOpponent = game->currentPlayer->game->inPlay->getNextAttacker(currentOpponent);
+                canDefend = card->toggleDefenser(currentOpponent);
 
             DebugTrace("Defenser Toggle: " << card->getName() << endl
                 << "- canDefend: " << (canDefend == 0) << endl
                 << "- currentOpponent: " << currentOpponent);
-            result = (canDefend || currentOpponent == NULL);
+            result = (currentOpponent == NULL || canDefend);
         }
-        return 1;
+        lured = false;
+    }
+    return 1;
 }
 
 const char * MTGBlockRule::getMenuText()

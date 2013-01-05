@@ -1534,6 +1534,18 @@ bool BlockableChooser::canTarget(Targetable * target,bool withoutProtections)
     {
         if(!card->isAttacker() || !source->canBlock(card))
             return false;
+        bool lured = false;
+        int lureFound = 0;
+        MTGCardInstance * lurers = NULL;
+        while(!lureFound)
+        {
+            lurers = card->controller()->game->inPlay->getNextLurer(lurers);
+            lureFound = (lurers == NULL || lurers->attacker);
+            if(lurers)
+                lured = true;
+        }
+        if(lured && card->controller()->inPlay()->hasAbility(Constants::LURE) && !card->has(Constants::LURE))
+            return false;
         return true;
     }
     return TypeTargetChooser::canTarget(target,withoutProtections);

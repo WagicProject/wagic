@@ -164,6 +164,7 @@ class MTGInPlay: public MTGGameZone {
 public:
     void untapAll();
     MTGCardInstance * getNextAttacker(MTGCardInstance * previous);
+    MTGCardInstance * getNextLurer(MTGCardInstance * previous);
     virtual ostream& toString(ostream&) const;
     const char * getName(){return "battlefield";}
 };

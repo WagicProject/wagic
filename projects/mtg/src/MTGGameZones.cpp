@@ -761,6 +761,28 @@ MTGCardInstance * MTGInPlay::getNextAttacker(MTGCardInstance * previous)
     return NULL;
 }
 
+MTGCardInstance * MTGInPlay::getNextLurer(MTGCardInstance * previous)
+{
+    int foundprevious = 0;
+    if (previous == NULL)
+    {
+        foundprevious = 1;
+    }
+    for (int i = 0; i < nb_cards; i++)
+    {
+        MTGCardInstance * current = cards[i];
+        if (current == previous)
+        {
+            foundprevious = 1;
+        }
+        else if (foundprevious && current->isAttacker() && current->has(Constants::LURE))
+        {
+            return current;
+        }
+    }
+    return NULL;
+}
+
 void MTGInPlay::untapAll()
 {
     int i;
