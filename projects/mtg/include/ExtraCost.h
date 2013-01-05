@@ -142,6 +142,17 @@ public:
   virtual int doPay();
 };
 
+//unattach cost
+class unattachCost : public ExtraCost
+{
+public:
+    unattachCost(MTGCardInstance * realSource = NULL);
+    MTGCardInstance * rSource;
+    virtual int isPaymentSet();
+    virtual int canPay();
+    virtual int doPay();
+    virtual unattachCost * clone() const;
+};
 //tap  cost
 class TapCost : public ExtraCost
 {

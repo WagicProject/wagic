@@ -229,8 +229,13 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
                             }
                             break;
                         }
-                    default: //uncolored cost and hybrid costs
+                    default: //uncolored cost and hybrid costs and special cost
                     {
+                        if(value == "unattach")
+                        {
+                            manaCost->addExtraCost(NEW unattachCost(c));
+                            break;
+                        }
                         int intvalue = atoi(value.c_str());
                         int colors[2];
                         int values[2];

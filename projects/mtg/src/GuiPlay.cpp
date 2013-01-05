@@ -284,6 +284,7 @@ void GuiPlay::Render()
     battleField.Render();
 
     for (iterator it = cards.begin(); it != cards.end(); ++it)
+    {
         if ((*it)->card->isLand())
         {
             if (observer->players[0] == (*it)->card->controller())
@@ -318,7 +319,7 @@ void GuiPlay::Render()
                     opponentPlaneswalker.Render(*it, cards.begin(), end_spells);
             }
         }
-
+    }
 }
 void GuiPlay::Update(float dt)
 {
@@ -404,6 +405,7 @@ int GuiPlay::receiveEventPlus(WEvent * e)
     }
     else if (dynamic_cast<WEventCardChangeType*> (e))
         Replace();
+    Replace();
     return 0;
 }
 

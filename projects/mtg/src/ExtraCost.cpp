@@ -6,6 +6,7 @@
 #include "Translate.h"
 #include "Player.h"
 #include "Counters.h"
+#include "AllAbilities.h"
 
 SUPPORT_OBJECT_ANALYTICS(ExtraCost)
 
@@ -329,6 +330,7 @@ int MillCost::doPay()
     return 0;
 }
 
+
 MillExileCost::MillExileCost(TargetChooser *_tc)
     : MillCost(_tc)
 {
@@ -348,6 +350,54 @@ int MillExileCost::doPay()
         target = NULL;
         if (tc)
             tc->initTargets();
+        return 1;
+    }
+    return 0;
+}
+//unattach cost
+
+unattachCost * unattachCost::clone() const
+{
+    unattachCost * ec = NEW unattachCost(*this);
+    return ec;
+}
+
+unattachCost::unattachCost(MTGCardInstance * realSource)
+    : ExtraCost("Unattach"),rSource(realSource)
+{
+}
+
+int unattachCost::isPaymentSet()
+{
+    if (rSource && !rSource->target)
+    {
+        return 0;
+    }
+    return 1;
+}
+
+int unattachCost::canPay()
+{
+    return isPaymentSet();
+}
+
+int unattachCost::doPay()
+{
+    MTGCardInstance * _source = (MTGCardInstance *) source;
+    if(_source != rSource)
+        _source = rSource;//for debugging purposes I let it set what it thinks is the source.
+    if (_source)
+    {
+        GameObserver * game = _source->getObserver();
+        for (size_t i = 1; i < game->mLayers->actionLayer()->mObjects.size(); i++)
+        {
+            MTGAbility * a = ((MTGAbility *) game->mLayers->actionLayer()->mObjects[i]);
+            AEquip * eq = dynamic_cast<AEquip*> (a);
+            if (eq && eq->source == _source)
+            {
+                ((AEquip*)a)->unequip();
+            }
+        }
         return 1;
     }
     return 0;
