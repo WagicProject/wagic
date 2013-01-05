@@ -12900,7 +12900,7 @@ auto=deplete:5 opponent
 flashback={7}{U}
 text=Each player puts the top 5 cards of his or her library into his or her graveyard. -- Flashback {7}{U}
 mana={2}{U}
-type=Instant
+type=Sorcery
 [/card]
 [card]
 name=Chill to the Bone
@@ -66896,7 +66896,7 @@ toughness=4
 name=Scourge of the Nobilis
 target=creature
 auto=teach(creature[red]) 1/1
-auto=teach(creature[red]) {RW}:1/1
+auto=teach(creature[red]) {RW}:1/0
 auto=teach(creature[white]) 1/1
 auto=teach(creature[white]) lifelink
 text=Enchant creature -- As long as enchanted creature is red, it gets +1/+1 and has "{(r/w)}: This creature gets +1/+0 until end of turn." -- As long as enchanted creature is white, it gets +1/+1 and has lifelink. (Damage dealt by the creature also causes its controller to gain that much life.)
