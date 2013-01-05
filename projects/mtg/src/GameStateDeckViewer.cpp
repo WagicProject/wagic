@@ -197,7 +197,7 @@ void GameStateDeckViewer::updateDecks()
 void GameStateDeckViewer::buildEditorMenu()
 {
     ostringstream deckSummaryInformation;
-    deckSummaryInformation << "All changes are final." << endl;
+    deckSummaryInformation << _("All changes are final.").c_str() << endl;
 
     if (menu)
         SAFE_DELETE( menu );
@@ -205,13 +205,13 @@ void GameStateDeckViewer::buildEditorMenu()
     JRenderer::GetInstance()->FillRoundRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, 100, ARGB(0, 0, 0, 0) );
     menu = NEW DeckEditorMenu(MENU_DECK_BUILDER, this, Fonts::OPTION_FONT, "Deck Editor", myDeck, stw);
 
-    menu->Add(MENU_ITEM_FILTER_BY, "Filter By...", "Narrow down the list of cards. ");
-    menu->Add(MENU_ITEM_SWITCH_DECKS_NO_SAVE, "Switch Decks", "Do not make any changes.\nView another deck.");
-    menu->Add(MENU_ITEM_SAVE_RENAME, "Rename Deck", "Change the name of the deck");
-    menu->Add(MENU_ITEM_SAVE_RETURN_MAIN_MENU, "Save & Quit Editor", "Save changes.\nReturn to the main menu");
-    menu->Add(MENU_ITEM_SAVE_AS_AI_DECK, "Save As AI Deck", deckSummaryInformation.str());
-    menu->Add(MENU_ITEM_MAIN_MENU, "Quit Editor", "Do not make any changes to deck.\nReturn to the main menu.");
-    menu->Add(MENU_ITEM_EDITOR_CANCEL, "Cancel", "Close menu.");
+    menu->Add(MENU_ITEM_FILTER_BY, _("Filter By...").c_str(), _("Narrow down the list of cards. ").c_str());
+    menu->Add(MENU_ITEM_SWITCH_DECKS_NO_SAVE, _("Switch Decks").c_str(), _("Do not make any changes.\nView another deck.").c_str());
+    menu->Add(MENU_ITEM_SAVE_RENAME, _("Rename Deck").c_str(), _("Change the name of the deck").c_str());
+    menu->Add(MENU_ITEM_SAVE_RETURN_MAIN_MENU, _("Save & Quit Editor").c_str(), _("Save changes.\nReturn to the main menu").c_str());
+    menu->Add(MENU_ITEM_SAVE_AS_AI_DECK, _("Save As AI Deck").c_str(), deckSummaryInformation.str());
+    menu->Add(MENU_ITEM_MAIN_MENU, _("Quit Editor").c_str(), _("Do not make any changes to deck.\nReturn to the main menu.").c_str());
+    menu->Add(MENU_ITEM_EDITOR_CANCEL, _("Cancel").c_str(), _("Close menu.").c_str());
 
 }
 

@@ -166,14 +166,14 @@ int DeckMetaData::getDifficulty()
 
 string DeckMetaData::getDifficultyString()
 {
-    string difficultyString = "Normal";
+    string difficultyString = _("Normal").c_str();
     switch (mDifficulty)
     {
     case HARD:
-        difficultyString = "Hard";
+        difficultyString = _("Hard").c_str();
         break;
     case EASY:
-        difficultyString = "Easy";
+        difficultyString = _("Easy").c_str();
         break;
     }
 
@@ -190,9 +190,9 @@ string DeckMetaData::getStatsSummary()
     LoadStats();
 
     ostringstream statsSummary;
-    statsSummary << _("Difficulty: ") << _(getDifficultyString()) << endl
-                    << _("Victory %: ") << getVictoryPercentage() << endl
-                    << _("Games Played: ") << getGamesPlayed() << endl;
+    statsSummary << _("Difficulty: ").c_str() << _(getDifficultyString()) << endl
+        << _("Victory %: ").c_str() << getVictoryPercentage() << endl
+                    << _("Games Played: ").c_str() << getGamesPlayed() << endl;
 
     return statsSummary.str();
 }

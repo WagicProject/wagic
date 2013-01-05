@@ -731,9 +731,9 @@ void GameStateMenu::Render()
         else
         {
             if (primitivesLoadCounter <= (int) (primitives.size()))
-                sprintf(text, "LOADING PRIMITIVES");
+                sprintf(text, _("LOADING PRIMITIVES").c_str());
             else
-                sprintf(text, "LOADING...");
+                sprintf(text, _("LOADING...").c_str());
         }
         mFont->SetColor(ARGB(170,0,0,0));
         mFont->DrawString(text, SCREEN_WIDTH / 2 + 2, SCREEN_HEIGHT - 50 + 2, JGETEXT_CENTER);
@@ -792,15 +792,15 @@ void GameStateMenu::ButtonPressed(int controllerId, int controlId)
 #ifdef NETWORK_SUPPORT
                 subMenuController->Add(SUBMENUITEM_1PLAYER, "1 Player");
 #else
-                subMenuController->Add(SUBMENUITEM_1PLAYER, "Play Game");
+                subMenuController->Add(SUBMENUITEM_1PLAYER, _("Play Game").c_str());
 #endif
                 // TODO Put 2 players mode back
                 // This requires to fix the hand (to accept 2 players) OR to implement network game
 #ifdef NETWORK_SUPPORT
                 subMenuController->Add(SUBMENUITEM_2PLAYERS, "2 Players");
 #endif //NETWORK_SUPPORT
-                subMenuController->Add(SUBMENUITEM_DEMO, "Demo");
-                subMenuController->Add(SUBMENUITEM_CANCEL, "Cancel");
+                subMenuController->Add(SUBMENUITEM_DEMO, _("Demo").c_str());
+                subMenuController->Add(SUBMENUITEM_CANCEL, _("Cancel").c_str());
 #ifdef TESTSUITE
                 if (Rules::getRulesByFilename("testsuite.txt"))
                     subMenuController->Add(SUBMENUITEM_TESTSUITE, "Test Suite");

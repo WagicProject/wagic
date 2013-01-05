@@ -222,7 +222,7 @@ void GameStateShop::beginPurchase(int controlId)
         menu->Add(-1, "Ok");
         if (options[Options::CHEATMODE].number)
         {
-            menu->Add(-2, "Steal it");
+            menu->Add(-2, _("Steal it").c_str());
         }
     }
     else
@@ -488,12 +488,12 @@ void GameStateShop::Update(float dt)
         else
         {
             menu = NEW SimpleMenu(JGE::GetInstance(), 11, this, Fonts::MENU_FONT, SCREEN_WIDTH / 2 - 100, 20);
-            menu->Add(22, "Ask about...");
-            menu->Add(14, "Check task board");
+            menu->Add(22, _("Ask about...").c_str());
+            menu->Add(14, _("Check task board").c_str());
             if (options[Options::CHEATMODE].number)
-                menu->Add(-2, "Steal 1,000 credits");
-            menu->Add(12, "Save And Exit");
-            menu->Add(kCancelMenuID, "Cancel");
+                menu->Add(-2, _("Steal 1,000 credits").c_str());
+            menu->Add(12, _("Save And Exit").c_str());
+            menu->Add(kCancelMenuID, _("Cancel").c_str());
         }
         break;
     case STAGE_SHOP_TASKS:

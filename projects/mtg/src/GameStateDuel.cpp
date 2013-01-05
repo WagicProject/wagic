@@ -170,21 +170,21 @@ void GameStateDuel::Start()
             {
                 //translate deck creating desc
                 Translator * t = Translator::GetInstance();
-                string desc =  "Highly recommended to get\nthe full Wagic experience!";
-                map<string, string>::iterator it = t->deckValues.find("Create your Deck!");
+                string desc =  _("Highly recommended to get\nthe full Wagic experience!").c_str();
+                map<string, string>::iterator it = t->deckValues.find(_("Create your Deck!").c_str());
                 if (it != t->deckValues.end())
                     desc = it->second;
 
-                deckmenu->Add(MENUITEM_NEW_DECK, "Create your Deck!", desc);
+                deckmenu->Add(MENUITEM_NEW_DECK, _("Create your Deck!").c_str(), desc);
             }
             premadeDeck = true;
-            fillDeckMenu(deckmenu, "player/premade");
+            fillDeckMenu(deckmenu, _("player/premade").c_str());
         }
         else if (gModRules.general.hasDeckEditor())
         {
-            deckmenu->Add(MENUITEM_NEW_DECK, "New Deck...", "Create a new deck to play with.");
+            deckmenu->Add(MENUITEM_NEW_DECK, _("New Deck...").c_str(), _("Create a new deck to play with.").c_str());
         }
-        deckmenu->Add(MENUITEM_CANCEL, "Main Menu", "Return to Main Menu");
+        deckmenu->Add(MENUITEM_CANCEL, _("Main Menu").c_str(), _("Return to Main Menu").c_str());
     }
     
     mEngine->ResetInput();
@@ -696,7 +696,7 @@ void GameStateDuel::Render()
             {
                 opponentMenu->Render();
                 // display the selected player deck name too
-                string selectedPlayerDeckName = "Player Deck: " + game->players[0]->deckName;
+                string selectedPlayerDeckName = _("Player Deck: ").c_str() + game->players[0]->deckName;
                 mFont->DrawString( selectedPlayerDeckName.c_str(), 30, 40);
             }
             else if (deckmenu && !deckmenu->isClosed()) deckmenu->Render();
