@@ -27206,8 +27206,8 @@ toughness=6
 [/card]
 [card]
 name=Far Wanderings
-auto=if type(*|mygraveyard)~morethan~6 then moveto(mybattlefield) and!(tap)! target(<3>land|mylibrary)
-auto=ifnot type(*|mygraveyard)~morethan~6 then moveto(mybattlefield) and!(tap)! target(land|mylibrary)
+auto=if type(*|mygraveyard)~morethan~6 then moveto(mybattlefield) and!(tap)! target(<3>land[basic]|mylibrary)
+auto=ifnot type(*|mygraveyard)~morethan~6 then moveto(mybattlefield) and!(tap)! target(land[basic]|mylibrary)
 text=Search your library for a basic land card and put that card onto the battlefield tapped. Then shuffle your library. -- Threshold - If seven or more cards are in your graveyard, instead search your library for three basic land cards and put them onto the battlefield tapped. Then shuffle your library.
 mana={2}{G}
 type=Sorcery
@@ -86897,7 +86897,7 @@ type=Instant
 [/card]
 [card]
 name=Tribute to Hunger
-target=opponen
+target=opponent
 auto=ability$!name(sacrifice) notatarget(creature|mybattlefield) dynamicability<!mytgt toughnesslifegain targetopponent!> sacrifice!$ targetedplayer
 text=Target opponent sacrifices a creature. You gain life equal to that creature's toughness.
 mana={2}{B}
