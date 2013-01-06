@@ -205,6 +205,11 @@ id=278252
 rarity=U
 [/card]
 [card]
+primitive=Human Token
+id=-278252
+rarity=T
+[/card]
+[card]
 primitive=Conjurer's Closet
 id=240030
 rarity=R
@@ -438,6 +443,11 @@ rarity=L
 primitive=Gallows at Willow Hill
 id=262674
 rarity=R
+[/card]
+[card]
+primitive=Spirit Token
+id=-26267411
+rarity=T
 [/card]
 [card]
 primitive=Galvanic Alchemist
