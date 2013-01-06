@@ -24,6 +24,16 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Cinder Seer
+auto={2}{r}{t}:target(creature,Player) damage:type:*[red]:myhand
+text={2}{R}, {T}: Reveal any number of red cards in your hand. Cinder Seer deals X damage to target creature or player, where X is the number of cards revealed this way.
+mana={3}{R}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=1
+[/card]
+[card]
 name=Drain Life
 #can use non black mana
 target=creature,player
@@ -64,6 +74,17 @@ type=Creature
 subtype=Beast
 power=4
 toughness=4
+[/card]
+[card]
+name=Gravecrawler
+abilities=cantblock
+autograveyard=aslongas(zombie|myBattlefield){B}:moveTo(myBattlefield) asSorcery
+text=Gravecrawler can't block. -- You may cast Gravecrawler from your graveyard as long as you control a Zombie.
+mana={B}
+type=Creature
+subtype=Zombie
+power=2
+toughness=1
 [/card]
 [card]
 name=Ivy Seer
@@ -107,7 +128,7 @@ toughness=1
 [/card]
 [card]
 name=Sacellum Godspeaker
-auto={T}:foreach(creaure[power>=5]|myhand) add{G}
+auto={T}:foreach(creaure[power>4]|myhand) add{G}
 text={T}: Reveal any number of creature cards with power 5 or greater from your hand. Add {G} to your mana pool for each card revealed this way.
 mana={2}{G}
 type=Creature

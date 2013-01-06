@@ -21002,6 +21002,15 @@ mana={X}{R}
 type=Sorcery
 [/card]
 [card]
+name=Dismal Failure
+target=*|stack
+auto=fizzle
+auto=discard:1 targetcontroller
+text=Counter target spell. Its controller discards a card.
+mana={2}{U}{U}
+type=Instant
+[/card]
+[card]
 name=Dismantling Blow
 target=artifact,enchantment
 kicker={2}{U}
@@ -50021,6 +50030,17 @@ mana={B}{B}
 type=Sorcery
 [/card]
 [card]
+name=Marsh Crocodile
+auto=target(creature[blue;black|myBattlefield]) moveto(myhand)
+auto=all(player) discard:1
+text=When Marsh Crocodile enters the battlefield, return a blue or black creature you control to its owner's hand. -- When Marsh Crocodile enters the battlefield, each player discards a card.
+mana={2}{U}{B}
+type=Creature
+subtype=Crocodile
+power=4
+toughness=4
+[/card]
+[card]
 name=Marsh Flats
 auto={L}{T}{S}:moveTo(myBattlefield) target(plains,swamp|mylibrary)
 text={T}, Pay 1 life, Sacrifice Marsh Flats: Search your library for a Plains or Swamp card and put it onto the battlefield. Then shuffle your library.
@@ -51755,6 +51775,16 @@ auto=ability$!name(discard 2 cards) target(*|myhand) reject!$ targetedplayer
 text=You draw two cards and target opponent discards two cards.
 mana={5}{U}
 type=Sorcery
+[/card]
+[card]
+name=Mindlash Sliver
+auto=lord(sliver) {1}{s}:target(player) discard:1
+text=All Slivers have "{1}, Sacrifice this permanent: Each player discards a card."
+mana={B}
+type=Creature
+subtype=Sliver
+power=1
+toughness=1
 [/card]
 [card]
 name=Mindless Automaton

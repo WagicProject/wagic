@@ -1,46 +1,6 @@
 grade=crappy
 ##the following are not added becuase they are not choosen discard.
 [card]
-name=Cinder Seer
-auto={2}{r}{t}:target(creature,Player) damage:type:*[red]:myhand
-text={2}{R}, {T}: Reveal any number of red cards in your hand. Cinder Seer deals X damage to target creature or player, where X is the number of cards revealed this way.
-mana={3}{R}
-type=Creature
-subtype=Human Wizard
-power=1
-toughness=1
-[/card]
-[card]
-name=Dismal Failure
-target=*|stack
-auto=fizzle
-auto=discard:1 targetcontroller
-text=Counter target spell. Its controller discards a card.
-mana={2}{U}{U}
-type=Instant
-[/card]
-[card]
-name=Marsh Crocodile
-auto=target(creature[blue;black|myBattlefield]) moveto(myhand)
-auto=all(player) discard:1
-text=When Marsh Crocodile enters the battlefield, return a blue or black creature you control to its owner's hand. -- When Marsh Crocodile enters the battlefield, each player discards a card.
-mana={2}{U}{B}
-type=Creature
-subtype=Crocodile
-power=4
-toughness=4
-[/card]
-[card]
-name=Mindlash Sliver
-auto=lord(sliver) {1}{s}:target(player) discard:1
-text=All Slivers have "{1}, Sacrifice this permanent: Each player discards a card."
-mana={B}
-type=Creature
-subtype=Sliver
-power=1
-toughness=1
-[/card]
-[card]
 name=Mindstab Thrull
 auto=@combat(notblocked) source(this):may discard:3 opponent && sacrifice all(this)
 text=Whenever Mindstab Thrull attacks and isn't blocked, you may sacrifice it. If you do, defending player discards three cards.
