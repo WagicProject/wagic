@@ -2337,7 +2337,7 @@ int MTGLegendRule::canBeInList(MTGCardInstance * card)
     {
         if(card->has(Constants::NOLEGEND))
             return 0;
-		else
+        else
             return 1;
     }
     return 0;

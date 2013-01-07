@@ -18,12 +18,11 @@ primitive=Akki Lavarunner
 id=78694
 rarity=R
 [/card]
-# need to find a way to deal with multipart cards
-#[card]
-#primitive=Akki Lavarunner (Tok-Tok, Volcano Born)
-#id=78694
-#rarity=R
-#[/card]
+[card]
+primitive=Tok-Tok, Volcano Born
+id=7869411
+rarity=T
+[/card]
 [card]
 primitive=Akki Rockspeaker
 id=77919
@@ -119,12 +118,11 @@ primitive=Budoka Gardener
 id=78687
 rarity=R
 [/card]
-# need to find a way to deal with multipart cards
-#[card]
-#primitive=Budoka Gardener (Dokai, Weaver of Life)
-#id=78687
-#rarity=R
-#[/card]
+[card]
+primitive=Dokai, Weaver of Life
+id=7868711
+rarity=T
+[/card]
 [card]
 primitive=Burr Grafter
 id=50305
