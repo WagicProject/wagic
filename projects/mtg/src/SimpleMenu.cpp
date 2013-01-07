@@ -267,6 +267,8 @@ bool SimpleMenu::CheckUserInput(JButton key)
                 n = mCount - 1;
             
             // check to see if the user clicked 
+            if( n-mCurr > this->maxItems+1 )
+                n = mCurr+1;//we don't want to increment pages at a time.
             if (n != mCurr && mObjects[mCurr] != NULL && mObjects[mCurr]->Leaving(JGE_BTN_DOWN))
             {
                 mCurr = n;
