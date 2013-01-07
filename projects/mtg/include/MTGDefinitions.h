@@ -220,7 +220,8 @@ class Constants
       POISONDAMAGER = 99,
       soulbond = 100,
       LURE = 101,
-      NB_BASIC_ABILITIES = 102,
+      NOLEGEND = 102,
+      NB_BASIC_ABILITIES = 103,
 
 
     RARITY_S = 'S',   //Special Rarity

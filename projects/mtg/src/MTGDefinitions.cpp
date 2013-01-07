@@ -130,7 +130,8 @@ const char* Constants::MTGBasicAbilities[] = {
     "onlymanaability",
     "poisondamager",//deals damage to players as poison counters.
     "soulbond",
-    "lure"
+    "lure",
+    "nolegend"
 };
 
 map<string,int> Constants::MTGBasicAbilitiesMap;

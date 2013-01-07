@@ -2335,7 +2335,10 @@ int MTGLegendRule::canBeInList(MTGCardInstance * card)
         return 0;
     if (card->hasType(Subtypes::TYPE_LEGENDARY) && game->isInPlay(card))
     {
-        return 1;
+        if(card->has(Constants::NOLEGEND))
+            return 0;
+		else
+            return 1;
     }
     return 0;
 }
