@@ -2316,7 +2316,7 @@ toughness=5
 [/card]
 [card]
 name=Angel of Serenity
-auto=hand(blink)forsrc target(<upto:3>other creature|battlefield,graveyard)
+auto=may hand(blink)forsrc target(<upto:3>other creature|battlefield,graveyard)
 abilities=flying
 text=Flying -- When Angel of Serenity enters the battlefield, you may exile up to three other target creatures from the battlefield and/or creature cards from graveyards. -- When Angel of Serenity leaves the battlefield, return the exiled cards to their owners' hands.
 mana={4}{W}{W}{W}
@@ -2351,7 +2351,7 @@ type=Instant
 [/card]
 [card]
 name=Angel's Tomb
-auto=@movedTo(creature|mybattlefield):becomes(Angel Artifact Creature,3/3,flying,white) ueot
+auto=@movedTo(creature|mybattlefield):may becomes(Angel Artifact Creature,3/3,flying,white) ueot
 text=Whenever a creature enters the battlefield under your control, you may have Angel's Tomb become a 3/3 white Angel artifact creature with flying until end of turn.
 mana={3}
 type=Artifact
@@ -3336,7 +3336,7 @@ type=Land
 [/card]
 [card]
 name=Archaeomancer
-auto=may moveTo(myhand) target(instant,sorcery|mygraveyard)
+auto=if type(*[instant;sorcery]|mygraveyard)~morethan~0 then moveTo(myhand) target(instant,sorcery|mygraveyard)
 text=When Archaeomancer enters the battlefield, return target instant or sorcery card from your graveyard to your hand.
 mana={2}{U}{U}
 type=Creature
@@ -9804,7 +9804,7 @@ subtype=Rebel Aura
 [/card]
 [card]
 name=Boundless Realms
-auto=target(<upto:type:land[basic]:mybattlefield>land|mylibrary) and!(tap)! moveTo(mybattlefield)
+auto=moveTo(mybattlefield) and!(tap)! notatarget(<upto:type:land[basic]:mybattlefield>land|mylibrary)
 text=Search your library for up to X basic land cards, where X is the number of lands you control, and put them onto the battlefield tapped. Then shuffle your library.
 mana={6}{G}
 type=Sorcery
@@ -12314,7 +12314,7 @@ toughness=1
 [card]
 name=Cathedral of War
 auto=tap
-auto={T}:Add {1}
+auto={T}:Add{1}
 abilities=exalted
 text=Cathedral of War enters the battlefield tapped. -- Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.) -- {T}: Add {1} to your mana pool.
 type=Land
@@ -19655,7 +19655,7 @@ toughness=1
 [card]
 name=Defang
 target=creature
-auto=teach(creature) preventalldamage from(this)
+auto=teach(creature) transforms((,newability[preventalldamage from(this)]))
 text=Enchant creature -- Prevent all damage that would be dealt by enchanted creature.
 mana={1}{W}
 type=Enchantment
@@ -20575,7 +20575,7 @@ toughness=4
 [/card]
 [card]
 name=Diabolic Revelation
-auto=this(variable{castx} >0) target(<upto:castx>*|mylibrary) moveTo(myhand)
+auto=this(variable{castx} >0) notatarget(<upto:castx>*|mylibrary) moveTo(myhand)
 text=Search your library for up to X cards and put those cards into your hand. Then shuffle your library.
 mana={X}{3}{B}{B}
 type=Sorcery
@@ -21005,7 +21005,7 @@ type=Sorcery
 name=Dismal Failure
 target=*|stack
 auto=fizzle
-auto=discard:1 targetcontroller
+auto=ability$!name(discard) target(*|myhand) reject!$ targetcontroller
 text=Counter target spell. Its controller discards a card.
 mana={2}{U}{U}
 type=Instant
@@ -30978,7 +30978,7 @@ toughness=5
 [/card]
 [card]
 name=Gallows at Willow Hill
-auto={3}{T}{T(human|myBattlefield)}{T(human|myBattlefield)}{T(human|myBattlefield)}{T(human|myBattlefield)}{T(human|myBattlefield)}{T(human|myBattlefield)}:name(destroy) target(creature|battlefield) transforms((,newability[@movedto(this|graveyard):token(-26267411)],newability[destroy])) oneshot
+auto={3}{T}{T(human|myBattlefield)}{T(human|myBattlefield)}{T(human|myBattlefield)}:name(destroy) target(creature|battlefield) transforms((,newability[@movedto(this|graveyard):token(-26267411)],newability[destroy])) oneshot
 text={3}, {T}, Tap three untapped Humans you control: Destroy target creature. Its controller puts a 1/1 white Spirit creature token with flying onto the battlefield.
 mana={3}
 type=Artifact
@@ -32023,7 +32023,7 @@ toughness=2
 [/card]
 [card]
 name=Ghostly Flicker
-target=<2>artifact,creature,land|mybattlefield
+target=<2>*[artifact;creature;land]|mybattlefield
 auto=(blink)
 text=Exile two target artifacts, creatures, and/or lands you control, then return those cards to the battlefield under your control.
 mana={2}{U}
@@ -37980,7 +37980,7 @@ type=Enchantment
 [/card]
 [card]
 name=Hidden Retreat
-auto={s2l(*|myhand)}:preventalldamage from(instant,sorcery|stack) ueot
+auto={s2l(*|myhand)}:name(prevent all damage) target(instant,sorcery|stack) transforms((,newability[preventalldamage from(this)])) ueot
 text=Put a card from your hand on top of your library: Prevent all damage that would be dealt by target instant or sorcery spell this turn.
 mana={2}{W}
 type=Enchantment
