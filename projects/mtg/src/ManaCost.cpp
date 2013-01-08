@@ -1,5 +1,5 @@
 #include "PrecompiledHeader.h"
-
+#include <boost/algorithm/string.hpp>
 #include "ManaCost.h"
 #include "ManaCostHybrid.h"
 #include "ExtraCost.h"
@@ -89,12 +89,14 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
                     }
 
                     //switch on the first letter. If two costs share their first letter, add an "if" within the switch
+                    boost::algorithm::to_lower(value);
                     switch (value[0])
                     {
-                    case 'X':
                     case 'x':
-                        if(value == "x" || value == "X")
+                        if(value == "x")
+                        {
                             manaCost->x();
+                        }
                         else
                         {
                             vector<string>colorSplit = parseBetween(value,"x:"," ",false);
@@ -113,7 +115,6 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
                             }
                         }
                         break;
-
                     case 't': //Tap
                         if (value == "t")
                         {

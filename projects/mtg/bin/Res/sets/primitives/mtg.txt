@@ -4420,21 +4420,8 @@ type=Artifact
 [/card]
 [card]
 name=Atalya, Samite Master
-auto={W}:name(x = 1) ability$!choice name(prevent damage) target(creature) prevent:1 ueot _ choice name(life) life:1 controller!$ controller
-auto={W}{W}:name(x = 2) ability$!choice name(prevent damage) target(creature) prevent:2 ueot_ choice name(life) life:2 controller!$ controller
-auto={W}{W}{W}:name(x = 3) ability$!choice name(prevent damage) target(creature) prevent:3 ueot _ choice name(life) life:3 controller!$ controller
-auto={W}{W}{W}{W}:name(x = 4) ability$!choice name(prevent damage) target(creature) prevent:4 ueot _ choice name(life) life:4 controller!$ controller
-auto={W}{W}{W}{W}{W}:name(x = 5) ability$!choice name(prevent damage) target(creature) prevent:5 ueot_ choice name(life) life:5 controller!$ controller
-auto={W}{W}{W}{W}{W}{W}:name(x = 6) ability$!choice name(prevent damage) target(creature) prevent:6 ueot _ choice name(life) life:6 controller!$ controller
-auto={W}{W}{W}{W}{W}{W}{W}:name(x = 7) ability$!choice name(prevent damage) target(creature) prevent:7 ueot _ choice name(life) life:7 controller!$ controller
-auto={W}{W}{W}{W}{W}{W}{W}{W}:name(x = 8) ability$!choice name(prevent damage) target(creature) prevent:8 ueot_ choice name(life) life:8 controller!$ controller
-auto={W}{W}{W}{W}{W}{W}{W}{W}{W}:name(x = 9) ability$!choice name(prevent damage) target(creature) prevent:9 ueot _ choice name(life) life:9 controller!$ controller
-auto={W}{W}{W}{W}{W}{W}{W}{W}{W}{W}:name(x = 10) ability$!choice name(prevent damage) target(creature) prevent:10 ueot _ choice name(life) life:10 controller!$ controller
-auto={W}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}:name(x = 11) ability$!choice name(prevent damage) target(creature) prevent:11 ueot_ choice name(life) life:11 controller!$ controller
-auto={W}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}:name(x = 12) ability$!choice name(prevent damage) target(creature) prevent:12 ueot _ choice name(life) life:12 controller!$ controller
-auto={W}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}:name(x = 13) ability$!choice name(prevent damage) target(creature) prevent:13 ueot _ choice name(life) life:13 controller!$ controller
-auto={W}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}:name(x = 14) ability$!choice name(prevent damage) target(creature) prevent:14 ueot_ choice name(life) life:14 controller!$ controller
-auto={W}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}{W}:name(x = 15) ability$!choice name(prevent damage) target(creature) prevent:15 ueot _ choice name(life) life:15 controller!$ controller
+auto={X:white}{T}:target(creature) prevent:X ueot
+auto={X:white}{T}:life:X controller
 text={X}, {T}: Choose one - Prevent the next X damage that would be dealt to target creature this turn; or you gain X life. Spend only white mana this way.
 mana={3}{W}{W}
 type=Legendary Creature
@@ -16694,26 +16681,7 @@ toughness=1
 [card]
 name=Crimson Hellkite
 abilities=flying
-auto={R}{T}:name(X = 1) damage:1 target(creature)
-auto={R}{R}{T}:name(X = 2) damage:2 target(creature)
-auto={R}{R}{R}{T}:name(X = 3) damage:3 target(creature)
-auto={R}{R}{R}{R}{T}:name(X = 4) damage:4 target(creature)
-auto={R}{R}{R}{R}{R}{T}:name(X = 5) damage:5 target(creature)
-auto={R}{R}{R}{R}{R}{R}{T}:name(X = 6) damage:6 target(creature)
-auto={R}{R}{R}{R}{R}{R}{R}{T}:name(X = 7) damage:7 target(creature)
-auto={R}{R}{R}{R}{R}{R}{R}{R}{T}:name(X = 8) damage:8 target(creature)
-auto={R}{R}{R}{R}{R}{R}{R}{R}{R}{T}:name(X = 9) damage:9 target(creature)
-auto={R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{T}:name(X = 10) damage:10 target(creature)
-auto={R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{T}:name(X = 11) damage:11 target(creature)
-auto={R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{T}:name(X = 12) damage:12 target(creature)
-auto={R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{T}:name(X = 13) damage:13 target(creature)
-auto={R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{T}:name(X = 14) damage:14 target(creature)
-auto={R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{T}:name(X = 15) damage:15 target(creature)
-auto={R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{T}:name(X = 16) damage:16 target(creature)
-auto={R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{T}:name(X = 17) damage:17 target(creature)
-auto={R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{T}{R}{R}{R}{R}{R}{R}{T}:name(X = 18) damage:18 target(creature)
-auto={R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{T}:name(X = 19) damage:19 target(creature)
-auto={R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}{T}:name(X = 20) damage:20 target(creature)
+auto={X:red}:damage:X target(creature)
 text=Flying -- {X}, {T}: Crimson Hellkite deals X damage to target creature. Spend only red mana this way.
 mana={6}{R}{R}{R}
 type=Creature
@@ -17252,26 +17220,7 @@ toughness=1
 [/card]
 [card]
 name=Crypt Rats
-auto={B}:name(x = 1) damage:1 all(creature,player)
-auto={B}{B}:name(x = 2) damage:2 all(creature,player)
-auto={B}{B}{B}:name(x = 3) damage:3 all(creature,player)
-auto={B}{B}{B}{B}:name(x = 4) damage:4 all(creature,player)
-auto={B}{B}{B}{B}{B}:name(x = 5) damage:5 all(creature,player)
-auto={B}{B}{B}{B}{B}{B}:name(x = 6) damage:6 all(creature,player)
-auto={B}{B}{B}{B}{B}{B}{B}:name(x = 7) damage:7 all(creature,player)
-auto={B}{B}{B}{B}{B}{B}{B}{B}:name(x = 8) damage:8 all(creature,player)
-auto={B}{B}{B}{B}{B}{B}{B}{B}{B}:name(x = 9) damage:9 all(creature,player)
-auto={B}{B}{B}{B}{B}{B}{B}{B}{B}{B}:name(x = 10) damage:10 all(creature,player)
-auto={B}{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}:name(x = 11) damage:11 all(creature,player)
-auto={B}{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}:name(x = 12) damage:12 all(creature,player)
-auto={B}{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}:name(x = 13) damage:13 all(creature,player)
-auto={B}{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}:name(x = 14) damage:14 all(creature,player)
-auto={B}{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}:name(x = 15) damage:15 all(creature,player)
-auto={B}{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}:name(x = 16) damage:16 all(creature,player)
-auto={B}{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}:name(x = 17) damage:17 all(creature,player)
-auto={B}{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}:name(x = 18) damage:18 all(creature,player)
-auto={B}{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}:name(x = 19) damage:19 all(creature,player)
-auto={B}{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}{B}:name(x = 20) damage:20 all(creature,player)
+auto={X:black}:damage:X all(creature,player)
 text={X}: Crypt Rats deals X damage to each creature and each player. Spend only black mana this way.
 mana={2}{B}
 type=Creature
@@ -79167,6 +79116,7 @@ type=Enchantment
 [/card]
 [card]
 name=Stasis Cell
+target=creature
 text=Enchant creature -- Enchanted creature doesn't untap during its controller's untap step. -- {3}{U}: Attach Stasis Cell to target creature.
 auto=doesnotuntap
 auto={3}{U}:retarget target(creature)
