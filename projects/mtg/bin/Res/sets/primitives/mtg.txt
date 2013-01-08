@@ -1643,6 +1643,14 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Alluring Scent
+target=creature
+auto=lure ueot
+text=All creatures able to block target creature this turn do so.
+mana={1}{G}{G}
+type=Sorcery
+[/card]
+[card]
 name=Alluring Siren
 auto={T}:mustattack target(creature|opponentinplay)
 text={T}: Target creature an opponent controls attacks you this turn if able.
@@ -8770,6 +8778,14 @@ power=3
 toughness=1
 [/card]
 [card]
+name=Bloodscent
+target=creature
+auto=lure ueot
+text=All creatures able to block target creature this turn do so.
+mana={3}{G}
+type=Instant
+[/card]
+[card]
 name=Bloodshed Fever
 target=creature
 auto=mustattack
@@ -10679,6 +10695,19 @@ type=Creature
 subtype=Human Shaman
 power=2
 toughness=2
+[/card]
+[card]
+name=Brothers Yamazaki
+auto=bushido(1/1)
+auto=aslongas(Brothers Yamazaki|battlefield) nolegend <3
+auto=lord(other Brothers Yamazaki|Battlefield) haste
+auto=lord(other Brothers Yamazaki|Battlefield) 2/2
+text=Bushido 1 (When this blocks or becomes blocked, it gets +1/+1 until end of turn.) -- If there are exactly two permanents named Brothers Yamazaki on the battlefield, the "legend rule" doesn't apply to them. -- Each other creature named Brothers Yamazaki gets +2/+2 and has haste.
+mana={2}{R}
+type=Legendary Creature
+subtype=Human Samurai
+power=2
+toughness=1
 [/card]
 [card]
 name=Bruna, Light of Alabaster
@@ -24384,6 +24413,16 @@ power=2
 toughness=1
 [/card]
 [card]
+name=Elvish Bard
+abilities=lure
+text=All creatures able to block Elvish Bard do so.
+mana={3}{G}{G}
+type=Creature
+subtype=Elf Shaman
+power=2
+toughness=4
+[/card]
+[card]
 name=Elvish Berserker
 auto=rampage(1/1,0)
 text=Whenever Elvish Berserker becomes blocked, it gets +1/+1 until end of turn for each creature blocking it.
@@ -32382,6 +32421,18 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Gift of the Deity
+target=creature
+auto=teach(creature[green]) 1/1
+auto=teach(creature[green]) lure
+auto=teach(creature[black]) 1/1
+auto=teach(creature[black]) deathtouch
+text=Enchant creature -- As long as enchanted creature is black, it gets +1/+1 and has deathtouch. (Creatures dealt damage by this creature are destroyed. You can divide its combat damage among any of the creatures blocking or blocked by it.) -- As long as enchanted creature is green, it gets +1/+1 and all creatures able to block it do so.
+mana={4}{BG}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 name=Gift of the Woods
 target=creature
 auto=@combat(blocking,blocked,turnlimited) source(mytgt):0/3 ueot && life:1 controller
@@ -34205,9 +34256,20 @@ name=Golgari Charm
 auto=choice name(All creatures -1/-1) all(creature|battlefield) -1/-1
 auto=choice name(Destroy enchantment) destroy target(enchantment|battlefield)
 auto=choice name(Regenerate creatures) regenerate all(creature|myBattlefield)
-text=Choose one — All creatures get -1/-1 until end of turn; or destroy target enchantment; or regenerate each creature you control.
+text=Choose one - All creatures get -1/-1 until end of turn; or destroy target enchantment; or regenerate each creature you control.
 mana={B}{G}
 type=Instant
+[/card]
+[card]
+name=Golgari Decoy
+abilities=lure
+autograveyard={3}{G}{G}{E}:name(scavenge) counter(1/1,storedpower) target(creature) asSorcery
+text=All creatures able to block Golgari Decoy do so. -- Scavenge {3}{G}{G} ({3}{G}{G}, Exile this card from your graveyard: Put a number of +1/+1 counters equal to this card's power on target creature. Scavenge only as a sorcery.)
+mana={3}{G}
+type=Creature
+subtype=Elf Rogue
+power=2
+toughness=2
 [/card]
 [card]
 name=Golgari Germination
@@ -48506,6 +48568,15 @@ power=4
 toughness=4
 [/card]
 [card]
+name=Lure
+target=creature
+auto=lure
+text=Enchant creature (Target a creature as you cast this. This card enters the battlefield attached to that creature.) -- All creatures able to block enchanted creature do so.
+mana={1}{G}{G}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 name=Lure of Prey
 target=creature[green]|myhand
 auto=moveTo(mybattlefield)
@@ -52142,6 +52213,13 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Mirror Gallery
+auto=lord(*|battlefield) nolegend
+text=The "legend rule" doesn't apply.
+mana={5}
+type=Artifact
+[/card]
+[card]
 name=Mirror-Sigil Sergeant
 abilities=trample
 auto=@each my upkeep restriction{type(*[blue]|myBattlefield)~morethan~0}:may token(158598)
@@ -53547,6 +53625,32 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Mortify
+target=creature,enchantment
+auto=destroy
+text=Destroy target creature or enchantment.
+mana={1}{W}{B}
+type=Instant
+[/card]
+[card]
+name=Mortipede
+auto={2}{G}:lure ueot
+text={2}{G}: All creatures able to block Mortipede this turn do so.
+mana={3}{B}
+type=Creature
+subtype=Insect
+power=4
+toughness=1
+[/card]
+[card]
+name=Mortiphobia
+auto={1}{B}{discard(*|myhand)}:moveto(exile) target(*|graveyard)
+auto={1}{B}{S}:moveto(exile) target(*|graveyard)
+text={1}{B}, Discard a card: Exile target card from a graveyard. -- {1}{B}, Sacrifice Mortiphobia: Exile target card from a graveyard.
+mana={1}{B}{B}
+type=Enchantment
+[/card]
+[card]
 name=Mortis Dogs
 auto=@combat(attacking) source(this):2/0 ueot
 auto=@movedTo(this|graveyard) from(battlefield):target(player) dynamicability<!powerlifeloss!>
@@ -53556,22 +53660,6 @@ type=Creature
 subtype=Hound
 power=2
 toughness=2
-[/card]
-[card]
-name=Mortify
-target=creature,enchantment
-auto=destroy
-text=Destroy target creature or enchantment.
-mana={1}{W}{B}
-type=Instant
-[/card]
-[card]
-name=Mortiphobia
-auto={1}{B}{discard(*|myhand)}:moveto(exile) target(*|graveyard)
-auto={1}{B}{S}:moveto(exile) target(*|graveyard)
-text={1}{B}, Discard a card: Exile target card from a graveyard. -- {1}{B}, Sacrifice Mortiphobia: Exile target card from a graveyard.
-mana={1}{B}{B}
-type=Enchantment
 [/card]
 [card]
 name=Mortivore
@@ -55380,6 +55468,15 @@ type=Legendary Creature
 subtype=Treefolk
 power=4
 toughness=5
+[/card]
+[card]
+name=Nemesis Mask
+auto={3}:equip
+auto=lure
+text=All creatures able to block equipped creature do so. -- Equip {3} ({3}: Attach to target creature you control. Equip only as a sorcery. This card enters the battlefield unattached and stays on the battlefield if the creature leaves.)
+mana={3}
+type=Artifact
+subtype=Equipment
 [/card]
 [card]
 name=Nemesis of Reason
@@ -62306,6 +62403,16 @@ type=Creature
 subtype=Elephant
 power=3
 toughness=3
+[/card]
+[card]
+name=Prized Unicorn
+abilities=lure
+text=All creatures able to block Prized Unicorn do so.
+mana={3}{G}
+type=Creature
+subtype=Unicorn
+power=2
+toughness=2
 [/card]
 [card]
 name=Proclamation of Rebirth
@@ -71933,6 +72040,16 @@ power=3
 toughness=4
 [/card]
 [card]
+name=Seton's Desire
+target=creature
+auto=2/2
+auto=aslongas(*|mygraveyard) lure >6
+text=Enchant creature -- Enchanted creature gets +2/+2. -- Threshold - As long as seven or more cards are in your graveyard, all creatures able to block enchanted creature do so.
+mana={2}{G}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 name=Seton's Scout
 abilities=reach
 auto=aslongas(*|mygraveyard) 2/2 >6
@@ -72769,6 +72886,17 @@ type=Creature
 subtype=Spirit
 power=2
 toughness=1
+[/card]
+[card]
+name=Shinen of Life's Roar
+abilities=lure
+autohand={2}{G}{G}{discard(this|myhand)}:lure target(creature) ueot
+text=All creatures able to block Shinen of Life's Roar do so. -- Channel - {2}{G}{G}, Discard Shinen of Life's Roar: All creatures able to block target creature this turn do so.
+mana={1}{G}
+type=Creature
+subtype=Spirit
+power=1
+toughness=2
 [/card]
 [card]
 name=Shinen of Stars' Light
@@ -79702,6 +79830,17 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Stone-Tongue Basilisk
+auto=@combatdamaged(creature) from(this):all(trigger[to]) phaseaction[combatends once] destroy
+auto=aslongas(*|mygraveyard) lure >6
+text=Whenever Stone-Tongue Basilisk deals combat damage to a creature, destroy that creature at end of combat. -- Threshold - As long as seven or more cards are in your graveyard, all creatures able to block Stone-Tongue Basilisk do so.
+mana={4}{G}{G}{G}
+type=Creature
+subtype=Basilisk
+power=4
+toughness=5
+[/card]
+[card]
 name=Stonebrow, Krosan Hero
 abilities=trample
 auto=lord(creature[attacking;trample]|myBattlefield) 2/2
@@ -82644,6 +82783,24 @@ text=Enchant creature -- Enchanted creature gets +1/+1 and has protection from e
 mana={2}{W}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+name=Taunting Challenge
+target=creature
+auto=lure ueot
+text=All creatures able to block target creature this turn do so.
+mana={1}{G}{G}
+type=Sorcery
+[/card]
+[card]
+name=Taunting Elf
+abilities=lure
+text=All creatures able to block Taunting Elf do so.
+mana={G}
+type=Creature
+subtype=Elf
+power=0
+toughness=1
 [/card]
 [card]
 name=Taurean Mauler

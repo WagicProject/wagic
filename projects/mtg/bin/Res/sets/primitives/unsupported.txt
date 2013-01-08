@@ -268,12 +268,6 @@ type=Sorcery
 text=Join forces — Starting with you, each player may pay any amount of mana. Each player puts X 1/1 white Soldier creature tokens onto the battlefield, where X is the total amount of mana paid this way.
 [/card]
 [card]
-name=Alluring Scent
-text=All creatures able to block target creature this turn do so.
-mana={1}{G}{G}
-type=Sorcery
-[/card]
-[card]
 name=Alms
 text={1}, Exile the top card of your graveyard: Prevent the next 1 damage that would be dealt to target creature this turn.
 mana={W}
@@ -1486,12 +1480,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Bloodscent
-text=All creatures able to block target creature this turn do so.
-mana={3}{G}
-type=Instant
-[/card]
-[card]
 name=Bludgeon Brawl
 mana={2}{R}
 type=Enchantment
@@ -1823,15 +1811,6 @@ name=Bronze Tablet
 text=Remove Bronze Tablet from your deck before playing if you're not playing for ante. -- Bronze Tablet enters the battlefield tapped. -- {4}, {T}: Exile Bronze Tablet and target nontoken permanent an opponent owns. That player may pay 10 life. If he or she does, put Bronze Tablet into its owner's graveyard. Otherwise, that player owns Bronze Tablet and you own the other exiled card.
 mana={6}
 type=Artifact
-[/card]
-[card]
-name=Brothers Yamazaki
-text=Bushido 1 (When this blocks or becomes blocked, it gets +1/+1 until end of turn.) -- If there are exactly two permanents named Brothers Yamazaki on the battlefield, the "legend rule" doesn't apply to them. -- Each other creature named Brothers Yamazaki gets +2/+2 and has haste.
-mana={2}{R}
-type=Legendary Creature
-subtype=Human Samurai
-power=2
-toughness=1
 [/card]
 [card]
 name=Browbeat
@@ -5114,15 +5093,6 @@ mana={3}{R}
 type=World Enchantment
 [/card]
 [card]
-name=Elvish Bard
-text=All creatures able to block Elvish Bard do so.
-mana={3}{G}{G}
-type=Creature
-subtype=Elf Shaman
-power=2
-toughness=4
-[/card]
-[card]
 name=Elvish House Party
 mana={4}{G}{G}
 type=Creature — Elf Rogue
@@ -6918,14 +6888,6 @@ subtype=Gideon
 text=+2: During target opponent's next turn, creatures that player controls attack Gideon Jura if able. -2: Destroy target tapped creature. 0: Until end of turn, Gideon Jura becomes a 6/6 Human Soldier creature that's still a planeswalker. Prevent all damage that would be dealt to him this turn.
 [/card]
 [card]
-name=Gift of the Deity
-target=creature
-text=Enchant creature -- As long as enchanted creature is black, it gets +1/+1 and has deathtouch. (Creatures dealt damage by this creature are destroyed. You can divide its combat damage among any of the creatures blocking or blocked by it.) -- As long as enchanted creature is green, it gets +1/+1 and all creatures able to block it do so.
-mana={4}{BG}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Gift of the Gargantuan
 text=Look at the top four cards of your library. You may reveal a creature card and/or a land card from among them and put the revealed cards into your hand. Put the rest on the bottom of your library in any order.
 mana={2}{G}
@@ -7434,15 +7396,6 @@ type=Creature
 subtype=Lizard
 power=2
 toughness=3
-[/card]
-[card]
-name=Golgari Decoy
-text=All creatures able to block Golgari Decoy do so. -- Scavenge {3}{G}{G} ({3}{G}{G}, Exile this card from your graveyard: Put a number of +1/+1 counters equal to this card's power on target creature. Scavenge only as a sorcery.)
-mana={3}{G}
-type=Creature
-subtype=Elf Rogue
-power=2
-toughness=2
 [/card]
 [card]
 name=Golgari Grave-Troll
@@ -10854,13 +10807,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Lure
-text=Enchant creature (Target a creature as you cast this. This card enters the battlefield attached to that creature.) -- All creatures able to block enchanted creature do so.
-mana={1}{G}{G}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Lurking Evil
 text=Pay half your life, rounded up: Lurking Evil becomes a 4/4 Horror creature with flying.
 mana={B}{B}{B}
@@ -11783,12 +11729,6 @@ mana={G}
 type=Enchantment
 [/card]
 [card]
-name=Mirror Gallery
-text=The "legend rule" doesn't apply.
-mana={5}
-type=Artifact
-[/card]
-[card]
 name=Mirror Golem
 text=Imprint - When Mirror Golem enters the battlefield, you may exile target card from a graveyard. -- Mirror Golem has protection from each of the exiled card's card types. (The card types are artifact, creature, enchantment, instant, land, planeswalker, sorcery, and tribal.)
 mana={6}
@@ -12104,15 +12044,6 @@ text=Prowl {1}{B} (You may cast this for its prowl cost if you dealt combat dama
 mana={2}{B}{B}
 type=Tribal Sorcery
 subtype=Rogue
-[/card]
-[card]
-name=Mortipede
-text={2}{G}: All creatures able to block Mortipede this turn do so.
-mana={3}{B}
-type=Creature
-subtype=Insect
-power=4
-toughness=1
 [/card]
 [card]
 name=Mossbridge Troll
@@ -12591,13 +12522,6 @@ type=Enchantment
 [card]
 name=Neko-Te
 text=Whenever equipped creature deals damage to a creature, tap that creature. That creature doesn't untap during its controller's untap step for as long as Neko-Te remains on the battlefield. -- Whenever equipped creature deals damage to a player, that player loses 1 life. -- Equip {2}
-mana={3}
-type=Artifact
-subtype=Equipment
-[/card]
-[card]
-name=Nemesis Mask
-text=All creatures able to block equipped creature do so. -- Equip {3} ({3}: Attach to target creature you control. Equip only as a sorcery. This card enters the battlefield unattached and stays on the battlefield if the creature leaves.)
 mana={3}
 type=Artifact
 subtype=Equipment
@@ -14408,15 +14332,6 @@ name=Prismatic Wardrobe
 mana={W}
 type=Sorcery
 text=Destroy target card that does not share a color with clothing worn by its controller. You cannot choose an artifact or land card.
-[/card]
-[card]
-name=Prized Unicorn
-text=All creatures able to block Prized Unicorn do so.
-mana={3}{G}
-type=Creature
-subtype=Unicorn
-power=2
-toughness=2
 [/card]
 [card]
 name=Probe
@@ -16945,13 +16860,6 @@ mana={U}
 type=Sorcery
 [/card]
 [card]
-name=Seton's Desire
-text=Enchant creature -- Enchanted creature gets +2/+2. -- Threshold - As long as seven or more cards are in your graveyard, all creatures able to block enchanted creature do so.
-mana={2}{G}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Sex Appeal
 mana={W}
 type=Instant
@@ -17217,15 +17125,6 @@ type=Creature
 subtype=Spirit
 power=2
 toughness=3
-[/card]
-[card]
-name=Shinen of Life's Roar
-text=All creatures able to block Shinen of Life's Roar do so. -- Channel - {2}{G}{G}, Discard Shinen of Life's Roar: All creatures able to block target creature this turn do so.
-mana={1}{G}
-type=Creature
-subtype=Spirit
-power=1
-toughness=2
 [/card]
 [card]
 name=Shining Shoal
@@ -18753,15 +18652,6 @@ toughness=5
 text=Whenever Stone-Cold Basilisk blocks or becomes blocked by a creature with fewer letters in its name, destroy that creature at end of combat. (Punctuation and spaces aren't letters.) Whenever an opponent reads Stone-Cold Basilisk, that player is turned to stone until end of turn. Stoned players can't attack, block, or play spells or abilities.
 [/card]
 [card]
-name=Stone-Tongue Basilisk
-text=Whenever Stone-Tongue Basilisk deals combat damage to a creature, destroy that creature at end of combat. -- Threshold - As long as seven or more cards are in your graveyard, all creatures able to block Stone-Tongue Basilisk do so.
-mana={4}{G}{G}{G}
-type=Creature
-subtype=Basilisk
-power=4
-toughness=5
-[/card]
-[card]
 name=Stonecloaker
 text=Flash (You may cast this spell any time you could cast an instant.) -- Flying -- When Stonecloaker enters the battlefield, return a creature you control to its owner's hand. -- When Stonecloaker enters the battlefield, exile target card from a graveyard.
 mana={2}{W}
@@ -19464,21 +19354,6 @@ name=Taunt
 text=During target player's next turn, creatures that player controls attack you if able.
 mana={U}
 type=Sorcery
-[/card]
-[card]
-name=Taunting Challenge
-text=All creatures able to block target creature this turn do so.
-mana={1}{G}{G}
-type=Sorcery
-[/card]
-[card]
-name=Taunting Elf
-text=All creatures able to block Taunting Elf do so.
-mana={G}
-type=Creature
-subtype=Elf
-power=0
-toughness=1
 [/card]
 [card]
 name=Tawnos's Coffin
