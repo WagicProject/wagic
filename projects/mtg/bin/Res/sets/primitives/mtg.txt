@@ -8079,6 +8079,15 @@ power=1
 toughness=2
 [/card]
 [card]
+name=Blinding Powder
+auto={2}:equip
+auto=teach(creature) {unattach}:name(unattach Blinding Powder) preventAllCombatDamage to(mytgt) ueot
+text=Equipped creature has "Unattach Blinding Powder: Prevent all combat damage that would be dealt to this creature this turn." -- Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery.)
+mana={1}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
 name=Blinding Souleater
 auto={p(W)}{T}:tap target(creature)
 text=({p(W)} may be paid for with either {W} or 2 life.) -- {p(W)},{T}: Tap target creature.
@@ -28166,6 +28175,7 @@ type=Sorcery
 [/card]
 [card]
 name=Finest Hour
+abilities=exalted
 auto=@combat(attackedalone) source(creature|myBattlefield) turnlimited:all(trigger[to]) untap ueot
 auto=@combat(attackedalone) source(creature|myBattlefield) turnlimited:nextphasealter(add,combatphases,controller,after<combatends>)
 text=Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.) -- Whenever a creature you control attacks alone, if it's the first combat phase of the turn, untap that creature. After this phase, there is an additional combat phase.
@@ -28237,7 +28247,7 @@ type=Artifact
 [card]
 name=Fire Dragon
 abilities=flying
-auto=damage:type:mountain target(creature)
+auto=damage:type:mountain:mybattlefield target(creature)
 text=Flying -- When Fire Dragon enters the battlefield, it deals damage equal to the number of Mountains you control to target creature.
 mana={6}{R}{R}{R}
 type=Creature
@@ -34019,8 +34029,8 @@ subtype=Plains Swamp
 [card]
 name=Godo, Bandit Warlord
 auto=may moveTo(mybattlefield) target(equipment|mylibrary)
-auto=@combat(attacking) source(this) turnlimited:untap
-auto=@combat(attacking) source(this) turnlimited:untap all(creature|mybattlefield) ueot
+auto=@combat(attacking) source(this) turnlimited:untap all(this)
+auto=@combat(attacking) source(this) turnlimited:untap all(samurai|mybattlefield)
 auto=@combat(attacking) source(this) turnlimited:nextphasealter(add,combatphases,controller,after<combatends>)
 text=When Godo, Bandit Warlord enters the battlefield, you may search your library for an Equipment card and put it onto the battlefield. If you do, shuffle your library. -- Whenever Godo attacks for the first time each turn, untap it and all Samurai you control. After this phase, you get an additional combat phase.
 mana={5}{R}
@@ -37252,6 +37262,16 @@ type=Creature
 subtype=Elemental
 power=2
 toughness=2
+[/card]
+[card]
+name=Heartseeker
+auto={5}:equip
+auto=2/1
+auto=teach(creature) {unattach}{t}:destroy target(creature)
+text=Equipped creature gets +2/+1 and has "{T}, Unattach Heartseeker: Destroy target creature." -- Equip {5} ({5}: Attach to target creature you control. Equip only as a sorcery. This card enters the battlefield unattached and stays on the battlefield if the creature leaves.)
+mana={4}
+type=Artifact
+subtype=Equipment
 [/card]
 [card]
 name=Heartstabber Mosquito
@@ -46558,6 +46578,15 @@ auto={S}:damage:2 all(creature[attacking;-flying])
 text=Flash -- {2}, Sacrifice Leonin Bladetrap: Leonin Bladetrap deals 2 damage to each attacking creature without flying.
 mana={3}
 type=Artifact
+[/card]
+[card]
+name=Leonin Bola
+auto={1}:equip
+auto=teach(creature) {unattach}{t}:tap target(creature)
+text=Equipped creature has "{T}, Unattach Leonin Bola: Tap target creature." -- Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery. This card enters the battlefield unattached and stays on the battlefield if the creature leaves.)
+mana={1}
+type=Artifact
+subtype=Equipment
 [/card]
 [card]
 name=Leonin Den-Guard

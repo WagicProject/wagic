@@ -1429,13 +1429,6 @@ mana={2}{W}
 type=Instant
 [/card]
 [card]
-name=Blinding Powder
-text=Equipped creature has "Unattach Blinding Powder: Prevent all combat damage that would be dealt to this creature this turn." -- Equip {2} ({2}: Attach to target creature you control. Equip only as a sorcery.)
-mana={1}
-type=Artifact
-subtype=Equipment
-[/card]
-[card]
 name=Blood Funnel
 text=Noncreature spells you cast cost {2} less to cast. -- Whenever you cast a noncreature spell, counter that spell unless you sacrifice a creature.
 mana={1}{B}
@@ -8110,13 +8103,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Heartseeker
-text=Equipped creature gets +2/+1 and has "{T}, Unattach Heartseeker: Destroy target creature." -- Equip {5} ({5}: Attach to target creature you control. Equip only as a sorcery. This card enters the battlefield unattached and stays on the battlefield if the creature leaves.)
-mana={4}
-type=Artifact
-subtype=Equipment
-[/card]
-[card]
 name=Heartstone
 text=Activated abilities of creatures cost {1} less to activate. This effect can't reduce the amount of mana an ability costs to activate to less than one mana.
 mana={3}
@@ -10289,13 +10275,6 @@ subtype=Cat Cleric
 power=2
 toughness=2
 text=Players can't search libraries. Any player may pay {2} for that player to ignore this effect until end of turn.
-[/card]
-[card]
-name=Leonin Bola
-text=Equipped creature has "{T}, Unattach Leonin Bola: Tap target creature." -- Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery. This card enters the battlefield unattached and stays on the battlefield if the creature leaves.)
-mana={1}
-type=Artifact
-subtype=Equipment
 [/card]
 [card]
 name=Leonin Shikari
