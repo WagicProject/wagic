@@ -33251,10 +33251,7 @@ toughness=2
 [/card]
 [card]
 name=Goblin Clearcutter
-auto={T}{S(forest|myBattlefield)}:Add {R}{R}{R}
-auto={T}{S(forest|myBattlefield)}:Add {R}{R}{G}
-auto={T}{S(forest|myBattlefield)}:Add {R}{G}{G}
-auto={T}{S(forest|myBattlefield)}:Add {G}{G}{G}
+auto={T}{S(forest|myBattlefield)}:name(add mana) ability$! choice add{G} _ choice add{R} !$ controller && ability$! choice add{G} _ choice add{R} !$ controller && ability$! choice add{G} _ choice add{R} !$ controller
 text={T}, Sacrifice a Forest: Add three mana in any combination of {R} and/or {G} to your mana pool.
 mana={3}{R}
 type=Creature
@@ -49572,21 +49569,7 @@ type=Artifact
 [/card]
 [card]
 name=Manamorphose
-auto=choice Add{W}{W}
-auto=choice Add{U}{U}
-auto=choice Add{B}{B}
-auto=choice Add{R}{R}
-auto=choice Add{G}{G}
-auto=choice Add{U}{W}
-auto=choice Add{B}{U}
-auto=choice Add{B}{R}
-auto=choice Add{R}{G}
-auto=choice Add{G}{W}
-auto=choice Add{R}{W}
-auto=choice Add{B}{W}
-auto=choice Add{U}{R}
-auto=choice Add{B}{G}
-auto=choice Add{U}{G}
+auto=name(add mana) ability$! choice add{G} _ choice add{R} _ choice add{U} _ choice add{B} _ choice add{W} !$ controller && ability$! choice add{G} _ choice add{R} _ choice add{U} _ choice add{B} _ choice add{W} !$ controller
 auto=draw:1 controller
 text=Add two mana in any combination of colors to your mana pool. -- Draw a card.
 mana={1}{RG}
@@ -57880,10 +57863,7 @@ toughness=1
 [/card]
 [card]
 name=Orcish Lumberjack
-auto={T}{S(forest|myBattlefield)}:Add {G}{G}{G}
-auto={T}{S(forest|myBattlefield)}:Add {G}{G}{R}
-auto={T}{S(forest|myBattlefield)}:Add {G}{R}{R}
-auto={T}{S(forest|myBattlefield)}:Add {R}{R}{R}
+auto={T}{S(forest|myBattlefield)}:name(add mana) ability$! choice add{G} _ choice add{R} !$ controller && ability$! choice add{G} _ choice add{R} !$ controller && ability$! choice add{G} _ choice add{R} !$ controller
 text={T}, Sacrifice a Forest: Add three mana in any combination of {R} and/or {G} to your mana pool.
 mana={R}
 type=Creature
@@ -83491,21 +83471,7 @@ type=Land
 [card]
 name=Terrarion
 auto=tap
-auto={2}{T}{S}:Add {G}{G}
-auto={2}{T}{S}:Add {G}{R}
-auto={2}{T}{S}:Add {G}{U}
-auto={2}{T}{S}:Add {G}{B}
-auto={2}{T}{S}:Add {G}{W}
-auto={2}{T}{S}:Add {R}{R}
-auto={2}{T}{S}:Add {R}{U}
-auto={2}{T}{S}:Add {R}{B}
-auto={2}{T}{S}:Add {R}{W}
-auto={2}{T}{S}:Add {U}{U}
-auto={2}{T}{S}:Add {U}{B}
-auto={2}{T}{S}:Add {U}{W}
-auto={2}{T}{S}:Add {B}{B}
-auto={2}{T}{S}:Add {B}{W}
-auto={2}{T}{S}:Add {W}{W}
+auto={2}{T}{S}:name(add mana) ability$! choice add{G} _ choice add{R} _ choice add{U} _ choice add{B} _ choice add{W} !$ controller && ability$! choice add{G} _ choice add{R} _ choice add{U} _ choice add{B} _ choice add{W} !$ controller
 auto=@movedTo(this|graveyard) from(battlefield):draw:1
 text=Terrarion enters the battlefield tapped. -- {2}, {T}, Sacrifice Terrarion: Add two mana in any combination of colors to your mana pool. -- When Terrarion is put into the graveyard from battlefield, draw a card.
 mana={1}
