@@ -12719,7 +12719,7 @@ type=Land
 [/card]
 [card]
 name=Centaur Glade
-auto={2}{G}{G}:token(Centaur,creature Centaur token,3/3,green)
+auto={2}{G}{G}:token(Centaur,Creature Centaur,3/3,green)
 text={2}{G}{G}: Put a 3/3 green Centaur creature token onto the battlefield.
 mana={3}{G}{G}
 type=Enchantment
@@ -24452,11 +24452,11 @@ subtype=Elf Warrior
 power=1
 toughness=1
 [/card]
+# put {G} first so that the AI can produce it.
 [card]
 name=Elvish Harbinger
 auto=moveTo(library) target(elf|mylibrary) oneshot
 auto={T}:Add{G}
-# put {G} first so that the AI can produce it.
 auto={T}:Add{W}
 auto={T}:Add{U}
 auto={T}:Add{B}
@@ -28631,7 +28631,7 @@ type=Instant
 [/card]
 [card]
 name=Flame Elemental
-auto={R}{T}{S}:target(creature) [powerstrike]
+auto={R}{T}{S}:target(creature) dynamicability<!powerstrike!>
 text={R}, {T}, Sacrifice Flame Elemental: Flame Elemental deals damage equal to its power to target creature.
 mana={2}{R}{R}
 type=Creature
@@ -31813,7 +31813,7 @@ subtype=Aura
 [/card]
 [card]
 name=Ghitu Fire-Eater
-auto={T}{S}:target(creature) dynamicability<!powerstrike!>
+auto={T}{S}:target(creature,player) dynamicability<!powerstrike!>
 text={T}, Sacrifice Ghitu Fire-Eater: Ghitu Fire-Eater deals damage equal to its power to target creature or player.
 mana={2}{R}
 type=Creature
@@ -87897,10 +87897,12 @@ subtype=Equipment
 [/card]
 [card]
 name=Umezawa's Jitte
+auto=@combatdamaged(creature,player) from(mytgt):counter(0/0,2,Charge) all(this)
 autoskill={C(0/0,-1,Charge)}:2/2
 autoskill={C(0/0,-1,Charge)}:-1/-1 target(creature)
 autoskill={C(0/0,-1,Charge)}:life:2 controller
-auto=@combatdamaged(creature,player) from(mytgt):counter(0/0,2,Charge) all(this)
+auto=aslongas(parents) {C(0/0,-1,Charge)}:-1/-1 target(creature) <1
+auto=aslongas(parents) {C(0/0,-1,Charge)}:life:2 controller <1
 auto={2}:equip
 text=Whenever equipped creature deals combat damage, put two charge counters on Umezawa's Jitte. -- Remove a charge counter from Umezawa's Jitte: Choose one - Equipped creature gets +2/+2 until end of turn; or target creature gets -1/-1 until end of turn; or you gain 2 life. -- Equip {2}
 mana={2}
@@ -90092,6 +90094,7 @@ text=Counter target spell. That spell's controller may draw a card.
 mana={2}{U}
 type=Instant
 [/card]
+# P/T modified to make auto rule possible
 [card]
 name=Vexing Beetle
 abilities=nofizzle
@@ -90102,7 +90105,6 @@ type=Creature
 subtype=Insect
 power=6
 toughness=6
-# P/T modified to make auto rule possible
 [/card]
 [card]
 name=Vexing Sphinx
@@ -95114,10 +95116,10 @@ subtype=Elemental
 power=0
 toughness=0
 [/card]
+#Wood Elves ability should stay optional ("may") because when you are searching for sth in your library, the official rules say that you don'T have to find anything even if there is a legal target!
 [card]
 name=Wood Elves
 auto=may moveTo(mybattlefield) target(forest|myLibrary)
-#Wood Elves ability should stay optional ("may") because when you are searching for sth in your library, the official rules say that you don'T have to find anything even if there is a legal target!
 text=When Wood Elves enters the battlefield, search your library for a Forest card and put that card onto the battlefield. Then shuffle your library.
 mana={2}{G}
 type=Creature
