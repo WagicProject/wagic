@@ -934,6 +934,11 @@ id=3187
 rarity=R
 [/card]
 [card]
+primitive=Survivor Token
+id=-3187
+rarity=T
+[/card]
+[card]
 primitive=Veteran's Voice
 id=3189
 rarity=C

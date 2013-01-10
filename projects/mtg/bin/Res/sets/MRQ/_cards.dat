@@ -944,6 +944,11 @@ id=19707
 rarity=R
 [/card]
 [card]
+primitive=Zombie
+id=-19707
+rarity=T
+[/card]
+[card]
 primitive=Misdirection
 id=19681
 rarity=R

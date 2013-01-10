@@ -1434,6 +1434,11 @@ id=75291
 rarity=R
 [/card]
 [card]
+primitive=Dragon Spirit
+id=-75291
+rarity=T
+[/card]
+[card]
 primitive=Teller of Tales
 id=75285
 rarity=C

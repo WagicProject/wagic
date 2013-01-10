@@ -1047,7 +1047,6 @@ subtype=Ajani
 [card]
 name=Avatar Token
 auto=thisforeach(controllerlife) 1/1
-id=-140233
 type=Creature
 subtype=Avatar
 power=*
@@ -3978,15 +3977,14 @@ type=Instant
 [/card]
 [card]
 name=Army of the Damned
-auto=token(-666666666)*13
+auto=token(-229968)*13
 flashback={7}{B}{B}{B}
 text=Put thirteen 2/2 black Zombie creature tokens onto the battlefield tapped. -- Flashback {7}{B}{B}{B}
 mana={5}{B}{B}{B}
 type=Sorcery
 [/card]
 [card]
-name=Zombie
-id=-666666666
+name=Zombie Token
 type=Creature
 subtype=Zombie
 auto=tap
@@ -7519,7 +7517,8 @@ type=Sorcery
 [/card]
 [card]
 name=Black Vise
-auto=@each opponent upkeep:foreach(*|opponenthand) damage:1 opponent >4
+auto=name(choose opponent) notatarget(opponent) deplete:0
+auto=@each targetedplayer upkeep:foreach(*|targetedpersonshand) damage:1 targetedplayer >4
 text=As Black Vise enters the battlefield, choose an opponent. -- At the beginning of the chosen player's upkeep, Black Vise deals X damage to that player, where X is the number of cards in his or her hand minus 4.
 mana={1}
 type=Artifact
@@ -13893,7 +13892,7 @@ toughness=2
 name=Chromium
 abilities=flying
 auto=rampage(2/2,1)
-auto=upcost[{W}{U}{B}] moveTo(graveyard)
+auto=upcost[{W}{U}{B}] sacrifice
 text=Flying -- Rampage 2 (Whenever this creature becomes blocked, it gets +2/+2 until end of turn for each creature blocking it beyond the first.) -- At the beginning of your upkeep, sacrifice Chromium unless you pay {W}{U}{B}.
 mana={2}{W}{W}{U}{U}{B}{B}
 type=Legendary Creature
@@ -15324,7 +15323,6 @@ subtype=Human
 power=1
 toughness=1
 color=white
-id=-278252
 [/card]
 [card]
 name=Common Bond
@@ -17547,7 +17545,7 @@ type=Enchantment
 [card]
 name=Curse of Oblivion
 target=player
-auto=@each targetedplayer upkeep:ability$!name(exile 2 cards fromg graveyard) target(<2>*|mygraveyard) moveTo(exile)!$ targetedplayer
+auto=@each targetedplayer upkeep:ability$!name(exile 2 cards from graveyard) target(<2>*|mygraveyard) moveTo(exile)!$ targetedplayer
 text=At the beginning of enchanted player's upkeep, that player exiles two cards from his or her graveyard.
 mana={3}{B}
 type=Enchantment
@@ -24114,8 +24112,7 @@ subtype=Aura
 [/card]
 [card]
 name=Elephant Resurgence
-auto=token(-21382111)
-auto=token(-21382111) opponent
+auto=token(-21382) controller && token(-21382) opponent
 text=Each player puts a green Elephant creature token onto the battlefield. Those creatures have "This creature's power and toughness are each equal to the number of creature cards in its controller's graveyard."
 mana={1}{G}
 type=Sorcery
@@ -24129,7 +24126,6 @@ text=This creature's power and toughness are each equal to the number of creatur
 power=*
 toughness=*
 color=green
-id=-21382111
 [/card]
 [card]
 name=Elesh Norn, Grand Cenobite
@@ -30998,7 +30994,7 @@ toughness=5
 [/card]
 [card]
 name=Gallows at Willow Hill
-auto={3}{T}{T(human|myBattlefield)}{T(human|myBattlefield)}{T(human|myBattlefield)}:name(destroy) target(creature|battlefield) transforms((,newability[@movedto(this|graveyard):token(-26267411)],newability[destroy])) oneshot
+auto={3}{T}{T(human|myBattlefield)}{T(human|myBattlefield)}{T(human|myBattlefield)}:name(destroy) target(creature|battlefield) transforms((,newability[@movedto(this|graveyard):token(-262674)],newability[destroy])) oneshot
 text={3}, {T}, Tap three untapped Humans you control: Destroy target creature. Its controller puts a 1/1 white Spirit creature token with flying onto the battlefield.
 mana={3}
 type=Artifact
@@ -31010,7 +31006,6 @@ toughness=1
 type=Creature
 subtype=Spirit
 color=white
-id=-26267411
 [/card]
 [card]
 name=Gallows Warden
@@ -41175,7 +41170,7 @@ type=Artifact
 [/card]
 [card]
 name=Iron Maiden
-auto=@each opponentupkeep:foreach(*|opponenthand) damage:1 opponent >4
+auto=@each opponent upkeep:foreach(*|opponenthand) damage:1 opponent >4
 text=At the beginning of each opponent's upkeep, Iron Maiden deals X damage to that player, where X is the number of cards in his or her hand minus 4.
 mana={3}
 type=Artifact
@@ -50716,7 +50711,7 @@ name=Melancholy
 target=creature
 auto=tap
 auto=doesnotuntap
-auto=all(this) transforms((,newability[upcost[{B}] moveTo(graveyard)])) forever
+auto=all(this) transforms((,newability[upcost[{B}] sacrifice])) forever
 text=Enchant creature -- When Melancholy enters the battlefield, tap enchanted creature. -- Enchanted creature doesn't untap during its controller's untap step. -- At the beginning of your upkeep, sacrifice Melancholy unless you pay {B}.
 mana={2}{B}
 type=Enchantment
@@ -51440,7 +51435,7 @@ type=Instant
 [card]
 name=Midnight Ritual
 target=<prex>creature|mygraveyard
-auto=transforms((,newability[moveTo(exile)],newability[token(-1970711)]))
+auto=transforms((,newability[moveTo(exile)],newability[token(-19707)]))
 text=Exile X target creature cards from your graveyard. For each creature card exiled this way, put a 2/2 black Zombie creature token onto the battlefield.
 mana={X}{2}{B}
 type=Sorcery
@@ -51452,7 +51447,6 @@ toughness=2
 type=Creature
 subtype=Zombie
 color=black
-id=-1970711
 [/card]
 [card]
 name=Midsummer Revel
@@ -61507,7 +61501,7 @@ toughness=3
 name=Polar Kraken
 abilities=trample
 auto=tap
-auto=cumulativeupcost[{S(creature|myBattlefield)}{S(land|myBattlefield)}] sacrifice all(this)
+auto=cumulativeupcost[{S(land|myBattlefield)}] sacrifice
 text=Trample -- Polar Kraken enters the battlefield tapped. -- Cumulative upkeep - Sacrifice a land. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)
 mana={8}{U}{U}{U}
 type=Creature
@@ -63656,7 +63650,7 @@ type=Instant
 [/card]
 [card]
 name=Rackling
-alias=1139
+auto=@each opponent upkeep:damage:0 && if type(*|opponenthand)~equalto~2 then damage:1 opponent && if type(*|opponenthand)~equalto~1 then damage:2 opponent && if type(*|opponenthand)~equalto~0 then damage:3 opponent
 text=At the beginning of each opponent's upkeep, Rackling deals X damage to that player, where X is 3 minus the number of cards in his or her hand.
 mana={4}
 type=Artifact Creature
@@ -74414,22 +74408,23 @@ toughness=3
 [/card]
 [card]
 name=Skeletonize
-auto=teach(creature|opponentbattlefield) transforms((,newability[@movedTo(this|graveyard) from(battlefield):token(-17507011) opponent],newability[damage:3])) ueot
-auto=teach(creature|mybattlefield) transforms((,newability[@movedTo(this|graveyard) from(battlefield):token(-17507011)],newability[damage:3])) ueot
+target=creature
+auto=damage:3
+auto=teach(creature|opponentbattlefield) transforms((,newability[@movedTo(this|graveyard) from(battlefield):token(-175070) opponent])) ueot
+auto=teach(creature|mybattlefield) transforms((,newability[@movedTo(this|graveyard) from(battlefield):token(-175070)])) ueot
 text=Skeletonize deals 3 damage to target creature. When a creature dealt damage this way is put into a graveyard this turn, put a 1/1 black Skeleton creature token onto the battlefield with "{B}: Regenerate this creature."
 mana={4}{R}
 type=Instant
 [/card]
 [card]
-name=Skeleton
+name=Skeleton Token
 auto={B}:regenerate
 text={B}: Regenerate.
 type=Creature
 subtype=Skeleton
 power=1
 toughness=1
-color=red
-id=-17507011
+color=black
 [/card]
 [card]
 name=Skillful Lunge
@@ -80048,8 +80043,8 @@ toughness=3
 [/card]
 [card]
 name=Storm World
-auto=@each opponentupkeep:foreach(*|opponenthand) damage:1 opponent <4
-auto=@each myupkeep:foreach(*|myhand) damage:1 controller <4
+auto=@each opponent upkeep:damage:0 && if type(*|opponenthand)~equalto~3 then damage:1 opponent && if type(*|opponenthand)~equalto~2 then damage:2 opponent && if type(*|opponenthand)~equalto~1 then damage:3 opponent && if type(*|opponenthand)~equalto~0 then damage:4 opponent
+auto=@each my upkeep:damage:0 && if type(*|myhand)~equalto~3 then damage:1 controller && if type(*|myhand)~equalto~2 then damage:2 controller && if type(*|myhand)~equalto~1 then damage:3 controller && if type(*|myhand)~equalto~0 then damage:4 controller
 auto=@movedTo(enchantment[world]|battlefield):sacrifice all(this)
 text=At the beginning of each player's upkeep, Storm World deals X damage to that player, where X is 4 minus the number of cards in his or her hand.
 mana={R}
@@ -82702,22 +82697,11 @@ type=Sorcery
 name=Tatsumasa, the Dragon's Fang
 auto={3}:equip
 auto=5/5
-auto={6}:token(-121232)
+auto={6}:token(Dragon Spirit,Creature Dragon Spirit,5/5,flying,blue) && all(this) becomes(expelled) ueot && all(Dragon Spirit[token]) transforms((,newability[(blink)forsrc all(expelled|mybattlefield)])) forever
 text=Equipped creature gets +5/+5. -- {6}: Remove Tatsumasa, the Dragon's Fang from the game: Put a 5/5 blue Dragon Spirit token with flying into play. -- Return Tatsumasa, the Dragon's Fang to play under its owner's control when that token is put into a graveyard.
 mana={6}
 type=Legendary Artifact
-subtype=Equipment Tatsumasa
-[/card]
-[card]
-name=Dragon fang spirit
-auto=choice (blink)forsrc target(Tatsumasa|mybattlefield)
-abilities=flying
-power=5
-toughness=5
-type=creature
-subtype=dragon spirit
-color=blue
-id=-121232
+subtype=Equipment
 [/card]
 [card]
 name=Tattered Drake
@@ -83421,7 +83405,7 @@ subtype=Arcane
 ###The token is needed here. A simple token in the first auto-line won't work. It seems that "," in a transforms((,newability...))-line causes problems.
 [card]
 name=Terastodon
-auto=may name(destroy) target(<upto:3>*[-creature]|battlefield) transforms((,newability[token(-19713711)],newability[destroy])) forever
+auto=may name(destroy) target(<upto:3>*[-creature]|battlefield) transforms((,newability[token(-197137)],newability[destroy])) forever
 text=When Terastodon enters the battlefield, you may destroy up to three target noncreature permanents. For each permanent put into a graveyard this way, its controller puts a 3/3 green Elephant creature token onto the battlefield.
 mana={6}{G}{G}
 type=Creature
@@ -83430,13 +83414,12 @@ power=9
 toughness=9
 [/card]
 [card]
-name=Elefant
+name=Elephant Token
 power=3
 toughness=3
 type=Creature
 subtype=Elephant
 color=green
-id=-19713711
 [/card]
 [card]
 name=Terminal Moraine
@@ -83587,7 +83570,7 @@ type=Enchantment
 name=Tetravus
 abilities=flying
 auto=counter(1/1,3)
-auto={c(1/1,-1)}:token(-67564534) myupkeeponly
+auto={c(1/1,-1)}:token(-2073) myupkeeponly
 auto={e(Tetravite|myBattlefield)}:counter(1/1,1) myupkeeponly
 text=Flying -- Tetravus enters the battlefield with three +1/+1 counters on it. -- At the beginning of your upkeep, you may remove any number of +1/+1 counters from Tetravus. If you do, put that many 1/1 colorless Tetravite artifact creature tokens onto the battlefield. They each have flying and "This creature can't be enchanted." -- At the beginning of your upkeep, you may exile any number of tokens put onto the battlefield with Tetravus. If you do, put that many +1/+1 counters on Tetravus.
 mana={6}
@@ -83600,7 +83583,6 @@ toughness=1
 name=Tetravite
 abilities=flying
 auto=cantbetargetof(aura)
-id=-67564534
 type=Artifact Creature
 subtype=Tetravite
 power=1
@@ -83893,7 +83875,8 @@ toughness=5
 [/card]
 [card]
 name=The Rack
-alias=1139
+auto=name(choose opponent) notatarget(opponent) deplete:0
+auto=@each targetedplayer upkeep:damage:0 && if type(*|targetedpersonshand)~equalto~2 then damage:1 targetedplayer && if type(*|targetedpersonshand)~equalto~1 then damage:2 targetedplayer && if type(*|targetedpersonshand)~equalto~0 then damage:3 targetedplayer
 text=As The Rack enters the battlefield, choose an opponent. -- At the beginning of the chosen player's upkeep, The Rack deals X damage to that player, where X is 3 minus the number of cards in his or her hand.
 mana={1}
 type=Artifact
@@ -84088,7 +84071,7 @@ name=Thirst
 target=creature
 auto=tap
 auto=doesnotuntap
-auto=all(this) transforms((,newability[upcost[{U}] moveTo(graveyard)])) forever
+auto=all(this) transforms((,newability[upcost[{U}] sacrifice])) forever
 text=Enchant creature -- When Thirst enters the battlefield, tap enchanted creature. -- Enchanted creature doesn't untap during its controller's untap step. -- At the beginning of your upkeep, sacrifice Thirst unless you pay {U}.
 mana={2}{U}
 type=Enchantment
@@ -85674,35 +85657,12 @@ type=Legendary Land
 [card]
 name=Tombstone Stairwell
 auto=cumulativeupcost[{1}{B}] sacrifice
-auto=@each upkeep:foreach(creature|mygraveyard) token(-12253) && foreach(creature|opponentgraveyard) token(-12254)
+auto=@each upkeep:foreach(creature|mygraveyard) token(Tombspawn,Creature Zombie,2/2,unearth,haste,black) && foreach(creature|opponentgraveyard) token(Tombspawn,Creature Zombie,2/2,unearth,haste,black) opponent
 auto=@movedto(this|nonbattlezone) from(battlefield):bury all(Tombspawn)
 auto=@movedTo(enchantment[world]|battlefield):sacrifice all(this)
 text=Cumulative upkeep {1}{B} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- At the beginning of each upkeep, if Tombstone Stairwell is on the battlefield, each player puts a 2/2 black Zombie creature token with haste named Tombspawn onto the battlefield for each creature card in his or her graveyard. -- At the beginning of each end step or when Tombstone Stairwell leaves the battlefield, destroy all tokens put onto the battlefield with Tombstone Stairwell. They can't be regenerated.
 mana={2}{B}{B}
 type=World Enchantment
-[/card]
-[card]
-name=Tombspawn
-power=2
-toughness=2
-type=Creature
-subtype=Zombie Tombspawn
-abilities=haste
-auto=@each endofturn:bury all(this)
-color=black
-id=-12253
-[/card]
-[card]
-name=Tombspawn
-auto=moveto(opponentbattlefield)
-power=2
-toughness=2
-type=Creature
-subtype=Zombie Tombspawn
-abilities=haste
-auto=@each endofturn:bury all(this)
-color=black
-id=-12254
 [/card]
 [card]
 name=Tome Scour
@@ -89246,7 +89206,7 @@ type=Instant
 name=Vapor Snare
 target=creature
 alias=1194
-auto=all(this) transforms((,newability[upcost[{H(land|mybattlefield)}] moveTo(graveyard)])) forever
+auto=all(this) transforms((,newability[upcost[{H(land|mybattlefield)}] sacrifice])) forever
 text=Enchant creature -- You control enchanted creature. -- At the beginning of your upkeep, sacrifice Vapor Snare unless you return a land you control to its owner's hand.
 mana={4}{U}
 type=Enchantment
@@ -89277,15 +89237,21 @@ toughness=2
 name=Varchild's War-Riders
 abilities=trample
 auto=rampage(1/1,1)
-auto=@each my upkeep:thisforeach(counter{0/0.1.Age}) token(Survivor,creature survivor,1/1,red) opponent
-auto=@each my upkeep:may moveTo(mygraveyard)
-auto=@each my upkeep:counter(0/0,1,Age)
+auto=@each my upkeep:counter(0/0,1,Age) && all(this) transforms((,newability[choice sacrifice],newability[choice thisforeach(counter{0/0.1.Age}) token(-3187) opponent]))
 text=Cumulative upkeep - Put a 1/1 red Survivor creature token onto the battlefield under an opponent's control. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- Trample; rampage 1 (Whenever this creature becomes blocked, it gets +1/+1 until end of turn for each creature blocking it beyond the first.)
 mana={1}{R}
 type=Creature
 subtype=Human Warrior
 power=3
 toughness=4
+[/card]
+[card]
+name=Survivor Token
+type=Creature
+subtype=Survivor
+power=1
+toughness=1
+color=red
 [/card]
 [card]
 name=Vassal Soul
@@ -89798,7 +89764,7 @@ toughness=5
 [/card]
 [card]
 name=Venser, the Sojourner
-auto=counter(0/0,4,loyalty)
+auto=counter(0/0,3,loyalty)
 auto={C(0/0,2,Loyalty)}:(blink)ueot target(*|mybattlefield)
 auto={C(0/0,-1,Loyalty)}:all(creature) unblockable ueot
 auto={C(0/0,-8,Loyalty)}:name(emblem) emblem transforms((,newability[@movedto(*|mystack):choice target(*|battlefield) moveto(exile)])) forever dontremove
@@ -90152,7 +90118,7 @@ toughness=6
 name=Vexing Sphinx
 abilities=flying
 auto=@each my upkeep:counter(0/0,1,Age)
-auto=thisforeach(counter{0/0.1.Age}) upcost[{discard(*|myhand)}] moveTo(graveyard)
+auto=thisforeach(counter{0/0.1.Age}) upcost[{discard(*|myhand)}] sacrifice
 auto=@movedTo(this|graveyard) from(battlefield):thisforeach(counter{0/0.1.Age}) draw:1 controller
 text=Flying -- Cumulative upkeep - Discard a card. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- When Vexing Sphinx dies, draw a card for each age counter on it.
 mana={1}{U}{U}
@@ -91791,7 +91757,6 @@ subtype=Vraska
 [card]
 name=Assassin Token
 auto=@combatdamaged(player) from(this):winGame controller
-id=-290538
 type=Creature
 subtype=Assassin
 power=1
@@ -92454,9 +92419,7 @@ toughness=5
 [card]
 name=Wall of Shards
 abilities=defender,flying
-auto=@each my upkeep:thisforeach(counter{0/0.1.Age}) life:1 opponent
-auto=@each my upkeep:may moveTo(mygraveyard)
-auto=@each my upkeep:counter(0/0,1,Age)
+auto=@each my upkeep:counter(0/0,1,Age) && all(this) transforms((,newability[choice sacrifice],newability[choice thisforeach(counter{0/0.1.Age}) life:1 opponent]))
 text=Defender, flying -- Cumulative upkeep - An opponent gains 1 life. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)
 mana={1}{W}
 type=Snow Creature
@@ -93290,7 +93253,7 @@ toughness=*
 [/card]
 [card]
 name=Waylay
-auto=token(-5833)*3
+auto=token(Knight,Creature Knight,2/2,unearth,white)*3
 text=Put three 2/2 white Knight creature tokens onto the battlefield. Exile them at the beginning of the next cleanup step.
 mana={2}{W}
 type=Instant
@@ -93658,7 +93621,7 @@ type=Sorcery
 [/card]
 [card]
 name=Wheel of Torture
-auto=@each opponentupkeep:foreach(*|opponenthand) damage:1 opponent <3
+auto=@each opponent upkeep:damage:0 && if type(*|opponenthand)~equalto~2 then damage:1 opponent && if type(*|opponenthand)~equalto~1 then damage:2 opponent && if type(*|opponenthand)~equalto~0 then damage:3 opponent
 text=At the beginning of each opponent's upkeep, Wheel of Torture deals X damage to that player, where X is 3 minus the number of cards in his or her hand.
 type=artifact
 mana={3}

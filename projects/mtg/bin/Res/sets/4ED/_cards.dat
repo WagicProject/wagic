@@ -1594,6 +1594,11 @@ id=2073
 rarity=R
 [/card]
 [card]
+primitive=Tetravite
+id=-2073
+rarity=T
+[/card]
+[card]
 primitive=The Brute
 id=2309
 rarity=C

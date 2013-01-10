@@ -19,6 +19,11 @@ id=140233
 rarity=R
 [/card]
 [card]
+primitive=Avatar Token
+id=-140233
+rarity=T
+[/card]
+[card]
 primitive=Amoeboid Changeling
 id=140339
 rarity=C

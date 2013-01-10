@@ -1059,6 +1059,11 @@ id=175070
 rarity=U
 [/card]
 [card]
+primitive=Skeleton Token
+id=-175070
+rarity=T
+[/card]
+[card]
 primitive=Skill Borrower
 id=179428
 rarity=R

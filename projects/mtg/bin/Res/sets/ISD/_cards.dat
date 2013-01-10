@@ -49,6 +49,11 @@ id=229968
 rarity=M
 [/card]
 [card]
+primitive=Zombie Token
+id=-229968
+rarity=T
+[/card]
+[card]
 primitive=Ashmouth Hound
 id=233255
 rarity=C
