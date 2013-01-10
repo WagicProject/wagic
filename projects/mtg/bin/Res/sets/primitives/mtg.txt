@@ -16831,6 +16831,17 @@ mana={G}{S(land|mybattlefield)}
 type=instant
 [/card]
 [card]
+name=Crosis, the Purger
+abilities=flying
+auto=@combatdamaged(player) from(this):may name(pay ability) transforms((,newability[{2}{B}:activatechooseacolor all(*[chosencolor]|opponenthand) reject activatechooseend limit:1 mycombatdamageonly])) oneshot
+text=Flying -- Whenever Crosis, the Purger deals combat damage to a player, you may pay {2}{B}. If you do, choose a color, then that player reveals his or her hand and discards all cards of that color.
+mana={3}{U}{B}{R}
+type=Legendary Creature
+subtype=Dragon
+power=6
+toughness=6
+[/card]
+[card]
 name=Crosis's Attendant
 auto={1}{S}:Add{U}{B}{R}
 text={1}, Sacrifice Crosis's Attendant: Add {U}{B}{R} to your mana pool.
@@ -22528,6 +22539,17 @@ type=Creature
 subtype=Camel Beast
 power=1
 toughness=5
+[/card]
+[card]
+name=Dromar, the Banisher
+abilities=flying
+auto=@combatdamaged(player) from(this):may name(pay ability) transforms((,newability[{2}{U}:activatechooseacolor all(creature[chosencolor]|battlefield) moveTo(ownerhand) activatechooseend limit:1 mycombatdamageonly])) oneshot
+text=Flying -- Whenever Dromar, the Banisher deals combat damage to a player, you may pay {2}{U}. If you do, choose a color, then return all creatures of that color to their owners' hands.
+mana={3}{W}{U}{B}
+type=Legendary Creature
+subtype=Dragon
+power=6
+toughness=6
 [/card]
 [card]
 name=Dromar's Attendant
@@ -56809,6 +56831,17 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Numot, the Devastator
+abilities=flying
+auto=@combatdamaged(player) from(this):may name(pay ability) transforms((,newability[{2}{R}:destroy target(<upto:2>land|battlefield) limit:1 mycombatdamageonly])) oneshot
+text=Flying -- Whenever Numot, the Devastator deals combat damage to a player, you may pay {2}{R}. If you do, destroy up to two target lands.
+mana={3}{R}{W}{U}
+type=Legendary Creature
+subtype=Dragon
+power=6
+toughness=6
+[/card]
+[card]
 name=Nut Collector
 auto=@each my upkeep:may token(Squirrel,creature squirrel, 1/1,green)
 auto=aslongas(*|mygraveyard) lord(squirrel) 2/2 >6
@@ -58224,13 +58257,9 @@ power=1
 toughness=2
 [/card]
 [card]
-name=Oros the Avenger
-#The comma needed to be stripped from the name to make the card work.
-#Reintroducing it requires an update to PLC/_cards.dat as well.
-#Please don't correct the card name by adding a "," because then the first auto line won't work anymore and even won't work when you add an "," there, too! (0.10.1)
+name=Oros, the Avenger
 abilities=flying
-auto=aslongas(oros the avenger[attacking]|mybattlefield) lord(oros the avenger[attacking;-cloud]) {2}{W}:damage:3 all(creature[-white])
-auto=@combatdamaged(player) from(this):cloud
+auto=@combatdamaged(player) from(this):may name(pay ability) transforms((,newability[{2}{W}:damage:3 all(creature[-white]) limit:1 mycombatdamageonly])) oneshot
 text=Flying -- Whenever Oros, the Avenger deals combat damage to a player, you may pay {2}{W}. If you do, Oros deals 3 damage to each nonwhite creature.
 mana={3}{W}{B}{R}
 type=Legendary Creature
@@ -67185,6 +67214,17 @@ auto=@each opponent draw:draw:1 opponent
 text=At the beginning of each player's draw step, that player draws an additional card. -- Each player may play an additional land on each of his or her turns.
 mana={2}{G}
 type=Enchantment
+[/card]
+[card]
+name=Rith, the Awakener
+abilities=flying
+auto=@combatdamaged(player) from(this):may name(pay ability) transforms((,newability[{2}{G}:activatechooseacolor foreach(*[chosencolor]|battlefield) token(Saproling,Creature Saproling,1/1,green) activatechooseend limit:1 mycombatdamageonly])) oneshot
+text=Flying -- Whenever Rith, the Awakener deals combat damage to a player, you may pay {2}{G}. If you do, choose a color, then put a 1/1 green Saproling creature token onto the battlefield for each permanent of that color.
+mana={3}{R}{G}{W}
+type=Legendary Creature
+subtype=Dragon
+power=6
+toughness=6
 [/card]
 [card]
 name=Rith's Attendant
@@ -83319,13 +83359,9 @@ mana={B}{S(creature|mybattlefield)}
 type=Sorcery
 [/card]
 [card]
-name=Teneb the Harvester
-#The comma needed to be stripped from the name to make the card work.
-#Reintroducing it requires an update to PLC/_cards.dat as well.
-#Please don't correct the card name by adding a "," because then the first auto line won't work anymore and even won't work when you add an "," there, too! (0.10.1)
+name=Teneb, the Harvester
 abilities=flying
-auto=aslongas(teneb the harvester[attacking]|mybattlefield) lord(teneb the harvester[attacking;-cloud]) {2}{B}:moveTo(myBattlefield) target(creature|graveyard)
-auto=@combatdamaged(player) from(this):cloud
+auto=@combatdamaged(player) from(this):may name(pay ability) transforms((,newability[{2}{B}:moveTo(myBattlefield) target(creature|graveyard) limit:1 mycombatdamageonly])) oneshot
 text=Flying -- Whenever Teneb, the Harvester deals combat damage to a player, you may pay {2}{B}. If you do, put target creature card in a graveyard onto the battlefield under your control.
 mana={3}{B}{G}{W}
 type=Legendary Creature
@@ -86913,6 +86949,17 @@ type=Creature
 subtype=Troll
 power=1
 toughness=4
+[/card]
+[card]
+name=Treva, the Renewer
+abilities=flying
+auto=@combatdamaged(player) from(this):may name(pay ability) transforms((,newability[{2}{W}:activatechooseacolor foreach(*[chosencolor]|battlefield) life:1 activatechooseend limit:1 mycombatdamageonly])) oneshot
+text=Flying -- Whenever Treva, the Renewer deals combat damage to a player, you may pay {2}{W}. If you do, choose a color, then you gain 1 life for each permanent of that color.
+mana={3}{G}{W}{U}
+type=Legendary Creature
+subtype=Dragon
+power=6
+toughness=6
 [/card]
 [card]
 name=Treva's Attendant
@@ -91616,6 +91663,17 @@ type=Creature
 subtype=Insect
 power=5
 toughness=4
+[/card]
+[card]
+name=Vorosh, the Hunter
+abilities=flying
+auto=@combatdamaged(player) from(this):may name(pay ability) transforms((,newability[{2}{G}:counter(1/1.6) limit:1 mycombatdamageonly])) oneshot
+text=Flying -- Whenever Vorosh, the Hunter deals combat damage to a player, you may pay {2}{G}. If you do, put six +1/+1 counters on Vorosh.
+mana={3}{G}{U}{B}
+type=Legendary Creature
+subtype=Dragon
+power=6
+toughness=6
 [/card]
 [card]
 name=Vorstclaw

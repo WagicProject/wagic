@@ -491,9 +491,7 @@ id=124062
 rarity=R
 [/card]
 [card]
-primitive=Oros the Avenger
-#The comma needed to be stripped from the name to make the card work.
-#Reintroducing it requires an update to mtg.txt as well.
+primitive=Oros, the Avenger
 id=136170
 rarity=R
 [/card]
@@ -749,9 +747,7 @@ id=126814
 rarity=R
 [/card]
 [card]
-primitive=Teneb the Harvester
-#The comma needed to be stripped from the name to make the card work.
-#Reintroducing it requires an update to mtg.txt as well.
+primitive=Teneb, the Harvester
 id=124075
 rarity=R
 [/card]

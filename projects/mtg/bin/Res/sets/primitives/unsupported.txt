@@ -3502,15 +3502,6 @@ mana={4}
 type=Artifact
 [/card]
 [card]
-name=Crosis, the Purger
-text=Flying -- Whenever Crosis, the Purger deals combat damage to a player, you may pay {2}{B}. If you do, choose a color, then that player reveals his or her hand and discards all cards of that color.
-mana={3}{U}{B}{R}
-type=Legendary Creature
-subtype=Dragon
-power=6
-toughness=6
-[/card]
-[card]
 name=Crown of Convergence
 text=Play with the top card of your library revealed. -- As long as the top card of your library is a creature card, creatures you control that share a color with that card get +1/+1. -- {G}{W}: Put the top card of your library on the bottom of your library.
 mana={2}
@@ -4788,15 +4779,6 @@ name=Dreams of the Dead
 text={1}{U}: Return target white or black creature card from your graveyard to the battlefield. That creature gains "Cumulative upkeep {2}." If the creature would leave the battlefield, exile it instead of putting it anywhere else. (At the beginning of its controller's upkeep, that player puts an age counter on it, then sacrifices it unless he or she pays its upkeep cost for each age counter on it.)
 mana={3}{U}
 type=Enchantment
-[/card]
-[card]
-name=Dromar, the Banisher
-text=Flying -- Whenever Dromar, the Banisher deals combat damage to a player, you may pay {2}{U}. If you do, choose a color, then return all creatures of that color to their owners' hands.
-mana={3}{W}{U}{B}
-type=Legendary Creature
-subtype=Dragon
-power=6
-toughness=6
 [/card]
 [card]
 name=Drooling Groodion
@@ -12861,15 +12843,6 @@ type=Instant
 text=Return target permanent to its owner's hand. Gotcha Whenever an opponent says a number, you may say "Gotcha" If you do, return Number Crunch from your graveyard to your hand.
 [/card]
 [card]
-name=Numot, the Devastator
-text=Flying -- Whenever Numot, the Devastator deals combat damage to a player, you may pay {2}{R}. If you do, destroy up to two target lands.
-mana={3}{R}{W}{U}
-type=Legendary Creature
-subtype=Dragon
-power=6
-toughness=6
-[/card]
-[card]
 name=Nurturer Initiate
 text=Whenever a player casts a green spell, you may pay {1}. If you do, target creature gets +1/+1 until end of turn.
 mana={G}
@@ -15737,15 +15710,6 @@ name=Rith's Charm
 text=Choose one - Destroy target nonbasic land; or put three 1/1 green Saproling creature tokens onto the battlefield; or prevent all damage a source of your choice would deal this turn.
 mana={R}{G}{W}
 type=Instant
-[/card]
-[card]
-name=Rith, the Awakener
-text=Flying -- Whenever Rith, the Awakener deals combat damage to a player, you may pay {2}{G}. If you do, choose a color, then put a 1/1 green Saproling creature token onto the battlefield for each permanent of that color.
-mana={3}{R}{G}{W}
-type=Legendary Creature
-subtype=Dragon
-power=6
-toughness=6
 [/card]
 [card]
 name=Ritual of Subdual
@@ -20236,15 +20200,6 @@ toughness=6
 text=Trample When Trench Gorger enters the battlefield, you may search your library for any number of land cards, exile them, then shuffle your library. If you do, Trench Gorger's power and toughness each become equal to the number of cards exiled this way.
 [/card]
 [card]
-name=Treva, the Renewer
-text=Flying -- Whenever Treva, the Renewer deals combat damage to a player, you may pay {2}{W}. If you do, choose a color, then you gain 1 life for each permanent of that color.
-mana={3}{G}{W}{U}
-type=Legendary Creature
-subtype=Dragon
-power=6
-toughness=6
-[/card]
-[card]
 name=Trial // Error (Error)
 text=Counter target multicolored spell.
 mana={U}{B}
@@ -21139,15 +21094,6 @@ subtype=Praetor
 power=7
 toughness=6
 text=Trample Whenever you tap a land for mana, add one mana to your mana pool of any type that land produced. Whenever an opponent taps a land for mana, that land doesn't untap during its controller's next untap step.
-[/card]
-[card]
-name=Vorosh, the Hunter
-mana={3}{G}{U}{B}
-type=Legendary Creature
-subtype=Dragon
-power=6
-toughness=6
-text=Flying Whenever Vorosh, the Hunter deals combat damage to a player, you may pay {2}{G}. If you do, put six +1/+1 counters on Vorosh.
 [/card]
 [card]
 name=Wail of the Nim
