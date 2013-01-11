@@ -21687,7 +21687,7 @@ subtype=Aura
 [/card]
 [card]
 name=Dragon Broodmother
-auto=@each upkeep: token(-22222220)
+auto=@each upkeep: token(-189648)
 mana={2}{R}{R}{R}{G}
 type=Creature
 subtype=Dragon
@@ -21706,7 +21706,6 @@ text=Flying -- Devour 2 (As this enters the battlefield, you may sacrifice any n
 power=1
 toughness=1
 color=Red,Green
-id=22222220
 [/card]
 [card]
 name=Dragon Engine
@@ -44463,7 +44462,7 @@ toughness=6
 [card]
 name=Kjeldoran Javelineer
 auto=cumulativeupcost[{1}] sacrifice
-auto={T}:thisforeach(counter{0/0.1.Age}) damage:1 target(creature[attacking;blocking])
+auto={T}:damage:counter{0%0.1.Age} target(creature[attacking;blocking])
 text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- {T}: Kjeldoran Javelineer deals damage to target attacking or blocking creature equal to the number of age counters on Kjeldoran Javelineer.
 mana={W}
 type=Creature
@@ -49396,7 +49395,8 @@ subtype=Aura
 [/card]
 [card]
 name=Malignant Growth
-auto=@each opponent upkeep:thisforeach(counter{0/0.1.Age}) draw:1 opponent && thisforeach(counter{0/0.1.Age}) damage:1 opponent
+auto=@each opponent draw:draw:counter{0%0.1.Growth} opponent && damage:counter{0%0.1.Growth} opponent
+auto=@each my upkeep:counter(0/0,1,Growth)
 auto=cumulativeupcost[{1}] sacrifice
 text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- At the beginning of your upkeep, put a growth counter on Malignant Growth. -- At the beginning of each opponent's draw step, that player draws an additional card for each growth counter on Malignant Growth, then Malignant Growth deals damage to the player equal to the number of cards he or she drew this way.
 mana={3}{G}{U}
@@ -50078,10 +50078,10 @@ text=Kicker {3} (You may pay an additional {3} as you cast this spell.) -- Creat
 mana={B}{B}
 type=Sorcery
 [/card]
+#attempt to fix Marsh Crocodile, the ability is not targeted and gives both players ability to discard a card. the order is bounce, discard player1 and discard player2
 [card]
 name=Marsh Crocodile
-auto=target(creature[blue;black|myBattlefield]) moveto(myhand)
-auto=all(player) discard:1
+auto=name(bounce) notatarget(creature[blue;black]|myBattlefield) transforms((,newability[moveto(ownerhand)],newability[ability$!name(discard) notatarget(*|myhand) reject!$ controller],newability[ability$!name(discard) notatarget(*|myhand) reject!$ opponent])) oneshot
 text=When Marsh Crocodile enters the battlefield, return a blue or black creature you control to its owner's hand. -- When Marsh Crocodile enters the battlefield, each player discards a card.
 mana={2}{U}{B}
 type=Creature
@@ -51824,9 +51824,10 @@ text=You draw two cards and target opponent discards two cards.
 mana={5}{U}
 type=Sorcery
 [/card]
+#attempt to fix Mindslash Sliver, the trigger never happens when there is sacrifice cost 
 [card]
 name=Mindlash Sliver
-auto=lord(sliver) {1}{s}:target(player) discard:1
+auto=lord(sliver) {1}:transforms((sacrified,newability[sacrifice],newability[ability$!name(discard) notatarget(*|myhand) reject!$ controller],newability[ability$!name(discard) notatarget(*|myhand) reject!$ opponent])) ueot limit:1
 text=All Slivers have "{1}, Sacrifice this permanent: Each player discards a card."
 mana={B}
 type=Creature
@@ -60409,8 +60410,8 @@ toughness=1
 [card]
 name=Phyrexian Etchings
 auto=cumulativeupcost[{B}] sacrifice
-auto=@each my endofturn:thisforeach(counter{0/0.1.Age}) draw:1
-auto=@movedTo(this|graveyard) from(battlefield):thisforeach(counter{0/0.1.Age}) life:-2
+auto=@each my endofturn:draw:counter{0%0.1.Age} controller
+auto=@movedTo(this|graveyard) from(battlefield):life:-counter{0%0.1.Age} controller
 text=Cumulative upkeep {B} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- At the beginning of your end step, draw a card for each age counter on Phyrexian Etchings. -- When Phyrexian Etchings is put into a graveyard from the battlefield, you lose 2 life for each age counter on it.
 mana={B}{B}{B}
 type=Enchantment
@@ -62361,7 +62362,7 @@ type=Artifact
 name=Private Research
 target=creature
 auto=@each my upkeep:may counter(0/0,1,Page) all(this)
-auto=@movedTo(mytgt|graveyard):thisforeach(counter{0/0.1.Page}) draw:1 controller
+auto=@movedTo(mytgt|graveyard):draw:counter{0%0.1.Page} controller
 text=Enchant creature -- At the beginning of your upkeep, you may put a page counter on Private Research. -- When enchanted creature is put into a graveyard, draw a card for each page counter on Private Research.
 mana={U}
 type=Enchantment
@@ -62687,11 +62688,8 @@ subtype=Aura
 [/card]
 [card]
 name=Psychic Vortex
-auto=@each my upkeep:thisforeach(counter{0/0.1.Age}) draw:1 controller
-auto=@each my upkeep:may moveTo(mygraveyard)
-auto=@each my upkeep:counter(0/0,1,Age)
-auto=@each my endofturn:reject target(land|myBattlefield)
-auto=@each my endofturn:reject all(*|myhand)
+auto=@each my upkeep:counter(0/0,1,Age) && all(this) transforms((,newability[choice draw:counter{0%0.1.Age} controller],newability[choice sacrifice]))
+auto=@each my endofturn:sacrifice notatarget(land|myBattlefield) && reject all(*|myhand)
 text=Cumulative upkeep - Draw a card. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- At the beginning of your end step, sacrifice a land and discard your hand.
 mana={2}{U}{U}
 type=Enchantment
@@ -66471,7 +66469,7 @@ toughness=2
 [card]
 name=Revered Unicorn
 auto=cumulativeupcost[{1}] sacrifice
-auto=@movedTo(this|nonbattlezone) from(battlefield):thisforeach(counter{0/0.1.Age}) life:1 controller
+auto=@movedTo(this|nonbattlezone) from(battlefield):life:counter{0%0.1.Age} controller
 text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- When Revered Unicorn leaves the battlefield, you gain life equal to the number of age counters on it.
 mana={1}{W}
 type=Creature
@@ -72549,9 +72547,7 @@ type=Land
 [card]
 name=Sheltering Ancient
 abilities=trample
-auto=@each my upkeep:thisforeach(counter{0/0.1.Age}) counter(1/1,1) target(creature|opponentBattlefield)
-auto=@each my upkeep:may moveTo(mygraveyard)
-auto=@each my upkeep:counter(0/0,1,Age)
+auto=@each my upkeep:counter(0/0,1,Age) && all(this) transforms((,newability[choice sacrifice],newability[if type(creature|opponentbattlefield)~morethan~0 then choice dynamicability<!agecountersoneone!> notatarget(creature|opponentBattlefield)])) oneshot
 text=Trample -- Cumulative upkeep - Put a +1/+1 counter on a creature an opponent controls. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)
 mana={1}{G}
 type=Creature
@@ -92419,7 +92415,7 @@ toughness=5
 [card]
 name=Wall of Shards
 abilities=defender,flying
-auto=@each my upkeep:counter(0/0,1,Age) && all(this) transforms((,newability[choice sacrifice],newability[choice thisforeach(counter{0/0.1.Age}) life:1 opponent]))
+auto=@each my upkeep:counter(0/0,1,Age) && all(this) transforms((,newability[choice sacrifice],newability[choice life:counter{0%0.1.Age} opponent]))
 text=Defender, flying -- Cumulative upkeep - An opponent gains 1 life. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.)
 mana={1}{W}
 type=Snow Creature
