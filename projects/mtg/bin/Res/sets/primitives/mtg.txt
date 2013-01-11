@@ -1662,7 +1662,7 @@ toughness=1
 [card]
 name=All Is Dust
 auto=sacrifice all(*[white;blue;black;red;green]|battlefield)
-text=Each player sacrifices all colored permanents he or she controls. 
+text=Each player sacrifices all colored permanents he or she controls.
 mana={7}
 type=Tribal Sorcery
 subtype=Eldrazi
@@ -1713,7 +1713,7 @@ mana={G}{W}{S(creature|mybattlefield)}
 type=Sorcery
 [/card]
 [card]
-name=Altar Of Dementia
+name=Altar of Dementia
 auto={S(creature|mybattlefield)}:target(player) deplete:storedpower
 text=Sacrifice a creature: Target player puts a number of cards equal to the sacrificed creature's power from the top of his or her library into his or her graveyard.
 mana={2}
@@ -4359,7 +4359,7 @@ toughness=2
 name=Assault Strobe
 target=creature
 auto=double strike
-text=Target creature gains double strike until end of turn. (It deals both first strike and regular combat damage.) 
+text=Target creature gains double strike until end of turn. (It deals both first strike and regular combat damage.)
 mana={R}
 type=Sorcery
 [/card]
@@ -11861,7 +11861,7 @@ toughness=2
 [/card]
 [card]
 name=Caravan Escort
-auto={2}:counter(0/0,1,Level) asSorcery 
+auto={2}:counter(0/0,1,Level) asSorcery
 auto=this(counter{0/0.1.Level}) 1/1
 auto=this(counter{0/0.5.Level}) first strike
 auto=this(counter{0/0.5.Level}) 3/3
@@ -13681,7 +13681,7 @@ type=Artifact
 name=Chimeric Mass
 auto=counter(0/0,X,Charge)
 auto=counter{0%0.1.charge}/counter{0%0.1.charge} nonstatic
-auto={1}:transforms((Artifact Creature Construct,setpower=counter{0%0.1.charge},settoughness=counter{0%0.1.charge})) ueot 
+auto={1}:transforms((Artifact Creature Construct,setpower=counter{0%0.1.charge},settoughness=counter{0%0.1.charge})) ueot
 text=Chimeric Mass enters the battlefield with X charge counters. -- {1}: Until end of turn, Chimeric Mass becomes a Construct artifact creature with "This creature's power and toughness are each equal to the number of charge counters on it."
 mana={X}
 type=Artifact
@@ -15861,7 +15861,7 @@ toughness=1
 [/card]
 [card]
 name=Copperline Gorge
-auto=aslongas(other land|myBattlefield) tap >2 oneshot 
+auto=aslongas(other land|myBattlefield) tap >2 oneshot
 auto={T}:Add {R}
 auto={T}:Add {G}
 text=Copperline Gorge enters the battlefield tapped unless you control two or fewer other lands. -- {T}: Add {R} or {G} to your mana pool.
@@ -17190,7 +17190,7 @@ type=Sorcery
 [card]
 name=Crush Underfoot
 target=giant|mybattlefield
-auto=transforms((,newability[dynamicability<!powerstrike!> target(creature)])) 
+auto=transforms((,newability[dynamicability<!powerstrike!> target(creature)]))
 text=Choose a Giant creature you control. It deals damage equal to its power to target creature.
 mana={1}{R}
 type=Tribal Instant
@@ -18224,7 +18224,7 @@ toughness=4
 [/card]
 [card]
 name=Darkslick Shores
-auto=aslongas(other land|myBattlefield) tap >2 oneshot 
+auto=aslongas(other land|myBattlefield) tap >2 oneshot
 auto={T}:Add {U}
 auto={T}:Add {B}
 text=Darkslick Shores enters the battlefield tapped unless you control two or fewer other lands. -- {T}: Add {U} or {B} to your mana pool.
@@ -18977,7 +18977,7 @@ toughness=1
 name=Deathless Angel
 abilities=flying
 auto={W}{W}:indestructible target(creature)
-text=Flying -- {W}{W}: Target creature is indestructible this turn. 
+text=Flying -- {W}{W}: Target creature is indestructible this turn.
 mana={4}{W}{W}
 type=Creature
 subtype=Angel
@@ -20474,7 +20474,7 @@ toughness=2
 [card]
 name=Devouring Greed
 target=<anyamount>spirit|myBattlefield
-auto=sacrifice && life:2 controller && life:-2 opponent 
+auto=sacrifice && life:2 controller && life:-2 opponent
 text=As an additional cost to cast Devouring Greed, you may sacrifice any number of Spirits. -- Target player loses 2 life plus 2 life for each Spirit sacrificed this way. You gain that much life.
 mana={2}{B}{B}
 type=Sorcery
@@ -22694,7 +22694,7 @@ toughness=1
 [card]
 name=Dross Hopper
 auto={S(creature|myBattlefield)}:flying
-text=Sacrifice a creature: Dross Hopper gains flying until end of turn. 
+text=Sacrifice a creature: Dross Hopper gains flying until end of turn.
 mana={1}{B}
 type=Creature
 subtype=Insect Horror
@@ -22897,7 +22897,7 @@ toughness=1
 [/card]
 [card]
 name=Dryad's Caress
-other={3}{G}{W} name(Spend W to Cast) 
+other={3}{G}{W} name(Spend W to Cast)
 auto=alternative untap all(creature|mybattlefield)
 auto=foreach(creature|battlefield) life:1 controller
 text=You gain 1 life for each creature on the battlefield. If {W} was spent to cast Dryad's Caress, untap all creatures you control.
@@ -24027,7 +24027,7 @@ subtype=Eldrazi Aura
 [/card]
 [card]
 name=Eldrazi Monument
-auto=lord(creature|myBattlefield) 1/1 
+auto=lord(creature|myBattlefield) 1/1
 auto=lord(creature|mybattlefield) flying
 auto=lord(creature|mybattlefield) indestructible
 auto=@each myupkeep:sacrifice notatarget(creature|mybattlefield)
@@ -28112,7 +28112,7 @@ toughness=4
 [card]
 name=Filigree Fracture
 target=artifact,enchantment
-auto=teach(*[blue;black]) draw:1 controller 
+auto=teach(*[blue;black]) draw:1 controller
 auto=destroy
 text=Destroy target artifact or enchantment. If that permanent was blue or black, draw a card.
 mana={2}{G}
@@ -31010,7 +31010,7 @@ color=white
 name=Gallows Warden
 abilities=flying
 auto=lord(creature[spirit]|mybattlefield) 0/1
-text=Flying -- Other Spirit creatures you control get +0/+1. 
+text=Flying -- Other Spirit creatures you control get +0/+1.
 mana={4}{W}
 type=Creature
 subtype=Spirit
@@ -31240,7 +31240,7 @@ subtype=Aura
 [/card]
 [card]
 name=Ghastly Discovery
-auto=draw:2 
+auto=draw:2
 auto=reject target(*|myhand)
 auto=alternative draw:2 reject target(*|myhand)
 other={2}{U}{T(creature[blue]|mybattlefield)}{T(creature[blue]|mybattlefield)} name(Pay Conspire)
@@ -31289,7 +31289,7 @@ toughness=2
 [card]
 name=Gatekeeper of Malakir
 auto=kicker target(player) ability$!name(sacrifice creature) notatarget(creature|mybattlefield) sacrifice!$ targetedplayer
-kicker={B} 
+kicker={B}
 text=Kicker {B} (You may pay an additional {B} as you cast this spell.) -- When Gatekeeper of Malakir enters the battlefield, if it was kicked, target player sacrifices a creature.
 mana={B}{B}
 type=Creature
@@ -31788,7 +31788,7 @@ toughness=4
 [card]
 name=Ghalma's Warden
 auto=aslongas(artifact|mybattlefield) 2/2 >2
-text=Metalcraft - Ghalma's Warden gets +2/+2 as long as you control three or more artifacts. 
+text=Metalcraft - Ghalma's Warden gets +2/+2 as long as you control three or more artifacts.
 mana={3}{W}
 type=Creature
 subtype=Elephant Soldier
@@ -33090,7 +33090,7 @@ toughness=2
 [card]
 name=Goblin Arsonist
 auto=@movedTo(this|graveyard) from(battlefield):may damage:1 target(creature,player)
-text=When Goblin Arsonist is put into the graveyard from the battlefield, you may have it deal 1 damage to target creature or player. 
+text=When Goblin Arsonist is put into the graveyard from the battlefield, you may have it deal 1 damage to target creature or player.
 mana={R}
 type=Creature
 subtype=Goblin Shaman
@@ -38182,7 +38182,7 @@ type=Sorcery
 [/card]
 [card]
 name=Hinterland Harbor
-auto=aslongas(forest,island|myBattlefield) tap <1 oneshot 
+auto=aslongas(forest,island|myBattlefield) tap <1 oneshot
 auto={T}:Add {G}
 auto={T}:Add {U}
 text=Hinterland Harbor enters the battlefield tapped unless you control a Forest or Island. -- {T}: Add {G} or {U} to your mana pool.
@@ -39887,7 +39887,7 @@ toughness=3
 [/card]
 [card]
 name=Ikiral Outrider
-auto={4}:counter(0/0,1,Level) asSorcery 
+auto={4}:counter(0/0,1,Level) asSorcery
 auto=this(counter{0/0.1.Level}) vigilance
 auto=this(counter{0/0.1.Level}) 1/4
 auto=this(counter{0/0.4.Level}) 1/4
@@ -42703,7 +42703,7 @@ toughness=3
 [/card]
 [card]
 name=Kabira Vindicator
-auto={2}{W}:counter(0/0,1,Level) asSorcery 
+auto={2}{W}:counter(0/0,1,Level) asSorcery
 auto=this(counter{0/0.2.Level}) lord(other creature|myBattlefield) 1/1
 auto=this(counter{0/0.2.Level}) 1/2
 auto=this(counter{0/0.5.Level}) lord(other creature|myBattlefield) 1/1
@@ -44548,7 +44548,7 @@ toughness=2
 [card]
 name=Knight of Cliffhaven
 auto={3}:counter(0/0,1,Level) asSorcery
-auto=this(counter{0/0,1,Level}) flying 
+auto=this(counter{0/0,1,Level}) flying
 auto=this(counter{0/0,1,Level}) 0/1
 auto=this(counter{0/0,4,Level}) vigilance
 auto=this(counter{0/0,4,Level}) 2/1
@@ -45946,7 +45946,7 @@ type=Sorcery
 [card]
 name=Landslide
 target=<anyamount>mountain|mybattlefield
-auto=sacrifice && damage:1 opponent 
+auto=sacrifice && damage:1 opponent
 text=Sacrifice any number of Mountains. Landslide deals that much damage to target player.
 mana={R}
 type=Sorcery
@@ -45982,7 +45982,7 @@ type=Land
 [/card]
 [card]
 name=Larceny
-auto=@combatdamaged(player) from(creature|mybattlefield):all(trigger[to]) ability$!name(discard) target(*|myhand) reject!$ opponent 
+auto=@combatdamaged(player) from(creature|mybattlefield):all(trigger[to]) ability$!name(discard) target(*|myhand) reject!$ opponent
 text=Whenever a creature you control deals combat damage to a player, that player discards a card.
 mana={3}{B}{B}
 type=Enchantment
@@ -46281,7 +46281,7 @@ toughness=3
 [card]
 name=Lavafume Invoker
 auto={8}:3/0 all(creature|myBattlefield)
-text={8}: Creatures you control get +3/+0 until end of turn. 
+text={8}: Creatures you control get +3/+0 until end of turn.
 mana={2}{R}
 type=Creature
 subtype=Goblin Shaman
@@ -46774,7 +46774,7 @@ abilities=leyline
 [/card]
 [card]
 name=Leyline of Vitality
-auto=lord(creature|mybattlefield) 0/1 
+auto=lord(creature|mybattlefield) 0/1
 auto=@movedTo(creature|mybattlefield):life:1
 text=If Leyline of Vitality is in your opening hand, you may begin the game with it on the battlefield. -- Creatures you control get +0/+1. -- Whenever a creature enters the battlefield under your control, you gain 1 life.
 mana={2}{G}{G}
@@ -48453,7 +48453,7 @@ toughness=1
 [card]
 name=Lumengrid Drake
 abilities=flying
-auto=aslongas(artifact|myBattlefield) moveTo(ownerhand) target(creature) >2 oneshot 
+auto=aslongas(artifact|myBattlefield) moveTo(ownerhand) target(creature) >2 oneshot
 text=Flying -- Metalcraft - When Lumengrid Drake enters the battlefield, if you control three or more artifacts, return target creature to its owner's hand.
 mana={3}{U}
 type=Creature
@@ -49967,7 +49967,7 @@ toughness=1
 [card]
 name=Markov Warlord
 abilities=haste
-auto=cantblock target(<upto:2>creature) 
+auto=cantblock target(<upto:2>creature)
 text=Haste -- When Markov Warlord enters the battlefield, up to two target creatures can't block this turn.
 mana={5}{R}
 type=Creature
@@ -50217,7 +50217,7 @@ type=Enchantment
 [card]
 name=Marton Stromgald
 auto=@combat(blocking) source(this):foreach(other creature[blocking]) all(other creature[blocking]) 1/1 ueot
-auto=@combat(attacking) source(this):foreach(other creature[attacking]) all(other creature[attacking]) 1/1 ueot 
+auto=@combat(attacking) source(this):foreach(other creature[attacking]) all(other creature[attacking]) 1/1 ueot
 text=Whenever Marton Stromgald attacks, other attacking creatures get +1/+1 until end of turn for each attacking creature other than Marton Stromgald. -- Whenever Marton Stromgald blocks, other blocking creatures get +1/+1 until end of turn for each blocking creature other than Marton Stromgald.
 mana={2}{R}{R}
 type=Legendary Creature
@@ -51825,14 +51825,14 @@ type=Artifact
 [/card]
 [card]
 name=Mindculling
-target=opponent 
+target=opponent
 auto=draw:2 controller
-auto=ability$!name(discard 2 cards) target(*|myhand) reject!$ targetedplayer 
+auto=ability$!name(discard 2 cards) target(*|myhand) reject!$ targetedplayer
 text=You draw two cards and target opponent discards two cards.
 mana={5}{U}
 type=Sorcery
 [/card]
-#attempt to fix Mindslash Sliver, the trigger never happens when there is sacrifice cost 
+#attempt to fix Mindslash Sliver, the trigger never happens when there is sacrifice cost
 [card]
 name=Mindlash Sliver
 auto=lord(sliver) {1}:transforms((sacrified,newability[sacrifice],newability[ability$!name(discard) notatarget(*|myhand) reject!$ controller],newability[ability$!name(discard) notatarget(*|myhand) reject!$ opponent])) ueot limit:1
@@ -54645,7 +54645,7 @@ toughness=4
 name=Mystical Teachings
 auto=choice name(instant card) moveTo(myhand) target(instant|myLibrary)
 auto=choice name(card with flash) moveTo(myhand) target(*[flash]|myLibrary)
-flashback={5}{B} 
+flashback={5}{B}
 text=Search your library for an instant card or a card with flash, reveal it, and put it into your hand. Then shuffle your library. -- Flashback {5}{B} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={3}{U}
 type=Instant
@@ -55982,7 +55982,7 @@ toughness=*
 [card]
 name=Nightmare Incursion
 target=player
-auto=ability$!target(<type:swamp:mybattlefield>*|opponentlibrary) moveTo(exile)!$ controller 
+auto=ability$!target(<type:swamp:mybattlefield>*|opponentlibrary) moveTo(exile)!$ controller
 text=Search target player's library for up to X cards, where X is the number of Swamps you control, and exile them. Then that player shuffles his or her library.
 mana={5}{B}
 type=Sorcery
@@ -56957,7 +56957,7 @@ subtype=Aura
 [/card]
 [card]
 name=Oblivion Ring
-auto=target(other *[-land]) (blink)forsrc 
+auto=target(other *[-land]) (blink)forsrc
 text=When Oblivion Ring enters the battlefield, exile another target nonland permanent. -- When Oblivion Ring leaves the battlefield, return the exiled card to the battlefield under its owner's control.
 mana={2}{W}
 type=Enchantment
@@ -58147,7 +58147,7 @@ name=Orim's Thunder
 target=artifact,enchantment
 auto=destroy
 kicker={R}
-auto=kicker transforms((,newability[dynamicability<!manacoststrike!> target(creature)])) 
+auto=kicker transforms((,newability[dynamicability<!manacoststrike!> target(creature)]))
 text=Kicker {R} (You may pay an additional {R} as you cast this spell.) -- Destroy target artifact or enchantment. If Orim's Thunder was kicked, it deals damage equal to that permanent's converted mana cost to target creature.
 mana={2}{W}
 type=Instant
@@ -64226,7 +64226,7 @@ type=Enchantment
 [/card]
 [card]
 name=Rakish Heir
-auto=@combatdamaged(player) from(vampire|mybattlefield):all(trigger[from]) counter(1/1,1) 
+auto=@combatdamaged(player) from(vampire|mybattlefield):all(trigger[from]) counter(1/1,1)
 text=Whenever a Vampire you control deals combat damage to a player, put a +1/+1 counter on it.
 mana={2}{R}
 type=Creature
@@ -64931,7 +64931,7 @@ toughness=4
 [card]
 name=Razor Hippogriff
 abilities=flying
-auto=moveto(myhand) and!(transforms((,newability[dynamicability<!manacostlifegain targetcontroller!>])))! target(artifact|mygraveyard) 
+auto=moveto(myhand) and!(transforms((,newability[dynamicability<!manacostlifegain targetcontroller!>])))! target(artifact|mygraveyard)
 text=Flying -- When Razor Hippogriff enters the battlefield, return target artifact card from your graveyard to your hand. You gain life equal to that card's converted mana cost.
 mana={3}{W}{W}
 type=Creature
@@ -65049,7 +65049,7 @@ toughness=1
 [/card]
 [card]
 name=Razorverge Thicket
-auto=aslongas(other land|myBattlefield) tap >2 oneshot 
+auto=aslongas(other land|myBattlefield) tap >2 oneshot
 auto={T}:Add {G}
 auto={T}:Add {W}
 text=Razorverge Thicket enters the battlefield tapped unless you control two or fewer other lands. -- {T}: Add {G} or {W} to your mana pool.
@@ -70781,7 +70781,7 @@ toughness=1
 [/card]
 [card]
 name=Seachrome Coast
-auto=aslongas(other land|myBattlefield) tap >2 oneshot 
+auto=aslongas(other land|myBattlefield) tap >2 oneshot
 auto={T}:Add {W}
 auto={T}:Add {U}
 text=Seachrome Coast enters the battlefield tapped unless you control two or fewer other lands. -- {T}: Add {W} or {U} to your mana pool.
@@ -71046,7 +71046,7 @@ subtype=Aura
 [card]
 name=Secrets of the Dead
 auto=@movedTo(*|stack) from(mygraveyard):draw:1 controller
-text=Whenever you cast a spell from your graveyard, draw a card. 
+text=Whenever you cast a spell from your graveyard, draw a card.
 mana={2}{U}
 type=Enchantment
 [/card]
@@ -73196,7 +73196,7 @@ type=Sorcery
 name=Shower of Sparks
 target=creature
 auto=damage:1
-auto=target(player) damage:1 
+auto=target(player) damage:1
 text=Shower of Sparks deals 1 damage to target creature and 1 damage to target player.
 mana={R}
 type=Instant
@@ -77005,7 +77005,7 @@ toughness=1
 [card]
 name=Soul's Fire
 target=creature|mybattlefield
-auto=transforms((,newability[dynamicability<!powerstrike!> target(creature,player)])) 
+auto=transforms((,newability[dynamicability<!powerstrike!> target(creature,player)]))
 text=Target creature you control on the battlefield deals damage equal to its power to target creature or player.
 mana={2}{R}
 type=Instant
@@ -77691,7 +77691,7 @@ toughness=1
 [/card]
 [card]
 name=Sphinx's Revelation
-auto=life:X && draw:X 
+auto=life:X && draw:X
 text=You gain X life and draw X cards.
 mana={X}{W}{U}{U}
 type=Instant
@@ -78082,7 +78082,7 @@ subtype=Aura
 [card]
 name=Spirit Flare
 target=creature|mybattlefield
-auto=transforms((,newability[dynamicability<!powerstrike!> target(creature[attacking;blocking]|opponentbattlefield)])) 
+auto=transforms((,newability[dynamicability<!powerstrike!> target(creature[attacking;blocking]|opponentbattlefield)]))
 flashback={L}{L}{L}{1}{W}
 text=Tap target untapped creature you control. If you do, it deals damage equal to its power to target attacking or blocking creature an opponent controls. -- Flashback - {1}{W}, Pay 3 life. (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={3}{W}
@@ -80544,7 +80544,7 @@ toughness=3
 [card]
 name=Student of Warfare
 auto={W}:counter(0/0,1,Level) asSorcery
-auto=this(counter{0/0,2,Level}) first strike 
+auto=this(counter{0/0,2,Level}) first strike
 auto=this(counter{0/0,2,Level}) 2/2
 auto=this(counter{0/0,7,Level}) double strike
 auto=this(counter{0/0,7,Level}) 1/1
@@ -80624,7 +80624,7 @@ name=Sturmgeist
 abilities=flying
 auto=foreach(*|myhand) 1/1
 auto=@combatdamaged(player) from(this):draw:1 controller
-text=Flying -- Sturmgeist's power and toughness are each equal to the number of cards in your hand. -- Whenever Sturmgeist deals combat damage to a player, draw a card. 
+text=Flying -- Sturmgeist's power and toughness are each equal to the number of cards in your hand. -- Whenever Sturmgeist deals combat damage to a player, draw a card.
 mana={3}{U}{U}
 type=Creature
 subtype=Spirit
@@ -81281,7 +81281,7 @@ toughness=2
 name=Surge Node
 auto=counter(0/0,6,Charge)
 auto={1}{T}{C(0/0,-1,Charge)}:counter(0/0,1,Charge) target(artifact)
-text=Surge Node enters the battlefield with six charge counters on it. -- {1}, {T}, Remove a charge counter from Surge Node: Put a charge counter on target artifact. 
+text=Surge Node enters the battlefield with six charge counters on it. -- {1}, {T}, Remove a charge counter from Surge Node: Put a charge counter on target artifact.
 mana={1}
 type=Artifact
 [/card]
@@ -85778,7 +85778,7 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Torch Song 
+name=Torch Song
 auto=@each my upkeep:may counter(0/0,1,Verse)
 auto={2}{R}{S}:thisforeach(counter{0/0.1.Verse}) damage:1 target(creature,player)
 text=At the beginning of your upkeep, you may put a verse counter on Midsummer Revel. -- {G}, Sacrifice Midsummer Revel: Put X 3/3 green Beast creature tokens onto the battlefield, where X is the number of verse counters on Midsummer Revel.
@@ -86508,7 +86508,7 @@ type=Enchantment
 [card]
 name=Transcendent Master
 auto={1}:counter(0/0,1,Level) asSorcery
-auto=this(counter{0/0,6,Level}) lifelink 
+auto=this(counter{0/0,6,Level}) lifelink
 auto=this(counter{0/0,6,Level}) 3/3
 auto=this(counter{0/0,12,Level}) indestructible
 auto=this(counter{0/0,12,Level}) 3/3
@@ -94513,7 +94513,7 @@ type=Artifact
 [card]
 name=Wing Puncture
 target=creature|mybattlefield
-auto=transforms((,newability[dynamicability<!powerstrike!> target(creature[flying])])) 
+auto=transforms((,newability[dynamicability<!powerstrike!> target(creature[flying])]))
 text=Target creature you control deals damage equal to its power to target creature with flying.
 mana={G}
 type=Instant
@@ -96318,7 +96318,7 @@ toughness=4
 [card]
 name=Zealous Conscripts
 abilities=haste
-auto=name(gain control) target(*) moveto(mybattlefield) and!(transforms((,newability[untap],newability[haste],newability[phaseaction[endofturn sourceinplay once] moveTo(ownerbattlefield)])) oneshot)! 
+auto=name(gain control) target(*) moveto(mybattlefield) and!(transforms((,newability[untap],newability[haste],newability[phaseaction[endofturn sourceinplay once] moveTo(ownerbattlefield)])) oneshot)!
 text=Haste -- When Zealous Conscripts enters the battlefield, gain control of target permanent until end of turn. Untap that permanent. It gains haste until end of turn.
 mana={4}{R}
 type=Creature
