@@ -459,6 +459,11 @@ id=220100
 rarity=M
 [/card]
 [card]
+primitive=Wurm Token
+id=-22010012
+rarity=T
+[/card]
+[card]
 primitive=Garruk's Companion
 id=226896
 rarity=C

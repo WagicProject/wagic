@@ -31149,11 +31149,19 @@ name=Garruk, Primal Hunter
 auto=counter(0/0,3,loyalty)
 auto={C(0/0,1,Loyalty)}:token(Beast,Creature Beast,3/3,green)
 auto={C(0/0,-3,Loyalty)}:draw:power:highest:*:mybattlefield
-auto={C(0/0,-6,Loyalty)}:foreach(land|mybattlefield) token(Wurm,Creature Wurm,6/6,green)
+auto={C(0/0,-6,Loyalty)}:foreach(land|mybattlefield) token(-22010012)
 text=+1: Put a 3/3 green Beast creature token onto the battlefield. -- -3: Draw cards equal to the greatest power among creatures you control. -- -6: Put a 6/6 green Wurm creature token onto the battlefield for each land you control.
 mana={2}{G}{G}{G}
 type=Planeswalker
 subtype=Garruk
+[/card]
+[card]
+name=Wurm Token
+type=Creature
+subtype=Wurm
+power=6
+toughness=6
+color=Green
 [/card]
 ###The 2 cards below should stay together (Flip Card)###
 [card]
@@ -32916,7 +32924,7 @@ type=Instant
 [card]
 name=Glory
 abilities=flying
-autograveyard={2}{W}:chooseacolor all(creature|mybattlefield) protection from(*[chosencolor]) chooseend
+autograveyard={2}{W}:activatechooseacolor all(creature|mybattlefield) protection from(*[chosencolor]) activatechooseend
 text=Flying -- {2}{W}: Creatures you control gain protection from the color of your choice until end of turn. Activate this ability only if Glory is in your graveyard.
 mana={3}{W}{W}
 type=Creature
@@ -96699,7 +96707,7 @@ toughness=2
 [/card]
 [card]
 name=Zombie Boa
-auto={1}{B}:chooseacolor transforms((,newability[@combat(blocked) source(this) from(creature[white]):all(trigger[from]) destroy])) ueot asSorcery chooseend
+auto={1}{B}:activatechooseacolor transforms((,newability[@combat(blocked) source(this) from(creature[white]):all(trigger[from]) destroy])) ueot asSorcery activatechooseend
 text={1}{B}: Choose a color. Whenever Zombie Boa becomes blocked by a creature of that color this turn, destroy that creature. Activate this ability only any time you could cast a sorcery.
 mana={4}{B}
 type=Creature
