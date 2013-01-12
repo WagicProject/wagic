@@ -1584,7 +1584,7 @@ toughness=1
 [/card]
 [card]
 name=Ali from Cairo
-auto=@damaged(controller) restriction{compare(lifetotal)~lessthan~1}:lifeset:1 controller
+auto=@damaged(controller) restriction{compare(lifetotal)~lessthan~1}:this(controllerlife < 1) lifeset:1 controller
 text=Damage that would reduce your life total to less than 1 reduces it to 1 instead.
 mana={2}{R}{R}
 type=Creature
