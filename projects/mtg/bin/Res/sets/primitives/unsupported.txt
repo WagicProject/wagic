@@ -8798,16 +8798,6 @@ mana={U}
 type=Sorcery
 [/card]
 [card]
-name=Indigo Faerie
-abilities=flying
-text=Flying -- {U}: Target permanent becomes blue in addition to its other colors until end of turn.
-mana={1}{U}
-type=Creature
-subtype=Faerie Wizard
-power=1
-toughness=1
-[/card]
-[card]
 name=Indrik Umbra
 text=Enchant creature -- Enchanted creature gets +4/+4 and has first strike, and all creatures able to block it do so. -- Totem armor (If enchanted creature would be destroyed, instead remove all damage from it and destroy this Aura.)
 mana={4}{G}{W}

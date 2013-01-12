@@ -2398,7 +2398,7 @@ name=Angelic Armaments
 auto={4}:equip
 auto=2/2
 auto=flying
-auto=teach(creature) becomes(Angel,white)
+auto=teach(creature) becomes(Angel,newcolors[white])
 text=Equipped creature gets +2/+2, has flying, and is a white Angel in addition to its other colors and types. -- Equip {4}
 mana={3}
 type=Artifact
@@ -22073,7 +22073,7 @@ toughness=9
 [/card]
 [card]
 name=Dread Slaver
-auto=@vampired(creature) from(this):all(trigger[to]) moveto(mybattlefield) and!(transforms((Zombie,black)) forever)!
+auto=@vampired(creature) from(this):all(trigger[to]) moveto(mybattlefield) and!(transforms((Zombie,newcolors[black])) forever)!
 text=Whenever a creature dealt damage by Dread Slaver this turn dies, return it to the battlefield under your control. That creature is a black Zombie in addition to its other colors and types.
 mana={3}{B}{B}
 type=Creature
@@ -32146,7 +32146,7 @@ type=Sorcery
 name=Ghoulflesh
 target=creature
 auto=-1/-1
-auto=teach(creature) transforms((Zombie,black))
+auto=teach(creature) transforms((Zombie,newcolors[black]))
 text=Enchant creature -- Enchanted creature gets -1/-1 and is a black Zombie in addition to its other colors and types.
 mana={B}
 type=Enchantment
@@ -40376,6 +40376,17 @@ auto=prevent:999
 text=Prevent all damage that would be dealt to target creature this turn.
 mana={W}
 type=Instant
+[/card]
+[card]
+name=Indigo Faerie
+abilities=flying
+auto={U}:name(add blue color) target(*) transforms((,newcolors[blue])) ueot
+text=Flying -- {U}: Target permanent becomes blue in addition to its other colors until end of turn.
+mana={1}{U}
+type=Creature
+subtype=Faerie Wizard
+power=1
+toughness=1
 [/card]
 [card]
 name=Indomitable Ancients
@@ -67142,7 +67153,7 @@ type=Enchantment
 name=Rise from the Grave
 target=creature|graveyard
 auto=moveto(myBattlefield)
-auto=transforms((Zombie,black)) forever
+auto=transforms((Zombie,newcolors[black])) forever
 text=Put target creature card in a graveyard onto the battlefield under your control. That creature is a black Zombie in addition to its other colors and types.
 mana={4}{B}
 type=Sorcery
