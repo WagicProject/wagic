@@ -64,12 +64,6 @@ mana={X}{1}{B}
 type=Sorcery
 [/card]
 [card]
-name=Abeyance
-text=Until end of turn, target player can't cast instant or sorcery spells, and that player can't activate abilities that aren't mana abilities. -- Draw a card.
-mana={1}{W}
-type=Instant
-[/card]
-[card]
 name=Absolver Thrull
 text=Haunt (When this card is put into a graveyard from the battlefield, exile it haunting target creature.) -- When Absolver Thrull enters the battlefield or the creature it haunts is put into a graveyard, destroy target enchantment.
 mana={3}{W}
@@ -189,15 +183,6 @@ type=Instant
 text=Name an artist. Remove the top six cards of your library from the game, then reveal cards from the top of your library until you reveal a card by the named artist. Put that card in your hand, then remove all the other cards revealed this way from the game.
 [/card]
 [card]
-name=Agadeem Occultist
-text={T}: Put target creature card from an opponent's graveyard onto the battlefield under your control if its converted mana cost is less than or equal to the number of Allies you control.
-mana={2}{B}
-type=Creature
-subtype=Human Shaman Ally
-power=0
-toughness=2
-[/card]
-[card]
 name=Aggression
 text=Enchant non-Wall creature -- Enchanted creature has first strike and trample. -- At the beginning of the end step of enchanted creature's controller, destroy that creature if it didn't attack this turn.
 mana={2}{R}
@@ -238,15 +223,6 @@ mana={2}{R}{R}
 type=Creature
 subtype=Human Rogue
 power=1
-toughness=1
-[/card]
-[card]
-name=Ali from Cairo
-text=Damage that would reduce your life total to less than 1 reduces it to 1 instead.
-mana={2}{R}{R}
-type=Creature
-subtype=Human
-power=0
 toughness=1
 [/card]
 [card]
@@ -388,12 +364,6 @@ mana={4}{G}
 type=Sorcery
 [/card]
 [card]
-name=Antagonism
-text=At the beginning of each player's end step, Antagonism deals 2 damage to that player unless one of his or her opponents was dealt damage this turn.
-mana={3}{R}
-type=Enchantment
-[/card]
-[card]
 name=Anthem of Rakdos
 text=Whenever a creature you control attacks, it gets +2/+0 until end of turn and Anthem of Rakdos deals 1 damage to you. -- Hellbent - As long as you have no cards in hand, if a source you control would deal damage to a creature or player, it deals double that damage to that creature or player instead.
 mana={2}{B}{R}{R}
@@ -416,12 +386,6 @@ power=1
 toughness=4
 [/card]
 [card]
-name=Aphetto Dredging
-text=Return up to three target creature cards of the creature type of your choice from your graveyard to your hand.
-mana={3}{B}
-type=Sorcery
-[/card]
-[card]
 name=Aphetto Runecaster
 text=Whenever a permanent is turned face up, you may draw a card.
 mana={3}{U}
@@ -435,13 +399,6 @@ name=Apocalypse Chime
 text={2}, {T}, Sacrifice Apocalypse Chime: Destroy all nontoken permanents from the Homelands expansion. They can't be regenerated.
 mana={2}
 type=Artifact
-[/card]
-[card]
-name=Aquitect's Will
-text=Put a flood counter on target land. That land is an Island in addition to its other types for as long as it has a flood counter on it. If you control a Merfolk, draw a card.
-mana={U}
-type=Tribal Sorcery
-subtype=Merfolk
 [/card]
 [card]
 name=Arachnus Spinner
@@ -706,13 +663,6 @@ type=Creature
 subtype=Goblin Rogue
 power=3
 toughness=1
-[/card]
-[card]
-name=Aura Barbs
-text=Each enchantment deals 2 damage to its controller, then each Aura attached to a creature deals 2 damage to the creature it's attached to.
-mana={2}{R}
-type=Instant
-subtype=Arcane
 [/card]
 [card]
 name=Aura Finesse
@@ -1285,12 +1235,6 @@ power=2
 toughness=4
 [/card]
 [card]
-name=Beseech the Queen
-text=({(2/b)} can be paid with any two mana or with {B}. This card's converted mana cost is 6.) -- Search your library for a card with converted mana cost less than or equal to the number of lands you control, reveal it, and put it into your hand. Then shuffle your library.
-mana={2B}{2B}{2B}
-type=Sorcery
-[/card]
-[card]
 name=Betrayal of Flesh
 text=Choose one - Destroy target creature; or return target creature card from your graveyard to the battlefield. -- Entwine - Sacrifice three lands. (Choose both if you pay the entwine cost.)
 mana={5}{B}
@@ -1372,13 +1316,6 @@ mana={R}
 type=Instant
 [/card]
 [card]
-name=Blazing Shoal
-text=You may exile a red card with converted mana cost X from your hand rather than pay Blazing Shoal's mana cost. -- Target creature gets +X/+0 until end of turn.
-mana={X}{R}{R}
-type=Instant
-subtype=Arcane
-[/card]
-[card]
 name=Blazing Torch
 text=Equipped creature can't be blocked by Vampires or Zombies. -- Equipped creature has "{T}, Sacrifice Blazing Torch: Blazing Torch deals 2 damage to target creature or player." -- Equip {1}
 mana={1}
@@ -1412,15 +1349,6 @@ type=Creature
 subtype=Bat
 power=2
 toughness=2
-[/card]
-[card]
-name=Blind Seer
-text={1}{U}: Target spell or permanent becomes the color of your choice until end of turn.
-mana={2}{U}{U}
-type=Legendary Creature
-subtype=Human Wizard
-power=3
-toughness=3
 [/card]
 [card]
 name=Blinding Beam
@@ -1865,30 +1793,6 @@ mana={B}
 type=Sorcery
 [/card]
 [card]
-name=Budoka Gardener
-text={T}: You may put a land card from your hand onto the battlefield. If you control ten or more lands, flip Budoka Gardener.
-mana={1}{G}
-type=Creature
-subtype=Human Monk
-power=2
-toughness=1
-[/card]
-[card]
-name=Budoka Gardener (Dokai, Weaver of Life)
-text={4}{G}{G}, {T}: Put an X/X green Elemental creature token onto the battlefield, where X is the number of lands you control.
-mana={1}{G}
-type=Legendary Creature
-subtype=Human Monk
-power=3
-toughness=3
-[/card]
-[card]
-name=Builder's Bane
-mana={X}{X}{R}
-type=Sorcery
-text=Destroy X target artifacts. Builder's Bane deals damage to each player equal to the number of artifacts he or she controlled destroyed this way.
-[/card]
-[card]
 name=Bulwark
 text=At the beginning of your upkeep, Bulwark deals X damage to target opponent, where X is the number of cards in your hand minus the number of cards in that player's hand.
 mana={3}{R}{R}
@@ -1956,15 +1860,6 @@ name=Burnt Offering
 text=As an additional cost to cast Burnt Offering, sacrifice a creature. -- Add X mana in any combination of {B} and/or {R} to your mana pool, where X is the sacrificed creature's converted mana cost.
 mana={B}
 type=Instant
-[/card]
-[card]
-name=Burrenton Forge-Tender
-text=Protection from red -- Sacrifice Burrenton Forge-Tender: Prevent all damage a red source of your choice would deal this turn.
-mana={W}
-type=Creature
-subtype=Kithkin Wizard
-power=1
-toughness=1
 [/card]
 [card]
 name=Bursting Beebles
@@ -2289,12 +2184,6 @@ text=White legendary creatures you control have "bands with other legendary crea
 type=Land
 [/card]
 [card]
-name=Cauldron Dance
-mana={4}{B}{R}
-type=Instant
-text=Cast Cauldron Dance only during combat. Return target creature card from your graveyard to the battlefield. That creature gains haste. Return it to your hand at the beginning of the next end step. You may put a creature card from your hand onto the battlefield. That creature gains haste. Its controller sacrifices it at the beginning of the next end step.
-[/card]
-[card]
 name=Caverns of Despair
 text=No more than two creatures can attack each combat. -- No more than two creatures can block each combat.
 mana={2}{R}{R}
@@ -2349,15 +2238,6 @@ name=Censorship
 mana={U}
 type=Enchantment
 text=When Censorship comes into play, choose a CENSORED word. Whenever any CENSORED player says the chosen CENSORED word, Censorship deals 2 CENSORED damage to him or her.
-[/card]
-[card]
-name=Cephalid Constable
-text=Whenever Cephalid Constable deals combat damage to a player, return up to that many target permanents that player controls to their owners' hands.
-mana={1}{U}{U}
-type=Creature
-subtype=Cephalid Wizard
-power=1
-toughness=1
 [/card]
 [card]
 name=Cephalid Shrine

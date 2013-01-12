@@ -225,6 +225,15 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Abeyance
+target=player
+auto=maxCast(*[instant;sorcery])0 targetedplayer ueot && lord(*|targetedpersonsbattlefield,targetedpersonsgraveyard,targetedpersonshand,targetedpersonsexile,targetedpersonsstack) onlymanaability ueot
+auto=draw:1 controller
+text=Until end of turn, target player can't cast instant or sorcery spells, and that player can't activate abilities that aren't mana abilities. -- Draw a card.
+mana={1}{W}
+type=Instant
+[/card]
+[card]
 name=Abjure
 target=*|stack
 auto=fizzle
@@ -846,6 +855,16 @@ auto=damage:3 controller
 text=Destroy target artifact, creature, or land. Aftershock deals 3 damage to you.
 mana={2}{R}{R}
 type=Sorcery
+[/card]
+[card]
+name=Agadeem Occultist
+auto={T}:name(gain control) target(creature|opponentgraveyard) transforms((,newability[ifnot compare(manacost)~morethan~type:ally:opponentbattlefield then moveto(opponentbattlefield)]))
+text={T}: Put target creature card from an opponent's graveyard onto the battlefield under your control if its converted mana cost is less than or equal to the number of Allies you control.
+mana={2}{B}
+type=Creature
+subtype=Human Shaman Ally
+power=0
+toughness=2
 [/card]
 [card]
 name=Ageless Entity
@@ -1561,6 +1580,16 @@ mana={R}
 type=Creature
 subtype=Human Rogue
 power=1
+toughness=1
+[/card]
+[card]
+name=Ali from Cairo
+auto=@damaged(controller) restriction{compare(lifetotal)~lessthan~1}:lifeset:1 controller
+text=Damage that would reduce your life total to less than 1 reduces it to 1 instead.
+mana={2}{R}{R}
+type=Creature
+subtype=Human
+power=0
 toughness=1
 [/card]
 [card]
@@ -2704,6 +2733,14 @@ power=5
 toughness=5
 [/card]
 [card]
+name=Antagonism
+auto=@each opponent end restriction{compare(pdcount)~lessthan~1}:damage:2 opponent
+auto=@each my end restriction{compare(odcount)~lessthan~1}:damage:2 controller
+text=At the beginning of each player's end step, Antagonism deals 2 damage to that player unless one of his or her opponents was dealt damage this turn.
+mana={3}{R}
+type=Enchantment
+[/card]
+[card]
 name=Anthroplasm
 auto=counter(1/1,2)
 auto={X}{T}:+0/+1 all(this) && removeallcounters(1/1) && counter(1/1,X) && -0/-1 all(this)
@@ -2819,6 +2856,13 @@ type=Creature
 subtype=Human Wizard
 power=1
 toughness=2
+[/card]
+[card]
+name=Aphetto Dredging
+auto=chooseatype target(<upto:3>creature[chosentype]|mygraveyard) moveto(myhand) chooseend
+text=Return up to three target creature cards of the creature type of your choice from your graveyard to your hand.
+mana={3}{B}
+type=Sorcery
 [/card]
 [card]
 name=Aphetto Exterminator
@@ -2978,6 +3022,16 @@ type=Creature
 subtype=Spider Mutant
 power=0
 toughness=0
+[/card]
+[card]
+name=Aquitect's Will
+target=land
+auto=transforms((,newability[counter(0/0.1.Flood)],newability[this(counter{0/0.1.Flood}>=1)while becomes(Island)])) forever
+auto=aslongas(merfolk|myBattlefield) draw:1 controller
+text=Put a flood counter on target land. That land is an Island in addition to its other types for as long as it has a flood counter on it. If you control a Merfolk, draw a card.
+mana={U}
+type=Tribal Sorcery
+subtype=Merfolk
 [/card]
 [card]
 name=Aquus Steed
@@ -4510,6 +4564,14 @@ auto={T}:Add {B}
 auto={T}:Add {R}
 text=As Auntie's Hovel enters the battlefield, you may reveal a Goblin card from your hand. If you don't, Auntie's Hovel enters the battlefield tapped. -- {T}: Add {B} or {R} to your mana pool.
 type=Land
+[/card]
+[card]
+name=Aura Barbs
+auto=all(enchantment|battlefield) transforms ((,newability[damage:2 controller],newability[damage:2 all(parents)])) oneshot
+text=Each enchantment deals 2 damage to its controller, then each Aura attached to a creature deals 2 damage to the creature it's attached to.
+mana={2}{R}
+type=Instant
+subtype=Arcane
 [/card]
 [card]
 name=Aura Blast
@@ -7201,6 +7263,13 @@ power=4
 toughness=4
 [/card]
 [card]
+name=Beseech the Queen
+auto=moveTo(myhand) notatarget(*[manacost<=type:land:mybattlefield]|mylibrary)
+text=({(2/b)} can be paid with any two mana or with {B}. This card's converted mana cost is 6.) -- Search your library for a card with converted mana cost less than or equal to the number of lands you control, reveal it, and put it into your hand. Then shuffle your library.
+mana={2B}{2B}{2B}
+type=Sorcery
+[/card]
+[card]
 name=Bestial Fury
 target=creature
 auto=@next upkeep:draw:1 controller
@@ -7808,6 +7877,17 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Blazing Shoal
+other={R}{R}{E(other *[red]|myhand)} name(Exile Red Card from Hand)
+target=creature
+auto=X/0
+auto=alternative storedmanacost/0
+text=You may exile a red card with converted mana cost X from your hand rather than pay Blazing Shoal's mana cost. -- Target creature gets +X/+0 until end of turn.
+mana={X}{R}{R}
+type=Instant
+subtype=Arcane
+[/card]
+[card]
 name=Blazing Specter
 abilities=flying,haste
 auto=@combatdamaged(opponent) from(this):ability$!name(discard) target(*|myhand) reject!$ opponent
@@ -8013,6 +8093,16 @@ mana={2}{U}
 type=Creature
 subtype=Illusion
 power=2
+toughness=3
+[/card]
+[card]
+name=Blind Seer
+auto={1}{U}:activatechooseacolor target(*|battlefield,stack) becomes(,chosencolor) ueot activatechooseend
+text={1}{U}: Target spell or permanent becomes the color of your choice until end of turn.
+mana={2}{U}{U}
+type=Legendary Creature
+subtype=Human Wizard
+power=3
 toughness=3
 [/card]
 [card]
@@ -10790,6 +10880,36 @@ toughness=3
 [/card]
 ###The 2 cards below should stay together (Flip Card)###
 [card]
+name=Budoka Gardener
+auto={T}:all(this) transforms((,newability[if type(land|mybattlefield)~morethan~9 then flip(Dokai, Weaver of Life)],newability[may moveto(mybattlefield) notatarget(land|myhand)],newability[@movedto(land|mybattlefield) restriction{type:land:mybattlefield~morethan~9}:flip(Dokai, Weaver of Life)]))
+text={T}: You may put a land card from your hand onto the battlefield. If you control ten or more lands, flip Budoka Gardener.
+mana={1}{G}
+type=Creature
+subtype=Human Monk
+power=2
+toughness=1
+[/card]
+[card]
+name=Dokai, Weaver of Life
+auto={4}{G}{G}{T}:token(Elemental,Creature Elemental,type:land:mybattlefield/type:land:mybattlefield,green) controller
+text={4}{G}{G}, {T}: Put an X/X green Elemental creature token onto the battlefield, where X is the number of lands you control.
+mana={1}{G}
+type=Legendary Creature
+subtype=Human Monk
+power=3
+toughness=3
+[/card]
+###The 2 cards above should stay together (Flip Card)###
+[card]
+name=Builder's Bane
+target=<prexx>artifact
+auto=destroy && damage:1 all(player)
+mana={X}{X}{R}
+type=Sorcery
+text=Destroy X target artifacts. Builder's Bane deals damage to each player equal to the number of artifacts he or she controlled destroyed this way.
+[/card]
+###The 2 cards below should stay together (Flip Card)###
+[card]
 name=Budoka Pupil
 auto=@movedTo(spirit,arcane|mystack):may counter(0/0,1,Ki)
 auto=@each endofturn:this(counter{0/0.2.Ki}) flip(Ichiga, Who Topples Oaks)
@@ -11037,6 +11157,17 @@ type=Creature
 subtype=Kithkin Soldier
 power=2
 toughness=2
+[/card]
+[card]
+name=Burrenton Forge-Tender
+abilities=protection from red
+auto={S}:name(prevent all damage) notatarget(*[red]|battlefield,stack,graveyard) transforms((,newability[preventalldamage from(this)])) ueot
+text=Protection from red -- Sacrifice Burrenton Forge-Tender: Prevent all damage a red source of your choice would deal this turn.
+mana={W}
+type=Creature
+subtype=Kithkin Wizard
+power=1
+toughness=1
 [/card]
 [card]
 name=Burrenton Shield-Bearers
@@ -12365,6 +12496,16 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Cauldron Dance
+restriction=during battle
+target=creature|mygraveyard
+auto=moveto(mybattlefield) && transforms((,newability[haste],newability[phaseaction[endofturn sourceinplay] moveto(ownerhand) all(this)])) ueot
+auto=may name(put in play) notatarget(creature|myhand) transforms((,newability[moveto(mybattlefield)],newability[phaseaction[endofturn] sacrifice all(this)],newability[haste all(this)])) ueot
+mana={4}{B}{R}
+type=Instant
+text=Cast Cauldron Dance only during combat. Return target creature card from your graveyard to the battlefield. That creature gains haste. Return it to your hand at the beginning of the next end step. You may put a creature card from your hand onto the battlefield. That creature gains haste. Its controller sacrifices it at the beginning of the next end step.
+[/card]
+[card]
 name=Cauldron Haze
 target=<anyamount>creature
 auto=persist
@@ -12821,6 +12962,16 @@ auto={T}:Add{U} && damage:1 controller
 auto=aslongas(*|mygraveyard) {U}{T}{S}:name(discard 3 cards) target(player) ability$!draw:3 _ choice target(<3>*|myhand) reject!$ targetedplayer >6
 text={T}: Add {U} to your mana pool. Cephalid Coliseum deals 1 damage to you. -- Threshold - {U}, {T}, Sacrifice Cephalid Coliseum: Target player draws three cards, then discards three cards. Activate this ability only if seven or more cards are in your graveyard.
 type=Land
+[/card]
+[card]
+name=Cephalid Constable
+auto=@combatdamaged(opponent) from(this):name(bounce) ability$!name(bounce) target(<storedthatmuch>*|opponentbattlefield) moveto(ownerhand) !$ controller
+text=Whenever Cephalid Constable deals combat damage to a player, return up to that many target permanents that player controls to their owners' hands.
+mana={1}{U}{U}
+type=Creature
+subtype=Cephalid Wizard
+power=1
+toughness=1
 [/card]
 [card]
 name=Cephalid Illusionist
@@ -50949,7 +51100,6 @@ text=At the beginning of your end step, if you didn't play a land this turn, you
 mana={5}
 type=Artifact
 [/card]
-
 [card]
 name=Mercadian Bazaar
 auto=tap
