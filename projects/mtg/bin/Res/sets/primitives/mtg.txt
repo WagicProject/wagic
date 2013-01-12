@@ -17573,7 +17573,7 @@ subtype=Aura Curse
 name=Curse of the Nightly Hunt
 target=player
 auto=lord(creature|targetedpersonsBattlefield) mustattack
-text=Enchant Player -- Creatures enchanted palyer controls attack each turn if able.
+text=Enchant Player -- Creatures enchanted player controls attack each turn if able.
 mana={2}{R}
 type=Enchantment
 subtype=Aura Curse
@@ -23262,6 +23262,25 @@ type=Creature
 subtype=Dwarf
 power=1
 toughness=1
+[/card]
+[card]
+name=Dwarven Hold
+abilities=doesnotuntap
+auto=tap
+auto=@each my untap sourcetap:may untap
+auto=@each my upkeep sourcetap:may counter(0/0,1,Storage)
+auto={T}{C(0/0,-1,Storage)}:name(Remove 1 Counters) add{R}
+auto={T}{C(0/0,-2,Storage)}:name(Remove 2 Counters) add{R}{R}
+auto={T}{C(0/0,-3,Storage)}:name(Remove 3 Counters) add{R}{R}{R}
+auto={T}{C(0/0,-4,Storage)}:name(Remove 4 Counters) add{R}{R}{R}{R}
+auto={T}{C(0/0,-5,Storage)}:name(Remove 5 Counters) add{R}{R}{R}{R}{R}
+auto={T}{C(0/0,-6,Storage)}:name(Remove 6 Counters) add{R}{R}{R}{R}{R}{R}
+auto={T}{C(0/0,-7,Storage)}:name(Remove 7 Counters) add{R}{R}{R}{R}{R}{R}{R}
+auto={T}{C(0/0,-8,Storage)}:name(Remove 8 Counters) add{R}{R}{R}{R}{R}{R}{R}{R}
+auto={T}{C(0/0,-9,Storage)}:name(Remove 9 Counters) add{R}{R}{R}{R}{R}{R}{R}{R}{R}
+auto={T}{C(0/0,-10,Storage)}:name(Remove 10 Counters) add{R}{R}{R}{R}{R}{R}{R}{R}{R}{R}
+text=Dwarven Hold enters the battlefield tapped. -- You may choose not to untap Dwarven Hold during your untap step. -- At the beginning of your upkeep, if Dwarven Hold is tapped, put a storage counter on it. -- {T}, Remove any number of storage counters from Dwarven Hold: Add {R} to your mana pool for each storage counter removed this way.
+type=Land
 [/card]
 [card]
 name=Dwarven Landslide
@@ -86552,7 +86571,7 @@ toughness=3
 [card]
 name=Trapfinder's Trick
 target=player
-auto= name(see target hand)target(*|targetedpersonshand) 0/0
+auto=name(see target hand)target(*|targetedpersonshand) 0/0
 auto=all(trap|targetedpersonshand) reject
 text=Target player reveals his or her hand and discards all Trap cards.
 mana={1}{U}
