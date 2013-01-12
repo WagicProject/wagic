@@ -8283,7 +8283,8 @@ type=Enchantment
 [/card]
 [card]
 name=Blood Artist
-auto=@movedTo(creature|graveyard) from(battlefield):target(player) life:-1 && life:1 controller
+auto=@movedTo(creature|graveyard) from(battlefield):life:1 controller
+auto=@movedTo(creature|graveyard) from(battlefield):life:-1 target(player)
 text=Whenever Blood Artist or another creature dies, target player loses 1 life and you gain 1 life.
 mana={1}{B}
 type=Creature
@@ -20062,8 +20063,8 @@ type=Sorcery
 [card]
 name=Demonlord of Ashmouth
 abilities=flying,undying
-auto=if type(other creature|mybattlefield)~morethan~0 then ability$!choice sacrifice notatarget(other creature|mybattlefield) _ choice moveto(exile) all(this)!$ controller else choice moveto(exile) all(this)
-text=Flying -- When Demonlord of Ashmouth enters the battlefield, exile it unless you sacrifice another creature. -- Undying (When this creature dies, if it had no +1/+1 counters on it, return it to the battlefield under its owner's control with a +1/+1 counter on it.)
+auto=if type(other creature|mybattlefield)~morethan~0 then sacrifice notatarget(other creature|mybattlefield) else moveto(exile) all(this)
+text=Flying -- When Demonlord of Ashmouth enters the battlefield, exile it unless you sacrifice another creature. -- Undying
 mana={2}{B}{B}
 type=Creature
 subtype=Demon
