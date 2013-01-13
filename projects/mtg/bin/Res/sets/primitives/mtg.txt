@@ -2646,7 +2646,7 @@ subtype=Aura
 [card]
 name=Animate Land
 target=land
-auto=becomes(Creature,3/3) ueot
+auto=transforms((Creature,setpower=3,settoughness=3)) ueot
 text=Until end of turn, target land becomes a 3/3 creature that's still a land.
 mana={G}
 type=Instant
@@ -5259,7 +5259,7 @@ toughness=2
 [/card]
 [card]
 name=Awakener Druid
-auto=target(forest) becomes(Creature Treefolk,4/5,green)
+auto=target(forest) transforms((Treefolk Creature,setpower=4,settoughness=5,green))
 text=When Awakener Druid enters the battlefield, target Forest becomes a 4/5 green Treefolk creature for as long as Awakener Druid is on the battlefield. It's still a land.
 mana={2}{G}
 type=Creature
@@ -5615,7 +5615,7 @@ toughness=2
 [/card]
 [card]
 name=Balduvian Conjurer
-auto={T}:target(snow) becomes(Creature,2/2) ueot
+auto={T}:target(snow) transforms((Creature,setpower=2,settoughness=2)) ueot
 text={T}: Target snow land becomes a 2/2 creature until end of turn. It's still a land.
 mana={1}{U}
 type=Creature
@@ -5635,7 +5635,7 @@ toughness=3
 [/card]
 [card]
 name=Balduvian Frostwaker
-auto={U}{T}:target(land[snow]) becomes(Creature Elemental,2/2,flying,blue)
+auto={U}{T}:target(land[snow]) transforms((Elemental Creature,setpower=2,settoughness=2,flying,blue)) forever
 text={U}, {T}: Target snow land becomes a 2/2 blue Elemental creature with flying. It's still a land.
 mana={2}{U}
 type=Creature
@@ -8207,7 +8207,7 @@ type=Instant
 [card]
 name=Blinkmoth Nexus
 auto={T}:Add{1}
-auto={1}:becomes(Blinkmoth Artifact Creature,1/1,flying) ueot
+auto={1}:transforms((Blinkmoth Artifact Creature,setpower=1,settoughness=1,flying)) ueot
 auto={1}{T}:1/1 target(blinkmoth)
 text={T}: Add {1} to your mana pool. -- {1}: Blinkmoth Nexus becomes a 1/1 Blinkmoth artifact creature with flying until end of turn. It's still a land. -- {1}, {T}: Target Blinkmoth creature gets +1/+1 until end of turn.
 type=Land
@@ -12707,7 +12707,7 @@ name=Celestial Colonnade
 auto=tap
 auto={T}:Add{W}
 auto={T}:Add{U}
-auto={3}{W}{U}:becomes(Elemental Creature,4/4,flying,vigilance,white,blue) ueot
+auto={3}{W}{U}:transforms((Elemental Creature,setpower=4,settoughness=4,flying,vigilance,white,blue)) ueot
 text=Celestial Colonnade enters the battlefield tapped. -- {T}: Add {W} or {U} to your mana pool. -- {3}{W}{U}: Until end of turn, Celestial Colonnade becomes a 4/4 white and blue Elemental creature with flying and vigilance. It's still a land.
 type=Land
 [/card]
@@ -13809,7 +13809,7 @@ subtype=Aura
 [/card]
 [card]
 name=Chimeric Coils
-auto={X}{1}:transforms((Creature Construct,setpower=X,settoughness=X)) ueot && treason
+auto={X}{1}:transforms((Artifact Creature Construct,setpower=X,settoughness=X)) ueot && treason
 text={X}{1}: Chimeric Coils becomes an X/X Construct artifact creature. Sacrifice it at the beginning of the next end step.
 mana={1}
 type=Artifact
@@ -13817,14 +13817,14 @@ type=Artifact
 [card]
 name=Chimeric Egg
 auto=@movedTo(*[-artifact]|opponentstack):counter(0/0,1,Charge)
-auto={C(0/0,-3,Charge)}:becomes(Construct Artifact Creature,6/6,trample) ueot
+auto={C(0/0,-3,Charge)}:transforms((Construct Artifact Creature,setpower=6,settoughness=6,trample)) ueot
 text=Whenever an opponent casts a nonartifact spell, put a charge counter on Chimeric Egg. -- Remove three charge counters from Chimeric Egg: Chimeric Egg becomes a 6/6 Construct artifact creature with trample until end of turn.
 mana={3}
 type=Artifact
 [/card]
 [card]
 name=Chimeric Idol
-auto={0}:tap all(land|myBattlefield) && becomes(Turtle Artifact Creature,3/3) ueot
+auto={0}:tap all(land|myBattlefield) && transforms((Turtle Artifact Creature,setpower=3,settoughness=3)) ueot
 text={0}: Tap all lands you control. Chimeric Idol becomes a 3/3 Turtle artifact creature until end of turn.
 mana={3}
 type=Artifact
@@ -13840,15 +13840,15 @@ type=Artifact
 [/card]
 [card]
 name=Chimeric Sphere
-auto={2}:becomes(Construct Artifact Creature,2/1,flying) ueot
-auto={2}:becomes(Construct Artifact Creature,3/2) ueot
+auto={2}:transforms((Construct Artifact Creature,setpower=2,settoughness=1,flying)) ueot
+auto={2}:transforms((Construct Artifact Creature,setpower=3,settoughness=2)) ueot
 text={2}: Until end of turn, Chimeric Sphere becomes a 2/1 Construct artifact creature with flying. -- {2}: Until end of turn, Chimeric Sphere becomes a 3/2 Construct artifact creature without flying.
 mana={3}
 type=Artifact
 [/card]
 [card]
 name=Chimeric Staff
-auto={X}:transforms((Creature Construct,setpower=X,settoughness=X)) ueot
+auto={X}:transforms((Artifact Creature Construct,setpower=X,settoughness=X)) ueot
 text={X}: Chimeric Staff becomes an X/X Construct artifact creature until end of turn.
 mana={4}
 type=Artifact
@@ -14065,7 +14065,7 @@ toughness=2
 [card]
 name=Chronatog Totem
 auto={T}:Add{U}
-auto={1}{U}:becomes(Artifact Creature Atog,1/2,blue) ueot
+auto={1}{U}:transforms((Artifact Creature Atog,setpower=1,settoughness=2,blue)) ueot
 auto=this(cantargetcard(creature)) {0}:3/3 && turns:-1 controller limit:1
 text={T}: Add {U} to your mana pool. -- {1}{U}: Chronatog Totem becomes a 1/2 blue Atog artifact creature until end of turn. -- {0}: Chronatog Totem gets +3/+3 until end of turn. You skip your next turn. Activate this ability only once each turn and only if Chronatog Totem is a creature.
 mana={3}
@@ -16774,7 +16774,7 @@ name=Creeping Tar Pit
 auto=tap
 auto={T}:Add{U}
 auto={T}:Add{B}
-auto={1}{U}{B}:becomes(Elemental Creature,3/2,unblockable,blue,black) ueot
+auto={1}{U}{B}:transforms((Elemental Creature,setpower=3,settoughness=2,unblockable,blue,black)) ueot
 text=Creeping Tar Pit enters the battlefield tapped. -- {T}: Add {U} or {B} to your mana pool. -- {1}{U}{B}: Until end of turn, Creeping Tar Pit becomes a 3/2 blue and black Elemental creature and is unblockable. It's still a land.
 type=Land
 [/card]
@@ -18395,7 +18395,7 @@ subtype=Equipment
 [card]
 name=Darksteel Brute
 abilities=indestructible
-auto={3}:becomes(Beast Artifact Creature,2/2) ueot
+auto={3}:transforms((Beast Artifact Creature,setpower=2,settoughness=2)) ueot
 text=Darksteel Brute is indestructible. ("Destroy" effects and lethal damage don't destroy it.) -- {3}: Darksteel Brute becomes a 2/2 Beast artifact creature until end of turn.
 mana={2}
 type=Artifact
@@ -22029,7 +22029,7 @@ type=Land
 [card]
 name=Dragonsoul Knight
 abilities=first strike
-auto={W}{U}{B}{R}{G}:+5/+3 && transforms((dragon,flying,trample)) ueot
+auto={W}{U}{B}{R}{G}:5/3 && transforms((dragon,flying,trample)) ueot
 text=First strike -- {W}{U}{B}{R}{G}: Until end of turn, Dragonsoul Knight becomes a Dragon, gets +5/+3, and gains flying and trample.
 mana={2}{R}
 type=Creature
@@ -22245,7 +22245,7 @@ toughness=2
 [card]
 name=Dread Statuary
 auto={T}:Add{1}
-auto={4}:becomes(Golem Artifact Creature,4/2) ueot
+auto={4}:transforms((Golem Artifact Creature,setpower=4,settoughness=2)) ueot
 text={T}: Add {1} to your mana pool. -- {4}: Dread Statuary becomes a 4/2 Golem artifact creature until end of turn. It's still a land.
 type=Land
 [/card]
@@ -24580,7 +24580,7 @@ toughness=1
 [/card]
 [card]
 name=Elvish Branchbender
-auto={T}:target(forest) transforms((Forest Land TreeFolk Creature,setpower=type:elf:mybattlefield,settoughness=type:elf:mybattlefield)) ueot
+auto={T}:target(forest) transforms((TreeFolk Creature,setpower=type:elf:mybattlefield,settoughness=type:elf:mybattlefield)) ueot
 text={T}: Until end of turn, target Forest becomes an X/X Treefolk creature in addition to its other types, where X is the number of Elves you control.
 mana={2}{G}
 type=Creature
@@ -26926,7 +26926,7 @@ type=Instant
 name=Faerie Conclave
 auto=tap
 auto={T}:Add{U}
-auto={1}{U}:becomes(Faerie Creature,2/1,flying,blue) ueot
+auto={1}{U}:transforms((Faerie Creature,setpower=2,settoughness=1,flying,blue)) ueot
 text=Faerie Conclave enters the battlefield tapped. -- {T}: Add {U} to your mana pool. -- {1}{U}: Faerie Conclave becomes a 2/1 blue Faerie creature with flying until end of turn. It's still a land. (It can't be blocked except by creatures with flying or reach.)
 type=Land
 [/card]
@@ -29983,7 +29983,7 @@ type=Land
 name=Forbidding Watchtower
 auto=tap
 auto={T}:Add{W}
-auto={1}{W}:becomes(Soldier Creature,1/5,white) ueot
+auto={1}{W}:transforms((Soldier Creature,setpower=1,settoughness=5,white)) ueot
 text=Forbidding Watchtower enters the battlefield tapped. -- {T}: Add {W} to your mana pool. -- {1}{W}: Forbidding Watchtower becomes a 1/5 white Soldier creature until end of turn. It's still a land.
 type=Land
 [/card]
@@ -31774,7 +31774,7 @@ type=Artifact
 [card]
 name=Genju of the Cedars
 target=forest
-auto={2}:becomes(Spirit Creature,4/4,green) ueot
+auto={2}:transforms((Spirit Creature,setpower=4,settoughness=4,green)) ueot
 auto=@movedTo(mytgt|mygraveyard) from(battlefield):may moveTo(myhand) all(this)
 text=Enchant Forest -- {2}: Enchanted Forest becomes a 4/4 green Spirit creature until end of turn. It's still a land. -- When enchanted Forest is put into a graveyard, you may return Genju of the Cedars from your graveyard to your hand.
 mana={G}
@@ -31784,7 +31784,7 @@ subtype=Aura
 [card]
 name=Genju of the Falls
 target=island
-auto={2}:becomes(Spirit Creature,3/2,flying,blue) ueot
+auto={2}:transforms((Spirit Creature,setpower=3,settoughness=2,flying,blue)) ueot
 auto=@movedTo(mytgt|mygraveyard) from(battlefield):may moveTo(myhand) all(this)
 text=Enchant Island -- {2}: Enchanted Island becomes a 3/2 blue Spirit creature with flying until end of turn. It's still a land. -- When enchanted Island is put into a graveyard, you may return Genju of the Falls from your graveyard to your hand.
 mana={U}
@@ -31794,9 +31794,8 @@ subtype=Aura
 [card]
 name=Genju of the Fens
 target=swamp
-auto={2}:becomes(Spirit Creature,2/2,black) ueot
+auto={2}:transforms((Spirit Creature,newability[{B}:1/1],setpower=2,settoughness=2,black)) ueot
 auto=@movedTo(mytgt|mygraveyard) from(battlefield):may moveTo(myhand) all(this)
-auto={B}:1/1(mytgt)
 text=Enchant Swamp -- {2}: Until end of turn, enchanted Swamp becomes a 2/2 black Spirit creature with "{B}: This creature gets +1/+1 until end of turn." It's still a land. -- When enchanted Swamp is put into a graveyard, you may return Genju of the Fens from your graveyard to your hand.
 mana={B}
 type=Enchantment
@@ -31805,8 +31804,7 @@ subtype=Aura
 [card]
 name=Genju of the Fields
 target=plains
-auto=spiritlink
-auto={2}:becomes(Spirit Creature,2/5,white) ueot
+auto={2}:transforms((Spirit Creature,setpower=2,settoughness=5,spiritlink,white)) ueot
 auto=@movedTo(mytgt|mygraveyard) from(battlefield):may moveTo(myhand) all(this)
 text=Enchant Plains -- {2}: Until end of turn, enchanted Plains becomes a 2/5 white Spirit creature with "Whenever this creaure deals damage, its controller gains that much life." It's still a land. -- When enchanted Plains is put into a graveyard, you may return Genju of the Fields from your graveyard to your hand.
 mana={W}
@@ -31816,7 +31814,7 @@ subtype=Aura
 [card]
 name=Genju of the Realm
 target=land
-auto={2}:becomes(Legendary Spirit Creature,8/12,trample) ueot
+auto={2}:transforms((Legendary Spirit Creature,setpower=8,settoughness=12,trample)) ueot
 auto=@movedTo(mytgt|mygraveyard) from(battlefield):may moveTo(myhand) all(this)
 text=Enchant land -- {2}: Enchanted land becomes a legendary 8/12 Spirit creature with trample until end of turn. It's still a land. -- When enchanted land is put into a graveyard, you may return Genju of the Realm from your graveyard to your hand.
 mana={W}{U}{B}{R}{G}
@@ -31826,7 +31824,7 @@ subtype=Aura
 [card]
 name=Genju of the Spires
 target=mountain
-auto={2}:becomes(Spirit Creature,6/1,red) ueot
+auto={2}:transforms((Spirit Creature,setpower=6,settoughness=1,red)) ueot
 auto=@movedTo(mytgt|mygraveyard) from(battlefield):may moveTo(myhand) all(this)
 text=Enchant Mountain -- {2}: Enchanted Mountain becomes a 6/1 red Spirit creature until end of turn. It's still a land. -- When enchanted Mountain is put into a graveyard, you may return Genju of the Spires from your graveyard to your hand.
 mana={R}
@@ -32001,7 +31999,7 @@ toughness=0
 name=Ghitu Encampment
 auto=tap
 auto={T}:Add{R}
-auto={1}{R}:becomes(Soldier Creature,2/1,first strike,red) ueot
+auto={1}{R}:transforms((Warrior Creature,setpower=2,settoughness=1,first strike,red)) ueot
 text=Ghitu Encampment enters the battlefield tapped. -- {T}: Add {R} to your mana pool. -- {1}{R}: Ghitu Encampment becomes a 2/1 red Warrior creature with first strike until end of turn. It's still a land. (It deals combat damage before creatures without first strike.)
 type=Land
 [/card]
@@ -32951,8 +32949,8 @@ toughness=2
 [/card]
 [card]
 name=Glint Hawk Idol
-auto=@movedTo(other artifact|myBattlefield):may becomes(Artifact Creature,2/2,flying) ueot
-auto={W}:becomes(Artifact Creature,2/2,flying) ueot
+auto=@movedTo(other artifact|myBattlefield):may transforms((Artifact Creature,setpower=2,settoughness=2,flying)) ueot
+auto={W}:transforms((Artifact Creature,setpower=2,settoughness=2,flying)) ueot
 text=Whenever another artifact enters the battlefield under your control, you may have Glint Hawk Idol become a 2/2 artifact creature with flying until end of turn. -- {W}:Glint Hawk Idol becomes a 2/2 artifact creature with flying until end of turn.
 mana={2}
 type=Artifact
@@ -35948,7 +35946,7 @@ type=Land
 [card]
 name=Gruul War Plow
 auto=lord(creature|myBattlefield) trample
-auto={1}{R}{G}:becomes(Juggernaut Artifact Creature,4/4) ueot
+auto={1}{R}{G}:transforms((Juggernaut Artifact Creature,setpower=4,settoughness=4)) ueot
 text=Creatures you control have trample. -- {1}{R}{G}: Gruul War Plow becomes a 4/4 Juggernaut artifact creature until end of turn.
 mana={4}
 type=Artifact
@@ -36006,7 +36004,7 @@ toughness=3
 name=Guardian Idol
 auto=tap
 auto={T}:Add{1}
-auto={2}:becomes(Golem Artifact Creature,2/2) ueot
+auto={2}:transforms((Golem Artifact Creature,setpower=2,settoughness=2)) ueot
 text=Guardian Idol enters the battlefield tapped. -- {T}: Add {1} to your mana pool. -- {2}: Guardian Idol becomes a 2/2 Golem artifact creature until end of turn.
 mana={2}
 type=Artifact
@@ -36464,7 +36462,7 @@ toughness=1
 [/card]
 [card]
 name=Halcyon Glaze
-auto=@movedTo(creature|mystack):becomes(Illusion Creature,4/4,flying) ueot
+auto=@movedTo(creature|mystack):transforms((Illusion Creature,setpower=4,settoughness=4,flying)) ueot
 text=Whenever you cast a creature spell, Halcyon Glaze becomes a 4/4 Illusion creature with flying until end of turn. It's still an enchantment.
 mana={1}{U}{U}
 type=Enchantment
@@ -40843,7 +40841,7 @@ toughness=1
 [card]
 name=Inkmoth Nexus
 auto={T}:Add{1}
-auto={1}:becomes(Blinkmoth Artifact Creature,1/1,flying,infect) ueot
+auto={1}:transforms((Blinkmoth Artifact Creature,setpower=1,settoughness=1,flying,infect)) ueot
 text={T}: Add {1} to your mana pool. -- {1}: Inkmoth Nexus becomes a 1/1 Blinkmoth artifact creature with flying and infect until end of turn. It's still a land.
 type=Land
 [/card]
@@ -41847,7 +41845,7 @@ toughness=2
 [/card]
 [card]
 name=Jade Idol
-auto=@movedTo(spirit,arcane|mystack):becomes(Artifact Creature Spirit,4/4) ueot
+auto=@movedTo(spirit,arcane|mystack):transforms((Spirit Artifact Creature,setpower=4,settoughness=4)) ueot
 text=Whenever you cast a Spirit or Arcane spell, Jade Idol becomes a 4/4 Spirit artifact creature until end of turn.
 mana={4}
 type=Artifact
@@ -43029,7 +43027,7 @@ type=Sorcery
 [/card]
 [card]
 name=Kamahl, Fist of Krosa
-auto={G}:target(land) becomes(Creature,1/1) ueot
+auto={G}:target(land) transforms((Creature,setpower=1,settoughness=1)) ueot
 auto={2}{G}{G}{G}:lord(creature|mybattlefield) 3/3 && lord(creature|mybattlefield) trample ueot
 text={G}: Target land becomes a 1/1 creature until end of turn. It's still a land. -- {2}{G}{G}{G}: Creatures you control get +3/+3 and gain trample until end of turn.
 mana={4}{G}{G}
@@ -45258,10 +45256,10 @@ type=Land
 [card]
 name=Koth of the Hammer
 auto=counter(0/0,3,loyalty)
-auto={C(0/0,1,Loyalty)}:untap target(mountain) && becomes(Elemental Creature,4/4,red) ueot
+auto={C(0/0,1,Loyalty)}:untap target(mountain) && transforms((Elemental Creature,setpower=4,settoughness=4,red)) ueot
 auto={C(0/0,-2,Loyalty)}:foreach(mountain|myBattlefield) add:{R}
-auto={C(0/0,-5,Loyalty)}:name(emblem) emblem transforms((,newability[lord(mountain|mybattlefield) {t}:target(*[creature;player]) damage:1])) dontremove
-text=+1: Untap target Mountain. It becomes a 4/4 red Elemental creature until end of turn. It's still a land. -- -2: Add {R} to your mana pool for each Mountain you control. -- -5: You get an emblem with "Mountains you control have ‘{T}: This land deals 1 damage to target creature or player.'"
+auto={C(0/0,-5,Loyalty)}:name(emblem) emblem transforms((,newability[lord(mountain|mybattlefield) {t}:target(creature) damage:1],newability[lord(mountain|mybattlefield) {t}:target(player) damage:1])) dontremove
+text=+1: Untap target Mountain. It becomes a 4/4 red Elemental creature until end of turn. It's still a land. -- -2: Add {R} to your mana pool for each Mountain you control. -- -5: You get an emblem with "Mountains you control have '{T}: This land deals 1 damage to target creature or player.'"
 mana={2}{R}{R}
 type=Planeswalker
 subtype=Koth
@@ -46445,7 +46443,7 @@ name=Lavaclaw Reaches
 auto=tap
 auto={T}:Add{B}
 auto={T}:Add{R}
-auto={1}{B}{R}:transforms((Elemental Creature,setpower=2,settoughness=2,black red,newability[{X}:+X/0 ueot])) ueot
+auto={1}{B}{R}:transforms((Elemental Creature,setpower=2,settoughness=2,black red,newability[{X}:X/0 ueot])) ueot
 text=Lavaclaw Reaches enters the battlefield tapped. -- {T}: Add {B} or {R} to your mana pool. -- {1}{B}{R}: Until end of turn, Lavaclaw Reaches becomes a 2/2 black and red Elemental creature with "{X}: This creature gets +X/+0 until end of turn." It's still a land.
 type=Land
 [/card]
@@ -47174,7 +47172,7 @@ type=Sorcery
 [/card]
 [card]
 name=Lifespark Spellbomb
-auto={G}{S}:target(land) becomes(Creature,3/3) ueot
+auto={G}{S}:target(land) transforms((Creature,setpower=3,settoughness=3)) ueot
 auto={S}:draw:1
 text={G}, Sacrifice Lifespark Spellbomb: Until end of turn, target land becomes a 3/3 creature that's still a land. -- {1}, Sacrifice Lifespark Spellbomb: Draw a card.
 mana={1}
@@ -47455,7 +47453,7 @@ auto=counter(0/0,3,loyalty)
 auto={C(0/0,1,Loyalty)}:name(fetch) moveTo(hand) target(swamp|myLibrary)
 auto={C(0/0,-3,Loyalty)}:name(choose) ability$!choice name(+X/+X) target(creature) type:land:mybattlefield/type:land:mybattlefield ueot _ choice name(-X/-X) target(creature) -type:land:mybattlefield/-type:land:mybattlefield ueot!$ controller
 auto={C(0/0,-6,Loyalty)}:name(emblem) emblem lord(swamp|mybattlefield) {T}:{B}{B}{B}{B} dontremove
-text=+1: Search your library for a Swamp card, reveal it, and put it into your hand. Then shuffle your library. -- -3: Target creature gets +X/+X or -X/-X until end of turn, where X is the number of Swamps you control. -- -6: You get an emblem with "Swamps you control have ‘{T}: Add {B}{B}{B}{B} to your mana pool.'"
+text=+1: Search your library for a Swamp card, reveal it, and put it into your hand. Then shuffle your library. -- -3: Target creature gets +X/+X or -X/-X until end of turn, where X is the number of Swamps you control. -- -6: You get an emblem with "Swamps you control have '{T}: Add {B}{B}{B}{B} to your mana pool.'"
 mana={2}{B}{B}
 type=Planeswalker
 subtype=Liliana
@@ -52460,7 +52458,7 @@ type=Sorcery
 [card]
 name=Mishra's Factory
 auto={T}:add{1}
-auto={1}:becomes(Artifact Creature Assembly-Worker,2/2) ueot
+auto={1}:transforms((Artifact Creature Assembly-Worker,setpower=2,settoughness=2)) ueot
 auto={T}:1/1 target(assembly-worker)
 text={T}: Add {1} to your mana pool. -- {1}: Mishra's Factory becomes a 2/2 Assembly-Worker artifact creature until end of turn. It's still a land. -- {T}: Target Assembly-Worker creature gets +1/+1 until end of turn.
 type=Land
@@ -52475,7 +52473,7 @@ type=Sorcery
 [/card]
 [card]
 name=Mishra's Groundbreaker
-auto={T}{S}:target(land|myBattlefield) becomes(Artifact Creature,3/3) forever
+auto={T}{S}:target(land|myBattlefield) transforms((Artifact Creature,setpower=3,settoughness=3)) forever
 text={T}, Sacrifice Mishra's Groundbreaker: Target land becomes a 3/3 artifact creature that's still a land. (This effect lasts indefinitely.)
 mana={4}
 type=Artifact
@@ -54346,7 +54344,7 @@ type=Instant
 [card]
 name=Mutavault
 auto={t}:add{1}
-auto={1}:becomes(creature,2/2) ueot && transforms((allsubtypes)) ueot
+auto={1}:transforms((Creature,setpower=2,settoughness=2)) ueot && transforms((allsubtypes)) ueot
 text={T}: Add {1} to your mana pool. -- {1}: Mutavault becomes a 2/2 creature with all creature types until end of turn. It's still a land.
 type=Land
 [/card]
@@ -54983,7 +54981,7 @@ toughness=1
 [card]
 name=Nantuko Monastery
 auto={T}:Add{1}
-auto=aslongas(*|mygraveyard) {G}{W}:becomes(Creature Insect Monk,4/4,first strike,green,white) ueot >6
+auto=aslongas(*|mygraveyard) {G}{W}:transforms((Insect Monk Creature,setpower=4,settoughness=4,first strike,green,white)) ueot >6
 text={T}: Add {1} to your mana pool. -- Threshold - {G}{W}: Nantuko Monastery becomes a 4/4 green and white Insect Monk creature with first strike until end of turn. It's still a land. Activate this ability only if seven or more cards are in your graveyard.
 type=Land
 [/card]
@@ -60830,7 +60828,7 @@ toughness=4
 [card]
 name=Phyrexian Totem
 auto={T}:Add{B}
-auto={2}{B}:becomes(Artifact Creature Horror,5/5,trample,black) ueot
+auto={2}{B}:transforms((Horror Artifact Creature,setpower=5,settoughness=5,trample,black)) ueot
 auto=@damaged(this):ability$!name(sacrifice) notatarget(<storedthatmuch>*|mybattlefield) sacrifice!$ controller
 text={T}: Add {B} to your mana pool. -- {2}{B}: Phyrexian Totem becomes a 5/5 black Horror artifact creature with trample until end of turn. -- Whenever Phyrexian Totem is dealt damage, if it's a creature, sacrifice that many permanents.
 mana={3}
@@ -63693,7 +63691,7 @@ toughness=1
 [/card]
 [card]
 name=Quirion Druid
-auto={G}{T}:target(land) becomes(Creature,2/2,green)
+auto={G}{T}:target(land) transforms((Creature,setpower=2,settoughness=2,green)) forever
 text={G}, {T}: Target land becomes a 2/2 green creature that's still a land. (This effect lasts indefinitely.)
 mana={2}{G}
 type=Creature
@@ -64079,12 +64077,9 @@ name=Raging Ravine
 auto=tap
 auto={T}:Add{R}
 auto={T}:Add{G}
-auto={2}{R}{G}:transforms((Elemental Creature,red,green)) ueot
-auto=@combat(attacking) source(this):counter(1/1,1) all(this)
+auto={2}{R}{G}:transforms((Elemental Creature,setpower=3,settoughness=3,red,green)) ueot && transforms((,newability[@combat(attacking) source(this):counter(1/1.1)])) ueot
 text=Raging Ravine enters the battlefield tapped. -- {T}: Add {R} or {G} to your mana pool. -- {2}{R}{G}: Until end of turn, Raging Ravine becomes a 3/3 red and green Elemental creature with "Whenever this creature attacks, put a +1/+1 counter on it." It's still a land.
 type=Land
-power=3
-toughness=3
 [/card]
 [card]
 name=Raging Spirit
@@ -75988,7 +75983,8 @@ toughness=3
 [/card]
 [card]
 name=Slumbering Tora
-auto={2}{discard(*[spirit,arcane]|myhand)}:transforms((Creature Cat,setpower=storedmanacost,settoughness=storedtoughness)) ueot
+#using storedmanacost makes the card color red...sto RED manacost
+auto={2}{discard(*[spirit,arcane]|myhand)}:transforms((Artifact Creature Cat,setpower=storedmanacost,settoughness=storedtoughness)) ueot
 text={2}, Discard a Spirit or Arcane card: Slumbering Tora becomes an X/X Cat artifact creature until end of turn, where X is the discarded card's converted mana cost.
 mana={3}
 type=Artifact
@@ -76325,7 +76321,7 @@ type=Land
 [/card]
 [card]
 name=Soilshaper
-auto=@movedTo(spirit,arcane|mystack):target(land) becomes(Creature,3/3) ueot
+auto=@movedTo(spirit,arcane|mystack):target(land) transforms((Creature,setpower=3,settoughness=3)) ueot
 text=Whenever you cast a Spirit or Arcane spell, target land becomes a 3/3 creature until end of turn. It's still a land.
 mana={1}{G}
 type=Creature
