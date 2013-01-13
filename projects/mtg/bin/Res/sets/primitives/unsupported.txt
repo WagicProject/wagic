@@ -15774,15 +15774,6 @@ power=4
 toughness=4
 [/card]
 [card]
-name=Rot Wolf
-mana={2}{G}
-type=Creature
-subtype=Wolf
-power=2
-toughness=2
-text=Infect (This creature deals damage to creatures in the form of -1/-1 counters and to players in the form of poison counters.) Whenever a creature dealt damage by Rot Wolf this turn dies, you may draw a card.
-[/card]
-[card]
 name=Rotting Giant
 text=Whenever Rotting Giant attacks or blocks, sacrifice it unless you exile a card from your graveyard.
 mana={1}{B}
