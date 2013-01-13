@@ -78011,7 +78011,7 @@ type=Creature
 subtype=Spike
 auto=counter(1/1,3)
 auto={2}{C(1/1,-1)}:counter(1/1,1) target(creature)
-auto={2}{C(1/1,-1)}:target(land) becomes(Creature,2/2,green) && counter(1/1,1)
+auto={2}{C(1/1,-1)}:target(land) transforms((Creature,setpower=2,settoughness=2,green)) forever && counter(1/1,1)
 power=0
 toughness=0
 [/card]
@@ -79733,7 +79733,7 @@ toughness=2
 [/card]
 [card]
 name=Still Life
-auto={G}{G}:becomes(Creature Centaur,4/3) ueot
+auto={G}{G}:transforms((Centaur Creature,setpower=4,settoughness=3)) ueot
 text={G}{G}: Still Life becomes a 4/3 Centaur creature until end of turn. It's still an enchantment.
 mana={1}{G}{G}
 type=Enchantment
@@ -79817,7 +79817,7 @@ name=Stirring Wildwood
 auto=tap
 auto={T}:Add{G}
 auto={T}:Add{W}
-auto={1}{G}{W}:becomes(Elemental Creature,3/4,reach,green,white) ueot
+auto={1}{G}{W}:transforms((Elemental Creature,setpower=3,settoughness=4,white,green)) ueot
 text=Stirring Wildwood enters the battlefield tapped. -- {T}: Add {G} or {W} to your mana pool. -- {1}{G}{W}: Until end of turn, Stirring Wildwood becomes a 3/4 green and white Elemental creature with reach. It's still a land.
 type=Land
 [/card]
@@ -84933,7 +84933,7 @@ type=Instant
 [card]
 name=Thunder Totem
 auto={T}:Add{W}
-auto={1}{W}{W}:becomes(Artifact Creature Spirit,2/2,flying,first strike,white) ueot
+auto={1}{W}{W}:transforms((Spirit Artifact Creature,setpower=2,settoughness=2,flying,first strike,white)) ueot
 text={T}: Add {W} to your mana pool. -- {1}{W}{W}: Thunder Totem becomes a 2/2 white Spirit artifact creature with flying and first strike until end of turn.
 mana={3}
 type=Artifact
@@ -87013,7 +87013,7 @@ toughness=3
 name=Treetop Village
 auto=tap
 auto={T}:Add{G}
-auto={1}{G}:becomes(Ape Creature,3/3,trample,green) ueot
+auto={1}{G}:transforms((Ape Creature,setpower=3,settoughness=3,trample,green)) ueot
 text=Treetop Village enters the battlefield tapped. -- {T}: Add {G} to your mana pool. -- {1}{G}: Treetop Village becomes a 3/3 green Ape creature with trample until end of turn. It's still a land. (If it would deal enough damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player or planeswalker.)
 type=Land
 [/card]
@@ -90060,7 +90060,7 @@ type=Enchantment
 [card]
 name=Verdant Touch
 target=land
-auto=becomes(Creature,2/2)
+auto=transforms((Creature,setpower=2,settoughness=2)) forever
 buyback={1}{G}{3}
 text=Buyback {3} (You may pay an additional {3} as you cast this spell. If you do, put this card into your hand as it resolves.) -- Target land becomes a 2/2 creature that's still a land. (This effect lasts indefinitely.)
 mana={1}{G}
@@ -91325,7 +91325,7 @@ type=Land
 [card]
 name=Vivify
 target=land
-auto=becomes(Creature,3/3) ueot
+auto=transforms((Creature,setpower=3,settoughness=3)) ueot
 auto=draw:1 controller
 text=Target land becomes a 3/3 creature until end of turn. It's still a land. -- Draw a card.
 mana={2}{G}
@@ -95441,7 +95441,7 @@ toughness=6
 [/card]
 [card]
 name=Woodwraith Corrupter
-auto={1}{B}{G}{T}:target(land) becomes(Creature Elemental Horror,4/4,black,green)
+auto={1}{B}{G}{T}:target(forest) transforms((Creature Elemental Horror,setpower=4,settoughness=4,black,green)) forever
 text={1}{B}{G}, {T}: Target Forest becomes a 4/4 black and green Elemental Horror creature. It's still a land.
 mana={3}{B}{B}{G}
 type=Creature
@@ -96000,7 +96000,7 @@ toughness=1
 [/card]
 [card]
 name=Xanthic Statue
-auto={5}:becomes(Artifact Creature Golem,8/8,trample) ueot
+auto={5}:transforms((Golem Artifact Creature,setpower=8,settoughness=8,trample)) ueot
 text={5}: Until end of turn, Xanthic Statue becomes an 8/8 Golem artifact creature with trample.
 mana={8}
 type=Artifact
