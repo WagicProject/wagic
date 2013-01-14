@@ -2,18 +2,23 @@
 [INIT]
 SECONDMAIN
 [PLAYER1]
-inplay:black vise
+hand:black vise
+inplay:mountain
 [PLAYER2]
-hand:act of treason,mountain,plains,swamp,forest,island
+hand:act of treason,raging goblin,plains,swamp,forest,island
 [DO]
+mountain
+black vise
+choice 0
+p2
 eot
 next
 #upkeep
 [ASSERT]
 UPKEEP
 [PLAYER1]
-inplay:black vise
+inplay:mountain,black vise
 [PLAYER2]
-hand:act of treason,mountain,plains,swamp,forest,island
+hand:act of treason,raging goblin,plains,swamp,forest,island
 life:18
 [END]
