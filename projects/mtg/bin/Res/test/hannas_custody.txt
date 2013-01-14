@@ -4,24 +4,24 @@
 FIRSTMAIN
 [PLAYER1]
 hand:hanna's custody,disenchant
-inplay:the rack,swamp,plains
+inplay:Rackling,swamp,plains
 manapool:{2}{W}
 [PLAYER2]
-inplay:black vise,bad moon
+inplay:Viseling,bad moon
 [DO]
 hanna's custody
 swamp
 plains
 disenchant
-black vise
+Viseling
 bad moon
 [ASSERT]
 FIRSTMAIN
 [PLAYER1]
-inplay:the rack,swamp,plains,hanna's custody
+inplay:Rackling,swamp,plains,hanna's custody
 graveyard:disenchant
 manapool:{0}
 [PLAYER2]
 graveyard:bad moon
-inplay:black vise
+inplay:Viseling
 [END]
