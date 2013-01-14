@@ -2,26 +2,26 @@
 [INIT]
 FIRSTMAIN
 [PLAYER1]
-inplay:the rack
+inplay:Aether spellbomb
 hand:animate artifact,disenchant
 manapool:{3}{U}{1}{W}
 [PLAYER2]
 [DO]
 animate artifact
-the rack
+Aether spellbomb
 disenchant
 animate artifact
 next
 #begin
 next
 #attackers
-the rack
+Aether spellbomb
 next
 #combat ends
 [ASSERT]
 COMBATEND
 [PLAYER1]
-inplay:the rack
+inplay:Aether spellbomb
 graveyard:animate artifact,disenchant
 [PLAYER2]
 [END]
