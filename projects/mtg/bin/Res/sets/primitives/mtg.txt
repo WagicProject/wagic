@@ -48498,7 +48498,7 @@ toughness=1
 [card]
 name=Loyal Gyrfalcon
 abilities=defender,flying
-auto=@movedTo(*[white]|mystack):-defender ueot
+auto=@movedTo(*[white]|mystack):name(loses defender) -defender ueot
 text=Defender, flying -- Whenever you cast a white spell, Loyal Gyrfalcon loses defender until end of turn.
 mana={3}{W}
 type=Creature
@@ -48777,8 +48777,8 @@ toughness=4
 [card]
 name=Lurker
 abilities=shroud
-auto=@combat(attacking) source(this):-shroud ueot
-auto=@combat(blocking) source(this):-shroud ueot
+auto=@combat(attacking) source(this):name(loses shroud) -shroud ueot
+auto=@combat(blocking) source(this):name(loses shroud) -shroud ueot
 text=Lurker can't be the target of spells unless it attacked or blocked this turn.
 mana={2}{G}
 type=Creature
@@ -73255,7 +73255,7 @@ type=Legendary Land
 [card]
 name=Shoal Serpent
 abilities=defender
-auto=@movedTo(land|myBattlefield):-defender ueot
+auto=@movedTo(land|myBattlefield):name(loses defender) -defender ueot
 text=Defender -- Landfall - Whenever a land enters the battlefield under your control, Shoal Serpent loses defender until end of turn.
 mana={5}{U}
 type=Creature
@@ -80195,7 +80195,7 @@ type=Sorcery
 [card]
 name=Storm Seeker
 target=player
-alias=129750
+auto=damage:type:*:targetedpersonshand
 text=Storm Seeker deals damage equal to the number of cards in target player's hand to that player.
 mana={3}{G}
 type=Instant
@@ -86781,7 +86781,7 @@ type=Instant
 [card]
 name=Traumatize
 target=player
-alias=129774
+auto=deplete:halfdowntype:*:targetedpersonslibrary
 text=Target player puts the top half of his or her library, rounded down, into his or her graveyard.
 mana={3}{U}{U}
 type=Sorcery
@@ -89905,7 +89905,7 @@ subtype=Aura
 [card]
 name=Venomous Dragonfly
 abilities=flying
-alias=1267
+auto=@combat(blocking,blocked) source(this) from(creature):all(trigger[from]) phaseaction[combatends once] destroy
 text=Flying -- Whenever Venomous Dragonfly blocks or becomes blocked by a creature, destroy that creature at end of combat.
 mana={3}{G}
 type=Creature
