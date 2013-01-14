@@ -2,7 +2,7 @@
 [INIT]
 COMBATATTACKERS
 [PLAYER1]
-inplay:Master of Etherium,Black Vise,The Rack
+inplay:Master of Etherium,Viseling,Rackling
 [PLAYER2]
 [DO]
 Master of Etherium
@@ -15,7 +15,7 @@ next
 [ASSERT]
 COMBATEND
 [PLAYER1]
-inplay:Master of Etherium,Black Vise,The Rack
+inplay:Master of Etherium,Viseling,Rackling
 manapool:{0}
 [PLAYER2]
 life:17

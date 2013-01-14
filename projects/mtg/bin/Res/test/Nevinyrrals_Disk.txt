@@ -3,7 +3,7 @@
 FIRSTMAIN
 [PLAYER1]
 hand:Nevinyrral's Disk
-inplay:black vise
+inplay:Viseling
 manapool:{4}
 [PLAYER2]
 [DO]
@@ -11,6 +11,6 @@ Nevinyrral's Disk
 [ASSERT]
 FIRSTMAIN
 [PLAYER1]
-inplay:black vise,Nevinyrral's Disk
+inplay:Viseling,Nevinyrral's Disk
 [PLAYER2]
 [END]

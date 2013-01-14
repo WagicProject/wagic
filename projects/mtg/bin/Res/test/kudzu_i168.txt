@@ -17,13 +17,16 @@ Swamp
 Kudzu
 Swamp
 Swamp
+choice 0
+next
+choice 0
 Mountain
 [ASSERT]
 firstmain
 [PLAYER1]
 inplay:*
-graveyard:Swamp,*
+graveyard:Swamp
 manapool:{B}
 [PLAYER2]
-inplay:Mountain
+inplay:Mountain,*
 [END]

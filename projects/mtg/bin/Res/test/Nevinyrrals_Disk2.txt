@@ -3,7 +3,7 @@
 FIRSTMAIN
 [PLAYER1]
 hand:Nevinyrral's Disk
-inplay:black vise,swamp
+inplay:Viseling,swamp
 manapool:{4}
 [PLAYER2]
 inplay:obsianus golem
@@ -22,7 +22,7 @@ Nevinyrral's Disk
 [ASSERT]
 FIRSTMAIN
 [PLAYER1]
-graveyard:black vise,Nevinyrral's Disk
+graveyard:Viseling,Nevinyrral's Disk
 inplay:swamp
 [PLAYER2]
 graveyard:obsianus golem
