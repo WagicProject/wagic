@@ -19,6 +19,7 @@ next
 next
 #main 1
 1391
+choice 0
 1308
 [ASSERT]
 FIRSTMAIN
