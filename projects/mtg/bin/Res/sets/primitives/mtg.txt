@@ -27430,7 +27430,7 @@ toughness=1
 [card]
 name=Farmstead
 target=land
-auto=transforms((,newability[{w}{w}:life:1 controller myupkeeponly]))
+auto=transforms((,newability[{w}{w}:life:1 controller myupkeeponly limit:1]))
 text=Enchant land -- Enchanted land has "At the beginning of your upkeep, you may pay {W}{W}. If you do, you gain 1 life."
 mana={W}{W}{W}
 type=Enchantment
