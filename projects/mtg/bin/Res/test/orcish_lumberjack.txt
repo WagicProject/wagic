@@ -8,6 +8,9 @@ inplay:2646,2747
 2646
 choice 0
 2747
+choice 0
+choice 0
+choice 0
 [ASSERT]
 FIRSTMAIN
 [PLAYER1]

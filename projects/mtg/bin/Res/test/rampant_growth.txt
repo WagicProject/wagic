@@ -1,4 +1,4 @@
-#Bug:rampant growth does not tap target
+#Bug:rampant growth does not tap target(its fixed...)
 [INIT]
 FIRSTMAIN
 [PLAYER1]
@@ -8,6 +8,7 @@ manapool:{1}{G}
 [PLAYER2]
 [DO]
 rampant growth
+choice 0
 island
 island
 [ASSERT]
