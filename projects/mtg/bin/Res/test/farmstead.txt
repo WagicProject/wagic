@@ -1,4 +1,6 @@
 #NAME: Farmstead
+#DESC: Enchanted land has "At the beginning of your upkeep,
+#DESC: you may pay WhiteWhite. If you do, you gain 1 life." 
 #DESC: Tests whether Farmstead correctly
 #DESC: gives its ability to the land it
 #DESC: enchants, and if it can be used
@@ -12,19 +14,22 @@ manapool:{W}{W}{W}
 [PLAYER2]
 library:Swamp
 [DO]
+#Cast Farmstead on Plain 129680
 Farmstead
 129680
-Farmstead
 eot
 eot
 next
+#Get 2 White mana and try to use Farmstead ability
 129681
 129682
-Farmstead
+129680
+choice 1
+#try again (this shouldn't work)
 1395
 1396
-Farmstead
 129680
+choice 1
 [ASSERT]
 upkeep
 [PLAYER1]
