@@ -18,6 +18,7 @@ manapool:{R}
 [PLAYER2]
 [DO]
 Gamble
+choice 0
 Mountain
 [ASSERT]
 firstmain

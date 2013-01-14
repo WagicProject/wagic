@@ -31239,9 +31239,7 @@ type=Artifact
 [/card]
 [card]
 name=Gamble
-target=*|myLibrary
-auto=moveTo(myHand)
-auto=discard:1
+auto=name(search a card) notatarget(*|mylibrary) moveTo(myHand) and!( discard:1 controller )! oneshot
 text=Search your library for a card, put that card into your hand, discard a card at random, then shuffle your library.
 mana={R}
 type=Sorcery
@@ -41001,7 +40999,7 @@ type=Enchantment
 [card]
 name=Insolence
 target=creature
-alias=1218
+auto=@tapped(mytgt):damage:2 targetController
 text=Enchant creature -- Whenever enchanted creature becomes tapped, Insolence deals 2 damage to that creature's controller.
 mana={2}{R}
 type=Enchantment
@@ -49712,7 +49710,7 @@ type=Sorcery
 [card]
 name=Mana Short
 target=player
-alias=1209
+auto=all(land|targetedpersonsbattlefield) tap && removemana(*) targetedplayer
 text=Tap all lands target player controls and empty his or her mana pool.
 mana={2}{U}
 type=Instant
@@ -68106,7 +68104,7 @@ power=6
 toughness=5
 [/card]
 [card]
-name=Rot Wulf
+name=Rot Wolf
 abilities=infect
 auto=@vampired(creature) from(this):may draw:1
 text=Infect (This creature deals damage to creatures in the form of -1/-1 counters and to players in the form of poison counters.) -- Whenever a creature dealt damage by Rot Wolf this turn is put into a graveyard, you may draw a card.
@@ -68916,10 +68914,9 @@ toughness=1
 [/card]
 [card]
 name=Sacrifice
-target=creature|myBattlefield
-alias=1176
+auto=thisforeach(variable{storedmanacost}) add{B}
 text=As an additional cost to cast Sacrifice, sacrifice a creature. -- Add to your mana pool an amount of black mana equal to the sacrificed creature's converted mana cost.
-mana={B}
+mana={B}{S(creature|mybattlefield)}
 type=Instant
 [/card]
 [card]
@@ -86214,8 +86211,8 @@ type=Enchantment
 [card]
 name=Touch of Vitae
 target=creature
-auto=@next upkeep:draw:1
-alias=1252
+auto=haste ueot && transforms((,newability[{0}:untap limit:1])) ueot
+auto=@next upkeep:draw:1 controller
 text=Until end of turn, target creature gains haste and "{0}: Untap this creature. Activate this ability only once." -- Draw a card at the beginning of the next turn's upkeep.
 mana={2}{G}
 type=Instant
