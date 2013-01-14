@@ -5,6 +5,8 @@ COMBATATTACKERS
 inplay:Steelclad Serpent,black vise
 [PLAYER2]
 [DO]
+choice 0
+p2
 Steelclad Serpent
 next
 next
