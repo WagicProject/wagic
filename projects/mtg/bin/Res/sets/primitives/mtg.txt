@@ -31239,7 +31239,8 @@ type=Artifact
 [/card]
 [card]
 name=Gamble
-auto=moveTo(myHand) notatarget(*|myLibrary)
+target=*|myLibrary
+auto=moveTo(myHand)
 auto=discard:1
 text=Search your library for a card, put that card into your hand, discard a card at random, then shuffle your library.
 mana={R}
