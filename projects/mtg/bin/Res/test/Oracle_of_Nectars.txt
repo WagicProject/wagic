@@ -1,0 +1,29 @@
+#Test: X tap gain X life
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Oracle of Nectars,1388,1394,1391,1397,1375
+[PLAYER2]
+[DO]
+1388
+1394
+1391
+1397
+1375
+Oracle of Nectars
+eot
+#untap
+next
+#upkeep
+next
+#draw
+next
+#main 1
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Oracle of Nectars,1388,1394,1391,1397,1375
+life:25
+[PLAYER2]
+life:20
+[END]
