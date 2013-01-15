@@ -29,10 +29,29 @@ const int kMaxCastZones[] = { MTGGameZone::BATTLEFIELD, MTGGameZone::STACK};
 const size_t kMaxCastKeywordsCount = 2;
 
 //Used for alternate Costs parsing
-const string kAlternateCostKeywords[] = { "kicker", "retrace", "alternative", "buyback", "flashback", "facedown"}; 
-const int kAlternateCostIds[] = {
-    ManaCost::MANA_PAID_WITH_KICKER, ManaCost::MANA_PAID_WITH_RETRACE, ManaCost::MANA_PAID_WITH_ALTERNATIVE,
-    ManaCost::MANA_PAID_WITH_BUYBACK, ManaCost::MANA_PAID_WITH_FLASHBACK, ManaCost::MANA_PAID_WITH_MORPH
+const string kAlternateCostKeywords[] = 
+{ 
+    "notpaid",
+    "paidmana",
+    "kicker", 
+    "alternative", 
+    "buyback", 
+    "flashback", 
+    "retrace", 
+    "facedown",
+    "suspended"
+}; 
+const int kAlternateCostIds[] = 
+{
+    ManaCost::MANA_UNPAID,
+    ManaCost::MANA_PAID,
+    ManaCost::MANA_PAID_WITH_KICKER,
+    ManaCost::MANA_PAID_WITH_ALTERNATIVE,
+    ManaCost::MANA_PAID_WITH_BUYBACK, 
+    ManaCost::MANA_PAID_WITH_FLASHBACK,
+    ManaCost::MANA_PAID_WITH_RETRACE,
+    ManaCost::MANA_PAID_WITH_MORPH,
+    ManaCost::MANA_PAID_WITH_SUSPEND
 };
 
 //Used for "dynamic ability" parsing
@@ -352,6 +371,26 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
         if(check != string::npos)
         {
             restriction.push_back("type(creature|mybattlefield)~lessthan~type(creature|opponentbattlefield)");
+        }
+
+        check = restriction[i].find("paid(");
+        if(check != string::npos)
+        {
+            vector<string>getPaid = parseBetween(restriction[i].c_str(),"paid(",")");
+            string paid = getPaid[1];
+
+            for (size_t j = 0; j < sizeof(kAlternateCostIds)/sizeof(kAlternateCostIds[0]); ++j)
+            {
+                 string keyword = kAlternateCostKeywords[j];
+                if (paid.find(keyword) != string::npos)
+                {
+                    if (!(card->alternateCostPaid[j] > 0 ))
+                    {
+                        return 0;
+                    }
+                }
+            }
+
         }
     }
     return 1;

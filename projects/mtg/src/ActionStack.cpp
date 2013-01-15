@@ -260,6 +260,12 @@ bool Spell::FullfilledAlternateCost(const int &costType)
 
     switch (costType)
     {
+    case ManaCost::MANA_UNPAID:
+        hasFullfilledAlternateCost = (payResult == ManaCost::MANA_UNPAID);
+        break;
+    case ManaCost::MANA_PAID:
+        hasFullfilledAlternateCost = (payResult == ManaCost::MANA_PAID);
+        break;
     case ManaCost::MANA_PAID_WITH_KICKER:
         hasFullfilledAlternateCost = (payResult == ManaCost::MANA_PAID_WITH_KICKER);
         break;
@@ -273,6 +279,9 @@ bool Spell::FullfilledAlternateCost(const int &costType)
         hasFullfilledAlternateCost = (payResult == ManaCost::MANA_PAID_WITH_FLASHBACK);
         break;
     case ManaCost::MANA_PAID_WITH_RETRACE:
+        hasFullfilledAlternateCost = (payResult == ManaCost::MANA_PAID_WITH_RETRACE);
+        break;
+    case ManaCost::MANA_PAID_WITH_SUSPEND:
         hasFullfilledAlternateCost = (payResult == ManaCost::MANA_PAID_WITH_RETRACE);
         break;
     }

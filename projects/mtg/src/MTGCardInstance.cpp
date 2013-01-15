@@ -171,7 +171,7 @@ void MTGCardInstance::initMTGCI()
     storedSourceCard = NULL;
     myPair = NULL;
 
-    for (int i = 0; i < ManaCost::MANA_PAID_WITH_RETRACE +1; i++)
+    for (int i = 0; i < ManaCost::MANA_PAID_WITH_SUSPEND +1; i++)
         alternateCostPaid[i] = 0;
 
     paymenttype = MTGAbility::PUT_INTO_PLAY;
