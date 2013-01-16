@@ -340,10 +340,18 @@ private:
         {
             intValue = target->kicked;
         }
-		else if (s == "handsize")
-		{
-			intValue = target->controller()->handsize;
-		}
+        else if (s == "handsize")
+        {
+            intValue = target->controller()->handsize;
+        }
+        else if (s == "phandcount")
+        {
+            intValue = target->controller()->game->hand->nb_cards;
+        }
+        else if (s == "ohandcount")
+        {
+            intValue = target->controller()->opponent()->game->hand->nb_cards;
+        }
         else
         {
             intValue = atoi(s.c_str());
