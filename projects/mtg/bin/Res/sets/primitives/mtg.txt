@@ -5437,9 +5437,8 @@ subtype=Gate
 name=Azorius Herald
 abilities=unblockable
 other={1}{W}{U} name(Spend U to Cast)
-auto=alternative 99/99
+auto=ifnot paid(alternative) then sacrifice all(this)
 auto=life:4
-auto=-99/-99
 text=Azorius Herald is unblockable. -- When Azorius Herald enters the battlefield, you gain 4 life. -- When Azorius Herald enters the battlefield, sacrifice it unless {U} was spent to cast it.
 mana={2}{W}
 type=Creature
@@ -14268,10 +14267,24 @@ mana={1}{W}
 type=Enchantment
 [/card]
 [card]
+name=Circle of Protection: Shadow
+auto={1}:name(prevent damage) notatarget(creature[shadow]|battlefield,stack,hand,graveyard) preventalldamage to(controller) from(mytgt) ueot
+text={1}: The next time a creature of your choice with shadow would deal damage to you this turn, prevent that damage.
+mana={1}{W}
+type=Enchantment
+[/card]
+[card]
 name=Circle of Protection: White
 alias=1339
 text={1}: The next time a white source of your choice would deal damage to you this turn, prevent that damage.
 mana={1}{W}
+type=Enchantment
+[/card]
+[card]
+name=Circle of Solace
+auto=chooseatype transforms((,newability[{1}{W}:notatarget(creature[chosentype]|battlefield,stack,hand,graveyard) preventalldamage to(controller) from(mytgt) ueot])) chooseend
+text=As Circle of Solace enters the battlefield, choose a creature type. -- {1}{W}: The next time a creature of the chosen type would deal damage to you this turn, prevent that damage.
+mana={3}{W}
 type=Enchantment
 [/card]
 [card]
@@ -15072,6 +15085,16 @@ power=7
 toughness=7
 [/card]
 [card]
+name=Cloudstone Curio
+auto=@movedto(land[-artifact]|mybattlefield) restriction{type(land|mybattlefield)~morethan~1}:all(trigger) transforms((,newability[may moveto(ownerhand) notatarget(other land|mybattlefield)]))
+auto=@movedto(creature[-artifact]|mybattlefield) restriction{type(creature|mybattlefield)~morethan~1}:all(trigger) transforms((,newability[may moveto(ownerhand) notatarget(other creature|mybattlefield)]))
+auto=@movedto(enchantment[-artifact]|mybattlefield) restriction{type(enchantment|mybattlefield)~morethan~1}:all(trigger) transforms((,newability[may moveto(ownerhand) notatarget(other enchantment|mybattlefield)]))
+auto=@movedto(planeswalker[-artifact]|mybattlefield) restriction{type(planeswalker|mybattlefield)~morethan~1}:all(trigger) transforms((,newability[may moveto(ownerhand) notatarget(other planeswalker|mybattlefield)]))
+text=Whenever a nonartifact permanent enters the battlefield under your control, you may return another permanent you control that shares a card type with it to its owner's hand.
+mana={3}
+type=Artifact
+[/card]
+[card]
 name=Clout of the Dominus
 target=creature
 auto=teach(creature[blue]) 1/1
@@ -15132,6 +15155,19 @@ type=Creature
 subtype=Boar Beast
 power=4
 toughness=4
+[/card]
+[card]
+name=Coalition Relic
+auto={T}:add{G}
+auto={T}:add{R}
+auto={T}:add{U}
+auto={T}:add{B}
+auto={T}:add{W}
+auto={T}:counter(0/0,1,Charge)
+auto=@each my firstmain turnlimited:thisforeach(counter{0/0.1.Charge}) ability$! choice add{G} _ choice add{R} _ choice add{U} _ choice add{B} _ choice add{W} !$ controller && removeallcounters(0/0,1,Charge)
+text={T}: Add one mana of any color to your mana pool. -- {T}: Put a charge counter on Coalition Relic. -- At the beginning of your precombat main phase, remove all charge counters from Coalition Relic. Add one mana of any color to your mana pool for each counter removed this way.
+mana={3}
+type=Artifact
 [/card]
 [card]
 name=Coalition Victory
@@ -15475,6 +15511,14 @@ subtype=Human
 power=1
 toughness=1
 color=white
+[/card]
+[card]
+name=Commando Raid
+target=creature|mybattlefield
+auto=transforms((,newability[@combatdamaged(opponent) from(this):may dynamicability<!powerstrike!> target(creature|opponentbattlefield)])) ueot
+text=Until end of turn, target creature you control gains "When this creature deals combat damage to a player, you may have it deal damage equal to its power to target creature that player controls."
+mana={2}{R}
+type=Instant
 [/card]
 [card]
 name=Common Bond
@@ -16039,6 +16083,14 @@ subtype=Angel
 power=2
 toughness=2
 [/card]
+#the this cantargetcard -artifact is to prevent retriggering copy ability if Copy Artifact copied an equipment and activates equip.
+[card]
+name=Copy Artifact
+auto=this(cantargetcard(*[-artifact])) may copy notatarget(artifact)
+text=You may have Copy Artifact enter the battlefield as a copy of any artifact on the battlefield. It's still an enchantment.
+mana={1}{U}
+type=Enchantment
+[/card]
 [card]
 name=Coral Atoll
 auto=tap
@@ -16138,6 +16190,13 @@ type=Artifact Creature
 subtype=Myr
 power=1
 toughness=1
+[/card]
+[card]
+name=Cornered Market
+auto=lord(*[-basic;-token]|battlefield) transforms((,newability[maxCast(*[share!name!])0 controller],newability[maxCast(*[share!name!])0 opponent]))
+text=Players can't cast spells with the same name as a nontoken permanent. -- Players can't play nonbasic lands with the same name as a nontoken permanent.
+mana={2}{W}
+type=Enchantment
 [/card]
 [card]
 name=Corpse Connoisseur
@@ -16478,6 +16537,15 @@ power=4
 toughness=4
 [/card]
 [card]
+name=Crack the Earth
+auto=sacrifice notatarget(*|mybattlefield)
+auto=ability$! sacrifice notatarget(*|mybattlefield) !$ opponent
+text=Each player sacrifices a permanent.
+mana={R}
+type=Sorcery
+subtype=Arcane
+[/card]
+[card]
 name=Crackdown
 auto=lord(creature[power>=3;-white]) doesnotuntap
 text=Nonwhite creatures with power 3 or greater don't untap during their controllers' untap steps.
@@ -16542,6 +16610,17 @@ mana={UR}{UR}{UR}
 type=Creature
 subtype=Shapeshifter
 power=2
+toughness=4
+[/card]
+[card]
+name=Crag Saurian
+auto=@damaged(this) from(*|opponentstack,opponentbattlefield,opponentgraveyard):name(change controller) moveto(opponentbattlefield)
+auto=@damaged(this) from(*|mystack,mybattlefield,mygraveyard):name(change controller) moveto(mybattlefield)
+text=Whenever a source deals damage to Crag Saurian, that source's controller gains control of Crag Saurian.
+mana={R}{R}{R}
+type=Creature
+subtype=Lizard
+power=4
 toughness=4
 [/card]
 [card]
@@ -16808,6 +16887,15 @@ type=Artifact Creature
 subtype=Wall
 power=0
 toughness=4
+[/card]
+[card]
+name=Crescendo of War
+auto=@each upkeep:counter(0/0,1,Strife)
+auto=thisforeach(counter{0/0.1.Strife}) lord(creature[attacking])  1/0
+auto=thisforeach(counter{0/0.1.Strife}) lord(creature[blocking]|mybattlefield) 1/0
+mana={3}{W}
+type=Enchantment
+text=At the beginning of each upkeep, put a strife counter on Crescendo of War. Attacking creatures get +1/+0 for each strife counter on Crescendo of War. Blocking creatures you control get +1/+0 for each strife counter on Crescendo of War.
 [/card]
 [card]
 name=Crevasse
@@ -17369,6 +17457,20 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Crypt Champion
+abilities=double strike
+other={2}{R}{B} name(Spend R to Cast)
+auto=moveto(ownerbattlefield) notatarget(creature[manacost<=3]|mygraveyard)
+auto=ability$! moveto(ownerbattlefield) notatarget(creature[manacost<=3]|mygraveyard) !$ opponent
+auto=ifnot paid(alternative) then sacrifice all(this)
+text=Double strike -- When Crypt Champion enters the battlefield, each player puts a creature card with converted mana cost 3 or less from his or her graveyard onto the battlefield. -- When Crypt Champion enters the battlefield, sacrifice it unless {R} was spent to cast it.
+mana={3}{B}
+type=Creature
+subtype=Zombie
+power=2
+toughness=2
+[/card]
+[card]
 name=Crypt Cobra
 auto=@combat(notblocked) source(this):alterpoison:1 opponent
 text=Whenever Crypt Cobra attacks and isn't blocked, defending player gets a poison counter. (A player with ten or more poison counters loses the game.)
@@ -17640,6 +17742,14 @@ type=Creature
 subtype=Human Wizard
 power=1
 toughness=3
+[/card]
+[card]
+name=Curfew
+auto=moveto(ownerhand) notatarget(creature|mybattlefield)
+auto=ability$! moveto(ownerhand) notatarget(creature|mybattlefield) !$ opponent
+text=Each player returns a creature he or she controls to its owner's hand.
+mana={U}
+type=Instant
 [/card]
 [card]
 name=Curiosity
@@ -18077,6 +18187,17 @@ auto=lord(creature) onlymanaability
 text=Activated abilities of artifacts and creatures can't be activated unless they're mana abilities.
 mana={3}
 type=Artifact
+[/card]
+#modified effect to 2/1 because the alias came from Animate Dead -1/0, to make it 1/1.
+[card]
+name=Dance of the Dead
+target=creature|graveyard
+alias=1143
+auto=teach(creature) transforms((,newability[2/1],newability[tap],newability[doesnotuntap],newability[{1}{B}:untap limit:1 myUpkeepOnly]))
+text=Enchant creature card in a graveyard -- When Dance of the Dead enters the battlefield, if it's on the battlefield, it loses "enchant creature card in a graveyard" and gains "enchant creature put onto the battlefield with Dance of the Dead." Return enchanted creature card to the battlefield tapped under your control and attach Dance of the Dead to it. When Dance of the Dead leaves the battlefield, that creature's controller sacrifices it. -- Enchanted creature gets +1/+1 and doesn't untap during its controller's untap step. -- At the beginning of the upkeep of enchanted creature's controller, that player may pay {1}{B}. If he or she does, untap that creature.
+mana={1}{B}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 name=Dance of Shadows
@@ -32909,19 +33030,13 @@ text=Target player puts the top ten cards of his or her library into his or her 
 mana={U}{B}
 type=Sorcery
 [/card]
+#emblem ueot removes the effect, the ability acts an observer
 [card]
 name=Glimpse of Nature
-auto=token(-752411111)
+auto=emblem transforms((,newability[@movedTo(creature|mystack):draw:1 controller])) ueot
 text=Whenever you cast a creature spell this turn, draw a card.
 mana={G}
 type=Sorcery
-[/card]
-[card]
-name=Glimpse of Nature's Draw
-auto=@movedTo(creature|mystack):draw:1
-auto=@next endofturn:moveto(exile)
-type=Nothing
-id=-752411111
 [/card]
 [card]
 name=Glint-Eye Nephilim
@@ -40431,6 +40546,17 @@ text=Radiance - Until end of turn, target creature and each other creature that 
 mana={2}{R}
 type=Sorcery
 [/card]
+#must target a player before hand, what if both players have shroud....
+[card]
+name=Incite War
+other={4}{R} name(Entwine)
+target=player
+auto=if paid(alternative) then all(creature|targetedpersonsbattlefield) mustattack && all(creature|mybattlefield) first strike
+auto=ifnot paid(alternative) then transforms((,newability[choice all(creature|targetedpersonsbattlefield) mustattack],newability[choice all(creature|mybattlefield) first strike]))
+text=Choose one - Creatures target player controls attack this turn if able; or creatures you control gain first strike until end of turn. -- Entwine {2} (Choose both if you pay the entwine cost.)
+mana={2}{R}
+type=Instant
+[/card]
 [card]
 name=Increasing Confusion
 target=player
@@ -42432,6 +42558,15 @@ type=Creature
 subtype=Giant
 power=3
 toughness=3
+[/card]
+[card]
+name=Journey of Discovery
+other={4}{G}{G} name(Entwine)
+auto=if paid(alternative) then transforms((,newability[notatarget(<upto:2>land[basic]|mylibrary) moveto(ownerhand)],newability[maxPlay(land)+2]))
+auto=ifnot paid(alternative) then transforms((,newability[choice name(fetch 2 basic lands to hand) notatarget(<upto:2>land[basic]|mylibrary) moveto(ownerhand)],newability[choice name(can play 2 additional lands) maxPlay(land)+2 controller]))
+text=Choose one - Search your library for up to two basic land cards, reveal them, put them into your hand, then shuffle your library; or you may play up to two additional lands this turn. -- Entwine {2}{G} (Choose both if you pay the entwine cost.)
+mana={2}{G}
+type=Sorcery
 [/card]
 [card]
 name=Journey to Nowhere
@@ -47451,7 +47586,7 @@ name=Liliana of the Dark Realms
 auto=counter(0/0,3,loyalty)
 auto={C(0/0,1,Loyalty)}:name(fetch) moveTo(hand) target(swamp|myLibrary)
 auto={C(0/0,-3,Loyalty)}:name(choose) ability$!choice name(+X/+X) target(creature) type:land:mybattlefield/type:land:mybattlefield ueot _ choice name(-X/-X) target(creature) -type:land:mybattlefield/-type:land:mybattlefield ueot!$ controller
-auto={C(0/0,-6,Loyalty)}:name(emblem) emblem lord(swamp|mybattlefield) {T}:{B}{B}{B}{B} dontremove
+auto={C(0/0,-6,Loyalty)}:name(emblem) emblem transforms((,newability[lord(swamp|mybattlefield) {T}:{B}{B}{B}{B}])) dontremove
 text=+1: Search your library for a Swamp card, reveal it, and put it into your hand. Then shuffle your library. -- -3: Target creature gets +X/+X or -X/-X until end of turn, where X is the number of Swamps you control. -- -6: You get an emblem with "Swamps you control have '{T}: Add {B}{B}{B}{B} to your mana pool.'"
 mana={2}{B}{B}
 type=Planeswalker
@@ -57597,22 +57732,12 @@ toughness=4
 [/card]
 [card]
 name=One Dozen Eyes
-kicker={G}{G}{G}
-auto=kicker token(-483851111)
-auto=may token(-4838511)
-auto=may token(-4838512)*5
+other={5}{G}{G}{G}{G} name(Entwine)
+auto=if paid(alternative) then token(-4838511) && token(-4838512)*5
+auto=ifnot paid(alternative) then transforms((,newability[choice token(-4838511)],newability[choice token(-4838512)*5]))
 text=Choose one - Put a 5/5 green Beast creature token onto the battlefield; or put five 1/1 green Insect creature tokens onto the battlefield. -- Entwine {G}{G}{G} (Choose both if you pay the entwine cost.)
 mana={5}{G}
 type=Sorcery
-[/card]
-[card]
-name=One Dozen Eyes Entwine
-auto=counter(0/0,1,Entwine)
-auto=@movedTo(insect|mybattlefield):thisforeach(counter{0/0.1.Entwine}>0) token(-4838511) && counter(0/0,-1,Entwine) && counter(0/0,1,Bury)
-auto=@movedTo(beast|mybattlefield):thisforeach(counter{0/0.1.Entwine}>0) token(-4838512)*5 && counter(0/0,-1,Entwine) && counter(0/0,1,Bury)
-auto=thisforeach(counter{0/0.1.Bury}>0) bury
-id=-483851111
-type=Nothing
 [/card]
 [card]
 name=Beast
@@ -62640,6 +62765,15 @@ mana={2}{W}
 type=Enchantment
 [/card]
 [card]
+name=Promise of Power
+other={6}{B}{B}{B} name(Entwine)
+auto=if paid(alternative) then draw:5 controller && life:-5 controller && token(Demon,Creature Demon,phandcount/phandcount,flying,black)
+auto=ifnot paid(alternative) then ability$! choice name(draw five) draw:5 controller && life:-5 controller _ choice token(Demon,Creature Demon,phandcount/phandcount,flying,black) !$ controller
+text=Choose one - You draw five cards and you lose 5 life; or put an X/X black Demon creature token with flying onto the battlefield, where X is the number of cards in your hand as the token enters the battlefield. -- Entwine {4} (Choose both if you pay the entwine cost.)
+mana={2}{B}{B}{B}
+type=Sorcery
+[/card]
+[card]
 name=Promised Kannushi
 auto=@movedTo(this|mygraveyard) from(myBattlefield):may moveTo(myhand) target(other spirit[manacost<=7]|mygraveyard)
 text=Soulshift 7 (When this dies, you may return target Spirit card with converted mana cost 7 or less from your graveyard to your hand.)
@@ -66617,11 +66751,16 @@ subtype=Spirit
 power=*
 toughness=*
 [/card]
+#previous code does not work for revenant patriach, modified to opponent only.
 [card]
 name=Revenant Patriarch
 abilities=cantblock
 other={3}{W}{B} name(Spend W to Cast)
-auto=alternative nextphasealter(remove,combatbegins,targetedplayer) && nextphasealter(remove,combatattackers,targetedplayer) && alternative nextphasealter(remove,combatblockers,targetedplayer) && nextphasealter(remove,combatdamage,targetedplayer) && nextphasealter(remove,combatends,targetedplayer)
+auto=alternative nextphasealter(remove,combatbegins,opponent) oneshot
+auto=alternative nextphasealter(remove,combatattackers,opponent) oneshot
+auto=alternative nextphasealter(remove,combatblockers,opponent) oneshot
+auto=alternative nextphasealter(remove,combatdamage,opponent) oneshot
+auto=alternative nextphasealter(remove,combatends,opponent) oneshot
 text=When Revenant Patriarch enters the battlefield, if {W} was spent to cast Revenant Patriarch, target player skips his or her next combat phase. -- Revenant Patriarch can't block.
 mana={4}{B}
 type=Creature
@@ -67531,6 +67670,15 @@ power=2
 toughness=1
 [/card]
 [card]
+name=Roar of the Kha
+other={2}{W}{W} name(Entwine)
+auto=if paid(alternative) then all(creature|mybattlefield) 1/1 ueot && untap all(creature|mybattlefield)
+auto=ifnot paid(alternative) then ability$! choice all(creature|mybattlefield) 1/1 ueot _ choice untap all(creature|mybattlefield) !$ controller
+text=Choose one - Creatures you control get +1/+1 until end of turn; or untap all creatures you control. -- Entwine {1}{W} (Choose both if you pay the entwine cost.)
+mana={1}{W}
+type=Instant
+[/card]
+[card]
 name=Roar of Reclamation
 auto=moveTo(mybattlefield) all(artifact|mygraveyard)
 auto=moveTo(opponentbattlefield) all(artifact|opponentgraveyard)
@@ -68278,6 +68426,15 @@ auto=lord(*[red]|myhand) altercost(colorless,-1)
 text=Red spells you cast cost {1} less to cast.
 mana={2}
 type=Artifact
+[/card]
+[card]
+name=Rude Awakening
+other={6}{G}{G} name(Entwine)
+auto=if paid(alternative) then all(land|mybattlefield) untap && all(land|mybattlefield) becomes(Creature,2/2) ueot
+auto=ifnot paid(alternative) then ability$! choice name(untap lands) all(land|mybattlefield) untap _ choice name(animate lands) all(land|mybattlefield) becomes(Creature,2/2) ueot !$ controller
+text=Choose one - Untap all lands you control; or until end of turn, lands you control become 2/2 creatures that are still lands. -- Entwine {2}{G} (Choose both if you pay the entwine cost.)
+mana={4}{G}
+type=Sorcery
 [/card]
 [card]
 name=Rugged Prairie
@@ -69693,6 +69850,17 @@ subtype=Saproling
 power=1
 toughness=1
 color=green
+[/card]
+[card]
+name=Savage Beating
+restriction=during battle
+otherrestriction=during battle
+other={4}{R}{R}{R} name(Entwine)
+auto=if paid(alternative) then all(creature|mybattlefield) double strike ueot && all(creature|mybattlefield) untap && nextphasealter(add,combatphases,controller,after<combatends>) oneshot
+auto=ifnot paid(alternative) then ability$! choice all(creature|mybattlefield) double strike ueot _ choice name(extra combat) all(creature|mybattlefield) untap && nextphasealter(add,combatphases,controller,after<combatends>) oneshot !$ controller
+text=Cast Savage Beating only during your turn and only during combat. -- Choose one - Creatures you control gain double strike until end of turn; or untap all creatures you control and after this phase, there is an additional combat phase. -- Entwine {1}{R} (Choose both if you pay the entwine cost.)
+mana={3}{R}{R}
+type=Instant
 [/card]
 [card]
 name=Savage Conception
@@ -71296,7 +71464,7 @@ type=Sorcery
 [card]
 name=Seed Spark
 target=artifact,enchantment
-other={2}{G}{W} name(Spend W to cast)
+other={2}{G}{W} name(Spend G to cast)
 auto=destroy
 auto=alternative token(Saproling,Creature Saproling,1/1,green)*2
 text=Destroy target artifact or enchantment. If {G} was spent to cast Seed Spark, put two 1/1 green Saproling creature tokens onto the battlefield.
@@ -76396,6 +76564,15 @@ mana={3}{R}
 type=Instant
 [/card]
 [card]
+name=Solar Tide
+other={4}{W}{W}{S(land|mybattlefield)}{S(land|mybattlefield)} name(Entwine)
+auto=if paid(alternative) then destroy all(creature[power<=2]) && destroy all(creature[power>=3])
+auto=ifnot paid(alternative) then transforms((,newability[choice name(destroy all creature power <= 2) destroy all(creature[power<=2])],newability[choice name(destroy all creature power >= 3) destroy all(creature[power>=3])]))
+text=Choose one - Destroy all creatures with power 2 or less; or destroy all creatures with power 3 or greater. -- Entwine - Sacrifice two lands. (Choose both if you pay the entwine cost.)
+mana={4}{W}{W}
+type=Sorcery
+[/card]
+[card]
 name=Solarion
 abilities=sunburst
 auto={T}:thisforeach(counter{1/1.1}) counter(1/1,1)
@@ -79806,6 +79983,16 @@ auto=moveto(mybattlefield) target(creature[manacost <=X]|mygraveyard)
 text=Return target creature card with converted mana cost X or less from your graveyard to the battlefield.
 mana={X}{B}
 type=Sorcery
+[/card]
+#no spiritlink defined in mtgdefinitions.cpp maybe due to stacking issue its removed, maybe spiritlinker keyword that points to spiritlink...
+[card]
+name=Stir the Pride
+other={5}{W}{W} name(Entwine)
+auto=if paid(alternative) then all(creature|mybattlefield) 2/2 ueot && all(creature|mybattlefield) transforms((,newability[spiritlink])) ueot
+auto=ifnot paid(alternative) then ability$! choice name(+2/+2) all(creature|mybattlefield) 2/2 ueot _ choice name(spiritlink) all(creature|mybattlefield) lifelink ueot !$ controller
+text=Choose one - Creatures you control get +2/+2 until end of turn; or until end of turn, creatures you control gain "Whenever this creature deals damage, you gain that much life." -- Entwine {1}{W} (Choose both if you pay the entwine cost.)
+mana={4}{W}
+type=Instant
 [/card]
 [card]
 name=Stirring Wildwood
@@ -83411,6 +83598,15 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Temporal Cascade
+other={7}{U}{U} name(Entwine)
+auto=if paid(alternative) then moveto(ownerlibrary) and!(shuffle)! all(*|hand,graveyard) && draw:7 all(player)
+auto=ifnot paid(alternative) then ability$! choice name(shuffle all hand & graveyard) moveto(ownerlibrary) and!(shuffle)! all(*|hand,graveyard) _ choice name(draw seven all players) draw:7 all(player) !$ controller
+text=Choose one - Each player shuffles his or her hand and graveyard into his or her library; or each player draws seven cards. -- Entwine {2} (Choose both if you pay the entwine cost.)
+mana={5}{U}{U}
+type=Sorcery
+[/card]
+[card]
 name=Temporal Distortion
 auto=@tapped(creature,land):all(trigger) counter(0/0,1,Hourglass)
 auto=lord(creature[counter{0/0.1.Hourglass}]) doesnotuntap
@@ -85885,6 +86081,15 @@ auto={S(creature|myBattlefield)}{S(creature|myBattlefield)}:token(Carnivore,Crea
 text=Sacrifice two creatures: Put a 3/1 red Beast creature token named Carnivore onto the battlefield.
 mana={3}{R}
 type=Enchantment
+[/card]
+[card]
+name=Tooth and Nail
+other={7}{G}{G} name(Entwine)
+auto=if paid(alternative) then moveto(ownerhand) notatarget(<upto:2>creature|mylibrary) and!( moveto(ownerbattlefield) notatarget(<upto:2>creature|myhand) )!
+auto=ifnot paid(alternative) then transforms((,newability[choice name(fetch) notatarget(<upto:2>creature|mylibrary) moveto(ownerhand)],newability[choice name(put in play) notatarget(<upto:2>creature|myhand) moveto(ownerbattlefield)]))
+text=Choose one - Search your library for up to two creature cards, reveal them, put them into your hand, then shuffle your library; or put up to two creature cards from your hand onto the battlefield. -- Entwine {2} (Choose both if you pay the entwine cost.)
+mana={5}{G}{G}
+type=Sorcery
 [/card]
 [card]
 name=Tooth of Chiss-Goria
@@ -92064,6 +92269,15 @@ type=Creature
 subtype=Plant Zombie
 power=3
 toughness=3
+[/card]
+[card]
+name=Wail of the Nim
+other={2}{B}{B} name(Entwine)
+auto=if paid(alternative) then regenerate all(creature|mybattlefield) && damage:1 all(creature,player)
+auto=ifnot paid(alternative) then transforms((,newability[choice regenerate all(creature|mybattlefield)],newability[choice damage:1 all(creature;player)]))
+text=Choose one - Regenerate each creature you control; or Wail of the Nim deals 1 damage to each creature and each player. -- Entwine {B} (Choose both if you pay the entwine cost.)
+mana={2}{B}
+type=Instant
 [/card]
 [card]
 name=Waiting in the Weeds

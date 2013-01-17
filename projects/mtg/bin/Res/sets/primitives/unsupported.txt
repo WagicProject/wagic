@@ -2668,18 +2668,6 @@ mana={1}{W}
 type=Enchantment
 [/card]
 [card]
-name=Circle of Protection: Shadow
-text={1}: The next time a creature of your choice with shadow would deal damage to you this turn, prevent that damage.
-mana={1}{W}
-type=Enchantment
-[/card]
-[card]
-name=Circle of Solace
-text=As Circle of Solace enters the battlefield, choose a creature type. -- {1}{W}: The next time a creature of the chosen type would deal damage to you this turn, prevent that damage.
-mana={3}{W}
-type=Enchantment
-[/card]
-[card]
 name=Circling Vultures
 text=Flying -- You may discard Circling Vultures any time you could cast an instant. -- At the beginning of your upkeep, sacrifice Circling Vultures unless you exile the top creature card of your graveyard.
 mana={B}
@@ -2802,12 +2790,6 @@ toughness=2
 text=Imprint — When Clone Shell enters the battlefield, look at the top four cards of your library, exile one face down, then put the rest on the bottom of your library in any order. When Clone Shell dies, turn the exiled card face up. If it's a creature card, put it onto the battlefield under your control.
 [/card]
 [card]
-name=Cloudstone Curio
-text=Whenever a nonartifact permanent enters the battlefield under your control, you may return another permanent you control that shares a card type with it to its owner's hand.
-mana={3}
-type=Artifact
-[/card]
-[card]
 name=Cloven Casting
 text=Whenever you cast a multicolored instant or sorcery spell, you may pay {1}. If you do, copy that spell. You may choose new targets for the copy.
 mana={5}{U}{R}
@@ -2828,12 +2810,6 @@ type=Creature
 subtype=Human Flagbearer
 power=2
 toughness=4
-[/card]
-[card]
-name=Coalition Relic
-text={T}: Add one mana of any color to your mana pool. -- {T}: Put a charge counter on Coalition Relic. -- At the beginning of your precombat main phase, remove all charge counters from Coalition Relic. Add one mana of any color to your mana pool for each counter removed this way.
-mana={3}
-type=Artifact
 [/card]
 [card]
 name=Coat of Arms
@@ -2928,12 +2904,6 @@ text={T}: Add to your mana pool one mana of any color in your commander's color 
 name=Commandeer
 text=You may exile two blue cards from your hand rather than pay Commandeer's mana cost. -- Gain control of target noncreature spell. You may choose new targets for it. (If that spell is an artifact, enchantment, or planeswalker, the permanent enters the battlefield under your control.)
 mana={5}{U}{U}
-type=Instant
-[/card]
-[card]
-name=Commando Raid
-text=Until end of turn, target creature you control gains "When this creature deals combat damage to a player, you may have it deal damage equal to its power to target creature that player controls."
-mana={2}{R}
 type=Instant
 [/card]
 [card]
@@ -3115,12 +3085,6 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-name=Copy Artifact
-text=You may have Copy Artifact enter the battlefield as a copy of any artifact on the battlefield. It's still an enchantment.
-mana={1}{U}
-type=Enchantment
-[/card]
-[card]
 name=Copy Enchantment
 auto=may copy target(enchantment)
 # Following line does not work: If copying an aura, the copied
@@ -3137,12 +3101,6 @@ type=Creature
 subtype=Merfolk Soldier
 power=1
 toughness=1
-[/card]
-[card]
-name=Cornered Market
-text=Players can't cast spells with the same name as a nontoken permanent. -- Players can't play nonbasic lands with the same name as a nontoken permanent.
-mana={2}{W}
-type=Enchantment
 [/card]
 [card]
 name=Corpse Dance
@@ -3264,26 +3222,10 @@ subtype=Aura
 text=Enchant creature {2}{U}: Untap enchanted creature. Totem armor (If enchanted creature would be destroyed, instead remove all damage from it and destroy this Aura.)
 [/card]
 [card]
-name=Crack the Earth
-text=Each player sacrifices a permanent.
-mana={R}
-type=Sorcery
-subtype=Arcane
-[/card]
-[card]
 name=Cradle of Vitality
 text=Whenever you gain life, you may pay {1}{W}. If you do, put a +1/+1 counter on target creature for each 1 life you gained.
 mana={3}{W}
 type=Enchantment
-[/card]
-[card]
-name=Crag Saurian
-text=Whenever a source deals damage to Crag Saurian, that source's controller gains control of Crag Saurian.
-mana={R}{R}{R}
-type=Creature
-subtype=Lizard
-power=4
-toughness=4
 [/card]
 [card]
 name=Cragganwick Cremator
@@ -3338,12 +3280,6 @@ type=Creature — Beast
 power=3
 toughness=3
 text=Gotcha Whenever an opponent says "Creature" or "Guy," you may say "Gotcha" If you do, return Creature Guy from your graveyard to your hand.
-[/card]
-[card]
-name=Crescendo of War
-mana={3}{W}
-type=Enchantment
-text=At the beginning of each upkeep, put a strife counter on Crescendo of War. Attacking creatures get +1/+0 for each strife counter on Crescendo of War. Blocking creatures you control get +1/+0 for each strife counter on Crescendo of War.
 [/card]
 [card]
 name=Crested Craghorn
@@ -3440,15 +3376,6 @@ mana={B}
 type=Sorcery
 [/card]
 [card]
-name=Crypt Champion
-text=Double strike -- When Crypt Champion enters the battlefield, each player puts a creature card with converted mana cost 3 or less from his or her graveyard onto the battlefield. -- When Crypt Champion enters the battlefield, sacrifice it unless {R} was spent to cast it.
-mana={3}{B}
-type=Creature
-subtype=Zombie
-power=2
-toughness=2
-[/card]
-[card]
 name=Cryptic Annelid
 text=When Cryptic Annelid enters the battlefield, scry 1, then scry 2, then scry 3. (To scry X, look at the top X cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)
 mana={3}{U}
@@ -3515,12 +3442,6 @@ type=Sorcery
 name=Cunning Wish
 text=You may choose an instant card you own from outside the game, reveal that card, and put it into your hand. Exile Cunning Wish.
 mana={2}{U}
-type=Instant
-[/card]
-[card]
-name=Curfew
-text=Each player returns a creature he or she controls to its owner's hand.
-mana={U}
 type=Instant
 [/card]
 [card]
@@ -3657,19 +3578,6 @@ name=Dance of Many
 text=When Dance of Many enters the battlefield, put a token that's a copy of target nontoken creature onto the battlefield. -- When Dance of Many leaves the battlefield, exile the token. -- When the token leaves the battlefield, sacrifice Dance of Many. -- At the beginning of your upkeep, sacrifice Dance of Many unless you pay {U}{U}.
 mana={U}{U}
 type=Enchantment
-[/card]
-[card]
-###Had to be removed. Does not work! (0.13.1)
-name=Dance of the Dead
-target=creature|graveyard
-auto=1/1
-auto=tap
-auto=doesnotuntap
-auto={1}{B}:untap limit:1 myUpkeepOnly
-text=Enchant creature card in a graveyard -- When Dance of the Dead enters the battlefield, if it's on the battlefield, it loses "enchant creature card in a graveyard" and gains "enchant creature put onto the battlefield with Dance of the Dead." Return enchanted creature card to the battlefield tapped under your control and attach Dance of the Dead to it. When Dance of the Dead leaves the battlefield, that creature's controller sacrifices it. -- Enchanted creature gets +1/+1 and doesn't untap during its controller's untap step. -- At the beginning of the upkeep of enchanted creature's controller, that player may pay {1}{B}. If he or she does, untap that creature.
-mana={1}{B}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
 name=Darigaaz, the Igniter
@@ -8648,12 +8556,6 @@ mana={3}{R}{R}
 type=Sorcery
 [/card]
 [card]
-name=Incite War
-text=Choose one - Creatures target player controls attack this turn if able; or creatures you control gain first strike until end of turn. -- Entwine {2} (Choose both if you pay the entwine cost.)
-mana={2}{R}
-type=Instant
-[/card]
-[card]
 name=Incoming!
 mana={4}{G}{G}{G}{G}
 type=Sorcery
@@ -9261,12 +9163,6 @@ type=Creature
 subtype=Giant Soldier
 power=4
 toughness=4
-[/card]
-[card]
-name=Journey of Discovery
-text=Choose one - Search your library for up to two basic land cards, reveal them, put them into your hand, then shuffle your library; or you may play up to two additional lands this turn. -- Entwine {2}{G} (Choose both if you pay the entwine cost.)
-mana={2}{G}
-type=Sorcery
 [/card]
 [card]
 name=Judge's Familiar
@@ -14174,12 +14070,6 @@ mana={1}{U}
 type=Instant
 [/card]
 [card]
-name=Promise of Power
-text=Choose one - You draw five cards and you lose 5 life; or put an X/X black Demon creature token with flying onto the battlefield, where X is the number of cards in your hand as the token enters the battlefield. -- Entwine {4} (Choose both if you pay the entwine cost.)
-mana={2}{B}{B}{B}
-type=Sorcery
-[/card]
-[card]
 name=Propaganda
 auto=lord(creature|opponentBattlefield) cantattack
 auto=lord(creature|opponentBattlefield) {2}:-cantattack
@@ -15617,12 +15507,6 @@ type=Instant
 subtype=Arcane
 [/card]
 [card]
-name=Roar of the Kha
-text=Choose one - Creatures you control get +1/+1 until end of turn; or untap all creatures you control. -- Entwine {1}{W} (Choose both if you pay the entwine cost.)
-mana={1}{W}
-type=Instant
-[/card]
-[card]
 name=Rock Jockey
 text=You can't cast Rock Jockey if you've played a land this turn. -- You can't play lands if you've cast Rock Jockey this turn.
 mana={2}{R}
@@ -15814,12 +15698,6 @@ type=Legendary Creature
 subtype=Faerie
 power=2
 toughness=3
-[/card]
-[card]
-name=Rude Awakening
-text=Choose one - Untap all lands you control; or until end of turn, lands you control become 2/2 creatures that are still lands. -- Entwine {2}{G} (Choose both if you pay the entwine cost.)
-mana={4}{G}
-type=Sorcery
 [/card]
 [card]
 name=Ruham Djinn
@@ -16240,12 +16118,6 @@ type=Creature
 subtype=Elf
 power=1
 toughness=1
-[/card]
-[card]
-name=Savage Beating
-text=Cast Savage Beating only during your turn and only during combat. -- Choose one - Creatures you control gain double strike until end of turn; or untap all creatures you control and after this phase, there is an additional combat phase. -- Entwine {1}{R} (Choose both if you pay the entwine cost.)
-mana={3}{R}{R}
-type=Instant
 [/card]
 [card]
 name=Save Life
@@ -17494,12 +17366,6 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-name=Solar Tide
-text=Choose one - Destroy all creatures with power 2 or less; or destroy all creatures with power 3 or greater. -- Entwine - Sacrifice two lands. (Choose both if you pay the entwine cost.)
-mana={4}{W}{W}
-type=Sorcery
-[/card]
-[card]
 name=Soldevi Adnate
 text={T}, Sacrifice a black or artifact creature: Add an amount of black mana equal to the sacrificed creature's converted mana cost to your mana pool.
 mana={1}{B}
@@ -18406,12 +18272,6 @@ power=1
 toughness=2
 [/card]
 [card]
-name=Stir the Pride
-text=Choose one - Creatures you control get +2/+2 until end of turn; or until end of turn, creatures you control gain "Whenever this creature deals damage, you gain that much life." -- Entwine {1}{W} (Choose both if you pay the entwine cost.)
-mana={4}{W}
-type=Instant
-[/card]
-[card]
 name=Stoic Angel
 text=Flying, vigilance -- Players can't untap more than one creature during their untap steps.
 mana={1}{G}{W}{U}
@@ -19279,12 +19139,6 @@ mana={2}
 type=Artifact
 [/card]
 [card]
-name=Temporal Cascade
-text=Choose one - Each player shuffles his or her hand and graveyard into his or her library; or each player draws seven cards. -- Entwine {2} (Choose both if you pay the entwine cost.)
-mana={5}{U}{U}
-type=Sorcery
-[/card]
-[card]
 name=Temporal Extortion
 text=When you cast Temporal Extortion, any player may pay half his or her life, rounded up. If a player does, counter Temporal Extortion. -- Take an extra turn after this one.
 mana={B}{B}{B}{B}
@@ -19871,12 +19725,6 @@ type=Legendary Creature
 subtype=Spirit
 power=1
 toughness=5
-[/card]
-[card]
-name=Tooth and Nail
-text=Choose one - Search your library for up to two creature cards, reveal them, put them into your hand, then shuffle your library; or put up to two creature cards from your hand onto the battlefield. -- Entwine {2} (Choose both if you pay the entwine cost.)
-mana={5}{G}{G}
-type=Sorcery
 [/card]
 [card]
 name=Topsy Turvy
@@ -20955,12 +20803,6 @@ subtype=Praetor
 power=7
 toughness=6
 text=Trample Whenever you tap a land for mana, add one mana to your mana pool of any type that land produced. Whenever an opponent taps a land for mana, that land doesn't untap during its controller's next untap step.
-[/card]
-[card]
-name=Wail of the Nim
-text=Choose one - Regenerate each creature you control; or Wail of the Nim deals 1 damage to each creature and each player. -- Entwine {B} (Choose both if you pay the entwine cost.)
-mana={2}{B}
-type=Instant
 [/card]
 [card]
 name=Wall of Caltrops
