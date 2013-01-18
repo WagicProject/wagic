@@ -344,6 +344,18 @@ private:
         {
             intValue = target->controller()->handsize;
         }
+        else if (s == "controllerturn")//intvalue = 1 if its your turn this(variable{controllerturn})
+        {
+            intValue = 0;
+            if ( target->controller() == target->getObserver()->currentPlayer)
+                intValue = 1;
+        }
+        else if (s == "opponentturn")//intvalue = 1 if its your turn this(variable{opponentturn})
+        {
+            intValue = 0;
+            if ( target->controller()->opponent() == target->getObserver()->currentPlayer)
+                intValue = 1;
+        }
         else if (s == "phandcount")
         {
             intValue = target->controller()->game->hand->nb_cards;
