@@ -164,6 +164,17 @@ private:
             }
             SAFE_DELETE(tc);
         }
+        else if (s.find("restriction{") != string::npos)
+        {
+            vector<string> splitRest = parseBetween(s,"restriction{","}");
+            if (splitRest.size())
+            {
+                AbilityFactory abf(target->getObserver());
+                int checkCond = abf.parseCastRestrictions(target,target->controller(),splitRest[1].c_str());
+                if(checkCond)
+                    intValue = 1;
+            }
+        }
         else if (s.find("counter{") != string::npos)
         {
             intValue = 0;
