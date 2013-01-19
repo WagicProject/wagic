@@ -356,7 +356,7 @@ toughness=1
 name=Abundant Growth
 target=land
 auto=draw:1 controller
-auto=teach(land) {T}:activatechooseacolor add{chosencolor} activatechooseend
+auto=teach(land) transforms((,newability[{T}:activatechooseacolor add{chosencolor} activatechooseend]))
 text=Enchant land -- When Abundant Growth enters the battlefield, draw a card. -- Enchanted land has "{T}: Add one mana of any color to your mana pool."
 mana={G}
 type=Enchantment
@@ -14375,6 +14375,16 @@ auto={T}:thisforeach(counter{0/0.1.Storage}) Add{1}
 type=Land
 [/card]
 [card]
+name=City of Solitude
+auto=this(variable{controllerturn}) maxCast(*)0 opponent
+auto=this(variable{controllerturn}) lord(*|opponentbattlefield) noactivatedability
+auto=this(variable{opponentturn}) maxCast(*)0 controller
+auto=this(variable{opponentturn}) lord(*|mybattlefield) noactivatedability
+text=Players can cast spells and activate abilities only during their own turns.
+mana={2}{G}
+type=Enchantment
+[/card]
+[card]
 name=City of Traitors
 auto=@movedTo(land|mybattlefield) from(myhand):bury
 auto={T}:Add {2}
@@ -20652,6 +20662,14 @@ mana={1}{W}{U}
 type=Enchantment
 [/card]
 [card]
+name=Detonate
+target=artifact[manacost=prex]
+auto=bury && damage:castx targetcontroller
+mana={X}{R}
+type=Sorcery
+text=Destroy target artifact with converted mana cost X. It can't be regenerated. Detonate deals X damage to that artifact's controller.
+[/card]
+[card]
 name=Devastate
 target=land
 auto=destroy
@@ -21803,6 +21821,17 @@ auto=moveto(mygraveyard) notatarget(this|mybattlefield)
 auto={T}:Add{1}{R}
 text=Dormant Volcano enters the battlefield tapped. -- When Dormant Volcano enters the battlefield, sacrifice it unless you return an untapped Mountain you control to its owner's hand. -- {T}: Add {1}{R} to your mana pool.
 type=Land
+[/card]
+[card]
+name=Dosan the Falling Leaf
+auto=this(variable{controllerturn}) maxCast(*)0 opponent
+auto=this(variable{opponentturn}) maxCast(*)0 controller
+text=Players can cast spells only during their own turns.
+mana={1}{G}{G}
+type=Legendary Creature
+subtype=Human Monk
+power=2
+toughness=2
 [/card]
 [card]
 name=Dosan's Oldest Chant
@@ -37028,6 +37057,14 @@ auto=draw:3
 text=Target player draws three cards and loses 3 life.
 mana={4}{B}
 type=Sorcery
+[/card]
+[card]
+name=Harsh Justice
+restriction=type(creature[attacking]|opponentbattlefield)~morethan~0
+auto=all(creature[attacking]) transforms((,newability[@combatdamaged(opponent) from(this):damage:thatmuch controller])) ueot
+text=Cast Harsh Justice only during the declare attackers step and only if you've been attacked this step. -- This turn, whenever an attacking creature deals combat damage to you, it deals that much damage to its controller.
+mana={2}{W}
+type=Instant
 [/card]
 [card]
 name=Haru-Onna
@@ -66437,7 +66474,7 @@ type=Instant
 [card]
 name=Reset
 auto=untap all(land|mybattlefield)
-restriction=
+restriction=during opponent turn
 text=Cast Reset only during an opponent's turn after his or her upkeep step. -- Untap all lands you control.
 mana={U}{U}
 type=Instant
@@ -71536,9 +71573,8 @@ subtype=Aura
 [/card]
 [card]
 name=Seedtime
-restriction=opponentturnonly
-restriction=casted(*[green]|mystack)
-auto=turns:+1 controller
+restriction=during my turn
+auto=if casted(*[blue]|opponentstack) then turns:+1 controller
 text=Cast Seedtime only during your turn. -- Take an extra turn after this one if an opponent cast a blue spell this turn.
 mana={1}{G}
 type=Instant
@@ -94438,7 +94474,7 @@ toughness=2
 [/card]
 [card]
 name=Wild Defiance
-auto=@targeted(creature|mybattlefield) from(instant,sorcery):all(trigger[to]) 3/3 ueot
+auto=@targeted(creature|mybattlefield) from(*[instant;sorcery]|nonbattlezone,stack):all(trigger[to]) 3/3 ueot
 text=Whenever a creature you control becomes the target of an instant or sorcery spell, that creature gets +3/+3 until end of turn.
 mana={2}{G}
 type=Enchantment

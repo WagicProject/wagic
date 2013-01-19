@@ -2704,12 +2704,6 @@ type=Land
 text=City of Ass comes into play tapped. {T}: Add one and one-half mana of any one color to your mana pool.
 [/card]
 [card]
-name=City of Solitude
-text=Players can cast spells and activate abilities only during their own turns.
-mana={2}{G}
-type=Enchantment
-[/card]
-[card]
 name=Clam Session
 mana={1}{U}{U}
 type=Summon — Clamfolk
@@ -4022,12 +4016,6 @@ mana={5}{R}{R}
 type=Sorcery
 [/card]
 [card]
-name=Detonate
-mana={X}{R}
-type=Sorcery
-text=Destroy target artifact with converted mana cost X. It can't be regenerated. Detonate deals X damage to that artifact's controller.
-[/card]
-[card]
 name=Detritivore
 text=Detritivore's power and toughness are each equal to the number of nonbasic land cards in your opponents' graveyards. -- Suspend X - {X}{3}{R}. X can't be 0. (Rather than cast this card from your hand, you may pay {X}{3}{R} and exile it with X time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost. It has haste.) -- Whenever a time counter is removed from Detritivore while it's exiled, destroy target nonbasic land.
 mana={2}{R}{R}
@@ -4375,15 +4363,6 @@ subtype=Jellyfish
 power=5
 toughness=5
 text=Flying Dormant Gomazoa enters the battlefield tapped. Dormant Gomazoa doesn't untap during your untap step. Whenever you become the target of a spell, you may untap Dormant Gomazoa.
-[/card]
-[card]
-name=Dosan the Falling Leaf
-text=Players can cast spells only during their own turns.
-mana={1}{G}{G}
-type=Legendary Creature
-subtype=Human Monk
-power=2
-toughness=2
 [/card]
 [card]
 name=Double Cross
@@ -7756,12 +7735,6 @@ name=Harsh Judgment
 text=As Harsh Judgment enters the battlefield, choose a color. -- If an instant or sorcery spell of the chosen color would deal damage to you, it deals that damage to its controller instead.
 mana={2}{W}{W}
 type=Enchantment
-[/card]
-[card]
-name=Harsh Justice
-text=Cast Harsh Justice only during the declare attackers step and only if you've been attacked this step. -- This turn, whenever an attacking creature deals combat damage to you, it deals that much damage to its controller.
-mana={2}{W}
-type=Instant
 [/card]
 [card]
 name=Harsh Mercy
