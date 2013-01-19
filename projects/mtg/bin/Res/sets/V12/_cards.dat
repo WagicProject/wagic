@@ -1,0 +1,81 @@
+[meta]
+author=Wagic Team
+name=From the Vault: Realms
+block=Vault
+year=2012
+[/meta]
+[card]
+primitive=Ancient Tomb
+id=288994
+rarity=M
+[/card]
+[card]
+primitive=Boseiju, Who Shelters All
+id=291507
+rarity=M
+[/card]
+[card]
+primitive=Cephalid Coliseum
+id=288995
+rarity=M
+[/card]
+[card]
+primitive=Desert
+id=287341
+rarity=M
+[/card]
+[card]
+primitive=Dryad Arbor
+id=282542
+rarity=M
+[/card]
+[card]
+primitive=Forbidden Orchard
+id=282541
+rarity=M
+[/card]
+[card]
+primitive=Glacial Chasm
+id=288996
+rarity=M
+[/card]
+[card]
+primitive=Grove of the Burnwillows
+id=287335
+rarity=M
+[/card]
+[card]
+primitive=High Market
+id=287336
+rarity=M
+[/card]
+[card]
+primitive=Maze of Ith
+id=287329
+rarity=M
+[/card]
+[card]
+primitive=Murmuring Bosk
+id=287334
+rarity=M
+[/card]
+[card]
+primitive=Shivan Gorge
+id=288997
+rarity=M
+[/card]
+[card]
+primitive=Urborg, Tomb of Yawgmoth
+id=287330
+rarity=M
+[/card]
+[card]
+primitive=Vesuva
+id=287332
+rarity=M
+[/card]
+[card]
+primitive=Windbrisk Heights
+id=287338
+rarity=M
+[/card]
