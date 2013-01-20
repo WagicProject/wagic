@@ -30,6 +30,7 @@ auto=unearthrule
 auto=lifelinkrule
 auto=deathtouchrule
 auto=soulbondrule
+auto=dredgerule
 
 [PLAYERS]
 life:20
