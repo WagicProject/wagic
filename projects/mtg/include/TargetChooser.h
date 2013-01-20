@@ -298,6 +298,25 @@ public:
     virtual bool equals(TargetChooser * tc);
 };
 
+class dredgeChooser: public TypeTargetChooser
+{
+public:
+    bool withoutProtections;
+    dredgeChooser(GameObserver *observer, int * _zones, int _nbzones, MTGCardInstance * card = NULL, int _maxtargets = 1, bool other = false, bool targetMin = false) :
+    TypeTargetChooser(observer, "*|mygraveyard",_zones, _nbzones, card, _maxtargets, other, targetMin)
+    {
+    }
+    ;
+    dredgeChooser(GameObserver *observer, MTGCardInstance * card = NULL, int _maxtargets = 1, bool other = false,bool targetMin = false) :
+        TypeTargetChooser(observer, "*|mygraveyard", card, _maxtargets, other,targetMin)
+    {
+    }
+    ;
+    virtual bool canTarget(Targetable * target, bool withoutProtections = false);
+    virtual dredgeChooser * clone() const;
+    virtual bool equals(TargetChooser * tc);
+};
+
 class myCursesChooser: public TypeTargetChooser
 {
 public:

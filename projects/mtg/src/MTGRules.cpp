@@ -2098,7 +2098,107 @@ MTGSoulbondRule * MTGSoulbondRule::clone() const
 {
     return NEW MTGSoulbondRule(*this);
 }
+/*dredge*/
+MTGDredgeRule::MTGDredgeRule(GameObserver* observer, int _id) :
+PermanentAbility(observer, _id)
+{
+    tcb = NULL;
+    dredgeAbility = NULL;
+    targetAbility = NULL;
+    mod = NULL;
+}
+;
 
+WEvent * MTGDredgeRule::replace(WEvent * event)
+{
+    WEventDraw * e = dynamic_cast<WEventDraw*> (event);
+    if (e)
+    {
+        MTGCardInstance * card = NULL;
+        if(e->player->game->library->nb_cards)
+        card = e->player->game->library->cards[e->player->game->library->nb_cards-1];
+        if(!card)
+            return event;
+        TargetChooserFactory tf(e->player->getObserver());
+        tcb = tf.createTargetChooser("dredgeable",card);
+        tcb->targetter = NULL;
+        if(!tcb->validTargetsExist())
+        {
+            SAFE_DELETE(tcb);
+            return event;
+        }
+        SAFE_DELETE(tcb);
+        for (int i = 0; i < 2; i++)
+        {
+            Player * p = game->players[i];
+            if (e->player == p)
+            {
+                for(int draw = 0;draw < e->nb_cards;draw++)
+                {
+                    tcb = tf.createTargetChooser("dredgeable",card);
+                    tcb->targetter = NULL;
+
+                    vector<MTGAbility*>selection;
+                    //look for other draw replacement effects
+                    list<ReplacementEffect *>::iterator it;
+                    for (it = game->replacementEffects->modifiers.begin(); it != game->replacementEffects->modifiers.end(); it++)
+                    {
+                        ReplacementEffect *re = *it;
+                        if(REDrawReplacement * DR = dynamic_cast<REDrawReplacement *>(*it))
+                        {
+                            MTGAbility * otherA = NULL;
+                            if(DR->DrawerOfCard == p)
+                                if(DR->replacementAbility->oneShot)
+                                    selection.push_back(DR->replacementAbility->clone());
+                                else
+                                {
+                                    otherA = NEW GenericAddToGame(game, game->mLayers->actionLayer()->getMaxId(),DR->replacementAbility->source,NULL,DR->replacementAbility->clone());
+                                    selection.push_back(otherA);
+                                }
+                        }
+                    }
+
+                    //there is a memleak here that i have no idea what causes it.
+                    dredgeAbility = NEW dredgeCard(game, game->mLayers->actionLayer()->getMaxId(), card,NULL);
+                    dredgeAbility->oneShot = true;
+                    targetAbility = NEW GenericTargetAbility(game, "Dredge A Card","",game->mLayers->actionLayer()->getMaxId(), card,tcb->clone(),dredgeAbility->clone());
+                    targetAbility->oneShot = true;
+                    SAFE_DELETE(dredgeAbility);
+
+                    targetAbilityAdder = NEW GenericAddToGame(game, game->mLayers->actionLayer()->getMaxId(), card,NULL,targetAbility->clone());
+                    targetAbilityAdder->oneShot = true;
+                    SAFE_DELETE(targetAbility);
+                    MTGAbility * setDredge = targetAbilityAdder->clone();
+                    SAFE_DELETE(targetAbilityAdder);
+                    setDredge->oneShot = true;
+
+                    selection.push_back(setDredge);
+                    targetAbility1 = NEW AADrawer(game, this->GetId(), card,card,NULL, "1",TargetChooser::CONTROLLER,true);
+                    selection.push_back(targetAbility1);
+                    MTGAbility * menuChoice = NEW MenuAbility(game, this->GetId(), card, card,true,selection,card->controller(),"Dredge or Draw");
+
+                    menuChoice->addToGame();
+                    SAFE_DELETE(tcb);
+                }
+                
+                SAFE_DELETE(event);
+                return event;
+            }
+        }
+    }
+    return event;
+}
+
+ostream& MTGDredgeRule::toString(ostream& out) const
+{
+    out << "MTGDredgeRule ::: (";
+    return MTGAbility::toString(out) << ")";
+}
+
+MTGDredgeRule * MTGDredgeRule::clone() const
+{
+    return NEW MTGDredgeRule(*this);
+}
 /* Persist */
 MTGPersistRule::MTGPersistRule(GameObserver* observer, int _id) :
 PermanentAbility(observer, _id)

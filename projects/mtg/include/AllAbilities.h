@@ -1105,7 +1105,8 @@ public:
     MTGAbility * mClone;
     vector<MTGAbility*>abilities;
     Player * who;
-    MenuAbility(GameObserver* observer, int _id, Targetable * target, MTGCardInstance * _source, bool must = false, vector<MTGAbility*>abilities = vector<MTGAbility*>(),Player * who = NULL);
+    string newNameString;
+    MenuAbility(GameObserver* observer, int _id, Targetable * target, MTGCardInstance * _source, bool must = false, vector<MTGAbility*>abilities = vector<MTGAbility*>(),Player * who = NULL,string _newName = "");
     void Update(float dt);
     int resolve();
     const char * getMenuText();
@@ -1393,9 +1394,9 @@ class AADrawer: public ActivatedAbilityTP
 public:
 
     string nbcardsStr;
-
+    bool noReplace;
     AADrawer(GameObserver* observer, int _id, MTGCardInstance * card, Targetable * _target, ManaCost * _cost,string nbcardsStr, int who =
-            TargetChooser::UNSET);
+            TargetChooser::UNSET,bool noReplace = false);
     int resolve();
     const char * getMenuText();
     AADrawer * clone() const;
@@ -2622,7 +2623,14 @@ public:
     int resolve();
     PairCard * clone() const;
 };
-
+//pick a card to dredge
+class dredgeCard: public InstantAbility
+{
+public:
+    dredgeCard(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost = NULL);
+    int resolve();
+    dredgeCard * clone() const;
+};
 /* create a parent child association between cards */
 class AAConnect: public InstantAbility
 {
@@ -4300,6 +4308,18 @@ public:
 
 };
 
+class ADrawReplacer: public MTGAbility
+{
+public:
+    REDrawReplacement * re;
+    MTGAbility * replacer;
+    bool OtherPlayer;
+    ADrawReplacer(GameObserver* observer, int id, MTGCardInstance * source, MTGAbility * _replace = NULL,bool otherPlayer = false);
+    int addToGame();
+    int destroy();
+    ADrawReplacer * clone() const;
+    ~ADrawReplacer();
+};
 /*
  Specific Classes
  */

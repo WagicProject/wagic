@@ -961,11 +961,18 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         observer->addObserver(NEW MTGBlockRule(observer, -1));
         return NULL;
     }
-    //this rule handles blocking ability during blocker phase
+    //this rule handles cards that have soulbond
     found = s.find("soulbondrule");
     if(found != string::npos)
     {
         observer->addObserver(NEW MTGSoulbondRule(observer, -1));
+        return NULL;
+    }
+    //this rule handles cards that have dredge
+    found = s.find("dredgerule");
+    if(found != string::npos)
+    {
+        observer->replacementEffects->add(NEW MTGDredgeRule(observer, -1));
         return NULL;
     }
     //this rule handles combat related triggers. note, combat related triggered abilities will not work without it.
@@ -1700,6 +1707,30 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         return NULL;
     }
 
+        //opponent replace draw with
+    found = s.find("opponentreplacedraw ");
+    if (found != string::npos)
+    {
+        string s1 = s.substr(found + 19);
+        MTGAbility * a = NULL;
+        a = parseMagicLine(s1, id, spell, card, false, activated);
+        if(a)
+            return NEW ADrawReplacer(observer,id, card,a,true);
+        return NULL;
+    }
+
+    //replace draw with
+    found = s.find("replacedraw ");
+    if (found != string::npos)
+    {
+        string s1 = s.substr(found + 11);
+        MTGAbility * a = NULL;
+        a = parseMagicLine(s1, id, spell, card, false, activated);
+        if(a)
+            return NEW ADrawReplacer(observer,id, card,a);
+        return NULL;
+    }
+
     if (!activated && tc)
     {
         MTGAbility * a = parseMagicLine(sWithoutTc, id, spell, card);
@@ -1870,9 +1901,19 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     {
         if (storedAbilityString.size())
         {
+            vector<string> splitName = parseBetween(storedAbilityString, "name(", ")");
+            if (splitName.size())
+            {
+                newName = splitName[1];
+                storedAbilityString = splitName[0];
+                storedAbilityString.append(splitName[2]);
+                //we erase the name section from the string to avoid 
+                //accidently building an mtg ability with the text meant for menuText.
+            }
             ATargetedAbilityCreator * abl = NEW ATargetedAbilityCreator(observer, id, card,target, NULL,newName, storedAbilityString, who);
             abl->oneShot = 1;
             storedString.clear();
+            storedAbilityString.clear();
             return abl;
         }
     }
@@ -2228,7 +2269,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     if (splitDraw.size())
     {
         Targetable * t = spell ? spell->getNextTarget() : NULL;
-        MTGAbility * a = NEW AADrawer(observer, id, card, t, NULL,splitDraw[1], who);
+        MTGAbility * a = NEW AADrawer(observer, id, card, t, NULL,splitDraw[1], who,s.find("noreplace") != string::npos);
         a->oneShot = 1;
         return a;
     }

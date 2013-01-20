@@ -467,7 +467,7 @@ int DrawAction::resolve()
 {
     for (int i = 0; i < nbcards; i++)
     {
-        player->game->drawFromLibrary();
+            player->game->drawFromLibrary();
     }
     return 1;
 }

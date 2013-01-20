@@ -119,7 +119,17 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
             }
         }
         break;
+    case 'd'://dredge
+        if (!primitive) primitive = NEW CardPrimitive();
+        {
+            string value = val;
+            std::transform(value.begin(), value.end(), value.begin(), ::tolower);
+            vector<string> values = parseBetween(value,"dredge(",")");
+            if(values.size())
+                primitive->dredgeAmount = atoi(values[1].c_str());
 
+            break;
+        }
     case 'f': //flashback//morph
         {
             if (!primitive) primitive = NEW CardPrimitive();

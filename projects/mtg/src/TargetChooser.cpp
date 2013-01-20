@@ -32,6 +32,14 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
         return NEW pairableChooser(observer, card, maxtargets);
     }
 
+    found = s.find("dredgeable");
+    if (found != string::npos)
+    {
+        int maxtargets = 1;
+        zones[nbzones++] = MTGGameZone::MY_GRAVEYARD;
+        return NEW dredgeChooser(observer,zones,nbzones, card, maxtargets);
+    }
+
     found = s.find("mytgt");
     if (found == 0)
     {
@@ -1601,6 +1609,35 @@ bool pairableChooser::equals(TargetChooser * tc)
     return TypeTargetChooser::equals(tc);
 }
 
+//*Dredge targetchooser*//
+bool dredgeChooser::canTarget(Targetable * target,bool withoutProtections)
+{
+    if (MTGCardInstance * card = dynamic_cast<MTGCardInstance*>(target))
+    {
+        if((card->data->dredgeAmount < 1) || (card->data->dredgeAmount > card->controller()->game->library->nb_cards))
+            return false;
+        if(card->currentZone == card->controller()->game->graveyard)
+        return true;
+    }
+    return false;
+}
+
+dredgeChooser* dredgeChooser::clone() const
+{
+    dredgeChooser * a = NEW dredgeChooser(*this);
+    return a;
+}
+
+bool dredgeChooser::equals(TargetChooser * tc)
+{
+
+    dredgeChooser  * dtc = dynamic_cast<dredgeChooser  *> (tc);
+    if (!dtc)
+        return false;
+
+    return TypeTargetChooser::equals(tc);
+}
+//-----------
 //-----------
 /*Proliferate Target */
 bool ProliferateChooser::canTarget(Targetable * target,bool withoutProtections)

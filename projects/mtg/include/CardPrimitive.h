@@ -66,6 +66,7 @@ public:
     int power;
     int toughness;
     int suspendedTime;
+    int dredgeAmount;
 
     vector<int>types;
     CardPrimitive();
@@ -110,7 +111,7 @@ public:
     bool isCreature();
     bool isLand();
     bool isSpell();
-
+    int dredge();
     void setPower(int _power);
     int getPower();
     void setToughness(int _toughness);

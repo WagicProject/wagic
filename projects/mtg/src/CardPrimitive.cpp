@@ -58,6 +58,7 @@ CardPrimitive::CardPrimitive(CardPrimitive * source)
     toughness = source->toughness;
     restrictions = source->restrictions ? source->restrictions->clone() : NULL;
     suspendedTime = source->suspendedTime;
+    dredgeAmount = source->dredgeAmount;
 
     magicText = source->magicText;
     for (map<string, string>::const_iterator it = source->magicTexts.begin(); it != source->magicTexts.end(); ++it)
@@ -82,6 +83,7 @@ int CardPrimitive::init()
     spellTargetType = "";
     alias = 0;
     restrictions = NULL;
+    dredgeAmount = 0;
     return 1;
 }
 
@@ -98,6 +100,11 @@ bool CardPrimitive::isLand()
 bool CardPrimitive::isSpell()
 {
     return (!isCreature() && !isLand());
+}
+
+int CardPrimitive::dredge()
+{
+    return dredgeAmount;
 }
 
 void CardPrimitive::setRestrictions(string _restriction)

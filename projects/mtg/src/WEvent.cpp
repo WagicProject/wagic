@@ -93,6 +93,11 @@ WEventcardDraw::WEventcardDraw(Player * player, int nb_cards) :
 {
 }
 
+    WEventDraw::WEventDraw(Player * player, int nb_cards,MTGAbility * cardDraw) ://happens at the call for drawfromlibrary
+player(player), nb_cards(nb_cards),drawAbility(cardDraw)
+{
+}
+
 WEventCardSacrifice::WEventCardSacrifice(MTGCardInstance * card, MTGCardInstance * after) :
     WEventCardUpdate(card),cardAfter(after)
 {

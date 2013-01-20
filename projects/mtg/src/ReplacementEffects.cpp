@@ -77,6 +77,81 @@ RECountersPrevention::~RECountersPrevention()
 {
     SAFE_DELETE(TargetingCards);
 }
+////--draw replacement---------------------
+REDrawReplacement::REDrawReplacement(MTGAbility * source, Player * Drawer, MTGAbility * replaceWith) :
+    source(source), DrawerOfCard(Drawer),replacementAbility(replaceWith)
+{
+}
+
+WEvent * REDrawReplacement::replace(WEvent *event)
+{
+    if (!event) return event;
+    WEventDraw * e = dynamic_cast<WEventDraw*> (event);
+    if (!e) return event;
+    if (DrawerOfCard != e->player) return event;
+    if(!replacementAbility) return event;
+    //check for dredge
+    TargetChooserFactory tf(e->player->getObserver());
+    TargetChooser * tcb = NULL;
+    tcb = tf.createTargetChooser("dredgeable",source->source);
+    tcb->targetter = NULL;
+    if(tcb->validTargetsExist())
+    {
+        if(e->player == DrawerOfCard && e->player == source->source->controller())
+        {
+            SAFE_DELETE(tcb);
+            return event;
+        }
+    }
+    SAFE_DELETE(tcb);
+
+    vector<MTGAbility*>selection;
+    //look for other draw replacement effects
+    list<ReplacementEffect *>::iterator it;
+    GameObserver * game = source->source->getObserver();
+    if(replacementAbility->source->controller() == DrawerOfCard)
+    for (it = game->replacementEffects->modifiers.begin(); it != game->replacementEffects->modifiers.end(); it++)
+    {
+        ReplacementEffect *re = *it;
+        if(REDrawReplacement * DR = dynamic_cast<REDrawReplacement *>(*it))
+        {
+            MTGAbility * otherA = NULL;
+            if(DR->DrawerOfCard == e->player)
+            if(DR->replacementAbility->oneShot)
+                selection.push_back(DR->replacementAbility->clone());
+            else
+            {
+                otherA = NEW GenericAddToGame(game, game->mLayers->actionLayer()->getMaxId(), source->source,NULL,DR->replacementAbility->clone());
+                selection.push_back(otherA);
+            }
+        }
+    }
+
+    
+    for(int j = 0; j < e->nb_cards; j++)
+    {
+        if(e->player != DrawerOfCard || selection.size() < 2)
+        {
+            MTGAbility * toResolve = replacementAbility->clone();
+            if(replacementAbility->oneShot)
+                toResolve->resolve();
+            else
+                toResolve->addToGame();
+        }
+        else
+        {
+            MTGAbility * menuChoice = NEW MenuAbility(game, 1, source->source, source->source,true,selection,NULL,"Choose Draw Replacement");
+            menuChoice->addToGame();
+        }
+    }
+
+    delete event;
+    event = NULL;
+    return event;
+}
+REDrawReplacement::~REDrawReplacement()
+{
+}
 //////////////////////////////////////////////
 ReplacementEffects::ReplacementEffects()
 {

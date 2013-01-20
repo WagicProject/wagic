@@ -581,7 +581,7 @@ ACounterShroud::~ACounterShroud()
     SAFE_DELETE(counter);
 }
 
-//shield a card from a certain type of counter.
+//track counters placed on a card
 ACounterTracker::ACounterTracker(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target, string scounter) :
 MTGAbility(observer, id, source, target),scounter(scounter)
 {
@@ -1112,6 +1112,47 @@ AASetCoin::~AASetCoin()
 {
 }
 
+
+//replace drawing a card with activation of an ability
+ADrawReplacer::ADrawReplacer(GameObserver* observer, int id, MTGCardInstance * source, MTGAbility * replace, bool otherPlayer) :
+MTGAbility(observer, id, source),re(NULL),replacer(replace),OtherPlayer(otherPlayer)
+{
+}
+
+int ADrawReplacer::addToGame()
+{
+    SAFE_DELETE(re);
+    if(OtherPlayer)
+        re = NEW REDrawReplacement(this,source->controller()->opponent(),replacer);
+    else
+        re = NEW REDrawReplacement(this,source->controller(),replacer);
+    if (re)
+    {
+        game->replacementEffects->add(re);
+        return MTGAbility::addToGame();
+    }
+    return 0;
+}
+
+int ADrawReplacer::destroy()
+{
+    game->replacementEffects->remove(re);
+    SAFE_DELETE(re);
+    return 1;
+}
+
+ADrawReplacer * ADrawReplacer::clone() const
+{
+    ADrawReplacer * a = NEW ADrawReplacer(*this);
+    a->re = NULL;
+    return a;
+}
+
+ADrawReplacer::~ADrawReplacer()
+{
+    SAFE_DELETE(re);
+    SAFE_DELETE(replacer);
+}
 //Reset Damage on creatures
  AAResetDamage::AAResetDamage(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * _target, ManaCost * cost):
     ActivatedAbility(observer, id, source, cost, 0)
@@ -1394,8 +1435,8 @@ AADiscardCard::~AADiscardCard()
     SAFE_DELETE(andAbility);
 }
 AADrawer::AADrawer(GameObserver* observer, int _id, MTGCardInstance * card, Targetable * _target, ManaCost * _cost, string nbcardsStr,
-        int who) :
-    ActivatedAbilityTP(observer, _id, card, _target, _cost, who), nbcardsStr(nbcardsStr)
+        int who, bool noreplace) :
+    ActivatedAbilityTP(observer, _id, card, _target, _cost, who), nbcardsStr(nbcardsStr),noReplace(noreplace)
 {
     aType = MTGAbility::STANDARD_DRAW;
 }
@@ -1403,17 +1444,24 @@ AADrawer::AADrawer(GameObserver* observer, int _id, MTGCardInstance * card, Targ
     int AADrawer::resolve()
     {
         Player * player = getPlayerFromTarget(getTarget());
-        
+
         if (player)
         {
             WParsedInt numCards(nbcardsStr, NULL, source);
-            game->mLayers->stackLayer()->addDraw(player, numCards.getValue());
-            game->mLayers->stackLayer()->resolve();
-            for(int i = numCards.getValue(); i > 0;i--)
+            WEvent * e = NEW WEventDraw(player, numCards.getValue(),this);
+            if(!noReplace)
+            e = game->replacementEffects->replace(e);
+            if(e)
             {
+                game->mLayers->stackLayer()->addDraw(player, numCards.getValue());
+                game->mLayers->stackLayer()->resolve();
+                for(int i = numCards.getValue(); i > 0;i--)
+                {
                     WEvent * e = NEW WEventcardDraw(player, 1);
                     game->receiveEvent(e);
+                }
             }
+            SAFE_DELETE(e);
         }
         return 1;
     }
@@ -3116,8 +3164,8 @@ MayAbility::~MayAbility()
 
 //Menu building ability Abilities
 //this will eventaully handle choosen discards/sacrifices.
-MenuAbility::MenuAbility(GameObserver* observer, int _id, Targetable * mtarget, MTGCardInstance * _source, bool must,vector<MTGAbility*>abilities,Player * who) :
-MayAbility(observer, _id,NULL,_source,must), must(must),abilities(abilities),who(who)
+MenuAbility::MenuAbility(GameObserver* observer, int _id, Targetable * mtarget, MTGCardInstance * _source, bool must,vector<MTGAbility*>abilities,Player * who, string newName) :
+MayAbility(observer, _id,NULL,_source,must), must(must),abilities(abilities),who(who),newNameString(newName)
 {
     triggered = 0;
     mClone = NULL;
@@ -3129,7 +3177,7 @@ void MenuAbility::Update(float dt)
 {
     MTGAbility::Update(dt);
     ActionLayer * object = game->mLayers->actionLayer();
-    if (!triggered && !object->menuObject)
+    if (!triggered && !object->menuObject && !object->getCurrentTargetChooser())
     {
 
         triggered = 1;
@@ -3146,7 +3194,7 @@ void MenuAbility::Update(float dt)
     }
     if(triggered)
     {
-        game->mLayers->actionLayer()->setCustomMenuObject(source, must,abilities);
+        game->mLayers->actionLayer()->setCustomMenuObject(source, must,abilities,newNameString.size()?newNameString.c_str():"");
         previousInterrupter = game->isInterrupting;
         game->mLayers->stackLayer()->setIsInterrupting(source->controller(), false);
     }
@@ -3239,10 +3287,13 @@ MenuAbility::~MenuAbility()
     {
         for(int i = 0;i < int(abilities.size());i++)
         {
-            AASetColorChosen * chooseA = dynamic_cast<AASetColorChosen *>(abilities[i]);
-            if(chooseA && chooseA->abilityAltered)
-                SAFE_DELETE(chooseA->abilityAltered);
-            SAFE_DELETE(abilities[i]);
+            if(abilities[i])
+            {
+                AASetColorChosen * chooseA = dynamic_cast<AASetColorChosen *>(abilities[i]);
+                if(chooseA && chooseA->abilityAltered)
+                    SAFE_DELETE(chooseA->abilityAltered);
+                SAFE_DELETE(abilities[i]);
+            }
         }
     }
     else
@@ -4897,7 +4948,35 @@ PairCard * PairCard::clone() const
 {
     return NEW PairCard(*this);
 }
+//target is dredged
+dredgeCard::dredgeCard(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost) :
+InstantAbility(observer, id, card, target)
+{
+    target = _target;
+    oneShot = true;
+    forceDestroy = 1;
+}
 
+int dredgeCard::resolve()
+{
+    MTGCardInstance * _target = (MTGCardInstance *) target;
+    if(_target)
+    {
+        for(int j = 0; j < _target->data->dredge();j++)
+        {
+            _target->controller()->game->putInZone(
+                _target->controller()->game->library->cards[_target->controller()->game->library->nb_cards - 1],
+                _target->controller()->game->library, _target->controller()->game->graveyard);
+        }
+        _target->controller()->game->putInZone(_target,_target->currentZone,_target->controller()->game->hand);
+    }
+    return 1;
+}
+
+dredgeCard * dredgeCard::clone() const
+{
+    return NEW dredgeCard(*this);
+}
 
 // target becomes a parent of card(source)
 AAConnect::AAConnect(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost) :

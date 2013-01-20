@@ -602,7 +602,7 @@ int OrderedAIAction::getEfficiency()
     if (!efficiency && may)
     {
         AIPlayer * chk = (AIPlayer*)p;
-        if(may->ability->getActionTc() && chk->chooseTarget(may->ability->getActionTc(),NULL,NULL,true))
+        if(may->ability && may->ability->getActionTc() && chk->chooseTarget(may->ability->getActionTc(),NULL,NULL,true))
         efficiency = 50 + (owner->getRandomGenerator()->random() % 50);
     }
     if (p->game->hand->nb_cards == 0)

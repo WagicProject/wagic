@@ -99,6 +99,7 @@ public:
     int fresh;
     int MaxLevelUp;
     int kicked;
+    int dredge;
     bool isDualWielding;
     bool stillNeeded;
     Player * lastController;

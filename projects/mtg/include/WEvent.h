@@ -12,6 +12,8 @@ class Targetable;
 class ManaPool;
 class AACounter;
 class Counters;
+class MTGAbility;
+class DrawAction;
 
 class WEvent {
 public:
@@ -221,7 +223,13 @@ struct WEventcardDraw : public WEvent {
 	int nb_cards;
 	virtual Targetable * getTarget(Player * player);
 };
-
+//event for a card draw ability resolving
+struct WEventDraw : public WEvent {
+    WEventDraw(Player * player,int nb_cards,MTGAbility * drawer);
+    Player * player;
+    int nb_cards;
+    MTGAbility * drawAbility;
+};
 //Event when a blocker is reordered
 //exchangeWith: exchange card's position with exchangeWith's position
 //attacker:both card and exchangeWith *should* be in attacker's "blockers" list.

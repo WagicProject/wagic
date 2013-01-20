@@ -49,12 +49,22 @@ public:
     WEvent * replace(WEvent *e);
     ~RECountersPrevention();
 };
-
-class ReplacementEffects
+class REDrawReplacement: public ReplacementEffect
 {
 protected:
-    list<ReplacementEffect *> modifiers;
+    MTGAbility * source;
+
 public:
+    Player * DrawerOfCard;
+    MTGAbility * replacementAbility;
+    REDrawReplacement(MTGAbility * _source, Player * Drawer = NULL, MTGAbility * replaceWith = NULL);
+    WEvent * replace(WEvent *e);
+    ~REDrawReplacement();
+};
+class ReplacementEffects
+{
+public:
+    list<ReplacementEffect *> modifiers;
     ReplacementEffects();
     WEvent * replace(WEvent *e);
     int add(ReplacementEffect * re);
