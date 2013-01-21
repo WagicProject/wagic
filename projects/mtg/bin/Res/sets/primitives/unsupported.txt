@@ -5727,15 +5727,6 @@ type=Sorcery
 text=As an additional cost to cast Flesh Allergy, sacrifice a creature. Destroy target creature. Its controller loses life equal to the number of creatures that died this turn.
 [/card]
 [card]
-name=Fleshbag Marauder
-text=When Fleshbag Marauder enters the battlefield, each player sacrifices a creature.
-mana={2}{B}
-type=Creature
-subtype=Zombie Warrior
-power=3
-toughness=1
-[/card]
-[card]
 name=Flickerform
 text=Enchant creature -- {2}{W}{W}: Exile enchanted creature and all Auras attached to it. At the beginning of the next end step, return that card to the battlefield under its owner's control. If you do, return those Auras to the battlefield under their owners' control attached to that creature.
 mana={1}{W}
@@ -5946,15 +5937,6 @@ mana={1}{W}{W}
 type=Enchantment
 [/card]
 [card]
-name=Fortune Thief
-text=Damage that would reduce your life total to less than 1 reduces it to 1 instead. -- Morph {R}{R} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
-mana={4}{R}
-type=Creature
-subtype=Human Rogue
-power=0
-toughness=1
-[/card]
-[card]
 name=Foster
 text=Whenever a creature you control is put into a graveyard from the battlefield, you may pay {1}. If you do, reveal cards from the top of your library until you reveal a creature card. Put that card into your hand and the rest into your graveyard.
 mana={2}{G}{G}
@@ -5973,13 +5955,6 @@ type=Creature — Human Hero
 power=1/1{1
 toughness=2}
 text={G}, {T}: Return target card with a {1/2} on it from your graveyard to your hand.
-[/card]
-[card]
-name=Fractured Loyalty
-text=Enchant creature -- Whenever enchanted creature becomes the target of a spell or ability, that spell or ability's controller gains control of that creature. (This effect lasts indefinitely.)
-mana={1}{R}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
 name=Fractured Powerstone
@@ -6014,12 +5989,6 @@ text=At the beginning of your upkeep, you may ask target player a yes-or-no ques
 name=Frantic Purification
 text=Destroy target enchantment. -- Madness {W} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
 mana={2}{W}
-type=Instant
-[/card]
-[card]
-name=Frantic Search
-text=Draw two cards, then discard two cards. -- Untap up to three lands.
-mana={2}{U}
 type=Instant
 [/card]
 [card]
@@ -6105,15 +6074,6 @@ toughness=*
 name=Fungal Reaches
 text={T}: Add {1} to your mana pool. -- {1}, {T}: Put a storage counter on Fungal Reaches. -- {1}, Remove X storage counters from Fungal Reaches: Add X mana in any combination of {R} and/or {G} to your mana pool.
 type=Land
-[/card]
-[card]
-name=Fungus Elemental
-mana={3}{G}
-type=Creature
-subtype=Fungus Elemental
-power=3
-toughness=3
-text={G}, Sacrifice a Forest: Put a +2/+2 counter on Fungus Elemental. Activate this ability only if Fungus Elemental entered the battlefield this turn.
 [/card]
 [card]
 name=Furnace Celebration

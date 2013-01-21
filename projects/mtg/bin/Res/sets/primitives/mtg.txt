@@ -5991,7 +5991,7 @@ toughness=1
 [card]
 name=Banshee
 text={X}, {T}: Banshee deals half X damage, rounded down, to target creature or player, and half X damage, rounded up, to you.
-auto={X}{t}:target(creature,player) damage:halfdownX && damage:halfup controller
+auto={X}{t}:target(creature,player) damage:halfdownX && damage:halfupX controller
 mana={2}{B}{B}
 type=Creature
 subtype=Spirit
@@ -22333,7 +22333,7 @@ type=Instant
 [card]
 name=Drana, Kalastria Bloodchief
 abilities=flying
-auto={X}{B}{B}:damage:X target(creature) && all(this) x/0 ueot
+auto={X}{B}{B}:name(reduce toughness) 0/-X target(creature) ueot && all(this) X/0 ueot
 text=Flying -- {X}{B}{B}: Target creature gets -0/-X until end of turn and Drana, Kalastria Bloodchief gets +X/+0 until end of turn.
 mana={3}{B}{B}
 type=Legendary Creature
@@ -29636,6 +29636,17 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Fleshbag Marauder
+auto=sacrifice notatarget(creature|mybattlefield)
+auto=ability$! sacrifice notatarget(creature|mybattlefield) !$ opponent
+text=When Fleshbag Marauder enters the battlefield, each player sacrifices a creature.
+mana={2}{B}
+type=Creature
+subtype=Zombie Warrior
+power=3
+toughness=1
+[/card]
+[card]
 name=Fleshformer
 auto={W}{U}{B}{R}{G}:all(this) 2/2 && all(this) fear && -2/-2 target(creature) myTurnOnly
 text={W}{U}{B}{R}{G}: Fleshformer gets +2/+2 and gains fear until end of turn. Target creature gets -2/-2 until end of turn. Activate this ability only during your turn. (A creature with fear can't be blocked except by artifact creatures and/or black creatures.)
@@ -30562,6 +30573,18 @@ power=1
 toughness=6
 [/card]
 [card]
+name=Fortune Thief
+facedown={3}
+autofacedown={R}{R}:morph
+auto=@damaged(controller) restriction{compare(lifetotal)~lessthan~1}:this(controllerlife < 1) lifeset:1 controller
+text=Damage that would reduce your life total to less than 1 reduces it to 1 instead. -- Morph {R}{R} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
+mana={4}{R}
+type=Creature
+subtype=Human Rogue
+power=0
+toughness=1
+[/card]
+[card]
 name=Fossil Find
 auto=moverandom(*) from(mygraveyard) to(myhand)
 text=Return a card at random from your graveyard to your hand, then reorder your graveyard as you choose.
@@ -30666,6 +30689,15 @@ power=3
 toughness=6
 [/card]
 [card]
+name=Fractured Loyalty
+auto=teach(creature) transforms((,newability[@targeted(this) from(*|opponentbattlefield):moveto(opponentbattlefield) all(this)],newability[@targeted(this) from(*|opponenthand):moveto(opponentbattlefield) all(this)],newability[@targeted(this) from(*|opponentstack):moveto(opponentbattlefield) all(this)],newability[@targeted(this) from(*|opponentgraveyard):moveto(opponentbattlefield) all(this)]))
+auto=teach(creature) transforms((,newability[@targeted(this) from(*|mybattlefield):moveto(mybattlefield) all(this)],newability[@targeted(this) from(*|myhand):moveto(mybattlefield) all(this)],newability[@targeted(this) from(*|mystack):moveto(mybattlefield) all(this)],newability[@targeted(this) from(*|mygraveyard):moveto(mybattlefield) all(this)]))
+text=Enchant creature -- Whenever enchanted creature becomes the target of a spell or ability, that spell or ability's controller gains control of that creature. (This effect lasts indefinitely.)
+mana={1}{R}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 name=Fracturing Gust
 auto=@movedto(artifact,enchantment|graveyard):life:2
 auto=destroy all(artifact,enchantment)
@@ -30680,6 +30712,14 @@ auto=moveTo(mylibrary)
 auto=draw:1 controller
 text=Put any number of target artifact cards from your graveyard on top of your library. -- Draw a card.
 mana={3}{W}
+type=Instant
+[/card]
+[card]
+name=Frantic Search
+auto=draw:2
+auto=reject notatarget(<2>*|myhand) and!( untap notatarget(<upto:3>land) )!
+text=Draw two cards, then discard two cards. -- Untap up to three lands.
+mana={2}{U}
 type=Instant
 [/card]
 [card]
@@ -31159,6 +31199,16 @@ auto=token(Saproling,Creature Saproling,1/1,green)*power:highest:creature:mybatt
 text=Put X 1/1 green Saproling creature tokens onto the battlefield, where X is the greatest power among creatures you control.
 mana={3}{G}
 type=Sorcery
+[/card]
+[card]
+name=Fungus Elemental
+mana={3}{G}
+auto=transforms((,newability[{G}{S(forest|mybattlefield)}:counter(2/2.1)])) ueot
+type=Creature
+subtype=Fungus Elemental
+power=3
+toughness=3
+text={G}, Sacrifice a Forest: Put a +2/+2 counter on Fungus Elemental. Activate this ability only if Fungus Elemental entered the battlefield this turn.
 [/card]
 [card]
 name=Fungus Sliver
