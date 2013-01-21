@@ -3544,11 +3544,6 @@ mana={1}{G}{U}
 type=Instant
 [/card]
 [card]
-name=Dakmor Salvage
-text=Dakmor Salvage enters the battlefield tapped. -- {T}: Add {B} to your mana pool. -- Dredge 2 (If you would draw a card, instead you may put exactly two cards from the top of your library into your graveyard. If you do, return this card from your graveyard to your hand. Otherwise, draw a card.)
-type=Land
-[/card]
-[card]
 name=Dampen Thought
 text=Target player puts the top four cards of his or her library into his or her graveyard. -- Splice onto Arcane {1}{U} (As you cast an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
 mana={1}{U}
@@ -3622,12 +3617,6 @@ type=Enchantment
 name=Dark Withering
 text=Destroy target nonblack creature. -- Madness {B} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
 mana={4}{B}{B}
-type=Instant
-[/card]
-[card]
-name=Darkblast
-text=Target creature gets -1/-1 until end of turn. -- Dredge 3 (If you would draw a card, instead you may put exactly three cards from the top of your library into your graveyard. If you do, return this card from your graveyard to your hand. Otherwise, draw a card.)
-mana={B}
 type=Instant
 [/card]
 [card]
@@ -4025,15 +4014,6 @@ power=*
 toughness=*
 [/card]
 [card]
-name=Deus of Calamity
-text=Trample -- Whenever Deus of Calamity deals 6 or more damage to an opponent, destroy target land that player controls.
-mana={RG}{RG}{RG}{RG}{RG}
-type=Creature
-subtype=Spirit Avatar
-power=6
-toughness=6
-[/card]
-[card]
 name=Devastating Dreams
 text=As an additional cost to cast Devastating Dreams, discard X cards at random. -- Each player sacrifices X lands. Devastating Dreams deals X damage to each creature.
 mana={R}{R}
@@ -4102,15 +4082,6 @@ type=Snow Creature
 subtype=Faerie
 power=3
 toughness=3
-[/card]
-[card]
-name=Diaochan, Artful Beauty
-text={T}: Destroy target creature of your choice, then destroy target creature of an opponent's choice. Activate this ability only during your turn, before attackers are declared.
-mana={3}{R}
-type=Legendary Creature
-subtype=Human Advisor
-power=1
-toughness=1
 [/card]
 [card]
 name=Dichotomancy
@@ -4476,15 +4447,6 @@ subtype=Aura
 text=Enchant creature Enchanted creature gets +3/+3 and has flying. Totem armor (If enchanted creature would be destroyed, instead remove all damage from it and destroy this Aura.)
 [/card]
 [card]
-name=Dralnu's Pet
-text=Kicker - {2}{B}, Discard a creature card. (You may pay {2}{B} and discard a creature card in addition to any other costs as you cast this spell.) -- If Dralnu's Pet was kicked, it enters the battlefield with flying and with X +1/+1 counters on it, where X is the discarded card's converted mana cost.
-mana={1}{U}{U}
-type=Creature
-subtype=Shapeshifter
-power=2
-toughness=2
-[/card]
-[card]
 name=Dralnu, Lich Lord
 text=If damage would be dealt to Dralnu, sacrifice that many permanents instead. -- {T}: Target instant or sorcery card in your graveyard gains flashback until end of turn. The flashback cost is equal to its mana cost. (You may cast that card from your graveyard for its flashback cost. Then exile it.)
 mana={3}{U}{B}
@@ -4542,12 +4504,6 @@ mana={U}
 type=Instant
 [/card]
 [card]
-name=Dreams of the Dead
-text={1}{U}: Return target white or black creature card from your graveyard to the battlefield. That creature gains "Cumulative upkeep {2}." If the creature would leave the battlefield, exile it instead of putting it anywhere else. (At the beginning of its controller's upkeep, that player puts an age counter on it, then sacrifices it unless he or she pays its upkeep cost for each age counter on it.)
-mana={3}{U}
-type=Enchantment
-[/card]
-[card]
 name=Drooling Groodion
 text={2}{B}{G}, Sacrifice a creature: Target creature gets +2/+2 until end of turn. Another target creature gets -2/-2 until end of turn.
 mana={3}{B}{B}{G}
@@ -4600,12 +4556,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Due Respect
-mana={1}{W}
-type=Instant
-text=Permanents enter the battlefield tapped this turn. Draw a card.
-[/card]
-[card]
 name=Duergar Hedge-Mage
 text=When Duergar Hedge-Mage enters the battlefield, if you control two or more Mountains, you may destroy target artifact. -- When Duergar Hedge-Mage enters the battlefield, if you control two or more Plains, you may destroy target enchantment.
 mana={2}{RW}
@@ -4643,8 +4593,11 @@ text=When Duplicity enters the battlefield, exile the top five cards of your lib
 mana={3}{U}{U}
 type=Enchantment
 [/card]
+#dust of moments work 100%, but the suspended cards must have counters, and have ability if there are no counters on them, play them
 [card]
 name=Dust of Moments
+auto=choice name(-2 time counters) counter(0/0,-2,Time) all(*|battlefield,exile)
+auto=choice name(+2 time counters) all(*|battlefield,exile) transforms((,newability[this(counter{0/0.1.Time}) counter(0/0.2.Time)]))
 text=Choose one - Remove two time counters from each permanent and each suspended card; or put two time counters on each permanent with a time counter on it and each suspended card.
 mana={2}{W}
 type=Instant
@@ -4663,12 +4616,6 @@ type=Creature
 subtype=Dwarf
 power=2
 toughness=2
-[/card]
-[card]
-name=Dwarven Hold
-mana=
-type=Land
-text=Dwarven Hold enters the battlefield tapped. You may choose not to untap Dwarven Hold during your untap step. At the beginning of your upkeep, if Dwarven Hold is tapped, put a storage counter on it. {T}, Remove any number of storage counters from Dwarven Hold: Add {R} to your mana pool for each storage counter removed this way.
 [/card]
 [card]
 name=Dwarven Scorcher
@@ -4704,15 +4651,6 @@ power=5
 toughness=3
 [/card]
 [card]
-name=Ebon Praetor
-text=First strike, trample -- At the beginning of your upkeep, put a -2/-2 counter on Ebon Praetor. -- Sacrifice a creature: Remove a -2/-2 counter from Ebon Praetor. If the sacrificed creature was a Thrull, put a +1/+0 counter on Ebon Praetor. Activate this ability only during your upkeep and only once each turn.
-mana={4}{B}{B}
-type=Creature
-subtype=Avatar
-power=5
-toughness=5
-[/card]
-[card]
 name=Echo Chamber
 text={4}, {T}: An opponent chooses target creature he or she controls. Put a token that's a copy of that creature onto the battlefield. That token gains haste until end of turn. Exile the token at the beginning of the next end step. Activate this ability only any time you could cast a sorcery.
 mana={4}
@@ -4740,13 +4678,6 @@ mana={1}{U}
 type=Enchantment
 subtype=Aura
 text=Flash (You may cast this spell any time you could cast an instant.) Enchant creature Enchanted creature gets +1/+1. Totem armor (If enchanted creature would be destroyed, instead remove all damage from it and destroy this Aura.)
-[/card]
-[card]
-name=Ego Erasure 
-text=Changeling (This card is every creature type at all times.) -- Creatures target player controls get -2/-0 and lose all creature types until end of turn.
-mana={2}{U}
-type=Tribal Instant
-subtype=Shapeshifter
 [/card]
 [card]
 name=Eland Umbra
@@ -4801,13 +4732,6 @@ name=Elemental Augury
 text={3}: Look at the top three cards of target player's library, then put them back in any order.
 mana={U}{B}{R}
 type=Enchantment
-[/card]
-[card]
-name=Elemental Mastery
-text=Enchant creature -- Enchanted creature has "{T}: Put X 1/1 red Elemental creature tokens with haste onto the battlefield, where X is this creature's power. Exile them at the beginning of the next end step."
-mana={3}{R}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
 name=Elemental Resonance
@@ -5099,24 +5023,6 @@ mana={1}{U}
 type=Legendary Enchantment
 [/card]
 [card]
-name=Erhnam Djinn
-text=At the beginning of your upkeep, target non-Wall creature an opponent controls gains forestwalk until your next upkeep.
-mana={3}{G}
-type=Creature
-subtype=Djinn
-power=4
-toughness=5
-[/card]
-[card]
-name=Erithizon
-text=Whenever Erithizon attacks, put a +1/+1 counter on target creature of defending player's choice.
-mana={2}{G}{G}
-type=Creature
-subtype=Beast
-power=4
-toughness=4
-[/card]
-[card]
 name=Erosion
 text=Enchant land -- At the beginning of the upkeep of enchanted land's controller, destroy that land unless that player pays {1} or 1 life.
 mana={U}{U}{U}
@@ -5181,12 +5087,6 @@ text=Enchant permanent -- If enchanted permanent is red or green, it has "At the
 mana={U}
 type=Enchantment
 subtype=Aura
-[/card]
-[card]
-name=Essence Vortex
-text=Destroy target creature unless its controller pays life equal to its toughness. A creature destroyed this way can't be regenerated.
-mana={1}{U}{B}
-type=Instant
 [/card]
 [card]
 name=Eternal Dominion
@@ -5292,12 +5192,6 @@ type=Creature
 subtype=Avatar
 power=7
 toughness=7
-[/card]
-[card]
-name=Exhume
-text=Each player puts a creature card from his or her graveyard onto the battlefield.
-mana={1}{B}
-type=Sorcery
 [/card]
 [card]
 name=Exhumer Thrull
@@ -5436,34 +5330,16 @@ mana={2}{G}
 type=Instant
 [/card]
 [card]
-name=False Cure
-text=Until end of turn, whenever a player gains life, that player loses 2 life for each 1 life he or she gained.
-mana={B}{B}
-type=Instant
-[/card]
-[card]
 name=False Dawn
 text=Until end of turn, spells and abilities you control that would add colored mana to your mana pool add that much white mana instead. Until end of turn, you may spend white mana as though it were mana of any color. -- Draw a card.
 mana={1}{W}
 type=Sorcery
 [/card]
 [card]
-name=False Memories
-text=Put the top seven cards of your library into your graveyard. At the beginning of the next end step, exile seven cards from your graveyard.
-mana={1}{U}
-type=Instant
-[/card]
-[card]
 name=False Orders
 text=Cast False Orders only during the declare blockers step. -- Remove target creature defending player controls from combat. Creatures it was blocking that had become blocked by only that creature this combat become unblocked. You may have it block an attacking creature of your choice.
 mana={R}
 type=Instant
-[/card]
-[card]
-name=Fanning the Flames
-text=Buyback {3} (You may pay an additional {3} as you cast this spell. If you do, put this card into your hand as it resolves.) -- Fanning the Flames deals X damage to target creature or player.
-mana={X}{R}{R}
-type=Sorcery
 [/card]
 [card]
 name=Farewell to Arms
@@ -5533,13 +5409,6 @@ text=Each creature with the highest converted mana cost has protection from all 
 mana={1}{W}
 type=Tribal Enchantment
 subtype=Giant
-[/card]
-[card]
-name=Feast of Worms
-text=Destroy target land. If that land was legendary, its controller sacrifices another land.
-mana={3}{G}{G}
-type=Sorcery
-subtype=Arcane
 [/card]
 [card]
 name=Feint
@@ -5612,12 +5481,6 @@ mana={3}{B}{B}
 type=Sorcery
 [/card]
 [card]
-name=Festival of the Guildpact
-text=Prevent the next X damage that would be dealt to you this turn. -- Draw a card.
-mana={X}{W}
-type=Instant
-[/card]
-[card]
 name=Field of Dreams
 text=Players play with the top card of their libraries revealed.
 mana={U}
@@ -5654,33 +5517,9 @@ mana={3}{W}
 type=Enchantment
 [/card]
 [card]
-name=Fight to the Death
-text=Destroy all blocking creatures and all blocked creatures.
-mana={R}{W}
-type=Instant
-[/card]
-[card]
-name=Figure of Destiny
-auto={rw}:becomes(Spirit creature,4/4)
-auto=lord(figure of destiny[spirit]|mybattlefield) {rw}{rw}{rw}:becomes(Kithkin Spirit Creature,4/4)
-auto=lord(figure of destiny[warrior]|mybattlefield) {rw}{rw}{rw}{rw}{rw}{rw}:becomes(Spirit,4/4)
-text={(r/w)}: Figure of Destiny becomes a 2/2 Kithkin Spirit. -- {(r/w){(r/w){(r/w)}: If Figure of Destiny is a Spirit, it becomes a 4/4 Kithkin Spirit Warrior. --  {(r/w){(r/w){(r/w){(r/w){(r/w){(r/w)}: If Figure of Destiny is a Warrior, it becomes an 8/8 Kithkin Spirit Warrior Avatar with flying and first strike.
-mana={RW}
-type=Creature
-subtype=Kithkin
-power=1
-toughness=1
-[/card]
-[card]
 name=Fill with Fright
 text=Target player discards two cards. -- Scry 2. (To scry 2, look at the top two cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)
 mana={3}{B}
-type=Sorcery
-[/card]
-[card]
-name=Final Punishment
-text=Target player loses life equal to the damage already dealt to him or her this turn.
-mana={3}{B}{B}
 type=Sorcery
 [/card]
 [card]
@@ -7131,33 +6970,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Golgari Brownscale
-text=When Golgari Brownscale is put into your hand from your graveyard, you gain 2 life. -- Dredge 2 (If you would draw a card, instead you may put exactly two cards from the top of your library into your graveyard. If you do, return this card from your graveyard to your hand. Otherwise, draw a card.)
-mana={1}{G}{G}
-type=Creature
-subtype=Lizard
-power=2
-toughness=3
-[/card]
-[card]
-name=Golgari Grave-Troll
-text=Golgari Grave-Troll enters the battlefield with a +1/+1 counter on it for each creature card in your graveyard. -- {1}, Remove a +1/+1 counter from Golgari Grave-Troll: Regenerate Golgari Grave-Troll. -- Dredge 6 (If you would draw a card, instead you may put exactly six cards from the top of your library into your graveyard. If you do, return this card from your graveyard to your hand. Otherwise, draw a card.)
-mana={4}{G}
-type=Creature
-subtype=Skeleton Troll
-power=0
-toughness=0
-[/card]
-[card]
-name=Golgari Thug
-text=When Golgari Thug is put into a graveyard from the battlefield, put target creature card in your graveyard on top of your library. -- Dredge 4 (If you would draw a card, instead you may put exactly four cards from the top of your library into your graveyard. If you do, return this card from your graveyard to your hand. Otherwise, draw a card.)
-mana={1}{B}
-type=Creature
-subtype=Human Warrior
-power=1
-toughness=1
-[/card]
-[card]
 name=Golgothian Sylex
 text={1}, {T}: Each nontoken permanent from the Antiquities expansion is sacrificed by its controller.
 mana={4}
@@ -7332,15 +7144,6 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-name=Grave-Shell Scarab
-text={1}, Sacrifice Grave-Shell Scarab: Draw a card. -- Dredge 1 (If you would draw a card, instead you may put exactly one card from the top of your library into your graveyard. If you do, return this card from your graveyard to your hand. Otherwise, draw a card.)
-mana={2}{B}{G}{G}
-type=Creature
-subtype=Insect
-power=4
-toughness=4
-[/card]
-[card]
 name=Gravebane Zombie
 text=If Gravebane Zombie would be put into a graveyard from the battlefield, put Gravebane Zombie on top of its owner's library instead.
 mana={3}{B}
@@ -7383,15 +7186,6 @@ type=Creature — Shapeshifter
 power=5
 toughness=5
 text={2}: Greater Morphling gains your choice of banding, bushido 1, double strike, fear, flying, first strike, haste, landwalk of your choice, protection from a color of your choice, provoke, rampage 1, shadow, or trample until end of turn. {2}: Greater Morphling becomes the colors of your choice until end of turn. {2}: Greater Morphling's type becomes the creature type of your choice until end of turn. {2}: Greater Morphling's expansion symbol becomes the symbol of your choice until end of turn. {2}: Greater Morphling's artist becomes the artist of your choice until end of turn. {2}: Greater Morphling gets +2/-2 or -2/+2 until end of turn. {2}: Untap Greater Morphling.
-[/card]
-[card]
-name=Greater Mossdog
-text=Dredge 3 (If you would draw a card, instead you may put exactly three cards from the top of your library into your graveyard. If you do, return this card from your graveyard to your hand. Otherwise, draw a card.)
-mana={3}{G}
-type=Creature
-subtype=Plant Hound
-power=3
-toughness=3
 [/card]
 [card]
 name=Greater Realm of Preservation
@@ -10126,12 +9920,6 @@ mana={G}
 type=Sorcery
 [/card]
 [card]
-name=Life from the Loam
-text=Return up to three target land cards from your graveyard to your hand. -- Dredge 3 (If you would draw a card, instead you may put exactly three cards from the top of your library into your graveyard. If you do, return this card from your graveyard to your hand. Otherwise, draw a card.)
-mana={1}{G}
-type=Sorcery
-[/card]
-[card]
 name=Lifesmith
 mana={1}{G}
 type=Creature
@@ -11622,13 +11410,6 @@ type=Sorcery
 text=Destroy all creatures target player controls. For each creature that died this way, put two 1/1 red Goblin creature tokens onto the battlefield under that player's control.
 [/card]
 [card]
-name=Moldervine Cloak
-text=Enchant creature -- Enchanted creature gets +3/+3. -- Dredge 2 (If you would draw a card, instead you may put exactly two cards from the top of your library into your graveyard. If you do, return this card from your graveyard to your hand. Otherwise, draw a card.)
-mana={2}{G}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Mole Worms
 text=You may choose not to untap Mole Worms during your untap step. -- {T}: Tap target land. It doesn't untap during its controller's untap step for as long as Mole Worms remains tapped.
 mana={2}{B}
@@ -12160,15 +11941,6 @@ mana={2}{B}
 type=Enchantment
 [/card]
 [card]
-name=Necroplasm
-text=At the beginning of your upkeep, put a +1/+1 counter on Necroplasm. -- At the beginning of your end step, destroy each creature with converted mana cost equal to the number of +1/+1 counters on Necroplasm. -- Dredge 2 (If you would draw a card, instead you may put exactly two cards from the top of your library into your graveyard. If you do, return this card from your graveyard to your hand. Otherwise, draw a card.)
-mana={1}{B}{B}
-type=Creature
-subtype=Ooze
-power=1
-toughness=1
-[/card]
-[card]
 name=Necropolis
 text=Defender (This creature can't attack.) -- Exile a creature card from your graveyard: Put X +0/+1 counters on Necropolis, where X is the exiled card's converted mana cost.
 mana={5}
@@ -12328,12 +12100,6 @@ name=Night // Day (Night)
 text=Target creature gets -1/-1 until end of turn.
 mana={B}
 type=Instant
-[/card]
-[card]
-name=Nightmare Void
-text=Target player reveals his or her hand. You choose a card from it. That player discards that card. -- Dredge 2 (If you would draw a card, instead you may put exactly two cards from the top of your library into your graveyard. If you do, return this card from your graveyard to your hand. Otherwise, draw a card.)
-mana={3}{B}
-type=Sorcery
 [/card]
 [card]
 name=Nightscape Battlemage
@@ -12657,15 +12423,6 @@ type=Creature
 subtype=Beast
 power=4
 toughness=4
-[/card]
-[card]
-name=Obstinate Familiar
-text=If you would draw a card, you may skip that draw instead.
-mana={R}
-type=Creature
-subtype=Lizard
-power=1
-toughness=1
 [/card]
 [card]
 name=Odds // Ends (Ends)
@@ -13663,12 +13420,6 @@ name=Pithing Needle
 text=As Pithing Needle enters the battlefield, name a card. -- Activated abilities of sources with the chosen name can't be activated unless they're mana abilities.
 mana={1}
 type=Artifact
-[/card]
-[card]
-name=Plagiarize
-text=Until end of turn, if target player would draw a card, instead that player skips that draw and you draw a card.
-mana={3}{U}
-type=Instant
 [/card]
 [card]
 name=Plague Fiend
@@ -16563,15 +16314,6 @@ mana={2}{R}
 type=Instant
 [/card]
 [card]
-name=Shambling Shell
-text=Sacrifice Shambling Shell: Put a +1/+1 counter on target creature. -- Dredge 3 (If you would draw a card, instead you may put exactly three cards from the top of your library into your graveyard. If you do, return this card from your graveyard to your hand. Otherwise, draw a card.)
-mana={1}{B}{G}
-type=Creature
-subtype=Plant Zombie
-power=3
-toughness=1
-[/card]
-[card]
 name=Shambling Swarm
 text=When Shambling Swarm is put into a graveyard from the battlefield, distribute three -1/-1 counters among one, two, or three target creatures. For each -1/-1 counter you put on a creature this way, remove a -1/-1 counter from that creature at the beginning of the next end step.
 mana={1}{B}{B}{B}
@@ -18236,15 +17978,6 @@ power=2
 toughness=1
 [/card]
 [card]
-name=Stinkweed Imp
-text=Flying -- Whenever Stinkweed Imp deals combat damage to a creature, destroy that creature. -- Dredge 5 (If you would draw a card, instead you may put exactly five cards from the top of your library into your graveyard. If you do, return this card from your graveyard to your hand. Otherwise, draw a card.)
-mana={2}{B}
-type=Creature
-subtype=Imp
-power=1
-toughness=2
-[/card]
-[card]
 name=Stoic Angel
 text=Flying, vigilance -- Players can't untap more than one creature during their untap steps.
 mana={1}{G}{W}{U}
@@ -19377,12 +19110,6 @@ name=Thought Prison
 text=Imprint - When Thought Prison enters the battlefield, you may have target player reveal his or her hand. If you do, choose a nonland card from it and exile that card. -- Whenever a player casts a spell that shares a color or converted mana cost with the exiled card, Thought Prison deals 2 damage to that player.
 mana={5}
 type=Artifact
-[/card]
-[card]
-name=Thought Reflection
-text=If you would draw a card, draw two cards instead.
-mana={4}{U}{U}{U}
-type=Enchantment
 [/card]
 [card]
 name=Thoughtcutter Agent

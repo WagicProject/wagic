@@ -18148,6 +18148,14 @@ mana={3}{B}{B}
 type=Sorcery
 [/card]
 [card]
+name=Dakmor Salvage
+auto=tap
+auto={t}:add{b}
+dredge=dredge(2)
+text=Dakmor Salvage enters the battlefield tapped. -- {T}: Add {B} to your mana pool. -- Dredge 2 (If you would draw a card, instead you may put exactly two cards from the top of your library into your graveyard. If you do, return this card from your graveyard to your hand. Otherwise, draw a card.)
+type=Land
+[/card]
+[card]
 name=Dakmor Scorpion
 mana={1}{B}
 type=Creature
@@ -18333,6 +18341,15 @@ target=creature[-black]
 auto=bury
 text=Destroy target nonblack creature. It can't be regenerated.
 mana={2}{B}
+type=Instant
+[/card]
+[card]
+name=Darkblast
+target=creature
+auto=-1/-1
+dredge=dredge(3)
+text=Target creature gets -1/-1 until end of turn. -- Dredge 3 (If you would draw a card, instead you may put exactly three cards from the top of your library into your graveyard. If you do, return this card from your graveyard to your hand. Otherwise, draw a card.)
+mana={B}
 type=Instant
 [/card]
 [card]
@@ -20670,6 +20687,17 @@ type=Sorcery
 text=Destroy target artifact with converted mana cost X. It can't be regenerated. Detonate deals X damage to that artifact's controller.
 [/card]
 [card]
+name=Deus of Calamity
+abilities=trample
+auto=@damaged(opponent) from(this) restriction{compare(thatmuch)~morethan~5}:destroy target(land|opponent)
+text=Trample -- Whenever Deus of Calamity deals 6 or more damage to an opponent, destroy target land that player controls.
+mana={RG}{RG}{RG}{RG}{RG}
+type=Creature
+subtype=Spirit Avatar
+power=6
+toughness=6
+[/card]
+[card]
 name=Devastate
 target=land
 auto=destroy
@@ -20873,6 +20901,16 @@ auto=moveTo(myHand) notatarget(*|mylibrary)
 text=Search your library for a card and put that card into your hand. Then shuffle your library.
 mana={2}{B}{B}
 type=Sorcery
+[/card]
+[card]
+name=Diaochan, Artful Beauty
+auto={T}:destroy target(creature) && ability$!destroy target(creature)!$ opponent mycombatbeginsonly
+text={T}: Destroy target creature of your choice, then destroy target creature of an opponent's choice. Activate this ability only during your turn, before attackers are declared.
+mana={3}{R}
+type=Legendary Creature
+subtype=Human Advisor
+power=1
+toughness=1
 [/card]
 [card]
 name=Diamond Kaleidoscope
@@ -22265,6 +22303,17 @@ mana={1}{B}{R}
 type=Enchantment
 [/card]
 [card]
+name=Dralnu's Pet
+other={3}{B}{U}{U}{discard(other creature|myhand)} name(Kicker)
+auto=if paid(alternative) then counter(1/1,storedmanacost) && transforms((,flying)) forever
+text=Kicker - {2}{B}, Discard a creature card. (You may pay {2}{B} and discard a creature card in addition to any other costs as you cast this spell.) -- If Dralnu's Pet was kicked, it enters the battlefield with flying and with X +1/+1 counters on it, where X is the discarded card's converted mana cost.
+mana={1}{U}{U}
+type=Creature
+subtype=Shapeshifter
+power=2
+toughness=2
+[/card]
+[card]
 name=Dramatic Entrance
 target=creature[green]|myhand
 auto=moveto(myBattlefield)
@@ -22578,6 +22627,13 @@ type=Creature
 subtype=Human Druid
 power=2
 toughness=2
+[/card]
+[card]
+name=Dreams of the Dead
+auto={1}{U}:moveto(mybattlefield) and!( transforms((,newability[@movedto(this|nonbattlezone) from(battlefield):moveto(exile)],newability[cumulativeupcost[{2}] sacrifice])) forever )! target(creature[white;black]|mygraveyard)
+text={1}{U}: Return target white or black creature card from your graveyard to the battlefield. That creature gains "Cumulative upkeep {2}." If the creature would leave the battlefield, exile it instead of putting it anywhere else. (At the beginning of its controller's upkeep, that player puts an age counter on it, then sacrifices it unless he or she pays its upkeep cost for each age counter on it.)
+mana={3}{U}
+type=Enchantment
 [/card]
 [card]
 name=Dreamscape Artist
@@ -23214,6 +23270,15 @@ text=Enchant creature -- Enchanted creature has forestwalk.
 mana={G}
 type=Enchantment
 subtype=Aura
+[/card]
+#emblem ueot removes the effect, the ability acts an observer
+[card]
+name=Due Respect
+auto=emblem transforms((,newability[@movedTo(*|Battlefield):all(trigger) tap])) ueot
+auto=draw:1 controller
+mana={1}{W}
+type=Instant
+text=Permanents enter the battlefield tapped this turn. Draw a card.
 [/card]
 [card]
 name=Dueling Grounds
@@ -23990,6 +24055,19 @@ subtype=Drake
 power=3
 toughness=3
 [/card]
+#the cantargetcard cant parse mystored[thrull], modified activation
+[card]
+name=Ebon Praetor
+abilities=first strike,trample
+auto=@each my upkeep:counter(-2/-2,1)
+auto={0}:counter(-2/-2,-1) all(this) && notatarget(other creature|mybattlefield) and!( if cantargetcard(thrull|*) then counter(1/0,1) all(this) )! sacrifice limit:1 myupkeeponly
+text=First strike, trample -- At the beginning of your upkeep, put a -2/-2 counter on Ebon Praetor. -- Sacrifice a creature: Remove a -2/-2 counter from Ebon Praetor. If the sacrificed creature was a Thrull, put a +1/+0 counter on Ebon Praetor. Activate this ability only during your upkeep and only once each turn.
+mana={4}{B}{B}
+type=Creature
+subtype=Avatar
+power=5
+toughness=5
+[/card]
 [card]
 name=Ebon Stronghold
 auto=tap
@@ -24142,6 +24220,16 @@ text=Search your library for an Arcane card, reveal that card, and put it into y
 mana={2}{U}
 type=Sorcery
 subtype=Arcane
+[/card]
+[card]
+name=Ego Erasure
+abilities=changeling
+target=player
+auto=all(creature|targetedpersonsBattlefield) transforms((removecreaturesubtypes,newability[-2/0])) ueot
+text=Changeling (This card is every creature type at all times.) -- Creatures target player controls get -2/-0 and lose all creature types until end of turn.
+mana={2}{U}
+type=Tribal Instant
+subtype=Shapeshifter
 [/card]
 [card]
 name=Eiganjo Castle
@@ -24404,6 +24492,15 @@ type=Creature
 subtype=Beast
 power=3
 toughness=3
+[/card]
+[card]
+name=Elemental Mastery
+target=creature
+auto=teach(creature) {T}:token(Elemental,Creature Elemental,1/1,red,haste,unearth)*power
+text=Enchant creature -- Enchanted creature has "{T}: Put X 1/1 red Elemental creature tokens with haste onto the battlefield, where X is this creature's power. Exile them at the beginning of the next end step."
+mana={3}{R}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 name=Elephant Ambush
@@ -25906,6 +26003,27 @@ subtype=Human Warrior
 power=2
 toughness=3
 [/card]
+#uynt I think 99% support
+[card]
+name=Erhnam Djinn
+auto=@each my upkeep:target(creature[-wall]|opponentbattlefield) forestwalk uynt
+text=At the beginning of your upkeep, target non-Wall creature an opponent controls gains forestwalk until your next upkeep.
+mana={3}{G}
+type=Creature
+subtype=Djinn
+power=4
+toughness=5
+[/card]
+[card]
+name=Erithizon
+auto=@combat(attacking) source(this):ability$!counter(1/1,1) target(creature|mybattlefield)!$ opponent
+text=Whenever Erithizon attacks, put a +1/+1 counter on target creature of defending player's choice.
+mana={2}{G}{G}
+type=Creature
+subtype=Beast
+power=4
+toughness=4
+[/card]
 [card]
 name=Eron the Relentless
 abilities=haste
@@ -26183,6 +26301,14 @@ type=Creature
 subtype=Sliver
 power=3
 toughness=3
+[/card]
+[card]
+name=Essence Vortex
+target=creature
+auto=transforms((,newability[choice life:-toughness],newability[choice bury]))
+text=Destroy target creature unless its controller pays life equal to its toughness. A creature destroyed this way can't be regenerated.
+mana={1}{U}{B}
+type=Instant
 [/card]
 [card]
 name=Essence Warden
@@ -26635,6 +26761,14 @@ auto=frozen all(creature|opponentbattlefield) frozen
 auto=frozen all(land|opponentbattlefield) frozen
 text=Creatures and lands target opponent controls don't untap during his or her next untap step.
 mana={2}{U}
+type=Sorcery
+[/card]
+[card]
+name=Exhume
+auto=moveto(ownerbattlefield) notatarget(creature|mygraveyard)
+auto=ability$! moveto(ownerbattlefield) notatarget(creature|mygraveyard) !$ opponent
+text=Each player puts a creature card from his or her graveyard onto the battlefield.
+mana={1}{B}
 type=Sorcery
 [/card]
 [card]
@@ -27378,6 +27512,14 @@ subtype=Merfolk Wizard
 power=2
 toughness=2
 [/card]
+#emblem ueot removes the effect, the ability acts an observer
+[card]
+name=False Cure
+auto=emblem transforms((,newability[@lifed(opponent):life:-thatmuch opponent && life:-thatmuch opponent],newability[@lifed(controller):life:-thatmuch controller && life:-thatmuch controller])) ueot
+text=Until end of turn, whenever a player gains life, that player loses 2 life for each 1 life he or she gained.
+mana={B}{B}
+type=Instant
+[/card]
 [card]
 name=False Defeat
 target=creature|mygraveyard
@@ -27394,6 +27536,14 @@ text=Enchant creature -- When enchanted creature is put into a graveyard, return
 mana={2}{U}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+name=False Memories
+auto=deplete:7 controller
+auto=@next end:moveto(exile) notatarget(<7>*|mygraveyard)
+text=Put the top seven cards of your library into your graveyard. At the beginning of the next end step, exile seven cards from your graveyard.
+mana={1}{U}
+type=Instant
 [/card]
 [card]
 name=False Mourning
@@ -27468,6 +27618,15 @@ auto={S(creature|mybattlefield)}:regenerate target(creature)
 text=Sacrifice a creature: Regenerate target creature.
 mana={2}{W}
 type=Enchantment
+[/card]
+[card]
+name=Fanning the Flames
+target=creature,player
+auto=damage:X
+buyback={X}{3}{R}{R}
+text=Buyback {3} (You may pay an additional {3} as you cast this spell. If you do, put this card into your hand as it resolves.) -- Fanning the Flames deals X damage to target creature or player.
+mana={X}{R}{R}
+type=Sorcery
 [/card]
 [card]
 name=Famished Ghoul
@@ -27816,6 +27975,15 @@ text=Enchant creature -- Enchanted creature gets +4/+0.
 mana={3}{B}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+name=Feast of Worms
+target=land
+auto=if cantargetcard(legendary) then destroy && ability$!sacrifice notatarget(land|mybattlefield)!$ targetcontroller else destroy
+text=Destroy target land. If that land was legendary, its controller sacrifices another land.
+mana={3}{G}{G}
+type=Sorcery
+subtype=Arcane
 [/card]
 [card]
 name=Feast or Famine
@@ -28208,6 +28376,13 @@ mana={W}
 type=Instant
 [/card]
 [card]
+name=Festival of the Guildpact
+auto=prevent:X controller
+text=Prevent the next X damage that would be dealt to you this turn. -- Draw a card.
+mana={X}{W}
+type=Instant
+[/card]
+[card]
 name=Festival of Trokin
 auto=foreach(creature|myBattlefield) life:2
 text=You gain 2 life for each creature you control.
@@ -28403,6 +28578,13 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Fight to the Death
+auto=destroy all(creature[blocking;blocked])
+text=Destroy all blocking creatures and all blocked creatures.
+mana={R}{W}
+type=Instant
+[/card]
+[card]
 name=Fighting Chance
 auto=@combat(blocking) source(creature):all(trigger[to]) flipacoin winability preventAllCombatDamage from(this) ueot winabilityend flipend
 text=For each blocking creature, flip a coin. If you win the flip, prevent all combat damage that would be dealt by that creature this turn.
@@ -28418,6 +28600,19 @@ type=Creature
 subtype=Drake
 power=2
 toughness=4
+[/card]
+#works 100% please dont remove ")" or it will not work
+[card]
+name=Figure of Destiny
+auto={RW}:becomes(Kithkin Spirit,2/2) forever
+auto=this(cantargetcard(*[spirit]) {RW}{RW}{RW}:becomes(Kithkin Spirit Warrior,4/4) forever )
+auto=this(cantargetcard(*[warrior]) {RW}{RW}{RW}{RW}{RW}{RW}:becomes(Kithkin Spirit Warrior Avatar,8/8,flying,first strike) forever )
+text={RW}: Figure of Destiny becomes a 2/2 Kithkin Spirit. -- {RW}{RW}{RW}: If Figure of Destiny is a Spirit, it becomes a 4/4 Kithkin Spirit Warrior. -- {RW}{RW}{RW}{RW}{RW}{RW}: If Figure of Destiny is a Warrior, it becomes an 8/8 Kithkin Spirit Warrior Avatar with flying and first strike.
+mana={RW}
+type=Creature
+subtype=Kithkin
+power=1
+toughness=1
 [/card]
 [card]
 name=Filigree Angel
@@ -28483,6 +28678,15 @@ name=Final Judgment
 auto=moveto(exile) all(creature)
 text=Exile all creatures.
 mana={4}{W}{W}
+type=Sorcery
+[/card]
+#final punishment modified to opponent, we can however to add "targetplayerdcount" intValue = card->playerTarget->damageCount;
+[card]
+name=Final Punishment
+target=opponent
+auto=damage:odcount targetedplayer
+text=Target player loses life equal to the damage already dealt to him or her this turn.
+mana={3}{B}{B}
 type=Sorcery
 [/card]
 [card]
@@ -34544,6 +34748,17 @@ type=Artifact
 subtype=Equipment
 [/card]
 [card]
+name=Golgari Brownscale
+auto=@movedTo(this|myhand) from(mygraveyard):life:2
+dredge=dredge(2)
+text=When Golgari Brownscale is put into your hand from your graveyard, you gain 2 life. -- Dredge 2 (If you would draw a card, instead you may put exactly two cards from the top of your library into your graveyard. If you do, return this card from your graveyard to your hand. Otherwise, draw a card.)
+mana={1}{G}{G}
+type=Creature
+subtype=Lizard
+power=2
+toughness=3
+[/card]
+[card]
 name=Golgari Charm
 auto=choice name(All creatures -1/-1) all(creature|battlefield) -1/-1
 auto=choice name(Destroy enchantment) destroy target(enchantment|battlefield)
@@ -34569,6 +34784,18 @@ auto=@movedto(graveyard) from(creature[-token]|myBattlefield):token(Saproling,cr
 text=Whenever a nontoken creature you control dies, put a 1/1 green Saproling creature token onto the battlefield.
 mana={1}{B}{G}
 type=Enchantment
+[/card]
+[card]
+name=Golgari Grave-Troll
+auto=counter(1/1,type:creature:mygraveyard)
+auto={1}{C(1/1,-1)}:regenerate
+dredge=dredge(6)
+text=Golgari Grave-Troll enters the battlefield with a +1/+1 counter on it for each creature card in your graveyard. -- {1}, Remove a +1/+1 counter from Golgari Grave-Troll: Regenerate Golgari Grave-Troll. -- Dredge 6 (If you would draw a card, instead you may put exactly six cards from the top of your library into your graveyard. If you do, return this card from your graveyard to your hand. Otherwise, draw a card.)
+mana={4}{G}
+type=Creature
+subtype=Skeleton Troll
+power=0
+toughness=0
 [/card]
 [card]
 name=Golgari Guildgate
@@ -34631,6 +34858,17 @@ auto={1}{T}:Add {B}{G}
 text={1}, {T}: Add {B}{G} to your mana pool.
 mana={2}
 type=Artifact
+[/card]
+[card]
+name=Golgari Thug
+auto=@movedTo(this|mygraveyard) from(Battlefield):moveTo(mylibrary) target(creature|mygraveyard)
+dredge=dredge(4)
+text=When Golgari Thug is put into a graveyard from the battlefield, put target creature card in your graveyard on top of your library. -- Dredge 4 (If you would draw a card, instead you may put exactly four cards from the top of your library into your graveyard. If you do, return this card from your graveyard to your hand. Otherwise, draw a card.)
+mana={1}{B}
+type=Creature
+subtype=Human Warrior
+power=1
+toughness=1
 [/card]
 [card]
 name=Goliath Beetle
@@ -35126,6 +35364,17 @@ mana={2}{B}
 type=Instant
 [/card]
 [card]
+name=Grave-Shell Scarab
+auto={1}{S}:draw:1
+dredge=dredge(1)
+text={1}, Sacrifice Grave-Shell Scarab: Draw a card. -- Dredge 1 (If you would draw a card, instead you may put exactly one card from the top of your library into your graveyard. If you do, return this card from your graveyard to your hand. Otherwise, draw a card.)
+mana={2}{B}{G}{G}
+type=Creature
+subtype=Insect
+power=4
+toughness=4
+[/card]
+[card]
 name=Gravespawn Sovereign
 auto={T(zombie|myBattlefield)}{T(zombie|myBattlefield)}{T(zombie|myBattlefield)}{T(zombie|myBattlefield)}{T(zombie|myBattlefield)}:moveTo(mybattlefield) target(creature|graveyard)
 text=Tap five untapped Zombies you control: Put target creature card from a graveyard onto the battlefield under your control.
@@ -35335,6 +35584,16 @@ type=Creature
 subtype=Horror
 power=5
 toughness=6
+[/card]
+[card]
+name=Greater Mossdog
+dredge=dredge(3)
+text=Dredge 3 (If you would draw a card, instead you may put exactly three cards from the top of your library into your graveyard. If you do, return this card from your graveyard to your hand. Otherwise, draw a card.)
+mana={3}{G}
+type=Creature
+subtype=Plant Hound
+power=3
+toughness=3
 [/card]
 [card]
 name=Greater Stone Spirit
@@ -47282,6 +47541,14 @@ mana={4}
 type=Artifact
 [/card]
 [card]
+name=Life from the Loam
+auto=target(<upto:3>land|mygraveyard) moveTo(myhand)
+dredge=dredge(3)
+text=Return up to three target land cards from your graveyard to your hand. -- Dredge 3 (If you would draw a card, instead you may put exactly three cards from the top of your library into your graveyard. If you do, return this card from your graveyard to your hand. Otherwise, draw a card.)
+mana={1}{G}
+type=Sorcery
+[/card]
+[card]
 name=Life Matrix
 auto={4}{T}:counter(0/0,1,Matrix) target(creature) myUpkeepOnly
 auto=lord(creature[counter{0/0.1.Matrix}]) {C(0/0,-1,Matrix)}:regenerate
@@ -53269,6 +53536,16 @@ power=4
 toughness=6
 [/card]
 [card]
+name=Moldervine Cloak
+target=creature
+auto=teach(creature) 3/3
+dredge=dredge(2)
+text=Enchant creature -- Enchanted creature gets +3/+3. -- Dredge 2 (If you would draw a card, instead you may put exactly two cards from the top of your library into your graveyard. If you do, return this card from your graveyard to your hand. Otherwise, draw a card.)
+mana={2}{G}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 name=Moldgraf Monstrosity
 abilities=trample
 auto=@movedTo(this|graveyard) from(battlefield):moveto(exile) && moverandom(creature) from(mygraveyard) to(myhand) && moverandom(creature) from(mygraveyard)
@@ -55627,6 +55904,34 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Necroplasm
+auto=@each my upkeep:counter(1/1,1)
+auto=this(counter{1/1.1}<1) transforms((,newability[@each my end:destroy all(creature[manacost=0])]))
+auto=this(counter{1/1.1}=1) transforms((,newability[@each my end:destroy all(creature[manacost=1])]))
+auto=this(counter{1/1.1}=2) transforms((,newability[@each my end:destroy all(creature[manacost=2])]))
+auto=this(counter{1/1.1}=3) transforms((,newability[@each my end:destroy all(creature[manacost=3])]))
+auto=this(counter{1/1.1}=4) transforms((,newability[@each my end:destroy all(creature[manacost=4])]))
+auto=this(counter{1/1.1}=5) transforms((,newability[@each my end:destroy all(creature[manacost=5])]))
+auto=this(counter{1/1.1}=6) transforms((,newability[@each my end:destroy all(creature[manacost=6])]))
+auto=this(counter{1/1.1}=7) transforms((,newability[@each my end:destroy all(creature[manacost=7])]))
+auto=this(counter{1/1.1}=8) transforms((,newability[@each my end:destroy all(creature[manacost=8])]))
+auto=this(counter{1/1.1}=9) transforms((,newability[@each my end:destroy all(creature[manacost=9])]))
+auto=this(counter{1/1.1}=10) transforms((,newability[@each my end:destroy all(creature[manacost=10])]))
+auto=this(counter{1/1.1}=11) transforms((,newability[@each my end:destroy all(creature[manacost=11])]))
+auto=this(counter{1/1.1}=12) transforms((,newability[@each my end:destroy all(creature[manacost=12])]))
+auto=this(counter{1/1.1}=13) transforms((,newability[@each my end:destroy all(creature[manacost=13])]))
+auto=this(counter{1/1.1}=14) transforms((,newability[@each my end:destroy all(creature[manacost=14])]))
+auto=this(counter{1/1.1}=15) transforms((,newability[@each my end:destroy all(creature[manacost=15])]))
+auto=this(counter{1/1.1}=16) transforms((,newability[@each my end:destroy all(creature[manacost=16])]))
+dredge=dredge(2)
+text=At the beginning of your upkeep, put a +1/+1 counter on Necroplasm. -- At the beginning of your end step, destroy each creature with converted mana cost equal to the number of +1/+1 counters on Necroplasm. -- Dredge 2 (If you would draw a card, instead you may put exactly two cards from the top of your library into your graveyard. If you do, return this card from your graveyard to your hand. Otherwise, draw a card.)
+mana={1}{B}{B}
+type=Creature
+subtype=Ooze
+power=1
+toughness=1
+[/card]
+[card]
 name=Necropolis Regent
 auto=lord(creature|mybattlefield) transforms((,newability[@combatdamaged(player) from(this):dynamicability<!thatmuchcountersoneone!>]))
 abilities=flying
@@ -56345,6 +56650,15 @@ text=Equipped creature gets +1/+1 for each Swamp you control. -- Equip - Pay 3 l
 mana={4}
 type=Artifact
 subtype=Equipment
+[/card]
+[card]
+name=Nightmare Void
+target=player
+auto=target(*|targetedpersonshand) reject
+dredge=dredge(2)
+text=Target player reveals his or her hand. You choose a card from it. That player discards that card. -- Dredge 2 (If you would draw a card, instead you may put exactly two cards from the top of your library into your graveyard. If you do, return this card from your graveyard to your hand. Otherwise, draw a card.)
+mana={3}{B}
+type=Sorcery
 [/card]
 [card]
 name=Nightscape Apprentice
@@ -57477,6 +57791,16 @@ type=Creature
 subtype=Giant
 power=4
 toughness=4
+[/card]
+[card]
+name=Obstinate Familiar
+auto=replacedraw ability$!choice name(Skip Draw) 0/0 ueot _ choice draw:1 noreplace!$ controller
+text=If you would draw a card, you may skip that draw instead.
+mana={R}
+type=Creature
+subtype=Lizard
+power=1
+toughness=1
 [/card]
 [card]
 name=Ocular Halo
@@ -61393,6 +61717,15 @@ type=Creature
 subtype=Faerie
 power=1
 toughness=1
+[/card]
+#emblem ueot removes the effect, modified to opponent since if you target yourself, it has no use and you still draw.
+[card]
+name=Plagiarize
+target=opponent
+auto=emblem transforms((,newability[opponentreplacedraw draw:1 noreplace)) ueot
+text=Until end of turn, if target player would draw a card, instead that player skips that draw and you draw a card.
+mana={3}{U}
+type=Instant
 [/card]
 [card]
 name=Plague Beetle
@@ -72701,6 +73034,17 @@ power=4
 toughness=3
 [/card]
 [card]
+name=Shambling Shell
+auto={S}:counter(1/1,1) target(creature)
+text=Sacrifice Shambling Shell: Put a +1/+1 counter on target creature. -- Dredge 3 (If you would draw a card, instead you may put exactly three cards from the top of your library into your graveyard. If you do, return this card from your graveyard to your hand. Otherwise, draw a card.)
+mana={1}{B}{G}
+dredge=dredge(3)
+type=Creature
+subtype=Plant Zombie
+power=3
+toughness=1
+[/card]
+[card]
 name=Shambling Strider
 auto={R}{G}:1/-1
 text={R}{G}: Shambling Strider gets +1/-1 until end of turn.
@@ -80014,6 +80358,18 @@ power=1
 toughness=3
 [/card]
 [card]
+name=Stinkweed Imp
+abilities=flying
+auto=@combatdamaged(creature) from(this):all(trigger[to]) destroy
+dredge=dredge(5)
+text=Flying -- Whenever Stinkweed Imp deals combat damage to a creature, destroy that creature. -- Dredge 5 (If you would draw a card, instead you may put exactly five cards from the top of your library into your graveyard. If you do, return this card from your graveyard to your hand. Otherwise, draw a card.)
+mana={2}{B}
+type=Creature
+subtype=Imp
+power=1
+toughness=2
+[/card]
+[card]
 name=Stir the Grave
 auto=moveto(mybattlefield) target(creature[manacost <=X]|mygraveyard)
 text=Return target creature card with converted mana cost X or less from your graveyard to the battlefield.
@@ -84714,6 +85070,13 @@ type=Creature
 subtype=Horror
 power=2
 toughness=2
+[/card]
+[card]
+name=Thought Reflection
+auto=replacedraw draw:2 noreplace
+text=If you would draw a card, draw two cards instead.
+mana={4}{U}{U}{U}
+type=Enchantment
 [/card]
 [card]
 name=Thought Scour
