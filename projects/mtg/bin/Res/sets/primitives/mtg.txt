@@ -163,12 +163,12 @@ type=Instant
 [card]
 name=Abandoned Outpost
 auto=tap
-auto={T}:Add {W}
-auto={T}{S}:Add {B}
-auto={T}{S}:Add {G}
-auto={T}{S}:Add {R}
-auto={T}{S}:Add {U}
-auto={T}{S}:Add {W}
+auto={T}:Add{W}
+auto={T}{S}:Add{B}
+auto={T}{S}:Add{G}
+auto={T}{S}:Add{R}
+auto={T}{S}:Add{U}
+auto={T}{S}:Add{W}
 text=Abandoned Outpost enters the battlefield tapped. -- {T}: Add {W} to your mana pool. -- {T}, Sacrifice Abandoned Outpost: Add one mana of any color to your mana pool.
 type=Land
 [/card]
@@ -448,7 +448,7 @@ toughness=2
 [/card]
 [card]
 name=Academy Ruins
-auto={T}:Add {1}
+auto={T}:Add{1}
 auto={1}{U}{T}:moveTo(mylibrary) target(artifact|mygraveyard)
 text={T}: Add {1} to your mana pool. -- {1}{U}, {T}: Put target artifact card in your graveyard on top of your library.
 type=Legendary Land
@@ -679,9 +679,9 @@ toughness=5
 [/card]
 [card]
 name=Adarkar Wastes
-auto={T}:Add {1}
-auto={T}:Add {W} && Damage:1 controller
-auto={T}:Add {U} && Damage:1 controller
+auto={T}:Add{1}
+auto={T}:Add{W} && Damage:1 controller
+auto={T}:Add{U} && Damage:1 controller
 text={T}: Add {1} to your mana pool. -- {T}: Add {W} or {U} to your mana pool. Adarkar Wastes deals 1 damage to you.
 type=Land
 [/card]
@@ -911,7 +911,7 @@ toughness=1
 [/card]
 [card]
 name=Agent of Stromgald
-auto={R}:Add {B}
+auto={R}:Add{B}
 text={R}: Add {B} to your mana pool.
 mana={R}
 type=Creature
@@ -1220,8 +1220,8 @@ toughness=5
 name=Akoum Refuge
 auto=tap
 auto=life:1
-auto={T}:Add {B}
-auto={T}:Add {R}
+auto={T}:Add{B}
+auto={T}:Add{R}
 text=Akoum Refuge enters the battlefield tapped. -- When Akoum Refuge enters the battlefield, you gain 1 life. -- {T}: Add {B} or {R} to your mana pool.
 type=Land
 [/card]
@@ -2138,8 +2138,8 @@ type=Sorcery
 name=Ancient Amphitheater
 auto=tap
 auto=aslongas(giant|myHand) untap
-auto={T}:Add {R}
-auto={T}:Add {W}
+auto={T}:Add{R}
+auto={T}:Add{W}
 text=As Ancient Amphitheater enters the battlefield, you may reveal a Giant card from your hand. If you don't, Ancient Amphitheater enters the battlefield tapped. -- {T}: Add {R} or {W} to your mana pool.
 type=Land
 [/card]
@@ -2153,7 +2153,7 @@ type=Sorcery
 [/card]
 [card]
 name=Ancient Den
-auto={T}:Add {W}
+auto={T}:Add{W}
 text=(Ancient Den isn't a spell.) -- {T}: Add {W} to your mana pool.
 type=Artifact Land
 [/card]
@@ -2260,7 +2260,7 @@ type=Land
 [/card]
 [card]
 name=Ancient Tomb
-auto={T}:Add {2} && Damage:2 controller
+auto={T}:Add{2} && Damage:2 controller
 text={T}: Add {2} to your mana pool. Ancient Tomb deals 2 damage to you.
 type=Land
 [/card]
@@ -2980,7 +2980,7 @@ toughness=1
 [/card]
 [card]
 name=Apprentice Wizard
-auto={U}{T}:Add {3}
+auto={U}{T}:Add{3}
 text={U}, {T}: Add {3} to your mana pool.
 mana={1}{U}{U}
 type=Creature
@@ -3216,9 +3216,9 @@ type=Enchantment
 [card]
 name=Arcane Sanctum
 auto=tap
-auto={T}:Add {W}
-auto={T}:Add {U}
-auto={T}:Add {B}
+auto={T}:Add{W}
+auto={T}:Add{U}
+auto={T}:Add{B}
 text=Arcane Sanctum enters the battlefield tapped. -- {T}: Add {W}, {U}, or {B} to your mana pool.
 type=Land
 [/card]
@@ -3540,8 +3540,8 @@ toughness=1
 [card]
 name=Arctic Flats
 auto=tap
-auto={T}:Add {G}
-auto={T}:Add {W}
+auto={T}:Add{G}
+auto={T}:Add{W}
 text=Arctic Flats enters the battlefield tapped. -- {T}: Add {G} or {W} to your mana pool.
 type=Snow Land
 [/card]
@@ -4331,7 +4331,7 @@ toughness=1
 [/card]
 [card]
 name=Ashnod's Altar
-auto={S(creature|myBattlefield)}:Add {2}
+auto={S(creature|myBattlefield)}:Add{2}
 text=Sacrifice a creature: Add {2} to your mana pool.
 mana={3}
 type=Artifact
@@ -4560,8 +4560,8 @@ toughness=1
 name=Auntie's Hovel
 auto=tap
 auto=aslongas(goblin|myHand) untap
-auto={T}:Add {B}
-auto={T}:Add {R}
+auto={T}:Add{B}
+auto={T}:Add{R}
 text=As Auntie's Hovel enters the battlefield, you may reveal a Goblin card from your hand. If you don't, Auntie's Hovel enters the battlefield tapped. -- {T}: Add {B} or {R} to your mana pool.
 type=Land
 [/card]
@@ -5427,8 +5427,8 @@ toughness=2
 [card]
 name=Azorius Guildgate
 auto=tap
-auto={T}:Add {W}
-auto={T}:Add {U}
+auto={T}:Add{W}
+auto={T}:Add{U}
 text=Azorius Guildgate enters the battlefield tapped. -- {T}: Add {W} or {U} to your mana pool.
 type=Land
 subtype=Gate
@@ -5467,7 +5467,7 @@ type=Artifact
 [/card]
 [card]
 name=Azorius Signet
-auto={1}{T}:Add {W}{U}
+auto={1}{T}:Add{W}{U}
 text={1}, {T}: Add {W}{U} to your mana pool.
 mana={2}
 type=Artifact
@@ -5960,7 +5960,7 @@ type=Instant
 [/card]
 [card]
 name=Bant Panorama
-auto={T}:Add {1}
+auto={T}:Add{1}
 auto={1}{T}{S}:moveTo(myBattlefield) and!(tap)! target(forest,plains,island|mylibrary)
 text={T}: Add {1} to your mana pool. -- {1}, {T}, Sacrifice Bant Panorama: Search your library for a basic Forest, Plains, or Island card and put it onto the battlefield tapped. Then shuffle your library.
 type=Land
@@ -6081,7 +6081,7 @@ toughness=3
 [/card]
 [card]
 name=Barbarian Ring
-auto={T}:Add {R} && damage:1 controller
+auto={T}:Add{R} && damage:1 controller
 auto=aslongas(*|mygraveyard) {R}{T}{S}:damage:2 target(creature,player) >6
 text={T}: Add {R} to your mana pool. Barbarian Ring deals 1 damage to you. -- Threshold - {R}, {T}, Sacrifice Barbarian Ring: Barbarian Ring deals 2 damage to target creature or player. Activate this ability only if seven or more cards are in your graveyard.
 type=Land
@@ -6282,7 +6282,7 @@ type=Enchantment
 [card]
 name=Barren Moor
 auto=tap
-auto={T}:Add {B}
+auto={T}:Add{B}
 autohand=__CYCLING__({B})
 text=Barren Moor enters the battlefield tapped. -- {T}: Add {B} to your mana pool. -- Cycling {B} ({B}, Discard this card: Draw a card.)
 type=Land
@@ -6350,7 +6350,7 @@ toughness=4
 [/card]
 [card]
 name=Basal Sliver
-auto=lord(sliver) {S}:Add {B}{B}
+auto=lord(sliver) {S}:Add{B}{B}
 text=All Slivers have "Sacrifice this permanent: Add {B}{B} to your mana pool."
 mana={2}{B}
 type=Creature
@@ -6360,7 +6360,7 @@ toughness=2
 [/card]
 [card]
 name=Basal Thrull
-auto={S}:Add {B}{B}
+auto={S}:Add{B}{B}
 text={T}, Sacrifice Basal Thrull: Add {B}{B} to your mana pool.
 mana={B}{B}
 type=Creature
@@ -6617,9 +6617,9 @@ toughness=2
 [/card]
 [card]
 name=Battlefield Forge
-auto={T}:Add {1}
-auto={T}:Add {R} && Damage:1 controller
-auto={T}:Add {W} && Damage:1 controller
+auto={T}:Add{1}
+auto={T}:Add{R} && Damage:1 controller
+auto={T}:Add{W} && Damage:1 controller
 text={T}: Add {1} to your mana pool. -- {T}: Add {R} or {W} to your mana pool. Battlefield Forge deals 1 damage to you.
 type=Land
 [/card]
@@ -7538,11 +7538,11 @@ toughness=2
 [/card]
 [card]
 name=Black Lotus
-auto={T}{S}:add {W}{W}{W}
-auto={T}{S}:add {U}{U}{U}
-auto={T}{S}:add {B}{B}{B}
-auto={T}{S}:add {R}{R}{R}
-auto={T}{S}:add {G}{G}{G}
+auto={T}{S}:Add{W}{W}{W}
+auto={T}{S}:Add{U}{U}{U}
+auto={T}{S}:Add{B}{B}{B}
+auto={T}{S}:Add{R}{R}{R}
+auto={T}{S}:Add{G}{G}{G}
 text={T}, Sacrifice Black Lotus: Add three mana of any one color to your mana pool.
 mana={0}
 type=Artifact
@@ -7603,8 +7603,8 @@ subtype=Aura
 [card]
 name=Blackcleave Cliffs
 auto=aslongas(other land|myBattlefield) tap >2 oneshot
-auto={T}:Add {B}
-auto={T}:Add {R}
+auto={T}:Add{B}
+auto={T}:Add{R}
 text=Blackcleave Cliffs enters the battlefield tapped unless you control two or fewer other lands. -- {T}: Add {B} or {R} to your mana pool.
 type=Land
 [/card]
@@ -7792,7 +7792,7 @@ type=Sorcery
 [/card]
 [card]
 name=Blasted Landscape
-auto={T}:Add {1}
+auto={T}:Add{1}
 autohand=__CYCLING__({2})
 text={T}: Add {1} to your mana pool. -- Cycling {2} ({2}, Discard this card: Draw a card.)
 type=Land
@@ -8562,7 +8562,7 @@ toughness=5
 [/card]
 [card]
 name=Blood Vassal
-auto={S}:Add {B}{B}
+auto={S}:Add{B}{B}
 text=Sacrifice Blood Vassal: Add {B}{B} to your mana pool.
 mana={2}{B}
 type=Creature
@@ -8919,8 +8919,8 @@ toughness=4
 [/card]
 [card]
 name=Bloodstone Cameo
-auto={T}:Add {B}
-auto={T}:Add {R}
+auto={T}:Add{B}
+auto={T}:Add{R}
 text={T}: Add {B} or {R} to your mana pool.
 mana={3}
 type=Artifact
@@ -9162,7 +9162,7 @@ toughness=1
 [/card]
 [card]
 name=Bog Initiate
-auto={1}:Add {B}
+auto={1}:Add{B}
 text={1}: Add {B} to your mana pool.
 mana={1}{B}
 type=Creature
@@ -9222,7 +9222,7 @@ toughness=2
 [/card]
 [card]
 name=Bog Witch
-auto={B}{T}{discard(*|myhand)}:Add {B}{B}{B}
+auto={B}{T}{discard(*|myhand)}:Add{B}{B}{B}
 text={B}, {T}, Discard a card: Add {B}{B}{B} to your mana pool.
 mana={2}{B}
 type=Creature
@@ -9243,12 +9243,12 @@ toughness=3
 [card]
 name=Bog Wreckage
 auto=tap
-auto={T}:Add {B}
-auto={T}{S}:Add {B}
-auto={T}{S}:Add {G}
-auto={T}{S}:Add {R}
-auto={T}{S}:Add {U}
-auto={T}{S}:Add {W}
+auto={T}:Add{B}
+auto={T}{S}:Add{B}
+auto={T}{S}:Add{G}
+auto={T}{S}:Add{R}
+auto={T}{S}:Add{U}
+auto={T}{S}:Add{W}
 text=Bog Wreckage enters the battlefield tapped. -- {T}: Add {B} to your mana pool. -- {T}, Sacrifice Bog Wreckage: Add one mana of any color to your mana pool.
 type=Land
 [/card]
@@ -9414,7 +9414,7 @@ type=Sorcery
 [card]
 name=Bojuka Bog
 auto=tap
-auto={T}:Add {B}
+auto={T}:Add{B}
 auto=choice target(player) moveTo(exile) all(*|targetedpersonsgraveyard)
 text=Bojuka Bog enters the battlefield tapped. -- When Bojuka Bog enters the battlefield, exile all cards from target player's graveyard. -- {T}: Add {B} to your mana pool.
 type=Land
@@ -9721,7 +9721,7 @@ toughness=2
 [/card]
 [card]
 name=Boreal Druid
-auto={T}:Add {1}
+auto={T}:Add{1}
 text={T}: Add {1} to your mana pool.
 mana={G}
 type=Snow Creature
@@ -9732,8 +9732,8 @@ toughness=1
 [card]
 name=Boreal Shelf
 auto=tap
-auto={T}:Add {U}
-auto={T}:Add {W}
+auto={T}:Add{U}
+auto={T}:Add{W}
 text=Boreal Shelf enters the battlefield tapped. -- {T}: Add {W} or {U} to your mana pool.
 type=Snow Land
 [/card]
@@ -9761,7 +9761,7 @@ type=Instant
 name=Boros Garrison
 auto=tap
 auto=moveto(ownerhand) notatarget(land|myBattlefield)
-auto={T}:Add {R}{W}
+auto={T}:Add{R}{W}
 text=Boros Garrison enters the battlefield tapped. -- When Boros Garrison enters the battlefield, return a land you control to its owner's hand. -- {T}: Add {R}{W} to your mana pool.
 type=Land
 [/card]
@@ -9788,7 +9788,7 @@ toughness=1
 [/card]
 [card]
 name=Boros Signet
-auto={1}{T}:Add {R}{W}
+auto={1}{T}:Add{R}{W}
 text={1}, {T}: Add {R}{W} to your mana pool.
 mana={2}
 type=Artifact
@@ -10816,9 +10816,9 @@ type=Sorcery
 [/card]
 [card]
 name=Brushland
-auto={T}:Add {1}
-auto={T}:Add {G} && Damage:1 controller
-auto={T}:Add {W} && Damage:1 controller
+auto={T}:Add{1}
+auto={T}:Add{G} && Damage:1 controller
+auto={T}:Add{W} && Damage:1 controller
 text={T}: Add {1} to your mana pool. -- {T}: Add {G} or {W} to your mana pool. Brushland deals 1 damage to you.
 type=Land
 [/card]
@@ -11331,7 +11331,7 @@ toughness=5
 [/card]
 [card]
 name=Cabal Pit
-auto={T}:Add {B} && damage:1 controller
+auto={T}:Add{B} && damage:1 controller
 auto=aslongas(*|mygraveyard) {B}{T}{S}:-2/-2 target(creature) >6
 text={T}: Add {B} to your mana pool. Cabal Pit deals 1 damage to you. -- Threshold - {B}, {T}, Sacrifice Cabal Pit: Target creature gets -2/-2 until end of turn. Activate this ability only if seven or more cards are in your graveyard.
 type=Land
@@ -12252,10 +12252,10 @@ toughness=5
 [/card]
 [card]
 name=Cascade Bluffs
-auto={T}:Add {1}
-auto={UR}{T}:Add {U}{U}
-auto={UR}{T}:Add {U}{R}
-auto={UR}{T}:Add {R}{R}
+auto={T}:Add{1}
+auto={UR}{T}:Add{U}{U}
+auto={UR}{T}:Add{U}{R}
+auto={UR}{T}:Add{R}{R}
 text={T}: Add {1} to your mana pool. -- {(u/r)}, {T}: Add {U}{U}, {U}{R}, or {R}{R} to your mana pool.
 type=Land
 [/card]
@@ -12656,9 +12656,9 @@ toughness=5
 [/card]
 [card]
 name=Caves of Koilos
-auto={T}:Add {1}
-auto={T}:Add {W} && Damage:1 controller
-auto={T}:Add {B} && Damage:1 controller
+auto={T}:Add{1}
+auto={T}:Add{W} && Damage:1 controller
+auto={T}:Add{B} && Damage:1 controller
 text={T}: Add {1} to your mana pool. -- {T}: Add {W} or {B} to your mana pool. Caves of Koilos deals 1 damage to you.
 type=Land
 [/card]
@@ -12766,11 +12766,11 @@ subtype=Aura
 [/card]
 [card]
 name=Celestial Prism
-auto={2}{T}:Add {B}
-auto={2}{T}:Add {U}
-auto={2}{T}:Add {G}
-auto={2}{T}:Add {R}
-auto={2}{T}:Add {W}
+auto={2}{T}:Add{B}
+auto={2}{T}:Add{U}
+auto={2}{T}:Add{G}
+auto={2}{T}:Add{R}
+auto={2}{T}:Add{W}
 text={2}, {T}: Add one mana of any color to your mana pool.
 mana={3}
 type=Artifact
@@ -12861,7 +12861,7 @@ toughness=3
 [/card]
 [card]
 name=Centaur Garden
-auto={T}:Add {G} && damage:1 controller
+auto={T}:Add{G} && damage:1 controller
 auto=aslongas(*|mygraveyard) {G}{T}{S}:3/3 target(creature) >6
 text={T}: Add {G} to your mana pool. Centaur Garden deals 1 damage to you. -- Threshold - {G}, {T}, Sacrifice Centaur Garden: Target creature gets +3/+3 until end of turn. Activate this ability only if seven or more cards are in your graveyard.
 type=Land
@@ -13132,11 +13132,11 @@ subtype=Aura
 [card]
 name=Ceta Disciple
 auto={R}{T}:2/0 target(creature)
-auto={G}{T}:Add {W}
-auto={G}{T}:Add {U}
-auto={G}{T}:Add {B}
-auto={G}{T}:Add {R}
-auto={G}{T}:Add {G}
+auto={G}{T}:Add{W}
+auto={G}{T}:Add{U}
+auto={G}{T}:Add{B}
+auto={G}{T}:Add{R}
+auto={G}{T}:Add{G}
 text={R}, {T}: Target creature gets +2/+0 until end of turn. -- {G}, {T}: Add one mana of any color to your mana pool.
 mana={U}
 type=Creature
@@ -13551,7 +13551,7 @@ toughness=3
 [card]
 name=Charcoal Diamond
 auto=tap
-auto={T}:Add {B}
+auto={T}:Add{B}
 text=Charcoal Diamond enters the battlefield tapped. -- {T}: Add {B} to your mana pool.
 mana={2}
 type=Artifact
@@ -14359,11 +14359,11 @@ toughness=4
 [card]
 name=City of Brass
 auto=@tapped(this):damage:1 controller
-auto={T}:Add {U}
-auto={T}:Add {R}
-auto={T}:Add {W}
-auto={T}:Add {B}
-auto={T}:Add {G}
+auto={T}:Add{U}
+auto={T}:Add{R}
+auto={T}:Add{W}
+auto={T}:Add{B}
+auto={T}:Add{G}
 text=Whenever City of Brass becomes tapped, it deals 1 damage to you. -- {T}: Add one mana of any color to your mana pool.
 type=Land
 [/card]
@@ -14387,7 +14387,7 @@ type=Enchantment
 [card]
 name=City of Traitors
 auto=@movedTo(land|mybattlefield) from(myhand):bury
-auto={T}:Add {2}
+auto={T}:Add{2}
 text=When you play another land, sacrifice City of Traitors. -- {T}: Add {2} to your mana pool.
 type=Land
 [/card]
@@ -14579,8 +14579,8 @@ toughness=3
 [card]
 name=Clifftop Retreat
 auto=aslongas(mountain,plains|myBattlefield) tap <1 oneshot
-auto={T}:Add {R}
-auto={T}:Add {W}
+auto={T}:Add{R}
+auto={T}:Add{W}
 text=Clifftop Retreat enters the battlefield tapped unless you control a Mountain or Plains. -- {T}: Add {R} or {W} to your mana pool.
 type=Land
 [/card]
@@ -15138,7 +15138,7 @@ subtype=Aura
 [/card]
 [card]
 name=Coal Golem
-auto={3}{S}:Add {R}{R}{R}
+auto={3}{S}:Add{R}{R}{R}
 text={3}, Sacrifice Coal Golem: Add {R}{R}{R} to your mana pool.
 mana={5}
 type=Artifact Creature
@@ -16029,7 +16029,7 @@ toughness=1
 [/card]
 [card]
 name=Copper Myr
-auto={T}:Add {G}
+auto={T}:Add{G}
 text={T}: Add {G} to your mana pool.
 mana={2}
 type=Artifact Creature
@@ -16068,8 +16068,8 @@ toughness=1
 [card]
 name=Copperline Gorge
 auto=aslongas(other land|myBattlefield) tap >2 oneshot
-auto={T}:Add {R}
-auto={T}:Add {G}
+auto={T}:Add{R}
+auto={T}:Add{G}
 text=Copperline Gorge enters the battlefield tapped unless you control two or fewer other lands. -- {T}: Add {R} or {G} to your mana pool.
 type=Land
 [/card]
@@ -17360,9 +17360,9 @@ toughness=4
 [card]
 name=Crumbling Necropolis
 auto=tap
-auto={T}:Add {U}
-auto={T}:Add {B}
-auto={T}:Add {R}
+auto={T}:Add{U}
+auto={T}:Add{B}
+auto={T}:Add{R}
 text=Crumbling Necropolis enters the battlefield tapped. -- {T}: Add {U}, {B}, or {R} to your mana pool.
 type=Land
 [/card]
@@ -17534,7 +17534,7 @@ toughness=1
 [card]
 name=Crypt of Agadeem
 auto=tap
-auto={T}:Add {B}
+auto={T}:Add{B}
 auto={2}{T}:foreach(creature[black]|mygraveyard) Add {B}
 text=Crypt of Agadeem enters the battlefield tapped. -- {T}: Add {B} to your mana pool. -- {2}, {T}: Add {B} to your mana pool for each black creature card in your graveyard.
 type=Land
@@ -17576,8 +17576,8 @@ toughness=3
 [/card]
 [card]
 name=Crystal Quarry
-auto={T}:Add {1}
-auto={5}{T}:Add {W}{U}{B}{R}{G}
+auto={T}:Add{1}
+auto={5}{T}:Add{W}{U}{B}{R}{G}
 text={T}: Add {1} to your mana pool. -- {5}, {T}: Add {W}{U}{B}{R}{G} to your mana pool.
 type=Land
 [/card]
@@ -17590,8 +17590,8 @@ type=Artifact
 [/card]
 [card]
 name=Crystal Vein
-auto={T}:Add {1}
-auto={T}{S}:Add {2}
+auto={T}:Add{1}
+auto={T}{S}:Add{2}
 text={T}: Add {1} to your mana pool. -- {T}, Sacrifice Crystal Vein: Add {2} to your mana pool.
 type=Land
 [/card]
@@ -18287,7 +18287,7 @@ toughness=3
 [/card]
 [card]
 name=Darigaaz's Attendant
-auto={1}{S}:Add {B}{R}{G}
+auto={1}{S}:Add{B}{R}{G}
 text={1}, Sacrifice Darigaaz's Attendant: Add {B}{R}{G} to your mana pool.
 mana={5}
 type=Artifact Creature
@@ -18525,8 +18525,8 @@ toughness=4
 [card]
 name=Darkslick Shores
 auto=aslongas(other land|myBattlefield) tap >2 oneshot
-auto={T}:Add {U}
-auto={T}:Add {B}
+auto={T}:Add{U}
+auto={T}:Add{B}
 text=Darkslick Shores enters the battlefield tapped unless you control two or fewer other lands. -- {T}: Add {U} or {B} to your mana pool.
 type=Land
 [/card]
@@ -18684,13 +18684,13 @@ toughness=2
 [/card]
 [card]
 name=Darkwater Catacombs
-auto={1}{T}:Add {U}{B}
+auto={1}{T}:Add{U}{B}
 text={1}, {T}: Add {U}{B} to your mana pool.
 type=Land
 [/card]
 [card]
 name=Darkwater Egg
-auto={2}{T}{S}:Add {U}{B} && Draw:1
+auto={2}{T}{S}:Add{U}{B} && Draw:1
 text={2}, {T}, Sacrifice Darkwater Egg: Add {U}{B} to your mana pool. Draw a card.
 mana={1}
 type=Artifact
@@ -18718,7 +18718,7 @@ toughness=2
 [/card]
 [card]
 name=Daru Encampment
-auto={T}:Add {1}
+auto={T}:Add{1}
 auto={W}{T}:1/1 target(Soldier)
 text={T}: Add {1} to your mana pool. -- {W}, {T}: Target Soldier creature gets +1/+1 until end of turn.
 type=Land
@@ -20513,7 +20513,7 @@ type=Sorcery
 [/card]
 [card]
 name=Desert
-auto={T}:Add {1}
+auto={T}:Add{1}
 auto={T}:Damage:1 target(creature[attacking])
 text={T}: Add {1} to your mana pool. -- {T}: Desert deals 1 damage to target attacking creature. Activate this ability only during the end of combat step.
 type=Land
@@ -20557,7 +20557,7 @@ type=Sorcery
 [/card]
 [card]
 name=Deserted Temple
-auto={T}:Add {1}
+auto={T}:Add{1}
 auto={1}{T}:Untap target(land)
 text={T}: Add {1} to your mana pool. -- {1}, {T}: Untap target land.
 type=Land
@@ -20744,7 +20744,7 @@ toughness=2
 [/card]
 [card]
 name=Devoted Druid
-auto={T}:Add {G}
+auto={T}:Add{G}
 auto={C(-1/-1,1)}:untap
 text={T}: Add {G} to your mana pool. -- Put a -1/-1 counter on Devoted Druid: Untap Devoted Druid.
 mana={1}{G}
@@ -20915,11 +20915,11 @@ toughness=1
 [card]
 name=Diamond Kaleidoscope
 auto={3}{T}:token(Prism,creature artifact prism, 0/1, artifact)
-auto={S(prism|myBattlefield)}:Add {W}
-auto={S(prism|myBattlefield)}:Add {U}
-auto={S(prism|myBattlefield)}:Add {B}
-auto={S(prism|myBattlefield)}:Add {R}
-auto={S(prism|myBattlefield)}:Add {G}
+auto={S(prism|myBattlefield)}:Add{W}
+auto={S(prism|myBattlefield)}:Add{U}
+auto={S(prism|myBattlefield)}:Add{B}
+auto={S(prism|myBattlefield)}:Add{R}
+auto={S(prism|myBattlefield)}:Add{G}
 text={3}, {T}: Put a 0/1 colorless Prism artifact creature token onto the battlefield. -- Sacrifice a Prism token: Add one mana of any color to your mana pool.
 mana={4}
 type=Artifact
@@ -20959,7 +20959,7 @@ type=Instant
 name=Dimir Aqueduct
 auto=tap
 auto=moveto(ownerhand) notatarget(land|myBattlefield)
-auto={T}:Add {U}{B}
+auto={T}:Add{U}{B}
 text=Dimir Aqueduct enters the battlefield tapped. -- When Dimir Aqueduct enters the battlefield, return a land you control to its owner's hand. -- {T}: Add {U}{B} to your mana pool.
 type=Land
 [/card]
@@ -21008,7 +21008,7 @@ toughness=3
 [/card]
 [card]
 name=Dimir Signet
-auto={1}{T}:Add {U}{B}
+auto={1}{T}:Add{U}{B}
 text={1}, {T}: Add {U}{B} to your mana pool.
 mana={2}
 type=Artifact
@@ -21522,11 +21522,11 @@ toughness=2
 [/card]
 [card]
 name=Divergent Growth
-auto=all(land|myBattlefield) {T}:add {G}
-auto=all(land|myBattlefield) {T}:add {W}
-auto=all(land|myBattlefield) {T}:add {B}
-auto=all(land|myBattlefield) {T}:add {U}
-auto=all(land|myBattlefield) {T}:add {R}
+auto=all(land|myBattlefield) {T}:Add{G}
+auto=all(land|myBattlefield) {T}:Add{W}
+auto=all(land|myBattlefield) {T}:Add{B}
+auto=all(land|myBattlefield) {T}:Add{U}
+auto=all(land|myBattlefield) {T}:Add{R}
 text=Until end of turn, lands you control gain "{T}: Add one mana of any color to your mana pool."
 mana={G}
 type=Instant
@@ -22209,8 +22209,8 @@ toughness=1
 name=Dragonskull Summit
 auto=tap
 auto=aslongas(mountain,swamp|myBattlefield) untap
-auto={T}:Add {B}
-auto={T}:Add {R}
+auto={T}:Add{B}
+auto={T}:Add{R}
 text=Dragonskull Summit enters the battlefield tapped unless you control a Swamp or a Mountain. -- {T}: Add {B} or {R} to your mana pool.
 type=Land
 [/card]
@@ -22288,8 +22288,8 @@ toughness=3
 [/card]
 [card]
 name=Drake-Skull Cameo
-auto={T}:Add {U}
-auto={T}:Add {B}
+auto={T}:Add{U}
+auto={T}:Add{B}
 text={T}: Add {U} or {B} to your mana pool.
 mana={3}
 type=Artifact
@@ -22792,7 +22792,7 @@ toughness=5
 [card]
 name=Drifting Meadow
 auto=tap
-auto={T}:Add {W}
+auto={T}:Add{W}
 autohand=__CYCLING__({2})
 text=Drifting Meadow enters the battlefield tapped. -- {T}: Add {W} to your mana pool. -- Cycling {2} ({2}, Discard this card: Draw a card.)
 type=Land
@@ -22908,7 +22908,7 @@ toughness=6
 [/card]
 [card]
 name=Dromar's Attendant
-auto={1}{S}:Add {W}{U}{B}
+auto={1}{S}:Add{W}{U}{B}
 text={1}, Sacrifice Dromar's Attendant: Add {W}{U}{B} to your mana pool.
 mana={5}
 type=Artifact Creature
@@ -23084,8 +23084,8 @@ toughness=1
 name=Drowned Catacomb
 auto=tap
 auto=aslongas(island,swamp|myBattlefield) untap
-auto={T}:Add {U}
-auto={T}:Add {B}
+auto={T}:Add{U}
+auto={T}:Add{B}
 text=Drowned Catacomb enters the battlefield tapped unless you control an Island or a Swamp. -- {T}: Add {U} or {B} to your mana pool.
 type=Land
 [/card]
@@ -23160,9 +23160,9 @@ toughness=1
 [/card]
 [card]
 name=Druid of the Anima
-auto={T}:Add {R}
-auto={T}:Add {G}
-auto={T}:Add {W}
+auto={T}:Add{R}
+auto={T}:Add{G}
+auto={T}:Add{W}
 text={T}: Add {R}, {G}, or {W} to your mana pool.
 mana={1}{G}
 type=Creature
@@ -23463,7 +23463,7 @@ toughness=2
 [/card]
 [card]
 name=Duskmantle, House of Shadow
-auto={T}:Add {1}
+auto={T}:Add{1}
 auto={U}{B}{T}:deplete:1 target(player)
 text={T}: Add {1} to your mana pool. -- {U}{B}, {T}: Target player puts the top card of his or her library into his or her graveyard.
 type=Land
@@ -23514,7 +23514,7 @@ toughness=2
 [/card]
 [card]
 name=Dust Bowl
-auto={T}:Add {1}
+auto={T}:Add{1}
 auto={3}{T}{S(land|myBattlefield)}:destroy target(land[-basic])
 text={T}: Add {1} to your mana pool. -- {3}, {T}, Sacrifice a land: Destroy target nonbasic land.
 type=Land
@@ -23723,8 +23723,8 @@ toughness=2
 [card]
 name=Dwarven Ruins
 auto=tap
-auto={T}:Add {R}
-auto={T}{S}:Add {R}{R}
+auto={T}:Add{R}
+auto={T}{S}:Add{R}{R}
 text=Dwarven Ruins enters the battlefield tapped. -- {T}: Add {R} to your mana pool. -- {T}, Sacrifice Dwarven Ruins: Add {R}{R} to your mana pool.
 type=Land
 [/card]
@@ -24071,8 +24071,8 @@ toughness=5
 [card]
 name=Ebon Stronghold
 auto=tap
-auto={T}:Add {B}
-auto={T}{S}:Add {B}{B}
+auto={T}:Add{B}
+auto={T}{S}:Add{B}{B}
 text=Ebon Stronghold enters the battlefield tapped. -- {T}: Add {B} to your mana pool. -- {T}, Sacrifice Ebon Stronghold: Add {B}{B} to your mana pool.
 type=Land
 [/card]
@@ -24512,7 +24512,7 @@ type=Instant
 [/card]
 [card]
 name=Elephant Graveyard
-auto={T}:Add {1}
+auto={T}:Add{1}
 auto={T}:Regenerate target(elephant)
 text={T}: Add {1} to your mana pool. -- {T}: Regenerate target Elephant.
 type=Land
@@ -24765,7 +24765,7 @@ toughness=2
 [/card]
 [card]
 name=Elves of Deep Shadow
-auto={T}:Add {B} && damage:1 controller
+auto={T}:Add{B} && damage:1 controller
 text={T}: Add {B} to your mana pool. Elves of Deep Shadow deals 1 damage to you.
 mana={G}
 type=Creature
@@ -26175,7 +26175,7 @@ toughness=3
 [/card]
 [card]
 name=Esper Panorama
-auto={T}:Add {1}
+auto={T}:Add{1}
 auto={1}{T}{S}:moveTo(myBattlefield) and!(tap)! target(plains,island,swamp|mylibrary)
 text={T}: Add {1} to your mana pool. -- {1}, {T}, Sacrifice Esper Panorama: Search your library for a basic Plains, Island, or Swamp card and put it onto the battlefield tapped. Then shuffle your library.
 type=Land
@@ -27052,8 +27052,8 @@ subtype=Arcane
 [/card]
 [card]
 name=Eye of Ramos
-auto={T}:Add {U}
-auto={S}:Add {U}
+auto={T}:Add{U}
+auto={S}:Add{U}
 text={T}: Add {U} to your mana pool. -- Sacrifice Eye of Ramos: Add {U} to your mana pool.
 mana={3}
 type=Artifact
@@ -28391,10 +28391,10 @@ type=Sorcery
 [/card]
 [card]
 name=Fetid Heath
-auto={T}:Add {1}
-auto={WB}{T}:Add {W}{W}
-auto={WB}{T}:Add {W}{B}
-auto={WB}{T}:Add {B}{B}
+auto={T}:Add{1}
+auto={WB}{T}:Add{W}{W}
+auto={WB}{T}:Add{W}{B}
+auto={WB}{T}:Add{B}{B}
 text={T}: Add {1} to your mana pool. -- {(w/b)}, {T}: Add {W}{W}, {W}{B}, or {B}{B} to your mana pool.
 type=Land
 [/card]
@@ -28781,7 +28781,7 @@ toughness=1
 [card]
 name=Fire Diamond
 auto=tap
-auto={T}:Add {R}
+auto={T}:Add{R}
 text=Fire Diamond enters the battlefield tapped. -- {T}: Add {R} to your mana pool.
 mana={2}
 type=Artifact
@@ -28839,7 +28839,7 @@ toughness=1
 [card]
 name=Fire Sprites
 abilities=flying
-auto={G}{T}:Add {R}
+auto={G}{T}:Add{R}
 text=Flying -- {G}, {T}: Add {R} to your mana pool.
 mana={1}{G}
 type=Creature
@@ -28889,9 +28889,9 @@ toughness=2
 [card]
 name=Fire-Lit Thicket
 auto={T}:Add{1}
-auto={RG}{T}:Add {R}{R}
-auto={RG}{T}:Add {R}{G}
-auto={RG}{T}:Add {G}{G}
+auto={RG}{T}:Add{R}{R}
+auto={RG}{T}:Add{R}{G}
+auto={RG}{T}:Add{G}{G}
 text={T}: Add {1} to your mana pool. -- {(r/g)}, {T}: Add {R}{R}, {R}{G}, or {G}{G} to your mana pool.
 type=Land
 [/card]
@@ -29134,7 +29134,7 @@ type=Sorcery
 [/card]
 [card]
 name=Flagstones of Trokair
-auto={T}:Add {W}
+auto={T}:Add{W}
 auto=@movedTo(this|graveyard) from(battlefield):may moveTo(myBattlefield) and!(tap)! target(plains|mylibrary)
 text={T}: Add {W} to your mana pool. -- When Flagstones of Trokair is put into a graveyard from the battlefield, you may search your library for a Plains card and put it onto the battlefield tapped. If you do, shuffle your library.
 type=Legendary Land
@@ -29840,10 +29840,10 @@ toughness=5
 [/card]
 [card]
 name=Flooded Grove
-auto={T}:Add {1}
-auto={GU}{T}:Add {G}{G}
-auto={GU}{T}:Add {G}{U}
-auto={GU}{T}:Add {U}{U}
+auto={T}:Add{1}
+auto={GU}{T}:Add{G}{G}
+auto={GU}{T}:Add{G}{U}
+auto={GU}{T}:Add{U}{U}
 text={T}: Add {1} to your mana pool. -- {(g/u)}, {T}: Add {G}{G}, {G}{U}, or {U}{U} to your mana pool.
 type=Land
 [/card]
@@ -30335,11 +30335,11 @@ subtype=Aura
 [/card]
 [card]
 name=Forbidden Orchard
-auto={T}:Add {W}
-auto={T}:Add {U}
-auto={T}:Add {B}
-auto={T}:Add {R}
-auto={T}:Add {G}
+auto={T}:Add{W}
+auto={T}:Add{U}
+auto={T}:Add{B}
+auto={T}:Add{R}
+auto={T}:Add{G}
 auto=@tappedformana(this):token(Spirit,Creature Spirit,1/1) opponent
 text={T}: Add one mana of any color to your mana pool. -- Whenever you tap Forbidden Orchard for mana, put a 1/1 colorless Spirit creature token onto the battlefield under target opponent's control.
 type=Land
@@ -30494,7 +30494,7 @@ toughness=3
 [card]
 name=Forgotten Cave
 auto=tap
-auto={T}:Add {R}
+auto={T}:Add{R}
 autohand=__CYCLING__({R})
 text=Forgotten Cave enters the battlefield tapped. -- {T}: Add {R} to your mana pool. -- Cycling {R} ({R}, Discard this card: Draw a card.)
 type=Land
@@ -30963,8 +30963,8 @@ toughness=4
 [card]
 name=Frost Marsh
 auto=tap
-auto={T}:Add {U}
-auto={T}:Add {B}
+auto={T}:Add{U}
+auto={T}:Add{B}
 text=Frost Marsh enters the battlefield tapped. -- {T}: Add {U} or {B} to your mana pool.
 type=Snow Land
 [/card]
@@ -31409,7 +31409,7 @@ toughness=2
 [/card]
 [card]
 name=Fyndhorn Elder
-auto={T}:Add {G}{G}
+auto={T}:Add{G}{G}
 text={T}: Add {G}{G} to your mana pool.
 mana={2}{G}
 type=Creature
@@ -32238,7 +32238,7 @@ subtype=Aura
 name=Geothermal Crevice
 auto=tap
 auto={T}:Add{R}
-auto={T}{s}:Add {B}{G}
+auto={T}{s}:Add{B}{G}
 text=Geothermal Crevice enters the battlefield tapped. -- {T}: Add {R} to your mana pool. -- {T}, Sacrifice Geothermal Crevice: Add {B}{G} to your mana pool.
 type=Land
 [/card]
@@ -33019,11 +33019,11 @@ toughness=1
 [/card]
 [card]
 name=Gilded Lotus
-auto={T}:Add {B}{B}{B}
-auto={T}:Add {G}{G}{G}
-auto={T}:Add {R}{R}{R}
-auto={T}:Add {U}{U}{U}
-auto={T}:Add {W}{W}{W}
+auto={T}:Add{B}{B}{B}
+auto={T}:Add{G}{G}{G}
+auto={T}:Add{R}{R}{R}
+auto={T}:Add{U}{U}{U}
+auto={T}:Add{W}{W}{W}
 text={T}: Add three mana of any one color to your mana pool.
 mana={5}
 type=Artifact
@@ -33043,8 +33043,8 @@ toughness=3
 name=Gilt-Leaf Palace
 auto=tap
 auto=aslongas(elf|myHand) untap
-auto={T}:Add {B}
-auto={T}:Add {G}
+auto={T}:Add{B}
+auto={T}:Add{G}
 text=As Gilt-Leaf Palace enters the battlefield, you may reveal an Elf card from your hand. If you don't, Gilt-Leaf Palace enters the battlefield tapped. -- {T}: Add {B} or {G} to your mana pool.
 type=Land
 [/card]
@@ -33089,8 +33089,8 @@ type=Enchantment
 name=Glacial Fortress
 auto=tap
 auto=aslongas(plains,island|myBattlefield) untap
-auto={T}:Add {W}
-auto={T}:Add {U}
+auto={T}:Add{W}
+auto={T}:Add{U}
 text=Glacial Fortress enters the battlefield tapped unless you control a Plains or an Island. -- {T}: Add {W} or {U} to your mana pool.
 type=Land
 [/card]
@@ -33756,7 +33756,7 @@ toughness=1
 [/card]
 [card]
 name=Goblin Burrows
-auto={T}:Add {1}
+auto={T}:Add{1}
 auto={1}{R}{T}:2/0 target(goblin)
 text={T}: Add {1} to your mana pool. -- {1}{R}, {T}: Target Goblin creature gets +2/+0 until end of turn.
 type=Land
@@ -34628,7 +34628,7 @@ toughness=3
 [/card]
 [card]
 name=Gods' Eye, Gate to the Reikai
-auto={T}:Add {1}
+auto={T}:Add{1}
 auto=@movedto(this|mygraveyard) from(Battlefield):token(Spirit,Creature Spirit,1/1)
 text={T}: Add {1} to your mana pool. -- When Gods' Eye, Gate to the Reikai is put into a graveyard from the battlefield, put a 1/1 colorless Spirit creature token onto the battlefield.
 type=Legendary Land
@@ -34674,7 +34674,7 @@ type=Instant
 [/card]
 [card]
 name=Gold Myr
-auto={T}:Add {W}
+auto={T}:Add{W}
 text={T}: Add {W} to your mana pool.
 mana={2}
 type=Artifact Creature
@@ -34888,7 +34888,7 @@ toughness=4
 name=Golgari Rot Farm
 auto=tap
 auto=moveto(ownerhand) notatarget(land|myBattlefield)
-auto={T}:Add {B}{G}
+auto={T}:Add{B}{G}
 text=Golgari Rot Farm enters the battlefield tapped. -- When Golgari Rot Farm enters the battlefield, return a land you control to its owner's hand. -- {T}: Add {B}{G} to your mana pool.
 type=Land
 [/card]
@@ -34904,7 +34904,7 @@ toughness=4
 [/card]
 [card]
 name=Golgari Signet
-auto={1}{T}:Add {B}{G}
+auto={1}{T}:Add{B}{G}
 text={1}, {T}: Add {B}{G} to your mana pool.
 mana={2}
 type=Artifact
@@ -35139,12 +35139,12 @@ toughness=3
 [card]
 name=Grand Coliseum
 auto=tap
-auto={T}:Add {1}
-auto={T}:Add {B} && damage:1 controller
-auto={T}:Add {G} && damage:1 controller
-auto={T}:Add {R} && damage:1 controller
-auto={T}:Add {U} && damage:1 controller
-auto={T}:Add {W} && damage:1 controller
+auto={T}:Add{1}
+auto={T}:Add{B} && damage:1 controller
+auto={T}:Add{G} && damage:1 controller
+auto={T}:Add{R} && damage:1 controller
+auto={T}:Add{U} && damage:1 controller
+auto={T}:Add{W} && damage:1 controller
 text=Grand Coliseum enters the battlefield tapped. -- {T}: Add {1} to your mana pool. -- {T}: Add one mana of any color to your mana pool. Grand Coliseum deals 1 damage to you.
 type=Land
 [/card]
@@ -35397,10 +35397,10 @@ toughness=1
 [/card]
 [card]
 name=Graven Cairns
-auto={T}:Add {1}
-auto={RB}{T}:Add {B}{B}
-auto={RB}{T}:Add {B}{R}
-auto={RB}{T}:Add {R}{R}
+auto={T}:Add{1}
+auto={RB}{T}:Add{B}{B}
+auto={RB}{T}:Add{B}{R}
+auto={RB}{T}:Add{R}{R}
 text={T}: Add {1} to your mana pool. -- {(b/r)}, {T}: Add {B}{B}, {B}{R}, or {R}{R} to your mana pool.
 type=Land
 [/card]
@@ -35500,8 +35500,8 @@ toughness=2
 name=Graypelt Refuge
 auto=tap
 auto=life:1
-auto={T}:Add {G}
-auto={T}:Add {W}
+auto={T}:Add{G}
+auto={T}:Add{W}
 text=Graypelt Refuge enters the battlefield tapped. -- When Graypelt Refuge enters the battlefield, you gain 1 life. -- {T}: Add {G} or {W} to your mana pool.
 type=Land
 [/card]
@@ -35777,7 +35777,7 @@ toughness=1
 [/card]
 [card]
 name=Greenweaver Druid
-auto={T}:Add {G}{G}
+auto={T}:Add{G}{G}
 text={T}: Add {G}{G} to your mana pool.
 mana={2}{G}
 type=Creature
@@ -35808,7 +35808,7 @@ toughness=8
 [/card]
 [card]
 name=Griffin Canyon
-auto={T}:Add {1}
+auto={T}:Add{1}
 auto={T}:1/1 target(griffin) && untap
 text={T}: Add {1} to your mana pool. -- {T}: Untap target Griffin. If it's a creature, it gets +1/+1 until end of turn.
 type=Land
@@ -36290,9 +36290,9 @@ type=Instant
 [/card]
 [card]
 name=Grove of the Burnwillows
-auto={T}:Add {1}
-auto={T}:Add {R} && life:1 opponent
-auto={T}:Add {G} && life:1 opponent
+auto={T}:Add{1}
+auto={T}:Add{R} && life:1 opponent
+auto={T}:Add{G} && life:1 opponent
 text={T}: Add {1} to your mana pool. -- {T}: Add {R} or {G} to your mana pool. Each opponent gains 1 life.
 type=Land
 [/card]
@@ -36382,7 +36382,7 @@ toughness=2
 [/card]
 [card]
 name=Gruul Signet
-auto={1}{T}:Add {R}{G}
+auto={1}{T}:Add{R}{G}
 text={1}, {T}: Add {R}{G} to your mana pool.
 mana={2}
 type=Artifact
@@ -37556,8 +37556,8 @@ toughness=2
 [card]
 name=Havenwood Battleground
 auto=tap
-auto={T}:Add {G}
-auto={T}{S}:Add {G}{G}
+auto={T}:Add{G}
+auto={T}{S}:Add{G}{G}
 text=Havenwood Battleground enters the battlefield tapped. -- {T}: Add {G} to your mana pool. -- {T}, Sacrifice Havenwood Battleground: Add {G}{G} to your mana pool.
 type=Land
 [/card]
@@ -37802,7 +37802,7 @@ toughness=1
 [/card]
 [card]
 name=Heart Warden
-auto={T}:Add {G}
+auto={T}:Add{G}
 auto={2}{S}:draw:1
 text={T}: Add {G} to your mana pool. -- {2}, Sacrifice Heart Warden: Draw a card.
 mana={1}{G}
@@ -37813,8 +37813,8 @@ toughness=1
 [/card]
 [card]
 name=Heart of Ramos
-auto={T}:Add {R}
-auto={S}:Add {R}
+auto={T}:Add{R}
+auto={S}:Add{R}
 text={T}: Add {R} to your mana pool. -- Sacrifice Heart of Ramos: Add {R} to your mana pool.
 mana={3}
 type=Artifact
@@ -38173,11 +38173,11 @@ toughness=2
 [card]
 name=Helionaut
 abilities=flying
-auto={1}{T}:Add {W}
-auto={1}{T}:Add {U}
-auto={1}{T}:Add {B}
-auto={1}{T}:Add {R}
-auto={1}{T}:Add {G}
+auto={1}{T}:Add{W}
+auto={1}{T}:Add{U}
+auto={1}{T}:Add{B}
+auto={1}{T}:Add{R}
+auto={1}{T}:Add{G}
 text=Flying -- {1}, {T}: Add one mana of any color to your mana pool.
 mana={2}{W}
 type=Creature
@@ -38298,7 +38298,7 @@ toughness=2
 [/card]
 [card]
 name=Hellion Crucible
-auto={T}:Add {1}
+auto={T}:Add{1}
 auto={1}{R}{T}:counter(0/0,1,Pressure)
 auto={1}{R}{T}{C(0/0,-2,Pressure)}{S}:token(Hellion,Creature Hellion,4/4,red,haste)
 text={T}: Add {1} to your mana pool. -- {1}{R}, {T}: Put a pressure counter on Hellion Crucible. -- {1}{R}, {T}, Remove two pressure counters from Hellion Crucible and sacrifice it: Put a 4/4 red Hellion creature token with haste onto the battlefield. (It can attack and {T} as soon as it comes under your control.)
@@ -38432,12 +38432,12 @@ toughness=4
 [/card]
 [card]
 name=Henge of Ramos
-auto={T}:Add {1}
-auto={2}{T}:Add {W}
-auto={2}{T}:Add {U}
-auto={2}{T}:Add {B}
-auto={2}{T}:Add {R}
-auto={2}{T}:Add {G}
+auto={T}:Add{1}
+auto={2}{T}:Add{W}
+auto={2}{T}:Add{U}
+auto={2}{T}:Add{B}
+auto={2}{T}:Add{R}
+auto={2}{T}:Add{G}
 text={T}: Add {1} to your mana pool. -- {2}, {T}: Add one mana of any color to your mana pool.
 type=Land
 [/card]
@@ -38692,7 +38692,7 @@ type=Instant
 [/card]
 [card]
 name=High Market
-auto={T}:Add {1}
+auto={T}:Add{1}
 auto={T}{S(creature|myBattlefield)}:life:1
 text={T}: Add {1} to your mana pool. -- {T}, Sacrifice a creature: You gain 1 life.
 type=Land
@@ -38743,8 +38743,8 @@ toughness=4
 [card]
 name=Highland Weald
 auto=tap
-auto={T}:Add {R}
-auto={T}:Add {G}
+auto={T}:Add{R}
+auto={T}:Add{G}
 text=Highland Weald enters the battlefield tapped. -- {T}: Add {R} or {G} to your mana pool.
 type=Snow Land
 [/card]
@@ -38812,8 +38812,8 @@ type=Sorcery
 [card]
 name=Hinterland Harbor
 auto=aslongas(forest,island|myBattlefield) tap <1 oneshot
-auto={T}:Add {G}
-auto={T}:Add {U}
+auto={T}:Add{G}
+auto={T}:Add{U}
 text=Hinterland Harbor enters the battlefield tapped unless you control a Forest or Island. -- {T}: Add {G} or {U} to your mana pool.
 type=Land
 [/card]
@@ -39352,8 +39352,8 @@ type=Artifact
 [/card]
 [card]
 name=Horn of Ramos
-auto={T}:Add {G}
-auto={S}:Add {G}
+auto={T}:Add{G}
+auto={S}:Add{G}
 text={T}: Add {G} to your mana pool. -- Sacrifice Horn of Ramos: Add {G} to your mana pool.
 mana={3}
 type=Artifact
@@ -40759,11 +40759,11 @@ toughness=2
 [/card]
 [card]
 name=Implements of Sacrifice
-auto={1}{T}{S}:Add {B}{B}
-auto={1}{T}{S}:Add {U}{U}
-auto={1}{T}{S}:Add {G}{G}
-auto={1}{T}{S}:Add {R}{R}
-auto={1}{T}{S}:Add {W}{W}
+auto={1}{T}{S}:Add{B}{B}
+auto={1}{T}{S}:Add{U}{U}
+auto={1}{T}{S}:Add{G}{G}
+auto={1}{T}{S}:Add{R}{R}
+auto={1}{T}{S}:Add{W}{W}
 text={1}, {T}, Sacrifice Implements of Sacrifice: Add two mana of any one color to your mana pool.
 mana={2}
 type=Artifact
@@ -41835,7 +41835,7 @@ type=Artifact
 [/card]
 [card]
 name=Iron Myr
-auto={T}:Add {R}
+auto={T}:Add{R}
 text={T}: Add {R} to your mana pool.
 mana={2}
 type=Artifact Creature
@@ -41950,8 +41950,8 @@ type=Instant
 [card]
 name=Irrigation Ditch
 auto=tap
-auto={T}:Add {W}
-auto={T}{S}:Add {G}{U}
+auto={T}:Add{W}
+auto={T}{S}:Add{G}{U}
 text=Irrigation Ditch enters the battlefield tapped. -- {T}: Add {W} to your mana pool. -- {T}, Sacrifice Irrigation Ditch: Add {G}{U} to your mana pool.
 type=Land
 [/card]
@@ -42022,8 +42022,8 @@ toughness=8
 [card]
 name=Isolated Chapel
 auto=aslongas(plains,swamp|myBattlefield) tap <1 oneshot
-auto={T}:Add {W}
-auto={T}:Add {B}
+auto={T}:Add{W}
+auto={T}:Add{B}
 text=Isolated Chapel enters the battlefield tapped unless you control a Plains or Swamp. -- {T}: Add {w} or {B} to your mana pool.
 type=Land
 [/card]
@@ -42214,7 +42214,7 @@ type=Artifact
 [/card]
 [card]
 name=Izzet Signet
-auto={1}{T}:Add {U}{R}
+auto={1}{T}:Add{U}{R}
 text={1}, {T}: Add {U}{R} to your mana pool.
 mana={2}
 type=Artifact
@@ -43053,7 +43053,7 @@ toughness=1
 [/card]
 [card]
 name=Jund Panorama
-auto={T}:Add {1}
+auto={T}:Add{1}
 auto={1}{T}{S}:moveTo(myBattlefield) and!(tap)! target(swamp,mountain,forest|mylibrary)
 text={T}: Add {1} to your mana pool. -- {1}, {T}, Sacrifice Jund Panorama: Search your library for a basic Swamp, Mountain, or Forest card and put it onto the battlefield tapped. Then shuffle your library.
 type=Land
@@ -43103,7 +43103,7 @@ toughness=1
 [card]
 name=Jungle Patrol
 auto={1}{G}{T}:token(Plant Wall,creature Plant Wall, 0/1,green defender)
-auto={S(plant wall|myBattlefield)}:Add {R}
+auto={S(plant wall|myBattlefield)}:Add{R}
 text={1}{G}, {T}: Put a 0/1 green Plant Wall creature token with defender onto the battlefield. -- Sacrifice a Plant Wall token: Add {R} to your mana pool.
 mana={3}{G}
 type=Creature
@@ -43114,9 +43114,9 @@ toughness=2
 [card]
 name=Jungle Shrine
 auto=tap
-auto={T}:Add {R}
-auto={T}:Add {G}
-auto={T}:Add {W}
+auto={T}:Add{R}
+auto={T}:Add{G}
+auto={T}:Add{W}
 text=Jungle Shrine enters the battlefield tapped. -- {T}: Add {R}, {G}, or {W} to your mana pool.
 type=Land
 [/card]
@@ -43308,8 +43308,8 @@ toughness=5
 name=Jwar Isle Refuge
 auto=tap
 auto=life:1
-auto={T}:Add {U}
-auto={T}:Add {B}
+auto={T}:Add{U}
+auto={T}:Add{B}
 text=Jwar Isle Refuge enters the battlefield tapped. -- When Jwar Isle Refuge enters the battlefield, you gain 1 life. -- {T}: Add {U} or {B} to your mana pool.
 type=Land
 [/card]
@@ -43346,7 +43346,7 @@ toughness=2
 name=Kabira Crossroads
 auto=tap
 auto=life:2
-auto={T}:Add {W}
+auto={T}:Add{W}
 text=Kabira Crossroads enters the battlefield tapped. -- When Kabira Crossroads enters the battlefield, you gain 2 life. -- {T}: Add {W} to your mana pool.
 type=Land
 [/card]
@@ -43471,7 +43471,7 @@ toughness=4
 [card]
 name=Kaleidostone
 auto=draw:1
-auto={5}{T}{S}:Add {W}{U}{B}{R}{G}
+auto={5}{T}{S}:Add{W}{U}{B}{R}{G}
 text=When Kaleidostone enters the battlefield, draw a card. -- {5}, {T}, Sacrifice Kaleidostone: Add {W}{U}{B}{R}{G} to your mana pool.
 mana={2}
 type=Artifact
@@ -43688,7 +43688,7 @@ toughness=1
 [/card]
 [card]
 name=Karakas
-auto={T}:Add {W}
+auto={T}:Add{W}
 auto={T}:moveTo(ownerhand) target(creature[legendary])
 text={T}: Add {W} to your mana pool. -- {T}: Return target legendary creature to its owner's hand.
 type=Legendary Land
@@ -43782,9 +43782,9 @@ toughness=1
 [/card]
 [card]
 name=Karplusan Forest
-auto={T}:Add {1}
-auto={T}:Add {R} && Damage:1 controller
-auto={T}:Add {G} && Damage:1 controller
+auto={T}:Add{1}
+auto={T}:Add{R} && Damage:1 controller
+auto={T}:Add{G} && Damage:1 controller
 text={T}: Add {1} to your mana pool. -- {T}: Add {R} or {G} to your mana pool. Karplusan Forest deals 1 damage to you.
 type=Land
 [/card]
@@ -44094,8 +44094,8 @@ toughness=1
 name=Kazandu Refuge
 auto=tap
 auto=life:1
-auto={T}:Add {R}
-auto={T}:Add {G}
+auto={T}:Add{R}
+auto={T}:Add{G}
 text=Kazandu Refuge enters the battlefield tapped. -- When Kazandu Refuge enters the battlefield, you gain 1 life. -- {T}: Add {R} or {G} to your mana pool.
 type=Land
 [/card]
@@ -44398,7 +44398,7 @@ type=Land
 [/card]
 [card]
 name=Keldon Necropolis
-auto={T}:Add {1}
+auto={T}:Add{1}
 auto={4}{R}{T}{S(creature|myBattlefield)}:Damage:2 target(creature,player)
 text={T}: Add {1} to your mana pool. -- {4}{R}, {T}, Sacrifice a creature: Keldon Necropolis deals 2 damage to target creature or player.
 type=Legendary Land
@@ -44548,7 +44548,7 @@ toughness=1
 name=Khalni Garden
 auto=tap
 auto=token(Plant,creature plant, 0/1,green)
-auto={T}:Add {G}
+auto={T}:Add{G}
 text=Khalni Garden enters the battlefield tapped. -- When Khalni Garden enters the battlefield, put a 0/1 green Plant creature token onto the battlefield. -- {T}: Add {G} to your mana pool.
 type=Land
 [/card]
@@ -44584,7 +44584,7 @@ toughness=8
 [/card]
 [card]
 name=Kher Keep
-auto={T}:Add {1}
+auto={T}:Add{1}
 auto={1}{R}{T}:token(Kobolds of Kher Keep,creature kobold, 0/1, red)
 text={T}: Add {1} to your mana pool. -- {1}{R}, {T}: Put a 0/1 red Kobold creature token named Kobolds of Kher Keep onto the battlefield.
 type=Legendary Land
@@ -45405,7 +45405,7 @@ toughness=2
 [/card]
 [card]
 name=Knotvine Mystic
-auto={1}{T}:Add {R}{G}{W}
+auto={1}{T}:Add{R}{G}{W}
 text={1}, {T}: Add {R}{G}{W} to your mana pool.
 mana={R}{G}{W}
 type=Creature
@@ -45606,7 +45606,7 @@ toughness=2
 [/card]
 [card]
 name=Kor Haven
-auto={T}:Add {1}
+auto={T}:Add{1}
 auto={1}{W}{T}:0/0 target(creature[attacking]) && fog from(mytgt) oneshot
 text={T}: Add {1} to your mana pool. -- {1}{W}, {T}: Prevent all combat damage that would be dealt by target attacking creature this turn.
 type=Legendary Land
@@ -45861,7 +45861,7 @@ toughness=1
 [/card]
 [card]
 name=Krark-Clan Stoker
-auto={T}{S(artifact|myBattlefield)}:add {R}{R}
+auto={T}{S(artifact|myBattlefield)}:Add{R}{R}
 text={T}, Sacrifice an artifact: Add {R}{R} to your mana pool.
 mana={2}{R}
 type=Creature
@@ -47043,7 +47043,7 @@ subtype=Aura
 [/card]
 [card]
 name=Leaden Myr
-auto={T}:Add {B}
+auto={T}:Add{B}
 text={T}: Add {B} to your mana pool.
 mana={2}
 type=Artifact Creature
@@ -47071,7 +47071,7 @@ toughness=2
 [/card]
 [card]
 name=Leaf Gilder
-auto={T}:Add {G}
+auto={T}:Add{G}
 text={T}: Add {G} to your mana pool.
 mana={1}{G}
 type=Creature
@@ -48091,11 +48091,11 @@ toughness=4
 [/card]
 [card]
 name=Lion's Eye Diamond
-auto={S}:add {W}{W}{W} && reject all(*|myhand)
-auto={S}:add {U}{U}{U} && reject all(*|myhand)
-auto={S}:add {B}{B}{B} && reject all(*|myhand)
-auto={S}:add {R}{R}{R} && reject all(*|myhand)
-auto={S}:add {G}{G}{G} && reject all(*|myhand)
+auto={S}:Add{W}{W}{W} && reject all(*|myhand)
+auto={S}:Add{U}{U}{U} && reject all(*|myhand)
+auto={S}:Add{B}{B}{B} && reject all(*|myhand)
+auto={S}:Add{R}{R}{R} && reject all(*|myhand)
+auto={S}:Add{G}{G}{G} && reject all(*|myhand)
 text=Sacrifice Lion's Eye Diamond, Discard your hand: Add three mana of any one color to your mana pool. Activate this ability only any time you could cast an instant.
 mana={0}
 type=Artifact
@@ -48274,7 +48274,7 @@ toughness=4
 [/card]
 [card]
 name=Llanowar Dead
-auto={T}:Add {B}
+auto={T}:Add{B}
 text={T}: Add {B} to your mana pool.
 mana={B}{G}
 type=Creature
@@ -48306,7 +48306,7 @@ toughness=1
 [/card]
 [card]
 name=Llanowar Elves
-auto={T}:Add {G}
+auto={T}:Add{G}
 text={T}: Add {G} to your mana pool.
 mana={G}
 type=Creature
@@ -48365,9 +48365,9 @@ toughness=1
 [/card]
 [card]
 name=Llanowar Wastes
-auto={T}:Add {1}
-auto={T}:Add {B} && Damage:1 controller
-auto={T}:Add {G} && Damage:1 controller
+auto={T}:Add{1}
+auto={T}:Add{B} && Damage:1 controller
+auto={T}:Add{G} && Damage:1 controller
 text={T}: Add {1} to your mana pool. -- {T}: Add {B} or {G} to your mana pool. Llanowar Wastes deals 1 damage to you.
 type=Land
 [/card]
@@ -48520,7 +48520,7 @@ toughness=2
 [card]
 name=Lonely Sandbar
 auto=tap
-auto={T}:Add {U}
+auto={T}:Add{U}
 autohand=__CYCLING__({U})
 text=Lonely Sandbar enters the battlefield tapped. -- {T}: Add {U} to your mana pool. -- Cycling {U} ({U}, Discard this card: Draw a card.)
 type=Land
@@ -48731,11 +48731,11 @@ toughness=1
 [/card]
 [card]
 name=Lotus Bloom
-auto={T}{S}:add {W}{W}{W}
-auto={T}{S}:add {U}{U}{U}
-auto={T}{S}:add {B}{B}{B}
-auto={T}{S}:add {R}{R}{R}
-auto={T}{S}:add {G}{G}{G}
+auto={T}{S}:Add{W}{W}{W}
+auto={T}{S}:Add{U}{U}{U}
+auto={T}{S}:Add{B}{B}{B}
+auto={T}{S}:Add{R}{R}{R}
+auto={T}{S}:Add{G}{G}{G}
 text=Suspend 3 - {0} (Rather than cast this card from your hand, pay {0} and exile it with three time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.) -- {T}, Sacrifice Lotus Bloom: Add three mana of any one color to your mana pool.
 type=Artifact
 restriction=turn:100
@@ -48767,11 +48767,11 @@ toughness=1
 [card]
 name=Lotus Guardian
 abilities=flying
-auto={T}:Add {W}
-auto={T}:Add {U}
-auto={T}:Add {B}
-auto={T}:Add {R}
-auto={T}:Add {G}
+auto={T}:Add{W}
+auto={T}:Add{U}
+auto={T}:Add{B}
+auto={T}:Add{R}
+auto={T}:Add{G}
 text=Flying -- {T}: Add one mana of any color to your mana pool.
 mana={7}
 type=Artifact Creature
@@ -50138,11 +50138,11 @@ type=Artifact
 [/card]
 [card]
 name=Mana Cylix
-auto={1}{T}:Add {G}
-auto={1}{T}:Add {R}
-auto={1}{T}:Add {B}
-auto={1}{T}:Add {U}
-auto={1}{T}:Add {W}
+auto={1}{T}:Add{G}
+auto={1}{T}:Add{R}
+auto={1}{T}:Add{B}
+auto={1}{T}:Add{U}
+auto={1}{T}:Add{W}
 text={1}, {T}: Add one mana of any color to your mana pool.
 mana={1}
 type=Artifact
@@ -50171,12 +50171,12 @@ type=Artifact
 [/card]
 [card]
 name=Mana Prism
-auto={T}:Add {1}
-auto={1}{T}:Add {B}
-auto={1}{T}:Add {G}
-auto={1}{T}:Add {R}
-auto={1}{T}:Add {U}
-auto={1}{T}:Add {W}
+auto={T}:Add{1}
+auto={1}{T}:Add{B}
+auto={1}{T}:Add{G}
+auto={1}{T}:Add{R}
+auto={1}{T}:Add{U}
+auto={1}{T}:Add{W}
 text={T}: Add {1} to your mana pool. -- {1}, {T}: Add one mana of any color to your mana pool.
 mana={3}
 type=Artifact
@@ -50228,7 +50228,7 @@ type=Sorcery
 name=Mana Vault
 auto=doesnotuntap
 auto={4}:untap myUpkeepOnly
-auto={T}:add {3}
+auto={T}:Add{3}
 alias=1124
 text=Mana Vault doesn't untap during your untap step. -- At the beginning of your upkeep, you may pay {4}. If you do, untap Mana Vault. -- At the beginning of your draw step, if Mana Vault is tapped, it deals 1 damage to you. -- {T}: Add {3} to your mana pool.
 mana={1}
@@ -50294,7 +50294,7 @@ subtype=Equipment
 [/card]
 [card]
 name=Manakin
-auto={T}:Add {1}
+auto={T}:Add{1}
 text={T}: Add {1} to your mana pool.
 mana={2}
 type=Artifact Creature
@@ -50471,7 +50471,7 @@ type=Artifact
 [card]
 name=Marble Diamond
 auto=tap
-auto={T}:Add {W}
+auto={T}:Add{W}
 text=Marble Diamond enters the battlefield tapped. -- {T}: Add {W} to your mana pool.
 mana={2}
 type=Artifact
@@ -51299,7 +51299,7 @@ type=Land
 [/card]
 [card]
 name=Maze of Shadows
-auto={T}:Add {1}
+auto={T}:Add{1}
 auto={T}:untap target(creature[attacking;shadow]) && fog to(mytgt) oneshot && fog from(mytgt) oneshot
 text={T}: Add {1} to your mana pool. -- {T}: Untap target attacking creature with shadow. Prevent all combat damage that would be dealt to and dealt by that creature this turn.
 type=Land
@@ -52026,11 +52026,11 @@ toughness=1
 [/card]
 [card]
 name=Meteor Crater
-auto=aslongas(*[white]|myBattlefield) {T}:Add {W}
-auto=aslongas(*[blue]|myBattlefield) {T}:Add {U}
-auto=aslongas(*[black]|myBattlefield) {T}:Add {B}
-auto=aslongas(*[red]|myBattlefield) {T}:Add {R}
-auto=aslongas(*[green]|myBattlefield) {T}:Add {G}
+auto=aslongas(*[white]|myBattlefield) {T}:Add{W}
+auto=aslongas(*[blue]|myBattlefield) {T}:Add{U}
+auto=aslongas(*[black]|myBattlefield) {T}:Add{B}
+auto=aslongas(*[red]|myBattlefield) {T}:Add{R}
+auto=aslongas(*[green]|myBattlefield) {T}:Add{G}
 text={T}: Choose a color of a permanent you control. Add one mana of that color to your mana pool.
 type=Land
 [/card]
@@ -52258,7 +52258,7 @@ toughness=5
 [/card]
 [card]
 name=Mikokoro, Center of the Sea
-auto={T}:Add {1}
+auto={T}:Add{1}
 auto={2}{T}:draw:1 controller && draw:1 opponent
 text={T}: Add {1} to your mana pool. -- {2}, {T}: Each player draws a card.
 type=Legendary Land
@@ -52775,7 +52775,7 @@ toughness=1
 [/card]
 [card]
 name=Miren, the Moaning Well
-auto={T}:add {1}
+auto={T}:Add{1}
 auto={3}{T}{S(creature|myBattlefield)}:life:storedtoughness
 text={T}: Add {1} to your mana pool. -- {3}, {T}, Sacrifice a creature: You gain life equal to the sacrificed creature's toughness.
 type=Legendary Land
@@ -54356,7 +54356,7 @@ toughness=1
 [card]
 name=Moss Diamond
 auto=tap
-auto={T}:Add {G}
+auto={T}:Add{G}
 text=Moss Diamond enters the battlefield tapped. -- {T}: Add {G} to your mana pool.
 mana={2}
 type=Artifact
@@ -54398,7 +54398,7 @@ type=Artifact
 [/card]
 [card]
 name=Mossfire Valley
-auto={1}{T}:Add {R}{G}
+auto={1}{T}:Add{R}{G}
 text={1}, {T}: Add {R}{G} to your mana pool.
 type=Land
 [/card]
@@ -55239,10 +55239,10 @@ toughness=2
 [/card]
 [card]
 name=Mystic Gate
-auto={T}:Add {1}
-auto={WU}{T}:Add {W}{W}
-auto={WU}{T}:Add {W}{U}
-auto={WU}{T}:Add {U}{U}
+auto={T}:Add{1}
+auto={WU}{T}:Add{W}{W}
+auto={WU}{T}:Add{W}{U}
+auto={WU}{T}:Add{U}{U}
 text={T}: Add {1} to your mana pool. -- {(w/u)}, {T}: Add {W}{W}, {W}{U}, or {U}{U} to your mana pool.
 type=Land
 [/card]
@@ -55448,7 +55448,7 @@ toughness=2
 [/card]
 [card]
 name=Nantuko Elder
-auto={T}:Add {1}{G}
+auto={T}:Add{1}{G}
 text={T}: Add {1}{G} to your mana pool.
 mana={2}{G}
 type=Creature
@@ -56931,9 +56931,9 @@ toughness=1
 [/card]
 [card]
 name=Nimbus Maze
-auto={T}:Add {1}
-auto=aslongas(island|myBattlefield) {T}:Add {W}
-auto=aslongas(plains|myBattlefield) {T}:Add {U}
+auto={T}:Add{1}
+auto=aslongas(island|myBattlefield) {T}:Add{W}
+auto=aslongas(plains|myBattlefield) {T}:Add{U}
 text={T}: Add {1} to your mana pool. -- {T}: Add {W} to your mana pool. Activate this ability only if you control an Island. -- {T}: Add {U} to your mana pool. Activate this ability only if you control a Plains.
 type=Land
 [/card]
@@ -57002,7 +57002,7 @@ toughness=2
 [/card]
 [card]
 name=Nirkana Revenant
-auto=@tappedformana(swamp|mybattlefield):Add {B}
+auto=@tappedformana(swamp|mybattlefield):Add{B}
 auto={B}:1/1
 text=Whenever you tap a Swamp for mana, add {B} to your mana pool (in addition to the mana the land produces). -- {B}:Nirkana Revenant gets +1/+1 until end of turn.
 type=Creature
@@ -57252,18 +57252,18 @@ toughness=2
 [/card]
 [card]
 name=Nomad Stadium
-auto={T}:Add {W} && damage:1 controller
+auto={T}:Add{W} && damage:1 controller
 auto=aslongas(*|mygraveyard) {W}{T}{S}:life:4 >6
 text={T}: Add {W} to your mana pool. Nomad Stadium deals 1 damage to you. -- Threshold - {W}, {T}, Sacrifice Nomad Stadium: You gain 4 life. Activate this ability only if seven or more cards are in your graveyard.
 type=Land
 [/card]
 [card]
 name=Nomadic Elf
-auto={1}{G}:Add {W}
-auto={1}{G}:Add {U}
-auto={1}{G}:Add {B}
-auto={1}{G}:Add {R}
-auto={1}{G}:Add {G}
+auto={1}{G}:Add{W}
+auto={1}{G}:Add{U}
+auto={1}{G}:Add{B}
+auto={1}{G}:Add{R}
+auto={1}{G}:Add{G}
 text={1}{G}: Add one mana of any color to your mana pool.
 mana={1}{G}
 type=Creature
@@ -57706,45 +57706,45 @@ type=Artifact
 [/card]
 [card]
 name=Obelisk of Bant
-auto={T}:Add {G}
-auto={T}:Add {W}
-auto={T}:Add {U}
+auto={T}:Add{G}
+auto={T}:Add{W}
+auto={T}:Add{U}
 text={T}: Add {G}, {W}, or {U} to your mana pool.
 mana={3}
 type=Artifact
 [/card]
 [card]
 name=Obelisk of Esper
-auto={T}:Add {W}
-auto={T}:Add {U}
-auto={T}:Add {B}
+auto={T}:Add{W}
+auto={T}:Add{U}
+auto={T}:Add{B}
 text={T}: Add {W}, {U}, or {B} to your mana pool.
 mana={3}
 type=Artifact
 [/card]
 [card]
 name=Obelisk of Grixis
-auto={T}:Add {U}
-auto={T}:Add {B}
-auto={T}:Add {R}
+auto={T}:Add{U}
+auto={T}:Add{B}
+auto={T}:Add{R}
 text={T}: Add {U}, {B}, or {R} to your mana pool.
 mana={3}
 type=Artifact
 [/card]
 [card]
 name=Obelisk of Jund
-auto={T}:Add {B}
-auto={T}:Add {R}
-auto={T}:Add {G}
+auto={T}:Add{B}
+auto={T}:Add{R}
+auto={T}:Add{G}
 text={T}: Add {B}, {R}, or {G} to your mana pool.
 mana={3}
 type=Artifact
 [/card]
 [card]
 name=Obelisk of Naya
-auto={T}:Add {R}
-auto={T}:Add {G}
-auto={T}:Add {W}
+auto={T}:Add{R}
+auto={T}:Add{G}
+auto={T}:Add{W}
 text={T}: Add {R}, {G}, or {W} to your mana pool.
 mana={3}
 type=Artifact
@@ -57788,7 +57788,7 @@ toughness=3
 [/card]
 [card]
 name=Oboro, Palace in the Clouds
-auto={T}:Add {U}
+auto={T}:Add{U}
 auto={1}:moveto(ownerhand)
 text={T}: Add {U} to your mana pool. -- {1}: Return Oboro, Palace in the Clouds to its owner's hand.
 type=Legendary Land
@@ -58076,7 +58076,7 @@ toughness=2
 [/card]
 [card]
 name=Okina, Temple to the Grandfathers
-auto={T}:Add {G}
+auto={T}:Add{G}
 auto={G}{T}:1/1 target(creature[legendary])
 text={T}: Add {G} to your mana pool. -- {G}, {T}: Target legendary creature gets +1/+1 until end of turn.
 type=Legendary Land
@@ -58940,11 +58940,11 @@ type=Artifact
 [/card]
 [card]
 name=Orochi Leafcaller
-auto={G}:Add {W}
-auto={G}:Add {U}
-auto={G}:Add {B}
-auto={G}:Add {R}
-auto={G}:Add {G}
+auto={G}:Add{W}
+auto={G}:Add{U}
+auto={G}:Add{B}
+auto={G}:Add{R}
+auto={G}:Add{G}
 text={G}: Add one mana of any color to your mana pool.
 mana={G}
 type=Creature
@@ -58964,7 +58964,7 @@ toughness=1
 [/card]
 [card]
 name=Orochi Sustainer
-auto={T}:Add {G}
+auto={T}:Add{G}
 text={T}: Add {G} to your mana pool.
 mana={1}{G}
 type=Creature
@@ -59004,14 +59004,14 @@ toughness=2
 [/card]
 [card]
 name=Orzhov Signet
-auto={1}{T}:Add {W}{B}
+auto={1}{T}:Add{W}{B}
 text={1}, {T}: Add {W}{B} to your mana pool.
 mana={2}
 type=Artifact
 [/card]
 [card]
 name=Orzhova, the Church of Deals
-auto={T}:Add {1}
+auto={T}:Add{1}
 auto={3}{W}{B}{T}:life:-1 target(player) && life:1 controller
 text={T}: Add {1} to your mana pool. -- {3}{W}{B}, {T}: Target player loses 1 life and you gain 1 life.
 type=Land
@@ -59114,7 +59114,7 @@ type=Enchantment
 [/card]
 [card]
 name=Overeager Apprentice
-auto={S}{discard(*|myhand)}:Add {B}{B}{B}
+auto={S}{discard(*|myhand)}:Add{B}{B}{B}
 text=Discard a card, Sacrifice Overeager Apprentice: Add {B}{B}{B} to your mana pool.
 mana={2}{B}
 type=Creature
@@ -59536,7 +59536,7 @@ toughness=7
 [/card]
 [card]
 name=Palladium Myr
-auto={T}:Add {2}
+auto={T}:Add{2}
 text={T}: Add {2} to your mana pool.
 mana={3}
 type=Artifact Creature
@@ -60226,7 +60226,7 @@ subtype=Aura
 [/card]
 [card]
 name=Pendelhaven
-auto={T}:Add {G}
+auto={T}:Add{G}
 auto={T}:1/2 target(creature[power=1;toughness=1])
 text={T}: Add {G} to your mana pool. -- {T}: Target 1/1 creature gets +1/+2 until end of turn.
 type=Legendary Land
@@ -60632,7 +60632,7 @@ toughness=2
 [/card]
 [card]
 name=Petrified Field
-auto={T}:Add {1}
+auto={T}:Add{1}
 auto={T}{S}:moveTo(myhand) target(land|mygraveyard)
 text={T}: Add {1} to your mana pool. -- {T}, Sacrifice Petrified Field: Return target land card from your graveyard to your hand.
 type=Land
@@ -60988,11 +60988,11 @@ type=Land
 [/card]
 [card]
 name=Phyrexian Altar
-auto={S(creature|myBattlefield)}:Add {W}
-auto={S(creature|myBattlefield)}:Add {U}
-auto={S(creature|myBattlefield)}:Add {B}
-auto={S(creature|myBattlefield)}:Add {R}
-auto={S(creature|myBattlefield)}:Add {G}
+auto={S(creature|myBattlefield)}:Add{W}
+auto={S(creature|myBattlefield)}:Add{U}
+auto={S(creature|myBattlefield)}:Add{B}
+auto={S(creature|myBattlefield)}:Add{R}
+auto={S(creature|myBattlefield)}:Add{G}
 text=Sacrifice a creature: Add one mana of any color to your mana pool.
 mana={3}
 type=Artifact
@@ -61639,7 +61639,7 @@ type=Instant
 name=Piranha Marsh
 auto=tap
 auto=life:-1 opponent
-auto={T}:Add {B}
+auto={T}:Add{B}
 text=Piranha Marsh enters the battlefield tapped. -- When Piranha Marsh enters the battlefield, target player loses 1 life. -- {T}: Add {B} to your mana pool.
 type=Land
 [/card]
@@ -62277,7 +62277,7 @@ type=Land
 [card]
 name=Polluted Mire
 auto=tap
-auto={T}:Add {B}
+auto={T}:Add{B}
 autohand=__CYCLING__({2})
 text=Polluted Mire enters the battlefield tapped. -- {T}: Add {B} to your mana pool. -- Cycling {2} ({2}, Discard this card: Draw a card.)
 type=Land
@@ -62964,7 +62964,7 @@ toughness=5
 [/card]
 [card]
 name=Princess Lucrezia
-auto={T}:Add {U}
+auto={T}:Add{U}
 text={T}: Add {U} to your mana pool.
 mana={3}{U}{U}{B}
 type=Legendary Creature
@@ -62986,12 +62986,12 @@ type=Instant
 [/card]
 [card]
 name=Prismatic Lens
-auto={T}:Add {1}
-auto={1}{T}:Add {G}
-auto={1}{T}:Add {R}
-auto={1}{T}:Add {B}
-auto={1}{T}:Add {U}
-auto={1}{T}:Add {W}
+auto={T}:Add{1}
+auto={1}{T}:Add{G}
+auto={1}{T}:Add{R}
+auto={1}{T}:Add{B}
+auto={1}{T}:Add{U}
+auto={1}{T}:Add{W}
 text={T}: Add {1} to your mana pool. -- {1}, {T}: Add one mana of any color to your mana pool.
 mana={2}
 type=Artifact
@@ -64909,7 +64909,7 @@ toughness=1
 [/card]
 [card]
 name=Rakdos Signet
-auto={1}{T}:Add {B}{R}
+auto={1}{T}:Add{B}{R}
 text={1}, {T}: Add {B}{R} to your mana pool.
 mana={2}
 type=Artifact
@@ -65319,7 +65319,7 @@ type=Artifact
 [/card]
 [card]
 name=Rath's Edge
-auto={T}:Add {1}
+auto={T}:Add{1}
 auto={4}{T}{S(land|myBattlefield)}:damage:1 target(creature,player)
 text={T}: Add {1} to your mana pool. -- {4}, {T}, Sacrifice a land: Rath's Edge deals 1 damage to target creature or player.
 type=Legendary Land
@@ -65411,12 +65411,12 @@ toughness=3
 [card]
 name=Ravaged Highlands
 auto=tap
-auto={T}:Add {R}
-auto={T}{S}:Add {B}
-auto={T}{S}:Add {G}
-auto={T}{S}:Add {R}
-auto={T}{S}:Add {U}
-auto={T}{S}:Add {W}
+auto={T}:Add{R}
+auto={T}{S}:Add{B}
+auto={T}{S}:Add{G}
+auto={T}{S}:Add{R}
+auto={T}{S}:Add{U}
+auto={T}{S}:Add{W}
 text=Ravaged Highlands enters the battlefield tapped. -- {T}: Add {R} to your mana pool. -- {T}, Sacrifice Ravaged Highlands: Add one mana of any color to your mana pool.
 type=Land
 [/card]
@@ -65778,8 +65778,8 @@ toughness=1
 [card]
 name=Razorverge Thicket
 auto=aslongas(other land|myBattlefield) tap >2 oneshot
-auto={T}:Add {G}
-auto={T}:Add {W}
+auto={T}:Add{G}
+auto={T}:Add{W}
 text=Razorverge Thicket enters the battlefield tapped unless you control two or fewer other lands. -- {T}: Add {G} or {W} to your mana pool.
 type=Land
 [/card]
@@ -66593,7 +66593,7 @@ type=Land
 [card]
 name=Remote Isle
 auto=tap
-auto={T}:Add {U}
+auto={T}:Add{U}
 autohand=__CYCLING__({2})
 text=Remote Isle enters the battlefield tapped. -- {T}: Add {U} to your mana pool. -- Cycling {2} ({2}, Discard this card: Draw a card.)
 type=Land
@@ -67804,7 +67804,7 @@ toughness=1
 [/card]
 [card]
 name=Riptide Laboratory
-auto={T}:Add {1}
+auto={T}:Add{1}
 auto={1}{U}{T}:moveTo(ownerhand) target(wizard|myBattlefield)
 text={T}: Add {1} to your mana pool. -- {1}{U}, {T}: Return target Wizard you control to its owner's hand.
 type=Land
@@ -67889,7 +67889,7 @@ type=Artifact
 [/card]
 [card]
 name=Rishadan Port
-auto={T}:Add {1}
+auto={T}:Add{1}
 auto={1}{T}:Tap target(land)
 text={T}: Add {1} to your mana pool. -- {1}, {T}: Tap target land.
 type=Land
@@ -67961,7 +67961,7 @@ toughness=6
 [/card]
 [card]
 name=Rith's Attendant
-auto={1}{S}:Add {R}{G}{W}
+auto={1}{S}:Add{R}{G}{W}
 text={1}, Sacrifice Rith's Attendant: Add {R}{G}{W} to your mana pool.
 mana={5}
 type=Artifact Creature
@@ -68015,7 +68015,7 @@ type=Enchantment
 [/card]
 [card]
 name=Riven Turnbull
-auto={T}:Add {B}
+auto={T}:Add{B}
 text={T}: Add {B} to your mana pool.
 mana={5}{U}{B}
 type=Legendary Creature
@@ -68545,8 +68545,8 @@ type=Instant
 name=Rootbound Crag
 auto=tap
 auto=aslongas(mountain,forest|myBattlefield) untap
-auto={T}:Add {R}
-auto={T}:Add {G}
+auto={T}:Add{R}
+auto={T}:Add{G}
 text=Rootbound Crag enters the battlefield tapped unless you control a Mountain or a Forest. -- {T}: Add {R} or {G} to your mana pool.
 type=Land
 [/card]
@@ -68857,10 +68857,10 @@ type=Sorcery
 [/card]
 [card]
 name=Rugged Prairie
-auto={T}:Add {1}
-auto={RW}{T}:Add {R}{R}
-auto={RW}{T}:Add {R}{W}
-auto={RW}{T}:Add {W}{W}
+auto={T}:Add{1}
+auto={RW}{T}:Add{R}{R}
+auto={RW}{T}:Add{R}{W}
+auto={RW}{T}:Add{W}{W}
 text={T}: Add {1} to your mana pool. -- {(r/w)}, {T}: Add {R}{R}, {R}{W}, or {W}{W} to your mana pool.
 type=Land
 [/card]
@@ -68894,8 +68894,8 @@ toughness=2
 [card]
 name=Ruins of Trokair
 auto=tap
-auto={T}:Add {W}
-auto={T}{S}:Add {W}{W}
+auto={T}:Add{W}
+auto={T}{S}:Add{W}{W}
 text=Ruins of Trokair enters the battlefield tapped. -- {T}: Add {W} to your mana pool. -- {T}, Sacrifice Ruins of Trokair: Add {W}{W} to your mana pool.
 type=Land
 [/card]
@@ -69668,17 +69668,17 @@ toughness=1
 [card]
 name=Salt Flats
 auto=tap
-auto={T}:Add {1}
-auto={T}:Add {W} && damage:1 controller
-auto={T}:Add {B} && damage:1 controller
+auto={T}:Add{1}
+auto={T}:Add{W} && damage:1 controller
+auto={T}:Add{B} && damage:1 controller
 text=Salt Flats enters the battlefield tapped. -- {T}: Add {1} to your mana pool. -- {T}: Add {W} or {B} to your mana pool. Salt Flats deals 1 damage to you.
 type=Land
 [/card]
 [card]
 name=Salt Marsh
 auto=tap
-auto={T}:Add {U}
-auto={T}:Add {B}
+auto={T}:Add{U}
+auto={T}:Add{B}
 text=Salt Marsh enters the battlefield tapped. -- {T}: Add {U} or {B} to your mana pool.
 type=Land
 [/card]
@@ -70325,9 +70325,9 @@ subtype=Aura
 [card]
 name=Savage Lands
 auto=tap
-auto={T}:Add {B}
-auto={T}:Add {R}
-auto={T}:Add {G}
+auto={T}:Add{B}
+auto={T}:Add{R}
+auto={T}:Add{G}
 text=Savage Lands enters the battlefield tapped. -- {T}: Add {B}, {R}, or {G} to your mana pool.
 type=Land
 [/card]
@@ -70456,9 +70456,9 @@ toughness=1
 [card]
 name=Scabland
 auto=tap
-auto={T}:Add {1}
-auto={T}:Add {R} && damage:1 controller
-auto={T}:Add {W} && damage:1 controller
+auto={T}:Add{1}
+auto={T}:Add{R} && damage:1 controller
+auto={T}:Add{W} && damage:1 controller
 text=Scabland enters the battlefield tapped. -- {T}: Add {1} to your mana pool. -- {T}: Add {R} or {W} to your mana pool. Scabland deals 1 damage to you.
 type=Land
 [/card]
@@ -70803,12 +70803,12 @@ toughness=3
 [/card]
 [card]
 name=School of the Unseen
-auto={T}:Add {1}
-auto={2}{T}:Add {W}
-auto={2}{T}:Add {U}
-auto={2}{T}:Add {B}
-auto={2}{T}:Add {R}
-auto={2}{T}:Add {G}
+auto={T}:Add{1}
+auto={2}{T}:Add{W}
+auto={2}{T}:Add{U}
+auto={2}{T}:Add{B}
+auto={2}{T}:Add{R}
+auto={2}{T}:Add{G}
 text={T}: Add {1} to your mana pool. -- {2}, {T}: Add one mana of any color to your mana pool.
 type=Land
 [/card]
@@ -71477,8 +71477,8 @@ toughness=6
 [/card]
 [card]
 name=Sea Scryer
-auto={T}:Add {1}
-auto={1}{T}:Add {U}
+auto={T}:Add{1}
+auto={1}{T}:Add{U}
 text={T}: Add {1} to your mana pool. -- {1}, {T}: Add {U} to your mana pool.
 mana={1}{U}
 type=Creature
@@ -71543,20 +71543,20 @@ toughness=1
 [card]
 name=Seachrome Coast
 auto=aslongas(other land|myBattlefield) tap >2 oneshot
-auto={T}:Add {W}
-auto={T}:Add {U}
+auto={T}:Add{W}
+auto={T}:Add{U}
 text=Seachrome Coast enters the battlefield tapped unless you control two or fewer other lands. -- {T}: Add {W} or {U} to your mana pool.
 type=Land
 [/card]
 [card]
 name=Seafloor Debris
 auto=tap
-auto={T}:Add {U}
-auto={T}{S}:Add {B}
-auto={T}{S}:Add {G}
-auto={T}{S}:Add {R}
-auto={T}{S}:Add {U}
-auto={T}{S}:Add {W}
+auto={T}:Add{U}
+auto={T}{S}:Add{B}
+auto={T}{S}:Add{G}
+auto={T}{S}:Add{R}
+auto={T}{S}:Add{U}
+auto={T}{S}:Add{W}
 text=Seafloor Debris enters the battlefield tapped. -- {T}: Add {U} to your mana pool. -- {T}, Sacrifice Seafloor Debris: Add one mana of any color to your mana pool.
 type=Land
 [/card]
@@ -71712,15 +71712,15 @@ type=Artifact
 [card]
 name=Seaside Citadel
 auto=tap
-auto={T}:Add {G}
-auto={T}:Add {W}
-auto={T}:Add {U}
+auto={T}:Add{G}
+auto={T}:Add{W}
+auto={T}:Add{U}
 text=Seaside Citadel enters the battlefield tapped. -- {T}: Add {G}, {W}, or {U} to your mana pool.
 type=Land
 [/card]
 [card]
 name=Seaside Haven
-auto={T}:Add {1}
+auto={T}:Add{1}
 auto={W}{U}{T}{S(bird|myBattlefield)}:draw:1
 text={T}: Add {1} to your mana pool. -- {W}{U}, {T}, Sacrifice a Bird: Draw a card.
 type=Land
@@ -71764,7 +71764,7 @@ type=Land
 [card]
 name=Secluded Steppe
 auto=tap
-auto={T}:Add {W}
+auto={T}:Add{W}
 autohand=__CYCLING__({W})
 text=Secluded Steppe enters the battlefield tapped. -- {T}: Add {W} to your mana pool. -- Cycling {W} ({W}, Discard this card: Draw a card.)
 type=Land
@@ -72122,7 +72122,7 @@ auto=choice protection from blue target(creature|mybattlefield) ueot
 auto=choice protection from black target(creature|mybattlefield) ueot
 auto=choice protection from red target(creature|mybattlefield) ueot
 auto=choice protection from green target(creature|mybattlefield) ueot
-auto={T}:Add {W}
+auto={T}:Add{W}
 text=Sejiri Steppe enters the battlefield tapped. -- When Sejiri Steppe enters the battlefield, target creature you control gains protection from the color of your choice until end of turn. -- {T}: Add {W} to your mana pool.
 type=Land
 [/card]
@@ -72206,7 +72206,7 @@ type=Artifact
 name=Selesnya Sanctuary
 auto=tap
 auto=moveto(ownerhand) notatarget(land|myBattlefield)
-auto={T}:Add {G}{W}
+auto={T}:Add{G}{W}
 text=Selesnya Sanctuary enters the battlefield tapped. -- When Selesnya Sanctuary enters the battlefield, return a land you control to its owner's hand. -- {T}: Add {G}{W} to your mana pool.
 type=Land
 [/card]
@@ -72222,7 +72222,7 @@ toughness=2
 [/card]
 [card]
 name=Selesnya Signet
-auto={1}{T}:Add {G}{W}
+auto={1}{T}:Add{G}{W}
 text={1}, {T}: Add {G}{W} to your mana pool.
 mana={2}
 type=Artifact
@@ -73010,14 +73010,14 @@ toughness=1
 [/card]
 [card]
 name=Shadowblood Egg
-auto={2}{T}{S}:Add {B}{R} && draw:1
+auto={2}{T}{S}:Add{B}{R} && draw:1
 text={2}, {T}, Sacrifice Shadowblood Egg: Add {B}{R} to your mana pool. Draw a card.
 mana={1}
 type=Artifact
 [/card]
 [card]
 name=Shadowblood Ridge
-auto={1}{T}:Add {B}{R}
+auto={1}{T}:Add{B}{R}
 text={1}, {T}: Add {B}{R} to your mana pool.
 type=Land
 [/card]
@@ -73589,12 +73589,12 @@ toughness=3
 [/card]
 [card]
 name=Shimmering Grotto
-auto={T}:Add {1}
-auto={1}{T}:Add {G}
-auto={1}{T}:Add {R}
-auto={1}{T}:Add {B}
-auto={1}{T}:Add {U}
-auto={1}{T}:Add {W}
+auto={T}:Add{1}
+auto={1}{T}:Add{G}
+auto={1}{T}:Add{R}
+auto={1}{T}:Add{B}
+auto={1}{T}:Add{U}
+auto={1}{T}:Add{W}
 text={T}: Add {1} to your mana pool. -- {1}, {T}: Add one mana of any color to your mana pool.
 type=Land
 [/card]
@@ -73700,7 +73700,7 @@ toughness=2
 [/card]
 [card]
 name=Shinka, the Bloodsoaked Keep
-auto={T}:Add {R}
+auto={T}:Add{R}
 auto={R}{T}:first strike target(creature[legendary])
 text={T}: Add {R} to your mana pool. -- {R}, {T}: Target legendary creature gains first strike until end of turn.
 type=Legendary Land
@@ -73751,7 +73751,7 @@ toughness=1
 [/card]
 [card]
 name=Shivan Gorge
-auto={T}:Add {1}
+auto={T}:Add{1}
 auto={2}{R}{T}:damage:1 opponent
 text={T}: Add {1} to your mana pool. -- {2}{R}, {T}: Shivan Gorge deals 1 damage to each opponent.
 type=Legendary Land
@@ -73785,8 +73785,8 @@ type=Sorcery
 [card]
 name=Shivan Oasis
 auto=tap
-auto={T}:Add {R}
-auto={T}:Add {G}
+auto={T}:Add{R}
+auto={T}:Add{G}
 text=Shivan Oasis enters the battlefield tapped. -- {T}: Add {R} or {G} to your mana pool.
 type=Land
 [/card]
@@ -73814,9 +73814,9 @@ toughness=1
 [/card]
 [card]
 name=Shivan Reef
-auto={T}:Add {1}
-auto={T}:Add {U} && Damage:1 controller
-auto={T}:Add {R} && Damage:1 controller
+auto={T}:Add{1}
+auto={T}:Add{U} && Damage:1 controller
+auto={T}:Add{R} && Damage:1 controller
 text={T}: Add {1} to your mana pool. -- {T}: Add {U} or {R} to your mana pool. Shivan Reef deals 1 damage to you.
 type=Land
 [/card]
@@ -73843,7 +73843,7 @@ toughness=2
 [/card]
 [card]
 name=Shizo, Death's Storehouse
-auto={T}:Add {B}
+auto={T}:Add{B}
 auto={B}{T}:fear target(creature[legendary])
 text={T}: Add {B} to your mana pool. -- {B}, {T}: Target legendary creature gains fear until end of turn. (It can't be blocked except by artifact creatures and/or black creatures.)
 type=Legendary Land
@@ -74628,7 +74628,7 @@ toughness=2
 [/card]
 [card]
 name=Silver Myr
-auto={T}:Add {U}
+auto={T}:Add{U}
 text={T}: Add {U} to your mana pool.
 mana={2}
 type=Artifact Creature
@@ -74981,14 +74981,14 @@ subtype=Aura
 [/card]
 [card]
 name=Sisay's Ring
-auto={T}:Add {2}
+auto={T}:Add{2}
 text={T}: Add {2} to your mana pool.
 mana={4}
 type=Artifact
 [/card]
 [card]
 name=Sisters of the Flame
-auto={T}:Add {R}
+auto={T}:Add{R}
 text={T}: Add {R} to your mana pool.
 mana={1}{R}{R}
 type=Creature
@@ -75043,7 +75043,7 @@ toughness=6
 [/card]
 [card]
 name=Skarrg, the Rage Pits
-auto={T}:Add {1}
+auto={T}:Add{1}
 auto={R}{G}{T}:1/1 && trample target(creature)
 text={T}: Add {1} to your mana pool. -- {R}{G}, {T}: Target creature gets +1/+1 and gains trample until end of turn.
 type=Land
@@ -75301,7 +75301,7 @@ toughness=2
 [/card]
 [card]
 name=Skirk Prospector
-auto={S(goblin|myBattlefield)}:Add {R}
+auto={S(goblin|myBattlefield)}:Add{R}
 text=Sacrifice a Goblin: Add {R} to your mana pool.
 mana={R}
 type=Creature
@@ -75531,8 +75531,8 @@ type=Artifact
 [/card]
 [card]
 name=Skull of Ramos
-auto={T}:Add {B}
-auto={S}:Add {B}
+auto={T}:Add{B}
+auto={S}:Add{B}
 text={T}: Add {B} to your mana pool. -- Sacrifice Skull of Ramos: Add {B} to your mana pool.
 mana={3}
 type=Artifact
@@ -75621,7 +75621,7 @@ type=Sorcery
 [card]
 name=Sky Diamond
 auto=tap
-auto={T}:Add {U}
+auto={T}:Add{U}
 text=Sky Diamond enters the battlefield tapped. -- {T}: Add {U} to your mana pool.
 mana={2}
 type=Artifact
@@ -75691,14 +75691,14 @@ toughness=4
 [/card]
 [card]
 name=Skycloud Egg
-auto={2}{T}{S}:Add {W}{U} && draw:1
+auto={2}{T}{S}:Add{W}{U} && draw:1
 text={2}, {T}, Sacrifice Skycloud Egg: Add {W}{U} to your mana pool. Draw a card.
 mana={1}
 type=Artifact
 [/card]
 [card]
 name=Skycloud Expanse
-auto={1}{T}:Add {W}{U}
+auto={1}{T}:Add{W}{U}
 text={1}, {T}: Add {W}{U} to your mana pool.
 type=Land
 [/card]
@@ -75905,9 +75905,9 @@ toughness=2
 [/card]
 [card]
 name=Skyshroud Elf
-auto={T}:Add {G}
-auto={1}:Add {W}
-auto={1}:Add {R}
+auto={T}:Add{G}
+auto={1}:Add{W}
+auto={1}:Add{R}
 text={T}: Add {G} to your mana pool. -- {1}: Add {W} or {R} to your mana pool.
 mana={1}{G}
 type=Creature
@@ -75938,9 +75938,9 @@ toughness=1
 [card]
 name=Skyshroud Forest
 auto=tap
-auto={T}:Add {1}
-auto={T}:Add {U} && damage:1 controller
-auto={T}:Add {G} && damage:1 controller
+auto={T}:Add{1}
+auto={T}:Add{U} && damage:1 controller
+auto={T}:Add{G} && damage:1 controller
 text=Skyshroud Forest enters the battlefield tapped. -- {T}: Add {1} to your mana pool. -- {T}: Add {U} or {G} to your mana pool. Skyshroud Forest deals 1 damage to you.
 type=Land
 [/card]
@@ -75996,7 +75996,7 @@ toughness=3
 [/card]
 [card]
 name=Skyshroud Troopers
-auto={T}:Add {G}
+auto={T}:Add{G}
 text={T}: Add {G} to your mana pool.
 mana={3}{G}
 type=Creature
@@ -76354,7 +76354,7 @@ toughness=1
 [card]
 name=Slippery Karst
 auto=tap
-auto={T}:Add {G}
+auto={T}:Add{G}
 autohand=__CYCLING__({2})
 text=Slippery Karst enters the battlefield tapped. -- {T}: Add {G} to your mana pool. -- Cycling {2} ({2}, Discard this card: Draw a card.)
 type=Land
@@ -76652,7 +76652,7 @@ toughness=2
 [card]
 name=Smoldering Crater
 auto=tap
-auto={T}:Add {R}
+auto={T}:Add{R}
 autohand=__CYCLING__({2})
 text=Smoldering Crater enters the battlefield tapped. -- {T}: Add {R} to your mana pool. -- Cycling {2} ({2}, Discard this card: Draw a card.)
 type=Land
@@ -76661,7 +76661,7 @@ type=Land
 name=Smoldering Spires
 auto=tap
 auto=cantblock target(creature) ueot
-auto={T}:Add {R}
+auto={T}:Add{R}
 text=Smoldering Spires enters the battlefield tapped. -- When Smoldering Spires enters the battlefield, target creature can't block this turn. -- {T}: Add {R} to your mana pool.
 type=Land
 [/card]
@@ -76911,7 +76911,7 @@ subtype=Aura
 name=Soaring Seacliff
 auto=tap
 auto=flying target(creature) ueot
-auto={T}:Add {U}
+auto={T}:Add{U}
 text=Soaring Seacliff enters the battlefield tapped. -- When Soaring Seacliff enters the battlefield, target creature gains flying until end of turn. -- {T}: Add {U} to your mana pool.
 type=Land
 [/card]
@@ -76966,7 +76966,7 @@ type=Artifact
 [/card]
 [card]
 name=Sol Ring
-auto={T}:Add {2}
+auto={T}:Add{2}
 text={T}: Add {2} to your mana pool.
 mana={1}
 type=Artifact
@@ -79862,11 +79862,11 @@ toughness=4
 [card]
 name=Star Compass
 auto=tap
-auto=aslongas(plains|myBattlefield) {T}:Add {W}
-auto=aslongas(island|myBattlefield) {T}:Add {U}
-auto=aslongas(swamp|myBattlefield) {T}:Add {B}
-auto=aslongas(mountain|myBattlefield) {T}:Add {R}
-auto=aslongas(forest|myBattlefield) {T}:Add {G}
+auto=aslongas(plains|myBattlefield) {T}:Add{W}
+auto=aslongas(island|myBattlefield) {T}:Add{U}
+auto=aslongas(swamp|myBattlefield) {T}:Add{B}
+auto=aslongas(mountain|myBattlefield) {T}:Add{R}
+auto=aslongas(forest|myBattlefield) {T}:Add{G}
 text=Star Compass enters the battlefield tapped. -- {T}: Add to your mana pool one mana of any color a basic land you control could produce.
 mana={2}
 type=Artifact
@@ -80324,7 +80324,7 @@ toughness=2
 [card]
 name=Steward of Valeron
 abilities=vigilance
-auto={T}:Add {G}
+auto={T}:Add{G}
 text=Vigilance -- {T}: Add {G} to your mana pool.
 mana={G}{W}
 type=Creature
@@ -81187,7 +81187,7 @@ subtype=Equipment
 [/card]
 [card]
 name=Strip Mine
-auto={T}:Add {1}
+auto={T}:Add{1}
 auto={T}{S}:destroy target(land)
 text={T}: Add {1} to your mana pool. -- {T}, Sacrifice Strip Mine: Destroy target land.
 type=Land
@@ -81436,7 +81436,7 @@ toughness=*
 [/card]
 [card]
 name=Su-Chi
-auto=@movedTo(this|graveyard):add {4}
+auto=@movedTo(this|graveyard):Add{4}
 text=When Su-Chi dies, add {4} to your mana pool.
 mana={4}
 type=Artifact Creature
@@ -81594,24 +81594,24 @@ abilities=split second,flash
 [card]
 name=Sulfur Falls
 auto=aslongas(island,mountain|myBattlefield) tap <1 oneshot
-auto={T}:Add {U}
-auto={T}:Add {R}
+auto={T}:Add{U}
+auto={T}:Add{R}
 text=Sulfur Falls enters the battlefield tapped unless you control an Island or Mountain. -- {T}: Add {U} or {R} to your mana pool.
 type=Land
 [/card]
 [card]
 name=Sulfur Vent
 auto=tap
-auto={T}:Add {B}
-auto={T}{S}:Add {U}{R}
+auto={T}:Add{B}
+auto={T}{S}:Add{U}{R}
 text=Sulfur Vent enters the battlefield tapped. -- {T}: Add {B} to your mana pool. -- {T}, Sacrifice Sulfur Vent: Add {U}{R} to your mana pool.
 type=Land
 [/card]
 [card]
 name=Sulfurous Springs
-auto={T}:Add {1}
-auto={T}:Add {B} && Damage:1 controller
-auto={T}:Add {R} && Damage:1 controller
+auto={T}:Add{1}
+auto={T}:Add{B} && Damage:1 controller
+auto={T}:Add{R} && Damage:1 controller
 text={T}: Add {1} to your mana pool. -- {T}: Add {B} or {R} to your mana pool. Sulfurous Springs deals 1 damage to you.
 type=Land
 [/card]
@@ -81711,7 +81711,7 @@ toughness=6
 [/card]
 [card]
 name=Sunastian Falconer
-auto={T}:Add {2}
+auto={T}:Add{2}
 text={T}: Add {2} to your mana pool.
 mana={3}{R}{G}
 type=Legendary Creature
@@ -81797,7 +81797,7 @@ toughness=1
 [/card]
 [card]
 name=Sunglasses of Urza
-auto={W}:Add {R}
+auto={W}:Add{R}
 text=You may spend white mana as though it were red mana.
 mana={3}
 type=Artifact
@@ -81811,13 +81811,13 @@ type=Artifact
 [/card]
 [card]
 name=Sungrass Prairie
-auto={1}{T}:Add {G}{W}
+auto={1}{T}:Add{G}{W}
 text={1}, {T}: Add {G}{W} to your mana pool.
 type=Land
 [/card]
 [card]
 name=Sunhome, Fortress of the Legion
-auto={T}:Add {1}
+auto={T}:Add{1}
 auto={2}{R}{W}{T}:double strike target(creature)
 text={T}: Add {1} to your mana pool. -- {2}{R}{W}, {T}: Target creature gains double strike until end of turn.
 type=Land
@@ -81851,10 +81851,10 @@ type=Enchantment
 [/card]
 [card]
 name=Sunken Ruins
-auto={T}:Add {1}
-auto={UB}{T}:Add {U}{U}
-auto={UB}{T}:Add {U}{B}
-auto={UB}{T}:Add {B}{B}
+auto={T}:Add{1}
+auto={UB}{T}:Add{U}{U}
+auto={UB}{T}:Add{U}{B}
+auto={UB}{T}:Add{B}{B}
 text={T}: Add {1} to your mana pool. -- {(u/b)}, {T}: Add {U}{U}, {U}{B}, or {B}{B} to your mana pool.
 type=Land
 [/card]
@@ -81870,8 +81870,8 @@ type=Sorcery
 name=Sunpetal Grove
 auto=tap
 auto=aslongas(forest,plains|myBattlefield) untap
-auto={T}:Add {G}
-auto={T}:Add {W}
+auto={T}:Add{G}
+auto={T}:Add{W}
 text=Sunpetal Grove enters the battlefield tapped unless you control a Forest or a Plains. -- {T}: Add {G} or {W} to your mana pool.
 type=Land
 [/card]
@@ -82264,8 +82264,8 @@ toughness=1
 [card]
 name=Svyelunite Temple
 auto=tap
-auto={T}:Add {U}
-auto={T}{S}:Add {U}{U}
+auto={T}:Add{U}
+auto={T}{S}:Add{U}{U}
 text=Svyelunite Temple enters the battlefield tapped. -- {T}: Add {U} to your mana pool. -- {T}, Sacrifice Svyelunite Temple: Add {U}{U} to your mana pool.
 type=Land
 [/card]
@@ -82308,7 +82308,7 @@ toughness=1
 [/card]
 [card]
 name=Swarmyard
-auto={T}:Add {1}
+auto={T}:Add{1}
 auto={T}:name(insect) regenerate target(insect)
 auto={T}:name(rat) regenerate target(rat)
 auto={T}:name(spider) regenerate target(spider)
@@ -82823,7 +82823,7 @@ type=Enchantment
 [/card]
 [card]
 name=Tainted Field
-auto={T}:Add {1}
+auto={T}:Add{1}
 auto=aslongas(swamp|myBattlefield) {T}:add{B}
 auto=aslongas(swamp|myBattlefield) {T}:add{W}
 text={T}: Add {1} to your mana pool. -- {T}: Add {W} or {B} to your mana pool. Activate this ability only if you control a Swamp.
@@ -82831,7 +82831,7 @@ type=Land
 [/card]
 [card]
 name=Tainted Isle
-auto={T}:Add {1}
+auto={T}:Add{1}
 auto=aslongas(swamp|myBattlefield) {T}:add{B}
 auto=aslongas(swamp|myBattlefield) {T}:add{U}
 text={T}: Add {1} to your mana pool. -- {T}: Add {U} or {B} to your mana pool. Activate this ability only if you control a Swamp.
@@ -82839,7 +82839,7 @@ type=Land
 [/card]
 [card]
 name=Tainted Peak
-auto={T}:Add {1}
+auto={T}:Add{1}
 auto=aslongas(swamp|myBattlefield) {T}:add{B}
 auto=aslongas(swamp|myBattlefield) {T}:add{R}
 text={T}: Add {1} to your mana pool. -- {T}: Add {B} or {R} to your mana pool. Activate this ability only if you control a Swamp.
@@ -82886,7 +82886,7 @@ subtype=Aura
 [/card]
 [card]
 name=Tainted Wood
-auto={T}:Add {1}
+auto={T}:Add{1}
 auto=aslongas(swamp|myBattlefield) {T}:add{B}
 auto=aslongas(swamp|myBattlefield) {T}:add{G}
 text={T}: Add {1} to your mana pool. -- {T}: Add {B} or {G} to your mana pool. Activate this ability only if you control a Swamp.
@@ -83016,45 +83016,45 @@ toughness=2
 [/card]
 [card]
 name=Talisman of Dominance
-auto={T}:Add {1}
-auto={T}:Add {U} && damage:1 controller
-auto={T}:Add {B} && damage:1 controller
+auto={T}:Add{1}
+auto={T}:Add{U} && damage:1 controller
+auto={T}:Add{B} && damage:1 controller
 text={T}: Add {1} to your mana pool. -- {T}: Add {U} or {B} to your mana pool. Talisman of Dominance deals 1 damage to you.
 mana={2}
 type=Artifact
 [/card]
 [card]
 name=Talisman of Impulse
-auto={T}:Add {1}
-auto={T}:Add {R} && damage:1 controller
-auto={T}:Add {G} && damage:1 controller
+auto={T}:Add{1}
+auto={T}:Add{R} && damage:1 controller
+auto={T}:Add{G} && damage:1 controller
 text={T}: Add {1} to your mana pool. -- {T}: Add {R} or {G} to your mana pool. Talisman of Impulse deals 1 damage to you.
 mana={2}
 type=Artifact
 [/card]
 [card]
 name=Talisman of Indulgence
-auto={T}:Add {1}
-auto={T}:Add {B} && damage:1 controller
-auto={T}:Add {R} && damage:1 controller
+auto={T}:Add{1}
+auto={T}:Add{B} && damage:1 controller
+auto={T}:Add{R} && damage:1 controller
 text={T}: Add {1} to your mana pool. -- {T}: Add {B} or {R} to your mana pool. Talisman of Indulgence deals 1 damage to you.
 mana={2}
 type=Artifact
 [/card]
 [card]
 name=Talisman of Progress
-auto={T}:Add {1}
-auto={T}:Add {W} && damage:1 controller
-auto={T}:Add {U} && damage:1 controller
+auto={T}:Add{1}
+auto={T}:Add{W} && damage:1 controller
+auto={T}:Add{U} && damage:1 controller
 text={T}: Add {1} to your mana pool. -- {T}: Add {W} or {U} to your mana pool. Talisman of Progress deals 1 damage to you.
 mana={2}
 type=Artifact
 [/card]
 [card]
 name=Talisman of Unity
-auto={T}:Add {1}
-auto={T}:Add {G} && damage:1 controller
-auto={T}:Add {W} && damage:1 controller
+auto={T}:Add{1}
+auto={T}:Add{G} && damage:1 controller
+auto={T}:Add{W} && damage:1 controller
 text={T}: Add {1} to your mana pool. -- {T}: Add {G} or {W} to your mana pool. Talisman of Unity deals 1 damage to you.
 mana={2}
 type=Artifact
@@ -83432,12 +83432,12 @@ toughness=1+*
 [/card]
 [card]
 name=Tarnished Citadel
-auto={T}:Add {1}
-auto={T}:Add {B} && Damage:3 controller
-auto={T}:Add {G} && Damage:3 controller
-auto={T}:Add {R} && Damage:3 controller
-auto={T}:Add {U} && Damage:3 controller
-auto={T}:Add {W} && Damage:3 controller
+auto={T}:Add{1}
+auto={T}:Add{B} && Damage:3 controller
+auto={T}:Add{G} && Damage:3 controller
+auto={T}:Add{R} && Damage:3 controller
+auto={T}:Add{U} && Damage:3 controller
+auto={T}:Add{W} && Damage:3 controller
 text={T}: Add {1} to your mana pool. -- {T}: Add one mana of any color to your mana pool. Tarnished Citadel deals 3 damage to you.
 type=Land
 [/card]
@@ -83681,7 +83681,7 @@ toughness=5
 name=Teetering Peaks
 auto=tap
 auto=2/0 target(creature) ueot
-auto={T}:Add {R}
+auto={T}:Add{R}
 text=Teetering Peaks enters the battlefield tapped. -- When Teetering Peaks enters the battlefield, target creature gets +2/+0 until end of turn. -- {T}: Add {R} to your mana pool.
 type=Land
 [/card]
@@ -84292,7 +84292,7 @@ toughness=8
 [/card]
 [card]
 name=Terrain Generator
-auto={T}:Add {1}
+auto={T}:Add{1}
 auto={2}{T}:moveTo(myBattlefield) and!(tap)! target(land[basic]|myhand)
 text={T}: Add {1} to your mana pool. -- {2}, {T}: You may put a basic land card from your hand onto the battlefield tapped.
 type=Land
@@ -85286,7 +85286,7 @@ toughness=3
 [/card]
 [card]
 name=Thran Dynamo
-auto={T}:Add {3}
+auto={T}:Add{3}
 text={T}: Add {3} to your mana pool.
 mana={4}
 type=Artifact
@@ -85961,8 +85961,8 @@ subtype=Aura
 [/card]
 [card]
 name=Tigereye Cameo
-auto={T}:Add {G}
-auto={T}:Add {W}
+auto={T}:Add{G}
+auto={T}:Add{W}
 text={T}: Add {G} or {W} to your mana pool.
 mana={3}
 type=Artifact
@@ -86001,12 +86001,12 @@ toughness=1
 [card]
 name=Timberland Ruins
 auto=tap
-auto={T}:Add {G}
-auto={T}{S}:Add {B}
-auto={T}{S}:Add {G}
-auto={T}{S}:Add {R}
-auto={T}{S}:Add {U}
-auto={T}{S}:Add {W}
+auto={T}:Add{G}
+auto={T}{S}:Add{B}
+auto={T}{S}:Add{G}
+auto={T}{S}:Add{R}
+auto={T}{S}:Add{U}
+auto={T}{S}:Add{W}
 text=Timberland Ruins enters the battlefield tapped. -- {T}: Add {G} to your mana pool. -- {T}, Sacrifice Timberland Ruins: Add one mana of any color to your mana pool.
 type=Land
 [/card]
@@ -86217,8 +86217,8 @@ toughness=2
 [card]
 name=Tinder Farm
 auto=tap
-auto={T}:Add {G}
-auto={T}{S}:Add {R}{W}
+auto={T}:Add{G}
+auto={T}{S}:Add{R}{W}
 text=Tinder Farm enters the battlefield tapped. -- {T}: Add {G} to your mana pool. -- {T}, Sacrifice Tinder Farm: Add {R}{W} to your mana pool.
 type=Land
 [/card]
@@ -86549,8 +86549,8 @@ type=Artifact
 [/card]
 [card]
 name=Tooth of Ramos
-auto={T}:Add {W}
-auto={S}:Add {W}
+auto={T}:Add{W}
+auto={S}:Add{W}
 text={T}: Add {W} to your mana pool. -- Sacrifice Tooth of Ramos: Add {W} to your mana pool.
 mana={3}
 type=Artifact
@@ -87287,7 +87287,7 @@ type=Sorcery
 [card]
 name=Tranquil Thicket
 auto=tap
-auto={T}:Add {G}
+auto={T}:Add{G}
 autohand=__CYCLING__({G})
 text=Tranquil Thicket enters the battlefield tapped. -- {T}: Add {G} to your mana pool. -- Cycling {G} ({G}, Discard this card: Draw a card.)
 type=Land
@@ -87715,8 +87715,8 @@ toughness=2
 [card]
 name=Tresserhorn Sinks
 auto=tap
-auto={T}:Add {B}
-auto={T}:Add {R}
+auto={T}:Add{B}
+auto={T}:Add{R}
 text=Tresserhorn Sinks enters the battlefield tapped. -- {T}: Add {B} or {R} to your mana pool.
 type=Snow Land
 [/card]
@@ -88044,8 +88044,8 @@ subtype=Aura
 [/card]
 [card]
 name=Troll-Horn Cameo
-auto={T}:Add {R}
-auto={T}:Add {G}
+auto={T}:Add{R}
+auto={T}:Add{G}
 text={T}: Add {R} or {G} to your mana pool.
 mana={3}
 type=Artifact
@@ -88375,7 +88375,7 @@ type=Sorcery
 name=Turntimber Grove
 auto=tap
 auto=1/1 target(creature) ueot
-auto={T}:Add {G}
+auto={T}:Add{G}
 text=Turntimber Grove enters the battlefield tapped. -- When Turntimber Grove enters the battlefield, target creature gets +1/+1 until end of turn. -- {T}: Add {G} to your mana pool.
 type=Land
 [/card]
@@ -88433,10 +88433,10 @@ toughness=1
 [/card]
 [card]
 name=Twilight Mire
-auto={T}:Add {1}
-auto={BG}{T}:Add {B}{B}
-auto={BG}{T}:Add {B}{G}
-auto={BG}{T}:Add {G}{G}
+auto={T}:Add{1}
+auto={BG}{T}:Add{B}{B}
+auto={BG}{T}:Add{B}{G}
+auto={BG}{T}:Add{G}{G}
 text={T}: Add {1} to your mana pool. -- {(b/g)}, {T}: Add {B}{B}, {B}{G}, or {G}{G} to your mana pool.
 type=Land
 [/card]
@@ -88895,9 +88895,9 @@ toughness=1
 [/card]
 [card]
 name=Underground River
-auto={T}:Add {1}
-auto={T}:Add {U} && Damage:1 controller
-auto={T}:Add {B} && Damage:1 controller
+auto={T}:Add{1}
+auto={T}:Add{U} && Damage:1 controller
+auto={T}:Add{B} && Damage:1 controller
 text={T}: Add {1} to your mana pool. -- {T}: Add {U} or {B} to your mana pool. Underground River deals 1 damage to you.
 type=Land
 [/card]
@@ -89055,7 +89055,7 @@ type=Sorcery
 [/card]
 [card]
 name=Unholy Grotto
-auto={T}:Add {1}
+auto={T}:Add{1}
 auto={B}{T}:moveTo(mylibrary) target(zombie|mygraveyard)
 text={T}: Add {1} to your mana pool. -- {B}, {T}: Put target Zombie card from your graveyard on top of your library.
 type=Land
@@ -89402,7 +89402,7 @@ subtype=Aura
 [/card]
 [card]
 name=Urborg
-auto={T}:Add {B}
+auto={T}:Add{B}
 auto={T}:-swampwalk target(creature)
 auto={T}:-first strike target(creature)
 text={T}: Add {B} to your mana pool. -- {T}: Target creature loses first strike or swampwalk until end of turn.
@@ -89426,9 +89426,9 @@ toughness=3
 [/card]
 [card]
 name=Urborg Elf
-auto={T}:Add {U}
-auto={T}:Add {B}
-auto={T}:Add {G}
+auto={T}:Add{U}
+auto={T}:Add{B}
+auto={T}:Add{G}
 text={T}: Add {G}, {U}, or {B} to your mana pool.
 mana={1}{G}
 type=Creature
@@ -89531,8 +89531,8 @@ type=Sorcery
 [card]
 name=Urborg Volcano
 auto=tap
-auto={T}:Add {B}
-auto={T}:Add {R}
+auto={T}:Add{B}
+auto={T}:Add{R}
 text=Urborg Volcano enters the battlefield tapped. -- {T}: Add {B} or {R} to your mana pool.
 type=Land
 [/card]
@@ -89596,7 +89596,7 @@ type=Artifact
 [/card]
 [card]
 name=Urza's Factory
-auto={T}:Add {1}
+auto={T}:Add{1}
 auto={7}{T}:token(Assembly-Worker,creature artifact, 2/2, artifact)
 text={T}: Add {1} to your mana pool. -- {7}, {T}: Put a 2/2 colorless Assembly-Worker artifact creature token onto the battlefield.
 type=Land
@@ -89671,11 +89671,11 @@ subtype=Aura
 [/card]
 [card]
 name=Utopia Tree
-auto={T}:Add {W}
-auto={T}:Add {U}
-auto={T}:Add {B}
-auto={T}:Add {R}
-auto={T}:Add {G}
+auto={T}:Add{W}
+auto={T}:Add{U}
+auto={T}:Add{B}
+auto={T}:Add{R}
+auto={T}:Add{G}
 text={T}: Add one mana of any color to your mana pool.
 mana={1}{G}
 type=Creature
@@ -89757,7 +89757,7 @@ toughness=7
 name=Valakut, the Molten Pinnacle
 auto=tap
 auto=@movedTo(mountain|myBattlefield) restriction{type(other mountain|myBattlefield)~morethan~4}: may damage:3 target(creature,player)
-auto={T}:Add {R}
+auto={T}:Add{R}
 text=Valakut, the Molten Pinnacle enters the battlefield tapped. -- Whenever a Mountain enters the battlefield under your control, if you control at least five other Mountains, you may have Valakut, the Molten Pinnacle deal 3 damage to target creature or player. -- {T}: Add {R} to your mana pool.
 type=Land
 [/card]
@@ -89792,7 +89792,7 @@ toughness=3
 [card]
 name=Valleymaker
 auto={T}{S(mountain|myBattlefield)}:Damage:3 target(creature)
-auto={T}{S(forest|myBattlefield)}:Add {G}{G}{G}
+auto={T}{S(forest|myBattlefield)}:Add{G}{G}{G}
 text={T}, Sacrifice a Mountain: Valleymaker deals 3 damage to target creature. -- {T}, Sacrifice a Forest: Choose a player. That player adds {G}{G}{G} to his or her mana pool.
 mana={5}{RG}
 type=Creature
@@ -91492,7 +91492,7 @@ toughness=3
 [card]
 name=Vine Trellis
 abilities=defender
-auto={T}:Add {G}
+auto={T}:Add{G}
 text=Defender (This creature can't attack.) -- {T}: Add {G} to your mana pool.
 mana={1}{G}
 type=Creature
@@ -91900,7 +91900,7 @@ toughness=2
 [/card]
 [card]
 name=Vitu-Ghazi, the City-Tree
-auto={T}:Add {1}
+auto={T}:Add{1}
 auto={2}{G}{W}{T}:token(Saproling,creature saproling, 1/1, green)
 text={T}: Add {1} to your mana pool. -- {2}{G}{W}, {T}: Put a 1/1 green Saproling creature token onto the battlefield.
 type=Land
@@ -92367,7 +92367,7 @@ type=Artifact
 [/card]
 [card]
 name=Volrath's Stronghold
-auto={T}:Add {1}
+auto={T}:Add{1}
 auto={1}{B}{T}:moveTo(myLibrary) target(creature|mygraveyard)
 text={T}: Add {1} to your mana pool. -- {1}{B}, {T}: Put target creature card from your graveyard on top of your library.
 type=Legendary Land
@@ -93519,8 +93519,8 @@ subtype=Aura
 name=Wanderwine Hub
 auto=tap
 auto=aslongas(merfolk|myHand) untap
-auto={T}:Add {W}
-auto={T}:Add {U}
+auto={T}:Add{W}
+auto={T}:Add{U}
 text=As Wanderwine Hub enters the battlefield, you may reveal a Merfolk card from your hand. If you don't, Wanderwine Hub enters the battlefield tapped. -- {T}: Add {W} or {U} to your mana pool.
 type=Land
 [/card]
@@ -93875,7 +93875,7 @@ type=Instant
 [/card]
 [card]
 name=Wasteland
-auto={T}:Add {1}
+auto={T}:Add{1}
 auto={T}{S}:destroy target(land[-basic])
 text={T}: Add {1} to your mana pool. -- {T}, Sacrifice Wasteland: Destroy target nonbasic land.
 type=Land
@@ -94404,7 +94404,7 @@ type=Enchantment
 [/card]
 [card]
 name=Werebear
-auto={T}:Add {G}
+auto={T}:Add{G}
 auto=aslongas(*|mygraveyard) 3/3 >6
 text={T}: Add {G} to your mana pool. -- Threshold - Werebear gets +3/+3 as long as seven or more cards are in your graveyard.
 mana={1}{G}
@@ -94862,11 +94862,11 @@ toughness=1
 [/card]
 [card]
 name=Wild Cantor
-auto={S}:Add {W}
-auto={S}:Add {U}
-auto={S}:Add {B}
-auto={S}:Add {R}
-auto={S}:Add {G}
+auto={S}:Add{W}
+auto={S}:Add{U}
+auto={S}:Add{B}
+auto={S}:Add{R}
+auto={S}:Add{G}
 text=({(r/g)} can be paid with either {R} or {G}.) -- Sacrifice Wild Cantor: Add one mana of any color to your mana pool.
 mana={RG}
 type=Creature
@@ -95561,7 +95561,7 @@ toughness=2
 [/card]
 [card]
 name=Wirewood Elf
-auto={T}:Add {G}
+auto={T}:Add{G}
 text={T}: Add {G} to your mana pool.
 mana={1}{G}
 type=Creature
@@ -95601,7 +95601,7 @@ toughness=1
 [/card]
 [card]
 name=Wirewood Lodge
-auto={T}:Add {1}
+auto={T}:Add{1}
 auto={G}{T}:untap target(elf)
 text={T}: Add {1} to your mana pool. -- {G}, {T}: Untap target Elf.
 type=Land
@@ -95998,10 +95998,10 @@ toughness=3
 [/card]
 [card]
 name=Wooded Bastion
-auto={T}:Add {1}
-auto={GW}{T}:Add {G}{G}
-auto={GW}{T}:Add {G}{W}
-auto={GW}{T}:Add {W}{W}
+auto={T}:Add{1}
+auto={GW}{T}:Add{G}{G}
+auto={GW}{T}:Add{G}{W}
+auto={GW}{T}:Add{W}{W}
 text={T}: Add {1} to your mana pool. -- {(g/w)}, {T}: Add {G}{G}, {G}{W}, or {W}{W} to your mana pool.
 type=Land
 [/card]
@@ -96042,8 +96042,8 @@ subtype=Equipment
 [card]
 name=Woodland Cemetery
 auto=aslongas(swamp,forest|myBattlefield) tap <1 oneshot
-auto={T}:Add {B}
-auto={T}:Add {G}
+auto={T}:Add{B}
+auto={T}:Add{G}
 text=Woodland Cemetery enters the battlefield tapped unless you control an Swamp or Forest. -- {T}: Add {B} or {G} to your mana pool.
 type=Land
 [/card]
@@ -96349,7 +96349,7 @@ toughness=4
 [card]
 name=Worn Powerstone
 auto=tap
-auto={T}:Add {2}
+auto={T}:Add{2}
 text=Worn Powerstone enters the battlefield tapped. -- {T}: Add {2} to your mana pool.
 mana={3}
 type=Artifact
@@ -96785,9 +96785,9 @@ toughness=2
 [/card]
 [card]
 name=Yavimaya Coast
-auto={T}:Add {1}
-auto={T}:Add {G} && Damage:1 controller
-auto={T}:Add {U} && Damage:1 controller
+auto={T}:Add{1}
+auto={T}:Add{G} && Damage:1 controller
+auto={T}:Add{U} && Damage:1 controller
 text={T}: Add {1} to your mana pool. -- {T}: Add {G} or {U} to your mana pool. Yavimaya Coast deals 1 damage to you.
 type=Land
 [/card]
@@ -96848,7 +96848,7 @@ toughness=2
 [/card]
 [card]
 name=Yavimaya Hollow
-auto={T}:Add {1}
+auto={T}:Add{1}
 auto={G}{T}:regenerate target(creature)
 text={T}: Add {1} to your mana pool. -- {G}, {T}: Regenerate target creature.
 type=Legendary Land
