@@ -322,12 +322,15 @@
     <ClCompile Include="src\AbilityParser.cpp">
       <Filter>src</Filter>
     </ClCompile>
-     <ClCompile Include="src\InteractiveButton.cpp">
-       <Filter>src</Filter>
-     </ClCompile>
-     <ClCompile Include="src\SimpleButton.cpp">
-       <Filter>src</Filter>
-     </ClCompile>
+    <ClCompile Include="src\InteractiveButton.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SimpleButton.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\NetworkPlayer.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\ActionElement.h">
@@ -679,6 +682,9 @@
       <Filter>inc</Filter>
     </ClInclude>
     <ClInclude Include="include\AbilityParser.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\NetworkPlayer.h">
       <Filter>inc</Filter>
     </ClInclude>
   </ItemGroup>

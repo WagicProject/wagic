@@ -243,6 +243,11 @@ bool Player::parseLine(const string& s)
             ManaCost::parseManaCost(s.substr(limiter + 1), manaPool);
             return true;
         }
+        else if (areaS.compare("mode") == 0)
+        {
+			this->playMode = (Player::Mode)atoi(s.substr(limiter + 1).c_str());
+            return true;
+        }
         else if (areaS.compare("avatar") == 0)
         {
             mAvatarName = s.substr(limiter + 1);
@@ -326,9 +331,12 @@ ostream& operator<<(ostream& out, const Player& p)
 {
     out << "mode=" << p.playMode << endl;
     out << *(Damageable*)&p;
-    string manapoolstring = p.manaPool->toString();
-    if(manapoolstring != "")
-        out << "manapool=" << manapoolstring << endl;
+	if(p.manaPool)
+	{
+		string manapoolstring = p.manaPool->toString();
+		if(manapoolstring != "")
+			out << "manapool=" << manapoolstring << endl;
+	}
     if(p.mAvatarName != "")
         out << "avatar=" << p.mAvatarName << endl;
     if(p.phaseRing != "")
@@ -347,6 +355,22 @@ ostream& operator<<(ostream& out, const Player& p)
 
     return out;
 }
+
+istream& operator>>(istream& in, Player& p)
+{
+    string s;
+
+    while(std::getline(in, s))
+    {
+        if(!p.parseLine(s))
+        {
+            break;
+        }
+    }
+
+    return in;
+}
+
 
 // Method comparing "this" to "aPlayer", each in their own gameObserver
 bool Player::operator<(Player& aPlayer)

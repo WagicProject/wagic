@@ -160,7 +160,7 @@ int TestSuiteAI::Act(float dt)
                     phaseToGo = i;
                 }
             }
-            if(observer->currentGamePhase != phaseToGo)
+            if(observer->getCurrentGamePhase() != phaseToGo)
                 suite->currentAction--;
                 else
                 {
@@ -340,11 +340,11 @@ void TestSuiteGame::assertGame()
     int error = 0;
     bool wasAI = false;
 
-    if (observer->currentGamePhase != endState.phase)
+	if (observer->getCurrentGamePhase() != endState.phase)
     {
         sprintf(result, "<span class=\"error\">==phase problem. Expected [ %s ](%i), got [ %s ](%i)==</span><br />", 
             Constants::MTGPhaseNames[endState.phase],endState.phase,
-            Constants::MTGPhaseNames[observer->currentGamePhase], observer->currentGamePhase);
+            Constants::MTGPhaseNames[observer->getCurrentGamePhase()], observer->getCurrentGamePhase());
         Log(result);
         error++;
     }
@@ -560,6 +560,8 @@ int TestSuite::loadNext()
         thread_count = QThread::idealThreadCount();
 #elif defined(IOS)
         thread_count = 6;
+#else
+		thread_count = 4;
 #endif
         for(size_t i = 0; i < (thread_count-1); i++)
             mWorkerThread.push_back(new boost::thread(ThreadProc, this));
@@ -819,7 +821,7 @@ void TestSuiteGame::initGame()
 {
     DebugTrace("TESTSUITE Init Game");
     observer->phaseRing->goToPhase(initState.phase, observer->players[0], false);
-    observer->currentGamePhase = initState.phase;
+    observer->setCurrentGamePhase(initState.phase);
 
     observer->resetStartupGame();
 

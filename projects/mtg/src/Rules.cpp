@@ -159,9 +159,9 @@ void Rules::addExtraRules(GameObserver* g)
             if (p->playMode != Player::MODE_TEST_SUITE && g->mRules->gamemode != GAME_TYPE_MOMIR && g->mRules->gamemode
                 != GAME_TYPE_RANDOM1 && g->mRules->gamemode != GAME_TYPE_RANDOM2 && g->mRules->gamemode
                 != GAME_TYPE_STORY && 
-                g->mRules->gamemode != GAME_TYPE_DEMO && (!g->players[0] == PLAYER_TYPE_CPU && !g->players[1] == PLAYER_TYPE_CPU)
+				g->mRules->gamemode != GAME_TYPE_DEMO && (!g->players[0]->playMode == PLAYER_TYPE_CPU && !g->players[1]->playMode == PLAYER_TYPE_CPU)
 #ifdef NETWORK_SUPPORT
-                && !g->players[1] == PLAYER_TYPE_REMOTE
+                && !(g->players[1]->playMode == PLAYER_TYPE_REMOTE) && !(g->players[1]->playMode == PLAYER_TYPE_HUMAN)
 #endif //NETWORK_SUPPORT
                     )//keep this out of momir and other game modes.
             {
@@ -377,7 +377,7 @@ void Rules::initGame(GameObserver *g)
     g->currentPlayerId = initState.player;
     g->phaseRing->goToPhase(0, g->currentPlayer, false);
     g->phaseRing->goToPhase(initState.phase, g->currentPlayer);
-    g->currentGamePhase = initState.phase;
+    g->setCurrentGamePhase(initState.phase);
 
     for (int i = 0; i < 2; i++)
     {

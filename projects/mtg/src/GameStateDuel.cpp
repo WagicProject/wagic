@@ -120,7 +120,17 @@ void GameStateDuel::Start()
     renderer->EnableVSync(true);
     OpponentsDeckid = 0;
 
-    game = NEW GameObserver(WResourceManager::Instance(), JGE::GetInstance());
+
+#ifdef NETWORK_SUPPORT
+	if(!mParent->mpNetwork) {
+#endif //NETWORK_SUPPORT
+		game = NEW GameObserver(WResourceManager::Instance(), JGE::GetInstance());
+#ifdef NETWORK_SUPPORT
+	} else {
+		game = NEW NetworkGameObserver(mParent->mpNetwork, WResourceManager::Instance(), JGE::GetInstance());
+	}
+#endif //NETWORK_SUPPORT
+
 
 #ifdef TESTSUITE
     SAFE_DELETE(testSuite);
@@ -298,7 +308,7 @@ void GameStateDuel::ThreadProc(void* inParam)
         observer.startGame(instance->mParent->gameType, instance->mParent->rules);
         while(!observer.didWin()) 
         {
-            if(observer.turn == oldTurn && observer.currentGamePhase == oldPhase) 
+            if(observer.turn == oldTurn && observer.getCurrentGamePhase() == oldPhase) 
             {
                 stagnationCounter++;
             } 
@@ -453,6 +463,10 @@ void GameStateDuel::Update(float dt)
         // That's mostly because of a legacy bug, where we use the update sequence for some things when we should use events (such as phase changes)
         mParent->rules->postUpdateInit(game);
 
+#ifdef NETWORK_SUPPORT
+		if(mParent->mpNetwork) ((NetworkGameObserver*)game)->synchronize();
+#endif
+
         if (game->didWin())
         {
             if (game->players[1]->playMode != Player::MODE_TEST_SUITE) credits->compute(game, mParent);
@@ -487,7 +501,10 @@ void GameStateDuel::Update(float dt)
 
                 #ifdef QT_CONFIG
                         thread_count = QThread::idealThreadCount();
-                #endif
+                
+				#else
+						thread_count = 4;
+				#endif
                         for(size_t i = 0; i < (thread_count); i++)
                             mWorkerThread.push_back(boost::thread(ThreadProc, this));
                     }
@@ -508,7 +525,7 @@ void GameStateDuel::Update(float dt)
                 int cardsinhand = game->currentPlayer->game->hand->nb_cards;
 
                 //almosthumane - mulligan
-                if ((game->turn < 1) && (cardsinhand != 0) && game->currentGamePhase == MTG_PHASE_FIRSTMAIN
+                if ((game->turn < 1) && (cardsinhand != 0) && game->getCurrentGamePhase() == MTG_PHASE_FIRSTMAIN
                     && game->currentPlayer->game->inPlay->nb_cards == 0 && game->currentPlayer->game->graveyard->nb_cards == 0
 					&& game->currentPlayer->game->exile->nb_cards == 0 && game->currentlyActing() == (Player*)game->currentPlayer) //1st Play Check
                     //IF there was no play at the moment automatically mulligan
@@ -517,7 +534,7 @@ void GameStateDuel::Update(float dt)
                 }
                 //END almosthumane - mulligan
                 menu->Add(MENUITEM_MAIN_MENU, "Back to main menu");
-#ifdef DEBUG
+#ifdef TESTSUITE
                 menu->Add(MENUITEM_UNDO, "Undo");
 #endif
 #ifdef TESTSUITE
@@ -531,23 +548,23 @@ void GameStateDuel::Update(float dt)
 #ifdef NETWORK_SUPPORT
     case DUEL_STATE_OPPONENT_WAIT:
       {
-        if(mPlayers[1] && mPlayers[1]->game)
-        { // Player loaded
-          menu->Close();
-          SAFE_DELETE(menu);
-          setGamePhase(DUEL_STATE_PLAY);
-        } else if(menu == NULL)
-        {
-          loadPlayer(1, 42/* 0 not good*/, false, true);
-          menu = NEW SimpleMenu(DUEL_STATE_OPPONENT_WAIT, this, Fonts::MENU_FONT, 150, 60);
-          if (menu)
-          {
-              menu->Add(MENUITEM_MAIN_MENU, "Back to main menu");
-          }
-        } else
-        {
-          menu->Update(dt);
-        }
+		if(game->players.size() > 1)
+		{ // Player loaded
+			menu->Close();
+			SAFE_DELETE(menu);
+			setGamePhase(DUEL_STATE_PLAY);
+		} else if(menu == NULL)
+		{
+			menu = NEW SimpleMenu(JGE::GetInstance(), DUEL_STATE_OPPONENT_WAIT, this, Fonts::MENU_FONT, 150, 60);
+			if (menu)
+			{
+				menu->Add(MENUITEM_MAIN_MENU, "Back to main menu");
+			}
+		} else
+		{
+			menu->Update(dt);
+			game->Update(dt);
+		}
       }
       break;
 #endif //NETWORK_SUPPORT
@@ -732,10 +749,13 @@ void GameStateDuel::Render()
             
             // display the player deck names in their respective corners
             string playerDeckName =  game->players[0]->deckName;
-            string opponentDeckName = game->players[1]->deckName;
             float playerDeckNamePixelLength = mFont->GetStringWidth(playerDeckName.c_str());
-            mFont->DrawString( opponentDeckName, 0, 50);
             mFont->DrawString( playerDeckName, SCREEN_WIDTH_F - playerDeckNamePixelLength, SCREEN_HEIGHT_F - 50);
+			if(game->players.size()>1)
+			{
+				string opponentDeckName = game->players[1]->deckName;
+				mFont->DrawString( opponentDeckName, 0, 50);
+			}
         }
     }
 }

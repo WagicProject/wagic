@@ -15,7 +15,7 @@ protected:
     static ProxyPlayer* mInstance;
 public:
     ProxyPlayer(Player* pxPlayer, JNetwork* pxNetwork);
-    static void Serialize(istream& in, ostream& out);
+    static void Serialize(void*, stringstream& in, stringstream& out);
 };
 
 
@@ -25,8 +25,8 @@ protected:
     JNetwork* mpNetwork;
     static RemotePlayer* mInstance;
 public:
-    RemotePlayer(JNetwork*);
-    static void Deserialize(istream& in, ostream& out);
+    RemotePlayer(GameObserver* observer, JNetwork*);
+    static void Deserialize(void*, stringstream& in, stringstream& out);
     bool isLoaded() {return game!=NULL;};
 };
 

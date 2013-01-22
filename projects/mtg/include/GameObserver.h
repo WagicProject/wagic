@@ -12,7 +12,9 @@
 #include "GuiStatic.h"
 #include <queue>
 #include <time.h>
-
+#ifdef NETWORK_SUPPORT
+#include "JNetwork.h"
+#endif //NETWORK_SUPPORT
 
 class MTGGamePhase;
 class MTGAbility;
@@ -42,13 +44,15 @@ class GameObserver{
   JGE* mJGE;
   DeckManager* mDeckManager;
   Player * gameOver;
+  GamePhase mCurrentGamePhase;
 
   int untap(MTGCardInstance * card);
   bool WaitForExtraPayment(MTGCardInstance* card);
   void cleanup();
   string startupGameSerialized;
   bool parseLine(const string& s);
-  void logAction(const string& s);
+  virtual void logAction(const string& s);
+  bool processAction(const string& s, bool swapPlayer = false);
   bool processActions(bool undo
                     #ifdef TESTSUITE
                     , TestSuiteGame* testgame
@@ -58,7 +62,7 @@ class GameObserver{
   bool mLoading;
   void nextGamePhase();
   void shuffleLibrary(Player* p);
-  void createPlayer(const string& playerMode
+  Player* createPlayer(const string& playerMode
                   #ifdef TESTSUITE
                   , TestSuiteGame* testgame
                   #endif //TESTSUITE
@@ -73,7 +77,6 @@ class GameObserver{
   PhaseRing * phaseRing;
   vector<list<Phase*> >gameTurn;
   int cancelCurrentAction();
-  GamePhase currentGamePhase;
   ExtraCosts * mExtraPayment;
   int oldGamePhase;
   TargetChooser * targetChooser;
@@ -85,10 +88,7 @@ class GameObserver{
   MTGCardInstance* ExtraRules;
   Trash* mTrash;
 
-  GameType gameType() const
-  {
-        return mGameType;
-  };
+  GameType gameType() const { return mGameType; };
   TargetChooser * getCurrentTargetChooser();
   void stackObjectClicked(Interruptible * action);
 
@@ -97,6 +97,7 @@ class GameObserver{
   int cardClick(MTGCardInstance * card, int abilityType);
   int cardClick(MTGCardInstance * card,Targetable * _object = NULL, bool log = true);
   GamePhase getCurrentGamePhase();
+  void setCurrentGamePhase(GamePhase phase) { mCurrentGamePhase = phase; };
   const char * getCurrentGamePhaseName();
   const char * getNextGamePhaseName();
   void nextCombatStep();
@@ -107,7 +108,7 @@ class GameObserver{
 #ifdef TESTSUITE
   void loadTestSuitePlayer(int playerId, TestSuiteGame* testSuite);
 #endif //TESTSUITE
-  void loadPlayer(int playerId, PlayerType playerType = PLAYER_TYPE_HUMAN, int decknb=0, bool premadeDeck=false);
+  virtual void loadPlayer(int playerId, PlayerType playerType = PLAYER_TYPE_HUMAN, int decknb=0, bool premadeDeck=false);
   void loadPlayer(int playerId, Player* player);
 
   Player * currentPlayer;
@@ -117,7 +118,7 @@ class GameObserver{
   Player * nextTurnsPlayer();
   Player * currentlyActing();
   GameObserver(WResourceManager* output = 0, JGE* input = 0);
-  ~GameObserver();
+  virtual ~GameObserver();
   void gameStateBasedEffects();
   void enchantmentStatus();
   void Affinity();
@@ -129,7 +130,7 @@ class GameObserver{
   int isInPlay(MTGCardInstance *  card);
   int isInGrave(MTGCardInstance *  card);
   int isInExile(MTGCardInstance *  card);
-  void Update(float dt);
+  virtual void Update(float dt);
   void Render();
   void ButtonPressed(PlayGuiObject*);
   int getPlayersNumber() {return players.size();};
@@ -180,5 +181,28 @@ class GameObserver{
       }
   };
 };
+
+#ifdef NETWORK_SUPPORT
+class NetworkGameObserver : public GameObserver
+{
+protected:
+	JNetwork* mpNetworkSession;
+	bool mSynchronized;
+	bool mForwardAction;
+	virtual void logAction(const string& s);
+public:
+	// no serverIp means a server is being instantiated, otherwise a client
+	NetworkGameObserver(JNetwork* pNetwork, WResourceManager* output = 0, JGE* input = 0);
+	virtual ~NetworkGameObserver();
+	virtual void loadPlayer(int playerId, PlayerType playerType = PLAYER_TYPE_HUMAN, int decknb=0, bool premadeDeck=false);
+	virtual void Update(float dt);
+	void synchronize();
+	static void loadPlayer(void*pThis, stringstream& in, stringstream& out);
+	static void sendAction(void*pThis, stringstream& in, stringstream& out);
+	static void synchronize(void*pThis, stringstream& in, stringstream& out);
+	static void ignoreResponse(void*pThis, stringstream& in, stringstream& out){};
+};
+#endif
+
 
 #endif

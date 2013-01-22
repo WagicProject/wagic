@@ -288,7 +288,7 @@ int MTGPutInPlayRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
     if (!player->game->hand->hasCard(card))
         return 0;
     if ((game->turn < 1) && (cardsinhand != 0) && (card->basicAbilities[(int)Constants::LEYLINE])
-        && game->currentGamePhase == MTG_PHASE_FIRSTMAIN
+        && game->getCurrentGamePhase() == MTG_PHASE_FIRSTMAIN
         && game->players[0]->game->graveyard->nb_cards == 0
         && game->players[0]->game->exile->nb_cards == 0
         )
@@ -311,7 +311,7 @@ int MTGPutInPlayRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
         if (game->currentActionPlayer->game->playRestrictions->canPutIntoZone(card, game->currentActionPlayer->game->inPlay) == PlayRestriction::CANT_PLAY)
             return 0;
         if (player == currentPlayer
-            && (game->currentGamePhase == MTG_PHASE_FIRSTMAIN || game->currentGamePhase == MTG_PHASE_SECONDMAIN)
+            && (game->getCurrentGamePhase() == MTG_PHASE_FIRSTMAIN || game->getCurrentGamePhase() == MTG_PHASE_SECONDMAIN)
             )
         {
             return 1;
@@ -319,8 +319,8 @@ int MTGPutInPlayRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
     }
     else if ((card->hasType(Subtypes::TYPE_INSTANT)) || card->has(Constants::FLASH)
         || (player == currentPlayer && !game->isInterrupting
-        && (game->currentGamePhase == MTG_PHASE_FIRSTMAIN
-        || game->currentGamePhase == MTG_PHASE_SECONDMAIN))
+        && (game->getCurrentGamePhase() == MTG_PHASE_FIRSTMAIN
+        || game->getCurrentGamePhase() == MTG_PHASE_SECONDMAIN))
         )
     {
 
@@ -644,15 +644,15 @@ int MTGAlternativeCostRule::isReactingToClick(MTGCardInstance * card, ManaCost *
         if (game->currentActionPlayer->game->playRestrictions->canPutIntoZone(card, game->currentActionPlayer->game->inPlay) == PlayRestriction::CANT_PLAY)
             return 0;
         if (player == currentPlayer
-            && (game->currentGamePhase == MTG_PHASE_FIRSTMAIN
-            || game->currentGamePhase == MTG_PHASE_SECONDMAIN)
+            && (game->getCurrentGamePhase() == MTG_PHASE_FIRSTMAIN
+            || game->getCurrentGamePhase() == MTG_PHASE_SECONDMAIN)
             )
             return 1;
     }
     else if ((card->hasType(Subtypes::TYPE_INSTANT)) || card->has(Constants::FLASH) 
         || (player == currentPlayer && !game->isInterrupting
-        && (game->currentGamePhase == MTG_PHASE_FIRSTMAIN
-        || game->currentGamePhase == MTG_PHASE_SECONDMAIN))
+        && (game->getCurrentGamePhase() == MTG_PHASE_FIRSTMAIN
+        || game->getCurrentGamePhase() == MTG_PHASE_SECONDMAIN))
         )
     {
         if (game->currentActionPlayer->game->playRestrictions->canPutIntoZone(card, game->currentActionPlayer->game->stack) == PlayRestriction::CANT_PLAY)
@@ -1039,8 +1039,8 @@ int MTGMorphCostRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
     //note lands can morph too, this is different from other cost types.
     if ((card->hasType(Subtypes::TYPE_INSTANT)) || card->has(Constants::FLASH) || (player == currentPlayer
         && !game->isInterrupting
-        && (game->currentGamePhase == MTG_PHASE_FIRSTMAIN
-        || game->currentGamePhase == MTG_PHASE_SECONDMAIN))
+        && (game->getCurrentGamePhase() == MTG_PHASE_FIRSTMAIN
+        || game->getCurrentGamePhase() == MTG_PHASE_SECONDMAIN))
         )
     {
         if (game->currentActionPlayer->game->playRestrictions->canPutIntoZone(card, game->currentActionPlayer->game->stack) == PlayRestriction::CANT_PLAY)
@@ -1640,8 +1640,8 @@ int MTGMomirRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
     if (!player->game->hand->hasCard(card))
         return 0;
     if (player == currentPlayer && !game->isInterrupting
-        && (game->currentGamePhase == MTG_PHASE_FIRSTMAIN
-        || game->currentGamePhase == MTG_PHASE_SECONDMAIN)
+        && (game->getCurrentGamePhase() == MTG_PHASE_FIRSTMAIN
+        || game->getCurrentGamePhase() == MTG_PHASE_SECONDMAIN)
         )
     {
         return 1;

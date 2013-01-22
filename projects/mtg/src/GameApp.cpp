@@ -75,7 +75,7 @@ GameApp::GameApp() :
 
     mCurrentState = NULL;
     mNextState = NULL;
-
+	rules = 0;
     music = NULL;
 }
 

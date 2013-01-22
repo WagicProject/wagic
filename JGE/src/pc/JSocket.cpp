@@ -264,8 +264,16 @@ int JSocket::Read(char* buff, int size)
 #endif //WINDOWS
 			if(readbytes < 0)
 			{
-				DebugTrace("Error reading from socket\n");
+#ifdef WIN32
+				DebugTrace("Error reading from socket: " << WSAGetLastError());
+#endif //WINDOWS
+				Disconnect();
 				return -1;
+			}
+			else if(readbytes == 0)
+			{
+				Disconnect();
+				return 0;
 			}
 			else
 				return readbytes;
@@ -303,6 +311,7 @@ int JSocket::Write(char* buff, int size)
 		}
 		else if (result < 0)
 		{
+			Disconnect();
 			return -1;
 		}
 	}

@@ -33,15 +33,16 @@
 #include <sstream>
 #include "../include/JSocket.h"
 
-map<string, processCmd> JNetwork::sCommandMap;
+map<string, JNetwork::CommandStruc> JNetwork::sCommandMap;
+JNetwork* JNetwork::mInstance = NULL;
 
 bool JNetwork::isConnected(){
-  if (connected_to_ap !=1) return false;
+  if (connected_to_ap !=1 || !socket) return false;
   return socket->isConnected();
 }
 
 JNetwork::JNetwork()
-  : mpWorkerThread(NULL)
+  : mpWorkerThread(NULL), socket(0)
 {
 #if (defined WIN32) || (defined LINUX)
   connected_to_ap = 1;
@@ -62,30 +63,83 @@ JNetwork::~JNetwork()
     delete socket;
 }
 
-bool JNetwork::sendCommand(string xString)
+JNetwork* JNetwork::GetInstance()
 {
-  string aString = xString;
+    if (mInstance == NULL) mInstance = new JNetwork();
+    return mInstance;
+}
+
+void JNetwork::Destroy()
+{
+    if (mInstance)
+    {
+        delete mInstance;
+        mInstance = NULL;
+    }
+}
+
+bool JNetwork::sendCommand(const string& xString, const string& payload, const string& suffix)
+{
+  string aString;
   boost::mutex::scoped_lock l(sendMutex);
   if(!socket) {
-    DebugTrace("sendCommand failed: no sockeet");
+    DebugTrace("sendCommand failed: no socket");
     return false;
   }
-  aString = aString + "Command";
+  aString = xString + suffix;
   if(sCommandMap.find(aString) == sCommandMap.end()) {
     DebugTrace("sendCommand failed: command not registered");
     return false;
   }
-  aString = aString + "\n";
+  aString = "<" + aString + ">" + "\n" + payload + "\n" + "<" + aString + "/>";
 
   toSend << aString;
 
   return true;
 }
 
-void JNetwork::registerCommand(string command, processCmd processCommand, processCmd processResponse)
+void JNetwork::registerCommand(string command, void* object, processCmd processCommand, processCmd processResponse)
 {
-  sCommandMap[command + "Command"] = processCommand;
-  sCommandMap[command + "Response"] = processResponse;
+	CommandStruc struc;
+	struc.object = object;
+	struc.command = command;
+	struc.processCommand = processCommand;
+
+	sCommandMap[command + "Request"] = struc;
+	struc.processCommand = processResponse;
+	sCommandMap[command + "Response"] = struc;
+}
+
+void JNetwork::Update()
+{
+	boost::mutex::scoped_lock r(receiveMutex);
+    // Checking for some command to execute
+	size_t begin_start_tag = received.str().find("<");
+	size_t end_start_tag = received.str().find(">");
+	string command = received.str().substr(begin_start_tag+1, end_start_tag-(begin_start_tag+1));
+	size_t begin_end_tag = received.str().find(command + "/>");
+	size_t end_end_tag = received.str().find("/>");
+    if(begin_start_tag != string::npos && begin_end_tag != string::npos )
+    {
+		map<string, CommandStruc>::iterator ite = sCommandMap.find(command);
+		if(ite != sCommandMap.end())
+		{
+			DebugTrace("begin of command received : " + received.str() );
+			DebugTrace("begin of command toSend : " + toSend.str() );
+
+			processCmd theMethod = (ite)->second.processCommand;
+			stringstream input(received.str().substr(end_start_tag+1, (begin_end_tag-1)-(end_start_tag+1)));
+			stringstream output;
+			theMethod((ite)->second.object, input, output);
+			string aString = received.str().substr(end_end_tag+2, string::npos);
+			received.str(aString);
+			if(output.str().size())
+				sendCommand((ite)->second.command, output.str(), "Response");
+
+			DebugTrace("end of command received : "<< received.str() );
+			DebugTrace("end of command toSend : "<< toSend.str() );
+		}
+    }
 }
 
 void JNetwork::ThreadProc(void* param)
@@ -105,64 +159,25 @@ void JNetwork::ThreadProc(void* param)
   }
 
   while(pSocket && pSocket->isConnected()) {
-    char buff[1024];
+    char buff[4096];
     {
       boost::mutex::scoped_lock l(pThis->receiveMutex);
       int len =  pSocket->Read(buff, sizeof(buff));
-      if(len) {
+      if(len > 0) {
         DebugTrace("receiving " << len << " bytes : " << buff);
-        pThis->received << buff;
-      }
-      // Checking for some command to execute
-      size_t found = pThis->received.str().find("Command");
-      if(found != string::npos)
-      {
-        map<string, processCmd>::iterator ite = sCommandMap.find((pThis->received.str()).substr(0, found) + "Command");
-        if(ite != sCommandMap.end())
-        {
-          DebugTrace("begin of command received : "<< pThis->received.str() );
-          DebugTrace("begin of command toSend : "<< pThis->toSend.str() );
-
-          boost::mutex::scoped_lock l(pThis->sendMutex);
-          pThis->toSend << pThis->received.str().substr(0, found) + "Response ";
-          pThis->received.str("");
-          processCmd theMethod = (ite)->second;
-          theMethod(pThis->received, pThis->toSend);
-
-          DebugTrace("end of command received : "<< pThis->received.str() );
-          DebugTrace("end of command toSend : "<< pThis->toSend.str() );
-        }
-      }
-      // Checking for some response to execute
-      found = pThis->received.str().find("Response");
-      if(found != string::npos)
-      {
-        map<string, processCmd>::iterator ite = sCommandMap.find((pThis->received.str()).substr(0, found) + "Response");
-        if(ite != sCommandMap.end())
-        {
-          DebugTrace("begin of response received : "<< pThis->received.str() );
-          DebugTrace("begin of response toSend : "<< pThis->toSend.str() );
-
-          boost::mutex::scoped_lock l(pThis->sendMutex);
-          string aString;
-          pThis->received >> aString;
-          processCmd theMethod = (ite)->second;
-          theMethod(pThis->received, pThis->toSend);
-          pThis->received.str("");
-
-          DebugTrace("end of response received : "<< pThis->received.str() );
-          DebugTrace("end of response toSend : "<< pThis->toSend.str() );
-        }
+        pThis->received.str(pThis->received.str() + buff);
+        DebugTrace("received " << pThis->received.str().size() << " bytes : " << pThis->received.str());
       }
     }
-
-    boost::mutex::scoped_lock l(pThis->sendMutex);
-    if(!pThis->toSend.str().empty())
-    {
-      DebugTrace("sending  " << pThis->toSend.str().size() << " bytes : " << pThis->toSend.str());
-      pSocket->Write((char*)pThis->toSend.str().c_str(), pThis->toSend.str().size()+1);
-      pThis->toSend.str("");
-    }
+	{
+		boost::mutex::scoped_lock l(pThis->sendMutex);
+		if(!pThis->toSend.str().empty())
+		{
+		  DebugTrace("sending  " << pThis->toSend.str().size() << " bytes : " << pThis->toSend.str());
+		  pSocket->Write((char*)pThis->toSend.str().c_str(), pThis->toSend.str().size()+1);
+		  pThis->toSend.str("");
+		}
+	}
   }
 
   DebugTrace("Quitting Thread");

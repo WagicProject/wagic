@@ -558,15 +558,18 @@ void GameStateMenu::Update(float dt)
          }
 #ifdef NETWORK_SUPPORT
     case MENU_STATE_NETWORK_DEFINE:
-        currentState = MENU_STATE_MAJOR_SUBMENU;
-        subMenuController = NEW SimpleMenu(MENU_FIRST_DUEL_SUBMENU, this, Fonts::MENU_FONT, 150, 60);
-        if (subMenuController)
+        if(MENU_STATE_MINOR_NONE == (currentState & MENU_STATE_MINOR))
         {
-            subMenuController->Add(SUBMENUITEM_HOST_GAME, "Host a game");
-            subMenuController->Add(SUBMENUITEM_JOIN_GAME, "Join a game");
-            subMenuController->Add(SUBMENUITEM_CANCEL, "Cancel");
-        }
-    break;
+			currentState = MENU_STATE_MAJOR_SUBMENU;
+			subMenuController = NEW SimpleMenu(JGE::GetInstance(), MENU_FIRST_DUEL_SUBMENU, this, Fonts::MENU_FONT, 150, 60);
+			if (subMenuController)
+			{
+				subMenuController->Add(SUBMENUITEM_HOST_GAME, "Host a game");
+				subMenuController->Add(SUBMENUITEM_JOIN_GAME, "Join a game");
+				subMenuController->Add(SUBMENUITEM_CANCEL, "Cancel");
+			}
+		}
+		break;
     case MENU_STATE_NETWORK_WAIT:
         if(MENU_STATE_MINOR_NONE == (currentState & MENU_STATE_MINOR))
         {
@@ -578,7 +581,7 @@ void GameStateMenu::Update(float dt)
             else if(!subMenuController)
             {
 //                currentState = MENU_STATE_MAJOR_SUBMENU;
-                subMenuController = NEW SimpleMenu(MENU_FIRST_DUEL_SUBMENU, this, Fonts::MENU_FONT, 150, 60);
+                subMenuController = NEW SimpleMenu(JGE::GetInstance(), MENU_FIRST_DUEL_SUBMENU, this, Fonts::MENU_FONT, 150, 60);
                 if (subMenuController)
                 {
                     subMenuController->Add(SUBMENUITEM_CANCEL, "Cancel connection");
@@ -840,7 +843,7 @@ void GameStateMenu::ButtonPressed(int controllerId, int controlId)
         {
             if(!mParent->mpNetwork)
             {
-                mParent->mpNetwork = new JNetwork();
+				mParent->mpNetwork = JNetwork::GetInstance();
             }
             mParent->mpNetwork->connect();
             subMenuController->Close();
@@ -851,16 +854,17 @@ void GameStateMenu::ButtonPressed(int controllerId, int controlId)
         {
             if(!mParent->mpNetwork)
             {
-                mParent->mpNetwork = new JNetwork();
+                mParent->mpNetwork = JNetwork::GetInstance();
             }
             // FIXME needs to be able to specify the server ip
             mParent->mpNetwork->connect("127.0.0.1");
             // we let the server choose the game mode
             mParent->gameType = GAME_TYPE_SLAVE;
+			// just to select one, the HOST is in control here.
+            mParent->rules = Rules::getRulesByFilename("classic.txt");
             hasChosenGameType = true;
             subMenuController->Close();
-//            currentState = MENU_STATE_MAJOR_DUEL | MENU_STATE_MINOR_SUBMENU_CLOSING;
-            currentState = MENU_STATE_NETWORK_WAIT;
+            currentState = MENU_STATE_NETWORK_WAIT | MENU_STATE_MINOR_SUBMENU_CLOSING;
             break;
         }
 #endif //NETWORK_SUPPORT
@@ -878,10 +882,8 @@ void GameStateMenu::ButtonPressed(int controllerId, int controlId)
                 subMenuController->Close();
             }
 #ifdef NETWORK_SUPPORT
-            if(mParent->mpNetwork)
-            {
-              SAFE_DELETE(mParent->mpNetwork);
-            }
+			JNetwork::Destroy();
+			mParent->mpNetwork=0;
 #endif //NETWORK_SUPPORT
             currentState = MENU_STATE_MAJOR_MAINMENU | MENU_STATE_MINOR_SUBMENU_CLOSING;
             break;

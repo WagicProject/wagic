@@ -158,7 +158,6 @@
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>./include;$(MTGEXTRAS);../../JGE/include;../../JGE/Dependencies/include;../../Boost;../../JGE/Dependencies/SDL/include;../../JGE/src/zipFS;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>SDL_CONFIG;WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeaderOutputFile>.\Debug/template.pch</PrecompiledHeaderOutputFile>
@@ -171,7 +170,7 @@
       <EnablePREfast>false</EnablePREfast>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>PrecompiledHeader.h</PrecompiledHeaderFile>
-      <MultiProcessorCompilation>false</MultiProcessorCompilation>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
     <ResourceCompile>
@@ -375,7 +374,7 @@
     <ClCompile Include="src\GuiPlay.cpp" />
     <ClCompile Include="src\GuiStatic.cpp" />
     <ClCompile Include="src\IconButton.cpp" />
-    <ClCompile Include="src\InteractiveButton.cpp" /> 
+    <ClCompile Include="src\InteractiveButton.cpp" />
     <ClCompile Include="src\ManaCost.cpp" />
     <ClCompile Include="src\ManaCostHybrid.cpp" />
     <ClCompile Include="src\MenuItem.cpp" />
@@ -390,6 +389,7 @@
     <ClCompile Include="src\MTGPack.cpp" />
     <ClCompile Include="src\MTGRules.cpp" />
     <ClCompile Include="src\Navigator.cpp" />
+    <ClCompile Include="src\NetworkPlayer.cpp" />
     <ClCompile Include="src\ObjectAnalytics.cpp" />
     <ClCompile Include="src\OptionItem.cpp" />
     <ClCompile Include="src\PhaseRing.cpp" />
@@ -499,7 +499,7 @@
     <ClInclude Include="include\GuiPlay.h" />
     <ClInclude Include="include\GuiStatic.h" />
     <ClInclude Include="include\IconButton.h" />
-    <ClInclude Include="include\InteractiveButton.h"/>
+    <ClInclude Include="include\InteractiveButton.h" />
     <ClInclude Include="include\Manacost.h" />
     <ClInclude Include="include\ManaCostHybrid.h" />
     <ClInclude Include="include\MenuItem.h" />
@@ -514,6 +514,7 @@
     <ClInclude Include="include\MTGPack.h" />
     <ClInclude Include="include\MTGRules.h" />
     <ClInclude Include="include\Navigator.h" />
+    <ClInclude Include="include\NetworkPlayer.h" />
     <ClInclude Include="include\ObjectAnalytics.h" />
     <ClInclude Include="include\OptionItem.h" />
     <ClInclude Include="include\OSD.h" />
