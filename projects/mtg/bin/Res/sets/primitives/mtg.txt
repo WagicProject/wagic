@@ -24234,7 +24234,7 @@ subtype=Shapeshifter
 [card]
 name=Eiganjo Castle
 auto={T}:Add{W}
-auto={T}:prevent:2 target(creature[legendary])
+auto={W}{T}:prevent:2 target(creature[legendary])
 text={T}: Add {W} to your mana pool. -- {W}, {T}: Prevent the next 2 damage that would be dealt to target legendary creature this turn.
 type=Legendary Land
 [/card]
@@ -56483,8 +56483,7 @@ toughness=1
 ###The 2 cards below should stay together (Flip Card)###
 [card]
 name=Nezumi Shortfang
-auto={1}{B}:target(opponent) ability$!name(discard) target(*|myhand) reject!$ targetedplayer restriction{type(*|opponenthand)~morethan~1}
-auto={1}{B}:name(discard and flip) transforms((,newability[name(discard and flip) target(opponent) ability$!target(*|myhand) reject!$ targetedplayer],newability[@discarded(*|opponenthand) once:flip(Stabwhisker the Odious)])) ueot restriction{type(*|opponenthand)~lessthan~2}
+auto={1}{B}{T}:name(target opponent discard) target(opponent) deplete:0 && all(this) transforms((,newability[if type(*|opponenthand)~lessthan~1 then flip(Stabwhisker the Odious)],newability[ability$!reject notatarget(*|myhand)!$ targetedplayer],newability[@discarded(*|opponenthand) restriction{compare(ohandcount)~equalto~1} once:flip(Stabwhisker the Odious)]))
 text={1}{B}, {T}: Target opponent discards a card. Then if that player has no cards in hand, flip Nezumi Shortfang.
 mana={1}{B}
 type=Creature
@@ -73530,7 +73529,7 @@ toughness=0
 [card]
 name=Shimian Specter
 abilities=flying
-auto=@combatdamaged(player) from(this):choice target(*[-land]|opponenthand) moveto(exile) && all(*[share!name!]|targetcontrollerhand) moveto(exile) && all(*[share!name!]|targetcontrollerlibrary) moveto(exile) && all(*[share!name!]|targetcontrollergraveyard) moveto(exile) && all(*[share!name!]|targetcontrollerbattlefield) moveto(exile)
+auto=@combatdamaged(opponent) from(this):name(exile a nonland) notatarget(*[-land]|opponenthand) transforms((,newability[all(*[share!name!]|mylibrary) moveto(exile) and!(shuffle)!],newability[all(*[share!name!]|mygraveyard) moveto(exile)],newability[all(*[share!name!]|myhand) moveto(exile)]))
 text=Flying -- Whenever Shimian Specter deals combat damage to a player, that player reveals his or her hand. You choose a nonland card from it. Search that player's graveyard, hand, and library for all cards with the same name as that card and exile them. Then that player shuffles his or her library.
 mana={2}{B}{B}
 type=Creature
