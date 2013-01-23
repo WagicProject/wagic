@@ -31454,6 +31454,16 @@ power=1+*
 toughness=1+*
 [/card]
 [card]
+name=Gaea's Blessing
+target=player
+auto=ability$!moveto(mylibrary) and!(shuffle)! target(<upto:3>*|mygraveyard)!$ targetedplayer
+auto=draw:1 controller
+autograveyard=@movedTo(this|mygraveyard) from(mylibrary):moveto(mylibrary) and!(shuffle)! all(*|mygraveyard)
+text=Target player shuffles up to three target cards from his or her graveyard into his or her library. -- Draw a card. -- When Gaea's Blessing is put into your graveyard from your library, shuffle your graveyard into your library.
+mana={1}{G}
+type=Sorcery
+[/card]
+[card]
 name=Gaea's Bounty
 auto=moveTo(myhand) notatarget(<upto:2>forest|myLibrary)
 text=Search your library for up to two Forest cards, reveal those cards, and put them into your hand. Then shuffle your library.
@@ -31803,6 +31813,17 @@ power=5
 toughness=5
 [/card]
 [card]
+name=Garza's Assassin
+auto={S}:destroy target(creature[-black])
+autograveyard=@movedto(other creature|mygraveyard) from(battlefield):name(Recover) transforms((,newability[choice name(pay halfup life) moveto(ownerhand) and!( life:-halfdownlifetotal controller )!],newability[choice name(move to exile) moveto(exile)]))
+text=Sacrifice Garza's Assassin: Destroy target nonblack creature. -- Recover - Pay half your life, rounded up. (When another creature is put into your graveyard from the battlefield, you may pay half your life, rounded up. If you do, return this card from your graveyard to your hand. Otherwise, exile this card.)
+mana={B}{B}{B}
+type=Creature
+subtype=Human Assassin
+power=2
+toughness=2
+[/card]
+[card]
 name=Gaseous Form
 target=creature
 auto=teach(creature) preventAllCombatDamage from(this)
@@ -31811,26 +31832,6 @@ text=Enchant creature -- Prevent all combat damage that would be dealt to and de
 mana={2}{U}
 type=Enchantment
 subtype=Aura
-[/card]
-[card]
-name=Ghastly Discovery
-auto=draw:2
-auto=reject target(*|myhand)
-auto=alternative draw:2 reject target(*|myhand)
-other={2}{U}{T(creature[blue]|mybattlefield)}{T(creature[blue]|mybattlefield)} name(Pay Conspire)
-text=Draw two cards, then discard a card. -- Conspire (As you cast this spell, you may tap two untapped creatures you control that share a color with it. When you do, copy it.)
-mana={2}{U}
-type=Sorcery
-[/card]
-[card]
-name=Ghazban Ogre
-auto=@each my upkeep:if compare(lifetotal)~lessthan~compare(opponentlifetotal) then moveTo(opponentbattlefield)
-text=At the beginning of your upkeep, if a player has more life than each other player, that player gains control of Ghazban Ogre.
-mana={G}
-type=Creature
-subtype=Ogre
-power=2
-toughness=2
 [/card]
 [card]
 name=Gate Hound
@@ -31932,6 +31933,17 @@ auto=@tappedformana(mountain|mybattlefield):Add{R} controller
 auto=@tappedformana(mountain|opponentbattlefield):Add{R} opponent
 text=Red creatures get +1/+1. -- Whenever a Mountain is tapped for mana, its controller adds {R} to his or her mana pool (in addition to the mana the land produces).
 mana={4}
+type=Artifact
+[/card]
+[card]
+name=Gauntlet of Power
+auto=choice name(choose white) all(this) transforms((,newability[lord(creature[white]|battlefield) 1/1],newability[@tappedformana(plains[basic]|mybattlefield):add{W}],newability[@tappedformana(plains[basic]|opponentbattlefield):add{W} opponent])) forever
+auto=choice name(choose blue) all(this) transforms((,newability[lord(creature[blue]|battlefield) 1/1],newability[@tappedformana(island[basic]|mybattlefield):add{U}],newability[@tappedformana(island[basic]|opponentbattlefield):add{U} opponent])) forever
+auto=choice name(choose black) all(this) transforms((,newability[lord(creature[black]|battlefield) 1/1],newability[@tappedformana(swamp[basic]|mybattlefield):add{B}],newability[@tappedformana(swamp[basic]|opponentbattlefield):add{B} opponent])) forever
+auto=choice name(choose red) all(this) transforms((,newability[lord(creature[red]|battlefield) 1/1],newability[@tappedformana(mountain[basic]|mybattlefield):add{R}],newability[@tappedformana(mountain[basic]|opponentbattlefield):add{R} opponent])) forever
+auto=choice name(choose green) all(this) transforms((,newability[lord(creature[green]|battlefield) 1/1],newability[@tappedformana(forest[basic]|mybattlefield):add{G}],newability[@tappedformana(forest[basic]|opponentbattlefield):add{G} opponent])) forever
+text=As Gauntlet of Power enters the battlefield, choose a color. -- Creatures of the chosen color get +1/+1. -- Whenever a basic land is tapped for mana of the chosen color, its controller adds one mana of that color to his or her mana pool (in addition to the mana the land produces).
+mana={5}
 type=Artifact
 [/card]
 [card]
@@ -32303,6 +32315,14 @@ power=4
 toughness=2
 [/card]
 [card]
+name=Gerrard's Verdict
+target=player
+auto=all(this) transforms((,newability[ability$!target(<2>*|myhand) reject!$ targetedplayer],newability[@discarded(land|targetedpersonshand):life:3]))
+text=Target player discards two cards. You gain 3 life for each land card discarded this way.
+mana={W}{B}
+type=Sorcery
+[/card]
+[card]
 name=Gerrard's Wisdom
 auto=foreach(*|myhand) life:2 controller
 text=You gain 2 life for each card in your hand.
@@ -32387,6 +32407,16 @@ mana={B}
 type=Instant
 [/card]
 [card]
+name=Ghastly Discovery
+auto=draw:2
+auto=reject target(*|myhand)
+auto=alternative draw:2 reject target(*|myhand)
+other={2}{U}{T(creature[blue]|mybattlefield)}{T(creature[blue]|mybattlefield)} name(Pay Conspire)
+text=Draw two cards, then discard a card. -- Conspire (As you cast this spell, you may tap two untapped creatures you control that share a color with it. When you do, copy it.)
+mana={2}{U}
+type=Sorcery
+[/card]
+[card]
 name=Ghave, Guru of Spores
 auto=counter(1/1,5)
 auto={1}{C(1/1,-1),creature|mybattlefield}:token(Saproling,Creature Saproling,1/1,green)
@@ -32397,6 +32427,16 @@ type=Legendary Creature
 subtype=Fungus Shaman
 power=0
 toughness=0
+[/card]
+[card]
+name=Ghazban Ogre
+auto=@each my upkeep:if compare(lifetotal)~lessthan~compare(opponentlifetotal) then moveTo(opponentbattlefield)
+text=At the beginning of your upkeep, if a player has more life than each other player, that player gains control of Ghazban Ogre.
+mana={G}
+type=Creature
+subtype=Ogre
+power=2
+toughness=2
 [/card]
 [card]
 name=Ghitu Encampment
@@ -32997,6 +33037,17 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Gigantiform
+target=creature
+kicker={4}
+auto=teach(creature) becomes(,8/8,trample)
+auto=kicker may moveto(mybattlefield) and!( transforms((,newability[retarget target(creature)])) )! notatarget(Gigantiform|mylibrary)
+text=Kicker {4} -- Enchant creature -- Enchanted creature is 8/8 and has trample. -- When Gigantiform enters the battlefield, if it was kicked, you may search your library for a card named Gigantiform, put it onto the battlefield, then shuffle your library.
+mana={3}{G}{G}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 name=Gigantomancer
 auto={1}:target(creature) transforms((,setpower=7,settoughness=7)) ueot
 text={1}: Target creature you control becomes 7/7 until end of turn.
@@ -33499,6 +33550,14 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Glory of Warfare
+auto=this(variable{controllerturn}) lord(creature|mybattlefield) 2/0
+auto=this(variable{opponentturn}) lord(creature|mybattlefield) 0/2
+text=As long as it's your turn, creatures you control get +2/+0. -- As long as it's not your turn, creatures you control get +0/+2.
+mana={2}{R}{W}
+type=Enchantment
+[/card]
+[card]
 name=Glory Seeker
 mana={1}{W}
 type=Creature
@@ -33735,6 +33794,17 @@ auto={S(creature|myBattlefield)}:damage:1 target(creature,player)
 text=Sacrifice a creature: Goblin Bombardment deals 1 damage to target creature or player.
 mana={1}{R}
 type=Enchantment
+[/card]
+[card]
+name=Goblin Brawler
+abilities=first strike
+auto=cantbetargetof(equipment)
+text=First strike -- Goblin Brawler can't be equipped.
+mana={2}{R}
+type=Creature
+subtype=Goblin Warrior
+power=2
+toughness=2
 [/card]
 [card]
 name=Goblin Brigand
@@ -51804,8 +51874,7 @@ toughness=1
 [/card]
 [card]
 name=Merrow Commerce
-auto=@each opponent beginofturn:may untap all(merfolk|myBattlefield)
-#@each my end did not work! cleanup, too
+auto=@each my end:untap all(merfolk|myBattlefield)
 text=At the beginning of your end step, untap all Merfolk you control.
 mana={1}{U}
 type=Tribal Enchantment
@@ -58342,14 +58411,21 @@ type=Enchantment
 [/card]
 [card]
 name=Opalescence
-auto=lord(enchantment[-aura;manacost=1]) becomes(Creature,1/1)
-auto=lord(enchantment[-aura;manacost=2]) becomes(Creature,2/2)
-auto=lord(enchantment[-aura;manacost=3]) becomes(Creature,3/3)
-auto=lord(other enchantment[-aura;manacost=4]) becomes(creature,4/4)
-auto=lord(enchantment[-aura;manacost=5]) becomes(Creature,5/5)
-auto=lord(enchantment[-aura;manacost=6]) becomes(Creature,6/6)
-auto=lord(enchantment[-aura;manacost=7]) becomes(Creature,7/7)
-auto=lord(enchantment[-aura;manacost=8]) becomes(Creature,8/8)
+auto=lord(other enchantment[-aura;manacost=1]) transforms((,newability[becomes(Creature)],setpower=1,settoughness=1))
+auto=lord(other enchantment[-aura;manacost=2]) transforms((,newability[becomes(Creature)],setpower=2,settoughness=2))
+auto=lord(other enchantment[-aura;manacost=3]) transforms((,newability[becomes(Creature)],setpower=3,settoughness=3))
+auto=lord(other enchantment[-aura;manacost=4]) transforms((,newability[becomes(Creature)],setpower=4,settoughness=4))
+auto=lord(other enchantment[-aura;manacost=5]) transforms((,newability[becomes(Creature)],setpower=5,settoughness=5))
+auto=lord(other enchantment[-aura;manacost=6]) transforms((,newability[becomes(Creature)],setpower=6,settoughness=6))
+auto=lord(other enchantment[-aura;manacost=7]) transforms((,newability[becomes(Creature)],setpower=7,settoughness=7))
+auto=lord(other enchantment[-aura;manacost=8]) transforms((,newability[becomes(Creature)],setpower=8,settoughness=8))
+auto=lord(other enchantment[-aura;manacost=9]) transforms((,newability[becomes(Creature)],setpower=9,settoughness=9))
+auto=lord(other enchantment[-aura;manacost=10]) transforms((,newability[becomes(Creature)],setpower=10,settoughness=10))
+auto=lord(other enchantment[-aura;manacost=11]) transforms((,newability[becomes(Creature)],setpower=11,settoughness=11))
+auto=lord(other enchantment[-aura;manacost=12]) transforms((,newability[becomes(Creature)],setpower=12,settoughness=12))
+auto=lord(other enchantment[-aura;manacost=13]) transforms((,newability[becomes(Creature)],setpower=13,settoughness=13))
+auto=lord(other enchantment[-aura;manacost=14]) transforms((,newability[becomes(Creature)],setpower=14,settoughness=14))
+auto=lord(other enchantment[-aura;manacost=15]) transforms((,newability[becomes(Creature)],setpower=15,settoughness=15))
 mana={2}{W}{W}
 type=Enchantment
 text=Each other non-Aura enchantment is a creature with power and toughness each equal to its converted mana cost. It's still an enchantment.
@@ -76612,6 +76688,14 @@ mana={R}
 type=Instant
 [/card]
 [card]
+name=Smite
+target=creature[blocked]
+auto=destroy
+text=Destroy target blocked creature.
+mana={W}
+type=Instant
+[/card]
+[card]
 name=Smite the Monstrous
 target=creature[power>=4])
 auto=destroy
@@ -84785,7 +84869,7 @@ toughness=1
 [/card]
 [card]
 name=Thelonite Monk
-auto={T}{S(creature[green]|myBattlefield)}:loseabilities && losesubtypesof(land) && transforms((forest)) target(land)
+auto={T}{S(creature[green]|myBattlefield)}:name(becomes forest) flip(forest) target(land)
 text={T}, Sacrifice a green creature: Target land becomes a Forest. (This effect lasts indefinitely.)
 mana={2}{G}{G}
 type=Creature

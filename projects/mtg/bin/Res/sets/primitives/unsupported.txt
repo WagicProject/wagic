@@ -6118,12 +6118,6 @@ mana={3}{G}
 type=Sorcery
 [/card]
 [card]
-name=Gaea's Blessing
-text=Target player shuffles up to three target cards from his or her graveyard into his or her library. -- Draw a card. -- When Gaea's Blessing is put into your graveyard from your library, shuffle your graveyard into your library.
-mana={1}{G}
-type=Sorcery
-[/card]
-[card]
 name=Gaea's Herald
 text=Creature spells can't be countered.
 mana={1}{G}
@@ -6196,15 +6190,6 @@ toughness=7
 text=Trample  Play with the top card of your library revealed. You may cast the top card of your library if it's a creature card. (Do this only any time you could cast that creature card. You still pay the spell's costs.)
 [/card]
 [card]
-name=Garza's Assassin
-text=Sacrifice Garza's Assassin: Destroy target nonblack creature. -- Recover - Pay half your life, rounded up. (When another creature is put into your graveyard from the battlefield, you may pay half your life, rounded up. If you do, return this card from your graveyard to your hand. Otherwise, exile this card.)
-mana={B}{B}{B}
-type=Creature
-subtype=Human Assassin
-power=2
-toughness=2
-[/card]
-[card]
 name=Gate to the AEther
 text=At the beginning of each player's upkeep, that player reveals the top card of his or her library. If it's an artifact, creature, enchantment, or land card, the player may put it onto the battlefield.
 mana={6}
@@ -6221,12 +6206,6 @@ name=Gather Specimens
 text=If a creature would enter the battlefield under an opponent's control this turn, it enters the battlefield under your control instead.
 mana={3}{U}{U}{U}
 type=Instant
-[/card]
-[card]
-name=Gauntlet of Power
-text=As Gauntlet of Power enters the battlefield, choose a color. -- Creatures of the chosen color get +1/+1. -- Whenever a basic land is tapped for mana of the chosen color, its controller adds one mana of that color to his or her mana pool (in addition to the mana the land produces).
-mana={5}
-type=Artifact
 [/card]
 [card]
 name=Gauntlets of Chaos
@@ -6290,12 +6269,6 @@ name=Geosurge
 mana={R}{R}{R}{R}
 type=Sorcery
 text=Add {R}{R}{R}{R}{R}{R}{R} to your mana pool. Spend this mana only to cast artifact or creature spells.
-[/card]
-[card]
-name=Gerrard's Verdict
-text=Target player discards two cards. You gain 3 life for each land card discarded this way.
-mana={W}{B}
-type=Sorcery
 [/card]
 [card]
 name=Gerrymandering
@@ -6445,18 +6418,6 @@ name=Gigadrowse
 text=Replicate {U} (When you cast this spell, copy it for each time you paid its replicate cost. You may choose new targets for the copies.) -- Tap target permanent.
 mana={U}
 type=Instant
-[/card]
-[card]
-name=Gigantiform
-target=creature
-kicker={4}
-auto=8/8
-auto=trample
-auto=kicker moveto(mybattlefield) target(Gigantiform|mylibrary) && transforms(,newability[retarget target(creature)])) ueot
-text=Kicker {4} -- Enchant creature -- Enchanted creature is 8/8 and has trample. -- When Gigantiform enters the battlefield, if it was kicked, you may search your library for a card named Gigantiform, put it onto the battlefield, then shuffle your library.
-mana={3}{G}{G}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
 name=Gilded Drake
@@ -6624,12 +6585,6 @@ power=2
 toughness=1
 [/card]
 [card]
-name=Glory of Warfare
-text=As long as it's your turn, creatures you control get +2/+0. -- As long as it's not your turn, creatures you control get +0/+2.
-mana={2}{R}{W}
-type=Enchantment
-[/card]
-[card]
 name=Gluetius Maximus
 mana={3}{G}{G}
 type=Creature — Beast
@@ -6709,15 +6664,6 @@ type=Summon — Goblins
 power=1
 toughness=1
 text=Whenever Goblin Bowling Team damages any creature or player, roll a six-sided die. Goblin Bowling Team deals to that creature or player additional damage equal to the die roll.
-[/card]
-[card]
-name=Goblin Brawler
-text=First strike -- Goblin Brawler can't be equipped.
-mana={2}{R}
-type=Creature
-subtype=Goblin Warrior
-power=2
-toughness=2
 [/card]
 [card]
 name=Goblin Charbelcher
@@ -16963,12 +16909,6 @@ type=Creature — Donkey Wizard
 power=2{1/2}
 toughness=1
 text=Whenever Smart Ass attacks, name a card. Defending player may reveal his or her hand and show you that the named card isn't there. If that player doesn't, Smart Ass is unblockable this turn.
-[/card]
-[card]
-name=Smite
-text=Destroy target blocked creature.
-mana={W}
-type=Instant
 [/card]
 [card]
 name=Smoke
