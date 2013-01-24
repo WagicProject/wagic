@@ -6963,14 +6963,6 @@ type=Artifact
 subtype=Equipment
 [/card]
 [card]
-name=Grand Abolisher
-mana={W}{W}
-type=Creature — Human Cleric
-power=2
-toughness=2
-text=During your turn, your opponents can't cast spells or activate abilities of artifacts, creatures, or enchantments.
-[/card]
-[card]
 name=Grand Architect
 mana={1}{U}{U}
 type=Creature
@@ -7366,26 +7358,11 @@ text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter 
 type=Land
 [/card]
 [card]
-name=Hamletback Goliath
-text=Whenever another creature enters the battlefield, you may put X +1/+1 counters on Hamletback Goliath, where X is that creature's power.
-mana={6}{R}
-type=Creature
-subtype=Giant Warrior
-power=6
-toughness=6
-[/card]
-[card]
 name=Hammerheim
 auto={T}:Add {R}
 auto={T}:-plainswalk && -islandwalk && -swampwalk && -mountainwalk && -forestwalk target(creature)
 text={T}: Add {R} to your mana pool. -- {T}: Target creature loses all landwalk abilities until end of turn.
 type=Legendary Land
-[/card]
-[card]
-name=Hanabi Blast
-text=Hanabi Blast deals 2 damage to target creature or player. Return Hanabi Blast to its owner's hand, then discard a card at random.
-mana={1}{R}{R}
-type=Instant
 [/card]
 [card]
 name=Hand to Hand
@@ -7405,15 +7382,6 @@ text=Equipped creature has "{T}: Put an aim counter on Hankyu" and "{T}, Remove 
 mana={1}
 type=Artifact
 subtype=Equipment
-[/card]
-[card]
-name=Harmonic Sliver
-text=All Slivers have "When this permanent enters the battlefield, destroy target artifact or enchantment."
-mana={1}{G}{W}
-type=Creature
-subtype=Sliver
-power=1
-toughness=1
 [/card]
 [card]
 name=Harm's Way
@@ -7567,13 +7535,6 @@ toughness=3
 text=Level up {2}{W} ({2}{W}: Put a level counter on this. Level up only as a sorcery.) LEVEL 1-4 1/4 If a source would deal damage to you or a creature you control, prevent 1 of that damage. LEVEL 5+ 2/5 If a source would deal damage to you or a creature you control, prevent 2 of that damage.
 [/card]
 [card]
-name=Heed the Mists
-text=Put the top card of your library into your graveyard, then draw cards equal to that card's converted mana cost.
-mana={3}{U}{U}
-type=Sorcery
-subtype=Arcane
-[/card]
-[card]
 name=Hellcarver Demon
 mana={3}{B}{B}{B}
 type=Creature
@@ -7590,15 +7551,6 @@ type=Creature
 subtype=Rat
 power=2
 toughness=2
-[/card]
-[card]
-name=Hellkite Charger
-text=Flying, haste -- Whenever Hellkite Charger attacks, you may pay {5}{R}{R}. If you do, untap all attacking creatures and after this phase, there is an additional combat phase.
-mana={4}{R}{R}
-type=Creature
-subtype=Dragon
-power=5
-toughness=5
 [/card]
 [card]
 name=Helm of Chatzuk
@@ -7735,15 +7687,6 @@ power=1
 toughness=3
 [/card]
 [card]
-name=Hired Giant
-text=When Hired Giant enters the battlefield, each other player may search his or her library for a land card and put that card onto the battlefield. Then each player who searched his or her library this way shuffles it.
-mana={3}{R}
-type=Creature
-subtype=Giant
-power=4
-toughness=4
-[/card]
-[card]
 name=Hisoka's Guard
 text=You may choose not to untap Hisoka's Guard during your untap step. -- {1}{U}, {T}: Target creature you control other than Hisoka's Guard has shroud for as long as Hisoka's Guard remains tapped. (It can't be the target of spells or abilities.)
 mana={1}{U}
@@ -7808,12 +7751,6 @@ type=Artifact Creature
 subtype=Golem Warrior
 power=4
 toughness=4
-[/card]
-[card]
-name=Homeward Path
-mana=
-type=Land
-text={T}: Add {1} to your mana pool. {T}: Each player gains control of all creatures he or she owns.
 [/card]
 [card]
 name=Homing Sliver
@@ -7925,18 +7862,6 @@ type=Creature
 subtype=Sliver
 power=1
 toughness=1
-[/card]
-[card]
-name=Hunter's Insight
-mana={2}{G}
-type=Instant
-text=Choose target creature you control. Whenever that creature deals combat damage to a player or planeswalker this turn, draw that many cards.
-[/card]
-[card]
-name=Hunters' Feast
-mana={3}{G}
-type=Sorcery
-text=Any number of target players each gain 6 life.
 [/card]
 [card]
 name=Hurloon Shaman

@@ -3184,11 +3184,7 @@ toughness=1
 [/card]
 [card]
 name=Arboria
-auto=lord(creature) cantattack
-auto=@movedto(*|mystack):all(creature|opponentbattlefield) phaseaction[upkeep] canattack ueot
-auto=@movedto(*[-token]|mybattlefield):all(creature|opponentbattlefield) phaseaction[upkeep] canattack ueot
-auto=@movedto(*|opponentstack):all(creature|mybattlefield) phaseaction[upkeep] canattack ueot
-auto=@movedto(*[-token]|opponentbattlefield):all(creature|mybattlefield) phaseaction[upkeep] canattack ueot
+auto=lord(creature) transforms((,newability[@each my beginofturn restriction{lastturn(*[-token]|mystack;mybattlefield)~morethan~0}:canattack ueot],cantattack))
 auto=@movedTo(enchantment[world]|battlefield):sacrifice all(this)
 text=Creatures can't attack a player unless that player cast a spell or put a nontoken permanent onto the battlefield during his or her last turn.
 mana={2}{G}{G}
@@ -23854,7 +23850,7 @@ toughness=1
 [/card]
 [card]
 name=Duskmantle Guildmage
-auto={1}{U}{B}:name(lifeloss) transforms((,newability[@movedto(*|opponentgraveyard):life:-1 opponent])) ueot
+auto={1}{U}{B}:name(lifeleech) transforms((,newability[@movedto(*|opponentgraveyard):life:-1 opponent])) ueot
 auto={2}{U}{B}:deplete:2 target(player)
 text={1}{U}{B}: Whenever a card is put into an opponent's graveyard from anywhere this turn, that player loses 1 life. -- {2}{U}{B}: Target player puts the top two cards of his or her library into his or her graveyard.
 mana={U}{B}
@@ -26456,7 +26452,7 @@ toughness=3
 #uynt I think 99% support
 [card]
 name=Erhnam Djinn
-auto=@each my upkeep:target(creature[-wall]|opponentbattlefield) forestwalk uynt
+auto=@each my upkeep:target(creature[-wall]|opponentbattlefield) transforms((,forestwalk)) uynt
 text=At the beginning of your upkeep, target non-Wall creature an opponent controls gains forestwalk until your next upkeep.
 mana={3}{G}
 type=Creature
@@ -35827,6 +35823,17 @@ mana={4}
 type=Artifact
 [/card]
 [card]
+name=Grand Abolisher
+auto=this(variable{controllerturn}) maxCast(*)0 opponent
+auto=this(variable{controllerturn}) lord(*[artifact;enchantment;creature]|opponentbattlefield) noactivatedability
+text=During your turn, your opponents can't cast spells or activate abilities of artifacts, creatures, or enchantments.
+mana={W}{W}
+type=Creature
+subtype=Human Cleric
+power=2
+toughness=2
+[/card]
+[card]
 name=Grand Arbiter Augustin IV
 auto=lord(*[white]|myhand) altercost(colorless,-1)
 auto=lord(*[blue]|myhand) altercost(colorless,-1)
@@ -37810,6 +37817,16 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Hamletback Goliath
+auto=@movedTo(other creature|battlefield):may all(trigger[to]) dynamicability<!myself powercountersoneone itself!>
+text=Whenever another creature enters the battlefield, you may put X +1/+1 counters on Hamletback Goliath, where X is that creature's power.
+mana={6}{R}
+type=Creature
+subtype=Giant Warrior
+power=6
+toughness=6
+[/card]
+[card]
 name=Hammer Mage
 auto={R}{T}{discard(*|myhand)}:name(X <= 0) destroy all(artifact[manacost<=0])
 auto={1}{R}{T}{discard(*|myhand)}:name(X <= 1) destroy all(artifact[manacost<=1])
@@ -37896,6 +37913,15 @@ type=Creature
 subtype=Spirit
 power=1
 toughness=1
+[/card]
+[card]
+name=Hanabi Blast
+target=creature,player
+auto=damage:2
+auto=moveto(ownerhand) and!(discard:1 controller)! all(this)
+text=Hanabi Blast deals 2 damage to target creature or player. Return Hanabi Blast to its owner's hand, then discard a card at random.
+mana={1}{R}{R}
+type=Instant
 [/card]
 [card]
 name=Hand of Cruelty
@@ -38115,6 +38141,17 @@ auto=moveTo(ownerLibrary) all(enchantment)
 text=Put all enchantments on top of their owners' libraries.
 mana={2}{G}
 type=Instant
+[/card]
+[card]
+name=Harmonic Sliver
+auto=destroy target(*[artifact;enchantment])
+auto=@movedto(other Sliver|battlefield) restriction{type(*[artifact;enchantment]|battlefield)~morethan~0}:name(destroy) transforms((,newability[destroy target(*[artifact;enchantment])])) all(trigger)
+text=All Slivers have "When this permanent enters the battlefield, destroy target artifact or enchantment."
+mana={1}{G}{W}
+type=Creature
+subtype=Sliver
+power=1
+toughness=1
 [/card]
 [card]
 name=Harmonize
@@ -38933,6 +38970,14 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Heed the Mists
+auto=transforms((,newability[@movedto(other *[manacost=1]|mygraveyard) from(mylibrary):draw:1],newability[@movedto(other *[manacost=2]|mygraveyard) from(mylibrary):draw:2],newability[@movedto(other *[manacost=3]|mygraveyard) from(mylibrary):draw:3],newability[@movedto(other *[manacost=4]|mygraveyard) from(mylibrary):draw:4],newability[@movedto(other *[manacost=5]|mygraveyard) from(mylibrary):draw:5],newability[@movedto(other *[manacost=6]|mygraveyard) from(mylibrary):draw:6],newability[@movedto(other *[manacost=7]|mygraveyard) from(mylibrary):draw:7],newability[@movedto(other *[manacost=8]|mygraveyard) from(mylibrary):draw:8],newability[@movedto(other *[manacost=9]|mygraveyard) from(mylibrary):draw:9],newability[@movedto(other *[manacost=10]|mygraveyard) from(mylibrary):draw:10],newability[@movedto(other *[manacost=11]|mygraveyard) from(mylibrary):draw:11],newability[@movedto(other *[manacost=12]|mygraveyard) from(mylibrary):draw:12],newability[@movedto(other *[manacost=13]|mygraveyard) from(mylibrary):draw:13],newability[@movedto(other *[manacost=14]|mygraveyard) from(mylibrary):draw:14],newability[@movedto(other *[manacost=15]|mygraveyard) from(mylibrary):draw:15],newability[@movedto(other *[manacost=16]|mygraveyard) from(mylibrary):draw:16],newability[deplete:1 controller]))
+text=Put the top card of your library into your graveyard, then draw cards equal to that card's converted mana cost.
+mana={3}{U}{U}
+type=Sorcery
+subtype=Arcane
+[/card]
+[card]
 name=Heedless One
 abilities=trample
 auto=foreach(elf) 1/1
@@ -39115,6 +39160,17 @@ mana={5}{R}
 type=Sorcery
 [/card]
 [card]
+name=Hellkite Charger
+abilities=flying,haste
+auto=this(attacking) {5}{R}{R}:name(Additional Combat) untap all(creature[attacking]) && nextphasealter(add,combatphases,controller,after<combatends>) limit:1
+text=Flying, haste -- Whenever Hellkite Charger attacks, you may pay {5}{R}{R}. If you do, untap all attacking creatures and after this phase, there is an additional combat phase.
+mana={4}{R}{R}
+type=Creature
+subtype=Dragon
+power=5
+toughness=5
+[/card]
+[card]
 name=Hellkite Hatchling
 auto=may target(<anyamount>other creature|mybattlefield) sacrifice && counter(1/1,1) all(this) && all(this) transforms((,flying,trample)) forever
 text=Devour 1 (As this enters the battlefield, you may sacrifice any number of creatures. This creature enters the battlefield with that many +1/+1 counters on it.) -- Hellkite Hatchling has flying and trample if it devoured a creature.
@@ -39281,7 +39337,7 @@ toughness=4
 name=Herald of War
 abilities=flying
 auto=@combat(attacking) source(this):counter(1/1,1)
-auto=thisforeach(counter{1/1,1}) lord(angel,human|myhand) altercost(colorless, -1)
+auto=thisforeach(counter{1/1,1}) lord(*[angel;human]|myhand) altercost(colorless, -1)
 text=Flying -- Whenever Herald of War attacks, put a +1/+1 counter on it.  -- Angel spells and Human spells you cast cost {1} less to cast for each +1/+1 counter on Herald of War.
 mana={3}{W}{W}
 type=Creature
@@ -39658,6 +39714,17 @@ auto={T}:Add{U}
 text=Hinterland Harbor enters the battlefield tapped unless you control a Forest or Island. -- {T}: Add {G} or {U} to your mana pool.
 type=Land
 [/card]
+#the "may" is removed so the AI is set to fetch lands
+[card]
+name=Hired Giant
+auto=ability$!name(fetch) moveto(mybattlefield) notatarget(land|mylibrary)!$ opponent
+text=When Hired Giant enters the battlefield, each other player may search his or her library for a land card and put that card onto the battlefield. Then each player who searched his or her library this way shuffles it.
+mana={3}{R}
+type=Creature
+subtype=Giant
+power=4
+toughness=4
+[/card]
 ###The 2 cards below should stay together (Flip Card)###
 [card]
 name=Hired Muscle
@@ -39974,6 +40041,13 @@ type=Creature
 subtype=Homarid Warrior
 power=3
 toughness=3
+[/card]
+[card]
+name=Homeward Path
+auto={T}:add{1}
+auto={T}:name(revert to owner) moveto(ownerbattlefield) all(creature)
+type=Land
+text={T}: Add {1} to your mana pool. {T}: Each player gains control of all creatures he or she owns.
 [/card]
 [card]
 name=Homicidal Seclusion
@@ -40788,12 +40862,20 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Hunter's Feast
+name=Hunters' Feast
 target=<anyamount>player
 auto=life:6
 text=Any number of target players each gain 6 life.
 mana={3}{G}
 type=Sorcery
+[/card]
+[card]
+name=Hunter's Insight
+target=creature|mybattlefield
+auto=transforms((,newability[@combatdamaged(player) from(this):draw:thatmuch controller],newability[@combatdamaged(planeswalker) from(this):draw:thatmuch controller])) ueot
+mana={2}{G}
+type=Instant
+text=Choose target creature you control. Whenever that creature deals combat damage to a player or planeswalker this turn, draw that many cards.
 [/card]
 [card]
 name=Hunter's Sight
@@ -99085,7 +99167,6 @@ toughness=2
 [/card]
 [card]
 name=Zhang Liao, Hero of Hefei
-abilities=horsemanship
 auto=@damaged(opponent) from(this):ability$!name(discard) target(*|myhand) reject!$ opponent
 text=Whenever Zhang Liao, Hero of Hefei deals damage to an opponent, that opponent discards a card.
 mana={4}{B}{B}
