@@ -619,7 +619,8 @@ int MTGCardInstance::canBlock(MTGCardInstance * opponent)
         return 0;
     if (opponent->basicAbilities[(int)Constants::FEAR] && !(this->hasType(Subtypes::TYPE_ARTIFACT) || this->hasColor(Constants::MTG_COLOR_BLACK)))
         return 0;
-
+    if (opponent->controller()->game->battlefield->hasAbility(Constants::LURE) && !opponent->has(Constants::LURE))
+        return 0;
     //intimidate
     if (opponent->basicAbilities[(int)Constants::INTIMIDATE] && !(this->hasType(Subtypes::TYPE_ARTIFACT)))
     {
