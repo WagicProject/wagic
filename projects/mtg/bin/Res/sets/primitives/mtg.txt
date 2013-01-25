@@ -4981,7 +4981,7 @@ toughness=2
 [/card]
 [card]
 name=Avacyn's Pilgrim
-auto={T}:Add:{W}
+auto={T}:add{W}
 text={T}: Add {W} to your mana pool.
 mana={G}
 type=Creature
@@ -6503,7 +6503,7 @@ toughness=4
 name=Basalt Monolith
 abilities=doesnotuntap
 auto={3}:untap
-auto={T}:add:{3}
+auto={T}:add{3}
 text=Basalt Monolith doesn't untap during your untap step. -- {3}: Untap Basalt Monolith. -- {T}: Add {3} to your mana pool.
 mana={3}
 type=Artifact
@@ -6643,7 +6643,7 @@ toughness=3
 [/card]
 [card]
 name=Battle Hymn
-auto=foreach(creature|mybattlefield) Add:{R}
+auto=foreach(creature|mybattlefield) add{R}
 text=Add {R} to your mana pool for each creature you control.
 mana={1}{R}
 type=Instant
@@ -10649,7 +10649,7 @@ toughness=1
 [/card]
 [card]
 name=Brightstone Ritual
-auto=foreach(goblin|battlefield) Add:{R}
+auto=foreach(goblin|battlefield) add{R}
 text=Add {R} to your mana pool for each Goblin on the battlefield.
 mana={R}
 type=Instant
@@ -11491,7 +11491,7 @@ toughness=2
 [/card]
 [card]
 name=Cabal Coffers
-auto={2}{T}:foreach(swamp|myBattlefield) add:{B}
+auto={2}{T}:foreach(swamp|myBattlefield) add{B}
 text={2}, {T}: Add {B} to your mana pool for each Swamp you control.
 type=Land
 [/card]
@@ -15269,7 +15269,7 @@ toughness=4
 [card]
 name=Cloudpost
 auto=tap
-auto={T}:foreach(locus)add:{1}
+auto={T}:foreach(locus) add{1}
 text=Cloudpost enters the battlefield tapped. -- {T}: Add {1} to your mana pool for each Locus on the battlefield.
 type=Land
 subtype=Locus
@@ -20001,7 +20001,7 @@ type=Sorcery
 name=Deconstruct
 target=artifact
 auto=destroy
-auto=Add:{G}{G}{G}
+auto=add{G}{G}{G}
 text=Destroy target artifact. Add {G}{G}{G} to your mana pool.
 mana={2}{G}
 type=Sorcery
@@ -24734,8 +24734,8 @@ type=Instant
 [/card]
 [card]
 name=Eladamri's Vineyard
-auto=@each my firstmain:add:{G}{G}
-auto=@each opponent firstmain:add:{G}{G} opponent
+auto=@each my firstmain:add{G}{G}
+auto=@each opponent firstmain:add{G}{G} opponent
 text=At the beginning of each player's precombat main phase, add {G}{G} to that player's mana pool.
 mana={G}
 type=Enchantment
@@ -32038,7 +32038,7 @@ type=Sorcery
 [/card]
 [card]
 name=Gaea's Cradle
-auto={T}:foreach(creature|myBattlefield) add:{G}
+auto={T}:foreach(creature|myBattlefield) add{G}
 text={T}: Add {G} to your mana pool for each creature you control.
 type=Legendary Land
 [/card]
@@ -36639,7 +36639,7 @@ toughness=1
 name=Grim Monolith
 abilities=doesnotuntap
 auto={4}:untap
-auto={T}:add:{3}
+auto={T}:add{3}
 text=Grim Monolith doesn't untap during your untap step. -- {T}: Add {3} to your mana pool. -- {4}: Untap Grim Monolith.
 mana={2}
 type=Artifact
@@ -42339,7 +42339,7 @@ subtype=Arcane
 [/card]
 [card]
 name=Inner Fire
-auto=foreach(*|myhand) Add:{R}
+auto=foreach(*|myhand) add{R}
 text=Add {R} to your mana pool for each card in your hand.
 mana={3}{R}
 type=Sorcery
@@ -46763,8 +46763,8 @@ type=Land
 name=Koth of the Hammer
 auto=counter(0/0,3,loyalty)
 auto={C(0/0,1,Loyalty)}:untap target(mountain) && transforms((Elemental Creature,setpower=4,settoughness=4,red)) ueot
-auto={C(0/0,-2,Loyalty)}:foreach(mountain|myBattlefield) add:{R}
-auto={C(0/0,-5,Loyalty)}:name(emblem) emblem transforms((,newability[lord(mountain|mybattlefield) {t}:target(creature) damage:1],newability[lord(mountain|mybattlefield) {t}:target(player) damage:1])) dontremove
+auto={C(0/0,-2,Loyalty)}:foreach(mountain|myBattlefield) add{R}
+auto={C(0/0,-5,Loyalty)}:name(emblem) emblem transforms((,newability[lord(mountain|mybattlefield) {t}:damage:1 target(creature)],newability[lord(mountain|mybattlefield) {t}:damage:1 target(player)])) dontremove
 text=+1: Untap target Mountain. It becomes a 4/4 red Elemental creature until end of turn. It's still a land. -- -2: Add {R} to your mana pool for each Mountain you control. -- -5: You get an emblem with "Mountains you control have '{T}: This land deals 1 damage to target creature or player.'"
 mana={2}{R}{R}
 type=Planeswalker
@@ -46860,7 +46860,7 @@ toughness=2
 [/card]
 [card]
 name=Krark-Clan Ironworks
-auto={S(artifact|myBattlefield)}:Add:{2}
+auto={S(artifact|myBattlefield)}:add{2}
 text=Sacrifice an artifact: Add {2} to your mana pool.
 mana={4}
 type=Artifact
@@ -50917,7 +50917,7 @@ toughness=2
 [/card]
 [card]
 name=Magus of the Coffers
-auto={2}{T}:foreach(swamp|myBattlefield) Add:{B}
+auto={2}{T}:foreach(swamp|myBattlefield) add{B}
 text={2}, {T}: Add {B} to your mana pool for each Swamp you control.
 mana={4}{B}
 type=Creature
@@ -51002,8 +51002,8 @@ toughness=1
 [/card]
 [card]
 name=Magus of the Vineyard
-auto=@each my firstmain:add:{G}{G}
-auto=@each opponent firstmain:add:{G}{G} opponent
+auto=@each my firstmain:add{G}{G}
+auto=@each opponent firstmain:add{G}{G} opponent
 text=At the beginning of each player's precombat main phase, add {G}{G} to that player's mana pool.
 mana={G}
 type=Creature
@@ -51215,7 +51215,7 @@ type=Enchantment
 [/card]
 [card]
 name=Mana Geyser
-auto=foreach(land[tapped]|opponentBattlefield) add:{R}
+auto=foreach(land[tapped]|opponentBattlefield) add{R}
 text=Add {R} to your mana pool for each tapped land your opponents control.
 mana={3}{R}{R}
 type=Sorcery
@@ -53402,7 +53402,7 @@ toughness=2
 [/card]
 [card]
 name=Millikin
-auto={M}{T}:Add:{1}
+auto={M}{T}:add{1}
 text={T}, Put the top card of your library into your graveyard: Add {1} to your mana pool.
 mana={2}
 type=Artifact Creature
@@ -60936,11 +60936,11 @@ type=Sorcery
 [card]
 name=Paradise Mantle
 auto={1}:equip
-auto=teach(creature) {T}:Add:{W}
-auto=teach(creature) {T}:Add:{U}
-auto=teach(creature) {T}:Add:{B}
-auto=teach(creature) {T}:Add:{R}
-auto=teach(creature) {T}:Add:{G}
+auto=teach(creature) {T}:add{W}
+auto=teach(creature) {T}:add{U}
+auto=teach(creature) {T}:add{B}
+auto=teach(creature) {T}:add{R}
+auto=teach(creature) {T}:add{G}
 text=Equipped creature has "{T}: Add one mana of any color to your mana pool." -- Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery.)
 mana={0}
 type=Artifact
@@ -64031,7 +64031,7 @@ toughness=1
 [/card]
 [card]
 name=Priest of Gix
-auto=Add:{B}{B}{B}
+auto=add{B}{B}{B}
 text=When Priest of Gix enters the battlefield, add {B}{B}{B} to your mana pool.
 mana={2}{B}
 type=Creature
@@ -64041,7 +64041,7 @@ toughness=1
 [/card]
 [card]
 name=Priest of Titania
-auto={T}:foreach(elf)add:{G}
+auto={T}:foreach(elf) add{G}
 text={T}: Add {G} to your mana pool for each Elf on the battlefield.
 mana={1}{G}
 type=Creature
@@ -66604,7 +66604,7 @@ toughness=3
 [card]
 name=Rasputin Dreamweaver
 auto=counter(0/0,7,Dream)
-auto={C(0/0,-1,Dream)}:Add:{1}
+auto={C(0/0,-1,Dream)}:add{1}
 auto={C(0/0,-1,Dream)}:prevent:1 all(this)
 auto=@each my beginofturn sourcenottap:phaseaction[upkeep] this(counter{0/0.1.Dream}<7) counter(0/0,1,Dream)
 text=Rasputin Dreamweaver enters the battlefield with seven dream counters on it. -- Remove a dream counter from Rasputin: Add {1} to your mana pool. -- Remove a dream counter from Rasputin: Prevent the next 1 damage that would be dealt to Rasputin this turn. -- At the beginning of your upkeep, if Rasputin started the turn untapped, put a dream counter on it. -- Rasputin can't have more than seven dream counters on it.
@@ -69648,7 +69648,7 @@ type=Artifact
 [/card]
 [card]
 name=Rofellos, Llanowar Emissary
-auto={T}:foreach(forest|myBattlefield) add:{G}
+auto={T}:foreach(forest|myBattlefield) add{G}
 text={T}: Add {G} to your mana pool for each Forest you control.
 mana={G}{G}
 type=Legendary Creature
@@ -73450,7 +73450,7 @@ toughness=2
 [/card]
 [card]
 name=Seething Song
-auto=Add:{R}{R}{R}{R}{R}
+auto=Add{R}{R}{R}{R}{R}
 text=Add {R}{R}{R}{R}{R} to your mana pool.
 mana={2}{R}
 type=Instant
@@ -74205,7 +74205,7 @@ type=Enchantment
 [/card]
 [card]
 name=Serra's Sanctum
-auto={T}:foreach(enchantment|myBattlefield)add:{W}
+auto={T}:foreach(enchantment|myBattlefield) add{W}
 text={T}: Add {W} to your mana pool for each enchantment you control.
 type=Legendary Land
 [/card]
@@ -78932,7 +78932,7 @@ type=Enchantment
 [/card]
 [card]
 name=Songs of the Damned
-auto=foreach(creature|mygraveyard) add:{B}
+auto=foreach(creature|mygraveyard) add{B}
 text=Add {B} to your mana pool for each creature card in your graveyard.
 mana={B}
 type=Instant
@@ -80881,7 +80881,7 @@ toughness=1
 [/card]
 [card]
 name=Spoils of Evil
-auto=foreach(artifact,creature|opponentgraveyard) add:{1} controller
+auto=foreach(artifact,creature|opponentgraveyard) add{1} controller
 auto=foreach(artifact,creature|opponentgraveyard) life:1 controller
 text=For each artifact or creature card in target opponent's graveyard, add {1} to your mana pool and you gain 1 life.
 mana={2}{B}
@@ -88058,7 +88058,7 @@ type=Land
 [/card]
 [card]
 name=Tolarian Academy
-auto={T}:foreach(artifact|myBattlefield)add:{U}
+auto={T}:foreach(artifact|myBattlefield) add{U}
 text={T}: Add {U} to your mana pool for each artifact you control.
 type=Legendary Land
 [/card]
@@ -90052,7 +90052,7 @@ type=Instant
 name=Turn to Dust
 target=equipment
 auto=destroy
-auto=add:{G}
+auto=add{G}
 text=Destroy target Equipment. Add {G} to your mana pool.
 mana={G}
 type=Instant
