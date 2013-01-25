@@ -479,6 +479,7 @@ northern_paladin2.txt
 Nyxathid.txt
 ondu_cleric.txt
 OneDozenEyes.txt
+Oracle_of_Nectars.txt
 orcish_artillery.txt
 orcish_lumberjack.txt
 orims_chant_i595.txt
@@ -618,6 +619,7 @@ sylvan_scrying_i195.txt
 symbiotic_wurm.txt
 tangle_golem.txt
 tanglesap.txt
+Taunting_Elf.txt
 telekinetic_sliver.txt
 terror.txt
 terror2.txt

@@ -1,0 +1,29 @@
+#Testing Taunting Elf
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Taunting Elf,Grizzly Bears
+[PLAYER2]
+inplay:2580,2550,Abbey Griffin
+life:20
+[DO]
+next
+#Beginofcombat
+next
+#Combatattackers
+Taunting Elf
+Grizzly Bears
+next
+next
+next
+next
+next
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:Grizzly Bears
+graveyard:Taunting Elf
+[PLAYER2]
+inplay:*,*,*
+life:18
+[END]
