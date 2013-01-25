@@ -73,7 +73,7 @@ protected:
     list<int> usedRandomValues;
     bool log;
 public:
-    RandomGenerator(unsigned int seed = -1, bool doLog = false) : log(doLog) { if(seed != -1) srand(seed);};
+    RandomGenerator(unsigned int seed = -1, bool doLog = false) : log(doLog) { if(seed != (unsigned int)-1) srand(seed);};
     void loadRandValues(string s);
     ostream& saveUsedRandValues(ostream& out) const;
     ostream& saveLoadedRandValues(ostream& out);
