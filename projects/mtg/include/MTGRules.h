@@ -247,6 +247,7 @@ public:
     TargetChooser * tcb;
     MTGAbility * blocker;
     MTGAbility * blockAbility;
+    int receiveEvent(WEvent * event);
     int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
     int reactToClick(MTGCardInstance * card);
     virtual ostream& toString(ostream& out) const;

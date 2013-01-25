@@ -785,6 +785,19 @@ MTGCardInstance * MTGInPlay::getNextLurer(MTGCardInstance * previous)
     return NULL;
 }
 
+MTGCardInstance * MTGInPlay::findALurer()
+{
+    for (int i = 0; i < nb_cards; i++)
+    {
+        MTGCardInstance * current = cards[i];
+        if (current->isAttacker() && current->has(Constants::LURE))
+        {
+            return current;
+        }
+    }
+    return NULL;
+}
+
 void MTGInPlay::untapAll()
 {
     int i;

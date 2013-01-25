@@ -1499,6 +1499,33 @@ PermanentAbility(observer, _id)
     blockAbility = NULL;
 }
 
+int MTGBlockRule::receiveEvent(WEvent *e)
+{
+    if (WEventCombatStepChange * event = dynamic_cast<WEventCombatStepChange*>(e))
+    {
+        if (TRIGGERS == event->step)
+        {
+            Player * p = game->currentPlayer;
+            MTGCardInstance * lurer = p->game->inPlay->findALurer();
+            if(lurer)
+            {
+                MTGGameZone * z = p->opponent()->game->inPlay;
+                for (int i = 0; i < z->nb_cards; i++)
+                {
+                    MTGCardInstance * card = z->cards[i];
+                    if ((card->defenser && !card->defenser->has(Constants::LURE))||!card->defenser)
+                        if(card->canBlock(lurer))
+                            card->setDefenser(lurer);
+                    //force a block on a lurer, the player has a chance to set his own choice on multiple lures
+                    //but this action can not be ignored.
+                }
+            }
+            return 1;
+        }
+    }
+    return 0;
+}
+
 int MTGBlockRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
 {
     if (currentPhase == MTG_PHASE_COMBATBLOCKERS && !game->isInterrupting
@@ -1549,14 +1576,10 @@ int MTGBlockRule::reactToClick(MTGCardInstance * card)
     else
     {
         bool lured = false;
-        int lureFound = 0;
-        MTGCardInstance * lurers = NULL;
-        while(!lureFound)
+        MTGCardInstance * lurers = game->currentPlayer->game->inPlay->findALurer();
+        if(lurers)
         {
-            lurers = game->currentPlayer->game->inPlay->getNextLurer(lurers);
-            lureFound = (lurers == NULL || lurers->attacker);
-            if(lurers)
-                lured = true;
+            lured = true;
         }
         while (!result)
         {
