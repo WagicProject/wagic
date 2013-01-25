@@ -5325,7 +5325,9 @@ public:
     int receiveEvent(WEvent * event)
     {
        WEventZoneChange * enters = (WEventZoneChange *) event;
-       if (enters->to == game->currentlyActing()->game->inPlay && game->currentlyActing() == source->controller() && enters->card->isCreature())
+       if (enters->to == game->currentlyActing()->game->inPlay 
+           && (enters->from != game->currentlyActing()->opponent()->game->inPlay && enters->from != game->currentlyActing()->game->inPlay) //cards changing from inplay to inplay don't re-enter battlefield
+           && game->currentlyActing() == source->controller() && enters->card->isCreature())
         {
             if(enters->card != source && (enters->card->power > source->power || enters->card->toughness > source->toughness))
             {
