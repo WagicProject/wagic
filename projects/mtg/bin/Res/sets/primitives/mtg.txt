@@ -24225,7 +24225,7 @@ toughness=1
 [card]
 name=Dwell on the Past
 target=player
-auto=ability$!name(return to library) target(<upto:4>*|mygraveyard) moveTo(ownerlibrary) && shuffle!$ targetedplayer
+auto=ability$!choice name(shuffle back) target(<upto:4>*|mygraveyard) moveTo(ownerlibrary) && shuffle!$ targetedplayer
 text=Target player shuffles up to four target cards from his or her graveyard into his or her library.
 mana={G}
 type=Sorcery
@@ -47031,7 +47031,7 @@ toughness=6
 [card]
 name=Krosan Reclamation
 target=player
-auto=ability$!(shuffle 2 cards into library) target(<upto:2>*|mygraveyard) moveTo(ownerlibrary) && shuffle!$ targetedplayer
+auto=ability$!choice name(shuffle back) target(<upto:2>*|mygraveyard) moveTo(ownerlibrary) && shuffle!$ targetedplayer
 flashback={1}{G}
 text=Target player shuffles up to two target cards from his or her graveyard into his or her library. -- Flashback {1}{G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={1}{G}
@@ -49460,7 +49460,7 @@ toughness=6
 [/card]
 [card]
 name=Loaming Shaman
-auto=target(player) ability$!name(shuffle back) target(<anyamount>*|mygraveyard) moveTo(ownerlibrary) && shuffle!$ targetedplayer
+auto=target(player) ability$!choice name(shuffle back) target(<anyamount>*|mygraveyard) moveTo(ownerlibrary) && shuffle!$ targetedplayer
 text=When Loaming Shaman enters the battlefield, target player shuffles any number of target cards from his or her graveyard into his or her library.
 mana={2}{G}
 type=Creature
@@ -52577,7 +52577,7 @@ type=Sorcery
 [card]
 name=Memory's Journey
 target=player
-auto=ability$!name(shuffle back) target(<upto:3>*|mygraveyard) moveTo(ownerlibrary) && shuffle!$ targetedplayer
+auto=ability$!choice name(shuffle back) target(<upto:3>*|mygraveyard) moveTo(ownerlibrary) && shuffle!$ targetedplayer
 flashback={G}
 text=Target player shuffles up to three target cards from his or her graveyard into his or her library. -- Flashback {G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={1}{U}
@@ -82713,7 +82713,7 @@ type=Sorcery
 [card]
 name=Stream of Consciousness
 target=player
-auto=ability$!name(return to library) target(<upto:4>*|mygraveyard) moveTo(ownerlibrary) && shuffle!$ targetedplayer
+auto=ability$!choice name(shuffle back) target(<upto:4>*|mygraveyard) moveTo(ownerlibrary) && shuffle!$ targetedplayer
 text=Target player shuffles up to four target cards from his or her graveyard into his or her library.
 mana={1}{U}
 type=Instant
