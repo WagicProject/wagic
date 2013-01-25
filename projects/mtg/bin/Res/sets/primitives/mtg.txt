@@ -51694,7 +51694,7 @@ toughness=1
 [card]
 name=Markov Warlord
 abilities=haste
-auto=cantblock target(<upto:2>creature)
+auto=cantblock target(<upto:2>creature) ueot
 text=Haste -- When Markov Warlord enters the battlefield, up to two target creatures can't block this turn.
 mana={5}{R}
 type=Creature
@@ -76594,7 +76594,7 @@ toughness=9
 [card]
 name=Skarrg Guildmage
 auto={R}{G}:all(creature|myBattlefield) trample ueot
-auto={1}{R}{G}:target(land|mybattlefield) transforms((Elemental Creature,4/4)) ueot
+auto={1}{R}{G}:target(land|mybattlefield) transforms((Elemental Creature,setpower=4,settoughness=4)) ueot
 text={R}{G}: Creatures you control gain trample until end of turn. -- {1}{R}{G}: Target land you control becomes a 4/4 Elemental creature until end of turn. It's still a land.
 mana={R}{G}
 type=Creature
