@@ -17,6 +17,8 @@ typedef void(*processCmd)(void*, stringstream&, stringstream&);
 
 class JNetwork {
 private:
+private:
+  boost::thread *mpWorkerThread;
 	struct CommandStruc{
 		void* object;
 		string command;
@@ -31,13 +33,10 @@ private:
   stringstream received;
   stringstream toSend;
   static map<string, CommandStruc> sCommandMap;
-  static JNetwork* mInstance;
 
 public:
   JNetwork();
   ~JNetwork();
-  static JNetwork* GetInstance();
-  static void Destroy();
   void Update();
 
   int connect(string serverIP = "");
@@ -49,9 +48,6 @@ public:
 #endif
   bool sendCommand(const string& command, const string& payload = "", const string& suffix = "Request");
   static void registerCommand(string command, void* object, processCmd processRequest, processCmd processResponse);
-
-private:
-  boost::thread *mpWorkerThread;
 };
 
 #endif

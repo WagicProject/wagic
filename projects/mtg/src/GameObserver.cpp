@@ -79,7 +79,7 @@ GameObserver::~GameObserver()
 }
 
 GameObserver::GameObserver(WResourceManager *output, JGE* input)
-    : randomGenerator(true), mResourceManager(output), mJGE(input)
+    : mSeed((unsigned int)time(0)), randomGenerator(mSeed, true), mResourceManager(output), mJGE(input)
 
 {
     ExtraRules = new MTGCardInstance[2]();
@@ -1491,6 +1491,9 @@ ostream& operator<<(ostream& out, const GameObserver& g)
     }
     else
     {
+        out << "seed:";
+        out << g.mSeed;
+        out << endl;
         out << "rvalues:";
         out << g.randomGenerator.saveUsedRandValues(out);
         out << endl;
@@ -1531,13 +1534,14 @@ bool GameObserver::parseLine(const string& s)
     return false;
 }
 
-bool GameObserver::load(const string& ss, bool undo
+bool GameObserver::load(const string& ss, bool undo, bool swapPlayers
 #ifdef TESTSUITE
                     , TestSuiteGame* testgame
 #endif
                         )
 {
-    int state = -1;
+    bool currentPlayerSet = false;
+	int state = -1;
     string s;
     stringstream stream(ss);
 
@@ -1555,7 +1559,8 @@ bool GameObserver::load(const string& ss, bool undo
         std::transform(s.begin(), s.end(), s.begin(), ::tolower);
         if (s.find("seed ") == 0)
         {
-//            seed = atoi(s.substr(5).c_str());
+            mSeed = atoi(s.substr(5).c_str());
+			randomGenerator.setSeed(mSeed);
             continue;
         }
         if (s.find("rvalues:") == 0)
@@ -1576,7 +1581,7 @@ bool GameObserver::load(const string& ss, bool undo
             }
             else
             {
-                parseLine(s);
+                currentPlayerSet  = parseLine(s);
             }
             break;
         case 1:
@@ -1624,7 +1629,14 @@ bool GameObserver::load(const string& ss, bool undo
         case 3:
             if (s.compare("[end]") == 0)
             {
-                turn = 0;
+				if(swapPlayers) {
+					std::swap(players[0], players[1]);
+					currentPlayerId = (currentPlayerId + 1) % players.size();
+					currentPlayer = players[currentPlayerId];
+					currentActionPlayer = currentPlayer;
+				}
+
+				turn = 0;
                 mLayers = NEW DuelLayers();
                 mLayers->init(this);
                 currentPlayer = players[currentPlayerId];
@@ -1634,7 +1646,7 @@ bool GameObserver::load(const string& ss, bool undo
                 // take a snapshot before processing the actions
                 resetStartupGame();
 
-                mRules->initGame(this);
+                mRules->initGame(this, currentPlayerSet);
                 phaseRing->goToPhase(0, currentPlayer, false);
                 phaseRing->goToPhase(mCurrentGamePhase, currentPlayer);
 
@@ -1904,17 +1916,6 @@ void GameObserver::loadPlayer(int playerId, PlayerType playerType, int decknb, b
                 loadPlayer(playerId, NEW HumanPlayer(this, deckFile, deckFileSmall, premadeDeck));
             }
 		}
-#ifdef NETWORK_SUPPORT
-		else if(playerType == PLAYER_TYPE_REMOTE)
-        {   
-			//Player 0 is the human player
-            ProxyPlayer* mProxy;
-			mProxy = NEW ProxyPlayer(players[0], JNetwork::GetInstance());
-				
-			//Player 1 is the remote player
-            loadPlayer(playerId, NEW RemotePlayer(this, JNetwork::GetInstance()));
-        }
-#endif //NETWORK_SUPPORT
         else
         { //AI Player, chooses deck
             AIPlayerFactory playerCreator;
@@ -2014,9 +2015,8 @@ void NetworkGameObserver::synchronize()
 void NetworkGameObserver::synchronize(void*pxThis, stringstream& in, stringstream& out)
 {
 	NetworkGameObserver* pThis = (NetworkGameObserver*)pxThis;
-	pThis->load(in.str());
 	// now, we need to swap players as player1 for host is player 2 for guest
-	std::swap(pThis->players[0], pThis->players[1]);
+	pThis->load(in.str(), false, true);
 }
 
 void NetworkGameObserver::sendAction(void*pxThis, stringstream& in, stringstream& out)

@@ -34,7 +34,6 @@
 #include "../include/JSocket.h"
 
 map<string, JNetwork::CommandStruc> JNetwork::sCommandMap;
-JNetwork* JNetwork::mInstance = NULL;
 
 bool JNetwork::isConnected(){
   if (connected_to_ap !=1 || !socket) return false;
@@ -61,21 +60,6 @@ JNetwork::~JNetwork()
   }
   if(socket)
     delete socket;
-}
-
-JNetwork* JNetwork::GetInstance()
-{
-    if (mInstance == NULL) mInstance = new JNetwork();
-    return mInstance;
-}
-
-void JNetwork::Destroy()
-{
-    if (mInstance)
-    {
-        delete mInstance;
-        mInstance = NULL;
-    }
 }
 
 bool JNetwork::sendCommand(const string& xString, const string& payload, const string& suffix)

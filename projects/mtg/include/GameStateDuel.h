@@ -31,7 +31,6 @@ private:
 
     Credits * credits;
     int mGamePhase;
-    Player * mCurrentPlayer;
     GameObserver * game;
     DeckMenu * deckmenu;
     DeckMenu * opponentMenu;

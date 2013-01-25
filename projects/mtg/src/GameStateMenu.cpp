@@ -843,7 +843,7 @@ void GameStateMenu::ButtonPressed(int controllerId, int controlId)
         {
             if(!mParent->mpNetwork)
             {
-				mParent->mpNetwork = JNetwork::GetInstance();
+				mParent->mpNetwork = new JNetwork();
             }
             mParent->mpNetwork->connect();
             subMenuController->Close();
@@ -854,7 +854,7 @@ void GameStateMenu::ButtonPressed(int controllerId, int controlId)
         {
             if(!mParent->mpNetwork)
             {
-                mParent->mpNetwork = JNetwork::GetInstance();
+                mParent->mpNetwork = new JNetwork();
             }
             // FIXME needs to be able to specify the server ip
             mParent->mpNetwork->connect("127.0.0.1");
@@ -882,8 +882,7 @@ void GameStateMenu::ButtonPressed(int controllerId, int controlId)
                 subMenuController->Close();
             }
 #ifdef NETWORK_SUPPORT
-			JNetwork::Destroy();
-			mParent->mpNetwork=0;
+			SAFE_DELETE(mParent->mpNetwork);
 #endif //NETWORK_SUPPORT
             currentState = MENU_STATE_MAJOR_MAINMENU | MENU_STATE_MINOR_SUBMENU_CLOSING;
             break;

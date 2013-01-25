@@ -40,6 +40,7 @@ class GameObserver{
   list<string> loadingList;
   list<string>::iterator loadingite;
   RandomGenerator randomGenerator;
+  unsigned int mSeed;
   WResourceManager* mResourceManager;
   JGE* mJGE;
   DeckManager* mDeckManager;
@@ -143,7 +144,7 @@ class GameObserver{
       logAction(players[playerId], s);
   };
   void logAction(MTGCardInstance* card, MTGGameZone* zone, size_t index, int result);
-  bool load(const string& s, bool undo = false
+  bool load(const string& s, bool undo = false, bool swapPlayers = false
 #ifdef TESTSUITE
             , TestSuiteGame* testgame = 0
 #endif

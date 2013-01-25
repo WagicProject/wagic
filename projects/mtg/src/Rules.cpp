@@ -360,7 +360,7 @@ void Rules::initPlayers(GameObserver *g)
     }
 }
 
-void Rules::initGame(GameObserver *g)
+void Rules::initGame(GameObserver *g, bool currentPlayerSet)
 {
     DebugTrace("RULES Init Game\n");
 
@@ -372,9 +372,12 @@ void Rules::initGame(GameObserver *g)
         if(OptionWhosFirst::WHO_O == options[Options::FIRSTPLAYER].number)
             initState.player = 1;
     }
-    g->currentPlayer = g->players[initState.player];
-    g->currentActionPlayer = g->currentPlayer;
-    g->currentPlayerId = initState.player;
+	if(!currentPlayerSet)
+	{
+		g->currentPlayerId = initState.player;
+	}
+	g->currentPlayer =  g->players[g->currentPlayerId];
+	g->currentActionPlayer = g->currentPlayer;
     g->phaseRing->goToPhase(0, g->currentPlayer, false);
     g->phaseRing->goToPhase(initState.phase, g->currentPlayer);
     g->setCurrentGamePhase(initState.phase);

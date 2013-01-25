@@ -32,6 +32,8 @@ public:
   void Disconnect();
 
 private:
+  // socket state
+  SOCKET_STATE state;
   // socket creation when server accepts a connection
   JSocket(int fd);
   // convert the socket into non-blocking state
@@ -42,8 +44,6 @@ private:
 #elif LINUX
   int mfd;
 #endif
-  // socket state
-  SOCKET_STATE state;
 };
 
 #endif
