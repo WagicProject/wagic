@@ -1646,7 +1646,7 @@ bool GameObserver::load(const string& ss, bool undo, bool swapPlayers
                 // take a snapshot before processing the actions
                 resetStartupGame();
 
-                mRules->initGame(this, currentPlayerSet);
+                if(mRules) mRules->initGame(this, currentPlayerSet);
                 phaseRing->goToPhase(0, currentPlayer, false);
                 phaseRing->goToPhase(mCurrentGamePhase, currentPlayer);
 
@@ -1655,7 +1655,7 @@ bool GameObserver::load(const string& ss, bool undo, bool swapPlayers
                     testgame->initGame();
 #endif //TESTSUITE
 
-                processActions(undo
+                processActions(undo, swapPlayers
                #ifdef TESTSUITE
                                , testgame
                #endif //TESTSUITE
@@ -1729,7 +1729,7 @@ bool GameObserver::processAction(const string& s, bool swapPlayer)
 	return true;
 }
 
-bool GameObserver::processActions(bool undo
+bool GameObserver::processActions(bool undo, bool swapPlayer
                                   #ifdef TESTSUITE
                                   , TestSuiteGame* testgame
                                   #endif
@@ -1767,7 +1767,7 @@ bool GameObserver::processActions(bool undo
 
     for(loadingite = loadingList.begin(); loadingite != loadingList.end(); loadingite++, cmdIndex++)
     {
-		processAction(*loadingite);
+		processAction(*loadingite, swapPlayer);
 
         size_t nb = actionsList.size();
 
@@ -1954,8 +1954,8 @@ NetworkGameObserver::NetworkGameObserver(JNetwork* pNetwork, WResourceManager* o
 	: GameObserver(output, input), mpNetworkSession(pNetwork), 	mSynchronized(false)
 {
 	mpNetworkSession->registerCommand("loadPlayer", this, loadPlayer, ignoreResponse);
-	mpNetworkSession->registerCommand("synchronize", this, synchronize, ignoreResponse);
-	mpNetworkSession->registerCommand("sendAction", this, sendAction, ignoreResponse);
+	mpNetworkSession->registerCommand("synchronize", this, synchronize, checkSynchro);
+	mpNetworkSession->registerCommand("sendAction", this, sendAction, checkSynchro);
 }
 
 NetworkGameObserver::~NetworkGameObserver()
@@ -2017,6 +2017,19 @@ void NetworkGameObserver::synchronize(void*pxThis, stringstream& in, stringstrea
 	NetworkGameObserver* pThis = (NetworkGameObserver*)pxThis;
 	// now, we need to swap players as player1 for host is player 2 for guest
 	pThis->load(in.str(), false, true);
+	out << *pThis;
+}
+
+
+void NetworkGameObserver::checkSynchro(void*pxThis, stringstream& in, stringstream& out)
+{
+	NetworkGameObserver* pThis = (NetworkGameObserver*)pxThis;
+	
+	GameObserver aGame;
+	aGame.mRules = pThis->mRules;
+	aGame.load(in.str(), false, true);
+
+	assert(aGame == *pThis);
 }
 
 void NetworkGameObserver::sendAction(void*pxThis, stringstream& in, stringstream& out)
@@ -2026,6 +2039,7 @@ void NetworkGameObserver::sendAction(void*pxThis, stringstream& in, stringstream
     pThis->mForwardAction = false;
 	pThis->processAction(in.str(), true);
     pThis->mForwardAction = true;
+	out << *pThis;
 }
 
 void NetworkGameObserver::logAction(const string& s)

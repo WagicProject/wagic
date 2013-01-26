@@ -30,7 +30,7 @@ using namespace std;
 
 class GameObserver{
  protected:
-
+  unsigned int mSeed;
   GameType mGameType;
   MTGCardInstance * cardWaitingForTargets;
   queue<WEvent *> eventsQueue;
@@ -40,7 +40,6 @@ class GameObserver{
   list<string> loadingList;
   list<string>::iterator loadingite;
   RandomGenerator randomGenerator;
-  unsigned int mSeed;
   WResourceManager* mResourceManager;
   JGE* mJGE;
   DeckManager* mDeckManager;
@@ -54,7 +53,7 @@ class GameObserver{
   bool parseLine(const string& s);
   virtual void logAction(const string& s);
   bool processAction(const string& s, bool swapPlayer = false);
-  bool processActions(bool undo
+  bool processActions(bool undo, bool swapPlayer
                     #ifdef TESTSUITE
                     , TestSuiteGame* testgame
                     #endif
@@ -201,6 +200,7 @@ public:
 	static void loadPlayer(void*pThis, stringstream& in, stringstream& out);
 	static void sendAction(void*pThis, stringstream& in, stringstream& out);
 	static void synchronize(void*pThis, stringstream& in, stringstream& out);
+	static void checkSynchro(void*pxThis, stringstream& in, stringstream& out);
 	static void ignoreResponse(void*pThis, stringstream& in, stringstream& out){};
 };
 #endif
