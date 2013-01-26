@@ -2171,13 +2171,17 @@ WEvent * MTGDredgeRule::replace(WEvent * event)
                         {
                             MTGAbility * otherA = NULL;
                             if(DR->DrawerOfCard == p)
+                            {
                                 if(DR->replacementAbility->oneShot)
+                                {
                                     selection.push_back(DR->replacementAbility->clone());
+                                }
                                 else
                                 {
                                     otherA = NEW GenericAddToGame(game, game->mLayers->actionLayer()->getMaxId(),DR->replacementAbility->source,NULL,DR->replacementAbility->clone());
                                     selection.push_back(otherA);
                                 }
+                            }
                         }
                     }
 
