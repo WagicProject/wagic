@@ -1501,9 +1501,9 @@ PermanentAbility(observer, _id)
 
 int MTGBlockRule::receiveEvent(WEvent *e)
 {
-    if (WEventCombatStepChange * event = dynamic_cast<WEventCombatStepChange*>(e))
+    if (WEventBlockersChosen * event = dynamic_cast<WEventBlockersChosen*>(e))
     {
-        if (TRIGGERS == event->step)
+        if (event)
         {
             Player * p = game->currentPlayer;
             MTGCardInstance * lurer = p->game->inPlay->findALurer();
