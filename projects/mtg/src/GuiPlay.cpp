@@ -6,6 +6,7 @@
 #include "Subtypes.h"
 #include "Trash.h"
 #include "ModRules.h"
+#include "DuelLayers.h"
 
 #define CARD_WIDTH (31)
 
@@ -123,7 +124,7 @@ void GuiPlay::BattleField::reset(float x, float y)
 void GuiPlay::BattleField::EnstackAttacker(CardView* card)
 {
     card->x = CARD_WIDTH + 20 + (currentAttacker * (HORZWIDTH) / (attackers+1));
-    card->y = baseY + (card->card->getObserver()->players[0] == card->card->controller() ? 20 + y : -20 - y);
+	card->y = baseY + (card->card->getObserver()->getView()->getRenderedPlayer() == card->card->controller() ? 20 + y : -20 - y);
     ++currentAttacker;
     //  JRenderer::GetInstance()->RenderQuad(WResourceManager::Instance()->GetQuad("BattleIcon"), card->actX, card->actY, 0, 0.5 + 0.1 * sinf(JGE::GetInstance()->GetTime()), 0.5 + 0.1 * sinf(JGE::GetInstance()->GetTime()));
 }
@@ -138,7 +139,7 @@ void GuiPlay::BattleField::EnstackBlocker(CardView* card)
         offset = c->defenser->getDefenserRank(c);
         card->x = c->defenser->view->x + 5 * offset;
     }
-    card->y = baseY + (card->card->getObserver()->players[0] == card->card->controller() ? 20 + y + 6 * offset : -20 - y + 6 * offset);
+    card->y = baseY + (card->card->getObserver()->getView()->getRenderedPlayer() == card->card->controller() ? 20 + y + 6 * offset : -20 - y + 6 * offset);
 }
 void GuiPlay::BattleField::Update(float dt)
 {
@@ -162,8 +163,8 @@ void GuiPlay::BattleField::Render()
         JRenderer::GetInstance()->FillRect(44, SCREEN_HEIGHT / 2 + 10 - height / 2, 318, height, ARGB(127, red, 0, 0));
 }
 
-GuiPlay::GuiPlay(GameObserver* game) :
-    GuiLayer(game)
+GuiPlay::GuiPlay(DuelLayers* view) :
+    GuiLayer(view)
 {
     end_spells = cards.end();
 }
@@ -192,7 +193,7 @@ void GuiPlay::Replace()
         {
             if((!(*it)->card->hasSubtype(Subtypes::TYPE_AURA)|| ((*it)->card->hasSubtype(Subtypes::TYPE_AURA) && (*it)->card->playerTarget)) && !(*it)->card->hasType(Subtypes::TYPE_PLANESWALKER))
             {
-                if (observer->players[0] == (*it)->card->controller())
+				if (mpDuelLayers->getRenderedPlayer() == (*it)->card->controller())
                     ++selfSpellsN;
                 else
                     ++opponentSpellsN;
@@ -206,14 +207,14 @@ void GuiPlay::Replace()
                 ++battleFieldAttackersN;
             else if ((*it)->card->isDefenser())
                 ++battleFieldBlockersN;
-            else if (observer->players[0] == (*it)->card->controller())
+            else if (mpDuelLayers->getRenderedPlayer() == (*it)->card->controller())
                 ++selfCreaturesN;
             else
                 ++opponentCreaturesN;
         }
         else if ((*it)->card->isLand() || (*it)->card->hasType(Subtypes::TYPE_PLANESWALKER))
         {
-            if (observer->players[0] == (*it)->card->controller())
+            if (mpDuelLayers->getRenderedPlayer() == (*it)->card->controller())
                 ++selfLandsN;
             else
                 ++opponentLandsN;
@@ -228,7 +229,7 @@ void GuiPlay::Replace()
         {
             if((!(*it)->card->hasSubtype(Subtypes::TYPE_AURA)|| ((*it)->card->hasSubtype(Subtypes::TYPE_AURA) && (*it)->card->playerTarget)) && !(*it)->card->hasType(Subtypes::TYPE_PLANESWALKER))
             {
-                if (observer->players[0] == (*it)->card->controller())
+                if (mpDuelLayers->getRenderedPlayer() == (*it)->card->controller())
                     selfSpells.Enstack(*it);
                 else
                     opponentSpells.Enstack(*it);
@@ -252,14 +253,14 @@ void GuiPlay::Replace()
                 battleField.EnstackAttacker(*it);
             else if ((*it)->card->isDefenser())
                 battleField.EnstackBlocker(*it);
-            else if (observer->players[0] == (*it)->card->controller())
+            else if (mpDuelLayers->getRenderedPlayer() == (*it)->card->controller())
                 selfCreatures.Enstack(*it);
             else
                 opponentCreatures.Enstack(*it);
         }
         else if ((*it)->card->isLand())
         {
-            if (observer->players[0] == (*it)->card->controller())
+            if (mpDuelLayers->getRenderedPlayer() == (*it)->card->controller())
                 selfLands.Enstack(*it);
             else
                 opponentLands.Enstack(*it);
@@ -271,7 +272,7 @@ void GuiPlay::Replace()
     {
         if ((*it)->card->hasType(Subtypes::TYPE_PLANESWALKER))
         {
-            if (observer->players[0] == (*it)->card->controller())
+            if (mpDuelLayers->getRenderedPlayer() == (*it)->card->controller())
                 selfLands.Enstack(*it);
             else
                 opponentLands.Enstack(*it);
@@ -287,14 +288,14 @@ void GuiPlay::Render()
     {
         if ((*it)->card->isLand())
         {
-            if (observer->players[0] == (*it)->card->controller())
+            if (mpDuelLayers->getRenderedPlayer() == (*it)->card->controller())
                 selfLands.Render(*it, cards.begin(), end_spells);
             else
                 opponentLands.Render(*it, cards.begin(), end_spells);
         }
         else if ((*it)->card->isCreature())
         {
-            if (observer->players[0] == (*it)->card->controller())
+            if (mpDuelLayers->getRenderedPlayer() == (*it)->card->controller())
                 selfCreatures.Render(*it, cards.begin(), end_spells);
             else
                 opponentCreatures.Render(*it, cards.begin(), end_spells);
@@ -303,7 +304,7 @@ void GuiPlay::Render()
         {
             if (!(*it)->card->target)
             {
-                if (observer->players[0] == (*it)->card->controller())
+                if (mpDuelLayers->getRenderedPlayer() == (*it)->card->controller())
                     selfSpells.Render(*it, cards.begin(), end_spells);
                 else
                     opponentSpells.Render(*it, cards.begin(), end_spells);
@@ -313,7 +314,7 @@ void GuiPlay::Render()
         {
             if (!(*it)->card->target)
             {
-                if (observer->players[0] == (*it)->card->controller())
+                if (mpDuelLayers->getRenderedPlayer() == (*it)->card->controller())
                     selfPlaneswalker.Render(*it, cards.begin(), end_spells);
                 else
                     opponentPlaneswalker.Render(*it, cards.begin(), end_spells);

@@ -81,7 +81,7 @@ protected:
     vector<CardView*> cards;
 
 public:
-    GuiPlay(GameObserver*);
+    GuiPlay(DuelLayers*);
     ~GuiPlay();
     virtual void Render();
     void Replace();

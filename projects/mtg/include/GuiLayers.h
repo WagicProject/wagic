@@ -11,12 +11,14 @@
 
 class GameObserver;
 class Player;
+class DuelLayers;
 
 class GuiLayer
 {
 protected:
     JButton mActionButton;
     GameObserver* observer;
+    DuelLayers* mpDuelLayers;
 public:
     int mCurr;
     vector<JGuiObject *> mObjects;
@@ -28,6 +30,7 @@ public:
     virtual void resetObjects();
     int getMaxId();
     GuiLayer(GameObserver *observer);
+    GuiLayer(DuelLayers *duelLayers);
     virtual ~GuiLayer();
     virtual void Update(float dt);
     virtual bool CheckUserInput(JButton key)

@@ -13,32 +13,6 @@
 #include "Trash.h"
 #include "DuelLayers.h"
 
-void DuelLayers::init(GameObserver* go)
-{
-    observer = go;
-    mCardSelector = NEW CardSelector(go, this);
-    //1 Action Layer
-    action = NEW ActionLayer(go);
-    action->Add(phaseHandler = NEW MTGGamePhase(go, action->getMaxId())); //Phases handler
-    action->Add(NEW OtherAbilitiesEventReceiver(go, -1)); //autohand, etc... handler
-    //Other display elements
-    action->Add(NEW HUDDisplay(go, -1));
-
-    Add(NEW GuiMana(20, 20, go->players[1]));
-    Add(NEW GuiMana(440, 20, go->players[0]));
-    Add(stack = NEW ActionStack(go));
-    Add(combat = NEW GuiCombat(go));
-    Add(action);
-    Add(mCardSelector);
-    Add(hand = NEW GuiHandSelf(go, go->players[0]->game->hand));
-    Add(avatars = NEW GuiAvatars(go));
-    Add(NEW GuiHandOpponent(go, go->players[1]->game->hand));
-    Add(NEW GuiPlay(go));
-    Add(NEW GuiPhaseBar(go));
-    Add(NEW GuiFrame(go));
-    Add(NEW GuiBackground(go));
-}
-
 void DuelLayers::CheckUserInput(int isAI)
 {
     JButton key;
@@ -111,9 +85,32 @@ GuiAvatars * DuelLayers::GetAvatars()
     return avatars;
 }
 
-DuelLayers::DuelLayers() :
-    nbitems(0)
+DuelLayers::DuelLayers(GameObserver* go, int playerViewIndex) :
+    nbitems(0), mPlayerViewIndex(playerViewIndex)
 {
+    observer = go;
+	observer->mLayers = this;
+    mCardSelector = NEW CardSelector(go, this);
+    //1 Action Layer
+    action = NEW ActionLayer(go);
+    action->Add(phaseHandler = NEW MTGGamePhase(go, action->getMaxId())); //Phases handler
+    action->Add(NEW OtherAbilitiesEventReceiver(go, -1)); //autohand, etc... handler
+    //Other display elements
+    action->Add(NEW HUDDisplay(go, -1));
+
+	Add(NEW GuiMana(20, 20, getRenderedPlayerOpponent()));
+	Add(NEW GuiMana(440, 20, getRenderedPlayer()));
+    Add(stack = NEW ActionStack(go));
+    Add(combat = NEW GuiCombat(go));
+    Add(action);
+    Add(mCardSelector);
+    Add(hand = NEW GuiHandSelf(go, getRenderedPlayer()->game->hand));
+    Add(avatars = NEW GuiAvatars(this));
+    Add(NEW GuiHandOpponent(go, getRenderedPlayerOpponent()->game->hand));
+    Add(NEW GuiPlay(this));
+    Add(NEW GuiPhaseBar(this));
+    Add(NEW GuiFrame(go));
+    Add(NEW GuiBackground(go));
 }
 
 DuelLayers::~DuelLayers()
@@ -216,3 +213,13 @@ float DuelLayers::RightBoundary()
 {
     return MIN (hand->LeftBoundary(), avatars->LeftBoundarySelf());
 }
+
+Player* DuelLayers::getRenderedPlayer()
+{
+	return observer->players[mPlayerViewIndex]; 
+};
+
+Player* DuelLayers::getRenderedPlayerOpponent()
+{ 
+	return observer->players[mPlayerViewIndex]->opponent(); 
+};

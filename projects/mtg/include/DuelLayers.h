@@ -29,9 +29,11 @@ protected:
     GuiAvatars * avatars;
     GameObserver* observer;
     MTGGamePhase* phaseHandler;
+	int mPlayerViewIndex;
+    CardSelectorBase* mCardSelector;
 
 public:
-    DuelLayers();
+    DuelLayers(GameObserver* go, int playerViewIndex = 0);
     ~DuelLayers();
 
     ActionLayer * actionLayer();
@@ -39,7 +41,6 @@ public:
     GuiCombat * combatLayer();
     GuiAvatars * GetAvatars();
     MTGGamePhase* getPhaseHandler() {return phaseHandler;};
-    void init(GameObserver* go);
     virtual void Update(float dt, Player * player);
     void CheckUserInput(int isAI);
     void Render();
@@ -47,8 +48,11 @@ public:
     void Remove();
     int receiveEvent(WEvent * e);
     float RightBoundary();
-
-    CardSelectorBase* mCardSelector;
+	int getPlayerViewIndex(){ return mPlayerViewIndex; };
+	Player* getRenderedPlayer();
+	Player* getRenderedPlayerOpponent();
+	CardSelectorBase* getCardSelector() { return mCardSelector; };
+	GameObserver* getObserver(){ return observer; };
 };
 
 #include "ActionLayer.h"

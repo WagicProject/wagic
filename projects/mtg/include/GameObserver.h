@@ -52,8 +52,8 @@ class GameObserver{
   string startupGameSerialized;
   bool parseLine(const string& s);
   virtual void logAction(const string& s);
-  bool processAction(const string& s, bool swapPlayer = false);
-  bool processActions(bool undo, bool swapPlayer
+  bool processAction(const string& s);
+  bool processActions(bool undo
                     #ifdef TESTSUITE
                     , TestSuiteGame* testgame
                     #endif
@@ -143,7 +143,7 @@ class GameObserver{
       logAction(players[playerId], s);
   };
   void logAction(MTGCardInstance* card, MTGGameZone* zone, size_t index, int result);
-  bool load(const string& s, bool undo = false, bool swapPlayers = false
+  bool load(const string& s, bool undo = false, int controlledPlayerIndex = 0
 #ifdef TESTSUITE
             , TestSuiteGame* testgame = 0
 #endif
@@ -155,7 +155,7 @@ class GameObserver{
   bool isStarted() { return (mLayers!=NULL);};
   RandomGenerator* getRandomGenerator() { return &randomGenerator; };
   WResourceManager* getResourceManager() { if(this) return mResourceManager;else return 0;};
-  CardSelectorBase* getCardSelector() { return mLayers->mCardSelector;};
+  CardSelectorBase* getCardSelector() { return mLayers->getCardSelector();};
   bool operator==(const GameObserver& aGame);
   JGE* getInput(){return mJGE;};
   DeckManager* getDeckManager(){ return mDeckManager; };
@@ -180,6 +180,9 @@ class GameObserver{
           return true;
       }
   };
+
+  DuelLayers *getView() { return mLayers; };
+
 };
 
 #ifdef NETWORK_SUPPORT

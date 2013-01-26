@@ -41,9 +41,9 @@ namespace
     }
 }
 
-GuiPhaseBar::GuiPhaseBar(GameObserver* observer) :
-    GuiLayer(observer), PlayGuiObject(0, 0, 106, 0, false),
-  phase(NULL), angle(0.0f), zoomFactor(ICONSCALE)
+GuiPhaseBar::GuiPhaseBar(DuelLayers* duelLayers) :
+    GuiLayer(duelLayers->getObserver()), PlayGuiObject(0, 0, 106, 0, false), 
+  phase(NULL), angle(0.0f), zoomFactor(ICONSCALE), mpDuelLayers(duelLayers)
 {
     JQuadPtr quad = WResourceManager::Instance()->GetQuad("phasebar");
     if (quad.get() != NULL)
@@ -55,7 +55,7 @@ GuiPhaseBar::GuiPhaseBar(GameObserver* observer) :
         GameApp::systemError = "Error loading phasebar texture : " __FILE__;
 
     zoom = ICONSCALE;
-    observer->getCardSelector()->Add(this);
+    mpDuelLayers->getCardSelector()->Add(this);
 
 }
 
@@ -132,7 +132,7 @@ void GuiPhaseBar::Render()
     WFont * font = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
     string currentP = _("your turn");
     string interrupt = "";
-    if (observer->currentPlayer == observer->players[1])
+	if (observer->currentPlayer == mpDuelLayers->getRenderedPlayerOpponent())
     {
         currentP = _("opponent's turn");
     }
@@ -143,7 +143,7 @@ void GuiPhaseBar::Render()
     }
     if (observer->currentlyActing() != observer->currentPlayer)
     {
-        if (observer->currentPlayer == observer->players[0])
+		if (observer->currentPlayer == mpDuelLayers->getRenderedPlayer())
         {
             interrupt = _(" - ") + _("opponent plays");
         }

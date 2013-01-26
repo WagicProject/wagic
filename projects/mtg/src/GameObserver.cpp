@@ -379,7 +379,6 @@ void GameObserver::resetStartupGame()
     DebugTrace(startupGameSerialized);
 }
 
-
 void GameObserver::startGame(GameType gtype, Rules * rules)
 {
     mGameType = gtype;
@@ -390,11 +389,10 @@ void GameObserver::startGame(GameType gtype, Rules * rules)
 
     options.automaticStyle(players[0], players[1]);
 
-    mLayers = NEW DuelLayers();
-    mLayers->init(this);
+    mLayers = NEW DuelLayers(this);
 
     currentPlayerId = 0;
-    currentPlayer = players[0];
+    currentPlayer = players[currentPlayerId];
     currentActionPlayer = currentPlayer;
     phaseRing = NEW PhaseRing(this);
 
@@ -1534,7 +1532,7 @@ bool GameObserver::parseLine(const string& s)
     return false;
 }
 
-bool GameObserver::load(const string& ss, bool undo, bool swapPlayers
+bool GameObserver::load(const string& ss, bool undo, int controlledPlayerIndex
 #ifdef TESTSUITE
                     , TestSuiteGame* testgame
 #endif
@@ -1629,16 +1627,8 @@ bool GameObserver::load(const string& ss, bool undo, bool swapPlayers
         case 3:
             if (s.compare("[end]") == 0)
             {
-				if(swapPlayers) {
-					std::swap(players[0], players[1]);
-					currentPlayerId = (currentPlayerId + 1) % players.size();
-					currentPlayer = players[currentPlayerId];
-					currentActionPlayer = currentPlayer;
-				}
-
 				turn = 0;
-                mLayers = NEW DuelLayers();
-                mLayers->init(this);
+                mLayers = NEW DuelLayers(this, controlledPlayerIndex);
                 currentPlayer = players[currentPlayerId];
                 phaseRing = NEW PhaseRing(this);
                 startedAt = time(0);
@@ -1655,7 +1645,7 @@ bool GameObserver::load(const string& ss, bool undo, bool swapPlayers
                     testgame->initGame();
 #endif //TESTSUITE
 
-                processActions(undo, swapPlayers
+                processActions(undo
                #ifdef TESTSUITE
                                , testgame
                #endif //TESTSUITE
@@ -1672,11 +1662,11 @@ bool GameObserver::load(const string& ss, bool undo, bool swapPlayers
     return true;
 }
 
-bool GameObserver::processAction(const string& s, bool swapPlayer)
+bool GameObserver::processAction(const string& s)
 {
-    Player* p = (swapPlayer)?players[0]:players[1];
+    Player* p = players[1];
     if (s.find("p1") != string::npos)
-        p = (swapPlayer)?players[1]:players[0];
+        p = players[0];
 
     MTGGameZone* zone = NULL;
     if(s.find(string(p->game->hand->getName())+"[") != string::npos)
@@ -1729,7 +1719,7 @@ bool GameObserver::processAction(const string& s, bool swapPlayer)
 	return true;
 }
 
-bool GameObserver::processActions(bool undo, bool swapPlayer
+bool GameObserver::processActions(bool undo
                                   #ifdef TESTSUITE
                                   , TestSuiteGame* testgame
                                   #endif
@@ -1767,7 +1757,7 @@ bool GameObserver::processActions(bool undo, bool swapPlayer
 
     for(loadingite = loadingList.begin(); loadingite != loadingList.end(); loadingite++, cmdIndex++)
     {
-		processAction(*loadingite, swapPlayer);
+		processAction(*loadingite);
 
         size_t nb = actionsList.size();
 
@@ -2015,8 +2005,8 @@ void NetworkGameObserver::synchronize()
 void NetworkGameObserver::synchronize(void*pxThis, stringstream& in, stringstream& out)
 {
 	NetworkGameObserver* pThis = (NetworkGameObserver*)pxThis;
-	// now, we need to swap players as player1 for host is player 2 for guest
-	pThis->load(in.str(), false, true);
+	// now, we need to load the game from player 2's perspective
+	pThis->load(in.str(), false, 1);
 	out << *pThis;
 }
 
@@ -2027,7 +2017,7 @@ void NetworkGameObserver::checkSynchro(void*pxThis, stringstream& in, stringstre
 	
 	GameObserver aGame;
 	aGame.mRules = pThis->mRules;
-	aGame.load(in.str(), false, true);
+	aGame.load(in.str());
 
 	assert(aGame == *pThis);
 }
@@ -2037,9 +2027,9 @@ void NetworkGameObserver::sendAction(void*pxThis, stringstream& in, stringstream
 	NetworkGameObserver* pThis = (NetworkGameObserver*)pxThis;
 
     pThis->mForwardAction = false;
-	pThis->processAction(in.str(), true);
+	pThis->processAction(in.str());
     pThis->mForwardAction = true;
-	out << *pThis;
+	//out << *pThis;
 }
 
 void NetworkGameObserver::logAction(const string& s)

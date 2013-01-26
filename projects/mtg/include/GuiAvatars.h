@@ -17,7 +17,7 @@ protected:
     GuiAvatar* active;
 
 public:
-    GuiAvatars(GameObserver *observer);
+    GuiAvatars(DuelLayers* duelLayers);
     ~GuiAvatars();
 
     GuiAvatar* GetSelf();

@@ -13,6 +13,15 @@ GuiLayer::GuiLayer(GameObserver *observer)
     mActionButton = JGE_BTN_OK;
 }
 
+GuiLayer::GuiLayer(DuelLayers *duelLayers)
+    : observer(duelLayers->getObserver()), mpDuelLayers(duelLayers)
+{
+    modal = 0;
+    hasFocus = false;
+    mCurr = 0;
+    mActionButton = JGE_BTN_OK;
+}
+
 GuiLayer::~GuiLayer()
 {
     resetObjects();

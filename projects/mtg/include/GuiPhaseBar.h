@@ -11,9 +11,10 @@ protected:
     Phase* phase;
     float angle;
     float zoomFactor;
+	DuelLayers* mpDuelLayers;
 
 public:
-    GuiPhaseBar(GameObserver* observer);
+    GuiPhaseBar(DuelLayers* duelLayers);
     ~GuiPhaseBar();
     void Update(float dt);
     virtual void Render();

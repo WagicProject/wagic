@@ -7,24 +7,24 @@
 
 #define LIB_GRAVE_OFFSET 230
 
-GuiAvatars::GuiAvatars(GameObserver* observer) :
-    GuiLayer(observer), active(NULL)
+GuiAvatars::GuiAvatars(DuelLayers* duelLayers) :
+    GuiLayer(duelLayers), active(NULL)
 {
-    Add(self = NEW GuiAvatar(SCREEN_WIDTH, SCREEN_HEIGHT, false, observer->players[0], GuiAvatar::BOTTOM_RIGHT, this));
+	Add(self = NEW GuiAvatar(SCREEN_WIDTH, SCREEN_HEIGHT, false, mpDuelLayers->getRenderedPlayer(), GuiAvatar::BOTTOM_RIGHT, this));
     self->zoom = 0.9f;
-    Add(selfGraveyard = NEW GuiGraveyard(SCREEN_WIDTH - GuiAvatar::Width - GuiGameZone::Width / 2 - 11, SCREEN_HEIGHT - GuiAvatar::Height - 1, false, observer->players[0], this));
-    Add(selfLibrary = NEW GuiLibrary(SCREEN_WIDTH - GuiAvatar::Width - GuiGameZone::Width / 2 - 11, SCREEN_HEIGHT - GuiAvatar::Height - 5 + GuiGameZone::Height + 5, false, observer->players[0], this));
+    Add(selfGraveyard = NEW GuiGraveyard(SCREEN_WIDTH - GuiAvatar::Width - GuiGameZone::Width / 2 - 11, SCREEN_HEIGHT - GuiAvatar::Height - 1, false, mpDuelLayers->getRenderedPlayer(), this));
+    Add(selfLibrary = NEW GuiLibrary(SCREEN_WIDTH - GuiAvatar::Width - GuiGameZone::Width / 2 - 11, SCREEN_HEIGHT - GuiAvatar::Height - 5 + GuiGameZone::Height + 5, false, mpDuelLayers->getRenderedPlayer(), this));
 
-    Add(opponent = NEW GuiAvatar(0, 0, false, observer->players[1], GuiAvatar::TOP_LEFT, this));
+    Add(opponent = NEW GuiAvatar(0, 0, false, mpDuelLayers->getRenderedPlayerOpponent(), GuiAvatar::TOP_LEFT, this));
     opponent->zoom = 0.9f;
     //opponenthandveiw button
     Add(opponentHand = NEW GuiOpponentHand(-30 + GuiAvatar::Width * 1.2 - GuiGameZone::Width / 2, 35 + GuiGameZone::Height - 10,
-                    false, observer->players[1], this));
+                    false, mpDuelLayers->getRenderedPlayerOpponent(), this));
     //opponenthandveiwends
     Add(opponentGraveyard = NEW GuiGraveyard(5 + GuiAvatar::Width * 1.4 - GuiGameZone::Width / 2, 5, false,
-                    observer->players[1], this));
+                    mpDuelLayers->getRenderedPlayerOpponent(), this));
     Add(opponentLibrary = NEW GuiLibrary(5 + GuiAvatar::Width * 1.4 - GuiGameZone::Width / 2, 5 + GuiGameZone::Height + 5, false,
-                    observer->players[1], this));
+                    mpDuelLayers->getRenderedPlayerOpponent(), this));
 
     observer->getCardSelector()->Add(self);
     observer->getCardSelector()->Add(selfGraveyard);
