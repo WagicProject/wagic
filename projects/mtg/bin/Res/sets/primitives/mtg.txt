@@ -775,7 +775,7 @@ toughness=5
 [/card]
 [card]
 name=Aegis of the Meek
-auto={1}{T}: 1/2 target(creature[power=1;toughness=1])
+auto={1}{T}:target(creature[power=1;toughness=1]) 1/2 ueot
 text={1}, {T}: Target 1/1 creature gets +1/+2 until end of turn.
 mana={3}
 type=Artifact
@@ -2954,7 +2954,7 @@ toughness=1
 [/card]
 [card]
 name=Aphetto Grifter
-auto={T(wizard|myBattlefield)}{T(wizard|myBattlefield)}:name(tap a perminent) tap target(*)
+auto={T(wizard|myBattlefield)}{T(wizard|myBattlefield)}:name(tap permanent) tap target(*)
 text=Tap two untapped Wizards you control: Tap target permanent.
 mana={2}{U}
 type=Creature
@@ -7981,7 +7981,7 @@ toughness=3
 [card]
 name=Blazing Archon
 abilities=flying
-auto=lord(creature|opponentBattlefield) defender
+auto=lord(creature|opponentBattlefield) cantattack
 text=Flying -- Creatures can't attack you.
 mana={6}{W}{W}{W}
 type=Creature
@@ -41007,6 +41007,16 @@ power=2
 toughness=3
 [/card]
 [card]
+name=Hurloon Shaman
+auto=@movedto(this|graveyard) from(battlefield):ability$!sacrifice notatarget(land|mybattlefield)!$ controller && ability$!sacrifice notatarget(land|mybattlefield)!$ opponent
+text=When Hurloon Shaman is put into a graveyard from the battlefield, each player sacrifices a land.
+mana={1}{R}{R}
+type=Creature
+subtype=Minotaur Shaman
+power=2
+toughness=3
+[/card]
+[card]
 name=Hurly-Burly
 auto=choice name(nonflying) damage:1 all(creature(-flying)
 auto=choice name(flying) damage:1 all(creature(flying)
@@ -41460,6 +41470,14 @@ power=3
 toughness=1
 [/card]
 [card]
+name=Ignorant Bliss
+auto=hand(blink)ueot all(*|myhand)
+auto=phaseaction[endofturn once] draw:1
+text=Exile all cards from your hand face down. At the beginning of the next end step, return those cards to your hand, then draw a card.
+mana={1}{R}
+type=Instant
+[/card]
+[card]
 name=Ihsan's Shade
 abilities=protection from white
 text=Protection from white
@@ -41493,6 +41511,14 @@ type=Creature
 subtype=Human Soldier
 power=1
 toughness=2
+[/card]
+[card]
+name=Ill-Gotten Gains
+auto=reject all(*|hand) && moveto(exile) all(this)
+auto=ability$!moveto(ownerhand) notatarget(<upto:3>*|mygraveyard)!$ controller && ability$!moveto(ownerhand) notatarget(<upto:3>*|mygraveyard)!$ opponent
+text=Exile Ill-Gotten Gains. Each player discards his or her hand, then returns up to three cards from his or her graveyard to his or her hand.
+mana={2}{B}{B}
+type=Sorcery
 [/card]
 [card]
 name=Illness in the Ranks
@@ -41660,6 +41686,14 @@ type=Creature
 subtype=Bird
 power=3
 toughness=1
+[/card]
+[card]
+name=Impatience
+auto=@each opponent end restriction{thisturn(*|opponentstack)~lessthan~1}:damage:2 opponent
+auto=@each my end restriction{thisturn(*|mystack)~lessthan~1}:damage:2 controller
+text=At the beginning of each player's end step, if that player didn't cast a spell this turn, Impatience deals 2 damage to him or her.
+mana={2}{R}
+type=Enchantment
 [/card]
 [card]
 name=Impelled Giant
@@ -42394,6 +42428,14 @@ type=Creature
 subtype=Spirit
 power=2
 toughness=3
+[/card]
+[card]
+name=Innocent Blood
+auto=sacrifice notatarget(creature|mybattlefield)
+auto=ability$! sacrifice notatarget(creature|mybattlefield) !$ opponent
+text=Each player sacrifices a creature.
+mana={B}
+type=Sorcery
 [/card]
 [card]
 name=Inquisition
@@ -43249,6 +43291,16 @@ type=Planeswalker
 subtype=Jace
 [/card]
 [card]
+name=Jace's Archivist
+auto={U}{T}:name(discard & draw) transforms((,newability[if compare(ohandcount)~equalto~compare(phandcount) then discard:ohandcount controller && draw:ohandcount controller && discard:phandcount opponent && draw:phandcount opponent],newability[if compare(ohandcount)~morethan~compare(phandcount) then discard:ohandcount controller && draw:ohandcount controller && discard:phandcount opponent && draw:phandcount opponent],newability[if compare(phandcount)~morethan~compare(ohandcount) then discard:phandcount opponent && draw:phandcount opponent && discard:ohandcount controller && draw:ohandcount controller])) all(this)
+text={U}, {T}: Each player discards his or her hand, then draws cards equal to the greatest number of cards a player discarded this way.
+mana={1}{U}{U}
+type=Creature
+subtype=Vedalken Wizard
+power=2
+toughness=2
+[/card]
+[card]
 name=Jace's Erasure
 auto=@drawn(controller):may deplete:1 target(player)
 text=Whenever you draw a card, you may have target player put the top card of his or her library into his or her graveyard.
@@ -43670,6 +43722,18 @@ auto=chooseacolor transforms((,newability[aslongas(*[chosencolor]|opponentbattle
 text=As Jihad enters the battlefield, choose a color and an opponent. -- White creatures get +2/+1 as long as the chosen player controls a nontoken permanent of the chosen color. -- When the chosen player controls no nontoken permanents of the chosen color, sacrifice Jihad.
 mana={W}{W}{W}
 type=Enchantment
+[/card]
+[card]
+name=Jin-Gitaxias, Core Augur
+abilities=flash
+auto=@each my end:draw:7
+auto=@each opponent cleanup:name(check handsize) ability$!choice name(reduce handsize) reject notatarget(<7>*|myhand)!$ opponent
+mana={8}{U}{U}
+type=Legendary Creature
+subtype=Praetor
+power=5
+toughness=4
+text=Flash -- At the beginning of your end step, draw seven cards. -- Each opponent's maximum hand size is reduced by seven.
 [/card]
 [card]
 name=Jinx
@@ -44687,6 +44751,19 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Kangee, Aerie Keeper
+abilities=flying
+other={X}{4}{W}{U} name(Kicker)
+auto=if paid(alternative) then counter(0/0,X,Feather)
+auto=thisforeach(counter{0/0.1.Feather}) lord(other creature[bird])  1/1
+text=Kicker {X}{2} (You may pay an additional {X}{2} as you cast this spell.) -- Flying -- When Kangee, Aerie Keeper enters the battlefield, if it was kicked, put X feather counters on it. -- Other Bird creatures get +1/+1 for each feather counter on Kangee, Aerie Keeper.
+mana={2}{W}{U}
+type=Legendary Creature
+subtype=Bird Wizard
+power=2
+toughness=2
+[/card]
+[card]
 name=Karakas
 auto={T}:Add{W}
 auto={T}:moveTo(ownerhand) target(creature[legendary])
@@ -45331,6 +45408,18 @@ type=Creature
 subtype=Human Soldier
 power=1
 toughness=1
+[/card]
+[card]
+name=Keldon Battlewagon
+abilities=trample,cantblock
+auto=@combat(attacking) source(this):phaseaction[combatends,sourceinplay] sacrifice
+auto={T(creature|mybattlefield)}:name(Power Pump) storedpower/0 ueot restriction{type(creature[-tapped]|mybattlefield)~morethan~0}
+text=Trample -- Keldon Battlewagon can't block. -- When Keldon Battlewagon attacks, sacrifice it at end of combat. -- Tap an untapped creature you control: Keldon Battlewagon gets +X/+0 until end of turn, where X is the power of the creature tapped this way.
+mana={5}
+type=Artifact Creature
+subtype=Juggernaut
+power=0
+toughness=3
 [/card]
 [card]
 name=Keldon Berserker
@@ -59658,7 +59747,7 @@ type=Instant
 [/card]
 [card]
 name=Opportunist
-auto={t}: damage:1 target(creature[damaged])
+auto={t}:damage:1 target(creature[damaged])
 text={T}: Opportunist deals 1 damage to target creature that was dealt damage this turn.
 mana={2}{R}
 type=Creature
@@ -97039,6 +97128,15 @@ type=Creature
 subtype=Bird
 power=5
 toughness=7
+[/card]
+[card]
+name=Windfall
+auto=if compare(ohandcount)~equalto~compare(phandcount) then discard:ohandcount controller && draw:ohandcount controller && discard:phandcount opponent && draw:phandcount opponent
+auto=if compare(ohandcount)~morethan~compare(phandcount) then discard:ohandcount controller && draw:ohandcount controller && discard:phandcount opponent && draw:phandcount opponent
+auto=if compare(phandcount)~morethan~compare(ohandcount) then discard:phandcount opponent && draw:phandcount opponent && discard:ohandcount controller && draw:ohandcount controller
+text=Each player discards his or her hand, then draws cards equal to the greatest number of cards a player discarded this way.
+mana={2}{U}
+type=Sorcery
 [/card]
 [card]
 name=Winding Canyons

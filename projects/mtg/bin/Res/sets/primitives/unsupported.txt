@@ -7864,15 +7864,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Hurloon Shaman
-text=When Hurloon Shaman is put into a graveyard from the battlefield, each player sacrifices a land.
-mana={1}{R}{R}
-type=Creature
-subtype=Minotaur Shaman
-power=2
-toughness=3
-[/card]
-[card]
 name=Hurloon Wrangler
 mana={2}{R}
 type=Summon — Minotaur
@@ -8014,18 +8005,6 @@ mana={4}{R}
 type=Sorcery
 [/card]
 [card]
-name=Ignorant Bliss
-text=Exile all cards from your hand face down. At the beginning of the next end step, return those cards to your hand, then draw a card.
-mana={1}{R}
-type=Instant
-[/card]
-[card]
-name=Ill-Gotten Gains
-text=Exile Ill-Gotten Gains. Each player discards his or her hand, then returns up to three cards from his or her graveyard to his or her hand.
-mana={2}{B}{B}
-type=Sorcery
-[/card]
-[card]
 name=Illicit Auction
 text=Each player may bid life for control of target creature. You start the bidding with a bid of 0. In turn order, each player may top the high bid. The bidding ends if the high bid stands. The high bidder loses life equal to the high bid and gains control of the creature. (This effect lasts indefinitely.)
 mana={3}{R}{R}
@@ -8093,12 +8072,6 @@ name=Imp's Mischief
 text=Change the target of target spell with a single target. You lose life equal to that spell's converted mana cost.
 mana={1}{B}
 type=Instant
-[/card]
-[card]
-name=Impatience
-text=At the beginning of each player's end step, if that player didn't cast a spell this turn, Impatience deals 2 damage to him or her.
-mana={2}{R}
-type=Enchantment
 [/card]
 [card]
 name=Imperiosaur
@@ -8372,12 +8345,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Innocent Blood
-text=Each player sacrifices a creature.
-mana={B}
-type=Sorcery
-[/card]
-[card]
 name=Insidious Bookworms
 text=When Insidious Bookworms is put into a graveyard from the battlefield, you may pay {1}{B}. If you do, target player discards a card at random.
 mana={B}
@@ -8607,15 +8574,6 @@ type=Planeswalker
 subtype=Jace
 [/card]
 [card]
-name=Jace's Archivist
-mana={1}{U}{U}
-type=Creature
-subtype=Vedalken Wizard
-power=2
-toughness=2
-text={U}, {T}: Each player discards his or her hand, then draws cards equal to the greatest number of cards a player discarded this way.
-[/card]
-[card]
 name=Jace, the Mind Sculptor
 text=+2: Look at the top card of target player's library. You may put that card on the bottom of that player's library. -- 0: Draw three cards, then put two cards from your hand on top of your library in any order. -- -1: Return target creature to its owner's hand. -- -12: Exile all cards from target player's library, then that player shuffles his or her hand into his or her library.
 mana={2}{U}{U}
@@ -8731,15 +8689,6 @@ mana={1}{U}
 type=Instant
 [/card]
 [card]
-name=Jin-Gitaxias, Core Augur
-mana={8}{U}{U}
-type=Legendary Creature
-subtype=Praetor
-power=5
-toughness=4
-text=Flash At the beginning of your end step, draw seven cards. Each opponent's maximum hand size is reduced by seven.
-[/card]
-[card]
 name=Johnny, Combo Player
 mana={2}{U}{U}
 type=Legendary Creature — Human Gamer
@@ -8852,15 +8801,6 @@ mana={3}{G}
 type=Sorcery
 [/card]
 [card]
-name=Kangee, Aerie Keeper
-text=Kicker {X}{2} (You may pay an additional {X}{2} as you cast this spell.) -- Flying -- When Kangee, Aerie Keeper enters the battlefield, if it was kicked, put X feather counters on it. -- Other Bird creatures get +1/+1 for each feather counter on Kangee, Aerie Keeper.
-mana={2}{W}{U}
-type=Legendary Creature
-subtype=Bird Wizard
-power=2
-toughness=2
-[/card]
-[card]
 name=Karador, Ghost Chieftain
 mana={5}{B}{G}{W}
 type=Legendary Creature
@@ -8961,15 +8901,6 @@ type=Creature — Human Druid
 power=2
 toughness=3
 text=As Keeper of the Sacred Word comes into play, choose a word. Whenever an opponent says the chosen word, Keeper of the Sacred Word gets +3/+3 until end of turn.
-[/card]
-[card]
-name=Keldon Battlewagon
-text=Trample -- Keldon Battlewagon can't block. -- When Keldon Battlewagon attacks, sacrifice it at end of combat. -- Tap an untapped creature you control: Keldon Battlewagon gets +X/+0 until end of turn, where X is the power of the creature tapped this way.
-mana={5}
-type=Artifact Creature
-subtype=Juggernaut
-power=0
-toughness=3
 [/card]
 [card]
 name=Keldon Firebombers
@@ -20829,12 +20760,6 @@ toughness=3
 name=Windbrisk Heights
 text=Hideaway (This land enters the battlefield tapped. When it does, look at the top four cards of your library, exile one face down, then put the rest on the bottom of your library.) -- {T}: Add {W} to your mana pool. -- {W}, {T}: You may play the exiled card without paying its mana cost if you attacked with three or more creatures this turn.
 type=Land
-[/card]
-[card]
-name=Windfall
-text=Each player discards his or her hand, then draws cards equal to the greatest number of cards a player discarded this way.
-mana={2}{U}
-type=Sorcery
 [/card]
 [card]
 name=Winnower Patrol
