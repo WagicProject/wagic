@@ -109,6 +109,7 @@ akron_legionnaire.txt
 alabaster_dragon.txt
 alabaster_leech.txt
 alabaster_leech2.txt
+Alluring_Scent.txt
 alluring_siren.txt
 Amugaba.txt
 anarchy.txt

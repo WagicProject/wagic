@@ -1,0 +1,35 @@
+#Testing Alluring Scent + flanking test vs Walls
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Alluring Scent
+inplay:Zhalfirin Commander
+manapool:{1}{G}{G}
+[PLAYER2]
+inplay:135274,45251,Wall of Stone
+life:20
+[DO]
+Alluring Scent
+Zhalfirin Commander
+next
+#Beginofcombat
+next
+#Combatattackers
+Zhalfirin Commander
+next
+#Wall of Stone blocks, the flanking ability triggers, leaving the others force block by lure
+Wall of Stone
+next
+#the lure rule force block, the flanking must trigger
+next
+next
+next
+[ASSERT]
+COMBATEND
+[PLAYER1]
+inplay:Zhalfirin Commander
+graveyard:Alluring Scent
+[PLAYER2]
+inplay:*,*,*
+life:20
+[END]
