@@ -85,7 +85,7 @@ class MTGGameZone {
     vector<MTGCardInstance *> cardsSeenLastTurn;
    int nb_cards;
    MTGGameZone();
-   ~MTGGameZone();
+   virtual ~MTGGameZone();
    void shuffle();
    void addCard(MTGCardInstance * card);
    void debugPrint();

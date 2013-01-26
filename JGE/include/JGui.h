@@ -104,7 +104,7 @@ public:
     int mCount;
 
     JGuiController(JGE* jge, int id, JGuiListener* listener);
-    ~JGuiController();
+    virtual ~JGuiController();
 
     virtual void Render();
     virtual void Update(float dt);

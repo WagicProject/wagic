@@ -161,7 +161,7 @@ void Rules::addExtraRules(GameObserver* g)
                 != GAME_TYPE_STORY && 
 				g->mRules->gamemode != GAME_TYPE_DEMO && (!g->players[0]->playMode == PLAYER_TYPE_CPU && !g->players[1]->playMode == PLAYER_TYPE_CPU)
 #ifdef NETWORK_SUPPORT
-                && !(g->players[1]->playMode == PLAYER_TYPE_REMOTE) && !(g->players[1]->playMode == PLAYER_TYPE_HUMAN)
+                && !(g->players[1]->playMode == Player::MODE_HUMAN)
 #endif //NETWORK_SUPPORT
                     )//keep this out of momir and other game modes.
             {

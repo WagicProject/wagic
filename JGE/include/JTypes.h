@@ -235,8 +235,8 @@ typedef uint32_t u32;
 	#define BLEND_ONE_MINUS_DST_COLOR	GL_ONE_MINUS_DST_COLOR
 	#define BLEND_SRC_ALPHA_SATURATE	GL_SRC_ALPHA_SATURATE
 
-	#define ARGB(a, r, g, b)		(((a) << 24) | ((r) << 16) | ((g) << 8) | (b))
-	#define RGBA(r, g, b, a)		(((a) << 24) | ((b) << 16) | ((g) << 8) | (r))
+    #define ARGB(a, r, g, b)		((PIXEL_TYPE)((a) << 24) | ((r) << 16) | ((g) << 8) | (b))
+    #define RGBA(r, g, b, a)		((PIXEL_TYPE)((a) << 24) | ((b) << 16) | ((g) << 8) | (r))
 
   #define TEXTURE_FORMAT			0
   #define GU_PSM_8888 0

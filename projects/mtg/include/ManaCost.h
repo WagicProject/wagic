@@ -62,7 +62,7 @@ public:
     int hasAnotherCost();
     ManaCost(std::vector<int16_t>& _cost, int nb_elems = 1);
     ManaCost();
-    ~ManaCost();
+    virtual ~ManaCost();
     ManaCost(ManaCost * _manaCost);
     ManaCost(const ManaCost& manaCost);
     ManaCost& operator= (const ManaCost& manaCost);

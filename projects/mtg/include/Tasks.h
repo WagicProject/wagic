@@ -51,6 +51,7 @@ public:
     // End of AI deck buffering code
 
     Task(char _type = ' ');
+    virtual ~Task(){};
 
     static Task* createFromStr(const string params, bool rand = false);
     virtual string toString();

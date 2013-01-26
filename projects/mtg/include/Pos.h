@@ -10,6 +10,7 @@ struct Pos
     float width, height;
     PIXEL_TYPE mask;
     Pos(float, float, float, float, float);
+    virtual ~Pos(){};
     virtual void Update(float dt);
     void UpdateNow();
     virtual void Render();

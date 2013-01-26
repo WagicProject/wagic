@@ -23,7 +23,7 @@ public:
     virtual int canPutIntoZone(MTGCardInstance * card, MTGGameZone * destZone) = 0;
 
     PlayRestriction(TargetChooser * tc);
-    ~PlayRestriction();
+    virtual ~PlayRestriction();
 };
 
 class MaxPerTurnRestriction: public PlayRestriction

@@ -162,6 +162,7 @@ void JNetwork::ThreadProc(void* param)
 		  pThis->toSend.str("");
 		}
 	}
+    boost::this_thread::sleep(1);
   }
 
   DebugTrace("Quitting Thread");

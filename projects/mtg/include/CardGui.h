@@ -107,6 +107,7 @@ class SimpleCardEffect
 public:
     virtual void doEffect(Pos * card) = 0;
     virtual void undoEffect(Pos * card) = 0;
+    virtual ~SimpleCardEffect(){};
 };
 
 class SimpleCardEffectRotate:public SimpleCardEffect 

@@ -102,11 +102,6 @@ GameState(parent, "duel")
 #endif
 
     credits = NULL;
-
-#ifdef NETWORK_SUPPORT
-    RegisterNetworkPlayers();
-#endif //NETWORK_SUPPORT
-
 }
 
 GameStateDuel::~GameStateDuel()
@@ -907,7 +902,7 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
             game->loadPlayer(0, mParent->players[0], deckNumber, premadeDeck);
             deckmenu->Close();
 #ifdef NETWORK_SUPPORT
-            if(mParent->players[1] == PLAYER_TYPE_REMOTE)
+            if(mParent->mpNetwork)
             {   // no need to choose an opponent deck in network mode
                 setGamePhase(DUEL_STATE_OPPONENT_WAIT);
             }

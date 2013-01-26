@@ -34,7 +34,7 @@ protected:
 
 public:
     DuelLayers(GameObserver* go, int playerViewIndex = 0);
-    ~DuelLayers();
+    virtual ~DuelLayers();
 
     ActionLayer * actionLayer();
     ActionStack * stackLayer();

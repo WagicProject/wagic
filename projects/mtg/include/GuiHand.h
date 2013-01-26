@@ -16,6 +16,7 @@ struct HandLimitor : public Limitor
     virtual bool greyout(Target*);
 
     HandLimitor(GuiHand* hand);
+    virtual ~HandLimitor(){};
 };
 
 class GuiHand : public GuiLayer

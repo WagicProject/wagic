@@ -53,6 +53,7 @@ public:
     virtual ~GameStateDuel();
 #ifdef TESTSUITE
     void loadTestSuitePlayers();
+    void setupTestSuite();
 #endif
 
 #ifdef AI_CHANGE_TESTING

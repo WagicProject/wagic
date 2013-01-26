@@ -17,5 +17,5 @@ private:
 public:
     DeckEditorMenu(int id, JGuiListener* listener = NULL, int fontId = 1, const char * _title = "", DeckDataWrapper *selectedDeck = NULL, StatsWrapper *stats = NULL);
     void Render();
-    ~DeckEditorMenu();
+    virtual ~DeckEditorMenu();
 };

@@ -835,7 +835,7 @@ void GameStateMenu::ButtonPressed(int controllerId, int controlId)
 #ifdef NETWORK_SUPPORT
         case SUBMENUITEM_2PLAYERS:
             mParent->players[0] = PLAYER_TYPE_HUMAN;
-            mParent->players[1] = PLAYER_TYPE_REMOTE;
+            mParent->players[1] = PLAYER_TYPE_HUMAN;
             subMenuController->Close();
             currentState = MENU_STATE_NETWORK_DEFINE | MENU_STATE_MINOR_SUBMENU_CLOSING;
             break;

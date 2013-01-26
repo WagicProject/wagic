@@ -112,17 +112,18 @@ WEvent * REDrawReplacement::replace(WEvent *event)
     if(replacementAbility->source->controller() == DrawerOfCard)
     for (it = game->replacementEffects->modifiers.begin(); it != game->replacementEffects->modifiers.end(); it++)
     {
-        ReplacementEffect *re = *it;
         if(REDrawReplacement * DR = dynamic_cast<REDrawReplacement *>(*it))
         {
             MTGAbility * otherA = NULL;
             if(DR->DrawerOfCard == e->player)
-            if(DR->replacementAbility->oneShot)
-                selection.push_back(DR->replacementAbility->clone());
-            else
             {
-                otherA = NEW GenericAddToGame(game, game->mLayers->actionLayer()->getMaxId(), source->source,NULL,DR->replacementAbility->clone());
-                selection.push_back(otherA);
+                if(DR->replacementAbility->oneShot)
+                    selection.push_back(DR->replacementAbility->clone());
+                else
+                {
+                    otherA = NEW GenericAddToGame(game, game->mLayers->actionLayer()->getMaxId(), source->source,NULL,DR->replacementAbility->clone());
+                    selection.push_back(otherA);
+                }
             }
         }
     }

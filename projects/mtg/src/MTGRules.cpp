@@ -2166,7 +2166,6 @@ WEvent * MTGDredgeRule::replace(WEvent * event)
                     list<ReplacementEffect *>::iterator it;
                     for (it = game->replacementEffects->modifiers.begin(); it != game->replacementEffects->modifiers.end(); it++)
                     {
-                        ReplacementEffect *re = *it;
                         if(REDrawReplacement * DR = dynamic_cast<REDrawReplacement *>(*it))
                         {
                             MTGAbility * otherA = NULL;
