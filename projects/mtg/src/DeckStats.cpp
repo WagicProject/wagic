@@ -372,7 +372,8 @@ string StatsWrapper::getManaColorIndex()
             oss << "1";
         else
             oss <<"0";
-    return oss.str();
+    string index = oss.str();
+    return index;
 
 }
 
