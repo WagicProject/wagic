@@ -23,6 +23,7 @@ generic/equip_shroud.txt
 generic/equip_shroud2.txt
 generic/equip_wither.txt
 generic/equipment_i252.txt
+generic/evolve.txt
 generic/exalted.txt
 generic/exalted_i143.txt
 generic/exalted_i310.txt
