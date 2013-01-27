@@ -49,7 +49,20 @@ DeckStats::~DeckStats()
 DeckStat* DeckStats::getDeckStat(string opponentsFile)
 {
     map<string, DeckStat *> stats = masterDeckStats[currentDeck];
-    map<string, DeckStat *>::iterator it = stats.find(opponentsFile);
+    //map<string, DeckStat *>::iterator it = stats.find(opponentsFile); 
+    //this method can not find the opponentfile string
+    //stats string for first doesn't even act like a string, i was forced to pull it out of the
+    //iter to make the comparison. it->first.find( for example was not finding it even though i can
+    //see them in the debugger as matching strings
+    map<string, DeckStat *>::iterator it;
+    for (it = stats.begin(); it != stats.end(); ++it) 
+    {
+        string deckStatName = it->first;
+        if(deckStatName.find(opponentsFile.c_str()) != string::npos)
+        {
+            break;
+        }
+    }
     if (it == stats.end())
     {
         return NULL;
