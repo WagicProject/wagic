@@ -41,7 +41,7 @@ struct Right: public Exp
 JTexture* GuiCombat::ok_tex = NULL;
 
 GuiCombat::GuiCombat(GameObserver* go) :
-    GuiLayer(go), active(0), activeAtk(NULL), ok(SCREEN_WIDTH - MARGIN, 210, 1, 0, 255), enemy_avatar(SCREEN_WIDTH
+    GuiLayer(go), active(NULL), activeAtk(NULL), ok(SCREEN_WIDTH - MARGIN, 210, 1, 0, 255), enemy_avatar(SCREEN_WIDTH
                     - MARGIN, TOP_LINE, 2, 0, 255), cursor_pos(NONE), step(DAMAGE)
 {
     if (NULL == ok_tex && go->getResourceManager())

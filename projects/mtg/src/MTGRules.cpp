@@ -62,15 +62,14 @@ int MTGEventBonus::receiveEvent(WEvent * event)
 		return 0;
     if (WEventCardTappedForMana* e = dynamic_cast<WEventCardTappedForMana*>(event))
     {
-        if(e)
+
+        if(chain[currentPlayer->getId()]/5 > 0)
         {
-            if(chain[currentPlayer->getId()]/5 > 0)
-            {
-                text = "Chain Broken!";
-                textAlpha = 255;
-            }
-            chain[currentPlayer->getId()] = 0;
+            text = "Chain Broken!";
+            textAlpha = 255;
         }
+        chain[currentPlayer->getId()] = 0;
+
     }
     if (event->type == WEvent::CHANGE_ZONE && !currentPlayer->isAI())
     {
@@ -481,11 +480,11 @@ int MTGKickerRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
         return 0;
     Player * player = game->currentlyActing();
     if(!player->game->hand->hasCard(card))
-    return 0;
+		return 0;
     ManaCost * kicker = card->getManaCost()->kicker;
     if(!kicker)
     {
-    SAFE_DELETE(kicker);
+		SAFE_DELETE(kicker);
         return 0;
     }
     ManaCost * playerMana = player->getManaPool();
@@ -1503,25 +1502,24 @@ int MTGBlockRule::receiveEvent(WEvent *e)
 {
     if (WEventBlockersChosen * event = dynamic_cast<WEventBlockersChosen*>(e))
     {
-        if (event)
+
+        Player * p = game->currentPlayer;
+        MTGCardInstance * lurer = p->game->inPlay->findALurer();
+        if(lurer)
         {
-            Player * p = game->currentPlayer;
-            MTGCardInstance * lurer = p->game->inPlay->findALurer();
-            if(lurer)
+            MTGGameZone * z = p->opponent()->game->inPlay;
+            for (int i = 0; i < z->nb_cards; i++)
             {
-                MTGGameZone * z = p->opponent()->game->inPlay;
-                for (int i = 0; i < z->nb_cards; i++)
-                {
-                    MTGCardInstance * card = z->cards[i];
-                    if ((card->defenser && !card->defenser->has(Constants::LURE))||!card->defenser)
-                        if(card->canBlock(lurer))
-                            card->setDefenser(lurer);
-                    //force a block on a lurer, the player has a chance to set his own choice on multiple lures
-                    //but this action can not be ignored.
-                }
+                MTGCardInstance * card = z->cards[i];
+                if ((card->defenser && !card->defenser->has(Constants::LURE))||!card->defenser)
+                    if(card->canBlock(lurer))
+                        card->setDefenser(lurer);
+                //force a block on a lurer, the player has a chance to set his own choice on multiple lures
+                //but this action can not be ignored.
             }
-            return 1;
         }
+        return 1;
+
     }
     return 0;
 }
