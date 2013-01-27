@@ -5321,20 +5321,20 @@ public:
         MTGAbility(observer, _id, _source)
     {
     }
-    int receiveEvent(WEvent * event)
-    {
-       WEventZoneChange * enters = (WEventZoneChange *) event;
-       if (enters->to == game->currentlyActing()->game->inPlay 
-           && (enters->from != game->currentlyActing()->opponent()->game->inPlay && enters->from != game->currentlyActing()->game->inPlay) //cards changing from inplay to inplay don't re-enter battlefield
-           && enters->card->controller() == source->controller() && enters->card->isCreature())
+        int receiveEvent(WEvent * event)
         {
-            if(enters->card != source && (enters->card->power > source->power || enters->card->toughness > source->toughness))
-            {
-                source->counters->addCounter(1,1);
-            }
+            WEventZoneChange * enters = dynamic_cast<WEventZoneChange *> (event);
+            if (enters && enters->to == enters->card->controller()->game->inPlay)
+                if(enters->from != enters->card->controller()->game->inPlay && enters->from != enters->card->controller()->opponent()->game->inPlay) //cards changing from inplay to inplay don't re-enter battlefield
+                    if(enters->card->controller() == source->controller() && enters->card->isCreature())
+                    {
+                        if(enters->card != source && (enters->card->power > source->power || enters->card->toughness > source->toughness))
+                        {
+                            source->counters->addCounter(1,1);
+                        }
+                    }
+                    return 1;
         }
-        return 1;
-    }
 
     AEvolveAbility * clone() const
     {
