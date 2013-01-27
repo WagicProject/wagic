@@ -9181,15 +9181,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Knollspine Dragon
-text=Flying -- When Knollspine Dragon enters the battlefield, you may discard your hand and draw cards equal to the damage dealt to target opponent this turn.
-mana={5}{R}{R}
-type=Creature
-subtype=Dragon
-power=7
-toughness=5
-[/card]
-[card]
 name=Knowledge Exploitation
 text=Prowl {3}{U} (You may cast this for its prowl cost if you dealt combat damage to a player this turn with a Rogue.) -- Search target opponent's library for an instant or sorcery card. You may cast that card without paying its mana cost. Then that player shuffles his or her library.
 mana={5}{U}{U}

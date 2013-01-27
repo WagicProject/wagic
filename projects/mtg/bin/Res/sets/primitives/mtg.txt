@@ -29454,7 +29454,7 @@ toughness=3
 [card]
 name=Firemane Avenger
 abilities=flying
-auto=@combat(attacking) source(this) restriction{type(other creature[attacking]|myBattlefield)~morethan~1}:damage:3 target(creature,player) && life:3 controller
+auto=@combat(attacking) source(this) restriction{type(other creature[attacking]|myBattlefield)~morethan~1}:choice damage:3 target(creature,player) && life:3 controller
 text=Flying -- Battalion — Whenever Firemane Avenger and at least two other creatures attack, Firemane Avenger deals 3 damage to target creature or player and you gain 3 life.
 mana={2}{R}{W}
 type=Creature
@@ -46485,6 +46485,17 @@ text=Enchant creature -- When Knightly Valor enters the battlefield, put a 2/2 w
 mana={4}{W}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+name=Knollspine Dragon
+abilities=flying
+auto=may name(discard & damage draw) target(opponent) ability$!reject all(*|myhand) && draw:odcount !$ controller
+text=Flying -- When Knollspine Dragon enters the battlefield, you may discard your hand and draw cards equal to the damage dealt to target opponent this turn.
+mana={5}{R}{R}
+type=Creature
+subtype=Dragon
+power=7
+toughness=5
 [/card]
 [card]
 name=Knollspine Invocation
