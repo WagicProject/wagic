@@ -163,7 +163,10 @@ void JNetwork::ThreadProc(void* param)
 		}
 	}
 #ifdef LINUX
+// erwan 2013/01 added android check because of a compilation error
+#ifndef ANDROID
     boost::this_thread::sleep(1);
+#endif
 #endif
   }
 
