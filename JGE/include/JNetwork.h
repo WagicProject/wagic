@@ -38,8 +38,9 @@ public:
   JNetwork();
   ~JNetwork();
   void Update();
+  void getServerIp(string& aString);
 
-  int connect(string serverIP = "");
+  int connect(const string& serverIP = "");
   bool isConnected();
   bool isServer() { return serverIP == ""; };
   static void ThreadProc(void* param);

@@ -6,7 +6,6 @@
 
 #include "../include/DebugRoutines.h"
 #include "../include/JNetwork.h"
-#include <boost/date_time/posix_time/posix_time.hpp>
 
 #if defined (WIN32) || defined (LINUX)
 #else
@@ -192,7 +191,7 @@ void JNetwork::ThreadProc(void* param)
 #ifdef LINUX
 // erwan 2013/01 added android check because of a compilation error
 #ifndef ANDROID
-    boost::this_thread::sleep(1);
+    boost::this_thread::sleep(boost::posix_time::milliseconds(1));
 #endif
 #elif WIN32
 //	boost::this_thread::sleep(boost::posix_time::microseconds(10));
