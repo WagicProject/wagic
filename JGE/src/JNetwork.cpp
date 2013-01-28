@@ -6,6 +6,7 @@
 
 #include "../include/DebugRoutines.h"
 #include "../include/JNetwork.h"
+#include <boost/date_time/posix_time/posix_time.hpp>
 
 #if defined (WIN32) || defined (LINUX)
 #else
@@ -39,6 +40,32 @@ bool JNetwork::isConnected(){
   if (connected_to_ap !=1 || !socket) return false;
   return socket->isConnected();
 }
+
+void JNetwork::getServerIp(string& aString)
+{
+#ifdef WIN32
+    char ac[80];
+    if (gethostname(ac, sizeof(ac)) == SOCKET_ERROR) {
+        DebugTrace("Error " << WSAGetLastError() <<
+                " when getting local host name.\n");
+		return;
+    }
+    DebugTrace( "Host name is " << ac << ".\n");
+
+    struct hostent *phe = gethostbyname(ac);
+    if (phe == 0) {
+        DebugTrace("Yow! Bad host lookup.\n");
+		return;
+    }
+
+    for (int i = 0; phe->h_addr_list[i] != 0; ++i) {
+        struct in_addr addr;
+        memcpy(&addr, phe->h_addr_list[i], sizeof(struct in_addr));
+        aString = inet_ntoa(addr);
+    }
+#endif
+}
+
 
 JNetwork::JNetwork()
   : mpWorkerThread(NULL), socket(0)
@@ -145,9 +172,9 @@ void JNetwork::ThreadProc(void* param)
   while(pSocket && pSocket->isConnected()) {
     char buff[4096];
     {
-      boost::mutex::scoped_lock l(pThis->receiveMutex);
       int len =  pSocket->Read(buff, sizeof(buff));
       if(len > 0) {
+		boost::mutex::scoped_lock l(pThis->receiveMutex);
         DebugTrace("receiving " << len << " bytes : " << buff);
         pThis->received.str(pThis->received.str() + buff);
         DebugTrace("received " << pThis->received.str().size() << " bytes : " << pThis->received.str());
@@ -167,6 +194,8 @@ void JNetwork::ThreadProc(void* param)
 #ifndef ANDROID
     boost::this_thread::sleep(1);
 #endif
+#elif WIN32
+//	boost::this_thread::sleep(boost::posix_time::microseconds(10));
 #endif
   }
 
@@ -174,7 +203,7 @@ void JNetwork::ThreadProc(void* param)
 }
 
 #if defined (WIN32) || defined (LINUX)
-int JNetwork::connect(string ip)
+int JNetwork::connect(const string& ip)
 {
   if (mpWorkerThread) return 0;
   serverIP = ip;
