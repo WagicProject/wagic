@@ -1164,6 +1164,12 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         if (splitRest.size())
             castRestriction = splitRest[1];
     }
+    if (s.find("restriction{{") != string::npos)
+    {
+        vector<string> splitRest = parseBetween(s,"restriction{{","}}");
+        if (splitRest.size())
+            castRestriction = splitRest[1];
+    }
     string newName = "";
     vector<string> splitName = parseBetween(s, "name(", ")");
     if (splitName.size())
@@ -1364,7 +1370,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
                 a1 = NEW GenericTargetAbility(observer, newName,castRestriction,id, card, tc, a1);
             else
                 a1 = NEW GenericActivatedAbility(observer, newName,castRestriction,id, card, a1, NULL);
-            MayAbility * mainAbility = NEW MayAbility(observer, id, a1, card,mayMust[i]);
+            MayAbility * mainAbility = NEW MayAbility(observer, id, a1, card,mayMust[i],castRestriction);
             if(mayCost)
                 mainAbility->optionalCost = mayCost;
             return mainAbility;

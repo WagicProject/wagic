@@ -1074,11 +1074,12 @@ class MayAbility: public MTGAbility, public NestedAbility
 public:
     int triggered;
     bool must;
+    string Cond;
     Player * previousInterrupter;
     MTGAbility * mClone;
     ManaCost * optionalCost;
 
-    MayAbility(GameObserver* observer, int _id, MTGAbility * _ability, MTGCardInstance * _source, bool must = false);
+    MayAbility(GameObserver* observer, int _id, MTGAbility * _ability, MTGCardInstance * _source, bool must = false, string restriction = "");
 
     void Update(float dt);
 

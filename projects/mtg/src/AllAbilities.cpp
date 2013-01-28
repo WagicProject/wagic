@@ -3077,8 +3077,8 @@ IfThenAbility::~IfThenAbility()
 //
 
 //May Abilities
-MayAbility::MayAbility(GameObserver* observer, int _id, MTGAbility * _ability, MTGCardInstance * _source, bool must) :
-    MTGAbility(observer, _id, _source), NestedAbility(_ability), must(must)
+MayAbility::MayAbility(GameObserver* observer, int _id, MTGAbility * _ability, MTGCardInstance * _source, bool must,string _cond) :
+    MTGAbility(observer, _id, _source), NestedAbility(_ability), must(must), Cond(_cond)
 {
     triggered = 0;
     mClone = NULL;
@@ -3093,6 +3093,15 @@ void MayAbility::Update(float dt)
         triggered = 1;
         if(optionalCost && !source->controller()->getManaPool()->canAfford(optionalCost))
             return;
+        if(Cond.size())
+        {
+            AbilityFactory af(game);
+            int checkCond = af.parseCastRestrictions(source,source->controller(),Cond);
+            if(!checkCond)
+            {
+                return;
+            }
+        }
         if (TargetAbility * ta = dynamic_cast<TargetAbility *>(ability))
         {
             if (!ta->getActionTc()->validTargetsExist())
