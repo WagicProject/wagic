@@ -909,8 +909,8 @@ int TargetChooser::countValidTargets()
         Player *p = observer->players[i];
         if(canTarget(p))
             result++;
-        MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->exile };
-        for (int k = 0; k < 5; k++)
+        MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->exile, p->game->stack };
+        for (int k = 0; k < 6; k++)
         {
             MTGGameZone * z = zones[k];
             if (targetsZone(z))
