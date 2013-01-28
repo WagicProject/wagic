@@ -49347,14 +49347,14 @@ subtype=Aura
 [/card]
 [card]
 name=Living Death
-auto=name(Living Death) all(creature|battlefield) transforms((deadtemp,newability[sacrifice])) && all(creature[-deadtemp]|graveyard) transforms((,newability[moveto(ownerbattlefield)])) oneshot
+auto=all(creature|battlefield) becomes(deadtemp) && all(creature|graveyard) moveto(exile) and!(transforms((,newability[sacrifice all(deadtemp)],newability[(moveto(battlefield)])))! oneshot
 text=Each player exiles all creature cards from his or her graveyard, then sacrifices all creatures he or she controls, then puts all cards he or she exiled this way onto the battlefield.
 mana={3}{B}{B}
 type=Sorcery
 [/card]
 [card]
 name=Living End
-auto=name(Living End) all(creature|battlefield) transforms((deadtemp,newability[sacrifice])) && all(creature[-deadtemp]|graveyard) transforms((,newability[moveto(ownerbattlefield)])) oneshot
+auto=all(creature|battlefield) becomes(deadtemp) && all(creature|graveyard) moveto(exile) and!(transforms((,newability[sacrifice all(deadtemp)],newability[(moveto(battlefield)])))! oneshot
 text=Living End is black. -- Suspend 3 - {2}{B}{B} (Rather than cast this card from your hand, pay {2}{B}{B} and exile it with three time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.) -- Each player exiles all creature cards from his or her graveyard, then sacrifices all creatures he or she controls, then puts all cards he or she exiled this way onto the battlefield.
 mana={0}
 color=black
