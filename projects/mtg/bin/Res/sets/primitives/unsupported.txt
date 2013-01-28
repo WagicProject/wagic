@@ -9411,15 +9411,6 @@ mana={2}{W}
 type=Instant
 [/card]
 [card]
-name=Laquatus's Champion
-text=When Laquatus's Champion enters the battlefield, target player loses 6 life. -- When Laquatus's Champion leaves the battlefield, that player gains 6 life. -- {B}: Regenerate Laquatus's Champion.
-mana={4}{B}{B}
-type=Creature
-subtype=Nightmare Horror
-power=6
-toughness=3
-[/card]
-[card]
 name=Laquatus's Creativity
 text=Target player draws cards equal to the number of cards in his or her hand, then discards that many cards.
 mana={4}{U}
@@ -9637,12 +9628,6 @@ mana={5}
 type=Artifact
 [/card]
 [card]
-name=Lich's Tomb
-text=You don't lose the game for having 0 or less life. -- Whenever you lose life, sacrifice a permanent for each 1 life you lost. (Damage causes loss of life.)
-mana={4}
-type=Artifact
-[/card]
-[card]
 name=Liege of the Hollows
 text=When Liege of the Hollows is put into a graveyard from the battlefield, each player may pay any amount of mana. Then each player who paid mana this way puts that many 1/1 green Squirrel creature tokens onto the battlefield.
 mana={2}{G}{G}
@@ -9650,15 +9635,6 @@ type=Creature
 subtype=Spirit
 power=3
 toughness=4
-[/card]
-[card]
-name=Liege of the Tangle
-mana={6}{G}{G}
-type=Creature
-subtype=Elemental
-power=8
-toughness=8
-text=Trample Whenever Liege of the Tangle deals combat damage to a player, you may choose any number of target lands you control and put an awakening counter on each of them. Each of those lands is an 8/8 green Elemental creature for as long as it has an awakening counter on it. They're still lands.
 [/card]
 [card]
 name=Life // Death (Death)
@@ -9816,27 +9792,10 @@ subtype=Equipment
 text=Equipped creature gets +2/+0 and has "Whenever this creature becomes the target of a spell, this creature deals 2 damage to target creature or player." Equip {2}
 [/card]
 [card]
-name=Living Armor
-text={T}, Sacrifice Living Armor: Put X +0/+1 counters on target creature, where X is that creature's converted mana cost.
-mana={4}
-type=Artifact
-[/card]
-[card]
-name=Living Death
-text=Each player exiles all creature cards from his or her graveyard, then sacrifices all creatures he or she controls, then puts all cards he or she exiled this way onto the battlefield.
-mana={3}{B}{B}
-type=Sorcery
-[/card]
-[card]
 name=Living Destiny
 mana={3}{G}
 type=Instant
 text=As an additional cost to cast Living Destiny, reveal a creature card from your hand. You gain life equal to the revealed card's converted mana cost.
-[/card]
-[card]
-name=Living End
-text=Living End is black. -- Suspend 3 - {2}{B}{B} (Rather than cast this card from your hand, pay {2}{B}{B} and exile it with three time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.) -- Each player exiles all creature cards from his or her graveyard, then sacrifices all creatures he or she controls, then puts all cards he or she exiled this way onto the battlefield.
-type=Sorcery
 [/card]
 [card]
 name=Living Inferno
@@ -9875,21 +9834,6 @@ toughness=6
 name=Locket of Yesterdays
 text=Spells you cast cost {1} less to cast for each card with the same name as that spell in your graveyard.
 mana={1}
-type=Artifact
-[/card]
-[card]
-name=Locust Miser
-text=Each opponent's maximum hand size is reduced by two.
-mana={2}{B}{B}
-type=Creature
-subtype=Rat Shaman
-power=2
-toughness=2
-[/card]
-[card]
-name=Lodestone Bauble
-text={1}, {T}, Sacrifice Lodestone Bauble: Put up to four target basic land cards from a player's graveyard on top of his or her library in any order. That player draws a card at the beginning of the next turn's upkeep.
-mana={0}
 type=Artifact
 [/card]
 [card]
