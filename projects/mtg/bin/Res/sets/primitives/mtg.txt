@@ -83262,7 +83262,7 @@ type=Instant
 [/card]
 [card]
 name=Sublime Archangel
-auto=lord(other creature|myBattlefield) transforms((,newability[@combat(attackedalone) source(this):1/1 ueot]))
+auto=lord(other creature|myBattlefield) transforms((,newability[@combat(attackedalone) source(creature|mybattlefield):all(trigger) 1/1 ueot]))
 abilities=flying,exalted
 text=Flying -- Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.) -- Other creatures you control have exalted. (If a creature has multiple instances of exalted, each triggers separately.)
 mana={2}{W}{W}
