@@ -32561,7 +32561,7 @@ type=Sorcery
 [card]
 name=Geist of Saint Traft
 abilities=opponentshroud
-auto=@combat(attacking) source(this):token(Angel,Creature Angel,4/4,white,flying,unearth,battleready)
+auto=@combat(attacking) source(this):token(Angel Token,Creature Angel,4/4,white,flying,battleready) && all(Angel Token[attacking]|mybattlefield) phaseaction[combatends once] moveto(exile)
 text=Hexproof -- Whenever Geist of Saint Traft attacks, put a 4/4 white Angel creature token with flying onto the battlefield tapped and attacking. Exile that token at the end of combat.
 mana={1}{W}{U}
 type=Legendary Creature
@@ -49882,6 +49882,16 @@ power=10
 toughness=4
 [/card]
 [card]
+name=Lore Broker
+auto={T}:name(draw & discard) draw:1 all(player) && transforms((,newability[ability$!notatarget(*|myhand) reject)!$ controller],newability[ability$!notatarget(*|myhand) reject)!$ opponent])) all(this)
+text={T}: Each player draws a card, then discards a card.
+mana={1}{U}
+type=Creature
+subtype=Human Rogue
+power=1
+toughness=2
+[/card]
+[card]
 name=Lorescale Coatl
 auto=@drawn(controller):may counter(1/1,1)
 text=Whenever you draw a card, you may put a +1/+1 counter on Lorescale Coatl.
@@ -49890,6 +49900,16 @@ type=Creature
 subtype=Snake
 power=2
 toughness=2
+[/card]
+[card]
+name=Lorthos, the Tidemaker
+auto=this(attacking) {8}:name(tap permanents) target(<upto:8>*|battlefield) transforms((,newability[frozen],newability[tap])) limit:1
+text=Whenever Lorthos, the Tidemaker attacks, you may pay {8}. If you do, tap up to eight target permanents. Those permanents don't untap during their controllers' next untap steps.
+mana={5}{U}{U}{U}
+type=Legendary Creature
+subtype=Octopus
+power=8
+toughness=8
 [/card]
 [card]
 name=Lost in the Mist
@@ -50372,6 +50392,14 @@ power=1
 toughness=3
 [/card]
 [card]
+name=Luminarch Ascension
+auto=@each opponent end restriction{compare(lifelost)~lessthan~1}:may counter(0/0,1,Quest)
+auto=this(counter{0/0.1.Quest}>=4) {1}{W}:token(Angel,Creature Angel,4/4,white flying)
+text=At the beginning of each opponent's end step, if you didn't lose life this turn, you may put a quest counter on Luminarch Ascension. (Damage causes loss of life.) -- {1}{W}: Put a 4/4 white Angel creature token with flying onto the battlefield. Activate this ability only if Luminarch Ascension has four or more quest counters on it.
+mana={1}{W}
+type=Enchantment
+[/card]
+[card]
 name=Luminate Primordial
 abilities=vigilance
 auto=may name(exile) target(creature|opponentbattlefield) transforms((,newability[life:power controller],newability[moveto(exile)]))
@@ -50508,6 +50536,21 @@ type=Creature
 subtype=Crocodile
 power=2
 toughness=2
+[/card]
+#please don't remove ")" at the end of autoline or it will not work.
+[card]
+name=Lurking Evil
+auto=this(cantargetcard(enchantment) {0}:name(pay halfup life) life:-halfdownlifetotal controller && transforms((removetypes)) forever && transforms((Horror Creature,setpower=4,settoughness=4,flying)) forever )
+text=Pay half your life, rounded up: Lurking Evil becomes a 4/4 Horror creature with flying.
+mana={B}{B}{B}
+type=Enchantment
+[/card]
+[card]
+name=Lurking Jackals
+auto=this(variable{opponentlifetotal}<11)while transforms((removetypes)) forever && transforms((Hound Creature,setpower=3,settoughness=2)) oneshot
+text=When an opponent has 10 or less life, if Lurking Jackals is an enchantment, it becomes a 3/2 Hound creature.
+mana={B}
+type=Enchantment
 [/card]
 [card]
 name=Lurking Nightstalker
@@ -51102,6 +51145,16 @@ power=2
 toughness=4
 [/card]
 [card]
+name=Magus of the Jar
+auto={T}{S}:name(hand blink) all(*|hand) transforms((,newability[moveto(exile)],newability[phaseaction[endofturn once] reject all(*|hand)],newability[phaseaction[endofturn once] moveTo(ownerhand)])) && draw:7 all(player)
+text={T}, Sacrifice Magus of the Jar: Each player exiles all cards from his or her hand face down and draws seven cards. At the beginning of the next end step, each player discards his or her hand and returns to his or her hand each card he or she exiled this way.
+mana={3}{U}{U}
+type=Creature
+subtype=Human Wizard
+power=3
+toughness=3
+[/card]
+[card]
 name=Magus of the Library
 auto={T}:add{1}
 auto={T}:draw:1 restriction{type(*|myhand)~equalto~7}
@@ -51205,6 +51258,14 @@ mana={3}{G}
 type=Sorcery
 [/card]
 [card]
+name=Makeshift Mannequin
+target=creature|mygraveyard
+auto=moveto(mybattlefield) and!( transforms((,newability[counter(0/0.1.Mannequin)],newability[@targeted(this):this(counter{0/0.1.Mannequin}) sacrifice])) forever )!
+text=Return target creature card from your graveyard to the battlefield with a mannequin counter on it. For as long as that creature has a mannequin counter on it, it has "When this creature becomes the target of a spell or ability, sacrifice it."
+mana={3}{B}
+type=Instant
+[/card]
+[card]
 name=Makeshift Mauler
 text=As an additional cost to cast Makeshift Mauler, exile a creature card from your graveyard.
 mana={3}{U}{E(creature|mygraveyard)}
@@ -51274,6 +51335,16 @@ auto={1}{B}{B}{S(creature|myBattlefield)}:moveTo(myhand) target(creature|mygrave
 text={1}{B}{B}, Sacrifice a creature: Return target creature card from your graveyard to your hand.
 mana={1}{B}{B}
 type=Enchantment
+[/card]
+[card]
+name=Malfegor
+auto=if compare(phandcount)~morethan~0 then ability$!notatarget(<ohandcount>creature|mybattlefield) sacrifice!$ opponent && discard:phandcount controller
+text=Flying -- When Malfegor enters the battlefield, discard your hand. Each opponent sacrifices a creature for each card discarded this way.
+mana={2}{B}{B}{R}{R}
+type=Legendary Creature
+subtype=Demon Dragon
+power=6
+toughness=6
 [/card]
 [card]
 name=Malicious Advice
@@ -51515,6 +51586,16 @@ text=Domain - Equipped creature gets +1/+1 for each basic land type among lands 
 mana={4}
 type=Artifact
 subtype=Equipment
+[/card]
+[card]
+name=Manaforge Cinder
+auto={1}:name(add mana) ability$!choice add{B} _ choice add{R}!$ controller limit:3
+text={1}: Add {B} or {R} to your mana pool. Activate this ability no more than three times each turn.
+mana={BR}
+type=Creature
+subtype=Elemental Shaman
+power=1
+toughness=1
 [/card]
 [card]
 name=Manakin
@@ -52728,6 +52809,13 @@ auto=@movedTo(*|opponentstack):deplete:2 opponent
 text=Whenever an opponent casts a spell, that player puts the top two cards of his or her library into his or her graveyard.
 mana={1}{U}{U}
 type=Enchantment
+[/card]
+[card]
+name=Memory Jar
+auto={T}{S}:name(hand blink) all(*|hand) transforms((,newability[moveto(exile)],newability[phaseaction[endofturn once] reject all(*|hand)],newability[phaseaction[endofturn once] moveTo(ownerhand)])) && draw:7 all(player)
+text={T}, Sacrifice Memory Jar: Each player exiles all cards from his or her hand face down and draws seven cards. At the beginning of the next end step, each player discards his or her hand and returns to his or her hand each card he or she exiled this way.
+mana={5}
+type=Artifact
 [/card]
 [card]
 name=Memory Sluice

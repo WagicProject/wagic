@@ -9885,24 +9885,6 @@ type=Enchant Creature
 text=As Loose Lips comes into play, choose a sentence with eight or fewer words. Enchanted creature has flying. Whenever enchanted creature deals damage to an opponent, you draw two cards unless that player says the chosen sentence.
 [/card]
 [card]
-name=Lore Broker
-text={T}: Each player draws a card, then discards a card.
-mana={1}{U}
-type=Creature
-subtype=Human Rogue
-power=1
-toughness=2
-[/card]
-[card]
-name=Lorthos, the Tidemaker
-text=Whenever Lorthos, the Tidemaker attacks, you may pay {8}. If you do, tap up to eight target permanents. Those permanents don't untap during their controllers' next untap steps.
-mana={5}{U}{U}{U}
-type=Legendary Creature
-subtype=Octopus
-power=8
-toughness=8
-[/card]
-[card]
 name=Lose Hope
 text=Target creature gets -1/-1 until end of turn. -- Scry 2. (To scry 2, look at the top two cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)
 mana={B}
@@ -9968,12 +9950,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Luminarch Ascension
-text=At the beginning of each opponent's end step, if you didn't lose life this turn, you may put a quest counter on Luminarch Ascension. (Damage causes loss of life.) -- {1}{W}: Put a 4/4 white Angel creature token with flying onto the battlefield. Activate this ability only if Luminarch Ascension has four or more quest counters on it.
-mana={1}{W}
-type=Enchantment
-[/card]
-[card]
 name=Luminous Guardian
 text={W}: Luminous Guardian gets +0/+1 until end of turn. -- {2}: Luminous Guardian can block an additional creature this turn.
 mana={3}{W}
@@ -9992,12 +9968,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Lurking Evil
-text=Pay half your life, rounded up: Lurking Evil becomes a 4/4 Horror creature with flying.
-mana={B}{B}{B}
-type=Enchantment
-[/card]
-[card]
 name=Lurking Informant
 text=({(u/b)} can be paid with either {U} or {B}.) -- {2}, {T}: Look at the top card of target player's library. You may put that card into that player's graveyard.
 mana={1}{UB}
@@ -10005,12 +9975,6 @@ type=Creature
 subtype=Human Rogue
 power=1
 toughness=2
-[/card]
-[card]
-name=Lurking Jackals
-text=When an opponent has 10 or less life, if Lurking Jackals is an enchantment, it becomes a 3/2 Hound creature.
-mana={B}
-type=Enchantment
 [/card]
 [card]
 name=Lurking Predators
@@ -10135,15 +10099,6 @@ power=2
 toughness=3
 [/card]
 [card]
-name=Magus of the Jar
-text={T}, Sacrifice Magus of the Jar: Each player exiles all cards from his or her hand face down and draws seven cards. At the beginning of the next end step, each player discards his or her hand and returns to his or her hand each card he or she exiled this way.
-mana={3}{U}{U}
-type=Creature
-subtype=Human Wizard
-power=3
-toughness=3
-[/card]
-[card]
 name=Magus of the Scroll
 text={3}, {T}: Name a card. Reveal a card at random from your hand. If it's the named card, Magus of the Scroll deals 2 damage to target creature or player.
 mana={R}
@@ -10153,25 +10108,10 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Makeshift Mannequin
-text=Return target creature card from your graveyard to the battlefield with a mannequin counter on it. For as long as that creature has a mannequin counter on it, it has "When this creature becomes the target of a spell or ability, sacrifice it."
-mana={3}{B}
-type=Instant
-[/card]
-[card]
 name=Malachite Talisman
 text=Whenever a player casts a green spell, you may pay {3}. If you do, untap target permanent.
 mana={2}
 type=Artifact
-[/card]
-[card]
-name=Malfegor
-text=Flying -- When Malfegor enters the battlefield, discard your hand. Each opponent sacrifices a creature for each card discarded this way.
-mana={2}{B}{B}{R}{R}
-type=Legendary Creature
-subtype=Demon Dragon
-power=6
-toughness=6
 [/card]
 [card]
 name=Malignus
@@ -10282,15 +10222,6 @@ toughness=5
 text=Flying, trample Join forces — Whenever Mana-Charged Dragon attacks or blocks, each player starting with you may pay any amount of mana. Mana-Charged Dragon gets +X/+0 until end of turn, where X is the total amount of mana paid this way.
 [/card]
 [card]
-name=Manaforge Cinder
-text={1}: Add {B} or {R} to your mana pool. Activate this ability no more than three times each turn.
-mana={BR}
-type=Creature
-subtype=Elemental Shaman
-power=1
-toughness=1
-[/card]
-[card]
 name=Mangara's Blessing
 text=You gain 5 life. -- When a spell or ability an opponent controls causes you to discard Mangara's Blessing, you gain 2 life, and you return Mangara's Blessing from your graveyard to your hand at the beginning of the next end step.
 mana={2}{W}
@@ -10298,6 +10229,9 @@ type=Instant
 [/card]
 [card]
 name=Mangara's Equity
+auto=upcost[{1}{W}] sacrifice
+auto=choice name(choose black) all(this) transforms((,newability[@damaged(controller) from(creature[black]):damage:thatmuch all(trigger)],newability[@damaged(creature[white]|mybattlefield) from(creature[black]):damage:thatmuch all(trigger)])) forever
+auto=choice name(choose red) all(this) transforms((,newability[@damaged(controller) from(creature[red]):damage:thatmuch all(trigger)],newability[@damaged(creature[white]|mybattlefield) from(creature[red]):damage:thatmuch all(trigger)])) forever
 text=As Mangara's Equity enters the battlefield, choose black or red. -- At the beginning of your upkeep, sacrifice Mangara's Equity unless you pay {1}{W}. -- Whenever a creature of the chosen color deals damage to you or a white creature you control, Mangara's Equity deals that much damage to that creature.
 mana={1}{W}{W}
 type=Enchantment
@@ -10568,12 +10502,6 @@ text=Name a nonland card. Search target player's graveyard, hand, and library fo
 name=Memory Crystal
 text=Buyback costs cost {2} less.
 mana={3}
-type=Artifact
-[/card]
-[card]
-name=Memory Jar
-text={T}, Sacrifice Memory Jar: Each player exiles all cards from his or her hand face down and draws seven cards. At the beginning of the next end step, each player discards his or her hand and returns to his or her hand each card he or she exiled this way.
-mana={5}
 type=Artifact
 [/card]
 [card]
