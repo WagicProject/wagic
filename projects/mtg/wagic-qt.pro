@@ -1,12 +1,10 @@
 # Add more folders to ship with the application, here
 folder_01.source = qml/QmlWagic
-folder_01.target = qml
+folder_01.target = /usr/share
 DEPLOYMENTFOLDERS = folder_01
 
-TARGET = wagic
-
 QT += core gui opengl network
-!android:!symbian:QT += phonon
+#!android:!symbian:QT += phonon
 maemo5:QT += dbus
 
 TARGET = wagic
@@ -19,10 +17,12 @@ windows:DEFINES += _CRT_SECURE_NO_WARNINGS
 unix|macx:DEFINES += LINUX
 CONFIG(debug, debug|release):DEFINES += _DEBUG
 DEFINES += QT_CONFIG
-!android:!symbian:DEFINES += USE_PHONON
+#!android:!symbian:DEFINES += USE_PHONON
 android:INCLUDEPATH += $$ANDROID_NDK_ROOT/platforms/android-9/arch-arm/usr/include
 #DEFINES += QT_NO_DEBUG_OUTPUT
-maemo5:DEFINES += QT_WIDGET
+#maemo5:DEFINES += QT_WIDGET
+DEFINES += QT_WIDGET
+DEFINES += NETWORK_SUPPORT
 
 windows:INCLUDEPATH += ../../JGE/Dependencies/include
 windows{
@@ -304,6 +304,8 @@ SOURCES += \
         ../../JGE/src/JParticleSystem.cpp\
         ../../JGE/src/JResourceManager.cpp\
         ../../JGE/src/JSpline.cpp\
+        ../../JGE/src/JNetwork.cpp\
+        ../../JGE/src/pc/JSocket.cpp\
         ../../JGE/src/JSprite.cpp\
         ../../JGE/src/Vector2D.cpp\
         ../../JGE/src/tinyxml/tinystr.cpp\
@@ -406,7 +408,6 @@ maemo5: {
 
 # Meego/maemo 6 packaging (no launcher)
 } else:contains(MEEGO_EDITION,harmattan): {
-
     # Variables
     BINDIR = /opt/wagic/bin
     RESDIR = /opt/wagic/Res
@@ -457,10 +458,26 @@ maemo5: {
     DEFINES += RESDIR=\\\"$$RESDIR\\\"
     DEFINES += USERDIR=\\\"$$USERDIR\\\"
 } else:unix {
+    # Variables
+    BINDIR = /usr/bin
+    ICONDIR = /usr/share
     RESDIR = Res
     USERDIR = .Wagic
+
     DEFINES += RESDIR=\\\"$$RESDIR\\\"
     DEFINES += USERDIR=\\\"$$USERDIR\\\"
+
+    target.path = $$BINDIR
+
+    desktop.path = $$ICONDIR/applications
+    desktop.files += wagic.desktop
+
+    icon.path = $$ICONDIR/icons/hicolor/64x64/apps
+    icon.files += wagic-64x64.png
+
+    INSTALLS += target \
+        desktop \
+        icon
 
 } else:windows {
     RESDIR = ./Res

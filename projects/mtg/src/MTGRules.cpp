@@ -60,7 +60,7 @@ int MTGEventBonus::receiveEvent(WEvent * event)
     //only spells going to the stack are counted.
 	if(game->turn <2)//this shouldnt trigger on first turn, chances are they are cheating.
 		return 0;
-    if (WEventCardTappedForMana* e = dynamic_cast<WEventCardTappedForMana*>(event))
+    if (dynamic_cast<WEventCardTappedForMana*>(event))
     {
 
         if(chain[currentPlayer->getId()]/5 > 0)
@@ -1500,7 +1500,7 @@ PermanentAbility(observer, _id)
 
 int MTGBlockRule::receiveEvent(WEvent *e)
 {
-    if (WEventBlockersChosen * event = dynamic_cast<WEventBlockersChosen*>(e))
+    if (dynamic_cast<WEventBlockersChosen*>(e))
     {
 
         Player * p = game->currentPlayer;

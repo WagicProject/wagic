@@ -557,7 +557,7 @@ int TestSuite::loadNext()
 
         size_t thread_count = 1;
 #ifdef QT_CONFIG
-        thread_count = QThread::idealThreadCount();
+        thread_count = 1;//QThread::idealThreadCount();
 #elif defined(IOS)
         thread_count = 6;
 #else
