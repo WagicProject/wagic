@@ -10228,28 +10228,10 @@ mana={2}{W}
 type=Instant
 [/card]
 [card]
-name=Mangara's Equity
-auto=upcost[{1}{W}] sacrifice
-auto=choice name(choose black) all(this) transforms((,newability[@damaged(controller) from(creature[black]):damage:thatmuch all(trigger)],newability[@damaged(creature[white]|mybattlefield) from(creature[black]):damage:thatmuch all(trigger)])) forever
-auto=choice name(choose red) all(this) transforms((,newability[@damaged(controller) from(creature[red]):damage:thatmuch all(trigger)],newability[@damaged(creature[white]|mybattlefield) from(creature[red]):damage:thatmuch all(trigger)])) forever
-text=As Mangara's Equity enters the battlefield, choose black or red. -- At the beginning of your upkeep, sacrifice Mangara's Equity unless you pay {1}{W}. -- Whenever a creature of the chosen color deals damage to you or a white creature you control, Mangara's Equity deals that much damage to that creature.
-mana={1}{W}{W}
-type=Enchantment
-[/card]
-[card]
 name=Mangara's Tome
 text=When Mangara's Tome enters the battlefield, search your library for five cards, exile them in a face-down pile, and shuffle that pile. Then shuffle your library. -- {2}: The next time you would draw a card this turn, instead put the top card of the exiled pile into its owner's hand.
 mana={5}
 type=Artifact
-[/card]
-[card]
-name=Maralen of the Mornsong
-text=Players can't draw cards. -- At the beginning of each player's draw step, that player loses 3 life, searches his or her library for a card, puts it into his or her hand, then shuffles his or her library.
-mana={1}{B}{B}
-type=Legendary Creature
-subtype=Elf Wizard
-power=2
-toughness=3
 [/card]
 [card]
 name=Marble Priest
@@ -10539,15 +10521,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Mercenary Informer
-text=Mercenary Informer can't be the target of black spells or abilities from black sources. -- {2}{W}: Put target Mercenary on the bottom of its owner's library.
-mana={2}{W}
-type=Creature
-subtype=Human Rebel Mercenary
-power=2
-toughness=1
-[/card]
-[card]
 name=Merfolk Observer
 mana={1}{U}
 type=Creature
@@ -10705,12 +10678,6 @@ type=Sorcery
 name=Mind Funeral
 text=Target opponent reveals cards from the top of his or her library until four land cards are revealed. That player puts all cards revealed this way into his or her graveyard.
 mana={1}{U}{B}
-type=Sorcery
-[/card]
-[card]
-name=Mind Swords
-text=If you control a Swamp, you may sacrifice a creature rather than pay Mind Swords's mana cost. -- Each player exiles two cards from his or her hand.
-mana={1}{B}
 type=Sorcery
 [/card]
 [card]
@@ -11093,12 +11060,6 @@ toughness=2
 text={U}, Say your middle name: Moniker Mage can't be the target of spells or abilities this turn. {U}, Say an opponent's middle name: Moniker Mage gains flying until end of turn.
 [/card]
 [card]
-name=Monkey Cage
-text=When a creature enters the battlefield, sacrifice Monkey Cage and put X 2/2 green Ape creature tokens onto the battlefield, where X is that creature's converted mana cost.
-mana={5}
-type=Artifact
-[/card]
-[card]
 name=Monkey Monkey Monkey
 mana={3}{G}
 type=Creature — Ape
@@ -11346,15 +11307,6 @@ mana={6}
 type=Artifact
 [/card]
 [card]
-name=Myr Battlesphere
-mana={7}
-type=Artifact Creature
-subtype=Myr Construct
-power=4
-toughness=7
-text=When Myr Battlesphere enters the battlefield, put four 1/1 colorless Myr artifact creature tokens onto the battlefield. Whenever Myr Battlesphere attacks, you may tap X untapped Myr you control. If you do, Myr Battlesphere gets +X/+0 until end of turn and deals X damage to defending player.
-[/card]
-[card]
 name=Myr Reservoir
 mana={3}
 type=Artifact
@@ -11392,15 +11344,6 @@ name=Mystic Remora
 text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- Whenever an opponent casts a noncreature spell, you may draw a card unless that player pays {4}.
 mana={U}
 type=Enchantment
-[/card]
-[card]
-name=Mystic Snake
-text=Flash (You may cast this spell any time you could cast an instant.) -- When Mystic Snake enters the battlefield, counter target spell.
-mana={1}{G}{U}{U}
-type=Creature
-subtype=Snake
-power=2
-toughness=2
 [/card]
 [card]
 name=Mystic Speculation
@@ -11564,15 +11507,6 @@ name=Necromancy
 text=You may cast Necromancy as though it had flash. If you cast it any time a sorcery couldn't have been cast, the controller of the permanent it becomes sacrifices it at the beginning of the next cleanup step. -- When Necromancy enters the battlefield, if it's on the battlefield, it becomes an Aura with "enchant creature put onto the battlefield with Necromancy." Put target creature card from a graveyard onto the battlefield under your control and attach Necromancy to it. When Necromancy leaves the battlefield, that creature's controller sacrifices it.
 mana={2}{B}
 type=Enchantment
-[/card]
-[card]
-name=Necropolis
-text=Defender (This creature can't attack.) -- Exile a creature card from your graveyard: Put X +0/+1 counters on Necropolis, where X is the exiled card's converted mana cost.
-mana={5}
-type=Artifact Creature
-subtype=Wall
-power=0
-toughness=1
 [/card]
 [card]
 name=Necropotence
