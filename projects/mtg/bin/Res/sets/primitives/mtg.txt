@@ -1905,7 +1905,7 @@ toughness=1
 [card]
 name=Amnesia
 target=player
-auto=name(look) target(*|targetedpersonshand) 0/0
+auto=name(look) target(*|targetedpersonshand donothing
 auto=reject all(*[-land]|targetedpersonshand)
 text=Target player reveals his or her hand and discards all nonland cards.
 mana={3}{U}{U}{U}
@@ -5829,7 +5829,7 @@ toughness=4
 [card]
 name=Baleful Stare
 target=opponent
-auto=target(*|targetedpersonshand) 0/0
+auto=target(*|targetedpersonshand donothing
 auto=foreach(mountain|opponenthand) draw:1
 auto=foreach(*[red]|opponenthand) draw:1
 text=Target opponent reveals his or her hand. You draw a card for each Mountain and red card in it.
@@ -14637,7 +14637,7 @@ toughness=2
 [card]
 name=Clairvoyance
 target=player
-auto=target(*|targetedpersonshand) 0/0 ueot
+auto=target(*|targetedpersonshand donothing ueot
 auto=@next upkeep:draw:1 controller
 text=Look at target player's hand. -- Draw a card at the beginning of the next turn's upkeep.
 mana={U}
@@ -33733,7 +33733,7 @@ toughness=2
 [card]
 name=Gitaxian Probe
 target=player
-auto=name(look) target(*|targetedpersonshand) 0/0
+auto=name(look) target(*|targetedpersonshand donothing
 auto=draw:1 controller
 text=({p(U)} may be paid for with either {U} or 2 life.) -- Look at target player's hand. -- Draw a card.
 color=blue
@@ -33854,7 +33854,7 @@ toughness=4
 [/card]
 [card]
 name=Glasses of Urza
-auto={T}:name(look at opponents hand) target(*|opponenthand) 0/0 ueot
+auto={T}:name(look at opponents hand) target(*|opponenthand donothing ueot
 text={T}:Look at target player's hand.
 mana={1}
 type=Artifact
@@ -39700,7 +39700,7 @@ type=Instant
 [card]
 name=Hint of Insanity
 target=player
-auto=target(*|targetedpersonshand) 0/0
+auto=target(*|targetedpersonshand donothing
 auto=all(*|targetedpersonshand) transforms((,newability[if type(*[share!name!]|myhand)~morethan~1 then reject])) forever
 text=Target player reveals his or her hand. That player discards all nonland cards with the same name as another card in his or her hand.
 mana={2}{B}
@@ -40277,7 +40277,7 @@ toughness=1
 [/card]
 [card]
 name=Horn of Deafening
-auto={2}{T}:name(prevent all combat damage that would be dealt by target creature) 0/0 target(creature[attacking]) && fog to(mytgt) oneshot && fog from(mytgt) oneshot
+auto={2}{T}:name(prevent all combat damage that would be dealt by target creature donothing target(creature[attacking]) && fog to(mytgt) oneshot && fog from(mytgt) oneshot
 text={2}, {T}: Prevent all combat damage that would be dealt by target creature this turn.
 mana={4}
 type=Artifact
@@ -42293,7 +42293,7 @@ type=Artifact
 [card]
 name=Ingenious Thief
 abilities=flying
-auto=name(look at opponents hand) target(*|opponenthand) 0/0 ueot
+auto=name(look at opponents hand) target(*|opponenthand donothing ueot
 text=Flying -- When Ingenious Thief enters the battlefield, look at target player's hand.
 mana={1}{U}
 type=Creature
@@ -42440,7 +42440,7 @@ type=Sorcery
 [card]
 name=Inquisition
 target=player
-auto=target(*|targetedpersonshand) 0/0
+auto=target(*|targetedpersonshand donothing
 auto=foreach(*[white]|targetedpersonshand) damage:1 targetedplayer
 text=Target player reveals his or her hand. Inquisition deals damage to that player equal to the number of white cards in his or her hand.
 mana={2}{B}
@@ -46410,7 +46410,7 @@ toughness=1
 name=Knight of the Mists
 abilities=flanking
 auto=choice bury
-auto=choice pay({U}) name(Keep Knight of the Mists) 0/0
+auto=choice pay({U}) name(Keep Knight of the Mists donothing
 text=Flanking (Whenever a creature without flanking blocks this creature, the blocking creature gets -1/-1 until end of turn.) -- When Knight of the Mists enters the battlefield, you may pay {U}. If you don't, destroy target Knight and it can't be regenerated.
 mana={2}{U}
 type=Creature
@@ -47602,7 +47602,7 @@ toughness=6
 [/card]
 [card]
 name=Lady Evangela
-auto={W}{B}{T}:name(prevent all combat damage from target creature) 0/0 target(creature) && fog from(mytgt) oneshot
+auto={W}{B}{T}:name(prevent all combat damage from target creature donothing target(creature) && fog from(mytgt) oneshot
 text={W}{B}, {T}: Prevent all combat damage that would be dealt by target creature this turn.
 mana={W}{U}{B}
 type=Legendary Creature
@@ -48117,7 +48117,7 @@ toughness=2
 name=Lay Bare
 target=*|stack
 auto=fizzle
-auto=name(look at opponents hand) target(*|opponenthand) 0/0 ueot
+auto=name(look at opponents hand) target(*|opponenthand donothing ueot
 text=Counter target spell. Look at its controller's hand.
 mana={2}{U}{U}
 type=Instant
@@ -59397,7 +59397,7 @@ toughness=4
 [/card]
 [card]
 name=Obstinate Familiar
-auto=replacedraw ability$!choice name(Skip Draw) 0/0 ueot _ choice draw:1 noreplace!$ controller
+auto=replacedraw ability$!choice name(Skip Draw donothing ueot _ choice draw:1 noreplace!$ controller
 text=If you would draw a card, you may skip that draw instead.
 mana={R}
 type=Creature
@@ -61773,7 +61773,7 @@ type=Land
 [card]
 name=Peek
 target=player
-auto=name(see target hand) target(*|targetedpersonshand) 0/0
+auto=name(see target hand) target(*|targetedpersonshand donothing
 auto=draw:1 controller
 text=Look at target player's hand. -- Draw a card.
 mana={U}
@@ -62129,7 +62129,7 @@ type=Enchantment
 [card]
 name=Persecute
 target=player
-auto=name(see target hand) target(*|targetedpersonshand) 0/0
+auto=name(see target hand) target(*|targetedpersonshand donothing
 auto=chooseacolor all(*[chosencolor]|targetedpersonshand) reject chooseend
 text=Choose a color. Target player reveals his or her hand and discards all cards of that color.
 mana={2}{B}{B}
@@ -63950,7 +63950,7 @@ type=Enchantment
 [/card]
 [card]
 name=Port Inspector
-auto=@combat(blocked,turnlimited) source(this):name(look at opponents hand) target(*|opponenthand) 0/0 ueot
+auto=@combat(blocked,turnlimited) source(this):name(look at opponents hand) target(*|opponenthand donothing ueot
 text=Whenever Port Inspector becomes blocked, you may look at defending player's hand.
 mana={1}{U}
 type=Creature
@@ -70858,7 +70858,7 @@ type=Sorcery
 name=Rupture Spire
 auto=tap
 auto=choice sacrifice
-auto=choice pay({1}) name(Keep Rupture Spire) 0/0
+auto=choice pay({1}) name(Keep Rupture Spire donothing
 auto={T}:Add{B}
 auto={T}:Add{G}
 auto={T}:Add{R}
@@ -71284,7 +71284,7 @@ type=Land
 [/card]
 [card]
 name=Safeguard
-auto={2}{W}:name(prevent all combat damage from target creature) 0/0 target(creature) && fog from(mytgt) oneshot
+auto={2}{W}:name(prevent all combat damage from target creature donothing target(creature) && fog from(mytgt) oneshot
 text={2}{W}: Prevent all combat damage that would be dealt by target creature this turn.
 mana={3}{W}{W}
 type=Enchantment
@@ -73431,7 +73431,7 @@ type=Sorcery
 [card]
 name=Search Warrant
 target=player
-auto=name(look) target(*|targetedpersonshand) 0/0
+auto=name(look) target(*|targetedpersonshand donothing
 auto=foreach(*|targetedpersonshand) life:1 controller
 text=Target player reveals his or her hand. You gain life equal to the number of cards in that player's hand.
 mana={W}{U}
@@ -74103,7 +74103,7 @@ auto=choice name(Instant) moveTo(myexile) notatarget(instant|myhand) && counter(
 auto=choice name(Sorcery) moveTo(myexile) notatarget(sorcery|myhand) && counter(0/0,1,Sorcery) all(this)
 auto=choice name(Tribal Instant) moveTo(myexile) notatarget(instant[tribal]|myhand) && counter(0/0,1,TribalInstant) all(this)
 auto=choice name(Tribal Sorcery) moveTo(myexile) notatarget(sorcery[tribal]|myhand) && counter(0/0,1,TribalSorcery) all(this)
-auto=choice name(cancel) 0/0
+auto=choice name(cancel donothing
 auto=this(counter{0/0.1.Artifact}) lord(artifact|myhand) altercost(colorless,-2)
 auto=this(counter{0/0.1.ArtifactCreature}) lord(artifact[-creature]|myhand) altercost(colorless,-2)
 auto=this(counter{0/0.1.ArtifactCreature}) lord(creature[-artifact]|myhand) altercost(colorless,-2)
@@ -79482,7 +79482,7 @@ toughness=1
 [card]
 name=Sorcerous Sight
 target=opponent
-auto=name(see target hand) target(*|targetedpersonshand) 0/0
+auto=name(see target hand) target(*|targetedpersonshand donothing
 auto=draw:1 controller
 text=Look at target opponent's hand. -- Draw a card.
 mana={U}
@@ -84773,7 +84773,7 @@ toughness=4
 [card]
 name=Synod Sanctum
 auto={2}{T}:(blink)forsrc target(*|mybattlefield)
-auto={2}{S}:name(sacrifice Synod Sanctom) 0/0
+auto={2}{S}:name(sacrifice Synod Sanctom donothing
 text={2}, {T}: Exile target permanent you control. -- {2}, Sacrifice Synod Sanctum: Return all cards exiled with Synod Sanctum to the battlefield under your control.
 mana={1}
 type=Artifact
@@ -84982,7 +84982,7 @@ toughness=2
 [card]
 name=Talas Explorer
 abilities=flying
-auto=name(look at opponents hand) target(*|opponenthand) 0/0 ueot
+auto=name(look at opponents hand) target(*|opponenthand donothing ueot
 text=Flying -- When Talas Explorer enters the battlefield, look at target opponent's hand.
 mana={1}{U}
 type=Creature
@@ -85911,7 +85911,7 @@ toughness=2
 [/card]
 [card]
 name=Telepathic Spies
-auto=name(look at opponents hand) target(*|opponenthand) 0/0 ueot
+auto=name(look at opponents hand) target(*|opponenthand donothing ueot
 text=When Telepathic Spies enters the battlefield, look at target opponent's hand.
 mana={2}{U}
 type=Creature
@@ -89363,7 +89363,7 @@ toughness=3
 name=Transguild Promenade
 auto=tap
 auto=choice sacrifice
-auto=choice pay({1}) name(Keep Transguild Promenade) 0/0
+auto=choice pay({1}) name(Keep Transguild Promenade donothing
 auto={T}:Add{G}
 auto={T}:Add{R}
 auto={T}:Add{U}
@@ -89430,7 +89430,7 @@ toughness=3
 [card]
 name=Trapfinder's Trick
 target=player
-auto=name(see target hand)target(*|targetedpersonshand) 0/0
+auto=name(see target hand)target(*|targetedpersonshand donothing
 auto=all(trap|targetedpersonshand) reject
 text=Target player reveals his or her hand and discards all Trap cards.
 mana={1}{U}
@@ -94920,7 +94920,7 @@ type=Sorcery
 [card]
 name=Walker of Secret Ways
 autohand={1}{U}{N}:ninjutsu
-auto=@combatdamaged(player) from(this):name(look at opponents hand) target(*|opponenthand) 0/0 ueot
+auto=@combatdamaged(player) from(this):name(look at opponents hand) target(*|opponenthand donothing ueot
 auto={1}{U}:moveTo(myhand) target(ninja|myBattlefield) myTurnOnly
 text=Ninjutsu {1}{U} ({1}{U}, Return an unblocked attacker you control to hand: Put this card onto the battlefield from your hand tapped and attacking.) -- Whenever Walker of Secret Ways deals combat damage to a player, look at that player's hand. -- {1}{U}: Return target Ninja you control to its owner's hand. Activate this ability only during your turn.
 mana={2}{U}
@@ -95560,7 +95560,7 @@ type=Artifact
 [/card]
 [card]
 name=Wanderguard Sentry
-auto=name(look at opponents hand) target(*|opponenthand) 0/0 ueot
+auto=name(look at opponents hand) target(*|opponenthand donothing ueot
 text=When Wanderguard Sentry enters the battlefield, look at target opponent's hand.
 mana={4}{U}
 type=Creature
@@ -98753,7 +98753,7 @@ toughness=1
 [card]
 name=Wu Scout
 abilities=horsemanship
-auto=name(look at opponents hand) target(*|opponenthand) 0/0 ueot
+auto=name(look at opponents hand) target(*|opponenthand donothing ueot
 text=Horsemanship (This creature can't be blocked except by creatures with horsemanship.) -- When Wu Scout enters the battlefield, look at target opponent's hand.
 mana={1}{U}
 type=Creature
