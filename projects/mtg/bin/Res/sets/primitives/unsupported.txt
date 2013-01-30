@@ -12248,15 +12248,6 @@ mana={5}
 type=Artifact
 [/card]
 [card]
-name=Oros, the Avenger
-mana={3}{W}{B}{R}
-type=Legendary Creature
-subtype=Dragon
-power=6
-toughness=6
-text=Flying Whenever Oros, the Avenger deals combat damage to a player, you may pay {2}{W}. If you do, Oros deals 3 damage to each nonwhite creature.
-[/card]
-[card]
 name=Orzhov Euthanist
 text=Haunt (When this card is put into a graveyard from the battlefield, exile it haunting target creature.) -- When Orzhov Euthanist enters the battlefield or the creature it haunts is put into a graveyard, destroy target creature that was dealt damage this turn.
 mana={2}{B}
@@ -12387,12 +12378,6 @@ name=Pain // Suffering (Suffering)
 text=Destroy target land.
 mana={3}{R}
 type=Sorcery
-[/card]
-[card]
-name=Pain Magnification
-text=Whenever an opponent is dealt 3 or more damage by a single source, that player discards a card.
-mana={1}{B}{R}
-type=Enchantment
 [/card]
 [card]
 name=Pain's Reward

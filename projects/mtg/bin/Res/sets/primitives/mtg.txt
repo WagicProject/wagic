@@ -61078,6 +61078,13 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Pain Magnification
+auto=@damaged(opponent) restriction{compare(thatmuch)~morethan~2}:ability$!reject notatarget(*|myhand)!$ opponent
+text=Whenever an opponent is dealt 3 or more damage by a single source, that player discards a card.
+mana={1}{B}{R}
+type=Enchantment
+[/card]
+[card]
 name=Painbringer
 auto=aslongas(*|mygraveyard) {T}{E(*|mygraveyard)}:-1/-1 target(creature)
 auto=aslongas(*|mygraveyard) {T}{E(*|mygraveyard)}{E(*|mygraveyard)}:-2/-2 target(creature) >1
