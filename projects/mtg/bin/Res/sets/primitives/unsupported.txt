@@ -11686,15 +11686,6 @@ subtype=Equipment
 text=Equipped creature gets +2/+2, has intimidate, and is a black Zombie. Whenever a nontoken creature is put into your graveyard from the battlefield, you may pay {4}. If you do, return that card to the battlefield and attach Nim Deathmantle to it. Equip {4}
 [/card]
 [card]
-name=Nim Devourer
-text=Nim Devourer gets +1/+0 for each artifact you control. -- {B}{B}: Return Nim Devourer from your graveyard to the battlefield, then sacrifice a creature. Activate this ability only during your upkeep.
-mana={3}{B}{B}
-type=Creature
-subtype=Zombie
-power=4
-toughness=1
-[/card]
-[card]
 name=Nivix Guildmage
 auto={1}{U}{R}:name(draw & discard) ability$!draw:1 _ choice notatarget(*|myhand) reject)!$ controller
 text={1}{U}{R}: Draw a card, then discard a card. -- {2}{U}{R}: Copy target instant or sorcery spell you control. You may choose new targets for the copy.
@@ -11831,13 +11822,6 @@ type=Tribal Sorcery
 subtype=Rogue
 [/card]
 [card]
-name=Nourishing Shoal
-text=You may exile a green card with converted mana cost X from your hand rather than pay Nourishing Shoal's mana cost. -- You gain X life.
-mana={X}{G}{G}
-type=Instant
-subtype=Arcane
-[/card]
-[card]
 name=Nova Pentacle
 text={3}, {T}: The next time a source of your choice would deal damage to you this turn, that damage is dealt to target creature of an opponent's choice instead.
 mana={4}
@@ -11917,15 +11901,6 @@ type=Creature
 subtype=Treefolk Warrior
 power=2
 toughness=4
-[/card]
-[card]
-name=Oak Street Innkeeper
-text=As long as it's not your turn, tapped creatures you control have hexproof.
-mana={2}{G}
-type=Creature
-subtype=Elf
-power=1
-toughness=2
 [/card]
 [card]
 name=Oath of Druids
@@ -12131,13 +12106,9 @@ toughness=5
 [/card]
 [card]
 name=Opal Acrolith
+auto=@movedto(creature|stack) once:transforms((removetypes)) forever && transforms((Soldier Creature,setpower=2,settoughness=4)) forever
+auto={0}:name(becomes enchantment) flip(Opal Acrolith)
 text=Whenever an opponent casts a creature spell, if Opal Acrolith is an enchantment, Opal Acrolith becomes a 2/4 Soldier creature. -- {0}: Opal Acrolith becomes an enchantment.
-mana={2}{W}
-type=Enchantment
-[/card]
-[card]
-name=Opal Avenger
-text=When you have 10 or less life, if Opal Avenger is an enchantment, Opal Avenger becomes a 3/5 Soldier creature.
 mana={2}{W}
 type=Enchantment
 [/card]
@@ -12215,7 +12186,7 @@ toughness=1
 [/card]
 [card]
 name=Orcish Mine
-text=Enchant land -- Orcish Mine enters the battlefield with three ore counters on it. -- At the beginning of your upkeep and whenever enchanted land becomes tapped, remove an ore counter from Orcish Mine. If there are no ore counters on Orcish Mine, destroy that land and Orcish Mine deals 2 damage to its controller.
+text=Enchant land -- Orcish Mine enters the battlefield with three ore counters on it. -- At the beginning of your upkeep or whenever enchanted land becomes tapped, remove an ore counter from Orcish Mine. If there are no ore counters on Orcish Mine, destroy that land and Orcish Mine deals 2 damage to its controller.
 mana={1}{R}{R}
 type=Enchantment
 subtype=Aura
@@ -12269,15 +12240,6 @@ name=Origin Spellbomb
 mana={1}
 type=Artifact
 text={1}, {T}, Sacrifice Origin Spellbomb: Put a 1/1 colorless Myr artifact creature token onto the battlefield. When Origin Spellbomb is put into a graveyard from the battlefield, you may pay {W}. If you do, draw a card.
-[/card]
-[card]
-name=Oriss, Samite Guardian
-mana={1}{W}{W}
-type=Legendary Creature
-subtype=Human Cleric
-power=1
-toughness=3
-text={T}: Prevent all damage that would be dealt to target creature this turn. Grandeur — Discard another card named Oriss, Samite Guardian: Target player can't cast spells this turn, and creatures that player controls can't attack this turn.
 [/card]
 [card]
 name=Ornate Kanzashi
