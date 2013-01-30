@@ -1077,6 +1077,33 @@ public:
     ~IfThenAbility();
 };
 
+//MayPayAbility: May do ...
+class MayPayAbility: public MTGAbility, public NestedAbility
+{
+public:
+    int triggered;
+    bool must;
+    string Cond;
+    Player * previousInterrupter;
+    MTGAbility * mClone;
+    ManaCost * optionalCost;
+
+    MayPayAbility(GameObserver* observer, int _id, MTGAbility * _ability, MTGCardInstance * _source, bool must = false, string restriction = "");
+
+    void Update(float dt);
+
+    const char * getMenuText();
+    int testDestroy();
+
+    int isReactingToTargetClick(Targetable * card);
+
+    int reactToTargetClick(Targetable * object);
+
+    MayPayAbility * clone() const;
+    ~MayPayAbility();
+
+};
+
 //MayAbility: May do ...
 class MayAbility: public MTGAbility, public NestedAbility
 {

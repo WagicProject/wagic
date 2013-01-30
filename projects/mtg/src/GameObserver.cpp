@@ -1256,6 +1256,8 @@ int GameObserver::cardClick(MTGCardInstance * card, Targetable * object, bool lo
                 result = targetChooser->toggleTarget(clickedPlayer);
                 if(card)
                     card->playerTarget = clickedPlayer;
+                else
+                    targetChooser->source->playerTarget = clickedPlayer;
             }
             if (result == TARGET_OK_FULL)
                 card = cardWaitingForTargets;

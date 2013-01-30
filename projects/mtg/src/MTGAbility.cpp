@@ -3534,6 +3534,8 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
         }
         card->playerTarget = spell->getNextPlayerTarget();
     } 
+    if(!card->playerTarget && card->previous && card->previous->playerTarget)
+        card->playerTarget = card->previous->playerTarget;//instants seem to forget as they travel from zone to zone.
     _id = magicText(_id, spell);
 
     MTGPlayerCards * zones = card->controller()->game;

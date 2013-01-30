@@ -302,10 +302,12 @@ Spell::~Spell()
 int Spell::resolve()
 {
     MTGCardInstance * oldStored = source->storedCard;
+    Player * playerT = source->playerTarget;
     if (!source->hasType(Subtypes::TYPE_INSTANT) && !source->hasType(Subtypes::TYPE_SORCERY) && source->name.size())
     {
         Player * p = source->controller();
         int castMethod = source->castMethod;
+        Player * playerT = source->playerTarget;
         vector<Targetable*>backupTgt = source->backupTargets;
         source = p->game->putInZone(source, from, p->game->battlefield);
         
@@ -315,6 +317,7 @@ int Spell::resolve()
         source->backupTargets = backupTgt;
         from = p->game->battlefield;
     }
+    source->playerTarget = playerT;
     source->storedCard = oldStored;
     //Play SFX
     if (options[Options::SFXVOLUME].number > 0)
