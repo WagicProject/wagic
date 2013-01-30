@@ -57723,6 +57723,17 @@ power=3
 toughness=7
 [/card]
 [card]
+name=Nemesis Trap
+other={B}{B}
+otherrestriction=type(creature[white&attacking]|battlefield)~morethan~0
+target=creature[attacking]
+auto=moveto(exile) and!(clone with(treason))!
+text=If a white creature is attacking, you may pay {B}{B} rather than pay Nemesis Trap's mana cost. -- Exile target attacking creature. Put a token that's a copy of that creature onto the battlefield. Exile it at the beginning of the next end step.
+mana={4}{B}{B}
+type=Instant
+subtype=Trap
+[/card]
+[card]
 name=Nephalia Drownyard
 auto={T}:Add{1}
 auto={1}{U}{B}{T}:deplete:3 target(player)
@@ -58112,6 +58123,18 @@ type=Legendary Creature
 subtype=Elder Dragon
 power=7
 toughness=7
+[/card]
+#the 3rd ability choice looks inverted graphically(when activated) but its the correct order, you take damage, you discard cards(goes to graveyard first), then you sacrifice cards (check your graveyard the order)
+[card]
+name=Nicol Bolas, Planeswalker
+auto=counter(0/0,5,loyalty)
+auto={C(0/0,3,Loyalty)}:destroy target(*[-creature]|battlefield)
+auto={C(0/0,-2,Loyalty)}:name(gain control) moveTo(mybattlefield) target(creature)
+auto={C(0/0,-9,Loyalty)}:target(player) damage:7 && all(this) transforms((,newability[ability$!notatarget(<7>*|mybattlefield) sacrifice!$ targetedplayer],newability[ability$!notatarget(<7>*|myhand) reject!$ targetedplayer]))
+text=+3: Destroy target noncreature permanent. -- -2: Gain control of target creature. -- -9: Nicol Bolas, Planeswalker deals 7 damage to target player. That player discards seven cards, then sacrifices seven permanents.
+mana={4}{U}{B}{B}{R}
+type=Planeswalker
+subtype=Bolas
 [/card]
 [card]
 name=Night Dealings

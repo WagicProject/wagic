@@ -11558,13 +11558,6 @@ type=Artifact
 subtype=Equipment
 [/card]
 [card]
-name=Nemesis Trap
-text=If a white creature is attacking, you may pay {B}{B} rather than pay Nemesis Trap's mana cost. -- Exile target attacking creature. Put a token that's a copy of that creature onto the battlefield. Exile it at the beginning of the next end step.
-mana={4}{B}{B}
-type=Instant
-subtype=Trap
-[/card]
-[card]
 name=Nether Shadow
 abilities=haste
 text=Haste -- At the beginning of your upkeep, if Nether Shadow is in your graveyard with three or more creature cards above it, you may put Nether Shadow onto the battlefield.
@@ -11639,14 +11632,6 @@ name=New Frontiers
 text=Each player may search his or her library for up to X basic land cards and put them onto the battlefield tapped. Then each player who searched his or her library this way shuffles it.
 mana={X}{G}
 type=Sorcery
-[/card]
-[card]
-name=Nicol Bolas, Planeswalker
-text=+3: Destroy target noncreature permanent. -- -2: Gain control of target creature. -- -9: Nicol Bolas, Planeswalker deals 7 damage to target player. That player discards seven cards, then sacrifices seven permanents.
-mana={4}{U}{B}{B}{R}
-type=Planeswalker
-subtype=Bolas
-#loyalty=5
 [/card]
 [card]
 name=Night // Day (Day)
