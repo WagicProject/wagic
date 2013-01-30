@@ -50537,10 +50537,9 @@ subtype=Crocodile
 power=2
 toughness=2
 [/card]
-#please don't remove ")" at the end of autoline or it will not work.
 [card]
 name=Lurking Evil
-auto=this(cantargetcard(enchantment) {0}:name(pay halfup life) life:-halfdownlifetotal controller && transforms((removetypes)) forever && transforms((Horror Creature,setpower=4,settoughness=4,flying)) forever )
+auto=this(cantargetcard(enchantment)) {0}:name(pay halfup life) life:-halfdownlifetotal controller && transforms((removetypes)) forever && transforms((Horror Creature,setpower=4,settoughness=4,flying)) forever
 text=Pay half your life, rounded up: Lurking Evil becomes a 4/4 Horror creature with flying.
 mana={B}{B}{B}
 type=Enchantment
