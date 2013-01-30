@@ -1028,6 +1028,15 @@ public:
     AAResetDamage * clone() const;
 };
 
+class AAFakeAbility: public ActivatedAbility
+{
+public:
+    AAFakeAbility(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target, ManaCost * cost = NULL);
+    int resolve();
+    const char* getMenuText();
+    AAFakeAbility * clone() const;
+};
+
 class AAFizzler: public ActivatedAbility
 {
 

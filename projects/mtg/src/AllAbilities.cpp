@@ -1176,6 +1176,26 @@ AAResetDamage * AAResetDamage::clone() const
     return NEW AAResetDamage(*this);
 }
 
+//ability that resolves to do nothing.
+ AAFakeAbility::AAFakeAbility(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * _target, ManaCost * cost):
+    ActivatedAbility(observer, id, source, cost, 0)
+{
+    this->target = _target;
+}
+int AAFakeAbility::resolve()
+{
+    return 1;
+}
+
+const char* AAFakeAbility::getMenuText()
+{
+    return "Ability";
+}
+
+AAFakeAbility * AAFakeAbility::clone() const
+{
+    return NEW AAFakeAbility(*this);
+}
 
 // Fizzler
 AAFizzler::AAFizzler(GameObserver* observer, int _id, MTGCardInstance * card, Spell * _target, ManaCost * _cost) :

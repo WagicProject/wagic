@@ -2196,6 +2196,15 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         return a;
     }
 
+        //Reset damages on cards
+    found = s.find("donothing");
+    if (found != string::npos)
+    {
+        MTGAbility * a = NEW AAFakeAbility(observer, id, card, target);
+        a->oneShot = 1;
+        return a;
+    }
+
     //Damage
     vector<string> splitDamage = parseBetween(s, "damage:", " ", false);
     if (splitDamage.size())
