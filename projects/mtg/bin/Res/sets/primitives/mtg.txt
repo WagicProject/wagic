@@ -5517,7 +5517,7 @@ name=Azorius Charm
 auto=choice lord(creature|myBattlefield) lifelink ueot
 auto=choice draw:1 controller
 auto=aslongas(creature[attacking;blocking]|battlefield) choice moveTo(ownerlibrary) target(creature[attacking;blocking]|battlefield)
-text=Choose one â€” Creatures you control gain lifelink until end of turn; or draw a card; or put target attacking or blocking creature on top of its owner's library.
+text=Choose one — Creatures you control gain lifelink until end of turn; or draw a card; or put target attacking or blocking creature on top of its owner's library.
 mana={W}{U}
 type=Instant
 [/card]
@@ -6607,8 +6607,8 @@ name=Batterskull
 auto={5}:equip
 auto={3}:moveTo(ownerhand)
 auto=4/4
-auto=vigilance
-auto=lifelink
+auto=teach(creature) vigilance
+auto=teach(creature) lifelink
 auto=livingweapontoken(Germ,Creature Germ,0/0,black)
 text=Living weapon (When this Equipment enters the battlefield, put a 0/0 black Germ creature token onto the battlefield, then attach this to it.) -- Equipped creature gets +4/+4 and has vigilance and lifelink. -- {3}: Return Batterskull to its owner's hand. -- Equip {5}
 mana={5}
@@ -8002,7 +8002,7 @@ toughness=2
 [/card]
 [card]
 name=Blazing Shoal
-other={E(other *[red]|myhand)} name(Exile Red Card from Hand)
+other={R}{R}{E(other *[red]|myhand)} name(Exile Red Card from Hand)
 target=creature
 auto=X/0
 auto=alternative storedmanacost/0
@@ -9614,7 +9614,7 @@ toughness=1
 [card]
 name=Bomber Corps
 auto=@combat(attacking) source(this) restriction{type(other creature[attacking]|myBattlefield)~morethan~1}:damage:1 target(creature,player)
-text=Battalion â€” Whenever Bomber Corps and at least two other creatures attack, Bomber Corps deals 1 damage to target creature or player.
+text=Battalion — Whenever Bomber Corps and at least two other creatures attack, Bomber Corps deals 1 damage to target creature or player.
 mana={1}{R}
 type=Creature
 subtype=Human Soldier
@@ -9885,14 +9885,14 @@ name=Boros Charm
 auto=choice damage:4 target(player)
 auto=choice all(*|mybattlefield) indestructible ueot
 auto=aslongas(creature|battlefield) choice target(creature) double strike ueot
-text=Choose one â€” Boros Charm deals 4 damage to target player; or permanents you control are indestructible this turn; or target creature gains double strike until end of turn.
+text=Choose one — Boros Charm deals 4 damage to target player; or permanents you control are indestructible this turn; or target creature gains double strike until end of turn.
 mana={R}{W}
 type=Instant
 [/card]
 [card]
 name=Boros Elite
 auto=@combat(attacking) source(this) restriction{type(other creature[attacking]|myBattlefield)~morethan~1}:2/2 ueot
-text=Battalion â€” Whenever Boros Elite and at least two other creatures attack, Boros Elite gets +2/+2 until end of turn.
+text=Battalion — Whenever Boros Elite and at least two other creatures attack, Boros Elite gets +2/+2 until end of turn.
 mana={W}
 type=Creature
 subtype=Human Soldier
@@ -16093,7 +16093,7 @@ type=Artifact
 name=Contagion Engine
 auto=may counter(-1/-1,1) all(creature|opponentbattlefield)
 auto=may counter(-1/-1,1) all(creature|mybattlefield)
-auto={4}{T}:all(proliferation) proliferate && target(proliferation) proliferate
+auto={4}{T}:target(proliferation) transforms((,newability[proliferate],newability[proliferate])) forever
 text=When Contagion Engine enters the battlefield, put a -1/-1 counter on each creature target player controls. -- {4},{T}: Proliferate, then proliferate again. (You choose any number of permanents and/or players with counters on them, then give each another counter of a kind already there. Then do it again.)
 mana={6}
 type=Artifact
@@ -16124,7 +16124,7 @@ target=land
 auto=loseabilities
 auto=losesubtypesof(land)
 auto=transforms((swamp))
-auto=@tapped(mytgt):life:-2 targetcontroller
+auto=@tappedformana(mytgt):life:-2 targetcontroller
 mana={1}{B}
 type=Enchantment
 subtype=Aura
@@ -18630,7 +18630,7 @@ type=Instant
 [card]
 name=Daring Skyjek
 auto=@combat(attacking) source(this) restriction{type(other creature[attacking]|myBattlefield)~morethan~1}:flying ueot
-text=Battalion â€” Whenever Daring Skyjek and at least two other creatures attack, Daring Skyjek gains flying until end of turn.
+text=Battalion — Whenever Daring Skyjek and at least two other creatures attack, Daring Skyjek gains flying until end of turn.
 mana={1}{W}
 type=Creature
 subtype=Human Knight
@@ -21796,7 +21796,7 @@ name=Dispense Justice
 target=player
 auto=ability$!name(sacrifice) target(creature[attacking]|mybattlefield) sacrifice!$ targetedplayer
 auto=aslongas(artifact|mybattlefield) ability$!target(creature[attacking]|mybattlefield) sacrifice!$ targetedplayer >2
-text=Target player sacrifices an attacking creature. -- Metalcraft â€” That player sacrifices two attacking creatures instead if you control three or more artifacts.
+text=Target player sacrifices an attacking creature. -- Metalcraft — That player sacrifices two attacking creatures instead if you control three or more artifacts.
 mana={2}{W}
 type=Instant
 [/card]
@@ -26854,7 +26854,7 @@ subtype=Aura
 [/card]
 [card]
 name=Eternity Vessel
-text=Eternity Vessel enters the battlefield with X charge counters on it, where X is your life total. Landfall â€” Whenever a land enters the battlefield under your control, you may have your life total become the number of charge counters on Eternity Vessel.
+text=Eternity Vessel enters the battlefield with X charge counters on it, where X is your life total. Landfall — Whenever a land enters the battlefield under your control, you may have your life total become the number of charge counters on Eternity Vessel.
 auto=counter(0/0,lifetotal,Charge)
 auto=@movedto(land|myBattlefield):may lifeset:0 controller && thisforeach(counter{0/0.1.Charge}) life:1
 auto=Eternity Vessel enters the battlefield with X charge counters on it, where X is your life total. -- Landfall - Whenever a land enters the battlefield under your control, you may have your life total become the number of charge counters on Eternity Vessel.
@@ -29410,7 +29410,7 @@ subtype=Aura
 [card]
 name=Firefist Striker
 auto=@combat(attacking) source(this) restriction{type(other creature[attacking]|myBattlefield)~morethan~1}:cantblock target(creature) ueot
-text=Battalion â€” Whenever Firefist Striker and at least two other creatures attack, target creature can't block this turn.
+text=Battalion — Whenever Firefist Striker and at least two other creatures attack, target creature can't block this turn.
 mana={1}{R}
 type=Creature
 subtype=Human Soldier
@@ -29455,7 +29455,7 @@ toughness=3
 name=Firemane Avenger
 abilities=flying
 auto=@combat(attacking) source(this) restriction{type(other creature[attacking]|myBattlefield)~morethan~1}:choice damage:3 target(creature,player) && life:3 controller
-text=Flying -- Battalion â€” Whenever Firemane Avenger and at least two other creatures attack, Firemane Avenger deals 3 damage to target creature or player and you gain 3 life.
+text=Flying -- Battalion — Whenever Firemane Avenger and at least two other creatures attack, Firemane Avenger deals 3 damage to target creature or player and you gain 3 life.
 mana={2}{R}{W}
 type=Creature
 subtype=Angel
@@ -33077,7 +33077,7 @@ toughness=1
 name=Ghor-Clan Rampager
 abilities=trample
 autohand={R}{G}{discard}:name(bloodrush) target(creature[attacking]) trample && 4/4 ueot
-text=Trample -- Bloodrush â€” {R}{G}, Discard Ghor-Clan Rampager: Target attacking creature gets +4/+4 and gains trample until end of turn.
+text=Trample -- Bloodrush — {R}{G}, Discard Ghor-Clan Rampager: Target attacking creature gets +4/+4 and gains trample until end of turn.
 mana={2}{R}{G}
 type=Creature
 subtype=Beast
@@ -37106,7 +37106,7 @@ name=Gruul Charm
 auto=choice all(creature[-flying]|battlefield) cantblock ueot
 auto=choice moveto(ownerbattlefield) all(*|opponentbattlefield)
 auto=choice damage:3 all(creature[flying])
-text=Choose one â€” Creatures without flying can't block this turn; or gain control of all permanents you own; or Gruul Charm deals 3 damage to each creature with flying.
+text=Choose one — Creatures without flying can't block this turn; or gain control of all permanents you own; or Gruul Charm deals 3 damage to each creature with flying.
 mana={R}{G}
 type=Instant
 [/card]
@@ -48352,7 +48352,7 @@ mana={7}
 name=Legion Loyalist
 abilities=haste
 auto=@combat(attacking) source(this) restriction{type(other creature[attacking]|myBattlefield)~morethan~1}:all(creature|mybattlefield) transforms((,first strike,trample,newability[cantbeblockedby(creature[token])])) ueot
-text=Haste -- Battalion â€” Whenever Legion Loyalist and at least two other creatures attack, creatures you control gain first strike and trample until end of turn and can't be blocked by creature tokens this turn.
+text=Haste -- Battalion — Whenever Legion Loyalist and at least two other creatures attack, creatures you control gain first strike and trample until end of turn and can't be blocked by creature tokens this turn.
 mana={R}
 type=Creature
 subtype=Goblin Soldier
@@ -53046,7 +53046,7 @@ auto=choice name(exile all artifacts) moveTo(exile) all(artifact)
 auto=choice name(exile all creatures) moveTo(exile) all(creature)
 auto=choice name(exile all enchantments) moveTo(exile) all(enchantment)
 auto=choice name(exile all planeswalkers) moveTo(exile) all(planeswalker)
-text=Choose one â€” Exile all artifacts; or exile all creatures; or exile all enchantments; or exile all planeswalkers.
+text=Choose one — Exile all artifacts; or exile all creatures; or exile all enchantments; or exile all planeswalkers.
 mana={4}{W}{B}
 type=Sorcery
 [/card]
@@ -57269,7 +57269,7 @@ type=Sorcery
 [card]
 name=Nav Squad Commandos
 auto=@combat(attacking) source(this) restriction{type(other creature[attacking]|myBattlefield)~morethan~1}:1/1 ueot && untap
-text=Battalion â€” Whenever Nav Squad Commandos and at least two other creatures attack, Nav Squad Commandos gets +1/+1 until end of turn. Untap it.
+text=Battalion — Whenever Nav Squad Commandos and at least two other creatures attack, Nav Squad Commandos gets +1/+1 until end of turn. Untap it.
 mana={4}{W}
 type=Creature
 subtype=Human Soldier
@@ -58422,17 +58422,6 @@ power=3
 toughness=4
 [/card]
 [card]
-name=Nim Devourer
-auto=type:artifact:mybattlefield/0 nonstatic
-autograveyard={B}{B}:moveto(ownerbattlefield) and!( sacrifice notatarget(creature|mybattlefield) )! myUpkeepOnly
-text=Nim Devourer gets +1/+0 for each artifact you control. -- {B}{B}: Return Nim Devourer from your graveyard to the battlefield, then sacrifice a creature. Activate this ability only during your upkeep.
-mana={3}{B}{B}
-type=Creature
-subtype=Zombie
-power=4
-toughness=1
-[/card]
-[card]
 name=Nim Grotesque
 auto=foreach(artifact|myBattlefield) 1/0
 text=Nim Grotesque gets +1/+0 for each artifact you control.
@@ -58946,16 +58935,6 @@ mana={G}{G}
 type=Instant
 [/card]
 [card]
-name=Nourishing Shoal
-other={E(other *[green]|myhand)} name(Exile Green Card from Hand)
-auto=life:X
-auto=alternative life:storedmanacost
-text=You may exile a green card with converted mana cost X from your hand rather than pay Nourishing Shoal's mana cost. -- You gain X life.
-mana={X}{G}{G}
-type=Instant
-subtype=Arcane
-[/card]
-[card]
 name=Nova Chaser
 abilities=trample
 auto=aslongas(other elemental|mybattlefield) choice notatarget(other elemental|mybattlefield) (blink)forsrc oneshot
@@ -59187,16 +59166,6 @@ type=Artifact
 subtype=Equipment
 [/card]
 [card]
-name=Oak Street Innkeeper
-auto=this(variable{opponentturn}) lord(creature[tapped]|mybattlefield) opponentshroud
-text=As long as it's not your turn, tapped creatures you control have hexproof.
-mana={2}{G}
-type=Creature
-subtype=Elf
-power=1
-toughness=2
-[/card]
-[card]
 name=Oakenform
 target=creature
 auto=3/3
@@ -59223,8 +59192,8 @@ type=Land
 [/card]
 [card]
 name=Oath of Ghouls
-auto=@each my upkeep:if type(creature|mygraveyard)~morethan~type(creature|opponentgraveyard) then target(creature|mybattlefield) moveTo(myhand)
-auto=@each opponent upkeep:if type(creature|opponentgraveyard)~morethan~type(creature|mygraveyard) then ability$!name(return creature from graveyard) target(creature|mybattlefield) moveTo(myhand)!$ opponent
+auto=@each my upkeep:if type(creature|mygraveyard)~morethan~type(creature|opponentgraveyard) then target(creature|mygraveyard) moveTo(myhand)
+auto=@each opponent upkeep:if type(creature|opponentgraveyard)~morethan~type(creature|mygraveyard) then ability$!name(return creature from graveyard) target(creature|mygraveyard) moveTo(myhand)!$ opponent
 text=At the beginning of each player's upkeep, that player chooses target player whose graveyard has fewer creature cards in it than his or her graveyard does and is his or her opponent. The first player may return a creature card from his or her graveyard to his or her hand.
 mana={1}{B}
 type=Enchantment
@@ -59955,13 +59924,6 @@ mana={4}{W}
 type=Enchantment
 [/card]
 [card]
-name=Opal Avenger
-auto=this(variable{lifetotal}<11)while transforms((removetypes)) forever && transforms((Soldier Creature,setpower=3,settoughness=5)) oneshot
-text=When you have 10 or less life, if Opal Avenger is an enchantment, Opal Avenger becomes a 3/5 Soldier creature.
-mana={2}{W}
-type=Enchantment
-[/card]
-[card]
 name=Opal Caryatid
 auto=@movedto(creature|opponentstack) once:transforms((removetypes)) forever && transforms((Soldier Creature,setpower=2,settoughness=2)) forever
 text=When an opponent casts a creature spell, if Opal Caryatid is an enchantment, Opal Caryatid becomes a 2/2 Soldier creature.
@@ -60455,7 +60417,7 @@ toughness=1
 [card]
 name=Ordruun Veteran
 auto=@combat(attacking) source(this) restriction{type(other creature[attacking]|myBattlefield)~morethan~1}:double strike ueot
-text=Battalion â€” Whenever Ordruun Veteran and at least two other creatures attack, Ordruun Veteran gains double strike until end of turn. (It deals both first-strike and regular combat damage.)
+text=Battalion — Whenever Ordruun Veteran and at least two other creatures attack, Ordruun Veteran gains double strike until end of turn. (It deals both first-strike and regular combat damage.)
 mana={2}{R}{W}
 type=Creature
 subtype=Minotaur Soldier
@@ -60552,10 +60514,11 @@ power=1
 toughness=3
 [/card]
 [card]
-name=Oriss, Samite Guardian
-auto={T}:name(prevent all damage) target(creature) transforms((,newability[preventalldamage to(this)])) ueot
-auto={discard(*[share!name!]|myhand)}:target(player) maxCast(*)0 ueot && all(creature|targetedpersonsbattlefield) cantattack ueot
-text={T}: Prevent all damage that would be dealt to target creature this turn. Grandeur â€” Discard another card named Oriss, Samite Guardian: Target player can't cast spells this turn, and creatures that player controls can't attack this turn.
+name=Oriss Samite Guardian
+auto={T}:prevent:999 target(creature)
+auto={discard(oriss samite guardian|myhand)}:name(opponent can't cast spells and his creatures cannot attack ueot) maxCast(*)0 opponent ueot && cantattack all(creature|opponentBattlefield)
+auto={discard(oriss samite guardian|myhand)}:name(you can't cast spells and your creatures cannot attack ueot) maxCast(*)0 controller ueot && cantattack all(creature|myBattlefield)
+text={T}: Prevent all damage that would be dealt to target creature this turn. -- Grandeur - Discard another card named Oriss, Samite Guardian: Target player can't cast spells this turn, and creatures that player controls can't attack this turn.
 mana={1}{W}{W}
 type=Legendary Creature
 subtype=Human Cleric
@@ -61076,13 +61039,6 @@ type=Creature
 subtype=Spirit
 power=2
 toughness=2
-[/card]
-[card]
-name=Pain Magnification
-auto=@damaged(opponent) restriction{compare(thatmuch)~morethan~2}:ability$!reject notatarget(*|myhand)!$ opponent
-text=Whenever an opponent is dealt 3 or more damage by a single source, that player discards a card.
-mana={1}{B}{R}
-type=Enchantment
 [/card]
 [card]
 name=Painbringer
@@ -66559,7 +66515,7 @@ name=Rakdos Charm
 auto=choice target(player) moveTo(exile) all(*|targetedpersonsgraveyard)
 auto=aslongas(artifact|battlefield) choice destroy target(artifact)
 auto=choice name(damage) transforms((,newability[damage:1 controller])) all(creature|battlefield)
-text=Choose one â€” Exile all cards from target player's graveyard; or destroy target artifact; or each creature deals 1 damage to its controller.
+text=Choose one — Exile all cards from target player's graveyard; or destroy target artifact; or each creature deals 1 damage to its controller.
 mana={B}{R}
 type=Instant
 [/card]
@@ -70621,7 +70577,7 @@ toughness=3
 name=Rubblehulk
 auto=type:land:mybattlefield/type:land:mybattlefield nonstatic
 autohand={1}{R}{G}{discard}:name(bloodrush) target(creature[attacking]) type:land:mybattlefield/type:land:mybattlefield ueot
-text=Rubblehulk's power and toughness are each equal to the number of lands you control. -- Bloodrush â€” {1}{R}{G}, Discard Rubblehulk: Target attacking creature gets +X/+X until end of turn, where X is the number of lands you control.
+text=Rubblehulk's power and toughness are each equal to the number of lands you control. -- Bloodrush — {1}{R}{G}, Discard Rubblehulk: Target attacking creature gets +X/+X until end of turn, where X is the number of lands you control.
 mana={4}{R}{G}
 type=Creature
 subtype=Elemental
@@ -72304,7 +72260,7 @@ type=Land
 [card]
 name=Scab-Clan Charger
 autohand={1}{G}{discard}:name(bloodrush) target(creature[attacking]) 2/4 ueot
-text=Bloodrush â€” {1}{G}, Discard Scab-Clan Charger: Target attacking creature gets +2/+4 until end of turn.
+text=Bloodrush — {1}{G}, Discard Scab-Clan Charger: Target attacking creature gets +2/+4 until end of turn.
 mana={3}{G}
 type=Creature
 subtype=Centaur Warrior
@@ -72770,7 +72726,7 @@ type=Instant
 [card]
 name=Scorchwalker
 autohand={1}{R}{R}{discard}:name(bloodrush) target(creature[attacking]) 5/1 ueot
-text=Bloodrush â€” {1}{R}{R}, Discard Scorchwalker: Target attacking creature gets +5/+1 until end of turn.
+text=Bloodrush — {1}{R}{R}, Discard Scorchwalker: Target attacking creature gets +5/+1 until end of turn.
 mana={3}{R}
 type=Creature
 subtype=Elemental
@@ -74027,7 +73983,7 @@ name=Selesnya Charm
 auto=choice target(creature) 2/2 && trample  ueot
 auto=choice moveTo(exile) target(creature[power>=5])
 auto=choice token(Knight,Creature Knight,2/2,white,vigilance)
-text=Choose one â€” Target creature gets +2/+2 and gains trample until end of turn; or exile target creature with power 5 or greater; or put a 2/2 white Knight creature token with vigilance onto the battlefield.
+text=Choose one — Target creature gets +2/+2 and gains trample until end of turn; or exile target creature with power 5 or greater; or put a 2/2 white Knight creature token with vigilance onto the battlefield.
 mana={G}{W}
 type=Instant
 [/card]
@@ -77001,7 +76957,7 @@ type=Land
 name=Skarrg Goliath
 abilities=trample
 autohand={5}{G}{G}{discard}:name(bloodrush) target(creature[attacking]) trample && 9/9 ueot
-text=Trample -- Bloodrush â€” {5}{G}{G}, Discard Skarrg Goliath: Target attacking creature gets +9/+9 and gains trample until end of turn.
+text=Trample -- Bloodrush — {5}{G}{G}, Discard Skarrg Goliath: Target attacking creature gets +9/+9 and gains trample until end of turn.
 mana={6}{G}{G}
 type=Creature
 subtype=Beast
@@ -77184,7 +77140,7 @@ type=Instant
 [card]
 name=Skinbrand Goblin
 autohand={R}{discard}:name(bloodrush) target(creature[attacking]) 2/1 ueot
-text=Bloodrush â€” {R}, Discard Skinbrand Goblin: Target attacking creature gets +2/+1 until end of turn.
+text=Bloodrush — {R}, Discard Skinbrand Goblin: Target attacking creature gets +2/+1 until end of turn.
 mana={1}{R}
 type=Creature
 subtype=Goblin Warrior
@@ -78169,7 +78125,7 @@ type=Instant
 [card]
 name=Slaughterhorn
 autohand={G}{discard}:name(bloodrush) target(creature[attacking]) 3/2 ueot
-text=Bloodrush â€” {G}, Discard Slaughterhorn: Target attacking creature gets +3/+2 until end of turn.
+text=Bloodrush — {G}, Discard Slaughterhorn: Target attacking creature gets +3/+2 until end of turn.
 mana={2}{G}
 type=Creature
 subtype=Beast
@@ -93245,7 +93201,7 @@ toughness=2
 name=Viashino Shanktail
 abilities=first strike
 autohand={2}{R}{discard}:name(bloodrush) target(creature[attacking]) first strike && 3/1 ueot
-text=First strike -- Bloodrush â€” {2}{R}, Discard Viashino Shanktail: Target attacking creature gets +3/+1 and gains first strike until end of turn.
+text=First strike -- Bloodrush — {2}{R}, Discard Viashino Shanktail: Target attacking creature gets +3/+1 and gains first strike until end of turn.
 mana={3}{R}
 type=Creature
 subtype=Viashino Warrior
@@ -95881,7 +95837,7 @@ subtype=Equipment
 [card]
 name=Warmind Infantry
 auto=@combat(attacking) source(this) restriction{type(other creature[attacking]|myBattlefield)~morethan~1}:2/0 ueot
-text=Battalion â€” Whenever Warmind Infantry and at least two other creatures attack, Warmind Infantry gets +2/+0 until end of turn.
+text=Battalion — Whenever Warmind Infantry and at least two other creatures attack, Warmind Infantry gets +2/+0 until end of turn.
 mana={2}{R}
 type=Creature
 subtype=Elemental Soldier
@@ -96074,7 +96030,7 @@ type=Land
 name=Wasteland Viper
 abilities=deathtouch
 autohand={G}{discard}:name(bloodrush) target(creature[attacking]) deathtouch && 1/2 ueot
-text=Deathtouch -- Bloodrush â€” {G}, Discard Wasteland Viper: Target attacking creature gets +1/+2 and gains deathtouch until end of turn.
+text=Deathtouch -- Bloodrush — {G}, Discard Wasteland Viper: Target attacking creature gets +1/+2 and gains deathtouch until end of turn.
 mana={G}
 type=Creature
 subtype=Snake
@@ -98080,7 +98036,7 @@ toughness=5
 [card]
 name=Wojek Halberdiers
 auto=@combat(attacking) source(this) restriction{type(other creature[attacking]|myBattlefield)~morethan~1}:first strike ueot
-text=Battalion â€” Whenever Wojek Halberdiers and at least two other creatures attack, Wojek Halberdiers gains first strike until end of turn.
+text=Battalion — Whenever Wojek Halberdiers and at least two other creatures attack, Wojek Halberdiers gains first strike until end of turn.
 mana={R}{W}
 type=Creature
 subtype=Human Soldier
@@ -98316,7 +98272,7 @@ toughness=2
 [card]
 name=Woodland Sleuth
 auto=if morbid then moverandom(creature) from(mygraveyard) to(myhand)
-text=Morbid â€” When Woodland Sleuth enters the battlefield, if a creature died this turn, return a creature card at random from your graveyard to your hand.
+text=Morbid — When Woodland Sleuth enters the battlefield, if a creature died this turn, return a creature card at random from your graveyard to your hand.
 mana={3}{G}
 type=Creature
 subtype=Human Scout
@@ -98705,7 +98661,7 @@ type=Instant
 name=Wrecking Ogre
 abilities=double strike
 autohand={3}{R}{R}{discard}:name(bloodrush) target(creature[attacking]) double strike && 3/3 ueot
-text=Double strike -- Bloodrush â€” {3}{R}{R}, Discard Wrecking Ogre: Target attacking creature gets +3/+3 and gains double strike until end of turn.
+text=Double strike -- Bloodrush — {3}{R}{R}, Discard Wrecking Ogre: Target attacking creature gets +3/+3 and gains double strike until end of turn.
 mana={4}{R}
 type=Creature
 subtype=Ogre Warrior
@@ -99636,7 +99592,7 @@ toughness=1
 [card]
 name=Zhur-Taa Swine
 autohand={1}{R}{G}{discard}:name(bloodrush) target(creature[attacking]) 5/4 ueot
-text=Bloodrush â€” {1}{R}{G}, Discard Zhur-Taa Swine: Target attacking creature gets +5/+4 until end of turn.
+text=Bloodrush — {1}{R}{G}, Discard Zhur-Taa Swine: Target attacking creature gets +5/+4 until end of turn.
 mana={3}{R}{G}
 type=Creature
 subtype=Boar
