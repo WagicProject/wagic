@@ -64096,6 +64096,15 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Possessed Portal
+auto=replacedraw 0/0
+auto=opponentreplacedraw 0/0
+auto=@each end:ability$!choice sacrifice notatarget(*|mybattlefield) _ if type(*|myhand)~morethan~0 then if type(*|mybattlefield)~morethan~0 then choice reject notatarget(*|myhand)!$ controller && ability$!choice sacrifice notatarget(*|mybattlefield) _ if type(*|myhand)~morethan~0 then if type(*|mybattlefield)~morethan~0 then choice reject notatarget(*|myhand)!$ opponent
+text=If a player would draw a card, that player skips that draw instead. -- At the beginning of each end step, each player sacrifices a permanent unless he or she discards a card.
+mana={8}
+type=Artifact
+[/card]
+[card]
 name=Poultice Sliver
 auto=lord(sliver) {2}{T}:regenerate target(sliver)
 text=All Slivers have "{2}, {T}: Regenerate target Sliver."

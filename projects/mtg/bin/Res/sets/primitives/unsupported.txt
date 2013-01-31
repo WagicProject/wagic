@@ -13030,12 +13030,6 @@ mana={U}
 type=Sorcery
 [/card]
 [card]
-name=Possessed Portal
-text=If a player would draw a card, that player skips that draw instead. -- At the beginning of each end step, each player sacrifices a permanent unless he or she discards a card.
-mana={8}
-type=Artifact
-[/card]
-[card]
 name=Postmortem Lunge
 mana={X}{(}{B}{/}{P}{)}
 type=Sorcery
