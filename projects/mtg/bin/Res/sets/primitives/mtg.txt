@@ -25497,9 +25497,10 @@ subtype=Elf Mutant
 power=5
 toughness=4
 [/card]
+#the exile as a cost when adding mana seems require a target so i added "all(controller)" and it works 100%, since "controller" only will not work.
 [card]
 name=Elvish Spirit Guide
-autohand={0}:moveTo(exile) && add{G}
+autohand={e(this|myhand)}:add{G} all(controller)
 text=Exile Elvish Spirit Guide from your hand: Add {G} to your mana pool.
 mana={2}{G}
 type=Creature
@@ -50546,7 +50547,7 @@ type=Enchantment
 [/card]
 [card]
 name=Lurking Jackals
-auto=this(variable{opponentlifetotal}<11)while transforms((removetypes)) forever && transforms((Hound Creature,setpower=3,settoughness=2)) oneshot
+auto=this(variable{opponentlifetotal}<11)while transforms((removetypes)) forever && transforms((Hound Creature,setpower=3,settoughness=2)) forever
 text=When an opponent has 10 or less life, if Lurking Jackals is an enchantment, it becomes a 3/2 Hound creature.
 mana={B}
 type=Enchantment
@@ -76716,9 +76717,10 @@ subtype=Ape
 power=3
 toughness=4
 [/card]
+#the exile as a cost when adding mana seems require a target so i added "all(controller)" and it works 100%, since "controller" only will not work.
 [card]
 name=Simian Spirit Guide
-autohand={0}:moveTo(exile) && add{R}
+autohand={e(this|myhand)}:add{R} all(controller)
 text=Exile Simian Spirit Guide from your hand: Add {R} to your mana pool.
 mana={2}{R}
 type=Creature
