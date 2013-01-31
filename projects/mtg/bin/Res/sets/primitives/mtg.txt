@@ -25497,7 +25497,8 @@ subtype=Elf Mutant
 power=5
 toughness=4
 [/card]
-#the exile as a cost when adding mana seems require a target so i added "all(controller)" and it works 100%, since "controller" only will not work.[card]
+#the exile as a cost when adding mana seems require a target so i added "all(controller)" and it works 100%, since "controller" only will not work.
+[card]
 name=Elvish Spirit Guide
 autohand={e(this|myhand)}:add{G} all(controller)
 text=Exile Elvish Spirit Guide from your hand: Add {G} to your mana pool.
@@ -36588,7 +36589,7 @@ name=Grifter's Blade
 abilities=flash
 auto={1}:equip
 auto=1/1
-auto=attach target(creature|mybattlefield)
+auto=aslongas(parents) retarget target(creature|mybattlefield) <1
 text=Flash -- As Grifter's Blade enters the battlefield, choose a creature you control it could be attached to. If you do, it enters the battlefield attached to that creature. -- Equipped creature gets +1/+1. -- Equip {1}
 mana={3}
 type=Artifact
@@ -63344,6 +63345,16 @@ power=4
 toughness=3
 [/card]
 [card]
+name=Piston Sledge
+auto=aslongas(parents) retarget target(creature|mybattlefield) <1
+auto=teach(creature) 3/1
+auto={S(artifact|mybattlefield)}:equip
+text=When Piston Sledge enters the battlefield, attach it to target creature you control. -- Equipped creature gets +3/+1. -- Equip - Sacrifice an artifact.
+mana={3}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
 name=Pistus Strike
 target=creature[flying]
 auto=destroy
@@ -76716,7 +76727,8 @@ subtype=Ape
 power=3
 toughness=4
 [/card]
-#the exile as a cost when adding mana seems require a target so i added "all(controller)" and it works 100%, since "controller" only will not work.[card]
+#the exile as a cost when adding mana seems require a target so i added "all(controller)" and it works 100%, since "controller" only will not work.
+[card]
 name=Simian Spirit Guide
 autohand={e(this|myhand)}:add{R} all(controller)
 text=Exile Simian Spirit Guide from your hand: Add {R} to your mana pool.

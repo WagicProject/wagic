@@ -12785,12 +12785,12 @@ text=Flying, trample At the beginning of your upkeep, remove the top card of you
 [/card]
 [card]
 name=Phyrexian Metamorph
-mana={3}{(}{U}{/}{P}{)}
+text=({p(U)} can be paid with either {U} or 2 life.) -- You may have Phyrexian Metamorph enter the battlefield as a copy of any artifact or creature on the battlefield, except it's an artifact in addition to its other types.
+mana={3}{p(U)}
 type=Artifact Creature
 subtype=Shapeshifter
 power=0
 toughness=0
-text=({(u/p)} can be paid with either {U} or 2 life.) You may have Phyrexian Metamorph enter the battlefield as a copy of any artifact or creature on the battlefield, except it's an artifact in addition to its other types.
 [/card]
 [card]
 name=Phyrexian Portal
@@ -12889,13 +12889,6 @@ name=Piracy
 text=Until end of turn, you may tap lands you don't control for mana. Spend this mana only to cast spells.
 mana={U}{U}
 type=Sorcery
-[/card]
-[card]
-name=Piston Sledge
-text=When Piston Sledge enters the battlefield, attach it to target creature you control. -- Equipped creature gets +3/+1. -- Equip - Sacrifice an artifact.
-mana={3}
-type=Artifact
-subtype=Equipment
 [/card]
 [card]
 name=Pitchstone Wall
