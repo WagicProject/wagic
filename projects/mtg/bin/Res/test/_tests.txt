@@ -476,9 +476,11 @@ necrogenesis.txt
 Nevinyrrals_Disk.txt
 Nevinyrrals_Disk2.txt
 nightmare.txt
+Nim_Devourer.txt
 northern_paladin.txt
 northern_paladin2.txt
 Nyxathid.txt
+Oak_Street_Innkeeper.txt
 ondu_cleric.txt
 OneDozenEyes.txt
 Oracle_of_Nectars.txt
@@ -486,9 +488,11 @@ orcish_artillery.txt
 orcish_lumberjack.txt
 orims_chant_i595.txt
 orims_chant2.txt
+Oriss_Samite_Guardian.txt
 overrun.txt
 ovinize.txt
 ovinize2.txt
+Pain_Magnification.txt
 paradise_mantle.txt
 paralysis.txt
 paralysis2.txt

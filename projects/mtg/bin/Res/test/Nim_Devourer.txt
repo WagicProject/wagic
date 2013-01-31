@@ -1,0 +1,23 @@
+#Testing Nim Devourer upkeep ability, move to play then sacrifice a creature.
+[INIT]
+UPKEEP
+[PLAYER1]
+graveyard:Nim Devourer
+inplay:Tundra Wolves
+manapool:{B}{B}
+[PLAYER2]
+life:20
+[DO]
+Nim Devourer
+choice 0
+Tundra Wolves
+next
+next
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Nim Devourer
+graveyard:Tundra Wolves
+[PLAYER2]
+life:20
+[END]

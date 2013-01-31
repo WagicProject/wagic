@@ -1,0 +1,26 @@
+#Testing Oriss Samite Guardian preventalldamage to(this)
+[INIT]
+combatattackers
+[PLAYER1]
+hand:Lightning Bolt
+inplay:Mountain
+[PLAYER2]
+inplay:136210
+[DO]
+Mountain
+Lightning Bolt
+136210
+no
+yes
+136210
+choice 0
+136210
+eot
+[ASSERT]
+untap
+[PLAYER1]
+inplay:Mountain
+graveyard:Lightning Bolt
+[PLAYER2]
+inplay:136210
+[END]

@@ -1,0 +1,29 @@
+#Testing Oak Street Innkeeper hexproof during opponent turn
+[INIT]
+combatattackers
+[PLAYER1]
+inplay:Oak Street Innkeeper
+[PLAYER2]
+hand:Lightning Bolt
+inplay:Mountain
+life:20
+[DO]
+Oak Street Innkeeper
+eot
+#next turn opponent
+Mountain
+Lightning Bolt
+Oak Street Innkeeper
+#since i cant target because of hexproof, i choose p1
+p1
+eot
+[ASSERT]
+untap
+[PLAYER1]
+inplay:Oak Street Innkeeper
+life:17
+[PLAYER2]
+inplay:Mountain
+graveyard:Lightning Bolt
+life:19
+[END]

@@ -1,0 +1,33 @@
+#Testing Pain Magnification - more than 2 damage must comes from a single source
+#in this case Lightning Bolt, so the opponent must discard 1 card only
+[INIT]
+combatattackers
+[PLAYER1]
+hand:Lightning Bolt
+inplay:Pain Magnification,Mountain,Grizzly Bears,Savannah Lions
+[PLAYER2]
+hand:Plains,Forest
+life:20
+[DO]
+Savannah Lions
+Grizzly Bears
+next
+next
+next
+Mountain
+Lightning Bolt
+p2
+choice 0
+Forest
+next
+eot
+[ASSERT]
+untap
+[PLAYER1]
+inplay:Pain Magnification,Mountain,Grizzly Bears,Savannah Lions
+graveyard:Lightning Bolt
+[PLAYER2]
+hand:*
+graveyard:*
+life:13
+[END]

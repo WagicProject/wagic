@@ -8002,7 +8002,7 @@ toughness=2
 [/card]
 [card]
 name=Blazing Shoal
-other={R}{R}{E(other *[red]|myhand)} name(Exile Red Card from Hand)
+other={E(other *[red]|myhand)} name(Exile Red Card from Hand)
 target=creature
 auto=X/0
 auto=alternative storedmanacost/0
@@ -58422,6 +58422,17 @@ power=3
 toughness=4
 [/card]
 [card]
+name=Nim Devourer
+auto=type:artifact:mybattlefield/0 nonstatic
+autograveyard={B}{B}:moveto(ownerbattlefield) and!( sacrifice notatarget(creature|mybattlefield) )! myUpkeepOnly
+text=Nim Devourer gets +1/+0 for each artifact you control. -- {B}{B}: Return Nim Devourer from your graveyard to the battlefield, then sacrifice a creature. Activate this ability only during your upkeep.
+mana={3}{B}{B}
+type=Creature
+subtype=Zombie
+power=4
+toughness=1
+[/card]
+[card]
 name=Nim Grotesque
 auto=foreach(artifact|myBattlefield) 1/0
 text=Nim Grotesque gets +1/+0 for each artifact you control.
@@ -58935,6 +58946,16 @@ mana={G}{G}
 type=Instant
 [/card]
 [card]
+name=Nourishing Shoal
+other={E(other *[green]|myhand)} name(Exile Green Card from Hand)
+auto=life:X
+auto=alternative life:storedmanacost
+text=You may exile a green card with converted mana cost X from your hand rather than pay Nourishing Shoal's mana cost. -- You gain X life.
+mana={X}{G}{G}
+type=Instant
+subtype=Arcane
+[/card]
+[card]
 name=Nova Chaser
 abilities=trample
 auto=aslongas(other elemental|mybattlefield) choice notatarget(other elemental|mybattlefield) (blink)forsrc oneshot
@@ -59164,6 +59185,16 @@ text=O-Naginata can be attached only to a creature with 3 or more power. -- Equi
 mana={1}
 type=Artifact
 subtype=Equipment
+[/card]
+[card]
+name=Oak Street Innkeeper
+auto=this(variable{opponentturn}) lord(creature[tapped]|mybattlefield) opponentshroud
+text=As long as it's not your turn, tapped creatures you control have hexproof.
+mana={2}{G}
+type=Creature
+subtype=Elf
+power=1
+toughness=2
 [/card]
 [card]
 name=Oakenform
@@ -59924,6 +59955,13 @@ mana={4}{W}
 type=Enchantment
 [/card]
 [card]
+name=Opal Avenger
+auto=this(variable{lifetotal}<11)while transforms((removetypes)) forever && transforms((Soldier Creature,setpower=3,settoughness=5)) forever
+text=When you have 10 or less life, if Opal Avenger is an enchantment, Opal Avenger becomes a 3/5 Soldier creature.
+mana={2}{W}
+type=Enchantment
+[/card]
+[card]
 name=Opal Caryatid
 auto=@movedto(creature|opponentstack) once:transforms((removetypes)) forever && transforms((Soldier Creature,setpower=2,settoughness=2)) forever
 text=When an opponent casts a creature spell, if Opal Caryatid is an enchantment, Opal Caryatid becomes a 2/2 Soldier creature.
@@ -60514,11 +60552,10 @@ power=1
 toughness=3
 [/card]
 [card]
-name=Oriss Samite Guardian
-auto={T}:prevent:999 target(creature)
-auto={discard(oriss samite guardian|myhand)}:name(opponent can't cast spells and his creatures cannot attack ueot) maxCast(*)0 opponent ueot && cantattack all(creature|opponentBattlefield)
-auto={discard(oriss samite guardian|myhand)}:name(you can't cast spells and your creatures cannot attack ueot) maxCast(*)0 controller ueot && cantattack all(creature|myBattlefield)
-text={T}: Prevent all damage that would be dealt to target creature this turn. -- Grandeur - Discard another card named Oriss, Samite Guardian: Target player can't cast spells this turn, and creatures that player controls can't attack this turn.
+name=Oriss, Samite Guardian
+auto={T}:name(prevent all damage) target(creature) transforms((,newability[preventalldamage to(this)])) ueot
+auto={discard(*[share!name!]|myhand)}:target(player) maxCast(*)0 ueot && all(creature|targetedpersonsbattlefield) cantattack ueot
+text={T}: Prevent all damage that would be dealt to target creature this turn. Grandeur — Discard another card named Oriss, Samite Guardian: Target player can't cast spells this turn, and creatures that player controls can't attack this turn.
 mana={1}{W}{W}
 type=Legendary Creature
 subtype=Human Cleric
@@ -61039,6 +61076,13 @@ type=Creature
 subtype=Spirit
 power=2
 toughness=2
+[/card]
+[card]
+name=Pain Magnification
+auto=@damaged(opponent) restriction{compare(thatmuch)~morethan~2}:ability$!reject notatarget(*|myhand)!$ opponent
+text=Whenever an opponent is dealt 3 or more damage by a single source, that player discards a card.
+mana={1}{B}{R}
+type=Enchantment
 [/card]
 [card]
 name=Painbringer
