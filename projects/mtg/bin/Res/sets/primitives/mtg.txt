@@ -52474,7 +52474,7 @@ toughness=1
 [/card]
 [card]
 name=Master Transmuter
-auto={H(artifact|mybattlefield)}{U}{T}:moveTo(mybattlefield) notatarget(artifact|myhand)
+auto={H(artifact|mybattlefield)}{U}{T}:may name(put artifact in play) ability$!moveTo(mybattlefield) notatarget(artifact|myhand)!$ controller
 text={U}, {T}, Return an artifact you control to its owner's hand: You may put an artifact card from your hand onto the battlefield.
 mana={3}{U}
 type=Artifact Creature
