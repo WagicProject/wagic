@@ -378,6 +378,7 @@ int AACopier::resolve()
     if (_target)
     {
         source->copy(_target);
+        source->cardsAbilities;
         return 1;
     }
     return 0;
@@ -1551,10 +1552,10 @@ int AANewTarget::resolve()
         while (_target->next)
             _target = _target->next; 
         _target->controller()->game->putInZone(_target, _target->currentZone,
-            _target->owner->game->exile);
+            _target->owner->game->exile,false);
         _target = _target->next;
 
-        MTGCardInstance * refreshed = source->controller()->game->putInZone(_target,_target->currentZone,source->controller()->game->battlefield);
+        MTGCardInstance * refreshed = source->controller()->game->putInZone(_target,_target->currentZone,source->controller()->game->battlefield,false);
         Spell * reUp = NEW Spell(game, refreshed);
         if(reUp->source->hasSubtype(Subtypes::TYPE_AURA))
         {
