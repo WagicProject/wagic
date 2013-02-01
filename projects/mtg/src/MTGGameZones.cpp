@@ -303,7 +303,7 @@ MTGCardInstance * MTGPlayerCards::putInHand(MTGCardInstance * card)
 
 // Moves a card from one zone to another
 // If the card is not actually in the expected "from" zone, does nothing and returns null 
-MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone * from, MTGGameZone * to,bool sendEvent)
+MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone * from, MTGGameZone * to)
 {
     MTGCardInstance * copy = NULL;
     GameObserver *g = owner->getObserver();
@@ -369,11 +369,8 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
             SAFE_DELETE(previous);
         }
     }
-    if(sendEvent)
-    {
     WEvent * e = NEW WEventZoneChange(copy, from, to);
     g->receiveEvent(e);
-    }
     return ret;
 
 }
