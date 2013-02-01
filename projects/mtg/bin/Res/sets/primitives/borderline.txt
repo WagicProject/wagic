@@ -140,6 +140,13 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Prismatic Lace
+auto=chooseacolor target(*) becomes(,chosencolor) forever chooseend
+text=Target permanent becomes the color or colors of your choice. (This effect lasts indefinitely.)
+mana={U}
+type=Instant
+[/card]
+[card]
 name=Sacellum Godspeaker
 auto={T}:foreach(creaure[power>4]|myhand) add{G}
 text={T}: Reveal any number of creature cards with power 5 or greater from your hand. Add {G} to your mana pool for each card revealed this way.

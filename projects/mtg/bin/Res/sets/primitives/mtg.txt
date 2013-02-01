@@ -68361,9 +68361,8 @@ type=Enchantment
 [card]
 name=Reminisce
 target=player
-# auto=moveTo(ownerlibrary) all(*|ownergraveyard)
-# Found one hardcoded and one softcoded copy of the card - todo: check whether softcoding works
-alias=129698
+auto=moveTo(ownerlibrary) and!(shuffle)! all(*|targetedpersonsgraveyard)
+#alias=129698
 text=Target player shuffles his or her graveyard into his or her library.
 mana={2}{U}
 type=Sorcery
@@ -96903,7 +96902,7 @@ toughness=1
 [card]
 name=Whirlpool Warrior
 auto=all(*|myhand) transforms((,newability[draw:1],newability[moveTo(mylibrary) and!(shuffle)!]))
-auto={R}{S}:all(*|myhand) transforms((,newability[draw:1],newability[moveTo(mylibrary) and!(shuffle)!])) && auto=all(*|opponenthand) transforms((,newability[draw:1],newability[moveTo(library) and!(shuffle)!]))
+auto={R}{S}:all(*|myhand) transforms((,newability[draw:1],newability[moveTo(mylibrary) and!(shuffle)!])) && all(*|opponenthand) transforms((,newability[draw:1],newability[moveTo(library) and!(shuffle)!]))
 text=When Whirlpool Warrior enters the battlefield, shuffle the cards from your hand into your library, then draw that many cards. -- {R}, Sacrifice Whirlpool Warrior: Each player shuffles the cards from his or her hand into his or her library, then draws that many cards.
 mana={2}{U}
 type=Creature
