@@ -2708,6 +2708,11 @@ public:
             a->forceDestroy = 1;
             continue;
             }
+            if (dynamic_cast<AACopier *> (af.getCoreAbility(a)))
+            {
+                a->forceDestroy = 1;
+                continue;
+            }
             //we generally dont want to pass oneShot tokencreators to the cards
             //we equip...
             a->addToGame();
