@@ -32893,14 +32893,6 @@ power=4
 toughness=2
 [/card]
 [card]
-name=Gerrard's Verdict
-target=player
-auto=transforms((,newability[discard:2 targetedplayer],newability[@discarded(land|targetedpersonshand):life:3]))
-text=Target player discards two cards. You gain 3 life for each land card discarded this way.
-mana={W}{B}
-type=Sorcery
-[/card]
-[card]
 name=Gerrard's Wisdom
 auto=foreach(*|myhand) life:2 controller
 text=You gain 2 life for each card in your hand.
@@ -50539,15 +50531,8 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Lurking Evil
-auto=this(cantargetcard(enchantment)) {0}:name(pay halfup life) life:-halfdownlifetotal controller && transforms((removetypes)) forever && transforms((Horror Creature,setpower=4,settoughness=4,flying)) forever
-text=Pay half your life, rounded up: Lurking Evil becomes a 4/4 Horror creature with flying.
-mana={B}{B}{B}
-type=Enchantment
-[/card]
-[card]
 name=Lurking Jackals
-auto=this(variable{opponentlifetotal}<11)while transforms((removetypes)) forever && transforms((Hound Creature,setpower=3,settoughness=2)) oneshot
+auto=this(variable{opponentlifetotal}<11)while transforms((removetypes)) forever && transforms((Hound Creature,setpower=3,settoughness=2)) forever
 text=When an opponent has 10 or less life, if Lurking Jackals is an enchantment, it becomes a 3/2 Hound creature.
 mana={B}
 type=Enchantment
@@ -69875,6 +69860,13 @@ power=2
 toughness=1
 [/card]
 [card]
+name=Rix Maadi, Dungeon Palace
+auto={T}:add{1}
+auto={1}{B}{R}{T}:name(discard) transforms((,newability[ability$!name(discard) notatarget(*|myhand) reject!$ controller],newability[ability$!name(discard) notatarget(*|myhand) reject!$ opponent])) ueot asSorcery
+text={T}: Add {1} to your mana pool. -- {1}{B}{R}, {T}: Each player discards a card. Activate this ability only any time you could cast a sorcery.
+type=Land
+[/card]
+[card]
 name=Roar of the Kha
 other={2}{W}{W} name(Entwine)
 auto=if paid(alternative) then all(creature|mybattlefield) 1/1 ueot && untap all(creature|mybattlefield)
@@ -70524,6 +70516,17 @@ type=Creature
 subtype=Zombie
 power=4
 toughness=5
+[/card]
+[card]
+name=Rotting Rats
+auto=transforms((,newability[ability$!name(discard) notatarget(*|myhand) reject!$ controller],newability[ability$!name(discard) notatarget(*|myhand) reject!$ opponent])) ueot
+autograveyard={1}{B}:moveto(mybattlefield) && transforms((,unearth,haste)) asSorcery forever
+text=When Rotting Rats enters the battlefield, each player discards a card. -- Unearth {1}{B} ({1}{B}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
+mana={1}{B}
+type=Creature
+subtype=Zombie Rat
+power=1
+toughness=1
 [/card]
 [card]
 name=Roughshod Mentor
@@ -83390,6 +83393,17 @@ type=Creature
 subtype=Demon
 power=5
 toughness=5
+[/card]
+[card]
+name=Stronghold Rats
+abilities=shadow
+auto=@combatdamaged(player) from(this):name(discard) transforms((,newability[ability$!name(discard) notatarget(*|myhand) reject!$ controller],newability[ability$!name(discard) notatarget(*|myhand) reject!$ opponent])) ueot
+text=Shadow (This creature can block or be blocked by only creatures with shadow.) -- Whenever Stronghold Rats deals combat damage to a player, each player discards a card.
+mana={2}{B}
+type=Creature
+subtype=Rat
+power=2
+toughness=1
 [/card]
 [card]
 name=Stronghold Taskmaster
