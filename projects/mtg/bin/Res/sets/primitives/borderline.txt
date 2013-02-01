@@ -107,6 +107,19 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Maralen of the Mornsong
+auto=replacedraw ability$!name(skip draw) donothing!$ controller
+auto=opponentreplacedraw ability$!name(skip draw) donothing!$ opponent
+auto=@each my draw:life:-3 && ability$!choice name(search a card) notatarget(*|mylibrary) moveto(ownerhand) && shuffle!$ controller
+auto=@each opponent draw:life:-3 opponent && ability$!choice name(search a card) notatarget(*|mylibrary) moveto(ownerhand) && shuffle!$ opponent
+text=Players can't draw cards. -- At the beginning of each player's draw step, that player loses 3 life, searches his or her library for a card, puts it into his or her hand, then shuffles his or her library.
+mana={1}{B}{B}
+type=Legendary Creature
+subtype=Elf Wizard
+power=2
+toughness=3
+[/card]
+[card]
 name=Metalworker
 auto={T}:foreach(artifact|myhand) Add{2} controller
 text={T}: Reveal any number of artifact cards in your hand. Add {2} to your mana pool for each card revealed this way.
