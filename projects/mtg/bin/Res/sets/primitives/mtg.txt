@@ -59424,7 +59424,7 @@ toughness=4
 [/card]
 [card]
 name=Obstinate Familiar
-auto=replacedraw ability$!choice name(Skip Draw) donothing ueot _ choice draw:1 noreplace!$ controller
+auto=replacedraw ability$!name(skip or draw) choice name(Skip Draw) donothing ueot _ choice draw:1 noreplace!$ controller
 text=If you would draw a card, you may skip that draw instead.
 mana={R}
 type=Creature
@@ -64283,6 +64283,13 @@ mana={1}{G}
 type=Instant
 [/card]
 [card]
+name=Predatory Advantage
+auto=@each opponent endofturn restriction{thisturn(creature|opponentstack)~lessthan~1}:token(Lizard,Creature Lizard,2/2,green) controller
+text=At the beginning of each opponent's end step, if that player didn't cast a creature spell this turn, put a 2/2 green Lizard creature token onto the battlefield.
+mana={3}{R}{G}
+type=Enchantment
+[/card]
+[card]
 name=Predatory Hunger
 target=creature
 auto=@movedTo(creature|opponentstack):counter(1/1,1)
@@ -64467,6 +64474,16 @@ type=Creature
 subtype=Human Cleric
 power=2
 toughness=1
+[/card]
+[card]
+name=Priest of Yawgmoth
+auto={S(artifact|mybattlefield)}{T}:name(add mana) thisforeach(variable{storedmanacost}) add{B}
+text={T}, Sacrifice an artifact: Add to your mana pool an amount of black mana equal to the sacrificed artifact's converted mana cost.
+mana={1}{B}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=2
 [/card]
 [card]
 name=Priests of Norn
@@ -65448,6 +65465,15 @@ text=Enchant creature -- Enchanted creature gets +2/+2 and has "{U}: This creatu
 mana={1}{R}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+name=Pursuit of Knowledge
+auto=replacedraw counter(0/0.1.Study)
+auto=replacedraw draw:1 noreplace
+auto={C(0/0,-3,Study)}{S}:draw:7 controller
+text=If you would draw a card, you may put a study counter on Pursuit of Knowledge instead. -- Remove three study counters from Pursuit of Knowledge, Sacrifice Pursuit of Knowledge: Draw seven cards.
+mana={3}{W}
+type=Enchantment
 [/card]
 [card]
 name=Pus Kami

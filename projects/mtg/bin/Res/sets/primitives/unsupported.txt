@@ -13116,12 +13116,6 @@ toughness=3
 text=When Precursor Golem enters the battlefield, put two 3/3 colorless Golem artifact creature tokens onto the battlefield. Whenever a player casts an instant or sorcery spell that targets only a single Golem, that player copies that spell for each other Golem that spell could target. Each copy targets a different one of those Golems.
 [/card]
 [card]
-name=Predatory Advantage
-text=At the beginning of each opponent's end step, if that player didn't cast a creature spell this turn, put a 2/2 green Lizard creature token onto the battlefield.
-mana={3}{R}{G}
-type=Enchantment
-[/card]
-[card]
 name=Predatory Focus
 text=You may have creatures you control assign their combat damage this turn as though they weren't blocked.
 mana={3}{G}{G}
@@ -13162,15 +13156,6 @@ name=Prey's Vengeance
 mana={G}
 type=Instant
 text=Target creature gets +2/+2 until end of turn. Rebound (If you cast this spell from your hand, exile it as it resolves. At the beginning of your next upkeep, you may cast this card from exile without paying its mana cost.)
-[/card]
-[card]
-name=Priest of Yawgmoth
-text={T}, Sacrifice an artifact: Add to your mana pool an amount of black mana equal to the sacrificed artifact's converted mana cost.
-mana={1}{B}
-type=Creature
-subtype=Human Cleric
-power=1
-toughness=2
 [/card]
 [card]
 name=Primal Beyond
@@ -13232,8 +13217,10 @@ subtype=Ooze
 power=1
 toughness=1
 [/card]
+#prince of thralls can't be added because of auras that need valid targets.
 [card]
 name=Prince of Thralls
+auto=@movedto(*[land;artifact;creature;enchantment;planeswalker]|opponentgraveyard):all(trigger) transforms((,newability[this(variable{lifetotal}>2) choice name(pay 3 life) life:-3],newability[choice name(put into play) moveto(opponentbattlefield)])) ueot
 text=Whenever a permanent an opponent controls is put into a graveyard, put that card onto the battlefield under your control unless that opponent pays 3 life.
 mana={4}{U}{B}{B}{R}
 type=Creature
@@ -13450,10 +13437,10 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-#removed, this card caused a palifora of bugs.
+#to be tested....
 name=Puresteel Paladin
-auto=@movedTo(equipment|mybattlefield):may draw:1
-#auto=aslongas(artifact|mybattlefield) lord(equipment|mybattlefield) {0}:equip >2
+auto=@movedTo(equipment|mybattlefield):may draw:1 controller
+auto=lord(equipment|mybattlefield) transforms((,newability[{0}:name(equip 0) retarget target(creature|mybattlefield) assorcery restriction{type(artifact|mybattlefield)~morethan~2}]))
 text=Whenever an Equipment enters the battlefield under your control, you may draw a card. -- Metalcraft - As long as you control 3 or more artifacts, each Equipment you control has equip {0}.
 mana={W}{W}
 type=Creature
@@ -13518,12 +13505,6 @@ type=Legendary Creature
 subtype=Cat Warrior
 power=2
 toughness=3
-[/card]
-[card]
-name=Pursuit of Knowledge
-text=If you would draw a card, you may put a study counter on Pursuit of Knowledge instead. -- Remove three study counters from Pursuit of Knowledge, Sacrifice Pursuit of Knowledge: Draw seven cards.
-mana={3}{W}
-type=Enchantment
 [/card]
 [card]
 name=Put Away
