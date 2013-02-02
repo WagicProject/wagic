@@ -581,13 +581,17 @@ void GameObserver::gameStateBasedEffects()
 {
     if(getCurrentTargetChooser() && int(getCurrentTargetChooser()->getNbTargets()) == getCurrentTargetChooser()->maxtargets)
         getCurrentTargetChooser()->done = true;
-    if (mLayers->stackLayer()->count(0, NOT_RESOLVED) != 0)
-    	return;
-    if (mLayers->actionLayer()->menuObject) 
-    	return;
-    if (getCurrentTargetChooser() || mLayers->actionLayer()->isWaitingForAnswer()) 
-    	return;
-
+    if (mLayers->stackLayer()->count(0, NOT_RESOLVED) <= 50)
+    {
+        //if there are more than 50 unresolved actions on the stack, lets allow a gameStates update
+        //to make sure we are not caught up in a loop, example :Exquisite Blood + Sanguine Bond
+        if (mLayers->stackLayer()->count(0, NOT_RESOLVED) != 0)
+            return;
+        if (mLayers->actionLayer()->menuObject) 
+            return;
+        if (getCurrentTargetChooser() || mLayers->actionLayer()->isWaitingForAnswer()) 
+            return;
+    }
     ////////////////////////
     //---apply damage-----//
     //after combat effects//
