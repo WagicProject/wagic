@@ -6928,12 +6928,6 @@ mana={W}{W}
 type=Enchantment
 [/card]
 [card]
-name=Govern the Guildless
-text=Gain control of target monocolored creature. -- Forecast - {1}{U}, Reveal Govern the Guildless from your hand: Target creature becomes the color or colors of your choice until end of turn. (Activate this ability only during your upkeep and only once each turn.)
-mana={5}{U}
-type=Sorcery
-[/card]
-[card]
 name=Grab the Reins
 text=Choose one - Until end of turn, you gain control of target creature and it gains haste; or sacrifice a creature, then Grab the Reins deals damage equal to that creature's power to target creature or player. -- Entwine {2}{R} (Choose both if you pay the entwine cost.)
 mana={3}{R}
@@ -13647,12 +13641,6 @@ type=Creature — Elemental
 power=3
 toughness=4
 text=Flying Are you aware that when you say something that isn't a question, the player who first points out this fact gains control of Question Elemental?
-[/card]
-[card]
-name=Quickchange
-text=Target creature becomes the color or colors of your choice until end of turn. -- Draw a card.
-mana={1}{U}
-type=Instant
 [/card]
 [card]
 name=Quicken

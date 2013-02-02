@@ -76,6 +76,15 @@ power=4
 toughness=4
 [/card]
 [card]
+name=Govern the Guildless
+target=creature[-multicolor]
+auto=moveto(mybattlefield)
+autohand={1}{U}:name(change color/s) ability$!name(choose color/s) choice name(white) target(creature) becomes(,white) ueot _ choice name(blue) target(creature) becomes(,blue) ueot _ choice name(black) target(creature) becomes(,black) ueot _ choice name(red) target(creature) becomes(,red) ueot _ choice name(green) target(creature) becomes(,green) ueot _ choice name(white & blue) target(creature) becomes(,white,blue) ueot _ choice name(blue & black) target(creature) becomes(,black,blue) ueot _ choice name(black & red) target(creature) becomes(,black,red) ueot _ choice name(red & green) target(creature) becomes(,red,green) ueot _ choice name(green & white) target(creature) becomes(,white,green) ueot _ choice name(white & black) target(creature) becomes(,white,black) ueot _ choice name(blue & red) target(creature) becomes(,red,blue) ueot _ choice name(black & green) target(creature) becomes(,black,green) ueot _ choice name(red & white) target(creature) becomes(,white,red) ueot _ choice name(green & blue) target(creature) becomes(,green,blue) ueot _ choice name(green & white & blue) target(creature) becomes(,green,white,blue) ueot _ choice name(white & blue & black) target(creature) becomes(,black,white,blue) ueot _ choice name(blue & black & red) target(creature) becomes(,black,red,blue) ueot _ choice name(black & red & green) target(creature) becomes(,green,black,red) ueot _ choice name(red & green & white) target(creature) becomes(,green,white,red) ueot _ choice name(white & black & green) target(creature) becomes(,green,white,black) ueot _ choice name(blue & red & white) target(creature) becomes(,red,white,blue) ueot _ choice name(black & green & blue) target(creature) becomes(,green,black,blue) ueot _ choice name(red & white & black) target(creature) becomes(,black,white,red) ueot _ choice name(green & blue & red) target(creature) becomes(,green,red,blue) ueot _ choice name(green & red & blue & black) target(creature) becomes(,green,red,blue,black) ueot _ choice name(green & red & blue & white) target(creature) becomes(,green,red,blue,white) ueot _ choice name(white & blue & black & red) target(creature) becomes(,white,red,blue,black) ueot _ choice name(white & blue & black & green) target(creature) becomes(,white,green,blue,black) ueot _ choice name(all colors) target(creature) becomes(,white,red,blue,black,green) ueot!$ controller limit:1 myUpkeepOnly
+text=Gain control of target monocolored creature. -- Forecast - {1}{U}, Reveal Govern the Guildless from your hand: Target creature becomes the color or colors of your choice until end of turn. (Activate this ability only during your upkeep and only once each turn.)
+mana={5}{U}
+type=Sorcery
+[/card]
+[card]
 name=Gravecrawler
 abilities=cantblock
 autograveyard=aslongas(zombie|myBattlefield){B}:moveTo(myBattlefield) asSorcery
@@ -138,13 +147,6 @@ type=Creature
 subtype=Human Wizard
 power=1
 toughness=1
-[/card]
-[card]
-name=Prismatic Lace
-auto=chooseacolor target(*) becomes(,chosencolor) forever chooseend
-text=Target permanent becomes the color or colors of your choice. (This effect lasts indefinitely.)
-mana={U}
-type=Instant
 [/card]
 [card]
 name=Sacellum Godspeaker
