@@ -332,6 +332,18 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
             if(!isMorbid)
                 return 0;
         }
+        check = restriction[i].find("ownerscontrol");
+        if(check != string::npos)
+        {
+            if(card->currentZone != card->owner->game->battlefield)
+                return 0;
+        }
+        check = restriction[i].find("opponentscontrol");
+        if(check != string::npos)
+        {
+            if(card->currentZone == card->owner->game->battlefield)
+                return 0;
+        }
         check = restriction[i].find("one of a kind");
         if(check != string::npos)
         {
