@@ -13781,15 +13781,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Rakdos Augermage
-text=First strike -- {T}: Reveal your hand and discard a card of target opponent's choice. Then that player reveals his or her hand and discards a card of your choice. Activate this ability only any time you could cast a sorcery.
-mana={B}{B}{R}
-type=Creature
-subtype=Human Wizard
-power=3
-toughness=2
-[/card]
-[card]
 name=Rakdos Riteknife
 text=Equipped creature gets +1/+0 for each blood counter on Rakdos Riteknife and has "{T}, Sacrifice a creature: Put a blood counter on Rakdos Riteknife." -- {B}{R}, Sacrifice Rakdos Riteknife: Target player sacrifices a permanent for each blood counter on Rakdos Riteknife. -- Equip {2}
 mana={2}
@@ -13798,9 +13789,8 @@ subtype=Equipment
 [/card]
 [card]
 name=Rakdos, Lord of Riots
-Note altercost doesn't reset or the variable doesn't reset.
+#Note altercost doesn't reset or the variable doesn't reset.
 restriction=this(variable{oplifelost} > 0)
-auto=thisforeach(variable{oplifelost}) lord(*|myhand) altercost(colorless, -1)
 abilities=flying,trample
 text=You can't cast Rakdos, Lord of Riots unless an opponent lost life this turn. -- Flying, trample -- Creature spells you cast cost {1} less to cast for each 1 life your opponents have lost this turn.
 mana={B}{B}{R}{R}
@@ -13932,25 +13922,10 @@ type=Instant
 text=Search your library for four land cards with different names and reveal them. An opponent chooses two of those cards. Put the chosen cards into your graveyard and the rest into your hand. Then shuffle your library.
 [/card]
 [card]
-name=Reap
-text=Return up to X target cards from your graveyard to your hand, where X is the number of black permanents target opponent controls as you cast Reap.
-mana={1}{G}
-type=Instant
-[/card]
-[card]
 name=Reap and Sow
 text=Choose one - Destroy target land; or search your library for a land card, put that card onto the battlefield, then shuffle your library. -- Entwine {1}{G} (Choose both if you pay the entwine cost.)
 mana={3}{G}
 type=Sorcery
-[/card]
-[card]
-name=Rebel Informer
-text=Rebel Informer can't be the target of white spells or abilities from white sources. -- {3}: Put target Rebel on the bottom of its owner's library.
-mana={2}{B}
-type=Creature
-subtype=Human Mercenary Rebel
-power=1
-toughness=2
 [/card]
 [card]
 name=Rebellion of the Flamekin
@@ -13985,12 +13960,6 @@ name=Rebuff the Wicked
 text=Counter target spell that targets a permanent you control.
 mana={W}
 type=Instant
-[/card]
-[card]
-name=Recall
-text=Discard X cards, then return a card from your graveyard to your hand for each card discarded this way. Exile Recall.
-mana={X}{X}{U}
-type=Sorcery
 [/card]
 [card]
 name=Reckless Wurm
@@ -14176,12 +14145,6 @@ mana={3}{WU}
 type=Instant
 [/card]
 [card]
-name=Repopulate
-text=Shuffle all creature cards from target player's graveyard into that player's library. -- Cycling {2} ({2}, Discard this card: Draw a card.)
-mana={1}{G}
-type=Instant
-[/card]
-[card]
 name=Reroute
 text=Change the target of target activated ability with a single target. (Mana abilities can't be targeted.) -- Draw a card.
 mana={1}{R}
@@ -14213,7 +14176,7 @@ type=Instant
 [/card]
 [card]
 name=Rest in Peace
-Note this is replacement effect, I think wagic has no override rule.
+#Note this is replacement effect, I think wagic has no override rule.
 auto=moveto(exile) all(*|graveyard)
 auto=@movedTo(*|graveyard):all(trigger[to]) moveTo(exile)
 text=When Rest in Peace enters the battlefield, exile all cards from all graveyards. -- If a card or token would be put into a graveyard from anywhere, exile it instead.
@@ -14661,24 +14624,17 @@ mana={3}{UB}
 type=Sorcery
 [/card]
 [card]
-name=Rix Maadi Guildmage
-Note you must target any player that has lost life.
-text={B}{R}: Target blocking creature gets -1/-1 until end of turn. -- {B}{R}: Target player who lost life this turn loses 1 life.
-mana={B}{R}
-type=Creature
-subtype=Human Shaman
-power=2
-toughness=2
-[/card]
-[card]
 name=Roar of Jukai
 text=If you control a Forest, each blocked creature gets +2/+2 until end of turn. -- Splice onto Arcane - An opponent gains 5 life. (As you cast an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
 mana={2}{G}
 type=Instant
 subtype=Arcane
 [/card]
+#rock jockey doesn't work
 [card]
 name=Rock Jockey
+restriction=type(land[fresh]|mybattlefield)~morethan~0
+auto=if casted(this) then maxPlay(land)-1 controller ueot
 text=You can't cast Rock Jockey if you've played a land this turn. -- You can't play lands if you've cast Rock Jockey this turn.
 mana={2}{R}
 type=Creature
@@ -14701,12 +14657,6 @@ mana={X}{R}
 type=Instant
 [/card]
 [card]
-name=Rocket Launcher
-text={2}: Rocket Launcher deals 1 damage to target creature or player. Destroy Rocket Launcher at the beginning of the next end step. Activate this ability only if you've controlled Rocket Launcher continuously since the beginning of your most recent turn.
-mana={4}
-type=Artifact
-[/card]
-[card]
 name=Rocket-Powered Turbo Slug
 mana={3}{R}
 type=Creature — Slug
@@ -14725,15 +14675,6 @@ name=Rofellos's Gift
 text=Reveal any number of green cards in your hand. Return an enchantment card from your graveyard to your hand for each card revealed this way.
 mana={G}
 type=Sorcery
-[/card]
-[card]
-name=Rogue Skycaptain
-mana={2}{R}
-type=Creature
-subtype=Human Rogue Mercenary
-power=3
-toughness=4
-text=Flying At the beginning of your upkeep, put a wage counter on Rogue Skycaptain. You may pay {2} for each wage counter on it. If you don't, remove all wage counters from Rogue Skycaptain and an opponent gains control of it.
 [/card]
 [card]
 name=Roil Elemental
@@ -14776,12 +14717,6 @@ type=Creature
 subtype=Elemental Warrior
 power=3
 toughness=3
-[/card]
-[card]
-name=Roots of Life
-text=As Roots of Life enters the battlefield, choose Islands or Swamps. -- Whenever a land of the chosen type an opponent controls becomes tapped, you gain 1 life.
-mana={1}{G}{G}
-type=Enchantment
 [/card]
 [card]
 name=Rootwater Matriarch
@@ -14827,15 +14762,6 @@ type=Legendary Creature
 subtype=Giant Shaman
 power=4
 toughness=4
-[/card]
-[card]
-name=Rotting Giant
-text=Whenever Rotting Giant attacks or blocks, sacrifice it unless you exile a card from your graveyard.
-mana={1}{B}
-type=Creature
-subtype=Zombie Giant
-power=3
-toughness=3
 [/card]
 [card]
 name=Rough // Tumble (Rough)
@@ -14899,48 +14825,6 @@ name=Rune Snag
 text=Counter target spell unless its controller pays {2} plus an additional {2} for each card named Rune Snag in each graveyard.
 mana={1}{U}
 type=Instant
-[/card]
-[card]
-name=Rune of Protection: Artifacts
-text={W}: The next time an artifact source of your choice would deal damage to you this turn, prevent that damage. -- Cycling {2} ({2}, Discard this card: Draw a card.)
-mana={1}{W}
-type=Enchantment
-[/card]
-[card]
-name=Rune of Protection: Black
-text={W}: The next time a black source of your choice would deal damage to you this turn, prevent that damage. -- Cycling {2} ({2}, Discard this card: Draw a card.)
-mana={1}{W}
-type=Enchantment
-[/card]
-[card]
-name=Rune of Protection: Blue
-text={W}: The next time a blue source of your choice would deal damage to you this turn, prevent that damage. -- Cycling {2} ({2}, Discard this card: Draw a card.)
-mana={1}{W}
-type=Enchantment
-[/card]
-[card]
-name=Rune of Protection: Green
-text={W}: The next time a green source of your choice would deal damage to you this turn, prevent that damage. -- Cycling {2} ({2}, Discard this card: Draw a card.)
-mana={1}{W}
-type=Enchantment
-[/card]
-[card]
-name=Rune of Protection: Lands
-text={W}: The next time a land source of your choice would deal damage to you this turn, prevent that damage. -- Cycling {2} ({2}, Discard this card: Draw a card.)
-mana={1}{W}
-type=Enchantment
-[/card]
-[card]
-name=Rune of Protection: Red
-text={W}: The next time a red source of your choice would deal damage to you this turn, prevent that damage. -- Cycling {2} ({2}, Discard this card: Draw a card.)
-mana={1}{W}
-type=Enchantment
-[/card]
-[card]
-name=Rune of Protection: White
-text={W}: The next time a white source of your choice would deal damage to you this turn, prevent that damage. -- Cycling {2} ({2}, Discard this card: Draw a card.)
-mana={1}{W}
-type=Enchantment
 [/card]
 [card]
 name=Runeboggle
@@ -15027,15 +14911,6 @@ mana={W}
 type=Creature
 subtype=Human Cleric
 power=1
-toughness=1
-[/card]
-[card]
-name=Sadistic Augermage
-text=When Sadistic Augermage is put into a graveyard from the battlefield, each player puts a card from his or her hand on top of his or her library.
-mana={2}{B}
-type=Creature
-subtype=Human Wizard
-power=3
 toughness=1
 [/card]
 [card]

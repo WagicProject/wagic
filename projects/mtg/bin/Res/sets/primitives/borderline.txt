@@ -149,6 +149,25 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Rakdos Augermage
+abilities=first strike
+auto={T}:name(target opponent) target(opponent) donothing && all(this) transforms((,newability[ability$!name(discard) reject notatarget(*|opponenthand)!$ targetedplayer && ability$!name(discard) reject notatarget(*|opponenthand)!$ controller])) assorcery
+text=First strike -- {T}: Reveal your hand and discard a card of target opponent's choice. Then that player reveals his or her hand and discards a card of your choice. Activate this ability only any time you could cast a sorcery.
+mana={B}{B}{R}
+type=Creature
+subtype=Human Wizard
+power=3
+toughness=2
+[/card]
+[card]
+name=Recall
+auto=name(discard) notatarget(<xx>*|myhand) transforms((,newability[reject],newability[moveto(ownerhand) notatarget(*|mygraveyard)]))
+auto=moveto(exile) all(this)
+text=Discard X cards, then return a card from your graveyard to your hand for each card discarded this way. Exile Recall.
+mana={X}{X}{U}
+type=Sorcery
+[/card]
+[card]
 name=Sacellum Godspeaker
 auto={T}:foreach(creaure[power>4]|myhand) add{G}
 text={T}: Reveal any number of creature cards with power 5 or greater from your hand. Add {G} to your mana pool for each card revealed this way.

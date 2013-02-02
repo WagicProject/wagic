@@ -67705,6 +67705,14 @@ mana={B}
 type=Sorcery
 [/card]
 [card]
+name=Reap
+target=opponent
+auto=moveto(ownerhand) target(<upto:type:*[black]:targetedpersonsbattlefield>*|mygraveyard)
+text=Return up to X target cards from your graveyard to your hand, where X is the number of black permanents target opponent controls as you cast Reap.
+mana={1}{G}
+type=Instant
+[/card]
+[card]
 name=Reap the Seagraf
 auto=token(Zombie,Creature Zombie,2/2,black)
 flashback={4}{U}
@@ -67771,6 +67779,17 @@ type=Creature
 subtype=Skeleton Warrior
 power=1
 toughness=1
+[/card]
+[card]
+name=Rebel Informer
+auto=cantbetargetof(*[white])
+auto={3}:bottomoflibrary target(rebel[-token]|battlefield)
+text=Rebel Informer can't be the target of white spells or abilities from white sources. -- {3}: Put target nontoken Rebel on the bottom of its owner's library.
+mana={2}{B}
+type=Creature
+subtype=Human Mercenary Rebel
+power=1
+toughness=2
 [/card]
 [card]
 name=Reborn Hope
@@ -68649,6 +68668,15 @@ auto=moveTo(mybattlefield) all(enchantment|mygraveyard)
 text=Return all enchantment cards from your graveyard to the battlefield. (Auras with nothing to enchant remain in your graveyard.)
 mana={3}{W}
 type=Sorcery
+[/card]
+[card]
+name=Repopulate
+target=player
+auto=moveto(ownerlibrary) and!(shuffle)! all(creature|targetedpersonsgraveyard)
+autohand=__CYCLING__({2})
+text=Shuffle all creature cards from target player's graveyard into that player's library. -- Cycling {2} ({2}, Discard this card: Draw a card.)
+mana={1}{G}
+type=Instant
 [/card]
 [card]
 name=Reprisal
@@ -69956,6 +69984,18 @@ power=2
 toughness=1
 [/card]
 [card]
+name=Rix Maadi Guildmage
+auto={B}{R}:name(target creature -1/-1) target(creature[blocking]) -1/-1  ueot
+auto={B}{R}:name(target controller life -1) target(controller) life:-1 restriction{compare(lifelost)~morethan~0}
+auto={B}{R}:name(target opponent life -1) target(opponent) life:-1 restriction{compare(oplifelost)~morethan~0}
+text={B}{R}: Target blocking creature gets -1/-1 until end of turn. -- {B}{R}: Target player who lost life this turn loses 1 life.
+mana={B}{R}
+type=Creature
+subtype=Human Shaman
+power=2
+toughness=2
+[/card]
+[card]
 name=Rix Maadi, Dungeon Palace
 auto={T}:add{1}
 auto={1}{B}{R}{T}:name(discard) transforms((,newability[ability$!name(discard) notatarget(*|myhand) reject!$ controller],newability[ability$!name(discard) notatarget(*|myhand) reject!$ opponent])) ueot asSorcery
@@ -70112,6 +70152,13 @@ type=Creature
 subtype=Rhino Soldier
 power=5
 toughness=7
+[/card]
+[card]
+name=Rocket Launcher
+auto=@each my beginofturn:all(this) transforms((,newability[{2}:damage:1 target(*[creature;player]) && all(this) phaseaction[endofturn sourceinplay] destroy])) forever
+text={2}: Rocket Launcher deals 1 damage to target creature or player. Destroy Rocket Launcher at the beginning of the next end step. Activate this ability only if you've controlled Rocket Launcher continuously since the beginning of your most recent turn.
+mana={4}
+type=Artifact
 [/card]
 [card]
 name=Rockslide Ambush
@@ -70477,6 +70524,14 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Roots of Life
+auto=choice name(choose island) all(this) transforms((,newability[@tapped(island|opponentbattlefield):life:1 controller])) forever
+auto=choice name(choose swamp) all(this) transforms((,newability[@tapped(swamp|opponentbattlefield):life:1 controller])) forever
+text=As Roots of Life enters the battlefield, choose Islands or Swamps. -- Whenever a land of the chosen type an opponent controls becomes tapped, you gain 1 life.
+mana={1}{G}{G}
+type=Enchantment
+[/card]
+[card]
 name=Rootwalla
 auto={1}{G}:2/2 limit:1
 text={1}{G}: Rootwalla gets +2/+2 until end of turn. Activate this ability only once each turn.
@@ -70602,6 +70657,16 @@ type=Creature
 subtype=Zombie Snake
 power=5
 toughness=1
+[/card]
+[card]
+name=Rotting Giant
+auto=@combat(attacking,blocking) source(this):name(sacrifice or exile) all(this) transforms((,newability[choice sacrifice],newability[if type(*|mygraveyard)~morethan~0 then choice moveto(exile) notatarget(*|mygraveyard)])) ueot
+text=Whenever Rotting Giant attacks or blocks, sacrifice it unless you exile a card from your graveyard.
+mana={1}{B}
+type=Creature
+subtype=Zombie Giant
+power=3
+toughness=3
 [/card]
 [card]
 name=Rotting Legion
@@ -70889,6 +70954,62 @@ auto=teach(creature) {G}:regenerate
 text=Until end of turn, target creature gains trample and "{G}: Regenerate this creature."
 mana={G}
 type=Instant
+[/card]
+[card]
+name=Rune of Protection: Artifacts
+auto={W}:name(prevent damage) notatarget(artifact|battlefield,stack,hand,graveyard) preventalldamage to(controller) from(mytgt) ueot
+autohand=__CYCLING__({2})
+text={W}: The next time an artifact source of your choice would deal damage to you this turn, prevent that damage. -- Cycling {2} ({2}, Discard this card: Draw a card.)
+mana={1}{W}
+type=Enchantment
+[/card]
+[card]
+name=Rune of Protection: Black
+auto={W}:name(prevent damage) notatarget(*[black]|battlefield,stack,hand,graveyard) preventalldamage to(controller) from(mytgt) ueot
+autohand=__CYCLING__({2})
+text={W}: The next time a black source of your choice would deal damage to you this turn, prevent that damage. -- Cycling {2} ({2}, Discard this card: Draw a card.)
+mana={1}{W}
+type=Enchantment
+[/card]
+[card]
+name=Rune of Protection: Blue
+auto={W}:name(prevent damage) notatarget(*[blue]|battlefield,stack,hand,graveyard) preventalldamage to(controller) from(mytgt) ueot
+autohand=__CYCLING__({2})
+text={W}: The next time a blue source of your choice would deal damage to you this turn, prevent that damage. -- Cycling {2} ({2}, Discard this card: Draw a card.)
+mana={1}{W}
+type=Enchantment
+[/card]
+[card]
+name=Rune of Protection: Green
+auto={W}:name(prevent damage) notatarget(*[green]|battlefield,stack,hand,graveyard) preventalldamage to(controller) from(mytgt) ueot
+autohand=__CYCLING__({2})
+text={W}: The next time a green source of your choice would deal damage to you this turn, prevent that damage. -- Cycling {2} ({2}, Discard this card: Draw a card.)
+mana={1}{W}
+type=Enchantment
+[/card]
+[card]
+name=Rune of Protection: Lands
+auto={W}:name(prevent damage) notatarget(land|battlefield,stack,hand,graveyard) preventalldamage to(controller) from(mytgt) ueot
+autohand=__CYCLING__({2})
+text={W}: The next time a land source of your choice would deal damage to you this turn, prevent that damage. -- Cycling {2} ({2}, Discard this card: Draw a card.)
+mana={1}{W}
+type=Enchantment
+[/card]
+[card]
+name=Rune of Protection: Red
+auto={W}:name(prevent damage) notatarget(*[red]|battlefield,stack,hand,graveyard) preventalldamage to(controller) from(mytgt) ueot
+autohand=__CYCLING__({2})
+text={W}: The next time a red source of your choice would deal damage to you this turn, prevent that damage. -- Cycling {2} ({2}, Discard this card: Draw a card.)
+mana={1}{W}
+type=Enchantment
+[/card]
+[card]
+name=Rune of Protection: White
+auto={W}:name(prevent damage) notatarget(*[white]|battlefield,stack,hand,graveyard) preventalldamage to(controller) from(mytgt) ueot
+autohand=__CYCLING__({2})
+text={W}: The next time a white source of your choice would deal damage to you this turn, prevent that damage. -- Cycling {2} ({2}, Discard this card: Draw a card.)
+mana={1}{W}
+type=Enchantment
 [/card]
 [card]
 name=Rune-Cervin Rider
@@ -71418,6 +71539,16 @@ auto=thisforeach(variable{storedmanacost}) add{B}
 text=As an additional cost to cast Sacrifice, sacrifice a creature. -- Add to your mana pool an amount of black mana equal to the sacrificed creature's converted mana cost.
 mana={B}{S(creature|mybattlefield)}
 type=Instant
+[/card]
+[card]
+name=Sadistic Augermage
+auto=@movedto(this|graveyard) from(battlefield):ability$!moveto(ownerlibrary) notatarget(*|myhand)!$ controller && ability$!moveto(ownerlibrary) notatarget(*|myhand)!$ opponent
+text=When Sadistic Augermage is put into a graveyard from the battlefield, each player puts a card from his or her hand on top of his or her library.
+mana={2}{B}
+type=Creature
+subtype=Human Wizard
+power=3
+toughness=1
 [/card]
 [card]
 name=Sadistic Glee
