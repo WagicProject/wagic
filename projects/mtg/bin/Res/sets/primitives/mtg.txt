@@ -8362,7 +8362,7 @@ toughness=1
 [/card]
 [card]
 name=Blistercoil Weird
-auto=@movedTo(instant,sorcery|mystack): 1/1 ueot && untap all(this)
+auto=@movedTo(instant,sorcery|mystack):1/1 ueot && untap all(this)
 text=Whenever you cast an instant or sorcery spell, Blistercoil Weird gets +1/+1 until end of turn. Untap it.
 mana={UR}
 type=Creature
@@ -12664,7 +12664,7 @@ type=Sorcery
 [/card]
 [card]
 name=Cathars' Crusade
-auto=@movedto(creature|mybattlefield): counter(1/1,1) all(creature|mybattlefield)
+auto=@movedto(creature|mybattlefield):counter(1/1,1) all(creature|mybattlefield)
 text=Whenever a creature enters the battlefield under your control, put a +1/+1 counter on each creature you control.
 mana={3}{W}{W}
 type=Enchantment
@@ -17141,7 +17141,7 @@ type=Land
 [card]
 name=Creepy Doll
 abilities=indestructible
-auto=@combatdamaged(creature) from(this): name(flip a coin) all(trigger[to]) flipacoin winability destroy winabilityend flipend
+auto=@combatdamaged(creature) from(this):name(flip a coin) all(trigger[to]) flipacoin winability destroy winabilityend flipend
 text=Creepy Doll is indestructible. -- Whenever Creepy Doll deals combat damage to a creature, flip a coin. If you win the flip, destroy that creature.
 mana={5}
 type=Artifact Creature
@@ -20010,7 +20010,7 @@ type=Sorcery
 name=Decomposition
 target=creature[black]
 auto=teach(creature) cumulativeupcost[{l}] sacrifice
-auto=@movedto(mytgt|graveyard): all(trigger[to]) damage:2 targetcontroller
+auto=@movedto(mytgt|graveyard):all(trigger[to]) damage:2 targetcontroller
 text=Enchant black creature -- Enchanted creature has "Cumulative upkeep - Pay 1 life." (At the beginning of its controller's upkeep, that player puts an age counter on it, then sacrifices it unless he or she pays its upkeep cost for each age counter on it.) -- When enchanted creature is put into a graveyard, its controller loses 2 life.
 mana={1}{G}
 type=Enchantment
@@ -22414,7 +22414,7 @@ subtype=Aura
 [/card]
 [card]
 name=Dragon Broodmother
-auto=@each upkeep: token(-189648)
+auto=@each upkeep:token(-189648)
 mana={2}{R}{R}{R}{G}
 type=Creature
 subtype=Dragon
@@ -22574,7 +22574,7 @@ toughness=1
 [/card]
 [card]
 name=Dragonlair Spider
-auto=@movedTo(*|opponentstack): token(Insect,Creature Insect, 1/1,green)
+auto=@movedTo(*|opponentstack):token(Insect,Creature Insect, 1/1,green)
 text=Reach -- Whenever an opponent casts a spell, put a 1/1 green Insect creature token onto the battlefield.
 mana={2}{R}{R}{G}{G}
 type=Creature
@@ -24538,7 +24538,7 @@ toughness=5
 [/card]
 [card]
 name=Ebony Treefolk
-auto={B}{G}: 1/1
+auto={B}{G}:1/1 ueot
 text={B}{G}: Ebony Treefolk gets +1/+1 until end of turn.
 mana={1}{B}{G}
 type=Creature
@@ -27390,7 +27390,7 @@ type=Instant
 [/card]
 [card]
 name=Exquisite Blood
-auto=@lifeloss(opponent): life:thatmuch controller
+auto=@lifeloss(opponent):life:thatmuch controller
 text=Whenever an opponent loses life, you gain that much life.
 mana={4}{B}
 type=Enchantment
@@ -30444,7 +30444,7 @@ subtype=Aura
 [/card]
 [card]
 name=Flowstone Channeler
-auto={1}{R}{T}{discard(*|myhand)}: 1/-1 && haste target(creature)
+auto={1}{R}{T}{discard(*|myhand)}:1/-1 && haste target(creature)
 text={1}{R}, {T}, Discard a card: Target creature gets +1/-1 and gains haste until end of turn.
 mana={2}{R}
 type=Creature
@@ -31743,7 +31743,7 @@ auto={G}{G}:counter(0/0,1,Spore) target(fungus)
 [card]
 name=Fungal Shambler
 abilities=trample
-auto=@damaged(opponent) from(this): draw:1 controller && ability$!name(discard) target(*|myhand) reject!$ opponent
+auto=@damaged(opponent) from(this):draw:1 controller && ability$!name(discard) target(*|myhand) reject!$ opponent
 text=Trample -- Whenever Fungal Shambler deals damage to an opponent, you draw a card and that opponent discards a card.
 mana={4}{G}{U}{B}
 type=Creature
@@ -32370,7 +32370,7 @@ toughness=4
 [card]
 name=Garza Zol, Plague Queen
 abilities=flying,haste
-auto=@vampired(creature) from(this): counter(1/1,1) all(this)
+auto=@vampired(creature) from(this):counter(1/1,1) all(this)
 auto=@combatdamaged(player) from(this):may draw:1 controller
 text=Flying, haste -- Whenever a creature dealt damage by Garza Zol, Plague Queen this turn is put into a graveyard, put a +1/+1 counter on Garza Zol. -- Whenever Garza Zol deals combat damage to a player, you may draw a card.
 mana={4}{U}{B}{R}
@@ -37041,7 +37041,7 @@ type=Land
 [/card]
 [card]
 name=Growing Ranks
-auto=@each my upkeep restriction{type(creature[token]|mybattlefield)~morethan~0}: ability$! name(populate) clone notatarget(creature[token]|mybattlefield) !$ controller
+auto=@each my upkeep restriction{type(creature[token]|mybattlefield)~morethan~0}:ability$! name(populate) clone notatarget(creature[token]|mybattlefield) !$ controller
 text=At the beginning of your upkeep, populate. (Put a token onto the battlefield that's a copy of a creature token you control.)
 mana={2}{GW}{GW}
 type=Enchantment
@@ -47247,7 +47247,7 @@ subtype=Aura
 [/card]
 [card]
 name=Kruin Striker
-auto=@movedTo(other creature|myBattlefield): 1/0 ueot && trample ueot
+auto=@movedTo(other creature|myBattlefield):1/0 ueot && trample ueot
 text=Whenever another creature enters the battlefield under your control, Kruin Striker gets +1/+0 and gains trample until end of turn.
 mana={1}{R}
 type=Creature
@@ -47761,7 +47761,7 @@ type=Land
 [/card]
 [card]
 name=Laquatus's Champion
-auto=choice target(player) life:-6 && all(this) transforms((,newability[@movedTo(this|nonbattlezone) from(battlefield): life:6 targetedplayer])) forever
+auto=choice target(player) life:-6 && all(this) transforms((,newability[@movedTo(this|nonbattlezone) from(battlefield):life:6 targetedplayer])) forever
 auto={B}:regenerate
 text=When Laquatus's Champion enters the battlefield, target player loses 6 life. -- When Laquatus's Champion leaves the battlefield, that player gains 6 life. -- {B}: Regenerate Laquatus's Champion.
 mana={4}{B}{B}
@@ -53885,7 +53885,7 @@ toughness=1
 [/card]
 [card]
 name=Mindcrank
-auto=@lifeloss(opponent): deplete:thatmuch opponent
+auto=@lifeloss(opponent):deplete:thatmuch opponent
 text=Whenever an opponent loses life, that player puts that many cards from the top of his or her library into his or her graveyard. (Damage dealt by sources without infect causes loss of life.)
 mana={2}
 type=Artifact
@@ -60675,7 +60675,7 @@ type=Land
 [card]
 name=Osai Vultures
 abilities=flying
-auto=@each end restriction{morbid}: counter(0/0,1,Carrion)
+auto=@each end restriction{morbid}:counter(0/0,1,Carrion)
 auto={C(0/0,-2,Carrion)}:1/1
 text=Flying -- At the beginning of each end step, if a creature was put into a graveyard from the battlefield this turn, put a carrion counter on Osai Vultures. -- Remove two carrion counters from Osai Vultures: Osai Vultures gets +1/+1 until end of turn.
 mana={1}{W}
@@ -61978,7 +61978,7 @@ toughness=0
 [/card]
 [card]
 name=Penumbra Bobcat
-auto=@movedTo(this|graveyard) from(battlefield): token(Cat,Creature cat,2/1,black)
+auto=@movedTo(this|graveyard) from(battlefield):token(Cat,Creature cat,2/1,black)
 text=When Penumbra Bobcat dies, put a 2/1 black Cat creature token onto the battlefield.
 mana={2}{G}
 type=Creature
@@ -61988,7 +61988,7 @@ toughness=1
 [/card]
 [card]
 name=Penumbra Kavu
-auto=@movedTo(this|graveyard) from(battlefield): token(Kavu,Creature kavu,3/3,black)
+auto=@movedTo(this|graveyard) from(battlefield):token(Kavu,Creature kavu,3/3,black)
 text=When Penumbra Kavu dies, put a 3/3 black Kavu creature token onto the battlefield.
 mana={4}{G}
 type=Creature
@@ -62010,7 +62010,7 @@ toughness=4
 [card]
 name=Penumbra Wurm
 abilities=trample
-auto=@movedTo(this|graveyard) from(battlefield): token(Wurm,Creature wurm,6/6,trample,black)
+auto=@movedTo(this|graveyard) from(battlefield):token(Wurm,Creature wurm,6/6,trample,black)
 text=Trample -- When Penumbra Wurm dies, put a 6/6 black Wurm creature token with trample onto the battlefield.
 mana={5}{G}{G}
 type=Creature
@@ -69500,7 +69500,7 @@ toughness=2
 name=Ring of Evos Isle
 auto={1}:equip
 autoskill={2}:opponentshroud ueot
-auto=@each my upkeep: if cantargetcard(creature[blue]) then counter(1/1,1)
+auto=@each my upkeep:if cantargetcard(creature[blue]) then counter(1/1,1)
 text={2}: Equipped creature gains hexproof until end of turn. (It can't be the target of spells or abilities your opponents control.) -- At the beginning of your upkeep, put a +1/+1 counter on equipped creature if it's blue. -- Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery.)
 mana={2}
 type=Artifact
@@ -69518,7 +69518,7 @@ type=Artifact
 name=Ring of Kalonia
 auto={1}:equip
 auto=trample
-auto=@each my upkeep: if cantargetcard(creature[green]) then counter(1/1,1)
+auto=@each my upkeep:if cantargetcard(creature[green]) then counter(1/1,1)
 text=Equipped creature has trample. (If it would assign enough damage to its blockers to destroy them, you may have it assign the rest of its damage to defending player or planeswalker.) -- At the beginning of your upkeep, put a +1/+1 counter on equipped creature if it's green. -- Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery.)
 mana={2}
 type=Artifact
@@ -69535,7 +69535,7 @@ type=Artifact
 name=Ring of Thune
 auto={1}:equip
 auto=vigilance
-auto=@each my upkeep: if cantargetcard(creature[white]) then counter(1/1,1)
+auto=@each my upkeep:if cantargetcard(creature[white]) then counter(1/1,1)
 text=Equipped creature has vigilance. (Attacking doesn't cause it to tap.) -- At the beginning of your upkeep, put a +1/+1 counter on equipped creature if it's white. -- Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery.)
 mana={2}
 type=Artifact
@@ -69545,7 +69545,7 @@ subtype=Equipment
 name=Ring of Valkas
 auto={1}:equip
 auto=haste
-auto=@each my upkeep: if cantargetcard(creature[red]) then counter(1/1,1)
+auto=@each my upkeep:if cantargetcard(creature[red]) then counter(1/1,1)
 text=Equipped creature has haste. (It can attack and {T} no matter when it came under your control.) -- At the beginning of your upkeep, put a +1/+1 counter on equipped creature if it's red. -- Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery.)
 mana={2}
 type=Artifact
@@ -69555,7 +69555,7 @@ subtype=Equipment
 name=Ring of Xathrid
 auto={1}:equip
 autoskill={2}:regenerate
-auto=@each my upkeep: if cantargetcard(creature[black]) then counter(1/1,1)
+auto=@each my upkeep:if cantargetcard(creature[black]) then counter(1/1,1)
 text={2}: Regenerate equipped creature. (The next time that creature would be destroyed this turn, it isn't. Instead tap it, remove all damage from it, and remove it from combat.) -- At the beginning of your upkeep, put a +1/+1 counter on equipped creature if it's black. -- Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery.)
 mana={2}
 type=Artifact
@@ -81146,7 +81146,7 @@ toughness=6
 name=Spiritual Asylum
 auto=lord(creature|myBattlefield) shroud
 auto=lord(land|myBattlefield) shroud
-auto=@combat(attacking) source(creature|myBattlefield): all(this) sacrifice
+auto=@combat(attacking) source(creature|myBattlefield):sacrifice all(this)
 text=Creatures and lands you control have shroud. (They can't be the targets of spells or abilities.) -- When a creature you control attacks, sacrifice Spiritual Asylum.
 mana={2}{W}{W}
 type=Enchantment
@@ -86923,7 +86923,7 @@ type=Sorcery
 [/card]
 [card]
 name=Thelon of Havenwood
-auto={B}{G}{e(fungus|graveyard)}: counter(0/0,1,Spore) all(fungus)
+auto={B}{G}{e(fungus|graveyard)}:counter(0/0,1,Spore) all(fungus)
 auto=lord(fungus[counter{0/0.1.spore}]) 1/1
 auto=lord(fungus[counter{0/0.2.spore}]) 1/1
 auto=lord(fungus[counter{0/0.3.spore}]) 1/1
@@ -87734,7 +87734,7 @@ toughness=4
 [/card]
 [card]
 name=Thumbscrews
-auto=@each my upkeep restriction{type(*|myhand)~morethan~4}: damage:1 opponent
+auto=@each my upkeep restriction{type(*|myhand)~morethan~4}:damage:1 opponent
 text=At the beginning of your upkeep, if you have five or more cards in hand, Thumbscrews deals 1 damage to target opponent.
 mana={2}
 type=Artifact
@@ -88652,7 +88652,7 @@ toughness=7
 [/card]
 [card]
 name=Tolarian Winds
-auto=@discarded(*|myhand): draw:1 controller
+auto=@discarded(*|myhand):draw:1 controller
 auto=all(*|myhand) reject
 text=Discard all the cards in your hand, then draw that many cards.
 mana={1}{U}
@@ -89073,7 +89073,7 @@ type=Sorcery
 [/card]
 [card]
 name=Touch of the Eternal
-auto=@each my upkeep: name(lifeset) ability$! lifeset:type:*:mybattlefield !$ controller
+auto=@each my upkeep:name(lifeset) ability$! lifeset:type:*:mybattlefield !$ controller
 text=At the beginning of your upkeep, count the number of permanents you control. Your life total becomes that number.
 mana={5}{W}{W}
 type=Enchantment
@@ -92021,7 +92021,7 @@ toughness=7
 [card]
 name=Valakut, the Molten Pinnacle
 auto=tap
-auto=@movedTo(mountain|myBattlefield) restriction{type(other mountain|myBattlefield)~morethan~4}: may damage:3 target(creature,player)
+auto=@movedTo(mountain|myBattlefield) restriction{type(other mountain|myBattlefield)~morethan~4}:may damage:3 target(creature,player)
 auto={T}:Add{R}
 text=Valakut, the Molten Pinnacle enters the battlefield tapped. -- Whenever a Mountain enters the battlefield under your control, if you control at least five other Mountains, you may have Valakut, the Molten Pinnacle deal 3 damage to target creature or player. -- {T}: Add {R} to your mana pool.
 type=Land
@@ -92659,7 +92659,7 @@ type=Artifact
 [card]
 name=Vela the Night-Clad
 auto=lord(other creature|mybattlefield) intimidate
-auto=@movedTo(creature|nonbattlezone) from(mybattlefield): life:-1 opponent
+auto=@movedTo(creature|nonbattlezone) from(mybattlefield):life:-1 opponent
 abilities=intimidate
 text=Intimidate -- Other creatures you control have intimidate. -- Whenever Vela the Night-Clad or another creature you control leaves the battlefield, each opponent loses 1 life.
 mana={4}{U}{B}
@@ -92757,8 +92757,8 @@ type=Sorcery
 [/card]
 [card]
 name=Vengeful Dead
-auto=@movedto(other zombie|graveyard) from(battlefield): life:-1 opponent
-auto=@movedto(this|graveyard) from(battlefield): life:-1 opponent
+auto=@movedto(other zombie|graveyard) from(battlefield):life:-1 opponent
+auto=@movedto(this|graveyard) from(battlefield):life:-1 opponent
 text=Whenever Vengeful Dead or another Zombie dies, each opponent loses 1 life.
 mana={3}{B}
 type=Creature
@@ -98749,7 +98749,7 @@ toughness=3
 [/card]
 [card]
 name=Wound Reflection
-auto=@each endofturn: life:-oplifelost opponent
+auto=@each endofturn:life:-oplifelost opponent
 text=At the beginning of each end step, each opponent loses life equal to the life he or she lost this turn. (Damage causes loss of life.)
 mana={5}{B}
 type=Enchantment
