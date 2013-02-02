@@ -27,3 +27,59 @@ subtype=Beast
 power=3
 toughness=3
 [/card]
+[card]
+name=Rune of Protection: Artifacts
+auto={W}:name(prevent damage) notatarget(artifact|battlefield,stack,hand,graveyard) preventalldamage to(controller) from(mytgt) ueot
+autohand=__CYCLING__({2})
+text={W}: The next time an artifact source of your choice would deal damage to you this turn, prevent that damage. -- Cycling {2} ({2}, Discard this card: Draw a card.)
+mana={1}{W}
+type=Enchantment
+[/card]
+[card]
+name=Rune of Protection: Black
+auto={W}:name(prevent damage) notatarget(*[black]|battlefield,stack,hand,graveyard) preventalldamage to(controller) from(mytgt) ueot
+autohand=__CYCLING__({2})
+text={W}: The next time a black source of your choice would deal damage to you this turn, prevent that damage. -- Cycling {2} ({2}, Discard this card: Draw a card.)
+mana={1}{W}
+type=Enchantment
+[/card]
+[card]
+name=Rune of Protection: Blue
+auto={W}:name(prevent damage) notatarget(*[blue]|battlefield,stack,hand,graveyard) preventalldamage to(controller) from(mytgt) ueot
+autohand=__CYCLING__({2})
+text={W}: The next time a blue source of your choice would deal damage to you this turn, prevent that damage. -- Cycling {2} ({2}, Discard this card: Draw a card.)
+mana={1}{W}
+type=Enchantment
+[/card]
+[card]
+name=Rune of Protection: Green
+auto={W}:name(prevent damage) notatarget(*[green]|battlefield,stack,hand,graveyard) preventalldamage to(controller) from(mytgt) ueot
+autohand=__CYCLING__({2})
+text={W}: The next time a green source of your choice would deal damage to you this turn, prevent that damage. -- Cycling {2} ({2}, Discard this card: Draw a card.)
+mana={1}{W}
+type=Enchantment
+[/card]
+[card]
+name=Rune of Protection: Lands
+auto={W}:name(prevent damage) notatarget(land|battlefield,stack,hand,graveyard) preventalldamage to(controller) from(mytgt) ueot
+autohand=__CYCLING__({2})
+text={W}: The next time a land source of your choice would deal damage to you this turn, prevent that damage. -- Cycling {2} ({2}, Discard this card: Draw a card.)
+mana={1}{W}
+type=Enchantment
+[/card]
+[card]
+name=Rune of Protection: Red
+auto={W}:name(prevent damage) notatarget(*[red]|battlefield,stack,hand,graveyard) preventalldamage to(controller) from(mytgt) ueot
+autohand=__CYCLING__({2})
+text={W}: The next time a red source of your choice would deal damage to you this turn, prevent that damage. -- Cycling {2} ({2}, Discard this card: Draw a card.)
+mana={1}{W}
+type=Enchantment
+[/card]
+[card]
+name=Rune of Protection: White
+auto={W}:name(prevent damage) notatarget(*[white]|battlefield,stack,hand,graveyard) preventalldamage to(controller) from(mytgt) ueot
+autohand=__CYCLING__({2})
+text={W}: The next time a white source of your choice would deal damage to you this turn, prevent that damage. -- Cycling {2} ({2}, Discard this card: Draw a card.)
+mana={1}{W}
+type=Enchantment
+[/card]

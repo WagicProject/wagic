@@ -15005,15 +15005,6 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-name=Samite Elder
-text={T}: Creatures you control gain protection from the colors of target permanent you control until end of turn.
-mana={2}{W}
-type=Creature
-subtype=Human Cleric
-power=1
-toughness=2
-[/card]
-[card]
 name=Samite Ministration
 text=Prevent all damage that would be dealt to you this turn by a source of your choice. Whenever damage from a black or red source is prevented this way this turn, you gain that much life.
 mana={1}{W}

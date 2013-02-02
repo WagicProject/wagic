@@ -65501,8 +65501,7 @@ subtype=Aura
 [/card]
 [card]
 name=Pursuit of Knowledge
-auto=replacedraw counter(0/0.1.Study)
-auto=replacedraw draw:1 noreplace
+auto=replacedraw ability$!name(study counter or draw) choice counter(0/0.1.Study) all(mystored) _ choice draw:1 noreplace!$ controller
 auto={C(0/0,-3,Study)}{S}:draw:7 controller
 text=If you would draw a card, you may put a study counter on Pursuit of Knowledge instead. -- Remove three study counters from Pursuit of Knowledge, Sacrifice Pursuit of Knowledge: Draw seven cards.
 mana={3}{W}
@@ -70956,62 +70955,6 @@ mana={G}
 type=Instant
 [/card]
 [card]
-name=Rune of Protection: Artifacts
-auto={W}:name(prevent damage) notatarget(artifact|battlefield,stack,hand,graveyard) preventalldamage to(controller) from(mytgt) ueot
-autohand=__CYCLING__({2})
-text={W}: The next time an artifact source of your choice would deal damage to you this turn, prevent that damage. -- Cycling {2} ({2}, Discard this card: Draw a card.)
-mana={1}{W}
-type=Enchantment
-[/card]
-[card]
-name=Rune of Protection: Black
-auto={W}:name(prevent damage) notatarget(*[black]|battlefield,stack,hand,graveyard) preventalldamage to(controller) from(mytgt) ueot
-autohand=__CYCLING__({2})
-text={W}: The next time a black source of your choice would deal damage to you this turn, prevent that damage. -- Cycling {2} ({2}, Discard this card: Draw a card.)
-mana={1}{W}
-type=Enchantment
-[/card]
-[card]
-name=Rune of Protection: Blue
-auto={W}:name(prevent damage) notatarget(*[blue]|battlefield,stack,hand,graveyard) preventalldamage to(controller) from(mytgt) ueot
-autohand=__CYCLING__({2})
-text={W}: The next time a blue source of your choice would deal damage to you this turn, prevent that damage. -- Cycling {2} ({2}, Discard this card: Draw a card.)
-mana={1}{W}
-type=Enchantment
-[/card]
-[card]
-name=Rune of Protection: Green
-auto={W}:name(prevent damage) notatarget(*[green]|battlefield,stack,hand,graveyard) preventalldamage to(controller) from(mytgt) ueot
-autohand=__CYCLING__({2})
-text={W}: The next time a green source of your choice would deal damage to you this turn, prevent that damage. -- Cycling {2} ({2}, Discard this card: Draw a card.)
-mana={1}{W}
-type=Enchantment
-[/card]
-[card]
-name=Rune of Protection: Lands
-auto={W}:name(prevent damage) notatarget(land|battlefield,stack,hand,graveyard) preventalldamage to(controller) from(mytgt) ueot
-autohand=__CYCLING__({2})
-text={W}: The next time a land source of your choice would deal damage to you this turn, prevent that damage. -- Cycling {2} ({2}, Discard this card: Draw a card.)
-mana={1}{W}
-type=Enchantment
-[/card]
-[card]
-name=Rune of Protection: Red
-auto={W}:name(prevent damage) notatarget(*[red]|battlefield,stack,hand,graveyard) preventalldamage to(controller) from(mytgt) ueot
-autohand=__CYCLING__({2})
-text={W}: The next time a red source of your choice would deal damage to you this turn, prevent that damage. -- Cycling {2} ({2}, Discard this card: Draw a card.)
-mana={1}{W}
-type=Enchantment
-[/card]
-[card]
-name=Rune of Protection: White
-auto={W}:name(prevent damage) notatarget(*[white]|battlefield,stack,hand,graveyard) preventalldamage to(controller) from(mytgt) ueot
-autohand=__CYCLING__({2})
-text={W}: The next time a white source of your choice would deal damage to you this turn, prevent that damage. -- Cycling {2} ({2}, Discard this card: Draw a card.)
-mana={1}{W}
-type=Enchantment
-[/card]
-[card]
 name=Rune-Cervin Rider
 abilities=flying
 auto={GW}{GW}:1/1
@@ -71852,6 +71795,16 @@ type=Creature
 subtype=Human Rebel Cleric
 power=1
 toughness=1
+[/card]
+[card]
+name=Samite Elder
+auto={T}:name(color protection) target(*|mybattlefield) transforms((,newability[all(creature|mybattlefield) protection from(*[share!color!])])) ueot
+text={T}: Creatures you control gain protection from the colors of target permanent you control until end of turn.
+mana={2}{W}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=2
 [/card]
 [card]
 name=Samite Healer
