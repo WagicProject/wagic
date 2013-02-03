@@ -72125,6 +72125,16 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Saprazzan Breaker
+auto={U}:name(deplete) all(this) transforms((,newability[@movedto(land|mygraveyard) from(mylibrary) once:unblockable],newability[deplete:1 controller]))
+text={U}: Put the top card of your library into your graveyard. If that card is a land card, Saprazzan Breaker is unblockable this turn.
+mana={4}{U}
+type=Creature
+subtype=Beast
+power=3
+toughness=3
+[/card]
+[card]
 name=Saprazzan Cove
 auto=tap
 auto={T}:counter(0/0,1,Storage)
@@ -72435,6 +72445,17 @@ auto=nextphasealter(remove,untap,controller)
 text=Take an extra turn after this one. Skip the untap step of that turn.
 mana={1}{U}{U}
 type=Sorcery
+[/card]
+[card]
+name=Savra, Queen of the Golgari
+auto=@sacrificed(creature[black]|mybattlefield):may life:-2 && ability$!sacrifice notatarget(creature|mybattlefield)!$ opponent
+auto=@sacrificed(creature[green]|mybattlefield):may life:2 controller
+text=Whenever you sacrifice a black creature, you may pay 2 life. If you do, each other player sacrifices a creature. -- Whenever you sacrifice a green creature, you may gain 2 life.
+mana={2}{B}{G}
+type=Legendary Creature
+subtype=Elf Shaman
+power=2
+toughness=2
 [/card]
 [card]
 name=Sawback Manticore

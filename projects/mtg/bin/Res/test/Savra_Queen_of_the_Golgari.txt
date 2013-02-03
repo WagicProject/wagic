@@ -1,0 +1,28 @@
+#Testing Savra, Queen of the Golgari vs Thraximundar
+[INIT]
+combatattackers
+[PLAYER1]
+inplay:180595
+life:20
+[PLAYER2]
+inplay:89113
+life:20
+[DO]
+180595
+next
+choice 0
+89113
+choice 0
+choice 0
+choice 0
+180595
+eot
+[ASSERT]
+untap
+[PLAYER1]
+graveyard:180595
+life:20
+[PLAYER2]
+graveyard:89113
+life:20
+[END]

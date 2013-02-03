@@ -468,6 +468,7 @@ Morph#2.txt
 Morph#3.txt
 Morph#4.txt
 Morph#5.txt
+Mortician_Beetle.txt
 mortuary.txt
 Multicolor.txt
 nantuko_husk.txt
@@ -560,6 +561,7 @@ sacred_foundry_i275.txt
 safehold_duo.txt
 safe passage.txt
 samite_healer.txt
+Savra_Queen_of_the_Golgari.txt
 scourge_of_kher_ridges.txt
 scourge_of_kher_ridges2.txt
 scourglass.txt

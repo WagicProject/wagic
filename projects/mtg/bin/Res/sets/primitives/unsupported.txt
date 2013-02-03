@@ -989,15 +989,6 @@ mana={5}{W}
 type=Instant
 [/card]
 [card]
-name=Barbarian Bully
-text=Discard a card at random: Barbarian Bully gets +2/+2 until end of turn unless a player has Barbarian Bully deal 4 damage to him or her. Activate this ability only once each turn.
-mana={2}{R}
-type=Creature
-subtype=Human Barbarian
-power=2
-toughness=2
-[/card]
-[card]
 name=Barbed Lightning
 text=Choose one - Barbed Lightning deals 3 damage to target creature; or Barbed Lightning deals 3 damage to target player. -- Entwine {2} (Choose both if you pay the entwine cost.)
 mana={2}{R}
@@ -11983,15 +11974,6 @@ toughness=4
 text=Whenever Ogre Geargrabber attacks, gain control of target Equipment an opponent controls until end of turn. Attach it to Ogre Geargrabber. When you lose control of that Equipment, unattach it.
 [/card]
 [card]
-name=Ogre Marauder
-text=Whenever Ogre Marauder attacks, it gains "Ogre Marauder can't be blocked" until end of turn unless defending player sacrifices a creature.
-mana={1}{B}{B}
-type=Creature
-subtype=Ogre Warrior
-power=3
-toughness=1
-[/card]
-[card]
 name=Ohran Yeti
 text={2}{S}i}: Target snow creature gains first strike until end of turn. ({S}i} can be paid with one mana from a snow permanent.)
 mana={3}{R}
@@ -15058,8 +15040,13 @@ text={2}, {T}: Target creature gains islandwalk until end of turn. When that cre
 mana={4}
 type=Artifact
 [/card]
+#not working, we cant use if "this(..)" then else
 [card]
 name=Sands of Time
+auto=phasealter(remove,untap,controller)
+auto=phasealter(remove,untap,opponent)
+auto=@each my upkeep:all(*[-enchantment;-planeswalker]|mybattlefield) transforms((,newability[if this(tapped) then untap else tap]))
+auto=@each opponent upkeep:all(*[-enchantment;-planeswalker]|opponentbattlefield) transforms((,newability[if this(tapped) then untap else tap]))
 text=Each player skips his or her untap step. -- At the beginning of each player's upkeep, that player simultaneously untaps each tapped artifact, creature, and land he or she controls and taps each untapped artifact, creature, and land he or she controls.
 mana={4}
 type=Artifact
@@ -15085,15 +15072,6 @@ name=Sapphire Charm
 text=Choose one - Target player draws a card at the beginning of the next turn's upkeep; or target creature gains flying until end of turn; or target creature an opponent controls phases out. (While it's phased out, it's treated as though it doesn't exist. It phases in before its controller untaps during his or her next untap step.)
 mana={U}
 type=Instant
-[/card]
-[card]
-name=Saprazzan Breaker
-text={U}: Put the top card of your library into your graveyard. If that card is a land card, Saprazzan Breaker is unblockable this turn.
-mana={4}{U}
-type=Creature
-subtype=Beast
-power=3
-toughness=3
 [/card]
 [card]
 name=Saproling Burst
@@ -15161,15 +15139,6 @@ name=Save Life
 mana={W}
 type=Instant
 text=Choose one Target player gains 2{1/2} life; or prevent the next 2{1/2} damage that would be dealt to target creature this turn. Gotcha Whenever an opponent says "Save" or "Life," you may say "Gotcha" If you do, return Save Life from your graveyard to your hand.
-[/card]
-[card]
-name=Savra, Queen of the Golgari
-text=Whenever you sacrifice a black creature, you may pay 2 life. If you do, each other player sacrifices a creature. -- Whenever you sacrifice a green creature, you may gain 2 life.
-mana={2}{B}{G}
-type=Legendary Creature
-subtype=Elf Shaman
-power=2
-toughness=2
 [/card]
 [card]
 name=Scalpelexis
@@ -16227,12 +16196,6 @@ subtype=Zombie Elemental
 power=1
 toughness=1
 text=Haste Whenever Skullbriar, the Walking Grave deals combat damage to a player, put a +1/+1 counter on it. Counters remain on Skullbriar as it moves to any zone other than a player's hand or library.
-[/card]
-[card]
-name=Skullscorch
-text=Target player discards two cards at random unless that player has Skullscorch deal 4 damage to him or her.
-mana={R}{R}
-type=Sorcery
 [/card]
 [card]
 name=Skyship Weatherlight

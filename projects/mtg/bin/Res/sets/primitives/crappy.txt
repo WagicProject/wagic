@@ -1,4 +1,23 @@
 grade=crappy
+##the damage source is unknown but it deals 4 damage
+[card]
+name=Barbarian Bully
+text=Discard a card at random: Barbarian Bully gets +2/+2 until end of turn unless a player has Barbarian Bully deal 4 damage to him or her. Activate this ability only once each turn.
+auto={D}:name(Discard at random) ability$!name(choose one) choice damage:4 controller _ choice all(mystored) 2/2 ueot!$ opponent limit:1
+mana={2}{R}
+type=Creature
+subtype=Human Barbarian
+power=2
+toughness=2
+[/card]
+[card]
+name=Skullscorch
+target=player
+auto=ability$!name(choose one) choice damage:4 controller _ choice discard:2 controller!$ targetedplayer
+text=Target player discards two cards at random unless that player has Skullscorch deal 4 damage to him or her.
+mana={R}{R}
+type=Sorcery
+[/card]
 ##the following are not added becuase they are not choosen discard.
 [card]
 name=Gerrard's Verdict

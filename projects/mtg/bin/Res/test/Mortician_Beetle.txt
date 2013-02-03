@@ -1,0 +1,29 @@
+#Testing Mortician Beetle vs Phyrexian Denouncer
+[INIT]
+combatattackers
+[PLAYER1]
+inplay:209108
+life:20
+[PLAYER2]
+inplay:209126
+life:20
+[DO]
+209108
+next
+209126
+choice 1
+209108
+next
+choice 0
+next
+next
+eot
+[ASSERT]
+untap
+[PLAYER1]
+inplay:209108
+life:20
+[PLAYER2]
+graveyard:209126
+life:19
+[END]
