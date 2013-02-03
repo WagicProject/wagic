@@ -712,9 +712,15 @@ public:
     {
         WEventCardSacrifice * e = dynamic_cast<WEventCardSacrifice *> (event);
         if (!e) return 0;
-        MTGCardInstance * check = e->cardAfter->next;
-        MTGGameZone * oldZone = e->cardAfter->next->currentZone;
+        MTGCardInstance * check = e->cardAfter;
+        MTGGameZone * oldZone = e->cardAfter->currentZone;
         check->currentZone = check->previousZone;
+        if (check->next && check->next->currentZone)
+        {
+            check = e->cardAfter->next;
+            oldZone = e->cardAfter->next->currentZone;
+            check->currentZone = e->cardAfter->next->previousZone;
+        }
         if (!tc->canTarget(check,true))
         {
             check->currentZone = oldZone;
