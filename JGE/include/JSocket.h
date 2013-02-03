@@ -5,6 +5,8 @@
 #include "Threading.h"
 using namespace std;
 
+#define SERVER_PORT 5001
+
 class JSocket{
 public:
     typedef enum {
@@ -19,10 +21,11 @@ public:
     } SOCKET_STATE;
 
 
-  // Server creation
-  JSocket(string ipAddr);
   // Client creation
+  JSocket(string ipAddr);
+  // Server creation
   JSocket();
+
   ~JSocket();
 
   JSocket* Accept();
@@ -41,7 +44,7 @@ private:
   // socket handle
 #ifdef WIN32
   SOCKET mfd;
-#elif LINUX
+#elif LINUX || PSP
   int mfd;
 #endif
 };

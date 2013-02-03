@@ -1,4 +1,3 @@
-#if 0
 // need a complete rewrite to comply to the new interface
 #ifdef NETWORK_SUPPORT
 
@@ -21,23 +20,21 @@
 #endif
 
 #include "../include/JGE.h"
-
 #include "../include/JSocket.h"
-JSocket * JSocket::mInstance = NULL;
 
-#define SERVER_PORT 20666
-
-int JSocket::connected = 0;
-
-void JSocket::init(){
+JSocket::JSocket(){
 #ifdef NETWORK_SUPPORT
 	sceUtilityLoadNetModule(1);
 	sceUtilityLoadNetModule(3);
 #endif
 }
 
-JSocket::JSocket(){
-  init();
+JSocket::JSocket(string ipAddr)
+{
+}
+
+JSocket::JSocket(int fd)
+{
 }
 
 JSocket::~JSocket(){
@@ -48,7 +45,27 @@ JSocket::~JSocket(){
 #endif        
 }
 
+void JSocket::Disconnect()
+{
+}
 
+JSocket* JSocket::Accept()
+{
+	return 0;
+}
+
+int JSocket::Read(char* buff, int size)
+{
+	return 0;
+}
+
+int JSocket::Write(char* buff, int size)
+{
+	return 0;
+}
+
+
+#if 0
 int JSocket::make_socket(uint16_t port)
 {
 	int sock = -1;

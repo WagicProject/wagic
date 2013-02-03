@@ -188,11 +188,7 @@ void JNetwork::ThreadProc(void* param)
 		  pThis->toSend.str("");
 		}
 	}
-#ifdef LINUX
     boost::this_thread::sleep(boost::posix_time::milliseconds(1));
-#elif WIN32
-//	boost::this_thread::sleep(boost::posix_time::microseconds(10));
-#endif
   }
 
   DebugTrace("Quitting Thread");
@@ -209,7 +205,7 @@ int JNetwork::connect(const string& ip)
 
 #else
 
-int JNetwork::connect(string serverIP){
+int JNetwork::connect(const string& serverIP){
 #ifdef NETWORK_SUPPORT
   int err;
   char buffer[4096];

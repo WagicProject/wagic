@@ -16,11 +16,6 @@
 
 #include "../../include/JSocket.h"
 #include "../../include/DebugRoutines.h"
-//JSocket * JSocket::mInstance = NULL;
-
-//#define SERVER_PORT 20666
-#define SERVER_PORT 5001
-unsigned char ADRESSE_IP_SERVEUR [4] = {127,0,0,1};
 
 
 JSocket::JSocket(string ipAddr)

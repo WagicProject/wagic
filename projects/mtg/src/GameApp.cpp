@@ -51,8 +51,8 @@ GameState::GameState(GameApp* parent, string id) :
 GameApp::GameApp() :
     JApp()
 #ifdef NETWORK_SUPPORT
-    ,mpNetwork(NULL)
     , mServerAddress("")
+    , mpNetwork(NULL)
 #endif //NETWORK_SUPPORT
 {
 #ifdef DEBUG
