@@ -219,6 +219,16 @@ mana={1}{B}
 type=Instant
 [/card]
 [card]
+name=Seeds of Strength
+target=creature
+auto=1/1 ueot
+auto=target(creature) 1/1 ueot
+auto=ability$!target(creature) 1/1 ueot!$ controller
+text=Target creature gets +1/+1 until end of turn. -- Target creature gets +1/+1 until end of turn. -- Target creature gets +1/+1 until end of turn.
+mana={G}{W}
+type=Instant
+[/card]
+[card]
 name=Zombie Brute
 abilities=trample
 auto=foreach(zombie|myhand) counter(1/1,1)

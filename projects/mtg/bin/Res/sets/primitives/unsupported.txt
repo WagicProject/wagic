@@ -988,6 +988,17 @@ text=Put target artifact, creature, or enchantment on the bottom of its owner's 
 mana={5}{W}
 type=Instant
 [/card]
+##the damage source is unknown but it deals 4 damage
+[card]
+name=Barbarian Bully
+text=Discard a card at random: Barbarian Bully gets +2/+2 until end of turn unless a player has Barbarian Bully deal 4 damage to him or her. Activate this ability only once each turn.
+auto={D}:name(Discard at random) ability$!name(choose one) choice damage:4 controller _ choice all(mystored) 2/2 ueot!$ opponent limit:1
+mana={2}{R}
+type=Creature
+subtype=Human Barbarian
+power=2
+toughness=2
+[/card]
 [card]
 name=Barbed Lightning
 text=Choose one - Barbed Lightning deals 3 damage to target creature; or Barbed Lightning deals 3 damage to target player. -- Entwine {2} (Choose both if you pay the entwine cost.)
@@ -15074,6 +15085,16 @@ mana={U}
 type=Instant
 [/card]
 [card]
+name=Saprazzan Breaker
+auto={U}:name(deplete) all(this) transforms((,newability[@movedto(land|mygraveyard) from(mylibrary) once:unblockable],newability[deplete:1 controller]))
+text={U}: Put the top card of your library into your graveyard. If that card is a land card, Saprazzan Breaker is unblockable this turn.
+mana={4}{U}
+type=Creature
+subtype=Beast
+power=3
+toughness=3
+[/card]
+[card]
 name=Saproling Burst
 text=Fading 7 (This enchantment enters the battlefield with seven fade counters on it. At the beginning of your upkeep, remove a fade counter from it. If you can't, sacrifice it.) -- Remove a fade counter from Saproling Burst: Put a green Saproling creature token onto the battlefield. It has "This creature's power and toughness are each equal to the number of fade counters on Saproling Burst." -- When Saproling Burst leaves the battlefield, destroy all tokens put onto the battlefield with Saproling Burst. They can't be regenerated.
 mana={4}{G}
@@ -15391,12 +15412,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Seeds of Strength
-text=Target creature gets +1/+1 until end of turn. -- Target creature gets +1/+1 until end of turn. -- Target creature gets +1/+1 until end of turn.
-mana={G}{W}
-type=Instant
-[/card]
-[card]
 name=Seer's Sundial
 text=Landfall - Whenever a land enters the battlefield under your control, you may pay {2}. If you do, draw a card.
 mana={4}
@@ -15458,15 +15473,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Sengir Nosferatu
-text=Flying -- {1}{B}, Exile Sengir Nosferatu: Put a 1/2 black Bat creature token with flying onto the battlefield. It has "{1}{B}, Sacrifice this creature: Return an exiled card named Sengir Nosferatu to the battlefield under its owner's control."
-mana={3}{B}{B}
-type=Creature
-subtype=Vampire
-power=4
-toughness=4
-[/card]
-[card]
 name=Sensation Gorger
 text=Kinship - At the beginning of your upkeep, you may look at the top card of your library. If it shares a creature type with Sensation Gorger, you may reveal it. If you do, each player discards his or her hand and draws four cards.
 mana={1}{R}{R}
@@ -15507,12 +15513,6 @@ type=Creature
 subtype=Angel
 power=4
 toughness=4
-[/card]
-[card]
-name=Serene Sunset
-text=Prevent all combat damage X target creatures would deal this turn.
-mana={X}{G}
-type=Instant
 [/card]
 [card]
 name=Serra's Hymn
@@ -16187,6 +16187,14 @@ subtype=Zombie Elemental
 power=1
 toughness=1
 text=Haste Whenever Skullbriar, the Walking Grave deals combat damage to a player, put a +1/+1 counter on it. Counters remain on Skullbriar as it moves to any zone other than a player's hand or library.
+[/card]
+[card]
+name=Skullscorch
+target=player
+auto=ability$!name(choose one) choice damage:4 controller _ choice discard:2 controller!$ targetedplayer
+text=Target player discards two cards at random unless that player has Skullscorch deal 4 damage to him or her.
+mana={R}{R}
+type=Sorcery
 [/card]
 [card]
 name=Skyship Weatherlight

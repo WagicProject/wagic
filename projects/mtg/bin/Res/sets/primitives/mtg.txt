@@ -72125,16 +72125,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Saprazzan Breaker
-auto={U}:name(deplete) all(this) transforms((,newability[@movedto(land|mygraveyard) from(mylibrary) once:unblockable],newability[deplete:1 controller]))
-text={U}: Put the top card of your library into your graveyard. If that card is a land card, Saprazzan Breaker is unblockable this turn.
-mana={4}{U}
-type=Creature
-subtype=Beast
-power=3
-toughness=3
-[/card]
-[card]
 name=Saprazzan Cove
 auto=tap
 auto={T}:counter(0/0,1,Storage)
@@ -74432,6 +74422,20 @@ subtype=Bat
 power=1
 toughness=2
 [/card]
+#The Sengir Nosferatu that the Bat token's ability returns to the battlefield doesn't have to be the same one that created it, and it doesn't even have to be owned by the same player.
+#If the Nosferatu is copied (by Clone, for example) and then the copy is exiled by the first activated ability, it won’t be able to come back using the second activated ability, since it’s no longer named Sengir Nosferatu in the Exile zone.
+#since we can't target exile, I use moverandom(name)
+[card]
+name=Sengir Nosferatu
+abilities=flying
+auto={1}{B}{E}:token(Bat Token,Creature Bat,1/2,flying,black) && all(Bat Token) transforms((,newability[{1}{B}{S}:moverandom(Sengir Nosferatu) from(exile) to(mybattlefield)])) forever
+text=Flying -- {1}{B}, Exile Sengir Nosferatu: Put a 1/2 black Bat creature token with flying onto the battlefield. It has "{1}{B}, Sacrifice this creature: Return an exiled card named Sengir Nosferatu to the battlefield under its owner's control."
+mana={3}{B}{B}
+type=Creature
+subtype=Vampire
+power=4
+toughness=4
+[/card]
 [card]
 name=Sengir Vampire
 abilities=flying
@@ -74590,6 +74594,14 @@ auto=moveto(ownerlibrary) and!(shuffle)! all(this)
 text=Shuffle Serene Remembrance and up to three target cards from a single graveyard into their owners' libraries.
 mana={G}
 type=Sorcery
+[/card]
+[card]
+name=Serene Sunset
+target=<prex>creature
+auto=transforms((,newability[preventAllCombatDamage from(this)])) ueot
+text=Prevent all combat damage X target creatures would deal this turn.
+mana={X}{G}
+type=Instant
 [/card]
 [card]
 name=Serenity
