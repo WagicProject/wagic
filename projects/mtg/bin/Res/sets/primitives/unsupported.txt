@@ -15391,15 +15391,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Sedris, the Traitor King
-text=Each creature card in your graveyard has unearth {2}{B}. ({2}{B}: Return the card to the battlefield. The creature gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
-mana={3}{U}{B}{R}
-type=Legendary Creature
-subtype=Zombie Warrior
-power=5
-toughness=5
-[/card]
-[card]
 name=Seeds of Strength
 text=Target creature gets +1/+1 until end of turn. -- Target creature gets +1/+1 until end of turn. -- Target creature gets +1/+1 until end of turn.
 mana={G}{W}
