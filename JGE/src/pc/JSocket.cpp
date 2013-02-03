@@ -28,7 +28,7 @@ JSocket::JSocket(string ipAddr)
 	mfd(-1)
 {
 	int result;
-	struct hostent *hostentptr;
+	struct hostent *hostentptr = 0;
 #ifdef WIN32
 	SOCKADDR_IN Adresse_Socket_Server;
 	WORD wVersionRequested;

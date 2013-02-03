@@ -52,6 +52,7 @@ GameApp::GameApp() :
     JApp()
 #ifdef NETWORK_SUPPORT
     ,mpNetwork(NULL)
+    , mServerAddress("")
 #endif //NETWORK_SUPPORT
 {
 #ifdef DEBUG

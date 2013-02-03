@@ -112,6 +112,9 @@ SimplePad::SimplePad()
         if (x < 8) linkKeys(KPD_0 + x, KPD_A + x, KPD_DOWN);
         if (x > 0) linkKeys(KPD_0 + x, KPD_0 + x - 1, KPD_LEFT);
     }
+    k = Add(_("."), KPD_DOT);
+    linkKeys(KPD_DOT, KPD_9, KPD_LEFT);
+    keys[KPD_DOT]->adjacency[KPD_DOWN] = KPD_DEL;
 
     keys[KPD_8]->adjacency[KPD_DOWN] = KPD_DEL;
     keys[KPD_9]->adjacency[KPD_DOWN] = KPD_DEL;
@@ -157,6 +160,17 @@ void SimplePad::pressKey(unsigned char key)
 
         //Auto swap capitalization
         if (bCapslock && buffer.size() == 1) bCapslock = !bCapslock;
+    }
+    else if (key >= KPD_0 && key <= KPD_9)
+    {
+        input += ('0' + key - KPD_0);
+        if (cursor < buffer.size()) cursor++;
+        buffer.insert(cursor, input);
+    }
+    else if (key == KPD_DOT)
+    {
+        if (cursor < buffer.size()) cursor++;
+        buffer.insert(cursor, ".");
     }
     else if (key == KPD_SPACE)
     {
@@ -392,7 +406,7 @@ void SimplePad::Render()
         if (keys[x])
         {
 
-            if ((x == KPD_CANCEL && !bShowCancel) || (x >= KPD_0 && x <= KPD_9 && !bShowNumpad)) continue;
+            if ((x == KPD_CANCEL && !bShowCancel) || (x >= KPD_0 && x <= KPD_DOT && !bShowNumpad)) continue;
 
             switch (x)
             {

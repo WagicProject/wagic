@@ -51,6 +51,7 @@ public:
     Rules * rules;
     CardEffect *effect;
 #ifdef NETWORK_SUPPORT
+    string mServerAddress;
     JNetwork* mpNetwork;
 #endif //NETWORK_SUPPORT
 

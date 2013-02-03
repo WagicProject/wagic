@@ -455,6 +455,35 @@ void GameStateMenu::ensureMGuiController()
 
 void GameStateMenu::Update(float dt)
 {
+#ifdef NETWORK_SUPPORT
+    if (options.keypadActive())
+    {
+        options.keypadUpdate(dt);
+
+        if (mParent->mServerAddress != "")
+        {
+            mParent->mServerAddress = options.keypadFinish();
+
+            if (mParent->mServerAddress != "")
+            {
+                mParent->mpNetwork = new JNetwork();
+
+                mParent->mpNetwork->connect(mParent->mServerAddress);
+                // we let the server choose the game mode
+                mParent->gameType = GAME_TYPE_SLAVE;
+			          // just to select one, the HOST is in control here.
+                mParent->rules = Rules::getRulesByFilename("classic.txt");
+                hasChosenGameType = true;
+                subMenuController->Close();
+                currentState = MENU_STATE_NETWORK_WAIT | MENU_STATE_MINOR_SUBMENU_CLOSING;
+            }
+            mParent->mServerAddress = "";
+        }
+        //Prevent screen from updating.
+        return;
+    }
+#endif //NETWORK_SUPPORT
+
     timeIndex += dt * 2;
     switch (MENU_STATE_MAJOR & currentState)
     {
@@ -766,6 +795,8 @@ void GameStateMenu::Render()
     {
         subMenuController->Render();
     }
+
+    if (options.keypadActive()) options.keypadRender();
 }
 
 void GameStateMenu::ButtonPressed(int controllerId, int controlId)
@@ -843,7 +874,7 @@ void GameStateMenu::ButtonPressed(int controllerId, int controlId)
         {
             if(!mParent->mpNetwork)
             {
-				mParent->mpNetwork = new JNetwork();
+                mParent->mpNetwork = new JNetwork();
             }
             mParent->mpNetwork->connect();
             subMenuController->Close();
@@ -854,17 +885,9 @@ void GameStateMenu::ButtonPressed(int controllerId, int controlId)
         {
             if(!mParent->mpNetwork)
             {
-                mParent->mpNetwork = new JNetwork();
+                options.keypadStart("127.0.0.1", &(mParent->mServerAddress), true, true);
+                options.keypadTitle("Enter device address to connect");
             }
-            // FIXME needs to be able to specify the server ip
-            mParent->mpNetwork->connect("127.0.0.1");
-            // we let the server choose the game mode
-            mParent->gameType = GAME_TYPE_SLAVE;
-			// just to select one, the HOST is in control here.
-            mParent->rules = Rules::getRulesByFilename("classic.txt");
-            hasChosenGameType = true;
-            subMenuController->Close();
-            currentState = MENU_STATE_NETWORK_WAIT | MENU_STATE_MINOR_SUBMENU_CLOSING;
             break;
         }
 #endif //NETWORK_SUPPORT
