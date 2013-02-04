@@ -3355,6 +3355,13 @@ type=Sorcery
 [/card]
 [card]
 name=Cruel Ultimatum
+target=opponent
+auto=ability$!choice life:5 controller!$ controller
+auto=ability$!choice draw:3 controller!$ controller
+auto=ability$!choice moveto(ownerhand) notatarget(creature|mygraveyard)!$ controller
+auto=ability$!choice life:-5 controller!$ targetedplayer
+auto=ability$!choice reject notatarget(<3>*|myhand)!$ targetedplayer
+auto=ability$!choice sacrifice notatarget(creature|mybattlefield)!$ targetedplayer
 text=Target opponent sacrifices a creature, discards three cards, then loses 5 life. You return a creature card from your graveyard to your hand, draw three cards, then gain 5 life.
 mana={U}{U}{B}{B}{B}{R}{R}
 type=Sorcery

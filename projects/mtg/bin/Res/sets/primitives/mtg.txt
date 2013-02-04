@@ -5582,7 +5582,7 @@ type=Artifact
 [/card]
 [card]
 name=Azor's Elocutors
-auto=@each myupkeep:counter(0/0,1,Filibuster) all(this) && this(counter{0/0.5.Filibuster})>=wingame
+auto=@each my upkeep:counter(0/0,1,Filibuster) all(this) && this(counter{0/0.5.Filibuster})>=wingame
 auto=@damaged(controller):counter(0/0,-1,Filibuster)
 text=At the beginning of your upkeep, put a filibuster counter on Azor's Elocutors. Then if Azor's Elocutors has five or more filibuster counters on it, you win the game. -- Whenever a source deals damage to you, remove a filibuster counter from Azor's Elocutors.
 mana={3}{WU}{WU}
@@ -8733,7 +8733,7 @@ toughness=1
 [card]
 name=Bloodcurdler
 abilities=flying
-auto=@each myupkeep:deplete:1 controller
+auto=@each my upkeep:deplete:1 controller
 auto=aslongas(*|mygraveyard) 1/1 >6
 auto=@each my endofturn restriction{type(*|mygraveyard)~morethan~6}:target(<2>*|mygraveyard) moveto(exile)
 text=Flying -- At the beginning of your upkeep, put the top card of your library into your graveyard. -- Threshold - As long as seven or more cards are in your graveyard, Bloodcurdler gets +1/+1 and has "At the beginning of your end step, exile two cards from your graveyard."
@@ -14078,7 +14078,7 @@ toughness=2
 [/card]
 [card]
 name=Chlorophant
-auto=@each myupkeep:may counter(1/1,1) && aslongas(*|mygraveyard) counter(1/1,1) >6
+auto=@each my upkeep:may counter(1/1,1) && aslongas(*|mygraveyard) counter(1/1,1) >6
 text=At the beginning of your upkeep, you may put a +1/+1 counter on Chlorophant. -- Threshold - As long as seven or more cards are in your graveyard, Chlorophant has "At the beginning of your upkeep, you may put another +1/+1 counter on Chlorophant."
 mana={G}{G}{G}
 type=Creature
@@ -18941,7 +18941,7 @@ subtype=Equipment
 [card]
 name=Darksteel Reactor
 abilities=indestructible
-auto=@each myupkeep:counter(0/0,1,charge) all(this) && this(counter{0/0.20.charge})>=wingame
+auto=@each my upkeep:counter(0/0,1,charge) all(this) && this(counter{0/0.20.charge})>=wingame
 text=Darksteel Reactor is indestructible. ("Destroy" effects and lethal damage don't destroy it.) -- At the beginning of your upkeep, you may put a charge counter on Darksteel Reactor. -- When Darksteel Reactor has twenty or more charge counters on it, you win the game.
 mana={4}
 type=Artifact
@@ -24866,8 +24866,8 @@ name=Eldrazi Monument
 auto=lord(creature|myBattlefield) 1/1
 auto=lord(creature|mybattlefield) flying
 auto=lord(creature|mybattlefield) indestructible
-auto=@each myupkeep:sacrifice notatarget(creature|mybattlefield)
-auto=@each myupkeep restriction{type(creature|myBattlefield)~lessthan~1}:sacrifice
+auto=@each my upkeep:sacrifice notatarget(creature|mybattlefield)
+auto=@each my upkeep restriction{type(creature|myBattlefield)~lessthan~1}:sacrifice
 text=Creatures you control get +1/+1, have flying, and are indestructible. -- At the beginning of your upkeep, sacrifice a creature. If you can't, sacrifice Eldrazi Monument.
 mana={5}
 type=Artifact
@@ -40106,7 +40106,7 @@ subtype=Shrine
 [/card]
 [card]
 name=Honden of Night's Reach
-auto=@each myupkeep:target(opponent) ability$!name(discard) target(<type:shrine:opponentgraveyard>*|myhand) reject !$ targetedplayer
+auto=@each my upkeep:target(opponent) ability$!name(discard) target(<type:shrine:opponentgraveyard>*|myhand) reject !$ targetedplayer
 text=At the beginning of your upkeep, target opponent discards a card for each Shrine you control.
 mana={3}{B}
 type=Legendary Enchantment
@@ -48707,8 +48707,8 @@ name=Liege of the Pit
 abilities=flying,trample
 facedown={3}
 autofacedown={B}{B}{B}{B}:morph
-auto=@each myupkeep:sacrifice notatarget(other creature|mybattlefield)
-auto=@each myupkeep restriction{type(creature|myBattlefield)~lessthan~2}:damage:7 controller
+auto=@each my upkeep:sacrifice notatarget(other creature|mybattlefield)
+auto=@each my upkeep restriction{type(creature|myBattlefield)~lessthan~2}:damage:7 controller
 text=Flying, trample -- At the beginning of your upkeep, sacrifice a creature other than Liege of the Pit. If you can't, Liege of the Pit deals 7 damage to you. -- Morph {B}{B}{B}{B} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
 mana={5}{B}{B}{B}
 type=Creature
@@ -48950,9 +48950,9 @@ type=Instant
 [card]
 name=Lightning Coils
 auto=@movedto(graveyard) from(creature[-token]|myBattlefield):counter(0/0,1,Charge)
-auto=@each myupkeep:this(counter{0/0.1.charge}>4) removeallcounters(0/0,1,charge)
-auto=@each myupkeep:this(counter{0/0.1.charge}>4) token(Elemental,Creature Elemental,3/1,red,haste,unearth)*4
-auto=@each myupkeep:thisforeach(counter{0/0.1.charge}>4) token(Elemental,Creature Elemental,3/1,red,haste,unearth)*1
+auto=@each my upkeep:this(counter{0/0.1.charge}>4) removeallcounters(0/0,1,charge)
+auto=@each my upkeep:this(counter{0/0.1.charge}>4) token(Elemental,Creature Elemental,3/1,red,haste,unearth)*4
+auto=@each my upkeep:thisforeach(counter{0/0.1.charge}>4) token(Elemental,Creature Elemental,3/1,red,haste,unearth)*1
 text=Whenever a nontoken creature you control dies, put a charge counter on Lightning Coils. -- At the beginning of your upkeep, if Lightning Coils has five or more charge counters on it, remove all of them from it and put that many 3/1 red Elemental creature tokens with haste onto the battlefield. Exile them at the beginning of the next end step.
 mana={3}
 type=Artifact
@@ -49831,8 +49831,8 @@ toughness=3
 [card]
 name=Lord of the Pit
 abilities=flying,trample
-auto=@each myupkeep restriction{type(creature|myBattlefield)~morethan~1}:sacrifice notatarget(other creature|mybattlefield)
-auto=@each myupkeep restriction{type(creature|myBattlefield)~lessthan~2}:damage:7 controller
+auto=@each my upkeep restriction{type(creature|myBattlefield)~morethan~1}:sacrifice notatarget(other creature|mybattlefield)
+auto=@each my upkeep restriction{type(creature|myBattlefield)~lessthan~2}:damage:7 controller
 text=Flying, trample -- At the beginning of your upkeep, sacrifice a creature other than Lord of the Pit. If you can't, Lord of the Pit deals 7 damage to you.
 mana={4}{B}{B}{B}
 type=Creature
@@ -57387,7 +57387,7 @@ type=Artifact
 [/card]
 [card]
 name=Necrogen Mists
-auto=@each myupkeep:reject target(*|myhand)
+auto=@each my upkeep:reject target(*|myhand)
 auto=@each opponentupkeep:ability$!name(discard) target(*|myhand) reject!$ opponent
 text=At the beginning of each player's upkeep, that player discards a card.
 mana={2}{B}
@@ -68035,7 +68035,7 @@ type=Instant
 [/card]
 [card]
 name=Recurring Nightmare
-auto={S(creature|myBattlefield)}:moveto(myhand) all(this) && moveto(battlefield) target(creature|mygraveyard) asSorcery
+auto={S(creature|myBattlefield)}{H}:moveto(mybattlefield) target(creature|mygraveyard) asSorcery
 text=Sacrifice a creature, Return Recurring Nightmare to its owner's hand: Return target creature card from your graveyard to the battlefield. Activate this ability only any time you could cast a sorcery.
 mana={2}{B}
 type=Enchantment
@@ -79121,7 +79121,7 @@ toughness=4
 [/card]
 [card]
 name=Snow Hound
-auto={T}:moveTo(myhand) all(this) && moveTo(myhand) target(creature[green;blue]|myBattlefield)
+auto={1}{T}:moveTo(myhand) all(this) && moveTo(myhand) target(creature[green;blue]|myBattlefield)
 text={1}, {T}: Return Snow Hound and target green or blue creature you control to their owner's hand.
 mana={2}{W}
 type=Creature
@@ -99180,8 +99180,8 @@ toughness=1
 [card]
 name=Xathrid Demon
 abilities=flying,trample
-auto=@each myupkeep restriction{type(creature|myBattlefield)~morethan~1}:name(sacrifice a creature) notatarget(other creature|mybattlefield) dynamicability<!powerstrike targetopponent!> sacrifice
-auto=@each myupkeep restriction{type(creature|myBattlefield)~lessthan~2}:tap && damage:7 controller
+auto=@each my upkeep restriction{type(creature|myBattlefield)~morethan~1}:name(sacrifice a creature) notatarget(other creature|mybattlefield) dynamicability<!powerstrike targetopponent!> sacrifice
+auto=@each my upkeep restriction{type(creature|myBattlefield)~lessthan~2}:tap && damage:7 controller
 text=Flying, trample -- At the beginning of your upkeep, sacrifice a creature other than Xathrid Demon, then each opponent loses life equal to the sacrificed creature's power. If you can't sacrifice a creature, tap Xathrid Demon and you lose 7 life.
 mana={3}{B}{B}{B}
 type=Creature
