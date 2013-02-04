@@ -306,10 +306,10 @@ void TestSuite::initGame(GameObserver* g)
     {
         timerLimit = 40;
     }
-    else
-    {
-        timerLimit = 3;
-    }
+    //else
+    //{
+    //    timerLimit = 10;
+    //}
 
     TestSuiteGame::initGame();
 }
@@ -465,7 +465,7 @@ TestSuite::~TestSuite()
 TestSuite::TestSuite(const char * filename)
     : TestSuiteGame(0), mRules(0), mProcessing(false)
 {
-    timerLimit = 0;
+    timerLimit = 3;
     testsuite = this;
     
     std::string s;
@@ -792,13 +792,13 @@ TestSuiteGame::~TestSuiteGame()
 }
 
 TestSuiteGame::TestSuiteGame(TestSuite* testsuite)
-    : summoningSickness(0), forceAbility(false), gameType(GAME_TYPE_CLASSIC), timerLimit(0),
+    : summoningSickness(0), forceAbility(false), gameType(GAME_TYPE_CLASSIC), timerLimit(6),
       currentAction(0), observer(0), testsuite(testsuite)
 {
 }
 
 TestSuiteGame::TestSuiteGame(TestSuite* testsuite, string _filename)
-    : summoningSickness(0), forceAbility(false), gameType(GAME_TYPE_CLASSIC), timerLimit(3),
+    : summoningSickness(0), forceAbility(false), gameType(GAME_TYPE_CLASSIC), timerLimit(6),
       currentAction(0), observer(0), testsuite(testsuite)
 {
     filename = _filename;
