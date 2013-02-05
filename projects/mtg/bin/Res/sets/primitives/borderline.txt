@@ -33,14 +33,15 @@ subtype=Human Wizard
 power=1
 toughness=1
 [/card]
+#can target same creature
 [card]
-name=Drain Life
-#can use non black mana
-target=creature,player
-alias=1156
-text=Spend only black mana on X. -- Drain Life deals X damage to target creature or player. You gain life equal to the damage dealt, but not more life than the player's life total before Drain Life dealt damage or the creature's toughness.
-mana={X}{1}{B}
-type=Sorcery
+name=Consume Strength
+target=creature
+auto=2/2 ueot
+auto=target(creature) -2/-2 ueot
+text=Target creature gets +2/+2 until end of turn. Another target creature gets -2/-2 until end of turn.
+mana={1}{B}{G}
+type=Instant
 [/card]
 [card]
 name=Feral Hydra

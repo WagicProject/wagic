@@ -866,12 +866,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Azorius Ploy
-text=Prevent all combat damage target creature would deal this turn. -- Prevent all combat damage that would be dealt to target creature this turn.
-mana={1}{W}{W}{U}
-type=Instant
-[/card]
-[card]
 name=B-I-N-G-O
 mana={1}{G}
 type=Creature — Hound
@@ -1048,12 +1042,6 @@ type=Creature
 subtype=Zombie
 power=4
 toughness=4
-[/card]
-[card]
-name=Barter in Blood
-text=Each player sacrifices two creatures.
-mana={2}{B}{B}
-type=Sorcery
 [/card]
 [card]
 name=Basandra, Battle Seraph
@@ -3006,19 +2994,6 @@ mana={3}{B}{B}
 type=Enchantment
 [/card]
 [card]
-name=Consume Strength
-text=Target creature gets +2/+2 until end of turn. Another target creature gets -2/-2 until end of turn.
-mana={1}{B}{G}
-type=Instant
-[/card]
-[card]
-name=Consuming Ferocity
-text=Enchant non-Wall creature -- Enchanted creature gets +1/+0. -- At the beginning of your upkeep, put a +1/+0 counter on enchanted creature. If that creature has three or more +1/+0 counters on it, it deals damage equal to its power to its controller, then destroy that creature and it can't be regenerated.
-mana={1}{R}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Consuming Vapors
 mana={3}{B}
 type=Sorcery
@@ -3105,15 +3080,6 @@ mana={2}{B}
 type=Instant
 [/card]
 [card]
-name=Corpse Harvester
-text={1}{B}, {T}, Sacrifice a creature: Search your library for a Zombie card and a Swamp card, reveal them, and put them into your hand. Then shuffle your library.
-mana={3}{B}{B}
-type=Creature
-subtype=Zombie Wizard
-power=3
-toughness=3
-[/card]
-[card]
 name=Corpsejack Menace
 text=If one or more +1/+1 counters would be placed on a creature you control, twice that many +1/+1 counters are placed on it instead.
 mana={2}{B}{G}
@@ -3127,12 +3093,6 @@ name=Corrosion
 text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- At the beginning of your upkeep, put a rust counter on each artifact target opponent controls. Then destroy each artifact with converted mana cost less than or equal to the number of rust counters on it. Artifacts destroyed this way can't be regenerated. -- When Corrosion leaves the battlefield, remove all rust counters from all permanents.
 mana={1}{B}{R}
 type=Enchantment
-[/card]
-[card]
-name=Corrupted Resolve
-mana={1}{U}
-type=Instant
-text=Counter target spell if its controller is poisoned.
 [/card]
 [card]
 name=Corrupting Licid
@@ -3354,19 +3314,6 @@ mana={4}{U}
 type=Sorcery
 [/card]
 [card]
-name=Cruel Ultimatum
-target=opponent
-auto=ability$!choice life:5 controller!$ controller
-auto=ability$!choice draw:3 controller!$ controller
-auto=ability$!choice moveto(ownerhand) notatarget(creature|mygraveyard)!$ controller
-auto=ability$!choice life:-5 controller!$ targetedplayer
-auto=ability$!choice reject notatarget(<3>*|myhand)!$ targetedplayer
-auto=ability$!choice sacrifice notatarget(creature|mybattlefield)!$ targetedplayer
-text=Target opponent sacrifices a creature, discards three cards, then loses 5 life. You return a creature card from your graveyard to your hand, draw three cards, then gain 5 life.
-mana={U}{U}{B}{B}{B}{R}{R}
-type=Sorcery
-[/card]
-[card]
 name=Crumbling Sanctuary
 text=For each 1 damage that would be dealt to a player, that player exiles the top card of his or her library instead.
 mana={5}
@@ -3447,8 +3394,14 @@ text=You may choose an instant card you own from outside the game, reveal that c
 mana={2}{U}
 type=Instant
 [/card]
+#don't work
 [card]
 name=Curse of the Cabal
+target=player
+auto=ability$! sacrifice notatarget(<halfdowntype:*:mybattlefield>*|mybattlefield) !$ targetedplayer
+autoexile=@each my upkeep restriction{type(*|mybattlefield)~morethan~0} suspended:ability$!may sacrifice notatarget(*|mybattlefield) && counter(0/0,2,Time) all(mystored)!$ controller
+autoexile=@each opponent upkeep restriction{type(*|mybattlefield)~morethan~0} suspended:ability$!may sacrifice notatarget(*|mybattlefield) && counter(0/0,2,Time) all(mystored)!$ opponent
+suspend(2)={2}{B}{B}
 text=Target player sacrifices half the permanents he or she controls, rounded down. -- Suspend 2 - {2}{B}{B} (Rather than cast this card from your hand, you may pay {2}{B}{B} and exile it with two time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.) -- At the beginning of each player's upkeep, if Curse of the Cabal is suspended, that player may sacrifice a permanent. If he or she does, put two time counters on Curse of the Cabal.
 mana={9}{B}
 type=Sorcery
@@ -3530,12 +3483,6 @@ type=Creature
 subtype=Zombie Giant
 power=4
 toughness=2
-[/card]
-[card]
-name=Cyclopean Tomb
-text={2}, {T}: Put a mire counter on target non-Swamp land. That land is a Swamp for as long as it has a mire counter on it. Activate this ability only during your upkeep. -- When Cyclopean Tomb is put into a graveyard from the battlefield, at the beginning of each of your upkeeps for the rest of the game, remove all mire counters from a land that a mire counter was put onto with Cyclopean Tomb but that a mire counter has not been removed from with Cyclopean Tomb.
-mana={4}
-type=Artifact
 [/card]
 [card]
 name=Cytoplast Manipulator

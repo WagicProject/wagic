@@ -5574,6 +5574,15 @@ mana={3}
 type=Artifact
 [/card]
 [card]
+name=Azorius Ploy
+target=creature
+auto=transforms((,newability[preventAllCombatDamage from(this)])) ueot
+auto=target(creature) preventAllCombatDamage to(mytgt) ueot
+text=Prevent all combat damage target creature would deal this turn. -- Prevent all combat damage that would be dealt to target creature this turn.
+mana={1}{W}{W}{U}
+type=Instant
+[/card]
+[card]
 name=Azorius Signet
 auto={1}{T}:Add{W}{U}
 text={1}, {T}: Add {W}{U} to your mana pool.
@@ -6444,6 +6453,14 @@ type=Legendary Creature
 subtype=Giant Warrior
 power=6
 toughness=5
+[/card]
+[card]
+name=Barter in Blood
+auto=sacrifice notatarget(<2>creature|mybattlefield)
+auto=ability$! sacrifice notatarget(<2>creature|mybattlefield) !$ opponent
+text=Each player sacrifices two creatures.
+mana={2}{B}{B}
+type=Sorcery
 [/card]
 [card]
 name=Baru Fist of Krosa
@@ -16062,6 +16079,16 @@ type=Tribal Sorcery
 subtype=Elemental
 [/card]
 [card]
+name=Consuming Ferocity
+target=creature[-Wall]
+auto=1/0
+auto=@each my upkeep:counter(1/0,1) && teach(creature) transforms((,newability[this(counter{1/0}>1) damage:power controller && bury]))
+text=Enchant non-Wall creature -- Enchanted creature gets +1/+0. -- At the beginning of your upkeep, put a +1/+0 counter on enchanted creature. If that creature has three or more +1/+0 counters on it, it deals damage equal to its power to its controller, then destroy that creature and it can't be regenerated.
+mana={1}{R}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 name=Consumptive Goo
 auto={2}{B}{B}:counter(1/1,1) all(this) && -1/-1 target(creature)
 text={2}{B}{B}: Target creature gets -1/-1 until end of turn. Put a +1/+1 counter on Consumptive Goo.
@@ -16089,11 +16116,11 @@ text=When Contagion Clasp enters the battlefield, put a -1/-1 counter on target 
 mana={2}
 type=Artifact
 [/card]
+#only select targets once and add counters twice
 [card]
 name=Contagion Engine
-auto=may counter(-1/-1,1) all(creature|opponentbattlefield)
-auto=may counter(-1/-1,1) all(creature|mybattlefield)
-auto={4}{T}:target(proliferation) transforms((,newability[proliferate],newability[proliferate])) forever
+auto=target(player) ability$!name(target player) counter(1/1,1) all(creature|mybattlefield)!$ targetedplayer
+auto={4}{T}:notatarget(proliferation) proliferate && proliferate
 text=When Contagion Engine enters the battlefield, put a -1/-1 counter on each creature target player controls. -- {4},{T}: Proliferate, then proliferate again. (You choose any number of permanents and/or players with counters on them, then give each another counter of a kind already there. Then do it again.)
 mana={6}
 type=Artifact
@@ -16485,6 +16512,16 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Corpse Harvester
+auto={1}{B}{T}{S(creature|mybattlefield)}:name(fetch) transforms((,newability[ability$!notatarget(swamp|mylibrary) moveto(ownerhand)!$ controller],newability[ability$!notatarget(zombie|mylibrary) moveto(ownerhand)!$ controller])) ueot
+text={1}{B}, {T}, Sacrifice a creature: Search your library for a Zombie card and a Swamp card, reveal them, and put them into your hand. Then shuffle your library.
+mana={3}{B}{B}
+type=Creature
+subtype=Zombie Wizard
+power=3
+toughness=3
+[/card]
+[card]
 name=Corpse Lunge
 target=creature
 auto=damage:storedpower
@@ -16599,6 +16636,14 @@ type=Creature
 subtype=Horror
 power=6
 toughness=3
+[/card]
+[card]
+name=Corrupted Resolve
+target=*|stack
+auto=transforms((,newability[this(variable{playerpoisoncount}) fizzle])) ueot
+mana={1}{U}
+type=Instant
+text=Counter target spell if its controller is poisoned.
 [/card]
 [card]
 name=Corrupted Roots
@@ -17624,6 +17669,19 @@ mana={2}{B}
 type=Sorcery
 [/card]
 [card]
+name=Cruel Ultimatum
+target=opponent
+auto=ability$!choice life:5 controller!$ controller
+auto=ability$!choice draw:3 controller!$ controller
+auto=ability$!choice moveto(ownerhand) notatarget(creature|mygraveyard)!$ controller
+auto=ability$!choice life:-5 controller!$ targetedplayer
+auto=ability$!choice reject notatarget(<3>*|myhand)!$ targetedplayer
+auto=ability$!choice sacrifice notatarget(creature|mybattlefield)!$ targetedplayer
+text=Target opponent sacrifices a creature, discards three cards, then loses 5 life. You return a creature card from your graveyard to your hand, draw three cards, then gain 5 life.
+mana={U}{U}{B}{B}{B}{R}{R}
+type=Sorcery
+[/card]
+[card]
 name=Crumble
 target=artifact
 auto=bury
@@ -18267,6 +18325,14 @@ name=Cyclopean Snare
 auto={3}{T}:tap target(creature) && all(this) moveto(ownerhand)
 text={3}, {T}: Tap target creature, then return Cyclopean Snare to its owner's hand.
 mana={2}
+type=Artifact
+[/card]
+[card]
+name=Cyclopean Tomb
+auto={2}{T}:name(becomes swamp) target(land[-swamp]) transforms((,newability[counter(0/0.1.Mire)],newability[this(counter{0/0.1.Mire}>0) becomes(Swamp)])) forever myupkeeponly
+auto=@movedTo(this|graveyard) from(battlefield):name(Epic) emblem transforms((,newability[@each my upkeep:notatarget(land[counter{0/0.1.Mire}]) removeallcounters(0/0.1.Mire)])) forever dontremove
+text={2}, {T}: Put a mire counter on target non-Swamp land. That land is a Swamp for as long as it has a mire counter on it. Activate this ability only during your upkeep. -- When Cyclopean Tomb is put into a graveyard from the battlefield, at the beginning of each of your upkeeps for the rest of the game, remove all mire counters from a land that a mire counter was put onto with Cyclopean Tomb but that a mire counter has not been removed from with Cyclopean Tomb.
+mana={4}
 type=Artifact
 [/card]
 [card]
@@ -22651,6 +22717,14 @@ mana={2}{BG}{BG}
 type=Sorcery
 [/card]
 [card]
+name=Drain Life
+target=creature,player
+alias=1156
+text=Spend only black mana on X. -- Drain Life deals X damage to target creature or player. You gain life equal to the damage dealt, but not more life than the player's life total before Drain Life dealt damage or the creature's toughness.
+mana={1}{B}{X:black}
+type=Sorcery
+[/card]
+[card]
 name=Drake Familiar
 abilities=flying
 auto=aslongas(enchantment|mybattlefield) moveTo(ownerhand) notatarget(enchantment|battlefield) oneshot
@@ -25113,7 +25187,7 @@ name=Elspeth, Knight-Errant
 auto=counter(0/0,4,loyalty)
 auto={C(0/0,1,Loyalty)}:token(Soldier,Creature Soldier,1/1,white)
 auto={C(0/0,1,Loyalty)}:3/3 && flying target(creature)
-auto={C(0/0,-8,Loyalty)}:name(emblem) emblem transforms((,newability[lord(*[artifact;creature;land;enchantment]|mybattlefield) indestructible])) dontremove
+auto={C(0/0,-8,Loyalty)}:name(emblem) emblem transforms((,newability[lord(*[artifact;creature;land;enchantment]|mybattlefield) indestructible])) forever dontremove
 text=+1: Put a 1/1 white Soldier creature token onto the battlefield. -- +1: Target creature gets +3/+3 and gains flying until end of turn. -- -8: For the rest of the game, artifacts, creatures, enchantments, and lands you control are indestructible.
 mana={2}{W}{W}
 type=Planeswalker
@@ -46857,7 +46931,7 @@ name=Koth of the Hammer
 auto=counter(0/0,3,loyalty)
 auto={C(0/0,1,Loyalty)}:untap target(mountain) && transforms((Elemental Creature,setpower=4,settoughness=4,red)) ueot
 auto={C(0/0,-2,Loyalty)}:foreach(mountain|myBattlefield) add{R}
-auto={C(0/0,-5,Loyalty)}:name(emblem) emblem transforms((,newability[lord(mountain|mybattlefield) {t}:damage:1 target(creature)],newability[lord(mountain|mybattlefield) {t}:damage:1 target(player)])) dontremove
+auto={C(0/0,-5,Loyalty)}:name(emblem) emblem transforms((,newability[lord(mountain|mybattlefield) {t}:damage:1 target(creature)],newability[lord(mountain|mybattlefield) {t}:damage:1 target(player)])) forever dontremove
 text=+1: Untap target Mountain. It becomes a 4/4 red Elemental creature until end of turn. It's still a land. -- -2: Add {R} to your mana pool for each Mountain you control. -- -5: You get an emblem with "Mountains you control have '{T}: This land deals 1 damage to target creature or player.'"
 mana={2}{R}{R}
 type=Planeswalker
@@ -49111,7 +49185,7 @@ name=Liliana of the Dark Realms
 auto=counter(0/0,3,loyalty)
 auto={C(0/0,1,Loyalty)}:name(fetch) moveTo(hand) target(swamp|myLibrary)
 auto={C(0/0,-3,Loyalty)}:name(choose) ability$!choice name(+X/+X) target(creature) type:land:mybattlefield/type:land:mybattlefield ueot _ choice name(-X/-X) target(creature) -type:land:mybattlefield/-type:land:mybattlefield ueot!$ controller
-auto={C(0/0,-6,Loyalty)}:name(emblem) emblem transforms((,newability[lord(swamp|mybattlefield) {T}:{B}{B}{B}{B}])) dontremove
+auto={C(0/0,-6,Loyalty)}:name(emblem) emblem transforms((,newability[lord(swamp|mybattlefield) {T}:{B}{B}{B}{B}])) forever dontremove
 text=+1: Search your library for a Swamp card, reveal it, and put it into your hand. Then shuffle your library. -- -3: Target creature gets +X/+X or -X/-X until end of turn, where X is the number of Swamps you control. -- -6: You get an emblem with "Swamps you control have '{T}: Add {B}{B}{B}{B} to your mana pool.'"
 mana={2}{B}{B}
 type=Planeswalker
