@@ -158,8 +158,12 @@ text={1}: The next time an instant or sorcery spell would deal damage to you thi
 mana={W}
 type=Enchantment
 [/card]
+#crash when suspended
 [card]
 name=Aeon Chronicler
+auto=phandcount/phandcount nonstatic
+autoexile=@counterremoved(time) from(this) suspended:draw:1
+suspend(0)={X}{3}{U}
 text=Aeon Chronicler's power and toughness are each equal to the number of cards in your hand. -- Suspend X - {X}{3}{U}. X can't be 0. (Rather than cast this card from your hand, you may pay {X}{3}{U} and exile it with X time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost. It has haste.) -- Whenever a time counter is removed from Aeon Chronicler while it's exiled, draw a card.
 mana={3}{U}{U}
 type=Creature
@@ -1156,8 +1160,12 @@ subtype=Sphinx
 power=2
 toughness=5
 [/card]
+#crash when suspended
 [card]
 name=Benalish Commander
+auto=type:soldier:mybattlefield/type:soldier:mybattlefield nonstatic
+autoexile=@counterremoved(time) from(this) suspended:token(Soldier,Creature Soldier,1/1,white)
+suspend(0)={X}{W}{W}
 text=Benalish Commander's power and toughness are each equal to the number of Soldiers you control. -- Suspend X - {X}{W}{W}. X can't be 0. (Rather than cast this card from your hand, you may pay {X}{W}{W} and exile it with X time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost. It has haste.) -- Whenever a time counter is removed from Benalish Commander while it's exiled, put a 1/1 white Soldier creature token onto the battlefield.
 mana={3}{W}
 type=Creature
@@ -3683,12 +3691,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Death Cloud
-text=Each player loses X life, then discards X cards, then sacrifices X creatures, then sacrifices X lands.
-mana={X}{B}{B}{B}
-type=Sorcery
-[/card]
-[card]
 name=Death Rattle
 text=Delve (You may exile any number of cards from your graveyard as you cast this spell. It costs {1} less to cast for each card exiled this way.) -- Destroy target nongreen creature. It can't be regenerated.
 mana={5}{B}
@@ -3732,12 +3734,6 @@ name=Decaying Soil
 text=At the beginning of your upkeep, exile a card from your graveyard. -- Threshold - As long as seven or more cards are in your graveyard, Decaying Soil has "Whenever a nontoken creature is put into your graveyard from the battlefield, you may pay {1}. If you do, return that card to your hand."
 mana={1}{B}{B}
 type=Enchantment
-[/card]
-[card]
-name=Decimate
-text=Destroy target artifact, target creature, target enchantment, and target land.
-mana={2}{R}{G}
-type=Sorcery
 [/card]
 [card]
 name=Declaration of Naught
@@ -3877,8 +3873,10 @@ subtype=Shapeshifter
 power=1
 toughness=1
 [/card]
+#don't work
 [card]
 name=Descendant of Kiyomaro
+auto=this(restriction{compare(phandcount)~morethan~compare(ohandcount)}) transforms((,newability[1/2],newability[@combatdamaged(player) from(this):life:3],newability[@combatdamaged(creature) from(this):life:3],newability[@combatdamaged(planeswalker) from(this):life:3]))
 text=As long as you have more cards in hand than each opponent, Descendant of Kiyomaro gets +1/+2 and has "Whenever this creature deals combat damage, you gain 3 life."
 mana={1}{W}{W}
 type=Creature
@@ -3954,14 +3952,12 @@ text=Destroy target land. Its controller reveals cards from the top of his or he
 mana={4}{B}
 type=Sorcery
 [/card]
-[card]
-name=Destructive Force
-text=Each player sacrifices five lands. Destructive force deals 5 damage to each creature.
-mana={5}{R}{R}
-type=Sorcery
-[/card]
+#crash when suspended
 [card]
 name=Detritivore
+auto=type:land[-basic]:opponentgraveyard/type:land[-basic]:opponentgraveyard nonstatic
+autoexile=@counterremoved(time) from(this) suspended:destroy target(land[-basic])
+suspend(0)={X}{3}{R}
 text=Detritivore's power and toughness are each equal to the number of nonbasic land cards in your opponents' graveyards. -- Suspend X - {X}{3}{R}. X can't be 0. (Rather than cast this card from your hand, you may pay {X}{3}{R} and exile it with X time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost. It has haste.) -- Whenever a time counter is removed from Detritivore while it's exiled, destroy target nonbasic land.
 mana={2}{R}{R}
 type=Creature
@@ -4077,12 +4073,6 @@ toughness=2
 name=Dimir Machinations
 text=Look at the top three cards of target player's library. Exile any number of those cards, then put the rest back in any order. -- Transmute {1}{B}{B} ({1}{B}{B}, Discard this card: Search your library for a card with the same converted mana cost as this card, reveal it, and put it into your hand. Then shuffle your library. Transmute only as a sorcery.)
 mana={2}{B}
-type=Sorcery
-[/card]
-[card]
-name=Din of the Fireherd
-text=Put a 5/5 black and red Elemental creature token onto the battlefield. Target opponent sacrifices a creature for each black creature you control, then sacrifices a land for each red creature you control.
-mana={5}{BR}{BR}{BR}
 type=Sorcery
 [/card]
 [card]
@@ -4256,7 +4246,7 @@ name=Domestication
 mana={2}{U}{U}
 type=Enchantment
 subtype=Aura
-text=Enchant creature You control enchanted creature. At the beginning of your end step, if enchanted creature's power is 4 or greater, sacrifice Domestication.
+text=Enchant creature -- You control enchanted creature. At the beginning of your end step, if enchanted creature's power is 4 or greater, sacrifice Domestication.
 [/card]
 [card]
 name=Dominating Licid

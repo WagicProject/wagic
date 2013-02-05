@@ -19610,6 +19610,19 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Death Cloud
+auto=life:-x all(player)
+auto=ability$!reject notatarget(<storedx>*|myhand)!$ opponent
+auto=ability$!reject notatarget(<storedx>*|myhand)!$ controller
+auto=ability$!sacrifice notatarget(<storedx>creature|mybattlefield)!$ opponent
+auto=ability$!sacrifice notatarget(<storedx>creature|mybattlefield)!$ controller
+auto=ability$!sacrifice notatarget(<storedx>land|mybattlefield)!$ opponent
+auto=ability$!sacrifice notatarget(<storedx>land|mybattlefield)!$ controller
+text=Each player loses X life, then discards X cards, then sacrifices X creatures, then sacrifices X lands.
+mana={X}{B}{B}{B}
+type=Sorcery
+[/card]
+[card]
 name=Deathcoil Wurm
 auto=@combat(blocked,turnlimited) source(this):may name(assign combat damage to defending player) thisforeach(power>=1) damage:1 opponent && fog from(this)
 text=You may have Deathcoil Wurm assign its combat damage as though it weren't blocked.
@@ -20046,6 +20059,16 @@ target=opponent
 auto=ability$!name(discard 2 cards) target(<2>*|myhand) reject!$ targetedplayer
 text=Target opponent discards two cards.
 mana={2}{B}
+type=Sorcery
+[/card]
+[card]
+name=Decimate
+auto=ability$!destroy target(artifact)!$ controller
+auto=ability$!destroy target(creature)!$ controller
+auto=ability$!destroy target(enchantment)!$ controller
+auto=ability$!destroy target(land)!$ controller
+text=Destroy target artifact, target creature, target enchantment, and target land.
+mana={2}{R}{G}
 type=Sorcery
 [/card]
 [card]
@@ -21060,6 +21083,15 @@ mana={B}{R}{G}
 type=Enchantment
 [/card]
 [card]
+name=Destructive Force
+auto=ability$!sacrifice notatarget(<5>land|mybattlefield)!$ opponent
+auto=ability$!sacrifice notatarget(<5>land|mybattlefield)!$ controller
+auto=choice damage:5 all(creature)
+text=Each player sacrifices five lands. Destructive force deals 5 damage to each creature.
+mana={5}{R}{R}
+type=Sorcery
+[/card]
+[card]
 name=Destructive Urge
 target=creature
 auto=@combatdamaged(player) from(mytgt):ability$!name(sacrifice land) notatarget(land|mybattlefield) sacrifice!$ opponent
@@ -21445,6 +21477,16 @@ auto={1}{T}:Add{U}{B}
 text={1}, {T}: Add {U}{B} to your mana pool.
 mana={2}
 type=Artifact
+[/card]
+[card]
+name=Din of the Fireherd
+target=opponent
+auto=token(Elemental,Creature Elemental,5/5,black,red) controller
+auto=ability$!sacrifice notatarget(<type:creature[black]:opponentbattlefield>creature|mybattlefield)!$ targetedplayer
+auto=ability$!sacrifice notatarget(<type:creature[red]:opponentbattlefield>land|mybattlefield)!$ targetedplayer
+text=Put a 5/5 black and red Elemental creature token onto the battlefield. Target opponent sacrifices a creature for each black creature you control, then sacrifices a land for each red creature you control.
+mana={5}{BR}{BR}{BR}
+type=Sorcery
 [/card]
 [card]
 name=Dingus Egg
