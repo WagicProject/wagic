@@ -1,0 +1,24 @@
+#Testing Shifting Sliver evasion ability vs protection from blue
+[INIT]
+combatattackers
+[PLAYER1]
+inplay:Shifting Sliver,Crystalline Sliver
+life:20
+[PLAYER2]
+inplay:Guma
+life:20
+[DO]
+Shifting Sliver
+Crystalline Sliver
+next
+Guma
+eot
+[ASSERT]
+untap
+[PLAYER1]
+inplay:Shifting Sliver,Crystalline Sliver
+life:20
+[PLAYER2]
+inplay:Guma
+life:16
+[END]
