@@ -2781,7 +2781,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     }
 
     //cant be the blocker of targetchooser.
-    vector<string> splitCantBeBlock = parseBetween(s, "cantbeblockeof(", ")");
+    vector<string> splitCantBeBlock = parseBetween(s, "cantbeblockerof(", ")");
     if (splitCantBeBlock.size())
     {
         TargetChooserFactory tcf(observer);
@@ -2790,13 +2790,12 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         {
             fromTc = tcf.createTargetChooser(splitCantBeBlock[1], card);
         }
-        if (!activated)
-        {
+
             if(fromTc)
                 return NEW ACantBeBlockerOf(observer, id, card, target, fromTc, false);//of a targetchooser
             else
                 return NEW ACantBeBlockerOf(observer, id, card, target, fromTc, true);//blocker of the card source.
-        }
+
         return NULL;
     }
     
