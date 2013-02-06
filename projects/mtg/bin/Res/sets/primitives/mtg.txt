@@ -20062,16 +20062,6 @@ mana={2}{B}
 type=Sorcery
 [/card]
 [card]
-name=Decimate
-auto=ability$!destroy target(artifact)!$ controller
-auto=ability$!destroy target(creature)!$ controller
-auto=ability$!destroy target(enchantment)!$ controller
-auto=ability$!destroy target(land)!$ controller
-text=Destroy target artifact, target creature, target enchantment, and target land.
-mana={2}{R}{G}
-type=Sorcery
-[/card]
-[card]
 name=Decimator Web
 auto={4}{T}:life:-2 opponent && alterpoison:1 opponent && deplete:6 opponent
 text={4}, {T}: Target opponent loses 2 life, gets a poison counter, then puts the top six cards of his or her library into his or her graveyard.
