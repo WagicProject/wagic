@@ -3566,6 +3566,26 @@ int AAlterCost::addToGame()
     return MTGAbility::addToGame();
 }
 
+int AAlterCost::destroy()
+{
+    MTGCardInstance * _target = (MTGCardInstance *)target;
+    if(!this->manaReducer->isInPlay(game))
+    {
+        if (amount > 0)
+        {
+            _target->getIncreasedManaCost()->remove(type,amount);
+            refreshCost(_target);//special case for 0 cost.
+        }
+        else
+        {
+            _target->getReducedManaCost()->remove(type,abs(amount));
+            refreshCost(_target);//special case for 0 cost.
+        }
+        return MTGAbility::testDestroy();
+    }
+    return 0;
+}
+
 int AAlterCost::testDestroy()
 {
     MTGCardInstance * _target = (MTGCardInstance *)target;

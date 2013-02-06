@@ -1868,7 +1868,52 @@ public:
     }
 
 };
+//cant be the blocker of targetchooser
+//Can't be blocked by...
+class ACantBeBlockerOf: public MTGAbility
+{
+public:
+    TargetChooser * fromTc;
+    bool thisCard;
+    ACantBeBlockerOf(GameObserver* observer, int id, MTGCardInstance * _source, MTGCardInstance * _target, TargetChooser *fromTc,bool aThis) :
+        MTGAbility(observer, id, _source, _target), fromTc(fromTc),thisCard(aThis)
+    {
 
+    }
+
+        int addToGame()
+        {
+            MTGCardInstance * _target = (MTGCardInstance *) target;
+            if(!thisCard)
+                _target->addCantBeBlockerOf(fromTc);
+            else
+                _target->addCantBeBlockerOfCard((MTGCardInstance*)source);
+            return MTGAbility::addToGame();
+        }
+
+        int destroy()
+        {
+            if(!thisCard)
+                ((MTGCardInstance *) target)->removeCantBeBlockerOf(fromTc);
+            else
+                ((MTGCardInstance *) target)->removeCantBeBlockerOfCard((MTGCardInstance*)source);
+            return 1;
+        }
+
+    ACantBeBlockerOf * clone() const
+    {
+        ACantBeBlockerOf * a = NEW ACantBeBlockerOf(*this);
+        if(fromTc)
+            a->fromTc = fromTc->clone();
+        return a;
+    }
+
+    ~ACantBeBlockerOf()
+    {
+        SAFE_DELETE(fromTc);
+    }
+
+};
 //Alteration of Power and Toughness  (enchantments)
 class APowerToughnessModifier: public MTGAbility
 {
@@ -2415,7 +2460,10 @@ public:
     int canBeInList(MTGCardInstance * card)
     {
         if(card->isPhased || source->isPhased)
+        {
+            removed(card);
             return 0;
+        }
         if ((includeSelf || card != source) && tc->canTarget(card)) 
             return 1;
         return 0;
@@ -3975,6 +4023,7 @@ MTGCardInstance * manaReducer;
     int type;
     AAlterCost(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target, int amount, int type);
     int addToGame();
+    int destroy();
     int testDestroy();
     void refreshCost(MTGCardInstance * card = NULL);
     void increaseTheCost(MTGCardInstance * card = NULL);
@@ -5413,7 +5462,7 @@ public:
     }
 };
 
-//Bushido ability
+//Bushido ability todo:add bushido count.
 class ABushidoAbility: public MTGAbility
 {
 public:

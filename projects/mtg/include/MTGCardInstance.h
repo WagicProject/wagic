@@ -193,9 +193,17 @@ public:
     int CantBeTargetby(MTGCardInstance * card);
 
     vector<TargetChooser *>cantBeBlockedBys;
+    vector<TargetChooser *>cantBeBlockerOfs;
+    vector<MTGCardInstance *>cantBeBlockerOfCards;
     int addCantBeBlockedBy(TargetChooser * tc);
     int removeCantBeBlockedBy(TargetChooser *tc, int erase = 0);
     int cantBeBlockedBy(MTGCardInstance * card);
+    int addCantBeBlockerOf(TargetChooser * tc);
+    int removeCantBeBlockerOf(TargetChooser *tc, int erase = 0);
+    int cantBeBlockerOf(MTGCardInstance * card);
+    int addCantBeBlockerOfCard(MTGCardInstance * card);
+    int removeCantBeBlockerOfCard(MTGCardInstance * card, int erase = 0);
+    int cantBeBlockerOfCard(MTGCardInstance * card);
 
     void copy(MTGCardInstance * card);
 

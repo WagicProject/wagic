@@ -2760,7 +2760,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         return NULL; //TODO
     }
     
-    //Can't be blocked by...
+    //Can't be blocked by...need cantdefendagainst(
     vector<string> splitCantBlock = parseBetween(s, "cantbeblockedby(", ")");
     if (splitCantBlock.size())
     {
@@ -2779,7 +2779,29 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         }
         return NULL; //TODO
     }
+
+    //cant be the blocker of targetchooser.
+    vector<string> splitCantBeBlock = parseBetween(s, "cantbeblockeof(", ")");
+    if (splitCantBeBlock.size())
+    {
+        TargetChooserFactory tcf(observer);
+        TargetChooser * fromTc = NULL;
+        if (splitCantBeBlock[1].find("this") == string::npos)
+        {
+            fromTc = tcf.createTargetChooser(splitCantBeBlock[1], card);
+        }
+        if (!activated)
+        {
+            if(fromTc)
+                return NEW ACantBeBlockerOf(observer, id, card, target, fromTc, false);//of a targetchooser
+            else
+                return NEW ACantBeBlockerOf(observer, id, card, target, fromTc, true);//blocker of the card source.
+        }
+        return NULL;
+    }
+    
    
+
     //affinity based on targetchooser
     vector<string> splitNewAffinity = parseBetween(s, "affinity(", ")");
     if (splitNewAffinity.size())
@@ -4835,8 +4857,8 @@ void ListMaintainerAbility::updateTargets()
     for (int i = 0; i < 2; i++)
     {
         Player * p = game->players[i];
-        MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library };
-        for (int k = 0; k < 4; k++)
+        MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->stack };
+        for (int k = 0; k < 5; k++)
         {
             MTGGameZone * zone = zones[k];
             if (canTarget(zone))
@@ -4907,8 +4929,8 @@ void ListMaintainerAbility::checkTargets()
     for (int i = 0; i < 2; i++)
     {
         Player * p = game->players[i];
-        MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library };
-        for (int k = 0; k < 4; k++)
+        MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->stack };
+        for (int k = 0; k < 5; k++)
         {
             MTGGameZone * zone = zones[k];
             if (canTarget(zone))

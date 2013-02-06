@@ -301,7 +301,7 @@ int MTGCardInstance::isInPlay(GameObserver* game)
     for (int i = 0; i < 2; i++)
     {
         MTGGameZone * zone = game->players[i]->game->inPlay;
-        if (zone->hasCard(this))
+        if (zone->hasCard(this) && !isPhased)
             return 1;
     }
     return 0;
@@ -608,6 +608,10 @@ int MTGCardInstance::canBlock(MTGCardInstance * opponent)
     if (opponent->protectedAgainst(this))
         return 0;
     if (opponent->cantBeBlockedBy(this))
+        return 0;
+    if (this->cantBeBlockerOf(opponent))
+        return 0;
+    if (this->cantBeBlockerOfCard(opponent))
         return 0;
     if (opponent->basicAbilities[(int)Constants::UNBLOCKABLE])
         return 0;
@@ -1044,7 +1048,69 @@ int MTGCardInstance::cantBeBlockedBy(MTGCardInstance * card)
     }
     return 0;
 }
+//cant be the block of
+int MTGCardInstance::addCantBeBlockerOf(TargetChooser * tc)
+{
+    cantBeBlockerOfs.push_back(tc);
+    return cantBeBlockerOfs.size();
+}
 
+int MTGCardInstance::removeCantBeBlockerOf(TargetChooser * tc, int erase)
+{
+    for (size_t i = 0; i < cantBeBlockerOfs.size(); i++)
+    {
+        if (cantBeBlockerOfs[i] == tc)
+        {
+            if (erase)
+                delete (cantBeBlockerOfs[i]);
+            cantBeBlockerOfs.erase(cantBeBlockerOfs.begin() + i);
+            return 1;
+        }
+    }
+    return 0;
+}
+
+int MTGCardInstance::cantBeBlockerOf(MTGCardInstance * card)
+{
+    for (size_t i = 0; i < cantBeBlockerOfs.size(); i++)
+    {
+        if (cantBeBlockerOfs[i]->canTarget(card))
+            return 1;
+    }
+    return 0;
+}
+
+//cant be the block of
+int MTGCardInstance::addCantBeBlockerOfCard(MTGCardInstance * card)
+{
+    cantBeBlockerOfCards.push_back(card);
+    return cantBeBlockerOfCards.size();
+}
+
+int MTGCardInstance::removeCantBeBlockerOfCard(MTGCardInstance * card, int erase)
+{
+    for (size_t i = 0; i < cantBeBlockerOfCards.size(); i++)
+    {
+        if (cantBeBlockerOfCards[i] == card)
+        {
+            if (erase)
+                delete (cantBeBlockerOfCards[i]);
+            cantBeBlockerOfCards.erase(cantBeBlockerOfCards.begin() + i);
+            return 1;
+        }
+    }
+    return 0;
+}
+
+int MTGCardInstance::cantBeBlockerOfCard(MTGCardInstance * card)
+{
+    for (size_t i = 0; i < cantBeBlockerOfCards.size(); i++)
+    {
+        if (cantBeBlockerOfCards[i] == card)
+            return 1;
+    }
+    return 0;
+}
 /* Choose a sound sample to associate to that card */
 const string& MTGCardInstance::getSample()
 {
