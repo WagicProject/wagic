@@ -585,11 +585,6 @@ void GameObserver::gameStateBasedEffects()
     waitingGameStateCheck++;
     if(waitingGameStateCheck > 50)
     {
-        waitingGameStateCheck++;
-        waitingGameStateCheck--;
-    }
-    if(waitingGameStateCheck > 50)
-    {
         //if there are more than 50 unresolved actions on the stack, lets allow a gameStates update
         //to make sure we are not caught up in a loop, example :Exquisite Blood + Sanguine Bond
         if (mLayers->stackLayer()->count(0, NOT_RESOLVED) != 0)
