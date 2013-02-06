@@ -1,5 +1,16 @@
 grade=crappy
 ##the following are not added becuase they are not choosen discard.
+###Decimate should only be castable if there are 4 legal targets.###
+[card]
+name=Decimate
+auto=ability$!destroy target(artifact)!$ controller
+auto=ability$!destroy target(creature)!$ controller
+auto=ability$!destroy target(enchantment)!$ controller
+auto=ability$!destroy target(land)!$ controller
+text=Destroy target artifact, target creature, target enchantment, and target land.
+mana={2}{R}{G}
+type=Sorcery
+[/card]
 [card]
 name=Gerrard's Verdict
 target=player
