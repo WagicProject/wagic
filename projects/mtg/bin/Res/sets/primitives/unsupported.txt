@@ -4242,13 +4242,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Domestication
-mana={2}{U}{U}
-type=Enchantment
-subtype=Aura
-text=Enchant creature -- You control enchanted creature. At the beginning of your end step, if enchanted creature's power is 4 or greater, sacrifice Domestication.
-[/card]
-[card]
 name=Dominating Licid
 text={1}{U}{U}, {T}: Dominating Licid loses this ability and becomes an Aura enchantment with enchant creature. Attach it to target creature. You may pay {U} to end this effect. -- You control enchanted creature.
 mana={1}{U}{U}
@@ -4491,15 +4484,6 @@ name=Dual Nature
 text=Whenever a nontoken creature enters the battlefield, its controller puts a token that's a copy of that creature onto the battlefield. -- Whenever a nontoken creature leaves the battlefield, exile all tokens with the same name as that creature. -- When Dual Nature leaves the battlefield, exile all tokens put onto the battlefield with Dual Nature.
 mana={4}{G}{G}
 type=Enchantment
-[/card]
-[card]
-name=Duergar Hedge-Mage
-text=When Duergar Hedge-Mage enters the battlefield, if you control two or more Mountains, you may destroy target artifact. -- When Duergar Hedge-Mage enters the battlefield, if you control two or more Plains, you may destroy target enchantment.
-mana={2}{RW}
-type=Creature
-subtype=Dwarf Shaman
-power=2
-toughness=2
 [/card]
 [card]
 name=Duh
@@ -5013,12 +4997,6 @@ mana={X}{U}
 type=Instant
 [/card]
 [card]
-name=Ertai's Trickery
-text=Counter target spell if it was kicked.
-mana={U}
-type=Instant
-[/card]
-[card]
 name=Essence Leak
 text=Enchant permanent -- If enchanted permanent is red or green, it has "At the beginning of your upkeep, sacrifice this permanent unless you pay its mana cost."
 mana={U}
@@ -5260,8 +5238,13 @@ text=Flip Falling Star onto the playing area from a height of at least one foot.
 mana={2}{R}
 type=Sorcery
 [/card]
+#not tested kicker={S(land|mybattlefield)}
 [card]
 name=Falling Timber
+target=creature
+auto=transforms((,newability[preventallcombatdamage from(this)])) ueot
+auto=kicker ability$!target(creature) preventalldamage from(mytgt) ueot!$ controller
+kicker={S(land|mybattlefield)}
 text=Kicker - Sacrifice a land. (You may sacrifice a land in addition to any other costs as you cast this spell.) -- Prevent all combat damage target creature would deal this turn. If Falling Timber was kicked, prevent all combat damage another target creature would deal this turn.
 mana={2}{G}
 type=Instant

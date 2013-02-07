@@ -22185,6 +22185,16 @@ mana={2}
 type=Artifact
 [/card]
 [card]
+name=Domestication
+target=creature
+alias=1194
+auto=@each my end:if if cantargetcard(creature[power>=4]) then sacrifice all(this)
+mana={2}{U}{U}
+type=Enchantment
+subtype=Aura
+text=Enchant creature -- You control enchanted creature. At the beginning of your end step, if enchanted creature's power is 4 or greater, sacrifice Domestication.
+[/card]
+[card]
 name=Dominaria's Judgment
 auto=aslongas(plains|myBattlefield) lord(creature|myBattlefield) protection from white
 auto=aslongas(island|myBattlefield) lord(creature|myBattlefield) protection from blue
@@ -23812,16 +23822,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Duergar Mine-Captain
-auto={1}{rw}{q}:all(creature[attacking]) +1/+0 ueot
-text={1}{(r/w)}, {Q}: Attacking creatures get +1/+0 until end of turn. ({Q} is the untap symbol.)
-mana={2}{RW}
-type=Creature
-subtype=Dwarf Soldier
-power=2
-toughness=1
-[/card]
-[card]
 name=Duergar Cave-Guard
 abilities=wither
 auto={RW}:1/0
@@ -23831,6 +23831,27 @@ type=Creature
 subtype=Dwarf Warrior
 power=1
 toughness=3
+[/card]
+[card]
+name=Duergar Hedge-Mage
+auto=if type(mountain|mybattlefield)~morethan~1 then ability$!may name(destroy artifact) destroy target(artifact)!$ controller
+auto=if type(plains|mybattlefield)~morethan~1 then ability$!may name(destroy enchantment) destroy target(enchantment)!$ controller
+text=When Duergar Hedge-Mage enters the battlefield, if you control two or more Mountains, you may destroy target artifact. -- When Duergar Hedge-Mage enters the battlefield, if you control two or more Plains, you may destroy target enchantment.
+mana={2}{RW}
+type=Creature
+subtype=Dwarf Shaman
+power=2
+toughness=2
+[/card]
+[card]
+name=Duergar Mine-Captain
+auto={1}{rw}{q}:all(creature[attacking]) +1/+0 ueot
+text={1}{(r/w)}, {Q}: Attacking creatures get +1/+0 until end of turn. ({Q} is the untap symbol.)
+mana={2}{RW}
+type=Creature
+subtype=Dwarf Soldier
+power=2
+toughness=1
 [/card]
 [card]
 name=Dune-Brood Nephilim
@@ -26648,6 +26669,14 @@ type=Legendary Creature
 subtype=Human Wizard
 power=3
 toughness=4
+[/card]
+[card]
+name=Ertai's Trickery
+target=*|stack
+auto=transforms((,newability[if paid(kicker) then fizzle]))
+text=Counter target spell if it was kicked.
+mana={U}
+type=Instant
 [/card]
 [card]
 name=Ersatz Gnomes
@@ -74550,7 +74579,7 @@ power=1
 toughness=2
 [/card]
 #The Sengir Nosferatu that the Bat token's ability returns to the battlefield doesn't have to be the same one that created it, and it doesn't even have to be owned by the same player.
-#If the Nosferatu is copied (by Clone, for example) and then the copy is exiled by the first activated ability, it won’t be able to come back using the second activated ability, since it’s no longer named Sengir Nosferatu in the Exile zone.
+#If the Nosferatu is copied (by Clone, for example) and then the copy is exiled by the first activated ability, it wonï¿½t be able to come back using the second activated ability, since itï¿½s no longer named Sengir Nosferatu in the Exile zone.
 #since we can't target exile, I use moverandom(name)
 [card]
 name=Sengir Nosferatu
