@@ -78609,6 +78609,16 @@ mana={3}{UR}{B}
 type=Sorcery
 [/card]
 [card]
+name=Slavering Nulls
+auto=@combatdamaged(opponent) from(this) restriction{type(swamp|mybattlefield)~morethan~0}:may name(opponent discard) ability$!name(discard) target(*|myhand) reject!$ opponent
+text=Whenever Slavering Nulls deals combat damage to a player, if you control a Swamp, you may have that player discard a card.
+mana={1}{R}
+type=Creature
+subtype=Goblin Zombie
+power=2
+toughness=1
+[/card]
+[card]
 name=Slay
 target=creature[green]
 auto=bury
@@ -78996,6 +79006,17 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Slum Reaper
+auto=sacrifice notatarget(creature|mybattlefield)
+auto=ability$! sacrifice notatarget(creature|mybattlefield) !$ opponent
+text=When Slum Reaper enters the battlefield, each player sacrifices a creature.
+mana={3}{B}
+type=Creature
+subtype=Horror
+power=4
+toughness=2
+[/card]
+[card]
 name=Slumbering Dragon
 abilities=flying
 auto=this(counter{1/1.1}<5) cantattack
@@ -79015,6 +79036,19 @@ auto={2}{discard(*[spirit,arcane]|myhand)}:transforms((Artifact Creature Cat,set
 text={2}, Discard a Spirit or Arcane card: Slumbering Tora becomes an X/X Cat artifact creature until end of turn, where X is the discarded card's converted mana cost.
 mana={3}
 type=Artifact
+[/card]
+[card]
+name=Smallpox
+auto=ability$!life:-1 all(player)!$ controller
+auto=ability$!reject notatarget(*|myhand)!$ controller
+auto=ability$!reject notatarget(*|myhand)!$ opponent
+auto=ability$!sacrifice notatarget(creature|mybattlefield)!$ controller
+auto=ability$!sacrifice notatarget(creature|mybattlefield)!$ opponent
+auto=ability$!sacrifice notatarget(land|mybattlefield)!$ controller
+auto=ability$!sacrifice notatarget(land|mybattlefield)!$ opponent
+text=Each player loses 1 life, discards a card, sacrifices a creature, then sacrifices a land.
+mana={B}{B}
+type=Sorcery
 [/card]
 [card]
 name=Smash
@@ -79153,6 +79187,17 @@ auto=@movedTo(*[blue;black]|opponentstack):may token(Snake,Creature Snake,1/1,gr
 text=Whenever an opponent casts a blue or black spell, you may put a 1/1 green Snake creature token onto the battlefield.
 mana={3}{G}
 type=Enchantment
+[/card]
+[card]
+name=Snakeform
+target=creature
+auto=ueot loseabilities
+auto=ueot transforms((,setpower=1,settoughness=1))
+auto=ueot transforms((Snake,green))
+auto=draw:1 controller
+text=Target creature loses all abilities and becomes a 1/1 green Snake until end of turn. -- Draw a card.
+mana={2}{GU}
+type=Instant
 [/card]
 [card]
 name=Snap

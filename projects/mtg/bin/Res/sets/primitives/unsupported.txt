@@ -16112,15 +16112,6 @@ mana={2}{B}{R}
 type=Sorcery
 [/card]
 [card]
-name=Slavering Nulls
-text=Whenever Slavering Nulls deals combat damage to a player, if you control a Swamp, you may have that player discard a card.
-mana={1}{R}
-type=Creature
-subtype=Goblin Zombie
-power=2
-toughness=1
-[/card]
-[card]
 name=Sleight of Hand
 text=Look at the top two cards of your library. Put one of them into your hand and the other on the bottom of your library.
 mana={U}
@@ -16149,21 +16140,6 @@ type=Artifact Creature
 subtype=Insect
 power=3
 toughness=3
-[/card]
-[card]
-name=Slum Reaper
-text=When Slum Reaper enters the battlefield, each player sacrifices a creature.
-mana={3}{B}
-type=Creature
-subtype=Horror
-power=4
-toughness=2
-[/card]
-[card]
-name=Smallpox
-text=Each player loses 1 life, discards a card, sacrifices a creature, then sacrifices a land.
-mana={B}{B}
-type=Sorcery
 [/card]
 [card]
 name=Smart Ass
@@ -16203,8 +16179,11 @@ subtype=Elemental Shaman
 power=1
 toughness=1
 [/card]
+#not tested
 [card]
 name=Snag
+other={discard(forest|myhand)} name(Discard a Forest)
+auto=all(creature[-blocked]) transforms((,newability[preventAllCombatDamage from(this)])) ueot
 text=You may discard a Forest card rather than pay Snag's mana cost. -- Prevent all combat damage that would be dealt by unblocked creatures this turn.
 mana={3}{G}
 type=Instant
@@ -16215,13 +16194,6 @@ mana={2}{G}
 type=Enchantment
 subtype=Aura
 text=Enchant creature Enchanted creature gets +1/+1 and has "Whenever this creature deals damage to an opponent, you may draw a card." Totem armor (If enchanted creature would be destroyed, instead remove all damage from it and destroy this Aura.)
-[/card]
-[card]
-name=Snakeform
-target=creature
-text=Target creature loses all abilities and becomes a 1/1 green Snake until end of turn. -- Draw a card.
-mana={2}{GU}
-type=Instant
 [/card]
 [card]
 name=Snowblind
