@@ -16097,12 +16097,6 @@ mana={R}{R}
 type=Sorcery
 [/card]
 [card]
-name=Skyship Weatherlight
-text=When Skyship Weatherlight enters the battlefield, search your library for any number of artifact and/or creature cards and exile them. Then shuffle your library. -- {4}, {T}: Choose a card at random that was exiled with Skyship Weatherlight. Put that card into its owner's hand.
-mana={4}
-type=Legendary Artifact
-[/card]
-[card]
 name=Skyward Eye Prophets
 text=Vigilance -- {T}: Reveal the top card of your library. If it's a land card, put it onto the battlefield. Otherwise, put it into your hand.
 mana={3}{G}{W}{U}

@@ -78237,6 +78237,14 @@ mana={2}
 type=Artifact
 [/card]
 [card]
+name=Skyship Weatherlight
+auto=moveto(myexile) and!(transforms((skyshipped)) forever)! notatarget(<anyamount>*[creature;artifact]|mylibrary)
+auto={4}{T}:moverandom(*[skyshipped]) from(myexile) to(ownerhand)
+text=When Skyship Weatherlight enters the battlefield, search your library for any number of artifact and/or creature cards and exile them. Then shuffle your library. -- {4}, {T}: Choose a card at random that was exiled with Skyship Weatherlight. Put that card into its owner's hand.
+mana={4}
+type=Legendary Artifact
+[/card]
+[card]
 name=Skyshooter
 abilities=reach
 auto={T}{S}:destroy target(creature[flying;attacking;blocking])
