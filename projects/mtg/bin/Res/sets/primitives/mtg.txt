@@ -1,4 +1,4 @@
-#Primitives Pack for Wagic the Homebrew.
+﻿#Primitives Pack for Wagic the Homebrew.
 #Please keep these card alphabetized, and try to have the "name=" line at the top of each card
 [card]
 name=AErathi Berserker
@@ -69626,7 +69626,7 @@ type=Sorcery
 [/card]
 [card]
 name=Righteous Indignation
-auto=@combat(blocking) source(creature) from(creature[black;red]):all(trigger[to]) counter(1/1,1)
+auto=@combat(blocking) source(creature) from(creature[black;red]):all(trigger[to]) 1/1 ueot
 text=Whenever a creature blocks a black or red creature, the blocking creature gets +1/+1 until end of turn.
 mana={2}{W}
 type=Enchantment
