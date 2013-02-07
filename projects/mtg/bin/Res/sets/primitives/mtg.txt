@@ -9604,7 +9604,7 @@ toughness=8
 [/card]
 [card]
 name=Boldwyr Intimidator
-auto=lord(warrior) cantbeblockedby(coward)
+auto=lord(coward) cantbeblockerof(warrior)
 auto={R}:transforms((coward)) target(creature) ueot
 auto={2}{R}:transforms((warrior)) target(creature) ueot
 text=Cowards can't block Warriors. -- {R}: Target creature becomes a Coward until end of turn. -- {2}{R}: Target creature becomes a Warrior until end of turn.
@@ -10150,7 +10150,7 @@ toughness=2
 [/card]
 [card]
 name=Bower Passage
-auto=lord(creature|mybattlefield) cantbeblockedby(creature[flying])
+auto=lord(creature[flying]) cantbeblockerof(creature|mybattlefield)
 text=Creatures with flying can't block creatures you control.
 mana={1}{G}
 type=Enchantment
@@ -10408,7 +10408,7 @@ toughness=3
 [/card]
 [card]
 name=Brassclaw Orcs
-auto=lord(creature[power>=2]) cantbeblockedby(brassclaw orcs)
+auto=cantbeblockerof(creature[power>=2])
 text=Brassclaw Orcs can't block creatures with power 2 or greater.
 mana={2}{R}
 type=Creature
@@ -23774,6 +23774,16 @@ mana={G}
 type=Enchantment
 subtype=Aura
 [/card]
+[card]
+name=Duct Crawler
+auto={1}{R}:target(creature) ueot cantbeblockerof(this)
+text={1}{R}: Target creature can't block Duct Crawler this turn.
+mana={R}
+type=Creature
+subtype=Insect
+power=1
+toughness=1
+[/card]
 #emblem ueot removes the effect, the ability acts an observer
 [card]
 name=Due Respect
@@ -33656,7 +33666,7 @@ type=Sorcery
 [/card]
 [card]
 name=Gibbering Hyenas
-auto=lord(creature[black]) cantbeblockedby(gibbering hyenas)
+auto=cantbeblockerof(creature[black])
 text=Gibbering Hyenas can't block black creatures.
 mana={2}{G}
 type=Creature
@@ -34956,7 +34966,7 @@ toughness=1
 name=Goblin Mutant
 abilities=trample
 auto=aslongas(creature[power>=3;-tapped]|opponentBattlefield) cantattack
-auto=lord(creature) cantbeblockedby(goblin mutant[trample])
+auto=cantbeblockerof(creature[power>=3])
 text=Trample -- Goblin Mutant can't attack if defending player controls an untapped creature with power 3 or greater. -- Goblin Mutant can't block creatures with power 3 or greater.
 mana={2}{R}{R}
 type=Creature
@@ -40887,7 +40897,7 @@ toughness=6
 [/card]
 [card]
 name=Hunted Ghoul
-auto=lord(human) cantbeblockedby(hunted ghoul)
+auto=cantbeblockerof(human)
 text=Hunted Ghoul can't block Humans.
 mana={B}
 type=Creature
@@ -43023,7 +43033,7 @@ toughness=2
 [/card]
 [card]
 name=Ironclaw Buzzardiers
-auto=lord(creature[power>=2]|opponentbattlefield) cantbeblockedby(ironclaw buzzardiers)
+auto=cantbeblockerof(creature[power>=2])
 auto={R}:flying
 text=Ironclaw Buzzardiers can't block creatures with power 2 or greater. -- {R}: Ironclaw Buzzardiers gains flying until end of turn.
 mana={2}{R}
@@ -43034,7 +43044,7 @@ toughness=2
 [/card]
 [card]
 name=Ironclaw Orcs
-auto=lord(creature[power>=2]|opponentbattlefield) cantbeblockedby(ironclaw orcs)
+auto=cantbeblockerof(creature[power>=2])
 text=Ironclaw Orcs can't block creatures with power 2 or greater.
 mana={1}{R}
 type=Creature
@@ -60400,7 +60410,7 @@ toughness=1
 [/card]
 [card]
 name=Orcish Veteran
-auto=lord(creature[white;power>=2]) cantbeblockedby(orcish veteran)
+auto=cantbeblockerof(creature[white;power>=2])
 auto={R}:first strike
 text=Orcish Veteran can't block white creatures with power 2 or greater. -- {R}: Orcish Veteran gains first strike until end of turn.
 mana={2}{R}
@@ -60564,8 +60574,8 @@ toughness=1
 [card]
 name=Orgg
 abilities=trample
+auto=cantbeblockerof(creature[white;power>=3])
 auto=aslongas(creature[power>=3;-tapped]|opponentbattlefield]) cantattack
-auto=lord(creature[power>=3]) cantbeblockedby(orgg)
 text=Trample -- Orgg can't attack if defending player controls an untapped creature with power 3 or greater. -- Orgg can't block creatures with power 3 or greater.
 mana={3}{R}{R}
 type=Creature
@@ -64730,8 +64740,8 @@ toughness=1
 [/card]
 [card]
 name=Primeval Force
-auto=aslongas(forest|mybattlefield) choice target(<3>forest|mybattlefield) sacrifice oneshot >2
-auto=choice sacrifice all(this)
+auto=aslongas(forest|mybattlefield) choice name(sacrifice forests) target(<3>forest|mybattlefield) sacrifice oneshot >2
+auto=choice name(sacrifice this) sacrifice all(this)
 text=When Primeval Force enters the battlefield, sacrifice it unless you sacrifice three Forests.
 mana={2}{G}{G}{G}
 type=Creature
@@ -71461,12 +71471,12 @@ toughness=2
 [/card]
 [card]
 name=Sabertooth Alley Cat
-auto={1}{r}:all(this) cantbeblockedby(creature[-defender]) ueot
+abilities=mustattack
+auto={1}{R}:lord(creature[-defender]) ueot cantbeblockerof(this)
 text=Sabertooth Alley Cat attacks each turn if able. -- {1}{R}: Creatures without defender can't block Sabertooth Alley Cat this turn.
 mana={1}{R}{R}
 type=Creature
 subtype=Cat
-abilities=mustattack
 power=2
 toughness=1
 [/card]
@@ -73387,6 +73397,17 @@ text=Flying -- When Screeching Buzzard dies, each opponent discards a card.
 mana={3}{B}
 type=Creature
 subtype=Bird
+power=2
+toughness=2
+[/card]
+[card]
+name=Screeching Griffin
+abilities=flying
+auto={R}:target(creature) ueot cantbeblockerof(this)
+text=Flying -- {R}: Target creature can't block Screeching Griffin this turn.
+mana={3}{W}
+type=Creature
+subtype=Griffin
 power=2
 toughness=2
 [/card]
@@ -76238,6 +76259,19 @@ auto=damage:5
 text=As an additional cost to cast Shrapnel Blast, sacrifice an artifact. -- Shrapnel Blast deals 5 damage to target creature or player.
 mana={1}{R}{S(artifact|mybattlefield)}
 type=Instant
+[/card]
+[card]
+name=Shrewd Hatchling
+auto={UR}:target(creature) ueot cantbeblockerof(this)
+auto=@movedTo(*[red]|mystack):counter(-1/-1,-1)
+auto=@movedTo(*[blue]|mystack):counter(-1/-1,-1)
+auto=counter(-1/-1,4)
+text=Shrewd Hatchling enters the battlefield with four -1/-1 counters on it. -- {(u/r)}: Target creature can't block Shrewd Hatchling this turn. -- Whenever you cast a blue spell, remove a -1/-1 counter from Shrewd Hatchling. -- Whenever you cast a red spell, remove a -1/-1 counter from Shrewd Hatchling.
+mana={3}{UR}
+type=Creature
+subtype=Elemental
+power=6
+toughness=6
 [/card]
 [card]
 name=Shriek of Dread
@@ -80773,6 +80807,16 @@ auto={C(0/0,-1,Charge)}{T}:Add{G}
 text=Sphere of the Suns enters the battlefield tapped and with three charge counters on it. -- {T}, Remove a charge counter from Sphere of the Suns: Add one mana of any color to your mana pool.
 mana={2}
 type=Artifact
+[/card]
+[card]
+name=Spin Engine
+auto={R}:target(creature) ueot cantbeblockerof(this)
+text={R}: Target creature can't block Spin Engine this turn.
+mana={3}
+type=Artifact Creature
+subtype=Construct
+power=3
+toughness=1
 [/card]
 [card]
 name=Spinal Embrace

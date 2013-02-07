@@ -4493,15 +4493,6 @@ mana={4}{G}{G}
 type=Enchantment
 [/card]
 [card]
-name=Duct Crawler
-text={1}{R}: Target creature can't block Duct Crawler this turn.
-mana={R}
-type=Creature
-subtype=Insect
-power=1
-toughness=1
-[/card]
-[card]
 name=Duergar Hedge-Mage
 text=When Duergar Hedge-Mage enters the battlefield, if you control two or more Mountains, you may destroy target artifact. -- When Duergar Hedge-Mage enters the battlefield, if you control two or more Plains, you may destroy target enchantment.
 mana={2}{RW}
@@ -15211,15 +15202,6 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-name=Screeching Griffin
-text=Flying -- {R}: Target creature can't block Screeching Griffin this turn.
-mana={3}{W}
-type=Creature
-subtype=Griffin
-power=2
-toughness=2
-[/card]
-[card]
 name=Scrib Nibblers
 text={T}: Exile the top card of target player's library. If it's a land card, you gain 1 life. -- Landfall - Whenever a land enters the battlefield under your control, you may untap Scrib Nibblers.
 mana={2}{B}
@@ -15796,15 +15778,6 @@ name=Shred Memory
 text=Exile up to four target cards from a single graveyard. -- Transmute {1}{B}{B} ({1}{B}{B}, Discard this card: Search your library for a card with the same converted mana cost as this card, reveal it, and put it into your hand. Then shuffle your library. Transmute only as a sorcery.)
 mana={1}{B}
 type=Instant
-[/card]
-[card]
-name=Shrewd Hatchling
-text=Shrewd Hatchling enters the battlefield with four -1/-1 counters on it. -- {(u/r)}: Target creature can't block Shrewd Hatchling this turn. -- Whenever you cast a blue spell, remove a -1/-1 counter from Shrewd Hatchling. -- Whenever you cast a red spell, remove a -1/-1 counter from Shrewd Hatchling.
-mana={3}{UR}
-type=Creature
-subtype=Elemental
-power=6
-toughness=6
 [/card]
 [card]
 name=Shrine of Piercing Vision
@@ -16817,15 +16790,6 @@ mana={1}{U}
 type=Creature
 subtype=Drake
 power=1
-toughness=1
-[/card]
-[card]
-name=Spin Engine
-text={R}: Target creature can't block Spin Engine this turn.
-mana={3}
-type=Artifact Creature
-subtype=Construct
-power=3
 toughness=1
 [/card]
 [card]
