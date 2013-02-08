@@ -3123,7 +3123,7 @@ void MayAbility::Update(float dt)
         }
         if (TargetAbility * ta = dynamic_cast<TargetAbility *>(ability))
         {
-            if (!ta->getActionTc()->validTargetsExist())
+            if (!ta->getActionTc()->validTargetsExist() || ta->getActionTc()->maxtargets == 0)
                 return;
         }
         game->mLayers->actionLayer()->setMenuObject(source, must);
