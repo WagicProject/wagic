@@ -155,7 +155,7 @@ int Constants::GetColorStringIndex(string mtgColor)
 {
     for (int idx = 0; idx < Constants::NB_Colors; ++idx)
     {
-        if (Constants::MTGColorStrings[idx])
+        if (Constants::MTGColorStrings[idx] == mtgColor)
             return idx;
     }
     

@@ -66,7 +66,8 @@ public:
     MTGInPlay * inPlay();
     ManaPool * getManaPool();
     void takeMulligan();
-    
+    ManaCost * doesntEmpty;
+    ManaCost * poolDoesntEmpty;
     void cleanupPhase();
     virtual int Act(float dt)
     {

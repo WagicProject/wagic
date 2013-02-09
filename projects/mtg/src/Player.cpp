@@ -32,6 +32,8 @@ Player::Player(GameObserver *observer, string file, string fileSmall, MTGDeck * 
     playMode = MODE_HUMAN;
     skippingTurn = 0;
     extraTurn = 0;
+    doesntEmpty = NEW ManaCost();
+    poolDoesntEmpty = NEW ManaCost();
     if (deck != NULL)
     {
         game = NEW MTGPlayerCards(deck);
@@ -63,6 +65,8 @@ void Player::End()
 Player::~Player()
 {
     SAFE_DELETE(manaPool);
+    SAFE_DELETE(doesntEmpty);
+    SAFE_DELETE(poolDoesntEmpty);
     SAFE_DELETE(game);
     if(mAvatarTex && observer->getResourceManager())
         observer->getResourceManager()->Release(mAvatarTex);

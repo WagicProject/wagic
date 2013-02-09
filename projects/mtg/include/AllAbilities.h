@@ -4378,6 +4378,18 @@ public:
 
 };
 
+class AManaPoolSaver: public MTGAbility
+{
+public:
+    string Color;
+    bool OtherPlayer;
+    AManaPoolSaver(GameObserver* observer, int id, MTGCardInstance * source,string Color = "",bool otherPlayer = false);
+    int addToGame();
+    int destroy();
+    AManaPoolSaver * clone() const;
+    ~AManaPoolSaver();
+};
+
 class ADrawReplacer: public MTGAbility
 {
 public:

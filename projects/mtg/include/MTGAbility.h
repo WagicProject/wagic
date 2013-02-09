@@ -519,7 +519,8 @@ public:
     ManaCost * output;
     int tap;
     string Producing;
-    AManaProducer(GameObserver* observer, int id, MTGCardInstance * card, Targetable * t, ManaCost * _output, ManaCost * _cost = NULL, int who = TargetChooser::UNSET,string producing = "");
+    bool DoesntEmpty;
+    AManaProducer(GameObserver* observer, int id, MTGCardInstance * card, Targetable * t, ManaCost * _output, ManaCost * _cost = NULL, int who = TargetChooser::UNSET,string producing = "",bool doesntEmpty = false);
     int isReactingToClick(MTGCardInstance *  _card, ManaCost * mana = NULL);
     int resolve();
     int reactToClick(MTGCardInstance* _card);

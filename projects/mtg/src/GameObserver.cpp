@@ -230,6 +230,8 @@ void GameObserver::nextGamePhase()
         mLayers->actionLayer()->Update(0);
         currentPlayer->lifeLostThisTurn = 0;
         currentPlayer->opponent()->lifeLostThisTurn = 0;
+        currentPlayer->doesntEmpty->remove(currentPlayer->doesntEmpty);
+        currentPlayer->opponent()->doesntEmpty->remove(currentPlayer->opponent()->doesntEmpty);
         nextPlayer();
         return nextGamePhase();
     }

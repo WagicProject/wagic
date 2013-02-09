@@ -1725,6 +1725,13 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         return NULL;
     }
 
+    //mana of the listed type doesnt get emptied from the pools.
+    vector<string>colorType = parseBetween(s,"poolsave(",")",false);
+    if (colorType.size())
+    {
+        return NEW AManaPoolSaver(observer,id, card,colorType[1],s.find("opponentpool")!=string::npos);
+    }
+
         //opponent replace draw with
     found = s.find("opponentreplacedraw ");
     if (found != string::npos)
@@ -2710,9 +2717,10 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     found = s.find("add");
     if (found != string::npos)
     {
+        bool doesntEmptyTilueot = s.find("doesntempty") != string::npos;
         ManaCost * output = ManaCost::parseManaCost(s.substr(found),NULL,card);
         Targetable * t = spell ? spell->getNextTarget() : NULL;
-        MTGAbility * a = NEW AManaProducer(observer, id, card, t, output, NULL, who,s.substr(found));
+        MTGAbility * a = NEW AManaProducer(observer, id, card, t, output, NULL, who,s.substr(found),doesntEmptyTilueot);
         a->oneShot = 1;
         if(newName.size())
             ((AManaProducer*)a)->menutext = newName;
@@ -5232,7 +5240,7 @@ GenericTriggeredAbility* GenericTriggeredAbility::clone() const
  */
 
 AManaProducer::AManaProducer(GameObserver* observer, int id, MTGCardInstance * card, Targetable * t, ManaCost * _output, ManaCost * _cost,
-                int who,string producing) :
+                int who,string producing,bool doesntEmpty) :
     ActivatedAbilityTP(observer, id, card, t, _cost, who)
 {
 
@@ -5241,6 +5249,7 @@ AManaProducer::AManaProducer(GameObserver* observer, int id, MTGCardInstance * c
     output = _output;
     Producing = producing;
     menutext = "";
+    DoesntEmpty = doesntEmpty;
 }
 
 int AManaProducer::isReactingToClick(MTGCardInstance * _card, ManaCost * mana)
@@ -5268,6 +5277,8 @@ int AManaProducer::resolve()
         return 0;
 
     player->getManaPool()->add(output, source);
+    if(DoesntEmpty)
+        player->doesntEmpty->add(output);
     return 1;
 }
 

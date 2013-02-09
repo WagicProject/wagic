@@ -1112,6 +1112,35 @@ AASetCoin::~AASetCoin()
 {
 }
 
+//saves a listed mana type until end of turn.
+AManaPoolSaver::AManaPoolSaver(GameObserver* observer, int id, MTGCardInstance * source,string color, bool otherPlayer) :
+MTGAbility(observer, id, source),Color(color),OtherPlayer(otherPlayer)
+{
+}
+
+int AManaPoolSaver::addToGame()
+{
+    int colorInt = Constants::GetColorStringIndex(Color.c_str());
+    source->controller()->poolDoesntEmpty->add(colorInt,1);
+    return 1;
+}
+
+int AManaPoolSaver::destroy()
+{
+    int colorInt = Constants::GetColorStringIndex(Color.c_str());
+    source->controller()->poolDoesntEmpty->remove(colorInt,1);
+    return 1;
+}
+
+AManaPoolSaver * AManaPoolSaver::clone() const
+{
+    AManaPoolSaver * a = NEW AManaPoolSaver(*this);
+    return a;
+}
+
+AManaPoolSaver::~AManaPoolSaver()
+{
+}
 
 //replace drawing a card with activation of an ability
 ADrawReplacer::ADrawReplacer(GameObserver* observer, int id, MTGCardInstance * source, MTGAbility * replace, bool otherPlayer) :
@@ -2817,15 +2846,54 @@ int AARemoveMana::resolve()
         {
             if (mManaDesc) // Remove all mana Matching a description
             {
-                    for (int i = 0; i < Constants::NB_Colors; i++)
-                    {
-                        if (mManaDesc->hasColor(i))
-                            manaPool->removeAll(i);
-                    }
+                for (int i = 0; i < Constants::NB_Colors; i++)
+                {
+                    if (mManaDesc->hasColor(i))
+                        manaPool->removeAll(i);
+                }
             }
             else //Remove all mana
             {
-                manaPool->Empty();
+                if(game->getCurrentGamePhase() != MTG_PHASE_ENDOFTURN)
+                {
+                    if (player->doesntEmpty->getConvertedCost() && !player->poolDoesntEmpty->getConvertedCost())
+                    {
+                        ManaCost * toRemove =  manaPool->Diff(player->doesntEmpty);
+                        player->getManaPool()->pay(manaPool->Diff(player->doesntEmpty));
+                    }
+                    else if(!player->doesntEmpty->getConvertedCost() && player->poolDoesntEmpty->getConvertedCost())
+                    {
+                        ManaCost * toSave = NEW ManaCost();
+                        for(int k = Constants::MTG_COLOR_ARTIFACT; k < Constants::NB_Colors;k++)
+                        {
+                            if(player->poolDoesntEmpty->getCost(k))
+                                toSave->add(k,manaPool->getCost(k));
+                        }
+                        player->getManaPool()->pay(manaPool->Diff(toSave));
+                        delete(toSave);
+                    }
+                    else if(player->doesntEmpty->getConvertedCost() && player->poolDoesntEmpty->getConvertedCost())
+                    {
+                        ManaCost * toSave = NEW ManaCost();
+                        for(int k = Constants::MTG_COLOR_ARTIFACT; k < Constants::NB_Colors;k++)
+                        {
+                            if(player->poolDoesntEmpty->getCost(k))
+                            {
+                                toSave->add(k,manaPool->getCost(k));//save the whole amount of k;
+                            }
+                            else if(player->doesntEmpty->getCost(k))
+                            {
+                                toSave->add(k,player->doesntEmpty->getCost(k));//save the amount of doesnt empty
+                            }
+                        }
+                        player->getManaPool()->pay(manaPool->Diff(toSave));//remove the manacost equal to the difference of toSave and the manapool.
+                        delete(toSave);
+                    }
+                   
+                }
+                else
+                    manaPool->Empty();
+
             }
         }
         else //remove a "standard" mana Description
