@@ -4804,16 +4804,18 @@ void ABlink::resolveBlink()
     MTGCardInstance * _target = (MTGCardInstance *) target;
     if (_target)
     {
-        if(blinkhand && !_target->controller()->game->isInZone(_target,_target->controller()->game->hand))
-        {
-            this->forceDestroy = 1;
-            return;
-        }
-        else if(!blinkhand && !_target->controller()->game->isInZone(_target,_target->controller()->game->battlefield))
-        {
-            this->forceDestroy = 1;
-            return;
-        }
+        //going to comment this condiational out, i can't remember if i added this to fix some kind of bug 
+        //which is why i plan on leaving it here. seems to work fine though without it.
+        //if(blinkhand && !_target->controller()->game->isInZone(_target,_target->controller()->game->hand))
+        //{
+        //    this->forceDestroy = 1;
+        //    return;
+        //}
+        //else if(!blinkhand && !_target->controller()->game->isInZone(_target,_target->controller()->game->battlefield))
+        //{
+        //    this->forceDestroy = 1;
+        //    return;
+        //}
         _target->controller()->game->putInZone(_target, _target->currentZone,
             _target->owner->game->exile);
         if(_target->isToken)
