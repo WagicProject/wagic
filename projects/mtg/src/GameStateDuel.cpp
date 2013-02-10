@@ -97,7 +97,7 @@ GameState(parent, "duel")
                 totalAIDecks++;
             }
         } 
-        
+
     }
 #endif
 
@@ -117,13 +117,13 @@ void GameStateDuel::Start()
 
 
 #ifdef NETWORK_SUPPORT
-	if(!mParent->mpNetwork) {
+    if(!mParent->mpNetwork) {
 #endif //NETWORK_SUPPORT
-		game = NEW GameObserver(WResourceManager::Instance(), JGE::GetInstance());
+        game = NEW GameObserver(WResourceManager::Instance(), JGE::GetInstance());
 #ifdef NETWORK_SUPPORT
-	} else {
-		game = NEW NetworkGameObserver(mParent->mpNetwork, WResourceManager::Instance(), JGE::GetInstance());
-	}
+    } else {
+        game = NEW NetworkGameObserver(mParent->mpNetwork, WResourceManager::Instance(), JGE::GetInstance());
+    }
 #endif //NETWORK_SUPPORT
 
 
@@ -154,8 +154,8 @@ void GameStateDuel::Start()
 
             if (nbDecks)
                 decksneeded = 0;
-            
-             if (nbDecks > 1)   
+
+            if (nbDecks > 1)   
                 deckmenu->Add(MENUITEM_RANDOM_PLAYER, "Random", "Play with a random deck.");
 
             renderDeckMenu(deckmenu, playerDeckList);
@@ -191,7 +191,7 @@ void GameStateDuel::Start()
         }
         deckmenu->Add(MENUITEM_CANCEL, _("Main Menu").c_str(), _("Return to Main Menu").c_str());
     }
-    
+
     mEngine->ResetInput();
 }
 
@@ -249,7 +249,7 @@ bool GameStateDuel::MusicExist(string FileName)
 {
     string musicFilename = WResourceManager::Instance()->musicFile(FileName);
     if (musicFilename.length() < 1) return false;
-    
+
     return FileExists(musicFilename);
 }
 
@@ -459,7 +459,7 @@ void GameStateDuel::Update(float dt)
         mParent->rules->postUpdateInit(game);
 
 #ifdef NETWORK_SUPPORT
-		if(mParent->mpNetwork) ((NetworkGameObserver*)game)->synchronize();
+        if(mParent->mpNetwork) ((NetworkGameObserver*)game)->synchronize();
 #endif
 
         if (game->didWin())
@@ -494,12 +494,12 @@ void GameStateDuel::Update(float dt)
                         size_t thread_count = 1;
                         startTime = JGEGetTime();
 
-                #ifdef QT_CONFIG
+#ifdef QT_CONFIG
                         thread_count = QThread::idealThreadCount();
-                
-				#else
-						thread_count = 4;
-				#endif
+
+#else
+                        thread_count = 4;
+#endif
                         for(size_t i = 0; i < (thread_count); i++)
                             mWorkerThread.push_back(boost::thread(ThreadProc, this));
                     }
@@ -522,7 +522,7 @@ void GameStateDuel::Update(float dt)
                 //almosthumane - mulligan
                 if ((game->turn < 1) && (cardsinhand != 0) && game->getCurrentGamePhase() == MTG_PHASE_FIRSTMAIN
                     && game->currentPlayer->game->inPlay->nb_cards == 0 && game->currentPlayer->game->graveyard->nb_cards == 0
-					&& game->currentPlayer->game->exile->nb_cards == 0 && game->currentlyActing() == (Player*)game->currentPlayer) //1st Play Check
+                    && game->currentPlayer->game->exile->nb_cards == 0 && game->currentlyActing() == (Player*)game->currentPlayer) //1st Play Check
                     //IF there was no play at the moment automatically mulligan
                 {
                     menu->Add(MENUITEM_MULLIGAN, "Mulligan");
@@ -542,26 +542,26 @@ void GameStateDuel::Update(float dt)
         break;
 #ifdef NETWORK_SUPPORT
     case DUEL_STATE_OPPONENT_WAIT:
-      {
-		if(game->players.size() > 1)
-		{ // Player loaded
-			menu->Close();
-			SAFE_DELETE(menu);
-			setGamePhase(DUEL_STATE_PLAY);
-		} else if(menu == NULL)
-		{
-			menu = NEW SimpleMenu(JGE::GetInstance(), DUEL_STATE_OPPONENT_WAIT, this, Fonts::MENU_FONT, 150, 60);
-			if (menu)
-			{
-				menu->Add(MENUITEM_MAIN_MENU, "Back to main menu");
-			}
-		} else
-		{
-			menu->Update(dt);
-			game->Update(dt);
-		}
-      }
-      break;
+        {
+            if(game->players.size() > 1)
+            { // Player loaded
+                menu->Close();
+                SAFE_DELETE(menu);
+                setGamePhase(DUEL_STATE_PLAY);
+            } else if(menu == NULL)
+            {
+                menu = NEW SimpleMenu(JGE::GetInstance(), DUEL_STATE_OPPONENT_WAIT, this, Fonts::MENU_FONT, 150, 60);
+                if (menu)
+                {
+                    menu->Add(MENUITEM_MAIN_MENU, "Back to main menu");
+                }
+            } else
+            {
+                menu->Update(dt);
+                game->Update(dt);
+            }
+        }
+        break;
 #endif //NETWORK_SUPPORT
     case DUEL_STATE_MENU:
         menu->Update(dt);
@@ -580,8 +580,8 @@ void GameStateDuel::Update(float dt)
 #ifdef AI_CHANGE_TESTING
             while(mWorkerThread.size())
             {
-              mWorkerThread.back().join();
-              mWorkerThread.pop_back();
+                mWorkerThread.back().join();
+                mWorkerThread.pop_back();
             }
 #endif //AI_CHANGE_TESTING
 
@@ -612,28 +612,28 @@ void GameStateDuel::Render()
     if (game) game->Render();
 
 #ifdef AI_CHANGE_TESTING
-      if (game && totalTestGames)
-      {
-          char buf[4096];
-          int currentTime = JGEGetTime();
+    if (game && totalTestGames)
+    {
+        char buf[4096];
+        int currentTime = JGEGetTime();
 
-          if (totalTestGames < 2.5 * totalAIDecks)
-          {
-               mFont->SetColor(ARGB(255,255,255,0));
-               sprintf(buf, "           Results are not significant, you should let at least %i more games run", (int)(totalAIDecks * 2.5) - totalTestGames);
-               mFont->DrawString(buf,0,SCREEN_HEIGHT/2 - 20);
-          }
+        if (totalTestGames < 2.5 * totalAIDecks)
+        {
+            mFont->SetColor(ARGB(255,255,255,0));
+            sprintf(buf, "           Results are not significant, you should let at least %i more games run", (int)(totalAIDecks * 2.5) - totalTestGames);
+            mFont->DrawString(buf,0,SCREEN_HEIGHT/2 - 20);
+        }
 
-          mFont->SetColor(ARGB(255,255,255,255));
-          float ratio = float(testPlayer2Victories) / float(totalTestGames);
-          if (ratio < 0.48)
-              mFont->SetColor(ARGB(255,255,0,0));
-          if (ratio > 0.52)
-              mFont->SetColor(ARGB(255,0,255,0));
-          sprintf(buf, "              Victories Player 2/total Games: %i/%i - Game Turn: %i",
-              testPlayer2Victories, totalTestGames, /*(float)(1000*totalTestGames)/(currentTime - startTime)*/game->turn);
-          mFont->DrawString(buf,0,SCREEN_HEIGHT/2);
-      }
+        mFont->SetColor(ARGB(255,255,255,255));
+        float ratio = float(testPlayer2Victories) / float(totalTestGames);
+        if (ratio < 0.48)
+            mFont->SetColor(ARGB(255,255,0,0));
+        if (ratio > 0.52)
+            mFont->SetColor(ARGB(255,0,255,0));
+        sprintf(buf, "              Victories Player 2/total Games: %i/%i - Game Turn: %i",
+            testPlayer2Victories, totalTestGames, /*(float)(1000*totalTestGames)/(currentTime - startTime)*/game->turn);
+        mFont->DrawString(buf,0,SCREEN_HEIGHT/2);
+    }
 #endif
 
     switch (mGamePhase)
@@ -663,7 +663,7 @@ void GameStateDuel::Render()
                 {
                     sprintf(buf, "%i tests out of %i FAILED!", nbFailed, nbTests);
                 }
-  
+
                 mFont->DrawString(buf,0,SCREEN_HEIGHT/2);
                 nbFailed = testSuite->nbAIFailed;
                 nbTests = testSuite->nbAITests;
@@ -697,10 +697,10 @@ void GameStateDuel::Render()
     case DUEL_STATE_DECK2_DETAILED_INFO:
         if (mParent->gameType != GAME_TYPE_CLASSIC
 #ifdef NETWORK_SUPPORT
-                && mParent->gameType != GAME_TYPE_SLAVE
+            && mParent->gameType != GAME_TYPE_SLAVE
 #endif //NETWORK_SUPPORT
-				&& mParent->gameType != GAME_TYPE_STONEHEWER
-				&& mParent->gameType != GAME_TYPE_HERMIT)
+            && mParent->gameType != GAME_TYPE_STONEHEWER
+            && mParent->gameType != GAME_TYPE_HERMIT)
             mFont->DrawString(_("LOADING DECKS").c_str(), 0, SCREEN_HEIGHT / 2);
         else
         {
@@ -741,16 +741,16 @@ void GameStateDuel::Render()
         if (menu) 
         {
             menu->Render();
-            
+
             // display the player deck names in their respective corners
             string playerDeckName =  game->players[0]->deckName;
             float playerDeckNamePixelLength = mFont->GetStringWidth(playerDeckName.c_str());
             mFont->DrawString( playerDeckName, SCREEN_WIDTH_F - playerDeckNamePixelLength, SCREEN_HEIGHT_F - 50);
-			if(game->players.size()>1)
-			{
-				string opponentDeckName = game->players[1]->deckName;
-				mFont->DrawString( opponentDeckName, 0, 50);
-			}
+            if(game->players.size()>1)
+            {
+                string opponentDeckName = game->players[1]->deckName;
+                mFont->DrawString( opponentDeckName, 0, 50);
+            }
         }
     }
 }
@@ -855,7 +855,7 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
         if (controlId == MENUITEM_RANDOM_PLAYER) // Random Player Deck Selection
         {
             deckmenu->selectRandomDeck(false);
-            
+
             game->loadPlayer(0, mParent->players[0], deckmenu->getSelectedDeckId(), premadeDeck);
             deckmenu->Close();
             setGamePhase(DUEL_STATE_CHOOSE_DECK2_TO_PLAY);
@@ -936,32 +936,32 @@ void GameStateDuel::ButtonPressed(int controllerId, int controlId)
         case MENUITEM_MULLIGAN:
             //almosthumane - mulligan
             game->Mulligan();
-            
+
             menu->Close();
             setGamePhase(DUEL_STATE_CANCEL);
             break;
         case MENUITEM_UNDO:
             {
-            game->undo();
-            menu->Close();
-            setGamePhase(DUEL_STATE_CANCEL);
-            break;
+                game->undo();
+                menu->Close();
+                setGamePhase(DUEL_STATE_CANCEL);
+                break;
             }
 #ifdef TESTSUITE
         case MENUITEM_LOAD:
             {
-            std::string theGame;
-            if (JFileSystem::GetInstance()->readIntoString("test/game/timetwister.txt", theGame))
-            {
-                game->load(theGame);
-            }
-            menu->Close();
-            setGamePhase(DUEL_STATE_CANCEL);
-            break;
+                std::string theGame;
+                if (JFileSystem::GetInstance()->readIntoString("test/game/timetwister.txt", theGame))
+                {
+                    game->load(theGame);
+                }
+                menu->Close();
+                setGamePhase(DUEL_STATE_CANCEL);
+                break;
             }
 #endif
         }
-            mEngine->ReleaseKey( JGE_BTN_MENU );
+        mEngine->ReleaseKey( JGE_BTN_MENU );
 
     }
 }
