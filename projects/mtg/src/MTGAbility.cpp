@@ -179,6 +179,7 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
                         rtc = comparasion[i].substr(foundType + 5, end - foundType - 5).c_str();
                         TargetChooserFactory tcf(observer);
                         TargetChooser * ttc = tcf.createTargetChooser(rtc,card);
+                        ttc->withoutProtections = true;
                         mod = atoi(comparasion[i].substr(end+1).c_str());
                         if(i == 2)
                         {
