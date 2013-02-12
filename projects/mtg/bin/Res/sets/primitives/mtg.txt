@@ -52025,6 +52025,15 @@ mana={2}{R}
 type=Sorcery
 [/card]
 [card]
+name=Mark of Sakiko
+target=creature
+auto=@combatdamaged(player) from(mytgt):all(trigger[from]) thisforeach(variable{thatmuch}>0) add{G} doesntempty
+text=Enchant creature -- Enchanted creature has "Whenever this creature deals combat damage to a player, add that much {G} to your mana pool. Until end of turn, this mana doesn't empty from your mana pool as steps and phases end."
+mana={1}{G}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 name=Mark of the Oni
 target=creature
 alias=1194
@@ -71799,6 +71808,16 @@ power=0
 toughness=0
 [/card]
 [card]
+name=Sakiko, Mother of Summer
+auto=@combatdamaged(player) from(creature|mybattlefield):all(trigger[from]) thisforeach(variable{thatmuch}>0) add{G} doesntempty
+text=Whenever a creature you control deals combat damage to a player, add that much {G} to your mana pool. Until end of turn, this mana doesn't empty from your mana pool as steps and phases end.
+mana={4}{G}{G}
+type=Legendary Creature
+subtype=Snake Shaman
+power=3
+toughness=3
+[/card]
+[card]
 name=Sakura-Tribe Elder
 auto={S}:moveTo(myBattlefield) and!(tap)! target(basic|mylibrary)
 text=Sacrifice Sakura-Tribe Elder: Search your library for a basic land card, put that card onto the battlefield tapped, then shuffle your library.
@@ -71817,6 +71836,16 @@ type=Creature
 subtype=Snake Shaman Scout
 power=1
 toughness=1
+[/card]
+[card]
+name=Sakura-Tribe Springcaller
+text=At the beginning of your upkeep, add {G} to your mana pool. Until end of turn, this mana doesn't empty from your mana pool as steps and phases end.
+auto=@each my upkeep:add{G} doesntempty
+mana={3}{G}
+type=Creature
+subtype=Snake Shaman
+power=2
+toughness=4
 [/card]
 [card]
 name=Salt Flats
@@ -76156,6 +76185,17 @@ auto={T}:Add{B}
 auto={B}{T}:fear target(creature[legendary])
 text={T}: Add {B} to your mana pool. -- {B}, {T}: Target legendary creature gains fear until end of turn. (It can't be blocked except by artifact creatures and/or black creatures.)
 type=Legendary Land
+[/card]
+[card]
+name=Shizuko, Caller of Autumn
+auto=@each my upkeep:add{G}{G}{G} doesntempty
+auto=@each opponent upkeep:add{G}{G}{G} opponent doesntempty
+text=At the beginning of each player's upkeep, that player adds {G}{G}{G} to his or her mana pool. Until end of turn, this mana doesn't empty from that player's mana pool as steps and phases end.
+mana={1}{G}{G}
+type=Legendary Creature
+subtype=Snake Shaman
+power=2
+toughness=3
 [/card]
 [card]
 name=Shoal Serpent
@@ -91967,6 +92007,25 @@ text=Put target land on top of its owner's library.
 mana={3}{G}
 type=Sorcery
 subtype=Arcane
+[/card]
+[card]
+name=Upwelling
+auto=mypoolsave(red)
+auto=mypoolsave(green)
+auto=mypoolsave(blue)
+auto=mypoolsave(black)
+auto=mypoolsave(white)
+auto=mypoolsave(green)
+auto=mypoolsave(colorless)
+auto=opponentpoolsave(red)
+auto=opponentpoolsave(green)
+auto=opponentpoolsave(blue)
+auto=opponentpoolsave(black)
+auto=opponentpoolsave(white)
+auto=opponentpoolsave(colorless)
+text=Mana pools don't empty as steps and phases end.
+mana={3}{G}
+type=Enchantment
 [/card]
 [card]
 name=Ur-Drago

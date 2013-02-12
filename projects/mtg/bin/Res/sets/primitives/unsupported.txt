@@ -10164,13 +10164,6 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-name=Mark of Sakiko
-text=Enchant creature -- Enchanted creature has "Whenever this creature deals combat damage to a player, add that much {G} to your mana pool. Until end of turn, this mana doesn't empty from your mana pool as steps and phases end."
-mana={1}{G}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Martyr of Ashes
 text={2}, Reveal X red cards from your hand, Sacrifice Martyr of Ashes: Martyr of Ashes deals X damage to each creature without flying.
 mana={R}
@@ -14886,24 +14879,6 @@ power=3
 toughness=1
 [/card]
 [card]
-name=Sakiko, Mother of Summer
-text=Whenever a creature you control deals combat damage to a player, add that much {G} to your mana pool. Until end of turn, this mana doesn't empty from your mana pool as steps and phases end.
-mana={4}{G}{G}
-type=Legendary Creature
-subtype=Snake Shaman
-power=3
-toughness=3
-[/card]
-[card]
-name=Sakura-Tribe Springcaller
-text=At the beginning of your upkeep, add {G} to your mana pool. Until end of turn, this mana doesn't empty from your mana pool as steps and phases end.
-mana={3}{G}
-type=Creature
-subtype=Snake Shaman
-power=2
-toughness=4
-[/card]
-[card]
 name=Saltcrusted Steppe
 text={T}: Add {1} to your mana pool. -- {1}, {T}: Put a storage counter on Saltcrusted Steppe. -- {1}, Remove X storage counters from Saltcrusted Steppe: Add X mana in any combination of {G} and/or {W} to your mana pool.
 type=Land
@@ -15732,15 +15707,6 @@ type=Creature
 subtype=Beast
 power=6
 toughness=6
-[/card]
-[card]
-name=Shizuko, Caller of Autumn
-text=At the beginning of each player's upkeep, that player adds {G}{G}{G} to his or her mana pool. Until end of turn, this mana doesn't empty from that player's mana pool as steps and phases end.
-mana={1}{G}{G}
-type=Legendary Creature
-subtype=Snake Shaman
-power=2
-toughness=3
 [/card]
 [card]
 name=Shoe Tree
@@ -19029,12 +18995,6 @@ toughness=1
 name=Untaidake, the Cloud Keeper
 text=Untaidake, the Cloud Keeper enters the battlefield tapped. -- {T}, Pay 2 life: Add {2} to your mana pool. Spend this mana only to cast legendary spells.
 type=Legendary Land
-[/card]
-[card]
-name=Upwelling
-text=Mana pools don't empty as steps and phases end.
-mana={3}{G}
-type=Enchantment
 [/card]
 [card]
 name=Urborg Panther
