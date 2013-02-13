@@ -2860,6 +2860,7 @@ int AARemoveMana::resolve()
                     {
                         ManaCost * toRemove =  manaPool->Diff(player->doesntEmpty);
                         player->getManaPool()->pay(manaPool->Diff(player->doesntEmpty));
+                        return 1;
                     }
                     else if(!player->doesntEmpty->getConvertedCost() && player->poolDoesntEmpty->getConvertedCost())
                     {
@@ -2871,6 +2872,7 @@ int AARemoveMana::resolve()
                         }
                         player->getManaPool()->pay(manaPool->Diff(toSave));
                         delete(toSave);
+                        return 1;
                     }
                     else if(player->doesntEmpty->getConvertedCost() && player->poolDoesntEmpty->getConvertedCost())
                     {
@@ -2888,12 +2890,12 @@ int AARemoveMana::resolve()
                         }
                         player->getManaPool()->pay(manaPool->Diff(toSave));//remove the manacost equal to the difference of toSave and the manapool.
                         delete(toSave);
+                        return 1;
                     }
-                   
+                    manaPool->Empty();
                 }
                 else
                     manaPool->Empty();
-
             }
         }
         else //remove a "standard" mana Description
