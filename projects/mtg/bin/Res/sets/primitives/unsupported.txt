@@ -5713,12 +5713,6 @@ type=Instant
 text=Counter target instant or sorcery spell unless its controller pays {1}. Storm (When you cast this spell, copy it for each spell cast before it this turn. You may choose new targets for the copies.)
 [/card]
 [card]
-name=Flux
-text=Each player discards any number of cards, then draws that many cards. -- Draw a card.
-mana={2}{U}
-type=Sorcery
-[/card]
-[card]
 name=Fog Patch
 text=Cast Fog Patch only during the declare blockers step. -- Attacking creatures become blocked. (This spell works on unblockable creatures.)
 mana={1}{G}
@@ -5932,15 +5926,6 @@ name=Free-for-All
 mana={3}{U}
 type=Enchantment
 text=When Free-for-All comes into play, set aside all creatures in play, face down. During each player's upkeep, that player chooses a creature card at random from those set aside in this way and puts that creature into play under his or her control. If Free-for-All leaves play, put each creature still set aside this way into its owner's graveyard.
-[/card]
-[card]
-name=Freyalise Supplicant
-text={T}, Sacrifice a red or white creature: Freyalise Supplicant deals damage to target creature or player equal to half the sacrificed creature's power, rounded down.
-mana={1}{G}
-type=Creature
-subtype=Human Cleric
-power=1
-toughness=1
 [/card]
 [card]
 name=Freyalise's Charm
@@ -7203,15 +7188,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Hag Hedge-Mage
-text=When Hag Hedge-Mage enters the battlefield, if you control two or more Swamps, you may have target player discard a card. -- When Hag Hedge-Mage enters the battlefield, if you control two or more Forests, you may put target card in your graveyard on top of your library.
-mana={2}{BG}
-type=Creature
-subtype=Hag Shaman
-power=2
-toughness=2
-[/card]
-[card]
 name=Hail of Arrows
 text=Hail of Arrows deals X damage divided as you choose among any number of target attacking creatures.
 mana={X}{W}
@@ -7317,12 +7293,6 @@ name=Harsh Judgment
 text=As Harsh Judgment enters the battlefield, choose a color. -- If an instant or sorcery spell of the chosen color would deal damage to you, it deals that damage to its controller instead.
 mana={2}{W}{W}
 type=Enchantment
-[/card]
-[card]
-name=Harsh Mercy
-text=Each player chooses a creature type. Destroy all creatures that aren't of a type chosen this way. They can't be regenerated.
-mana={2}{W}
-type=Sorcery
 [/card]
 [card]
 name=Harvest Mage

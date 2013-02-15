@@ -30763,6 +30763,15 @@ mana={G}{W}{U}
 type=Instant
 [/card]
 [card]
+name=Flux
+auto=ability$!choice notatarget(<anyamount>*|myhand) reject && draw:1!$ controller
+auto=ability$!choice notatarget(<anyamount>*|myhand) reject && draw:1!$ opponent
+auto=ability$!choice draw:1!$ controller
+text=Each player discards any number of cards, then draws that many cards. -- Draw a card.
+mana={2}{U}
+type=Sorcery
+[/card]
+[card]
 name=Flying Carpet
 auto={2}{T}:flying target(creature)
 text={2}, {T}: Target creature gains flying until end of turn.
@@ -31539,6 +31548,16 @@ type=Creature
 subtype=Human Rebel
 power=2
 toughness=2
+[/card]
+[card]
+name=Freyalise Supplicant
+auto={S(creature[red;white]|battlefield)}{T}:target(creature,player) damage:storedhalfdownpower
+text={T}, Sacrifice a red or white creature: Freyalise Supplicant deals damage to target creature or player equal to half the sacrificed creature's power, rounded down.
+mana={1}{G}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=1
 [/card]
 [card]
 name=Freyalise's Radiance
@@ -37812,6 +37831,17 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Hag Hedge-Mage
+auto=may target(player) ability$!name(discard) reject target(*|myhand)!$ targetedplayer restriction{type(swamp|mybattlefield)~morethan~1}
+auto=if type(forest|mybattlefield)~morethan~1 then ability$!may moveTo(mylibrary) target(*|mygraveyard)!$ controller
+text=When Hag Hedge-Mage enters the battlefield, if you control two or more Swamps, you may have target player discard a card. -- When Hag Hedge-Mage enters the battlefield, if you control two or more Forests, you may put target card in your graveyard on top of your library.
+mana={2}{BG}
+type=Creature
+subtype=Hag Shaman
+power=2
+toughness=2
+[/card]
+[card]
 name=Hagra Crocodile
 abilities=cantblock
 auto=@movedTo(land|myBattlefield):2/2 ueot
@@ -38351,6 +38381,14 @@ auto=all(creature[attacking]) transforms((,newability[@combatdamaged(opponent) f
 text=Cast Harsh Justice only during the declare attackers step and only if you've been attacked this step. -- This turn, whenever an attacking creature deals combat damage to you, it deals that much damage to its controller.
 mana={2}{W}
 type=Instant
+[/card]
+[card]
+name=Harsh Mercy
+auto=ability$!chooseatype bury all(creature[-chosentype]) chooseend!$ controller
+auto=ability$!chooseatype bury all(creature[-chosentype]) chooseend!$ opponent
+text=Each player chooses a creature type. Destroy all creatures that aren't of a type chosen this way. They can't be regenerated.
+mana={2}{W}
+type=Sorcery
 [/card]
 [card]
 name=Haru-Onna
