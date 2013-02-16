@@ -7500,6 +7500,7 @@ text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter 
 mana={4}{G}
 type=Enchantment
 [/card]
+#Hidden Stag rule 10/4/2004: Does not trigger on lands put onto the battlefield by a spell or ability.
 [card]
 name=Hidden Stag
 text=Whenever an opponent plays a land, if Hidden Stag is an enchantment, Hidden Stag becomes a 3/2 Elk Beast creature. -- Whenever you play a land, if Hidden Stag is a creature, Hidden Stag becomes an enchantment.
@@ -7699,8 +7700,10 @@ text=Each artifact spell costs {1} more to cast for each artifact its controller
 mana={2}{G}{G}
 type=Enchantment
 [/card]
+#humility doesnt work
 [card]
 name=Humility
+auto=lord(creature) transforms((,setpower=1,settoughness=1,newability[loseabilities]))
 text=All creatures lose all abilities and are 1/1.
 mana={2}{W}{W}
 type=Enchantment
@@ -8555,12 +8558,6 @@ power=1
 toughness=2
 [/card]
 [card]
-name=Jilt
-text=Kicker {1}{R} (You may pay an additional {1}{R} as you cast this spell.) -- Return target creature to its owner's hand. If Jilt was kicked, it deals 2 damage to another target creature.
-mana={1}{U}
-type=Instant
-[/card]
-[card]
 name=Johnny, Combo Player
 mana={2}{U}{U}
 type=Legendary Creature — Human Gamer
@@ -8597,15 +8594,6 @@ name=Judge Unworthy
 text=Choose target attacking or blocking creature. Scry 3, then reveal the top card of your library. Judge Unworthy deals damage equal to that card's converted mana cost to that creature. (To scry 3, look at the top three cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)
 mana={1}{W}
 type=Instant
-[/card]
-[card]
-name=Jugan, the Rising Star
-text=Flying -- When Jugan, the Rising Star is put into a graveyard from the battlefield, you may distribute five +1/+1 counters among any number of target creatures.
-mana={3}{G}{G}{G}
-type=Legendary Creature
-subtype=Dragon Spirit
-power=5
-toughness=5
 [/card]
 [card]
 name=Jumbo Imp
@@ -9281,12 +9269,6 @@ name=Lapse of Certainty
 text=Counter target spell. If that spell is countered this way, put it on top of its owner's library instead of into that player's graveyard.
 mana={2}{W}
 type=Instant
-[/card]
-[card]
-name=Laquatus's Creativity
-text=Target player draws cards equal to the number of cards in his or her hand, then discards that many cards.
-mana={4}{U}
-type=Sorcery
 [/card]
 [card]
 name=Laquatus's Disdain
@@ -10853,12 +10835,6 @@ type=Creature
 subtype=Goblin Assassin
 power=2
 toughness=1
-[/card]
-[card]
-name=Mogg Infestation
-mana={3}{R}{R}
-type=Sorcery
-text=Destroy all creatures target player controls. For each creature that died this way, put two 1/1 red Goblin creature tokens onto the battlefield under that player's control.
 [/card]
 [card]
 name=Mole Worms
@@ -12937,11 +12913,6 @@ type=Sorcery
 text=Search target opponent's library for a card and exile it face down. Then that player shuffles his or her library. You may look at and play that card for as long as it remains exiled.
 [/card]
 [card]
-name=Prahv, Spires of Order
-text={T}: Add {1} to your mana pool. -- {4}{W}{U}, {T}: Prevent all damage a source of your choice would deal this turn.
-type=Land
-[/card]
-[card]
 name=Preacher
 text=You may choose not to untap Preacher during your untap step. -- {T}: Gain control of target creature of an opponent's choice that he or she controls for as long as Preacher remains tapped.
 mana={1}{W}{W}
@@ -13719,15 +13690,6 @@ mana={4}{R}{R}{W}{W}
 type=Legendary Creature
 subtype=Angel
 power=6
-toughness=3
-[/card]
-[card]
-name=Razing Snidd
-text=When Razing Snidd enters the battlefield, return a black or red creature you control to its owner's hand. -- When Razing Snidd enters the battlefield, each player sacrifices a land.
-mana={4}{B}{R}
-type=Creature
-subtype=Beast
-power=3
 toughness=3
 [/card]
 [card]

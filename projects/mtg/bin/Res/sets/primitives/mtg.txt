@@ -33030,7 +33030,7 @@ toughness=5
 [/card]
 [card]
 name=Gerrard Capashen
-auto=@each my upkeep:foreach(*|opponenthand) life:1 controller
+auto=@each my upkeep:name(target opponent) target(opponent) life:type:*:targetedpersonshand controller
 auto=this(attacking) {3}{W}:tap target(creature)
 text=At the beginning of your upkeep, you gain 1 life for each card in target opponent's hand. -- {3}{W}: Tap target creature. Activate this ability only if Gerrard Capashen is attacking.
 mana={3}{W}{W}
@@ -43918,6 +43918,16 @@ mana={W}{W}{W}
 type=Enchantment
 [/card]
 [card]
+name=Jilt
+kicker={1}{R}
+target=creature
+auto=moveto(ownerhand)
+auto=kicker damage:2 target(creature)
+text=Kicker {1}{R} (You may pay an additional {1}{R} as you cast this spell.) -- Return target creature to its owner's hand. If Jilt was kicked, it deals 2 damage to another target creature.
+mana={1}{U}
+type=Instant
+[/card]
+[card]
 name=Jin-Gitaxias, Core Augur
 abilities=flash
 auto=@each my end:draw:7
@@ -44238,6 +44248,17 @@ type=Creature
 subtype=Merfolk Wizard
 power=1
 toughness=1
+[/card]
+[card]
+name=Jugan, the Rising Star
+abilities=flying
+auto=auto=@movedTo(this|graveyard) from(Battlefield):ability$!counter(1/1,1) target(creature)!$ controller && ability$!counter(1/1,1) target(creature)!$ controller && ability$!counter(1/1,1) target(creature)!$ controller && ability$!counter(1/1,1) target(creature)!$ controller && ability$!counter(1/1,1) target(creature)!$ controller
+text=Flying -- When Jugan, the Rising Star is put into a graveyard from the battlefield, you may distribute five +1/+1 counters among any number of target creatures.
+mana={3}{G}{G}{G}
+type=Legendary Creature
+subtype=Dragon Spirit
+power=5
+toughness=5
 [/card]
 [card]
 name=Juggernaut
@@ -47970,6 +47991,14 @@ type=Creature
 subtype=Nightmare Horror
 power=6
 toughness=3
+[/card]
+[card]
+name=Laquatus's Creativity
+target=player
+auto=ability$!choice reject notatarget(<phandcount>*|myhand) _ draw:phandcount!$ targetedplayer
+text=Target player draws cards equal to the number of cards in his or her hand, then discards that many cards.
+mana={4}{U}
+type=Sorcery
 [/card]
 [card]
 name=Larceny
@@ -55058,6 +55087,14 @@ auto={T}:Add{R} && frozen
 auto={T}:Add{G} && frozen
 text={T}: Add {1} to your mana pool. -- {T}: Add {R} or {G} to your mana pool. Mogg Hollows doesn't untap during your next untap step.
 type=Land
+[/card]
+[card]
+name=Mogg Infestation
+target=player
+auto=all(creature|targetedpersonsbattlefield) transforms((,newability[@movedTo(this|graveyard) from(battlefield):token(-11492114)*2],newability[destroy]))
+mana={3}{R}{R}
+type=Sorcery
+text=Destroy all creatures target player controls. For each creature that died this way, put two 1/1 red Goblin creature tokens onto the battlefield under that player's control.
 [/card]
 [card]
 name=Mogg Jailer
@@ -64432,6 +64469,13 @@ mana={5}{G}{G}{G}
 type=Sorcery
 [/card]
 [card]
+name=Prahv, Spires of Order
+auto={T}:add{1}
+auto={4}{W}{U}{T}:name(prevent damage) notatarget(*|battlefield,stack,hand,graveyard) transforms((,newability[preventalldamage from(this)])) ueot
+text={T}: Add {1} to your mana pool. -- {4}{W}{U}, {T}: Prevent all damage a source of your choice would deal this turn.
+type=Land
+[/card]
+[card]
 name=Precinct Captain
 auto=@combatdamaged(player) from(this):token(Soldier,Creature Soldier,1/1,white)
 abilities=first strike
@@ -66087,6 +66131,14 @@ mana={B}
 type=Enchantment
 [/card]
 [card]
+name=Quest for the Holy Relic
+auto=@movedTo(creature|mystack):may counter(0/0,1,Quest) all(this)
+auto={C(0/0,-5,Quest)}{S}:name(move and attach) target(equipment|mylibrary) transforms((,newability[retarget target(creature|mybattlefield)],newability[moveto(mybattlefield)]))
+text=Whenever you cast a creature spell, you may put a quest counter on Quest for the Holy Relic. -- Remove five quest counters from Quest for the Holy Relic and sacrifice it: Search your library for an Equipment card, put it onto the battlefield, and attach it to a creature you control. Then shuffle your library.
+mana={W}
+type=Enchantment
+[/card]
+[card]
 name=Quest for the Nihil Stone
 auto=@discarded(*|opponenthand):may counter(0/0,1,Quest)
 auto=@each opponent upkeep restriction{type(*|opponenthand)~lessthan~1}:may this(counter{0/0.2.Quest}) life:-5 opponent
@@ -67688,6 +67740,16 @@ auto=destroy target(land)
 text=As an additional cost to cast Raze, sacrifice a land. -- Destroy target land.
 mana={R}{S(land|mybattlefield)}
 type=Sorcery
+[/card]
+[card]
+name=Razing Snidd
+auto=name(bounce) notatarget(creature[red;black]|myBattlefield) transforms((,newability[moveto(ownerhand)],newability[ability$!name(sacrifice) notatarget(land|mybattlefield) sacrifice!$ controller],newability[ability$!name(sacrifice) notatarget(land|mybattlefield) sacrifice!$ opponent])) oneshot
+text=When Razing Snidd enters the battlefield, return a black or red creature you control to its owner's hand. -- When Razing Snidd enters the battlefield, each player sacrifices a land.
+mana={4}{B}{R}
+type=Creature
+subtype=Beast
+power=3
+toughness=3
 [/card]
 [card]
 name=Razor Barrier
@@ -81430,8 +81492,8 @@ toughness=2
 [/card]
 [card]
 name=Spiraling Embers
-target=(creature,player)
-auto=foreach(*|myhand) damage:1
+target=creature,player
+auto=damage:phandcount
 text=Spiraling Embers deals damage to target creature or player equal to the number of cards in your hand.
 mana={3}{R}
 type=Sorcery
@@ -85184,8 +85246,8 @@ auto={2}:equip
 auto=teach(creature) protection from red
 auto=teach(creature) protection from white
 auto=2/2
-auto=@combatdamaged(player) from(mytgt):foreach(*|opponenthand) damage:1 opponent
-auto=@combatdamaged(player) from(mytgt):foreach(*|myhand) life:1 controller
+auto=@combatdamaged(player) from(mytgt):damage:ohandcount opponent
+auto=@combatdamaged(player) from(mytgt):life:phandcount controller
 text=Equipped creature gets +2/+2 and has protection from red and from white. -- Whenever equipped creature deals combat damage to a player, Sword of War and Peace deals damage to that player equal to the number of cards in his or her hand and you gain 1 life for each card in your hand. -- Equip {2}
 mana={3}
 type=Artifact
@@ -93379,7 +93441,7 @@ type=Instant
 [card]
 name=Venser's Journal
 abilities=nomaxhand
-auto=@each my upkeep:foreach(*|myhand) life:1
+auto=@each my upkeep:life:phandcount
 text=You have no maximum hand size. -- At the beginning of your upkeep, you gain 1 life for each card in your hand.
 mana={5}
 type=Artifact
@@ -93961,7 +94023,7 @@ toughness=2
 [/card]
 [card]
 name=Vicious Shadows
-auto=@movedTo(creature|graveyard) from(battlefield):may foreach(*|opponenthand) damage:1 opponent
+auto=@movedTo(creature|graveyard) from(battlefield):may target(player) damage:type:*:targetedpersonshand
 text=Whenever a creature dies, you may have Vicious Shadows deal damage to target player equal to the number of cards in that player's hand.
 mana={6}{R}
 type=Enchantment
