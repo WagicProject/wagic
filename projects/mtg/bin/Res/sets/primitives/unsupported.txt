@@ -2072,12 +2072,6 @@ toughness=1
 text=Flying Gotcha Whenever an opponent touches the table with his or her hand, you may say "Gotcha" If you do, return Cardpecker from your graveyard to your hand.
 [/card]
 [card]
-name=Careful Consideration
-text=Target player draws four cards, then discards three cards. If you cast this spell during your main phase, instead that player draws four cards, then discards two cards.
-mana={2}{U}{U}
-type=Instant
-[/card]
-[card]
 name=Carnivorous Death-Parrot
 mana={1}{U}
 type=Creature — Bird
@@ -7328,12 +7322,6 @@ mana={3}{B}{B}
 type=Instant
 [/card]
 [card]
-name=Haunting Hymn
-text=Target player discards two cards. If you cast this spell during your main phase, that player discards four cards instead.
-mana={4}{B}{B}
-type=Instant
-[/card]
-[card]
 name=Haunting Misery
 text=As an additional cost to cast Haunting Misery, exile X creature cards from your graveyard. -- Haunting Misery deals X damage to target player.
 mana={1}{B}{B}
@@ -10492,12 +10480,6 @@ name=Metrognome
 text=When a spell or ability an opponent controls causes you to discard Metrognome, put four 1/1 colorless Gnome artifact creature tokens onto the battlefield. -- {4}, {T}: Put a 1/1 colorless Gnome artifact creature token onto the battlefield.
 mana={4}
 type=Artifact
-[/card]
-[card]
-name=Might of Old Krosa
-text=Target creature gets +2/+2 until end of turn. If you cast this spell during your main phase, that creature gets +4/+4 until end of turn instead.
-mana={G}
-type=Instant
 [/card]
 [card]
 name=Militia's Pride
@@ -14087,12 +14069,6 @@ mana={2}{R}{R}
 type=Sorcery
 [/card]
 [card]
-name=Return to Dust
-text=Exile target artifact or enchantment. If you cast this spell during your main phase, you may exile up to one other target artifact or enchantment.
-mana={2}{W}{W}
-type=Instant
-[/card]
-[card]
 name=Revelation
 text=All players play with their hands revealed.
 mana={G}
@@ -17340,12 +17316,6 @@ name=Sulfuric Vortex
 text=At the beginning of each player's upkeep, Sulfuric Vortex deals 2 damage to that player. -- If a player would gain life, that player gains no life instead.
 mana={1}{R}{R}
 type=Enchantment
-[/card]
-[card]
-name=Sulfurous Blast
-text=Sulfurous Blast deals 2 damage to each creature and each player. If you cast this spell during your main phase, Sulfurous Blast deals 3 damage to each creature and each player instead.
-mana={2}{R}{R}
-type=Instant
 [/card]
 [card]
 name=Summit Apes

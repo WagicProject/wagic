@@ -12249,6 +12249,15 @@ mana={2}{R}
 type=Instant
 [/card]
 [card]
+name=Careful Consideration
+target=player
+auto=if compare(restriction{assorcery}~morethan~0) then ability$!draw:4 _ choice notatarget(<2>*|myhand) reject)!$ targetedplayer
+auto=ifnot compare(restriction{assorcery}~morethan~0) then ability$!draw:4 _ choice notatarget(<3>*|myhand) reject)!$ targetedplayer
+text=Target player draws four cards, then discards three cards. If you cast this spell during your main phase, instead that player draws four cards, then discards two cards.
+mana={2}{U}{U}
+type=Instant
+[/card]
+[card]
 name=Careful Study
 auto=draw:2
 auto=reject target(<2>*|myhand)
@@ -38538,6 +38547,15 @@ mana={3}{B}{B}
 type=Sorcery
 [/card]
 [card]
+name=Haunting Hymn
+target=player
+auto=if compare(restriction{assorcery}~morethan~0) then ability$!reject notatarget(<4>*|myhand)!$ targetedplayer
+auto=ifnot compare(restriction{assorcery}~morethan~0) then ability$!reject notatarget(<2>*|myhand)!$ targetedplayer
+text=Target player discards two cards. If you cast this spell during your main phase, that player discards four cards instead.
+mana={4}{B}{B}
+type=Instant
+[/card]
+[card]
 name=Havengul Runebinder
 auto={2}{U}{T}{E(creature|mygraveyard)}:token(Zombie,Creature Zombie,2/2,black) && all(zombie|mybattlefield) counter(1/1,1)
 text={2}{U}, {T}, Exile a creature card from your graveyard: Put a 2/2 black Zombie creature token onto the battlefield, then put a +1/+1 counter on each Zombie creature you control.
@@ -49294,7 +49312,7 @@ name=Liliana of the Dark Realms
 auto=counter(0/0,3,loyalty)
 auto={C(0/0,1,Loyalty)}:name(fetch) moveTo(hand) target(swamp|myLibrary)
 auto={C(0/0,-3,Loyalty)}:name(choose) ability$!choice name(+X/+X) target(creature) type:land:mybattlefield/type:land:mybattlefield ueot _ choice name(-X/-X) target(creature) -type:land:mybattlefield/-type:land:mybattlefield ueot!$ controller
-auto={C(0/0,-6,Loyalty)}:name(emblem) emblem transforms((,newability[lord(swamp|mybattlefield) {T}:{B}{B}{B}{B}])) forever dontremove
+auto={C(0/0,-6,Loyalty)}:name(emblem) emblem transforms((,newability[lord(swamp|mybattlefield) {T}:add{B}{B}{B}{B}])) forever dontremove
 text=+1: Search your library for a Swamp card, reveal it, and put it into your hand. Then shuffle your library. -- -3: Target creature gets +X/+X or -X/-X until end of turn, where X is the number of Swamps you control. -- -6: You get an emblem with "Swamps you control have '{T}: Add {B}{B}{B}{B} to your mana pool.'"
 mana={2}{B}{B}
 type=Planeswalker
@@ -53706,6 +53724,14 @@ type=Creature
 subtype=Human Wizard
 power=2
 toughness=3
+[/card]
+[card]
+name=Might of Old Krosa
+target=creature
+auto=if compare(restriction{assorcery}~morethan~0) then 4/4 ueot else 2/2 ueot
+text=Target creature gets +2/+2 until end of turn. If you cast this spell during your main phase, that creature gets +4/+4 until end of turn instead.
+mana={G}
+type=Instant
 [/card]
 [card]
 name=Might Sliver
@@ -69197,6 +69223,15 @@ mana={B}
 type=Sorcery
 [/card]
 [card]
+name=Return to Dust
+target=artifact,enchantment
+auto=moveto(exile)
+auto=may target(artifact,enchantment) moveto(exile) restriction{assorcery}~morethan~0
+text=Exile target artifact or enchantment. If you cast this spell during your main phase, you may exile up to one other target artifact or enchantment.
+mana={2}{W}{W}
+type=Instant
+[/card]
+[card]
 name=Reveillark
 abilities=flying
 other={5}{W} name(Evoke)
@@ -84220,6 +84255,13 @@ auto={T}:Add{B}
 auto={T}{S}:Add{U}{R}
 text=Sulfur Vent enters the battlefield tapped. -- {T}: Add {B} to your mana pool. -- {T}, Sacrifice Sulfur Vent: Add {U}{R} to your mana pool.
 type=Land
+[/card]
+[card]
+name=Sulfurous Blast
+auto=if compare(restriction{assorcery}~morethan~0) then damage:3 all(creature,player) else damage:2 all(creature,player)
+text=Sulfurous Blast deals 2 damage to each creature and each player. If you cast this spell during your main phase, Sulfurous Blast deals 3 damage to each creature and each player instead.
+mana={2}{R}{R}
+type=Instant
 [/card]
 [card]
 name=Sulfurous Springs
