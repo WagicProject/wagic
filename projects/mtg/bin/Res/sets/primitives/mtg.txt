@@ -12501,7 +12501,7 @@ type=Land
 [card]
 name=Castigate
 target=opponent
-auto=target(*[-land]|targetedpersonshand) moveTo(exile)
+auto=if type(*[-land]|targetedpersonshand)~lessthan~1 then name(look) donothing notatarget(*|targetedpersonshand) else moveto(exile) notatarget(*[-land]|targetedpersonshand)
 text=Target opponent reveals his or her hand. You choose a nonland card from it and exile that card.
 mana={W}{B}
 type=Sorcery
@@ -16541,7 +16541,7 @@ type=Instant
 [/card]
 [card]
 name=Corpse Traders
-auto={2}{B}{S(creature|mybattlefield)}:reject target(*|opponenthand) asSorcery
+auto={2}{B}{S(creature|mybattlefield)}:name(discard) target(opponent) donothing && all(this) transforms((,newability[notatarget(*|targetedpersonshand) reject])) asSorcery
 text={2}{B}, Sacrifice a creature: Target opponent reveals his or her hand. You choose a card from it. That player discards that card. Activate this ability only any time you could cast a sorcery.
 mana={3}{B}
 type=Creature
@@ -21043,7 +21043,7 @@ type=Instant
 [card]
 name=Despise
 target=opponent
-auto=target(creature,planeswalker|targetedpersonshand) reject
+auto=if type(*[creature;planeswalker]|targetedpersonshand)~lessthan~1 then name(look) donothing notatarget(*|targetedpersonshand) else reject notatarget(*[creature;planeswalker]|targetedpersonshand)
 text=Target opponent reveals his or her hand. You choose a creature or plainswalker card from it. That player discards that card.
 mana={B}
 type=Sorcery
@@ -21969,7 +21969,7 @@ type=Sorcery
 [card]
 name=Distress
 target=player
-auto=target(*[-land]|targetedpersonshand) reject
+auto=if type(*[-land]|targetedpersonshand)~lessthan~1 then name(look) donothing notatarget(*|targetedpersonshand) else reject notatarget(*[-land]|targetedpersonshand)
 text=Target player reveals his or her hand. You choose a nonland card from it. That player discards that card.
 mana={B}{B}
 type=Sorcery
@@ -23920,7 +23920,7 @@ toughness=*
 [card]
 name=Duress
 target=opponent
-auto=target(*[-creature;-land]|targetedpersonshand) reject
+auto=if type(*[-creature;-land]|targetedpersonshand)~lessthan~1 then name(look) donothing notatarget(*|targetedpersonshand) else reject notatarget(*[-creature;-land]|targetedpersonshand)
 text=Target opponent reveals his or her hand. You choose a noncreature, nonland card from it. That player discards that card.
 mana={B}
 type=Sorcery
@@ -26070,7 +26070,7 @@ toughness=2
 [card]
 name=Encroach
 target=player
-auto=target(land[-basic]|targetedpersonshand) reject
+auto=if type(*[-basic]|targetedpersonshand)~lessthan~1 then name(look) donothing notatarget(*|targetedpersonshand) else reject notatarget(*[-basic]|targetedpersonshand)
 text=Target player reveals his or her hand. You choose a nonbasic land card from it. That player discards that card.
 mana={B}
 type=Sorcery
@@ -38687,7 +38687,7 @@ toughness=1
 [card]
 name=He Who Hungers
 abilities=flying
-auto={1}{S(creature[spirit]|mybattlefield)}:reject target(*|opponenthand)
+auto={1}{S(creature[spirit]|mybattlefield)}:name(discard) target(opponent) donothing && all(this) transforms((,newability[notatarget(*|targetedpersonshand) reject]))
 auto=@movedTo(this|mygraveyard) from(myBattlefield):may moveTo(myhand) target(other spirit[manacost<=4]|mygraveyard)
 text=Flying -- {1}, Sacrifice a Spirit: Target opponent reveals his or her hand. You choose a card from it. That player discards that card. Activate this ability only any time you could cast a sorcery. -- Soulshift 4 (When this dies, you may return target Spirit card with converted mana cost 4 or less from your graveyard to your hand.)
 mana={4}{B}
@@ -42643,7 +42643,7 @@ type=Sorcery
 [card]
 name=Inquisition of Kozilek
 target=player
-auto=target(*[manacost<=3;-land]|targetedpersonshand) reject
+auto=if type(*[-land;manacost<=3]|targetedpersonshand)~lessthan~1 then name(look) donothing notatarget(*|targetedpersonshand) else reject notatarget(*[-land;manacost<=3]|targetedpersonshand)
 text=Target player reveals his or her hand. You choose a nonland card from it with converted mana cost 3 or less. That player discards that card.
 mana={B}
 type=Sorcery
@@ -44164,7 +44164,7 @@ toughness=1
 [/card]
 [card]
 name=Jotun Owl Keeper
-auto=cumulativeupcost[{W}{U}] sacrifice
+auto=cumulativeupcost[{WU}] sacrifice
 auto=@movedTo(this|graveyard) from(battlefield):thisforeach(counter{0/0.1.Age}) token(Bird,Creature Bird,1/1,white flying)
 text=Cumulative upkeep {W} or {U} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- When Jotun Owl Keeper dies, put a 1/1 white Bird creature token with flying onto the battlefield for each age counter on it.
 mana={2}{W}
@@ -49852,11 +49852,8 @@ toughness=4
 [/card]
 [card]
 name=Lobotomy
-target=*[-basic]|hand
-auto=moveTo(exile)
-auto=all(*[share!name!]|targetcontrollerhand) moveto(exile)
-auto=all(*[share!name!]|targetcontrollerlibrary) moveto(exile)
-auto=all(*[share!name!]|targetcontrollergraveyard) moveto(exile)
+target=player
+auto=if type(*[-basic]|targetedpersonshand)~lessthan~1 then name(look) donothing notatarget(*|targetedpersonshand) else name(exile nonbasic) notatarget(*[-basic]|targetedpersonshand) transforms((,newability[all(*[share!name!]|myhand) moveto(exile)],newability[all(*[share!name!]|mylibrary) moveto(exile) and!( shuffle )!],newability[all(*[share!name!]|mygraveyard) moveto(exile)]))
 text=Target player reveals his or her hand, then you choose a card other than a basic land card from it. Search that player's graveyard, hand, and library for all cards with the same name as the chosen card and exile them. Then that player shuffles his or her library.
 mana={2}{U}{B}
 type=Sorcery
@@ -53468,7 +53465,7 @@ toughness=1
 [/card]
 [card]
 name=Mesmeric Fiend
-auto=hand(blink)forsrc target(*[-land]|opponenthand)
+auto=choice name(target opponent) target(player) donothing && all(this) transforms((,newability[if type(*[-land]|targetedpersonshand)~lessthan~1 then name(look) donothing notatarget(*|targetedpersonshand) else hand(blink)forsrc notatarget(*[-land]|targetedpersonshand)])) forever
 text=When Mesmeric Fiend enters the battlefield, target opponent reveals his or her hand and you choose a nonland card from it. Exile that card. -- When Mesmeric Fiend leaves the battlefield, return the exiled card to its owner's hand.
 mana={1}{B}
 type=Creature
@@ -54049,7 +54046,7 @@ type=Sorcery
 [/card]
 [card]
 name=Mind Slash
-auto={B}{S(creature|mybattlefield)}:reject target(*|opponenthand) asSorcery
+auto={B}{S(creature|mybattlefield)}:name(discard) target(opponent) donothing && all(this) transforms((,newability[notatarget(*|targetedpersonshand) reject])) asSorcery
 text={B}, Sacrifice a creature: Target opponent reveals his or her hand. You choose a card from it. That player discards that card. Activate this ability only any time you could cast a sorcery.
 mana={1}{B}{B}
 type=Enchantment
@@ -58417,7 +58414,7 @@ type=Enchantment
 [card]
 name=Night Terrors
 target=player
-auto=target(*[-land]|targetedpersonshand) reject
+auto=if type(*[-land]|targetedpersonshand)~lessthan~1 then name(look) donothing notatarget(*|targetedpersonshand) else moveto(exile) notatarget(*[-land]|targetedpersonshand)
 text=Target player reveals his or her hand. You choose a nonland card from it. Exile that card.
 mana={2}{B}
 type=Sorcery
@@ -60953,6 +60950,7 @@ toughness=2
 name=Ostracize
 target=opponent
 auto=target(creature|targetedpersonshand) reject
+auto=if type(creature|targetedpersonshand)~lessthan~1 then name(look) donothing notatarget(*|targetedpersonshand) else reject notatarget(creature|targetedpersonshand)
 text=Target opponent reveals his or her hand. You choose a creature card from it. That player discards that card.
 mana={B}
 type=Sorcery
@@ -62381,7 +62379,7 @@ type=Sorcery
 [card]
 name=Perish the Thought
 arget=opponent
-auto=target(*|targetedpersonshand) moveTo(ownerlibrary) && shuffle
+auto=moveTo(ownerlibrary) and!( shuffle )! notatarget(*|targetedpersonshand)
 text=Target opponent reveals his or her hand. You choose a card from it. That player shuffles that card into his or her library.
 mana={2}{B}
 type=Sorcery
@@ -65425,7 +65423,7 @@ subtype=Aura
 [card]
 name=Psychic Spear
 target=player
-auto=target(spirit,arcane|targetedpersonshand) reject
+auto=if type(*[spirit;arcane]|targetedpersonshand)~lessthan~1 then name(look) donothing notatarget(*|targetedpersonshand) else reject notatarget(*[spirit;arcane]|targetedpersonshand)
 text=Target player reveals his or her hand. You choose a Spirit or Arcane card from it. That player discards that card.
 mana={B}
 type=Sorcery
@@ -75695,7 +75693,7 @@ type=Sorcery
 [card]
 name=Shattered Dreams
 target=opponent
-auto=target(artifact|targetedpersonshand) reject
+auto=if type(artifact|targetedpersonshand)~lessthan~1 then name(look) donothing notatarget(*|targetedpersonshand) else reject notatarget(artifact|targetedpersonshand)
 text=Target opponent reveals his or her hand. You choose an artifact card from it. That player discards that card.
 mana={B}
 type=Sorcery
@@ -76002,7 +76000,8 @@ toughness=0
 [card]
 name=Shimian Specter
 abilities=flying
-auto=@combatdamaged(opponent) from(this):name(exile a nonland) notatarget(*[-land]|opponenthand) transforms((,newability[all(*[share!name!]|mylibrary) moveto(exile) and!(shuffle)!],newability[all(*[share!name!]|mygraveyard) moveto(exile)],newability[all(*[share!name!]|myhand) moveto(exile)]))
+auto=@combatdamaged(opponent) from(this) restriction{type(*[-land]|opponenthand)~morethan~0}:name(exile a nonland) notatarget(*[-land]|opponenthand) transforms((,newability[all(*[share!name!]|mylibrary) moveto(exile) and!(shuffle)!],newability[all(*[share!name!]|mygraveyard) moveto(exile)],newability[all(*[share!name!]|myhand) moveto(exile)]))
+auto=@combatdamaged(opponent) from(this) restriction{type(*[-land]|opponenthand)~lessthan~1}:name(look) notatarget(*|opponenthand) donothing
 text=Flying -- Whenever Shimian Specter deals combat damage to a player, that player reveals his or her hand. You choose a nonland card from it. Search that player's graveyard, hand, and library for all cards with the same name as that card and exile them. Then that player shuffles his or her library.
 mana={2}{B}{B}
 type=Creature
@@ -81923,8 +81922,9 @@ type=Enchantment
 [/card]
 [card]
 name=Splitting Headache
-auto=choice target(player) ability$!name(discard 2 cards) target(<2>*|myhand) reject!$ targetedplayer
-auto=choice target(*|opponenthand) reject
+target=player
+auto=choice name(discard 2 cards) ability$!name(discard 2 cards) notatarget(<2>*|myhand) reject!$ targetedplayer
+auto=choice name(chosen discard) notatarget(*|targetedpersonshand) reject
 text=Choose one - Target player discards two cards; or target player reveals his or her hand, you choose a card from it, then that player discards that card.
 mana={3}{B}
 type=Sorcery
@@ -85679,9 +85679,8 @@ toughness=3
 [/card]
 [card]
 name=Talara's Bane
-target=creature[green;white]|opponenthand
-auto=reject
-auto=dynamicability<!mytgt toughnesslifegain srccontroller!>
+target=opponent
+auto=if type(creature[green;white]|targetedpersonshand)~lessthan~1 then name(look) donothing notatarget(*|targetedpersonshand) else notatarget(creature[green;white]|targetedpersonshand) dynamicability<!mytgt toughnesslifegain srccontroller!> reject
 text=Target opponent reveals his or her hand. You choose a green or white creature card from it. You gain life equal that creature card's toughness, then that player discards that card.
 mana={1}{B}
 type=Sorcery
@@ -87930,7 +87929,7 @@ type=Enchantment
 [card]
 name=Thoughtseize
 target=player
-auto=target(*[-land]|targetedpersonshand) reject
+auto=if type(*[-land]|targetedpersonshand)~lessthan~1 then name(look) donothing notatarget(*|targetedpersonshand) else reject notatarget(*[-land]|targetedpersonshand)
 auto=life:-2 controller
 text=Target player reveals his or her hand. You choose a nonland card from it. That player discards that card. You lose 2 life.
 mana={B}
@@ -88617,7 +88616,7 @@ toughness=1
 [/card]
 [card]
 name=Tidehollow Sculler
-auto=hand(blink)forsrc target(*[-land]|opponenthand)
+auto=choice name(target opponent) target(opponent) donothing && all(this) transforms((,newability[if type(*[-land]|targetedpersonshand)~lessthan~1 then name(look) donothing notatarget(*|targetedpersonshand) else hand(blink)forsrc notatarget(*[-land]|targetedpersonshand)])) forever
 text=When Tidehollow Sculler enters the battlefield, target opponent reveals his or her hand and you choose a nonland card from it. Exile that card. -- When Tidehollow Sculler leaves the battlefield, return the exiled card to its owner's hand.
 mana={W}{B}
 type=Artifact Creature
@@ -91893,7 +91892,7 @@ type=Instant
 [card]
 name=Unmask
 target=player
-auto=target(*[-land]|targetedpersonshand) reject
+auto=if type(*[-land]|targetedpersonshand)~lessthan~1 then name(look) donothing notatarget(*|targetedpersonshand) else reject notatarget(*[-land]|targetedpersonshand)
 other={E(other *[black]|myhand)} name(Exile a Black Card from Hand)
 text=You may exile a black card from your hand rather than pay Unmask's mana cost. -- Target player reveals his or her hand. You choose a nonland card from it. That player discards that card.
 mana={3}{B}
@@ -93256,7 +93255,7 @@ type=Land
 [card]
 name=Venarian Glimmer
 target=player
-auto=target(*[-land;manacost=prex]|targetedpersonshand) reject
+auto=if type(*[-land;manacost<=castx]|targetedpersonshand)~lessthan~1 then name(look) donothing notatarget(*|targetedpersonshand) else reject notatarget(*[-land;manacost<=castx]|targetedpersonshand)
 text=Target player reveals his or her hand. You choose a nonland card with converted mana cost X or less from it. That player discards that card.
 mana={X}{U}
 type=Instant
