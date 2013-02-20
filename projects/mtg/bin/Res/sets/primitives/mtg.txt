@@ -5236,7 +5236,7 @@ auto=vanishing:3
 text=Flying -- Vanishing 3 (This permanent enters the battlefield with three time counters on it. At the beginning of your upkeep, remove a time counter from it. When the last is removed, sacrifice it.) -- When Aven Riftwatcher enters the battlefield or leaves the battlefield, you gain 2 life.
 mana={2}{W}
 type=Creature
-subtype=Bird rebel Soldier
+subtype=Bird Rebel Soldier
 power=2
 toughness=3
 [/card]
@@ -6301,7 +6301,7 @@ auto={6}{T}:draw:1 restriction{type(*|opponenthand)~equalto~6}
 auto={7}{T}:draw:1 restriction{type(*|opponenthand)~equalto~7}
 auto={8}{T}:draw:1 restriction{type(*|opponenthand)~equalto~8}
 text={X}, {T}: Draw a card. X is the number of cards in an opponent's hand as you activate this ability.
-mana={1}
+mana={5}
 type=Artifact
 [/card]
 [card]
@@ -7646,7 +7646,7 @@ auto=@movedTo(this|mygraveyard) from(battlefield):discard:1 opponent
 text=When Black Cat dies, target opponent discards a card at random.
 mana={1}{B}
 type=Creature
-subtype=zombie Cat
+subtype=Zombie Cat
 power=1
 toughness=1
 [/card]
@@ -8881,7 +8881,7 @@ kicker=multi{B}
 text=Multikicker {B} (You may pay an additional any number of times as you cast this spell.) -- When Bloodhusk Ritualist enters the battlefield, target opponent discards a card for each time it was kicked.
 mana={2}{B}
 type=Creature
-subtype=Horror
+subtype=Vampire Shaman
 power=2
 toughness=2
 [/card]
@@ -8938,7 +8938,7 @@ auto=lord(creature[vampire]|mybattlefield) bloodthirst:3
 text=Bloodthirst 3 -- Flying -- Whenever you cast a Vampire creature spell, it gains bloodthirst 3.
 mana={3}{B}{B}
 type=Creature
-subtype=Vampire
+subtype=Vampire Warrior
 power=3
 toughness=3
 [/card]
@@ -10740,7 +10740,7 @@ auto={S}:life:4
 text=Sacrifice Brindle Boar: You gain 4 life.
 mana={2}{G}
 type=Creature
-subtype=Beast
+subtype=Boar
 power=2
 toughness=2
 [/card]
@@ -13540,6 +13540,7 @@ auto=teach(creature[legendary]) opponentshroud
 text=Equipped creature gets +2/+2. -- As long as equipped creature is legendary, it has hexproof. (It can't be the target of spells or abilities your opponents control.) -- Equip {1}
 mana={3}
 type=Artifact
+subtype=Equipment
 [/card]
 [card]
 name=Champion's Victory
@@ -15649,8 +15650,7 @@ auto=tap
 auto=chooseacolor {T}:add{chosencolor} chooseend
 text=Coldsteel Heart enters the battlefield tapped. -- As Coldsteel Heart enters the battlefield, choose a color. -- {T}: Add one mana of the chosen color to your mana pool.
 mana={2}
-type=Artifact
-subtype=Snow
+type=Snow Artifact
 [/card]
 [card]
 name=Collapsing Borders
@@ -16128,7 +16128,7 @@ type=Artifact
 #only select targets once and add counters twice
 [card]
 name=Contagion Engine
-auto=target(player) ability$!name(target player) counter(1/1,1) all(creature|mybattlefield)!$ targetedplayer
+auto=target(player) ability$!name(target player) counter(-1/-1,1) all(creature|mybattlefield)!$ targetedplayer
 auto={4}{T}:notatarget(proliferation) proliferate && proliferate
 text=When Contagion Engine enters the battlefield, put a -1/-1 counter on each creature target player controls. -- {4},{T}: Proliferate, then proliferate again. (You choose any number of permanents and/or players with counters on them, then give each another counter of a kind already there. Then do it again.)
 mana={6}
@@ -16295,6 +16295,7 @@ auto=cantblock
 text=Equipped creature gets +2/+2 and can't block. -- Equip {3}
 mana={1}
 type=Artifact
+subtype=Equipment
 [/card]
 [card]
 name=Copper Gnomes
@@ -17412,7 +17413,7 @@ name=Crop Rotation
 auto=moveTo(mybattlefield) target(land|myLibrary)
 text=As an additional cost to cast Crop Rotation, sacrifice a land. -- Search your library for a land card and put that card onto the battlefield. Then shuffle your library.
 mana={G}{S(land|mybattlefield)}
-type=instant
+type=Instant
 [/card]
 [card]
 name=Crosis, the Purger
@@ -18968,7 +18969,7 @@ auto=@tapped(mytgt):1/1 target(creature|battlefield) ueot
 text=Fortified land is indestructible. Whenever fortified land becomes tapped, target creature gets +1/+1 until end of turn. -- Fortify  ({3}: Attach to target land you control. Fortify only as a sorcery. This card comes into play unattached and stays in play if the land leaves play.)
 mana={2}
 type=Artifact
-subtype=Equipment
+subtype=Fortification
 [/card]
 [card]
 name=Darksteel Ingot
@@ -23750,7 +23751,7 @@ type=Sorcery
 name=Dryad Arbor
 text=(Dryad Arbor isn't a spell, it's affected by summoning sickness, and it has "{T}: Add {G} to your mana pool.") -- Dryad Arbor is green.
 color=green
-type=Creature Land
+type=Land Creature
 subtype=Forest Dryad
 power=1
 toughness=1
@@ -24637,7 +24638,7 @@ auto={0}:counter(-2/-2,-1) all(this) && notatarget(other creature|mybattlefield)
 text=First strike, trample -- At the beginning of your upkeep, put a -2/-2 counter on Ebon Praetor. -- Sacrifice a creature: Remove a -2/-2 counter from Ebon Praetor. If the sacrificed creature was a Thrull, put a +1/+0 counter on Ebon Praetor. Activate this ability only during your upkeep and only once each turn.
 mana={4}{B}{B}
 type=Creature
-subtype=Avatar
+subtype=Avatar Praetor
 power=5
 toughness=5
 [/card]
@@ -24980,7 +24981,7 @@ auto=upcost[{S(island|mybattlefield)}] sacrifice && damage:6 controller
 text=At the beginning of your upkeep, unless you sacrifice an Island, sacrifice Elder Spawn and it deals 6 damage to you. -- Elder Spawn can't be blocked by red creatures.
 mana={4}{U}{U}{U}
 type=Creature
-subtype=Elemental
+subtype=Spawn
 power=6
 toughness=6
 [/card]
@@ -33024,7 +33025,7 @@ auto=deplete:5 target(player)
 text=When Geralf's Mindcrusher enters the battlefield, target player puts the top 5 cards of his or her library into his or her graveyard. -- Undying
 mana={4}{U}{U}
 type=Creature
-subtype=Zombie
+subtype=Zombie Horror
 power=5
 toughness=5
 [/card]
@@ -34295,7 +34296,7 @@ abilities=infect
 text=Infect
 mana={G}
 type=Creature
-subtype=Elf
+subtype=Elf Warrior
 power=1
 toughness=1
 [/card]
@@ -34489,7 +34490,7 @@ toughness=3
 name=Gobhobbler Rats
 mana={B}{R}
 text=Hellbent -- As long as you have no cards in hand, Gobhobbler Rats gets +1/+0 and has "{B}: Regenerate Gobhobbler Rats."
-type=creature
+type=Creature
 subtype=Rat
 auto=aslongas(*|myhand) 1/0 <1
 auto=aslongas(*|myhand) {B}:regenerate <1
@@ -34812,7 +34813,7 @@ auto={T}:damage:1 target(player)
 text={T}: Goblin Fireslinger deals 1 damage to target player.
 mana={R}
 type=Creature
-subtype=Goblin
+subtype=Goblin Warrior
 power=1
 toughness=1
 [/card]
@@ -35830,7 +35831,7 @@ auto=bloodthirst:2
 text=Bloodthirst 2
 mana={2}{R}{R}
 type=Creature
-subtype=Minotaur warrior
+subtype=Minotaur Warrior
 power=3
 toughness=3
 [/card]
@@ -36537,7 +36538,7 @@ auto=@combat(blocking,blocked) source(this) from(creature[-black]):all(trigger[f
 text=At end of combat, put a -0/-2 counter on all creatures blocking or blocked by Greater Werewolf.
 mana={4}{B}
 type=Creature
-subtype=Human Wolf
+subtype=Werewolf
 power=2
 toughness=4
 [/card]
@@ -37759,8 +37760,8 @@ toughness=1
 [card]
 name=Gwafa Hazid, Profiteer
 mana={1}{W}{U}
-type=Creature
-subtype=Legendary Human Rogue
+type=Legendary Creature
+subtype=Human Rogue
 text={W}{U}, {T}: Put a bribery counter on target creature you don't control. Its controller draws a card. -- Creatures with bribery counters on them can't attack or block.
 power=2
 toughness=2
@@ -38721,7 +38722,7 @@ auto=tap
 text=As an additional cost to cast Headless Skaab, exile a creature card from your graveyard. -- Headless Skaab enters the battlefield tapped.
 mana={2}{U}{E(creature|mygraveyard)}
 type=Creature
-subtype=Zombie
+subtype=Zombie Warrior
 power=3
 toughness=6
 [/card]
@@ -41151,8 +41152,7 @@ name=Hunting Wilds
 target=<upto:2>forest|mylibrary
 auto=moveto(mybattlefield) and!(tap)!
 kicker={3}{G}
-auto=kicker all(forest|mybattlefield) untap
-auto=kicker all(forest|mybattlefield) becomes(Wilds Creature,3/3,haste) forever
+auto=kicker untap && becomes(Creature,3/3,haste,green) forever
 text=Kicker {3}{G} (You may pay an additional {3}{G} as you cast this spell.) -- Search your library for up to two Forest cards and put them onto the battlefield tapped. Then shuffle your library. -- If Hunting Wilds was kicked, untap all Forests put onto the battlefield this way. They become 3/3 green creatures with haste that are still lands.
 mana={3}{G}
 type=Sorcery
@@ -42279,7 +42279,7 @@ name=Inexorable Tide
 auto=@movedto(mystack) from(*|myhand):target(proliferation) proliferate
 text=Whenever you cast a spell, proliferate.
 mana={3}{U}{U}
-type=enchantment
+type=Enchantment
 [/card]
 [card]
 name=Infantry Veteran
@@ -42359,7 +42359,7 @@ name=Infernal Plunge
 auto=add{R}{R}{R}
 text=As an additional cost to cast Infernal Plunge, sacrifice a creature. -- Add {R}{R}{R} to your mana pool.
 mana={R}{S(creature|myBattlefield)}
-type=Instant
+type=Sorcery
 [/card]
 [card]
 name=Infernal Tribute
@@ -47550,7 +47550,7 @@ auto=@combat(attacking) source(this):all(other creature[attacking]) 1/0 ueot
 text=Battle cry (Whenever this creature attacks, each other attacking creature gets +1/+0 until end of turn.) -- Kuldotha Ringleader attacks each turn if able.
 mana={4}{R}
 type=Creature
-subtype=Ogre Warrior
+subtype=Giant Berserker
 power=4
 toughness=4
 [/card]
@@ -48792,7 +48792,7 @@ auto=@movedto(*|myhand):all(*[-land]|myhand) flash
 auto=all(*[-land]|myhand) flash
 text=If Leyline of Anticipation is in your opening hand, you may begin the game with it on the battlefield. -- You may cast nonland cards as though they had flash. (You may cast them any time you could cast an instant.)
 mana={u}{u}{2}
-type=enchantment
+type=Enchantment
 abilities=leyline
 [/card]
 [card]
@@ -48800,7 +48800,7 @@ name=Leyline of the Meek
 auto=lord(*[token]) 1/1
 text=If Leyline of the Meek is in your opening hand, you may begin the game with it on the battlefield. -- Creature tokens get +1/+1.
 mana={w}{w}{2}
-type=enchantment
+type=Enchantment
 abilities=leyline
 [/card]
 [card]
@@ -49939,7 +49939,7 @@ auto=life:4
 text=When Lone Missionary enters the battlefield, gain 4 life.
 mana={1}{W}
 type=Creature
-subtype=Kor Cleric
+subtype=Kor Monk
 power=2
 toughness=1
 [/card]
@@ -50265,7 +50265,7 @@ auto=lord(warrior,berserker,other barbarian) haste
 text=Warrior, Berserker, and Barbarian creatures get +2/+2 and have haste.
 mana={3}{R}{R}
 type=Legendary Creature
-subtype=Human barbarian
+subtype=Human
 power=3
 toughness=3
 [/card]
@@ -55587,7 +55587,7 @@ abilities=flying
 text=Flying
 mana={3}{U}
 type=Creature
-subtype=Bird Spirit
+subtype=Spirit Bird
 power=3
 toughness=2
 [/card]
@@ -57096,7 +57096,7 @@ subtype=Aura
 [/card]
 [card]
 name=Mystifying Maze
-type=land
+type=Land
 auto={t}:add{1}
 auto={4}{t}:target(creature[attacking]|opponentbattlefield) (blink)ueot return(tap)
 [/card]
@@ -57578,7 +57578,7 @@ abilities=undying
 text=Undying (When this creature dies, if it had no +1/+1 counters on it, return it to the battlefield under its owner's control with a +1/+1 counter on it.)
 mana={4}{R}
 type=Creature
-subtype=Vampire
+subtype=Vampire Rogue
 power=4
 toughness=1
 [/card]
@@ -58464,7 +58464,7 @@ auto=swampwalk
 auto=draw:1 controller
 text=Target creature gains swampwalk until end of turn. -- Draw a card.
 mana={B}
-type=Instant
+type=Sorcery
 [/card]
 [card]
 name=Nightmare
@@ -62585,7 +62585,7 @@ auto=@combatdamaged(player) from(this):winGame controller
 text=When Phage the Untouchable enters the battlefield, if you didn't cast it from your hand, you lose the game. Whenever Phage deals combat damage to a creature, destroy that creature. It can't be regenerated. -- Whenever Phage deals combat damage to a player, that player loses the game.
 mana={3}{B}{B}{B}{B}
 type=Legendary Creature
-subtype=Minion
+subtype=Zombie Minion
 power=4
 toughness=4
 [/card]
@@ -65266,7 +65266,7 @@ auto=@counterremoved(1/1) from(this):phaseaction[next,once,endofturn] counter(1/
 text=Protean Hydra enters the battlefield with X +1/+1 counters on it. -- If damage would be dealt to Protean Hydra, prevent that damage and remove that many +1/+1 counters from it. -- Whenever a +1/+1 counter is removed from Protean Hydra, put two +1/+1 counters on it at the beginning of the next end step.
 mana={X}{G}
 type=Creature
-subtype=hydra
+subtype=Hydra
 power=0
 toughness=0
 [/card]
@@ -71182,7 +71182,7 @@ auto=@movedTo(graveyard) from(this|battlefield):phaseaction[endofturn once] toke
 text=When Rukh Egg dies, put a 4/4 red Bird creature token with flying onto the battlefield at the beginning of the next end step.
 mana={3}{R}
 type=Creature
-subtype=Egg
+subtype=Bird
 power=0
 toughness=3
 [/card]
@@ -71391,7 +71391,7 @@ auto={T}:Add{R}
 auto={T}:Add{U}
 auto={T}:Add{W}
 text=Rupture Spire enters the battlefield tapped. When Rupture Spire enters the battlefield, sacrifice it unless you pay .{t}: Add one mana of any color to your mana pool.
-type=land
+type=Land
 [/card]
 [card]
 name=Rush of Blood
@@ -72379,7 +72379,7 @@ auto={B}{S(creature|myBattlefield)}:destroy all(creature[manacost=storedmanacost
 text={B}, Sacrifice a creature: Destroy each creature with the same converted mana cost as the sacrificed creature.
 mana={6}{B}{B}
 type=Creature
-subtype=Avatar
+subtype=Avatar Praetor
 power=7
 toughness=5
 [/card]
@@ -76850,7 +76850,7 @@ abilities=cantblock,undying
 text=Sightless Ghoul can't block. -- Undying
 mana={3}{B}
 type=Creature
-subtype=Zombie
+subtype=Zombie Soldier
 power=2
 toughness=2
 [/card]
@@ -77229,6 +77229,7 @@ auto=teach(creature) transforms((artifact))
 text=Equipped creature gets +1/+1 and is an artifact in addition to its other types. -- Equip {2}
 mana={2}
 type=Artifact
+subtype=Equipment
 [/card]
 [card]
 name=Silverstorm Samurai
@@ -77800,6 +77801,7 @@ auto=livingweapontoken(Germ,Creature Germ,0/0,black)
 text=Living weapon (When this Equipment enters the battlefield, put a 0/0 black Germ creature token onto the battlefield, then attach this to it.) -- Equipped creature gets +2/+2 and has flying. -- Equip {4}
 mana={4}
 type=Artifact
+subtype=Equipment
 [/card]
 [card]
 name=Skirge Familiar
@@ -81230,7 +81232,7 @@ name=Spike Colony
 text=Spike Colony enters the battlefield with a +1/+1 counter on it. -- {2}, Remove a +1/+1 counter from Spike Colony: Put a +1/+1 counter on target creature.
 mana={4}{G}
 type=Creature
-subtype=Spike Colony
+subtype=Spike
 auto=counter(1/1,4)
 auto={2}{C(1/1,-1)}:counter(1/1,1) target(creature)
 power=0
@@ -81486,7 +81488,7 @@ auto=aslongas(artifact|mybattlefield) double strike >2
 text=Metalcraft - Spiraling Duelist has double strike as long as you control three or more artifacts.
 mana={2}{R}{R}
 type=Creature
-subtype=Human Knight
+subtype=Human Berserker
 power=4
 toughness=2
 [/card]
@@ -82015,7 +82017,7 @@ auto={1}{G}:regenerate target(creature[counter{1/1.1}])
 text=Graft 2 (This creature enters the battlefield with two +1/+1 counters on it. Whenever another creature enters the battlefield, you may move a +1/+1 counter from this creature onto it.) -- {1}{G}: Regenerate target creature with a +1/+1 counter on it.
 mana={3}{G}
 type=Creature
-subtype=Human Mutant
+subtype=Troll Mutant
 power=0
 toughness=0
 [/card]
@@ -83961,7 +83963,7 @@ auto=@combatdamaged(player) from(this):counter(1/1,1)
 text=Whenever Stromkirk Patrol deals combat damage to a player, put a +1/+1 counter on it.
 mana={4}{B}
 type=Creature
-subtype=Vampire
+subtype=Vampire Soldier
 power=4
 toughness=3
 [/card]
@@ -85160,7 +85162,7 @@ auto={2}:equip
 text=Equipped creature gets +2/+2 and has protection from black and from green. -- Whenever equipped creature deals combat damage to a player, that player discards a card and you untap all lands you control. -- Equip {2}
 mana={3}
 type=Artifact
-subtype=equipment
+subtype=Equipment
 [/card]
 [card]
 name=Sword of Fire and Ice
@@ -86229,7 +86231,7 @@ auto=damage:1
 auto=life:1 controller
 text=Taste of Blood deals 1 damage to target player and you gain 1 life.
 mana={B}
-type=Instant
+type=Sorcery
 [/card]
 [card]
 name=Taste of Paradise
@@ -89400,7 +89402,7 @@ auto=@each upkeep restriction{lastturn(*|stack)~lessthan~1}:flip(Rampaging Werew
 text=At the beginning of each upkeep, if no spells were cast last turn, transform Tormented Pariah.
 mana={3}{R}
 type=Creature
-subtype=Human Werewolf
+subtype=Human Warrior Werewolf
 power=3
 toughness=2
 [/card]
@@ -90268,7 +90270,7 @@ auto=aslongas(*|mygraveyard) transforms((,newability[@movedTo(this|graveyard) fr
 text=Threshold - As long as seven or more cards are in your graveyard, Treacherous Werewolf gets +2/+2 and has "When Treacherous Werewolf dies, you lose 4 life."
 mana={2}{B}
 type=Creature
-subtype=Human Wolf Minion
+subtype=Werewolf Minion
 power=2
 toughness=2
 [/card]
@@ -91114,7 +91116,7 @@ auto=choice name(untap all creatures) untap all(creature|targetedpersonsbattlefi
 auto=choice name(untap all artifacts) untap all(artifact|targetedpersonsbattlefield)
 auto=choice name(untap all lands) untap all(land|targetedpersonsbattlefield)
 text=Choose artifact, creature, or land. Tap all untapped permanents of the chosen type target player controls, or untap all tapped permanents of that type that player controls.
-type=instant
+type=Instant
 mana={2}{U}{U}
 [/card]
 [card]
@@ -92446,18 +92448,21 @@ name=Urza's Mine
 auto={t}:name(Add Mana) if type(Urza's Tower|mybattlefield)~morethan~0,type(Urza's Power Plant|mybattlefield)~morethan~0 then add{2} else add{1}
 text={T}: Add {1} to your mana pool. If you control an Urza's Power-Plant and an Urza's Tower, add {2} to your mana pool instead.
 type=Land
+subtype=Urza's Mine
 [/card]
 [card]
 name=Urza's Power Plant
 auto={t}:name(Add Mana) if type(Urza's Tower|mybattlefield)~morethan~0,type(Urza's Mine|mybattlefield)~morethan~0 then add{2} else add{1}
 text={T}: Add {1} to your mana pool. If you control an Urza's Mine and an Urza's Tower, add {2} to your mana pool instead.
 type=Land
+subtype=Urza's Power-Plant
 [/card]
 [card]
 name=Urza's Tower
 auto={t}:name(Add Mana) if type(Urza's Power Plant|mybattlefield)~morethan~0,type(Urza's Mine|mybattlefield)~morethan~0 then add{3} else add{1}
 text={T}: Add {1} to your mana pool. If you control an Urza's Mine and an Urza's Power-Plant, add {3} to your mana pool instead.
 type=Land
+subtype=Urza's Tower
 [/card]
 [card]
 name=Uthden Troll
@@ -94447,6 +94452,7 @@ auto=first strike
 text=Equipped creature gets +1/+0 and has first strike. -- Equip {2}
 mana={2}
 type=Artifact
+subtype=Equipment
 [/card]
 [card]
 name=Viridian Corrupter
@@ -95529,7 +95535,7 @@ abilities=protection from red
 text=Protection from red
 mana={1}{R}{R}
 type=Creature
-subtype=Human warrior
+subtype=Human Warrior
 power=3
 toughness=2
 [/card]
@@ -96538,7 +96544,6 @@ auto=phaseaction[opponent untap] becomes(Gargoyle Artifact Creature,2/3,flying,a
 text=Warden of the Wall enters the battlefield tapped. -- {T}: Add 1 to your mana pool. -- As long as it's not your turn, Warden of the Wall is a 2/3 Gargoyle artifact creature with flying.
 mana={3}
 type=Artifact
-subtype=Equipment
 [/card]
 [card]
 name=Wargate
@@ -97353,7 +97358,7 @@ type=Sorcery
 name=Wheel of Torture
 auto=@each opponent upkeep:damage:0 && if type(*|opponenthand)~equalto~2 then damage:1 opponent && if type(*|opponenthand)~equalto~1 then damage:2 opponent && if type(*|opponenthand)~equalto~0 then damage:3 opponent
 text=At the beginning of each opponent's upkeep, Wheel of Torture deals X damage to that player, where X is 3 minus the number of cards in his or her hand.
-type=artifact
+type=Artifact
 mana={3}
 [/card]
 [card]
@@ -100476,7 +100481,7 @@ auto={2}{B}:2/2
 text={2}{B}:Zof Shade gets +2/+2 until end of turn.
 mana={3}{B}
 type=Creature
-subtype=Horror
+subtype=Shade
 power=2
 toughness=2
 [/card]

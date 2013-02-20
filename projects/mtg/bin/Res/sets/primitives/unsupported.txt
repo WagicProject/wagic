@@ -9569,6 +9569,14 @@ type=Tribal Enchantment
 subtype=Treefolk Aura
 [/card]
 [card]
+name=Liliana of the Veil
+auto=counter(0/0,3,loyalty)
+text=+1: Each player discards a card. -- -2: Target player sacrifices a creature. -- -6: Separate all permanents target player controls into two piles. That player sacrifices all permanents in the pile of his or her choice.
+mana={1}{B}{B}
+type=Planeswalker
+subtype=Liliana
+[/card]
+[card]
 name=Lilting Refrain
 text=At the beginning of your upkeep, you may put a verse counter on Lilting Refrain. -- Sacrifice Lilting Refrain: Counter target spell unless its controller pays {X}, where X is the number of verse counters on Lilting Refrain.
 mana={1}{U}
@@ -13456,12 +13464,6 @@ mana={U}
 type=Enchantment
 [/card]
 [card]
-name=Quest for the Holy Relic
-text=Whenever you cast a creature spell, you may put a quest counter on Quest for the Holy Relic. -- Remove five quest counters from Quest for the Holy Relic and sacrifice it: Search your library for an Equipment card, put it onto the battlefield, and attach it to a creature you control. Then shuffle your library.
-mana={W}
-type=Enchantment
-[/card]
-[card]
 name=Question Elemental?
 mana={2}{U}{U}
 type=Creature — Elemental
@@ -13668,6 +13670,7 @@ subtype=Bird
 power=1
 toughness=2
 [/card]
+#@targeted(controller) don't work 
 [card]
 name=Rayne, Academy Chancellor
 text=Whenever you or a permanent you control becomes the target of a spell or ability an opponent controls, you may draw a card, and if Rayne, Academy Chancellor is enchanted, you may draw another card.
@@ -13708,8 +13711,10 @@ subtype=Wall
 power=2
 toughness=1
 [/card]
+#crappy
 [card]
 name=Read the Runes
+auto=transforms((,newability[@drawn(controller):name(discard or sacrifice) ability$!choice reject notatarget(*|myhand) _ if type(*|myhand)~morethan~0 then if type(*|mybattlefield)~morethan~0 then choice sacrifice notatarget(*|mybattlefield)!$ controller],newability[draw:castx]))
 text=Draw X cards. For each card drawn this way, discard a card unless you sacrifice a permanent.
 mana={X}{U}
 type=Instant
@@ -16068,6 +16073,16 @@ mana={2}{G}
 type=Enchantment
 subtype=Aura
 text=Enchant creature Enchanted creature gets +1/+1 and has "Whenever this creature deals damage to an opponent, you may draw a card." Totem armor (If enchanted creature would be destroyed, instead remove all damage from it and destroy this Aura.)
+[/card]
+[card]
+name=Snapcaster Mage
+abilities=flash
+text=When Snapcaster Mage enters the battlefield, target instant or sorcery card in your graveyard gains flashback until end of turn. The flashback cost is equal to its mana cost. (You may cast that card from your graveyard for its flashback cost. Then exile it.)
+mana={1}{U}
+type=Creature
+subtype=Human Wizard
+power=2
+toughness=1
 [/card]
 [card]
 name=Snowblind
