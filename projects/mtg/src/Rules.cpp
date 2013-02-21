@@ -156,17 +156,21 @@ void Rules::addExtraRules(GameObserver* g)
             int difficultyRating = 0;
             int Optimizedhandcheat = options[Options::OPTIMIZE_HAND].number;
             MTGAbility * a = af.parseMagicLine(initState.playerData[i].extraRules[j], id++, NULL, &(g->ExtraRules[i]));
-            if (p->playMode != Player::MODE_TEST_SUITE && g->mRules->gamemode != GAME_TYPE_MOMIR && g->mRules->gamemode
-                != GAME_TYPE_RANDOM1 && g->mRules->gamemode != GAME_TYPE_RANDOM2 && g->mRules->gamemode
-                != GAME_TYPE_STORY && 
-				g->mRules->gamemode != GAME_TYPE_DEMO && (!g->players[0]->playMode == PLAYER_TYPE_CPU && !g->players[1]->playMode == PLAYER_TYPE_CPU)
-#ifdef NETWORK_SUPPORT
-                && !(g->players[1]->playMode == Player::MODE_HUMAN)
-#endif //NETWORK_SUPPORT
-                    )//keep this out of momir and other game modes.
-            {
+
+            if (p->isAI() && (p->playMode == Player::MODE_AI && p->opponent()->playMode== Player::MODE_AI))
+                difficultyRating = 0;
+            else if (g->players[1]->playMode == Player::MODE_HUMAN)
+                difficultyRating = 0;
+            else if (p->playMode == Player::MODE_TEST_SUITE)
+                difficultyRating = 0;
+            else if (g->mRules->gamemode == GAME_TYPE_MOMIR)
+                difficultyRating = 0;
+            else if(g->mRules->gamemode == GAME_TYPE_RANDOM1 || g->mRules->gamemode == GAME_TYPE_RANDOM2)
+                difficultyRating = 0;
+            else if (g->mRules->gamemode == GAME_TYPE_STORY)
+                difficultyRating = 0;
+            else if (a->aType == MTGAbility::STANDARD_DRAW)
                 difficultyRating = g->getDeckManager()->getDifficultyRating(g->players[0], g->players[1]);
-            }
 
             if (a)
             {
@@ -174,13 +178,23 @@ void Rules::addExtraRules(GameObserver* g)
                 a->canBeInterrupted = false;
                 if (a->oneShot)
                 {
-                    if (((p->isAI() && p->playMode
-                        != Player::MODE_AI && p->opponent()->playMode
-                        != Player::MODE_AI)||( !p->isAI() && Optimizedhandcheat)) && a->aType == MTGAbility::STANDARD_DRAW &&
-                        difficultyRating != HARD && p->playMode
-                        != Player::MODE_TEST_SUITE && g->mRules->gamemode != GAME_TYPE_MOMIR && g->mRules->gamemode
-                        != GAME_TYPE_RANDOM1 && g->mRules->gamemode != GAME_TYPE_RANDOM2 && g->mRules->gamemode
-                        != GAME_TYPE_STORY)//stupid protections to keep this out of mimor and other game modes.
+                    if (p->isAI() && (p->playMode == Player::MODE_AI && p->opponent()->playMode== Player::MODE_AI))
+                        a->resolve();
+                    else if (a->aType == MTGAbility::STANDARD_DRAW && difficultyRating == HARD)
+                        a->resolve();
+                    else if (a->aType != MTGAbility::STANDARD_DRAW)
+                        a->resolve();
+                    else if (!p->isAI() && !Optimizedhandcheat)
+                        a->resolve();
+                    else if (p->playMode == Player::MODE_TEST_SUITE)
+                        a->resolve();
+                    else if (g->mRules->gamemode == GAME_TYPE_MOMIR)
+                        a->resolve();
+                    else if(g->mRules->gamemode == GAME_TYPE_RANDOM1 || g->mRules->gamemode == GAME_TYPE_RANDOM2)
+                        a->resolve();
+                    else if (g->mRules->gamemode == GAME_TYPE_STORY)
+                        a->resolve();
+                    else//stupid protections to keep this out of mimor and other game modes.
                     {
                         handsize = ((AADrawer *)a)->getNumCards();
                         if(difficultyRating == EASY)
@@ -198,11 +212,7 @@ void Rules::addExtraRules(GameObserver* g)
                             hand->OptimizedHand(p,handsize, 3, 1, 3);//no rating fall out case.
                         }
                     }
-                    else
-                    {//resolve normally if the deck is listed as hard.
-                        a->resolve();
-                    }
-                    delete (a);
+                    SAFE_DELETE(a);
                 }
                 else
                 {

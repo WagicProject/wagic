@@ -229,6 +229,14 @@ int DeckManager::getDifficultyRating(Player *statsPlayer, Player *player)
     if(player->deckFile != "")
     {
         DeckMetaData *meta = getDeckMetaDataByFilename(player->deckFile, (player->isAI() == 1) );
+
+        if (meta)
+        {
+            int diff = meta->getVictoryPercentage();
+            meta->mPlayerDeck = statsPlayer->GetCurrentDeckStatsFile();
+            meta->mStatsFilename = player->deckFileSmall;
+            meta->LoadStats();
+        }
         return meta->getDifficulty();
     }
     else

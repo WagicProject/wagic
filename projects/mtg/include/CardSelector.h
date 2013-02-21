@@ -76,6 +76,7 @@ protected:
     stack<SelectorMemory> memoryStack;
 
     PlayGuiObject* fetchMemory(SelectorMemory&);
+    float timer;
 
 public:
     CardSelector(GameObserver *observer, DuelLayers*);

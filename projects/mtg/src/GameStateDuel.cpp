@@ -971,8 +971,19 @@ void GameStateDuel::OnScroll(int inXVelocity, int inYVelocity)
     // ignore magnitude for now, since no action requires scrolling
     if (abs(inYVelocity) > 300)
     {
-        bool flickUpwards = (inYVelocity < 0);
-        mEngine->HoldKey_NoRepeat(flickUpwards ? JGE_BTN_PREV : JGE_BTN_SEC);
+        /*bool flickUpwards = (inYVelocity < 0);*/
+        mEngine->HoldKey_NoRepeat(/*flickUpwards ? JGE_BTN_PREV : */JGE_BTN_SEC);
+        //removing the activation of "left trigger" or "advance phase" because on high end tablets this gesture
+        //is picked up by simply looking at the cards in your hand if the resolution of tablet exceed 1800 X ANY.
+    }
+    if (abs(inXVelocity) > 300)
+    {
+        bool flickLeft = (inYVelocity > 0);
+        if(flickLeft)
+        {
+            JButton trigger = (options[Options::REVERSETRIGGERS].number ? JGE_BTN_PREV : JGE_BTN_NEXT);
+            mEngine->HoldKey_NoRepeat(trigger);
+        }
     }
 }
 

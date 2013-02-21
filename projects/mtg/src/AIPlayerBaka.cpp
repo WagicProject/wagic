@@ -2448,7 +2448,7 @@ int AIPlayerBaka::Act(float dt)
     oldGamePhase = currentGamePhase;
 
     if (mFastTimerMode)
-        timer -= 1;
+        timer -= dt*3;
     else 
         timer -= dt;
     if (timer > 0)

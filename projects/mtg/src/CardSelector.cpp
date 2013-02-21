@@ -176,7 +176,7 @@ bool CardSelector::CheckUserInput(JButton key)
         return true;
     }
     Target* oldactive = active;
-
+    timer = 250;
     int x,y;
     JGE* jge = observer->getInput();
     if(!jge) return false;
@@ -304,6 +304,10 @@ switch_active:
         if (active)
             active->Entering();
     }
+    else
+    {
+        timer = 250;
+    }
     return true;
 }
 
@@ -319,6 +323,13 @@ void CardSelector::Update(float dt)
         position = CardGui::BigWidth / 2;
     bigpos.x = position;
     bigpos.Update(dt);
+    //what i really wanted for this was when you remove your finger from the screen or the pointer of your mouse from the screen area
+    //i wanted it to reduce the show timer to 0, which keeps the big image from displaying. 
+    //couldn't find a method to check if the finger was still touching the screen that wouldn't break mouse support.
+    //so instead regitering movement resets the timer, which is set to display for about 5 secs;
+    //if it gets too annoying we can increase or remove this.
+    if(timer > 0)
+    timer -= 1;
 }
 
 void CardSelector::Render()
@@ -326,9 +337,10 @@ void CardSelector::Render()
     if (active)
     {
         active->Render();
-        if (CardView* card = dynamic_cast<CardView*>(active))
+        if (CardView* card = dynamic_cast<CardView*>(active) )
         {
-            card->DrawCard(bigpos, mDrawMode);
+            if(timer > 0)
+                card->DrawCard(bigpos, mDrawMode);
         }
     }
 }

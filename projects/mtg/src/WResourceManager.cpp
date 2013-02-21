@@ -1166,7 +1166,11 @@ cacheItem* WCache<cacheItem, cacheActual>::Get(int id, const string& filename, i
     Cleanup();
 
     // check if we're doing a card lookup
-    if (submode & TEXTURE_SUB_CARD)
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /*  commented out for the following reason:
+    cardgui updates so quick that the only reason a person would notice a cache miss is because it takes the 
+    engine longer to switch the card quad from kGeneric to the actual image, than it does to just let the update pass.
+  if (submode & TEXTURE_SUB_CARD)
     {
         // processing a cache miss, return a generic card & queue up an async read
 
@@ -1178,8 +1182,9 @@ cacheItem* WCache<cacheItem, cacheActual>::Get(int id, const string& filename, i
 
         CacheEngine::Instance()->QueueRequest(filename, submode, lookup);
         return it->second;
-    }
-
+    } 
+    */
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //Space in cache, make new texture
     return LoadIntoCache(lookup, filename, submode, style);
 }
