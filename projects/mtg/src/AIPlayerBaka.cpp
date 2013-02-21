@@ -1891,7 +1891,7 @@ MTGCardInstance * AIPlayerBaka::activateCombo()
 void AIPlayerBaka::initTimer()
 {
     if (mFastTimerMode)
-        timer = 0; //0 or 1 is as fast as possible and will generate bad side effects in the game engine (phases getting skipped...), use wisely
+        timer = 0.07f; //0 or 1 is as fast as possible and will generate bad side effects in the game engine (phases getting skipped...), use wisely
     else
         timer = 0.1f;
 }
