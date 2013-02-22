@@ -8934,7 +8934,7 @@ toughness=5
 name=Bloodlord of Vaasgoth
 abilities=flying
 auto=bloodthirst:3
-auto=lord(creature[vampire]|mybattlefield) bloodthirst:3
+auto=lord(other creature[vampire]|mynonbattlezone) transforms((,newability[if casted(this) then bloodthirst:3]))
 text=Bloodthirst 3 -- Flying -- Whenever you cast a Vampire creature spell, it gains bloodthirst 3.
 mana={3}{B}{B}
 type=Creature
@@ -46439,10 +46439,7 @@ toughness=3
 [/card]
 [card]
 name=Kjeldoran Home Guard
-auto=@combat(attacking) source(this):phaseaction[combatends,sourceinplay] counter(0/-1,1)
-auto=@combat(attacking) source(this):phaseaction[combatends,sourceinplay] token(Deserter,Creature Deserter,0/1,white)
-auto=@combat(blocking) source(this):phaseaction[combatends,sourceinplay] counter(0/-1,1)
-auto=@combat(blocking) source(this):phaseaction[combatends,sourceinplay] token(Deserter,Creature Deserter,0/1,white)
+auto=@combat(attacking,blocking) source(this):phaseactionmulti[combatends once,sourceinplay] counter(0/-1,1) && token(Deserter,Creature Deserter,0/1,white)
 text=At end of combat, if Kjeldoran Home Guard attacked or blocked this combat, put a -0/-1 counter on Kjeldoran Home Guard and put a 0/1 white Deserter creature token onto the battlefield.
 mana={3}{W}
 type=Creature
