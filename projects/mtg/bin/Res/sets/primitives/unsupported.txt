@@ -14986,12 +14986,6 @@ power=3
 toughness=3
 [/card]
 [card]
-name=Scapeshift
-text=Sacrifice any number of lands. Search your library for that many land cards, put them onto the battlefield tapped, then shuffle your library.
-mana={2}{G}{G}
-type=Sorcery
-[/card]
-[card]
 name=Scarab of the Unseen
 text={T}, Sacrifice Scarab of the Unseen: Return all Auras attached to target permanent you own to their owners' hands. Draw a card at the beginning of the next turn's upkeep.
 mana={2}
@@ -15099,15 +15093,6 @@ text={T}: Add {1} to your mana pool. -- {1}{S}i}, {T}: Look at the top card of y
 type=Snow Land
 [/card]
 [card]
-name=Scuttlemutt
-text={T}: Add one mana of any color to your mana pool. -- {T}: Target creature becomes the color or colors of your choice until end of turn.
-mana={3}
-type=Artifact Creature
-subtype=Scarecrow
-power=2
-toughness=2
-[/card]
-[card]
 name=Scythe Specter
 mana={4}{B}{B}
 type=Creature
@@ -15148,6 +15133,7 @@ text=When Search the City enters the battlefield, exile the top five cards of yo
 mana={4}{U}
 type=Enchantment
 [/card]
+#must target player and target creature that player controls legally
 [card]
 name=Searing Blaze
 text=Searing Blaze deals 1 damage to target player and 1 damage to target creature that player controls. -- Landfall - If you had a land enter the battlefield under your control this turn, Searing Blaze deals 3 damage to that player and 3 damage to that creature instead.
@@ -15242,6 +15228,10 @@ mana={1}{B}
 type=Enchantment
 subtype=Aura
 [/card]
+# 6/1/2005: Damage that can't be prevented still causes counters to be removed from Sekki and puts creature tokens onto the battlefield.
+# 6/1/2005: Creature tokens are put onto the battlefield even if there are no more +1/+1 counters to remove. For example, attempting to deal 9 damage to Sekki causes its replacement effect to 1) prevent the 9 damage, 2) remove all eight of the +1/+1 counters, and 3) put nine Spirit creature tokens onto the battlefield.
+# 6/1/2005: Increasing Sekki's toughness with a card like Indomitable Will allows Sekki to prevent damage and make tokens even it if has no +1/+1 counters to be removed.
+# 8/1/2005: You can sacrifice any eight Spirits to pay for Sekki's activated ability, not just the Spirit creature tokens.
 [card]
 name=Sekki, Seasons' Guide
 text=Sekki, Seasons' Guide enters the battlefield with eight +1/+1 counters on it. -- If damage would be dealt to Sekki, prevent that damage, remove that many +1/+1 counters from Sekki, and put that many 1/1 colorless Spirit creature tokens onto the battlefield. -- Sacrifice eight Spirits: Return Sekki from your graveyard to the battlefield.
@@ -15529,22 +15519,6 @@ power=1
 toughness=3
 [/card]
 [card]
-name=Shieldmage Elder
-text=Tap two untapped Clerics you control: Prevent all damage target creature would deal this turn. -- Tap two untapped Wizards you control: Prevent all damage target spell would deal this turn.
-mana={5}{W}
-type=Creature
-subtype=Human Cleric Wizard
-power=2
-toughness=3
-[/card]
-[card]
-name=Shields of Velis Vel
-text=Changeling (This card is every creature type at all times.) -- Creatures target player controls get +0/+1 and gain all creature types until end of turn.
-mana={W}
-type=Tribal Instant
-subtype=Shapeshifter
-[/card]
-[card]
 name=Shifting Borders
 text=Exchange control of two target lands. -- Splice onto Arcane {3}{U} (As you cast an Arcane spell, you may reveal this card from your hand and pay its splice cost. If you do, add this card's effects to that spell.)
 mana={3}{U}
@@ -15628,12 +15602,6 @@ type=Creature — Treefolk
 power=3
 toughness=3
 text=Shoe Tree comes into play with up to two shoe counters on it. Use your shoes as counters. Shoe Tree gets +1/+1 for each shoe counter on it.
-[/card]
-[card]
-name=Show and Tell
-text=Each player may put an artifact, creature, enchantment, or land card from his or her hand onto the battlefield.
-mana={2}{U}
-type=Sorcery
 [/card]
 [card]
 name=Shred Memory

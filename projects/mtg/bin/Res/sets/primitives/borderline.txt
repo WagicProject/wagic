@@ -189,6 +189,13 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Scapeshift
+auto=choice notatarget(<anyamount>land|mybattlefield) sacrifice && ability$!moveto(mybattlefield) notatarget(land|mylibrary) and!(tap)!!$ controller
+text=Sacrifice any number of lands. Search your library for that many land cards, put them onto the battlefield tapped, then shuffle your library.
+mana={2}{G}{G}
+type=Sorcery
+[/card]
+[card]
 name=Scent of Cinder
 target=creature
 auto=foreach(*[red]|myhand) damage:1

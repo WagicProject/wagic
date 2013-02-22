@@ -73746,6 +73746,50 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Scuttlemutt
+auto={T}:Add{G}
+auto={T}:Add{R}
+auto={T}:Add{U}
+auto={T}:Add{B}
+auto={T}:Add{W}
+auto={T}:name(white) target(creature) becomes(,white) ueot
+auto={T}:name(blue) target(creature) becomes(,blue) ueot
+auto={T}:name(black) target(creature) becomes(,black) ueot
+auto={T}:name(red) target(creature) becomes(,red) ueot
+auto={T}:name(green) target(creature) becomes(,green) ueot
+auto={T}:name(white & blue) target(creature) becomes(,white,blue) ueot
+auto={T}:name(blue & black) target(creature) becomes(,black,blue) ueot
+auto={T}:name(black & red) target(creature) becomes(,black,red) ueot
+auto={T}:name(red & green) target(creature) becomes(,red,green) ueot
+auto={T}:name(green & white) target(creature) becomes(,white,green) ueot
+auto={T}:name(white & black) target(creature) becomes(,white,black) ueot
+auto={T}:name(blue & red) target(creature) becomes(,red,blue) ueot
+auto={T}:name(black & green) target(creature) becomes(,black,green) ueot
+auto={T}:name(red & white) target(creature) becomes(,white,red) ueot
+auto={T}:name(green & blue) target(creature) becomes(,green,blue) ueot
+auto={T}:name(green & white & blue) target(creature) becomes(,green,white,blue) ueot
+auto={T}:name(white & blue & black) target(creature) becomes(,black,white,blue) ueot
+auto={T}:name(blue & black & red) target(creature) becomes(,black,red,blue) ueot
+auto={T}:name(black & red & green) target(creature) becomes(,green,black,red) ueot
+auto={T}:name(red & green & white) target(creature) becomes(,green,white,red) ueot
+auto={T}:name(white & black & green) target(creature) becomes(,green,white,black) ueot
+auto={T}:name(blue & red & white) target(creature) becomes(,red,white,blue) ueot
+auto={T}:name(black & green & blue) target(creature) becomes(,green,black,blue) ueot
+auto={T}:name(red & white & black) target(creature) becomes(,black,white,red) ueot
+auto={T}:name(green & blue & red) target(creature) becomes(,green,red,blue) ueot
+auto={T}:name(green & red & blue & black) target(creature) becomes(,green,red,blue,black) ueot
+auto={T}:name(green & red & blue & white) target(creature) becomes(,green,red,blue,white) ueot
+auto={T}:name(white & blue & black & red) target(creature) becomes(,white,red,blue,black) ueot
+auto={T}:name(white & blue & black & green) target(creature) becomes(,white,green,blue,black) ueot
+auto={T}:name(all colors) target(creature) becomes(,white,red,blue,black,green) ueot
+text={T}: Add one mana of any color to your mana pool. -- {T}: Target creature becomes the color or colors of your choice until end of turn.
+mana={3}
+type=Artifact Creature
+subtype=Scarecrow
+power=2
+toughness=2
+[/card]
+[card]
 name=Scuttling Death
 auto={S}:-1/-1 target(creature)
 auto=@movedTo(this|mygraveyard) from(myBattlefield):may moveTo(myhand) target(other spirit[manacost<=4]|mygraveyard)
@@ -75945,12 +75989,33 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Shieldmage Elder
+auto={T(cleric|myBattlefield)}{T(cleric|myBattlefield)}:name(prevent damage from creature) target(creature) transforms((,newability[preventalldamage from(this)])) ueot
+auto={T(wizard|myBattlefield)}{T(wizard|myBattlefield)}:name(prevent damage from spell) target(*|stack) transforms((,newability[preventalldamage from(this)])) ueot
+text=Tap two untapped Clerics you control: Prevent all damage target creature would deal this turn. -- Tap two untapped Wizards you control: Prevent all damage target spell would deal this turn.
+mana={5}{W}
+type=Creature
+subtype=Human Cleric Wizard
+power=2
+toughness=3
+[/card]
+[card]
 name=Shieldmate's Blessing
 target=creature,player
 auto=prevent:3
 text=Prevent the next 3 damage that would be dealt to target creature or player this turn.
 mana={W}
 type=Instant
+[/card]
+[card]
+name=Shields of Velis Vel
+abilities=changeling
+target=player
+auto=all(creature|targetedpersonsbattlefield) 0/1 && all(creature|targetedpersonsbattlefield) transforms((allsubtypes)) ueot
+text=Changeling (This card is every creature type at all times.) -- Creatures target player controls get +0/+1 and gain all creature types until end of turn.
+mana={W}
+type=Tribal Instant
+subtype=Shapeshifter
 [/card]
 [card]
 name=Shifting Sliver
@@ -76425,6 +76490,14 @@ auto=lord(creature) {T}:tap target(creature)
 text=Until end of turn, all creatures gain "{T}: Tap target creature."
 mana={2}{U}
 type=Instant
+[/card]
+[card]
+name=Show and Tell
+auto=moveto(ownerbattlefield) notatarget(*[creature;artifact;enchantment;land]|myhand)
+auto=ability$! moveto(ownerbattlefield) notatarget(*[creature;artifact;enchantment;land]|myhand) !$ opponent
+text=Each player may put an artifact, creature, enchantment, or land card from his or her hand onto the battlefield.
+mana={2}{U}
+type=Sorcery
 [/card]
 [card]
 name=Show of Valor
@@ -85684,7 +85757,7 @@ type=Sorcery
 [/card]
 [card]
 name=Talara's Battalion
-restrictions=casted(*[green]|mystack)
+restriction=casted(*[green]|mystack)
 abilities=trample
 text=Trample -- Cast Talara's Battalion only if you've cast another green spell this turn.
 mana={1}{G}
