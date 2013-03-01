@@ -125,10 +125,7 @@ void MTGPlayerCards::OptimizedHand(Player * who,int amount, int lands, int creat
 {
     //give the Ai hand adventage to insure a challanging match.
     GameObserver * game = who->getObserver();
-
-    if (!game->players[0]->isAI() && game->players[1]->isAI())
-    {
-        Player * p = who;
+        Player * p = dynamic_cast<Player*>(who);
         MTGCardInstance * card = NULL;
         MTGGameZone * z = p->game->library;
 
@@ -208,7 +205,6 @@ void MTGPlayerCards::OptimizedHand(Player * who,int amount, int lands, int creat
 
     }
     //----------------------------
-}
 
 void MTGPlayerCards::drawFromLibrary()
 {

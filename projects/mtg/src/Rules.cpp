@@ -158,7 +158,7 @@ void Rules::addExtraRules(GameObserver* g)
             MTGAbility * a = af.parseMagicLine(initState.playerData[i].extraRules[j], id++, NULL, &(g->ExtraRules[i]));
 
             if (p->isAI() && (p->playMode == Player::MODE_AI && p->opponent()->playMode== Player::MODE_AI))
-                difficultyRating = 0;
+                difficultyRating = 1;
             else if (g->players[1]->playMode == Player::MODE_HUMAN)
                 difficultyRating = 0;
             else if (p->playMode == Player::MODE_TEST_SUITE)
@@ -178,12 +178,18 @@ void Rules::addExtraRules(GameObserver* g)
                 a->canBeInterrupted = false;
                 if (a->oneShot)
                 {
-                    if (p->isAI() && (p->playMode == Player::MODE_AI && p->opponent()->playMode== Player::MODE_AI))
-                        a->resolve();
-                    else if (a->aType == MTGAbility::STANDARD_DRAW && difficultyRating == HARD)
+
+                    if (a->aType == MTGAbility::STANDARD_DRAW && difficultyRating == HARD)
                         a->resolve();
                     else if (a->aType != MTGAbility::STANDARD_DRAW)
                         a->resolve();
+                    else if (p->isAI() && (p->playMode == Player::MODE_AI && p->opponent()->playMode== Player::MODE_AI))
+                    {
+                        handsize = ((AADrawer *)a)->getNumCards();
+                        ((AIPlayer *) p)->forceBestAbilityUse = true;
+                        ((AIPlayer *) p)->agressivity += 100;
+                        hand->OptimizedHand(p,handsize, 3, 1, 3);
+                    }
                     else if (!p->isAI() && !Optimizedhandcheat)
                         a->resolve();
                     else if (p->playMode == Player::MODE_TEST_SUITE)
