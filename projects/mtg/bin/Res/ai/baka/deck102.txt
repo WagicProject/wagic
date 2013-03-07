@@ -1,7 +1,5 @@
 #NAME:The KOR
-#DESC:Can you beat your own creations?
-#DESC:User created AI Deck # 104
-Golem-Skin Gauntlets	 (MRD) *1
+#DESC:The Kor never stand down.Golem-Skin Gauntlets	 (MRD) *1
 Plains	 (8ED) *4
 Plains	 (8ED) *4
 Bonesplitter	 (MRD) *2
