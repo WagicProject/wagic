@@ -1736,9 +1736,8 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
             }
             else
             {
-                int chance = int(getRandomGenerator()->random() % 100);
-                if(chance > 1)
-                    continue;//1% chance to just continue evaluating the card to cast.
+                nextCardToPlay = NULL;
+                    continue;
             }
         }
         int currentCost = card->getManaCost()->getConvertedCost();

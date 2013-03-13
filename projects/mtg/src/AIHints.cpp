@@ -118,7 +118,7 @@ bool AIHints::HintSaysItsForCombo(GameObserver* observer,MTGCardInstance * card)
                     //here we disect the different parts of a given combo
                     part = hints[i]->combos[cPart];
                     hints[i]->partOfCombo = split(part,'^');
-                    for(unsigned int dPart = 0; dPart < hints[i]->partOfCombo.size(); dPart++)
+                    for(size_t dPart = hints[i]->partOfCombo.size()-1;dPart >= 0;dPart--)
                     {
                         vector<string>asTc;
                         asTc = parseBetween(hints[i]->partOfCombo[dPart],"hold(",")");
@@ -142,7 +142,9 @@ bool AIHints::HintSaysItsForCombo(GameObserver* observer,MTGCardInstance * card)
                         asTc = parseBetween(hints[i]->partOfCombo[dPart],"cast(",")");
                         if(asTc.size())
                         {
-                            hints[i]->cardTargets[asTc[1]] = parseBetween(hints[i]->partOfCombo[dPart],"targeting(",")")[1];
+                            vector<string>cht = parseBetween(hints[i]->partOfCombo[dPart],"targeting(",")");
+                            if(cht.size())
+                            hints[i]->cardTargets[asTc[1]] = cht[1];
                         }
                         asTc = parseBetween(hints[i]->partOfCombo[dPart],"totalmananeeded(",")");
                         if(asTc.size())
@@ -150,6 +152,8 @@ bool AIHints::HintSaysItsForCombo(GameObserver* observer,MTGCardInstance * card)
                             hints[i]->manaNeeded = asTc[1];
                             asTc.clear();
                         }
+                        if(dPart == 0)
+                            break;
                     }
                 }
             }//we collect the peices of a combo on first run.
