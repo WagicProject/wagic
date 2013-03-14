@@ -175,7 +175,7 @@ void GameStateDuel::Start()
             {
                 //translate deck creating desc
                 Translator * t = Translator::GetInstance();
-                string desc =  _("Highly recommended to get\nthe full Wagic experience!").c_str();
+                string desc =  _("Highly recommended to get the full Wagic experience!").c_str();
                 map<string, string>::iterator it = t->deckValues.find(_("Create your Deck!").c_str());
                 if (it != t->deckValues.end())
                     desc = it->second;

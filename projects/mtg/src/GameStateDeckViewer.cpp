@@ -206,11 +206,11 @@ void GameStateDeckViewer::buildEditorMenu()
     menu = NEW DeckEditorMenu(MENU_DECK_BUILDER, this, Fonts::OPTION_FONT, "Deck Editor", myDeck, stw);
 
     menu->Add(MENU_ITEM_FILTER_BY, _("Filter By...").c_str(), _("Narrow down the list of cards. ").c_str());
-    menu->Add(MENU_ITEM_SWITCH_DECKS_NO_SAVE, _("Switch Decks").c_str(), _("Do not make any changes.\nView another deck.").c_str());
+    menu->Add(MENU_ITEM_SWITCH_DECKS_NO_SAVE, _("Switch Decks").c_str(), _("Do not make any changes. View another deck.").c_str());
     menu->Add(MENU_ITEM_SAVE_RENAME, _("Rename Deck").c_str(), _("Change the name of the deck").c_str());
-    menu->Add(MENU_ITEM_SAVE_RETURN_MAIN_MENU, _("Save & Quit Editor").c_str(), _("Save changes.\nReturn to the main menu").c_str());
+    menu->Add(MENU_ITEM_SAVE_RETURN_MAIN_MENU, _("Save & Quit Editor").c_str(), _("Save changes. Return to the main menu").c_str());
     menu->Add(MENU_ITEM_SAVE_AS_AI_DECK, _("Save As AI Deck").c_str(), deckSummaryInformation.str());
-    menu->Add(MENU_ITEM_MAIN_MENU, _("Quit Editor").c_str(), _("Do not make any changes to deck.\nReturn to the main menu.").c_str());
+    menu->Add(MENU_ITEM_MAIN_MENU, _("Quit Editor").c_str(), _("Do not make any changes to deck. Return to the main menu.").c_str());
     menu->Add(MENU_ITEM_EDITOR_CANCEL, _("Cancel").c_str(), _("Close menu.").c_str());
 
 }
