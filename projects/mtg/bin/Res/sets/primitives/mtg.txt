@@ -8354,7 +8354,7 @@ type=Land
 [/card]
 [card]
 name=Blinkmoth Urn
-auto=@each myfirstmain sourcenottapped:all(artifact|mybattlefield) add{1}
+auto=@each my firstmain sourcenottapped:all(artifact|mybattlefield) add{1}
 auto=@each opponentfirstmain sourcenottapped:all(artifact|opponentbattlefield) add{1}
 text=At the beginning of each player's precombat main phase, if Blinkmoth Urn is untapped, that player adds {1} to his or her mana pool for each artifact he or she controls.
 mana={5}
@@ -10906,7 +10906,7 @@ toughness=1
 [card]
 name=Brood Sliver
 auto=@combatdamaged(opponent) from(sliver):may token(Sliver,Creature Sliver,1/1)
-auto=@combatdamaged(controller) from(sliver):token(Sliver,Creature Sliver,1/1) opponent
+auto=@combatdamaged(controller) from(sliver):may token(Sliver,Creature Sliver,1/1)
 text=Whenever a Sliver deals combat damage to a player, its controller may put a 1/1 colorless Sliver creature token onto the battlefield.
 mana={4}{G}
 type=Creature
@@ -30138,7 +30138,7 @@ subtype=Equipment
 name=Flayer of the Hatebound
 abilities=undying
 auto=@movedTo(this|mybattlefield) from(mygraveyard):all(trigger[to]) transforms((,newability[choice name(creature) dynamicability<!powerstrike!> target(creature)],newability[choice name(player) dynamicability<!powerstrike!> target(player)])) forever
-auto=@movedTo(creature|mybattlefield) from(mygraveyard):all(trigger[to]) transforms((,newability[choice name(creature) dynamicability<!powerstrike!> target(creature)],newability[choice name(player) dynamicability<!powerstrike!> target(player)]))
+auto=@movedTo(other creature|mybattlefield) from(mygraveyard):all(trigger[to]) transforms((,newability[choice name(creature) dynamicability<!powerstrike!> target(creature)],newability[choice name(player) dynamicability<!powerstrike!> target(player)]))
 text=Undying -- Whenever Flayer of the Hatebound or another creature enters the battlefield from your graveyard, that creature deals damage equal to its power to target creature or player.
 mana={5}{R}
 type=Creature
@@ -67012,7 +67012,8 @@ type=Artifact
 name=Rakdos the Defiler
 abilities=flying,trample
 auto=@combat(attacking) source(this):choice target(<halfuptype:*[-demon]:mybattlefield>*|mybattlefield) sacrifice
-auto=@combatdamaged(player) from(this):ability$!name(sacrifice) target(<halfuptype:*[-demon]:opponentbattlefield>*|mybattlefield) sacrifice!$ opponent
+auto=@combatdamaged(opponent) from(this):ability$!name(sacrifice) target(<halfuptype:*[-demon]:opponentbattlefield>*|mybattlefield) sacrifice!$ opponent
+auto=@combatdamaged(controller) from(this):ability$!name(sacrifice) target(<halfuptype:*[-demon]:opponentbattlefield>*|mybattlefield) sacrifice!$ controller
 text=Flying, trample -- Whenever Rakdos the Defiler attacks, sacrifice half the non-Demon permanents you control, rounded up. -- Whenever Rakdos deals combat damage to a player, that player sacrifices half the non-Demon permanents he or she controls, rounded up.
 mana={2}{B}{B}{R}{R}
 type=Legendary Creature
@@ -96171,7 +96172,7 @@ toughness=3
 [card]
 name=Wall of Reverence
 abilities=defender,flying
-auto=@each myendofturn:may target(creature|myBattlefield) dynamicability<!mytgt powerlifegain targetcontroller!>
+auto=@each my endofturn:may target(creature|myBattlefield) dynamicability<!mytgt powerlifegain targetcontroller!>
 text=Defender, flying -- At the beginning of your end step, you may gain life equal to the power of target creature you control.
 mana={3}{W}
 type=Creature
