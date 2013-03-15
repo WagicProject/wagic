@@ -118,7 +118,7 @@ bool AIHints::HintSaysItsForCombo(GameObserver* observer,MTGCardInstance * card)
                     //here we disect the different parts of a given combo
                     part = hints[i]->combos[cPart];
                     hints[i]->partOfCombo = split(part,'^');
-                    for(size_t dPart = hints[i]->partOfCombo.size()-1;dPart >= 0;dPart--)
+                    for(int dPart = int(hints[i]->partOfCombo.size()-1);dPart >= 0;dPart--)
                     {
                         vector<string>asTc;
                         asTc = parseBetween(hints[i]->partOfCombo[dPart],"hold(",")");
