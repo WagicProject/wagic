@@ -1846,8 +1846,15 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
     {
         if(!pMana->canAfford(nextCardToPlay->getManaCost()) || nextCardToPlay->getManaCost()->kicker)
             gotPayments = canPayMana(nextCardToPlay,nextCardToPlay->getManaCost());
-   DebugTrace(" AI wants to play card." << endl
+        DebugTrace(" AI wants to play card." << endl
             << "- Next card to play: " << (nextCardToPlay ? nextCardToPlay->name : "None" ) << endl );
+
+        if(hints && hints->HintSaysItsForCombo(observer,nextCardToPlay))
+        {
+            DebugTrace(" AI wants to play a card that belongs to a combo.")
+                nextCardToPlay = NULL;
+        }
+
     }
     return nextCardToPlay;
 }

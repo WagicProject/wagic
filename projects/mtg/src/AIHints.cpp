@@ -160,7 +160,7 @@ bool AIHints::HintSaysItsForCombo(GameObserver* observer,MTGCardInstance * card)
             for(unsigned int hPart = 0; hPart < hints[i]->hold.size(); hPart++)
             {
                 hintTc = tfc.createTargetChooser(hints[i]->hold[hPart],card);
-                if(hintTc && hintTc->canTarget(card,true) && hintTc->countValidTargets() <= hintTc->maxtargets)
+                if(hintTc && hintTc->canTarget(card,true))
                 {
                     forCombo = true;
                 }
