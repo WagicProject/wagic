@@ -47857,7 +47857,7 @@ toughness=3
 [/card]
 [card]
 name=Lake of the Dead
-auto=if type(swamp|mybattlefield)~morthan~0 then sacrifice notatarget(swamp|mybattlefield) oneshot else sacrifice
+auto=if type(swamp|mybattlefield)~morethan~0 then sacrifice notatarget(swamp|mybattlefield) oneshot else sacrifice
 auto={T}:Add{B}
 auto={T}{S(swamp|myBattlefield)}:Add{B}{B}{B}{B}
 text=If Lake of the Dead would enter the battlefield, sacrifice a Swamp instead. If you do, put Lake of the Dead onto the battlefield. If you don't, put it into its owner's graveyard. -- {T}: Add {B} to your mana pool. -- {T}, Sacrifice a Swamp: Add {B}{B}{B}{B} to your mana pool.
