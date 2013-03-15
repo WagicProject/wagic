@@ -1691,6 +1691,7 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
     if(comboCards.size())
     {
         nextCardToPlay = comboCards.back();
+        DebugTrace("ai is doing a combo:" << nextCardToPlay->getName());
         comboCards.pop_back();
         if(!comboHint->cardTargets.size() && !comboCards.size())
             comboHint = NULL;//becuase it's no longer needed.
@@ -1861,7 +1862,8 @@ MTGCardInstance * AIPlayerBaka::activateCombo()
     for(unsigned int k = 0;k < comboHint->hold.size(); k++)
     {
         hintTc = tfc.createTargetChooser(comboHint->hold[k],nextCardToPlay);
-        for(unsigned int j = 0; j < game->hand->cards.size();j++)
+        int combohand = game->hand->cards.size();
+        for(int j = 0; j < combohand;j++)
         {
             if(!hintTc)
                 break;
@@ -1878,6 +1880,7 @@ MTGCardInstance * AIPlayerBaka::activateCombo()
         if(comboCards.size())
         {
             nextCardToPlay = comboCards.back();
+            DebugTrace("ai is doing a combo:" << nextCardToPlay->getName());
             if (game->playRestrictions->canPutIntoZone(nextCardToPlay, game->stack) == PlayRestriction::CANT_PLAY)
                 return NULL;
             comboCards.pop_back();
