@@ -4559,7 +4559,7 @@ AUpkeep::AUpkeep(GameObserver* observer, int _id, MTGCardInstance * card, MTGAbi
     {
         if (WEventPhaseChange* pe = dynamic_cast<WEventPhaseChange*>(event))
         {
-            if (MTG_PHASE_DRAW == pe->to->id)
+            if (MTG_PHASE_DRAW == pe->to->id && MTG_PHASE_UPKEEP == pe->from->id)
             {
                 if (source->controller() == game->currentPlayer && once < 2 && paidThisTurn < 1)
                 {
