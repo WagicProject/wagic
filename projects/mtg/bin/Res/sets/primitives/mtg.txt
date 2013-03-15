@@ -4365,7 +4365,7 @@ toughness=1
 [/card]
 [card]
 name=Ashen-Skin Zubera
-auto=@movedto(mygraveyard) from(this|mybattlefield):target(opponent) ability$!name(discard) target(<type:zubera[fresh]:opponentgraveyard>*|myhand) reject !$ targetedplayer
+auto=@movedto(mygraveyard) from(this|mybattlefield):choice target(opponent) ability$!name(discard) target(<type:zubera[fresh]:opponentgraveyard>*|myhand) reject !$ targetedplayer
 text=When Ashen-Skin Zubera dies, target opponent discards a card for each Zubera put into a graveyard from the battlefield this turn.
 mana={1}{B}
 type=Creature
@@ -5793,10 +5793,9 @@ type=Instant
 [/card]
 [card]
 name=Balduvian Trading Post
-auto=aslongas(mountain[-tapped]|mybattlefield) sacrifice notatarget(mountain[-tapped]|mybattlefield) oneshot && counter(0/0,-1,payment)
-auto=sacrifice notatarget(this|mybattlefield)
-auto=this(counter{0/0.1.payment}<1) {T}:Add{1}{R}
-auto=this(counter{0/0.1.payment}<1) {1}{T}:damage:1 target(creature[attacking])
+auto=if type(mountain[-tapped]|mybattlefield)~morethan~0 then sacrifice notatarget(mountain[-tapped]|mybattlefield) oneshot else sacrifice
+auto={T}:Add{1}{R}
+auto={1}{T}:damage:1 target(creature[attacking])
 text=If Balduvian Trading Post would enter the battlefield, sacrifice an untapped Mountain instead. If you do, put Balduvian Trading Post onto the battlefield. If you don't, put it into its owner's graveyard. -- {T}: Add {1}{R} to your mana pool. -- {1}, {T}: Balduvian Trading Post deals 1 damage to target attacking creature.
 type=Land
 [/card]
@@ -10184,8 +10183,8 @@ type=Enchantment
 [/card]
 [card]
 name=Braids, Cabal Minion
-auto=@each opponent upkeep:ability$!name(sacrifice) notatarget(*[artifact,creature,land]|mybattlefield) sacrifice !$ opponent
-auto=@each my upkeep:notatarget(*[artifact,creature,land]|mybattlefield) sacrifice
+auto=@each opponent upkeep:ability$!name(sacrifice) notatarget(*[artifact;creature;land]|mybattlefield) sacrifice !$ opponent
+auto=@each my upkeep:notatarget(*[artifact;creature;land]|mybattlefield) sacrifice
 text=At the beginning of each player's upkeep, that player sacrifices an artifact, creature, or land.
 mana={2}{B}{B}
 type=Legendary Creature
@@ -10195,8 +10194,8 @@ toughness=2
 [/card]
 [card]
 name=Braids, Conjurer Adept
-auto=@each opponent upkeep:ability$!name(put on battlefield) target(*[artifact,creature,land]|myhand) moveTo(mybattlefield) !$ opponent
-auto=@each my upkeep:target(*[artifact,creature,land]|myhand) moveTo(mybattlefield)
+auto=@each opponent upkeep:ability$!name(put on battlefield) target(*[artifact;creature;land]|myhand) moveTo(mybattlefield) !$ opponent
+auto=@each my upkeep:target(*[artifact;creature;land]|myhand) moveTo(mybattlefield)
 text=At the beginning of each player's upkeep, that player may put an artifact, creature, or land card from his or her hand onto the battlefield.
 mana={2}{U}{U}
 type=Legendary Creature
@@ -19997,7 +19996,7 @@ toughness=5
 [card]
 name=Deathrender
 auto=+2/+2
-auto=@movedto(mytgt|graveyard):may moveto(mybattlefield) target(creature|myhand) && retarget
+auto=@movedto(mytgt|graveyard):may moveto(mybattlefield) target(creature|myhand) && all(this) retarget
 auto={2}:equip
 text=Equipped creature gets +2/+2. -- Whenever equipped creature is put into a graveyard, you may put a creature card from your hand onto the battlefield and attach Deathrender to it. -- Equip {2}
 mana={4}
@@ -23367,7 +23366,7 @@ toughness=1
 [/card]
 [card]
 name=Dripping-Tongue Zubera
-auto=@movedTo(graveyard) from(this|mybattlefield):foreach(zubera[fresh]|graveyard) token(Spirit,Creature Spirit,1/1)
+auto=@movedTo(graveyard) from(this|mybattlefield):choice foreach(zubera[fresh]|graveyard) token(Spirit,Creature Spirit,1/1)
 text=When Dripping-Tongue Zubera dies, put a 1/1 colorless Spirit creature token onto the battlefield for each Zubera put into a graveyard from the battlefield this turn.
 mana={1}{G}
 type=Creature
@@ -25798,7 +25797,7 @@ toughness=4
 [/card]
 [card]
 name=Ember-Fist Zubera
-auto=@movedTo(graveyard) from(this|mybattlefield):foreach(zubera[fresh]|graveyard) damage:1 target(creature,player)
+auto=@movedTo(graveyard) from(this|mybattlefield):choice foreach(zubera[fresh]|graveyard) damage:1 target(creature,player)
 text=When Ember-Fist Zubera dies, it deals damage to target creature or player equal to the number of Zubera put into all graveyards from the battlefield this turn.
 mana={1}{R}
 type=Creature
@@ -30137,7 +30136,7 @@ subtype=Equipment
 [card]
 name=Flayer of the Hatebound
 abilities=undying
-auto=@movedTo(this|mybattlefield) from(mygraveyard):all(trigger[to]) transforms((,newability[choice name(creature) dynamicability<!powerstrike!> target(creature)],newability[choice name(player) dynamicability<!powerstrike!> target(player)])) forever
+autograveyard=@movedTo(this|mybattlefield) from(mygraveyard):all(trigger[to]) transforms((,newability[choice name(creature) dynamicability<!powerstrike!> target(creature)],newability[choice name(player) dynamicability<!powerstrike!> target(player)])) forever
 auto=@movedTo(other creature|mybattlefield) from(mygraveyard):all(trigger[to]) transforms((,newability[choice name(creature) dynamicability<!powerstrike!> target(creature)],newability[choice name(player) dynamicability<!powerstrike!> target(player)]))
 text=Undying -- Whenever Flayer of the Hatebound or another creature enters the battlefield from your graveyard, that creature deals damage equal to its power to target creature or player.
 mana={5}{R}
@@ -36164,7 +36163,7 @@ type=Sorcery
 [/card]
 [card]
 name=Grave Pact
-auto=@movedTo(creature|mygraveyard) from(battlefield):ability$!name(sacrifice) notatarget(creature|mybattlefield) reject!$ opponent
+auto=@movedTo(creature|mygraveyard) from(battlefield):ability$!name(sacrifice) notatarget(creature|mybattlefield) sacrifice!$ opponent
 text=Whenever a creature you control dies, each other player sacrifices a creature.
 mana={1}{B}{B}{B}
 type=Enchantment
@@ -38855,10 +38854,9 @@ type=Artifact
 [/card]
 [card]
 name=Heart of Yavimaya
-auto=aslongas(forest|mybattlefield) sacrifice notatarget(forest|mybattlefield) oneshot && counter(0/0,-1,payment)
-auto=sacrifice notatarget(this|myBattlefield)
-auto=this(counter{0/0.1.payment}<1) {T}:Add{G}
-auto=this(counter{0/0.1.payment}<1) {T}:1/1 target(creature)
+auto=if type(forest|mybattlefield)~morethan~0 then sacrifice notatarget(forest|mybattlefield) oneshot else sacrifice
+auto={T}:Add{G}
+auto={T}:1/1 target(creature)
 text=If Heart of Yavimaya would enter the battlefield, sacrifice a Forest instead. If you do, put Heart of Yavimaya onto the battlefield. If you don't, put it into its owner's graveyard. -- {T}: Add {G} to your mana pool. -- {T}: Target creature gets +1/+1 until end of turn.
 type=Land
 [/card]
@@ -46460,10 +46458,9 @@ toughness=2
 [/card]
 [card]
 name=Kjeldoran Outpost
-auto=aslongas(plains|mybattlefield) sacrifice notatarget(plains|mybattlefield) oneshot && counter(0/0,-1,payment)
-auto=sacrifice notatarget(this|myBattlefield)
-auto=this(counter{0/0.1.payment}<1) {T}:Add{W}
-auto=this(counter{0/0.1.payment}<1) {1}{W}{T}:token(Soldier,creature soldier, 1/1,white)
+auto=if type(plains|mybattlefield)~morethan~0 then sacrifice notatarget(plains|mybattlefield) oneshot else sacrifice
+auto={T}:Add{W}
+auto={1}{W}{T}:token(Soldier,creature soldier, 1/1,white)
 text=If Kjeldoran Outpost would enter the battlefield, sacrifice a Plains instead. If you do, put Kjeldoran Outpost onto the battlefield. If you don't, put it into its owner's graveyard. -- {T}: Add {W} to your mana pool. -- {1}{W}, {T}: Put a 1/1 white Soldier creature token onto the battlefield.
 type=Land
 [/card]
@@ -47860,10 +47857,9 @@ toughness=3
 [/card]
 [card]
 name=Lake of the Dead
-auto=aslongas(swamp|mybattlefield) sacrifice notatarget(swamp|mybattlefield) oneshot && counter(0/0,-1,payment)
-auto=sacrifice notatarget(this|myBattlefield)
-auto=this(counter{0/0.1.payment}<1) {T}:Add{B}
-auto=this(counter{0/0.1.payment}<1) {T}{S(swamp|myBattlefield)}:Add{B}{B}{B}{B}
+auto=if type(swamp|mybattlefield)~morthan~0 then sacrifice notatarget(swamp|mybattlefield) oneshot else sacrifice
+auto={T}:Add{B}
+auto={T}{S(swamp|myBattlefield)}:Add{B}{B}{B}{B}
 text=If Lake of the Dead would enter the battlefield, sacrifice a Swamp instead. If you do, put Lake of the Dead onto the battlefield. If you don't, put it into its owner's graveyard. -- {T}: Add {B} to your mana pool. -- {T}, Sacrifice a Swamp: Add {B}{B}{B}{B} to your mana pool.
 type=Land
 [/card]
@@ -50242,13 +50238,12 @@ type=Artifact
 [/card]
 [card]
 name=Lotus Vale
-auto=aslongas(land[-tapped]|mybattlefield) sacrifice target(<2>land[-tapped]|mybattlefield) oneshot >1 && counter(0/0,-1,payment)
-auto=moveto(mygraveyard) target(this|mybattlefield)
-auto=this(counter{0/0.1.payment}<1) {T}:Add{W}{W}{W}
-auto=this(counter{0/0.1.payment}<1) {T}:Add{U}{U}{U}
-auto=this(counter{0/0.1.payment}<1) {T}:Add{B}{B}{B}
-auto=this(counter{0/0.1.payment}<1) {T}:Add{R}{R}{R}
-auto=this(counter{0/0.1.payment}<1) {T}:Add{G}{G}{G}
+auto=if type(land[-tapped]|mybattlefield)~morethan~1 then sacrifice notatarget(<2>land[-tapped]|mybattlefield) oneshot else sacrifice
+auto={T}:Add{W}{W}{W}
+auto={T}:Add{U}{U}{U}
+auto={T}:Add{B}{B}{B}
+auto={T}:Add{R}{R}{R}
+auto={T}:Add{G}{G}{G}
 text=If Lotus Vale would enter the battlefield, sacrifice two untapped lands instead. If you do, put Lotus Vale onto the battlefield. If you don't, put it into its owner's graveyard. -- {T}: Add three mana of any one color to your mana pool.
 type=Land
 [/card]
@@ -50520,7 +50515,7 @@ toughness=3
 name=Ludevic's Test Subject
 abilities=defender
 auto={1}{U}:counter(0/0,1,Hatchling)
-auto=this(counter{0/0.5.Hatchling}) flip(Ludevic's Abomination)
+auto=this(counter{0/0.1.Hatchling}>4) removeallcounters(0/0,1,Hatchling) && flip(Ludevic's Abomination)
 text={1}{U}: Put a hatchling counter on Ludevic's Test Subject. Then if there are five or more hatchling counters on it, remove all of them and transform it.
 mana={1}{U}
 type=Creature
@@ -51653,7 +51648,7 @@ type=Artifact
 [/card]
 [card]
 name=Mana Echoes
-auto=lord(creature) transforms((,newability[foreach(creature[share!color!]|mybattlefield) add{1} oneshot]))
+auto=lord(creature) transforms((,newability[foreach(creature[share!types!]|mybattlefield) add{1} oneshot]))
 text=Whenever a creature enters the battlefield, you may add {1} to your mana pool for each creature you control that shares a creature type with it.
 mana={2}{R}{R}
 type=Enchantment
@@ -52077,7 +52072,7 @@ toughness=8
 [/card]
 [card]
 name=Mark of Asylum
-auto=pereventallnoncombat to(creature|myBattlefield)
+auto=preventallnoncombatdamage to(creature|myBattlefield)
 text=Prevent all noncombat damage that would be dealt to creatures you control.
 mana={1}{W}
 type=Enchantment
@@ -52500,8 +52495,7 @@ subtype=Aura
 [/card]
 [card]
 name=Mask of Memory
-auto=@damaged(opponent) from(mytgt):reject target(*|myHand)
-auto=@damaged(opponent) from(mytgt):draw:1 controller
+auto=@damaged(opponent) from(mytgt):may draw:2 controller && reject target(*|myhand)
 text=Whenever equipped creature deals combat damage to a player, you may draw two cards. If you do, discard a card. -- Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery. This card enters the battlefield unattached and stays on the battlefield if the creature leaves.)
 auto={1}:equip
 mana={2}
@@ -59500,7 +59494,7 @@ subtype=Aura
 [/card]
 [card]
 name=Oblivion Ring
-auto=target(other *[-land]) (blink)forsrc
+auto=(blink)forsrc target(other *[-land])
 text=When Oblivion Ring enters the battlefield, exile another target nonland permanent. -- When Oblivion Ring leaves the battlefield, return the exiled card to the battlefield under its owner's control.
 mana={2}{W}
 type=Enchantment
@@ -61254,7 +61248,7 @@ type=Sorcery
 [/card]
 [card]
 name=Pack Rat
-auto=type:creature[rat]:mybattlefield/type:creature[rat]:mybattlefield nonstatic
+auto=foreach(creature[rat]|mybattlefield) 1/1
 auto={2}{B}{discard(*|myhand)}:token(253624)
 text=Pack Rat's power and toughness are each equal to the number of Rats you control. -- {2}{B}, Discard a card: Put a token onto the battlefield that's a copy of Pack Rat.
 mana={1}{B}
@@ -64892,8 +64886,8 @@ toughness=8
 [/card]
 [card]
 name=Primeval Light
-auto=choice name(destroy all enchantments opponent controls) && destroy all(enchantment|opponentbattlefield)
-auto=choice name(destroy all enchantments you control) && destroy all(enchantment|mybattlefield)
+target=player
+auto=destroy all(enchantment|targetedpersonsbattlefield)
 text=Destroy all enchantments target player controls.
 mana={3}{G}
 type=Sorcery
@@ -73221,9 +73215,8 @@ type=Sorcery
 [/card]
 [card]
 name=Scorched Ruins
-auto=aslongas(land[-tapped]|mybattlefield) moveto(mygraveyard) target(<2>land[-tapped]|mybattlefield) oneshot >1 && counter(0/0,-1,payment)
-auto=moveto(mygraveyard) target(this|mybattlefield)
-auto=this(counter{0/0.1.payment}<1) {T}:Add{4}
+auto=if type(land[-tapped]|mybattlefield)~morethan~1 then sacrifice notatarget(<2>land[-tapped]|mybattlefield) oneshot else sacrifice
+auto={T}:Add{4}
 text=If Scorched Ruins would enter the battlefield, sacrifice two untapped lands instead. If you do, put Scorched Ruins onto the battlefield. If you don't, put it into its owner's graveyard. -- {T}: Add {4} to your mana pool.
 type=Land
 [/card]
@@ -77133,7 +77126,7 @@ toughness=5
 [card]
 name=Silklash Spider
 abilities=reach
-auto={X}{G}{G}:all(creature[flying]) damage:X
+auto={X}{G}{G}:damage:X all(creature[flying])
 text=Reach (This creature can block creatures with flying.) -- {X}{G}{G}: Silklash Spider deals X damage to each creature with flying.
 mana={3}{G}{G}
 type=Creature
@@ -97047,7 +97040,7 @@ toughness=3
 [/card]
 [card]
 name=Wayfaring Temple
-auto=type:creature:mybattlefield/type:creature:mybattlefield nonstatic
+auto=foreach(creature|mybattlefield) 1/1
 auto=@combatdamaged(player) from(this) restriction{type(creature[token]|mybattlefield)~morethan~0}:name(populate) clone notatarget(creature[token]|mybattlefield)
 text=Wayfaring Temple's power and toughness are each equal to the number of creatures you control. -- Whenever Wayfaring Temple deals combat damage to a player, populate. (Put a token onto the battlefield that's a copy of a creature token you control.)
 mana={1}{G}{W}
