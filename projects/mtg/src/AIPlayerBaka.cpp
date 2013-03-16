@@ -1851,7 +1851,7 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
 
         if(hints && hints->HintSaysItsForCombo(observer,nextCardToPlay))
         {
-            DebugTrace(" AI wants to play a card that belongs to a combo.")
+            DebugTrace(" AI wants to play a card that belongs to a combo.");
                 nextCardToPlay = NULL;
         }
 
@@ -1866,9 +1866,9 @@ MTGCardInstance * AIPlayerBaka::activateCombo()
     TargetChooser * hintTc = NULL;
     TargetChooserFactory tfc(observer);
     ManaCost * totalCost = ManaCost::parseManaCost(comboHint->manaNeeded);
-    for(unsigned int k = 0;k < comboHint->hold.size(); k++)
+    for(unsigned int k = 0;k < comboHint->casting.size(); k++)
     {
-        hintTc = tfc.createTargetChooser(comboHint->hold[k],nextCardToPlay);
+        hintTc = tfc.createTargetChooser(comboHint->casting[k],nextCardToPlay);
         int combohand = game->hand->cards.size();
         for(int j = 0; j < combohand;j++)
         {
@@ -2252,6 +2252,8 @@ int AIPlayerBaka::chooseBlockers()
     // We first try to block the major threats, those that are marked in the Top 3 of our stats
     while ((card = cd.nextmatch(game->inPlay, card)))
     {
+        if(hints && hints->HintSaysDontBlock(observer,card))
+            continue;
         observer->cardClick(card, MTGAbility::MTG_BLOCK_RULE);
         int set = 0;
         while (!set)
@@ -2287,6 +2289,8 @@ int AIPlayerBaka::chooseBlockers()
     card = NULL;
     while ((card = cd.nextmatch(game->inPlay, card)))
     {
+        if(hints && hints->HintSaysDontBlock(observer,card))
+            continue;
         if (card->defenser && opponentsToughness[card->defenser] > 0)
         {
             while (card->defenser)
@@ -2300,6 +2304,8 @@ int AIPlayerBaka::chooseBlockers()
     card = NULL;
     while ((card = cd.nextmatch(game->inPlay, card)))
     {
+        if(hints && hints->HintSaysDontBlock(observer,card))
+            continue;
         if (!card->defenser)
         {
             observer->cardClick(card, MTGAbility::MTG_BLOCK_RULE);

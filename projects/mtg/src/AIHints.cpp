@@ -36,6 +36,12 @@ AIHint::AIHint(string _line)
         mCombatAttackTip = splitDontAttack[1];
     }
 
+    vector<string> splitDontBlock = parseBetween(action, "dontblockwith(", ")");
+    if(splitDontBlock.size())
+    {
+        mCombatBlockTip = splitDontBlock[1];
+    }
+
     vector<string> splitCastOrder = parseBetween(action, "castpriority(", ")");
     if(splitCastOrder.size())
     {
@@ -100,6 +106,26 @@ bool AIHints::HintSaysDontAttack(GameObserver* observer,MTGCardInstance * card)
     return false;
 }
 
+bool AIHints::HintSaysDontBlock(GameObserver* observer,MTGCardInstance * card)
+{
+    TargetChooserFactory tfc(observer);
+    TargetChooser * hintTc = NULL;
+    for(unsigned int i = 0; i < hints.size();i++)
+    {
+        if (hints[i]->mCombatBlockTip.size())
+        {
+            hintTc = tfc.createTargetChooser(hints[i]->mCombatBlockTip,card);
+            if(hintTc && hintTc->canTarget(card,true))
+            {
+                SAFE_DELETE(hintTc);
+                return true;
+            }
+            SAFE_DELETE(hintTc);
+        }
+    }
+    return false;
+}
+
 bool AIHints::HintSaysItsForCombo(GameObserver* observer,MTGCardInstance * card)
 {
     TargetChooserFactory tfc(observer);
@@ -142,6 +168,7 @@ bool AIHints::HintSaysItsForCombo(GameObserver* observer,MTGCardInstance * card)
                         asTc = parseBetween(hints[i]->partOfCombo[dPart],"cast(",")");
                         if(asTc.size())
                         {
+                            hints[i]->casting.push_back(asTc[1]);
                             vector<string>cht = parseBetween(hints[i]->partOfCombo[dPart],"targeting(",")");
                             if(cht.size())
                             hints[i]->cardTargets[asTc[1]] = cht[1];
@@ -353,6 +380,11 @@ string AIHints::constraintsNotFulfilled(AIAction * action, AIHint * hint, ManaCo
             out << "to see if this can attack[" << hint->mCombatAttackTip << "]";
             return out.str();
         }
+        if (hint->mCombatBlockTip.size())
+        {
+            out << "to see if this can block[" << hint->mCombatBlockTip << "]";
+            return out.str();
+        }
         if (hint->mSourceId && !findSource(hint->mSourceId))
         {
             out << "needcardinplay[" << hint->mSourceId << "]";
@@ -414,7 +446,7 @@ AIAction * AIHints::findAbilityRecursive(AIHint * hint, ManaCost * potentialMana
         }
 
         string s = constraintsNotFulfilled(a, hint, potentialMana);
-        if (hint->mCombatAttackTip.size() || hint->castOrder.size())
+        if (hint->mCombatAttackTip.size() || hint->mCombatBlockTip.size() || hint->castOrder.size())
             return NULL;
         if (s.size())
         {

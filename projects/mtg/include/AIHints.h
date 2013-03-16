@@ -18,6 +18,7 @@ public:
     string mCondition;
     string mAction;
     string mCombatAttackTip;
+    string mCombatBlockTip;
     vector<string>castOrder;
     vector<string>combos;
     //for preformance we disect the combo on first run.
@@ -25,6 +26,7 @@ public:
     vector<string>hold;
     vector<string>until;
     vector<string>restrict;
+    vector<string>casting;
     map<string,string>cardTargets;
     string manaNeeded;
     int mSourceId;
@@ -48,6 +50,7 @@ public:
     AIHints (AIPlayerBaka * player);
     AIAction * suggestAbility(ManaCost * potentialMana);
     bool HintSaysDontAttack(GameObserver* observer,MTGCardInstance * card = NULL);
+    bool HintSaysDontBlock(GameObserver* observer,MTGCardInstance * card = NULL);
     bool HintSaysItsForCombo(GameObserver* observer,MTGCardInstance * card = NULL);
     bool canWeCombo(GameObserver* observer,MTGCardInstance * card = NULL,AIPlayerBaka * Ai = NULL);
     vector<string> mCastOrder();
