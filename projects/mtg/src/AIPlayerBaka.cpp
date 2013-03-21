@@ -595,6 +595,9 @@ int OrderedAIAction::getEfficiency()
                     efficiency = 0;
             }
         }
+        if(p->game->battlefield->countByType("token") >= 50)
+            efficiency = 0;
+        
     }
     //At this point the "basic" efficiency is computed, we further tweak it depending on general decisions, independent of theAbility type
 
@@ -1887,7 +1890,20 @@ MTGCardInstance * AIPlayerBaka::activateCombo()
         if(comboCards.size())
         {
             nextCardToPlay = comboCards.back();
+            
             DebugTrace("ai is doing a combo:" << nextCardToPlay->getName());
+            DebugTrace("ai is doing a combo:" << nextCardToPlay->getName());
+            DebugTrace("ai is doing a combo:" << nextCardToPlay->getName());
+            DebugTrace("ai is doing a combo:" << nextCardToPlay->getName());
+            DebugTrace("ai is doing a combo:" << nextCardToPlay->getName());
+            DebugTrace("ai is doing a combo:" << nextCardToPlay->getName());
+            DebugTrace("ai is doing a combo:" << nextCardToPlay->getName());
+            DebugTrace("ai is doing a combo:" << nextCardToPlay->getName());
+            DebugTrace("ai is doing a combo:" << nextCardToPlay->getName());
+            DebugTrace("ai is doing a combo:" << nextCardToPlay->getName());
+            DebugTrace("ai is doing a combo:" << nextCardToPlay->getName());
+            DebugTrace("ai is doing a combo:" << nextCardToPlay->getName());
+
             if (game->playRestrictions->canPutIntoZone(nextCardToPlay, game->stack) == PlayRestriction::CANT_PLAY)
                 return NULL;
             comboCards.pop_back();

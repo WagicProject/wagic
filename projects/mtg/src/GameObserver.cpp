@@ -869,7 +869,7 @@ void GameObserver::gameStateBasedEffects()
     //Auto skip Phases
     int skipLevel = (currentPlayer->playMode == Player::MODE_TEST_SUITE || mLoading) ? Constants::ASKIP_NONE
         : options[Options::ASPHASES].number;
-    int nrCreatures = currentPlayer->game->inPlay->countByType("Creature");
+    int nrCreatures = currentPlayer->game->inPlay->hasType("creature")?1:0;
 
     if (skipLevel == Constants::ASKIP_SAFE || skipLevel == Constants::ASKIP_FULL)
     {
