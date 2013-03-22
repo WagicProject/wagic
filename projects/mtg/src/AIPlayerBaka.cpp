@@ -1801,11 +1801,15 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
                 {
                     shouldPlayPercentage = 90;
                 }
-                else if (BAKA_EFFECT_DONTKNOW == shouldPlay || card->isLand())
+                else if (BAKA_EFFECT_DONTKNOW == shouldPlay)
                 {
                     //previously shouldPlayPercentage = 80;, I found this a little to high
                     //for cards which AI had no idea how to use.
                     shouldPlayPercentage = 60;
+                }
+                else if (card->isLand())
+                {
+                    shouldPlayPercentage = 90;
                 }
                 else
                 {
