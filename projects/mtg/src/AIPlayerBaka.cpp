@@ -595,7 +595,7 @@ int OrderedAIAction::getEfficiency()
                     efficiency = 0;
             }
         }
-        if(p->game->battlefield->countByType("token") >= 50)
+        if(p->game->battlefield->countByType("token") >= 25)
             efficiency = 0;
         
     }
@@ -1694,6 +1694,9 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
     if(comboCards.size())
     {
         nextCardToPlay = comboCards.back();
+        gotPayments.clear();
+        if((!pMana->canAfford(nextCardToPlay->getManaCost()) || nextCardToPlay->getManaCost()->kicker))
+            gotPayments = canPayMana(nextCardToPlay,nextCardToPlay->getManaCost());
         DebugTrace("ai is doing a combo:" << nextCardToPlay->getName());
         comboCards.pop_back();
         if(!comboHint->cardTargets.size() && !comboCards.size())
@@ -1736,6 +1739,9 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
                 if(!canPlay)
                     continue;
                 nextCardToPlay = card;
+                gotPayments.clear();
+                if((!pMana->canAfford(nextCardToPlay->getManaCost()) || nextCardToPlay->getManaCost()->kicker))
+                    gotPayments = canPayMana(nextCardToPlay,nextCardToPlay->getManaCost());
                 return activateCombo();
             }
             else
