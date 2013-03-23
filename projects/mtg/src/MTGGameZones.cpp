@@ -519,7 +519,7 @@ unsigned int MTGGameZone::countByType(const char * value)
         {
             result++;
         }
-        else if(value == "token" && cards[i]->isToken)
+        else if(strcmp(value, "token") == 0 && cards[i]->isToken)
             result++;
     }
     return result;
