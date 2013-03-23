@@ -49,12 +49,13 @@ JLBFont::JLBFont(const char *fontname, int lineheight, bool useVideoRAM)
 
     sprintf(filename, "%s.png", fontname);
     mTexture = mRenderer->LoadTexture(filename, useVideoRAM);
+	mTextureScale = (float) lineheight/ (mTexture->mHeight/16);
 
-    if (mTexture == NULL) return;
+	if (mTexture == NULL) return;
 
     mHeight = (float) lineheight;
 
-    mQuad = new JQuad(mTexture, 0.0f, 0.0f, 16.0f, mHeight);
+    mQuad = new JQuad(mTexture, 0.0f, 0.0f, 16.0f/mTextureScale, mHeight/mTextureScale);
 
     float a, b, c;
 
@@ -158,7 +159,7 @@ void JLBFont::DrawString(const char *string, float x, float y, int align, float 
 
         index = (*p - 32)+mBase;
 
-        float charWidth = mCharWidth[index];
+        float charWidth = mCharWidth[index]*mTextureScale;
         float delta = (charWidth + mTracking) * mScale;
         float xPos =  mXPos[index];
         if (leftOffset)
@@ -194,8 +195,8 @@ void JLBFont::DrawString(const char *string, float x, float y, int align, float 
                 charWidth = (delta/mScale) - mTracking;
             }
         }
-        mQuad->SetTextureRect(xPos, mYPos[index], charWidth , mHeight);
-        mRenderer->RenderQuad(mQuad, dx, dy, mRotation, mScale, mScale);
+        mQuad->SetTextureRect(xPos, mYPos[index], charWidth/mTextureScale, mHeight/mTextureScale);
+        mRenderer->RenderQuad(mQuad, dx, dy, mRotation, mScale*mTextureScale, mScale*mTextureScale);
         dx += delta;
         p++;
     }
@@ -235,7 +236,7 @@ float JLBFont::GetStringWidth(const char *string) const
         ch = *p - 32;
         p++;
         if (ch < 0) continue;
-        len += mCharWidth[ch+mBase] + mTracking;
+        len += (mCharWidth[ch+mBase]*mTextureScale) + mTracking;
     }
     len -= mTracking;
     return len*mScale;

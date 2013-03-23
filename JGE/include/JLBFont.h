@@ -172,6 +172,7 @@ private:
 
 	float		mHeight;
 	float		mScale;
+	float		mTextureScale;
 	float		mRotation;
 	float		mTracking;
 	float       mSpacing;
