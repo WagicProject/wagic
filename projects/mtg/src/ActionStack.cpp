@@ -51,15 +51,16 @@ void NextGamePhase::Render()
 {
     WFont * mFont = observer->getResourceManager()->GetWFont(Fonts::MAIN_FONT);
     mFont->SetBase(0);
-    mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
+    mFont->SetScale(1.3f);
     char buffer[200];
     int playerId = 1;
     if (observer->currentActionPlayer == observer->players[1])
         playerId = 2;
 
-    sprintf(buffer, "%s %i : -> %s", _("Player").c_str(), playerId, observer->getNextGamePhaseName());
+    sprintf(buffer, "%s %i :  %s", _("Player").c_str(), playerId, observer->getNextGamePhaseName());
 
-    mFont->DrawString(buffer, x + 30, y, JGETEXT_LEFT);
+    mFont->DrawString(buffer, x + 15, y+10, JGETEXT_LEFT);
+    mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
 }
 
 NextGamePhase::NextGamePhase(GameObserver* observer, int id) :
@@ -1160,7 +1161,7 @@ void ActionStack::Render()
     static const float x0 = 250;
     static const float y0 = 0;
     float width = 200;
-    float height = 90;
+    float height = 25;
     float currenty = y0 + 5;
 
     if (mode == ACTIONSTACK_STANDARD)
