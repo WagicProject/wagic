@@ -48,6 +48,13 @@ private:
     int IsMoreAIDecksUnlocked(DeckStats * stats);
     string unlockedTextureName;
     JQuadPtr GetUnlockedQuad(string texturename);
+    bool mTournament;
+    bool mMatch;
+    bool mPlayerWin;
+    int mGamesWon;
+    int mGamesPlayed;
+    int mMatchesWon;
+    int mMatchesPlayed;
 public:
     int value;
     Player * p1, *p2;
@@ -60,6 +67,7 @@ public:
     Credits();
     ~Credits();
     void compute(GameObserver* observer, GameApp * _app);
+    void computeTournament(GameObserver* g, GameApp * _app,bool tournament,bool match, bool playerWin,int gamesWon,int gamesPlayed,int matchesWon,int matchesPlayed);
     void Render();
     static int unlockRandomSet(bool force = false);
     static int unlockSetByName(string name);

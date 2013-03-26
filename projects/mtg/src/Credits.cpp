@@ -148,6 +148,13 @@ Credits::Credits()
     p1 = NULL;
     p2 = NULL;
     observer = NULL;
+    mTournament=false;
+    mMatch=false;
+    mPlayerWin=false;
+     mGamesWon=0;
+     mGamesPlayed=0;
+     mMatchesWon=0;
+     mMatchesPlayed=0;
 }
 
 Credits::~Credits()
@@ -327,6 +334,156 @@ void Credits::compute(GameObserver* g, GameApp * _app)
     SAFE_DELETE(playerdata);
 }
 
+/////// Tournament Mod ///////////
+void Credits::computeTournament(GameObserver* g, GameApp * _app,bool tournament,bool match,bool playerWin,int gamesWon,int gamesPlayed,int matchesWon,int matchesPlayed)
+{
+    mTournament=tournament;
+    mMatch=match;
+    mPlayerWin=playerWin;
+     mGamesWon=gamesWon;
+     mGamesPlayed=gamesPlayed;
+     mMatchesWon=matchesWon;
+     mMatchesPlayed=matchesPlayed;
+
+    if (!g->turn)
+        return;
+    p1 = g->players[0];
+    p2 = g->players[1];
+    observer = g;
+    app = _app;
+    showMsg = (WRand() % 3);
+
+    //no credits when the AI plays :)
+    if (p1->isAI())
+        return;
+
+    PlayerData * playerdata = NEW PlayerData(MTGCollection());
+    if (p2->isAI() && mPlayerWin)
+    {
+        value = 400;
+        if (app->gameType != GAME_TYPE_CLASSIC)
+            value = 200;
+        int difficulty = options[Options::DIFFICULTY].number;
+        if (options[Options::DIFFICULTY_MODE_UNLOCKED].number && difficulty)
+        {
+            CreditBonus * b = NEW CreditBonus(100 * mGamesWon * difficulty, _("Difficulty Bonus"));
+            bonus.push_back(b);
+        }
+        if (mGamesWon>1)
+        {
+            CreditBonus * b = NEW CreditBonus(mGamesWon * 200, _("Won Game Bonus"));
+            bonus.push_back(b);
+        }
+        if (mMatchesWon>1)
+        {
+            CreditBonus * b = NEW CreditBonus(mMatchesWon * 200, _("Won Matches Bonus"));
+            bonus.push_back(b);
+        }
+        if ((mGamesWon==mGamesPlayed && mGamesPlayed>0) || (matchesWon==mMatchesPlayed && mMatchesPlayed>0))
+        {
+            CreditBonus * b = NEW CreditBonus(500, _("Perfect Bonus"));
+            bonus.push_back(b);
+        }
+        if (mGamesWon>mGamesPlayed*0.80 && mGamesWon<mGamesPlayed)
+        {
+            CreditBonus * b = NEW CreditBonus(250, _("Won more then 80 percentage of games"));
+            bonus.push_back(b);
+        }
+
+
+        GameOptionAward * goa = NULL;
+        // <Tasks handling>
+
+        // </Tasks handling>
+
+        if (unlocked == -1)
+        {
+            DeckStats * stats = DeckStats::GetInstance();
+            stats->load(p1->GetCurrentDeckStatsFile());
+            unlocked = isDifficultyUnlocked(stats);
+            if (unlocked)
+            {
+                unlockedTextureName = "unlocked.png";
+                goa = (GameOptionAward*) &options[Options::DIFFICULTY_MODE_UNLOCKED];
+                goa->giveAward();
+            }
+            else
+            {
+                for (map<string, Unlockable *>::iterator it = Unlockable::unlockables.begin(); it !=  Unlockable::unlockables.end(); ++it) {
+                    Unlockable * award = it->second;
+                    if (award->tryToUnlock(g))
+                    {
+                        unlocked = 1;
+                        unlockedString = award->getValue("unlock_text");
+                        unlockedTextureName = award->getValue("unlock_img");
+                        break;
+                    }
+                }
+            }
+
+            if (!unlocked)
+            {
+                //   EvilTwin and RandomDeck cannot be unlocked in tournamentmode
+                // for each won game, one change to unlock a set
+                for (int i=0;i<mGamesWon;i++){
+                    if (!unlocked)
+                        unlocked = unlockRandomSet();
+                }
+                if (unlocked)
+                {
+                    unlockedTextureName = "set_unlocked.png";
+                    MTGSetInfo * si = setlist.getInfo(unlocked - 1);
+                    if (si)
+                        unlockedString = si->getName(); //Show the set's pretty name for unlocks.
+                }
+            }
+            if (!unlocked)
+            {
+                if ((unlocked = IsMoreAIDecksUnlocked(stats)))
+                {
+                    options[Options::AIDECKS_UNLOCKED].number += 10;
+                    options.save();
+                    unlockedTextureName = "ai_unlocked.png";
+                }
+            }
+
+            if (unlocked && options[Options::SFXVOLUME].number > 0)
+            {
+                WResourceManager::Instance()->PlaySample("bonus.wav");
+            }
+
+        }
+
+        vector<CreditBonus *>::iterator it;
+        if (bonus.size())
+        {
+            CreditBonus * b = NEW CreditBonus(value, _("Victory"));
+            bonus.insert(bonus.begin(), b);
+            for (it = bonus.begin() + 1; it < bonus.end(); ++it)
+                value += (*it)->value;
+        }
+
+        playerdata->credits += value;
+        PriceList::updateKey();
+        playerdata->taskList->passOneDay();
+        if (playerdata->taskList->getTaskCount() < 6)
+        {
+            playerdata->taskList->addRandomTask();
+            playerdata->taskList->addRandomTask();
+        }
+
+    }
+    else
+    {
+        unlocked = 0;
+        playerdata->taskList->passOneDay();
+    }
+
+    playerdata->save();
+    SAFE_DELETE(playerdata);
+}
+/////// END Tournament Mod ///////////
+
 JQuadPtr Credits::GetUnlockedQuad(string textureName)
 {
     if (!textureName.size()) return JQuadPtr();
@@ -367,7 +524,7 @@ void Credits::Render()
     {
         if (!p1->isAI() && p2->isAI())
         {
-            if (observer->didWin(p1))
+            if (observer->didWin(p1) || mPlayerWin)
             {
                 sprintf(buffer, _("Congratulations! You earn %i credits").c_str(), value);
                 JQuadPtr unlockedQuad = GetUnlockedQuad(unlockedTextureName);
@@ -412,7 +569,39 @@ void Credits::Render()
     y += 15;
 
     //!!
-    if (observer->didWin(p1) && this->gameLength != 0)
+
+    if (mMatch){
+        if (mGamesPlayed>0){
+            sprintf(buffer, _("Games Won: %i of %i (%i %%)").c_str(), mGamesWon,mGamesPlayed, (int)(mGamesWon*100/mGamesPlayed));
+            f->DrawString(buffer, 10, y);
+            y += 10;
+        }
+        if (value>0 && mGamesPlayed>0){
+            sprintf(buffer, _("Credits per game: %i").c_str(), (int) (value / mGamesPlayed));
+            f->DrawString(buffer, 10, y);
+            y += 10;
+        }
+        showMsg = 0;
+
+    } else if (mTournament){
+        if (mGamesPlayed>0){
+            sprintf(buffer, _("Games Won: %i of %i (%i %%)").c_str(),mGamesWon, mGamesPlayed,(int)(mGamesWon*100/mGamesPlayed));
+            f->DrawString(buffer, 10, y);
+            y += 10;
+        }
+        if (mMatchesPlayed>0){
+            sprintf(buffer, _("Matches Won: %i of %i (%i %%)").c_str(),mMatchesWon, mMatchesPlayed,(int)(mMatchesWon*100/mMatchesPlayed));
+            f->DrawString(buffer, 10, y);
+            y += 10;
+        }
+        if (value>0 && mGamesPlayed>0){
+            sprintf(buffer, _("Credits per game: %i").c_str(), (int) (value / mGamesPlayed));
+            f->DrawString(buffer, 10, y);
+            y += 10;
+        }
+        showMsg = 0;
+    }
+    else  if (observer->didWin(p1) && this->gameLength != 0)
     {
         sprintf(buffer, _("Game length: %i turns (%i seconds)").c_str(), observer->turn, this->gameLength);
         f->DrawString(buffer, 10, y);

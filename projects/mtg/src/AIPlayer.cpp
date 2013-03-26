@@ -243,6 +243,8 @@ AIPlayer * AIPlayerFactory::createAIPlayer(GameObserver *observer, MTGAllCards *
     AIPlayerBaka * baka = NEW AIPlayerBaka(observer, deckFile, deckFileSmall, avatarFilename, NEW MTGDeck(deckFile, collection,0, deckSetting));
     baka->deckId = deckid;
     baka->comboHint = NULL;
+    if (baka->opponent() && baka->opponent()->isHuman())
+        baka->setFastTimerMode(false);
     return baka;
 }
 
