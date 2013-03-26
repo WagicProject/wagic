@@ -108,8 +108,8 @@ class GameObserver{
 #ifdef TESTSUITE
   void loadTestSuitePlayer(int playerId, TestSuiteGame* testSuite);
 #endif //TESTSUITE
-  virtual void loadPlayer(int playerId, PlayerType playerType = PLAYER_TYPE_HUMAN, int decknb=0, bool premadeDeck=false);
-  void loadPlayer(int playerId, Player* player);
+  void loadPlayer(int playerId, PlayerType playerType = PLAYER_TYPE_HUMAN, int decknb=0, bool premadeDeck=false);
+  virtual void loadPlayer(int playerId, Player* player);
 
   Player * currentPlayer;
   Player * currentActionPlayer;
@@ -198,7 +198,7 @@ public:
 	// no serverIp means a server is being instantiated, otherwise a client
 	NetworkGameObserver(JNetwork* pNetwork, WResourceManager* output = 0, JGE* input = 0);
 	virtual ~NetworkGameObserver();
-	virtual void loadPlayer(int playerId, PlayerType playerType = PLAYER_TYPE_HUMAN, int decknb=0, bool premadeDeck=false);
+	virtual void loadPlayer(int playerId, Player* player);
 	virtual void Update(float dt);
 	void synchronize();
 	static void loadPlayer(void*pThis, stringstream& in, stringstream& out);
@@ -206,6 +206,7 @@ public:
 	static void synchronize(void*pThis, stringstream& in, stringstream& out);
 	static void checkSynchro(void*pxThis, stringstream& in, stringstream& out);
 	static void ignoreResponse(void*pThis, stringstream& in, stringstream& out){};
+	static void disconnect(void*pxThis, stringstream& in, stringstream& out);
 };
 #endif
 

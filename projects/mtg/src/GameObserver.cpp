@@ -1957,10 +1957,18 @@ NetworkGameObserver::NetworkGameObserver(JNetwork* pNetwork, WResourceManager* o
 	mpNetworkSession->registerCommand("loadPlayer", this, loadPlayer, ignoreResponse);
 	mpNetworkSession->registerCommand("synchronize", this, synchronize, checkSynchro);
 	mpNetworkSession->registerCommand("sendAction", this, sendAction, checkSynchro);
+	mpNetworkSession->registerCommand("disconnect", this, disconnect, ignoreResponse);
 }
 
 NetworkGameObserver::~NetworkGameObserver()
 {
+	mpNetworkSession->sendCommand("disconnect", "");
+}
+
+void NetworkGameObserver::disconnect(void*pxThis, stringstream& in, stringstream& out)
+{
+	NetworkGameObserver* pThis = (NetworkGameObserver*)pxThis;
+	pThis->setLoser(pThis->getView()->getRenderedPlayerOpponent());
 }
 
 void NetworkGameObserver::Update(float dt)
@@ -1969,10 +1977,9 @@ void NetworkGameObserver::Update(float dt)
 	::GameObserver::Update(dt);
 }
 
-void NetworkGameObserver::loadPlayer(int playerId, PlayerType playerType, int decknb, bool premadeDeck)
+void NetworkGameObserver::loadPlayer(int playerId, Player* player)
 {
-	GameObserver::loadPlayer(playerId, playerType, decknb, premadeDeck);
-	Player* player = getPlayer(playerId);
+	GameObserver::loadPlayer(playerId, player);
 	stringstream out;
 	out << *player;
 	mpNetworkSession->sendCommand("loadPlayer", out.str());

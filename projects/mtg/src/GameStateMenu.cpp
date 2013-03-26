@@ -609,11 +609,14 @@ void GameStateMenu::Update(float dt)
             }
             else if(!subMenuController)
             {
-//                currentState = MENU_STATE_MAJOR_SUBMENU;
-                subMenuController = NEW SimpleMenu(JGE::GetInstance(), MENU_FIRST_DUEL_SUBMENU, this, Fonts::MENU_FONT, 150, 60);
+				string aString;
+				mParent->mpNetwork->getServerIp(aString);
+				aString = "Waiting for connection to " + aString;
+
+                subMenuController = NEW SimpleMenu(JGE::GetInstance(), MENU_FIRST_DUEL_SUBMENU, this, Fonts::MENU_FONT, 150, 60, aString.c_str());
                 if (subMenuController)
                 {
-                    subMenuController->Add(SUBMENUITEM_CANCEL, "Cancel connection");
+                    subMenuController->Add(SUBMENUITEM_CANCEL, "Cancel");
                 }
             }
             else{
@@ -920,7 +923,7 @@ void GameStateMenu::ButtonPressed(int controllerId, int controlId)
             break;
 #endif
 #ifdef TESTSUITE
-            case SUBMENUITEM_TESTSUITE:
+       case SUBMENUITEM_TESTSUITE:
             mParent->rules = Rules::getRulesByFilename("testsuite.txt");
             this->hasChosenGameType = true;
             mParent->gameType = GAME_TYPE_CLASSIC;
