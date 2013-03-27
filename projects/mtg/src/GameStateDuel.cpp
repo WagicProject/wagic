@@ -3225,7 +3225,25 @@ bool Tournament::didHumanWin()
                 didWin=Deck[1].getVictories()>Deck[0].getVictories();
             break;
         case  TOURNAMENTMODES_KO:
+            for (unsigned int player=0;player<TournamentsDecks.size();player++)
+            {
+                if (!TournamentsDecks.at(player).isAI())
+                {
+                  didWin=TournamentsDecks.at(player).getRanking()==1;
+                  break;
+                }
+            }
+            break;
         case  TOURNAMENTMODES_DOUBLEKO:
+            for (unsigned int player=0;player<TournamentsDecks.size();player++)
+            {
+                if (!TournamentsDecks.at(player).isAI())
+                {
+                  didWin=TournamentsDecks.at(player).getRanking()<=2;
+                  break;
+                }
+            }
+            break;
         case  TOURNAMENTMODES_ROUNDROBIN:
               for (unsigned int player=0;player<TournamentsDecks.size();player++)
               {
