@@ -1,0 +1,25 @@
+#NAME:Skyguard Knights
+#DESC:Modern W Midrange
+#HINT:combo hold(Concerted Effort|myhand)^cast(Concerted Effort|myhand)^restriction{type(Concerted Effort|mybattlefield)~lessthan~1}^totalmananeeded({2}{W}{W})
+
+#32 creatures
+#8 1-drops
+Lionheart Maverick * 4
+Student of Warfare * 4
+#8 2-drops
+Knight of Meadowgrain * 4
+Knight of the White Orchid * 4
+#14 3-drops
+Kemba's Skyguard * 4
+Knight Exemplar * 4
+Mirran Crusader * 4
+Paladin en-Vec (10E) * 2
+#2 4-drops
+Kinsbaile Cavalier * 2
+
+#6 enchantments
+Honor of the Pure * 3
+Concerted Effort * 3
+
+#22 lands
+Plains (MBS) * 22

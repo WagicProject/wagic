@@ -1,0 +1,30 @@
+#NAME:Jund Returns
+#DESC:Modern RBG Midrange
+#HINT:combo hold(Lightning Bolt|myhand)^cast(Lightning Bolt|myhand)^restriction{turn:5}^totalmananeeded({R})
+
+#21 creatures
+#7 2-drops
+Tarmogoyf * 4
+Flinthoof Boar * 3
+#6 3-drops
+Kitchen Finks * 3
+Vampire Nighthawk * 3
+#8 4-drops
+Bloodline Keeper * 4
+Huntmaster of the Fells * 4
+
+#15 spells
+Lightning Bolt * 4
+Abrupt Decay * 2
+Terminate * 3
+Blightning * 4
+Rakdos's Return * 2
+
+#24 lands
+Verdant Catacombs * 4
+Badlands (ME4) * 4
+Taiga (ME4) * 4
+Bayou (ME4) * 4
+Swamp (AVR) * 3
+Forest (RTR) * 3
+Mountain (SHM) * 2

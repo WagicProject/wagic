@@ -1,0 +1,37 @@
+#NAME:Stalked Prey
+#DESC:Standard BR Midrange
+#DESC:ISD-M13-RTR
+#HINT:dontattackwith(creature[power<=0])
+#HINT:combo hold(Tribute to Hunger|myhand)^until(creature|opponentbattlefield)^cast(Tribute to Hunger|myhand)^totalmananeeded({2}{B})
+
+#22 creatures
+#4 1-drops
+Stromkirk Noble * 4
+#4 2-drops
+Blood Artist * 4
+#8 3-drops
+Stromkirk Captain * 4
+Vampire Nighthawk * 4
+#4 4-drops
+Bloodline Keeper * 4
+#2 6-drops
+Necropolis Regent * 2
+
+#2 enchantments
+Curse of Stalked Prey * 2
+
+#10 spells
+Searing Spear * 4
+Dreadbore * 3
+Tribute to Hunger * 3
+
+#2 planeswalkers
+Sorin, Lord of Innistrad * 2
+
+#24 lands
+Badlands (ME4) * 4
+Scrubland (ME4) * 4
+Dragonskull Summit * 4
+Isolated Chapel * 4
+Swamp (ISD) * 4
+Mountain (AVR) * 4

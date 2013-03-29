@@ -1,0 +1,39 @@
+#NAME:Revelation Fracture
+#DESC:Modern UW Control
+#HINT:castpriority(enchantment,sorcery,artifact,instant,creature)
+#HINT:combo hold(Supreme Verdict|myhand)^cast(Supreme Verdict|myhand)^restriction{type(creature|opponentbattlefield)~morethan~1}^totalmananeeded({1}{U}{W}{W})
+#HINT:combo hold(Final Judgment|myhand)^cast(Final Judgment|myhand)^restriction{type(creature|opponentbattlefield)~morethan~1}^totalmananeeded({4}{W}{W})
+
+#1 creature
+Emrakul, the Aeons Torn * 1
+
+#27 Spells
+#4 1-cc
+Path to Exile * 4
+#4 2-cc
+Essence Scatter * 4
+#6 3-cc
+Dream Fracture * 3
+Cancel (RTR) * 3
+#4 4-cc
+Supreme Verdict * 4
+#3 5-cc
+Fall of the Gavel * 3
+#2 6-cc
+Final Judgment * 2
+#4 x-cc
+Sphinx's Revelation * 4
+
+#4 artifacts
+Elixir of Immortality * 2
+Staff of Nin * 2
+
+#2 enchantments
+Lightmine Field * 2
+
+#26 lands
+Tundra (ME4) * 4
+Glacial Fortress * 4
+Seachrome Coast * 4
+Island (RTR) * 8
+Plains (M13) * 6

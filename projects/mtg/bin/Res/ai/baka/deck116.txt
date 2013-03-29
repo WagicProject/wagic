@@ -1,0 +1,39 @@
+#NAME:Time of Need
+#DESC:Modern GU Midrange
+#HINT:dontattackwith(Elvish Piper)
+#HINT:dontblockwith(Elvish Piper)
+#HINT:alwaysattackwith(creature[Eldrazi])
+#HINT:combo hold(Quicksilver Amulet|myhand)^cast(Quicksilver Amulet|myhand)^restriction{type(Quicksilver Amulet|mybattlefiel)~lessthan~1}^totalmananeeded({4})
+
+#20 creatures
+#4 3-drops
+Kitchen Finks * 4
+#4 4-drops
+Elvish Piper (M10) * 4
+#4 5-drops
+Thragtusk * 4
+#3 7-drops
+Pelakka Wurm * 3
+#5 Legends
+Jin-Gitaxias, Core Augur * 1
+Sheoldred, Whispering One * 1
+Kozilek, Butcher of Truth * 1
+Ulamog, the Infinite Gyre * 1
+Emrakul, the Aeons Torn * 1
+
+#4 artifacts
+Quicksilver Amulet (M12) * 4
+
+#12 spells
+Farseek * 2
+Explore * 2
+Time of Need * 3
+Fabricate * 3
+Urban Evolution * 2
+
+#24 lands
+Tropical Island (ME4) * 4
+Hinterland Harbor * 4
+Glimmerpost * 4
+Forest (M10) * 9
+Island (ZEN) * 3

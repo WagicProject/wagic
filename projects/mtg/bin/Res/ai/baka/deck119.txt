@@ -1,0 +1,35 @@
+#NAME:Dead Dragons
+#DESC:Standard RB Midrange
+#DESC:ISD-M13-RTR
+#HINT:castpriority(sorcery,instant,enchantment,creature)
+#HINT:combo hold(Heartless Summoning|myhand)^cast(Heartless Summoning|myhand)^restriction{type(Heartless Summoning|mybattlefield)~lessthan~2}^totalmananeeded({1}{B})
+#HINT:combo hold(Rolling Temblor|myhand)^cast(Rolling Temblor|myhand)^restriction{type(creature[toughness<=2]|opponentbattlefield)~morethan~1}~totalmananeeded({2}{R})
+#HINT:combo hold(Devour Flesh|myhand)^until(creature|opponentbattlefield)^cast(Devour Flesh|myhand)^totalmananeeded({1}{B})
+#HINT:combo hold(Tribute to Hunger|myhand)^until(creature|opponentbattlefield)^cast(Tribute to Hunger|myhand)^totalmananeeded({2}{B})
+
+#18 creatures
+#4 2-drops
+Slumbering Dragon * 4
+#4 5-drops
+Thundermaw Hellkite * 4
+#2 6-drops
+Mikaeus, the Unhallowed * 2
+#4 7-drops
+Balefire Dragon * 4
+#4 8-drops
+Utvara Hellkite * 4
+
+#4 enchantments
+Heartless Summoning * 4
+
+#14 spells
+Devour Flesh * 2
+Dreadbore * 4
+Rolling Temblor * 4
+Tribute to Hunger * 4
+
+#24 lands
+Badlands (ME4) * 4
+Dragonskull Summit * 4
+Swamp (RTR) * 10
+Mountain (AVR) * 6

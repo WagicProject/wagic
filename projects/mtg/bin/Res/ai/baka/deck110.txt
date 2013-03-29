@@ -1,0 +1,32 @@
+#NAME:Etched Affinity
+#DESC:Modern URB Aggro
+#HINT:dontattackwith(creature[power<=0])
+#HINT:combo hold(Glimmervoid|myhand)^until(artifact|mybattlefield)^cast(Glimmervoid|myhand)^totalmananeeded({0})
+#HINT:combo hold(Galvanic Blast|myhand)^cast(Galvanic Blast|myhand)^restriction{type(artifact|mybattlefield)~morethan~2,turn:3}^totalmananeeded({R})
+
+#25 creatures
+#8 0-drops
+Memnite * 4
+Ornithopter (M11) * 4
+#4 1-drops
+Signal Pest * 4
+#6 2-drops
+Vault Skirge * 4
+Steel Overseer * 2
+#7 3-drops
+Etched Champion * 4
+Master of Etherium * 3
+
+#7 artifacts
+Cranial Plating * 4
+Mox Opal * 3
+
+#8 spells
+Thoughtcast * 4
+Galvanic Blast * 4
+
+#20 lands
+Darksteel Citadel * 4
+Glimmervoid * 4
+Island (SOM) * 7
+Mountain (SOM) * 5

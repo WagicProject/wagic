@@ -1,0 +1,40 @@
+#NAME:Sweep The Tomb
+#DESC:Modern RBW Control
+#HINT:castpriority(enchantment,sorcery,artifact,instant)
+#HINT:combo hold(Devour Flesh|myhand)^until(creature|opponentbattlefield)^cast(Devour Flesh|myhand)^totalmananeeded({1}{B})
+#HINT:combo hold(Pyroclasm|myhand)^cast(Pyroclasm|myhand)^restriction{type(creature[toughness<=2]|opponentbattlefield)~morethan~1}~totalmananeeded({1}{R})
+#HINT:combo hold(Wrath of God|myhand)^cast(Wrath of God|myhand)^restriction{type(creature|opponentbattlefield)~morethan~1}^totalmananeeded({2}{W}{W})
+#HINT:combo hold(Damnation|myhand)^cast(Damnation|myhand)^restriction{type(creature|opponentbattlefield)~morethan~1}^totalmananeeded({2}{B}{B})
+#HINT:combo hold(Final Judgment|myhand)^cast(Final Judgment|myhand)^restriction{type(creature|opponentbattlefield)~morethan~1}^totalmananeeded({4}{W}{W})
+
+#22 spells
+#8 2-cc
+Devour Flesh * 4
+Pyroclasm (M11) * 4
+#8 4-cc
+Damnation * 4
+Wrath of God (10E) * 4
+#2 6-cc
+Final Judgment * 2
+#4 x-cc
+Black Sun's Zenith * 2
+Rakdos's Return * 2
+
+#8 artifacts
+Elixir of Immortality * 2
+Staff of Nin * 4
+Venser's Journal * 2
+
+#4 enchantments
+Lightmine Field * 4
+
+#26 lands
+Plateau (ME4) * 4
+Badlands (ME4) * 4
+Scrubland (ME4) * 4
+Akoum Refuge * 4
+Isolated Chapel * 4
+Clifftop Retreat * 2
+Urborg, Tomb of Yawgmoth * 1
+Plains (CHK) * 2
+Swamp (RTR) * 1

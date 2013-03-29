@@ -1,0 +1,39 @@
+#NAME:Heartless Souls
+#DESC:Modern BGW Midrange
+#HINT:castpriority(enchantment,creature,sorcery)
+#HINT:combo hold(Heartless Summoning|myhand)^cast(Heartless Summoning|myhand)^restriction{type(Heartless Summoning|mybattlefield)~lessthan~2}^totalmananeeded({1}{B})
+
+#28 creatures
+#4 2-drops
+Wall of Omens * 4
+#4 3-drops
+Borderland Ranger * 4
+#4 4-drops
+Solemn Simulacrum (M12) * 4
+#4 5-drops
+Thragtusk * 4
+#8 6-drops
+Harvester of Souls * 3
+Soul of the Harvest * 3
+Mikaeus, the Unhallowed * 2
+#4 7-drops
+Elesh Norn, Grand Cenobite * 2
+Sheoldred, Whispering One * 2
+
+#4 enchantments
+Heartless Summoning * 4
+
+#4 spells
+Farseek * 4
+
+#24 lands
+Bayou (ME4) * 4
+Scrubland (ME4) * 4
+Savannah (ME4) * 4
+Sunpetal Grove * 1
+Woodland Cemetery * 4
+Isolated Chapel * 1
+Urborg, Tomb of Yawgmoth * 1
+Forest (SOM) * 3
+Swamp (ISD) * 1
+Plains (MBS) * 1

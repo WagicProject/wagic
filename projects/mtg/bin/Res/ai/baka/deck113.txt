@@ -1,0 +1,33 @@
+#NAME:Boros Virtue
+#DESC:Standard WR Aggro
+#DESC:ISD-M13-RTR
+#HINT:castpriority(instant,sorcery,creature,enchantment)
+#HINT:dontattackwith(Thraben Doomsayer)
+#HINT:dontblockwith(Thraben Doomsayer)
+#HINT:combo hold(Hellrider|myhand)^until(creature|mybattlefield)^cast(Hellrider|myhand)^restriction{type(creature|mybattlefield)~morethan~2}^totalmananeeded({2}{R}{R})
+
+#16 creatures
+#4 1-drops
+Legion Loyalist * 4
+#4 3-drops
+Hellraiser Goblin * 2
+Thraben Doomsayer * 2
+#8 4-drops
+Goldnight Commander * 4
+Hellrider * 4
+
+#8 enchantments
+Intangible Virtue * 4
+Assemble the Legion * 2
+Growing Ranks * 2
+
+#12 spells
+Gather the Townsfolk * 4
+Midnight Haunting * 4
+Lingering Souls * 4
+
+#24 lands
+Plateau (ME4) * 4
+Clifftop Retreat * 4
+Mountain (AVR) * 6
+Plains (ISD) * 10

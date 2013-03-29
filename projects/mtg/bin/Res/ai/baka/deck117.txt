@@ -1,0 +1,39 @@
+#NAME:Populous
+#DESC:Standard GWU Midrange
+#DESC:ISD-M13-RTR
+#HINT:alwaysattackwith(Giant Adephage)
+#HINT:combo hold(Cackling Counterpart|myhand)^until(Master Biomancer|mybattlefield)^cast(Cackling Counterpart|myhand) targeting(Master Biomancer|mybattlefield)^totalmananeeded({1}{U}{U})
+#HINT:combo hold(Cackling Counterpart|myhand)^until(Wayfaring Temple|mybattlefield)^cast(Cackling Counterpart|myhand) targeting(Wayfaring Temple|mybattlefield)^totalmananeeded({1}{U}{U})
+
+#20 creatures
+#2 2-drops
+Vitu-Ghazi Guildmage * 2
+#6 3-drops
+Wayfaring Temple * 4
+Geist of Saint Traft * 2
+#5 4-drops
+Master Biomancer * 4
+Trostani, Selesnya's Voice * 1
+#4 5-drops
+Thragtusk * 4
+#2 6-drops
+Armada Wurm * 2
+#1 7-drop
+Giant Adephage * 1
+
+#16 spells
+Farseek * 4
+Cackling Counterpart * 4
+Call of the Conclave * 4
+Gather the Townsfolk * 4
+
+#24 lands
+Tropical Island (ME4) * 4
+Tundra (ME4) * 4
+Savannah (ME4) * 4
+Sunpetal Grove * 4
+Hinterland Harbor * 1
+Glacial Fortress * 1
+Forest (M13) * 3
+Plains (M13) * 2
+Island (RTR) * 1

@@ -1,0 +1,40 @@
+#NAME:Angelic Guise
+#DESC:Modern GUW Combo
+#HINT:castpriority(enchantment,sorcery,creature)
+
+#16 creatures
+#4 1-drops
+Slippery Bogle * 2
+Gladecover Scout * 2
+#8 2-drops
+Silhana Ledgewalker * 4
+Invisible Stalker * 4
+#4 3-drops
+Geist of Saint Traft * 4
+
+#22 enchantments
+#6 1-cc
+Rancor (M13) * 2
+Ethereal Armor * 4
+#6 2-cc
+Spectral Flight * 2
+Daybreak Coronet * 4
+#2 3-cc
+Gift of Orzhova * 2
+#4 4-cc
+Angelic Destiny * 2
+Auramancer's Guise * 2
+
+#4 spells
+Divination * 4
+
+#22 lands
+Tropical Island (ME4) * 4
+Savannah (ME4) * 4
+Tundra (ME4) * 4
+Hinterland Harbor * 2
+Sunpetal Grove * 2
+Seachrome Coast * 2
+Forest (SHM) * 2
+Island (ISD) * 1
+Plains (M13) * 1

@@ -1,0 +1,31 @@
+#NAME:Eternal Life
+#DESC:Modern WB Combo
+#HINT:dontattackwith(Blood Artist)
+
+#34 creatures
+#8 1-drops
+Serra Ascendant * 4
+Soul Warden (M10) * 4
+#12 2-drops
+Lone Missionary * 3
+Suture Priest * 2
+Ajani's Pridemate * 3
+Blood Artist * 4
+#8 3-drops
+Kitchen Finks * 4
+Vampire Nighthawk * 4
+#4 5-drops
+Divinity of Pride * 4
+#2 6-drops
+Felidar Sovereign * 2
+
+#2 planeswalkers
+Sorin, Lord of Innistrad * 2
+
+#24 lands
+Scrubland (ME4) * 4
+Isolated Chapel * 4
+Urborg, Tomb of Yawgmoth * 1
+Kabira Crossroads * 4
+Plains (M11) * 7
+Swamp (ZEN) * 4

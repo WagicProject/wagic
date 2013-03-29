@@ -1,0 +1,31 @@
+#NAME:Reckoner's Chain
+#DESC:Modern RW Combo
+#HINT:dontattackwith(Stuffy Doll)
+#HINT:alwaysblockwith(Stuffy Doll)
+#HINT:combo hold(Pyroclasm|myhand)^cast(Pyroclasm|myhand)^restriction{type(creature[toughness<=2]|opponentbattlefield)~morethan~1}~totalmananeeded({1}{R})
+#HINT:combo hold(Chain Reaction|myhand)^cast(Chain Reaction|myhand)^restriction{type(creature|opponentbattlefield)~morethan~2}~totalmananeeded({2}{R}{R})
+
+#24 creatures
+#8 1-drops
+Perimeter Captain * 4
+Pride Guardian * 4
+#4 2-drops
+Wall of Omens * 4
+#4 3-drops
+Boros Reckoner * 4
+#4 4-drops
+Spitemare * 4
+#4 5-drops
+Stuffy Doll (M13) * 4
+
+#12 spells
+Pyroclasm (M11) * 4
+Chain Reaction * 4
+Blasphemous Act * 4
+
+#24 lands
+Plateau (ME4) * 4
+Clifftop Retreat * 4
+Boros Guildgate * 4
+Mountain (ZEN) * 6
+Plains (M12) * 6

@@ -1,0 +1,30 @@
+#NAME:Zoo
+#DESC:Modern WRB Aggro
+#HINT:combo hold(instant|myhand)^cast(instant|myhand)^restriction{turn:3}^totalmananeeded({R})
+
+#30 creatures
+#12 1-drops
+Experiment One * 4
+Kird Ape (AVN) * 4
+Loam Lion * 4
+#12 2-drops
+Flinthoof Boar * 4
+Tarmogoyf * 4
+Thalia, Guardian of Thraben * 4
+#6 3-drops
+Boros Reckoner * 4
+Kitchen Finks * 2
+
+#8 spells
+Lightning Bolt (M11) * 4
+Lightning Helix * 4
+
+#22 lands
+Taiga (ME4) * 4
+Savannah (ME4) * 4
+Plateau (ME4) * 4
+Arid Mesa * 2
+Evolving Wilds * 2
+Plains (M13) * 2
+Forest (ISD) * 2
+Mountain (AVR) * 2

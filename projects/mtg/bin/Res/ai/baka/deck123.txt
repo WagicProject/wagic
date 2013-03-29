@@ -1,0 +1,45 @@
+#NAME:Intruders Of Thraben
+#DESC:Modern WBU Combo
+#HINT:castpriority(enchantment,instant,sorcery,artifact,creature)
+#HINT:dontattackwith(creature[-token])
+#HINT:dontblockwith(creature[-token])
+
+#Anti-creature suite
+#HINT:combo hold(Devour Flesh|myhand)^until(creature|opponentbattlefield)^cast(Devour Flesh|myhand)^restriction{type(Damnation|myhand)~lessthan~1}^totalmananeeded({1}{B})
+#HINT:combo hold(Tribute to Hunger|myhand)^until(creature|opponentbattlefield)^cast(Tribute to Hunger|myhand)^restriction{type(Damnation|myhand)~lessthan~1}^totalmananeeded({2}{B})
+#HINT:combo hold(Tragic Slip|myhand)^until(creature[toughness=1]|opponentbattlefield)^cast(Tragic Slip|myhand) targeting(creature[toughness=1]|opponentbattlefield)^restriction{type(Damnation|myhand)~lessthan~1}^totalmananeeded({B})
+#HINT:combo hold(Tragic Slip|myhand)^until(creature[toughness>1]|opponentbattlefield)^cast(Tragic Slip|myhand) targeting(creature[toughness>1]|opponentbattlefield)^restriction{Morbid,type(Damnation|myhand)~lessthan~1}^totalmananeeded({B})
+#HINT:combo hold(Damnation|myhand)^cast(Damnation|myhand)^restriction{type(creature|mybattlefield)~lessthan~type(creature|opponentbattlefield),type(creature|opponentbattlefield)~morethan~1}^totalmananeeded({2}{B}{B})
+
+#Prevent duplicates
+#HINT:combo hold(Idyllic Tutor|myhand)^cast(Idyllic Tutor|myhand)^restriction{type(Intruder Alarm|myhand)~lessthan~1,type(Intruder Alarm|mybattlefield)~lessthan~1}^totalmananeeded({2}{W})
+#HINT:combo hold(Intruder Alarm|myhand)^cast(Intruder Alarm|myhand)^restriction{type(Intruder Alarm|inplay)~lessthan~1}^totalmananeeded({2}{U})
+#HINT:combo hold(Lightning Greaves|myhand)^cast(Lightning Greaves|myhand)^restriction{type(Lightning Greaves|mybattlefield)~lessthan~1}^totalmananeeded({2})
+
+#8 spawners
+Thraben Doomsayer * 4
+Bloodline Keeper * 4
+
+#8 Intruder Alarms
+Idyllic Tutor * 4
+Intruder Alarm (8ED) * 4
+
+#3 haste/shroud just in case
+Lightning Greaves * 3
+
+#17 defenders
+Tragic Slip * 4
+Devour Flesh * 3
+Tribute to Hunger * 2
+Damnation * 4
+Vision Skeins * 4
+
+#24 lands
+Tundra (ME4) * 4
+Underground Sea (ME4) * 4
+Scrubland (ME4) * 4
+Arcane Sanctum * 2
+Marsh Flats * 4
+Isolated Chapel * 4
+Plains (8ED) * 1
+Swamp (CMD) * 1
