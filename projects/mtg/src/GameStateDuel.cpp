@@ -493,7 +493,7 @@ void GameStateDuel::Update(float dt)
     case DUEL_STATE_ERROR_NO_DECK:
         if (JGE_BTN_OK == mEngine->ReadButton()) mParent->SetNextState(GAME_STATE_DECK_VIEWER);
         break;
-      // The next state prepares the "Choose number of games" menu (PSY)
+        // The next state prepares the "Choose number of games" menu (PSY)
     case DUEL_STATE_PREPARE_CNOGMENU:
         SAFE_DELETE(cnogmenu);
 
@@ -528,44 +528,44 @@ void GameStateDuel::Update(float dt)
         setGamePhase(DUEL_STATE_CHOOSE_NUMBER_OF_GAMES);
         break;
 
-      /* The next state displays the "Choose number of games" menu
+        /* The next state displays the "Choose number of games" menu
         and waits for input. (PSY) */
     case DUEL_STATE_CHOOSE_NUMBER_OF_GAMES:
-            cnogmenu->Update(dt);
+        cnogmenu->Update(dt);
         break;
 
-    // The next state waits until cnogmenu is fully closed
+        // The next state waits until cnogmenu is fully closed
     case DUEL_STATE_CNOGMENU_IS_CLOSING:
-            if (cnogmenu->isClosed())
-            {   // Is the closing animation finished?
-                 setGamePhase(DUEL_STATE_CHOOSE_DECK1);
-                 SAFE_DELETE(cnogmenu);
+        if (cnogmenu->isClosed())
+        {   // Is the closing animation finished?
+            setGamePhase(DUEL_STATE_CHOOSE_DECK1);
+            SAFE_DELETE(cnogmenu);
 
-            }
-            else cnogmenu->Update(dt);
+        }
+        else cnogmenu->Update(dt);
         break;
-     // The next state waits until cnogmenu is fully closed
-     case DUEL_STATE_CONTINUE_TOURNAMENT:
-              if (cnogmenu && cnogmenu->isClosed())
-              {   // Is the closing animation finished?
-                         // contruct and close opponentmenu for loading decknames
-                         ConstructOpponentMenu();
-                         opponentMenu->Close();
+        // The next state waits until cnogmenu is fully closed
+    case DUEL_STATE_CONTINUE_TOURNAMENT:
+        if (cnogmenu && cnogmenu->isClosed())
+        {   // Is the closing animation finished?
+            // contruct and close opponentmenu for loading decknames
+            ConstructOpponentMenu();
+            opponentMenu->Close();
 
-                         //setGamePhase(DUEL_STATE_PLAY);
-                         SAFE_DELETE(cnogmenu);
+            //setGamePhase(DUEL_STATE_PLAY);
+            SAFE_DELETE(cnogmenu);
 
-              } else if (opponentMenu && opponentMenu->isClosed())
-              {
-                        // Is the closing animation finished then we can start to play!
-                        setGamePhase(DUEL_STATE_PLAY);
-                        SAFE_DELETE(opponentMenu);
-              }
-              else if (cnogmenu) cnogmenu->Update(dt);
-              else if (opponentMenu) opponentMenu->Update(dt);
-               break;
+        } else if (opponentMenu && opponentMenu->isClosed())
+        {
+            // Is the closing animation finished then we can start to play!
+            setGamePhase(DUEL_STATE_PLAY);
+            SAFE_DELETE(opponentMenu);
+        }
+        else if (cnogmenu) cnogmenu->Update(dt);
+        else if (opponentMenu) opponentMenu->Update(dt);
+        break;
 
-      // The next state occurs when the player selected "Cancel" in the cnogmenu
+        // The next state occurs when the player selected "Cancel" in the cnogmenu
     case DUEL_STATE_CANCEL_CNOGMENU:
         cnogmenu->Update(dt);
         if (cnogmenu->isClosed())
@@ -709,43 +709,43 @@ void GameStateDuel::Update(float dt)
         break;
         // this called after each match and tournament
     case DUEL_STATE_SHOW_SCORE:
-         if ((JGE_BTN_OK == mEngine->ReadButton()) ||  ( mParent->players[0] ==  PLAYER_TYPE_CPU && mParent->players[1] ==  PLAYER_TYPE_CPU && !(game && !game->didWin()) && !tournament->isMatchFinished()))
-         {
-           //check if Match and tournament is over
-           if (game->didWin() && tournament->isMatchFinished() && !tournament->isNextDeckFound())
-           {
-               tournament->setScoreDisplayed(true);
-               tournament->setOpLevel(OPLEVEL_NEW);
-               tournament->End();
-               //Display credits for human player
-               if (mParent->players[0] ==  PLAYER_TYPE_HUMAN)
-               {
-                   tournament->save(false);
-                   setGamePhase(DUEL_STATE_END);
-               }
-               else
-               {
-                   setGamePhase(DUEL_STATE_END_OF_TOURNAMENT);
-               }
+        if ((JGE_BTN_OK == mEngine->ReadButton()) ||  ( mParent->players[0] ==  PLAYER_TYPE_CPU && mParent->players[1] ==  PLAYER_TYPE_CPU && !(game && !game->didWin()) && !tournament->isMatchFinished()))
+        {
+            //check if Match and tournament is over
+            if (game->didWin() && tournament->isMatchFinished() && !tournament->isNextDeckFound())
+            {
+                tournament->setScoreDisplayed(true);
+                tournament->setOpLevel(OPLEVEL_NEW);
+                tournament->End();
+                //Display credits for human player
+                if (mParent->players[0] ==  PLAYER_TYPE_HUMAN)
+                {
+                    tournament->save(false);
+                    setGamePhase(DUEL_STATE_END);
+                }
+                else
+                {
+                    setGamePhase(DUEL_STATE_END_OF_TOURNAMENT);
+                }
 
-           }
-           else
-           { // we have to play again
-               if (game->didWin())
-                  tournament->setScoreDisplayed(true);
-               setGamePhase(DUEL_STATE_PLAY);
-           }
-         }
-         break;
-     // The next state occurs after the *match* has ended:
-     case DUEL_STATE_END_OF_MATCH:
+            }
+            else
+            { // we have to play again
+                if (game->didWin())
+                    tournament->setScoreDisplayed(true);
+                setGamePhase(DUEL_STATE_PLAY);
+            }
+        }
+        break;
+        // The next state occurs after the *match* has ended:
+    case DUEL_STATE_END_OF_MATCH:
         break;
 
-      // The next state occurs after the end of the last match of the tournament:
-     case DUEL_STATE_END_OF_TOURNAMENT:
+        // The next state occurs after the end of the last match of the tournament:
+    case DUEL_STATE_END_OF_TOURNAMENT:
         if ( (JGE_BTN_OK == mEngine->ReadButton()) || (mParent->players[0] ==  PLAYER_TYPE_CPU && mParent->players[1] ==  PLAYER_TYPE_CPU) )
         {
-          setGamePhase(DUEL_STATE_BACK_TO_MAIN_MENU);
+            setGamePhase(DUEL_STATE_BACK_TO_MAIN_MENU);
         }
 
         break;
@@ -794,53 +794,53 @@ void GameStateDuel::Update(float dt)
         if (game->didWin())
         {
             //the following section will be called only in a classic or demo gamemode and if a tournament or match with more then one game is activ
-             if ( (mParent->gameType == GAME_TYPE_CLASSIC || mParent->gameType == GAME_TYPE_DEMO)&& mParent->players[1] == PLAYER_TYPE_CPU && (tournament->isTournament() || tournament->getGamesToPlay()>1 ))
-             {
-                 setGamePhase(DUEL_STATE_SHOW_SCORE);
+            if ( (mParent->gameType == GAME_TYPE_CLASSIC || mParent->gameType == GAME_TYPE_DEMO)&& mParent->players[1] == PLAYER_TYPE_CPU && (tournament->isTournament() || tournament->getGamesToPlay()>1 ))
+            {
+                setGamePhase(DUEL_STATE_SHOW_SCORE);
                 /* Determine the winner of this game.
-                      This could be done more elegantly in credits.cpp (PSY) */
-                    // (PSY!) check how the game handles draws, does it think it has a winner?
-                 if (!tournament->wasScoreDisplayed() || mParent->players[0]==PLAYER_TYPE_CPU)
-                 {
+                This could be done more elegantly in credits.cpp (PSY) */
+                // (PSY!) check how the game handles draws, does it think it has a winner?
+                if (!tournament->wasScoreDisplayed() || mParent->players[0]==PLAYER_TYPE_CPU)
+                {
                     tournament->gameFinished(game->didWin(game->players[0]),game->didWin(game->players[1]));
                     tournament->updateScoreTable(game->players[0], game->players[1], mParent->gameType);
                     if (tournament->isMatchFinished())
                     {
-                         // Hack for the competition: swap players back if swapped
-                         tournament->revertSwapPlayer();
-                         //save match results in ai_test.csv only for ai vs ai games
-                         if (mParent->players[0]==PLAYER_TYPE_CPU)
-                              tournament->saveMatchResults();
+                        // Hack for the competition: swap players back if swapped
+                        tournament->revertSwapPlayer();
+                        //save match results in ai_test.csv only for ai vs ai games
+                        if (mParent->players[0]==PLAYER_TYPE_CPU)
+                            tournament->saveMatchResults();
 
-                         if (tournament->isTournament())
-                         {  // We are in Tournament mode
-                           tournament->updateTournament();
-                           // if first player is human then other results are random
-                           // It would be to boring for human player to watch all other ai decks to finish
-                           if (mParent->players[0]==PLAYER_TYPE_HUMAN)
-                               tournament->leaveOutAIvsAIMatches();
-                           tournament->calculateRanking();
-                           tournament->updateScoreforTournament();
-                           if (tournament->isNextDeckFound())
-                               // first player is either human or cpu
-                               mParent->players[0] = tournament->getDeckType(0);
-                         }
-                     }
+                        if (tournament->isTournament())
+                        {  // We are in Tournament mode
+                            tournament->updateTournament();
+                            // if first player is human then other results are random
+                            // It would be to boring for human player to watch all other ai decks to finish
+                            if (mParent->players[0]==PLAYER_TYPE_HUMAN)
+                                tournament->leaveOutAIvsAIMatches();
+                            tournament->calculateRanking();
+                            tournament->updateScoreforTournament();
+                            if (tournament->isNextDeckFound())
+                                // first player is either human or cpu
+                                mParent->players[0] = tournament->getDeckType(0);
+                        }
+                    }
 
-                     if (!tournament->isNextDeckFound() && tournament->isMatchFinished())
-                     {
-                         //save tournament status
-                         tournament->save(mParent->players[0]==PLAYER_TYPE_CPU);
-                         if (mParent->players[0]==PLAYER_TYPE_HUMAN)
-                         {
-                             credits->computeTournament(game, mParent,tournament->isTournament(),!tournament->isTournament(),tournament->didHumanWin(),tournament->gamesWonbyHuman(),tournament->gamesPlayedbyHuman(),tournament->matchesWonbyHuman(),tournament->matchesPlayedbyHuman());
-                         }
-                     }
-                 }
+                    if (!tournament->isNextDeckFound() && tournament->isMatchFinished())
+                    {
+                        //save tournament status
+                        tournament->save(mParent->players[0]==PLAYER_TYPE_CPU);
+                        if (mParent->players[0]==PLAYER_TYPE_HUMAN)
+                        {
+                            credits->computeTournament(game, mParent,tournament->isTournament(),!tournament->isTournament(),tournament->didHumanWin(),tournament->gamesWonbyHuman(),tournament->gamesPlayedbyHuman(),tournament->matchesWonbyHuman(),tournament->matchesPlayedbyHuman());
+                        }
+                    }
+                }
 
-                 if (tournament->wasScoreDisplayed() || mParent->players[0]==PLAYER_TYPE_CPU)
-                 {
-                     tournament->setScoreDisplayed(false);
+                if (tournament->wasScoreDisplayed() || mParent->players[0]==PLAYER_TYPE_CPU)
+                {
+                    tournament->setScoreDisplayed(false);
                     // load next deck if actual match is not finished or a next match is available
                     if (tournament->isNextDeckFound() || !tournament->isMatchFinished())
                     {
@@ -852,7 +852,7 @@ void GameStateDuel::Update(float dt)
                         tournament->swapPlayer();
                         for (int i = 0; i < NMB_PLAYERS; i++)
                         {
-                                game->loadPlayer(i, tournament->getDeckType(i), tournament->getDeckNumber(i), premadeDeck);
+                            game->loadPlayer(i, tournament->getDeckType(i), tournament->getDeckNumber(i), premadeDeck);
                         }
                         //saves actual tournament state
                         tournament->save(mParent->players[0]==PLAYER_TYPE_CPU);
@@ -909,14 +909,14 @@ void GameStateDuel::Update(float dt)
                 }
             }
 #endif
-//            if (mParent->players[0] == PLAYER_TYPE_CPU && mParent->players[1] == PLAYER_TYPE_CPU)
-//            {
-/////// Tournament Mod ///////////
-//                End();
-//                Start();
-/////// END Tournament Mod ///////////
-//            }
-            //this is handled elsewhere.
+            if (mParent->players[0] == PLAYER_TYPE_CPU && mParent->players[1] == PLAYER_TYPE_CPU)
+            {
+                ///// Tournament Mod ///////////
+                // End();
+                // Start();
+                ///// END Tournament Mod ///////////
+            }
+           // this is handled elsewhere.
         }
         if (mEngine->GetButtonClick(JGE_BTN_MENU))
         {

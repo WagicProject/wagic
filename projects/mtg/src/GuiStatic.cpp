@@ -222,7 +222,8 @@ void GuiGameZone::Update(float dt)
 GuiGameZone::GuiGameZone(float x, float y, bool hasFocus, MTGGameZone* zone, GuiAvatars* parent) :
     GuiStatic(static_cast<float> (GuiGameZone::Height), x, y, hasFocus, parent), zone(zone)
 {
-    cd = NEW CardDisplay(0, zone->owner->getObserver(), static_cast<int> (x), static_cast<int> (y), this);
+    
+    cd = NEW CardDisplay(0, zone->owner->getObserver(),y > 150 ? static_cast<int> (x)-235:static_cast<int> (x)+23, static_cast<int> (y), this);
     cd->zone = zone;
     showCards = 0;
 }
