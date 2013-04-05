@@ -15604,12 +15604,6 @@ toughness=3
 text=Shoe Tree comes into play with up to two shoe counters on it. Use your shoes as counters. Shoe Tree gets +1/+1 for each shoe counter on it.
 [/card]
 [card]
-name=Shred Memory
-text=Exile up to four target cards from a single graveyard. -- Transmute {1}{B}{B} ({1}{B}{B}, Discard this card: Search your library for a card with the same converted mana cost as this card, reveal it, and put it into your hand. Then shuffle your library. Transmute only as a sorcery.)
-mana={1}{B}
-type=Instant
-[/card]
-[card]
 name=Shrine of Piercing Vision
 mana={2}
 type=Artifact
@@ -15648,15 +15642,6 @@ text=Equipped creature has "{T}, Unattach Shuriken: Shuriken deals 2 damage to t
 mana={1}
 type=Artifact
 subtype=Equipment
-[/card]
-[card]
-name=Shyft
-text=At the beginning of your upkeep, you may have Shyft become the color or colors of your choice. (This effect lasts indefinitely.)
-mana={4}{U}
-type=Creature
-subtype=Shapeshifter
-power=4
-toughness=2
 [/card]
 [card]
 name=Sickening Dreams

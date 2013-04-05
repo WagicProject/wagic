@@ -76528,6 +76528,15 @@ mana={1}{R}{S(artifact|mybattlefield)}
 type=Instant
 [/card]
 [card]
+name=Shred Memory
+target=<upto:4>*|graveyard
+auto=moveTo(exile)
+autohand={1}{B}{B}{discard(this|myhand)}:moveTo(myhand) target(*[manacost=2]|mylibrary) asSorcery
+text=Exile up to four target cards from a single graveyard. -- Transmute {1}{B}{B} ({1}{B}{B}, Discard this card: Search your library for a card with the same converted mana cost as this card, reveal it, and put it into your hand. Then shuffle your library. Transmute only as a sorcery.)
+mana={1}{B}
+type=Instant
+[/card]
+[card]
 name=Shrewd Hatchling
 auto={UR}:target(creature) ueot cantbeblockerof(this)
 auto=@movedTo(*[red]|mystack):counter(-1/-1,-1)
@@ -76787,6 +76796,16 @@ text=Equipped creature gets +1/+0. -- Equip {0} ({0}: Attach to target creature 
 mana={1}
 type=Artifact
 subtype=Equipment
+[/card]
+[card]
+name=Shyft
+auto=@each my upkeep:may name(choose color/s) ability$!name(choose color/s) choice name(white) all(mystored) becomes(,white) forever _ choice name(blue) all(mystored) becomes(,blue) forever _ choice name(black) all(mystored) becomes(,black) forever _ choice name(red) all(mystored) becomes(,red) forever _ choice name(green) all(mystored) becomes(,green) forever _ choice name(white & blue) all(mystored) becomes(,white,blue) forever _ choice name(blue & black) all(mystored) becomes(,black,blue) forever _ choice name(black & red) all(mystored) becomes(,black,red) forever _ choice name(red & green) all(mystored) becomes(,red,green) forever _ choice name(green & white) all(mystored) becomes(,white,green) forever _ choice name(white & black) all(mystored) becomes(,white,black) forever _ choice name(blue & red) all(mystored) becomes(,red,blue) forever _ choice name(black & green) all(mystored) becomes(,black,green) forever _ choice name(red & white) all(mystored) becomes(,white,red) forever _ choice name(green & blue) all(mystored) becomes(,green,blue) forever _ choice name(green & white & blue) all(mystored) becomes(,green,white,blue) forever _ choice name(white & blue & black) all(mystored) becomes(,black,white,blue) forever _ choice name(blue & black & red) all(mystored) becomes(,black,red,blue) forever _ choice name(black & red & green) all(mystored) becomes(,green,black,red) forever _ choice name(red & green & white) all(mystored) becomes(,green,white,red) forever _ choice name(white & black & green) all(mystored) becomes(,green,white,black) forever _ choice name(blue & red & white) all(mystored) becomes(,red,white,blue) forever _ choice name(black & green & blue) all(mystored) becomes(,green,black,blue) forever _ choice name(red & white & black) all(mystored) becomes(,black,white,red) forever _ choice name(green & blue & red) all(mystored) becomes(,green,red,blue) forever _ choice name(green & red & blue & black) all(mystored) becomes(,green,red,blue,black) forever _ choice name(green & red & blue & white) all(mystored) becomes(,green,red,blue,white) forever _ choice name(white & blue & black & red) all(mystored) becomes(,white,red,blue,black) forever _ choice name(white & blue & black & green) all(mystored) becomes(,white,green,blue,black) forever _ choice name(all colors) all(mystored) becomes(,white,red,blue,black,green) forever!$ controller
+text=At the beginning of your upkeep, you may have Shyft become the color or colors of your choice. (This effect lasts indefinitely.)
+mana={4}{U}
+type=Creature
+subtype=Shapeshifter
+power=4
+toughness=2
 [/card]
 [card]
 name=Sibilant Spirit
@@ -77461,6 +77480,14 @@ auto=damage:1 all(creature|opponentBattlefield)
 text=Simoon deals 1 damage to each creature target opponent controls.
 mana={R}{G}
 type=Instant
+[/card]
+[card]
+name=Simplify
+auto=sacrifice notatarget(enchantment|mybattlefield)
+auto=ability$! sacrifice notatarget(enchantment|mybattlefield) !$ opponent
+text=Each player sacrifices an enchantment.
+mana={G}
+type=Sorcery
 [/card]
 [card]
 name=Simulacrum
