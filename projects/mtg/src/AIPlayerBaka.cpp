@@ -2240,7 +2240,8 @@ int AIPlayerBaka::chooseAttackers()
         {
             if(hints && hints->HintSaysDontAttack(observer,card))
                 continue;
-            observer->cardClick(card, MTGAbility::MTG_ATTACK_RULE);
+            if(!card->isAttacker())
+                observer->cardClick(card, MTGAbility::MTG_ATTACK_RULE);
         }
     }
     return 1;
