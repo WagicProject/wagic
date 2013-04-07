@@ -36,10 +36,22 @@ AIHint::AIHint(string _line)
         mCombatAttackTip = splitDontAttack[1];
     }
 
+    vector<string> splitAlwaysAttack = parseBetween(action, "alwaysattackwith(", ")");
+    if(splitAlwaysAttack.size())
+    {
+        mCombatAlwaysAttackTip = splitAlwaysAttack[1];
+    }
+
     vector<string> splitDontBlock = parseBetween(action, "dontblockwith(", ")");
     if(splitDontBlock.size())
     {
         mCombatBlockTip = splitDontBlock[1];
+    }
+
+    vector<string> splitAlwaysBlock = parseBetween(action, "alwaysblockwith(", ")");
+    if(splitAlwaysBlock.size())
+    {
+        mCombatAlwaysBlockTip = splitAlwaysBlock[1];
     }
 
     vector<string> splitCastOrder = parseBetween(action, "castpriority(", ")");
@@ -106,6 +118,26 @@ bool AIHints::HintSaysDontAttack(GameObserver* observer,MTGCardInstance * card)
     return false;
 }
 
+bool AIHints::HintSaysAlwaysAttack(GameObserver* observer,MTGCardInstance * card)
+{
+    TargetChooserFactory tfc(observer);
+    TargetChooser * hintTc = NULL;
+    for(unsigned int i = 0; i < hints.size();i++)
+    {
+        if (hints[i]->mCombatAlwaysAttackTip.size())
+        {
+            hintTc = tfc.createTargetChooser(hints[i]->mCombatAlwaysAttackTip,card);
+            if(hintTc && hintTc->canTarget(card,true))
+            {
+                SAFE_DELETE(hintTc);
+                return true;
+            }
+            SAFE_DELETE(hintTc);
+        }
+    }
+    return false;
+}
+
 bool AIHints::HintSaysDontBlock(GameObserver* observer,MTGCardInstance * card)
 {
     TargetChooserFactory tfc(observer);
@@ -115,6 +147,26 @@ bool AIHints::HintSaysDontBlock(GameObserver* observer,MTGCardInstance * card)
         if (hints[i]->mCombatBlockTip.size())
         {
             hintTc = tfc.createTargetChooser(hints[i]->mCombatBlockTip,card);
+            if(hintTc && hintTc->canTarget(card,true))
+            {
+                SAFE_DELETE(hintTc);
+                return true;
+            }
+            SAFE_DELETE(hintTc);
+        }
+    }
+    return false;
+}
+
+bool AIHints::HintSaysAlwaysBlock(GameObserver* observer,MTGCardInstance * card)
+{
+    TargetChooserFactory tfc(observer);
+    TargetChooser * hintTc = NULL;
+    for(unsigned int i = 0; i < hints.size();i++)
+    {
+        if (hints[i]->mCombatAlwaysBlockTip.size())
+        {
+            hintTc = tfc.createTargetChooser(hints[i]->mCombatAlwaysBlockTip,card);
             if(hintTc && hintTc->canTarget(card,true))
             {
                 SAFE_DELETE(hintTc);

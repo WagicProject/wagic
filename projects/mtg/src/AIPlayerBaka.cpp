@@ -2219,6 +2219,17 @@ int AIPlayerBaka::chooseAttackers()
                 || (myForce > opponentForce) || (myForce > opponent()->life);
     }
     printf("Choose attackers : %i %i %i %i -> %i\n", opponentForce, opponentCreatures, myForce, myCreatures, attack);
+
+    CardDescriptor cd;
+    cd.init();
+    cd.setType("creature");
+    MTGCardInstance * card = NULL;
+    while ((card = cd.nextmatch(game->inPlay, card)))
+    {
+        if(hints && hints->HintSaysAlwaysAttack(observer,card))
+        observer->cardClick(card, MTGAbility::MTG_ATTACK_RULE);
+    }
+
     if (attack)
     {
         CardDescriptor cd;
@@ -2238,6 +2249,8 @@ int AIPlayerBaka::chooseAttackers()
 /* Can I first strike my oponent and get away with murder ? */
 int AIPlayerBaka::canFirstStrikeKill(MTGCardInstance * card, MTGCardInstance *ennemy)
 {
+    if(hints && hints->HintSaysAlwaysBlock(observer,ennemy))
+        return 1;
     if (ennemy->has(Constants::FIRSTSTRIKE) || ennemy->has(Constants::DOUBLESTRIKE))
         return 0;
     if (!(card->has(Constants::FIRSTSTRIKE) || card->has(Constants::DOUBLESTRIKE)))

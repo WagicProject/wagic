@@ -19,6 +19,8 @@ public:
     string mAction;
     string mCombatAttackTip;
     string mCombatBlockTip;
+    string mCombatAlwaysBlockTip;
+    string mCombatAlwaysAttackTip;
     vector<string>castOrder;
     vector<string>combos;
     //for preformance we disect the combo on first run.
@@ -50,7 +52,9 @@ public:
     AIHints (AIPlayerBaka * player);
     AIAction * suggestAbility(ManaCost * potentialMana);
     bool HintSaysDontAttack(GameObserver* observer,MTGCardInstance * card = NULL);
+    bool HintSaysAlwaysAttack(GameObserver* observer,MTGCardInstance * card = NULL);
     bool HintSaysDontBlock(GameObserver* observer,MTGCardInstance * card = NULL);
+    bool HintSaysAlwaysBlock(GameObserver* observer,MTGCardInstance * card = NULL);
     bool HintSaysItsForCombo(GameObserver* observer,MTGCardInstance * card = NULL);
     bool canWeCombo(GameObserver* observer,MTGCardInstance * card = NULL,AIPlayerBaka * Ai = NULL);
     vector<string> mCastOrder();
