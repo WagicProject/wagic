@@ -178,10 +178,7 @@ void Rules::addExtraRules(GameObserver* g)
                 a->canBeInterrupted = false;
                 if (a->oneShot)
                 {
-
-                    if (a->aType == MTGAbility::STANDARD_DRAW && difficultyRating == HARD)
-                        a->resolve();
-                    else if (a->aType != MTGAbility::STANDARD_DRAW)
+                    if (a->aType != MTGAbility::STANDARD_DRAW)
                         a->resolve();
                     else if (p->isAI() && (p->playMode == Player::MODE_AI && p->opponent()->playMode== Player::MODE_AI))
                     {
@@ -211,7 +208,11 @@ void Rules::addExtraRules(GameObserver* g)
                         }
                         else if (difficultyRating == NORMAL)
                         {
-                            hand->OptimizedHand(p,handsize, 1, 0, 2);//give the Ai deck a tiny boost by giving it 1 land and 2 spells under 3 manacost.
+                            hand->OptimizedHand(p,handsize, 2, 0, 2);//give the Ai deck a tiny boost by giving it 1 land and 2 spells under 3 manacost.
+                        }
+                        else if (difficultyRating == HARD)
+                        {
+                            hand->OptimizedHand(p,handsize, 2, 0, 0);//give the Ai deck a tiny boost by giving it 1 land and 2 spells under 3 manacost.
                         }
                         else
                         {
