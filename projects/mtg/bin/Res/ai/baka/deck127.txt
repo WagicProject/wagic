@@ -1,0 +1,33 @@
+#NAME:Forester
+#DESC:Modern G Midrange
+#HINT:combo hold(Regal Force|myhand)^cast(Regal Force|myhand)^restriction{type(creature|mybattlefield)~morethan~3}^totalmananeeded({4}{G}{G}{G})
+#HINT:combo hold(Primordial Hydra|myhand)^until(creature|mybattlefield)^cast(Primordial Hydra|myhand)^totalmananeeded({1}{G}{G})
+
+#20 creatures
+#4 3-drops
+Dungrove Elder * 4
+#4 4-drops
+Creakwood Liege * 4
+#4 6-drops
+Wurmcoil Engine * 2
+Vigor * 2
+#6 7-drops
+Tangle Golem * 4
+Regal Force * 2
+#2 x-drops
+Primordial Hydra * 2
+
+#2 artifacts
+Staff of Nin * 2
+
+#2 enchantments
+Rites of Flourishing * 2
+
+#14 spells
+Rampant Growth (10E) * 4
+Cultivate * 4
+Beacon of Creation * 4
+Howl of the Night Pack * 2
+
+#22 lands
+Forest (10E) * 22
