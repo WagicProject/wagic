@@ -54,6 +54,18 @@ AIHint::AIHint(string _line)
         mCombatAlwaysBlockTip = splitAlwaysBlock[1];
     }
 
+    vector<string> splitSetEffgood = parseBetween(action, "good(", ")");
+    if(splitSetEffgood.size())
+    {
+        mCardEffGood = splitSetEffgood[1];
+    }
+
+    vector<string> splitSetEffbad = parseBetween(action, "bad(", ")");
+    if(splitSetEffbad.size())
+    {
+        mCardEffBad = splitSetEffbad[1];
+    }
+
     vector<string> splitCastOrder = parseBetween(action, "castpriority(", ")");
     if(splitCastOrder.size())
     {
@@ -167,6 +179,46 @@ bool AIHints::HintSaysAlwaysBlock(GameObserver* observer,MTGCardInstance * card)
         if (hints[i]->mCombatAlwaysBlockTip.size())
         {
             hintTc = tfc.createTargetChooser(hints[i]->mCombatAlwaysBlockTip,card);
+            if(hintTc && hintTc->canTarget(card,true))
+            {
+                SAFE_DELETE(hintTc);
+                return true;
+            }
+            SAFE_DELETE(hintTc);
+        }
+    }
+    return false;
+}
+
+bool AIHints::HintSaysCardIsGood(GameObserver* observer,MTGCardInstance * card)
+{
+    TargetChooserFactory tfc(observer);
+    TargetChooser * hintTc = NULL;
+    for(unsigned int i = 0; i < hints.size();i++)
+    {
+        if (hints[i]->mCardEffGood.size())
+        {
+            hintTc = tfc.createTargetChooser(hints[i]->mCardEffGood,card);
+            if(hintTc && hintTc->canTarget(card,true))
+            {
+                SAFE_DELETE(hintTc);
+                return true;
+            }
+            SAFE_DELETE(hintTc);
+        }
+    }
+    return false;
+}
+
+bool AIHints::HintSaysCardIsBad(GameObserver* observer,MTGCardInstance * card)
+{
+    TargetChooserFactory tfc(observer);
+    TargetChooser * hintTc = NULL;
+    for(unsigned int i = 0; i < hints.size();i++)
+    {
+        if (hints[i]->mCardEffBad.size())
+        {
+            hintTc = tfc.createTargetChooser(hints[i]->mCardEffBad,card);
             if(hintTc && hintTc->canTarget(card,true))
             {
                 SAFE_DELETE(hintTc);

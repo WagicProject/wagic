@@ -1461,6 +1461,14 @@ int AIPlayerBaka::interruptIfICan()
 
 int AIPlayerBaka::effectBadOrGood(MTGCardInstance * card, int mode, TargetChooser * tc)
 {
+    if(hints && hints->HintSaysCardIsGood(observer,card))
+    {
+        return BAKA_EFFECT_GOOD;
+    }
+    if(hints && hints->HintSaysCardIsBad(observer,card))
+    {
+        return BAKA_EFFECT_BAD;
+    }
     int id = card->getMTGId();
     AbilityFactory af(observer);
     int autoGuess = af.magicText(id, NULL, card, mode, tc);
