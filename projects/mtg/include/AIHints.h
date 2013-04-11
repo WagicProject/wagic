@@ -57,8 +57,8 @@ public:
     bool HintSaysAlwaysAttack(GameObserver* observer,MTGCardInstance * card = NULL);
     bool HintSaysDontBlock(GameObserver* observer,MTGCardInstance * card = NULL);
     bool HintSaysAlwaysBlock(GameObserver* observer,MTGCardInstance * card = NULL);
-    bool AIHints::HintSaysCardIsGood(GameObserver* observer,MTGCardInstance * card);
-    bool AIHints::HintSaysCardIsBad(GameObserver* observer,MTGCardInstance * card);
+    bool HintSaysCardIsGood(GameObserver* observer,MTGCardInstance * card);
+    bool HintSaysCardIsBad(GameObserver* observer,MTGCardInstance * card);
     bool HintSaysItsForCombo(GameObserver* observer,MTGCardInstance * card = NULL);
     bool canWeCombo(GameObserver* observer,MTGCardInstance * card = NULL,AIPlayerBaka * Ai = NULL);
     vector<string> mCastOrder();
