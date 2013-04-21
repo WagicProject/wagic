@@ -1725,14 +1725,17 @@ void GameStateDuel::OnScroll(int inXVelocity, int inYVelocity)
 
 void GameStateDuel::setAISpeed()
 {
-  for (int i = 0; i<NMB_PLAYERS; i ++)
-  {
-    if (mParent->players[i] ==  PLAYER_TYPE_CPU)
+    if(game)
     {
-      if(game)
-        ((AIPlayer *)game->players[i])->setFastTimerMode(tournament->getFastTimerMode());
+        for (unsigned int i = 0; i < game->players.size() - 1; i ++)
+        {
+            if (mParent->players[i] ==  PLAYER_TYPE_CPU)
+            {
+                if(dynamic_cast<AIPlayer*>(game->players[i]))
+                    ((AIPlayer *)game->players[i])->setFastTimerMode(tournament->getFastTimerMode());
+            }
+        }
     }
-  }
 }
 
 
