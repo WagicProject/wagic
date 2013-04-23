@@ -1,0 +1,37 @@
+#NAME:Krenko's Loyalist
+#DESC:Modern RW Aggro
+#HINT:dontattackwith(Krenko, Mob Boss)
+#HINT:dontattackwith(Goldnight Commander)
+#HINT:dontattackwith(Goblin Chieftain)
+#HINT:dontblockwith(creature[-token])
+#HINT:combo hold(Flame Slash|myhand)^until(creature[toughness<=4]|opponentbattlefield)^cast(Flame Slash|myhand) targeting(creature[toughness>=3]|opponentbattlefield)^totalmananeeded({R})
+#HINT:combo hold(Lightning Helix|myhand)^until(creature[toughness<=3]|opponentbattlefield)^cast(Lightning Helix|myhand) targeting(creature[toughness<=3]|opponentbattlefield)^totalmananeeded({R}{W})
+#HINT:combo hold(Legion Loyalist|myhand)^cast(Legion Loyalist|myhand)^restriction{type(Legion Loyalist|mybattlefield)~lessthan~1}~totalmananeeded({R})
+#HINT:combo hold(Goblin Chieftain|myhand)^cast(Goblin Chieftain|myhand)^restriction{type(Goblin Chieftain|mybattlefield)~lessthan~1}~totalmananeeded({1}{R}{R})
+
+#18 creatures
+#4 1-drops
+Legion Loyalist * 4
+#6 3-drops
+Goblin Chieftain * 4
+Goblin King (9ED) * 2
+#6 4-drops
+Krenko, Mob Boss * 4
+Goldnight Commander * 2
+#2 6-drops
+Aurelia, the Warleader * 2
+
+#16 spells
+Krenko's Command * 4
+Dragon Fodder * 4
+Flame Slash * 4
+Lightning Helix * 4
+
+#2 enchantments
+Intangible Virtue * 2
+
+#24 lands
+Plateau (ME4) * 4
+Clifftop Retreat * 4
+Mountain (M13) * 10
+Plains (AVR) * 6
