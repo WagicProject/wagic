@@ -1031,6 +1031,7 @@ bool TypeTargetChooser::canTarget(Targetable * target,bool withoutProtections)
         {
 
             if (card->hasSubtype(types[i])) return true;
+            if (card->data->basicAbilities[(int)Constants::CHANGELING]) return true;//changelings can be targeted as any subtype.
 			if(card->getLCName().size())
 			{
             if (MTGAllCards::findType(card->getLCName()) == types[i]) 
