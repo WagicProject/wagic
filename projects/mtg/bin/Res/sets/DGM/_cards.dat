@@ -1,0 +1,876 @@
+[meta]
+author=Wagic Team
+name=Dragon's Maze
+year=2013
+block=RTR
+[/meta]
+[card]
+primitive=Advent of the Wurm
+id=369036
+rarity=R
+[/card]
+[card]
+primitive=Aetherling
+id=368961
+rarity=R 
+[/card]
+[card]
+primitive=Alive // Well (Alive)
+id=369041
+rarity=U
+[/card]
+[card]
+primitive=Armed // Dangerous (Armed)
+id=368989
+rarity=U
+[/card]
+[card]
+primitive=Armored Wolf-Rider
+id=369082
+rarity=C
+[/card]
+[card]
+primitive=Ascended Lawmage
+id=369016
+rarity=U
+[/card]
+[card]
+primitive=Far // Away (Away)
+id=369042
+rarity=U
+[/card]
+[card]
+primitive=Awe for the Guilds
+id=369053
+rarity=C
+[/card]
+[card]
+primitive=Azorius Cluestone
+id=369017
+rarity=C
+[/card]
+[card]
+primitive=Azorius Guildgate
+id=368974
+rarity=C
+[/card]
+[card]
+primitive=Bane Alley Blackguard
+id=369044
+rarity=C
+[/card]
+[card]
+primitive=Battering Krasis
+id=368984
+rarity=C
+[/card]
+[card]
+primitive=Beck // Call (Beck)
+id=369063
+rarity=R
+[/card]
+[card]
+primitive=Beetleform Mage
+id=369000
+rarity=C
+[/card]
+[card]
+primitive=Blast of Genius
+id=368985
+rarity=U
+[/card]
+[card]
+primitive=Blaze Commando
+id=369047
+rarity=U
+[/card]
+[card]
+primitive=Flesh // Blood (Blood)
+id=368991
+rarity=R
+[/card]
+[card]
+primitive=Blood Baron of Vizkopa
+id=368954
+rarity=M
+[/card]
+[card]
+primitive=Blood Scrivener
+id=369030
+rarity=R
+[/card]
+[card]
+primitive=Boros Battleshaper
+id=369051
+rarity=R
+[/card]
+[card]
+primitive=Boros Cluestone
+id=368997
+rarity=C
+[/card]
+[card]
+primitive=Boros Guildgate
+id=369008
+rarity=C
+[/card]
+[card]
+primitive=Boros Mastiff
+id=369028
+rarity=C
+[/card]
+[card]
+primitive=Breaking // Entering (Breaking)
+id=369009
+rarity=R
+[/card]
+[card]
+primitive=Bred for the Hunt
+id=368953
+rarity=U
+[/card]
+[card]
+primitive=Bronzebeak Moa
+id=368971
+rarity=U
+[/card]
+[card]
+primitive=Turn // Burn (Burn)
+id=369080
+rarity=U
+[/card]
+[card]
+primitive=Beck // Call (Beck)
+id=369063
+rarity=R
+[/card]
+[card]
+primitive=Carnage Gladiator
+id=369057
+rarity=U
+[/card]
+[card]
+primitive=Catch // Release (Catch)
+id=368982
+rarity=R
+[/card]
+[card]
+primitive=Clear a Path
+id=369029
+rarity=C
+[/card]
+[card]
+primitive=Council of the Absolute
+id=368999
+rarity=M
+[/card]
+[card]
+primitive=Crypt Incursion
+id=369056
+rarity=C
+[/card]
+[card]
+primitive= Armed // Dangerous (Dangerous)
+id=368989
+rarity=U
+[/card]
+[card]
+primitive=Deadbridge Chant
+id=369003
+rarity=M
+[/card]
+[card]
+primitive=Debt to the Deathless
+id=369039
+rarity=U
+[/card]
+[card]
+primitive=Deputy of Acquittals
+id=369084
+rarity=C
+[/card]
+[card]
+primitive=Dimir Cluestone
+id=369096
+rarity=C
+[/card]
+[card]
+primitive=Dimir Guildgate
+id=369058
+rarity=C
+[/card]
+[card]
+primitive=Down // Dirty (Dirty)
+id=369089
+rarity=U
+[/card]
+[card]
+primitive=Down // Dirty (Down)
+id=369089
+rarity=U
+[/card]
+[card]
+primitive=Dragonshift
+id=369061
+rarity=R
+[/card]
+[card]
+primitive=Drown in Filth
+id=369086
+rarity=C
+[/card]
+[card]
+primitive=Emmara Tandris
+id=368944
+rarity=R
+[/card]
+[card]
+primitive= Breaking // Entering (Entering)
+id=369009
+rarity=R
+[/card]
+[card]
+primitive=Exava, the Blood Witch
+id=369055
+rarity=R
+[/card]
+[card]
+primitive=Far // Away (Far)
+id=369042
+rarity=U
+[/card]
+[card]
+primitive=Fatal Fumes
+id=368962
+rarity=C
+[/card]
+[card]
+primitive=Feral Animist
+id=368969
+rarity=U
+[/card]
+[card]
+primitive=Flesh // Blood (Flesh)
+id=368991
+rarity=R
+[/card]
+[card]
+primitive=Fluxcharger
+id=368955
+rarity=U
+[/card]
+[card]
+primitive=Gaze of Granite
+id=369095
+rarity=R
+[/card]
+[card]
+primitive=Give // Take (Give)
+id=369097
+rarity=U
+[/card]
+[card]
+primitive=Gleam of Battle
+id=368987
+rarity=U
+[/card]
+[card]
+primitive=Goblin Test Pilot
+id=368964
+rarity=U
+[/card]
+[card]
+primitive=Golgari Cluestone
+id=369023
+rarity=C
+[/card]
+[card]
+primitive=Golgari Guildgate
+id=368960
+rarity=C
+[/card]
+[card]
+primitive=Gruul Cluestone
+id=369035
+rarity=C
+[/card]
+[card]
+primitive=Gruul Guildgate
+id=369040
+rarity=C
+[/card]
+[card]
+primitive=Gruul War Chant
+id=368956
+rarity=U
+[/card]
+[card]
+primitive=Haazda Snare Squad
+id=369077
+rarity=C
+[/card]
+[card]
+primitive=Haunter of Nightveil
+id=369087
+rarity=U
+[/card]
+[card]
+primitive=Hidden Strings
+id=369021
+rarity=C
+[/card]
+[card]
+primitive=Hired Torturer
+id=369048
+rarity=C
+[/card]
+[card]
+primitive=Izzet Cluestone
+id=368948
+rarity=C
+[/card]
+[card]
+primitive=Izzet Guildgate
+id=368995
+rarity=C
+[/card]
+[card]
+primitive=Jelenn Sphinx
+id=368947
+rarity=U
+[/card]
+[card]
+primitive=Korozda Gorgon
+id=369064
+rarity=U
+[/card]
+[card]
+primitive=Krasis Incubation
+id=369052
+rarity=U
+[/card]
+[card]
+primitive=Kraul Warrior
+id=369059
+rarity=U
+[/card]
+[card]
+primitive=Lavinia of the Tenth
+id=368983
+rarity=R
+[/card]
+[card]
+primitive=Legion's Initiative
+id=369066
+rarity=M
+[/card]
+[card]
+primitive=Profit // Loss (Loss)
+id=369071
+rarity=U
+[/card]
+[card]
+primitive=Lyev Decree
+id=368965
+rarity=C
+[/card]
+[card]
+primitive=Master of Cruelties
+id=368981
+rarity=M
+[/card]
+[card]
+primitive=Maw of the Obzedat
+id=368994
+rarity=U
+[/card]
+[card]
+primitive=Maze Abomination
+id=369050
+rarity=C
+[/card]
+[card]
+primitive=Maze Behemoth
+id=369091
+rarity=C
+[/card]
+[card]
+primitive=Maze Glider
+id=369014
+rarity=C
+[/card]
+[card]
+primitive=Maze Rusher
+id=369076
+rarity=C
+[/card]
+[card]
+primitive=Maze Sentinel
+id=368976
+rarity=C
+[/card]
+[card]
+primitive=Maze's End
+id=369038
+rarity=M
+[/card]
+[card]
+primitive=Melek, Izzet Paragon
+id=369062
+rarity=R
+[/card]
+[card]
+primitive=Mending Touch
+id=368957
+rarity=C
+[/card]
+[card]
+primitive=Mindstatic
+id=368980
+rarity=C
+[/card]
+[card]
+primitive=Mirko Vosk, Mind Drinker
+id=369026
+rarity=R
+[/card]
+[card]
+primitive=Morgue Burst
+id=369049
+rarity=C
+[/card]
+[card]
+primitive=Murmuring Phantasm
+id=369007
+rarity=C
+[/card]
+[card]
+primitive=Mutant's Prey
+id=368988
+rarity=C
+[/card]
+[card]
+primitive=Nivix Cyclops
+id=369093
+rarity=C
+[/card]
+[card]
+primitive=Notion Thief
+id=368973
+rarity=R
+[/card]
+[card]
+primitive=Obzedat’s Aid
+id=369002
+rarity=R
+[/card]
+[card]
+primitive=Opal Lake Gatekeepers
+id=368996
+rarity=C
+[/card]
+[card]
+primitive=Orzhov Cluestone
+id=369078
+rarity=C
+[/card]
+[card]
+primitive=Orzhov Guildgate
+id=369079
+rarity=C
+[/card]
+[card]
+primitive=Phytoburst
+id=369054
+rarity=C
+[/card]
+[card]
+primitive=Pilfered Plans
+id=369099
+rarity=C
+[/card]
+[card]
+primitive=Plasm Capture
+id=369069
+rarity=R
+[/card]
+[card]
+primitive=Pontiff of Blight
+id=369006
+rarity=R
+[/card]
+[card]
+primitive=Possibility Storm
+id=369013
+rarity=R
+[/card]
+[card]
+primitive=Profit // Loss (Profit)
+id=369071
+rarity=U
+[/card]
+[card]
+primitive=Progenitor Mimic
+id=369001
+rarity=M
+[/card]
+[card]
+primitive=Protect // Serve (Protect)
+id=369024
+rarity=U
+[/card]
+[card]
+primitive=Punish the Enemy
+id=369090
+rarity=C
+[/card]
+[card]
+primitive=Putrefy
+id=369073
+rarity=U
+[/card]
+[card]
+primitive=Pyrewild Shaman
+id=368946
+rarity=R
+[/card]
+[card]
+primitive=Rakdos Cluestone
+id=368975
+rarity=C
+[/card]
+[card]
+primitive=Rakdos Drake
+id=369085
+rarity=C
+[/card]
+[card]
+primitive=Rakdos Guildgate
+id=368990
+rarity=C
+[/card]
+[card]
+primitive=Ral Zarek
+id=369031
+rarity=M
+[/card]
+[card]
+primitive=Ready // Willing (Ready)
+id=368967
+rarity=R
+[/card]
+[card]
+primitive=Reap Intellect
+id=368958
+rarity=M
+[/card]
+[card]
+primitive=Catch // Release (Release)
+id=368982
+rarity=R
+[/card]
+[card]
+primitive=Render Silent
+id=369022
+rarity=R
+[/card]
+[card]
+primitive=Renegade Krasis
+id=369033
+rarity=R
+[/card]
+[card]
+primitive=Renounce the Guilds
+id=368993
+rarity=R
+[/card]
+[card]
+primitive=Restore the Peace
+id=368978
+rarity=U
+[/card]
+[card]
+primitive=Riot Control
+id=368979
+rarity=C
+[/card]
+[card]
+primitive=Riot Piker
+id=368998
+rarity=C
+[/card]
+[card]
+primitive=Rot Farm Skeleton
+id=368986
+rarity=U
+[/card]
+[card]
+primitive=Rubblebelt Maaka
+id=369075
+rarity=C
+[/card]
+[card]
+primitive=Runner's Bane
+id=368966
+rarity=C
+[/card]
+[card]
+primitive=Ruric Thar, the Unbowed
+id=369025
+rarity=R
+[/card]
+[card]
+primitive=Saruli Gatekeepers
+id=369088
+rarity=C
+[/card]
+[card]
+primitive=Savageborn Hydra
+id=368952
+rarity=M
+[/card]
+[card]
+primitive=Scab-Clan Giant
+id=369005
+rarity=U
+[/card]
+[card]
+primitive=Scion of Vitu-Ghazi
+id=369092
+rarity=R
+[/card]
+[card]
+primitive=Selesnya Cluestone
+id=369060
+rarity=C
+[/card]
+[card]
+primitive=Selesnya Guildgate
+id=369018
+rarity=C
+[/card]
+[card]
+primitive=Serve // Protect (Serve)
+id=369024
+rarity=U
+[/card]
+[card]
+primitive=Showstopper
+id=368945
+rarity=U
+[/card]
+[card]
+primitive=Simic Cluestone
+id=368963
+rarity=C
+[/card]
+[card]
+primitive=Simic Guildgate
+id=368959
+rarity=C
+[/card]
+[card]
+primitive=Sin Collector
+id=368968
+rarity=U
+[/card]
+[card]
+primitive=Sinister Possession
+id=369043
+rarity=C
+[/card]
+[card]
+primitive=Sire of Insanity
+id=369068
+rarity=R
+[/card]
+[card]
+primitive=Skylasher
+id=369083
+rarity=R
+[/card]
+[card]
+primitive=Smelt-Ward Gatekeeper
+id=369067
+rarity=C
+[/card]
+[card]
+primitive=Species Gorger
+id=369015
+rarity=U
+[/card]
+[card]
+primitive=Spike Jester
+id=368972
+rarity=U
+[/card]
+[card]
+primitive=Steeple Roc
+id=368992
+rarity=C
+[/card]
+[card]
+primitive=Sunspire Gatekeepers
+id=368949
+rarity=C
+[/card]
+[card]
+primitive=Tajic, Blade of the Legion
+id=369098
+rarity=R
+[/card]
+[card]
+primitive=Give // Take (Take)
+id=369097
+rarity=U
+[/card]
+[card]
+primitive=Wear // Tear (Tear)
+id=368950
+rarity=U
+[/card]
+[card]
+primitive=Teysa, Envoy of Ghosts
+id=369011
+rarity=R
+[/card]
+[card]
+primitive=Thrashing Mossdog
+id=369020
+rarity=C
+[/card]
+[card]
+primitive=Tithe Drinker
+id=368970
+rarity=C
+[/card]
+[card]
+primitive=Toil // Trouble (Toil)
+id=369032
+rarity=U
+[/card]
+[card]
+primitive=Trait Doctoring
+id=369034
+rarity=R
+[/card]
+[card]
+primitive=Trostani's Summoner
+id=369072
+rarity=U
+[/card]
+[card]
+primitive=Knight
+id=-19784611
+rarity=T
+[/card]
+[card]
+primitive=Centaur
+id=-19784612
+rarity=T
+[/card]
+[card]
+primitive=Rhino
+id=-19784613
+rarity=T
+[/card]
+[card]
+primitive=Toil // Trouble (Trouble)
+id=369032
+rarity=U
+[/card]
+[card]
+primitive=Turn // Burn (Turn)
+id=369080
+rarity=U
+[/card]
+[card]
+primitive=Ubul Sar Gatekeepers
+id=369046
+rarity=C
+[/card]
+[card]
+primitive=Uncovered Clues
+id=369010
+rarity=C
+[/card]
+[card]
+primitive=Unflinching Courage
+id=369074
+rarity=U
+[/card]
+[card]
+primitive=Varolz, the Scar-Striped
+id=368977
+rarity=R
+[/card]
+[card]
+primitive=Viashino Firstblade
+id=369070
+rarity=C
+[/card]
+[card]
+primitive=Voice of Resurgence
+id=368951
+rarity=M
+[/card]
+[card]
+primitive=Vorel of the Hull Clade
+id=369045
+rarity=R
+[/card]
+[card]
+primitive=Wake the Reflections
+id=369012
+rarity=C
+[/card]
+[card]
+primitive=Warleader's Helix
+id=369081
+rarity=U
+[/card]
+[card]
+primitive=Warped Physique
+id=369094
+rarity=U
+[/card]
+[card]
+primitive=Weapon Surge
+id=369004
+rarity=C
+[/card]
+[card]
+primitive=Wear // Tear (Wear)
+id=368950
+rarity=U
+[/card]
+[card]
+primitive=Alive // Well (Well)
+id=369041
+rarity=U
+[/card]
+[card]
+primitive=Ready // Willing (Willing)
+id=368967
+rarity=R
+[/card]
+[card]
+primitive=Wind Drake
+id=369037
+rarity=C
+[/card]
+[card]
+primitive=Woodlot Crawler
+id=369027
+rarity=U
+[/card]
+[card]
+primitive=Zhur-Taa Ancient
+id=369019
+rarity=R
+[/card]
+[card]
+primitive=Zhur-Taa Druid
+id=369065
+rarity=C
+[/card]
