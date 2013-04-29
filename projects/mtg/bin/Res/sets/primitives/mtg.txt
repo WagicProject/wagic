@@ -91822,9 +91822,9 @@ type=Instant
 [/card]
 [card]
 name=Trostani's Summoner
-auto=token(-19784511)
-auto=token(-19784512)
-auto=token(-19784513)
+auto=token(-19784611)
+auto=token(-19784612)
+auto=token(-19784613)
 text=When Trostani's Summoner enters the battlefield, put a 2/2 white Knight creature token with vigilance, a 3/3 green Centaur creature token,
 and a 4/4 green Rhino creature token with trample onto the battlefield.
 mana={5}{G}{W}
@@ -91857,6 +91857,7 @@ subtype=Rhino
 power=4
 toughness=4
 color=green
+abilities=trample
 [/card]
 [card]
 name=Troubled Healer
@@ -95995,8 +95996,8 @@ toughness=2
 name=Elemental
 type=Creature
 subtype=Elemental
-auto=foreach(creature|mygraveyard) 1/1
-text=This creature's power and toughness are each equal to the number of creature cards in its controller's graveyard.
+auto=foreach(creature|mybattlefield) 1/1
+text=This creature's power and toughness are each equal to the number of creature cards in its controller's battlefield.
 power=*
 toughness=*
 color=green,white
