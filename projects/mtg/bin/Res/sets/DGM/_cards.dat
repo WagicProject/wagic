@@ -775,6 +775,11 @@ id=-19784613
 rarity=T
 [/card]
 [card]
+primitive=Elemental
+id=-19784555
+rarity=T
+[/card]
+[card]
 primitive=Toil // Trouble (Trouble)
 id=369032
 rarity=U
