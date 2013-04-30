@@ -1,0 +1,109 @@
+#NAME:Synthetic
+#DESC:Selesnya Guild
+########################################
+#    Creatures                         #
+########################################
+#1 x Giant Adephage (GTC), {5}{g}{g}, Creature Insect, 7/7, trample; 
+366394
+
+#2 x Rubblebelt Raiders (GTC), {1}{r/g}{r/g}{r/g}, Creature Human Warrior, 3/3, 
+366462
+366462
+
+#4 x Voice of Resurgence (DGM), {g}{w}, Creature Elemental, 2/2, 
+368951
+368951
+368951
+368951
+
+#4 x Trostani's Summoner (DGM), {5}{g}{w}, Creature Elf Shaman, 1/1, 
+369072
+369072
+369072
+369072
+
+#4 x Armada Wurm (RTR), {2}{g}{g}{w}{w}, Creature Wurm, 5/5, trample; 
+999009
+999009
+999009
+999009
+
+#2 x Precinct Captain (RTR), {w}{w}, Creature Human Soldier, 2/2, first strike; 
+999171
+999171
+
+#4 x Wayfaring Temple (RTR), {1}{g}{w}, Creature Elemental, 0/0, 
+999260
+999260
+999260
+999260
+
+#1 x Worldspine Wurm (RTR), {8}{g}{g}{g}, Creature Wurm, 15/15, trample; 
+999262
+
+
+
+########################################
+#    Spells                            #
+########################################
+#4 x Advent of the Wurm (DGM), {1}{g}{g}{w}, Instant, 
+369036
+369036
+369036
+369036
+
+#2 x Selesnya Cluestone (DGM), {3}, Artifact, 
+369060
+369060
+
+#2 x Chromatic Lantern (RTR), {3}, Artifact, 
+999039
+999039
+
+#4 x Growing Ranks (RTR), {2}{g/w}{g/w}, Enchantment, 
+999106
+999106
+999106
+999106
+
+
+
+########################################
+#    Lands                             #
+########################################
+#4 x Forest (GVL), Basic Land Forest, 
+204967
+204967
+204967
+204967
+
+#4 x Selesnya Guildgate (DGM), Land Gate, 
+369018
+369018
+369018
+369018
+
+#4 x Forest (RTR), Basic Land Forest, 
+999086
+999086
+999086
+999086
+
+#4 x Plains (RTR), Basic Land Plains, 
+999168
+999168
+999168
+999168
+
+#2 x Temple Garden (RTR), Land Forest Plains, 
+999238
+999238
+
+#4 x Plains (RTR), Basic Land Plains, 
+999265
+999265
+999265
+999265
+
+
+
