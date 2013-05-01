@@ -691,20 +691,22 @@ void GameStateDuel::Update(float dt)
     case DUEL_STATE_CHOOSE_DECK2_TO_PLAY:
         if (mParent->players[1] == PLAYER_TYPE_HUMAN)
         {
-            if (deckmenu->isClosed())
+            if (deckmenu && deckmenu->isClosed())
                 setGamePhase(DUEL_STATE_PLAY);
             else
-                deckmenu->Update(dt);
+                if(deckmenu)
+                    deckmenu->Update(dt);
         }
         else
         {
-            if (opponentMenu->isClosed())
+            if (opponentMenu && opponentMenu->isClosed())
             {
                 setGamePhase(DUEL_STATE_PLAY);
                 SAFE_DELETE(opponentMenu);
             }
             else
-                opponentMenu->Update(dt);
+                if(opponentMenu)
+                    opponentMenu->Update(dt);
         }
         break;
         // this called after each match and tournament

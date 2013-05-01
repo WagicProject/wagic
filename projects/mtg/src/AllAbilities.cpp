@@ -1763,7 +1763,7 @@ int AAFlip::resolve()
                     if (a->oneShot)
                     {
                         a->resolve();
-                        delete (a);
+                        SAFE_DELETE(a);
                     }
                     else
                     {
@@ -1823,7 +1823,9 @@ int AAFlip::testDestroy()
         if(_target->isFlipped)
         {
             this->forceDestroy = 1;
-            _target->getObserver()->removeObserver(this);
+            //_target->getObserver()->removeObserver(this);
+            //originally added as a safegaurd to insure the ability was removed
+            //it's been so long and so much has changed that it appears to do nothing but cause a crash now
             _target->isFlipped = false;
             return 1;
         }
