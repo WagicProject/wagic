@@ -151,8 +151,7 @@ auto={U}:(blink)ueot
 auto={U}:unblockable
 auto={1}:1/-1
 auto={1}:-1/1
-text={U}: Exile Aetherling, Return it to the battlefield under its owner's control at the beginning of the next end step. -- {U}: Aetherling is 
-unblockable this turn. -- {1}: Aetherling gets +1/-1 until end of turn. -- {1}: Aetherling gets -1/+1 until end of turn. 
+text={U}: Exile Aetherling, Return it to the battlefield under its owner's control at the beginning of the next end step. -- {U}: Aetherling is unblockable this turn. -- {1}: Aetherling gets +1/-1 until end of turn. -- {1}: Aetherling gets -1/+1 until end of turn. 
 mana={4}{U}{U}
 type=Creature
 subtype=Shapeshifter
@@ -6665,8 +6664,7 @@ toughness=1
 [card]
 name=Battering Krasis
 auto=evolve
-text=Evolve (Whenever a creature enters the battlefield under your control, if that creature has greater power or toughness than this creature, 
-put a +1/+1 counter on this creature.)
+text=Evolve (Whenever a creature enters the battlefield under your control, if that creature has greater power or toughness than this creature,  put a +1/+1 counter on this creature.)
 mana={2}{G}
 type=Creature
 subtype=Fish Beast
@@ -8611,8 +8609,7 @@ name=Blood Baron of Vizkopa
 abilities=lifelink,protection from white,protection from black
 auto=this(opponentlife < 11) this(controllerlife >29) 6/6
 auto=this(opponentlife < 11) this(controllerlife >29) flying
-text=Lifelink, protection from white and from black. --  As long as you have 30 or more life and an opponent has 10 or less life, Blood Baron of 
-Vizkopa gets +6/+6 and has flying. 
+text=Lifelink, protection from white and from black. --  As long as you have 30 or more life and an opponent has 10 or less life, Blood Baron of Vizkopa gets +6/+6 and has flying. 
 mana={3}{W}{B}
 type=Creature
 subtype=Vampire
@@ -23790,8 +23787,7 @@ name=Drown in Filth
 target=creature
 auto=deplete:4 
 auto=foreach(land|mygraveyard) -1/-1 ueot
-text=Choose target creature. Put the top 4 cards of your library into your graveyard, then that creature gets -1/-1 until end of turn for each land 
-card in your graveyard. 
+text=Choose target creature. Put the top 4 cards of your library into your graveyard, then that creature gets -1/-1 until end of turn for each land card in your graveyard. 
 mana={B}{G}
 type=Instant
 [/card]
@@ -48503,10 +48499,8 @@ type=Instant
 [card]
 name=Lavinia of the Tenth
 abilities=protection from red
-auto=name(detain) all(*[manacost<=4;-land]|opponentBattlefield) transforms((Detained,newability[cantattack],newability[cantblock],newability
-[noactivatedability])) uynt
-text=Protection from red. -- When Lavinia of the Tenth enters the battlefield, detain each nonland permanent your opponents control with 
-converted mana cost 4 or less.
+auto=name(detain) all(*[manacost<=4;-land]|opponentBattlefield) transforms((Detained,newability[cantattack],newability[cantblock],newability[noactivatedability])) uynt
+text=Protection from red. -- When Lavinia of the Tenth enters the battlefield, detain each nonland permanent your opponents control with converted mana cost 4 or less.
 mana={3}{W}{U}
 type=Legendary Creature
 subtype=Human Soldier
@@ -48941,11 +48935,8 @@ toughness=3
 name=Legion's Initiative
 auto=all(creature[red]|mybattlefield) 1/0
 auto=all(creature[white]|mybattlefield) 0/1
-auto={R}{W}{E}:all(creature|mybattlefield) (blink) && transforms((,newability[@next combatbegins: moveTo(ownerbattlefield)],newability
-[untap],haste)) ueot
-text=Red creatures you control get +1/+0. -- White creatures you control get +0/+1. -- {R}{W}, Exile Legion's Initiative: Exile all creatures you 
-control. At the beginning of the next combat, return those cards to the battlefield under their owner's control and those creatures gain haste
-until end of turn.  
+auto={R}{W}{E}:all(creature|mybattlefield) (blink) && transforms((,newability[@next combatbegins: moveTo(ownerbattlefield)],newability[untap],haste)) ueot
+text=Red creatures you control get +1/+0. -- White creatures you control get +0/+1. -- {R}{W}, Exile Legion's Initiative: Exile all creatures you  control. At the beginning of the next combat, return those cards to the battlefield under their owner's control and those creatures gain haste until end of turn.  
 mana={R}{W}
 type=Enchantment
 [/card]
@@ -51170,8 +51161,7 @@ type=Artifact
 [/card]
 [card]
 name=Lyev Decree
-auto=name(detain) target(<upto:2>creature|opponentBattlefield) transforms((Detained,newability[cantattack],newability[cantblock],newability
-[noactivatedability])) uynt
+auto=name(detain) target(<upto:2>creature|opponentBattlefield) transforms((Detained,newability[cantattack],newability[cantblock],newability[noactivatedability])) uynt
 text=Detain up to two target creatures your opponents control. 
 mana={1}{W}
 type=Sorcery
@@ -53016,8 +53006,7 @@ name=Master of Cruelties
 abilities=first strike, deathtouch
 auto=@combat(attacking) source(mytgt) restriction{type(creature[attacking]|myBattlefield)~morethan~1}:all(this) removefromcombat && untap
 auto=@combat(notblocked) source(this):preventAllCombatDamage from(this) ueot && lifeset:1 opponent forever
-text=First Strike. -- Deathtouch. -- Master of Cruelties can only attack alone. -- Whenever Master of Cruelties attacks a player and isn't blocked, 
-that player's life total becomes 1. --  Master of Cruelties assigns no combat damage this combat.
+text=First Strike. -- Deathtouch. -- Master of Cruelties can only attack alone. -- Whenever Master of Cruelties attacks a player and isn't blocked, that player's life total becomes 1. --  Master of Cruelties assigns no combat damage this combat.
 mana={3}{B}{R}
 type=Creature
 subtype=Demon
@@ -58698,8 +58687,7 @@ name=Nivix Cyclops
 abilities=defender
 auto=@movedTo(instant|mystack):all(this) transforms((,newability[3/0 ueot],newability[canattack ueot])) forever
 auto=@movedTo(sorcery|mystack):all(this) transforms((,newability[3/0 ueot],newability[canattack ueot])) forever
-text=Defender. -- Whenever you cast an instant or sorcery spell, Nivix Cyclops gets +3/+0 until end of turn and can attack this turn as though it 
-didn't have defender.
+text=Defender. -- Whenever you cast an instant or sorcery spell, Nivix Cyclops gets +3/+0 until end of turn and can attack this turn as though it didn't have defender.
 mana={1}{U}{R}
 type=Creature
 subtype=Cyclops
@@ -67466,8 +67454,7 @@ name=Rakdos Drake
 auto=may counter(1/1,1)
 auto=this(counter{1/1.1}>=1) cantblock
 abilities=flying
-text=Flying. -- Unleash (You may have this creature enter the battlefield with a +1/+1 counter on it. It can't block as long as it has a +1/+1 counter 
-on it.)
+text=Flying. -- Unleash (You may have this creature enter the battlefield with a +1/+1 counter on it. It can't block as long as it has a +1/+1 counter on it.)
 mana={2}{B}
 type=Creature
 subtype=Drake
@@ -71481,8 +71468,7 @@ toughness=5
 name=Rot Farm Skeleton
 abilities=cantblock
 autograveyard={2}{B}{G}{m}{m}{m}{m}:all(this) moveTo(myBattlefield) asSorcery
-text=Rot Farm Skeleton can't block. -- {2}{B}{G}, Put the top four cards of your library into your graveyard: Return Rot Farm Skeleton from your
-graveyard to the battlefield. Activate this ability only any time you could cast a sorcery. 
+text=Rot Farm Skeleton can't block. -- {2}{B}{G}, Put the top four cards of your library into your graveyard: Return Rot Farm Skeleton from your graveyard to the battlefield. Activate this ability only any time you could cast a sorcery. 
 mana={2}{B}{G}
 type=Creature
 subtype=Plant Skeleton
@@ -71872,8 +71858,7 @@ name=Runner's Bane
 target=creature[power<=3]
 auto=tap
 auto=doesnotuntap
-text=Enchant creature with power 3 or less. -- When Runner's Bane enters the battlefield, tap enchanted creature. -- Enchanted creature doesn't 
-untap during the untap step.
+text=Enchant creature with power 3 or less. -- When Runner's Bane enters the battlefield, tap enchanted creature. -- Enchanted creature doesn't untap during the untap step.
 mana={1}{U}
 type=Enchantment
 subtype=Aura
@@ -73365,8 +73350,7 @@ name=Savageborn Hydra
 abilities=doublestrike
 auto=counter(1/1,X)
 auto={1}{RG}:counter(1/1,1) asSorcery
-text=Double strike. -- Savageborn Hydra enters the battlefield with X +1/+1 counters on it. -- {1}{R/G}: Put a +1/+1 counter on Savageborn
-Hydra. Activate this ability only any time you could play a sorcery. 
+text=Double strike. -- Savageborn Hydra enters the battlefield with X +1/+1 counters on it. -- {1}{R/G}: Put a +1/+1 counter on Savageborn Hydra. Activate this ability only any time you could play a sorcery. 
 mana={X}{R}{G}
 type=Creature
 subtype=Hydra
@@ -73875,10 +73859,8 @@ toughness=*
 [card]
 name=Scion of Vitu-Ghazi 
 auto=if casted(this) then token(Bird,Creature Bird,1/1,flying,white) 
-auto=if casted(this) then ability$! name(populate) clone notatarget(creature[token]|mybattlefield) 
-!$ controller
-text=When Scion of Vitu-Ghazi enters the battlefield, if you cast it from your hand, put a 1/1 white Bird creature token with flying onto the 
-battlefield, then populate.
+auto=if casted(this) then ability$! name(populate) clone notatarget(creature[token]|mybattlefield) !$ controller
+text=When Scion of Vitu-Ghazi enters the battlefield, if you cast it from your hand, put a 1/1 white Bird creature token with flying onto the battlefield, then populate.
 mana={3}{W}{W}
 type=Creature
 subtype=Elemental
@@ -77178,8 +77160,7 @@ type=Instant
 [card]
 name=Showstopper
 text=Until end of turn, creatures you control gain "When this creature dies, it deals 2 damage to target creature an opponent controls." 
-auto=all(creature|mybattlefield) transforms((,newability[@movedTo(this|mygraveyard) from(myBattlefield):damage:2 target(creature|
-opponentbattlefield)])) ueot
+auto=all(creature|mybattlefield) transforms((,newability[@movedTo(this|mygraveyard) from(myBattlefield):damage:2 target(creature|opponentbattlefield)])) ueot
 mana={1}{B}{R}
 type=Instant
 [/card]
@@ -78208,10 +78189,8 @@ type=Instant
 [card]
 name=Sin Collector
 target=opponent
-auto=if type(*[instant;sorcery]|targetedpersonshand)~lessthan~1 then name(look) donothing notatarget(*|targetedpersonshand) else moveto
-(exile) notatarget(*[instant;sorcery]|targetedpersonshand)
-text=When Sin Collector enters the battlefield target opponent reveals his or her hand. You choose an instant or a sorcery card from it and exile 
-that card.
+auto=if type(*[instant;sorcery]|targetedpersonshand)~lessthan~1 then name(look) donothing notatarget(*|targetedpersonshand) else moveto(exile) notatarget(*[instant;sorcery]|targetedpersonshand)
+text=When Sin Collector enters the battlefield target opponent reveals his or her hand. You choose an instant or a sorcery card from it and exile that card.
 mana={1}{W}{B}
 type=Creature
 subtype=Human Cleric
@@ -80096,8 +80075,7 @@ type=Instant
 name=Smelt-Ward Gatekeepers
 auto=if type(land[Gate]|mybattlefield)~morethan~1 then target(creature|opponentbattlefield) transforms((,newability[moveTo
 (opponentbattlefield)],newability[phaseaction[endofturn sourceinplay] moveTo(ownerbattlefield)],newability[untap],haste)) ueot once
-text=When Smelt-Ward Gatekeepers enters the battlefield, if you control two or more Gates, gain control of target creature an opponent controls 
-until end of turn. Untap that creature. That creature gains haste until end of turn.
+text=When Smelt-Ward Gatekeepers enters the battlefield, if you control two or more Gates, gain control of target creature an opponent controls until end of turn. Untap that creature. That creature gains haste until end of turn.
 mana={3}{R}
 type=Creature
 subtype=Human Warrior
@@ -89014,8 +88992,7 @@ toughness=4
 name=Thrashing Mossdog
 abilities=Reach
 autograveyard={4}{G}{G}{E}:name(scavenge) counter(1/1,storedpower) target(creature) asSorcery
-text=Reach. (This creature can block creatures with flying.) -- Scavenge {4}{G}{G} ({4}{G}{G}, Exile this card from your graveyard: Put a 
-number of +1/+1 counters equal to this card's power on target creature. Scavenge only as a sorcery.)
+text=Reach. (This creature can block creatures with flying.) -- Scavenge {4}{G}{G} ({4}{G}{G}, Exile this card from your graveyard: Put a number of +1/+1 counters equal to this card's power on target creature. Scavenge only as a sorcery.)
 mana={2}{G}{G}
 type=Creature
 subtype=Plant Hound
@@ -91825,8 +91802,7 @@ name=Trostani's Summoner
 auto=token(-19784611)
 auto=token(-19784612)
 auto=token(-19784613)
-text=When Trostani's Summoner enters the battlefield, put a 2/2 white Knight creature token with vigilance, a 3/3 green Centaur creature token,
-and a 4/4 green Rhino creature token with trample onto the battlefield.
+text=When Trostani's Summoner enters the battlefield, put a 2/2 white Knight creature token with vigilance, a 3/3 green Centaur creature token,and a 4/4 green Rhino creature token with trample onto the battlefield.
 mana={5}{G}{W}
 type=Creature
 subtype=Elf Shaman
@@ -91834,7 +91810,7 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Knight
+name=Trostani Knight
 type=Creature
 subtype=Knight
 power=2
@@ -91843,7 +91819,7 @@ color=white
 abilities=vigilance
 [/card]
 [card]
-name=Centaur
+name=Trostani Centaur
 type=Creature
 subtype=Centaur
 power=3
@@ -91851,7 +91827,7 @@ toughness=3
 color=green
 [/card]
 [card]
-name=Rhino
+name=Trostani Rhino
 type=Creature
 subtype=Rhino
 power=4
@@ -95984,8 +95960,7 @@ toughness=2
 name=Voice of Resurgence
 auto=@movedTo(*|opponentstack) restriction{myturnonly}:token(-19784555)
 auto=@movedTo(this|graveyard) from(battlefield):token(-19784555)
-text=Whenever an opponent casts a spell during your turn, or whenever Voice of Resurgence dies, put a green and white Elemental creature 
-token onto the battlefield with "This creature's power and toughness are each equal to the number of creatures you control." 
+text=Whenever an opponent casts a spell during your turn, or whenever Voice of Resurgence dies, put a green and white Elemental creature token onto the battlefield with "This creature's power and toughness are each equal to the number of creatures you control." 
 mana={G}{W}
 type=Creature
 subtype=Elemental
