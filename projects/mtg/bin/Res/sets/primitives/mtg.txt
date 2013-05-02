@@ -82113,6 +82113,16 @@ power=0
 toughness=0
 [/card]
 [card]
+name=Spike Jester
+abilities=haste
+text=Haste (This creature can attack and {T} as soon as it comes under your control.)
+mana={B}{R}
+type=Creature
+subtype=Goblin Warrior
+power=3
+toughness=1
+[/card]
+[card]
 name=Spike Rogue
 auto={2}{C(1/1,-1)}:counter(1/1,1) target(creature)
 auto={2}{C(1/1,-1),creature|mybattlefield}:counter(1/1,1)
