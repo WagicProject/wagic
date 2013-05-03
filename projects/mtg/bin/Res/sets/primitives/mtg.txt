@@ -23946,15 +23946,6 @@ mana={1}{B}
 type=Sorcery
 [/card]
 [card]
-name=Dryad Arbor
-text=(Dryad Arbor isn't a spell, it's affected by summoning sickness, and it has "{T}: Add {G} to your mana pool.") -- Dryad Arbor is green.
-color=green
-type=Land Creature
-subtype=Forest Dryad
-power=1
-toughness=1
-[/card]
-[card]
 name=Dryad Militant
 auto=@movedTo(instant,sorcery|graveyard):all(trigger) moveTo(exile)
 text=If an instant or sorcery card would be put into a graveyard from anywhere, exile it instead.
@@ -53398,7 +53389,7 @@ toughness=3
 [card]
 name=Melira, Sylvok Outcast
 abilities=poisonshroud
-auto=countershroud(-1/-1)creature
+auto=countershroud(-1/-1)creature|mybattlefield
 auto=lord(creature|opponentbattlefield) -infect
 text=You can't get poison counters. Creatures you control can't have -1/-1 counters placed on them. Creatures your opponents control lose infect.
 mana={1}{G}
@@ -101710,6 +101701,16 @@ text={T}: Zuran Spellcaster deals 1 damage to target creature or player.
 mana={2}{U}
 type=Creature
 subtype=Human Wizard
+power=1
+toughness=1
+[/card]
+##due to card type association dryad arbor is placed at the end. any other card that associates 2 super types in this manner should also ##be in the end of the primitive to avoid abilities like changling thinking that "forest" is a creature type.
+[card]
+name=Dryad Arbor
+text=(Dryad Arbor isn't a spell, it's affected by summoning sickness, and it has "{T}: Add {G} to your mana pool.") -- Dryad Arbor is green.
+color=green
+type=Land Creature
+subtype=Forest Dryad
 power=1
 toughness=1
 [/card]
