@@ -56242,6 +56242,15 @@ power=5
 toughness=5
 [/card]
 [card]
+name=Morgue Burst
+target=creature|mygraveyard
+auto=moveTo(myHand)
+auto=transforms((,newability[choice name(Creature) target(creature) dynamicability<!powerstrike!>],newability[choice name(player) target(Player) dynamicability<!powerstrike!>])) forever
+text=Return target creature card from your graveyard to your hand. Morgue Burst deals damage to target creature or player equal to the power of the card returned this way.
+mana={4}{B}{R}
+type=Sorcery
+[/card]
+[card]
 name=Morgue Theft
 target=creature|mygraveyard
 auto=moveTo(myhand)
@@ -65704,6 +65713,17 @@ type=Legendary Creature
 subtype=Hydra Avatar
 power=10
 toughness=10
+[/card]
+[card]
+name=Progenitor Mimic
+auto=transforms((,newability[@each my upkeep:clone])) forever
+auto=may copy NotATarget(creature)
+text=You may have Progenitor Mimic enter the battlefield as a copy of any creature on the battlefield except it gains "At the beginning of your upkeep, if this creature isn't a token, put a token onto the battlefield that's a copy of this creature."
+mana={4}{G}{U}
+type=Creature
+subtype=Shapeshifter
+power=0
+toughness=0
 [/card]
 [card]
 name=Promise of Bunrei
@@ -81278,7 +81298,7 @@ toughness=1
 [card]
 name=Soul's Fire
 target=creature|mybattlefield
-auto=transforms((,newability[dynamicability<!powerstrike!> target(creature,player)]))
+auto=transforms((,newability[choice name(Creature) target(creature) dynamicability<!powerstrike!>],newability[choice name(player) target(Player) dynamicability<!powerstrike!>])) forever
 text=Target creature you control on the battlefield deals damage equal to its power to target creature or player.
 mana={2}{R}
 type=Instant
