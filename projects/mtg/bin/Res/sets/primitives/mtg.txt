@@ -43741,6 +43741,17 @@ mana={3}
 type=Artifact
 [/card]
 [card]
+name=Izzet Staticaster
+abilities=flash,haste
+auto={t}:target(creature) transforms((,newability[damage:1],newability[all(creature[share!name!]) damage:1])) forever
+text=Flash (You may cast this spell any time you could cast an instant.),Haste -- {T}: Izzet Staticaster deals 1 damage to target creature and each other creature with the same name as that creature.
+power=0
+toughness=3
+mana={1}{u}{r}
+type=creature
+subtype=Human Wizard
+[/card]
+[card]
 name=Izzet Signet
 auto={1}{T}:Add{U}{R}
 text={1}, {T}: Add {U}{R} to your mana pool.
