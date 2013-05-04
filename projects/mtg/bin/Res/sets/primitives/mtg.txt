@@ -65716,7 +65716,7 @@ toughness=10
 [/card]
 [card]
 name=Progenitor Mimic
-auto=transforms((,newability[@each my upkeep:clone])) forever
+auto=transforms((,newability[@each my upkeep:all(this) ifnot cantargetcard(*[token]) then clone])) forever
 auto=may copy NotATarget(creature)
 text=You may have Progenitor Mimic enter the battlefield as a copy of any creature on the battlefield except it gains "At the beginning of your upkeep, if this creature isn't a token, put a token onto the battlefield that's a copy of this creature."
 mana={4}{G}{U}
