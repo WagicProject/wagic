@@ -13,6 +13,13 @@ using std::string;
 
 #ifdef TESTSUITE
 
+// number of frames between 2 actions.
+// SLOW_TEST defines the speed of the very first test. It is intentionally slow so that when you debug one specific test, you get to see what happens on the screen
+// FAST_TEST is for other tests, any value below 3 is known to have bad side effects.
+// Higher values == slower. Lower values == faster
+#define SLOW_TEST 40
+#define FAST_TEST 6
+
 // NULL is sent in place of a MTGDeck since there is no way to create a MTGDeck without a proper deck file.
 // TestSuiteAI will be responsible for managing its own deck state.
 TestSuiteAI::TestSuiteAI(TestSuiteGame *tsGame, int playerId) :
@@ -92,7 +99,7 @@ int TestSuiteAI::Act(float dt)
     {
         float static counter = 1.0f;
         suite->aiMaxCalls--;
-        suite->timerLimit = 40; //TODO Remove this limitation when AI is not using a stupid timer anymore...
+        suite->timerLimit = SLOW_TEST; //TODO Remove this limitation when AI is not using a stupid timer anymore...
         AIPlayerBaka::Act(counter++);//dt);
     }
     if (playMode == MODE_HUMAN)
@@ -304,12 +311,12 @@ void TestSuite::initGame(GameObserver* g)
     //Warning, putting this value too low (< 3) will give unexpected results
     if (!timerLimit)
     {
-        timerLimit = 40;
+        timerLimit = SLOW_TEST;
     }
-    //else
-    //{
-    //    timerLimit = 10;
-    //}
+    else
+    {
+        timerLimit = FAST_TEST;
+    }
 
     TestSuiteGame::initGame();
 }
@@ -465,7 +472,7 @@ TestSuite::~TestSuite()
 TestSuite::TestSuite(const char * filename)
     : TestSuiteGame(0), mRules(0), mProcessing(false)
 {
-    timerLimit = 3;
+    timerLimit = 0;
     testsuite = this;
     
     std::string s;
@@ -792,13 +799,13 @@ TestSuiteGame::~TestSuiteGame()
 }
 
 TestSuiteGame::TestSuiteGame(TestSuite* testsuite)
-    : summoningSickness(0), forceAbility(false), gameType(GAME_TYPE_CLASSIC), timerLimit(6),
+    : summoningSickness(0), forceAbility(false), gameType(GAME_TYPE_CLASSIC), timerLimit(0),
       currentAction(0), observer(0), testsuite(testsuite)
 {
 }
 
 TestSuiteGame::TestSuiteGame(TestSuite* testsuite, string _filename)
-    : summoningSickness(0), forceAbility(false), gameType(GAME_TYPE_CLASSIC), timerLimit(6),
+    : summoningSickness(0), forceAbility(false), gameType(GAME_TYPE_CLASSIC), timerLimit(FAST_TEST),
       currentAction(0), observer(0), testsuite(testsuite)
 {
     filename = _filename;
