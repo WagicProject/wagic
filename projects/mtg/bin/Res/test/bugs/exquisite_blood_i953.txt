@@ -1,0 +1,22 @@
+#NAME: Exquisite blood Issue
+#DESC: Sanguine Bond Whenever you gain life, target opponent loses that much life.
+#DESC: Exquisite Blood: Whenever an opponent loses life, you gain that much life.
+#DESC: Having both cards in play causes an infinite loop when damage is done
+[INIT]
+firstmain
+[PLAYER1]
+inplay:Exquisite blood,Sanguine Bond
+hand:Lightning bolt
+manapool:{R}
+[PLAYER2]
+[DO]
+Lightning bolt
+p2
+[ASSERT]
+firstmain
+[PLAYER1]
+inplay:Exquisite blood,Sanguine Bond
+graveyard:Lightning bolt
+[PLAYER2]
+life:0
+[END]
