@@ -119,7 +119,6 @@ class GameObserver{
   Player * currentlyActing();
   GameObserver(WResourceManager* output = 0, JGE* input = 0);
   virtual ~GameObserver();
-  int waitingGameStateCheck;
   void gameStateBasedEffects();
   void enchantmentStatus();
   void Affinity();

@@ -103,7 +103,6 @@ GameObserver::GameObserver(WResourceManager *output, JGE* input)
     mLayers = NULL;
     mTrash = new Trash();
     mDeckManager = new DeckManager();
-    waitingGameStateCheck = 0;
 }
 
 GamePhase GameObserver::getCurrentGamePhase()
@@ -584,15 +583,9 @@ void GameObserver::gameStateBasedEffects()
 {
     if(getCurrentTargetChooser() && int(getCurrentTargetChooser()->getNbTargets()) == getCurrentTargetChooser()->maxtargets)
         getCurrentTargetChooser()->done = true;
-    waitingGameStateCheck++;
-    if(waitingGameStateCheck < 50)
-    {
-        //if there are more than 50 unresolved actions on the stack, lets allow a gameStates update
-        //to make sure we are not caught up in a loop, example :Exquisite Blood + Sanguine Bond
-        if (mLayers->stackLayer()->count(0, NOT_RESOLVED) != 0)
-            return;
-    }
-    waitingGameStateCheck = 0;
+
+    if (mLayers->stackLayer()->count(0, NOT_RESOLVED) != 0)
+        return;
     if (mLayers->actionLayer()->menuObject) 
         return;
     if (getCurrentTargetChooser() || mLayers->actionLayer()->isWaitingForAnswer()) 
