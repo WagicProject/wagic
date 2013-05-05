@@ -15771,12 +15771,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Simplify
-text=Each player sacrifices an enchantment.
-mana={G}
-type=Sorcery
-[/card]
-[card]
 name=Sindbad
 text={T}: Draw a card and reveal it. If it isn't a land card, discard it.
 mana={1}{U}

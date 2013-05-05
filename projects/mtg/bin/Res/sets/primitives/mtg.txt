@@ -68555,6 +68555,14 @@ mana={1}{G}
 type=Instant
 [/card]
 [card]
+name=Reap Intellect
+target=opponent
+auto=target(<upto:castx>*[-land]|targetedpersonshand) moveTo(exile) and!(transforms((,newability[moveTo(exile) all(*[share!name!]|mygraveyard)],newability[moveTo(exile) all(*[share!name!]|myhand)],newability[moveTo(exile) all(*[share!name!]|mylibrary)])) forever)!
+text=Target opponent reveals his or her hand. You choose up to X nonland cards from it and exile them. For each card exiled this way, search that player's graveyard, hand, and library for any number of cards with the same name as that card and exile them. Then that player shuffles his or her library.
+mana={X}{2}{U}{B}
+type=Sorcery
+[/card]
+[card]
 name=Reap the Seagraf
 auto=token(Zombie,Creature Zombie,2/2,black)
 flashback={4}{U}
