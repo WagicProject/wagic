@@ -268,7 +268,7 @@ void GameStateDuel::Start()
             {
                 //translate deck creating desc
                 Translator * t = Translator::GetInstance();
-                string desc =  _("Highly recommended to get\nthe full Wagic experience!").c_str();
+                string desc =  _("Highly recommended to get the full Wagic experience!").c_str();
                 map<string, string>::iterator it = t->deckValues.find(_("Create your Deck!").c_str());
                 if (it != t->deckValues.end())
                     desc = it->second;
@@ -291,10 +291,10 @@ void GameStateDuel::Start()
         int nmbDecks = options[Options::CHEATMODEAIDECK].number ? 1000 : options[Options::AIDECKS_UNLOCKED].number;
         if (nmbDecks > 1)
         {
-             deckmenu->Add(MENUITEM_ENDLESSDEMO,"Endless demo",_("Random AI decks plays\n again each other").c_str());
-             deckmenu->Add(MENUITEM_KO_TOURNAMENT,"KO Tournament",_("Starts a Knockout Tournament  of all available AI-Decks.\n ").c_str());
-             deckmenu->Add(MENUITEM_DOUBLEKO_TOURNAMENT,"Double KO Tournament",_("Starts a double Knockout Tournament  of all available AI-Decks.\n ").c_str());
-             deckmenu->Add(MENUITEM_GAUNTLET,"Gauntlet",_("Prove your mettle against each and\nevery opponent, one at a time.").c_str());
+             deckmenu->Add(MENUITEM_ENDLESSDEMO,"Endless demo",_("Random AI decks plays again each other.").c_str());
+             deckmenu->Add(MENUITEM_KO_TOURNAMENT,"KO Tournament",_("Starts a Knockout Tournament of all available AI-Decks.").c_str());
+             deckmenu->Add(MENUITEM_DOUBLEKO_TOURNAMENT,"Double KO Tournament",_("Starts a double Knockout Tournament of all available AI-Decks.").c_str());
+             deckmenu->Add(MENUITEM_GAUNTLET,"Gauntlet",_("Prove your mettle against each and every opponent, one at a time.").c_str());
              deckmenu->Add(MENUITEM_RANDOM_PLAYER, "Random", _("Selects a random deck.").c_str());
         }
         //deckmenu->enableDisplayDetailsOverride();
@@ -309,7 +309,7 @@ void GameStateDuel::Start()
         //save the real number of available decks
         tournament->setAvailableDecks(playerDeckList.size());
         playerDeckList.clear();
-        deckmenu->Add(MENUITEM_CANCEL, _("Main Menu").c_str(), _("Return to Main Menu").c_str());
+        deckmenu->Add(MENUITEM_CANCEL, _("Main Menu").c_str(), _("Return to Main Menu.").c_str());
 
     }
 
@@ -392,29 +392,29 @@ void GameStateDuel::ConstructOpponentMenu()
                 if (!tournament->isGauntlet())
                 {
                     if (mParent->players[0] ==  PLAYER_TYPE_HUMAN){
-                        opponentMenu->Add(MENUITEM_KO_TOURNAMENT,"KO Tournament",_("Starts a Knockout Tournament  against selected AI-Decks! You have to win all matches.\n 4 Decks -> 2 Matches\n7 Decks -> 3 Matches\n16 Decks -> 4 Matches\n32 Decks -> 5 Matches\n64 Decks -> 6 Matches\n128 Decks -> 7 Matches\n256 Decks -> 8 Matches").c_str());
-                        opponentMenu->Add(MENUITEM_DOUBLEKO_TOURNAMENT,"Double KO",_("Starts a Double Knockout Tournament  against selected AI-Decks! You can loose once, but not more!\n 4 Decks -> 3 Matches\n7 Decks -> 4 Matches\n16 Decks -> 5 Matches\n32 Decks -> 6 Matches\n64 Decks -> 7 Matches\n128 Decks -> 8 Matches\n256 Decks -> 9 Matches").c_str());
+                        opponentMenu->Add(MENUITEM_KO_TOURNAMENT,"KO Tournament",_("Starts a Knockout Tournament against selected AI-Decks! You have to win all matches. 4 Decks -> 2 Matches, 7 Decks -> 3 Matches, 16 Decks -> 4 Matches, 32 Decks -> 5 Matches, 64 Decks -> 6 Matches, 128 Decks -> 7 Matches, 256 Decks -> 8 Matches.").c_str());
+                        opponentMenu->Add(MENUITEM_DOUBLEKO_TOURNAMENT,"Double KO",_("Starts a Double Knockout Tournament against selected AI-Decks!. You can loose once, but not more!. 4 Decks -> 3 Matches, 7 Decks -> 4 Matches, 16 Decks -> 5 Matches, 32 Decks -> 6 Matches, 64 Decks -> 7 Matches, 128 Decks -> 8 Matches, 256 Decks -> 9 Matches.").c_str());
                     }
-                    opponentMenu->Add(MENUITEM_RR_TOURNAMENT,"Round Robin Tournament",_("Starts an all vs all tournament!\nFirstly, in a selection process participating AI-Decks can be chosen.\n The tournament state is saved after each game  and can be\n continued!").c_str());
+                    opponentMenu->Add(MENUITEM_RR_TOURNAMENT,"Round Robin Tournament",_("Starts an all vs all tournament!. Firstly, in a selection process participating AI-Decks can be chosen. The tournament state is saved after each game and can be continued!.").c_str());
                 }
                 if (mParent->players[0] ==  PLAYER_TYPE_CPU)
-                    opponentMenu->Add(MENUITEM_GAUNTLET,"Gauntlet",_("Prove your mettle against each and\nevery opponent, one at a time.").c_str());
+                    opponentMenu->Add(MENUITEM_GAUNTLET,"Gauntlet",_("Prove your mettle against each and every opponent, one at a time.").c_str());
                 opponentMenu->Add(MENUITEM_RANDOM_AI, "Random");
                 if (mParent->players[0] ==  PLAYER_TYPE_HUMAN)
-                   opponentMenu->Add(MENUITEM_RANDOM_AI_HARD, "Random (Not easy)",_("Selects a random  AI deck\nwith hard or normal difficulty.").c_str());
+                   opponentMenu->Add(MENUITEM_RANDOM_AI_HARD, "Random (Not easy)",_("Selects a random AI deck with hard or normal difficulty.").c_str());
             }
             else
             {
-                opponentMenu->Add(MENUITEM_START_TOURNAMENT,"Begin Tournament",(std::string("Stop selection and start ")+tournament->exportTournamentDescription()).c_str());
+                opponentMenu->Add(MENUITEM_START_TOURNAMENT,"Begin Tournament",(std::string("Stop selection and start.")+tournament->exportTournamentDescription()).c_str());
                 if (tournament->getTournamentMode()==TOURNAMENTMODES_KO || tournament->getTournamentMode()==TOURNAMENTMODES_DOUBLEKO)
                 {
-                    opponentMenu->Add(MENUITEM_FILL_NEXT_STAGE_HARD,"Fill stage (Not easy)",_("Fill next stage with random hard or normal opponents.\n1 opponent -> 1 stage\n3 opponents -> 2 stages\n7 opponents -> 3 stages\n15 opponents -> 4 stages\n31 opponents -> 5 stages\n63 opponents -> 6 stages\n127 opponents -> 7 stages\n255 opponents -> 8 stages").c_str());
-                    opponentMenu->Add(MENUITEM_FILL_NEXT_STAGE,"Fill stage",_("Fill next stage with random opponents.\n1 opponent -> 1 stage\n3 opponents -> 2 stages\n7 opponents -> 3 stages\n15 opponents -> 4 stages\n31 opponents -> 5 stages\n63 opponents -> 6 stages\n127 opponents -> 7 stages\n255 opponents -> 8 stages").c_str());
+                    opponentMenu->Add(MENUITEM_FILL_NEXT_STAGE_HARD,"Fill stage (Not easy)",_("Fill next stage with random hard or normal opponents. 1 opponent -> 1 stage, 3 opponents -> 2 stages, 7 opponents -> 3 stages, 15 opponents -> 4 stages, 31 opponents -> 5 stages, 63 opponents -> 6 stages, 127 opponents -> 7 stages, 255 opponents -> 8 stages.").c_str());
+                    opponentMenu->Add(MENUITEM_FILL_NEXT_STAGE,"Fill stage",_("Fill next stage with random opponents. 1 opponent -> 1 stage, 3 opponents -> 2 stages, 7 opponents -> 3 stages, 15 opponents -> 4 stages, 31 opponents -> 5 stages, 63 opponents -> 6 stages, 127 opponents -> 7 stages, 255 opponents -> 8 stages.").c_str());
                 }
                 else
                 {
                      if (mParent->players[0] ==  PLAYER_TYPE_HUMAN)
-                        opponentMenu->Add(MENUITEM_RANDOM_AI_HARD, "Random (Not easy)",_("Selects a random  AI deck\nwith hard or normal difficulty.").c_str());
+                        opponentMenu->Add(MENUITEM_RANDOM_AI_HARD, "Random (Not easy)",_("Selects a random AI deck with hard or normal difficulty.").c_str());
                      opponentMenu->Add(MENUITEM_RANDOM_AI, "Random");
                 }
 
@@ -2548,7 +2548,7 @@ void Tournament::renderScoreTable()
                     f2->DrawString(buffer ,30, 250);
                     break;
             case MATCHMODE_CONSECUTIVE:
-                    sprintf(buffer, _("Game %i, Win the match with  %i wins in a row. ").c_str(), gamesPlayed,mNbGames);
+                    sprintf(buffer, _("Game %i, Win the match with %i wins in a row. ").c_str(), gamesPlayed,mNbGames);
                     f2->DrawString(buffer ,30, 250);
                     break;
 
@@ -2570,14 +2570,14 @@ void Tournament::renderScoreTable()
                 //f2->DrawString(_("Gauntletmode").c_str() ,380, y2);
                 f2->DrawString(_("Tournament:").c_str() ,330, y2);
                 y2+=20;
-                sprintf(buffer,_("Gauntlet \n(%i matches left)").c_str(),scoreMatchesToPlay);
+                sprintf(buffer,_("Gauntlet (%i matches left)").c_str(),scoreMatchesToPlay);
                 f2->DrawString(buffer ,330, y2);
                 break;
             case TOURNAMENTMODES_KO:
                 x_score=80;
                 f2->DrawString(_("Tournament:").c_str() ,300, y2);
                 y2+=20;
-                sprintf(buffer,_("Knockout \n(%i decks left)").c_str(),scoreMatchesToPlay);
+                sprintf(buffer,_("Knockout (%i decks left)").c_str(),scoreMatchesToPlay);
                 f2->DrawString(buffer ,300, y2);
                 y2+=20;
                 f2->SetScale(0.7f);
@@ -2599,7 +2599,7 @@ void Tournament::renderScoreTable()
                 x_score=80;
                 f2->DrawString(_("Tournament:").c_str() ,300, y2);
                 y2+=20;
-                sprintf(buffer,_("Double Knockout \n%i decks left:").c_str(),scoreMatchesToPlay);
+                sprintf(buffer,_("Double Knockout (%i decks left):").c_str(),scoreMatchesToPlay);
                 f2->DrawString(buffer ,300, y2);
                 y2+=20;
                 f2->SetScale(0.7f);
