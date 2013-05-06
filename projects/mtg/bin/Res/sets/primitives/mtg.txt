@@ -32958,7 +32958,7 @@ subtype=Arcane
 [/card]
 [card]
 name=Gaze of Granite
-auto=destroy all(*[-land;manacost=X])
+auto=destroy all(*[-land;manacost<=X])
 text=Destroy each nonland permanent with converted mana cost X or less.
 mana={X}{B}{B}{G}
 type=Sorcery
@@ -89033,7 +89033,7 @@ name=Thrashing Mossdog
 abilities=Reach
 autograveyard={4}{G}{G}{E}:name(scavenge) counter(1/1,storedpower) target(creature) asSorcery
 text=Reach. (This creature can block creatures with flying.) -- Scavenge {4}{G}{G} ({4}{G}{G}, Exile this card from your graveyard: Put a number of +1/+1 counters equal to this card's power on target creature. Scavenge only as a sorcery.)
-mana={2}{G}{G}
+mana={3}{G}
 type=Creature
 subtype=Plant Hound
 power=3
@@ -92333,7 +92333,7 @@ type=Sorcery
 [/card]
 [card]
 name=Ubul Sar Gatekeepers
-auto=if type(land[Gate]|mybattlefield)~morethan~1 then -2/-2 target(creature|opponentbattlefield)
+auto=if type(land[Gate]|mybattlefield)~morethan~1 then -2/-2 target(creature|opponentbattlefield)ueot
 text=When Ubul Sar Gatekeepers enters the battlefield, if you control two or more Gates, target creature an opponent controls gets -2/-2 until 
 end of turn.
 mana={3}{B}
