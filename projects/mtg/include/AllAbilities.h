@@ -62,6 +62,8 @@ private:
         intValue = 0;
         bool halfup = false;
         bool halfdown = false;
+        bool twice = false;
+        bool thrice = false;
         if (!target) target = card;
         int multiplier = 1;
         if (s[0] == '-')
@@ -97,6 +99,18 @@ private:
             halfdown = true;
             size_t hD = s.find("halfdown");
             s.erase(hD,hD + 8);
+        }
+        if(s.find("twice") != string::npos)
+        {
+            twice = true;
+            size_t tXX = s.find("twice");
+            s.erase(tXX,tXX + 5);
+        }
+        if(s.find("thrice") != string::npos)
+        {
+            thrice = true;
+            size_t tXXX = s.find("thrice");
+            s.erase(tXXX,tXXX + 6);
         }
         if(s == "prex")
         {
@@ -389,6 +403,10 @@ private:
             }
             if(halfdown)
                 intValue = intValue/2;
+            if(twice)
+                intValue = intValue*2;
+            if(thrice)
+                intValue = intValue*3;
         }
         intValue *= multiplier;
     }
