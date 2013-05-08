@@ -1,4 +1,4 @@
-<PACK name="TSP" type="Booster" pool="all set:TSP;" price="700">
+<PACK name="Time Spiral" type="Booster" pool="all set:TSP;" price="700">
 	<slot copies="1">
 		<random_card>rarity:mythic;</random_card>
 		<random_card>rarity:rare;</random_card>
