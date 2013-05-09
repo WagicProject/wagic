@@ -203,7 +203,7 @@ WCFilterSet::WCFilterSet(string arg)
 string WCFilterSet::getCode()
 {
     char buf[256];
-    sprintf(buf, "set:%s;", setlist[setid].c_str());
+    sprintf(buf, "set:%s;", _(setlist[setid].c_str()));
     return buf;
 }
 ;
