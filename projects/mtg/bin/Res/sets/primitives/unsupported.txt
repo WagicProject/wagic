@@ -10139,15 +10139,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Martyr of Sands
-text={1}, Reveal X white cards from your hand, Sacrifice Martyr of Sands: You gain three times X life.
-mana={W}
-type=Creature
-subtype=Human Cleric
-power=1
-toughness=1
-[/card]
-[card]
 name=Martyr of Spores
 text={1}, Reveal X green cards from your hand, Sacrifice Martyr of Spores: Target creature gets +X/+X until end of turn.
 mana={G}
