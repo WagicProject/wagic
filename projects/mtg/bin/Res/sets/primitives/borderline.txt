@@ -130,6 +130,16 @@ power=2
 toughness=3
 [/card]
 [card]
+name=Martyr of Sands
+auto={1}{S}:foreach(*[white]|myhand) life:3 controller
+text={1}, Reveal X white cards from your hand, Sacrifice Martyr of Sands: You gain three times X life.
+mana={W}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=1
+[/card]
+[card]
 name=Metalworker
 auto={T}:foreach(artifact|myhand) Add{2} controller
 text={T}: Reveal any number of artifact cards in your hand. Add {2} to your mana pool for each card revealed this way.

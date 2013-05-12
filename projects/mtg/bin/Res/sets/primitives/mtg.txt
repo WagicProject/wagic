@@ -28348,7 +28348,7 @@ toughness=2
 #emblem ueot removes the effect, the ability acts an observer
 [card]
 name=False Cure
-auto=emblem transforms((,newability[@lifed(opponent):life:-thatmuch opponent && life:-thatmuch opponent],newability[@lifed(controller):life:-thatmuch controller && life:-thatmuch controller])) ueot
+auto=emblem transforms((,newability[@lifed(opponent):life:-twicethatmuch opponent],newability[@lifed(controller):life:-twicethatmuch controller])) ueot
 text=Until end of turn, whenever a player gains life, that player loses 2 life for each 1 life he or she gained.
 mana={B}{B}
 type=Instant
@@ -91049,8 +91049,8 @@ name=Transcendence
 abilities=cantlifelose
 auto=this(controllerlife > 19) winGame opponent
 auto=@lifed(controller):this(controllerlife > 19) winGame opponent
-auto=@damaged(controller):life:thatmuch controller && life:that much controller
-auto=@lifeloss(controller):life:thatmuch controller && life:that much controller
+auto=@damaged(controller):life:twicethatmuch controller
+auto=@lifeloss(controller):life:twicethatmuch controller
 text=You don't lose the game for having 0 or less life. -- When you have 20 or more life, you lose the game. -- Whenever you lose life, you gain 2 life for each 1 life you lost. (Damage dealt to you causes you to lose life.)
 mana={3}{W}{W}{W}
 type=Enchantment
