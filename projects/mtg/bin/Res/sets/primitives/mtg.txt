@@ -20205,6 +20205,15 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Debt to the Deathless
+auto=@lifeloss(opponent):life:thatmuch controller
+auto=life:-twiceX opponent
+text=Each opponent loses two times X life. You gain life equal to the life lost
+this way.
+mana={X}{W}{W}{B}{B}
+type=Sorcery
+[/card]
+[card]
 name=Debtor's Pulpit
 target=land
 auto=teach(land) {T}:tap target(creature)
