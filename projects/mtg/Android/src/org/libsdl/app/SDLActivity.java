@@ -14,6 +14,7 @@ import javax.microedition.khronos.egl.EGLContext;
 import javax.microedition.khronos.egl.EGLDisplay;
 import javax.microedition.khronos.egl.EGLSurface;
 
+import net.wagic.app.R;
 import net.wagic.utils.StorageOptions;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -341,7 +342,7 @@ public class SDLActivity extends Activity implements OnKeyListener{
     		//display some info about the app
 			AlertDialog.Builder infoDialog = new AlertDialog.Builder(this);
 			infoDialog.setTitle("Wagic Info");
-			infoDialog.setMessage("Version 0.182");
+			infoDialog.setMessage("Version " + getResources().getString(R.string.app_version));
 			infoDialog.show();
 
     	}
