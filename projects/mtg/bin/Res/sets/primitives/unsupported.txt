@@ -17889,12 +17889,6 @@ power=4
 toughness=3
 [/card]
 [card]
-name=Sway of Illusion
-text=Any number of target creatures become the color of your choice until end of turn. -- Draw a card.
-mana={1}{U}
-type=Instant
-[/card]
-[card]
 name=Swerve
 text=Change the target of target spell with a single target.
 mana={U}{R}
@@ -17905,15 +17899,6 @@ name=Swirl the Mists
 text=As Swirl the Mists enters the battlefield, choose a color word. -- All instances of color words in the text of spells and permanents are changed to the chosen color word.
 mana={2}{U}{U}
 type=Enchantment
-[/card]
-[card]
-name=Swirling Spriggan
-text={(g/u){(g/u)}: Target creature you control becomes the color or colors of your choice until end of turn.
-mana={2}{G}{G}
-type=Creature
-subtype=Goblin Shaman
-power=3
-toughness=3
 [/card]
 [card]
 name=Switcheroo

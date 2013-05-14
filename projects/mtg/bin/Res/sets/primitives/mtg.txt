@@ -1584,7 +1584,7 @@ toughness=2
 [/card]
 [card]
 name=Alexi, Zephyr Mage
-auto={X}{U}{T}{discard(*|myhand)}{discard(*|myhand)}:name(X = 0) life:0
+auto={X}{U}{T}{discard(*|myhand)}{discard(*|myhand)}:name(X = 0) donothing
 auto={1}{U}{T}{discard(*|myhand)}{discard(*|myhand)}:name(X = 1) target(creature) moveTo(ownerhand)
 auto={2}{U}{T}{discard(*|myhand)}{discard(*|myhand)}:name(X = 2) target(<2>creature) moveTo(ownerhand)
 auto={3}{U}{T}{discard(*|myhand)}{discard(*|myhand)}:name(X = 3) target(<3>creature) moveTo(ownerhand)
@@ -12058,7 +12058,7 @@ type=Instant
 [/card]
 [card]
 name=Candelabra of Tawnos
-auto={T}:name(X = 0) life:0
+auto={T}:name(X = 0) donothing
 auto={1}{T}:name(X = 1) target(land) untap
 auto={2}{T}:name(X = 2) target(<2>land) untap
 auto={3}{T}:name(X = 3) target(<3>land) untap
@@ -15800,7 +15800,7 @@ type=Enchantment
 [card]
 name=Cold Storage
 auto={3}:(blink)forsrc target(creature|myBattlefield)
-auto={S}:name(Return each creature card exiled with Cold Storage to the battlefield) life:0
+auto={S}:name(Return each creature card exiled with Cold Storage to the battlefield) donothing
 text={3}: Exile target creature you control. -- Sacrifice Cold Storage: Return each creature card exiled with Cold Storage to the battlefield under your control.
 mana={4}
 type=Artifact
@@ -30752,7 +30752,7 @@ type=Land
 [/card]
 [card]
 name=Floodwater Dam
-auto={T}:name(X = 0) life:0
+auto={T}:name(X = 0) donothing
 auto={3}{T}:name(X = 1) target(land) tap
 auto={5}{T}:name(X = 2) target(<2>land) tap
 auto={7}{T}:name(X = 3) target(<3>land) tap
@@ -51676,7 +51676,7 @@ toughness=1
 [/card]
 [card]
 name=Magus of the Candelabra
-auto={T}:name(X = 0) life:0
+auto={T}:name(X = 0) donothing
 auto={1}{T}:name(X = 1) target(land) untap
 auto={2}{T}:name(X = 2) target(<2>land) untap
 auto={3}{T}:name(X = 3) target(<3>land) untap
@@ -55072,7 +55072,7 @@ type=Artifact
 [/card]
 [card]
 name=Mishra's Helix
-auto={T}:name(X = 0) life:0
+auto={T}:name(X = 0) donothing
 auto={1}{T}:name(X = 1) target(land) tap
 auto={2}{T}:name(X = 2) target(<2>land) tap
 auto={3}{T}:name(X = 3) target(<3>land) tap
@@ -61026,7 +61026,7 @@ type=Enchantment
 [/card]
 [card]
 name=Orcish Settlers
-auto={R}{T}{S}:name(X = 0) life{S}:0
+auto={R}{T}{S}:name(X = 0) donothing
 auto={1}{R}{T}{S}:name(X = 1) target(land) destroy
 auto={2}{R}{T}{S}:name(X = 2) target(<2>land) destroy
 auto={3}{R}{T}{S}:name(X = 3) target(<3>land) destroy
@@ -71965,7 +71965,7 @@ toughness=2
 [card]
 name=Runed Arch
 auto=tap
-auto={T}{S}:name(X = 0) life{S}:0
+auto={T}{S}:name(X = 0) donothing
 auto={1}{T}{S}:name(X = 1) target(creature[power<=2]) unblockable
 auto={2}{T}{S}:name(X = 2) target(<2>creature[power<=2]) unblockable
 auto={3}{T}{S}:name(X = 3) target(<3>creature[power<=2]) unblockable
@@ -86058,6 +86058,14 @@ mana={1}{B}{B}
 type=Instant
 [/card]
 [card]
+name=Sway of Illusion
+auto=chooseacolor target(<anyamount>creature) becomes(,chosencolor) ueot chooseend
+auto=draw:1 controller
+text=Any number of target creatures become the color of your choice until end of turn. -- Draw a card.
+mana={1}{U}
+type=Instant
+[/card]
+[card]
 name=Sway of the Stars
 auto=moveto(opponentlibrary) all(*|opponentgraveyard) && moveto(opponentlibrary) all(*|opponenthand) && moveto(opponentlibrary) all(*|opponentBattlefield) && shuffle
 auto=draw:7 opponent
@@ -86128,6 +86136,45 @@ auto=aslongas(*|mygraveyard) lord(creature[-flying]) damage:5 >6
 text=Threshold - Swirling Sandstorm deals 5 damage to each creature without flying if seven or more cards are in your graveyard.
 mana={3}{R}
 type=Sorcery
+[/card]
+[card]
+name=Swirling Spriggan
+auto={GU}{GU}:name(white) target(creature|mybattlefield) becomes(,white) ueot
+auto={GU}{GU}:name(blue) target(creature|mybattlefield) becomes(,blue) ueot
+auto={GU}{GU}:name(black) target(creature|mybattlefield) becomes(,black) ueot
+auto={GU}{GU}:name(red) target(creature|mybattlefield) becomes(,red) ueot
+auto={GU}{GU}:name(green) target(creature|mybattlefield) becomes(,green) ueot
+auto={GU}{GU}:name(white & blue) target(creature|mybattlefield) becomes(,white,blue) ueot
+auto={GU}{GU}:name(blue & black) target(creature|mybattlefield) becomes(,black,blue) ueot
+auto={GU}{GU}:name(black & red) target(creature|mybattlefield) becomes(,black,red) ueot
+auto={GU}{GU}:name(red & green) target(creature|mybattlefield) becomes(,red,green) ueot
+auto={GU}{GU}:name(green & white) target(creature|mybattlefield) becomes(,white,green) ueot
+auto={GU}{GU}:name(white & black) target(creature|mybattlefield) becomes(,white,black) ueot
+auto={GU}{GU}:name(blue & red) target(creature|mybattlefield) becomes(,red,blue) ueot
+auto={GU}{GU}:name(black & green) target(creature|mybattlefield) becomes(,black,green) ueot
+auto={GU}{GU}:name(red & white) target(creature|mybattlefield) becomes(,white,red) ueot
+auto={GU}{GU}:name(green & blue) target(creature|mybattlefield) becomes(,green,blue) ueot
+auto={GU}{GU}:name(green & white & blue) target(creature|mybattlefield) becomes(,green,white,blue) ueot
+auto={GU}{GU}:name(white & blue & black) target(creature|mybattlefield) becomes(,black,white,blue) ueot
+auto={GU}{GU}:name(blue & black & red) target(creature|mybattlefield) becomes(,black,red,blue) ueot
+auto={GU}{GU}:name(black & red & green) target(creature|mybattlefield) becomes(,green,black,red) ueot
+auto={GU}{GU}:name(red & green & white) target(creature|mybattlefield) becomes(,green,white,red) ueot
+auto={GU}{GU}:name(white & black & green) target(creature|mybattlefield) becomes(,green,white,black) ueot
+auto={GU}{GU}:name(blue & red & white) target(creature|mybattlefield) becomes(,red,white,blue) ueot
+auto={GU}{GU}:name(black & green & blue) target(creature|mybattlefield) becomes(,green,black,blue) ueot
+auto={GU}{GU}:name(red & white & black) target(creature|mybattlefield) becomes(,black,white,red) ueot
+auto={GU}{GU}:name(green & blue & red) target(creature|mybattlefield) becomes(,green,red,blue) ueot
+auto={GU}{GU}:name(green & red & blue & black) target(creature|mybattlefield) becomes(,green,red,blue,black) ueot
+auto={GU}{GU}:name(green & red & blue & white) target(creature|mybattlefield) becomes(,green,red,blue,white) ueot
+auto={GU}{GU}:name(white & blue & black & red) target(creature|mybattlefield) becomes(,white,red,blue,black) ueot
+auto={GU}{GU}:name(white & blue & black & green) target(creature|mybattlefield) becomes(,white,green,blue,black) ueot
+auto={GU}{GU}:name(all colors) target(creature|mybattlefield) becomes(,white,red,blue,black,green) ueot
+text={(g/u){(g/u)}: Target creature you control becomes the color or colors of your choice until end of turn.
+mana={2}{G}{G}
+type=Creature
+subtype=Goblin Shaman
+power=3
+toughness=3
 [/card]
 [card]
 name=Sword Dancer
