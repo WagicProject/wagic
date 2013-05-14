@@ -146,7 +146,7 @@ mana={3}{U}
 type=Instant
 [/card]
 [card]
-name=Aetherling
+name=AEtherling
 auto={U}:(blink)ueot
 auto={U}:unblockable
 auto={1}:1/-1
@@ -11678,7 +11678,7 @@ toughness=1
 [card]
 name=Cabal Patriarch
 auto={2}{B}{S(creature|mybattlefield)}:-2/-2 target(creature)
-auto={2}{B}{E(creature|mygravevard)}:-2/-2 target(creature)
+auto={2}{B}{E(creature|mygraveyard)}:-2/-2 target(creature)
 text={2}{B}, Sacrifice a creature: Target creature gets -2/-2 until end of turn. -- {2}{B}, Exile a creature card from your graveyard: Target creature gets -2/-2 until end of turn.
 mana={3}{B}{B}{B}
 type=Legendary Creature
@@ -21030,7 +21030,7 @@ mana={7}{U}{U}
 type=Sorcery
 [/card]
 [card]
-name=Deputy of Aquittals
+name=Deputy of Acquittals
 abilities=flash
 auto=may moveTo(ownerhand) target(creature|mybattlefield)
 text=Flash -- When Deputy of Acquittals enters the battlefield, you may return another target creature you control to its owner's hand.
