@@ -22396,7 +22396,7 @@ type=Artifact
 name=Domestication
 target=creature
 alias=1194
-auto=@each my end:if if cantargetcard(creature[power>=4]) then sacrifice all(this)
+auto=@each my end:if cantargetcard(creature[power>=4]) then sacrifice all(this)
 mana={2}{U}{U}
 type=Enchantment
 subtype=Aura
