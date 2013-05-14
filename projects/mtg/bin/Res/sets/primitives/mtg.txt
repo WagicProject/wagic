@@ -8104,8 +8104,8 @@ toughness=2
 name=Blazing Shoal
 other={E(other *[red]|myhand)} name(Exile Red Card from Hand)
 target=creature
-auto=X/0
-auto=alternative storedmanacost/0
+auto=ifnot paid(alternative) then X/0
+auto=if paid(alternative) then storedmanacost/0
 text=You may exile a red card with converted mana cost X from your hand rather than pay Blazing Shoal's mana cost. -- Target creature gets +X/+0 until end of turn.
 mana={X}{R}{R}
 type=Instant
@@ -59661,8 +59661,8 @@ type=Instant
 [card]
 name=Nourishing Shoal
 other={E(other *[green]|myhand)} name(Exile Green Card from Hand)
-auto=life:X
-auto=alternative life:storedmanacost
+auto=ifnot paid(alternative) then life:X
+auto=if paid(alternative) then life:storedmanacost
 text=You may exile a green card with converted mana cost X from your hand rather than pay Nourishing Shoal's mana cost. -- You gain X life.
 mana={X}{G}{G}
 type=Instant
@@ -77553,6 +77553,17 @@ text=Enchant creature -- Enchanted creature gets -1/-1. -- Cycling {2} ({2}, Dis
 mana={B}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+name=Sickening Shoal
+other={E(other *[black]|myhand)} name(Exile Black Card from Hand)
+target=creature
+auto=ifnot paid(alternative) then -X/-X
+auto=if paid(alternative) then -storedmanacost/-storedmanacost
+text=You may exile a black card with converted mana cost X from your hand rather than pay Sickening Shoal's mana cost. -- Target creature gets -X/-X until end of turn.
+mana={X}{B}{B}
+type=Instant
+subtype=Arcane
 [/card]
 [card]
 name=Sickle Ripper

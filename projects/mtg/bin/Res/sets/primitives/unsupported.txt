@@ -16107,13 +16107,6 @@ mana={1}{B}
 type=Sorcery
 [/card]
 [card]
-name=Sickening Shoal
-text=You may exile a black card with converted mana cost X from your hand rather than pay Sickening Shoal's mana cost. -- Target creature gets -X/-X until end of turn.
-mana={X}{B}{B}
-type=Instant
-subtype=Arcane
-[/card]
-[card]
 name=Side to Side
 mana={2}{G}
 type=Instant
