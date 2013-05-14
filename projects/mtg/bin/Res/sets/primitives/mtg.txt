@@ -77685,6 +77685,16 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Sigil of Distinction
+auto={C(0/0,-1,Charge)}:equip
+auto=thisforeach(counter{0/0.1.Charge}) 1/1
+auto=counter(0/0,X,Charge)
+text=Sigil of Distinction enters the battlefield with X charge counters on it. -- Equipped creature gets +1/+1 for each charge counter on Sigil of Distinction. -- Equip - Remove a charge counter from Sigil of Distinction.
+mana={X}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
 name=Sigil of Sleep
 target=creature
 auto=@damaged(player) from(mytgt):moveto(ownerhand) target(creature|opponentbattlefield)
@@ -81853,6 +81863,13 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Spectral Searchlight
+auto={T}:name(choose player) notatarget(player) ability$!activatechooseacolor add{chosencolor} activatechooseend!$ targetedplayer
+text={T}: Choose a player. That player adds one mana of any color he or she chooses to his or her mana pool.
+mana={3}
+type=Artifact
+[/card]
+[card]
 name=Spectral Shield
 target=creature
 auto=0/2
@@ -81877,6 +81894,15 @@ name=Spell Blast
 target=*[manacost=prex]|stack
 auto=fizzle
 text=Counter target spell with converted mana cost X.
+mana={X}{U}
+type=Instant
+[/card]
+[card]
+name=Spell Burst
+target=*[manacost=prex]|stack
+auto=fizzle
+buyback={X}{U}{3}
+text=Buyback {3} (You may pay an additional {3} as you cast this spell. If you do, put this card into your hand as it resolves.) -- Counter target spell with converted mana cost X.
 mana={X}{U}
 type=Instant
 [/card]

@@ -16152,13 +16152,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Sigil of Distinction
-text=Sigil of Distinction enters the battlefield with X charge counters on it. -- Equipped creature gets +1/+1 for each charge counter on Sigil of Distinction. -- Equip - Remove a charge counter from Sigil of Distinction.
-mana={X}
-type=Artifact
-subtype=Equipment
-[/card]
-[card]
 name=Sigil of the New Dawn
 text=Whenever a creature is put into your graveyard from the battlefield, you may pay {1}{W}. If you do, return that card to your hand.
 mana={3}{W}
@@ -16782,21 +16775,9 @@ toughness=11
 text=Annihilator 1 (Whenever this creature attacks, defending player sacrifices a permanent.) {4}: Put two 0/1 colorless Eldrazi Spawn creature tokens onto the battlefield. They have "Sacrifice this creature: Add {1} to your mana pool." {2}0}: Cast any number of Eldrazi cards you own from outside the game without paying their mana costs.
 [/card]
 [card]
-name=Spectral Searchlight
-text={T}: Choose a player. That player adds one mana of any color he or she chooses to his or her mana pool.
-mana={3}
-type=Artifact
-[/card]
-[card]
 name=Spectral Shift
 text=Choose one - Change the text of target spell or permanent by replacing all instances of one basic land type with another; or change the text of target spell or permanent by replacing all instances of one color word with another. (These effects last indefinitely.) -- Entwine {2} (Choose both if you pay the entwine cost.)
 mana={1}{U}
-type=Instant
-[/card]
-[card]
-name=Spell Burst
-text=Buyback {3} (You may pay an additional {3} as you cast this spell. If you do, put this card into your hand as it resolves.) -- Counter target spell with converted mana cost X.
-mana={X}{U}
 type=Instant
 [/card]
 [card]
