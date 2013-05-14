@@ -17455,24 +17455,6 @@ toughness=5
 text=Whenever Stone-Cold Basilisk blocks or becomes blocked by a creature with fewer letters in its name, destroy that creature at end of combat. (Punctuation and spaces aren't letters.) Whenever an opponent reads Stone-Cold Basilisk, that player is turned to stone until end of turn. Stoned players can't attack, block, or play spells or abilities.
 [/card]
 [card]
-name=Stonecloaker
-text=Flash (You may cast this spell any time you could cast an instant.) -- Flying -- When Stonecloaker enters the battlefield, return a creature you control to its owner's hand. -- When Stonecloaker enters the battlefield, exile target card from a graveyard.
-mana={2}{W}
-type=Creature
-subtype=Gargoyle
-power=3
-toughness=2
-[/card]
-[card]
-name=Stonehewer Giant
-text=Vigilance -- {1}{W}, {T}: Search your library for an Equipment card and put it onto the battlefield. Attach it to a creature you control. Then shuffle your library.
-mana={3}{W}{W}
-type=Creature
-subtype=Giant Warrior
-power=4
-toughness=4
-[/card]
-[card]
 name=Stop That
 mana={B}
 type=Instant

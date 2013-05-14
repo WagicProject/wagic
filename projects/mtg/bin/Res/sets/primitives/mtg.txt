@@ -84301,6 +84301,17 @@ power=4
 toughness=4
 [/card]
 [card]
+name=Stonecloaker
+abilities=flash,flying
+auto=moveto(myhand) notatarget(creature|mybattlefield) and!(moveto(exile) target(*|graveyard))!
+text=Flash (You may cast this spell any time you could cast an instant.) -- Flying -- When Stonecloaker enters the battlefield, return a creature you control to its owner's hand. -- When Stonecloaker enters the battlefield, exile target card from a graveyard.
+mana={2}{W}
+type=Creature
+subtype=Gargoyle
+power=3
+toughness=2
+[/card]
+[card]
 name=Stonefare Crocodile
 auto={2}{B}:lifelink
 text={2}{B}: Stonefare Crocodile gains lifelink until end of turn. (Damage dealt by this creature also causes you to gain that much life.)
@@ -84330,6 +84341,17 @@ text=Enchant creature -- Enchanted creature gets +0/+2. -- {R}: Enchanted creatu
 mana={2}{R}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+name=Stonehewer Giant
+abilities=vigilance
+auto={1}{W}{T}:name(move and attach) target(equipment|mylibrary) transforms((,newability[retarget target(creature|mybattlefield)],newability[moveto(mybattlefield)]))
+text=Vigilance -- {1}{W}, {T}: Search your library for an Equipment card and put it onto the battlefield. Attach it to a creature you control. Then shuffle your library.
+mana={3}{W}{W}
+type=Creature
+subtype=Giant Warrior
+power=4
+toughness=4
 [/card]
 [card]
 name=Stonehorn Dignitary
