@@ -85025,6 +85025,28 @@ subtype=Human
 power=3
 toughness=3
 [/card]
+###The 2 cards below should stay together (Flip Card)###
+[card]
+name=Student of Elements
+auto=this( cantargetcard(*[flying]) ) flip(Tobita, Master of Winds)
+text=When Student of Elements has flying, flip it.
+mana={1}{U}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=1
+[/card]
+[card]
+name=Tobita, Master of Winds
+auto=lord(creature|myBattlefield) flying
+text=Creatures you control have flying.
+mana={1}{U}
+type=Legendary Creature
+subtype=Human Wizard
+power=3
+toughness=3
+[/card]
+###The 2 cards above should stay together (Flip Card)###
 [card]
 name=Student of Warfare
 auto={W}:counter(0/0,1,Level) asSorcery

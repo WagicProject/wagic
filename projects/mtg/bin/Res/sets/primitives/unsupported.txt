@@ -17638,24 +17638,6 @@ mana={2}{B}{B}
 type=Sorcery
 [/card]
 [card]
-name=Student of Elements
-text=When Student of Elements has flying, flip it.
-mana={1}{U}
-type=Creature
-subtype=Human Wizard
-power=1
-toughness=1
-[/card]
-[card]
-name=Student of Elements (Tobita, Master of Winds)
-text=Creatures you control have flying.
-mana={1}{U}
-type=Legendary Creature
-subtype=Human Wizard
-power=3
-toughness=3
-[/card]
-[card]
 name=Sudden Spoiling
 text=Split second (As long as this spell is on the stack, players can't cast spells or activate abilities that aren't mana abilities.) -- Creatures target player controls become 0/2 and lose all abilities until end of turn.
 mana={1}{B}{B}
