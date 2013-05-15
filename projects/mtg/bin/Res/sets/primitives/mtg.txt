@@ -87433,8 +87433,8 @@ toughness=1
 [/card]
 [card]
 name=Tectonic Break
-auto=this(variable{castx} >0) sacrifice notatarget(<castx>creature|mybattlefield)
-auto=this(variable{castx} >0) ability$! sacrifice notatarget(<storedx>creature|mybattlefield) !$ opponent
+auto=this(variable{castx} >0) sacrifice notatarget(<castx>land|mybattlefield)
+auto=this(variable{castx} >0) ability$! sacrifice notatarget(<storedx>land|mybattlefield) !$ opponent
 text=Each player sacrifices X lands.
 mana={X}{R}{R}
 type=Sorcery
@@ -88976,6 +88976,14 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Thought Lash
+auto=cumulativeupcostmulti[{l2e}] moveTo(exile) all(*|mylibrary) && sacrifice
+auto={l2e}:prevent:1 controller
+text=Cumulative upkeep - Exile the top card of your library. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- When Thought Lash's cumulative upkeep isn't paid, exile all cards from your library. -- Exile the top card of your library: Prevent the next 1 damage that would be dealt to you this turn.
+mana={2}{U}{U}
+type=Enchantment
+[/card]
+[card]
 name=Thought Reflection
 auto=replacedraw draw:2 noreplace
 text=If you would draw a card, draw two cards instead.
@@ -89019,6 +89027,16 @@ mana={4}{U}
 type=Sorcery
 [/card]
 [card]
+name=Thoughtcutter Agent
+auto={U}{B}{T}:target(player) life:-1 && all(this) transforms((,newability[name(look) notatarget(*|targetedpersonshand) donothing]))
+text={U}{B}, {T}: Target player loses 1 life and reveals his or her hand.
+mana={U}{B}
+type=Artifact Creature
+subtype=Human Rogue
+power=1
+toughness=1
+[/card]
+[card]
 name=Thoughtflare
 auto=name(draw & discard) ability$!draw:4 _ choice notatarget(<2>*|myhand) reject)!$ controller
 text=Draw four cards, then discard two cards.
@@ -89038,6 +89056,14 @@ auto=@tapped(island|opponentBattlefield):may life:1 controller
 text=Whenever an Island an opponent controls becomes tapped, you may gain 1 life.
 mana={G}{G}
 type=Enchantment
+[/card]
+[card]
+name=Thoughts of Ruin
+auto=if compare(phandcount)~morethan~0 then sacrifice notatarget(<phandcount>land|mybattlefield)
+auto=if compare(phandcount)~morethan~0 then ability$! sacrifice notatarget(<phandcount>land|mybattlefield) !$ opponent
+text=Each player sacrifices a land for each card in your hand.
+mana={2}{R}{R}
+type=Sorcery
 [/card]
 [card]
 name=Thoughtseize

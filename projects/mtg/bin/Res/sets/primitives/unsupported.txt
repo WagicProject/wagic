@@ -18466,12 +18466,6 @@ mana={2}{B}{R}
 type=Sorcery
 [/card]
 [card]
-name=Thought Lash
-text=Cumulative upkeep - Exile the top card of your library. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- When Thought Lash's cumulative upkeep isn't paid, exile all cards from your library. -- Exile the top card of your library: Prevent the next 1 damage that would be dealt to you this turn.
-mana={2}{U}{U}
-type=Enchantment
-[/card]
-[card]
 name=Thought Nibbler
 text=Flying -- Your maximum hand size is reduced by two.
 mana={U}
@@ -18487,15 +18481,6 @@ mana={5}
 type=Artifact
 [/card]
 [card]
-name=Thoughtcutter Agent
-text={U}{B}, {T}: Target player loses 1 life and reveals his or her hand.
-mana={U}{B}
-type=Artifact Creature
-subtype=Human Rogue
-power=1
-toughness=1
-[/card]
-[card]
 name=Thoughtpicker Witch
 text={1}, Sacrifice a creature: Look at the top two cards of target opponent's library, then exile one of them.
 mana={B}
@@ -18503,12 +18488,6 @@ type=Creature
 subtype=Human Wizard
 power=1
 toughness=1
-[/card]
-[card]
-name=Thoughts of Ruin
-text=Each player sacrifices a land for each card in your hand.
-mana={2}{R}{R}
-type=Sorcery
 [/card]
 [card]
 name=Thoughtweft Trio
