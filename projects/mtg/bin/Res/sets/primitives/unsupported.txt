@@ -18150,12 +18150,6 @@ mana={2}{R}{R}
 type=Instant
 [/card]
 [card]
-name=Tectonic Break
-text=Each player sacrifices X lands.
-mana={X}{R}{R}
-type=Sorcery
-[/card]
-[card]
 name=Teferi's Imp
 text=Flying -- Phasing (This phases in or out before you untap during each of your untap steps. While it's phased out, it's treated as though it doesn't exist.) -- Whenever Teferi's Imp phases out, discard a card. -- Whenever Teferi's Imp phases in, draw a card.
 mana={2}{U}
@@ -18257,12 +18251,6 @@ mana={5}{U}{U}
 type=Sorcery
 [/card]
 [card]
-name=Temporary Truce
-text=Each player may draw up to two cards. For each card less than two a player draws this way, that player gains 2 life.
-mana={1}{W}
-type=Sorcery
-[/card]
-[card]
 name=Tempting Licid
 text={G}, {T}: Tempting Licid loses this ability and becomes an Aura enchantment with enchant creature. Attach it to target creature. You may pay {G} to end this effect. -- All creatures able to block enchanted creature do so.
 mana={2}{G}
@@ -18281,15 +18269,6 @@ toughness=6
 text=Flying Whenever Teneb, the Harvester deals combat damage to a player, you may pay {2}{B}. If you do, put target creature card from a graveyard onto the battlefield under your control.
 [/card]
 [card]
-name=Tephraderm
-text=Whenever a creature deals damage to Tephraderm, Tephraderm deals that much damage to that creature. -- Whenever a spell deals damage to Tephraderm, Tephraderm deals that much damage to that spell's controller.
-mana={4}{R}
-type=Creature
-subtype=Beast
-power=4
-toughness=5
-[/card]
-[card]
 name=Teremko Griffin
 abilities=flying,banding
 #banding not supported
@@ -18305,15 +18284,6 @@ name=Terminus
 text=Put all creatures on the bottom of their owners' libraries. -- Miracle {W} (You may cast this card for its miracle cost when you draw it if it's the first card you drew this turn.)
 mana={4}{W}{W}
 type=Sorcery
-[/card]
-[card]
-name=Terraformer
-text={1}: Choose a basic land type. Each land you control becomes that type until end of turn.
-mana={2}{U}
-type=Creature
-subtype=Human Wizard
-power=2
-toughness=2
 [/card]
 [card]
 name=Test of Faith

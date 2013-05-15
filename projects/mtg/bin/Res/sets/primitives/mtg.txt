@@ -25468,10 +25468,10 @@ subtype=Elspeth
 name=Elsewhere Flask
 auto=draw:1
 auto={S}:name(plains) all(land|mybattlefield) loseabilities && all(land|mybattlefield) losesubtypesof(land) && transforms((plains)) ueot all(land|mybattlefield)
-auto={S}:ueot name(island)  all(land|mybattlefield) loseabilities && all(land|mybattlefield) losesubtypesof(land) && transforms((island)) ueot all(land|mybattlefield)
-auto={S}:ueot name(swamp)  all(land|mybattlefield) loseabilities && all(land|mybattlefield) losesubtypesof(land) && transforms((swamp)) ueot all(land|mybattlefield)
-auto={S}:ueot name(forest)  all(land|mybattlefield) loseabilities && all(land|mybattlefield) losesubtypesof(land) && transforms((mountain)) ueot all(land|mybattlefield)
-auto={S}:ueot name(forest)  all(land|mybattlefield) loseabilities && all(land|mybattlefield) losesubtypesof(land) && transforms((forest)) ueot all(land|mybattlefield)
+auto={S}:name(island)  all(land|mybattlefield) loseabilities && all(land|mybattlefield) losesubtypesof(land) && transforms((island)) ueot all(land|mybattlefield)
+auto={S}:name(swamp)  all(land|mybattlefield) loseabilities && all(land|mybattlefield) losesubtypesof(land) && transforms((swamp)) ueot all(land|mybattlefield)
+auto={S}:name(mountain)  all(land|mybattlefield) loseabilities && all(land|mybattlefield) losesubtypesof(land) && transforms((mountain)) ueot all(land|mybattlefield)
+auto={S}:name(forest)  all(land|mybattlefield) loseabilities && all(land|mybattlefield) losesubtypesof(land) && transforms((forest)) ueot all(land|mybattlefield)
 text=When Elsewhere Flask enters the battlefield, draw a card. -- Sacrifice Elsewhere Flask: Choose a basic land type. Each land you control becomes that type until end of turn.
 mana={2}
 type=Artifact
@@ -87432,6 +87432,14 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Tectonic Break
+auto=this(variable{castx} >0) sacrifice notatarget(<castx>creature|mybattlefield)
+auto=this(variable{castx} >0) ability$! sacrifice notatarget(<storedx>creature|mybattlefield) !$ opponent
+text=Each player sacrifices X lands.
+mana={X}{R}{R}
+type=Sorcery
+[/card]
+[card]
 name=Tectonic Edge
 auto={T}:Add{1}
 auto=aslongas(land|opponentBattlefield) {1}{T}{S}:destroy target(land[-basic]) >3
@@ -87911,6 +87919,14 @@ mana={3}{R}
 type=Instant
 [/card]
 [card]
+name=Temporary Truce
+auto=ability$!name(draw two) choice name(draw two) draw:2 _ choice name(draw one) draw:1 && life:1 _ choice name(draw zero) life:2!$ controller
+auto=ability$!name(draw two) choice name(draw two) draw:2 _ choice name(draw one) draw:1 && life:1 _ choice name(draw zero) life:2!$ opponent
+text=Each player may draw up to two cards. For each card less than two a player draws this way, that player gains 2 life.
+mana={1}{W}
+type=Sorcery
+[/card]
+[card]
 name=Tempting Wurm
 auto=ability$!name(put onto battlefield) target(<anyamount>*[-planeswalker]|myhand) moveTo(mybattlefield)!$ opponent
 text=When Tempting Wurm enters the battlefield, each opponent may put any number of artifact, creature, enchantment, and/or land cards from his or her hand onto the battlefield.
@@ -87990,6 +88006,18 @@ text=Equipped creature gets +1/+1. As long as it's legendary, it gets an additio
 mana={3}
 type=Legendary Artifact
 subtype=Equipment
+[/card]
+[card]
+name=Tephraderm
+auto=@damaged(this) from(*|opponentstack):damage:thatmuch opponent
+auto=@damaged(this) from(*|mystack):damage:thatmuch controller
+auto=@damaged(this) from(creature):damage:thatmuch all(trigger[from])
+text=Whenever a creature deals damage to Tephraderm, Tephraderm deals that much damage to that creature. -- Whenever a spell deals damage to Tephraderm, Tephraderm deals that much damage to that spell's controller.
+mana={4}{R}
+type=Creature
+subtype=Beast
+power=4
+toughness=5
 [/card]
 [card]
 name=Terashi's Cry
@@ -88090,6 +88118,20 @@ type=Creature
 subtype=Beast
 power=8
 toughness=8
+[/card]
+[card]
+name=Terraformer
+auto={1}:name(plains) all(land|mybattlefield) transforms((,newability[loseabilities],newability[losesubtypesof(land)],newability[becomes(plains)])) ueot
+auto={1}:name(island)  all(land|mybattlefield) transforms((,newability[loseabilities],newability[losesubtypesof(land)],newability[becomes(island)])) ueot
+auto={1}:name(swamp)  all(land|mybattlefield) transforms((,newability[loseabilities],newability[losesubtypesof(land)],newability[becomes(swamp)])) ueot
+auto={1}:name(mountain)  all(land|mybattlefield) transforms((,newability[loseabilities],newability[losesubtypesof(land)],newability[becomes(mountain)])) ueot
+auto={1}:name(forest)  all(land|mybattlefield) transforms((,newability[loseabilities],newability[losesubtypesof(land)],newability[becomes(forest)])) ueot
+text={1}: Choose a basic land type. Each land you control becomes that type until end of turn.
+mana={2}{U}
+type=Creature
+subtype=Human Wizard
+power=2
+toughness=2
 [/card]
 [card]
 name=Terrain Generator
