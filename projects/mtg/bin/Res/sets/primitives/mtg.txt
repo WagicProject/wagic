@@ -89180,6 +89180,13 @@ mana={3}
 type=Artifact
 [/card]
 [card]
+name=Thran Foundry
+auto={1}{T}{E}:name(shuffle graveyard) target(player) donothing && moveto(ownerlibrary) and!(shuffle)! all(*|targetedpersonsgraveyard)
+text={1}, {T}, Exile Thran Foundry: Target player shuffles his or her graveyard into his or her library.
+mana={1}
+type=Artifact
+[/card]
+[card]
 name=Thran Golem
 auto=this(auras >= 1) 2/2
 auto=this(auras >= 1) flying
@@ -91413,6 +91420,19 @@ power=4
 toughness=3
 [/card]
 [card]
+name=Treacherous Vampire
+abilities=flying
+auto=@combat(attacking,blocking) source(this):name(sacrifice or exile) all(this) transforms((,newability[choice sacrifice],newability[if type(*|mygraveyard)~morethan~0 then choice moveto(exile) notatarget(*|mygraveyard)])) ueot
+auto=aslongas(*|mygraveyard) 2/2 >6
+auto=@movedTo(this|graveyard) from(myBattlefield) restriction{type(*|mygraveyard)~morethan~6}:life:-6
+text=Flying -- Whenever Treacherous Vampire attacks or blocks, sacrifice it unless you exile a card from your graveyard. -- Threshold - As long as seven or more cards are in your graveyard, Treacherous Vampire gets +2/+2 and has "When Treacherous Vampire is put into a graveyard from the battlefield, you lose 6 life."
+mana={4}{B}
+type=Creature
+subtype=Vampire
+power=4
+toughness=4
+[/card]
+[card]
 name=Treacherous Werewolf
 auto=aslongas(*|mygraveyard) 2/2 >6
 auto=aslongas(*|mygraveyard) transforms((,newability[@movedTo(this|graveyard) from(battlefield):life:-4 controller])) >6
@@ -91591,6 +91611,14 @@ auto={T}:Add{G}
 auto={1}{G}:transforms((Ape Creature,setpower=3,settoughness=3,trample,green)) ueot
 text=Treetop Village enters the battlefield tapped. -- {T}: Add {G} to your mana pool. -- {1}{G}: Treetop Village becomes a 3/3 green Ape creature with trample until end of turn. It's still a land. (If it would deal enough damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player or planeswalker.)
 type=Land
+[/card]
+[card]
+name=Tremble
+auto=sacrifice notatarget(land|mybattlefield)
+auto=ability$! sacrifice notatarget(land|mybattlefield) !$ opponent
+text=Each player sacrifices a land.
+mana={1}{R}
+type=Sorcery
 [/card]
 [card]
 name=Tremor
@@ -92100,6 +92128,14 @@ type=Creature
 subtype=Spirit
 power=3
 toughness=4
+[/card]
+[card]
+name=Truce
+auto=ability$!name(draw two) choice name(draw two) draw:2 _ choice name(draw one) draw:1 && life:1 _ choice name(draw zero) life:2!$ controller
+auto=ability$!name(draw two) choice name(draw two) draw:2 _ choice name(draw one) draw:1 && life:1 _ choice name(draw zero) life:2!$ opponent
+text=Each player may draw up to two cards. For each card less than two a player draws this way, that player gains 2 life.
+mana={2}{W}
+type=Instant
 [/card]
 [card]
 name=True Believer
