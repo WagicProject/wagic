@@ -92218,6 +92218,14 @@ power=7
 toughness=4
 [/card]
 [card]
+name=Tsabo's Decree
+target=player
+auto=chooseatype all(this) transforms((,newability[name(look) notatarget(*|targetedpersonshand) donothing])) ueot && reject all(*[chosentype]|targetedpersonshand) && bury all(*[chosentype]|targetedpersonsbattlefield) chooseend
+text=Choose a creature type. Target player reveals his or her hand and discards all creature cards of that type. Then destroy all creatures of that type that player controls. They can't be regenerated.
+mana={5}{B}
+type=Instant
+[/card]
+[card]
 name=Tsunami
 auto=destroy all(island)
 text=Destroy all Islands.
@@ -92309,6 +92317,16 @@ auto=bury
 text=Destroy target Wall. It can't be regenerated.
 mana={R}
 type=Instant
+[/card]
+[card]
+name=Tunnel Ignus
+auto=@movedto(land|opponentbattlefield) restriction{type(land[fresh]|opponentbattlefield)~morethan~1}:damage:3 opponent
+text=Whenever a land enters the battlefield under an opponent's control, if that player had another land enter the battlefield under his or her control this turn, Tunnel Ignus deals 3 damage to that player.
+mana={1}{R}
+type=Creature
+subtype=Elemental
+power=2
+toughness=1
 [/card]
 [card]
 name=Tunneler Wurm
@@ -93680,6 +93698,13 @@ auto=lord(*[multicolor]|hand) altercost(colorless,-2)
 text=Multicolored spells cost up to {2} less to cast.
 mana={4}
 type=Artifact
+[/card]
+[card]
+name=Urza's Guilt
+auto=draw:2 all(player) && transforms((,newability[ability$! choice name(lose 4 life) all(player) life:-4!$ controller],newability[ability$!notatarget(<3>*|myhand) reject)!$ controller],newability[ability$!notatarget(<3>*|myhand) reject)!$ opponent])) all(this)
+text=Each player draws two cards, then discards three cards, then loses 4 life.
+mana={2}{U}{B}
+type=Sorcery
 [/card]
 [card]
 name=Urza's Incubator

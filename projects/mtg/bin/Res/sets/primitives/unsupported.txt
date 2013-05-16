@@ -19035,12 +19035,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Tsabo's Decree
-text=Choose a creature type. Target player reveals his or her hand and discards all creature cards of that type. Then destroy all creatures of that type that player controls. They can't be regenerated.
-mana={5}{B}
-type=Instant
-[/card]
-[card]
 name=Tsabo's Web
 text=When Tsabo's Web enters the battlefield, draw a card. -- Each land with an activated ability that isn't a mana ability doesn't untap during its controller's untap step.
 mana={2}
@@ -19054,15 +19048,6 @@ type=Creature
 subtype=Goblin Artificer Ally
 power=2
 toughness=2
-[/card]
-[card]
-name=Tunnel Ignus
-mana={1}{R}
-type=Creature
-subtype=Elemental
-power=2
-toughness=1
-text=Whenever a land enters the battlefield under an opponent's control, if that player had another land enter the battlefield under his or her control this turn, Tunnel Ignus deals 3 damage to that player.
 [/card]
 [card]
 name=Tunnel Vision
@@ -19346,12 +19331,6 @@ type=Artifact Creature
 subtype=Juggernaut
 power=1
 toughness=5
-[/card]
-[card]
-name=Urza's Guilt
-text=Each player draws two cards, then discards three cards, then loses 4 life.
-mana={2}{U}{B}
-type=Sorcery
 [/card]
 [card]
 name=Urza's Hot Tub
