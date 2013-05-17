@@ -13,12 +13,6 @@ mana={2}{U}
 type=Enchantment
 [/card]
 [card]
-name=AEther Burst
-text=Return up to X target creatures to their owners' hands, where X is one plus the number of cards named AEther Burst in all graveyards as you cast AEther Burst.
-mana={1}{U}
-type=Instant
-[/card]
-[card]
 name=AEther Rift
 text=At the beginning of your upkeep, discard a card at random. If you discard a creature card this way, return it from your graveyard to the battlefield unless any player pays 5 life.
 mana={1}{R}{G}

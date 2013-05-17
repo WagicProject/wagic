@@ -21,6 +21,14 @@ power=2
 toughness=2
 [/card]
 [card]
+name=AEther Burst
+target=<plusonetype:AEther Burst:graveyard>creature|battlefield
+auto=moveto(ownerhand)
+text=Return up to X target creatures to their owners' hands, where X is one plus the number of cards named AEther Burst in all graveyards as you cast AEther Burst.
+mana={1}{U}
+type=Instant
+[/card]
+[card]
 name=AEther Charge
 auto=@movedTo(beast|myBattlefield):all(trigger[to]) transforms((,newability[may damage:4 target(opponent)]))
 text=Whenever a Beast enters the battlefield under your control, you may have it deal 4 damage to target opponent.
@@ -2035,8 +2043,7 @@ toughness=1+*
 [/card]
 [card]
 name=An-Havva Inn
-auto=foreach(creature[green]|battlefield)life:1 controller
-auto=life:1 controller
+auto=life:plusonetype:creature[green]|battlefield controller
 text=You gain X plus 1 life, where X is the number of green creatures on the battlefield.
 mana={1}{G}{G}
 type=Sorcery
@@ -46316,8 +46323,7 @@ toughness=6
 [card]
 name=Kindle
 target=creature,player
-auto=foreach(kindle|graveyard) damage:1
-auto=damage:2
+auto=damage:plustwotype:kindle:graveyard
 text=Kindle deals X damage to target creature or player, where X is 2 plus the number of cards named Kindle in all graveyards.
 mana={1}{R}
 type=Instant
@@ -54394,7 +54400,8 @@ type=Legendary Land
 [/card]
 [card]
 name=Mind Burst
-auto=target(player) ability$!name(discard) target(<type:mind burst:graveyard>*|myhand) reject!$ targetedplayer
+target=player
+auto=ability$!name(discard) target(<plusonetype:mind burst:graveyard>*|myhand) reject!$ targetedplayer
 text=Target player discards X cards, where X is one plus the number of cards named Mind Burst in all graveyards.
 mana={1}{B}
 type=Sorcery
@@ -96005,8 +96012,7 @@ type=Instant
 [/card]
 [card]
 name=Vitalizing Cascade
-auto=life:3
-auto=life:X
+auto=life:Xplusthree
 text=You gain X plus 3 life.
 mana={X}{G}{W}
 type=Instant
@@ -97536,7 +97542,7 @@ toughness=4
 [card]
 name=Wall of Tombstones
 abilities=defender
-auto=@each my upkeep:transforms((,settoughness=type:creature:mygraveyard,newability[0/1])) forever
+auto=@each my upkeep:transforms((,settoughness=plusonetype:creature:mygraveyard)) forever
 text=Defender (This creature can't attack.) -- At the beginning of your upkeep, Wall of Tombstones's toughness becomes 1 plus the number of creature cards in your graveyard. (This effect lasts indefinitely.)
 mana={1}{B}
 type=Creature
