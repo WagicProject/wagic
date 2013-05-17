@@ -19602,12 +19602,6 @@ power=3
 toughness=2
 [/card]
 [card]
-name=Vibrating Sphere
-text=As long as it's your turn, creatures you control get +2/+0. -- As long as it's not your turn, creatures you control get -0/-2.
-mana={4}
-type=Artifact
-[/card]
-[card]
 name=Vicious Betrayal
 text=As an additional cost to cast Vicious Betrayal, sacrifice any number of creatures. -- Target creature gets +2/+2 until end of turn for each creature sacrificed this way.
 mana={3}{B}{B}
@@ -19703,15 +19697,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Vish Kal, Blood Arbiter
-mana={4}{W}{B}{B}
-type=Legendary Creature
-subtype=Vampire
-power=5
-toughness=5
-text=Flying, lifelink Sacrifice a creature: Put X +1/+1 counters on Vish Kal, Blood Arbiter, where X is the sacrificed creature's power. Remove all +1/+1 counters from Vish Kal: Target creature gets -1/-1 until end of turn for each +1/+1 counter removed this way.
-[/card]
-[card]
 name=Vision Charm
 text=Choose one - Target player puts the top four cards of his or her library into his or her graveyard; or choose a land type and a basic land type, and each land of the first chosen type becomes the second chosen type until end of turn; or target artifact phases out. (While it's phased out, it's treated as though it doesn't exist. It phases in before its controller untaps during his or her next untap step.)
 mana={U}
@@ -19743,15 +19728,6 @@ toughness=3
 name=Vodalian Mage
 text={U}, {T}: Counter target spell unless its controller pays {1}.
 mana={2}{U}
-type=Creature
-subtype=Merfolk Wizard
-power=1
-toughness=1
-[/card]
-[card]
-name=Vodalian Mystic
-text={T}: Target instant or sorcery spell becomes the color of your choice.
-mana={1}{U}
 type=Creature
 subtype=Merfolk Wizard
 power=1
@@ -20679,15 +20655,6 @@ type=Creature
 subtype=Human Soldier Rogue
 power=1
 toughness=1
-[/card]
-[card]
-name=Wurmskin Forger
-text=When Wurmskin Forger enters the battlefield, distribute three +1/+1 counters among one, two, or three target creatures.
-mana={5}{G}{G}
-type=Creature
-subtype=Elf Warrior
-power=2
-toughness=2
 [/card]
 [card]
 name=Xenic Poltergeist

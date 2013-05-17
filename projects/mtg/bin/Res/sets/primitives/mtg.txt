@@ -95287,6 +95287,14 @@ power=4
 toughness=4
 [/card]
 [card]
+name=Vibrating Sphere
+auto=this(variable{controllerturn}) lord(creature|mybattlefield) 2/0
+auto=this(variable{opponentturn}) lord(creature|mybattlefield) 0/-2
+text=As long as it's your turn, creatures you control get +2/+0. -- As long as it's not your turn, creatures you control get -0/-2.
+mana={4}
+type=Artifact
+[/card]
+[card]
 name=Vicious Hunger
 target=creature
 auto=damage:2
@@ -95929,6 +95937,18 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Vish Kal, Blood Arbiter
+abilities=flying,lifelink
+auto={S(creature|myBattlefield)}:name(sacrifice a creature) counter(1/1,storedpower)
+auto=this(counter{1/1.1}>=1) {C(1/1,0)}:name(remove all counters) target(creature) -counter{1%1}/-counter{1%1} && removeallcounters(1/1) all(this)
+mana={4}{W}{B}{B}
+type=Legendary Creature
+subtype=Vampire
+power=5
+toughness=5
+text=Flying, lifelink Sacrifice a creature: Put X +1/+1 counters on Vish Kal, Blood Arbiter, where X is the sacrificed creature's power. Remove all +1/+1 counters from Vish Kal: Target creature gets -1/-1 until end of turn for each +1/+1 counter removed this way.
+[/card]
+[card]
 name=Vision Skeins
 auto=draw:2 opponent
 auto=draw:2 controller
@@ -96179,6 +96199,16 @@ type=Creature
 subtype=Merfolk
 power=1
 toughness=2
+[/card]
+[card]
+name=Vodalian Mystic
+auto={T}:activatechooseacolor target(instant,sorcery|stack) becomes(,chosencolor) forever activatechooseend
+text={T}: Target instant or sorcery spell becomes the color of your choice.
+mana={1}{U}
+type=Creature
+subtype=Merfolk Wizard
+power=1
+toughness=1
 [/card]
 [card]
 name=Vodalian Serpent
@@ -100900,6 +100930,16 @@ abilities=lifelink
 text=Lifelink
 power=3
 toughness=3
+[/card]
+[card]
+name=Wurmskin Forger
+auto=ability$!counter(1/1,1) target(creature)!$ controller && ability$!counter(1/1,1) target(creature)!$ controller && ability$!counter(1/1,1) target(creature)!$ controller
+text=When Wurmskin Forger enters the battlefield, distribute three +1/+1 counters among one, two, or three target creatures.
+mana={5}{G}{G}
+type=Creature
+subtype=Elf Warrior
+power=2
+toughness=2
 [/card]
 [card]
 name=Wurmweaver Coil
