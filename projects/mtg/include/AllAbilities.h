@@ -64,6 +64,9 @@ private:
         bool halfdown = false;
         bool twice = false;
         bool thrice = false;
+        bool plusone = false;
+        bool plustwo = false;
+        bool plusthree = false;
         if (!target) target = card;
         int multiplier = 1;
         if (s[0] == '-')
@@ -111,6 +114,24 @@ private:
             thrice = true;
             size_t tXXX = s.find("thrice");
             s.erase(tXXX,tXXX + 6);
+        }
+        if(s.find("plusone") != string::npos)
+        {
+            plusone = true;
+            size_t pOne = s.find("plusone");
+            s.erase(pOne,pOne + 7);
+        }
+        if(s.find("plustwo") != string::npos)
+        {
+            plustwo = true;
+            size_t pTwo = s.find("plustwo");
+            s.erase(pTwo,pTwo + 7);
+        }
+        if(s.find("plusthree") != string::npos)
+        {
+            plusthree = true;
+            size_t pThree = s.find("plusthree");
+            s.erase(pThree,pThree + 9);
         }
         if(s == "prex")
         {
@@ -407,6 +428,21 @@ private:
                 intValue = intValue*2;
             if(thrice)
                 intValue = intValue*3;
+            if(plusone)
+                intValue = intValue+1;
+            if(plustwo)
+                intValue = intValue+2;
+            if(plusthree)
+                intValue = intValue+3;
+        }
+        else
+        {
+            if(plusone)
+                intValue = intValue+1;
+            if(plustwo)
+                intValue = intValue+2;
+            if(plusthree)
+                intValue = intValue+3;
         }
         intValue *= multiplier;
     }
