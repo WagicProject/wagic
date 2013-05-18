@@ -391,6 +391,16 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Abyssal Gatekeeper
+auto=@movedto(this|graveyard) from(battlefield):ability$!sacrifice notatarget(creature|mybattlefield)!$ controller && ability$!sacrifice notatarget(creature|mybattlefield)!$ opponent
+text=When Abyssal Gatekeeper is put into a graveyard from the battlefield, each player sacrifices a creature.
+mana={1}{B}
+type=Creature
+subtype=Horror
+power=1
+toughness=1
+[/card]
+[card]
 name=Abyssal Horror
 abilities=flying
 auto=target(player) ability$!name(discard 2 cards) target(<2>*|myhand) reject!$ targetedplayer
@@ -1193,6 +1203,16 @@ text=Sacrifice a land: Akki Avalanchers gets +2/+0 until end of turn. Activate t
 mana={R}
 type=Creature
 subtype=Goblin Warrior
+power=1
+toughness=1
+[/card]
+[card]
+name=Akki Blizzard-Herder
+auto=@movedto(this|graveyard) from(battlefield):ability$!sacrifice notatarget(land|mybattlefield)!$ controller && ability$!sacrifice notatarget(land|mybattlefield)!$ opponent
+text=When Akki Blizzard-Herder is put into a graveyard from the battlefield, each player sacrifices a land.
+mana={1}{R}
+type=Creature
+subtype=Goblin Shaman
 power=1
 toughness=1
 [/card]
@@ -3568,6 +3588,14 @@ type=Creature
 subtype=Human Wizard
 power=1
 toughness=1
+[/card]
+[card]
+name=Archmage Ascension
+auto=@each endofturn restriction{compare(pdrewcount)~morethan~1}:may counter(0/0,1,Quest)
+auto=this(counter{0/0.1.Quest}>=6) transforms((,newability[replacedraw name(search a card) notatarget(*|mylibrary) moveto(ownerhand)]))
+text=At the beginning of each end step, if you drew two or more cards this turn, you may put a quest counter on Archmage Ascension. -- As long as Archmage Ascension has six or more quest counters on it, if you would draw a card, you may instead search your library for a card, put that card into your hand, then shuffle your library.
+mana={2}{U}
+type=Enchantment
 [/card]
 [card]
 name=Archon of Justice
@@ -72012,6 +72040,17 @@ text=Equipped creature gets +1/+1 and is every creature type. -- Equip {2}
 mana={1}
 type=Artifact
 subtype=Equipment
+[/card]
+[card]
+name=Runeflare Trap
+target=player
+auto=damage:type:*:targetedpersonshand
+other={R}
+otherrestriction=compare(odrewcount)~morethan~2
+text=If an opponent drew three or more cards this turn, you may pay {R} rather than pay Runeflare Trap's mana cost. -- Runeflare Trap deals damage to target player equal to the number of cards in that player's hand.
+mana={4}{R}{R}
+type=Instant
+subtype=Trap
 [/card]
 [card]
 name=Runes of the Deus

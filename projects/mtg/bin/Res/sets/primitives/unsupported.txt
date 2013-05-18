@@ -88,15 +88,6 @@ mana={2}{G}{G}
 type=Enchantment
 [/card]
 [card]
-name=Abyssal Gatekeeper
-text=When Abyssal Gatekeeper is put into a graveyard from the battlefield, each player sacrifices a creature.
-mana={1}{B}
-type=Creature
-subtype=Horror
-power=1
-toughness=1
-[/card]
-[card]
 name=Acidic Dagger
 text={4}, {T}: Whenever target creature deals combat damage to a non-Wall creature this turn, destroy that non-Wall creature. When the targeted creature leaves the battlefield this turn, sacrifice Acidic Dagger. Activate this ability only during combat before blockers are declared.
 mana={4}
@@ -186,15 +177,6 @@ text=Enchant non-Wall creature -- Enchanted creature has first strike and trampl
 mana={2}{R}
 type=Enchantment
 subtype=Aura
-[/card]
-[card]
-name=Akki Blizzard-Herder
-text=When Akki Blizzard-Herder is put into a graveyard from the battlefield, each player sacrifices a land.
-mana={1}{R}
-type=Creature
-subtype=Goblin Shaman
-power=1
-toughness=1
 [/card]
 [card]
 name=Akki Lavarunner
@@ -466,12 +448,6 @@ text=If an opponent searched his or her library this turn, you may pay {0} rathe
 mana={3}{U}{U}
 type=Instant
 subtype=Trap
-[/card]
-[card]
-name=Archmage Ascension
-text=At the beginning of each end step, if you drew two or more cards this turn, you may put a quest counter on Archmage Ascension. -- As long as Archmage Ascension has six or more quest counters on it, if you would draw a card, you may instead search your library for a card, put that card into your hand, then shuffle your library.
-mana={2}{U}
-type=Enchantment
 [/card]
 [card]
 name=Arcum's Weathervane
@@ -15090,13 +15066,6 @@ name=Runed Halo
 text=As Runed Halo enters the battlefield, name a card. -- You have protection from the chosen name. (You can't be targeted, dealt damage, or enchanted by anything with that name.)
 mana={W}{W}
 type=Enchantment
-[/card]
-[card]
-name=Runeflare Trap
-text=If an opponent drew three or more cards this turn, you may pay {R} rather than pay Runeflare Trap's mana cost. -- Runeflare Trap deals damage to target player equal to the number of cards in that player's hand.
-mana={4}{R}{R}
-type=Instant
-subtype=Trap
 [/card]
 [card]
 name=Runesword
