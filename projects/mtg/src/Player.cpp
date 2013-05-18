@@ -32,6 +32,7 @@ Player::Player(GameObserver *observer, string file, string fileSmall, MTGDeck * 
     playMode = MODE_HUMAN;
     skippingTurn = 0;
     extraTurn = 0;
+    drawCounter = 0;
     doesntEmpty = NEW ManaCost();
     poolDoesntEmpty = NEW ManaCost();
     if (deck != NULL)

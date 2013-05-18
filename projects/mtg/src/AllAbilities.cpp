@@ -1506,6 +1506,13 @@ AADrawer::AADrawer(GameObserver* observer, int _id, MTGCardInstance * card, Targ
                 game->mLayers->stackLayer()->resolve();
                 for(int i = numCards.getValue(); i > 0;i--)
                 {
+                    player->drawCounter += 1;
+                    if ((game->turn < 1) && game->getCurrentGamePhase() == MTG_PHASE_FIRSTMAIN
+                    && game->currentPlayer->game->inPlay->nb_cards == 0 && game->currentPlayer->game->graveyard->nb_cards == 0
+                    && game->currentPlayer->game->exile->nb_cards == 0 && game->currentlyActing() == (Player*)game->currentPlayer) //1st Play Check
+                    {
+                        game->currentPlayer->drawCounter = 0;//Reset drawCounter for pre-game draw
+                    }
                     WEvent * e = NEW WEventcardDraw(player, 1);
                     game->receiveEvent(e);
                 }

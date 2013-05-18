@@ -374,6 +374,14 @@ private:
         {
             intValue = target->controller()->opponent()->life;
         }
+        else if (s == "pdrewcount")
+        {
+            intValue = target->controller()->drawCounter;
+        }
+        else if (s == "odrewcount")
+        {
+            intValue = target->controller()->opponent()->drawCounter;
+        }
         else if (s == "p" || s == "power")
         {
             intValue = target->getPower();
