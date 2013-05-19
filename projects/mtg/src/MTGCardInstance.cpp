@@ -100,6 +100,7 @@ void MTGCardInstance::copy(MTGCardInstance * card)
     castMethod = castMethodBackUP;
     backupTargets = this->backupTargets;
     storedCard = oldStored;
+    miracle = false;
 }
 
 MTGCardInstance::~MTGCardInstance()
@@ -171,6 +172,7 @@ void MTGCardInstance::initMTGCI()
     storedCard = NULL;
     storedSourceCard = NULL;
     myPair = NULL;
+    miracle = false;
 
     for (int i = 0; i < ManaCost::MANA_PAID_WITH_SUSPEND +1; i++)
         alternateCostPaid[i] = 0;

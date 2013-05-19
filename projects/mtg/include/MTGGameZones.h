@@ -131,6 +131,7 @@ class MTGGameZone {
 
 class MTGLibrary: public MTGGameZone {
 public:
+    bool miracle;//we already consider a card a miracle drawn from here.
     vector<MTGCardInstance*>placeOnTop;
     virtual ostream& toString(ostream&) const;
     const char * getName(){return "library";}

@@ -88,6 +88,7 @@ public:
     bool graveEffects;
     bool exileEffects;
     bool suspended;
+    bool miracle;
     int chooseacolor;
     string chooseasubtype;
     int coinSide;//1 = tails

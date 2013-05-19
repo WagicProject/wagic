@@ -333,6 +333,14 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
             if(!isMorbid)
                 return 0;
         }
+
+        check = restriction[i].find("miracle");
+        if(check != string::npos)
+        {
+            if(!card->miracle)
+                return 0;
+        }
+
         check = restriction[i].find("ownerscontrol");
         if(check != string::npos)
         {

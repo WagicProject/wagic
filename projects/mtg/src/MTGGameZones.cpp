@@ -242,18 +242,27 @@ void MTGPlayerCards::drawFromLibrary()
     }
 
     if(putInZone(toMove, library, hand))
+    {
         toMove->currentZone = hand;
+        if (!library->miracle)
+        {
+            library->miracle = true;
+            toMove->miracle = true;
+        }
+    }
 }
 
 void MTGPlayerCards::resetLibrary()
 {
     SAFE_DELETE(library);
     library = NEW MTGLibrary();
+    library->miracle = false;
 }
 
 void MTGPlayerCards::init()
 {
     library = NEW MTGLibrary();
+    library->miracle = false;
     graveyard = NEW MTGGraveyard();
     hand = NEW MTGHand();
     inPlay = NEW MTGInPlay();
