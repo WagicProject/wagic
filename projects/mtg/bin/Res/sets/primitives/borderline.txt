@@ -131,7 +131,7 @@ toughness=3
 [/card]
 [card]
 name=Martyr of Sands
-auto={1}{S}:foreach(*[white]|myhand) life:3 controller
+auto={1}{S}:life:thricetype:*[white]:myhand controller
 text={1}, Reveal X white cards from your hand, Sacrifice Martyr of Sands: You gain three times X life.
 mana={W}
 type=Creature
