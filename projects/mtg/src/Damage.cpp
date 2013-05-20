@@ -153,6 +153,15 @@ int Damage::resolve()
         if(!_target->inPlay()->hasAbility(Constants::POISONSHROUD))
             _target->poisonCount += damage;//this will be changed to poison counters.
         _target->damageCount += damage;
+        if ( typeOfDamage == 1 && target == source->controller()->opponent() )//add vector prowledtypes.
+        {
+            vector<string> values = MTGAllCards::getCreatureValuesById();
+            for (size_t i = 0; i < values.size(); ++i)
+            {
+                if ( source->hasSubtype( values[i] ) && find(source->controller()->prowledTypes.begin(), source->controller()->prowledTypes.end(), values[i])==source->controller()->prowledTypes.end() )
+                    source->controller()->prowledTypes.push_back(values[i]);
+            }
+        }
     }
     else if (target->type_as_damageable == DAMAGEABLE_PLAYER && (source->has(Constants::POISONTOXIC) ||
                     source->has(Constants::POISONTWOTOXIC) || source->has(Constants::POISONTHREETOXIC)))
@@ -161,6 +170,15 @@ int Damage::resolve()
         Player * _target = (Player *) target;
         a = target->dealDamage(damage);
         target->damageCount += damage;
+        if ( typeOfDamage == 1 && target == source->controller()->opponent() )//add vector prowledtypes.
+        {
+            vector<string> values = MTGAllCards::getCreatureValuesById();
+            for (size_t i = 0; i < values.size(); ++i)
+            {
+                if ( source->hasSubtype( values[i] ) && find(source->controller()->prowledTypes.begin(), source->controller()->prowledTypes.end(), values[i])==source->controller()->prowledTypes.end() )
+                    source->controller()->prowledTypes.push_back(values[i]);
+            }
+        }
         if(!_target->inPlay()->hasAbility(Constants::POISONSHROUD))
         {
             if (source->has(Constants::POISONTOXIC))
@@ -197,6 +215,15 @@ int Damage::resolve()
                 ((MTGCardInstance*)source)->damageToOpponent = true;
             }
             target->lifeLostThisTurn += damage;
+            if ( typeOfDamage == 1 && target == source->controller()->opponent() )//add vector prowledtypes.
+            {
+                vector<string> values = MTGAllCards::getCreatureValuesById();
+                for (size_t i = 0; i < values.size(); ++i)
+                {
+                    if ( source->hasSubtype( values[i] ) && find(source->controller()->prowledTypes.begin(), source->controller()->prowledTypes.end(), values[i])==source->controller()->prowledTypes.end() )
+                        source->controller()->prowledTypes.push_back(values[i]);
+                }
+            }
             WEvent * lifed = NEW WEventLife((Player*)target,-damage);
             observer->receiveEvent(lifed);
         }

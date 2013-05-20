@@ -341,6 +341,22 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
                 return 0;
         }
 
+        check = restriction[i].find("prowl");
+        if(check != string::npos)
+        {
+            bool isProwled = false;
+            for (size_t i = 0; i < card->controller()->prowledTypes.size(); ++i)
+            {
+                if ( card->hasSubtype( card->controller()->prowledTypes[i] ))
+                {
+                    isProwled = true;
+                    break;
+                }
+            }
+            if(!isProwled)
+                return 0;
+        }
+
         check = restriction[i].find("ownerscontrol");
         if(check != string::npos)
         {

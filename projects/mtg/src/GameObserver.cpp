@@ -204,6 +204,7 @@ void GameObserver::nextGamePhase()
         cleanupPhase();
         currentPlayer->damageCount = 0;
         currentPlayer->drawCounter = 0;
+        currentPlayer->prowledTypes.clear();
         currentPlayer->opponent()->damageCount = 0; //added to clear odcount
         currentPlayer->preventable = 0;
         mLayers->actionLayer()->cleanGarbage(); //clean abilities history for this turn;
@@ -230,6 +231,7 @@ void GameObserver::nextGamePhase()
         }
         mLayers->actionLayer()->Update(0);
         currentPlayer->drawCounter = 0;
+        currentPlayer->prowledTypes.clear();
         currentPlayer->lifeLostThisTurn = 0;
         currentPlayer->opponent()->lifeLostThisTurn = 0;
         currentPlayer->doesntEmpty->remove(currentPlayer->doesntEmpty);

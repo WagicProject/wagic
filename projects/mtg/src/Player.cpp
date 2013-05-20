@@ -33,6 +33,7 @@ Player::Player(GameObserver *observer, string file, string fileSmall, MTGDeck * 
     skippingTurn = 0;
     extraTurn = 0;
     drawCounter = 0;
+    prowledTypes.clear();
     doesntEmpty = NEW ManaCost();
     poolDoesntEmpty = NEW ManaCost();
     if (deck != NULL)
