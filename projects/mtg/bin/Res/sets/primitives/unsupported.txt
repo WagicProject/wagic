@@ -642,15 +642,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Auntie's Snitch
-text=Auntie's Snitch can't block. -- Prowl {1}{B} (You may cast this for its prowl cost if you dealt combat damage to a player this turn with a Goblin or Rogue.) -- Whenever a Goblin or Rogue you control deals combat damage to a player, if Auntie's Snitch is in your graveyard, you may return Auntie's Snitch to your hand.
-mana={2}{B}
-type=Creature
-subtype=Goblin Rogue
-power=3
-toughness=1
-[/card]
-[card]
 name=Aura Finesse
 mana={U}
 type=Instant
@@ -4700,15 +4691,6 @@ name=Dynacharge
 text=Target creature you control gets +2/+0 until end of turn. -- Overload {2}{R} (You may cast this spell for its overload cost. If you do, change its text by replacing all instances of "target" with "each.")
 mana={R}
 type=Instant
-[/card]
-[card]
-name=Earwig Squad
-text=Prowl {2}{B} (You may cast this for its prowl cost if you dealt combat damage to a player this turn with a Goblin or Rogue.) -- When Earwig Squad enters the battlefield, if its prowl cost was paid, search target opponent's library for three cards and exile them. Then that player shuffles his or her library.
-mana={3}{B}{B}
-type=Creature
-subtype=Goblin Rogue
-power=5
-toughness=3
 [/card]
 [card]
 name=Echo Chamber
@@ -9526,15 +9508,6 @@ mana={R}
 type=Instant
 [/card]
 [card]
-name=Latchkey Faerie
-text=Flying -- Prowl {2}{U} (You may cast this for its prowl cost if you dealt combat damage to a player this turn with a Faerie or Rogue.) -- When Latchkey Faerie enters the battlefield, if its prowl cost was paid, draw a card.
-mana={3}{U}
-type=Creature
-subtype=Faerie Rogue
-power=3
-toughness=1
-[/card]
-[card]
 name=Laughing Hyena
 mana={1}{G}
 type=Creature — Hyena
@@ -11249,13 +11222,6 @@ mana={5}
 type=Artifact
 [/card]
 [card]
-name=Morsel Theft
-text=Prowl {1}{B} (You may cast this for its prowl cost if you dealt combat damage to a player this turn with a Rogue.) -- Target player loses 3 life and you gain 3 life. If Morsel Theft's prowl cost was paid, draw a card.
-mana={2}{B}{B}
-type=Tribal Sorcery
-subtype=Rogue
-[/card]
-[card]
 name=Mossbridge Troll
 text=If Mossbridge Troll would be destroyed, regenerate it. -- Tap any number of untapped creatures you control other than Mossbridge Troll with total power 10 or greater: Mossbridge Troll gets +20/+20 until end of turn.
 mana={5}{G}{G}
@@ -11900,6 +11866,8 @@ toughness=2
 [/card]
 [card]
 name=Noggin Whack
+other={1}{B} name(Prowl)
+otherrestriction=prowl
 text=Prowl {1}{B} (You may cast this for its prowl cost if you dealt combat damage to a player this turn with a Rogue.) -- Target player reveals three cards from his or her hand. You choose two of them. That player discards those cards.
 mana={2}{B}{B}
 type=Tribal Sorcery
@@ -11971,13 +11939,6 @@ mana={7}
 type=Tribal Instant
 subtype=Eldrazi
 text=Counter target spell or ability that targets a permanent you control. Not of This World costs {7} less to cast if it targets a spell or ability that targets a creature you control with power 7 or greater.
-[/card]
-[card]
-name=Notorious Throng
-text=Prowl {5}{U} (You may cast this for its prowl cost if you dealt combat damage to a player this turn with a Rogue.) -- Put X 1/1 black Faerie Rogue creature tokens with flying onto the battlefield, where X is the damage dealt to your opponents this turn. If Notorious Throng's prowl cost was paid, take an extra turn after this one.
-mana={3}{U}
-type=Tribal Sorcery
-subtype=Rogue
 [/card]
 [card]
 name=Nova Pentacle
@@ -17359,15 +17320,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Stinkdrinker Bandit
-text=Prowl {1}{B} (You may cast this for its prowl cost if you dealt combat damage to a player this turn with a Goblin or Rogue.) -- Whenever a Rogue you control attacks and isn't blocked, it gets +2/+1 until end of turn.
-mana={3}{B}
-type=Creature
-subtype=Goblin Rogue
-power=2
-toughness=1
-[/card]
-[card]
 name=Stoic Angel
 text=Flying, vigilance -- Players can't untap more than one creature during their untap steps.
 mana={1}{G}{W}{U}
@@ -18369,6 +18321,8 @@ type=Sorcery
 [/card]
 [card]
 name=Thieves' Fortune
+other={U} name(Prowl)
+otherrestriction=prowl
 text=Prowl {U} (You may cast this for its prowl cost if you dealt combat damage to a player this turn with a Rogue.) -- Look at the top four cards of your library. Put one of them into your hand and the rest on the bottom of your library in any order.
 mana={2}{U}
 type=Tribal Instant

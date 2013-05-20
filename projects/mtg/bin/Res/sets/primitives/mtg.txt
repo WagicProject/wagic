@@ -4737,6 +4737,19 @@ text=As Auntie's Hovel enters the battlefield, you may reveal a Goblin card from
 type=Land
 [/card]
 [card]
+name=Auntie's Snitch
+abilities=cantblock
+autograveyard=@combatdamaged(player) from(creature[goblin;rogue]|mybattlefield):may moveto(ownerhand)
+other={1}{B} name(Prowl)
+otherrestriction=prowl
+text=Auntie's Snitch can't block. -- Prowl {1}{B} (You may cast this for its prowl cost if you dealt combat damage to a player this turn with a Goblin or Rogue.) -- Whenever a Goblin or Rogue you control deals combat damage to a player, if Auntie's Snitch is in your graveyard, you may return Auntie's Snitch to your hand.
+mana={2}{B}
+type=Creature
+subtype=Goblin Rogue
+power=3
+toughness=1
+[/card]
+[card]
 name=Aura Barbs
 auto=all(enchantment|battlefield) transforms ((,newability[damage:2 controller],newability[damage:2 all(parents)])) oneshot
 text=Each enchantment deals 2 damage to its controller, then each Aura attached to a creature deals 2 damage to the creature it's attached to.
@@ -21058,8 +21071,8 @@ type=Enchantment
 [/card]
 [card]
 name=Denying Wind
-target=<upto:7>*|opponentlibrary
-auto=moveTo(exile)
+target=player
+auto=moveto(exile) target(<upto:7>*|targetedpersonslibrary)
 text=Search target player's library for up to seven cards and exile them. Then that player shuffles his or her library.
 mana={7}{U}{U}
 type=Sorcery
@@ -24789,6 +24802,18 @@ power=4
 toughness=5
 [/card]
 [card]
+name=Earwig Squad
+auto=if paid(alternative) then transforms((,newability[choice name(target opponent) target(opponent) moveto(exile) target(<3>*|targetedpersonslibrary)]))
+other={2}{B} name(Prowl)
+otherrestriction=prowl
+text=Prowl {2}{B} (You may cast this for its prowl cost if you dealt combat damage to a player this turn with a Goblin or Rogue.) -- When Earwig Squad enters the battlefield, if its prowl cost was paid, search target opponent's library for three cards and exile them. Then that player shuffles his or her library.
+mana={3}{B}{B}
+type=Creature
+subtype=Goblin Rogue
+power=5
+toughness=3
+[/card]
+[card]
 name=Eastern Paladin
 auto={B}{B}{T}:destroy target(creature[green])
 text={B}{B}, {T}: Destroy target green creature.
@@ -27848,8 +27873,8 @@ subtype=Aura
 [/card]
 [card]
 name=Extract
-target=*|Library
-auto=moveTo(exile)
+target=player
+auto=moveto(exile) target(*|targetedpersonslibrary)
 text=Search target player's library for a card and exile it. Then that player shuffles his or her library.
 mana={U}
 type=Sorcery
@@ -44170,7 +44195,7 @@ toughness=1
 [/card]
 [card]
 name=Jester's Cap
-auto={2}{T}{S}:target(<3>*|opponentlibrary) moveTo(exile)
+auto={2}{T}{S}:choice name(target player) target(player) moveto(exile) target(<3>*|targetedpersonslibrary)
 text={2}, {T}, Sacrifice Jester's Cap: Search target player's library for three cards and exile them. Then that player shuffles his or her library.
 mana={4}
 type=Artifact
@@ -48490,6 +48515,19 @@ text=Latch Seeker is unblockable.
 mana={1}{U}{U}
 type=Creature
 subtype=Spirit
+power=3
+toughness=1
+[/card]
+[card]
+name=Latchkey Faerie
+abilities=flying
+auto=if paid(alternative) then draw:1 controller
+other={2}{U} name(Prowl)
+otherrestriction=prowl
+text=Flying -- Prowl {2}{U} (You may cast this for its prowl cost if you dealt combat damage to a player this turn with a Faerie or Rogue.) -- When Latchkey Faerie enters the battlefield, if its prowl cost was paid, draw a card.
+mana={3}{U}
+type=Creature
+subtype=Faerie Rogue
 power=3
 toughness=1
 [/card]
@@ -56426,6 +56464,19 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Morsel Theft
+target=player
+auto=life:-3 targetedplayer
+auto=life:3 controller
+auto=if paid(alternative) then draw:1 controller
+other={1}{B} name(Prowl)
+otherrestriction=prowl
+text=Prowl {1}{B} (You may cast this for its prowl cost if you dealt combat damage to a player this turn with a Rogue.) -- Target player loses 3 life and you gain 3 life. If Morsel Theft's prowl cost was paid, draw a card.
+mana={2}{B}{B}
+type=Tribal Sorcery
+subtype=Rogue
+[/card]
+[card]
 name=Morselhoarder
 auto=counter(-1/-1,2)
 auto={C(-1/-1,-1)}:add{W}
@@ -59685,6 +59736,17 @@ type=Creature
 subtype=Human Spellshaper Assassin
 power=2
 toughness=2
+[/card]
+[card]
+name=Notorious Throng
+auto=token(Faerie Rogue,Creature Faerie,1/1,flying black)*odcount
+auto=if paid(alternative) then turns:+1 controller
+other={5}{U} name(Prowl)
+otherrestriction=prowl
+text=Prowl {5}{U} (You may cast this for its prowl cost if you dealt combat damage to a player this turn with a Rogue.) -- Put X 1/1 black Faerie Rogue creature tokens with flying onto the battlefield, where X is the damage dealt to your opponents this turn. If Notorious Throng's prowl cost was paid, take an extra turn after this one.
+mana={3}{U}
+type=Tribal Sorcery
+subtype=Rogue
 [/card]
 [card]
 name=Nourish
@@ -72508,10 +72570,10 @@ toughness=2
 [/card]
 [card]
 name=Sadistic Sacrament
-target=<upto:3>*|library
-auto=moveto(exile)
-kicker={7}
-auto=kicker target(<upto:12>*|library) moveto(exile)
+target=player
+auto=ifnot paid(alternative) then moveto(exile) target(<upto:3>*|targetedpersonslibrary)
+auto=if paid(alternative) then moveto(exile) target(<upto:15>*|targetedpersonslibrary)
+other={7}{B}{B}{B} name(Kicker)
 text=Kicker {7} (You may pay an additional {7} as you cast this spell.) -- Search target player's library for up to three cards, exile them, then that player shuffles his or her library. If Sadistic Sacrament was kicked, instead search that player's library for up to fifteen cards, exile them, then that player shuffles his or her library.
 mana={B}{B}{B}
 type=Sorcery
@@ -84091,6 +84153,18 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Stinkdrinker Bandit
+auto=@combat(notblocked) source(rogue|mybattlefield):all(trigger[to]) 2/1 ueot
+other={1}{B} name(Prowl)
+otherrestriction=prowl
+text=Prowl {1}{B} (You may cast this for its prowl cost if you dealt combat damage to a player this turn with a Goblin or Rogue.) -- Whenever a Rogue you control attacks and isn't blocked, it gets +2/+1 until end of turn.
+mana={3}{B}
+type=Creature
+subtype=Goblin Rogue
+power=2
+toughness=1
+[/card]
+[card]
 name=Stinkdrinker Daredevil
 auto=lord(giant|myhand) altercost(colorless,-2)
 text=Giant spells you cast cost {2} less to cast.
@@ -85810,7 +85884,7 @@ toughness=10
 [/card]
 [card]
 name=Supreme Inquisitor
-auto={T(wizard|myBattlefield)}{T(wizard|myBattlefield)}{T(wizard|myBattlefield)}{T(wizard|myBattlefield)}{T(wizard|myBattlefield)}:target(<upto:5>*|opponentlibrary) moveTo(exile)
+auto={T(wizard|myBattlefield)}{T(wizard|myBattlefield)}{T(wizard|myBattlefield)}{T(wizard|myBattlefield)}{T(wizard|myBattlefield)}:choice name(target player) target(player) moveto(exile) target(<upto:5>*|targetedpersonslibrary)
 text=Tap five untapped Wizards you control: Search target player's library for up to five cards and exile them. Then that player shuffles his or her library.
 mana={3}{U}{U}
 type=Creature
