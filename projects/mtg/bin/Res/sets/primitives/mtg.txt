@@ -61692,10 +61692,10 @@ type=Enchantment
 [/card]
 [card]
 name=Overload
-target=creature
+target=artifact
 kicker={2}
-auto=kicker teach(creature[manacost<=5]) destroy
-auto=teach(creature[manacost<=2]) destroy
+auto=kicker teach(artifact[manacost<=5]) destroy
+auto=teach(artifact[manacost<=2]) destroy
 text=Kicker {2} (You may pay an additional {2} as you cast this spell.) -- Destroy target artifact if its converted mana cost is 2 or less. If Overload was kicked, destroy that artifact if its converted mana cost is 5 or less instead.
 mana={R}
 type=Instant
