@@ -4938,6 +4938,16 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Auriok Replica
+auto={W}{S}:name(prevent damage) notatarget(*|battlefield,stack,hand,graveyard) transforms((,newability[preventalldamage from(this)])) ueot
+text={W}, Sacrifice Auriok Replica: Prevent all damage a source of your choice would deal to you this turn.
+mana={3}
+type=Artifact Creature
+subtype=Cleric
+power=2
+toughness=2
+[/card]
+[card]
 name=Auriok Salvagers
 auto={1}{W}:moveTo(myhand) target(artifact[manacost<=1]|mygraveyard)
 text={1}{W}: Return target artifact card with converted mana cost 1 or less from your graveyard to your hand.
@@ -5044,6 +5054,16 @@ type=Creature
 subtype=Human Cleric
 power=2
 toughness=3
+[/card]
+[card]
+name=Austere Command
+auto=choice name(Destroy all Artifacts) destroy all(artifact) && all(this) transforms((,newability[choice name(Destroy all Enchantments) destroy all(enchantment)],newability[choice name(Destroy all Creatures w/ manacost 3 or less) destroy all(creature[manacost<=3])],newability[choice name(Destroy all Creatures w/ manacost 4 or greater) destroy all(creature[manacost>=4])]))
+auto=choice name(Destroy all Enchantments) destroy all(enchantment) && all(this) transforms((,newability[choice name(Destroy all Artifacts) destroy all(artifact)],newability[choice name(Destroy all Creatures w/ manacost 3 or less) destroy all(creature[manacost<=3])],newability[choice name(Destroy all Creatures w/ manacost 4 or greater) destroy all(creature[manacost>=4])]))
+auto=choice name(Destroy all Creatures w/ manacost 3 or less) destroy all(creature[manacost<=3]) && all(this) transforms((,newability[choice name(Destroy all Artifacts) destroy all(artifact)],newability[choice name(Destroy all Enchantments) destroy all(enchantment)],newability[choice name(Destroy all Creatures w/ manacost 4 or greater) destroy all(creature[manacost>=4])]))
+auto=choice name(Destroy all Creatures w/ manacost 4 or greater) destroy all(creature[manacost>=4]) && all(this) transforms((,newability[choice name(Destroy all Artifacts) destroy all(artifact)],newability[choice name(Destroy all Enchantments) destroy all(enchantment)],newability[choice name(Destroy all Creatures w/ manacost 3 or less) destroy all(creature[manacost<=3])]))
+text=Choose two - Destroy all artifacts; or destroy all enchantments; or destroy all creatures with converted mana cost 3 or less; or destroy all creatures with converted mana cost 4 or greater.
+mana={4}{W}{W}
+type=Sorcery
 [/card]
 [card]
 name=Avacyn, Angel of Hope

@@ -669,15 +669,6 @@ mana={X}{R}{W}
 type=Instant
 [/card]
 [card]
-name=Auriok Replica
-mana={3}
-type=Artifact Creature
-subtype=Cleric
-power=2
-toughness=2
-text={W}, Sacrifice Auriok Replica: Prevent all damage a source of your choice would deal to you this turn.
-[/card]
-[card]
 name=Auriok Siege Sled
 text={1}: Target artifact creature blocks Auriok Siege Sled this turn if able. -- {1}: Target artifact creature can't block Auriok Siege Sled this turn.
 mana={6}
@@ -694,12 +685,6 @@ type=Creature
 subtype=Human Soldier
 power=1
 toughness=1
-[/card]
-[card]
-name=Austere Command
-text=Choose two - Destroy all artifacts; or destroy all enchantments; or destroy all creatures with converted mana cost 3 or less; or destroy all creatures with converted mana cost 4 or greater.
-mana={4}{W}{W}
-type=Sorcery
 [/card]
 [card]
 name=Autochthon Wurm
