@@ -20,13 +20,13 @@ LOCAL_STATIC_LIBRARIES := libpng libjpeg
 LOCAL_SHARED_LIBRARIES := SDL
 
 LOCAL_C_INCLUDES := \
-	$(LOCAL_PATH)/$(SDL_PATH)/include \
-	$(LOCAL_PATH)/$(MTG_PATH)/include \
-	$(LOCAL_PATH)/$(JGE_PATH)/include \
-	$(LOCAL_PATH)/$(JGE_PATH)/src/zipFS \
-	$(LOCAL_PATH)/$(BOOST_PATH) \
-	$(LOCAL_PATH)/$(JPEG_PATH) \
-	$(LOCAL_PATH)/$(PNG_PATH) \
+        $(LOCAL_PATH)/$(SDL_PATH)/include \
+        $(LOCAL_PATH)/$(MTG_PATH)/include \
+        $(LOCAL_PATH)/$(JGE_PATH)/include \
+        $(LOCAL_PATH)/$(JGE_PATH)/src/zipFS \
+        $(LOCAL_PATH)/$(BOOST_PATH) \
+        $(LOCAL_PATH)/$(JPEG_PATH) \
+        $(LOCAL_PATH)/$(PNG_PATH) \
 
 LOCAL_SRC_FILES := $(SDL_PATH)/src/main/android/SDL_android_main.cpp \
         $(MTG_PATH)/src/AbilityParser.cpp \
@@ -36,7 +36,7 @@ LOCAL_SRC_FILES := $(SDL_PATH)/src/main/android/SDL_android_main.cpp \
         $(MTG_PATH)/src/AIHints.cpp \
         $(MTG_PATH)/src/AIMomirPlayer.cpp \
         $(MTG_PATH)/src/AIPlayer.cpp \
-		$(MTG_PATH)/src/AIPlayerBaka.cpp \
+        $(MTG_PATH)/src/AIPlayerBaka.cpp \
         $(MTG_PATH)/src/AIStats.cpp \
         $(MTG_PATH)/src/AllAbilities.cpp \
         $(MTG_PATH)/src/CardDescriptor.cpp \
