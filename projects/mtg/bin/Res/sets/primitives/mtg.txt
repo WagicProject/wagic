@@ -17112,8 +17112,8 @@ type=Enchantment
 [/card]
 [card]
 name=Crackleburr
-auto={UR{UR}{T(creature[red]|mybattelfield)}{T(creature[red]|mybattelfield)}{T}:damage:3 target(creature,player)
-auto={UR{UR}{q(creature[blue]|mybattelfield)}{q(creature[blue]|mybattelfield)}{q}:moveTo(ownerhand) target(creature)
+auto={UR}{UR}{T(creature[red]|mybattelfield)}{T(creature[red]|mybattelfield)}{T}:damage:3 target(creature,player)
+auto={UR}{UR}{q(creature[blue]|mybattelfield)}{q(creature[blue]|mybattelfield)}{q}:moveTo(ownerhand) target(creature)
 text={(u/r){(u/r)}, {T}, Tap two untapped red creatures you control: Crackleburr deals 3 damage to target creature or player. -- {(u/r){(u/r)}, {Q}, Untap two tapped blue creatures you control: Return target creature to its owner's hand. ({Q} is the untap symbol.)
 mana={1}{UR}{UR}
 type=Creature
@@ -71822,7 +71822,7 @@ toughness=3
 [/card]
 [card]
 name=Rubblebelt Maaka
-autohand={R}{discard}:name(bloodrush) target(creature[attacking]) trample && 3/3 ueot
+autohand={R}{discard}:name(bloodrush) target(creature[attacking]) 3/3 ueot
 text=Bloodrush — {R}, Discard Rubblebelt Maaka: Target attacking creature gets +3/+3 until end of turn.
 mana={3}{R}
 type=Creature
@@ -73031,7 +73031,7 @@ toughness=4
 [/card]
 [card]
 name=Sands of Delirium
-auto={x}{T}:deplete:x target(player)
+auto={X}{T}:deplete:x target(player)
 text={X}, {T}: Target player puts the top X cards of his or her library into his or her graveyard.
 mana={3}
 type=Artifact
@@ -94683,7 +94683,7 @@ type=Instant
 [card]
 name=Vendilion Clique
 abilities=flash,flying
-auto=name(choose a card) target(*[-land]|opponenthand) transforms((,newability[bottomoflibrary],newability[draw:1 controller]))
+auto=name(choose a card) target(*[-land]|hand) transforms((,newability[bottomoflibrary],newability[draw:1 controller]))
 text=Flash -- Flying -- When Vendilion Clique enters the battlefield, look at target player's hand. You may choose a nonland card from it. If you do, that player reveals the chosen card, puts it on the bottom of his or her library, then draws a card.
 mana={1}{U}{U}
 type=Legendary Creature
@@ -95264,6 +95264,7 @@ toughness=3
 [/card]
 [card]
 name=Viashino Firstblade
+abilities=haste
 auto=2/2 ueot
 text=When Viashino Firstblade enters the battlefield, it gets +2/+2 until end of turn.
 mana={1}{R}{W}
