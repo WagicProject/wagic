@@ -10,6 +10,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
+#include <string.h>
 
 //////////////////////////////////////////////////////////////////////////
 
@@ -158,46 +159,53 @@ JMusic *JSoundSystem::LoadMusic(const char *fileName)
     {
         // we should use the native asset manager instead
         string fullpath = JFileSystem::GetInstance()->GetResourceFile(fileName);
-        int fd = open(fullpath.c_str(), O_RDONLY);
-        FILE* file = fdopen(fd, "r");
-        off_t start = 0;
-        off_t length;
-        fseek(file, 0, SEEK_END);
-        length = ftell(file);
-        SLresult result;
 
-        // configure audio source
-        SLDataLocator_AndroidFD loc_fd = {SL_DATALOCATOR_ANDROIDFD, fd, start, length};
-        SLDataFormat_MIME format_mime = {SL_DATAFORMAT_MIME, NULL, SL_CONTAINERTYPE_UNSPECIFIED};
-        SLDataSource audioSrc = {&loc_fd, &format_mime};
+        if(fullpath.compare("") != 0)
+        {
+            int fd = open(fullpath.c_str(), O_RDONLY);
+            FILE* file = fdopen(fd, "r");
+            off_t start = 0;
+            off_t length;
+            fseek(file, 0, SEEK_END);
+            length = ftell(file);
+            SLresult result;
 
-        // configure audio sink
-        SLDataLocator_OutputMix loc_outmix = {SL_DATALOCATOR_OUTPUTMIX, outputMixObject};
-        SLDataSink audioSnk = {&loc_outmix, NULL};
+            // configure audio source
+            SLDataLocator_AndroidFD loc_fd = {SL_DATALOCATOR_ANDROIDFD, fd, start, length};
+            SLDataFormat_MIME format_mime = {SL_DATAFORMAT_MIME, NULL, SL_CONTAINERTYPE_UNSPECIFIED};
+            SLDataSource audioSrc = {&loc_fd, &format_mime};
 
-        // create audio player
-        const SLInterfaceID ids[2] = {SL_IID_SEEK, SL_IID_VOLUME};
-        const SLboolean req[2] = {SL_BOOLEAN_TRUE, SL_BOOLEAN_TRUE};
-        result = (*engineEngine)->CreateAudioPlayer(engineEngine, &music->playerObject, &audioSrc, &audioSnk,
-                2, ids, req);
-        DebugTrace("result " << result);
+            // configure audio sink
+            SLDataLocator_OutputMix loc_outmix = {SL_DATALOCATOR_OUTPUTMIX, outputMixObject};
+            SLDataSink audioSnk = {&loc_outmix, NULL};
 
-        // realize the player
-        result = (*music->playerObject)->Realize(music->playerObject, SL_BOOLEAN_FALSE);
-        DebugTrace("result " << result);
+            // create audio player
+            const SLInterfaceID ids[2] = {SL_IID_SEEK, SL_IID_VOLUME};
+            const SLboolean req[2] = {SL_BOOLEAN_TRUE, SL_BOOLEAN_TRUE};
+            result = (*engineEngine)->CreateAudioPlayer(engineEngine, &music->playerObject, &audioSrc, &audioSnk, 2, ids, req);
+            DebugTrace("result " << result);
 
-        // get the play interface
-        result = (*music->playerObject)->GetInterface(music->playerObject, SL_IID_PLAY, &music->playInterface);
-        DebugTrace("result " << result);
+            // realize the player
+            result = (*music->playerObject)->Realize(music->playerObject, SL_BOOLEAN_FALSE);
+            DebugTrace("result " << result);
 
-        // get the seek interface
-        result = (*music->playerObject)->GetInterface(music->playerObject, SL_IID_SEEK, &music->seekInterface);
-        DebugTrace("result " << result);
+            // get the play interface
+            result = (*music->playerObject)->GetInterface(music->playerObject, SL_IID_PLAY, &music->playInterface);
+            DebugTrace("result " << result);
 
-        // get the volume interface
-        //result = (*music->playerObject)->GetInterface(music->playerObject, SL_IID_VOLUME, (void *)&music->musicVolumeInterface);
-        
-        DebugTrace("result " << result);
+            // get the seek interface
+            result = (*music->playerObject)->GetInterface(music->playerObject, SL_IID_SEEK, &music->seekInterface);
+            DebugTrace("result " << result);
+
+            // get the volume interface
+            //result = (*music->playerObject)->GetInterface(music->playerObject, SL_IID_VOLUME, (void *)&music->musicVolumeInterface);
+            
+            DebugTrace("result " << result);
+        }
+        else
+        {
+            DebugTrace("Bad path to music file");
+        }
     }
     
     mCurrentMusic = music;
@@ -215,12 +223,10 @@ void JSoundSystem::PlayMusic(JMusic *music, bool looping)
         //(*music->musicVolumeInterface)->SetVolumeLevel(music->musicVolumeInterface, -1 * mVolume);
         
         // enable whole file looping
-        result = (*music->seekInterface)->SetLoop(music->seekInterface,
-                                                  looping?SL_BOOLEAN_TRUE:SL_BOOLEAN_FALSE, 0, SL_TIME_UNKNOWN);
+        result = (*music->seekInterface)->SetLoop(music->seekInterface, looping ? SL_BOOLEAN_TRUE : SL_BOOLEAN_FALSE, 0, SL_TIME_UNKNOWN);
         assert(SL_RESULT_SUCCESS == result);
 
-        result = (*music->playInterface)->SetPlayState(music->playInterface,
-                                                       SL_PLAYSTATE_PLAYING);
+        result = (*music->playInterface)->SetPlayState(music->playInterface, SL_PLAYSTATE_PLAYING);
         assert(SL_RESULT_SUCCESS == result);
     }
 }

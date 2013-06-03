@@ -320,6 +320,36 @@ bool JFileSystem::openForWrite(ofstream & File, const string & FilePath, ios_bas
 {
     string filename = mUserFSPath;
     filename.append(FilePath);
+
+    #if defined(ANDROID)
+    DebugTrace("ANDROID");
+    std::vector<string> dirs;
+    string path = filename.substr( 0, filename.find_last_of( '/' ) + 1 );
+
+    // put it into list
+    dirs.push_back(path);
+
+    //make list of directories that need to be created
+    do
+    {
+        path = path.substr( 0, path.find_last_of( '/', path.size() - 2 ) + 1 );
+        dirs.push_back(path);
+    
+    } while (path.compare(mUserFSPath) != 0);
+    
+    // remove mUserFSPath from list
+    dirs.pop_back();
+
+    // create missing directories
+    for (std::vector<string>::reverse_iterator it = dirs.rbegin(); it != dirs.rend(); ++it)
+    {
+        if(!DirExists(*it))
+        {
+            MAKEDIR((*it).c_str());
+        }
+    }
+    #endif
+
     File.open(filename.c_str(), mode);
 
     if (File)
