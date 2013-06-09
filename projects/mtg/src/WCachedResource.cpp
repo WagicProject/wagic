@@ -329,7 +329,7 @@ void WCachedParticles::Refresh()
     return;
 }
 
-bool WCachedParticles::Attempt(const string& filename, int submode, int & error)
+bool WCachedParticles::Attempt(const string& filename, int, int & error)
 {
 
     JFileSystem* fileSys = JFileSystem::GetInstance();

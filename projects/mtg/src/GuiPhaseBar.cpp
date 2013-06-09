@@ -33,7 +33,7 @@ namespace
     const float ICONSCALE = 1.5;
     const float CENTER = SCREEN_HEIGHT_F / 2 + 10;
 
-    void DrawGlyph(JQuad* inQuad, int inGlyph, float inY, float inAngle, unsigned int inP, float inScale)
+    void DrawGlyph(JQuad* inQuad, int inGlyph, float inY, float, unsigned int inP, float inScale)
     {
         float xPos = static_cast<float> ((inP + inGlyph * (int) (kWidth + 1)) % (kPhases * (int) (kWidth + 1)));
         inQuad->SetTextureRect(xPos, 0, kWidth, kHeight);
@@ -87,7 +87,7 @@ void GuiPhaseBar::Entering()
     zoom = 1.4f*ICONSCALE;
 }
 
-bool GuiPhaseBar::Leaving(JButton key)
+bool GuiPhaseBar::Leaving(JButton)
 {
     mHasFocus = false;
     zoom = ICONSCALE;

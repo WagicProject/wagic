@@ -174,6 +174,7 @@ JMusic *JSoundSystem::LoadMusic(const char *fileName)
     }
   return music;
 #else
+    cerr << fileName << endl;
   return NULL;
 #endif
 }
@@ -203,6 +204,9 @@ void JSoundSystem::PlayMusic(JMusic *music, bool looping)
       else
 	FSOUND_SetLoopMode(mChannel, FSOUND_LOOP_OFF);
     }
+#else
+    music = 0;
+    looping = false;
 #endif
 }
 
@@ -216,6 +220,8 @@ void JSoundSystem::StopMusic(JMusic *music)
   }
 #elif (defined WITH_FMOD)
   FSOUND_StopSound(mChannel);
+#else
+    music = 0;
 #endif
 }
 
@@ -290,6 +296,7 @@ JSample *JSoundSystem::LoadSample(const char *fileName)
     }
   return sample;
 #else
+    cerr << fileName << endl;
   return NULL;
 #endif
 }
@@ -308,6 +315,8 @@ void JSoundSystem::PlaySample(JSample *sample)
     int channel = FSOUND_PlaySound(FSOUND_FREE, sample->mSample);
     FSOUND_SetVolumeAbsolute(channel, static_cast<int>(mSampleVolume * 2.55));
   }
+#else
+    sample = 0;
 #endif
 }
 

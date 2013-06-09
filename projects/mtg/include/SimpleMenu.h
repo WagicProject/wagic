@@ -42,6 +42,7 @@ public:
     virtual void Render();
     virtual bool CheckUserInput(JButton key);
     virtual void Update(float dt);
+    using JGuiController::Add;
     virtual void Add(int id, const char * Text, string desc = "", bool forceFocus = false);
     int getmCurr(){return mCurr;}
     float getWidth(){return mWidth; }

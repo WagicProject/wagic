@@ -591,6 +591,8 @@ void JGE::SendCommand(string command)
     sendJNICommand(command);
 #elif defined (IOS)
     SendCommand(command, "");
+#else
+    cerr << command;
 #endif
 }
 
@@ -602,6 +604,8 @@ void JGE::SendCommand(std::string command, std::string parameter)
     [delegate handleWEngineCommand:[NSString stringWithCString: command.c_str() encoding: NSUTF8StringEncoding]
                      withParameter: [NSString stringWithCString: parameter.c_str() encoding:NSUTF8StringEncoding]];
     
+#else
+    cerr << command << " " << parameter;
 #endif
 }
 
@@ -613,6 +617,8 @@ void JGE::SendCommand(std::string command, float& x, float& y, float& width, flo
 #elif IOS
     wagicAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
     [delegate handleWEngineCommand: [NSString stringWithCString: command.c_str() encoding: NSUTF8StringEncoding] withUIParameters: x yCoordinate: y width: width height: height];
+#else
+    cerr << command << " " << x << " " << y << " " << width << " " << height;
 #endif
     
 }
@@ -656,7 +662,6 @@ JNIEnv * JGE::getJNIEnv()
 
 string JGE::getFileSystemLocation()
 {
-    char result[512];
     JNIEnv * env = getJNIEnv();
     if (env == NULL)
     {

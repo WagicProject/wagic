@@ -33,7 +33,7 @@ std::string ToHex(T* pointer)
 {															\
   std::ostringstream stream;								\
   stream << inString << std::endl;					    \
-  qDebug(stream.str().c_str());	                        \
+  qDebug("%s", stream.str().c_str());	                        \
 }
 #elif defined (ANDROID)
 #include <android/log.h>

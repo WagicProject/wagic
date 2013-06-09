@@ -548,7 +548,7 @@ void TaskList::Render()
     f->SetScale(1);
 }
 
-void TaskList::addRandomTask(int diff)
+void TaskList::addRandomTask(int)
 {
     // TODO: Weighted random (rarity of tasks)
     //       - based on counts of finished tasks?
@@ -614,7 +614,7 @@ string TaskWinAgainst::getShortDesc()
     return result;
 }
 
-bool TaskWinAgainst::isDone(GameObserver* observer, GameApp * _app)
+bool TaskWinAgainst::isDone(GameObserver* observer, GameApp *)
 {
     AIPlayerBaka * baka = (AIPlayerBaka*) observer->players[1];
     return ((baka) && (!observer->players[0]->isAI()) && (observer->players[1]->isAI()) && (observer->didWin(observer->players[0])) // Human player wins
@@ -821,7 +821,7 @@ string TaskImmortal::getShortDesc()
     return buffer;
 }
 
-bool TaskImmortal::isDone(GameObserver *observer, GameApp * _app)
+bool TaskImmortal::isDone(GameObserver *observer, GameApp *)
 {
     return (!observer->players[0]->isAI()) && (observer->players[1]->isAI()) && (observer->didWin(observer->players[0])) // Human player wins
                     && (observer->players[0]->life >= targetLife);
@@ -916,7 +916,7 @@ string TaskMassiveBurial::getShortDesc()
     return buffer;
 }
 
-bool TaskMassiveBurial::isDone(GameObserver* observer, GameApp * _app)
+bool TaskMassiveBurial::isDone(GameObserver* observer, GameApp *)
 {
     int countColor = 0;
     vector<MTGCardInstance *> cards = observer->players[1]->game->graveyard->cards;
@@ -1009,7 +1009,7 @@ string TaskWisdom::getShortDesc()
     return buffer;
 }
 
-bool TaskWisdom::isDone(GameObserver* observer, GameApp * _app)
+bool TaskWisdom::isDone(GameObserver* observer, GameApp *)
 {
     int countColor = 0;
     vector<MTGCardInstance *> cards = observer->players[0]->game->hand->cards;
@@ -1090,7 +1090,7 @@ string TaskPacifism::getShortDesc()
     return buffer;
 }
 
-bool TaskPacifism::isDone(GameObserver* observer, GameApp * _app)
+bool TaskPacifism::isDone(GameObserver* observer, GameApp *)
 {
     return (!observer->players[0]->isAI()) && (observer->players[1]->isAI()) && (observer->didWin(observer->players[0])) // Human player wins
                     && (observer->players[1]->life >= lifeSlashCardMin) && ((int) observer->players[1]->game->library->cards.size() >= lifeSlashCardMin);

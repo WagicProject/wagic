@@ -147,7 +147,7 @@ void WLBFont::FormatText(string &s, vector<string>& output)
     }
 }
 
-WFBFont::WFBFont(int inFontID, const char *fontname, int lineheight, bool useVideoRAM) :
+WFBFont::WFBFont(int inFontID, const char *fontname, int lineheight, bool) :
     WFont(inFontID)
 {
     mRenderer = JRenderer::GetInstance();
@@ -594,7 +594,7 @@ float WFBFont::GetHeight() const
 }
 
 // Legacy : GBK encoding
-WGBKFont::WGBKFont(int inFontID, const char *fontname, int lineheight, bool useVideoRAM) :
+WGBKFont::WGBKFont(int inFontID, const char *fontname, int lineheight, bool) :
     WFBFont(inFontID)
 {
     mRenderer = JRenderer::GetInstance();

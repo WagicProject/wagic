@@ -456,7 +456,7 @@ void ActionLayer::doReactTo(int menuIndex)
     }
 }
 
-void ActionLayer::ButtonPressed(int controllerid, int controlid)
+void ActionLayer::ButtonPressed(int, int controlid)
 {
     stringstream stream;
     for(size_t i = 0; i < abilitiesMenu->mObjects.size(); i++)

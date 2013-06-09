@@ -1963,7 +1963,7 @@ NetworkGameObserver::~NetworkGameObserver()
 	mpNetworkSession->sendCommand("disconnect", "");
 }
 
-void NetworkGameObserver::disconnect(void*pxThis, stringstream& in, stringstream& out)
+void NetworkGameObserver::disconnect(void*pxThis, stringstream&, stringstream&)
 {
 	NetworkGameObserver* pThis = (NetworkGameObserver*)pxThis;
 	pThis->setLoser(pThis->getView()->getRenderedPlayerOpponent());
@@ -1983,7 +1983,7 @@ void NetworkGameObserver::loadPlayer(int playerId, Player* player)
 	mpNetworkSession->sendCommand("loadPlayer", out.str());
 }
 
-void NetworkGameObserver::loadPlayer(void*pxThis, stringstream& in, stringstream& out)
+void NetworkGameObserver::loadPlayer(void*pxThis, stringstream& in, stringstream&)
 {
 	NetworkGameObserver* pThis = (NetworkGameObserver*)pxThis;
 	Player* pPlayer = 0;
@@ -2027,7 +2027,7 @@ void NetworkGameObserver::synchronize(void*pxThis, stringstream& in, stringstrea
 }
 
 
-void NetworkGameObserver::checkSynchro(void*pxThis, stringstream& in, stringstream& out)
+void NetworkGameObserver::checkSynchro(void*pxThis, stringstream& in, stringstream&)
 {
 	NetworkGameObserver* pThis = (NetworkGameObserver*)pxThis;
 	
@@ -2038,7 +2038,7 @@ void NetworkGameObserver::checkSynchro(void*pxThis, stringstream& in, stringstre
 	assert(aGame == *pThis);
 }
 
-void NetworkGameObserver::sendAction(void*pxThis, stringstream& in, stringstream& out)
+void NetworkGameObserver::sendAction(void*pxThis, stringstream& in, stringstream&)
 {
 	NetworkGameObserver* pThis = (NetworkGameObserver*)pxThis;
 

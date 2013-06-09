@@ -1119,19 +1119,35 @@ void GameStateDeckViewer::renderOnScreenMenu()
             for (int j = 0; j < Constants::NB_Colors - 1; j++)
             {
                 curCount = stw->countBasicLandsPerColor[j];
-                sprintf(buffer, (curCount == 0 ? "." : "%i"), curCount);
+                if(curCount == 0) {
+                    sprintf(buffer, ".");
+                } else {
+                    sprintf(buffer, "%i", curCount);
+                }
                 font->DrawString(buffer, 49 + leftTransition + j * 15, posY);
 
                 curCount = stw->countLandsPerColor[j];
-                sprintf(buffer, (curCount == 0 ? "." : "%i"), curCount);
+                if(curCount == 0) {
+                    sprintf(buffer, ".");
+                } else {
+                    sprintf(buffer, "%i", curCount);
+                }
                 font->DrawString(buffer, 49 + leftTransition + j * 15, posY + 10);
 
                 curCount = stw->countNonLandProducersPerColor[j];
-                sprintf(buffer, (curCount == 0 ? "." : "%i"), curCount);
+                if(curCount == 0) {
+                    sprintf(buffer, ".");
+                } else {
+                    sprintf(buffer, "%i", curCount);
+                }
                 font->DrawString(buffer, 49 + leftTransition + j * 15, posY + 20);
 
                 curCount = stw->countLandsPerColor[j] + stw->countBasicLandsPerColor[j] + stw->countNonLandProducersPerColor[j];
-                sprintf(buffer, (curCount == 0 ? "." : "%i"), curCount);
+                if(curCount == 0) {
+                    sprintf(buffer, ".");
+                } else {
+                    sprintf(buffer, "%i", curCount);
+                }
                 font->DrawString(buffer, 49 + leftTransition + j * 15, posY + 33);
             }
 

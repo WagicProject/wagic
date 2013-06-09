@@ -134,7 +134,7 @@ zbuffer_stored * zbuffer_stored::close()
 
 
 
-int zbuffer_stored::overflow(int c)
+int zbuffer_stored::overflow(int)
 {
 	return EOF;
 }
@@ -231,7 +231,7 @@ int zbuffer_stored::sync()
 
 
 
-streambuf * zbuffer_stored::setbuf(char * pr, int nLength)
+streambuf * zbuffer_stored::setbuf(char *, int)
 {
 	return NULL;
 }
@@ -298,7 +298,7 @@ zbuffer_deflated * zbuffer_deflated::close()
 
 
 
-int zbuffer_deflated::overflow(int c)
+int zbuffer_deflated::overflow(int)
 {
 	return EOF;
 }
@@ -442,7 +442,7 @@ int zbuffer_deflated::sync()
 
 
 
-streambuf * zbuffer_deflated::setbuf(char * pr, int nLength)
+streambuf * zbuffer_deflated::setbuf(char *, int)
 {
 	return NULL;
 }

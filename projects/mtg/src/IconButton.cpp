@@ -109,7 +109,7 @@ void IconButton::Entering()
     mTargetScale = SCALE_SELECTED * mScale;
 }
 
-bool IconButton::Leaving(JButton key)
+bool IconButton::Leaving(JButton)
 {
     mHasFocus = false;
     mTargetScale = SCALE_NORMAL * mScale;

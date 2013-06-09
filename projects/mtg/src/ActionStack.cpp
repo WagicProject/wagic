@@ -308,7 +308,6 @@ int Spell::resolve()
     {
         Player * p = source->controller();
         int castMethod = source->castMethod;
-        Player * playerT = source->playerTarget;
         vector<Targetable*>backupTgt = source->backupTargets;
         source = p->game->putInZone(source, from, p->game->battlefield);
         

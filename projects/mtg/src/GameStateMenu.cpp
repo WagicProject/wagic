@@ -766,9 +766,9 @@ void GameStateMenu::Render()
         else
         {
             if (primitivesLoadCounter <= (int) (primitives.size()))
-                sprintf(text, _("LOADING PRIMITIVES").c_str());
+                sprintf(text, "%s", _("LOADING PRIMITIVES").c_str());
             else
-                sprintf(text, _("LOADING...").c_str());
+                sprintf(text, "%s", _("LOADING...").c_str());
         }
         mFont->SetColor(ARGB(170,0,0,0));
         mFont->DrawString(text, SCREEN_WIDTH / 2 + 2, SCREEN_HEIGHT - 50 + 2, JGETEXT_CENTER);

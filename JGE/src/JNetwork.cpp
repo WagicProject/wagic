@@ -62,6 +62,8 @@ void JNetwork::getServerIp(string& aString)
         memcpy(&addr, phe->h_addr_list[i], sizeof(struct in_addr));
         aString = inet_ntoa(addr);
     }
+#else
+    aString = "No clue";
 #endif
 }
 

@@ -13,7 +13,7 @@ void GuiStatic::Entering()
     parent->Activate(this);
 }
 
-bool GuiStatic::Leaving(JButton key)
+bool GuiStatic::Leaving(JButton)
 {
     parent->Deactivate(this);
     return false;
@@ -186,7 +186,7 @@ void GuiGameZone::Render()
     PlayGuiObject::Render();
 }
 
-void GuiGameZone::ButtonPressed(int controllerId, int controlId)
+void GuiGameZone::ButtonPressed(int, int)
 {
     zone->owner->getObserver()->ButtonPressed(this);
 }

@@ -12,7 +12,7 @@ MTGGamePhase::MTGGamePhase(GameObserver* g, int id) :
     mFont->SetBase(0); // using 2nd font
 }
 
-void MTGGamePhase::Update(float dt)
+void MTGGamePhase::Update(float)
 {
     int newState = observer->getCurrentGamePhase();
     if (newState != currentState)

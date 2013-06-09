@@ -28,6 +28,7 @@ public:
 
     int color;
     void Render();
+    using Pos::Update;
     void Update(float dt, float shift);
     void Wither();
     void Drop();

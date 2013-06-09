@@ -94,7 +94,7 @@ void SimpleButton::Entering()
     setFocus(true);
 }
 
-bool SimpleButton::Leaving(JButton key)
+bool SimpleButton::Leaving(JButton)
 {
     checkUserClick();
     setFocus(false);

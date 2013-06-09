@@ -21,7 +21,7 @@ public:
     {
     }
     ;
-    bool Leaving(JButton key)
+    bool Leaving(JButton)
     {
         return false;
     }

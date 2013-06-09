@@ -78,6 +78,7 @@ public:
 
     virtual void Render();
     virtual void Update(float dt);
+    using JGuiController::Add;
     virtual void Add(int id, const char * Text, string desc = "", bool forceFocus = false, DeckMetaData *deckMetaData = NULL);
     virtual void Close();
     void updateScroller();

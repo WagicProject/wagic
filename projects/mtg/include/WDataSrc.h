@@ -15,7 +15,7 @@ class JQuad;
 class WSyncable
 {
 public:
-    WSyncable(int i = 0)
+    WSyncable()
     {
         hooked = NULL;
         currentPos = 0;
@@ -54,32 +54,32 @@ public:
     {
     }
 
-    virtual JQuadPtr getImage(int offset = 0)
+    virtual JQuadPtr getImage(int = 0)
     {
         return JQuadPtr();
     }
 
-    virtual JQuadPtr getThumb(int offset = 0)
+    virtual JQuadPtr getThumb(int = 0)
     {
         return JQuadPtr();
     }
 
-    virtual MTGCard * getCard(int offset = 0, bool ignore = false)
+    virtual MTGCard * getCard(int = 0, bool = false)
     {
         return NULL;
     }
 
-    virtual MTGDeck * getDeck(int offset = 0)
+    virtual MTGDeck * getDeck(int = 0)
     {
         return NULL;
     }
 
-    virtual WDistort * getDistort(int offset = 0)
+    virtual WDistort * getDistort(int = 0)
     {
         return NULL;
     }
 
-    virtual bool thisCard(int mtgid)
+    virtual bool thisCard(int)
     {
         return false;
     }
@@ -160,7 +160,7 @@ public:
 
     virtual void updateCounts() {};
     virtual void clearCounts() {};
-    virtual void addCount(MTGCard * c, int qty = 1) {};
+    virtual void addCount(MTGCard *, int = 1) {};
 
     //Loads into us. Calls validate()
     virtual int loadMatches(MTGAllCards* ac); //loadMatches adds the cards from something
@@ -208,7 +208,7 @@ public:
         return active->getCard(offset, ignore);
     }
 
-    int Size(bool all = false)
+    int Size(bool = false)
     {
         return active->Size();
     }

@@ -23,7 +23,7 @@ bool HandLimitor::select(Target* t)
     else
         return false;
 }
-bool HandLimitor::greyout(Target* t)
+bool HandLimitor::greyout(Target*)
 {
     return true;
 }

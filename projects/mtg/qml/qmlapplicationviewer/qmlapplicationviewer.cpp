@@ -12,7 +12,7 @@
 
 #include <QtCore/QDir>
 #include <QtCore/QFileInfo>
-#include <QtGui/QApplication>
+#include <QApplication>
 #include <QtDeclarative/QDeclarativeComponent>
 #include <QtDeclarative/QDeclarativeEngine>
 #include <QtDeclarative/QDeclarativeContext>
@@ -114,7 +114,7 @@ void QmlApplicationViewer::addImportPath(const QString &path)
     engine()->addImportPath(QmlApplicationViewerPrivate::adjustPath(path));
 }
 
-void QmlApplicationViewer::setOrientation(ScreenOrientation orientation)
+void QmlApplicationViewer::setOrientation(ScreenOrientation)
 {
 #if defined(Q_OS_SYMBIAN)
     // If the version of Qt on the device is < 4.7.2, that attribute won't work
@@ -126,7 +126,7 @@ void QmlApplicationViewer::setOrientation(ScreenOrientation orientation)
         }
     }
 #endif // Q_OS_SYMBIAN
-
+/*
     Qt::WidgetAttribute attribute;
     switch (orientation) {
 #if QT_VERSION < 0x040702
@@ -152,9 +152,10 @@ void QmlApplicationViewer::setOrientation(ScreenOrientation orientation)
     case ScreenOrientationAuto:
         attribute = Qt::WA_AutoOrientation;
         break;
+
 #endif // QT_VERSION < 0x040702
     };
-    setAttribute(attribute, true);
+    setAttribute(attribute, true);*/
 }
 
 void QmlApplicationViewer::showExpanded()

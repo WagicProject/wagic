@@ -108,7 +108,7 @@ public:
       Note: This is ONLY called after the user presses "OK" on a WDecoConfirm dialog. See setData() 
       for the standard method of changing underlying data.
     */
-    virtual void confirmChange(bool confirmed) {};
+    virtual void confirmChange(bool) {};
     /**
       Returns whether or not any changes to this item would require confirmation. Can also be used to 
       validate those changes, or to perform necessary cleanup when a change fails.
@@ -116,7 +116,7 @@ public:
     virtual CONFIRM_TYPE needsConfirm();
     virtual bool yieldFocus();
     virtual PIXEL_TYPE getColor(int type);
-    virtual float getMargin(int type)
+    virtual float getMargin(int)
     {
         return 4;
     }
@@ -147,7 +147,7 @@ public:
     */
     virtual void setData()=0;
 
-    virtual void ButtonPressed(int controllerId, int controlId) {};
+    virtual void ButtonPressed(int, int) {};
     /**
       Used when it is necessary to update some information. Often called from confirmChange(), but also called
       in other places, such as to reload the list of possible profiles after a new one is created. See OptionProfile
@@ -198,19 +198,19 @@ public:
     ;
 
     /** Sets the modality of the item, if applicable. */
-    virtual void setModal(bool val) {};
-    virtual void setDisplay(string s) {};
-    virtual void setX(float _x) {};
-    virtual void setY(float _y) {};
-    virtual void setWidth(float _w) {};
-    virtual void setHeight(float _h) {};
-    virtual void setId(int _id) {};
-    virtual void setHidden(bool bHidden){};
-    virtual void setVisible(bool bVisisble) {};
+    virtual void setModal(bool) {};
+    virtual void setDisplay(string) {};
+    virtual void setX(float) {};
+    virtual void setY(float) {};
+    virtual void setWidth(float) {};
+    virtual void setHeight(float) {};
+    virtual void setId(int) {};
+    virtual void setHidden(bool){};
+    virtual void setVisible(bool) {};
     virtual void renderBack(WGuiBase * it);
-    virtual void subBack(WGuiBase * item) {};
+    virtual void subBack(WGuiBase *) {};
 
-    virtual bool CheckUserInput(JButton key)
+    virtual bool CheckUserInput(JButton)
     {
         return false;
     }
@@ -228,7 +228,7 @@ public:
     virtual void Entering(JButton key);
     virtual bool Leaving(JButton key);
     virtual bool CheckUserInput(JButton key);
-    virtual void Update(float dt) {};
+    virtual void Update(float) {};
     virtual void Render();
 
     WGuiItem(string _display, u8 _mF = 0);
@@ -287,7 +287,7 @@ public:
     ;
     virtual float minWidth();
     virtual float minHeight();
-    virtual void setId(int _id) {};
+    virtual void setId(int) {};
     virtual void setX(float _x)
     {
         x = _x;

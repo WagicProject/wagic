@@ -58,7 +58,7 @@ public:
         mHasFocus = true;
     }
     
-    virtual bool Leaving(JButton key)
+    virtual bool Leaving(JButton)
     {
         mHasFocus = false;
         return true;
@@ -86,7 +86,7 @@ public:
     virtual const string getDisplayName() const;
     void Render(MTGCardInstance * source, JQuad * targetQuad, string alt1, string alt2, string action, bool bigQuad = false);
     
-    virtual int receiveEvent(WEvent * event)
+    virtual int receiveEvent(WEvent *)
     {
         return 0;
     }

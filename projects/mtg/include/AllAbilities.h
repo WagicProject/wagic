@@ -289,8 +289,10 @@ private:
                                 if(toughnessCheck)
                                     check = cCard->toughness;
 
-                                check > highest?highest = check:highest = highest;
-                                check <= lowest?lowest = check:lowest = lowest;
+                                if(check > highest)
+                                    highest = check;
+                                if(check <= lowest)
+                                    lowest = check;
                             }
                         }
                     }
@@ -1044,6 +1046,7 @@ public:
     ~ATutorialMessage();
 
     //JGuiListener Implementation
+    using JGuiObject::ButtonPressed;
     void ButtonPressed(int controllerId, int controlId);
 };
 
@@ -1660,7 +1663,7 @@ public:
         abilitygranted = _ability;
     }
 
-    int isReactingToClick(MTGCardInstance * card, ManaCost * cost = NULL)
+    int isReactingToClick(MTGCardInstance *, ManaCost *)
     {
         //The upper level "GenericTargetAbility" takes care of the click so we always return 0 here
         return 0;
@@ -1718,7 +1721,7 @@ public:
         trigger.setColor(color);
     }
 
-    int isReactingToClick(MTGCardInstance * _card, ManaCost * mana = NULL)
+    int isReactingToClick(MTGCardInstance * _card, ManaCost * = NULL)
     {
         if (_card == source && game->currentlyActing()->game->inPlay->hasCard(source))
         {
@@ -1778,7 +1781,7 @@ public:
     {
     }
 
-    int isReactingToClick(MTGCardInstance * _card, ManaCost * mana = NULL)
+    int isReactingToClick(MTGCardInstance * _card, ManaCost * = NULL)
     {
         if (_card == target && game->currentlyActing()->game->inPlay->hasCard(source) && _card->isTapped())
         {
@@ -1989,7 +1992,7 @@ public:
         aType = MTGAbility::STANDARD_PUMP;
     }
     
-        void Update(float dt)
+        void Update(float)
         {
             if(!nonstatic)
                 return;
@@ -2290,7 +2293,7 @@ public:
     {
     }
 
-    void Update(float dt)
+    void Update(float)
     {
         if (newPhase != currentPhase && newPhase == phase && game->currentPlayer == ((MTGCardInstance *) target)->controller())
         {
@@ -2450,15 +2453,15 @@ public:
         return 1;
     }
     /////////////////section required/////////////////////
-    int added(MTGCardInstance * card)
+    int added(MTGCardInstance *)
     {
         return 1;
     }
-    int added(Player * p)
+    int added(Player *)
     {
         return 1;
     }
-    int removed(MTGCardInstance * card)
+    int removed(MTGCardInstance *)
     {
         return 1;
     }
@@ -2618,7 +2621,7 @@ public:
     int includeSelf;
     map<Damageable *, MTGAbility *> skills;
 
-    ATeach(GameObserver* observer, int _id, MTGCardInstance * card, TargetChooser * _tc, int _includeSelf, MTGAbility * a) :
+    ATeach(GameObserver* observer, int _id, MTGCardInstance * card, TargetChooser * _tc, int, MTGAbility * a) :
         ListMaintainerAbility(observer, _id, card), NestedAbility(a)
     {
         tc = _tc;
@@ -2896,7 +2899,7 @@ public:
     MTGCardInstance * myToken;
     vector<MTGAbility *> currentAbilities;
     Player * tokenReciever;
-    ATokenCreator(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable * _target, ManaCost * _cost, int tokenId,string starfound, WParsedInt * multiplier = NULL,
+    ATokenCreator(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable *, ManaCost * _cost, int tokenId,string starfound, WParsedInt * multiplier = NULL,
         int who = 0,bool aLivingWeapon = false) :
     ActivatedAbility(observer, _id, _source, _cost, 0), tokenId(tokenId), starfound(starfound),multiplier(multiplier), who(who),aLivingWeapon(aLivingWeapon)
     {
@@ -2906,14 +2909,13 @@ public:
         battleReady = false;
     }
 
-    ATokenCreator(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable * _target, ManaCost * _cost, string sname, string stypes, int _power, int _toughness,
-        string sabilities, string starfound,WParsedInt * multiplier = NULL, int who = 0,bool aLivingWeapon = false,string spt = "") :
-    ActivatedAbility(observer, _id, _source, _cost, 0),sabilities(sabilities),starfound(starfound), multiplier(multiplier), who(who),aLivingWeapon(aLivingWeapon),spt(spt)
+    ATokenCreator(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable *, ManaCost * _cost, string sname, string stypes, int _power, int _toughness,
+        string sabilities, string starfound,WParsedInt * multiplier = NULL, int _who = 0,bool aLivingWeapon = false,string spt = "") :
+    ActivatedAbility(observer, _id, _source, _cost, 0),sabilities(sabilities),starfound(starfound), multiplier(multiplier), who(_who),aLivingWeapon(aLivingWeapon),spt(spt)
     {
         power = _power;
         toughness = _toughness;
         name = sname;
-        who = who;
         tokenId = 0;
         aType = MTGAbility::STANDARD_TOKENCREATOR;
         battleReady = false;
@@ -3136,7 +3138,7 @@ public:
     int who;
     MTGCardInstance * myDummy;
     Player * abilityReciever;
-    ATargetedAbilityCreator(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable * _target, ManaCost * _cost,string _name, string abilityToAdd, int who = 0) :
+    ATargetedAbilityCreator(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable *, ManaCost * _cost,string _name, string abilityToAdd, int who = 0) :
     ActivatedAbility(observer, _id, _source, _cost, 0),name(_name),sabilities(abilityToAdd), who(who)
     {
     }
@@ -3242,7 +3244,7 @@ public:
         return MTGAbility::addToGame();
     }
 
-    void Update(float dt)
+    void Update(float)
     {
         resolve();
     }
@@ -3432,7 +3434,7 @@ public:
         return MTGAbility::addToGame();
     }
 
-    void Update(float dt)
+    void Update(float)
     {
         resolve();
     }
@@ -3518,7 +3520,7 @@ public:
         return MTGAbility::addToGame();
     }
 
-    void Update(float dt)
+    void Update(float)
     {
         resolve();
     }
@@ -3930,7 +3932,7 @@ public:
         }
     }
 
-    void Update(float dt)
+    void Update(float)
     {
         if (newPhase != currentPhase && newPhase == phase)
         {
@@ -3977,7 +3979,7 @@ public:
         sprintf(land, "%s", _land);
     }
 
-    void Update(float dt)
+    void Update(float)
     {
         if (newPhase != currentPhase && (newPhase == MTG_PHASE_COMBATBEGIN || newPhase == MTG_PHASE_COMBATATTACKERS))
         {
@@ -4512,7 +4514,8 @@ public:
         }
     }
 
-    void Render(float dt)
+    using TargetAbility::Render;
+    void Render(float)
     {
         if (waitingForAnswer)
         {
@@ -4565,7 +4568,7 @@ public:
         cost = ManaCost(_cost, 1);
     }
 
-    void Update(float dt)
+    void Update(float)
     {
         if (newPhase != currentPhase)
         {
@@ -4582,7 +4585,7 @@ public:
             }
         }
     }
-    int isReactingToClick(MTGCardInstance * _card, ManaCost * mana = NULL)
+    int isReactingToClick(MTGCardInstance * _card, ManaCost * = NULL)
     {
         if (counters > 0 && _card == source && currentPhase == MTG_PHASE_UPKEEP)
         {
@@ -4673,12 +4676,12 @@ public:
         return 1;
     }
 
-    void Update(float dt)
+    void Update(float)
     {
         alterDamage();
     }
 
-    int isReactingToClick(MTGCardInstance * _card, ManaCost * mana = NULL)
+    int isReactingToClick(MTGCardInstance * _card, ManaCost * = NULL)
     {
         if (_card == source && game->currentlyActing()->game->inPlay->hasCard(source) && !_card->isTapped())
         {
@@ -4723,7 +4726,7 @@ public:
         nbOpponents = 0;
     }
 
-    void Update(float dt)
+    void Update(float)
     {
         if (newPhase != currentPhase)
         {
@@ -4823,7 +4826,7 @@ public:
         attackedThisTurn = 1;
     }
 
-        void Update(float dt)
+        void Update(float)
         {
             if (newPhase != currentPhase)
             {
@@ -4990,7 +4993,7 @@ public:
         TriggeredAbility::Update(dt);
     }
 
-    int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL)
+    int isReactingToClick(MTGCardInstance * card, ManaCost * = NULL)
     {
         MTGCardInstance * _target = (MTGCardInstance *) target;
         if (damagesToDealThisTurn && currentPhase == MTG_PHASE_UPKEEP && card == source && _target->controller()
@@ -5001,7 +5004,7 @@ public:
         return 0;
     }
 
-    int reactToclick(MTGCardInstance * card)
+    int reactToclick(MTGCardInstance *)
     {
         game->currentPlayer->getManaPool()->pay(&cost);
         damagesToDealThisTurn--;
@@ -5136,7 +5139,7 @@ public:
         initThisTurn = 0;
     }
 
-    void Update(float dt)
+    void Update(float)
     {
         if (currentPhase == MTG_PHASE_UNTAP && game->currentPlayer == source->controller())
         {
@@ -5160,7 +5163,7 @@ public:
         }
     }
 
-    int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL)
+    int isReactingToClick(MTGCardInstance * card, ManaCost * = NULL)
     {
         if (card == source && game->currentPlayer == card->controller())
         {

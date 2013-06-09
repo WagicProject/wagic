@@ -544,7 +544,7 @@ AACounter * AACounter::clone() const
 }
 
 //shield a card from a certain type of counter.
-ACounterShroud::ACounterShroud(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target,TargetChooser * tc, Counter * counter) :
+ACounterShroud::ACounterShroud(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance *,TargetChooser * tc, Counter * counter) :
 MTGAbility(observer, id, source),csTc(tc),counter(counter),re(NULL)
 {
 }
@@ -732,7 +732,7 @@ AARemoveAllCounter * AARemoveAllCounter::clone() const
 }
 
 //proliferate a target
-AAProliferate::AAProliferate(GameObserver* observer, int id, MTGCardInstance * source, Targetable * target,ManaCost * cost) :
+AAProliferate::AAProliferate(GameObserver* observer, int id, MTGCardInstance * source, Targetable *,ManaCost * cost) :
 ActivatedAbility(observer, id, source, cost, 0)
 {
     this->GetId();
@@ -789,7 +789,7 @@ AAProliferate::~AAProliferate()
 }
 //
 //choosing a type or color
-GenericChooseTypeColor::GenericChooseTypeColor(GameObserver* observer, int id, MTGCardInstance * source, Targetable * target,string _toAdd,bool chooseColor,bool nonwall, ManaCost * cost) :
+GenericChooseTypeColor::GenericChooseTypeColor(GameObserver* observer, int id, MTGCardInstance * source, Targetable *,string _toAdd,bool chooseColor,bool nonwall, ManaCost * cost) :
 ActivatedAbility(observer, id, source, cost, 0), baseAbility(_toAdd),chooseColor(chooseColor),ANonWall(nonwall)
 {
     this->GetId();
@@ -973,8 +973,8 @@ AASetTypeChosen::~AASetTypeChosen()
 
 //
 //choosing a type or color
-GenericFlipACoin::GenericFlipACoin(GameObserver* observer, int id, MTGCardInstance * source, Targetable * target,string _toAdd, ManaCost * cost) :
-ActivatedAbility(observer, id, source, cost, 0), baseAbility(_toAdd),chooseColor(chooseColor)
+GenericFlipACoin::GenericFlipACoin(GameObserver* observer, int id, MTGCardInstance * source, Targetable *,string _toAdd, ManaCost * cost) :
+ActivatedAbility(observer, id, source, cost, 0), baseAbility(_toAdd),chooseColor(true)
 {
     this->GetId();
     setCoin = NULL;
@@ -1881,28 +1881,23 @@ int AADynamic::resolve()
         break;
     case DYNAMIC_ABILITY_WHO_ITSELF:
         source = ((MTGCardInstance *) _target);
-        _target = _target;
         break;
     case DYNAMIC_ABILITY_WHO_TARGETCONTROLLER:
-        _target = _target;
         secondaryTarget = ((MTGCardInstance *) _target)->controller();
         break;
     case DYNAMIC_ABILITY_WHO_TARGETOPPONENT:
-        _target = _target;
         secondaryTarget = ((MTGCardInstance *) _target)->controller()->opponent();
         break;
     case DYNAMIC_ABILITY_WHO_TOSOURCE:
         tosrc = true;
         break;
     case DYNAMIC_ABILITY_WHO_SOURCECONTROLLER:
-        _target = _target;
         secondaryTarget = ((MTGCardInstance *) OriginalSrc)->controller();
         break;
     case DYNAMIC_ABILITY_WHO_SOURCEOPPONENT:
         secondaryTarget = OriginalSrc->controller()->opponent();
         break;
     default:
-        _target = _target;
         break;
     }
     if(amountsource == DYNAMIC_MYSELF_AMOUNT)
@@ -2112,7 +2107,7 @@ int AADynamic::resolve()
 
     return 0;
 }
-int AADynamic::activateMainAbility(MTGAbility * toActivate,MTGCardInstance * source , Damageable * target)
+int AADynamic::activateMainAbility(MTGAbility * toActivate,MTGCardInstance * , Damageable *)
 {
     if(storedAbility)
         activateStored();
@@ -2867,7 +2862,6 @@ int AARemoveMana::resolve()
                 {
                     if (player->doesntEmpty->getConvertedCost() && !player->poolDoesntEmpty->getConvertedCost())
                     {
-                        ManaCost * toRemove =  manaPool->Diff(player->doesntEmpty);
                         player->getManaPool()->pay(manaPool->Diff(player->doesntEmpty));
                         return 1;
                     }
@@ -2994,7 +2988,7 @@ AAUntapper * AAUntapper::clone() const
     return NEW AAUntapper(*this);
 }
 
-AAWhatsMax::AAWhatsMax(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * source, ManaCost * _cost, int value) :
+AAWhatsMax::AAWhatsMax(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance *, ManaCost * _cost, int value) :
     ActivatedAbility(observer, id, card, _cost, 0), value(value)
 {
 }
@@ -3083,7 +3077,7 @@ MTGAbility(observer, _id, _source), tcString(Tc), manaString(mana)
 {
 }
 
-void ANewAffinity::Update(float dt)
+void ANewAffinity::Update(float)
 {
     testDestroy();
     return;
@@ -3334,7 +3328,7 @@ int MenuAbility::testDestroy()
 }
 
 int MenuAbility::isReactingToTargetClick(Targetable * card){return MayAbility::isReactingToTargetClick(card);}
-int MenuAbility::reactToTargetClick(Targetable * object){return 1;}
+int MenuAbility::reactToTargetClick(Targetable *){return 1;}
 
 int MenuAbility::reactToChoiceClick(Targetable * object,int choice,int control)
 {
@@ -3938,7 +3932,7 @@ for (it = types.begin(); it != types.end(); it++)
     return MTGAbility::addToGame();
 }
     
-    int ATransformer::reapplyCountersBonus(MTGCardInstance * rtarget,bool powerapplied,bool toughnessapplied)
+    int ATransformer::reapplyCountersBonus(MTGCardInstance * rtarget,bool , bool toughnessapplied)
     {
         if(!rtarget->counters || !rtarget->counters->counters.size())
             return 0;
@@ -4478,7 +4472,7 @@ APreventDamageTypesUEOT::~APreventDamageTypesUEOT()
 }
 
 //AVanishing creature also fading
-AVanishing::AVanishing(GameObserver* observer, int _id, MTGCardInstance * card, ManaCost * _cost, int restrictions, int amount, string counterName) :
+AVanishing::AVanishing(GameObserver* observer, int _id, MTGCardInstance * card, ManaCost *, int, int amount, string counterName) :
 MTGAbility(observer, _id, source, target),amount(amount),counterName(counterName)
 {
     target = card;
@@ -4657,7 +4651,7 @@ AUpkeep::~AUpkeep()
 }
 
 //A Phase based Action
-APhaseAction::APhaseAction(GameObserver* observer, int _id, MTGCardInstance * card, MTGCardInstance * target, string sAbility, int restrictions, int _phase,bool forcedestroy,bool next,bool myturn,bool opponentturn,bool once) :
+APhaseAction::APhaseAction(GameObserver* observer, int _id, MTGCardInstance * card, MTGCardInstance *, string sAbility, int, int _phase,bool forcedestroy,bool next,bool myturn,bool opponentturn,bool once) :
 MTGAbility(observer, _id, card),sAbility(sAbility), phase(_phase),forcedestroy(forcedestroy),next(next),myturn(myturn),opponentturn(opponentturn),once(once)
 {
     abilityId = _id;
@@ -5029,7 +5023,7 @@ ABlinkGeneric::~ABlinkGeneric()
 }
 
 // target becomes blocked by source
-AABlock::AABlock(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost) :
+AABlock::AABlock(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost *) :
 InstantAbility(observer, id, card, target)
 {
     target = _target;
@@ -5053,7 +5047,7 @@ AABlock * AABlock::clone() const
 }
 
 // target becomes pair of source
-PairCard::PairCard(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost) :
+PairCard::PairCard(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost *) :
 InstantAbility(observer, id, card, target)
 {
     target = _target;
@@ -5078,7 +5072,7 @@ PairCard * PairCard::clone() const
     return NEW PairCard(*this);
 }
 //target is dredged
-dredgeCard::dredgeCard(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost) :
+dredgeCard::dredgeCard(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost *) :
 InstantAbility(observer, id, card, target)
 {
     target = _target;
@@ -5108,7 +5102,7 @@ dredgeCard * dredgeCard::clone() const
 }
 
 // target becomes a parent of card(source)
-AAConnect::AAConnect(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost) :
+AAConnect::AAConnect(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost *) :
 InstantAbility(observer, id, card, target)
 {
     target = _target;
@@ -5267,7 +5261,7 @@ void ATutorialMessage::Update(float dt)
     }
 }
 
-void ATutorialMessage::ButtonPressed(int controllerId, int controlId)
+void ATutorialMessage::ButtonPressed(int, int)
 {
     //TODO : cancel ALL tips/tutorials for JGE_BTN_SEC?
     if (mLimit)

@@ -148,7 +148,7 @@ void DeckMenuItem::Entering()
     parent->mSelectionTargetY = mY;
 }
 
-bool DeckMenuItem::Leaving(JButton key)
+bool DeckMenuItem::Leaving(JButton)
 {
     // check to see if the user clicked on the object, if so return true.  
     checkUserClick();

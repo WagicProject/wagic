@@ -138,7 +138,7 @@ AIPlayer::~AIPlayer()
 }
 
 
-int AIPlayer::Act(float dt)
+int AIPlayer::Act(float)
 {
     if (observer->currentPlayer == this)
         observer->userRequestNextGamePhase();
@@ -183,7 +183,7 @@ int AIPlayer::clickMultiTarget(TargetChooser * tc, vector<Targetable*>& potentia
     return 1;
 }
 
-int AIPlayer::clickSingleTarget(TargetChooser * tc, vector<Targetable*>& potentialTargets, MTGCardInstance * chosenCard)
+int AIPlayer::clickSingleTarget(TargetChooser *, vector<Targetable*>& potentialTargets, MTGCardInstance * chosenCard)
 {
     int i = randomGenerator.random() % potentialTargets.size();
 
@@ -248,7 +248,7 @@ AIPlayer * AIPlayerFactory::createAIPlayer(GameObserver *observer, MTGAllCards *
     return baka;
 }
 
-int AIPlayer::receiveEvent(WEvent * event)
+int AIPlayer::receiveEvent(WEvent *)
 {
     return 0;
 }

@@ -144,22 +144,22 @@ public:
     {
     }
   
-    virtual int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL)
+    virtual int isReactingToClick(MTGCardInstance *, ManaCost *)
     {
         return 0;
     }
 
-    virtual int reactToClick(MTGCardInstance * card)
+    virtual int reactToClick(MTGCardInstance *)
     {
         return 0;
     }
 
-    virtual int receiveEvent(WEvent * event)
+    virtual int receiveEvent(WEvent *)
     {
         return 0;
     }
     
-    virtual void Update(float dt)
+    virtual void Update(float)
     {
     }
 
@@ -239,7 +239,7 @@ public:
         return 0;
     }
 
-    virtual int triggerOnEvent(WEvent * e)
+    virtual int triggerOnEvent(WEvent *)
     {
         return 0;
     }
@@ -369,17 +369,17 @@ public:
     virtual int added(MTGCardInstance * card) = 0;
     virtual int removed(MTGCardInstance * card) = 0;
 
-    virtual int canBeInList(Player * p)
+    virtual int canBeInList(Player *)
     {
         return 0;
     }
     
-    virtual int added(Player * p)
+    virtual int added(Player *)
     {
         return 0;
     }
 
-    virtual int removed(Player * p)
+    virtual int removed(Player *)
     {
         return 0;
     }

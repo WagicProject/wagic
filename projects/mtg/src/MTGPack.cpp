@@ -26,7 +26,7 @@ int MTGPackEntryRandom::addCard(WSrcCards *pool, MTGDeck *to)
     pool->addFilter(oldf);
     return fails;
 }
-int MTGPackEntrySpecific::addCard(WSrcCards *pool, MTGDeck *to)
+int MTGPackEntrySpecific::addCard(WSrcCards *, MTGDeck *to)
 {
 	if (!card)
         return copies;
@@ -113,8 +113,6 @@ int MTGPack::assemblePack(MTGDeck *to)
     for (size_t i = 0; i < slotss.size(); i++)
     {
         carryover = slotss[i]->add(p, to, carryover);
-        if (carryover > 0)
-            carryover = carryover; //This means we're failing.
     }
     SAFE_DELETE(p);
     return carryover;

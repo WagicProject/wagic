@@ -32,14 +32,14 @@ public:
         zoom = 1.4f;
     }
     ;
-    virtual bool Leaving(JButton key)
+    virtual bool Leaving(JButton)
     {
         mHasFocus = false;
         zoom = 1.0;
         return true;
     }
     ;
-    virtual bool CheckUserInput(JButton key)
+    virtual bool CheckUserInput(JButton)
     {
         return false;
     }
@@ -56,7 +56,7 @@ public:
 
     PlayGuiObject(float desiredHeight, const Pos& ref, int inID, bool hasFocus);
 
-    virtual void ButtonPressed(int controllerId, int controlId) {}
+    virtual void ButtonPressed(int, int) {}
     virtual bool getTopLeft(float& top, float& left)
     {
         top = actY;

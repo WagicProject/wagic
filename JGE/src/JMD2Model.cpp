@@ -257,6 +257,8 @@ void JMD2Model::CalculateNormal(float *p1, float *p2, float *p3)
 #else
    // FIXME
 #endif
+#else
+    cerr << p1 << " " << p2 << " " << p3 << endl;
 #endif
 }
 

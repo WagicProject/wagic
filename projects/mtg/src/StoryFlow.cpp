@@ -62,7 +62,7 @@ float StoryText::getHeight()
     return mFont->GetHeight();
 }
 
-void StoryText::Update(float dt)
+void StoryText::Update(float)
 {
     //Nothing for now
 }
@@ -90,7 +90,7 @@ void StoryReward::Render()
     StoryText::Render();
 }
 
-void StoryReward::Update(float dt)
+void StoryReward::Update(float)
 {
     if (rewardDone) return;
 
@@ -216,7 +216,7 @@ float StoryImage::getHeight()
     return 0;
 }
 
-void StoryImage::Update(float dt)
+void StoryImage::Update(float)
 {
     //Nothing for now
 }
@@ -266,7 +266,7 @@ void StoryChoice::Entering()
     mTargetScale = 1.2f;
 }
 
-bool StoryChoice::Leaving(JButton key)
+bool StoryChoice::Leaving(JButton)
 {
     mHasFocus = false;
     mTargetScale = 1.0f;
@@ -520,7 +520,7 @@ void StoryDialog::Render()
 
 }
 
-void StoryDialog::ButtonPressed(int controllerid, int controlid)
+void StoryDialog::ButtonPressed(int, int controlid)
 {
     if ( controlid == kInfoMenuID )
         return;

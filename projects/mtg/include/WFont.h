@@ -141,9 +141,9 @@ public:
     float GetScale() const;
     float GetHeight() const;
     virtual float GetStringWidth(const char *s) const;
-    void SetTracking(float tracking) {};
-    void SetBase(int base) {};
-    void FormatText(string &s, vector<string>& output) {};
+    void SetTracking(float) {};
+    void SetBase(int) {};
+    void FormatText(string &, vector<string>&) {};
 
     virtual void DrawString(const char *s, float x, float y, int align = JGETEXT_LEFT, float leftOffset = 0, float width = 0);
     virtual int GetCode(const u8 *ch, int *charLength) const = 0;

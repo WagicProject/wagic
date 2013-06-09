@@ -91,7 +91,7 @@ void MenuItem::Entering()
     mTargetScale = 1.3f;
 }
 
-bool MenuItem::Leaving(JButton key)
+bool MenuItem::Leaving(JButton)
 {
     if (mParticleSys)
         mParticleSys->Stop(true);

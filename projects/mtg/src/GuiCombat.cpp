@@ -18,7 +18,7 @@ const float kZoom_level3 = 2.7f;
 
 struct True: public Exp
 {
-    static inline bool test(DamagerDamaged* ref, DamagerDamaged* test)
+    static inline bool test(DamagerDamaged*, DamagerDamaged*)
     {
         return true;
     }
@@ -90,7 +90,7 @@ void GuiCombat::Update(float dt)
     enemy_avatar.Update(dt);
 }
 
-void GuiCombat::remaskBlkViews(AttackerDamaged* before, AttackerDamaged* after)
+void GuiCombat::remaskBlkViews(AttackerDamaged*, AttackerDamaged* after)
 {
     if (after)
     {
@@ -155,7 +155,7 @@ void GuiCombat::addOne(DefenserDamaged* blocker, CombatStep step)
         }
     }
 }
-void GuiCombat::removeOne(DefenserDamaged* blocker, CombatStep step)
+void GuiCombat::removeOne(DefenserDamaged* blocker, CombatStep)
 {
     blocker->addDamage(-1, activeAtk);
     for (vector<DamagerDamaged*>::iterator it = activeAtk->blockers.begin(); it != activeAtk->blockers.end(); ++it)

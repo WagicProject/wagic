@@ -204,7 +204,7 @@ public:
 	static void sendAction(void*pThis, stringstream& in, stringstream& out);
 	static void synchronize(void*pThis, stringstream& in, stringstream& out);
 	static void checkSynchro(void*pxThis, stringstream& in, stringstream& out);
-	static void ignoreResponse(void*pThis, stringstream& in, stringstream& out){};
+    static void ignoreResponse(void*, stringstream&, stringstream&){};
 	static void disconnect(void*pxThis, stringstream& in, stringstream& out);
 };
 #endif

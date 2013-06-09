@@ -124,7 +124,6 @@ void MTGPlayerCards::initGame(int shuffle, int draw)
 void MTGPlayerCards::OptimizedHand(Player * who,int amount, int lands, int creatures, int othercards)
 {
     //give the Ai hand adventage to insure a challanging match.
-    GameObserver * game = who->getObserver();
         Player * p = dynamic_cast<Player*>(who);
         MTGCardInstance * card = NULL;
         MTGGameZone * z = p->game->library;
@@ -381,7 +380,7 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
 
 }
 
-void MTGPlayerCards::discardRandom(MTGGameZone * from, MTGCardInstance * source)
+void MTGPlayerCards::discardRandom(MTGGameZone * from, MTGCardInstance *)
 {
     if (!from->nb_cards)
         return;

@@ -232,7 +232,6 @@ int DeckManager::getDifficultyRating(Player *statsPlayer, Player *player)
 
         if (meta)
         {
-            int diff = meta->getVictoryPercentage();
             meta->mPlayerDeck = statsPlayer->GetCurrentDeckStatsFile();
             meta->mStatsFilename = player->deckFileSmall;
             meta->LoadStats();

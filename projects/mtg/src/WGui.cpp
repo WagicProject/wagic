@@ -80,7 +80,7 @@ bool WGuiBase::yieldFocus()
 }
 
 //WGuiItem
-void WGuiItem::Entering(JButton key)
+void WGuiItem::Entering(JButton)
 {
     mFocus = true;
 }
@@ -95,7 +95,7 @@ float WGuiItem::minHeight()
     return mFont->GetHeight();
 }
 
-bool WGuiItem::Leaving(JButton key)
+bool WGuiItem::Leaving(JButton)
 {
     mFocus = false;
     return true;
@@ -1496,7 +1496,7 @@ void WGuiCardImage::Render()
 }
 
 //WGuiCardDistort
-WGuiCardDistort::WGuiCardDistort(WDataSource * wds, bool _thumb, WDataSource * _distort) :
+WGuiCardDistort::WGuiCardDistort(WDataSource * wds, bool _thumb, WDataSource *) :
     WGuiCardImage(wds, _thumb)
 {
     mesh = NEW hgeDistortionMesh(2, 2);
@@ -2193,7 +2193,7 @@ void WGuiFilterItem::updateValue()
     }
 }
 
-void WGuiFilterItem::ButtonPressed(int controllerId, int controlId)
+void WGuiFilterItem::ButtonPressed(int, int controlId)
 {
     if (!mParent) return;
 

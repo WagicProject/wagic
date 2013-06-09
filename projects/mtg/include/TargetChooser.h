@@ -53,11 +53,11 @@ public:
     {
         return 0;
     }
-    virtual bool targetsZone(MTGGameZone * z)
+    virtual bool targetsZone(MTGGameZone *)
     {
         return false;
     }
-    virtual bool targetsZone(MTGGameZone * z,MTGCardInstance * mSource)
+    virtual bool targetsZone(MTGGameZone *,MTGCardInstance *)
     {
         return false;
     }

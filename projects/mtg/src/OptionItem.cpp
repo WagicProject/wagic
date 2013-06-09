@@ -220,7 +220,7 @@ void OptionProfile::Render()
 
 }
 
-void OptionProfile::Entering(JButton key)
+void OptionProfile::Entering(JButton)
 {
     mFocus = true;
     initialValue = value;
@@ -263,7 +263,7 @@ bool OptionThemeStyle::Visible()
     return (selections.size() > 1);
 }
 
-void OptionThemeStyle::confirmChange(bool confirmed)
+void OptionThemeStyle::confirmChange(bool)
 {
     options.getStyleMan()->determineActive(NULL, NULL);
 }
@@ -642,7 +642,7 @@ void OptionKey::Overlay()
         btnMenu->Render();
 }
 
-void OptionKey::ButtonPressed(int controllerId, int controlId)
+void OptionKey::ButtonPressed(int, int controlId)
 {
     to = btnList[controlId];
     SAFE_DELETE(btnMenu);

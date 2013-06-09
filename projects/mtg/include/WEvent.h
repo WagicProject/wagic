@@ -34,7 +34,7 @@ public:
   virtual ~WEvent() {};
   virtual std::ostream& toString(std::ostream& out) const;
   virtual int getValue() {return 0;};
-  virtual Targetable * getTarget(int target) {return 0;};
+  virtual Targetable * getTarget(int) {return 0;};
 };
 
 struct WEventZoneChange : public WEvent {
@@ -64,6 +64,7 @@ struct WEventCounters : public WEvent {
   bool added;
   bool removed;
   WEventCounters(Counters *counter,string name,int power, int toughness,bool added = false, bool removed = false);
+  using WEvent::getTarget;
   virtual Targetable * getTarget();
 };
 
@@ -221,7 +222,8 @@ struct WEventcardDraw : public WEvent {
 	WEventcardDraw(Player * player,int nb_cards);
 	Player * player;
 	int nb_cards;
-	virtual Targetable * getTarget(Player * player);
+    using WEvent::getTarget;
+    virtual Targetable * getTarget(Player * player);
 };
 //event for a card draw ability resolving
 struct WEventDraw : public WEvent {

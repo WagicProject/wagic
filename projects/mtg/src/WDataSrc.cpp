@@ -35,7 +35,7 @@ bool WSyncable::prev()
 }
 
 //WSrcImage
-JQuadPtr WSrcImage::getImage(int offset)
+JQuadPtr WSrcImage::getImage(int)
 {
     return WResourceManager::Instance()->RetrieveTempQuad(filename);
 }

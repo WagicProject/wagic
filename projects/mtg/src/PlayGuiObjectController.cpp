@@ -97,7 +97,7 @@ void PlayGuiObjectController::Update(float dt)
     }
 }
 
-bool PlayGuiObjectController::CheckUserInput(JButton key)
+bool PlayGuiObjectController::CheckUserInput(JButton)
 {
     /*
      if (!mCount)

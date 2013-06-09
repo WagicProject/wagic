@@ -925,7 +925,7 @@ int TargetChooser::countValidTargets()
     return result;
 }
 
-bool TargetChooser::equals(TargetChooser * tc)
+bool TargetChooser::equals(TargetChooser *)
 {
 
     //This function always return 1 for now, since the default TargetChooser targets everything
@@ -1276,7 +1276,7 @@ PlayerTargetChooser::PlayerTargetChooser(GameObserver *observer, MTGCardInstance
 {
 }
 
-bool PlayerTargetChooser::canTarget(Targetable * target,bool withoutProtections)
+bool PlayerTargetChooser::canTarget(Targetable * target,bool)
 {
     if (source && targetter && (targetter->controller() != targetter->controller()->opponent())
                     && (targetter->controller()->opponent()->game->inPlay->hasAbility(Constants::CONTROLLERSHROUD))
@@ -1354,7 +1354,7 @@ SpellTargetChooser::SpellTargetChooser(GameObserver *observer, MTGCardInstance *
     color = _color;
 }
 
-bool SpellTargetChooser::canTarget(Targetable * target,bool withoutProtections)
+bool SpellTargetChooser::canTarget(Targetable * target,bool)
 {
     Spell * spell = dynamic_cast<Spell *>(target);
     if (!spell)
@@ -1442,7 +1442,7 @@ DamageTargetChooser::DamageTargetChooser(GameObserver *observer, MTGCardInstance
     state = _state;
 }
 
-bool DamageTargetChooser::canTarget(Targetable * target,bool withoutProtections)
+bool DamageTargetChooser::canTarget(Targetable * target, bool)
 {
     if ( Damage * damage = dynamic_cast<Damage *>(target))
     {
@@ -1481,12 +1481,12 @@ TriggerTargetChooser::TriggerTargetChooser(GameObserver *observer, int _triggerT
     target = NULL;
 }
 
-bool TriggerTargetChooser::targetsZone(MTGGameZone * z)
+bool TriggerTargetChooser::targetsZone(MTGGameZone *)
 {
     return true;
 }
 
-bool TriggerTargetChooser::canTarget(Targetable * _target,bool withoutProtections)
+bool TriggerTargetChooser::canTarget(Targetable * _target,bool)
 {
     if (_target == target) return true;
     return false;
@@ -1512,7 +1512,7 @@ bool TriggerTargetChooser::equals(TargetChooser * tc)
 }
 
 /*my curses */
-bool myCursesChooser::canTarget(Targetable * target,bool withoutProtections)
+bool myCursesChooser::canTarget(Targetable * target,bool)
 {
     for(unsigned int i = 0;i < source->controller()->curses.size();++i)
     {
@@ -1576,7 +1576,7 @@ bool BlockableChooser::equals(TargetChooser * tc)
 }
 
 /*display cards pairable by source */
-bool pairableChooser::canTarget(Targetable * target,bool withoutProtections)
+bool pairableChooser::canTarget(Targetable * target,bool)
 {
     if (MTGCardInstance * card = dynamic_cast<MTGCardInstance*>(target))
     {
@@ -1610,7 +1610,7 @@ bool pairableChooser::equals(TargetChooser * tc)
 }
 
 //*Dredge targetchooser*//
-bool dredgeChooser::canTarget(Targetable * target,bool withoutProtections)
+bool dredgeChooser::canTarget(Targetable * target,bool)
 {
     if (MTGCardInstance * card = dynamic_cast<MTGCardInstance*>(target))
     {

@@ -42,7 +42,7 @@ public:
     /**
       Returns true if the card argument matches a certain condition.
     */
-    virtual bool isMatch(MTGCard * c)
+    virtual bool isMatch(MTGCard *)
     {
         return true;
     }
@@ -211,7 +211,7 @@ public:
         return "NULL";
     }
     ;
-    bool isMatch(MTGCard *c)
+    bool isMatch(MTGCard *)
     {
         return true;
     }

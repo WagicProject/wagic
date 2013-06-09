@@ -110,7 +110,6 @@ void GameStateShop::Start()
     srcCards->addFilter(NEW WCFilterNOT(NEW WCFilterRarity("T")));
     srcCards->addFilter(NEW WCFilterNOT(NEW WCFilterSet(MTGSets::INTERNAL_SET)));
 
-    bigSync = 0;
     shopMenu = NEW WGuiMenu(JGE_BTN_DOWN, JGE_BTN_UP, true, &bigSync);
     MTGAllCards * ac = MTGCollection();
     playerdata = NEW PlayerData(ac);
@@ -265,7 +264,7 @@ void GameStateShop::cancelCard(int controlId)
     //Prices do not immediately go down when you ignore something.
     return;
 }
-void GameStateShop::cancelBooster(int controlId)
+void GameStateShop::cancelBooster(int)
 {
     return; //TODO FIXME Tie boosters into pricelist.
 }
@@ -867,7 +866,7 @@ void GameStateShop::ButtonPressed(int controllerId, int controlId)
     menu->Close();
 }
 
-void GameStateShop::OnScroll(int inXVelocity, int inYVelocity)
+void GameStateShop::OnScroll(int inXVelocity, int)
 {
     // we ignore magnitude since there isn't any scrolling in the shop
     if (abs(inXVelocity) > 200)
@@ -980,7 +979,7 @@ int ShopBooster::maxInventory()
         return 2;
     return 5;
 }
-void ShopBooster::addToDeck(MTGDeck * d, WSrcCards * srcCards)
+void ShopBooster::addToDeck(MTGDeck * d, WSrcCards *)
 {
     if (!pack)
     { //A combination booster.

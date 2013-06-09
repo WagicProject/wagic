@@ -645,7 +645,7 @@ int AIPlayerBaka::getEfficiency(OrderedAIAction * action)
 //
 
 
-MTGCardInstance * AIPlayerBaka::chooseCard(TargetChooser * tc, MTGCardInstance * source, int random)
+MTGCardInstance * AIPlayerBaka::chooseCard(TargetChooser * tc, MTGCardInstance * source, int)
 {
     MTGPlayerCards * playerZones = source->controller()->game;
     if (comboHint && comboHint->cardTargets.size())

@@ -83,7 +83,7 @@ void RandomGenerator::loadRandValues(string s)
     }
 }
 
-int WRand(bool log)
+int WRand(bool)
 {
     return rand();
 }

@@ -44,7 +44,7 @@ struct Diff: public Exp
 };
 struct True: public Exp
 {
-    static inline bool test(CardSelector::Target* ref, CardSelector::Target* test)
+    static inline bool test(CardSelector::Target*, CardSelector::Target*)
     {
         return true;
     }

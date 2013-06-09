@@ -223,7 +223,7 @@ void SimplePad::MoveSelection(unsigned char moveto)
     else if (moveto == KPD_INPUT) selected = KPD_INPUT;
 }
 
-void SimplePad::Update(float dt)
+void SimplePad::Update(float)
 {
     JGE * mEngine = JGE::GetInstance();
 

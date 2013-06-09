@@ -73,7 +73,7 @@ public:
     Q_INVOKABLE qint64 getTick() {
         return g_startTimer.elapsed();
     };
-    Q_INVOKABLE void doScroll(int x, int y, int magnitude) {
+    Q_INVOKABLE void doScroll(int x, int y, int) {
         m_engine->Scroll(x, y);
     };
     int getNominalHeight(){ return SCREEN_HEIGHT;};

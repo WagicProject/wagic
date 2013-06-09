@@ -33,7 +33,7 @@ public:
     GuiLayer(DuelLayers *duelLayers);
     virtual ~GuiLayer();
     virtual void Update(float dt);
-    virtual bool CheckUserInput(JButton key)
+    virtual bool CheckUserInput(JButton)
     {
         return false;
     }
@@ -48,12 +48,12 @@ public:
         return 1;
     }
 
-    virtual int receiveEventPlus(WEvent * e)
+    virtual int receiveEventPlus(WEvent *)
     {
         return 0;
     }
 
-    virtual int receiveEventMinus(WEvent * e)
+    virtual int receiveEventMinus(WEvent *)
     {
         return 0;
     }

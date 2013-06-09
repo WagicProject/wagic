@@ -336,7 +336,7 @@ void MTGAllCards::init()
     initCounters();
 }
 
-int MTGAllCards::load(const char * config_file, const char * set_name, int autoload)
+int MTGAllCards::load(const char * config_file, const char * set_name, int)
 {
     conf_read_mode = 0;
     const int set_id = set_name ? setlist.Add(set_name) : MTGSets::INTERNAL_SET;

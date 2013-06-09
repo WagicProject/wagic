@@ -1,7 +1,7 @@
 #define GL_GLEXT_PROTOTYPES
 #include <QtOpenGL>
 #include <QTime>
-#include <QtGui/QApplication>
+#include <QApplication>
 #include <QScopedPointer>
 #ifdef QT_WIDGET
 #include <QWidget>

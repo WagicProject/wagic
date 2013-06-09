@@ -23,6 +23,7 @@ struct DamagerDamaged: TransientCardView
     DamagerDamaged(MTGCardInstance* card, const Pos& ref, bool show, Player* damageSelecter);
 
     ~DamagerDamaged();
+    using CardGui::Render;
     void Render(CombatStep mode);
 };
 

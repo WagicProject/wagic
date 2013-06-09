@@ -279,7 +279,7 @@ PermanentAbility(observer, _id)
     aType = MTGAbility::PUT_INTO_PLAY;
 }
 
-int MTGPutInPlayRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
+int MTGPutInPlayRule::isReactingToClick(MTGCardInstance * card, ManaCost *)
 {
     int cardsinhand = game->players[0]->game->hand->nb_cards;
     Player * player = game->currentlyActing();
@@ -474,7 +474,7 @@ MTGPutInPlayRule(observer, _id)
 {
     aType = MTGAbility::PUT_INTO_PLAY_WITH_KICKER;
 }
-int MTGKickerRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
+int MTGKickerRule::isReactingToClick(MTGCardInstance * card, ManaCost *)
 {
     if(OptionKicker::KICKER_ALWAYS == options[Options::KICKERPAYMENT].number)
         return 0;
@@ -625,7 +625,7 @@ int MTGAlternativeCostRule::isReactingToClick(MTGCardInstance * card, ManaCost *
     return isReactingToClick( card, mana, alternateCost );
 }
 
-int MTGAlternativeCostRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana, ManaCost *alternateManaCost)
+int MTGAlternativeCostRule::isReactingToClick(MTGCardInstance * card, ManaCost *, ManaCost *alternateManaCost)
 {
     Player * player = game->currentlyActing();
     Player * currentPlayer = game->currentPlayer;
@@ -1024,7 +1024,7 @@ MTGMorphCostRule::MTGMorphCostRule(GameObserver* observer, int _id) :
 {
     aType = MTGAbility::MORPH_COST;
 }
-int MTGMorphCostRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
+int MTGMorphCostRule::isReactingToClick(MTGCardInstance * card, ManaCost *)
 {
 
     Player * player = game->currentlyActing();
@@ -1153,7 +1153,7 @@ bool MTGAttackRule::select(Target* t)
     }
     return false;
 }
-bool MTGAttackRule::greyout(Target* t)
+bool MTGAttackRule::greyout(Target*)
 {
     return true;
 }
@@ -1164,7 +1164,7 @@ PermanentAbility(observer, _id)
     aType = MTGAbility::MTG_ATTACK_RULE;
 }
 
-int MTGAttackRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
+int MTGAttackRule::isReactingToClick(MTGCardInstance * card, ManaCost *)
 {
     if (currentPhase == MTG_PHASE_COMBATATTACKERS && card->controller() == game->currentPlayer && card->controller() == game->currentlyActing())//on my turn and when I am the acting player.
     {
@@ -1238,7 +1238,7 @@ PermanentAbility(observer, _id)
     aType = MTGAbility::MTG_ATTACK_RULE;
 }
 
-int MTGPlaneswalkerAttackRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
+int MTGPlaneswalkerAttackRule::isReactingToClick(MTGCardInstance * card, ManaCost *)
 {
     if (currentPhase == MTG_PHASE_COMBATATTACKERS && card->controller() == game->currentPlayer && card->controller() == game->currentlyActing())//on my turn and when I am the acting player.
     {
@@ -1310,7 +1310,7 @@ bool MTGPlaneswalkerAttackRule::select(Target* t)
     }
     return false;
 }
-bool MTGPlaneswalkerAttackRule::greyout(Target* t)
+bool MTGPlaneswalkerAttackRule::greyout(Target*)
 {
     return true;
 }
@@ -1524,7 +1524,7 @@ int MTGBlockRule::receiveEvent(WEvent *e)
     return 0;
 }
 
-int MTGBlockRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
+int MTGBlockRule::isReactingToClick(MTGCardInstance * card, ManaCost *)
 {
     if (currentPhase == MTG_PHASE_COMBATBLOCKERS && !game->isInterrupting
         && card->controller() != game->currentPlayer
@@ -1652,7 +1652,7 @@ MTGMomirRule::MTGMomirRule(GameObserver* observer, int _id, MTGAllCards * _colle
     textAlpha = 0;
 }
 
-int MTGMomirRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
+int MTGMomirRule::isReactingToClick(MTGCardInstance * card, ManaCost *)
 {
     if (alreadyplayed)
         return 0;
@@ -2487,7 +2487,7 @@ int MTGLegendRule::added(MTGCardInstance * card)
     return 1;
 }
 
-int MTGLegendRule::removed(MTGCardInstance * card)
+int MTGLegendRule::removed(MTGCardInstance *)
 {
     return 0;
 }
@@ -2544,7 +2544,7 @@ int MTGPlaneWalkerRule::added(MTGCardInstance * card)
     return 1;
 }
 
-int MTGPlaneWalkerRule::removed(MTGCardInstance * card)
+int MTGPlaneWalkerRule::removed(MTGCardInstance *)
 {
     return 0;
 }

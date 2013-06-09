@@ -42,7 +42,7 @@ public:
 class MTGPackEntryNothing: public MTGPackEntry
 {
 public:
-    int addCard(WSrcCards * pool, MTGDeck * to)
+    int addCard(WSrcCards *, MTGDeck *)
     {
         return 0;
     }

@@ -71,7 +71,7 @@ public:
     ManaCost * doesntEmpty;
     ManaCost * poolDoesntEmpty;
     void cleanupPhase();
-    virtual int Act(float dt)
+    virtual int Act(float)
     {
         return 0;
     }
@@ -90,7 +90,7 @@ public:
     int getId();
     JQuadPtr getIcon();
 
-    virtual int receiveEvent(WEvent * event)
+    virtual int receiveEvent(WEvent *)
     {
         return 0;
     }

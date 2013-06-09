@@ -625,7 +625,7 @@ TargetChooser * AbilityFactory::parseSimpleTC(const std::string& s, const std::s
 // evaluate trigger ability
 // ie auto=@attacking(mytgt):destroy target(*)
 // eval only the text between the @ and the first :
-TriggeredAbility * AbilityFactory::parseTrigger(string s, string magicText, int id, Spell * spell, MTGCardInstance *card,
+TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell *, MTGCardInstance *card,
                                                 Targetable * target)
 {
     size_t found = string::npos;
@@ -3088,7 +3088,7 @@ MTGAbility * AbilityFactory::parsePhaseActionAbility(string s,MTGCardInstance * 
           return NEW APhaseActionGeneric(observer, id, card,_target, trim(splitActions[2]), restrictions, phase,sourceinPlay,next,myturn,opponentturn,once);
 }
 
-MTGAbility * AbilityFactory::parseChooseActionAbility(string s,MTGCardInstance * card,Spell * spell,MTGCardInstance * target, int restrictions,int id)
+MTGAbility * AbilityFactory::parseChooseActionAbility(string s,MTGCardInstance * card,Spell *,MTGCardInstance * target, int, int id)
 {
     vector<string> splitChooseAColor2 = parseBetween(s, "activatechooseacolor ", " activatechooseend");
     if (splitChooseAColor2.size())
@@ -4127,7 +4127,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
 
 //ManaRedux -> manaredux(colorless,+2)
 //          -> manaredux(green,-2)
-MTGAbility * AbilityFactory::getManaReduxAbility(string s, int id, Spell *spell, MTGCardInstance *card, MTGCardInstance *target)
+MTGAbility * AbilityFactory::getManaReduxAbility(string s, int id, Spell *, MTGCardInstance *card, MTGCardInstance *target)
 {
     int color = -1;
     string manaCost = s.substr(s.find(",") + 1);
@@ -4770,7 +4770,7 @@ int TriggeredAbility::receiveEvent(WEvent * e)
     return 0;
 }
 
-void TriggeredAbility::Update(float dt)
+void TriggeredAbility::Update(float)
 {
     if (trigger())
         fireAbility();
@@ -4822,7 +4822,7 @@ InstantAbility::InstantAbility(GameObserver* observer, int _id, MTGCardInstance 
     init = 0;
 }
 
-void InstantAbility::Update(float dt)
+void InstantAbility::Update(float)
 {
     if (!init)
     {
@@ -4988,7 +4988,7 @@ void ListMaintainerAbility::checkTargets()
     }
 }
 
-void ListMaintainerAbility::Update(float dt)
+void ListMaintainerAbility::Update(float)
 {
     updateTargets();
 }

@@ -83,7 +83,7 @@ int TestSuiteAI::displayStack()
     return 1;
 }
 
-int TestSuiteAI::Act(float dt)
+int TestSuiteAI::Act(float)
 {
     observer->setLoser(NULL); // Prevent draw rule from losing the game
 

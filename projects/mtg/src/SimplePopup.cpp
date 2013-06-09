@@ -86,7 +86,7 @@ void SimplePopup::Update(DeckMetaData* selectedDeck)
 }
 
 
-string SimplePopup::getDetailedInformation(string filename)
+string SimplePopup::getDetailedInformation(string)
 {
     ostringstream oss;
     oss
@@ -120,7 +120,7 @@ string SimplePopup::getDetailedInformation(string filename)
     return oss.str();
 }
 
-void SimplePopup::Update(float dt)
+void SimplePopup::Update(float)
 {
     JButton key = mEngine->ReadButton();
     CheckUserInput(key);

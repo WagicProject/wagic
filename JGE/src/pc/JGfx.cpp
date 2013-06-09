@@ -1584,7 +1584,7 @@ void JRenderer::Plot(float x, float y, PIXEL_TYPE color)
     glEnd();
     glColor4ub(255, 255, 255, 255);
 #else
-    // FIXME, not used
+    cerr << x << " " << y << " " << color << endl;
 #endif //#if (!defined GL_ES_VERSION_2_0) && (!defined GL_VERSION_2_0)
     glEnable(GL_TEXTURE_2D);
     checkGlError();
@@ -1606,6 +1606,7 @@ void JRenderer::PlotArray(float *x, float *y, int count, PIXEL_TYPE color)
     glColor4ub(255, 255, 255, 255);
 #else
     // FIXME, not used
+    cerr << x << " " << y << " " << count << " " << " " << color << endl;
 #endif //#if (!defined GL_ES_VERSION_2_0) && (!defined GL_VERSION_2_0)
     glEnable(GL_TEXTURE_2D);
     checkGlError();
@@ -2242,7 +2243,7 @@ JTexture* JRenderer::LoadTexture(const char* filename, int mode, int TextureForm
     return tex;
 }
 #elif (defined QT_CONFIG)
-JTexture* JRenderer::LoadTexture(const char* filename, int mode, int TextureFormat __attribute__((unused)))
+JTexture* JRenderer::LoadTexture(const char* filename, int, int)
 {
     JTexture *tex = NULL;
     int rawsize = 0;
@@ -2518,7 +2519,7 @@ void JRenderer::Enable3D()
 }
 
 
-void JRenderer::SetClip(int x, int y, int width, int height)
+void JRenderer::SetClip(int, int, int, int)
 {// NOT USED
     //glScissor(x, y, width, height);
 }
@@ -2530,25 +2531,25 @@ void JRenderer::LoadIdentity()
 }
 
 
-void JRenderer::Translate(float x, float y, float z)
+void JRenderer::Translate(float, float, float)
 {// NOT USED
     //glTranslatef(x, y, z);
 }
 
 
-void JRenderer::RotateX(float angle)
+void JRenderer::RotateX(float)
 {// NOT USED
     //glRotatef(angle*RAD2DEG, 1.0f, 0.0f, 0.0f);
 }
 
 
-void JRenderer::RotateY(float angle)
+void JRenderer::RotateY(float)
 {// NOT USED
     //glRotatef(angle*RAD2DEG, 0.0f, 1.0f, 0.0f);
 }
 
 
-void JRenderer::RotateZ(float angle)
+void JRenderer::RotateZ(float)
 {// NOT USED
     //glRotatef(angle*RAD2DEG, 0.0f, 0.0f, 1.0f);
 }

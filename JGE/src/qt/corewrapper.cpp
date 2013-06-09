@@ -467,12 +467,12 @@ void WagicCore::mouseMoveEvent(QMouseEvent *event)
   }
 }
 
-void WagicCore::showEvent ( QShowEvent * event )
+void WagicCore::showEvent ( QShowEvent * )
 {
   setActive(true);
 }
 
-void WagicCore::hideEvent ( QHideEvent * event )
+void WagicCore::hideEvent ( QHideEvent * )
 {
   setActive(false);
 }

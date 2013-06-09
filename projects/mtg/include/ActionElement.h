@@ -30,7 +30,7 @@ public:
     int modal;
     int waitingForAnswer;
     int getActivity();
-    virtual void Update(float dt){};
+    virtual void Update(float){};
     virtual void Render(){};
     virtual int testDestroy()
     {
@@ -42,7 +42,7 @@ public:
         return 0;
     }
     ;
-    virtual bool CheckUserInput(JButton key)
+    virtual bool CheckUserInput(JButton)
     {
         return false;
     }
@@ -54,26 +54,26 @@ public:
     virtual ~ActionElement();
     virtual int isReactingToTargetClick(Targetable * card);
     virtual int reactToTargetClick(Targetable * card);
-    virtual int reactToChoiceClick(Targetable * card,int choice = 0,int controlid = 0)
+    virtual int reactToChoiceClick(Targetable *,int,int)
     {
         return 0;
     }
-    virtual int isReactingToClick(MTGCardInstance * card, ManaCost * man = NULL)
-    {
-        return 0;
-    }
-    ;
-    virtual int stillInUse(MTGCardInstance * card)
+    virtual int isReactingToClick(MTGCardInstance *, ManaCost * = NULL)
     {
         return 0;
     }
     ;
-    virtual int receiveEvent(WEvent * event)
+    virtual int stillInUse(MTGCardInstance *)
     {
         return 0;
     }
     ;
-    virtual int reactToClick(MTGCardInstance * card)
+    virtual int receiveEvent(WEvent *)
+    {
+        return 0;
+    }
+    ;
+    virtual int reactToClick(MTGCardInstance *)
     {
         return 0;
     }
