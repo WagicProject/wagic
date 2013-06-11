@@ -606,6 +606,11 @@ id=126816
 rarity=U
 [/card]
 [card]
+primitive=Black Knight Token
+id=-126816
+rarity=T
+[/card]
+[card]
 primitive=Riptide Pilferer
 id=122325
 rarity=U
