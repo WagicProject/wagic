@@ -22,7 +22,7 @@ public:
     void Update(float dt);
     void Render();
     void ButtonPressed(int controllerId, int controlId);
-
+    void OnScroll(int inXVelocity, int inYVelocity);
 };
 
 #endif
