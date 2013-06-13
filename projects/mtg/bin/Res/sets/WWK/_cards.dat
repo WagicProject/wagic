@@ -359,6 +359,11 @@ id=197145
 rarity=R
 [/card]
 [card]
+primitive=Ogre Token
+id=-197145
+rarity=T
+[/card]
+[card]
 primitive=Khalni Garden
 id=197789
 rarity=C
