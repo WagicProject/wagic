@@ -193,12 +193,11 @@ primitive=Erayo, Soratami Ascendant
 id=87599
 rarity=R
 [/card]
-#need to find a way to deal with multipart cards
-#[card]
-#primitive=Erayo, Soratami Ascendant (Erayo's Essence)
-#id=87599
-#rarity=R
-#[/card]
+[card]
+primitive=Erayo's Essence
+id=8759911
+rarity=T
+[/card]
 [card]
 primitive=Eternal Dominion
 id=87593
