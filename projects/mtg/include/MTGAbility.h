@@ -444,6 +444,7 @@ public:
 class AbilityFactory
 {
 private:
+    string storedPayString;
     string storedString;
     string storedAbilityString;
     string storedAndAbility;

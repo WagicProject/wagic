@@ -222,6 +222,11 @@ void MTGPlayerCards::drawFromLibrary()
     }
     MTGCardInstance * toMove = library->cards[library->nb_cards - 1];
     library->lastCardDrawn = toMove;
+    if (!library->miracle)
+    {
+        library->miracle = true;
+        toMove->miracle = true;
+    }
 
     // useability tweak - assume that the user is probably going to want to see the new card,
     // so prefetch it.
@@ -243,12 +248,7 @@ void MTGPlayerCards::drawFromLibrary()
     if(putInZone(toMove, library, hand))
     {
         toMove->currentZone = hand;
-        if (!library->miracle)
-        {
-            library->miracle = true;
-            toMove->miracle = true;
         }
-    }
 }
 
 void MTGPlayerCards::resetLibrary()
@@ -285,6 +285,11 @@ void MTGPlayerCards::showHand()
 // Moves a card to its owner's graveyard
 MTGCardInstance * MTGPlayerCards::putInGraveyard(MTGCardInstance * card)
 {
+    if (card->basicAbilities[(int)Constants::EXILEDEATH])
+    {
+        putInZone(card, card->getCurrentZone(), card->owner->game->exile);
+
+    }
     return putInZone(card, card->currentZone, card->owner->game->graveyard);
 }
 
@@ -308,7 +313,7 @@ MTGCardInstance * MTGPlayerCards::putInHand(MTGCardInstance * card)
 
 // Moves a card from one zone to another
 // If the card is not actually in the expected "from" zone, does nothing and returns null 
-MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone * from, MTGGameZone * to)
+MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone * from, MTGGameZone * to,bool asCopy)
 {
     MTGCardInstance * copy = NULL;
     GameObserver *g = owner->getObserver();
@@ -325,7 +330,10 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
 
     if (!(copy = from->removeCard(card, doCopy)))
         return NULL; //ERROR
-
+    if (card->miracle)
+    {
+        copy->miracle = true;
+    }
     if (options[Options::SFXVOLUME].number > 0)
     {
         if (to == g->players[0]->game->graveyard || to == g->players[1]->game->graveyard)
@@ -374,8 +382,11 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
             SAFE_DELETE(previous);
         }
     }
+    if(!asCopy)
+    {
     WEvent * e = NEW WEventZoneChange(copy, from, to);
     g->receiveEvent(e);
+    }
     return ret;
 
 }

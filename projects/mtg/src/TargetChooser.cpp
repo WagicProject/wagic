@@ -87,7 +87,17 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
         if (s.length() > 7 && s.find("[") == 7)
         {
             string s1 = s.substr(7, s.find("]"));
-            if (s1.find("to") != string::npos) return NEW TriggerTargetChooser(observer, WEvent::TARGET_TO);
+            if (s1.find("to") != string::npos) 
+            {
+                if(s1.find("<1>") != string::npos)
+                {
+                    TriggerTargetChooser * ttc =  NEW TriggerTargetChooser(observer, WEvent::TARGET_TO);
+                    ttc->maxtargets = 1;
+                    return ttc;
+                }
+                else
+                    return NEW TriggerTargetChooser(observer, WEvent::TARGET_TO);
+            }
             if (s1.find("from") != string::npos) return NEW TriggerTargetChooser(observer, WEvent::TARGET_FROM);
         }
         return NEW TriggerTargetChooser(observer, 1);
@@ -606,6 +616,16 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                         }
                     }
 
+                    if (attribute.find("iscolorless") != string::npos)
+                    {
+                         attributefound = 1;
+                        for (int cid = 1; cid < Constants::NB_Colors; cid++)
+                        { 
+                            cd->SetExclusionColor(cid);
+                        }
+                        cd->mode = CD_OR;
+                    }
+
                     if (attribute.find("chosencolor") != string::npos)
                     {
                         attributefound = 1;
@@ -687,6 +707,12 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                 else if (typeName.compare("this") == 0)
                 {
                     return NEW CardTargetChooser(observer, card, card, zones, nbzones);
+                }
+                else if (typeName.compare("sourcecard") == 0)
+                {
+                    CardTargetChooser * ctc = NEW CardTargetChooser(observer, card, card, zones, nbzones);
+                    ctc->setAllZones();
+                    return ctc;
                 }
                 else if (typeName.compare("mystored") == 0)
                 {
@@ -1488,6 +1514,13 @@ bool TriggerTargetChooser::targetsZone(MTGGameZone *)
 
 bool TriggerTargetChooser::canTarget(Targetable * _target,bool)
 {
+    //something is wrong with trigger[to] not allowing us to target stack.
+    if(Spell * spell = dynamic_cast<Spell *>(_target))
+    {
+            MTGCardInstance * card = spell->source;
+            if(card == target)
+                return true;
+    }
     if (_target == target) return true;
     return false;
 }

@@ -19,6 +19,7 @@
 #include <JGui.h>
 #include <hge/hgeparticle.h>
 #include "IconButton.h"
+#include "ExtraCost.h"
 
 #include <map>
 using std::map;
@@ -1102,7 +1103,8 @@ public:
 class AAFakeAbility: public ActivatedAbility
 {
 public:
-    AAFakeAbility(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target, ManaCost * cost = NULL);
+    string named;
+    AAFakeAbility(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target,string _newName, ManaCost * cost = NULL);
     int resolve();
     const char* getMenuText();
     AAFakeAbility * clone() const;
@@ -1157,7 +1159,6 @@ public:
     string Cond;
     Player * previousInterrupter;
     MTGAbility * mClone;
-    ManaCost * optionalCost;
 
     MayAbility(GameObserver* observer, int _id, MTGAbility * _ability, MTGCardInstance * _source, bool must = false, string restriction = "");
 
@@ -1182,11 +1183,15 @@ public:
     int triggered;
     bool removeMenu;
     bool must;
+    bool processed;
     MTGAbility * mClone;
+    ManaCost * toPay;
     vector<MTGAbility*>abilities;
+    vector<ManaCost*>optionalCosts;
     Player * who;
     string newNameString;
     MenuAbility(GameObserver* observer, int _id, Targetable * target, MTGCardInstance * _source, bool must = false, vector<MTGAbility*>abilities = vector<MTGAbility*>(),Player * who = NULL,string _newName = "");
+    bool CheckUserInput(JButton key);
     void Update(float dt);
     int resolve();
     const char * getMenuText();
@@ -1194,6 +1199,7 @@ public:
     int isReactingToTargetClick(Targetable * card);
     int reactToTargetClick(Targetable * object);
     int reactToChoiceClick(Targetable * object,int choice,int control);
+    int processAbility();
     MenuAbility * clone() const;
     ~MenuAbility();
 
@@ -1301,7 +1307,8 @@ class AAMover: public ActivatedAbility
 public:
     string destination;
     MTGAbility * andAbility;
-    AAMover(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target, string dest, ManaCost * _cost = NULL);
+    string named;
+    AAMover(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target, string dest,string _name, ManaCost * _cost = NULL);
     MTGGameZone * destinationZone(Targetable * target = NULL);
     int resolve();
     const char * getMenuText();
@@ -1331,6 +1338,7 @@ class AABuryCard: public ActivatedAbility
 {
 public:
     MTGAbility * andAbility;
+    string menu;
     AABuryCard(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target);
     int resolve();
     const char * getMenuText();
@@ -5569,6 +5577,32 @@ public:
     }
 };
 
+class AACastCard: public MTGAbility
+{
+public:
+    MTGAbility * andAbility;
+    bool processed;
+    bool restricted;
+    bool asCopy;
+    bool normal;
+    string cardNamed;
+    string nameThis;
+    MTGCardInstance * theNamedCard;
+    bool noEvent;
+    AACastCard(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target,bool restricted,bool copied,bool _asNormal,string nameCard,string abilityName,bool _noEvent);
+
+    int testDestroy(){return 0;};
+    void Update(float dt);
+    const char * getMenuText();
+    int isReactingToTargetClick(Targetable * card);
+    int reactToTargetClick(Targetable * object);
+    MTGCardInstance * makeCard();
+    int resolveSpell();
+    
+    AACastCard * clone() const;
+    ~AACastCard();
+};
+
 //A Spirit Link Ability
 class ASpiritLinkAbility: public MTGAbility
 {
@@ -5735,6 +5769,25 @@ public:
     const char* getMenuText();
     GenericFlipACoin * clone() const;
     ~GenericFlipACoin();
+
+};
+//------------
+class GenericPaidAbility: public ActivatedAbility
+{
+public:
+    MTGAbility * baseAbility;
+    ManaCost * optionalCost;
+
+    string newName;
+    string restrictions;
+    string baseCost;
+    string baseAbilityStr;
+
+    GenericPaidAbility(GameObserver* observer, int id, MTGCardInstance * source, Targetable * target,string _newName,string _castRestriction,string _mayCost, string toAdd, ManaCost * cost = NULL);
+    int resolve();
+    const char* getMenuText();
+    GenericPaidAbility * clone() const;
+    ~GenericPaidAbility();
 
 };
 // utility functions

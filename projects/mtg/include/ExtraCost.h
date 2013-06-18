@@ -4,6 +4,7 @@
 #include <vector>
 #include "Counters.h"
 #include "ObjectAnalytics.h"
+#include "ManaCost.h"
 
 using std::vector;
 
@@ -18,11 +19,12 @@ class ExtraCost
 {
 public:
   TargetChooser * tc;
+  ManaCost * costToPay;
   MTGCardInstance * source;
   MTGCardInstance * target;
   std::string mCostRenderString;
 
-  ExtraCost(const std::string& inCostRenderString, TargetChooser *_tc = NULL);
+  ExtraCost(const std::string& inCostRenderString, TargetChooser *_tc = NULL,ManaCost * _costToPay = NULL);
   virtual ~ExtraCost();
   
   virtual int setPayment(MTGCardInstance * card);
@@ -56,6 +58,18 @@ public:
   int setAction(MTGAbility * _action, MTGCardInstance * _source);
   void Dump();
   ExtraCosts * clone() const;
+};
+
+//extraextra
+class extraManaCost : public ExtraCost
+{
+public:
+  extraManaCost(ManaCost * cost = NULL);
+  virtual int tryToSetPayment(MTGCardInstance * card);
+  virtual int isPaymentSet();
+  virtual int canPay();
+  virtual int doPay();
+  virtual extraManaCost * clone() const;
 };
 
 class SacrificeCost : public ExtraCost

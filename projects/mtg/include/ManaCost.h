@@ -50,6 +50,9 @@ public:
     ManaCost * Retrace;
     ManaCost * morph;
     ManaCost * suspend;
+
+    ManaCost * manaUsedToCast;
+
     string alternativeName;
     bool isMulti;
     static ManaCost * parseManaCost(string value, ManaCost * _manacost = NULL, MTGCardInstance * c = NULL);

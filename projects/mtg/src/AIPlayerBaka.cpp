@@ -1354,7 +1354,24 @@ int AIPlayerBaka::selectHintAbility()
 
 int AIPlayerBaka::selectAbility()
 {
-    observer->mExtraPayment = NULL;
+    if(observer->mExtraPayment && observer->mExtraPayment->source->controller() == this)
+    {
+        extraManaCost * check = NULL;
+        check = dynamic_cast<extraManaCost*>(observer->mExtraPayment->costs[0]);
+        if(check)
+        {
+            vector<MTGAbility*> CostToPay = canPayMana(observer->mExtraPayment->source,check->costToPay);
+            if(CostToPay.size())
+            {
+                payTheManaCost(check->costToPay,check->source,CostToPay);
+            }
+            else
+            {
+                observer->mExtraPayment->action->CheckUserInput(JGE_BTN_SEC);
+                observer->mExtraPayment = NULL;
+            }
+        }
+    }
    // Try Deck hints first
    if (selectHintAbility())
         return 1;
@@ -1479,7 +1496,11 @@ int AIPlayerBaka::effectBadOrGood(MTGCardInstance * card, int mode, TargetChoose
 
 int AIPlayerBaka::chooseTarget(TargetChooser * _tc, Player * forceTarget,MTGCardInstance * chosenCard,bool checkOnly)
 {
+    if(observer->mExtraPayment)
+    {
+    observer->mExtraPayment->action->CheckUserInput(JGE_BTN_SEC);
     observer->mExtraPayment = NULL;
+    }
     //there should never be a case where a extra cost target selection is happening at the same time as this..
     //extracost uses "chooseCard()" to determine its targets.
     vector<Targetable *> potentialTargets;
@@ -2132,8 +2153,11 @@ int AIPlayerBaka::computeActions()
                 else
                 {
                     if(observer->mExtraPayment)
+                    {
                         //no extra payment should be waiting before selecting an ability.
+                        observer->mExtraPayment->action->CheckUserInput(JGE_BTN_SEC);
                         observer->mExtraPayment = NULL;
+                    }
                     //this is a fix for a rare bug that somehow ai trips over an extra payment without paying
                     //then locks in a loop of trying to choose something different to do and trying to pay the extra payment.
                     selectAbility();
@@ -2538,6 +2562,25 @@ int AIPlayerBaka::Act(float dt)
     {
         if (observer->isInterrupting == this)
         {
+            if(observer->mExtraPayment && observer->mExtraPayment->source->controller() == this)
+            {
+                extraManaCost * check = NULL;
+                check = dynamic_cast<extraManaCost*>(observer->mExtraPayment->costs[0]);
+                if(check)
+                {
+                    vector<MTGAbility*> CostToPay = canPayMana(observer->mExtraPayment->source,check->costToPay);
+                    if(CostToPay.size())
+                    {
+                        payTheManaCost(check->costToPay,check->source,CostToPay);
+                    }
+                    else
+                    {
+                        observer->mExtraPayment->action->CheckUserInput(JGE_BTN_SEC);
+                        observer->mExtraPayment = NULL;
+                    }
+                }
+                return 0;
+            }
             observer->mLayers->stackLayer()->cancelInterruptOffer(); //endOfInterruption();
         }
         else

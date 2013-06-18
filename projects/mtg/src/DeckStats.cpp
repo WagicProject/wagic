@@ -200,6 +200,7 @@ void DeckStats::save(const std::string& filename)
             playerDeckMeta->setColorIndex( manaColorIndex );
         }
         file << "MANA:" << manaColorIndex << endl;
+        if(file)
         for (it = stats.begin(); it != stats.end(); it++)
         {
             sprintf(writer, "%s\n", it->first.c_str());

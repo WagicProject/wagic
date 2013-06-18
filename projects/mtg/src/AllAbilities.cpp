@@ -544,7 +544,7 @@ AACounter * AACounter::clone() const
 }
 
 //shield a card from a certain type of counter.
-ACounterShroud::ACounterShroud(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance *,TargetChooser * tc, Counter * counter) :
+ACounterShroud::ACounterShroud(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target,TargetChooser * tc, Counter * counter) :
 MTGAbility(observer, id, source),csTc(tc),counter(counter),re(NULL)
 {
 }
@@ -732,7 +732,7 @@ AARemoveAllCounter * AARemoveAllCounter::clone() const
 }
 
 //proliferate a target
-AAProliferate::AAProliferate(GameObserver* observer, int id, MTGCardInstance * source, Targetable *,ManaCost * cost) :
+AAProliferate::AAProliferate(GameObserver* observer, int id, MTGCardInstance * source, Targetable * target,ManaCost * cost) :
 ActivatedAbility(observer, id, source, cost, 0)
 {
     this->GetId();
@@ -974,7 +974,7 @@ AASetTypeChosen::~AASetTypeChosen()
 //
 //choosing a type or color
 GenericFlipACoin::GenericFlipACoin(GameObserver* observer, int id, MTGCardInstance * source, Targetable *,string _toAdd, ManaCost * cost) :
-ActivatedAbility(observer, id, source, cost, 0), baseAbility(_toAdd),chooseColor(true)
+ActivatedAbility(observer, id, source, cost, 0), baseAbility(_toAdd),chooseColor(chooseColor)
 {
     this->GetId();
     setCoin = NULL;
@@ -1111,6 +1111,87 @@ AASetCoin * AASetCoin::clone() const
 AASetCoin::~AASetCoin()
 {
 }
+//paying for an ability as an effect but as a cost
+GenericPaidAbility::GenericPaidAbility(GameObserver* observer, int id, MTGCardInstance * source, Targetable * target,string _newName,string _castRestriction,string mayCost,string _toAdd,ManaCost * cost) :
+ActivatedAbility(observer, id, source, cost, 0),newName(_newName),restrictions(_castRestriction),baseCost(mayCost), baseAbilityStr(_toAdd)
+{
+    this->GetId();
+    baseAbility = NULL;
+    optionalCost = NULL;
+}
+
+int GenericPaidAbility::resolve()
+{
+    if (!target)
+        return 0;
+
+
+    if(restrictions.size())
+    {
+        AbilityFactory af(game);
+        int checkCond = af.parseCastRestrictions(source,source->controller(),restrictions);
+        if(!checkCond)
+        {
+            return 0;
+        }
+    }
+    AbilityFactory Af(game);
+    vector<string> baseAbilityStrSplit = split(baseAbilityStr,'?');
+    vector<MTGAbility*>selection;
+    if(baseAbilityStrSplit.size() > 1)
+    {
+    baseAbility = Af.parseMagicLine(baseAbilityStrSplit[0], this->GetId(), NULL, source);
+    baseAbility->target = target;
+    optionalCost =  ManaCost::parseManaCost(baseCost, NULL, source);
+    MTGAbility * set = baseAbility->clone();
+    set->oneShot = true;
+    selection.push_back(set);
+    SAFE_DELETE(baseAbility);
+    baseAbility = Af.parseMagicLine(baseAbilityStrSplit[1], this->GetId(), NULL, source);
+    baseAbility->target = target;
+    set = baseAbility->clone();
+    set->oneShot = true;
+    selection.push_back(set);
+    }
+    else
+    {
+        baseAbility = Af.parseMagicLine(baseAbilityStrSplit[0], this->GetId(), NULL, source);
+        baseAbility->target = target;
+        optionalCost =  ManaCost::parseManaCost(baseCost, NULL, source);
+        MTGAbility * set = baseAbility->clone();
+        set->oneShot = true;
+        selection.push_back(set);
+    }
+
+    if(selection.size())
+    {
+        MTGAbility * a1 = NEW MenuAbility(game, this->GetId(), target, source,baseAbilityStrSplit.size() >1?true:false,selection,NULL,newName);
+        dynamic_cast<MenuAbility*>(a1)->optionalCosts.push_back(NEW ManaCost(optionalCost));
+        game->mLayers->actionLayer()->currentActionCard = (MTGCardInstance *)target;
+        a1->resolve();
+    }
+    return 1;
+
+}
+
+const char* GenericPaidAbility::getMenuText()
+{
+    if( newName.size())
+        return newName.c_str();
+    return "Pay For Effect";
+}
+
+GenericPaidAbility * GenericPaidAbility::clone() const
+{
+    GenericPaidAbility * a = NEW GenericPaidAbility(*this);
+    return a;
+}
+
+GenericPaidAbility::~GenericPaidAbility()
+{
+    SAFE_DELETE(optionalCost);
+    SAFE_DELETE(baseAbility);
+}
 
 //saves a listed mana type until end of turn.
 AManaPoolSaver::AManaPoolSaver(GameObserver* observer, int id, MTGCardInstance * source,string color, bool otherPlayer) :
@@ -1206,8 +1287,8 @@ AAResetDamage * AAResetDamage::clone() const
 }
 
 //ability that resolves to do nothing.
- AAFakeAbility::AAFakeAbility(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * _target, ManaCost * cost):
-    ActivatedAbility(observer, id, source, cost, 0)
+ AAFakeAbility::AAFakeAbility(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * _target, string _named,ManaCost * cost):
+    ActivatedAbility(observer, id, source, cost, 0),named(_named)
 {
     this->target = _target;
 }
@@ -1218,6 +1299,8 @@ int AAFakeAbility::resolve()
 
 const char* AAFakeAbility::getMenuText()
 {
+    if(named.size())
+        return named.c_str();
     return "Ability";
 }
 
@@ -1249,7 +1332,9 @@ int AAFizzler::resolve()
 		target = stack->getActionElementFromCard(cTarget);
 	}
 	Spell * sTarget = (Spell *) target;
-	MTGCardInstance* sCard = sTarget->source;
+    MTGCardInstance* sCard = NULL;
+    if(sTarget)
+	sCard = sTarget->source;
 	if(!sCard || !sTarget || sCard->has(Constants::NOFIZZLE))
 		return 0;
 	stack->Fizzle(sTarget);
@@ -1304,6 +1389,8 @@ int AABuryCard::resolve()
 
 const char * AABuryCard::getMenuText()
 {
+    if(menu.size())
+        return menu.c_str();
     return "Bury";
 }
 
@@ -1483,6 +1570,9 @@ AADiscardCard::~AADiscardCard()
 {
     SAFE_DELETE(andAbility);
 }
+
+
+//
 AADrawer::AADrawer(GameObserver* observer, int _id, MTGCardInstance * card, Targetable * _target, ManaCost * _cost, string nbcardsStr,
         int who, bool noreplace) :
     ActivatedAbilityTP(observer, _id, card, _target, _cost, who), nbcardsStr(nbcardsStr),noReplace(noreplace)
@@ -1881,23 +1971,28 @@ int AADynamic::resolve()
         break;
     case DYNAMIC_ABILITY_WHO_ITSELF:
         source = ((MTGCardInstance *) _target);
+        _target = _target;
         break;
     case DYNAMIC_ABILITY_WHO_TARGETCONTROLLER:
+        _target = _target;
         secondaryTarget = ((MTGCardInstance *) _target)->controller();
         break;
     case DYNAMIC_ABILITY_WHO_TARGETOPPONENT:
+        _target = _target;
         secondaryTarget = ((MTGCardInstance *) _target)->controller()->opponent();
         break;
     case DYNAMIC_ABILITY_WHO_TOSOURCE:
         tosrc = true;
         break;
     case DYNAMIC_ABILITY_WHO_SOURCECONTROLLER:
+        _target = _target;
         secondaryTarget = ((MTGCardInstance *) OriginalSrc)->controller();
         break;
     case DYNAMIC_ABILITY_WHO_SOURCEOPPONENT:
         secondaryTarget = OriginalSrc->controller()->opponent();
         break;
     default:
+        _target = _target;
         break;
     }
     if(amountsource == DYNAMIC_MYSELF_AMOUNT)
@@ -2530,8 +2625,8 @@ AInstantCastRestrictionUEOT::~AInstantCastRestrictionUEOT()
 
 
 //AAMover
-AAMover::AAMover(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target, string dest, ManaCost * _cost) :
-    ActivatedAbility(observer, _id, _source, _cost, 0), destination(dest)
+AAMover::AAMover(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target, string dest,string newName, ManaCost * _cost) :
+    ActivatedAbility(observer, _id, _source, _cost, 0), destination(dest),named(newName)
 {
     if (_target)
         target = _target;
@@ -2607,11 +2702,15 @@ int AAMover::resolve()
 
 const char * AAMover::getMenuText()
 {
+    if(named.size())
+        return named.c_str();
     return "Move";
 }
 
 const char * AAMover::getMenuText(TargetChooser * tc)
 {
+    if(named.size())
+        return named.c_str();
     MTGGameZone * dest = destinationZone();
 
     for (int i = 0; i < 2; i++)
@@ -2862,6 +2961,7 @@ int AARemoveMana::resolve()
                 {
                     if (player->doesntEmpty->getConvertedCost() && !player->poolDoesntEmpty->getConvertedCost())
                     {
+                        ManaCost * toRemove =  manaPool->Diff(player->doesntEmpty);
                         player->getManaPool()->pay(manaPool->Diff(player->doesntEmpty));
                         return 1;
                     }
@@ -3174,7 +3274,6 @@ MayAbility::MayAbility(GameObserver* observer, int _id, MTGAbility * _ability, M
 {
     triggered = 0;
     mClone = NULL;
-    optionalCost = NULL;
 }
 
 void MayAbility::Update(float dt)
@@ -3183,8 +3282,6 @@ void MayAbility::Update(float dt)
     if (!triggered && !game->getCurrentTargetChooser() && (!game->mLayers->actionLayer()->menuObject||game->mLayers->actionLayer()->menuObject == source))
     {
         triggered = 1;
-        if(optionalCost && !source->controller()->getManaPool()->canAfford(optionalCost))
-            return;
         if(Cond.size())
         {
             AbilityFactory af(game);
@@ -3229,8 +3326,16 @@ int MayAbility::isReactingToTargetClick(Targetable * card)
 {
     if (card == source)
     {
-        if(!optionalCost || source->controller()->getManaPool()->canAfford(optionalCost))
-            return 1;
+        if(Cond.size())
+        {
+            AbilityFactory af(game);
+            int checkCond = af.parseCastRestrictions(source,source->controller(),Cond);
+            if(!checkCond)
+            {
+                return 0;
+            }
+        }
+        return 1;
     }
     return 0;
 }
@@ -3238,12 +3343,6 @@ int MayAbility::isReactingToTargetClick(Targetable * card)
 int MayAbility::reactToTargetClick(Targetable * object)
 {
     mClone = ability->clone();
-    if(optionalCost)
-    {
-        source->controller()->getManaPool()->pay(optionalCost);
-        optionalCost->setExtraCostsAction(this, source);
-        optionalCost->doPayExtra();
-    }
     mClone->addToGame();
     mClone->forceDestroy = 1;
     return mClone->reactToTargetClick(object);
@@ -3253,18 +3352,15 @@ MayAbility * MayAbility::clone() const
 {
     MayAbility * a = NEW MayAbility(*this);
     a->ability = ability->clone();
-    a->optionalCost = this->optionalCost;
     return a;
 }
 
 MayAbility::~MayAbility()
 {
     SAFE_DELETE(ability);
-    SAFE_DELETE(optionalCost);
 }
 
 //Menu building ability Abilities
-//this will eventaully handle choosen discards/sacrifices.
 MenuAbility::MenuAbility(GameObserver* observer, int _id, Targetable * mtarget, MTGCardInstance * _source, bool must,vector<MTGAbility*>abilities,Player * who, string newName) :
 MayAbility(observer, _id,NULL,_source,must), must(must),abilities(abilities),who(who),newNameString(newName)
 {
@@ -3272,12 +3368,46 @@ MayAbility(observer, _id,NULL,_source,must), must(must),abilities(abilities),who
     mClone = NULL;
     this->target = mtarget;
     removeMenu = false;
+    vector<ManaCost*>optionalCost = vector<ManaCost*>();
+    toPay = NULL;
+    processed = false;
+}
+
+bool MenuAbility::CheckUserInput(JButton key)
+{
+    if (game->mExtraPayment && key == JGE_BTN_SEC)
+    {
+        if(toPay && toPay->extraCosts == game->mExtraPayment)
+        {
+            //the user cancelled the paidability. fireAbility() on the second menu item.
+            //paidability will always occupy the abilities[0]; in the vector.
+            if(abilities.size() > 1)
+            {
+                abilities[1]->target = abilities[0]->target;
+                abilities[1]->fireAbility();
+            }
+        }
+        return false;
+    }
+    return false;
 }
 
 void MenuAbility::Update(float dt)
 {
     MTGAbility::Update(dt);
     ActionLayer * object = game->mLayers->actionLayer();
+    if(toPay && game->mExtraPayment && !processed)
+    {
+        if(game->mExtraPayment->isPaymentSet() && game->mExtraPayment->canPay() )
+        {
+            game->mExtraPayment->doPay();
+            game->mLayers->actionLayer()->reactToClick(game->mExtraPayment->action, game->mExtraPayment->source);
+            game->mExtraPayment = NULL;
+            processAbility();
+            return;
+        }
+
+    }
     if (!triggered && !object->menuObject && !object->getCurrentTargetChooser())
     {
 
@@ -3293,7 +3423,7 @@ void MenuAbility::Update(float dt)
     {
         triggered = 0;
     }
-    if(triggered)
+    if(triggered && !game->mExtraPayment && !processed)
     {
         game->mLayers->actionLayer()->setCustomMenuObject(source, must,abilities,newNameString.size()?newNameString.c_str():"");
         previousInterrupter = game->isInterrupting;
@@ -3317,6 +3447,8 @@ const char * MenuAbility::getMenuText()
 
 int MenuAbility::testDestroy()
 {
+    if (game->mExtraPayment)
+        return 0;
     if (!removeMenu)
         return 0;
     if (game->mLayers->actionLayer()->menuObject)
@@ -3327,8 +3459,38 @@ int MenuAbility::testDestroy()
     return 1;
 }
 
-int MenuAbility::isReactingToTargetClick(Targetable * card){return MayAbility::isReactingToTargetClick(card);}
-int MenuAbility::reactToTargetClick(Targetable *){return 1;}
+int MenuAbility::isReactingToTargetClick(Targetable * card){return 0/*MayAbility::isReactingToTargetClick(card)*/;}
+int MenuAbility::reactToTargetClick(Targetable * object){return 1;}
+
+int MenuAbility::processAbility()
+{
+    if(!mClone)
+        return 0;
+    if(processed)
+        return 0;
+    if(abilities[0])
+    mClone->target = abilities[0]->target;
+    if(MayAbility * toCheck = dynamic_cast<MayAbility*>(mClone))
+    {
+        toCheck->must = true;
+        mClone->addToGame();
+    }
+    else
+    {
+        mClone->oneShot = true;
+        mClone->forceDestroy = 1;
+        mClone->canBeInterrupted = false;
+        mClone->resolve();
+        SAFE_DELETE(mClone);
+        if (source->controller() == game->isInterrupting)
+            game->mLayers->stackLayer()->cancelInterruptOffer(ActionStack::DONT_INTERRUPT, false);
+    }
+
+    processed = true;
+    this->forceDestroy = 1;
+    removeMenu = true;
+    return 1;
+}
 
 int MenuAbility::reactToChoiceClick(Targetable * object,int choice,int control)
 {
@@ -3339,12 +3501,21 @@ int MenuAbility::reactToChoiceClick(Targetable * object,int choice,int control)
         return 0;
     for(int i = 0;i < int(abilities.size());i++)
     {
+
         if(choice == i)
             mClone = abilities[choice]->clone();
-        else
+        else if(!optionalCosts.size())
             SAFE_DELETE(abilities[i]);
-        //else
-        //    abilities[i]->clone();//all get cloned for clean up purposes. EDIT:removed, cause memleaks.
+        if (mClone && !toPay && optionalCosts.size() && i < int(optionalCosts.size()) && optionalCosts[i])//paidability only supports the first ability as paid for now.
+        {
+            toPay = NEW ManaCost();
+            if(optionalCosts[i]->extraCosts)
+            toPay->extraCosts = optionalCosts[i]->extraCosts->clone();
+            toPay->addExtraCost(NEW extraManaCost(optionalCosts[i]));
+            toPay->setExtraCostsAction(this,source);
+            game->mExtraPayment = toPay->extraCosts;
+            return 0;
+        }
     }
     if(!mClone)
     {
@@ -3353,15 +3524,7 @@ int MenuAbility::reactToChoiceClick(Targetable * object,int choice,int control)
         return 0;
     }
     mClone->target = abilities[choice]->target;
-    mClone->oneShot = true;
-    mClone->forceDestroy = 1;
-    mClone->canBeInterrupted = false;
-    mClone->resolve();
-    SAFE_DELETE(mClone);
-    if (source->controller() == game->isInterrupting)
-        game->mLayers->stackLayer()->cancelInterruptOffer(ActionStack::DONT_INTERRUPT, false);
-    this->forceDestroy = 1;
-    removeMenu = true;
+    processAbility();
     return reactToTargetClick(object);
 }
 
@@ -3374,6 +3537,7 @@ MenuAbility * MenuAbility::clone() const
         for(int i = 0;i < int(abilities.size());i++)
         {
             a->abilities.push_back(abilities[i]->clone());
+            a->optionalCosts.push_back(NEW ManaCost(optionalCosts[i]));
             a->abilities[i]->target = abilities[i]->target;
         }
     }
@@ -3399,6 +3563,15 @@ MenuAbility::~MenuAbility()
     }
     else
         SAFE_DELETE(ability);
+    if(optionalCosts.size())
+        for(int i = 0;i < int(optionalCosts.size());i++)
+        {
+            if(optionalCosts[i])
+            {
+                SAFE_DELETE(optionalCosts[i]);
+            }
+
+        }
 }
 ///
 //MultiAbility : triggers several actions for a cost
@@ -5146,6 +5319,211 @@ int AAConnect::resolve()
 AAConnect * AAConnect::clone() const
 {
     return NEW AAConnect(*this);
+}
+
+// casting a card for free, or casting a copy of a card.
+AACastCard::AACastCard(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target,bool _restricted,bool _copied,bool asNormal,string _namedCard,string _name,bool _noEvent) :
+   MTGAbility(observer, _id, _source),restricted(_restricted),asCopy(_copied),normal(asNormal),cardNamed(_namedCard),nameThis(_name),noEvent(_noEvent)
+{
+    target = _target;
+    andAbility = NULL;
+    processed = false;
+    theNamedCard = NULL;
+}
+
+
+   void AACastCard::Update(float dt)
+   {
+       MTGAbility::Update(dt);
+       if (processed)
+           return;
+       if(cardNamed.size() && !theNamedCard)
+       {
+           theNamedCard = makeCard();
+       }
+       if (restricted)
+       {
+           MTGCardInstance * toCheck = (MTGCardInstance*)target;
+           if(theNamedCard)
+               toCheck = theNamedCard;
+           if (game->currentActionPlayer->game->playRestrictions->canPutIntoZone(toCheck, source->controller()->game->stack) == PlayRestriction::CANT_PLAY)
+           {
+               processed = true;
+               this->forceDestroy = 1;
+               return ;
+           }
+           if(!allowedToCast(toCheck,source->controller()))
+           {
+               processed = true;
+               this->forceDestroy = 1;
+               return;
+           }
+           if(!toCheck->hasType(Subtypes::TYPE_INSTANT) && !(game->getCurrentGamePhase() == MTG_PHASE_FIRSTMAIN || game->getCurrentGamePhase() == MTG_PHASE_SECONDMAIN))
+           {
+               processed = true;
+               this->forceDestroy = 1;
+               return;
+           }
+       }
+       MTGCardInstance * toCheck = (MTGCardInstance*)target;
+       if(theNamedCard)
+           toCheck = theNamedCard;
+       if (Spell * checkSpell = dynamic_cast<Spell*>(target))
+       {
+           toCheck = checkSpell->source;
+       }
+       if (!game->targetListIsSet(toCheck))
+       {
+           if(game->targetChooser)
+               game->targetChooser->Owner = source->controller();//sources controller is the caster
+           return;
+       }
+       resolveSpell();
+       this->forceDestroy = 1;
+       return;
+   }
+   int AACastCard::isReactingToTargetClick(Targetable * card){return 0;}
+   int AACastCard::reactToTargetClick(Targetable * object)
+   {
+       if (MTGCardInstance * cObject = dynamic_cast<MTGCardInstance *>(object))
+           return reactToClick(cObject);
+
+       if (waitingForAnswer)
+       {
+           if (tc->toggleTarget(object) == TARGET_OK_FULL)
+           {
+               waitingForAnswer = 0;
+               game->mLayers->actionLayer()->setCurrentWaitingAction(NULL);
+               return MTGAbility::reactToClick(source);
+           }
+           return 1;
+       }
+       return 0;
+   }
+
+   MTGCardInstance * AACastCard::makeCard()
+   {
+       MTGCardInstance * card = NULL;
+       MTGCard * cardData = MTGCollection()->getCardByName(cardNamed);
+       card = NEW MTGCardInstance(cardData, source->controller()->game);
+       source->controller()->game->temp->addCard(card);
+       return card;
+   }
+
+int AACastCard::resolveSpell()
+{
+    if (processed)
+        return 0;
+    MTGCardInstance * _target = (MTGCardInstance *) target;
+    if(theNamedCard)
+        _target = theNamedCard;
+    if (Spell * checkSpell = dynamic_cast<Spell*>(target))
+    {
+        _target = checkSpell->source;
+    }
+    if(asCopy)
+    {
+        MTGCard * cardToCopy = MTGCollection()->getCardById(_target->getId());
+        MTGCardInstance * myDummy = NULL;
+        myDummy = NEW MTGCardInstance(cardToCopy, source->controller()->game);
+        source->controller()->game->garbage->addCard(myDummy);
+        _target = myDummy;
+        _target->isToken = 1;
+        _target->changeController(source->controller(),true);
+    }
+    if (_target)
+    {
+        
+        if (_target->isLand())
+        {
+            MTGCardInstance * copy = _target->controller()->game->putInZone(_target, _target->currentZone, source->controller()->game->temp,noEvent);
+            copy->changeController(source->controller(),true);
+            Spell * spell = NEW Spell(game, 0,copy,NULL,NULL, 1);
+            spell->resolve();
+            delete spell;
+        }
+        else
+        {
+            Spell * spell = NULL;
+            MTGCardInstance * copy = NULL;
+            if (normal ||(!_target->hasType(Subtypes::TYPE_INSTANT) && !_target->hasType(Subtypes::TYPE_SORCERY)))
+            {
+                copy =_target->controller()->game->putInZone(_target, _target->currentZone, source->controller()->game->stack,noEvent);
+                copy->changeController(source->controller(),true);
+            }
+            else
+            {
+                copy =_target->controller()->game->putInZone(_target, _target->currentZone, _target->controller()->game->stack,noEvent);
+                copy->changeController(source->controller(),true);
+            }
+            if (game->targetChooser)
+            {
+                game->targetChooser->Owner = source->controller();
+                spell = game->mLayers->stackLayer()->addSpell(copy, game->targetChooser, NULL, 1, 0);
+                game->targetChooser = NULL;
+            }
+            else
+            {
+                spell = game->mLayers->stackLayer()->addSpell(copy, NULL, NULL, 1, 0);
+            }
+
+            if (copy->has(Constants::STORM))
+            {
+                int storm = _target->controller()->game->stack->seenThisTurn("*", Constants::CAST_ALL) + source->controller()->opponent()->game->stack->seenThisTurn("*", Constants::CAST_ALL);
+                
+                for (int i = storm; i > 1; i--)
+                {
+                    spell = game->mLayers->stackLayer()->addSpell(copy, NULL, 0, 1, 1);
+
+                }
+            }
+            if (!copy->has(Constants::STORM))
+            {
+                copy->X = 0;
+                copy->castX = copy->X;
+            }
+            if(andAbility)
+            {
+                MTGAbility * andAbilityClone = andAbility->clone();
+                andAbilityClone->target = copy;
+                if(andAbility->oneShot)
+                {
+                    andAbilityClone->resolve();
+                    SAFE_DELETE(andAbilityClone);
+                }
+                else
+                {
+                    andAbilityClone->addToGame();
+                }
+            }
+        }
+        this->forceDestroy = true;
+        processed = true;
+        return 1;
+    }
+    return 0;
+}
+
+const char * AACastCard::getMenuText()
+{
+    if(nameThis.size())
+        return nameThis.c_str();
+    return "Cast For Free";
+}
+
+AACastCard * AACastCard::clone() const
+{
+    AACastCard * a = NEW AACastCard(*this);
+    if(tc)
+    a->tc = tc->clone();
+    if(andAbility)
+        a->andAbility = andAbility->clone();
+    return a;
+}
+AACastCard::~AACastCard()
+{
+    SAFE_DELETE(tc);
+    SAFE_DELETE(andAbility);
 }
 
 //Tutorial Messaging

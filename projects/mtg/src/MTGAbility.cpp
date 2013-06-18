@@ -337,24 +337,78 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
         check = restriction[i].find("miracle");
         if(check != string::npos)
         {
-            if(!card->miracle)
+            if(observer->turn < 1 && card->controller()->drawCounter < 1)
+                return 0;
+            if(card->previous && !card->previous->miracle)
                 return 0;
         }
 
         check = restriction[i].find("prowl");
         if(check != string::npos)
         {
+            vector<string>typeToCheck = parseBetween(restriction[i],"prowl(",")");
             bool isProwled = false;
-            for (size_t i = 0; i < card->controller()->prowledTypes.size(); ++i)
+            if(typeToCheck.size())
             {
-                if ( card->hasSubtype( card->controller()->prowledTypes[i] ))
+                vector<string>splitTypes = split(typeToCheck[1],' ');
+                if(splitTypes.size())
                 {
-                    isProwled = true;
-                    break;
+                    for (size_t k = 0; k < splitTypes.size(); ++k)
+                    {
+                        string theType = splitTypes[k];
+                        for (size_t j = 0; j < card->controller()->prowledTypes.size(); ++j)
+                        {
+                            if ( card->controller()->prowledTypes[j] == splitTypes[k])
+                            {
+                                isProwled = true;
+                                break;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    for (size_t j = 0; j < card->controller()->prowledTypes.size(); ++j)
+                    {
+                        if (  card->controller()->prowledTypes[j] == typeToCheck[1])
+                        {
+                            isProwled = true;
+                            break;
+                        }
+                    }
+                }
+
+            }
+            else
+            {
+                for (size_t j = 0; j < card->controller()->prowledTypes.size(); ++j)
+                {
+                    if ( card->hasSubtype( card->controller()->prowledTypes[j] ))
+                    {
+                        isProwled = true;
+                        break;
+                    }
                 }
             }
             if(!isProwled)
                 return 0;
+        }
+
+        check = restriction[i].find("spent(");
+        if(check != string::npos)
+        {
+            vector<string>spentMana = parseBetween(restriction[i],"spent(",")");
+            if(spentMana.size())
+            {
+                ManaCost * costToCheck = ManaCost::parseManaCost(restriction[i]);
+                ManaCost * spent = card->getManaCost()->manaUsedToCast;
+                if(spent && costToCheck && !spent->canAfford(costToCheck))
+                {
+                    SAFE_DELETE(costToCheck);
+                    return 0;
+                }
+                SAFE_DELETE(costToCheck);
+            }
         }
 
         check = restriction[i].find("ownerscontrol");
@@ -1104,6 +1158,19 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     //actual abilities, this is a limitation.
     string unchangedS = "";
     unchangedS.append(s);
+    found = s.find("pay(");
+    if (found != string::npos && storedPayString.empty())
+    {
+        vector<string> splitMayPaystr = parseBetween(s, "pay(", ")", true);
+        if(splitMayPaystr.size())
+        {
+            storedPayString.append(splitMayPaystr[2]);
+            s = splitMayPaystr[0];
+            s.append("pay(");
+            s.append(splitMayPaystr[1]);
+            s.append(")");
+        }
+    }
     found = s.find("transforms((");
     if (found != string::npos && storedString.empty())
     {
@@ -1130,6 +1197,20 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             size_t sIndex = found + 9;
             storedAbilityString.append(unchangedS.substr(sIndex, real_end - sIndex).c_str());
             unchangedS.erase(sIndex, real_end - sIndex);
+        }
+    }
+
+    found = s.find("pay[[");
+    if (found != string::npos && storedPayString.empty())
+    {
+        vector<string> splitMayPaystr = parseBetween(s, "pay[[", " ", true);
+        if(splitMayPaystr.size())
+        {
+            storedPayString.append(splitMayPaystr[2]);
+            s = splitMayPaystr[0];
+            s.append("pay[[");
+            s.append(splitMayPaystr[1]);
+            s.append("]]");
         }
     }
 
@@ -1377,29 +1458,26 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             return a;
         }
     }
-    
+    //may pay ability
+    vector<string> splitMayPay = parseBetween(s, "pay(", ")", true);
+    if(splitMayPay.size())
+    {
+        MTGAbility * a1 = NULL;
+        GenericPaidAbility * a = NEW GenericPaidAbility(observer, id, card, target,newName,castRestriction,splitMayPay[1],storedPayString);
+        a->oneShot = 1;
+        a->canBeInterrupted = false;
+        return a;
+    }
     //When...comes into play, you may...
     //When...comes into play, choose one...
     const string mayKeywords[] = {"may ", "choice "};
     const bool mayMust[] = { false, true };
-    ManaCost * mayCost = NULL;
     for (size_t i =0; i < sizeof(mayMust)/sizeof(mayMust[0]); ++i)
     {
         if (sWithoutTc.find(mayKeywords[i]) == 0)
         {
             string s1 = sWithoutTc.substr(mayKeywords[i].length());
-            MTGAbility * a1 = NULL;
-            //may pay a cost for this ability
-            vector<string> splitMayPay = parseBetween(s1, "pay(", ")", true);
-            if(splitMayPay.size())
-            {
-                a1 = parseMagicLine(splitMayPay[2], id, spell, card);
-                mayCost =  ManaCost::parseManaCost(splitMayPay[1], NULL, card);
-            }
-            else
-            {
-                a1 = parseMagicLine(s1, id, spell, card);
-            }
+            MTGAbility * a1 = parseMagicLine(s1, id, spell, card);
             if (!a1)
                 return NULL;
 
@@ -1408,8 +1486,6 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             else
                 a1 = NEW GenericActivatedAbility(observer, newName,castRestriction,id, card, a1, NULL);
             MayAbility * mainAbility = NEW MayAbility(observer, id, a1, card,mayMust[i],castRestriction);
-            if(mayCost)
-                mainAbility->optionalCost = mayCost;
             return mainAbility;
         }
     }
@@ -1424,6 +1500,17 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         return NEW GenericInstantAbility(observer, 1, card, (Damageable *) target, a1);
     }
 
+    //add an ability to the game, this is the "addToGame" version of the above ability.
+    if (s.find("activate ") == 0 || s.find(" activate ") == 0)
+    {
+        string s1 = s.substr(9);
+        MTGAbility * a1 = parseMagicLine(s1, id, spell, card);
+        if (!a1)
+            return NULL;
+
+        return NEW GenericAddToGame(observer,1, card, (Damageable *) target,a1);
+    }
+    
         // neverending effect
     if (s.find("emblem ") == 0)
     {
@@ -1876,7 +1963,16 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         a->canBeInterrupted = false;
         return a;
     }
-
+        //may pay ability
+    vector<string> splitMayPaysub = parseBetween(s, "pay[[","]]", true);
+    if(splitMayPaysub.size())
+    {
+        MTGAbility * a1 = NULL;
+        GenericPaidAbility * a = NEW GenericPaidAbility(observer, id, card, target,newName,castRestriction,splitMayPaysub[1],storedPayString);
+        a->oneShot = 1;
+        a->canBeInterrupted = false;
+        return a;
+    }
     //Upkeep Cost
     found = s.find("upcost");
     if (found != string::npos)
@@ -2058,7 +2154,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         if (card->hasType(Subtypes::TYPE_AURA))
             target = card;
 
-        MTGAbility * a = NEW AAMover(observer, id, card, target, splitMove[1]);
+        MTGAbility * a = NEW AAMover(observer, id, card, target, splitMove[1],newName);
         a->oneShot = true;
         if(storedAndAbility.size())
         {
@@ -2182,6 +2278,46 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         }
         return a;
     }
+
+        //cast a card without paying it's manacost
+     vector<string> splitCastCard = parseBetween(s, "castcard(", ")");
+    if (splitCastCard.size())
+    {
+        string builtHow = splitCastCard[1];
+        bool withRestrictions = splitCastCard[1].find("restricted") != string::npos;
+        bool asCopy = splitCastCard[1].find("copied") != string::npos;
+        bool asNormal = splitCastCard[1].find("normal") != string::npos;
+        bool sendNoEvent = splitCastCard[1].find("noevent") != string::npos;
+        string nameCard = "";
+        if(splitCastCard[1].find("named!:") != string::npos)
+        {
+            vector<string> splitCastName = parseBetween(splitCastCard[1], "named!:", ":!");
+            if(splitCastName.size())
+            {
+                nameCard = splitCastName[1];
+            }
+        }
+        MTGAbility *a = NEW AACastCard(observer, id, card, target,withRestrictions,asCopy,asNormal,nameCard,newName,sendNoEvent);
+        a->oneShot = false;
+        if(splitCastCard[1].find("trigger[to]") != string::npos)
+        {
+            a->setActionTC(NEW TriggerTargetChooser(observer, WEvent::TARGET_TO));
+        }
+        if(storedAndAbility.size())
+        {
+            string stored = storedAndAbility;
+            storedAndAbility.clear();
+            ((AACastCard*)a)->andAbility = parseMagicLine(stored, id, spell, card);
+        }
+                MTGCardInstance * _target = NULL;
+                if (spell)
+                    _target = spell->getNextCardTarget();
+                if(!_target)
+                    _target = target;
+                a->target = _target;
+        return a;
+    }
+
     bool oneShot = false;
     bool forceForever = false;
     bool untilYourNextTurn = false;
@@ -2244,7 +2380,8 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     found = s.find("donothing");
     if (found != string::npos)
     {
-        MTGAbility * a = NEW AAFakeAbility(observer, id, card, target);
+        
+        MTGAbility * a = NEW AAFakeAbility(observer, id, card, target,newName);
         a->oneShot = 1;
         return a;
     }
@@ -4106,18 +4243,26 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
 
     if (card->hasType(Subtypes::TYPE_INSTANT) || card->hasType(Subtypes::TYPE_SORCERY))
     {
-        MTGPlayerCards * zones = card->controller()->game;
-        if (card->alternateCostPaid[ManaCost::MANA_PAID_WITH_BUYBACK] > 0)
+        MTGPlayerCards * zones = card->owner->game;
+        if(card->getCurrentZone())
+            card->currentZone->owner->game;//grab it from where ever it is.
+        MTGPlayerCards * Endzones = card->owner->game;//put them in thier owners respective zones as per rules.
+        if (card->basicAbilities[(int)Constants::EXILEDEATH])
         {
-            zones->putInZone(card, zones->stack, zones->hand);
+            card->owner->game->putInZone(card, card->getCurrentZone(), card->owner->game->exile);
+
+        }
+        else if (card->alternateCostPaid[ManaCost::MANA_PAID_WITH_BUYBACK] > 0)
+        {
+            zones->putInZone(card, zones->stack, Endzones->hand);
         }
         else if (card->alternateCostPaid[ManaCost::MANA_PAID_WITH_FLASHBACK] > 0)
         {
-            zones->putInZone(card, zones->stack, zones->exile);
+            zones->putInZone(card, zones->stack, Endzones->exile);
         }
         else
         {
-            zones->putInZone(card, zones->stack, zones->graveyard);
+            zones->putInZone(card, zones->stack, Endzones->graveyard);
         }
     }
 
@@ -4763,6 +4908,14 @@ int TriggeredAbility::receiveEvent(WEvent * e)
     //that resolves instantly before the event that targetted it.
         resolve();
         return 1;
+    }
+    WEventZoneChange * stackCheck = dynamic_cast<WEventZoneChange*>(e);
+    if(stackCheck && (stackCheck->to == game->currentPlayer->game->stack||stackCheck->to == game->currentPlayer->opponent()->game->stack))
+    {
+        resolve();
+        return 1;
+        //triggers that resolve from stack events must resolve instantly or by the time they do the cards that triggered them 
+        //have already been put in play or graveyard.
     }
         fireAbility();
         return 1;

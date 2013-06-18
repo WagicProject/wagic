@@ -690,8 +690,8 @@ int MTGAlternativeCostRule::reactToClick(MTGCardInstance * card, ManaCost *alter
 
     assert(alternateCost);
     if (alternateCost->isExtraPaymentSet() )
-	{
-		if (!game->targetListIsSet(card))
+    {
+        if (!game->targetListIsSet(card))
 		    return 0;
 	}
     else
@@ -2457,7 +2457,7 @@ int MTGLegendRule::canBeInList(MTGCardInstance * card)
 {
     if(card->isPhased)
         return 0;
-    if (card->hasType(Subtypes::TYPE_LEGENDARY) && game->isInPlay(card))
+    if (card->hasType(Subtypes::TYPE_LEGENDARY) && card->controller()->game->inPlay->hasCard(card))
     {
         if(card->has(Constants::NOLEGEND))
             return 0;
@@ -2471,18 +2471,38 @@ int MTGLegendRule::added(MTGCardInstance * card)
 {
     map<MTGCardInstance *, bool>::iterator it;
     int destroy = 0;
+
+    vector<MTGCardInstance*>oldCards;
     for (it = cards.begin(); it != cards.end(); it++)
     {
         MTGCardInstance * comparison = (*it).first;
-        if (comparison != card && !(comparison->getName().compare(card->getName())))
+        if (comparison != card && comparison->controller() == card->controller() && !(comparison->getName().compare(card->getName())))
         {
-            comparison->controller()->game->putInGraveyard(comparison);
+            oldCards.push_back(comparison);
             destroy = 1;
         }
     }
-    if (destroy)
+    if(destroy)
     {
-        card->owner->game->putInGraveyard(card);
+        vector<MTGAbility*>selection;
+        MultiAbility * multi = NEW MultiAbility(game, game->mLayers->actionLayer()->getMaxId(), card, card, NULL);
+        for(unsigned int i = 0;i < oldCards.size();i++)
+        {
+            AABuryCard *a = NEW AABuryCard(game, game->mLayers->actionLayer()->getMaxId(), card, oldCards[i]);
+            a->menu = "Keep New";
+            a->oneShot = true;
+            multi->Add(a);
+        }
+        multi->oneShot = 1;
+        MTGAbility * a1 = multi;
+        selection.push_back(a1);
+        AABuryCard *b = NEW AABuryCard(game, game->mLayers->actionLayer()->getMaxId(), card, card);
+        b->menu = "Keep Old";
+        b->oneShot = true;
+        MTGAbility * b1 = b;
+        selection.push_back(b1);
+        MTGAbility * menuChoice = NEW MenuAbility(game, game->mLayers->actionLayer()->getMaxId(), card, card,true,selection,card->controller(),"Choose Legend");
+        menuChoice->addToGame();
     }
     return 1;
 }
@@ -2517,7 +2537,7 @@ int MTGPlaneWalkerRule::canBeInList(MTGCardInstance * card)
 {
     if(card->isPhased)
         return 0;
-    if (card->hasType(Subtypes::TYPE_PLANESWALKER) && game->isInPlay(card))
+    if (card->hasType(Subtypes::TYPE_PLANESWALKER) && card->controller()->game->inPlay->hasCard(card))
     {
         return 1;
     }
@@ -2528,18 +2548,38 @@ int MTGPlaneWalkerRule::added(MTGCardInstance * card)
 {
     map<MTGCardInstance *, bool>::iterator it;
     int destroy = 0;
+    vector<MTGCardInstance*>oldCards;
     for (it = cards.begin(); it != cards.end(); it++)
     {
         MTGCardInstance * comparison = (*it).first;
-        if (comparison != card && comparison->types == card->types)
+        if (comparison != card && comparison->types == card->types && comparison->controller() == card->controller())
         {
-            comparison->controller()->game->putInGraveyard(comparison);
+            oldCards.push_back(comparison);
             destroy = 1;
         }
     }
     if (destroy)
     {
-        card->owner->game->putInGraveyard(card);
+        vector<MTGAbility*>selection;
+
+        MultiAbility * multi = NEW MultiAbility(game,game->mLayers->actionLayer()->getMaxId(), card, card, NULL);
+        for(unsigned int i = 0;i < oldCards.size();i++)
+        {
+            AABuryCard *a = NEW AABuryCard(game, game->mLayers->actionLayer()->getMaxId(), card, oldCards[i]);
+            a->menu = "Keep New";
+            a->oneShot = true;
+            multi->Add(a);
+        }
+        multi->oneShot = 1;
+        MTGAbility * a1 = multi;
+        selection.push_back(a1);
+        AABuryCard *b = NEW AABuryCard(game, game->mLayers->actionLayer()->getMaxId(), card, card);
+        b->menu = "Keep Old";
+        b->oneShot = true;
+        MTGAbility * b1 = b;
+        selection.push_back(b1);
+        MTGAbility * menuChoice = NEW MenuAbility(game, game->mLayers->actionLayer()->getMaxId(), card, card,true,selection,card->controller(),"Choose Planeswalker");
+        menuChoice->addToGame();
     }
     return 1;
 }

@@ -104,6 +104,11 @@ MTGCardInstance * TargetsList::getNextCardTarget(MTGCardInstance * previous)
     size_t nextIndex = iterateTarget(previous);
     for (size_t i = nextIndex; i < targets.size(); ++i)
     {
+        if (Spell * spell = dynamic_cast<Spell *>(targets[i]))
+        {
+            if (MTGCardInstance * c = dynamic_cast<MTGCardInstance *>(spell->source))
+                return c;
+        }
         if (MTGCardInstance * c = dynamic_cast<MTGCardInstance *>(targets[i]))
             return c;
     }

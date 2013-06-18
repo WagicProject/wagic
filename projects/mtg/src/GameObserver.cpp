@@ -564,6 +564,7 @@ void GameObserver::Update(float dt)
         if(getCurrentTargetChooser()->Owner != currentlyActing())
         {
             player = getCurrentTargetChooser()->Owner;
+            isInterrupting = player;
         }
     }
     currentActionPlayer = player;
@@ -1273,8 +1274,12 @@ int GameObserver::cardClick(MTGCardInstance * card, Targetable * object, bool lo
                 break;
             }
         }
+        extraManaCost * costType = NULL;
+        if( mExtraPayment && mExtraPayment->costs.size())
+            costType = dynamic_cast<extraManaCost*>(mExtraPayment->costs[0]);
 
-        if (WaitForExtraPayment(card)) {
+        if (WaitForExtraPayment(card) && !costType) 
+        {
             toReturn = 1;
             break;
         }

@@ -35,6 +35,12 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
         {
         case 0:
             start = s.find_first_of("{");
+            if(s.find_first_of("{") != string::npos && start > 0)
+            {
+                string value = s.substr(start -1,end);
+                if(value == "n{")//"restrictio n{m orbid} would read the n{m as {m} millcost
+                    return manaCost;
+            }
             if (start == string::npos)
             {
                 return manaCost;
@@ -323,6 +329,7 @@ ManaCost::ManaCost(ManaCost * manaCost)
     suspend = NEW ManaCost( manaCost->suspend );
 
     extraCosts = manaCost->extraCosts ? manaCost->extraCosts->clone() : NULL;
+    manaUsedToCast = NULL;
     xColor = manaCost->xColor;
 }
 
@@ -350,6 +357,7 @@ ManaCost::ManaCost(const ManaCost& manaCost)
     suspend = NEW ManaCost( manaCost.suspend );
     
     extraCosts = manaCost.extraCosts ? manaCost.extraCosts->clone() : NULL;
+    manaUsedToCast = NULL;
     xColor = manaCost.xColor;
 }
 
@@ -370,6 +378,7 @@ ManaCost & ManaCost::operator= (const ManaCost & manaCost)
         FlashBack = manaCost.FlashBack;
         morph = manaCost.morph;
         suspend = manaCost.suspend;
+        manaUsedToCast = manaCost.manaUsedToCast;
         xColor = manaCost.xColor;
     }
     return *this;
@@ -385,6 +394,7 @@ ManaCost::~ManaCost()
     SAFE_DELETE(Retrace);
     SAFE_DELETE(morph);
     SAFE_DELETE(suspend);
+    SAFE_DELETE(manaUsedToCast);
 
     cost.erase(cost.begin() ,cost.end());
 }
@@ -468,6 +478,7 @@ void ManaCost::init()
     Retrace = NULL;
     morph = NULL;
     suspend = NULL;
+    manaUsedToCast = NULL;
     isMulti = false;
 }
 

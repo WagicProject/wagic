@@ -10,8 +10,8 @@
 
 SUPPORT_OBJECT_ANALYTICS(ExtraCost)
 
-ExtraCost::ExtraCost(const std::string& inCostRenderString, TargetChooser *_tc)
-    : tc(_tc), source(NULL), target(NULL), mCostRenderString(inCostRenderString)
+ExtraCost::ExtraCost(const std::string& inCostRenderString, TargetChooser *_tc, ManaCost * _costToPay)
+    : tc(_tc),costToPay(_costToPay), source(NULL), target(NULL), mCostRenderString(inCostRenderString)
 {
     if (tc)
         tc->targetter = NULL;
@@ -19,6 +19,7 @@ ExtraCost::ExtraCost(const std::string& inCostRenderString, TargetChooser *_tc)
 
 ExtraCost::~ExtraCost()
 {
+    SAFE_DELETE(costToPay);
     SAFE_DELETE(tc);
 }
 
@@ -61,7 +62,55 @@ int ExtraCost::setPayment(MTGCardInstance * card)
             target = card;
         }
     }
+    if (costToPay && source->controller()->getManaPool()->canAfford(costToPay))
+    {
+        result = 1;
+    }
     return result;
+}
+//extra added manacost, or add a manacost as the cost of extra
+extraManaCost * extraManaCost::clone() const
+{
+    extraManaCost * ec = NEW extraManaCost(*this);
+    return ec;
+}
+
+extraManaCost::extraManaCost(ManaCost * costToPay)
+    : ExtraCost("Pay The Cost",NULL, costToPay)
+{
+}
+
+int extraManaCost::tryToSetPayment(MTGCardInstance * card)
+{
+    return 1;
+}
+
+int extraManaCost::isPaymentSet()
+{
+    if (!source->controller()->getManaPool()->canAfford(costToPay))
+    {
+        return 0;
+    }
+    return 1;
+}
+
+int extraManaCost::canPay()
+{
+    MTGCardInstance * _target = (MTGCardInstance *) target;
+    if(!source->controller()->getManaPool()->canAfford(costToPay))
+    {
+        return 0;
+    }
+    return 1;
+}
+
+int extraManaCost::doPay()
+{
+    if (!source->controller()->getManaPool()->canAfford(costToPay))
+        return 0;
+
+    source->controller()->getManaPool()->pay(costToPay);
+    return 1;
 }
 
 //life cost

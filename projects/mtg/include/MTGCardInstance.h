@@ -115,12 +115,11 @@ public:
     ManaCost increasedCost;
     ManaCost * getReducedManaCost();
     ManaCost * getIncreasedManaCost();
-
     bool matchesCastFilter(int castMethod);
 
     // The recommended method to test for summoning Sickness !
     int hasSummoningSickness();
-    MTGCardInstance * changeController(Player * newcontroller);
+    MTGCardInstance * changeController(Player * newcontroller,bool notZone = false);
     Player * owner;
     Counters * counters;
     const string getDisplayName() const;

@@ -1716,7 +1716,7 @@ void GameStateDuel::OnScroll(int inXVelocity, int inYVelocity)
     if (abs(inXVelocity) > 300)
     {
         bool flickLeft = (inYVelocity > 0);
-        if(flickLeft)
+        if(flickLeft && OptionClosedHand::INVISIBLE == options[Options::CLOSEDHAND].number)
         {
             JButton trigger = (options[Options::REVERSETRIGGERS].number ? JGE_BTN_PREV : JGE_BTN_NEXT);
             mEngine->HoldKey_NoRepeat(trigger);

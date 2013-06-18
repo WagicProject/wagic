@@ -309,6 +309,10 @@ int Spell::resolve()
         Player * p = source->controller();
         int castMethod = source->castMethod;
         vector<Targetable*>backupTgt = source->backupTargets;
+        if(from != source->currentZone)
+        {
+            from = source->currentZone;//this happens when casting spells that belong to another player or casting a copy of someone elses spell.
+        }
         source = p->game->putInZone(source, from, p->game->battlefield);
         
         // We need to get the information about the cast method on both the card in the stack AND the card in play,
@@ -326,6 +330,8 @@ int Spell::resolve()
 		if(observer->getResourceManager())
 			observer->getResourceManager()->PlaySample(source->getSample());
     }
+    if(this->cost)
+        source->getManaCost()->manaUsedToCast = NEW ManaCost(this->cost);
     AbilityFactory af(observer);
     af.addAbilities(observer->mLayers->actionLayer()->getMaxId(), this);
     return 1;
@@ -419,6 +425,11 @@ Interruptible(observer, id)
 int PutInGraveyard::resolve()
 {
     MTGGameZone * zone = card->getCurrentZone();
+    if (card->basicAbilities[(int)Constants::EXILEDEATH])
+    {
+        card->owner->game->putInZone(card, zone, card->owner->game->exile);
+        return 1;
+    }
     if (zone == observer->players[0]->game->inPlay || zone == observer->players[1]->game->inPlay)
     {
         card->owner->game->putInZone(card, zone, card->owner->game->graveyard);
@@ -900,7 +911,7 @@ void ActionStack::Update(float dt)
     if (mode == ACTIONSTACK_STANDARD)
     {
         modal = 0;
-        if (getLatest(NOT_RESOLVED))
+        if (getLatest(NOT_RESOLVED) && !tc)
         {
             Interruptible * currentSpell = (Interruptible *)getLatest(NOT_RESOLVED);
             MTGCardInstance * card = currentSpell->source;
@@ -1054,6 +1065,11 @@ bool ActionStack::CheckUserInput(JButton inputKey)
         {
             if (JGE_BTN_SEC == key)
             {
+                if(observer->mExtraPayment)
+                {
+                    observer->mExtraPayment->action->CheckUserInput(JGE_BTN_SEC);
+                    observer->mExtraPayment = NULL;
+                }
                 endOfInterruption();
                 return true;
             }
@@ -1167,7 +1183,12 @@ void ActionStack::Render()
     {
         if (!askIfWishesToInterrupt || !askIfWishesToInterrupt->displayStack())
             return;
-
+        /*observer->mExtraPayment = NULL*/;//end any payment request from extra cost as we open the stack to display items.
+        if(observer->mExtraPayment)
+        {
+        observer->mExtraPayment->action->CheckUserInput(JGE_BTN_SEC);
+        observer->mExtraPayment = NULL;
+        }
         for (size_t i = 0; i < mObjects.size(); i++)
         {
             Interruptible * current = (Interruptible *) mObjects[i];

@@ -95,6 +95,16 @@ bool ActionLayer::CheckUserInput(JButton key)
 {
     if (observer->mExtraPayment && key == JGE_BTN_SEC)
     {
+        for (size_t i = 0; i < mObjects.size(); i++)
+        {
+            if (mObjects[i] != NULL)
+            {
+                ActionElement * currentAction = (ActionElement *) mObjects[i];
+                currentAction->CheckUserInput(key);
+                //check first with a mock up to see if any abilities will care about the extra payment
+                //being cancelled. currently only menuability and paidability will care.
+            }
+        }
         observer->mExtraPayment = NULL;
         return 1;
     }
