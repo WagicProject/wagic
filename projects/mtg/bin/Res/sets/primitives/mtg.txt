@@ -1,6 +1,18 @@
 ﻿#Primitives Pack for Wagic the Homebrew.
 #Please keep these card alphabetized, and try to have the "name=" line at the top of each card
 [card]
+name=Aeon Chronicler
+auto=phandcount/phandcount nonstatic
+autoexile=@counterremoved(0/0,1,Time) from(sourcecard) suspended:draw:1
+suspend(0)={X}{3}{U}
+text=Aeon Chronicler's power and toughness are each equal to the number of cards in your hand. -- Suspend X - {X}{3}{U}. X can't be 0. (Rather than cast this card from your hand, you may pay {X}{3}{U} and exile it with X time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost. It has haste.) -- Whenever a time counter is removed from Aeon Chronicler while it's exiled, draw a card.
+mana={3}{U}{U}
+type=Creature
+subtype=Avatar
+power=*
+toughness=*
+[/card]
+[card]
 name=AErathi Berserker
 auto=rampage(3/3,1)
 text=Rampage 3 (Whenever this creature becomes blocked, it gets +3/+3 until end of turn for each creature blocking it beyond the first.)
@@ -19,6 +31,14 @@ type=Creature
 subtype=Human Wizard
 power=2
 toughness=2
+[/card]
+[card]
+name=AEther Barrier
+auto=@movedto(creature|mystack):name(pay or sacrifice) ability$!name(pay or sacrifice) pay[[{1}]] name(pay 1 mana) donothing?activate sacrifice notatarget(*|mybattlefield)!$ controller
+auto=@movedto(creature|opponentstack):name(pay or sacrifice) ability$!name(pay or sacrifice) pay[[{1}]] name(pay 1 mana) donothing?activate sacrifice notatarget(*|mybattlefield)!$ opponent
+text=Whenever a player casts a creature spell, that player sacrifices a permanent unless he or she pays {1}.
+mana={2}{U}
+type=Enchantment
 [/card]
 [card]
 name=AEther Burst
@@ -1686,6 +1706,13 @@ mana={1}{R}
 type=Instant
 [/card]
 [card]
+name=All Hallow's Eve
+auto=moveto(exile) and!(transforms((,newability[counter(0/0.2.Scream)],newability[autoexile=@each myupkeep:counter(0/0.-1.Scream)],newability[autoexile=this(counter{0/0.1.Scream}<1)while moveto(ownergraveyard) && moveto(ownerbattlefield) all(creature|graveyard)])) forever)!
+text=Exile All Hallow's Eve with two scream counters on it. -- At the beginning of your upkeep, if All Hallow's Eve is exiled with a scream counter on it, remove a scream counter from it. If there are no more scream counters on it, put it into your graveyard and each player returns all creature cards from his or her graveyard to the battlefield.
+mana={2}{B}{B}
+type=Sorcery
+[/card]
+[card]
 name=Allay
 target=enchantment
 auto=destroy
@@ -3065,7 +3092,7 @@ type=Instant
 [/card]
 [card]
 name=Apothecary Initiate
-alias=1114
+auto=@movedto(*[white]|stack):pay({1}) life:1
 text=Whenever a player casts a white spell, you may pay {1}. If you do, you gain 1 life.
 mana={W}
 type=Creature
@@ -4285,7 +4312,7 @@ type=Enchantment
 [/card]
 [card]
 name=Artisan of Kozilek
-autostack=may name(reanimate) target(creature|mygraveyard) moveTo(mybattlefield)
+auto=if casted(this) then may name(reanimate) target(creature|mygraveyard) moveTo(mybattlefield)
 auto=@combat(attacking) source(this):name(Annihilate) ability$!name(sacrifice) notatarget(<2>*|mybattlefield) sacrifice!$ opponent
 text=When you cast Artisan of Kozilek, you may return target creature card from your graveyard to the battlefield. -- Annihilator 2 (Whenever this creature attacks, defending player sacrifices two permanents.)
 mana={9}
@@ -5046,7 +5073,7 @@ toughness=2
 [/card]
 [card]
 name=Auspicious Ancestor
-alias=1114
+auto=@movedto(*[white]|stack):pay({1}) life:1
 auto=@movedTo(this|mygraveyard) from(Battlefield):life:3 controller
 text=When Auspicious Ancestor dies, you gain 3 life. -- Whenever a player casts a white spell, you may pay {1}. If you do, you gain 1 life.
 mana={3}{W}
@@ -5609,6 +5636,16 @@ power=1
 toughness=3
 [/card]
 [card]
+name=Azorius AEthermage
+auto=@movedto(*|myhand) from(battlefield):pay({1}) draw:1 controller
+text=Whenever a permanent is returned to your hand, you may pay {1}. If you do, draw a card.
+mana={1}{W}{U}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=1
+[/card]
+[card]
 name=Azorius Arrester
 auto=name(detain) target(creature|opponentBattlefield) transforms((Detained,newability[cantattack],newability[cantblock],newability[noactivatedability])) uynt
 text=When Azorius Arrester enters the battlefield, detain target creature an opponent controls. (Until your next turn, that creature can't attack or block and its activated abilities can't be activated.)
@@ -5667,8 +5704,7 @@ subtype=Gate
 [card]
 name=Azorius Herald
 abilities=unblockable
-other={1}{W}{U} name(Spend U to Cast)
-auto=ifnot paid(alternative) then sacrifice all(this)
+auto=ifnot spent({U}) then sacrifice all(this)
 auto=life:4
 text=Azorius Herald is unblockable. -- When Azorius Herald enters the battlefield, you gain 4 life. -- When Azorius Herald enters the battlefield, sacrifice it unless {U} was spent to cast it.
 mana={2}{W}
@@ -6172,6 +6208,15 @@ mana={U}
 type=Instant
 [/card]
 [card]
+name=Banishing Stroke
+target=*[artifact;creature;enchantment]
+auto=bottomoflibrary
+autohand=restriction{miracle} pay[[{W}]] name(Miracle) activate name(Miracle) castcard(normal)
+text=Put target artifact, creature, or enchantment on the bottom of its owner's library. -- Miracle {W} (You may cast this card for its miracle cost when you draw it if it's the first card you drew this turn.)
+mana={5}{W}
+type=Instant
+[/card]
+[card]
 name=Banishment Decree
 target=artifact,creature,enchantment
 auto=moveTo(ownerlibrary)
@@ -6666,6 +6711,28 @@ mana={3}{R}
 type=Instant
 [/card]
 [card]
+name=Basilica Guards
+abilities=defender
+auto=@movedto(*|mystack):pay({WB}) life:-1 opponent && life:1 controller
+text=Defender -- Extort (Whenever you cast a spell, you may pay {WB}. If you do, each opponent loses 1 life and you gain that much life.)
+mana={2}{W}
+type=Creature
+subtype=Human Soldier
+power=1
+toughness=4
+[/card]
+[card]
+name=Basilica Screecher
+abilities=flying
+auto=@movedto(*|mystack):pay({WB}) life:-1 opponent && life:1 controller
+text=Flying -- Extort (Whenever you cast a spell, you may pay {WB}. If you do, each opponent loses 1 life and you gain that much life.)
+mana={1}{B}
+type=Creature
+subtype=Bat
+power=1
+toughness=2
+[/card]
+[card]
 name=Basilisk Collar
 auto={2}:equip
 auto=deathtouch
@@ -6983,6 +7050,14 @@ type=Creature
 subtype=Bird Soldier
 power=2
 toughness=2
+[/card]
+[card]
+name=Batwing Brume
+auto=if spent({W}) then preventAllCombatDamage ueot
+auto=if spent({U}) then life:-type:creature[attacking]:mybattlefield controller && life:-type:creature[attacking]:opponentbattlefield opponent
+text=Prevent all combat damage that would be dealt this turn if {W} was spent to cast Batwing Brume. Each player loses 1 life for each attacking creature he or she controls if {B} was spent to cast Batwing Brume. (Do both if {W}{B} was spent.)
+mana={1}{WB}
+type=Instant
 [/card]
 [card]
 name=Bay Falcon
@@ -7367,6 +7442,18 @@ type=Creature
 subtype=Human Knight
 power=2
 toughness=2
+[/card]
+[card]
+name=Benalish Commander
+auto=type:soldier:mybattlefield/type:soldier:mybattlefield nonstatic
+autoexile=@counterremoved(0/0,1,Time) from(sourcecard) suspended:token(Soldier,Creature Soldier,1/1,white)
+suspend(0)={X}{W}{W}
+text=Benalish Commander's power and toughness are each equal to the number of Soldiers you control. -- Suspend X - {X}{W}{W}. X can't be 0. (Rather than cast this card from your hand, you may pay {X}{W}{W} and exile it with X time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost. It has haste.) -- Whenever a time counter is removed from Benalish Commander while it's exiled, put a 1/1 white Soldier creature token onto the battlefield.
+mana={3}{W}
+type=Creature
+subtype=Human Soldier
+power=*
+toughness=*
 [/card]
 [card]
 name=Benalish Emissary
@@ -8267,6 +8354,14 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Blessings of Nature
+auto=ability$!counter(1/1,1) target(creature)!$ controller && ability$!counter(1/1,1) target(creature)!$ controller && ability$!counter(1/1,1) target(creature)!$ controller && ability$!counter(1/1,1) target(creature)!$ controller
+autohand=restriction{miracle} pay[[{G}]] name(Miracle) activate name(Miracle) castcard(normal)
+text=Distribute four +1/+1 counters among any number of target creatures. -- Miracle {G} (You may cast this card for its miracle cost when you draw it if it's the first card you drew this turn.)
+mana={4}{G}
+type=Sorcery
+[/card]
+[card]
 name=Blight
 target=land
 auto=@tapped(mytgt):destroy
@@ -8377,6 +8472,14 @@ type=Creature
 subtype=Zombie Beast
 power=3
 toughness=3
+[/card]
+[card]
+name=Blind Obedience
+auto=@movedto(*|mystack):pay({WB}) life:-1 opponent && life:1 controller
+auto=@movedTo(creature,artifact|opponentBattlefield):all(trigger) tap
+text=Extort (Whenever you cast a spell, you may pay {WB}. If you do, each opponent loses 1 life and you gain that much life.) -- Artifacts and creatures your opponents control enter the battlefield tapped.
+mana={1}{W}
+type=Enchantment
 [/card]
 [card]
 name=Blind Phantasm
@@ -8709,7 +8812,7 @@ type=Artifact
 [card]
 name=Blood Crypt
 auto=tap
-auto=may untap && life:-2 controller
+auto=pay({L}{L}) untap
 text=({T}: Add {B} or {R} to your mana pool.) -- As Blood Crypt enters the battlefield, you may pay 2 life. If you don't, Blood Crypt enters the battlefield tapped.
 type=Land
 subtype=Swamp Mountain
@@ -9702,6 +9805,17 @@ power=1
 toughness=2
 [/card]
 [card]
+name=Bog-Strider Ash
+abilities=swampwalk
+auto=@movedto(goblin|stack):pay({G}) life:2 controller
+text=Swampwalk -- Whenever a player casts a Goblin spell, you may pay {G}. If you do, you gain 2 life.
+mana={3}{G}
+type=Creature
+subtype=Treefolk Shaman
+power=2
+toughness=4
+[/card]
+[card]
 name=Boil
 auto=destroy all(island)
 text=Destroy all Islands.
@@ -10101,9 +10215,8 @@ toughness=1
 [card]
 name=Boros Fury-Shield
 target=creature[attacking;blocking]
-other={1}{W}{R} name(Spend R to Cast)
 auto=0/0 && fog from(mytgt) oneshot
-auto=alternative dynamicability<!mytgt powerstrike targetcontroller!>
+auto=if spent({R}) then dynamicability<!mytgt powerstrike targetcontroller!>
 text=Prevent all combat damage that would be dealt by target attacking or blocking creature this turn. If {R} was spent to cast Boros Fury-Shield, it deals damage to that creature's controller equal to the creature's power.
 mana={2}{W}
 type=Instant
@@ -10759,7 +10872,7 @@ type=Enchantment
 [card]
 name=Breeding Pool
 auto=tap
-auto=may untap && life:-2 controller
+auto=pay({L}{L}) untap
 text=({T}: Add {G} or {U} to your mana pool.) -- As Breeding Pool enters the battlefield, you may pay 2 life. If you don't, Breeding Pool enters the battlefield tapped.
 type=Land
 subtype=Forest Island
@@ -12100,6 +12213,29 @@ subtype=Human
 power=*
 toughness=*
 [/card]
+###The 2 cards below should stay together (Flip Card)###
+[card]
+name=Callow Jushi
+auto=@movedTo(spirit,arcane|mystack):may counter(0/0,1,Ki)
+auto=@each endofturn:this(counter{0/0.2.Ki}) may flip(Jaraku the Interloper)
+text=Whenever you cast a Spirit or Arcane spell, you may put a ki counter on Callow Jushi. -- At the beginning of the end step, if there are two or more ki counters on Callow Jushi, you may flip it.
+mana={1}{U}{U}
+type=Creature
+subtype=Human Wizard
+power=2
+toughness=2
+[/card]
+[card]
+name=Jaraku the Interloper
+auto={C(0/0,-1,Ki)}:name(counter spell) target(*|stack) transforms((,newability[pay[[{2}]] name(pay 2 mana) donothing?fizzle])) forever
+text=Remove a ki counter from Jaraku the Interloper: Counter target spell unless its controller pays {2}.
+color=blue
+type=Legendary Creature
+subtype=Spirit
+power=4
+toughness=4
+[/card]
+###The 2 cards above should stay together (Flip Card)###
 [card]
 name=Calming Verse
 auto=destroy all(enchantment|opponentBattlefield)
@@ -12663,6 +12799,16 @@ type=Creature
 subtype=Zombie Wolf
 power=2
 toughness=2
+[/card]
+[card]
+name=Carrion Thrash
+auto=@movedto(this|graveyard) from(battlefield):pay({2}) moveto(ownerhand) target(other creature|mygraveyard)
+text=When Carrion Thrash is put into a graveyard from the battlefield, you may pay {2}. If you do, return another target creature card from your graveyard to your hand.
+mana={2}{B}{R}{G}
+type=Creature
+subtype=Viashino Warrior
+power=4
+toughness=4
 [/card]
 [card]
 name=Carrion Wall
@@ -13621,6 +13767,22 @@ mana={2}{R}{R}
 type=Sorcery
 [/card]
 [card]
+name=Chain of Acid
+target=*[-creature]
+auto=transforms((,newability[destroy],newability[may name(copy chain of acid) activate name(copy chain of acid) castcard(copied noevent named!:Chain of Acid:!)])) forever
+text=Destroy target noncreature permanent. Then that permanent's controller may copy this spell and may choose a new target for that copy.
+mana={3}{G}
+type=Sorcery
+[/card]
+[card]
+name=Chain of Smog
+target=player
+auto=ability$!target(<2>*|myhand) reject and!(may name(copy chain of smog) activate name(copy chain of smog) castcard(copied noevent named!:Chain of Smog:!))!!$ targetedplayer
+text=Target player discards two cards. That player may copy this spell and may choose a new target for that copy.
+mana={1}{B}
+type=Sorcery
+[/card]
+[card]
 name=Chainbreaker
 auto=counter(-1/-1,2)
 auto={3}{T}:counter(-1/-1,-1) target(creature)
@@ -13673,6 +13835,30 @@ type=Creature
 subtype=Beast
 power=2
 toughness=2
+[/card]
+[card]
+name=Chalice of the Void
+auto=counter(0/0,xx,Charge)
+auto=this(counter{0/0.1.Charge}<1) transforms((,newability[@movedTo(*[manacost=0]|stack):choice fizzle all(*[manacost=0]|stack)]))
+auto=this(counter{0/0.1.Charge}) transforms((,newability[@movedTo(*[manacost=1]|stack):choice fizzle all(*[manacost=1]|stack)]))
+auto=this(counter{0/0.2.Charge}) transforms((,newability[@movedTo(*[manacost=2]|stack):choice fizzle all(*[manacost=2]|stack)]))
+auto=this(counter{0/0.3.Charge}) transforms((,newability[@movedTo(*[manacost=3]|stack):choice fizzle all(*[manacost=3]|stack)]))
+auto=this(counter{0/0.4.Charge}) transforms((,newability[@movedTo(*[manacost=4]|stack):choice fizzle all(*[manacost=4]|stack)]))
+auto=this(counter{0/0.5.Charge}) transforms((,newability[@movedTo(*[manacost=5]|stack):choice fizzle all(*[manacost=5]|stack)]))
+auto=this(counter{0/0.6.Charge}) transforms((,newability[@movedTo(*[manacost=6]|stack):choice fizzle all(*[manacost=6]|stack)]))
+auto=this(counter{0/0.7.Charge}) transforms((,newability[@movedTo(*[manacost=7]|stack):choice fizzle all(*[manacost=7]|stack)]))
+auto=this(counter{0/0.8.Charge}) transforms((,newability[@movedTo(*[manacost=8]|stack):choice fizzle all(*[manacost=8]|stack)]))
+auto=this(counter{0/0.9.Charge}) transforms((,newability[@movedTo(*[manacost=9]|stack):choice fizzle all(*[manacost=9]|stack)]))
+auto=this(counter{0/0.10.Charge}) transforms((,newability[@movedTo(*[manacost=10]|stack):choice fizzle all(*[manacost=10]|stack)]))
+auto=this(counter{0/0.11.Charge}) transforms((,newability[@movedTo(*[manacost=11]|stack):choice fizzle all(*[manacost=11]|stack)]))
+auto=this(counter{0/0.12.Charge}) transforms((,newability[@movedTo(*[manacost=12]|stack):choice fizzle all(*[manacost=12]|stack)]))
+auto=this(counter{0/0.13.Charge}) transforms((,newability[@movedTo(*[manacost=13]|stack):choice fizzle all(*[manacost=13]|stack)]))
+auto=this(counter{0/0.14.Charge}) transforms((,newability[@movedTo(*[manacost=14]|stack):choice fizzle all(*[manacost=14]|stack)]))
+auto=this(counter{0/0.15.Charge}) transforms((,newability[@movedTo(*[manacost=15]|stack):choice fizzle all(*[manacost=15]|stack)]))
+auto=this(counter{0/0.16.Charge}) transforms((,newability[@movedTo(*[manacost=16]|stack):choice fizzle all(*[manacost=16]|stack)]))
+text=Chalice of the Void enters the battlefield with X charge counters on it. -- Whenever a player casts a spell with converted mana cost equal to the number of charge counters on Chalice of the Void, counter that spell.
+mana={X}{X}
+type=Artifact
 [/card]
 [card]
 name=Chamber of Manipulation
@@ -13781,6 +13967,17 @@ type=Legendary Creature
 subtype=Human Rogue
 power=3
 toughness=3
+[/card]
+[card]
+name=Chandra Ablaze
+auto=counter(0/0,5,loyalty)
+auto={C(0/0,1,Loyalty)}:name(discard a card) all(this) transforms((,newability[reject notatarget(*|myhand)],newability[@discarded(*[red]|myhand) once:damage:4 target(*[creature;player])])) ueot
+auto={C(0/0,-2,Loyalty)}:name(discard hand) reject all(*|hand) && draw:3 all(player)
+auto={C(0/0,-7,Loyalty)}:name(cast cards) castcard(normal) target(<anyamount>*[instant;sorcery]|mygraveyard)
+text=+1: Discard a card. If a red card is discarded this way, Chandra Ablaze deals 4 damage to target creature or player. -- -2: Each player discards his or her hand, then draws three cards. -- -7: Cast any number of red instant and/or sorcery cards from your graveyard without paying their mana costs.
+mana={4}{R}{R}
+type=Planeswalker
+subtype=Chandra
 [/card]
 [card]
 name=Chandra Nalaar
@@ -13954,7 +14151,7 @@ type=World Enchantment
 [card]
 name=Chaotic Backlash
 target=player
-auto=foreach(*[white;blue]|opponentBattlefield) damage:2
+auto=damage:twicetype:*[white;blue]:targetedpersonsbattlefield
 text=Chaotic Backlash deals damage to target player equal to twice the number of white and/or blue permanents he or she controls.
 mana={4}{R}
 type=Instant
@@ -14364,8 +14561,7 @@ type=Sorcery
 name=Choking Tethers
 target=<upto:4>creature
 auto=tap
-autohand=__CYCLING__({1}{U})
-autohand={1}{U}{cycle}:name(cycling + effect) tap target(creature) && draw:1 controller
+autohand={1}{U}{cycle}:name(cycling) transforms((,newability[draw:1],newability[may tap target(creature)])) forever
 text=Tap up to four target creatures. -- Cycling {1}{U} ({1}{U}, Discard this card: Draw a card.) -- When you cycle Choking Tethers, you may tap target creature.
 mana={3}{U}
 type=Instant
@@ -15319,6 +15515,13 @@ type=Creature
 subtype=Sliver
 power=1
 toughness=1
+[/card]
+[card]
+name=Cloven Casting
+auto=@movedto(instant,sorcery[multicolor]|mystack):target(trigger[to]<1>) pay[[{1}]] name(copy spell) activate name(copy spell) castcard(copied noevent)
+text=Whenever you cast a multicolored instant or sorcery spell, you may pay {1}. If you do, copy that spell. You may choose new targets for the copy.
+mana={5}{U}{R}
+type=Enchantment
 [/card]
 [card]
 name=Cloud Cover
@@ -16452,6 +16655,15 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Controvert
+target=*|stack
+auto=fizzle
+autograveyard=@movedto(creature|mygraveyard) from(battlefield):pay({2}{U}{U}) name(recover) moveto(ownerhand)?name(exile) moveto(exile)
+text=Counter target spell. -- Recover {2}{U}{U} (When a creature is put into your graveyard from the battlefield, you may pay {2}{U}{U}. If you do, return this card from your graveyard to your hand. Otherwise, exile this card.)
+mana={2}{U}{U}
+type=Instant
+[/card]
+[card]
 name=Convalescence
 auto=@each my upkeep:this(controllerlife < 11) life:1
 text=At the beginning of your upkeep, if you have 10 or less life, you gain 1 life.
@@ -16507,6 +16719,14 @@ text=Enchant land -- As Convincing Mirage enters the battlefield, choose a basic
 mana={1}{U}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+name=Convolute
+target=*|stack
+auto=transforms((,newability[pay[[{4}]] name(pay 4 mana) donothing?fizzle])) forever
+text=Counter target spell unless its controller pays {4}.
+mana={2}{U}
+type=Instant
 [/card]
 [card]
 name=Coordinated Barrage
@@ -16983,7 +17203,7 @@ type=Instant
 name=Countersquall
 target=*[-creature]|stack
 auto=fizzle
-auto=life:-2 opponent
+auto=life:-2 targetcontroller
 text=Counter target noncreature spell. Its controller loses 2 life.
 mana={U}{B}
 type=Instant
@@ -17148,6 +17368,13 @@ type=Creature
 subtype=Treefolk
 power=4
 toughness=4
+[/card]
+[card]
+name=Cradle of Vitality
+auto=@lifed(controller):pay({1}{W}) counter(1/1,thatmuch) target(creature)
+text=Whenever you gain life, you may pay {1}{W}. If you do, put a +1/+1 counter on target creature for each 1 life you gained.
+mana={3}{W}
+type=Enchantment
 [/card]
 [card]
 name=Cradle to Grave
@@ -17647,7 +17874,7 @@ type=Instant
 [card]
 name=Crosis, the Purger
 abilities=flying
-auto=@combatdamaged(player) from(this):may name(pay ability) transforms((,newability[{2}{B}:activatechooseacolor all(*[chosencolor]|opponenthand) reject activatechooseend limit:1 mycombatdamageonly])) oneshot
+auto=@combatdamaged(player) from(this):pay({2}{B}) activatechooseacolor all(*[chosencolor]|opponenthand) reject activatechooseend
 text=Flying -- Whenever Crosis, the Purger deals combat damage to a player, you may pay {2}{B}. If you do, choose a color, then that player reveals his or her hand and discards all cards of that color.
 mana={3}{U}{B}{R}
 type=Legendary Creature
@@ -18059,10 +18286,9 @@ toughness=3
 [card]
 name=Crypt Champion
 abilities=double strike
-other={2}{R}{B} name(Spend R to Cast)
 auto=moveto(ownerbattlefield) notatarget(creature[manacost<=3]|mygraveyard)
 auto=ability$! moveto(ownerbattlefield) notatarget(creature[manacost<=3]|mygraveyard) !$ opponent
-auto=ifnot paid(alternative) then sacrifice all(this)
+auto=ifnot spent({R}) then sacrifice all(this)
 text=Double strike -- When Crypt Champion enters the battlefield, each player puts a creature card with converted mana cost 3 or less from his or her graveyard onto the battlefield. -- When Crypt Champion enters the battlefield, sacrifice it unless {R} was spent to cast it.
 mana={3}{B}
 type=Creature
@@ -18089,6 +18315,17 @@ type=Creature
 subtype=Zombie
 power=2
 toughness=1
+[/card]
+[card]
+name=Crypt Ghast
+auto=@movedto(*|mystack):pay({WB}) life:-1 opponent && life:1 controller
+auto=@tappedformana(swamp|mybattlefield):Add{B}
+text=Extort (Whenever you cast a spell, you may pay {WB}. If you do, each opponent loses 1 life and you gain that much life.) -- Whenever you tap a Swamp for mana, add {B} to your mana pool (in addition to the mana the land produces).
+mana={3}{B}
+type=Creature
+subtype=Spirit
+power=2
+toughness=2
 [/card]
 [card]
 name=Crypt Incursion
@@ -18181,9 +18418,16 @@ type=Land
 [/card]
 [card]
 name=Crystal Rod
-alias=1103
+auto=@movedto(*[blue]|stack):pay({1}) life:1
 text=Whenever a player casts a blue spell, you may pay {1}. If you do, you gain 1 life.
 mana={1}
+type=Artifact
+[/card]
+[card]
+name=Crystal Shard
+auto={3U}{T}:name(bounce) target(creature) transforms((,newability[pay[[{1}]] name(pay 1 mana) donothing?name(bounce) moveto(ownerhand)])) forever
+text={3}, {T} or {U}, {T}: Return target creature to its owner's hand unless its controller pays {1}.
+mana={3}
 type=Artifact
 [/card]
 [card]
@@ -18483,6 +18727,16 @@ mana={1}{W}
 type=Instant
 [/card]
 [card]
+name=Cursecatcher
+auto={S}:name(counter spell) target(*[instant;sorcery]|stack) transforms((,newability[pay[[{1}]] name(pay 1 mana) donothing?fizzle])) forever
+text=Sacrifice Cursecatcher: Counter target instant or sorcery spell unless its controller pays {1}.
+mana={U}
+type=Creature
+subtype=Merfolk Wizard
+power=1
+toughness=1
+[/card]
+[card]
 name=Cursed Flesh
 target=creature
 auto=-1/-1
@@ -18539,6 +18793,13 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Customs Depot
+auto=@movedto(creature|mystack):pay({1}) name(draw & discard) ability$!draw:1 _ choice notatarget(*|myhand) reject)!$ controller
+text=Whenever you cast a creature spell, you may pay {1}. If you do, draw a card, then discard a card.
+mana={1}{U}
+type=Enchantment
+[/card]
+[card]
 name=Cut the Earthly Bond
 target=*[enchanted]
 auto=moveTo(ownerhand)
@@ -18546,6 +18807,13 @@ text=Return target enchanted permanent to its owner's hand.
 mana={U}
 type=Instant
 subtype=Arcane
+[/card]
+[card]
+name=Cut the Tethers
+auto=all(spirit) transforms((,newability[pay[[{3}]] name(pay 3 mana) donothing?name(bounce) moveto(ownerhand)])) forever
+text=For each Spirit, return it to its owner's hand unless that player pays {3}.
+mana={2}{U}{U}
+type=Sorcery
 [/card]
 [card]
 name=Cutthroat il-Dal
@@ -18889,6 +19157,17 @@ type=Legendary Creature
 subtype=Human Soldier
 power=3
 toughness=3
+[/card]
+[card]
+name=Darigaaz, the Igniter
+abilities=flying
+auto=@combatdamaged(player) from(this):pay({2}{R}) activatechooseacolor choice name(look) donothing notatarget(*|opponenthand) && foreach(*[chosencolor]|opponenthand) damage:1 opponent activatechooseend
+text=Flying -- Whenever Darigaaz, the Igniter deals combat damage to a player, you may pay {2}{R}. If you do, choose a color, then that player reveals his or her hand and Darigaaz deals damage to the player equal to the number of cards of that color revealed this way.
+mana={3}{B}{R}{G}
+type=Legendary Creature
+subtype=Dragon
+power=6
+toughness=6
 [/card]
 [card]
 name=Darigaaz's Attendant
@@ -19606,6 +19885,15 @@ power=2
 toughness=1
 [/card]
 [card]
+name=Dawnglow Infusion
+auto=ifnot spent({W}) then if spent({G}) then life:X
+auto=ifnot spent({G}) then if spent({W}) then life:X
+auto=if spent({G}),spent({W}) then life:twiceX
+text=You gain X life if {G} was spent to cast Dawnglow Infusion and X life if {W} was spent to cast it. (Do both if {G}{W} was spent.)
+mana={X}{GW}
+type=Sorcery
+[/card]
+[card]
 name=Dawning Purist
 facedown={3}
 autofacedown={1}{W}:morph
@@ -19704,6 +19992,16 @@ type=Creature
 subtype=Werewolf
 power=4
 toughness=4
+[/card]
+###The 2 cards above should stay together (Flip Card)###
+[card]
+name=Daze
+other={H(island|mybattlefield)} name(Return an Island to Hand)
+target=*|stack
+auto=transforms((,newability[pay[[{1}]] name(pay 1 mana) donothing?fizzle])) forever
+text=You may return an Island you control to its owner's hand rather than pay Daze's mana cost. -- Counter target spell unless its controller pays {1}.
+mana={1}{U}
+type=Instant
 [/card]
 [card]
 name=Dead Reveler
@@ -19853,6 +20151,16 @@ text={1}{G}: Death-Hood Cobra gains reach until end of turn. -- {1}{G}: Death-Ho
 mana={1}{G}
 type=Creature
 subtype=Snake
+power=2
+toughness=2
+[/card]
+[card]
+name=Death Charmer
+auto=@combatdamaged(creature|opponentbattlefield) from(this):ability$!name(pay or lifeloss) pay[[{2}]] name(pay 2 mana) donothing?life:-2!$ opponent
+text=Whenever Death Charmer deals combat damage to a creature, that creature's controller loses 2 life unless he or she pays {2}.
+mana={2}{B}
+type=Creature
+subtype=Worm Mercenary
 power=2
 toughness=2
 [/card]
@@ -20025,8 +20333,7 @@ type=Enchantment
 name=Death Pulse
 target=creature
 auto=-4/-4
-autohand=__CYCLING__({1}{B}{B})
-autohand={1}{B}{B}{cycle}:name(cycling + effect) -1/-1 target(creature) && draw:1 controller
+autohand={1}{B}{B}{cycle}:name(cycling) transforms((,newability[draw:1],newability[may -1/-1 target(creature)])) forever
 text=Target creature gets -4/-4 until end of turn. -- Cycling {1}{B}{B} ({1}{B}{B}, Discard this card: Draw a card.) -- When you cycle Death Pulse, you may have target creature get -1/-1 until end of turn.
 mana={2}{B}{B}
 type=Instant
@@ -20158,7 +20465,7 @@ toughness=3
 [/card]
 [card]
 name=Deathforge Shaman
-auto=kicker choice target(player) damage:kicked && damage:kicked
+auto=kicker choice target(player) damage:twicekicked
 kicker=multi{R}
 text=Multikicker {R} (You may pay an additional {R} any number of times as you cast this spell.) -- When Deathforge Shaman enters the battlefield, it deals damage to target player equal to twice the number of times it was kicked.
 mana={4}{R}
@@ -20298,6 +20605,14 @@ mana={4}{WB}{WB}{WB}
 type=Enchantment
 [/card]
 [card]
+name=Decaying Soil
+auto=@each my upkeep:moveto(exile) notatarget(*|mygraveyard)
+auto=@movedto(creature[-token]|mygraveyard) from(battlefield) restriction{type(*|mygraveyard)~morethan~6}:all(trigger[from]) pay[[{1}]] activate moveto(ownerhand) oneshot
+text=At the beginning of your upkeep, exile a card from your graveyard. -- Threshold - As long as seven or more cards are in your graveyard, Decaying Soil has "Whenever a nontoken creature is put into your graveyard from the battlefield, you may pay {1}. If you do, return that card to your hand."
+mana={1}{B}{B}
+type=Enchantment
+[/card]
+[card]
 name=Deceiver Exarch
 abilities=flash
 auto=choice untap target(*|mybattlefield)
@@ -20407,6 +20722,15 @@ autohand={4}{G}{G}{cycle}:name(cycling + four counters) counter(1/1,4) target(cr
 text=Put four +1/+1 counters on each creature you control. -- Cycling {4}{G}{G} ({4}{G}{G}, Discard this card: Draw a card.) -- When you cycle Decree of Savagery, you may put four +1/+1 counters on target creature.
 mana={7}{G}{G}
 type=Instant
+[/card]
+[card]
+name=Decree of Silence
+auto=@movedto(*|opponentstack):all(trigger[to]) transforms((,newability[fizzle])) forever && counter(0/0,1,Depletion) all(this)
+auto=this(counter{0/0.1.Depletion}>2)while sacrifice
+autohand={4}{U}{U}{cycle}:name(cycling) draw:1 && transforms((,newability[may target(*|stack) fizzle])) forever
+text=Whenever an opponent casts a spell, counter that spell and put a depletion counter on Decree of Silence. If there are three or more depletion counters on Decree of Silence, sacrifice it. -- Cycling {4}{U}{U} ({4}{U}{U}, Discard this card: Draw a card.) -- When you cycle Decree of Silence, you may counter target spell.
+mana={6}{U}{U}
+type=Enchantment
 [/card]
 [card]
 name=Dedicated Martyr
@@ -21383,6 +21707,18 @@ type=Sorcery
 text=Destroy target artifact with converted mana cost X. It can't be regenerated. Detonate deals X damage to that artifact's controller.
 [/card]
 [card]
+name=Detritivore
+auto=type:land[-basic]:opponentgraveyard/type:land[-basic]:opponentgraveyard nonstatic
+autoexile=@counterremoved(0/0,1,Time) from(sourcecard) suspended:destroy target(land[-basic])
+suspend(0)={X}{3}{R}
+text=Detritivore's power and toughness are each equal to the number of nonbasic land cards in your opponents' graveyards. -- Suspend X - {X}{3}{R}. X can't be 0. (Rather than cast this card from your hand, you may pay {X}{3}{R} and exile it with X time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost. It has haste.) -- Whenever a time counter is removed from Detritivore while it's exiled, destroy target nonbasic land.
+mana={2}{R}{R}
+type=Creature
+subtype=Lhurgoyf
+power=*
+toughness=*
+[/card]
+[card]
 name=Deus of Calamity
 abilities=trample
 auto=@damaged(opponent) from(this) restriction{compare(thatmuch)~morethan~5}:destroy target(land|opponent)
@@ -21407,6 +21743,14 @@ name=Devastation
 auto=destroy all(creature,land)
 text=Destroy all creatures and lands.
 mana={5}{R}{R}
+type=Sorcery
+[/card]
+[card]
+name=Devastation Tide
+auto=moveTo(ownerhand) all(*[-land])
+autohand=restriction{miracle} pay[[{1}{U}]] name(Miracle) activate name(Miracle) castcard(normal)
+text=Return all nonland permanents to their owners' hands. -- Miracle {1}{U} (You may cast this card for its miracle cost when you draw it if it's the first card you drew this turn.)
+mana={3}{U}{U}
 type=Sorcery
 [/card]
 [card]
@@ -21652,6 +21996,17 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Diluvian Primordial
+abilities=flying
+auto=may target(*[instant;sorcery]|opponentgraveyard) castcard(normal) and!(transforms((,newability[exiledeath])) forever)!
+text=Flying -- When Diluvian Primordial enters the battlefield, for each opponent, you may cast up to one target instant or sorcery card from that player's graveyard without paying its mana cost. If a card cast this way would be put into a graveyard this turn, exile it instead.
+mana={5}{U}{U}
+type=Creature
+subtype=Avatar
+power=5
+toughness=5
+[/card]
+[card]
 name=Diminish
 target=creature
 auto=transforms((,setpower=1,settoughness=1)) ueot
@@ -21834,8 +22189,7 @@ toughness=2
 [card]
 name=Dirge of Dread
 auto=lord(creature) fear
-autohand=__CYCLING__({1}{B})
-autohand={1}{B}:name(cycling + effect) fear target(creature) && draw:1 controller
+autohand={1}{B}{cycle}:name(cycling) transforms((,newability[draw:1],newability[may fear target(creature)])) forever
 text=All creatures gain fear until end of turn. (They can't be blocked except by artifact creatures and/or black creatures.) -- Cycling {1}{B} ({1}{B}, Discard this card: Draw a card.) -- When you cycle Dirge of Dread, you may have target creature gain fear until end of turn.
 mana={2}{B}
 type=Sorcery
@@ -21968,7 +22322,7 @@ toughness=2
 [/card]
 [card]
 name=Disciple of the Vault
-auto=@movedTo(graveyard) from(artifact|battlefield):may life:-1 opponent
+auto=@movedTo(graveyard) from(artifact|battlefield):may target(opponent) life:-1
 text=Whenever an artifact is put into a graveyard from the battlefield, you may have target opponent lose 1 life.
 mana={B}
 type=Creature
@@ -22204,11 +22558,42 @@ type=Enchantment
 text=Whenever a permanent deals damage to you, return it to its owner's hand.
 [/card]
 [card]
+name=Disrupt
+target=*[instant;sorcery]|stack
+auto=transforms((,newability[pay[[{1}]] name(pay 1 mana) donothing?fizzle])) forever
+auto=draw:1 controller
+text=Counter target instant or sorcery spell unless its controller pays {1}. -- Draw a card.
+mana={U}
+type=Instant
+[/card]
+[card]
 name=Disrupting Scepter
 auto={3}{T}:target(player) ability$!target(*|myhand) reject!$ targetedplayer myTurnOnly
 text={3}{T}: Target player discards a card. Activate this ability only during your turn.
 mana={3}
 type=Artifact
+[/card]
+[card]
+name=Disruptive Pitmage
+auto={T}:name(counter spell) target(*|stack) transforms((,newability[pay[[{1}]] name(pay 1 mana) donothing?fizzle])) forever
+facedown={3}
+autofacedown={U}:morph
+text={T}: Counter target spell unless its controller pays {1}. -- Morph {U} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
+mana={2}{U}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=1
+[/card]
+[card]
+name=Disruptive Student
+auto={T}:name(counter spell) target(*|stack) transforms((,newability[pay[[{1}]] name(pay 1 mana) donothing?fizzle])) forever
+text={T}: Counter target spell unless its controller pays {1}.
+mana={2}{U}
+type=Creature
+subtype=Human Wizard
+power=1
+toughness=1
 [/card]
 [card]
 name=Distant Melody
@@ -22308,8 +22693,7 @@ type=Sorcery
 [/card]
 [card]
 name=Divine Congregation
-target=player
-auto=life:type:creature:targetedpersonsbattlefield controller && life:type:creature:targetedpersonsbattlefield controller
+auto=choice name(target player) target(player) donothing && all(this) transforms((,newability[life:twicetype:creature:targetedpersonsbattlefield]))
 text=You gain 2 life for each creature target player controls. -- Suspend 5 - {1}{W} (Rather than cast this card from your hand, you may pay {1}{W} and exile it with five time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.)
 mana={3}{W}
 suspend(5)={1}{w}
@@ -22702,6 +23086,46 @@ mana={2}{B}
 type=Instant
 [/card]
 [card]
+name=Dovescape
+auto=@movedto(*[-creature&manacost=0]|mystack):all(trigger[to]) transforms((,newability[fizzle])) forever
+auto=@movedto(*[-creature&manacost=1]|mystack):all(trigger[to]) transforms((,newability[fizzle])) forever && token(Bird,Creature Bird,1/1,blue,white,flying)
+auto=@movedto(*[-creature&manacost=2]|mystack):all(trigger[to]) transforms((,newability[fizzle])) forever && token(Bird,Creature Bird,1/1,blue,white,flying)*2
+auto=@movedto(*[-creature&manacost=3]|mystack):all(trigger[to]) transforms((,newability[fizzle])) forever && token(Bird,Creature Bird,1/1,blue,white,flying)*3
+auto=@movedto(*[-creature&manacost=4]|mystack):all(trigger[to]) transforms((,newability[fizzle])) forever && token(Bird,Creature Bird,1/1,blue,white,flying)*4
+auto=@movedto(*[-creature&manacost=5]|mystack):all(trigger[to]) transforms((,newability[fizzle])) forever && token(Bird,Creature Bird,1/1,blue,white,flying)*5
+auto=@movedto(*[-creature&manacost=6]|mystack):all(trigger[to]) transforms((,newability[fizzle])) forever && token(Bird,Creature Bird,1/1,blue,white,flying)*6
+auto=@movedto(*[-creature&manacost=7]|mystack):all(trigger[to]) transforms((,newability[fizzle])) forever && token(Bird,Creature Bird,1/1,blue,white,flying)*7
+auto=@movedto(*[-creature&manacost=8]|mystack):all(trigger[to]) transforms((,newability[fizzle])) forever && token(Bird,Creature Bird,1/1,blue,white,flying)*8
+auto=@movedto(*[-creature&manacost=9]|mystack):all(trigger[to]) transforms((,newability[fizzle])) forever && token(Bird,Creature Bird,1/1,blue,white,flying)*9
+auto=@movedto(*[-creature&manacost=10]|mystack):all(trigger[to]) transforms((,newability[fizzle])) forever && token(Bird,Creature Bird,1/1,blue,white,flying)*10
+auto=@movedto(*[-creature&manacost=11]|mystack):all(trigger[to]) transforms((,newability[fizzle])) forever && token(Bird,Creature Bird,1/1,blue,white,flying)*11
+auto=@movedto(*[-creature&manacost=12]|mystack):all(trigger[to]) transforms((,newability[fizzle])) forever && token(Bird,Creature Bird,1/1,blue,white,flying)*12
+auto=@movedto(*[-creature&manacost=13]|mystack):all(trigger[to]) transforms((,newability[fizzle])) forever && token(Bird,Creature Bird,1/1,blue,white,flying)*13
+auto=@movedto(*[-creature&manacost=14]|mystack):all(trigger[to]) transforms((,newability[fizzle])) forever && token(Bird,Creature Bird,1/1,blue,white,flying)*14
+auto=@movedto(*[-creature&manacost=15]|mystack):all(trigger[to]) transforms((,newability[fizzle])) forever && token(Bird,Creature Bird,1/1,blue,white,flying)*15
+auto=@movedto(*[-creature&manacost=16]|mystack):all(trigger[to]) transforms((,newability[fizzle])) forever && token(Bird,Creature Bird,1/1,blue,white,flying)*16
+auto=@movedto(*[-creature&manacost=0]|opponentstack):all(trigger[to]) transforms((,newability[fizzle])) forever
+auto=@movedto(*[-creature&manacost=1]|opponentstack):all(trigger[to]) transforms((,newability[fizzle])) forever && token(Bird,Creature Bird,1/1,blue,white,flying) opponent
+auto=@movedto(*[-creature&manacost=2]|opponentstack):all(trigger[to]) transforms((,newability[fizzle])) forever && token(Bird,Creature Bird,1/1,blue,white,flying)*2 opponent
+auto=@movedto(*[-creature&manacost=3]|opponentstack):all(trigger[to]) transforms((,newability[fizzle])) forever && token(Bird,Creature Bird,1/1,blue,white,flying)*3 opponent
+auto=@movedto(*[-creature&manacost=4]|opponentstack):all(trigger[to]) transforms((,newability[fizzle])) forever && token(Bird,Creature Bird,1/1,blue,white,flying)*4 opponent
+auto=@movedto(*[-creature&manacost=5]|opponentstack):all(trigger[to]) transforms((,newability[fizzle])) forever && token(Bird,Creature Bird,1/1,blue,white,flying)*5 opponent
+auto=@movedto(*[-creature&manacost=6]|opponentstack):all(trigger[to]) transforms((,newability[fizzle])) forever && token(Bird,Creature Bird,1/1,blue,white,flying)*6 opponent
+auto=@movedto(*[-creature&manacost=7]|opponentstack):all(trigger[to]) transforms((,newability[fizzle])) forever && token(Bird,Creature Bird,1/1,blue,white,flying)*7 opponent
+auto=@movedto(*[-creature&manacost=8]|opponentstack):all(trigger[to]) transforms((,newability[fizzle])) forever && token(Bird,Creature Bird,1/1,blue,white,flying)*8 opponent
+auto=@movedto(*[-creature&manacost=9]|opponentstack):all(trigger[to]) transforms((,newability[fizzle])) forever && token(Bird,Creature Bird,1/1,blue,white,flying)*9 opponent
+auto=@movedto(*[-creature&manacost=10]|opponentstack):all(trigger[to]) transforms((,newability[fizzle])) forever && token(Bird,Creature Bird,1/1,blue,white,flying)*10 opponent
+auto=@movedto(*[-creature&manacost=11]|opponentstack):all(trigger[to]) transforms((,newability[fizzle])) forever && token(Bird,Creature Bird,1/1,blue,white,flying)*11 opponent
+auto=@movedto(*[-creature&manacost=12]|opponentstack):all(trigger[to]) transforms((,newability[fizzle])) forever && token(Bird,Creature Bird,1/1,blue,white,flying)*12 opponent
+auto=@movedto(*[-creature&manacost=13]|opponentstack):all(trigger[to]) transforms((,newability[fizzle])) forever && token(Bird,Creature Bird,1/1,blue,white,flying)*13 opponent
+auto=@movedto(*[-creature&manacost=14]|opponentstack):all(trigger[to]) transforms((,newability[fizzle])) forever && token(Bird,Creature Bird,1/1,blue,white,flying)*14 opponent
+auto=@movedto(*[-creature&manacost=15]|opponentstack):all(trigger[to]) transforms((,newability[fizzle])) forever && token(Bird,Creature Bird,1/1,blue,white,flying)*15 opponent
+auto=@movedto(*[-creature&manacost=16]|opponentstack):all(trigger[to]) transforms((,newability[fizzle])) forever && token(Bird,Creature Bird,1/1,blue,white,flying)*16 opponent
+text=({(w/u)} can be paid with either {W} or {U}.) -- Whenever a player casts a noncreature spell, counter that spell. That player puts X 1/1 white and blue Bird creature tokens with flying onto the battlefield, where X is the spell's converted mana cost.
+mana={3}{WU}{WU}{WU}
+type=Enchantment
+[/card]
+[card]
 name=Downhill Charge
 target=creature
 other={S(mountain|mybattlefield)} name(Sacrifice a Mountain)
@@ -23041,6 +23465,16 @@ alias=1156
 text=Spend only black mana on X. -- Drain Life deals X damage to target creature or player. You gain life equal to the damage dealt, but not more life than the player's life total before Drain Life dealt damage or the creature's toughness.
 mana={1}{B}{X:black}
 type=Sorcery
+[/card]
+[card]
+name=Drainpipe Vermin
+auto=@movedto(this|graveyard) from(battlefield):pay({B}) name(discard) target(player) ability$!name(discard) target(*|myhand) reject!$ targetedplayer
+text=When Drainpipe Vermin dies, you may pay {B}. If you do, target player discards a card.
+mana={B}
+type=Creature
+subtype=Rat
+power=1
+toughness=1
 [/card]
 [card]
 name=Drake Familiar
@@ -23687,7 +24121,7 @@ toughness=5
 [card]
 name=Dromar, the Banisher
 abilities=flying
-auto=@combatdamaged(player) from(this):may name(pay ability) transforms((,newability[{2}{U}:activatechooseacolor all(creature[chosencolor]|battlefield) moveTo(ownerhand) activatechooseend limit:1 mycombatdamageonly])) oneshot
+auto=@combatdamaged(player) from(this):pay({2}{U}) activatechooseacolor all(creature[chosencolor]|battlefield) moveTo(ownerhand) activatechooseend
 text=Flying -- Whenever Dromar, the Banisher deals combat damage to a player, you may pay {2}{U}. If you do, choose a color, then return all creatures of that color to their owners' hands.
 mana={3}{W}{U}{B}
 type=Legendary Creature
@@ -23898,6 +24332,16 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Drowner Initiate
+auto=@movedto(*[blue]|stack):pay({1}) deplete:2 target(player)
+text=Whenever a player casts a blue spell, you may pay {1}. If you do, target player puts the top two cards of his or her library into his or her graveyard.
+mana={U}
+type=Creature
+subtype=Merfolk Wizard
+power=1
+toughness=1
+[/card]
+[card]
 name=Drowner of Secrets
 auto={T(merfolk|mybattlefield)}:deplete:1 target(player)
 text=Tap an untapped Merfolk you control: Target player puts the top card of his or her library into his or her graveyard.
@@ -24044,9 +24488,8 @@ toughness=1
 [/card]
 [card]
 name=Dryad's Caress
-other={3}{G}{W} name(Spend W to Cast)
-auto=alternative untap all(creature|mybattlefield)
-auto=foreach(creature|battlefield) life:1 controller
+auto=if spent({W}) then untap all(creature|mybattlefield)
+auto=life:type:creature:battlefield controller
 text=You gain 1 life for each creature on the battlefield. If {W} was spent to cast Dryad's Caress, untap all creatures you control.
 mana={4}{G}{G}
 type=Instant
@@ -24057,6 +24500,16 @@ target=creature
 auto=forestwalk
 text=Enchant creature -- Enchanted creature has forestwalk.
 mana={G}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Dual Casting
+#interrupt own spell in options must be turned on.
+target=creature
+auto=teach(creature) {R}{T}:name(copy spell) castcard(copied noevent) target(*[instant;sorcery]|mystack)
+text=Enchant creature -- Enchanted creature has "{R}, {T}: Copy target instant or sorcery spell you control. You may choose new targets for the copy."
+mana={1}{R}
 type=Enchantment
 subtype=Aura
 [/card]
@@ -24972,6 +25425,22 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Echo Mage
+auto={1}{U}:counter(0/0,1,Level) asSorcery
+auto=this(counter{0/0.2.Level}=) {U}{U}{T}:name(copy spell) castcard(copied noevent) target(*[instant;sorcery]|stack)
+auto=this(counter{0/0.2.Level}=) 0/1
+auto=this(counter{0/0.3.Level}=) {U}{U}{T}:name(copy spell) castcard(copied noevent) target(*[instant;sorcery]|stack)
+auto=this(counter{0/0.3.Level}=) 0/1
+auto=this(counter{0/0.4.Level}) {U}{U}{T}:name(copy spell twice) castcard(copied noevent) and!(castcard(copied noevent))! target(*[instant;sorcery]|stack)
+auto=this(counter{0/0.4.Level}) 0/2
+mana={1}{U}{U}
+type=Creature
+subtype=Human Wizard
+power=2
+toughness=3
+text=Level up {1}{U} -- [Level 2-3] {U}{U}, {T}: Copy target instant or sorcery spell. You may choose new targets for the copy. [2/4] -- [Level 4+] {U}{U}, {T}: Copy target instant or sorcery spell twice. You may choose new targets for the copies. [2/5]
+[/card]
+[card]
 name=Echo Tracer
 facedown={3}
 autofacedown={2}{U}:morph
@@ -25361,6 +25830,15 @@ flashback={6}{G}{G}
 text=Put a 3/3 green Elephant creature token onto the battlefield. -- Flashback {6}{G}{G} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={2}{G}{G}
 type=Instant
+[/card]
+[card]
+name=Elephant Grass
+auto=cumulativeupcost[{1}] sacrifice
+auto=lord(creature[black]|opponentbattlefield) cantattack
+auto=lord(creature[-black]|opponentbattlefield) transforms((,newability[@each mycombatbegins:pay[[{2}]] name(pay 2 mana) donothing?cantattack all(this)]))
+text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- Black creatures can't attack you. -- Nonblack creatures can't attack you unless their controller pays {2} for each creature he or she controls that's attacking you.
+mana={G}
+type=Enchantment
 [/card]
 [card]
 name=Elephant Graveyard
@@ -26040,6 +26518,16 @@ type=Creature
 subtype=Goblin Wizard
 power=1
 toughness=1
+[/card]
+[card]
+name=Embersmith
+auto=@movedto(artifact|mystack):pay({1}) damage:1 target(creature,player)
+mana={1}{R}
+type=Creature
+subtype=Human Artificer
+power=2
+toughness=1
+text=Whenever you cast an artifact spell, you may pay {1}. If you do, Embersmith deals 1 damage to target creature or player.
 [/card]
 [card]
 name=Emberstrike Duo
@@ -26846,6 +27334,13 @@ mana={2}{G}{G}
 type=Enchantment
 [/card]
 [card]
+name=Equilibrium
+auto=@movedto(creature|mystack):pay({1}) moveto(ownerhand) target(creature)
+text=Whenever you cast a creature spell, you may pay {1}. If you do, return target creature to its owner's hand.
+mana={1}{U}{U}
+type=Enchantment
+[/card]
+[card]
 name=Eradicate
 target=creature[-black]
 auto=moveTo(exile)
@@ -26864,6 +27359,26 @@ text=Exile target enchantment.
 mana={W}
 type=Instant
 [/card]
+###The 2 cards below should stay together (Flip Card)###
+[card]
+name=Erayo, Soratami Ascendant
+abilities=flying
+auto=@movedto(*|stack) restriction{thisturn(*|stack)~equalto~3}:flip(Erayo's Essence)
+text=Flying -- Whenever the fourth spell of a turn is cast, flip Erayo, Soratami Ascendant.
+mana={1}{U}
+type=Legendary Creature
+subtype=Moonfolk Monk
+power=1
+toughness=1
+[/card]
+[card]
+name=Erayo's Essence
+auto=@movedto(*[-land]|opponentstack) restriction{thisturn(*[-land]|opponentstack)~equalto~0}:all(trigger[to]) transforms((,newability[fizzle])) forever
+text=Whenever an opponent casts a spell for the first time in a turn, counter that spell.
+mana={1}{U}
+type=Legendary Enchantment
+[/card]
+###The 2 cards above should stay together (Flip Card)###
 [card]
 name=Erdwal Ripper
 abilities=haste
@@ -26947,6 +27462,13 @@ text=Enchant creature -- Enchanted creature gets +3/+0 and can only attack alone
 mana={1}{R}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+name=Erratic Portal
+auto={1}{T}:name(bounce) target(creature) transforms((,newability[pay[[{1}]] name(pay 1 mana) donothing?name(bounce) moveto(ownerhand)])) forever
+text={1}, {T}: Return target creature to its owner's hand unless its controller pays {1}.
+mana={4}
+type=Artifact
 [/card]
 [card]
 name=Ertai, Wizard Adept
@@ -27073,7 +27595,7 @@ type=Land
 [card]
 name=Esper Sojourners
 auto=@movedTo(this|graveyard) from(battlefield):all(trigger[to]) transforms((,newability[may tap target(*)],newability[may untap target(*)])) forever
-autohand={2}{U}{cycle}:name(cycling) draw:1 && transforms((,newability[may tap target(*)],newability[may untap target(*)]])) forever
+autohand={2}{U}{cycle}:name(cycling) draw:1 && transforms((,newability[may tap target(*)],newability[may untap target(*)])) forever
 text=When you cycle Esper Sojourners or it's put into a graveyard from the battlefield, you may tap or untap target permanent. -- Cycling {2}{U} ({2}{U}, Discard this card: Draw a card.)
 mana={W}{U}{B}
 type=Artifact Creature
@@ -27991,8 +28513,8 @@ mana={3}{W}
 [/card]
 [card]
 name=Eye of Ugin
-auto=lord(eldrazi[-white;-blue;-black;-red;-green]|myhand) altercost(colorless,-2)
-auto={7}{T}:moveTo(myhand) target(creature[-white;-blue;-black;-red;-green]|myLibrary)
+auto=lord(eldrazi[iscolorless]|myhand) altercost(colorless,-2)
+auto={7}{T}:moveTo(myhand) target(creature[iscolorless]|myLibrary)
 text=Colorless Eldrazi spells you cast cost {2} less to cast. -- {7}, {T}: Search your library for a colorless creature card, reveal it, and put it into your hand. Then shuffle your library.
 type=Legendary Land
 [/card]
@@ -29986,6 +30508,14 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Firespout
+auto=if spent({R}) then damage:3 all(creature[-flying])
+auto=if spent({G}) then damage:3 all(creature[flying])
+text=Firespout deals 3 damage to each creature without flying if {R} was spent to cast Firespout and 3 damage to each creature with flying if {G} was spent to cast it. (Do both if {R}{G} was spent.)
+mana={2}{RG}
+type=Sorcery
+[/card]
+[card]
 name=Firestorm Hellkite
 abilities=flying,trample
 auto=cumulativeupcost[{U}{R}] sacrifice
@@ -30376,8 +30906,7 @@ target=creature
 auto=untap
 auto=haste
 alias=129767
-other={4}{R}{W} name(Pay /W/ to Cast)
-auto=alternative teach(creature) spiritlink ueot
+auto=if spent({W}) then teach(creature) spiritlink ueot
 text=Untap target creature and gain control of it until end of turn. That creature gains haste until end of turn. If {W} was spent to cast Flash Conscription, the creature gains "Whenever this creature deals combat damage, you gain that much life" until end of turn.
 mana={5}{R}
 type=Instant
@@ -30421,6 +30950,15 @@ auto=fizzle
 text=Counter target red or green spell.
 mana={1}{U}
 type=Instant
+[/card]
+[card]
+name=Flay
+target=player
+auto=discard:1
+auto=ability$!pay[[{1}]] name(pay 1 mana) donothing?discard:1!$ targetedplayer
+text=Target player discards a card at random. Then that player discards another card at random unless he or she pays {1}.
+mana={3}{B}
+type=Sorcery
 [/card]
 [card]
 name=Flayed Nim
@@ -30704,6 +31242,14 @@ text=Enchant creature -- When Flight of Fancy enters the battlefield, draw two c
 mana={3}{U}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+name=Flight Spellbomb
+auto={T}{S}:target(creature) flying ueot
+auto=@movedTo(this|graveyard) from(battlefield):pay({U}) draw:1
+mana={1}
+type=Artifact
+text={T}, Sacrifice Flight Spellbomb: Target creature gains flying until end of turn. When Flight Spellbomb is put into a graveyard from the battlefield, you may pay {U}. If you do, draw a card.
 [/card]
 [card]
 name=Fling
@@ -31374,6 +31920,23 @@ mana={3}{U}{U}
 type=Instant
 [/card]
 [card]
+name=Force Spike
+target=*|stack
+auto=transforms((,newability[pay[[{1}]] name(pay 1 mana) donothing?fizzle])) forever
+text=Counter target spell unless its controller pays {1}.
+mana={U}
+type=Instant
+[/card]
+[card]
+name=Force Void
+target=*|stack
+auto=transforms((,newability[pay[[{1}]] name(pay 1 mana) donothing?fizzle])) forever
+auto=@next upkeep:draw:1 controller
+text=Counter target spell unless its controller pays {1}. -- Draw a card at the beginning of the next turn's upkeep.
+mana={2}{U}
+type=Instant
+[/card]
+[card]
 name=Forced Adaptation
 target=creature
 auto=@each my upkeep:counter(1/1,1)
@@ -31505,6 +32068,14 @@ auto={E(land|mygraveyard)}:counter(1/1,1) target(creature) limit:1 myUpkeepOnly
 text=At the beginning of your upkeep, you may exile a land card from your graveyard. If you do, put a +1/+1 counter on target creature.
 mana={1}{G}
 type=Enchantment
+[/card]
+[card]
+name=Fork
+target=*[instant;sorcery]|stack
+auto=castcard(copied noevent) and!(transforms((,red)) forever)!
+text=Copy target instant or sorcery spell, except that the copy is red. You may choose new targets for the copy.
+mana={R}{R}
+type=Instant
 [/card]
 [card]
 name=Forked Bolt
@@ -31837,7 +32408,7 @@ toughness=2
 [/card]
 [card]
 name=Frenzied Goblin
-auto=this(attacking) {R}:cantblock target(creature) ueot limit:1
+auto=@combat(attacking) source(this):pay({R}) target(creature) cantblock ueot
 text=Whenever Frenzied Goblin attacks, you may pay {R}. If you do, target creature can't block this turn.
 mana={R}
 type=Creature
@@ -31879,6 +32450,14 @@ type=Creature
 subtype=Human Rebel
 power=2
 toughness=2
+[/card]
+[card]
+name=Freyalise's Charm
+auto=@movedto(*[black]|opponentstack):pay({G}{G}) draw:1
+auto={G}{G}:moveto(ownerhand)
+text=Whenever an opponent casts a black spell, you may pay {G}{G}. If you do, you draw a card. -- {G}{G}: Return Freyalise's Charm to its owner's hand.
+mana={G}{G}
+type=Enchantment
 [/card]
 [card]
 name=Freyalise Supplicant
@@ -32308,6 +32887,13 @@ type=Creature
 subtype=Elemental
 power=3
 toughness=3
+[/card]
+[card]
+name=Furnace Celebration
+auto=@sacrificed(other *|mybattlefield):pay({2}) damage:2 target(creature,player)
+mana={1}{R}{R}
+type=Enchantment
+text=Whenever you sacrifice another permanent, you may pay {2}. If you do, Furnace Celebration deals 2 damage to target creature or player.
 [/card]
 [card]
 name=Furnace Dragon
@@ -33173,8 +33759,7 @@ toughness=5
 [/card]
 [card]
 name=Gempalm Incinerator
-autohand=__CYCLING__({1}{R})
-autohand={1}{R}{cycle}:name(cycling + effect) damage:type:goblin:mybattlefield target(creature) && draw:1 controller
+autohand={1}{R}{cycle}:name(cycling) transforms((,newability[draw:1],newability[may damage:type:goblin:mybattlefield target(creature)])) forever
 text=Cycling {1}{R} ({1}{R}, Discard this card: Draw a card.) -- When you cycle Gempalm Incinerator, you may have it deal X damage to target creature, where X is the number of Goblins on the battlefield.
 mana={2}{R}
 type=Creature
@@ -33184,8 +33769,7 @@ toughness=1
 [/card]
 [card]
 name=Gempalm Polluter
-autohand=__CYCLING__({1}{B})
-autohand={1}{B}{cycle}:name(cycling + effect) foreach(zombie|battlefield) life:-1 target(player) && draw:1 controller
+autohand={B}{B}{cycle}:name(cycling) transforms((,newability[draw:1],newability[may life:-type:zombie:battlefield target(player)])) forever
 text=Cycling {B}{B} ({B}{B}, Discard this card: Draw a card.) -- When you cycle Gempalm Polluter, you may have target player lose 1 life for each Zombie on the battlefield.
 mana={5}{B}
 type=Creature
@@ -33701,6 +34285,17 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Ghost-Lit Warder
+auto={3}{U}{T}:name(counter spell) target(*|stack) transforms((,newability[pay[[{2}]] name(pay 2 mana) donothing?fizzle])) forever
+autohand={3}{U}{discard}:name(counter spell) target(*|stack) transforms((,newability[pay[[{4}]] name(pay 4 mana) donothing?fizzle])) forever
+text={3}{U}, {T}: Counter target spell unless its controller pays {2}. -- Channel - {3}{U}, Discard Ghost-Lit Warder: Counter target spell unless its controller pays {4}.
+mana={1}{U}
+type=Creature
+subtype=Spirit
+power=1
+toughness=1
+[/card]
+[card]
 name=Ghostfire
 target=creature,player
 auto=damage:3
@@ -33755,6 +34350,13 @@ text=Enchant creature -- Enchanted creature has flying. -- Prevent all combat da
 mana={2}{W}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+name=Ghostly Prison
+auto=lord(creature|opponentbattlefield) transforms((,newability[@each mycombatbegins:pay[[{2}]] name(pay 2 mana) donothing?cantattack all(this)]))
+text=Creatures can't attack you unless their controller pays {2} for each creature he or she controls that's attacking you.
+mana={2}{W}
+type=Enchantment
 [/card]
 [card]
 name=Ghostly Touch
@@ -35694,6 +36296,16 @@ power=2
 toughness=1
 [/card]
 [card]
+name=Goblin Vandal
+auto=@combat(notblocked) source(this):pay({R}) choice destroy target(artifact|opponentbattlefield) && fog from(this)
+text=Whenever Goblin Vandal attacks and isn't blocked, you may pay {R}. If you do, destroy target artifact defending player controls and Goblin Vandal assigns no combat damage this turn.
+mana={R}
+type=Creature
+subtype=Goblin Rogue
+power=1
+toughness=1
+[/card]
+[card]
 name=Goblin War Buggy
 abilities=haste
 auto=upcost[{1}{R};next upkeep] sacrifice
@@ -35808,7 +36420,7 @@ toughness=4
 [card]
 name=Godless Shrine
 auto=tap
-auto=may untap && life:-2 controller
+auto=pay({L}{L}) untap
 text=({T}: Add {W} or {B} to your mana pool.) -- As Godless Shrine enters the battlefield, you may pay 2 life. If you don't, Godless Shrine enters the battlefield tapped.
 type=Land
 subtype=Plains Swamp
@@ -37137,6 +37749,15 @@ mana={5}{G}
 type=Sorcery
 [/card]
 [card]
+name=Grim Harvest
+target=creature|mygraveyard
+auto=moveto(ownerhand)
+autograveyard=@movedto(creature|mygraveyard) from(battlefield):pay({2}{B}) name(recover) moveto(ownerhand)?name(exile) moveto(exile)
+text=Return target creature card from your graveyard to your hand. -- Recover {2}{B} (When a creature is put into your graveyard from the battlefield, you may pay {2}{B}. If you do, return this card from your graveyard to your hand. Otherwise, exile this card.)
+mana={1}{B}
+type=Instant
+[/card]
+[card]
 name=Grim Lavamancer
 auto={R}{T}{E(*|mygraveyard)}{E(*|mygraveyard)}:damage:2 target(creature,player)
 text={R}, {T}, Exile two cards from your graveyard: Grim Lavamancer deals 2 damage to target creature or player.
@@ -37363,8 +37984,7 @@ toughness=4
 [card]
 name=Grixis Sojourners
 auto=@movedTo(this|graveyard) from(battlefield):may moveTo(exile) target(*|graveyard)
-autohand=__CYCLING__({2}{B})
-autohand={2}{B}{cycle}:name(cycling + effect) moveTo(exile) target(*|graveyard) && draw:1 controller
+autohand={2}{B}{cycle}:name(cycling) transforms((,newability[draw:1],newability[may moveTo(exile) target(*|graveyard)])) forever
 text=When you cycle Grixis Sojourners or it's put into a graveyard from the battlefield, you may exile target card from a graveyard. -- Cycling {2}{B} ({2}{B}, Discard this card: Draw a card.)
 mana={1}{U}{B}{R}
 type=Creature
@@ -37402,6 +38022,16 @@ power=7
 toughness=7
 [/card]
 ###The 2 cards above should stay together (Flip Card)###
+[card]
+name=Grizzled Wolverine
+auto=@combat(blocked) source(this):pay({R}) 2/0 ueot
+text=Whenever Grizzled Wolverine becomes blocked, you may pay {R}. If you do, Grizzled Wolverine gets +2/+0 until end of turn.
+mana={1}{R}{R}
+type=Creature
+subtype=Wolverine
+power=2
+toughness=2
+[/card]
 [card]
 name=Grizzly Bears
 mana={1}{G}
@@ -37672,8 +38302,7 @@ toughness=6
 [/card]
 [card]
 name=Gruul Scrapper
-other={2}{R}{G} (Spend {R} to Cast)
-auto=alternative haste ueot
+auto=if spent({R}) then haste ueot
 text=When Gruul Scrapper enters the battlefield, if {R} was spent to cast Gruul Scrapper, it gains haste until end of turn.
 mana={3}{G}
 type=Creature
@@ -38159,7 +38788,7 @@ toughness=2
 [/card]
 [card]
 name=Haazda Snare Squad
-auto=this(attacking) {W}:tap target(creature|opponentbattlefield)
+auto=@combat(attacking) source(this):pay({W}) tap target(creature|opponentbattlefield)
 text=Whenever Haazda Snare Squad attacks, you may pay {W}. If you do, tap target creature an opponent controls. 
 mana={2}{W}
 type=Creature
@@ -38304,7 +38933,7 @@ type=Sorcery
 [card]
 name=Hallowed Fountain
 auto=tap
-auto=may untap && life:-2 controller
+auto=pay({L}{L}) untap
 text=({T}: Add {W} or {U} to your mana pool.) -- As Hallowed Fountain enters the battlefield, you may pay 2 life. If you don't, Hallowed Fountain enters the battlefield tapped.
 type=Land
 subtype=Plains Island
@@ -38805,6 +39434,16 @@ type=Creature
 subtype=Demon
 power=5
 toughness=5
+[/card]
+[card]
+name=Hasran Ogress
+auto=@combat(attacking) source(this):pay({2}) name(pay 2 mana) donothing?damage:3 controller
+text=Whenever Hasran Ogress attacks, it deals 3 damage to you unless you pay {2}.
+mana={B}{B}
+type=Creature
+subtype=Ogre
+power=3
+toughness=2
 [/card]
 [card]
 name=Hatchet Bully
@@ -39729,7 +40368,7 @@ type=Sorcery
 [card]
 name=Hellkite Charger
 abilities=flying,haste
-auto=this(attacking) {5}{R}{R}:name(Additional Combat) untap all(creature[attacking]) && nextphasealter(add,combatphases,controller,after<combatends>) limit:1
+auto=@combat(attacking) source(this):pay({5}{R}{R}) nextphasealter(add,combatphases,controller,after<combatends>) && untap all(creature[attacking])
 text=Flying, haste -- Whenever Hellkite Charger attacks, you may pay {5}{R}{R}. If you do, untap all attacking creatures and after this phase, there is an additional combat phase.
 mana={4}{R}{R}
 type=Creature
@@ -39855,6 +40494,13 @@ type=Artifact Creature
 subtype=Golem
 power=1
 toughness=4
+[/card]
+[card]
+name=Hematite Talisman
+auto=@movedto(*[red]|stack):pay({3}) untap target(*)
+text=Whenever a player casts a red spell, you may pay {3}. If you do, untap target permanent.
+mana={2}
+type=Artifact
 [/card]
 [card]
 name=Henchfiend of Ukor
@@ -40003,6 +40649,13 @@ text=You gain 20 life. -- Suspend 10 - {W} (Rather than cast this card from your
 mana={6}{W}{W}{W}
 suspend(10)={w}
 type=Sorcery
+[/card]
+[card]
+name=Hesitation
+auto=@movedto(*|stack):choice all(trigger[to]) fizzle && sacrifice all(this)
+text=When a player casts a spell, sacrifice Hesitation. If you do, counter that spell.
+mana={1}{U}
+type=Enchantment
 [/card]
 [card]
 name=Hex
@@ -40680,7 +41333,7 @@ subtype=Shrine
 [/card]
 [card]
 name=Honden of Night's Reach
-auto=@each my upkeep:target(opponent) ability$!name(discard) target(<type:shrine:opponentgraveyard>*|myhand) reject !$ targetedplayer
+auto=@each my upkeep:target(opponent) ability$!name(discard) target(<type:shrine:opponentbattlefield>*|myhand) reject !$ targetedplayer
 text=At the beginning of your upkeep, target opponent discards a card for each Shrine you control.
 mana={3}{B}
 type=Legendary Enchantment
@@ -40841,6 +41494,14 @@ type=Creature
 subtype=Spirit
 power=2
 toughness=1
+[/card]
+[card]
+name=Horizon Spellbomb
+auto={2}{T}{S}:name(search basic land) ability$!moveto(ownerhand) notatarget(land[basic]|mylibrary)!$ controller
+auto=@movedTo(this|graveyard) from(battlefield):pay({G}) draw:1
+mana={1}
+type=Artifact
+text={2}, {T}, Sacrifice Horizon Spellbomb: Search your library for a basic land card, reveal it, and put it into your hand. Then shuffle your library. When Horizon Spellbomb is put into a graveyard from the battlefield, you may pay {G}. If you do, draw a card.
 [/card]
 [card]
 name=Horn of Deafening
@@ -41908,6 +42569,15 @@ mana={X}{U}{U}
 type=Enchantment
 [/card]
 [card]
+name=Icefall
+target=*[artifact;land]
+auto=destroy
+autograveyard=@movedto(creature|mygraveyard) from(battlefield):pay({R}{R}) name(recover) moveto(ownerhand)?name(exile) moveto(exile)
+text=Destroy target artifact or land. -- Recover {R}{R} (When a creature is put into your graveyard from the battlefield, you may pay {R}{R}. If you do, return this card from your graveyard to your hand. Otherwise, exile this card.)
+mana={2}{R}{R}
+type=Sorcery
+[/card]
+[card]
 name=Icequake
 target=land
 auto=teach(land[snow]) damage:1 targetcontroller
@@ -42375,6 +43045,29 @@ buyback={1}{B}{3}
 text=Buyback {3} (You may pay an additional {3} as you cast this spell. If you do, put this card into your hand as it resolves.) -- Target creature attacks this turn if able.
 mana={1}{B}
 type=Instant
+[/card]
+[card]
+name=In the Eye of Chaos
+auto=@movedto(instant[manacost=1]|stack):all(trigger[to]) transforms((,newability[pay[[{1}]] name(pay 1 mana) donothing?fizzle])) forever
+auto=@movedto(instant[manacost=2]|stack):all(trigger[to]) transforms((,newability[pay[[{2}]] name(pay 2 mana) donothing?fizzle])) forever
+auto=@movedto(instant[manacost=3]|stack):all(trigger[to]) transforms((,newability[pay[[{3}]] name(pay 3 mana) donothing?fizzle])) forever
+auto=@movedto(instant[manacost=4]|stack):all(trigger[to]) transforms((,newability[pay[[{4}]] name(pay 4 mana) donothing?fizzle])) forever
+auto=@movedto(instant[manacost=5]|stack):all(trigger[to]) transforms((,newability[pay[[{5}]] name(pay 5 mana) donothing?fizzle])) forever
+auto=@movedto(instant[manacost=6]|stack):all(trigger[to]) transforms((,newability[pay[[{6}]] name(pay 6 mana) donothing?fizzle])) forever
+auto=@movedto(instant[manacost=7]|stack):all(trigger[to]) transforms((,newability[pay[[{7}]] name(pay 7 mana) donothing?fizzle])) forever
+auto=@movedto(instant[manacost=8]|stack):all(trigger[to]) transforms((,newability[pay[[{8}]] name(pay 8 mana) donothing?fizzle])) forever
+auto=@movedto(instant[manacost=9]|stack):all(trigger[to]) transforms((,newability[pay[[{9}]] name(pay 9 mana) donothing?fizzle])) forever
+auto=@movedto(instant[manacost=10]|stack):all(trigger[to]) transforms((,newability[pay[[{10}]] name(pay 10 mana) donothing?fizzle])) forever
+auto=@movedto(instant[manacost=11]|stack):all(trigger[to]) transforms((,newability[pay[[{11}]] name(pay 11 mana) donothing?fizzle])) forever
+auto=@movedto(instant[manacost=12]|stack):all(trigger[to]) transforms((,newability[pay[[{12}]] name(pay 12 mana) donothing?fizzle])) forever
+auto=@movedto(instant[manacost=13]|stack):all(trigger[to]) transforms((,newability[pay[[{13}]] name(pay 13 mana) donothing?fizzle])) forever
+auto=@movedto(instant[manacost=14]|stack):all(trigger[to]) transforms((,newability[pay[[{14}]] name(pay 14 mana) donothing?fizzle])) forever
+auto=@movedto(instant[manacost=15]|stack):all(trigger[to]) transforms((,newability[pay[[{15}]] name(pay 15 mana) donothing?fizzle])) forever
+auto=@movedto(instant[manacost=16]|stack):all(trigger[to]) transforms((,newability[pay[[{16}]] name(pay 16 mana) donothing?fizzle])) forever
+auto=@movedTo(enchantment[world]|battlefield):sacrifice all(this)
+text=Whenever a player casts an instant spell, counter it unless that player pays {X}, where X is its converted mana cost.
+mana={2}{U}
+type=World Enchantment
 [/card]
 [card]
 name=Inaction Injunction
@@ -42880,6 +43573,13 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Inheritance
+auto=@movedTo(creature|graveyard) from(battlefield):pay({3}) draw:1
+text=Whenever a creature is put into a graveyard from the battlefield, you may pay {3}. If you do, draw a card.
+mana={W}
+type=Enchantment
+[/card]
+[card]
 name=Initiates of the Ebon Hand
 auto={1}:add{b} limit^phaseaction[endofturn once] sacrifice^4
 text={1}: Add {B} to your mana pool. If this ability has been activated four or more times this turn, sacrifice Initiates of the Ebon Hand at the beginning of the next end step.
@@ -43060,6 +43760,16 @@ mana={1}{UR}
 type=Instant
 [/card]
 [card]
+name=Insidious Bookworms
+auto=@movedTo(this|graveyard) from(battlefield):pay({1}{B}) discard:1 target(player)
+text=When Insidious Bookworms is put into a graveyard from the battlefield, you may pay {1}{B}. If you do, target player discards a card at random.
+mana={B}
+type=Creature
+subtype=Worm
+power=1
+toughness=1
+[/card]
+[card]
 name=Insight
 auto=@movedTo(*[green]|opponentstack):draw:1 controller
 text=Whenever an opponent casts a green spell, you draw a card.
@@ -43197,6 +43907,16 @@ mana={1}{R}{W}
 type=Instant
 [/card]
 [card]
+name=Intimidator Initiate
+auto=@movedto(*[red]|stack):pay({1}) target(creature) cantblock ueot
+text=Whenever a player casts a red spell, you may pay {1}. If you do, target creature can't block this turn.
+mana={R}
+type=Creature
+subtype=Goblin Shaman
+power=1
+toughness=1
+[/card]
+[card]
 name=Into the Core
 target=<2 min>artifact
 auto=moveTo(exile)
@@ -43272,6 +43992,14 @@ auto=moveTo(ownerhand) all(creature[-blue]|battlefield)
 text=Return all nonblue creatures to their owners' hands.
 mana={3}{U}{U}{U}
 type=Sorcery
+[/card]
+[card]
+name=Invert the Skies
+auto=if spent({G}) then all(creature|opponentbattlefield) -flying ueot
+auto=if spent({U}) then all(creature|mybattlefield) flying ueot
+text=Creatures your opponents control lose flying until end of turn if {G} was spent to cast Invert the Skies, and creatures you control gain flying until end of turn if {U} was spent to cast it. (Do both if {G}{U} was spent.)
+mana={3}{GU}
+type=Instant
 [/card]
 [card]
 name=Invigorate
@@ -43443,7 +44171,7 @@ toughness=1
 [/card]
 [card]
 name=Iron Star
-alias=1113
+auto=@movedto(*[red]|stack):pay({1}) life:1
 text=Whenever a player casts a red spell, you may pay {1}. If you do, you gain 1 life.
 mana={1}
 type=Artifact
@@ -43626,6 +44354,13 @@ text=Isolated Chapel enters the battlefield tapped unless you control a Plains o
 type=Land
 [/card]
 [card]
+name=Isolation Cell
+auto=@movedto(creature|opponentstack):name(pay or lifeloss) ability$!name(pay or lifeloss) pay[[{2}]] name(pay 2 mana) donothing?life:-2!$ opponent
+mana={4}
+type=Artifact
+text=Whenever an opponent casts a creature spell, that player loses 2 life unless he or she pays {2}.
+[/card]
+[card]
 name=Isperia, Supreme Judge
 auto=@combat(attacking) source(creature|opponentBattlefield):may draw:1 controller
 abilities=flying
@@ -43699,7 +44434,7 @@ type=Artifact
 [/card]
 [card]
 name=Ivory Cup
-alias=1114
+auto=@movedto(*[white]|stack):pay({1}) life:1
 text=Whenever a player casts a white spell, you may pay {1}. If you do, you gain 1 life.
 mana={1}
 type=Artifact
@@ -43818,6 +44553,18 @@ auto={T}:Add{R}
 text=Izzet Guildgate enters the battlefield tapped. -- {T}: Add {U} or {R} to your mana pool.
 type=Land
 subtype=Gate
+[/card]
+[card]
+name=Izzet Guildmage
+#interrupt own spell in options must be turned on.
+auto={2}{U}:name(copy spell) target(instant[manacost<=2]|mystack) castcard(copied noevent)
+auto={2}{R}:name(copy spell) target(sorcery[manacost<=2]|mystack) castcard(copied noevent)
+text=({(u/r)} can be paid with either {U} or {R}.) -- {2}{U}: Copy target instant spell you control with converted mana cost 2 or less. You may choose new targets for the copy. -- {2}{R}: Copy target sorcery spell you control with converted mana cost 2 or less. You may choose new targets for the copy.
+mana={UR}{UR}
+type=Creature
+subtype=Human Wizard
+power=2
+toughness=2
 [/card]
 [card]
 name=Izzet Keyrune
@@ -44244,6 +44991,17 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Jeweled Torque
+auto=choice name(White) all(this) transforms((,newability[@movedto(*[white]|stack):pay[[{2}]] life:2])) forever
+auto=choice name(Blue) all(this) transforms((,newability[@movedto(*[blue]|stack):pay[[{2}]] life:2])) forever
+auto=choice name(Black) all(this) transforms((,newability[@movedto(*[black]|stack):pay[[{2}]] life:2])) forever
+auto=choice name(Red) all(this) transforms((,newability[@movedto(*[red]|stack):pay[[{2}]] life:2])) forever
+auto=choice name(Green) all(this) transforms((,newability[@movedto(*[green]|stack):pay[[{2}]] life:2])) forever
+text=As Jeweled Torque enters the battlefield, choose a color. -- Whenever a player casts a spell of the chosen color, you may pay {2}. If you do, you gain 2 life.
+mana={2}
+type=Artifact
+[/card]
+[card]
 name=Jhessian Balmgiver
 auto={T}:prevent:1 target(creature,player)
 auto={T}:unblockable target(creature)
@@ -44629,7 +45387,8 @@ type=Artifact
 [/card]
 [card]
 name=Jovial Evil
-auto=foreach(creature[white]|opponentBattlefield) damage:2 opponent
+target=opponnent
+auto=damage:twicetype:creature[white]:targetedpersonsbattlefield
 text=Jovial Evil deals X damage to target opponent, where X is twice the number of white creatures that player controls.
 mana={2}{B}
 type=Sorcery
@@ -44653,9 +45412,20 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Judge's Familiar
+abilities=flying
+auto={S}:name(counter spell) target(*[instant;sorcery]|stack) transforms((,newability[pay[[{1}]] name(pay 1 mana) donothing?fizzle])) forever
+text=Flying -- Sacrifice Judge's Familiar: Counter target instant or sorcery spell unless its controller pays {1}.
+mana={WU}
+type=Creature
+subtype=Bird
+power=1
+toughness=1
+[/card]
+[card]
 name=Jugan, the Rising Star
 abilities=flying
-auto=auto=@movedTo(this|graveyard) from(Battlefield):ability$!counter(1/1,1) target(creature)!$ controller && ability$!counter(1/1,1) target(creature)!$ controller && ability$!counter(1/1,1) target(creature)!$ controller && ability$!counter(1/1,1) target(creature)!$ controller && ability$!counter(1/1,1) target(creature)!$ controller
+auto=@movedTo(this|graveyard) from(Battlefield):ability$!counter(1/1,1) target(creature)!$ controller && ability$!counter(1/1,1) target(creature)!$ controller && ability$!counter(1/1,1) target(creature)!$ controller && ability$!counter(1/1,1) target(creature)!$ controller && ability$!counter(1/1,1) target(creature)!$ controller
 text=Flying -- When Jugan, the Rising Star is put into a graveyard from the battlefield, you may distribute five +1/+1 counters among any number of target creatures.
 mana={3}{G}{G}{G}
 type=Legendary Creature
@@ -44743,8 +45513,7 @@ type=Land
 [card]
 name=Jund Sojourners
 auto=@movedTo(this|graveyard) from(battlefield):may damage:1 target(creature,player)
-autohand=__CYCLING__({2}{R})
-autohand={2}{R}{cycle}:name(cycling + effect) damage:1 target(creature,player) && draw:1 controller
+autohand={2}{R}{cycle}:name(cycling) transforms((,newability[draw:1],newability[may damage:1 target(*[creature;player])])) forever
 text=When you cycle Jund Sojourners or it's put into a graveyard from the battlefield, you may have it deal 1 damage to target creature or player. -- Cycling {2}{R} ({2}{R}, Discard this card: Draw a card.)
 mana={B}{R}{G}
 type=Creature
@@ -45139,6 +45908,17 @@ type=Legendary Creature
 subtype=Demon Spirit
 power=*
 toughness=*
+[/card]
+[card]
+name=Kalastria Highborn
+auto=@movedto(other vampire|graveyard) from(mybattlefield):pay({B}) choice target(player) life:-2 && life:2 controller
+auto=@movedto(this|graveyard) from(battlefield):pay({B}) choice target(player) life:-2 && life:2 controller
+text=Whenever Kalastria Highborn or another Vampire you control is put into a graveyard from the battlefield, you may pay {B}. If you do, target player loses 2 life and you gain 2 life.
+mana={B}{B}
+type=Creature
+subtype=Vampire Shaman
+power=2
+toughness=2
 [/card]
 [card]
 name=Kaldra
@@ -45811,6 +46591,24 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Kazuul, Tyrant of the Cliffs
+auto=@combat(attacking) source(creature|opponentBattlefield):name(pay or ogre token) ability$!name(pay or ogre token) pay[[{3}]] name(pay 3 mana) donothing?token(-197145) opponent!$ opponent
+text=Whenever a creature an opponent controls attacks, if you're the defending player, put a 3/3 red Ogre creature token onto the battlefield unless that creature's controller pays {3}.
+mana={3}{R}{R}
+type=Legendary Creature
+subtype=Ogre Warrior
+power=5
+toughness=4
+[/card]
+[card]
+name=Ogre Token
+power=3
+toughness=3
+type=Creature
+subtype=Ogre
+color=red
+[/card]
+[card]
 name=Kazuul Warlord
 auto=may all(ally|myBattlefield) counter(1/1,1)
 auto=@movedTo(ally|myBattlefield):may all(ally|myBattlefield) counter(1/1,1)
@@ -46462,6 +47260,17 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Kingpin's Pet
+abilities=flying
+auto=@movedto(*|mystack):pay({WB}) life:-1 opponent && life:1 controller
+text=Flying -- Extort (Whenever you cast a spell, you may pay {WB}. If you do, each opponent loses 1 life and you gain that much life.)
+mana={1}{W}{B}
+type=Creature
+subtype=Thrull
+power=2
+toughness=2
+[/card]
+[card]
 name=Kinsbaile Balloonist
 abilities=flying
 auto=@combat(attacking) source(this):may flying target(creature) ueot
@@ -46997,6 +47806,17 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Knight of Obligation
+abilities=vigilance
+auto=@movedto(*|mystack):pay({WB}) life:-1 opponent && life:1 controller
+text=Vigilance -- Extort (Whenever you cast a spell, you may pay {WB}. If you do, each opponent loses 1 life and you gain that much life.)
+mana={3}{W}
+type=Creature
+subtype=Human Knight
+power=2
+toughness=4
+[/card]
+[card]
 name=Knight of Sursi
 abilities=flanking,flying
 text=Flying; flanking (Whenever a creature without flanking blocks this creature, the blocking creature gets -1/-1 until end of turn.) -- Suspend 3 - {W} (Rather than cast this card from your hand, you may pay {W} and exile it with three time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost. It has haste.)
@@ -47022,8 +47842,7 @@ toughness=1
 [card]
 name=Knight of the Mists
 abilities=flanking
-auto=choice bury
-auto=choice pay({U}) name(Keep Knight of the Mists) donothing
+auto=pay[[{U}]] name(pay blue mana) donothing?bury
 text=Flanking (Whenever a creature without flanking blocks this creature, the blocking creature gets -1/-1 until end of turn.) -- When Knight of the Mists enters the battlefield, you may pay {U}. If you don't, destroy target Knight and it can't be regenerated.
 mana={2}{U}
 type=Creature
@@ -47151,6 +47970,17 @@ type=Creature
 subtype=Elf Druid
 power=2
 toughness=2
+[/card]
+[card]
+name=Knowledge Exploitation
+target=opponent
+auto=target(*[instant;sorcery]|targetedpersonslibrary) castcard(normal)
+other={3}{U} name(Prowl)
+otherrestriction=prowl
+text=Prowl {3}{U} (You may cast this for its prowl cost if you dealt combat damage to a player this turn with a Rogue.) -- Search target opponent's library for an instant or sorcery card. You may cast that card without paying its mana cost. Then that player shuffles his or her library.
+mana={5}{U}{U}
+type=Tribal Sorcery
+subtype=Rogue
 [/card]
 [card]
 name=Knucklebone Witch
@@ -47784,8 +48614,7 @@ toughness=2
 [/card]
 [card]
 name=Krosan Tusker
-autohand=__CYCLING__({2}{G})
-autohand={2}{G}{cycle}:name(cycling + effect) moveTo(myhand) target(land[basic]|myLibrary) && draw:1 controller
+autohand={2}{G}{cycle}:name(cycling) transforms((,newability[draw:1],newability[may moveTo(myhand) target(land[basic]|myLibrary)])) forever
 text=Cycling {2}{G} ({2}{G}, Discard this card: Draw a card.) -- When you cycle Krosan Tusker, you may search your library for a basic land card, reveal that card, put it into your hand, then shuffle your library.
 mana={5}{G}{G}
 type=Creature
@@ -47855,6 +48684,15 @@ text=Enchant non-Wall creature you control -- When Krovikan Plague enters the ba
 mana={2}{B}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+name=Krovikan Rot
+target=creature[power<=2]
+auto=destroy
+autograveyard=@movedto(creature|mygraveyard) from(battlefield):pay({1}{B}{B}) name(recover) moveto(ownerhand)?name(exile) moveto(exile)
+text=Destroy target creature with power 2 or less. -- Recover {1}{B}{B} (When a creature is put into your graveyard from the battlefield, you may pay {1}{B}{B}. If you do, return this card from your graveyard to your hand. Otherwise, exile this card.)
+mana={2}{B}
+type=Instant
 [/card]
 [card]
 name=Krovikan Scoundrel
@@ -48398,6 +49236,13 @@ auto={T}:Add{B} && frozen
 auto={T}:Add{R} && frozen
 text={T}: Add {1} to your mana pool. -- {T}: Add {B} or {R} to your mana pool. Lantern-Lit Graveyard doesn't untap during your next untap step.
 type=Land
+[/card]
+[card]
+name=Lapis Lazuli Talisman
+auto=@movedto(*[blue]|stack):pay({3}) untap target(*)
+text=Whenever a player casts a blue spell, you may pay {3}. If you do, untap target permanent.
+mana={2}
+type=Artifact
 [/card]
 [card]
 name=Laquatus's Champion
@@ -49036,9 +49881,9 @@ toughness=3
 [/card]
 [card]
 name=Legion's Initiative
-auto=all(creature[red]|mybattlefield) 1/0
-auto=all(creature[white]|mybattlefield) 0/1
-auto={R}{W}{E}:all(creature|mybattlefield) (blink) && transforms((,newability[@next combatbegins: moveTo(ownerbattlefield)],newability[untap],haste)) ueot
+auto=lord(creature[red]|mybattlefield) 1/0
+auto=lord(creature[white]|mybattlefield) 0/1
+auto={R}{W}{E}:all(creature|mybattlefield) moveto(exile) and!(transforms((,newability[phaseactionmulti[combatbegins once] moveto(ownerbattlefield) && all(this) haste])) forever)!
 text=Red creatures you control get +1/+0. -- White creatures you control get +0/+1. -- {R}{W}, Exile Legion's Initiative: Exile all creatures you  control. At the beginning of the next combat, return those cards to the battlefield under their owner's control and those creatures gain haste until end of turn.  
 mana={R}{W}
 type=Enchantment
@@ -49168,6 +50013,14 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Leshrac's Sigil
+auto=@movedto(*[green]|opponentstack):pay({B}{B}) notatarget(*|opponenthand) reject
+auto={B}{B}:moveto(ownerhand)
+text=Whenever an opponent casts a green spell, you may pay {B}{B}. If you do, look at that player's hand and choose a card from it. The player discards that card. -- {B}{B}: Return Leshrac's Sigil to its owner's hand.
+mana={B}{B}
+type=Enchantment
+[/card]
+[card]
 name=Lesser Gargadon
 auto=@combat(attacking) source(this):moveTo(mygraveyard) notatarget(land|myBattlefield)
 auto=@combat(blocking) source(this):moveTo(mygraveyard) notatarget(land|myBattlefield)
@@ -49247,6 +50100,14 @@ type=Enchantment
 abilities=leyline
 [/card]
 [card]
+name=Leyline of Lightning
+abilities=leyline
+auto=@movedto(*|mystack):pay({1}) damage:1 target(player)
+text=If Leyline of Lightning is in your opening hand, you may begin the game with it on the battlefield. -- Whenever you cast a spell, you may pay {1}. If you do, Leyline of Lightning deals 1 damage to target player.
+mana={2}{R}{R}
+type=Enchantment
+[/card]
+[card]
 name=Leyline of the Meek
 auto=lord(*[token]) 1/1
 text=If Leyline of the Meek is in your opening hand, you may begin the game with it on the battlefield. -- Creature tokens get +1/+1.
@@ -49280,6 +50141,7 @@ abilities=leyline
 [/card]
 [card]
 name=Leyline of the Void
+#need to have opponentOwn attribute like auto=lord(*[opponentOwn]) transforms((,newability[exiledeath]))
 auto=@movedTo(*|opponentGraveyard):all(trigger[to]) moveTo(exile)
 text=If Leyline of the Void is in your opening hand, you may begin the game with it on the battlefield. -- If a card would be put into an opponent's graveyard from anywhere, exile it instead.
 mana={2}{B}{B}
@@ -49511,6 +50373,16 @@ mana={4}{B}{B}
 type=Sorcery
 [/card]
 [card]
+name=Lifesmith
+auto=@movedto(artifact|mystack):pay({1}) life:3
+mana={1}{G}
+type=Creature
+subtype=Human Artificer
+power=2
+toughness=1
+text=Whenever you cast an artifact spell, you may pay {1}. If you do, you gain 3 life.
+[/card]
+[card]
 name=Lifespark Spellbomb
 auto={G}{S}:target(land) transforms((Creature,setpower=3,settoughness=3)) ueot
 auto={S}:draw:1
@@ -49604,6 +50476,15 @@ power=3
 toughness=4
 [/card]
 [card]
+name=Lightning Axe
+other={5}{R} name(pay 5 mana)
+target=creature
+auto=damage:5
+text=As an additional cost to cast Lightning Axe, discard a card or pay {5}. -- Lightning Axe deals 5 damage to target creature.
+mana={R}{discard(other *|myhand)}
+type=Instant
+[/card]
+[card]
 name=Lightning Blast
 target=creature,player
 auto=Damage:4
@@ -49627,6 +50508,13 @@ auto=damage:3
 text=Lightning Bolt deals 3 damage to target creature or player.
 mana={R}
 type=Instant
+[/card]
+[card]
+name=Lightning Cloud
+auto=@movedto(*[red]|stack):pay({R}) damage:1 target(creature,player)
+text=Whenever a player casts a red spell, you may pay {R}. If you do, Lightning Cloud deals 1 damage to target creature or player.
+mana={3}{R}
+type=Enchantment
 [/card]
 [card]
 name=Lightning Coils
@@ -49743,6 +50631,13 @@ type=Creature
 subtype=Zombie Beast
 power=3
 toughness=3
+[/card]
+[card]
+name=Lightning Rift
+auto=@cycled(*|hand):pay({1}) damage:2 target(creature,player)
+text=Whenever a player cycles a card, you may pay {1}. If you do, Lightning Rift deals 2 damage to target creature or player.
+mana={1}{R}
+type=Enchantment
 [/card]
 [card]
 name=Lightning Serpent
@@ -50214,7 +51109,7 @@ type=Land
 [/card]
 [card]
 name=Llanowar Sentinel
-auto=choice pay({1}{G}) name(search for Llanowar Sentinel) target(Llanowar Sentinel|mylibrary) moveto(mybattlefield)
+auto=pay({1}{G}) name(search for Llanowar Sentinel) target(Llanowar Sentinel|mylibrary) moveto(mybattlefield)
 text=When Llanowar Sentinel enters the battlefield, you may pay {1}{G}. If you do, search your library for a card named Llanowar Sentinel and put that card onto the battlefield. Then shuffle your library.
 mana={2}{G}
 type=Creature
@@ -50574,7 +51469,7 @@ toughness=2
 [/card]
 [card]
 name=Lorthos, the Tidemaker
-auto=this(attacking) {8}:name(tap permanents) target(<upto:8>*|battlefield) transforms((,newability[frozen],newability[tap])) limit:1
+auto=@combat(attacking) source(this):pay({8}) name(freeze) target(<upto:8>*|battlefield) transforms((,newability[tap],newability[frozen])) uynt
 text=Whenever Lorthos, the Tidemaker attacks, you may pay {8}. If you do, tap up to eight target permanents. Those permanents don't untap during their controllers' next untap steps.
 mana={5}{U}{U}{U}
 type=Legendary Creature
@@ -51138,6 +52033,16 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Lunar Mystic
+auto=@movedto(*[instant]|mystack):pay({1}) draw:1
+text=Whenever you cast an instant spell, you may pay {1}. If you do, draw a card.
+mana={2}{U}{U}
+type=Creature
+subtype=Human Wizard
+power=2
+toughness=2
+[/card]
+[card]
 name=Lunge
 target=creature
 auto=damage:2
@@ -51423,6 +52328,17 @@ power=3
 toughness=4
 [/card]
 [card]
+name=Maelstrom Archangel
+abilities=flying
+auto=@combatdamaged(player) from(this):may target(*[-land]|myhand) castcard(normal)
+text=Flying -- Whenever Maelstrom Archangel deals combat damage to a player, you may cast a nonland card from your hand without paying its mana cost.
+mana={W}{U}{B}{R}{G}
+type=Creature
+subtype=Angel
+power=5
+toughness=5
+[/card]
+[card]
 name=Maelstrom Djinn
 abilities=flying
 facedown={3}
@@ -51695,6 +52611,13 @@ auto=@movedTo(other artifact|graveyard) from(mybattlefield):life:-2 controller
 text=Whenever another artifact is put into a graveyard from the battlefield, Magnetic Mine deals 2 damage to that artifact's controller.
 mana={4}
 type=Artifact
+[/card]
+[card]
+name=Magnetic Mountain
+auto=lord(creature[blue]) transforms((,newability[doesnotuntap],newability[@each my upkeep sourcetap:pay[[{4}]] untap]))
+text=Blue creatures don't untap during their controllers' untap steps. -- At the beginning of each player's upkeep, that player may choose any number of tapped blue creatures he or she controls and pay {4} for each creature chosen this way. If the player does, untap those creatures.
+mana={1}{R}{R}
+type=Enchantment
 [/card]
 [card]
 name=Magnetic Theft
@@ -51987,6 +52910,13 @@ power=5
 toughness=3
 [/card]
 [card]
+name=Malachite Talisman
+auto=@movedto(*[green]|stack):pay({3}) untap target(*)
+text=Whenever a player casts a green spell, you may pay {3}. If you do, untap target permanent.
+mana={2}
+type=Artifact
+[/card]
+[card]
 name=Malakir Bloodwitch
 abilities=flying,protection from white
 auto=foreach(vampire|myBattlefield) life:-1 opponent
@@ -52126,6 +53056,14 @@ mana={3}{R}{R}
 type=Sorcery
 [/card]
 [card]
+name=Mana Leak
+target=*|stack
+auto=transforms((,newability[pay[[{3}]] name(pay 3 mana) donothing?fizzle])) forever
+text=Counter target spell unless its controller pays {3}.
+mana={1}{U}
+type=Instant
+[/card]
+[card]
 name=Mana Matrix
 auto=lord(instant|myhand) altercost(colorless,-2)
 auto=lord(enchantment|myhand) altercost(colorless,-2)
@@ -52179,6 +53117,14 @@ type=Creature
 subtype=Leech
 power=2
 toughness=2
+[/card]
+[card]
+name=Mana Tithe
+target=*|stack
+auto=transforms((,newability[pay[[{1}]] name(pay 1 mana) donothing?fizzle])) forever
+text=Counter target spell unless its controller pays {1}.
+mana={W}
+type=Instant
 [/card]
 [card]
 name=Mana Vapors
@@ -52986,6 +53932,17 @@ mana={U}{S(creature|mybattlefield)}
 type=Instant
 [/card]
 [card]
+name=Masked Admirers
+auto=draw:1
+autograveyard=@movedto(creature|mystack):pay({G}{G}) moveto(ownerhand)
+text=When Masked Admirers enters the battlefield, draw a card. -- Whenever you cast a creature spell, you may pay {G}{G}. If you do, return Masked Admirers from your graveyard to your hand.
+mana={2}{G}{G}
+type=Creature
+subtype=Elf Shaman
+power=3
+toughness=2
+[/card]
+[card]
 name=Masked Gorgon
 auto=lord(creature[green;white]) protection from(gorgon)
 auto=aslongas(*|mygraveyard) protection from white >6
@@ -53443,6 +54400,48 @@ mana={2}{U}
 type=Instant
 [/card]
 [card]
+name=Megatherium
+abilities=trample
+auto=if compare(phandcount)~equalto~1 then transforms((,newability[pay[[{1}]] name(pay 1 mana) donothing?sacrifice])) forever
+auto=if compare(phandcount)~equalto~2 then transforms((,newability[pay[[{2}]] name(pay 2 mana) donothing?sacrifice])) forever
+auto=if compare(phandcount)~equalto~3 then transforms((,newability[pay[[{3}]] name(pay 3 mana) donothing?sacrifice])) forever
+auto=if compare(phandcount)~equalto~4 then transforms((,newability[pay[[{4}]] name(pay 4 mana) donothing?sacrifice])) forever
+auto=if compare(phandcount)~equalto~5 then transforms((,newability[pay[[{5}]] name(pay 5 mana) donothing?sacrifice])) forever
+auto=if compare(phandcount)~equalto~6 then transforms((,newability[pay[[{6}]] name(pay 6 mana) donothing?sacrifice])) forever
+auto=if compare(phandcount)~equalto~7 then transforms((,newability[pay[[{7}]] name(pay 7 mana) donothing?sacrifice])) forever
+auto=if compare(phandcount)~equalto~8 then transforms((,newability[pay[[{8}]] name(pay 8 mana) donothing?sacrifice])) forever
+auto=if compare(phandcount)~equalto~9 then transforms((,newability[pay[[{9}]] name(pay 9 mana) donothing?sacrifice])) forever
+auto=if compare(phandcount)~equalto~10 then transforms((,newability[pay[[{10}]] name(pay 10 mana) donothing?sacrifice])) forever
+auto=if compare(phandcount)~equalto~11 then transforms((,newability[pay[[{11}]] name(pay 11 mana) donothing?sacrifice])) forever
+auto=if compare(phandcount)~equalto~12 then transforms((,newability[pay[[{12}]] name(pay 12 mana) donothing?sacrifice])) forever
+auto=if compare(phandcount)~equalto~13 then transforms((,newability[pay[[{13}]] name(pay 13 mana) donothing?sacrifice])) forever
+auto=if compare(phandcount)~equalto~14 then transforms((,newability[pay[[{14}]] name(pay 14 mana) donothing?sacrifice])) forever
+auto=if compare(phandcount)~equalto~15 then transforms((,newability[pay[[{15}]] name(pay 15 mana) donothing?sacrifice])) forever
+auto=if compare(phandcount)~equalto~16 then transforms((,newability[pay[[{16}]] name(pay 16 mana) donothing?sacrifice])) forever
+auto=if compare(phandcount)~equalto~17 then transforms((,newability[pay[[{17}]] name(pay 17 mana) donothing?sacrifice])) forever
+auto=if compare(phandcount)~equalto~18 then transforms((,newability[pay[[{18}]] name(pay 18 mana) donothing?sacrifice])) forever
+auto=if compare(phandcount)~equalto~19 then transforms((,newability[pay[[{19}]] name(pay 19 mana) donothing?sacrifice])) forever
+auto=if compare(phandcount)~equalto~20 then transforms((,newability[pay[[{20}]] name(pay 20 mana) donothing?sacrifice])) forever
+auto=if compare(phandcount)~equalto~21 then transforms((,newability[pay[[{21}]] name(pay 21 mana) donothing?sacrifice])) forever
+auto=if compare(phandcount)~equalto~22 then transforms((,newability[pay[[{22}]] name(pay 22 mana) donothing?sacrifice])) forever
+auto=if compare(phandcount)~equalto~23 then transforms((,newability[pay[[{23}]] name(pay 23 mana) donothing?sacrifice])) forever
+auto=if compare(phandcount)~equalto~24 then transforms((,newability[pay[[{24}]] name(pay 24 mana) donothing?sacrifice])) forever
+auto=if compare(phandcount)~equalto~25 then transforms((,newability[pay[[{25}]] name(pay 25 mana) donothing?sacrifice])) forever
+auto=if compare(phandcount)~equalto~26 then transforms((,newability[pay[[{26}]] name(pay 26 mana) donothing?sacrifice])) forever
+auto=if compare(phandcount)~equalto~27 then transforms((,newability[pay[[{27}]] name(pay 27 mana) donothing?sacrifice])) forever
+auto=if compare(phandcount)~equalto~28 then transforms((,newability[pay[[{28}]] name(pay 28 mana) donothing?sacrifice])) forever
+auto=if compare(phandcount)~equalto~29 then transforms((,newability[pay[[{29}]] name(pay 29 mana) donothing?sacrifice])) forever
+auto=if compare(phandcount)~equalto~30 then transforms((,newability[pay[[{30}]] name(pay 30 mana) donothing?sacrifice])) forever
+auto=if compare(phandcount)~morethan~30 then sacrifice
+#limit to thirty
+text=Trample -- When Megatherium enters the battlefield, sacrifice it unless you pay {1} for each card in your hand.
+mana={2}{G}
+type=Creature
+subtype=Beast
+power=4
+toughness=4
+[/card]
+[card]
 name=Megatog
 auto={S(artifact|myBattlefield)}:3/3 && trample
 text=Sacrifice an artifact: Megatog gets +3/+3 and gains trample until end of turn.
@@ -53579,6 +54578,14 @@ auto={T}{S}:name(hand blink) all(*|hand) transforms((,newability[moveto(exile)],
 text={T}, Sacrifice Memory Jar: Each player exiles all cards from his or her hand face down and draws seven cards. At the beginning of the next end step, each player discards his or her hand and returns to his or her hand each card he or she exiled this way.
 mana={5}
 type=Artifact
+[/card]
+[card]
+name=Memory Plunder
+target=*[instant;sorcery]|opponentgraveyard
+auto=castcard(normal)
+text=You may cast target instant or sorcery card from an opponent's graveyard without paying its mana cost.
+mana={UB}{UB}{UB}{UB}
+type=Instant
 [/card]
 [card]
 name=Memory Sluice
@@ -53880,6 +54887,16 @@ type=Creature
 subtype=Merfolk Scout
 power=2
 toughness=3
+[/card]
+[card]
+name=Merfolk Seer
+auto=@movedTo(this|graveyard) from(battlefield):pay({1}{U}) draw:1
+text=When Merfolk Seer is put into a graveyard from the battlefield, you may pay {1}{U}. If you do, draw a card.
+mana={2}{U}
+type=Creature
+subtype=Merfolk Wizard
+power=2
+toughness=2
 [/card]
 [card]
 name=Merfolk Skyscout
@@ -54434,6 +55451,14 @@ power=2
 toughness=1
 [/card]
 [card]
+name=Militia's Pride
+auto=@combat(attacking) source(creature[-token]|mybattlefield):pay({W}) token(Kithkin Soldier,Creature Kithkin Soldier,1/1,white,battleready)
+text=Whenever a nontoken creature you control attacks, you may pay {W}. If you do, put a 1/1 white Kithkin Soldier creature token onto the battlefield tapped and attacking.
+mana={1}{W}
+type=Tribal Enchantment
+subtype=Kithkin
+[/card]
+[card]
 name=Millennial Gargoyle
 abilities=flying
 text=Flying
@@ -54485,6 +55510,13 @@ text={T}: Add {U} to your mana pool. -- {U}, {T}: Untap target legendary permane
 type=Legendary Land
 [/card]
 [card]
+name=Mind's Eye
+auto=@drawn(opponent):pay({1}) draw:1
+text=Whenever an opponent draws a card, you may pay {1}. If you do, draw a card.
+mana={5}
+type=Artifact
+[/card]
+[card]
 name=Mind Burst
 target=player
 auto=ability$!name(discard) target(<plusonetype:mind burst:graveyard>*|myhand) reject!$ targetedplayer
@@ -54521,7 +55553,8 @@ subtype=Aura
 [/card]
 [card]
 name=Mind Knives
-auto=discard:1 opponent
+target=opponent
+auto=discard:1
 text=Target opponent discards a card at random.
 mana={1}{B}
 type=Sorcery
@@ -54670,6 +55703,16 @@ power=0
 toughness=1
 [/card]
 [card]
+name=Mindclaw Shaman
+auto=choice name(target opponent) target(opponent) donothing && all(this) transforms((,newability[if type(*[instant;sorcery]|targetedpersonshand)~lessthan~1 then name(look) donothing notatarget(*|targetedpersonshand) else may castcard(normal) notatarget(*[instant;sorcery]|targetedpersonshand)])) forever
+text=When Mindclaw Shaman enters the battlefield, target opponent reveals his or her hand. You may cast an instant or sorcery card from it without paying its mana cost.
+mana={4}{R}
+type=Creature
+subtype=Viashino Shaman
+power=2
+toughness=2
+[/card]
+[card]
 name=Mindcrank
 auto=@lifeloss(opponent):deplete:thatmuch opponent
 text=Whenever an opponent loses life, that player puts that many cards from the top of his or her library into his or her graveyard. (Damage dealt by sources without infect causes loss of life.)
@@ -54706,6 +55749,17 @@ type=Creature
 subtype=Sliver
 power=1
 toughness=1
+[/card]
+[card]
+name=Mindleech Mass
+abilities=trample
+auto=@combatdamaged(player) from(this):may target(*[-land]|opponenthand) castcard(normal)
+text=Trample -- Whenever Mindleech Mass deals combat damage to a player, you may look at that player's hand. If you do, you may cast a nonland card in it without paying that card's mana cost.
+mana={5}{U}{B}{B}
+type=Creature
+subtype=Horror
+power=6
+toughness=6
 [/card]
 [card]
 name=Mindless Automaton
@@ -54749,8 +55803,7 @@ toughness=3
 [/card]
 [card]
 name=Mindstab
-target=player
-auto=ability$!name(discard 3 cards) target(<3>*|myhand) reject!$ targetedplayer
+auto=target(player) ability$!name(discard 3 cards) target(<3>*|myhand) reject!$ targetedplayer
 suspend(4)={b}
 text=Target player discards three cards. -- Suspend 4 - {B} (Rather than cast this card from your hand, you may pay {B} and exile it with four time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.)
 mana={5}{B}
@@ -54765,6 +55818,14 @@ type=Creature
 subtype=Thrull
 power=2
 toughness=2
+[/card]
+[card]
+name=Mindstatic
+target=*|stack
+auto=transforms((,newability[pay[[{6}]] name(pay 6 mana) donothing?fizzle])) forever
+text=Counter target spell unless its controller pays {6}.
+mana={3}{U}
+type=Instant
 [/card]
 [card]
 name=Mindstorm Crown
@@ -54853,6 +55914,13 @@ power=4
 toughness=4
 [/card]
 [card]
+name=Minion Reflector
+auto=@movedto(creature[-token]|mybattlefield):all(trigger[to]) pay[[{2}]] clone with(treason,haste)
+text=Whenever a nontoken creature enters the battlefield under your control, you may pay {2}. If you do, put a token that's a copy of that creature onto the battlefield. That token has haste and "At the beginning of the end step, sacrifice this permanent."
+mana={5}
+type=Artifact
+[/card]
+[card]
 name=Minions' Murmurs
 auto=foreach(creature|myBattlefield) draw:1
 auto=foreach(creature|myBattlefield) life:-1
@@ -54929,6 +55997,13 @@ auto=transforms((,newability[moveTo(mybattlefield)],newability[counter(1/1)]))
 text=Return target creature card from your graveyard to the battlefield with a +1/+1 counter on it.
 mana={4}{W}
 type=Instant
+[/card]
+[card]
+name=Mirari
+auto=@movedto(*[instant;sorcery]|mystack):target(trigger[to]<1>) pay[[{3}]] name(copy spell) activate name(copy spell) castcard(copied noevent)
+text=Whenever you cast an instant or sorcery spell, you may pay {3}. If you do, copy that spell. You may choose new targets for the copy.
+mana={5}
+type=Legendary Artifact
 [/card]
 [card]
 name=Mire Blight
@@ -55099,6 +56174,22 @@ power=3
 toughness=4
 [/card]
 [card]
+name=Mirrorworks
+auto=@movedto(other artifact[-token]|mybattlefield):all(trigger[to]) pay[[{2}]] clone
+text=Whenever another nontoken artifact enters the battlefield under your control, you may pay {2}. If you do, put a token that's a copy of that artifact onto the battlefield.
+mana={4}
+type=Artifact
+[/card]
+[card]
+name=Miscalculation
+target=*|stack
+auto=transforms((,newability[pay[[{2}]] name(pay 2 mana) donothing?fizzle])) forever
+autohand=__CYCLING__({2})
+text=Counter target spell unless its controller pays {2}. -- Cycling {2} ({2}, Discard this card: Draw a card.)
+mana={1}{U}
+type=Instant
+[/card]
+[card]
 name=Mischievous Poltergeist
 abilities=flying
 auto={L}:regenerate
@@ -55108,6 +56199,18 @@ type=Creature
 subtype=Spirit
 power=1
 toughness=1
+[/card]
+[card]
+name=Mischievous Quanar
+facedown={3}
+autofaceup=name(copy spell) target(*[instant;sorcery]|stack) castcard(copied noevent)
+autofacedown={1}{U}{U}:morph
+text={3}{U}{U}: Turn Mischievous Quanar face down. -- Morph {1}{U}{U} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- When Mischievous Quanar is turned face up, copy target instant or sorcery spell. You may choose new targets for that copy.
+mana={4}{U}
+type=Creature
+subtype=Beast
+power=3
+toughness=3
 [/card]
 [card]
 name=Misers' Cage
@@ -56184,6 +57287,15 @@ power=2
 toughness=3
 [/card]
 [card]
+name=Moonhold
+target=player
+auto=if spent({W}) then maxCast(*)0 targetedplayer
+auto=if spent({R}) then maxPlay(land)-99 targetedplayer
+text=Target player can't play land cards this turn if {R} was spent to cast Moonhold and can't play creature cards this turn if {W} was spent to cast it. (Do both if {R}{W} was spent.)
+mana={2}{RW}
+type=Instant
+[/card]
+[card]
 name=Moonlace
 text=Target spell or permanent becomes colorless.
 target=*
@@ -56952,6 +58064,13 @@ mana={2}{R}
 type=Instant
 [/card]
 [card]
+name=Mudslide
+auto=lord(creature[-flying]) transforms((,newability[doesnotuntap],newability[@each my upkeep sourcetap:pay[[{2}]] untap]))
+text=Creatures without flying don't untap during their controllers' untap steps. -- At the beginning of each player's upkeep, that player may choose any number of tapped creatures without flying he or she controls and pay {2} for each creature chosen this way. If the player does, untap those creatures.
+mana={2}{R}
+type=Enchantment
+[/card]
+[card]
 name=Mugging
 target=creature
 auto=damage:2
@@ -57484,6 +58603,16 @@ mana={5}
 type=Artifact
 [/card]
 [card]
+name=Myrsmith
+auto=@movedto(artifact|mystack):pay({1}) token(Myr,Artifact Creature Myr,1/1)
+mana={1}{W}
+type=Creature
+subtype=Human Artificer
+power=2
+toughness=1
+text=Whenever you cast an artifact spell, you may pay {1}. If you do, put a 1/1 colorless Myr artifact creature token onto the battlefield.
+[/card]
+[card]
 name=Mysteries of the Deep
 auto=draw:2
 auto=aslongas(land[fresh]|mybattlefield) draw:1
@@ -57607,6 +58736,15 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Mystic Remora
+#reversed so if you choose to draw a card, an opponent will pay mana if he doesn't want you to draw.
+auto=cumulativeupcost[{1}] sacrifice
+auto=@movedto(*[-creature]|opponentstack):may name(draw a card) ability$!name(pay or draw) pay[[{4}]] name(pay 4 mana) donothing?draw:1 opponent!$ opponent
+text=Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- Whenever an opponent casts a noncreature spell, you may draw a card unless that player pays {4}.
+mana={U}
+type=Enchantment
+[/card]
+[card]
 name=Mystic Retrieval
 target=instant,sorcery|mygraveyard
 auto=moveTo(ownerhand)
@@ -57698,6 +58836,13 @@ type=Creature
 subtype=Cat Warrior
 power=2
 toughness=1
+[/card]
+[card]
+name=Nacre Talisman
+auto=@movedto(*[white]|stack):pay({3}) untap target(*)
+text=Whenever a player casts a white spell, you may pay {3}. If you do, untap target permanent.
+mana={2}
+type=Artifact
 [/card]
 [card]
 name=Nagao, Bound by Honor
@@ -58124,8 +59269,7 @@ type=Land
 [card]
 name=Naya Sojourners
 auto=@movedTo(this|graveyard) from(battlefield):may counter(1/1,1) target(creature)
-autohand=__CYCLING__({2}{G})
-autohand={2}{G}{cycle}:name(cycling + effect) counter(1/1,1) target(creature) && draw:1 controller
+autohand={2}{G}{cycle}:name(cycling) transforms((,newability[draw:1],newability[may counter(1/1.1) target(creature)])) forever
 text=When you cycle Naya Sojourners or it's put into a graveyard from the battlefield, you may put a +1/+1 counter on target creature. -- Cycling {2}{G} ({2}{G}, Discard this card: Draw a card.)
 mana={2}{R}{G}{W}
 type=Creature
@@ -58534,7 +59678,7 @@ name=Nemesis Trap
 other={B}{B}
 otherrestriction=type(creature[white&attacking]|battlefield)~morethan~0
 target=creature[attacking]
-auto=moveto(exile) and!(clone with(treason))!
+auto=moveto(exile) and!(clone with(unearth))!
 text=If a white creature is attacking, you may pay {B}{B} rather than pay Nemesis Trap's mana cost. -- Exile target attacking creature. Put a token that's a copy of that creature onto the battlefield. Exile it at the beginning of the next end step.
 mana={4}{B}{B}
 type=Instant
@@ -58613,6 +59757,25 @@ type=Creature
 subtype=Horror
 power=4
 toughness=2
+[/card]
+[card]
+name=Nether Traitor
+abilities=haste,shadow
+autograveyard=@movedto(other creature|mygraveyard) from(battlefield):pay({B}) moveto(mybattlefield)
+text=Haste -- Shadow (This creature can block or be blocked by only creatures with shadow.) -- Whenever another creature is put into your graveyard from the battlefield, you may pay {B}. If you do, return Nether Traitor from your graveyard to the battlefield.
+mana={B}{B}
+type=Creature
+subtype=Spirit
+power=1
+toughness=1
+[/card]
+[card]
+name=Nether Void
+auto=@movedto(*|stack):all(trigger[to]) transforms((,newability[pay[[{3}]] name(pay 3 mana) donothing?fizzle])) forever
+auto=@movedTo(enchantment[world]|battlefield):sacrifice all(this)
+text=Whenever a player casts a spell, counter it unless its controller pays {3}.
+mana={3}{B}
+type=World Enchantment
 [/card]
 [card]
 name=Netherborn Phalanx
@@ -58819,6 +59982,18 @@ type=Creature
 subtype=Cyclops
 power=1
 toughness=4
+[/card]
+[card]
+name=Nivix Guildmage
+#interrupt own spell in options must be turned on.
+auto={1}{U}{R}:name(draw & discard) ability$!draw:1 _ choice notatarget(*|myhand) reject)!$ controller
+auto={2}{U}{R}:name(copy spell) target(instant,sorcery|mystack) castcard(copied noevent)
+text={1}{U}{R}: Draw a card, then discard a card. -- {2}{U}{R}: Copy target instant or sorcery spell you control. You may choose new targets for the copy.
+mana={U}{R}
+type=Creature
+subtype=Human Wizard
+power=2
+toughness=2
 [/card]
 ###The 2 cards below should stay together (Flip Card)###
 [card]
@@ -59198,6 +60373,14 @@ type=Creature
 subtype=Shade
 power=2
 toughness=2
+[/card]
+[card]
+name=Nihil Spellbomb
+auto={T}{S}:target(player) moveTo(exile) all(*|targetedpersonsgraveyard)
+auto=@movedTo(this|graveyard) from(battlefield):pay({B}) draw:1
+mana={1}
+type=Artifact
+text={T}, Sacrifice Nihil Spellbomb: Exile all cards from target player's graveyard. When Nihil Spellbomb is put into a graveyard from the battlefield, you may pay {B}. If you do, draw a card.
 [/card]
 [card]
 name=Nihilith
@@ -59977,13 +61160,23 @@ subtype=Aura
 [card]
 name=Numot, the Devastator
 abilities=flying
-auto=@combatdamaged(player) from(this):may name(pay ability) transforms((,newability[{2}{R}:destroy target(<upto:2>land|battlefield) limit:1 mycombatdamageonly])) oneshot
+auto=@combatdamaged(player) from(this):pay({2}{R}) destroy target(<upto:2>land|battlefield)
 text=Flying -- Whenever Numot, the Devastator deals combat damage to a player, you may pay {2}{R}. If you do, destroy up to two target lands.
 mana={3}{R}{W}{U}
 type=Legendary Creature
 subtype=Dragon
 power=6
 toughness=6
+[/card]
+[card]
+name=Nurturer Initiate
+auto=@movedto(*[green]|stack):pay({1}) 1/1 target(creature)
+text=Whenever a player casts a green spell, you may pay {1}. If you do, target creature gets +1/+1 until end of turn.
+mana={G}
+type=Creature
+subtype=Elf Shaman
+power=1
+toughness=1
 [/card]
 [card]
 name=Nut Collector
@@ -60300,7 +61493,7 @@ type=Sorcery
 [card]
 name=Obzedat, Ghost Council
 auto=ability$!choice life:-2 target(opponent) && life:2 controller!$ controller
-auto=@each my end:may name(exile) all(this) transforms((,newability[moveto(exile)],newability[phaseactionmulti[my upkeep] moveto(ownerbattlefield) && all(this) haste ueot]))
+auto=@each my end:may name(exile) all(this) transforms((,newability[moveto(exile)],newability[phaseactionmulti[my upkeep once] moveto(ownerbattlefield) && all(this) haste]))
 text=When Obzedat, Ghost Council enters the battlefield, target opponent loses 2 life and you gain 2 life. -- At the beginning of your end step, you may exile Obzedat. If you do, return it to the battlefield under its owner's control at the beginning of your next upkeep. It gains haste.
 mana={1}{W}{W}{B}{B}
 type=Legendary Creature
@@ -60351,10 +61544,20 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Off Balance
+target=creature
+auto=cantattack
+auto=cantblock
+text=Target creature can't attack or block this turn.
+mana={W}
+type=Instant
+[/card]
+[card]
 name=Offalsnout
 abilities=flash
 other={B} name(Evoke)
 auto=@movedTo(this|nonbattlezone) from(battlefield):moveTo(exile) target(other *|graveyard)
+auto=alternative sacrifice
 text=Flash -- When Offalsnout leaves the battlefield, exile target card from a graveyard. -- Evoke {B} (You may cast this spell for its evoke cost. If you do, it's sacrificed when it enters the battlefield.)
 mana={2}{B}
 type=Creature
@@ -60363,12 +61566,12 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Off Balance
-target=creature
-auto=cantattack
-auto=cantblock
-text=Target creature can't attack or block this turn.
-mana={W}
+name=Offering to Asha
+target=*|stack
+auto=transforms((,newability[pay[[{4}]] name(pay 4 mana) donothing?fizzle])) forever
+auto=life:4 controller
+text=Counter target spell unless its controller pays {4}. You gain 4 life.
+mana={2}{W}{U}
 type=Instant
 [/card]
 [card]
@@ -60462,8 +61665,7 @@ toughness=3
 [/card]
 [card]
 name=Ogre Savant
-other={3}{U}{R} name(Spend U to Cast)
-auto=alternative moveTo(ownerhand) target(creature)
+auto=if spent({U}) then moveTo(ownerhand) target(creature)
 text=When Ogre Savant enters the battlefield, if {U} was spent to cast Ogre Savant, return target creature to its owner's hand.
 mana={4}{R}
 type=Creature
@@ -60728,6 +61930,13 @@ type=Creature
 subtype=Human Wizard
 power=2
 toughness=1
+[/card]
+[card]
+name=Onyx Talisman
+auto=@movedto(*[black]|stack):pay({3}) untap target(*)
+text=Whenever a player casts a black spell, you may pay {3}. If you do, untap target permanent.
+mana={2}
+type=Artifact
 [/card]
 [card]
 name=Oona's Blackguard
@@ -61212,7 +62421,7 @@ toughness=3
 [/card]
 [card]
 name=Order of the Golden Cricket
-auto=this(attacking) {W}:flying limit:1
+auto=@combat(attacking) source(this):pay({W}) all(this) flying ueot
 text=Whenever Order of the Golden Cricket attacks, you may pay {W}. If you do, it gains flying until end of turn.
 mana={1}{W}
 type=Creature
@@ -61341,6 +62550,14 @@ type=Creature
 subtype=Orgg
 power=6
 toughness=6
+[/card]
+[card]
+name=Origin Spellbomb
+auto={1}{T}{S}:token(Myr,Artifact Creature Myr,1/1)
+auto=@movedTo(this|graveyard) from(battlefield):pay({W}) draw:1
+mana={1}
+type=Artifact
+text={1}, {T}, Sacrifice Origin Spellbomb: Put a 1/1 colorless Myr artifact creature token onto the battlefield. When Origin Spellbomb is put into a graveyard from the battlefield, you may pay {W}. If you do, draw a card.
 [/card]
 [card]
 name=Orim's Chant
@@ -61488,7 +62705,7 @@ toughness=2
 [card]
 name=Oros, the Avenger
 abilities=flying
-auto=@combatdamaged(player) from(this):may name(pay ability) transforms((,newability[{2}{W}:damage:3 all(creature[-white]) limit:1 mycombatdamageonly])) oneshot
+auto=@combatdamaged(player) from(this):pay({2}{W}) damage:3 all(creature[-white])
 text=Flying -- Whenever Oros, the Avenger deals combat damage to a player, you may pay {2}{W}. If you do, Oros deals 3 damage to each nonwhite creature.
 mana={3}{W}{B}{R}
 type=Legendary Creature
@@ -61684,7 +62901,7 @@ type=Enchantment
 [card]
 name=Overgrown Tomb
 auto=tap
-auto=may untap && life:-2 controller
+auto=pay({L}{L}) untap
 text=({T}: Add {B} or {G} to your mana pool.) -- As Overgrown Tomb enters the battlefield, you may pay 2 life. If you don't, Overgrown Tomb enters the battlefield tapped.
 type=Land
 subtype=Swamp Forest
@@ -62193,6 +63410,14 @@ mana={2}{R}
 type=Sorcery
 [/card]
 [card]
+name=Panic Spellbomb
+auto={T}{S}:cantblock target(creature)
+auto=@movedTo(this|graveyard) from(battlefield):pay({R}) draw:1
+mana={1}
+type=Artifact
+text={T}, Sacrifice Panic Spellbomb: Target creature can't block this turn. When Panic Spellbomb is put into a graveyard from the battlefield, you may pay {R}. If you do, draw a card.
+[/card]
+[card]
 name=Panther Warriors
 mana={4}{G}
 type=Creature
@@ -62462,9 +63687,7 @@ toughness=3
 [card]
 name=Patagia Viper
 abilities=flying
-other={2}{U}{G} name(Spend U to Cast)
-auto=alternative 99/99
-auto=-99/-99
+auto=ifnot spent({U}) then sacrifice
 auto=token(Snake,Creature Snake,1/1,greenblue)*2
 text=Flying -- When Patagia Viper enters the battlefield, put two 1/1 green and blue Snake creature tokens onto the battlefield. -- When Patagia Viper enters the battlefield, sacrifice it unless {U} was spent to cast it.
 mana={3}{G}
@@ -62570,6 +63793,16 @@ type=Creature
 subtype=Elf
 power=1
 toughness=1
+[/card]
+[card]
+name=Patron Wizard
+auto={T(wizard|mybattlefield)}:name(counter spell) target(*|stack) transforms((,newability[pay[[{1}]] name(pay 1 mana) donothing?fizzle])) forever
+text=Tap an untapped Wizard you control: Counter target spell unless its controller pays {1}.
+mana={U}{U}{U}
+type=Creature
+subtype=Human Wizard
+power=2
+toughness=2
 [/card]
 [card]
 name=Pattern of Rebirth
@@ -62694,6 +63927,13 @@ auto=@tapped(this):bury all(peat bog[-counter{0/0.1.Depletion}]|myBattlefield)
 auto=this(counter{0/0.1.Depletion}<1) {0}:sacrifice all(this)
 text=Peat Bog enters the battlefield tapped with two depletion counters on it. -- {T}, Remove a depletion counter from Peat Bog: Add {B}{B} to your mana pool. If there are no depletion counters on Peat Bog, sacrifice it.
 type=Land
+[/card]
+[card]
+name=Pedantic Learning
+auto=@movedTo(land|mygraveyard) from(mylibrary):pay({1}) draw:1
+text=Whenever a land card is put into your graveyard from your library, you may pay {1}. If you do, draw a card.
+mana={U}{U}
+type=Enchantment
 [/card]
 [card]
 name=Peek
@@ -63931,6 +65171,14 @@ mana={2}{B}{S(creature|myBattlefield)}{S(creature|myBattlefield)}
 type=Sorcery
 [/card]
 [card]
+name=Phyrexian Tyranny
+auto=@drawn(opponent):name(pay or lifeloss) ability$!name(pay or lifeloss) pay[[{2}]] name(pay 2 mana) donothing?life:-2!$ opponent
+auto=@drawn(controller):name(pay or lifeloss) ability$!name(pay or lifeloss) pay[[{2}]] name(pay 2 mana) donothing?life:-2!$ controller
+text=Whenever a player draws a card, that player loses 2 life unless he or she pays {2}.
+mana={U}{B}{R}
+type=Enchantment
+[/card]
+[card]
 name=Phyrexian Unlife
 abilities=cantlifelose
 auto=this(controllerlife < 1) lord(*|opponentbattlefield,opponentstack) poisondamager
@@ -64389,6 +65637,16 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Plague Fiend
+auto=@combatdamaged(creature) from(this):all(trigger[to]) transforms((,newability[pay[[{2}]] name(pay 2 mana) donothing?destroy])) ueot
+text=Whenever Plague Fiend deals combat damage to a creature, destroy that creature unless its controller pays {2}.
+mana={1}{B}
+type=Creature
+subtype=Insect
+power=1
+toughness=1
+[/card]
+[card]
 name=Plague Myr
 abilities=infect
 auto={T}:Add{1}
@@ -64703,10 +65961,8 @@ toughness=0
 [card]
 name=Plaxmanta
 abilities=flash
-other={U}{G} name(Spend G to Cast)
 auto=lord(creature|myBattlefield) shroud ueot
-auto=-99/-99
-auto=alternative 99/99
+auto=ifnot spent({G}) then sacrifice
 text=Flash -- When Plaxmanta enters the battlefield, creatures you control gain shroud until end of turn. (They can't be the targets of spells or abilities.) -- When Plaxmanta enters the battlefield, sacrifice it unless {G} was spent to cast it.
 mana={1}{U}
 type=Creature
@@ -64871,6 +66127,17 @@ auto=bury && token(Ape,creature,3/3,green) targetcontroller
 text=Destroy target creature. It can't be regenerated. That creature's controller puts a 3/3 green Ape creature token onto the battlefield.
 mana={U}
 type=Instant
+[/card]
+[card]
+name=Pontiff of Blight
+auto=@movedto(*|mystack):pay({WB}) life:-1 opponent && life:1 controller
+auto=lord(other creature|mybattlefield) transforms((,newability[@movedto(*|mystack):pay[[{WB}]] life:-1 opponent && life:1 controller]))
+text=Extort (Whenever you cast a spell, you may pay {WB}. If you do, each opponent loses 1 life and you gain that much life.) -- Other creatures you control have extort. (If a creature has multiple instances of extort, each triggers separately.)
+mana={4}{B}{B}
+type=Creature
+subtype=Zombie Cleric
+power=2
+toughness=7
 [/card]
 [card]
 name=Pooling Venom
@@ -65305,8 +66572,8 @@ type=Enchantment
 [/card]
 [card]
 name=Price of Progress
-auto=foreach(land[-basic]|myBattlefield) damage:2 controller
-auto=foreach(land[-basic]|opponentBattlefield) damage:2 opponent
+auto=damage:twicetype:land[-basic]:mybattlefield controller
+auto=damage:twicetype:land[-basic]:opponentbattlefield opponent
 text=Price of Progress deals damage to each player equal to twice the number of nonbasic lands that player controls.
 mana={1}{R}
 type=Instant
@@ -65416,8 +66683,7 @@ type=Instant
 name=Primal Boost
 target=creature
 auto=4/4
-autohand=__CYCLING__({2}{G})
-autohand={2}{G}{cycle}:name(cycling + effect) 1/1 target(creature) && draw:1 controller
+autohand={2}{G}{cycle}:name(cycling) transforms((,newability[draw:1],newability[may 1/1 target(creature)])) forever
 text=Target creature gets +4/+4 until end of turn. -- Cycling {2}{G} ({2}{G}, Discard this card: Draw a card.) -- When you cycle Primal Boost, you may have target creature get +1/+1 until end of turn.
 mana={2}{G}
 type=Instant
@@ -65890,6 +67156,13 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Propaganda
+auto=lord(creature|opponentbattlefield) transforms((,newability[@each mycombatbegins:pay[[{2}]] name(pay 2 mana) donothing?cantattack all(this)]))
+text=Creatures can't attack you unless their controller pays {2} for each creature he or she controls that's attacking you.
+mana={2}{U}
+type=Enchantment
+[/card]
+[card]
 name=Proper Burial
 auto=@movedTo(creature|mygraveyard) from(mybattlefield):all(trigger[to]) dynamicability<!mytgt toughnesslifegain targetcontroller!>
 text=Whenever a creature you control dies, you gain life equal to that creature's toughness.
@@ -66004,8 +67277,7 @@ subtype=Aura
 [/card]
 [card]
 name=Psionic Sliver
-auto=lord(sliver) transforms((,newability[{T}:name(creature) damage:2 target(creature) && damage:3 all(this)]))
-auto=lord(sliver) transforms((,newability[{T}:name(player) damage:2 target(player) && damage:3 all(this)]))
+auto=lord(sliver) transforms((,newability[{T}:damage:2 target(*[creature;player]) && damage:3 all(this)]))
 text=All Sliver creatures have "{T}: This creature deals 2 damage to target creature or player and 3 damage to itself."
 mana={4}{U}
 type=Creature
@@ -66325,6 +67597,15 @@ mana={4}{R}
 type=Instant
 [/card]
 [card]
+name=Punishing Fire
+target=creature,player
+auto=damage:2
+autograveyard=@lifed(opponent):pay({R}) moveto(ownerhand)
+text=Punishing Fire deals 2 damage to target creature or player. -- Whenever an opponent gains life, you may pay {R}. If you do, return Punishing Fire from your graveyard to your hand.
+mana={1}{R}
+type=Instant
+[/card]
+[card]
 name=Puppet's Verdict
 auto=flipacoin winability destroy all(creature[power<=2]) winabilityend loseability destroy all(creature[power>=3]) loseabilityend flipend
 text=Flip a coin. If you win the flip, destroy all creatures with power 2 or less. If you lose the flip, destroy all creatures with power 3 or greater.
@@ -66417,6 +67698,17 @@ flashback={W}
 text=Exile target card from a graveyard. -- Flashback {W}
 mana={W}
 type=Instant
+[/card]
+[card]
+name=Purraj of Urborg
+auto=@combat(attacking) source(this):first strike ueot
+auto=@movedto(*[black]|stack):pay({B}) counter(1/1,1)
+text=Purraj of Urborg has first strike as long as it's attacking. -- Whenever a player casts a black spell, you may pay {B}. If you do, put a +1/+1 counter on Purraj of Urborg.
+mana={3}{B}{B}
+type=Legendary Creature
+subtype=Cat Warrior
+power=2
+toughness=3
 [/card]
 [card]
 name=Pursuit of Flight
@@ -66607,6 +67899,17 @@ auto=add{R}{R}{R}
 text=Add {R}{R}{R} to your mana pool.
 mana={1}{R}
 type=Instant
+[/card]
+[card]
+name=Pyrewild Shaman
+autohand={1}{R}{discard}:name(bloodrush) target(creature[attacking]) 3/1 ueot
+autograveyard=@combatdamaged(player) from(creature|mybattlefield):pay({3}) moveto(ownerhand)
+text=Bloodrush — {1}{R}, Discard Pyrewild Shaman: Target attacking creature gets +3/+1 until end of turn. -- Whenever one or more creatures you control deal combat damage to a player, if Pyrewild Shaman is in your graveyard, you may pay {3}. If you do, return Pyrewild Shaman to your hand.
+mana={2}{R}
+type=Creature
+subtype=Goblin Shaman
+power=3
+toughness=1
 [/card]
 [card]
 name=Pyric Salamander
@@ -68768,6 +70071,17 @@ power=1
 toughness=2
 [/card]
 [card]
+name=Reborn Hero
+abilities=vigilance
+auto=@movedto(graveyard) from(this|battlefield) restriction{type(other *|mygraveyard)~morethan~6}:all(trigger[from]) pay[[{W}{W}]] activate moveto(mybattlefield) oneshot
+text=Vigilance -- Threshold - As long as seven or more cards are in your graveyard, Reborn Hero has "When Reborn Hero is put into a graveyard from the battlefield, you may pay {W}{W}. If you do, return Reborn Hero to the battlefield under your control."
+mana={2}{W}
+type=Creature
+subtype=Human Soldier
+power=2
+toughness=2
+[/card]
+[card]
 name=Reborn Hope
 target=*[multicolor]|mygraveyard
 auto=moveTo(myhand)
@@ -69149,6 +70463,16 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Reforge the Soul
+auto=reject all(*|hand)
+auto=draw:7 opponent
+auto=draw:7 controller
+autohand=restriction{miracle} pay[[{1}{R}]] name(Miracle) activate name(Miracle) castcard(normal)
+text=Each player discards his or her hand and draws seven cards. -- Miracle {1}{R} (You may cast this card for its miracle cost when you draw it if it's the first card you drew this turn.)
+mana={3}{R}{R}
+type=Sorcery
+[/card]
+[card]
 name=Refresh
 target=creature
 auto=regenerate
@@ -69250,6 +70574,15 @@ name=Reins of Power
 auto=all(creature) transforms((,newability[moveTo(opponentbattlefield)],newability[phaseaction[endofturn sourceinplay] moveTo(ownerbattlefield)],newability[untap],haste)) ueot
 text=Untap all creatures you control and all creatures target opponent controls. You and that opponent each gain control of all creatures the other controls until end of turn. Those creatures gain haste until end of turn.
 mana={2}{U}{U}
+type=Instant
+[/card]
+[card]
+name=Reiterate
+target=*[instant;sorcery]|stack
+auto=castcard(copied noevent)
+buyback={4}{R}{R}
+text=Buyback {3} (You may pay an additional {3} as you cast this spell. If you do, put this card into your hand as it resolves.) -- Copy target instant or sorcery spell. You may choose new targets for the copy.
+mana={1}{R}{R}
 type=Instant
 [/card]
 [card]
@@ -69555,8 +70888,7 @@ type=Sorcery
 [card]
 name=Renewed Faith
 auto=life:6
-autohand=__CYCLING__({1}{W})
-autohand={1}{W}{cycle}:name(cycling + effect) life:2 && draw:1 controller
+autohand={1}{W}{cycle}:name(cycling) transforms((,newability[draw:1],newability[may life:2])) forever
 text=You gain 6 life. -- Cycling {1}{W} ({1}{W}, Discard this card: Draw a card.) -- When you cycle Renewed Faith, you may gain 2 life.
 mana={2}{W}
 type=Instant
@@ -69771,6 +71103,15 @@ type=Creature
 subtype=Human Soldier
 power=1
 toughness=1
+[/card]
+[card]
+name=Resize
+target=creature
+auto=3/3
+autograveyard=@movedto(creature|mygraveyard) from(battlefield):pay({1}{G}) name(recover) moveto(ownerhand)?name(exile) moveto(exile)
+text=Target creature gets +3/+3 until end of turn. -- Recover {1}{G} (When a creature is put into your graveyard from the battlefield, you may pay {1}{G}. If you do, return this card from your graveyard to your hand. Otherwise, exile this card.)
+mana={1}{G}
+type=Instant
 [/card]
 [card]
 name=Resounding Roar
@@ -70076,6 +71417,25 @@ power=4
 toughness=3
 [/card]
 [card]
+name=Revenge of the Hunted
+target=creature
+auto=6/6
+auto=trample
+auto=lure
+autohand=restriction{miracle} pay[[{G}]] name(Miracle) activate name(Miracle) castcard(normal)
+text=Until end of turn, target creature gets +6/+6 and gains trample, and all creatures able to block it this turn do so. -- Miracle {G} (You may cast this card for its miracle cost when you draw it if it's the first card you drew this turn.)
+mana={4}{G}{G}
+type=Sorcery
+[/card]
+[card]
+name=Reverberate
+target=*[instant;sorcery]|stack
+auto=castcard(copied noevent)
+text=Copy target instant or sorcery spell. You may choose new targets for the copy.
+mana={R}{R}
+type=Instant
+[/card]
+[card]
 name=Revered Dead
 auto={W}:regenerate
 text={W}: Regenerate Revered Dead.
@@ -70288,6 +71648,28 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Rhystic Deluge
+auto={U}:name(tap) target(creature) transforms((,newability[pay[[{1}]] name(pay 1 mana) donothing?tap])) forever
+text={U}: Tap target creature unless its controller pays {1}.
+mana={2}{U}
+type=Enchantment
+[/card]
+[card]
+name=Rhystic Shield
+auto=all(creature|mybattlefield) 0/1
+auto=ability$!name(pay or 0/2) pay[[{2}]] name(pay 2 mana) donothing?all(creature|opponentbattlefield) 0/2!$ opponent
+text=Creatures you control get +0/+1 until end of turn. They get an additional +0/+2 until end of turn unless any player pays {2}.
+mana={1}{W}
+type=Instant
+[/card]
+[card]
+name=Rhystic Study
+auto=@movedto(*|opponentstack):name(pay or draw) ability$!name(pay or draw) pay[[{1}]] name(pay 1 mana) donothing?draw:1 all(opponent)!$ opponent
+text=Whenever an opponent casts a spell, you may draw a card unless that player pays {1}.
+mana={2}{U}
+type=Enchantment
+[/card]
+[card]
 name=Rib Cage Spider
 abilities=reach
 text=Reach (This creature can block creatures with flying.)
@@ -70300,10 +71682,9 @@ toughness=4
 [card]
 name=Ribbons of Night
 target=creature
-other={3}{U}{B} name(Spend U to Cast)
 auto=damage:4
 auto=life:4 controller
-auto=alternative draw:1 controller
+auto=if spent({U}) then draw:1 controller
 text=Ribbons of Night deals 4 damage to target creature and you gain 4 life. If {U} was spent to cast Ribbons of Night, draw a card.
 mana={4}{B}
 type=Sorcery
@@ -70413,6 +71794,27 @@ suspend(1)={r}
 type=Sorcery
 [/card]
 [card]
+name=Riftmarked Knight
+abilities=flanking,protection from black
+autoexile=this(counter{0/0.1.Time}<2) transforms((,newability[@counterremoved(0/0.1.Time) from(sourcecard) suspended:token(-126816)]))
+suspend(3)={1}{W}{W}
+text=Protection from black; flanking (Whenever a creature without flanking blocks this creature, the blocking creature gets -1/-1 until end of turn.) -- Suspend 3 - {1}{W}{W} (Rather than cast this card from your hand, you may pay {1}{W}{W} and exile it with three time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost. It has haste.) -- When the last time counter is removed from Riftmarked Knight while it's exiled, put a 2/2 black Knight creature token with flanking, protection from white, and haste onto the battlefield.
+mana={1}{W}{W}
+type=Creature
+subtype=Human Rebel Knight
+power=2
+toughness=2
+[/card]
+[card]
+name=Black Knight Token
+abilities=flanking,protection from white,haste
+power=2
+toughness=2
+type=Creature
+subtype=Knight
+color=black
+[/card]
+[card]
 name=Riftstone Portal
 auto={T}:Add{1}
 autograveyard=lord(land|mybattlefield) {T}:Add{G}
@@ -70504,6 +71906,17 @@ auto=7/7
 text=Target blocking creature gets +7/+7 until end of turn.
 mana={W}
 type=Instant
+[/card]
+[card]
+name=Riku of Two Reflections
+mana={2}{U}{R}{G}
+auto=@movedto(*[instant;sorcery]|mystack):target(trigger[to]<1>) pay[[{U}{R}]] name(copy spell) activate name(copy spell) castcard(copied noevent)
+auto=@movedto(other creature[-token]|mybattlefield):all(trigger[to]) pay[[{G}{U}]] clone
+type=Legendary Creature
+subtype=Human Wizard
+power=2
+toughness=2
+text=Whenever you cast an instant or sorcery spell, you may pay {U}{R}. If you do, copy that spell. You may choose new targets for the copy. Whenever another nontoken creature enters the battlefield under your control, you may pay {G}{U}. If you do, put a token that's a copy of that creature onto the battlefield.
 [/card]
 [card]
 name=Rime Dryad
@@ -70797,6 +72210,37 @@ power=3
 toughness=1
 [/card]
 [card]
+name=Rishadan Brigand
+abilities=flying,cloud
+auto=ability$!name(pay or sacrifice) pay[[{3}]] name(pay 3 mana) donothing?activate sacrifice notatarget(*|mybattlefield)!$ opponent
+text=Flying -- When Rishadan Brigand enters the battlefield, each opponent sacrifices a permanent unless he or she pays {3}. -- Rishadan Brigand can block only creatures with flying.
+mana={4}{U}
+type=Creature
+subtype=Human Pirate
+power=3
+toughness=2
+[/card]
+[card]
+name=Rishadan Cutpurse
+auto=ability$!name(pay or sacrifice) pay[[{1}]] name(pay 1 mana) donothing?activate sacrifice notatarget(*|mybattlefield)!$ opponent
+text=When Rishadan Cutpurse enters the battlefield, each opponent sacrifices a permanent unless he or she pays {1}.
+mana={2}{U}
+type=Creature
+subtype=Human Pirate
+power=1
+toughness=1
+[/card]
+[card]
+name=Rishadan Footpad
+auto=ability$!name(pay or sacrifice) pay[[{2}]] name(pay 2 mana) donothing?activate sacrifice notatarget(*|mybattlefield)!$ opponent
+text=When Rishadan Footpad enters the battlefield, each opponent sacrifices a permanent unless he or she pays {2}.
+mana={3}{U}
+type=Creature
+subtype=Human Pirate
+power=2
+toughness=2
+[/card]
+[card]
 name=Rishadan Pawnshop
 auto={2}{T}:moveTo(ownerlibrary) target(*[-token]|myBattlefield) && shuffle
 text={2}, {T}: Shuffle target nontoken permanent you control into its owner's library.
@@ -70867,7 +72311,7 @@ type=Enchantment
 [card]
 name=Rith, the Awakener
 abilities=flying
-auto=@combatdamaged(player) from(this):may name(pay ability) transforms((,newability[{2}{G}:activatechooseacolor foreach(*[chosencolor]|battlefield) token(Saproling,Creature Saproling,1/1,green) activatechooseend limit:1 mycombatdamageonly])) oneshot
+auto=@combatdamaged(player) from(this):pay({2}{G}) activatechooseacolor foreach(*[chosencolor]|battlefield) token(Saproling,Creature Saproling,1/1,green) activatechooseend
 text=Flying -- Whenever Rith, the Awakener deals combat damage to a player, you may pay {2}{G}. If you do, choose a color, then put a 1/1 green Saproling creature token onto the battlefield for each permanent of that color.
 mana={3}{R}{G}{W}
 type=Legendary Creature
@@ -71318,9 +72762,8 @@ type=Sorcery
 [card]
 name=Rolling Spoil
 target=land
-other={1}{B}{G}{G} name(Spend G to Cast)
 auto=destroy
-auto=alternative -1/-1 all(creature)
+auto=if spent({B}) then -1/-1 all(creature)
 text=Destroy target land. If {B} was spent to cast Rolling Spoil, all creatures get -1/-1 until end of turn.
 mana={2}{G}{G}
 type=Sorcery
@@ -71609,6 +73052,17 @@ type=Creature
 subtype=Merfolk
 power=1
 toughness=1
+[/card]
+[card]
+name=Rootwater Thief
+auto={U}:flying
+auto=@combatdamaged(player) from(this):pay({2}) moveto(exile) and!(shuffle)! notatarget(*|opponentlibrary)
+text={U}: Rootwater Thief gains flying until end of turn. -- Whenever Rootwater Thief deals combat damage to a player, you may pay {2}. If you do, search that player's library for a card and exile it, then the player shuffles his or her library.
+mana={1}{U}
+type=Creature
+subtype=Merfolk Rogue
+power=1
+toughness=2
 [/card]
 [card]
 name=Rorix Bladewing
@@ -72061,6 +73515,15 @@ type=Legendary Enchantment
 [/card]
 ###The 2 cards above should stay together (Flip Card)###
 [card]
+name=Runeboggle
+target=*|stack
+auto=transforms((,newability[pay[[{1}]] name(pay 1 mana) donothing?fizzle])) forever
+auto=draw:1 controller
+text=Counter target spell unless its controller pays {1}. -- Draw a card.
+mana={2}{U}
+type=Instant
+[/card]
+[card]
 name=Runechanter's Pike
 auto={2}:equip
 auto=first strike
@@ -72170,14 +73633,13 @@ type=Sorcery
 [card]
 name=Rupture Spire
 auto=tap
-auto=choice sacrifice
-auto=choice pay({1}) name(Keep Rupture Spire) donothing
+auto=pay[[{1}]] name(pay 1 mana) donothing?sacrifice
 auto={T}:Add{B}
 auto={T}:Add{G}
 auto={T}:Add{R}
 auto={T}:Add{U}
 auto={T}:Add{W}
-text=Rupture Spire enters the battlefield tapped. When Rupture Spire enters the battlefield, sacrifice it unless you pay .{t}: Add one mana of any color to your mana pool.
+text=Rupture Spire enters the battlefield tapped. -- When Rupture Spire enters the battlefield, sacrifice it unless you pay {1} -- {T}: Add one mana of any color to your mana pool.
 type=Land
 [/card]
 [card]
@@ -72690,6 +74152,16 @@ mana={2}{W}
 type=Instant
 [/card]
 [card]
+name=Sage's Dousing
+target=*|stack
+auto=transforms((,newability[pay[[{3}]] name(pay 3 mana) donothing?fizzle])) forever
+auto=aslongas(wizard|myBattlefield) draw:1 controller
+text=Counter target spell unless its controller pays {3}. If you control a Wizard, draw a card.
+mana={2}{U}
+type=Tribal Instant
+subtype=Wizard
+[/card]
+[card]
 name=Sage's Knowledge
 target=sorcery|mygraveyard
 auto=moveTo(myhand)
@@ -72925,7 +74397,7 @@ toughness=4
 [card]
 name=Samurai of the Pale Curtain
 auto=bushido(1/1)
-auto=@movedTo(*|graveyard) from(battlefield):all(trigger) moveTo(exile)
+auto=lord(*|battlefield) transforms((,newability[exiledeath]))
 text=Bushido 1 (When this blocks or becomes blocked, it gets +1/+1 until end of turn.) -- If a permanent would be put into a graveyard, exile it instead.
 mana={W}{W}
 type=Creature
@@ -73031,7 +74503,7 @@ toughness=4
 [/card]
 [card]
 name=Sands of Delirium
-auto={X}{T}:deplete:x target(player)
+auto={x}{T}:deplete:x target(player)
 text={X}, {T}: Target player puts the top X cards of his or her library into his or her graveyard.
 mana={3}
 type=Artifact
@@ -74866,7 +76338,7 @@ type=Enchantment
 [/card]
 [card]
 name=Seance
-auto=@each my upkeep:may target(creature|mygraveyard) moveto(exile) and!(clone with(treason) addtype(spirit))!
+auto=@each my upkeep:may target(creature|mygraveyard) moveto(exile) and!(clone with(unearth) addtype(spirit))!
 text=At the beginning of each upkeep, you may exile target creature card from your graveyard. If you do, put a token onto the battlefield that's a copy of that card except it's a Spirit in addition to its other types. Exile it at the beginning of the next end step.
 mana={2}{W}{W}
 type=Enchantment
@@ -74905,6 +76377,13 @@ auto=damage:7 opponent
 text=Searing Flesh deals 7 damage to target opponent.
 mana={6}{R}
 type=Sorcery
+[/card]
+[card]
+name=Searing Meditation
+auto=@lifed(controller):pay({2}) target(creature,player) damage:2
+text=Whenever you gain life, you may pay {2}. If you do, Searing Meditation deals 2 damage to target creature or player.
+mana={1}{R}{W}
+type=Enchantment
 [/card]
 [card]
 name=Searing Rays
@@ -75030,6 +76509,15 @@ mana={2}{U}
 type=Enchantment
 [/card]
 [card]
+name=Second Guess
+target=*|stack
+auto=fizzle
+restriction=thisturn(*|stack)~equalto~2
+text=Counter target spell that's the second spell cast this turn.
+mana={1}{U}
+type=Instant
+[/card]
+[card]
 name=Second Sunrise
 auto=moveTo(myBattlefield) all(*[fresh]|mygraveyard)
 auto=moveTo(opponentBattlefield) all(*[fresh]|opponentgraveyard)
@@ -75145,9 +76633,8 @@ type=Sorcery
 [card]
 name=Seed Spark
 target=artifact,enchantment
-other={2}{G}{W} name(Spend G to cast)
 auto=destroy
-auto=alternative token(Saproling,Creature Saproling,1/1,green)*2
+auto=if spent({G}) then token(Saproling,Creature Saproling,1/1,green)*2
 text=Destroy target artifact or enchantment. If {G} was spent to cast Seed Spark, put two 1/1 green Saproling creature tokens onto the battlefield.
 mana={3}{W}
 type=Instant
@@ -75239,6 +76726,13 @@ auto=moveTo(myHand) notatarget(<upto:3>land[basic]|myLibrary)
 text=Search your library for up to three basic land cards, reveal them, and put them into your hand. Then shuffle your library.
 mana={3}{G}
 type=Sorcery
+[/card]
+[card]
+name=Seer's Sundial
+auto=@movedTo(land|mybattlefield):pay({2}) draw:1
+text=Landfall - Whenever a land enters the battlefield under your control, you may pay {2}. If you do, draw a card.
+mana={4}
+type=Artifact
 [/card]
 [card]
 name=Seething Anger
@@ -77453,7 +78947,7 @@ toughness=1
 [card]
 name=Shrieking Grotesque
 abilities=flying
-auto=alternative target(player) ability$!name(discard) target(*|myhand) reject!$ targetedplayer
+auto=if spent({B}) then target(player) ability$!name(discard) target(*|myhand) reject!$ targetedplayer
 text=Flying -- When Shrieking Grotesque enters the battlefield, if {B} was spent to cast Shrieking Grotesque, target player discards a card.
 mana={2}{W}
 other={1}{B}{W} name(Spend B to Cast)
@@ -77745,7 +79239,7 @@ toughness=5
 [/card]
 [card]
 name=Siege-Gang Commander
-auto=token(Goblin,creature goblin, 1/1,red)*3
+auto=token(Goblin,Creature Goblin,1/1,red)*3
 auto={1}{R}{S(goblin|myBattlefield)}:Damage:2 target(creature,player)
 text=When Siege-Gang Commander enters the battlefield, put three 1/1 red Goblin creature tokens onto the battlefield. -- {1}{R}, Sacrifice a Goblin: Siege-Gang Commander deals 2 damage to target creature or player.
 mana={3}{R}{R}
@@ -77849,6 +79343,23 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Sigil of the New Dawn
+auto=@movedto(creature|mygraveyard) from(battlefield):all(trigger[to]) pay[[{1}{W}]] activate moveto(myhand) oneshot
+text=Whenever a creature is put into your graveyard from the battlefield, you may pay {1}{W}. If you do, return that card to your hand.
+mana={3}{W}
+type=Enchantment
+[/card]
+[card]
+name=Sigil Tracer
+auto={1}{U}{T(wizard|myBattlefield)}{T(wizard|myBattlefield)}:name(copy spell) target(instant,sorcery|stack) castcard(copied noevent)
+text={1}{U}, Tap two untapped Wizards you control: Copy target instant or sorcery spell. You may choose new targets for the copy.
+mana={1}{U}{U}
+type=Creature
+subtype=Merfolk Wizard
+power=2
+toughness=2
+[/card]
+[card]
 name=Sigiled Behemoth
 abilities=exalted
 text=Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.)
@@ -77936,6 +79447,17 @@ type=Creature
 subtype=Specter
 power=4
 toughness=4
+[/card]
+[card]
+name=Silent-Blade Oni
+autohand={4}{U}{B}{N}:ninjutsu
+auto=@combatdamaged(player) from(this):may target(*[-land]|opponenthand) castcard(normal)
+text=Ninjutsu {4}{U}{B} ({4}{U}{B}, Return an unblocked attacker you control to hand: Put this card onto the battlefield from your hand tapped and attacking.) -- Whenever Silent-Blade Oni deals combat damage to a player, look at that player's hand. You may cast a nonland card in it without paying that card's mana cost.
+mana={3}{U}{U}{B}{B}
+type=Creature
+subtype=Demon Ninja
+power=6
+toughness=5
 [/card]
 [card]
 name=Silent-Chant Zubera
@@ -79880,8 +81402,7 @@ subtype=Aura
 [card]
 name=Slice and Dice
 auto=damage:4 all(creature)
-autohand=__CYCLING__({2}{R})
-autohand={2}{R}{cycle}:name(cycling + effect) damage:1 all(creature) && draw:1 controller
+autohand={2}{R}{cycle}:name(cycling) transforms((,newability[draw:1],newability[may damage:1 all(creature)])) forever
 text=Slice and Dice deals 4 damage to each creature. -- Cycling {2}{R} ({2}{R}, Discard this card: Draw a card.) -- When you cycle Slice and Dice, you may have it deal 1 damage to each creature.
 mana={4}{R}{R}
 type=Sorcery
@@ -80168,6 +81689,17 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Sludge Strider
+auto=@movedTo(other artifact|nonbattlezone) from(mybattlefield):pay({1}) choice target(player) life:-1 && life:1 controller
+auto=@movedTo(other artifact|mybattlefield):pay({1}) choice target(player) life:-1 && life:1 controller
+text=Whenever another artifact enters the battlefield under your control or another artifact you control leaves the battlefield, you may pay {1}. If you do, target player loses 1 life and you gain 1 life.
+mana={1}{W}{U}{B}
+type=Artifact Creature
+subtype=Insect
+power=3
+toughness=3
+[/card]
+[card]
 name=Sluggishness
 target=creature
 autograveyard=@movedTo(this|graveyard) from(battlefield):moveTo(ownerhand)
@@ -80315,6 +81847,16 @@ mana={2}{B}
 type=Creature
 subtype=Zombie Mutant
 power=3
+toughness=1
+[/card]
+[card]
+name=Smolder Initiate
+auto=@movedTo(*[black]|stack):pay({1}) life:-1 target(player)
+text=Whenever a player casts a black spell, you may pay {1}. If you do, target player loses 1 life.
+mana={B}
+type=Creature
+subtype=Elemental Shaman
+power=1
 toughness=1
 [/card]
 [card]
@@ -80675,8 +82217,7 @@ toughness=5
 name=Solar Blast
 target=creature,player
 auto=damage:3
-autohand=__CYCLING__({1}{R}{R})
-autohand={1}{R}{R}{cycle}:name(cycling + effect) damage:1 target(creature,player) && draw:1 controller
+autohand={1}{R}{R}{cycle}:name(cycling) transforms((,newability[draw:1],newability[may damage:1 target(*[creature;player])])) forever
 text=Solar Blast deals 3 damage to target creature or player. -- Cycling {1}{R}{R} ({1}{R}{R}, Discard this card: Draw a card.) -- When you cycle Solar Blast, you may have it deal 1 damage to target creature or player.
 mana={3}{R}
 type=Instant
@@ -81169,6 +82710,17 @@ power=2
 toughness=1
 [/card]
 [card]
+name=Soratami Savant
+abilities=flying
+auto={3}{H(land|mybattlefield)}:name(counter spell) target(*|stack) transforms((,newability[pay[[{3}]] name(pay 3 mana) donothing?fizzle])) forever
+text=Flying -- {3}, Return a land you control to its owner's hand: Counter target spell unless its controller pays {3}.
+mana={2}{U}{U}
+type=Creature
+subtype=Moonfolk Wizard
+power=2
+toughness=2
+[/card]
+[card]
 name=Soratami Seer
 abilities=flying
 auto={4}{H(land|mybattlefield)}{H(land|mybattlefield)}:all(*|myhand) transforms((,newability[draw:1],newability[reject])]))
@@ -81272,6 +82824,16 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Soul Charmer
+auto=@combatdamaged(creature|opponentbattlefield) from(this):ability$!name(pay or lifegain) pay[[{2}]] name(pay 2 mana) donothing?all(opponent) life:2!$ opponent
+text=Whenever Soul Charmer deals combat damage to a creature, you gain 2 life unless that creature's controller pays {2}.
+mana={2}{W}
+type=Creature
+subtype=Human Rebel
+power=2
+toughness=2
+[/card]
+[card]
 name=Soul Collector
 autofacedown={b}{b}{b}:morph
 facedown={3}
@@ -81318,6 +82880,13 @@ text=Enchant creature -- Whenever enchanted creature deals damage, you gain that
 mana={1}{W}{B}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+name=Soul Net
+auto=@movedTo(creature|graveyard) from(battlefield):pay({1}) life:1
+text=Whenever a creature is put into a graveyard from the battlefield, you may pay {1}. If you do, you gain 1 life.
+mana={1}
+type=Artifact
 [/card]
 [card]
 name=Soul Nova
@@ -81817,6 +83386,18 @@ power=5
 toughness=3
 [/card]
 [card]
+name=Spawnsire of Ulamog
+mana={10}
+auto=@combat(attacking) source(this):name(Annihilate) ability$!name(sacrifice a permanent) notatarget(<1>*|mybattlefield) sacrifice!$ opponent
+auto={4}:token(-193507)*2
+auto={20}:name(Cast Eldrazi's) ability$!castcard(named!:Emrakul, the Aeons Torn:!) _ castcard(named!:It That Betrays:!) _ castcard(named!:Ulamog, the Infinite Gyre:!) _ castcard(named!:Kozilek, Butcher of Truth:!) _ castcard(named!:Spawnsire of Ulamog:!) _ castcard(named!:Artisan of Kozilek:!) _ castcard(named!:Hand of Emrakul:!) _ castcard(named!:Ulamog's Crusher:!)!$ controller
+type=Creature
+subtype=Eldrazi
+power=7
+toughness=11
+text=Annihilator 1 (Whenever this creature attacks, defending player sacrifices a permanent.) -- {4}: Put two 0/1 colorless Eldrazi Spawn creature tokens onto the battlefield. They have "Sacrifice this creature: Add {1} to your mana pool." -- {20}: Cast any number of Eldrazi cards you own from outside the game without paying their mana costs.
+[/card]
+[card]
 name=Spawnwrithe
 abilities=trample
 auto=@combatdamaged(player) from(this):token(158687)
@@ -82035,11 +83616,38 @@ mana={X}{U}
 type=Instant
 [/card]
 [card]
+name=Spell Contortion
+auto=kicker draw:kicked
+kicker=multi{1}{U}
+target=*|stack
+auto=transforms((,newability[pay[[{2}]] name(pay 2 mana) donothing?fizzle])) forever
+text=Multikicker {1}{U} (You may pay an additional {1}{U} any number of times as you cast this spell.) -- Counter target spell unless its controller pays {2}. Draw a card for each time Spell Contortion was kicked.
+mana={2}{U}
+type=Instant
+[/card]
+[card]
+name=Spell Pierce
+target=*[-creature]|stack
+auto=transforms((,newability[pay[[{2}]] name(pay 2 mana) donothing?fizzle])) forever
+text=Counter target noncreature spell unless its controller pays {2}.
+mana={U}
+type=Instant
+[/card]
+[card]
 name=Spell Snare
 target=*[manacost=2]|stack
 auto=fizzle
 text=Counter target spell with converted mana cost 2.
 mana={U}
+type=Instant
+[/card]
+[card]
+name=Spell Snip
+target=*|stack
+auto=transforms((,newability[pay[[{1}]] name(pay 1 mana) donothing?fizzle])) forever
+autohand=__CYCLING__({2})
+text=Counter target spell unless its controller pays {1}. -- Cycling {2} ({2}, Discard this card: Draw a card.)
+mana={2}{U}
 type=Instant
 [/card]
 [card]
@@ -82091,6 +83699,16 @@ mana={2}{R}
 type=Enchantment
 [/card]
 [card]
+name=Spelltithe Enforcer
+auto=@movedto(*|opponentstack):name(pay or sacrifice) ability$!name(pay or sacrifice) pay[[{1}]] name(pay 1 mana) donothing?activate sacrifice notatarget(*|mybattlefield)!$ opponent
+text=Whenever an opponent casts a spell, that player sacrifices a permanent unless he or she pays {1}.
+mana={3}{W}{W}
+type=Creature
+subtype=Elephant Wizard
+power=3
+toughness=3
+[/card]
+[card]
 name=Sphere of Resistance
 auto=lord(*|hand) altercost(colorless,+1)
 text=Spells cost {1} more to cast.
@@ -82109,6 +83727,18 @@ auto={C(0/0,-1,Charge)}{T}:Add{G}
 text=Sphere of the Suns enters the battlefield tapped and with three charge counters on it. -- {T}, Remove a charge counter from Sphere of the Suns: Add one mana of any color to your mana pool.
 mana={2}
 type=Artifact
+[/card]
+[card]
+name=Sphinx of Lost Truths
+other={4}{U}{U}{U} name(pay kicker)
+auto=draw:3
+auto=ifnot paid(alternative) then reject notatarget(<3>*|myhand)
+text=Kicker {1}{U} (You may pay an additional {1}{U} as you cast this spell.) -- Flying -- When Sphinx of Lost Truths enters the battlefield, draw three cards. Then if it wasn't kicked, discard three cards.
+mana={3}{U}{U}
+type=Creature
+subtype=Sphinx
+power=3
+toughness=5
 [/card]
 [card]
 name=Spin Engine
@@ -82425,6 +84055,39 @@ power=1
 toughness=2
 [/card]
 [card]
+name=Spiketail Drake
+abilities=flying
+auto={S}:name(counter spell) target(*|stack) transforms((,newability[pay[[{3}]] name(pay 3 mana) donothing?fizzle])) forever
+text=Flying -- Sacrifice Spiketail Drake: Counter target spell unless its controller pays {3}.
+mana={3}{U}{U}
+type=Creature
+subtype=Drake
+power=3
+toughness=3
+[/card]
+[card]
+name=Spiketail Drakeling
+abilities=flying
+auto={S}:name(counter spell) target(*|stack) transforms((,newability[pay[[{2}]] name(pay 2 mana) donothing?fizzle])) forever
+text=Flying -- Sacrifice Spiketail Drakeling: Counter target spell unless its controller pays {2}.
+mana={1}{U}{U}
+type=Creature
+subtype=Drake
+power=2
+toughness=2
+[/card]
+[card]
+name=Spiketail Hatchling
+abilities=flying
+auto={S}:name(counter spell) target(*|stack) transforms((,newability[pay[[{1}]] name(pay 1 mana) donothing?fizzle])) forever
+text=Flying (This creature can't be blocked except by creatures with flying or reach.) -- Sacrifice Spiketail Hatchling: Counter target spell unless its controller pays {1}.
+mana={1}{U}
+type=Creature
+subtype=Drake
+power=1
+toughness=1
+[/card]
+[card]
 name=Spinal Graft
 target=creature
 auto=3/3
@@ -82624,6 +84287,13 @@ text=Enchant creature -- You control enchanted creature. -- Enchanted creature g
 mana={5}{U}{U}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+name=Spirit Cairn
+auto=@discarded(*|hand):pay({W}) token(Spirit,Creature Spirit,1/1,flying,white)
+text=Whenever a player discards a card, you may pay {W}. If you do, put a 1/1 white Spirit creature token with flying onto the battlefield.
+mana={2}{W}
+type=Enchantment
 [/card]
 [card]
 name=Spirit Flare
@@ -82947,7 +84617,7 @@ type=Sorcery
 [card]
 name=Splinter Twin
 target=creature
-auto=teach(creature) {T}:clone with(,treason,haste)
+auto=teach(creature) {T}:clone with(unearth,haste)
 text=Enchant creature ---Enchanted creature has "{T}: Put a token that's a copy of this creature onto the battlefield. That token has haste. Exile it at the beginning of the next end step."
 mana={2}{R}{R}
 type=Enchantment
@@ -83864,7 +85534,7 @@ toughness=5
 [card]
 name=Steam Vents
 auto=tap
-auto=may pay({l}{l}) untap
+auto=pay({l}{l}) untap
 text=({T}: Add {U} or {R} to your mana pool.) -- As Steam Vents enters the battlefield, you may pay 2 life. If you don't, Steam Vents enters the battlefield tapped.
 type=Land
 subtype=Island Mountain
@@ -83879,8 +85549,7 @@ type=Artifact
 [/card]
 [card]
 name=Steamcore Weird
-other={2}{U}{R} name(Spend R to Cast)
-auto=alternative damage:2 target(creature,player)
+auto=if spent({R}) then damage:2 target(creature,player)
 text=When Steamcore Weird enters the battlefield, if {R} was spent to cast Steamcore Weird, it deals 2 damage to target creature or player.
 mana={3}{U}
 type=Creature
@@ -84320,7 +85989,7 @@ toughness=3
 [card]
 name=Stomping Ground
 auto=tap
-auto=may pay({l}{l}) untap
+auto=pay({l}{l}) untap
 text=({T}: Add {R} or {G} to your mana pool.) -- As Stomping Ground enters the battlefield, you may pay 2 life. If you don't, Stomping Ground enters the battlefield tapped.
 type=Land
 subtype=Mountain Forest
@@ -84334,7 +86003,7 @@ type=Artifact
 [/card]
 [card]
 name=Stone Catapult
-auto={T}:destroy target(creature[black;tapped]) myTurnOnly
+auto={T}:destroy target(creature[-black;tapped]) myTurnOnly
 text={T}: Destroy target tapped nonblack creature. Activate this ability only during your turn, before attackers are declared.
 mana={4}{B}
 type=Creature
@@ -85400,6 +87069,15 @@ type=Instant
 abilities=split second
 [/card]
 [card]
+name=Sudden Spoiling
+abilities=split second
+target=player
+auto=all(creature|targetedpersonsbattlefield) transforms((,newability[loseabilities],setpower=0,settoughness=2)) ueot
+text=Split second (As long as this spell is on the stack, players can't cast spells or activate abilities that aren't mana abilities.) -- Creatures target player controls become 0/2 and lose all abilities until end of turn.
+mana={1}{B}{B}
+type=Instant
+[/card]
+[card]
 name=Sudden Strength
 target=creature
 auto=3/3
@@ -85629,8 +87307,7 @@ type=Instant
 name=Sunfire Balm
 target=creature,player
 auto=prevent:4
-autohand=__CYCLING__({1}{W})
-autohand={1}{W}{cycle}:name(cycling + effect) prevent:1 target(creature,player) && draw:1 controller
+autohand={1}{W}{cycle}:name(cycling) transforms((,newability[draw:1],newability[may prevent:1 target(*[creature;player])])) forever
 text=Prevent the next 4 damage that would be dealt to target creature or player this turn. -- Cycling {1}{W} ({1}{W}, Discard this card: Draw a card.) -- When you cycle Sunfire Balm, you may prevent the next 1 damage that would be dealt to target creature or player this turn.
 mana={2}{W}
 type=Instant
@@ -85644,6 +87321,16 @@ type=Creature
 subtype=Elemental Shaman
 power=2
 toughness=1
+[/card]
+[card]
+name=Sunforger
+auto={3}:equip
+auto=4/0
+auto=teach(creature) {unattach}{R}{W}:castcard(normal) notatarget(instant[red;white;manacost<=4]|mylibrary)
+text=Equipped creature gets +4/+0. -- {R}{W}, Unattach Sunforger: Search your library for a red or white instant card with converted mana cost 4 or less and cast that card without paying its mana cost. Then shuffle your library. -- Equip {3}
+mana={3}
+type=Artifact
+subtype=Equipment
 [/card]
 [card]
 name=Sunglasses of Urza
@@ -85701,6 +87388,14 @@ auto=lord(creature[blue]) 1/1
 text=At the beginning of your upkeep, sacrifice Sunken City unless you pay {U}{U}. -- Blue creatures get +1/+1.
 mana={U}{U}
 type=Enchantment
+[/card]
+[card]
+name=Sunken Field
+auto=teach(land) {T}:name(counter spell) target(*|stack) transforms((,newability[pay[[{1}]] name(pay mana) donothing?fizzle])) forever
+text=Enchant land -- Enchanted land has "{T}: Counter target spell unless its controller pays {1}."
+mana={1}{U}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 name=Sunken Hope
@@ -85891,6 +87586,14 @@ power=5
 toughness=6
 [/card]
 [card]
+name=Sun's Bounty
+auto=life:4
+autograveyard=@movedto(creature|mygraveyard) from(battlefield):pay({1}{W}) name(recover) moveto(ownerhand)?name(exile) moveto(exile)
+text=You gain 4 life. -- Recover {1}{W} (When a creature is put into your graveyard from the battlefield, you may pay {1}{W}. If you do, return this card from your graveyard to your hand. Otherwise, exile this card.)
+mana={1}{W}
+type=Instant
+[/card]
+[card]
 name=Supreme Exemplar
 abilities=flying
 auto=aslongas(other elemental|mybattlefield) choice notatarget(other elemental|mybattlefield) (blink)forsrc oneshot
@@ -85985,6 +87688,16 @@ auto=all(creature[share!color!]) haste
 text=Radiance - Target creature and each other creature that shares a color with it gain haste until end of turn.
 mana={R}
 type=Instant
+[/card]
+[card]
+name=Surgespanner
+auto=@tapped(this):pay({1}{U}) moveto(ownerhand) target(*)
+text=Whenever Surgespanner becomes tapped, you may pay {1}{U}. If you do, return target permanent to its owner's hand.
+mana={2}{U}{U}
+type=Creature
+subtype=Merfolk Wizard
+power=2
+toughness=2
 [/card]
 [card]
 name=Surgical Extraction
@@ -86677,6 +88390,26 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Syndic of Tithes
+auto=@movedto(*|mystack):pay({WB}) life:-1 opponent && life:1 controller
+text=Extort (Whenever you cast a spell, you may pay {WB}. If you do, each opponent loses 1 life and you gain that much life.)
+mana={1}{W}
+type=Creature
+subtype=Human Cleric
+power=2
+toughness=2
+[/card]
+[card]
+name=Syndicate Enforcer
+auto=@movedto(*|mystack):pay({WB}) life:-1 opponent && life:1 controller
+text=Extort (Whenever you cast a spell, you may pay {WB}. If you do, each opponent loses 1 life and you gain that much life.)
+mana={3}{B}
+type=Creature
+subtype=Human Rogue
+power=3
+toughness=2
+[/card]
+[card]
 name=Synod Centurion
 auto=aslongas(other artifact|myBattlefield) all(this) sacrifice while <1
 text=When you control no other artifacts, sacrifice Synod Centurion.
@@ -86737,6 +88470,13 @@ type=Legendary Creature
 subtype=Vampire
 power=5
 toughness=5
+[/card]
+[card]
+name=Tablet of Epityr
+auto=@movedto(graveyard) from(artifact|myBattlefield):pay({1}) life:1
+text=Whenever an artifact you control is put into a graveyard from the battlefield, you may pay {1}. If you do, you gain 1 life.
+mana={1}
+type=Artifact
 [/card]
 [card]
 name=Taiga
@@ -87572,6 +89312,14 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Tears of Rage
+restriction=opponentblockersonly
+auto=all(creature[attacking]|mybattlefield) transforms((,newability[type:creature[attacking]:mybattlefield/type:creature[attacking]:mybattlefield],newability[phaseaction[end once] sacrifice all(this)])) ueot
+text=Cast Tears of Rage only during the declare attackers step. -- Attacking creatures you control get +X/+0 until end of turn, where X is the number of attacking creatures. Sacrifice those creatures at the beginning of the next end step.
+mana={2}{R}{R}
+type=Instant
+[/card]
+[card]
 name=Tectonic Break
 auto=this(variable{castx} >0) sacrifice notatarget(<castx>land|mybattlefield)
 auto=this(variable{castx} >0) ability$! sacrifice notatarget(<storedx>land|mybattlefield) !$ opponent
@@ -87834,6 +89582,13 @@ mana={U}{U}
 type=Instant
 [/card]
 [card]
+name=Telekinetic Bonds
+auto=@discarded(*|hand):pay({1}{U}) name(tap or untap) ability$!choice tap target(*) _ choice untap target(*)!$ controller
+text=Whenever a player discards a card, you may pay {1}{U}. If you do, you may tap or untap target permanent.
+mana={2}{U}{U}{U}
+type=Enchantment
+[/card]
+[card]
 name=Telekinetic Sliver
 auto=lord(sliver) {T}:tap target(*)
 text=All Slivers have "{T}: Tap target permanent."
@@ -87965,7 +89720,7 @@ toughness=2
 [card]
 name=Temple Garden
 auto=tap
-auto=may pay({l}{l}) untap
+auto=pay({l}{l}) untap
 text=({T}: Add {G} or {W} to your mana pool.) -- As Temple Garden enters the battlefield, you may pay 2 life. If you don't, Temple Garden enters the battlefield tapped.
 type=Land
 subtype=Forest Plains
@@ -88041,6 +89796,15 @@ mana={3}{U}{U}
 type=Sorcery
 [/card]
 [card]
+name=Temporal Mastery
+auto=turns:+1 controller
+auto=exiledeath
+autohand=restriction{miracle} pay[[{1}{U}]] name(Miracle) activate name(Miracle) castcard(normal)
+text=Take an extra turn after this one. Exile Temporal Mastery. -- Miracle {1}{U} (You may cast this card for its miracle cost when you draw it if it's the first card you drew this turn.)
+mana={5}{U}{U}
+type=Sorcery
+[/card]
+[card]
 name=Temporal Spring
 target=*
 auto=moveTo(ownerLibrary)
@@ -88091,9 +89855,7 @@ type=Land
 [card]
 name=Tendrils of Agony
 abilities=storm
-target=player
-auto=life:-2 targetedplayer
-auto=life:2 controller
+auto=choice target(player) life:-2 && life:2 controller
 text=Target player loses 2 life and you gain 2 life. -- Storm (When you cast this spell, copy it for each spell cast before it this turn. You may choose new targets for the copies.)
 mana={2}{B}{B}
 type=Sorcery
@@ -88118,7 +89880,7 @@ type=Sorcery
 [card]
 name=Teneb, the Harvester
 abilities=flying
-auto=@combatdamaged(player) from(this):may name(pay ability) transforms((,newability[{2}{B}:moveTo(myBattlefield) target(creature|graveyard) limit:1 mycombatdamageonly])) oneshot
+auto=@combatdamaged(player) from(this):pay({2}{B}) moveTo(myBattlefield) target(creature|graveyard)
 text=Flying -- Whenever Teneb, the Harvester deals combat damage to a player, you may pay {2}{B}. If you do, put target creature card in a graveyard onto the battlefield under your control.
 mana={3}{B}{G}{W}
 type=Legendary Creature
@@ -88220,6 +89982,14 @@ auto=bury
 text=Destroy target creature. It can't be regenerated.
 mana={B}{R}
 type=Instant
+[/card]
+[card]
+name=Terminus
+auto=all(creature) bottomoflibrary
+autohand=restriction{miracle} pay[[{W}]] name(Miracle) activate name(Miracle) castcard(normal)
+text=Put all creatures on the bottom of their owners' libraries. -- Miracle {W} (You may cast this card for its miracle cost when you draw it if it's the first card you drew this turn.)
+mana={4}{W}{W}
+type=Sorcery
 [/card]
 [card]
 name=Teroh's Faithful
@@ -88659,7 +90429,7 @@ subtype=Aura
 [/card]
 [card]
 name=The Fallen
-auto=@damaged(opponent) from(this):all(trigger[to]) transforms((,newability[@each my upkeep:damage:1 opponent]))
+auto=@damaged(opponent) from(this) once:transforms((,newability[@each my upkeep:damage:1 opponent])) forever
 text=At the beginning of your upkeep, The Fallen deals 1 damage to each opponent it has dealt damage to this game.
 mana={1}{B}{B}{B}
 type=Creature
@@ -88670,8 +90440,6 @@ toughness=3
 [card]
 name=The Hive
 auto={5}{T}:token(Wasp,creature artifact insect, 1/1,flying artifact)
-#auto={5},{T}:token(-1138)
-#Todo: find a good way to reconcile the new token syntax with the new primitives/reprints structure
 text={5}, {T}: Put a 1/1 colorless Insect artifact creature token with flying named Wasp onto the battlefield. (It can't be blocked except by creatures with flying or reach.)
 mana={5}
 type=Artifact
@@ -88753,6 +90521,13 @@ auto=@movedTo(swamp|mybattlefield):ability$!choice name(3 damage) damage:3 contr
 auto=@movedTo(swamp|opponentbattlefield):ability$!choice name(3 damage) damage:3 controller _ choice name(counter) target(creature|mybattlefield) counter(-1/-1,1) !$ opponent
 text=At the beginning of your upkeep, sacrifice Thelon's Chant unless you pay {G}. -- Whenever a player puts a Swamp onto the battlefield, Thelon's Chant deals 3 damage to that player unless he or she puts a -1/-1 counter on a creature he or she controls.
 mana={1}{G}{G}
+type=Enchantment
+[/card]
+[card]
+name=Thelon's Curse
+auto=lord(creature[blue]) transforms((,newability[doesnotuntap],newability[@each my upkeep sourcetap:pay[[{U}]] untap]))
+text=Blue creatures don't untap during their controllers' untap steps. -- At the beginning of each player's upkeep, that player may choose any number of tapped blue creatures he or she controls and pay {U} for each creature chosen this way. If the player does, untap those creatures.
+mana={G}{G}
 type=Enchantment
 [/card]
 [card]
@@ -89510,7 +91285,7 @@ toughness=2
 [/card]
 [card]
 name=Throne of Bone
-alias=1140
+auto=@movedto(*[black]|stack):pay({1}) life:1
 text=Whenever a player casts a black spell, you may pay {1}. If you do, you gain 1 life.
 mana={1}
 type=Artifact
@@ -89546,6 +91321,16 @@ text={1}{B}, Sacrifice Thrull Surgeon: Look at target player's hand and choose a
 mana={1}{B}
 type=Creature
 subtype=Thrull
+power=1
+toughness=1
+[/card]
+[card]
+name=Thrull Wizard
+auto={1}{B}:name(counter spell) target(*[black]|stack) transforms((,newability[pay[[{3B}]] name(pay 3 or black mana) donothing?fizzle])) forever
+text={1}{B}: Counter target black spell unless that spell's controller pays {B} or {3}.
+mana={2}{B}
+type=Creature
+subtype=Thrull Wizard
 power=1
 toughness=1
 [/card]
@@ -89632,6 +91417,15 @@ name=Thunder of Hooves
 auto=foreach(beast) damage:1 all(player,creature[-flying])
 text=Thunder of Hooves deals X damage to each creature without flying and each player, where X is the number of Beasts on the battlefield.
 mana={3}{R}
+type=Sorcery
+[/card]
+[card]
+name=Thunderblade Charge
+target=creature,player
+auto=damage:3
+autograveyard=@combatdamaged(player) from(creature|mybattlefield):pay({2}{R}{R}{R}) name(pay to cast) activate name(pay to cast) castcard(normal)
+text=Thunderblade Charge deals 3 damage to target creature or player. -- Whenever one or more creatures you control deal combat damage to a player, if Thunderblade Charge is in your graveyard, you may pay {2}{R}{R}{R}. If you do, you may cast it without paying its mana cost.
+mana={1}{R}{R}
 type=Sorcery
 [/card]
 [card]
@@ -89737,6 +91531,15 @@ type=Creature
 subtype=Dragon
 power=5
 toughness=5
+[/card]
+[card]
+name=Thunderous Wrath
+target=creature,player
+auto=damage:5
+autohand=restriction{miracle} pay[[{R}]] name(Miracle) activate name(Miracle) castcard(normal)
+text=Thunderous Wrath deals 5 damage to target creature or player. -- Miracle {R} (You may cast this card for its miracle cost when you draw it if it's the first card you drew this turn.)
+mana={4}{R}{R}
+type=Instant
 [/card]
 [card]
 name=Thunderscape Apprentice
@@ -90233,8 +92036,7 @@ toughness=3
 [/card]
 [card]
 name=Tin Street Hooligan
-other={R}{G} name(Spend G to Cast)
-auto=alternative destroy target(artifact)
+auto=if spent({G}) then destroy target(artifact)
 text=When Tin Street Hooligan enters the battlefield, if {G} was spent to cast Tin Street Hooligan, destroy target artifact.
 mana={1}{R}
 type=Creature
@@ -90802,6 +92604,14 @@ mana={3}{R}{R}
 type=Sorcery
 [/card]
 [card]
+name=Torrent of Souls
+auto=if spent({R}) then target(player) ability$!name(2/0 & haste) 2/0 all(creature|mybattlefield) && haste all(creature|mybattlefield)!$ targetedplayer
+auto=if spent({B}) then ability$!name(reanimate) target(creature|mygraveyard) moveto(mybattlefield)!$ controller
+text=Return up to one target creature card from your graveyard to the battlefield if {B} was spent to cast Torrent of Souls. Creatures target player controls get +2/+0 and gain haste until end of turn if {R} was spent to cast Torrent of Souls. (Do both if {B}{R} was spent.)
+mana={4}{BR}
+type=Sorcery
+[/card]
+[card]
 name=Torsten Von Ursus
 mana={3}{G}{G}{W}
 type=Legendary Creature
@@ -90847,6 +92657,17 @@ auto={discard(creature|myhand)}:moveTo(myhand) target(creature|mygraveyard)
 text={B}, Discard a creature card: Return target creature card from your graveyard to your hand.
 mana={B}
 type=Enchantment
+[/card]
+[card]
+name=Toshiro Umezawa
+auto=@movedto(graveyard) from(creature|opponentBattlefield):may target(*[instant]|mygraveyard) castcard(normal) and!(transforms((,newability[exiledeath])) forever)!
+auto=bushido(1/1)
+text=Bushido 1 (When this blocks or becomes blocked, it gets +1/+1 until end of turn.) -- Whenever a creature an opponent controls is put into a graveyard from the battlefield, you may cast target instant card from your graveyard. If that card would be put into a graveyard this turn, exile it instead.
+mana={1}{B}{B}
+type=Legendary Creature
+subtype=Human Samurai
+power=2
+toughness=2
 [/card]
 [card]
 name=Totally Lost
@@ -91145,7 +92966,7 @@ toughness=2
 [card]
 name=Trade Caravan
 auto=@each my upkeep:counter(0/0,1,Currency)
-auto={C(0/0,-2,Currency)}:untap target(land[basic]) myUpkeepOnly
+auto={C(0/0,-2,Currency)}:untap target(land[basic]) OpponentUpkeepOnly
 text=At the beginning of your upkeep, put a currency counter on Trade Caravan. -- Remove two currency counters from Trade Caravan: Untap target basic land. Activate this ability only during an opponent's upkeep.
 mana={W}
 type=Creature
@@ -91386,8 +93207,7 @@ toughness=3
 [card]
 name=Transguild Promenade
 auto=tap
-auto=choice sacrifice
-auto=choice pay({1}) name(Keep Transguild Promenade) donothing
+auto=pay[[{1}]] name(pay 1 mana) donothing?sacrifice
 auto={T}:Add{G}
 auto={T}:Add{R}
 auto={T}:Add{U}
@@ -91629,6 +93449,17 @@ mana={B}{G}
 type=Sorcery
 [/card]
 [card]
+name=Treasury Thrull
+auto=@movedto(*|mystack):pay({WB}) life:-1 opponent && life:1 controller
+auto=@combat(attacking) source(this):may moveto(myhand) target(*[artifact;creature;enchantment]|mygraveyard)
+text=Extort (Whenever you cast a spell, you may pay {WB}. If you do, each opponent loses 1 life and you gain that much life.) -- Whenever Treasury Thrull attacks, you may return target artifact, creature, or enchantment card from your graveyard to your hand.
+mana={4}{W}{B}
+type=Creature
+subtype=Thrull
+power=4
+toughness=4
+[/card]
+[card]
 name=Tree Monkey
 abilities=reach
 text=Reach (This creature can block creatures with flying.)
@@ -91840,7 +93671,7 @@ toughness=4
 [card]
 name=Treva, the Renewer
 abilities=flying
-auto=@combatdamaged(player) from(this):may name(pay ability) transforms((,newability[{2}{W}:activatechooseacolor foreach(*[chosencolor]|battlefield) life:1 activatechooseend limit:1 mycombatdamageonly])) oneshot
+auto=@combatdamaged(player) from(this):pay({2}{W}) activatechooseacolor foreach(*[chosencolor]|battlefield) life:1 activatechooseend
 text=Flying -- Whenever Treva, the Renewer deals combat damage to a player, you may pay {2}{W}. If you do, choose a color, then you gain 1 life for each permanent of that color.
 mana={3}{G}{W}{U}
 type=Legendary Creature
@@ -92634,6 +94465,14 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Twincast
+target=*[instant;sorcery]|stack
+auto=castcard(copied noevent)
+text=Copy target instant or sorcery spell. You may choose new targets for the copy.
+mana={U}{U}
+type=Instant
+[/card]
+[card]
 name=Twinstrike
 target=<2>creature
 auto=if type(*|myhand)~morethan~0 then damage:2
@@ -93089,6 +94928,15 @@ type=Land
 subtype=Island Swamp
 [/card]
 [card]
+name=Undergrowth
+other={2}{R}{G} name(Pay additional cost)
+auto=ifnot paid(alternative) then fog from(creature|battlefield) oneshot
+auto=if paid(alternative) then fog from(creature[-white]|battlefield) oneshot
+text=As an additional cost to cast Undergrowth, you may pay {2}{R}. -- Prevent all combat damage that would be dealt this turn. If its additional cost was paid, Undergrowth doesn't affect combat damage that would be dealt by red creatures.
+mana={G}
+type=Instant
+[/card]
+[card]
 name=Undermine
 target=*|stack
 auto=fizzle
@@ -93342,6 +95190,14 @@ auto=ability$!name(discard 2 cards) target(*|myhand) reject!$ opponent
 text=Each opponent discards two cards.
 mana={3}{B}
 type=Sorcery
+[/card]
+[card]
+name=Unnerving Assault
+auto=if spent({U}) then -1/0 all(creature|opponentbattlefield)
+auto=if spent({R}) then 1/0 all(creature|mybattlefield)
+text=Creatures your opponents control get -1/-0 until end of turn if {U} was spent to cast Unnerving Assault, and creatures you control get +1/+0 until end of turn if {R} was spent to cast it. (Do both if {U}{R} was spent.)
+mana={2}{UR}
+type=Instant
 [/card]
 [card]
 name=Unquestioned Authority
@@ -93825,6 +95681,13 @@ mana={6}
 type=Artifact
 [/card]
 [card]
+name=Urza's Chalice
+auto=@movedto(artifact|stack):pay({1}) life:1 controller
+text=Whenever a player casts an artifact spell, you may pay {1}. If you do, you gain 1 life.
+mana={1}
+type=Artifact
+[/card]
+[card]
 name=Urza's Factory
 auto={T}:Add{1}
 auto={7}{T}:token(Assembly-Worker,creature artifact, 2/2, artifact)
@@ -93958,6 +95821,17 @@ type=Creature
 subtype=Goblin Scout
 power=1
 toughness=2
+[/card]
+[card]
+name=Uyo, Silent Prophet
+abilities=flying
+auto={2}{H(land|mybattlefield)}{H(land|mybattlefield)}:name(copy spell) target(instant,sorcery|stack) castcard(copied noevent)
+text=Flying -- {2}, Return two lands you control to their owner's hand: Copy target instant or sorcery spell. You may choose new targets for the copy.
+mana={4}{U}{U}
+type=Legendary Creature
+subtype=Moonfolk Wizard
+power=4
+toughness=4
 [/card]
 [card]
 name=Vaevictis Asmadi
@@ -94258,6 +96132,15 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Vanishment
+target=*[-land]
+auto=moveTo(ownerlibrary)
+autohand=restriction{miracle} pay[[{U}]] name(Miracle) activate name(Miracle) castcard(normal)
+text=Put target nonland permanent on top of its owner's library. -- Miracle {U} (You may cast this card for its miracle cost when you draw it if it's the first card you drew this turn.)
+mana={4}{U}
+type=Instant
+[/card]
+[card]
 name=Vanquish
 target=creature[blocking]
 auto=destroy
@@ -94426,6 +96309,16 @@ type=Artifact Creature
 subtype=Human Rogue
 power=4
 toughness=3
+[/card]
+[card]
+name=Vectis Dominator
+auto={T}:name(tap) target(creature) transforms((,newability[pay[[{L}{L}]] name(pay 2 life) donothing?tap])) forever
+text={T}: Tap target creature unless its controller pays 2 life.
+mana={1}{W}{B}
+type=Artifact Creature
+subtype=Human Wizard
+power=0
+toughness=2
 [/card]
 [card]
 name=Vectis Silencers
@@ -94603,6 +96496,17 @@ mana={2}{U}
 type=Enchantment
 [/card]
 [card]
+name=Veiling Oddity
+autoexile=this(counter{0/0.1.Time}<2) transforms((,newability[@counterremoved(0/0.1.Time) from(sourcecard) suspended:all(creature) unblockable]))
+suspend(4)={1}{U}
+text=Suspend 4 - {1}{U} (Rather than cast this card from your hand, you may pay {1}{U} and exile it with four time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost. It has haste.) -- When the last time counter is removed from Veiling Oddity while it's exiled, creatures are unblockable this turn.
+mana={3}{U}
+type=Creature
+subtype=Illusion
+power=2
+toughness=3
+[/card]
+[card]
 name=Veilstone Amulet
 auto=@movedTo(*|mystack):lord(creature|myBattlefield) opponentshroud ueot
 text=Whenever you cast a spell, creatures you control can't be the targets of spells or abilities your opponents control this turn.
@@ -94683,7 +96587,7 @@ type=Instant
 [card]
 name=Vendilion Clique
 abilities=flash,flying
-auto=name(choose a card) target(*[-land]|hand) transforms((,newability[bottomoflibrary],newability[draw:1 controller]))
+auto=name(choose a card) target(*[-land]|opponenthand) transforms((,newability[bottomoflibrary],newability[draw:1 controller]))
 text=Flash -- Flying -- When Vendilion Clique enters the battlefield, look at target player's hand. You may choose a nonland card from it. If you do, that player reveals the chosen card, puts it on the bottom of his or her library, then draws a card.
 mana={1}{U}{U}
 type=Legendary Creature
@@ -95266,7 +97170,7 @@ toughness=3
 name=Viashino Firstblade
 abilities=haste
 auto=2/2 ueot
-text=When Viashino Firstblade enters the battlefield, it gets +2/+2 until end of turn.
+text=Haste -- When Viashino Firstblade enters the battlefield, it gets +2/+2 until end of turn.
 mana={1}{R}{W}
 type=Creature
 subtype=Viashino Soldier
@@ -95588,12 +97492,20 @@ toughness=6
 [card]
 name=Vigor Mortis
 target=creature|mygraveyard
-other={1}{B}{B}{G} name(Spend G to Cast)
-auto=moveTo(myBattlefield)
-auto=alternative counter(1/1,1)
+auto=ifnot spent({G}) then moveto(mybattlefield) else moveto(mybattlefield) and!(counter(1/1,1))!
 text=Return target creature card from your graveyard to the battlefield. If {G} was spent to cast Vigor Mortis, that creature enters the battlefield with an additional +1/+1 counter on it.
 mana={2}{B}{B}
 type=Sorcery
+[/card]
+[card]
+name=Vigorous Charge
+target=creature
+kicker={W}
+auto=trample
+auto=kicker transforms((,newability[combatspiritlink])) ueot
+text=Kicker {W} (You may pay an additional {W} as you cast this spell.) -- Target creature gains trample until end of turn. Whenever that creature deals combat damage this turn, if Vigorous Charge was kicked, you gain life equal to that damage.
+mana={G}
+type=Instant
 [/card]
 [card]
 name=Vile Consumption
@@ -96330,6 +98242,16 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Vodalian Mage
+auto={U}{T}:name(counter spell) target(*|stack) transforms((,newability[pay[[{1}]] name(pay 1 mana) donothing?fizzle])) forever
+text={U}, {T}: Counter target spell unless its controller pays {1}.
+mana={2}{U}
+type=Creature
+subtype=Merfolk Wizard
+power=1
+toughness=1
+[/card]
+[card]
 name=Vodalian Merchant
 auto=draw:1
 auto=reject target(*|myhand)
@@ -96536,6 +98458,18 @@ mana={1}{U}
 type=Creature
 subtype=Elemental
 power=2
+toughness=1
+[/card]
+[card]
+name=Voidmage Apprentice
+facedown={3}
+autofaceup=fizzle target(*|stack)
+autofacedown={2}{U}{U}:morph
+text=Morph {2}{U}{U} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.) -- When Voidmage Apprentice is turned face up, counter target spell.
+mana={1}{U}
+type=Creature
+subtype=Human Wizard
+power=1
 toughness=1
 [/card]
 [card]
@@ -96800,7 +98734,7 @@ toughness=4
 [card]
 name=Vorosh, the Hunter
 abilities=flying
-auto=@combatdamaged(player) from(this):may name(pay ability) transforms((,newability[{2}{G}:counter(1/1.6) limit:1 mycombatdamageonly])) oneshot
+auto=@combatdamaged(player) from(this):pay({2}{G}) counter(1/1,6)
 text=Flying -- Whenever Vorosh, the Hunter deals combat damage to a player, you may pay {2}{G}. If you do, put six +1/+1 counters on Vorosh.
 mana={3}{G}{U}{B}
 type=Legendary Creature
@@ -98372,7 +100306,7 @@ type=Land
 [card]
 name=Watery Grave
 auto=tap
-auto=may pay({L}{L}) untap
+auto=pay({L}{L}) untap
 text=({T}: Add {U} or {B} to your mana pool.) -- As Watery Grave enters the battlefield, you may pay 2 life. If you don't, Watery Grave enters the battlefield tapped.
 type=Land
 subtype=Island Swamp
@@ -98763,7 +100697,7 @@ toughness=3
 [card]
 name=Wellspring
 target=land
-auto=transforms((,newability[moveTo(opponentbattlefield),newability[phaseaction[endofturn sourceinplay] moveTo(ownerbattlefield) oneshot]])) ueot
+auto=transforms((,newability[moveTo(opponentbattlefield)],newability[phaseaction[endofturn sourceinplay] moveTo(ownerbattlefield) oneshot])) ueot
 auto=@each my upkeep:transforms((,newability[moveTo(opponentbattlefield)],newability[phaseaction[endofturn sourceinplay] moveTo(ownerbattlefield)],newability[untap])) ueot
 text=Enchant land -- When Wellspring enters the battlefield, gain control of enchanted land until end of turn. -- At the beginning of your upkeep, untap enchanted land. You gain control of that land until end of turn.
 mana={1}{G}{W}
@@ -99616,6 +101550,17 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Windborn Muse
+abilities=flying
+auto=lord(creature|opponentbattlefield) transforms((,newability[@each mycombatbegins:pay[[{2}]] name(pay 2 mana) donothing?cantattack all(this)]))
+text=Flying (This creature can't be blocked except by creatures with flying or reach.) -- Creatures can't attack you unless their controller pays {2} for each creature he or she controls that's attacking you.
+mana={3}{W}
+type=Creature
+subtype=Spirit
+power=2
+toughness=3
+[/card]
+[card]
 name=Windborne Charge
 target=<2>creature
 auto=2/2
@@ -99773,8 +101718,7 @@ type=Instant
 [/card]
 [card]
 name=Wing Shards
-target=player
-auto=ability$!name(sacrifice attacker) notatarget(creature[attacking]|mybattlefield) sacrifice!$ targetedplayer
+auto=target(player) ability$!name(sacrifice attacker) notatarget(creature[attacking]|mybattlefield) sacrifice!$ targetedplayer
 abilities=storm
 text=Target player sacrifices an attacking creature. -- Storm (When you cast this spell, copy it for each spell cast before it this turn.)
 mana={1}{W}{W}
@@ -99801,8 +101745,8 @@ toughness=1
 [/card]
 [card]
 name=Wing Storm
-auto=foreach(creature[flying]|myBattlefield) damage:2 controller
-auto=foreach(creature[flying]|opponentBattlefield) damage:2 opponent
+auto=damage:twicetype:creature[flying]:mybattlefield controller
+auto=damage:twicetype:creature[flying]:opponentbattlefield opponent
 text=Wing Storm deals damage to each player equal to twice the number of creatures with flying that player controls.
 mana={2}{G}
 type=Sorcery
@@ -100202,6 +102146,17 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Wizard Replica
+abilities=flying
+auto={U}{S}:name(counter spell) target(*|stack) transforms((,newability[pay[[{2}]] name(pay 2 mana) donothing?fizzle])) forever
+text=Flying -- {U}, Sacrifice Wizard Replica: Counter target spell unless its controller pays {2}.
+mana={3}
+type=Artifact Creature
+subtype=Wizard
+power=1
+toughness=3
+[/card]
+[card]
 name=Wizards' School
 auto={T}:Add{1}
 auto={1}{T}:Add{U}
@@ -100439,7 +102394,7 @@ type=Land
 [/card]
 [card]
 name=Wooden Sphere
-alias=1142
+auto=@movedto(*[green]|stack):pay({1}) life:1
 text=Whenever a player casts a green spell, you may pay {1}. If you do, you gain 1 life.
 mana={1}
 type=Artifact
@@ -100938,6 +102893,17 @@ auto=teach(creature[power=power:lowest:creature:battlefield]) destroy
 text=Destroy target creature if it has the least power or is tied for least power among creatures on the battlefield.
 mana={B}
 type=Sorcery
+[/card]
+[card]
+name=Wrexial, the Risen Deep
+abilities=islandwalk,swampwalk
+auto=@combatdamaged(player) from(this):may target(*[instant;sorcery]|opponentgraveyard) castcard(normal) and!(transforms((,newability[exiledeath])) forever)!
+text=Islandwalk, swampwalk -- Whenever Wrexial, the Risen Deep deals combat damage to a player, you may cast target instant or sorcery card from that player's graveyard without paying its mana cost. If that card would be put into a graveyard this turn, exile it instead.
+mana={3}{U}{U}{B}
+type=Legendary Creature
+subtype=Kraken
+power=5
+toughness=8
 [/card]
 [card]
 name=Wring Flesh
