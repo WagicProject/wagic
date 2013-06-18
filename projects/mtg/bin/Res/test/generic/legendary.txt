@@ -1,4 +1,4 @@
-#TestingLegendary with Ascendant Evincar
+#TestingLegendary with Ascendant Evincar testing that both players can have 1 out.
 [INIT]
 FIRSTMAIN
 [PLAYER1]
@@ -6,13 +6,17 @@ hand:106525
 inplay:106525
 manapool:{4}{B}{B}
 [PLAYER2]
+inplay:22897
 [DO]
 106525
+choice 0
 [ASSERT]
 FIRSTMAIN
 [PLAYER1]
-graveyard:106525,106525
+inplay:106525
+graveyard:*
 manapool:{0}
 [PLAYER2]
+inplay:22897
 life:20
 [END]

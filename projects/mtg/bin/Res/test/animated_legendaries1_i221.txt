@@ -30,8 +30,7 @@ next
 [ASSERT]
 firstmain
 [PLAYER1]
-graveyard:Animate Dead
+inplay:106426,Animate Dead
 [PLAYER2]
-inplay:2743,2744,2745,1392,1393,1394
-graveyard:39932,106426
+inplay:2743,2744,2745,1392,1393,1394,39932
 [END]

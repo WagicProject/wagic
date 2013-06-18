@@ -131,8 +131,6 @@ animate_dead.txt
 animate_dead2.txt
 animate_dead3.txt
 animated_legendaries1_i221.txt
-animated_legendaries2_i221.txt
-animated_legendaries3_i221.txt
 ankh_of_mishra.txt
 Apex_Hawks_MULTIKICKER.txt
 arcanis_the_omnipotent.txt
