@@ -4119,7 +4119,7 @@ public:
 	bool removeCreatureSubtypes;
     bool removeTypes;
     string menu;
-    string menutext; //this overrides the previous.
+    
     string newpower;
     bool newpowerfound;
     int oldpower;
@@ -4132,7 +4132,7 @@ public:
     bool aForever;
     bool UYNT;
     int myCurrentTurn;
-
+    string menutext; //this overrides the previous.
     ATransformer(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target, string stypes, string sabilities,string newpower,bool newpowerfound,string newtoughness,bool newtoughnessfound,vector<string> newAbilitiesList,bool newAbilityFound = false,bool aForever = false ,bool UYNT = false,string menutext = "");
     int addToGame();
     int reapplyCountersBonus(MTGCardInstance * rtarget= NULL,bool powerapplied=false,bool toughnessapplied=false);
