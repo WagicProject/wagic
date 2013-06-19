@@ -23,3 +23,12 @@ teaser=Love Equipment and want a real challenge? Unlock Stone Hewer Basic:)
 trophyroom_text=Won with more than 10 equipments.
 unlock_condition=type(equipment|Battlefield)~morethan~10
 [/award]
+
+[award]
+name=Blitzkrieg Mode
+id=prx_geirkztilb
+unlock_text=Blitzkrieg Mode Unlocked
+teaser=Like to play fast? Unlock Blitzkrieg Mode :)
+trophyroom_text=Won with more than 18 lands.
+unlock_condition=type(land|myBattlefield)~morethan~18
+[/award]

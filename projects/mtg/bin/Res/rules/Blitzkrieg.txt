@@ -1,0 +1,22 @@
+include mtg.txt
+name=Blitzkrieg
+unlock=prx_geirkztilb
+[INIT]
+mode=mtg
+
+auto=shuffle
+auto=draw:8
+
+auto=sethand:7
+auto=@each my draw:if type(*|myhand)~lessthan~8 then draw:1 && if type(*|myhand)~lessthan~8 then draw:1 && if type(*|myhand)~lessthan~8 then draw:1 && if type(*|myhand)~lessthan~8 then draw:1 && if type(*|myhand)~lessthan~8 then draw:1 && if type(*|myhand)~lessthan~8 then draw:1 && if type(*|myhand)~lessthan~8 then draw:1 && if type(*|myhand)~lessthan~8 then draw:1
+
+auto=@movedTo(land|myBattlefield) from(myhand):draw:1 controller
+auto=maxPlay(land)1000
+
+
+#Lands Mana Rules
+auto=lord(Plains|MyBattlefield) {T}:Add{W}
+auto=lord(Island|MyBattlefield) {T}:Add{U}
+auto=lord(Swamp|MyBattlefield) {T}:Add{B}
+auto=lord(Mountain|MyBattlefield) {T}:Add{R}
+auto=lord(Forest|MyBattlefield) {T}:Add{G}
