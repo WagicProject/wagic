@@ -211,6 +211,7 @@ void GameObserver::nextGamePhase()
         mLayers->stackLayer()->garbageCollect(); //clean stack history for this turn;
         mLayers->actionLayer()->Update(0);
         currentPlayer->game->library->miracle = false;
+        currentPlayer->opponent()->game->library->miracle = false;
         for (int i = 0; i < 2; i++)
         {
             //Cleanup of each player's gamezones
