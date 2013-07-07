@@ -1,8 +1,36 @@
-include mtg.txt
 name=Blitzkrieg
 unlock=prx_geirkztilb
 [INIT]
 mode=mtg
+
+auto=bonusrule
+auto=putinplayrule
+auto=kickerrule
+auto=alternativecostrule
+auto=buybackrule
+auto=flashbackrule
+auto=retracerule
+auto=suspendrule
+auto=morphrule
+auto=attackrule
+auto=blockrule
+auto=combattriggerrule
+auto=legendrule
+auto=planeswalkerrule
+auto=planeswalkerdamage
+auto=planeswalkerattack
+auto=tokencleanuprule
+auto=persistrule
+auto=vampirerule
+auto=unearthrule
+auto=lifelinkrule
+auto=deathtouchrule
+auto=soulbondrule
+auto=dredgerule
+
+[PLAYERS]
+life:20
+offerinterruptonphase=draw
 
 auto=shuffle
 auto=draw:8
@@ -19,4 +47,4 @@ auto=lord(Plains|MyBattlefield) {T}:Add{W}
 auto=lord(Island|MyBattlefield) {T}:Add{U}
 auto=lord(Swamp|MyBattlefield) {T}:Add{B}
 auto=lord(Mountain|MyBattlefield) {T}:Add{R}
-auto=lord(Forest|MyBattlefield) {T}:Add{G}
+auto=lord(Forest|MyBattlefield) {T}:Add{G}MyBattlefield) {T}:Add{G}
