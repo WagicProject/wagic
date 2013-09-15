@@ -72256,7 +72256,7 @@ type=Land
 [/card]
 [card]
 name=Rising Waters
-auto=lord(land) doesnotuntp
+auto=lord(land) doesnotuntap
 auto=@each my upkeep:untap notatarget(land|mybattlefield)
 auto=@each opponent upkeep:ability$!name(untap land) untap notatarget(land|mybattlefield)!$ opponent
 text=Lands don't untap during their controllers' untap steps. -- At the beginning of each player's upkeep, that player untaps a land he or she controls.
