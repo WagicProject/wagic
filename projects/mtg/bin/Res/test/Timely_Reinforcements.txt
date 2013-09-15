@@ -1,0 +1,27 @@
+# Issue #962: https://code.google.com/p/wagic/issues/detail?id=962&start=100
+# Hexproof prevents creature from being counted
+# 
+# Timely reinforcements:
+# If you have less life than an opponent, you gain 6 life. If you control fewer creatures than an opponent, put three 1/1 white Soldier creature tokens onto the battlefield.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+manapool:{2}{W}
+hand:timely reinforcements
+life:19
+[PLAYER2]
+# creature 1/1, hexproof
+inplay:Invisible stalker
+[DO]
+timely reinforcements
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+life:25
+# 3 tokens
+inplay:*,*,*
+graveyard:timely reinforcements
+manapool:{0}
+[PLAYER2]
+inplay:Invisible stalker
+[END]

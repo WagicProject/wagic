@@ -919,7 +919,7 @@ bool TargetChooser::validTargetsExist(int maxTargets)
     return false;
 }
 
-int TargetChooser::countValidTargets()
+int TargetChooser::countValidTargets(bool withoutProtections)
 {
     int result = 0;
 
@@ -943,7 +943,7 @@ int TargetChooser::countValidTargets()
             {
                 for (int j = 0; j < z->nb_cards; j++)
                 {
-                    if (canTarget(z->cards[j])) result++;
+                    if (canTarget(z->cards[j], withoutProtections)) result++;
                 }
             }
         }

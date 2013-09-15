@@ -638,6 +638,7 @@ thunder-thrash_elder.txt
 tidal_warrior_i646.txt
 tidal_warrior_i649.txt
 tidal_warrior_i652.txt
+Timely_Reinforcements.txt
 titanic_ultimatum.txt
 torture.txt
 tranquil_domain.txt

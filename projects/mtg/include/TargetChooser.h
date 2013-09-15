@@ -36,7 +36,6 @@ public:
         TARGETED_PLAYER = 4
     };
     bool other;
-    bool withoutProtections;
     TargetChooser(GameObserver *observer, MTGCardInstance * card = NULL, int _maxtargets = UNLITMITED_TARGETS, bool other = false, bool targetMin = false);
     Player * Owner;
     GameObserver *observer;
@@ -48,7 +47,7 @@ public:
     bool validTargetsExist(int maxTarget = 1);
     int attemptsToFill;
     string belongsToAbility;
-    int countValidTargets();
+    int countValidTargets(bool withoutProtections = false);
     virtual int setAllZones()
     {
         return 0;
