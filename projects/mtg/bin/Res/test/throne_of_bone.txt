@@ -10,11 +10,8 @@ manapool:{B}{B}
 inplay:Throne of Bone,Swamp
 [DO]
 Bad Moon
-no
-yes
+choice 0
 Swamp
-Throne of Bone
-endinterruption
 [ASSERT]
 firstmain
 [PLAYER1]

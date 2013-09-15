@@ -11,11 +11,8 @@ manapool:{U}{U}{U}{U}{U}
 inplay:Crystal Rod,Island
 [DO]
 Air Elemental
-no
-yes
+choice 0
 Island
-Crystal Rod
-endinterruption
 [ASSERT]
 firstmain
 [PLAYER1]

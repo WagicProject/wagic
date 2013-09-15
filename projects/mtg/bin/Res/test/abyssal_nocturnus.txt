@@ -11,6 +11,7 @@ hand:Giant Growth
 life:20
 [DO]
 Mind Knives
+p2
 next
 #begin
 next
