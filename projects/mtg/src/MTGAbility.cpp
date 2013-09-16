@@ -1462,7 +1462,6 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     vector<string> splitMayPay = parseBetween(s, "pay(", ")", true);
     if(splitMayPay.size())
     {
-        MTGAbility * a1 = NULL;
         GenericPaidAbility * a = NEW GenericPaidAbility(observer, id, card, target,newName,castRestriction,splitMayPay[1],storedPayString);
         a->oneShot = 1;
         a->canBeInterrupted = false;
@@ -1967,7 +1966,6 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     vector<string> splitMayPaysub = parseBetween(s, "pay[[","]]", true);
     if(splitMayPaysub.size())
     {
-        MTGAbility * a1 = NULL;
         GenericPaidAbility * a = NEW GenericPaidAbility(observer, id, card, target,newName,castRestriction,splitMayPaysub[1],storedPayString);
         a->oneShot = 1;
         a->canBeInterrupted = false;

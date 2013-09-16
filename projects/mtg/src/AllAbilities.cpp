@@ -2962,7 +2962,8 @@ int AARemoveMana::resolve()
                     if (player->doesntEmpty->getConvertedCost() && !player->poolDoesntEmpty->getConvertedCost())
                     {
                         ManaCost * toRemove =  manaPool->Diff(player->doesntEmpty);
-                        player->getManaPool()->pay(manaPool->Diff(player->doesntEmpty));
+                        player->getManaPool()->pay(toRemove);
+                        delete(toRemove);
                         return 1;
                     }
                     else if(!player->doesntEmpty->getConvertedCost() && player->poolDoesntEmpty->getConvertedCost())

@@ -96,7 +96,6 @@ int extraManaCost::isPaymentSet()
 
 int extraManaCost::canPay()
 {
-    MTGCardInstance * _target = (MTGCardInstance *) target;
     if(!source->controller()->getManaPool()->canAfford(costToPay))
     {
         return 0;
