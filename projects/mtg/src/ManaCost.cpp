@@ -480,6 +480,7 @@ void ManaCost::init()
     suspend = NULL;
     manaUsedToCast = NULL;
     isMulti = false;
+    xColor = -1;
 }
 
 void ManaCost::resetCosts()
