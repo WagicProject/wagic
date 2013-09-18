@@ -20583,8 +20583,7 @@ toughness=1
 name=Debt to the Deathless
 auto=@lifeloss(opponent):life:thatmuch controller
 auto=life:-twiceX opponent
-text=Each opponent loses two times X life. You gain life equal to the life lost
-this way.
+text=Each opponent loses two times X life. You gain life equal to the life lost this way.
 mana={X}{W}{W}{B}{B}
 type=Sorcery
 [/card]
@@ -53222,7 +53221,7 @@ subtype=Construct
 power=1
 toughness=1
 [/card]
-[/card]
+[card]
 name=Manaplasm
 auto=@movedTo(*[manacost=1]|mystack):1/1 ueot
 auto=@movedTo(*[manacost=2]|mystack):2/2 ueot
@@ -81793,8 +81792,7 @@ type=Instant
 [/card]
 [card]
 name=Smelt-Ward Gatekeepers
-auto=if type(land[Gate]|mybattlefield)~morethan~1 then target(creature|opponentbattlefield) transforms((,newability[moveTo
-(opponentbattlefield)],newability[phaseaction[endofturn sourceinplay] moveTo(ownerbattlefield)],newability[untap],haste)) ueot once
+auto=if type(land[Gate]|mybattlefield)~morethan~1 then target(creature|opponentbattlefield) transforms((,newability[moveTo(opponentbattlefield)],newability[phaseaction[endofturn sourceinplay] moveTo(ownerbattlefield)],newability[untap],haste)) ueot once
 text=When Smelt-Ward Gatekeepers enters the battlefield, if you control two or more Gates, gain control of target creature an opponent controls until end of turn. Untap that creature. That creature gains haste until end of turn.
 mana={3}{R}
 type=Creature
@@ -87508,8 +87506,7 @@ toughness=2
 [card]
 name=Sunspire Gatekeepers
 auto=if type(land[Gate]|mybattlefield)~morethan~1 then token(Knight,Creature Knight,2/2,white,vigilance)
-text=When Sunspire Gatekeepers enters the battlefield, if you control two or more Gates, put a 2/2 Knight creature token with vigilance onto the
-battlefield.
+text=When Sunspire Gatekeepers enters the battlefield, if you control two or more Gates, put a 2/2 Knight creature token with vigilance onto the battlefield.
 mana={3}{W}
 type=Creature
 subtype=Human Soldier
@@ -90206,8 +90203,7 @@ toughness=3
 name=Teysa, Envoy of Ghosts
 abilities=Vigilance, protection from creatures
 auto=@damaged(controller) from(creature):all(trigger[from]) destroy && token(Spirit,Creature Spirit,1/1,white,black, flying)
-text=Vigilance. --  Protection from creatures. -- Whenever a creature deals damage to you, destroy that creature. Put a 1/1 white and black spirit
-token with flying onto the battlefield.
+text=Vigilance. --  Protection from creatures. -- Whenever a creature deals damage to you, destroy that creature. Put a 1/1 white and black spirit token with flying onto the battlefield.
 mana={5}{W}{B}
 type=Legendary Creature
 subtype=Human Advisor
@@ -92459,7 +92455,7 @@ toughness=2
 name=Torch Song
 auto=@each my upkeep:may counter(0/0,1,Verse)
 auto={2}{R}{S}:thisforeach(counter{0/0.1.Verse}) damage:1 target(creature,player)
-text=At the beginning of your upkeep, you may put a verse counter on Midsummer Revel. -- {G}, Sacrifice Midsummer Revel: Put X 3/3 green Beast creature tokens onto the battlefield, where X is the number of verse counters on Midsummer Revel.
+text=At the beginning of your upkeep, you may put a verse counter on Torch Song. {2}{R}, Sacrifice Torch Song: Torch Song deals X damage to target creature or player, where X is the number of verse counters on Torch Song.
 mana={2}{R}
 type=Enchantment
 [/card]
@@ -94572,8 +94568,7 @@ type=Sorcery
 [card]
 name=Ubul Sar Gatekeepers
 auto=if type(land[Gate]|mybattlefield)~morethan~1 then -2/-2 target(creature|opponentbattlefield)ueot
-text=When Ubul Sar Gatekeepers enters the battlefield, if you control two or more Gates, target creature an opponent controls gets -2/-2 until 
-end of turn.
+text=When Ubul Sar Gatekeepers enters the battlefield, if you control two or more Gates, target creature an opponent controls gets -2/-2 until end of turn.
 mana={3}{B}
 type=Creature
 subtype=Zombie Soldier

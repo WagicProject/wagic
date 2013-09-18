@@ -2531,12 +2531,6 @@ mana={4}{W}{W}
 type=Sorcery
 [/card]
 [card]
-name=Churning Eddy
-text=Return target creature and target land to their owners' hands.
-mana={3}{U}
-type=Sorcery
-[/card]
-[card]
 name=Cinder Crawler
 text={R}: Cinder Crawler gets +1/+0 until end of turn. Activate this ability only if Cinder Crawler is blocked.
 mana={1}{R}
@@ -8047,16 +8041,6 @@ mana={U}{R}
 type=Instant
 [/card]
 [card]
-name=Izzet Staticaster
-abilities=flash,haste
-text=Flash (You may cast this spell any time you could cast an instant.) -- Haste -- {T}: Izzet Staticaster deals 1 damage to target creature and each other creature with the same name as that creature.
-mana={1}{U}{R}
-type=Creature
-subtype=Human Wizard
-power=0
-toughness=3
-[/card]
-[card]
 name=Jabari's Influence
 text=Cast Jabari's Influence only after combat. -- Gain control of target nonartifact, nonblack creature that attacked you this turn and put a -1/-0 counter on it.
 mana={3}{W}{W}
@@ -8524,16 +8508,6 @@ type=Creature
 subtype=Human Soldier
 power=2
 toughness=5
-[/card]
-[card]
-name=Kjeldoran Pride
-target=Creature
-auto=1/2
-auto={2}{U}:moveto(creature|myinplay)
-text=Enchant creature -- Enchanted creature gets +1/+2. -- {2}{U}: Attach Kjeldoran Pride to target creature other than enchanted creature.
-mana={1}{W}
-type=Enchantment
-subtype=Aura
 [/card]
 [card]
 name=Kjeldoran Royal Guard
@@ -16271,12 +16245,6 @@ mana={X}{G}{G}
 type=Instant
 [/card]
 [card]
-name=Storage Matrix
-text=As long as Storage Matrix is untapped, each player chooses artifact, creature, or land during his or her untap step. That player can untap only permanents of the chosen type this step.
-mana={3}
-type=Artifact
-[/card]
-[card]
 name=Stromgald Spy
 text=Whenever Stromgald Spy attacks and isn't blocked, you may have defending player play with his or her hand revealed for as long as Stromgald Spy remains on the battlefield. If you do, Stromgald Spy assigns no combat damage this turn.
 mana={3}{B}
@@ -17340,12 +17308,6 @@ name=Topsy Turvy
 mana={2}{U}
 type=Enchantment
 text=The phases of each player's turn are reversed. (The phases are, in reverse order, end, postcombat main, combat, precombat main, and beginning.) If there are more than two players in the game, the turn order is reversed.
-[/card]
-[card]
-name=Torch Song
-mana={2}{R}
-type=Enchantment
-text=At the beginning of your upkeep, you may put a verse counter on Torch Song. {2}{R}, Sacrifice Torch Song: Torch Song deals X damage to target creature or player, where X is the number of verse counters on Torch Song.
 [/card]
 [card]
 name=Torchling
