@@ -7054,7 +7054,7 @@ toughness=2
 [card]
 name=Batwing Brume
 auto=if spent({W}) then preventAllCombatDamage ueot
-auto=if spent({U}) then life:-type:creature[attacking]:mybattlefield controller && life:-type:creature[attacking]:opponentbattlefield opponent
+auto=if spent({B}) then life:-type:creature[attacking]:mybattlefield controller && life:-type:creature[attacking]:opponentbattlefield opponent
 text=Prevent all combat damage that would be dealt this turn if {W} was spent to cast Batwing Brume. Each player loses 1 life for each attacking creature he or she controls if {B} was spent to cast Batwing Brume. (Do both if {W}{B} was spent.)
 mana={1}{WB}
 type=Instant
@@ -44578,7 +44578,7 @@ type=Artifact
 [card]
 name=Izzet Staticaster
 abilities=flash,haste
-auto={t}:target(creature) transforms((,newability[damage:1],newability[all(creature[share!name!]) damage:1])) forever
+auto={t}:target(creature) transforms((,newability[all(creature[share!name!]) damage:1])) forever
 text=Flash (You may cast this spell any time you could cast an instant.),Haste -- {T}: Izzet Staticaster deals 1 damage to target creature and each other creature with the same name as that creature.
 power=0
 toughness=3
@@ -72006,8 +72006,7 @@ subtype=Equipment
 [card]
 name=Riot Control
 auto=foreach(creature|opponentbattlefield) life:1
-auto=preventalldamage to(controller) from(*|opponentbattlefield)
-auto=preventalldamage to(controller) from(*|opponentstack)
+auto=preventalldamage to(controller) ueot
 text=You gain 1 life for each creature your opponents control. Prevent all damage that would be dealt to you this turn. 
 mana={2}{W}
 type=Instant
@@ -90201,7 +90200,8 @@ toughness=3
 [/card]
 [card]
 name=Teysa, Envoy of Ghosts
-abilities=Vigilance, protection from creatures
+abilities=Vigilance
+auto=protection from(creature)
 auto=@damaged(controller) from(creature):all(trigger[from]) destroy && token(Spirit,Creature Spirit,1/1,white,black, flying)
 text=Vigilance. --  Protection from creatures. -- Whenever a creature deals damage to you, destroy that creature. Put a 1/1 white and black spirit token with flying onto the battlefield.
 mana={5}{W}{B}
@@ -96676,7 +96676,7 @@ toughness=2
 [card]
 name=Vengevine
 abilities=haste
-autograveyard=@movedto(creature|mystack) from(creature|myhand) restriction{thisturn(creature|mystack)~equalto~1}:may moveto(mybattlefield)
+autograveyard=@movedto(creature|mystack) restriction{thisturn(creature|mystack)~equalto~1}:may moveto(mybattlefield)
 text=Haste -- Whenever you cast a spell, if it's the second creature spell you cast this turn, you may return Vengevine from your graveyard to the battlefield.
 mana={2}{G}{G}
 type=Creature
