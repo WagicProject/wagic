@@ -12634,7 +12634,7 @@ toughness=1
 name=Caribou Range
 target=land|myBattlefield
 auto=teach(land) {W}{W}{T}:token(Caribou,Creature Caribou,0/1,white)
-auto=teach(land) {S(caribou[token]|myBattlefield)}:life:1
+auto={S(caribou[token]|myBattlefield)}:life:1
 text=Enchant land you control -- Enchanted land has "{W}{W}, {T}: Put a 0/1 white Caribou creature token onto the battlefield." -- Sacrifice a Caribou token: You gain 1 life.
 mana={2}{W}{W}
 type=Enchantment
@@ -55022,7 +55022,7 @@ toughness=1
 [/card]
 [card]
 name=Mesmeric Fiend
-auto=choice name(target opponent) target(player) donothing && all(this) transforms((,newability[if type(*[-land]|targetedpersonshand)~lessthan~1 then name(look) donothing notatarget(*|targetedpersonshand) else hand(blink)forsrc notatarget(*[-land]|targetedpersonshand)])) forever
+auto=choice name(target opponent) target(opponent) donothing && all(this) transforms((,newability[if type(*[-land]|targetedpersonshand)~lessthan~1 then name(look) donothing notatarget(*|targetedpersonshand) else hand(blink)forsrc notatarget(*[-land]|targetedpersonshand)])) forever
 text=When Mesmeric Fiend enters the battlefield, target opponent reveals his or her hand and you choose a nonland card from it. Exile that card. -- When Mesmeric Fiend leaves the battlefield, return the exiled card to its owner's hand.
 mana={1}{B}
 type=Creature
@@ -66546,7 +66546,8 @@ subtype=Aura
 [card]
 name=Prey Upon
 target=creature|mybattlefield
-auto=transforms((,newability[target(creature) dynamicability<!powerstrike eachother!>])) ueot
+auto=transforms((,newability[target(creature|opponentbattlefield) dynamicability<!powerstrike eachother!>])) ueot
+restriction=type(creature|opponentbattlefield)~morethan~0
 text=Target creature you control fights target creature you don't control.
 mana={G}
 type=Sorcery
@@ -68697,7 +68698,7 @@ name=Raging Ravine
 auto=tap
 auto={T}:Add{R}
 auto={T}:Add{G}
-auto={2}{R}{G}:transforms((Elemental Creature,setpower=3,settoughness=3,red,green)) ueot && transforms((,newability[@combat(attacking) source(this):counter(1/1.1)])) ueot
+auto={2}{R}{G}:transforms((Elemental Creature,setpower=3,settoughness=3,red,green,newability[@combat(attacking) source(this):counter(1/1.1)])) ueot
 text=Raging Ravine enters the battlefield tapped. -- {T}: Add {R} or {G} to your mana pool. -- {2}{R}{G}: Until end of turn, Raging Ravine becomes a 3/3 red and green Elemental creature with "Whenever this creature attacks, put a +1/+1 counter on it." It's still a land.
 type=Land
 [/card]
@@ -85900,7 +85901,7 @@ type=Land
 [/card]
 [card]
 name=Stitch in Time
-auto=flipacoin winability turns:+1 controller winabilityend
+auto=flipacoin winability turns:+1 controller winabilityend flipend
 text=Flip a coin. If you win the flip, take an extra turn after this one.
 mana={1}{U}{R}
 type=Sorcery
@@ -101387,6 +101388,15 @@ auto={T}:Add{W}
 text=You may pay {1} and return a basic land you control to its owner's hand rather than pay Wildfield Borderpost's mana cost. -- Wildfield Borderpost enters the battlefield tapped. -- {T}: Add {G} or {W} to your mana pool.
 mana={1}{G}{W}
 type=Artifact
+[/card]
+[card]
+name=Wildfire
+auto=ability$!sacrifice notatarget(<4>land|mybattlefield)!$ opponent
+auto=ability$!sacrifice notatarget(<4>land|mybattlefield)!$ controller
+auto=damage:4 all(creature)
+text=Each player sacrifices four lands. Wildfire deals 4 damage to each creature.
+mana={4}{R}{R}
+type=Sorcery
 [/card]
 [card]
 name=Wildfire Emissary
