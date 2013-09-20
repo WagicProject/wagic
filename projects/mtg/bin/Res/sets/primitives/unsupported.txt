@@ -18725,12 +18725,6 @@ mana={3}{R}
 type=Sorcery
 [/card]
 [card]
-name=Wildfire
-text=Each player sacrifices four lands. Wildfire deals 4 damage to each creature.
-mana={4}{R}{R}
-type=Sorcery
-[/card]
-[card]
 name=Wildwood Geist
 auto=phaseaction[my untap] 2/2 ueot
 auto=restriction{myturnonly}: 2/2 ueot
