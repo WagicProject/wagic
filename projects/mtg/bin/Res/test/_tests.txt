@@ -609,6 +609,7 @@ SPIRITLINK_keyword#1.txt
 SPIRITLINK_keyword#2.txt
 SPIRITLINK_keyword#3.txt
 spitting_earth.txt
+spitting_image.txt
 spoils_of_evil.txt
 spore_frog.txt
 stacking_flanking.txt

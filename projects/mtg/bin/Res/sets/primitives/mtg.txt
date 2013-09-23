@@ -25508,7 +25508,7 @@ toughness=2
 [card]
 name=Edge of Autumn
 auto=if type(land|mybattlefield)~lessthan~5 then target(land[basic]|mybattlefield) moveTo(mybattlefield)
-autohand=__CYCLING__({S(land|mybattlefield)})
+autohand={S(land|mybattlefield)}{cycle}:name(cycling) draw:1
 text=If you control four or fewer lands, search your library for a basic land card, put it onto the battlefield tapped, then shuffle your library. -- Cycling - Sacrifice a land. (Sacrifice a land, Discard this card: Draw a card.)
 mana={1}{G}
 type=Sorcery
@@ -49596,8 +49596,9 @@ toughness=2
 [/card]
 [card]
 name=Lavalanche
-auto=choice name(deal X damage to opponent and to each creature he controls) damage:X opponent && damage:X all(creature|opponentbattlefield)
-auto=choice name(deal X damage to you and to each creature you control) damage:X controller && damage:X all(creature|mybattlefield)
+target=player
+auto=damage:X
+auto=damage:X all(creature|targetedpersonsbattlefield)
 text=Lavalanche deals X damage to target player and each creature he or she controls.
 mana={X}{B}{R}{G}
 type=Sorcery
@@ -56176,7 +56177,7 @@ toughness=4
 name=Mirrorworks
 auto=@movedto(other artifact[-token]|mybattlefield):all(trigger[to]) pay[[{2}]] clone
 text=Whenever another nontoken artifact enters the battlefield under your control, you may pay {2}. If you do, put a token that's a copy of that artifact onto the battlefield.
-mana={4}
+mana={5}
 type=Artifact
 [/card]
 [card]

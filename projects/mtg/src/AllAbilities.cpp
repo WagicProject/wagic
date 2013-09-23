@@ -2459,7 +2459,8 @@ int AACloner::resolve()
     if (!_target)
         return 0;
 
-    MTGCard* clone = (_target->isToken ? _target: MTGCollection()->getCardByName(_target->name));
+    // Use id of the card to have the same image as the original
+    MTGCard* clone = (_target->isToken ? _target: MTGCollection()->getCardById(_target->getId()));
 
     Player * targetPlayer = who == 1 ? source->controller()->opponent() : source->controller();
 
@@ -2467,8 +2468,8 @@ int AACloner::resolve()
     targetPlayer->game->temp->addCard(myClone);
                 
     Spell * spell = NEW Spell(game, myClone);
-    spell->resolve();
     spell->source->isToken = 1;
+    spell->resolve();
     spell->source->fresh = 1;
     spell->source->model = spell->source;
     spell->source->model->data = spell->source;

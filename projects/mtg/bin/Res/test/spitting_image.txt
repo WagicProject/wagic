@@ -1,0 +1,22 @@
+# Checking that casting spitting image doesnot trigger
+# "when nontoken creatures enters battlefield" effects
+# as there was issue about it
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+manapool:{4}{U}{U}
+inplay:grizzly bears,Genesis Chamber
+hand:Spitting Image
+library:mountain
+[PLAYER2]
+[DO]
+Spitting Image
+grizzly bears
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+manapool{0}
+inplay:grizzly bears,Genesis Chamber,grizzly bears
+library:mountain
+graveyard:Spitting Image
+[END]
