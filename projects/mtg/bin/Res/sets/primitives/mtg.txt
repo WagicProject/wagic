@@ -22969,7 +22969,7 @@ toughness=10
 [/card]
 [card]
 name=Door of Destinies
-auto=chooseatype transforms((,newability[@movedTo(creature[chosentype]|mybattlefield)}:counter(0/0.1.Charge)],newability[thisforeach(counter{0/0.1.Charge}) lord(creature[chosentype]|mybattlefield) 1/1])) chooseend
+auto=chooseatype transforms((,newability[@movedTo(creature[chosentype]|mystack)}:counter(0/0.1.Charge)],newability[thisforeach(counter{0/0.1.Charge}) lord(creature[chosentype]|mybattlefield) 1/1])) chooseend
 text=As Door of Destinies enters the battlefield, choose a creature type. -- Whenever you cast a spell of the chosen type, put a charge counter on Door of Destinies. -- Creatures you control of the chosen type get +1/+1 for each charge counter on Door of Destinies.
 mana={4}
 type=Artifact
