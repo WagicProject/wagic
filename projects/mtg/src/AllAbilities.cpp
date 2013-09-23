@@ -5123,6 +5123,7 @@ void ABlink::resolveBlink()
             }
             spell->source->power = spell->source->origpower;
             spell->source->toughness = spell->source->origtoughness;
+            spell->source->X = 0;
             spell->resolve();
             if(stored)
             {

@@ -1,0 +1,32 @@
+# Testing: when creature returns from blink, X is equal to 0
+
+#Ivy Elemental 
+#{X}{G}
+#Ivy Elemental enters the battlefield with X +1/+1 counters on it.
+
+#Flicker
+#{1}{W}
+#Exile target nontoken permanent, then return it to the battlefield under its owner's control.
+
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Flicker,Ivy Elemental
+inplay:plains,mountain
+manapool:{3}{G}
+[PLAYER2]
+[DO]
+Ivy Elemental
+# add mana to pool
+plains
+mountain
+Flicker
+Ivy Elemental
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:Flicker,Ivy Elemental
+inplay:plains,mountain
+manapool:{0}
+[PLAYER2]
+[END]
