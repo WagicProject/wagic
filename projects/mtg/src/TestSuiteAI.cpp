@@ -762,7 +762,6 @@ void TestSuite::ThreadProc(void* inParam)
     if (instance)
     {
         string filename;
-        float counter = 1.0f;
         while(instance->mProcessing && (filename = instance->getNextFile()) != "")
         {
             TestSuiteGame theGame(instance, filename);
@@ -775,7 +774,7 @@ void TestSuite::ThreadProc(void* inParam)
                 theGame.initGame();
 
                 while(!theGame.observer->didWin())
-                    theGame.observer->Update(counter++);
+                    theGame.observer->Update(1);
 /*
                 if(theGame.observer->gameType() != GAME_TYPE_MOMIR)
                 {
