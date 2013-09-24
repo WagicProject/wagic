@@ -7414,6 +7414,20 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Belltower Sphinx
+abilities=flying
+auto=@damaged(this) from(*|opponentbattlefield):deplete:thatmuch opponent
+auto=@damaged(this) from(*|opponentstack):deplete:thatmuch opponent
+auto=@damaged(this) from(*|mybattlefield):deplete:thatmuch controller
+auto=@damaged(this) from(*|mystack):deplete:thatmuch controller
+text=Flying -- Whenever a source deals damage to Belltower Sphinx, that source's controller puts that many cards from the top of his or her library into his or her graveyard.
+mana={4}{U}
+type=Creature
+subtype=Sphinx
+power=2
+toughness=5
+[/card]
+[card]
 name=Beloved Chaplain
 auto=protection from(creature)
 text=Protection from creatures
@@ -83696,6 +83710,17 @@ auto=@movedTo(*|opponentstack):damage:2 opponent
 text=Whenever a player casts a spell, Spellshock deals 2 damage to that player.
 mana={2}{R}
 type=Enchantment
+[/card]
+[card]
+name=Spellstutter Sprite
+auto=fizzle target(*[manacost<=type:faerie:mybattlefield]|stack)
+abilities=flash,flying
+text=Flash -- Flying -- When Spellstutter Sprite enters the battlefield, counter target spell with converted mana cost X or less, where X is the number of Faeries you control.
+mana={1}{U}
+type=Creature
+subtype=Faerie Wizard
+power=1
+toughness=1
 [/card]
 [card]
 name=Spelltithe Enforcer
