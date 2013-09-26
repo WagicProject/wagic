@@ -5025,6 +5025,7 @@ void ABlink::Update(float dt)
         }
         spell->source->power = spell->source->origpower;
         spell->source->toughness = spell->source->origtoughness;
+        spell->source->X = 0;
         if(!spell->source->hasSubtype(Subtypes::TYPE_AURA))
         {
             spell->resolve();
