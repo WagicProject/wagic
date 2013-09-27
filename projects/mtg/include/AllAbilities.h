@@ -4426,13 +4426,15 @@ public:
     MTGCardInstance * Blinked;
     bool resolved;
     MTGAbility * stored;
-    ABlink(GameObserver* observer, int _id, MTGCardInstance * card, MTGCardInstance * _target,bool blinkueot=false,bool blinkForSource = false,bool blinkhand = false,MTGAbility * stored = NULL);
+    ABlink(GameObserver* observer, int _id, MTGCardInstance * card, MTGCardInstance * _target, bool blinkueot = false, bool blinkForSource = false, bool blinkhand = false, MTGAbility * stored = NULL);
     void Update(float dt);
     void resolveBlink();
     int resolve();
     const char * getMenuText();
     ABlink * clone() const;
     ~ABlink();
+private:
+    void returnCardIntoPlay(MTGCardInstance *_target);
 };
 
 //blinkinstant

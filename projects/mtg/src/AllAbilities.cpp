@@ -4958,7 +4958,7 @@ APhaseActionGeneric::~APhaseActionGeneric()
 }
 
 //a blink
-ABlink::ABlink(GameObserver* observer, int _id, MTGCardInstance * card, MTGCardInstance * _target,bool blinkueot,bool blinkForSource,bool blinkhand,MTGAbility * stored) :
+ABlink::ABlink(GameObserver* observer, int _id, MTGCardInstance * card, MTGCardInstance * _target, bool blinkueot, bool blinkForSource, bool blinkhand, MTGAbility * stored) :
 MTGAbility(observer, _id, card),blinkueot(blinkueot),blinkForSource(blinkForSource),blinkhand(blinkhand),stored(stored)
 {
     target = _target;
@@ -4968,86 +4968,18 @@ MTGAbility(observer, _id, card),blinkueot(blinkueot),blinkForSource(blinkForSour
 
 void ABlink::Update(float dt)
 {
-    if(resolved == false)
+    if (resolved == false)
     {
         resolved = true;
         resolveBlink();
     }
 
-    if ((blinkueot && currentPhase == MTG_PHASE_ENDOFTURN)||(blinkForSource && !source->isInPlay(game)))
+    if ((blinkueot && currentPhase == MTG_PHASE_ENDOFTURN) || (blinkForSource && !source->isInPlay(game)))
     {
-        if(Blinked == NULL)
+        if (Blinked == NULL)
             MTGAbility::Update(dt);
         MTGCardInstance * _target = Blinked;
-        MTGCardInstance * Blinker = NULL;
-        if(!blinkhand)
-            Blinker = _target->controller()->game->putInZone(_target, _target->currentZone,
-            _target->owner->game->battlefield);
-        if(blinkhand)
-        {
-            _target->controller()->game->putInZone(_target, _target->currentZone,
-                _target->owner->game->hand);
-            return;
-        }
-        Spell * spell = NEW Spell(game, Blinker);
-        spell->source->counters->init();
-        if(spell->source->hasSubtype(Subtypes::TYPE_AURA) && !blinkhand)
-        {
-            TargetChooserFactory tcf(game);
-            TargetChooser * tc = tcf.createTargetChooser(spell->source->spellTargetType,spell->source);
-            if(!tc->validTargetsExist())
-            {
-                spell->source->owner->game->putInExile(spell->source);
-                SAFE_DELETE(spell);
-                SAFE_DELETE(tc);
-                this->forceDestroy = 1;
-                return;
-            }
-
-            MTGGameZone * inplay = spell->source->owner->game->inPlay;
-            spell->source->target = NULL;
-            for(int i = game->getRandomGenerator()->random()%inplay->nb_cards;;i = game->getRandomGenerator()->random()%inplay->nb_cards)
-            {
-                if(tc->canTarget(inplay->cards[i]) && spell->source->target == NULL)
-                {
-                    spell->source->target = inplay->cards[i];
-                    spell->getNextCardTarget();
-                    spell->resolve();
-
-                    SAFE_DELETE(spell);
-                    SAFE_DELETE(tc);
-                    this->forceDestroy = 1;
-                    return;
-                }
-                if(!tc->validTargetsExist())
-                return;
-            }
-        }
-        spell->source->power = spell->source->origpower;
-        spell->source->toughness = spell->source->origtoughness;
-        spell->source->X = 0;
-        if(!spell->source->hasSubtype(Subtypes::TYPE_AURA))
-        {
-            spell->resolve();
-            if(stored)
-            {
-                MTGAbility * clonedStored = stored->clone();
-                clonedStored->target = spell->source;
-                if (clonedStored->oneShot)
-                {
-                    clonedStored->resolve();
-                    delete (clonedStored);
-                }
-                else
-                {
-                    clonedStored->addToGame();
-                }
-            }
-        }
-        delete spell;
-        this->forceDestroy = 1;
-        Blinker = NULL;
-        return;
+        returnCardIntoPlay(_target);
     }
     MTGAbility::Update(dt);
 }
@@ -5081,73 +5013,84 @@ void ABlink::resolveBlink()
         Blinked = _target;
         if(!blinkueot && !blinkForSource)
         {
-            MTGCardInstance * Blinker = NULL;
-            if(!blinkhand)
-                Blinker = _target->controller()->game->putInZone(_target, _target->currentZone,
-                _target->owner->game->battlefield);
-            if(blinkhand)
-            {
-                _target->controller()->game->putInZone(_target, _target->currentZone,
-                    _target->owner->game->hand);
-                return;
-            }
-            Spell * spell = NEW Spell(game, Blinker);
-            spell->source->counters->init();
-            if(spell->source->hasSubtype(Subtypes::TYPE_AURA) && !blinkhand)
-            {
-                TargetChooserFactory tcf(game);
-                TargetChooser * tc = tcf.createTargetChooser(spell->source->spellTargetType,spell->source);
-                if(!tc->validTargetsExist())
-                {
-                    spell->source->owner->game->putInExile(spell->source);
-                    SAFE_DELETE(spell);
-                    SAFE_DELETE(tc);
-                    this->forceDestroy = 1;
-                    return;
-                }
+            returnCardIntoPlay(_target);
+        }
+    }
+}
 
-                MTGGameZone * inplay = spell->source->owner->game->inPlay;
-                spell->source->target = NULL;
-                for(int i = game->getRandomGenerator()->random()%inplay->nb_cards;;i = game->getRandomGenerator()->random()%inplay->nb_cards)
-                {
-                    if(tc->canTarget(inplay->cards[i]) && spell->source->target == NULL)
-                    {
-                        spell->source->target = inplay->cards[i];
-                        spell->getNextCardTarget();
-                        spell->resolve();
-                        SAFE_DELETE(spell);
-                        SAFE_DELETE(tc);
-                        this->forceDestroy = 1;
-                        return;
-                    }
-                }
-            }
-            spell->source->power = spell->source->origpower;
-            spell->source->toughness = spell->source->origtoughness;
-            spell->source->X = 0;
-            spell->resolve();
-            if(stored)
-            {
-                MTGAbility * clonedStored = stored->clone();
-                clonedStored->target = spell->source;
-                if (clonedStored->oneShot)
-                {
-                    clonedStored->resolve();
-                    delete (clonedStored);
-                }
-                else
-                {
-                    clonedStored->addToGame();
-                }
-            }
+void ABlink::returnCardIntoPlay(MTGCardInstance* _target) {
+    MTGCardInstance * Blinker = NULL;
+    if (!blinkhand)
+        Blinker = _target->controller()->game->putInZone(
+            _target,
+            _target->currentZone,
+            _target->owner->game->battlefield);
+    if (blinkhand)
+    {
+        _target->controller()->game->putInZone(
+            _target,
+            _target->currentZone,
+            _target->owner->game->hand);
+        return;
+    }
+    Spell * spell = NEW Spell(game, Blinker);
+    spell->source->counters->init();
+    if (spell->source->hasSubtype(Subtypes::TYPE_AURA) && !blinkhand)
+    {
+        TargetChooserFactory tcf(game);
+        TargetChooser * tc = tcf.createTargetChooser(
+            spell->source->spellTargetType,
+            spell->source);
+        if (!tc->validTargetsExist())
+        {
+            spell->source->owner->game->putInExile(spell->source);
             SAFE_DELETE(spell);
             SAFE_DELETE(tc);
             this->forceDestroy = 1;
-            if(stored)
-            delete(stored);
-            Blinked = NULL;
+            return;
+        }
+
+        MTGGameZone * inplay = spell->source->owner->game->inPlay;
+        spell->source->target = NULL;
+        for (int i = game->getRandomGenerator()->random()%inplay->nb_cards;;i = game->getRandomGenerator()->random()%inplay->nb_cards)
+        {
+            if(tc->canTarget(inplay->cards[i]) && spell->source->target == NULL)
+            {
+                spell->source->target = inplay->cards[i];
+                spell->getNextCardTarget();
+                spell->resolve();
+                SAFE_DELETE(spell);
+                SAFE_DELETE(tc);
+                this->forceDestroy = 1;
+                return;
+            }
         }
     }
+    spell->source->power = spell->source->origpower;
+    spell->source->toughness = spell->source->origtoughness;
+    spell->source->X = 0;
+    if (!spell->source->hasSubtype(Subtypes::TYPE_AURA)) {
+        spell->resolve();
+        if (stored)
+        {
+            MTGAbility * clonedStored = stored->clone();
+            clonedStored->target = spell->source;
+            if (clonedStored->oneShot)
+            {
+                clonedStored->resolve();
+                delete (clonedStored);
+            }
+            else
+            {
+                clonedStored->addToGame();
+            }
+        }
+    }
+    SAFE_DELETE(spell);
+    SAFE_DELETE(tc);
+    SAFE_DELETE(stored);
+    this->forceDestroy = 1;
+    Blinked = NULL;
 }
 
 int ABlink::resolve()
