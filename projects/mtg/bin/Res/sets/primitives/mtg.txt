@@ -57733,7 +57733,7 @@ type=Enchantment
 [/card]
 [card]
 name=Mortus Strider
-auto=@movedTo(this|graveyard) from(battlefield):moveto(ownerhand)
+auto=@movedTo(this|graveyard) from(battlefield):all(trigger[to]) moveto(ownerhand)
 text=When Mortus Strider dies, return it to its owner's hand.
 mana={1}{U}{B}
 type=Creature
