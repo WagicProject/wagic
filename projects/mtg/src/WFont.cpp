@@ -205,7 +205,7 @@ WFBFont::WFBFont(int inFontID, const char *fontname, int lineheight, bool) :
     mGBCode = NEW int[mCacheSize];
 
 #if !defined (PSP)
-    mCharBuffer = NEW u32[mFontSize*mFontSize];
+    mCharBuffer = NEW PIXEL_TYPE[mFontSize*mFontSize];
 #endif
 
     mTexture = mRenderer->CreateTexture(mCacheImageWidth, mCacheImageHeight, true);
@@ -359,7 +359,7 @@ int WFBFont::PreCacheChar(const u8 *ch)
 #else
     x = (int)mSprites[index]->mX;
     y = (int)mSprites[index]->mY;
-    glTexSubImage2D(GL_TEXTURE_2D, 0, x, y, mFontSize, mFontSize, GL_RGBA, GL_UNSIGNED_BYTE, mCharBuffer);
+	mTexture->UpdateBits(x, y, mFontSize, mFontSize, mCharBuffer);
 #endif
     return index;
 }
@@ -645,7 +645,7 @@ WGBKFont::WGBKFont(int inFontID, const char *fontname, int lineheight, bool) :
     mGBCode = NEW int[mCacheSize];
 
 #if !defined (PSP)
-    mCharBuffer = NEW u32[mFontSize*mFontSize];
+    mCharBuffer = NEW PIXEL_TYPE[mFontSize*mFontSize];
 #endif
 
     mTexture = mRenderer->CreateTexture(mCacheImageWidth, mCacheImageHeight, true);
@@ -758,7 +758,7 @@ int WGBKFont::PreCacheChar(const u8 *ch)
 #else
     x = (int)mSprites[index]->mX;
     y = (int)mSprites[index]->mY;
-    glTexSubImage2D(GL_TEXTURE_2D, 0, x, y, mFontSize, mFontSize, GL_RGBA, GL_UNSIGNED_BYTE, mCharBuffer);
+	mTexture->UpdateBits(x, y, mFontSize, mFontSize, mCharBuffer);
 #endif
     return index;
 }

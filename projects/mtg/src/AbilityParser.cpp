@@ -2,7 +2,6 @@
 
 #include "AbilityParser.h"
 #include "utils.h"
-#include <boost/algorithm/string.hpp>
 
 using std::string;
 using std::vector;
@@ -46,7 +45,7 @@ void AutoLineMacro::parse(const string& stringMacro)
         mResult = s.substr(firstSpace + 1);
     }
 
-    boost::replace_all(mResult, "\\n", "\n");
+    ReplaceString(mResult, "\\n", "\n");
 }
 
 string AutoLineMacro::process(const string& s)
@@ -55,7 +54,7 @@ string AutoLineMacro::process(const string& s)
     if (!mParams.size())
     {
         //no params, simple macro
-        boost::replace_all(temp, mName, mResult);
+        ReplaceString(temp, mName, mResult);
         return temp;
     }
 
@@ -81,7 +80,7 @@ string AutoLineMacro::process(const string& s)
         string tempResult = mResult;
         for (size_t i = 0; i < vParams.size(); ++i)
         {
-            boost::replace_all(tempResult, mParams[i], vParams[i]);
+            ReplaceString(tempResult, mParams[i], vParams[i]);
         }
         result.append(tempResult);
 

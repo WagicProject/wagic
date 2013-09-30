@@ -1,5 +1,4 @@
 #include "PrecompiledHeader.h"
-#include <boost/algorithm/string.hpp>
 #include "ManaCost.h"
 #include "ManaCostHybrid.h"
 #include "ExtraCost.h"
@@ -8,7 +7,6 @@
 #include "Player.h"
 #include "WEvent.h"
 #include "MTGAbility.h"
-
 #include "iterator"
 
 SUPPORT_OBJECT_ANALYTICS(ManaCost)
@@ -95,7 +93,7 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
                     }
 
                     //switch on the first letter. If two costs share their first letter, add an "if" within the switch
-                    boost::algorithm::to_lower(value);
+					std::transform(value.begin(), value.end(), value.begin(), ::tolower);
                     switch (value[0])
                     {
                     case 'x':

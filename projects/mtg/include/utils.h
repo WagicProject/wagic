@@ -136,4 +136,8 @@ template <class T> istream& operator>>(istream& in, T& p)
     return in;
 }
 */
+
+/* replace_all ... replacement to avoid depending on boost for that */
+void ReplaceString(std::string& subject, const std::string& search, const std::string& replace);
+
 #endif

@@ -1,7 +1,6 @@
 #include "PrecompiledHeader.h"
 #include "AllAbilities.h"
 #include "Translate.h"
-#include <boost/algorithm/string.hpp>
 
 
 //display a text animation, this is not a real ability.
@@ -5501,7 +5500,7 @@ ATutorialMessage::ATutorialMessage(GameObserver* observer, MTGCardInstance * sou
         else
         {
             mMessage = _(message); //translate directly here, remove this and translate at rendering time if it bites us
-            boost::replace_all(mMessage, "\\n", "\n");
+			ReplaceString(mMessage, "\\n", "\n");
         }
     }
 

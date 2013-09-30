@@ -1,5 +1,7 @@
 #ifndef _CLOSEST_H_
 #define _CLOSEST_H_
+#include "PrecompiledHeader.h"
+#include "CardSelector.h"
 
 template<typename T, typename Target>
 static inline Target* closest(vector<Target*>& cards, Limitor* limitor, Target* ref)
