@@ -1,24 +1,34 @@
 #Testing Shifting Sliver evasion ability vs protection from blue
+
+# Shifting Sliver
+# Slivers can't be blocked except by Slivers.
+# {3}{U}
+# 2/2
+
+# Guma
+# Protection from blue
+# 2/2
+
 [INIT]
 combatattackers
 [PLAYER1]
-inplay:Shifting Sliver,Crystalline Sliver
+inplay:Shifting Sliver
 life:20
 [PLAYER2]
 inplay:Guma
 life:20
 [DO]
 Shifting Sliver
-Crystalline Sliver
 next
 Guma
+Shifting Sliver
 eot
 [ASSERT]
 untap
 [PLAYER1]
-inplay:Shifting Sliver,Crystalline Sliver
+inplay:Shifting Sliver
 life:20
 [PLAYER2]
 inplay:Guma
-life:16
+life:18
 [END]

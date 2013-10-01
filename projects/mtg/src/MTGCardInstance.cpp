@@ -1050,7 +1050,7 @@ int MTGCardInstance::cantBeBlockedBy(MTGCardInstance * card)
 {
     for (size_t i = 0; i < cantBeBlockedBys.size(); i++)
     {
-        if (cantBeBlockedBys[i]->canTarget(card))
+        if (cantBeBlockedBys[i]->canTarget(card, true))
             return 1;
     }
     return 0;
@@ -1081,7 +1081,7 @@ int MTGCardInstance::cantBeBlockerOf(MTGCardInstance * card)
 {
     for (size_t i = 0; i < cantBeBlockerOfs.size(); i++)
     {
-        if (cantBeBlockerOfs[i]->canTarget(card))
+        if (cantBeBlockerOfs[i]->canTarget(card, true))
             return 1;
     }
     return 0;

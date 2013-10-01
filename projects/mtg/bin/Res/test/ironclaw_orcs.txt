@@ -1,0 +1,33 @@
+#Testing cantbeblockerof vs shroud
+
+# Mist Leopard
+# text=Shroud (This creature can't be the target of spells or abilities.)
+# 3/2
+
+# Ironclaw Orcs
+# {1}{R}
+# Ironclaw Orcs can't block creatures with power 2 or greater.
+
+[INIT]
+combatattackers
+[PLAYER1]
+inplay:Mist Leopard
+life:20
+[PLAYER2]
+inplay:Ironclaw Orcs
+life:20
+[DO]
+Mist Leopard
+next
+Ironclaw Orcs
+Mist Leopard
+eot
+[ASSERT]
+untap
+[PLAYER1]
+inplay:Mist Leopard
+life:20
+[PLAYER2]
+inplay:Ironclaw Orcs
+life:17
+[END]
