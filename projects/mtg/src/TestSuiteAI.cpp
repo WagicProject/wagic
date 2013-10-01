@@ -552,10 +552,6 @@ int TestSuite::loadNext()
         return loadNext();
     }
 
-    mProcessing = true;
-    ThreadProc(this);
-    return 0;
-
     if(!mProcessing)
     {   // "I don't like to wait" mode
         mProcessing = true;
