@@ -43215,6 +43215,16 @@ mana={2}{R}
 type=Instant
 [/card]
 [card]
+name=Increasing Ambition
+target=*|mylibrary
+auto=moveTo(myhand)
+auto=flashback target(*|myLibrary) moveTo(myhand)
+flashback={7}{B}
+text=Search your library for a card and put that card into your hand. If Increasing Ambition was cast from a graveyard, instead search your library for two cards and put those cards into your hand. Then shuffle your library. -- Flashback {7}{B} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
+mana={4}{B}
+type=Sorcery
+[/card]
+[card]
 name=Increasing Confusion
 target=player
 auto=deplete:X
