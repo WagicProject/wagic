@@ -317,6 +317,9 @@ fire_tempest.txt
 fireball_i583.txt
 firebreathing.txt
 fists_of_ironwood.txt
+fizzleto_exile.txt
+fizzleto_hand.txt
+fizzleto_librarytop.txt
 flagstones.txt
 flame_fusillade_i265.txt
 flare.txt

@@ -1,0 +1,27 @@
+#Testing fizzleto(top) taking Memory Lapse as example
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:bad moon
+manapool:{1}{B}
+[PLAYER2]
+hand:Memory Lapse
+manapool:{1}{U}
+[DO]
+bad moon
+no
+yes
+Memory Lapse
+bad moon
+endinterruption
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+library:bad moon
+manapool:{0}
+life:20
+[PLAYER2]
+graveyard:Memory Lapse
+manapool:{0}
+life:20
+[END]

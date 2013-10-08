@@ -1,0 +1,26 @@
+# Testing fizzleto(exile) taking Dissipate as example
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:bad moon
+manapool:{1}{B}
+[PLAYER2]
+hand:Dissipate
+manapool:{1}{U}{U}
+[DO]
+bad moon
+no
+yes
+Dissipate
+bad moon
+endinterruption
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+manapool:{0}
+life:20
+[PLAYER2]
+graveyard:Dissipate
+manapool:{0}
+life:20
+[END]
