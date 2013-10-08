@@ -1120,6 +1120,15 @@ public:
     AAFizzler* clone() const;
 };
 
+class AAOFizzler: public AAFizzler
+{
+public:
+    AAOFizzler( GameObserver* observer, int _id, MTGCardInstance * card, Spell * _target, int tgtZone, ManaCost * _cost );
+    int targetZone;
+    int resolve();
+    AAOFizzler* clone() const;
+};
+
 /*
  Generic classes
  */

@@ -217,6 +217,7 @@ public:
     Interruptible * getNext(Interruptible * previous, int type = 0, int state = 0 , int display = -1);
     int getNextIndex(Interruptible * previous, int type = 0, int state = 0 , int display = -1);
     void Fizzle(Interruptible * action);
+    void Fizzle(Interruptible * action, int targetZone);	//Overloaded fizzle (0 - 3: graveyard, hand, exile, librarytop)
     Interruptible * getAt(int id);
     void cancelInterruptOffer(InterruptDecision cancelMode = DONT_INTERRUPT, bool log = true);
     void endOfInterruption(bool log = true);

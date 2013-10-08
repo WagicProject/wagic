@@ -2026,6 +2026,38 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         a->oneShot = 1;
         return a;
     }
+    found = s.find("fizhand");
+    if (found != string::npos)
+    {
+        Spell * starget = NULL;
+        if (spell)
+            starget = spell->getNextSpellTarget();
+        MTGAbility * a = NEW AAOFizzler( observer, id, card, starget, 1, NULL );
+        a->oneShot = 1;
+        return a;
+    }
+    //Fizzle to exile
+    found = s.find("fizexile");
+    if (found != string::npos)
+    {
+        Spell * starget = NULL;
+        if (spell)
+            starget = spell->getNextSpellTarget();
+        MTGAbility * a = NEW AAOFizzler( observer, id, card, starget, 2, NULL );
+        a->oneShot = 1;
+        return a;
+    }
+    //Fizzle to top of library
+    found = s.find("fizlibrary");
+    if (found != string::npos)
+    {
+        Spell * starget = NULL;
+        if (spell)
+            starget = spell->getNextSpellTarget();
+        MTGAbility * a = NEW AAOFizzler( observer, id, card, starget, 3, NULL );
+        a->oneShot = 1;
+        return a;
+    }
 
     //Describes a player target in many abilities
     int who = TargetChooser::UNSET;

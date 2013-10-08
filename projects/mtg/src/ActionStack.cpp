@@ -1165,6 +1165,34 @@ void ActionStack::Fizzle(Interruptible * action)
     action->state = RESOLVED_NOK;
 }
 
+void ActionStack::Fizzle(Interruptible * action,int targetZone)
+{
+    if (!action)
+    {
+        DebugTrace("ACTIONSTACK ==ERROR==: action is NULL in ActionStack::Fizzle");
+        return;
+    }
+    if (action->type == ACTION_SPELL)
+    {
+        Spell * spell = (Spell *) action;
+        switch ( targetZone ) {
+        case 0:
+            spell->source->controller()->game->putInGraveyard(spell->source);
+            break;
+        case 1:
+            spell->source->controller()->game->putInHand(spell->source);
+            break;
+        case 2:
+            spell->source->controller()->game->putInExile(spell->source);
+            break;
+        case 3:
+            spell->source->controller()->game->putInLibrary(spell->source);
+            break;
+        }
+    }
+    action->state = RESOLVED_NOK;
+}
+
 void ActionStack::Render()
 {
     //This is a hack to avoid rendering the stack above the tuto messages

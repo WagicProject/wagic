@@ -30438,6 +30438,31 @@ subtype=Goblin Spellshaper
 power=1
 toughness=1
 [/card]
+card]
+name=Remand
+target=*|stack
+auto=fizhand
+auto=draw:1 controller
+text=Counter target spell. If that spell is countered this way, put it into its owner's hand instead of into that player's graveyard. -- Draw a card.
+mana={1}{U}
+type=Instant
+[/card]
+[card]
+name=Memory Lapse
+target=*|stack
+auto=fizlibrary
+text=Counter target spell. If that spell is countered this way, put it on top of its owner's library instead of into that player's graveyard.
+mana={1}{U}
+type=Instant
+[/card]
+[card]
+name=Dissipate
+target=*|stack
+auto=fizexile
+text=Counter target spell. If that spell is countered this way, exile it instead of putting it into its owner's graveyard.
+mana={1}{U}{U}
+type=Instant
+[/card]
 [card]
 name=Firemane Angel
 abilities=flying,first strike

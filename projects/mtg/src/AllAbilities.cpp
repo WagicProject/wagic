@@ -1349,6 +1349,42 @@ AAFizzler* AAFizzler::clone() const
 {
     return NEW AAFizzler(*this);
 }
+
+AAOFizzler::AAOFizzler( GameObserver* observer, int _id, MTGCardInstance * card, Spell * _target, int tgtZone, ManaCost * _cost ) :
+AAFizzler( observer, _id, card, _target, _cost )
+{
+    targetZone = tgtZone;
+}
+int AAOFizzler::resolve()
+{
+    ActionStack * stack = game->mLayers->stackLayer();
+    //the next section helps Ai correctly recieve its targets for this effect
+    if(!target && source->target)
+    {
+        //ai is casting a spell from its hand to fizzle.
+        target = stack->getActionElementFromCard(source->target);
+    }
+    else if(MTGCardInstance * cTarget = dynamic_cast<MTGCardInstance *>(target))
+    {
+        //ai targeted using an ability on a card to fizzle.
+        target = stack->getActionElementFromCard(cTarget);
+    }
+    Spell * sTarget = (Spell *) target;
+    MTGCardInstance* sCard = NULL;
+    if(sTarget)
+    sCard = sTarget->source;
+    if(!sCard || !sTarget || sCard->has(Constants::NOFIZZLE))
+        return 0;
+    stack->Fizzle(sTarget, targetZone);
+    return 1;
+}
+AAOFizzler* AAOFizzler::clone() const
+{
+    return NEW AAOFizzler(*this);
+}
+
+
+
 // BanishCard implementations
 // Bury
 
