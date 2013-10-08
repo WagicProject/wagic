@@ -1150,7 +1150,8 @@ int ActionStack::garbageCollect()
     return 1;
 }
 
-void ActionStack::Fizzle(Interruptible * action)
+// Fizzle action and put it in targetZone
+void ActionStack::Fizzle(Interruptible * action, FizzleMode fizzleMode)
 {
     if (!action)
     {
@@ -1160,32 +1161,17 @@ void ActionStack::Fizzle(Interruptible * action)
     if (action->type == ACTION_SPELL)
     {
         Spell * spell = (Spell *) action;
-        spell->source->controller()->game->putInGraveyard(spell->source);
-    }
-    action->state = RESOLVED_NOK;
-}
-
-void ActionStack::Fizzle(Interruptible * action,int targetZone)
-{
-    if (!action)
-    {
-        DebugTrace("ACTIONSTACK ==ERROR==: action is NULL in ActionStack::Fizzle");
-        return;
-    }
-    if (action->type == ACTION_SPELL)
-    {
-        Spell * spell = (Spell *) action;
-        switch ( targetZone ) {
-        case 0:
+        switch (fizzleMode) {
+        case PUT_IN_GRAVEARD:
             spell->source->controller()->game->putInGraveyard(spell->source);
             break;
-        case 1:
+        case PUT_IN_HAND:
             spell->source->controller()->game->putInHand(spell->source);
             break;
-        case 2:
+        case PUT_IN_EXILE:
             spell->source->controller()->game->putInExile(spell->source);
             break;
-        case 3:
+        case PUT_IN_LIBRARY_TOP:
             spell->source->controller()->game->putInLibrary(spell->source);
             break;
         }

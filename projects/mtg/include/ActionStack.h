@@ -194,6 +194,14 @@ public:
         DONT_INTERRUPT_ALL = 2
     } InterruptDecision;
 
+    typedef enum
+    {
+        PUT_IN_GRAVEARD,
+        PUT_IN_HAND,
+        PUT_IN_LIBRARY_TOP,
+        PUT_IN_EXILE
+    } FizzleMode;
+
 protected:
     JQuadPtr pspIcons[8];
     InterruptDecision interruptDecision[2];
@@ -216,8 +224,7 @@ public:
     int getPreviousIndex(Interruptible * next, int type = 0, int state = 0 , int display = -1);
     Interruptible * getNext(Interruptible * previous, int type = 0, int state = 0 , int display = -1);
     int getNextIndex(Interruptible * previous, int type = 0, int state = 0 , int display = -1);
-    void Fizzle(Interruptible * action);
-    void Fizzle(Interruptible * action, int targetZone);	//Overloaded fizzle (0 - 3: graveyard, hand, exile, librarytop)
+    void Fizzle(Interruptible * action, FizzleMode fizzleMode = PUT_IN_GRAVEARD);
     Interruptible * getAt(int id);
     void cancelInterruptOffer(InterruptDecision cancelMode = DONT_INTERRUPT, bool log = true);
     void endOfInterruption(bool log = true);

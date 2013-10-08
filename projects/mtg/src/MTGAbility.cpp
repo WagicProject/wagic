@@ -2015,6 +2015,33 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         return a;
     }
 
+    // Fizzle (counterspell...) and put to zone
+    // This should always be above "fizzle" section
+    vector<string> splitFizzle = parseBetween(s, "fizzleto(", ")");
+    if (splitFizzle.size())
+    {
+        // currently only hand, exile and library are supported
+        string zone = splitFizzle[1];
+        ActionStack::FizzleMode fizzleMode = ActionStack::PUT_IN_GRAVEARD;
+        if (zone == "hand")
+        {
+            fizzleMode = ActionStack::PUT_IN_HAND;
+        } else if (zone == "exile")
+        {
+            fizzleMode = ActionStack::PUT_IN_EXILE;
+        } else if (zone == "librarytop")
+        {
+            fizzleMode = ActionStack::PUT_IN_LIBRARY_TOP;
+        }
+        Spell * starget = NULL;
+        if (spell)
+            starget = spell->getNextSpellTarget();
+        AAFizzler * a = NEW AAFizzler(observer, id, card, starget);
+        a->fizzleMode = fizzleMode;
+        a->oneShot = 1;
+        return a;
+    }
+
     //Fizzle (counterspell...)
     found = s.find("fizzle");
     if (found != string::npos)
@@ -2023,38 +2050,6 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         if (spell)
             starget = spell->getNextSpellTarget();
         MTGAbility * a = NEW AAFizzler(observer, id, card, starget);
-        a->oneShot = 1;
-        return a;
-    }
-    found = s.find("fizhand");
-    if (found != string::npos)
-    {
-        Spell * starget = NULL;
-        if (spell)
-            starget = spell->getNextSpellTarget();
-        MTGAbility * a = NEW AAOFizzler( observer, id, card, starget, 1, NULL );
-        a->oneShot = 1;
-        return a;
-    }
-    //Fizzle to exile
-    found = s.find("fizexile");
-    if (found != string::npos)
-    {
-        Spell * starget = NULL;
-        if (spell)
-            starget = spell->getNextSpellTarget();
-        MTGAbility * a = NEW AAOFizzler( observer, id, card, starget, 2, NULL );
-        a->oneShot = 1;
-        return a;
-    }
-    //Fizzle to top of library
-    found = s.find("fizlibrary");
-    if (found != string::npos)
-    {
-        Spell * starget = NULL;
-        if (spell)
-            starget = spell->getNextSpellTarget();
-        MTGAbility * a = NEW AAOFizzler( observer, id, card, starget, 3, NULL );
         a->oneShot = 1;
         return a;
     }

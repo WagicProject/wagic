@@ -30441,7 +30441,7 @@ toughness=1
 card]
 name=Remand
 target=*|stack
-auto=fizhand
+auto=fizzleto(hand)
 auto=draw:1 controller
 text=Counter target spell. If that spell is countered this way, put it into its owner's hand instead of into that player's graveyard. -- Draw a card.
 mana={1}{U}
@@ -30450,7 +30450,7 @@ type=Instant
 [card]
 name=Memory Lapse
 target=*|stack
-auto=fizlibrary
+auto=fizzleto(librarytop)
 text=Counter target spell. If that spell is countered this way, put it on top of its owner's library instead of into that player's graveyard.
 mana={1}{U}
 type=Instant
@@ -30458,7 +30458,7 @@ type=Instant
 [card]
 name=Dissipate
 target=*|stack
-auto=fizexile
+auto=fizzleto(exile)
 text=Counter target spell. If that spell is countered this way, exile it instead of putting it into its owner's graveyard.
 mana={1}{U}{U}
 type=Instant

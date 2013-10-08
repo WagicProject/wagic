@@ -1112,21 +1112,13 @@ public:
 
 class AAFizzler: public ActivatedAbility
 {
-
 public:
+    ActionStack::FizzleMode fizzleMode; // action to do after fizzling
+
     AAFizzler(GameObserver* observer, int _id, MTGCardInstance * card, Spell * _target, ManaCost * _cost = NULL);
     int resolve();
     const char * getMenuText();
     AAFizzler* clone() const;
-};
-
-class AAOFizzler: public AAFizzler
-{
-public:
-    AAOFizzler( GameObserver* observer, int _id, MTGCardInstance * card, Spell * _target, int tgtZone, ManaCost * _cost );
-    int targetZone;
-    int resolve();
-    AAOFizzler* clone() const;
 };
 
 /*
