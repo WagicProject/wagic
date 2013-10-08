@@ -92009,7 +92009,8 @@ type=Sorcery
 [/card]
 [card]
 name=Time Sieve
-auto={T}{S(artifact|mybattlefield)}{S(artifact|mybattlefield)}{S(artifact|mybattlefield)}{S(artifact|mybattlefield)}{S(artifact|mybattlefield)}:turns:+1 controller
+auto={T}{S(artifact|mybattlefield)}{S(artifact|mybattlefield)}{S(artifact|mybattlefield)}{S(artifact|mybattlefield)}{S(artifact|mybattlefield)}:name(sacrifice 5 other artifacts) turns:+1 controller
+auto={T}{S(artifact|mybattlefield)}{S(artifact|mybattlefield)}{S(artifact|mybattlefield)}{S(artifact|mybattlefield)}{S}:name(sacrifice 4 artifacts + this) turns:+1 controller
 text={T}, Sacrifice five artifacts: Take an extra turn after this one.
 mana={U}{B}
 type=Artifact
