@@ -93941,13 +93941,21 @@ type=Sorcery
 name=Triskelavus
 abilities=flying
 auto=counter(1/1,3)
-auto={1}{C(1/1,-1)}:token(Triskelavite,Artifact Creature Triskelavite,1/1,flying)
-auto=lord(triskelavite) {S}:damage:1 target(creature,player)
-auto=@movedTo(this|exile,gravyard,library,hand) from(battlefield):lord(triskelavite) {S}:damage:1 target(creature,player)
+auto={1}{C(1/1,-1)}:token(-114919)
 text=Flying -- Triskelavus enters the battlefield with three +1/+1 counters on it. -- {1}, Remove a +1/+1 counter from Triskelavus: Put a 1/1 colorless Triskelavite artifact creature token with flying onto the battlefield. It has "Sacrifice this creature: This creature deals 1 damage to target creature or player."
 mana={7}
 type=Artifact Creature
 subtype=Construct
+power=1
+toughness=1
+[/card]
+[card]
+name=Triskelavite Token
+abilities=flying
+auto={S}:damage:1 target(creature,player)
+text=Sacrifice this creature: This creature deals 1 damage to target creature or player.
+type=Creature
+subtype=Triskelavite
 power=1
 toughness=1
 [/card]
