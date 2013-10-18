@@ -1,4 +1,4 @@
-﻿#Primitives Pack for Wagic the Homebrew.
+#Primitives Pack for Wagic the Homebrew.
 #Please keep these card alphabetized, and try to have the "name=" line at the top of each card
 [card]
 name=Aeon Chronicler
@@ -67127,6 +67127,15 @@ type=Creature
 subtype=Unicorn
 power=2
 toughness=2
+[/card]
+[card]
+name=Probe
+auto=ability$!draw:3 _ notatarget(<2>*|myhand) reject!$ controller
+kicker={1}{B}
+auto=kicker target(player) ability$!name(discard 2 cards) notatarget(<2>*|myhand) reject!$ targetedplayer
+text=Kicker {1}{B} (You may pay an additional {1}{B} as you cast this spell.) -- Draw three cards, then discard two cards. -- If Probe was kicked, target player discards two cards.
+mana={2}{U}
+type=Sorcery
 [/card]
 [card]
 name=Proclamation of Rebirth
