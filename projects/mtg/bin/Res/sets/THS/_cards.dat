@@ -5,7 +5,7 @@ year=2013
 block=THS
 [/meta]
 [card]
-primitive=Abhorrent Overlord 
+primitive=Abhorrent Overlord
 id=373661
 rarity=R
 [/card]
@@ -327,7 +327,7 @@ rarity=U
 [card]
 primitive=Evangel of Heliod
 id=373641
-rarity=C
+rarity=U
 [/card]
 [card]
 primitive=Fabled Hero
@@ -355,7 +355,7 @@ id=373596
 rarity=U
 [/card]
 [card]
-primitive=Fellhide Minotaur
+primitive=Felhide Minotaur
 id=373674
 rarity=C
 [/card]
@@ -387,7 +387,7 @@ rarity=R
 [card]
 primitive=Fleetfeather Sandals
 id=373501
-rarity=U
+rarity=C
 [/card]
 [card]
 primitive=Fleshmad Steed
@@ -850,7 +850,7 @@ id=373505
 rarity=U
 [/card]
 [card]
-primitive=Pryxis of Pandemonium
+primitive=Pyxis of Pandemonium
 id=373669
 rarity=R
 [/card]
@@ -1210,7 +1210,7 @@ id=373655
 rarity=C
 [/card]
 [card]
-primitive=Warriors'  Lesson
+primitive=Warriors' Lesson
 id=373613
 rarity=U
 [/card]
