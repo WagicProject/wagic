@@ -3516,7 +3516,7 @@ int MenuAbility::reactToChoiceClick(Targetable * object,int choice,int control)
             toPay = NEW ManaCost();
             if(optionalCosts[i]->extraCosts)
             toPay->extraCosts = optionalCosts[i]->extraCosts->clone();
-            toPay->addExtraCost(NEW extraManaCost(optionalCosts[i]));
+            toPay->addExtraCost(NEW extraManaCost(NEW ManaCost(optionalCosts[i])));
             toPay->setExtraCostsAction(this,source);
             game->mExtraPayment = toPay->extraCosts;
             return 0;
@@ -3568,6 +3568,8 @@ MenuAbility::~MenuAbility()
     }
     else
         SAFE_DELETE(ability);
+    SAFE_DELETE(toPay);
+    SAFE_DELETE(mClone);
     if(optionalCosts.size())
         for(int i = 0;i < int(optionalCosts.size());i++)
         {
