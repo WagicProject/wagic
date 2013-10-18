@@ -151,6 +151,7 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
             }
             zones[nbzones] = MTGGameZone::MY_BATTLEFIELD;
 
+            // First, check if it defines multiple zones
             if (zoneName.compare("*") == 0)
             {
                 zones[nbzones++] = MTGGameZone::ALL_ZONES;
@@ -190,6 +191,11 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
             {
                 zones[nbzones++] = MTGGameZone::MY_STACK;
                 zones[nbzones++] = MTGGameZone::OPPONENT_STACK;
+            }
+            else if (zoneName.compare("exile") == 0)
+            {
+                zones[nbzones++] = MTGGameZone::MY_EXILE;
+                zones[nbzones++] = MTGGameZone::OPPONENT_EXILE;
             }
             else
             {

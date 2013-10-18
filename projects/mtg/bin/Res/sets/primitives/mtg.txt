@@ -18343,8 +18343,9 @@ toughness=2
 [/card]
 [card]
 name=Crypt Incursion
-auto=@movedto(creature|exile) from(graveyard):life:3
-auto=choice target(player) moveTo(exile) all(creature|targetedpersonsgraveyard)
+target=player
+auto=@movedto(creature|exile) from(targetedPersonsGraveyard):life:3
+auto=moveTo(exile) all(creature|targetedPersonsGraveyard)
 text=Exile all creature cards from target player's graveyard. -- You gain 3 life for each card exiled this way. 
 mana={2}{B}
 type=Instant

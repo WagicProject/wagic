@@ -745,7 +745,8 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
             fromTc = tcf.createTargetChooser(starget, card);
             fromTc->targetter = NULL; //avoid protection from
         }
-        TriggeredAbility * mover = NEW TrCardAddedToZone(observer, id, card, (TargetZoneChooser *) toTc, toTcCard, (TargetZoneChooser *) fromTc, fromTcCard,once,sourceUntapped,isSuspended);
+        TriggeredAbility * mover = NEW TrCardAddedToZone(observer, id, card, (TargetZoneChooser *) toTc,
+            toTcCard, (TargetZoneChooser *) fromTc, fromTcCard, once, sourceUntapped, isSuspended);
         if(neverRemove)
         {
             mover->forcedAlive = 1;
