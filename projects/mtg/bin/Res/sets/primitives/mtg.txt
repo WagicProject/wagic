@@ -11814,7 +11814,7 @@ toughness=1
 [card]
 name=Butcher of Malakir
 abilities=flying
-auto=@movedTo(creature|mygraveyard) from(mybattlefield):ability$!name(sacrifice) notatarget(creature|mybattlefield) sacrifice !$ opponent
+auto=@movedTo(creature|graveyard) from(mybattlefield):ability$!name(sacrifice) notatarget(creature|mybattlefield) sacrifice !$ opponent
 text=Flying -- Whenever Butcher of Malakir or another creature you control dies, each opponent sacrifices a creature.
 mana={5}{B}{B}
 type=Creature
@@ -37159,7 +37159,7 @@ type=Sorcery
 [/card]
 [card]
 name=Grave Pact
-auto=@movedTo(creature|mygraveyard) from(battlefield):ability$!name(sacrifice) notatarget(creature|mybattlefield) sacrifice!$ opponent
+auto=@movedTo(creature|mygraveyard) from(mybattlefield):ability$!name(sacrifice) notatarget(creature|mybattlefield) sacrifice!$ opponent
 text=Whenever a creature you control dies, each other player sacrifices a creature.
 mana={1}{B}{B}{B}
 type=Enchantment
@@ -57769,7 +57769,7 @@ toughness=*
 [/card]
 [card]
 name=Mortuary
-auto=@movedTo(creature|mygraveyard) from(myBattlefield):all(trigger[to]) moveTo(myLibrary)
+auto=@movedTo(creature|mygraveyard) from(battlefield):all(trigger[to]) moveTo(myLibrary)
 text=Whenever a creature is put into your graveyard from the battlefield, put that card on top of your library.
 mana={3}{B}
 type=Enchantment
@@ -67233,7 +67233,7 @@ type=Enchantment
 [/card]
 [card]
 name=Proper Burial
-auto=@movedTo(creature|mygraveyard) from(mybattlefield):all(trigger[to]) dynamicability<!mytgt toughnesslifegain targetcontroller!>
+auto=@movedTo(creature|graveyard) from(mybattlefield):all(trigger[to]) dynamicability<!mytgt toughnesslifegain targetcontroller!>
 text=Whenever a creature you control dies, you gain life equal to that creature's toughness.
 mana={3}{W}
 type=Enchantment
@@ -91119,7 +91119,7 @@ toughness=5
 [card]
 name=Thraben Sentry
 abilities=vigilance
-auto=@movedTo(creature|mygraveyard) from(battlefield):may flip(Thraben Militia)
+auto=@movedTo(creature|graveyard) from(mybattlefield):may flip(Thraben Militia)
 text=Vigilance -- Whenever another creature you control dies, you may transform Thraben Sentry.
 mana={3}{W}
 type=Creature
