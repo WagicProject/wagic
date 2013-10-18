@@ -9145,7 +9145,7 @@ toughness=1
 [card]
 name=Bloodgift Demon
 abilities=flying
-auto=@each my upkeep:transforms((,newability[choice name(opponent) life:-1 opponent && draw:1 opponent],newability[choice name(controller) life:-1 controller && draw:1 controller]))
+auto=@each my upkeep:target(player) ability$!name(draw 1 & loose 1) draw:1 _ life:-1!$ targetedplayer
 text=Flying -- At the beginning of your upkeep, target player draws a card and loses 1 life.
 mana={3}{B}{B}
 type=Creature
