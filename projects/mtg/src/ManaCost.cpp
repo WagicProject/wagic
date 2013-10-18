@@ -8,7 +8,6 @@
 #include "WEvent.h"
 #include "MTGAbility.h"
 #include "iterator"
-#include <boost/scoped_ptr.hpp>
 
 SUPPORT_OBJECT_ANALYTICS(ManaCost)
 
@@ -594,8 +593,7 @@ int ManaCost::getManaSymbols(int color)
             LifeorManaCost * phyrexianMana = dynamic_cast<LifeorManaCost*>(extraCosts->costs[i]);
             if (phyrexianMana)
             {
-                boost::scoped_ptr<ManaCost> manaCost(phyrexianMana->getManaCost());
-                result += manaCost->getManaSymbols(color);
+                result += phyrexianMana->getManaCost()->getManaSymbols(color);
             }
         }
     }

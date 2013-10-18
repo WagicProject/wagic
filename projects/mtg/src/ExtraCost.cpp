@@ -162,22 +162,23 @@ LifeorManaCost * LifeorManaCost::clone() const
 
 ManaCost * LifeorManaCost::getManaCost()
 {
-    string buildType ="{";
-    buildType.append(manaType);
-    buildType.append("}");
-    return ManaCost::parseManaCost(buildType);
+    return &manaCost;
 }
 
 LifeorManaCost::LifeorManaCost(TargetChooser *_tc, string manaType)
     : ExtraCost("Phyrexian Mana", _tc), manaType(manaType)
 {
+    string buildType ="{";
+    buildType.append(manaType);
+    buildType.append("}");
+    boost::scoped_ptr<ManaCost> cost(ManaCost::parseManaCost(buildType));
+    manaCost.copy(cost.get());
 }
 
 int LifeorManaCost::canPay()
 {
     MTGCardInstance * _target = (MTGCardInstance *) target;
-    boost::scoped_ptr<ManaCost> manaCost(getManaCost());
-    if (_target->controller()->getManaPool()->canAfford(manaCost.get()) || _target->controller()->life > 1)
+    if (_target->controller()->getManaPool()->canAfford(getManaCost()) || _target->controller()->life > 1)
     {
         return 1;
     }
@@ -190,16 +191,14 @@ int LifeorManaCost::doPay()
         return 0;
 
     MTGCardInstance * _target = (MTGCardInstance *) target;
-    ManaCost * manaCost = getManaCost();
-    if (_target->controller()->getManaPool()->canAfford(manaCost))
+    if (_target->controller()->getManaPool()->canAfford(&manaCost))
     {
-        _target->controller()->getManaPool()->pay(manaCost);
+        _target->controller()->getManaPool()->pay(&manaCost);
     }
     else
     {
         _target->controller()->loseLife(2);
     }
-    SAFE_DELETE(manaCost);
     target = NULL;
     if (tc)
         tc->initTargets();

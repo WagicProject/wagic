@@ -95,6 +95,7 @@ class LifeorManaCost : public ExtraCost
 {
 private:
     string manaType;
+    ManaCost manaCost;
 
 public:
     LifeorManaCost(TargetChooser *_tc = NULL, string manaType = "");
