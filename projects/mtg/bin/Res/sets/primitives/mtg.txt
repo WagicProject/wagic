@@ -30438,7 +30438,7 @@ subtype=Goblin Spellshaper
 power=1
 toughness=1
 [/card]
-card]
+[card]
 name=Remand
 target=*|stack
 auto=fizzleto(hand)
