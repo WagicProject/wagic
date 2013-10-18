@@ -199,7 +199,7 @@ private:
                 for (int k = 0; k < 4; k++)
                 {
                     MTGGameZone * zone = zones[k];
-                    if (tc->targetsZone(zone, target))
+                    if (tc->targetsZone(zone, card))
                     {
                         if (color)
                         {

@@ -554,7 +554,7 @@ unsigned int MTGGameZone::countByCanTarget(TargetChooser * tc)
     int result = 0;
     for (int i = 0; i < (nb_cards); i++)
     {
-        if (tc->canTarget(cards[i]), withoutProtections)
+        if (tc->canTarget(cards[i], withoutProtections))
         {
             result++;
         }
@@ -572,7 +572,7 @@ unsigned int MTGGameZone::countTotalManaSymbols(TargetChooser * tc, int color)
     int result = 0;
     for (int i = 0; i < nb_cards; i++)
     {
-        if (tc->canTarget(cards[i]), withoutProtections)
+        if (tc->canTarget(cards[i], withoutProtections))
         {
             result += cards[i]->getManaCost()->getManaSymbols(color);
         }
@@ -947,7 +947,7 @@ MTGGameZone * MTGGameZone::intToZone(GameObserver *g, int zoneId, MTGCardInstanc
         {
         //bug or bug case default to 
             p2 = source->controller();
-                target = source;
+            target = source;
         }
     }
     else

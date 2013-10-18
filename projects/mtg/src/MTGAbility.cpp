@@ -1777,7 +1777,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             found = s.find("compare");
             if (found != string::npos)
             {
-            compareZone = true;
+                compareZone = true;
             }
             
             switch (i)
@@ -1810,7 +1810,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             {
                 result->oneShot = oneShot;
                 a->forcedAlive = forcedalive;
-                if(neverRemove)
+                if (neverRemove)
                 {
                     result->oneShot = false;
                     result->forceDestroy = -1;

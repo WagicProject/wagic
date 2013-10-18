@@ -41358,7 +41358,7 @@ type=Legendary Enchantment
 ###The 2 cards above should stay together (Flip Card)###
 [card]
 name=Honden of Cleansing Fire
-auto=@each my upkeep:life:type:shrine && life:type:shrine
+auto=@each my upkeep:life:twicetype:shrine
 text=At the beginning of your upkeep, you gain 2 life for each Shrine you control.
 mana={3}{W}
 type=Legendary Enchantment
@@ -50519,7 +50519,7 @@ toughness=4
 [/card]
 [card]
 name=Lightmine Field
-auto=@each blockers:damage:type:creature[attacking]:battlefield all(creature[attacking]|Battlefield)
+auto=@each blockers:foreach(creature[attacking]|Battlefield) damage:1 all(creature[attacking]|Battlefield)
 text=Whenever one or more creatures attack, Lightmine Field deals damage to each of those creatures equal to the number of attacking creatures.
 mana={2}{W}{W}
 type=Enchantment
@@ -70900,8 +70900,8 @@ toughness=2
 [card]
 name=Rending Vines
 target=artifact,enchantment
-auto=teach(artifact[manacost<=type:*:opponenthand]) destroy
-auto=teach(enchantment[manacost<=type:*:opponenthand]) destroy
+auto=teach(artifact[manacost<=type:*:myhand]) destroy
+auto=teach(enchantment[manacost<=type:*:myhand]) destroy
 auto=draw:1 controller
 text=Destroy target artifact or enchantment if its converted mana cost is less than or equal to the number of cards in your hand. -- Draw a card.
 mana={1}{G}{G}

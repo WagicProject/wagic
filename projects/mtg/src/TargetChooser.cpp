@@ -1258,10 +1258,11 @@ bool TargetZoneChooser::targetsZone(MTGGameZone * z)
         if (MTGGameZone::intToZone(Owner->getObserver(), zones[i], source) == z) return true;
     return false;
 }
+
 bool TargetZoneChooser::targetsZone(MTGGameZone * z,MTGCardInstance * mSource)
 {
-if(mSource)
-source = mSource;
+    if (mSource)
+        source = mSource;
     for (int i = 0; i < nbzones; i++)
         if (MTGGameZone::intToZone(source->owner->getObserver(), zones[i], source) == z) return true;
     return false;

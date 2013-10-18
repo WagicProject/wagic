@@ -9,6 +9,7 @@ manapool:{2}{B}
 graveyard:swamp,grizzly bears,dragon engine
 [DO]
 Spoils Of Evil
+p2
 [ASSERT]
 FIRSTMAIN
 [PLAYER1]
