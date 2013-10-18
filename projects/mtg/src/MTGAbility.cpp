@@ -1411,12 +1411,10 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     }
 
     // figure out alternative cost effects
-    string keyword;
-
-
     for (size_t i = 0; i < sizeof(kAlternateCostIds)/sizeof(kAlternateCostIds[0]); ++i)
     {
-        if (s.find(kAlternateCostKeywords[i]) == 0)
+        const string& keyword = kAlternateCostKeywords[i];
+        if (s.find(keyword) == 0)
         {
             if (!(spell && spell->FullfilledAlternateCost(kAlternateCostIds[i])))
             {
@@ -1424,7 +1422,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
                 SAFE_DELETE(tc);
                 return NULL;
             }
-            return parseMagicLine(s.substr(kAlternateCostKeywords[i].length()), id, spell, card);
+            return parseMagicLine(s.substr(keyword.length()), id, spell, card);
         }
     }
     //if/ifnot COND then DO EFFECT.

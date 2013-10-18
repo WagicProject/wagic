@@ -910,7 +910,7 @@ public:
         WEventLife * e = dynamic_cast<WEventLife *> (event);
         if (!e) return 0;
         if (sourceUntapped  && source->isTapped() == 1)
-        return 0;
+            return 0;
         if (!tc->canTarget(e->player)) return 0;
         if (fromTc && !fromTc->canTarget(e->player)) return 0;
         if (type == 1 && (e->amount > 0)) return 0;

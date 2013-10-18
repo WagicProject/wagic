@@ -1308,17 +1308,21 @@ PlayerTargetChooser::PlayerTargetChooser(GameObserver *observer, MTGCardInstance
 {
 }
 
-bool PlayerTargetChooser::canTarget(Targetable * target,bool)
+bool PlayerTargetChooser::canTarget(Targetable * target, bool)
 {
-    if (source && targetter && (targetter->controller() != targetter->controller()->opponent())
-                    && (targetter->controller()->opponent()->game->inPlay->hasAbility(Constants::CONTROLLERSHROUD))
-                    && targetter->controller() != target) return false;
-    if (source && targetter && (targetter->controller() == targetter->controller())
-                    && (targetter->controller()->opponent()->game->inPlay->hasAbility(Constants::PLAYERSHROUD))
-                    && targetter->controller()->opponent() == target) return false;
-    if (source && targetter && (targetter->controller() == targetter->controller())
-                    && (targetter->controller()->game->inPlay->hasAbility(Constants::PLAYERSHROUD)) && targetter->controller()
-                    == target) return false;
+    if (source && targetter)
+    {
+        if ((targetter->controller() != targetter->controller()->opponent())
+            && (targetter->controller()->opponent()->game->inPlay->hasAbility(Constants::CONTROLLERSHROUD))
+            && targetter->controller() != target)
+                return false;
+        if ((targetter->controller()->opponent()->game->inPlay->hasAbility(Constants::PLAYERSHROUD))
+            && targetter->controller()->opponent() == target)
+                return false;
+        if ((targetter->controller()->game->inPlay->hasAbility(Constants::PLAYERSHROUD))
+            && targetter->controller() == target)
+                return false;
+    }
 
     Player * pTarget = dynamic_cast<Player *>(target);
     return (pTarget && (!p || p == pTarget));
@@ -1346,15 +1350,21 @@ bool PlayerTargetChooser::equals(TargetChooser * tc)
 /*Damageable Target */
 bool DamageableTargetChooser::canTarget(Targetable * target,bool withoutProtections)
 {
-    if (source && targetter && (targetter->controller() != targetter->controller()->opponent())
-                    && (targetter->controller()->opponent()->game->inPlay->hasAbility(Constants::CONTROLLERSHROUD))
-                    && targetter->controller() != target) return false;
-    if (source && targetter && (targetter->controller() == targetter->controller())
-                    && (targetter->controller()->opponent()->game->inPlay->hasAbility(Constants::PLAYERSHROUD))
-                    && targetter->controller()->opponent() == target) return false;
-    if (source && targetter && (targetter->controller() == targetter->controller())
-                    && (targetter->controller()->game->inPlay->hasAbility(Constants::PLAYERSHROUD)) && targetter->controller()
-                    == target) return false;
+    // TODO: get rid of common code with PlayerTargetChooser
+    if (source && targetter)
+    {
+        if ((targetter->controller() != targetter->controller()->opponent())
+            && (targetter->controller()->opponent()->game->inPlay->hasAbility(Constants::CONTROLLERSHROUD))
+            && targetter->controller() != target)
+                return false;
+        if ((targetter->controller()->opponent()->game->inPlay->hasAbility(Constants::PLAYERSHROUD))
+            && targetter->controller()->opponent() == target)
+                return false;
+        if ((targetter->controller()->game->inPlay->hasAbility(Constants::PLAYERSHROUD))
+            && targetter->controller() == target)
+                return false;
+    }
+
     if (dynamic_cast<Player *>(target))
     {
         return true;
