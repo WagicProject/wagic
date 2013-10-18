@@ -18,6 +18,7 @@ public:
     int hasColor(int color);
     string toString();
     int getConvertedCost();
+    int getManaSymbols(int color);
     
     friend std::ostream& operator<<(std::ostream& out, ManaCostHybrid& m);
     friend std::ostream& operator<<(std::ostream& out, ManaCostHybrid* m);

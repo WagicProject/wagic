@@ -56,6 +56,8 @@ public:
     string alternativeName;
     bool isMulti;
     static ManaCost * parseManaCost(string value, ManaCost * _manacost = NULL, MTGCardInstance * c = NULL);
+    static int parseManaSymbol(char symbol);
+
     virtual void resetCosts();
     void x();
     int hasX();
@@ -69,15 +71,17 @@ public:
     ManaCost(ManaCost * _manaCost);
     ManaCost(const ManaCost& manaCost);
     ManaCost& operator= (const ManaCost& manaCost);
-    void copy (ManaCost * _manaCost);
+    void copy(ManaCost * _manaCost);
     int isNull();
     int getConvertedCost();
     string toString();
     int getCost(int color);
+    int getManaSymbols(int color);
+
     //Returns NULL if i is greater than nbhybrids
     ManaCostHybrid * getHybridCost(unsigned int i);
     int hasColor(int color);
-    int remove (int color, int value);
+    int remove(int color, int value);
     int add(int color, int value);
 
     //
@@ -92,7 +96,7 @@ public:
     ExtraCost * getExtraCost(unsigned int i);
 
     int addHybrid(int c1, int v1, int c2, int v2);
-    int tryToPayHybrids(std::vector<ManaCostHybrid>& _hybrids, int _nbhybrids,std::vector<int16_t>& diff);
+    int tryToPayHybrids(const std::vector<ManaCostHybrid> &_hybrids, int _nbhybrids, std::vector<int16_t>& diff);
     void randomDiffHybrids(ManaCost * _cost, std::vector<int16_t>& diff);
     int add(ManaCost * _cost);
     int remove(ManaCost * _cost);

@@ -7,6 +7,7 @@
 #include "Player.h"
 #include "Counters.h"
 #include "AllAbilities.h"
+#include <boost/scoped_ptr.hpp>
 
 SUPPORT_OBJECT_ANALYTICS(ExtraCost)
 
@@ -69,23 +70,23 @@ int ExtraCost::setPayment(MTGCardInstance * card)
     return result;
 }
 //extra added manacost, or add a manacost as the cost of extra
-extraManaCost * extraManaCost::clone() const
+ExtraManaCost * ExtraManaCost::clone() const
 {
-    extraManaCost * ec = NEW extraManaCost(*this);
+    ExtraManaCost * ec = NEW ExtraManaCost(*this);
     return ec;
 }
 
-extraManaCost::extraManaCost(ManaCost * costToPay)
+ExtraManaCost::ExtraManaCost(ManaCost * costToPay)
     : ExtraCost("Pay The Cost",NULL, costToPay)
 {
 }
 
-int extraManaCost::tryToSetPayment(MTGCardInstance * card)
+int ExtraManaCost::tryToSetPayment(MTGCardInstance * card)
 {
     return 1;
 }
 
-int extraManaCost::isPaymentSet()
+int ExtraManaCost::isPaymentSet()
 {
     if (!source->controller()->getManaPool()->canAfford(costToPay))
     {
@@ -94,7 +95,7 @@ int extraManaCost::isPaymentSet()
     return 1;
 }
 
-int extraManaCost::canPay()
+int ExtraManaCost::canPay()
 {
     if(!source->controller()->getManaPool()->canAfford(costToPay))
     {
@@ -103,7 +104,7 @@ int extraManaCost::canPay()
     return 1;
 }
 
-int extraManaCost::doPay()
+int ExtraManaCost::doPay()
 {
     if (!source->controller()->getManaPool()->canAfford(costToPay))
         return 0;
@@ -159,7 +160,15 @@ LifeorManaCost * LifeorManaCost::clone() const
     return ec;
 }
 
-LifeorManaCost::LifeorManaCost(TargetChooser *_tc,string manaType)
+ManaCost * LifeorManaCost::getManaCost()
+{
+    string buildType ="{";
+    buildType.append(manaType);
+    buildType.append("}");
+    return ManaCost::parseManaCost(buildType);
+}
+
+LifeorManaCost::LifeorManaCost(TargetChooser *_tc, string manaType)
     : ExtraCost("Phyrexian Mana", _tc), manaType(manaType)
 {
 }
@@ -167,16 +176,11 @@ LifeorManaCost::LifeorManaCost(TargetChooser *_tc,string manaType)
 int LifeorManaCost::canPay()
 {
     MTGCardInstance * _target = (MTGCardInstance *) target;
-    string buildType ="{";
-    buildType.append(manaType);
-    buildType.append("}");
-    ManaCost * newCost = ManaCost::parseManaCost(buildType);
-    if(_target->controller()->getManaPool()->canAfford(newCost) || _target->controller()->life > 1)
+    boost::scoped_ptr<ManaCost> manaCost(getManaCost());
+    if (_target->controller()->getManaPool()->canAfford(manaCost.get()) || _target->controller()->life > 1)
     {
-        SAFE_DELETE(newCost);
         return 1;
     }
-    SAFE_DELETE(newCost);
     return 0;
 }
 
@@ -186,24 +190,22 @@ int LifeorManaCost::doPay()
         return 0;
 
     MTGCardInstance * _target = (MTGCardInstance *) target;
-    string buildType ="{";
-    buildType.append(manaType);
-    buildType.append("}");
-    ManaCost * newCost = ManaCost::parseManaCost(buildType);
-    if(_target->controller()->getManaPool()->canAfford(newCost))
+    ManaCost * manaCost = getManaCost();
+    if (_target->controller()->getManaPool()->canAfford(manaCost))
     {
-        _target->controller()->getManaPool()->pay(newCost);
+        _target->controller()->getManaPool()->pay(manaCost);
     }
     else
     {
         _target->controller()->loseLife(2);
     }
-    SAFE_DELETE(newCost);
+    SAFE_DELETE(manaCost);
     target = NULL;
     if (tc)
         tc->initTargets();
     return 1;
 }
+
 //discard a card at random as a cost
 //DiscardRandom cost
 DiscardRandomCost * DiscardRandomCost::clone() const
@@ -404,18 +406,18 @@ int MillExileCost::doPay()
 }
 //unattach cost
 
-unattachCost * unattachCost::clone() const
+UnattachCost * UnattachCost::clone() const
 {
-    unattachCost * ec = NEW unattachCost(*this);
+    UnattachCost * ec = NEW UnattachCost(*this);
     return ec;
 }
 
-unattachCost::unattachCost(MTGCardInstance * realSource)
+UnattachCost::UnattachCost(MTGCardInstance * realSource)
     : ExtraCost("Unattach"),rSource(realSource)
 {
 }
 
-int unattachCost::isPaymentSet()
+int UnattachCost::isPaymentSet()
 {
     if (rSource && !rSource->target)
     {
@@ -424,12 +426,12 @@ int unattachCost::isPaymentSet()
     return 1;
 }
 
-int unattachCost::canPay()
+int UnattachCost::canPay()
 {
     return isPaymentSet();
 }
 
-int unattachCost::doPay()
+int UnattachCost::doPay()
 {
     MTGCardInstance * _source = (MTGCardInstance *) source;
     if(_source != rSource)

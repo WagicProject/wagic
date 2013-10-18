@@ -549,17 +549,37 @@ unsigned int MTGGameZone::countByCanTarget(TargetChooser * tc)
 {
     if(!tc)
         return 0;
-    tc->targetter = NULL;//becuase we are counting what can be targeted by this TC, we don't care if cards have protection.
+    // we don't care if cards have protection.
+    bool withoutProtections = true;
     int result = 0;
     for (int i = 0; i < (nb_cards); i++)
     {
-        if (tc->canTarget(cards[i]))
+        if (tc->canTarget(cards[i]), withoutProtections)
         {
             result++;
         }
     }
     return result;
 }
+
+unsigned int MTGGameZone::countTotalManaSymbols(TargetChooser * tc, int color)
+{
+    if (!tc) {
+        return 0;
+    }
+    // we don't care if cards have protection.
+    bool withoutProtections = true;
+    int result = 0;
+    for (int i = 0; i < nb_cards; i++)
+    {
+        if (tc->canTarget(cards[i]), withoutProtections)
+        {
+            result += cards[i]->getManaCost()->getManaSymbols(color);
+        }
+    }
+    return result;
+}
+
 MTGCardInstance * MTGGameZone::findByName(string name)
 {
     for (int i = 0; i < (nb_cards); i++)

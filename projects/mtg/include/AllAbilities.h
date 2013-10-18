@@ -183,7 +183,12 @@ private:
             }
             else
             {
-            replace(theType.begin(), theType.end(), ':', '|');
+                replace(theType.begin(), theType.end(), ':', '|');
+            }
+            int color = 0;
+            if (theType.find("mana") != string::npos) {
+                color = ManaCost::parseManaSymbol(theType[4]);
+                theType.replace(0, 5, "*");
             }
             TargetChooserFactory tf(card->getObserver());
             TargetChooser * tc = tf.createTargetChooser(theType.c_str(),NULL);
@@ -194,8 +199,17 @@ private:
                 for (int k = 0; k < 4; k++)
                 {
                     MTGGameZone * zone = zones[k];
-                    if(tc->targetsZone(zone,target))
-                    intValue += zone->countByCanTarget(tc);
+                    if (tc->targetsZone(zone, target))
+                    {
+                        if (color)
+                        {
+                            intValue += zone->countTotalManaSymbols(tc, color);
+                        }
+                        else
+                        {
+                            intValue += zone->countByCanTarget(tc);
+                        }
+                    }
                 }
             }
             SAFE_DELETE(tc);

@@ -813,7 +813,7 @@ TargetChooser::TargetChooser(GameObserver *observer, MTGCardInstance * card, int
 
 //Default targetter : every card can be targetted, unless it is protected from the targetter card
 // For spells that do not "target" a specific card, set targetter to NULL
-bool TargetChooser::canTarget(Targetable * target,bool withoutProtections)
+bool TargetChooser::canTarget(Targetable * target, bool withoutProtections)
 {
     if (!target) return false;
     if (MTGCardInstance * card = dynamic_cast<MTGCardInstance *>(target))

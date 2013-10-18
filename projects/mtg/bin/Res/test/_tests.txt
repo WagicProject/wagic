@@ -14,6 +14,7 @@ generic/changeling_i501.txt
 generic/cycling.txt
 generic/cycling2.txt
 generic/deathtouch.txt
+generic/devotion.txt
 generic/doesnotuntap.txt
 generic/doesnotuntap2.txt
 generic/double_strike.txt

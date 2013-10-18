@@ -1,0 +1,30 @@
+# Testing Devotion mechanic
+# also checking that hybrid cost and phyrexian cost are handled correctly
+# total devotion should be 2 + 1 + 1 = 4
+
+# Gray Merchant of Asphodel
+# When Gray Merchant of Asphodel enters the battlefield, each opponent loses X life, where X is your devotion to black. You gain life equal to the life lost this way. (Each {B} in the mana costs of permanents you control counts toward your devotion to black.)
+
+# Reaper King
+# mana={2W}{2U}{2B}{2R}{2G}
+
+# Vault Skirge
+# mana={1}{p(B)}
+
+[INIT]
+firstmain
+[PLAYER1]
+hand:gray merchant of asphodel
+inplay:Reaper King,Vault Skirge
+manapool:{3}{B}{B}
+[PLAYER2]
+[DO]
+gray merchant of asphodel
+[ASSERT]
+firstmain
+[PLAYER1]
+life:24
+inplay:gray merchant of asphodel,Reaper King,Vault Skirge
+[PLAYER2]
+life:16
+[END]

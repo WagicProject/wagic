@@ -8,6 +8,7 @@
 #include "WEvent.h"
 #include "MTGAbility.h"
 #include "iterator"
+#include <boost/scoped_ptr.hpp>
 
 SUPPORT_OBJECT_ANALYTICS(ManaCost)
 
@@ -238,7 +239,7 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
                     {
                         if(value == "unattach")
                         {
-                            manaCost->addExtraCost(NEW unattachCost(c));
+                            manaCost->addExtraCost(NEW UnattachCost(c));
                             break;
                         }
                         int intvalue = atoi(value.c_str());
@@ -431,6 +432,7 @@ void ManaCost::specificX(int color)
     xColor = color;
     cost[Constants::NB_Colors] = 1;
 }
+
 int ManaCost::hasSpecificX()
 {
     if (cost.size() <= (size_t)Constants::NB_Colors)
@@ -578,6 +580,47 @@ int ManaCost::getCost(int color)
     return cost[color];
 }
 
+int ManaCost::getManaSymbols(int color)
+{
+    int result = cost[color];
+    for (size_t i = 0; i < hybrids.size(); ++i)
+    {
+        result += hybrids[i].getManaSymbols(color);
+    }
+    if (extraCosts && extraCosts->costs.size())
+    {
+        for (size_t i = 0; i < extraCosts->costs.size(); ++i)
+        {
+            LifeorManaCost * phyrexianMana = dynamic_cast<LifeorManaCost*>(extraCosts->costs[i]);
+            if (phyrexianMana)
+            {
+                boost::scoped_ptr<ManaCost> manaCost(phyrexianMana->getManaCost());
+                result += manaCost->getManaSymbols(color);
+            }
+        }
+    }
+    return result;
+}
+
+int ManaCost::parseManaSymbol(char symbol)
+{
+    switch (symbol)
+    {
+    case 'g':
+        return Constants::MTG_COLOR_GREEN;
+    case 'u':
+        return Constants::MTG_COLOR_BLUE;
+    case 'r':
+        return Constants::MTG_COLOR_RED;
+    case 'b':
+        return Constants::MTG_COLOR_BLACK;
+    case 'w':
+        return Constants::MTG_COLOR_WHITE;
+    }
+    DebugTrace( "Failed to parse mana symbol" );
+    return -1;
+}
+
 ManaCostHybrid * ManaCost::getHybridCost(unsigned int i)
 {
     if (hybrids.size() <= i)
@@ -620,7 +663,7 @@ int ManaCost::isNull()
 int ManaCost::getConvertedCost()
 {
     int result = 0;
-    for ( int i = 0; i < Constants::NB_Colors; i++)
+    for (int i = 0; i < Constants::NB_Colors; i++)
     {
         result += cost[i];
     }
@@ -628,15 +671,15 @@ int ManaCost::getConvertedCost()
     {
         result += hybrids[i].getConvertedCost();
     }
-	if(extraCosts && extraCosts->costs.size())
-	{
-		for(unsigned int i = 0; i < extraCosts->costs.size();i++)
-		{
-			ExtraCost * pMana = dynamic_cast<LifeorManaCost*>(extraCosts->costs[i]);
-			if(pMana)
-				result++;
-		}
-	}
+    if (extraCosts && extraCosts->costs.size())
+    {
+        for (unsigned int i = 0; i < extraCosts->costs.size(); i++)
+        {
+            ExtraCost * pMana = dynamic_cast<LifeorManaCost*>(extraCosts->costs[i]);
+            if (pMana)
+                result++;
+        }
+    }
 
     return result;
 }
@@ -801,12 +844,12 @@ void ManaCost::randomDiffHybrids(ManaCost * _cost, std::vector<int16_t>& diff)
 /**
     starting from the end of the array (diff) 
 */
-int ManaCost::tryToPayHybrids(std::vector<ManaCostHybrid>& _hybrids, int _nbhybrids, std::vector<int16_t>& diff)
+int ManaCost::tryToPayHybrids(const std::vector<ManaCostHybrid>& _hybrids, int _nbhybrids, std::vector<int16_t>& diff)
 {
     if (!_nbhybrids)
         return 1;
     int result = 0;
-    ManaCostHybrid& h = _hybrids[_nbhybrids - 1];
+    const ManaCostHybrid& h = _hybrids[_nbhybrids - 1];
     if (diff[h.color1 * 2 + 1] >= h.value1)
     {
         diff[h.color1 * 2 + 1] -= h.value1;

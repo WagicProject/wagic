@@ -3516,7 +3516,7 @@ int MenuAbility::reactToChoiceClick(Targetable * object,int choice,int control)
             toPay = NEW ManaCost();
             if(optionalCosts[i]->extraCosts)
             toPay->extraCosts = optionalCosts[i]->extraCosts->clone();
-            toPay->addExtraCost(NEW extraManaCost(NEW ManaCost(optionalCosts[i])));
+            toPay->addExtraCost(NEW ExtraManaCost(NEW ManaCost(optionalCosts[i])));
             toPay->setExtraCostsAction(this,source);
             game->mExtraPayment = toPay->extraCosts;
             return 0;

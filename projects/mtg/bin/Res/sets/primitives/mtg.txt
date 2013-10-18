@@ -37348,6 +37348,16 @@ mana={1}{G}{G}
 type=Enchantment
 [/card]
 [card]
+name=Gray Merchant of Asphodel
+auto=life:-type:manab:mybattlefield opponent && life:type:manab controller
+text=When Gray Merchant of Asphodel enters the battlefield, each opponent loses X life, where X is your devotion to black. You gain life equal to the life lost this way. (Each {B} in the mana costs of permanents you control counts toward your devotion to black.)
+mana={3}{B}{B}
+type=Creature
+subtype=Zombie
+power=2
+toughness=4
+[/card]
+[card]
 name=Gray Ogre
 mana={2}{R}
 type=Creature

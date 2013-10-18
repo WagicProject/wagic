@@ -1275,9 +1275,9 @@ int GameObserver::cardClick(MTGCardInstance * card, Targetable * object, bool lo
                 break;
             }
         }
-        extraManaCost * costType = NULL;
+        ExtraManaCost * costType = NULL;
         if( mExtraPayment && mExtraPayment->costs.size())
-            costType = dynamic_cast<extraManaCost*>(mExtraPayment->costs[0]);
+            costType = dynamic_cast<ExtraManaCost*>(mExtraPayment->costs[0]);
 
         if (WaitForExtraPayment(card) && !costType) 
         {

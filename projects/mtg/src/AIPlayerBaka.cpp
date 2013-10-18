@@ -1356,8 +1356,8 @@ int AIPlayerBaka::selectAbility()
 {
     if(observer->mExtraPayment && observer->mExtraPayment->source->controller() == this)
     {
-        extraManaCost * check = NULL;
-        check = dynamic_cast<extraManaCost*>(observer->mExtraPayment->costs[0]);
+        ExtraManaCost * check = NULL;
+        check = dynamic_cast<ExtraManaCost*>(observer->mExtraPayment->costs[0]);
         if(check)
         {
             vector<MTGAbility*> CostToPay = canPayMana(observer->mExtraPayment->source,check->costToPay);
@@ -2564,8 +2564,8 @@ int AIPlayerBaka::Act(float dt)
         {
             if(observer->mExtraPayment && observer->mExtraPayment->source->controller() == this)
             {
-                extraManaCost * check = NULL;
-                check = dynamic_cast<extraManaCost*>(observer->mExtraPayment->costs[0]);
+                ExtraManaCost * check = NULL;
+                check = dynamic_cast<ExtraManaCost*>(observer->mExtraPayment->costs[0]);
                 if(check)
                 {
                     vector<MTGAbility*> CostToPay = canPayMana(observer->mExtraPayment->source,check->costToPay);

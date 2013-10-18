@@ -61,15 +61,15 @@ public:
 };
 
 //extraextra
-class extraManaCost : public ExtraCost
+class ExtraManaCost : public ExtraCost
 {
 public:
-  extraManaCost(ManaCost * cost = NULL);
+  ExtraManaCost(ManaCost * cost = NULL);
   virtual int tryToSetPayment(MTGCardInstance * card);
   virtual int isPaymentSet();
   virtual int canPay();
   virtual int doPay();
-  virtual extraManaCost * clone() const;
+  virtual ExtraManaCost * clone() const;
 };
 
 class SacrificeCost : public ExtraCost
@@ -90,15 +90,18 @@ public:
   virtual LifeCost * clone() const;
 };
 
-//pyrhaixa mana
+//phyrexian mana
 class LifeorManaCost : public ExtraCost
 {
-public:
-    LifeorManaCost(TargetChooser *_tc = NULL,string manaType = "");
+private:
     string manaType;
+
+public:
+    LifeorManaCost(TargetChooser *_tc = NULL, string manaType = "");
     virtual int canPay();
     virtual int doPay();
     virtual LifeorManaCost * clone() const;
+    ManaCost * getManaCost();
 };
 
 //Discard a random card cost 
@@ -157,15 +160,15 @@ public:
 };
 
 //unattach cost
-class unattachCost : public ExtraCost
+class UnattachCost : public ExtraCost
 {
 public:
-    unattachCost(MTGCardInstance * realSource = NULL);
+    UnattachCost(MTGCardInstance * realSource = NULL);
     MTGCardInstance * rSource;
     virtual int isPaymentSet();
     virtual int canPay();
     virtual int doPay();
-    virtual unattachCost * clone() const;
+    virtual UnattachCost * clone() const;
 };
 //tap  cost
 class TapCost : public ExtraCost
