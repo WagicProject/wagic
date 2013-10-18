@@ -108,7 +108,7 @@ toughness=1
 [/card]
 [card]
 name=Jasmine Seer
-auto={2}{W}{T}:foreach(*[white]|myhand) life:2
+auto={2}{W}{T}:life:twicetype:*[white]:myhand controller
 text={2}{W}, {T}: Reveal any number of white cards in your hand. You gain 2 life for each card revealed this way.
 mana={3}{W}
 type=Creature
@@ -208,7 +208,7 @@ type=Sorcery
 [card]
 name=Scent of Cinder
 target=creature
-auto=foreach(*[red]|myhand) damage:1
+auto=damage:type:*[red]:myhand
 text=Reveal any number of red cards in your hand. Scent of Cinder deals X damage to target creature or player, where X is the number of cards revealed this way.
 mana={1}{R}
 type=Sorcery
@@ -223,7 +223,7 @@ type=Instant
 [/card]
 [card]
 name=Scent of Jasmine
-auto=foreach(*[white]|myhand) life:2
+auto=life:twicetype:*[white]:myhand
 text=Reveal any number of white cards in your hand. You gain 2 life for each card revealed this way.
 mana={W}
 type=Instant

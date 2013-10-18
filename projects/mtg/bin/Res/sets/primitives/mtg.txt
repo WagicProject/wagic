@@ -615,8 +615,8 @@ toughness=2
 [/card]
 [card]
 name=Acidic Soil
-auto=foreach(land|myBattlefield) damage:1 controller
-auto=foreach(land|opponentBattlefield) damage:1 opponent
+auto=damage:type:land:mybattlefield controller
+auto=damage:type:land:opponentbattlefield opponent
 text=Acidic Soil deals damage to each player equal to the number of lands he or she controls.
 mana={2}{R}
 type=Sorcery
@@ -2212,7 +2212,7 @@ toughness=2
 [card]
 name=Ancestor's Chosen
 abilities=first strike
-auto=foreach(*|mygraveyard) life:1
+auto=life:type:*:mygraveyard
 text=First strike (This creature deals combat damage before creatures without first strike.) -- When Ancestor's Chosen enters the battlefield, you gain 1 life for each card in your graveyard.
 mana={5}{W}{W}
 type=Creature
@@ -2259,7 +2259,7 @@ type=Instant
 [/card]
 [card]
 name=Ancestral Tribute
-auto=foreach(*|mygraveyard) life:2
+auto=life:twicetype:*:mygraveyard
 flashback={9}{W}{W}{W}
 text=You gain 2 life for each card in your graveyard. -- Flashback {9}{W}{W}{W} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={5}{W}{W}
@@ -2355,8 +2355,8 @@ toughness=*
 [/card]
 [card]
 name=Ancient Runes
-auto=@each my upkeep:foreach(artifact|myBattlefield) damage:1 controller
-auto=@each opponent upkeep:foreach(artifact|opponentBattlefield) damage:1 opponent
+auto=@each my upkeep:damage:type:artifact:mybattlefield controller
+auto=@each opponent upkeep:damage:type:artifact:opponentbattlefield opponent
 text=At the beginning of each player's upkeep, Ancient Runes deals damage to that player equal to the number of artifacts he or she controls.
 mana={2}{R}
 type=Enchantment
@@ -3563,7 +3563,7 @@ toughness=5
 [/card]
 [card]
 name=Archangel's Light
-auto=foreach(*|mygraveyard) life:2
+auto=life:twicetype:*:mygraveyard
 auto=moveto(myLibrary) all(*|myGraveyard) && shuffle
 text=You gain 2 life for each card in your graveyard, then shuffle your graveyard into your library.
 mana={7}{W}
@@ -4004,7 +4004,7 @@ toughness=2
 [card]
 name=Armed Response
 target=creature[attacking]
-auto=foreach(equipment|mybattlefield) damage:1
+auto=damage:type:equipment:mybattlefield
 text=Armed Response deals damage to target attacking creature equal to the number of Equipment you control.
 mana={2}{W}
 type=Instant
@@ -7439,7 +7439,7 @@ toughness=1
 [/card]
 [card]
 name=Ben-Ben, Akki Hermit
-auto={T}:foreach(mountain[-tapped]|myBattlefield) damage:1 target(creature[attacking])
+auto={T}:damage:type:mountain[-tapped]:mybattlefield target(creature[attacking])
 text={T}: Ben-Ben, Akki Hermit deals damage to target attacking creature equal to the number of untapped Mountains you control.
 mana={2}{R}{R}
 type=Legendary Creature
@@ -7770,8 +7770,8 @@ type=Instant
 [/card]
 [card]
 name=Biorhythm
-auto=lifeset:0 controller && foreach(creature|mybattlefield) life:1 controller
-auto=lifeset:0 opponent && foreach(creature|opponentbattlefield) life:1 opponent
+auto=lifeset:type:creature:mybattlefield controller
+auto=lifeset:type:creature:opponentbattlefield opponent
 text=Each player's life total becomes the number of creatures he or she controls.
 mana={6}{G}{G}
 type=Sorcery
@@ -8313,7 +8313,7 @@ toughness=4
 [/card]
 [card]
 name=Blessed Reversal
-auto=foreach(creature[attacking]|opponentBattlefield) life:3
+auto=life:thricetype:creature[attacking]:opponentbattlefield
 text=You gain 3 life for each creature attacking you.
 mana={1}{W}
 type=Instant
@@ -8918,7 +8918,7 @@ toughness=1
 [/card]
 [card]
 name=Blood Reckoning
-auto=@each blockers:foreach(creature[attacking]|opponentBattlefield) life:-1 opponent
+auto=@each blockers:life:-type:creature[attacking]:opponentbattlefield opponent
 text=Whenever a creature attacks you or a planeswalker you control, that creature's controller loses 1 life.
 mana={3}{B}
 type=Enchantment
@@ -9399,7 +9399,7 @@ toughness=1
 [/card]
 [card]
 name=Blossoming Wreath
-auto=foreach(creature|mygraveyard) life:1 controller
+auto=life:type:creature:mygraveyard controller
 text=You gain life equal to the number of creature cards in your graveyard.
 mana={G}
 type=Instant
@@ -9467,7 +9467,7 @@ subtype=Aura
 [card]
 name=Blunt the Assault
 auto=preventAllCombatDamage ueot
-auto=foreach(creature|battlefield) life:1
+auto=life:type:creature:battlefield controller
 text=You gain 1 life for each creature on the battlefield. Prevent all combat damage that would be dealt this turn.
 mana={3}{G}
 type=Instant
@@ -10451,7 +10451,7 @@ toughness=4
 [/card]
 [card]
 name=Bountiful Harvest
-auto=foreach(land|mybattlefield) life:1
+auto=life:type:land:mybattlefield controller
 text=You gain 1 life for each land you control.
 mana={4}{G}
 type=Sorcery
@@ -11549,8 +11549,8 @@ subtype=Aura
 [/card]
 [card]
 name=Burden of Greed
-target=opponent
-auto=foreach(artifact[tapped]|opponentBattlefield) life:-1 opponent
+target=player
+auto=life:-type:artifact[tapped]:targetedpersonsbattlefield
 text=Target player loses 1 life for each tapped artifact he or she controls.
 mana={3}{B}
 type=Instant
@@ -13775,7 +13775,7 @@ type=Enchantment
 [/card]
 [card]
 name=Chain Reaction
-auto=foreach(creature|battlefield) damage:1 all(creature)
+auto=damage:type:creature:battlefield all(creature)
 text=Chain Reaction deals X damage to each creature, where X is the number of creatures on the battlefield.
 mana={2}{R}{R}
 type=Sorcery
@@ -14960,8 +14960,8 @@ type=Enchantment
 [/card]
 [card]
 name=Citadel of Pain
-auto=@each my end:foreach(land[-tapped]|myBattlefield) damage:1 controller
-auto=@each opponent end:foreach(land[-tapped]|opponentBattlefield) damage:1 opponent
+auto=@each my end:damage:type:land[-tapped]:mybattlefield controller
+auto=@each opponent end:damage:type:land[-tapped]:opponentbattlefield opponent
 text=At the beginning of each player's end step, Citadel of Pain deals X damage to that player, where X is the number of untapped lands he or she controls.
 mana={2}{R}
 type=Enchantment
@@ -16075,8 +16075,8 @@ toughness=1
 [/card]
 [card]
 name=Cold Snap
-auto=@each my upkeep:foreach(land[snow]|myBattlefield) damage:1 controller
-auto=@each opponent upkeep:foreach(land[snow]|opponentBattlefield) damage:1 opponent
+auto=@each my upkeep:damage:type:land[snow]:mybattlefield controller
+auto=@each opponent upkeep:damage:type:land[snow]:opponentbattlefield opponent
 auto=cumulativeupcost[{2}] sacrifice
 text=Cumulative upkeep {2} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- At the beginning of each player's upkeep, Cold Snap deals damage to that player equal to the number of snow lands he or she controls.
 mana={2}{W}
@@ -16391,7 +16391,7 @@ subtype=Aura
 [card]
 name=Congregate
 target=player
-auto=foreach(creature) life:2
+auto=life:twicetype:creature:battlefield
 text=Target player gains 2 life for each creature on the battlefield.
 mana={3}{W}
 type=Instant
@@ -16745,7 +16745,7 @@ type=Instant
 [card]
 name=Coordinated Barrage
 target=creature[attacking;blocking]
-auto=chooseatype foreach(*[chosentype]|mybattlefield) damage:1 chooseend
+auto=chooseatype damage:type:*[chosentype]:mybattlefield chooseend
 text=Choose a creature type. Coordinated Barrage deals damage to target attacking or blocking creature equal to the number of permanents you control of the chosen type.
 mana={W}
 type=Instant
@@ -17053,8 +17053,8 @@ toughness=3
 [card]
 name=Corrupt
 target=creature,player
-auto=foreach(swamp|myBattlefield) damage:1
-auto=foreach(swamp|myBattlefield) life:1 controller
+auto=damage:type:swamp:mybattlefield
+auto=life:type:swamp:mybattlefield controller
 text=Corrupt deals damage equal to the number of Swamps you control to target creature or player. You gain life equal to the damage dealt this way.
 mana={5}{B}
 type=Sorcery
@@ -17452,7 +17452,7 @@ type=Instant
 name=Crash Landing
 target=creature[flying]
 auto=-flying
-auto=foreach(forest|myBattlefield) damage:1
+auto=damage:type:forest:mybattlefield
 text=Target creature with flying loses flying until end of turn. Crash Landing deals damage to that creature equal to the number of Forests you control.
 mana={2}{G}
 type=Instant
@@ -19175,7 +19175,7 @@ toughness=3
 [card]
 name=Darigaaz, the Igniter
 abilities=flying
-auto=@combatdamaged(player) from(this):pay({2}{R}) activatechooseacolor choice name(look) donothing notatarget(*|opponenthand) && foreach(*[chosencolor]|opponenthand) damage:1 opponent activatechooseend
+auto=@combatdamaged(player) from(this):pay({2}{R}) activatechooseacolor choice name(look) donothing notatarget(*|opponenthand) && damage:type:*[chosencolor]:opponenthand opponent activatechooseend
 text=Flying -- Whenever Darigaaz, the Igniter deals combat damage to a player, you may pay {2}{R}. If you do, choose a color, then that player reveals his or her hand and Darigaaz deals damage to the player equal to the number of cards of that color revealed this way.
 mana={3}{B}{R}{G}
 type=Legendary Creature
@@ -22741,7 +22741,7 @@ type=Instant
 [card]
 name=Divine Retribution
 target=creature[attacking]
-auto=foreach(creature[attacking]) damage:1
+auto=damage:type:creature[attacking]:battlefield
 text=Divine Retribution deals damage to target attacking creature equal to the number of attacking creatures.
 mana={1}{W}
 type=Instant
@@ -22845,7 +22845,7 @@ toughness=1
 [card]
 name=Dogpile
 target=creature,player
-auto=foreach(creature[attacking]|myBattlefield) damage:1
+auto=damage:type:creature[attacking]:mybattlefield
 text=Dogpile deals damage to target creature or player equal to the number of attacking creatures you control.
 mana={3}{R}
 type=Instant
@@ -26016,7 +26016,7 @@ toughness=3
 [card]
 name=Elspeth Tirel
 auto=counter(0/0,4,loyalty)
-auto={C(0/0,2,Loyalty)}:foreach(creature|mybattlefield) life:1 controller
+auto={C(0/0,2,Loyalty)}:life:type:creature:mybattlefield
 auto={C(0/0,-2,Loyalty)}:token(Soldier,Creature Soldier,1/1,white)*3
 auto={C(0/0,-5,Loyalty)}:destroy all(other *[-land;-token])
 text=+2: You gain 1 life for each creature you control. -- -2: Put three 1/1 white Soldier creature tokens onto the battlefield. -- -5: Destroy all other permanents except for lands and tokens.
@@ -26202,7 +26202,7 @@ toughness=2
 [/card]
 [card]
 name=Elvish Eulogist
-auto={S}:foreach(elf|mygraveyard) life:1
+auto={S}:life:type:elf:mygraveyard controller
 text=Sacrifice Elvish Eulogist: You gain 1 life for each Elf card in your graveyard.
 mana={G}
 type=Creature
@@ -26577,7 +26577,7 @@ toughness=4
 [/card]
 [card]
 name=Ember-Fist Zubera
-auto=@movedTo(graveyard) from(this|mybattlefield):choice foreach(zubera[fresh]|graveyard) damage:1 target(creature,player)
+auto=@movedTo(graveyard) from(this|mybattlefield):choice damage:type:zubera[fresh]:mygraveyard target(creature,player)
 text=When Ember-Fist Zubera dies, it deals damage to target creature or player equal to the number of Zubera put into all graveyards from the battlefield this turn.
 mana={1}{R}
 type=Creature
@@ -26670,7 +26670,7 @@ type=Artifact
 [card]
 name=Emissary of Despair
 abilities=flying
-auto=@combatdamaged(player) from(this):foreach(artifact|opponentbattlefield) life:-1 opponent
+auto=@combatdamaged(player) from(this):life:-type:artifact:opponentbattlefield opponent
 text=Flying -- Whenever Emissary of Despair deals combat damage to a player, that player loses 1 life for each artifact he or she controls.
 mana={1}{B}{B}
 type=Creature
@@ -26681,7 +26681,7 @@ toughness=1
 [card]
 name=Emissary of Hope
 abilities=flying
-auto=@combatdamaged(player) from(this):foreach(artifact|opponentbattlefield) life:1 controller
+auto=@combatdamaged(player) from(this):life:type:artifact:opponentbattlefield controller
 text=Flying -- Whenever Emissary of Hope deals combat damage to a player, you gain 1 life for each artifact that player controls.
 mana={1}{W}{W}
 type=Creature
@@ -29499,7 +29499,7 @@ subtype=Aura
 [card]
 name=Feedback Bolt
 target=player
-auto=foreach(artifact|myBattlefield) damage:1
+auto=damage:type:artifact:mybattlefield
 text=Feedback Bolt deals damage to target player equal to the number of artifacts you control.
 mana={4}{R}
 type=Instant
@@ -29860,7 +29860,7 @@ type=Instant
 [/card]
 [card]
 name=Festival of Trokin
-auto=foreach(creature|myBattlefield) life:2
+auto=life:twicetype:creature:mybattlefield
 text=You gain 2 life for each creature you control.
 mana={W}
 type=Sorcery
@@ -30093,7 +30093,7 @@ toughness=1
 [card]
 name=Filigree Angel
 abilities=flying
-auto=foreach(artifact|myBattlefield) life:3
+auto=life:thricetype:artifact:mybattlefield controller
 text=Flying -- When Filigree Angel enters the battlefield, you gain 3 life for each artifact you control.
 mana={5}{W}{W}{U}
 type=Artifact Creature
@@ -31773,7 +31773,7 @@ type=Instant
 [/card]
 [card]
 name=Folk Medicine
-auto=foreach(creature|mybattlefield) life:1
+auto=life:type:creature:mybattlefield
 flashback={1}{W}
 text=You gain 1 life for each creature you control. -- Flashback {1}{W} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={2}{G}
@@ -32728,7 +32728,7 @@ subtype=Aura
 [/card]
 [card]
 name=Fruition
-auto=foreach(forest) life:1
+auto=life:type:forest:battlefield
 text=You gain 1 life for each Forest on the battlefield.
 mana={G}
 type=Sorcery
@@ -34018,7 +34018,7 @@ toughness=2
 [/card]
 [card]
 name=Gerrard's Wisdom
-auto=foreach(*|myhand) life:2 controller
+auto=life:twicetype:*:myhand
 text=You gain 2 life for each card in your hand.
 mana={2}{W}{W}
 type=Sorcery
@@ -35109,7 +35109,7 @@ toughness=3
 [/card]
 [card]
 name=Glimmerpost
-auto=foreach(locus|myBattlefield) life:1 controller
+auto=life:type:locus:battlefield controller
 auto={T}:Add{1}
 text=When Glimmerpost enters the battlefield, you gain 1 life for each Locus on the battlefield. -- {T}: Add {1} to your mana pool.
 type=Land
@@ -35445,7 +35445,7 @@ toughness=2
 [/card]
 [card]
 name=Gnaw to the Bone
-auto=foreach(creature|mygraveyard) life:2 controller
+auto=life:twicetype:creature:mygraveyard controller
 flashback={2}{G}
 text=You gain 2 life for each creature card in your graveyard. -- Flashback {2}{G}
 mana={2}{G}
@@ -36367,7 +36367,7 @@ subtype=Aura
 [card]
 name=Goblin War Strike
 target=player
-auto=foreach(goblin|myBattlefield) damage:1
+auto=damage:type:goblin:mybattlefield
 text=Goblin War Strike deals damage equal to the number of Goblins you control to target player.
 mana={R}
 type=Sorcery
@@ -36602,7 +36602,7 @@ toughness=2
 [card]
 name=Goldnight Redeemer
 abilities=flying
-auto=foreach(other creature|mybattlefield) life:2 controller
+auto=life:twicetype:other creature:mybattlefield controller
 text=Flying -- When Goldnight Redeemer enters the battlefield, you gain 2 life for each other creature you control.
 mana={4}{W}{W}
 type=Creature
@@ -38529,7 +38529,7 @@ subtype=Aura
 [card]
 name=Guiltfeeder
 abilities=fear
-auto=@combat(notblocked) source(this):foreach(*|opponentGraveyard) life:-1 opponent
+auto=@combat(notblocked) source(this):life:-type:*:opponentgraveyard opponent
 text=Fear (This creature can't be blocked except by artifact creatures and/or black creatures.) -- Whenever Guiltfeeder attacks and isn't blocked, defending player loses 1 life for each card in his or her graveyard.
 mana={3}{B}{B}
 type=Creature
@@ -38894,8 +38894,8 @@ toughness=1
 [/card]
 [card]
 name=Hagra Diabolist
-auto=may foreach(ally|myBattlefield) life:-1 target(player)
-auto=@movedTo(other ally|myBattlefield):may foreach(ally|myBattlefield) life:-1 target(player)
+auto=may life:-type:ally:mybattlefield target(player)
+auto=@movedTo(other ally|myBattlefield):may life:-type:ally:mybattlefield target(player)
 text=Whenever Hagra Diabolist or another Ally enters the battlefield under your control, you may have target player lose life equal to the number of Allies you control.
 mana={4}{B}
 type=Creature
@@ -39378,7 +39378,7 @@ type=Sorcery
 [/card]
 [card]
 name=Harpoon Sniper
-auto={W}{T}:foreach(merfolk|myBattlefield) damage:1 target(creature[attacking;blocking])
+auto={W}{T}:damage:type:merfolk:mybattlefield target(creature[attacking;blocking])
 text={W}, {T}: Harpoon Sniper deals X damage to target attacking or blocking creature, where X is the number of Merfolk you control.
 mana={2}{W}
 type=Creature
@@ -41412,7 +41412,7 @@ type=Instant
 [/card]
 [card]
 name=Honorable Scout
-auto=foreach(creature[red;black]|opponentBattlefield) life:2
+auto=life:twicetype:creature[black;red]:opponentbattlefield controller
 text=When Honorable Scout enters the battlefield, you gain 2 life for each black and/or red creature target opponent controls.
 mana={W}
 type=Creature
@@ -43755,7 +43755,7 @@ type=Sorcery
 name=Inquisition
 target=player
 auto=target(*|targetedpersonshand) donothing
-auto=foreach(*[white]|targetedpersonshand) damage:1 targetedplayer
+auto=damage:type:*[white]:targetedpersonshand targetedplayer
 text=Target player reveals his or her hand. Inquisition deals damage to that player equal to the number of white cards in his or her hand.
 mana={2}{B}
 type=Sorcery
@@ -44069,15 +44069,14 @@ type=Enchantment
 [/card]
 [card]
 name=Invigorating Falls
-auto=foreach(creature|myGraveyard)life:1 controller
-auto=foreach(creature|opponentGraveyard)life:1 controller
+auto=life:type:creature:graveyard controller
 text=You gain life equal to the number of creature cards in all graveyards.
 mana={2}{G}{G}
 type=Sorcery
 [/card]
 [card]
 name=Invincible Hymn
-auto=lifeset:0 controller && foreach(*|mylibrary) life:1 controller
+auto=lifeset:type:*:mylibrary controller
 text=Count the number of cards in your library. Your life total becomes that number.
 mana={6}{W}{W}
 type=Sorcery
@@ -44156,7 +44155,7 @@ type=Enchantment
 [card]
 name=Ire of Kaminari
 target=creature,player
-auto=foreach(arcane|myGraveyard) damage:1
+auto=damage:type:arcane:mygraveyard
 text=Ire of Kaminari deals damage to target creature or player equal to the number of Arcane cards in your graveyard.
 mana={3}{R}
 type=Instant
@@ -45435,7 +45434,7 @@ type=Artifact
 [/card]
 [card]
 name=Jovial Evil
-target=opponnent
+target=opponent
 auto=damage:twicetype:creature[white]:targetedpersonsbattlefield
 text=Jovial Evil deals X damage to target opponent, where X is twice the number of white creatures that player controls.
 mana={2}{B}
@@ -45443,7 +45442,7 @@ type=Sorcery
 [/card]
 [card]
 name=Joyous Respite
-auto=foreach(land|myBattlefield) life:1
+auto=life:type:land:mybattlefield
 text=You gain 1 life for each land you control.
 mana={3}{G}
 type=Sorcery
@@ -46235,8 +46234,8 @@ toughness=2
 [/card]
 [card]
 name=Karma
-auto=@each my upkeep:foreach(swamp|myBattlefield) damage:1 controller
-auto=@each opponent upkeep:foreach(swamp|opponentBattlefield) damage:1 opponent
+auto=@each my upkeep:damage:type:swamp:mybattlefield controller
+auto=@each opponent upkeep:damage:type:swamp:opponentbattlefield opponent
 text=At the beginning of each player's upkeep, Karma deals damage to that player equal to the number of Swamps he or she controls.
 mana={2}{W}{W}
 type=Enchantment
@@ -47561,7 +47560,7 @@ toughness=3
 [/card]
 [card]
 name=Kithkin Zealot
-auto=foreach(*[red;black]|opponentbattlefield) life:1
+auto=life:type:*[black;red]:opponentbattlefield target(opponent)
 text=When Kithkin Zealot enters the battlefield, you gain 1 life for each black and/or red permanent target opponent controls.
 mana={1}{W}
 type=Creature
@@ -49243,7 +49242,7 @@ type=Enchantment
 [/card]
 [card]
 name=Landbind Ritual
-auto=foreach(plains|myBattlefield) life:2 controller
+auto=life:twicetype:plains:mybattlefield controller
 text=You gain 2 life for each Plains you control.
 mana={3}{W}{W}
 type=Sorcery
@@ -49402,10 +49401,10 @@ type=Enchantment
 [card]
 name=Last Stand
 target=creature
-auto=foreach(swamp|myBattlefield) life:-2 opponent
-auto=foreach(mountain|myBattlefield) damage:1
+auto=life:-type:swamp:mybattlefield opponent
+auto=damage:type:mountain:mybattlefield
 auto=foreach(forest|myBattlefield) token(Saproling,Creature Saproling,1/1,green)
-auto=foreach(plains|myBattlefield) life:2 controller
+auto=life:twicetype:plains:mybattlefield controller
 auto=foreach(island|myBattlefield) draw:1 controller
 auto=foreach(island|myBattlefield) reject target(*|myhand)
 text=Target opponent loses 2 life for each Swamp you control. Last Stand deals damage equal to the number of Mountains you control to target creature. Put a 1/1 green Saproling creature token onto the battlefield for each Forest you control. You gain 2 life for each Plains you control. Draw a card for each Island you control, then discard that many cards.
@@ -50254,7 +50253,7 @@ type=Land
 [card]
 name=Lich Lord of Unx
 auto={U}{B}{T}:token(Zombie Wizard,Creature Zombie Wizard,1/1,blue black)
-auto={U}{U}{B}{B}:foreach(zombie|myBattlefield) life:-1 && foreach(zombie|myBattlefield) deplete:1 target(player)
+auto={U}{U}{B}{B}:life:-type:zombie:mybattlefield && foreach(zombie|myBattlefield) deplete:1 target(player)
 text={U}{B}, {T}: Put a 1/1 blue and black Zombie Wizard creature token onto the battlefield. -- {U}{U}{B}{B}: Target player loses X life and puts the top X cards of his or her library into his or her graveyard, where X is the number of Zombies you control.
 mana={1}{U}{B}
 type=Creature
@@ -50509,7 +50508,7 @@ toughness=4
 [/card]
 [card]
 name=Lightmine Field
-auto=@each blockers:foreach(creature[attacking]|Battlefield) damage:1 all(creature[attacking]|Battlefield)
+auto=@each blockers:damage:type:creature[attacking]:battlefield all(creature[attacking]|Battlefield)
 text=Whenever one or more creatures attack, Lightmine Field deals damage to each of those creatures equal to the number of attacking creatures.
 mana={2}{W}{W}
 type=Enchantment
@@ -52033,7 +52032,7 @@ type=Instant
 [/card]
 [card]
 name=Luminescent Rain
-auto=chooseatype foreach(*[chosentype]|mybattlefield) life:2 controller chooseend
+auto=chooseatype life:twicetype:*[chosentype]:mybattlefield controller chooseend
 text=Choose a creature type. You gain 2 life for each permanent you control of that type.
 mana={2}{G}
 type=Instant
@@ -52968,8 +52967,8 @@ type=Artifact
 [card]
 name=Malakir Bloodwitch
 abilities=flying,protection from white
-auto=foreach(vampire|myBattlefield) life:-1 opponent
-auto=foreach(vampire|myBattlefield) life:1 controller
+auto=life:-type:vampire:mybattlefield opponent
+auto=life:type:vampire:mybattlefield controller
 text=Flying, protection from white -- When Malakir Bloodwitch enters the battlefield, each opponent loses life equal to the number of Vampires you control. You gain life equal to the life lost this way.
 mana={3}{B}{B}
 type=Creature
@@ -55972,7 +55971,7 @@ type=Artifact
 [card]
 name=Minions' Murmurs
 auto=foreach(creature|myBattlefield) draw:1
-auto=foreach(creature|myBattlefield) life:-1
+auto=life:-type:creature:mybattlefield
 text=You draw X cards and you lose X life, where X is the number of creatures you control.
 mana={2}{B}{B}
 type=Sorcery
@@ -56683,7 +56682,7 @@ type=Enchantment
 [card]
 name=Mob Justice
 target=player
-auto=foreach(creature|myBattlefield) damage:1
+auto=damage:type:creature:mybattlefield
 text=Mob Justice deals damage to target player equal to the number of creatures you control.
 mana={1}{R}
 type=Sorcery
@@ -57225,8 +57224,8 @@ toughness=1
 [/card]
 [card]
 name=Monsoon
-auto=@each my endofturn:foreach(island[-tapped]|myBattlefield) damage:1 controller
-auto=@each opponent endofturn:foreach(island[-tapped]|opponentBattlefield) damage:1 opponent
+auto=@each my endofturn:damage:type:island[-tapped]:mybattlefield controller
+auto=@each opponent endofturn:damage:type:island[-tapped]:opponentbattlefield opponent
 auto=@each my cleanup:tap all(island[-tapped]|myBattlefield)
 auto=@each opponent cleanup:tap all(island[-tapped]|opponentBattlefield)
 text=At the beginning of each player's end step, tap all untapped Islands that player controls and Monsoon deals X damage to the player, where X is the number of Islands tapped this way.
@@ -58187,8 +58186,8 @@ subtype=Aura
 [/card]
 [card]
 name=Murasa Pyromancer
-auto=may foreach(ally|mybattlefield) damage:1 target(creature)
-auto=@movedTo(ally|mybattlefield):may foreach(ally|mybattlefield) damage:1 target(creature)
+auto=may damage:type:ally:mybattlefield target(creature)
+auto=@movedTo(ally|mybattlefield):may damage:type:ally:mybattlefield target(creature)
 text=Whenever Murasa Pyromancer or another Ally enters the battlefield under your control, you may have Murasa Pyromancer deal damage to target creature equal to the number of Allies you control.
 mana={4}{R}{R}
 type=Creature
@@ -59828,7 +59827,7 @@ type=World Enchantment
 [/card]
 [card]
 name=Netherborn Phalanx
-auto=foreach(creature|opponentBattlefield) life:-1 opponent
+auto=life:-type:creature:opponentbattlefield opponent
 autohand={1}{B}{B}{discard}:moveTo(myhand) target(*[manacost=6]|mylibrary) asSorcery
 text=When Netherborn Phalanx enters the battlefield, each opponent loses 1 life for each creature he or she controls. -- Transmute {1}{B}{B} ({1}{B}{B}, Discard this card: Search your library for a card with the same converted mana cost as this card, reveal it, and put it into your hand. Then shuffle your library. Transmute only as a sorcery.)
 mana={5}{B}
@@ -60654,7 +60653,7 @@ mana={4}{B}{B}
 name=Nissa Revane
 auto=counter(0/0,2,loyalty)
 auto={C(0/0,1,Loyalty)}:moveTo(mybattlefield) target(Nissa's Chosen|mylibrary)
-auto={C(0/0,1,Loyalty)}:foreach(elf|myBattlefield) life:2 controller
+auto={C(0/0,1,Loyalty)}:life:twicetype:elf:mybattlefield controller
 auto={C(0/0,-7,Loyalty)}:moveTo(mybattlefield) target(<anyamount>creature[elf]|mylibrary)
 text=+1: Search your library for a card named Nissa's Chosen and put it onto the battlefield. Then shuffle your library. -- +1: You gain 2 life for each Elf you control. -- -7: Search your library for any number of Elf creature cards and put them onto the battlefield. Then shuffle your library.
 mana={2}{G}{G}
@@ -61840,8 +61839,8 @@ toughness=3
 [/card]
 [card]
 name=Ondu Cleric
-auto=may foreach(ally|myBattlefield) life:1
-auto=@movedTo(other ally|myBattlefield):may foreach(ally|myBattlefield) life:1
+auto=may life:type:ally:mybattlefield controller
+auto=@movedTo(other ally|myBattlefield):may life:type:ally:mybattlefield controller
 text=Whenever Ondu Cleric or another Ally enters the battlefield under your control, you may gain life equal to the number of Allies you control.
 mana={1}{W}
 type=Creature
@@ -62630,7 +62629,7 @@ type=Instant
 [/card]
 [card]
 name=Orim's Prayer
-auto=@each blockers:foreach(creature[attacking]|opponentbattlefield) life:1
+auto=@each blockers:life:type:creature[attacking]:opponentbattlefield controller
 text=Whenever one or more creatures attack you, you gain 1 life for each attacking creature.
 mana={1}{W}{W}
 type=Enchantment
@@ -63928,7 +63927,7 @@ toughness=1
 [/card]
 [card]
 name=Peach Garden Oath
-auto=foreach(creature|myBattlefield) life:2 controller
+auto=life:twicetype:creature:mybattlefield controller
 text=You gain 2 life for each creature you control.
 mana={W}
 type=Sorcery
@@ -65718,8 +65717,8 @@ toughness=*
 [/card]
 [card]
 name=Plague Sliver
-auto=@each my upkeep:foreach(sliver|myBattlefield) life:-1 controller
-auto=@each opponent upkeep:foreach(sliver|opponentBattlefield) life:-1 opponent
+auto=@each my upkeep:life:-type:sliver:mybattlefield controller
+auto=@each opponent upkeep:life:-type:sliver:opponentbattlefield opponent
 text=All Slivers have "At the beginning of your upkeep, this permanent deals 1 damage to you."
 mana={2}{B}{B}
 type=Creature
@@ -66579,7 +66578,7 @@ type=Enchantment
 [/card]
 [card]
 name=Presence of the Wise
-auto=foreach(*|myhand) life:2 controller
+auto=life:twicetype:*:myhand controller
 text=You gain 2 life for each card in your hand.
 mana={2}{W}{W}
 type=Sorcery
@@ -66802,8 +66801,8 @@ toughness=3
 [/card]
 [card]
 name=Primal Order
-auto=@each my upkeep:foreach(land[-basic]|myBattlefield):damage:1 controller
-auto=@each opponent upkeep:foreach(land[-basic]|opponentBattlefield):damage:1 opponent
+auto=@each my upkeep:damage:type:land[-basic]:mybattlefield controller
+auto=@each opponent upkeep:damage:type:land[-basic]:opponentbattlefield opponent
 text=At the beginning of each player's upkeep, Primal Order deals damage to that player equal to the number of nonbasic lands he or she controls.
 mana={2}{G}{G}
 type=Enchantment
@@ -67150,8 +67149,8 @@ toughness=1
 [card]
 name=Profane Prayers
 target=creature,player
-auto=foreach(cleric) damage:1
-auto=foreach(cleric) life:1 controller
+auto=damage:type:cleric:battlefield
+auto=life:type:cleric:battlefield controller
 text=Profane Prayers deals X damage to target creature or player and you gain X life, where X is the number of Clerics on the battlefield.
 mana={2}{B}{B}
 type=Sorcery
@@ -67349,7 +67348,7 @@ toughness=2
 [card]
 name=Psychic Allergy
 auto=upcost[{S(island|mybattlefield)}{S(island|mybattlefield)}] sacrifice
-auto=chooseacolor transforms((,newability[@each opponent upkeep:foreach(*[-token&chosencolor]|opponentbattlefield) damage:1 opponent])) chooseend
+auto=chooseacolor transforms((,newability[@each opponent upkeep:damage:type:*[-token&chosencolor]:opponentbattlefield opponent])) chooseend
 text=As Psychic Allergy enters the battlefield, choose a color. -- At the beginning of each opponent's upkeep, Psychic Allergy deals X damage to that player, where X is the number of nontoken permanents of the chosen color he or she controls. -- At the beginning of your upkeep, destroy Psychic Allergy unless you sacrifice two Islands.
 mana={3}{U}{U}
 type=Enchantment
@@ -70945,7 +70944,8 @@ type=Instant
 [/card]
 [card]
 name=Renewing Dawn
-auto=foreach(mountain|opponentBattlefield) life:2
+target=opponent
+auto=life:twicetype:mountain:opponentbattlefield controller
 text=You gain 2 life for each Mountain target opponent controls.
 mana={1}{W}
 type=Sorcery
@@ -71212,7 +71212,7 @@ type=Instant
 [card]
 name=Respite
 auto=preventAllcombatDamage ueot
-auto=foreach(creature[attacking]) life:1 controller
+auto=life:type:creature[attacking]:battlefield controller
 text=Prevent all combat damage that would be dealt this turn. You gain 1 life for each attacking creature.
 mana={1}{G}
 type=Instant
@@ -71677,7 +71677,7 @@ toughness=4
 [/card]
 [card]
 name=Rhys the Exiled
-auto=@combat(attacking) source(this):foreach(elf|myBattlefield) life:1 controller
+auto=@combat(attacking) source(this):life:type:elf:mybattlefield controller
 auto={B}{S(elf|myBattlefield)}:regenerate
 text=Whenever Rhys the Exiled attacks, you gain 1 life for each Elf you control. -- {B}, Sacrifice an Elf: Regenerate Rhys the Exiled.
 mana={2}{G}
@@ -71914,7 +71914,7 @@ type=Instant
 [/card]
 [card]
 name=Righteous Cause
-auto=@each blockers:foreach(creature[attacking]) life:1
+auto=@each blockers:life:type:creature[attacking]:battlefield controller
 text=Whenever a creature attacks, you gain 1 life.
 mana={3}{W}{W}
 type=Enchantment
@@ -72056,7 +72056,7 @@ subtype=Equipment
 [/card]
 [card]
 name=Riot Control
-auto=foreach(creature|opponentbattlefield) life:1
+auto=life:type:creature:opponentbattlefield controller
 auto=preventalldamage to(controller) ueot
 text=You gain 1 life for each creature your opponents control. Prevent all damage that would be dealt to you this turn. 
 mana={2}{W}
@@ -72536,7 +72536,7 @@ type=Sorcery
 [card]
 name=Roar of the Crowd
 target=creature,player
-auto=chooseatype foreach(*[chosentype]|mybattlefield) damage:1 chooseend
+auto=chooseatype damage:type:*[chosentype]:mybattlefield chooseend
 text=Choose a creature type. Roar of the Crowd deals damage to target creature or player equal to the number of permanents you control of the chosen type.
 mana={3}{R}
 type=Sorcery
@@ -72677,7 +72677,7 @@ type=Artifact
 [card]
 name=Rockslide Ambush
 target=creature
-auto=foreach(mountain|myBattlefield) damage:1
+auto=damage:type:mountain:mybattlefield
 text=Rockslide Ambush deals damage equal to the number of Mountains you control to target creature.
 mana={1}{R}
 type=Sorcery
@@ -72795,7 +72795,7 @@ toughness=5
 name=Roiling Terrain
 target=land
 auto=destroy
-auto=foreach(land|targetcontrollergraveyard) damage:1 targetcontroller
+auto=damage:type:land:targetcontrollergraveyard targetcontroller
 text=Destroy target land, then Roiling Terrain deals damage to that land's controller equal to the number of land cards in that player's graveyard.
 mana={2}{R}{R}
 type=Sorcery
@@ -75867,7 +75867,7 @@ toughness=3
 [card]
 name=Scrapyard Salvo
 target=player
-auto=foreach(artifact|mygraveyard) damage:1
+auto=damage:type:artifact:mygraveyard
 text=Scrapyard Salvo deals damage to target player equal to the number of artifact cards in your graveyard.
 mana={1}{R}{R}
 type=Sorcery
@@ -76404,7 +76404,7 @@ type=Sorcery
 name=Search Warrant
 target=player
 auto=name(look) target(*|targetedpersonshand) donothing
-auto=foreach(*|targetedpersonshand) life:1 controller
+auto=life:type:*:targetedpersonshand controller
 text=Target player reveals his or her hand. You gain life equal to the number of cards in that player's hand.
 mana={W}{U}
 type=Sorcery
@@ -76436,11 +76436,11 @@ type=Enchantment
 [/card]
 [card]
 name=Searing Rays
-auto=choice name(White) foreach(creature[white]|myBattlefield) damage:1 controller && foreach(creature[white]|opponentBattlefield) damage:1 opponent
-auto=choice name(Blue) foreach(creature[blue]|myBattlefield) damage:1 controller && foreach(creature[blue]|opponentBattlefield) damage:1 opponent
-auto=choice name(Black) foreach(creature[black]|myBattlefield) damage:1 controller && foreach(creature[black]|opponentBattlefield) damage:1 opponent
-auto=choice name(Red) foreach(creature[red]|myBattlefield) damage:1 controller && foreach(creature[red]|opponentBattlefield) damage:1 opponent
-auto=choice name(Green) foreach(creature[green]|myBattlefield) damage:1 controller && foreach(creature[green]|opponentBattlefield) damage:1 opponent
+auto=choice name(White) damage:type:creature[white]:mybattlefield controller && damage:type:creature[white]:opponentbattlefield opponent
+auto=choice name(Blue) damage:type:creature[blue]:mybattlefield controller && damage:type:creature[blue]:opponentbattlefield opponent
+auto=choice name(Black) damage:type:creature[black]:mybattlefield controller && damage:type:creature[black]:opponentbattlefield opponent
+auto=choice name(Red) damage:type:creature[red]:mybattlefield controller && damage:type:creature[red]:opponentbattlefield opponent
+auto=choice name(Green) damage:type:creature[green]:mybattlefield controller && damage:type:creature[green]:opponentbattlefield opponent
 text=Choose a color. Searing Rays deals damage to each player equal to the number of creatures of that color that player controls.
 mana={2}{R}
 type=Sorcery
@@ -76865,7 +76865,7 @@ type=Sorcery
 [card]
 name=Seismic Strike
 target=creature
-auto=foreach(mountain|myBattlefield) damage:1
+auto=damage:type:mountain:mybattlefield
 text=Seismic Strike deals damage to target creature equal to the number of Mountains you control.
 mana={2}{R}
 type=Instant
@@ -78250,7 +78250,7 @@ toughness=6
 [/card]
 [card]
 name=Shepherd of Rot
-auto={T}:foreach(zombie) life:-1 opponent && foreach(zombie) life:-1 controller
+auto={T}:life:-type:zombie:battlefield opponent && life:-type:zombie:battlefield controller
 text={T}: Each player loses 1 life for each Zombie on the battlefield.
 mana={1}{B}
 type=Creature
@@ -79510,7 +79510,7 @@ toughness=5
 [/card]
 [card]
 name=Silent-Chant Zubera
-auto=@movedTo(graveyard) from(this|mybattlefield):foreach(zubera[fresh]|graveyard) life:2 controller
+auto=@movedTo(graveyard) from(this|mybattlefield):life:twicetype:zubera[fresh]:graveyard controller
 text=When Silent-Chant Zubera dies, you gain 2 life for each Zubera put into a graveyard from the battlefield this turn.
 mana={1}{W}
 type=Creature
@@ -80586,7 +80586,7 @@ toughness=4
 [card]
 name=Skred
 target=creature
-auto=foreach(snow|myBattlefield) damage:1
+auto=damage:type:snow:mybattlefield
 text=Skred deals damage to target creature equal to the number of snow permanents you control.
 mana={R}
 type=Instant
@@ -82674,7 +82674,7 @@ toughness=3
 [/card]
 [card]
 name=Sophic Centaur
-auto={2}{G}{G}{T}{discard(*|myhand)}:foreach(*|myhand) life:2 controller
+auto={2}{G}{G}{T}{discard(*|myhand)}:life:twicetype:*:myhand controller
 text={2}{G}{G}, {T}, Discard a card: You gain 2 life for each card in your hand.
 mana={3}{G}
 type=Creature
@@ -83384,7 +83384,7 @@ toughness=1
 [/card]
 [card]
 name=Sparksmith
-auto={T}:foreach(goblin|battlefield) damage:1 target(creature) && foreach(goblin|battlefield) damage:1 controller
+auto={T}:damage:type:goblin:battlefield target(creature) && damage:type:goblin:battlefield controller
 text={T}: Sparksmith deals X damage to target creature and X damage to you, where X is the number of Goblins on the battlefield.
 mana={1}{R}
 type=Creature
@@ -84289,7 +84289,7 @@ subtype=Arcane
 [card]
 name=Spire Barrage
 target=creature,player
-auto=foreach(mountain|myBattlefield) damage:1
+auto=damage:type:mountain:mybattlefield
 text=Spire Barrage deals damage to target creature or player equal to the number of Mountains you control.
 mana={4}{R}
 type=Sorcery
@@ -84592,7 +84592,7 @@ toughness=2
 [card]
 name=Spitting Earth
 target=creature
-auto=foreach(mountain|myBattlefield)damage:1
+auto=damage:type:mountain:mybattlefield
 text=Spitting Earth deals damage equal to the number of Mountains you control to target creature.
 mana={1}{R}
 type=Sorcery
@@ -84734,8 +84734,9 @@ toughness=1
 [/card]
 [card]
 name=Spoils of Evil
+target=opponent
 auto=foreach(artifact,creature|opponentgraveyard) add{1} controller
-auto=foreach(artifact,creature|opponentgraveyard) life:1 controller
+auto=life:type:artifact,creature:opponentgraveyard controller
 text=For each artifact or creature card in target opponent's graveyard, add {1} to your mana pool and you gain 1 life.
 mana={2}{B}
 type=Instant
@@ -85378,7 +85379,8 @@ toughness=2
 [/card]
 [card]
 name=Starlight
-auto=foreach(creature[black]|opponentBattlefield)life:3
+target=opponent
+auto=life:thricetype:creature[black]:opponentbattlefield controller
 text=You gain 3 life for each black creature target opponent controls.
 mana={1}{W}
 type=Sorcery
@@ -85786,7 +85788,7 @@ type=Enchantment
 [/card]
 [card]
 name=Stern Judge
-auto={T}:foreach(swamp|mybattlefield) damage:1 controller && foreach(swamp|opponentBattlefield) damage:1 opponent
+auto={T}:life:-type:swamp:mybattlefield controller && life:-type:swamp:opponentbattlefield opponent
 text={T}: Each player loses 1 life for each Swamp he or she controls.
 mana={2}{W}
 type=Creature
@@ -86835,8 +86837,8 @@ toughness=1
 [/card]
 [card]
 name=Stronghold Discipline
-auto=foreach(creature|opponentBattlefield) life:-1 opponent
-auto=foreach(creature|myBattlefield) life:-1 controller
+auto=life:-type:creature:opponentbattlefield opponent
+auto=life:-type:creature:mybattlefield controller
 text=Each player loses 1 life for each creature he or she controls.
 mana={2}{B}{B}
 type=Sorcery
@@ -87373,7 +87375,7 @@ type=Instant
 [/card]
 [card]
 name=Sunflare Shaman
-auto={1}{R}{T}:foreach(elemental|mygraveyard) damage:1 target(creature,player) && foreach(elemental|mygraveyard) damage:1 all(this)
+auto={1}{R}{T}:damage:type:elemental:mygraveyard target(creature,player) && damage:type:elemental:mygraveyard all(this)
 text={1}{R}, {T}: Sunflare Shaman deals X damage to target creature or player and X damage to itself, where X is the number of Elemental cards in your graveyard.
 mana={1}{R}
 type=Creature
@@ -88622,9 +88624,8 @@ type=Land
 [/card]
 [card]
 name=Tajuru Archer
-auto=may foreach(ally|mybattlefield) damage:1 target(creature[flying])
-auto=@movedTo(ally|mybattlefield):may foreach(ally|mybattlefield) damage:1 target(creature[flying])
-text=Whenever Tajuru Archer or another Ally enters the battlefield under your control, you may have Tajuru Archer deal damage to target creature with flying equal to the number of Allies you control.
+auto=may damage:type:ally:mybattlefield target(creature[flying])
+auto=@movedTo(ally|mybattlefield):may damage:type:ally:mybattlefield target(creature[flying])text=Whenever Tajuru Archer or another Ally enters the battlefield under your control, you may have Tajuru Archer deal damage to target creature with flying equal to the number of Allies you control.
 mana={2}{G}
 type=Creature
 subtype=Elf Archer Ally
@@ -89921,8 +89922,8 @@ type=Sorcery
 [card]
 name=Tendrils of Corruption
 target=creature
-auto=foreach(swamp|myBattlefield) damage:1
-auto=foreach(swamp|myBattlefield) life:1 controller
+auto=damage:type:swamp:mybattlefield
+auto=life:type:swamp:mybattlefield controller
 text=Tendrils of Corruption deals X damage to target creature and you gain X life, where X is the number of Swamps you control.
 mana={3}{B}
 type=Instant
@@ -91472,7 +91473,7 @@ toughness=2
 [/card]
 [card]
 name=Thunder of Hooves
-auto=foreach(beast) damage:1 all(player,creature[-flying])
+auto=damage:type:beast:battlefield all(player,creature[-flying])
 text=Thunder of Hooves deals X damage to each creature without flying and each player, where X is the number of Beasts on the battlefield.
 mana={3}{R}
 type=Sorcery
@@ -91528,7 +91529,7 @@ toughness=4
 [/card]
 [card]
 name=Thundercloud Shaman
-auto=foreach(giant|myBattlefield) damage:1 all(creature[-giant])
+auto=damage:type:giant:mybattlefield all(creature[-giant])
 text=When Thundercloud Shaman enters the battlefield, it deals damage equal to the number of Giants you control to each non-Giant creature.
 mana={3}{R}{R}
 type=Creature
@@ -92276,9 +92277,7 @@ toughness=4
 [/card]
 [card]
 name=Toil to Renown
-auto=foreach(creature[tapped]|myBattlefield) life:1
-auto=foreach(artifact[tapped]|myBattlefield) life:1
-auto=foreach(land[tapped]|myBattlefield) life:1
+auto=life:type:*[artifact;land;creature;tapped]:mybattlefield
 text=You gain 1 life for each tapped artifact, creature, and land you control.
 mana={1}{G}
 type=Sorcery
@@ -93730,7 +93729,7 @@ toughness=4
 [card]
 name=Treva, the Renewer
 abilities=flying
-auto=@combatdamaged(player) from(this):pay({2}{W}) activatechooseacolor foreach(*[chosencolor]|battlefield) life:1 activatechooseend
+auto=@combatdamaged(player) from(this):pay({2}{W}) activatechooseacolor life:type:*[chosencolor]:battlefield activatechooseend
 text=Flying -- Whenever Treva, the Renewer deals combat damage to a player, you may pay {2}{W}. If you do, choose a color, then you gain 1 life for each permanent of that color.
 mana={3}{G}{W}{U}
 type=Legendary Creature
@@ -94613,7 +94612,7 @@ toughness=1
 [/card]
 [card]
 name=Typhoon
-auto=foreach(island|opponentBattlefield) damage:1 opponent
+auto=damage:type:island:opponentbattlefield opponent
 text=Typhoon deals damage to each opponent equal to the number of Islands that player controls.
 mana={2}{G}
 type=Sorcery
@@ -96850,7 +96849,7 @@ type=Artifact
 [card]
 name=Vent Sentinel
 abilities=defender
-auto={1}{R}{T}:foreach(creature[defender]|myBattlefield) damage:1 target(player)
+auto={1}{R}{T}:damage:type:creature[defender]:mybattlefield target(player)
 text=Defender -- {1}{R}{T}: Vent Sentinel deals damage to target player equal to the number of creatures with defender you control.
 mana={3}{R}
 type=Creature
@@ -99947,8 +99946,8 @@ toughness=2
 [/card]
 [card]
 name=War Report
-auto=foreach(artifact|battlefield) life:1
-auto=foreach(creature|battlefield) life:1
+auto=life:type:artifact:battlefield controller
+auto=life:type:creature:battlefield controller
 text=You gain life equal to the number of creatures on the battlefield plus the number of artifacts on the battlefield.
 mana={3}{W}
 type=Instant
@@ -100772,7 +100771,7 @@ subtype=Aura
 [/card]
 [card]
 name=Wellwisher
-auto={T}:foreach(elf) life:1 controller
+auto={T}:life:type:elf:battlefield controller
 text={T}: You gain 1 life for each Elf on the battlefield.
 mana={1}{G}
 type=Creature
