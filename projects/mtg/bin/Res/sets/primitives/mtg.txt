@@ -5890,7 +5890,7 @@ toughness=2
 [/card]
 [card]
 name=Balduvian Conjurer
-auto={T}:target(snow) transforms((Creature,setpower=2,settoughness=2)) ueot
+auto={T}:target(land[snow]) transforms((Creature,setpower=2,settoughness=2)) ueot
 text={T}: Target snow land becomes a 2/2 creature until end of turn. It's still a land.
 mana={1}{U}
 type=Creature
