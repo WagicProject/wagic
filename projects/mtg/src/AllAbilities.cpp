@@ -3875,13 +3875,13 @@ void AAlterCost::increaseTheCost(MTGCardInstance * card)
         for(int k = Constants::MTG_COLOR_ARTIFACT; k < Constants::NB_Colors;k++)
         {
             card->getManaCost()->add(k,card->getIncreasedManaCost()->getCost(k));
-            if (card->getManaCost()->alternative)
+            if (card->getManaCost()->getAlternative())
             {
-                card->getManaCost()->alternative->add(k,card->getIncreasedManaCost()->getCost(k));
+                card->getManaCost()->getAlternative()->add(k,card->getIncreasedManaCost()->getCost(k));
             }
-            if (card->getManaCost()->BuyBack)
+            if (card->getManaCost()->getBuyback())
             {
-                card->getManaCost()->BuyBack->add(k,card->getIncreasedManaCost()->getCost(k));
+                card->getManaCost()->getBuyback()->add(k,card->getIncreasedManaCost()->getCost(k));
             }
         }
     }
@@ -3895,13 +3895,13 @@ void AAlterCost::decreaseTheCost(MTGCardInstance * card)
         for(int k = Constants::MTG_COLOR_ARTIFACT; k < Constants::NB_Colors;k++)
         {
             card->getManaCost()->remove(k,card->getReducedManaCost()->getCost(k));
-            if (card->getManaCost()->alternative)
+            if (card->getManaCost()->getAlternative())
             {
-                card->getManaCost()->alternative->remove(k,card->getReducedManaCost()->getCost(k));
+                card->getManaCost()->getAlternative()->remove(k,card->getReducedManaCost()->getCost(k));
             }
-            if (card->getManaCost()->BuyBack)
+            if (card->getManaCost()->getBuyback())
             {
-                card->getManaCost()->BuyBack->remove(k,card->getReducedManaCost()->getCost(k));
+                card->getManaCost()->getBuyback()->remove(k,card->getReducedManaCost()->getCost(k));
             }
         }
     }

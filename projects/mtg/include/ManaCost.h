@@ -27,6 +27,14 @@ protected:
     std::vector<ManaCostHybrid> hybrids;
 
     virtual void init();
+    ManaCost * suspend;
+    ManaCost * manaUsedToCast;
+    ManaCost * morph;
+    ManaCost * Retrace;
+    ManaCost * FlashBack;
+    ManaCost * BuyBack;
+    ManaCost * kicker;
+    ManaCost * alternative;
 
 public:
     enum
@@ -41,17 +49,31 @@ public:
         MANA_PAID_WITH_MORPH = 7,
         MANA_PAID_WITH_SUSPEND = 8
     };
-
     ExtraCosts * extraCosts;
-    ManaCost * kicker;
-    ManaCost * alternative;
-    ManaCost * BuyBack;
-    ManaCost * FlashBack;
-    ManaCost * Retrace;
-    ManaCost * morph;
-    ManaCost * suspend;
 
-    ManaCost * manaUsedToCast;
+	ManaCost * getAlternative(){ return alternative; };
+	void setAlternative(ManaCost * aMana){ SAFE_DELETE(alternative); alternative = aMana;};
+
+	ManaCost * getKicker(){ return kicker; };
+	void setKicker(ManaCost * aMana){ SAFE_DELETE(kicker); kicker = aMana;};
+
+	ManaCost * getBuyback(){ return BuyBack; };
+	void setBuyback(ManaCost * aMana){ SAFE_DELETE(BuyBack); BuyBack = aMana;};
+
+	ManaCost * getFlashback(){ return FlashBack; };
+	void setFlashback(ManaCost * aMana){ SAFE_DELETE(FlashBack); FlashBack = aMana;};
+
+	ManaCost * getRetrace(){ return Retrace; };
+	void setRetrace(ManaCost * aMana){ SAFE_DELETE(Retrace); Retrace = aMana;};
+
+	ManaCost * getMorph(){ return morph; };
+	void setMorph(ManaCost * aMana){ SAFE_DELETE(morph); morph = aMana;};
+
+	ManaCost * getSuspend(){ return suspend; };
+	void setSuspend(ManaCost * aMana){ SAFE_DELETE(suspend); suspend = aMana;};
+
+	ManaCost * getManaUsedToCast(){ return manaUsedToCast; };
+	void setManaUsedToCast(ManaCost * aMana){ SAFE_DELETE(manaUsedToCast); manaUsedToCast = aMana;};
 
     string alternativeName;
     bool isMulti;

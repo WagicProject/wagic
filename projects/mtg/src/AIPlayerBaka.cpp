@@ -1042,10 +1042,10 @@ vector<MTGAbility*> AIPlayerBaka::canPayMana(MTGCardInstance * target,ManaCost *
                 return payments;//we didn't meet one of the color cost requirements.
             }
         }
-        if(cost->kicker && !searchingAgain)
+        if(cost->getKicker() && !searchingAgain)
         {
 
-            ManaCost * withKickerCost= NEW ManaCost(cost->kicker);
+            ManaCost * withKickerCost= NEW ManaCost(cost->getKicker());
             int canKick = 0;
             vector<MTGAbility*>kickerPayment;
             bool keepLooking = true;
@@ -1062,7 +1062,7 @@ vector<MTGAbility*> AIPlayerBaka::canPayMana(MTGCardInstance * target,ManaCost *
                         }
                     }
                     canKick += 1;
-                    keepLooking = cost->kicker->isMulti;
+                    keepLooking = cost->getKicker()->isMulti;
                 }
                 else
                     keepLooking = false;
@@ -1724,7 +1724,7 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
     {
         nextCardToPlay = comboCards.back();
         gotPayments.clear();
-        if((!pMana->canAfford(nextCardToPlay->getManaCost()) || nextCardToPlay->getManaCost()->kicker))
+        if((!pMana->canAfford(nextCardToPlay->getManaCost()) || nextCardToPlay->getManaCost()->getKicker()))
             gotPayments = canPayMana(nextCardToPlay,nextCardToPlay->getManaCost());
         DebugTrace("ai is doing a combo:" << nextCardToPlay->getName());
         comboCards.pop_back();
@@ -1769,7 +1769,7 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
                     continue;
                 nextCardToPlay = card;
                 gotPayments.clear();
-                if((!pMana->canAfford(nextCardToPlay->getManaCost()) || nextCardToPlay->getManaCost()->kicker))
+                if((!pMana->canAfford(nextCardToPlay->getManaCost()) || nextCardToPlay->getManaCost()->getKicker()))
                     gotPayments = canPayMana(nextCardToPlay,nextCardToPlay->getManaCost());
                 return activateCombo();
             }
@@ -1782,7 +1782,7 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
         int currentCost = card->getManaCost()->getConvertedCost();
         int hasX = card->getManaCost()->hasX();
         gotPayments.clear();
-        if((!pMana->canAfford(card->getManaCost()) || card->getManaCost()->kicker))
+        if((!pMana->canAfford(card->getManaCost()) || card->getManaCost()->getKicker()))
             gotPayments = canPayMana(card,card->getManaCost());
             //for preformence reason we only look for specific mana if the payment couldn't be made with pmana.
         if ((currentCost > maxCost || hasX) && (gotPayments.size() || pMana->canAfford(card->getManaCost())))
@@ -1855,9 +1855,9 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
                     xDiff = 0;
                 shouldPlayPercentage = shouldPlayPercentage - static_cast<int> ((shouldPlayPercentage * 1.9f) / (1 + xDiff));
             }
-            if(card->getManaCost() && card->getManaCost()->kicker && card->getManaCost()->kicker->isMulti)
+            if(card->getManaCost() && card->getManaCost()->getKicker() && card->getManaCost()->getKicker()->isMulti)
             {
-                shouldPlayPercentage = 10* size_t(gotPayments.size())/int(1+(card->getManaCost()->getConvertedCost()+card->getManaCost()->kicker->getConvertedCost()));
+                shouldPlayPercentage = 10* size_t(gotPayments.size())/int(1+(card->getManaCost()->getConvertedCost()+card->getManaCost()->getKicker()->getConvertedCost()));
                 if(shouldPlayPercentage <= 10)
                     shouldPlayPercentage = shouldPlayPercentage/3;
             }
@@ -1886,7 +1886,7 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
     }
     if(nextCardToPlay)
     {
-        if(!pMana->canAfford(nextCardToPlay->getManaCost()) || nextCardToPlay->getManaCost()->kicker)
+        if(!pMana->canAfford(nextCardToPlay->getManaCost()) || nextCardToPlay->getManaCost()->getKicker())
             gotPayments = canPayMana(nextCardToPlay,nextCardToPlay->getManaCost());
         DebugTrace(" AI wants to play card." << endl
             << "- Next card to play: " << (nextCardToPlay ? nextCardToPlay->name : "None" ) << endl );

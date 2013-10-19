@@ -388,24 +388,24 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card)
 
     ManaCost * previousManaPool = NEW ManaCost(player->getManaPool());
     int payResult = player->getManaPool()->pay(card->getManaCost());
-    if (card->getManaCost()->kicker && (OptionKicker::KICKER_ALWAYS == options[Options::KICKERPAYMENT].number || card->controller()->isAI()))
+    if (card->getManaCost()->getKicker() && (OptionKicker::KICKER_ALWAYS == options[Options::KICKERPAYMENT].number || card->controller()->isAI()))
     {
         ManaCost * withKickerCost= NEW ManaCost(card->getManaCost());
-        withKickerCost->add(withKickerCost->kicker);
-        if (card->getManaCost()->kicker->isMulti)
+        withKickerCost->add(withKickerCost->getKicker());
+        if (card->getManaCost()->getKicker()->isMulti)
         {
             while(previousManaPool->canAfford(withKickerCost))
             {
-                withKickerCost->add(withKickerCost->kicker);
+                withKickerCost->add(withKickerCost->getKicker());
                 card->kicked += 1;
             }
             for(int i = 0;i < card->kicked;i++)
-                player->getManaPool()->pay(card->getManaCost()->kicker);
+                player->getManaPool()->pay(card->getManaCost()->getKicker());
             payResult = ManaCost::MANA_PAID_WITH_KICKER;
         }
         else if (previousManaPool->canAfford(withKickerCost))
         {
-            player->getManaPool()->pay(card->getManaCost()->kicker);
+            player->getManaPool()->pay(card->getManaCost()->getKicker());
             payResult = ManaCost::MANA_PAID_WITH_KICKER;
         }
         delete withKickerCost;
@@ -481,7 +481,7 @@ int MTGKickerRule::isReactingToClick(MTGCardInstance * card, ManaCost *)
     Player * player = game->currentlyActing();
     if(!player->game->hand->hasCard(card))
 		return 0;
-    ManaCost * kicker = card->getManaCost()->kicker;
+    ManaCost * kicker = card->getManaCost()->getKicker();
     if(!kicker)
     {
 		SAFE_DELETE(kicker);
@@ -489,7 +489,7 @@ int MTGKickerRule::isReactingToClick(MTGCardInstance * card, ManaCost *)
     }
     ManaCost * playerMana = player->getManaPool();
     ManaCost * withKickerCost= NEW ManaCost(card->getManaCost());
-    withKickerCost->add(withKickerCost->kicker);
+    withKickerCost->add(withKickerCost->getKicker());
     if(!playerMana->canAfford(withKickerCost))
     {
         delete withKickerCost;
@@ -508,11 +508,11 @@ int MTGKickerRule::reactToClick(MTGCardInstance * card)
         
     Player * player = game->currentlyActing();
     ManaCost * withKickerCost= NEW ManaCost(card->getManaCost());//using pointers here alters the real cost of the card.
-    if (card->getManaCost()->kicker->isMulti)
+    if (card->getManaCost()->getKicker()->isMulti)
     {
         while(player->getManaPool()->canAfford(withKickerCost))
         {
-            withKickerCost->add(withKickerCost->kicker);
+            withKickerCost->add(withKickerCost->getKicker());
             card->kicked += 1;
         }
         card->kicked -= 1;
@@ -522,7 +522,7 @@ int MTGKickerRule::reactToClick(MTGCardInstance * card)
     }
     else
     {
-        withKickerCost->add(withKickerCost->kicker);
+        withKickerCost->add(withKickerCost->getKicker());
         card->paymenttype = MTGAbility::PUT_INTO_PLAY_WITH_KICKER;
     }
     if (withKickerCost->isExtraPaymentSet())
@@ -619,7 +619,7 @@ PermanentAbility(observer, _id)
 
 int MTGAlternativeCostRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
 {
-	ManaCost * alternateCost = card->getManaCost()->alternative;
+	ManaCost * alternateCost = card->getManaCost()->getAlternative();
 	if (!game->currentlyActing()->game->hand->hasCard(card))
  		return 0;
     return isReactingToClick( card, mana, alternateCost );
@@ -635,8 +635,8 @@ int MTGAlternativeCostRule::isReactingToClick(MTGCardInstance * card, ManaCost *
     if(!allowedToAltCast(card,player))
         return 0;
 
-    if(card->model->data->getManaCost()->alternative && card->model->data->getManaCost()->alternative->alternativeName.size())
-        alternativeName = card->model->data->getManaCost()->alternative->alternativeName;
+    if(card->model->data->getManaCost()->getAlternative() && card->model->data->getManaCost()->getAlternative()->alternativeName.size())
+        alternativeName = card->model->data->getManaCost()->getAlternative()->alternativeName;
 
     if (card->isLand())
     {
@@ -676,7 +676,7 @@ int MTGAlternativeCostRule::reactToClick(MTGCardInstance * card)
 	if ( !isReactingToClick(card))
 		return 0;
 
-	ManaCost *alternateCost = card->getManaCost()->alternative;
+	ManaCost *alternateCost = card->getManaCost()->getAlternative();
 	card->paymenttype = MTGAbility::ALTERNATIVE_COST;
 
     return reactToClick(card, alternateCost, ManaCost::MANA_PAID_WITH_ALTERNATIVE);
@@ -776,7 +776,7 @@ int MTGBuyBackRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
         return 0;
     if(!allowedToCast(card,player))
         return 0;
-    return MTGAlternativeCostRule::isReactingToClick( card, mana, card->getManaCost()->BuyBack );
+    return MTGAlternativeCostRule::isReactingToClick( card, mana, card->getManaCost()->getBuyback() );
 }
 
 int MTGBuyBackRule::reactToClick(MTGCardInstance * card) 
@@ -784,7 +784,7 @@ int MTGBuyBackRule::reactToClick(MTGCardInstance * card)
     if (!isReactingToClick(card))
         return 0;
 
-    ManaCost * alternateCost = card->getManaCost()->BuyBack;
+    ManaCost * alternateCost = card->getManaCost()->getBuyback();
     
     card->paymenttype = MTGAbility::BUYBACK_COST;
 
@@ -818,12 +818,12 @@ int MTGFlashBackRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
     Player * player = game->currentlyActing();
     if (!player->game->graveyard->hasCard(card))
         return 0;
-    return MTGAlternativeCostRule::isReactingToClick(card, mana, card->getManaCost()->FlashBack );
+    return MTGAlternativeCostRule::isReactingToClick(card, mana, card->getManaCost()->getFlashback() );
 }
 
 int MTGFlashBackRule::reactToClick(MTGCardInstance * card) 
 {
-    ManaCost * alternateCost = card->getManaCost()->FlashBack;
+    ManaCost * alternateCost = card->getManaCost()->getFlashback();
     
     if (!isReactingToClick(card))
         return 0;
@@ -859,7 +859,7 @@ MTGAlternativeCostRule(observer, _id)
 int MTGRetraceRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
 {
     Player * player = game->currentlyActing();
-    ManaCost * alternateManaCost = card->getManaCost()->Retrace;
+    ManaCost * alternateManaCost = card->getManaCost()->getRetrace();
 
     if (!player->game->graveyard->hasCard(card))
         return 0;
@@ -873,7 +873,7 @@ int MTGRetraceRule::reactToClick(MTGCardInstance * card)
     if (!isReactingToClick(card))
         return 0;
     
-    ManaCost * alternateCost = card->getManaCost()->Retrace;
+    ManaCost * alternateCost = card->getManaCost()->getRetrace();
     
     card->paymenttype = MTGAbility::RETRACE_COST;
 
@@ -906,7 +906,7 @@ MTGAlternativeCostRule(observer, _id)
 int MTGSuspendRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
 {
     Player * player = game->currentlyActing();
-    ManaCost * alternateManaCost = card->getManaCost()->suspend;
+    ManaCost * alternateManaCost = card->getManaCost()->getSuspend();
 
     if (!player->game->hand->hasCard(card) || !alternateManaCost)
         return 0;
@@ -948,7 +948,7 @@ int MTGSuspendRule::reactToClick(MTGCardInstance * card)
         return 0;
     Player *player = game->currentlyActing();
     ManaCost * playerMana = player->getManaPool();
-    ManaCost * alternateCost = card->getManaCost()->suspend;
+    ManaCost * alternateCost = card->getManaCost()->getSuspend();
     //this handles extra cost payments at the moment a card is played.
     if (playerMana->canAfford(alternateCost))
     {
@@ -973,22 +973,22 @@ int MTGSuspendRule::reactToClick(MTGCardInstance * card)
         else
         {
             alternateCost->setExtraCostsAction(this, card);
-            game->mExtraPayment = getCost()->suspend->extraCosts;
+            game->mExtraPayment = getCost()->getSuspend()->extraCosts;
             return 0;
         }
             card->paymenttype = MTGAbility::SUSPEND_COST;
     }
     //------------------------------------------------------------------------
-    if(card->getManaCost()->suspend->hasX())
+    if(card->getManaCost()->getSuspend()->hasX())
     {
         ManaCost * pMana = NEW ManaCost(player->getManaPool());
-        ManaCost * suspendCheckMana = NEW ManaCost(card->getManaCost()->suspend);
+        ManaCost * suspendCheckMana = NEW ManaCost(card->getManaCost()->getSuspend());
         card->suspendedTime = pMana->getConvertedCost() - suspendCheckMana->getConvertedCost();
         SAFE_DELETE(pMana);
         SAFE_DELETE(suspendCheckMana);
     }
-    player->getManaPool()->pay(card->getManaCost()->suspend);
-    card->getManaCost()->suspend->doPayExtra();
+    player->getManaPool()->pay(card->getManaCost()->getSuspend());
+    card->getManaCost()->getSuspend()->doPayExtra();
     //---------------------------------------------------------------------------
     player->game->putInZone(card, card->currentZone, player->game->exile);
     card->next->suspended = true;
@@ -1031,7 +1031,7 @@ int MTGMorphCostRule::isReactingToClick(MTGCardInstance * card, ManaCost *)
     Player * currentPlayer = game->currentPlayer;
     if (!player->game->hand->hasCard(card))
         return 0;
-    if (!card->getManaCost()->morph)
+    if (!card->getManaCost()->getMorph())
         return 0;
     if(!allowedToAltCast(card,player))
         return 0;
@@ -1045,7 +1045,7 @@ int MTGMorphCostRule::isReactingToClick(MTGCardInstance * card, ManaCost *)
         if (game->currentActionPlayer->game->playRestrictions->canPutIntoZone(card, game->currentActionPlayer->game->stack) == PlayRestriction::CANT_PLAY)
             return 0;
         ManaCost * playerMana = player->getManaPool();
-        ManaCost * morph = card->getManaCost()->morph;
+        ManaCost * morph = card->getManaCost()->getMorph();
 
 #ifdef WIN32
         ManaCost * cost = card->getManaCost();
@@ -1068,12 +1068,12 @@ int MTGMorphCostRule::reactToClick(MTGCardInstance * card)
         return 0;
     Player * player = game->currentlyActing();
     ManaCost * cost = card->getManaCost();
-    ManaCost * morph = card->getManaCost()->morph;
+    ManaCost * morph = card->getManaCost()->getMorph();
     ManaCost * playerMana = player->getManaPool();
     //this handles extra cost payments at the moment a card is played.
     if (playerMana->canAfford(morph))
     {
-        if (cost->morph->isExtraPaymentSet())
+        if (cost->getMorph()->isExtraPaymentSet())
         {
             card->paymenttype = MTGAbility::MORPH_COST;
             if (!game->targetListIsSet(card))
@@ -1083,21 +1083,21 @@ int MTGMorphCostRule::reactToClick(MTGCardInstance * card)
         }
         else
         {
-            cost->morph->setExtraCostsAction(this, card);
-            game->mExtraPayment = cost->morph->extraCosts;
+            cost->getMorph()->setExtraCostsAction(this, card);
+            game->mExtraPayment = cost->getMorph()->extraCosts;
             card->paymenttype = MTGAbility::MORPH_COST;
             return 0;
         }
     }
     //------------------------------------------------------------------------
     ManaCost * previousManaPool = NEW ManaCost(player->getManaPool());
-    player->getManaPool()->pay(card->getManaCost()->morph);
-    card->getManaCost()->morph->doPayExtra();
+    player->getManaPool()->pay(card->getManaCost()->getMorph());
+    card->getManaCost()->getMorph()->doPayExtra();
     int payResult = ManaCost::MANA_PAID_WITH_MORPH;
     //if morph has a extra payment thats set, this code pays it.the if statement is 100% needed as it would cause a crash on cards that dont have the morph cost.
     if (morph)
     {
-        card->getManaCost()->morph->doPayExtra();
+        card->getManaCost()->getMorph()->doPayExtra();
     }
     //---------------------------------------------------------------------------
     ManaCost * spellCost = previousManaPool->Diff(player->getManaPool());

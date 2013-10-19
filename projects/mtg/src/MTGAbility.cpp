@@ -401,7 +401,7 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
             if(spentMana.size())
             {
                 ManaCost * costToCheck = ManaCost::parseManaCost(restriction[i]);
-                ManaCost * spent = card->getManaCost()->manaUsedToCast;
+                ManaCost * spent = card->getManaCost()->getManaUsedToCast();
                 if(spent && costToCheck && !spent->canAfford(costToCheck))
                 {
                     SAFE_DELETE(costToCheck);

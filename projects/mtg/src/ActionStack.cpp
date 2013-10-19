@@ -331,7 +331,9 @@ int Spell::resolve()
 			observer->getResourceManager()->PlaySample(source->getSample());
     }
     if(this->cost)
-        source->getManaCost()->manaUsedToCast = NEW ManaCost(this->cost);
+	{
+		source->getManaCost()->setManaUsedToCast(NEW ManaCost(this->cost));
+	}
     AbilityFactory af(observer);
     af.addAbilities(observer->mLayers->actionLayer()->getMaxId(), this);
     return 1;

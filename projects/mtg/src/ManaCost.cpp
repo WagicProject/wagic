@@ -989,6 +989,15 @@ ostream& operator<<(ostream& out, ManaCost m)
 
 void ManaPool::Empty()
 {
+	SAFE_DELETE(extraCosts);
+    SAFE_DELETE(kicker);
+    SAFE_DELETE(alternative);
+    SAFE_DELETE(BuyBack);
+    SAFE_DELETE(FlashBack);
+    SAFE_DELETE(Retrace);
+    SAFE_DELETE(morph);
+    SAFE_DELETE(suspend);
+    SAFE_DELETE(manaUsedToCast);
     init();
     WEvent * e = NEW WEventEmptyManaPool(this);
     player->getObserver()->receiveEvent(e);

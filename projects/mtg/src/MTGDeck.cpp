@@ -101,7 +101,7 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
         {
             string value = val;
             std::transform(value.begin(), value.end(), value.begin(), ::tolower);
-            cost->BuyBack = ManaCost::parseManaCost(value);
+            cost->setBuyback(ManaCost::parseManaCost(value));
         }
         break;
 
@@ -139,13 +139,13 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
                 {
                     string value = val;
                     std::transform(value.begin(), value.end(), value.begin(), ::tolower);
-                    cost->morph = ManaCost::parseManaCost(value);
+                    cost->setMorph(ManaCost::parseManaCost(value));
                 }
                 else
                 {
                     string value = val;
                     std::transform(value.begin(), value.end(), value.begin(), ::tolower);
-                    cost->FlashBack = ManaCost::parseManaCost(value);
+                    cost->setFlashback(ManaCost::parseManaCost(value));
                 }
             }
             break;
@@ -174,8 +174,8 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
                 value.erase(multikick, endK - multikick);
                 isMultikicker = true;
         }
-            cost->kicker = ManaCost::parseManaCost(value);  
-            cost->kicker->isMulti = isMultikicker;
+            cost->setKicker(ManaCost::parseManaCost(value));  
+            cost->getKicker()->isMulti = isMultikicker;
         }
         break;
 
@@ -214,9 +214,9 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
                         theName = value.substr(name + 5,endName - name - 5);
                         value.erase(name, endName - name + 1);
                     }
-                    cost->alternative = ManaCost::parseManaCost(value);
+                    cost->setAlternative(ManaCost::parseManaCost(value));
                     if(theName.size())
-                        cost->alternative->alternativeName.append(theName);
+                        cost->getAlternative()->alternativeName.append(theName);
             }
         }
         break;
@@ -249,7 +249,7 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
             {
                 string value = val;
                 std::transform(value.begin(), value.end(), value.begin(), ::tolower);
-                cost->Retrace = ManaCost::parseManaCost(value);
+                cost->setRetrace(ManaCost::parseManaCost(value));
             }
         }
         else if (s.find("rar") != string::npos)
@@ -271,7 +271,7 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
                 {
                     string value = val;
                     std::transform(value.begin(), value.end(), value.begin(), ::tolower);
-                    cost->suspend = ManaCost::parseManaCost(value);
+					cost->setSuspend(ManaCost::parseManaCost(value));
                     primitive->suspendedTime = suspendTime;
                 }
                 
