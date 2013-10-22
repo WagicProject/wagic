@@ -238,6 +238,7 @@ counterspell.txt
 counterspell2.txt
 counterspell3.txt
 counterspell4.txt
+counter_unless_pay.txt
 Covetous_Dragon_ASLONGAS_3.txt
 Covetous_Dragon_ASLONGAS_4.txt
 cranial_plating.txt

@@ -83702,6 +83702,14 @@ mana={U}
 type=Instant
 [/card]
 [card]
+name=Spell Rupture
+target=*|stack
+auto=if cantargetcard(*|opponentstack) then transforms((,newability[pay[[{value:power:highest:creature:opponentbattlefield}]] name(pay {value} mana) donothing?fizzle])) forever else transforms((,newability[pay[[{value:power:highest:creature:mybattlefield.}]] name(pay {value} mana) donothing?fizzle])) forever
+text=Counter target spell unless its controller pays {X}, where X is the greatest power among creatures you control.
+mana={1}{U}
+type=Instant
+[/card]
+[card]
 name=Spell Snare
 target=*[manacost=2]|stack
 auto=fizzle
@@ -88468,6 +88476,14 @@ type=Creature
 subtype=Sliver
 power=3
 toughness=3
+[/card]
+[card]
+name=Syncopate
+target=*|stack
+auto=transforms((,newability[pay[[{x}]] name(pay {value} mana) donothing?fizzleto(exile)])) forever
+text=Counter target spell unless its controller pays {X}. If that spell is countered this way, exile it instead of putting it into its owner's graveyard.
+mana={X}{U}
+type=Instant
 [/card]
 [card]
 name=Syndic of Tithes

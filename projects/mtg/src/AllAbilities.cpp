@@ -1110,9 +1110,12 @@ AASetCoin * AASetCoin::clone() const
 AASetCoin::~AASetCoin()
 {
 }
+
 //paying for an ability as an effect but as a cost
-GenericPaidAbility::GenericPaidAbility(GameObserver* observer, int id, MTGCardInstance * source, Targetable * target,string _newName,string _castRestriction,string mayCost,string _toAdd,ManaCost * cost) :
-ActivatedAbility(observer, id, source, cost, 0),newName(_newName),restrictions(_castRestriction),baseCost(mayCost), baseAbilityStr(_toAdd)
+GenericPaidAbility::GenericPaidAbility(GameObserver* observer, int id, MTGCardInstance * source,
+    Targetable * target, string _newName, string _castRestriction, string mayCost, string _toAdd, ManaCost * cost) :
+ActivatedAbility(observer, id, source, cost, 0),
+    newName(_newName), restrictions(_castRestriction), baseCost(mayCost), baseAbilityStr(_toAdd)
 {
     this->GetId();
     baseAbility = NULL;
@@ -1124,8 +1127,7 @@ int GenericPaidAbility::resolve()
     if (!target)
         return 0;
 
-
-    if(restrictions.size())
+    if (restrictions.size())
     {
         AbilityFactory af(game);
         int checkCond = af.parseCastRestrictions(source,source->controller(),restrictions);
@@ -1136,21 +1138,35 @@ int GenericPaidAbility::resolve()
     }
     AbilityFactory Af(game);
     vector<string> baseAbilityStrSplit = split(baseAbilityStr,'?');
-    vector<MTGAbility*>selection;
-    if(baseAbilityStrSplit.size() > 1)
+    vector<MTGAbility*> selection;
+    if (baseAbilityStrSplit.size() > 1)
     {
-    baseAbility = Af.parseMagicLine(baseAbilityStrSplit[0], this->GetId(), NULL, source);
-    baseAbility->target = target;
-    optionalCost =  ManaCost::parseManaCost(baseCost, NULL, source);
-    MTGAbility * set = baseAbility->clone();
-    set->oneShot = true;
-    selection.push_back(set);
-    SAFE_DELETE(baseAbility);
-    baseAbility = Af.parseMagicLine(baseAbilityStrSplit[1], this->GetId(), NULL, source);
-    baseAbility->target = target;
-    set = baseAbility->clone();
-    set->oneShot = true;
-    selection.push_back(set);
+        baseAbility = Af.parseMagicLine(baseAbilityStrSplit[0], this->GetId(), NULL, source);
+        baseAbility->target = target;
+        optionalCost =  ManaCost::parseManaCost(baseCost, NULL, source);
+        if (optionalCost->hasX()) {
+            optionalCost->add(Constants::MTG_COLOR_ARTIFACT, source->storedSourceCard->X);
+        }
+
+        // hacky way to produce better MenuText
+        AAFakeAbility* isFake = dynamic_cast< AAFakeAbility* >( baseAbility );
+        size_t findPayN = isFake->named.find(" {value} mana");
+        if (isFake && findPayN != string::npos) {
+            stringstream parseN;
+            parseN << optionalCost->getCost(Constants::MTG_COLOR_ARTIFACT);
+            isFake->named.replace(findPayN + 1, 7, parseN.str());
+        }
+
+        MTGAbility * set = baseAbility->clone();
+        set->oneShot = true;
+        selection.push_back(set);
+        SAFE_DELETE(baseAbility);
+
+        baseAbility = Af.parseMagicLine(baseAbilityStrSplit[1], this->GetId(), NULL, source);
+        baseAbility->target = target;
+        set = baseAbility->clone();
+        set->oneShot = true;
+        selection.push_back(set);
     }
     else
     {
@@ -1162,20 +1178,20 @@ int GenericPaidAbility::resolve()
         selection.push_back(set);
     }
 
-    if(selection.size())
+    if (selection.size())
     {
-        MTGAbility * a1 = NEW MenuAbility(game, this->GetId(), target, source,baseAbilityStrSplit.size() >1?true:false,selection,NULL,newName);
-        dynamic_cast<MenuAbility*>(a1)->optionalCosts.push_back(NEW ManaCost(optionalCost));
+        bool must = baseAbilityStrSplit.size() > 1 ? true : false;
+        MenuAbility * a1 = NEW MenuAbility(game, this->GetId(), target, source, must, selection, NULL, newName);
+        a1->optionalCosts.push_back(NEW ManaCost(optionalCost));
         game->mLayers->actionLayer()->currentActionCard = (MTGCardInstance *)target;
         a1->resolve();
     }
     return 1;
-
 }
 
 const char* GenericPaidAbility::getMenuText()
 {
-    if( newName.size())
+    if (newName.size())
         return newName.c_str();
     return "Pay For Effect";
 }
@@ -3921,6 +3937,10 @@ AAlterCost::~AAlterCost()
 ATransformer::ATransformer(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target, string stypes, string sabilities,string newpower,bool newpowerfound,string newtoughness,bool newtoughnessfound,vector<string> newAbilitiesList,bool newAbilityFound,bool aForever, bool aUntilNext,string _menu) :
     MTGAbility(observer, id, source, target),newpower(newpower),newpowerfound(newpowerfound),newtoughness(newtoughness),newtoughnessfound(newtoughnessfound),newAbilitiesList(newAbilitiesList),newAbilityFound(newAbilityFound),aForever(aForever),UYNT(aUntilNext),menutext(_menu)
 {
+
+    if (target != source) {
+        target->storedSourceCard = source;
+    }
 
     PopulateAbilityIndexVector(abilities, sabilities);
     PopulateColorIndexVector(colors, sabilities);

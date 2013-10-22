@@ -7,6 +7,7 @@
 #include "Player.h"
 #include "WEvent.h"
 #include "MTGAbility.h"
+#include "AllAbilities.h"
 #include "iterator"
 
 SUPPORT_OBJECT_ANALYTICS(ManaCost)
@@ -117,6 +118,14 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
                                 }
                                 manaCost->specificX(color);
                             }
+                        }
+                        break;
+                    case 'v':
+                        if (value.find("value:") != string::npos) {
+                            vector<string> splitParsedVar = parseBetween(value, "value:", " ", false);
+                            WParsedInt* res = NEW WParsedInt(splitParsedVar[1], NULL, c);
+                            manaCost->add(Constants::MTG_COLOR_ARTIFACT, res->getValue());
+                            SAFE_DELETE(res);
                         }
                         break;
                     case 't': //Tap
