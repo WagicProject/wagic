@@ -42,13 +42,15 @@ protected:
     MTGAbility * source;
     MTGCardInstance * cardSource;
     MTGCardInstance * cardTarget;
-    TargetChooser * TargetingCards;
+    TargetChooser * tc;
     Counter * counter;
 public:
-    RECountersPrevention(MTGAbility * _source,MTGCardInstance * cardSource = NULL,MTGCardInstance * cardTarget = NULL,TargetChooser * tc = NULL,Counter * counter = NULL);
+    RECountersPrevention(MTGAbility * _source, MTGCardInstance * cardSource = NULL,
+        MTGCardInstance * cardTarget = NULL, TargetChooser * tc = NULL, Counter * counter = NULL);
     WEvent * replace(WEvent *e);
     ~RECountersPrevention();
 };
+
 class REDrawReplacement: public ReplacementEffect
 {
 protected:

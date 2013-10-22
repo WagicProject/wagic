@@ -49,33 +49,36 @@ REDamagePrevention::~REDamagePrevention()
     SAFE_DELETE(tcTarget);
 }
 //counters replacement effect///////////////////
-RECountersPrevention::RECountersPrevention(MTGAbility * source,MTGCardInstance * cardSource,MTGCardInstance * cardTarget,TargetChooser * tc,Counter * counter) :
-    source(source),cardSource(cardSource),cardTarget(cardTarget),TargetingCards(tc),counter(counter)
+RECountersPrevention::RECountersPrevention(MTGAbility * source, MTGCardInstance * cardSource,
+    MTGCardInstance * cardTarget, TargetChooser * tc, Counter * counter) :
+    source(source), cardSource(cardSource), cardTarget(cardTarget), tc(tc), counter(counter)
 {
 }
 
-    WEvent * RECountersPrevention::replace(WEvent *event)
+WEvent * RECountersPrevention::replace(WEvent *event)
+{
+    if (!event) return event;
+    WEventCounters * e = dynamic_cast<WEventCounters*> (event);
+    if (!e) return event;
+    MTGCardInstance * target = e->targetCard;
+    if (target)
     {
-        if (!event) return event;
-        WEventCounters * e = dynamic_cast<WEventCounters*> (event);
-        if (!e) return event;
-        if((MTGCardInstance*)e->targetCard)
+        if (target == cardSource || (tc && tc->canTarget(target)))
         {
-            if((MTGCardInstance*)e->targetCard == cardSource && counter)
-            {
-                if(e->power == counter->power && e->toughness == counter->toughness && e->name == counter->name)
-                    return event = NULL;
-            }
-            else if((MTGCardInstance*)e->targetCard == cardSource)
-                return event = NULL;
-            else if(TargetingCards && TargetingCards->canTarget((MTGCardInstance*)e->targetCard))
-                return event = NULL;
+            // counter == NULL means "any counter"
+            if (!counter)
+                return NULL;
+
+            if (e->power == counter->power && e->toughness == counter->toughness && e->name == counter->name)
+                return NULL;
         }
-        return event;
     }
+    return event;
+}
+
 RECountersPrevention::~RECountersPrevention()
 {
-    SAFE_DELETE(TargetingCards);
+    SAFE_DELETE(tc);
 }
 ////--draw replacement---------------------
 REDrawReplacement::REDrawReplacement(MTGAbility * source, Player * Drawer, MTGAbility * replaceWith) :

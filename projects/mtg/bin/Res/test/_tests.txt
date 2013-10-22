@@ -233,6 +233,7 @@ control_magic3.txt
 control_magic4.txt
 corrupt.txt
 counsel_of_the_soratami.txt
+countershroud.txt
 counterspell.txt
 counterspell2.txt
 counterspell3.txt
