@@ -336,6 +336,42 @@ void MTGAllCards::init()
     initCounters();
 }
 
+void MTGAllCards::loadFolder(const string& folder, const string& filename )
+{
+    vector<string> files = JFileSystem::GetInstance()->scanfolder(folder);
+
+    if (!files.size())
+    {
+        DebugTrace("loadPrimitives:WARNING:Primitives folder is missing");
+        return;
+    }
+
+    for (size_t i = 0; i < files.size(); ++i)
+    {
+        string afile = folder;
+        afile.append(files[i]);
+
+        if(files[i] == "." || files[i] == "..")
+            continue;
+
+        if (!JFileSystem::GetInstance()->FileExists(afile))
+            continue;
+
+        if(JFileSystem::GetInstance()->DirExists(afile))
+            loadFolder(string(afile+"/").c_str(), filename);
+
+        if(filename.size())
+        {
+          if(filename == files[i])
+          {
+            load(afile.c_str(), folder.c_str());
+          }
+        } else {
+          load(afile.c_str());
+        }
+    }
+}
+
 int MTGAllCards::load(const char * config_file, const char * set_name, int)
 {
     conf_read_mode = 0;
@@ -445,10 +481,12 @@ MTGAllCards::~MTGAllCards()
     primitives.clear();
 }
 
-void MTGAllCards::loadInstance()
+MTGAllCards* MTGAllCards::getInstance()
 {
     if(!instance)
         instance = new MTGAllCards();
+
+    return instance;
 }
 
 void MTGAllCards::unloadAll()

@@ -125,6 +125,8 @@ public:
 #endif
 
     MTGCard * getCardByName(string name);
+    void loadFolder(const string& folder, const string& filename="" );
+
     int load(const char * config_file, const char * setName = NULL, int autoload = 1);
     int countByType(const char * _type);
     int countByColor(int color);
@@ -181,9 +183,8 @@ public:
         return instance->subtypesList.find(value,false);
     }
 
-    static void loadInstance();
     static void unloadAll();
-    static inline MTGAllCards* getInstance() { return instance; };
+    static MTGAllCards* getInstance();
 
 private:
     boost::mutex mMutex;

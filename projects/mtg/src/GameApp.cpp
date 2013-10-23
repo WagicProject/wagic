@@ -164,7 +164,7 @@ void GameApp::Create()
     HasMusic = jfs->FileExists(WResourceManager::Instance()->musicFile("Track0.mp3")) && jfs->FileExists(WResourceManager::Instance()->musicFile("Track1.mp3"));
     
     LOG("Init Collection");
-    MTGAllCards::loadInstance();
+    MTGAllCards::getInstance();
 
     LOG("Loading rules");
     Rules::loadAllRules();

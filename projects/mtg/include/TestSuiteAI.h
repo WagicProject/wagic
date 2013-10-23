@@ -85,26 +85,33 @@ private:
     void cleanup();
     vector<boost::thread*> mWorkerThread;
     Rules* mRules;
-    bool mProcessing;
 
-public:
+    bool mProcessing;
     int startTime, endTime;
-    unsigned int seed;
-    int nbFailed, nbTests, nbAIFailed, nbAITests;
-    TestSuite(const char * filename);
-    ~TestSuite();
-    void initGame(GameObserver* g);
-    void pregameTests();
-    int loadNext();
+    static void ThreadProc(void* inParam);
     string getNextFile() {
         boost::mutex::scoped_lock lock(mMutex);
         if (currentfile >= nbfiles) return "";
         currentfile++;
         return files[currentfile - 1];
     };
-    static void ThreadProc(void* inParam);
-    void setRules(Rules* rules) {mRules = rules;};
+    void pregameTests();
+
+public:
+    int getElapsedTime() {return endTime-startTime;};
+    unsigned int seed;
+    int nbFailed, nbTests, nbAIFailed, nbAITests;
+    TestSuite(const char * filename);
+    ~TestSuite();
+    void initGame(GameObserver* g);
+    int loadNext();
+    void setRules(Rules* rules) {
+      mRules = rules;
+    };
     void handleResults(bool wasAI, int error);
+    // run the test suite in turbo mode without UI, 
+    // returns the amount of failed tests (AI or not), so 0 if everything went fine.
+    int run();
 };
 
 class TestSuiteAI:public AIPlayerBaka

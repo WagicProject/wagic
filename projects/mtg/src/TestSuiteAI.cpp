@@ -531,7 +531,6 @@ TestSuite::TestSuite(const char * filename)
 
 int TestSuite::loadNext()
 {
-
     endTime = JGEGetTime();
     summoningSickness = 0;
     seed = 0;
@@ -581,6 +580,43 @@ int TestSuite::loadNext()
         cout << "Starting test : " << files[currentfile - 1] << endl;
     return currentfile;
 }
+
+void TestSuite::ThreadProc(void* inParam)
+{
+    LOG("Entering TestSuite::ThreadProc");
+    TestSuite* instance = reinterpret_cast<TestSuite*>(inParam);
+    if (instance)
+    {
+        string filename;
+        float counter = 1.0f;
+        while(instance->mProcessing && (filename = instance->getNextFile()) != "")
+        {
+            TestSuiteGame theGame(instance, filename);
+            if(theGame.isOK)
+            {
+                theGame.observer->loadTestSuitePlayer(0, &theGame);
+                theGame.observer->loadTestSuitePlayer(1, &theGame);
+
+                theGame.observer->startGame(theGame.gameType, /*instance->mRules*/Rules::getRulesByFilename("testsuite.txt"));
+                theGame.initGame();
+
+                while(!theGame.observer->didWin())
+                    theGame.observer->Update(counter++);
+            }
+        }
+    }
+    LOG("Leaving TestSuite::ThreadProc");
+}
+
+int TestSuite::run()
+{
+  mProcessing = false;
+  loadNext();
+  ThreadProc(this);
+
+  return nbFailed + nbAIFailed;
+}
+
 
 void TestSuiteActions::cleanup()
 {
@@ -753,41 +789,6 @@ void TestSuite::pregameTests()
         Log(result);
         if (!sb.unitTest()) nbFailed++;
     }
-}
-
-void TestSuite::ThreadProc(void* inParam)
-{
-    LOG("Entering TestSuite::ThreadProc");
-    TestSuite* instance = reinterpret_cast<TestSuite*>(inParam);
-    if (instance)
-    {
-        string filename;
-        while(instance->mProcessing && (filename = instance->getNextFile()) != "")
-        {
-            TestSuiteGame theGame(instance, filename);
-            if(theGame.isOK)
-            {
-                theGame.observer->loadTestSuitePlayer(0, &theGame);
-                theGame.observer->loadTestSuitePlayer(1, &theGame);
-
-                theGame.observer->startGame(theGame.gameType, instance->mRules);
-                theGame.initGame();
-
-                while(!theGame.observer->didWin())
-                    theGame.observer->Update(1);
-/*
-                if(theGame.observer->gameType() != GAME_TYPE_MOMIR)
-                {
-                    stringstream stream;
-                    stream << *(theGame.observer);
-                    theGame.observer->load(stream.str(), false, &theGame);
-                    theGame.assertGame();
-                }
-*/
-            }
-        }
-    }
-    LOG("Leaving TestSuite::ThreadProc");
 }
 
 boost::mutex TestSuiteGame::mMutex;
