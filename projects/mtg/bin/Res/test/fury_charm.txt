@@ -1,0 +1,21 @@
+# Testing fury charm (keyword:vanishing)
+# Permanent with vanishing must be sacrificed immediately when the last counter is removed
+
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Fury Charm
+inplay:Waning Wurm
+manapool:{1}{R}
+[PLAYER2]
+[DO]
+Fury Charm
+choice 2
+Waning Wurm
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:Waning Wurm,Fury Charm
+manapool:{0}
+[PLAYER2]
+[END]

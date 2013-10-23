@@ -1,0 +1,17 @@
+# Testing vanishing 1 (keyword:vanishing)
+
+[INIT]
+UNTAP
+[PLAYER1]
+inplay:Lavacore elemental
+[PLAYER2]
+[DO]
+next
+next
+next
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:Lavacore elemental
+[PLAYER2]
+[END]

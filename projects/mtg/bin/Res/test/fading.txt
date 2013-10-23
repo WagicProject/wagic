@@ -1,0 +1,21 @@
+# Testing (keyword:fading)
+# Permanent with fading must be sacrificed at the upkeep after last counter is removed
+
+[INIT]
+UNTAP
+[PLAYER1]
+inplay:Phyrexian Prowler
+[PLAYER2]
+[DO]
+Phyrexian Prowler
+Phyrexian Prowler
+Phyrexian Prowler
+next
+next
+next
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:Phyrexian Prowler
+[PLAYER2]
+[END]

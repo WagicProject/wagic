@@ -307,6 +307,7 @@ evil_presence_i647_2.txt
 exaltedsourcekilled.txt
 explore.txt
 Faceless_Butcher.txt
+fading.txt
 fangren_pathcutter.txt
 farhaven_elf.txt
 farmstead.txt
@@ -340,6 +341,7 @@ force_of_nature3.txt
 fountain_of_youth.txt
 Frogmite.txt
 fungus_sliver.txt
+fury_charm.txt
 gamble.txt
 gelatinous_genesis.txt
 gempalm_avenger.txt
@@ -673,6 +675,7 @@ urzas_mine_i287.txt
 [at]Vampired#1.txt
 vampire_bats.txt
 vampiric_link.txt
+vanishing.txt
 vendetta_TOUGHNESSLIFELOSS.txt
 vesuva_landlimit_i718.txt
 vine_dryad.txt

@@ -4656,43 +4656,40 @@ APreventDamageTypesUEOT::~APreventDamageTypesUEOT()
 }
 
 //AVanishing creature also fading
+// Comprehensive 702.31a:
+// Fading is a keyword that represents two abilities.
+// “Fading N” means “This permanent comes into play with N fade counters on it” and
+// “At the beginning of your upkeep, remove a fade counter from this permanent.
+// If you can’t, sacrifice the permanent.”
+
+// Comprehensive 702.62a:
+// Vanishing is a keyword that represents three abilities.
+// "Vanishing N" means "This permanent comes into play with N time counters on it,"
+// "At the beginning of your upkeep, if this permanent has a time counter on it, remove a time counter from it," and
+// "When the last time counter is removed from this permanent, sacrifice it."
 AVanishing::AVanishing(GameObserver* observer, int _id, MTGCardInstance * card, ManaCost *, int, int amount, string counterName) :
 MTGAbility(observer, _id, source, target),amount(amount),counterName(counterName)
 {
     target = card;
     source = card;
-    next = 0;
-    for(int i = 0;i< amount;i++)
-        source->counters->addCounter(counterName.c_str(),0,0);
+    for (int i = 0; i < amount; i++)
+        source->counters->addCounter(counterName.c_str(), 0, 0);
 }
 
 void AVanishing::Update(float dt)
 {
     if (newPhase != currentPhase && source->controller() == game->currentPlayer)
     {
-        if(newPhase == MTG_PHASE_UPKEEP)
+        if (newPhase == MTG_PHASE_UPKEEP)
         {
-            source->counters->removeCounter(counterName.c_str(),0,0);
-            Counter * targetCounter = NULL;
-            timeLeft = 0;
-
-            if (source->counters && source->counters->hasCounter(counterName.c_str(), 0, 0))
+            bool hasCounters = (source->counters && source->counters->hasCounter(counterName.c_str(), 0, 0));
+            if (hasCounters)
             {
-                targetCounter = source->counters->hasCounter(counterName.c_str(), 0, 0);
-                timeLeft = targetCounter->nb;
-            }
-            else
+                // sacrifice of card with time counter is handled in removeCounter
+                source->counters->removeCounter(counterName.c_str(), 0, 0);
+            } else
             {
-                timeLeft = 0;
-                if(counterName.find("fade") != string::npos && next == 0)
-                {
-                    next = 1;
-                }
-                else
-                {
-                    next = 0;
-                }
-                if (newPhase == MTG_PHASE_UPKEEP && timeLeft <= 0 && next == 0)
+                if (counterName == "fade")
                 {
                     MTGCardInstance * beforeCard = source;
                     source->controller()->game->putInGraveyard(source);

@@ -146,14 +146,24 @@ int Counters::removeCounter(const char * _name, int _power, int _toughness)
         {
             if (counters[i]->nb < 1)
                 return 0;
+
             counters[i]->removed();
             counters[i]->nb--;
             GameObserver *g = target->getObserver();
             WEvent * e = NEW WEventCounters(this,_name,_power,_toughness,false,true);
             dynamic_cast<WEventCounters*>(e)->targetCard = this->target;
             g->receiveEvent(e);
-            //special case:if a card is suspended and no longer has a time counter when the last is removed, the card is cast.
 
+            // special case: when the last time counter is removed from non-suspended card
+            // sacrifice that card
+            if (!target->suspended && counters[i]->name == "time" && counters[i]->nb == 0) {
+                MTGCardInstance * beforeCard = target;
+                target->controller()->game->putInGraveyard(target);
+                WEvent * e = NEW WEventCardSacrifice(beforeCard, target);
+                g->receiveEvent(e);
+            }
+
+            //special case:if a card is suspended and no longer has a time counter when the last is removed, the card is cast.
             if (target->suspended && !target->counters->hasCounter("time",0,0))
             {
                 GameObserver * game = target->getObserver();
