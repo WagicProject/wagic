@@ -148,7 +148,7 @@ void WLBFont::FormatText(string &s, vector<string>& output)
 }
 
 WFBFont::WFBFont(int inFontID, const char *fontname, int lineheight, bool) :
-    WFont(inFontID)
+WFont(inFontID), mTexture(0)
 {
     mRenderer = JRenderer::GetInstance();
 
