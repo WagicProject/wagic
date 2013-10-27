@@ -1,6 +1,11 @@
 #Wagic the Homebrew
 
-Wagic, the homebrew, is a C++ game engine that allows to play card games against an AI on
+
+[![Build Status](https://travis-ci.org/WagicProject/wagic.png?branch=master)](https://travis-ci.org/WagicProject/wagic)
+
+## Description
+
+Wagic, the Homebrew, is a C++ game engine that allows to play card games against an AI on
 - Android (phones and tablets) 
 - iOS (iPhone/iPad)
 - Sony PSP
