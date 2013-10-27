@@ -3,6 +3,13 @@
 #include "corewrapper.h"
 #include <QElapsedTimer>
 
+#ifdef TESTSUITE
+#include "TestSuiteAI.h"
+#include "GameOptions.h"
+#include "MTGDeck.h"
+#endif
+#include "DebugRoutines.h"
+
 #if (defined FORCE_GLES)
 #undef GL_ES_VERSION_2_0
 #undef GL_VERSION_2_0
@@ -70,6 +77,64 @@ WagicCore::WagicCore(super *parent) :
     // Handle screen state on / off
     dBusConnection.connect(MCE_SERVICE, MCE_SIGNAL_PATH, MCE_SIGNAL_IF, MCE_DISPLAY_SIG, this, SLOT(displayStateChanged(const QDBusMessage &)));
 #endif
+}
+
+
+WagicWrapper::WagicWrapper()
+{
+    m_launcher = new JGameLauncher();
+    u32 flags = m_launcher->GetInitFlags();
+    if ((flags&JINIT_FLAG_ENABLE3D)!=0)
+    {
+        JRenderer::Set3DFlag(true);
+    }
+
+    JGECreateDefaultBindings();
+
+    m_engine = JGE::GetInstance();
+    m_app = m_launcher->GetGameApp();
+    m_app->Create();
+    m_engine->SetApp(m_app);
+    JRenderer::GetInstance()->Enable2D();
+}
+
+WagicWrapper::~WagicWrapper()
+{
+    if(m_launcher)
+    {
+        delete m_launcher;
+        m_launcher = NULL;
+    }
+
+    if(m_engine)
+        m_engine->SetApp(NULL);
+
+    if (m_app)
+    {
+      m_app->Destroy();
+      delete m_app;
+      m_app = NULL;
+    }
+
+    JGE::Destroy();
+    m_engine = NULL;
+}
+
+
+int WagicCore::runTestSuite()
+{
+    int result = 0;
+#ifdef TESTSUITE
+    WagicWrapper* wagicCore =  new WagicWrapper();
+    MTGCollection()->loadFolder("sets/primitives/");
+    MTGCollection()->loadFolder("sets/", "_cards.dat");
+    options.reloadProfile();
+    TestSuite testSuite("test/_tests.txt");
+    result = testSuite.run();
+    delete wagicCore;
+#endif
+    DebugTrace("TestSuite done: failed test: " << result);
+    return result;
 }
 
 void WagicCore::initApp()

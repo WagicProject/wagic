@@ -124,8 +124,10 @@ JFileSystem::JFileSystem(const string & _userPath, const string & _systemPath)
     QDir dir(QDir::homePath());
     dir.cd(USERDIR);
 
+    QDir sysDir("projects/mtg/bin/Res");
+
     userPath = QDir::toNativeSeparators(dir.absolutePath()).toStdString();
-    systemPath = "";
+    systemPath = QDir::toNativeSeparators(sysDir.absolutePath()).toStdString();
 #else
     //Find the Res.txt file and matching Res folders for backwards compatibility
     ifstream mfile("Res.txt");

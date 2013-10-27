@@ -33,8 +33,8 @@ JTexture* SimpleMenu::spadeLTex = NULL;
 JTexture* SimpleMenu::jewelTex = NULL;
 JTexture* SimpleMenu::sideTex = NULL;
 
-SimpleMenu::SimpleMenu(JGE* jge, int id, JGuiListener* listener, int fontId, float x, float y, const char * _title, int _maxItems, bool centerHorizontal, bool centerVertical)
-    : JGuiController(jge, id, listener), fontId(fontId), mCenterHorizontal(centerHorizontal), mCenterVertical(centerVertical)
+SimpleMenu::SimpleMenu(JGE* jge, WResourceManager* resourceManager, int id, JGuiListener* listener, int fontId, float x, float y, const char * _title, int _maxItems, bool centerHorizontal, bool centerVertical)
+    : JGuiController(jge, id, listener), fontId(fontId), mCenterHorizontal(centerHorizontal), mCenterVertical(centerVertical), stars(0)
 {
     autoTranslate = true;
     isMultipleChoice = false;
@@ -50,20 +50,23 @@ SimpleMenu::SimpleMenu(JGE* jge, int id, JGuiListener* listener, int fontId, flo
     mClosed = false;
     selectionTargetY = selectionY = y + kVerticalMargin;
 
-    JRenderer* renderer = JRenderer::GetInstance();
+    if(resourceManager)
+    {
+        JRenderer* renderer = JRenderer::GetInstance();
 
-    if (!spadeLTex) spadeLTex = WResourceManager::Instance()->RetrieveTexture("spade_ul.png", RETRIEVE_MANAGE);
-    if (!spadeRTex) spadeRTex = WResourceManager::Instance()->RetrieveTexture("spade_ur.png", RETRIEVE_MANAGE);
-    if (!jewelTex) jewelTex = renderer->CreateTexture(5, 5, TEX_TYPE_USE_VRAM);
-    if (!sideTex) sideTex = WResourceManager::Instance()->RetrieveTexture("menuside.png", RETRIEVE_MANAGE);
-    spadeL = WResourceManager::Instance()->RetrieveQuad("spade_ul.png", 0, 0, 0, 0, "spade_ul", RETRIEVE_MANAGE);
-    spadeR = WResourceManager::Instance()->RetrieveQuad("spade_ur.png", 0, 0, 0, 0, "spade_ur", RETRIEVE_MANAGE);
-    jewel.reset(NEW JQuad(jewelTex, 1, 1, 3, 3));
-    side = WResourceManager::Instance()->RetrieveQuad("menuside.png", 1, 1, 1, kPoleWidth, "menuside", RETRIEVE_MANAGE);
+        if (!spadeLTex) spadeLTex = resourceManager->RetrieveTexture("spade_ul.png", RETRIEVE_MANAGE);
+        if (!spadeRTex) spadeRTex = resourceManager->RetrieveTexture("spade_ur.png", RETRIEVE_MANAGE);
+        if (!jewelTex) jewelTex = renderer->CreateTexture(5, 5, TEX_TYPE_USE_VRAM);
+        if (!sideTex) sideTex = resourceManager->RetrieveTexture("menuside.png", RETRIEVE_MANAGE);
+        spadeL = resourceManager->RetrieveQuad("spade_ul.png", 0, 0, 0, 0, "spade_ul", RETRIEVE_MANAGE);
+        spadeR = resourceManager->RetrieveQuad("spade_ur.png", 0, 0, 0, 0, "spade_ur", RETRIEVE_MANAGE);
+        jewel.reset(NEW JQuad(jewelTex, 1, 1, 3, 3));
+        side = resourceManager->RetrieveQuad("menuside.png", 1, 1, 1, kPoleWidth, "menuside", RETRIEVE_MANAGE);
 
-    stars = NEW hgeParticleSystem(WResourceManager::Instance()->RetrievePSI("stars.psi", WResourceManager::Instance()->GetQuad("stars").get()));
+        stars = NEW hgeParticleSystem(resourceManager->RetrievePSI("stars.psi", resourceManager->GetQuad("stars").get()));
 
-    stars->FireAt(mX, mY);
+        stars->FireAt(mX, mY);
+    }
 }
 
 SimpleMenu::~SimpleMenu()
@@ -300,10 +303,12 @@ void SimpleMenu::Update(float dt)
         startId = mCurr - maxItems + 1;
     else if (mCurr < startId) startId = mCurr;
  
-    stars->Update(dt);
+    if(stars)
+        stars->Update(dt);
     selectionT += 3 * dt;
     selectionY += (selectionTargetY - selectionY) * 8 * dt;
-    stars->MoveTo(mX + kHorizontalMargin + ((mWidth - 2 * kHorizontalMargin) * (1 + cos(selectionT)) / 2), selectionY + 5 * cos(
+    if(stars)
+        stars->MoveTo(mX + kHorizontalMargin + ((mWidth - 2 * kHorizontalMargin) * (1 + cos(selectionT)) / 2), selectionY + 5 * cos(
                     selectionT * 2.35f) + kLineHeight / 2 - kLineHeight * startId);
     if (timeOpen < 0)
     {
@@ -312,7 +317,8 @@ void SimpleMenu::Update(float dt)
         {
             timeOpen = 0;
             mClosed = true;
-            stars->FireAt(mX, mY);
+            if(stars)
+                stars->FireAt(mX, mY);
         }
     }
     else

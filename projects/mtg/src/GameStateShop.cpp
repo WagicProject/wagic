@@ -212,12 +212,12 @@ void GameStateShop::beginPurchase(int controlId)
     SAFE_DELETE(menu);
     if (mInventory[controlId] <= 0)
     {
-        menu = NEW SimpleMenu(JGE::GetInstance(), -145, this, Fonts::MENU_FONT, SCREEN_WIDTH - 300, SCREEN_HEIGHT / 2, _("Sold Out").c_str());
+        menu = NEW SimpleMenu(JGE::GetInstance(), WResourceManager::Instance(), -145, this, Fonts::MENU_FONT, SCREEN_WIDTH - 300, SCREEN_HEIGHT / 2, _("Sold Out").c_str());
         menu->Add(-1, "Ok");
     }
     else if (playerdata->credits - mPrices[controlId] < 0)
     {
-        menu = NEW SimpleMenu(JGE::GetInstance(), -145, this, Fonts::MENU_FONT, SCREEN_WIDTH - 300, SCREEN_HEIGHT / 2, _("Not enough credits").c_str());
+        menu = NEW SimpleMenu(JGE::GetInstance(), WResourceManager::Instance(), -145, this, Fonts::MENU_FONT, SCREEN_WIDTH - 300, SCREEN_HEIGHT / 2, _("Not enough credits").c_str());
         menu->Add(-1, "Ok");
         if (options[Options::CHEATMODE].number)
         {
@@ -231,7 +231,7 @@ void GameStateShop::beginPurchase(int controlId)
             sprintf(buf, _("Purchase Booster: %i credits").c_str(), mPrices[controlId]);
         else
             sprintf(buf, _("Purchase Card: %i credits").c_str(), mPrices[controlId]);
-        menu = NEW SimpleMenu(JGE::GetInstance(), -145, this, Fonts::MENU_FONT, SCREEN_WIDTH - 300, SCREEN_HEIGHT / 2, buf);
+        menu = NEW SimpleMenu(JGE::GetInstance(), WResourceManager::Instance(), -145, this, Fonts::MENU_FONT, SCREEN_WIDTH - 300, SCREEN_HEIGHT / 2, buf);
 
         menu->Add(controlId, "Yes");
         menu->Add(-1, "No");
@@ -486,7 +486,7 @@ void GameStateShop::Update(float dt)
             menu->Update(dt);
         else
         {
-            menu = NEW SimpleMenu(JGE::GetInstance(), 11, this, Fonts::MENU_FONT, SCREEN_WIDTH / 2 - 100, 20);
+            menu = NEW SimpleMenu(JGE::GetInstance(), WResourceManager::Instance(), 11, this, Fonts::MENU_FONT, SCREEN_WIDTH / 2 - 100, 20);
             menu->Add(22, _("Ask about...").c_str());
             menu->Add(14, _("Check task board").c_str());
             if (options[Options::CHEATMODE].number)
@@ -516,7 +516,7 @@ void GameStateShop::Update(float dt)
                 {
                     if (!menu)
                     {
-                        menu = NEW SimpleMenu(JGE::GetInstance(), 11, this, Fonts::MENU_FONT, SCREEN_WIDTH / 2 - 100, 20);
+                        menu = NEW SimpleMenu(JGE::GetInstance(), WResourceManager::Instance(), 11, this, Fonts::MENU_FONT, SCREEN_WIDTH / 2 - 100, 20);
                         menu->Add(15, "Return to shop");
                         menu->Add(12, "Save And Exit");
                         menu->Add(kCancelMenuID, "Cancel");
