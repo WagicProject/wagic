@@ -310,10 +310,13 @@ void JQuad::SetTextureRect(float x, float y, float w, float h)
     mWidth = w;
     mHeight = h;
 
-    mTX0 = x/mTex->mTexWidth;
-    mTY0 = y/mTex->mTexHeight;
-    mTX1 = (x+w)/mTex->mTexWidth;
-    mTY1 = (y+h)/mTex->mTexHeight;
+    if(mTex)
+    {
+        mTX0 = x/mTex->mTexWidth;
+        mTY0 = y/mTex->mTexHeight;
+        mTX1 = (x+w)/mTex->mTexWidth;
+        mTY1 = (y+h)/mTex->mTexHeight;
+    }
 }
 
 
@@ -840,7 +843,7 @@ void JRenderer::EndScene()
 void JRenderer::BindTexture(JTexture *tex)
 {
     checkGlError();
-    if (mCurrentTex != tex->mTexId)
+    if (tex && mCurrentTex != tex->mTexId)
     {
         mCurrentTex = tex->mTexId;
 

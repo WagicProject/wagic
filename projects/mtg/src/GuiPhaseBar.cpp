@@ -45,14 +45,18 @@ GuiPhaseBar::GuiPhaseBar(DuelLayers* duelLayers) :
     GuiLayer(duelLayers->getObserver()), PlayGuiObject(0, 0, 106, 0, false), 
   phase(NULL), angle(0.0f), zoomFactor(ICONSCALE), mpDuelLayers(duelLayers)
 {
-    JQuadPtr quad = WResourceManager::Instance()->GetQuad("phasebar");
-    if (quad.get() != NULL)
+    if(duelLayers->getObserver()->getResourceManager())
     {
-        quad->mHeight = kHeight;
-        quad->mWidth = kWidth;
+        JQuadPtr quad = WResourceManager::Instance()->GetQuad("phasebar");
+        if (quad.get() != NULL)
+        {
+            quad->mHeight = kHeight;
+            quad->mWidth = kWidth;
+        }
+        else
+            GameApp::systemError = "Error loading phasebar texture : " __FILE__;
     }
-    else
-        GameApp::systemError = "Error loading phasebar texture : " __FILE__;
+
 
     zoom = ICONSCALE;
     mpDuelLayers->getCardSelector()->Add(this);

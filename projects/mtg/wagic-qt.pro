@@ -15,10 +15,18 @@ unix|macx:QMAKE_CXXFLAGS += -Wno-unused-parameter
 unix|macx:QMAKE_CXXFLAGS += -Wno-unused-but-set-parameter
 unix|macx:QMAKE_CXXFLAGS += -Wno-unused-but-set-variable
 unix|macx:QMAKE_CXXFLAGS += -Wno-unused-value
-unix|macx:!maemo5:!symbian:QMAKE_CXXFLAGS += -Werror
+#unix|macx:!maemo5:!symbian:QMAKE_CXXFLAGS += -Werror
 windows:DEFINES += _CRT_SECURE_NO_WARNINGS
 unix|macx:DEFINES += LINUX
-CONFIG(debug, debug|release):DEFINES += _DEBUG
+CONFIG(debug, debug|release) {
+    DEFINES += _DEBUG
+}
+
+CONFIG(testsuite)
+{
+    DEFINES += TESTSUITE
+}
+#CONFIG(debug, debug|release):DEFINES += _DEBUG
 DEFINES += QT_CONFIG
 #!android:!symbian:DEFINES += USE_PHONON
 android:INCLUDEPATH += $$ANDROID_NDK_ROOT/platforms/android-9/arch-arm/usr/include
@@ -49,7 +57,6 @@ INCLUDEPATH += include
 unix:!symbian:LIBS += -lz
 PRECOMPILED_HEADER = include/PrecompiledHeader.h
 
-#DEFINES += TESTSUITE
 #DEFINES += TRACK_OBJECT_USAGE
 #DEFINES += AI_CHANGE_TESTING
 #DEFINES += ACTION_LOGGING_TESTING
@@ -162,10 +169,8 @@ SOURCES += \
         src/WFont.cpp\
         src/WGui.cpp\
         src/WResourceManager.cpp \
-        src/AIPlayerBakaB.cpp
-
-CONFIG(debug, debug|release):
-SOURCES += src/TestSuiteAI.cpp
+        src/AIPlayerBakaB.cpp \
+        src/TestSuiteAI.cpp
 
 HEADERS  += \
         include/CacheEngine.h\

@@ -497,7 +497,7 @@ void GameStateDuel::Update(float dt)
     case DUEL_STATE_PREPARE_CNOGMENU:
         SAFE_DELETE(cnogmenu);
 
-        cnogmenu = NEW SimpleMenu(JGE::GetInstance(),DUEL_MENU_CHOOSE_NUMBER_OF_GAMES, this, Fonts::MENU_FONT,35,25,"How many games per match?");
+        cnogmenu = NEW SimpleMenu(JGE::GetInstance(),WResourceManager::Instance(), DUEL_MENU_CHOOSE_NUMBER_OF_GAMES, this, Fonts::MENU_FONT,35,25,"How many games per match?");
         cnogmenu->Add(CNOGMENU_ITEM_SINGLE_GAME,"Single Game","");
         if (tournament->checkTournamentFile(mParent->players[0] ==  PLAYER_TYPE_CPU))
             cnogmenu->Add(CNOGMENU_ITEM_CONTINUE_TOURNAMENT,"Continue Tournament","");
@@ -924,7 +924,7 @@ void GameStateDuel::Update(float dt)
         {
             if (!menu)
             {
-                menu = NEW SimpleMenu(JGE::GetInstance(), DUEL_MENU_GAME_MENU, this, Fonts::MENU_FONT, SCREEN_WIDTH / 2 - 100, 25);
+                menu = NEW SimpleMenu(JGE::GetInstance(), WResourceManager::Instance(), DUEL_MENU_GAME_MENU, this, Fonts::MENU_FONT, SCREEN_WIDTH / 2 - 100, 25);
                 int cardsinhand = game->currentPlayer->game->hand->nb_cards;
 
                 //almosthumane - mulligan
@@ -971,7 +971,7 @@ void GameStateDuel::Update(float dt)
                 setGamePhase(DUEL_STATE_PLAY);
             } else if(menu == NULL)
             {
-                menu = NEW SimpleMenu(JGE::GetInstance(), DUEL_STATE_OPPONENT_WAIT, this, Fonts::MENU_FONT, 150, 60);
+                menu = NEW SimpleMenu(JGE::GetInstance(), WResourceManager::Instance(), DUEL_STATE_OPPONENT_WAIT, this, Fonts::MENU_FONT, 150, 60);
                 if (menu)
                 {
                     menu->Add(MENUITEM_MAIN_MENU, "Back to main menu");

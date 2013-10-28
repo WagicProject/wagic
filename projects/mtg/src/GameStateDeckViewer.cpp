@@ -363,7 +363,7 @@ void GameStateDeckViewer::sellCard()
             sprintf(buffer, "%s : %i %s", _(card->data->getName()).c_str(), price, _("credits").c_str());
             const float menuXOffset = SCREEN_WIDTH_F - 300;
             const float menuYOffset = SCREEN_HEIGHT_F / 2;
-            subMenu = NEW SimpleMenu(JGE::GetInstance(), MENU_CARD_PURCHASE, this, Fonts::MAIN_FONT, menuXOffset, menuYOffset, buffer);
+            subMenu = NEW SimpleMenu(JGE::GetInstance(), WResourceManager::Instance(), MENU_CARD_PURCHASE, this, Fonts::MAIN_FONT, menuXOffset, menuYOffset, buffer);
             subMenu->Add(MENU_ITEM_YES, "Yes");
             subMenu->Add(MENU_ITEM_NO, "No", "", true);
         }

@@ -610,7 +610,7 @@ void TestSuite::ThreadProc(void* inParam)
 
 int TestSuite::run()
 {
-  mProcessing = false;
+  mProcessing = true;
   loadNext();
   ThreadProc(this);
 
