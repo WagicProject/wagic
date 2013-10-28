@@ -23,6 +23,19 @@
 #include <QDBusInterface>
 #endif //Q_WS_MAEMO_5
 
+class WagicWrapper
+{
+public:
+    WagicWrapper();
+    virtual ~WagicWrapper();
+
+private:
+    JGE* m_engine;
+    JApp* m_app;
+    JGameLauncher* m_launcher;
+};
+
+
 #ifdef QT_WIDGET
 class WagicCore : public QGLWidget
 #else
@@ -35,6 +48,7 @@ private:
 #else
   typedef QDeclarativeItem super;
 #endif //QT_WIDGET
+    void initApp();
 
 public:
     Q_OBJECT
@@ -47,7 +61,7 @@ public:
 public:
     explicit WagicCore(super *parent = 0);
     virtual ~WagicCore();
-    void initApp();
+    static int runTestSuite();
 
     Q_INVOKABLE void doOK() {
         doAndEnqueue(JGE_BTN_OK);

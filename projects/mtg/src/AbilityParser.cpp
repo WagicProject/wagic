@@ -109,10 +109,12 @@ bool AutoLineMacro::AddMacro(const string& s)
 
 void AutoLineMacro::Destroy()
 {
-    for (size_t i = 0; i < gAutoLineMacros.size(); ++i)
+    while(gAutoLineMacros.size())
     {
-        SAFE_DELETE(gAutoLineMacros[i]);
+        SAFE_DELETE(gAutoLineMacros.back());
+        gAutoLineMacros.pop_back();
     }
+    gAutoLineMacrosIndex.clear();
 }
 
 string AutoLineMacro::Process(const string& s)

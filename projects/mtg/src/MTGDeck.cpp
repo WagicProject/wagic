@@ -354,11 +354,11 @@ void MTGAllCards::loadFolder(const string& folder, const string& filename )
         if(files[i] == "." || files[i] == "..")
             continue;
 
+        if(JFileSystem::GetInstance()->DirExists(afile))
+            loadFolder(string(afile).c_str(), filename);
+
         if (!JFileSystem::GetInstance()->FileExists(afile))
             continue;
-
-        if(JFileSystem::GetInstance()->DirExists(afile))
-            loadFolder(string(afile+"/").c_str(), filename);
 
         if(filename.size())
         {

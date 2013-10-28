@@ -68,6 +68,14 @@ int main(int argc, char* argv[])
         (createApplication(argc, argv));
 
 #endif //QT_WIDGET
+
+    if(argc >= 2 && strcmp(argv[1], "testsuite")==0)
+    {
+        int result = 0;
+        result += WagicCore::runTestSuite();
+        return result;
+    }
+
     app->setApplicationName(WagicCore::getApplicationName());
     FileDownloader fileDownloader(USERDIR, WAGIC_RESOURCE_NAME);
 #ifdef QT_WIDGET

@@ -8,7 +8,7 @@ A class for very simple menus structure
 #include <JGui.h>
 #include "WFont.h"
 #include "hge/hgeparticle.h"
-
+#include "WResourceManager.h"
 #include "WResource_Fwd.h"
 
 class SimpleMenu: public JGuiController
@@ -37,7 +37,7 @@ private:
 public:
     bool autoTranslate;
     bool isMultipleChoice;
-    SimpleMenu(JGE*, int id, JGuiListener* listener, int fontId, float x, float y, const char * _title = "", int _maxItems = 7, bool centerHorizontal = true, bool centerVertical = true);
+    SimpleMenu(JGE*, WResourceManager*, int id, JGuiListener* listener, int fontId, float x, float y, const char * _title = "", int _maxItems = 7, bool centerHorizontal = true, bool centerVertical = true);
     virtual ~SimpleMenu();
     virtual void Render();
     virtual bool CheckUserInput(JButton key);

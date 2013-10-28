@@ -344,7 +344,7 @@ void GameStateMenu::setLang(int id)
 void GameStateMenu::loadLangMenu()
 {
     LOG("GameStateMenu::loadLangMenu");
-    subMenuController = NEW SimpleMenu(JGE::GetInstance(), MENU_LANGUAGE_SELECTION, this, Fonts::MENU_FONT, 150, 60);
+    subMenuController = NEW SimpleMenu(JGE::GetInstance(), WResourceManager::Instance(), MENU_LANGUAGE_SELECTION, this, Fonts::MENU_FONT, 150, 60);
     if (!subMenuController)
         return;
 
@@ -590,7 +590,7 @@ void GameStateMenu::Update(float dt)
         if(MENU_STATE_MINOR_NONE == (currentState & MENU_STATE_MINOR))
         {
 			currentState = MENU_STATE_MAJOR_SUBMENU;
-			subMenuController = NEW SimpleMenu(JGE::GetInstance(), MENU_FIRST_DUEL_SUBMENU, this, Fonts::MENU_FONT, 150, 60);
+            subMenuController = NEW SimpleMenu(JGE::GetInstance(), WResourceManager::Instance(), MENU_FIRST_DUEL_SUBMENU, this, Fonts::MENU_FONT, 150, 60);
 			if (subMenuController)
 			{
 				subMenuController->Add(SUBMENUITEM_HOST_GAME, "Host a game");
@@ -613,7 +613,7 @@ void GameStateMenu::Update(float dt)
 				mParent->mpNetwork->getServerIp(aString);
 				aString = "Waiting for connection to " + aString;
 
-                subMenuController = NEW SimpleMenu(JGE::GetInstance(), MENU_FIRST_DUEL_SUBMENU, this, Fonts::MENU_FONT, 150, 60, aString.c_str());
+                subMenuController = NEW SimpleMenu(JGE::GetInstance(), WResourceManager::Instance(), MENU_FIRST_DUEL_SUBMENU, this, Fonts::MENU_FONT, 150, 60, aString.c_str());
                 if (subMenuController)
                 {
                     subMenuController->Add(SUBMENUITEM_CANCEL, "Cancel");
@@ -641,7 +641,7 @@ void GameStateMenu::Update(float dt)
             if (!hasChosenGameType)
             {
                 currentState = MENU_STATE_MAJOR_SUBMENU;
-                subMenuController = NEW SimpleMenu(JGE::GetInstance(), MENU_FIRST_DUEL_SUBMENU, this, Fonts::MENU_FONT, 150, 60);
+                subMenuController = NEW SimpleMenu(JGE::GetInstance(), WResourceManager::Instance(), MENU_FIRST_DUEL_SUBMENU, this, Fonts::MENU_FONT, 150, 60);
                 if (subMenuController)
                 {
                     for (size_t i = 0; i < Rules::RulesList.size(); ++i)
@@ -823,7 +823,7 @@ void GameStateMenu::ButtonPressed(int controllerId, int controlId)
         switch (controlId)
         {
         case MENUITEM_PLAY:
-            subMenuController = NEW SimpleMenu(JGE::GetInstance(), MENU_FIRST_DUEL_SUBMENU, this, Fonts::MENU_FONT, 150, 60);
+            subMenuController = NEW SimpleMenu(JGE::GetInstance(), WResourceManager::Instance(), MENU_FIRST_DUEL_SUBMENU, this, Fonts::MENU_FONT, 150, 60);
             if (subMenuController)
             {
 #ifdef NETWORK_SUPPORT
