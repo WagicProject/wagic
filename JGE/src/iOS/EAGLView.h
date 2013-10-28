@@ -1,6 +1,5 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
-#import "AdWhirlDelegateProtocol.h"
 #import "EAGLViewController.h"
 #import "EAGLView.h"
 #import "ESRenderer.h"
@@ -8,9 +7,8 @@
 // This class wraps the CAEAGLLayer from CoreAnimation into a convenient UIView subclass.
 // The view content is basically an EAGL surface you render your OpenGL scene into.
 // Note that setting the view non-opaque will only work if the EAGL surface has an alpha channel.
-@interface EAGLView : UIView<AdWhirlDelegate,UIGestureRecognizerDelegate>
+@interface EAGLView : UIView<UIGestureRecognizerDelegate>
 {    
-    AdWhirlView *adView;
     //This is a trick, AdMob uses a viewController to display its Ads, trust me, you'll need this
     EAGLViewController *viewController;
     
@@ -27,7 +25,6 @@
     id displayLink;
     CGPoint currentLocation;
 }
-@property (nonatomic, retain) AdWhirlView *adView;
 @property (readonly, nonatomic, getter=isAnimating) BOOL animating;
 @property (nonatomic) NSInteger animationFrameInterval;
 @property (nonatomic, readwrite) CGPoint currentLocation;
@@ -37,8 +34,6 @@
 - (void)drawView:(id)sender;
 
 - (void)updateKeyboard: (NSString *) inputString;
-- (void)removeAds;
-- (void)displayAds;
 
 - (void)destroyGame;
 

@@ -17,7 +17,7 @@
 - (void) updateComplete: (id) notificationMsg
 {
     NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
- 
+
     [dnc removeObserver: self name: @"coreComplete" object: nil];
     [dnc removeObserver: self name: @"iosConfigComplete" object: nil];
     [dnc postNotificationName: @"initializeGame" object: self];
@@ -34,12 +34,12 @@
 - (void) downloadResources
 {
     NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
-    
+
 	[dnc addObserver:self selector:@selector(initIosUpdate:) name:@"coreComplete" object: nil];
 
     wagicDownloadController = [[WagicDownloadProgressViewController alloc] init];
     [wagicDownloadController performSelectorInBackground: @selector(startDownload:) withObject:@"core"];
-    
+
     [self.window addSubview: wagicDownloadController.view];
     [self.window makeKeyWindow];
 
@@ -51,16 +51,16 @@
     NSString *pathPrefix = nil;
     if ( pathNamePrefix == nil ) // default to User
         pathPrefix = @"User";
-    else 
+    else
         pathPrefix = pathNamePrefix;
-    
+
     NSError *error = nil;
-    
+
     NSFileManager *fm = [NSFileManager defaultManager];
     NSArray *paths = NSSearchPathForDirectoriesInDomains( NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *userDocumentsDirectory = [paths objectAtIndex:0];
     NSString *downloadFilePath =  [userDocumentsDirectory stringByAppendingString: [NSString stringWithFormat: @"/%@/%@.zip", pathPrefix, folderName]];
-    
+
     ZipArchive *za = [[ZipArchive alloc] init];
     if ([za UnzipOpenFile: downloadFilePath])
     {
@@ -73,7 +73,7 @@
             NSLog(@"An Error occurred while unpacking zip file.");
         }
         [za UnzipCloseFile];
-        
+
         if (ret == YES)
         {
             // delete the archive
@@ -85,7 +85,7 @@
         }
     }
     [za release], za = nil;
-    
+
 }
 
 
@@ -98,15 +98,15 @@
     {
         NSString *pathname = [NSString stringWithFormat: @"%@/%@", path, filename];
         [data appendFormat: @"%@\n", pathname];
-        
+
         BOOL isDirectory = [[fileManager attributesOfItemAtPath: pathname error: nil] objectForKey: NSFileType] == NSFileTypeDirectory;
         if (isDirectory)
             [data appendString: [self getDirContents: pathname]];
     }
-    
+
     NSString *manifestList = [data stringByAppendingFormat: @"\n"];
     [data release];
-    
+
     return manifestList;
 }
 
@@ -114,37 +114,37 @@
 {
     NSString *manifestFile = [docsPath stringByAppendingPathComponent:@"Manifest"];
     [[self getDirContents: docsPath] writeToFile:manifestFile atomically:YES encoding:NSUTF8StringEncoding error: nil];
-   
+
 }
 
 /**
- check for any zip files dropped into the documents directory before loading the game.  
- If so, move the "core" files into the "Res" directory and move all other zip files into the "User" directory. 
+ check for any zip files dropped into the documents directory before loading the game.
+ If so, move the "core" files into the "Res" directory and move all other zip files into the "User" directory.
  Check for a "core" zip file in the Res directory. If it exists, then return YES. Otherwise, return NO.
  */
 
 - (void) initializeResources
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    
+
     NSArray *paths = NSSearchPathForDirectoriesInDomains( NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docsPath = [paths objectAtIndex: 0];
     NSArray *docsPathContents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath: docsPath error:nil];
     NSString *versionPredicate = [NSString stringWithFormat: @"(self  BEGINSWITH '%@')", [NSString stringWithCString: WAGIC_CORE_VERSION_STRING encoding:NSUTF8StringEncoding]];
     NSCompoundPredicate *compoundPredicate = [[NSCompoundPredicate alloc] initWithType:NSAndPredicateType subpredicates: [NSArray arrayWithObjects: [NSPredicate predicateWithFormat:@"self ENDSWITH '.zip'"], [NSPredicate predicateWithFormat: [NSString stringWithFormat: @" NOT ( %@ ) ", versionPredicate]], nil]];
-    
+
     NSArray *coreFiles = [docsPathContents filteredArrayUsingPredicate:[NSPredicate predicateWithFormat: versionPredicate]];
 
     NSArray *resourceZipFiles = [docsPathContents filteredArrayUsingPredicate: compoundPredicate];
     NSString *userPath = [NSString stringWithFormat: @"%@/User", docsPath];
     NSString *resPath = [NSString stringWithFormat: @"%@/Res", docsPath];
     NSError *error = nil;
-    
+
     [compoundPredicate release], compoundPredicate = nil;
-    
+
     if ( ([resourceZipFiles count]  > 0 ) &&  ![fileManager fileExistsAtPath: userPath] )
         [fileManager createDirectoryAtPath: userPath withIntermediateDirectories: YES attributes:nil error:nil ];
-    
+
     for (NSString *zipFile in resourceZipFiles)
     {
         NSString *oldPath = [NSString stringWithFormat: @"%@/%@", docsPath, zipFile];
@@ -155,7 +155,7 @@
             [fileManager removeItemAtPath: newPath error: &error];
         }
         error = nil;
-        
+
         [fileManager moveItemAtPath: oldPath toPath:newPath error: &error];
         NSLog(@"Moving %@ to %@", oldPath, newPath);
         if ( error != nil )
@@ -175,7 +175,7 @@
             [fileManager removeItemAtPath: newPath error: &error];
         }
         error = nil;
-        
+
         [fileManager moveItemAtPath: oldPath toPath:newPath error: &error];
         NSLog(@"Moving %@ to %@", oldPath, newPath);
         if ( error != nil )
@@ -187,21 +187,21 @@
 }
 
 - (BOOL) hasResourceFiles
-{   
+{
     NSArray *paths = NSSearchPathForDirectoriesInDomains( NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docsPath = [paths objectAtIndex: 0];
     NSString *resPath = [NSString stringWithFormat: @"%@/Res", docsPath];
-    
+
     NSArray *resDirContents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath: resPath error:nil];
     NSString *versionPredicate = [NSString stringWithFormat: @"(self  BEGINSWITH '%@')", [NSString stringWithCString: WAGIC_CORE_VERSION_STRING encoding:NSUTF8StringEncoding]];
 
     NSArray *coreFiles = [resDirContents filteredArrayUsingPredicate:[NSPredicate predicateWithFormat: versionPredicate]];
-    
+
     if ([coreFiles count] >= 2)
     {
         return YES;
     }
-    
+
     return NO;
 }
 
@@ -211,30 +211,30 @@
     NSString *docsPath = [NSSearchPathForDirectoriesInDomains( NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex: 0];
     NSFileManager *fm = [NSFileManager defaultManager];
     NSString *userPath = [docsPath stringByAppendingString: @"/User"];
-    
+
     NSArray *userDirectories = [fm contentsOfDirectoryAtPath: userPath error: nil];
 
     for (NSString *userFilename in userDirectories)
     {
         NSString *userPathname = [userPath stringByAppendingFormat: @"/%@", userFilename];
         NSString *zipFileName = [userPathname stringByAppendingString: @".zip"];
-        
+
         if ([[fm attributesOfItemAtPath: userPathname error: nil] objectForKey: NSFileType] == NSFileTypeDirectory && ([fm fileExistsAtPath:zipFileName]))
         {
             [self unpackageResources: userFilename pathPrefixName: @"User"];
             [fm removeItemAtPath: zipFileName error: nil];
         }
-        
+
         else if ( [userFilename hasPrefix: @"ai_decks"] ) // special case to allow manual override of AI decks in User directory
         {
             [self unpackageResources: @"ai_decks" pathPrefixName: @"User/ai/baka"];
         }
     }
     // scan for deck*.txt and collection.dat as well as options.txt in the Documents directory and copy them into the player directory
-    NSArray *playerDataFilePredicates = [NSArray arrayWithObjects: 
-                                         [NSPredicate predicateWithFormat: @"SELF BEGINSWITH[cd] 'deck' AND SELF ENDSWITH '.txt'"], 
-                                         [NSPredicate predicateWithFormat: @"SELF BEGINSWITH[cd] 'options' AND SELF ENDSWITH '.txt'"], 
-                                         [NSPredicate predicateWithFormat: @"SELF BEGINSWITH[cd] 'tasks' AND SELF ENDSWITH '.dat'"], 
+    NSArray *playerDataFilePredicates = [NSArray arrayWithObjects:
+                                         [NSPredicate predicateWithFormat: @"SELF BEGINSWITH[cd] 'deck' AND SELF ENDSWITH '.txt'"],
+                                         [NSPredicate predicateWithFormat: @"SELF BEGINSWITH[cd] 'options' AND SELF ENDSWITH '.txt'"],
+                                         [NSPredicate predicateWithFormat: @"SELF BEGINSWITH[cd] 'tasks' AND SELF ENDSWITH '.dat'"],
                                          [NSPredicate predicateWithFormat: @"SELF BEGINSWITH[cd] 'collection' AND SELF ENDSWITH '.dat'"], nil];
 
     NSCompoundPredicate *playerDataPredicate = [[NSCompoundPredicate alloc] initWithType:NSOrPredicateType subpredicates: playerDataFilePredicates];
@@ -246,23 +246,23 @@
         NSString *toPath = [docsPath stringByAppendingFormat: @"/User/player/%@", [file lowercaseString]];
         [fm moveItemAtPath: fromPath toPath: toPath error: nil];
     }
-    
+
     [playerDataPredicate release], playerDataPredicate = nil;
-    
+
     [self createManifest: docsPath];
-    
+
     [[NSNotificationCenter defaultCenter] postNotificationName: @"readyToStartGame" object: nil];
 }
 
 
 - (void) startGame
 {
-    if (glViewController != nil) 
+    if (glViewController != nil)
         [glViewController release];
     glViewController = [[EAGLViewController alloc] init];
-    
+
     [[[self.window subviews] lastObject] removeFromSuperview];
-    [self.window addSubview:self.glViewController.view];
+    [self.window setRootViewController: glViewController];
 
     NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
 	[dnc removeObserver: self name: @"intializeGame" object: nil];
@@ -286,7 +286,7 @@
     [internetReach release];
     [glViewController release];
     [wagicDownloadController release];
-    
+
     [super dealloc];
 }
 
@@ -298,23 +298,23 @@
     hostReach = [[Reachability reachabilityForGoogleDNS] retain];
     internetReach = [[Reachability reachabilityForInternetConnection] retain];
     wifiReach = [[Reachability reachabilityForLocalWiFi] retain];
-    
+
     [hostReach startNotifier];
     [internetReach startNotifier];
     [wifiReach startNotifier];
 }
 
 
-- (BOOL) application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions 
+- (BOOL) application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.glViewController = nil;
-    
+
     [self setupNetworkListeners];
 
     NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
 	[dnc addObserver:self selector:@selector(preGameInitialization) name:@"initializeGame" object: nil];
 	[dnc addObserver:self selector:@selector(startGame) name:@"readyToStartGame" object: nil];
-    
+
     [self initializeResources];
     // check to see if the Res folder exists.  If it does continue
     // otherwise bring up the download dialog and download the core files
@@ -328,7 +328,7 @@
     {
         [self preGameInitialization];
     }
-    
+
     [self.window setBackgroundColor: [UIColor blackColor]];
     [self.window makeKeyAndVisible];
 
@@ -337,7 +337,7 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-        [self.glViewController.view destroyGame];
+    [self.glViewController.view destroyGame];
 }
 
 - (void)initializeKeyboard: (id) initialState
@@ -345,31 +345,18 @@
     [self.glViewController toggleKeyboardWithState: initialState];
 }
 
-- (void) handleWEngineCommand:(NSString *) command 
-             withUIParameters: (CGFloat) x 
-                  yCoordinate: (CGFloat) y 
-                        width: (CGFloat) width 
+- (void) handleWEngineCommand:(NSString *) command
+             withUIParameters: (CGFloat) x
+                  yCoordinate: (CGFloat) y
+                        width: (CGFloat) width
                        height: (CGFloat) height
 {
 }
 
 - (void)handleWEngineCommand:(NSString *) command withParameter: (NSString *) parameter
 {
-    BOOL isDevicePhone = (UI_USER_INTERFACE_IDIOM()) == UIUserInterfaceIdiomPhone;
 
-    if ([command isEqualToString: @"entergamestate:menu"] )
-        [glViewController.eaglView displayAds];
-    
-    else if ([command isEqualToString: @"enterduelphase:end"] && isDevicePhone)
-        [glViewController.eaglView displayAds];
-    
-    else if ([command isEqualToString: @"leaveduelphase:end"] || 
-                [command isEqualToString: @"leavegamestate:menu"])
-    {
-        if (isDevicePhone)
-            [glViewController.eaglView removeAds];
-    }
-    else if ([command isEqualToString: @"displayKeyboard"])
+    if ([command isEqualToString: @"displayKeyboard"])
     {
         [self initializeKeyboard: parameter];
     }
@@ -379,16 +366,17 @@
 }
 
 
+
 - (void) rotateBackgroundImage:(UIInterfaceOrientation)fromInterfaceOrientation toInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
 	bool isPhone = (UI_USER_INTERFACE_IDIOM()) == UIUserInterfaceIdiomPhone;
-    
-	if (isPhone) 
+
+	if (isPhone)
     {
         UIImage *bgImage = [UIImage imageNamed: @"Default-Portrait.png"];
         [[[self.window subviews] objectAtIndex: 0] setBackgroundColor: [UIColor colorWithPatternImage: bgImage]];
 	}
-	else 
+	else
     {
         [self.window setBackgroundColor: [UIColor clearColor]];
 		if (UIInterfaceOrientationIsLandscape( toInterfaceOrientation)) {
@@ -410,12 +398,12 @@
 {
 	BOOL netAvailable = NO;
     //NSDate *startTime = [[[NSDate alloc ] init] autorelease];
-	
+
     hostReach = [[Reachability reachabilityForGoogleDNS] retain];
-    
+
     NetworkStatus netStatus = [hostReach currentReachabilityStatus];
-    
-	
+
+
 	if (netStatus == ReachableViaWiFi || netStatus == ReachableViaWWAN)	{
 		netAvailable = YES;
 	}

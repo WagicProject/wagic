@@ -25,10 +25,13 @@
         [inputField setAutocapitalizationType:UITextAutocapitalizationTypeNone];
         [inputField setAutocorrectionType:UITextAutocorrectionTypeNo];
         [inputField setKeyboardType: UIKeyboardTypeNamePhonePad];
+
         CGRect frame = [[UIScreen mainScreen] applicationFrame];
         eaglView = [[EAGLView alloc] initWithFrame:frame];
+
         [self setView: eaglView];
         [self.view addSubview: inputField];
+
         [inputField release];
     }
     return self;
@@ -50,7 +53,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
 	NSLog(@"EAGL ViewController - view Will Appear");
-    [self.view resumeGame];	
+    [self.view resumeGame];
 }
 
 
@@ -75,14 +78,14 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-	
+
 	NSLog(@"EAGL ViewController - view Did Appear");
-	
+
 	UIDeviceOrientation currentDeviceOrientation = [UIDevice currentDevice].orientation;
 	UIInterfaceOrientation currentInterfaceOrientation	= self.interfaceOrientation;
-	
-	NSLog(@"Current Interface: %@. Current Device: %@", 
-		  [self interfaceOrientationName:currentInterfaceOrientation], 
+
+	NSLog(@"Current Interface: %@. Current Device: %@",
+		  [self interfaceOrientationName:currentInterfaceOrientation],
 		  [self deviceOrientationName:currentDeviceOrientation]);
 }
 
@@ -91,7 +94,7 @@
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-    
+
     // Release any cached data, images, etc. that aren't in use.
 }
 
@@ -103,6 +106,25 @@
 }
 
 #pragma mark - device orientation handlers
+- (NSUInteger)supportedInterfaceOrientations
+{
+    //I want to support portrait in ABCView at iPhone only.
+    //and support all orientation in other views and iPad.
+
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone)
+    {
+        return UIInterfaceOrientationMaskLandscape;
+    }
+
+    //support all
+    return UIInterfaceOrientationMaskAll;
+}
+
+
+-(BOOL)shouldAutorotate {
+
+    return YES;
+}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // Overriden to allow any orientation.
@@ -110,23 +132,23 @@
 
     if ( isSmallScreen && UIInterfaceOrientationIsPortrait(interfaceOrientation))
         return NO;
-    
+
     return YES;
 }
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-    [[eaglView adView] rotateToOrientation: toInterfaceOrientation];
+    //   [[eaglView adView] rotateToOrientation: toInterfaceOrientation];
 }
 
 
 #pragma mark -
 #pragma mark Orientation Information
 - (NSString*)interfaceOrientationName:(UIInterfaceOrientation) interfaceOrientation {
-	
+
 	NSString* result = nil;
-	
+
 	switch (interfaceOrientation) {
-			
+
 		case UIInterfaceOrientationPortrait:
 			result = @"Portrait";
 			break;
@@ -142,16 +164,16 @@
 		default:
 			result = @"Unknown Interface Orientation";
 	}
-	
+
 	return result;
 };
 
 - (NSString*)deviceOrientationName:(UIDeviceOrientation) deviceOrientation {
-	
+
 	NSString* result = nil;
-	
+
 	switch (deviceOrientation) {
-			
+
 		case UIDeviceOrientationUnknown:
 			result = @"Unknown";
 			break;
@@ -176,7 +198,7 @@
 		default:
 			result = @"Unknown Device Orientation";
 	}
-	
+
 	return result;
 };
 
@@ -205,7 +227,7 @@
         [eaglView updateKeyboard: @"CLEAR"];
     else
         [eaglView updateKeyboard: string];
-    
+
     return YES;
 }
 
@@ -215,7 +237,7 @@
 }
 
 
-- (BOOL) textFieldShouldReturn:(UITextField *)textField 
+- (BOOL) textFieldShouldReturn:(UITextField *)textField
 {
     [eaglView updateKeyboard: @"SAVE"];
 	[textField resignFirstResponder];

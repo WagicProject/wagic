@@ -285,6 +285,8 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		28FD15000DC6FC520079059D /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FD14FF0DC6FC520079059D /* OpenGLES.framework */; };
 		28FD15080DC6FC5B0079059D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FD15070DC6FC5B0079059D /* QuartzCore.framework */; };
+		75D209D3181D54FD009916AC /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75D209D1181D54FD009916AC /* Default-568h@2x.png */; };
+		75D209D4181D54FD009916AC /* wagic-80x80.png in Resources */ = {isa = PBXBuildFile; fileRef = 75D209D2181D54FD009916AC /* wagic-80x80.png */; };
 		CE97CD1E1295AB4300FDFD3B /* SimplePopup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE97CD1D1295AB4300FDFD3B /* SimplePopup.cpp */; };
 		CE9A478512B514BA00C9F38A /* EAGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9A477612B514BA00C9F38A /* EAGLView.m */; };
 		CE9A478612B514BA00C9F38A /* EAGLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9A477812B514BA00C9F38A /* EAGLViewController.m */; };
@@ -576,6 +578,8 @@
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		28FD14FF0DC6FC520079059D /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		28FD15070DC6FC5B0079059D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		75D209D1181D54FD009916AC /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = SOURCE_ROOT; };
+		75D209D2181D54FD009916AC /* wagic-80x80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wagic-80x80.png"; sourceTree = SOURCE_ROOT; };
 		8D1107310486CEB800E47090 /* wagic-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "wagic-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		CE8B8A231299C22900A3CDEF /* DebugRoutines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugRoutines.h; sourceTree = "<group>"; };
 		CE97CD1D1295AB4300FDFD3B /* SimplePopup.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; path = SimplePopup.cpp; sourceTree = "<group>"; };
@@ -1076,6 +1080,8 @@
 		128FB96A149537A600ED4EE6 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				75D209D1181D54FD009916AC /* Default-568h@2x.png */,
+				75D209D2181D54FD009916AC /* wagic-80x80.png */,
 				12211ED21494916D00641703 /* Default-Landscape.png */,
 				12211ED31494916D00641703 /* Default-Portrait.png */,
 				12211ED01494823E00641703 /* Default@2x.png */,
@@ -1761,7 +1767,9 @@
 				12B8123C1404B9E20092E303 /* zfs.vcxproj.filters in Resources */,
 				129654D6148AA23A0031100B /* modrules.xml in Resources */,
 				128ED37C148BAE7B00C58E83 /* README.txt in Resources */,
+				75D209D3181D54FD009916AC /* Default-568h@2x.png in Resources */,
 				12211ECB1494811D00641703 /* Default.png in Resources */,
+				75D209D4181D54FD009916AC /* wagic-80x80.png in Resources */,
 				12211ECD149481B600641703 /* Default-Landscape~ipad.png in Resources */,
 				12211ECF149481C400641703 /* Default-Portrait~ipad.png in Resources */,
 				12211ED11494823F00641703 /* Default@2x.png in Resources */,
