@@ -1,2 +1,2 @@
 language: cpp
-script: "qmake projects/mtg/wagic-qt.pro CONFIG+=testsuite CONFIG+=debug && make -j 8 && ./wagic testsuite"
+script: "qmake projects/mtg/wagic-qt.pro CONFIG+=testsuite CONFIG+=debug && make -j 8"
