@@ -1,5 +1,4 @@
 #import <UIKit/UIKit.h>
-#import "AdWhirlDelegateProtocol.h"
 
 @interface EAGLViewController : UIViewController<UITextFieldDelegate> {
 
