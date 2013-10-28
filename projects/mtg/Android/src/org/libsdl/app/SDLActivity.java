@@ -83,11 +83,11 @@ public class SDLActivity extends Activity implements OnKeyListener
     private AlertDialog        mErrorDialog;
     public String              mErrorMessage                         = "";
     public Boolean             mErrorHappened                        = false;
-    public final static String RES_FOLDER                            = "/sdcard/Wagic/Res/";
+    public final static String RES_FOLDER                            = Environment.getExternalStorageDirectory().getPath() + "/Wagic/Res/";
     public static String       RES_FILENAME                          = "core_0184.zip";
     public static final String RES_URL                               = "http://wagic.googlecode.com/files/";
 
-    public String              systemFolder                          = "/sdcard/Wagic/Res/";
+    public String              systemFolder                          = Environment.getExternalStorageDirectory().getPath() + "/Wagic/Res/";
     private String             userFolder;
 
     // path to the onboard sd card that is not removable (typically /mnt/sdcard )
@@ -135,7 +135,10 @@ public class SDLActivity extends Activity implements OnKeyListener
     public boolean checkStorageState()
     {
         SharedPreferences settings = getSharedPreferences(kWagicSharedPreferencesKey, MODE_PRIVATE);
-        boolean useSdCard = (!settings.getBoolean(kStoreDataOnRemovableSdCardPreference, false)) && Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState());
+        boolean mExternalStorageAvailable = false;
+        boolean mExternalStorageWriteable = false;
+        String state = Environment.getExternalStorageState();
+        boolean useSdCard = (!settings.getBoolean(kStoreDataOnRemovableSdCardPreference, false)) && mExternalStorageWriteable;
         String systemStoragePath = getSystemStorageLocation();
 
         if (useSdCard && (systemStoragePath.indexOf(sdcardPath) != -1))
@@ -150,7 +153,20 @@ public class SDLActivity extends Activity implements OnKeyListener
             return true;
         }
 
-        return false;
+        if (Environment.MEDIA_MOUNTED.equals(state)) {
+            // We can read and write the media
+            mExternalStorageAvailable = mExternalStorageWriteable = true;
+        } else if (Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) {
+            // We can only read the media
+            mExternalStorageAvailable = true;
+            mExternalStorageWriteable = false;
+        } else {
+            // Something else is wrong. It may be one of many other states, but all we need
+            //  to know is we can neither read nor write
+            mExternalStorageAvailable = mExternalStorageWriteable = false;
+        }  
+        
+        return (mExternalStorageAvailable && mExternalStorageWriteable);
     }
 
     private boolean getRemovableMediaStorageState()
@@ -781,7 +797,7 @@ public class SDLActivity extends Activity implements OnKeyListener
                 Log.e(TAG1, e.getMessage());
             }
 
-            return new Long(totalBytes);
+            return Long.valueOf(totalBytes);
         }
 
         protected void onProgressUpdate(Integer... progress)

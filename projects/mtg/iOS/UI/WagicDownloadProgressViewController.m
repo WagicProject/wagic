@@ -32,12 +32,12 @@ static NSString *kDownloadUrlPath = @"http://wagic.googlecode.com/files/";
         NSLog(@"Download Core files failed.  Retrying... ");
         [self.downloadMessageStatus setText: @"Download Core files failed.  Retrying... "];
 
-            UIAlertView *noNetworkConnectionAlert = [[UIAlertView alloc] initWithTitle: @"No Network Connection" message: @"Internet connection not found.  Download can not continue until it is restored. Restore Wifi or Cellular connection and retry" delegate: self cancelButtonTitle: @"Retry Download" otherButtonTitles: nil];
-            [self.view addSubview: noNetworkConnectionAlert];
-            [noNetworkConnectionAlert show];
-            [noNetworkConnectionAlert release];
+        UIAlertView *noNetworkConnectionAlert = [[UIAlertView alloc] initWithTitle: @"No Network Connection" message: @"Internet connection not found.  Download can not continue until it is restored. Restore Wifi or Cellular connection and retry" delegate: self cancelButtonTitle: @"Retry Download" otherButtonTitles: nil];
+        [self.view addSubview: noNetworkConnectionAlert];
+        [noNetworkConnectionAlert show];
+        [noNetworkConnectionAlert release];
     }
-    
+
 }
 
 - (void)alertView:(UIAlertView *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
@@ -55,19 +55,19 @@ static NSString *kDownloadUrlPath = @"http://wagic.googlecode.com/files/";
 - (void) startDownload: (NSString *) downloadType
 {
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-    
+
     [self.downloadMessageStatus performSelectorOnMainThread:@selector(setText:) withObject:[NSString stringWithFormat: @"Please wait while the %@ files are being downloaded.", downloadType] waitUntilDone: NO ];
-    
+
     if ( downloadProgressView != nil )
     {
         [downloadProgressView removeFromSuperview];
         [downloadProgressView release], downloadProgressView = nil;
     }
-    
+
     downloadProgressView = [[UIProgressView alloc] initWithProgressViewStyle: UIProgressViewStyleDefault];
     [self.downloadProgressView setFrame: CGRectMake(0, 0, 250, 50)];
     [self.downloadProgressView setAutoresizingMask: UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight ];
-    
+
     [self.view addSubview: downloadProgressView];
     [self handleRotation: self.interfaceOrientation];
 
@@ -78,7 +78,7 @@ static NSString *kDownloadUrlPath = @"http://wagic.googlecode.com/files/";
 
     NSError *error = nil;
     // make sure Res directory exists
-    if ( ![[NSFileManager defaultManager] fileExistsAtPath: systemResourceDirectory] ) 
+    if ( ![[NSFileManager defaultManager] fileExistsAtPath: systemResourceDirectory] )
         [[NSFileManager defaultManager] createDirectoryAtPath:systemResourceDirectory withIntermediateDirectories: YES attributes:nil error: &error];
 
     if (error != nil)
@@ -86,7 +86,7 @@ static NSString *kDownloadUrlPath = @"http://wagic.googlecode.com/files/";
         NSLog(@"Error in creating System Directory! %@", [error localizedDescription]);
         error = nil;
     }
-    
+
     // make sure the User directory exists as well
     if ( ![[NSFileManager defaultManager] fileExistsAtPath: userResourceDirectory] )
         [[NSFileManager defaultManager] createDirectoryAtPath: userResourceDirectory withIntermediateDirectories: YES attributes:nil error: &error];
@@ -96,10 +96,10 @@ static NSString *kDownloadUrlPath = @"http://wagic.googlecode.com/files/";
         NSLog(@"Error in creating User Directory! %@", [error localizedDescription]);
         error = nil;
     }
-    
+
     // if an error occurred while creating the directory, game can't really run so do something
     // TODO: throw out a notification and deal with error
-    
+
     NSURL *url = nil;
     NSString *downloadFilename = nil;
     // determine which file to download
@@ -119,11 +119,11 @@ static NSString *kDownloadUrlPath = @"http://wagic.googlecode.com/files/";
         NSLog( @"Not Implemented for type: %@", downloadType);
     }
 
-    url = [NSURL URLWithString: [NSString stringWithFormat: @"%@/%@", kDownloadUrlPath, downloadFilename]];    
+    url = [NSURL URLWithString: [NSString stringWithFormat: @"%@/%@", kDownloadUrlPath, downloadFilename]];
     NSString *downloadFilePath =  [systemResourceDirectory stringByAppendingString: [NSString stringWithFormat: @"/%@",  downloadFilename]];
 
     NSLog(@"Downloading %@", [url absoluteURL]);
-    
+
     __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
     [request setTemporaryFileDownloadPath: [NSString stringWithFormat: @"%@/%@.tmp", systemResourceDirectory, downloadFilename]];
 
@@ -131,9 +131,9 @@ static NSString *kDownloadUrlPath = @"http://wagic.googlecode.com/files/";
     [request setDownloadProgressDelegate: downloadProgressView];
     [request setShouldContinueWhenAppEntersBackground: YES];
     [request setAllowCompressedResponse: YES];
-    
+
     [request setCompletionBlock:^{
-        wagicAppDelegate *appDelegate = (wagicAppDelegate *)[[UIApplication sharedApplication] delegate];        
+        wagicAppDelegate *appDelegate = (wagicAppDelegate *)[[UIApplication sharedApplication] delegate];
         NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
         NSLog(@"Saving to %@", downloadFilePath);
         [dnc postNotificationName: [NSString stringWithFormat: @"%@Complete", downloadType] object: appDelegate];
@@ -150,11 +150,11 @@ static NSString *kDownloadUrlPath = @"http://wagic.googlecode.com/files/";
         // post a notification that a download error has occurred.
         NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
         [dnc postNotificationName:@"fileDownloadFailed" object: downloadType];
-        
+
     }];
-    
+
     [request startAsynchronous];
-    
+
     [pool drain], pool = nil;
 }
 
@@ -166,9 +166,9 @@ static NSString *kDownloadUrlPath = @"http://wagic.googlecode.com/files/";
         [downloadProgressView release], downloadProgressView = nil;
     if (downloadMessageStatus)
         [downloadMessageStatus release], downloadMessageStatus = nil;
-    
+
     [super dealloc];
-    
+
 }
 
 - (id) init
@@ -185,7 +185,7 @@ static NSString *kDownloadUrlPath = @"http://wagic.googlecode.com/files/";
         [[self view] setBackgroundColor: [UIColor clearColor]];
         // Initialization code
 
-        downloadMessageStatus = [[UITextView alloc] initWithFrame: CGRectMake(0, 0, 320, 320)];        
+        downloadMessageStatus = [[UITextView alloc] initWithFrame: CGRectMake(0, 0, 320, 320)];
         [self.downloadMessageStatus setBackgroundColor:[UIColor clearColor]];
         [downloadMessageStatus setEditable: NO];
         [self.view setBackgroundColor:[UIColor clearColor]];
@@ -194,12 +194,12 @@ static NSString *kDownloadUrlPath = @"http://wagic.googlecode.com/files/";
         self.downloadMessageStatus.clipsToBounds = YES;
         self.downloadMessageStatus.layer.cornerRadius = 10.0f;
         [self.downloadMessageStatus setAutoresizingMask: UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight ];
-        
+
         if (isPhone)
             [self.downloadMessageStatus setFont: [UIFont systemFontOfSize: 20]];
         else
             [self.downloadMessageStatus setFont: [UIFont systemFontOfSize: 35]];
-        
+
         [self.view addSubview: downloadMessageStatus];
 
     }
@@ -209,11 +209,11 @@ static NSString *kDownloadUrlPath = @"http://wagic.googlecode.com/files/";
 #pragma mark - Application Lifecycle
 
 
-- (void) didReceiveMemoryWarning 
+- (void) didReceiveMemoryWarning
 {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-    
+
     // Relinquish ownership any cached data, images, etc that aren't in use.
 }
 
@@ -287,30 +287,36 @@ static NSString *kDownloadUrlPath = @"http://wagic.googlecode.com/files/";
 	[appDelegate rotateBackgroundImage: self.interfaceOrientation toInterfaceOrientation: toInterfaceOrientation];
 }
 
- 
-- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation 
+
+- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
 
 	bool isPhone = (UI_USER_INTERFACE_IDIOM()) == UIUserInterfaceIdiomPhone;
-    BOOL rotateDevice = !((interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown) 
-                         || (interfaceOrientation == UIInterfaceOrientationPortrait));
+    BOOL rotateDevice = UIInterfaceOrientationIsPortrait(interfaceOrientation);
+
 	if (isPhone)
 		return rotateDevice;
 
-	return YES;	
+	return YES;
 }
 
+-(BOOL)shouldAutorotate {
+    return YES;
+}
 
+-(NSUInteger)supportedInterfaceOrientations {
+    return [self.navigationController.topViewController supportedInterfaceOrientations];
+}
 #pragma mark -
 
 
 /*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
+ // Only override drawRect: if you perform custom drawing.
+ // An empty implementation adversely affects performance during animation.
+ - (void)drawRect:(CGRect)rect
+ {
+ // Drawing code
+ }
+ */
 
 @end

@@ -1,4 +1,0 @@
-{
-	MainTemplateFile = "class.m";
-	Description = "An Objective-C class containing an OCUnit test case, with an optional header which includes the \"GTMSenTestCase.h\" header.";
-}
