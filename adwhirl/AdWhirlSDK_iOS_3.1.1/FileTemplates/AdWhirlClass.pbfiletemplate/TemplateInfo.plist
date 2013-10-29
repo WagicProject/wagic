@@ -1,5 +1,0 @@
-{
-	MainTemplateFile = "class.m";
-	CounterpartTemplateFile = "class.h";
-	Description = "An Objective-C class file for AdWhirl development.";
-}

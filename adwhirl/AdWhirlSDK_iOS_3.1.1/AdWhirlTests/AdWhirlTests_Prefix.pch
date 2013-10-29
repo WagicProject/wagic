@@ -1,7 +1,0 @@
-//
-// Prefix header for all source files of the 'AdWhirlTests' target in the 'AdWhirlTests' project
-//
-
-// To silence build warnings when we swap AdWhirlLog* with this
-@class NSString;
-extern void _GTMUnitTestDevLog(NSString *format, ...);

@@ -183,8 +183,7 @@ SOURCES += \
         src/WGui.cpp\
         src/WResourceManager.cpp \
         src/AIPlayerBakaB.cpp \
-        src/TestSuiteAI.cpp \
-    ../../JGE/src/Qtconsole.cpp
+        src/TestSuiteAI.cpp
 
 HEADERS  += \
         include/CacheEngine.h\
@@ -355,7 +354,8 @@ CONFIG(graphics, graphics|console){
 }
 else:CONFIG(console, graphics|console){
     SOURCES += \
-        ../../JGE/src/JGfx-fake.cpp
+        ../../JGE/src/JGfx-fake.cpp\
+        ../../JGE/src/Qtconsole.cpp
 }
 
 
