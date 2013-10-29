@@ -34,6 +34,10 @@ The content that users should not be touching.
 #include "../include/JLogger.h"
 #include <dirent.h>
 
+#ifdef QT_CONFIG
+#include <QDir>
+#endif
+
 JFileSystem* JFileSystem::mInstance = NULL;
 
 JZipCache::JZipCache()

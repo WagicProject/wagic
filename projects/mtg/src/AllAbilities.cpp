@@ -973,7 +973,7 @@ AASetTypeChosen::~AASetTypeChosen()
 //
 //choosing a type or color
 GenericFlipACoin::GenericFlipACoin(GameObserver* observer, int id, MTGCardInstance * source, Targetable *,string _toAdd, ManaCost * cost) :
-ActivatedAbility(observer, id, source, cost, 0), baseAbility(_toAdd),chooseColor(chooseColor)
+ActivatedAbility(observer, id, source, cost, 0), baseAbility(_toAdd)
 {
     this->GetId();
     setCoin = NULL;

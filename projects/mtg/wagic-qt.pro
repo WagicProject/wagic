@@ -1,9 +1,28 @@
 # Add more folders to ship with the application, here
-folder_01.source = qml/QmlWagic
-folder_01.target = /usr/share
-DEPLOYMENTFOLDERS = folder_01
+addExclusiveBuilds(graphics, Graphics, console, Console)
+CONFIG(console, graphics|console){
+    QT += core network
+    QT -= gui
 
-QT += core gui opengl network
+    DEFINES += CONSOLE_CONFIG
+    CONFIG   += console
+    CONFIG   -= app_bundle
+    DEFINES += TESTSUITE
+}
+else:CONFIG(graphics, graphics|console){
+    folder_01.source = qml/QmlWagic
+    folder_01.target = /usr/share
+    DEPLOYMENTFOLDERS = folder_01
+    QT += core gui opengl network
+    #maemo5:DEFINES += QT_WIDGET
+    DEFINES += QT_WIDGET
+    unix:!symbian:INCLUDEPATH += /usr/include/GL
+
+    # Please do not modify the following two lines. Required for deployment.
+    !maemo5:include(qml/qmlapplicationviewer/qmlapplicationviewer.pri)
+    !maemo5:qtcAddDeployment()
+}
+
 #!android:!symbian:QT += phonon
 maemo5:QT += dbus
 
@@ -15,24 +34,19 @@ unix|macx:QMAKE_CXXFLAGS += -Wno-unused-parameter
 unix|macx:QMAKE_CXXFLAGS += -Wno-unused-but-set-parameter
 unix|macx:QMAKE_CXXFLAGS += -Wno-unused-but-set-variable
 unix|macx:QMAKE_CXXFLAGS += -Wno-unused-value
-#unix|macx:!maemo5:!symbian:QMAKE_CXXFLAGS += -Werror
+unix|macx:QMAKE_CXXFLAGS += -Wno-unused-local-typedefs
+unix|macx:!maemo5:!symbian:QMAKE_CXXFLAGS += -Werror
+
 windows:DEFINES += _CRT_SECURE_NO_WARNINGS
 unix|macx:DEFINES += LINUX
 CONFIG(debug, debug|release) {
     DEFINES += _DEBUG
 }
 
-CONFIG(testsuite)
-{
-    DEFINES += TESTSUITE
-}
-#CONFIG(debug, debug|release):DEFINES += _DEBUG
 DEFINES += QT_CONFIG
 #!android:!symbian:DEFINES += USE_PHONON
 android:INCLUDEPATH += $$ANDROID_NDK_ROOT/platforms/android-9/arch-arm/usr/include
 #DEFINES += QT_NO_DEBUG_OUTPUT
-#maemo5:DEFINES += QT_WIDGET
-DEFINES += QT_WIDGET
 DEFINES += NETWORK_SUPPORT
 
 windows:INCLUDEPATH += ../../JGE/Dependencies/include
@@ -45,7 +59,6 @@ windows{
         DEFINES += WIN32
     }
 }
-unix:!symbian:INCLUDEPATH += /usr/include/GL
 macx:INCLUDEPATH += /opt/include
 INCLUDEPATH += ../../JGE/include/qt
 INCLUDEPATH += ../../JGE/include
@@ -170,7 +183,8 @@ SOURCES += \
         src/WGui.cpp\
         src/WResourceManager.cpp \
         src/AIPlayerBakaB.cpp \
-        src/TestSuiteAI.cpp
+        src/TestSuiteAI.cpp \
+    ../../JGE/src/Qtconsole.cpp
 
 HEADERS  += \
         include/CacheEngine.h\
@@ -291,9 +305,6 @@ HEADERS  += \
 
 # JGE, could probably be moved outside
 SOURCES += \
-        ../../JGE/src/qt/filedownloader.cpp\
-        ../../JGE/src/qt/corewrapper.cpp\
-        ../../JGE/src/Qtmain.cpp\
         ../../JGE/src/Encoding.cpp\
         ../../JGE/src/JAnimator.cpp\
         ../../JGE/src/JApp.cpp\
@@ -304,7 +315,6 @@ SOURCES += \
         ../../JGE/src/JGui.cpp\
         ../../JGE/src/JLogger.cpp\
         ../../JGE/src/JLBFont.cpp\
-        ../../JGE/src/JMD2Model.cpp\
         ../../JGE/src/JOBJModel.cpp\
         ../../JGE/src/JParticle.cpp\
         ../../JGE/src/JParticleEffect.cpp\
@@ -314,6 +324,7 @@ SOURCES += \
         ../../JGE/src/JSpline.cpp\
         ../../JGE/src/JNetwork.cpp\
         ../../JGE/src/pc/JSocket.cpp\
+        ../../JGE/src/pc/JSfx.cpp\
         ../../JGE/src/JSprite.cpp\
         ../../JGE/src/Vector2D.cpp\
         ../../JGE/src/tinyxml/tinystr.cpp\
@@ -328,13 +339,27 @@ SOURCES += \
         ../../JGE/src/hge/hgevector.cpp\
         ../../JGE/src/zipFS/zfsystem.cpp\
         ../../JGE/src/zipFS/ziphdr.cpp\
-        ../../JGE/src/zipFS/zstream.cpp\
-        ../../JGE/src/pc/JSfx.cpp\
+        ../../JGE/src/zipFS/zstream.cpp
+
+CONFIG(graphics, graphics|console){
+    SOURCES += \
+        ../../JGE/src/qt/filedownloader.cpp\
+        ../../JGE/src/qt/corewrapper.cpp\
+        ../../JGE/src/Qtmain.cpp\
+        ../../JGE/src/JMD2Model.cpp\
         ../../JGE/src/pc/JGfx.cpp
 
-HEADERS += \
+    HEADERS += \
         ../../JGE/include/qt/filedownloader.h\
-        ../../JGE/include/qt/corewrapper.h\
+        ../../JGE/include/qt/corewrapper.h
+}
+else:CONFIG(console, graphics|console){
+    SOURCES += \
+        ../../JGE/src/JGfx-fake.cpp
+}
+
+
+HEADERS += \
         ../../JGE/include/Threading.h\
         ../../JGE/include/decoder_prx.h\
         ../../JGE/include/DebugRoutines.h\
@@ -386,10 +411,6 @@ HEADERS += \
         ../../JGE/src/tinyxml/tinystr.h\
         ../../JGE/src/tinyxml/tinyxml.h\
         ../../JGE/include/vram.h
-
-# Please do not modify the following two lines. Required for deployment.
-!maemo5:include(qml/qmlapplicationviewer/qmlapplicationviewer.pri)
-!maemo5:qtcAddDeployment()
 
 # maemo 5 packaging
 maemo5: {

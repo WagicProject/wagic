@@ -5781,7 +5781,6 @@ class GenericFlipACoin: public ActivatedAbility
 {
 public:
     string baseAbility;
-    bool chooseColor;
     AASetCoin * setCoin;
     GenericFlipACoin(GameObserver* observer, int id, MTGCardInstance * source, Targetable * target, string toAdd = "", ManaCost * cost = NULL);
     int resolve();
