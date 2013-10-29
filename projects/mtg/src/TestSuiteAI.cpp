@@ -611,7 +611,7 @@ void TestSuite::ThreadProc(void* inParam)
 int TestSuite::run()
 {
   mProcessing = true;
-  loadNext();
+//  loadNext();
   ThreadProc(this);
 
   return nbFailed + nbAIFailed;
