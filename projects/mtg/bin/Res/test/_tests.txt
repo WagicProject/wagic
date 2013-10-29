@@ -238,7 +238,7 @@ counterspell.txt
 counterspell2.txt
 counterspell3.txt
 counterspell4.txt
-counter_unless_pay.txt
+counter_unless_pay_x.txt
 Covetous_Dragon_ASLONGAS_3.txt
 Covetous_Dragon_ASLONGAS_4.txt
 cranial_plating.txt
@@ -614,6 +614,8 @@ souls_attendant_i489.txt
 soul's grace_POWERLIFEGAIN.txt
 spark_elemental.txt
 spectral_shield_CANTBETARGETOF.txt
+spell_rupture.txt
+spell_rupture_2.txt
 sphinx_summoner.txt
 spirit_link.txt
 spirit_link_i173.txt

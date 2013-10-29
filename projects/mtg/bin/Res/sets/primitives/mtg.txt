@@ -83704,7 +83704,7 @@ type=Instant
 [card]
 name=Spell Rupture
 target=*|stack
-auto=if cantargetcard(*|opponentstack) then transforms((,newability[pay[[{value:power:highest:creature:opponentbattlefield}]] name(pay {value} mana) donothing?fizzle])) forever else transforms((,newability[pay[[{value:power:highest:creature:mybattlefield.}]] name(pay {value} mana) donothing?fizzle])) forever
+auto=if cantargetcard(*|opponentstack) then transforms((,newability[pay[[{value:power:highest:creature:opponentbattlefield}]] name(pay {value} mana) donothing?fizzle])) forever else transforms((,newability[pay[[{value:power:highest:creature:mybattlefield}]] name(pay {value} mana) donothing?fizzle])) forever
 text=Counter target spell unless its controller pays {X}, where X is the greatest power among creatures you control.
 mana={1}{U}
 type=Instant

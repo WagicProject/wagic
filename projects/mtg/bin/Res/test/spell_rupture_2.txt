@@ -1,0 +1,25 @@
+# Testing spell rupture (expression: "pay[[{value:WParsedInt}]]")
+# counter own spell
+[INIT]
+firstmain
+[PLAYER1]
+hand:bad moon,spell rupture
+manapool:{1}{B}{1}{U}{4}
+inplay:raging goblin
+[PLAYER2]
+inplay:grizzly bears
+[DO]
+bad moon
+yes
+spell rupture
+bad moon
+choice 0
+[ASSERT]
+firstmain
+[PLAYER1]
+graveyard:spell rupture
+manapool:{3}
+inplay:raging goblin,bad moon
+[PLAYER2]
+inplay:grizzly bears
+[END]
