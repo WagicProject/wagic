@@ -342,7 +342,6 @@ void MTGAllCards::loadFolder(const string& folder, const string& filename )
 
     if (!files.size())
     {
-        DebugTrace("loadPrimitives:WARNING:Primitives folder is missing");
         return;
     }
 
@@ -382,8 +381,12 @@ int MTGAllCards::load(const char * config_file, const char * set_name, int)
     std::string contents;
     izfstream file;
     if (!JFileSystem::GetInstance()->openForRead(file, config_file))
+    {
+        DebugTrace("MTGAllCards::load: error loading: " << config_file);
         return total_cards;
+    }
 
+    DebugTrace("MTGAllCards::load: loading: " << config_file);
     string s;
 
     while (getline(file,s))
