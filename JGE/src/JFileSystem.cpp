@@ -16,9 +16,7 @@ User folder is the only one that is really needed to guarantee both read and wri
 The content that users should not be touching.
 */
 
-#if defined(ANDROID)
-#include "../../include/PrecompiledHeader.h"
-#endif
+#include "PrecompiledHeader.h"
 
 #ifdef WIN32
 #pragma warning(disable : 4786)
@@ -125,13 +123,18 @@ JFileSystem::JFileSystem(const string & _userPath, const string & _systemPath)
 
 	DebugTrace("User path " << userPath);
 #elif defined (QT_CONFIG)
-    QDir dir(QDir::homePath());
-    dir.cd(USERDIR);
 
     QDir sysDir("projects/mtg/bin/Res");
+    QDir dir(QDir::homePath());
+    dir.mkdir(USERDIR);
+    dir.cd(USERDIR);
 
     userPath = QDir::toNativeSeparators(dir.absolutePath()).toStdString();
     systemPath = QDir::toNativeSeparators(sysDir.absolutePath()).toStdString();
+
+    DebugTrace("User path " << userPath);
+    DebugTrace("System path " << systemPath);
+    DebugTrace("Current path " << QDir::currentPath().toStdString());
 #else
     //Find the Res.txt file and matching Res folders for backwards compatibility
     ifstream mfile("Res.txt");

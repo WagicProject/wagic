@@ -114,7 +114,7 @@ int TestSuiteAI::Act(float)
     timer = 0;
 
     string action = suite->getNextAction();
-    observer->mLayers->stackLayer()->Dump();
+//    observer->mLayers->stackLayer()->Dump();
     DebugTrace("TESTSUITE command: " << action);
 
     if (observer->mLayers->stackLayer()->askIfWishesToInterrupt == this)

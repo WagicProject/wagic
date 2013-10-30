@@ -32,7 +32,7 @@ std::string ToHex(T* pointer)
 #define DebugTrace(inString)								\
 {															\
   std::ostringstream stream;								\
-  stream << inString << std::endl;					    \
+  stream << inString;					    \
   qDebug("%s", stream.str().c_str());	                        \
 }
 #elif defined (ANDROID)
