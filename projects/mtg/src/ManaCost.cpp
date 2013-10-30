@@ -424,7 +424,7 @@ int ManaCost::hasX()
         DebugTrace("Seems ManaCost was not properly initialized");
         return 0;
     }
-    if(xColor > 0)
+    if (xColor > 0)
         return 0;
 
     return cost[Constants::NB_Colors];

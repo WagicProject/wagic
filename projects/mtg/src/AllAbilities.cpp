@@ -1144,9 +1144,6 @@ int GenericPaidAbility::resolve()
         baseAbility = Af.parseMagicLine(baseAbilityStrSplit[0], this->GetId(), NULL, source);
         baseAbility->target = target;
         optionalCost =  ManaCost::parseManaCost(baseCost, NULL, source);
-        if (optionalCost->hasX()) {
-            optionalCost->add(Constants::MTG_COLOR_ARTIFACT, source->storedSourceCard->X);
-        }
 
         // hacky way to produce better MenuText
         AAFakeAbility* isFake = dynamic_cast< AAFakeAbility* >( baseAbility );
@@ -3530,10 +3527,10 @@ int MenuAbility::reactToChoiceClick(Targetable * object,int choice,int control)
         if (mClone && !toPay && optionalCosts.size() && i < int(optionalCosts.size()) && optionalCosts[i])//paidability only supports the first ability as paid for now.
         {
             toPay = NEW ManaCost();
-            if(optionalCosts[i]->extraCosts)
-            toPay->extraCosts = optionalCosts[i]->extraCosts->clone();
+            if (optionalCosts[i]->extraCosts)
+                toPay->extraCosts = optionalCosts[i]->extraCosts->clone();
             toPay->addExtraCost(NEW ExtraManaCost(NEW ManaCost(optionalCosts[i])));
-            toPay->setExtraCostsAction(this,source);
+            toPay->setExtraCostsAction(this, source);
             game->mExtraPayment = toPay->extraCosts;
             return 0;
         }

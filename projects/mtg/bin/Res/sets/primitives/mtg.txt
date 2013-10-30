@@ -88480,7 +88480,7 @@ toughness=3
 [card]
 name=Syncopate
 target=*|stack
-auto=transforms((,newability[pay[[{x}]] name(pay {value} mana) donothing?fizzleto(exile)])) forever
+auto=transforms((,newability[pay[[{value:storedx}]] name(pay {value} mana) donothing?fizzleto(exile)])) forever
 text=Counter target spell unless its controller pays {X}. If that spell is countered this way, exile it instead of putting it into its owner's graveyard.
 mana={X}{U}
 type=Instant
