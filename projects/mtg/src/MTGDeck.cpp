@@ -357,7 +357,6 @@ void MTGAllCards::loadFolder(const string& infolder, const string& filename )
 
     for (size_t i = 0; i < files.size(); ++i)
     {
-        DebugTrace("MTGAllCards::loadFolder: checking folder" << folder << " file " << files[i]);
         string afile = folder;
         afile.append(files[i]);
 
@@ -397,7 +396,6 @@ int MTGAllCards::load(const char * config_file, const char * set_name, int)
         return total_cards;
     }
 
-    DebugTrace("MTGAllCards::load: loading: " << config_file);
     string s;
 
     while (getline(file,s))

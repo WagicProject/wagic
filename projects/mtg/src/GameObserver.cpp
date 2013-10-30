@@ -383,8 +383,8 @@ void GameObserver::resetStartupGame()
     startupGameSerialized = "";
     stream << *this;
     startupGameSerialized = stream.str();
-    DebugTrace("startGame\n");
-    DebugTrace(startupGameSerialized);
+//    DebugTrace("startGame\n");
+//    DebugTrace(startupGameSerialized);
 }
 
 void GameObserver::startGame(GameType gtype, Rules * rules)
