@@ -336,8 +336,18 @@ void MTGAllCards::init()
     initCounters();
 }
 
-void MTGAllCards::loadFolder(const string& folder, const string& filename )
+void MTGAllCards::loadFolder(const string& infolder, const string& filename )
 {
+    string folder = infolder;
+
+    // Make sure the base paths finish with a '/' or a '\'
+    if (! folder.empty()) {
+                string::iterator c = folder.end();//userPath.at(userPath.size()-1);
+                c--;
+        if ((*c != '/') && (*c != '\\'))
+            folder += '/';
+    }
+
     vector<string> files = JFileSystem::GetInstance()->scanfolder(folder);
 
     if (!files.size())
@@ -355,7 +365,7 @@ void MTGAllCards::loadFolder(const string& folder, const string& filename )
             continue;
 
         if(JFileSystem::GetInstance()->DirExists(afile))
-            loadFolder(string(afile).c_str(), filename);
+            loadFolder(afile, filename);
 
         if (!JFileSystem::GetInstance()->FileExists(afile))
             continue;
