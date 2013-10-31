@@ -9,9 +9,8 @@
 #include "GameOptions.h"
 #include "MTGDeck.h"
 #include "DebugRoutines.h"
-
-#include <sys/time.h>
 #include <QCoreApplication>
+#include <QElapsedTimer>
 
 class WagicWrapper
 {
@@ -19,17 +18,21 @@ public:
     WagicWrapper();
     virtual ~WagicWrapper();
 
+public:
+    // used mainly to mesure the delta between 2 updates
+    static QElapsedTimer g_startTimer;
+
 private:
     JGE* m_engine;
     JApp* m_app;
     JGameLauncher* m_launcher;
 };
 
+QElapsedTimer WagicWrapper::g_startTimer;
+
 int JGEGetTime()
 {
-  struct timeval tv;
-  gettimeofday(&tv, NULL);
-  return tv.tv_sec * 1000 + tv.tv_usec / 1000;
+    return (int)WagicWrapper::g_startTimer.elapsed();
 }
 
 bool JGEToggleFullscreen()
@@ -57,6 +60,7 @@ WagicWrapper::WagicWrapper()
     m_app->Create();
     m_engine->SetApp(m_app);
     JRenderer::GetInstance()->Enable2D();
+    g_startTimer.restart();
 }
 
 WagicWrapper::~WagicWrapper()

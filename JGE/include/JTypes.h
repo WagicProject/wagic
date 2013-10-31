@@ -75,16 +75,7 @@ enum {
 #define SCREEN_HEIGHT_F			272.0f
 
 
-#ifdef WIN32
-//	#define DEFAULT_BLEND		BLEND_DEFAULT
-//	#define BLEND_OPTION_ADD	BLEND_COLORADD
-//	#define BLEND_OPTION_BLEND	(BLEND_COLORADD | BLEND_ALPHABLEND | BLEND_NOZWRITE)
-#else
-#ifndef CONSOLE_CONFIG
-#define DEFAULT_BLEND		GU_TFX_MODULATE
-#define BLEND_OPTION_ADD	GU_TFX_ADD
-#define BLEND_OPTION_BLEND	GU_TFX_BLEND
-#else
+#ifdef CONSOLE_CONFIG
 #define DEFAULT_BLEND		0
 #define BLEND_OPTION_ADD	0
 #define BLEND_OPTION_BLEND	0
@@ -100,9 +91,17 @@ enum {
 #define BLEND_ONE_MINUS_DST_COLOR	0
 #define BLEND_SRC_ALPHA_SATURATE	0
 #define GU_PSM_5551                 0
-
-#endif // CONSOLE_CONFIG
+#else
+#ifdef WIN32
+//	#define DEFAULT_BLEND		BLEND_DEFAULT
+//	#define BLEND_OPTION_ADD	BLEND_COLORADD
+//	#define BLEND_OPTION_BLEND	(BLEND_COLORADD | BLEND_ALPHABLEND | BLEND_NOZWRITE)
+#else
+#define DEFAULT_BLEND		GU_TFX_MODULATE
+#define BLEND_OPTION_ADD	GU_TFX_ADD
+#define BLEND_OPTION_BLEND	GU_TFX_BLEND
 #endif
+#endif // CONSOLE_CONFIG
 
 #if (defined WIN32) && (!defined LINUX)
 	#include <windows.h>
@@ -111,6 +110,10 @@ enum {
 typedef uint8_t byte;
 typedef uint32_t DWORD;
 typedef uint8_t BYTE;
+#ifndef IOS
+typedef bool BOOL;
+#endif
+#endif
 
 typedef int8_t s8;
 typedef int16_t s16;
@@ -122,10 +125,6 @@ typedef uint32_t u32;
 #define ARGB(a, r, g, b)		((PIXEL_TYPE)((a) << 24) | ((r) << 16) | ((g) << 8) | (b))
 #define RGBA(r, g, b, a)		((PIXEL_TYPE)((a) << 24) | ((b) << 16) | ((g) << 8) | (r))
 #define TEXTURE_FORMAT			0
-#ifndef IOS
-typedef bool BOOL;
-#endif
-#endif
 
 
 
@@ -267,6 +266,7 @@ typedef struct
 #endif
 #else
 typedef uint32_t GLuint;
+typedef float GLfloat;
 #endif //CONSOLE_CONFIG
 
 //------------------------------------------------------------------------------------------------
