@@ -54,10 +54,6 @@ import android.view.View.OnKeyListener;
 import android.widget.FrameLayout;
 import android.widget.FrameLayout.LayoutParams;
 
-//import com.google.ads.AdRequest;
-//import com.google.ads.AdSize;
-//import com.google.ads.AdView;
-
 /**
  * SDL Activity
  */
@@ -68,7 +64,6 @@ public class SDLActivity extends Activity implements OnKeyListener
     public static String       TAG                                   = Activity.class.getCanonicalName();
 
     // Main components
-    //private static AdView      mAdView;
     private static SDLActivity mSingleton;
     private static SDLSurface  mSurface;
 
@@ -422,25 +417,12 @@ public class SDLActivity extends Activity implements OnKeyListener
         SurfaceHolder holder = mSurface.getHolder();
         holder.setType(SurfaceHolder.SURFACE_TYPE_GPU);
 
-        // Create the adView
-        //mAdView = new AdView(this, AdSize.BANNER, "a14e9009f88864f"); // "a14dc0ab7b27413" <-- for the alpha);
-
         _videoLayout.addView(mSurface, new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
-        //_videoLayout.addView(mAdView, new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, Gravity.BOTTOM + Gravity.CENTER_HORIZONTAL));
         // mGLView.setFocusableInTouchMode(true);
         // mGLView.setFocusable(true);
         // adView.requestFreshAd();
         setContentView(_videoLayout, new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
         mSurface.requestFocus();
-
-        //AdRequest request = new AdRequest();
-
-        //request.addTestDevice(AdRequest.TEST_EMULATOR);
-        //request.addTestDevice("1DA1E070BC7D4ABE8BA77EB73C2CB0AA"); // wololo's phone
-        //request.addTestDevice("C386F3830A9789C649098A817BF54C04"); // xawotihs's tablet
-
-        // Initiate a generic request to load it with an ad
-        //mAdView.loadAd(request);
     }
 
     // Setup
@@ -512,14 +494,6 @@ public class SDLActivity extends Activity implements OnKeyListener
         {
             return;
         }
-
-        //if ((command.compareTo("entergamestate:menu") == 0) || (command.compareTo("enterduelphase:end") == 0))
-        //{
-        //    mAdView.setVisibility(View.VISIBLE);
-        //} else if (command.compareTo("leavegamestate:menu") == 0)
-        //{
-        //    mAdView.setVisibility(View.INVISIBLE);
-        //}
     }
 
     // Messages from the SDLMain thread
