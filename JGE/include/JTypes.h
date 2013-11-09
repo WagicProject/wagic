@@ -158,7 +158,6 @@ typedef uint32_t u32;
 #endif
 
 #if defined (PSP)
-#error just to test that Travis stops correctly.
 #ifndef ABGR8888
 #define ABGR8888
 #endif
