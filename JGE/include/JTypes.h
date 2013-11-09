@@ -129,7 +129,6 @@ typedef uint32_t u32;
 #endif  //PSP
 
 
-
 #ifndef CONSOLE_CONFIG
 #ifndef QT_CONFIG
 #if defined (IOS)
@@ -145,7 +144,7 @@ typedef uint32_t u32;
 #include <GL/glu.h>
 #endif
 #else
-# include <QtOpenGL>
+#include <QtOpenGL>
 #endif
 
 #if (defined FORCE_GLES)
@@ -159,7 +158,7 @@ typedef uint32_t u32;
 #endif
 
 #if defined (PSP)
-
+#error just to test that Travis stops correctly.
 #ifndef ABGR8888
 #define ABGR8888
 #endif
