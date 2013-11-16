@@ -54155,6 +54155,18 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Master of Waves
+abilities=protection from red
+auto=lord(Elemental|mybattlefield) 1/1
+auto=token(Elemental,Creature Elemental,1/0)*type:manaU
+text=Protection from red. -- Elemental creatures you control get +1/+1. -- When Master of Waves enters the battlefield, put a number of 1/0 blue Elemental creature tokens onto the battlefield equal to your devotion to blue. (Each {U} in the mana costs of permanents you control counts toward your devotion to blue.)
+mana={3}{U}
+type=Creature
+subtype=Merfolk Wizard
+power=2
+toughness=1
+[/card]
+[card]
 name=Master Splicer
 auto=token(Golem,Artifact Creature Golem,3/3)
 auto=lord(golem|mybattlefield) 1/1
