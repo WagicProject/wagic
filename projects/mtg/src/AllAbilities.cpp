@@ -5341,6 +5341,7 @@ int AEquip::equip(MTGCardInstance * equipped)
         if (dynamic_cast<AEquip *> (a)) continue;
         if (dynamic_cast<ATeach *> (a)) continue;
         if (dynamic_cast<AAConnect *> (a)) continue;
+        if (dynamic_cast<AANewTarget *> (af.getCoreAbility(a))) continue;
         if (a->aType == MTGAbility::STANDARD_TOKENCREATOR && a->oneShot)
         {
             a->forceDestroy = 1;
