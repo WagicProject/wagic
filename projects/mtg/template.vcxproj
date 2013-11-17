@@ -455,7 +455,6 @@
     <ClInclude Include="include\CacheEngine.h" />
     <ClInclude Include="include\CardDescriptor.h" />
     <ClInclude Include="include\CardDisplay.h" />
-    <ClInclude Include="include\CardEffect.h" />
     <ClInclude Include="include\CardGui.h" />
     <ClInclude Include="include\CardPrimitive.h" />
     <ClInclude Include="include\CardSelector.h" />
@@ -517,7 +516,6 @@
     <ClInclude Include="include\NetworkPlayer.h" />
     <ClInclude Include="include\ObjectAnalytics.h" />
     <ClInclude Include="include\OptionItem.h" />
-    <ClInclude Include="include\OSD.h" />
     <ClInclude Include="include\PhaseRing.h" />
     <ClInclude Include="include\Player.h" />
     <ClInclude Include="include\PlayerData.h" />

@@ -89,7 +89,6 @@ SOURCES += \
         src/AllAbilities.cpp\
         src/CardDescriptor.cpp\
         src/CardDisplay.cpp\
-        src/CardEffect.cpp\
         src/CardGui.cpp\
         src/CardPrimitive.cpp\
         src/CardSelector.cpp\
@@ -243,7 +242,6 @@ HEADERS  += \
         include/GameStateShop.h\
         include/MTGPack.h\
         include/TextScroller.h\
-        include/CardEffect.h\
         include/GameStateStory.h\
         include/MTGRules.h\
         include/ThisDescriptor.h\
@@ -254,7 +252,6 @@ HEADERS  += \
         include/Token.h\
         include/CardPrimitive.h\
         include/GuiAvatars.h\
-        include/OSD.h\
         include/Translate.h\
         include/CardSelector.h\
         include/GuiBackground.h\
