@@ -2163,6 +2163,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         return NEW AEquip(observer, id, card);
     }
     
+    // TODO: deprecate this ability in favor of retarget
     //Equipment (attach)
     found = s.find("attach");
     if (found != string::npos)

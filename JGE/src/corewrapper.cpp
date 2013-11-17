@@ -19,8 +19,11 @@ WagicCore* WagicCore::s_instance = 0;
 WagicCore::WagicCore() :
     m_engine(0), m_app(0), m_launcher(0), m_active(false)
 {
+#ifdef QT_CONFIG
+    startTime = QTime::currentTime();
+#endif //QT_CONFIG
+    s_instance = this;
     m_lastTickCount = JGEGetTime();
-	s_instance = this;
 }
 
 void WagicCore::initApp()
@@ -367,7 +370,7 @@ int JGEGetTime()
 #ifdef SDL_CONFIG
 	return (int)SDL_GetTicks();
 #elif defined QT_CONFIG
-	return QTime::currentTime().elapsed();
+    return WagicCore::s_instance->startTime.msecsTo(QTime::currentTime());
 #elif defined WP8
 	return (int)GetTickCount64();
 #endif

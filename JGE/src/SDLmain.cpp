@@ -84,7 +84,6 @@ public: /* For easy interfacing with JGE static functions */
     bool            Running;
     SDL_Window*     window;
     SDL_Surface*    Surf_Display;
-//    SDL_Rect        viewPort;
     Uint32          lastMouseUpTime;
     Uint32          lastFingerDownTime;
     int             windowed_w;

@@ -324,8 +324,8 @@ SOURCES += \
         ../../JGE/src/JParticleSystem.cpp\
         ../../JGE/src/JResourceManager.cpp\
         ../../JGE/src/JSpline.cpp\
-        ../../JGE/src/pc/JSocket.cpp\
         ../../JGE/src/pc/JSfx.cpp\
+        ../../JGE/src/pc/JSocket.cpp\
         ../../JGE/src/JNetwork.cpp\
         ../../JGE/src/JSprite.cpp\
         ../../JGE/src/Vector2D.cpp\

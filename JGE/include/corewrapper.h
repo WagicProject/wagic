@@ -67,6 +67,9 @@ public:
 	void registerDefaultBindings();
 	static WagicCore* getInstance() { return s_instance; };
 	char *GetName(){ return m_launcher->GetName();};
+#ifdef QT_CONFIG
+    QTime startTime;
+#endif
 
 private:
     void doAndEnqueue(JButton action) {
@@ -75,6 +78,7 @@ private:
     }
 
 private:
+    friend int JGEGetTime();
 	static WagicCore* s_instance;
     JGE* m_engine;
     JApp* m_app;

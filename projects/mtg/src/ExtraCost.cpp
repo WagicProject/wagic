@@ -7,7 +7,11 @@
 #include "Player.h"
 #include "Counters.h"
 #include "AllAbilities.h"
+#ifdef WP8
 #include <memory>
+#else
+#include <boost/scoped_ptr.hpp>
+#endif
 
 SUPPORT_OBJECT_ANALYTICS(ExtraCost)
 
@@ -171,7 +175,12 @@ LifeorManaCost::LifeorManaCost(TargetChooser *_tc, string manaType)
     string buildType ="{";
     buildType.append(manaType);
     buildType.append("}");
-	std::unique_ptr<ManaCost> cost(ManaCost::parseManaCost(buildType));
+#ifdef WP8
+    std::unique_ptr<ManaCost>
+#else
+    boost::scoped_ptr<ManaCost>
+#endif
+            cost(ManaCost::parseManaCost(buildType));
     manaCost.copy(cost.get());
 }
 

@@ -128,11 +128,11 @@ typedef uint8_t u8;
 typedef uint16_t u16;
 typedef uint32_t u32;
 #define PIXEL_TYPE DWORD
-#define ARGB(a, r, g, b)                ((PIXEL_TYPE)((a) << 24) | ((r) << 16) | ((g) << 8) | (b))
-#define RGBA(r, g, b, a)                ((PIXEL_TYPE)((a) << 24) | ((b) << 16) | ((g) << 8) | (r))
+#define ARGB(a, r, g, b)		((PIXEL_TYPE)((a) << 24) | ((r) << 16) | ((g) << 8) | (b))
+#define RGBA(r, g, b, a)		((PIXEL_TYPE)((a) << 24) | ((b) << 16) | ((g) << 8) | (r))
 #ifndef PSP
-#define TEXTURE_FORMAT                        0
-#endif //PSP
+#define TEXTURE_FORMAT			0
+#endif  //PSP
 
 
 #ifndef CONSOLE_CONFIG
@@ -150,7 +150,7 @@ typedef uint32_t u32;
 	#include <GL/glu.h>
 #endif
 #else
-# include <QtOpenGL>
+#include <QtOpenGL>
 #endif
 
 #if (defined FORCE_GLES)
@@ -164,105 +164,104 @@ typedef uint32_t u32;
 #endif
 
 #if defined (PSP)
-
-	#ifndef ABGR8888
-	#define ABGR8888
-	#endif
-
-
-	#if defined (ABGR8888)
-		#define PIXEL_TYPE				u32
-		#ifndef ARGB
-		#define ARGB(a, r, g, b)		(PIXEL_TYPE)((a << 24) | (b << 16) | (g << 8) | r)	// macro to assemble pixels in correct format
-		#endif
-		#define MAKE_COLOR(a, c)		(a << 24 | c)
-		#define MASK_ALPHA				0xFF000000							// masks for accessing individual pixels
-		#define MASK_BLUE				0x00FF0000
-		#define MASK_GREEN				0x0000FF00
-		#define MASK_RED				0x000000FF
-
-		#define PIXEL_SIZE				4
-		#define PIXEL_FORMAT			PSP_DISPLAY_PIXEL_FORMAT_8888
-
-		#define	BUFFER_FORMAT			GU_PSM_8888
-		#define TEXTURE_FORMAT			GU_PSM_8888
-		#define TEXTURE_COLOR_FORMAT	GU_COLOR_8888
+#ifndef ABGR8888
+#define ABGR8888
+#endif
 
 
-	#elif defined (ABGR5551)
+#if defined (ABGR8888)
+#ifndef ARGB
+#define ARGB(a, r, g, b)		(PIXEL_TYPE)((a << 24) | (b << 16) | (g << 8) | r)	// macro to assemble pixels in correct format
+#endif
+#define MAKE_COLOR(a, c)		(a << 24 | c)
+#define MASK_ALPHA				0xFF000000							// masks for accessing individual pixels
+#define MASK_BLUE				0x00FF0000
+#define MASK_GREEN				0x0000FF00
+#define MASK_RED				0x000000FF
 
-		#ifndef ARGB
-		#define ARGB(a, r, g, b)		((r >> 3) | ((g >> 3) << 5) | ((b >> 3) << 10) | ((a >> 7) << 15))
-		#endif
-		#define MAKE_COLOR(a, c)		(((a>>7)<<15) | c)
-		#define MASK_ALPHA				0x8000
-		#define MASK_BLUE				0x7C00
-		#define MASK_GREEN				0x03E0
-		#define MASK_RED				0x001F
-		#define PIXEL_TYPE				u16
-		#define PIXEL_SIZE				2
-		#define PIXEL_FORMAT			PSP_DISPLAY_PIXEL_FORMAT_5551
+#define PIXEL_SIZE				4
+#define PIXEL_FORMAT			PSP_DISPLAY_PIXEL_FORMAT_8888
 
-		#define	BUFFER_FORMAT			GU_PSM_8888
-		#define TEXTURE_FORMAT			GU_PSM_5551
-		#define TEXTURE_COLOR_FORMAT	GU_COLOR_5551
+#define	BUFFER_FORMAT			GU_PSM_8888
+#define TEXTURE_FORMAT			GU_PSM_8888
+#define TEXTURE_COLOR_FORMAT	GU_COLOR_8888
 
-	#elif defined (ABGR4444)
-		#ifndef ARGB
-		#define ARGB(a, r, g, b)		((r >> 4) | ((g >> 4) << 4) | ((b >> 4) << 8) | ((a >> 4) << 12))
-		#endif
-		#define MAKE_COLOR(a, c)		(((a>>4)<<12) | c)
-		#define MASK_ALPHA				0xF000
-		#define MASK_BLUE				0x0F00
-		#define MASK_GREEN				0x00F0
-		#define MASK_RED				0x000F
-		#define PIXEL_TYPE				u16
-		#define PIXEL_SIZE				2
-		#define PIXEL_FORMAT			PSP_DISPLAY_PIXEL_FORMAT_4444
 
-		#define	BUFFER_FORMAT			GU_PSM_4444
-		#define TEXTURE_FORMAT			GU_PSM_4444
-		#define TEXTURE_COLOR_FORMAT	GU_COLOR_4444
+#elif defined (ABGR5551)
 
-	#endif
+#ifndef ARGB
+#define ARGB(a, r, g, b)		((r >> 3) | ((g >> 3) << 5) | ((b >> 3) << 10) | ((a >> 7) << 15))
+#endif
+#define MAKE_COLOR(a, c)		(((a>>7)<<15) | c)
+#define MASK_ALPHA				0x8000
+#define MASK_BLUE				0x7C00
+#define MASK_GREEN				0x03E0
+#define MASK_RED				0x001F
+#define PIXEL_TYPE				u16
+#define PIXEL_SIZE				2
+#define PIXEL_FORMAT			PSP_DISPLAY_PIXEL_FORMAT_5551
 
-	#define	FRAME_BUFFER_WIDTH 		512
-	#define FRAME_BUFFER_SIZE		FRAME_BUFFER_WIDTH*SCREEN_HEIGHT*PIXEL_SIZE
+#define	BUFFER_FORMAT			GU_PSM_8888
+#define TEXTURE_FORMAT			GU_PSM_5551
+#define TEXTURE_COLOR_FORMAT	GU_COLOR_5551
 
-	#define SLICE_SIZE_F			64.0f
-	typedef unsigned int DWORD;
+#elif defined (ABGR4444)
+#ifndef ARGB
+#define ARGB(a, r, g, b)		((r >> 4) | ((g >> 4) << 4) | ((b >> 4) << 8) | ((a >> 4) << 12))
+#endif
+#define MAKE_COLOR(a, c)		(((a>>4)<<12) | c)
+#define MASK_ALPHA				0xF000
+#define MASK_BLUE				0x0F00
+#define MASK_GREEN				0x00F0
+#define MASK_RED				0x000F
+#define PIXEL_TYPE				u16
+#define PIXEL_SIZE				2
+#define PIXEL_FORMAT			PSP_DISPLAY_PIXEL_FORMAT_4444
 
-	#define BLEND_ZERO					0x1000
-	#define BLEND_ONE					0x1002
-	#define BLEND_SRC_COLOR				GU_SRC_COLOR
-	#define BLEND_ONE_MINUS_SRC_COLOR	GU_ONE_MINUS_SRC_COLOR
-	#define BLEND_SRC_ALPHA				GU_SRC_ALPHA
-	#define BLEND_ONE_MINUS_SRC_ALPHA	GU_ONE_MINUS_SRC_ALPHA
-	#define BLEND_DST_ALPHA				GU_DST_ALPHA
-	#define BLEND_ONE_MINUS_DST_ALPHA	GU_ONE_MINUS_DST_ALPHA
-	#define BLEND_DST_COLOR				GU_DST_COLOR
-	#define BLEND_ONE_MINUS_DST_COLOR	GU_ONE_MINUS_DST_COLOR
-	#define BLEND_SRC_ALPHA_SATURATE	BLEND_ONE
+#define	BUFFER_FORMAT			GU_PSM_4444
+#define TEXTURE_FORMAT			GU_PSM_4444
+#define TEXTURE_COLOR_FORMAT	GU_COLOR_4444
 
-	typedef struct
-	{
-		ScePspFVector2 texture;
-		ScePspFVector3 pos;
-	} PSPVertex3D;
+#endif
 
-#elif !defined(WP8) //non PSP
+#define	FRAME_BUFFER_WIDTH 		512
+#define FRAME_BUFFER_SIZE		FRAME_BUFFER_WIDTH*SCREEN_HEIGHT*PIXEL_SIZE
 
-	#define BLEND_ZERO					GL_ZERO
-	#define BLEND_ONE					GL_ONE
-	#define BLEND_SRC_COLOR				GL_SRC_COLOR
-	#define BLEND_ONE_MINUS_SRC_COLOR	GL_ONE_MINUS_SRC_COLOR
-	#define BLEND_SRC_ALPHA				GL_SRC_ALPHA
-	#define BLEND_ONE_MINUS_SRC_ALPHA	GL_ONE_MINUS_SRC_ALPHA
-	#define BLEND_DST_ALPHA				GL_DST_ALPHA
-	#define BLEND_ONE_MINUS_DST_ALPHA	GL_ONE_MINUS_DST_ALPHA
-	#define BLEND_DST_COLOR				GL_DST_COLOR
-	#define BLEND_ONE_MINUS_DST_COLOR	GL_ONE_MINUS_DST_COLOR
-	#define BLEND_SRC_ALPHA_SATURATE	GL_SRC_ALPHA_SATURATE
+#define SLICE_SIZE_F			64.0f
+typedef unsigned int DWORD;
+
+#define BLEND_ZERO					0x1000
+#define BLEND_ONE					0x1002
+#define BLEND_SRC_COLOR				GU_SRC_COLOR
+#define BLEND_ONE_MINUS_SRC_COLOR	GU_ONE_MINUS_SRC_COLOR
+#define BLEND_SRC_ALPHA				GU_SRC_ALPHA
+#define BLEND_ONE_MINUS_SRC_ALPHA	GU_ONE_MINUS_SRC_ALPHA
+#define BLEND_DST_ALPHA				GU_DST_ALPHA
+#define BLEND_ONE_MINUS_DST_ALPHA	GU_ONE_MINUS_DST_ALPHA
+#define BLEND_DST_COLOR				GU_DST_COLOR
+#define BLEND_ONE_MINUS_DST_COLOR	GU_ONE_MINUS_DST_COLOR
+#define BLEND_SRC_ALPHA_SATURATE	BLEND_ONE
+
+typedef struct
+{
+    ScePspFVector2 texture;
+    ScePspFVector3 pos;
+} PSPVertex3D;
+
+#elif (!defined WP8)
+
+
+#define BLEND_ZERO					GL_ZERO
+#define BLEND_ONE					GL_ONE
+#define BLEND_SRC_COLOR				GL_SRC_COLOR
+#define BLEND_ONE_MINUS_SRC_COLOR	GL_ONE_MINUS_SRC_COLOR
+#define BLEND_SRC_ALPHA				GL_SRC_ALPHA
+#define BLEND_ONE_MINUS_SRC_ALPHA	GL_ONE_MINUS_SRC_ALPHA
+#define BLEND_DST_ALPHA				GL_DST_ALPHA
+#define BLEND_ONE_MINUS_DST_ALPHA	GL_ONE_MINUS_DST_ALPHA
+#define BLEND_DST_COLOR				GL_DST_COLOR
+#define BLEND_ONE_MINUS_DST_COLOR	GL_ONE_MINUS_DST_COLOR
+#define BLEND_SRC_ALPHA_SATURATE	GL_SRC_ALPHA_SATURATE
 
   #define GU_PSM_8888 0
   #define GU_PSM_5551 0
@@ -287,7 +286,7 @@ typedef uint32_t u32;
   #define GU_PSM_4444 0
   #define GU_PSM_5650 0
 #endif
-#else
+#else // CONSOLE_CONFIG
 typedef uint32_t GLuint;
 typedef float GLfloat;
 #endif //CONSOLE_CONFIG
