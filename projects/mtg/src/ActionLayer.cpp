@@ -165,8 +165,6 @@ void ActionLayer::Update(float dt)
     if (cantCancel)
     {
         ActionElement * ae = isWaitingForAnswer();
-        int countTargets = 0;
-        int maxTargets = 0;
         if(ae && ae->getActionTc())
         {
             if (!ae->getActionTc()->validTargetsExist())
@@ -175,8 +173,8 @@ void ActionLayer::Update(float dt)
                 cancelCurrentAction();
                 return;
             }
-            countTargets = ae->getActionTc()->countValidTargets();
-            maxTargets = ae->getActionTc()->maxtargets;
+            int countTargets = ae->getActionTc()->countValidTargets();
+            int maxTargets = ae->getActionTc()->maxtargets;
             if (countTargets < maxTargets)
             {
                 /*
@@ -440,10 +438,9 @@ void ActionLayer::setCustomMenuObject(Targetable * object, bool must,vector<MTGA
     if(abilities.size())
     {
         abilitiesMenu->isMultipleChoice = true;
-        ActionElement * currentAction = NULL;
         for(int w = 0; w < int(abilities.size());w++)
         {
-            currentAction = (ActionElement*)abilities[w];
+            ActionElement *currentAction = (ActionElement*)abilities[w];
             currentActionCard = (MTGCardInstance*)abilities[0]->target;
             abilitiesMenu->Add(mObjects.size()-1, currentAction->getMenuText(),"",false);
         }
