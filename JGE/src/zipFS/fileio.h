@@ -49,9 +49,10 @@
 
 #if defined WIN32 || defined WP8
 #include <PrecompiledHeader.h>
+#endif
+
 #include <dirent.h>
 #include <string.h>
-#endif
 
 #include <limits.h>
 
