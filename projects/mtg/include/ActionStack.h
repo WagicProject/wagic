@@ -48,9 +48,6 @@ class TargetChooser;
 class Interruptible: public PlayGuiObject, public Targetable
 {
 public:
-    //TODO : remove these when they are back in PlayGuiObject
-    float x, y;
-
     int state, display;
     MTGCardInstance * source;
     virtual void Entering()
