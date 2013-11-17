@@ -873,8 +873,8 @@ public:
             return 0;
         if (!tc->canTarget(e->damage->target)) return 0;
         if (fromTc && !fromTc->canTarget(e->damage->source)) return 0;
-        if (type == 1 && e->damage->typeOfDamage != DAMAGE_COMBAT) return 0;
-        if (type == 2 && e->damage->typeOfDamage == DAMAGE_COMBAT) return 0;
+        if (type == 1 && e->damage->typeOfDamage != Damage::DAMAGE_COMBAT) return 0;
+        if (type == 2 && e->damage->typeOfDamage == Damage::DAMAGE_COMBAT) return 0;
         e->damage->target->thatmuch = e->damage->damage;
         e->damage->source->thatmuch = e->damage->damage;
         this->source->thatmuch = e->damage->damage;
@@ -2577,7 +2577,7 @@ public:
         }
         else
         {
-            if (d->type_as_damageable == DAMAGEABLE_MTGCARDINSTANCE)
+            if (d->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE)
             {
                 a->source = (MTGCardInstance *) d;
             }
@@ -2725,7 +2725,7 @@ public:
         }
         else
         {
-            if (d->type_as_damageable == DAMAGEABLE_MTGCARDINSTANCE)
+            if (d->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE)
             {
                 a->source = (MTGCardInstance *) d;
             }
@@ -5549,7 +5549,7 @@ public:
         {
             WEventDamage * e = (WEventDamage *) event;
             Damage * d = e->damage;
-            if (combatonly && e->damage->typeOfDamage != DAMAGE_COMBAT) 
+            if (combatonly && e->damage->typeOfDamage != Damage::DAMAGE_COMBAT)
                 return 0;
             MTGCardInstance * card = d->source;
             if (d->damage > 0 && card && (card == source || card == source->target))

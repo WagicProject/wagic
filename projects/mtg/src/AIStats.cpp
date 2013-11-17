@@ -47,7 +47,7 @@ void AIStats::updateStatsCard(MTGCardInstance * cardInstance, Damage * damage, f
     {
         stat->value += static_cast<int>(multiplier * STATS_PLAYER_MULTIPLIER * damage->damage);
     }
-    else if (damage->target->type_as_damageable == DAMAGEABLE_MTGCARDINSTANCE)
+    else if (damage->target->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE)
     {
         MTGCardInstance * target = (MTGCardInstance *) damage->target;
         if (target->controller() == player && !target->isInPlay(player->getObserver()))

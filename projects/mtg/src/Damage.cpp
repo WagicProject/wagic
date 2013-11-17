@@ -14,13 +14,13 @@ Damage::Damage(GameObserver* observer, MTGCardInstance * source, Damageable * ta
     init(source, target, source->getPower(), DAMAGE_OTHER);
 }
 
-Damage::Damage(GameObserver* observer, MTGCardInstance * source, Damageable * target, int damage, int _typeOfDamage)
+Damage::Damage(GameObserver* observer, MTGCardInstance * source, Damageable * target, int damage, DamageType _typeOfDamage)
     : Interruptible(observer)
 {
     init(source, target, damage, _typeOfDamage);
 }
 
-void Damage::init(MTGCardInstance * _source, Damageable * _target, int _damage, int _typeOfDamage)
+void Damage::init(MTGCardInstance * _source, Damageable * _target, int _damage, DamageType _typeOfDamage)
 {
     typeOfDamage = _typeOfDamage;
     target = _target;
@@ -69,7 +69,7 @@ int Damage::resolve()
     }
 
     //-------------------------------------------------
-    if (target->type_as_damageable == DAMAGEABLE_MTGCARDINSTANCE)
+    if (target->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE)
     {
         MTGCardInstance * _target = (MTGCardInstance *) target;
         if ((_target)->protectedAgainst(source))
@@ -122,7 +122,7 @@ int Damage::resolve()
 
     int a = damage;
 
-    if (target->type_as_damageable == DAMAGEABLE_MTGCARDINSTANCE && (source->has(Constants::WITHER) || source->has(
+    if (target->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE && (source->has(Constants::WITHER) || source->has(
                     Constants::INFECT)))
     {
         // Damage for WITHER or poison on creatures. This should probably go in replacement effects
@@ -134,7 +134,7 @@ int Damage::resolve()
         if(_target->toughness <= 0 && _target->has(Constants::INDESTRUCTIBLE))
             _target->controller()->game->putInGraveyard(_target);
     }
-    else if (target->type_as_damageable == DAMAGEABLE_PLAYER && (source->has(Constants::INFECT)||source->has(Constants::POISONDAMAGER)))
+    else if (target->type_as_damageable == Damageable::DAMAGEABLE_PLAYER && (source->has(Constants::INFECT)||source->has(Constants::POISONDAMAGER)))
     {
         // Poison on player
         Player * _target = (Player *) target;
@@ -151,7 +151,7 @@ int Damage::resolve()
             }
         }
     }
-    else if (target->type_as_damageable == DAMAGEABLE_PLAYER && (source->has(Constants::POISONTOXIC) ||
+    else if (target->type_as_damageable == Damageable::DAMAGEABLE_PLAYER && (source->has(Constants::POISONTOXIC) ||
                     source->has(Constants::POISONTWOTOXIC) || source->has(Constants::POISONTHREETOXIC)))
     {
         //Damage + 1, 2, or 3 poison counters on player
@@ -190,9 +190,9 @@ int Damage::resolve()
         //return the left over amount after effects have been applied to them.
         a = target->dealDamage(damage);
         target->damageCount += damage;//the amount must be the actual damage so i changed this from 1 to damage, this fixes pdcount and odcount
-        if (target->type_as_damageable == DAMAGEABLE_MTGCARDINSTANCE)
+        if (target->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE)
             ((MTGCardInstance*)target)->wasDealtDamage = true;
-        if (target->type_as_damageable == DAMAGEABLE_PLAYER)
+        if (target->type_as_damageable == Damageable::DAMAGEABLE_PLAYER)
         {
             if(target == source->controller())
             {
@@ -248,7 +248,7 @@ void Damage::Render()
     }
     else
     {
-        if (target->type_as_damageable == DAMAGEABLE_MTGCARDINSTANCE)
+        if (target->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE)
             mFont->DrawString(_(((MTGCardInstance *) target)->getName()).c_str(), x + 120, y);
     }
 

@@ -2351,7 +2351,7 @@ int AALifer::resolve()
         return 0;
 
     WParsedInt life(life_s, NULL, source);
-    if (_target->type_as_damageable == DAMAGEABLE_MTGCARDINSTANCE)
+    if (_target->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE)
     {
         _target = ((MTGCardInstance *) _target)->controller();
     }
@@ -4380,7 +4380,7 @@ int AAExchangeLife::resolve()
         int oldlife = player->getLife();
         int targetOldLife = _target->getLife();
         int modifier = oldlife > targetOldLife? oldlife - targetOldLife:targetOldLife - oldlife;
-        if (_target->type_as_damageable == DAMAGEABLE_MTGCARDINSTANCE)
+        if (_target->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE)
         {
             int increaser = 0;
             MTGCardInstance * card = ((MTGCardInstance*)_target);
@@ -4597,15 +4597,15 @@ int APreventDamageTypes::addToGame()
         fromTc->targetter = NULL;
     if (type != 1 && type != 2)
     {//not adding this creates a memory leak.
-        re = NEW REDamagePrevention(this, fromTc, toTc, -1, false, DAMAGE_COMBAT);
+        re = NEW REDamagePrevention(this, fromTc, toTc, -1, false, Damage::DAMAGE_COMBAT);
     }
     else if (type == 1)
     {
-        re = NEW REDamagePrevention(this, fromTc, toTc, -1, false, DAMAGE_ALL_TYPES);
+        re = NEW REDamagePrevention(this, fromTc, toTc, -1, false, Damage::DAMAGE_ALL_TYPES);
     }
     else if (type == 2)
     {
-        re = NEW REDamagePrevention(this, fromTc, toTc, -1, false, DAMAGE_OTHER);
+        re = NEW REDamagePrevention(this, fromTc, toTc, -1, false, Damage::DAMAGE_OTHER);
     }
     game->replacementEffects->add(re);
     return MTGAbility::addToGame();

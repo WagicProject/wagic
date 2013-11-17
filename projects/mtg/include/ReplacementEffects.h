@@ -29,9 +29,10 @@ protected:
     TargetChooser * tcTarget;
     int damage;
     bool oneShot;
-    int typeOfDamage;
+    Damage::DamageType typeOfDamage;
 public:
-    REDamagePrevention(MTGAbility * _source, TargetChooser *_tcSource = NULL, TargetChooser *_tcTarget = NULL, int _damage = -1, bool _oneShot = true, int typeOfDamage = DAMAGE_ALL_TYPES);
+    REDamagePrevention(MTGAbility * _source, TargetChooser *_tcSource = NULL, TargetChooser *_tcTarget = NULL,
+                       int _damage = -1, bool _oneShot = true, Damage::DamageType typeOfDamage = Damage::DAMAGE_ALL_TYPES);
     WEvent * replace(WEvent *e);
     ~REDamagePrevention();
 };
