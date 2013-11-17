@@ -96,7 +96,6 @@ int AIMomirPlayer::computeActions()
         case MTG_PHASE_FIRSTMAIN:
         {
             CardDescriptor cd;
-            MTGCardInstance * card = NULL;
             ManaCost * potentialMana = getPotentialMana();
             int converted = potentialMana->getConvertedCost();
             SAFE_DELETE(potentialMana);
@@ -106,7 +105,7 @@ int AIMomirPlayer::computeActions()
                 //Attempt to put land into play
                 cd.init();
                 cd.setColor(Constants::MTG_COLOR_LAND);
-                card = cd.match(game->hand);
+                MTGCardInstance *card = cd.match(game->hand);
                 int canPutLandsIntoPlay = game->playRestrictions->canPutIntoZone(card, game->inPlay);
                 if (card && (canPutLandsIntoPlay == PlayRestriction::CAN_PLAY))
                 {

@@ -74,8 +74,7 @@ AIHint::AIHint(string _line)
 
     if(action.find( "combo ") != string::npos)
     {
-        string Combo = "";
-        Combo = action.c_str() + 6;
+        string Combo = action.c_str() + 6;
         combos.push_back(Combo);
     }
     

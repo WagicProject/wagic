@@ -41,10 +41,6 @@ class DamageStack;
 class ManaCost;
 class TargetChooser;
 
-
-#define ACTIONSTACK_STANDARD 0
-#define ACTIONSTACK_TARGET 1
-
 class Interruptible: public PlayGuiObject, public Targetable
 {
 public:
@@ -183,6 +179,11 @@ public:
 class ActionStack :public GuiLayer
 {
 public:
+    enum ActionStackMode{
+        ACTIONSTACK_STANDARD = 0,
+        ACTIONSTACK_TARGET = 1
+    };
+
     typedef enum
     {
         NOT_DECIDED = 0,
@@ -204,7 +205,7 @@ protected:
     InterruptDecision interruptDecision[2];
     float timer;
     int currentState;
-    int mode;
+    ActionStackMode mode;
     int checked;
     ATutorialMessage* currentTutorial;
     int interruptBtnXOffset, noBtnXOffset, noToAllBtnXOffset, interruptDialogWidth;
