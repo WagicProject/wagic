@@ -59,24 +59,12 @@ int Damage::resolve()
     //reserved for culmulitive absorb ability coding
 
     //prevent next damage-----------------------------
-    if ((target)->preventable >= 1)
+    if ((target)->preventable > 0)
     {
-        int preventing = (target)->preventable;
-        for (int k = preventing; k > 0; k--)
-        {
-            //the following keeps preventable from ADDING toughness/life if damage was less then preventable amount.
-            for (int i = damage; i >= 1; i--)
-            {
-                (target)->preventable -= 1;
-                damage -= 1;
-                break;//does the redux of damage 1 time, breaks the loop to deincrement preventing and start the loop over.
-            }
-        }
-    }
-
-    //set prevent next damage back to 0 if it is equal to less then 0
-    if ((target)->preventable < 0)
-    {
+        int preventing = MIN(target->preventable, damage);
+        damage -= preventing;
+        target->preventable -= preventing;
+    }else{
         (target)->preventable = 0;
     }
 
