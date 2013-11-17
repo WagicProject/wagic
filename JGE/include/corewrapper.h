@@ -7,6 +7,9 @@
 #include "../include/JFileSystem.h"
 #include "../include/JRenderer.h"
 #include "../include/JGameLauncher.h"
+#ifdef QT_CONFIG
+#include <QTime>
+#endif
 
 class WagicCore
 {

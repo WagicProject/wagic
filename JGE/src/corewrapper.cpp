@@ -310,7 +310,7 @@ static const struct { LocalKeySym keysym; JButton keycode; } gDefaultBindings[] 
 	{ SDLK_VOLUMEUP,      JGE_BTN_PREV },
 	{ SDLK_VOLUMEDOWN,    JGE_BTN_SEC},
 };
-#elif define QT_CONFIG
+#elif defined QT_CONFIG
 {
     { Qt::Key_Enter,        JGE_BTN_MENU },
     { Qt::Key_Return,       JGE_BTN_MENU },
