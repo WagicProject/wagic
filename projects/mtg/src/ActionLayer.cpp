@@ -264,7 +264,7 @@ int ActionLayer::receiveEventPlus(WEvent * event)
         ActionElement * currentAction = (ActionElement *) mObjects[i];
         result += currentAction->receiveEvent(event);
     }
-    return 0;
+    return result;
 }
 
 int ActionLayer::isReactingToTargetClick(Targetable * card)
