@@ -10,12 +10,13 @@
 #pragma comment(lib,"ws2_32.lib")
 #include <winsock2.h>
 #endif
-#elif LINUX
+#elif (defined LINUX)
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <netdb.h>
 #include <fcntl.h>
+#include <unistd.h>
 #endif //WINDOWS
 #include <errno.h>
 

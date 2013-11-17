@@ -118,10 +118,10 @@ void JRenderer::Destroy()
 }
 
 JRenderer::JRenderer() :
-mLeft(0.0f),
-mRight(SCREEN_WIDTH_F),
-mTop(0.0f),
-mBottom(SCREEN_HEIGHT_F)
+    mLeft(0.0f),
+    mTop(0.0f),
+    mRight(SCREEN_WIDTH_F),
+    mBottom(SCREEN_HEIGHT_F)
 {
 }
 
