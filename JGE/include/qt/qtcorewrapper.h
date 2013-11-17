@@ -1,5 +1,7 @@
-#ifndef COREWRAPPER_H
-#define COREWRAPPER_H
+#ifndef QTCOREWRAPPER_H
+#define QTCOREWRAPPER_H
+
+#include "../include/corewrapper.h"
 
 #include <QObject>
 #include <QElapsedTimer>
@@ -7,12 +9,6 @@
 #include <QtDeclarative>
 #include <QGraphicsItem>
 #endif //QT_WIDGET
-#include "../include/JGE.h"
-#include "../include/JTypes.h"
-#include "../include/JApp.h"
-#include "../include/JFileSystem.h"
-#include "../include/JRenderer.h"
-#include "../include/JGameLauncher.h"
 
 #if (defined Q_WS_MAEMO_5)
 // For screen on/off events support
@@ -23,23 +19,11 @@
 #include <QDBusInterface>
 #endif //Q_WS_MAEMO_5
 
-class WagicWrapper
-{
-public:
-    WagicWrapper();
-    virtual ~WagicWrapper();
-
-private:
-    JGE* m_engine;
-    JApp* m_app;
-    JGameLauncher* m_launcher;
-};
-
 
 #ifdef QT_WIDGET
-class WagicCore : public QGLWidget
+class QtWagicCore : public QGLWidget
 #else
-class WagicCore : public QDeclarativeItem
+class QtWagicCore : public QDeclarativeItem
 #endif
 {
 private:
@@ -48,7 +32,6 @@ private:
 #else
   typedef QDeclarativeItem super;
 #endif //QT_WIDGET
-    void initApp();
 
 public:
     Q_OBJECT
@@ -59,36 +42,30 @@ public:
 
 
 public:
-    explicit WagicCore(super *parent = 0);
-    virtual ~WagicCore();
-    static int runTestSuite();
+    explicit QtWagicCore(super *parent = 0);
+    virtual ~QtWagicCore();
 
     Q_INVOKABLE void doOK() {
-        doAndEnqueue(JGE_BTN_OK);
+        m_Wagic.doOK();
     };
     Q_INVOKABLE void doNext() {
-        doAndEnqueue(JGE_BTN_PREV);
+        m_Wagic.doNext();
     };
     Q_INVOKABLE void doCancel() {
-        doAndEnqueue(JGE_BTN_SEC);
+        m_Wagic.doCancel();
     };
     Q_INVOKABLE void doMenu() {
-        doAndEnqueue(JGE_BTN_MENU);
+        m_Wagic.doMenu();
     };
     Q_INVOKABLE void done() {
-        while(m_buttonQueue.size())
-        {
-            m_engine->ReleaseKey(m_buttonQueue.front());
-            m_buttonQueue.pop();
-        }
-        m_engine->ResetInput();
+        m_Wagic.done();
     };
     Q_INVOKABLE void pixelInput(int x, int y);
     Q_INVOKABLE qint64 getTick() {
         return g_startTimer.elapsed();
     };
     Q_INVOKABLE void doScroll(int x, int y, int) {
-        m_engine->Scroll(x, y);
+        m_Wagic.doScroll(x, y);
     };
     int getNominalHeight(){ return SCREEN_HEIGHT;};
     int getNominalWidth(){ return SCREEN_WIDTH;};
@@ -137,20 +114,14 @@ private slots:
 
 private:
     void timerEvent( QTimerEvent* );
-    void doAndEnqueue(JButton action) {
-        m_engine->HoldKey_NoRepeat(action);
-        m_buttonQueue.push(action);
-    }
 
 public:
     // used mainly to mesure the delta between 2 updates
     static QElapsedTimer g_startTimer;
 private:
-    JGE* m_engine;
-    JApp* m_app;
-    JGameLauncher* m_launcher;
+    WagicCore m_Wagic;
+
     qint64 m_lastTickCount;
-    std::queue<JButton> m_buttonQueue;
     int m_timerId;
     bool m_active;
     QRect m_viewPort;
@@ -171,4 +142,4 @@ private:
 QML_DECLARE_TYPE(WagicCore)
 #endif //QT_WIDGET
 
-#endif // COREWRAPPER_H
+#endif // QTCOREWRAPPER_H

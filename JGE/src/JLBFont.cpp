@@ -8,7 +8,9 @@
 //
 //-------------------------------------------------------------------------------------
 
-
+#if defined (IOS) || defined (ANDROID) || defined (WP8)
+#include "PrecompiledHeader.h"
+#endif
 
 #include "../include/JLBFont.h"
 #include "../include/JFileSystem.h"

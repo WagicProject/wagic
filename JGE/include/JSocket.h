@@ -1,8 +1,6 @@
 #ifndef _JSOCKET_H_
 #define _JSOCKET_H_
 
-#include <queue>
-#include "Threading.h"
 using namespace std;
 
 #define SERVER_PORT 5001

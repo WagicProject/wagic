@@ -15,15 +15,18 @@
 
 #include <assert.h>
 
+#ifdef WP8
+#include <wrl.h>
+#include <wrl/client.h>
+#else
+#include <boost/shared_ptr.hpp>
+#endif
+
 #include "JGE.h"
 #include "JFileSystem.h"
 #include "JLogger.h"
 
 #include "GameOptions.h"
-
-#ifndef WP8
-#include <boost/shared_ptr.hpp>
-#endif
 
 #if defined (WP8) || defined (IOS) || defined (ANDROID) || defined (QT_CONFIG) || defined (SDL_CONFIG)
 #define TOUCH_ENABLED

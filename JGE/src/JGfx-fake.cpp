@@ -117,7 +117,11 @@ void JRenderer::Destroy()
     }
 }
 
-JRenderer::JRenderer() : mActualWidth(SCREEN_WIDTH_F), mActualHeight(SCREEN_HEIGHT_F)
+JRenderer::JRenderer() :
+mLeft(0.0f),
+mRight(SCREEN_WIDTH_F),
+mTop(0.0f),
+mBottom(SCREEN_HEIGHT_F)
 {
 }
 
@@ -136,7 +140,6 @@ void JRenderer::InitRenderer()
     mCurrTexBlendDest = BLEND_ONE_MINUS_SRC_ALPHA;
 
     //	mLineWidth = 1.0f;
-    mCurrentTex = -1;
     mFOV = 75.0f;
 
 #ifdef USING_MATH_TABLE
@@ -173,8 +176,6 @@ void JRenderer::EnableTextureFilter(bool flag)
         mCurrentTextureFilter = TEX_FILTER_LINEAR;
     else
         mCurrentTextureFilter = TEX_FILTER_NEAREST;
-
-    mCurrentTex = -1;
 }
 
 void Swap(float *a, float *b)

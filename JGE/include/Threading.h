@@ -1,7 +1,7 @@
 #ifndef THREADING_H
 #define THREADING_H
 
-#if !defined(PSP) && !defined(QT_CONFIG)
+#if !defined(PSP) && !defined(QT_CONFIG) && !defined(WP8)
 #include <boost/date_time.hpp>
 
 #ifdef WIN32
@@ -14,7 +14,7 @@
 #endif
 
 #include <boost/thread/mutex.hpp>
-#elif !defined(QT_CONFIG)
+#elif defined(PSP)
 #include <boost/bind.hpp>
 #include <boost/shared_ptr.hpp>
 
@@ -534,6 +534,80 @@ namespace boost
         inline void sleep(boost::posix_time::milliseconds const& time)
         {
           threadImpl::mymsleep(time);
+        }
+    }
+}
+
+#elif defined(WP8)
+
+#include <thread>
+#include <mutex>
+
+namespace boost
+{
+	typedef std::thread thread;
+
+    template <class Mutex>
+    struct unique_lock
+    {
+        unique_lock(Mutex& inMutex) : mMutex(&inMutex)
+        {
+            mMutex->lock();
+        }
+
+        ~unique_lock()
+        {
+            mMutex->unlock();
+        }
+
+        Mutex* mMutex;
+    };
+
+    class mutex 
+    {
+    public:
+
+        typedef unique_lock<mutex> scoped_lock;
+
+        mutex()
+          : mQMutex()
+        {
+        }
+
+        ~mutex()
+        {
+        }
+
+        void lock()
+        {
+            mQMutex.lock();
+        }
+
+        void unlock()
+        {
+            mQMutex.unlock();
+        }
+
+        std::mutex mQMutex;
+
+    private:
+        mutex(mutex const&);
+        mutex& operator=(mutex const&);
+    };
+
+    namespace posix_time
+    {
+        typedef unsigned int milliseconds;
+    }
+
+    /**
+    ** boost's platform neutral sleep call.
+    */
+    namespace this_thread
+    {
+        inline void sleep(boost::posix_time::milliseconds const& time)
+        {
+			std::this_thread::sleep_for(std::chrono::milliseconds(time));
         }
     }
 }

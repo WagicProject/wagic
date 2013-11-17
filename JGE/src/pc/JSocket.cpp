@@ -1,11 +1,15 @@
-#include <errno.h>
 #ifdef WIN32
+#ifdef QT_CONFIG
 #pragma comment(lib,"WSOCK32.LIB")
 #include <stdio.h>
 #include <conio.h>
 #include <winsock.h>
 #include <winsock.h>
 #include <fcntl.h>
+#else
+#pragma comment(lib,"ws2_32.lib")
+#include <winsock2.h>
+#endif
 #elif LINUX
 #include <sys/types.h>
 #include <sys/socket.h>
@@ -13,7 +17,9 @@
 #include <netdb.h>
 #include <fcntl.h>
 #endif //WINDOWS
+#include <errno.h>
 
+#include <string>
 #include "../../include/JSocket.h"
 #include "../../include/DebugRoutines.h"
 

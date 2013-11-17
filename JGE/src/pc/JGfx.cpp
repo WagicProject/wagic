@@ -9,6 +9,24 @@
 //-------------------------------------------------------------------------------------
 #define GL_GLEXT_PROTOTYPES
 
+#if (defined FORCE_GLES)
+#undef GL_ES_VERSION_2_0
+#undef GL_VERSION_2_0
+#define GL_VERSION_ES_CM_1_1 1
+#ifndef GL_OES_VERSION_1_1
+#define glOrthof glOrtho
+#define glClearDepthf glClearDepth
+#endif
+#endif
+
+#if (defined FORCE_GLES)
+#undef GL_ES_VERSION_2_0
+#undef GL_VERSION_2_0
+#define GL_VERSION_ES_CM_1_1 1
+#define glOrthof glOrtho
+#define glClearDepthf glClearDepth
+#endif
+
 #if (!defined IOS) && (!defined QT_CONFIG)
 #ifdef WIN32
 #pragma warning(disable : 4786)
@@ -310,13 +328,10 @@ void JQuad::SetTextureRect(float x, float y, float w, float h)
     mWidth = w;
     mHeight = h;
 
-    if(mTex)
-    {
-        mTX0 = x/mTex->mTexWidth;
-        mTY0 = y/mTex->mTexHeight;
-        mTX1 = (x+w)/mTex->mTexWidth;
-        mTY1 = (y+h)/mTex->mTexHeight;
-    }
+    mTX0 = x/mTex->mTexWidth;
+    mTY0 = y/mTex->mTexHeight;
+    mTX1 = (x+w)/mTex->mTexWidth;
+    mTY1 = (y+h)/mTex->mTexHeight;
 }
 
 
@@ -403,7 +418,11 @@ void JRenderer::Destroy()
     }
 }
 
-JRenderer::JRenderer() : mActualWidth(SCREEN_WIDTH_F), mActualHeight(SCREEN_HEIGHT_F)
+JRenderer::JRenderer() : 
+	mLeft(0.0f), 
+	mRight(SCREEN_WIDTH_F), 
+	mTop(0.0f), 
+	mBottom(SCREEN_HEIGHT_F)
 {
 }
 
@@ -411,6 +430,25 @@ JRenderer::JRenderer() : mActualWidth(SCREEN_WIDTH_F), mActualHeight(SCREEN_HEIG
 JRenderer::~JRenderer()
 {
 
+}
+
+void JRenderer::OnWindowsSizeChanged(void* window, float inWidth, float inHeight)
+{
+	glViewport(mLeft, mTop, mRight, mBottom);
+	glScissor(0, 0, inWidth, inHeight);
+
+#if (!defined GL_ES_VERSION_2_0) && (!defined GL_VERSION_2_0)
+	glMatrixMode (GL_PROJECTION);										// Select The Projection Matrix
+	glLoadIdentity ();													// Reset The Projection Matrix
+#if (defined GL_VERSION_ES_CM_1_1 || defined GL_OES_VERSION_1_1)
+	glOrthof(0.0f, (float) (mRight)-1.0f, 0.0f, (float) (mBottom)-1.0f, -1.0f, 1.0f);
+#else
+	gluOrtho2D(0.0f, (float) (mRight)-1.0f, 0.0f, (float) (mBottom)-1.0f);
+#endif
+	glMatrixMode (GL_MODELVIEW);										// Select The Modelview Matrix
+	glLoadIdentity ();													// Reset The Modelview Matrix
+	glDisable (GL_DEPTH_TEST);
+#endif
 }
 
 #if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
@@ -710,6 +748,43 @@ GLuint esLoadProgram ( const char *vertShaderSrc, const char *fragShaderSrc )
 void JRenderer::InitRenderer()
 {
     checkGlError();
+
+	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);		// Black Background (yes that's the way fuckers)
+#if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
+#if (defined GL_ES_VERSION_2_0)
+	glClearDepthf(1.0f);					// Depth Buffer Setup
+#else
+	glClearDepth(1.0f);					// Depth Buffer Setup
+#endif// (defined GL_ES_VERSION_2_0)
+
+	glDepthFunc(GL_LEQUAL);				// The Type Of Depth Testing (Less Or Equal)
+	glEnable(GL_DEPTH_TEST);				// Enable Depth Testing
+
+#else
+#if (defined GL_VERSION_ES_CM_1_1)
+	glClearDepthf(1.0f);					// Depth Buffer Setup
+#else
+	glClearDepth(1.0f);					// Depth Buffer Setup
+#endif
+	glDepthFunc(GL_LEQUAL);				// The Type Of Depth Testing (Less Or Equal)
+	glEnable(GL_DEPTH_TEST);				// Enable Depth Testing
+	glShadeModel(GL_SMOOTH);				// Select Smooth Shading
+	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);	// Set Perspective Calculations To Most Accurate
+
+	glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);		// Set Line Antialiasing
+	glEnable(GL_LINE_SMOOTH);				// Enable it!
+	glEnable(GL_TEXTURE_2D);
+
+#endif
+
+	glEnable(GL_CULL_FACE);				// do not calculate inside of poly's
+	glFrontFace(GL_CCW);					// counter clock-wise polygons are out
+
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+	glEnable(GL_SCISSOR_TEST);				// Enable Clipping
+
     mCurrentTextureFilter = TEX_FILTER_NONE;
     mImageFilter = NULL;
 
@@ -819,16 +894,16 @@ void JRenderer::BeginScene()
     glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);		// Clear Screen And Depth Buffer
 #if (!defined GL_ES_VERSION_2_0) && (!defined GL_VERSION_2_0)
     glLoadIdentity ();											// Reset The Modelview Matrix
+#if (defined WIN32) || ((defined GL_VERSION_ES_CM_1_1) && (!defined IOS))
+	float scaleH = GetActualHeight()/SCREEN_HEIGHT_F;
+    float scaleW = GetActualWidth()/SCREEN_WIDTH_F;
+    if (scaleH != 1.0f || scaleW != 1.0f)
+        glScalef(scaleW,scaleH,1.f);
+#endif
 #else
     esMatrixLoadIdentity(&theMvpMatrix);
     esOrtho(&theMvpMatrix, 0.0f, SCREEN_WIDTH_F, 0.0f, SCREEN_HEIGHT_F-1.0f,-1.0f, 1.0f);
 #endif //(!defined GL_ES_VERSION_2_0) && (!defined GL_VERSION_2_0)
-#if (defined WIN32 && !defined GL_ES_VERSION_2_0) || ((defined GL_VERSION_ES_CM_1_1) && (!defined IOS))
-    float scaleH = mActualHeight/SCREEN_HEIGHT_F;
-    float scaleW = mActualWidth/SCREEN_WIDTH_F;
-    if (scaleH != 1.0f || scaleW != 1.0f)
-        glScalef(scaleW,scaleH,1.f);
-#endif
     checkGlError();
 }
 
@@ -843,7 +918,7 @@ void JRenderer::EndScene()
 void JRenderer::BindTexture(JTexture *tex)
 {
     checkGlError();
-    if (tex && mCurrentTex != tex->mTexId)
+    if (mCurrentTex != tex->mTexId)
     {
         mCurrentTex = tex->mTexId;
 

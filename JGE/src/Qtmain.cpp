@@ -11,35 +11,11 @@
 #endif //QT_WIDGET
 #include "filedownloader.h"
 #include "GameApp.h"
-#include "corewrapper.h"
+#include "qtcorewrapper.h"
 
 QWidget* g_glwidget = NULL;
 
-static const struct { LocalKeySym keysym; JButton keycode; } gDefaultBindings[] =
-{
-  { Qt::Key_Enter,        JGE_BTN_MENU },
-  { Qt::Key_Return,       JGE_BTN_MENU },
-  { Qt::Key_Escape,       JGE_BTN_MENU },
-  { Qt::Key_Backspace,    JGE_BTN_CTRL },
-  { Qt::Key_Up,           JGE_BTN_UP },
-  { Qt::Key_Down,         JGE_BTN_DOWN },
-  { Qt::Key_Left,         JGE_BTN_LEFT },
-  { Qt::Key_Right,        JGE_BTN_RIGHT },
-  { Qt::Key_Space,        JGE_BTN_OK },
-  { Qt::Key_Tab,          JGE_BTN_CANCEL },
-  { Qt::Key_J,            JGE_BTN_PRI },
-  { Qt::Key_K,            JGE_BTN_SEC },
-  { Qt::Key_Q,            JGE_BTN_PREV },
-  { Qt::Key_A,            JGE_BTN_NEXT },
-// fullscreen management seems somehow broken in JGE, it works fine with Qt directly
-//    { Qt::Key_F,            JGE_BTN_FULLSCREEN },
-};
 
-void JGECreateDefaultBindings()
-{
-  for (signed int i = sizeof(gDefaultBindings)/sizeof(gDefaultBindings[0]) - 1; i >= 0; --i)
-    JGE::BindKey(gDefaultBindings[i].keysym, gDefaultBindings[i].keycode);
-}
 
 bool JGEToggleFullscreen()
 {
@@ -54,11 +30,6 @@ bool JGEToggleFullscreen()
   return true;
 }
 
-int JGEGetTime()
-{
-    return (int)WagicCore::g_startTimer.elapsed();
-}
-
 int main(int argc, char* argv[])
 {
     QScopedPointer<QApplication> app
@@ -69,17 +40,10 @@ int main(int argc, char* argv[])
 
 #endif //QT_WIDGET
 
-    if(argc >= 2 && strcmp(argv[1], "testsuite")==0)
-    {
-        int result = 0;
-        result += WagicCore::runTestSuite();
-        return result;
-    }
-
-    app->setApplicationName(WagicCore::getApplicationName());
+    app->setApplicationName(QtWagicCore::getApplicationName());
     FileDownloader fileDownloader(USERDIR, WAGIC_RESOURCE_NAME);
 #ifdef QT_WIDGET
-    g_glwidget = new WagicCore();
+    g_glwidget = new QtWagicCore();
     g_glwidget->connect(&fileDownloader, SIGNAL(finished(int)), SLOT(start(int)));
 #else
     qmlRegisterType<WagicCore>("CustomComponents", 1, 0, "WagicCore");

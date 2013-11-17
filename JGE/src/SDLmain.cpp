@@ -15,6 +15,7 @@
 #include "../include/JRenderer.h"
 #include "../include/JGameLauncher.h"
 #include "DebugRoutines.h"
+#include "corewrapper.h"
 #include <stdexcept>
 #include <iostream>
 #include <math.h>
@@ -47,9 +48,7 @@ const int kTapEventTimeout = 250;
 
 
 uint64_t	lastTickCount;
-JGE* g_engine = NULL;
-JApp* g_app = NULL;
-JGameLauncher* g_launcher = NULL;
+
 #ifdef ANDROID
 JNIEnv * mJNIEnv = NULL;
 jclass * mJNIClass = NULL;
@@ -66,19 +65,15 @@ extern "C" void Java_org_libsdl_app_SDLActivity_nativePause(
                                     JNIEnv* env, jclass cls)
 {    
 	DebugTrace("Attempt pause");
-	if (!g_engine)
-		return;
-   g_engine->Pause();
-   DebugTrace("Pause done");
+	WagicCore::getInstance()->setActive(false);
+	DebugTrace("Pause done");
 }
 
 // Resume
 extern "C" void Java_org_libsdl_app_SDLActivity_nativeResume(
                                     JNIEnv* env, jclass cls)
 {    
-	if (!g_engine)
-		return;
-	g_engine->Resume();
+	WagicCore::getInstance()->setActive(true);
 }
 #endif
 
@@ -89,7 +84,7 @@ public: /* For easy interfacing with JGE static functions */
     bool            Running;
     SDL_Window*     window;
     SDL_Surface*    Surf_Display;
-    SDL_Rect        viewPort;
+//    SDL_Rect        viewPort;
     Uint32          lastMouseUpTime;
     Uint32          lastFingerDownTime;
     int             windowed_w;
@@ -99,6 +94,7 @@ public: /* For easy interfacing with JGE static functions */
 
     int mMouseDownX;
     int mMouseDownY;
+	WagicCore		m_Wagic;
 
 public:
     SdlApp() : Surf_Display(NULL), window(NULL), lastMouseUpTime(0), lastFingerDownTime(0), Running(true), mMouseDownX(0), mMouseDownY(0)
@@ -116,16 +112,13 @@ public:
 
         while(Running)
         {
-            if (g_engine)
+            for (int x = 0; x < 5 && SDL_WaitEventTimeout(&Event, 10); ++x)
             {
-                for (int x = 0; x < 5 && SDL_WaitEventTimeout(&Event, 10); ++x)
-                {
-                    if(!g_engine->IsPaused())
-                        OnEvent(&Event);
-                }
-                if(!g_engine->IsPaused())
-                    OnUpdate();
+                if(m_Wagic.getActive())
+                    OnEvent(&Event);
             }
+            if(m_Wagic.getActive())
+                OnUpdate();
         }
 
         OnCleanup();
@@ -138,44 +131,7 @@ public:
 
     void OnResize(int width, int height)
     {
-        DebugTrace("OnResize Width " << width << " height " << height);
-
-        if ((GLfloat)width / (GLfloat)height <= ACTUAL_RATIO)
-        {
-                viewPort.x = 0;
-                viewPort.y = -(static_cast<int>(width / ACTUAL_RATIO) - height) / 2;
-                viewPort.w = width;
-                viewPort.h = static_cast<int>(width / ACTUAL_RATIO);
-        }
-        else
-        {
-                viewPort.x = -(static_cast<int>(height * ACTUAL_RATIO) - width) / 2;
-                viewPort.y = 0;
-                viewPort.w = static_cast<int>(height * ACTUAL_RATIO);
-                viewPort.h = height;
-        }
-
-        glViewport(viewPort.x, viewPort.y, viewPort.w, viewPort.h);
-
-        JRenderer::GetInstance()->SetActualWidth(static_cast<float>(viewPort.w));
-        JRenderer::GetInstance()->SetActualHeight(static_cast<float>(viewPort.h));
-        glScissor(0, 0, width, height);
-
-#if (!defined GL_ES_VERSION_2_0) && (!defined GL_VERSION_2_0)
-
-        glMatrixMode (GL_PROJECTION);										// Select The Projection Matrix
-        glLoadIdentity ();													// Reset The Projection Matrix
-
-#if (defined GL_VERSION_ES_CM_1_1)
-        glOrthof(0.0f, (float) (viewPort.w)-1.0f, 0.0f, (float) (viewPort.h)-1.0f, -1.0f, 1.0f);
-#else
-        gluOrtho2D(0.0f, (float) (viewPort.w)-1.0f, 0.0f, (float) (viewPort.h)-1.0f);
-#endif
-        glMatrixMode (GL_MODELVIEW);										// Select The Modelview Matrix
-        glLoadIdentity ();													// Reset The Modelview Matrix
-
-        glDisable (GL_DEPTH_TEST);
-#endif
+		m_Wagic.onWindowResize((void*)0, (float)width, (float)height);
     }
 
     void OnKeyPressed(const SDL_KeyboardEvent& event);
@@ -254,7 +210,7 @@ public:
 
         case SDL_JOYBALLMOTION:
             DebugTrace("Flick gesture detected, x: " << Event->jball.xrel << ", y: " << Event->jball.yrel);
-            g_engine->Scroll(Event->jball.xrel, Event->jball.yrel);
+			m_Wagic.onWheelChanged(Event->jball.xrel, Event->jball.yrel);
             break;
         }
     }
@@ -267,56 +223,6 @@ public:
         SDL_Quit();
     }
 };
-
-static const struct { LocalKeySym keysym; JButton keycode; } gDefaultBindings[] =
-{  
-	/* windows controls */
-	{ SDLK_LCTRL,         JGE_BTN_CTRL },
-	{ SDLK_RCTRL,         JGE_BTN_CTRL },
-	{ SDLK_RETURN,        JGE_BTN_MENU },
-	{ SDLK_KP_ENTER,      JGE_BTN_MENU },
-	{ SDLK_ESCAPE,        JGE_BTN_MENU },
-	{ SDLK_UP,            JGE_BTN_UP },
-	{ SDLK_DOWN,          JGE_BTN_DOWN },
-	{ SDLK_LEFT,          JGE_BTN_LEFT },
-	{ SDLK_RIGHT,         JGE_BTN_RIGHT },
-	{ SDLK_z,             JGE_BTN_UP },
-	{ SDLK_d,             JGE_BTN_RIGHT },
-	{ SDLK_s,             JGE_BTN_DOWN },
-	{ SDLK_q,             JGE_BTN_LEFT },
-	{ SDLK_a,             JGE_BTN_PREV },
-	{ SDLK_e,             JGE_BTN_NEXT },
-	{ SDLK_i,             JGE_BTN_CANCEL },
-	{ SDLK_l,             JGE_BTN_OK },
-	{ SDLK_SPACE,         JGE_BTN_OK },
-	{ SDLK_k,             JGE_BTN_SEC },
-	{ SDLK_j,             JGE_BTN_PRI },
-	{ SDLK_f,             JGE_BTN_FULLSCREEN },
-
-	/* old Qt ones, basically modified to comply with the N900 keyboard
-	{ SDLK_a,             JGE_BTN_NEXT },
-	{ SDLK_TAB,           JGE_BTN_CANCEL },
-	{ SDLK_q,             JGE_BTN_PREV },
-	{ SDLK_BACKSPACE,     JGE_BTN_CTRL },
-	*/
-
-	/* Android customs */
-	{ SDLK_AC_BACK,       JGE_BTN_MENU },
-	/* Android/maemo volume button mapping */
-	{ SDLK_VOLUMEUP,      JGE_BTN_PREV },
-	{ SDLK_VOLUMEDOWN,    JGE_BTN_SEC},
-};
-
-void JGECreateDefaultBindings()
-{
-	for (signed int i = sizeof(gDefaultBindings)/sizeof(gDefaultBindings[0]) - 1; i >= 0; --i)
-		g_engine->BindKey(gDefaultBindings[i].keysym, gDefaultBindings[i].keycode);
-}
-
-int JGEGetTime()
-{
-	return (int)SDL_GetTicks();
-}
 
 bool JGEToggleFullscreen()
 {
@@ -365,70 +271,11 @@ bool JGEToggleFullscreen()
 	return true;
 }
 
-bool InitGame(void)
-{
-	g_engine = JGE::GetInstance();
-	g_app = g_launcher->GetGameApp();
-	g_app->Create();
-	g_engine->SetApp(g_app);
-#ifdef ANDROID
-    DebugTrace("Can I Set JNI Params ?");
-     if (mJNIEnv)
-        DebugTrace("mJNIEnv is ok");
-    if (mJNIEnv && mJNIClass)
-    {
-        DebugTrace("Setting JNI Params");
-        g_engine->SetJNIEnv(mJNIEnv, *mJNIClass);
-    }
-#endif	
-
-	JRenderer::GetInstance()->Enable2D();
-	lastTickCount = JGEGetTime();
-
-	return true;
-}
-
-void DestroyGame(void)
-{
-	g_engine->SetApp(NULL);
-	if (g_app)
-	{
-		g_app->Destroy();
-		delete g_app;
-		g_app = NULL;
-	}
-
-	JGE::Destroy();
-
-	g_engine = NULL;
-}
-
 void SdlApp::OnUpdate()
 {
-	static int tickCount = 0;
-	tickCount = JGEGetTime();
-	int64_t dt = (tickCount - lastTickCount);
-	lastTickCount = tickCount;
-
-	if(g_engine->IsDone())
-	{
-		SDL_Event event;
-		event.user.type = SDL_QUIT;
-		SDL_PushEvent(&event);
-	}
-
-	try
-	{
-		g_engine->SetDelta((float)dt / 1000.0f);
-		g_engine->Update((float)dt / 1000.0f);
-	}
-	catch(out_of_range& oor)
-	{
-		cerr << oor.what();
-	}
-
-	if(g_engine)
-		g_engine->Render();
+	Running = m_Wagic.onUpdate();
+	if(Running)
+		m_Wagic.onRender();
 
 	SDL_GL_SwapBuffers();
 }
@@ -437,28 +284,17 @@ void SdlApp::OnKeyPressed(const SDL_KeyboardEvent& event)
 {
 	if (event.type == SDL_KEYDOWN)
 	{
-		g_engine->HoldKey_NoRepeat((LocalKeySym)event.keysym.sym);
+		m_Wagic.onKeyDown((LocalKeySym)event.keysym.sym);
 	}
 	else if(event.type == SDL_KEYUP)
 	{
-		g_engine->ReleaseKey((LocalKeySym)event.keysym.sym);
+		m_Wagic.onKeyUp((LocalKeySym)event.keysym.sym);
 	}
 }
 
 void SdlApp::OnMouseMoved(const SDL_MouseMotionEvent& event)
 {
-	int actualWidth = (int) JRenderer::GetInstance()->GetActualWidth();
-	int actualHeight = (int) JRenderer::GetInstance()->GetActualHeight();
-
-	if (event.y >= viewPort.y &&
-		event.y <= viewPort.y + viewPort.h &&
-		event.x >= viewPort.x &&
-		event.x <= viewPort.x + viewPort.w)
-	{
-		g_engine->LeftClicked(
-			((event.x-viewPort.x)*SCREEN_WIDTH)/actualWidth,
-			((event.y-viewPort.y)*SCREEN_HEIGHT)/actualHeight);
-	}
+	m_Wagic.onPointerMoved(WagicCore::LEFT, event.x, event.y);
 }
 
 void SdlApp::OnMouseDoubleClicked(const SDL_MouseButtonEvent& event)
@@ -473,6 +309,9 @@ void SdlApp::OnMouseDoubleClicked(const SDL_MouseButtonEvent& event)
 
 void SdlApp::OnMouseWheel(int x, int y)
 {
+	m_Wagic.onWheelChanged(x, y);
+
+	/*
   if(!x && y)
   { // Vertical wheel
     if(y > 0)
@@ -491,7 +330,7 @@ void SdlApp::OnMouseWheel(int x, int y)
   else
   {
     g_engine->HoldKey_NoRepeat(JGE_BTN_RIGHT);
-  }
+  }*/
 }
 
 void SdlApp::OnMouseClicked(const SDL_MouseButtonEvent& event)
@@ -500,70 +339,30 @@ void SdlApp::OnMouseClicked(const SDL_MouseButtonEvent& event)
 	{
 		if (event.button == SDL_BUTTON_LEFT) /* Left button */
 		{
-			// this is intended to convert window coordinate into game coordinate.
-			// this is correct only if the game and window have the same aspect ratio, otherwise, it's just wrong
-			int actualWidth = (int) JRenderer::GetInstance()->GetActualWidth();
-			int actualHeight = (int) JRenderer::GetInstance()->GetActualHeight();
-
-			if (event.y >= viewPort.y &&
-				event.y <= viewPort.y + viewPort.h &&
-				event.x >= viewPort.x &&
-				event.x <= viewPort.x + viewPort.w)
-			{
-				g_engine->LeftClicked(
-					((event.x-viewPort.x)*SCREEN_WIDTH)/actualWidth,
-					((event.y-viewPort.y)*SCREEN_HEIGHT)/actualHeight);
-#if (!defined ANDROID) && (!defined IOS)
-				g_engine->HoldKey_NoRepeat(JGE_BTN_OK);
-#endif
-			}
-			else if(event.y < viewPort.y)
-			{
-				g_engine->HoldKey_NoRepeat(JGE_BTN_MENU);
-			}
-			else if(event.y > viewPort.y + viewPort.h)
-			{
-				g_engine->HoldKey_NoRepeat(JGE_BTN_NEXT);
-			}
+			m_Wagic.onPointerPressed(WagicCore::LEFT, event.x, event.y);
 		}
 		else if(event.button == SDL_BUTTON_RIGHT) /* Right button */
-		{ /* next phase please */
-			g_engine->HoldKey_NoRepeat(JGE_BTN_PREV);
+		{
+			m_Wagic.onPointerPressed(WagicCore::RIGHT, event.x, event.y);
 		}
 		else if(event.button == SDL_BUTTON_MIDDLE) /* Middle button */
-		{ /* interrupt please */
-			g_engine->HoldKey_NoRepeat(JGE_BTN_SEC);
+		{
+			m_Wagic.onPointerPressed(WagicCore::MIDLE, event.x, event.y);
 		}
 	}
 	else if (event.type == SDL_MOUSEBUTTONUP)
 	{
 		if(event.button == SDL_BUTTON_LEFT)
 		{
-			if (event.y >= viewPort.y &&
-				event.y <= viewPort.y + viewPort.h &&
-				event.x >= viewPort.x &&
-				event.x <= viewPort.x + viewPort.w)
-			{
-#if (!defined ANDROID) && (!defined IOS)
-				g_engine->ReleaseKey(JGE_BTN_OK);
-#endif
-			}
-			else if(event.y < viewPort.y)
-			{
-				g_engine->ReleaseKey(JGE_BTN_MENU);
-			}
-			else if(event.y > viewPort.y + viewPort.h)
-			{
-				g_engine->ReleaseKey(JGE_BTN_NEXT);
-			}
+			m_Wagic.onPointerReleased(WagicCore::LEFT, event.x, event.y);
 		}
 		else if(event.button == SDL_BUTTON_RIGHT)
-		{ /* next phase please */
-			g_engine->ReleaseKey(JGE_BTN_PREV);
+		{
+			m_Wagic.onPointerReleased(WagicCore::RIGHT, event.x, event.y);
 		}
 		else if(event.button == SDL_BUTTON_MIDDLE)
-		{ /* interrupt please */
-			g_engine->ReleaseKey(JGE_BTN_SEC);
+		{
+			m_Wagic.onPointerReleased(WagicCore::MIDLE, event.x, event.y);
 		}
 	}
 }
@@ -574,44 +373,18 @@ void SdlApp::OnTouchEvent(const SDL_TouchFingerEvent& event)
     // should be ignored, and will come through instead as a multigesture event
     if (event.fingerId == 0)
     {
-        if (event.y >= viewPort.y &&
-            event.y <= viewPort.y + viewPort.h &&
-            event.x >= viewPort.x &&
-            event.x <= viewPort.x + viewPort.w)
+        if (event.type == SDL_FINGERDOWN)
         {
-            int actualWidth = (int) JRenderer::GetInstance()->GetActualWidth();
-            int actualHeight = (int) JRenderer::GetInstance()->GetActualHeight();
-
-            Uint32 eventTime = SDL_GetTicks();
-            if (event.type == SDL_FINGERDOWN)
-            {
-                mMouseDownX = event.x;
-                mMouseDownY = event.y;
-
-                lastFingerDownTime = eventTime;
-            }
-
-
-#if (defined ANDROID) || (defined IOS)
-            if (event.type == SDL_FINGERUP)
-            {
-                if (eventTime - lastFingerDownTime <= kTapEventTimeout)
-                {
-                    // treat an up finger within 50 pixels of the down finger coords as a double click event
-                    if (abs(mMouseDownX - event.x) < kHitzonePliancy && abs(mMouseDownY - event.y) < kHitzonePliancy)
-                    {
-                    	DebugTrace("Pressing OK BUtton");
-                        g_engine->HoldKey_NoRepeat(JGE_BTN_OK);
-                    }
-                }
-            }
-      		else      
-#endif
-			g_engine->LeftClicked(
-                ((event.x - viewPort.x) * SCREEN_WIDTH) / actualWidth,
-                ((event.y - viewPort.y) * SCREEN_HEIGHT) / actualHeight);
-	
-        }
+			m_Wagic.onPointerPressed(WagicCore::LEFT, event.x, event.y);
+		}
+		else if (event.type == SDL_FINGERUP)
+		{
+			m_Wagic.onPointerReleased(WagicCore::LEFT, event.x, event.y);
+		}
+		else
+		{
+			m_Wagic.onPointerMoved(WagicCore::LEFT, event.x, event.y);
+		}
     }
 }
 
@@ -664,52 +437,9 @@ bool SdlApp::OnInit()
 #endif
 		return false;
 	}
-	SDL_WM_SetCaption(g_launcher->GetName(), "");
+	SDL_WM_SetCaption(m_Wagic.GetName(), "");
 
-	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);		// Black Background (yes that's the way fuckers)
-#if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
-#if (defined GL_ES_VERSION_2_0)
-	glClearDepthf(1.0f);					// Depth Buffer Setup
-#else
-	glClearDepth(1.0f);					// Depth Buffer Setup
-#endif// (defined GL_ES_VERSION_2_0)
-
-	glDepthFunc(GL_LEQUAL);				// The Type Of Depth Testing (Less Or Equal)
-	glEnable(GL_DEPTH_TEST);				// Enable Depth Testing
-
-#else
-#if (defined GL_VERSION_ES_CM_1_1)
-	glClearDepthf(1.0f);					// Depth Buffer Setup
-#else
-	glClearDepth(1.0f);					// Depth Buffer Setup
-#endif
-	glDepthFunc(GL_LEQUAL);				// The Type Of Depth Testing (Less Or Equal)
-	glEnable(GL_DEPTH_TEST);				// Enable Depth Testing
-	glShadeModel(GL_SMOOTH);				// Select Smooth Shading
-	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);	// Set Perspective Calculations To Most Accurate
-
-	glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);		// Set Line Antialiasing
-	glEnable(GL_LINE_SMOOTH);				// Enable it!
-	glEnable(GL_TEXTURE_2D);
-
-#endif
-
-	glEnable(GL_CULL_FACE);				// do not calculate inside of poly's
-	glFrontFace(GL_CCW);					// counter clock-wise polygons are out
-
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-	glEnable(GL_SCISSOR_TEST);				// Enable Clipping
-
-	JGECreateDefaultBindings();
-
-	if (!InitGame())
-	{
-		cerr << "Could not init the game\n";
-		return false;
-	}
-
+	m_Wagic.initApp();
 	OnResize(window_w, window_h);
 
 	return true;
@@ -732,27 +462,12 @@ int main(int argc, char* argv[])
 
 	DebugTrace("I R in da native");
 
-	g_launcher = new JGameLauncher();
-
-	u32 flags = g_launcher->GetInitFlags();
-
-	if ((flags&JINIT_FLAG_ENABLE3D)!=0)
-	{
-		JRenderer::Set3DFlag(true);
-	}
-
 	g_SdlApp = new SdlApp();
 
 	int result = g_SdlApp->OnExecute();
 
-	if (g_launcher)
-		delete g_launcher;
-
 	if(g_SdlApp)
 		delete g_SdlApp;
-
-	// Shutdown
-	DestroyGame();
 
 	return result;
 }

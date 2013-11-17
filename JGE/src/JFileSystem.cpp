@@ -135,6 +135,15 @@ JFileSystem::JFileSystem(const string & _userPath, const string & _systemPath)
     DebugTrace("User path " << userPath);
     DebugTrace("System path " << systemPath);
     DebugTrace("Current path " << QDir::currentPath().toStdString());
+#elif defined (WP8)
+	char buff[500];
+	auto appInstallDirectory = Windows::ApplicationModel::Package::Current->InstalledLocation->Path;
+	WideCharToMultiByte(CP_ACP, 0, appInstallDirectory->Data(), -1, buff, appInstallDirectory->Length()+1, NULL, NULL);
+  	systemPath = buff;
+
+	auto localfolder = Windows::Storage::ApplicationData::Current->LocalFolder->Path;
+	WideCharToMultiByte(CP_ACP, 0, localfolder->Data(), -1, buff, localfolder->Length()+1, NULL, NULL);
+  	userPath = buff;
 #else
     //Find the Res.txt file and matching Res folders for backwards compatibility
     ifstream mfile("Res.txt");

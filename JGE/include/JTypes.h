@@ -31,6 +31,13 @@
 
 #endif
 
+#ifdef WP8
+#define _XM_NO_INTRINSICS_
+#include <wrl/client.h>
+#include <d3d11_1.h>
+#include <DirectXMath.h>
+#endif
+
 #ifndef __GNUC__
 #define __attribute__(arg)
 #endif
@@ -39,10 +46,10 @@
 #define MAX_CHANNEL		128
 
 enum {
-    JGE_ERR_CANT_OPEN_FILE = -1,
-    JGE_ERR_PNG = -2,
-    JGE_ERR_MALLOC_FAILED = -4,
-    JGE_ERR_GENERIC = -5,
+  JGE_ERR_CANT_OPEN_FILE = -1,
+  JGE_ERR_PNG = -2,  
+  JGE_ERR_MALLOC_FAILED = -4,
+  JGE_ERR_GENERIC = -5,
 };
 
 #ifdef PSP
@@ -74,44 +81,43 @@ enum {
 #define SCREEN_WIDTH_F 			480.0f
 #define SCREEN_HEIGHT_F			272.0f
 
-
 #ifdef CONSOLE_CONFIG
-#define DEFAULT_BLEND		0
-#define BLEND_OPTION_ADD	0
-#define BLEND_OPTION_BLEND	0
-#define BLEND_ZERO					0
-#define BLEND_ONE					0
-#define BLEND_SRC_COLOR				0
-#define BLEND_ONE_MINUS_SRC_COLOR	0
-#define BLEND_SRC_ALPHA				0
-#define BLEND_ONE_MINUS_SRC_ALPHA	0
-#define BLEND_DST_ALPHA				0
-#define BLEND_ONE_MINUS_DST_ALPHA	0
-#define BLEND_DST_COLOR				0
-#define BLEND_ONE_MINUS_DST_COLOR	0
-#define BLEND_SRC_ALPHA_SATURATE	0
-#define GU_PSM_5551                 0
+#define DEFAULT_BLEND                0
+#define BLEND_OPTION_ADD        0
+#define BLEND_OPTION_BLEND        0
+#define BLEND_ZERO                                        0
+#define BLEND_ONE                                        0
+#define BLEND_SRC_COLOR                                0
+#define BLEND_ONE_MINUS_SRC_COLOR        0
+#define BLEND_SRC_ALPHA                                0
+#define BLEND_ONE_MINUS_SRC_ALPHA        0
+#define BLEND_DST_ALPHA                                0
+#define BLEND_ONE_MINUS_DST_ALPHA        0
+#define BLEND_DST_COLOR                                0
+#define BLEND_ONE_MINUS_DST_COLOR        0
+#define BLEND_SRC_ALPHA_SATURATE        0
+#define GU_PSM_5551 0
 #else
 #ifdef WIN32
 //	#define DEFAULT_BLEND		BLEND_DEFAULT
 //	#define BLEND_OPTION_ADD	BLEND_COLORADD
 //	#define BLEND_OPTION_BLEND	(BLEND_COLORADD | BLEND_ALPHABLEND | BLEND_NOZWRITE)
 #else
-#define DEFAULT_BLEND		GU_TFX_MODULATE
-#define BLEND_OPTION_ADD	GU_TFX_ADD
-#define BLEND_OPTION_BLEND	GU_TFX_BLEND
+	#define DEFAULT_BLEND		GU_TFX_MODULATE
+	#define BLEND_OPTION_ADD	GU_TFX_ADD
+	#define BLEND_OPTION_BLEND	GU_TFX_BLEND
 #endif
 #endif // CONSOLE_CONFIG
 
-#if (defined WIN32) && (!defined LINUX)
+#if ((defined WIN32) || (defined WP8)) && (!defined LINUX)
 	#include <windows.h>
 #endif
 #if defined(LINUX) && (!defined WIN32) || defined(IOS) || defined (ANDROID)
-typedef uint8_t byte;
-typedef uint32_t DWORD;
-typedef uint8_t BYTE;
+        typedef uint8_t byte;
+        typedef uint32_t DWORD;
+        typedef uint8_t BYTE;
 #ifndef IOS
-typedef bool BOOL;
+		typedef bool BOOL;
 #endif
 #endif
 
@@ -122,25 +128,26 @@ typedef uint8_t u8;
 typedef uint16_t u16;
 typedef uint32_t u32;
 #define PIXEL_TYPE DWORD
-#define ARGB(a, r, g, b)		((PIXEL_TYPE)((a) << 24) | ((r) << 16) | ((g) << 8) | (b))
-#define RGBA(r, g, b, a)		((PIXEL_TYPE)((a) << 24) | ((b) << 16) | ((g) << 8) | (r))
-#define TEXTURE_FORMAT			0
-
+#define ARGB(a, r, g, b)                ((PIXEL_TYPE)((a) << 24) | ((r) << 16) | ((g) << 8) | (b))
+#define RGBA(r, g, b, a)                ((PIXEL_TYPE)((a) << 24) | ((b) << 16) | ((g) << 8) | (r))
+#ifndef PSP
+#define TEXTURE_FORMAT                        0
+#endif //PSP
 
 
 #ifndef CONSOLE_CONFIG
 #ifndef QT_CONFIG
 #if defined (IOS)
-#import <OpenGLES/ES2/gl.h>
-#import <OpenGLES/ES2/glext.h>
-#import <OpenGLES/ES1/gl.h>
-#import <OpenGLES/ES1/glext.h>
+	#import <OpenGLES/ES2/gl.h>
+	#import <OpenGLES/ES2/glext.h>
+	#import <OpenGLES/ES1/gl.h>
+  #	import <OpenGLES/ES1/glext.h>
 #elif defined (ANDROID)
-#include <GLES/gl.h>
-#include <GLES/glext.h>
-#elif defined (WIN32) || defined (LINUX)
-#include <GL/gl.h>
-#include <GL/glu.h>
+  #include <GLES/gl.h>
+  #include <GLES/glext.h>
+#elif (defined (WIN32) && !defined (WP8)) || defined (LINUX) 
+	#include <GL/gl.h> 
+	#include <GL/glu.h>
 #endif
 #else
 # include <QtOpenGL>
@@ -158,116 +165,158 @@ typedef uint32_t u32;
 
 #if defined (PSP)
 
-#ifndef ABGR8888
-#define ABGR8888
-#endif
+	#ifndef ABGR8888
+	#define ABGR8888
+	#endif
 
 
-#if defined (ABGR8888)
-#define PIXEL_TYPE				u32
-#ifndef ARGB
-#define ARGB(a, r, g, b)		(PIXEL_TYPE)((a << 24) | (b << 16) | (g << 8) | r)	// macro to assemble pixels in correct format
-#endif
-#define MAKE_COLOR(a, c)		(a << 24 | c)
-#define MASK_ALPHA				0xFF000000							// masks for accessing individual pixels
-#define MASK_BLUE				0x00FF0000
-#define MASK_GREEN				0x0000FF00
-#define MASK_RED				0x000000FF
+	#if defined (ABGR8888)
+		#define PIXEL_TYPE				u32
+		#ifndef ARGB
+		#define ARGB(a, r, g, b)		(PIXEL_TYPE)((a << 24) | (b << 16) | (g << 8) | r)	// macro to assemble pixels in correct format
+		#endif
+		#define MAKE_COLOR(a, c)		(a << 24 | c)
+		#define MASK_ALPHA				0xFF000000							// masks for accessing individual pixels
+		#define MASK_BLUE				0x00FF0000
+		#define MASK_GREEN				0x0000FF00
+		#define MASK_RED				0x000000FF
 
-#define PIXEL_SIZE				4
-#define PIXEL_FORMAT			PSP_DISPLAY_PIXEL_FORMAT_8888
+		#define PIXEL_SIZE				4
+		#define PIXEL_FORMAT			PSP_DISPLAY_PIXEL_FORMAT_8888
 
-#define	BUFFER_FORMAT			GU_PSM_8888
-#define TEXTURE_FORMAT			GU_PSM_8888
-#define TEXTURE_COLOR_FORMAT	GU_COLOR_8888
-
-
-#elif defined (ABGR5551)
-
-#ifndef ARGB
-#define ARGB(a, r, g, b)		((r >> 3) | ((g >> 3) << 5) | ((b >> 3) << 10) | ((a >> 7) << 15))
-#endif
-#define MAKE_COLOR(a, c)		(((a>>7)<<15) | c)
-#define MASK_ALPHA				0x8000
-#define MASK_BLUE				0x7C00
-#define MASK_GREEN				0x03E0
-#define MASK_RED				0x001F
-#define PIXEL_TYPE				u16
-#define PIXEL_SIZE				2
-#define PIXEL_FORMAT			PSP_DISPLAY_PIXEL_FORMAT_5551
-
-#define	BUFFER_FORMAT			GU_PSM_8888
-#define TEXTURE_FORMAT			GU_PSM_5551
-#define TEXTURE_COLOR_FORMAT	GU_COLOR_5551
-
-#elif defined (ABGR4444)
-#ifndef ARGB
-#define ARGB(a, r, g, b)		((r >> 4) | ((g >> 4) << 4) | ((b >> 4) << 8) | ((a >> 4) << 12))
-#endif
-#define MAKE_COLOR(a, c)		(((a>>4)<<12) | c)
-#define MASK_ALPHA				0xF000
-#define MASK_BLUE				0x0F00
-#define MASK_GREEN				0x00F0
-#define MASK_RED				0x000F
-#define PIXEL_TYPE				u16
-#define PIXEL_SIZE				2
-#define PIXEL_FORMAT			PSP_DISPLAY_PIXEL_FORMAT_4444
-
-#define	BUFFER_FORMAT			GU_PSM_4444
-#define TEXTURE_FORMAT			GU_PSM_4444
-#define TEXTURE_COLOR_FORMAT	GU_COLOR_4444
-
-#endif
-
-#define	FRAME_BUFFER_WIDTH 		512
-#define FRAME_BUFFER_SIZE		FRAME_BUFFER_WIDTH*SCREEN_HEIGHT*PIXEL_SIZE
-
-#define SLICE_SIZE_F			64.0f
-typedef unsigned int DWORD;
-
-#define BLEND_ZERO					0x1000
-#define BLEND_ONE					0x1002
-#define BLEND_SRC_COLOR				GU_SRC_COLOR
-#define BLEND_ONE_MINUS_SRC_COLOR	GU_ONE_MINUS_SRC_COLOR
-#define BLEND_SRC_ALPHA				GU_SRC_ALPHA
-#define BLEND_ONE_MINUS_SRC_ALPHA	GU_ONE_MINUS_SRC_ALPHA
-#define BLEND_DST_ALPHA				GU_DST_ALPHA
-#define BLEND_ONE_MINUS_DST_ALPHA	GU_ONE_MINUS_DST_ALPHA
-#define BLEND_DST_COLOR				GU_DST_COLOR
-#define BLEND_ONE_MINUS_DST_COLOR	GU_ONE_MINUS_DST_COLOR
-#define BLEND_SRC_ALPHA_SATURATE	BLEND_ONE
-
-typedef struct
-{
-    ScePspFVector2 texture;
-    ScePspFVector3 pos;
-} PSPVertex3D;
-
-#else //non PSP
+		#define	BUFFER_FORMAT			GU_PSM_8888
+		#define TEXTURE_FORMAT			GU_PSM_8888
+		#define TEXTURE_COLOR_FORMAT	GU_COLOR_8888
 
 
-#define BLEND_ZERO					GL_ZERO
-#define BLEND_ONE					GL_ONE
-#define BLEND_SRC_COLOR				GL_SRC_COLOR
-#define BLEND_ONE_MINUS_SRC_COLOR	GL_ONE_MINUS_SRC_COLOR
-#define BLEND_SRC_ALPHA				GL_SRC_ALPHA
-#define BLEND_ONE_MINUS_SRC_ALPHA	GL_ONE_MINUS_SRC_ALPHA
-#define BLEND_DST_ALPHA				GL_DST_ALPHA
-#define BLEND_ONE_MINUS_DST_ALPHA	GL_ONE_MINUS_DST_ALPHA
-#define BLEND_DST_COLOR				GL_DST_COLOR
-#define BLEND_ONE_MINUS_DST_COLOR	GL_ONE_MINUS_DST_COLOR
-#define BLEND_SRC_ALPHA_SATURATE	GL_SRC_ALPHA_SATURATE
+	#elif defined (ABGR5551)
+
+		#ifndef ARGB
+		#define ARGB(a, r, g, b)		((r >> 3) | ((g >> 3) << 5) | ((b >> 3) << 10) | ((a >> 7) << 15))
+		#endif
+		#define MAKE_COLOR(a, c)		(((a>>7)<<15) | c)
+		#define MASK_ALPHA				0x8000
+		#define MASK_BLUE				0x7C00
+		#define MASK_GREEN				0x03E0
+		#define MASK_RED				0x001F
+		#define PIXEL_TYPE				u16
+		#define PIXEL_SIZE				2
+		#define PIXEL_FORMAT			PSP_DISPLAY_PIXEL_FORMAT_5551
+
+		#define	BUFFER_FORMAT			GU_PSM_8888
+		#define TEXTURE_FORMAT			GU_PSM_5551
+		#define TEXTURE_COLOR_FORMAT	GU_COLOR_5551
+
+	#elif defined (ABGR4444)
+		#ifndef ARGB
+		#define ARGB(a, r, g, b)		((r >> 4) | ((g >> 4) << 4) | ((b >> 4) << 8) | ((a >> 4) << 12))
+		#endif
+		#define MAKE_COLOR(a, c)		(((a>>4)<<12) | c)
+		#define MASK_ALPHA				0xF000
+		#define MASK_BLUE				0x0F00
+		#define MASK_GREEN				0x00F0
+		#define MASK_RED				0x000F
+		#define PIXEL_TYPE				u16
+		#define PIXEL_SIZE				2
+		#define PIXEL_FORMAT			PSP_DISPLAY_PIXEL_FORMAT_4444
+
+		#define	BUFFER_FORMAT			GU_PSM_4444
+		#define TEXTURE_FORMAT			GU_PSM_4444
+		#define TEXTURE_COLOR_FORMAT	GU_COLOR_4444
+
+	#endif
+
+	#define	FRAME_BUFFER_WIDTH 		512
+	#define FRAME_BUFFER_SIZE		FRAME_BUFFER_WIDTH*SCREEN_HEIGHT*PIXEL_SIZE
+
+	#define SLICE_SIZE_F			64.0f
+	typedef unsigned int DWORD;
+
+	#define BLEND_ZERO					0x1000
+	#define BLEND_ONE					0x1002
+	#define BLEND_SRC_COLOR				GU_SRC_COLOR
+	#define BLEND_ONE_MINUS_SRC_COLOR	GU_ONE_MINUS_SRC_COLOR
+	#define BLEND_SRC_ALPHA				GU_SRC_ALPHA
+	#define BLEND_ONE_MINUS_SRC_ALPHA	GU_ONE_MINUS_SRC_ALPHA
+	#define BLEND_DST_ALPHA				GU_DST_ALPHA
+	#define BLEND_ONE_MINUS_DST_ALPHA	GU_ONE_MINUS_DST_ALPHA
+	#define BLEND_DST_COLOR				GU_DST_COLOR
+	#define BLEND_ONE_MINUS_DST_COLOR	GU_ONE_MINUS_DST_COLOR
+	#define BLEND_SRC_ALPHA_SATURATE	BLEND_ONE
+
+	typedef struct
+	{
+		ScePspFVector2 texture;
+		ScePspFVector3 pos;
+	} PSPVertex3D;
+
+#elif !defined(WP8) //non PSP
+
+	#define BLEND_ZERO					GL_ZERO
+	#define BLEND_ONE					GL_ONE
+	#define BLEND_SRC_COLOR				GL_SRC_COLOR
+	#define BLEND_ONE_MINUS_SRC_COLOR	GL_ONE_MINUS_SRC_COLOR
+	#define BLEND_SRC_ALPHA				GL_SRC_ALPHA
+	#define BLEND_ONE_MINUS_SRC_ALPHA	GL_ONE_MINUS_SRC_ALPHA
+	#define BLEND_DST_ALPHA				GL_DST_ALPHA
+	#define BLEND_ONE_MINUS_DST_ALPHA	GL_ONE_MINUS_DST_ALPHA
+	#define BLEND_DST_COLOR				GL_DST_COLOR
+	#define BLEND_ONE_MINUS_DST_COLOR	GL_ONE_MINUS_DST_COLOR
+	#define BLEND_SRC_ALPHA_SATURATE	GL_SRC_ALPHA_SATURATE
 
   #define GU_PSM_8888 0
   #define GU_PSM_5551 0
   #define GU_PSM_4444 0
   #define GU_PSM_5650 0
+#else // WP8
+	#define BLEND_ZERO					0
+	#define BLEND_ONE					0
+	#define BLEND_SRC_COLOR				0
+	#define BLEND_ONE_MINUS_SRC_COLOR	0
+	#define BLEND_SRC_ALPHA				0
+	#define BLEND_ONE_MINUS_SRC_ALPHA	0
+	#define BLEND_DST_ALPHA				0
+	#define BLEND_ONE_MINUS_DST_ALPHA	0
+	#define BLEND_DST_COLOR				0
+	#define BLEND_ONE_MINUS_DST_COLOR	0
+	#define BLEND_SRC_ALPHA_SATURATE	0
 
+  #define TEXTURE_FORMAT			0
+  #define GU_PSM_8888 0
+  #define GU_PSM_5551 0
+  #define GU_PSM_4444 0
+  #define GU_PSM_5650 0
 #endif
 #else
 typedef uint32_t GLuint;
 typedef float GLfloat;
 #endif //CONSOLE_CONFIG
+
+
+typedef enum Buttons
+  {
+    JGE_BTN_NONE = 0,   // No button pressed
+    JGE_BTN_QUIT,   // Home on PSP
+    JGE_BTN_MENU,   // Start on PSP
+    JGE_BTN_CTRL,   // Select
+    JGE_BTN_POWER,  // Hold
+    JGE_BTN_SOUND,  // Music note
+    JGE_BTN_RIGHT,
+    JGE_BTN_LEFT,
+    JGE_BTN_UP,
+    JGE_BTN_DOWN,
+    JGE_BTN_OK,     // Circle in Japan, Cross in Europe
+    JGE_BTN_CANCEL, // Triangle
+    JGE_BTN_PRI,    // Square (primary)
+    JGE_BTN_SEC,    // Cross or Circle (secondary)
+    JGE_BTN_PREV,   // Left trigger
+    JGE_BTN_NEXT,    // Right trigger
+    JGE_BTN_FULLSCREEN,    // Switch to fullscreen (obviously, PC only)
+
+    JGE_BTN_MAX = JGE_BTN_FULLSCREEN + 1
+  } JButton;
+
+
 
 //------------------------------------------------------------------------------------------------
 struct Vertex
@@ -352,11 +401,14 @@ public:
 
 	int mFilter;
 
-#if defined (PSP)
+#if defined (PSP) 	
     int mTextureFormat;
 	int mTexId;
 	bool mInVideoRAM;
 	PIXEL_TYPE* mBits;
+#elif defined (WP8)
+	ID3D11Texture2D* mTexId;
+    u8* mBuffer;
 #else
 	GLuint mTexId;
     u8* mBuffer;
@@ -536,29 +588,6 @@ public:
 
 };
 
-
-typedef enum Buttons
-  {
-    JGE_BTN_NONE = 0,   // No button pressed
-    JGE_BTN_QUIT,   // Home on PSP
-    JGE_BTN_MENU,   // Start on PSP
-    JGE_BTN_CTRL,   // Select
-    JGE_BTN_POWER,  // Hold
-    JGE_BTN_SOUND,  // Music note
-    JGE_BTN_RIGHT,
-    JGE_BTN_LEFT,
-    JGE_BTN_UP,
-    JGE_BTN_DOWN,
-    JGE_BTN_OK,     // Circle in Japan, Cross in Europe
-    JGE_BTN_CANCEL, // Triangle
-    JGE_BTN_PRI,    // Square (primary)
-    JGE_BTN_SEC,    // Cross or Circle (secondary)
-    JGE_BTN_PREV,   // Left trigger
-    JGE_BTN_NEXT,    // Right trigger
-    JGE_BTN_FULLSCREEN,    // Switch to fullscreen (obviously, PC only)
-
-    JGE_BTN_MAX = JGE_BTN_FULLSCREEN + 1
-  } JButton;
 
 
 #endif

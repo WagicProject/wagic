@@ -156,6 +156,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Dependencies\SDL\src\main\windows\SDL_windows_main.c" />
+    <ClCompile Include="src\corewrapper.cpp" />
     <ClCompile Include="src\Encoding.cpp" />
     <ClCompile Include="src\JAnimator.cpp" />
     <ClCompile Include="src\JApp.cpp">
@@ -298,6 +299,7 @@
     <ClCompile Include="src\zipFS\zstream.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\corewrapper.h" />
     <ClInclude Include="include\DebugRoutines.h" />
     <ClInclude Include="include\decoder_prx.h" />
     <ClInclude Include="include\Encoding.h" />

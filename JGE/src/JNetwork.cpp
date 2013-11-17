@@ -4,13 +4,12 @@
 
 */
 
-#include "../include/DebugRoutines.h"
-#include "../include/JNetwork.h"
-
-#if defined (WIN32) || defined (LINUX)
-#else
+#if (defined WIN32) && (!defined QT_CONFIG)
+#pragma comment(lib,"ws2_32.lib")
+#include <winsock2.h>
+#elif defined (LINUX)
+#elif defined (PSP)
 #ifdef NETWORK_SUPPORT
-
 #include <pspkernel.h>
 #include <pspdebug.h>
 #include <pspsdk.h>
@@ -29,9 +28,11 @@
 #endif
 
 #endif
+#include "../include/JNetwork.h"
 
 #include <sstream>
 #include "../include/JSocket.h"
+#include "../include/DebugRoutines.h"
 
 map<string, JNetwork::CommandStruc> JNetwork::sCommandMap;
 

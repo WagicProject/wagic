@@ -7,7 +7,7 @@
 #include "Player.h"
 #include "Counters.h"
 #include "AllAbilities.h"
-#include <boost/scoped_ptr.hpp>
+#include <memory>
 
 SUPPORT_OBJECT_ANALYTICS(ExtraCost)
 
@@ -171,7 +171,7 @@ LifeorManaCost::LifeorManaCost(TargetChooser *_tc, string manaType)
     string buildType ="{";
     buildType.append(manaType);
     buildType.append("}");
-    boost::scoped_ptr<ManaCost> cost(ManaCost::parseManaCost(buildType));
+	std::unique_ptr<ManaCost> cost(ManaCost::parseManaCost(buildType));
     manaCost.copy(cost.get());
 }
 

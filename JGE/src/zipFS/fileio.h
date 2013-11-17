@@ -47,9 +47,8 @@
 
 
 
-#if defined WIN32
-#include <io.h> // Windows I/O facilities (Directories)
-#else
+#if defined WIN32 || defined WP8
+#include <PrecompiledHeader.h>
 #include <dirent.h>
 #include <string.h>
 #endif
@@ -86,14 +85,9 @@ public:
 protected:
 	bool		m_Valid;
 
-#if defined WIN32
-	intptr_t	m_hFiles;
-	_finddata_t	m_FindData;
-#else 
 	DIR *			m_Directory;
 	std::string		m_Extension;
 	struct dirent *	m_DirectoryEntry;
-#endif
 };
 
 
@@ -144,30 +138,18 @@ inline std::ostream & writevar(std::ostream & File, const T & Var, const std::st
 
 inline search_iterator::search_iterator()
 	: m_Valid(false),
-#if defined WIN32
-	  m_hFiles(-1)
-#else
 	  m_Directory(NULL)
-#endif
 	{ }
 
 inline search_iterator::search_iterator(const char * FileSpec)
 	: m_Valid(false),
-#if defined WIN32
-	  m_hFiles(-1)
-#else
 	  m_Directory(NULL)
-#endif
 {
 	begin(FileSpec);
 }
 
 inline search_iterator::~search_iterator() {
-#if defined WIN32
-	if (m_hFiles != -1) _findclose(m_hFiles);
-#else
 	if (m_Directory != NULL) closedir(m_Directory);
-#endif
 }
 
 inline search_iterator::operator bool () const {
@@ -179,17 +161,13 @@ inline search_iterator & search_iterator::operator ++ () {
 }
 
 inline search_iterator & search_iterator::begin(const char * FileSpec) {
-#if defined WIN32
-	if (m_hFiles != -1) _findclose(m_hFiles);
-	m_Valid = ((m_hFiles = _findfirst(FileSpec, &m_FindData)) != -1);
-#else
 	std::string DirectoryName;
 	
 	if (m_Directory != NULL) closedir(m_Directory);
 
 	int i;
 	for (i = strlen(FileSpec); i >= 0; --i)
-		if (FileSpec[i] == '/') break;
+		if (FileSpec[i] == '/' || FileSpec[i] == '\\') break;
 	
 	if (i < 0)
 		DirectoryName = ".";
@@ -204,7 +182,6 @@ inline search_iterator & search_iterator::begin(const char * FileSpec) {
 		return (* this);
 	
 	next();
-#endif
 	
 	return (* this);
 }
@@ -214,9 +191,6 @@ inline bool search_iterator::end() const {
 }
 
 inline search_iterator & search_iterator::next() {
-#if defined WIN32
-	m_Valid = (_findnext(m_hFiles, &m_FindData) != -1);
-#else
 	bool Found = false;
 	while (! Found) {
 		m_Valid = ((m_DirectoryEntry = readdir(m_Directory)) != NULL);
@@ -235,17 +209,12 @@ inline search_iterator & search_iterator::next() {
 		else
 			break;
 	}
-#endif
 	
 	return (* this);
 }
 
 inline std::string search_iterator::Name() const {
-#if defined WIN32
-	return (m_FindData.name);
-#else
 	return (m_DirectoryEntry->d_name);
-#endif
 }
 
 

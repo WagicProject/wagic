@@ -12,7 +12,7 @@ using std::map;
 static map<const LocalKeySym, KeyRep> fattable;
 static map<const JButton, KeyRep> slimtable;
 
-#if defined(LINUX) || defined (IOS) || defined (ANDROID) ||  defined (SDL_CONFIG) || defined (QT_CONFIG)
+#if defined(LINUX) || defined (IOS) || defined (ANDROID) ||  defined (SDL_CONFIG) || defined (QT_CONFIG) || defined (WP8)
 const KeyRep& translateKey(LocalKeySym key)
 {
     {
@@ -23,7 +23,7 @@ const KeyRep& translateKey(LocalKeySym key)
 
     char* str = NULL;
 
-#if !defined(QT_CONFIG) && !defined(IOS) && !defined (SDL_CONFIG)
+#if !defined(QT_CONFIG) && !defined(IOS) && !defined (SDL_CONFIG) && !defined(WP8)
     str = XKeysymToString(key);
 #elif defined (SDL_CONFIG)
     str = (char*)SDL_GetKeyName(key);
@@ -31,7 +31,7 @@ const KeyRep& translateKey(LocalKeySym key)
     if (!str)
     {
         str = NEW char[11];
-        sprintf(str, "%lu", (long unsigned int)key);  //TODO: Wagic is not supposed to know that a key actually is an unsingned long, so this part should probably be platform specific (move to JGE ?)
+        snprintf(str, 11, "%lu", (long unsigned int)key);  //TODO: Wagic is not supposed to know that a key actually is an unsingned long, so this part should probably be platform specific (move to JGE ?)
     }
     const KeyRep k = make_pair(str, static_cast<JQuad*>(NULL));
     fattable[key] = k;
@@ -184,9 +184,9 @@ const KeyRep& translateKey(JButton key) {
         }
         else
         {
-          char* str = NEW char[11];
-            sprintf(str, "%d", key);
-            slimtable[key] = make_pair(str, static_cast<JQuad*> (static_cast<JQuad*> (NULL)));
+			char* str = NEW char[11];
+			snprintf(str, 11, "%d", key);
+			slimtable[key] = make_pair(str, static_cast<JQuad*> (static_cast<JQuad*> (NULL)));
         }
         res = slimtable.find(key);
     }

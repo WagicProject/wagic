@@ -503,7 +503,7 @@ bool filesystem::PreloadZip(const char * Filename, map<string, limited_file_info
                     continue;
 
 			    target[Name] = limited_file_info(
-				    realBeginOfFile + FileHdr.m_RelOffset,					// "Local File" header offset position
+				    (size_t)realBeginOfFile + FileHdr.m_RelOffset,					// "Local File" header offset position
 				    FileHdr.m_UncompSize					// File Size
 			    );
 		    }

@@ -16,7 +16,7 @@
 #include <string.h>
 #include <stdarg.h>
 
-#if (!defined IOS) && (!defined ANDROID) && (!defined QT_CONFIG)
+#if (!defined IOS) && (!defined ANDROID) && (!defined QT_CONFIG) && (!defined WP8)
 #include <gif_lib.h>
 #endif //IOS ANDROID
 
@@ -24,9 +24,7 @@
 
 
 #if defined (WIN32)
-
 	#include <windows.h>
-
 #elif defined (PSP)
 
 	#include <pspgu.h>
@@ -53,7 +51,7 @@
 	#define COSF(x)		cosf(x*DEG2RAD)
 #endif
 
-#if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0) || (defined WIN32)
+#if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0) || ((defined WIN32) && !defined(WP8))
 typedef struct
 {
     GLfloat   m[4][4];
@@ -68,18 +66,23 @@ class JRenderer
 {
 protected:
 
-	JRenderer();
-	~JRenderer();
-	void InitRenderer();
-	void DestroyRenderer();
+    JRenderer();
+    ~JRenderer();
+    void InitRenderer();
+    void DestroyRenderer();
 
-  float mActualWidth;
-  float mActualHeight;
+    float mWindowWidth;
+    float mWindowHeight;
+
+    float mLeft;
+    float mTop;
+    float mRight;
+    float mBottom;
 
 public:
 
 #if defined (PSP)
-  int PixelSize(int textureMode);
+    int PixelSize(int textureMode);
 #endif
 
 	//////////////////////////////////////////////////////////////////////////
@@ -529,28 +532,44 @@ public:
 	//////////////////////////////////////////////////////////////////////////
 	void SetImageFilter(JImageFilter* imageFilter);
 
-  /**
+	//////////////////////////////////////////////////////////////////////////
+	/// To be called each time the containing window size changes.
+	///
+	/// @param window - pointer to some platform specific window object.
+	/// @param inWidth - new width of the window.
+	/// @param inHeight - new height of the window.
+	///
+	//////////////////////////////////////////////////////////////////////////
+	void OnWindowsSizeChanged(void* window, float inWidth, float inHeight);
+
+/**
   ** Set/Get methods for the actual display screen size.
-  */
-  inline void SetActualWidth(float inWidth)
-  {
-    mActualWidth = inWidth;
-  }
+ */
+    inline void SetViewPort(float inLeft, float inTop, float inRight, float inBottom)
+    {
+        mLeft = inLeft;
+        mTop = inTop;
+        mRight = inRight;
+        mBottom = inBottom;
+    }
 
-  inline void SetActualHeight(float inHeight)
-  {
-    mActualHeight = inHeight;
-  }
+    inline void GetViewPort(float& outLeft, float& outTop, float& outRight, float& outBottom)
+    {
+        outLeft = mLeft;
+        outTop = mTop;
+        outRight = mRight;
+        outBottom = mBottom;
+    }
 
-  inline float GetActualWidth()
-  {
-    return mActualWidth;
-  }
+    inline float GetActualWidth()
+    {
+        return (mRight - mLeft);
+    }
 
-  inline float GetActualHeight()
-  {
-    return mActualHeight;
-  }
+    inline float GetActualHeight()
+    {
+        return (mBottom - mTop);
+    }
 
 private:
 
@@ -564,10 +583,10 @@ private:
 		bool mVRAM;
 	};
 
-#if (!defined IOS) && (!defined QT_CONFIG)
+#if (!defined IOS) && (!defined QT_CONFIG) 
 	void LoadJPG(TextureInfo &textureInfo, const char *filename, int mode = 0, int TextureFormat = TEXTURE_FORMAT);
 	int LoadPNG(TextureInfo &textureInfo, const char *filename, int mode = 0, int TextureFormat = TEXTURE_FORMAT);
-#if (!defined ANDROID) && (!defined QT_CONFIG)
+#if (!defined ANDROID) && (!defined QT_CONFIG) && (!defined WP8)
 	void LoadGIF(TextureInfo &textureInfo, const char *filename, int mode = 0, int TextureFormat = TEXTURE_FORMAT);
 	int image_readgif(void * handle, TextureInfo &textureInfo, DWORD * bgcolor, InputFunc readFunc,int mode = 0, int TextureFormat = TEXTURE_FORMAT);
 #endif // (ANDROID) How can we get gif support for android ?
@@ -575,41 +594,52 @@ private:
 	
 	static JRenderer* mInstance;
 
-#if (!defined PSP)
+#ifdef WP8
+	Microsoft::WRL::ComPtr<ID3D11Device1> m_d3dDevice;
+	Microsoft::WRL::ComPtr<ID3D11DeviceContext1> m_d3dContext;
+	D3D_FEATURE_LEVEL m_featureLevel;
+	Microsoft::WRL::ComPtr<IDXGISwapChain1> m_swapChain;
+	Microsoft::WRL::ComPtr<ID3D11RenderTargetView> m_renderTargetView;
+	Microsoft::WRL::ComPtr<ID3D11DepthStencilView> m_depthStencilView;
+	Microsoft::WRL::ComPtr<IUnknown> m_Window;
+	ID3D11Buffer* m_vertexBuffer;
+	ID3D11Buffer* m_indexBuffer;
+
+#elif (!defined PSP) && (!defined WP8) && (!defined CONSOLE_CONFIG)
 	
 	GLuint mCurrentTex;
-#if ((defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0) || (defined WIN32)) && (!defined CONSOLE_CONFIG)
-  // MVP matrix
-  ESMatrix  theMvpMatrix;
+#if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0) || (defined WIN32)
+    // MVP matrix
+    ESMatrix  theMvpMatrix;
 
-  // Handle to a program object
-  GLuint    prog1;
-  // Attribute locations
-  GLint     prog1_positionLoc;
-  GLint     prog1_colorLoc;
-  // Uniform locations
-  GLint     prog1_mvpLoc;
+    // Handle to a program object
+    GLuint    prog1;
+    // Attribute locations
+    GLint     prog1_positionLoc;
+    GLint     prog1_colorLoc;
+    // Uniform locations
+    GLint     prog1_mvpLoc;
 
-  // Handle to a program object
-  GLuint    prog2;
-  // Sampler location
-  GLint     prog2_samplerLoc;
-  // Attribute locations
-  GLint     prog2_positionLoc;
-  GLint     prog2_texCoordLoc;
-  GLint     prog2_colorLoc;
-  // MVP matrix
-  ESMatrix  prog2_mvpMatrix;
-  // Uniform locations
-  GLint     prog2_mvpLoc;
+    // Handle to a program object
+    GLuint    prog2;
+    // Sampler location
+    GLint     prog2_samplerLoc;
+    // Attribute locations
+    GLint     prog2_positionLoc;
+    GLint     prog2_texCoordLoc;
+    GLint     prog2_colorLoc;
+    // MVP matrix
+    ESMatrix  prog2_mvpMatrix;
+    // Uniform locations
+    GLint     prog2_mvpLoc;
 
 #endif // (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
-#else
-  void *fbp0, *fbp1, *zbp;
-	PIXEL_TYPE* mVRAM;
-	int mCurrentTex;
-	int mCurrentBlend;
-  int mCurrentTextureFormat;
+#elif (defined PSP)
+    void *fbp0, *fbp1, *zbp;
+    PIXEL_TYPE* mVRAM;
+    int mCurrentTex;
+    int mCurrentBlend;
+    int mCurrentTextureFormat;
 #endif
 
 	bool mVsync;

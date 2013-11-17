@@ -306,6 +306,7 @@ HEADERS  += \
 
 # JGE, could probably be moved outside
 SOURCES += \
+        ../../JGE/src/corewrapper.cpp\
         ../../JGE/src/Encoding.cpp\
         ../../JGE/src/JAnimator.cpp\
         ../../JGE/src/JApp.cpp\
@@ -323,9 +324,9 @@ SOURCES += \
         ../../JGE/src/JParticleSystem.cpp\
         ../../JGE/src/JResourceManager.cpp\
         ../../JGE/src/JSpline.cpp\
-        ../../JGE/src/JNetwork.cpp\
         ../../JGE/src/pc/JSocket.cpp\
         ../../JGE/src/pc/JSfx.cpp\
+        ../../JGE/src/JNetwork.cpp\
         ../../JGE/src/JSprite.cpp\
         ../../JGE/src/Vector2D.cpp\
         ../../JGE/src/tinyxml/tinystr.cpp\
@@ -345,14 +346,14 @@ SOURCES += \
 CONFIG(graphics, graphics|console){
     SOURCES += \
         ../../JGE/src/qt/filedownloader.cpp\
-        ../../JGE/src/qt/corewrapper.cpp\
+        ../../JGE/src/qt/qtcorewrapper.cpp\
         ../../JGE/src/Qtmain.cpp\
         ../../JGE/src/JMD2Model.cpp\
         ../../JGE/src/pc/JGfx.cpp
 
     HEADERS += \
         ../../JGE/include/qt/filedownloader.h\
-        ../../JGE/include/qt/corewrapper.h
+        ../../JGE/include/qt/qtcorewrapper.h
 }
 else:CONFIG(console, graphics|console){
     SOURCES += \
@@ -363,6 +364,7 @@ else:CONFIG(console, graphics|console){
 
 HEADERS += \
         ../../JGE/include/Threading.h\
+        ../../JGE/include/corewrapper.h\
         ../../JGE/include/decoder_prx.h\
         ../../JGE/include/DebugRoutines.h\
         ../../JGE/include/Encoding.h\

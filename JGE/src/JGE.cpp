@@ -10,7 +10,7 @@
 
  
 // Should we add PrecompiledHeader.h to more platforms here? PSP Doesn't support it in JGE (erwan 2011/12/11) 
-#if defined (IOS) || defined (ANDROID)
+#if defined (IOS) || defined (ANDROID) || defined (WP8)
 #include "PrecompiledHeader.h"
 #endif
 

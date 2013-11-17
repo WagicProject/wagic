@@ -19,7 +19,6 @@
 #include <errno.h>
 #endif
 
-#include "../include/JGE.h"
 #include "../include/JSocket.h"
 
 JSocket::JSocket(){
