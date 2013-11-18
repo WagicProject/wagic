@@ -98,5 +98,8 @@ int main(int argc, char* argv[])
     result = testSuite.run();
     delete wagicCore;
     DebugTrace("TestSuite done: failed test: " << result);
+#ifdef CAPTURE_STDERR
+    OutputCapturer::debugAndClear();
+#endif
     return result;
 }
