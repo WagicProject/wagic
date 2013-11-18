@@ -59,13 +59,15 @@ int Damage::resolve()
     //reserved for culmulitive absorb ability coding
 
     //prevent next damage-----------------------------
-    if ((target)->preventable > 0)
+    if (target->preventable > 0)
     {
         int preventing = MIN(target->preventable, damage);
         damage -= preventing;
         target->preventable -= preventing;
-    }else{
-        (target)->preventable = 0;
+    }
+    else
+    {
+        target->preventable = 0;
     }
 
     //-------------------------------------------------
