@@ -5,13 +5,17 @@
 #include <Qt>
 #include <string>
 #include <sstream>
+#include "Threading.h"
 
 class OutputCapturer
 {
 private:
     static std::ostringstream stream;
+    static boost::mutex mMutex;
+
 public:
     static void add(const std::string& s) {
+        boost::mutex::scoped_lock lock(mMutex);
         stream << s << "\n";
     }
     static void debugAndClear() {
