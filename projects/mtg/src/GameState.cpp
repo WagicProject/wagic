@@ -134,7 +134,7 @@ void GameState::renderDeckMenu(DeckMenu * _menu, const vector<DeckMetaData *>& d
 // deck sorting routines
 bool sortByName(DeckMetaData * d1, DeckMetaData * d2)
 {
-    return strcmp(d1->getName().c_str(), d2->getName().c_str()) < 0;
+    return d1->getName() < d2->getName();
 
 }
 
