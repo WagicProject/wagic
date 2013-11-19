@@ -14,18 +14,9 @@ private:
     static boost::mutex mMutex;
 
 public:
-    static void add(const std::string& s) {
-        boost::mutex::scoped_lock lock(mMutex);
-        stream << s << "\n";
-    }
-    static void debugAndClear() {
-        stream.flush();
-        qDebug("%s", stream.str().c_str());
-        stream.str("");
-    }
-    static void clear() {
-        stream.str("");
-    }
+    static void add(const std::string& s);
+    static void debugAndClear();
+    static void clear();
 };
 #endif
 
