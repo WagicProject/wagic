@@ -12,6 +12,8 @@ using std::vector;
 class ManaCost;
 class MTGAbility;
 
+namespace AI {
+
 class AIHint
 {
 public:
@@ -64,6 +66,8 @@ public:
     vector<string> mCastOrder();
     void add(string line);
     ~AIHints();
+};
+
 };
 
 #endif

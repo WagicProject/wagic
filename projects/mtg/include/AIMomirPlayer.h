@@ -3,6 +3,8 @@
 
 #include "AIPlayerBaka.h"
 
+namespace AI {
+
 class AIMomirPlayer: public AIPlayerBaka
 {
 public:
@@ -12,6 +14,8 @@ public:
     int computeActions();
     MTGAbility * momirAbility;
     MTGAbility * getMomirAbility();
+};
+
 };
 
 #endif

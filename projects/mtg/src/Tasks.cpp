@@ -616,7 +616,7 @@ string TaskWinAgainst::getShortDesc()
 
 bool TaskWinAgainst::isDone(GameObserver* observer, GameApp *)
 {
-    AIPlayerBaka * baka = (AIPlayerBaka*) observer->players[1];
+    AI::AIPlayerBaka * baka = (AI::AIPlayerBaka*) observer->players[1];
     return ((baka) && (!observer->players[0]->isAI()) && (observer->players[1]->isAI()) && (observer->didWin(observer->players[0])) // Human player wins
                     && (baka->deckId == opponent));
 }

@@ -331,6 +331,9 @@
     <ClCompile Include="src\NetworkPlayer.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\AIPlayerMinMax.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\ActionElement.h">
@@ -685,6 +688,9 @@
       <Filter>inc</Filter>
     </ClInclude>
     <ClInclude Include="include\NetworkPlayer.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\AIPlayerMinMax.h">
       <Filter>inc</Filter>
     </ClInclude>
   </ItemGroup>

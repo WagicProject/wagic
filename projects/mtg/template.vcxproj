@@ -310,6 +310,7 @@
     <ClCompile Include="src\AIPlayer.cpp" />
     <ClCompile Include="src\AIPlayerBaka.cpp" />
     <ClCompile Include="src\AIPlayerBakaB.cpp" />
+    <ClCompile Include="src\AIPlayerMinMax.cpp" />
     <ClCompile Include="src\AIStats.cpp" />
     <ClCompile Include="src\AllAbilities.cpp" />
     <ClCompile Include="src\CardDescriptor.cpp" />
@@ -450,6 +451,7 @@
     <ClInclude Include="include\AIPlayer.h" />
     <ClInclude Include="include\AIPlayerBaka.h" />
     <ClInclude Include="include\AIPlayerBakaB.h" />
+    <ClInclude Include="include\AIPlayerMinMax.h" />
     <ClInclude Include="include\AIStats.h" />
     <ClInclude Include="include\AllAbilities.h" />
     <ClInclude Include="include\CacheEngine.h" />

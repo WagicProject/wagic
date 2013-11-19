@@ -11,6 +11,8 @@ class AIStats;
 class AIHints;
 
 
+namespace AI {
+
 class AIPlayerBakaB: public AIPlayerBaka{
 protected:
     int orderBlockers();
@@ -18,7 +20,7 @@ protected:
     int interruptIfICan();
     int chooseAttackers();
     int chooseBlockers();
-    int canFirstStrikeKill(MTGCardInstance * card, MTGCardInstance *ennemy);
+    bool canFirstStrikeKill(MTGCardInstance * card, MTGCardInstance *ennemy);
     int effectBadOrGood(MTGCardInstance * card, int mode = MODE_PUTINTOPLAY, TargetChooser * tc = NULL);
 
 
@@ -59,6 +61,8 @@ protected:
 
     //used by AIHInts, therefore public instead of private :/
     int createAbilityTargets(MTGAbility * a, MTGCardInstance * c, RankingContainer& ranking);
+};
+
 };
 
 #endif

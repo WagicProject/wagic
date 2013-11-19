@@ -111,6 +111,7 @@ class GameObserver{
   void loadPlayer(int playerId, PlayerType playerType = PLAYER_TYPE_HUMAN, int decknb=0, bool premadeDeck=false);
   virtual void loadPlayer(int playerId, Player* player);
 
+  int getPlayerId(Player* player) {if(player == players[0]) return 1; else if(player == players[1]) return 2; else return 0;};
   Player * currentPlayer;
   Player * currentActionPlayer;
   Player * isInterrupting;

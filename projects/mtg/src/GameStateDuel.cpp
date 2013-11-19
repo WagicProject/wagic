@@ -1733,8 +1733,8 @@ void GameStateDuel::setAISpeed()
         {
             if (mParent->players[i] ==  PLAYER_TYPE_CPU)
             {
-                if(dynamic_cast<AIPlayer*>(game->players[i]))
-                    ((AIPlayer *)game->players[i])->setFastTimerMode(tournament->getFastTimerMode());
+                if(dynamic_cast<AI::AIPlayer*>(game->players[i]))
+                    ((AI::AIPlayer *)game->players[i])->setFastTimerMode(tournament->getFastTimerMode());
             }
         }
     }

@@ -14,6 +14,7 @@
 // Abilities/Target Selection
 //
 
+namespace AI {
 
 MTGCardInstance * AIPlayerBakaB::chooseCard(TargetChooser * tc, MTGCardInstance * source, int random)
 {
@@ -117,7 +118,7 @@ int AIPlayerBakaB::chooseAttackers()
 }
 
 /* Can I first strike my oponent and get away with murder ? */
-int AIPlayerBakaB::canFirstStrikeKill(MTGCardInstance * card, MTGCardInstance *ennemy)
+bool AIPlayerBakaB::canFirstStrikeKill(MTGCardInstance * card, MTGCardInstance *ennemy)
 {
     return AIPlayerBaka::canFirstStrikeKill(card, ennemy);
 }
@@ -180,7 +181,7 @@ AIPlayerBakaB::~AIPlayerBakaB() {
 }
 
 
-
+}
 
 #endif
 

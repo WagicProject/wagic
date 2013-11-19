@@ -7,6 +7,8 @@
 
 #include <sstream>
 
+namespace AI {
+
 AIHint::AIHint(string _line)
 {
     string line = _line;
@@ -584,3 +586,5 @@ AIAction * AIHints::suggestAbility(ManaCost * potentialMana)
     }
     return NULL;
 }
+
+};

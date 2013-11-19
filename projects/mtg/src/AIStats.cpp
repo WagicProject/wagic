@@ -6,6 +6,9 @@
 #include "MTGCardInstance.h"
 #include "WEvent.h"
 #include "AllAbilities.h"
+
+namespace AI {
+
 //TODO:better comments this is too cryptic to work on by anyone but original coder.
 bool compare_aistats(AIStat * first, AIStat * second)
 {
@@ -216,4 +219,6 @@ void AIStats::Render()
             }
         }
     }
+}
+
 }

@@ -4,6 +4,8 @@
 #include "AIPlayer.h"
 #include "AllAbilities.h"
 
+namespace AI {
+
 class AIStats;
 class AIHints;
 class AIHint;
@@ -57,7 +59,7 @@ public:
         OrderedAIAction* a2Ptr = const_cast<OrderedAIAction*>(&a2);
         int e1 = a1Ptr->getEfficiency();
         int e2 = a2Ptr->getEfficiency();
-        if (e1 == e2) return a1Ptr->id < a2Ptr->id;
+//        if (e1 == e2) return a1Ptr->id < a2Ptr->id;
         return (e1 > e2);
     }
 };
@@ -72,7 +74,7 @@ class AIPlayerBaka: public AIPlayer{
     virtual int interruptIfICan();
     virtual int chooseAttackers();
     virtual int chooseBlockers();
-    virtual int canFirstStrikeKill(MTGCardInstance * card, MTGCardInstance *ennemy);
+    virtual bool canFirstStrikeKill(MTGCardInstance * card, MTGCardInstance *ennemy);
     virtual int effectBadOrGood(MTGCardInstance * card, int mode = MODE_PUTINTOPLAY, TargetChooser * tc = NULL);
 
 
@@ -105,19 +107,10 @@ class AIPlayerBaka: public AIPlayer{
     virtual int getEfficiency(OrderedAIAction * action);
     virtual int getEfficiency(MTGAbility * ability);
     virtual bool payTheManaCost(ManaCost * cost, MTGCardInstance * card = NULL,vector<MTGAbility*> gotPayment = vector<MTGAbility*>());
-    virtual int getCreaturesInfo(Player * player, int neededInfo = INFO_NBCREATURES , int untapMode = 0, int canAttack = 0);
     virtual ManaCost * getPotentialMana(MTGCardInstance * card = NULL);
     virtual int selectAbility();
 
  public:
-    enum {
-        INFO_NBCREATURES,
-        INFO_CREATURESPOWER,
-        INFO_CREATURESRANK,
-        INFO_CREATURESTOUGHNESS,
-        INFO_CREATURESATTACKINGPOWER
-    };
-
     vector<MTGAbility*>gotPayments;
 
     AIPlayerBaka(GameObserver *observer, string deckFile, string deckfileSmall, string avatarFile, MTGDeck * deck = NULL);
@@ -137,4 +130,5 @@ class AIPlayerBaka: public AIPlayer{
     virtual int createAbilityTargets(MTGAbility * a, MTGCardInstance * c, RankingContainer& ranking);
 };
 
+}
 #endif

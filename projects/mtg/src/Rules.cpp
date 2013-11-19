@@ -183,8 +183,8 @@ void Rules::addExtraRules(GameObserver* g)
                     else if (p->isAI() && (p->playMode == Player::MODE_AI && p->opponent()->playMode== Player::MODE_AI))
                     {
                         handsize = ((AADrawer *)a)->getNumCards();
-                        ((AIPlayer *) p)->forceBestAbilityUse = true;
-                        ((AIPlayer *) p)->agressivity += 100;
+                        ((AI::AIPlayer *) p)->forceBestAbilityUse = true;
+                        ((AI::AIPlayer *) p)->agressivity += 100;
                         hand->OptimizedHand(p,handsize, 3, 1, 3);
                     }
                     else if (!p->isAI() && !Optimizedhandcheat)
@@ -202,8 +202,8 @@ void Rules::addExtraRules(GameObserver* g)
                         handsize = ((AADrawer *)a)->getNumCards();
                         if(difficultyRating == EASY)
                         {
-                            ((AIPlayer *) p)->forceBestAbilityUse = true;
-                            ((AIPlayer *) p)->agressivity += 100;
+                            ((AI::AIPlayer *) p)->forceBestAbilityUse = true;
+                            ((AI::AIPlayer *) p)->agressivity += 100;
                             hand->OptimizedHand(p,handsize, 3, 1, 3);//easy decks get a major boost, open hand is 2lands,1 creature under 3 mana,3spells under 3 mana.
                         }
                         else if (difficultyRating == NORMAL)
@@ -265,7 +265,7 @@ Player * Rules::loadPlayerMomir(GameObserver* observer, int isAI)
     if (!isAI) // Human Player
         player = NEW HumanPlayer(observer, options.profileFile("momir.txt", "", true).c_str(), deckFileSmall, false, tempDeck);
     else
-        player = NEW AIMomirPlayer(observer, options.profileFile("momir.txt", "", true).c_str(), deckFileSmall, empty, tempDeck);
+        player = NEW AI::AIMomirPlayer(observer, options.profileFile("momir.txt", "", true).c_str(), deckFileSmall, empty, tempDeck);
 
     return player;
 }
@@ -299,7 +299,7 @@ Player * Rules::loadPlayerRandom(GameObserver* observer, int isAI, int mode)
     if (!isAI) // Human Player
         player = NEW HumanPlayer(observer, deckFile, deckFileSmall, false, tempDeck);
     else
-        player = NEW AIPlayerBaka(observer, deckFile, deckFileSmall, "", tempDeck);
+        player = NEW AI::AIPlayerBaka(observer, deckFile, deckFileSmall, "", tempDeck);
 
     return player;
 }

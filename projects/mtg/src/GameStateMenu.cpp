@@ -253,7 +253,7 @@ int GameStateMenu::gamePercentComplete() {
 
     //unlocked AI decks
     int currentlyUnlocked = options[Options::AIDECKS_UNLOCKED].number;
-    int totalAIDecks = AIPlayer::getTotalAIDecks();
+    int totalAIDecks = AI::AIPlayer::getTotalAIDecks();
     int reallyUnlocked = MIN(currentlyUnlocked, totalAIDecks);
     total+= totalAIDecks / 10;
     done+= reallyUnlocked / 10;

@@ -14,6 +14,7 @@
 // AIAction
 //
 
+namespace AI {
 
 Player * OrderedAIAction::getPlayerTarget()
 {
@@ -2204,36 +2205,6 @@ int AIPlayerBaka::computeActions()
     return 1;
 };
 
-
-//
-// Combat //
-//
-
-int AIPlayerBaka::getCreaturesInfo(Player * player, int neededInfo, int untapMode, int canAttack)
-{
-    int result = 0;
-    CardDescriptor cd;
-    cd.init();
-    cd.setType("Creature");
-    cd.unsecureSetTapped(untapMode);
-    MTGCardInstance * card = NULL;
-    while ((card = cd.nextmatch(player->game->inPlay, card)))
-    {
-        if (!canAttack || card->canAttack())
-        {
-            if (neededInfo == INFO_NBCREATURES)
-            {
-                result++;
-            }
-            else
-            {
-                result += card->power;
-            }
-        }
-    }
-    return result;
-}
-
 int AIPlayerBaka::chooseAttackers()
 {
     //Attack with all creatures
@@ -2280,19 +2251,12 @@ int AIPlayerBaka::chooseAttackers()
 }
 
 /* Can I first strike my oponent and get away with murder ? */
-int AIPlayerBaka::canFirstStrikeKill(MTGCardInstance * card, MTGCardInstance *ennemy)
+bool AIPlayerBaka::canFirstStrikeKill(MTGCardInstance * card, MTGCardInstance *ennemy)
 {
     if(hints && hints->HintSaysAlwaysBlock(observer,ennemy))
-        return 1;
-    if (ennemy->has(Constants::FIRSTSTRIKE) || ennemy->has(Constants::DOUBLESTRIKE))
-        return 0;
-    if (!(card->has(Constants::FIRSTSTRIKE) || card->has(Constants::DOUBLESTRIKE)))
-        return 0;
-    if (!(card->power >= ennemy->toughness))
-        return 0;
-    if (!(card->power >= ennemy->toughness + 1) && ennemy->has(Constants::FLANKING))
-        return 0;
-    return 1;
+        return true;
+
+    return AIPlayer::canFirstStrikeKill(card, ennemy);
 }
 
 int AIPlayerBaka::chooseBlockers()
@@ -2476,7 +2440,7 @@ int AIPlayerBaka::receiveEvent(WEvent * event)
 
 
 AIPlayerBaka::AIPlayerBaka(GameObserver *observer, string file, string fileSmall, string avatarFile, MTGDeck * deck) :
-    AIPlayer(observer, file, fileSmall, deck)
+    AIPlayer(observer, file, fileSmall, avatarFile, deck)
 {
 
     nextCardToPlay = NULL;
@@ -2491,34 +2455,6 @@ AIPlayerBaka::AIPlayerBaka(GameObserver *observer, string file, string fileSmall
         for (size_t i = 0; i <  mDeck->meta_AIHints.size(); ++i)
             hints->add(mDeck->meta_AIHints[i]);
     }
-
-
-    if(avatarFile != "")
-    {
-        if(!loadAvatar(avatarFile, "bakaAvatar"))
-        {
-            avatarFile = "baka.jpg";
-            loadAvatar(avatarFile, "bakaAvatar");
-        }
-        mAvatarName = avatarFile;
-    }
-    else //load a random avatar.
-    {
-        avatarFile = "avatar";
-        char buffer[3];
-        sprintf(buffer, "%i", int(observer->getRandomGenerator()->random()%100));
-        avatarFile.append(buffer);
-        avatarFile.append(".jpg");
-        if(!loadAvatar(avatarFile, "bakaAvatar"))
-        {
-            avatarFile = "baka.jpg";
-            loadAvatar(avatarFile, "bakaAvatar");
-        }
-        mAvatarName = avatarFile;
-    }
-
-    if (fileSmall == "ai_baka_eviltwin")
-        mAvatar->SetHFlip(true);
     
     initTimer();
 }
@@ -2609,4 +2545,6 @@ AIPlayerBaka::~AIPlayerBaka() {
         SAFE_DELETE(stats);
     }
     SAFE_DELETE(hints);
+}
+
 }

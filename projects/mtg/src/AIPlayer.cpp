@@ -13,10 +13,35 @@
 #include "AIPlayerBakaB.h"
 #endif
 
+namespace AI {
+
+
+bool Action::parseLine(const string& s)
+{
+  return true;
+}
+
+ostream& operator<<(ostream& out, const Action&)
+{
+  return out;
+}
+
+istream& operator>>(istream& in, Action& a)
+{
+    string s;
+
+    while(std::getline(in, s))
+    {
+        if(!a.parseLine(s))
+        {
+            break;
+        }
+    }
+
+    return in;
+}
 
 int AIPlayer::totalAIDecks = -1;
-
-const char * const MTG_LAND_TEXTS[] = { "artifact", "forest", "island", "mountain", "swamp", "plains", "other lands" };
 
 AIAction::AIAction(AIPlayer * owner, MTGCardInstance * c, MTGCardInstance * t)
     : owner(owner), ability(NULL), player(NULL), click(c), target(t)
@@ -116,13 +141,40 @@ int AIAction::clickMultiAct(vector<Targetable*>& actionTargets)
     return 1;
 }
 
-AIPlayer::AIPlayer(GameObserver *observer, string file, string fileSmall, MTGDeck * deck) :
+AIPlayer::AIPlayer(GameObserver *observer, string file, string fileSmall, string avatarFile, MTGDeck * deck) :
     Player(observer, file, fileSmall, deck)
 {
     agressivity = 50;
     forceBestAbilityUse = false;
     playMode = Player::MODE_AI;
     mFastTimerMode = false;
+
+    if(avatarFile != "")
+    {
+        if(!loadAvatar(avatarFile, "bakaAvatar"))
+        {
+            avatarFile = "baka.jpg";
+            loadAvatar(avatarFile, "bakaAvatar");
+        }
+        mAvatarName = avatarFile;
+    }
+    else //load a random avatar.
+    {
+        avatarFile = "avatar";
+        char buffer[3];
+        sprintf(buffer, "%i", int(observer->getRandomGenerator()->random()%100));
+        avatarFile.append(buffer);
+        avatarFile.append(".jpg");
+        if(!loadAvatar(avatarFile, "bakaAvatar"))
+        {
+            avatarFile = "baka.jpg";
+            loadAvatar(avatarFile, "bakaAvatar");
+        }
+        mAvatarName = avatarFile;
+    }
+
+    if (fileSmall == "ai_baka_eviltwin")
+        mAvatar->SetHFlip(true);
 
 }
 
@@ -372,3 +424,151 @@ void AIPlayer::invalidateTotalAIDecks()
     totalAIDecks = -1;
 }
 
+bool AIPlayer::canFirstStrikeKill(MTGCardInstance * card, MTGCardInstance *ennemy)
+{
+    if (ennemy->has(Constants::FIRSTSTRIKE) || ennemy->has(Constants::DOUBLESTRIKE))
+        return false;
+    if (!(card->has(Constants::FIRSTSTRIKE) || card->has(Constants::DOUBLESTRIKE)))
+        return false;
+    if (!(card->power >= ennemy->toughness))
+        return false;
+    if (!(card->power >= ennemy->toughness + 1) && ennemy->has(Constants::FLANKING))
+        return false;
+    return true;
+}
+
+bool AIPlayer::canPlay(MTGCardInstance * card)
+{
+    if (card->hasType(Subtypes::TYPE_LAND))
+    {
+        if (game->playRestrictions->canPutIntoZone(card, game->inPlay) == PlayRestriction::CANT_PLAY)
+            return false;
+    }
+    else
+    {
+        if (game->playRestrictions->canPutIntoZone(card, game->stack) == PlayRestriction::CANT_PLAY)
+            return false;
+    }
+    if (!manaPool->canAfford(card->getManaCost()))
+        return false;
+
+    return true;
+}
+
+int AIPlayer::getCreaturesInfo(Player * player, int neededInfo, int untapMode, int canAttack)
+{
+    int result = 0;
+    CardDescriptor cd;
+    cd.init();
+    cd.setType("Creature");
+    cd.unsecureSetTapped(untapMode);
+    MTGCardInstance * card = NULL;
+    while ((card = cd.nextmatch(player->game->inPlay, card)))
+    {
+        if (!canAttack || card->canAttack())
+        {
+            if (neededInfo == INFO_NBCREATURES)
+            {
+                result++;
+            }
+            else
+            {
+                result += card->power;
+            }
+        }
+    }
+    return result;
+}
+
+int AIPlayer::createAbilityPotentialsActions(MTGAbility * a, MTGCardInstance * c, vector<AIAction>& actions)
+{
+    if (!a->getActionTc())
+    {
+        AIAction aiAction(this, a, c, NULL);
+        actions.push_back(aiAction);
+        return 1;
+    }
+
+    vector<Targetable*>potentialTargets;
+    for (int i = 0; i < 2; i++)
+    {
+        Player * p = observer->players[i];
+        MTGGameZone * playerZones[] = { p->game->graveyard, p->game->library, p->game->hand, p->game->inPlay,p->game->stack };
+        // try player first
+        if(a->getActionTc()->canTarget((Targetable*)p))
+        {
+            if(a->getActionTc()->maxtargets == 1)
+            {
+                AIAction aiAction(this, a, p, c);
+                actions.push_back(aiAction);
+            }
+            else
+                potentialTargets.push_back(p);
+        }
+        for (int j = 0; j < 5; j++)
+        {
+            MTGGameZone * zone = playerZones[j];
+            for (int k = 0; k < zone->nb_cards; k++)
+            {
+                MTGCardInstance * t = zone->cards[k];
+                if (a->getActionTc()->canTarget(t))
+                {
+                    if(a->getActionTc()->maxtargets == 1)
+                    {
+                        AIAction aiAction(this, a, c, t);
+                        actions.push_back(aiAction);
+                    }
+                    else
+                    {
+                        potentialTargets.push_back(t);
+                    }
+                }
+            }
+        }
+    }
+    vector<Targetable*>realTargets;
+    if(a->getActionTc()->maxtargets != 1)
+    {
+        if(a->getActionTc()->getNbTargets() && a->getActionTc()->attemptsToFill > 4)
+        {
+            a->getActionTc()->done = true;
+            return 0;
+        }
+        while(potentialTargets.size())
+        {
+            AIAction * check = NULL;
+
+            Player * pTargeting = 0;
+            MTGCardInstance * cTargeting = dynamic_cast<MTGCardInstance*>(potentialTargets[0]);
+            if(cTargeting) 
+            {
+              check = NEW AIAction(this, a,c,cTargeting);
+            } 
+            else 
+            {
+              pTargeting = dynamic_cast<Player*>(potentialTargets[0]);
+              if(pTargeting)
+                check = NEW AIAction(this, a,pTargeting,c);
+            }
+
+            if(check && pTargeting)
+            {
+                AIAction aiAction(this, a,pTargeting,c);
+                actions.push_back(aiAction);
+            }
+            if(check)
+                realTargets.push_back(potentialTargets[0]);
+            potentialTargets.erase(potentialTargets.begin());
+            SAFE_DELETE(check);
+        }
+        if(!realTargets.size() || (int(realTargets.size()) < a->getActionTc()->maxtargets && a->getActionTc()->targetMin))
+            return 0;
+        AIAction aiAction(this, a, c,realTargets);
+        aiAction.target = dynamic_cast<MTGCardInstance*>(realTargets[0]);
+        aiAction.playerAbilityTarget = dynamic_cast<Player*>(realTargets[0]);
+        actions.push_back(aiAction);
+    }
+    return 1;
+}
+
+}

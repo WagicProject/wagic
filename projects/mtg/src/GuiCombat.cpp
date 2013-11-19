@@ -727,7 +727,7 @@ int GuiCombat::receiveEventMinus(WEvent* e)
             DAMAGE: step = event->step;
             if (!observer->currentPlayer->displayStack())
             {
-                ((AIPlayer *) observer->currentPlayer)->affectCombatDamages(step);
+                ((AI::AIPlayer *) observer->currentPlayer)->affectCombatDamages(step);
                 observer->userRequestNextGamePhase(false, false);
                 return 1;
             }

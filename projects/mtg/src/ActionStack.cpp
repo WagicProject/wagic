@@ -994,15 +994,15 @@ void ActionStack::Update(float dt)
 void ActionStack::cancelInterruptOffer(InterruptDecision cancelMode, bool log)
 {
     int playerId = (observer->isInterrupting == observer->players[1]) ? 1 : 0;
-    interruptDecision[playerId] = cancelMode;
-    askIfWishesToInterrupt = NULL;
-    observer->isInterrupting = NULL;
-    timer = -1;
     if(log) {
         stringstream stream;
         stream << "no " << cancelMode;
         observer->logAction(playerId, stream.str());
     }
+    interruptDecision[playerId] = cancelMode;
+    askIfWishesToInterrupt = NULL;
+    observer->isInterrupting = NULL;
+    timer = -1;
 }
 
 void ActionStack::endOfInterruption(bool log)

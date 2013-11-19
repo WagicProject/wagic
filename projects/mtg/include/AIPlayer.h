@@ -18,20 +18,44 @@
 #include "Player.h"
 #include "config.h"
 
+#include <vector>
 #include <queue>
 using std::queue;
+using std::vector;
+
+
+namespace AI {
 
 class AIStats;
 class AIPlayer;
 
+
+class Action
+{
+protected:
+    GameObserver* m_pObserver;
+    bool parseLine(const string& s);
+
+public:
+    Action(GameObserver* g, const string& s) : m_pObserver(g)
+    { 
+        parseLine(s); 
+    };
+
+    friend ostream& operator<<(ostream&, const Action&);
+	  friend istream& operator>>(istream&, Action&);
+};
+
 class AIAction
 {
+protected:
+    int clickMultiAct(vector<Targetable*>&actionTargets);
+
 public:
     AIPlayer * owner;
     MTGAbility * ability;
-    NestedAbility * nability;
     Player * player;
-    int id;
+//    int id;
     MTGCardInstance * click;
     MTGCardInstance * target; // TODO Improve
     vector<Targetable*>mAbilityTargets;
@@ -60,7 +84,6 @@ public:
     {
     };
     int Act();
-    int clickMultiAct(vector<Targetable*>&actionTargets);
 };
 
 
@@ -77,8 +100,20 @@ protected:
     int clickMultiTarget(TargetChooser * tc,vector<Targetable*>&potentialTargets);
     int clickSingleTarget(TargetChooser * tc,vector<Targetable*>&potentialTargets, MTGCardInstance * Choosencard = NULL);
     RandomGenerator randomGenerator;
+    virtual bool canFirstStrikeKill(MTGCardInstance * card, MTGCardInstance *ennemy);
+    virtual bool canPlay(MTGCardInstance * card);
+    virtual int getCreaturesInfo(Player * player, int neededInfo = INFO_NBCREATURES , int untapMode = 0, int canAttack = 0);
+
+    virtual int createAbilityPotentialsActions(MTGAbility * a, MTGCardInstance * c, vector<AIAction>& actions);
 
 public:
+      enum {
+        INFO_NBCREATURES,
+        INFO_CREATURESPOWER,
+        INFO_CREATURESRANK,
+        INFO_CREATURESTOUGHNESS,
+        INFO_CREATURESATTACKINGPOWER
+    };
 
     //These variables are used by TestSuite and Rules.cpp... TODO change that?
     int agressivity;
@@ -89,7 +124,7 @@ public:
     virtual int receiveEvent(WEvent * event);
     virtual void Render();
 
-    AIPlayer(GameObserver *observer, string deckFile, string deckFileSmall, MTGDeck * deck = NULL);
+    AIPlayer(GameObserver *observer, string deckFile, string deckFileSmall, string avatarFile, MTGDeck * deck = NULL);
     virtual ~AIPlayer();
     
     virtual int chooseTarget(TargetChooser * tc = NULL, Player * forceTarget = NULL, MTGCardInstance * Chosencard = NULL, bool checkonly = false) = 0;
@@ -116,5 +151,6 @@ class AIPlayerFactory{
 #endif
 };
 
+}
 
 #endif

@@ -567,7 +567,7 @@ int TestSuite::loadNext()
 #elif defined(IOS)
         thread_count = 6;
 #else
-		thread_count = 4;
+		thread_count = 2;
 #endif
         for(size_t i = 0; i < (thread_count-1); i++)
             mWorkerThread.push_back(new boost::thread(ThreadProc, this));
@@ -599,6 +599,13 @@ void TestSuite::ThreadProc(void* inParam)
 
                 theGame.observer->startGame(theGame.gameType, /*instance->mRules*/Rules::getRulesByFilename("testsuite.txt"));
                 theGame.initGame();
+
+                while(!theGame.observer->didWin())
+                    theGame.observer->Update(counter++);
+
+                stringstream stream;
+                stream << (*theGame.observer);
+                theGame.observer->load(stream.str(), false, 0, &theGame);
 
                 while(!theGame.observer->didWin())
                     theGame.observer->Update(counter++);
@@ -834,7 +841,7 @@ void TestSuiteGame::initGame()
 
     for (int i = 0; i < 2; i++)
     {        
-        AIPlayerBaka * p = (AIPlayerBaka *) (observer->players[i]);
+        AI::AIPlayerBaka * p = (AI::AIPlayerBaka *) (observer->players[i]);
         p->forceBestAbilityUse = forceAbility;
         p->life = initState.players[i]->life;
         p->poisonCount = initState.players[i]->poisonCount;

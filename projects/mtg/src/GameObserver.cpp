@@ -1668,7 +1668,7 @@ bool GameObserver::load(const string& ss, bool undo, int controlledPlayerIndex
             }
             else
             {
-                logAction(s);
+                actionsList.push_back(s);
             }
             break;
         }
@@ -1772,11 +1772,11 @@ bool GameObserver::processActions(bool undo
 
     for(loadingite = loadingList.begin(); loadingite != loadingList.end(); loadingite++, cmdIndex++)
     {
-		processAction(*loadingite);
-
+        string s = *loadingite;
+        processAction(s);
         size_t nb = actionsList.size();
 
-        for (int i = 0; i<6; i++)
+        for (int i = 0; i < 6; i++)
         {
             // let's fake an update
             GameObserver::Update(counter);
@@ -1815,12 +1815,15 @@ void GameObserver::logAction(MTGCardInstance* card, MTGGameZone* zone, size_t in
 
 void GameObserver::logAction(const string& s)
 {
+    stringstream stream;
+    stream << s << " cp " << getPlayerId(currentPlayer) << ", ii " << getPlayerId(isInterrupting) << ", cap " << getPlayerId(currentActionPlayer);
+
     if(mLoading)
     {
         string toCheck = *loadingite;
-        dumpAssert(toCheck == s);
+        dumpAssert(toCheck == stream.str());
     }
-    actionsList.push_back(s);
+    actionsList.push_back(stream.str());
 };
 
 bool GameObserver::undo()
@@ -1850,7 +1853,7 @@ Player* GameObserver::createPlayer(const string& playerMode
     switch(aMode)
     {
     case Player::MODE_AI:
-        AIPlayerFactory playerCreator;
+        AI::AIPlayerFactory playerCreator;
         if(players.size())
             pPlayer = playerCreator.createAIPlayer(this, MTGCollection(), players[0]);
         else
@@ -1923,7 +1926,7 @@ void GameObserver::loadPlayer(int playerId, PlayerType playerType, int decknb, b
 		}
         else
         { //AI Player, chooses deck
-            AIPlayerFactory playerCreator;
+            AI::AIPlayerFactory playerCreator;
             Player * opponent = NULL;
             if (playerId == 1) opponent = players[0];
 
@@ -1933,7 +1936,7 @@ void GameObserver::loadPlayer(int playerId, PlayerType playerType, int decknb, b
     else
     {
         //Random deck
-        AIPlayerFactory playerCreator;
+        AI::AIPlayerFactory playerCreator;
         Player * opponent = NULL;
 
         // Reset the random logging.
@@ -1950,7 +1953,7 @@ void GameObserver::loadPlayer(int playerId, PlayerType playerType, int decknb, b
         }
 
         if (playerType == PLAYER_TYPE_CPU_TEST)
-            ((AIPlayer *) players[playerId])->setFastTimerMode();
+            ((AI::AIPlayer *) players[playerId])->setFastTimerMode();
     }
 }
 

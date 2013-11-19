@@ -114,7 +114,7 @@ public:
     int run();
 };
 
-class TestSuiteAI:public AIPlayerBaka
+class TestSuiteAI:public AI::AIPlayerBaka
 {
 private:
     MTGCardInstance * getCard(string action);

@@ -18,6 +18,8 @@ class MTGCard;
 class Damage;
 class WEvent;
 
+namespace AI {
+
 class AIStat
 {
 public:
@@ -47,6 +49,8 @@ public:
     void updateStatsCard(MTGCardInstance * cardInstance, Damage * damage, float multiplier = 1.0);
     int receiveEvent(WEvent * event);
     void Render();
+};
+
 };
 
 #endif

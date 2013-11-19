@@ -332,7 +332,7 @@ void GameStateDeckViewer::saveDeck()
 void GameStateDeckViewer::saveAsAIDeck(string deckName)
 {
 
-    int deckId = AIPlayer::getTotalAIDecks() + 1;
+    int deckId = AI::AIPlayer::getTotalAIDecks() + 1;
 
     std::ostringstream oss;
     oss << "deck" <<deckId;
@@ -347,7 +347,7 @@ void GameStateDeckViewer::saveAsAIDeck(string deckName)
     filepath.append(aiDeckName).append(".txt");
     DebugTrace("saving AI deck " << filepath);
     myDeck->save(filepath, true, deckName, deckDesc);
-    AIPlayer::invalidateTotalAIDecks(); //We added one AI deck, so we need to invalidate the count cache
+    AI::AIPlayer::invalidateTotalAIDecks(); //We added one AI deck, so we need to invalidate the count cache
 }
 
 void GameStateDeckViewer::sellCard()

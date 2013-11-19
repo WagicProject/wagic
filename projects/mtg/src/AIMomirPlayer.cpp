@@ -6,6 +6,8 @@
 #include "AIStats.h"
 #include "AllAbilities.h"
 
+namespace AI {
+
 AIMomirPlayer::AIMomirPlayer(GameObserver *observer, string file, string fileSmall, string avatarFile, MTGDeck * deck) :
     AIPlayerBaka(observer, file, fileSmall, avatarFile, deck)
 {
@@ -132,3 +134,4 @@ int AIMomirPlayer::computeActions()
     return AIPlayerBaka::computeActions();
 }
 
+};

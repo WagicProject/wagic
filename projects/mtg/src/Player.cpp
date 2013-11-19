@@ -385,18 +385,30 @@ bool Player::operator<(Player& aPlayer)
     if(isDead() && !aPlayer.isDead())
         return true;
 
+    // if this opponent is not dead and aPlayer opponent is dead then this < aPlayer
+    if(!opponent()->isDead() && aPlayer.opponent()->isDead())
+      return true;
+
     // heuristics for min-max
 
     // if this is more poisoined than aPlayer then this < aPlayer
-    if(poisonCount > aPlayer.poisonCount)
+    if((poisonCount - opponent()->poisonCount) > (aPlayer.poisonCount - aPlayer.opponent()->poisonCount))
         return true;
 
     // if this has less life than aPlayer then this < aPlayer
-    if(life < aPlayer.life)
+    if((life - opponent()->life) < (aPlayer.life - aPlayer.opponent()->life))
         return true;
 
-    // if this has less parmanents in game that aPlayer then this < aPlayer
-    if(game->battlefield->cards.size() < aPlayer.game->battlefield->cards.size())
+    // if this has less permanents in game that aPlayer then this < aPlayer
+    if(((int)game->battlefield->cards.size() - (int)opponent()->game->battlefield->cards.size()) < ((int)aPlayer.game->battlefield->cards.size() - (int)aPlayer.opponent()->game->battlefield->cards.size()))
+        return true;
+
+    // if this has less cards in hand that aPlayer then this < aPlayer
+    if(((int)game->hand->cards.size() - (int)opponent()->game->hand->cards.size()) < ((int)aPlayer.game->hand->cards.size() - (int)aPlayer.opponent()->game->hand->cards.size()))
+        return true;
+
+    // if this has less mana than aPlayer then this < aPlayer
+    if(aPlayer.manaPool->canAfford(manaPool))
         return true;
 
     return false;

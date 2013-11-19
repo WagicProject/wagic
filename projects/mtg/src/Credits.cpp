@@ -625,7 +625,7 @@ int Credits::isDifficultyUnlocked(DeckStats * stats)
 {
     if (options[Options::DIFFICULTY_MODE_UNLOCKED].number)
         return 0;
-    int nbAIDecks = AIPlayer::getTotalAIDecks();
+    int nbAIDecks = AI::AIPlayer::getTotalAIDecks();
 
     int wins = 0;
 
@@ -743,7 +743,7 @@ int Credits::IsMoreAIDecksUnlocked(DeckStats * stats) {
     // the number of currently unlocked decks in order to go through.
     if (stats->nbGames() < currentlyUnlocked * 1.2) return 0;
 
-    if (AIPlayer::getTotalAIDecks() > currentlyUnlocked)
+    if (AI::AIPlayer::getTotalAIDecks() > currentlyUnlocked)
         return 1;
 
     return 0;

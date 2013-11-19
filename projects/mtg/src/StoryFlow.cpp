@@ -310,7 +310,7 @@ void StoryDuel::init()
 
     sprintf(deckFile, "%s/opponent_deck.txt", folder);
     sprintf(deckFileSmall, "campaign_ennemy_%s_%s", mParent->folder.c_str(), pageId.c_str());
-    game->loadPlayer(1, NEW AIPlayerBaka(game, deckFile, deckFileSmall, "baka.jpg"));
+    game->loadPlayer(1, NEW AI::AIPlayerBaka(game, deckFile, deckFileSmall, "baka.jpg"));
 
     string rulesFile = folder;
     rulesFile.append("/rules.txt");
