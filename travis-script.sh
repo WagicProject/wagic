@@ -10,7 +10,7 @@ make -j 8
 
 # let's try an Intel linux binary
 cd ../..
-qmake projects/mtg/wagic-qt.pro CONFIG+=console CONFIG+=debug
+qmake projects/mtg/wagic-qt.pro CONFIG+=console CONFIG+=debug DEFINES+=CAPTURE_STDERR
 make -j 8
 
 # and finish by running the testsuite
