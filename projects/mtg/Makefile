@@ -1,7 +1,7 @@
 OBJS	= objs/InteractiveButton.o objs/AbilityParser.o objs/ActionElement.o\
 	objs/ActionLayer.o objs/ActionStack.o objs/AIHints.o objs/AIMomirPlayer.o\
 	objs/AIPlayer.o objs/AIPlayerBaka.o objs/AIStats.o objs/AllAbilities.o\
-	objs/CardGui.o objs/CardDescriptor.o objs/CardDisplay.o objs/CardEffect.o\
+	objs/CardGui.o objs/CardDescriptor.o objs/CardDisplay.o\
 	objs/CardPrimitive.o objs/CardSelector.o objs/CardSelectorSingleton.o\
 	objs/Counters.o objs/Credits.o objs/Damage.o objs/DamagerDamaged.o\
 	objs/DeckDataWrapper.o objs/DeckEditorMenu.o objs/DeckMenu.o\
