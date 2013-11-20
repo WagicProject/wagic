@@ -11,17 +11,15 @@ class JGuiObject;
 class MTGCardInstance;
 class GameObserver;
 
-#define DAMAGEABLE_MTGCARDINSTANCE 0
-#define DAMAGEABLE_PLAYER 1
-
-#define DAMAGE_ALL_TYPES 0
-#define DAMAGE_COMBAT 1
-#define DAMAGE_OTHER 2
-
 class Damageable:public Targetable
 {
 protected:
 public:
+    enum DamageableType{
+        DAMAGEABLE_MTGCARDINSTANCE = 0,
+        DAMAGEABLE_PLAYER
+    };
+
     int life;
     int handsize;
     int poisonCount;
@@ -29,12 +27,14 @@ public:
     int preventable;
     int thatmuch;
     int lifeLostThisTurn;
-    int type_as_damageable;
+    DamageableType type_as_damageable;
     Damageable(GameObserver* observer, int _life)
-        : Targetable(observer)
-        {life=_life;lifeLostThisTurn = 0;};
-    int getLife(){return life;};
-    virtual int dealDamage(int damage){life-=damage;return life;};
+        : Targetable(observer), life(_life), handsize(0),
+          poisonCount(0), damageCount(0), preventable(0), thatmuch(0),
+          lifeLostThisTurn(0), type_as_damageable(DAMAGEABLE_MTGCARDINSTANCE)
+        {}
+    int getLife(){return life;}
+    virtual int dealDamage(int damage){life-=damage;return life;}
     virtual int afterDamage(){return 0;}
     virtual int poisoned(){return 0;}
     virtual int prevented(){return 0;}
@@ -47,17 +47,23 @@ public:
 
 class Damage: public Interruptible
 {
- protected:
-  void init(MTGCardInstance * source, Damageable * target, int damage, int typeOfDamage);
  public:
+  enum DamageType{
+      DAMAGE_ALL_TYPES = 0,
+      DAMAGE_COMBAT,
+      DAMAGE_OTHER
+  };
+
   Damageable * target;
-  int typeOfDamage;
+  DamageType typeOfDamage;
   int damage;
   void Render();
   Damage(GameObserver* observer, MTGCardInstance* source, Damageable * target);
-  Damage(GameObserver* observer, MTGCardInstance* source, Damageable * target, int damage, int typeOfDamage = DAMAGE_OTHER);
+  Damage(GameObserver* observer, MTGCardInstance* source, Damageable * target, int damage, DamageType typeOfDamage = DAMAGE_OTHER);
   int resolve();
   virtual ostream& toString(ostream& out) const;
+ protected:
+  void init(MTGCardInstance * source, Damageable * target, int damage, DamageType typeOfDamage);
 };
 
 class DamageStack : public GuiLayer, public Interruptible

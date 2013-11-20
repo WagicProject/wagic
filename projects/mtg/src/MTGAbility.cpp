@@ -4477,7 +4477,7 @@ Player * MTGAbility::getPlayerFromDamageable(Damageable * target)
     if (!target)
         return NULL;
 
-    if (target->type_as_damageable == DAMAGEABLE_MTGCARDINSTANCE)
+    if (target->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE)
         return ((MTGCardInstance *) target)->controller();
 
     return (Player *) target;

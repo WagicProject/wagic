@@ -90,13 +90,12 @@ int AIMomirPlayer::computeActions()
     }
     else if (p == this && observer->mLayers->stackLayer()->count(0, NOT_RESOLVED) == 0)
     { //standard actions
-        CardDescriptor cd;
-        MTGCardInstance * card = NULL;
 
         switch (currentGamePhase)
         {
         case MTG_PHASE_FIRSTMAIN:
         {
+            CardDescriptor cd;
             ManaCost * potentialMana = getPotentialMana();
             int converted = potentialMana->getConvertedCost();
             SAFE_DELETE(potentialMana);
@@ -106,7 +105,7 @@ int AIMomirPlayer::computeActions()
                 //Attempt to put land into play
                 cd.init();
                 cd.setColor(Constants::MTG_COLOR_LAND);
-                card = cd.match(game->hand);
+                MTGCardInstance *card = cd.match(game->hand);
                 int canPutLandsIntoPlay = game->playRestrictions->canPutIntoZone(card, game->inPlay);
                 if (card && (canPutLandsIntoPlay == PlayRestriction::CAN_PLAY))
                 {
@@ -118,15 +117,12 @@ int AIMomirPlayer::computeActions()
             }
             momir();
             return 1;
-            break;
         }
         case MTG_PHASE_SECONDMAIN:
             selectAbility();
             return 1;
-            break;
         default:
             return AIPlayerBaka::computeActions();
-            break;
         }
     }
     return AIPlayerBaka::computeActions();

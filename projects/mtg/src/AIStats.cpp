@@ -24,7 +24,7 @@ AIStats::AIStats(Player * _player, char * _filename)
 AIStats::~AIStats()
 {
     list<AIStat *>::iterator it;
-    for (it = stats.begin(); it != stats.end(); it++)
+    for (it = stats.begin(); it != stats.end(); ++it)
     {
         AIStat * stat = *it;
         delete stat;
@@ -47,7 +47,7 @@ void AIStats::updateStatsCard(MTGCardInstance * cardInstance, Damage * damage, f
     {
         stat->value += static_cast<int>(multiplier * STATS_PLAYER_MULTIPLIER * damage->damage);
     }
-    else if (damage->target->type_as_damageable == DAMAGEABLE_MTGCARDINSTANCE)
+    else if (damage->target->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE)
     {
         MTGCardInstance * target = (MTGCardInstance *) damage->target;
         if (target->controller() == player && !target->isInPlay(player->getObserver()))
@@ -115,7 +115,7 @@ bool AIStats::isInTop(MTGCardInstance * card, unsigned int max, bool tooSmallCou
     MTGCard * source = card->model;
     int id = source->getMTGId();
     list<AIStat *>::iterator it;
-    for (it = stats.begin(); it != stats.end(); it++)
+    for (it = stats.begin(); it != stats.end(); ++it)
     {
         if (n >= max)
             return false;
@@ -135,7 +135,7 @@ AIStat * AIStats::find(MTGCard * source)
 {
     int id = source->getMTGId();
     list<AIStat *>::iterator it;
-    for (it = stats.begin(); it != stats.end(); it++)
+    for (it = stats.begin(); it != stats.end(); ++it)
     {
         AIStat * stat = *it;
         if (stat->source == id)
@@ -174,7 +174,7 @@ void AIStats::save()
     {
         char writer[128];
         list<AIStat *>::iterator it;
-        for (it = stats.begin(); it != stats.end(); it++)
+        for (it = stats.begin(); it != stats.end(); ++it)
         {
             AIStat * stat = *it;
             if (stat->value > 0)
