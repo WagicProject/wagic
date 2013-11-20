@@ -440,7 +440,7 @@ void ActionLayer::setCustomMenuObject(Targetable * object, bool must,vector<MTGA
         abilitiesMenu->isMultipleChoice = true;
         for(int w = 0; w < int(abilities.size());w++)
         {
-            ActionElement *currentAction = (ActionElement*)abilities[w];
+            ActionElement* currentAction = (ActionElement*)abilities[w];
             currentActionCard = (MTGCardInstance*)abilities[0]->target;
             abilitiesMenu->Add(mObjects.size()-1, currentAction->getMenuText(),"",false);
         }
