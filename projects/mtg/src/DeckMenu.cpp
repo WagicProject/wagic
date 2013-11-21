@@ -293,6 +293,7 @@ void DeckMenu::Render()
                 
                 // fill in the description part of the screen
 				string text = wordWrap(_(currentMenuItem->getDescription()), descWidth, descriptionFont->mFontID );
+                descriptionFont->SetColor(ARGB(255,255,255,255));
                 descriptionFont->DrawString(text.c_str(), descX, descY);
                 
                 // fill in the statistical portion
@@ -301,6 +302,7 @@ void DeckMenu::Render()
                     ostringstream oss;
                     oss << _("Deck: ") << currentMenuItem->getDeckName() << endl;
                     oss << currentMenuItem->getDeckStatsSummary();
+                    descriptionFont->SetColor(ARGB(255,255,255,255));
                     descriptionFont->DrawString(oss.str(), statsX, statsY);
                 }
                 
