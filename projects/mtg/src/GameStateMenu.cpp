@@ -65,6 +65,7 @@ GameStateMenu::GameStateMenu(GameApp* parent) :
     scroller = NULL;
     langChoices = false;
     primitivesLoadCounter = -1;
+    bgTexture = NULL;
 }
 
 GameStateMenu::~GameStateMenu()
