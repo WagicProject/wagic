@@ -226,6 +226,7 @@ colossus_of_sardia1.txt
 colossus_of_sardia2.txt
 composite_golem.txt
 conservator.txt
+consign_to_dream.txt
 Contagion_Clasp.txt
 control_magic.txt
 control_magic2.txt
