@@ -294,13 +294,13 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                 string attribute;
                 if (found2 != string::npos)
                 {
-                    cd->mode = CD_OR;
+                    cd->mode = CardDescriptor::CD_OR;
                     attribute = attributes.substr(0, found2);
                     attributes = attributes.substr(found2 + 1);
                 }
                 else if (foundAnd != string::npos)
                 {
-                    cd->mode = CD_AND;
+                    cd->mode = CardDescriptor::CD_AND;
                     attribute = attributes.substr(0, foundAnd);
                     attributes = attributes.substr(foundAnd + 1);
                 }
@@ -550,7 +550,7 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                         else
                             cd->colors = card->colors;
                        
-                        cd->mode = CD_OR;
+                        cd->mode = CardDescriptor::CD_OR;
                     }
                     else if( CDtype.find("types") != string::npos )
                     {
@@ -572,7 +572,7 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                         cd->removeType("creature");
                         cd->removeType("planeswalker");
                         cd->removeType("tribal");
-                        cd->mode = CD_OR;
+                        cd->mode = CardDescriptor::CD_OR;
                     }
                 }
                 else if (attribute.find("counter") != string::npos)
@@ -629,7 +629,7 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                         { 
                             cd->SetExclusionColor(cid);
                         }
-                        cd->mode = CD_OR;
+                        cd->mode = CardDescriptor::CD_OR;
                     }
 
                     if (attribute.find("chosencolor") != string::npos)
@@ -685,7 +685,7 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                 }
             }
             if (nbminuses)
-                cd->mode = CD_AND;
+                cd->mode = CardDescriptor::CD_AND;
             typeName = typeName.substr(0, found);
         }
         if (cd)

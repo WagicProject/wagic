@@ -23286,7 +23286,7 @@ type=Sorcery
 [/card]
 [card]
 name=Dragon Hatchling
-auto={1}{R}:1/0
+auto={R}:1/0
 abilities=flying
 text=Flying -- {R}: Dragon Hatchling gets +1/+0 until end of turn.
 mana={1}{R}

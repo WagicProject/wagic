@@ -4,6 +4,8 @@
 // dirty, but I get OS header includes this way
 #include "JGE.h"
 
+#include "OutputCapturer.h"
+
 #include <ostream>
 #include <iostream>
 #include <iomanip>
@@ -29,12 +31,23 @@ std::string ToHex(T* pointer)
 #if defined (WIN32) || defined (LINUX)
 
 #ifdef QT_CONFIG
+
+#ifdef CAPTURE_STDERR
 #define DebugTrace(inString)								\
 {															\
   std::ostringstream stream;								\
-  stream << inString << std::endl;					    \
-  qDebug("%s", stream.str().c_str());	                        \
+  stream << inString;					    \
+  OutputCapturer::add(stream.str()); \
 }
+#else // CAPTURE_STDERR
+#define DebugTrace(inString)								\
+{															\
+  std::ostringstream stream;								\
+  stream << inString;					    \
+  qDebug("%s", stream.str().c_str()); \
+}
+#endif // CAPTURE_STDERR
+
 #elif defined (ANDROID)
 #include <android/log.h>
 #define DebugTrace(inString)								\

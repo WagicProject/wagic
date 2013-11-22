@@ -1188,10 +1188,11 @@ bool GameOptionKeyBindings::read(string input)
         iss.get(*(s.rdbuf()), ',');
         iss.get();
 
-        LocalKeySym local;
-        char sep;
-        u32 button;
+        LocalKeySym local = 0;
+        char sep = 0;
+        u32 button = 0;
         s >> local >> sep >> button;
+
         if (':' != sep)
             return false;
         assoc.push_back(make_pair(local, u32_to_button(button)));

@@ -89,7 +89,6 @@ SOURCES += \
         src/AllAbilities.cpp\
         src/CardDescriptor.cpp\
         src/CardDisplay.cpp\
-        src/CardEffect.cpp\
         src/CardGui.cpp\
         src/CardPrimitive.cpp\
         src/CardSelector.cpp\
@@ -243,7 +242,6 @@ HEADERS  += \
         include/GameStateShop.h\
         include/MTGPack.h\
         include/TextScroller.h\
-        include/CardEffect.h\
         include/GameStateStory.h\
         include/MTGRules.h\
         include/ThisDescriptor.h\
@@ -254,7 +252,6 @@ HEADERS  += \
         include/Token.h\
         include/CardPrimitive.h\
         include/GuiAvatars.h\
-        include/OSD.h\
         include/Translate.h\
         include/CardSelector.h\
         include/GuiBackground.h\
@@ -327,6 +324,7 @@ SOURCES += \
         ../../JGE/src/pc/JSocket.cpp\
         ../../JGE/src/JNetwork.cpp\
         ../../JGE/src/JSprite.cpp\
+        ../../JGE/src/OutputCapturer.cpp\
         ../../JGE/src/Vector2D.cpp\
         ../../JGE/src/tinyxml/tinystr.cpp\
         ../../JGE/src/tinyxml/tinyxml.cpp\
@@ -395,6 +393,7 @@ HEADERS += \
         ../../JGE/include/JSpline.h\
         ../../JGE/include/JSprite.h\
         ../../JGE/include/JTypes.h\
+        ../../JGE/include/OutputCapturer.h\
         ../../JGE/include/Vector2D.h\
         ../../JGE/include/Vector3D.h\
         ../../JGE/include/vram.h\

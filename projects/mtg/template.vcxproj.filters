@@ -363,9 +363,6 @@
     <ClInclude Include="include\CardDisplay.h">
       <Filter>inc</Filter>
     </ClInclude>
-    <ClInclude Include="include\CardEffect.h">
-      <Filter>inc</Filter>
-    </ClInclude>
     <ClInclude Include="include\CardGui.h">
       <Filter>inc</Filter>
     </ClInclude>
@@ -526,9 +523,6 @@
       <Filter>inc</Filter>
     </ClInclude>
     <ClInclude Include="include\OptionItem.h">
-      <Filter>inc</Filter>
-    </ClInclude>
-    <ClInclude Include="include\OSD.h">
       <Filter>inc</Filter>
     </ClInclude>
     <ClInclude Include="include\PhaseRing.h">

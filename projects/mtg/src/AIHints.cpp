@@ -74,8 +74,7 @@ AIHint::AIHint(string _line)
 
     if(action.find( "combo ") != string::npos)
     {
-        string Combo = "";
-        Combo = action.c_str() + 6;
+        string Combo = action.c_str() + 6;
         combos.push_back(Combo);
     }
     
@@ -307,14 +306,13 @@ bool AIHints::canWeCombo(GameObserver* observer,MTGCardInstance * card,AIPlayerB
     TargetChooserFactory tfc(observer);
     TargetChooser * hintTc = NULL;
     bool gotCombo = false;
-    int comboPartsHold = 0;
-    int comboPartsUntil = 0;
-    int comboPartsRestriction = 0;
+
     for(unsigned int i = 0; i < hints.size();i++)
     {
-        comboPartsHold = 0;
-        comboPartsUntil = 0;
-        comboPartsRestriction = 0;
+        int comboPartsHold = 0;
+        int comboPartsUntil = 0;
+        int comboPartsRestriction = 0;
+
         if(gotCombo)
             return gotCombo;//because more then one might be possible at any time.
         if (hints[i]->hold.size())
