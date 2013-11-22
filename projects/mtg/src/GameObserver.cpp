@@ -1042,7 +1042,7 @@ void GameObserver::Affinity()
                     }
                     else
                     {
-                        reduce = card->controller()->game->battlefield->countByType(type.c_str());
+                        reduce = card->controller()->game->battlefield->countByType(type);
                     }
                     for(int i = 0; i < reduce;i++)
                     {
