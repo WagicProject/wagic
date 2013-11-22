@@ -529,7 +529,7 @@ size_t MTGGameZone::getIndex(MTGCardInstance * card)
 }
 
 
-unsigned int MTGGameZone::countByType(const char * value)
+unsigned int MTGGameZone::countByType(const string &value)
 {
     int result = 0;
     int subTypeId = MTGAllCards::findType(value);
@@ -539,7 +539,7 @@ unsigned int MTGGameZone::countByType(const char * value)
         {
             result++;
         }
-        else if(strcmp(value, "token") == 0 && cards[i]->isToken)
+        else if(value == "token" && cards[i]->isToken)
             result++;
     }
     return result;

@@ -95,7 +95,7 @@ class MTGGameZone {
    void cleanupPhase();
    void beforeBeginPhase();
 
-   unsigned int countByType(const char * value);
+   unsigned int countByType(const string &value);
    unsigned int countByCanTarget(TargetChooser * tc);
    unsigned int countTotalManaSymbols(TargetChooser * tc, int color);
    MTGCardInstance * findByName(string name);
