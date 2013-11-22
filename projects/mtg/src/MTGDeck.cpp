@@ -51,9 +51,9 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
     if (i == string::npos || 0 == i)
         return 0;
 
-    char* key = const_cast<char*> (s.c_str()); // I know what I'm doing, let me do it
-    key[i] = 0;
-    char* val = key + i + 1;
+    s[i] = '\0';
+    const char* key = s.c_str();
+    const char* val = key+i+1;
 
     switch (key[0])
     {
