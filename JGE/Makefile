@@ -31,6 +31,7 @@ HGE_OBJS = src/hge/hgecolor.o src/hge/hgeparticle.o \
 
 
 CXXFLAGS = -W -Wall -Werror -Wno-unused
+CXXFLAGS += -DTIXML_USE_STL
 
 ifdef DEBUG
 CXXFLAGS += -ggdb3

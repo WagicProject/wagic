@@ -52,28 +52,28 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
         return 0;
 
     s[i] = '\0';
-    const char* key = s.c_str();
-    const char* val = key+i+1;
+    const string key = s.substr(0, i);
+    const char* val = s.c_str()+i+1;
 
-    switch (key[0])
+    switch (s[0])
     {
     case 'a':
-        if (0 == strcmp("auto", key))
+        if (key == "auto")
         {
             if (!primitive) primitive = NEW CardPrimitive();
             primitive->addMagicText(val);
         }
-        else if (0 == strncmp("auto", key, 4))
+        else if (key.compare(0, strlen("auto")-1, "auto") == 0)
         {
             if (!primitive) primitive = NEW CardPrimitive();
-            primitive->addMagicText(val, key + 4);
+            primitive->addMagicText(val, key.substr(4));
         }
-        else if (0 == strcmp("alias", key))
+        else if (key == "alias")
         {
             if (!primitive) primitive = NEW CardPrimitive();
             primitive->alias = atoi(val);
         }
-        else if (0 == strcmp("abilities", key))
+        else if (key == "abilities")
         {
             if (!primitive) primitive = NEW CardPrimitive();
             string value = val;
@@ -288,21 +288,21 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
 
     case 't':
         if (!primitive) primitive = NEW CardPrimitive();
-        if (0 == strcmp("target", key))
+        if (key == "target")
         {
             string value = val;
             std::transform(value.begin(), value.end(), value.begin(), ::tolower);
             primitive->spellTargetType = value;
         }
-        else if (0 == strcmp("text", key))
+        else if (key == "text")
             primitive->setText(val);
-        else if (0 == strcmp("type", key))
+        else if (key == "type")
         {
             vector<string> values = split(val, ' ');
             for (size_t values_i = 0; values_i < values.size(); ++values_i)
                     primitive->setType(values[values_i]);
         }
-        else if (0 == strcmp("toughness", key)) primitive->setToughness(atoi(val));
+        else if (key == "toughness") primitive->setToughness(atoi(val));
         break;
 
     default:
