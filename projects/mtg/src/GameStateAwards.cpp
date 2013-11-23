@@ -21,7 +21,7 @@ enum ENUM_AWARDS_STATE
     
 };
 
-namespace
+namespace GameStateAwardsConstants
 {
     const int kBackToTrophiesID = 2;
     const int kBackToMainMenuID = 1;
@@ -186,8 +186,8 @@ void GameStateAwards::Update(float dt)
                 SAFE_DELETE(menu);
                 menu = NEW SimpleMenu(JGE::GetInstance(), WResourceManager::Instance(), EXIT_AWARDS_MENU, this, Fonts::MENU_FONT, 50, 170);
                 if (mState == STATE_DETAILS)
-                    menu->Add(kBackToTrophiesID, "Back to Trophies");
-                menu->Add(kBackToMainMenuID, "Back to Main Menu");
+                    menu->Add(GameStateAwardsConstants::kBackToTrophiesID, "Back to Trophies");
+                menu->Add(GameStateAwardsConstants::kBackToMainMenuID, "Back to Main Menu");
                 menu->Add(kCancelMenuID, "Cancel");
                 break;
             case JGE_BTN_PREV:
@@ -359,11 +359,11 @@ void GameStateAwards::ButtonPressed(int controllerId, int controlId)
     if (controllerId == EXIT_AWARDS_MENU)
         switch (controlId)
         {
-        case kBackToMainMenuID:
+        case GameStateAwardsConstants::kBackToMainMenuID:
             mParent->DoTransition(TRANSITION_FADE, GAME_STATE_MENU);
             showMenu = false;
             break;
-        case kBackToTrophiesID:
+        case GameStateAwardsConstants::kBackToTrophiesID:
             mState = STATE_LISTVIEW;
             SAFE_DELETE(detailview);
             showMenu = false;
