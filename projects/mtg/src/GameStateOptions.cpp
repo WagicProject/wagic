@@ -7,7 +7,7 @@
 #include "SimplePad.h"
 #include "Translate.h"
 
-namespace GameStateOptionsConstants
+namespace GameStateOptionsConst
 {
     const int kSaveAndBackToMainMenuID = 1;
     const int kBackToMainMenuID = 2;
@@ -77,7 +77,7 @@ void GameStateOptions::Start()
 
     optionsList->Add(NEW WGuiSplit(cPrf, cThm));
     optionsList->Add(cStyle);
-    optionsList->Add(NEW WGuiButton(NEW WGuiHeader("New Profile"), -102, GameStateOptionsConstants::kNewProfileID, this));
+    optionsList->Add(NEW WGuiButton(NEW WGuiHeader("New Profile"), -102, GameStateOptionsConst::kNewProfileID, this));
 
     optionsList->Add(NEW WDecoCheat(NEW OptionInteger(Options::CHEATMODE, "Enable Cheat Mode")));
 		optionsList->Add(NEW WDecoCheat(NEW OptionInteger(Options::OPTIMIZE_HAND, "Optimize Starting Hand")));
@@ -117,8 +117,8 @@ void GameStateOptions::Start()
     optionsTabs->Add(optionsList);
 
     optionsMenu = NEW SimpleMenu(JGE::GetInstance(), WResourceManager::Instance(), -102, this, Fonts::MAIN_FONT, 50, 170);
-    optionsMenu->Add(GameStateOptionsConstants::kBackToMainMenuID, "Back to Main Menu");
-    optionsMenu->Add(GameStateOptionsConstants::kSaveAndBackToMainMenuID, "Save And Exit");
+    optionsMenu->Add(GameStateOptionsConst::kBackToMainMenuID, "Back to Main Menu");
+    optionsMenu->Add(GameStateOptionsConst::kSaveAndBackToMainMenuID, "Save And Exit");
     optionsMenu->Add(kCancelMenuID, "Cancel");
 
     optionsTabs->Entering(JGE_BTN_NONE);
@@ -284,21 +284,21 @@ void GameStateOptions::ButtonPressed(int controllerId, int controlId)
     if (controllerId == -102)
         switch (controlId)
         {
-        case GameStateOptionsConstants::kSaveAndBackToMainMenuID:
+        case GameStateOptionsConst::kSaveAndBackToMainMenuID:
             mState = SAVE;
             break;
             //Set Audio volume
-        case GameStateOptionsConstants::kBackToMainMenuID:
+        case GameStateOptionsConst::kBackToMainMenuID:
             mParent->DoTransition(TRANSITION_FADE, GAME_STATE_MENU);
             break;
         case kCancelMenuID:
             mState = SHOW_OPTIONS;
             break;
-        case GameStateOptionsConstants::kNewProfileID:
+        case GameStateOptionsConst::kNewProfileID:
             options.keypadStart("", &newProfile);
             options.keypadTitle("New Profile");
             break;
-        case GameStateOptionsConstants::kReloadID:
+        case GameStateOptionsConst::kReloadID:
             mReload = true;
             break;
         }
