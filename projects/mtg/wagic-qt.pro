@@ -49,6 +49,8 @@ android:INCLUDEPATH += $$ANDROID_NDK_ROOT/platforms/android-9/arch-arm/usr/inclu
 #DEFINES += QT_NO_DEBUG_OUTPUT
 DEFINES += NETWORK_SUPPORT
 
+DEFINES += TIXML_USE_STL
+
 windows:INCLUDEPATH += ../../JGE/Dependencies/include
 windows{
     *-g++* {

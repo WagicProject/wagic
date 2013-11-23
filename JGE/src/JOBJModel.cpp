@@ -89,16 +89,16 @@ bool JOBJModel::Load(const char *modelName, const char *textureName)
 
 				if (count == 4)
 				{
-					if (strcmp(s1, "vn") == 0)
+                    if (string("vn") == s1)
 						normalList.push_back(vert);
-					else if (strcmp(s1, "vt") == 0)
+                    else if (string("vt") == s1)
 						texList.push_back(vert);
-					else if (strcmp(s1, "v") == 0)
+                    else if (string("v") == s1)
 						vertList.push_back(vert);
 				}
 				else if (count == 3)
 				{
-					if (strcmp(s1, "vt") == 0)
+                    if (string("vt") == s1)
 						texList.push_back(vert);
 				}
 	             
