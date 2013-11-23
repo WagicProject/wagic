@@ -350,12 +350,6 @@ bool CardPrimitive::hasType(const char * _type)
     return hasType(id);
 }
 
-bool CardPrimitive::hasSubtype(const char * _subtype)
-{
-    int id = MTGAllCards::findType(_subtype);
-    return hasType(id);
-}
-
 bool CardPrimitive::hasSubtype(const string& _subtype)
 {
     int id = MTGAllCards::findType(_subtype);
