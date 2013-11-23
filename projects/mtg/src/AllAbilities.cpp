@@ -71,7 +71,7 @@ int GenericActivatedAbility::resolve()
     return 0;
 }
 
-const char * GenericActivatedAbility::getMenuText()
+const string GenericActivatedAbility::getMenuText()
 {
 if(newName.size())
 return newName.c_str();
@@ -133,7 +133,7 @@ int AAAlterPoison::resolve()
     return 0;
 }
 
-const char * AAAlterPoison::getMenuText()
+const string AAAlterPoison::getMenuText()
 {
     return "Poison";
 }
@@ -165,7 +165,7 @@ int AADamagePrevent::resolve()
     return 0;
 }
 
-const char * AADamagePrevent::getMenuText()
+const string AADamagePrevent::getMenuText()
 {
     return "Prevent Damage";
 }
@@ -237,7 +237,7 @@ AADamager::AADamager(GameObserver* observer, int _id, MTGCardInstance * _source,
         return damage.getValue();
     }
 
-    const char * AADamager::getMenuText()
+    const string AADamager::getMenuText()
     {
         MTGCardInstance * _target = dynamic_cast<MTGCardInstance*>(target);
         if(_target && _target->hasType(Subtypes::TYPE_PLANESWALKER))
@@ -276,7 +276,7 @@ AADepleter::AADepleter(GameObserver* observer, int _id, MTGCardInstance * card, 
         return 1;
     }
 
-const char * AADepleter::getMenuText()
+const string AADepleter::getMenuText()
 {
     return "Deplete";
 }
@@ -311,7 +311,7 @@ AAModTurn::AAModTurn(GameObserver* observer, int _id, MTGCardInstance * card, Ta
         return 1;
     }
 
-    const char * AAModTurn::getMenuText()
+    const string AAModTurn::getMenuText()
     {
         WParsedInt numTurns(nbTurnStr, NULL, source);
         if(numTurns.getValue() > 0)
@@ -354,7 +354,7 @@ int AALibraryBottom::resolve()
     return 0;
 }
 
-const char * AALibraryBottom::getMenuText()
+const string AALibraryBottom::getMenuText()
 {
     return "Bottom Of Library";
 }
@@ -382,7 +382,7 @@ int AACopier::resolve()
     return 0;
 }
 
-const char * AACopier::getMenuText()
+const string AACopier::getMenuText()
 {
     return "Copy";
 }
@@ -415,7 +415,7 @@ int AAPhaseOut::resolve()
     return 0;
 }
 
-const char * AAPhaseOut::getMenuText()
+const string AAPhaseOut::getMenuText()
 {
     return "Phase Out";
 }
@@ -506,34 +506,33 @@ AACounter::AACounter(GameObserver* observer, int id, MTGCardInstance * source, M
         return 0;
     }
 
-const char* AACounter::getMenuText()
+const string AACounter::getMenuText()
 {
+    std::ostringstream buffer;
     if (menu.size())
     {
-        return menu.c_str();
+        return menu;
     }
-    char buffer[128];
 
     if (name.size())
     {
-        string s = name;
-        menu.append(s.c_str());
+        buffer << name;
     }
 
     if (power != 0 || toughness != 0)
     {
-        sprintf(buffer, " %i/%i", power, toughness);
-        menu.append(buffer);
+        buffer << " " << power << "/" << toughness;
     }
 
-    menu.append(" Counter");
+    buffer << " Counter";
     if (nb != 1 && !(nb < -1000))
     {
-        sprintf(buffer, ": %i", nb);
-        menu.append(buffer);
+        buffer << ": " << nb;
     }
 
-    sprintf(menuText, "%s", menu.c_str());
+    menu = buffer.str();
+    menuText = menu;
+
     return menuText;
 }
 
@@ -695,11 +694,11 @@ int AARemoveAllCounter::resolve()
     return nb;
 }
 
-const char* AARemoveAllCounter::getMenuText()
+const string AARemoveAllCounter::getMenuText()
 {
     if (menu.size())
     {
-        return menu.c_str();
+        return menu;
     }
     char buffer[128];
 
@@ -722,7 +721,7 @@ const char* AARemoveAllCounter::getMenuText()
         menu.append(buffer);
     }
 
-    return menu.c_str();
+    return menu;
 }
 
 AARemoveAllCounter * AARemoveAllCounter::clone() const
@@ -773,7 +772,7 @@ int AAProliferate::resolve()
 
 }
 
-const char* AAProliferate::getMenuText()
+const string AAProliferate::getMenuText()
 {
     return "Proliferate";
 }
@@ -837,7 +836,7 @@ int GenericChooseTypeColor::resolve()
 
 }
 
-const char* GenericChooseTypeColor::getMenuText()
+const string GenericChooseTypeColor::getMenuText()
 {
     if(chooseColor)
         return "Choose a color";
@@ -899,7 +898,7 @@ int AASetColorChosen::resolve()
     return 1;
 }
 
-const char* AASetColorChosen::getMenuText()
+const string AASetColorChosen::getMenuText()
 {
     return Constants::MTGColorStrings[color];
 }
@@ -956,7 +955,7 @@ int AASetTypeChosen::resolve()
     return 1;
 }
 
-const char* AASetTypeChosen::getMenuText()
+const string AASetTypeChosen::getMenuText()
 {
     return menutext.c_str();
 }
@@ -1003,7 +1002,7 @@ int GenericFlipACoin::resolve()
 
 }
 
-const char* GenericFlipACoin::getMenuText()
+const string GenericFlipACoin::getMenuText()
 {
 return "Flip A Coin";
 }
@@ -1095,7 +1094,7 @@ int AASetCoin::resolve()
     return 1;
 }
 
-const char* AASetCoin::getMenuText()
+const string AASetCoin::getMenuText()
 {
     if(side == 1)
         return "Tails";
@@ -1186,7 +1185,7 @@ int GenericPaidAbility::resolve()
     return 1;
 }
 
-const char* GenericPaidAbility::getMenuText()
+const string GenericPaidAbility::getMenuText()
 {
     if (newName.size())
         return newName.c_str();
@@ -1288,7 +1287,7 @@ int AAResetDamage::resolve()
     return 1;
 }
 
-const char* AAResetDamage::getMenuText()
+const string AAResetDamage::getMenuText()
 {
     return "Reset Damages";
 }
@@ -1309,10 +1308,11 @@ int AAFakeAbility::resolve()
     return 1;
 }
 
-const char* AAFakeAbility::getMenuText()
+const string AAFakeAbility::getMenuText()
 {
     if(named.size())
-        return named.c_str();
+        return named;
+
     return "Ability";
 }
 
@@ -1356,7 +1356,7 @@ int AAFizzler::resolve()
     return 1;
 }
 
-const char * AAFizzler::getMenuText()
+const string AAFizzler::getMenuText()
 {
     return "Fizzle";
 }
@@ -1403,7 +1403,7 @@ int AABuryCard::resolve()
     return 0;
 }
 
-const char * AABuryCard::getMenuText()
+const string AABuryCard::getMenuText()
 {
     if(menu.size())
         return menu.c_str();
@@ -1459,7 +1459,7 @@ int AADestroyCard::resolve()
     return 0;
 }
 
-const char * AADestroyCard::getMenuText()
+const string AADestroyCard::getMenuText()
 {
     return "Destroy";
 }
@@ -1515,7 +1515,7 @@ int AASacrificeCard::resolve()
     return 0;
 }
 
-const char * AASacrificeCard::getMenuText()
+const string AASacrificeCard::getMenuText()
 {
     return "Sacrifice";
 }
@@ -1570,7 +1570,7 @@ int AADiscardCard::resolve()
     return 0;
 }
 
-const char * AADiscardCard::getMenuText()
+const string AADiscardCard::getMenuText()
 {
     return "Discard";
 }
@@ -1634,7 +1634,7 @@ AADrawer::AADrawer(GameObserver* observer, int _id, MTGCardInstance * card, Targ
         return numCards.getValue();
     }
 
-const char * AADrawer::getMenuText()
+const string AADrawer::getMenuText()
 {
     return "Draw";
 }
@@ -1663,7 +1663,7 @@ int AAFrozen::resolve()
     return 1;
 }
 
-const char * AAFrozen::getMenuText()
+const string AAFrozen::getMenuText()
 {
     return "Freeze";
 }
@@ -1728,7 +1728,7 @@ int AANewTarget::resolve()
     return 1;
 }
 
-const char * AANewTarget::getMenuText()
+const string AANewTarget::getMenuText()
 {
     return "New Target";
 }
@@ -1809,7 +1809,7 @@ int AAMorph::testDestroy()
     return 0;
 }
 
-const char * AAMorph::getMenuText()
+const string AAMorph::getMenuText()
 {
     return "Morph";
 }
@@ -1946,10 +1946,9 @@ int AAFlip::testDestroy()
     return 0;
 }
 
-const char * AAFlip::getMenuText()
+const string AAFlip::getMenuText()
 {
-    string s = flipStats;
-    sprintf(menuText, "Transform:%s", s.c_str());
+    menuText = "Transform:" + flipStats;
     return menuText;
 }
 
@@ -2252,7 +2251,7 @@ int AADynamic::activateStored()
     return 1;
 }
 
-const char * AADynamic::getMenuText()
+const string AADynamic::getMenuText()
 {
     if (menu.size())
     {
@@ -2367,7 +2366,7 @@ int AALifer::getLife()
     return life.getValue();
 }
 
-const char * AALifer::getMenuText()
+const string AALifer::getMenuText()
 {
     if(getLife() < 0)
         return "Life Loss";
@@ -2400,7 +2399,7 @@ int AASetHand::resolve()
     return 1;
 }
 
-const char * AASetHand::getMenuText()
+const string AASetHand::getMenuText()
 {
     return "Set Hand Size";
 }
@@ -2431,7 +2430,7 @@ int AALifeSet::resolve()
     return 1;
 }
 
-const char * AALifeSet::getMenuText()
+const string AALifeSet::getMenuText()
 {
     return "Set Life";
 }
@@ -2513,7 +2512,7 @@ int AACloner::resolve()
 
 }
 
-const char * AACloner::getMenuText()
+const string AACloner::getMenuText()
 {
     if (who == 1)
         return "Clone For Opponent";
@@ -2588,7 +2587,7 @@ int ACastRestriction::destroy()
     return 1;
 }
 
-const char * ACastRestriction::getMenuText()
+const string ACastRestriction::getMenuText()
 {
     if (modifyExisting)
         return "Additional Lands"; //hardoced because only the lands rule allows to modify existing rule for now
@@ -2623,7 +2622,7 @@ int AInstantCastRestrictionUEOT::resolve()
     wrapper->addToGame();
     return 1;
 }
-const char * AInstantCastRestrictionUEOT::getMenuText()
+const string AInstantCastRestrictionUEOT::getMenuText()
 {
     return ability->getMenuText();
 }
@@ -2717,17 +2716,17 @@ int AAMover::resolve()
     return 0;
 }
 
-const char * AAMover::getMenuText()
+const string AAMover::getMenuText()
 {
     if(named.size())
-        return named.c_str();
+        return named;
     return "Move";
 }
 
-const char * AAMover::getMenuText(TargetChooser * tc)
+const string AAMover::getMenuText(TargetChooser * tc)
 {
     if(named.size())
-        return named.c_str();
+        return named;
     MTGGameZone * dest = destinationZone();
 
     for (int i = 0; i < 2; i++)
@@ -2864,7 +2863,7 @@ int AARandomMover::resolve()
     return 0;
 }
 
-const char * AARandomMover::getMenuText()
+const string AARandomMover::getMenuText()
 {
     return "Dig";
 }
@@ -2902,7 +2901,7 @@ int AARandomDiscarder::resolve()
     return 1;
 }
 
-const char * AARandomDiscarder::getMenuText()
+const string AARandomDiscarder::getMenuText()
 {
     return "Discard Random";
 }
@@ -2929,7 +2928,7 @@ int AAShuffle::resolve()
     return 1;
 }
 
-const char * AAShuffle::getMenuText()
+const string AAShuffle::getMenuText()
 {
     return "Shuffle";
 }
@@ -3027,7 +3026,7 @@ int AARemoveMana::resolve()
     return 1;
 }
 
-const char * AARemoveMana::getMenuText()
+const string AARemoveMana::getMenuText()
 {
     if (mRemoveAll && !mManaDesc)
         return "Empty Manapool";
@@ -3066,7 +3065,7 @@ int AATapper::resolve()
     return 1;
 }
 
-const char * AATapper::getMenuText()
+const string AATapper::getMenuText()
 {
     return "Tap";
 }
@@ -3096,7 +3095,7 @@ int AAUntapper::resolve()
     return 1;
 }
 
-const char * AAUntapper::getMenuText()
+const string AAUntapper::getMenuText()
 {
     return "Untap";
 }
@@ -3177,7 +3176,7 @@ int AAWinGame::resolve()
     return 1;
 }
 
-const char * AAWinGame::getMenuText()
+const string AAWinGame::getMenuText()
 {
     return "Win Game";
 }
@@ -3268,7 +3267,7 @@ int IfThenAbility::resolve()
     return 0;
 }
 
-const char * IfThenAbility::getMenuText()
+const string IfThenAbility::getMenuText()
 {
     return "";
 }
@@ -3320,7 +3319,7 @@ void MayAbility::Update(float dt)
     }
 }
 
-const char * MayAbility::getMenuText()
+const string MayAbility::getMenuText()
 {
     return ability->getMenuText();
 }
@@ -3456,7 +3455,7 @@ int MenuAbility::resolve()
     return a->addToGame();
 }
 
-const char * MenuAbility::getMenuText()
+const string MenuAbility::getMenuText()
 {
     if((abilities.size() > 1 && must)||(abilities.size() > 2 && !must))
         return "choose one";
@@ -3657,7 +3656,7 @@ int MultiAbility::destroy()
     return ActivatedAbility::destroy();
 }
 
-const char * MultiAbility::getMenuText()
+const string MultiAbility::getMenuText()
 {
     if (abilities.size() && abilities[0])
         return abilities[0]->getMenuText();
@@ -3696,7 +3695,7 @@ GenericTargetAbility::GenericTargetAbility(GameObserver* observer, string newNam
     counters = 0;
 }
 
-const char * GenericTargetAbility::getMenuText()
+const string GenericTargetAbility::getMenuText()
 {
     if (!ability)
         return "Error";
@@ -4249,12 +4248,13 @@ int ATransformer::destroy()
     return 1;
 }
 
-const char * ATransformer::getMenuText()
+const string ATransformer::getMenuText()
 {
     if(menutext.size())
-        return menutext.c_str();
-    string s = menu;
-    sprintf(menuText, "Becomes %s", s.c_str());
+        return menutext;
+
+    menuText = "Becomes " + menu;
+
     return menuText;
 }
 
@@ -4282,10 +4282,11 @@ int ATransformerInstant::resolve()
     wrapper->addToGame();
     return 1;
 }
-const char * ATransformerInstant::getMenuText()
+
+const string ATransformerInstant::getMenuText()
 {
     if(menu.size())
-        return menu.c_str();
+        return menu;
     return ability->getMenuText();
 }
 
@@ -4316,7 +4317,7 @@ int PTInstant::resolve()
     wrapper->addToGame();
     return 1;
 }
-const char * PTInstant::getMenuText()
+const string PTInstant::getMenuText()
 {
     return ability->getMenuText();
 }
@@ -4347,7 +4348,7 @@ int ASwapPTUEOT::resolve()
     return 1;
 }
 
-const char * ASwapPTUEOT::getMenuText()
+const string ASwapPTUEOT::getMenuText()
 {
     return ability->getMenuText();
 }
@@ -4417,7 +4418,7 @@ int AAExchangeLife::resolve()
     return 0;
 }
 
-const char * AAExchangeLife::getMenuText()
+const string AAExchangeLife::getMenuText()
 {
     return "Exchange life";
 }
@@ -4655,7 +4656,7 @@ int APreventDamageTypesUEOT::destroy()
     return 1;
 }
 
-const char * APreventDamageTypesUEOT::getMenuText()
+const string APreventDamageTypesUEOT::getMenuText()
 {
     return ability->getMenuText();
 }
@@ -4725,10 +4726,10 @@ int AVanishing::resolve()
     return 1;
 }
 
-const char * AVanishing::getMenuText()
+const string AVanishing::getMenuText()
 {
-if(counterName.find("fade") != string::npos)
-return "Fading";
+    if(counterName.find("fade") != string::npos)
+        return "Fading";
     return "Vanishing";
 }
 
@@ -4821,7 +4822,7 @@ int AUpkeep::resolve()
     return 1;
 }
 
-const char * AUpkeep::getMenuText()
+const string AUpkeep::getMenuText()
 {
     return "Upkeep";
 }
@@ -4921,12 +4922,12 @@ int APhaseAction::resolve()
     return 0;
 }
 
-const char * APhaseAction::getMenuText()
+const string APhaseAction::getMenuText()
 {
     if(psMenuText.size())
-    return psMenuText.c_str();
+        return psMenuText;
     else
-    return "Phase Based Action";
+        return "Phase Based Action";
 }
 
 APhaseAction * APhaseAction::clone() const
@@ -4958,7 +4959,7 @@ int APhaseActionGeneric::resolve()
         return 1;
 }
 
-const char * APhaseActionGeneric::getMenuText()
+const string APhaseActionGeneric::getMenuText()
 {
     return ability->getMenuText();
 }
@@ -5116,7 +5117,8 @@ int ABlink::resolve()
 {
     return 0;
 }
-const char * ABlink::getMenuText()
+
+const string ABlink::getMenuText()
 {
     return "Blink";
 }
@@ -5147,7 +5149,7 @@ int ABlinkGeneric::resolve()
     return 1;
 }
 
-const char * ABlinkGeneric::getMenuText()
+const string ABlinkGeneric::getMenuText()
 {
     return "Blink";
 }
@@ -5369,7 +5371,7 @@ int AEquip::resolve()
     return 1;
 }
 
-const char * AEquip::getMenuText()
+const string AEquip::getMenuText()
 {
     if (isAttach)
         return "Attach";
@@ -5583,7 +5585,7 @@ int AACastCard::resolveSpell()
     return 0;
 }
 
-const char * AACastCard::getMenuText()
+const string AACastCard::getMenuText()
 {
     if(nameThis.size())
         return nameThis.c_str();

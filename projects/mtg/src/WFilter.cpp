@@ -433,14 +433,14 @@ WCFilterAbility::WCFilterAbility(string arg)
     }
     ability = -1;
 }
+
 string WCFilterAbility::getCode()
 {
-    char buf[64];
-    if (ability < 0 || ability >= Constants::NB_BASIC_ABILITIES) return "";
-    sprintf(buf, "ability:%s;", Constants::MTGBasicAbilities[ability]);
-    return buf;
+    if (ability < 0 || ability >= Constants::NB_BASIC_ABILITIES)
+        return "";
+
+    return "ability:" + Constants::MTGBasicAbilities[ability];
 }
-;
 
 float WCFilterAbility::filterFee()
 {
