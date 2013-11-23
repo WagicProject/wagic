@@ -997,9 +997,9 @@ int MTGSuspendRule::reactToClick(MTGCardInstance * card)
     return 1;
 }
 
-const char * MTGSuspendRule::getMenuText()
+const string MTGSuspendRule::getMenuText()
 {
-    return suspendmenu.c_str();
+    return suspendmenu;
 }
 
 ostream& MTGSuspendRule::toString(ostream& out) const
@@ -1333,9 +1333,9 @@ int AAPlaneswalkerAttacked::resolve()
     return 1;
 }
 
-const char* AAPlaneswalkerAttacked::getMenuText()
+const string AAPlaneswalkerAttacked::getMenuText()
 {
-    return menuText.c_str();
+    return menuText;
 }
 
 AAPlaneswalkerAttacked * AAPlaneswalkerAttacked::clone() const
@@ -1597,9 +1597,9 @@ int MTGBlockRule::reactToClick(MTGCardInstance * card)
     return 1;
 }
 
-const char * MTGBlockRule::getMenuText()
+const string MTGBlockRule::getMenuText()
 {
-    return blockmenu.c_str();
+    return blockmenu;
 }
 
 ostream& MTGBlockRule::toString(ostream& out) const

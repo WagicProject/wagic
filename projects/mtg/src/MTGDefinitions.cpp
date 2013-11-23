@@ -28,7 +28,7 @@ const string Constants::kMorphKeyword = "facedown";
 
 int Constants::NB_Colors = 0; //Store the Max number of colors.
 
-const char* Constants::MTGBasicAbilities[] = {
+const string Constants::MTGBasicAbilities[] = {
     "trample",
     "forestwalk",
     "islandwalk",
@@ -180,7 +180,7 @@ const string Constants::MTGPhaseNames[] =
 	"---"
 };
 
-const char* Constants::MTGPhaseCodeNames[] =
+const string Constants::MTGPhaseCodeNames[] =
 {
 	"beginofturn",
 	"untap",

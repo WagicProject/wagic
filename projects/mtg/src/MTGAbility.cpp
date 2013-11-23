@@ -4893,7 +4893,7 @@ int TargetAbility::resolve()
     return 0;
 }
 
-const char * TargetAbility::getMenuText()
+const string TargetAbility::getMenuText()
 {
     if (ability)
         return ability->getMenuText();
@@ -5423,7 +5423,7 @@ GenericTriggeredAbility::~GenericTriggeredAbility()
     SAFE_DELETE(destroyCondition);
 }
 
-const char * GenericTriggeredAbility::getMenuText()
+const string GenericTriggeredAbility::getMenuText()
 {
     return ability->getMenuText();
 }
@@ -5516,10 +5516,10 @@ int AManaProducer::reactToClick(MTGCardInstance * _card)
     return ActivatedAbility::activateAbility();
 }
 
-const char * AManaProducer::getMenuText()
+const string AManaProducer::getMenuText()
 {
     if (menutext.size())
-        return menutext.c_str();
+        return menutext;
     menutext = _("Add ");
     char buffer[128];
     int alreadyHasOne = 0;
@@ -5538,7 +5538,7 @@ const char * AManaProducer::getMenuText()
         }
     }
     menutext.append(_(" mana"));
-    return menutext.c_str();
+    return menutext;
 }
 
 AManaProducer::~AManaProducer()
