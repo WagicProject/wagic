@@ -3,15 +3,6 @@
 
 #include <math.h>
 
-
-/*************************** Macros and constants ***************************/
-// returns a number ranging from -1.0 to 1.0
-#define FRAND   (((float)rand()-(float)rand())/RAND_MAX)
-#define Clamp(x, min, max)  x = (x<min  ? min : x<max ? x : max);
-
-#define SQUARE(x)  (x)*(x)
-
-
 struct Vector3D
 {
   Vector3D(float x, float y, float z) : x(x), y(y), z(z) {}
@@ -63,7 +54,7 @@ struct Vector3D
 
   float Length()
   {
-    float length = (float)sqrt(SQUARE(x) + SQUARE(y) + SQUARE(z));
+    float length = sqrt(x*x + y*y + z*z);
     return (length != 0.0f) ? length : 1.0f;
   }
 
