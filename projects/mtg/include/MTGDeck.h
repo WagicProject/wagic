@@ -134,44 +134,44 @@ public:
     int totalCards();
     int randomCardId();
 
-    static int findType(string subtype, bool forceAdd = true) {
+    static int findType(const string& subtype, bool forceAdd = true) {
         boost::mutex::scoped_lock lock(instance->mMutex);
 		int result = instance->subtypesList.find(subtype, forceAdd);
         return result;
-    };
-    static int add(string value, unsigned int parentType) {
+    }
+    static int add(const string& value, unsigned int parentType) {
         boost::mutex::scoped_lock lock(instance->mMutex);
         int result = instance->subtypesList.add(value, parentType);
         return result;
-    };
+    }
     static string findType(unsigned int id) {
         boost::mutex::scoped_lock lock(instance->mMutex);
         return instance->subtypesList.find(id);
-    };
+    }
     static const vector<string>& getValuesById() {
         boost::mutex::scoped_lock lock(instance->mMutex);
         return instance->subtypesList.getValuesById();
-    };
+    }
     static const vector<string>& getCreatureValuesById() {
         boost::mutex::scoped_lock lock(instance->mMutex);
         return instance->subtypesList.getCreatureValuesById();
-    };
+    }
     static bool isSubtypeOfType(unsigned int subtype, unsigned int type) {
         boost::mutex::scoped_lock lock(instance->mMutex);
         return instance->subtypesList.isSubtypeOfType(subtype, type);
-    };
+    }
     static bool isSuperType(unsigned int type) {
         boost::mutex::scoped_lock lock(instance->mMutex);
         return instance->subtypesList.isSuperType(type);
-    };
+    }
     static bool isType(unsigned int type) {
         boost::mutex::scoped_lock lock(instance->mMutex);
         return instance->subtypesList.isType(type);
-    };
+    }
     static bool isSubType(unsigned int type) {
         boost::mutex::scoped_lock lock(instance->mMutex);
         return instance->subtypesList.isSubType(type);
-    };
+    }
 
     static void sortSubtypeList()
     {
@@ -179,7 +179,7 @@ public:
         instance->subtypesList.sortSubTypes();
     }
 
-    static int findSubtypeId(string value){
+    static int findSubtypeId(const string& value){
         return instance->subtypesList.find(value,false);
     }
 
