@@ -103,7 +103,7 @@ public:
     bool hasSubtype(int _subtype);
     bool hasSubtype(const string& _subtype);
     bool hasType(int _type);
-    bool hasType(const char * type);
+    bool hasType(const string& type);
 
     void setManaCost(const string& value);
     ManaCost * getManaCost();
