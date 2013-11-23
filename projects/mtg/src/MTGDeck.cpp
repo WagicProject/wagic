@@ -544,12 +544,14 @@ int MTGAllCards::countBySet(int setId)
 //TODO more efficient way ?
 int MTGAllCards::countByType(const string &_type)
 {
+    int type_id = findType(_type);
+
     int result = 0;
     map<int, MTGCard *>::iterator it;
     for (it = collection.begin(); it != collection.end(); it++)
     {
         MTGCard * c = it->second;
-        if (c->data->hasType(_type))
+        if (c->data->hasType(type_id))
         {
             result++;
         }
