@@ -368,7 +368,7 @@ void DeckMenu::Update(float dt)
     
 }
 
-void DeckMenu::Add(int id, const char * text, string desc, bool forceFocus, DeckMetaData * deckMetaData)
+void DeckMenu::Add(int id, const string& text, const string& desc, bool forceFocus, DeckMetaData * deckMetaData)
 {
     DeckMenuItem * menuItem = NEW DeckMenuItem(this, id, fontId, text, 0, 
             mY + kVerticalMargin + mCount * kLineHeight, (mCount == 0), mAutoTranslate, deckMetaData);

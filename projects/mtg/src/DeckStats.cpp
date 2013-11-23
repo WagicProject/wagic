@@ -586,7 +586,7 @@ void StatsWrapper::updateStats(DeckDataWrapper *myDeck)
 
 // This should probably be cached in DeckDataWrapper
 // or at least be calculated for all common types in one go
-int StatsWrapper::countCardsByType(const char * _type, DeckDataWrapper * myDeck)
+int StatsWrapper::countCardsByType(const string& _type, DeckDataWrapper * myDeck)
 {
     int result = 0;
     for (int i = 0; i < myDeck->Size(true); i++)

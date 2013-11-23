@@ -162,7 +162,7 @@ int Constants::GetColorStringIndex(string mtgColor)
     return -1;
 }
 
-const char* Constants::MTGPhaseNames[] =
+const string Constants::MTGPhaseNames[] =
 {
 	"---",
 	"Untap",

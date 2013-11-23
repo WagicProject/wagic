@@ -350,8 +350,8 @@ void TestSuiteGame::assertGame()
 	if (observer->getCurrentGamePhase() != endState.phase)
     {
         sprintf(result, "<span class=\"error\">==phase problem. Expected [ %s ](%i), got [ %s ](%i)==</span><br />", 
-            Constants::MTGPhaseNames[endState.phase],endState.phase,
-            Constants::MTGPhaseNames[observer->getCurrentGamePhase()], observer->getCurrentGamePhase());
+            Constants::MTGPhaseNames[endState.phase].c_str(),endState.phase,
+            Constants::MTGPhaseNames[observer->getCurrentGamePhase()].c_str(), observer->getCurrentGamePhase());
         Log(result);
         error++;
     }

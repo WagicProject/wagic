@@ -818,9 +818,9 @@ void GameSettings::createUsersFirstDeck(int setId)
         mCollection->addRandomCards(10, 0, 0, Constants::RARITY_L, "Island");
 
     //Starter Deck
-    mCollection->addRandomCards(3, sets, 1, Constants::RARITY_R, NULL);
-    mCollection->addRandomCards(9, sets, 1, Constants::RARITY_U, NULL);
-    mCollection->addRandomCards(48, sets, 1, Constants::RARITY_C, NULL);
+    mCollection->addRandomCards(3, sets, 1, Constants::RARITY_R);
+    mCollection->addRandomCards(9, sets, 1, Constants::RARITY_U);
+    mCollection->addRandomCards(48, sets, 1, Constants::RARITY_C);
 
     //Boosters
     for (int i = 0; i < 2; i++)

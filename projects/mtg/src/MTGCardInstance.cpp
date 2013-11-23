@@ -254,22 +254,22 @@ void MTGCardInstance::addType(int type)
         SAFE_DELETE(e);
 }
 
-void MTGCardInstance::addType(char * type_text)
+void MTGCardInstance::addType(const string& type_text)
 {
     setSubtype(type_text);
 }
 
-void MTGCardInstance::setType(const char * type_text)
+void MTGCardInstance::setType(const string& type_text)
 {
     setSubtype(type_text);
 }
 
-void MTGCardInstance::setSubtype(string value)
+void MTGCardInstance::setSubtype(const string& value)
 {
     int id = MTGAllCards::findType(value);
     addType(id);
 }
-int MTGCardInstance::removeType(string value, int removeAll)
+int MTGCardInstance::removeType(const string& value, int removeAll)
 {
     int id = MTGAllCards::findType(value);
     return removeType(id, removeAll);

@@ -293,7 +293,7 @@ class Constants
 
   static map<string,int> MTGBasicAbilitiesMap;
   static const char* MTGBasicAbilities[];
-  static const char* MTGPhaseNames[];
+  static const string MTGPhaseNames[];
   static const char* MTGPhaseCodeNames[];
 
   static int GetBasicAbilityIndex(string mtgAbility);

@@ -98,8 +98,8 @@ class GameObserver{
   int cardClick(MTGCardInstance * card,Targetable * _object = NULL, bool log = true);
   GamePhase getCurrentGamePhase();
   void setCurrentGamePhase(GamePhase phase) { mCurrentGamePhase = phase; };
-  const char * getCurrentGamePhaseName();
-  const char * getNextGamePhaseName();
+  const string& getCurrentGamePhaseName();
+  const string& getNextGamePhaseName();
   void nextCombatStep();
   void userRequestNextGamePhase(bool allowInterrupt = true, bool log = true);
   void cleanupPhase();

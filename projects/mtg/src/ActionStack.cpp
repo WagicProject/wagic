@@ -57,7 +57,7 @@ void NextGamePhase::Render()
     if (observer->currentActionPlayer == observer->players[1])
         playerId = 2;
 
-    sprintf(buffer, "%s %i :  %s", _("Player").c_str(), playerId, observer->getNextGamePhaseName());
+    sprintf(buffer, "%s %i :  %s", _("Player").c_str(), playerId, observer->getNextGamePhaseName().c_str());
 
     mFont->DrawString(buffer, x + 15, y+10, JGETEXT_LEFT);
     mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
