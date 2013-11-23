@@ -381,10 +381,20 @@ void MTGAllCards::loadFolder(const string& infolder, const string& filename )
     }
 }
 
-int MTGAllCards::load(const char * config_file, const char * set_name, int)
+int MTGAllCards::load(const string &config_file)
+{
+    return load(config_file, MTGSets::INTERNAL_SET);
+}
+
+int MTGAllCards::load(const string& config_file, const string &set_name)
+{
+    const int set_id = setlist.Add(set_name);
+    return load(config_file, set_id);
+}
+
+int MTGAllCards::load(const string &config_file, int set_id)
 {
     conf_read_mode = 0;
-    const int set_id = set_name ? setlist.Add(set_name) : MTGSets::INTERNAL_SET;
     MTGSetInfo *si = setlist.getInfo(set_id);
 
     int lineNumber = 0;
@@ -532,7 +542,7 @@ int MTGAllCards::countBySet(int setId)
 }
 
 //TODO more efficient way ?
-int MTGAllCards::countByType(const char * _type)
+int MTGAllCards::countByType(const string &_type)
 {
     int result = 0;
     map<int, MTGCard *>::iterator it;
@@ -772,7 +782,7 @@ int MTGDeck::totalPrice()
     return total;
 }
 
-MTGDeck::MTGDeck(const char * config_file, MTGAllCards * _allcards, int meta_only,int difficultyRating)
+MTGDeck::MTGDeck(const string& config_file, MTGAllCards * _allcards, int meta_only, int difficultyRating)
 {
     total_cards = 0;
     database = _allcards;
@@ -879,7 +889,7 @@ MTGCard * MTGDeck::getCardById(int mtgId)
     return database->getCardById(mtgId);
 }
 
-int MTGDeck::addRandomCards(int howmany, int * setIds, int nbSets, int rarity, const char * _subtype, int * colors, int nbcolors)
+int MTGDeck::addRandomCards(int howmany, int * setIds, int nbSets, int rarity, const string &_subtype, int * colors, int nbcolors)
 {
     if (howmany <= 0) return 1;
 
@@ -900,8 +910,8 @@ int MTGDeck::addRandomCards(int howmany, int * setIds, int nbSets, int rarity, c
     int collectionTotal = database->totalCards();
     if (!collectionTotal) return 0;
 
-    char subtype[4096];
-    if (_subtype) sprintf(subtype, "%s", _subtype);
+    string subtype;
+    if (_subtype.size()) subtype = _subtype;
 
     vector<int> subcollection;
     int subtotal = 0;
@@ -911,7 +921,7 @@ int MTGDeck::addRandomCards(int howmany, int * setIds, int nbSets, int rarity, c
         int r = card->getRarity();
         if (r != Constants::RARITY_T && (rarity == -1 || r == rarity) && // remove tokens
             card->setId != MTGSets::INTERNAL_SET && //remove cards that are defined in primitives. Those are workarounds (usually tokens) and should only be used internally
-            (!_subtype || card->data->hasSubtype(subtype)))
+                (!_subtype.size() || card->data->hasSubtype(subtype)))
         {
             int ok = 0;
 
@@ -1265,7 +1275,7 @@ MTGSetInfo* MTGSets::randomSet(int blockId, int atleast)
 
 int blockSize(int blockId);
 
-int MTGSets::Add(const char * name)
+int MTGSets::Add(const string& name)
 {
     int setid = findSet(name);
     if (setid != -1) return setid;
@@ -1344,7 +1354,7 @@ MTGSetInfo::~MTGSetInfo()
     SAFE_DELETE(mPack);
 }
 
-MTGSetInfo::MTGSetInfo(string _id)
+MTGSetInfo::MTGSetInfo(const string& _id)
 {
     string whitespaces(" \t\f\v\n\r");
     id = _id;

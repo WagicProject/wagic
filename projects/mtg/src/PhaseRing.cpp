@@ -142,9 +142,10 @@ bool PhaseRing::extraDamagePhase(int id)
     return false;
 }
 
-const char * PhaseRing::phaseName(int id)
+const string& PhaseRing::phaseName(int id)
 {
-    if (extraDamagePhase(id)) return "Combat Damage (2)";
+    static const string combatPhase2("Combat Damage (2)");
+    if (extraDamagePhase(id)) return combatPhase2;
     return Constants::MTGPhaseNames[id];
 }
 

@@ -62,7 +62,7 @@ public:
     int addCombatAfter(Player* player, int after_id, bool withMain = false);
     int addPhaseAfter(GamePhase id, Player* player, int after_id);
     int removePhase(int id);
-    const char * phaseName(int id);
+    const string& phaseName(int id);
     static GamePhase phaseStrToInt(string s);
     static string phaseIntToStr(int id);
 

@@ -19,7 +19,7 @@ class MTGPack;
 class MTGSetInfo
 {
 public:
-    MTGSetInfo(string _id);
+    MTGSetInfo(const string& _id);
     ~MTGSetInfo();
     string id; //Short name: 10E, RAV, etc. Automatic from folder.
     string author; //Author of set, for crediting mod makers, etc.
@@ -70,7 +70,7 @@ public:
     MTGSets();
     ~MTGSets();
 
-    int Add(const char * subtype);
+    int Add(const string& subtype);
     int findSet(string value);
     int findBlock(string s);
     int size();
@@ -127,8 +127,10 @@ public:
     MTGCard * getCardByName(string name);
     void loadFolder(const string& folder, const string& filename="" );
 
-    int load(const char * config_file, const char * setName = NULL, int autoload = 1);
-    int countByType(const char * _type);
+    int load(const string& config_file);
+    int load(const string& config_file, const string& setName);
+    int load(const string& config_file, int set_id);
+    int countByType(const string& _type);
     int countByColor(int color);
     int countBySet(int setId);
     int totalCards();
@@ -218,8 +220,8 @@ public:
     int totalCards();
     int totalPrice();
     MTGDeck(MTGAllCards * _allcards);
-    MTGDeck(const char * config_file, MTGAllCards * _allcards, int meta_only = 0,int difficultySetting = 0);
-    int addRandomCards(int howmany, int * setIds = NULL, int nbSets = 0, int rarity = -1, const char * subtype = NULL,
+    MTGDeck(const string& config_file, MTGAllCards * _allcards, int meta_only = 0,int difficultySetting = 0);
+    int addRandomCards(int howmany, int * setIds = NULL, int nbSets = 0, int rarity = -1, const string& subtype = "",
             int * colors = NULL, int nbcolors = 0);
     int add(int cardid);
     int add(MTGDeck * deck); // adds the contents of "deck" into myself
