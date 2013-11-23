@@ -94,17 +94,17 @@ public:
     const string& getName() const;
     const string& getLCName() const;
 
-    void addType(char * type_text);
+    void addType(const string &type_text);
     void addType(int id);
     void setType(const string& type_text);
     void setSubtype(const string& value);
-    int removeType(string value, int removeAll = 0);
+    int removeType(const string &value, int removeAll = 0);
     int removeType(int value, int removeAll = 0);
     bool hasSubtype(int _subtype);
     bool hasSubtype(const char * _subtype);
     bool hasSubtype(const string& _subtype);
     bool hasType(int _type);
-    bool hasType(const char * type);
+    bool hasType(const string& type);
 
     void setManaCost(const string& value);
     ManaCost * getManaCost();

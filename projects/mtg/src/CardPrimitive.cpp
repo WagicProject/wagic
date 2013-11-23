@@ -207,7 +207,12 @@ void CardPrimitive::setType(const string& _type_text)
     setSubtype(_type_text);
 }
 
-void CardPrimitive::addType(char * _type_text)
+void CardPrimitive::addType(int id)
+{
+    types.push_back(id);
+}
+
+void CardPrimitive::addType(const string& _type_text)
 {
     setSubtype(_type_text);
 }
@@ -230,15 +235,11 @@ void CardPrimitive::setSubtype(const string& value)
     addType(id);
 }
 
-void CardPrimitive::addType(int id)
-{
-    types.push_back(id);
-}
 
 //TODO Definitely move some of these functions to CardInstance. There is no reason to remove a type from an CardPrimitive since they represent the Database
 //Removes a type from the types of a given card
 //If removeAll is true, removes all occurences of this type, otherwise only removes the first occurence
-int CardPrimitive::removeType(string value, int removeAll)
+int CardPrimitive::removeType(const string& value, int removeAll)
 {
 
     int id = MTGAllCards::findType(value);
@@ -339,15 +340,16 @@ bool CardPrimitive::hasType(int _type)
     return false;
 }
 
-bool CardPrimitive::hasSubtype(int _subtype)
-{
-    return hasType(_subtype);
-}
 
-bool CardPrimitive::hasType(const char * _type)
+bool CardPrimitive::hasType(const string& _type)
 {
     int id = MTGAllCards::findType(_type);
     return hasType(id);
+}
+
+bool CardPrimitive::hasSubtype(int _subtype)
+{
+    return hasType(_subtype);
 }
 
 bool CardPrimitive::hasSubtype(const char * _subtype)
