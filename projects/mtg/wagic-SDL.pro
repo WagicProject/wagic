@@ -28,17 +28,18 @@ windows:INCLUDEPATH += ../../JGE/Dependencies/SDL/include
 windows:INCLUDEPATH += extra
 unix:INCLUDEPATH += /usr/include/GL
 unix:INCLUDEPATH += /usr/local/include/SDL
+unix:INCLUDEPATH += /usr/include/SDL2
 macx:INCLUDEPATH += /opt/include
 INCLUDEPATH += ../../JGE/include
 INCLUDEPATH += ../../JGE/src/zipFS
-INCLUDEPATH += ../../Boost
+windows|mac:INCLUDEPATH += ../../Boost
 INCLUDEPATH += include
 OBJECTS_DIR = objs
 MOC_DIR = objs
 DESTDIR = bin
 
-macx|unix:LIBS += -lz -lboost_thread-mt
-unix:LIBS += -ljpeg -lgif -lpng12 -L/usr/local/lib -lGL -lGLU -lSDL
+macx:LIBS += -lz -lboost_thread-mt
+unix:LIBS += -lz -lboost_thread -lboost_system -ljpeg -lgif -lpng12 -L/usr/local/lib -lGL -lGLU -lSDL2
 windows:LIBS += -L../../JGE/Dependencies/lib -L../../Boost/lib -llibjpeg-static-mt-debug -lgiflib -llibpng -lfmodvc
 
 PRECOMPILED_HEADER = include/PrecompiledHeader.h
@@ -57,7 +58,6 @@ SOURCES += \
         src/AllAbilities.cpp\
         src/CardDescriptor.cpp\
         src/CardDisplay.cpp\
-        src/CardEffect.cpp\
         src/CardGui.cpp\
         src/CardPrimitive.cpp\
         src/CardSelector.cpp\
@@ -101,6 +101,7 @@ SOURCES += \
         src/GuiPhaseBar.cpp\
         src/GuiPlay.cpp\
         src/GuiStatic.cpp\
+        src/InteractiveButton.cpp\
         src/IconButton.cpp\
         src/ManaCost.cpp\
         src/ManaCostHybrid.cpp\
@@ -127,6 +128,7 @@ SOURCES += \
         src/PriceList.cpp\
         src/ReplacementEffects.cpp\
         src/Rules.cpp\
+        src/SimpleButton.cpp\
         src/SimpleMenu.cpp\
         src/SimpleMenuItem.cpp\
         src/SimplePad.cpp\
@@ -161,6 +163,7 @@ HEADERS  += \
         include/DeckMenuItem.h\
         include/ExtraCost.h\
         include/ManaCost.h\
+        include/SimpleButton.h\
         include/SimpleMenuItem.h\
         include/GameApp.h\
         include/ManaCostHybrid.h\
@@ -200,18 +203,17 @@ HEADERS  += \
         include/GameStateShop.h\
         include/MTGPack.h\
         include/TextScroller.h\
-        include/CardEffect.h\
         include/GameStateStory.h\
         include/MTGRules.h\
         include/ThisDescriptor.h\
         include/CardGui.h\
         include/GameStateTransitions.h\
+        include/InteractiveButton.h\
         include/IconButton.h\
         include/OptionItem.h\
         include/Token.h\
         include/CardPrimitive.h\
         include/GuiAvatars.h\
-        include/OSD.h\
         include/Translate.h\
         include/CardSelector.h\
         include/CardSelectorSingleton.h\
