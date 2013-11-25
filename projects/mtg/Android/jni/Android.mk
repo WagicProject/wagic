@@ -41,7 +41,6 @@ LOCAL_SRC_FILES := $(SDL_PATH)/src/main/android/SDL_android_main.cpp \
         $(MTG_PATH)/src/AllAbilities.cpp \
         $(MTG_PATH)/src/CardDescriptor.cpp \
         $(MTG_PATH)/src/CardDisplay.cpp \
-        $(MTG_PATH)/src/CardEffect.cpp \
         $(MTG_PATH)/src/CardGui.cpp \
         $(MTG_PATH)/src/CardPrimitive.cpp \
         $(MTG_PATH)/src/CardSelector.cpp \
