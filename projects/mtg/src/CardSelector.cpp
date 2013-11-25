@@ -7,42 +7,42 @@
 #include "Closest.cpp"
 #include "GameObserver.h"
 
-struct Left: public Exp
+struct CardSelectorLeft: public Exp
 {
     static inline bool test(CardSelector::Target* ref, CardSelector::Target* test)
     {
         return ref->x - test->x > fabs(ref->y - test->y);
     }
 };
-struct Right: public Exp
+struct CardSelectorRight: public Exp
 {
     static inline bool test(CardSelector::Target* ref, CardSelector::Target* test)
     {
         return test->x - ref->x > fabs(ref->y - test->y);
     }
 };
-struct Up: public Exp
+struct CardSelectorUp: public Exp
 {
     static inline bool test(CardSelector::Target* ref, CardSelector::Target* test)
     {
         return ref->y - test->y > fabs(ref->x - test->x);
     }
 };
-struct Down: public Exp
+struct CardSelectorDown: public Exp
 {
     static inline bool test(CardSelector::Target* ref, CardSelector::Target* test)
     {
         return test->y - ref->y > fabs(ref->x - test->x);
     }
 };
-struct Diff: public Exp
+struct CardSelectorDiff: public Exp
 {
     static inline bool test(CardSelector::Target* ref, CardSelector::Target* test)
     {
         return ref != test;
     }
 };
-struct True: public Exp
+struct CardSelectorTrue: public Exp
 {
     static inline bool test(CardSelector::Target*, CardSelector::Target*)
     {
@@ -94,7 +94,7 @@ void CardSelector::Remove(CardSelector::Target* card)
                 CardView* c = dynamic_cast<CardView*> (active);
                 if (c)
                     c->zoom = 1.0f;
-                active = closest<Diff> (cards, limitor, active);
+                active = closest<CardSelectorDiff> (cards, limitor, active);
                 c = dynamic_cast<CardView*> (active);
                 if (c)
                     c->zoom = 1.4f;
@@ -120,7 +120,7 @@ CardSelector::Target* CardSelector::fetchMemory(SelectorMemory& memory)
         }
     // We come here if the card is not in the selector any more, or if
     // it is there but it is now refused by the limitor.
-    return closest<True> (cards, limitor, memory.x, memory.y);
+    return closest<CardSelectorTrue> (cards, limitor, memory.x, memory.y);
 }
 
 void CardSelector::Push()
@@ -182,7 +182,7 @@ bool CardSelector::CheckUserInput(JButton key)
     if(!jge) return false;
     if(jge->GetLeftClickCoordinates(x, y))
     {
-        active = closest<True> (cards, limitor, static_cast<float> (x), static_cast<float> (y));
+        active = closest<CardSelectorTrue> (cards, limitor, static_cast<float> (x), static_cast<float> (y));
     }
 
     switch (key)
@@ -196,16 +196,16 @@ bool CardSelector::CheckUserInput(JButton key)
         goto switch_active;
         break;
     case JGE_BTN_LEFT:
-        active = closest<Left> (cards, limitor, active);
+        active = closest<CardSelectorLeft> (cards, limitor, active);
         break;
     case JGE_BTN_RIGHT:
-        active = closest<Right> (cards, limitor, active);
+        active = closest<CardSelectorRight> (cards, limitor, active);
         break;
     case JGE_BTN_UP:
-        active = closest<Up> (cards, limitor, active);
+        active = closest<CardSelectorUp> (cards, limitor, active);
         break;
     case JGE_BTN_DOWN:
-        active = closest<Down> (cards, limitor, active);
+        active = closest<CardSelectorDown> (cards, limitor, active);
         break;
     case JGE_BTN_CANCEL:
         mDrawMode = (mDrawMode + 1) % DrawMode::kNumDrawModes;

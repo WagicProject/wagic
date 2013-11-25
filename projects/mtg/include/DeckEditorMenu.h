@@ -1,3 +1,5 @@
+#ifndef _DECK_EDITOR_MENU_H
+#define _DECK_EDITOR_MENU_H
 #pragma once
 #include "DeckMenu.h"
 #include "DeckDataWrapper.h"
@@ -19,3 +21,4 @@ public:
     void Render();
     virtual ~DeckEditorMenu();
 };
+#endif //_DECK_EDITOR_MENU_H
