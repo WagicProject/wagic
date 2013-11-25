@@ -7,9 +7,15 @@ cd ..
 cd projects/mtg
 mkdir objs
 make -j 8
+cd ../..
+
+# we're building an Android binary here
+android-ndk-r9/ndk-build -C projects/mtg/Android -j8
+$ANDROID list targets
+$ANDROID update project -t 1 -p projects/mtg/Android
+ant debug -f projects/mtg/Android/build.xml
 
 # let's try an Intel linux binary
-cd ../..
 qmake projects/mtg/wagic-qt.pro CONFIG+=console CONFIG+=debug DEFINES+=CAPTURE_STDERR
 make -j 8
 
