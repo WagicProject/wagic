@@ -13,16 +13,16 @@
 
 #include <iomanip>
 
-namespace
+namespace DeckMenuConst
 {
     const float kVerticalMargin = 16;
     const float kHorizontalMargin = 20;
     const float kLineHeight = 25;
-	const float kDescriptionVerticalBoxPadding = -5;
+    const float kDescriptionVerticalBoxPadding = -5;
     const float kDescriptionHorizontalBoxPadding = 5;
 	
     const float kDefaultFontScale = 1.0f;
-	const float kVerticalScrollSpeed = 7.0f;
+    const float kVerticalScrollSpeed = 7.0f;
 
     const int DETAILED_INFO_THRESHOLD = 20;
     const int kDetailedInfoButtonId = 10000;
@@ -52,8 +52,8 @@ JGuiController(JGE::GetInstance(), id, listener), fontId(fontId), mShowDetailsSc
     titleY = 15;
     titleWidth = 180; // width of inner box of title
 
-    descX = 260 + kDescriptionHorizontalBoxPadding;
-    descY = 100 + kDescriptionVerticalBoxPadding;
+    descX = 260 + DeckMenuConst::kDescriptionHorizontalBoxPadding;
+    descY = 100 + DeckMenuConst::kDescriptionVerticalBoxPadding;
     descHeight = 145;
     descWidth = 195;
 
@@ -73,11 +73,11 @@ JGuiController(JGE::GetInstance(), id, listener), fontId(fontId), mShowDetailsSc
 
     float scrollerWidth = 200.0f;
 	float scrollerHeight = 28.0f;
-    mScroller = NEW VerticalTextScroller(Fonts::MAIN_FONT, 14, 235, scrollerWidth, scrollerHeight, kVerticalScrollSpeed);
+    mScroller = NEW VerticalTextScroller(Fonts::MAIN_FONT, 14, 235, scrollerWidth, scrollerHeight, DeckMenuConst::kVerticalScrollSpeed);
 
     mAutoTranslate = true;
     maxItems = 6;
-    mHeight = 2 * kVerticalMargin + (maxItems * kLineHeight);
+    mHeight = 2 * DeckMenuConst::kVerticalMargin + (maxItems * DeckMenuConst::kLineHeight);
 
     // we want to cap the deck titles to 15 characters to avoid overflowing deck names
     title = _(_title);
@@ -94,7 +94,7 @@ JGuiController(JGE::GetInstance(), id, listener), fontId(fontId), mShowDetailsSc
     else
         titleFontScale = SCALE_NORMAL;
 
-    mSelectionTargetY = selectionY = kVerticalMargin;
+    mSelectionTargetY = selectionY = DeckMenuConst::kVerticalMargin;
 
     if (NULL == stars)
 		stars = NEW hgeParticleSystem(WResourceManager::Instance()->RetrievePSI("stars.psi", WResourceManager::Instance()->GetQuad("stars").get()));
@@ -106,7 +106,7 @@ JGuiController(JGE::GetInstance(), id, listener), fontId(fontId), mShowDetailsSc
     float stringWidth = descriptionFont->GetStringWidth(detailedInfoString.c_str());
     float boxStartX = detailedInfoBoxX - stringWidth / 2 + 20;
 
-    dismissButton = NEW InteractiveButton( this, kDetailedInfoButtonId, Fonts::MAIN_FONT, detailedInfoString, boxStartX, detailedInfoBoxY, JGE_BTN_CANCEL);
+    dismissButton = NEW InteractiveButton( this, DeckMenuConst::kDetailedInfoButtonId, Fonts::MAIN_FONT, detailedInfoString, boxStartX, detailedInfoBoxY, JGE_BTN_CANCEL);
     JGuiController::Add(dismissButton, true);
 
     updateScroller();
@@ -181,7 +181,7 @@ bool DeckMenu::showDetailsScreen()
     if (currentMenuItem)
     {
         if (mAlwaysShowDetailsButton) return true;
-        if (mShowDetailsScreen && currentMenuItem->getVictories() > DETAILED_INFO_THRESHOLD) return true;
+        if (mShowDetailsScreen && currentMenuItem->getVictories() > DeckMenuConst::DETAILED_INFO_THRESHOLD) return true;
     }
 
     return false;
@@ -189,10 +189,10 @@ bool DeckMenu::showDetailsScreen()
 
 void DeckMenu::initMenuItems()
 {
-    float sY = mY + kVerticalMargin;
+    float sY = mY + DeckMenuConst::kVerticalMargin;
     for (int i = startId; i < mCount; ++i)
     {
-        float y = mY + kVerticalMargin + i * kLineHeight;
+        float y = mY + DeckMenuConst::kVerticalMargin + i * DeckMenuConst::kLineHeight;
         DeckMenuItem * currentMenuItem = static_cast<DeckMenuItem*> (mObjects[i]);
         currentMenuItem->Relocate(mX, y);
         if (currentMenuItem->hasFocus()) sY = y;
@@ -248,7 +248,7 @@ void DeckMenu::Render()
     {
         if (i > mCount - 1) break;        
         DeckMenuItem *currentMenuItem = static_cast<DeckMenuItem*> (mObjects[i]);
-        if (currentMenuItem->getY() - kLineHeight * startId < mY + height - kLineHeight + 7)
+        if (currentMenuItem->getY() - DeckMenuConst::kLineHeight * startId < mY + height - DeckMenuConst::kLineHeight + 7)
         {
             // only load stats for visible items in the list
 			DeckMetaData* metaData = currentMenuItem->getMetaData();
@@ -311,7 +311,7 @@ void DeckMenu::Render()
             }
             else // reset the font color to be slightly muted
                 mFont->SetColor(ARGB(150,255,255,255));
-            currentMenuItem->RenderWithOffset(-kLineHeight * startId);
+            currentMenuItem->RenderWithOffset(-DeckMenuConst::kLineHeight * startId);
         }
     }
     
@@ -344,8 +344,8 @@ void DeckMenu::Update(float dt)
     selectionT += 3 * dt;
     selectionY += (mSelectionTargetY - selectionY) * 8 * dt;
 
-    float starsX = starsOffsetX + ((mWidth - 2 * kHorizontalMargin) * (1 + cos(selectionT)) / 2);
-    float starsY = selectionY + 5 * cos(selectionT * 2.35f) + kLineHeight / 2 - kLineHeight * startId;
+    float starsX = starsOffsetX + ((mWidth - 2 * DeckMenuConst::kHorizontalMargin) * (1 + cos(selectionT)) / 2);
+    float starsY = selectionY + 5 * cos(selectionT * 2.35f) + DeckMenuConst::kLineHeight / 2 - DeckMenuConst::kLineHeight * startId;
     stars->MoveTo(starsX, starsY);
     
     // 
@@ -373,7 +373,7 @@ void DeckMenu::Update(float dt)
 void DeckMenu::Add(int id, const char * text, string desc, bool forceFocus, DeckMetaData * deckMetaData)
 {
     DeckMenuItem * menuItem = NEW DeckMenuItem(this, id, fontId, text, 0, 
-            mY + kVerticalMargin + mCount * kLineHeight, (mCount == 0), mAutoTranslate, deckMetaData);
+            mY + DeckMenuConst::kVerticalMargin + mCount * DeckMenuConst::kLineHeight, (mCount == 0), mAutoTranslate, deckMetaData);
     Translator * t = Translator::GetInstance();
     map<string, string>::iterator it = t->deckValues.find(text);
     string deckDescription = "";
@@ -386,7 +386,7 @@ void DeckMenu::Add(int id, const char * text, string desc, bool forceFocus, Deck
     menuItem->setDescription(deckDescription);
 
     JGuiController::Add(menuItem);
-    if (mCount <= maxItems) mHeight += kLineHeight;
+    if (mCount <= maxItems) mHeight += DeckMenuConst::kLineHeight;
 
     if (forceFocus)
     {

@@ -1,3 +1,6 @@
+#ifndef _GUI_MANA_H
+#define _GUI_MANA_H
+
 #include "string.h"
 #include <vector>
 #include <hge/hgeparticle.h>
@@ -51,3 +54,5 @@ public:
     virtual int receiveEventPlus(WEvent * e);
     virtual int receiveEventMinus(WEvent * e);
 };
+
+#endif //_GUI_MANA_H
