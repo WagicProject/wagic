@@ -301,7 +301,7 @@ void SdlApp::OnMouseDoubleClicked(const SDL_MouseButtonEvent& event)
 #if (defined ANDROID) || (defined IOS)
 	if(event.button == SDL_BUTTON_LEFT) /* Left button */
 	{
-		g_engine->HoldKey_NoRepeat(JGE_BTN_OK);
+		m_Wagic.doOK();
 	}
 #endif
 }
