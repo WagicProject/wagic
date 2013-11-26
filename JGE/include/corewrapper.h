@@ -89,8 +89,8 @@ private:
     int64_t m_lastTickCount;
     std::queue<JButton> m_buttonQueue;
     bool m_active;
-	float mMouseDownX;
-	float mMouseDownY;
+	int mMouseDownX;
+	int mMouseDownY;
 	int mLastFingerDownTime;
 };
 
