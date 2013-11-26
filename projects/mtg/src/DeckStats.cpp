@@ -271,22 +271,6 @@ void DeckStats::EndInstance()
 
 
 // StatsWrapper
-
-    float noLandsProbInTurn[Constants::STATS_FOR_TURNS] = {0.0f};
-    float noCreaturesProbInTurn[Constants::STATS_FOR_TURNS] = {0.0f};
-
-    int countCardsPerCostAndColor[Constants::STATS_MAX_MANA_COST + 1][Constants::MTG_NB_COLORS + 1] = {{0,0}};
-    int countCreaturesPerCostAndColor[Constants::STATS_MAX_MANA_COST + 1][Constants::MTG_NB_COLORS + 1] = {{0,0}};
-    int countSpellsPerCostAndColor[Constants::STATS_MAX_MANA_COST + 1][Constants::MTG_NB_COLORS + 1] = {{0,0}};
-
-    int countCardsPerCost[Constants::STATS_MAX_MANA_COST + 1] = {0};
-    int countCreaturesPerCost[Constants::STATS_MAX_MANA_COST + 1] = {0};
-    int countSpellsPerCost[Constants::STATS_MAX_MANA_COST + 1] = {0};
-    int countLandsPerColor[Constants::MTG_NB_COLORS + 1] = {0};
-    int countBasicLandsPerColor[Constants::MTG_NB_COLORS + 1] = {0};
-    int countNonLandProducersPerColor[Constants::MTG_NB_COLORS + 1] = {0};
-    int totalCostPerColor[Constants::MTG_NB_COLORS + 1] = {0};
-
 void StatsWrapper::initValues()
 {
     // initilize all member values to 0
@@ -301,7 +285,24 @@ void StatsWrapper::initValues()
     avgManaCost = avgCreatureCost = avgSpellCost = 0.0f;
 
     countCreatures = countSpells = countInstants = countEnchantments = countSorceries = countArtifacts = 0;
-    
+
+    //this works only with 0.0f on floats
+    memset(noLandsProbInTurn, 0.0f, sizeof(float) * Constants::STATS_FOR_TURNS);
+    memset(noCreaturesProbInTurn, 0.0f, sizeof(float) * Constants::STATS_FOR_TURNS);
+
+    memset(countCardsPerCost, 0, sizeof(int) * (Constants::STATS_MAX_MANA_COST + 1));
+    memset(countCreaturesPerCost, 0, sizeof(int) * (Constants::STATS_MAX_MANA_COST + 1));
+    memset(countSpellsPerCost, 0, sizeof(int) * (Constants::STATS_MAX_MANA_COST + 1));
+
+    memset(countCardsPerCostAndColor, 0, sizeof(int) * (Constants::STATS_MAX_MANA_COST + 1)*(Constants::MTG_NB_COLORS + 1));
+    memset(countCreaturesPerCostAndColor, 0, sizeof(int) * (Constants::STATS_MAX_MANA_COST + 1)*(Constants::MTG_NB_COLORS + 1));
+    memset(countSpellsPerCostAndColor, 0, sizeof(int) * (Constants::STATS_MAX_MANA_COST + 1)*(Constants::MTG_NB_COLORS + 1));
+
+    memset(countLandsPerColor, 0, sizeof(int) * (Constants::MTG_NB_COLORS + 1));
+    memset(countBasicLandsPerColor, 0, sizeof(int) * (Constants::MTG_NB_COLORS + 1));
+    memset(countNonLandProducersPerColor, 0, sizeof(int) * (Constants::MTG_NB_COLORS + 1));
+    memset(totalCostPerColor, 0, sizeof(int) * (Constants::MTG_NB_COLORS + 1));
+
 }
 
 StatsWrapper::StatsWrapper(int deckId)

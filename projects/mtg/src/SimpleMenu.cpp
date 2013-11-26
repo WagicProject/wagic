@@ -6,7 +6,7 @@
 #include "GameApp.h"
 #include "Translate.h"
 
-namespace
+namespace SimpleMenuConst
 {
     const float kPoleWidth = 7;
     const float kVerticalMargin = 20;
@@ -38,7 +38,7 @@ SimpleMenu::SimpleMenu(JGE* jge, WResourceManager* resourceManager, int id, JGui
 {
     autoTranslate = true;
     isMultipleChoice = false;
-    mHeight = 2 * kVerticalMargin;
+    mHeight = 2 * SimpleMenuConst::kVerticalMargin;
     mWidth = 0;
     mX = x;
     mY = y;
@@ -48,7 +48,7 @@ SimpleMenu::SimpleMenu(JGE* jge, WResourceManager* resourceManager, int id, JGui
     selectionT = 0;
     timeOpen = 0;
     mClosed = false;
-    selectionTargetY = selectionY = y + kVerticalMargin;
+    selectionTargetY = selectionY = y + SimpleMenuConst::kVerticalMargin;
 
     if(resourceManager)
     {
@@ -61,7 +61,7 @@ SimpleMenu::SimpleMenu(JGE* jge, WResourceManager* resourceManager, int id, JGui
         spadeL = resourceManager->RetrieveQuad("spade_ul.png", 0, 0, 0, 0, "spade_ul", RETRIEVE_MANAGE);
         spadeR = resourceManager->RetrieveQuad("spade_ur.png", 0, 0, 0, 0, "spade_ur", RETRIEVE_MANAGE);
         jewel.reset(NEW JQuad(jewelTex, 1, 1, 3, 3));
-        side = resourceManager->RetrieveQuad("menuside.png", 1, 1, 1, kPoleWidth, "menuside", RETRIEVE_MANAGE);
+        side = resourceManager->RetrieveQuad("menuside.png", 1, 1, 1, SimpleMenuConst::kPoleWidth, "menuside", RETRIEVE_MANAGE);
 
         stars = NEW hgeParticleSystem(resourceManager->RetrievePSI("stars.psi", resourceManager->GetQuad("stars").get()));
 
@@ -78,16 +78,16 @@ void SimpleMenu::drawHorzPole(float x, float y, float width)
 {
     JRenderer* renderer = JRenderer::GetInstance();
 
-    float leftXOffset = (spadeR->mWidth - kPoleWidth) / 2;
+    float leftXOffset = (spadeR->mWidth - SimpleMenuConst::kPoleWidth) / 2;
     float rightXOffset = leftXOffset;
     float yOffset = leftXOffset;
     if (spadeR->mWidth != spadeR->mHeight) 
     {
         //We have a weird case to deal with in the "Classic" theme, the spades graphics need to be aligned specifically,
         // While the ones in the "Final Saga" theme need to be centered
-        leftXOffset =  kSpadeWidthOffset;
-        yOffset = kSpadeHeightOffset;
-        rightXOffset = kSpadeRightBottomOffset;
+        leftXOffset =  SimpleMenuConst::kSpadeWidthOffset;
+        yOffset = SimpleMenuConst::kSpadeHeightOffset;
+        rightXOffset = SimpleMenuConst::kSpadeRightBottomOffset;
     }
 
     renderer->RenderQuad(side.get(), x, y, 0, width);
@@ -104,23 +104,23 @@ void SimpleMenu::drawVertPole(float x, float y, float height)
 {
     JRenderer* renderer = JRenderer::GetInstance();
 
-    float xOffset = (spadeR->mWidth - kPoleWidth) / 2;
+    float xOffset = (spadeR->mWidth - SimpleMenuConst::kPoleWidth) / 2;
     float topYOffset = xOffset;
     float bottomYOffset = xOffset;
     if (spadeR->mWidth != spadeR->mHeight) 
     {
         //We have a weird case to deal with in the "Classic" theme, the spades graphics need to be aligned specifically,
         // While the ones in the "Final Saga" theme need to be centered
-        xOffset = kSpadeHeightOffset;
-        topYOffset = kSpadeWidthOffset;
-        bottomYOffset = kSpadeRightBottomOffset;
+        xOffset = SimpleMenuConst::kSpadeHeightOffset;
+        topYOffset = SimpleMenuConst::kSpadeWidthOffset;
+        bottomYOffset = SimpleMenuConst::kSpadeRightBottomOffset;
     }
 
-    renderer->RenderQuad(side.get(), x + kPoleWidth, y, M_PI / 2, height);
+    renderer->RenderQuad(side.get(), x + SimpleMenuConst::kPoleWidth, y, M_PI / 2, height);
     spadeR->SetHFlip(true);
     spadeL->SetHFlip(false);
-    renderer->RenderQuad(spadeR.get(), x + kPoleWidth + xOffset, y - topYOffset, M_PI / 2);
-    renderer->RenderQuad(spadeL.get(), x + kPoleWidth + xOffset, y + height - bottomYOffset, M_PI / 2);
+    renderer->RenderQuad(spadeR.get(), x + SimpleMenuConst::kPoleWidth + xOffset, y - topYOffset, M_PI / 2);
+    renderer->RenderQuad(spadeL.get(), x + SimpleMenuConst::kPoleWidth + xOffset, y + height - bottomYOffset, M_PI / 2);
 
     renderer->RenderQuad(jewel.get(), x - 1, y - 1);
     renderer->RenderQuad(jewel.get(), x - 1, y + height - 1);
@@ -133,7 +133,7 @@ void SimpleMenu::Render()
     WFont * mFont = WResourceManager::Instance()->GetWFont(fontId);
     if (0 == mWidth)
     {
-        float sY = mY + kVerticalMargin;
+        float sY = mY + SimpleMenuConst::kVerticalMargin;
 
         for (int i = 0; i < mCount; ++i)
         {
@@ -146,7 +146,7 @@ void SimpleMenu::Render()
         if ((!title.empty()) && (mWidth < titleFont->GetStringWidth(title.c_str()))) 
 			mWidth = titleFont->GetStringWidth(title.c_str());
          titleFont->SetScale(scaleFactor);
-        mWidth += 2 * kHorizontalMargin;
+        mWidth += 2 * SimpleMenuConst::kHorizontalMargin;
 
         if (mCenterHorizontal)
             mX = (SCREEN_WIDTH_F - mWidth) / 2;
@@ -156,7 +156,7 @@ void SimpleMenu::Render()
 
         for (int i = 0; i < mCount; ++i)
         {
-            float y = mY + kVerticalMargin + i * kLineHeight;
+            float y = mY + SimpleMenuConst::kVerticalMargin + i * SimpleMenuConst::kLineHeight;
             SimpleMenuItem * smi = static_cast<SimpleMenuItem*> (mObjects[i]);
             smi->Relocate(mX + mWidth / 2, y);
             if (smi->hasFocus()) sY = y;
@@ -171,7 +171,7 @@ void SimpleMenu::Render()
     float height = mHeight;
     if (timeOpen < 1) height *= timeOpen > 0 ? timeOpen : -timeOpen;
 
-    float heightPadding = kLineHeight/2; // this to reduce the bottom padding of the menu
+    float heightPadding = SimpleMenuConst::kLineHeight/2; // this to reduce the bottom padding of the menu
     renderer->FillRect(mX, mY, mWidth, height - heightPadding, ARGB(180,0,0,0));
 
     renderer->SetTexBlend(BLEND_SRC_ALPHA, BLEND_ONE_MINUS_SRC_ALPHA);
@@ -200,8 +200,8 @@ void SimpleMenu::Render()
     {
         if (i > mCount - 1) break;
         SimpleMenuItem *currentMenuItem = static_cast<SimpleMenuItem*>(mObjects[i]);
-        float currentY = currentMenuItem->getY() - kLineHeight * startId;
-        float menuBottomEdge = mY + height - kLineHeight + 7;
+        float currentY = currentMenuItem->getY() - SimpleMenuConst::kLineHeight * startId;
+        float menuBottomEdge = mY + height - SimpleMenuConst::kLineHeight + 7;
         if (currentY < menuBottomEdge)
         {
             if (currentMenuItem->hasFocus())
@@ -214,7 +214,7 @@ void SimpleMenu::Render()
             {
                 mFont->SetColor(ARGB(150,255,255,255));
             }
-            (static_cast<SimpleMenuItem*> (mObjects[i]))->RenderWithOffset(-kLineHeight * startId);
+            (static_cast<SimpleMenuItem*> (mObjects[i]))->RenderWithOffset(-SimpleMenuConst::kLineHeight * startId);
         }
         mFont->SetScale(SCALE_NORMAL);
     }
@@ -244,8 +244,8 @@ bool SimpleMenu::CheckUserInput(JButton key)
         if (mObjects.size())
         {
             float top, left;
-            float menuTopEdge =  mY + kLineHeight;
-            float menuBottomEdge = mY + mHeight - (kLineHeight/2);
+            float menuTopEdge =  mY + SimpleMenuConst::kLineHeight;
+            float menuBottomEdge = mY + mHeight - (SimpleMenuConst::kLineHeight/2);
             
             if (y < menuTopEdge)
                 n = (mCurr - 1) > 0 ? mCurr -1 : 0;
@@ -257,7 +257,7 @@ bool SimpleMenu::CheckUserInput(JButton key)
                 {
                     if (mObjects[i]->getTopLeft(top, left))
                     {
-                        if ( (y > top) && (y <= (top + kLineHeight)) )
+                        if ( (y > top) && (y <= (top + SimpleMenuConst::kLineHeight)) )
                             n = i;
                     }   
                 }
@@ -308,8 +308,8 @@ void SimpleMenu::Update(float dt)
     selectionT += 3 * dt;
     selectionY += (selectionTargetY - selectionY) * 8 * dt;
     if(stars)
-        stars->MoveTo(mX + kHorizontalMargin + ((mWidth - 2 * kHorizontalMargin) * (1 + cos(selectionT)) / 2), selectionY + 5 * cos(
-                    selectionT * 2.35f) + kLineHeight / 2 - kLineHeight * startId);
+        stars->MoveTo(mX + SimpleMenuConst::kHorizontalMargin + ((mWidth - 2 * SimpleMenuConst::kHorizontalMargin) * (1 + cos(selectionT)) / 2), selectionY + 5 * cos(
+                    selectionT * 2.35f) + SimpleMenuConst::kLineHeight / 2 - SimpleMenuConst::kLineHeight * startId);
     if (timeOpen < 0)
     {
         timeOpen += dt * 10;
@@ -330,12 +330,12 @@ void SimpleMenu::Update(float dt)
 
 void SimpleMenu::Add(int id, const char * text, string desc, bool forceFocus)
 {
-    SimpleMenuItem * smi = NEW SimpleMenuItem(this, id, fontId, text, 0, mY + kVerticalMargin + mCount * kLineHeight,
+    SimpleMenuItem * smi = NEW SimpleMenuItem(this, id, fontId, text, 0, mY + SimpleMenuConst::kVerticalMargin + mCount * SimpleMenuConst::kLineHeight,
                     (mCount == 0), autoTranslate);
 
     smi->setDescription(desc);
     JGuiController::Add(smi);
-    if (mCount <= maxItems) mHeight += kLineHeight;
+    if (mCount <= maxItems) mHeight += SimpleMenuConst::kLineHeight;
     if (forceFocus)
     {
         mObjects[mCurr]->Leaving(JGE_BTN_DOWN);
