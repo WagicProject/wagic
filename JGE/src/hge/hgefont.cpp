@@ -72,7 +72,7 @@ hgeFont::hgeFont(const char *szFont, bool bMipmap __attribute__((unused)))
 	fileSys->CloseFile();
 
 	pdesc=_get_line(desc,linebuf);
-    if(strcmp(linebuf, FNTHEADERTAG))
+	if(strcmp(linebuf, FNTHEADERTAG))
 	{
 //		hge->System_Log("Font %s has incorrect format.", szFont);
 		delete[] desc;
@@ -296,7 +296,7 @@ float hgeFont::GetStringWidth(const char *string) const
 	{
 		linew = 0;
 
-        while(*string && *string != '\n')
+		while(*string && *string != '\n')
 		{
 			i=(unsigned char)*string;
 			if(!letters[i]) i='?';

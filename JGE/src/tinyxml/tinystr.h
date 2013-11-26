@@ -80,7 +80,7 @@ class TiXmlString
 	}
 
 	// TiXmlString copy constructor
-	TiXmlString ( const TiXmlstring & copy)
+	TiXmlString ( const TiXmlString & copy)
 	{
 		init(copy.length());
 		memcpy(start(), copy.data(), length());
@@ -113,7 +113,7 @@ class TiXmlString
 	}
 
 	// = operator
-	TiXmlString& operator = (const TiXmlstring & copy)
+	TiXmlString& operator = (const TiXmlString & copy)
 	{
 		return assign(copy.start(), copy.length());
 	}
@@ -132,7 +132,7 @@ class TiXmlString
 	}
 
 	// += operator. Maps to append
-	TiXmlString& operator += (const TiXmlstring & suffix)
+	TiXmlString& operator += (const TiXmlString & suffix)
 	{
 		return append(suffix.data(), suffix.length());
 	}
@@ -266,29 +266,29 @@ class TiXmlString
 } ;
 
 
-inline bool operator == (const TiXmlstring & a, const TiXmlstring & b)
+inline bool operator == (const TiXmlString & a, const TiXmlString & b)
 {
 	return    ( a.length() == b.length() )				// optimization on some platforms
 	       && ( strcmp(a.c_str(), b.c_str()) == 0 );	// actual compare
 }
-inline bool operator < (const TiXmlstring & a, const TiXmlstring & b)
+inline bool operator < (const TiXmlString & a, const TiXmlString & b)
 {
 	return strcmp(a.c_str(), b.c_str()) < 0;
 }
 
-inline bool operator != (const TiXmlstring & a, const TiXmlstring & b) { return !(a == b); }
-inline bool operator >  (const TiXmlstring & a, const TiXmlstring & b) { return b < a; }
-inline bool operator <= (const TiXmlstring & a, const TiXmlstring & b) { return !(b < a); }
-inline bool operator >= (const TiXmlstring & a, const TiXmlstring & b) { return !(a < b); }
+inline bool operator != (const TiXmlString & a, const TiXmlString & b) { return !(a == b); }
+inline bool operator >  (const TiXmlString & a, const TiXmlString & b) { return b < a; }
+inline bool operator <= (const TiXmlString & a, const TiXmlString & b) { return !(b < a); }
+inline bool operator >= (const TiXmlString & a, const TiXmlString & b) { return !(a < b); }
 
-inline bool operator == (const TiXmlstring & a, const char* b) { return strcmp(a.c_str(), b) == 0; }
-inline bool operator == (const char* a, const TiXmlstring & b) { return b == a; }
-inline bool operator != (const TiXmlstring & a, const char* b) { return !(a == b); }
-inline bool operator != (const char* a, const TiXmlstring & b) { return !(b == a); }
+inline bool operator == (const TiXmlString & a, const char* b) { return strcmp(a.c_str(), b) == 0; }
+inline bool operator == (const char* a, const TiXmlString & b) { return b == a; }
+inline bool operator != (const TiXmlString & a, const char* b) { return !(a == b); }
+inline bool operator != (const char* a, const TiXmlString & b) { return !(b == a); }
 
-TiXmlString operator + (const TiXmlstring & a, const TiXmlstring & b);
-TiXmlString operator + (const TiXmlstring & a, const char* b);
-TiXmlString operator + (const char* a, const TiXmlstring & b);
+TiXmlString operator + (const TiXmlString & a, const TiXmlString & b);
+TiXmlString operator + (const TiXmlString & a, const char* b);
+TiXmlString operator + (const char* a, const TiXmlString & b);
 
 
 /*
@@ -300,7 +300,7 @@ class TiXmlOutStream : public TiXmlString
 public :
 
 	// TiXmlOutStream << operator.
-	TiXmlOutStream & operator << (const TiXmlstring & in)
+	TiXmlOutStream & operator << (const TiXmlString & in)
 	{
 		*this += in;
 		return *this;
