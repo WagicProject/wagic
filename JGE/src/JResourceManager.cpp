@@ -187,7 +187,7 @@ bool JResourceManager::LoadResource(const string& resourceName)
 }
 
 
-int JResourceManager::CreateTexture(const string &textureName)
+int JResourceManager::CreateTexture(const string& textureName)
 {
 	map<string, int>::iterator itr = mTextureMap.find(textureName);
 
@@ -213,7 +213,7 @@ int JResourceManager::CreateTexture(const string &textureName)
 }
 
 
-JTexture *JResourceManager::GetTexture(const string &textureName)
+JTexture *JResourceManager::GetTexture(const string& textureName)
 {
 	map<string, int>::iterator itr = mTextureMap.find(textureName);
 
@@ -233,7 +233,7 @@ JTexture *JResourceManager::GetTexture(int id)
 }
 
 
-int JResourceManager::CreateQuad(const string &quadName, const string &textureName, float x, float y, float width, float height)
+int JResourceManager::CreateQuad(const string& quadName, const string& textureName, float x, float y, float width, float height)
 {
 	map<string, int>::iterator itr = mQuadMap.find(quadName);
 
@@ -264,7 +264,7 @@ int JResourceManager::CreateQuad(const string &quadName, const string &textureNa
 }
 
 
-JQuad *JResourceManager::GetQuad(const string &quadName)
+JQuad *JResourceManager::GetQuad(const string& quadName)
 {
 	map<string, int>::iterator itr = mQuadMap.find(quadName);
 
@@ -284,7 +284,7 @@ JQuad *JResourceManager::GetQuad(int id)
 }
 
 
-JLBFont * JResourceManager::LoadJLBFont(const string &fontName, int height)
+JLBFont * JResourceManager::LoadJLBFont(const string& fontName, int height)
 {
 	map<string, int>::iterator itr = mFontMap.find(fontName);
 
@@ -303,7 +303,7 @@ JLBFont * JResourceManager::LoadJLBFont(const string &fontName, int height)
 }
 
 
-JLBFont *JResourceManager::GetJLBFont(const string &fontName)
+JLBFont *JResourceManager::GetJLBFont(const string& fontName)
 {
 	map<string, int>::iterator itr = mFontMap.find(fontName);
 
@@ -324,7 +324,7 @@ JLBFont *JResourceManager::GetJLBFont(int id)
 
 //
 //
-// int JResourceManager::RegisterParticleEffect(const string &effectName)
+// int JResourceManager::RegisterParticleEffect(const string& effectName)
 // {
 // 	map<string, int>::iterator itr = mParticleEffectMap.find(effectName);
 //
@@ -351,7 +351,7 @@ JLBFont *JResourceManager::GetJLBFont(int id)
 // }
 //
 //
-// JParticleEffect *JResourceManager::GetParticleEffect(const string &effectName)
+// JParticleEffect *JResourceManager::GetParticleEffect(const string& effectName)
 // {
 // 	map<string, int>::iterator itr = mParticleEffectMap.find(effectName);
 //
@@ -372,7 +372,7 @@ JLBFont *JResourceManager::GetJLBFont(int id)
 //
 //
 //
-// int JResourceManager::RegisterMotionEmitter(const string &emitterName)
+// int JResourceManager::RegisterMotionEmitter(const string& emitterName)
 // {
 // 	map<string, int>::iterator itr = mMotionEmitterMap.find(emitterName);
 //
@@ -400,7 +400,7 @@ JLBFont *JResourceManager::GetJLBFont(int id)
 // }
 //
 //
-// JMotionEmitter *JResourceManager::GetMotionEmitter(const string &emitterName)
+// JMotionEmitter *JResourceManager::GetMotionEmitter(const string& emitterName)
 // {
 // 	map<string, int>::iterator itr = mMotionEmitterMap.find(emitterName);
 //

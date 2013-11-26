@@ -43,7 +43,7 @@ public:
     virtual bool CheckUserInput(JButton key);
     virtual void Update(float dt);
     using JGuiController::Add;
-    virtual void Add(int id, const string& Text, const string &desc = "", bool forceFocus = false);
+    virtual void Add(int id, const string& Text, const string& desc = "", bool forceFocus = false);
     int getmCurr(){return mCurr;}
     float getWidth(){return mWidth; }
     virtual void Close();

@@ -44,7 +44,7 @@ static inline int getGrade(int v)
 }
 
 //MTGAllCards
-int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primitive)
+int MTGAllCards::processConfLine(string& s, MTGCard *card, CardPrimitive * primitive)
 {
     if ('#' == s[0]) return 1; // a comment shouldn't be treated as an error condition
     size_t i = s.find_first_of('=');
@@ -381,18 +381,18 @@ void MTGAllCards::loadFolder(const string& infolder, const string& filename )
     }
 }
 
-int MTGAllCards::load(const string &config_file)
+int MTGAllCards::load(const string& config_file)
 {
     return load(config_file, MTGSets::INTERNAL_SET);
 }
 
-int MTGAllCards::load(const string& config_file, const string &set_name)
+int MTGAllCards::load(const string& config_file, const string& set_name)
 {
     const int set_id = setlist.Add(set_name);
     return load(config_file, set_id);
 }
 
-int MTGAllCards::load(const string &config_file, int set_id)
+int MTGAllCards::load(const string& config_file, int set_id)
 {
     conf_read_mode = 0;
     MTGSetInfo *si = setlist.getInfo(set_id);
@@ -542,7 +542,7 @@ int MTGAllCards::countBySet(int setId)
 }
 
 //TODO more efficient way ?
-int MTGAllCards::countByType(const string &_type)
+int MTGAllCards::countByType(const string& _type)
 {
     int type_id = findType(_type);
 
@@ -891,7 +891,7 @@ MTGCard * MTGDeck::getCardById(int mtgId)
     return database->getCardById(mtgId);
 }
 
-int MTGDeck::addRandomCards(int howmany, int * setIds, int nbSets, int rarity, const string &_subtype, int * colors, int nbcolors)
+int MTGDeck::addRandomCards(int howmany, int * setIds, int nbSets, int rarity, const string& _subtype, int * colors, int nbcolors)
 {
     if (howmany <= 0) return 1;
 

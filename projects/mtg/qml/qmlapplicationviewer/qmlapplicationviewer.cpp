@@ -52,10 +52,10 @@ class QmlApplicationViewerPrivate
 {
     QString mainQmlFile;
     friend class QmlApplicationViewer;
-    static QString adjustPath(const QString &path);
+    static QString adjustPath(const Qstring& path);
 };
 
-QString QmlApplicationViewerPrivate::adjustPath(const QString &path)
+QString QmlApplicationViewerPrivate::adjustPath(const Qstring& path)
 {
 #ifdef Q_OS_UNIX
 #ifdef Q_OS_MAC
@@ -99,7 +99,7 @@ QmlApplicationViewer *QmlApplicationViewer::create()
     return new QmlApplicationViewer();
 }
 
-void QmlApplicationViewer::setMainQmlFile(const QString &file)
+void QmlApplicationViewer::setMainQmlFile(const Qstring& file)
 {
     d->mainQmlFile = QmlApplicationViewerPrivate::adjustPath(file);
 #ifndef Q_OS_ANDROID
@@ -109,7 +109,7 @@ void QmlApplicationViewer::setMainQmlFile(const QString &file)
 #endif
 }
 
-void QmlApplicationViewer::addImportPath(const QString &path)
+void QmlApplicationViewer::addImportPath(const Qstring& path)
 {
     engine()->addImportPath(QmlApplicationViewerPrivate::adjustPath(path));
 }

@@ -75,10 +75,10 @@ bool JOBJModel::Load(const char *modelName, const char *textureName)
 	
 	int count;
 
-    while (filePtr < size)
-    {
+	while (filePtr < size)
+	{
 		filePtr = ReadLine(tmpLine, buffer, filePtr, size);
-        {
+		{
 
 			if ((tmpLine[0] == '#') || (strlen(tmpLine)  < 3))
 			{
@@ -89,19 +89,19 @@ bool JOBJModel::Load(const char *modelName, const char *textureName)
 
 				if (count == 4)
 				{
-                    if (string("vn") == s1)
+					if (string("vn") == s1)
 						normalList.push_back(vert);
-                    else if (string("vt") == s1)
+					else if (string("vt") == s1)
 						texList.push_back(vert);
-                    else if (string("v") == s1)
+					else if (string("v") == s1)
 						vertList.push_back(vert);
 				}
 				else if (count == 3)
 				{
-                    if (string("vt") == s1)
+					if (string("vt") == s1)
 						texList.push_back(vert);
 				}
-	             
+
 			}
 			else if (tmpLine[0] == 'f')
 			{
@@ -211,7 +211,7 @@ bool JOBJModel::Load(const char *modelName, const char *textureName)
 	if (textureName != NULL)
 		mTexture = JRenderer::GetInstance()->LoadTexture(textureName);
 
-    return true;
+	return true;
 
 }
 

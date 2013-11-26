@@ -29,8 +29,8 @@ public:
 
     static QmlApplicationViewer *create();
 
-    void setMainQmlFile(const QString &file);
-    void addImportPath(const QString &path);
+    void setMainQmlFile(const Qstring& file);
+    void addImportPath(const Qstring& path);
 
     // Note that this will only have an effect on Symbian and Fremantle.
     void setOrientation(ScreenOrientation orientation);
