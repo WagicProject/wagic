@@ -137,6 +137,7 @@ LOCAL_SRC_FILES := $(SDL_PATH)/src/main/android/SDL_android_main.cpp \
         $(MTG_PATH)/src/WGui.cpp \
         $(MTG_PATH)/src/WResourceManager.cpp \
         $(JGE_PATH)/src/SDLmain.cpp \
+        $(JGE_PATH)/src/corewrapper.cpp \
         $(JGE_PATH)/src/Encoding.cpp \
         $(JGE_PATH)/src/JAnimator.cpp \
         $(JGE_PATH)/src/JApp.cpp \
