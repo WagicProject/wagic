@@ -529,7 +529,7 @@ size_t MTGGameZone::getIndex(MTGCardInstance * card)
 }
 
 
-unsigned int MTGGameZone::countByType(const string &value)
+unsigned int MTGGameZone::countByType(const string& value)
 {
     int result = 0;
     int subTypeId = MTGAllCards::findType(value);

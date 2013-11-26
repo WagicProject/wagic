@@ -45,16 +45,16 @@ public:
 	virtual void RemoveAll();
   virtual void RemoveJLBFonts();
 	
-	virtual int CreateTexture(const string &textureName);
-	virtual JTexture* GetTexture(const string &textureName);
+	virtual int CreateTexture(const string& textureName);
+	virtual JTexture* GetTexture(const string& textureName);
 	virtual JTexture* GetTexture(int id);
 
-	virtual int CreateQuad(const string &quadName, const string &textureName, float x, float y, float width, float height);
-	virtual JQuad* GetQuad(const string &quadName);
+	virtual int CreateQuad(const string& quadName, const string& textureName, float x, float y, float width, float height);
+	virtual JQuad* GetQuad(const string& quadName);
 	virtual JQuad* GetQuad(int id);
 
-	virtual JLBFont * LoadJLBFont(const string &fontName, int height);
-	virtual JLBFont* GetJLBFont(const string &fontName);
+	virtual JLBFont * LoadJLBFont(const string& fontName, int height);
+	virtual JLBFont* GetJLBFont(const string& fontName);
 	virtual JLBFont* GetJLBFont(int id);
 
 

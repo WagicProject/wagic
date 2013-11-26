@@ -52,7 +52,7 @@ public:
     // Set Base for the character set to use.
     virtual void SetBase(int base) = 0;
     // Format text.
-    virtual void FormatText(string &s, vector<string>& output) = 0;
+    virtual void FormatText(string& s, vector<string>& output) = 0;
     WFont(int inID) : mFontID(inID) {};
     virtual ~WFont() {};
 };
@@ -117,7 +117,7 @@ public:
         it->SetBase(base);
     }
     ;
-    void FormatText(string &s, vector<string>& output);
+    void FormatText(string& s, vector<string>& output);
 
 private:
     JLBFont * it;
@@ -143,7 +143,7 @@ public:
     virtual float GetStringWidth(const char *s) const;
     void SetTracking(float) {};
     void SetBase(int) {};
-    void FormatText(string &, vector<string>&) {};
+    void FormatText(string& , vector<string>&) {};
 
     virtual void DrawString(const char *s, float x, float y, int align = JGETEXT_LEFT, float leftOffset = 0, float width = 0);
     virtual int GetCode(const u8 *ch, int *charLength) const = 0;
@@ -187,7 +187,7 @@ public:
     void DrawString(const char *s, float x, float y, int align = JGETEXT_LEFT, float leftOffset = 0, float width = 0);
     int GetCode(const u8 *ch, int *charLength) const;
     int GetMana(const u8 *ch) const;
-    void FormatText(string &s, vector<string>& output);
+    void FormatText(string& s, vector<string>& output);
 };
 
 class WUFont: public WFBFont
@@ -198,7 +198,7 @@ public:
 
     int GetCode(const u8 *ch, int *charLength) const;
     int GetMana(const u8 *ch) const;
-    void FormatText(string &s, vector<string>& output);
+    void FormatText(string& s, vector<string>& output);
 };
 
 #endif

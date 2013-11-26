@@ -132,8 +132,8 @@ public:
     void addType(const string& type_text);
     virtual void addType(int id);
     void setType(const string& type_text);
-    void setSubtype(const string &value);
-    int removeType(const string &value, int removeAll = 0);
+    void setSubtype(const string& value);
+    int removeType(const string& value, int removeAll = 0);
     int removeType(int value, int removeAll = 0);
 
     //dangerranking is a hint to Ai which creatures are the ones it should be targetting for effects.

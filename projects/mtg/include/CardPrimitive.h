@@ -94,11 +94,11 @@ public:
     const string& getName() const;
     const string& getLCName() const;
 
-    void addType(const string &type_text);
+    void addType(const string& type_text);
     void addType(int id);
     void setType(const string& type_text);
     void setSubtype(const string& value);
-    int removeType(const string &value, int removeAll = 0);
+    int removeType(const string& value, int removeAll = 0);
     int removeType(int value, int removeAll = 0);
     bool hasSubtype(int _subtype);
     bool hasSubtype(const string& _subtype);

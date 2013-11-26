@@ -296,7 +296,7 @@ float hgeFont::GetStringWidth(const char *string) const
 	{
 		linew = 0;
 
-		while(*string && *string != '\n')
+        while(*string && *string != '\n')
 		{
 			i=(unsigned char)*string;
 			if(!letters[i]) i='?';

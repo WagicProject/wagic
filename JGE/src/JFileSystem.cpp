@@ -246,7 +246,7 @@ void JFileSystem::clearZipCache()
     mZipCachedElementsCount = 0;
 }
 
-bool JFileSystem::AttachZipFile(const string &zipfile, char *password /* = NULL */)
+bool JFileSystem::AttachZipFile(const string& zipfile, char *password /* = NULL */)
 {
     if (mZipAvailable && mZipFile != NULL)
     {
@@ -370,7 +370,7 @@ bool JFileSystem::openForWrite(ofstream & File, const string & FilePath, ios_bas
     return false;
 }
 
-bool JFileSystem::OpenFile(const string &filename)
+bool JFileSystem::OpenFile(const string& filename)
 {
     mCurrentFileInZip = NULL;
 
