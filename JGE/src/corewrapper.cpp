@@ -221,15 +221,15 @@ bool WagicCore::onPointerReleased(WagicCore::PointerId pointer, int x, int y)
 #if (defined Q_WS_MAEMO_5) || (defined MEEGO_EDITION_HARMATTAN) || (defined ANDROID) || (defined IOS)
 			if(JGEGetTime() - mLastFingerDownTime <= kTapEventTimeout )
 			{
-				if(abs(mMouseDownX - lastPos.x()) < kHitzonePliancy &&
-					abs(mMouseDownY - lastPos.y()) < kHitzonePliancy)
+				if(abs(mMouseDownX - x) < kHitzonePliancy &&
+					abs(mMouseDownY - y) < kHitzonePliancy)
 				{
 					m_engine->HoldKey_NoRepeat(JGE_BTN_OK);
 				}
 			}
 			else if (JGEGetTime() - mLastFingerDownTime >= kSwipeEventMinDuration)
 			{ // Let's swipe
-				m_engine->Scroll(lastPos.x()-mMouseDownX, lastPos.y()-mMouseDownY);
+				m_engine->Scroll(x-mMouseDownX, y-mMouseDownY);
 			}
 #else
 			m_engine->ReleaseKey(JGE_BTN_OK);
