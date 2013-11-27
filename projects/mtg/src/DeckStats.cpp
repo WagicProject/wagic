@@ -287,8 +287,8 @@ void StatsWrapper::initValues()
     countCreatures = countSpells = countInstants = countEnchantments = countSorceries = countArtifacts = 0;
 
     //this works only with 0.0f on floats
-    memset(noLandsProbInTurn, 0.0f, sizeof(float) * Constants::STATS_FOR_TURNS);
-    memset(noCreaturesProbInTurn, 0.0f, sizeof(float) * Constants::STATS_FOR_TURNS);
+    memset(noLandsProbInTurn, (int)0.0f, sizeof(float) * Constants::STATS_FOR_TURNS);
+    memset(noCreaturesProbInTurn, (int)0.0f, sizeof(float) * Constants::STATS_FOR_TURNS);
 
     memset(countCardsPerCost, 0, sizeof(int) * (Constants::STATS_MAX_MANA_COST + 1));
     memset(countCreaturesPerCost, 0, sizeof(int) * (Constants::STATS_MAX_MANA_COST + 1));
