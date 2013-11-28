@@ -873,8 +873,8 @@ public:
             return 0;
         if (!tc->canTarget(e->damage->target)) return 0;
         if (fromTc && !fromTc->canTarget(e->damage->source)) return 0;
-        if (type == 1 && e->damage->typeOfDamage != DAMAGE_COMBAT) return 0;
-        if (type == 2 && e->damage->typeOfDamage == DAMAGE_COMBAT) return 0;
+        if (type == 1 && e->damage->typeOfDamage != Damage::DAMAGE_COMBAT) return 0;
+        if (type == 2 && e->damage->typeOfDamage == Damage::DAMAGE_COMBAT) return 0;
         e->damage->target->thatmuch = e->damage->damage;
         e->damage->source->thatmuch = e->damage->damage;
         this->source->thatmuch = e->damage->damage;
@@ -2577,7 +2577,7 @@ public:
         }
         else
         {
-            if (d->type_as_damageable == DAMAGEABLE_MTGCARDINSTANCE)
+            if (d->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE)
             {
                 a->source = (MTGCardInstance *) d;
             }
@@ -2725,7 +2725,7 @@ public:
         }
         else
         {
-            if (d->type_as_damageable == DAMAGEABLE_MTGCARDINSTANCE)
+            if (d->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE)
             {
                 a->source = (MTGCardInstance *) d;
             }
@@ -2794,113 +2794,24 @@ public:
 //equipment
 class AEquip: public TargetAbility
 {
-public:
+private:
+    bool isAttach;
     vector<MTGAbility *> currentAbilities;
-    AEquip(GameObserver* observer, int _id, MTGCardInstance * _source, ManaCost * _cost = NULL, int restrictions =
-            ActivatedAbility::AS_SORCERY) :
-        TargetAbility(observer, _id, _source, NULL, _cost, restrictions)
-    {
-        aType = MTGAbility::STANDARD_EQUIP;
-    }
+
+public:
+    AEquip(GameObserver* observer, int _id, MTGCardInstance * _source, ManaCost * _cost = NULL,
+        int restrictions = ActivatedAbility::AS_SORCERY);
     
-    int unequip()
-    {
-        if (source->target)
-        {
-            source->target->equipment -= 1;
-            source->parentCards.clear();
-            for(unsigned int w = 0;w < source->target->childrenCards.size();w++)
-            {
-                MTGCardInstance * child = source->target->childrenCards[w];
-                if(child == source)
-                    source->target->childrenCards.erase(source->target->childrenCards.begin() + w);
-            }
-        }
-        source->target = NULL;
-        for (size_t i = 0; i < currentAbilities.size(); ++i)
-        {
-            MTGAbility * a = currentAbilities[i];
-            if (dynamic_cast<AEquip *> (a) || dynamic_cast<ATeach *> (a) || dynamic_cast<AAConnect *> (a) || (a->aType == MTGAbility::STANDARD_TOKENCREATOR && a->oneShot))
-            {
-                SAFE_DELETE(a);
-                continue;
-            }
-            game->removeObserver(currentAbilities[i]);
-        }
-        currentAbilities.clear();
-        return 1;
-    }
+    int unequip();
+    int equip(MTGCardInstance * equipped);
 
-    int equip(MTGCardInstance * equipped)
-    {
-        source->target = equipped;
-        source->target->equipment += 1;
-        source->parentCards.push_back(equipped);
-        source->target->childrenCards.push_back((MTGCardInstance*)source);
-        AbilityFactory af(game);
-        af.getAbilities(&currentAbilities, NULL, source);
-        for (size_t i = 0; i < currentAbilities.size(); ++i)
-        {
-            MTGAbility * a = currentAbilities[i];
-            if (dynamic_cast<AEquip *> (a)) continue;
-            if (dynamic_cast<ATeach *> (a)) continue;
-            if (dynamic_cast<AAConnect *> (a)) continue;
-            if (a->aType == MTGAbility::STANDARD_TOKENCREATOR && a->oneShot)
-            {
-            a->forceDestroy = 1;
-            continue;
-            }
-            if (dynamic_cast<AACopier *> (af.getCoreAbility(a)))
-            {
-                a->forceDestroy = 1;
-                continue;
-            }
-            //we generally dont want to pass oneShot tokencreators to the cards
-            //we equip...
-            a->addToGame();
-        }
-        return 1;
+    int resolve();
+    const char * getMenuText();
 
-    }
+    int testDestroy();
+    int destroy();
 
-    int resolve()
-    {
-        MTGCardInstance * mTarget = tc->getNextCardTarget();
-        if (!mTarget) return 0;
-        if (mTarget == source) return 0;
-        unequip();
-        equip(mTarget);
-        return 1;
-    }
-
-    const char * getMenuText()
-    {
-        return "Equip";
-    }
-
-    int testDestroy()
-    {
-        if (source->target && !game->isInPlay(source->target)) 
-        unequip();
-        if(!game->connectRule)
-        {
-        if (source->target && TargetAbility::tc && !TargetAbility::tc->canTarget((Targetable *)source->target,true)) 
-        unequip();
-        }
-        return TargetAbility::testDestroy();
-    }
-
-    int destroy()
-    {
-        unequip();
-        return TargetAbility::destroy();
-    }
-
-    AEquip * clone() const
-    {
-        return NEW AEquip(*this);
-    }
-
+    AEquip * clone() const;
 };
 
 class ATokenCreator: public ActivatedAbility
@@ -5638,7 +5549,7 @@ public:
         {
             WEventDamage * e = (WEventDamage *) event;
             Damage * d = e->damage;
-            if (combatonly && e->damage->typeOfDamage != DAMAGE_COMBAT) 
+            if (combatonly && e->damage->typeOfDamage != Damage::DAMAGE_COMBAT)
                 return 0;
             MTGCardInstance * card = d->source;
             if (d->damage > 0 && card && (card == source || card == source->target))

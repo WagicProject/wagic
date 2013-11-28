@@ -160,7 +160,8 @@ MTGCardInstance * CardDescriptor::match_and(MTGCardInstance * card)
 
     if (mColorExclusions)
     {
-        if ((mColorExclusions & card->colors) == mColorExclusions)
+        // if any of forbidden colors intersect with card colors
+        if ((mColorExclusions & card->colors) != 0)
             match = NULL;
     }
 

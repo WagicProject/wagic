@@ -578,7 +578,7 @@ private:
 #if (!defined PSP)
 	
 	GLuint mCurrentTex;
-#if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0) || (defined WIN32)
+#if ((defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0) || (defined WIN32)) && (!defined CONSOLE_CONFIG)
   // MVP matrix
   ESMatrix  theMvpMatrix;
 

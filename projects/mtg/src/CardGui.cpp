@@ -1013,7 +1013,7 @@ bool CardGui::FilterCard(MTGCard * _card,string filter)
     CardDescriptor  cd;
     MTGCardInstance * card = (MTGCardInstance*) _card->data;
     cd.init();
-    cd.mode = CD_OR;
+    cd.mode = CardDescriptor::CD_OR;
     while (filter.size())
     {
         
@@ -1033,13 +1033,13 @@ bool CardGui::FilterCard(MTGCard * _card,string filter)
                 string attribute;
                 if (found2 != string::npos)
                 {
-                    cd.mode = CD_OR;
+                    cd.mode = CardDescriptor::CD_OR;
                     attribute = attributes.substr(0, found2);
                     attributes = attributes.substr(found2 + 1);
                 }
                 else if (foundAnd != string::npos)
                 {
-                    cd.mode = CD_AND;
+                    cd.mode = CardDescriptor::CD_AND;
                     attribute = attributes.substr(0, foundAnd);
                     attributes = attributes.substr(foundAnd + 1);
                 }
@@ -1302,7 +1302,7 @@ bool CardGui::FilterCard(MTGCard * _card,string filter)
                 }
             }
             if (nbminuses)
-                cd.mode = CD_AND;
+                cd.mode = CardDescriptor::CD_AND;
             filter = filter.substr(0, found);
         }
         else
@@ -1312,7 +1312,7 @@ bool CardGui::FilterCard(MTGCard * _card,string filter)
             
             if (found != string::npos)
             {
-                cd.mode = CD_OR;
+                cd.mode = CardDescriptor::CD_OR;
                 typeName = filter.substr(0, found);
                 filter = filter.substr(found + 1);
             }

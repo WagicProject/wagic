@@ -2163,6 +2163,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         return NEW AEquip(observer, id, card);
     }
     
+    // TODO: deprecate this ability in favor of retarget
     //Equipment (attach)
     found = s.find("attach");
     if (found != string::npos)
@@ -4476,7 +4477,7 @@ Player * MTGAbility::getPlayerFromDamageable(Damageable * target)
     if (!target)
         return NULL;
 
-    if (target->type_as_damageable == DAMAGEABLE_MTGCARDINSTANCE)
+    if (target->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE)
         return ((MTGCardInstance *) target)->controller();
 
     return (Player *) target;

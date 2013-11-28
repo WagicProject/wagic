@@ -134,10 +134,9 @@ int OrderedAIAction::getEfficiency()
             if (!target)
                 break;
 
-            bool NeedPreventing;
-            NeedPreventing = false;
             if (currentPhase == MTG_PHASE_COMBATBLOCKERS)
             {
+                bool NeedPreventing = false;
                 MTGCardInstance * nextOpponent = target->getNextOpponent();
                 if(!nextOpponent)
                     break;
@@ -152,12 +151,10 @@ int OrderedAIAction::getEfficiency()
                     //small bonus added for the poor 1/1s, if we can save them, we will unless something else took precidence.
                     //note is the target is being blocked or blocking a creature with wither or deathtouch, it is not even considered for preventing as it is a waste.
                     //if its combat blockers, it is being blocked or blocking, and has less prevents the the amount of damage it will be taking, the effeincy is increased slightly and totalled by the danger rank multiplier for final result.
-                    int calculateAfterDamage = 0;
-                    int damages = 0;
                     if((target->defenser || target->blockers.size()) && target->controller() == p)
                     {
-                        damages = nextOpponent->power;
-                        calculateAfterDamage = int(target->toughness - damages);
+                        int damages = nextOpponent->power;
+                        int calculateAfterDamage = target->toughness - damages;
                         if((calculateAfterDamage + target->preventable) > 0)
                         {
                             efficiency = 0;
@@ -588,8 +585,7 @@ int OrderedAIAction::getEfficiency()
         efficiency = 80;
         if(atc->name.length() && atc->sabilities.length() && atc->types.size() && p->game->inPlay->findByName(atc->name))
         {
-            list<int>::iterator it;
-            for (it = atc->types.begin(); it != atc->types.end(); it++)
+            for (list<int>::const_iterator it = atc->types.begin(); it != atc->types.end(); ++it)
             {
                 if(*it == Subtypes::TYPE_LEGENDARY)//ai please stop killing voja!!! :P
                     efficiency = 0;
@@ -978,11 +974,10 @@ vector<MTGAbility*> AIPlayerBaka::canPayMana(MTGCardInstance * target,ManaCost *
         }
     }
     ManaCostHybrid * hybridCost;
-    int hyb;
-    hyb = 0;
     hybridCost = cost->getHybridCost(0);
     if(hybridCost)
     {
+        int hyb = 0;
         while ((hybridCost = cost->getHybridCost(hyb)) != NULL)
         {
             //here we try to find one of the colors in the hybrid cost, it is done 1 at a time unfortunately
@@ -1046,7 +1041,6 @@ vector<MTGAbility*> AIPlayerBaka::canPayMana(MTGCardInstance * target,ManaCost *
         {
 
             ManaCost * withKickerCost= NEW ManaCost(cost->getKicker());
-            int canKick = 0;
             vector<MTGAbility*>kickerPayment;
             bool keepLooking = true;
             while(keepLooking)
@@ -1061,7 +1055,6 @@ vector<MTGAbility*> AIPlayerBaka::canPayMana(MTGCardInstance * target,ManaCost *
                             payments.push_back(kickerPayment[w]);
                         }
                     }
-                    canKick += 1;
                     keepLooking = cost->getKicker()->isMulti;
                 }
                 else
@@ -1297,12 +1290,10 @@ int AIPlayerBaka::createAbilityTargets(MTGAbility * a, MTGCardInstance * c, Rank
 
 TargetChooser * AIPlayerBaka::GetComboTc( GameObserver * observer,TargetChooser * tc)
 {
-    TargetChooser * gathertc = NULL;
     TargetChooserFactory tcf(observer);
-    map<string, string>::iterator it = comboHint->cardTargets.begin();
-    for(map<string, string>::iterator it = comboHint->cardTargets.begin();it != comboHint->cardTargets.end();it++)
+    for(map<string, string>::iterator it = comboHint->cardTargets.begin();it != comboHint->cardTargets.end();++it)
     {
-        gathertc = tcf.createTargetChooser(it->first.c_str(),tc->source);
+        TargetChooser *gathertc = tcf.createTargetChooser(it->first.c_str(),tc->source);
         gathertc->setAllZones();
         if(gathertc->canTarget(tc->source))
         {
@@ -1402,7 +1393,6 @@ int AIPlayerBaka::selectAbility()
             MTGCardInstance * card = game->inPlay->cards[j];
             if(a->getCost() && !a->isReactingToClick(card, totalPotentialMana))//for performance reason only look for specific mana if the payment couldnt be made with potential.
             {
-                abilityPayment = vector<MTGAbility*>();
                 abilityPayment = canPayMana(card,a->getCost());
             }
             if (a->isReactingToClick(card, totalPotentialMana) || abilityPayment.size())
@@ -1410,10 +1400,9 @@ int AIPlayerBaka::selectAbility()
                 if(a->getCost() && a->getCost()->hasX() && totalPotentialMana->getConvertedCost() < a->getCost()->getConvertedCost()+1)
                     continue;
                 //don't even bother to play an ability with {x} if you can't even afford x=1.
-                ManaCost * fullPayment = NULL;
                 if (abilityPayment.size())
                 {
-                    fullPayment = NEW ManaCost();
+                    ManaCost *fullPayment = NEW ManaCost();
                     for(int ch = 0; ch < int(abilityPayment.size());ch++)
                     {
                         AManaProducer * ampp = dynamic_cast<AManaProducer*> (abilityPayment[ch]);
@@ -1525,7 +1514,7 @@ int AIPlayerBaka::chooseTarget(TargetChooser * _tc, Player * forceTarget,MTGCard
     }
     //Make sure we own the decision to choose the targets
     assert(tc->Owner == observer->currentlyActing());
-    if (tc && tc->Owner != observer->currentlyActing())
+    if (tc->Owner != observer->currentlyActing())
     {
         observer->currentActionPlayer = tc->Owner;
 		//this is a hack, but if we hit this condition we are locked in a infinate loop
@@ -1905,12 +1894,11 @@ MTGCardInstance * AIPlayerBaka::activateCombo()
 {
     if(!comboHint)
         return NULL;
-    TargetChooser * hintTc = NULL;
     TargetChooserFactory tfc(observer);
     ManaCost * totalCost = ManaCost::parseManaCost(comboHint->manaNeeded);
     for(unsigned int k = 0;k < comboHint->casting.size(); k++)
     {
-        hintTc = tfc.createTargetChooser(comboHint->casting[k],nextCardToPlay);
+        TargetChooser *hintTc = tfc.createTargetChooser(comboHint->casting[k],nextCardToPlay);
         int combohand = game->hand->cards.size();
         for(int j = 0; j < combohand;j++)
         {

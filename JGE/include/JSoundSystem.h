@@ -25,8 +25,7 @@
 #elif defined USE_PHONON
     #include <phonon/AudioOutput>
     #include <phonon/MediaObject>
-#else
-#ifdef WIN32
+#elif defined WIN32
     #include <windows.h>
 #define WITH_FMOD
 #elif defined (PSP)
@@ -43,9 +42,9 @@
     #include "JAudio.h"
     #include "JMP3.h"
 #endif
+
 #ifdef WITH_FMOD
     #include "../Dependencies/include/fmod.h"
-#endif
 #endif
 
 //------------------------------------------------------------------------------------------------

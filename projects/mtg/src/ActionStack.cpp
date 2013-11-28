@@ -161,7 +161,7 @@ void StackAbility::Render()
     if (target)
     {
         quad = target->getIcon();
-        if (target->type_as_damageable == DAMAGEABLE_MTGCARDINSTANCE)
+        if (target->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE)
         {
             alt2 = ((MTGCardInstance *) target)->name;
         }
@@ -400,7 +400,7 @@ void Spell::Render()
     if (target)
     {
         quad = target->getIcon();
-        if (target->type_as_damageable == DAMAGEABLE_MTGCARDINSTANCE)
+        if (target->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE)
         {
             alt2 = ((MTGCardInstance *) target)->name;
         }

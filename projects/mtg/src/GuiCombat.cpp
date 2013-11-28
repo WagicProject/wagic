@@ -16,21 +16,21 @@ const float kZoom_level1 = 1.4f;
 const float kZoom_level2 = 2.2f;
 const float kZoom_level3 = 2.7f;
 
-struct True: public Exp
+struct GuiCombatTrue: public Exp
 {
     static inline bool test(DamagerDamaged*, DamagerDamaged*)
     {
         return true;
     }
 };
-struct Left: public Exp
+struct GuiCombatLeft: public Exp
 {
     static inline bool test(DamagerDamaged* ref, DamagerDamaged* test)
     {
         return ref->y == test->y && ref->x > test->x && test->show;
     }
 };
-struct Right: public Exp
+struct GuiCombatRight: public Exp
 {
     static inline bool test(DamagerDamaged* ref, DamagerDamaged* test)
     {
@@ -217,7 +217,7 @@ void GuiCombat::shiftLeft()
         case ATK:
         {
             DamagerDamaged* old = active;
-            active = closest<Left> (attackers, NULL, static_cast<AttackerDamaged*> (active));
+            active = closest<GuiCombatLeft> (attackers, NULL, static_cast<AttackerDamaged*> (active));
             activeAtk = static_cast<AttackerDamaged*> (active);
             if (old != active)
             {
@@ -231,7 +231,7 @@ void GuiCombat::shiftLeft()
         case BLK:
         {
             DamagerDamaged* old = active;
-            active = closest<Left> (activeAtk->blockers, NULL, static_cast<DefenserDamaged*> (active));
+            active = closest<GuiCombatLeft> (activeAtk->blockers, NULL, static_cast<DefenserDamaged*> (active));
             if (old != active)
             {
                 if (old)
@@ -255,7 +255,7 @@ void GuiCombat::shiftRight( DamagerDamaged* oldActive )
         case BLK:
         {
             DamagerDamaged* old = active;
-            active = closest<Right> (activeAtk->blockers, NULL, static_cast<DefenserDamaged*> (active));
+            active = closest<GuiCombatRight> (activeAtk->blockers, NULL, static_cast<DefenserDamaged*> (active));
             if (old != active)
             {
                 if (old)
@@ -268,7 +268,7 @@ void GuiCombat::shiftRight( DamagerDamaged* oldActive )
         case ATK:
         {
             DamagerDamaged* old = active;
-            active = closest<Right> (attackers, NULL, static_cast<AttackerDamaged*> (active));
+            active = closest<GuiCombatRight> (attackers, NULL, static_cast<AttackerDamaged*> (active));
             if (active == oldActive)
             {
                 active = activeAtk = NULL;
@@ -321,7 +321,7 @@ bool GuiCombat::CheckUserInput(JButton key)
         // position selected card
         if (BLK == cursor_pos)
         {
-            DamagerDamaged* selectedCard = closest<True> (activeAtk->blockers, NULL, static_cast<float> (x), static_cast<float> (y));
+            DamagerDamaged* selectedCard = closest<GuiCombatTrue> (activeAtk->blockers, NULL, static_cast<float> (x), static_cast<float> (y));
             // find the index into the vector where the current selected card is.
             int c1 = 0, c2 = 0;
             int i = 0;
@@ -526,7 +526,7 @@ int GuiCombat::resolve() // Returns the number of damage objects dealt this turn
         }
 
         if (dmg > 0 && ((!attacker->isBlocked()) || attacker->has(Constants::TRAMPLE)))
-            stack->Add(NEW Damage(observer, (*it)->card, (Damageable*)attacker->isAttacking?(Damageable*)attacker->isAttacking:observer->opponent(), dmg, DAMAGE_COMBAT));
+            stack->Add(NEW Damage(observer, (*it)->card, (Damageable*)attacker->isAttacking?(Damageable*)attacker->isAttacking:observer->opponent(), dmg, Damage::DAMAGE_COMBAT));
 
         for (vector<Damage>::iterator d = (*it)->damages.begin(); d != (*it)->damages.end(); ++d)
             stack->Add(NEW Damage(*d));

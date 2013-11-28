@@ -1,0 +1,106 @@
+[meta]
+author=Wagic Team
+name=From the Vault: Twenty
+block=Vault
+year=2013
+[/meta]
+[card]
+primitive=Akroma's Vengeance
+id=373328
+rarity=M
+[/card]
+[card]
+primitive=Chainer's Edict
+id=373317
+rarity=M
+[/card]
+[card]
+primitive=Chameleon Colossus
+id=373321
+rarity=M
+[/card]
+[card]
+primitive=Char
+id=373332
+rarity=M
+[/card]
+[card]
+primitive=Cruel Ultimatum
+id=373318
+rarity=M
+[/card]
+[card]
+primitive=Dark Ritual
+id=373329
+rarity=M
+[/card]
+[card]
+primitive=Fact or Fiction
+id=373325
+rarity=M
+[/card]
+[card]
+primitive=Fyndhorn Elves
+id=373320
+rarity=M
+[/card]
+[card]
+primitive=Gilded Lotus
+id=373335
+rarity=M
+[/card]
+[card]
+primitive=Green Sun's Zenith
+id=373333
+rarity=M
+[/card]
+[card]
+primitive=Hymn to Tourach
+id=373324
+rarity=M
+[/card]
+[card]
+primitive=Impulse
+id=373330
+rarity=M
+[/card]
+[card]
+primitive=Ink-Eyes, Servant of Oni
+id=373327
+rarity=M
+[/card]
+[card]
+primitive=Jace, the Mind Sculptor
+id=373316
+rarity=M
+[/card]
+[card]
+primitive=Kessig Wolf Run
+id=373323
+rarity=M
+[/card]
+[card]
+primitive=Swords to Plowshares
+id=373334
+rarity=M
+[/card]
+[card]
+primitive=Tangle Wire
+id=373322
+rarity=M
+[/card]
+[card]
+primitive=Thran Dynamo
+id=373331
+rarity=M
+[/card]
+[card]
+primitive=Venser, Shaper Savant
+id=373326
+rarity=M
+[/card]
+[card]
+primitive=Wall of Blossoms
+id=373319
+rarity=M
+[/card]

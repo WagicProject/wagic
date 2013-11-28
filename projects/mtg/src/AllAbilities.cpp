@@ -2351,7 +2351,7 @@ int AALifer::resolve()
         return 0;
 
     WParsedInt life(life_s, NULL, source);
-    if (_target->type_as_damageable == DAMAGEABLE_MTGCARDINSTANCE)
+    if (_target->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE)
     {
         _target = ((MTGCardInstance *) _target)->controller();
     }
@@ -4380,7 +4380,7 @@ int AAExchangeLife::resolve()
         int oldlife = player->getLife();
         int targetOldLife = _target->getLife();
         int modifier = oldlife > targetOldLife? oldlife - targetOldLife:targetOldLife - oldlife;
-        if (_target->type_as_damageable == DAMAGEABLE_MTGCARDINSTANCE)
+        if (_target->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE)
         {
             int increaser = 0;
             MTGCardInstance * card = ((MTGCardInstance*)_target);
@@ -4597,15 +4597,15 @@ int APreventDamageTypes::addToGame()
         fromTc->targetter = NULL;
     if (type != 1 && type != 2)
     {//not adding this creates a memory leak.
-        re = NEW REDamagePrevention(this, fromTc, toTc, -1, false, DAMAGE_COMBAT);
+        re = NEW REDamagePrevention(this, fromTc, toTc, -1, false, Damage::DAMAGE_COMBAT);
     }
     else if (type == 1)
     {
-        re = NEW REDamagePrevention(this, fromTc, toTc, -1, false, DAMAGE_ALL_TYPES);
+        re = NEW REDamagePrevention(this, fromTc, toTc, -1, false, Damage::DAMAGE_ALL_TYPES);
     }
     else if (type == 2)
     {
-        re = NEW REDamagePrevention(this, fromTc, toTc, -1, false, DAMAGE_OTHER);
+        re = NEW REDamagePrevention(this, fromTc, toTc, -1, false, Damage::DAMAGE_OTHER);
     }
     game->replacementEffects->add(re);
     return MTGAbility::addToGame();
@@ -5289,6 +5289,115 @@ int AAConnect::resolve()
 AAConnect * AAConnect::clone() const
 {
     return NEW AAConnect(*this);
+}
+
+AEquip::AEquip(GameObserver* observer, int _id, MTGCardInstance * _source, ManaCost * _cost, int restrictions) :
+    TargetAbility(observer, _id, _source, NULL, _cost, restrictions)
+{
+    aType = MTGAbility::STANDARD_EQUIP;
+    isAttach = restrictions != ActivatedAbility::AS_SORCERY;
+}
+
+int AEquip::unequip()
+{
+    if (source->target)
+    {
+        source->target->equipment -= 1;
+        source->parentCards.clear();
+        for (unsigned int w = 0; w < source->target->childrenCards.size(); w++)
+        {
+            MTGCardInstance * child = source->target->childrenCards[w];
+            if (child == source)
+                source->target->childrenCards.erase(source->target->childrenCards.begin() + w);
+        }
+    }
+    source->target = NULL;
+    for (size_t i = 0; i < currentAbilities.size(); ++i)
+    {
+        MTGAbility * a = currentAbilities[i];
+        if (dynamic_cast<AEquip *> (a) || dynamic_cast<ATeach *> (a) || dynamic_cast<AAConnect *> (a)
+            || (a->aType == MTGAbility::STANDARD_TOKENCREATOR && a->oneShot))
+        {
+            SAFE_DELETE(a);
+            continue;
+        }
+        game->removeObserver(currentAbilities[i]);
+    }
+    currentAbilities.clear();
+    return 1;
+}
+
+int AEquip::equip(MTGCardInstance * equipped)
+{
+    source->target = equipped;
+    source->target->equipment += 1;
+    source->parentCards.push_back(equipped);
+    source->target->childrenCards.push_back((MTGCardInstance*)source);
+    AbilityFactory af(game);
+    af.getAbilities(&currentAbilities, NULL, source);
+    for (size_t i = 0; i < currentAbilities.size(); ++i)
+    {
+        MTGAbility * a = currentAbilities[i];
+        if (dynamic_cast<AEquip *> (a)) continue;
+        if (dynamic_cast<ATeach *> (a)) continue;
+        if (dynamic_cast<AAConnect *> (a)) continue;
+        if (dynamic_cast<AANewTarget *> (af.getCoreAbility(a))) continue;
+        if (a->aType == MTGAbility::STANDARD_TOKENCREATOR && a->oneShot)
+        {
+            a->forceDestroy = 1;
+            continue;
+        }
+        if (dynamic_cast<AACopier *> (af.getCoreAbility(a)))
+        {
+            a->forceDestroy = 1;
+            continue;
+        }
+        //we generally dont want to pass oneShot tokencreators to the cards
+        //we equip...
+        a->addToGame();
+    }
+    return 1;
+}
+
+int AEquip::resolve()
+{
+    MTGCardInstance * mTarget = tc->getNextCardTarget();
+    if (!mTarget) return 0;
+    if (mTarget == source) return 0;
+    unequip();
+    equip(mTarget);
+    return 1;
+}
+
+const char * AEquip::getMenuText()
+{
+    if (isAttach)
+        return "Attach";
+    else
+        return "Equip";
+}
+
+int AEquip::testDestroy()
+{
+    if (source->target && !game->isInPlay(source->target))
+        unequip();
+    if (!game->connectRule)
+    {
+        if (source->target && TargetAbility::tc && !TargetAbility::tc->canTarget((Targetable *)source->target,true))
+            unequip();
+    }
+    return TargetAbility::testDestroy();
+}
+
+int AEquip::destroy()
+{
+    unequip();
+    return TargetAbility::destroy();
+}
+
+AEquip * AEquip::clone() const
+{
+    return NEW AEquip(*this);
 }
 
 // casting a card for free, or casting a copy of a card.

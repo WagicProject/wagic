@@ -44,6 +44,17 @@ typedef WPARAM LocalKeySym;
 #include <X11/keysym.h>
 typedef KeySym LocalKeySym;
 #define LOCAL_KEY_NONE XK_VoidSymbol
+#undef Status
+#undef Bool
+#undef None
+#undef CursorShape
+#undef KeyPress
+#undef KeyRelease
+#undef FocusIn
+#undef FocusOut
+#undef FontChange
+#undef Unsorted
+#undef GrayScale
 
 #elif defined(ANDROID) // This is temporary until we understand how to send real key events from Java
 typedef long unsigned int LocalKeySym;

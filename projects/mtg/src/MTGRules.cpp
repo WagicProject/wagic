@@ -2700,7 +2700,7 @@ int MTGDeathtouchRule::receiveEvent(WEvent * event)
         if (!card)
             return 0;
 
-        if (d->target->type_as_damageable != DAMAGEABLE_MTGCARDINSTANCE)
+        if (d->target->type_as_damageable != Damageable::DAMAGEABLE_MTGCARDINSTANCE)
             return 0;
         MTGCardInstance * _target = (MTGCardInstance *) (d->target);
 
