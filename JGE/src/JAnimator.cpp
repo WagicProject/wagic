@@ -67,7 +67,7 @@ bool JAnimator::Load(const char* scriptFile)
 		element = script->ToElement();
 		printf("---- Loading %s:%s\n", element->Value(), element->Attribute("name"));
 
-        string type[] =
+        const string type[] =
 		{
 			"ANIMATION_TYPE_LOOPING",
 			"ANIMATION_TYPE_ONCE_AND_STAY",

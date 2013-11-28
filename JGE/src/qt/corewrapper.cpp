@@ -585,7 +585,7 @@ void WagicCore::displayStateChanged(const QDBusMessage &message)
 {
   QString state = message.arguments().at(0).toString();
   if (!state.isEmpty()) {
-    if (state == MCE_DISPLAY_ON_string && isActiveWindow()) {
+    if (state == MCE_DISPLAY_ON_STRING && isActiveWindow()) {
        setActive(true);
     }
     else if (state == MCE_DISPLAY_OFF_STRING) {
