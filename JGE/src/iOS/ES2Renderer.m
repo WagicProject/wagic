@@ -7,6 +7,7 @@
 #include "JFileSystem.h"
 #include "JRenderer.h"
 #include "JGameLauncher.h"
+#include "UIScreen+Util.h"
 
 #define ACTUAL_SCREEN_WIDTH (SCREEN_WIDTH)
 #define ACTUAL_SCREEN_HEIGHT (SCREEN_HEIGHT)
@@ -61,7 +62,7 @@ bool checkFramebufferStatus();
     // for retina devices.  because of the 568 px, the ratio between height-width skews the
     // frame a bit
 
-    if ( backingHeight == 568 || backingWidth == 568) {
+    if ( [UIScreen isRetinaDisplay]) {
 		viewPort.left = 0;
 		viewPort.top = -((backingWidth/ACTUAL_RATIO)-backingHeight)/2  + 22; // account for status bar
 		viewPort.right = backingWidth;

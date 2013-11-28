@@ -166,11 +166,12 @@ void DestroyGame(void)
     [menuKeyRecognizer requireGestureRecognizerToFail: selectKeyRecognizer];
     [self addGestureRecognizer:menuKeyRecognizer];
     
-    /*
+    // initialize the scaling factor
+    lastScale = 1.f;
     UIPinchGestureRecognizer *pinchZoomRecognizer = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinchZoom:)];
     [self addGestureRecognizer:pinchZoomRecognizer];
     [pinchZoomRecognizer release];
-    */
+
 
     /*
      Create a single tap recognizer to select the nearest object.
@@ -391,8 +392,6 @@ void DestroyGame(void)
 }
 
 
-
-
 - (BOOL) gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
 {
     return YES;
@@ -425,6 +424,21 @@ void DestroyGame(void)
 }
 
 #pragma mark Gesture Recognizer callbacks
+- (void)handlePinchZoom: (UIPinchGestureRecognizer *) pinchGesture {
+    [[[pinchGesture view] layer] removeAllAnimations];
+    CGFloat currentScaleFactor = [pinchGesture scale];
+
+    if (pinchGesture.state == UIGestureRecognizerStateEnded) {
+        if (lastScale < 1.3f) {
+            lastScale *= currentScaleFactor;
+        }
+        else {
+            lastScale = 1;
+            [self displayGameMenu];
+        }
+        pinchGesture.scale = 1.f;
+    }
+}
 
 - (void)handlePanMotion: (UIPanGestureRecognizer *) panGesture
 {

@@ -79,7 +79,7 @@ GameStateShop::GameStateShop(GameApp* parent) :
     kCreditsString = _(kCreditsString);
     
     cycleCardsButton = NEW InteractiveButton(NULL, kCycleCardsButtonId, Fonts::MAIN_FONT, "New Cards", SCREEN_WIDTH_F - 80, SCREEN_HEIGHT_F - 20, JGE_BTN_PRI);
-    
+
     showCardListButton = NEW InteractiveButton(NULL, kShowCardListButtonId, Fonts::MAIN_FONT, "Show List", SCREEN_WIDTH_F - 150, SCREEN_HEIGHT_F - 20, JGE_BTN_SEC);
     disablePurchase = false;
     clearInput = false;
@@ -768,17 +768,21 @@ void GameStateShop::Render()
     r->FillRect(0, SCREEN_HEIGHT - 17, SCREEN_WIDTH, 17, ARGB(128,0,0,0));
     std::ostringstream stream;
     stream << kCreditsString << playerdata->credits;
-    mFont->SetColor(ARGB(255,255,255,255));
-    mFont->DrawString(stream.str(), 5, SCREEN_HEIGHT - 14);
 
 #ifndef TOUCH_ENABLED
     float len = 4 + mFont->GetStringWidth(kOtherCardsString.c_str());
 	r->RenderQuad(pspIcons[6].get(), SCREEN_WIDTH - len - 0.5 - 10, SCREEN_HEIGHT - 8, 0, kPspIconScaleFactor, kPspIconScaleFactor);
     mFont->DrawString(kOtherCardsString, SCREEN_WIDTH - len, SCREEN_HEIGHT - 14);
 #else
+#ifdef IOS
+    mFont->SetScale(1.2f); // for iOS devices.
+#endif
+
     enableButtons();
 #endif
-    
+    mFont->SetColor(ARGB(255,255,255,255));
+    mFont->DrawString(stream.str(), 5, SCREEN_HEIGHT - 14);
+
     mFont->SetColor(ARGB(255,255,255,0));
     mFont->DrawString(descPurchase(bigSync.getPos()).c_str(), SCREEN_WIDTH / 2, SCREEN_HEIGHT - 14, JGETEXT_CENTER);
     mFont->SetColor(ARGB(255,255,255,255));

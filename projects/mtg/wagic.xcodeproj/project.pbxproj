@@ -67,7 +67,6 @@
 		12059DA814980B7300DAC43B /* AllAbilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA376F41291C60500B9016A /* AllAbilities.cpp */; };
 		12059DA914980B7300DAC43B /* CardDescriptor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA376F51291C60500B9016A /* CardDescriptor.cpp */; };
 		12059DAA14980B7300DAC43B /* CardDisplay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA376F61291C60500B9016A /* CardDisplay.cpp */; };
-		12059DAB14980B7300DAC43B /* CardEffect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA376F71291C60500B9016A /* CardEffect.cpp */; };
 		12059DAC14980B7300DAC43B /* CardGui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA376F81291C60500B9016A /* CardGui.cpp */; };
 		12059DAD14980B7300DAC43B /* CardPrimitive.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA376F91291C60500B9016A /* CardPrimitive.cpp */; };
 		12059DAE14980B7300DAC43B /* CardSelector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA376FA1291C60500B9016A /* CardSelector.cpp */; };
@@ -217,7 +216,6 @@
 		12059E5D14980B7300DAC43B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 128ED50B148BCBBC00C58E83 /* MapKit.framework */; };
 		12059E5E14980B7300DAC43B /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 128ED518148BF0E000C58E83 /* MediaPlayer.framework */; };
 		1216D633148F7411000F2295 /* libc++abi.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1216D632148F7411000F2295 /* libc++abi.dylib */; settings = {ATTRIBUTES = (Weak, ); }; };
-		1216D634148F747D000F2295 /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 128ED379148BAE7B00C58E83 /* libGoogleAdMobAds.a */; settings = {ATTRIBUTES = (Weak, ); }; };
 		12211E7914931CBB00641703 /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 12211E2814931CBB00641703 /* ASIAuthenticationDialog.m */; };
 		12211E7A14931CBB00641703 /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 12211E2B14931CBB00641703 /* ASIDataCompressor.m */; };
 		12211E7B14931CBB00641703 /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 12211E2D14931CBB00641703 /* ASIDataDecompressor.m */; };
@@ -285,6 +283,7 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		28FD15000DC6FC520079059D /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FD14FF0DC6FC520079059D /* OpenGLES.framework */; };
 		28FD15080DC6FC5B0079059D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FD15070DC6FC5B0079059D /* QuartzCore.framework */; };
+		75877A32184714BF0076B4A2 /* UIScreen+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 75877A31184714BF0076B4A2 /* UIScreen+Util.m */; };
 		75D209D3181D54FD009916AC /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75D209D1181D54FD009916AC /* Default-568h@2x.png */; };
 		75D209D4181D54FD009916AC /* wagic-80x80.png in Resources */ = {isa = PBXBuildFile; fileRef = 75D209D2181D54FD009916AC /* wagic-80x80.png */; };
 		CE97CD1E1295AB4300FDFD3B /* SimplePopup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE97CD1D1295AB4300FDFD3B /* SimplePopup.cpp */; };
@@ -307,7 +306,6 @@
 		CEA3775E1291C60500B9016A /* AllAbilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA376F41291C60500B9016A /* AllAbilities.cpp */; };
 		CEA3775F1291C60500B9016A /* CardDescriptor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA376F51291C60500B9016A /* CardDescriptor.cpp */; };
 		CEA377601291C60500B9016A /* CardDisplay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA376F61291C60500B9016A /* CardDisplay.cpp */; };
-		CEA377611291C60500B9016A /* CardEffect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA376F71291C60500B9016A /* CardEffect.cpp */; };
 		CEA377621291C60500B9016A /* CardGui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA376F81291C60500B9016A /* CardGui.cpp */; };
 		CEA377631291C60500B9016A /* CardPrimitive.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA376F91291C60500B9016A /* CardPrimitive.cpp */; };
 		CEA377641291C60500B9016A /* CardSelector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA376FA1291C60500B9016A /* CardSelector.cpp */; };
@@ -578,6 +576,8 @@
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		28FD14FF0DC6FC520079059D /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		28FD15070DC6FC5B0079059D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		75877A30184714BF0076B4A2 /* UIScreen+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIScreen+Util.h"; path = "UI/UIScreen+Util.h"; sourceTree = "<group>"; };
+		75877A31184714BF0076B4A2 /* UIScreen+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIScreen+Util.m"; path = "UI/UIScreen+Util.m"; sourceTree = "<group>"; };
 		75D209D1181D54FD009916AC /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = SOURCE_ROOT; };
 		75D209D2181D54FD009916AC /* wagic-80x80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wagic-80x80.png"; sourceTree = SOURCE_ROOT; };
 		8D1107310486CEB800E47090 /* wagic-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "wagic-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
@@ -609,7 +609,6 @@
 		CEA3768C1291C60500B9016A /* AllAbilities.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = AllAbilities.h; sourceTree = "<group>"; };
 		CEA3768D1291C60500B9016A /* CardDescriptor.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = CardDescriptor.h; sourceTree = "<group>"; };
 		CEA3768E1291C60500B9016A /* CardDisplay.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = CardDisplay.h; sourceTree = "<group>"; };
-		CEA3768F1291C60500B9016A /* CardEffect.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = CardEffect.h; sourceTree = "<group>"; };
 		CEA376901291C60500B9016A /* CardGui.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = CardGui.h; sourceTree = "<group>"; };
 		CEA376911291C60500B9016A /* CardPrimitive.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = CardPrimitive.h; sourceTree = "<group>"; };
 		CEA376921291C60500B9016A /* CardSelector.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = CardSelector.h; sourceTree = "<group>"; };
@@ -711,7 +710,6 @@
 		CEA376F41291C60500B9016A /* AllAbilities.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; path = AllAbilities.cpp; sourceTree = "<group>"; };
 		CEA376F51291C60500B9016A /* CardDescriptor.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; path = CardDescriptor.cpp; sourceTree = "<group>"; };
 		CEA376F61291C60500B9016A /* CardDisplay.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; path = CardDisplay.cpp; sourceTree = "<group>"; };
-		CEA376F71291C60500B9016A /* CardEffect.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; path = CardEffect.cpp; sourceTree = "<group>"; };
 		CEA376F81291C60500B9016A /* CardGui.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; path = CardGui.cpp; sourceTree = "<group>"; };
 		CEA376F91291C60500B9016A /* CardPrimitive.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; path = CardPrimitive.cpp; sourceTree = "<group>"; };
 		CEA376FA1291C60500B9016A /* CardSelector.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; path = CardSelector.cpp; sourceTree = "<group>"; };
@@ -922,7 +920,6 @@
 				12D095E114417D0500F69056 /* libstdc++.dylib in Frameworks */,
 				12211EBB14934A2C00641703 /* CFNetwork.framework in Frameworks */,
 				12211EB914934A1900641703 /* MobileCoreServices.framework in Frameworks */,
-				1216D634148F747D000F2295 /* libGoogleAdMobAds.a in Frameworks */,
 				1216D633148F7411000F2295 /* libc++abi.dylib in Frameworks */,
 				128ED510148BCC1900C58E83 /* libsqlite3.dylib in Frameworks */,
 				129654D1148A52740031100B /* iAd.framework in Frameworks */,
@@ -1017,6 +1014,8 @@
 			children = (
 				CE9A477512B514BA00C9F38A /* EAGLView.h */,
 				CE9A477612B514BA00C9F38A /* EAGLView.m */,
+				75877A30184714BF0076B4A2 /* UIScreen+Util.h */,
+				75877A31184714BF0076B4A2 /* UIScreen+Util.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -1306,7 +1305,6 @@
 				CEA3768C1291C60500B9016A /* AllAbilities.h */,
 				CEA3768D1291C60500B9016A /* CardDescriptor.h */,
 				CEA3768E1291C60500B9016A /* CardDisplay.h */,
-				CEA3768F1291C60500B9016A /* CardEffect.h */,
 				CEA376901291C60500B9016A /* CardGui.h */,
 				CEA376911291C60500B9016A /* CardPrimitive.h */,
 				CEA376921291C60500B9016A /* CardSelector.h */,
@@ -1427,7 +1425,6 @@
 				CEA376F41291C60500B9016A /* AllAbilities.cpp */,
 				CEA376F51291C60500B9016A /* CardDescriptor.cpp */,
 				CEA376F61291C60500B9016A /* CardDisplay.cpp */,
-				CEA376F71291C60500B9016A /* CardEffect.cpp */,
 				CEA376F81291C60500B9016A /* CardGui.cpp */,
 				CEA376F91291C60500B9016A /* CardPrimitive.cpp */,
 				CEA376FA1291C60500B9016A /* CardSelector.cpp */,
@@ -1827,7 +1824,6 @@
 				12059DA814980B7300DAC43B /* AllAbilities.cpp in Sources */,
 				12059DA914980B7300DAC43B /* CardDescriptor.cpp in Sources */,
 				12059DAA14980B7300DAC43B /* CardDisplay.cpp in Sources */,
-				12059DAB14980B7300DAC43B /* CardEffect.cpp in Sources */,
 				12059DAC14980B7300DAC43B /* CardGui.cpp in Sources */,
 				12059DAD14980B7300DAC43B /* CardPrimitive.cpp in Sources */,
 				12059DAE14980B7300DAC43B /* CardSelector.cpp in Sources */,
@@ -2009,7 +2005,6 @@
 				CEA3775E1291C60500B9016A /* AllAbilities.cpp in Sources */,
 				CEA3775F1291C60500B9016A /* CardDescriptor.cpp in Sources */,
 				CEA377601291C60500B9016A /* CardDisplay.cpp in Sources */,
-				CEA377611291C60500B9016A /* CardEffect.cpp in Sources */,
 				CEA377621291C60500B9016A /* CardGui.cpp in Sources */,
 				CEA377631291C60500B9016A /* CardPrimitive.cpp in Sources */,
 				CEA377641291C60500B9016A /* CardSelector.cpp in Sources */,
@@ -2099,6 +2094,7 @@
 				CEA377BE1291C60500B9016A /* WFilter.cpp in Sources */,
 				CEA377BF1291C60500B9016A /* WFont.cpp in Sources */,
 				CEA377C01291C60500B9016A /* WGui.cpp in Sources */,
+				75877A32184714BF0076B4A2 /* UIScreen+Util.m in Sources */,
 				CEA377C11291C60500B9016A /* WResourceManager.cpp in Sources */,
 				CE97CD1E1295AB4300FDFD3B /* SimplePopup.cpp in Sources */,
 				CE9A478512B514BA00C9F38A /* EAGLView.m in Sources */,

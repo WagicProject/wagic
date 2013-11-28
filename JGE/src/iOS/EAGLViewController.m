@@ -47,7 +47,6 @@
 
 - (void)viewDidLoad {
 	NSLog(@"EAGL ViewController - view Did Load");
-
 	[super viewDidLoad];
 }
 
@@ -55,7 +54,6 @@
 	NSLog(@"EAGL ViewController - view Will Appear");
     [self.view resumeGame];
 }
-
 
 - (void)viewWillDisappear:(BOOL)animated
 {
@@ -75,6 +73,10 @@
 - (void)endGame
 {
     [self.view endGame];
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
