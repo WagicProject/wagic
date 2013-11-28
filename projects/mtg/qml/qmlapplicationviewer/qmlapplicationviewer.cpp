@@ -52,7 +52,7 @@ class QmlApplicationViewerPrivate
 {
     QString mainQmlFile;
     friend class QmlApplicationViewer;
-    static QString adjustPath(const Qstring& path);
+    static QString adjustPath(const Qstring &path);
 };
 
 QString QmlApplicationViewerPrivate::adjustPath(const Qstring& path)
