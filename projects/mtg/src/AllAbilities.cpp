@@ -5323,6 +5323,7 @@ int AEquip::unequip()
     {
         MTGAbility * a = currentAbilities[i];
         if (dynamic_cast<AEquip *> (a) || dynamic_cast<ATeach *> (a) || dynamic_cast<AAConnect *> (a)
+			|| dynamic_cast<AANewTarget *> (AbilityFactory::getCoreAbility(a))
             || (a->aType == MTGAbility::STANDARD_TOKENCREATOR && a->oneShot))
         {
             SAFE_DELETE(a);
