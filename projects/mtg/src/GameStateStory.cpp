@@ -65,7 +65,7 @@ void GameStateStory::Update(float dt)
     if (!menu && mEngine->GetButtonClick(JGE_BTN_MENU))
     {
         menu = NEW SimpleMenu(JGE::GetInstance(), WResourceManager::Instance(), 100, this, Fonts::MENU_FONT, SCREEN_WIDTH / 2 - 100, 25);
-        menu->Add(0, "Back to main menu");
+        menu->Add(0, string("Back to main menu"));
         menu->Add(kCancelMenuID, "Cancel");
     }
     if (menu)
