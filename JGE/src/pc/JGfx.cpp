@@ -343,7 +343,7 @@ void JQuad::SetHotSpot(float x, float y)
 
 //////////////////////////////////////////////////////////////////////////
 
-JTexture::JTexture() : mBuffer(NULL), mHeight(0), mWidth(0)
+JTexture::JTexture() : mWidth(0), mHeight(0), mBuffer(NULL)
 {
     mTexId = -1;
 }
