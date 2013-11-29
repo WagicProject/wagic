@@ -30,7 +30,7 @@ public:
     }
     ;
     void save();
-    void save(string filepath, bool useExpandedCardNames, string &deckTitle, string &deckDesc);
+    void save(string filepath, bool useExpandedCardNames, string& deckTitle, string& deckDesc);
 };
 
 #endif

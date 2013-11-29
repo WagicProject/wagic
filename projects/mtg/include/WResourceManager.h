@@ -98,7 +98,7 @@ public:
 
     virtual unsigned int nowTime() = 0;
 
-    virtual JQuadPtr GetQuad(const string &quadName) = 0;
+    virtual JQuadPtr GetQuad(const string& quadName) = 0;
 
     //Our file redirect system.
     virtual string graphicsFile(const string& filename) = 0;
@@ -110,8 +110,8 @@ public:
     virtual bool dirOK(const string& dirname) = 0;
 
     //For backwards compatibility with JWResourceManager. Avoid using these, they're not optimal.
-    virtual int CreateTexture(const string &textureName) = 0;
-    virtual JTexture* GetTexture(const string &textureName) = 0;
+    virtual int CreateTexture(const string& textureName) = 0;
+    virtual JTexture* GetTexture(const string& textureName) = 0;
 
     // Font management functions
     virtual void InitFonts(const std::string& inLang) = 0;

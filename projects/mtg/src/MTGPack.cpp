@@ -293,7 +293,7 @@ void MTGPacks::loadAll()
         sprintf(myFilename, "packs/%s",relative.c_str());
         if (relative[0] == '.')
             continue;
-        if (!strcmp(relative.c_str(), "default_booster.txt"))
+        if (relative == "default_booster.txt")
             continue;
         MTGPack * p = NEW MTGPack(myFilename);
         if (!p->isValid())

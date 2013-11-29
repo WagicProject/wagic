@@ -44,36 +44,36 @@ static inline int getGrade(int v)
 }
 
 //MTGAllCards
-int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primitive)
+int MTGAllCards::processConfLine(string& s, MTGCard *card, CardPrimitive * primitive)
 {
     if ('#' == s[0]) return 1; // a comment shouldn't be treated as an error condition
-    size_t i = s.find_first_of('=');
-    if (i == string::npos || 0 == i)
+    size_t del_pos = s.find_first_of('=');
+    if (del_pos == string::npos || 0 == del_pos)
         return 0;
 
-    char* key = const_cast<char*> (s.c_str()); // I know what I'm doing, let me do it
-    key[i] = 0;
-    char* val = key + i + 1;
-
+    s[del_pos] = '\0';
+    const string key = s.substr(0, del_pos);
+    const string val = s.substr(del_pos + 1);
+    
     switch (key[0])
     {
     case 'a':
-        if (0 == strcmp("auto", key))
+        if (key == "auto")
         {
             if (!primitive) primitive = NEW CardPrimitive();
             primitive->addMagicText(val);
         }
-        else if (0 == strncmp("auto", key, 4))
+        else if (StartsWith(key, "auto"))
         {
             if (!primitive) primitive = NEW CardPrimitive();
-            primitive->addMagicText(val, key + 4);
+            primitive->addMagicText(val, key.substr(4));
         }
-        else if (0 == strcmp("alias", key))
+        else if (key == "alias")
         {
             if (!primitive) primitive = NEW CardPrimitive();
-            primitive->alias = atoi(val);
+            primitive->alias = atoi(val.c_str());
         }
-        else if (0 == strcmp("abilities", key))
+        else if (key == "abilities")
         {
             if (!primitive) primitive = NEW CardPrimitive();
             string value = val;
@@ -152,12 +152,12 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
         }
 
     case 'g': //grade
-        if (s.size() - i - 1 > 2) currentGrade = getGrade(val[2]);
+        if (s.size() - del_pos - 1 > 2) currentGrade = getGrade(val[2]);
         break;
 
     case 'i': //id
         if (!card) card = NEW MTGCard();
-        card->setMTGId(atoi(val));
+        card->setMTGId(atoi(val.c_str()));
         break;
 
     case 'k': //kicker
@@ -222,7 +222,7 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
         break;
 
     case 'p':
-        if ('r' == key[1])
+        if (key[1] == 'r')
         { // primitive
             if (!card) card = NEW MTGCard();
             map<string, CardPrimitive*>::iterator it = primitives.find(val);
@@ -231,18 +231,18 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
         else
         { //power
             if (!primitive) primitive = NEW CardPrimitive();
-            primitive->setPower(atoi(val));
+            primitive->setPower(atoi(val.c_str()));
         }
         break;
 
     case 'r': //retrace/rarity//restrictions
-        if('s' == key[2] && 't' == key[3])//restrictions
+        if(key[2] == 's' && key[3] == 't')//restrictions
         {
             if (!primitive) primitive = NEW CardPrimitive();
             string value = val;
             primitive->setRestrictions(value);
         }
-        else if ('e' == key[1] && 't' == key[2])
+        else if (key[1] == 'e' && key[2] == 't')
         { //retrace
             if (!primitive) primitive = NEW CardPrimitive();
             if (ManaCost * cost = primitive->getManaCost())
@@ -279,7 +279,7 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
             else
             {
                 if (!primitive) primitive = NEW CardPrimitive();
-                vector<string> values = split(val, ' ');
+                vector<string> values = split(val.c_str(), ' ');
                 for (size_t values_i = 0; values_i < values.size(); ++values_i)
                     primitive->setSubtype(values[values_i]);
             }
@@ -288,21 +288,21 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
 
     case 't':
         if (!primitive) primitive = NEW CardPrimitive();
-        if (0 == strcmp("target", key))
+        if (key == "target")
         {
             string value = val;
             std::transform(value.begin(), value.end(), value.begin(), ::tolower);
             primitive->spellTargetType = value;
         }
-        else if (0 == strcmp("text", key))
+        else if (key == "text")
             primitive->setText(val);
-        else if (0 == strcmp("type", key))
+        else if (key == "type")
         {
             vector<string> values = split(val, ' ');
             for (size_t values_i = 0; values_i < values.size(); ++values_i)
                     primitive->setType(values[values_i]);
         }
-        else if (0 == strcmp("toughness", key)) primitive->setToughness(atoi(val));
+        else if (key == "toughness") primitive->setToughness(atoi(val.c_str()));
         break;
 
     default:
@@ -317,7 +317,7 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
     tempPrimitive = primitive;
     tempCard = card;
 
-    return i;
+    return del_pos;
 
 }
 
@@ -381,10 +381,20 @@ void MTGAllCards::loadFolder(const string& infolder, const string& filename )
     }
 }
 
-int MTGAllCards::load(const char * config_file, const char * set_name, int)
+int MTGAllCards::load(const string& config_file)
+{
+    return load(config_file, MTGSets::INTERNAL_SET);
+}
+
+int MTGAllCards::load(const string& config_file, const string& set_name)
+{
+    const int set_id = setlist.Add(set_name);
+    return load(config_file, set_id);
+}
+
+int MTGAllCards::load(const string& config_file, int set_id)
 {
     conf_read_mode = 0;
-    const int set_id = set_name ? setlist.Add(set_name) : MTGSets::INTERNAL_SET;
     MTGSetInfo *si = setlist.getInfo(set_id);
 
     int lineNumber = 0;
@@ -532,14 +542,16 @@ int MTGAllCards::countBySet(int setId)
 }
 
 //TODO more efficient way ?
-int MTGAllCards::countByType(const char * _type)
+int MTGAllCards::countByType(const string& _type)
 {
+    int type_id = findType(_type);
+
     int result = 0;
     map<int, MTGCard *>::iterator it;
     for (it = collection.begin(); it != collection.end(); it++)
     {
         MTGCard * c = it->second;
-        if (c->data->hasType(_type))
+        if (c->data->hasType(type_id))
         {
             result++;
         }
@@ -772,7 +784,7 @@ int MTGDeck::totalPrice()
     return total;
 }
 
-MTGDeck::MTGDeck(const char * config_file, MTGAllCards * _allcards, int meta_only,int difficultyRating)
+MTGDeck::MTGDeck(const string& config_file, MTGAllCards * _allcards, int meta_only, int difficultyRating)
 {
     total_cards = 0;
     database = _allcards;
@@ -879,7 +891,7 @@ MTGCard * MTGDeck::getCardById(int mtgId)
     return database->getCardById(mtgId);
 }
 
-int MTGDeck::addRandomCards(int howmany, int * setIds, int nbSets, int rarity, const char * _subtype, int * colors, int nbcolors)
+int MTGDeck::addRandomCards(int howmany, int * setIds, int nbSets, int rarity, const string& _subtype, int * colors, int nbcolors)
 {
     if (howmany <= 0) return 1;
 
@@ -900,8 +912,8 @@ int MTGDeck::addRandomCards(int howmany, int * setIds, int nbSets, int rarity, c
     int collectionTotal = database->totalCards();
     if (!collectionTotal) return 0;
 
-    char subtype[4096];
-    if (_subtype) sprintf(subtype, "%s", _subtype);
+    string subtype;
+    if (_subtype.size()) subtype = _subtype;
 
     vector<int> subcollection;
     int subtotal = 0;
@@ -911,7 +923,7 @@ int MTGDeck::addRandomCards(int howmany, int * setIds, int nbSets, int rarity, c
         int r = card->getRarity();
         if (r != Constants::RARITY_T && (rarity == -1 || r == rarity) && // remove tokens
             card->setId != MTGSets::INTERNAL_SET && //remove cards that are defined in primitives. Those are workarounds (usually tokens) and should only be used internally
-            (!_subtype || card->data->hasSubtype(subtype)))
+                (!_subtype.size() || card->data->hasSubtype(subtype)))
         {
             int ok = 0;
 
@@ -1265,7 +1277,7 @@ MTGSetInfo* MTGSets::randomSet(int blockId, int atleast)
 
 int blockSize(int blockId);
 
-int MTGSets::Add(const char * name)
+int MTGSets::Add(const string& name)
 {
     int setid = findSet(name);
     if (setid != -1) return setid;
@@ -1344,7 +1356,7 @@ MTGSetInfo::~MTGSetInfo()
     SAFE_DELETE(mPack);
 }
 
-MTGSetInfo::MTGSetInfo(string _id)
+MTGSetInfo::MTGSetInfo(const string& _id)
 {
     string whitespaces(" \t\f\v\n\r");
     id = _id;

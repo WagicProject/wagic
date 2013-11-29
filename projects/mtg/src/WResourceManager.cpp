@@ -264,7 +264,7 @@ int ResourceManagerImpl::AddQuadToManaged(const WManagedQuad& inQuad)
     return id;
 }
 
-int ResourceManagerImpl::CreateQuad(const string &quadName, const string &textureName, float x, float y, float width, float height)
+int ResourceManagerImpl::CreateQuad(const string& quadName, const string& textureName, float x, float y, float width, float height)
 {
     if (!quadName.size() || !textureName.size()) return INVALID_ID;
 
@@ -299,7 +299,7 @@ int ResourceManagerImpl::CreateQuad(const string &quadName, const string &textur
     return id;
 }
 
-JQuadPtr ResourceManagerImpl::GetQuad(const string &quadName)
+JQuadPtr ResourceManagerImpl::GetQuad(const string& quadName)
 {
     JQuadPtr result;
     ManagedQuadMap::const_iterator found = mManagedQuads.find(quadName);
@@ -480,7 +480,7 @@ JTexture * ResourceManagerImpl::RetrieveTexture(const string& filename, int styl
     return NULL;
 }
 
-int ResourceManagerImpl::CreateTexture(const string &textureName)
+int ResourceManagerImpl::CreateTexture(const string& textureName)
 {
     JTexture * jtex = RetrieveTexture(textureName, RETRIEVE_MANAGE);
 
@@ -489,7 +489,7 @@ int ResourceManagerImpl::CreateTexture(const string &textureName)
     return INVALID_ID;
 }
 
-JTexture* ResourceManagerImpl::GetTexture(const string &textureName)
+JTexture* ResourceManagerImpl::GetTexture(const string& textureName)
 {
     JTexture * jtex = RetrieveTexture(textureName, RETRIEVE_RESOURCE);
     return jtex;

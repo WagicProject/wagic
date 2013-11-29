@@ -58,7 +58,7 @@ public:
 	/// @return Status of the attach operation.
 	///
 	//////////////////////////////////////////////////////////////////////////
-	bool AttachZipFile(const string &zipfile, char *password = NULL);
+	bool AttachZipFile(const string& zipfile, char *password = NULL);
 
 	//////////////////////////////////////////////////////////////////////////
 	/// Release the attached ZIP archive.
@@ -83,7 +83,7 @@ public:
 	/// Open file for reading.
 	///
 	//////////////////////////////////////////////////////////////////////////
-	bool OpenFile(const string &filename);
+	bool OpenFile(const string& filename);
 
     //Fills the vector results with a list of children of the given folder
     std::vector<std::string>& scanfolder(const std::string& folderName, std::vector<std::string>& results);

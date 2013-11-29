@@ -20,7 +20,7 @@ void DeckDataWrapper::save()
     }
 }
 
-void DeckDataWrapper::save(string filepath, bool useExpandedCardNames, string &deckTitle, string &deckDesc)
+void DeckDataWrapper::save(string filepath, bool useExpandedCardNames, string& deckTitle, string& deckDesc)
 {
     if (parent)
     {

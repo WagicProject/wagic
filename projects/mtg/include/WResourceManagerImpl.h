@@ -161,8 +161,8 @@ public:
     unsigned int CountCached();
     unsigned int CountManaged();
 
-    int CreateQuad(const string &quadName, const string &textureName, float x, float y, float width, float height);
-    JQuadPtr GetQuad(const string &quadName);
+    int CreateQuad(const string& quadName, const string& textureName, float x, float y, float width, float height);
+    JQuadPtr GetQuad(const string& quadName);
     JQuadPtr GetQuad(int id);
 
     int AddQuadToManaged(const WManagedQuad& inManagedQuad);
@@ -177,8 +177,8 @@ public:
     bool dirOK(const string& dirname);
 
     //For backwards compatibility with JResourceManager. Avoid using these, they're not optimal.
-    int CreateTexture(const string &textureName);
-    JTexture* GetTexture(const string &textureName);
+    int CreateTexture(const string& textureName);
+    JTexture* GetTexture(const string& textureName);
     JTexture* GetTexture(int id);
 
     // Font management functions

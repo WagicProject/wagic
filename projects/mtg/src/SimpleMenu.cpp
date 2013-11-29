@@ -328,7 +328,7 @@ void SimpleMenu::Update(float dt)
     }
 }
 
-void SimpleMenu::Add(int id, const char * text, string desc, bool forceFocus)
+void SimpleMenu::Add(int id, const string& text, const string& desc, bool forceFocus)
 {
     SimpleMenuItem * smi = NEW SimpleMenuItem(this, id, fontId, text, 0, mY + SimpleMenuConst::kVerticalMargin + mCount * SimpleMenuConst::kLineHeight,
                     (mCount == 0), autoTranslate);

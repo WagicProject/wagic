@@ -19,7 +19,7 @@ class MTGPack;
 class MTGSetInfo
 {
 public:
-    MTGSetInfo(string _id);
+    MTGSetInfo(const string& _id);
     ~MTGSetInfo();
     string id; //Short name: 10E, RAV, etc. Automatic from folder.
     string author; //Author of set, for crediting mod makers, etc.
@@ -70,7 +70,7 @@ public:
     MTGSets();
     ~MTGSets();
 
-    int Add(const char * subtype);
+    int Add(const string& subtype);
     int findSet(string value);
     int findBlock(string s);
     int size();
@@ -127,51 +127,53 @@ public:
     MTGCard * getCardByName(string name);
     void loadFolder(const string& folder, const string& filename="" );
 
-    int load(const char * config_file, const char * setName = NULL, int autoload = 1);
-    int countByType(const char * _type);
+    int load(const string& config_file);
+    int load(const string& config_file, const string& setName);
+    int load(const string& config_file, int set_id);
+    int countByType(const string& _type);
     int countByColor(int color);
     int countBySet(int setId);
     int totalCards();
     int randomCardId();
 
-    static int findType(string subtype, bool forceAdd = true) {
+    static int findType(const string& subtype, bool forceAdd = true) {
         boost::mutex::scoped_lock lock(instance->mMutex);
 		int result = instance->subtypesList.find(subtype, forceAdd);
         return result;
-    };
-    static int add(string value, unsigned int parentType) {
+    }
+    static int add(const string& value, unsigned int parentType) {
         boost::mutex::scoped_lock lock(instance->mMutex);
         int result = instance->subtypesList.add(value, parentType);
         return result;
-    };
+    }
     static string findType(unsigned int id) {
         boost::mutex::scoped_lock lock(instance->mMutex);
         return instance->subtypesList.find(id);
-    };
+    }
     static const vector<string>& getValuesById() {
         boost::mutex::scoped_lock lock(instance->mMutex);
         return instance->subtypesList.getValuesById();
-    };
+    }
     static const vector<string>& getCreatureValuesById() {
         boost::mutex::scoped_lock lock(instance->mMutex);
         return instance->subtypesList.getCreatureValuesById();
-    };
+    }
     static bool isSubtypeOfType(unsigned int subtype, unsigned int type) {
         boost::mutex::scoped_lock lock(instance->mMutex);
         return instance->subtypesList.isSubtypeOfType(subtype, type);
-    };
+    }
     static bool isSuperType(unsigned int type) {
         boost::mutex::scoped_lock lock(instance->mMutex);
         return instance->subtypesList.isSuperType(type);
-    };
+    }
     static bool isType(unsigned int type) {
         boost::mutex::scoped_lock lock(instance->mMutex);
         return instance->subtypesList.isType(type);
-    };
+    }
     static bool isSubType(unsigned int type) {
         boost::mutex::scoped_lock lock(instance->mMutex);
         return instance->subtypesList.isSubType(type);
-    };
+    }
 
     static void sortSubtypeList()
     {
@@ -179,7 +181,7 @@ public:
         instance->subtypesList.sortSubTypes();
     }
 
-    static int findSubtypeId(string value){
+    static int findSubtypeId(const string& value){
         return instance->subtypesList.find(value,false);
     }
 
@@ -190,7 +192,7 @@ private:
     boost::mutex mMutex;
     Subtypes subtypesList;
     map<string, MTGCard *> mtgCardByNameCache;
-    int processConfLine(string &s, MTGCard* card, CardPrimitive * primitive);
+    int processConfLine(string& s, MTGCard* card, CardPrimitive * primitive);
     bool addCardToCollection(MTGCard * card, int setId);
     CardPrimitive * addPrimitive(CardPrimitive * primitive, MTGCard * card = NULL);
 };
@@ -218,8 +220,8 @@ public:
     int totalCards();
     int totalPrice();
     MTGDeck(MTGAllCards * _allcards);
-    MTGDeck(const char * config_file, MTGAllCards * _allcards, int meta_only = 0,int difficultySetting = 0);
-    int addRandomCards(int howmany, int * setIds = NULL, int nbSets = 0, int rarity = -1, const char * subtype = NULL,
+    MTGDeck(const string& config_file, MTGAllCards * _allcards, int meta_only = 0,int difficultySetting = 0);
+    int addRandomCards(int howmany, int * setIds = NULL, int nbSets = 0, int rarity = -1, const string& subtype = "",
             int * colors = NULL, int nbcolors = 0);
     int add(int cardid);
     int add(MTGDeck * deck); // adds the contents of "deck" into myself
