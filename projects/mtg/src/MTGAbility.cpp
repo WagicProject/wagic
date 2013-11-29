@@ -4368,6 +4368,7 @@ MTGAbility::MTGAbility(GameObserver* observer, int id, MTGCardInstance * card) :
     aType = MTGAbility::UNKNOWN;
     mCost = NULL;
     forceDestroy = 0;
+    forcedAlive = 0;
     oneShot = 0;
     canBeInterrupted = true;
 }
@@ -4381,6 +4382,7 @@ MTGAbility::MTGAbility(GameObserver* observer, int id, MTGCardInstance * _source
     aType = MTGAbility::UNKNOWN;
     mCost = NULL;
     forceDestroy = 0;
+    forcedAlive = 0;
     oneShot = 0;
     canBeInterrupted = true;
 }
@@ -5451,6 +5453,7 @@ AManaProducer::AManaProducer(GameObserver* observer, int id, MTGCardInstance * c
     aType = MTGAbility::MANA_PRODUCER;
     setCost(_cost);
     output = _output;
+    tap = 0;
     Producing = producing;
     menutext = "";
     DoesntEmpty = doesntEmpty;

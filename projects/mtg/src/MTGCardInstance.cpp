@@ -125,6 +125,7 @@ int MTGCardInstance::init()
 
 void MTGCardInstance::initMTGCI()
 {
+    X = 0;
     sample = "";
     model = NULL;
     isToken = false;
@@ -195,6 +196,8 @@ void MTGCardInstance::initMTGCI()
     lastController = NULL;
     regenerateTokens = 0;
     blocked = false;
+    graveEffects = false;
+    exileEffects = false;
     currentZone = NULL;
     cardsAbilities = vector<MTGAbility *>();
     data = this; //an MTGCardInstance point to itself for data, allows to update it without killing the underlying database item
