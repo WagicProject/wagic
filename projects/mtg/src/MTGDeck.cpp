@@ -47,15 +47,15 @@ static inline int getGrade(int v)
 int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primitive)
 {
     if ('#' == s[0]) return 1; // a comment shouldn't be treated as an error condition
-    size_t i = s.find_first_of('=');
-    if (i == string::npos || 0 == i)
+    size_t del_pos = s.find_first_of('=');
+    if (del_pos == string::npos || 0 == del_pos)
         return 0;
 
-    s[i] = '\0';
-    const string key = s.substr(0, i);
-    const char* val = s.c_str()+i+1;
-
-    switch (s[0])
+    s[del_pos] = '\0';
+    const string key = s.substr(0, del_pos);
+    const string val = s.substr(del_pos + 1);
+    
+    switch (key[0])
     {
     case 'a':
         if (key == "auto")
@@ -63,7 +63,7 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
             if (!primitive) primitive = NEW CardPrimitive();
             primitive->addMagicText(val);
         }
-        else if (key.compare(0, strlen("auto")-1, "auto") == 0)
+        else if (StartsWith(key, "auto"))
         {
             if (!primitive) primitive = NEW CardPrimitive();
             primitive->addMagicText(val, key.substr(4));
@@ -71,7 +71,7 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
         else if (key == "alias")
         {
             if (!primitive) primitive = NEW CardPrimitive();
-            primitive->alias = atoi(val);
+            primitive->alias = atoi(val.c_str());
         }
         else if (key == "abilities")
         {
@@ -152,12 +152,12 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
         }
 
     case 'g': //grade
-        if (s.size() - i - 1 > 2) currentGrade = getGrade(val[2]);
+        if (s.size() - del_pos - 1 > 2) currentGrade = getGrade(val[2]);
         break;
 
     case 'i': //id
         if (!card) card = NEW MTGCard();
-        card->setMTGId(atoi(val));
+        card->setMTGId(atoi(val.c_str()));
         break;
 
     case 'k': //kicker
@@ -222,7 +222,7 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
         break;
 
     case 'p':
-        if ('r' == key[1])
+        if (key[1] == 'r')
         { // primitive
             if (!card) card = NEW MTGCard();
             map<string, CardPrimitive*>::iterator it = primitives.find(val);
@@ -231,18 +231,18 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
         else
         { //power
             if (!primitive) primitive = NEW CardPrimitive();
-            primitive->setPower(atoi(val));
+            primitive->setPower(atoi(val.c_str()));
         }
         break;
 
     case 'r': //retrace/rarity//restrictions
-        if('s' == key[2] && 't' == key[3])//restrictions
+        if(key[2] == 's' && key[3] == 't')//restrictions
         {
             if (!primitive) primitive = NEW CardPrimitive();
             string value = val;
             primitive->setRestrictions(value);
         }
-        else if ('e' == key[1] && 't' == key[2])
+        else if (key[1] == 'e' && key[2] == 't')
         { //retrace
             if (!primitive) primitive = NEW CardPrimitive();
             if (ManaCost * cost = primitive->getManaCost())
@@ -279,7 +279,7 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
             else
             {
                 if (!primitive) primitive = NEW CardPrimitive();
-                vector<string> values = split(val, ' ');
+                vector<string> values = split(val.c_str(), ' ');
                 for (size_t values_i = 0; values_i < values.size(); ++values_i)
                     primitive->setSubtype(values[values_i]);
             }
@@ -302,7 +302,7 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
             for (size_t values_i = 0; values_i < values.size(); ++values_i)
                     primitive->setType(values[values_i]);
         }
-        else if (key == "toughness") primitive->setToughness(atoi(val));
+        else if (key == "toughness") primitive->setToughness(atoi(val.c_str()));
         break;
 
     default:
@@ -317,7 +317,7 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
     tempPrimitive = primitive;
     tempCard = card;
 
-    return i;
+    return del_pos;
 
 }
 
