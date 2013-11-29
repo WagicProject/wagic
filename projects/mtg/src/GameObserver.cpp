@@ -110,12 +110,12 @@ GamePhase GameObserver::getCurrentGamePhase()
     return mCurrentGamePhase;
 }
 
-const char* GameObserver::getCurrentGamePhaseName()
+const string& GameObserver::getCurrentGamePhaseName()
 {
     return phaseRing->phaseName(mCurrentGamePhase);
 }
 
-const char* GameObserver::getNextGamePhaseName()
+const string& GameObserver::getNextGamePhaseName()
 {
     return phaseRing->phaseName((mCurrentGamePhase + 1) % MTG_PHASE_CLEANUP);
 }
@@ -1042,7 +1042,7 @@ void GameObserver::Affinity()
                     }
                     else
                     {
-                        reduce = card->controller()->game->battlefield->countByType(type.c_str());
+                        reduce = card->controller()->game->battlefield->countByType(type);
                     }
                     for(int i = 0; i < reduce;i++)
                     {

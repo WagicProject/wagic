@@ -25,7 +25,7 @@ void StyleManager::killRules()
     styles.clear();
 }
 
-StyleManager::StyleManager()
+StyleManager::StyleManager(): topRule(0), topSize(0), playerSrc(0)
 {
     loadRules();
 }

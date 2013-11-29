@@ -317,7 +317,7 @@ public:
     virtual TargetAbility* clone() const = 0;
     virtual void Render();
     virtual int resolve();
-    virtual const char * getMenuText();
+    virtual const string getMenuText();
     virtual ostream& toString(ostream& out) const;
 };
 
@@ -436,7 +436,7 @@ public:
 
     void Update(float dt);
     virtual GenericTriggeredAbility* clone() const;
-    const char * getMenuText();
+    const string getMenuText();
     ~GenericTriggeredAbility();
 };
 
@@ -525,7 +525,7 @@ public:
     int isReactingToClick(MTGCardInstance *  _card, ManaCost * mana = NULL);
     int resolve();
     int reactToClick(MTGCardInstance* _card);
-    const char * getMenuText();
+    const string getMenuText();
     ~AManaProducer();
     virtual AManaProducer * clone() const;
 };
