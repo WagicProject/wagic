@@ -90,7 +90,7 @@ bool JParticleEffect::Load(const char* filename)
 // 		FIELD_COUNT
 // 	};
 
-    const string lifeValues[] =
+	const string lifeValues[] =
 	{
 		"speed",
 		"size",
@@ -104,7 +104,7 @@ bool JParticleEffect::Load(const char* filename)
 		"gravity"
 	};
 
-    const string typeNames[] =
+	const string typeNames[] =
 	{
 		"POINT",
 		"AREA",
@@ -113,7 +113,7 @@ bool JParticleEffect::Load(const char* filename)
 		"CIRCLE"
 	};
 
-    const string modeNames[] =
+	const string modeNames[] =
 	{
 		"REPEAT",
 		"ONCE",
@@ -149,32 +149,32 @@ bool JParticleEffect::Load(const char* filename)
 			{
 				element = param->ToElement();
 				
-                if (string("settings") == element->Attribute("name"))
+				if (string("settings") == element->Attribute("name"))
 				{
 					
-                    if (string("NORMAL") == element->Attribute("blend"))
+					if (string("NORMAL") == element->Attribute("blend"))
 						mParticleEmitters[mEmitterCount]->SetBlending(BLEND_SRC_ALPHA, BLEND_ONE_MINUS_SRC_ALPHA);
-                    else if (string("ADDITIVE") == element->Attribute("blend"))
+					else if (string("ADDITIVE") == element->Attribute("blend"))
 						mParticleEmitters[mEmitterCount]->SetBlending(BLEND_SRC_ALPHA, BLEND_ONE);
 					
 					for (unsigned int i=0;i<sizeof(modeNames)/sizeof(char*);i++)
 					{
-                        if (modeNames[i] == element->Attribute("mode"))
+						if (modeNames[i] == element->Attribute("mode"))
 						{
 							mParticleEmitters[mEmitterCount]->mEmitterMode = i;
 							#if defined (_DEBUG)
-                                printf("emitter mode:%s\n", modeNames[i].c_str());
+								printf("emitter mode:%s\n", modeNames[i].c_str());
 							#endif
 							break;
 						}
 					}
 					for (unsigned i=0;i<sizeof(typeNames)/sizeof(char*);i++)
 					{
-                        if (typeNames[i] == element->Attribute("type"))
+						if (typeNames[i] == element->Attribute("type"))
 						{
 							mParticleEmitters[mEmitterCount]->mType = i;
 							#if defined (_DEBUG)
-                                printf("emitter type:%s\n", typeNames[i].c_str());
+								printf("emitter type:%s\n", typeNames[i].c_str());
 							#endif
 							break;
 						}
@@ -213,7 +213,7 @@ bool JParticleEffect::Load(const char* filename)
 
 					}
 				}
-                else if (string("quantity") == element->Attribute("name"))
+				else if (string("quantity") == element->Attribute("name"))
 				{
 					for (key = param->FirstChild(); key; key = key->NextSibling())
 					{
@@ -227,7 +227,7 @@ bool JParticleEffect::Load(const char* filename)
 						
 					}
 				}
-                else if (string("lifex") == element->Attribute("name"))
+				else if (string("lifex") == element->Attribute("name"))
 				{
 					if (element->QueryFloatAttribute("base", &baseValue) == TIXML_SUCCESS &&
 						element->QueryFloatAttribute("max", &value) == TIXML_SUCCESS)
@@ -236,7 +236,7 @@ bool JParticleEffect::Load(const char* filename)
 						mParticleEmitters[mEmitterCount]->mLifeMax= value;	
 					}
 				}
-                else if (string("anglex") == element->Attribute("name"))
+				else if (string("anglex") == element->Attribute("name"))
 				{
 					if (element->QueryFloatAttribute("base", &baseValue) == TIXML_SUCCESS &&
 						element->QueryFloatAttribute("max", &value) == TIXML_SUCCESS)
@@ -245,7 +245,7 @@ bool JParticleEffect::Load(const char* filename)
 						mParticleEmitters[mEmitterCount]->mAngleMax= value*DEG2RAD;	
 					}
 				}
-                else if (string("speedx") == element->Attribute("name"))
+				else if (string("speedx") == element->Attribute("name"))
 				{
 					if (element->QueryFloatAttribute("base", &baseValue) == TIXML_SUCCESS &&
 						element->QueryFloatAttribute("max", &value) == TIXML_SUCCESS)
@@ -254,7 +254,7 @@ bool JParticleEffect::Load(const char* filename)
 						mParticleEmitters[mEmitterCount]->mSpeedMax= value;	
 					}
 				}
-                else if (string("sizex") == element->Attribute("name"))
+				else if (string("sizex") == element->Attribute("name"))
 				{
 					if (element->QueryFloatAttribute("base", &baseValue) == TIXML_SUCCESS &&
 						element->QueryFloatAttribute("max", &value) == TIXML_SUCCESS)
@@ -267,7 +267,7 @@ bool JParticleEffect::Load(const char* filename)
 				{
 					for (int i=0;i<FIELD_COUNT;i++)
 					{
-                        if (lifeValues[i] == element->Attribute("name"))
+						if (lifeValues[i] == element->Attribute("name"))
 						{
 							for (key = param->FirstChild(); key; key = key->NextSibling())
 							{

@@ -119,11 +119,11 @@ bool JResourceManager::LoadResource(const string& resourceName)
 			element = node->ToElement();
 			if (element != NULL)
 			{
-                if (element->ValueStr() == "texture")
+				if (element->ValueStr() == "texture")
 				{
 					CreateTexture(element->Attribute("name"));
 				}
-                else if (element->ValueStr() == "quad")
+				else if (element->ValueStr() == "quad")
 				{
 					string quadName = element->Attribute("name");
 					string textureName = element->Attribute("texture");
@@ -170,7 +170,7 @@ bool JResourceManager::LoadResource(const string& resourceName)
 						GetQuad(id)->SetHotSpot(hotspotX, hotspotY);
 					}
 				}
-                else if (element->ValueStr() == "font")
+				else if (element->ValueStr() == "font")
 				{
 				}
 

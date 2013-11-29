@@ -67,7 +67,7 @@ bool JAnimator::Load(const char* scriptFile)
 		element = script->ToElement();
 		printf("---- Loading %s:%s\n", element->Value(), element->Attribute("name"));
 
-        string type[] =
+		string type[] =
 		{
 			"ANIMATION_TYPE_LOOPING",
 			"ANIMATION_TYPE_ONCE_AND_STAY",
@@ -76,9 +76,9 @@ bool JAnimator::Load(const char* scriptFile)
 			"ANIMATION_TYPE_PINGPONG"
 		};
 
-        const char* aniType = element->Attribute("type");
+		const char* aniType = element->Attribute("type");
 		for (int i=0;i<5;i++)
-            if (type[i] == aniType)
+			if (type[i] == aniType)
 			{
 				SetAnimationType(i);
 				break;
@@ -108,7 +108,7 @@ bool JAnimator::Load(const char* scriptFile)
 					element = param->ToElement();
 					if (element != NULL)
 					{
-                        if (element->ValueStr() == "settings")
+						if (element->ValueStr() == "settings")
 						{
 							const char* quadName = element->Attribute("quad");
 							JQuad* quad = mResource->GetQuad(quadName);
