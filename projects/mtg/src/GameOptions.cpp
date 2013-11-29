@@ -956,7 +956,7 @@ OptionMaxGrade::OptionMaxGrade()
 
 // MARK:  OptionASkipPhase
 
-OptionASkipPhase OptionASkipPhase::mDef;
+OptionASkipPhase OptionASkipPhase::mDef = OptionASkipPhase();
 OptionASkipPhase::OptionASkipPhase()
 {
     mDef.values.push_back(EnumDefinition::assoc(Constants::ASKIP_NONE, "Off"));
