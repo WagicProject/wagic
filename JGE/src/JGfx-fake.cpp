@@ -65,7 +65,7 @@ void JQuad::SetHotSpot(float x, float y)
 
 //////////////////////////////////////////////////////////////////////////
 
-JTexture::JTexture() : mBuffer(NULL)
+JTexture::JTexture() : mWidth(0), mHeight(0), mBuffer(NULL)
 {
     mTexId = -1;
 }
@@ -305,14 +305,12 @@ void JRenderer::TransferTextureToGLContext(JTexture& inTexture)
 JTexture* JRenderer::CreateTexture(int width, int height, int mode __attribute__((unused)))
 {
     JTexture *tex = new JTexture();
-
     return tex;
 }
 
 JTexture* JRenderer::LoadTexture(const char* filename, int mode, int textureFormat)
 {
     JTexture *tex = new JTexture();
-
     return tex;
 }
 

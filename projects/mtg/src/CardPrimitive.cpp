@@ -84,6 +84,9 @@ int CardPrimitive::init()
     alias = 0;
     restrictions = NULL;
     dredgeAmount = 0;
+
+    power = 0;
+    toughness = 0;
     return 1;
 }
 

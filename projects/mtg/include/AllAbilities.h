@@ -1258,6 +1258,7 @@ public:
 
     GenericActivatedAbility(GameObserver* observer, string newName,string castRestriction,int _id, MTGCardInstance * card, MTGAbility * a, ManaCost * _cost, string limit = "",MTGAbility * sideEffects = NULL,string usesBeforeSideEffects = "",
             int restrictions = 0, MTGGameZone * dest = NULL);
+    GenericActivatedAbility(const GenericActivatedAbility& other);
     int resolve();
     const string getMenuText();
     int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);

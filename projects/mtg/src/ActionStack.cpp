@@ -675,6 +675,7 @@ ActionStack::ActionStack(GameObserver* game)
     currentState = -1;
     mode = ACTIONSTACK_STANDARD;
     checked = 0;
+    lastActionController = NULL;
 
     if(!observer->getResourceManager()) return;
     for (int i = 0; i < 8; ++i)

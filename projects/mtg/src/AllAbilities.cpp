@@ -55,6 +55,12 @@ GenericActivatedAbility::GenericActivatedAbility(GameObserver* observer, string 
     target = ability->target;
 }
 
+GenericActivatedAbility::GenericActivatedAbility(const GenericActivatedAbility &other):
+    ActivatedAbility(other), NestedAbility(other), activeZone(other.activeZone), newName(other.newName)
+{
+
+}
+
 int GenericActivatedAbility::resolve()
 {
     //Note: I've seen a similar block in some other MTGAbility, can this be refactored .
@@ -105,6 +111,7 @@ int GenericActivatedAbility::testDestroy()
 GenericActivatedAbility * GenericActivatedAbility::clone() const
 {
     GenericActivatedAbility * a = NEW GenericActivatedAbility(*this);
+
     a->ability = ability->clone();
     return a;
 }
