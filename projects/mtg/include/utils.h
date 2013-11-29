@@ -140,4 +140,20 @@ template <class T> istream& operator>>(istream& in, T& p)
 /* replace_all ... replacement to avoid depending on boost for that */
 void ReplaceString(std::string& subject, const std::string& search, const std::string& replace);
 
+/*! \brief Returns true if base starts with start, otherwise false
+ *
+ * Compares the first strlen(start) characters of base with start and
+ * returns true if both match.
+ */
+bool StartsWith(const std::string& base, const char *start);
+
+/*! \brief Returns true if base starts with start, otherwise false
+ * 
+ * This version is slightly more efficient as strlen does not need to
+ * get called. Otherwise, it behaves exactly like 
+ * StartsWith(const std::string& base, const char *start)
+ *
+ * \see StartsWith(const std::string& base, const char *start)
+ */
+bool StartsWith(const std::string& base, const std::string& start);
 #endif
