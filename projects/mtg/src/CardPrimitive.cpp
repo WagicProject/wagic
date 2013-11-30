@@ -228,6 +228,9 @@ void CardPrimitive::setSubtype(const string& value)
         }
     }
 
+    // "Artifact Creature" should have "Creature" as parent type
+    if (parentType == Subtypes::TYPE_ARTIFACT && isCreature())
+        parentType = Subtypes::TYPE_CREATURE;
 
     int id = MTGAllCards::add(value, parentType);
     addType(id);
