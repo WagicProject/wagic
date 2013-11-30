@@ -8,7 +8,7 @@
 ActionElement::ActionElement(int id) :
     JGuiObject(id)
 {
-    activeState = INACTIVE;
+    activity = Inactive;
     modal = 0;
     waitingForAnswer = 0;
     currentPhase = MTG_PHASE_INVALID;
@@ -18,7 +18,7 @@ ActionElement::ActionElement(int id) :
 
 ActionElement::ActionElement(const ActionElement& a): JGuiObject(a)
 {
-    activeState = a.activeState;
+    activity = a.activity;
     tc = a.tc ? a.tc->clone() : NULL;
     currentPhase = a.currentPhase;
     newPhase = a.newPhase;
@@ -29,12 +29,6 @@ ActionElement::ActionElement(const ActionElement& a): JGuiObject(a)
 ActionElement::~ActionElement()
 {
     SAFE_DELETE(tc);
-}
-
-int ActionElement::getActivity()
-{
-
-    return activeState;
 }
 
 int ActionElement::isReactingToTargetClick(Targetable * object)

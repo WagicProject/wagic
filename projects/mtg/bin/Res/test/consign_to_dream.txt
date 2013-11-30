@@ -1,0 +1,25 @@
+# Test TargetChooser based on negation of two colors
+# Grizzly bear should be put on top of library
+
+# name=Consign to Dream
+# Return target permanent to its owner's hand. 
+# If that permanent is red or green, put it on top of its owner's library 
+
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Consign to Dream
+manapool:{2}{U}
+inplay:grizzly bears
+[PLAYER2]
+[DO]
+Consign to Dream
+grizzly bears
+endinterruption
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:Consign to Dream
+library:grizzly bears
+[PLAYER2]
+[END]

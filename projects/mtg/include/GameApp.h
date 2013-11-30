@@ -20,7 +20,6 @@
 #include "MTGCard.h"
 #include "MTGGameZones.h"
 
-#include "CardEffect.h"
 #ifdef NETWORK_SUPPORT
 #include "JNetwork.h"
 #endif //NETWORK_SUPPORT
@@ -49,7 +48,6 @@ public:
 
     GameType gameType;
     Rules * rules;
-    CardEffect *effect;
 #ifdef NETWORK_SUPPORT
     string mServerAddress;
     JNetwork* mpNetwork;

@@ -873,8 +873,8 @@ public:
             return 0;
         if (!tc->canTarget(e->damage->target)) return 0;
         if (fromTc && !fromTc->canTarget(e->damage->source)) return 0;
-        if (type == 1 && e->damage->typeOfDamage != DAMAGE_COMBAT) return 0;
-        if (type == 2 && e->damage->typeOfDamage == DAMAGE_COMBAT) return 0;
+        if (type == 1 && e->damage->typeOfDamage != Damage::DAMAGE_COMBAT) return 0;
+        if (type == 2 && e->damage->typeOfDamage == Damage::DAMAGE_COMBAT) return 0;
         e->damage->target->thatmuch = e->damage->damage;
         e->damage->source->thatmuch = e->damage->damage;
         this->source->thatmuch = e->damage->damage;
@@ -1081,7 +1081,7 @@ public:
             ManaCost * cost = NULL);
 
     int resolve();
-    const char* getMenuText();
+    const string getMenuText();
     AACounter * clone() const;
 };
 
@@ -1100,7 +1100,7 @@ public:
             bool all,ManaCost * cost = NULL);
 
     int resolve();
-    const char* getMenuText();
+    const string getMenuText();
     AARemoveAllCounter * clone() const;
 };
 
@@ -1110,7 +1110,7 @@ class AAResetDamage: public ActivatedAbility
 public:
     AAResetDamage(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target, ManaCost * cost = NULL);
     int resolve();
-    const char* getMenuText();
+    const string getMenuText();
     AAResetDamage * clone() const;
 };
 
@@ -1120,7 +1120,7 @@ public:
     string named;
     AAFakeAbility(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target,string _newName, ManaCost * cost = NULL);
     int resolve();
-    const char* getMenuText();
+    const string getMenuText();
     AAFakeAbility * clone() const;
 };
 
@@ -1131,7 +1131,7 @@ public:
 
     AAFizzler(GameObserver* observer, int _id, MTGCardInstance * card, Spell * _target, ManaCost * _cost = NULL);
     int resolve();
-    const char * getMenuText();
+    const string getMenuText();
     AAFizzler* clone() const;
 };
 
@@ -1160,7 +1160,7 @@ public:
     string Cond;
     IfThenAbility(GameObserver* observer, int _id,MTGAbility * delayedAbility = NULL,MTGAbility * delayedElseAbility = NULL, MTGCardInstance * _source=NULL, Targetable * target = NULL, int type = 1,string Cond = "");
     int resolve();
-    const char * getMenuText();
+    const string getMenuText();
     IfThenAbility * clone() const;
     ~IfThenAbility();
 };
@@ -1179,7 +1179,7 @@ public:
 
     void Update(float dt);
 
-    const char * getMenuText();
+    const string getMenuText();
     int testDestroy();
 
     int isReactingToTargetClick(Targetable * card);
@@ -1209,7 +1209,7 @@ public:
     bool CheckUserInput(JButton key);
     void Update(float dt);
     int resolve();
-    const char * getMenuText();
+    const string getMenuText();
     int testDestroy();
     int isReactingToTargetClick(Targetable * card);
     int reactToTargetClick(Targetable * object);
@@ -1225,7 +1225,7 @@ class AAProliferate: public ActivatedAbility
 public:
     AAProliferate(GameObserver* observer, int id, MTGCardInstance * source, Targetable * target,ManaCost * cost = NULL);
     int resolve();
-    const char* getMenuText();
+    const string getMenuText();
     AAProliferate * clone() const;
     ~AAProliferate();
 };
@@ -1243,7 +1243,7 @@ public:
     int resolve();
     int addToGame();
     int destroy();
-    const char * getMenuText();
+    const string getMenuText();
     MultiAbility * clone() const;
     ~MultiAbility();
 };
@@ -1258,8 +1258,9 @@ public:
 
     GenericActivatedAbility(GameObserver* observer, string newName,string castRestriction,int _id, MTGCardInstance * card, MTGAbility * a, ManaCost * _cost, string limit = "",MTGAbility * sideEffects = NULL,string usesBeforeSideEffects = "",
             int restrictions = 0, MTGGameZone * dest = NULL);
+    GenericActivatedAbility(const GenericActivatedAbility& other);
     int resolve();
-    const char * getMenuText();
+    const string getMenuText();
     int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
     void Update(float dt);
     int testDestroy();
@@ -1274,7 +1275,7 @@ class AALibraryBottom: public ActivatedAbility
 public:
     AALibraryBottom(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target = NULL, ManaCost * _cost = NULL);
     int resolve();
-    const char * getMenuText();
+    const string getMenuText();
     AALibraryBottom * clone() const;
 };
 
@@ -1284,7 +1285,7 @@ class AACopier: public ActivatedAbility
 public:
     AACopier(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target = NULL, ManaCost * _cost = NULL);
     int resolve();
-    const char * getMenuText();
+    const string getMenuText();
     AACopier * clone() const;
 };
 //imprint
@@ -1293,7 +1294,7 @@ class AAPhaseOut: public ActivatedAbility
 public:
     AAPhaseOut(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target = NULL, ManaCost * _cost = NULL);
     int resolve();
-    const char * getMenuText();
+    const string getMenuText();
     AAPhaseOut * clone() const;
 };
 //cloning...this makes a token thats a copy of the target.
@@ -1310,7 +1311,7 @@ public:
     AACloner(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target = NULL, ManaCost * _cost = NULL, int who = 0,
             string abilitiesStringList = "",string typeslist = "");
     int resolve();
-    const char * getMenuText();
+    const string getMenuText();
     virtual ostream& toString(ostream& out) const;
     AACloner * clone() const;
     ~AACloner();
@@ -1326,7 +1327,7 @@ public:
     AAMover(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target, string dest,string _name, ManaCost * _cost = NULL);
     MTGGameZone * destinationZone(Targetable * target = NULL);
     int resolve();
-    const char * getMenuText();
+    const string getMenuText();
     const char * getMenuText(TargetChooser * fromTc);
     AAMover * clone() const;
     ~AAMover();
@@ -1342,7 +1343,7 @@ public:
     AARandomMover(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target, string tcs, string from, string to);
     MTGGameZone * destinationZone(Targetable * target = NULL,string zone = "");
     int resolve();
-    const char * getMenuText();
+    const string getMenuText();
     AARandomMover * clone() const;
     ~AARandomMover();
 };
@@ -1356,7 +1357,7 @@ public:
     string menu;
     AABuryCard(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target);
     int resolve();
-    const char * getMenuText();
+    const string getMenuText();
     AABuryCard * clone() const;
     ~AABuryCard();
 };
@@ -1367,7 +1368,7 @@ public:
     MTGAbility * andAbility;
     AADestroyCard(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target);
     int resolve();
-    const char * getMenuText();
+    const string getMenuText();
     AADestroyCard * clone() const;
     ~AADestroyCard();
 };
@@ -1378,7 +1379,7 @@ public:
     MTGAbility * andAbility;
     AASacrificeCard(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target);
     int resolve();
-    const char * getMenuText();
+    const string getMenuText();
     AASacrificeCard * clone() const;
     ~AASacrificeCard();
 };
@@ -1389,7 +1390,7 @@ public:
     MTGAbility * andAbility;
     AADiscardCard(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target);
     int resolve();
-    const char * getMenuText();
+    const string getMenuText();
     AADiscardCard * clone() const;
     ~AADiscardCard();
 };
@@ -1409,7 +1410,7 @@ public:
     string tcString;
 
     GenericTargetAbility(GameObserver* observer, string newName, string castRestriction, int _id, MTGCardInstance * _source, TargetChooser * _tc, MTGAbility * a, ManaCost * _cost = NULL, string limit = "",MTGAbility * sideEffects = NULL,string usesBeforeSideEffects = "", int restrictions = 0, MTGGameZone * dest = NULL,string tcString ="");
-    const char * getMenuText();
+    const string getMenuText();
     ~GenericTargetAbility();
     GenericTargetAbility * clone() const;
     int resolve();
@@ -1447,7 +1448,7 @@ public:
         return 1;
     }
 
-    const char * getMenuText()
+    const string getMenuText()
     {
         return "Ninjutsu";
     }
@@ -1479,7 +1480,7 @@ public:
         return 1;
     }
 
-    const char * getMenuText()
+    const string getMenuText()
     {
         return "Remove From Combat";
     }
@@ -1501,7 +1502,7 @@ public:
     AADrawer(GameObserver* observer, int _id, MTGCardInstance * card, Targetable * _target, ManaCost * _cost,string nbcardsStr, int who =
             TargetChooser::UNSET,bool noReplace = false);
     int resolve();
-    const char * getMenuText();
+    const string getMenuText();
     AADrawer * clone() const;
     int getNumCards();
 };
@@ -1521,7 +1522,7 @@ public:
     ACastRestriction(GameObserver* observer, int _id, MTGCardInstance * card, Targetable * _target, TargetChooser * _restrictionsScope, WParsedInt * _value, bool _modifyExisting, int _zoneId, int who = TargetChooser::UNSET);
     int addToGame();
     int destroy();
-    const char * getMenuText();
+    const string getMenuText();
     ACastRestriction * clone() const;
     ~ACastRestriction();
 
@@ -1536,7 +1537,7 @@ public:
 
     AInstantCastRestrictionUEOT(GameObserver* observer, int _id, MTGCardInstance * card, Targetable * _target, TargetChooser * _restrictionsScope, WParsedInt * _value, bool _modifyExisting, int _zoneId, int who = TargetChooser::UNSET);
     int resolve();
-    const char * getMenuText();
+    const string getMenuText();
     AInstantCastRestrictionUEOT * clone() const;
     ~AInstantCastRestrictionUEOT();
 };
@@ -1549,7 +1550,7 @@ public:
     AALifer(GameObserver* observer, int _id, MTGCardInstance * card, Targetable * _target,string life_s, ManaCost * _cost = NULL,
             int who = TargetChooser::UNSET);
     int resolve();
-    const char * getMenuText();
+    const string getMenuText();
     AALifer * clone() const;
     int getLife();
 
@@ -1562,7 +1563,7 @@ public:
     AAWinGame(GameObserver* observer, int _id, MTGCardInstance * card, Targetable * _target, ManaCost * _cost = NULL, int who =
             TargetChooser::UNSET);
     int resolve();
-    const char * getMenuText();
+    const string getMenuText();
     AAWinGame * clone() const;
 };
 
@@ -1603,7 +1604,7 @@ public:
         return 1;
     }
 
-    const char * getMenuText()
+    const string getMenuText()
     {
         return Constants::MTGBasicAbilities[ability];
     }
@@ -1645,7 +1646,7 @@ public:
             return InstantAbility::addToGame();
         }
 
-        const char * getMenuText()
+        const string getMenuText()
         {
             return Constants::MTGBasicAbilities[ability];
         }
@@ -1706,7 +1707,7 @@ public:
         return ActivatedAbility::addToGame();
     }
 
-    const char * getMenuText()
+    const string getMenuText()
     {
         return ability->getMenuText();
     }
@@ -1862,7 +1863,7 @@ public:
         return 1;
     }
 
-    const char * getMenuText()
+    const string getMenuText()
     {
         sprintf(menuText,"Protection from %s",tcstr.c_str());
         return menuText;
@@ -2054,7 +2055,7 @@ public:
         ((MTGCardInstance *) target)->addToToughness(-wppt->toughness.getValue());
         return 1;
     }
-    const char * getMenuText()
+    const string getMenuText()
     {                
         if(PT.size())
         {
@@ -2147,7 +2148,7 @@ public:
           return 1;
       }
 
-      const char * getMenuText()
+      const string getMenuText()
       {
           return ability->getMenuText();
       }
@@ -2189,7 +2190,7 @@ public:
           return toAdd->addToGame();
       }
 
-      const char * getMenuText()
+      const string getMenuText()
       {
           return ability->getMenuText();
       }
@@ -2287,7 +2288,7 @@ public:
         return 1;
     }
 
-    const char * getMenuText()
+    const string getMenuText()
     {
         return "Regenerate";
     }
@@ -2494,7 +2495,7 @@ public:
         SAFE_DELETE(ability);
     }
 
-    const char * getMenuText()
+    const string getMenuText()
     {
         if(ability)
         {
@@ -2577,7 +2578,7 @@ public:
         }
         else
         {
-            if (d->type_as_damageable == DAMAGEABLE_MTGCARDINSTANCE)
+            if (d->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE)
             {
                 a->source = (MTGCardInstance *) d;
             }
@@ -2620,7 +2621,7 @@ public:
         SAFE_DELETE(ability);
     }
 
-    const char * getMenuText()
+    const string getMenuText()
     {
         //Special case for move
         if (AAMover * move = dynamic_cast<AAMover *>(ability))
@@ -2725,7 +2726,7 @@ public:
         }
         else
         {
-            if (d->type_as_damageable == DAMAGEABLE_MTGCARDINSTANCE)
+            if (d->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE)
             {
                 a->source = (MTGCardInstance *) d;
             }
@@ -2794,113 +2795,24 @@ public:
 //equipment
 class AEquip: public TargetAbility
 {
-public:
+private:
+    bool isAttach;
     vector<MTGAbility *> currentAbilities;
-    AEquip(GameObserver* observer, int _id, MTGCardInstance * _source, ManaCost * _cost = NULL, int restrictions =
-            ActivatedAbility::AS_SORCERY) :
-        TargetAbility(observer, _id, _source, NULL, _cost, restrictions)
-    {
-        aType = MTGAbility::STANDARD_EQUIP;
-    }
+
+public:
+    AEquip(GameObserver* observer, int _id, MTGCardInstance * _source, ManaCost * _cost = NULL,
+        int restrictions = ActivatedAbility::AS_SORCERY);
     
-    int unequip()
-    {
-        if (source->target)
-        {
-            source->target->equipment -= 1;
-            source->parentCards.clear();
-            for(unsigned int w = 0;w < source->target->childrenCards.size();w++)
-            {
-                MTGCardInstance * child = source->target->childrenCards[w];
-                if(child == source)
-                    source->target->childrenCards.erase(source->target->childrenCards.begin() + w);
-            }
-        }
-        source->target = NULL;
-        for (size_t i = 0; i < currentAbilities.size(); ++i)
-        {
-            MTGAbility * a = currentAbilities[i];
-            if (dynamic_cast<AEquip *> (a) || dynamic_cast<ATeach *> (a) || dynamic_cast<AAConnect *> (a) || (a->aType == MTGAbility::STANDARD_TOKENCREATOR && a->oneShot))
-            {
-                SAFE_DELETE(a);
-                continue;
-            }
-            game->removeObserver(currentAbilities[i]);
-        }
-        currentAbilities.clear();
-        return 1;
-    }
+    int unequip();
+    int equip(MTGCardInstance * equipped);
 
-    int equip(MTGCardInstance * equipped)
-    {
-        source->target = equipped;
-        source->target->equipment += 1;
-        source->parentCards.push_back(equipped);
-        source->target->childrenCards.push_back((MTGCardInstance*)source);
-        AbilityFactory af(game);
-        af.getAbilities(&currentAbilities, NULL, source);
-        for (size_t i = 0; i < currentAbilities.size(); ++i)
-        {
-            MTGAbility * a = currentAbilities[i];
-            if (dynamic_cast<AEquip *> (a)) continue;
-            if (dynamic_cast<ATeach *> (a)) continue;
-            if (dynamic_cast<AAConnect *> (a)) continue;
-            if (a->aType == MTGAbility::STANDARD_TOKENCREATOR && a->oneShot)
-            {
-            a->forceDestroy = 1;
-            continue;
-            }
-            if (dynamic_cast<AACopier *> (af.getCoreAbility(a)))
-            {
-                a->forceDestroy = 1;
-                continue;
-            }
-            //we generally dont want to pass oneShot tokencreators to the cards
-            //we equip...
-            a->addToGame();
-        }
-        return 1;
+    int resolve();
+    const string getMenuText();
 
-    }
+    int testDestroy();
+    int destroy();
 
-    int resolve()
-    {
-        MTGCardInstance * mTarget = tc->getNextCardTarget();
-        if (!mTarget) return 0;
-        if (mTarget == source) return 0;
-        unequip();
-        equip(mTarget);
-        return 1;
-    }
-
-    const char * getMenuText()
-    {
-        return "Equip";
-    }
-
-    int testDestroy()
-    {
-        if (source->target && !game->isInPlay(source->target)) 
-        unequip();
-        if(!game->connectRule)
-        {
-        if (source->target && TargetAbility::tc && !TargetAbility::tc->canTarget((Targetable *)source->target,true)) 
-        unequip();
-        }
-        return TargetAbility::testDestroy();
-    }
-
-    int destroy()
-    {
-        unequip();
-        return TargetAbility::destroy();
-    }
-
-    AEquip * clone() const
-    {
-        return NEW AEquip(*this);
-    }
-
+    AEquip * clone() const;
 };
 
 class ATokenCreator: public ActivatedAbility
@@ -3123,7 +3035,7 @@ public:
         card->setAttacker(1);
     }
 
-    const char * getMenuText()
+    const string getMenuText()
     {
         sprintf(menuText, "Create %s", name.c_str());
         return menuText;
@@ -3224,7 +3136,7 @@ public:
         }
     }
     
-    const char * getMenuText()
+    const string getMenuText()
     {
         if(name.size())
             return name.c_str();
@@ -3397,7 +3309,7 @@ public:
         return 0;
     }
 
-    const char * getMenuText()
+    const string getMenuText()
     {
         return ability->getMenuText();
     }
@@ -3609,7 +3521,7 @@ public:
         }
     }
 
-    const char * getMenuText()
+    const string getMenuText()
     {
         return ability->getMenuText();
     }
@@ -3632,7 +3544,7 @@ public:
     AASetHand(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable * _target, int hand, ManaCost * _cost = NULL,
             int who = TargetChooser::UNSET);
     int resolve();
-    const char * getMenuText();
+    const string getMenuText();
     AASetHand * clone() const;
 
 };
@@ -3646,7 +3558,7 @@ public:
     AALifeSet(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable * _target, WParsedInt * life, ManaCost * _cost = NULL,
             int who = TargetChooser::UNSET);
     int resolve();
-    const char * getMenuText();
+    const string getMenuText();
     AALifeSet * clone() const;
     ~AALifeSet();
 
@@ -3663,7 +3575,7 @@ public:
     AADamager(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable * _target, string d, ManaCost * _cost = NULL,
              int who = TargetChooser::UNSET);
     int resolve();
-    const char * getMenuText();
+    const string getMenuText();
     int getDamage();
     AADamager * clone() const;
 
@@ -3677,7 +3589,7 @@ public:
 
     AADamagePrevent(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable * _target, int preventing, ManaCost * _cost = NULL, int who = TargetChooser::UNSET);
     int resolve();
-    const char * getMenuText();
+    const string getMenuText();
     AADamagePrevent * clone() const;
     ~AADamagePrevent();
 };
@@ -3691,7 +3603,7 @@ public:
     AAAlterPoison(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable * _target, int poison, ManaCost * _cost = NULL,
             int who = TargetChooser::UNSET);
     int resolve();
-    const char * getMenuText();
+    const string getMenuText();
     AAAlterPoison * clone() const;
     ~AAAlterPoison();
 };
@@ -3719,7 +3631,7 @@ class AATapper: public ActivatedAbility
 public:
     AATapper(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost = NULL);
     int resolve();
-    const char * getMenuText();
+    const string getMenuText();
     AATapper * clone() const;
 };
 
@@ -3729,7 +3641,7 @@ class AAUntapper: public ActivatedAbility
 public:
     AAUntapper(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost = NULL);
     int resolve();
-    const char * getMenuText();
+    const string getMenuText();
     AAUntapper * clone() const;
 };
 
@@ -3750,7 +3662,7 @@ class AAFrozen: public ActivatedAbility
 public:
     AAFrozen(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost = NULL);
     int resolve();
-    const char * getMenuText();
+    const string getMenuText();
     AAFrozen * clone() const;
 };
 /* ghetto new target*/
@@ -3760,7 +3672,7 @@ public:
 bool retarget;
     AANewTarget(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target,bool retarget = false, ManaCost * _cost = NULL);
     int resolve();
-    const char * getMenuText();
+    const string getMenuText();
     AANewTarget * clone() const;
 };
 /* morph*/
@@ -3771,7 +3683,7 @@ public:
     AAMorph(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target, ManaCost * _cost = NULL);
     int resolve();
     int testDestroy();
-    const char * getMenuText();
+    const string getMenuText();
     AAMorph * clone() const;
 };
 /* flip*/
@@ -3783,7 +3695,7 @@ public:
     AAFlip(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target,string flipStats);
     int resolve();
     int testDestroy();
-    const char * getMenuText();
+    const string getMenuText();
     AAFlip * clone() const;
 };
 /* dynamic ability build*/
@@ -3848,7 +3760,7 @@ string menu;
     int resolve();
     int activateMainAbility(MTGAbility * toActivate,MTGCardInstance * source , Damageable * target);
     int activateStored();
-    const char * getMenuText();
+    const string getMenuText();
     AADynamic * clone() const;
     ~AADynamic();
 };
@@ -3901,7 +3813,7 @@ public:
         return 1;
     }
 
-    const char * getMenuText()
+    const string getMenuText()
     {
         return "Swap power and toughness";
     }
@@ -3917,7 +3829,7 @@ public:
     AAExchangeLife(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable * _target, ManaCost * _cost = NULL,
              int who = TargetChooser::UNSET);
     int resolve();
-    const char * getMenuText();
+    const string getMenuText();
     AAExchangeLife * clone() const;
 
 };
@@ -4153,7 +4065,7 @@ public:
     int reapplyCountersBonus(MTGCardInstance * rtarget= NULL,bool powerapplied=false,bool toughnessapplied=false);
     int testDestroy();
     int destroy();
-    const char * getMenuText();
+    const string getMenuText();
     ATransformer * clone() const;
     ~ATransformer();
 };
@@ -4176,7 +4088,7 @@ public:
 
     ATransformerInstant(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target, string types = "", string abilities = "",string newpower = "",bool newpowerfound = false,string newtoughness = "",bool newtoughnessfound = false,vector<string>newAbilitiesList = vector<string>(),bool newAbilityFound = false,bool aForever = false, bool UYNT = false,string menutext = "");
     int resolve();
-    const char * getMenuText();
+    const string getMenuText();
     ATransformerInstant * clone() const;
     ~ATransformerInstant();
 };
@@ -4192,7 +4104,7 @@ public:
     WParsedPT * newWppt;
     PTInstant(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target, WParsedPT * wppt,string s = "",bool nonstatic = false);
     int resolve();
-    const char * getMenuText();
+    const string getMenuText();
     PTInstant * clone() const;
     ~PTInstant();
 };
@@ -4251,7 +4163,7 @@ public:
         return 1;
     }
 
-    const char * getMenuText()
+    const string getMenuText()
     {
         return "Exalted";
     }
@@ -4269,7 +4181,7 @@ public:
     ASwapPT * ability;
     ASwapPTUEOT(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target);
     int resolve();
-    const char * getMenuText();
+    const string getMenuText();
     ASwapPTUEOT * clone() const;
     ~ASwapPTUEOT();
 };
@@ -4346,7 +4258,7 @@ public:
     APreventDamageTypesUEOT(GameObserver* observer, int id, MTGCardInstance * source, string to, string from, int type = 0);
     int resolve();
     int destroy();
-    const char * getMenuText();
+    const string getMenuText();
     APreventDamageTypesUEOT * clone() const;
     ~APreventDamageTypesUEOT();
 };
@@ -4363,7 +4275,7 @@ public:
     AVanishing(GameObserver* observer, int _id, MTGCardInstance * card, ManaCost * _cost, int restrictions = 0,int amount = 0,string counterName = "");
     void Update(float dt);
     int resolve();
-    const char * getMenuText();
+    const string getMenuText();
     AVanishing * clone() const;
     ~AVanishing();
 };
@@ -4385,7 +4297,7 @@ public:
     void Update(float dt);
     int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
     int resolve();
-    const char * getMenuText();
+    const string getMenuText();
     virtual ostream& toString(ostream& out) const;
     AUpkeep * clone() const;
     ~AUpkeep();
@@ -4411,7 +4323,7 @@ public:
         MTG_PHASE_UPKEEP,bool forcedestroy = false,bool next = true,bool myturn = true,bool opponentturn = true,bool once = false);
     void Update(float dt);
     int resolve();
-    const char * getMenuText();
+    const string getMenuText();
     APhaseAction * clone() const;
     ~APhaseAction();
 };
@@ -4425,7 +4337,7 @@ public:
     APhaseActionGeneric(GameObserver* observer, int _id, MTGCardInstance * card, MTGCardInstance * target, string sAbility, int restrictions = 0, int _phase =
             MTG_PHASE_UPKEEP,bool forcedestroy = false,bool next = true,bool myturn = false,bool opponentturn = false,bool once = false);
     int resolve();
-    const char * getMenuText();
+    const string getMenuText();
     APhaseActionGeneric * clone() const;
     ~APhaseActionGeneric();
 
@@ -4445,7 +4357,7 @@ public:
     void Update(float dt);
     void resolveBlink();
     int resolve();
-    const char * getMenuText();
+    const string getMenuText();
     ABlink * clone() const;
     ~ABlink();
 private:
@@ -4463,7 +4375,7 @@ public:
     MTGAbility * stored;
     ABlinkGeneric(GameObserver* observer, int _id, MTGCardInstance * card, MTGCardInstance * _target,bool blinkueot=false,bool blinkForSource = false,bool blinkhand = false,MTGAbility * stored = NULL);
     int resolve();
-    const char * getMenuText();
+    const string getMenuText();
     ABlinkGeneric * clone() const;
     ~ABlinkGeneric();
 
@@ -5369,7 +5281,7 @@ public:
         return 1;
     }
 
-    const char * getMenuText()
+    const string getMenuText()
     {
         return "phase alter";
     }
@@ -5388,7 +5300,7 @@ public:
     AADepleter(GameObserver* observer, int _id, MTGCardInstance * card, Targetable * _target,string nbcardsStr, ManaCost * _cost = NULL,
             int who = TargetChooser::UNSET);
     int resolve();
-    const char * getMenuText();
+    const string getMenuText();
     AADepleter * clone() const;
 };
 
@@ -5401,7 +5313,7 @@ public:
     AAModTurn(GameObserver* observer, int _id, MTGCardInstance * card, Targetable * _target,string nbTurnStr, ManaCost * _cost = NULL,
             int who = TargetChooser::UNSET);
     int resolve();
-    const char * getMenuText();
+    const string getMenuText();
     AAModTurn * clone() const;
 };
 
@@ -5412,7 +5324,7 @@ public:
     AAShuffle(GameObserver* observer, int _id, MTGCardInstance * card, Targetable * _target, ManaCost * _cost = NULL, int who =
             TargetChooser::UNSET);
     int resolve();
-    const char * getMenuText();
+    const string getMenuText();
     AAShuffle * clone() const;
 };
 
@@ -5425,7 +5337,7 @@ public:
 
     AARemoveMana(GameObserver* observer, int _id, MTGCardInstance * card, Targetable * _target, string ManaDesc, int who = TargetChooser::UNSET);
     int resolve();
-    const char * getMenuText();
+    const string getMenuText();
     AARemoveMana * clone() const;
     ~AARemoveMana();
 
@@ -5440,7 +5352,7 @@ public:
     AARandomDiscarder(GameObserver* observer, int _id, MTGCardInstance * card, Targetable * _target,string nbcardsStr, ManaCost * _cost = NULL,
              int who = TargetChooser::UNSET);
     int resolve();
-    const char * getMenuText();
+    const string getMenuText();
     AARandomDiscarder * clone() const;
 };
 
@@ -5612,7 +5524,7 @@ public:
 
     int testDestroy(){return 0;};
     void Update(float dt);
-    const char * getMenuText();
+    const string getMenuText();
     int isReactingToTargetClick(Targetable * card);
     int reactToTargetClick(Targetable * object);
     MTGCardInstance * makeCard();
@@ -5638,7 +5550,7 @@ public:
         {
             WEventDamage * e = (WEventDamage *) event;
             Damage * d = e->damage;
-            if (combatonly && e->damage->typeOfDamage != DAMAGE_COMBAT) 
+            if (combatonly && e->damage->typeOfDamage != Damage::DAMAGE_COMBAT)
                 return 0;
             MTGCardInstance * card = d->source;
             if (d->damage > 0 && card && (card == source || card == source->target))
@@ -5729,7 +5641,7 @@ public:
     MTGAbility * abilityAltered;
     AASetColorChosen(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target, int _color = 0 ,string toAdd = "");
     int resolve();
-    const char* getMenuText();
+    const string getMenuText();
     AASetColorChosen * clone() const;
     ~AASetColorChosen();
 };
@@ -5742,7 +5654,7 @@ public:
     MTGAbility * abilityAltered;
     AASetTypeChosen(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target, int _type = 0,string menu = "error" ,string toAdd = "");
     int resolve();
-    const char* getMenuText();
+    const string getMenuText();
     AASetTypeChosen * clone() const;
     ~AASetTypeChosen();
 };
@@ -5756,7 +5668,7 @@ public:
     bool ANonWall;
     GenericChooseTypeColor(GameObserver* observer, int id, MTGCardInstance * source, Targetable * target, string toAdd = "",bool chooseColor = false,bool nonwall = false, ManaCost * cost = NULL);
     int resolve();
-    const char* getMenuText();
+    const string getMenuText();
     GenericChooseTypeColor * clone() const;
     ~GenericChooseTypeColor();
 
@@ -5773,7 +5685,7 @@ public:
     MTGAbility * abilityAltered;
     AASetCoin(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target, int side = -1,string toAdd = "");
     int resolve();
-    const char* getMenuText();
+    const string getMenuText();
     AASetCoin * clone() const;
     ~AASetCoin();
 };
@@ -5784,7 +5696,7 @@ public:
     AASetCoin * setCoin;
     GenericFlipACoin(GameObserver* observer, int id, MTGCardInstance * source, Targetable * target, string toAdd = "", ManaCost * cost = NULL);
     int resolve();
-    const char* getMenuText();
+    const string getMenuText();
     GenericFlipACoin * clone() const;
     ~GenericFlipACoin();
 
@@ -5803,7 +5715,7 @@ public:
 
     GenericPaidAbility(GameObserver* observer, int id, MTGCardInstance * source, Targetable * target,string _newName,string _castRestriction,string _mayCost, string toAdd, ManaCost * cost = NULL);
     int resolve();
-    const char* getMenuText();
+    const string getMenuText();
     GenericPaidAbility * clone() const;
     ~GenericPaidAbility();
 

@@ -122,7 +122,7 @@ int AIAction::clickMultiAct(vector<Targetable*>& actionTargets)
             ite = actionTargets.erase(ite);
             continue;
         }
-        ite++;
+        ++ite;
     }
 
     //shuffle to make it less predictable, otherwise ai will always seem to target from right to left. making it very obvious.
@@ -219,7 +219,7 @@ int AIPlayer::clickMultiTarget(TargetChooser * tc, vector<Targetable*>& potentia
             ite = potentialTargets.erase(ite);
             continue;
         }
-        ite++;
+        ++ite;
     }
 
     randomGenerator.random_shuffle(potentialTargets.begin(), potentialTargets.end());

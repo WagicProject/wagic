@@ -6,7 +6,7 @@
 #include "AllAbilities.h"
 
 REDamagePrevention::REDamagePrevention(MTGAbility * source, TargetChooser *tcSource, TargetChooser *tcTarget, int damage,
-                bool oneShot, int typeOfDamage) :
+                bool oneShot, Damage::DamageType typeOfDamage) :
     source(source), tcSource(tcSource), tcTarget(tcTarget), damage(damage), oneShot(oneShot), typeOfDamage(typeOfDamage)
 {
 }
@@ -18,7 +18,7 @@ WEvent * REDamagePrevention::replace(WEvent *event)
     WEventDamage * e = dynamic_cast<WEventDamage*> (event);
     if (!e) return event;
     Damage *d = e->damage;
-    if (d->typeOfDamage != typeOfDamage && typeOfDamage != DAMAGE_ALL_TYPES) return event;
+    if (d->typeOfDamage != typeOfDamage && typeOfDamage != Damage::DAMAGE_ALL_TYPES) return event;
     if ((!tcSource || tcSource->canTarget(d->source)) && (!tcTarget || tcTarget->canTarget(d->target)))
     {
         if (damage == -1)

@@ -350,8 +350,8 @@ void TestSuiteGame::assertGame()
 	if (observer->getCurrentGamePhase() != endState.phase)
     {
         sprintf(result, "<span class=\"error\">==phase problem. Expected [ %s ](%i), got [ %s ](%i)==</span><br />", 
-            Constants::MTGPhaseNames[endState.phase],endState.phase,
-            Constants::MTGPhaseNames[observer->getCurrentGamePhase()], observer->getCurrentGamePhase());
+            Constants::MTGPhaseNames[endState.phase].c_str(),endState.phase,
+            Constants::MTGPhaseNames[observer->getCurrentGamePhase()].c_str(), observer->getCurrentGamePhase());
         Log(result);
         error++;
     }
@@ -433,6 +433,15 @@ void TestSuiteGame::assertGame()
         Log("<span class=\"success\">==Test Succesful !==</span>");
     else
         Log("<span class=\"error\">==Test Failed !==</span>");
+#ifdef CAPTURE_STDERR
+    if (error)
+    {
+        OutputCapturer::debugAndClear();
+    } else
+    {
+        OutputCapturer::clear();
+    }
+#endif
     mMutex.unlock();
 }
 
@@ -585,6 +594,9 @@ void TestSuite::ThreadProc(void* inParam)
 {
     LOG("Entering TestSuite::ThreadProc");
     TestSuite* instance = reinterpret_cast<TestSuite*>(inParam);
+#ifdef CAPTURE_STDERR
+    OutputCapturer::debugAndClear();
+#endif
     if (instance)
     {
         string filename;

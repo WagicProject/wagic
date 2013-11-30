@@ -333,15 +333,15 @@ StoryDuel::StoryDuel(TiXmlElement* root, StoryFlow * mParent) :
         if (element)
         {
             const char* textC = element->GetText();
-            if (strcmp(element->Value(), "onwin") == 0)
+            if (element->ValueStr() == "onwin")
             {
                 onWin = textC;
             }
-            else if (strcmp(element->Value(), "onlose") == 0)
+            else if (element->ValueStr() == "onlose")
             {
                 onLose = textC;
             }
-            else if (strcmp(element->Value(), "bg") == 0)
+            else if (element->ValueStr() == "bg")
             {
                 string text = textC;
                 bg = string("campaigns/").append(mParent->folder).append("/").append(text);
@@ -396,10 +396,10 @@ int StoryPage::loadElement(TiXmlElement* element)
     if (!element) return 0;
     const char* textC = element->GetText();
     string text = textC;
-    if (strcmp(element->Value(), "music") == 0)
+    if (element->ValueStr() == "music")
     {
         musicFile = string("campaigns/").append(mParent->folder).append("/").append(text);
-        if (!fileExists(musicFile.c_str())) musicFile = text;
+        if (!FileExists(musicFile)) musicFile = text;
         return 1;
     }
     return 0;
@@ -434,15 +434,15 @@ StoryDialog::StoryDialog(TiXmlElement* root, StoryFlow * mParent) :
             string sFont = safeAttribute(element, "font");
             int font = atoi(sFont.c_str());
 
-            if (strcmp(element->Value(), "text") == 0)
+            if (element->ValueStr() == "text")
             {
                 graphics.push_back(NEW StoryText(text, x, y, align, font));
             }
-            else if (strcmp(element->Value(), "title") == 0)
+            else if (element->ValueStr() == "title")
             {
                 graphics.push_back(NEW StoryText(text, x, y, "center", Fonts::MENU_FONT));
             }
-            else if (strcmp(element->Value(), "img") == 0)
+            else if (element->ValueStr() == "img")
             {
                 //special case to force center
                 if (sX.compare("") == 0)
@@ -452,7 +452,7 @@ StoryDialog::StoryDialog(TiXmlElement* root, StoryFlow * mParent) :
                 string img = string("campaigns/").append(mParent->folder).append("/").append(text);
                 graphics.push_back(NEW StoryImage(img, x, y));
             }
-            else if (strcmp(element->Value(), "answer") == 0)
+            else if (element->ValueStr() == "answer")
             {
                 string id = element->Attribute("goto");
                 if (!align.size()) align = "center";
@@ -461,7 +461,7 @@ StoryDialog::StoryDialog(TiXmlElement* root, StoryFlow * mParent) :
                 graphics.push_back(sc);
                 Add(sc);
             }
-            else if (strcmp(element->Value(), "reward") == 0)
+            else if (element->ValueStr() == "reward")
             {
                 string type = safeAttribute(element, "type");
                 string value = safeAttribute(element, "value");
@@ -553,7 +553,7 @@ StoryPage * StoryFlow::loadPage(TiXmlElement* element)
     if (!typeNode) return NULL;
     StoryPage * result = NULL;
     const char* type = typeNode->ToElement()->GetText();
-    if (strcmp(type, "duel") == 0)
+    if (string("duel") == type)
     {
         result = NEW StoryDuel(element, this);
     }
@@ -615,7 +615,7 @@ bool StoryFlow::parse(string path)
         TiXmlElement* element = node->ToElement();
         if (element != NULL)
         {
-            if (strcmp(element->Value(), "page") == 0)
+            if (element->ValueStr() == "page")
             {
                 string id = element->Attribute("id");
 

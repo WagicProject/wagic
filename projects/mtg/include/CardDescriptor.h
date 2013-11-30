@@ -9,9 +9,6 @@
 #include "MTGGameZones.h"
 #include "Counters.h"
 
-#define CD_OR 1
-#define CD_AND 2
-
 enum ENUM_COMPARISON_MODES
   {
     COMPARISON_NONE = 0,  // Needs to remain 0 for quick if(comparison_mode) checks
@@ -31,7 +28,12 @@ class CardDescriptor: public MTGCardInstance
     MTGCardInstance * match_not(MTGCardInstance * card);
   bool valueInRange(int comparisonMode, int value, int criterion);
  public:
-  int mode;
+  enum Operator{
+      CD_OR = 1,
+      CD_AND = 2
+  };
+
+  Operator mode;
   int powerComparisonMode;
   int toughnessComparisonMode;
   int manacostComparisonMode;

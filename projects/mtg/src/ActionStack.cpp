@@ -57,7 +57,7 @@ void NextGamePhase::Render()
     if (observer->currentActionPlayer == observer->players[1])
         playerId = 2;
 
-    sprintf(buffer, "%s %i :  %s", _("Player").c_str(), playerId, observer->getNextGamePhaseName());
+    sprintf(buffer, "%s %i :  %s", _("Player").c_str(), playerId, observer->getNextGamePhaseName().c_str());
 
     mFont->DrawString(buffer, x + 15, y+10, JGETEXT_LEFT);
     mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
@@ -161,7 +161,7 @@ void StackAbility::Render()
     if (target)
     {
         quad = target->getIcon();
-        if (target->type_as_damageable == DAMAGEABLE_MTGCARDINSTANCE)
+        if (target->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE)
         {
             alt2 = ((MTGCardInstance *) target)->name;
         }
@@ -400,7 +400,7 @@ void Spell::Render()
     if (target)
     {
         quad = target->getIcon();
-        if (target->type_as_damageable == DAMAGEABLE_MTGCARDINSTANCE)
+        if (target->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE)
         {
             alt2 = ((MTGCardInstance *) target)->name;
         }
@@ -675,6 +675,7 @@ ActionStack::ActionStack(GameObserver* game)
     currentState = -1;
     mode = ACTIONSTACK_STANDARD;
     checked = 0;
+    lastActionController = NULL;
 
     if(!observer->getResourceManager()) return;
     for (int i = 0; i < 8; ++i)

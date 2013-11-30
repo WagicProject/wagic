@@ -1,4 +1,4 @@
-#ifndef _MTGPACCK_H_
+#ifndef _MTGPACK_H_
 #define _MTGPACK_H_
 
 class ShopBooster;

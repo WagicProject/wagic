@@ -17,7 +17,7 @@ void MTGGamePhase::Update(float)
     int newState = observer->getCurrentGamePhase();
     if (newState != currentState)
     {
-        activeState = ACTIVE;
+        activity = Active;
         animation = 4;
         currentState = newState;
     }
@@ -28,18 +28,18 @@ void MTGGamePhase::Update(float)
     }
     else
     {
-        activeState = INACTIVE;
+        activity = Inactive;
         animation = 0;
     }
 }
 
 bool MTGGamePhase::NextGamePhase()
 {
-    if (activeState == INACTIVE)
+    if (activity == Inactive)
     {
         if (observer->currentActionPlayer == observer->currentlyActing())
         {
-            activeState = ACTIVE;
+            activity = Active;
             observer->userRequestNextGamePhase();
             return true;
         }

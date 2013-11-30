@@ -1,3 +1,6 @@
+#ifndef _CACHE_ENGINE_H_
+#define _CACHE_ENGINE_H_
+
 #include "PrecompiledHeader.h"
 
 #include "Threading.h"
@@ -208,3 +211,5 @@ public:
 
 CardRetrieverBase* CacheEngine::sInstance = NULL;
 bool CacheEngine::sIsThreaded = false;
+
+#endif //_CACHE_ENGINE_H_

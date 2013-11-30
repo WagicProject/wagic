@@ -1,3 +1,6 @@
+#ifndef _STYLE_MANAGER_H_
+#define _STYLE_MANAGER_H_
+
 class WStyle
 {
 public:
@@ -34,3 +37,5 @@ protected:
     string activeStyle;
     map<string, WStyle*> styles;
 };
+
+#endif //_STYLE_MANAGER_H_

@@ -1145,7 +1145,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     }
 
     
-    if(strncmp(s.c_str(), "chooseacolor ", strlen("chooseacolor ")) == 0 || strncmp(s.c_str(), "chooseatype ", strlen("chooseatype ")) == 0)
+    if (StartsWith(s, "chooseacolor ") || StartsWith(s, "chooseatype "))
     {
         MTGAbility * choose = parseChooseActionAbility(s,card,spell,target,0,id);
         choose = NEW GenericActivatedAbility(observer, "","",id, card,choose,NULL);
@@ -2163,6 +2163,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         return NEW AEquip(observer, id, card);
     }
     
+    // TODO: deprecate this ability in favor of retarget
     //Equipment (attach)
     found = s.find("attach");
     if (found != string::npos)
@@ -3271,7 +3272,7 @@ MTGAbility * AbilityFactory::parseChooseActionAbility(string s,MTGCardInstance *
         a->canBeInterrupted = false;
         return a;
     }
-        //choose a color
+    //choose a color
     vector<string> splitChooseAColor = parseBetween(s, "chooseacolor ", " chooseend");
     if (splitChooseAColor.size())
     {
@@ -4367,6 +4368,7 @@ MTGAbility::MTGAbility(GameObserver* observer, int id, MTGCardInstance * card) :
     aType = MTGAbility::UNKNOWN;
     mCost = NULL;
     forceDestroy = 0;
+    forcedAlive = 0;
     oneShot = 0;
     canBeInterrupted = true;
 }
@@ -4380,6 +4382,7 @@ MTGAbility::MTGAbility(GameObserver* observer, int id, MTGCardInstance * _source
     aType = MTGAbility::UNKNOWN;
     mCost = NULL;
     forceDestroy = 0;
+    forcedAlive = 0;
     oneShot = 0;
     canBeInterrupted = true;
 }
@@ -4476,7 +4479,7 @@ Player * MTGAbility::getPlayerFromDamageable(Damageable * target)
     if (!target)
         return NULL;
 
-    if (target->type_as_damageable == DAMAGEABLE_MTGCARDINSTANCE)
+    if (target->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE)
         return ((MTGCardInstance *) target)->controller();
 
     return (Player *) target;
@@ -4892,7 +4895,7 @@ int TargetAbility::resolve()
     return 0;
 }
 
-const char * TargetAbility::getMenuText()
+const string TargetAbility::getMenuText()
 {
     if (ability)
         return ability->getMenuText();
@@ -5422,7 +5425,7 @@ GenericTriggeredAbility::~GenericTriggeredAbility()
     SAFE_DELETE(destroyCondition);
 }
 
-const char * GenericTriggeredAbility::getMenuText()
+const string GenericTriggeredAbility::getMenuText()
 {
     return ability->getMenuText();
 }
@@ -5450,6 +5453,7 @@ AManaProducer::AManaProducer(GameObserver* observer, int id, MTGCardInstance * c
     aType = MTGAbility::MANA_PRODUCER;
     setCost(_cost);
     output = _output;
+    tap = 0;
     Producing = producing;
     menutext = "";
     DoesntEmpty = doesntEmpty;
@@ -5515,7 +5519,7 @@ int AManaProducer::reactToClick(MTGCardInstance * _card)
     return ActivatedAbility::activateAbility();
 }
 
-const char * AManaProducer::getMenuText()
+const string AManaProducer::getMenuText()
 {
     if (menutext.size())
         return menutext.c_str();

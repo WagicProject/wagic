@@ -124,8 +124,9 @@ typedef uint32_t u32;
 #define PIXEL_TYPE DWORD
 #define ARGB(a, r, g, b)		((PIXEL_TYPE)((a) << 24) | ((r) << 16) | ((g) << 8) | (b))
 #define RGBA(r, g, b, a)		((PIXEL_TYPE)((a) << 24) | ((b) << 16) | ((g) << 8) | (r))
+#ifndef PSP
 #define TEXTURE_FORMAT			0
-
+#endif  //PSP
 
 
 #ifndef CONSOLE_CONFIG
@@ -143,7 +144,7 @@ typedef uint32_t u32;
 #include <GL/glu.h>
 #endif
 #else
-# include <QtOpenGL>
+#include <QtOpenGL>
 #endif
 
 #if (defined FORCE_GLES)
@@ -157,14 +158,12 @@ typedef uint32_t u32;
 #endif
 
 #if defined (PSP)
-
 #ifndef ABGR8888
 #define ABGR8888
 #endif
 
 
 #if defined (ABGR8888)
-#define PIXEL_TYPE				u32
 #ifndef ARGB
 #define ARGB(a, r, g, b)		(PIXEL_TYPE)((a << 24) | (b << 16) | (g << 8) | r)	// macro to assemble pixels in correct format
 #endif

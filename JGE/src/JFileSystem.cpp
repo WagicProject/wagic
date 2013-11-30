@@ -16,7 +16,9 @@ User folder is the only one that is really needed to guarantee both read and wri
 The content that users should not be touching.
 */
 
+#ifndef PSP
 #include "PrecompiledHeader.h"
+#endif //PSP
 
 #ifdef WIN32
 #pragma warning(disable : 4786)
