@@ -823,13 +823,13 @@ int GenericChooseTypeColor::resolve()
         for (size_t i = 0; i < values.size(); ++i)
         {
             string menu = values[i];
-            if(!ANonWall || (menu != "wall" && menu != "Wall"))
+            if (!ANonWall || (menu != "wall" && menu != "Wall"))
             {
-            setType = NEW AASetTypeChosen(game, game->mLayers->actionLayer()->getMaxId(), source,(MTGCardInstance*)target, i,menu,baseAbility);
-            MTGAbility * set = setType->clone();
-            set->oneShot = true;
-            selection.push_back(set);
-            SAFE_DELETE(setType);
+                setType = NEW AASetTypeChosen(game, game->mLayers->actionLayer()->getMaxId(), source,(MTGCardInstance*)target, i,menu,baseAbility);
+                MTGAbility * set = setType->clone();
+                set->oneShot = true;
+                selection.push_back(set);
+                SAFE_DELETE(setType);
             }
         }
     }

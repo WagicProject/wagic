@@ -138,7 +138,7 @@ public:
 
     static int findType(string subtype, bool forceAdd = true) {
         boost::mutex::scoped_lock lock(instance->mMutex);
-		int result = instance->subtypesList.find(subtype, forceAdd);
+        int result = instance->subtypesList.find(subtype, forceAdd);
         return result;
     };
     static int add(string value, unsigned int parentType) {

@@ -54,7 +54,9 @@ int Subtypes::add(string value, unsigned int parentType)
     }
     if (isSubType(subtype) && (parentType == TYPE_CREATURE))
     {
-        if(value != "forest" && value != "Forest")//http://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=136196 one creature with a land subtype exist, but the card has special ruling.
+        if (value != "forest" && value != "Forest")
+            //http://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid=136196
+            //one creature with a land subtype exist, but the card has special ruling.
             subtypesCreature.push_back(value);
     }
     return subtype;
@@ -115,8 +117,7 @@ void Subtypes::sortSubTypes()
 
 const vector<string>& Subtypes::getCreatureValuesById()
 {
-    sort(subtypesCreature.begin(),subtypesCreature.end());
-    subtypesCreature.erase(unique(subtypesCreature.begin(),subtypesCreature.end()),subtypesCreature.end());
+    sortSubTypes();
     return subtypesCreature;
 }
 

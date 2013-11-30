@@ -1145,7 +1145,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     }
 
     
-    if(s.compare(0, strlen("chooseacolor "), "chooseacolor ") == 0 || s.compare(0, strlen("chooseatype "), "chooseatype ") == 0)
+    if (StartsWith(s, "chooseacolor ") || StartsWith(s, "chooseatype "))
     {
         MTGAbility * choose = parseChooseActionAbility(s,card,spell,target,0,id);
         choose = NEW GenericActivatedAbility(observer, "","",id, card,choose,NULL);
@@ -3272,7 +3272,7 @@ MTGAbility * AbilityFactory::parseChooseActionAbility(string s,MTGCardInstance *
         a->canBeInterrupted = false;
         return a;
     }
-        //choose a color
+    //choose a color
     vector<string> splitChooseAColor = parseBetween(s, "chooseacolor ", " chooseend");
     if (splitChooseAColor.size())
     {
