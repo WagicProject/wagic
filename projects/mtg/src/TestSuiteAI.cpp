@@ -615,6 +615,7 @@ void TestSuite::ThreadProc(void* inParam)
                 while(!theGame.observer->didWin())
                     theGame.observer->Update(counter++);
 
+                // rewind and redo thanks to the action logging
                 stringstream stream;
                 stream << (*theGame.observer);
                 theGame.observer->load(stream.str(), false, 0, &theGame);
