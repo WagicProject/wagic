@@ -31,11 +31,11 @@ TEMPLATE = app
 
 #!macx:CONFIG += precompile_header
 unix|macx:QMAKE_CXXFLAGS += -Wno-unused-parameter
-unix|macx:QMAKE_CXXFLAGS += -Wno-unused-but-set-parameter
-unix|macx:QMAKE_CXXFLAGS += -Wno-unused-but-set-variable
+unix:!macx:QMAKE_CXXFLAGS += -Wno-unused-but-set-parameter
+unix:!macx:QMAKE_CXXFLAGS += -Wno-unused-but-set-variable
 unix|macx:QMAKE_CXXFLAGS += -Wno-unused-value
-unix|macx:QMAKE_CXXFLAGS += -Wno-unused-local-typedefs
-unix|macx:!maemo5:!symbian:QMAKE_CXXFLAGS += -Werror
+unix:!macx:QMAKE_CXXFLAGS += -Wno-unused-local-typedefs
+unix:!macx:!maemo5:!symbian:QMAKE_CXXFLAGS += -Werror
 
 windows:DEFINES += _CRT_SECURE_NO_WARNINGS
 unix|macx:DEFINES += LINUX
@@ -48,6 +48,8 @@ DEFINES += QT_CONFIG
 android:INCLUDEPATH += $$ANDROID_NDK_ROOT/platforms/android-9/arch-arm/usr/include
 #DEFINES += QT_NO_DEBUG_OUTPUT
 DEFINES += NETWORK_SUPPORT
+
+DEFINES += TIXML_USE_STL
 
 windows:INCLUDEPATH += ../../JGE/Dependencies/include
 windows{

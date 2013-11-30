@@ -72,7 +72,7 @@ public:
     {
         return 0;
     }
-    virtual const char * getMenuText()
+    virtual const string getMenuText()
     {
         return "Ability";
     }

@@ -66,7 +66,7 @@ CardSelector::SelectorMemory::SelectorMemory()
 }
 
 CardSelector::CardSelector(GameObserver *observer, DuelLayers* duel) :
-    CardSelectorBase(observer), active(NULL), duel(duel), limitor(NULL), bigpos(300, 145, 1.0, 0.0, 220)
+    CardSelectorBase(observer), active(NULL), duel(duel), limitor(NULL), bigpos(300, 145, 1.0, 0.0, 220), timer(0.0f)
 {
 }
 

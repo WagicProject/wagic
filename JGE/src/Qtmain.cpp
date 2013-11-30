@@ -69,7 +69,7 @@ int main(int argc, char* argv[])
 
 #endif //QT_WIDGET
 
-    if(argc >= 2 && strcmp(argv[1], "testsuite")==0)
+    if(argc >= 2 && string(argv[1]) == "testsuite")
     {
         int result = 0;
         result += WagicCore::runTestSuite();

@@ -1145,7 +1145,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     }
 
     
-    if(strncmp(s.c_str(), "chooseacolor ", strlen("chooseacolor ")) == 0 || strncmp(s.c_str(), "chooseatype ", strlen("chooseatype ")) == 0)
+    if(s.compare(0, strlen("chooseacolor "), "chooseacolor ") == 0 || s.compare(0, strlen("chooseatype "), "chooseatype ") == 0)
     {
         MTGAbility * choose = parseChooseActionAbility(s,card,spell,target,0,id);
         choose = NEW GenericActivatedAbility(observer, "","",id, card,choose,NULL);
@@ -4368,6 +4368,7 @@ MTGAbility::MTGAbility(GameObserver* observer, int id, MTGCardInstance * card) :
     aType = MTGAbility::UNKNOWN;
     mCost = NULL;
     forceDestroy = 0;
+    forcedAlive = 0;
     oneShot = 0;
     canBeInterrupted = true;
 }
@@ -4381,6 +4382,7 @@ MTGAbility::MTGAbility(GameObserver* observer, int id, MTGCardInstance * _source
     aType = MTGAbility::UNKNOWN;
     mCost = NULL;
     forceDestroy = 0;
+    forcedAlive = 0;
     oneShot = 0;
     canBeInterrupted = true;
 }
@@ -4893,7 +4895,7 @@ int TargetAbility::resolve()
     return 0;
 }
 
-const char * TargetAbility::getMenuText()
+const string TargetAbility::getMenuText()
 {
     if (ability)
         return ability->getMenuText();
@@ -5423,7 +5425,7 @@ GenericTriggeredAbility::~GenericTriggeredAbility()
     SAFE_DELETE(destroyCondition);
 }
 
-const char * GenericTriggeredAbility::getMenuText()
+const string GenericTriggeredAbility::getMenuText()
 {
     return ability->getMenuText();
 }
@@ -5451,6 +5453,7 @@ AManaProducer::AManaProducer(GameObserver* observer, int id, MTGCardInstance * c
     aType = MTGAbility::MANA_PRODUCER;
     setCost(_cost);
     output = _output;
+    tap = 0;
     Producing = producing;
     menutext = "";
     DoesntEmpty = doesntEmpty;
@@ -5516,7 +5519,7 @@ int AManaProducer::reactToClick(MTGCardInstance * _card)
     return ActivatedAbility::activateAbility();
 }
 
-const char * AManaProducer::getMenuText()
+const string AManaProducer::getMenuText()
 {
     if (menutext.size())
         return menutext.c_str();
