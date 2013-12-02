@@ -1039,6 +1039,12 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         observer->addObserver(NEW MTGMorphCostRule(observer, -1));
         return NULL;
     }
+    found = s.find("playfromgraveyardrule");
+    if(found != string::npos)
+    {
+        observer->addObserver(NEW MTGPlayFromGraveyardRule(observer, -1));
+        return NULL;
+    }
     //this rule handles attacking ability during attacker phase
     found = s.find("attackrule");
     if(found != string::npos)
