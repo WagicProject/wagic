@@ -3187,19 +3187,6 @@ mana={2}
 type=Artifact
 [/card]
 [card]
-name=Crucible of Worlds
-auto={0}:may moveTo(myBattlefield) target(land|mygraveyard) limit:1 myTurnOnly
-# Above line does not work: "May moveto" from graveyards does
-# not work due to interface issues. The "limit:1" doesn't work
-# here either. Even if both worked, then the card would allow
-# you to play lands *in addition* to the 1 land you can play per
-# turn. Instead it should just give you the option to play this
-# 1 land from your hand or your graveyard.
-text=You may play land cards from your graveyard.
-mana={3}
-type=Artifact
-[/card]
-[card]
 name=Cruel Deceiver
 text={1}: Look at the top card of your library. -- {2}: Reveal the top card of your library. If it's a land card, Cruel Deceiver gains "Whenever Cruel Deceiver deals damage to a creature, destroy that creature" until end of turn. Activate this ability only once each turn.
 mana={1}{B}

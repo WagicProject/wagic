@@ -249,6 +249,7 @@ curiosity2_i217.txt
 crimson_kobolds.txt
 crosis_s_catacombs_1.txt
 crosis_s_catacombs_2.txt
+crucible_of_worlds.txt
 crumble.txt
 crystal_rod_i172.txt
 cursed_land1_i188.txt

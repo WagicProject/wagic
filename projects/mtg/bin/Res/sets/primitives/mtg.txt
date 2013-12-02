@@ -18104,6 +18104,13 @@ mana={3}{R}
 type=Enchantment
 [/card]
 [card]
+name=Crucible of Worlds
+auto=lord(land|mygraveyard) CanPlayFromGraveyard
+text=You may play land cards from your graveyard.
+mana={3}
+type=Artifact
+[/card]
+[card]
 name=Crude Rampart
 abilities=defender
 facedown={3}
