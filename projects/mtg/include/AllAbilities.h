@@ -2524,13 +2524,13 @@ public:
 
     ALord(GameObserver* observer, int _id, MTGCardInstance * card, TargetChooser * _tc, int _includeSelf, MTGAbility * a) :
         ListMaintainerAbility(observer, _id, card), NestedAbility(a)
-        {
-            tc = _tc;
-            tc->targetter = NULL;
-            includeSelf = _includeSelf;
-            if(ability->aType == MTGAbility::STANDARD_PREVENT)
-                aType = MTGAbility::STANDARD_PREVENT;
-        }
+    {
+        tc = _tc;
+        tc->targetter = NULL;
+        includeSelf = _includeSelf;
+        if(ability->aType == MTGAbility::STANDARD_PREVENT)
+            aType = MTGAbility::STANDARD_PREVENT;
+    }
      
     //returns true if it is me who created ability a attached to Damageable d
     bool isParentOf(Damageable * d, MTGAbility * a)
@@ -2608,7 +2608,8 @@ public:
 
     int removed(MTGCardInstance * card)
     {
-        if (abilities.find(card) != abilities.end() && !(forceDestroy == -1 && forcedAlive == 1))//only embelms have forcedestroy = -1 and forcedalive = 1
+        if (abilities.find(card) != abilities.end()
+            && !(forceDestroy == -1 && forcedAlive == 1)) //only embelms have forcedestroy = -1 and forcedalive = 1
         { 
             game->removeObserver(abilities[card]);
             abilities.erase(card);

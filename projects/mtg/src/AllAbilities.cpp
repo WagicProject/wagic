@@ -5419,83 +5419,83 @@ AACastCard::AACastCard(GameObserver* observer, int _id, MTGCardInstance * _sourc
 }
 
 
-   void AACastCard::Update(float dt)
+void AACastCard::Update(float dt)
+{
+   MTGAbility::Update(dt);
+   if (processed)
+       return;
+   if(cardNamed.size() && !theNamedCard)
    {
-       MTGAbility::Update(dt);
-       if (processed)
-           return;
-       if(cardNamed.size() && !theNamedCard)
-       {
-           theNamedCard = makeCard();
-       }
-       if (restricted)
-       {
-           MTGCardInstance * toCheck = (MTGCardInstance*)target;
-           if(theNamedCard)
-               toCheck = theNamedCard;
-           if (game->currentActionPlayer->game->playRestrictions->canPutIntoZone(toCheck, source->controller()->game->stack) == PlayRestriction::CANT_PLAY)
-           {
-               processed = true;
-               this->forceDestroy = 1;
-               return ;
-           }
-           if(!allowedToCast(toCheck,source->controller()))
-           {
-               processed = true;
-               this->forceDestroy = 1;
-               return;
-           }
-           if(!toCheck->hasType(Subtypes::TYPE_INSTANT) && !(game->getCurrentGamePhase() == MTG_PHASE_FIRSTMAIN || game->getCurrentGamePhase() == MTG_PHASE_SECONDMAIN))
-           {
-               processed = true;
-               this->forceDestroy = 1;
-               return;
-           }
-       }
+       theNamedCard = makeCard();
+   }
+   if (restricted)
+   {
        MTGCardInstance * toCheck = (MTGCardInstance*)target;
        if(theNamedCard)
            toCheck = theNamedCard;
-       if (Spell * checkSpell = dynamic_cast<Spell*>(target))
+       if (game->currentActionPlayer->game->playRestrictions->canPutIntoZone(toCheck, source->controller()->game->stack) == PlayRestriction::CANT_PLAY)
        {
-           toCheck = checkSpell->source;
+           processed = true;
+           this->forceDestroy = 1;
+           return ;
        }
-       if (!game->targetListIsSet(toCheck))
+       if(!allowedToCast(toCheck,source->controller()))
        {
-           if(game->targetChooser)
-               game->targetChooser->Owner = source->controller();//sources controller is the caster
+           processed = true;
+           this->forceDestroy = 1;
            return;
        }
-       resolveSpell();
-       this->forceDestroy = 1;
+       if(!toCheck->hasType(Subtypes::TYPE_INSTANT) && !(game->getCurrentGamePhase() == MTG_PHASE_FIRSTMAIN || game->getCurrentGamePhase() == MTG_PHASE_SECONDMAIN))
+       {
+           processed = true;
+           this->forceDestroy = 1;
+           return;
+       }
+   }
+   MTGCardInstance * toCheck = (MTGCardInstance*)target;
+   if(theNamedCard)
+       toCheck = theNamedCard;
+   if (Spell * checkSpell = dynamic_cast<Spell*>(target))
+   {
+       toCheck = checkSpell->source;
+   }
+   if (!game->targetListIsSet(toCheck))
+   {
+       if(game->targetChooser)
+           game->targetChooser->Owner = source->controller();//sources controller is the caster
        return;
    }
-   int AACastCard::isReactingToTargetClick(Targetable * card){return 0;}
-   int AACastCard::reactToTargetClick(Targetable * object)
-   {
-       if (MTGCardInstance * cObject = dynamic_cast<MTGCardInstance *>(object))
-           return reactToClick(cObject);
+   resolveSpell();
+   this->forceDestroy = 1;
+   return;
+}
+int AACastCard::isReactingToTargetClick(Targetable * card){return 0;}
+int AACastCard::reactToTargetClick(Targetable * object)
+{
+   if (MTGCardInstance * cObject = dynamic_cast<MTGCardInstance *>(object))
+       return reactToClick(cObject);
 
-       if (waitingForAnswer)
+   if (waitingForAnswer)
+   {
+       if (tc->toggleTarget(object) == TARGET_OK_FULL)
        {
-           if (tc->toggleTarget(object) == TARGET_OK_FULL)
-           {
-               waitingForAnswer = 0;
-               game->mLayers->actionLayer()->setCurrentWaitingAction(NULL);
-               return MTGAbility::reactToClick(source);
-           }
-           return 1;
+           waitingForAnswer = 0;
+           game->mLayers->actionLayer()->setCurrentWaitingAction(NULL);
+           return MTGAbility::reactToClick(source);
        }
-       return 0;
+       return 1;
    }
+   return 0;
+}
 
-   MTGCardInstance * AACastCard::makeCard()
-   {
-       MTGCardInstance * card = NULL;
-       MTGCard * cardData = MTGCollection()->getCardByName(cardNamed);
-       card = NEW MTGCardInstance(cardData, source->controller()->game);
-       source->controller()->game->temp->addCard(card);
-       return card;
-   }
+MTGCardInstance * AACastCard::makeCard()
+{
+   MTGCardInstance * card = NULL;
+   MTGCard * cardData = MTGCollection()->getCardByName(cardNamed);
+   card = NEW MTGCardInstance(cardData, source->controller()->game);
+   source->controller()->game->temp->addCard(card);
+   return card;
+}
 
 int AACastCard::resolveSpell()
 {
