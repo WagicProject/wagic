@@ -717,7 +717,6 @@ int MTGAlternativeCostRule::reactToClick(MTGCardInstance * card, ManaCost *alter
         copy->alternateCostPaid[alternateCostType] = 1;
         spell->resolve();
         SAFE_DELETE(spell);
-        game->mLayers->stackLayer()->addSpell(copy, NULL, NULL, alternateCostType, 1);
     }
     else
     {   
