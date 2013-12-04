@@ -27,4 +27,5 @@ qmake projects/mtg/wagic-qt.pro CONFIG+=console CONFIG+=debug DEFINES+=CAPTURE_S
 make -j 8
 
 # and finish by running the testsuite
-./wagic
+cd projects/mtg
+./../../wagic
