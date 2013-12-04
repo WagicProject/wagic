@@ -17,6 +17,7 @@
 #include "Counters.h"
 #include "ModRules.h"
 #include "CardDescriptor.h"
+#include "GameApp.h"
 
 const float CardGui::Width = 28.0;
 const float CardGui::Height = 40.0;

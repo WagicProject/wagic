@@ -3,6 +3,7 @@
 #include "GuiMana.h"
 #include "OptionItem.h"
 #include "Player.h"
+#include "GameApp.h"
 
 //using std::cout;
 using std::endl;

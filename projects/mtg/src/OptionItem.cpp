@@ -7,6 +7,7 @@
 #include "TranslateKeys.h"
 #include "StyleManager.h"
 #include <dirent.h>
+#include "SimpleMenu.h"
 
 //OptionItem
 OptionItem::OptionItem(int _id, string _displayValue) :

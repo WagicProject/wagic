@@ -13,6 +13,7 @@
 #include "PlayerData.h"
 #include "MTGDeck.h"
 #include "WFont.h"
+#include "GameApp.h"
 #include <JFileSystem.h>
 
 #define LINE_SPACE 2

@@ -106,6 +106,9 @@ SOURCES += \
         src/DeckMenuItem.cpp\
         src/DeckMetaData.cpp\
         src/DeckStats.cpp\
+        src/DeckView.cpp\
+        src/CarouselDeckView.cpp\
+        src/GridDeckView.cpp\
         src/DuelLayers.cpp\
         src/Effects.cpp\
         src/ExtraCost.cpp\
@@ -301,7 +304,10 @@ HEADERS  += \
         include/SimpleMenu.h\
         include/SimpleButton.h\
         include/InteractiveButton.h\
-        include/ObjectAnalytics.h
+        include/ObjectAnalytics.h\
+        include/DeckView.h\
+        include/CarouselDeckView.h\
+        include/GridDeckView.h
 
 # JGE, could probably be moved outside
 SOURCES += \

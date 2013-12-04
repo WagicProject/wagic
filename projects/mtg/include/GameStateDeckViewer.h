@@ -19,22 +19,7 @@
 #include "WGui.h"
 #include "InteractiveButton.h"
 
-#define NO_USER_ACTIVITY_HELP_DELAY 10
-#define NO_USER_ACTIVITY_SHOWCARD_DELAY 0.1
-
-enum
-{
-    STAGE_TRANSITION_RIGHT = 0,
-    STAGE_TRANSITION_LEFT = 1,
-    STAGE_WAITING = 2,
-    STAGE_TRANSITION_UP = 3,
-    STAGE_TRANSITION_DOWN = 4,
-    STAGE_ONSCREEN_MENU = 5,
-    STAGE_WELCOME = 6,
-    STAGE_MENU = 7,
-    STAGE_FILTERS = 8,
-    STAGE_TRANSITION_SELECTED = 9
-};
+class DeckView;
 
 // TODO: need a better name for MENU_FIRST_MENU, this is reused for the 1st submenu of
 // available options in the duel menu
@@ -44,7 +29,7 @@ enum
     MENU_DECK_SELECTION = 10,
     MENU_DECK_BUILDER = 11,
     MENU_FIRST_DUEL_SUBMENU = 102,
-    MENU_LANGUAGE_SELECTION = 103,
+    MENU_LANGUAGE_SELECTION = 103
 };
 
 // enums for menu options
@@ -64,38 +49,28 @@ enum DECK_VIEWER_MENU_ITEMS
     MENU_ITEM_NO = 21,
     MENU_ITEM_FILTER_BY = 22,
     MENUITEM_MORE_INFO = kInfoMenuID
-
 };
-
-#define ALL_COLORS -1
-
-#define ROTATE_LEFT 1;
-#define ROTATE_RIGHT 0;
-
-#define HIGH_SPEED 15.0
-#define MED_SPEED 5.0f
-#define LOW_SPEED 1.5
-
-#define MAX_SAVED_FILTERS Constants::NB_Colors + 1
-#define CARDS_DISPLAYED 10
 
 class GameStateDeckViewer: public GameState, public JGuiListener
 {
 private:
+    enum DeckViewerStages
+    {
+        STAGE_WAITING = 0,
+        STAGE_ONSCREEN_MENU,
+        STAGE_WELCOME,
+        STAGE_MENU,
+        STAGE_FILTERS
+    };
+
     vector<JQuadPtr> mIcons;
     JQuadPtr pspIcons[8];
     JTexture * pspIconsTexture;
     float last_user_activity;
     float onScreenTransition;
-    float mRotation;
-    float mSlide;
     int mAlpha;
-    int mStage;
-    int useFilter;
+    DeckViewerStages mStage;
     JMusic * bgMusic;
-    int lastPos;
-    int lastTotal;
-    int mSelected;
     
     InteractiveButton *toggleDeckButton, *sellCardButton, *statsPrevButton, *filterButton, *toggleViewButton;
 
@@ -108,10 +83,8 @@ private:
     PriceList* pricelist;
     PlayerData * playerdata;
     int price;
-    DeckDataWrapper * displayed_deck;
     DeckDataWrapper * myDeck;
     DeckDataWrapper * myCollection;
-    MTGCard * cardIndex[CARDS_DISPLAYED];
     StatsWrapper *stw;
 
     int hudAlpha;
@@ -120,23 +93,20 @@ private:
     bool mSwitching;
     void saveDeck(); //Saves the deck and additional necessary information
     void saveAsAIDeck(string deckName); // saves deck as an AI Deck
-    int getCurrentPos();
     void sellCard();
     void setButtonState(bool state);
     bool userPressedButton();
     void RenderButtons();
-    
-    pair<float, float> cardsCoordinates[CARDS_DISPLAYED];
 
+    DeckView* mView;
 public:
     GameStateDeckViewer(GameApp* parent);
     virtual ~GameStateDeckViewer();
     void updateDecks();
     void rotateCards(int direction);
-    void loadIndexes();
     void updateFilters();
     void rebuildFilters();
-    void switchDisplay();
+    void toggleCollection();
     void Start();
     virtual void End();
     void addRemove(MTGCard * card);
@@ -145,8 +115,6 @@ public:
     void renderSlideBar();
     void renderDeckBackground();
     void renderOnScreenMenu();
-    virtual void renderCard(int id, float rotation);
-    virtual void renderCard(int id);
     virtual void Render();
     int loadDeck(int deckid);
     void LoadDeckStatistics(int deckId);

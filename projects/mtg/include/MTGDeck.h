@@ -4,7 +4,6 @@
 #define MTG_ERROR -1
 
 #include "MTGDefinitions.h"
-#include "GameApp.h"
 #include "WResourceManager.h"
 #include <dirent.h>
 #include <Threading.h>
