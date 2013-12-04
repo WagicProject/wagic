@@ -13,5 +13,6 @@ install:
   - wget http://dl.google.com/android/android-sdk_r22-linux.tgz -nv
   - tar --absolute-names -jxf android-ndk-r9-linux-x86_64.tar.bz2
   - tar -zxf android-sdk_r22-linux.tgz
+  - $ANDROID list sdk
   - echo yes | $ANDROID update sdk -a --filter 1,2,4,18 --no-ui --force > log.txt
 script: "./travis-script.sh"
