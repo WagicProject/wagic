@@ -47,6 +47,7 @@ GameStateDeckViewer::GameStateDeckViewer(GameApp* parent) :
     toggleDeckButton = NEW InteractiveButton(NULL, kToggleDeckActionId, Fonts::MAIN_FONT, "View Deck", 10, SCREEN_HEIGHT_F - 20, JGE_BTN_PRI);
     sellCardButton = NEW InteractiveButton(NULL, kSellCardActionId, Fonts::MAIN_FONT, "Sell Card", (SCREEN_WIDTH_F/ 2) - 100, SCREEN_HEIGHT_F - 20, JGE_BTN_SEC);
     filterButton = NEW InteractiveButton(NULL, kFilterButtonId, Fonts::MAIN_FONT, "filter", (SCREEN_WIDTH_F - 110), SCREEN_HEIGHT_F - 20, JGE_BTN_CTRL);
+    toggleViewButton = NEW InteractiveButton(NULL, kSwitchViewButton, Fonts::MAIN_FONT, "Grid", (SCREEN_WIDTH_F/ 2) - 130, SCREEN_HEIGHT_F - 20, JGE_BTN_NONE);
 }
 
 GameStateDeckViewer::~GameStateDeckViewer()
@@ -56,6 +57,7 @@ GameStateDeckViewer::~GameStateDeckViewer()
     SAFE_DELETE(sellCardButton);
     SAFE_DELETE(statsPrevButton);
     SAFE_DELETE(filterButton);
+    SAFE_DELETE(toggleViewButton);
     
     if (myDeck)
     {
@@ -98,9 +100,9 @@ void GameStateDeckViewer::rebuildFilters()
     if (displayed_deck != myDeck) source->swapSrc();
     filterMenu->Finish(true);
 
-	// no stats need updating if there isn't a deck to update
-	if (stw && myDeck) 
-		stw->updateStats( myDeck );;
+    // no stats need updating if there isn't a deck to update
+    if (stw && myDeck)
+        stw->updateStats( myDeck );;
 }
 
 void GameStateDeckViewer::updateFilters()
@@ -169,7 +171,7 @@ void GameStateDeckViewer::updateDecks()
     newDeckname = "";
     welcome_menu->Add(MENU_ITEM_NEW_DECK, "--NEW--");
     if (options[Options::CHEATMODE].number && (!myCollection || myCollection->getCount(WSrcDeck::UNFILTERED_MIN_COPIES) < 4)) welcome_menu->Add(
-            MENU_ITEM_CHEAT_MODE, "--UNLOCK CARDS--");
+                MENU_ITEM_CHEAT_MODE, "--UNLOCK CARDS--");
     welcome_menu->Add(MENU_ITEM_CANCEL, "Cancel");
 
     // update the deckmanager with the latest information
@@ -357,13 +359,13 @@ void GameStateDeckViewer::sellCard()
 
 bool GameStateDeckViewer::userPressedButton()
 {
-    return (
-            (toggleDeckButton->ButtonPressed()) 
+    return ((toggleDeckButton->ButtonPressed())
             || (sellCardButton->ButtonPressed())
             || (statsPrevButton->ButtonPressed())
             || (filterButton->ButtonPressed())
+            || (toggleViewButton->ButtonPressed())
             );
-  }
+}
 
 void GameStateDeckViewer::setButtonState(bool state)
 {
@@ -371,6 +373,7 @@ void GameStateDeckViewer::setButtonState(bool state)
     sellCardButton->setIsSelectionValid(state);
     statsPrevButton->setIsSelectionValid(state);
     filterButton->setIsSelectionValid(state);
+    toggleViewButton->setIsSelectionValid(state);
     
 }
 
@@ -380,6 +383,7 @@ void GameStateDeckViewer::RenderButtons()
     sellCardButton->Render();
     filterButton->Render();
     statsPrevButton->Render();
+    toggleViewButton->Render();
 }
 
 void GameStateDeckViewer::Update(float dt)
@@ -483,7 +487,7 @@ void GameStateDeckViewer::Update(float dt)
                     }
                 }
 
-                if(n != 2) 
+                if(n != 2)
                 {
                     mSelected = n;
                     last_user_activity = 0;
@@ -491,13 +495,13 @@ void GameStateDeckViewer::Update(float dt)
                 }
                 mEngine->LeftClickedProcessed();
             }
-                
+
             if(mStage != STAGE_TRANSITION_SELECTED && last_user_activity > .05)
             {
                 last_user_activity = 0;
                 addRemove(cardIndex[2]);
             }
-                
+
             break;
         case JGE_BTN_SEC:
             sellCard();
@@ -548,7 +552,7 @@ void GameStateDeckViewer::Update(float dt)
             }
             else
                 last_user_activity += dt;
-                
+
             break;
         }
 
@@ -698,7 +702,7 @@ void GameStateDeckViewer::renderOnScreenBasicInfo()
                 displayed_deck->getCount(WSrcDeck::FILTERED_UNIQUE));
     else
         sprintf(buffer, "%s%i cards (%i unique)", (displayed_deck == myDeck) ? "DECK: " : " ", allCopies, displayed_deck->getCount(
-                WSrcDeck::UNFILTERED_UNIQUE));
+                    WSrcDeck::UNFILTERED_UNIQUE));
 
     float w = mFont->GetStringWidth(buffer);
     PIXEL_TYPE backupColor = mFont->GetColor();
@@ -785,9 +789,9 @@ void GameStateDeckViewer::renderDeckBackground()
         maxC2 = maxC1;
     }
     PIXEL_TYPE colors[] = { ARGB(255, Constants::_r[maxC1], Constants::_g[maxC1], Constants::_b[maxC1]),
-            ARGB(255, Constants::_r[maxC1], Constants::_g[maxC1], Constants::_b[maxC1]),
-            ARGB(255, Constants::_r[maxC2], Constants::_g[maxC2], Constants::_b[maxC2]),
-            ARGB(255, Constants::_r[maxC2], Constants::_g[maxC2], Constants::_b[maxC2]), };
+                            ARGB(255, Constants::_r[maxC1], Constants::_g[maxC1], Constants::_b[maxC1]),
+                            ARGB(255, Constants::_r[maxC2], Constants::_g[maxC2], Constants::_b[maxC2]),
+                            ARGB(255, Constants::_r[maxC2], Constants::_g[maxC2], Constants::_b[maxC2]), };
 
     JRenderer::GetInstance()->FillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, colors);
 
@@ -1079,19 +1083,19 @@ void GameStateDeckViewer::renderOnScreenMenu()
 
             // Horizontal table lines
             r->DrawLine(27 + leftTransition, posY - 20, 60 + (Constants::NB_Colors - 2) * 15 + leftTransition, posY - 20,
-                    ARGB(128, 255, 255, 255));
+                        ARGB(128, 255, 255, 255));
             r->DrawLine(27 + leftTransition, posY - 1, 60 + (Constants::NB_Colors - 2) * 15 + leftTransition, posY - 1,
-                    ARGB(128, 255, 255, 255));
+                        ARGB(128, 255, 255, 255));
             r->DrawLine(27 + leftTransition, 2 * 10 + posY + 12, 60 + (Constants::NB_Colors - 2) * 15 + leftTransition, 2 * 10
-                    + posY + 12, ARGB(128, 255, 255, 255));
+                        + posY + 12, ARGB(128, 255, 255, 255));
             r->DrawLine(27 + leftTransition, 3 * 10 + posY + 14, 60 + (Constants::NB_Colors - 2) * 15 + leftTransition, 3 * 10
-                    + posY + 14, ARGB(128, 255, 255, 255));
+                        + posY + 14, ARGB(128, 255, 255, 255));
 
             // Vertical table lines
             r->DrawLine(26 + leftTransition, posY - 20, 26 + leftTransition, 3 * 10 + posY + 14, ARGB(128, 255, 255, 255));
             r->DrawLine(43 + leftTransition, posY - 20, 43 + leftTransition, 3 * 10 + posY + 14, ARGB(128, 255, 255, 255));
             r->DrawLine(60 + leftTransition + (Constants::NB_Colors - 2) * 15, posY - 20, 60 + leftTransition
-                    + (Constants::NB_Colors - 2) * 15, 3 * 10 + posY + 14, ARGB(128, 255, 255, 255));
+                        + (Constants::NB_Colors - 2) * 15, 3 * 10 + posY + 14, ARGB(128, 255, 255, 255));
 
             font->DrawString(_("BL"), 27 + leftTransition, posY);
             font->DrawString(_("NB"), 27 + leftTransition, posY + 10);
@@ -1166,7 +1170,7 @@ void GameStateDeckViewer::renderOnScreenMenu()
                     sprintf(buffer, _("%i").c_str(), stw->countLandsPerColor[i] + stw->countBasicLandsPerColor[i]);
                     font->DrawString(buffer, 20 + leftTransition, posY);
                     sprintf(buffer, _("(%i%%)").c_str(), (int) (100 * (float) (stw->countLandsPerColor[i]
-                            + stw->countBasicLandsPerColor[i]) / totalProducedSymbols));
+                                                                               + stw->countBasicLandsPerColor[i]) / totalProducedSymbols));
                     font->DrawString(buffer, 33 + leftTransition, posY);
                     posX = 72;
                     for (int j = 0; j < stw->countLandsPerColor[i] + stw->countBasicLandsPerColor[i]; j++)
@@ -1241,22 +1245,22 @@ void GameStateDeckViewer::renderOnScreenMenu()
 
             // Horizontal table lines
             r->DrawLine(27 + leftTransition, posY - 20, 75 + (Constants::NB_Colors - 2) * 15 + leftTransition, posY - 20,
-                    ARGB(128, 255, 255, 255));
+                        ARGB(128, 255, 255, 255));
             r->DrawLine(27 + leftTransition, posY - 1, 75 + (Constants::NB_Colors - 2) * 15 + leftTransition, posY - 1,
-                    ARGB(128, 255, 255, 255));
+                        ARGB(128, 255, 255, 255));
             r->DrawLine(27 + leftTransition, Constants::STATS_MAX_MANA_COST * 10 + posY + 12, 75 + (Constants::NB_Colors - 2)
-                    * 15 + leftTransition, Constants::STATS_MAX_MANA_COST * 10 + posY + 12, ARGB(128, 255, 255, 255));
+                        * 15 + leftTransition, Constants::STATS_MAX_MANA_COST * 10 + posY + 12, ARGB(128, 255, 255, 255));
 
             // Vertical table lines
             r->DrawLine(26 + leftTransition, posY - 20, 26 + leftTransition, Constants::STATS_MAX_MANA_COST * 10 + posY + 12,
-                    ARGB(128, 255, 255, 255));
+                        ARGB(128, 255, 255, 255));
             r->DrawLine(41 + leftTransition, posY - 20, 41 + leftTransition, Constants::STATS_MAX_MANA_COST * 10 + posY + 12,
-                    ARGB(128, 255, 255, 255));
+                        ARGB(128, 255, 255, 255));
             r->DrawLine(58 + leftTransition, posY - 20, 58 + leftTransition, Constants::STATS_MAX_MANA_COST * 10 + posY + 12,
-                    ARGB(128, 255, 255, 255));
+                        ARGB(128, 255, 255, 255));
             r->DrawLine(75 + leftTransition + (Constants::NB_Colors - 2) * 15, posY - 20, 75 + leftTransition
-                    + (Constants::NB_Colors - 2) * 15, Constants::STATS_MAX_MANA_COST * 10 + posY + 12,
-                    ARGB(128, 255, 255, 255));
+                        + (Constants::NB_Colors - 2) * 15, Constants::STATS_MAX_MANA_COST * 10 + posY + 12,
+                        ARGB(128, 255, 255, 255));
 
             for (int i = 0; i <= Constants::STATS_MAX_MANA_COST; i++)
             {
@@ -1270,7 +1274,7 @@ void GameStateDeckViewer::renderOnScreenMenu()
                     font->DrawString(buffer, 64 + leftTransition + j * 15, posY);
                 }
                 r->FillRect(77.f + leftTransition + (Constants::NB_Colors - 2) * 15.0f, posY + 2.0f, (*countPerCost)[i] * 5.0f,
-                        8.0f, graphColor);
+                            8.0f, graphColor);
                 posY += 10;
             }
 
@@ -1407,7 +1411,7 @@ void GameStateDeckViewer::renderCard(int id, float rotation)
 
     float x_center = x_center_0 + cos((rotation + 8 - id) * M_PI / 12) * (right_border - x_center_0);
     float scale = max_scale / 1.12f * cos((x_center - x_center_0) * 1.5f / (right_border - x_center_0)) + 0.2f * max_scale * cos(
-            cos((x_center - x_center_0) * 0.15f / (right_border - x_center_0)));
+                cos((x_center - x_center_0) * 0.15f / (right_border - x_center_0)));
     float x = x_center; // ;
 
     float y = (SCREEN_HEIGHT_F) / 2.0f + SCREEN_HEIGHT_F * mSlide * (scale + 0.2f);
@@ -1474,7 +1478,7 @@ void GameStateDeckViewer::renderCard(int id, float rotation)
     if (quadAlpha > 0)
     {
         JRenderer::GetInstance()->FillRect(x - scale * 100.0f, y - scale * 142.5f, scale * 200.0f, scale * 285.0f,
-                ARGB(quadAlpha,0,0,0));
+                                           ARGB(quadAlpha,0,0,0));
     }
     if (last_user_activity < 3)
     {
@@ -1501,10 +1505,10 @@ void GameStateDeckViewer::renderCard(int id)
 void GameStateDeckViewer::Render()
 {
     setButtonState(false);
-    WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);    
+    WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
     JRenderer::GetInstance()->ClearScreen(ARGB(0,0,0,0));
-    if (displayed_deck == myDeck && mStage != STAGE_MENU) 
-		renderDeckBackground();
+    if (displayed_deck == myDeck && mStage != STAGE_MENU)
+        renderDeckBackground();
     int order[3] = { 1, 2, 3 };
     if (mRotation < 0.5 && mRotation > -0.5)
     {
@@ -1517,7 +1521,7 @@ void GameStateDeckViewer::Render()
         order[2] = 1;
     }
 
-    // even though we want to draw the cards in a particular z order for layering, we want to prefetch them 
+    // even though we want to draw the cards in a particular z order for layering, we want to prefetch them
     // in a different order, ie the center card should appear first, then the adjacent ones
     if (WResourceManager::Instance()->IsThreaded())
     {
@@ -1572,7 +1576,7 @@ void GameStateDeckViewer::Render()
     
     if (subMenu) subMenu->Render();
 
-    if (filterMenu && !filterMenu->isFinished()) 
+    if (filterMenu && !filterMenu->isFinished())
     {
         setButtonState(false);
         filterMenu->Render();
@@ -1586,7 +1590,7 @@ void GameStateDeckViewer::Render()
 int GameStateDeckViewer::loadDeck(int deckid)
 {
 
-    if (!stw) 
+    if (!stw)
     {
         DeckManager *deckManager = DeckManager::GetInstance();
         stw = deckManager->getExtendedStatsForDeckId( deckid, MTGCollection(), false );
@@ -1783,7 +1787,7 @@ void GameStateDeckViewer::ButtonPressed(int controllerId, int controlId)
 
 /*
   to keep actions consistent across the different platforms, we need to branch the way swipes are interpreted.  iOS5 changes
- the way a swipe moves a document on the page.  swipe down is to simulate dragging the page down instead of moving down 
+ the way a swipe moves a document on the page.  swipe down is to simulate dragging the page down instead of moving down
  on a page.
  */
 void GameStateDeckViewer::OnScroll(int inXVelocity, int inYVelocity)
