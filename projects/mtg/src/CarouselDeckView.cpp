@@ -147,34 +147,30 @@ MTGCard * CarouselDeckView::Click(int x, int y)
     return NULL;
 }
 
-bool CarouselDeckView::Button(Buttons button)
+void CarouselDeckView::changePosition(int offset)
 {
-    switch(button)
-    {
-    case JGE_BTN_LEFT:
-        mScrollTarget -= 1;
-        mStage = SCROLL_TO_SELECTED;
-        last_user_activity = 0;
-        break;
-    case JGE_BTN_RIGHT:
+    if(offset > 0){
         mScrollTarget += 1;
         mStage = SCROLL_TO_SELECTED;
-        last_user_activity = 0;
-        break;
-    case JGE_BTN_UP:
+    }else if(offset < 0){
+        mScrollTarget -= 1;
+        mStage = SCROLL_TO_SELECTED;
+    }
+
+    last_user_activity = 0;
+}
+
+void CarouselDeckView::changeFilter(int offset)
+{
+    if(offset > 0){
         mStage = SLIDE_UP;
         SwitchFilter(1);
-        last_user_activity = 0;
-        break;
-    case JGE_BTN_DOWN:
+    } else if(offset < 0){
         mStage = SLIDE_DOWN;
         SwitchFilter(-1);
-        last_user_activity = 0;
-        break;
-    default:
-        return false;
     }
-    return true;
+
+    last_user_activity = 0;
 }
 
 MTGCard *CarouselDeckView::getActiveCard()

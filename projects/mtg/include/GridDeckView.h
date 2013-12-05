@@ -20,7 +20,10 @@ public:
 
     void Render();
     MTGCard * Click(int x, int y);
-    bool Button(Buttons button);
+
+    void changePosition(int offset);
+    void changeFilter(int offset);
+
     MTGCard *getActiveCard();
 private:
     int   mCols;

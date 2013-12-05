@@ -42,6 +42,32 @@ void DeckView::Update(float dt)
     }
 }
 
+bool DeckView::Button(Buttons button)
+{
+    switch(button)
+    {
+    case JGE_BTN_LEFT:
+        changePosition(-1);
+        last_user_activity = 0;
+        break;
+    case JGE_BTN_RIGHT:
+        changePosition(1);
+        last_user_activity = 0;
+        break;
+    case JGE_BTN_UP:
+        changeFilter(1);
+        last_user_activity = 0;
+        break;
+    case JGE_BTN_DOWN:
+        changeFilter(-1);
+        last_user_activity = 0;
+        break;
+    default:
+        return false;
+    }
+    return true;
+}
+
 void DeckView::SetDeck(DeckDataWrapper *toShow)
 {
     mCurrentDeck = toShow;

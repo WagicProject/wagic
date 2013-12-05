@@ -1536,26 +1536,13 @@ void GameStateDeckViewer::OnScroll(int inXVelocity, int inYVelocity)
     {
         if(abs(inXVelocity) > 300)
         {
-            //determine how many cards to move, the faster the velocity the more cards to move.
-            // the display is setup so that there is a max of 2 cards to the left and 7 cards to the right
-            // of the current card.
+            //FIXME: this 500 is a bit arbitrary
             int numCards = (magnitude / 500) % 8;
-            int offset = 0;
-            if ( (numCards == 0) && magnitude) numCards = 7;
-            if ( !flickRight)
-            {
-                if (numCards > 1)
-                    offset = 0;
-            }
-            else
-                offset = 2 + numCards;
-
-            //TODO: FIXME
-            //mEngine->LeftClickedProcessed();
-            //mEngine->LeftClicked(static_cast<int>(cardsCoordinates[offset].first), static_cast<int>(cardsCoordinates[offset].second));
-            //mEngine->HoldKey_NoRepeat(JGE_BTN_OK);
+            mView->changePosition(flickRight ? numCards : - numCards);
         }
     }
     else
-        mEngine->HoldKey_NoRepeat(flickUp ? JGE_BTN_UP : JGE_BTN_DOWN);
+        mView->changeFilter(flickUp ? 1 : -1);
+
+    last_user_activity = 0;
 }

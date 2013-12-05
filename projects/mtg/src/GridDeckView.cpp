@@ -141,30 +141,24 @@ MTGCard * GridDeckView::Click(int x, int y)
     return NULL;
 }
 
-bool GridDeckView::Button(Buttons button)
+void GridDeckView::changePosition(int offset)
 {
-    switch(button)
-    {
-    case JGE_BTN_RIGHT:
-        mScrollOffset.start(-1.0f, 0.3f);
-        last_user_activity = 0;
-        break;
-    case JGE_BTN_LEFT:
+    if(offset < 0){
         mScrollOffset.start( 1.0f, 0.3f);
-        last_user_activity = 0;
-        break;
-    case JGE_BTN_UP:
-        mSlide.start(2.0f, 0.3f);
-        last_user_activity = 0;
-        break;
-    case JGE_BTN_DOWN:
-        mSlide.start(-2.0f, 0.3f);
-        last_user_activity = 0;
-        break;
-    default:
-        return false;
+    }else if(offset > 0){
+        mScrollOffset.start(-1.0f, 0.3f);
     }
-    return true;
+    last_user_activity = 0;
+}
+
+void GridDeckView::changeFilter(int offset)
+{
+    if(offset < 0){
+        mSlide.start(-2.0f, 0.3f);
+    }else if(offset > 0){
+        mSlide.start(2.0f, 0.3f);
+    }
+    last_user_activity = 0;
 }
 
 MTGCard* GridDeckView::getActiveCard()

@@ -39,8 +39,10 @@ public:
 
     virtual void Render() = 0;
     virtual MTGCard * Click(int x, int y) = 0;
-    virtual bool Button(Buttons button) = 0;
+    bool Button(Buttons button);
     virtual MTGCard *getActiveCard() = 0;
+    virtual void changePosition(int offset) = 0;
+    virtual void changeFilter(int offset) = 0;
 
     virtual void SetDeck(DeckDataWrapper *toShow);
     DeckDataWrapper *deck();
