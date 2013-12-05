@@ -2,7 +2,7 @@
 
 # updating versions with the TRAVIS build numbers
 cd projects/mtg/
-ant update
+ant update > error.txt
 cd ../..
 
 # we're building a PSP binary here
