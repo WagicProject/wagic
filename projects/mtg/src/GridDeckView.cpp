@@ -5,7 +5,7 @@ const float GridDeckView::card_scale_small = 0.48f;
 const float GridDeckView::card_scale_big = 0.7f;
 
 GridDeckView::GridDeckView()
-    : DeckView(16), mCols(8), mRows(2), mSlide(0), mScrollOffset(0), mCurrentSelection(-1)/*, mColsToScroll(0)*/, mStage(NONE)
+    : DeckView(16), mCols(8), mRows(2), mSlide(0), mScrollOffset(0), mCurrentSelection(-1)
 {
 
 }
@@ -17,11 +17,10 @@ GridDeckView::~GridDeckView()
 
 void GridDeckView::Reset()
 {
-    mSlide = 0;
-    mScrollOffset = 0;
+    mSlide.finish();
+    mScrollOffset.finish();
+
     mCurrentSelection = 0;
-    //mColsToScroll = 0;
-    mStage = NONE;
 }
 
 void GridDeckView::UpdateViewState(float dt)
@@ -51,39 +50,25 @@ void GridDeckView::UpdateViewState(float dt)
         dirtyCardPos = true;
     }
 
-    switch(mStage)
+    if(!mSlide.finished())
     {
-    case SLIDE_DOWN:
-        mSlide -= 0.05f;
-        if (mSlide < -1.0f)
-        {
-            dirtyFilters = true;
-            mSlide = 1;
+        mSlide.update(dt);
+
+        if(mSlide.value < mSlide.start_value){
+            //going downwards
+            if(mSlide.value < -1.0f){
+                mSlide.translate(2.0f);
+                SwitchFilter(1);
+            }
+        } else if(mSlide.value > mSlide.start_value){
+            //upwards
+            if(mSlide.value > 1.0f){
+                mSlide.translate(-2.0f);
+                SwitchFilter(-1);
+            }
         }
-        else if (mSlide > 0 && mSlide < 0.05)
-        {
-            mStage = NONE;
-            mSlide = 0;
-        }
+
         dirtyCardPos = true;
-        break;
-    case SLIDE_UP:
-        mSlide += 0.05f;
-        if (mSlide > 1.0f)
-        {
-            dirtyFilters = true;
-            mSlide = -1;
-        }
-        else if (mSlide < 0 && mSlide > -0.05)
-        {
-            mStage = NONE;
-            mSlide = 0;
-        }
-        dirtyCardPos = true;
-        break;
-    default:
-        mStage = NONE;
-        break;
     }
 }
 
@@ -95,7 +80,7 @@ void GridDeckView::UpdateCardPosition(CardRep &rep, int index)
     float rowHeight = SCREEN_HEIGHT_F / mRows;
 
     rep.x = (col + mScrollOffset.value) * colWidth       - colWidth;
-    rep.y = row * rowHeight + mSlide*SCREEN_HEIGHT + rowHeight/2;
+    rep.y = row * rowHeight + mSlide.value*SCREEN_HEIGHT + rowHeight/2;
 
     if(mCurrentSelection == index)
     {
@@ -130,26 +115,27 @@ void GridDeckView::Render()
 MTGCard * GridDeckView::Click(int x, int y)
 {
     int n = getCardIndexNextTo(x, y);
-    DebugTrace("Clicked: " << n);
     last_user_activity = 0;
 
-    //clicked active card, and no animation is running
-    if(n == mCurrentSelection && mStage == NONE)
-    {
-        return getActiveCard();
-    }
-    else if(n < 4 && mStage == NONE)
-    {
-        mScrollOffset.start(1.0f, 0.3f);
-    }
-    else if(n >= 12 && mStage == NONE)
-    {
-        mScrollOffset.start(-1.0f, 0.3f);
-    }
-    else
-    {
-        mCurrentSelection = n;
-        dirtyCardPos = true;
+    if(mScrollOffset.finished() && mSlide.finished())
+    { //clicked and no animations running
+        if(n == mCurrentSelection)
+        {
+            return getActiveCard();
+        }
+        else if(n < 4)
+        {
+            mScrollOffset.start(1.0f, 0.3f);
+        }
+        else if(n >= 12)
+        {
+            mScrollOffset.start(-1.0f, 0.3f);
+        }
+        else
+        {
+            mCurrentSelection = n;
+            dirtyCardPos = true;
+        }
     }
 
     return NULL;
@@ -159,22 +145,20 @@ bool GridDeckView::Button(Buttons button)
 {
     switch(button)
     {
-    case JGE_BTN_LEFT:
+    case JGE_BTN_RIGHT:
         mScrollOffset.start(-1.0f, 0.3f);
         last_user_activity = 0;
         break;
-    case JGE_BTN_RIGHT:
+    case JGE_BTN_LEFT:
         mScrollOffset.start( 1.0f, 0.3f);
         last_user_activity = 0;
         break;
     case JGE_BTN_UP:
-        mStage = SLIDE_UP;
-        SwitchFilter(1);
+        mSlide.start(2.0f, 0.3f);
         last_user_activity = 0;
         break;
     case JGE_BTN_DOWN:
-        mStage = SLIDE_DOWN;
-        SwitchFilter(-1);
+        mSlide.start(-2.0f, 0.3f);
         last_user_activity = 0;
         break;
     default:

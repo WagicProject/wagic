@@ -57,6 +57,7 @@ void DeckView::SwitchFilter(int delta)
 {
     unsigned int FilterCount = Constants::NB_Colors + 1;
     mFilter = (FilterCount + mFilter + delta) % FilterCount;
+    dirtyFilters = true;
 }
 
 int DeckView::filter(){

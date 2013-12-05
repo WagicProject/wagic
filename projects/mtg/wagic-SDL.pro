@@ -271,7 +271,8 @@ HEADERS  += \
         include/AIHints.h\
         include/DeckView.h\
         include/CarouselDeckView.h\
-        include/GridDeckView.h
+        include/GridDeckView.h\
+        include/Easing.h
 
 # JGE, could probably be moved outside
 SOURCES += \
