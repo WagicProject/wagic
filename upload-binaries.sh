@@ -2,7 +2,7 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
 if [ "$TRAVIS_BRANCH" == "ci_upload_binaries" ]; then
   echo -e "Creating a release\n"
   curl -X POST -H "Authorization: token ${GH_TOKEN}" \
-      -d '{"tag_name": "pre-release-${TRAVIS_BUILD_NUMBER}", "target_commitish": "master", "name": "pre-release-${TRAVIS_BUILD_NUMBER}", "body": "Automatic pre-release ${TRAVIS_BUILD_NUMBER}", "draft": true, "prerelease": true}' "https://api.github.com/repos/WagicProject/wagic/releases"
+      -d '{"tag_name": "pre-release-'${TRAVIS_BUILD_NUMBER}'", "target_commitish": "master", "name": "pre-release-'${TRAVIS_BUILD_NUMBER}'", "body": "Automatic pre-release '${TRAVIS_BUILD_NUMBER}'", "draft": true, "prerelease": true}' "https://api.github.com/repos/WagicProject/wagic/releases"
 
   # Rename android release before upload
   cp projects/mtg/Android/bin/Wagic-debug.apk release/Wagic-android-${TRAVIS_BUILD_NUMBER}.apk
