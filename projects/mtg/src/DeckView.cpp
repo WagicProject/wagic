@@ -33,7 +33,8 @@ void DeckView::Update(float dt)
 
     UpdateViewState(dt);
 
-    if(dirtyCardPos){
+    if(dirtyCardPos)
+    {
         for(unsigned int i = 0; i < mCards.size(); ++i)
         {
             UpdateCardPosition(mCards[i], i);
@@ -86,7 +87,8 @@ void DeckView::SwitchFilter(int delta)
     dirtyFilters = true;
 }
 
-int DeckView::filter(){
+int DeckView::filter()
+{
     return mFilter;
 }
 
@@ -211,7 +213,10 @@ int DeckView::getCardIndexNextTo(int x, int y)
 
 int DeckView::getPosition()
 {
-    if(!mCurrentDeck){ return 0; }
+    if(!mCurrentDeck)
+    {
+        return 0;
+    }
 
     int total = mCurrentDeck->Size();
     int currentPos = (mCurrentDeck->getOffset() + 3) % total;

@@ -13,20 +13,33 @@ public:
 
 
     Easing(float val): start_value(val), delta_value(0), value(val), duration(0), time_acc(0)
-    {}
+    {
+    }
 
-    void reset(){ value = start_value; time_acc = 0;}
-    void finish(){ value = start_value + delta_value; time_acc = 0; duration = 0;}
+    void reset()
+    {
+        value = start_value;
+        time_acc = 0;
+    }
+
+    void finish()
+    {
+        value = start_value + delta_value;
+        time_acc = 0; duration = 0;
+    }
+
     virtual void update(float dt) = 0;
 
-    void start(float targetValue, float _duration){
+    void start(float targetValue, float _duration)
+    {
         start_value = value;
         delta_value = targetValue - start_value;
         time_acc = 0;
         duration = _duration;
     }
 
-    void translate(float delta_value){
+    void translate(float delta_value)
+    {
         start_value += delta_value;
         value += delta_value;
     }
@@ -42,8 +55,10 @@ class InOutQuadEasing : public Easing
 public:
     InOutQuadEasing(float val): Easing(val) {}
 
-    void update(float dt){
-        if(duration > 0){
+    void update(float dt)
+    {
+        if(duration > 0)
+        {
             time_acc += dt;
 
             if(time_acc > duration)

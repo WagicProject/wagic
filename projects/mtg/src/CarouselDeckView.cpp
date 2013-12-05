@@ -15,7 +15,8 @@ void CarouselDeckView::UpdateViewState(float dt)
     switch(mStage)
     {
     case SCROLL_TO_SELECTED:
-        if(mScrollTarget < 2){ //scroll left
+        if(mScrollTarget < 2)
+        { //scroll left
             mRotation -= dt * scroll_speed;
             if(mRotation <= -1.0f)
             {
@@ -24,7 +25,9 @@ void CarouselDeckView::UpdateViewState(float dt)
                 reloadIndexes();
                 mScrollTarget += 1;
             }
-        }else if(mScrollTarget > 2){
+        }
+        else if(mScrollTarget > 2)
+        {//scroll right
             mRotation += dt * scroll_speed;
             if(mRotation >= 1.0f)
             {
@@ -33,7 +36,9 @@ void CarouselDeckView::UpdateViewState(float dt)
                 reloadIndexes();
                 mScrollTarget -= 1;
             }
-        }else if(mScrollTarget == 2){
+        }
+        else if(mScrollTarget == 2)
+        {
             mRotation = 0;
             mStage = NONE;
         }
@@ -155,10 +160,13 @@ MTGCard * CarouselDeckView::Click(int x, int y)
 
 void CarouselDeckView::changePosition(int offset)
 {
-    if(offset > 0){
+    if(offset > 0)
+    {
         mScrollTarget += 1;
         mStage = SCROLL_TO_SELECTED;
-    }else if(offset < 0){
+    }
+    else if(offset < 0)
+    {
         mScrollTarget -= 1;
         mStage = SCROLL_TO_SELECTED;
     }
@@ -168,10 +176,13 @@ void CarouselDeckView::changePosition(int offset)
 
 void CarouselDeckView::changeFilter(int offset)
 {
-    if(offset > 0){
+    if(offset > 0)
+    {
         mStage = SLIDE_UP;
         SwitchFilter(1);
-    } else if(offset < 0){
+    }
+    else if(offset < 0)
+    {
         mStage = SLIDE_DOWN;
         SwitchFilter(-1);
     }

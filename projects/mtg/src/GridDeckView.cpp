@@ -55,15 +55,20 @@ void GridDeckView::UpdateViewState(float dt)
     {
         mSlide.update(dt);
 
-        if(mSlide.value < mSlide.start_value){
+        if(mSlide.value < mSlide.start_value)
+        {
             //going downwards
-            if(mSlide.value < -1.0f){
+            if(mSlide.value < -1.0f)
+            {
                 mSlide.translate(2.0f);
                 SwitchFilter(1);
             }
-        } else if(mSlide.value > mSlide.start_value){
+        }
+        else if(mSlide.value > mSlide.start_value)
+        {
             //upwards
-            if(mSlide.value > 1.0f){
+            if(mSlide.value > 1.0f)
+            {
                 mSlide.translate(-2.0f);
                 SwitchFilter(-1);
             }
@@ -86,12 +91,17 @@ void GridDeckView::UpdateCardPosition(CardRep &rep, int index)
     if(mCurrentSelection == index)
     {
         rep.scale = card_scale_big;
-        if(row == 0){
+        if(row == 0)
+        {
             rep.y += rowHeight * (card_scale_big - card_scale_small);
-        }else{
+        }
+        else
+        {
             rep.y -= rowHeight * (card_scale_big - card_scale_small);
         }
-    }else{
+    }
+    else
+    {
         rep.scale = card_scale_small;
     }
 }
@@ -108,7 +118,8 @@ void GridDeckView::Render()
         }
     }
 
-    if(2 <= mCurrentSelection && mCurrentSelection < 12){
+    if(2 <= mCurrentSelection && mCurrentSelection < 12)
+    {
         renderCard(mCurrentSelection, 255);
     }
 }
@@ -144,9 +155,12 @@ MTGCard * GridDeckView::Click(int x, int y)
 
 void GridDeckView::changePosition(int offset)
 {
-    if(offset < 0){
+    if(offset < 0)
+    {
         mScrollOffset.start( 1.0f, scroll_animation_duration);
-    }else if(offset > 0){
+    }
+    else if(offset > 0)
+    {
         mScrollOffset.start(-1.0f, scroll_animation_duration);
     }
     last_user_activity = 0;
@@ -154,9 +168,12 @@ void GridDeckView::changePosition(int offset)
 
 void GridDeckView::changeFilter(int offset)
 {
-    if(offset < 0){
+    if(offset < 0)
+    {
         mSlide.start(-2.0f, slide_animation_duration);
-    }else if(offset > 0){
+    }
+    else if(offset > 0)
+    {
         mSlide.start(2.0f, slide_animation_duration);
     }
     last_user_activity = 0;

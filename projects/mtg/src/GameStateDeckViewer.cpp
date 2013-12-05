@@ -464,7 +464,9 @@ void GameStateDeckViewer::Update(float dt)
                 {
                     addRemove(mView->getActiveCard());
                 }
-            }else{
+            }
+            else
+            {
                 last_user_activity = 0;
                 addRemove(mView->getActiveCard());
             }
@@ -528,7 +530,8 @@ void GameStateDeckViewer::Update(float dt)
     }
 
     mView->Update(dt);
-    if(mView->dirtyFilters){
+    if(mView->dirtyFilters)
+    {
         updateFilters();
         mView->reloadIndexes();
         mView->dirtyFilters = false;
