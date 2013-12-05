@@ -91,14 +91,22 @@ private:
     string newDeckname;
     bool isAIDeckSave;
     bool mSwitching;
+
+    enum AvailableView{
+        CAROUSEL_VIEW,
+        GRID_VIEW
+    };
+    DeckView* mView;
+    AvailableView mCurrentView;
+
     void saveDeck(); //Saves the deck and additional necessary information
     void saveAsAIDeck(string deckName); // saves deck as an AI Deck
     void sellCard();
     void setButtonState(bool state);
     bool userPressedButton();
     void RenderButtons();
-
-    DeckView* mView;
+    void setupView(AvailableView view);
+    void toggleView();
 public:
     GameStateDeckViewer(GameApp* parent);
     virtual ~GameStateDeckViewer();

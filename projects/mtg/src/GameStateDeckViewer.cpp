@@ -28,7 +28,7 @@
 
 
 GameStateDeckViewer::GameStateDeckViewer(GameApp* parent) :
-    GameState(parent, "deckeditor"), mView(NEW GridDeckView())
+    GameState(parent, "deckeditor"), mView(NULL), mCurrentView(CAROUSEL_VIEW)
 {
     bgMusic = NULL;
     isAIDeckSave = false;
@@ -48,7 +48,8 @@ GameStateDeckViewer::GameStateDeckViewer(GameApp* parent) :
     toggleDeckButton = NEW InteractiveButton(NULL, kToggleDeckActionId, Fonts::MAIN_FONT, "View Deck", 10, SCREEN_HEIGHT_F - 20, JGE_BTN_PRI);
     sellCardButton = NEW InteractiveButton(NULL, kSellCardActionId, Fonts::MAIN_FONT, "Sell Card", (SCREEN_WIDTH_F/ 2) - 100, SCREEN_HEIGHT_F - 20, JGE_BTN_SEC);
     filterButton = NEW InteractiveButton(NULL, kFilterButtonId, Fonts::MAIN_FONT, "filter", (SCREEN_WIDTH_F - 110), SCREEN_HEIGHT_F - 20, JGE_BTN_CTRL);
-    toggleViewButton = NEW InteractiveButton(NULL, kSwitchViewButton, Fonts::MAIN_FONT, "Grid", (SCREEN_WIDTH_F/ 2) - 130, SCREEN_HEIGHT_F - 20, JGE_BTN_NONE);
+    //TODO: Check if that button is available:
+    toggleViewButton = NEW InteractiveButton(NULL, kSwitchViewButton, Fonts::MAIN_FONT, "Grid", (SCREEN_WIDTH_F/ 2) + 50, SCREEN_HEIGHT_F - 20, JGE_BTN_MAX);
 }
 
 GameStateDeckViewer::~GameStateDeckViewer()
@@ -103,8 +104,8 @@ void GameStateDeckViewer::toggleCollection()
 {
     if (mView->deck() == myCollection)
     {
-        mView->SetDeck(myDeck);
         toggleDeckButton->setText("View Collection");
+        mView->SetDeck(myDeck);
     }
     else
     {
@@ -162,18 +163,17 @@ void GameStateDeckViewer::Start()
     subMenu = NULL;
     myDeck = NULL;
     mStage = STAGE_WELCOME;
-    mView->Reset();
+
     mAlpha = 255;
     last_user_activity = NO_USER_ACTIVITY_HELP_DELAY + 1;
     onScreenTransition = 0;
-    //lastPos = 0;
-    //lastTotal = 0;
 
     pricelist = NEW PriceList("settings/prices.dat", MTGCollection());
     playerdata = NEW PlayerData(MTGCollection());
     myCollection = NEW DeckDataWrapper(playerdata->collection);
     myCollection->Sort(WSrcCards::SORT_ALPHA);
-    mView->SetDeck(myCollection);
+
+    setupView(mCurrentView);
 
     //Icons
     mIcons = manaIcons;
@@ -338,6 +338,40 @@ void GameStateDeckViewer::RenderButtons()
     toggleViewButton->Render();
 }
 
+void GameStateDeckViewer::setupView(GameStateDeckViewer::AvailableView view)
+{
+    DeckDataWrapper *wrapper = myCollection;
+
+    if(mView)
+    {
+        wrapper = mView->deck();
+    }
+
+    SAFE_DELETE(mView);
+
+    if(view == CAROUSEL_VIEW) mView = NEW CarouselDeckView();
+    else if(view == GRID_VIEW) mView = NEW GridDeckView();
+
+    mView->SetDeck(wrapper);
+    updateFilters();
+}
+
+void GameStateDeckViewer::toggleView()
+{
+    if(mCurrentView == CAROUSEL_VIEW)
+    {
+        mCurrentView = GRID_VIEW;
+        toggleViewButton->setText("Carousel");
+    }
+    else
+    {
+        mCurrentView = CAROUSEL_VIEW;
+        toggleViewButton->setText("Grid");
+    }
+
+    setupView(mCurrentView);
+}
+
 void GameStateDeckViewer::Update(float dt)
 {   
     if (options.keypadActive())
@@ -388,9 +422,12 @@ void GameStateDeckViewer::Update(float dt)
         case JGE_BTN_RIGHT:
         case JGE_BTN_UP:
         case JGE_BTN_DOWN:
-            mView->Button(button);
-            last_user_activity = 0;
-            mStage = STAGE_WAITING;
+            if(last_user_activity > 0.2)
+            {
+                mView->Button(button);
+                last_user_activity = 0;
+                mStage = STAGE_WAITING;
+            }
             break;
         case JGE_BTN_CANCEL:
             options[Options::DISABLECARDS].number = !options[Options::DISABLECARDS].number;
@@ -400,6 +437,13 @@ void GameStateDeckViewer::Update(float dt)
             {
                 last_user_activity = 0;
                 toggleCollection();
+            }
+            break;
+        case JGE_BTN_MAX:
+            if (last_user_activity > 0.2)
+            {
+                last_user_activity = 0;
+                toggleView();
             }
             break;
         case JGE_BTN_OK:

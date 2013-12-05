@@ -2,10 +2,10 @@
 
 const float GridDeckView::scroll_speed = 5.0f;
 const float GridDeckView::card_scale_small = 0.48f;
-const float GridDeckView::card_scale_big = 0.6f;
+const float GridDeckView::card_scale_big = 0.7f;
 
 GridDeckView::GridDeckView()
-    : DeckView(16), mCols(8), mRows(2), mSlide(0), mScrollOffset(0), mCurrentSelection(0), mColsToScroll(0), mStage(NONE)
+    : DeckView(16), mCols(8), mRows(2), mSlide(0), mScrollOffset(0), mCurrentSelection(-1), mColsToScroll(0), mStage(NONE)
 {
 
 }
