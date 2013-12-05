@@ -5,7 +5,7 @@ const float GridDeckView::card_scale_small = 0.48f;
 const float GridDeckView::card_scale_big = 0.7f;
 
 GridDeckView::GridDeckView()
-    : DeckView(16), mCols(8), mRows(2), mSlide(0), mScrollOffset(0), mCurrentSelection(-1), mColsToScroll(0), mStage(NONE)
+    : DeckView(16), mCols(8), mRows(2), mSlide(0), mScrollOffset(0), mCurrentSelection(-1)/*, mColsToScroll(0)*/, mStage(NONE)
 {
 
 }
@@ -20,43 +20,39 @@ void GridDeckView::Reset()
     mSlide = 0;
     mScrollOffset = 0;
     mCurrentSelection = 0;
-    mColsToScroll = 0;
+    //mColsToScroll = 0;
     mStage = NONE;
 }
 
 void GridDeckView::UpdateViewState(float dt)
 {
-    switch(mStage)
+    if(!mScrollOffset.finished())
     {
-    case SCROLL_TO_SELECTED:
-        if(mColsToScroll < 0){
-            mScrollOffset -= dt * scroll_speed;
-            if(mScrollOffset <= -1.0f)
+        mScrollOffset.update(dt);
+
+        if(mScrollOffset.finished())
+        {
+            if(mScrollOffset.start_value > mScrollOffset.value)
             {
-                mScrollOffset += 1.0f;
                 deck()->next();
                 deck()->next();
                 mCurrentSelection = (mCurrentSelection >= 6) ? mCurrentSelection - 2 : -1;
-                reloadIndexes();
-                mColsToScroll += 1;
             }
-        }else if(mColsToScroll > 0){
-            mScrollOffset += dt * scroll_speed;
-            if(mScrollOffset >= 1.0f)
+            else if(mScrollOffset.start_value < mScrollOffset.value)
             {
-                mScrollOffset -= 1.0f;
                 deck()->prev();
                 deck()->prev();
                 mCurrentSelection = (mCurrentSelection >= 0 && mCurrentSelection < 10) ? mCurrentSelection + 2 : -1;
-                reloadIndexes();
-                mColsToScroll -= 1;
             }
-        }else if(mColsToScroll == 0){
-            mScrollOffset = 0;
-            mStage = NONE;
+            reloadIndexes();
+
+            mScrollOffset.value = 0;
         }
         dirtyCardPos = true;
-        break;
+    }
+
+    switch(mStage)
+    {
     case SLIDE_DOWN:
         mSlide -= 0.05f;
         if (mSlide < -1.0f)
@@ -98,7 +94,7 @@ void GridDeckView::UpdateCardPosition(CardRep &rep, int index)
     float colWidth = SCREEN_WIDTH_F / (mCols - 3);
     float rowHeight = SCREEN_HEIGHT_F / mRows;
 
-    rep.x = (col + mScrollOffset) * colWidth       - colWidth;
+    rep.x = (col + mScrollOffset.value) * colWidth       - colWidth;
     rep.y = row * rowHeight + mSlide*SCREEN_HEIGHT + rowHeight/2;
 
     if(mCurrentSelection == index)
@@ -144,13 +140,11 @@ MTGCard * GridDeckView::Click(int x, int y)
     }
     else if(n < 4 && mStage == NONE)
     {
-        mColsToScroll = 1;
-        mStage = SCROLL_TO_SELECTED;
+        mScrollOffset.start(1.0f, 0.3f);
     }
     else if(n >= 12 && mStage == NONE)
     {
-        mColsToScroll = -1;
-        mStage = SCROLL_TO_SELECTED;
+        mScrollOffset.start(-1.0f, 0.3f);
     }
     else
     {
@@ -166,13 +160,11 @@ bool GridDeckView::Button(Buttons button)
     switch(button)
     {
     case JGE_BTN_LEFT:
-        mColsToScroll -= 1;
-        mStage = SCROLL_TO_SELECTED;
+        mScrollOffset.start(-1.0f, 0.3f);
         last_user_activity = 0;
         break;
     case JGE_BTN_RIGHT:
-        mColsToScroll += 1;
-        mStage = SCROLL_TO_SELECTED;
+        mScrollOffset.start( 1.0f, 0.3f);
         last_user_activity = 0;
         break;
     case JGE_BTN_UP:
