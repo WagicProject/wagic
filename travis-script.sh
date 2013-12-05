@@ -1,5 +1,10 @@
 #!/bin/sh -ex
 
+# updating versions with the TRAVIS build numbers
+cd projects/mtg/
+ant update > error.txt
+cd ../..
+
 # we're building a PSP binary here
 cd JGE
 make -j 8
