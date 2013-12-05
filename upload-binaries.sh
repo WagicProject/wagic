@@ -4,7 +4,7 @@ if [ "$TRAVIS_BRANCH" == "ci_upload_binaries" ]; then
   curl -X POST -H "Authorization: token ${GH_TOKEN}" \
       -d '{"tag_name": "pre-release-'${TRAVIS_BUILD_NUMBER}'", "target_commitish": "master", "name": "pre-release-'${TRAVIS_BUILD_NUMBER}'", "body": "Automatic pre-release '${TRAVIS_BUILD_NUMBER}'", "draft": true, "prerelease": true}' "https://api.github.com/repos/WagicProject/wagic/releases"
 
-  # Now we upload
+  echo -e "Uploading android package\n"
   curl -X POST -H "Authorization: token ${GH_TOKEN}" \
      -H "Accept: application/vnd.github.manifold-preview" \
      -H "Content-Type: application/zip" \
