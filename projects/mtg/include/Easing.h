@@ -28,7 +28,25 @@ public:
         time_acc = 0; duration = 0;
     }
 
-    virtual void update(float dt) = 0;
+    void update(float dt)
+    {
+        if(duration > 0)
+        {
+            time_acc += dt;
+
+            if(time_acc > duration)
+            {
+                time_acc = duration;
+                value = start_value + delta_value;
+            }
+            else
+            {
+                updateValue();
+            }
+        }
+    }
+
+    virtual void updateValue() = 0;
 
     void start(float targetValue, float _duration)
     {
@@ -55,30 +73,17 @@ class InOutQuadEasing : public Easing
 public:
     InOutQuadEasing(float val): Easing(val) {}
 
-    void update(float dt)
+    void updateValue()
     {
-        if(duration > 0)
+        float time_tmp = time_acc * 2 / duration;
+        if (time_tmp < 1)
         {
-            time_acc += dt;
-
-            if(time_acc > duration)
-            {
-                time_acc = duration;
-                value = start_value + delta_value;
-            }
-            else
-            {
-                float time_tmp = time_acc * 2 / duration;
-                if (time_tmp < 1)
-                {
-                    value = delta_value/2*time_tmp*time_tmp + start_value;
-                }
-                else
-                {
-                    time_tmp -= 1;
-                    value = -delta_value/2 * (time_tmp*(time_tmp-2) - 1) + start_value;
-                }
-            }
+            value = delta_value/2*time_tmp*time_tmp + start_value;
+        }
+        else
+        {
+            time_tmp -= 1;
+            value = -delta_value/2 * (time_tmp*(time_tmp-2) - 1) + start_value;
         }
     }
 };
