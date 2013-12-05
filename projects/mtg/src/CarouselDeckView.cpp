@@ -124,6 +124,12 @@ void CarouselDeckView::Render()
         renderCard(2);
         renderCard(1);
     }
+    else
+    {
+        renderCard(1);
+        renderCard(2);
+        renderCard(3);
+    }
 }
 
 MTGCard * CarouselDeckView::Click(int x, int y)

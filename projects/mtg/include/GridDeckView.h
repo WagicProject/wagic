@@ -7,7 +7,8 @@
 class GridDeckView : public DeckView
 {
 private:
-    static const float scroll_speed;
+    static const float scroll_animation_duration;
+    static const float slide_animation_duration;
     static const float card_scale_small;
     static const float card_scale_big;
 public:
@@ -26,8 +27,8 @@ public:
 
     MTGCard *getActiveCard();
 private:
-    int   mCols;
-    int   mRows;
+    int   mCols; //the number of cols. there is a hidden col to the left and right for prefetching
+    int   mRows; //the number of rows.
     InOutQuadEasing mSlide;           //[-1,1]. defines the y-offset of the cards
     InOutQuadEasing mScrollOffset;    //[-1,1]. defines the x-offset of the cards
     int   mCurrentSelection;          //0 <= mCurrentSelection < mCards.size(). defines the current selected and thus upscaled card

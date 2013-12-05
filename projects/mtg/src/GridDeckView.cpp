@@ -1,6 +1,7 @@
 #include "GridDeckView.h"
 
-const float GridDeckView::scroll_speed = 5.0f;
+const float GridDeckView::scroll_animation_duration = 0.3f;
+const float GridDeckView::slide_animation_duration =  0.4f;
 const float GridDeckView::card_scale_small = 0.48f;
 const float GridDeckView::card_scale_big = 0.7f;
 
@@ -125,11 +126,11 @@ MTGCard * GridDeckView::Click(int x, int y)
         }
         else if(n < 4)
         {
-            mScrollOffset.start(1.0f, 0.3f);
+            changePosition(-1);
         }
         else if(n >= 12)
         {
-            mScrollOffset.start(-1.0f, 0.3f);
+            changePosition(1);
         }
         else
         {
@@ -144,9 +145,9 @@ MTGCard * GridDeckView::Click(int x, int y)
 void GridDeckView::changePosition(int offset)
 {
     if(offset < 0){
-        mScrollOffset.start( 1.0f, 0.3f);
+        mScrollOffset.start( 1.0f, scroll_animation_duration);
     }else if(offset > 0){
-        mScrollOffset.start(-1.0f, 0.3f);
+        mScrollOffset.start(-1.0f, scroll_animation_duration);
     }
     last_user_activity = 0;
 }
@@ -154,9 +155,9 @@ void GridDeckView::changePosition(int offset)
 void GridDeckView::changeFilter(int offset)
 {
     if(offset < 0){
-        mSlide.start(-2.0f, 0.3f);
+        mSlide.start(-2.0f, slide_animation_duration);
     }else if(offset > 0){
-        mSlide.start(2.0f, 0.3f);
+        mSlide.start(2.0f, slide_animation_duration);
     }
     last_user_activity = 0;
 }
