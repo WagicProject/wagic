@@ -42,7 +42,7 @@ void DeckView::Update(float dt)
     }
 }
 
-bool DeckView::Button(Buttons button)
+bool DeckView::ButtonPressed(Buttons button)
 {
     switch(button)
     {
