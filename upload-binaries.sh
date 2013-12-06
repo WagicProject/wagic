@@ -4,6 +4,13 @@ if [ "$TRAVIS_BRANCH" == "ci_upload_binaries" ]; then
 #  curl -X POST -H "Authorization: token ${GH_TOKEN}" \
       -d '{"tag_name": "pre-release-'${TRAVIS_BUILD_NUMBER}'", "target_commitish": "master", "name": "pre-release-'${TRAVIS_BUILD_NUMBER}'", "body": "Automatic pre-release '${TRAVIS_BUILD_NUMBER}'", "draft": true, "prerelease": true}' "https://api.github.com/repos/WagicProject/wagic/releases"
 
+  echo -e "Uploading Core resources\n"
+  curl -X POST -H "Authorization: token ${GH_TOKEN}" \
+     -H "Accept: application/vnd.github.manifold-preview" \
+     -H "Content-Type: application/zip" \
+     --data-binary @projects/mtg/bin/Res/core.zip \
+     "https://uploads.github.com/repos/WagicProject/wagic/releases/113675/assets?name=Wagic-core-${TRAVIS_BUILD_NUMBER}.zip"
+
   echo -e "Uploading android package\n"
   curl -X POST -H "Authorization: token ${GH_TOKEN}" \
      -H "Accept: application/vnd.github.manifold-preview" \
