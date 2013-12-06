@@ -113,7 +113,7 @@ void GridDeckView::Render()
 
     if(!mScrollOffset.finished())
     {
-        if(mScrollOffset.delta_value < 0){
+        if(mScrollOffset.delta_value > 0){
             firstVisibleCard = 0;
         }
         else
