@@ -11,6 +11,13 @@ if [ "$TRAVIS_BRANCH" == "ci_upload_binaries" ]; then
      --data-binary @projects/mtg/Android/bin/Wagic-debug.apk \
      "https://uploads.github.com/repos/WagicProject/wagic/releases/113675/assets?name=Wagic-android-${TRAVIS_BUILD_NUMBER}.apk"
 
+  echo -e "Uploading PSP package\n"
+  curl -X POST -H "Authorization: token ${GH_TOKEN}" \
+     -H "Accept: application/vnd.github.manifold-preview" \
+     -H "Content-Type: application/zip" \
+     --data-binary @projects/mtg/psprelease.zip \
+     "https://uploads.github.com/repos/WagicProject/wagic/releases/113675/assets?name=Wagic-psp-${TRAVIS_BUILD_NUMBER}.zip"
+
   echo -e "Done uploading\n"
 fi
 fi

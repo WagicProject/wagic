@@ -12,6 +12,11 @@ cd ..
 cd projects/mtg
 mkdir objs
 make -j 8
+mkdir psprelease
+mv EBOOT.PBP psprelease/
+mv wagic.elf psprelease/
+mv wagic.prx psprelease/
+zip psprelease.zip -r psprelease/
 cd ../..
 
 # we're building an Android binary here
