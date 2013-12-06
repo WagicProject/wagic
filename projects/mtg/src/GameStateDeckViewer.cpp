@@ -172,8 +172,7 @@ void GameStateDeckViewer::Start()
     playerdata = NEW PlayerData(MTGCollection());
     myCollection = NEW DeckDataWrapper(playerdata->collection);
     myCollection->Sort(WSrcCards::SORT_ALPHA);
-
-    setupView(mCurrentView);
+    setupView(mCurrentView, myCollection);
 
     //Icons
     mIcons = manaIcons;
@@ -338,21 +337,14 @@ void GameStateDeckViewer::RenderButtons()
     toggleViewButton->Render();
 }
 
-void GameStateDeckViewer::setupView(GameStateDeckViewer::AvailableView view)
+void GameStateDeckViewer::setupView(GameStateDeckViewer::AvailableView view, DeckDataWrapper *deck)
 {
-    DeckDataWrapper *wrapper = myCollection;
-
-    if(mView)
-    {
-        wrapper = mView->deck();
-    }
-
     SAFE_DELETE(mView);
 
     if(view == CAROUSEL_VIEW) mView = NEW CarouselDeckView();
     else if(view == GRID_VIEW) mView = NEW GridDeckView();
 
-    mView->SetDeck(wrapper);
+    mView->SetDeck(deck);
     updateFilters();
 }
 
@@ -368,8 +360,7 @@ void GameStateDeckViewer::toggleView()
         mCurrentView = CAROUSEL_VIEW;
         toggleViewButton->setText("Grid");
     }
-
-    setupView(mCurrentView);
+    setupView(mCurrentView, mView->deck());
 }
 
 void GameStateDeckViewer::Update(float dt)

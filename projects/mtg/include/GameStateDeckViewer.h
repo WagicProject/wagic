@@ -105,7 +105,7 @@ private:
     void setButtonState(bool state);
     bool userPressedButton();
     void RenderButtons();
-    void setupView(AvailableView view);
+    void setupView(AvailableView view, DeckDataWrapper *deck);
     void toggleView();
 public:
     GameStateDeckViewer(GameApp* parent);
