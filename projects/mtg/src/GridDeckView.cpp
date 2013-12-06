@@ -110,7 +110,10 @@ void GridDeckView::Render()
 {
     for(int i = 0; i < int(mCards.size()); ++i)
     {
-        WResourceManager::Instance()->RetrieveCard(getCardRep(i).card);
+        if (WResourceManager::Instance()->IsThreaded())
+        {
+            WResourceManager::Instance()->RetrieveCard(getCardRep(i).card);
+        }
 
         if(mCurrentSelection != i)
         {
