@@ -1,7 +1,7 @@
 #include "GridDeckView.h"
 
 const float GridDeckView::scroll_animation_duration = 0.3f;
-const float GridDeckView::slide_animation_duration =  0.4f;
+const float GridDeckView::slide_animation_duration =  0.6f;
 const float GridDeckView::card_scale_small = 0.48f;
 const float GridDeckView::card_scale_big = 0.7f;
 
