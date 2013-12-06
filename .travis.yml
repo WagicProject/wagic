@@ -15,7 +15,7 @@ install:
 - tar --absolute-names -jxf android-ndk-r9-linux-x86_64.tar.bz2
 - tar -zxf android-sdk_r22-linux.tgz
 - echo yes | $ANDROID update sdk --filter 1,2,3,8 --no-ui --force > log.txt
-- sudo python projects/mtg/tools/build/lib/pyjavaproperties-0.6/setup.py install
+- pip install pyjavaproperties
 script: ./travis-script.sh
 env:
   global:
