@@ -3,7 +3,7 @@
 const float CarouselDeckView::scroll_speed = 5.0f;
 
 CarouselDeckView::CarouselDeckView() :
-    DeckView(10), mRotation(0), mSlide(0),  mScrollTarget(2), mStage(NONE)
+    DeckView(10), mScrollOffset(0), mSlide(0),  mScrollTarget(2), mStage(NONE)
 {
 }
 
@@ -12,38 +12,31 @@ CarouselDeckView::~CarouselDeckView()
 
 void CarouselDeckView::UpdateViewState(float dt)
 {
+    if(!mScrollOffset.finished())
+    {
+        mScrollOffset.update(dt);
+
+        if(mScrollTarget < 2 && mScrollOffset.value <= -1.0f)
+        {
+            mScrollOffset.translate(1.0f);
+            deck()->prev();
+            reloadIndexes();
+            mScrollTarget += 1;
+        }
+
+        if(mScrollTarget > 2 && mScrollOffset.value >= 1.0f)
+        {
+            mScrollOffset.translate(-1.0f);
+            deck()->next();
+            reloadIndexes();
+            mScrollTarget -= 1;
+        }
+
+        dirtyCardPos = true;
+    }
+
     switch(mStage)
     {
-    case SCROLL_TO_SELECTED:
-        if(mScrollTarget < 2)
-        { //scroll left
-            mRotation -= dt * scroll_speed;
-            if(mRotation <= -1.0f)
-            {
-                mRotation += 1.0f;
-                deck()->prev();
-                reloadIndexes();
-                mScrollTarget += 1;
-            }
-        }
-        else if(mScrollTarget > 2)
-        {//scroll right
-            mRotation += dt * scroll_speed;
-            if(mRotation >= 1.0f)
-            {
-                mRotation -= 1.0f;
-                deck()->next();
-                reloadIndexes();
-                mScrollTarget -= 1;
-            }
-        }
-        else if(mScrollTarget == 2)
-        {
-            mRotation = 0;
-            mStage = NONE;
-        }
-        dirtyCardPos = true;
-        break;
     case SLIDE_DOWN:
         mSlide -= 0.05f;
         if (mSlide < -1.0f)
@@ -80,7 +73,7 @@ void CarouselDeckView::UpdateViewState(float dt)
 
 void CarouselDeckView::UpdateCardPosition(CardRep &rep, int index)
 {
-    float rotation = mRotation + 8 - index;
+    float rotation = mScrollOffset.value + 8 - index;
 
     rep.x = x_center + cos((rotation) * M_PI / 12) * (right_border - x_center);
     rep.scale = max_scale / 1.12f * cos((rep.x - x_center) * 1.5f / (right_border - x_center)) + 0.2f * max_scale * cos(
@@ -90,7 +83,7 @@ void CarouselDeckView::UpdateCardPosition(CardRep &rep, int index)
 
 void CarouselDeckView::Reset()
 {
-    mRotation = 0;
+    mScrollOffset = 0;
     mSlide = 0;
     mScrollTarget = 2;
     mStage = NONE;
@@ -117,13 +110,13 @@ void CarouselDeckView::Render()
     renderCard(4);
     renderCard(0);
 
-    if (mRotation < 0.5 && mRotation > -0.5)
+    if (mScrollOffset.value < 0.5 && mScrollOffset.value > -0.5)
     {
         renderCard(1);
         renderCard(3);
         renderCard(2);
     }
-    else if (mRotation < -0.5)
+    else if (mScrollOffset.value < -0.5)
     {
         renderCard(3);
         renderCard(2);
@@ -151,8 +144,8 @@ MTGCard * CarouselDeckView::Click(int x, int y)
     //clicked not the active card, start animation:s
     if(n != 2 && mStage == NONE)
     {
-        mScrollTarget = n;
-        mStage = SCROLL_TO_SELECTED;
+        DebugTrace(">>>>> " << n);
+        changePosition(n - 2);
     }
 
     return NULL;
@@ -160,16 +153,8 @@ MTGCard * CarouselDeckView::Click(int x, int y)
 
 void CarouselDeckView::changePosition(int offset)
 {
-    if(offset > 0)
-    {
-        mScrollTarget += 1;
-        mStage = SCROLL_TO_SELECTED;
-    }
-    else if(offset < 0)
-    {
-        mScrollTarget -= 1;
-        mStage = SCROLL_TO_SELECTED;
-    }
+    mScrollTarget = 2 + offset;
+    mScrollOffset.start(offset, 0.3f*abs(offset));
 
     last_user_activity = 0;
 }
