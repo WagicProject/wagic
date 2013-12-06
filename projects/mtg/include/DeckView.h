@@ -57,7 +57,7 @@ protected:
     DeckDataWrapper *mCurrentDeck;
 
     CardRep& getCardRep(unsigned int index);
-    void renderCard(int index, int alpha);
+    void renderCard(int index, int alpha, bool asThumbnail = false);
     int getCardIndexNextTo(int x, int y);
 
     vector<CardRep> mCards;

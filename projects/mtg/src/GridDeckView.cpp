@@ -108,22 +108,43 @@ void GridDeckView::UpdateCardPosition(CardRep &rep, int index)
 
 void GridDeckView::Render()
 {
-    for(int i = 0; i < int(mCards.size()); ++i)
+    int firstVisibleCard = 2;
+    int lastVisibleCard = mCards.size() - 2;
+
+    if(!mScrollOffset.finished())
     {
-        if (WResourceManager::Instance()->IsThreaded())
-        {
-            WResourceManager::Instance()->RetrieveCard(getCardRep(i).card);
+        if(mScrollOffset.delta_value < 0){
+            firstVisibleCard = 0;
         }
+        else
+        {
+            lastVisibleCard = mCards.size();
+        }
+    }
+
+    for(int i = firstVisibleCard; i < lastVisibleCard; ++i)
+    {
 
         if(mCurrentSelection != i)
         {
-            renderCard(i, 255);
+            if (WResourceManager::Instance()->IsThreaded())
+            {
+                WResourceManager::Instance()->RetrieveCard(getCardRep(i).card, RETRIEVE_THUMB);
+            }
+            renderCard(i, 255, true);
+        }
+        else
+        {
+            if (WResourceManager::Instance()->IsThreaded())
+            {
+                WResourceManager::Instance()->RetrieveCard(getCardRep(i).card);
+            }
         }
     }
 
     if(2 <= mCurrentSelection && mCurrentSelection < 12)
     {
-        renderCard(mCurrentSelection, 255);
+        renderCard(mCurrentSelection, 255, false);
     }
 }
 

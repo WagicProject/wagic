@@ -94,9 +94,12 @@ int DeckView::filter()
 
 void DeckView::reloadIndexes() //fixme: feels ugly. check if we can remove this
 {
-    for (unsigned int i = 0; i < mCards.size(); i++)
+    if(deck() != NULL)
     {
-        mCards[i].card = deck()->getCard(i);
+        for (unsigned int i = 0; i < mCards.size(); i++)
+        {
+            mCards[i].card = deck()->getCard(i);
+        }
     }
 }
 
@@ -105,7 +108,7 @@ DeckView::CardRep& DeckView::getCardRep(unsigned int index)
     return mCards[index];
 }
 
-void DeckView::renderCard(int index, int alpha)
+void DeckView::renderCard(int index, int alpha, bool asThumbnail)
 {
     WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
 
@@ -146,13 +149,13 @@ void DeckView::renderCard(int index, int alpha)
             else
             {
                 Pos pos = Pos(cardPosition.x, cardPosition.y, cardPosition.scale * 285 / 250, 0.0, 255);
-                CardGui::DrawCard(cardPosition.card, pos);
+                CardGui::DrawCard(cardPosition.card, pos, asThumbnail);
             }
         }
         else
         {
             Pos pos = Pos(cardPosition.x, cardPosition.y, cardPosition.scale * 285 / 250, 0.0, 255);
-            CardGui::DrawCard(cardPosition.card, pos, DrawMode::kText);
+            CardGui::DrawCard(cardPosition.card, pos, DrawMode::kText, asThumbnail);
         }
     }
     else
@@ -160,7 +163,7 @@ void DeckView::renderCard(int index, int alpha)
         int mode = !options[Options::DISABLECARDS].number ? DrawMode::kNormal : DrawMode::kText;
 
         Pos pos = Pos(cardPosition.x, cardPosition.y, cardPosition.scale * 285 / 250, 0.0, 255);
-        CardGui::DrawCard(cardPosition.card, pos, mode);
+        CardGui::DrawCard(cardPosition.card, pos, mode, asThumbnail);
     }
 
     int quadAlpha = alpha;
