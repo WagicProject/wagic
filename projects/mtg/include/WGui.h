@@ -8,6 +8,7 @@
 
 class hgeDistortionMesh;
 class GameStateOptions;
+class SimpleMenu;
 
 /**
   @defgroup WGui Basic Gui

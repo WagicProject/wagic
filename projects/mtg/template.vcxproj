@@ -318,6 +318,12 @@
     <ClCompile Include="src\CardPrimitive.cpp" />
     <ClCompile Include="src\CardSelector.cpp" />
     <ClCompile Include="src\CardSelectorSingleton.cpp" />
+    <ClCompile Include="src\CarouselDeckView.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='HQ Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="src\Counters.cpp" />
     <ClCompile Include="src\Credits.cpp" />
     <ClCompile Include="src\Damage.cpp" />
@@ -329,6 +335,12 @@
     <ClCompile Include="src\DeckMenuItem.cpp" />
     <ClCompile Include="src\DeckMetaData.cpp" />
     <ClCompile Include="src\DeckStats.cpp" />
+    <ClCompile Include="src\DeckView.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='HQ Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="src\DuelLayers.cpp" />
     <ClCompile Include="src\ExtraCost.cpp" />
     <ClCompile Include="src\GameApp.cpp">
@@ -362,6 +374,12 @@
     <ClCompile Include="src\GameStateShop.cpp" />
     <ClCompile Include="src\GameStateStory.cpp" />
     <ClCompile Include="src\GameStateTransitions.cpp" />
+    <ClCompile Include="src\GridDeckView.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='HQ Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="src\GuiAvatars.cpp" />
     <ClCompile Include="src\GuiBackground.cpp" />
     <ClCompile Include="src\GuiCardsController.cpp" />
@@ -459,6 +477,7 @@
     <ClInclude Include="include\CardPrimitive.h" />
     <ClInclude Include="include\CardSelector.h" />
     <ClInclude Include="include\CardSelectorSingleton.h" />
+    <ClInclude Include="include\CarouselDeckView.h" />
     <ClInclude Include="include\config.h" />
     <ClInclude Include="include\Counters.h" />
     <ClInclude Include="include\Credits.h" />
@@ -471,7 +490,9 @@
     <ClInclude Include="include\DeckMenuItem.h" />
     <ClInclude Include="include\DeckMetaData.h" />
     <ClInclude Include="include\DeckStats.h" />
+    <ClInclude Include="include\DeckView.h" />
     <ClInclude Include="include\DuelLayers.h" />
+    <ClInclude Include="include\Easing.h" />
     <ClInclude Include="include\Effects.h" />
     <ClInclude Include="include\ExtraCost.h" />
     <ClInclude Include="include\GameApp.h" />
@@ -486,6 +507,7 @@
     <ClInclude Include="include\GameStateShop.h" />
     <ClInclude Include="include\GameStateStory.h" />
     <ClInclude Include="include\GameStateTransitions.h" />
+    <ClInclude Include="include\GridDeckView.h" />
     <ClInclude Include="include\GuiAvatars.h" />
     <ClInclude Include="include\GuiBackground.h" />
     <ClInclude Include="include\GuiCardsController.h" />

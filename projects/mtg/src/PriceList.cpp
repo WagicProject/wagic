@@ -47,12 +47,12 @@ int PriceList::save()
 
     return 1;
 }
-int PriceList::getPrice(int cardId)
+int PriceList::getPrice(MTGCard * card)
 {
-    map<int, int>::iterator it = prices.find(cardId);
+    map<int, int>::iterator it = prices.find(card->getId());
     if (it != prices.end()) return (*it).second;
 
-    char rarity = collection->getCardById(cardId)->getRarity();
+    char rarity = card->getRarity();
     switch (rarity)
     {
     case Constants::RARITY_M:
@@ -77,7 +77,11 @@ int PriceList::getPrice(int cardId)
         return Constants::PRICE_1C;
         break;
     }
+}
 
+int PriceList::getPrice(int cardId)
+{
+    return getPrice(collection->getCardById(cardId));
 }
 
 int PriceList::setPrice(int cardId, int price)
@@ -85,10 +89,23 @@ int PriceList::setPrice(int cardId, int price)
     prices[cardId] = price;
     return price;
 }
+
+int PriceList::setPrice(MTGCard * card, int price)
+{
+    prices[card->getId()] = price;
+    return price;
+}
+
 int PriceList::getSellPrice(int cardid)
 {
-    return getPrice(cardid);
+    return getPrice(collection->getCardById(cardid));
 }
+
+int PriceList::getSellPrice(MTGCard *card)
+{
+    return getPrice(card);
+}
+
 float PriceList::difficultyScalar(float price, int cardid)
 {
     float badluck = (float) (abs(cardid + randomKey) % 201) / 100; //Float between 0 and 2.

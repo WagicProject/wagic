@@ -49,9 +49,13 @@ CONFIG(graphics, graphics|console){
         ../../JGE/src/pc/JGfx.cpp
 }
 else:CONFIG(console, graphics|console){
+    HEADERS += \
+        ../../JGE/include/OutputCapturer.h
+
     SOURCES += \
+        ../../JGE/src/OutputCapturer.cpp\
         ../../JGE/src/JGfx-fake.cpp\
-        ../../JGE/src/Qtconsole.cpp
+        ../../JGE/src/Qtconsole.cpp\
 }
 
 # maemo 5 packaging

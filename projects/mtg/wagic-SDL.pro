@@ -9,7 +9,7 @@ DEFINES += SDL_CONFIG
 #
 QT -= core gui opengl network declarative
 
-unix|windows:QMAKE_CXXFLAGS += -std=c++11
+#unix|windows:QMAKE_CXXFLAGS += -std=c++11
 
 INCLUDEPATH += ../../JGE/Dependencies/SDL/include
 unix:INCLUDEPATH += /usr/include/GL

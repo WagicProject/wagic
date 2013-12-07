@@ -64,6 +64,7 @@ SOURCES += \
         src/CardGui.cpp\
         src/CardPrimitive.cpp\
         src/CardSelector.cpp\
+        src/CarouselDeckView.cpp\
         src/Closest.cpp\
         src/Counters.cpp\
         src/Credits.cpp\
@@ -76,6 +77,7 @@ SOURCES += \
         src/DeckMenuItem.cpp\
         src/DeckMetaData.cpp\
         src/DeckStats.cpp\
+        src/DeckView.cpp\
         src/DuelLayers.cpp\
         src/Effects.cpp\
         src/ExtraCost.cpp\
@@ -92,6 +94,7 @@ SOURCES += \
         src/GameStateShop.cpp\
         src/GameStateStory.cpp\
         src/GameStateTransitions.cpp\
+        src/GridDeckView.cpp\
         src/GuiAvatars.cpp\
         src/GuiBackground.cpp\
         src/GuiCardsController.cpp\
@@ -159,6 +162,10 @@ SOURCES += \
         src/TestSuiteAI.cpp
 
 HEADERS  += \
+        include/CarouselDeckView.h\
+        include/DeckView.h\
+        include/Easing.h\
+        include/GridDeckView.h\
         include/CacheEngine.h\
         include/AllAbilities.h\
         include/AbilityParser.h\
@@ -296,7 +303,6 @@ SOURCES += \
         ../../JGE/src/pc/JSocket.cpp\
         ../../JGE/src/pc/JSfx.cpp\
         ../../JGE/src/JSprite.cpp\
-        ../../JGE/src/OutputCapturer.cpp\
         ../../JGE/src/Vector2D.cpp\
         ../../JGE/src/tinyxml/tinystr.cpp\
         ../../JGE/src/tinyxml/tinyxml.cpp\
@@ -344,7 +350,6 @@ HEADERS += \
         ../../JGE/include/JSpline.h\
         ../../JGE/include/JSprite.h\
         ../../JGE/include/JTypes.h\
-        ../../JGE/include/OutputCapturer.h\
         ../../JGE/include/Vector2D.h\
         ../../JGE/include/Vector3D.h\
         ../../JGE/include/vram.h\
