@@ -132,7 +132,6 @@ MTGCard * CarouselDeckView::Click(int x, int y)
         }
         else
         {
-            DebugTrace(">>>>> " << n);
             changePosition(n - 2);
         }
     }

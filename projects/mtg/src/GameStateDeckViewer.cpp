@@ -386,7 +386,7 @@ void GameStateDeckViewer::Update(float dt)
         //Prevent screen from updating.
         return;
     }
-    hudAlpha = 255 - ((int) last_user_activity * 500);
+    hudAlpha = 255 - (int)(MAX(last_user_activity-2.0f, 0) * 500);
     if (hudAlpha < 0) hudAlpha = 0;
     if (subMenu)
     {
