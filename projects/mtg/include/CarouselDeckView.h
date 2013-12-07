@@ -7,6 +7,9 @@
 class CarouselDeckView : public DeckView
 {
 private:
+    static const float max_scale;
+    static const float x_center;
+    static const float right_border;
     static const float slide_animation_duration;
 
 public:

@@ -68,7 +68,6 @@ private:
     JTexture * pspIconsTexture;
     float last_user_activity;
     float onScreenTransition;
-    int mAlpha;
     DeckViewerStages mStage;
     JMusic * bgMusic;
     
@@ -79,13 +78,12 @@ private:
 
     DeckEditorMenu * welcome_menu;
     SimpleMenu * subMenu;
-    DeckEditorMenu * menu;
+    DeckEditorMenu * deckMenu;
     PriceList* pricelist;
     PlayerData * playerdata;
-    int price;
     DeckDataWrapper * myDeck;
     DeckDataWrapper * myCollection;
-    StatsWrapper *stw;
+    StatsWrapper * mStatsWrapper;
 
     int hudAlpha;
     string newDeckname;
@@ -111,7 +109,6 @@ public:
     GameStateDeckViewer(GameApp* parent);
     virtual ~GameStateDeckViewer();
     void updateDecks();
-    void rotateCards(int direction);
     void updateFilters();
     void rebuildFilters();
     void toggleCollection();

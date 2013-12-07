@@ -1,5 +1,8 @@
 #include "CarouselDeckView.h"
 
+const float CarouselDeckView::max_scale = 0.96f;
+const float CarouselDeckView::x_center = 180;
+const float CarouselDeckView::right_border = SCREEN_WIDTH + 180;
 const float CarouselDeckView::slide_animation_duration = 0.6f;
 
 CarouselDeckView::CarouselDeckView() :
@@ -18,15 +21,13 @@ void CarouselDeckView::UpdateViewState(float dt)
 
         if(mScrollOffset <= -1.0f)
         {
+            SwitchPosition(-1);
             mScrollEasing.translate(1.0f);
-            deck()->prev();
-            reloadIndexes();
         }
         else if(mScrollOffset >= 1.0f)
         {
+            SwitchPosition(1);
             mScrollEasing.translate(-1.0f);
-            deck()->next();
-            reloadIndexes();
         }
 
         dirtyCardPos = true;

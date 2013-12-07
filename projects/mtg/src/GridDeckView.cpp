@@ -35,18 +35,14 @@ void GridDeckView::UpdateViewState(float dt)
 
         if(mScrollOffset <= -1.0f)
         {
-            deck()->next();
-            deck()->next();
+            SwitchPosition(2);
             mScrollEasing.translate(1.0f);
-            reloadIndexes();
             mCurrentSelection = (mCurrentSelection >= 6) ? mCurrentSelection - 2 : -1;
         }
         else if(mScrollOffset >= 1.0f)
         {
-            deck()->prev();
-            deck()->prev();
+            SwitchPosition(-2);
             mScrollEasing.translate(-1.0f);
-            reloadIndexes();
             mCurrentSelection = (mCurrentSelection >= 0 && mCurrentSelection < 10) ? mCurrentSelection + 2 : -1;
         }
 

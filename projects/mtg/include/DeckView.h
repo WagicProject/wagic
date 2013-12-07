@@ -9,15 +9,11 @@
 #include "WResourceManager.h"
 #include "Pos.h"
 
-#define NO_USER_ACTIVITY_HELP_DELAY 10
-#define NO_USER_ACTIVITY_SHOWCARD_DELAY 0.1
 
 class DeckView
 {
 protected:
-    static const float max_scale;
-    static const float x_center;
-    static const float right_border;
+    static const float no_user_activity_show_card_delay;
 
 public:
     struct CardRep{
@@ -36,6 +32,13 @@ public:
 
     //advances the view and card representations
     void Update(float dt);
+    virtual void SetDeck(DeckDataWrapper *toShow);
+    DeckDataWrapper *deck();
+    void SwitchFilter(int delta);
+    void SwitchPosition(int delta);
+    int filter();
+    void reloadIndexes();
+    int getPosition();
 
     virtual void Render() = 0;
     virtual MTGCard * Click(int x, int y) = 0;
@@ -43,24 +46,15 @@ public:
     virtual MTGCard *getActiveCard() = 0;
     virtual void changePosition(int offset) = 0;
     virtual void changeFilter(int offset) = 0;
-
-    virtual void SetDeck(DeckDataWrapper *toShow);
-    DeckDataWrapper *deck();
-    void SwitchFilter(int delta);
-    int filter();
-    void reloadIndexes();
-    int getPosition();
-
 protected:
     float last_user_activity;
     int mFilter;
     DeckDataWrapper *mCurrentDeck;
+    vector<CardRep> mCards;
 
     CardRep& getCardRep(unsigned int index);
     void renderCard(int index, int alpha, bool asThumbnail = false);
     int getCardIndexNextTo(int x, int y);
-
-    vector<CardRep> mCards;
 private:
     virtual void UpdateViewState(float dt) = 0;
     virtual void UpdateCardPosition(CardRep& rep, int index) = 0;

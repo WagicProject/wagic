@@ -3,9 +3,7 @@
 #include "GameOptions.h"
 #include "CardGui.h"
 
-const float DeckView::max_scale = 0.96f;
-const float DeckView::x_center = 180;
-const float DeckView::right_border = SCREEN_WIDTH + 180;
+const float DeckView::no_user_activity_show_card_delay = 0.1f;
 
 DeckView::DeckView(int numberOfCards)
     :  dirtyFilters(true), dirtyCardPos(true), last_user_activity(0.0f), mFilter(0), mCurrentDeck(NULL)
@@ -87,14 +85,29 @@ void DeckView::SwitchFilter(int delta)
     dirtyFilters = true;
 }
 
+void DeckView::SwitchPosition(int delta)
+{
+    for(int i = 0; i < delta; ++i)
+    {
+        mCurrentDeck->next();
+    }
+
+    for(int i = 0; i > delta; --i)
+    {
+        mCurrentDeck->prev();
+    }
+
+    reloadIndexes();
+}
+
 int DeckView::filter()
 {
     return mFilter;
 }
 
-void DeckView::reloadIndexes() //fixme: feels ugly. check if we can remove this
+void DeckView::reloadIndexes()
 {
-    if(deck() != NULL)
+    if(mCurrentDeck != NULL)
     {
         for (unsigned int i = 0; i < mCards.size(); i++)
         {
@@ -129,7 +142,7 @@ void DeckView::renderCard(int index, int alpha, bool asThumbnail)
             cacheError = WResourceManager::Instance()->RetrieveError();
             if (!quad.get() && cacheError != CACHE_ERROR_404)
             {
-                if (last_user_activity > (abs(2 - index) + 1) * NO_USER_ACTIVITY_SHOWCARD_DELAY)
+                if (last_user_activity > (abs(2 - index) + 1) * no_user_activity_show_card_delay)
                     quad = WResourceManager::Instance()->RetrieveCard(cardPosition.card);
                 else
                 {
