@@ -30,11 +30,10 @@ public:
     void changeFilter(int offset);
 
     MTGCard *getActiveCard();
-
-    //maintains the current rotation for fluid animations
 private:
-    InOutQuadEasing mScrollOffset;   //[-1,1]. defines the current rotation of the cards
-    InOutQuadEasing mSlide;      //[-1,1]. defines, the y-offset of the cards
+    float mScrollOffset, mSlideOffset;
+    InOutQuadEasing mScrollEasing;
+    InOutQuadEasing mSlideEasing;
 };
 
 #endif //_CAROUSEL_DECK_VIEW_H_

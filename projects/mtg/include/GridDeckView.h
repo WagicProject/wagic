@@ -27,11 +27,12 @@ public:
 
     MTGCard *getActiveCard();
 private:
-    int   mCols; //the number of cols. there is a hidden col to the left and right for prefetching
-    int   mRows; //the number of rows.
-    InOutQuadEasing mSlide;           //[-1,1]. defines the y-offset of the cards
-    InOutQuadEasing mScrollOffset;    //[-1,1]. defines the x-offset of the cards
-    int   mCurrentSelection;          //0 <= mCurrentSelection < mCards.size(). defines the current selected and thus upscaled card
+    int mCols;
+    int mRows;
+    float mScrollOffset, mSlideOffset;
+    InOutQuadEasing mScrollEasing;
+    InOutQuadEasing mSlideEasing;
+    int mCurrentSelection;
 };
 
 #endif //_GRID_DECK_VIEW_H

@@ -6,7 +6,8 @@ const float GridDeckView::card_scale_small = 0.48f;
 const float GridDeckView::card_scale_big = 0.7f;
 
 GridDeckView::GridDeckView()
-    : DeckView(16), mCols(8), mRows(2), mSlide(0), mScrollOffset(0), mCurrentSelection(-1)
+    : DeckView(16), mCols(8), mRows(2), mScrollOffset(0), mSlideOffset(0),
+      mScrollEasing(mScrollOffset), mSlideEasing(mSlideOffset), mCurrentSelection(-1)
 {
 
 }
@@ -18,31 +19,33 @@ GridDeckView::~GridDeckView()
 
 void GridDeckView::Reset()
 {
-    mSlide.finish();
-    mScrollOffset.finish();
+    mSlideEasing.finish();
+    mScrollEasing.finish();
 
     mCurrentSelection = 0;
+
+    DeckView::Reset();
 }
 
 void GridDeckView::UpdateViewState(float dt)
 {
-    if(!mScrollOffset.finished())
+    if(!mScrollEasing.finished())
     {
-        mScrollOffset.update(dt);
+        mScrollEasing.update(dt);
 
-        if(mScrollOffset.value <= -1.0f)
+        if(mScrollOffset <= -1.0f)
         {
             deck()->next();
             deck()->next();
-            mScrollOffset.translate(1.0f);
+            mScrollEasing.translate(1.0f);
             reloadIndexes();
             mCurrentSelection = (mCurrentSelection >= 6) ? mCurrentSelection - 2 : -1;
         }
-        else if(mScrollOffset.value >= 1.0f)
+        else if(mScrollOffset >= 1.0f)
         {
             deck()->prev();
             deck()->prev();
-            mScrollOffset.translate(-1.0f);
+            mScrollEasing.translate(-1.0f);
             reloadIndexes();
             mCurrentSelection = (mCurrentSelection >= 0 && mCurrentSelection < 10) ? mCurrentSelection + 2 : -1;
         }
@@ -50,27 +53,19 @@ void GridDeckView::UpdateViewState(float dt)
         dirtyCardPos = true;
     }
 
-    if(!mSlide.finished())
+    if(!mSlideEasing.finished())
     {
-        mSlide.update(dt);
+        mSlideEasing.update(dt);
 
-        if(mSlide.value < mSlide.start_value)
+        if(mSlideOffset < -1.0f)
         {
-            //going downwards
-            if(mSlide.value < -1.0f)
-            {
-                mSlide.translate(2.0f);
-                SwitchFilter(1);
-            }
+            mSlideEasing.translate(2.0f);
+            SwitchFilter(1);
         }
-        else if(mSlide.value > mSlide.start_value)
+        else if(mSlideOffset > 1.0f)
         {
-            //upwards
-            if(mSlide.value > 1.0f)
-            {
-                mSlide.translate(-2.0f);
-                SwitchFilter(-1);
-            }
+            mSlideEasing.translate(-2.0f);
+            SwitchFilter(-1);
         }
 
         dirtyCardPos = true;
@@ -84,8 +79,8 @@ void GridDeckView::UpdateCardPosition(CardRep &rep, int index)
     float colWidth = SCREEN_WIDTH_F / (mCols - 3);
     float rowHeight = SCREEN_HEIGHT_F / mRows;
 
-    rep.x = (col + mScrollOffset.value) * colWidth       - colWidth;
-    rep.y = row * rowHeight + mSlide.value*SCREEN_HEIGHT + rowHeight/2;
+    rep.x = (col + mScrollOffset) * colWidth       - colWidth;
+    rep.y = row * rowHeight + mSlideOffset*SCREEN_HEIGHT + rowHeight/2;
 
     if(mCurrentSelection == index)
     {
@@ -110,9 +105,9 @@ void GridDeckView::Render()
     int firstVisibleCard = 2;
     int lastVisibleCard = mCards.size() - 2;
 
-    if(!mScrollOffset.finished())
+    if(!mScrollEasing.finished())
     {
-        if(mScrollOffset.delta_value > 0){
+        if(mScrollEasing.delta_value > 0){
             firstVisibleCard = 0;
         }
         else
@@ -152,7 +147,7 @@ MTGCard * GridDeckView::Click(int x, int y)
     int n = getCardIndexNextTo(x, y);
     last_user_activity = 0;
 
-    if(mScrollOffset.finished() && mSlide.finished())
+    if(mScrollEasing.finished() && mSlideEasing.finished())
     { //clicked and no animations running
         if(n == mCurrentSelection)
         {
@@ -178,7 +173,7 @@ MTGCard * GridDeckView::Click(int x, int y)
 
 void GridDeckView::changePosition(int offset)
 {
-    mScrollOffset.start(-1.0f * offset, scroll_animation_duration * abs(offset));
+    mScrollEasing.start(-1.0f * offset, scroll_animation_duration * abs(offset));
     last_user_activity = 0;
 }
 
@@ -186,11 +181,11 @@ void GridDeckView::changeFilter(int offset)
 {
     if(offset < 0)
     {
-        mSlide.start(-2.0f, slide_animation_duration);
+        mSlideEasing.start(-2.0f, slide_animation_duration);
     }
     else if(offset > 0)
     {
-        mSlide.start(2.0f, slide_animation_duration);
+        mSlideEasing.start(2.0f, slide_animation_duration);
     }
     last_user_activity = 0;
 }
