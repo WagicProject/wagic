@@ -331,6 +331,15 @@
     <ClCompile Include="src\NetworkPlayer.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\CarouselDeckView.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DeckView.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GridDeckView.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\ActionElement.h">
@@ -679,6 +688,18 @@
       <Filter>inc</Filter>
     </ClInclude>
     <ClInclude Include="include\NetworkPlayer.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\CarouselDeckView.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\DeckView.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Easing.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="include\GridDeckView.h">
       <Filter>inc</Filter>
     </ClInclude>
   </ItemGroup>

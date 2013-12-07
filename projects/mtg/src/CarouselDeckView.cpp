@@ -141,7 +141,7 @@ MTGCard * CarouselDeckView::Click(int x, int y)
 
 void CarouselDeckView::changePosition(int offset)
 {
-    mScrollEasing.start(offset, 0.3f*abs(offset));
+    mScrollEasing.start((float)offset, (float)(0.3f*abs(offset)));
 
     last_user_activity = 0;
 }

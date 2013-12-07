@@ -187,12 +187,12 @@ public:
         float time_tmp = (time_acc * 2) / duration;
         if (time_tmp < 1)
         {
-            value = delta_value * 0.5 * time_tmp * time_tmp + start_value;
+            value = (float)(delta_value * 0.5 * time_tmp * time_tmp + start_value);
         }
         else
         {
             time_tmp -= 1;
-            value = - delta_value * 0.5 * (time_tmp * (time_tmp - 2) - 1) + start_value;
+            value = (float)(- delta_value * 0.5 * (time_tmp * (time_tmp - 2) - 1) + start_value);
         }
     }
 };
