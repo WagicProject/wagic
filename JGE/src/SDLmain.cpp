@@ -88,7 +88,7 @@ class SdlApp
 public: /* For easy interfacing with JGE static functions */
     bool            Running;
     SDL_Window*     window;
-    SDL_Surface*    Surf_Display;
+    SDL_GLContext   gl_context;
     SDL_Rect        viewPort;
     Uint32          lastMouseUpTime;
     Uint32          lastFingerDownTime;
@@ -101,7 +101,7 @@ public: /* For easy interfacing with JGE static functions */
     int mMouseDownY;
 
 public:
-    SdlApp() : Surf_Display(NULL), window(NULL), lastMouseUpTime(0), lastFingerDownTime(0), Running(true), mMouseDownX(0), mMouseDownY(0)
+    SdlApp() : Running(true), window(NULL), gl_context(NULL), lastMouseUpTime(0), lastFingerDownTime(0), mMouseDownX(0), mMouseDownY(0)
     {
     }
 
@@ -131,7 +131,7 @@ public:
         OnCleanup();
 
         return 0;
-    };
+    }
 
 public:
     bool OnInit();
@@ -263,7 +263,7 @@ public:
 
     void OnCleanup()
     {
-        SDL_FreeSurface(Surf_Display);
+        SDL_GL_DeleteContext(gl_context);
         SDL_Quit();
     }
 };
@@ -390,7 +390,11 @@ bool InitGame(void)
 
 void DestroyGame(void)
 {
-	g_engine->SetApp(NULL);
+    if(g_engine != NULL)
+    {
+        g_engine->SetApp(NULL);
+    }
+
 	if (g_app)
 	{
 		g_app->Destroy();
@@ -430,7 +434,7 @@ void SdlApp::OnUpdate()
 	if(g_engine)
 		g_engine->Render();
 
-	SDL_GL_SwapBuffers();
+    SDL_GL_SwapWindow(window);
 }
 
 void SdlApp::OnKeyPressed(const SDL_KeyboardEvent& event)
@@ -624,8 +628,10 @@ bool SdlApp::OnInit()
 		return false;
 	}
 
-	const SDL_VideoInfo *pVideoInfo = SDL_GetVideoInfo();
-	DebugTrace("Video Display : h " << pVideoInfo->current_h << ", w " << pVideoInfo->current_w);
+    SDL_DisplayMode currentDisplayMode;
+    SDL_GetCurrentDisplayMode(0, &currentDisplayMode);
+
+    DebugTrace("Video Display : h " << currentDisplayMode.h << ", w " << currentDisplayMode.w);
 
 #if (defined ANDROID) || (defined IOS)
 	window_w = pVideoInfo->current_w;
@@ -648,23 +654,40 @@ bool SdlApp::OnInit()
 	SDL_GL_SetAttribute(SDL_GL_ACCUM_BLUE_SIZE,	    8);
 	SDL_GL_SetAttribute(SDL_GL_ACCUM_ALPHA_SIZE,	8);
 
-	SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS,  1);
-	SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES,  2);
+    SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS,  1);
+    SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES,  2);
 
-	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 1);
-	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
+    int buffers, samples;
+    SDL_GL_GetAttribute(SDL_GL_MULTISAMPLEBUFFERS, &buffers);
+    SDL_GL_GetAttribute(SDL_GL_MULTISAMPLESAMPLES, &samples);
+    if ( buffers == 0 || samples == 0 )
+    { //no multisampling available
+        SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS,  0);
+        SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES,  0);
+    }
 
-	if((Surf_Display = SDL_SetVideoMode(window_w, window_h, 32,
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 1);
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
+
 #ifdef ANDROID
-		SDL_OPENGL | SDL_FULLSCREEN | SDL_WINDOW_BORDERLESS)) == NULL)
-	{
+    Uint32 flags = SDL_WINDOW_OPENGL | SDL_WINDOW_FULLSCREEN | SDL_WINDOW_BORDERLESS;
 #else
-		SDL_OPENGL | SDL_RESIZABLE )) == NULL)
-	{
+    Uint32 flags = SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE;
 #endif
-		return false;
-	}
-	SDL_WM_SetCaption(g_launcher->GetName(), "");
+
+    window = SDL_CreateWindow(g_launcher->GetName(),
+                              SDL_WINDOWPOS_UNDEFINED,
+                              SDL_WINDOWPOS_UNDEFINED,
+                              window_w, window_h,
+                              flags);
+
+    if(window == NULL)
+    {
+        DebugTrace(SDL_GetError());
+        return false;
+    }
+
+    gl_context = SDL_GL_CreateContext(window);
 
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);		// Black Background (yes that's the way fuckers)
 #if (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
