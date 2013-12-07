@@ -335,7 +335,7 @@ void WagicCore::resizeGL(int width, int height)
 #if (defined GL_VERSION_ES_CM_1_1 || defined GL_OES_VERSION_1_1)
     glOrthof(0.0f, (float) (m_viewPort.right()-m_viewPort.left())-1.0f, 0.0f, (float) (m_viewPort.bottom()-m_viewPort.top())-1.0f, -1.0f, 1.0f);
 #else
-    gluOrtho2D(0.0f, (float) (m_viewPort.right()-m_viewPort.left())-1.0f, 0.0f, (float) (m_viewPort.bottom()-m_viewPort.top())-1.0f);
+    glOrtho(0.0f, (float) (m_viewPort.right()-m_viewPort.left())-1.0f, 0.0f, (float) (m_viewPort.bottom()-m_viewPort.top())-1.0f, -1.0f, 1.0f);
 #endif
 
     glMatrixMode (GL_MODELVIEW);										// Select The Modelview Matrix
