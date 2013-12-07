@@ -70,6 +70,8 @@ bool DeckView::ButtonPressed(Buttons button)
 void DeckView::SetDeck(DeckDataWrapper *toShow)
 {
     mCurrentDeck = toShow;
+    dirtyCardPos = true;
+    dirtyFilters = true;
     reloadIndexes();
 }
 
