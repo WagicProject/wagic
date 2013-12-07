@@ -1,5 +1,10 @@
 #!/bin/sh -ex
 
+# updating versions with the TRAVIS build numbers
+cd projects/mtg/
+ant update > error.txt
+cd ../..
+
 # we're building a PSP binary here
 cd JGE
 make -j 8
@@ -7,6 +12,11 @@ cd ..
 cd projects/mtg
 mkdir objs
 make -j 8
+mkdir psprelease
+mv EBOOT.PBP psprelease/
+mv wagic.elf psprelease/
+mv wagic.prx psprelease/
+zip psprelease.zip -r psprelease/
 cd ../..
 
 # we're building an Android binary here
@@ -26,6 +36,11 @@ cd ..
 qmake projects/mtg/wagic-qt.pro CONFIG+=console CONFIG+=debug DEFINES+=CAPTURE_STDERR
 make -j 8
 
-# and finish by running the testsuite
-cd projects/mtg
-./../../wagic
+# Now we run the testsuite
+./wagic
+
+# And we create resource package (not before testsuite, it mofifies resources)
+cd projects/mtg/bin/Res
+python createResourceZip.py
+mv core_*.zip core.zip
+cd ../../../..
