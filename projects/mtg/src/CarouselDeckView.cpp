@@ -3,7 +3,7 @@
 const float CarouselDeckView::slide_animation_duration = 0.6f;
 
 CarouselDeckView::CarouselDeckView() :
-    DeckView(10), mScrollOffset(0), mSlide(0),  mScrollTarget(2)
+    DeckView(10), mScrollOffset(0), mSlide(0)
 {
 }
 
@@ -16,20 +16,17 @@ void CarouselDeckView::UpdateViewState(float dt)
     {
         mScrollOffset.update(dt);
 
-        if(mScrollTarget < 2 && mScrollOffset.value <= -1.0f)
+        if(mScrollOffset.value <= -1.0f)
         {
             mScrollOffset.translate(1.0f);
             deck()->prev();
             reloadIndexes();
-            mScrollTarget += 1;
         }
-
-        if(mScrollTarget > 2 && mScrollOffset.value >= 1.0f)
+        else if(mScrollOffset.value >= 1.0f)
         {
             mScrollOffset.translate(-1.0f);
             deck()->next();
             reloadIndexes();
-            mScrollTarget -= 1;
         }
 
         dirtyCardPos = true;
@@ -76,7 +73,6 @@ void CarouselDeckView::Reset()
 {
     mScrollOffset = 0;
     mSlide = 0;
-    mScrollTarget = 2;
     DeckView::Reset();
 }
 
@@ -144,7 +140,6 @@ MTGCard * CarouselDeckView::Click(int x, int y)
 
 void CarouselDeckView::changePosition(int offset)
 {
-    mScrollTarget = 2 + offset;
     mScrollOffset.start(offset, 0.3f*abs(offset));
 
     last_user_activity = 0;

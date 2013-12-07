@@ -30,24 +30,23 @@ void GridDeckView::UpdateViewState(float dt)
     {
         mScrollOffset.update(dt);
 
-        if(mScrollOffset.finished())
+        if(mScrollOffset.value <= -1.0f)
         {
-            if(mScrollOffset.start_value > mScrollOffset.value)
-            {
-                deck()->next();
-                deck()->next();
-                mCurrentSelection = (mCurrentSelection >= 6) ? mCurrentSelection - 2 : -1;
-            }
-            else if(mScrollOffset.start_value < mScrollOffset.value)
-            {
-                deck()->prev();
-                deck()->prev();
-                mCurrentSelection = (mCurrentSelection >= 0 && mCurrentSelection < 10) ? mCurrentSelection + 2 : -1;
-            }
+            deck()->next();
+            deck()->next();
+            mScrollOffset.translate(1.0f);
             reloadIndexes();
-
-            mScrollOffset.value = 0;
+            mCurrentSelection = (mCurrentSelection >= 6) ? mCurrentSelection - 2 : -1;
         }
+        else if(mScrollOffset.value >= 1.0f)
+        {
+            deck()->prev();
+            deck()->prev();
+            mScrollOffset.translate(-1.0f);
+            reloadIndexes();
+            mCurrentSelection = (mCurrentSelection >= 0 && mCurrentSelection < 10) ? mCurrentSelection + 2 : -1;
+        }
+
         dirtyCardPos = true;
     }
 
@@ -179,14 +178,7 @@ MTGCard * GridDeckView::Click(int x, int y)
 
 void GridDeckView::changePosition(int offset)
 {
-    if(offset < 0)
-    {
-        mScrollOffset.start( 1.0f, scroll_animation_duration);
-    }
-    else if(offset > 0)
-    {
-        mScrollOffset.start(-1.0f, scroll_animation_duration);
-    }
+    mScrollOffset.start(-1.0f * offset, scroll_animation_duration * abs(offset));
     last_user_activity = 0;
 }
 

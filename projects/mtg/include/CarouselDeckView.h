@@ -35,7 +35,6 @@ public:
 private:
     InOutQuadEasing mScrollOffset;   //[-1,1]. defines the current rotation of the cards
     InOutQuadEasing mSlide;      //[-1,1]. defines, the y-offset of the cards
-    int mScrollTarget; //0 <= mScrollTarget < mCards.size(). defines where to scroll to if the current animation is a scroll animation
 };
 
 #endif //_CAROUSEL_DECK_VIEW_H_
