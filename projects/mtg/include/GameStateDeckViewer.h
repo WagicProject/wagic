@@ -122,7 +122,6 @@ public:
     void renderOnScreenMenu();
     virtual void Render();
     int loadDeck(int deckid);
-    void LoadDeckStatistics(int deckId);
 
     void OnScroll(int inXVelocity, int inYVelocity);
 
