@@ -259,8 +259,8 @@ void GameStateShop::cancelCard(int controlId)
         break;
     }
     price = price - (rnd * price) / 100;
-    if (price < pricelist->getPrice(c->getMTGId())) //filters have a tendancy to increase the price instead of lowering it!
-        pricelist->setPrice(c->getMTGId(), price);
+    if (price < pricelist->getPrice(c)) //filters have a tendancy to increase the price instead of lowering it!
+        pricelist->setPrice(c, price);
     //Prices do not immediately go down when you ignore something.
     return;
 }

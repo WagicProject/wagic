@@ -1,3 +1,5 @@
+#include "MTGDeck.h"
+
 #ifndef _WFILTER_H_
 #define _WFILTER_H_
 /**
