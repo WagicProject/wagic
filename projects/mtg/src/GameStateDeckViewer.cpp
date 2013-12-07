@@ -167,6 +167,7 @@ void GameStateDeckViewer::Start()
     myCollection = NEW DeckDataWrapper(playerdata->collection);
     myCollection->Sort(WSrcCards::SORT_ALPHA);
     setupView(mCurrentView, myCollection);
+    toggleDeckButton->setText("View Deck");
 
     //Icons
     mIcons = manaIcons;
