@@ -9,7 +9,7 @@ if [ "$TRAVIS_BRANCH" == "alphas" ]; then
   curl -X POST -H "Authorization: token ${GH_TOKEN}" \
      -H "Accept: application/vnd.github.manifold-preview" \
      -H "Content-Type: application/zip" \
-     --data-binary @projects/mtg/bin/Res/core.zip \
+     --data-binary @core.zip \
      "https://uploads.github.com/repos/WagicProject/wagic/releases/${IDDI}/assets?name=Wagic-core-${TRAVIS_BUILD_NUMBER}.zip"
 
   echo -e "Uploading android package\n"

@@ -39,7 +39,9 @@ make -j 8
 # we create resource package
 cd projects/mtg/bin/Res
 python createResourceZip.py
-mv core_*.zip core.zip
+# if we let the zip here, Wagic will use it in the testsuite 
+# and we'll get 51 failed test cases
+mv core_*.zip ../../../../core.zip
 cd ../../../..
 
 # Now we run the testsuite (Res needs to be in the working directory)
