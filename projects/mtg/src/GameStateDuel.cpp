@@ -14,6 +14,7 @@
 #include "Translate.h"
 #include "Rules.h"
 #include "ModRules.h"
+#include "GameApp.h"
 
 #ifdef TESTSUITE
 #include "TestSuiteAI.h"

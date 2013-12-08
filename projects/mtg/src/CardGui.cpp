@@ -17,6 +17,7 @@
 #include "Counters.h"
 #include "ModRules.h"
 #include "CardDescriptor.h"
+#include "GameApp.h"
 
 const float CardGui::Width = 28.0;
 const float CardGui::Height = 40.0;
@@ -110,17 +111,17 @@ void CardGui::Update(float dt)
     PlayGuiObject::Update(dt);
 }
 
-void CardGui::DrawCard(const Pos& inPosition, int inMode)
+void CardGui::DrawCard(const Pos& inPosition, int inMode, bool thumb)
 {
-    DrawCard(card, inPosition, inMode);
+    DrawCard(card, inPosition, inMode, thumb);
 }
 
-void CardGui::DrawCard(MTGCard* inCard, const Pos& inPosition, int inMode)
+void CardGui::DrawCard(MTGCard* inCard, const Pos& inPosition, int inMode, bool thumb)
 {
     switch (inMode)
     {
     case DrawMode::kNormal:
-        RenderBig(inCard, inPosition);
+        RenderBig(inCard, inPosition, thumb);
         break;
     case DrawMode::kText:
         AlternateRender(inCard, inPosition);
@@ -957,7 +958,7 @@ void CardGui::TinyCropRender(MTGCard * card, const Pos& pos, JQuad * quad)
 }
 
 //Renders a big card on screen. Defaults to the "alternate" rendering if no image is found
-void CardGui::RenderBig(MTGCard* card, const Pos& pos)
+void CardGui::RenderBig(MTGCard* card, const Pos& pos, bool thumb)
 {
     JRenderer * renderer = JRenderer::GetInstance();
     //GameObserver * game = GameObserver::GetInstance();
@@ -966,7 +967,8 @@ void CardGui::RenderBig(MTGCard* card, const Pos& pos)
     //i want this but ai targets cards so quickly that it can crash the game.
     float x = pos.actX;
 
-    JQuadPtr quad = WResourceManager::Instance()->RetrieveCard(card);
+    JQuadPtr quad = thumb ? WResourceManager::Instance()->RetrieveCard(card, RETRIEVE_THUMB)
+                          : WResourceManager::Instance()->RetrieveCard(card);
     MTGCardInstance * kcard =  dynamic_cast<MTGCardInstance*>(card);
     if(kcard && !kcard->isToken && kcard->name != kcard->model->data->name)
     {

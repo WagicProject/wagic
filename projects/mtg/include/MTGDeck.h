@@ -4,7 +4,6 @@
 #define MTG_ERROR -1
 
 #include "MTGDefinitions.h"
-#include "GameApp.h"
 #include "WResourceManager.h"
 #include <dirent.h>
 #include <Threading.h>
@@ -138,7 +137,7 @@ public:
 
     static int findType(string subtype, bool forceAdd = true) {
         boost::mutex::scoped_lock lock(instance->mMutex);
-		int result = instance->subtypesList.find(subtype, forceAdd);
+        int result = instance->subtypesList.find(subtype, forceAdd);
         return result;
     };
     static int add(string value, unsigned int parentType) {

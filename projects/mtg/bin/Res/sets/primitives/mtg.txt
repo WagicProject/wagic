@@ -18104,6 +18104,13 @@ mana={3}{R}
 type=Enchantment
 [/card]
 [card]
+name=Crucible of Worlds
+auto=lord(land|mygraveyard) CanPlayFromGraveyard
+text=You may play land cards from your graveyard.
+mana={3}
+type=Artifact
+[/card]
+[card]
 name=Crude Rampart
 abilities=defender
 facedown={3}
@@ -103466,6 +103473,15 @@ auto=@movedTo(*[white]|opponentStack):life:1 controller
 text=Whenever an opponent casts a white spell, that player loses 1 life and you gain 1 life.
 mana={1}{B}
 type=Enchantment
+[/card]
+[card]
+name=Yawgmoth's Will
+auto=lord(*|mygraveyard) canPlayFromGraveyard
+auto=emblem transforms((,newability[@movedTo(*|mygraveyard):all(trigger[to]) moveTo(exile)])) ueot
+auto=moveTo(exile)
+text=Until end of turn, you may play cards from your graveyard. -- If a card would be put into your graveyard from anywhere this turn, exile that card instead.
+mana={2}{B}
+type=Sorcery
 [/card]
 [card]
 name=Yawning Fissure

@@ -1,17 +1,24 @@
 language: cpp
 before_install:
-  - export PSPDEV="$TRAVIS_BUILD_DIR/opt/pspsdk"
-  - export PSPSDK="$PSPDEV/psp/sdk"
-  - export PATH="$PATH:$PSPDEV/bin:$PSPSDK/bin"
-  - export ANDROID="android-sdk-linux/tools/android"
+- export PSPDEV="$TRAVIS_BUILD_DIR/opt/pspsdk"
+- export PSPSDK="$PSPDEV/psp/sdk"
+- export PATH="$PATH:$PSPDEV/bin:$PSPSDK/bin"
+- export ANDROID="android-sdk-linux/tools/android"
 install:
-  - sudo apt-get update -qq
-  - if [ `uname -m` = x86_64 ]; then sudo apt-get install -qq --force-yes libgd2-xpm ia32-libs ia32-libs-multiarch; fi
-  - wget -O sdk.lzma http://sourceforge.net/projects/minpspw/files/SDK%20%2B%20devpak/pspsdk%200.11.2/minpspw_0.11.2-amd64.tar.lzma/download
-  - tar -x --xz -f sdk.lzma
-  - wget http://dl.google.com/android/ndk/android-ndk-r9-linux-x86_64.tar.bz2 -nv
-  - wget http://dl.google.com/android/android-sdk_r22-linux.tgz -nv
-  - tar --absolute-names -jxf android-ndk-r9-linux-x86_64.tar.bz2
-  - tar -zxf android-sdk_r22-linux.tgz
-  - echo yes | $ANDROID update sdk --filter 1,2,3,8 --no-ui --force > log.txt
+- sudo apt-get update -qq
+- if [ `uname -m` = x86_64 ]; then sudo apt-get install -qq --force-yes libgd2-xpm ia32-libs ia32-libs-multiarch jq; fi
+- wget -O sdk.lzma http://sourceforge.net/projects/minpspw/files/SDK%20%2B%20devpak/pspsdk%200.11.2/minpspw_0.11.2-amd64.tar.lzma/download
+- tar -x --xz -f sdk.lzma
+- wget http://dl.google.com/android/ndk/android-ndk-r9-linux-x86_64.tar.bz2 -nv
+- wget http://dl.google.com/android/android-sdk_r22-linux.tgz -nv
+- tar --absolute-names -jxf android-ndk-r9-linux-x86_64.tar.bz2
+- tar -zxf android-sdk_r22-linux.tgz
+- $ANDROID list sdk -a
+- echo yes | $ANDROID update sdk -a --filter 1,2,4,18 --no-ui --force > log.txt
+- sudo pip install pyjavaproperties
+script: ./travis-script.sh
+env:
+  global:
+    secure: YocijVYZa1oDPviFubPIpmBmXyw0gQ7D0YA6tC01wExXvY+8tGUh1HQ5uXn8LotRZ+Ob5HLHDaCzkKWF8+57ILSMeHrnf6tcRyyeO7wjNY9P7WvSZyCjvqnWzsUN9tiMmsEzhTz2MaUgsY6ocB/4nbWZwfQvL7z+s7z41R4J1I4=
 script: "./travis-script.sh"
+after_success: ./upload-binaries.sh

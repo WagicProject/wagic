@@ -3,6 +3,8 @@
 
 #include <vector>
 
+class GameObserver;
+
 // Task type constant
 
 #define TASK_BASIC 'B'

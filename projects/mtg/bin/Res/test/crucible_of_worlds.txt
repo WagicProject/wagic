@@ -1,0 +1,26 @@
+# Testing crucible of worlds (keyword: CANPLAYFROMGRAVEYARD)
+
+# name=Crucible of Worlds
+# text=You may play land cards from your graveyard.
+
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:island,plains
+inplay:crucible of worlds
+graveyard:forest,mountain
+[PLAYER2]
+[DO]
+forest
+# all next lands shouldn't be played
+island
+mountain
+plains
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:crucible of worlds,forest
+hand:island,plains
+graveyard:mountain
+[PLAYER2]
+[END]

@@ -1,6 +1,9 @@
 #ifndef OBJECTANALYTICS_H
 #define OBJECTANALYTICS_H
 
+//#include <boost/cstdint.hpp>
+#include "JTypes.h"
+
 #ifdef _DEBUG
 #define TRACK_OBJECT_USAGE
 #endif

@@ -26,6 +26,7 @@
 #include <iostream>
 #include <algorithm>
 #include <stdlib.h>
+#include <list>
 
 #include "DebugRoutines.h"
 

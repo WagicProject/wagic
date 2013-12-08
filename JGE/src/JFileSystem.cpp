@@ -126,7 +126,7 @@ JFileSystem::JFileSystem(const string & _userPath, const string & _systemPath)
 	DebugTrace("User path " << userPath);
 #elif defined (QT_CONFIG)
 
-    QDir sysDir("projects/mtg/bin/Res");
+    QDir sysDir(RESDIR);
     QDir dir(QDir::homePath());
     dir.mkdir(USERDIR);
     dir.cd(USERDIR);
