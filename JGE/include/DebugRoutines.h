@@ -23,7 +23,7 @@ std::string ToHex(T* pointer)
     return stream.str();
 }
 
-#ifdef LINUX
+#if defined(LINUX) && !defined(OutputDebugString)
 #define OutputDebugString(val) (std::cerr << val);
 #endif
 

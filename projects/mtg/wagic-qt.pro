@@ -39,7 +39,7 @@ android:INCLUDEPATH += $$ANDROID_NDK_ROOT/platforms/android-9/arch-arm/usr/inclu
 CONFIG(graphics, graphics|console){
     HEADERS += \
         ../../JGE/include/qt/filedownloader.h\
-        ../../JGE/include/qt/corewrapper.h
+        ../../JGE/include/qt/qtcorewrapper.h
 
     SOURCES += \
         ../../JGE/src/corewrapper.cpp\

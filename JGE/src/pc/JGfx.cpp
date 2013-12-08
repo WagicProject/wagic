@@ -53,7 +53,7 @@ extern "C" {
 #include "../../include/JFileSystem.h"
 #include "../../include/JAssert.h"
 
-#if (defined WIN32) && (!defined QT_CONFIG)
+#if (defined WIN32) && (!defined QT_CONFIG) && (!defined __MINGW32__)
 #ifndef __attribute__
 #define __attribute__((a))
 #endif

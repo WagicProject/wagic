@@ -150,7 +150,7 @@ console_main(int argc, char *argv[])
 
 /* This is where execution begins [windowed apps] */
 int WINAPI
-WinMain(HINSTANCE hInst, HINSTANCE hPrev, LPTSTR szCmdLine, int sw)
+WinMain(HINSTANCE hInst,HINSTANCE hPrev,LPSTR szCmdLine,int sw)
 {
     char **argv;
     int argc;

@@ -1,7 +1,7 @@
 #ifndef WRESOURCE_FWD_H
 #define WRESOURCE_FWD_H
 
-#ifndef WP8
+#if !defined(WP8) && !defined(SDL_CONFIG)
 #include <boost/shared_ptr.hpp>
 typedef boost::shared_ptr<JQuad> JQuadPtr;
 #else

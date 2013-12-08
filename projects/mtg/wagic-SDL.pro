@@ -2,16 +2,17 @@
 #-------------------------------------------------
 
 include(wagic.pri)
-
+CONFIG -= qt
 DEFINES += SDL_CONFIG
 #
 # Project created by QtCreator 2010-06-30T19:48:30
 #
 QT -= core gui opengl network declarative
 
-#unix|windows:QMAKE_CXXFLAGS += -std=c++11
+unix|windows:QMAKE_CXXFLAGS += -std=c++11
 
 INCLUDEPATH += ../../JGE/Dependencies/SDL/include
+INCLUDEPATH += ../../JGE/Dependencies/libjpeg
 unix:INCLUDEPATH += /usr/include/GL
 unix:INCLUDEPATH += /usr/local/include/SDL
 OBJECTS_DIR = objs
@@ -20,17 +21,64 @@ DESTDIR = bin
 
 macx|unix:LIBS += -lz -lboost_thread-mt
 unix:LIBS += -ljpeg -lgif -lpng12 -L/usr/local/lib -lGL -lGLU -lSDL
-windows:LIBS += -L../../JGE/Dependencies/lib -L../../Boost/lib -llibjpeg-static-mt-debug -lgiflib -llibpng -lfmodvc
-
-CONFIG(debug, debug|release):SOURCES += src/TestSuiteAI.cpp
+windows:LIBS += -L../../JGE/Dependencies/lib -L../../Boost/lib -lgiflib -llibpng -lfmodvc -lGdi32 -lopengl32 -lWinmm -lglu32 -lOle32 -lImm32 -lVersion -lOleAut32
 
 # JGE, could probably be moved outside
 SOURCES += \
+        ../../JGE/src/pc/JGfx.cpp\
         ../../JGE/src/SDLmain.cpp\
+        ../../JGE/Dependencies/SDL/src/main/windows/SDL_windows_main.c\
         ../../JGE/src/JMD2Model.cpp
 
 windows{
 
+    SOURCES += \
+            ../../JGE/Dependencies/libjpeg/jcapimin.c \
+            ../../JGE/Dependencies/libjpeg/jcapistd.c \
+            ../../JGE/Dependencies/libjpeg/jccoefct.c \
+            ../../JGE/Dependencies/libjpeg/jccolor.c \
+            ../../JGE/Dependencies/libjpeg/jcdctmgr.c \
+            ../../JGE/Dependencies/libjpeg/jchuff.c \
+            ../../JGE/Dependencies/libjpeg/jcinit.c \
+            ../../JGE/Dependencies/libjpeg/jcmainct.c \
+            ../../JGE/Dependencies/libjpeg/jcmarker.c \
+            ../../JGE/Dependencies/libjpeg/jcmaster.c \
+            ../../JGE/Dependencies/libjpeg/jcomapi.c \
+            ../../JGE/Dependencies/libjpeg/jcparam.c \
+            ../../JGE/Dependencies/libjpeg/jcphuff.c \
+            ../../JGE/Dependencies/libjpeg/jcprepct.c \
+            ../../JGE/Dependencies/libjpeg/jcsample.c \
+            ../../JGE/Dependencies/libjpeg/jdapimin.c \
+            ../../JGE/Dependencies/libjpeg/jdapistd.c \
+            ../../JGE/Dependencies/libjpeg/jdatadst.c \
+            ../../JGE/Dependencies/libjpeg/jdatasrc.c \
+            ../../JGE/Dependencies/libjpeg/jdcoefct.c \
+            ../../JGE/Dependencies/libjpeg/jdcolor.c \
+            ../../JGE/Dependencies/libjpeg/jddctmgr.c \
+            ../../JGE/Dependencies/libjpeg/jdhuff.c \
+            ../../JGE/Dependencies/libjpeg/jdinput.c \
+            ../../JGE/Dependencies/libjpeg/jdmainct.c \
+            ../../JGE/Dependencies/libjpeg/jdmarker.c \
+            ../../JGE/Dependencies/libjpeg/jdmaster.c \
+            ../../JGE/Dependencies/libjpeg/jdmerge.c \
+            ../../JGE/Dependencies/libjpeg/jdphuff.c \
+            ../../JGE/Dependencies/libjpeg/jdpostct.c \
+            ../../JGE/Dependencies/libjpeg/jdsample.c \
+            ../../JGE/Dependencies/libjpeg/jerror.c \
+            ../../JGE/Dependencies/libjpeg/jfdctflt.c \
+            ../../JGE/Dependencies/libjpeg/jfdctfst.c \
+            ../../JGE/Dependencies/libjpeg/jfdctint.c \
+            ../../JGE/Dependencies/libjpeg/jidctflt.c \
+            ../../JGE/Dependencies/libjpeg/jidctfst.c \
+            ../../JGE/Dependencies/libjpeg/jidctint.c \
+            ../../JGE/Dependencies/libjpeg/jmemmgr.c \
+            ../../JGE/Dependencies/libjpeg/jmemnobs.c \
+            ../../JGE/Dependencies/libjpeg/jquant1.c \
+            ../../JGE/Dependencies/libjpeg/jquant2.c \
+            ../../JGE/Dependencies/libjpeg/jutils.c
+
+
+    DEFINES += SDL_ATOMIC_DISABLED
     SOURCES += \
             ../../JGE/Dependencies/SDL/src/core/windows/SDL_windows.c\
             ../../JGE/Dependencies/SDL/src/events/SDL_clipboardevents.c\

@@ -22,6 +22,7 @@ DEFINES += TIXML_USE_STL
 windows:INCLUDEPATH += ../../JGE/Dependencies/include
 windows{
     *-g++* {
+        DEFINES += WIN32
         DEFINES += LINUX
         INCLUDEPATH += /usr/i686-w64-mingw32/sys-root/mingw/include/Qt
 #        INCLUDEPATH += /usr/i686-w64-mingw32/sys-root/mingw/include/c++
@@ -42,7 +43,7 @@ INCLUDEPATH += include
 unix:!symbian:LIBS += -lz
 win32:LIBS += ../../JGE/Dependencies/lib/fmodvc.lib
 win32:LIBS += ../../JGE/Dependencies/lib/zlibd.lib
-PRECOMPILED_HEADER = include/PrecompiledHeader.h
+#PRECOMPILED_HEADER = include/PrecompiledHeader.h
 
 #DEFINES += TRACK_OBJECT_USAGE
 #DEFINES += AI_CHANGE_TESTING
@@ -282,6 +283,7 @@ HEADERS  += \
 
 # JGE, could probably be moved outside
 SOURCES += \
+        ../../JGE/src/corewrapper.cpp\
         ../../JGE/src/Encoding.cpp\
         ../../JGE/src/JAnimator.cpp\
         ../../JGE/src/JApp.cpp\
@@ -319,6 +321,7 @@ SOURCES += \
         ../../JGE/src/zipFS/zstream.cpp
 
 HEADERS += \
+        ../../JGE/include/corewrapper.h\
         ../../JGE/include/Threading.h\
         ../../JGE/include/decoder_prx.h\
         ../../JGE/include/DebugRoutines.h\

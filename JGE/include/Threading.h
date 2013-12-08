@@ -1,7 +1,7 @@
 #ifndef THREADING_H
 #define THREADING_H
 
-#if !defined(PSP) && !defined(QT_CONFIG) && !defined(WP8)
+#if !defined(PSP) && !defined(QT_CONFIG) && !defined(WP8) && !(defined(SDL_CONFIG) && defined(__MINGW32__))
 #include <boost/date_time.hpp>
 
 #ifdef WIN32
@@ -537,7 +537,7 @@ namespace boost
     }
 }
 
-#elif defined(WP8)
+#elif defined(WP8) || (defined(SDL_CONFIG) && defined(__MINGW32__))
 
 #include <thread>
 #include <mutex>
