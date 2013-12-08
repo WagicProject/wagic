@@ -17,15 +17,15 @@ public:
     void Reset();
 
     void UpdateViewState(float dt);
-    void UpdateCardPosition(CardRep &rep, int index);
+    void UpdateCardPosition(int index);
 
     void Render();
     bool ButtonPressed(Buttons button);
     MTGCard * Click(int x, int y);
     MTGCard * Click();
 
-    void changePosition(int offset);
-    void changeFilter(int offset);
+    void changePositionAnimated(int offset);
+    void changeFilterAnimated(int offset);
 
     MTGCard *getActiveCard();
 private:

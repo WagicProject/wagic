@@ -1532,11 +1532,11 @@ void GameStateDeckViewer::OnScroll(int inXVelocity, int inYVelocity)
         {
             //FIXME: this 500 is a bit arbitrary
             int numCards = (magnitude / 500) % 8;
-            mView->changePosition(flickRight ? numCards : - numCards);
+            mView->changePositionAnimated(flickRight ? numCards : - numCards);
         }
     }
     else
-        mView->changeFilter(flickUp ? 1 : -1);
+        mView->changeFilterAnimated(flickUp ? 1 : -1);
 
     last_user_activity = 0;
 }
