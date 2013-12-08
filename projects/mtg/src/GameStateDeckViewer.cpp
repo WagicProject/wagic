@@ -443,19 +443,21 @@ void GameStateDeckViewer::Update(float dt)
             int x, y;
             if (mEngine->GetLeftClickCoordinates(x, y))
             {
-                last_user_activity = 0;
                 mEngine->LeftClickedProcessed();
-                if(mView->Click(x, y) == mView->getActiveCard())
+                if(mView->Click(x, y) != NULL)
                 {
                     addRemove(mView->getActiveCard());
                 }
             }
             else
             {
-                last_user_activity = 0;
-                addRemove(mView->getActiveCard());
+                if(mView->Click() != NULL)
+                {
+                    addRemove(mView->getActiveCard());
+                }
             }
 
+            last_user_activity = 0;
             mStage = STAGE_WAITING;
             break;
         }
@@ -468,17 +470,20 @@ void GameStateDeckViewer::Update(float dt)
             buildEditorMenu();
             break;
         case JGE_BTN_CTRL:
-            mStage = STAGE_FILTERS;
-            if (!filterMenu)
+            if(!mView->ButtonPressed(JGE_BTN_CTRL))
             {
-                filterMenu = NEW WGuiFilters("Filter by...", NULL);
-                if (source)
-                    SAFE_DELETE(source);
-                source = NEW WSrcDeckViewer(myDeck, myCollection);
-                filterMenu->setSrc(source);
-                if (mView->deck() != myDeck) source->swapSrc();
+                mStage = STAGE_FILTERS;
+                if (!filterMenu)
+                {
+                    filterMenu = NEW WGuiFilters("Filter by...", NULL);
+                    if (source)
+                        SAFE_DELETE(source);
+                    source = NEW WSrcDeckViewer(myDeck, myCollection);
+                    filterMenu->setSrc(source);
+                    if (mView->deck() != myDeck) source->swapSrc();
+                }
+                filterMenu->Entering(JGE_BTN_NONE);
             }
-            filterMenu->Entering(JGE_BTN_NONE);
             break;
         case JGE_BTN_PREV:
             if (last_user_activity < NO_USER_ACTIVITY_HELP_DELAY)

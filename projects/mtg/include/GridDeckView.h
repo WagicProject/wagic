@@ -20,7 +20,9 @@ public:
     void UpdateCardPosition(CardRep &rep, int index);
 
     void Render();
+    bool ButtonPressed(Buttons button);
     MTGCard * Click(int x, int y);
+    MTGCard * Click();
 
     void changePosition(int offset);
     void changeFilter(int offset);
@@ -33,6 +35,9 @@ private:
     InOutQuadEasing mScrollEasing;
     InOutQuadEasing mSlideEasing;
     int mCurrentSelection;
+    bool mButtonMode;
+
+    void moveSelection(int offset, bool alignIfOutOfBounds);
 };
 
 #endif //_GRID_DECK_VIEW_H

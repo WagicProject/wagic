@@ -27,7 +27,9 @@ public:
 
     void Render();
 
+    bool ButtonPressed(Buttons button);
     MTGCard * Click(int x, int y);
+    MTGCard * Click();
 
     void changePosition(int offset);
     void changeFilter(int offset);

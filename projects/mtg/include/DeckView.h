@@ -42,7 +42,8 @@ public:
 
     virtual void Render() = 0;
     virtual MTGCard * Click(int x, int y) = 0;
-    bool ButtonPressed(Buttons button);
+    virtual MTGCard * Click() = 0;
+    virtual bool ButtonPressed(Buttons button) = 0;
     virtual MTGCard *getActiveCard() = 0;
     virtual void changePosition(int offset) = 0;
     virtual void changeFilter(int offset) = 0;

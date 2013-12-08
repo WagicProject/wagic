@@ -118,6 +118,31 @@ void CarouselDeckView::Render()
     }
 }
 
+bool CarouselDeckView::ButtonPressed(Buttons button)
+{
+    switch(button)
+    {
+    case JGE_BTN_LEFT:
+        changePosition(-1);
+        last_user_activity = 0;
+        break;
+    case JGE_BTN_RIGHT:
+        changePosition(1);
+        last_user_activity = 0;
+        break;
+    case JGE_BTN_UP:
+        changeFilter(1);
+        last_user_activity = 0;
+        break;
+    case JGE_BTN_DOWN:
+        changeFilter(-1);
+        last_user_activity = 0;
+        break;
+    default:
+        return false;
+    }
+    return true;
+}
 MTGCard * CarouselDeckView::Click(int x, int y)
 {
     int n = getCardIndexNextTo(x, y);
@@ -137,6 +162,18 @@ MTGCard * CarouselDeckView::Click(int x, int y)
     }
 
     return NULL;
+}
+
+MTGCard *CarouselDeckView::Click()
+{
+    if(mSlideEasing.finished() && mScrollEasing.finished())
+    {
+        return getActiveCard();
+    }
+    else
+    {
+        return NULL;
+    }
 }
 
 void CarouselDeckView::changePosition(int offset)
