@@ -18,30 +18,15 @@ public:
     WagicWrapper();
     virtual ~WagicWrapper();
 
-public:
-    // used mainly to mesure the delta between 2 updates
-    static QElapsedTimer g_startTimer;
-
 private:
     JGE* m_engine;
     JApp* m_app;
     JGameLauncher* m_launcher;
 };
 
-QElapsedTimer WagicWrapper::g_startTimer;
-
-int JGEGetTime()
-{
-    return (int)WagicWrapper::g_startTimer.elapsed();
-}
-
 bool JGEToggleFullscreen()
 {
     return true;
-}
-
-void JGECreateDefaultBindings()
-{
 }
 
 WagicWrapper::WagicWrapper()
@@ -60,7 +45,6 @@ WagicWrapper::WagicWrapper()
     m_app->Create();
     m_engine->SetApp(m_app);
     JRenderer::GetInstance()->Enable2D();
-    g_startTimer.restart();
 }
 
 WagicWrapper::~WagicWrapper()

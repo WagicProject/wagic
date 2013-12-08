@@ -125,10 +125,13 @@ JRenderer::JRenderer() :
 {
 }
 
-
 JRenderer::~JRenderer()
 {
 
+}
+
+void JRenderer::OnWindowsSizeChanged(void* window, float inWidth, float inHeight)
+{
 }
 
 void JRenderer::InitRenderer()
