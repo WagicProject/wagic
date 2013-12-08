@@ -233,20 +233,15 @@ MTGCard * GridDeckView::Click()
 
 void GridDeckView::changePositionAnimated(int offset)
 {
-    mScrollEasing.start(-1.0f * offset, scroll_animation_duration * abs(offset));
+    if(mScrollEasing.finished())
+        mScrollEasing.start(-1.0f * offset, scroll_animation_duration * abs(offset));
     last_user_activity = 0;
 }
 
 void GridDeckView::changeFilterAnimated(int offset)
 {
-    if(offset < 0)
-    {
-        mSlideEasing.start(-2.0f, slide_animation_duration);
-    }
-    else if(offset > 0)
-    {
-        mSlideEasing.start(2.0f, slide_animation_duration);
-    }
+    if(mSlideEasing.finished())
+        mSlideEasing.start(2.0f * offset, float(slide_animation_duration * abs(offset)));
     last_user_activity = 0;
 }
 

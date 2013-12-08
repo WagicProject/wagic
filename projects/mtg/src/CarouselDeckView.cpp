@@ -4,6 +4,7 @@ const float CarouselDeckView::max_scale = 0.96f;
 const float CarouselDeckView::x_center = 180;
 const float CarouselDeckView::right_border = SCREEN_WIDTH + 180;
 const float CarouselDeckView::slide_animation_duration = 0.6f;
+const float CarouselDeckView::scroll_animation_duration = 0.3f;
 
 CarouselDeckView::CarouselDeckView() :
     DeckView(10), mScrollOffset(0), mSlideOffset(0), mScrollEasing(mScrollOffset), mSlideEasing(mSlideOffset)
@@ -180,21 +181,15 @@ MTGCard *CarouselDeckView::Click()
 
 void CarouselDeckView::changePositionAnimated(int offset)
 {
-    mScrollEasing.start((float)offset, (float)(0.3f*abs(offset)));
-
+    if(mScrollEasing.finished())
+        mScrollEasing.start((float)offset, (float)(scroll_animation_duration * abs(offset)));
     last_user_activity = 0;
 }
 
 void CarouselDeckView::changeFilterAnimated(int offset)
 {
-    if(offset < 0)
-    {
-        mSlideEasing.start(-2.0f, slide_animation_duration);
-    }
-    else if(offset > 0)
-    {
-        mSlideEasing.start(2.0f, slide_animation_duration);
-    }
+    if(mSlideEasing.finished())
+        mSlideEasing.start(2.0f * float(offset), float(slide_animation_duration * abs(offset)));
     last_user_activity = 0;
 }
 

@@ -11,6 +11,7 @@ private:
     static const float x_center;
     static const float right_border;
     static const float slide_animation_duration;
+    static const float scroll_animation_duration;
 
 public:
     CarouselDeckView();

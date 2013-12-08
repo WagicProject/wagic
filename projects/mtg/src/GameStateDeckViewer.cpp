@@ -1536,7 +1536,14 @@ void GameStateDeckViewer::OnScroll(int inXVelocity, int inYVelocity)
         }
     }
     else
-        mView->changeFilterAnimated(flickUp ? 1 : -1);
+    {
+        if(abs(inYVelocity) > 300)
+        {
+            //FIXME: this 500 is a bit arbitrary
+            int numFilters = (magnitude / 500);
+            mView->changeFilterAnimated(flickUp ? numFilters : - numFilters);
+        }
+    }
 
     last_user_activity = 0;
 }
