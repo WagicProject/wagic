@@ -42,7 +42,6 @@ CONFIG(graphics, graphics|console){
         ../../JGE/include/qt/qtcorewrapper.h
 
     SOURCES += \
-        ../../JGE/src/corewrapper.cpp\
         ../../JGE/src/qt/filedownloader.cpp\
         ../../JGE/src/qt/qtcorewrapper.cpp\
         ../../JGE/src/Qtmain.cpp\
