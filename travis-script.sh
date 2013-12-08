@@ -36,11 +36,14 @@ cd ..
 qmake projects/mtg/wagic-qt.pro CONFIG+=console CONFIG+=debug DEFINES+=CAPTURE_STDERR
 make -j 8
 
-# Now we run the testsuite
-./wagic
-
-# And we create resource package (not before testsuite, it mofifies resources)
+# we create resource package
 cd projects/mtg/bin/Res
 python createResourceZip.py
 mv core_*.zip core.zip
 cd ../../../..
+
+# Now we run the testsuite (Res needs to be in the working directory)
+cd projects/mtg
+../../wagic
+cd ../..
+
