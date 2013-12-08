@@ -147,22 +147,22 @@ bool GridDeckView::ButtonPressed(Buttons button)
     switch(button)
     {
     case JGE_BTN_LEFT:
-        if(mButtonMode) moveSelection(-2, true);
+        if(mButtonMode && mScrollEasing.finished()) moveSelection(-2, true);
         else changePositionAnimated(-1);
         last_user_activity = 0;
         break;
     case JGE_BTN_RIGHT:
-        if(mButtonMode) moveSelection(2, true);
+        if(mButtonMode && mScrollEasing.finished()) moveSelection(2, true);
         else changePositionAnimated(1);
         last_user_activity = 0;
         break;
     case JGE_BTN_UP:
-        if(mButtonMode) moveSelection(-1, true);
+        if(mButtonMode && mScrollEasing.finished()) moveSelection(-1, true);
         else changeFilterAnimated(1);
         last_user_activity = 0;
         break;
     case JGE_BTN_DOWN:
-        if(mButtonMode) moveSelection(1, true);
+        if(mButtonMode && mScrollEasing.finished()) moveSelection(1, true);
         else changeFilterAnimated(-1);
         last_user_activity = 0;
         break;

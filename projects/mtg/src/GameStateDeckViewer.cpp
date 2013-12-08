@@ -407,9 +407,8 @@ void GameStateDeckViewer::Update(float dt)
         case JGE_BTN_RIGHT:
         case JGE_BTN_UP:
         case JGE_BTN_DOWN:
-            if(last_user_activity > 0.2)
+            if(mView->ButtonPressed(button))
             {
-                mView->ButtonPressed(button);
                 last_user_activity = 0;
                 mStage = STAGE_WAITING;
             }
