@@ -11,6 +11,7 @@ private:
     static const float x_center;
     static const float right_border;
     static const float slide_animation_duration;
+    static const float scroll_animation_duration;
 
 public:
     CarouselDeckView();
@@ -18,19 +19,21 @@ public:
     void Reset();
 
     void UpdateViewState(float dt);
-    void UpdateCardPosition(CardRep &rep, int index);
+    void UpdateCardPosition(int index);
     void renderCard(int index)
     {
-        int alpha = (int) (255 * (getCardRep(index).scale + 1.0 - max_scale));
+        int alpha = (int) (255 * (mCards[index].scale + 1.0 - max_scale));
         DeckView::renderCard(index, alpha);
     }
 
     void Render();
 
+    bool ButtonPressed(Buttons button);
     MTGCard * Click(int x, int y);
+    MTGCard * Click();
 
-    void changePosition(int offset);
-    void changeFilter(int offset);
+    void changePositionAnimated(int offset);
+    void changeFilterAnimated(int offset);
 
     MTGCard *getActiveCard();
 private:

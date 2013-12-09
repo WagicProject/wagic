@@ -35,36 +35,10 @@ void DeckView::Update(float dt)
     {
         for(unsigned int i = 0; i < mCards.size(); ++i)
         {
-            UpdateCardPosition(mCards[i], i);
+            UpdateCardPosition(i);
         }
         dirtyCardPos = false;
     }
-}
-
-bool DeckView::ButtonPressed(Buttons button)
-{
-    switch(button)
-    {
-    case JGE_BTN_LEFT:
-        changePosition(-1);
-        last_user_activity = 0;
-        break;
-    case JGE_BTN_RIGHT:
-        changePosition(1);
-        last_user_activity = 0;
-        break;
-    case JGE_BTN_UP:
-        changeFilter(1);
-        last_user_activity = 0;
-        break;
-    case JGE_BTN_DOWN:
-        changeFilter(-1);
-        last_user_activity = 0;
-        break;
-    default:
-        return false;
-    }
-    return true;
 }
 
 void DeckView::SetDeck(DeckDataWrapper *toShow)
@@ -80,14 +54,14 @@ DeckDataWrapper* DeckView::deck()
     return mCurrentDeck;
 }
 
-void DeckView::SwitchFilter(int delta)
+void DeckView::changeFilter(int delta)
 {
     unsigned int FilterCount = Constants::NB_Colors + 1;
     mFilter = (FilterCount + mFilter + delta) % FilterCount;
     dirtyFilters = true;
 }
 
-void DeckView::SwitchPosition(int delta)
+void DeckView::changePosition(int delta)
 {
     for(int i = 0; i < delta; ++i)
     {
@@ -118,16 +92,11 @@ void DeckView::reloadIndexes()
     }
 }
 
-DeckView::CardRep& DeckView::getCardRep(unsigned int index)
-{
-    return mCards[index];
-}
-
 void DeckView::renderCard(int index, int alpha, bool asThumbnail)
 {
     WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
 
-    const CardRep& cardPosition = getCardRep(index);
+    const CardRep& cardPosition = mCards[index];
 
     if (!cardPosition.card) return;
 
@@ -213,7 +182,7 @@ int DeckView::getCardIndexNextTo(int x, int y)
 
     for(unsigned int i = 0; i < mCards.size(); i++)
     {
-        const CardRep& cardPosition = getCardRep(i);
+        const CardRep& cardPosition = mCards[i];
 
         float dx = (x - cardPosition.x);
         float dy = (y - cardPosition.y);

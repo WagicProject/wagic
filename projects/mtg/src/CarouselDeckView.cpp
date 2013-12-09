@@ -4,6 +4,7 @@ const float CarouselDeckView::max_scale = 0.96f;
 const float CarouselDeckView::x_center = 180;
 const float CarouselDeckView::right_border = SCREEN_WIDTH + 180;
 const float CarouselDeckView::slide_animation_duration = 0.6f;
+const float CarouselDeckView::scroll_animation_duration = 0.3f;
 
 CarouselDeckView::CarouselDeckView() :
     DeckView(10), mScrollOffset(0), mSlideOffset(0), mScrollEasing(mScrollOffset), mSlideEasing(mSlideOffset)
@@ -21,12 +22,12 @@ void CarouselDeckView::UpdateViewState(float dt)
 
         if(mScrollOffset <= -1.0f)
         {
-            SwitchPosition(-1);
+            changePosition(-1);
             mScrollEasing.translate(1.0f);
         }
         else if(mScrollOffset >= 1.0f)
         {
-            SwitchPosition(1);
+            changePosition(1);
             mScrollEasing.translate(-1.0f);
         }
 
@@ -43,7 +44,7 @@ void CarouselDeckView::UpdateViewState(float dt)
             if(mSlideOffset < -1.0f)
             {
                 mSlideEasing.translate(2.0f);
-                SwitchFilter(1);
+                changeFilter(1);
             }
         }
         else if(mSlideOffset > mSlideEasing.start_value)
@@ -52,7 +53,7 @@ void CarouselDeckView::UpdateViewState(float dt)
             if(mSlideOffset > 1.0f)
             {
                 mSlideEasing.translate(-2.0f);
-                SwitchFilter(-1);
+                changeFilter(-1);
             }
         }
 
@@ -60,8 +61,10 @@ void CarouselDeckView::UpdateViewState(float dt)
     }
 }
 
-void CarouselDeckView::UpdateCardPosition(CardRep &rep, int index)
+void CarouselDeckView::UpdateCardPosition(int index)
 {
+    CardRep &rep = mCards[index];
+
     float rotation = mScrollOffset + 8 - index;
 
     rep.x = x_center + cos((rotation) * M_PI / 12) * (right_border - x_center);
@@ -84,13 +87,13 @@ void CarouselDeckView::Render()
     // in a different order, ie the center card should appear first, then the adjacent ones
     if (WResourceManager::Instance()->IsThreaded())
     {
-        WResourceManager::Instance()->RetrieveCard(getCardRep(0).card);
-        WResourceManager::Instance()->RetrieveCard(getCardRep(3).card);
-        WResourceManager::Instance()->RetrieveCard(getCardRep(4).card);
-        WResourceManager::Instance()->RetrieveCard(getCardRep(2).card);
-        WResourceManager::Instance()->RetrieveCard(getCardRep(5).card);
-        WResourceManager::Instance()->RetrieveCard(getCardRep(1).card);
-        WResourceManager::Instance()->RetrieveCard(getCardRep(6).card);
+        WResourceManager::Instance()->RetrieveCard(mCards[0].card);
+        WResourceManager::Instance()->RetrieveCard(mCards[3].card);
+        WResourceManager::Instance()->RetrieveCard(mCards[4].card);
+        WResourceManager::Instance()->RetrieveCard(mCards[2].card);
+        WResourceManager::Instance()->RetrieveCard(mCards[5].card);
+        WResourceManager::Instance()->RetrieveCard(mCards[1].card);
+        WResourceManager::Instance()->RetrieveCard(mCards[6].card);
     }
 
     renderCard(6);
@@ -118,6 +121,31 @@ void CarouselDeckView::Render()
     }
 }
 
+bool CarouselDeckView::ButtonPressed(Buttons button)
+{
+    switch(button)
+    {
+    case JGE_BTN_LEFT:
+        changePositionAnimated(-1);
+        last_user_activity = 0;
+        break;
+    case JGE_BTN_RIGHT:
+        changePositionAnimated(1);
+        last_user_activity = 0;
+        break;
+    case JGE_BTN_UP:
+        changeFilterAnimated(1);
+        last_user_activity = 0;
+        break;
+    case JGE_BTN_DOWN:
+        changeFilterAnimated(-1);
+        last_user_activity = 0;
+        break;
+    default:
+        return false;
+    }
+    return true;
+}
 MTGCard * CarouselDeckView::Click(int x, int y)
 {
     int n = getCardIndexNextTo(x, y);
@@ -132,35 +160,41 @@ MTGCard * CarouselDeckView::Click(int x, int y)
         }
         else
         {
-            changePosition(n - 2);
+            changePositionAnimated(n - 2);
         }
     }
 
     return NULL;
 }
 
-void CarouselDeckView::changePosition(int offset)
+MTGCard *CarouselDeckView::Click()
 {
-    mScrollEasing.start((float)offset, (float)(0.3f*abs(offset)));
+    if(mSlideEasing.finished() && mScrollEasing.finished())
+    {
+        return getActiveCard();
+    }
+    else
+    {
+        return NULL;
+    }
+}
 
+void CarouselDeckView::changePositionAnimated(int offset)
+{
+    if(mScrollEasing.finished())
+        mScrollEasing.start((float)offset, (float)(scroll_animation_duration * abs(offset)));
     last_user_activity = 0;
 }
 
-void CarouselDeckView::changeFilter(int offset)
+void CarouselDeckView::changeFilterAnimated(int offset)
 {
-    if(offset < 0)
-    {
-        mSlideEasing.start(-2.0f, slide_animation_duration);
-    }
-    else if(offset > 0)
-    {
-        mSlideEasing.start(2.0f, slide_animation_duration);
-    }
+    if(mSlideEasing.finished())
+        mSlideEasing.start(2.0f * float(offset), float(slide_animation_duration * abs(offset)));
     last_user_activity = 0;
 }
 
 MTGCard *CarouselDeckView::getActiveCard()
 {
-    return getCardRep(2).card;
+    return mCards[2].card;
 }
 
