@@ -4,7 +4,6 @@
 echo PSPDEV = $PSPDEV
 echo psp-config = `psp-config --psp-prefix`
 echo ls = `ls`
-echo env = `env`
 echo pwd = `pwd`
 
 # updating versions with the TRAVIS build numbers
