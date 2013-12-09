@@ -258,9 +258,10 @@ Task* Task::createFromStr(const string params, bool rand)
 
 /*---------------- TaskList -----------------*/
 
-TaskList::TaskList(string _fileName)
+TaskList::TaskList(string _fileName):
+    fileName(_fileName), vPos(-SCREEN_HEIGHT), vPosInEasing(vPos), vPosOutEasing(vPos)
 {
-    fileName = _fileName;
+
     if (fileName == "")
     {
         fileName = options.profileFile(PLAYER_TASKS).c_str();
@@ -378,9 +379,10 @@ void TaskList::removeTask(Task *task)
 
 void TaskList::Start()
 {
-    vPos = -SCREEN_HEIGHT; //Offscreen
-    mElapsed = 0;
     mState = TASKS_IN;
+    vPos = -SCREEN_HEIGHT; //Offscreen
+    vPosInEasing.start(0.0f, 2.0f);
+
     if (!mBgTex)
     {
         mBgTex = WResourceManager::Instance()->RetrieveTexture("taskboard.png", RETRIEVE_LOCK);
@@ -410,7 +412,7 @@ void TaskList::Start()
 void TaskList::End()
 {
     mState = TASKS_OUT;
-    mElapsed = 0;
+    vPosOutEasing.start(float(-SCREEN_HEIGHT), 2.0f);
 }
 
 void TaskList::passOneDay()
@@ -451,21 +453,23 @@ int TaskList::getTaskCount()
 
 void TaskList::Update(float dt)
 {
-    mElapsed += dt;
-
-    if (mState == TASKS_IN && vPos < 0)
+    if(!vPosInEasing.finished())
     {
-        vPos = -SCREEN_HEIGHT + (SCREEN_HEIGHT * mElapsed / 0.75f); //Todo: more physical drop-in.
-        if (vPos >= 0)
+        vPosInEasing.update(dt);
+
+        if(vPosInEasing.finished())
         {
-            vPos = 0;
             mState = TaskList::TASKS_ACTIVE;
         }
     }
-    else if (mState == TASKS_OUT && vPos > -SCREEN_HEIGHT)
+    else if(!vPosOutEasing.finished())
     {
-        vPos = -(SCREEN_HEIGHT * mElapsed / 0.75f);
-        if (vPos <= -SCREEN_HEIGHT) mState = TASKS_INACTIVE;
+        vPosOutEasing.update(dt);
+
+        if(vPosOutEasing.finished())
+        {
+            mState = TASKS_INACTIVE;
+        }
     }
 }
 

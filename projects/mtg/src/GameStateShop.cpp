@@ -496,7 +496,7 @@ void GameStateShop::Update(float dt)
         }
         break;
     case STAGE_SHOP_TASKS:
-        if (menu)
+        if (menu && !menu->isClosed())
         {
             menu->Update(dt);
             return;

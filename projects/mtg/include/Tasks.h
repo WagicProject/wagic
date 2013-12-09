@@ -2,8 +2,15 @@
 #define TASK_H
 
 #include <vector>
+#include <string>
+
+#include "Easing.h"
+
+using namespace std;
 
 class GameObserver;
+class JQuad;
+class JTexture;
 
 // Task type constant
 
@@ -72,8 +79,11 @@ class TaskList
 {
 protected:
     string fileName;
+
     float vPos;
-    float mElapsed;
+    InOutQuadEasing vPosInEasing;
+    InOutQuadEasing vPosOutEasing;
+
     int mState;
     JQuad * mBg[9];
     JTexture * mBgTex;
@@ -97,7 +107,6 @@ public:
     {
         return mState;
     }
-    ;
     void addTask(string params, bool rand = false);
     void addTask(Task *task);
     void addRandomTask(int diff = 100);
