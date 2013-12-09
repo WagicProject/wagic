@@ -1258,3 +1258,8 @@ primitive=Yavimaya Wurm
 id=205221
 rarity=C
 [/card]
+[card]
+primitive=Avatar Token
+id=-205957
+rarity=T
+[/card]
