@@ -1,5 +1,10 @@
 #!/bin/sh -ex
 
+# let's dump some info to debug a bit
+echo PSPDEV = $PSPDEV
+echo psp-config = `psp-config --psp-prefix`
+echo ls = `ls`
+
 # updating versions with the TRAVIS build numbers
 cd projects/mtg/
 ant update > error.txt
