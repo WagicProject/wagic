@@ -102,7 +102,6 @@ void GameStateShop::Start()
     bListCards = false;
     mTouched = false;
     mStage = STAGE_FADE_IN;
-    mElapsed = 0;
     needLoad = true;
     booster = NULL;
     srcCards = NEW WSrcUnlockedCards(0);
@@ -427,7 +426,7 @@ void GameStateShop::End()
 {
     save();
     JRenderer::GetInstance()->EnableVSync(false);
-    mElapsed = 0;
+
     SAFE_DELETE(shopMenu);
     SAFE_DELETE(bigDisplay);
     SAFE_DELETE(srcCards);
@@ -468,9 +467,6 @@ void GameStateShop::Update(float dt)
         lightAlpha = 0;
     if (lightAlpha > 50)
         lightAlpha = 50;
-
-    if (mStage != STAGE_FADE_IN)
-        mElapsed += dt;
 
     JButton btn;
     switch (mStage)

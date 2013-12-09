@@ -95,7 +95,7 @@ public:
      */
     void update(float dt)
     {
-        if(duration > 0)
+        if(time_acc < duration)
         {
             time_acc += dt;
 
