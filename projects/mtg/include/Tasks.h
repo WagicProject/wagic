@@ -81,8 +81,8 @@ protected:
     string fileName;
 
     float vPos;
-    InOutQuadEasing vPosInEasing;
-    InOutQuadEasing vPosOutEasing;
+    OutQuadEasing vPosInEasing;
+    InQuadEasing vPosOutEasing;
 
     int mState;
     JQuad * mBg[9];

@@ -381,7 +381,7 @@ void TaskList::Start()
 {
     mState = TASKS_IN;
     vPos = -SCREEN_HEIGHT; //Offscreen
-    vPosInEasing.start(0.0f, 2.0f);
+    vPosInEasing.start(0.0f, 1.0f);
 
     if (!mBgTex)
     {
@@ -412,7 +412,7 @@ void TaskList::Start()
 void TaskList::End()
 {
     mState = TASKS_OUT;
-    vPosOutEasing.start(float(-SCREEN_HEIGHT), 2.0f);
+    vPosOutEasing.start(float(-SCREEN_HEIGHT), 0.9f);
 }
 
 void TaskList::passOneDay()
