@@ -24,6 +24,7 @@ int main(int argc, char* argv[])
 
     int result = 0;
     WagicCore* wagicCore =  new WagicCore();
+    wagicCore->initApp();
     MTGCollection()->loadFolder("sets/primitives/");
     MTGCollection()->loadFolder("sets/", "_cards.dat");
     options.reloadProfile();
