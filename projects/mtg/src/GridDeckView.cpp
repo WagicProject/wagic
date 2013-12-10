@@ -7,7 +7,8 @@ const float GridDeckView::card_scale_big = 0.7f;
 
 GridDeckView::GridDeckView()
     : DeckView(16), mCols(8), mRows(2), mScrollOffset(0), mSlideOffset(0),
-      mScrollEasing(mScrollOffset), mSlideEasing(mSlideOffset), mCurrentSelection(-1)
+      mScrollEasing(mScrollOffset), mSlideEasing(mSlideOffset), mCurrentSelection(-1),
+      mButtonMode(false)
 {
 
 }
@@ -23,6 +24,7 @@ void GridDeckView::Reset()
     mScrollEasing.finish();
 
     mCurrentSelection = 0;
+    mButtonMode = false;
 
     DeckView::Reset();
 }
@@ -35,15 +37,15 @@ void GridDeckView::UpdateViewState(float dt)
 
         if(mScrollOffset <= -1.0f)
         {
-            SwitchPosition(2);
+            changePosition(2);
+            moveSelection(-2, false);
             mScrollEasing.translate(1.0f);
-            mCurrentSelection = (mCurrentSelection >= 6) ? mCurrentSelection - 2 : -1;
         }
         else if(mScrollOffset >= 1.0f)
         {
-            SwitchPosition(-2);
+            changePosition(-2);
+            moveSelection(2, false);
             mScrollEasing.translate(-1.0f);
-            mCurrentSelection = (mCurrentSelection >= 0 && mCurrentSelection < 10) ? mCurrentSelection + 2 : -1;
         }
 
         dirtyCardPos = true;
@@ -56,20 +58,22 @@ void GridDeckView::UpdateViewState(float dt)
         if(mSlideOffset < -1.0f)
         {
             mSlideEasing.translate(2.0f);
-            SwitchFilter(1);
+            changeFilter(1);
         }
         else if(mSlideOffset > 1.0f)
         {
             mSlideEasing.translate(-2.0f);
-            SwitchFilter(-1);
+            changeFilter(-1);
         }
 
         dirtyCardPos = true;
     }
 }
 
-void GridDeckView::UpdateCardPosition(CardRep &rep, int index)
+void GridDeckView::UpdateCardPosition(int index)
 {
+    CardRep &rep = mCards[index];
+
     int col = index / mRows;
     int row = index % mRows;
     float colWidth = SCREEN_WIDTH_F / (mCols - 3);
@@ -119,7 +123,7 @@ void GridDeckView::Render()
         {
             if (WResourceManager::Instance()->IsThreaded())
             {
-                WResourceManager::Instance()->RetrieveCard(getCardRep(i).card, RETRIEVE_THUMB);
+                WResourceManager::Instance()->RetrieveCard(mCards[i].card, RETRIEVE_THUMB);
             }
             renderCard(i, 255, true);
         }
@@ -127,7 +131,7 @@ void GridDeckView::Render()
         {
             if (WResourceManager::Instance()->IsThreaded())
             {
-                WResourceManager::Instance()->RetrieveCard(getCardRep(i).card);
+                WResourceManager::Instance()->RetrieveCard(mCards[i].card);
             }
         }
     }
@@ -138,10 +142,50 @@ void GridDeckView::Render()
     }
 }
 
+bool GridDeckView::ButtonPressed(Buttons button)
+{
+    switch(button)
+    {
+    case JGE_BTN_LEFT:
+        if(mButtonMode && mScrollEasing.finished()) moveSelection(-2, true);
+        else if(!mButtonMode) changePositionAnimated(-1);
+        last_user_activity = 0;
+        break;
+    case JGE_BTN_RIGHT:
+        if(mButtonMode && mScrollEasing.finished()) moveSelection(2, true);
+        else if(!mButtonMode) changePositionAnimated(1);
+        last_user_activity = 0;
+        break;
+    case JGE_BTN_UP:
+        if(mButtonMode && mScrollEasing.finished()) moveSelection(-1, true);
+        else if(!mButtonMode) changeFilterAnimated(1);
+        last_user_activity = 0;
+        break;
+    case JGE_BTN_DOWN:
+        if(mButtonMode && mScrollEasing.finished()) moveSelection(1, true);
+        else if(!mButtonMode) changeFilterAnimated(-1);
+        last_user_activity = 0;
+        break;
+    case JGE_BTN_CTRL:
+        if(mButtonMode)
+        {
+            mButtonMode = false;
+            dirtyCardPos = true;
+            mCurrentSelection = -1;
+        }
+        else return false;
+        break;
+    default:
+        return false;
+    }
+    return true;
+}
+
 MTGCard * GridDeckView::Click(int x, int y)
 {
     int n = getCardIndexNextTo(x, y);
     last_user_activity = 0;
+    mButtonMode = false;
 
     if(mScrollEasing.finished() && mSlideEasing.finished())
     { //clicked and no animations running
@@ -151,11 +195,11 @@ MTGCard * GridDeckView::Click(int x, int y)
         }
         else if(n < 4)
         {
-            changePosition(-1);
+            changePositionAnimated(-1);
         }
         else if(n >= 12)
         {
-            changePosition(1);
+            changePositionAnimated(1);
         }
         else
         {
@@ -167,28 +211,43 @@ MTGCard * GridDeckView::Click(int x, int y)
     return NULL;
 }
 
-void GridDeckView::changePosition(int offset)
+MTGCard * GridDeckView::Click()
 {
-    mScrollEasing.start(-1.0f * offset, scroll_animation_duration * abs(offset));
+    if(mScrollEasing.finished() && mSlideEasing.finished())
+    {
+        MTGCard *active = getActiveCard();
+        if(active != NULL)
+        {
+            return active;
+        }
+        else
+        {
+            mButtonMode = true;
+            dirtyCardPos = true;
+            mCurrentSelection = 4;
+        }
+    }
+
+    return NULL;
+}
+
+void GridDeckView::changePositionAnimated(int offset)
+{
+    if(mScrollEasing.finished())
+        mScrollEasing.start(-1.0f * offset, scroll_animation_duration * abs(offset));
     last_user_activity = 0;
 }
 
-void GridDeckView::changeFilter(int offset)
+void GridDeckView::changeFilterAnimated(int offset)
 {
-    if(offset < 0)
-    {
-        mSlideEasing.start(-2.0f, slide_animation_duration);
-    }
-    else if(offset > 0)
-    {
-        mSlideEasing.start(2.0f, slide_animation_duration);
-    }
+    if(mSlideEasing.finished())
+        mSlideEasing.start(2.0f * offset, float(slide_animation_duration * abs(offset)));
     last_user_activity = 0;
 }
 
 MTGCard* GridDeckView::getActiveCard()
 {
-    if(mCurrentSelection >= 0 && mCurrentSelection < int(mCards.size()))
+    if(mCurrentSelection >= 4 && mCurrentSelection < int(mCards.size())-4)
     {
         return mCards[mCurrentSelection].card;
     }
@@ -196,4 +255,30 @@ MTGCard* GridDeckView::getActiveCard()
     {
         return NULL;
     }
+}
+
+void GridDeckView::moveSelection(int offset, bool alignIfOutOfBounds)
+{
+    mCurrentSelection += offset;
+
+    if(alignIfOutOfBounds)
+    {
+        if(mCurrentSelection < 4)
+        {
+            changePositionAnimated(-1);
+        }
+        else if(mCurrentSelection >= 12)
+        {
+            changePositionAnimated(1);
+        }
+    }
+    else
+    {
+        if(mCurrentSelection < 4 || mCurrentSelection >= 12)
+        {
+            mCurrentSelection = -1;
+        }
+    }
+
+    dirtyCardPos = true;
 }

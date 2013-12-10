@@ -65,7 +65,6 @@ private:
     JQuadPtr pspIcons[8];
     WSrcCards * srcCards;
     TaskList * taskList;
-    float mElapsed;
     WGuiMenu * shopMenu;
     WGuiFilters * filterMenu; //Filter menu slides in sideways from right, or up from bottom.
     WGuiCardImage * bigDisplay;

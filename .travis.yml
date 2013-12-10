@@ -19,6 +19,7 @@ install:
 script: ./travis-script.sh
 env:
   global:
-    secure: YocijVYZa1oDPviFubPIpmBmXyw0gQ7D0YA6tC01wExXvY+8tGUh1HQ5uXn8LotRZ+Ob5HLHDaCzkKWF8+57ILSMeHrnf6tcRyyeO7wjNY9P7WvSZyCjvqnWzsUN9tiMmsEzhTz2MaUgsY6ocB/4nbWZwfQvL7z+s7z41R4J1I4=
+    secure: "fJgWlCFbde96OSQNGKUmowGX+ERPeqP+n1EOMf1+FJzOU4DdkTLRAlV5+5qnEX9jB/3mWN6iPpmG1qEz/SdDG3KHxJYs4ZU/Lu485O24zZ/+GdYBNsrvhPD9ckPGEMLDa1foEVTDnW0Dlkz3BCFcszjhtXGUJv7v6Pj6LRk1Mg8="
+
 script: "./travis-script.sh"
 after_success: ./upload-binaries.sh
