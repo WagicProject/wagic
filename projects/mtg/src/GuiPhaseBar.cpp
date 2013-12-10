@@ -24,7 +24,7 @@
  };
  */
 
-const float GuiPhaseBar::zoom_big = 1.5 * 1.4;
+const float GuiPhaseBar::zoom_big = (float)(1.5 * 1.4);
 const float GuiPhaseBar::zoom_small = 1.5;
 const float GuiPhaseBar::step = M_PI/6.0f;
 
@@ -44,7 +44,7 @@ void GuiPhaseBar::DrawGlyph(JQuad *inQuad, int phaseId, float x, float y, float 
 
 GuiPhaseBar::GuiPhaseBar(DuelLayers* duelLayers) :
     GuiLayer(duelLayers->getObserver()), PlayGuiObject(80, 0, 106, 0, false),
-    displayedPhaseId(0), angle(0.0f), zoomFactor(zoom_small), angleEasing(angle),
+    displayedPhaseId(0), newPhaseId(0), angle(0.0f), zoomFactor(zoom_small), angleEasing(angle),
     zoomFactorEasing(zoomFactor), mpDuelLayers(duelLayers)
 {
     if(duelLayers->getObserver()->getResourceManager())
@@ -72,7 +72,7 @@ void GuiPhaseBar::Update(float dt)
 
     if(angle <= -step)
     {
-        displayedPhaseId = (displayedPhaseId + 1) % kPhases;
+        displayedPhaseId = newPhaseId;
         angleEasing.translate(step);
     }
 
@@ -108,7 +108,7 @@ void GuiPhaseBar::Render()
 
         //the scale is computed so that the glyphes touch each other
         //hint: sin(circPos + PI/2) = cos(circPos)
-        const float glyphScale = zoomFactor * cosf(circPos) * 0.5;
+        const float glyphScale = (float)(zoomFactor * cosf(circPos) * 0.5);
 
         DrawGlyph(quad.get(), (displayedPhaseId - 3 + kPhases + i) % kPhases, 0, glyphY, glyphScale);
     }
@@ -152,7 +152,8 @@ int GuiPhaseBar::receiveEventMinus(WEvent *e)
     if (event)
     {
         int phasesToAnimate = (event->to->id - displayedPhaseId + kPhases) % kPhases;
-        angleEasing.start(float(phasesToAnimate * (- step)), 0.3f * float(sqrt(phasesToAnimate)));
+        newPhaseId = event->to->id;
+        angleEasing.start(float(phasesToAnimate * (- step)), 0.3f * float(sqrt((float)phasesToAnimate)));
     }
     return 1;
 }
