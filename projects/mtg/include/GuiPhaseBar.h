@@ -4,15 +4,25 @@
 #include "GuiLayers.h"
 #include "PhaseRing.h"
 #include "WEvent.h"
+#include "PlayGuiObject.h"
+
+#include "Easing.h"
 
 class GuiPhaseBar: public GuiLayer, public PlayGuiObject
 {
-protected:
-    Phase* phase;
+private:
+    static const float zoom_big;
+    static const float zoom_small;
+    static const float step;
+
+    int displayedPhaseId;
     float angle;
     float zoomFactor;
-	DuelLayers* mpDuelLayers;
+    OutQuadEasing angleEasing;
+    InOutQuadEasing zoomFactorEasing;
+    DuelLayers* mpDuelLayers;
 
+    void DrawGlyph(JQuad *inQuad, int phaseId, float x, float y, float scale);
 public:
     GuiPhaseBar(DuelLayers* duelLayers);
     ~GuiPhaseBar();
