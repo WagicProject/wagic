@@ -95,7 +95,7 @@ public:
      */
     void update(float dt)
     {
-        if(duration > 0)
+        if(time_acc < duration)
         {
             time_acc += dt;
 
@@ -164,6 +164,50 @@ public:
     bool finished()
     {
         return time_acc >= duration;
+    }
+};
+
+/*! \brief This class defines an easing with quadratic acceleration
+ */
+class InQuadEasing : public Easing
+{
+public:
+    /*! \brief Calls Easing::Easing(val).
+     *
+     * \see Easing::Easing(float& val)
+     */
+    InQuadEasing(float& val): Easing(val) {}
+
+    /*! \brief Implements the value calculation.
+     *
+     * \see Easing::updateValue()
+     */
+    void updateValue()
+    {
+        float time_tmp = time_acc / duration;
+        value = delta_value * time_tmp * time_tmp + start_value;
+    }
+};
+
+/*! \brief This class defines an easing with quadratic decceleration
+ */
+class OutQuadEasing : public Easing
+{
+public:
+    /*! \brief Calls Easing::Easing(val).
+     *
+     * \see Easing::Easing(float& val)
+     */
+    OutQuadEasing(float& val): Easing(val) {}
+
+    /*! \brief Implements the value calculation.
+     *
+     * \see Easing::updateValue()
+     */
+    void updateValue()
+    {
+        float time_tmp = time_acc / duration;
+        value = (-delta_value) * time_tmp * (time_tmp - 2.0f) + start_value;
     }
 };
 
