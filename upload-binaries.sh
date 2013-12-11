@@ -31,6 +31,7 @@ fi
 fi
 
 
+
 if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
 if [ "$TRAVIS_BRANCH" == "releasing-master" ]; then
   echo -e "Creating a release\n"
