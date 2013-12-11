@@ -16,7 +16,6 @@ private:
     static const float step;
 
     int displayedPhaseId;
-    int newPhaseId;
     float angle;
     float zoomFactor;
     OutQuadEasing angleEasing;
