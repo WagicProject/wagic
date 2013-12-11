@@ -1,4 +1,7 @@
 language: cpp
+branches:
+  except:
+    - latest-master
 before_install:
 - export PSPDEV="$TRAVIS_BUILD_DIR/opt/pspsdk"
 - export PSPSDK="$PSPDEV/psp/sdk"
