@@ -26,6 +26,13 @@ if [ "$TRAVIS_BRANCH" == "alphas" ]; then
      --data-binary @projects/mtg/psprelease.zip \
      "https://uploads.github.com/repos/WagicProject/wagic/releases/${IDDI}/assets?name=Wagic-psp-${TRAVIS_BUILD_NUMBER}.zip"
 
+  echo -e "Uploading Windows package\n"
+  curl -X POST -H "Authorization: token ${GH_TOKEN}" \
+     -H "Accept: application/vnd.github.manifold-preview" \
+     -H "Content-Type: application/zip" \
+     --data-binary @build/win-cross.zip \
+     "https://uploads.github.com/repos/WagicProject/wagic/releases/${IDDI}/assets?name=Wagic-windows-${TRAVIS_BUILD_NUMBER}.zip"
+
   echo -e "Done uploading\n"
 fi
 fi
@@ -79,6 +86,13 @@ if [ "$TRAVIS_BRANCH" == "master" ]; then
      -H "Content-Type: application/zip" \
      --data-binary @projects/mtg/psprelease.zip \
      "https://uploads.github.com/repos/WagicProject/wagic/releases/${IDDI}/assets?name=Wagic-psp-${TRAVIS_BUILD_NUMBER}.zip"
+
+  echo -e "Uploading Windows package\n"
+  curl -X POST -H "Authorization: token ${GH_TOKEN}" \
+     -H "Accept: application/vnd.github.manifold-preview" \
+     -H "Content-Type: application/zip" \
+     --data-binary @build/win-cross.zip \
+     "https://uploads.github.com/repos/WagicProject/wagic/releases/${IDDI}/assets?name=Wagic-windows-${TRAVIS_BUILD_NUMBER}.zip"
 
   echo -e "Done uploading\n"
 fi

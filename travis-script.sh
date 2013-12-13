@@ -51,6 +51,16 @@ mkdir win-cross
 cd win-cross
 /opt/mingw32/bin/qmake ../../projects/mtg/wagic-qt.pro CONFIG+=release CONFIG+=graphics
 make -j 8
+cd release
+cp ../../../projects/mtg/bin/fmod.dll .
+cp /opt/mingw32/bin/QtCore4.dll .
+cp /opt/mingw32/bin/QtGui4.dll .
+cp /opt/mingw32/bin/QtNetwork4.dll .
+cp /opt/mingw32/bin/QtOpenGL4.dll .
+cp ../../../projects/mtg/bin/zlib1.dll .
+cp /opt/mingw32/bin/libpng15-15.dll .
+cd ..
+zip win-cross.zip -r release/
 cd ../..
 
 # we create resource package
@@ -65,4 +75,3 @@ cd ../../../..
 cd projects/mtg
 ../../wagic
 cd ../..
-
