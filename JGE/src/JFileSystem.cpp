@@ -313,11 +313,15 @@ bool JFileSystem::readIntoString(const string & FilePath, string & target)
 
     int fileSize = GetFileSize(file);
 
+#ifndef __MINGW32__
     try {
+#endif
         target.resize((std::string::size_type) fileSize);
+#ifndef __MINGW32__
     } catch (bad_alloc&) {
         return false;
     }
+#endif
 
 
     if (fileSize)
