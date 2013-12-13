@@ -45,11 +45,13 @@ make -j 8
 # we're cross-compiling a Qt Windows version here, 
 # PATH is only set here to prevent colision
 export PATH="$PATH:/opt/mingw32/bin"
-mkdir qt-win-cross
-cd qt-win-cross
-/opt/mingw32/bin/qmake ../projects/mtg/wagic-qt.pro CONFIG+=release CONFIG+=graphics
+mkdir build
+cd build
+mkdir win-cross
+cd win-cross
+/opt/mingw32/bin/qmake ../../projects/mtg/wagic-qt.pro CONFIG+=release CONFIG+=graphics
 make -j 8
-cd ..
+cd ../..
 
 # we create resource package
 cd projects/mtg/bin/Res
