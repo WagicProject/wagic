@@ -30,7 +30,7 @@ if [ "$TRAVIS_BRANCH" == "alphas" ]; then
   curl -X POST -H "Authorization: token ${GH_TOKEN}" \
      -H "Accept: application/vnd.github.manifold-preview" \
      -H "Content-Type: application/zip" \
-     --data-binary @build/win-cross.zip \
+     --data-binary @build/win-cross/win-cross.zip \
      "https://uploads.github.com/repos/WagicProject/wagic/releases/${IDDI}/assets?name=Wagic-windows-${TRAVIS_BUILD_NUMBER}.zip"
 
   echo -e "Done uploading\n"
@@ -91,7 +91,7 @@ if [ "$TRAVIS_BRANCH" == "master" ]; then
   curl -X POST -H "Authorization: token ${GH_TOKEN}" \
      -H "Accept: application/vnd.github.manifold-preview" \
      -H "Content-Type: application/zip" \
-     --data-binary @build/win-cross.zip \
+     --data-binary @build/win-cross/win-cross.zip \
      "https://uploads.github.com/repos/WagicProject/wagic/releases/${IDDI}/assets?name=Wagic-windows-${TRAVIS_BUILD_NUMBER}.zip"
 
   echo -e "Done uploading\n"
