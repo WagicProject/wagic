@@ -28,8 +28,8 @@ mkdir objs
 make -j 8
 mkdir WTH
 mv EBOOT.PBP WTH/
-mv ../../../JGE/exceptionHandler/prx/exception.prx WTH/
-mv ../../../core.zip WTH/
+mv ../../JGE/exceptionHandler/prx/exception.prx WTH/
+mv ../../core.zip WTH/
 cd WTH
 unzip core.zip
 mv core Res
