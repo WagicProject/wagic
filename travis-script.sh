@@ -34,7 +34,9 @@ cp ../../core.zip WTH/Res
 cd WTH/Res
 unzip core.zip
 rm core.zip
-cd ../..
+cd ..
+chmod -R 775 Res
+cd ..
 zip psprelease.zip -r WTH/
 cd ../..
 
