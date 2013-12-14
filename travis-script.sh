@@ -27,14 +27,14 @@ cd projects/mtg
 mkdir objs
 make -j 8
 mkdir WTH
+mkdir WTH/Res
 mv EBOOT.PBP WTH/
 mv ../../JGE/exceptionHandler/prx/exception.prx WTH/
-mv ../../core.zip WTH/
-cd WTH
+cp ../../core.zip WTH/Res
+cd WTH/Res
 unzip core.zip
-mv core Res
 rm core.zip
-cd ..
+cd ../..
 zip psprelease.zip -r WTH/
 cd ../..
 
