@@ -11,6 +11,14 @@ cd projects/mtg/
 ant update > error.txt
 cd ../..
 
+# we create resource package
+cd projects/mtg/bin/Res
+python createResourceZip.py
+# if we let the zip here, Wagic will use it in the testsuite
+# and we'll get 51 failed test cases
+mv core_*.zip ../../../../core.zip
+cd ../../../..
+
 # we're building a PSP binary here
 cd JGE
 make -j 8
@@ -18,11 +26,16 @@ cd ..
 cd projects/mtg
 mkdir objs
 make -j 8
-mkdir psprelease
-mv EBOOT.PBP psprelease/
-mv wagic.elf psprelease/
-mv wagic.prx psprelease/
-zip psprelease.zip -r psprelease/
+mkdir WTH
+mv EBOOT.PBP WTH/
+mv ../../../JGE/exceptionHandler/prx/exception.prx WTH/
+mv ../../../core.zip WTH/
+cd WTH
+unzip core.zip
+mv core Res
+rm core.zip
+cd ..
+zip psprelease.zip -r WTH/
 cd ../..
 
 # we're building an Android binary here
@@ -62,14 +75,6 @@ cp /opt/mingw32/bin/libpng15-15.dll .
 cd ..
 zip win-cross.zip -r release/
 cd ../..
-
-# we create resource package
-cd projects/mtg/bin/Res
-python createResourceZip.py
-# if we let the zip here, Wagic will use it in the testsuite 
-# and we'll get 51 failed test cases
-mv core_*.zip ../../../../core.zip
-cd ../../../..
 
 # Now we run the testsuite (Res needs to be in the working directory)
 cd projects/mtg
