@@ -136,6 +136,8 @@ signals:
 private slots:
 
 private:
+    int lastPosx(){ return m_lastPos.x()*devicePixelRatio();}
+    int lastPosy(){ return m_lastPos.y()*devicePixelRatio();}
     void timerEvent( QTimerEvent* );
     void doAndEnqueue(JButton action) {
         m_engine->HoldKey_NoRepeat(action);
@@ -154,6 +156,7 @@ private:
     int m_timerId;
     bool m_active;
     QRect m_viewPort;
+    QPoint m_lastPos;
 #ifdef QT_WIDGET
 #if (defined Q_WS_MAEMO_5) || (defined MEEGO_EDITION_HARMATTAN) || (defined Q_WS_ANDROID)
   int mMouseDownX;
