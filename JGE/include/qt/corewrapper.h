@@ -136,8 +136,20 @@ signals:
 private slots:
 
 private:
-    int lastPosx(){ return m_lastPos.x()*devicePixelRatio();}
-    int lastPosy(){ return m_lastPos.y()*devicePixelRatio();}
+    int lastPosx(){
+#if QT_VERSION >= 0x050000
+        return m_lastPos.x()*devicePixelRatio();
+#else
+        return m_lastPos.x();
+#endif
+    }
+    int lastPosy(){
+#if QT_VERSION >= 0x050000
+        return m_lastPos.y()*devicePixelRatio();
+#else
+        return m_lastPos.y();
+#endif
+    }
     void timerEvent( QTimerEvent* );
     void doAndEnqueue(JButton action) {
         m_engine->HoldKey_NoRepeat(action);
