@@ -27,6 +27,7 @@ windows{
 #        INCLUDEPATH += /usr/i686-w64-mingw32/sys-root/mingw/include/c++
 	LIBS += -L/usr/i686-w64-mingw32/sys-root/mingw/lib
         LIBS += -lwsock32
+        DEFINES += FORCE_GL2
     }
     *-msvc* {
         INCLUDEPATH += extra
