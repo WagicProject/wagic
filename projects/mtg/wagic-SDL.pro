@@ -77,7 +77,6 @@ windows{
             ../../JGE/Dependencies/libjpeg/jquant2.c \
             ../../JGE/Dependencies/libjpeg/jutils.c
 
-
     DEFINES += SDL_ATOMIC_DISABLED
     SOURCES += \
             ../../JGE/Dependencies/SDL/src/core/windows/SDL_windows.c\
