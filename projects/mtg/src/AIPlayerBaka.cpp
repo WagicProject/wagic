@@ -445,7 +445,7 @@ int OrderedAIAction::getEfficiency()
             }
             if ((drawer->getNumCards() >= p->game->library->nb_cards && (Targetable*)p == drawer->getTarget()) || (p->game->hand->nb_cards > 10 && (Targetable*)p == drawer->getTarget()))
             {
-                //if the amount im drawing will mill me to death or i have more then 10 cards in hand, eff is 0;
+                //if the amount im drawing will mill me to death or i have more than 10 cards in hand, eff is 0;
                 efficiency = 0;
             }
             break;
@@ -853,7 +853,7 @@ ManaCost * AIPlayerBaka::getPotentialMana(MTGCardInstance * target)
             if (card == target)
                 used[card] = true; //http://code.google.com/p/wagic/issues/detail?id=76
             if (!used[card] && amp->isReactingToClick(card) && amp->output->getConvertedCost() == 1)
-            {//ai can't use cards which produce more then 1 converted while using the old pMana method.
+            {//ai can't use cards which produce more than 1 converted while using the old pMana method.
                 result->add(amp->output);
                 used[card] = true;
             }
