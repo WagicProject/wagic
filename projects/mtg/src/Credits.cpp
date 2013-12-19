@@ -386,7 +386,7 @@ void Credits::computeTournament(GameObserver* g, GameApp * _app,bool tournament,
         }
         if (mGamesWon>mGamesPlayed*0.80 && mGamesWon<mGamesPlayed)
         {
-            CreditBonus * b = NEW CreditBonus(250, _("Won more then 80 percentage of games"));
+            CreditBonus * b = NEW CreditBonus(250, _("Won more than 80 percentage of games"));
             bonus.push_back(b);
         }
 
