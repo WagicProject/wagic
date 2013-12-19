@@ -1994,28 +1994,23 @@ int AADynamic::resolve()
         break;
     case DYNAMIC_ABILITY_WHO_ITSELF:
         source = ((MTGCardInstance *) _target);
-        _target = _target;
         break;
     case DYNAMIC_ABILITY_WHO_TARGETCONTROLLER:
-        _target = _target;
         secondaryTarget = ((MTGCardInstance *) _target)->controller();
         break;
     case DYNAMIC_ABILITY_WHO_TARGETOPPONENT:
-        _target = _target;
         secondaryTarget = ((MTGCardInstance *) _target)->controller()->opponent();
         break;
     case DYNAMIC_ABILITY_WHO_TOSOURCE:
         tosrc = true;
         break;
     case DYNAMIC_ABILITY_WHO_SOURCECONTROLLER:
-        _target = _target;
         secondaryTarget = ((MTGCardInstance *) OriginalSrc)->controller();
         break;
     case DYNAMIC_ABILITY_WHO_SOURCEOPPONENT:
         secondaryTarget = OriginalSrc->controller()->opponent();
         break;
     default:
-        _target = _target;
         break;
     }
     if(amountsource == DYNAMIC_MYSELF_AMOUNT)

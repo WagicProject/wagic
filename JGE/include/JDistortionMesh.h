@@ -37,7 +37,6 @@ private:
 	float mTexY;
 	float mTexWidth;
 	float mTexHeight;
-	JTexture* mTexture;
 	JQuad* mQuad;
 	
 	
