@@ -19,7 +19,7 @@ install:
 - tar --absolute-names -jxf android-ndk-r9-linux-x86_64.tar.bz2
 - tar -zxf android-sdk_r22-linux.tgz
 - $ANDROID list sdk -a
-- echo yes | $ANDROID update sdk -a --filter 1,2,4,18 --no-ui --force > log.txt
+- echo yes | $ANDROID update sdk -a --filter 1,2,5,19 --no-ui --force > log.txt
 - sudo pip install pyjavaproperties
 script: ./travis-script.sh
 env:
