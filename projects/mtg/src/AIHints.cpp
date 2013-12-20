@@ -314,7 +314,7 @@ bool AIHints::canWeCombo(GameObserver* observer,MTGCardInstance * card,AIPlayerB
         int comboPartsRestriction = 0;
 
         if(gotCombo)
-            return gotCombo;//because more then one might be possible at any time.
+            return gotCombo;//because more than one might be possible at any time.
         if (hints[i]->hold.size())
         {
             for(unsigned int hPart = 0; hPart < hints[i]->hold.size(); hPart++)

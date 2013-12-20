@@ -796,7 +796,7 @@ void GameStateDuel::Update(float dt)
 
         if (game->didWin())
         {
-            //the following section will be called only in a classic or demo gamemode and if a tournament or match with more then one game is activ
+            //the following section will be called only in a classic or demo gamemode and if a tournament or match with more than one game is activ
             if ( (mParent->gameType == GAME_TYPE_CLASSIC || mParent->gameType == GAME_TYPE_DEMO)&& mParent->players[1] == PLAYER_TYPE_CPU && (tournament->isTournament() || tournament->getGamesToPlay()>1 ))
             {
                 setGamePhase(DUEL_STATE_SHOW_SCORE);
