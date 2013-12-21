@@ -194,8 +194,8 @@ int Damage::resolve()
         target->damageCount += damage;//the amount must be the actual damage so i changed this from 1 to damage, this fixes pdcount and odcount
         if (target->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE){
             ((MTGCardInstance*)target)->wasDealtDamage = true;
-	    ((MTGCardInstance*)source)->damageToCreature = true;
-	}
+            ((MTGCardInstance*)source)->damageToCreature = true;
+        }
         if (target->type_as_damageable == Damageable::DAMAGEABLE_PLAYER)
         {
             if(target == source->controller())

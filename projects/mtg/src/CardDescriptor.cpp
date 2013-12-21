@@ -229,7 +229,7 @@ MTGCardInstance * CardDescriptor::match(MTGCardInstance * card)
         }
 
         if ((CDdamager == -1 && (card->damageToOpponent || card->damageToController || card->damageToCreature)) || (CDdamager == 1 && !(card->damageToOpponent || card->damageToController || card->damageToCreature)))
-	{
+        {
             match = NULL;
         }
 
