@@ -1227,9 +1227,12 @@ bool CardGui::FilterCard(MTGCard * _card,string filter)
                 //creature dealt damage to anything
                 else if (attribute.find("damager") != string::npos)
                 {
-                    if (minus){
+                    if (minus)
+                    {
                         cd.CDdamager = -1;
-                    } else {
+                    } 
+                    else 
+                    {
                         cd.CDdamager = 1;
                     }
                 }

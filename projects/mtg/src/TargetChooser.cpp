@@ -486,10 +486,14 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                     }
                 }
                 //creature dealt damage to anything
-                else if (attribute.find("damager") != string::npos){
-                    if (minus){
+                else if (attribute.find("damager") != string::npos)
+                {
+                    if (minus)
+                    {
                         cd->CDdamager = -1;
-                    } else {
+                    } 
+                    else 
+                    {
                         cd->CDdamager = 1;
                     }
                 }
