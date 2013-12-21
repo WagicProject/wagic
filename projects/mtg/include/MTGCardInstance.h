@@ -65,6 +65,7 @@ public:
     bool wasDealtDamage;
     bool damageToOpponent;
     bool damageToController;
+    bool damageToCreature;
     bool mPropertiesChangedSinceLastUpdate;
     int reduxamount;
     int flanked;
