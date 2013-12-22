@@ -106,6 +106,7 @@ public:
  	virtual int overflow(int c = EOF);
 	virtual int underflow();
 	virtual int	sync();
+    using std::streambuf::setbuf;
 	virtual std::streambuf * setbuf(char * pr, int nLength);
 	virtual std::streampos seekoff(std::streamoff, std::ios::seekdir, std::ios::openmode);
 
@@ -131,6 +132,7 @@ public:
  	virtual int overflow(int c = EOF);
 	virtual int underflow();
 	virtual int sync();
+    using std::streambuf::setbuf;
 	virtual std::streambuf * setbuf(char * pr, int nLength);
 	virtual std::streampos seekoff(std::streamoff, std::ios::seekdir, std::ios::openmode);
 
