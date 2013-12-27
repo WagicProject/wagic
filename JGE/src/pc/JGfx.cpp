@@ -2130,7 +2130,8 @@ void JRenderer::LoadGIF(TextureInfo &textureInfo, const char *filename, int mode
     ///*
     //FILE * fp = fopen(filename, "rb");
     JFileSystem *fileSys = JFileSystem::GetInstance();
-    if (!fileSys->OpenFile(filename))
+    JFile* jFile = fileSystem->OpenFile(filename);
+    if (!jFile))
         return;
 
     //if(fp == NULL)
@@ -2140,7 +2141,7 @@ void JRenderer::LoadGIF(TextureInfo &textureInfo, const char *filename, int mode
     if(result!=0)
         textureInfo.mBits=NULL;
     //fclose(fp);
-    fileSys->CloseFile();
+    fileSys->CloseFile(jFile);
     return ;//*/
 }
 #endif //(!defined IOS) && (!defined QT_CONFIG) && (!defined SDL_CONFIG)
@@ -2161,20 +2162,21 @@ JTexture* JRenderer::LoadTexture(const char* filename, int mode, int TextureForm
     UIImage *image = NULL;
 
     do {
-        if (!fileSystem->OpenFile(filename))
+        JFile* jFile = fileSystem->OpenFile(filename);
+        if (!jFile)
             break;
 
-        rawsize = fileSystem->GetFileSize();
+        rawsize = fileSystem->GetFileSize(jFile);
         rawdata = new BYTE[rawsize];
 
         if (!rawdata)
         {
-            fileSystem->CloseFile();
+            fileSystem->CloseFile(jFile);
             break;
         }
 
-        fileSystem->ReadFile(rawdata, rawsize);
-        fileSystem->CloseFile();
+        fileSystem->ReadFile(jFile, rawdata, rawsize);
+        fileSystem->CloseFile(jFile);
 
         texData = [[NSData alloc] initWithBytes:rawdata length:rawsize];
         image = [[UIImage alloc] initWithData:texData];
@@ -2254,20 +2256,21 @@ JTexture* JRenderer::LoadTexture(const char* filename, int, int)
     JFileSystem* fileSystem = JFileSystem::GetInstance();
 
     do {
-        if (!fileSystem->OpenFile(filename))
+        JFile* jFile = fileSystem->OpenFile(filename);
+        if (!jFile)
             break;
 
-        rawsize = fileSystem->GetFileSize();
+        rawsize = fileSystem->GetFileSize(jFile);
         rawdata = new BYTE[rawsize];
 
         if (!rawdata)
         {
-            fileSystem->CloseFile();
+            fileSystem->CloseFile(jFile);
             break;
         }
 
-        fileSystem->ReadFile(rawdata, rawsize);
-        fileSystem->CloseFile();
+        fileSystem->ReadFile(jFile, rawdata, rawsize);
+        fileSystem->CloseFile(jFile);
 
         QImage tmpImage = QImage::fromData(rawdata, rawsize);
         if(tmpImage.isNull())

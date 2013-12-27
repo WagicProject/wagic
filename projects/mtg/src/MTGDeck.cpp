@@ -399,8 +399,8 @@ int MTGAllCards::load(const string &config_file, int set_id)
 
     int lineNumber = 0;
     std::string contents;
-    izfstream file;
-    if (!JFileSystem::GetInstance()->openForRead(file, config_file))
+    JFile* jFile = JFileSystem::GetInstance()->OpenFile(config_file);
+    if (!jFile)
     {
         DebugTrace("MTGAllCards::load: error loading: " << config_file);
         return total_cards;
@@ -408,7 +408,7 @@ int MTGAllCards::load(const string &config_file, int set_id)
 
     string s;
 
-    while (getline(file,s))
+    while (JFileSystem::GetInstance()->ReadFileLine(jFile, s))
     {
         lineNumber++;
         if (!s.size()) continue;
@@ -448,7 +448,7 @@ int MTGAllCards::load(const string &config_file, int set_id)
                     if (!maxGrade) maxGrade = Constants::GRADE_BORDERLINE; //Default setting for grade is borderline?
                     if (fileGrade > maxGrade)
                     {
-                        file.close();
+                        JFileSystem::GetInstance()->CloseFile(jFile);
                         return total_cards;
                     }
                 }
@@ -480,7 +480,7 @@ int MTGAllCards::load(const string &config_file, int set_id)
             continue;
         }
     }
-    file.close();
+    JFileSystem::GetInstance()->CloseFile(jFile);
     return total_cards;
 }
 

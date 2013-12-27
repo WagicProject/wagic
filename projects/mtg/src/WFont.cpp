@@ -171,20 +171,22 @@ WFont(inFontID), mTexture(0)
         unsigned char height;
     } sizeStr = { 0, 0, 0 };
 
-    if (!fileSys->OpenFile(engFileName)) return;
-    size = fileSys->GetFileSize();
+    JFile* jFile = fileSys->OpenFile(engFileName);
+    if (!jFile) return;
+    size = fileSys->GetFileSize(jFile);
     mStdFont = NEW u8[size];
-    fileSys->ReadFile(mStdFont, size);
-    fileSys->CloseFile();
+    fileSys->ReadFile(jFile, mStdFont, size);
+    fileSys->CloseFile(jFile);
 
-    if (!fileSys->OpenFile(fontname)) return;
-    fileSys->ReadFile(&sizeStr, 4); // Works only for little-endian machines (PSP and PC are)
+    jFile = fileSys->OpenFile(fontname);
+    if (!jFile) return;
+    fileSys->ReadFile(jFile, &sizeStr, 4); // Works only for little-endian machines (PSP and PC are)
     size = sizeStr.chars * sizeStr.width * sizeStr.height / 2;
     mExtraFont = NEW u8[size]; // 4 bits for a pixel
     mIndex = NEW u16[65536];
-    fileSys->ReadFile(mIndex, 65536 * sizeof(u16));
-    fileSys->ReadFile(mExtraFont, size);
-    fileSys->CloseFile();
+    fileSys->ReadFile(jFile, mIndex, 65536 * sizeof(u16));
+    fileSys->ReadFile(jFile, mExtraFont, size);
+    fileSys->CloseFile(jFile);
 
     mColor0 = ARGB(255, 255, 255, 255);
     mColor = mColor0;
@@ -612,17 +614,19 @@ WGBKFont::WGBKFont(int inFontID, const char *fontname, int lineheight, bool) :
     JFileSystem *fileSys = JFileSystem::GetInstance();
     int size = 0;
 
-    if (!fileSys->OpenFile(fontname)) return;
-    size = fileSys->GetFileSize();
+    JFile* jFile = fileSys->OpenFile(fontname);
+    if (!jFile) return;
+    size = fileSys->GetFileSize(jFile);
     mExtraFont = NEW u8[size];
-    fileSys->ReadFile(mExtraFont, size);
-    fileSys->CloseFile();
+    fileSys->ReadFile(jFile, mExtraFont, size);
+    fileSys->CloseFile(jFile);
 
-    if (!fileSys->OpenFile(engFileName)) return;
-    size = fileSys->GetFileSize();
+    jFile = fileSys->OpenFile(engFileName);
+    if (!jFile) return;
+    size = fileSys->GetFileSize(jFile);
     mStdFont = NEW u8[size];
-    fileSys->ReadFile(mStdFont, size);
-    fileSys->CloseFile();
+    fileSys->ReadFile(jFile, mStdFont, size);
+    fileSys->CloseFile(jFile);
 
     mIndex = 0;
 

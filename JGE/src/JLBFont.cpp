@@ -42,10 +42,11 @@ JLBFont::JLBFont(const char *fontname, int lineheight, bool useVideoRAM)
 
     //FILE *file;
     JFileSystem *fileSys = JFileSystem::GetInstance();
-    if (!fileSys->OpenFile(filename)) return;
+    JFile* jFile = fileSys->OpenFile(filename);
+    if (!jFile) return;
 
-    fileSys->ReadFile((u8 *)buffer, 2048);
-    fileSys->CloseFile();
+    fileSys->ReadFile(jFile, (u8 *)buffer, 2048);
+    fileSys->CloseFile(jFile);
 
     sprintf(filename, "%s.png", fontname);
     mTexture = mRenderer->LoadTexture(filename, useVideoRAM);

@@ -57,19 +57,20 @@ hgeFont::hgeFont(const char *szFont, bool bMipmap __attribute__((unused)))
 	// Load font description
 
 	JFileSystem* fileSys = JFileSystem::GetInstance();
-	if (!fileSys->OpenFile(szFont)) return;
+    JFile* jFile = fileSys->OpenFile(szFont);
+	if (!jFile) return;
 
 	//data=hge->Resource_Load(szFont, &size);
 	//if(!data) return;
-	size = fileSys->GetFileSize();
+	size = fileSys->GetFileSize(jFile);
 
 	desc = new char[size+1];
 	//memcpy(desc,data,size);
-	fileSys->ReadFile(desc, size);
+	fileSys->ReadFile(jFile, desc, size);
 	desc[size]=0;
 
 	//hge->Resource_Free(data);
-	fileSys->CloseFile();
+	fileSys->CloseFile(jFile);
 
 	pdesc=_get_line(desc,linebuf);
 	if(strcmp(linebuf, FNTHEADERTAG))

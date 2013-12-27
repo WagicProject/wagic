@@ -300,12 +300,12 @@ string GameStateMenu::loadRandomWallpaper()
         return wallpaper;
 
     vector<string> wallpapers;
-    izfstream file;
-    if (! JFileSystem::GetInstance()->openForRead(file, "graphics/wallpapers.txt"))
+    JFile* jFile = JFileSystem::GetInstance()->OpenFile("graphics/wallpapers.txt");
+    if (!jFile)
         return wallpaper;
 
     string s;
-    while (std::getline(file, s))
+    while (JFileSystem::GetInstance()->ReadFileLine(jFile, s))
     {
         if (!s.size())
             continue;
@@ -313,7 +313,7 @@ string GameStateMenu::loadRandomWallpaper()
             s.erase(s.size() - 1); //Handle DOS files
         wallpapers.push_back(s);
     }
-    file.close();
+    JFileSystem::GetInstance()->CloseFile(jFile);
 
     int rnd = rand() % (wallpapers.size());
     wallpaper = wallpapers[rnd];
@@ -352,21 +352,21 @@ void GameStateMenu::loadLangMenu()
     vector<string> langFiles = JFileSystem::GetInstance()->scanfolder("lang/");
     for (size_t i = 0; i < langFiles.size(); ++i)
     {
-        izfstream file;
         string filePath = "lang/";
         filePath.append(langFiles[i]);
-        if (! JFileSystem::GetInstance()->openForRead(file, filePath))
+        JFile* jFile = JFileSystem::GetInstance()->OpenFile(filePath);
+        if (!jFile)
             continue;
 
         string s;
         string lang;
 
-        if (std::getline(file, s))
+        if (JFileSystem::GetInstance()->ReadFileLine(jFile, s))
         {
             lang = getLang(s);
         }
 
-        file.close();
+        JFileSystem::GetInstance()->CloseFile(jFile);
 
         if (lang.size())
         {

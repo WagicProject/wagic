@@ -55,11 +55,12 @@ bool JParticleEffect::Load(const char* filename)
 	JFileSystem *fileSystem = JFileSystem::GetInstance();
 	if (fileSystem == NULL) return false;
 
-	if (!fileSystem->OpenFile(filename)) return false;
+    JFile* jFile = fileSystem->OpenFile(filename);
+	if (!jFile) return false;
 
-	int size = fileSystem->GetFileSize();
+	int size = fileSystem->GetFileSize(jFile);
 	char *xmlBuffer = new char[size];
-	fileSystem->ReadFile(xmlBuffer, size);
+	fileSystem->ReadFile(jFile, xmlBuffer, size);
 
 	TiXmlDocument doc;
 	
@@ -296,7 +297,7 @@ bool JParticleEffect::Load(const char* filename)
 		}
 	}
 
-	fileSystem->CloseFile();
+	fileSystem->CloseFile(jFile);
 	delete[] xmlBuffer;
 
 	return true;

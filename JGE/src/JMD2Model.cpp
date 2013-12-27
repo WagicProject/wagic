@@ -96,7 +96,8 @@ bool JMD2Model::Load(char *filename, char *textureName)
 	// open the model file
 
 	JFileSystem* fileSystem = JFileSystem::GetInstance();
-	if (!fileSystem->OpenFile(filename))
+    JFile* jFile = fileSystem->OpenFile(filename);
+	if (!jFile)
 		return false;
 	//filePtr = fopen(filename, "rb");
 	//if (filePtr == NULL)
@@ -107,13 +108,13 @@ bool JMD2Model::Load(char *filename, char *textureName)
     //fileLen = ftell(filePtr);
     //fseek(filePtr, 0, SEEK_SET);
 
-	fileLen = fileSystem->GetFileSize();
+	fileLen = fileSystem->GetFileSize(jFile);
 	
     // read entire file into buffer
     buffer = (char*)malloc(fileLen + 1);
     //fread(buffer, sizeof(char), fileLen, filePtr);
-	fileSystem->ReadFile(buffer, fileLen);
-	fileSystem->CloseFile();
+	fileSystem->ReadFile(jFile, buffer, fileLen);
+	fileSystem->CloseFile(jFile);
 
 	// extract model file header from buffer
     modelHeader = (modelHeader_t*)buffer;

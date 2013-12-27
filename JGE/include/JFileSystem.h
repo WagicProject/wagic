@@ -1,6 +1,10 @@
 #ifndef _J_FILE_SYSTEM_H_
 #define _J_FILE_SYSTEM_H_
 
+#ifdef QT_CONFIG
+#include <QFile>
+#endif
+
 #include "zfsystem.h"
 #include <string>
 using zip_file_system::filesystem;
@@ -18,13 +22,38 @@ using namespace std;
 /// archive file.
 ///
 //////////////////////////////////////////////////////////////////////////
+class JFile {
+    friend class JFileSystem;
+    filesystem::limited_file_info * mCurrentFileInZip;
+    izfstream mFile;
+#ifdef QT_CONFIG
+    QFile *mpqFile;
+#endif
+public:
+    JFile() : mCurrentFileInZip(0),
+#ifdef QT_CONFIG
+        mpqFile(0)
+#endif
+    {
+    };
+    ~JFile() {
+#ifdef QT_CONFIG
+        if(mpqFile) {
+            mpqFile->close();
+            delete mpqFile;
+        }
+#endif
+        if (mFile)
+            mFile.close();
+    };
+};
+
 
 class JZipCache {
 public:
   JZipCache();
   ~JZipCache();
   map<string, filesystem::limited_file_info> dir;
-  
 };
 
 class JFileSystem {
@@ -32,22 +61,20 @@ private:
     string mSystemFSPath, mUserFSPath;
     filesystem * mSystemFS, * mUserFS;
 	static JFileSystem* mInstance;
-    izfstream mFile;
 
 	map<string,JZipCache *>mZipCache;
     unsigned int mZipCachedElementsCount;
 	string mZipFileName;
-    int mFileSize;
 	char *mPassword;
 	bool mZipAvailable;
   	void preloadZip(const string& filename);
 	izfstream mZipFile;
-    filesystem::limited_file_info * mCurrentFileInZip;
 
     std::vector<std::string>& scanRealFolder(const std::string& folderName, std::vector<std::string>& results);
+    bool openForRead(izfstream & File, const string & FilePath);
+    int GetFileSize(izfstream & file);
 
 public:
-
 
 	//////////////////////////////////////////////////////////////////////////
 	/// Attach ZIP archive to the file system.
@@ -83,7 +110,7 @@ public:
 	/// Open file for reading.
 	///
 	//////////////////////////////////////////////////////////////////////////
-	bool OpenFile(const string &filename);
+    JFile* OpenFile(const string &filename);
 
     //Fills the vector results with a list of children of the given folder
     std::vector<std::string>& scanfolder(const std::string& folderName, std::vector<std::string>& results);
@@ -97,20 +124,19 @@ public:
 	/// @return Number of bytes read.
 	///
 	//////////////////////////////////////////////////////////////////////////
-	int ReadFile(void *buffer, int size);
+	int ReadFile(JFile*, void *buffer, int size);
 
 	//////////////////////////////////////////////////////////////////////////
 	/// Get size of file.
 	///
 	//////////////////////////////////////////////////////////////////////////
-	int GetFileSize();
-    int GetFileSize(izfstream & file);
+	int GetFileSize(JFile*);
 
 	//////////////////////////////////////////////////////////////////////////
 	/// Close file.
 	///
 	//////////////////////////////////////////////////////////////////////////
-	void CloseFile();
+    void CloseFile(JFile*);
 
 	//////////////////////////////////////////////////////////////////////////
 	/// Set root for all the following file operations
@@ -124,8 +150,8 @@ public:
 	void SetUSerRoot(const string& resourceRoot);
     string GetUserRoot() { return mUserFSPath; };
 
-    bool openForRead(izfstream & File, const string & FilePath);
     bool readIntoString(const string & FilePath, string & target);
+    bool ReadFileLine(JFile*, string&);
     bool openForWrite(ofstream & File, const string & FilePath, ios_base::openmode mode = ios_base::out );
     bool Rename(string from, string to);
 

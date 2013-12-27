@@ -1843,7 +1843,7 @@ int Tournament::getRandomDeck(bool noEasyDecks)
     DeckManager *deckManager = DeckManager::GetInstance();
     vector<DeckMetaData *> *deckList =  deckManager->getAIDeckOrderList();
 
-    int deckNumber;
+    int deckNumber=0;
     unsigned int random=0;
     int k=0;
     bool isDouble=true;

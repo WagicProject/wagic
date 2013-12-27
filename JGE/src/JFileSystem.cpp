@@ -107,7 +107,6 @@ JFileSystem* JFileSystem::GetInstance()
 // Tries to set the system and user paths.
 // On some OSes, the parameters get overriden by hardcoded values
 JFileSystem::JFileSystem(const string & _userPath, const string & _systemPath)
-
 {
     string systemPath = _systemPath;
     string userPath = _userPath;
@@ -131,8 +130,8 @@ JFileSystem::JFileSystem(const string & _userPath, const string & _systemPath)
     dir.mkdir(USERDIR);
     dir.cd(USERDIR);
 
-    userPath = QDir::toNativeSeparators(dir.absolutePath()).toStdString();
     systemPath = QDir::toNativeSeparators(sysDir.absolutePath()).toStdString();
+    userPath = QDir::toNativeSeparators(dir.absolutePath()).toStdString();
 
     DebugTrace("User path " << userPath);
     DebugTrace("System path " << systemPath);
@@ -192,9 +191,6 @@ JFileSystem::JFileSystem(const string & _userPath, const string & _systemPath)
     mZipAvailable = false;
     mZipCachedElementsCount = 0;
     mPassword = NULL;
-    mFileSize = 0;
-    mCurrentFileInZip = NULL;
-
 };
 
 void JFileSystem::Destroy()
@@ -208,14 +204,26 @@ void JFileSystem::Destroy()
 
 bool JFileSystem::DirExists(const string& strDirname)
 { 
-    return (mSystemFS && mSystemFS->DirExists(strDirname)) || mUserFS->DirExists(strDirname);
+    return (
+            (mSystemFS && mSystemFS->DirExists(strDirname))
+            || mUserFS->DirExists(strDirname)
+#ifdef QT_CONFIG
+            || QDir(QString(":/") + strDirname.c_str()).exists()
+#endif
+            );
 }
 
 bool JFileSystem::FileExists(const string& strFilename)
 { 
     if (strFilename.length() < 1 ) return false;
     
-    return (mSystemFS && mSystemFS->FileExists(strFilename)) || mUserFS->FileExists(strFilename);
+    return (
+            (mSystemFS && mSystemFS->FileExists(strFilename))
+            || mUserFS->FileExists(strFilename)
+#ifdef QT_CONFIG
+            || QFile(QString(":/") + strFilename.c_str()).exists()
+#endif
+            );
 }
 
 bool JFileSystem::MakeDir(const string & dir)
@@ -275,7 +283,6 @@ bool JFileSystem::AttachZipFile(const string &zipfile, char *password /* = NULL 
     }
     mZipAvailable = true;
     return true;
-
 }
 
 
@@ -285,7 +292,6 @@ void JFileSystem::DetachZipFile()
     {
         mZipFile.close();
     }
-    mCurrentFileInZip = NULL;
     mZipAvailable = false;
 }
 
@@ -307,28 +313,58 @@ bool JFileSystem::openForRead(izfstream & File, const string & FilePath) {
 
 bool JFileSystem::readIntoString(const string & FilePath, string & target)
 {
-    izfstream file;
-    if (!openForRead(file, FilePath))
-        return false;
-
-    int fileSize = GetFileSize(file);
-
+    bool result = false;
+    
+    // Trying first with a izfstream
+    do {
+        izfstream file;
+        if (!openForRead(file, FilePath))
+            break;
+        
+        int fileSize = GetFileSize(file);
+        
 #ifndef __MINGW32__
-    try {
+        try {
 #endif
-        target.resize((std::string::size_type) fileSize);
+            target.resize((std::string::size_type) fileSize);
 #ifndef __MINGW32__
-    } catch (bad_alloc&) {
-        return false;
-    }
+        } catch (bad_alloc&) {
+            break;
+        }
 #endif
-
-
-    if (fileSize)
-        file.read(&target[0], fileSize);
-
-    file.close();
-    return true;
+        if (fileSize)
+            file.read(&target[0], fileSize);
+        
+        file.close();
+        result = true;
+    } while (0);
+#ifdef QT_CONFIG
+    // Now we try with qrc if we haven't finc anything yet
+    if (!result) do {
+        string path = string(":/") + FilePath.c_str();
+        QFile qfile(path.c_str());
+        qfile.open(QIODevice::ReadOnly);
+        if(!qfile.isReadable())
+            break;
+        int fileSize = qfile.size();
+#ifndef __MINGW32__
+        try {
+#endif
+            target.resize((std::string::size_type) fileSize);
+#ifndef __MINGW32__
+        } catch (bad_alloc&) {
+            break;
+        }
+#endif
+        if (fileSize)
+            qfile.read(&target[0], fileSize);
+        
+        qfile.close();
+        result = true;
+    } while (0);
+#endif //QT_CONFIG
+    
+    return result;
 }
 
 bool JFileSystem::openForWrite(ofstream & File, const string & FilePath, ios_base::openmode mode)
@@ -374,57 +410,72 @@ bool JFileSystem::openForWrite(ofstream & File, const string & FilePath, ios_bas
     return false;
 }
 
-bool JFileSystem::OpenFile(const string &filename)
+JFile* JFileSystem::OpenFile(const string &filename)
 {
-    mCurrentFileInZip = NULL;
+    bool result;
+    JFile* jFile = new JFile();
+    jFile->mCurrentFileInZip = NULL;
 
-    if (!mZipAvailable || !mZipFile)
-        return openForRead(mFile, filename);
+    do {
+        if (!mZipAvailable || !mZipFile) {
+            result = openForRead(jFile->mFile, filename);
+            if(!result) {
+#ifdef QT_CONFIG
+                string path = string(":/") + filename.c_str();
+                jFile->mpqFile = new QFile(path.c_str());
+                jFile->mpqFile->open(QIODevice::ReadOnly);
+                result = jFile->mpqFile->isReadable();
+#endif
+            }
+            break;
+        }
 
-    preloadZip(mZipFileName);
-    map<string,JZipCache *>::iterator it = mZipCache.find(mZipFileName);
-    if (it == mZipCache.end())
-    {
-        //DetachZipFile();
-        //return OpenFile(filename); 
-        return openForRead(mFile, filename);
-    }
-    JZipCache * zc = it->second;
-    map<string,  filesystem::limited_file_info>::iterator it2 = zc->dir.find(filename);
-    if (it2 == zc->dir.end())
-    {
-        /*DetachZipFile();
+        preloadZip(mZipFileName);
+        map<string,JZipCache *>::iterator it = mZipCache.find(mZipFileName);
+        if (it == mZipCache.end())
+        {
+            //DetachZipFile();
+            //return OpenFile(filename);
+            result = openForRead(jFile->mFile, filename);
+            break;
+        }
+        JZipCache * zc = it->second;
+        map<string,  filesystem::limited_file_info>::iterator it2 = zc->dir.find(filename);
+        if (it2 == zc->dir.end())
+        {
+            /*DetachZipFile();
         return OpenFile(filename); */
-        return openForRead(mFile, filename);
+            result = openForRead(jFile->mFile, filename);
+            break;
+        }
+
+        jFile->mCurrentFileInZip = &(it2->second);
+        result = true;
+    } while(0);
+
+    if(result)
+        return jFile;
+    else {
+        delete jFile;
+        return 0;
     }
-
-    mCurrentFileInZip = &(it2->second);
-    mFileSize = it2->second.m_Size;
-    return true;
-
 }
 
 
-void JFileSystem::CloseFile()
+void JFileSystem::CloseFile(JFile* jFile)
 {
-    if (mZipAvailable && mZipFile)
-    {
-        mCurrentFileInZip = NULL;
-    }
-
-    if (mFile)
-        mFile.close();
+    delete jFile;
 }
 
 //returns 0 if less than "size" bits were read
-int JFileSystem::ReadFile(void *buffer, int size)
+int JFileSystem::ReadFile(JFile* jFile, void *buffer, int size)
 {
-    if (mCurrentFileInZip)
+    if (jFile->mCurrentFileInZip)
     {
         assert(mZipFile);
-        if((size_t)size > mCurrentFileInZip->m_Size) //only support "store" method for zip inside zips
+        if((size_t)size > jFile->mCurrentFileInZip->m_Size) //only support "store" method for zip inside zips
             return 0;
-        std::streamoff offset = filesystem::SkipLFHdr(mZipFile, mCurrentFileInZip->m_Offset);
+        std::streamoff offset = filesystem::SkipLFHdr(mZipFile, jFile->mCurrentFileInZip->m_Offset);
         if (!mZipFile.seekg(offset))
             return 0;
         mZipFile.read((char *) buffer, size);
@@ -432,14 +483,41 @@ int JFileSystem::ReadFile(void *buffer, int size)
         return size;
     }
 
-    if (!mFile)
+#ifdef QT_CONFIG
+    if(jFile->mpqFile) {
+        return jFile->mpqFile->read((char*)buffer, size);
+    }
+#endif
+    
+    if (!jFile->mFile)
         return 0;
 
-    assert(!mFile.Zipped() || (size_t)size <= mFile.getUncompSize());
-	mFile.read((char *)buffer, size);
-    if (mFile.eof())
+    assert(!jFile->mFile.Zipped() || (size_t)size <= jFile->mFile.getUncompSize());
+	jFile->mFile.read((char *)buffer, size);
+    if (jFile->mFile.eof())
         return 0;
     return size;
+}
+
+bool JFileSystem::ReadFileLine(JFile* jFile, string& s)
+{
+    if(!jFile) return false;
+#ifdef QT_CONFIG
+    if(jFile->mpqFile) {
+        QString qs = jFile->mpqFile->readLine();
+        if(qs.isEmpty())
+            return false;
+        else {
+            s = qs.toStdString();
+            return true;
+        }
+    }
+#endif
+    if(!jFile->mFile)
+        return 0;
+    
+    assert(!jFile->mFile.Zipped());
+    return std::getline(jFile->mFile, s);
 }
 
 std::vector<std::string>& JFileSystem::scanRealFolder(const std::string& folderName, std::vector<std::string>& results)
@@ -529,8 +607,17 @@ std::vector<std::string>& JFileSystem::scanfolder(const std::string& _folderName
                 seen[systemReal[i]] = true;
         }
     }
+#ifdef QT_CONFIG
+    string path = string(":/") + folderName;
+    QDir dir(path.c_str());
+    QStringList list = dir.entryList();
+    for(int i = 0; i < list.size(); i++)
+    {
+        seen[list.at(i).toStdString()] = true;
+    }
+#endif
 
-    for(map<string,bool>::iterator it = seen.begin(); it != seen.end(); ++it) 
+    for(map<string,bool>::iterator it = seen.begin(); it != seen.end(); ++it)
     {
       results.push_back(it->first);
     }
@@ -544,12 +631,18 @@ std::vector<std::string> JFileSystem::scanfolder(const std::string& folderName)
     return scanfolder(folderName, result);
 }
 
-int JFileSystem::GetFileSize()
+int JFileSystem::GetFileSize(JFile* jFile)
 {
-    if (mCurrentFileInZip)
-        return mFileSize;
+    if (jFile->mCurrentFileInZip)
+        return jFile->mCurrentFileInZip->m_Size;
 
-    return GetFileSize(mFile);
+#ifdef QT_CONFIG
+    if(jFile->mpqFile) {
+        return jFile->mpqFile->size();
+    }
+#endif
+    
+    return GetFileSize(jFile->mFile);
 }
 
 bool JFileSystem::Rename(string _from, string _to)

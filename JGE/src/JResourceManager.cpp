@@ -93,13 +93,13 @@ bool JResourceManager::LoadResource(const string& resourceName)
 	JFileSystem *fileSystem = JFileSystem::GetInstance();
 	if (fileSystem == NULL) return false;
 
+    JFile* jFile = fileSystem->OpenFile(path.c_str());
 
+	if (!jFile) return false;
 
-	if (!fileSystem->OpenFile(path.c_str())) return false;
-
-	int size = fileSystem->GetFileSize();
+	int size = fileSystem->GetFileSize(jFile);
 	char *xmlBuffer = new char[size];
-	fileSystem->ReadFile(xmlBuffer, size);
+	fileSystem->ReadFile(jFile, xmlBuffer, size);
 
 	TiXmlDocument doc;
 	doc.Parse(xmlBuffer);
@@ -179,7 +179,7 @@ bool JResourceManager::LoadResource(const string& resourceName)
 
 	}
 
-	fileSystem->CloseFile();
+	fileSystem->CloseFile(jFile);
 	delete[] xmlBuffer;
 //	JGERelease();
 

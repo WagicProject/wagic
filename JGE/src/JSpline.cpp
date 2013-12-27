@@ -41,11 +41,12 @@ bool JSpline::Load(const char *filename, float xscale, float yscale)
 	JFileSystem *fileSystem = JFileSystem::GetInstance();
 
 	if (fileSystem == NULL) return false;
-	if (!fileSystem->OpenFile(filename)) return false;
+    JFile* jFile = fileSystem->OpenFile(filename);
+	if (!jFile) return false;
 
-	int size = fileSystem->GetFileSize();
+	int size = fileSystem->GetFileSize(jFile);
 	char *xmlBuffer = new char[size];
-	fileSystem->ReadFile(xmlBuffer, size);
+	fileSystem->ReadFile(jFile, xmlBuffer, size);
 
 	TiXmlDocument doc;
 	doc.Parse(xmlBuffer);
@@ -76,7 +77,7 @@ bool JSpline::Load(const char *filename, float xscale, float yscale)
 		
 	}
 
-	fileSystem->CloseFile();
+	fileSystem->CloseFile(jFile);
 	delete[] xmlBuffer;
 
 	return true;

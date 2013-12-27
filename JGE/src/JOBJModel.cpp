@@ -47,14 +47,15 @@ bool JOBJModel::Load(const char *modelName, const char *textureName)
 {
 
 	JFileSystem* fileSys = JFileSystem::GetInstance();
-	if (!fileSys->OpenFile(modelName))
+    JFile* jFile = fileSys->OpenFile(modelName);
+	if (!jFile)
 		return false;
 
-	int size = fileSys->GetFileSize();
+	int size = fileSys->GetFileSize(jFile);
 	char *buffer = new char[size];
 
-	fileSys->ReadFile(buffer, size);
-	fileSys->CloseFile();
+	fileSys->ReadFile(jFile, buffer, size);
+	fileSys->CloseFile(jFile);
 
 	Vector3D vert;
 

@@ -50,46 +50,41 @@ float Random_Float(float min, float max)
 
 hgeParticleSystem::hgeParticleSystem(const char *filename, JQuad *sprite)
 {
-  //void *psi;
-  //hgeParticleSystemInfo psi;
-
-  JFileSystem* fileSys = JFileSystem::GetInstance();
-  //hge=hgeCreate(HGE_VERSION);
-
-  //psi=hge->Resource_Load(filename);
-  if (!fileSys->OpenFile(filename)) return;
-
-  //if(!psi) return;
-
-  //memcpy(&info, psi, sizeof(hgeParticleSystemInfo));
-  //hge->Resource_Free(psi);
-
-  // Skip reading the pointer as it may be larger than 4 bytes in the structure
-  void *dummyPointer;
-  fileSys->ReadFile(&dummyPointer, 4);
-  // we're actually trying to read more than the file size now, but it's no problem.
-  // Note that this fix is only to avoid the largest problems, filling a structure
-  // by directly reading a file, is really a bad idea ...
-  fileSys->ReadFile(&(info.nEmission), sizeof(hgeParticleSystemInfo) - 4);
-  fileSys->CloseFile();
-
-  info.sprite=sprite;
-  //  	info.fGravityMin *= 100;
-  //  	info.fGravityMax *= 100;
-  // 	info.fSpeedMin *= 100;
-  // 	info.fSpeedMax *= 100;
-
-  vecLocation.x=vecPrevLocation.x=0.0f;
-  vecLocation.y=vecPrevLocation.y=0.0f;
-  fTx=fTy=0;
-
-  fEmissionResidue=0.0f;
-  nParticlesAlive=0;
-  fAge=-2.0;
-  mTimer = 0.0f;
-
-  rectBoundingBox.Clear();
-  bUpdateBoundingBox=false;
+    JFileSystem* fileSys = JFileSystem::GetInstance();
+    JFile* jFile = fileSys->OpenFile(filename);
+    if (!jFile) return;
+    
+    //if(!psi) return;
+    
+    //memcpy(&info, psi, sizeof(hgeParticleSystemInfo));
+    //hge->Resource_Free(psi);
+    
+    // Skip reading the pointer as it may be larger than 4 bytes in the structure
+    void *dummyPointer;
+    fileSys->ReadFile(jFile, &dummyPointer, 4);
+    // we're actually trying to read more than the file size now, but it's no problem.
+    // Note that this fix is only to avoid the largest problems, filling a structure
+    // by directly reading a file, is really a bad idea ...
+    fileSys->ReadFile(jFile, &(info.nEmission), sizeof(hgeParticleSystemInfo) - 4);
+    fileSys->CloseFile(jFile);
+    
+    info.sprite=sprite;
+    //  	info.fGravityMin *= 100;
+    //  	info.fGravityMax *= 100;
+    // 	info.fSpeedMin *= 100;
+    // 	info.fSpeedMax *= 100;
+    
+    vecLocation.x=vecPrevLocation.x=0.0f;
+    vecLocation.y=vecPrevLocation.y=0.0f;
+    fTx=fTy=0;
+    
+    fEmissionResidue=0.0f;
+    nParticlesAlive=0;
+    fAge=-2.0;
+    mTimer = 0.0f;
+    
+    rectBoundingBox.Clear();
+    bUpdateBoundingBox=false;
 }
 
 hgeParticleSystem::hgeParticleSystem(hgeParticleSystemInfo *psi)

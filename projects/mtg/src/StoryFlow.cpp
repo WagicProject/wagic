@@ -599,16 +599,17 @@ bool StoryFlow::parse(string path)
     JFileSystem *fileSystem = JFileSystem::GetInstance();
     if (!fileSystem) return false;
 
-    if (!fileSystem->OpenFile(path.c_str())) return false;
+    JFile* jFile = fileSystem->OpenFile(path.c_str());
+    if (!jFile) return false;
 
-    int size = fileSystem->GetFileSize();
+    int size = fileSystem->GetFileSize(jFile);
     char *xmlBuffer = NEW char[size];
-    fileSystem->ReadFile(xmlBuffer, size);
+    fileSystem->ReadFile(jFile, xmlBuffer, size);
 
     TiXmlDocument doc;
     doc.Parse(xmlBuffer);
 
-    fileSystem->CloseFile();
+    fileSystem->CloseFile(jFile);
     delete[] xmlBuffer;
 
     for (TiXmlNode* node = doc.FirstChild(); node; node = node->NextSibling())

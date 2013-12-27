@@ -326,16 +326,16 @@ void OptionLanguage::Reload()
     vector<string> langFiles = JFileSystem::GetInstance()->scanfolder("lang/");
     for (size_t i = 0; i < langFiles.size(); ++i)
     {
-        izfstream file;
         string filePath = "lang/";
         filePath.append(langFiles[i]);
-        if (! JFileSystem::GetInstance()->openForRead(file, filePath))
+        JFile* jFile = JFileSystem::GetInstance()->OpenFile(filePath);
+        if (!jFile)
             continue;
 
         string s;
         string lang;
 
-        if (std::getline(file, s))
+        if (JFileSystem::GetInstance()->ReadFileLine(jFile, s))
         {
             if (!s.size())
             {
@@ -352,7 +352,7 @@ void OptionLanguage::Reload()
                     lang = s.substr(6);
             }
         }
-        file.close();
+        JFileSystem::GetInstance()->CloseFile(jFile);
 
         if (lang.size())
         {

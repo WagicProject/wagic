@@ -333,8 +333,9 @@ bool WCachedParticles::Attempt(const string& filename, int, int & error)
 {
 
     JFileSystem* fileSys = JFileSystem::GetInstance();
+    JFile* jFile = fileSys->OpenFile(WResourceManager::Instance()->graphicsFile(filename));
 
-    if (!fileSys->OpenFile(WResourceManager::Instance()->graphicsFile(filename)))
+    if (!jFile)
     {
         error = CACHE_ERROR_404;
         return false;
@@ -345,12 +346,12 @@ bool WCachedParticles::Attempt(const string& filename, int, int & error)
     particles = NEW hgeParticleSystemInfo;
     // We Skip reading the pointer as it may be larger than 4 bytes in the structure
     void *dummyPointer;
-    fileSys->ReadFile(&dummyPointer, 4);
+    fileSys->ReadFile(jFile, &dummyPointer, 4);
     // we're actually trying to read more than the file size now, but it's no problem.
     // Note that this fix is only to avoid the largest problems, filling a structure
     // by directly reading a file, is really a bad idea ...
-    fileSys->ReadFile(&(particles->nEmission), sizeof(hgeParticleSystemInfo) - sizeof(void*));
-    fileSys->CloseFile();
+    fileSys->ReadFile(jFile, &(particles->nEmission), sizeof(hgeParticleSystemInfo) - sizeof(void*));
+    fileSys->CloseFile(jFile);
 
     particles->sprite = NULL;
     error = CACHE_ERROR_NONE;

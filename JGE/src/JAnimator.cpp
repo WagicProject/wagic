@@ -44,11 +44,12 @@ bool JAnimator::Load(const char* scriptFile)
 	JFileSystem *fileSystem = JFileSystem::GetInstance();
 	if (fileSystem == NULL) return false;
 
-	if (!fileSystem->OpenFile(scriptFile)) return false;
+    JFile* jFile = fileSystem->OpenFile(scriptFile);
+	if (!jFile) return false;
 
-	int size = fileSystem->GetFileSize();
+	int size = fileSystem->GetFileSize(jFile);
 	char *xmlBuffer = new char[size];
-	fileSystem->ReadFile(xmlBuffer, size);
+	fileSystem->ReadFile(jFile, xmlBuffer, size);
 
 	TiXmlDocument doc;
 	doc.Parse(xmlBuffer);
@@ -173,7 +174,7 @@ bool JAnimator::Load(const char* scriptFile)
 
 	}
 
-	fileSystem->CloseFile();
+	fileSystem->CloseFile(jFile);
 	delete[] xmlBuffer;
 
 	return true;
