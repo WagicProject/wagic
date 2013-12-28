@@ -30,9 +30,9 @@ class JFile {
     QFile *mpqFile;
 #endif
 public:
-    JFile() : mCurrentFileInZip(0),
+    JFile() : mCurrentFileInZip(0)
 #ifdef QT_CONFIG
-        mpqFile(0)
+        , mpqFile(0)
 #endif
     {
     };

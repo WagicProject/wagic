@@ -116,25 +116,26 @@ bool JGBKFont::Init(const char* engFileName, const char* chnFileName, int fontsi
 	int size;
 
 	JFileSystem *fileSys = JFileSystem::GetInstance();
-	if (!fileSys->OpenFile(engFileName))
+    JFile* jFile = fileSys->OpenFile(engFileName);
+    if (!jFile)
 		return false;
 
-	size = fileSys->GetFileSize();
+    size = fileSys->GetFileSize(jFile);
 	mEngFont = new BYTE[size];
 
-	fileSys->ReadFile(mEngFont, size);
-	fileSys->CloseFile();
+    fileSys->ReadFile(jFile, mEngFont, size);
+    fileSys->CloseFile(jFile);
 
-
-	if (!fileSys->OpenFile(chnFileName))
+    jFile = fileSys->OpenFile(chnFileName);
+    if (!jFile)
 		return false;
 
-	size = fileSys->GetFileSize();
+    size = fileSys->GetFileSize(jFile);
 
 	mChnFont = new BYTE[size];
 
-	fileSys->ReadFile(mChnFont, size);
-	fileSys->CloseFile();
+    fileSys->ReadFile(jFile, mChnFont, size);
+    fileSys->CloseFile(jFile);
 
 	return true;
 }
