@@ -199,15 +199,16 @@ bool JTTFont::Load(const char *filename, int size, int mode)
 	
 	if (FT_Init_FreeType( &mLibrary ) == 0)
 	{
-		JFileSystem* fileSystem = JFileSystem::GetInstance();
-		if (fileSystem->OpenFile(filename))
+        JFileSystem* fileSystem = JFileSystem::GetInstance();
+        JFile* jFile = fileSystem->OpenFile(filename);
+        if (jFile)
 		{
-			mFontBitsSize = fileSystem->GetFileSize();
+            mFontBitsSize = fileSystem->GetFileSize(jFile);
 
 			mFontBits = (FT_Byte*)malloc(mFontBitsSize);
 			
-			fileSystem->ReadFile(mFontBits, mFontBitsSize);
-			fileSystem->CloseFile();
+            fileSystem->ReadFile(jFile, mFontBits, mFontBitsSize);
+            fileSystem->CloseFile(jFile);
 
 			if (FT_New_Memory_Face(mLibrary, mFontBits, mFontBitsSize, 0, &mFace ) == 0)
 			{
