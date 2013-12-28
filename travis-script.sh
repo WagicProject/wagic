@@ -22,7 +22,7 @@ cd ../../../..
 # we're building a PSP binary here
 cd JGE
 make -j 8
-make -j 8 -f Makefile.hge
+make -j 8 -f Makefile.hge install
 cd ..
 cd projects/mtg
 mkdir objs
