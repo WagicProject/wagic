@@ -161,15 +161,16 @@ JMusic *JSoundSystem::LoadMusic(const char *fileName)
   if (music)
     {
       JFileSystem* fileSystem = JFileSystem::GetInstance();
-      if (fileSystem->OpenFile(fileName))
+      JFile* jFile = fileSystem->OpenFile(fileName);
+      if (jFile)
 	{
-	  int size = fileSystem->GetFileSize();
+      int size = fileSystem->GetFileSize(jFile);
 	  char *buffer = new char[size];
-	  fileSystem->ReadFile(buffer, size);
+      fileSystem->ReadFile(jFile, buffer, size);
 	  music->mTrack = FSOUND_Sample_Load(FSOUND_UNMANAGED, buffer, FSOUND_LOADMEMORY, 0, size);
 
 	  delete[] buffer;
-	  fileSystem->CloseFile();
+      fileSystem->CloseFile(jFile);
 	}
     }
   return music;
@@ -281,15 +282,16 @@ JSample *JSoundSystem::LoadSample(const char *fileName)
   if (sample)
     {
       JFileSystem* fileSystem = JFileSystem::GetInstance();
-      if (fileSystem->OpenFile(fileName))
+      JFile* jFile = fileSystem->OpenFile(fileName);
+      if (jFile)
 	{
-	  int size = fileSystem->GetFileSize();
+      int size = fileSystem->GetFileSize(jFile);
 	  char *buffer = new char[size];
-	  fileSystem->ReadFile(buffer, size);
+      fileSystem->ReadFile(jFile, buffer, size);
 	  sample->mSample = FSOUND_Sample_Load(FSOUND_UNMANAGED, buffer, FSOUND_LOADMEMORY, 0, size);
 
 	  delete[] buffer;
-	  fileSystem->CloseFile();
+      fileSystem->CloseFile(jFile);
 	}else
 	sample->mSample = NULL;
 
