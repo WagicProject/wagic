@@ -1683,20 +1683,21 @@ void JRenderer::LoadJPG(TextureInfo &textureInfo, const char *filename, int mode
     int	rawsize, i;
 
     JFileSystem* fileSystem = JFileSystem::GetInstance();
-    if (!fileSystem->OpenFile(filename)) return;
+    JFile* jFile = fileSystem->OpenFile(filename);
+    if (!jFile) return;
 
-    rawsize = fileSystem->GetFileSize();
+    rawsize = fileSystem->GetFileSize(jFile);
 
     rawdata = new BYTE[rawsize];
 
     if (!rawdata)
     {
-        fileSystem->CloseFile();
+        fileSystem->CloseFile(jFile);
         return;
     }
 
-    fileSystem->ReadFile(rawdata, rawsize);
-    fileSystem->CloseFile();
+    fileSystem->ReadFile(jFile, rawdata, rawsize);
+    fileSystem->CloseFile(jFile);
 
     // Initialize libJpeg Object
     cinfo.err = jpeg_std_error(&jerr);
@@ -1804,9 +1805,10 @@ static void PNGCustomReadDataFn(png_structp png_ptr, png_bytep data, png_size_t 
 {
     png_size_t check;
 
-    JFileSystem *fileSystem = (JFileSystem*)png_ptr->io_ptr;
+    JFileSystem* fileSystem = JFileSystem::GetInstance();
+    JFile *jFile = (JFile*)png_ptr->io_ptr;
 
-    check = fileSystem->ReadFile(data, length);
+    check = fileSystem->ReadFile(jFile, data, length);
 
     if (check != length)
     {
@@ -1869,13 +1871,14 @@ int JRenderer::LoadPNG(TextureInfo &textureInfo, const char *filename, int mode 
     DWORD* line;
 
     JFileSystem* fileSystem = JFileSystem::GetInstance();
-    if (!fileSystem->OpenFile(filename))
+    JFile* jFile = fileSystem->OpenFile(filename);
+    if (!jFile)
         return JGE_ERR_CANT_OPEN_FILE;
 
     png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
     if (png_ptr == NULL)
     {
-        fileSystem->CloseFile();
+        fileSystem->CloseFile(jFile);
 
         return JGE_ERR_PNG;
     }
@@ -1885,14 +1888,14 @@ int JRenderer::LoadPNG(TextureInfo &textureInfo, const char *filename, int mode 
     if (info_ptr == NULL)
     {
         //fclose(fp);
-        fileSystem->CloseFile();
+        fileSystem->CloseFile(jFile);
 
         png_destroy_read_struct(&png_ptr, png_infopp_NULL, png_infopp_NULL);
 
         return JGE_ERR_PNG;
     }
     png_init_io(png_ptr, NULL);
-    png_set_read_fn(png_ptr, (png_voidp)fileSystem, PNGCustomReadDataFn);
+    png_set_read_fn(png_ptr, (png_voidp)jFile, PNGCustomReadDataFn);
 
     png_set_sig_bytes(png_ptr, sig_read);
     png_read_info(png_ptr, info_ptr);
@@ -1908,7 +1911,7 @@ int JRenderer::LoadPNG(TextureInfo &textureInfo, const char *filename, int mode 
     if (!line)
     {
         //fclose(fp);
-        fileSystem->CloseFile();
+        fileSystem->CloseFile(jFile);
 
         png_destroy_read_struct(&png_ptr, png_infopp_NULL, png_infopp_NULL);
         return JGE_ERR_MALLOC_FAILED;
@@ -1957,7 +1960,7 @@ int JRenderer::LoadPNG(TextureInfo &textureInfo, const char *filename, int mode 
     png_read_end(png_ptr, info_ptr);
     png_destroy_read_struct(&png_ptr, &info_ptr, png_infopp_NULL);
 
-    fileSystem->CloseFile();
+    fileSystem->CloseFile(jFile);
 
 
     textureInfo.mBits = buffer;
@@ -2116,9 +2119,10 @@ int JRenderer::image_readgif(void * handle, TextureInfo &textureInfo, DWORD * bg
 
 int image_gif_read(GifFileType * ft, GifByteType * buf, int size)
 {
-    JFileSystem *fileSys = (JFileSystem *)ft->UserData;
-    //return fread(buf, 1, size, (FILE *)ft->UserData);
-    if (fileSys->ReadFile(buf, size))
+    JFileSystem* fileSystem = JFileSystem::GetInstance();
+    JFile* jFile = (JFile*)ft->UserData;
+
+    if (fileSys->ReadFile(jFile, buf, size))
         return size;
     else
         return 0;
@@ -2137,7 +2141,7 @@ void JRenderer::LoadGIF(TextureInfo &textureInfo, const char *filename, int mode
     //if(fp == NULL)
     //	return;
     DWORD bkcol;
-    int result = image_readgif(fileSys, textureInfo, &bkcol, image_gif_read, mode);
+    int result = image_readgif(jFile, textureInfo, &bkcol, image_gif_read, mode);
     if(result!=0)
         textureInfo.mBits=NULL;
     //fclose(fp);
