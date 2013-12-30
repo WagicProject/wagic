@@ -42,6 +42,39 @@ def getFilename():
     filename = 'core_' + major + minor + point 
     return filename
 
+def createQrcFile():
+    utilities = ZipUtilities()
+    print "Creating Qt Resource File"
+    filename = "core.qrc"
+    f = open(filename, 'w')
+    f.seek(0,0)
+    f.write("""<!DOCTYPE RCC><RCC version="1.0">\n<qresource>\n""")
+    rename = False
+    if not os.path.isfile('settings/options.txt'):
+        os.rename('settings/options.orig.txt', 'settings/options.txt')
+        remame = True
+    if not os.path.isfile('player/options.txt'):
+        os.rename('player/options.orig.txt', 'player/options.txt')
+        rename = True
+    utilities.addFolderToQrc(f, 'themes')
+    utilities.addFolderToQrc(f, 'sound')
+    utilities.addFolderToQrc(f, 'settings')
+    utilities.addFolderToQrc(f, 'sets')
+    utilities.addFolderToQrc(f, 'rules')
+    utilities.addFolderToQrc(f, 'player')
+    utilities.addFolderToQrc(f, 'packs')
+    utilities.addFolderToQrc(f, 'lang')
+    utilities.addFolderToQrc(f, 'graphics')
+    utilities.addFolderToQrc(f, 'campaigns')
+    utilities.addFolderToQrc(f, 'ai')        
+    if rename:
+        os.rename('settings/options.txt', 'settings/options.orig.txt')
+        os.rename('player/options.txt', 'player/options.orig.txt')
+
+    f.seek(0,2)
+    f.write('</qresource>\n</RCC>\n')
+    f.close
+    print >> sys.stderr, 'Created Resource Package for Qt projects: {0}'.format( filename)
 
 
 def createStandardResFile():
@@ -84,20 +117,37 @@ class ZipUtilities:
                         print 'Entering folder: ' + str(full_path)
                         self.addFolderToZip(zip_file, full_path)
 
+    def addFolderToQrc(self, qrc, folder):
+        qrc.seek(0,2)
+        for file in os.listdir(folder):
+            if file != '.svn':
+                full_path = os.path.join(folder, file)
+                if os.path.isfile(full_path):
+                        print 'File added: ' + str(full_path)
+                        qrc.write('<file>')
+                        qrc.write(full_path)
+                        qrc.write('</file>\n')
+                elif os.path.isdir(full_path):
+                        print 'Entering folder: ' + str(full_path)
+                        self.addFolderToQrc(qrc, full_path)
+
 
 def main():
 ## using optparse instead of argParse for now since python 2.7 may not be installed.
 
     parser = OptionParser()
-    parser.add_option("-p", "--platform", help="PLATFORM: specify custom build. (eg ios, android, etc)", metavar="PLATFORM", dest="platform")
+    parser.add_option("-p", "--platform", help="PLATFORM: specify custom build. (eg qt, ios, android, etc)", metavar="PLATFORM", dest="platform")
 
     (options, args) = parser.parse_args()
 	
     if (options.platform):
-		if (options.platform == "ios"): 
-				createIosResFile()
+                print "reading %s..." % options.platform
+                if (options.platform == 'ios'):
+			createIosResFile()
+                elif (options.platform == 'qt'):
+			createQrcFile()
 		else:
-				createStandardResFile()
+			createStandardResFile()
     else:
 		createStandardResFile()
 

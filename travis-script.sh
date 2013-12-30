@@ -14,6 +14,7 @@ cd ../..
 # we create resource package
 cd projects/mtg/bin/Res
 python createResourceZip.py
+python createResourceZip.py —-platform=qt
 # if we let the zip here, Wagic will use it in the testsuite
 # and we'll get 51 failed test cases
 mv core_*.zip ../../../../core.zip
@@ -59,12 +60,14 @@ qmake projects/mtg/wagic-qt.pro CONFIG+=console CONFIG+=debug DEFINES+=CAPTURE_S
 make -j 8
 
 # we're cross-compiling a Qt Windows version here, 
-# PATH is only set here to prevent colision
+# PATH is only set here to prevent collision
 export PATH="$PATH:/opt/mingw32/bin"
 mkdir build
 cd build
 mkdir win-cross
 cd win-cross
+mv ../../projects/mtg/bin/Res/settings/options.orig.txt ../../projects/mtg/bin/Res/settings/options.txt
+mv ../../projects/mtg/bin/Res/player/options.orig.txt ../../projects/mtg/bin/Res/player/options.txt
 /opt/mingw32/bin/qmake ../../projects/mtg/wagic-qt.pro CONFIG+=release CONFIG+=graphics
 make -j 8
 cd release
@@ -77,6 +80,8 @@ cp ../../../projects/mtg/bin/zlib1.dll .
 cp /opt/mingw32/bin/libpng15-15.dll .
 cd ..
 zip win-cross.zip -r release/
+mv ../../projects/mtg/bin/Res/settings/options.txt ../../projects/mtg/bin/Res/settings/options.orig.txt
+mv ../../projects/mtg/bin/Res/player/options.txt ../../projects/mtg/bin/Res/player/options.orig.txt
 cd ../..
 
 # Now we run the testsuite (Res needs to be in the working directory)
