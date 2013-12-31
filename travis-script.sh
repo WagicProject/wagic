@@ -14,7 +14,7 @@ cd ../..
 # we create resource package
 cd projects/mtg/bin/Res
 python createResourceZip.py
-python createResourceZip.py —platform=qt
+python createResourceZip.py --platform=qt
 # if we let the zip here, Wagic will use it in the testsuite
 # and we'll get 51 failed test cases
 mv core_*.zip ../../../../core.zip
