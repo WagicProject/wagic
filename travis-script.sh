@@ -49,10 +49,10 @@ $ANDROID update project -t 1 -p projects/mtg/Android
 ant debug -f projects/mtg/Android/build.xml
 
 # we're building a Qt version with GUI here
-mv ../projects/mtg/bin/Res/settings/options.orig.txt ../projects/mtg/bin/Res/settings/options.txt
-mv ../projects/mtg/bin/Res/player/options.orig.txt ../projects/mtg/bin/Res/player/options.txt
 mkdir qt-gui-build
 cd qt-gui-build
+mv ../projects/mtg/bin/Res/settings/options.orig.txt ../projects/mtg/bin/Res/settings/options.txt
+mv ../projects/mtg/bin/Res/player/options.orig.txt ../projects/mtg/bin/Res/player/options.txt
 qmake ../projects/mtg/wagic-qt.pro CONFIG+=release CONFIG+=graphics
 make -j 8
 cd ..
