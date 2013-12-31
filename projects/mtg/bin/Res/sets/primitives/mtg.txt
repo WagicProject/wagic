@@ -28204,7 +28204,7 @@ subtype=Equipment
 [card]
 name=Executioner's Swing
 text=Target creature that dealt damage this turn gets -5/-5 until end of turn.
-target=creature[damaged]
+target=creature[damager]
 auto=-5/-5 ueot
 mana={W}{B}
 type=Instant

@@ -1224,6 +1224,18 @@ bool CardGui::FilterCard(MTGCard * _card,string filter)
                         cd.CDcontrollerDamaged = 1;
                     }
                 }
+                //creature dealt damage to anything
+                else if (attribute.find("damager") != string::npos)
+                {
+                    if (minus)
+                    {
+                        cd.CDdamager = -1;
+                    } 
+                    else 
+                    {
+                        cd.CDdamager = 1;
+                    }
+                }
                 else if (attribute.find("multicolor") != string::npos)
                 {
                     //card is multicolored?
