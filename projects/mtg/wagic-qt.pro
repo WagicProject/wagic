@@ -17,7 +17,7 @@ else:CONFIG(graphics, graphics|console){
     folder_01.source = qml/QmlWagic
     folder_01.target = qml
     DEPLOYMENTFOLDERS = folder_01
-    RESOURCES = bin/Res/core.qrc
+    windows:RESOURCES = bin/Res/core.qrc
     QT += core gui opengl network
     QT -= declarative quick qml
     #maemo5:DEFINES += QT_WIDGET
