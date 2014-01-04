@@ -4723,14 +4723,15 @@ void AVanishing::Update(float dt)
 
 int AVanishing::resolve()
 {
-
     return 1;
 }
 
 const string AVanishing::getMenuText()
 {
-if(counterName.find("fade") != string::npos)
-return "Fading";
+    if (counterName.find("fade") != string::npos)
+    {
+        return "Fading";
+    }
     return "Vanishing";
 }
 

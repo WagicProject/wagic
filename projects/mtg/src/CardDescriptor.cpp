@@ -237,13 +237,17 @@ MTGCardInstance * CardDescriptor::match(MTGCardInstance * card)
     if(CDopponentDamaged == -1 || CDopponentDamaged == 1)
     {
         Player * p = card->controller()->opponent();//controller()->opponent();
-        if ((CDopponentDamaged == -1 && card->damageToOpponent && card->controller() == p) || (CDopponentDamaged == 1 && !card->damageToOpponent && card->controller() == p)
-            || (CDopponentDamaged == -1 && card->damageToController && card->controller() == p->opponent()) || (CDopponentDamaged == 1 && !card->damageToController && card->controller() == p->opponent()))
+        if ((CDopponentDamaged == -1 && card->damageToOpponent && card->controller() == p)
+            || (CDopponentDamaged == 1 && !card->damageToOpponent && card->controller() == p)
+            || (CDopponentDamaged == -1 && card->damageToController && card->controller() == p->opponent())
+            || (CDopponentDamaged == 1 && !card->damageToController && card->controller() == p->opponent()))
         {
             match = NULL;
         }
-        if ((CDcontrollerDamaged == -1 && card->damageToController && card->controller() == p) || (CDcontrollerDamaged == 1 && !card->damageToController && card->controller() == p)
-            || (CDcontrollerDamaged == -1 && card->damageToOpponent && card->controller() == p->opponent()) || (CDcontrollerDamaged == 1 && !card->damageToOpponent && card->controller() == p->opponent()))
+        if ((CDcontrollerDamaged == -1 && card->damageToController && card->controller() == p)
+            || (CDcontrollerDamaged == 1 && !card->damageToController && card->controller() == p)
+            || (CDcontrollerDamaged == -1 && card->damageToOpponent && card->controller() == p->opponent())
+            || (CDcontrollerDamaged == 1 && !card->damageToOpponent && card->controller() == p->opponent()))
         {
             match = NULL;
         }
