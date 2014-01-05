@@ -37166,7 +37166,7 @@ type=Sorcery
 [/card]
 [card]
 name=Grave Pact
-auto=@movedTo(creature|mygraveyard) from(mybattlefield):ability$!name(sacrifice) notatarget(creature|mybattlefield) sacrifice!$ opponent
+auto=@movedTo(creature|graveyard) from(mybattlefield):ability$!name(sacrifice) notatarget(creature|mybattlefield) sacrifice!$ opponent
 text=Whenever a creature you control dies, each other player sacrifices a creature.
 mana={1}{B}{B}{B}
 type=Enchantment
