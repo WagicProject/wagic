@@ -192,8 +192,8 @@ MTGCardInstance * CardDescriptor::match(MTGCardInstance * card)
     }
 
     //Abilities
-    BasicAbilitiesSet possibleSet = basicAbilities & card->basicAbilities;
-    if (possibleSet.none())
+    BasicAbilitiesSet set = basicAbilities & card->basicAbilities;
+    if (set != basicAbilities)
         return NULL;
     
     BasicAbilitiesSet excludedSet = mAbilityExclusions & card->basicAbilities;
