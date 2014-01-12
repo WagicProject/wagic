@@ -12,8 +12,8 @@ DownloadRequest::DownloadRequest(string localPath,
                     string remoteResourceURL,
                     string ETag,
                     DownloadStatus downloadStatus,
-                    uint32_t totalSize,
-                    uint32_t currentSize):
+                    size_t totalSize,
+                    size_t currentSize):
     mLocalPath(localPath),
     mRemoteResourceURL(remoteResourceURL),
     mRequestedRemoteResourceURL(remoteResourceURL),

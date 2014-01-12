@@ -65,8 +65,8 @@ protected:
     string mETag;
     DownloadStatus mDownloadStatus;
     bool mUpgradeAvailable;
-    uint32_t mTotalSize;
-    uint32_t mCurrentSize;
+    size_t mTotalSize;
+    size_t mCurrentSize;
     ofstream mFile;
 #ifdef QT_CONFIG
     QNetworkReply* mNetworkReply;
@@ -79,8 +79,8 @@ public:
                     string remoteResourceURL="",
                     string ETag = "",
                     DownloadStatus downloadStatus=NOT_PRESENT,
-                    uint32_t totalSize = 0,
-                    uint32_t currentSize = 0);
+                    size_t totalSize = 0,
+                    size_t currentSize = 0);
     ~DownloadRequest();
     static bool NetworkIsAccessible();
 
@@ -92,7 +92,7 @@ public:
     void startHead();
     DownloadStatus getDownloadStatus() const { return mDownloadStatus; };
     bool upgradeAvailable() const { return mUpgradeAvailable; };
-    void getSizes(uint32_t& totalSize, uint32_t&currentSize) {
+    void getSizes(size_t& totalSize, size_t&currentSize) {
         totalSize = mTotalSize;
         currentSize = mCurrentSize;
     };
