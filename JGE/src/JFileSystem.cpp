@@ -557,7 +557,13 @@ bool JFileSystem::Rename(string _from, string _to)
     string from = mUserFSPath + _from;
     string to = mUserFSPath + _to;
     std::remove(to.c_str());
-    return rename(from.c_str(), to.c_str()) ? true: false;
+    return (rename(from.c_str(), to.c_str()) == 0);
+}
+
+bool JFileSystem::Remove(string aFile)
+{
+    string toRemove = mUserFSPath + aFile;
+    return (std::remove(toRemove.c_str()) == 0);
 }
 
 int JFileSystem::GetFileSize(izfstream & file)

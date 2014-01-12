@@ -9,11 +9,11 @@
 #include <QtDeclarative>
 #include "qmlapplicationviewer.h"
 #endif //QT_WIDGET
-#include "filedownloader.h"
+#include "Downloader.h"
 #include "GameApp.h"
 #include "corewrapper.h"
 
-QWidget* g_glwidget = NULL;
+WagicCore* g_glwidget = NULL;
 
 static const struct { LocalKeySym keysym; JButton keycode; } gDefaultBindings[] =
 {
@@ -69,18 +69,22 @@ int main(int argc, char* argv[])
 
 #endif //QT_WIDGET
 
-    if(argc >= 2 && string(argv[1]) == "testsuite")
-    {
-        int result = 0;
-        result += WagicCore::runTestSuite();
-        return result;
-    }
-
     app->setApplicationName(WagicCore::getApplicationName());
-    FileDownloader fileDownloader(USERDIR, WAGIC_RESOURCE_NAME);
+    Downloader*downloader = Downloader::GetInstance();
+    DownloadRequest* downloadRequest = downloader->Get(
+                "core.zip",
+                "https://github.com/WagicProject/wagic/releases/download/latest-master/Wagic-core-288.zip"
+                );
 #ifdef QT_WIDGET
     g_glwidget = new WagicCore();
-    g_glwidget->connect(&fileDownloader, SIGNAL(finished(int)), SLOT(start(int)));
+    if(downloadRequest->getDownloadStatus() == DownloadRequest::DOWNLOADED)
+    {
+        g_glwidget->start(0);
+    }
+    else
+    {
+        g_glwidget->connect(downloadRequest, SIGNAL(statusChanged(int)), SLOT(start(int)));
+    }
 #else
     qmlRegisterType<WagicCore>("CustomComponents", 1, 0, "WagicCore");
 
