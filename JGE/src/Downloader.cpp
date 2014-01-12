@@ -12,8 +12,8 @@ DownloadRequest::DownloadRequest(string localPath,
                     string remoteResourceURL,
                     string ETag,
                     DownloadStatus downloadStatus,
-                    uint64_t totalSize,
-                    uint64_t currentSize):
+                    uint32_t totalSize,
+                    uint32_t currentSize):
     mLocalPath(localPath),
     mRemoteResourceURL(remoteResourceURL),
     mRequestedRemoteResourceURL(remoteResourceURL),
@@ -33,7 +33,7 @@ void DownloadRequest::startHead()
 {
 #ifdef QT_CONFIG
     QNetworkRequest request(QUrl(QString(mRequestedRemoteResourceURL.c_str())));
-    request.setRawHeader("If-None-Match", "e42fe0b592d2b34965e2e92742b0d9c7");//mETag.c_str());
+    request.setRawHeader("If-None-Match", mETag.c_str());
     mNetworkReply = networkAccessManager.head(request);
     connect(mNetworkReply, SIGNAL(finished()), SLOT(fileDownloaded()));
 #endif
