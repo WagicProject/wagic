@@ -80,7 +80,6 @@ public class SDLActivity extends Activity implements OnKeyListener
     public Boolean             mErrorHappened                        = false;
     public final static String RES_FOLDER                            = Environment.getExternalStorageDirectory().getPath() + "/Wagic/Res/";
     public static String       RES_FILENAME                          = "core_0184.zip";
-    public static final String RES_URL                               = "http://wagic.googlecode.com/files/";
 
     public String              systemFolder                          = Environment.getExternalStorageDirectory().getPath() + "/Wagic/Res/";
     private String             userFolder;
@@ -307,7 +306,7 @@ public class SDLActivity extends Activity implements OnKeyListener
 
     private void startDownload()
     {
-        String url = RES_URL + RES_FILENAME;
+        String url = getResourceUrl();
         if (!checkStorageState())
         {
             Log.e(TAG, "Error in initializing storage space.");
@@ -437,7 +436,7 @@ public class SDLActivity extends Activity implements OnKeyListener
         mContext = this.getApplicationContext();
         // get the current version of the app to set the core filename
         String versionCodeString = getApplicationCode();
-        RES_FILENAME = "core_" + versionCodeString + ".zip";
+        RES_FILENAME = getResourceName();
 
         StorageOptions.determineStorageOptions();
         checkStorageLocationPreference();
@@ -525,6 +524,9 @@ public class SDLActivity extends Activity implements OnKeyListener
     }
 
     // C functions we call
+    public static native String getResourceUrl();
+    public static native String getResourceName();
+
     public static native void nativeInit();
 
     public static native void nativeQuit();
