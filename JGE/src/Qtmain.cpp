@@ -70,14 +70,17 @@ int main(int argc, char* argv[])
 #endif //QT_WIDGET
 
     app->setApplicationName(WagicCore::getApplicationName());
+    DownloadRequest* downloadRequest = NULL;
+#ifdef WAGIC_RESOURCE_URL
     Downloader*downloader = Downloader::GetInstance();
-    DownloadRequest* downloadRequest = downloader->Get(
+    downloadRequest = downloader->Get(
                 "core.zip",
-                "https://github.com/WagicProject/wagic/releases/download/latest-master/Wagic-core-288.zip"
+                WAGIC_RESOURCE_URL
                 );
+#endif
 #ifdef QT_WIDGET
     g_glwidget = new WagicCore();
-    if(downloadRequest->getDownloadStatus() == DownloadRequest::DOWNLOADED)
+    if(!downloadRequest || downloadRequest->getDownloadStatus() == DownloadRequest::DOWNLOADED)
     {
         g_glwidget->start(0);
     }

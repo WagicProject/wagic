@@ -3,7 +3,7 @@
 	<property file="build.properties" />
 	<property file="build.number.properties" />
 	<property environment="env"/>
-
+    
 	<path id="groovy.class.path" >
 		<fileset dir="${groovy.dir}" />
 	</path>
@@ -91,6 +91,7 @@ Author: Michael Nguyen
 #define WAGIC_VERSION_STRING    VERSION_STRINGIFY(WAGIC_VERSION)
 #define WAGIC_CORE_VERSION_STRING "core_" VERSION_STRINGIFY(WAGIC_RESOURCE_VERSION)
 #define WAGIC_RESOURCE_NAME     WAGIC_CORE_VERSION_STRING ".zip"
+#define WAGIC_RESOURCE_URL      "https://github.com/WagicProject/wagic/releases/download/${env.RELEASE_NAME}/Wagic-core.zip"
 
 #endif
 

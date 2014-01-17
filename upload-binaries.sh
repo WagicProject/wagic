@@ -10,28 +10,28 @@ if [ "$TRAVIS_BRANCH" == "alphas" ]; then
      -H "Accept: application/vnd.github.manifold-preview" \
      -H "Content-Type: application/zip" \
      --data-binary @core.zip \
-     "https://uploads.github.com/repos/WagicProject/wagic/releases/${IDDI}/assets?name=Wagic-core-${TRAVIS_BUILD_NUMBER}.zip"
+     "https://uploads.github.com/repos/WagicProject/wagic/releases/${IDDI}/assets?name=Wagic-core.zip"
 
   echo -e "Uploading android package\n"
   curl -X POST -H "Authorization: token ${GH_TOKEN}" \
      -H "Accept: application/vnd.github.manifold-preview" \
      -H "Content-Type: application/zip" \
      --data-binary @projects/mtg/Android/bin/Wagic-debug.apk \
-     "https://uploads.github.com/repos/WagicProject/wagic/releases/${IDDI}/assets?name=Wagic-android-${TRAVIS_BUILD_NUMBER}.apk"
+     "https://uploads.github.com/repos/WagicProject/wagic/releases/${IDDI}/assets?name=Wagic-android.apk"
 
   echo -e "Uploading PSP package\n"
   curl -X POST -H "Authorization: token ${GH_TOKEN}" \
      -H "Accept: application/vnd.github.manifold-preview" \
      -H "Content-Type: application/zip" \
      --data-binary @projects/mtg/psprelease.zip \
-     "https://uploads.github.com/repos/WagicProject/wagic/releases/${IDDI}/assets?name=Wagic-psp-${TRAVIS_BUILD_NUMBER}.zip"
+     "https://uploads.github.com/repos/WagicProject/wagic/releases/${IDDI}/assets?name=Wagic-psp.zip"
 
   echo -e "Uploading Windows package\n"
   curl -X POST -H "Authorization: token ${GH_TOKEN}" \
      -H "Accept: application/vnd.github.manifold-preview" \
      -H "Content-Type: application/zip" \
      --data-binary @build/win-cross/win-cross.zip \
-     "https://uploads.github.com/repos/WagicProject/wagic/releases/${IDDI}/assets?name=Wagic-windows-${TRAVIS_BUILD_NUMBER}.zip"
+     "https://uploads.github.com/repos/WagicProject/wagic/releases/${IDDI}/assets?name=Wagic-windows.zip"
 
   echo -e "Done uploading\n"
 fi
@@ -71,28 +71,28 @@ if [ "$TRAVIS_BRANCH" == "master" ]; then
      -H "Accept: application/vnd.github.manifold-preview" \
      -H "Content-Type: application/zip" \
      --data-binary @core.zip \
-     "https://uploads.github.com/repos/WagicProject/wagic/releases/${IDDI}/assets?name=Wagic-core-${TRAVIS_BUILD_NUMBER}.zip"
+     "https://uploads.github.com/repos/WagicProject/wagic/releases/${IDDI}/assets?name=Wagic-core.zip"
 
   echo -e "Uploading android package\n"
   curl -X POST -H "Authorization: token ${GH_TOKEN}" \
      -H "Accept: application/vnd.github.manifold-preview" \
      -H "Content-Type: application/zip" \
      --data-binary @projects/mtg/Android/bin/Wagic-debug.apk \
-     "https://uploads.github.com/repos/WagicProject/wagic/releases/${IDDI}/assets?name=Wagic-android-${TRAVIS_BUILD_NUMBER}.apk"
+     "https://uploads.github.com/repos/WagicProject/wagic/releases/${IDDI}/assets?name=Wagic-android.apk"
 
   echo -e "Uploading PSP package\n"
   curl -X POST -H "Authorization: token ${GH_TOKEN}" \
      -H "Accept: application/vnd.github.manifold-preview" \
      -H "Content-Type: application/zip" \
      --data-binary @projects/mtg/psprelease.zip \
-     "https://uploads.github.com/repos/WagicProject/wagic/releases/${IDDI}/assets?name=Wagic-psp-${TRAVIS_BUILD_NUMBER}.zip"
+     "https://uploads.github.com/repos/WagicProject/wagic/releases/${IDDI}/assets?name=Wagic-psp.zip"
 
   echo -e "Uploading Windows package\n"
   curl -X POST -H "Authorization: token ${GH_TOKEN}" \
      -H "Accept: application/vnd.github.manifold-preview" \
      -H "Content-Type: application/zip" \
      --data-binary @build/win-cross/win-cross.zip \
-     "https://uploads.github.com/repos/WagicProject/wagic/releases/${IDDI}/assets?name=Wagic-windows-${TRAVIS_BUILD_NUMBER}.zip"
+     "https://uploads.github.com/repos/WagicProject/wagic/releases/${IDDI}/assets?name=Wagic-windows.zip"
 
   echo -e "Done uploading\n"
 fi
