@@ -15,6 +15,8 @@ fi
 fi
 fi
 
+echo "RELEASE_NAME = "$RELEASE_NAME
+
 
 # updating versions with the TRAVIS build numbers
 cd projects/mtg/
