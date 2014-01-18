@@ -767,7 +767,7 @@ public class SDLActivity extends Activity implements OnKeyListener
                 input.close();
             } catch (Exception e)
             {
-                String errorMessage = "An error happened while downloading the resources. It could be that our server is temporarily down, that your device is not connected to a network, or that we cannot write to " + mSingleton.getSystemStorageLocation() + ". Please check your phone settings and try again. For more help please go to http://wagic.net";
+                String errorMessage = "An error happened while downloading the resources at " + aurl +" . It could be that our server is temporarily down, that your device is not connected to a network, or that we cannot write to " + mSingleton.getSystemStorageLocation() + ". Please check your phone settings and try again. For more help please go to http://wagic.net";
                 mSingleton.downloadError(errorMessage);
                 Log.e(TAG1, errorMessage);
                 Log.e(TAG1, e.getMessage());
