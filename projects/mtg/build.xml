@@ -91,7 +91,8 @@ Author: Michael Nguyen
 #define WAGIC_VERSION_STRING    VERSION_STRINGIFY(WAGIC_VERSION)
 #define WAGIC_CORE_VERSION_STRING "core_" VERSION_STRINGIFY(WAGIC_RESOURCE_VERSION)
 #define WAGIC_RESOURCE_NAME     "Wagic-core.zip"
-#define WAGIC_RESOURCE_URL      "https://github.com/WagicProject/wagic/releases/download/${env.RELEASE_NAME}/" WAGIC_RESOURCE_NAME
+#define WAGIC_RELEASE_NAME      ${env.RELEASE_NAME}
+#define WAGIC_RESOURCE_URL      "https://github.com/WagicProject/wagic/releases/download/" WAGIC_RELEASE_NAME "/" "WAGIC_RESOURCE_NAME
 
 #endif
 
