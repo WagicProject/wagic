@@ -9,10 +9,10 @@ echo pwd = `pwd`
 echo TRAVIS_PULL_REQUEST = $TRAVIS_PULL_REQUEST
 echo TRAVIS_BRANCH = $TRAVIS_BRANCH
 
-if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
-if [ "$TRAVIS_BRANCH" == "alphas" ]; then
+if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
+if [ "$TRAVIS_BRANCH" = "alphas" ]; then
     export RELEASE_NAME="alpha-${TRAVIS_BUILD_NUMBER}"
-else if [ "$TRAVIS_BRANCH" == "master" ]; then
+else if [ "$TRAVIS_BRANCH" = "master" ]; then
     export RELEASE_NAME="latest-master"
 fi
 fi
