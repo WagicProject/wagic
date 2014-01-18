@@ -5,6 +5,16 @@ echo PSPDEV = $PSPDEV
 echo psp-config = `psp-config --psp-prefix`
 echo ls = `ls`
 echo pwd = `pwd`
+# computing potential release name
+if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
+if [ "$TRAVIS_BRANCH" == "alphas" ]; then
+    RELEASE_NAME = "alpha-${TRAVIS_BUILD_NUMBER}"
+else if [ "$TRAVIS_BRANCH" == "master" ]; then
+    RELEASE_NAME = "latest-master"
+fi
+fi
+fi
+
 
 # updating versions with the TRAVIS build numbers
 cd projects/mtg/

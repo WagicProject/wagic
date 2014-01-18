@@ -78,7 +78,20 @@ extern "C" void Java_org_libsdl_app_SDLActivity_nativeResume(
 {    
 	if (!g_engine)
 		return;
-	g_engine->Resume();
+    g_engine->Resume();
+}
+
+#include "Wagic_Version.h"
+extern "C" jstring Java_org_libsdl_app_SDLActivity_getResourceName(
+                                       JNIEnv* env, jclass cls)
+{
+    return env->NewStringUTF (WAGIC_RESOURCE_NAME);
+}
+
+extern "C" jstring Java_org_libsdl_app_SDLActivity_getResourceUrl(
+                                       JNIEnv* env, jclass cls)
+{
+    return env->NewStringUTF (WAGIC_RESOURCE_URL);
 }
 #endif
 

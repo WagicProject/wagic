@@ -283,6 +283,7 @@ HEADERS  += \
 
 # JGE, could probably be moved outside
 SOURCES += \
+        ../../JGE/src/Downloader.cpp\
         ../../JGE/src/Encoding.cpp\
         ../../JGE/src/JAnimator.cpp\
         ../../JGE/src/JApp.cpp\
@@ -320,6 +321,7 @@ SOURCES += \
         ../../JGE/src/zipFS/zstream.cpp
 
 HEADERS += \
+        ../../JGE/include/Downloader.h\
         ../../JGE/include/Threading.h\
         ../../JGE/include/decoder_prx.h\
         ../../JGE/include/DebugRoutines.h\
