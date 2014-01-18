@@ -6,16 +6,19 @@ echo psp-config = `psp-config --psp-prefix`
 echo ls = `ls`
 echo pwd = `pwd`
 # computing potential release name
+echo TRAVIS_PULL_REQUEST = $TRAVIS_PULL_REQUEST
+echo TRAVIS_BRANCH = $TRAVIS_BRANCH
+
 if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
 if [ "$TRAVIS_BRANCH" == "alphas" ]; then
-    RELEASE_NAME = "alpha-${TRAVIS_BUILD_NUMBER}"
+    export RELEASE_NAME="alpha-${TRAVIS_BUILD_NUMBER}"
 else if [ "$TRAVIS_BRANCH" == "master" ]; then
-    RELEASE_NAME = "latest-master"
+    export RELEASE_NAME="latest-master"
 fi
 fi
 fi
 
-echo "RELEASE_NAME = "$RELEASE_NAME
+echo RELEASE_NAME = $RELEASE_NAME
 
 
 # updating versions with the TRAVIS build numbers
