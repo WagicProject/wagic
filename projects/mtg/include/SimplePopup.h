@@ -20,7 +20,6 @@ class SimplePopup: public JGuiController
 private:
     float mWidth, mX, mY;
     int mMaxLines;
-    int mFontId;
     DeckMetaData * mDeckInformation;
     string mTitle;
     WFont *mTextFont;

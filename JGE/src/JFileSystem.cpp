@@ -126,7 +126,7 @@ JFileSystem::JFileSystem(const string & _userPath, const string & _systemPath)
 	DebugTrace("User path " << userPath);
 #elif defined (QT_CONFIG)
 
-    QDir sysDir("projects/mtg/bin/Res");
+    QDir sysDir(RESDIR);
     QDir dir(QDir::homePath());
     dir.mkdir(USERDIR);
     dir.cd(USERDIR);
@@ -313,11 +313,15 @@ bool JFileSystem::readIntoString(const string & FilePath, string & target)
 
     int fileSize = GetFileSize(file);
 
+#ifndef __MINGW32__
     try {
+#endif
         target.resize((std::string::size_type) fileSize);
+#ifndef __MINGW32__
     } catch (bad_alloc&) {
         return false;
     }
+#endif
 
 
     if (fileSize)
@@ -553,7 +557,13 @@ bool JFileSystem::Rename(string _from, string _to)
     string from = mUserFSPath + _from;
     string to = mUserFSPath + _to;
     std::remove(to.c_str());
-    return rename(from.c_str(), to.c_str()) ? true: false;
+    return (rename(from.c_str(), to.c_str()) == 0);
+}
+
+bool JFileSystem::Remove(string aFile)
+{
+    string toRemove = mUserFSPath + aFile;
+    return (std::remove(toRemove.c_str()) == 0);
 }
 
 int JFileSystem::GetFileSize(izfstream & file)

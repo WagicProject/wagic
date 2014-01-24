@@ -218,7 +218,8 @@ class Constants
       soulbond = 100,
       LURE = 101,
       NOLEGEND = 102,
-      NB_BASIC_ABILITIES = 103,
+      CANPLAYFROMGRAVEYARD = 103,
+      NB_BASIC_ABILITIES = 104,
 
 
     RARITY_S = 'S',   //Special Rarity

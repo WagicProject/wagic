@@ -1039,6 +1039,12 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         observer->addObserver(NEW MTGMorphCostRule(observer, -1));
         return NULL;
     }
+    found = s.find("playfromgraveyardrule");
+    if(found != string::npos)
+    {
+        observer->addObserver(NEW MTGPlayFromGraveyardRule(observer, -1));
+        return NULL;
+    }
     //this rule handles attacking ability during attacker phase
     found = s.find("attackrule");
     if(found != string::npos)
@@ -4270,8 +4276,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
     if (card->hasType(Subtypes::TYPE_INSTANT) || card->hasType(Subtypes::TYPE_SORCERY))
     {
         MTGPlayerCards * zones = card->owner->game;
-        if(card->getCurrentZone())
-            card->currentZone->owner->game;//grab it from where ever it is.
         MTGPlayerCards * Endzones = card->owner->game;//put them in thier owners respective zones as per rules.
         if (card->basicAbilities[(int)Constants::EXILEDEATH])
         {

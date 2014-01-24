@@ -146,7 +146,7 @@ int MTGEventBonus::receiveEvent(WEvent * event)
             }
             //////bonus for having a LOT of specific type.
             //not else'd becuase it is possible for a card to contain
-            //more then one of the types, and for more then one to trigger.
+            //more than one of the types, and for more than one to trigger.
             if(e->card->hasType(Subtypes::TYPE_ARTIFACT))
                 toys[currentPlayer->getId()]++;
             if(e->card->isCreature())
@@ -273,6 +273,7 @@ MTGEventBonus * MTGEventBonus::clone() const
 {
     return NEW MTGEventBonus(*this);
 }
+
 MTGPutInPlayRule::MTGPutInPlayRule(GameObserver* observer, int _id) :
 PermanentAbility(observer, _id)
 {
@@ -716,7 +717,6 @@ int MTGAlternativeCostRule::reactToClick(MTGCardInstance * card, ManaCost *alter
         copy->alternateCostPaid[alternateCostType] = 1;
         spell->resolve();
         SAFE_DELETE(spell);
-        game->mLayers->stackLayer()->addSpell(copy, NULL, NULL, alternateCostType, 1);
     }
     else
     {   
@@ -1140,8 +1140,49 @@ MTGMorphCostRule * MTGMorphCostRule::clone() const
 //-------------------------------------------------------------------------
 //-------------------------------------------------------------------------
 
+MTGPlayFromGraveyardRule::MTGPlayFromGraveyardRule(GameObserver* observer, int _id) :
+MTGAlternativeCostRule(observer, _id)
+{
+    aType = MTGAbility::PUT_INTO_PLAY;
+}
 
+int MTGPlayFromGraveyardRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
+{
+    Player * player = game->currentlyActing();
+    ManaCost * cost = card->getManaCost();
 
+    if (!player->game->graveyard->hasCard(card))
+        return 0;
+    if (!card->has(Constants::CANPLAYFROMGRAVEYARD))
+        return 0;
+
+    return MTGAlternativeCostRule::isReactingToClick(card, mana, cost);
+}
+
+int MTGPlayFromGraveyardRule::reactToClick(MTGCardInstance * card)
+{
+    if (!isReactingToClick(card))
+        return 0;
+
+    ManaCost * cost = card->getManaCost();
+
+    card->paymenttype = MTGAbility::PUT_INTO_PLAY;
+
+    return MTGAlternativeCostRule::reactToClick(card, cost, ManaCost::MANA_PAID);
+}
+
+ostream& MTGPlayFromGraveyardRule::toString(ostream& out) const
+{
+    out << "MTGPlayFromGraveyardRule ::: (";
+    return MTGAbility::toString(out) << ")";
+}
+
+MTGPlayFromGraveyardRule * MTGPlayFromGraveyardRule::clone() const
+{
+    return NEW MTGPlayFromGraveyardRule(*this);
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
 
 bool MTGAttackRule::select(Target* t)
 {

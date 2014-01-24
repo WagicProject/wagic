@@ -16,6 +16,7 @@ auto=flashbackrule
 auto=retracerule
 auto=suspendrule
 auto=morphrule
+auto=playfromgraveyardrule
 auto=attackrule
 auto=blockrule
 auto=combattriggerrule

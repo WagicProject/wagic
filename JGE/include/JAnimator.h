@@ -297,7 +297,6 @@ public:
 private:
 	float mTimer;
 	float mFrameTime;
-	JAnimator* mAnimator;
 	vector<JAnimatorObject *> mObjects;
 
 };

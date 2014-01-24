@@ -96,9 +96,8 @@ int main(int argc, char* argv[])
     options.reloadProfile();
     TestSuite testSuite("test/_tests.txt");
     result = testSuite.run();
-    int totalTests = testSuite.nbTests + testSuite.nbAITests;
     delete wagicCore;
-    DebugTrace("TestSuite done: failed test: " << result << " out of " << totalTests << " total");
+    DebugTrace("TestSuite done: failed test: " << result << " out of " << testSuite.nbTests + testSuite.nbAITests << " total");
 #ifdef CAPTURE_STDERR
     OutputCapturer::debugAndClear();
 #endif

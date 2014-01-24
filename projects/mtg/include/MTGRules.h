@@ -66,6 +66,7 @@ public:
     MTGEventBonus(GameObserver* observer, int _id);
     virtual MTGEventBonus * clone() const;
 };
+
 class MTGPutInPlayRule: public PermanentAbility
 {
 public:
@@ -171,6 +172,21 @@ public:
     }
     virtual MTGMorphCostRule * clone() const;
 };
+
+class MTGPlayFromGraveyardRule: public MTGAlternativeCostRule
+{
+public:
+    int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
+    int reactToClick(MTGCardInstance * card);
+    virtual ostream& toString(ostream& out) const;
+    MTGPlayFromGraveyardRule(GameObserver* observer, int _id);
+    const string getMenuText()
+    {
+        return "cast card from graveyard";
+    }
+    virtual MTGPlayFromGraveyardRule * clone() const;
+};
+
 
 class MTGSuspendRule: public MTGAlternativeCostRule
 {

@@ -6,6 +6,7 @@
 #include "MTGDeck.h"
 #include "Subtypes.h"
 #include "Translate.h"
+#include "GameApp.h"
 
 using std::string;
 

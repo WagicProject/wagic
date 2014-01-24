@@ -6,6 +6,7 @@
 #include "Player.h"
 #include "AIMomirPlayer.h"
 
+#include "GameApp.h"
 #include "MTGGameZones.h"
 #include "MTGAbility.h"
 #include "AllAbilities.h"
