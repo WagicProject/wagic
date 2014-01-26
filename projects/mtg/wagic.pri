@@ -303,7 +303,6 @@ SOURCES += \
         ../../JGE/src/JSpline.cpp\
         ../../JGE/src/JNetwork.cpp\
         ../../JGE/src/pc/JSocket.cpp\
-        ../../JGE/src/pc/JSfx.cpp\
         ../../JGE/src/JSprite.cpp\
         ../../JGE/src/Vector2D.cpp\
         ../../JGE/src/tinyxml/tinystr.cpp\
