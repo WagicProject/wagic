@@ -252,7 +252,7 @@ protected:
     void DestroySoundSystem();
 
 private:
-#ifdef PSP
+#if (defined PSP || defined ANDROID)
     JMusic *mCurrentMusic;
     JSample *mCurrentSample;
 #endif
