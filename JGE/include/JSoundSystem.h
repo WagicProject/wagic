@@ -25,6 +25,10 @@
 #elif defined USE_PHONON
 #include <phonon/AudioOutput>
 #include <phonon/MediaObject>
+#elif defined QT_CONFIG
+#include "QMediaPlayer"
+#include "QMediaPlaylist"
+#include "QSoundEffect"
 #elif defined WIN32
 #include <windows.h>
 #define WITH_FMOD
@@ -41,10 +45,6 @@
 
 #include "JAudio.h"
 #include "JMP3.h"
-#elif defined QT_CONFIG
-#include "QMediaPlayer"
-#include "QMediaPlaylist"
-#include "QSoundEffect"
 #endif
 
 #ifdef WITH_FMOD

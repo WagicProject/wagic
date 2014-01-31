@@ -41,8 +41,8 @@ INCLUDEPATH += ../../Boost
 INCLUDEPATH += include
 
 unix:!symbian:LIBS += -lz
-win32:LIBS += ../../JGE/Dependencies/lib/fmodvc.lib
-win32:LIBS += ../../JGE/Dependencies/lib/zlibd.lib
+windows:LIBS += ../../JGE/Dependencies/lib/fmodvc.lib
+windows:LIBS += ../../JGE/Dependencies/lib/zlibd.lib
 PRECOMPILED_HEADER = include/PrecompiledHeader.h
 
 #DEFINES += TRACK_OBJECT_USAGE
