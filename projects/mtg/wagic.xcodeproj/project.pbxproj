@@ -85,7 +85,6 @@
 		12059DBA14980B7300DAC43B /* DeckMetaData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA377061291C60500B9016A /* DeckMetaData.cpp */; };
 		12059DBB14980B7300DAC43B /* DeckStats.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA377071291C60500B9016A /* DeckStats.cpp */; };
 		12059DBC14980B7300DAC43B /* DuelLayers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA377081291C60500B9016A /* DuelLayers.cpp */; };
-		12059DBD14980B7300DAC43B /* Effects.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA377091291C60500B9016A /* Effects.cpp */; };
 		12059DBE14980B7300DAC43B /* ExtraCost.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA3770A1291C60500B9016A /* ExtraCost.cpp */; };
 		12059DBF14980B7300DAC43B /* GameApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA3770B1291C60500B9016A /* GameApp.cpp */; };
 		12059DC014980B7300DAC43B /* GameLauncher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA3770C1291C60500B9016A /* GameLauncher.cpp */; };
@@ -325,7 +324,6 @@
 		CEA377701291C60500B9016A /* DeckMetaData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA377061291C60500B9016A /* DeckMetaData.cpp */; };
 		CEA377711291C60500B9016A /* DeckStats.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA377071291C60500B9016A /* DeckStats.cpp */; };
 		CEA377721291C60500B9016A /* DuelLayers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA377081291C60500B9016A /* DuelLayers.cpp */; };
-		CEA377731291C60500B9016A /* Effects.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA377091291C60500B9016A /* Effects.cpp */; };
 		CEA377741291C60500B9016A /* ExtraCost.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA3770A1291C60500B9016A /* ExtraCost.cpp */; };
 		CEA377751291C60500B9016A /* GameApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA3770B1291C60500B9016A /* GameApp.cpp */; };
 		CEA377761291C60500B9016A /* GameLauncher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEA3770C1291C60500B9016A /* GameLauncher.cpp */; };
@@ -627,7 +625,6 @@
 		CEA3769E1291C60500B9016A /* DeckMetaData.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = DeckMetaData.h; sourceTree = "<group>"; };
 		CEA3769F1291C60500B9016A /* DeckStats.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = DeckStats.h; sourceTree = "<group>"; };
 		CEA376A01291C60500B9016A /* DuelLayers.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = DuelLayers.h; sourceTree = "<group>"; };
-		CEA376A11291C60500B9016A /* Effects.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = Effects.h; sourceTree = "<group>"; };
 		CEA376A21291C60500B9016A /* ExtraCost.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = ExtraCost.h; sourceTree = "<group>"; };
 		CEA376A31291C60500B9016A /* GameApp.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = GameApp.h; sourceTree = "<group>"; };
 		CEA376A41291C60500B9016A /* GameObserver.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = GameObserver.h; sourceTree = "<group>"; };
@@ -729,7 +726,6 @@
 		CEA377061291C60500B9016A /* DeckMetaData.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; path = DeckMetaData.cpp; sourceTree = "<group>"; };
 		CEA377071291C60500B9016A /* DeckStats.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; path = DeckStats.cpp; sourceTree = "<group>"; };
 		CEA377081291C60500B9016A /* DuelLayers.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; path = DuelLayers.cpp; sourceTree = "<group>"; };
-		CEA377091291C60500B9016A /* Effects.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; path = Effects.cpp; sourceTree = "<group>"; };
 		CEA3770A1291C60500B9016A /* ExtraCost.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; path = ExtraCost.cpp; sourceTree = "<group>"; };
 		CEA3770B1291C60500B9016A /* GameApp.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; path = GameApp.cpp; sourceTree = "<group>"; };
 		CEA3770C1291C60500B9016A /* GameLauncher.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; path = GameLauncher.cpp; sourceTree = "<group>"; };
@@ -1324,7 +1320,6 @@
 				CEA3769E1291C60500B9016A /* DeckMetaData.h */,
 				CEA3769F1291C60500B9016A /* DeckStats.h */,
 				CEA376A01291C60500B9016A /* DuelLayers.h */,
-				CEA376A11291C60500B9016A /* Effects.h */,
 				CEA376A21291C60500B9016A /* ExtraCost.h */,
 				CEA376A31291C60500B9016A /* GameApp.h */,
 				CEA376A41291C60500B9016A /* GameObserver.h */,
@@ -1445,7 +1440,6 @@
 				CEA377061291C60500B9016A /* DeckMetaData.cpp */,
 				CEA377071291C60500B9016A /* DeckStats.cpp */,
 				CEA377081291C60500B9016A /* DuelLayers.cpp */,
-				CEA377091291C60500B9016A /* Effects.cpp */,
 				CEA3770A1291C60500B9016A /* ExtraCost.cpp */,
 				CEA3770B1291C60500B9016A /* GameApp.cpp */,
 				CEA3770C1291C60500B9016A /* GameLauncher.cpp */,
@@ -1845,7 +1839,6 @@
 				12059DBA14980B7300DAC43B /* DeckMetaData.cpp in Sources */,
 				12059DBB14980B7300DAC43B /* DeckStats.cpp in Sources */,
 				12059DBC14980B7300DAC43B /* DuelLayers.cpp in Sources */,
-				12059DBD14980B7300DAC43B /* Effects.cpp in Sources */,
 				12059DBE14980B7300DAC43B /* ExtraCost.cpp in Sources */,
 				12059DBF14980B7300DAC43B /* GameApp.cpp in Sources */,
 				12059DC014980B7300DAC43B /* GameLauncher.cpp in Sources */,
@@ -2027,7 +2020,6 @@
 				CEA377701291C60500B9016A /* DeckMetaData.cpp in Sources */,
 				CEA377711291C60500B9016A /* DeckStats.cpp in Sources */,
 				CEA377721291C60500B9016A /* DuelLayers.cpp in Sources */,
-				CEA377731291C60500B9016A /* Effects.cpp in Sources */,
 				CEA377741291C60500B9016A /* ExtraCost.cpp in Sources */,
 				CEA377751291C60500B9016A /* GameApp.cpp in Sources */,
 				CEA377761291C60500B9016A /* GameLauncher.cpp in Sources */,

@@ -493,7 +493,6 @@
     <ClInclude Include="include\DeckView.h" />
     <ClInclude Include="include\DuelLayers.h" />
     <ClInclude Include="include\Easing.h" />
-    <ClInclude Include="include\Effects.h" />
     <ClInclude Include="include\ExtraCost.h" />
     <ClInclude Include="include\GameApp.h" />
     <ClInclude Include="include\GameObserver.h" />

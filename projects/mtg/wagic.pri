@@ -80,7 +80,6 @@ SOURCES += \
         src/DeckStats.cpp\
         src/DeckView.cpp\
         src/DuelLayers.cpp\
-        src/Effects.cpp\
         src/ExtraCost.cpp\
         src/GameApp.cpp\
         src/GameLauncher.cpp\
@@ -271,7 +270,6 @@ HEADERS  += \
         include/WResourceManager.h\
         include/DuelLayers.h\
         include/GuiStatic.h\
-        include/Effects.h\
         include/StyleManager.h\
         include/WFont.h\
         include/DeckManager.h\
