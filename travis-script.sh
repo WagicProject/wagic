@@ -64,7 +64,7 @@ ant debug -f projects/mtg/Android/build.xml
 # we're building a Qt version with GUI here
 mkdir qt-gui-build
 cd qt-gui-build
-qmake ../projects/mtg/wagic-qt.pro CONFIG+=release CONFIG+=graphics
+qmake ../projects/mtg/wagic-SDL.pro CONFIG+=release CONFIG+=graphics
 make -j 8
 cd ..
 
