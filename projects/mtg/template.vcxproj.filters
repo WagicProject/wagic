@@ -417,9 +417,6 @@
     <ClInclude Include="include\DuelLayers.h">
       <Filter>inc</Filter>
     </ClInclude>
-    <ClInclude Include="include\Effects.h">
-      <Filter>inc</Filter>
-    </ClInclude>
     <ClInclude Include="include\ExtraCost.h">
       <Filter>inc</Filter>
     </ClInclude>

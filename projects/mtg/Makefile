@@ -6,7 +6,7 @@ OBJS	= objs/InteractiveButton.o objs/AbilityParser.o objs/ActionElement.o\
 	objs/Counters.o objs/Credits.o objs/Damage.o objs/DamagerDamaged.o\
 	objs/DeckDataWrapper.o objs/DeckEditorMenu.o objs/DeckMenu.o\
 	objs/DeckMenuItem.o objs/DeckMetaData.o objs/DeckStats.o objs/DuelLayers.o\
-	objs/Effects.o objs/ExtraCost.o objs/GameApp.o objs/GameLauncher.o\
+	objs/ExtraCost.o objs/GameApp.o objs/GameLauncher.o\
 	objs/GameObserver.o objs/GameOptions.o objs/GameState.o\
 	objs/GameStateAwards.o objs/GameStateDeckViewer.o objs/GameStateDuel.o\
 	objs/DeckManager.o objs/GameStateMenu.o objs/GameStateOptions.o\
@@ -128,7 +128,7 @@ clean:
 endif
 
 define compile
-$(CXX) -c $(CXXFLAGS) $< -o $@  
+$(CXX) -c $(CXXFLAGS) $< -o $@
 endef
 
 PrecompiledHeader.h.gch: ../../projects/mtg/include/PrecompiledHeader.h
