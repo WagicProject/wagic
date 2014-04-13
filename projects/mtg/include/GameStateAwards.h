@@ -17,7 +17,6 @@ private:
     WSrcCards * setSrc;
     SimpleMenu * menu;
     bool showMenu;
-    bool showAlt;
     bool saveMe;
     int mState;
     int mDetailItem;

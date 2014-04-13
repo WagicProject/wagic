@@ -1,7 +1,7 @@
 #ifndef _DEBUG_H_
 #define _DEBUG_H_
 
-#if ((defined WIN32) || (defined WP8))
+#if ((defined WIN32) || (defined WP8)) && !defined(__MINGW32__)
 #define snprintf sprintf_s
 #endif 
 

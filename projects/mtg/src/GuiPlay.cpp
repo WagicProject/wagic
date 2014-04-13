@@ -103,7 +103,7 @@ inline float GuiPlay::VertStack::nextX()
 }
 
 GuiPlay::BattleField::BattleField() :
-    attackers(0), blockers(0), height(0.0), red(0), colorFlow(0)
+    attackers(0), height(0.0), red(0), colorFlow(0)
 {
 }
 const float GuiPlay::BattleField::HEIGHT = 80.0f;

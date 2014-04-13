@@ -7,10 +7,13 @@ from optparse import OptionParser
 def createResZipFile(filename): 
 
         utilities = ZipUtilities()
+        rename = False
         if not os.path.isfile('settings/options.txt'):
             os.rename('settings/options.orig.txt', 'settings/options.txt')
+            remame = True
         if not os.path.isfile('player/options.txt'):
             os.rename('player/options.orig.txt', 'player/options.txt')
+            rename = True
 
         zip_file = zipfile.ZipFile(filename, 'w', zipfile.ZIP_STORED)
         utilities.addFolderToZip(zip_file, 'themes')
@@ -25,6 +28,10 @@ def createResZipFile(filename):
         utilities.addFolderToZip(zip_file, 'campaigns')
         utilities.addFolderToZip(zip_file, 'ai')
         zip_file.close()
+        
+        if rename:
+	    os.rename('settings/options.txt', 'settings/options.orig.txt')
+	    os.rename('player/options.txt', 'player/options.orig.txt')
 
 def getFilename():
     p = Properties();

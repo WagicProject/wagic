@@ -28,6 +28,7 @@ const int kNextStatsButtonId     = 10005;
 const int kPrevStatsButtonId     = 10006;
 const int kCycleCardsButtonId    = 10007;
 const int kShowCardListButtonId  = 10008;
+const int kSwitchViewButton      = 10009;
 
 class InteractiveButton: public SimpleButton
 {

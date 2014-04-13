@@ -23,6 +23,7 @@ CardDescriptor::CardDescriptor()
     colorComparisonMode = COMPARISON_NONE;
     CDopponentDamaged = 0;
     CDcontrollerDamaged = 0;
+    CDdamager = 0;
 }
 
 int CardDescriptor::init()
@@ -226,16 +227,27 @@ MTGCardInstance * CardDescriptor::match(MTGCardInstance * card)
         {
             match = NULL;
         }
-    if(CDopponentDamaged == -1 || CDopponentDamaged == 1)
-    {
-        Player * p = card->controller()->opponent();//controller()->opponent();
-        if ((CDopponentDamaged == -1 && card->damageToOpponent && card->controller() == p) || (CDopponentDamaged == 1 && !card->damageToOpponent && card->controller() == p)
-            || (CDopponentDamaged == -1 && card->damageToController && card->controller() == p->opponent()) || (CDopponentDamaged == 1 && !card->damageToController && card->controller() == p->opponent()))
+
+        if ((CDdamager == -1 && (card->damageToOpponent || card->damageToController || card->damageToCreature)) 
+                || (CDdamager == 1 && !(card->damageToOpponent || card->damageToController || card->damageToCreature)))
         {
             match = NULL;
         }
-        if ((CDcontrollerDamaged == -1 && card->damageToController && card->controller() == p) || (CDcontrollerDamaged == 1 && !card->damageToController && card->controller() == p)
-            || (CDcontrollerDamaged == -1 && card->damageToOpponent && card->controller() == p->opponent()) || (CDcontrollerDamaged == 1 && !card->damageToOpponent && card->controller() == p->opponent()))
+
+    if(CDopponentDamaged == -1 || CDopponentDamaged == 1)
+    {
+        Player * p = card->controller()->opponent();//controller()->opponent();
+        if ((CDopponentDamaged == -1 && card->damageToOpponent && card->controller() == p)
+            || (CDopponentDamaged == 1 && !card->damageToOpponent && card->controller() == p)
+            || (CDopponentDamaged == -1 && card->damageToController && card->controller() == p->opponent())
+            || (CDopponentDamaged == 1 && !card->damageToController && card->controller() == p->opponent()))
+        {
+            match = NULL;
+        }
+        if ((CDcontrollerDamaged == -1 && card->damageToController && card->controller() == p)
+            || (CDcontrollerDamaged == 1 && !card->damageToController && card->controller() == p)
+            || (CDcontrollerDamaged == -1 && card->damageToOpponent && card->controller() == p->opponent())
+            || (CDcontrollerDamaged == 1 && !card->damageToOpponent && card->controller() == p->opponent()))
         {
             match = NULL;
         }

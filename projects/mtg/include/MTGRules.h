@@ -66,6 +66,7 @@ public:
     MTGEventBonus(GameObserver* observer, int _id);
     virtual MTGEventBonus * clone() const;
 };
+
 class MTGPutInPlayRule: public PermanentAbility
 {
 public:
@@ -73,7 +74,7 @@ public:
     int reactToClick(MTGCardInstance * card);
     virtual ostream& toString(ostream& out) const;
     MTGPutInPlayRule(GameObserver* observer, int _id);
-    const char * getMenuText()
+    const string getMenuText()
     {
         return "cast card normally";
     }
@@ -87,7 +88,7 @@ public:
     int reactToClick(MTGCardInstance * card);
     virtual ostream& toString(ostream& out) const;
     MTGKickerRule(GameObserver* observer, int _id);
-    const char * getMenuText()
+    const string getMenuText()
     {
         return "pay kicker";
     }
@@ -105,7 +106,7 @@ public:
     int reactToClick(MTGCardInstance * card);
     virtual ostream& toString(ostream& out) const;
     MTGAlternativeCostRule(GameObserver* observer, int _id);
-    const char * getMenuText()
+    const string getMenuText()
     {
         if(alternativeName.size())
             return alternativeName.c_str();
@@ -121,7 +122,7 @@ public:
     int reactToClick(MTGCardInstance * card);
     virtual ostream& toString(ostream& out) const;
     MTGBuyBackRule(GameObserver* observer, int _id);
-    const char * getMenuText()
+    const string getMenuText()
     {
         return "cast and buy back";
     }
@@ -136,7 +137,7 @@ public:
     int reactToClick(MTGCardInstance * card);
     virtual ostream& toString(ostream& out) const;
     MTGFlashBackRule(GameObserver* observer, int _id);
-    const char * getMenuText()
+    const string getMenuText()
     {
         return "flash back";
     }
@@ -150,7 +151,7 @@ public:
     int reactToClick(MTGCardInstance * card);
     virtual ostream& toString(ostream& out) const;
     MTGRetraceRule(GameObserver* observer, int _id);
-    const char * getMenuText()
+    const string getMenuText()
     {
         return "retrace";
     }
@@ -165,12 +166,27 @@ public:
     int reactToClick(MTGCardInstance * card);
     virtual ostream& toString(ostream& out) const;
     MTGMorphCostRule(GameObserver* observer, int _id);
-    const char * getMenuText()
+    const string getMenuText()
     {
         return "play morphed";
     }
     virtual MTGMorphCostRule * clone() const;
 };
+
+class MTGPlayFromGraveyardRule: public MTGAlternativeCostRule
+{
+public:
+    int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
+    int reactToClick(MTGCardInstance * card);
+    virtual ostream& toString(ostream& out) const;
+    MTGPlayFromGraveyardRule(GameObserver* observer, int _id);
+    const string getMenuText()
+    {
+        return "cast card from graveyard";
+    }
+    virtual MTGPlayFromGraveyardRule * clone() const;
+};
+
 
 class MTGSuspendRule: public MTGAlternativeCostRule
 {
@@ -181,7 +197,7 @@ public:
     string suspendmenu;
     virtual ostream& toString(ostream& out) const;
     MTGSuspendRule(GameObserver* observer, int _id);
-    const char * getMenuText();
+    const string getMenuText();
     virtual MTGSuspendRule * clone() const;
 };
 
@@ -195,7 +211,7 @@ public:
     int reactToClick(MTGCardInstance * card);
     virtual ostream& toString(ostream& out) const;
     MTGAttackRule(GameObserver* observer, int _id);
-    const char * getMenuText()
+    const string getMenuText()
     {
         return "Attacker";
     }
@@ -213,7 +229,7 @@ public:
     int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
     int reactToClick(MTGCardInstance * card);
     MTGPlaneswalkerAttackRule(GameObserver* observer, int _id);
-    const char * getMenuText()
+    const string getMenuText()
     {
         return "Attack Planeswalker";
     }
@@ -226,7 +242,7 @@ public:
     MTGCardInstance* attacker;
     AAPlaneswalkerAttacked(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target);
     int resolve();
-    const char* getMenuText();
+    const string getMenuText();
     AAPlaneswalkerAttacked * clone() const;
     ~AAPlaneswalkerAttacked();
 };
@@ -252,7 +268,7 @@ public:
     int reactToClick(MTGCardInstance * card);
     virtual ostream& toString(ostream& out) const;
     MTGBlockRule(GameObserver* observer, int _id);
-    const char * getMenuText();
+    const string getMenuText();
     virtual MTGBlockRule * clone() const;
     ~MTGBlockRule();
 };
@@ -386,7 +402,7 @@ public:
     int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
     int reactToClick(MTGCardInstance * card);
     int reactToClick(MTGCardInstance * card, int id);
-    const char * getMenuText()
+    const string getMenuText()
     {
         return "Momir";
     }
@@ -406,7 +422,7 @@ public:
 	MTGCardInstance * genEquip(int id);
     MTGStoneHewerRule(GameObserver* observer, int _id, MTGAllCards * _collection);
 	int receiveEvent(WEvent * event);
-	const char * getMenuText()
+	const string getMenuText()
 	{
 		return "Stone Hewer";
 	}
@@ -419,7 +435,7 @@ class MTGHermitRule: public PermanentAbility
 public:
     MTGHermitRule(GameObserver* observer, int _id);
 	int receiveEvent(WEvent * event);
-	const char * getMenuText()
+	const string getMenuText()
 	{
 		return "Hermit";
 	}
@@ -447,7 +463,7 @@ public:
 
     int receiveEvent(WEvent * event);
 
-    const char * getMenuText()
+    const string getMenuText()
     {
         return "Deathtouch";
     }

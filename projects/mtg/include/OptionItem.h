@@ -7,7 +7,6 @@
 #include <JGui.h>
 #include <vector>
 #include <string>
-#include "GameApp.h"
 #include "GameStateOptions.h"
 #include "WFilter.h"
 #include "WDataSrc.h"

@@ -102,7 +102,6 @@ void GameStateShop::Start()
     bListCards = false;
     mTouched = false;
     mStage = STAGE_FADE_IN;
-    mElapsed = 0;
     needLoad = true;
     booster = NULL;
     srcCards = NEW WSrcUnlockedCards(0);
@@ -259,8 +258,8 @@ void GameStateShop::cancelCard(int controlId)
         break;
     }
     price = price - (rnd * price) / 100;
-    if (price < pricelist->getPrice(c->getMTGId())) //filters have a tendancy to increase the price instead of lowering it!
-        pricelist->setPrice(c->getMTGId(), price);
+    if (price < pricelist->getPrice(c)) //filters have a tendancy to increase the price instead of lowering it!
+        pricelist->setPrice(c, price);
     //Prices do not immediately go down when you ignore something.
     return;
 }
@@ -427,7 +426,7 @@ void GameStateShop::End()
 {
     save();
     JRenderer::GetInstance()->EnableVSync(false);
-    mElapsed = 0;
+
     SAFE_DELETE(shopMenu);
     SAFE_DELETE(bigDisplay);
     SAFE_DELETE(srcCards);
@@ -469,9 +468,6 @@ void GameStateShop::Update(float dt)
     if (lightAlpha > 50)
         lightAlpha = 50;
 
-    if (mStage != STAGE_FADE_IN)
-        mElapsed += dt;
-
     JButton btn;
     switch (mStage)
     {
@@ -496,7 +492,7 @@ void GameStateShop::Update(float dt)
         }
         break;
     case STAGE_SHOP_TASKS:
-        if (menu)
+        if (menu && !menu->isClosed())
         {
             menu->Update(dt);
             return;

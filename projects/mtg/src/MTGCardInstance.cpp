@@ -125,6 +125,7 @@ int MTGCardInstance::init()
 
 void MTGCardInstance::initMTGCI()
 {
+    X = 0;
     sample = "";
     model = NULL;
     isToken = false;
@@ -157,6 +158,7 @@ void MTGCardInstance::initMTGCI()
     auras = 0;
     damageToOpponent = false;
     damageToController = false;
+    damageToCreature = false;
     wasDealtDamage = false;
     isDualWielding = false;
     suspended = false;
@@ -195,6 +197,8 @@ void MTGCardInstance::initMTGCI()
     lastController = NULL;
     regenerateTokens = 0;
     blocked = false;
+    graveEffects = false;
+    exileEffects = false;
     currentZone = NULL;
     cardsAbilities = vector<MTGAbility *>();
     data = this; //an MTGCardInstance point to itself for data, allows to update it without killing the underlying database item
@@ -254,22 +258,22 @@ void MTGCardInstance::addType(int type)
         SAFE_DELETE(e);
 }
 
-void MTGCardInstance::addType(char * type_text)
+void MTGCardInstance::addType(const string& type_text)
 {
     setSubtype(type_text);
 }
 
-void MTGCardInstance::setType(const char * type_text)
+void MTGCardInstance::setType(const string& type_text)
 {
     setSubtype(type_text);
 }
 
-void MTGCardInstance::setSubtype(string value)
+void MTGCardInstance::setSubtype(const string& value)
 {
     int id = MTGAllCards::findType(value);
     addType(id);
 }
-int MTGCardInstance::removeType(string value, int removeAll)
+int MTGCardInstance::removeType(const string& value, int removeAll)
 {
     int id = MTGAllCards::findType(value);
     return removeType(id, removeAll);

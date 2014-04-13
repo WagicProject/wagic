@@ -12,7 +12,6 @@
 #define GUI_OPPONENTHAND 5
 
 #include <JGui.h>
-#include "Effects.h"
 #include "WEvent.h"
 #include "Pos.h"
 
@@ -65,7 +64,6 @@ public:
     }
     ;
     virtual ~PlayGuiObject() {};
-    vector<Effect*> effects;
 };
 
 #endif

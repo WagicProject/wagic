@@ -343,7 +343,7 @@ void JQuad::SetHotSpot(float x, float y)
 
 //////////////////////////////////////////////////////////////////////////
 
-JTexture::JTexture() : mBuffer(NULL)
+JTexture::JTexture() : mWidth(0), mHeight(0), mBuffer(NULL)
 {
     mTexId = -1;
 }
@@ -2486,7 +2486,7 @@ void JRenderer::Enable2D()
 #if (defined GL_VERSION_ES_CM_1_1) || (defined GL_OES_VERSION_1_1)
     glOrthof(0.0f, SCREEN_WIDTH_F, 0.0f, SCREEN_HEIGHT_F-1.0f, -1.0f, 1.0f);
 #else
-    gluOrtho2D(0.0f, SCREEN_WIDTH_F, 0.0f, SCREEN_HEIGHT_F-1.0f);
+    glOrtho(0.0f, SCREEN_WIDTH_F, 0.0f, SCREEN_HEIGHT_F-1.0f, -1.0f, 1.0f);
 #endif
 
     glMatrixMode (GL_MODELVIEW);										// Select The Modelview Matrix

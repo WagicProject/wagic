@@ -18104,6 +18104,13 @@ mana={3}{R}
 type=Enchantment
 [/card]
 [card]
+name=Crucible of Worlds
+auto=lord(land|mygraveyard) CanPlayFromGraveyard
+text=You may play land cards from your graveyard.
+mana={3}
+type=Artifact
+[/card]
+[card]
 name=Crude Rampart
 abilities=defender
 facedown={3}
@@ -28197,7 +28204,7 @@ subtype=Equipment
 [card]
 name=Executioner's Swing
 text=Target creature that dealt damage this turn gets -5/-5 until end of turn.
-target=creature[damaged]
+target=creature[damager]
 auto=-5/-5 ueot
 mana={W}{B}
 type=Instant
@@ -31450,7 +31457,7 @@ toughness=2
 [/card]
 [card]
 name=Flourishing Defenses
-auto=@counteradded(-1/-1) from(creature|mybattlefield):may token(Elf Warrior,Creature elf warrior,1/1,green)
+auto=@counteradded(-1/-1) from(creature):may token(Elf Warrior,Creature elf warrior,1/1,green)
 text=Whenever a -1/-1 counter is placed on a creature, you may put a 1/1 green Elf Warrior creature token onto the battlefield.
 mana={4}{G}
 type=Enchantment
@@ -37159,7 +37166,7 @@ type=Sorcery
 [/card]
 [card]
 name=Grave Pact
-auto=@movedTo(creature|mygraveyard) from(mybattlefield):ability$!name(sacrifice) notatarget(creature|mybattlefield) sacrifice!$ opponent
+auto=@movedTo(creature|graveyard) from(mybattlefield):ability$!name(sacrifice) notatarget(creature|mybattlefield) sacrifice!$ opponent
 text=Whenever a creature you control dies, each other player sacrifices a creature.
 mana={1}{B}{B}{B}
 type=Enchantment
@@ -73579,7 +73586,7 @@ toughness=6
 ###The 2 cards below should stay together (Flip Card)###
 [card]
 name=Rune-Tail, Kitsune Ascendant
-auto=this(controllerlife >30) all(this) flip(Rune-Tail's Essence)
+auto=this(controllerlife > 29) transforms((,newability[flip(Rune-Tail's Essence)]))
 text=When you have 30 or more life, flip Rune-Tail, Kitsune Ascendant.
 mana={2}{W}
 type=Legendary Creature
@@ -78437,11 +78444,7 @@ toughness=2
 [/card]
 [card]
 name=Shifting Sky
-auto=choice name(choose white) all(this) transforms((,newability[lord(*[-land]) becomes(,white)])) forever
-auto=choice name(choose blue) all(this) transforms((,newability[lord(*[-land]) becomes(,blue)])) forever
-auto=choice name(choose black) all(this) transforms((,newability[lord(*[-land]) becomes(,black)])) forever
-auto=choice name(choose red) all(this) transforms((,newability[lord(*[-land]) becomes(,red)])) forever
-auto=choice name(choose green) all(this) transforms((,newability[lord(*[-land]) becomes(,green)])) forever
+auto=chooseacolor lord(*[-land]) becomes(,chosencolor) chooseend
 text=As Shifting Sky enters the battlefield, choose a color. -- All nonland permanents are the chosen color.
 mana={2}{U}
 type=Enchantment
@@ -103466,6 +103469,15 @@ auto=@movedTo(*[white]|opponentStack):life:1 controller
 text=Whenever an opponent casts a white spell, that player loses 1 life and you gain 1 life.
 mana={1}{B}
 type=Enchantment
+[/card]
+[card]
+name=Yawgmoth's Will
+auto=lord(*|mygraveyard) canPlayFromGraveyard
+auto=emblem transforms((,newability[@movedTo(*|mygraveyard):all(trigger[to]) moveTo(exile)])) ueot
+auto=moveTo(exile)
+text=Until end of turn, you may play cards from your graveyard. -- If a card would be put into your graveyard from anywhere this turn, exile that card instead.
+mana={2}{B}
+type=Sorcery
 [/card]
 [card]
 name=Yawning Fissure
