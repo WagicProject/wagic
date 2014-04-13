@@ -1039,6 +1039,12 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         observer->addObserver(NEW MTGMorphCostRule(observer, -1));
         return NULL;
     }
+    found = s.find("playfromgraveyardrule");
+    if(found != string::npos)
+    {
+        observer->addObserver(NEW MTGPlayFromGraveyardRule(observer, -1));
+        return NULL;
+    }
     //this rule handles attacking ability during attacker phase
     found = s.find("attackrule");
     if(found != string::npos)
@@ -1145,7 +1151,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     }
 
     
-    if(strncmp(s.c_str(), "chooseacolor ", strlen("chooseacolor ")) == 0 || strncmp(s.c_str(), "chooseatype ", strlen("chooseatype ")) == 0)
+    if (StartsWith(s, "chooseacolor ") || StartsWith(s, "chooseatype "))
     {
         MTGAbility * choose = parseChooseActionAbility(s,card,spell,target,0,id);
         choose = NEW GenericActivatedAbility(observer, "","",id, card,choose,NULL);
@@ -3272,7 +3278,7 @@ MTGAbility * AbilityFactory::parseChooseActionAbility(string s,MTGCardInstance *
         a->canBeInterrupted = false;
         return a;
     }
-        //choose a color
+    //choose a color
     vector<string> splitChooseAColor = parseBetween(s, "chooseacolor ", " chooseend");
     if (splitChooseAColor.size())
     {
@@ -4270,8 +4276,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
     if (card->hasType(Subtypes::TYPE_INSTANT) || card->hasType(Subtypes::TYPE_SORCERY))
     {
         MTGPlayerCards * zones = card->owner->game;
-        if(card->getCurrentZone())
-            card->currentZone->owner->game;//grab it from where ever it is.
         MTGPlayerCards * Endzones = card->owner->game;//put them in thier owners respective zones as per rules.
         if (card->basicAbilities[(int)Constants::EXILEDEATH])
         {
@@ -4368,6 +4372,7 @@ MTGAbility::MTGAbility(GameObserver* observer, int id, MTGCardInstance * card) :
     aType = MTGAbility::UNKNOWN;
     mCost = NULL;
     forceDestroy = 0;
+    forcedAlive = 0;
     oneShot = 0;
     canBeInterrupted = true;
 }
@@ -4381,6 +4386,7 @@ MTGAbility::MTGAbility(GameObserver* observer, int id, MTGCardInstance * _source
     aType = MTGAbility::UNKNOWN;
     mCost = NULL;
     forceDestroy = 0;
+    forcedAlive = 0;
     oneShot = 0;
     canBeInterrupted = true;
 }
@@ -4893,7 +4899,7 @@ int TargetAbility::resolve()
     return 0;
 }
 
-const char * TargetAbility::getMenuText()
+const string TargetAbility::getMenuText()
 {
     if (ability)
         return ability->getMenuText();
@@ -5423,7 +5429,7 @@ GenericTriggeredAbility::~GenericTriggeredAbility()
     SAFE_DELETE(destroyCondition);
 }
 
-const char * GenericTriggeredAbility::getMenuText()
+const string GenericTriggeredAbility::getMenuText()
 {
     return ability->getMenuText();
 }
@@ -5451,6 +5457,7 @@ AManaProducer::AManaProducer(GameObserver* observer, int id, MTGCardInstance * c
     aType = MTGAbility::MANA_PRODUCER;
     setCost(_cost);
     output = _output;
+    tap = 0;
     Producing = producing;
     menutext = "";
     DoesntEmpty = doesntEmpty;
@@ -5516,7 +5523,7 @@ int AManaProducer::reactToClick(MTGCardInstance * _card)
     return ActivatedAbility::activateAbility();
 }
 
-const char * AManaProducer::getMenuText()
+const string AManaProducer::getMenuText()
 {
     if (menutext.size())
         return menutext.c_str();

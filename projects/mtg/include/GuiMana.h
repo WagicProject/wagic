@@ -6,8 +6,9 @@
 #include <hge/hgeparticle.h>
 #include "JGE.h"
 #include "MTGDefinitions.h"
-#include "GameApp.h"
+#include "Pos.h"
 #include "GuiLayers.h"
+#include "WResource_Fwd.h"
 
 class ManaIcon : public Pos
 {

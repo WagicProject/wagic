@@ -38,13 +38,9 @@ void PlayGuiObject::Update(float dt)
         if (mHeight < defaultHeight) mHeight = defaultHeight;
     }
     wave = (wave + 2 * (int) (100 * dt)) % 255;
-    for (vector<Effect*>::iterator it = effects.begin(); it != effects.end(); ++it)
-        (*it)->Update(dt);
     Pos::Update(dt);
 }
 
 void PlayGuiObject::Render()
 {
-    for (vector<Effect*>::iterator it = effects.begin(); it != effects.end(); ++it)
-        (*it)->Render();
 }

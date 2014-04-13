@@ -6,6 +6,7 @@
 #include "MTGDeck.h"
 #include "Subtypes.h"
 #include "Translate.h"
+#include "GameApp.h"
 
 using std::string;
 
@@ -84,6 +85,9 @@ int CardPrimitive::init()
     alias = 0;
     restrictions = NULL;
     dredgeAmount = 0;
+
+    power = 0;
+    toughness = 0;
     return 1;
 }
 
@@ -225,6 +229,9 @@ void CardPrimitive::setSubtype(const string& value)
         }
     }
 
+    // "Artifact Creature" should have "Creature" as parent type
+    if (parentType == Subtypes::TYPE_ARTIFACT && isCreature())
+        parentType = Subtypes::TYPE_CREATURE;
 
     int id = MTGAllCards::add(value, parentType);
     addType(id);
@@ -344,15 +351,9 @@ bool CardPrimitive::hasSubtype(int _subtype)
     return hasType(_subtype);
 }
 
-bool CardPrimitive::hasType(const char * _type)
+bool CardPrimitive::hasType(const string& _type)
 {
     int id = MTGAllCards::findType(_type);
-    return hasType(id);
-}
-
-bool CardPrimitive::hasSubtype(const char * _subtype)
-{
-    int id = MTGAllCards::findType(_subtype);
     return hasType(id);
 }
 

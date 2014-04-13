@@ -335,7 +335,7 @@ void WagicCore::resizeGL(int width, int height)
 #if (defined GL_VERSION_ES_CM_1_1 || defined GL_OES_VERSION_1_1)
     glOrthof(0.0f, (float) (m_viewPort.right()-m_viewPort.left())-1.0f, 0.0f, (float) (m_viewPort.bottom()-m_viewPort.top())-1.0f, -1.0f, 1.0f);
 #else
-    gluOrtho2D(0.0f, (float) (m_viewPort.right()-m_viewPort.left())-1.0f, 0.0f, (float) (m_viewPort.bottom()-m_viewPort.top())-1.0f);
+    glOrtho(0.0f, (float) (m_viewPort.right()-m_viewPort.left())-1.0f, 0.0f, (float) (m_viewPort.bottom()-m_viewPort.top())-1.0f, -1.0f, 1.0f);
 #endif
 
     glMatrixMode (GL_MODELVIEW);										// Select The Modelview Matrix
@@ -418,29 +418,29 @@ void WagicCore::mousePressEvent(QMouseEvent *event)
 {
   if(event->button() == Qt::LeftButton)
   {
-    QPoint lastPos = event->pos();
+    m_lastPos = event->pos();
     // this is intended to convert window coordinate into game coordinate.
     // this is correct only if the game and window have the same aspect ratio, otherwise, it's just wrong
     int actualWidth = (int) JRenderer::GetInstance()->GetActualWidth();
     int actualHeight = (int) JRenderer::GetInstance()->GetActualHeight();
 
-    if (lastPos.y() >= m_viewPort.top() &&
-      lastPos.y() <= m_viewPort.bottom() &&
-      lastPos.x() <= m_viewPort.right() &&
-      lastPos.x() >= m_viewPort.left()) {
+    if (lastPosy() >= m_viewPort.top() &&
+      lastPosy() <= m_viewPort.bottom() &&
+      lastPosx() <= m_viewPort.right() &&
+      lastPosx() >= m_viewPort.left()) {
       m_engine->LeftClicked(
-                  ((lastPos.x()-m_viewPort.left())*SCREEN_WIDTH)/actualWidth,
-                  ((lastPos.y()-m_viewPort.top())*SCREEN_HEIGHT)/actualHeight);
+                  ((lastPosx()-m_viewPort.left())*SCREEN_WIDTH)/actualWidth,
+                  ((lastPosy()-m_viewPort.top())*SCREEN_HEIGHT)/actualHeight);
 #if (!defined Q_WS_MAEMO_5) && (!defined MEEGO_EDITION_HARMATTAN) && (!defined Q_WS_ANDROID)
       m_engine->HoldKey_NoRepeat(JGE_BTN_OK);
 #else
-      mMouseDownX = lastPos.x();
-      mMouseDownY = lastPos.y();
+      mMouseDownX = lastPosx();
+      mMouseDownY = lastPosy();
       mLastFingerDownTime = g_startTimer.elapsed();
 #endif
-    } else if(lastPos.y()<m_viewPort.top()) {
+    } else if(lastPosy()<m_viewPort.top()) {
       m_engine->HoldKey_NoRepeat(JGE_BTN_MENU);
-    } else if(lastPos.y()>m_viewPort.bottom()) {
+    } else if(lastPosy()>m_viewPort.bottom()) {
       m_engine->HoldKey_NoRepeat(JGE_BTN_NEXT);
     }
     event->accept();
@@ -465,33 +465,33 @@ void WagicCore::mouseReleaseEvent(QMouseEvent *event)
 {
   if(event->button() == Qt::LeftButton)
   {
-    QPoint lastPos = event->pos();
+    m_lastPos = event->pos();
 
-    if (lastPos.y() >= m_viewPort.top() &&
-      lastPos.y() <= m_viewPort.bottom() &&
-      lastPos.x() <= m_viewPort.right() &&
-      lastPos.x() >= m_viewPort.left()) {
+    if (lastPosy() >= m_viewPort.top() &&
+      lastPosy() <= m_viewPort.bottom() &&
+      lastPosx() <= m_viewPort.right() &&
+      lastPosx() >= m_viewPort.left()) {
 #if (defined Q_WS_MAEMO_5) || (defined MEEGO_EDITION_HARMATTAN) || (defined Q_WS_ANDROID)
       if(g_startTimer.elapsed() - mLastFingerDownTime <= kTapEventTimeout )
       {
-        if(abs(mMouseDownX - lastPos.x()) < kHitzonePliancy &&
-           abs(mMouseDownY - lastPos.y()) < kHitzonePliancy)
+        if(abs(mMouseDownX - lastPosx()) < kHitzonePliancy &&
+           abs(mMouseDownY - lastPosy()) < kHitzonePliancy)
         {
           m_engine->HoldKey_NoRepeat(JGE_BTN_OK);
         }
       }
       else if (g_startTimer.elapsed() - mLastFingerDownTime >= kSwipeEventMinDuration)
       { // Let's swipe
-        m_engine->Scroll(lastPos.x()-mMouseDownX, lastPos.y()-mMouseDownY);
+        m_engine->Scroll(lastPosx()-mMouseDownX, lastPosy()-mMouseDownY);
       }
 #else
 //#if (!defined Q_WS_MAEMO_5) && (!defined MEEGO_EDITION_HARMATTAN)
       m_engine->ReleaseKey(JGE_BTN_OK);
 #endif
       m_engine->ReleaseKey(JGE_BTN_MENU);
-    } else if(lastPos.y() < m_viewPort.top()) {
+    } else if(lastPosy() < m_viewPort.top()) {
       m_engine->ReleaseKey(JGE_BTN_MENU);
-    } else if(lastPos.y() > m_viewPort.bottom()) {
+    } else if(lastPosy() > m_viewPort.bottom()) {
       m_engine->ReleaseKey(JGE_BTN_NEXT);
     }
     event->accept();
@@ -517,15 +517,15 @@ void WagicCore::mouseMoveEvent(QMouseEvent *event)
   int actualWidth = (int) JRenderer::GetInstance()->GetActualWidth();
   int actualHeight = (int) JRenderer::GetInstance()->GetActualHeight();
 
-  QPoint lastPos = event->pos();
+  m_lastPos = event->pos();
 
-  if (lastPos.y() >= m_viewPort.top() &&
-    lastPos.y() <= m_viewPort.bottom() &&
-    lastPos.x() <= m_viewPort.right() &&
-    lastPos.x() >= m_viewPort.left()) {
+  if (lastPosy() >= m_viewPort.top() &&
+    lastPosy() <= m_viewPort.bottom() &&
+    lastPosx() <= m_viewPort.right() &&
+    lastPosx() >= m_viewPort.left()) {
     m_engine->LeftClicked(
-                ((lastPos.x()-m_viewPort.left())*SCREEN_WIDTH)/actualWidth,
-                ((lastPos.y()-m_viewPort.top())*SCREEN_HEIGHT)/actualHeight);
+                ((lastPosx()-m_viewPort.left())*SCREEN_WIDTH)/actualWidth,
+                ((lastPosy()-m_viewPort.top())*SCREEN_HEIGHT)/actualHeight);
     event->accept();
   } else {
     super::mouseMoveEvent(event);

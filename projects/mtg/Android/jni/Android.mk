@@ -14,7 +14,7 @@ PNG_PATH := $(JGE_PATH)/Dependencies/libpng
 DEBUG ?= DEBUG
 
 LOCAL_CFLAGS += -DLINUX -DANDROID -DSDL_CONFIG -D_$(DEBUG)
-LOCAL_CFLAGS += -D_STLP_USE_SIMPLE_NODE_ALLOC
+LOCAL_CFLAGS += -D_STLP_USE_SIMPLE_NODE_ALLOC -DTIXML_USE_STL
 LOCAL_CFLAGS += -D__arm__ -D_REENTRANT -D_GLIBCXX__PTHREADS
 LOCAL_STATIC_LIBRARIES := libpng libjpeg
 LOCAL_SHARED_LIBRARIES := SDL
@@ -57,7 +57,6 @@ LOCAL_SRC_FILES := $(SDL_PATH)/src/main/android/SDL_android_main.cpp \
         $(MTG_PATH)/src/DeckMetaData.cpp \
         $(MTG_PATH)/src/DeckStats.cpp \
         $(MTG_PATH)/src/DuelLayers.cpp \
-        $(MTG_PATH)/src/Effects.cpp \
         $(MTG_PATH)/src/ExtraCost.cpp \
         $(MTG_PATH)/src/GameApp.cpp \
         $(MTG_PATH)/src/GameLauncher.cpp \
@@ -136,6 +135,9 @@ LOCAL_SRC_FILES := $(SDL_PATH)/src/main/android/SDL_android_main.cpp \
         $(MTG_PATH)/src/WFont.cpp \
         $(MTG_PATH)/src/WGui.cpp \
         $(MTG_PATH)/src/WResourceManager.cpp \
+        $(MTG_PATH)/src/DeckView.cpp \
+        $(MTG_PATH)/src/CarouselDeckView.cpp \
+        $(MTG_PATH)/src/GridDeckView.cpp \
         $(JGE_PATH)/src/SDLmain.cpp \
         $(JGE_PATH)/src/Encoding.cpp \
         $(JGE_PATH)/src/JAnimator.cpp \

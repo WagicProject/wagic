@@ -77,9 +77,7 @@ public:
 	}
 
 	// Setters
-	void setDescription( const string description ) { mDescription = description; };
-
-    ;
+    void setDescription( const string& description ) { mDescription = description; }
 };
 
 #endif

@@ -98,7 +98,7 @@ public:
     string getManaColorIndex();
     void updateStats(string filename, MTGAllCards * collection);
     void updateStats(DeckDataWrapper *mtgDeck);
-    int countCardsByType(const char * _type, DeckDataWrapper * myDeck);
+    int countCardsByType(const string& _type, DeckDataWrapper * myDeck);
     float noLuck(int n, int a, int x);
 
     vector<string> aiDeckNames;

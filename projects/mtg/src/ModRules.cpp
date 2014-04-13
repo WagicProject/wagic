@@ -25,23 +25,23 @@ bool ModRules::load(string filename)
         TiXmlElement* element = node->ToElement();
         if (element != NULL)
         {
-            if (strcmp(element->Value(), "menu") == 0)
+            if (element->ValueStr() == "menu")
             {
                 menu.parse(element);
             }
-            else if (strcmp(element->Value(), "general") == 0)
+            else if (element->ValueStr() == "general")
             {
                  general.parse(element);
             }
-            else if (strcmp(element->Value(), "cards") == 0)
+            else if (element->ValueStr() == "cards")
             {
                  cards.parse(element);
             }
-            else if (strcmp(element->Value(), "game") == 0)
+            else if (element->ValueStr() == "game")
             {
                  game.parse(element);
             }
-            else if (strcmp(element->Value(), "cardgui") == 0)
+            else if (element->ValueStr() == "cardgui")
             {
                  cardgui.parse(element);
             }

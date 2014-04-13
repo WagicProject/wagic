@@ -131,7 +131,8 @@ const char* Constants::MTGBasicAbilities[] = {
     "poisondamager",//deals damage to players as poison counters.
     "soulbond",
     "lure",
-    "nolegend"
+    "nolegend",
+    "canplayfromgraveyard"
 };
 
 map<string,int> Constants::MTGBasicAbilitiesMap;
@@ -162,7 +163,7 @@ int Constants::GetColorStringIndex(string mtgColor)
     return -1;
 }
 
-const char* Constants::MTGPhaseNames[] =
+const string Constants::MTGPhaseNames[] =
 {
 	"---",
 	"Untap",

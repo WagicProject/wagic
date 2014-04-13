@@ -24,26 +24,28 @@
  };
  */
 
+const float GuiPhaseBar::zoom_big = (float)(1.5 * 1.4);
+const float GuiPhaseBar::zoom_small = 1.5;
+const float GuiPhaseBar::step = M_PI/6.0f;
+
 namespace
 {
+    //width and height of the phase symbol textures
     const float kWidth = 28;
     const float kHeight = kWidth;
-    const unsigned kPhases = 12;
+    const unsigned kPhases = NB_MTG_PHASES - 2; //there are two phases we do not show
+}
 
-    const float ICONSCALE = 1.5;
-    const float CENTER = SCREEN_HEIGHT_F / 2 + 10;
-
-    void DrawGlyph(JQuad* inQuad, int inGlyph, float inY, float, unsigned int inP, float inScale)
-    {
-        float xPos = static_cast<float> ((inP + inGlyph * (int) (kWidth + 1)) % (kPhases * (int) (kWidth + 1)));
-        inQuad->SetTextureRect(xPos, 0, kWidth, kHeight);
-        JRenderer::GetInstance()->RenderQuad(inQuad, 0, inY, 0.0, inScale, inScale);
-    }
+void GuiPhaseBar::DrawGlyph(JQuad *inQuad, int phaseId, float x, float y, float scale)
+{
+    inQuad->SetTextureRect(phaseId * (kWidth + 1), 0, kWidth, kHeight);
+    JRenderer::GetInstance()->RenderQuad(inQuad, x, y - scale * kWidth/2, 0.0f, scale, scale);
 }
 
 GuiPhaseBar::GuiPhaseBar(DuelLayers* duelLayers) :
-    GuiLayer(duelLayers->getObserver()), PlayGuiObject(0, 0, 106, 0, false), 
-  phase(NULL), angle(0.0f), zoomFactor(ICONSCALE), mpDuelLayers(duelLayers)
+    GuiLayer(duelLayers->getObserver()), PlayGuiObject(80, 0, 106, 0, false),
+    displayedPhaseId(0), angle(0.0f), zoomFactor(zoom_small), angleEasing(angle),
+    zoomFactorEasing(zoomFactor), mpDuelLayers(duelLayers)
 {
     if(duelLayers->getObserver()->getResourceManager())
     {
@@ -57,10 +59,7 @@ GuiPhaseBar::GuiPhaseBar(DuelLayers* duelLayers) :
             GameApp::systemError = "Error loading phasebar texture : " __FILE__;
     }
 
-
-    zoom = ICONSCALE;
     mpDuelLayers->getCardSelector()->Add(this);
-
 }
 
 GuiPhaseBar::~GuiPhaseBar()
@@ -69,32 +68,27 @@ GuiPhaseBar::~GuiPhaseBar()
 
 void GuiPhaseBar::Update(float dt)
 {
-    if (angle > 3 * dt)
-        angle -= 3 * dt;
-    else
-        angle = 0;
+    angleEasing.update(dt);
 
-    if (dt > 0.05f) dt = 0.05f;
-    if(zoomFactor + 0.05f < zoom)
+    if(angle <= -step)
     {
-      zoomFactor += dt;
+        displayedPhaseId = (displayedPhaseId + 1) % kPhases;
+        angleEasing.translate(step);
     }
-    else if (zoomFactor - 0.05f > zoom)
-    {
-      zoomFactor -= dt;
-    }
+
+    zoomFactorEasing.update(dt);
 }
 
 void GuiPhaseBar::Entering()
 {
     mHasFocus = true;
-    zoom = 1.4f*ICONSCALE;
+    zoomFactorEasing.start(zoom_big, 0.3f);
 }
 
 bool GuiPhaseBar::Leaving(JButton)
 {
     mHasFocus = false;
-    zoom = ICONSCALE;
+    zoomFactorEasing.start(zoom_small, 0.6f);
     return true;
 }
 
@@ -102,41 +96,28 @@ void GuiPhaseBar::Render()
 {
     JQuadPtr quad = WResourceManager::Instance()->GetQuad("phasebar");
     //uncomment to draw a hideous line across hires screens.
-   // JRenderer::GetInstance()->DrawLine(0, CENTER, SCREEN_WIDTH, CENTER, ARGB(255, 255, 255, 255));
+    // JRenderer::GetInstance()->DrawLine(0, CENTER, SCREEN_WIDTH, CENTER, ARGB(255, 255, 255, 255));
 
-    unsigned int p = (phase->id + kPhases - 4) * (int) (kWidth + 1);
-    float centerYPosition = CENTER + (kWidth / 2) * angle * zoomFactor / (M_PI / 6) - zoomFactor * kWidth / 4;
-    float yPos = centerYPosition;
-    float scale = 0;
-    for (int glyph = 3; glyph < 6; ++glyph)
-    {
-        scale = zoomFactor * sinf(angle + glyph * M_PI / 6) / 2;
-        DrawGlyph(quad.get(), glyph, yPos, angle, p, scale);
-        yPos += kWidth * scale;
-    }
+    const float radius  = 25 * zoomFactor;
 
-    yPos = centerYPosition;
-    for (int glyph = 2; glyph > 0; --glyph)
+    for(int i = 0; i < 6; ++i)
     {
-        scale = zoomFactor * sinf(angle + glyph * M_PI / 6) / 2;
-        yPos -= kWidth * scale;
-        DrawGlyph(quad.get(), glyph, yPos, angle, p, scale);
-    }
+        //the position of the glyphe in the circle
+        const float circPos = (i - 2) * step + angle;
+        const float glyphY = this->y + this->mHeight / 2 + sin(circPos) * radius;
 
-    if (angle > 0)
-    {
-        scale = zoomFactor * sinf(angle) / 2;
-        yPos -= kWidth * scale;
-        float xPos = static_cast<float> (p % (kPhases * (int) (kWidth + 1)));
-        quad->SetTextureRect(xPos, kHeight, kWidth, kHeight);
-        JRenderer::GetInstance()->RenderQuad(quad.get(), 0, yPos, 0.0, scale, scale);
+        //the scale is computed so that the glyphes touch each other
+        //hint: sin(circPos + PI/2) = cos(circPos)
+        const float glyphScale = float(zoomFactor * cosf(circPos) * 0.5f);
+
+        DrawGlyph(quad.get(), (displayedPhaseId - 2 + i + kPhases) % kPhases, 0, glyphY, glyphScale);
     }
 
     //print phase name
     WFont * font = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
     string currentP = _("your turn");
     string interrupt = "";
-	if (observer->currentPlayer == mpDuelLayers->getRenderedPlayerOpponent())
+    if (observer->currentPlayer == mpDuelLayers->getRenderedPlayerOpponent())
     {
         currentP = _("opponent's turn");
     }
@@ -147,7 +128,7 @@ void GuiPhaseBar::Render()
     }
     if (observer->currentlyActing() != observer->currentPlayer)
     {
-		if (observer->currentPlayer == mpDuelLayers->getRenderedPlayer())
+        if (observer->currentPlayer == mpDuelLayers->getRenderedPlayer())
         {
             interrupt = _(" - ") + _("opponent plays");
         }
@@ -159,7 +140,9 @@ void GuiPhaseBar::Render()
 
     char buf[200];
     //running this string through translate returns gibberish even though we defined the variables in the lang.txt
-    string phaseNameToTranslate = observer->phaseRing->phaseName(phase->id);
+    //the conversion from phase bar phases to mtg phases is x%kPhases + 1
+    //todo: just to this when the displayedPhaseId updates
+    string phaseNameToTranslate = observer->phaseRing->phaseName(displayedPhaseId%kPhases + 1);
     phaseNameToTranslate = _(phaseNameToTranslate);
     sprintf(buf, _("(%s%s) %s").c_str(), currentP.c_str(), interrupt.c_str(),phaseNameToTranslate.c_str());
     font->DrawString(buf, SCREEN_WIDTH - 5, 2, JGETEXT_RIGHT);
@@ -170,8 +153,20 @@ int GuiPhaseBar::receiveEventMinus(WEvent *e)
     WEventPhaseChange *event = dynamic_cast<WEventPhaseChange*> (e);
     if (event)
     {
-        angle = M_PI / 6;
-        phase = event->to;
+        //convert the mtg phase to the phases of the phase wheel
+        //the mapping is
+        //0  -> none
+        //1..12 -> 0..11
+        //13 -> none
+        int targetPhase = event->to->id;
+
+        if(targetPhase != 0 && targetPhase != 13)
+        {
+            targetPhase -= 1;
+
+            int phasesToAnimate = (targetPhase - displayedPhaseId + kPhases) % kPhases;
+            angleEasing.start(float(phasesToAnimate * (- step)), 0.3f * float(sqrt(float(phasesToAnimate))));
+        }
     }
     return 1;
 }

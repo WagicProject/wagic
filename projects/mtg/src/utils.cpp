@@ -399,3 +399,13 @@ void ReplaceString(std::string& subject, const std::string& search, const std::s
     }
 }
 
+bool StartsWith(const std::string& base, const char *start)
+{
+    return base.compare(0, strlen(start), start) == 0;
+}
+
+bool StartsWith(const std::string& base, const std::string& start)
+{
+    return base.compare(0, start.length(), start) == 0;
+}
+

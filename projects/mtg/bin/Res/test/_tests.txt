@@ -249,6 +249,7 @@ curiosity2_i217.txt
 crimson_kobolds.txt
 crosis_s_catacombs_1.txt
 crosis_s_catacombs_2.txt
+crucible_of_worlds.txt
 crumble.txt
 crystal_rod_i172.txt
 cursed_land1_i188.txt
@@ -307,6 +308,9 @@ evil_presence3.txt
 evil_presence_i647.txt
 evil_presence_i647_2.txt
 exaltedsourcekilled.txt
+executioners_swing.txt
+executioners_swing2.txt
+executioners_swing3.txt
 explore.txt
 Faceless_Butcher.txt
 fading.txt

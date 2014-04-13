@@ -6,7 +6,7 @@ OBJS	= objs/InteractiveButton.o objs/AbilityParser.o objs/ActionElement.o\
 	objs/Counters.o objs/Credits.o objs/Damage.o objs/DamagerDamaged.o\
 	objs/DeckDataWrapper.o objs/DeckEditorMenu.o objs/DeckMenu.o\
 	objs/DeckMenuItem.o objs/DeckMetaData.o objs/DeckStats.o objs/DuelLayers.o\
-	objs/Effects.o objs/ExtraCost.o objs/GameApp.o objs/GameLauncher.o\
+	objs/ExtraCost.o objs/GameApp.o objs/GameLauncher.o\
 	objs/GameObserver.o objs/GameOptions.o objs/GameState.o\
 	objs/GameStateAwards.o objs/GameStateDeckViewer.o objs/GameStateDuel.o\
 	objs/DeckManager.o objs/GameStateMenu.o objs/GameStateOptions.o\
@@ -27,7 +27,7 @@ OBJS	= objs/InteractiveButton.o objs/AbilityParser.o objs/ActionElement.o\
 	objs/ThisDescriptor.o objs/Token.o objs/Translate.o objs/TranslateKeys.o\
 	objs/Trash.o objs/utils.o objs/WEvent.o objs/WResourceManager.o\
 	objs/WCachedResource.o objs/WDataSrc.o objs/WGui.o objs/WFilter.o objs/Tasks.o\
-	objs/WFont.o
+	objs/WFont.o objs/CarouselDeckView.o objs/GridDeckView.o objs/DeckView.o
 DEPS = $(patsubst objs/%.o, deps/%.d, $(OBJS))
 
 RESULT = $(shell psp-config --psp-prefix 2> Makefile.cache)
@@ -73,7 +73,7 @@ PSP_EBOOT_UNKPNG = pic0.png
 PSP_EBOOT_PIC1 = pic1.png
 INCDIR = ../../JGE/include ../../JGE/src/zipFS ../../JGE/include/psp ../../JGE/include/psp/freetype2 ../../JGE/src ../../projects/mtg/include ../../Boost
 LIBDIR = ../../JGE/lib/psp
-CFLAGS = -O2 -G0 -DPSPFW3XX -DDEVHOOK -DUSE_PRECOMPILED_HEADERS=1 -DPSP
+CFLAGS = -O2 -G0 -DPSPFW3XX -DDEVHOOK -DUSE_PRECOMPILED_HEADERS=1 -DPSP -DTIXML_USE_STL
 else
 OBJS += objs/TestSuiteAI.o
 INCDIR = -I../../JGE/include -I../../JGE/src -I/usr/X11/include -I../../projects/mtg/include -I../../Boost -I../../JGE/src/zipFS
@@ -128,7 +128,7 @@ clean:
 endif
 
 define compile
-$(CXX) -c $(CXXFLAGS) $< -o $@  
+$(CXX) -c $(CXXFLAGS) $< -o $@
 endef
 
 PrecompiledHeader.h.gch: ../../projects/mtg/include/PrecompiledHeader.h

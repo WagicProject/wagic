@@ -20,16 +20,18 @@ public:
     ~PriceList();
     int save();
     int getSellPrice(int cardid);
+    int getSellPrice(MTGCard* card);
     int getPurchasePrice(int cardid);
+    int getPrice(MTGCard *card);
     int getPrice(int cardId);
     int setPrice(int cardId, int price);
+    int setPrice(MTGCard *card, int price);
     int getOtherPrice(int amt);
     static float difficultyScalar(float price, int cardid = 0);
     static void updateKey()
     {
         randomKey = rand();
     }
-    ;
 };
 
 #endif

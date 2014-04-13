@@ -1248,3 +1248,8 @@ primitive=Zombie Goliath
 id=190545
 rarity=C
 [/card]
+[card]
+primitive=Avatar Token
+id=-191239
+rarity=T
+[/card]

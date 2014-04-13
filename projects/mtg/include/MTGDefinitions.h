@@ -218,7 +218,8 @@ class Constants
       soulbond = 100,
       LURE = 101,
       NOLEGEND = 102,
-      NB_BASIC_ABILITIES = 103,
+      CANPLAYFROMGRAVEYARD = 103,
+      NB_BASIC_ABILITIES = 104,
 
 
     RARITY_S = 'S',   //Special Rarity
@@ -293,7 +294,7 @@ class Constants
 
   static map<string,int> MTGBasicAbilitiesMap;
   static const char* MTGBasicAbilities[];
-  static const char* MTGPhaseNames[];
+  static const string MTGPhaseNames[];
   static const char* MTGPhaseCodeNames[];
 
   static int GetBasicAbilityIndex(string mtgAbility);

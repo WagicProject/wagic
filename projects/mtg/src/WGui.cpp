@@ -6,6 +6,9 @@
 #include "Subtypes.h"
 #include "TranslateKeys.h"
 #include <hge/hgedistort.h>
+#include "SimpleMenu.h"
+#include "Pos.h"
+#include "CardGui.h"
 
 /** 
   Provides an interface to retrieve some standardized colors. The idea here is that a child of WGuiBase 
