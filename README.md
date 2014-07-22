@@ -2,6 +2,8 @@
 
 
 [![Build Status](https://travis-ci.org/WagicProject/wagic.png?branch=master)](https://travis-ci.org/WagicProject/wagic)
+[![Build status](https://ci.appveyor.com/api/projects/status/7j4fbr6m62aqej59/branch/master)](https://ci.appveyor.com/project/xawotihs/wagic/branch/master)
+
 
 ## Description
 
