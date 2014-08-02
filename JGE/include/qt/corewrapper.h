@@ -137,14 +137,14 @@ private slots:
 
 private:
     int lastPosx(){
-#if QT_VERSION >= 0x050000
+#if QT_VERSION >= 0x050100
         return m_lastPos.x()*devicePixelRatio();
 #else
         return m_lastPos.x();
 #endif
     }
     int lastPosy(){
-#if QT_VERSION >= 0x050000
+#if QT_VERSION >= 0x050100
         return m_lastPos.y()*devicePixelRatio();
 #else
         return m_lastPos.y();
