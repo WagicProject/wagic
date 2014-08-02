@@ -43,7 +43,6 @@ INCLUDEPATH += ../../Boost
 INCLUDEPATH += include
 
 unix:!symbian:LIBS += -lz
-windows:LIBS += ../../JGE/Dependencies/lib/fmodvc.lib
 windows:LIBS += ../../JGE/Dependencies/lib/zlibd.lib
 PRECOMPILED_HEADER = include/PrecompiledHeader.h
 
