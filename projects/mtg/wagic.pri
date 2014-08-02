@@ -11,6 +11,7 @@ unix:!*macx*:QMAKE_CXXFLAGS += -Wno-unused-local-typedefs
 unix:!*macx*:!maemo5:!symbian:QMAKE_CXXFLAGS += -Werror
 
 windows:DEFINES += _CRT_SECURE_NO_WARNINGS
+windows|winrt:DEFINES += NOMINMAX
 unix|macx:DEFINES += LINUX
 CONFIG(debug, debug|release) {
     DEFINES += _DEBUG
@@ -32,6 +33,7 @@ windows{
     *-msvc* {
         INCLUDEPATH += extra
         DEFINES += WIN32
+        DEFINES += FORCE_GL2
     }
 }
 macx:INCLUDEPATH += /opt/include
