@@ -76,7 +76,10 @@ JSample::JSample()
 
 JSample::~JSample()
 {
-#ifdef USE_PHONON
+#ifdef QT_CONFIG
+    if(effect)
+        delete effect;
+#elif USE_PHONON
   if(mOutput)
     delete mOutput;
   if(mMediaObject)
@@ -160,7 +163,7 @@ JMusic *JSoundSystem::LoadMusic(const char *fileName)
         music->player->setVolume(100);
         music->playlist = new QMediaPlaylist;
         music->fullpath = JFileSystem::GetInstance()->GetResourceFile(fileName);
-        music->playlist->addMedia(QUrl(music->fullpath.c_str()));
+        music->playlist->addMedia(QUrl::fromLocalFile(music->fullpath.c_str()));
         music->playlist->setCurrentIndex(0);
     }
 #elif defined USE_PHONON
@@ -205,12 +208,8 @@ void JSoundSystem::PlayMusic(JMusic *music, bool looping)
         if(looping)
             music->playlist->setPlaybackMode(QMediaPlaylist::Loop);
 
-//        music->player->setPlaylist(music->playlist);
-        music->player->setMedia(QUrl(music->fullpath.c_str()));
+        music->player->setPlaylist(music->playlist);
         music->player->play();
-        stringstream stream;
-        stream << "Player state : " << music->player->state();
-        DebugTrace(stream.str());
     }
 #elif USE_PHONON
     if (music && music->mMediaObject && music->mOutput)
@@ -305,9 +304,9 @@ JSample *JSoundSystem::LoadSample(const char *fileName)
     if (sample)
     {
         string fullpath = JFileSystem::GetInstance()->GetResourceFile(fileName);
-        sample->effect.setSource(QUrl::fromLocalFile(fullpath.c_str()));
-        sample->effect.setLoopCount(0);
-        sample->effect.setVolume(1);
+        sample->effect = new QMediaPlayer;
+        sample->effect->setMedia(QUrl::fromLocalFile(fullpath.c_str()));
+        sample->effect->setVolume(100);
         sample->mSample = &(sample->effect);
     }
 #elif (defined USE_PHONON)
@@ -351,7 +350,7 @@ void JSoundSystem::PlaySample(JSample *sample)
 #ifdef QT_CONFIG
     if(sample)
     {
-        sample->effect.play();
+        sample->effect->play();
     }
 #elif defined USE_PHONON
   if (sample && sample->mMediaObject && sample->mOutput)

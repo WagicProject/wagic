@@ -106,7 +106,8 @@ public:
 
     unsigned long fileSize();
 #ifdef QT_CONFIG
-    QSoundEffect effect;
+    QMediaPlayer* effect;
+//    QSoundEffect effect;
     void* mSample;
 #elif defined (PSP)
     WAVDATA *mSample;
