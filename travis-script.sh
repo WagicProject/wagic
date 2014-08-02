@@ -6,16 +6,19 @@ echo psp-config = `psp-config --psp-prefix`
 echo ls = `ls`
 echo pwd = `pwd`
 # computing potential release name
-if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
-if [ "$TRAVIS_BRANCH" == "alphas" ]; then
-    RELEASE_NAME = "alpha-${TRAVIS_BUILD_NUMBER}"
-else if [ "$TRAVIS_BRANCH" == "master" ]; then
-    RELEASE_NAME = "latest-master"
+echo TRAVIS_PULL_REQUEST = $TRAVIS_PULL_REQUEST
+echo TRAVIS_BRANCH = $TRAVIS_BRANCH
+
+if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
+if [ "$TRAVIS_BRANCH" = "alphas" ]; then
+    export RELEASE_NAME="alpha-${TRAVIS_BUILD_NUMBER}"
+else if [ "$TRAVIS_BRANCH" = "master" ]; then
+    export RELEASE_NAME="latest-master"
 fi
 fi
 fi
 
-echo "RELEASE_NAME = "$RELEASE_NAME
+echo RELEASE_NAME = $RELEASE_NAME
 
 
 # updating versions with the TRAVIS build numbers
@@ -71,24 +74,25 @@ make -j 8
 
 # we're cross-compiling a Qt Windows version here, 
 # PATH is only set here to prevent colision
-export PATH="$PATH:/opt/mingw32/bin"
-mkdir build
-cd build
-mkdir win-cross
-cd win-cross
-/opt/mingw32/bin/qmake ../../projects/mtg/wagic-qt.pro CONFIG+=release CONFIG+=graphics
-make -j 8
-cd release
-cp ../../../projects/mtg/bin/fmod.dll .
-cp /opt/mingw32/bin/QtCore4.dll .
-cp /opt/mingw32/bin/QtGui4.dll .
-cp /opt/mingw32/bin/QtNetwork4.dll .
-cp /opt/mingw32/bin/QtOpenGL4.dll .
-cp ../../../projects/mtg/bin/zlib1.dll .
-cp /opt/mingw32/bin/libpng15-15.dll .
-cd ..
-zip win-cross.zip -r release/
-cd ../..
+
+# export PATH="$PATH:/opt/mingw32/bin"
+# mkdir build
+# cd build
+# mkdir win-cross
+# cd win-cross
+# /opt/mingw32/bin/qmake ../../projects/mtg/wagic-qt.pro CONFIG+=release CONFIG+=graphics
+# make -j 8
+# cd release
+# cp ../../../projects/mtg/bin/fmod.dll .
+# cp /opt/mingw32/bin/QtCore4.dll .
+# cp /opt/mingw32/bin/QtGui4.dll .
+# cp /opt/mingw32/bin/QtNetwork4.dll .
+# cp /opt/mingw32/bin/QtOpenGL4.dll .
+# cp ../../../projects/mtg/bin/zlib1.dll .
+# cp /opt/mingw32/bin/libpng15-15.dll .
+# cd ..
+# zip win-cross.zip -r release/
+# cd ../..
 
 # Now we run the testsuite (Res needs to be in the working directory)
 cd projects/mtg

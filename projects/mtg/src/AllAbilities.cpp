@@ -5704,7 +5704,8 @@ void ATutorialMessage::Update(float dt)
 
     mElapsed += dt;
 
-    IconButtonsController::Update(dt);
+    if(!mUserCloseRequest)
+        IconButtonsController::Update(dt);
 
     if (mIsImage)
         return;
