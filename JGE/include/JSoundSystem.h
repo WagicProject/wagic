@@ -25,7 +25,7 @@
 #elif defined USE_PHONON
 #include <phonon/AudioOutput>
 #include <phonon/MediaObject>
-#elif defined QT_CONFIG
+#elif (defined QT_CONFIG)
 #include "QMediaPlayer"
 #include "QMediaPlaylist"
 #include "QSoundEffect"
@@ -86,7 +86,7 @@ public slots:
     SLPlayItf playInterface;
     SLSeekItf seekInterface;
     SLVolumeItf musicVolumeInterface;
-#elif defined QT_CONFIG
+#elif (defined QT_CONFIG)
     QMediaPlaylist* playlist;
     QMediaPlayer* player;
     string fullpath;
@@ -105,7 +105,7 @@ public:
     ~JSample();
 
     unsigned long fileSize();
-#ifdef QT_CONFIG
+#if (defined QT_CONFIG)
     QMediaPlayer* effect;
 //    QSoundEffect effect;
     void* mSample;

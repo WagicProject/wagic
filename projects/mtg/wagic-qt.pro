@@ -5,7 +5,7 @@ addExclusiveBuilds(graphics, Graphics, console, Console)
 
 INCLUDEPATH += ../../JGE/include/qt
 CONFIG(console, graphics|console){
-    QT += core network
+    QT += core network multimedia
     QT -= gui
 
     DEFINES += CONSOLE_CONFIG
@@ -55,6 +55,7 @@ else:CONFIG(console, graphics|console){
 
     SOURCES += \
         ../../JGE/src/OutputCapturer.cpp\
+        ../../JGE/src/pc/JSfx.cpp\
         ../../JGE/src/JGfx-fake.cpp\
         ../../JGE/src/Qtconsole.cpp\
 }
