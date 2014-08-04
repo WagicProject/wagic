@@ -29,7 +29,8 @@ script: ./travis-script.sh
 deploy:
   provider: releases
   api-key:
-    secure: fJgWlCFbde96OSQNGKUmowGX+ERPeqP+n1EOMf1+FJzOU4DdkTLRAlV5+5qnEX9jB/3mWN6iPpmG1qEz/SdDG3KHxJYs4ZU/Lu485O24zZ/+GdYBNsrvhPD9ckPGEMLDa1foEVTDnW0Dlkz3BCFcszjhtXGUJv7v6Pj6LRk1Mg8=
+    secure: "KCc3o31BIh9zh9v4kmgJx8xP4qjcSiQle4gtkPicZ1kHPI+IP2LpkoSwj7NHnFBFxrpErcNOYWOhD0MqH1RoRXWUTl+SwZkV2P0cespVvT5hT
+k5M8iD9e9Qc2XD6NBvhjx2AB5kwsoT+88OZXeMrLnk+n350jMec4Gx3qoritGU="
   file:
     - ${TRAVIS_BUILD_DIR}/core.zip
     - ${TRAVIS_BUILD_DIR}/projects/mtg/Android/bin/Wagic-debug.apk
