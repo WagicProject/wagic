@@ -37,5 +37,5 @@ deploy:
   skip_cleanup: true
   on:
     repo: WagicProject/wagic
-    tags: false
+    tags: true
     all_branches: true
