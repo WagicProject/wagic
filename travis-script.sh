@@ -33,7 +33,7 @@ mv core_*.zip ../../../../core.zip
 cd ../../../..
 
 # we're building a PSP binary here
-if [ "$BUILD_TYPE" == "PSP" ]; then
+if [ "$BUILD_TYPE" = "PSP" ]; then
  # let's dump some info to debug a bit
  echo PSPDEV = $PSPDEV
   echo psp-config = `psp-config --psp-prefix`
@@ -59,14 +59,14 @@ if [ "$BUILD_TYPE" == "PSP" ]; then
 fi
 
 # we're building an Android binary here
-if [ "$BUILD_TYPE" == "Android" ]; then
+if [ "$BUILD_TYPE" = "Android" ]; then
   android-ndk-r9/ndk-build -C projects/mtg/Android -j8
   $ANDROID list targets
   $ANDROID update project -t 1 -p projects/mtg/Android
   ant debug -f projects/mtg/Android/build.xml
 fi
 
-if [ "$BUILD_TYPE" == "Qt" ]; then
+if [ "$BUILD_TYPE" = "Qt" ]; then
   # we're building a Qt version with GUI here
   mkdir qt-gui-build
   cd qt-gui-build
