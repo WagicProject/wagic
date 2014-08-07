@@ -11,6 +11,7 @@ unix:!*macx*:QMAKE_CXXFLAGS += -Wno-unused-local-typedefs
 unix:!*macx*:!maemo5:!symbian:QMAKE_CXXFLAGS += -Werror
 
 windows:DEFINES += _CRT_SECURE_NO_WARNINGS
+windows|winrt:DEFINES += NOMINMAX
 unix|macx:DEFINES += LINUX
 CONFIG(debug, debug|release) {
     DEFINES += _DEBUG
@@ -32,6 +33,7 @@ windows{
     *-msvc* {
         INCLUDEPATH += extra
         DEFINES += WIN32
+        DEFINES += FORCE_GL2
     }
 }
 macx:INCLUDEPATH += /opt/include
@@ -41,7 +43,6 @@ INCLUDEPATH += ../../Boost
 INCLUDEPATH += include
 
 unix:!symbian:LIBS += -lz
-windows:LIBS += ../../JGE/Dependencies/lib/fmodvc.lib
 windows:LIBS += ../../JGE/Dependencies/lib/zlibd.lib
 PRECOMPILED_HEADER = include/PrecompiledHeader.h
 
@@ -80,7 +81,6 @@ SOURCES += \
         src/DeckStats.cpp\
         src/DeckView.cpp\
         src/DuelLayers.cpp\
-        src/Effects.cpp\
         src/ExtraCost.cpp\
         src/GameApp.cpp\
         src/GameLauncher.cpp\
@@ -271,7 +271,6 @@ HEADERS  += \
         include/WResourceManager.h\
         include/DuelLayers.h\
         include/GuiStatic.h\
-        include/Effects.h\
         include/StyleManager.h\
         include/WFont.h\
         include/DeckManager.h\
@@ -303,7 +302,6 @@ SOURCES += \
         ../../JGE/src/JSpline.cpp\
         ../../JGE/src/JNetwork.cpp\
         ../../JGE/src/pc/JSocket.cpp\
-        ../../JGE/src/pc/JSfx.cpp\
         ../../JGE/src/JSprite.cpp\
         ../../JGE/src/Vector2D.cpp\
         ../../JGE/src/tinyxml/tinystr.cpp\
