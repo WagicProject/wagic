@@ -67,7 +67,9 @@ void JMusic::seekAtTheBegining()
 
 //////////////////////////////////////////////////////////////////////////
 JSample::JSample()
-#ifdef USE_PHONON
+#ifdef QT_CONFIG
+    : effect(0)
+#elif (defined USE_PHONON)
   : mOutput(0), mMediaObject(0)
 #endif
 {
@@ -77,9 +79,11 @@ JSample::JSample()
 JSample::~JSample()
 {
 #ifdef QT_CONFIG
-    if(effect)
+    if(effect) {
         delete effect;
-#elif USE_PHONON
+        effect = 0;
+    }
+#elif (defined USE_PHONON)
   if(mOutput)
     delete mOutput;
   if(mMediaObject)

@@ -59,6 +59,7 @@ SOURCES += \
         src/AIMomirPlayer.cpp\
         src/AIPlayer.cpp\
         src/AIPlayerBaka.cpp\
+        src/AIPlayerMinMax.cpp\
         src/AIStats.cpp\
         src/AllAbilities.cpp\
         src/CardDescriptor.cpp\
@@ -177,6 +178,7 @@ HEADERS  += \
         include/AIHints.h\
         include/AIPlayerBaka.h\
         include/AIPlayerBakaB.h\
+        include/AIPlayerMinMax.h\
         include/DeckEditorMenu.h\
         include/WResourceManagerImpl.h\
         include/DeckMenu.h\
