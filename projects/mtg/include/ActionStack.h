@@ -204,7 +204,6 @@ protected:
     JQuadPtr pspIcons[8];
     InterruptDecision interruptDecision[2];
     float timer;
-    int currentState;
     ActionStackMode mode;
     int checked;
     ATutorialMessage* currentTutorial;
@@ -224,7 +223,7 @@ public:
     int getNextIndex(Interruptible * previous, int type = 0, int state = 0 , int display = -1);
     void Fizzle(Interruptible * action, FizzleMode fizzleMode = PUT_IN_GRAVEARD);
     Interruptible * getAt(int id);
-    void cancelInterruptOffer(InterruptDecision cancelMode = DONT_INTERRUPT, bool log = true);
+    void cancelInterruptOffer(Player* p = 0, InterruptDecision cancelMode = DONT_INTERRUPT, bool log = true);
     void endOfInterruption(bool log = true);
     Interruptible * getLatest(int state);
     Player * askIfWishesToInterrupt;
@@ -251,7 +250,9 @@ public:
 #endif
     void setCurrentTutorial(ATutorialMessage* message) {currentTutorial = message;};
     ATutorialMessage* getCurrentTutorial() {return currentTutorial;};
-    bool isCalm() {return interruptDecision[0] == NOT_DECIDED && interruptDecision[1] == NOT_DECIDED;};
+    bool isNotUndecided() {
+        return (interruptDecision[0] == NOT_DECIDED && interruptDecision[1] == NOT_DECIDED);
+    };
 };
 
 #endif

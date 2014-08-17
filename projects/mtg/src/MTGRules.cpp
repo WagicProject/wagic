@@ -1724,6 +1724,9 @@ int MTGMomirRule::reactToClick(MTGCardInstance * card_to_discard, int cardId)
 {
     if (!isReactingToClick(card_to_discard))
         return 0;
+
+    game->logActionMomir(card_to_discard, cardId);
+
     Player * player = game->currentlyActing();
     ManaCost * cost = player->getManaPool();
     player->getManaPool()->pay(cost);

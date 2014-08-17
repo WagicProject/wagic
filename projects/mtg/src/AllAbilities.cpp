@@ -3503,7 +3503,7 @@ int MenuAbility::processAbility()
         mClone->resolve();
         SAFE_DELETE(mClone);
         if (source->controller() == game->isInterrupting)
-            game->mLayers->stackLayer()->cancelInterruptOffer(ActionStack::DONT_INTERRUPT, false);
+            game->mLayers->stackLayer()->cancelInterruptOffer(0, ActionStack::DONT_INTERRUPT, false);
     }
 
     processed = true;
@@ -3540,7 +3540,7 @@ int MenuAbility::reactToChoiceClick(Targetable * object,int choice,int control)
     if(!mClone)
     {
         if (source->controller() == game->isInterrupting)
-            game->mLayers->stackLayer()->cancelInterruptOffer(ActionStack::DONT_INTERRUPT, false);
+            game->mLayers->stackLayer()->cancelInterruptOffer(0, ActionStack::DONT_INTERRUPT, false);
         return 0;
     }
     mClone->target = abilities[choice]->target;

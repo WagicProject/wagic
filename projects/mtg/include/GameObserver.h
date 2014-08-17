@@ -78,7 +78,7 @@ class GameObserver{
   vector<list<Phase*> >gameTurn;
   int cancelCurrentAction();
   ExtraCosts * mExtraPayment;
-  int oldGamePhase;
+  GamePhase oldGamePhase;
   TargetChooser * targetChooser;
   DuelLayers * mLayers;
   ReplacementEffects *replacementEffects;
@@ -139,6 +139,7 @@ class GameObserver{
   int receiveEvent(WEvent * event);
   bool connectRule;
 
+  void logActionMomir(MTGCardInstance * card_to_discard, int cardId);
   void logAction(Player* player, const string& s="");
   void logAction(int playerId, const string& s="") {
       logAction(players[playerId], s);

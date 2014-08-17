@@ -608,7 +608,7 @@ int ActionStack::setIsInterrupting(Player * player, bool log)
 
     if (!gModRules.game.canInterrupt())
     {
-        cancelInterruptOffer(DONT_INTERRUPT, log);
+        cancelInterruptOffer(0, DONT_INTERRUPT, log);
         return 0;
     }
 
@@ -622,9 +622,18 @@ int ActionStack::setIsInterrupting(Player * player, bool log)
 
     int playerId = (player == observer->players[1]) ? 1 : 0;
     interruptDecision[playerId] = INTERRUPT;
+
+    Interruptible* latest = getLatest(NOT_RESOLVED);
+    stringstream stream;
+
+    if(latest)
+        stream << "yes " << " " << latest->getDisplayName();
+    else
+        stream << "yes";
+
     observer->isInterrupting = player;
     if(log)
-        observer->logAction(player, "yes");
+        observer->logAction(player, stream.str());
     return 1;
 }
 
@@ -672,7 +681,6 @@ ActionStack::ActionStack(GameObserver* game)
         interruptDecision[i] = NOT_DECIDED;
     askIfWishesToInterrupt = NULL;
     timer = -1;
-    currentState = -1;
     mode = ACTIONSTACK_STANDARD;
     checked = 0;
     lastActionController = NULL;
@@ -873,8 +881,6 @@ void ActionStack::Update(float dt)
     //modal = 0;
 
     TargetChooser * tc = observer->getCurrentTargetChooser();
-    int newState = observer->getCurrentGamePhase();
-    currentState = newState;
     if (!tc)
         checked = 0;
 
@@ -992,12 +998,27 @@ void ActionStack::Update(float dt)
     }
 }
 
-void ActionStack::cancelInterruptOffer(InterruptDecision cancelMode, bool log)
+void ActionStack::cancelInterruptOffer(Player* p, InterruptDecision cancelMode, bool log)
 {
-    int playerId = (observer->isInterrupting == observer->players[1]) ? 1 : 0;
+    assert(observer->isInterrupting!=0);
+    int playerId;
+    if(p) {
+        playerId = observer->getPlayerId(p)-1;
+    } else {
+        if(observer->isInterrupting == observer->players[1]) {
+            playerId = 1;
+        } else {
+            playerId = 0;
+        }
+    }
+
     if(log) {
         stringstream stream;
-        stream << "no " << cancelMode;
+        Interruptible* latest = getLatest(NOT_RESOLVED);
+        if(latest)
+            stream << "no " << cancelMode << " " << latest->getDisplayName();
+        else
+            stream << "no " << cancelMode;
         observer->logAction(playerId, stream.str());
     }
     interruptDecision[playerId] = cancelMode;
@@ -1059,7 +1080,7 @@ bool ActionStack::CheckUserInput(JButton inputKey)
             }
             else if ((JGE_BTN_PRI == key))
             {
-                cancelInterruptOffer(DONT_INTERRUPT_ALL);
+                cancelInterruptOffer(0, DONT_INTERRUPT_ALL);
                 return true;
             }
             return true;

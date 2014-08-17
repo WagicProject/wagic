@@ -295,8 +295,8 @@ void GameObserver::userRequestNextGamePhase(bool allowInterrupt, bool log)
 {
     if(log) {
         stringstream stream;
-        stream << "next " << allowInterrupt << " " <<mCurrentGamePhase;
-        logAction(currentPlayer, stream.str());
+        stream << "next " << allowInterrupt;
+        logAction(currentPlayer/*currentActionPlayer*/, stream.str());
     }
 
     if(getCurrentTargetChooser() && getCurrentTargetChooser()->maxtargets == 1000)
@@ -863,7 +863,7 @@ void GameObserver::gameStateBasedEffects()
     if (combatStep == TRIGGERS)
     {
         if (!mLayers->stackLayer()->getNext(NULL, 0, NOT_RESOLVED) && !targetChooser
-            && !mLayers->actionLayer()->isWaitingForAnswer()) 
+            && !mLayers->actionLayer()->isWaitingForAnswer())
             mLayers->stackLayer()->AddNextCombatStep();
     }
 
@@ -1497,6 +1497,7 @@ ostream& operator<<(ostream& out, const GameObserver& g)
         out << "player=" << g.currentPlayerId + 1 << endl;
         if(g.mCurrentGamePhase != MTG_PHASE_INVALID)
             out << "phase=" << g.phaseRing->phaseName(g.mCurrentGamePhase) << endl;
+        out << "gameType=" << g.gameType() << endl;
         out << "[player1]" << endl;
         out << *(g.players[0]) << endl;
         out << "[player2]" << endl;
@@ -1570,8 +1571,13 @@ bool GameObserver::load(const string& ss, bool undo, int controlledPlayerIndex
         if (s[s.size() - 1] == '\r') s.erase(s.size() - 1); //Handle DOS files
         if (!s.size()) continue;
         if (s[0] == '#') continue;
-        std::transform(s.begin(), s.end(), s.begin(), ::tolower);
-        if (s.find("seed ") == 0)
+
+        if (s.find("gameType:") == 0)
+        {
+            mGameType = (GameType)atoi(s.substr(9).c_str());
+            continue;
+        }
+        if (s.find("seed:") == 0)
         {
             mSeed = atoi(s.substr(5).c_str());
 			randomGenerator.setSeed(mSeed);
@@ -1660,6 +1666,25 @@ bool GameObserver::load(const string& ss, bool undo, int controlledPlayerIndex
                 if(testgame)
                     testgame->initGame();
 #endif //TESTSUITE
+                switch(mGameType) {
+                    case GAME_TYPE_MOMIR:
+                    {
+                        addObserver(NEW MTGMomirRule(this, -1, MTGCollection()));
+                        break;
+                    }
+                    case GAME_TYPE_STONEHEWER:
+                    {
+                        addObserver(NEW MTGStoneHewerRule(this, -1,MTGCollection()));
+                        break;
+                    }
+                    case GAME_TYPE_HERMIT:
+                    {
+                        addObserver(NEW MTGHermitRule(this, -1));
+                        break;
+                    }
+                    default:
+                        break;
+                }
 
                 processActions(undo
                #ifdef TESTSUITE
@@ -1699,19 +1724,28 @@ bool GameObserver::processAction(const string& s)
         size_t size = s.find("]")-begin;
         size_t index = atoi(s.substr(begin, size).c_str());
         dumpAssert(index < zone->cards.size());
-        cardClick(zone->cards[index], zone->cards[index]);
+        if(s.find(" -momir- ") != string::npos) {
+            int cardId = atoi(s.substr(s.find(" -momir- ") + 9).c_str());
+            MTGMomirRule * a = ((MTGMomirRule *) mLayers->actionLayer()->getAbility(MTGAbility::MOMIR));
+            a->reactToClick(zone->cards[index], cardId);
+            mLayers->actionLayer()->stuffHappened = 1;
+        }
+        else
+            cardClick(zone->cards[index], zone->cards[index]);
     } else if (s.find("stack") != string::npos) {
         size_t begin = s.find("[")+1;
         size_t size = s.find("]")-begin;
         size_t index = atoi(s.substr(begin, size).c_str());
         stackObjectClicked((Interruptible*)mLayers->stackLayer()->getByIndex(index));
-    } else if (s.find("yes") != string::npos) {
+    } else if (s.find(".yes") != string::npos) {
         mLayers->stackLayer()->setIsInterrupting(p);
-    } else if (s.find("no") != string::npos) {
-        mLayers->stackLayer()->cancelInterruptOffer();
+    } else if (s.find(".no") != string::npos) {
+        mLayers->stackLayer()->cancelInterruptOffer(p);
     } else if (s.find("endinterruption") != string::npos) {
         mLayers->stackLayer()->endOfInterruption();
-    } else if (s.find("next") != string::npos) {
+    } else if (s.find(".next") != string::npos) {
+//        currentPlayer = p;
+//        currentActionPlayer = p;
         userRequestNextGamePhase();
     } else if (s.find("combatok") != string::npos) {
         mLayers->combatLayer()->clickOK();
@@ -1720,14 +1754,14 @@ bool GameObserver::processAction(const string& s)
     } else if (s.find("choice") != string::npos) {
         int choice = atoi(s.substr(s.find("choice ") + 7).c_str());
             mLayers->actionLayer()->doReactTo(choice);
-    } else if (s == "p1" || s == "p2") {
-        cardClick(NULL, p);
     } else if(s.find("mulligan") != string::npos) {
         Mulligan(p);
     } else if(s.find("shufflelib") != string::npos) {
         // This should probably be differently and be automatically part of the ability triggered
         // that would allow the AI to use it as well.
         shuffleLibrary(p);
+    } else if (s.find("p1") || s.find("p2")) {
+        cardClick(NULL, p);
     } else {
         DebugTrace("no clue about: " + s);
     }
@@ -1771,21 +1805,29 @@ bool GameObserver::processActions(bool undo
     }
 #endif
 
-    for(loadingite = loadingList.begin(); loadingite != loadingList.end(); loadingite++, cmdIndex++)
+    for(loadingite = loadingList.begin(); loadingite != loadingList.end(); /*loadingite++,*/ cmdIndex++)
     {
-        string s = *loadingite;
-        processAction(s);
-        size_t nb = actionsList.size();
+        Interruptible* lastInterruption;
+        Player* lastInterruptingPlayer;
 
-        for (int i = 0; i < 6; i++)
+        do
         {
+            lastInterruption = mLayers->stackLayer()->getLatest(NOT_RESOLVED);
+            lastInterruptingPlayer = isInterrupting;
             // let's fake an update
             GameObserver::Update(counter);
             counter += 1.000f;
         }
-        dumpAssert(actionsList.back() == *loadingite);
-        dumpAssert(nb == actionsList.size());
-        dumpAssert(cmdIndex == (actionsList.size()-1));
+        while(
+              (lastInterruption != mLayers->stackLayer()->getLatest(NOT_RESOLVED)
+              && mLayers->stackLayer()->isNotUndecided())
+              ||lastInterruptingPlayer != isInterrupting);
+        // one again just to be sure
+        GameObserver::Update(counter);
+        counter += 1.000f;
+
+        string s = *loadingite;
+        processAction(s);
     }
 
     mLoading = false;
@@ -1814,15 +1856,40 @@ void GameObserver::logAction(MTGCardInstance* card, MTGGameZone* zone, size_t in
     logAction(stream.str());
 }
 
+void GameObserver::logActionMomir(MTGCardInstance * card, int cardId)
+{
+    stringstream stream;
+
+    stream << "p" << ((card->controller()==players[0])?"1.":"2.")
+           << card->currentZone->getName()<< "[" << card->currentZone->getIndex(card) << "] "
+           << " -momir- " << cardId << " " << card->getLCName();
+
+    logAction(stream.str());
+}
+
+
 void GameObserver::logAction(const string& s)
 {
     stringstream stream;
-    stream << s << " cp " << getPlayerId(currentPlayer) << ", ii " << getPlayerId(isInterrupting) << ", cap " << getPlayerId(currentActionPlayer);
+    stream << s;
+    stream << " " << getCurrentGamePhaseName();
+//           << mLayers->stackLayer()->interruptDecision[0]
+//           << mLayers->stackLayer()->interruptDecision[1];
+    if(s.find("shufflelib") == string::npos &&
+       s.find("next") == string::npos &&
+       s.find(".no") == string::npos &&
+       s.find(".yes") == string::npos
+            ) {
+        // shufflelib replay might be desynchronized
+        stream << " cp " << getPlayerId(currentPlayer) << ", ii " << getPlayerId(isInterrupting) << ", cap " << getPlayerId(currentActionPlayer);
+    }
 
     if(mLoading)
     {
         string toCheck = *loadingite;
-        dumpAssert(toCheck == stream.str());
+        string vs = stream.str();
+        dumpAssert(toCheck == vs);
+        loadingite++;
     }
     actionsList.push_back(stream.str());
 };

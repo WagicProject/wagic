@@ -603,6 +603,7 @@ void TestSuite::ThreadProc(void* inParam)
         float counter = 1.0f;
         while(instance->mProcessing && (filename = instance->getNextFile()) != "")
         {
+            DebugTrace("Checking " + filename);
             TestSuiteGame theGame(instance, filename);
             if(theGame.isOK)
             {
