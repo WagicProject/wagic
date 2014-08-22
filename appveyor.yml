@@ -9,7 +9,6 @@
 #---------------------------------#
 
 # environment variables
-environment:
 # environment:
 #  global:
 #    connection_string: server=12;password=13;
