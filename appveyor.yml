@@ -74,14 +74,3 @@ deploy_script:
 # to disable deployment
 #deploy: off
 
-#---------------------------------#
-#        global handlers          #
-#---------------------------------#
-
-# on successful build
-on_success:
-  - do something
-
-# on build failure
-on_failure:
-  - do something
