@@ -5,6 +5,28 @@ from pyjavaproperties import Properties
 from optparse import OptionParser
 from github3 import login
 
+def checkRelease(repository, remote)
+    for r in repository.iter_releases():
+        if r.name == 'latest-master' :
+            release = r
+            for a in r.assets :
+                if a.name == remote :
+                    # need to delete the old release
+                    r.delete()
+                    # need also to delete the tag (reference)
+                    ref = repository.ref('tags/latest-master')
+                    ref.delete()
+                    release = None
+
+    if release is None:
+        # now, we recreate a new one
+        release = r.create_release('latest-master', 'master', 'latest-master',
+            'Latest successful builds of the master branch automatically uploaded by Travis or AppVeyor CI.',
+            False,
+            True)
+
+    return release
+
 
 def suffixFilename(filename, build):
     p = Properties();
@@ -26,24 +48,17 @@ def main():
 
     (options, args) = parser.parse_args()
 
-    if (options.token and options.sha and options.local and options.remote and (options.branch == 'master' or options.branch == 'appveyor')):
+    if (options.token and options.sha and options.local and options.remote and options.branch == 'master'):
         gh = login(token = options.token)
     else:
         parser.print_help()
         return
 
     repository = gh.repository('WagicProject', 'wagic')
-    # find reference
-    ref = repository.ref('tags/latest-master')
-    if(ref):
-        ref.update(options.sha)
-
-    for r in repository.iter_releases():
-        if r.name == 'latest-master' :
-#            filename = suffixFilename(options.remote, options.build)
-            filename = options.remote
-            with open(options.local, 'rb') as fd:
-                r.upload_asset('application/zip', filename , fd)
+    r = checkRelease(repository, options.remote)
+    filename = options.remote
+    with open(options.local, 'rb') as fd:
+        r.upload_asset('application/zip', filename , fd)
 
 
 if __name__ == "__main__":
