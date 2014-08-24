@@ -8,21 +8,6 @@
 #    environment configuration    #
 #---------------------------------#
 
-# environment variables
-# environment:
-#  global:
-#    connection_string: server=12;password=13;
-#    service_url: https://127.0.0.1:8090
-#
-#  matrix:
-#  - db: mysql
-#    provider: mysql
-#
-#  - db: mssql
-#    provider: mssql
-#    password:
-#      secure: $#(JFDA)jQ@#$
-
 environment:
   GH_TOKEN:
     secure: dYnBDQkiY5oVjIlswzBX9BJigNtBGXgGlp1tK3XbHzrDEDrs2vaKD5m+Oz5OSz1C
@@ -76,7 +61,7 @@ after_deploy:
 
 # to run your custom scripts instead of provider deployments
 deploy_script:
-  - "C:/Python27/python.exe uploadBinary.py -t %GH_TOKEN% -s %APPVEYOR_REPO_COMMIT% -l projects\mtg\bin\Wagic-windows.zip -r Wagic-windows -b %APPVEYOR_REPO_BRANCH%"
+  - "C:/Python27/python.exe uploadBinaries.py -t %GH_TOKEN% -s %APPVEYOR_REPO_COMMIT% -l projects/mtg/bin/Wagic-windows.zip -r Wagic-windows -b %APPVEYOR_REPO_BRANCH%"
 
 # to disable deployment
 #deploy: off
