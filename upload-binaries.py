@@ -34,7 +34,7 @@ def main():
 
     repository = gh.repository('WagicProject', 'wagic')
     # find reference
-    ref = gh.ref('tags/latest-master')
+    ref = repository.ref('tags/latest-master')
     if(ref):
         ref.update(options.sha)
 
