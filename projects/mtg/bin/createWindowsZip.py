@@ -32,8 +32,9 @@ def createStandardResFile():
     os.system(cmd)
     os.chdir("..")
     print "Creating Windows Package File"
-    createWindowsZipFile( 'Wagic-windows.zip' )
-    print >> sys.stderr, 'Created Resource Package for Standard Distribution: {0}'.format( filename)
+    filename = 'Wagic-windows.zip'
+    createWindowsZipFile( filename )
+    print >> sys.stderr, 'Created Windows Package: {0}'.format( filename)
 
 class ZipUtilities:
 
