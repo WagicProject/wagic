@@ -30,11 +30,9 @@ def createStandardResFile():
     cmd = 'python createResourceZip.py -n ' + getFilename('core') + '.zip'
     os.chdir("Res")
     os.system(cmd)
-#    os.system("python createResourceZip.py -n resources.zip")
     os.chdir("..")
     print "Creating Windows Package File"
-    filename = getFilename('Wagic-windows') + '.zip'
-    createWindowsZipFile( filename )
+    createWindowsZipFile( 'Wagic-windows.zip' )
     print >> sys.stderr, 'Created Resource Package for Standard Distribution: {0}'.format( filename)
 
 class ZipUtilities:
@@ -68,13 +66,7 @@ def main():
 
     (options, args) = parser.parse_args()
 	
-    if (options.platform):
-		if (options.platform == "ios"): 
-				createIosResFile()
-		else:
-				createStandardResFile()
-    else:
-		createStandardResFile()
+    createStandardResFile()
 
 if __name__ == "__main__":
 	main()
