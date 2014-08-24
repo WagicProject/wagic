@@ -5,7 +5,7 @@ from pyjavaproperties import Properties
 from optparse import OptionParser
 from github3 import login
 
-def checkRelease(repository, remote)
+def checkRelease(repository, remote):
     for r in repository.iter_releases():
         if r.name == 'latest-master' :
             release = r
