@@ -6,6 +6,7 @@ from optparse import OptionParser
 from github3 import login
 
 def checkRelease(repository, remote):
+    release = None
     for r in repository.iter_releases():
         if r.name == 'latest-master' :
             release = r
@@ -20,7 +21,7 @@ def checkRelease(repository, remote):
 
     if release is None:
         # now, we recreate a new one
-        release = r.create_release('latest-master', 'master', 'latest-master',
+        release = repository.create_release('latest-master', 'master', 'latest-master',
             'Latest successful builds of the master branch automatically uploaded by Travis or AppVeyor CI.',
             False,
             True)
