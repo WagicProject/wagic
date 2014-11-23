@@ -105,9 +105,8 @@ public:
     ~JSample();
 
     unsigned long fileSize();
-#if (defined QT_CONFIG)
+#if (defined QT_CONFIG) && (!defined USE_PHONON)
     QMediaPlayer* effect;
-//    QSoundEffect effect;
     void* mSample;
 #elif defined (PSP)
     WAVDATA *mSample;
