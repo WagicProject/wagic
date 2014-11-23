@@ -204,6 +204,7 @@ brass_man.txt
 brass_man_i161.txt
 briarhorn.txt
 bringer_of_the_red_dawn.txt
+buyback.txt
 cage_of_hands.txt
 Call_to_Heel_1.txt
 Call_to_Heel_2.txt
