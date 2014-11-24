@@ -74,9 +74,6 @@ extern "C" void Java_org_libsdl_app_SDLActivity_nativeResume(
                                     JNIEnv* env, jclass cls)
 {    
 	WagicCore::getInstance()->setActive(true);
-	if (!g_engine)
-		return;
-    g_engine->Resume();
 }
 
 #include "Wagic_Version.h"
