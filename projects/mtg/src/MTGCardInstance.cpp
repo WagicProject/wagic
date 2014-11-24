@@ -158,6 +158,7 @@ void MTGCardInstance::initMTGCI()
     auras = 0;
     damageToOpponent = false;
     damageToController = false;
+    damageToCreature = false;
     wasDealtDamage = false;
     isDualWielding = false;
     suspended = false;

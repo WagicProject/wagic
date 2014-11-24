@@ -1,7 +1,7 @@
 #ifndef THREADING_H
 #define THREADING_H
 
-#if !defined(PSP) && !defined(QT_CONFIG) && !defined(WP8) && !(defined(SDL_CONFIG) && defined(__MINGW32__))
+#if !defined(PSP) && !defined(QT_CONFIG) && !(__cplusplus > 199711L) && !(_MSC_VER >= 1700)
 #include <boost/date_time.hpp>
 
 #ifdef WIN32
@@ -26,7 +26,7 @@
 namespace boost
 {
     /**
-    ** PSP specific variant of a boost mutex & scoped_lock 
+    ** PSP specific variant of a boost mutex & scoped_lock
     */
 
     template <class Mutex>
@@ -60,7 +60,7 @@ namespace boost
         {
             sceKernelDeleteSema(mID);
         }
-        
+
         void lock()
         {
             int result = sceKernelWaitSema(mID, 1, 0);
@@ -142,7 +142,7 @@ namespace boost
             }
 
         }
-        
+
         int mID;
         int mThreadID;
         volatile int mRecursionCount;
@@ -164,7 +164,7 @@ namespace boost
 
 
     /**
-    ** Emulating boost::thread configuration glue, with some shortcuts 
+    ** Emulating boost::thread configuration glue, with some shortcuts
     ** This detail namespace is a distillation of boost's thread.hpp, thread_data.hpp.
     */
     namespace detail
@@ -212,13 +212,13 @@ namespace boost
     **
     ** The intent of its usage is this form only:
     ** mWorkerThread = boost::thread(ThreadProc, this);
-	** where ThreadProc is a static member function of the 'this' class,eg:
-	** static void FOO::ThreadProc(void* inParam)
-	** {
-	**		FOO* instance = reinterpret_cast<FOO*>(inParam);
-	**		// now you have class instance data available...
-	** }
-	** 
+    ** where ThreadProc is a static member function of the 'this' class,eg:
+    ** static void FOO::ThreadProc(void* inParam)
+    ** {
+    **		FOO* instance = reinterpret_cast<FOO*>(inParam);
+    **		// now you have class instance data available...
+    ** }
+    **
     ** Any other variant of a thread proc with more than one param is unimplemented.
     */
     class thread
@@ -227,7 +227,7 @@ namespace boost
         ** Helper class for sceKernelStartThread, which passes args by value, not by reference
         ** We use this struct to wrap any pointers that we want to pass to the worker thread.
         */
-        struct CallbackData 
+        struct CallbackData
         {
             CallbackData(detail::thread_data_ptr inThreadInfo)
                 : mThreadInfo(inThreadInfo)
@@ -307,7 +307,7 @@ namespace boost
     }
 }
 
-#elif defined(QT_CONFIG)
+#elif defined(QT_CONFIG) && (__cplusplus <= 199711L)
 
 #include <QMutex>
 #include <QThread>
@@ -537,14 +537,14 @@ namespace boost
     }
 }
 
-#elif defined(WP8) || (defined(SDL_CONFIG) && defined(__MINGW32__))
+#elif (__cplusplus > 199711L) || (_MSC_VER >= 1700) 
 
 #include <thread>
 #include <mutex>
 
 namespace boost
 {
-	typedef std::thread thread;
+    typedef std::thread thread;
 
     template <class Mutex>
     struct unique_lock
@@ -562,7 +562,7 @@ namespace boost
         Mutex* mMutex;
     };
 
-    class mutex 
+    class mutex
     {
     public:
 
@@ -606,7 +606,7 @@ namespace boost
     {
         inline void sleep(boost::posix_time::milliseconds const& time)
         {
-			std::this_thread::sleep_for(std::chrono::milliseconds(time));
+            std::this_thread::sleep_for(std::chrono::milliseconds(time));
         }
     }
 }

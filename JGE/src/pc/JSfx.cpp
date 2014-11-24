@@ -22,6 +22,8 @@
 JMusic::JMusic()
 #ifdef USE_PHONON
   : mOutput(0), mMediaObject(0)
+#elif defined QT_CONFIG
+    : playlist(0), player(0)
 #endif
 {
 }
@@ -40,11 +42,16 @@ int JMusic::getPlayTime(){
 
 JMusic::~JMusic()
 {
-#ifdef USE_PHONON
+#if defined USE_PHONON
   if(mOutput)
     delete mOutput;
   if(mMediaObject)
     delete mMediaObject;
+#elif defined QT_CONFIG
+    if(player)
+        delete player;
+    if(playlist)
+        delete playlist;
 #elif defined WITH_FMOD
   JSoundSystem::GetInstance()->StopMusic(this);
   if (mTrack) FSOUND_Sample_Free(mTrack);
@@ -69,7 +76,10 @@ JSample::JSample()
 
 JSample::~JSample()
 {
-#ifdef USE_PHONON
+#if (defined QT_CONFIG) && (!defined USE_PHONON)
+    if(effect)
+        delete effect;
+#elif USE_PHONON
   if(mOutput)
     delete mOutput;
   if(mMediaObject)
@@ -144,65 +154,84 @@ void JSoundSystem::DestroySoundSystem()
 
 JMusic *JSoundSystem::LoadMusic(const char *fileName)
 {
-#ifdef USE_PHONON
-  JMusic* music = new JMusic();
-  if (music)
-  {
-    music->mOutput = new Phonon::AudioOutput(Phonon::GameCategory, 0);
-    music->mMediaObject = new Phonon::MediaObject(0);
-    string fullpath = JFileSystem::GetInstance()->GetResourceFile(fileName);
-    music->mMediaObject->setCurrentSource(QString(fullpath.c_str()));
-    Phonon::Path mediapath = Phonon::createPath(music->mMediaObject, music->mOutput);
-    Q_ASSERT(mediapath.isValid());
-  }
-  return music;
-#elif (defined WITH_FMOD)
-  JMusic* music = new JMusic();
-  if (music)
+    JMusic* music = NULL;
+#if (defined QT_CONFIG)  && (!defined USE_PHONON)
+    music = new JMusic();
+    if (music)
     {
-      JFileSystem* fileSystem = JFileSystem::GetInstance();
-      if (fileSystem->OpenFile(fileName))
-	{
-	  int size = fileSystem->GetFileSize();
-	  char *buffer = new char[size];
-	  fileSystem->ReadFile(buffer, size);
-	  music->mTrack = FSOUND_Sample_Load(FSOUND_UNMANAGED, buffer, FSOUND_LOADMEMORY, 0, size);
-
-	  delete[] buffer;
-	  fileSystem->CloseFile();
-	}
+        music->player = new QMediaPlayer;
+        music->player->setVolume(100);
+        music->playlist = new QMediaPlaylist;
+        music->fullpath = JFileSystem::GetInstance()->GetResourceFile(fileName);
+        music->playlist->addMedia(QUrl::fromLocalFile(music->fullpath.c_str()));
+        music->playlist->setCurrentIndex(0);
     }
-  return music;
+#elif defined USE_PHONON
+    music = new JMusic();
+    if (music)
+    {
+        music->mOutput = new Phonon::AudioOutput(Phonon::GameCategory, 0);
+        music->mMediaObject = new Phonon::MediaObject(0);
+        string fullpath = JFileSystem::GetInstance()->GetResourceFile(fileName);
+        music->mMediaObject->setCurrentSource(QString(fullpath.c_str()));
+        Phonon::Path mediapath = Phonon::createPath(music->mMediaObject, music->mOutput);
+        Q_ASSERT(mediapath.isValid());
+    }
+#elif (defined WITH_FMOD)
+    music = new JMusic();
+    if (music)
+    {
+        JFileSystem* fileSystem = JFileSystem::GetInstance();
+        if (fileSystem->OpenFile(fileName))
+        {
+            int size = fileSystem->GetFileSize();
+            char *buffer = new char[size];
+            fileSystem->ReadFile(buffer, size);
+            music->mTrack = FSOUND_Sample_Load(FSOUND_UNMANAGED, buffer, FSOUND_LOADMEMORY, 0, size);
+
+            delete[] buffer;
+            fileSystem->CloseFile();
+        }
+    }
 #else
     cerr << fileName << endl;
-  return NULL;
 #endif
+    return music;
 }
 
 
 void JSoundSystem::PlayMusic(JMusic *music, bool looping)
 {
-#ifdef USE_PHONON
-  if (music && music->mMediaObject && music->mOutput)
-  {
-    if(looping)
+#if (defined QT_CONFIG)  && (!defined USE_PHONON)
+    if(music && music->player && music->playlist)
     {
-      music->mMediaObject->connect(music->mMediaObject, SIGNAL(aboutToFinish()), music, SLOT(seekAtTheBegining()));
+        if(looping)
+            music->playlist->setPlaybackMode(QMediaPlaylist::Loop);
+
+        music->player->setPlaylist(music->playlist);
+        music->player->play();
     }
-    music->mOutput->setVolume((qreal)mVolume*0.01);
-    music->mMediaObject->play();
-
-  }
-#elif (defined WITH_FMOD)
-  if (music && music->mTrack)
+#elif USE_PHONON
+    if (music && music->mMediaObject && music->mOutput)
     {
-      mChannel = FSOUND_PlaySound(mChannel, music->mTrack);
-      SetMusicVolume(mVolume);
+        if(looping)
+        {
+            music->mMediaObject->connect(music->mMediaObject, SIGNAL(aboutToFinish()), music, SLOT(seekAtTheBegining()));
+        }
+        music->mOutput->setVolume((qreal)mVolume*0.01);
+        music->mMediaObject->play();
 
-      if (looping)
-	FSOUND_SetLoopMode(mChannel, FSOUND_LOOP_NORMAL);
-      else
-	FSOUND_SetLoopMode(mChannel, FSOUND_LOOP_OFF);
+    }
+#elif (defined WITH_FMOD)
+    if (music && music->mTrack)
+    {
+        mChannel = FSOUND_PlaySound(mChannel, music->mTrack);
+        SetMusicVolume(mVolume);
+
+        if (looping)
+            FSOUND_SetLoopMode(mChannel, FSOUND_LOOP_NORMAL);
+        else
+            FSOUND_SetLoopMode(mChannel, FSOUND_LOOP_OFF);
     }
 #else
     music = 0;
@@ -213,7 +242,12 @@ void JSoundSystem::PlayMusic(JMusic *music, bool looping)
 
 void JSoundSystem::StopMusic(JMusic *music)
 {
-#ifdef USE_PHONON
+#if (defined QT_CONFIG) && (!defined USE_PHONON)
+    if (music && music->player && music->playlist)
+    {
+        music->player->stop();
+    }
+#elif defined USE_PHONON
   if (music && music->mMediaObject && music->mOutput)
   {
     music->mMediaObject->stop();
@@ -264,47 +298,61 @@ void JSoundSystem::SetSfxVolume(int volume){
 
 JSample *JSoundSystem::LoadSample(const char *fileName)
 {
-#if (defined USE_PHONON)
-  JSample* sample = new JSample();
-  if (sample)
-  {
-    sample->mOutput = new Phonon::AudioOutput(Phonon::GameCategory, 0);
-    sample->mMediaObject = new Phonon::MediaObject(0);
-    string fullpath = JFileSystem::GetInstance()->GetResourceFile(fileName);
-    sample->mMediaObject->setCurrentSource(QString(fullpath.c_str()));
-    Phonon::Path mediapath = Phonon::createPath(sample->mMediaObject, sample->mOutput);
-    Q_ASSERT(mediapath.isValid());
-  }
-  return sample;
-#elif (defined WITH_FMOD)
-  JSample* sample = new JSample();
-  if (sample)
+    JSample* sample = NULL;
+#if (defined QT_CONFIG) && (!defined USE_PHONON)
+    sample = new JSample();
+    if (sample)
     {
-      JFileSystem* fileSystem = JFileSystem::GetInstance();
-      if (fileSystem->OpenFile(fileName))
-	{
-	  int size = fileSystem->GetFileSize();
-	  char *buffer = new char[size];
-	  fileSystem->ReadFile(buffer, size);
-	  sample->mSample = FSOUND_Sample_Load(FSOUND_UNMANAGED, buffer, FSOUND_LOADMEMORY, 0, size);
+        string fullpath = JFileSystem::GetInstance()->GetResourceFile(fileName);
+        sample->effect = new QMediaPlayer;
+        sample->effect->setMedia(QUrl::fromLocalFile(fullpath.c_str()));
+        sample->effect->setVolume(100);
+        sample->mSample = &(sample->effect);
+    }
+#elif (defined USE_PHONON)
+    sample = new JSample();
+    if (sample)
+    {
+        sample->mOutput = new Phonon::AudioOutput(Phonon::GameCategory, 0);
+        sample->mMediaObject = new Phonon::MediaObject(0);
+        string fullpath = JFileSystem::GetInstance()->GetResourceFile(fileName);
+        sample->mMediaObject->setCurrentSource(QString(fullpath.c_str()));
+        Phonon::Path mediapath = Phonon::createPath(sample->mMediaObject, sample->mOutput);
+        Q_ASSERT(mediapath.isValid());
+    }
+#elif (defined WITH_FMOD)
+    sample = new JSample();
+    if (sample)
+    {
+        JFileSystem* fileSystem = JFileSystem::GetInstance();
+        if (fileSystem->OpenFile(fileName))
+        {
+            int size = fileSystem->GetFileSize();
+            char *buffer = new char[size];
+            fileSystem->ReadFile(buffer, size);
+            sample->mSample = FSOUND_Sample_Load(FSOUND_UNMANAGED, buffer, FSOUND_LOADMEMORY, 0, size);
 
-	  delete[] buffer;
-	  fileSystem->CloseFile();
-	}else
-	sample->mSample = NULL;
+            delete[] buffer;
+            fileSystem->CloseFile();
+        }else
+            sample->mSample = NULL;
 
     }
-  return sample;
 #else
     cerr << fileName << endl;
-  return NULL;
 #endif
+    return sample;
 }
 
 
 void JSoundSystem::PlaySample(JSample *sample)
 {
-#ifdef USE_PHONON
+#if (defined QT_CONFIG) && (!defined USE_PHONON)
+    if(sample)
+    {
+        sample->effect->play();
+    }
+#elif defined USE_PHONON
   if (sample && sample->mMediaObject && sample->mOutput)
   {
     sample->mOutput->setVolume((qreal)mSampleVolume*0.01);

@@ -9,11 +9,11 @@
 #include <QtDeclarative>
 #include "qmlapplicationviewer.h"
 #endif //QT_WIDGET
-#include "filedownloader.h"
+#include "Downloader.h"
 #include "GameApp.h"
 #include "qtcorewrapper.h"
 
-QWidget* g_glwidget = NULL;
+WagicCore* g_glwidget = NULL;
 
 
 
@@ -40,11 +40,25 @@ int main(int argc, char* argv[])
 
 #endif //QT_WIDGET
 
-    app->setApplicationName(QtWagicCore::getApplicationName());
-    FileDownloader fileDownloader(USERDIR, WAGIC_RESOURCE_NAME);
+    app->setApplicationName(WagicCore::getApplicationName());
+    DownloadRequest* downloadRequest = NULL;
+#ifdef WAGIC_RESOURCE_URL
+    Downloader*downloader = Downloader::GetInstance();
+    downloadRequest = downloader->Get(
+                "core.zip",
+                WAGIC_RESOURCE_URL
+                );
+#endif
 #ifdef QT_WIDGET
-    g_glwidget = new QtWagicCore();
-    g_glwidget->connect(&fileDownloader, SIGNAL(finished(int)), SLOT(start(int)));
+    g_glwidget = new WagicCore();
+    if(!downloadRequest || downloadRequest->getDownloadStatus() == DownloadRequest::DOWNLOADED)
+    {
+        g_glwidget->start(0);
+    }
+    else
+    {
+        g_glwidget->connect(downloadRequest, SIGNAL(statusChanged(int)), SLOT(start(int)));
+    }
 #else
     qmlRegisterType<WagicCore>("CustomComponents", 1, 0, "WagicCore");
 

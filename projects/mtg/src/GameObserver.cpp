@@ -795,6 +795,7 @@ void GameObserver::gameStateBasedEffects()
                     c->wasDealtDamage = false;
                 c->damageToController = false;
                 c->damageToOpponent = false;
+                c->damageToCreature = false;
                 c->isAttacking = NULL;
             }
             for (int t = 0; t < nbcards; t++)

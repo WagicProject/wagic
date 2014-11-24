@@ -204,6 +204,7 @@ brass_man.txt
 brass_man_i161.txt
 briarhorn.txt
 bringer_of_the_red_dawn.txt
+buyback.txt
 cage_of_hands.txt
 Call_to_Heel_1.txt
 Call_to_Heel_2.txt
@@ -308,6 +309,9 @@ evil_presence3.txt
 evil_presence_i647.txt
 evil_presence_i647_2.txt
 exaltedsourcekilled.txt
+executioners_swing.txt
+executioners_swing2.txt
+executioners_swing3.txt
 explore.txt
 Faceless_Butcher.txt
 fading.txt

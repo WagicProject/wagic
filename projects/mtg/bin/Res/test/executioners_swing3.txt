@@ -1,0 +1,34 @@
+#NAME: Executioner's Swing
+#DESC: Checks targetability
+#DESC: Prove that can't target passive creature
+
+[INIT]
+secondmain
+
+[PLAYER1]
+inplay:Grizzly Bears
+
+[PLAYER2]
+manapool:{B}{W}
+hand:Executioner's Swing
+
+[DO]
+# attempt to kill bear
+yes
+Swamp
+Plains
+Executioner's Swing
+Grizzly Bears
+endinterruption
+
+[ASSERT]
+secondmain
+
+[PLAYER1]
+inplay:Grizzly Bears
+
+[PLAYER2]
+hand:Executioner's Swing
+manapool:{W}{B}
+
+[END]

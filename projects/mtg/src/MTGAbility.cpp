@@ -4276,8 +4276,6 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
     if (card->hasType(Subtypes::TYPE_INSTANT) || card->hasType(Subtypes::TYPE_SORCERY))
     {
         MTGPlayerCards * zones = card->owner->game;
-        if(card->getCurrentZone())
-            card->currentZone->owner->game;//grab it from where ever it is.
         MTGPlayerCards * Endzones = card->owner->game;//put them in thier owners respective zones as per rules.
         if (card->basicAbilities[(int)Constants::EXILEDEATH])
         {
@@ -4286,6 +4284,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
         }
         else if (card->alternateCostPaid[ManaCost::MANA_PAID_WITH_BUYBACK] > 0)
         {
+            card->alternateCostPaid[ManaCost::MANA_PAID_WITH_BUYBACK] = 0;
             zones->putInZone(card, zones->stack, Endzones->hand);
         }
         else if (card->alternateCostPaid[ManaCost::MANA_PAID_WITH_FLASHBACK] > 0)

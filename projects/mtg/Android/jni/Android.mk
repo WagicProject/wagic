@@ -57,7 +57,6 @@ LOCAL_SRC_FILES := $(SDL_PATH)/src/main/android/SDL_android_main.cpp \
         $(MTG_PATH)/src/DeckMetaData.cpp \
         $(MTG_PATH)/src/DeckStats.cpp \
         $(MTG_PATH)/src/DuelLayers.cpp \
-        $(MTG_PATH)/src/Effects.cpp \
         $(MTG_PATH)/src/ExtraCost.cpp \
         $(MTG_PATH)/src/GameApp.cpp \
         $(MTG_PATH)/src/GameLauncher.cpp \

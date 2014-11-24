@@ -146,7 +146,7 @@ int MTGEventBonus::receiveEvent(WEvent * event)
             }
             //////bonus for having a LOT of specific type.
             //not else'd becuase it is possible for a card to contain
-            //more then one of the types, and for more then one to trigger.
+            //more than one of the types, and for more than one to trigger.
             if(e->card->hasType(Subtypes::TYPE_ARTIFACT))
                 toys[currentPlayer->getId()]++;
             if(e->card->isCreature())

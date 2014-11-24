@@ -23,28 +23,32 @@
 #include "SLES/OpenSLES_Android.h"
 
 #elif defined USE_PHONON
-    #include <phonon/AudioOutput>
-    #include <phonon/MediaObject>
+#include <phonon/AudioOutput>
+#include <phonon/MediaObject>
+#elif (defined QT_CONFIG)
+#include "QMediaPlayer"
+#include "QMediaPlaylist"
+#include "QSoundEffect"
 #elif defined WIN32
-    #include <windows.h>
+#include <windows.h>
 #define WITH_FMOD
 #elif defined (PSP)
-    #include <pspgu.h>
-    #include <pspkernel.h>
-    #include <pspdisplay.h>
-    #include <pspdebug.h>
-    #include <pspctrl.h>
-    #include <time.h>
-    #include <string.h>
-    #include <pspaudiolib.h>
-    #include <psprtc.h>
+#include <pspgu.h>
+#include <pspkernel.h>
+#include <pspdisplay.h>
+#include <pspdebug.h>
+#include <pspctrl.h>
+#include <time.h>
+#include <string.h>
+#include <pspaudiolib.h>
+#include <psprtc.h>
 
-    #include "JAudio.h"
-    #include "JMP3.h"
+#include "JAudio.h"
+#include "JMP3.h"
 #endif
 
 #ifdef WITH_FMOD
-    #include "../Dependencies/include/fmod.h"
+#include "../Dependencies/include/fmod.h"
 #endif
 
 //------------------------------------------------------------------------------------------------
@@ -67,7 +71,7 @@ public:
 #ifdef USE_PHONON
     Phonon::AudioOutput* mOutput;
     Phonon::MediaObject* mMediaObject;
-    public slots:
+public slots:
     void seekAtTheBegining();
 #elif defined (PSP)
     JMP3* mTrack;
@@ -82,6 +86,10 @@ public:
     SLPlayItf playInterface;
     SLSeekItf seekInterface;
     SLVolumeItf musicVolumeInterface;
+#elif (defined QT_CONFIG)
+    QMediaPlaylist* playlist;
+    QMediaPlayer* player;
+    string fullpath;
 #else
     void* mTrack;
 #endif  //WITH_FMOD
@@ -92,13 +100,15 @@ public:
 //------------------------------------------------------------------------------------------------    
 class JSample
 {
- public:
+public:
     JSample();
     ~JSample();
 
     unsigned long fileSize();
-
-#if defined (PSP)
+#if (defined QT_CONFIG) && (!defined USE_PHONON)
+    QMediaPlayer* effect;
+    void* mSample;
+#elif defined (PSP)
     WAVDATA *mSample;
 #elif defined (IOS)
     std::string filename;
@@ -133,126 +143,128 @@ class JSoundSystem
 
 public:
 
-	//////////////////////////////////////////////////////////////////////////
-	/// Get the singleton instance
-	///
-	//////////////////////////////////////////////////////////////////////////
-	static JSoundSystem* GetInstance();
+    //////////////////////////////////////////////////////////////////////////
+    /// Get the singleton instance
+    ///
+    //////////////////////////////////////////////////////////////////////////
+    static JSoundSystem* GetInstance();
 
-	static void Destroy();
+    static void Destroy();
 
 
 
-	//////////////////////////////////////////////////////////////////////////
-	/// Load music.
-	///
-	/// @note MP3 is the only supported format for the moment.
-	///
-	/// @param filename - Name of the music file.
-	///
-	//////////////////////////////////////////////////////////////////////////
-	JMusic *LoadMusic(const char *fileName);
+    //////////////////////////////////////////////////////////////////////////
+    /// Load music.
+    ///
+    /// @note MP3 is the only supported format for the moment.
+    ///
+    /// @param filename - Name of the music file.
+    ///
+    //////////////////////////////////////////////////////////////////////////
+    JMusic *LoadMusic(const char *fileName);
 
-	//////////////////////////////////////////////////////////////////////////
-	/// Delete music from memory.
-	///
-	/// @param music - Music to be deleted.
-	///
-	//////////////////////////////////////////////////////////////////////////
-	//void FreeMusic(JMusic *music);
+    //////////////////////////////////////////////////////////////////////////
+    /// Delete music from memory.
+    ///
+    /// @param music - Music to be deleted.
+    ///
+    //////////////////////////////////////////////////////////////////////////
+    //void FreeMusic(JMusic *music);
 
-	//////////////////////////////////////////////////////////////////////////
-	/// Play music.
-	///
-	/// @param music - Music to be played.
-	/// @param looping - Play the music in a loop.
-	///
-	//////////////////////////////////////////////////////////////////////////
-	void PlayMusic(JMusic *music, bool looping = false);
+    //////////////////////////////////////////////////////////////////////////
+    /// Play music.
+    ///
+    /// @param music - Music to be played.
+    /// @param looping - Play the music in a loop.
+    ///
+    //////////////////////////////////////////////////////////////////////////
+    void PlayMusic(JMusic *music, bool looping = false);
 
-	//////////////////////////////////////////////////////////////////////////
-	/// Stop playing.
-	///
-	/// @param music - Music to be stopped.
-	///
-	//////////////////////////////////////////////////////////////////////////
-	void StopMusic(JMusic *music);
+    //////////////////////////////////////////////////////////////////////////
+    /// Stop playing.
+    ///
+    /// @param music - Music to be stopped.
+    ///
+    //////////////////////////////////////////////////////////////////////////
+    void StopMusic(JMusic *music);
 
     
-	//////////////////////////////////////////////////////////////////////////
-	/// Resume playing.
-	///
-	/// @param music - Music to be resumed.
-	///
-	//////////////////////////////////////////////////////////////////////////
-	void ResumeMusic(JMusic *music);
+    //////////////////////////////////////////////////////////////////////////
+    /// Resume playing.
+    ///
+    /// @param music - Music to be resumed.
+    ///
+    //////////////////////////////////////////////////////////////////////////
+    void ResumeMusic(JMusic *music);
     
-	//////////////////////////////////////////////////////////////////////////
-	/// Pause playing.
-	///
-	/// @param music - Music to be paused.
-	///
-	//////////////////////////////////////////////////////////////////////////
-	void PauseMusic(JMusic *music);
+    //////////////////////////////////////////////////////////////////////////
+    /// Pause playing.
+    ///
+    /// @param music - Music to be paused.
+    ///
+    //////////////////////////////////////////////////////////////////////////
+    void PauseMusic(JMusic *music);
 
-	//////////////////////////////////////////////////////////////////////////
-	/// Load sound effect.
-	///
-	/// @note WAV sound effect only.
-	///
-	/// @param fileName - Sound effect for loading.
-	///
-	//////////////////////////////////////////////////////////////////////////
-	JSample *LoadSample(const char *fileName);
+    //////////////////////////////////////////////////////////////////////////
+    /// Load sound effect.
+    ///
+    /// @note WAV sound effect only.
+    ///
+    /// @param fileName - Sound effect for loading.
+    ///
+    //////////////////////////////////////////////////////////////////////////
+    JSample *LoadSample(const char *fileName);
 
-	//////////////////////////////////////////////////////////////////////////
-	/// Delete sound effect from memory.
-	///
-	/// @param sample - Sound to be deleted.
-	///
-	//////////////////////////////////////////////////////////////////////////
-	//void FreeSample(JSample *sample);
+    //////////////////////////////////////////////////////////////////////////
+    /// Delete sound effect from memory.
+    ///
+    /// @param sample - Sound to be deleted.
+    ///
+    //////////////////////////////////////////////////////////////////////////
+    //void FreeSample(JSample *sample);
 
-	//////////////////////////////////////////////////////////////////////////
-	/// Play sound effect.
-	///
-	/// @param sample - Sound for playing.
-	///
-	//////////////////////////////////////////////////////////////////////////
-	void PlaySample(JSample *sample);
+    //////////////////////////////////////////////////////////////////////////
+    /// Play sound effect.
+    ///
+    /// @param sample - Sound for playing.
+    ///
+    //////////////////////////////////////////////////////////////////////////
+    void PlaySample(JSample *sample);
 
-	//////////////////////////////////////////////////////////////////////////
-	/// Set volume for audio playback.
-	///
-	/// @param volume - New volume.
-	///
-	//////////////////////////////////////////////////////////////////////////
-  void SetVolume(int volume);
+    //////////////////////////////////////////////////////////////////////////
+    /// Set volume for audio playback.
+    ///
+    /// @param volume - New volume.
+    ///
+    //////////////////////////////////////////////////////////////////////////
+    void SetVolume(int volume);
 
-	void SetMusicVolume(int volume);
+    void SetMusicVolume(int volume);
 
-  void SetSfxVolume(int volume);
+    void SetSfxVolume(int volume);
 
-  	int mChannel;
+    int mChannel;
 protected:
-	JSoundSystem();
-	~JSoundSystem();
+    JSoundSystem();
+    ~JSoundSystem();
 
-	void InitSoundSystem();
-	void DestroySoundSystem();
+    void InitSoundSystem();
+    void DestroySoundSystem();
 
 private:
-
-	JMusic *mCurrentMusic;
+#if (defined PSP || defined ANDROID)
+    JMusic *mCurrentMusic;
     JSample *mCurrentSample;
+#endif
 
-	int mVolume;
-  int mMusicVolume;
-  int mSampleVolume;
+    int mVolume;
+    int mMusicVolume;
+    int mSampleVolume;
 
 
-	static JSoundSystem* mInstance;
+    static JSoundSystem* mInstance;
 
 };
 
 #endif
+

@@ -5,7 +5,7 @@ addExclusiveBuilds(graphics, Graphics, console, Console)
 
 INCLUDEPATH += ../../JGE/include/qt
 CONFIG(console, graphics|console){
-    QT += core network
+    QT += core network multimedia
     QT -= gui
 
     DEFINES += CONSOLE_CONFIG
@@ -17,7 +17,7 @@ else:CONFIG(graphics, graphics|console){
     folder_01.source = qml/QmlWagic
     folder_01.target = /usr/share
     DEPLOYMENTFOLDERS = folder_01
-    QT += core gui opengl network
+    QT += core gui opengl network multimedia
     QT -= declarative quick qml
     #maemo5:DEFINES += QT_WIDGET
     DEFINES += QT_WIDGET
@@ -46,6 +46,7 @@ CONFIG(graphics, graphics|console){
         ../../JGE/src/qt/qtcorewrapper.cpp\
         ../../JGE/src/Qtmain.cpp\
         ../../JGE/src/JMD2Model.cpp\
+        ../../JGE/src/pc/JSfx.cpp\
         ../../JGE/src/pc/JGfx.cpp
 }
 else:CONFIG(console, graphics|console){
@@ -54,6 +55,7 @@ else:CONFIG(console, graphics|console){
 
     SOURCES += \
         ../../JGE/src/OutputCapturer.cpp\
+        ../../JGE/src/pc/JSfx.cpp\
         ../../JGE/src/JGfx-fake.cpp\
         ../../JGE/src/Qtconsole.cpp\
 }

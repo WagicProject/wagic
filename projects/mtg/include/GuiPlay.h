@@ -47,7 +47,6 @@ protected:
     {
         static const float HEIGHT;
         unsigned attackers;
-        unsigned blockers;
         unsigned currentAttacker;
         float height;
 

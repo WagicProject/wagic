@@ -30,8 +30,8 @@ def createResZipFile(filename):
         zip_file.close()
         
         if rename:
-	    os.rename('settings/options.txt', 'settings/options.orig.txt')
-	    os.rename('player/options.txt', 'player/options.orig.txt')
+            os.rename('settings/options.txt', 'settings/options.orig.txt')
+            os.rename('player/options.txt', 'player/options.orig.txt')
 
 def getFilename():
     p = Properties();
@@ -44,16 +44,18 @@ def getFilename():
 
 
 
-def createStandardResFile():
-    print "Creating Standard Resource File"
-    filename = getFilename() + '.zip'
+def createStandardResFile(filename):
+    print('Creating Standard Resource File')
+    if not filename:
+        filename = getFilename() + '.zip'
     createResZipFile( filename )
     print >> sys.stderr, 'Created Resource Package for Standard Distribution: {0}'.format( filename)
 
-def createIosResFile():
-    print 'Preparing Resource Package for iOS'
+def createIosResFile(filename):
+    print('Preparing Resource Package for iOS')
     utilities = ZipUtilities()
-    filename = getFilename() + '_iOS.zip'
+    if not filename:
+        filename = getFilename() + '_iOS.zip'
     #createResZipFile( filename )
     zip_file = zipfile.ZipFile(filename, 'a', zipfile.ZIP_STORED)
     zip_file.write("../../iOS/Res/rules/modrules.xml", "rules/modrules.xml", zipfile.ZIP_STORED)
@@ -78,10 +80,10 @@ class ZipUtilities:
             if file != '.svn':
                 full_path = os.path.join(folder, file)
                 if os.path.isfile(full_path):
-                        print 'File added: ' + str(full_path)
+                        print('File added: ' + str(full_path))
                         zip_file.write(full_path)
                 elif os.path.isdir(full_path):
-                        print 'Entering folder: ' + str(full_path)
+                        print('Entering folder: ' + str(full_path))
                         self.addFolderToZip(zip_file, full_path)
 
 
@@ -90,16 +92,17 @@ def main():
 
     parser = OptionParser()
     parser.add_option("-p", "--platform", help="PLATFORM: specify custom build. (eg ios, android, etc)", metavar="PLATFORM", dest="platform")
+    parser.add_option("-n", "--name", help="NAME: specify resource file name", metavar="NAME", dest="name")
 
     (options, args) = parser.parse_args()
 	
     if (options.platform):
-		if (options.platform == "ios"): 
-				createIosResFile()
-		else:
-				createStandardResFile()
+        if (options.platform == "ios"):
+            createIosResFile(options.name)
+        else:
+            createStandardResFile(options.name)
     else:
-		createStandardResFile()
+        createStandardResFile(options.name)
 
 if __name__ == "__main__":
 	main()

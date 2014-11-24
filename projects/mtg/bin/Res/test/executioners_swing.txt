@@ -1,0 +1,42 @@
+#NAME: Executioner's Swing
+#DESC: Checks targetability
+#DESC: Test that can target creature that damaged creature this turn
+
+[INIT]
+combatattackers
+
+[PLAYER1]
+inplay:Grizzly Bears
+
+[PLAYER2]
+inplay:Flying Men,Swamp,Plains
+hand:Executioner's Swing
+
+[DO]
+Grizzly Bears
+next
+Flying Men
+next
+next
+next
+
+# second main
+# kill bear
+yes
+Swamp
+Plains
+Executioner's Swing
+Grizzly Bears
+endinterruption
+
+[ASSERT]
+secondmain
+
+[PLAYER1]
+graveyard:Grizzly Bears
+
+[PLAYER2]
+graveyard:Executioner's Swing,Flying Men
+inplay:Plains,Swamp
+
+[END]

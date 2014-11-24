@@ -128,6 +128,7 @@ public:
     bool readIntoString(const string & FilePath, string & target);
     bool openForWrite(ofstream & File, const string & FilePath, ios_base::openmode mode = ios_base::out );
     bool Rename(string from, string to);
+    bool Remove(string aFile);
 
     //Returns true if strFilename exists somewhere in the fileSystem
     bool FileExists(const string& strFilename);
