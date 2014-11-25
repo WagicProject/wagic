@@ -13,7 +13,7 @@
 #include "GameApp.h"
 #include "qtcorewrapper.h"
 
-WagicCore* g_glwidget = NULL;
+QtWagicCore* g_glwidget = NULL;
 
 
 
@@ -50,7 +50,7 @@ int main(int argc, char* argv[])
                 );
 #endif
 #ifdef QT_WIDGET
-    g_glwidget = new WagicCore();
+    g_glwidget = new QtWagicCore();
     if(!downloadRequest || downloadRequest->getDownloadStatus() == DownloadRequest::DOWNLOADED)
     {
         g_glwidget->start(0);
