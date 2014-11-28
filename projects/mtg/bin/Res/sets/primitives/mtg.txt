@@ -641,7 +641,7 @@ type=Artifact
 [card]
 name=Acorn Harvest
 auto=token(Squirrel,creature squirrel, 1/1,green)*2
-flashback={L}{L}{L}{1}{G}
+flashback={L:3}{1}{G}
 text=Put two 1/1 green Squirrel creature tokens onto the battlefield. -- Flashback {1}{G}, Pay 3 life. (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={3}{G}
 type=Sorcery
@@ -4641,6 +4641,15 @@ type=Artifact Creature
 subtype=Assembly-Worker
 power=2
 toughness=2
+[/card]
+[card]
+name=Assert Authority
+abilities=affinityartifacts
+target=*|stack
+auto=fizzleto(exile)
+text=Affinity for artifacts (This spell costs {1} less to cast for each artifact you control.) -- Counter target spell. If that spell is countered this way, exile it instead of putting it into its owner's graveyard.
+mana={5}{U}{U}
+type=Instant
 [/card]
 [card]
 name=Astral Slide
@@ -8826,7 +8835,7 @@ type=Artifact
 [card]
 name=Blood Crypt
 auto=tap
-auto=pay({L}{L}) untap
+auto=pay({L:2}) untap
 text=({T}: Add {B} or {R} to your mana pool.) -- As Blood Crypt enters the battlefield, you may pay 2 life. If you don't, Blood Crypt enters the battlefield tapped.
 type=Land
 subtype=Swamp Mountain
@@ -10107,7 +10116,7 @@ toughness=*
 [/card]
 [card]
 name=Book of Rass
-auto={L}{L}{2}:draw:1
+auto={L:2}{2}:draw:1
 text={2}, Pay 2 life: Draw a card.
 mana={6}
 type=Artifact
@@ -10886,7 +10895,7 @@ type=Enchantment
 [card]
 name=Breeding Pool
 auto=tap
-auto=pay({L}{L}) untap
+auto=pay({L:2}) untap
 text=({T}: Add {G} or {U} to your mana pool.) -- As Breeding Pool enters the battlefield, you may pay 2 life. If you don't, Breeding Pool enters the battlefield tapped.
 type=Land
 subtype=Forest Island
@@ -13821,7 +13830,7 @@ toughness=5
 [card]
 name=Chainer, Dementia Master
 auto=lord(Nightmare) 1/1
-auto={B}{B}{B}{L}{L}{L}:moveto(mybattlefield) target(creature|graveyard) && transforms((Nightmare,black)) forever
+auto={B}{B}{B}{L:3}:moveto(mybattlefield) target(creature|graveyard) && transforms((Nightmare,black)) forever
 auto=@movedto(this|nonbattlezone):moveto(exile) all(Nightmare)
 text=Nightmare creatures get +1/+1. -- {B}{B}{B}, Pay 3 life: Put target creature card from a graveyard onto the battlefield under your control. That creature is black and is a Nightmare in addition to its other creature types. -- When Chainer, Dementia Master leaves the battlefield, exile all Nightmares.
 mana={3}{B}{B}
@@ -17829,7 +17838,7 @@ type=Instant
 name=Crippling Fatigue
 target=creature
 auto=-2/-2
-flashback={L}{L}{L}{1}{B}
+flashback={L:3}{1}{B}
 text=Target creature gets -2/-2 until end of turn. -- Flashback {1}{B}, Pay 3 life (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={1}{B}{B}
 type=Sorcery
@@ -17986,7 +17995,7 @@ toughness=0
 name=Crovax, Ascendant Hero
 auto=lord(other creature[white]) 1/1
 auto=lord(creature[-white]) -1/-1
-auto={L}{L}:moveTo(ownerhand)
+auto={L:2}:moveTo(ownerhand)
 text=Other white creatures get +1/+1. -- Nonwhite creatures get -1/-1. -- Pay 2 life: Return Crovax, Ascendant Hero to its owner's hand.
 mana={4}{W}{W}
 type=Legendary Creature
@@ -20767,7 +20776,7 @@ toughness=1
 name=Deep Analysis
 target=player
 auto=draw:2
-flashback={L}{L}{L}{1}{U}
+flashback={L:3}{1}{U}
 text=Target player draws two cards. -- Flashback {1}{U}, Pay 3 life. (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={3}{U}
 type=Sorcery
@@ -20929,7 +20938,7 @@ toughness=2
 [/card]
 [card]
 name=Deepwood Ghoul
-auto={L}{L}:regenerate
+auto={L:2}:regenerate
 text=Pay 2 life: Regenerate Deepwood Ghoul.
 mana={2}{B}
 type=Creature
@@ -21279,7 +21288,7 @@ type=Sorcery
 [card]
 name=Demon of Death's Gate
 abilities=flying,trample
-other={L}{L}{L}{L}{L}{L}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)} name(Pay 6 Life and Sacrifice 3 Creatures)
+other={L:6}{S(creature|myBattlefield)}{S(creature|myBattlefield)}{S(creature|myBattlefield)} name(Pay 6 Life and Sacrifice 3 Creatures)
 text=Flying, trample -- You may pay 6 life and sacrifice three black creatures rather than pay Demon of Death's Gate's mana cost.
 mana={6}{B}{B}{B}
 type=Creature
@@ -30977,7 +30986,7 @@ type=Instant
 name=Flash of Defiance
 auto=lord(creature[green]) cantblock
 auto=lord(creature[white]) cantblock
-flashback={L}{L}{L}{1}{R}
+flashback={L:3}{1}{R}
 text=Green creatures and white creatures can't block this turn. -- Flashback {1}{R}, Pay 3 life. (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={1}{R}
 type=Sorcery
@@ -31541,7 +31550,7 @@ subtype=Aura
 name=Flowstone Flood
 target=land
 auto=destroy
-buyback={D}{L}{L}{L}{3}{R}
+buyback={D}{L:3}{3}{R}
 text=Buyback - Pay 3 life, Discard a card at random. (You may pay 3 life and discard a card at random in addition to any other costs as you cast this spell. If you do, put this card into your hand as it resolves.) -- Destroy target land.
 mana={3}{R}
 type=Sorcery
@@ -32812,7 +32821,7 @@ auto=destroy
 auto=target(land) destroy
 restriction=type(creature|battlefield)~morethan~0,type(land|battlefield)~morethan~0
 text=As an additional cost to cast Fumarole, pay 3 life. -- Destroy target creature and target land.
-mana={3}{B}{R}{L}{L}{L}
+mana={3}{B}{R}{L:3}
 type=Sorcery
 [/card]
 [card]
@@ -34885,6 +34894,7 @@ type=Sorcery
 [/card]
 [card]
 name=Glacial Chasm
+#Specific Life Cost {L:2} doesnt support upkeep cost at the moment...
 auto=sacrifice notatarget(land|myBattlefield)
 auto=cumulativeupcost[{L}{L}] sacrifice
 auto=lord(creature|mybattlefield) cantattack
@@ -36466,7 +36476,7 @@ toughness=4
 [card]
 name=Godless Shrine
 auto=tap
-auto=pay({L}{L}) untap
+auto=pay({L:2}) untap
 text=({T}: Add {W} or {B} to your mana pool.) -- As Godless Shrine enters the battlefield, you may pay 2 life. If you don't, Godless Shrine enters the battlefield tapped.
 type=Land
 subtype=Plains Swamp
@@ -37565,7 +37575,7 @@ subtype=Equipment
 [/card]
 [card]
 name=Greed
-auto={L}{L}{B}:draw:1
+auto={L:2}{B}:draw:1
 text={B}, Pay 2 life: Draw a card.
 mana={3}{B}
 type=Enchantment
@@ -37936,7 +37946,7 @@ type=Instant
 [card]
 name=Griselbrand
 abilities=flying,lifelink
-auto={L}{L}{L}{L}{L}{L}{L}:name(draw 7) draw:7 controller
+auto={L:7}:name(draw 7) draw:7 controller
 text=Flying, lifelink -- Pay 7 life: Draw seven cards.
 mana={4}{B}{B}{B}{B}
 type=Legendary Creature
@@ -38989,7 +38999,7 @@ type=Sorcery
 [card]
 name=Hallowed Fountain
 auto=tap
-auto=pay({L}{L}) untap
+auto=pay({L:2}) untap
 text=({T}: Add {W} or {U} to your mana pool.) -- As Hallowed Fountain enters the battlefield, you may pay 2 life. If you don't, Hallowed Fountain enters the battlefield tapped.
 type=Land
 subtype=Plains Island
@@ -40738,7 +40748,7 @@ type=Instant
 [/card]
 [card]
 name=Hibernation Sliver
-auto=lord(sliver) {L}{L}:moveTo(myhand)
+auto=lord(sliver) {L:2}:moveTo(myhand)
 text=All Slivers have "Pay 2 life: Return this permanent to its owner's hand."
 mana={U}{B}
 type=Creature
@@ -43712,6 +43722,7 @@ type=Sorcery
 [/card]
 [card]
 name=Inner Sanctum
+#Specific Life Cost {L:2} doesnt support upkeep cost at the moment...
 auto=preventalldamage to(creature|mybattlefield)
 auto=cumulativeupcost[{L}{L}] sacrifice
 text=Cumulative upkeep - Pay 2 life. (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- Prevent all damage that would be dealt to creatures you control.
@@ -53660,7 +53671,7 @@ toughness=*
 [card]
 name=Marrow Bats
 abilities=flying
-auto={L}{L}{L}{L}:regenerate
+auto={L:4}:regenerate
 text=Flying -- Pay 4 life: Regenerate Marrow Bats.
 mana={4}{B}
 type=Creature
@@ -53927,7 +53938,7 @@ type=Sorcery
 [/card]
 [card]
 name=Martyrs' Tomb
-auto={L}{L}:prevent:1 target(creature)
+auto={L:2}:prevent:1 target(creature)
 text=Pay 2 life: Prevent the next 1 damage that would be dealt to target creature this turn.
 mana={2}{W}{B}
 type=Enchantment
@@ -60331,7 +60342,7 @@ type=Sorcery
 [/card]
 [card]
 name=Nightmare Lash
-auto={L}{L}{L}:equip
+auto={L:3}:equip
 auto=foreach(swamp|myBattlefield) 1/1
 text=Equipped creature gets +1/+1 for each Swamp you control. -- Equip - Pay 3 life. (Pay 3 life: Attach to target creature you control. Equip only as a sorcery. This card enters the battlefield unattached and stays on the battlefield if the creature leaves.)
 mana={4}
@@ -60475,7 +60486,7 @@ toughness=4
 [card]
 name=Nihilistic Glee
 auto={2}{B}{discard(*|myhand)}:life:-1 opponent && life:1 controller
-auto=aslongas(*|myhand) {L}{L}{1}:draw:1 <1
+auto=aslongas(*|myhand) {L:2}{1}:draw:1 <1
 text={2}{B}, Discard a card: Target opponent loses 1 life and you gain 1 life. -- Hellbent - {1}, Pay 2 life: Draw a card. Activate this ability only if you have no cards in hand.
 mana={2}{B}{B}
 type=Enchantment
@@ -61217,7 +61228,7 @@ toughness=6
 [card]
 name=Numai Outcast
 auto=bushido(2/2)
-auto={L}{L}{L}{L}{L}{B}:regenerate
+auto={L:5}{B}:regenerate
 text=Bushido 2 (When this blocks or becomes blocked, it gets +2/+2 until end of turn.) -- {B}, Pay 5 life: Regenerate Numai Outcast.
 mana={3}{B}
 type=Creature
@@ -62979,7 +62990,7 @@ type=Enchantment
 [card]
 name=Overgrown Tomb
 auto=tap
-auto=pay({L}{L}) untap
+auto=pay({L:2}) untap
 text=({T}: Add {B} or {G} to your mana pool.) -- As Overgrown Tomb enters the battlefield, you may pay 2 life. If you don't, Overgrown Tomb enters the battlefield tapped.
 type=Land
 subtype=Swamp Forest
@@ -65176,7 +65187,7 @@ toughness=3
 [/card]
 [card]
 name=Phyrexian Reclamation
-auto={L}{L}{1}{B}:moveTo(myhand) target(creature|mygraveyard)
+auto={L:2}{1}{B}:moveTo(myhand) target(creature|mygraveyard)
 text={1}{B}, Pay 2 life: Return target creature card from your graveyard to your hand.
 mana={B}
 type=Enchantment
@@ -65185,7 +65196,7 @@ type=Enchantment
 name=Phyrexian Scuta
 text=Kicker - Pay 3 life. (You may pay 3 life in addition to any other costs as you cast this spell.) -- If Phyrexian Scuta was kicked, it enters the battlefield with two +1/+1 counters on it.
 auto=alternative counter(1/1,2) all(this)
-other={3}{B}{L}{L}{L} name(Pay Kicker)
+other={3}{B}{L:3} name(Pay Kicker)
 mana={3}{B}
 type=Creature
 subtype=Zombie
@@ -67867,7 +67878,7 @@ toughness=1
 [/card]
 [card]
 name=Putrid Leech
-auto={L}{L}:2/2 limit:1
+auto={L:2}:2/2 limit:1
 text=Pay 2 life: Putrid Leech gets +2/+2 until end of turn. Activate this ability only once each turn.
 mana={B}{G}
 type=Creature
@@ -70237,7 +70248,7 @@ type=Sorcery
 [/card]
 [card]
 name=Reckless Assault
-auto={L}{L}{1}:damage:1 target(creature,player)
+auto={L:2}{1}:damage:1 target(creature,player)
 text={1}, Pay 2 life: Reckless Assault deals 1 damage to target creature or player.
 mana={2}{B}{R}
 type=Enchantment
@@ -73278,7 +73289,7 @@ name=Rouse
 target=creature
 auto=2/0
 otherrestriction=type(swamp|mybattlefield)~morethan~0
-other={L}{L} name(Pay 2 Life)
+other={L:2} name(Pay 2 Life)
 text=If you control a Swamp, you may pay 2 life rather than pay Rouse's mana cost. -- Target creature gets +2/+0 until end of turn.
 mana={1}{B}
 type=Instant
@@ -74044,7 +74055,7 @@ toughness=3
 [card]
 name=Sacred Foundry
 auto=tap
-auto=may untap && life:-2 controller
+auto=pay({L:2}) untap
 text=({T}: Add {R} or {W} to your mana pool.) -- As Sacred Foundry enters the battlefield, you may pay 2 life. If you don't, Sacred Foundry enters the battlefield tapped.
 type=Land
 subtype=Mountain Plains
@@ -74693,6 +74704,7 @@ power=3
 toughness=3
 [/card]
 [card]
+#Specific Life Cost {L:2} doesnt support upkeep cost at the moment...
 name=Sangrophage
 auto=upcost[{L}{L}] tap
 text=At the beginning of your upkeep, tap Sangrophage unless you pay 2 life.
@@ -76545,6 +76557,7 @@ text={T}: Add {1} to your mana pool. -- {W}{U}, {T}, Sacrifice a Bird: Draw a ca
 type=Land
 [/card]
 [card]
+#Specific Life Cost {L:2} doesnt support upkeep cost at the moment...
 name=Season of the Witch
 auto=upcost[{L}{L}] sacrifice
 auto=@each my combatends:all(creature[-fresh;-attacking;-defender;-cantattack;-tapped]|mybattlefield) phaseaction[endofturn once] destroy
@@ -76990,7 +77003,7 @@ type=Sorcery
 [card]
 name=Selenia, Dark Angel
 abilities=flying
-auto={L}{L}:moveTo(ownerhand)
+auto={L:2}:moveTo(ownerhand)
 text=Flying -- Pay 2 life: Return Selenia, Dark Angel to its owner's hand.
 mana={3}{W}{B}
 type=Legendary Creature
@@ -81342,7 +81355,7 @@ toughness=2
 name=Slaughter
 target=creature[-black]
 auto=bury
-buyback={2}{B}{B}{L}{L}{L}{L}
+buyback={2}{B}{B}{L:4}
 text=Buyback - Pay 4 life. (You may pay 4 life in addition to any other costs as you cast this spell. If you do, put this card into your hand as it resolves.) -- Destroy target nonblack creature. It can't be regenerated.
 mana={2}{B}{B}
 type=Instant
@@ -82205,7 +82218,7 @@ name=Snuff Out
 target=creature[-black]
 auto=bury
 otherrestriction=type(swamp|mybattlefield)~morethan~0
-other={L}{L}{L}{L} name(Pay 4 Life)
+other={L:4} name(Pay 4 Life)
 text=If you control a Swamp, you may pay 4 life rather than pay Snuff Out's mana cost. -- Destroy target nonblack creature. It can't be regenerated.
 mana={3}{B}
 type=Instant
@@ -82900,7 +82913,7 @@ subtype=Aura
 [card]
 name=Soul Channeling
 target=creature
-auto={L}{L}:regenerate(mytgt)
+auto={L:2}:regenerate(mytgt)
 text=Enchant creature -- Pay 2 life: Regenerate enchanted creature.
 mana={2}{B}
 type=Enchantment
@@ -83215,7 +83228,7 @@ type=Enchantment
 [/card]
 [card]
 name=Souldrinker
-auto={L}{L}{L}:counter(1/1,1)
+auto={L:3}:counter(1/1,1)
 text=Pay 3 life: Put a +1/+1 counter on Souldrinker.
 mana={3}{B}
 type=Creature
@@ -84401,7 +84414,7 @@ type=Enchantment
 name=Spirit Flare
 target=creature|mybattlefield
 auto=transforms((,newability[dynamicability<!powerstrike!> target(creature[attacking;blocking]|opponentbattlefield)]))
-flashback={L}{L}{L}{1}{W}
+flashback={L:3}{1}{W}
 text=Tap target untapped creature you control. If you do, it deals damage equal to its power to target attacking or blocking creature an opponent controls. -- Flashback - {1}{W}, Pay 3 life. (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={3}{W}
 type=Instant
@@ -85638,7 +85651,7 @@ toughness=5
 [card]
 name=Steam Vents
 auto=tap
-auto=pay({l}{l}) untap
+auto=pay({L:2}) untap
 text=({T}: Add {U} or {R} to your mana pool.) -- As Steam Vents enters the battlefield, you may pay 2 life. If you don't, Steam Vents enters the battlefield tapped.
 type=Land
 subtype=Island Mountain
@@ -86093,7 +86106,7 @@ toughness=3
 [card]
 name=Stomping Ground
 auto=tap
-auto=pay({l}{l}) untap
+auto=pay({L:2}) untap
 text=({T}: Add {R} or {G} to your mana pool.) -- As Stomping Ground enters the battlefield, you may pay 2 life. If you don't, Stomping Ground enters the battlefield tapped.
 type=Land
 subtype=Mountain Forest
@@ -86560,7 +86573,7 @@ type=Sorcery
 [/card]
 [card]
 name=Strands of Night
-auto={L}{L}{B}{B}{S(swamp|myBattlefield)}:moveTo(myBattlefield) target(creature|mygraveyard)
+auto={L:2}{B}{B}{S(swamp|myBattlefield)}:moveTo(myBattlefield) target(creature|mygraveyard)
 text={B}{B}, Pay 2 life, Sacrifice a Swamp: Return target creature card from your graveyard to the battlefield.
 mana={2}{B}{B}
 type=Enchantment
@@ -86702,7 +86715,7 @@ toughness=6
 [card]
 name=Street Wraith
 abilities=swampwalk
-autohand=__CYCLING__({L}{L})
+autohand=__CYCLING__({L:2})
 text=Swampwalk -- Cycling - Pay 2 life. (Pay 2 life, Discard this card: Draw a card.)
 mana={3}{B}{B}
 type=Creature
@@ -89395,7 +89408,7 @@ toughness=2
 [/card]
 [card]
 name=Tavern Swindler
-auto={L}{L}{L}{T}:flipacoin winability life:6 controller winabilityend flipend
+auto={L:3}{T}:flipacoin winability life:6 controller winabilityend flipend
 text={T}, Pay 3 life: Flip a coin. If you win the flip, you gain 6 life.
 mana={1}{B}
 type=Creature
@@ -89830,7 +89843,7 @@ toughness=2
 [card]
 name=Temple Garden
 auto=tap
-auto=pay({l}{l}) untap
+auto=pay({L:2}) untap
 text=({T}: Add {G} or {W} to your mana pool.) -- As Temple Garden enters the battlefield, you may pay 2 life. If you don't, Temple Garden enters the battlefield tapped.
 type=Land
 subtype=Forest Plains
@@ -92666,8 +92679,12 @@ type=Artifact
 name=Tornado
 auto=cumulativeupcost[{G}] sacrifice
 auto=this(counter{0/0.1.Velocity}<1) {2}{G}:destroy target(*) && all(this) counter(0/0,1,Velocity)
-auto=this(counter{0/0.1.Velocity}=) {2}{G}{L}{L}{L}:destroy target(*) && all(this) counter(0/0,1,Velocity)
-auto=this(counter{0/0.2.Velocity}=) {2}{G}{L}{L}{L}{L}{L}{L}:destroy target(*) && all(this) counter(0/0,1,Velocity)
+auto=this(counter{0/0.1.Velocity}=) {2}{G}{L:3}:destroy target(*) && all(this) counter(0/0,1,Velocity)
+auto=this(counter{0/0.2.Velocity}=) {2}{G}{L:6}:destroy target(*) && all(this) counter(0/0,1,Velocity)
+auto=this(counter{0/0.3.Velocity}=) {2}{G}{L:9}:destroy target(*) && all(this) counter(0/0,1,Velocity)
+auto=this(counter{0/0.4.Velocity}=) {2}{G}{L:12}:destroy target(*) && all(this) counter(0/0,1,Velocity)
+auto=this(counter{0/0.5.Velocity}=) {2}{G}{L:15}:destroy target(*) && all(this) counter(0/0,1,Velocity)
+auto=this(counter{0/0.6.Velocity}=) {2}{G}{L:18}:destroy target(*) && all(this) counter(0/0,1,Velocity)
 text=Cumulative upkeep {G} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- {2}{G}, Pay 3 life for each velocity counter on Tornado: Destroy target permanent and put a velocity counter on Tornado. Activate this ability only once each turn.
 mana={4}{G}
 type=Enchantment
@@ -95359,7 +95376,7 @@ toughness=1
 [/card]
 [card]
 name=Unspeakable Symbol
-auto={L}{L}{L}:counter(1/1,1) target(creature)
+auto={L:3}:counter(1/1,1) target(creature)
 text=Pay 3 life: Put a +1/+1 counter on target creature.
 mana={1}{B}{B}
 type=Enchantment
@@ -96428,7 +96445,7 @@ toughness=3
 [/card]
 [card]
 name=Vectis Dominator
-auto={T}:name(tap) target(creature) transforms((,newability[pay[[{L}{L}]] name(pay 2 life) donothing?tap])) forever
+auto={T}:name(tap) target(creature) transforms((,newability[pay[[{L:2}]] name(pay 2 life) donothing?tap])) forever
 text={T}: Tap target creature unless its controller pays 2 life.
 mana={1}{W}{B}
 type=Artifact Creature
@@ -100422,7 +100439,7 @@ type=Land
 [card]
 name=Watery Grave
 auto=tap
-auto=pay({L}{L}) untap
+auto=pay({L:2}) untap
 text=({T}: Add {U} or {B} to your mana pool.) -- As Watery Grave enters the battlefield, you may pay 2 life. If you don't, Watery Grave enters the battlefield tapped.
 type=Land
 subtype=Island Swamp
@@ -102213,7 +102230,7 @@ name=Withering Boon
 target=creature|stack
 auto=fizzle
 text=As an additional cost to cast Withering Boon, pay 3 life. -- Counter target creature spell.
-mana={L}{L}{L}{1}{B}
+mana={L:3}{1}{B}
 type=Instant
 [/card]
 [card]
@@ -104141,7 +104158,7 @@ toughness=1
 [card]
 name=Zombie Cutthroat
 facedown={3}
-autofacedown={L}{L}{L}{L}{L}:morph
+autofacedown={L:5}:morph
 text=Morph - Pay 5 life. (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
 mana={3}{B}{B}
 type=Creature
