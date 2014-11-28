@@ -1,0 +1,24 @@
+#Testing Griselbrand with the new specific life cost {L:7}
+#Player has 8 life and you cannot use the ability the second time if you cannot pay life.
+#Must change griselbrand code to {L:7}:draw:7 instead of {L}{L}{L}{L}{L}{L}{L}:draw:7
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Griselbrand
+life:8
+library:forest,forest,forest,forest,forest,forest,forest,plains,mountain,mountain,mountain,mountain,mountain,mountain,island
+[PLAYER2]
+life:20
+[DO]
+Griselbrand
+Griselbrand
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Griselbrand
+life:1
+hand:mountain,mountain,mountain,mountain,mountain,mountain,island
+library:forest,forest,forest,forest,forest,forest,forest,plains
+[PLAYER2]
+life:20
+[END]
