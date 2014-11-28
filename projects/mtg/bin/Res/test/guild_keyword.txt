@@ -1,0 +1,38 @@
+#Testing guild keyword gruul for Xenagos, God of Revels. You must have Born of the gods set (BNG)
+#[card]
+#name=Xenagos, God of Revels
+#abilities=indestructible
+#auto=@each my combatbegins:name(haste and +x/+x) target(other creature|mybattlefield) transforms((,newability[haste],newability[power/power])) ueot
+#auto=this(variable{gruul}>6) transforms((Creature))
+#text=Indestructible -- As long as your devotion to red and green is less than seven, Xenagos isn't a creature. -- At the beginning of combat on your turn, another target creature you control gains haste and gets +X/+X until end of turn, where X is that creature's power.
+#mana={3}{R}{G}
+#type=Legendary Enchantment
+#subtype=God
+#power=6
+#toughness=5
+#[/card]
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:378528
+hand:19869
+life:20
+manapool:{G}{G}{G}{G}{G}
+[PLAYER2]
+life:20
+[DO]
+19869
+next
+choice 0
+19869
+next
+19869
+eot
+[ASSERT]
+UNTAP
+[PLAYER1]
+inplay:378528,19869
+life:20
+[PLAYER2]
+life:12
+[END]
