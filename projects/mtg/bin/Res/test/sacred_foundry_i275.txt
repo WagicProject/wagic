@@ -3,7 +3,6 @@
 [INIT]
 FIRSTMAIN
 [PLAYER1]
-life:20
 hand:sacred foundry,grizzly bears
 manapool:{1}{G}
 [PLAYER2]
@@ -14,8 +13,6 @@ grizzly bears
 [ASSERT]
 FIRSTMAIN
 [PLAYER1]
-#added life check. it seems the ai doesn't select the 2nd choice. tested on windows.
-life:18
 inplay:sacred foundry,grizzly bears
 [PLAYER2]
 [END]
