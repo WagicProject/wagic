@@ -74786,7 +74786,7 @@ toughness=3
 [card]
 name=Sacred Foundry
 auto=tap
-auto=pay({L:2}) untap
+auto=may untap && life:-2 controller
 text=({T}: Add {R} or {W} to your mana pool.) -- As Sacred Foundry enters the battlefield, you may pay 2 life. If you don't, Sacred Foundry enters the battlefield tapped.
 type=Land
 subtype=Mountain Plains
