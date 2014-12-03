@@ -114,6 +114,7 @@ protected:
 
 private:
 	WagicCore m_Wagic;
+    Platform::Agile<CoreWindow> m_window;
 	bool m_windowClosed;
 	bool m_windowVisible;
 };
@@ -147,6 +148,7 @@ void WagicApp::Initialize(CoreApplicationView^ applicationView)
 
 void WagicApp::SetWindow(CoreWindow^ window)
 {
+	m_window = window;
 	window->SizeChanged += 
         ref new TypedEventHandler<CoreWindow^, WindowSizeChangedEventArgs^>(this, &WagicApp::OnWindowSizeChanged);
 
@@ -201,6 +203,7 @@ void WagicApp::Run()
 			CoreWindow::GetForCurrentThread()->Dispatcher->ProcessEvents(CoreProcessEventsOption::ProcessOneAndAllPending);
 		}
 	}
+	CoreApplication::Exit();
 }
 
 void WagicApp::Uninitialize()
@@ -251,6 +254,7 @@ void WagicApp::OnKeyDown(CoreWindow^ sender, KeyEventArgs^ args)
 	WPARAM param = (WPARAM) args->VirtualKey;
 
 	m_Wagic.onKeyDown(param);
+	m_Wagic.onUpdate();
 }
 
 void WagicApp::OnKeyUp(CoreWindow^ sender, KeyEventArgs^ args)
@@ -263,9 +267,9 @@ void WagicApp::OnKeyUp(CoreWindow^ sender, KeyEventArgs^ args)
 void WagicApp::OnPointerWheelChanged(CoreWindow^ sender, PointerEventArgs^ args)
 {
 	if(args->CurrentPoint->Properties->IsHorizontalMouseWheel)
-		m_Wagic.onWheelChanged(0, 3*args->CurrentPoint->Properties->MouseWheelDelta);
-	else
 		m_Wagic.onWheelChanged(3*args->CurrentPoint->Properties->MouseWheelDelta, 0);
+	else
+		m_Wagic.onWheelChanged(0, 3*args->CurrentPoint->Properties->MouseWheelDelta);
 }
 
 void WagicApp::OnActivated(CoreApplicationView^ applicationView, IActivatedEventArgs^ args)
