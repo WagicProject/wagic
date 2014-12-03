@@ -151,6 +151,44 @@ int LifeCost::doPay()
     return 1;
 }
 
+//Specific life cost
+SpecificLifeCost * SpecificLifeCost::clone() const
+{
+    SpecificLifeCost * ec = NEW SpecificLifeCost(*this);
+    if (tc)
+        ec->tc = tc->clone();
+    return ec;
+}
+
+SpecificLifeCost::SpecificLifeCost(TargetChooser *_tc, int slc)
+    : ExtraCost("Life", _tc), slc(slc)
+{
+}
+
+int SpecificLifeCost::canPay()
+{
+    MTGCardInstance * _target = (MTGCardInstance *) target;
+    if(_target->controller()->life >= slc)
+    {
+        return 1;
+    }
+    return 0;
+}
+
+int SpecificLifeCost::doPay()
+{
+    if (!target)
+        return 0;
+
+    MTGCardInstance * _target = (MTGCardInstance *) target;
+
+    _target->controller()->loseLife(slc);
+    target = NULL;
+    if (tc)
+        tc->initTargets();
+    return 1;
+}
+
 //life or Mana cost
 LifeorManaCost * LifeorManaCost::clone() const
 {
