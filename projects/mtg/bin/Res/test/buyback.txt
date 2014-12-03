@@ -1,0 +1,30 @@
+# Cast card once with buyback and second time without.
+# The card must be in the graveyard, not in the hand
+[INIT]
+FIRSTMAIN
+
+[PLAYER1]
+hand:Capsize
+manapool:{5}{U}{U}{U}{U}
+
+[PLAYER2]
+inplay:Swamp,Island
+
+[DO]
+Capsize
+# pay buyback
+choice 1
+Swamp
+Capsize
+Island
+
+[ASSERT]
+FIRSTMAIN
+
+[PLAYER1]
+graveyard:Capsize
+
+[PLAYER2]
+hand:Swamp,Island
+
+[END]

@@ -1,0 +1,68 @@
+# Notes:
+#   - Minimal appveyor.yml file is an empty file. All sections are optional.
+#   - Indent each level of configuration with 2 spaces. Do not use tabs!
+#   - All section names are case-sensitive.
+#   - Section names should be unique on each level.
+
+#---------------------------------#
+#    environment configuration    #
+#---------------------------------#
+
+environment:
+  GH_TOKEN:
+    secure: dYnBDQkiY5oVjIlswzBX9BJigNtBGXgGlp1tK3XbHzrDEDrs2vaKD5m+Oz5OSz1C
+
+# scripts that run after cloning repository
+install:
+  - ps: (new-object net.webclient).DownloadFile('https://raw.github.com/pypa/pip/master/contrib/get-pip.py', 'C:/get-pip.py')
+  - "C:/Python27/python.exe C:/get-pip.py"
+  - "C:/Python27/Scripts/pip.exe install pyjavaproperties"
+  - "C:/Python27/Scripts/pip.exe install github3.py"
+
+#---------------------------------#
+#       build configuration       #
+#---------------------------------#
+
+# build Configuration, i.e. Debug, Release, etc.
+configuration: Release
+
+build:
+  project: projects/mtg/mtg_vs2010.sln      # path to Visual Studio solution or project
+
+#---------------------------------#
+#       tests configuration       #
+#---------------------------------#
+
+# to disable automatic tests
+test: off
+
+
+#---------------------------------#
+#      artifacts configuration    #
+#---------------------------------#
+
+artifacts:
+  # pushing windows package
+  - path: projects\mtg\bin\Wagic-windows*.zip
+
+
+#---------------------------------#
+#     deployment configuration    #
+#---------------------------------#
+
+# scripts to run before deployment
+before_deploy:
+  - cd projects/mtg/bin
+  - "C:/Python27/python.exe createWindowsZip.py"
+  - cd ../../..
+
+# scripts to run after deployment
+after_deploy:
+
+# to run your custom scripts instead of provider deployments
+deploy_script:
+  - "C:/Python27/python.exe upload-binaries.py -t %GH_TOKEN% -s %APPVEYOR_REPO_COMMIT% -l projects/mtg/bin/Wagic-windows.zip -r Wagic-windows.zip -b %APPVEYOR_REPO_BRANCH%"
+
+# to disable deployment
+#deploy: off
+

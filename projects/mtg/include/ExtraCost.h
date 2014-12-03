@@ -90,6 +90,19 @@ public:
   virtual LifeCost * clone() const;
 };
 
+//Specific life cost 
+class SpecificLifeCost : public ExtraCost
+{
+private:
+    int slc;
+
+public:
+  SpecificLifeCost(TargetChooser *_tc = NULL, int slc = 0);
+  virtual int canPay();
+  virtual int doPay();
+  virtual SpecificLifeCost * clone() const;
+};
+
 //phyrexian mana
 class LifeorManaCost : public ExtraCost
 {

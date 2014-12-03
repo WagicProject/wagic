@@ -159,9 +159,18 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
                         { //Mill to exile yourself as a cost (Library 2 Exile)
                             manaCost->addExtraCost(NEW MillExileCost(tc));
                         }
-                        else
+                        else if (value == "l")
                         { //Life cost
                             manaCost->addExtraCost(NEW LifeCost(tc));
+                        }
+                        else
+                        { //Specific Life cost
+                            vector<string>valSplit = parseBetween(value,"l:"," ",false);
+                            if (valSplit.size()) {
+                                WParsedInt* lifetopay = NEW WParsedInt(valSplit[1], NULL, c);
+                                manaCost->addExtraCost(NEW SpecificLifeCost(tc,lifetopay->getValue()));
+                                SAFE_DELETE(lifetopay);
+                            }
                         }
                         break;
                     case 'd': //DiscardRandom cost
