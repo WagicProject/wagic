@@ -59,8 +59,9 @@ def main():
     r = checkRelease(repository, options.remote)
     filename = options.remote
     with open(options.local, 'rb') as fd:
-        r.upload_asset('application/zip', filename , fd)
-
+        asset = r.upload_asset('application/zip', filename , fd)
+    s = 'File ' + options.local + ' has been uploaded as ' + asset.name + '.'
+    print s
 
 if __name__ == "__main__":
         main()
