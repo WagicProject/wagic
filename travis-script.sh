@@ -38,11 +38,11 @@ if [ "$BUILD_TYPE" = "PSP" ]; then
  echo PSPDEV = $PSPDEV
   echo psp-config = `psp-config --psp-prefix`
   cd JGE
-  make -j 2
+  make -j 4
   cd ..
   cd projects/mtg
   mkdir objs
-  make -j 2
+  make -j 4
   mkdir WTH
   mkdir WTH/Res
   mv EBOOT.PBP WTH/
@@ -60,7 +60,7 @@ fi
 
 # we're building an Android binary here
 if [ "$BUILD_TYPE" = "Android" ]; then
-  android-ndk-r9/ndk-build -C projects/mtg/Android -j2
+  android-ndk-r9/ndk-build -C projects/mtg/Android -j4
   $ANDROID list targets
   $ANDROID update project -t 1 -p projects/mtg/Android
   ant debug -f projects/mtg/Android/build.xml
@@ -71,11 +71,11 @@ if [ "$BUILD_TYPE" = "Qt" ]; then
   mkdir qt-gui-build
   cd qt-gui-build
   $QMAKE ../projects/mtg/wagic-qt.pro CONFIG+=release CONFIG+=graphics
-  make -j 2
+  make -j 4
   cd ..
   # let's try an Intel linux binary in debug text-mode-only
   $QMAKE projects/mtg/wagic-qt.pro CONFIG+=console CONFIG+=debug DEFINES+=CAPTURE_STDERR
-  make -j 2
+  make -j 4
 
   # we're cross-compiling a Qt Windows version here,
   # PATH is only set here to prevent colision
@@ -86,7 +86,7 @@ if [ "$BUILD_TYPE" = "Qt" ]; then
   # mkdir win-cross
   # cd win-cross
   # /opt/mingw32/bin/qmake ../../projects/mtg/wagic-qt.pro CONFIG+=release CONFIG+=graphics
-  # make -j 2
+  # make -j 4
   # cd release
   # cp ../../../projects/mtg/bin/fmod.dll .
   # cp /opt/mingw32/bin/QtCore4.dll .
