@@ -580,6 +580,24 @@ unsigned int MTGGameZone::countTotalManaSymbols(TargetChooser * tc, int color)
     return result;
 }
 
+unsigned int MTGGameZone::countDevotion(TargetChooser * tc, int color)
+{
+    if (!tc) {
+        return 0;
+    }
+    // we don't care if cards have protection.
+    bool withoutProtections = true;
+    int result = 0;
+    for (int i = 0; i < nb_cards; i++)
+    {
+        if (tc->canTarget(cards[i], withoutProtections))
+        {
+            result += cards[i]->getManaCost()->getManaSymbolsHybridMerged(color);
+        }
+    }
+    return result;
+}
+
 MTGCardInstance * MTGGameZone::findByName(string name)
 {
     for (int i = 0; i < (nb_cards); i++)

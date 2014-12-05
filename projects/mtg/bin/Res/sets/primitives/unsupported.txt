@@ -7045,16 +7045,6 @@ mana={2}{G}
 type=Enchantment
 [/card]
 [card]
-name=Heartlash Cinder
-abilities=haste
-text=Haste -- Chroma - When Heartlash Cinder enters the battlefield, it gets +X/+0 until end of turn, where X is the number of red mana symbols in the mana costs of permanents you control.
-mana={1}{R}
-type=Creature
-subtype=Elemental Warrior
-power=1
-toughness=1
-[/card]
-[card]
 name=Heartstone
 text=Activated abilities of creatures cost {1} less to activate. This effect can't reduce the amount of mana an ability costs to activate to less than one mana.
 mana={3}
@@ -11490,15 +11480,6 @@ mana={X}{R}
 type=Instant
 [/card]
 [card]
-name=Outrage Shaman
-text=Chroma - When Outrage Shaman enters the battlefield, it deals damage to target creature equal to the number of red mana symbols in the mana costs of permanents you control.
-mana={3}{R}{R}
-type=Creature
-subtype=Goblin Shaman
-power=2
-toughness=2
-[/card]
-[card]
 name=Outrider en-Kor
 text=Flanking (Whenever a creature without flanking blocks this creature, the blocking creature gets -1/-1 until end of turn.) -- {0}: The next 1 damage that would be dealt to Outrider en-Kor this turn is dealt to target creature you control instead.
 mana={2}{W}
@@ -12348,15 +12329,6 @@ type=Creature
 subtype=Elf Soldier
 power=2
 toughness=2
-[/card]
-[card]
-name=Primalcrux
-text=Trample -- Chroma - Primalcrux's power and toughness are each equal to the number of green mana symbols in the mana costs of permanents you control.
-mana={G}{G}{G}{G}{G}{G}
-type=Creature
-subtype=Elemental
-power=*
-toughness=*
 [/card]
 [card]
 name=Primitive Etchings
@@ -15830,15 +15802,6 @@ text={T}: Add {1} to your mana pool. -- {4}, {T}: Put a 0/1 white Goat creature 
 type=Land
 [/card]
 [card]
-name=Springjack Shepherd
-text=Chroma - When Springjack Shepherd enters the battlefield, put a 0/1 white Goat creature token onto the battlefield for each white mana symbol in the mana costs of permanents you control.
-mana={3}{W}
-type=Creature
-subtype=Kithkin Wizard
-power=1
-toughness=2
-[/card]
-[card]
 name=Sprout Swarm
 text=Convoke (Each creature you tap while casting this spell reduces its total cost by {1} or by one mana of that creature's color.) -- Buyback {3} (You may pay an additional {3} as you cast this spell. If you do, put this card into your hand as it resolves.) -- Put a 1/1 green Saproling creature token onto the battlefield.
 mana={1}{G}
@@ -17629,15 +17592,6 @@ subtype=Human Wizard
 power=2
 toughness=2
 text=Auras attached to permanents you control have totem armor. (If an enchanted permanent you control would be destroyed, instead remove all damage from it and destroy an Aura attached to it.)
-[/card]
-[card]
-name=Umbra Stalker
-text=Chroma - Umbra Stalker's power and toughness are each equal to the number of black mana symbols in the mana costs of cards in your graveyard.
-mana={4}{B}{B}{B}
-type=Creature
-subtype=Elemental
-power=*
-toughness=*
 [/card]
 [card]
 name=Unblinking Bleb

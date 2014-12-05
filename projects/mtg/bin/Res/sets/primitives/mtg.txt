@@ -40413,6 +40413,17 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Heartlash Cinder
+abilities=haste
+auto=type:manar/0 ueot
+text=Haste -- Chroma - When Heartlash Cinder enters the battlefield, it gets +X/+0 until end of turn, where X is the number of red mana symbols in the mana costs of permanents you control.
+mana={1}{R}
+type=Creature
+subtype=Elemental Warrior
+power=1
+toughness=1
+[/card]
+[card]
 name=Heartless Hidetsugu
 text={T}: Heartless Hidetsugu deals damage to each player equal to half that player's life total, rounded down.
 auto={t}:damage:halfdownlifetotal controller && damage:halfdownopponentlifetotal opponent
@@ -63547,6 +63558,16 @@ mana={3}{B}
 type=Sorcery
 [/card]
 [card]
+name=Outrage Shaman
+auto=damage:type:manar target(creature)
+text=Chroma - When Outrage Shaman enters the battlefield, it deals damage to target creature equal to the number of red mana symbols in the mana costs of permanents you control.
+mana={3}{R}{R}
+type=Creature
+subtype=Goblin Shaman
+power=2
+toughness=2
+[/card]
+[card]
 name=Outrider of Jhess
 abilities=exalted
 text=Exalted (Whenever a creature you control attacks alone, that creature gets +1/+1 until end of turn.)
@@ -67551,6 +67572,17 @@ text=Enchant creature -- Enchanted creature gets +3/+3 and has haste.
 mana={3}{R}{G}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+name=Primalcrux
+abilities=trample
+auto=thisforeach(variable{type:manag:mybattlefield}>0) 1/1
+text=Trample -- Chroma - Primalcrux's power and toughness are each equal to the number of green mana symbols in the mana costs of permanents you control.
+mana={G}{G}{G}{G}{G}{G}
+type=Creature
+subtype=Elemental
+power=*
+toughness=*
 [/card]
 [card]
 name=Prime Speaker Zegana
@@ -85813,6 +85845,16 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Springjack Shepherd
+auto=token(Goat,Creature Goat,0/1,white)*type:manaw
+text=Chroma - When Springjack Shepherd enters the battlefield, put a 0/1 white Goat creature token onto the battlefield for each white mana symbol in the mana costs of permanents you control.
+mana={3}{W}
+type=Creature
+subtype=Kithkin Wizard
+power=1
+toughness=2
+[/card]
+[card]
 name=Springleaf Drum
 auto={T}{T(other creature|myBattlefield)}:Add{W}
 auto={T}{T(other creature|myBattlefield)}:Add{U}
@@ -95773,6 +95815,16 @@ auto=@each opponent upkeep:ability$!choice name(bounce) notatarget(*|mybattlefie
 text=At the beginning of each player's upkeep, that player returns a permanent he or she controls to its owner's hand unless he or she pays 2 life.
 mana={4}
 type=Artifact
+[/card]
+[card]
+name=Umbra Stalker
+auto=thisforeach(variable{type:manab:mygraveyard}>0) 1/1
+text=Chroma - Umbra Stalker's power and toughness are each equal to the number of black mana symbols in the mana costs of cards in your graveyard.
+mana={4}{B}{B}{B}
+type=Creature
+subtype=Elemental
+power=*
+toughness=*
 [/card]
 [card]
 name=Umbral Mantle

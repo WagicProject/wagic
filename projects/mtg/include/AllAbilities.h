@@ -183,10 +183,10 @@ private:
                 for (int k = 0; k < 4; k++)
                 {
                     MTGGameZone * zone = dzones[k];
-                    if (dtc->targetsZone(zone, card))
+                    if (dtc->targetsZone(zone, card)&&dp == card->controller())
                     {
-                        intValue += zone->countTotalManaSymbols(dtc, 2);
-                        intValue += zone->countTotalManaSymbols(dtc, 5);
+                        intValue += zone->countDevotion(dtc, 2);
+                        intValue += zone->countDevotion(dtc, 5);
                     }
                 }
             }
@@ -203,10 +203,10 @@ private:
                 for (int k = 0; k < 4; k++)
                 {
                     MTGGameZone * zone = dzones[k];
-                    if (dtc->targetsZone(zone, card))
+                    if (dtc->targetsZone(zone, card)&&dp == card->controller())
                     {
-                        intValue += zone->countTotalManaSymbols(dtc, 3);
-                        intValue += zone->countTotalManaSymbols(dtc, 5);
+                        intValue += zone->countDevotion(dtc, 3);
+                        intValue += zone->countDevotion(dtc, 5);
                     }
                 }
             }
@@ -223,10 +223,10 @@ private:
                 for (int k = 0; k < 4; k++)
                 {
                     MTGGameZone * zone = dzones[k];
-                    if (dtc->targetsZone(zone, card))
+                    if (dtc->targetsZone(zone, card)&&dp == card->controller())
                     {
-                        intValue += zone->countTotalManaSymbols(dtc, 2);
-                        intValue += zone->countTotalManaSymbols(dtc, 4);
+                        intValue += zone->countDevotion(dtc, 2);
+                        intValue += zone->countDevotion(dtc, 4);
                     }
                 }
             }
@@ -243,10 +243,10 @@ private:
                 for (int k = 0; k < 4; k++)
                 {
                     MTGGameZone * zone = dzones[k];
-                    if (dtc->targetsZone(zone, card))
+                    if (dtc->targetsZone(zone, card)&&dp == card->controller())
                     {
-                        intValue += zone->countTotalManaSymbols(dtc, 1);
-                        intValue += zone->countTotalManaSymbols(dtc, 4);
+                        intValue += zone->countDevotion(dtc, 1);
+                        intValue += zone->countDevotion(dtc, 4);
                     }
                 }
             }
@@ -263,10 +263,10 @@ private:
                 for (int k = 0; k < 4; k++)
                 {
                     MTGGameZone * zone = dzones[k];
-                    if (dtc->targetsZone(zone, card))
+                    if (dtc->targetsZone(zone, card)&&dp == card->controller())
                     {
-                        intValue += zone->countTotalManaSymbols(dtc, 1);
-                        intValue += zone->countTotalManaSymbols(dtc, 3);
+                        intValue += zone->countDevotion(dtc, 1);
+                        intValue += zone->countDevotion(dtc, 3);
                     }
                 }
             }
@@ -283,10 +283,10 @@ private:
                 for (int k = 0; k < 4; k++)
                 {
                     MTGGameZone * zone = dzones[k];
-                    if (dtc->targetsZone(zone, card))
+                    if (dtc->targetsZone(zone, card)&&dp == card->controller())
                     {
-                        intValue += zone->countTotalManaSymbols(dtc, 2);
-                        intValue += zone->countTotalManaSymbols(dtc, 3);
+                        intValue += zone->countDevotion(dtc, 2);
+                        intValue += zone->countDevotion(dtc, 3);
                     }
                 }
             }
@@ -303,10 +303,10 @@ private:
                 for (int k = 0; k < 4; k++)
                 {
                     MTGGameZone * zone = dzones[k];
-                    if (dtc->targetsZone(zone, card))
+                    if (dtc->targetsZone(zone, card)&&dp == card->controller())
                     {
-                        intValue += zone->countTotalManaSymbols(dtc, 4);
-                        intValue += zone->countTotalManaSymbols(dtc, 5);
+                        intValue += zone->countDevotion(dtc, 4);
+                        intValue += zone->countDevotion(dtc, 5);
                     }
                 }
             }
@@ -323,10 +323,10 @@ private:
                 for (int k = 0; k < 4; k++)
                 {
                     MTGGameZone * zone = dzones[k];
-                    if (dtc->targetsZone(zone, card))
+                    if (dtc->targetsZone(zone, card)&&dp == card->controller())
                     {
-                        intValue += zone->countTotalManaSymbols(dtc, 3);
-                        intValue += zone->countTotalManaSymbols(dtc, 4);
+                        intValue += zone->countDevotion(dtc, 3);
+                        intValue += zone->countDevotion(dtc, 4);
                     }
                 }
             }
@@ -343,10 +343,10 @@ private:
                 for (int k = 0; k < 4; k++)
                 {
                     MTGGameZone * zone = dzones[k];
-                    if (dtc->targetsZone(zone, card))
+                    if (dtc->targetsZone(zone, card)&&dp == card->controller())
                     {
-                        intValue += zone->countTotalManaSymbols(dtc, 1);
-                        intValue += zone->countTotalManaSymbols(dtc, 5);
+                        intValue += zone->countDevotion(dtc, 1);
+                        intValue += zone->countDevotion(dtc, 5);
                     }
                 }
             }
@@ -363,10 +363,10 @@ private:
                 for (int k = 0; k < 4; k++)
                 {
                     MTGGameZone * zone = dzones[k];
-                    if (dtc->targetsZone(zone, card))
+                    if (dtc->targetsZone(zone, card)&&dp == card->controller())
                     {
-                        intValue += zone->countTotalManaSymbols(dtc, 1);
-                        intValue += zone->countTotalManaSymbols(dtc, 2);
+                        intValue += zone->countDevotion(dtc, 1);
+                        intValue += zone->countDevotion(dtc, 2);
                     }
                 }
             }
