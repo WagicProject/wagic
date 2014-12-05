@@ -618,6 +618,27 @@ int ManaCost::getManaSymbols(int color)
     return result;
 }
 
+int ManaCost::getManaSymbolsHybridMerged(int color)
+{
+    int result = cost[color];
+    for (size_t i = 0; i < hybrids.size(); ++i)
+    {
+        result = hybrids[i].getManaSymbolsHybridMerged(color);//removed +
+    }
+    if (extraCosts && extraCosts->costs.size())
+    {
+        for (size_t i = 0; i < extraCosts->costs.size(); ++i)
+        {
+            LifeorManaCost * phyrexianMana = dynamic_cast<LifeorManaCost*>(extraCosts->costs[i]);
+            if (phyrexianMana)
+            {
+                result += phyrexianMana->getManaCost()->getManaSymbolsHybridMerged(color);
+            }
+        }
+    }
+    return result;
+}
+
 int ManaCost::parseManaSymbol(char symbol)
 {
     switch (symbol)
