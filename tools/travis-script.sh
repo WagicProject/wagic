@@ -36,11 +36,11 @@ cd ../../../..
 
 # we're building a PSP binary here
 cd JGE
-make -j 8
+make -j 4
 cd ..
 cd projects/mtg
 mkdir objs
-make -j 8
+make -j 4
 mkdir WTH
 mkdir WTH/Res
 mv EBOOT.PBP WTH/
@@ -56,7 +56,7 @@ zip psprelease.zip -r WTH/
 cd ../..
 
 # we're building an Android binary here
-android-ndk-r9/ndk-build -C projects/mtg/Android -j8
+android-ndk-r9/ndk-build -C projects/mtg/Android -j4
 $ANDROID list targets
 $ANDROID update project -t 1 -p projects/mtg/Android
 ant debug -f projects/mtg/Android/build.xml
@@ -65,12 +65,12 @@ ant debug -f projects/mtg/Android/build.xml
 mkdir qt-gui-build
 cd qt-gui-build
 $QMAKE ../projects/mtg/wagic-qt.pro CONFIG+=release CONFIG+=graphics
-make -j 8
+make -j 4
 cd ..
 
 # let's try an Intel linux binary in debug text-mode-only
 $QMAKE projects/mtg/wagic-qt.pro CONFIG+=console CONFIG+=debug DEFINES+=CAPTURE_STDERR
-make -j 8
+make -j 4
 
 # Now we run the testsuite (Res needs to be in the working directory)
 cd projects/mtg
