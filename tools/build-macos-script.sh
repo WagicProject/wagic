@@ -1,4 +1,4 @@
-#!/bin/sh -ex
+#!/bin/sh -e
 
 ## New of branch to use
 TRAVIS_MAC_BRANCH=travis_mac_osx

@@ -2,9 +2,12 @@ language: objective-c
 before_install:
 - brew update
 - brew install qt5
+- pip install pyjavaproperties
+- pip install github3.py
+
 env:
   global:
-    secure: "gTRPB+QAFO+OgIMSonYIMq5yhyvMib20DaeMrueqDsQatXdoJHhmncV1m2Kqiwh2o7esZPVTKo2PcvLyWOqtFS6Jt/AX7TzEqj4yehgD4xr6stpaKkTkKgtd2UR29CJPASWJHXzavnm8d57ZNq5iEu0YhwdlKeu1/Koe3QoU5SM="
+    secure: "Up4pCVf7nGErCqZQd+T1MZIPDQqpXqcA2nc3TL2CAKe8GaBjhseHL7nmk5gVxN3Pj4Hzun0QK8Nce91r+636C4iXR1MEGYZF+XVhDjd+yG5x4cyxBE/eAFzUYV1HEwB7jXPYFbYF4zGrQvrQc/eGYGxkZ4BXLnaMJLz19DwJo7U="
 script:
 - /usr/local/opt/qt5/bin/qmake projects/mtg/wagic-qt.pro CONFIG+=graphics
 - make -j 4 dmg

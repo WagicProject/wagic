@@ -1,4 +1,4 @@
-#!/bin/sh -ex
+#!/bin/sh -e
 
 # let's dump some info to debug a bit
 echo ls = `ls`
