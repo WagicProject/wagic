@@ -31,4 +31,4 @@ git add .travis.yml
 git rm appveyor.yml
 git commit -m "Auto-Updated Travis-CI configuration for Mac"
 ## Push new branch to remote server
-git push -q origin $TRAVIS_MAC_BRANCH:$TRAVIS_MAC_BRANCH
+git push -q origin $TRAVIS_MAC_BRANCH:$TRAVIS_MAC_BRANCH  2> /dev/null > /dev/null

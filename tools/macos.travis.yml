@@ -7,7 +7,7 @@ before_install:
 
 env:
   global:
-    secure: "Up4pCVf7nGErCqZQd+T1MZIPDQqpXqcA2nc3TL2CAKe8GaBjhseHL7nmk5gVxN3Pj4Hzun0QK8Nce91r+636C4iXR1MEGYZF+XVhDjd+yG5x4cyxBE/eAFzUYV1HEwB7jXPYFbYF4zGrQvrQc/eGYGxkZ4BXLnaMJLz19DwJo7U="
+    secure: "EBzr1+qjQsOhn0s+tcFmXR1jP9B0xiOSXuXbRXWZ1OEHNvp8+A5/pS84LYVFlaZqmxr5dApxvPtwhgLIUbQ3EPXm8LpC3KgSD4dS+9/QMbxhe5TK4oczgFRGcDTMJQZsCzhOh7hp3tbcbJg5Gp+VT7aFjFQSHDGwhzSJXsXwh/8="
 script:
 - /usr/local/opt/qt5/bin/qmake projects/mtg/wagic-qt.pro CONFIG+=graphics
 - make -j 4 dmg
