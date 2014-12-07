@@ -1,8 +1,6 @@
 #!/bin/sh -ex
 
 # let's dump some info to debug a bit
-echo PSPDEV = $PSPDEV
-echo psp-config = `psp-config --psp-prefix`
 echo ls = `ls`
 echo pwd = `pwd`
 # computing potential release name
@@ -35,47 +33,55 @@ mv core_*.zip ../../../../core.zip
 cd ../../../..
 
 # we're building a PSP binary here
-cd JGE
-make -j 4
-cd ..
-cd projects/mtg
-mkdir objs
-make -j 4
-mkdir WTH
-mkdir WTH/Res
-mv EBOOT.PBP WTH/
-mv ../../JGE/exceptionHandler/prx/exception.prx WTH/
-cp ../../core.zip WTH/Res
-cd WTH/Res
-unzip core.zip
-rm core.zip
-cd ..
-chmod -R 775 Res
-cd ..
-zip psprelease.zip -r WTH/
-cd ../..
+if [ "$BUILD_PSP" = "YES" ]; then
+    echo PSPDEV = $PSPDEV
+    echo psp-config = `psp-config --psp-prefix`
+    cd JGE
+    make -j 4
+    cd ..
+    cd projects/mtg
+    mkdir objs
+    make -j 4
+    mkdir WTH
+    mkdir WTH/Res
+    mv EBOOT.PBP WTH/
+    mv ../../JGE/exceptionHandler/prx/exception.prx WTH/
+    cp ../../core.zip WTH/Res
+    cd WTH/Res
+    unzip core.zip
+    rm core.zip
+    cd ..
+    chmod -R 775 Res
+    cd ..
+    zip psprelease.zip -r WTH/
+    cd ../..
+fi
 
 # we're building an Android binary here
-android-ndk-r9/ndk-build -C projects/mtg/Android -j4
-$ANDROID list targets
-$ANDROID update project -t 1 -p projects/mtg/Android
-ant debug -f projects/mtg/Android/build.xml
+if [ "$BUILD_ANDROID" = "YES" ]; then
+    android-ndk-r9/ndk-build -C projects/mtg/Android -j4
+    $ANDROID list targets
+    $ANDROID update project -t 1 -p projects/mtg/Android
+    ant debug -f projects/mtg/Android/build.xml
+fi
 
 # we're building a Qt version with GUI here
-mkdir qt-gui-build
-cd qt-gui-build
-$QMAKE ../projects/mtg/wagic-qt.pro CONFIG+=release CONFIG+=graphics
-make -j 4
-cd ..
-
-# let's try an Intel linux binary in debug text-mode-only
-$QMAKE projects/mtg/wagic-qt.pro CONFIG+=console CONFIG+=debug DEFINES+=CAPTURE_STDERR
-make -j 4
-
-# Now we run the testsuite (Res needs to be in the working directory)
-cd projects/mtg
-../../wagic
-cd ../..
+if [ "$BUILD_Qt" = "YES" ]; then
+    mkdir qt-gui-build
+    cd qt-gui-build
+    $QMAKE ../projects/mtg/wagic-qt.pro CONFIG+=release CONFIG+=graphics
+    make -j 4
+    cd ..
+    # let's try an Intel linux binary in debug text-mode-only
+    $QMAKE projects/mtg/wagic-qt.pro CONFIG+=console CONFIG+=debug DEFINES+=CAPTURE_STDERR
+    make -j 4
+    # Now we run the testsuite (Res needs to be in the working directory)
+    cd projects/mtg
+    ../../wagic
+    cd ../..
+fi
 
 # Let's launch de Mac cross-compilation
-./tools/build-macos-script.sh
+if [ "$BUILD_MAC" = "YES" ]; then
+    ./tools/build-macos-script.sh
+fi
