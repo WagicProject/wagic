@@ -1,0 +1,12 @@
+language: objective-c
+before_install:
+- brew update
+- brew install qt5
+env:
+  global:
+    secure: "gTRPB+QAFO+OgIMSonYIMq5yhyvMib20DaeMrueqDsQatXdoJHhmncV1m2Kqiwh2o7esZPVTKo2PcvLyWOqtFS6Jt/AX7TzEqj4yehgD4xr6stpaKkTkKgtd2UR29CJPASWJHXzavnm8d57ZNq5iEu0YhwdlKeu1/Koe3QoU5SM="
+script:
+- /usr/local/opt/qt5/bin/qmake projects/mtg/wagic-qt.pro CONFIG+=graphics
+- make -j 4 dmg
+after_success:
+- python tools/upload-binaries.py -t $GH_TOKEN -s $TRAVIS_COMMIT -l wagic.dmg -r Wagic-macosx.dmg -b $TRAVIS_BRANCH

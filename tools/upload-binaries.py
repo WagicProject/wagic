@@ -49,7 +49,7 @@ def main():
 
     (options, args) = parser.parse_args()
 
-    if (options.token and options.sha and options.local and options.remote and options.branch == 'master'):
+    if (options.token and options.sha and options.local and options.remote and (options.branch == 'master' or options.branch == 'travis_mac_osx')):
         gh = login(token = options.token)
     else:
         parser.print_help()
