@@ -9,6 +9,8 @@ test "$TRAVIS_BRANCH" != "master" && exit 0
 ## Configure Git to use OAuth token
 git config credential.helper "store --file=.git/credentials"
 echo "https://${GH_TOKEN}:@github.com" > .git/credentials
+git config --global user.name $GH_USER
+git config --global user.email $GH_EMAIL
 
 ## Delete remote Travis-Mac branch (if any)
 export REMOTE=$(git branch -r | grep "origin/$TRAVIS_MAC_BRANCH\$")
