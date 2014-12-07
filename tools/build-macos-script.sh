@@ -29,6 +29,6 @@ cp tools/macos.travis.yml .travis.yml
 git add .travis.yml
 git rm appveyor.yml
 git commit -m "Auto-Updated Travis-CI configuration for Mac"
-
+git remote set-url origin "https://${GH_TOKEN}@github.com/WagicProject/wagic.git"
 ## Push new branch to remote server
 git push -q origin $TRAVIS_MAC_BRANCH:$TRAVIS_MAC_BRANCH
