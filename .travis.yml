@@ -30,9 +30,9 @@ env:
   global:
     secure: "fJgWlCFbde96OSQNGKUmowGX+ERPeqP+n1EOMf1+FJzOU4DdkTLRAlV5+5qnEX9jB/3mWN6iPpmG1qEz/SdDG3KHxJYs4ZU/Lu485O24zZ/+GdYBNsrvhPD9ckPGEMLDa1foEVTDnW0Dlkz3BCFcszjhtXGUJv7v6Pj6LRk1Mg8="
 
-script: "./travis-script.sh"
+script: "tools/travis-script.sh"
 
 after_success:
-- python upload-binaries.py -t $GH_TOKEN -s $TRAVIS_COMMIT -l core.zip -r Wagic-core.zip -b $TRAVIS_BRANCH
-- python upload-binaries.py -t $GH_TOKEN -s $TRAVIS_COMMIT -l projects/mtg/Android/bin/Wagic-debug.apk -r Wagic-android.apk -b $TRAVIS_BRANCH
-- python upload-binaries.py -t $GH_TOKEN -s $TRAVIS_COMMIT -l projects/mtg/psprelease.zip -r Wagic-psp.zip -b $TRAVIS_BRANCH
+- python tools/upload-binaries.py -t $GH_TOKEN -s $TRAVIS_COMMIT -l core.zip -r Wagic-core.zip -b $TRAVIS_BRANCH
+- python tools/upload-binaries.py -t $GH_TOKEN -s $TRAVIS_COMMIT -l projects/mtg/Android/bin/Wagic-debug.apk -r Wagic-android.apk -b $TRAVIS_BRANCH
+- python tools/upload-binaries.py -t $GH_TOKEN -s $TRAVIS_COMMIT -l projects/mtg/psprelease.zip -r Wagic-psp.zip -b $TRAVIS_BRANCH

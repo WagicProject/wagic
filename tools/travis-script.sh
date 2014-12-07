@@ -72,29 +72,10 @@ cd ..
 $QMAKE projects/mtg/wagic-qt.pro CONFIG+=console CONFIG+=debug DEFINES+=CAPTURE_STDERR
 make -j 8
 
-# we're cross-compiling a Qt Windows version here, 
-# PATH is only set here to prevent colision
-
-# export PATH="$PATH:/opt/mingw32/bin"
-# mkdir build
-# cd build
-# mkdir win-cross
-# cd win-cross
-# /opt/mingw32/bin/qmake ../../projects/mtg/wagic-qt.pro CONFIG+=release CONFIG+=graphics
-# make -j 8
-# cd release
-# cp ../../../projects/mtg/bin/fmod.dll .
-# cp /opt/mingw32/bin/QtCore4.dll .
-# cp /opt/mingw32/bin/QtGui4.dll .
-# cp /opt/mingw32/bin/QtNetwork4.dll .
-# cp /opt/mingw32/bin/QtOpenGL4.dll .
-# cp ../../../projects/mtg/bin/zlib1.dll .
-# cp /opt/mingw32/bin/libpng15-15.dll .
-# cd ..
-# zip win-cross.zip -r release/
-# cd ../..
-
 # Now we run the testsuite (Res needs to be in the working directory)
 cd projects/mtg
 ../../wagic
 cd ../..
+
+# Let's launch de Mac cross-compilation
+./build-macos-script.sh
