@@ -11,7 +11,7 @@ git config credential.helper "store --file=.git/credentials"
 echo "https://${GH_TOKEN}:@github.com" > .git/credentials
 
 ## Delete remote Travis-Mac branch (if any)
-REMOTE=$(git branch -r | grep "origin/$TRAVIS_MAC_BRANCH\$")
+export REMOTE=$(git branch -r | grep "origin/$TRAVIS_MAC_BRANCH\$")
 if test -n "$REMOTE" ; then
     # Delete remote branch
     git branch -r -D "origin/$TRAVIS_MAC_BRANCH"
@@ -23,7 +23,7 @@ fi
 git checkout -q -b "$TRAVIS_MAC_BRANCH" "$TRAVIS_BRANCH"
 
 ## Write a new Travis-CI configuration file
-cp tools/mac.travis.yml .travis.yml
+cp tools/macos.travis.yml .travis.yml
 git add .travis.yml
 git rm appveyor.yml
 git commit -m "Auto-Updated Travis-CI configuration for Mac"
