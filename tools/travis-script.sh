@@ -78,4 +78,4 @@ cd projects/mtg
 cd ../..
 
 # Let's launch de Mac cross-compilation
-./build-macos-script.sh
+./tools/build-macos-script.sh
