@@ -2,8 +2,8 @@ language: objective-c
 before_install:
 - brew update
 - brew install qt5
-- pip install pyjavaproperties
-- pip install github3.py
+- sudo pip install pyjavaproperties
+- sudo pip install github3.py
 
 env:
   global:
