@@ -4,7 +4,7 @@ branches:
     - latest-master
 
 before_install:
-#  - export BUILD_PSP=YES
+  - export BUILD_PSP=YES
   - export BUILD_ANDROID=YES
   - export BUILD_Qt=YES
   - export BUILD_MAC=YES
