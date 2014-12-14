@@ -32,7 +32,6 @@ The content that users should not be touching.
 #include "../include/JGE.h"
 #include "../include/JFileSystem.h"
 #include "../include/JLogger.h"
-#include <dirent.h>
 
 #ifdef QT_CONFIG
 #include <QDir>
@@ -139,9 +138,11 @@ JFileSystem::JFileSystem(const string & _userPath, const string & _systemPath)
     DebugTrace("Current path " << QDir::currentPath().toStdString());
 #elif defined (WP8)
 	char buff[500];
+//	auto appInstallDirectory = Windows::Storage::KnownFolders::DocumentsLibrary::get()->Path;
 	auto appInstallDirectory = Windows::ApplicationModel::Package::Current->InstalledLocation->Path;
 	WideCharToMultiByte(CP_ACP, 0, appInstallDirectory->Data(), -1, buff, appInstallDirectory->Length()+1, NULL, NULL);
   	systemPath = buff;
+	systemPath += "\\Assets\\";
 
 	auto localfolder = Windows::Storage::ApplicationData::Current->LocalFolder->Path;
 	WideCharToMultiByte(CP_ACP, 0, localfolder->Data(), -1, buff, localfolder->Length()+1, NULL, NULL);
@@ -257,7 +258,7 @@ void JFileSystem::clearZipCache()
 
 bool JFileSystem::AttachZipFile(const string &zipfile, char *password /* = NULL */)
 {
-    if (mZipAvailable && mZipFile != NULL)
+    if (mZipAvailable && mZipFile.is_open())
     {
         if (mZipFileName != zipfile)
             DetachZipFile();		// close the previous zip file

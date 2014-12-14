@@ -4,7 +4,6 @@
 #include "StoryFlow.h"
 #include "SimpleMenu.h"
 #include "GameApp.h"
-#include <dirent.h>
 
 GameStateStory::GameStateStory(GameApp* parent) :
     GameState(parent, "story")

@@ -2,7 +2,6 @@
 #define _GAME_STATE_MENU_H_
 
 #include <JGui.h>
-#include <dirent.h>
 #include "GameState.h"
 #include "SimpleMenu.h"
 #include "TextScroller.h"

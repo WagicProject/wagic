@@ -41,7 +41,7 @@ int RandomGenerator::random()
 ostream& RandomGenerator::saveUsedRandValues(ostream& out) const
 {
     list<int>::const_iterator ite;
-    for(ite=usedRandomValues.begin(); ite != usedRandomValues.end(); ite++)
+    for(ite=usedRandomValues.cbegin(); ite != usedRandomValues.cend(); ite++)
     {
         out << *ite << ",";
     }

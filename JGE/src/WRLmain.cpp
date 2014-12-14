@@ -149,16 +149,12 @@ void WagicApp::Initialize(CoreApplicationView^ applicationView)
 void WagicApp::SetWindow(CoreWindow^ window)
 {
 	m_window = window;
-	window->SizeChanged += 
-        ref new TypedEventHandler<CoreWindow^, WindowSizeChangedEventArgs^>(this, &WagicApp::OnWindowSizeChanged);
 
 	window->VisibilityChanged +=
 		ref new TypedEventHandler<CoreWindow^, VisibilityChangedEventArgs^>(this, &WagicApp::OnVisibilityChanged);
 
 	window->Closed += 
         ref new TypedEventHandler<CoreWindow^, CoreWindowEventArgs^>(this, &WagicApp::OnWindowClosed);
-
-	window->PointerCursor = ref new CoreCursor(CoreCursorType::Arrow, 0);
 
 	window->PointerPressed +=
 		ref new TypedEventHandler<CoreWindow^, PointerEventArgs^>(this, &WagicApp::OnPointerPressed);
@@ -175,8 +171,50 @@ void WagicApp::SetWindow(CoreWindow^ window)
 	window->PointerWheelChanged +=
 		ref new TypedEventHandler<CoreWindow^, PointerEventArgs^>(this, &WagicApp::OnPointerWheelChanged);
 
+#if !(WINAPI_FAMILY == WINAPI_FAMILY_PHONE_APP)
+	window->PointerCursor = ref new CoreCursor(CoreCursorType::Arrow, 0);
+
+	window->SizeChanged +=
+		ref new TypedEventHandler<CoreWindow^, WindowSizeChangedEventArgs^>(this, &WagicApp::OnWindowSizeChanged);
+#endif
+	static const float dipsPerInch = 96.0f;
 	m_Wagic.initApp();
-	m_Wagic.onWindowResize((void*)window, window->Bounds.Width, window->Bounds.Height);
+	m_Wagic.onWindowResize(
+		(void*)window, 
+		floor(window->Bounds.Width * DisplayProperties::LogicalDpi / dipsPerInch + 0.5f),
+		floor(window->Bounds.Height * DisplayProperties::LogicalDpi / dipsPerInch + 0.5f));
+
+	/*
+	window->VisibilityChanged +=
+	ref new TypedEventHandler<CoreWindow^, VisibilityChangedEventArgs^>(this, &App::OnVisibilityChanged);
+
+	window->Closed +=
+	ref new TypedEventHandler<CoreWindow^, CoreWindowEventArgs^>(this, &App::OnWindowClosed);
+
+	DisplayInformation^ currentDisplayInformation = DisplayInformation::GetForCurrentView();
+
+	DisplayInformation::DisplayContentsInvalidated +=
+	ref new TypedEventHandler<DisplayInformation^, Object^>(this, &App::OnDisplayContentsInvalidated);
+
+#if !(WINAPI_FAMILY == WINAPI_FAMILY_PHONE_APP)
+	window->SizeChanged +=
+	ref new TypedEventHandler<CoreWindow^, WindowSizeChangedEventArgs^>(this, &App::OnWindowSizeChanged);
+
+	currentDisplayInformation->DpiChanged +=
+	ref new TypedEventHandler<DisplayInformation^, Object^>(this, &App::OnDpiChanged);
+
+	currentDisplayInformation->OrientationChanged +=
+	ref new TypedEventHandler<DisplayInformation^, Object^>(this, &App::OnOrientationChanged);
+
+	// Désactivez tout retour visuel du pointeur pour de meilleures performances tactiles.
+	// Ceci n'est pas pris en charge sur les applications Windows Phone.
+	auto pointerVisualizationSettings = PointerVisualizationSettings::GetForCurrentView();
+	pointerVisualizationSettings->IsContactFeedbackEnabled = false;
+	pointerVisualizationSettings->IsBarrelButtonFeedbackEnabled = false;
+#endif
+
+	m_deviceResources->SetWindow(window);
+	*/
 }
 
 void WagicApp::Load(Platform::String^ entryPoint)

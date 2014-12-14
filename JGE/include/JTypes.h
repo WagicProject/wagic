@@ -25,17 +25,57 @@
 #include <psprtc.h>
 #include "JAudio.h"
 
-#else
+#elif defined WP8
 
-#include <stdint.h>
-
+#if !defined(WIN32_LEAN_AND_MEAN)
+#define WIN32_LEAN_AND_MEAN
 #endif
 
-#ifdef WP8
-#define _XM_NO_INTRINSICS_
-#include <wrl/client.h>
+#if !defined(NOMINMAX)
+#define NOMINMAX
+#endif
+
+#if defined(_XBOX_ONE) && defined(_TITLE)
+#include <d3d11_x.h>
+#define DCOMMON_H_INCLUDED
+#define NO_D3D11_DEBUG_NAME
+#else
 #include <d3d11_1.h>
+#endif
+
 #include <DirectXMath.h>
+#include <DirectXPackedVector.h>
+#include <DirectXCollision.h>
+
+#include <algorithm>
+#include <array>
+#include <exception>
+#include <malloc.h>
+#include <map>
+#include <memory>
+#include <set>
+#include <string>
+#include <vector>
+
+// VS 2010's stdint.h conflicts with intsafe.h
+#pragma warning(push)
+#pragma warning(disable : 4005)
+#include <stdint.h>
+#include <intsafe.h>
+#pragma warning(pop)
+
+#include <wrl.h>
+
+namespace DirectX
+{
+#if (DIRECTX_MATH_VERSION < 305) && !defined(XM_CALLCONV)
+#define XM_CALLCONV __fastcall
+	typedef const XMVECTOR& HXMVECTOR;
+	typedef const XMMATRIX& FXMMATRIX;
+#endif
+}
+#else
+#include <stdint.h>
 #endif
 
 #ifndef __GNUC__
@@ -406,7 +446,7 @@ public:
 	bool mInVideoRAM;
 	PIXEL_TYPE* mBits;
 #elif defined (WP8)
-	ID3D11Texture2D* mTexId;
+	ID3D11ShaderResourceView* mTexId;
     u8* mBuffer;
 #else
 	GLuint mTexId;

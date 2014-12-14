@@ -6,7 +6,6 @@
 #include "Subtypes.h"
 #include "TranslateKeys.h"
 #include "StyleManager.h"
-#include <dirent.h>
 #include "SimpleMenu.h"
 
 //OptionItem

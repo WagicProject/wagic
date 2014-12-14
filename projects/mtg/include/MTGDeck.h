@@ -5,7 +5,7 @@
 
 #include "MTGDefinitions.h"
 #include "WResourceManager.h"
-#include <dirent.h>
+#include "PrecompiledHeader.h"
 #include <Threading.h>
 #include <Subtypes.h>
 #include <string>

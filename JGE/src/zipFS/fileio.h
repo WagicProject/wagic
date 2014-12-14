@@ -51,9 +51,7 @@
 #include <PrecompiledHeader.h>
 #endif
 
-#include <dirent.h>
 #include <string.h>
-
 #include <limits.h>
 
 namespace io_facilities {

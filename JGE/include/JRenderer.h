@@ -58,6 +58,13 @@ typedef struct
 } ESMatrix;
 #endif // (defined GL_ES_VERSION_2_0) || (defined GL_VERSION_2_0)
 
+#ifdef WP8
+namespace DirectX {
+	class SpriteBatch;
+};
+
+#endif
+
 //////////////////////////////////////////////////////////////////////////
 /// A collection of core rendering functions.
 ///
@@ -604,6 +611,7 @@ private:
 	Microsoft::WRL::ComPtr<IUnknown> m_Window;
 	ID3D11Buffer* m_vertexBuffer;
 	ID3D11Buffer* m_indexBuffer;
+	DirectX::SpriteBatch* m_spriteBatch;
 
 #elif (!defined PSP) && (!defined WP8) && (!defined CONSOLE_CONFIG)
 	

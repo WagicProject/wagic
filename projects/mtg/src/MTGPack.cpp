@@ -1,8 +1,6 @@
 #include "PrecompiledHeader.h"
 
 #include <JGui.h>
-#include <dirent.h>
-
 #include "GameApp.h"
 #include "Translate.h"
 #include "WDataSrc.h"

@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="Globals">
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <CodeSharingProject>248F659F-DAC5-46E8-AC09-60EC9FC95053</CodeSharingProject>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>8d01c384-882c-4ac8-a178-e4c946e5a542</SharedGUID>
+    <ItemsProjectGuid>{1c587904-01ba-482e-806e-0617aea0b059}</ItemsProjectGuid>
+    <ItemsRootNamespace>Wagic</ItemsRootNamespace>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(MSBuildThisFileDirectory)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\JGE\src\DirectX\JGfx.cpp">
+      <CompileAsWinRT>true</CompileAsWinRT>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\JGE\src\JFileSystem.cpp">
+      <CompileAsWinRT>true</CompileAsWinRT>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\..\..\JGE\src\WRLmain.cpp">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectCapability Include="SourceItemsFromImports" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)Assets\Res.zip">
+      <FileType>Document</FileType>
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+  </ItemGroup>
+</Project>
