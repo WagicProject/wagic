@@ -19,13 +19,12 @@ else:CONFIG(graphics, graphics|console){
     DEPLOYMENTFOLDERS = folder_01
     QT += core gui opengl network multimedia
     QT -= declarative quick qml
-    #maemo5:DEFINES += QT_WIDGET
     DEFINES += QT_WIDGET
     unix:!symbian:INCLUDEPATH += /usr/include/GL
 
-    # Please do not modify the following two lines. Required for deployment.
-#    !maemo5:include(qml/qmlapplicationviewer/qmlapplicationviewer.pri)
-#    !maemo5:qtcAddDeployment()
+    QMAKE_CXXFLAGS += -g -fprofile-arcs -ftest-coverage
+    QMAKE_LDFLAGS += -g -fprofile-arcs -ftest-coverage
+    LIBS += -lgcov
 }
 
 #!android:!symbian:QT += phonon

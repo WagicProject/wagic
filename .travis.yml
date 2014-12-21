@@ -43,6 +43,7 @@ install:
   fi
 - sudo pip install pyjavaproperties
 - sudo pip install github3.py
+- sudo pip install cpp-coveralls
 
 env:
   global:
@@ -53,6 +54,7 @@ env:
 script: "tools/travis-script.sh"
 
 after_success:
+- coveralls
 - python tools/upload-binaries.py -t $GH_TOKEN -s $TRAVIS_COMMIT -l core.zip -r Wagic-core.zip -b $TRAVIS_BRANCH
 - python tools/upload-binaries.py -t $GH_TOKEN -s $TRAVIS_COMMIT -l projects/mtg/Android/bin/Wagic-debug.apk -r Wagic-android.apk -b $TRAVIS_BRANCH
 - python tools/upload-binaries.py -t $GH_TOKEN -s $TRAVIS_COMMIT -l projects/mtg/psprelease.zip -r Wagic-psp.zip -b $TRAVIS_BRANCH
