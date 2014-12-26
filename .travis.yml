@@ -21,7 +21,7 @@ before_install:
       export ANDROID="android-sdk-linux/tools/android" &&
       if [ `uname -m` = x86_64 ]; then sudo apt-get install -qq --force-yes libgd2-xpm ia32-libs ia32-libs-multiarch jq; fi &&
       wget http://dl.google.com/android/ndk/android-ndk-r9-linux-x86_64.tar.bz2 -nv &&
-      wget http://dl.google.com/android/android-sdk_r23.0.2-linux.tgz -nv;
+      wget http://dl.google.com/android/android-sdk_r24.0.2-linux.tgz -nv;
     fi
 # Building for Qt here
   - if [ "$BUILD_Qt" == "YES" ]; then
@@ -37,9 +37,9 @@ install:
   fi
 - if [ "$BUILD_ANDROID" == "YES" ]; then
     tar --absolute-names -jxf android-ndk-r9-linux-x86_64.tar.bz2 &&
-    tar -zxf android-sdk_r23.0.2-linux.tgz &&
+    tar -zxf android-sdk_r24.0.2-linux.tgz &&
     $ANDROID list sdk --extended -a &&
-    echo yes | $ANDROID update sdk --filter tools,platform-tools,build-tools-21.1.1,android-10 --no-ui --force --no-https;
+    echo yes | $ANDROID update sdk --filter tools,platform-tools,build-tools-21.1.2,android-10 --no-ui --force --no-https;
   fi
 - sudo pip install pyjavaproperties
 - sudo pip install github3.py
