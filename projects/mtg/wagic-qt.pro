@@ -12,6 +12,10 @@ CONFIG(console, graphics|console){
     CONFIG   += console
     CONFIG   -= app_bundle
     DEFINES += TESTSUITE
+
+    QMAKE_CXXFLAGS += -g -fprofile-arcs -ftest-coverage
+    QMAKE_LDFLAGS += -g -fprofile-arcs -ftest-coverage
+    LIBS += -lgcov
 }
 else:CONFIG(graphics, graphics|console){
     folder_01.source = qml/QmlWagic
@@ -21,10 +25,6 @@ else:CONFIG(graphics, graphics|console){
     QT -= declarative quick qml
     DEFINES += QT_WIDGET
     unix:!symbian:INCLUDEPATH += /usr/include/GL
-
-    QMAKE_CXXFLAGS += -g -fprofile-arcs -ftest-coverage
-    QMAKE_LDFLAGS += -g -fprofile-arcs -ftest-coverage
-    LIBS += -lgcov
 }
 
 #!android:!symbian:QT += phonon
