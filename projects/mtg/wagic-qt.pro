@@ -12,6 +12,10 @@ CONFIG(console, graphics|console){
     CONFIG   += console
     CONFIG   -= app_bundle
     DEFINES += TESTSUITE
+
+    QMAKE_CXXFLAGS += -g -fprofile-arcs -ftest-coverage
+    QMAKE_LDFLAGS += -g -fprofile-arcs -ftest-coverage
+    LIBS += -lgcov
 }
 else:CONFIG(graphics, graphics|console){
     folder_01.source = qml/QmlWagic
@@ -19,13 +23,8 @@ else:CONFIG(graphics, graphics|console){
     DEPLOYMENTFOLDERS = folder_01
     QT += core gui opengl network multimedia
     QT -= declarative quick qml
-    #maemo5:DEFINES += QT_WIDGET
     DEFINES += QT_WIDGET
     unix:!symbian:INCLUDEPATH += /usr/include/GL
-
-    # Please do not modify the following two lines. Required for deployment.
-#    !maemo5:include(qml/qmlapplicationviewer/qmlapplicationviewer.pri)
-#    !maemo5:qtcAddDeployment()
 }
 
 #!android:!symbian:QT += phonon
