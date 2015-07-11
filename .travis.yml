@@ -39,11 +39,7 @@ install:
     tar --absolute-names -jxf android-ndk-r9-linux-x86_64.tar.bz2 &&
     tar -zxf android-sdk_r24.3.3-linux.tgz &&
     $ANDROID list sdk --extended -a &&
-    echo yes | $ANDROID update sdk --no-ui --force --no-https --filter \ 
-      tools,\
-      platform-tools,\
-      build-tools-22.0.1,\
-      android-10;
+    echo yes | $ANDROID update sdk --no-ui --force --no-https --filter tools,platform-tools,build-tools-22.0.1,android-10;
   fi
 - sudo pip install pyjavaproperties
 - sudo pip install github3.py
