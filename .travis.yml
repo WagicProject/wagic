@@ -37,7 +37,7 @@ install:
   fi
 - if [ "$BUILD_ANDROID" == "YES" ]; then
     tar --absolute-names -jxf android-ndk-r9-linux-x86_64.tar.bz2 &&
-    tar -zxf android-sdk_r24.0.2-linux.tgz &&
+    tar -zxf android-sdk_r24.3.3-linux.tgz &&
     $ANDROID list sdk --extended -a &&
     echo yes | $ANDROID update sdk --no-ui --force --no-https --filter \ 
       tools,\
