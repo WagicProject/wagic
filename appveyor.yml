@@ -4,6 +4,11 @@
 #   - All section names are case-sensitive.
 #   - Section names should be unique on each level.
 
+# branches to build
+branches:
+  # blacklist
+  except:
+    - travis_mac_osx
 #---------------------------------#
 #    environment configuration    #
 #---------------------------------#
