@@ -345,6 +345,7 @@ foratog.txt
 force_of_nature.txt
 force_of_nature2.txt
 force_of_nature3.txt
+formidable.txt
 fountain_of_youth.txt
 Frogmite.txt
 fungus_sliver.txt

@@ -282,6 +282,19 @@ mana={1}{W}
 type=Instant
 [/card]
 [card]
+name=Abhorrent Overlord
+abilities=flying
+auto=token(Harpy,creature harpy, 1/1,black,flying)*type:manaB
+auto=@each my upkeep:sacrifice notatarget(creature|myBattlefield)
+text=Flying. -- When Abhorrent Overlord enters the battlefield, put a number of 1/1 black Harpy creature tokens with flying onto the battlefield equal to your devotion to black. (Each {B} in the mana costs of permanents you control counts toward your devotion to black.) --
+At the beginning of your upkeep, sacrifice a creature.
+mana={5}{B}{B}
+type=Creature
+subtype=Demon
+power=6
+toughness=6
+[/card]
+[card]
 name=Abjure
 target=*|stack
 auto=fizzle
@@ -28289,6 +28302,16 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Evangel of Heliod
+auto=token(Soldier,Creature Soldier,1/1,white)*type:manaW
+text=When Evangel of Heliod enters the battlefield, put a number of 1/1 white Soldier creature tokens onto the battlefield equal to your devotion to white. (Each {W} in the mana costs of permanents you control counts toward your devotion to white.)
+mana={4}{W}{W}
+type=Creature
+subtype=Human Cleric
+power=1
+toughness=3
+[/card]
+[card]
 name=Evangelize
 auto=ability$!name(choose a creature) target(creature|mybattlefield) moveTo(opponentbattlefield)!$ opponent
 buyback={4}{W}{2}{W}{W}
@@ -29403,6 +29426,16 @@ auto=damage:3 all(creature,player)
 text=Famine deals 3 damage to each creature and each player.
 mana={3}{B}{B}
 type=Sorcery
+[/card]
+[card]
+name=Fanatic of Mogis
+auto=damage:type:manaR opponent
+text=When Fanatic of Mogis enters the battlefield, it deals damage to each opponent equal to your devotion to red. (Each {R} in the mana costs of permanents you control counts toward your devotion to red.)
+mana={3}{R}
+type=Creature
+subtype=Minotaur Shaman
+power=4
+toughness=2
 [/card]
 [card]
 name=Fanatic of Xenagos
@@ -46790,6 +46823,16 @@ power=6
 toughness=7
 [/card]
 [card]
+name=Karametra's Acolyte
+auto={T}:thisforeach(variable{type:manaG}>0) add{G}
+text={T}: Add an amount of {G} to your mana pool equal to your devotion to green. (Each {G} in the mana costs of permanents you control counts toward your devotion to green.)
+mana={3}{G}
+type=Creature
+subtype=Human Druid
+power=1
+toughness=4
+[/card]
+[card]
 name=Karametra's Favor
 target=creature
 auto=teach(creature) {T}:add{G}
@@ -54519,6 +54562,16 @@ power=4
 toughness=3
 [/card]
 [card]
+name=Marshmist Titan
+autohand=affinity(type:manaB) reduce({1})
+text=Marshmist Titan costs {X} less to cast, where X is your devotion to black. (Each {B} in the mana costs of permanents you control counts toward your devotion to black.)
+mana={6}{B}
+type=Creature
+subtype=Giant
+power=4
+toughness=5
+[/card]
+[card]
 name=Martial Coup
 auto=this(X>=5) destroy all(creature)
 auto=token(Soldier,creature soldier,1/1,white) *X
@@ -57571,6 +57624,16 @@ text={3}, {T}: Search your library for a Goblin permanent card and put that card
 mana={2}{R}{R}
 type=Creature
 subtype=Human Mercenary
+power=2
+toughness=2
+[/card]
+[card]
+name=Mogis's Marauder
+auto=name(intimidate & haste) target(<upto:type:manaB>creature|battlefield) transforms((,newability[intimidate],newability[haste])) ueot
+text=When Mogis's Marauder enters the battlefield, up to X target creatures each gain intimidate and haste until end of turn, where X is your devotion to black. (Each {B} in the mana costs of permanents you control counts toward your devotion to black.)
+mana={2}{B}
+type=Creature
+subtype=Human Berserker
 power=2
 toughness=2
 [/card]
@@ -61957,6 +62020,27 @@ type=Creature
 subtype=Human Druid
 power=1
 toughness=1
+[/card]
+[card]
+name=Nykthos, Shrine to Nyx
+auto={T}:Add{1}
+auto={2}{T}:name(Green) thisforeach(variable{type:manaG}>0) add{G}
+auto={2}{T}:name(Red) thisforeach(variable{type:manaR}>0) add{R}
+auto={2}{T}:name(Blue) thisforeach(variable{type:manaU}>0) add{U}
+auto={2}{T}:name(Black) thisforeach(variable{type:manaB}>0) add{B}
+auto={2}{T}:name(White) thisforeach(variable{type:manaW}>0) add{W}
+text={T}: Add {1} to your mana pool. -- {2}, {T}: Choose a color. Add to your mana pool an amount of mana of that color equal to your devotion to that color. (Your devotion to a color is the number of mana symbols of that color in the mana costs of permanents you control.)
+type=Legendary Land
+[/card]
+[card]
+name=Nylea's Disciple
+auto=life:type:manaG controller
+text=When Nylea's Disciple enters the battlefield, you gain life equal to your devotion to green. (Each {G} in the mana costs of permanents you control counts toward your devotion to green.)
+mana={2}{G}{G}
+type=Creature
+subtype=Centaur Archer
+power=3
+toughness=3
 [/card]
 [card]
 name=Nyxathid
@@ -72411,6 +72495,16 @@ auto=lord(creature[power<=2]|opponentBattlefield) cantattack
 text=Creatures with power 2 or less can't attack you.
 mana={2}{W}{W}
 type=Enchantment
+[/card]
+[card]
+name=Reverent Hunter
+auto=thisforeach(variable{type:manaG}>0) counter(1/1,1)
+text=When Reverent Hunter enters the battlefield, put a number of +1/+1 counters on it equal to your devotion to green. (Each {G} in the mana costs of permanents you control counts toward your devotion to green.)
+mana={2}{G}
+type=Creature
+subtype=Human Archer
+power=1
+toughness=1
 [/card]
 [card]
 name=Reverent Mantra
@@ -91535,6 +91629,14 @@ auto=@each my upkeep:counter(0/0,1,Spore)
 auto={C(0/0,-3,Spore)}:Token(Saproling,Creature Saproling,1/1,green)
 power=0
 toughness=5
+[/card]
+[card]
+name=Thassa's Rebuff
+target=*|stack
+auto=transforms((,newability[pay[[{value:type:manaU}]] name(pay {value} mana) donothing?fizzle])) forever
+text=Counter target spell unless its controller pays {X}, where X is your devotion to blue. (Each {U} in the mana costs of permanents you control counts toward your devotion to blue.)
+mana={1}{U}
+type=Instant
 [/card]
 [card]
 name=That Which Was Taken
