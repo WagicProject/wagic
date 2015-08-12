@@ -4802,6 +4802,16 @@ power=2
 toughness=3
 [/card]
 [card]
+name=Atarka Beastbreaker
+auto={4}{G}:4/4 restriction{compare(powertotalinplay)~morethan~7}
+text=Formidable — {4}{G}: Atarka Beastbreaker gets +4/+4 until end of turn. Activate this ability only if creatures you control have total power 8 or greater.
+mana={1}{G}
+type=Creature
+subtype=Human Warrior
+power=2
+toughness=2
+[/card]
+[card]
 name=Atog
 auto={S(artifact|myBattlefield)}:2/2
 text=Sacrifice an artifact: Atog gets +2/+2 until end of turn.
@@ -15054,6 +15064,17 @@ power=3
 toughness=2
 [/card]
 [card]
+name=Circle of Elders
+abilities=vigilance
+auto={T}:Add{3} restriction{compare(powertotalinplay)~morethan~7}
+text=Vigilance -- Formidable — {T}: Add {3} to your mana pool. Activate this ability only if creatures you control have total power 8 or greater.
+mana={2}{G}{G}
+type=Creature
+subtype=Human Shaman
+power=2
+toughness=4
+[/card]
+[card]
 name=Circle of Flame
 auto=@each opponent blockers:damage:1 all(creature[-flying&attacking])
 text=Whenever a creature without flying attacks you or a planeswalker you control, Circle of Flame deals 1 damage to that creature.
@@ -17638,6 +17659,17 @@ type=Creature
 subtype=Centaur
 power=3
 toughness=4
+[/card]
+[card]
+name=Crater Elemental
+auto={R}{T}{S}:damage:4 target(creature)
+auto={2}{R}:name(formidable) transforms((,setpower=8)) restriction{compare(powertotalinplay)~morethan~7} ueot
+text={R}, {T}, Sacrifice Crater Elemental: Crater Elemental deals 4 damage to target creature. -- Formidable — {2}{R}: Crater Elemental has base power 8 until end of turn. Activate this ability only if creatures you control have total power 8 or greater.
+mana={2}{R}
+type=Creature
+subtype=Elemental
+power=0
+toughness=6
 [/card]
 [card]
 name=Crater Hellion
@@ -23561,6 +23593,18 @@ power=2
 toughness=3
 [/card]
 [card]
+name=Dragon Whisperer
+auto={R}:flying
+auto={1}{R}:1/0
+auto={4}{R}{R}:token(Dragon,creature dragon, 4/4,flying red) restriction{compare(powertotalinplay)~morethan~7}
+text={R}: Dragon Whisperer gains flying until end of turn. -- {1}{R}: Dragon Whisperer gets +1/+0 until end of turn. -- Formidable — {4}{R}{R}: Put a 4/4 red Dragon creature token with flying onto the battlefield. Activate this ability only if creatures you control have total power 8 or greater.
+mana={R}{R}
+type=Creature
+subtype=Human Shaman
+power=2
+toughness=2
+[/card]
+[card]
 name=Dragon Wings
 target=creature
 auto=flying
@@ -23571,6 +23615,16 @@ text=Enchant creature -- Enchanted creature has flying. -- Cycling {1}{U} ({1}{U
 mana={1}{U}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+name=Dragon-Scarred Bear
+auto={1}{G}:regenerate restriction{compare(powertotalinplay)~morethan~7}
+text=Formidable — {1}{G}: Regenerate Dragon-Scarred Bear. Activate this ability only if creatures you control have total power 8 or greater.
+mana={2}{G}
+type=Creature
+subtype=Bear
+power=3
+toughness=2
 [/card]
 [card]
 name=Dragon's Claw
@@ -35303,6 +35357,17 @@ type=Creature
 subtype=Beast
 power=4
 toughness=4
+[/card]
+[card]
+name=Glade Watcher
+abilities=defender
+auto={G}:canattack restriction{compare(powertotalinplay)~morethan~7} ueot
+text=Defender -- Formidable — {G}: Glade Watcher can attack this turn as though it didn't have defender. Activate this ability only if creatures you control have total power 8 or greater.
+mana={1}{G}
+type=Creature
+subtype=Elemental
+power=3
+toughness=3
 [/card]
 [card]
 name=Gladecover Scout
@@ -74795,6 +74860,17 @@ power=5
 toughness=5
 [/card]
 [card]
+name=Sabertooth Outrider
+abilities=trample
+auto=@combat(attacking) source(this) restriction{compare(powertotalinplay)~morethan~7}:first strike ueot
+text=Trample -- Formidable — Whenever Sabertooth Outrider attacks, if creatures you control have total power 8 or greater, Sabertooth Outrider gains first strike until end of turn.
+mana={3}{R}
+type=Creature
+subtype=Human Warrior
+power=4
+toughness=2
+[/card]
+[card]
 name=Sabertooth Wyvern
 abilities=flying,first strike
 text=Flying, first strike
@@ -86237,6 +86313,16 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Stampeding Elk Herd
+auto=@combat(attacking) source(this) restriction{compare(powertotalinplay)~morethan~7}:lord(creature|myBattlefield) trample ueot
+text=Formidable — Whenever Stampeding Elk Herd attacks, if creatures you control have total power 8 or greater, creatures you control gain trample until end of turn.
+mana={3}{G}{G}
+type=Creature
+subtype=Elk
+power=5
+toughness=5
+[/card]
+[card]
 name=Stampeding Rhino
 abilities=trample
 text=Trample (If this creature would deal enough damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player or planeswalker.)
@@ -88769,6 +88855,16 @@ restriction=during battle
 text=Cast Surprise Deployment only during combat. -- You may put a nonwhite creature card from your hand onto the battlefield. At the beginning of the next end step, return that creature to your hand. (Return it only if it's on the battlefield.)
 mana={3}{W}
 type=Instant
+[/card]
+[card]
+name=Surrak, the Hunt Caller
+auto=@each my combatbegins restriction{compare(powertotalinplay)~morethan~7}:haste target(creature|mybattlefield) ueot
+text=Formidable — At the beginning of combat on your turn, if creatures you control have total power 8 or greater, target creature you control gains haste until end of turn.
+mana={2}{G}{G}
+type=Legendary Creature
+subtype=Human Warrior
+power=5
+toughness=4
 [/card]
 [card]
 name=Surrakar Banisher
