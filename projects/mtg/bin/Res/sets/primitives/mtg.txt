@@ -13585,6 +13585,16 @@ power=0
 toughness=5
 [/card]
 [card]
+name=Cemetery Puca
+text=Whenever a creature is put into a graveyard from the battlefield, you may pay {1}. If you do, Cemetery Puca becomes a copy of that creature and gains this ability.
+auto=@movedto(creature|graveyard) from(battlefield):all(trigger[from]) pay[[{1}]] copy
+mana={1}{UB}{UB}
+type=Creature
+subtype=Shapeshifter
+power=1
+toughness=2
+[/card]
+[card]
 name=Cemetery Reaper
 auto=lord(other zombie|myBattlefield) 1/1
 auto={2}{B}{T}:moveTo(Exile) target(creature|graveyard) && token(Zombie,Creature Zombie,2/2,black)
@@ -18622,6 +18632,16 @@ power=0
 toughness=0
 [/card]
 [card]
+name=Cryptoplasm
+auto=@each my upkeep:may copy target(other creature|battlefield)
+text=At the beginning of your upkeep, you may have Cryptoplasm become a copy of another target creature. If you do, Cryptoplasm gains this ability.
+mana={1}{U}{U}
+type=Creature
+subtype=Shapeshifter
+power=2
+toughness=2
+[/card]
+[card]
 name=Cryptwailing
 auto={1}{E(creature|mygraveyard)}{E(creature|mygraveyard)}:target(player) ability$!name(discard) target(*|myhand) reject!$ targetedplayer asSorcery
 text={1}, Exile two creature cards from your graveyard: Target player discards a card. Activate this ability only any time you could cast a sorcery.
@@ -22293,6 +22313,16 @@ mana={1}{U}{B}
 type=Creature
 subtype=Spirit
 power=2
+toughness=2
+[/card]
+[card]
+name=Dimir Doppelganger
+auto={1}{U}{B}:target(creature|graveyard) moveto(exile) and!(copy)!
+text={1}{U}{B}: Exile target creature card from a graveyard. Dimir Doppelganger becomes a copy of that card and gains this ability.
+mana={1}{U}{B}
+type=Creature
+subtype=Shapeshifter
+power=0
 toughness=2
 [/card]
 [card]
@@ -91865,6 +91895,13 @@ mana={1}{G}{G}
 type=Sorcery
 [/card]
 [card]
+name=Thespian's Stage
+auto={T}:Add{1}
+auto={2}{T}:copy target(land|battlefield)
+text={T}: Add {1} to your mana pool. -- {2}, {T}: Thespian's Stage becomes a copy of target land and gains this ability.
+type=Land
+[/card]
+[card]
 name=Thicket Basilisk
 auto=@combat(blocking,blocked) source(this) from(creature[-wall]):all(trigger[from]) phaseaction[combatends once] destroy
 text=Whenever Thicket Basilisk blocks or becomes blocked by a non-Wall creature, destroy that creature at end of combat.
@@ -96603,6 +96640,16 @@ text=Enchant creature -- Enchanted creature gets +3/+3. -- At the beginning of t
 mana={U}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+name=Unstable Shapeshifter
+auto=@movedto(other creature|battlefield):all(trigger[from]) copy
+text=Whenever another creature enters the battlefield, Unstable Shapeshifter becomes a copy of that creature and gains this ability.
+mana={3}{U}
+type=Creature
+subtype=Shapeshifter
+power=0
+toughness=1
 [/card]
 [card]
 name=Unstoppable Ash
