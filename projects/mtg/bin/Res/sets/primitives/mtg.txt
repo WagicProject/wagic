@@ -1313,7 +1313,7 @@ toughness=1
 name=Akoum Battlesinger
 abilities=haste
 auto=may lord(ally|myBattlefield) 1/0 ueot
-auto=@movedTo(other ally|myBattlefield):may all(ally|myBattlefield) 1/0 ueot
+auto=@movedTo(other ally|myBattlefield):may lord(ally|myBattlefield) 1/0 ueot
 text=Haste -- Whenever Akoum Battlesinger or another Ally enters the battlefield under your control, you may have Ally creatures you control get +1/+0 until end of turn.
 mana={1}{R}
 type=Creature
@@ -9499,7 +9499,7 @@ type=Artifact
 [card]
 name=Bloodthirsty Ogre
 auto={T}:counter(0/0,1,Devotion)
-auto=aslongas(demon|myBattlefield) {T}:target(creature) counter{0%0.1.Devotion}/counter{0%0.1.Devotion} ueot
+auto=aslongas(demon|myBattlefield) {T}:target(creature) -counter{0%0.1.Devotion}/-counter{0%0.1.Devotion} ueot
 text={T}: Put a devotion counter on Bloodthirsty Ogre. -- {T}: Target creature gets -X/-X until end of turn, where X is the number of devotion counters on Bloodthirsty Ogre. Activate this ability only if you control a Demon.
 mana={2}{B}
 type=Creature
@@ -46346,7 +46346,7 @@ type=Land
 [/card]
 [card]
 name=Kabira Evangel
-auto=chooseacolor all(creature|mybattlefield) protection from(*[chosencolor]) chooseend
+auto=chooseacolor all(ally|mybattlefield) protection from(*[chosencolor]) chooseend
 auto=@movedTo(other ally|myBattlefield):may chooseacolor all(creature|mybattlefield) protection from(*[chosencolor]) chooseend
 text=Whenever Kabira Evangel or another Ally enters the battlefield under your control, you may choose a color. If you do, Allies you control gain protection from the chosen color until end of turn.
 mana={2}{W}
@@ -49795,6 +49795,16 @@ mana={2}{U}{U}
 type=Enchantment
 [/card]
 [card]
+name=Land Grant
+other={0} name(Cast for free)
+auto=moveto(myhand) notatarget(forest|mylibrary)
+otherrestriction=type(land|myhand)~lessthan~1
+autostack=if paid(alternative) then ability$!name(look at opponent hand) notatarget(*|opponenthand) 0/0!$ opponent
+text=If you have no land cards in hand, you may reveal your hand rather than pay Land Grant's mana cost. -- Search your library for a Forest card, reveal that card, and put it into your hand. Then shuffle your library.
+mana={1}{G}
+type=Sorcery
+[/card]
+[card]
 name=Land Leeches
 abilities=first strike
 text=First strike
@@ -49954,10 +49964,10 @@ type=Instant
 [/card]
 [card]
 name=Last Kiss
-target=creature,player
+target=creature
 auto=damage:2
 auto=life:2 controller
-text=Last Kiss deals 2 damage to target creature or player and you gain 2 life.
+text=Last Kiss deals 2 damage to target creature and you gain 2 life.
 mana={2}{B}
 type=Instant
 [/card]
@@ -55322,6 +55332,16 @@ auto=draw:1 controller
 text=Put the top two cards of your library into your graveyard. -- Draw a card.
 mana={U}
 type=Instant
+[/card]
+[card]
+name=Mentor of the Meek
+auto=@movedTo(other creature[power<=2]|myBattlefield):pay({1}) draw:1
+text=Whenever another creature with power 2 or less enters the battlefield under your control, you may pay {1}. If you do, draw a card.
+mana={2}{W}
+type=Creature
+subtype=Human Solider
+power=2
+toughness=2
 [/card]
 [card]
 name=Mephidross Vampire
@@ -74599,7 +74619,7 @@ toughness=3
 [card]
 name=Rust Elemental
 abilities=flying
-auto=upcostmult[{S(other artifact|mybattlefield)}] tap && life:-4 controller
+auto=upcostmulti[{S(other artifact|mybattlefield)}] tap && life:-4 controller
 text=Flying -- At the beginning of your upkeep, sacrifice an artifact other than Rust Elemental. If you can't, tap Rust Elemental and you lose 4 life.
 mana={4}
 type=Artifact Creature
@@ -85213,8 +85233,8 @@ text=Metalcraft - Spiraling Duelist has double strike as long as you control thr
 mana={2}{R}{R}
 type=Creature
 subtype=Human Berserker
-power=4
-toughness=2
+power=3
+toughness=1
 [/card]
 [card]
 name=Spiraling Embers
@@ -90070,7 +90090,7 @@ toughness=2
 [card]
 name=Taniwha
 abilities=trample,phasing
-auto=@each my upkeep:phasout all(land|myBattlefield)
+auto=@each my upkeep:phaseout all(land|myBattlefield)
 text=Trample -- Phasing (This phases in or out before you untap during each of your untap steps. While it's phased out, it's treated as though it doesn't exist.) -- At the beginning of your upkeep, all lands you control phase out. (They phase in before you untap during your next untap step.)
 mana={3}{U}{U}
 type=Legendary Creature
@@ -93246,6 +93266,17 @@ auto=if type(land|mybattlefield)~lessthan~type(land|opponentbattlefield) then mo
 text=Search your library for a Plains card. If you control fewer lands than an opponent, you may search your library for an additional Plains card. Reveal those cards and put them into your hand. Then shuffle your library.
 mana={W}
 type=Instant
+[/card]
+[card]
+name=Tithe Drinker
+abilities=lifelink
+auto=@movedto(*|mystack):pay({WB}) life:-1 opponent && life:1 controller
+text=Lifelink -- Extort (Whenever you cast a spell, you may pay {WB}. If you do, each opponent loses 1 life and you gain that much life.)
+mana={W}{B}
+type=Creature
+subtype=Vampire
+power=2
+toughness=1
 [/card]
 [card]
 name=Tivadar of Thorn
@@ -104954,6 +104985,18 @@ text={T}: Target creature is unblockable this turn. Activate this ability only d
 mana={1}{U}{U}
 type=Legendary Creature
 subtype=Human Advisor
+power=1
+toughness=1
+[/card]
+[card]
+name=Zhur-Taa Druid
+auto={T}:Add{G}
+auto=@tappedformana(this):damage:1 opponent
+auto={T}: Add {G} to your mana pool. Whenever you tap Zhur-Taa Druid for mana, it deals 1 damage to each opponent.
+in your graveyard.
+mana={R}{G}
+type=Creature
+subtype=Human Druid
 power=1
 toughness=1
 [/card]
