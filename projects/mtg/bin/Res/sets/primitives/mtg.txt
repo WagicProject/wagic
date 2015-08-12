@@ -286,8 +286,7 @@ name=Abhorrent Overlord
 abilities=flying
 auto=token(Harpy,creature harpy, 1/1,black,flying)*type:manaB
 auto=@each my upkeep:sacrifice notatarget(creature|myBattlefield)
-text=Flying. -- When Abhorrent Overlord enters the battlefield, put a number of 1/1 black Harpy creature tokens with flying onto the battlefield equal to your devotion to black. (Each {B} in the mana costs of permanents you control counts toward your devotion to black.) --
-At the beginning of your upkeep, sacrifice a creature.
+text=Flying. -- When Abhorrent Overlord enters the battlefield, put a number of 1/1 black Harpy creature tokens with flying onto the battlefield equal to your devotion to black. (Each {B} in the mana costs of permanents you control counts toward your devotion to black.) -- At the beginning of your upkeep, sacrifice a creature.
 mana={5}{B}{B}
 type=Creature
 subtype=Demon
@@ -105238,7 +105237,6 @@ name=Zhur-Taa Druid
 auto={T}:Add{G}
 auto=@tappedformana(this):damage:1 opponent
 auto={T}: Add {G} to your mana pool. Whenever you tap Zhur-Taa Druid for mana, it deals 1 damage to each opponent.
-in your graveyard.
 mana={R}{G}
 type=Creature
 subtype=Human Druid
