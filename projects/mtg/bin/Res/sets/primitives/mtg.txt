@@ -1017,6 +1017,16 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Agent of Horizons
+auto={2}{U}:unblockable ueot
+text={2}{U}: Agent of Horizons can't be blocked this turn.
+mana={2}{G}
+type=Creature
+subtype=Human Rogue
+power=3
+toughness=2
+[/card]
+[card]
 name=Agent of Masks
 auto=@each my upkeep:life:-1 opponent
 auto=@each my upkeep:life:1 controller
@@ -1382,6 +1392,16 @@ type=Creature
 subtype=Human Soldier
 power=1
 toughness=1
+[/card]
+[card]
+name=Akroan Conscriptor
+auto=@targeted(this) from(*[instant;sorcery;enchantment]|myhand,mygraveyard):name(gain control of target creature until end of turn) target(creature|opponentbattlefield) transforms((,newability[moveTo(opponentbattlefield)],newability[phaseaction[endofturn sourceinplay] moveTo(ownerbattlefield)],newability[untap],haste)) ueot
+text=Heroic — Whenever you cast a spell that targets Akroan Conscriptor, gain control of another target creature until end of turn. Untap that creature. It gains haste until end of turn. (WORKAROUND Only can target opponents creatures)
+mana={4}{R}
+type=Creature
+subtype=Human Shaman
+power=3
+toughness=2
 [/card]
 [card]
 name=Akroan Line Breaker
@@ -28024,6 +28044,17 @@ type=Legendary Enchantment
 [/card]
 ###The 2 cards above should stay together (Flip Card)###
 [card]
+name=Erebos, God of the Dead
+abilities=indestructible
+auto=@lifed(opponent):life:-thatmuch opponent
+auto={1}{B}{L:2}:Draw:1 controller
+auto=this(variable{type:manab}>4) transforms((Creature,setpower=5,settoughness=7))
+text=Indestructible -- As long as your devotion to black is less than five, Erebos isn't a creature. (Each {B} in the mana costs of permanents you control counts toward your devotion to black.) -- Whenver your opponent gains life, he loses that much (WORKAROUND). -- {1}{B}, Pay 2 life: Draw a card.
+mana={3}{B}
+type=Legendary Enchantment
+subtype=God
+[/card]
+[card]
 name=Erdwal Ripper
 abilities=haste
 auto=@combatdamaged(opponent) from(this):counter(1/1,1)
@@ -32187,6 +32218,17 @@ name=Flooded Strand
 auto={L}{T}{S}:moveTo(myBattlefield) target(plains,island|mylibrary)
 text={T}, Pay 1 life, Sacrifice Flooded Strand: Search your library for a Plains or Island card and put it onto the battlefield. Then shuffle your library.
 type=Land
+[/card]
+[card]
+name=Floodtide Serpent
+abilities=cantattack
+auto={H(enchantment|myBattlefield)}:-cantattack myturnonly
+text=Floodtide Serpent can't attack unless you return an enchantment you control to its owner's hand. (WORKAROUND cost can be payed anytime on your turn) (This cost is paid as attackers are declared.)
+mana={4}{U}
+type=Creature
+subtype=Serpent
+power=4
+toughness=4
 [/card]
 [card]
 name=Floodwater Dam
@@ -39502,6 +39544,16 @@ type=Creature
 subtype=Human Soldier
 power=0
 toughness=4
+[/card]
+[card]
+name=Guardians of Meletis
+abilities=defender
+text=Defender
+mana={3}
+type=Artifact Creature
+subtype=Golem
+power=0
+toughness=6
 [/card]
 [card]
 name=Guardian's Magemark
@@ -57775,6 +57827,17 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Mistcutter Hydra
+abilities=nofizzle,haste,protection from blue
+auto=counter(1/1,X)
+text=Mistcutter Hydra can't be countered. -- Haste, protection from blue. -- Mistcutter Hydra enters the battlefield with X +1/+1 counters on it.
+mana={X}{G}
+type=Creature
+subtype=Hydra
+power=0
+toughness=0
+[/card]
+[card]
 name=Mistform Dreamer
 abilities=flying
 auto={1}:activatechooseatype all(this) becomes(removecreaturesubtypes) && becomes(chosentype) ueot activatechooseend
@@ -62649,6 +62712,17 @@ text={T}: Add {1} to your mana pool. -- {2}, {T}: Choose a color. Add to your ma
 type=Legendary Land
 [/card]
 [card]
+name=Nylea, God of the Hunt
+abilities=indestructible
+auto=lord(other creature|mybattlefield) trample
+auto={3}{G}:2/2 target(creature) ueot
+auto=this(variable{type:manag}>4) transforms((Creature,setpower=6,settoughness=6))
+text=Indestructible -- As long as your devotion to green is less than five, Nylea isn't a creature. (Each {G} in the mana costs of permanents you control counts toward your devotion to green.) -- Other creatures you control have trample. -- {3}{G}: Target creature gets +2/+2 until end of turn.
+mana={3}{G}
+type=Legendary Enchantment
+subtype=God
+[/card]
+[card]
 name=Nylea's Disciple
 auto=life:type:manaG controller
 text=When Nylea's Disciple enters the battlefield, you gain life equal to your devotion to green. (Each {G} in the mana costs of permanents you control counts toward your devotion to green.)
@@ -62657,6 +62731,16 @@ type=Creature
 subtype=Centaur Archer
 power=3
 toughness=3
+[/card]
+[card]
+name=Nylea's Presence
+target=land
+auto=draw:1 controller
+auto=teach(land) transforms((plains forest mountain swamp island,newability[{t}:add{w}],newability[{t}:add{g}],newability[{t}:add{r}],newability[{t}:add{b}],newability[{t}:add{u}]))
+text=Enchant land -- When Nylea's Presence enters the battlefield, draw a card. -- Enchanted land is every basic land type in addition to its other types.
+mana={1}{G}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 name=Nyxathid
@@ -73110,6 +73194,17 @@ mana={2}{W}{W}
 type=Instant
 [/card]
 [card]
+name=Returned Phalanx
+abilities=defender
+auto={1}{U}:canattack ueot
+text=Defender (This creature can't attack.) -- {1}{U}: Returned Phalanx can attack this turn as though it didn't have defender.
+mana={1}{B}
+type=Creature
+subtype=Zombie Soldier
+power=3
+toughness=3
+[/card]
+[card]
 name=Returned Reveler
 auto=@movedto(this|graveyard) from(battlefield):deplete:3 controller && deplete:3 opponent
 text=When Returned Reveler dies, each player puts the top three cards of his or her library into his or her graveyard.
@@ -78289,6 +78384,15 @@ power=2
 toughness=1
 [/card]
 [card]
+name=Searing Blood
+target=creature
+auto=damage:2
+auto=transforms((newability[@movedto(this|graveyard) from(battlefield):damage:3 controller])) ueot
+text=Searing Blood deals 2 damage to target creature. When that creature dies this turn, Searing Blood deals 3 damage to the creature's controller. (WORKAROUND creature deals secondary damage not Searing Blood)
+mana={R}{R}
+type=Instant
+[/card]
+[card]
 name=Searing Flesh
 auto=damage:7 opponent
 text=Searing Flesh deals 7 damage to target opponent.
@@ -81379,6 +81483,17 @@ flashback={4}{U}
 text=Return target creature to its owner's hand. -- Flashback {4}{U} (You may cast this card from your graveyard for its flashback cost. Then exile it.)
 mana={U}
 type=Sorcery
+[/card]
+[card]
+name=Silent Sentinel
+abilities=flying
+auto=@combat(attacking) source(this):may moveTo(myBattlefield) target(*[enchantment]|mygraveyard) && transforms((,newability[if cantargetcard(aura) then activate name(cast from graveyard) castcard(normal)])) oneshot
+text=Flying -- Whenever Silent Sentinel attacks, you may return target enchantment card from your graveyard to the battlefield.(WORKAROUND uses a small workaround that recasts aura enchantments so that they can retarget as they should)
+mana={5}{W}{W}
+type=Creature
+subtype=Archon
+power=4
+toughness=6
 [/card]
 [card]
 name=Silent Specter
@@ -88801,7 +88916,7 @@ type=Instant
 [/card]
 [card]
 name=Stromgald Cabal
-auto={L}{L}{T}:fizzle target(*[white]|stack)
+auto={L}{T}:fizzle target(*[white]|stack)
 text={T}, Pay 1 life: Counter target white spell.
 mana={1}{B}{B}
 type=Creature
