@@ -1,0 +1,5 @@
+#!/bin/bash
+
+cd ${0%/*/*}/Resources
+#cd ../Resources
+exec ../MacOS/wagic -platformpluginpath ../PlugIns >> ../logs/out.log 2> ../logs/err.log

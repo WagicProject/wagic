@@ -49,7 +49,7 @@ def main():
 
     (options, args) = parser.parse_args()
 
-    if (options.token and options.sha and options.local and options.remote and options.branch == 'master'):
+    if (options.token and options.sha and options.local and options.remote and (options.branch == 'master' or options.branch == 'travis_mac_osx')):
         gh = login(token = options.token)
     else:
         parser.print_help()
@@ -59,8 +59,9 @@ def main():
     r = checkRelease(repository, options.remote)
     filename = options.remote
     with open(options.local, 'rb') as fd:
-        r.upload_asset('application/zip', filename , fd)
-
+        asset = r.upload_asset('application/zip', filename , fd)
+    s = 'File ' + options.local + ' has been uploaded as ' + asset.name + '.'
+    print s
 
 if __name__ == "__main__":
         main()

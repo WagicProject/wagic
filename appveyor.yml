@@ -4,6 +4,11 @@
 #   - All section names are case-sensitive.
 #   - Section names should be unique on each level.
 
+# branches to build
+branches:
+  # blacklist
+  except:
+    - travis_mac_osx
 #---------------------------------#
 #    environment configuration    #
 #---------------------------------#
@@ -61,7 +66,7 @@ after_deploy:
 
 # to run your custom scripts instead of provider deployments
 deploy_script:
-  - "C:/Python27/python.exe upload-binaries.py -t %GH_TOKEN% -s %APPVEYOR_REPO_COMMIT% -l projects/mtg/bin/Wagic-windows.zip -r Wagic-windows.zip -b %APPVEYOR_REPO_BRANCH%"
+  - "C:/Python27/python.exe tools/upload-binaries.py -t %GH_TOKEN% -s %APPVEYOR_REPO_COMMIT% -l projects/mtg/bin/Wagic-windows.zip -r Wagic-windows.zip -b %APPVEYOR_REPO_BRANCH%"
 
 # to disable deployment
 #deploy: off
