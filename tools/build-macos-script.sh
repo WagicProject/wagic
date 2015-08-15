@@ -16,10 +16,8 @@ git remote set-url origin "https://${GH_TOKEN}@github.com/WagicProject/wagic.git
 ## Delete remote Travis-Mac branch (if any)
 export REMOTE=$(git branch -r | grep "origin/$TRAVIS_MAC_BRANCH\$")
 if test -n "$REMOTE" ; then
-    # Delete remote branch
-    git branch -r -D "origin/$TRAVIS_MAC_BRANCH"
     # Push (delete) remote branch on temote server (e.g. github)
-    git push origin ":$TRAVIS_MAC_BRANCH"
+    git push origin --delete "$TRAVIS_MAC_BRANCH"
 fi
 
 ## Create a new branch
