@@ -11,7 +11,7 @@ rarity=C
 [card]
 primitive=Accorder's Shield
 id=370581
-rarity=C
+rarity=U
 [/card]
 [card]
 primitive=Accursed Spirit
@@ -31,7 +31,7 @@ rarity=C
 [card]
 primitive=Air Servant
 id=370688
-rarity=C
+rarity=U
 [/card]
 [card]
 primitive=Ajani, Caller of the Pride
@@ -121,7 +121,7 @@ rarity=C
 [card]
 primitive=Blur Sliver
 id=370593
-rarity=U
+rarity=C
 [/card]
 [card]
 primitive=Bogbrew Witch
@@ -156,7 +156,7 @@ rarity=C
 [card]
 primitive=Bubbling Cauldron
 id=370661
-rarity=R
+rarity=U
 [/card]
 [card]
 primitive=Burning Earth
@@ -261,7 +261,7 @@ rarity=R
 [card]
 primitive=Darksteel Forge
 id=370734
-rarity=R
+rarity=M
 [/card]
 [card]
 primitive=Darksteel Ingot
@@ -326,7 +326,7 @@ rarity=R
 [card]
 primitive=Doom Blade
 id=370609
-rarity=C
+rarity=U
 [/card]
 [card]
 primitive=Door of Destinies
@@ -337,6 +337,11 @@ rarity=R
 primitive=Dragon Egg
 id=370660
 rarity=U
+[/card]
+[card]
+primitive=Dragon Egg Dragon
+id=-370660
+rarity=T
 [/card]
 [card]
 primitive=Dragon Hatchling
@@ -431,7 +436,7 @@ rarity=C
 [card]
 primitive=Fortify
 id=370712
-rarity=U
+rarity=C
 [/card]
 [card]
 primitive=Frost Breath
@@ -581,7 +586,7 @@ rarity=R
 [card]
 primitive=Kalonian Hydra
 id=370766
-rarity=R
+rarity=M
 [/card]
 [card]
 primitive=Kalonian Tusker
@@ -591,7 +596,7 @@ rarity=U
 [card]
 primitive=Lava Axe
 id=370595
-rarity=
+rarity=C
 [/card]
 [card]
 primitive=Lay of the Land
@@ -619,8 +624,8 @@ id=370740
 rarity=R
 [/card]
 [card]
-primitive=Zombie Token
-id=-339967
+primitive=Liliana's Reaver Zombie
+id=-370740
 rarity=T
 [/card]
 [card]
@@ -736,7 +741,7 @@ rarity=R
 [card]
 primitive=Nightwing Shade
 id=370705
-rarity=U
+rarity=C
 [/card]
 [card]
 primitive=Oath of the Ancient Wood
@@ -831,7 +836,7 @@ rarity=R
 [card]
 primitive=Quag Sickness
 id=370714
-rarity=U
+rarity=C
 [/card]
 [card]
 primitive=Quicken
@@ -846,7 +851,7 @@ rarity=C
 [card]
 primitive=Ratchet Bomb
 id=370623
-rarity=C
+rarity=R
 [/card]
 [card]
 primitive=Regathan Firecat
@@ -896,7 +901,7 @@ rarity=R
 [card]
 primitive=Scourge of Valkas
 id=370584
-rarity=R
+rarity=M
 [/card]
 [card]
 primitive=Scroll Thief
@@ -951,7 +956,7 @@ rarity=M
 [card]
 primitive=Shimmering Grotto
 id=370631
-rarity=C
+rarity=U
 [/card]
 [card]
 primitive=Shivan Dragon
@@ -1031,6 +1036,7 @@ rarity=U
 [card]
 primitive=Staff of the Mind Magus
 id=370676
+rarity=U
 [/card]
 [card]
 primitive=Staff of the Wild Magus
@@ -1105,7 +1111,7 @@ rarity=R
 [card]
 primitive=Thunder Strike
 id=370607
-rarity=U
+rarity=C
 [/card]
 [card]
 primitive=Tidebinder Mage
@@ -1115,7 +1121,7 @@ rarity=R
 [card]
 primitive=Time Ebb
 id=370641
-rarity=R
+rarity=C
 [/card]
 [card]
 primitive=Tome Scour
@@ -1215,7 +1221,7 @@ rarity=R
 [card]
 primitive=Windreader Sphinx
 id=370810
-rarity=U
+rarity=M
 [/card]
 [card]
 primitive=Windstorm
@@ -1243,8 +1249,8 @@ id=370619
 rarity=R
 [/card]
 [card]
-primitive=Zombie Token
-id=-339968
+primitive=Xathrid Necromancer Zombie
+id=-370619
 rarity=T
 [/card]
 [card]
