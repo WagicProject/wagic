@@ -73497,6 +73497,16 @@ mana={2}{B}
 type=Sorcery
 [/card]
 [card]
+name=Ral Zarek
+auto={C(0/0,1,Loyalty)}:tap target(*) && ability$!untap target(*)!$ controller
+auto={C(0/0,-2,Loyalty)}:damage:3 target(creature,player)
+auto={C(0/0,-7,Loyalty)}:flipacoin winability turns:+1 controller winabilityend flipend && flipacoin winability turns:+1 controller winabilityend flipend && flipacoin winability turns:+1 controller winabilityend flipend && flipacoin winability turns:+1 controller winabilityend flipend && flipacoin winability turns:+1 controller winabilityend flipend
+text=+1: Tap target permanent, then untap another target permanent. -- -2: Ral Zarek deals 3 damage to target creature or player. -- -7: Flip five coins. Take an extra turn after this one for each coin that comes up heads.
+mana={2}{U}{R}
+type=Planeswalker
+subtype=Ral
+[/card]
+[card]
 name=Rally
 auto=lord(creature[blocking]) 1/1
 text=Blocking creatures get +1/+1 until end of turn.

@@ -12877,13 +12877,6 @@ mana={R}{R}
 type=Enchantment
 [/card]
 [card]
-name=Ral Zarek
-text=+1: Tap target permanent, then untap another target permanent. -- -2: Ral Zarek deals 3 damage to target creature or player. -- -7: Flip five coins. Take an extra turn after this one for each coin that comes up heads.
-mana={2}{U}{R}
-type=Planeswalker
-subtype=Ral
-[/card]
-[card]
 name=Raiding Party
 text=Raiding Party can't be the target of white spells or abilities from white sources. -- Sacrifice an Orc: Each player may tap any number of untapped white creatures he or she controls. For each creature tapped this way, that player chooses up to two Plains. Then destroy all Plains that weren't chosen this way by any player.
 mana={2}{R}
