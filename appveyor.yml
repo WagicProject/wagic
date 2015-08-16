@@ -9,6 +9,9 @@ branches:
   # blacklist
   except:
     - travis_mac_osx
+# Do not build on tags (GitHub only)
+skip_tags: true
+
 #---------------------------------#
 #    environment configuration    #
 #---------------------------------#
