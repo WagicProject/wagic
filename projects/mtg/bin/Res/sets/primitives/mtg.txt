@@ -39626,6 +39626,17 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Gravecrawler
+abilities=cantblock
+autograveyard=aslongas(zombie|myBattlefield) transforms((,newability[CanPlayFromGraveyard]))
+text=Gravecrawler can't block. -- You may cast Gravecrawler from your graveyard as long as you control a Zombie.
+mana={B}
+type=Creature
+subtype=Zombie
+power=2
+toughness=1
+[/card]
+[card]
 name=Gravedigger
 auto=may moveTo(myhand) target(creature|mygraveyard)
 text=When Gravedigger enters the battlefield, you may return target creature card from your graveyard to your hand.
