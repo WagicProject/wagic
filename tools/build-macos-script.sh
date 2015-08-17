@@ -14,7 +14,8 @@ git config --global user.email $GH_EMAIL
 git remote set-url origin "https://${GH_TOKEN}@github.com/WagicProject/wagic.git"
 
 ## Delete remote Travis-Mac branch (if any)
-export REMOTE=(git branch -r | grep "origin/$TRAVIS_MAC_BRANCH")
+echo git branches = `git branch -r`
+export REMOTE=$(git branch -r | grep "origin/$TRAVIS_MAC_BRANCH")
 if [ "$REMOTE" = "origin/$TRAVIS_MAC_BRANCH" ]; then
     echo "Removing old $TRAVIS_MAC_BRANCH branch"
     # Delete remote branch
