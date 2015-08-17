@@ -22,7 +22,7 @@ if [ "$REMOTE" = "origin/$TRAVIS_MAC_BRANCH" ]; then
     # Push (delete) remote branch on temote server (e.g. github)
     git push origin --delete "$TRAVIS_MAC_BRANCH"
 else
-    echo "No $TRAVIS_MAC_BRANCH to remove"
+    echo "$REMOTE : No $TRAVIS_MAC_BRANCH to remove"
 fi
 
 ## Create a new branch
