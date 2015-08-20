@@ -5540,6 +5540,17 @@ public:
     AAShuffle * clone() const;
 };
 
+//Mulligan
+class AAMulligan: public ActivatedAbilityTP
+{
+public:
+    AAMulligan(GameObserver* observer, int _id, MTGCardInstance * card, Targetable * _target, ManaCost * _cost = NULL, int who =
+            TargetChooser::UNSET);
+    int resolve();
+    const string getMenuText();
+    AAMulligan * clone() const;
+};
+
 //Remove Mana From ManaPool
 class AARemoveMana: public ActivatedAbilityTP
 {

@@ -2941,6 +2941,32 @@ AAShuffle * AAShuffle::clone() const
     return NEW AAShuffle(*this);
 }
 
+// Mulligan 
+AAMulligan::AAMulligan(GameObserver* observer, int _id, MTGCardInstance * card, Targetable * _target, ManaCost * _cost, int who) :
+    ActivatedAbilityTP(observer, _id, card, _target, _cost, who)
+{
+}
+
+int AAMulligan::resolve()
+{
+    Player * player = getPlayerFromTarget(getTarget());
+    if (player)
+    {
+            player->serumMulligan();
+    }
+    return 1;
+}
+
+const string AAMulligan::getMenuText()
+{
+    return "Mulligan";
+}
+
+AAMulligan * AAMulligan::clone() const
+{
+    return NEW AAMulligan(*this);
+}
+
 // Remove Mana From ManaPool
 AARemoveMana::AARemoveMana(GameObserver* observer, int _id, MTGCardInstance * card, Targetable * _target, string manaDesc, int who) :
     ActivatedAbilityTP(observer, _id, card, _target, NULL, who)

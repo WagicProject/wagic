@@ -82616,6 +82616,14 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Serum Powder
+auto={T}:Add{1}
+autohand={0}:serumpowder
+text={T}: Add {1} to your mana pool. -- Any time you could mulligan and Serum Powder is in your hand, you may exile all the cards from your hand, then draw that many cards. (You can do this in addition to taking mulligans.)
+mana={3}
+type=Artifact
+[/card]
+[card]
 name=Serum Tank
 auto=counter(0/0,1,Charge)
 auto=@movedTo(other artifact|Battlefield):counter(0/0,1,Charge)
