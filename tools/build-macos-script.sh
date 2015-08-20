@@ -14,16 +14,17 @@ git config --global user.email $GH_EMAIL
 git remote set-url origin "https://${GH_TOKEN}@github.com/WagicProject/wagic.git"
 
 ## Delete remote Travis-Mac branch (if any)
-export REMOTE=$(git branch -r | grep "origin/$TRAVIS_MAC_BRANCH")
-if [ "$REMOTE" = "origin/$TRAVIS_MAC_BRANCH" ]; then
-    echo "Removing old $TRAVIS_MAC_BRANCH branch"
-    # Delete remote branch
-    git branch -r -D "origin/$TRAVIS_MAC_BRANCH"
+echo git branches = `git branch -r`
+#export REMOTE=$(git branch -r | grep "origin/$TRAVIS_MAC_BRANCH")
+#if [ "$REMOTE" = "origin/$TRAVIS_MAC_BRANCH" ]; then
+#    echo "Removing old $TRAVIS_MAC_BRANCH branch"
+#    # Delete remote branch
+#    git branch -r -D "origin/$TRAVIS_MAC_BRANCH"
     # Push (delete) remote branch on temote server (e.g. github)
     git push origin --delete "$TRAVIS_MAC_BRANCH"
-else
-    echo "No $TRAVIS_MAC_BRANCH to remove"
-fi
+#else
+#    echo "$REMOTE : No $TRAVIS_MAC_BRANCH to remove"
+#fi
 
 ## Create a new branch
 git checkout -q -b "$TRAVIS_MAC_BRANCH" "$TRAVIS_BRANCH"
