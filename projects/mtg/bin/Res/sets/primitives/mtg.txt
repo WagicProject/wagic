@@ -24143,18 +24143,8 @@ toughness=1
 [card]
 name=Discordant Dirge
 auto=@each my upkeep:may counter(0/0,1,Verse)
-auto=this(counter{0/0.1.Verse}=) {B}{S}:reject target(<upto:1>*|opponenthand)
-auto=this(counter{0/0.2.Verse}=) {B}{S}:reject target(<upto:2>*|opponenthand)
-auto=this(counter{0/0.3.Verse}=) {B}{S}:reject target(<upto:3>*|opponenthand)
-auto=this(counter{0/0.4.Verse}=) {B}{S}:reject target(<upto:4>*|opponenthand)
-auto=this(counter{0/0.5.Verse}=) {B}{S}:reject target(<upto:5>*|opponenthand)
-auto=this(counter{0/0.6.Verse}=) {B}{S}:reject target(<upto:6>*|opponenthand)
-auto=this(counter{0/0.7.Verse}=) {B}{S}:reject target(<upto:7>*|opponenthand)
-auto=this(counter{0/0.8.Verse}=) {B}{S}:reject target(<upto:8>*|opponenthand)
-auto=this(counter{0/0.9.Verse}=) {B}{S}:reject target(<upto:9>*|opponenthand)
-auto=this(counter{0/0.10.Verse}=) {B}{S}:reject target(<upto:10>*|opponenthand)
-auto=this(counter{0/0.11.Verse}=) {B}{S}:reject target(<upto:11>*|opponenthand)
-auto=this(counter{0/0.12.Verse}=) {B}{S}:reject target(<upto:12>*|opponenthand)
+auto=this(counter{0/0.1.Verse}<1) {B}{S}:name(look) donothing target(*|opponenthand)
+auto=this(counter{0/0.1.Verse}>0) {B}{S}:reject target(<upto:counter{0%0.1.Verse}>*|opponenthand)
 text=At the beginning of your upkeep, you may put a verse counter on Discordant Dirge. -- {B}, Sacrifice Discordant Dirge: Look at target opponent's hand and choose up to X cards from it, where X is the number of verse counters on Discordant Dirge. That player discards those cards.
 mana={3}{B}{B}
 type=Enchantment
@@ -25442,6 +25432,18 @@ alias=1156
 text=Spend only black mana on X. -- Drain Life deals X damage to target creature or player. You gain life equal to the damage dealt, but not more life than the player's life total before Drain Life dealt damage or the creature's toughness.
 mana={1}{B}{X:black}
 type=Sorcery
+[/card]
+[card]
+name=Draining Whelk
+abilities=flash,flying
+auto=target(*|stack) fizzle
+alias=111057
+text=Flash (You may cast this spell any time you could cast an instant.) -- Flying -- When Draining Whelk enters the battlefield, counter target spell. Put X +1/+1 counters on Draining Whelk, where X is that spell's converted mana cost.
+mana={4}{U}{U}
+type=Creature
+subtype=Illusion
+power=1
+toughness=1
 [/card]
 [card]
 name=Drainpipe Vermin
@@ -46774,6 +46776,14 @@ type=Creature
 subtype=Beast
 power=4
 toughness=4
+[/card]
+[card]
+name=Induce Paranoia
+target=*|stack
+auto=if spent({B}) then transforms((,newability[deplete:manacost],newability[fizzle])) else fizzle
+text=Counter target spell. If {B} was spent to cast Induce Paranoia, that spell's controller puts the top X cards of his or her library into his or her graveyard, where X is the spell's converted mana cost.
+mana={2}{U}{U}
+type=Instant
 [/card]
 [card]
 name=Inertia Bubble
@@ -75396,18 +75406,8 @@ type=Sorcery
 [card]
 name=Recantation
 auto=@each my upkeep:may counter(0/0,1,Verse)
-auto=this(counter{0/0.1.Verse}=) {U}{S}:moveTo(ownerhand) target(<upto:1>*|battlefield)
-auto=this(counter{0/0.2.Verse}=) {U}{S}:moveTo(ownerhand) target(<upto:2>*|battlefield)
-auto=this(counter{0/0.3.Verse}=) {U}{S}:moveTo(ownerhand) target(<upto:3>*|battlefield)
-auto=this(counter{0/0.4.Verse}=) {U}{S}:moveTo(ownerhand) target(<upto:4>*|battlefield)
-auto=this(counter{0/0.5.Verse}=) {U}{S}:moveTo(ownerhand) target(<upto:5>*|battlefield)
-auto=this(counter{0/0.6.Verse}=) {U}{S}:moveTo(ownerhand) target(<upto:6>*|battlefield)
-auto=this(counter{0/0.7.Verse}=) {U}{S}:moveTo(ownerhand) target(<upto:7>*|battlefield)
-auto=this(counter{0/0.8.Verse}=) {U}{S}:moveTo(ownerhand) target(<upto:8>*|battlefield)
-auto=this(counter{0/0.9.Verse}=) {U}{S}:moveTo(ownerhand) target(<upto:9>*|battlefield)
-auto=this(counter{0/0.10.Verse}=) {U}{S}:moveTo(ownerhand) target(<upto:10>*|battlefield)
-auto=this(counter{0/0.11.Verse}=) {U}{S}:moveTo(ownerhand) target(<upto:11>*|battlefield)
-auto=this(counter{0/0.12.Verse}=) {U}{S}:moveTo(ownerhand) target(<upto:12>*|battlefield)
+auto=this(counter{0/0.1.Verse}<1) {U}{S}:name(do nothing) donothing
+auto=this(counter{0/0.1.Verse}>0) {U}{S}:moveTo(ownerhand) target(<upto:counter{0%0.1.Verse}>*|battlefield)
 text=At the beginning of your upkeep, you may put a verse counter on Recantation. -- {U}, Sacrifice Recantation: Return up to X target permanents to their owners' hands, where X is the number of verse counters on Recantation.
 mana={3}{U}{U}
 type=Enchantment
@@ -78916,18 +78916,8 @@ toughness=4
 [card]
 name=Rumbling Crescendo
 auto=@each my upkeep:may counter(0/0,1,Verse)
-auto=this(counter{0/0.1.Verse}=) {R}{S}:destroy target(<upto:1>land)
-auto=this(counter{0/0.2.Verse}=) {R}{S}:destroy target(<upto:2>land)
-auto=this(counter{0/0.3.Verse}=) {R}{S}:destroy target(<upto:3>land)
-auto=this(counter{0/0.4.Verse}=) {R}{S}:destroy target(<upto:4>land)
-auto=this(counter{0/0.5.Verse}=) {R}{S}:destroy target(<upto:5>land)
-auto=this(counter{0/0.6.Verse}=) {R}{S}:destroy target(<upto:6>land)
-auto=this(counter{0/0.7.Verse}=) {R}{S}:destroy target(<upto:7>land)
-auto=this(counter{0/0.8.Verse}=) {R}{S}:destroy target(<upto:8>land)
-auto=this(counter{0/0.9.Verse}=) {R}{S}:destroy target(<upto:9>land)
-auto=this(counter{0/0.10.Verse}=) {R}{S}:destroy target(<upto:10>land)
-auto=this(counter{0/0.11.Verse}=) {R}{S}:destroy target(<upto:11>land)
-auto=this(counter{0/0.12.Verse}=) {R}{S}:destroy target(<upto:12>land)
+auto=this(counter{0/0.1.Verse}<1) {R}{S}:name(do nothing) donothing
+auto=this(counter{0/0.1.Verse}>0) {R}{S}:destroy target(<upto:counter{0%0.1.Verse}>land)
 text=At the beginning of your upkeep, you may put a verse counter on Rumbling Crescendo. -- {R}, Sacrifice Rumbling Crescendo: Destroy up to X target lands, where X is the number of verse counters on Rumbling Crescendo.
 mana={3}{R}{R}
 type=Enchantment
@@ -83445,18 +83435,8 @@ subtype=Aura
 [card]
 name=Serra's Liturgy
 auto=@each my upkeep:may counter(0/0,1,Verse)
-auto=this(counter{0/0.1.Verse}=) {W}{S}:destroy target(<upto:1>artifact,enchantment)
-auto=this(counter{0/0.2.Verse}=) {W}{S}:destroy target(<upto:2>artifact,enchantment)
-auto=this(counter{0/0.3.Verse}=) {W}{S}:destroy target(<upto:3>artifact,enchantment)
-auto=this(counter{0/0.4.Verse}=) {W}{S}:destroy target(<upto:4>artifact,enchantment)
-auto=this(counter{0/0.5.Verse}=) {W}{S}:destroy target(<upto:5>artifact,enchantment)
-auto=this(counter{0/0.6.Verse}=) {W}{S}:destroy target(<upto:6>artifact,enchantment)
-auto=this(counter{0/0.7.Verse}=) {W}{S}:destroy target(<upto:7>artifact,enchantment)
-auto=this(counter{0/0.8.Verse}=) {W}{S}:destroy target(<upto:8>artifact,enchantment)
-auto=this(counter{0/0.9.Verse}=) {W}{S}:destroy target(<upto:9>artifact,enchantment)
-auto=this(counter{0/0.10.Verse}=) {W}{S}:destroy target(<upto:10>artifact,enchantment)
-auto=this(counter{0/0.11.Verse}=) {W}{S}:destroy target(<upto:11>artifact,enchantment)
-auto=this(counter{0/0.12.Verse}=) {W}{S}:destroy target(<upto:12>artifact,enchantment)
+auto=this(counter{0/0.1.Verse}<1) {W}{S}:name(do nothing) donothing
+auto=this(counter{0/0.1.Verse}>0) {W}{S}:destroy target(<upto:counter{0%0.1.Verse}>artifact,enchantment)
 text=At the beginning of your upkeep, you may put a verse counter on Serra's Liturgy. -- {W}, Sacrifice Serra's Liturgy: Destroy up to X target artifacts and/or enchantments, where X is the number of verse counters on Serra's Liturgy.
 mana={2}{W}{W}
 type=Enchantment
@@ -99574,13 +99554,13 @@ type=Artifact
 [card]
 name=Tornado
 auto=cumulativeupcost[{G}] sacrifice
-auto=this(counter{0/0.1.Velocity}<1) {2}{G}:destroy target(*) && all(this) counter(0/0,1,Velocity)
-auto=this(counter{0/0.1.Velocity}=) {2}{G}{L:3}:destroy target(*) && all(this) counter(0/0,1,Velocity)
-auto=this(counter{0/0.2.Velocity}=) {2}{G}{L:6}:destroy target(*) && all(this) counter(0/0,1,Velocity)
-auto=this(counter{0/0.3.Velocity}=) {2}{G}{L:9}:destroy target(*) && all(this) counter(0/0,1,Velocity)
-auto=this(counter{0/0.4.Velocity}=) {2}{G}{L:12}:destroy target(*) && all(this) counter(0/0,1,Velocity)
-auto=this(counter{0/0.5.Velocity}=) {2}{G}{L:15}:destroy target(*) && all(this) counter(0/0,1,Velocity)
-auto=this(counter{0/0.6.Velocity}=) {2}{G}{L:18}:destroy target(*) && all(this) counter(0/0,1,Velocity)
+auto=this(counter{0/0.1.Velocity}<1) {2}{G}:destroy target(*) && all(this) counter(0/0,1,Velocity) limit:1
+auto=this(counter{0/0.1.Velocity}=) {2}{G}{L:3}:destroy target(*) && all(this) counter(0/0,1,Velocity) limit:1
+auto=this(counter{0/0.2.Velocity}=) {2}{G}{L:6}:destroy target(*) && all(this) counter(0/0,1,Velocity) limit:1
+auto=this(counter{0/0.3.Velocity}=) {2}{G}{L:9}:destroy target(*) && all(this) counter(0/0,1,Velocity) limit:1
+auto=this(counter{0/0.4.Velocity}=) {2}{G}{L:12}:destroy target(*) && all(this) counter(0/0,1,Velocity) limit:1
+auto=this(counter{0/0.5.Velocity}=) {2}{G}{L:15}:destroy target(*) && all(this) counter(0/0,1,Velocity) limit:1
+auto=this(counter{0/0.6.Velocity}=) {2}{G}{L:18}:destroy target(*) && all(this) counter(0/0,1,Velocity) limit:1
 text=Cumulative upkeep {G} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- {2}{G}, Pay 3 life for each velocity counter on Tornado: Destroy target permanent and put a velocity counter on Tornado. Activate this ability only once each turn.
 mana={4}{G}
 type=Enchantment
@@ -104913,18 +104893,8 @@ type=Instant
 [card]
 name=Vile Requiem
 auto=@each my upkeep:may counter(0/0,1,Verse)
-auto=this(counter{0/0.1.Verse}=) {1}{B}{S}:bury target(<upto:1>creature[-black])
-auto=this(counter{0/0.2.Verse}=) {1}{B}{S}:bury target(<upto:2>creature[-black])
-auto=this(counter{0/0.3.Verse}=) {1}{B}{S}:bury target(<upto:3>creature[-black])
-auto=this(counter{0/0.4.Verse}=) {1}{B}{S}:bury target(<upto:4>creature[-black])
-auto=this(counter{0/0.5.Verse}=) {1}{B}{S}:bury target(<upto:5>creature[-black])
-auto=this(counter{0/0.6.Verse}=) {1}{B}{S}:bury target(<upto:6>creature[-black])
-auto=this(counter{0/0.7.Verse}=) {1}{B}{S}:bury target(<upto:7>creature[-black])
-auto=this(counter{0/0.8.Verse}=) {1}{B}{S}:bury target(<upto:8>creature[-black])
-auto=this(counter{0/0.9.Verse}=) {1}{B}{S}:bury target(<upto:9>creature[-black])
-auto=this(counter{0/0.10.Verse}=) {1}{B}{S}:bury target(<upto:10>creature[-black])
-auto=this(counter{0/0.11.Verse}=) {1}{B}{S}:bury target(<upto:11>creature[-black])
-auto=this(counter{0/0.12.Verse}=) {1}{B}{S}:bury target(<upto:12>creature[-black])
+auto=this(counter{0/0.1.Verse}<1) {1}{B}{S}:name(do nothing) donothing
+auto=this(counter{0/0.1.Verse}>0) {1}{B}{S}:bury target(<upto:counter{0%0.1.Verse}>creature[-black])
 text=At the beginning of your upkeep, you may put a verse counter on Vile Requiem. -- {1}{B}, Sacrifice Vile Requiem: Destroy up to X target nonblack creatures, where X is the number of verse counters on Vile Requiem. They can't be regenerated.
 mana={2}{B}{B}
 type=Enchantment
@@ -106515,8 +106485,8 @@ toughness=7
 name=Walking Archive
 abilities=defender
 auto=counter(1/1,1)
-auto=@each my upkeep:thisforeach(counter{1/1.1}) draw:1 controller
-auto=@each opponent upkeep:thisforeach(counter{1/1.1}) draw:1 opponent
+auto=@each my upkeep:draw:counter{1%1} controller
+auto=@each opponent upkeep:draw:counter{1%1} opponent
 auto={2}{W}{U}:counter(1/1,1)
 text=Defender (This creature can't attack.) -- Walking Archive enters the battlefield with a +1/+1 counter on it. -- At the beginning of each player's upkeep, that player draws a card for each +1/+1 counter on Walking Archive. -- {2}{W}{U}: Put a +1/+1 counter on Walking Archive.
 mana={3}
@@ -109939,7 +109909,7 @@ type=Instant
 [/card]
 [card]
 name=Wolf Pack
-auto=@combat(blocked,turnlimited) source(this):may name(assign combat damage to defending player) thisforeach(power>=1) damage:1 opponent && fog from(this)
+auto=@combat(blocked,turnlimited) source(this):may name(assign combat damage to defending player) damage:power opponent && fog from(this)
 text=You may have Wolf Pack assign its combat damage as though it weren't blocked.
 mana={6}{G}{G}
 type=Creature

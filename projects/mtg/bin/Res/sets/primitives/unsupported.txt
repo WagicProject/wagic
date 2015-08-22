@@ -4149,15 +4149,6 @@ mana={U}{U}
 type=Sorcery
 [/card]
 [card]
-name=Draining Whelk
-text=Flash (You may cast this spell any time you could cast an instant.) -- Flying -- When Draining Whelk enters the battlefield, counter target spell. Put X +1/+1 counters on Draining Whelk, where X is that spell's converted mana cost.
-mana={4}{U}{U}
-type=Creature
-subtype=Illusion
-power=1
-toughness=1
-[/card]
-[card]
 name=Drake Umbra
 mana={4}{U}
 type=Enchantment
@@ -7674,12 +7665,6 @@ name=Induce Despair
 mana={2}{B}
 type=Instant
 text=As an additional cost to cast Induce Despair, reveal a creature card from your hand. Target creature gets -X/-X until end of turn, where X is the revealed card's converted mana cost.
-[/card]
-[card]
-name=Induce Paranoia
-text=Counter target spell. If {B} was spent to cast Induce Paranoia, that spell's controller puts the top X cards of his or her library into his or her graveyard, where X is the spell's converted mana cost.
-mana={2}{U}{U}
-type=Instant
 [/card]
 [card]
 name=Inescapable Brute

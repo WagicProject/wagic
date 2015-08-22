@@ -1359,6 +1359,13 @@ int AAFizzler::resolve()
         sCard = sTarget->source;
     if (!sCard || !sTarget || sCard->has(Constants::NOFIZZLE))
         return 0;
+    if (source->alias == 111057 && sTarget)//Draining Whelk
+    {
+        for (int j = sTarget->cost->getConvertedCost(); j > 0; j--)
+        {
+            source->counters->addCounter(1,1);
+        }
+    }
     stack->Fizzle(sTarget, fizzleMode);
     return 1;
 }
