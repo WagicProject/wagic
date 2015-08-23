@@ -68366,6 +68366,13 @@ mana={3}{G}{G}
 type=Sorcery
 [/card]
 [card]
+name=Parallel Lives
+abilities=tokenizer
+text=If an effect would put one or more tokens onto the battlefield under your control, it puts twice that many of those tokens onto the battlefield instead.
+mana={3}{G}
+type=Enchantment
+[/card]
+[card]
 name=Paralyze
 target=creature
 auto=tap

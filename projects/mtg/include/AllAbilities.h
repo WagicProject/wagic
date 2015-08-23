@@ -3140,7 +3140,7 @@ public:
             SAFE_DELETE(NewPow);
             SAFE_DELETE(NewTou);
         }
-        for (int i = 0; i < multiplier->getValue(); ++i)
+        for (int i = 0; i < Tokenizer(); ++i)
         {
             //MTGCardInstance * myToken;
             if (tokenId)
@@ -3199,6 +3199,23 @@ public:
         return 1;
     }
 
+    int Tokenizer()//tokenizer
+    {
+        int tokenize = 1;
+        if (source->controller()->game->battlefield->hasAbility(Constants::TOKENIZER))
+        {
+            int nbcards = source->controller()->game->battlefield->nb_cards;
+            for (int j = 0; j < nbcards; j++)
+            {
+                if (source->controller()->game->battlefield->cards[j]->has(Constants::TOKENIZER))
+                    tokenize *= 2;
+            }
+            return multiplier->getValue()*tokenize;
+        }
+		else
+            return multiplier->getValue();
+    }
+   
     void setTokenOwner()
     {
         switch(who)

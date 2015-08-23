@@ -219,7 +219,8 @@ class Constants
       LURE = 101,
       NOLEGEND = 102,
       CANPLAYFROMGRAVEYARD = 103,
-      NB_BASIC_ABILITIES = 104,
+      TOKENIZER = 104,
+      NB_BASIC_ABILITIES = 105,
 
 
     RARITY_S = 'S',   //Special Rarity
