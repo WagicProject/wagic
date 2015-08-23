@@ -206,7 +206,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SoundManager);
 	ALenum  format;
 	ALsizei size;
 	ALsizei freq;
-	ALvoid *data;
+    ALvoid *data = 0;
 	alError = AL_NO_ERROR;
     
 	NSBundle *bundle = [NSBundle mainBundle];
@@ -779,8 +779,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(SoundManager);
 #pragma mark Interruption handling
 
 - (void)setActivated:(BOOL)aState {
-    
-    OSStatus result;
     
     if(aState) {
         NSLog(@"INFO - SoundManager: OpenAL Active");

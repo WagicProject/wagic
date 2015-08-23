@@ -42,7 +42,6 @@ filesystem * filesystem::pCurrentFS = NULL;
 std::vector<filesystem::pooledBuffer *> filesystem::m_Buffers;
 
 static const int STORED = 0;
-static const int DEFLATED = 8;
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction

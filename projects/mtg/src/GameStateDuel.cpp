@@ -28,9 +28,6 @@
 #include <time.h>
 #endif
 
-const float MENU_FONT_SCALE = 1.0f;
-
-
 enum ENUM_DUEL_STATE
 {
     DUEL_STATE_UNSET = 0,

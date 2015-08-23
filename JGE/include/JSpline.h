@@ -18,12 +18,11 @@ using namespace std;
 
 #define MID_POINT_THRESHOLD			1.0f
 
-
 //////////////////////////////////////////////////////////////////////////
 /// Position of a single dot on screen.
 /// 
 //////////////////////////////////////////////////////////////////////////
-class Point
+class JPoint
 {
 public:
 
@@ -34,13 +33,13 @@ public:
 	/// @param _y - Y position.
 	/// 
 	//////////////////////////////////////////////////////////////////////////
-	Point(float _x, float _y) { x = _x; y = _y; }
+    JPoint(float _x, float _y) { x = _x; y = _y; }
 
 	//////////////////////////////////////////////////////////////////////////
 	/// Constructor, set position to default (0.0f, 0.0f)
 	/// 
 	//////////////////////////////////////////////////////////////////////////
-	Point() { x = 0.0f; y = 0.0f; }
+    JPoint() { x = 0.0f; y = 0.0f; }
 
 	float x;	///< X position.
 	float y;	///< Y position.
@@ -95,7 +94,7 @@ public:
 	/// @param pt - Control point.
 	/// 
 	//////////////////////////////////////////////////////////////////////////
-	void AddControlPoint(const Point &pt);
+    void AddControlPoint(const JPoint &pt);
 
 	//////////////////////////////////////////////////////////////////////////
 	/// Get a control point of the spline.
@@ -105,7 +104,7 @@ public:
 	/// @return Control point.
 	/// 
 	//////////////////////////////////////////////////////////////////////////
-	void GetControlPoint(Point &point, int index);
+    void GetControlPoint(JPoint &point, int index);
 
 	//////////////////////////////////////////////////////////////////////////
 	/// Work out all pixels of the spline.
@@ -128,7 +127,7 @@ public:
 	/// @return Position of the desire point.
 	/// 
 	//////////////////////////////////////////////////////////////////////////
-	void PointOnCurve(Point &out, float t, const Point &p0, const Point &p1, const Point &p2, const Point &p3);
+    void PointOnCurve(JPoint &out, float t, const JPoint &p0, const JPoint &p1, const JPoint &p2, const JPoint &p3);
 
 	//////////////////////////////////////////////////////////////////////////
 	/// Get a number of pixels for this spline.
@@ -146,7 +145,7 @@ public:
 	/// @return Position of the desire point.
 	/// 
 	//////////////////////////////////////////////////////////////////////////
-	void GetPixel(Point &point, int index);
+    void GetPixel(JPoint &point, int index);
 
 	//////////////////////////////////////////////////////////////////////////
 	/// Render the spline to screen.
@@ -156,8 +155,8 @@ public:
 
 private:
 
-	vector<Point> mMidPoints;
-	vector<Point> mPixels;
+    vector<JPoint> mMidPoints;
+    vector<JPoint> mPixels;
 	int mCount;
 
 };

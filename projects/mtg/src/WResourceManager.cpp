@@ -11,8 +11,10 @@
 #endif
 #include "WFont.h"
 
+#ifdef FORCE_LOW_CACHE_MEMORY
 //#define FORCE_LOW_CACHE_MEMORY
 const unsigned int kConstrainedCacheLimit = 8 * 1024 * 1024;
+#endif
 
 extern bool neofont;
 int idCounter = OTHERS_OFFSET;
