@@ -217,6 +217,22 @@ void Player::takeMulligan()
          //Draw hand with 1 less card penalty //almhum
 }
 
+void Player::serumMulligan()
+{
+    MTGPlayerCards * currentPlayerZones = game;
+    int cardsinhand = currentPlayerZones->hand->nb_cards;
+    for (int i = 0; i < cardsinhand; i++) //Exile
+        currentPlayerZones->putInZone(currentPlayerZones->hand->cards[0],
+        currentPlayerZones->hand,
+        currentPlayerZones->exile);
+
+    currentPlayerZones->library->shuffle(); //Shuffle
+    
+    for (int i = 0; i < (cardsinhand); i++)
+        game->drawFromLibrary();
+         //Draw hand no penalty
+}
+
 //Cleanup phase at the end of a turn
 void Player::cleanupPhase()
 {

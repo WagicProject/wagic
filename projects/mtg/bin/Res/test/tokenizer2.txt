@@ -1,0 +1,27 @@
+﻿# Testing Tokenizer - Parallel Lives (ISD) 249662
+# Dragon Fodder (ALA) 174936
+# text=Put two 1/1 red Goblin creature tokens into play.
+# Tokens must be 8.. since there are two tokenizer... original value
+# is 2 with first tokenizer it will become 4, with the second tokenizer
+# the value will be 8...
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:174936
+manapool:{R}{1}
+inplay:249662,249662
+[PLAYER2]
+inplay:plains
+hand:Demystify
+[DO]
+174936
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:174936
+inplay:249662,249662,-174936,-174936,-174936,-174936,-174936,-174936,-174936,-174936
+[PLAYER2]
+hand:Demystify
+inplay:plains
+life:20
+[END]
