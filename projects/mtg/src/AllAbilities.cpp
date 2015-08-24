@@ -2489,35 +2489,49 @@ int AACloner::resolve()
 
     Player * targetPlayer = who == 1 ? source->controller()->opponent() : source->controller();
 
-    MTGCardInstance * myClone = NEW MTGCardInstance(clone, targetPlayer->game);
-    targetPlayer->game->temp->addCard(myClone);
+    int tokenize = 1;//tokenizer support for cloning
+    if (targetPlayer->game->battlefield->hasAbility(Constants::TOKENIZER))
+    {
+        int nbcards = targetPlayer->game->battlefield->nb_cards;
+        for (int j = 0; j < nbcards; j++)
+        {
+            if (targetPlayer->game->battlefield->cards[j]->has(Constants::TOKENIZER))
+                tokenize *= 2;
+        }
+    }
+
+    for (int i = 0; i < tokenize; ++i)
+    {
+        MTGCardInstance * myClone = NEW MTGCardInstance(clone, targetPlayer->game);
+        targetPlayer->game->temp->addCard(myClone);
                 
-    Spell * spell = NEW Spell(game, myClone);
-    spell->source->isToken = 1;
-    spell->resolve();
-    spell->source->fresh = 1;
-    spell->source->model = spell->source;
-    spell->source->model->data = spell->source;
-    if(_target->isToken)
-    {
-        spell->source->power = _target->origpower;
-        spell->source->toughness = _target->origtoughness;
-        spell->source->life = _target->origtoughness;
+        Spell * spell = NEW Spell(game, myClone);
+        spell->source->isToken = 1;
+        spell->resolve();
+        spell->source->fresh = 1;
+        spell->source->model = spell->source;
+        spell->source->model->data = spell->source;
+        if(_target->isToken)
+        {
+            spell->source->power = _target->origpower;
+            spell->source->toughness = _target->origtoughness;
+            spell->source->life = _target->origtoughness;
+        }
+        list<int>::iterator it;
+        for (it = awith.begin(); it != awith.end(); it++)
+        {
+            spell->source->basicAbilities[*it] = 1;
+        }
+        for (it = colors.begin(); it != colors.end(); it++)
+        {
+            spell->source->setColor(*it);
+        }
+        for (it = typesToAdd.begin(); it != typesToAdd.end(); it++)
+        {
+            spell->source->addType(*it);
+        }
+        delete spell;
     }
-    list<int>::iterator it;
-    for (it = awith.begin(); it != awith.end(); it++)
-    {
-        spell->source->basicAbilities[*it] = 1;
-    }
-    for (it = colors.begin(); it != colors.end(); it++)
-    {
-        spell->source->setColor(*it);
-    }
-    for (it = typesToAdd.begin(); it != typesToAdd.end(); it++)
-    {
-        spell->source->addType(*it);
-    }
-    delete spell;
     return 1;
 
 }
