@@ -66,9 +66,12 @@ void AIPlayerMinMax::LookAround()
     vector<AIAction>::iterator it;
     for(it = potentialActions.begin(); it != potentialActions.end(); it++)
     {
+        stringstream theCommand;
+        theCommand << (*it);
+
         GameObserver g;
         g.load(stream.str());
-//        g.processAction((*it));
+        g.processAction(theCommand.str());
     }
 }
 

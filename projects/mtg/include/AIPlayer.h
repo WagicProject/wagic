@@ -43,7 +43,7 @@ public:
     };
 
     friend ostream& operator<<(ostream&, const Action&);
-	  friend istream& operator>>(istream&, Action&);
+    friend istream& operator>>(istream&, Action&);
 };
 
 class AIAction
@@ -84,6 +84,10 @@ public:
     {
     };
     int Act();
+    ostream& logSimpleAct(ostream& out, MTGCardInstance* click);
+    ostream& logMultiAct(ostream& out, vector<Targetable*>& actionTargets);
+
+    friend ostream& operator<<(ostream& out, AIAction& a);
 };
 
 

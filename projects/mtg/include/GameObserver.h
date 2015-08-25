@@ -52,7 +52,6 @@ class GameObserver{
   string startupGameSerialized;
   bool parseLine(const string& s);
   virtual void logAction(const string& s);
-  bool processAction(const string& s);
   bool processActions(bool undo
                     #ifdef TESTSUITE
                     , TestSuiteGame* testgame
@@ -69,6 +68,7 @@ class GameObserver{
                     );
 
  public:
+  bool processAction(const string& s);
   int currentPlayerId;
   CombatStep combatStep;
   int turn;

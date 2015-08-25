@@ -248,7 +248,7 @@ void JFileSystem::clearZipCache()
 
 bool JFileSystem::AttachZipFile(const string &zipfile, char *password /* = NULL */)
 {
-    if (mZipAvailable && mZipFile != NULL)
+    if (mZipAvailable && mZipFile.is_open())
     {
         if (mZipFileName != zipfile)
             DetachZipFile();		// close the previous zip file

@@ -67,6 +67,52 @@ AIAction::AIAction(AIPlayer * owner, MTGCardInstance * c, MTGCardInstance * t)
     }
 }
 
+// should be "const AIAction& " instead, but compiler is annoying to enable that.
+ostream& operator<<(ostream& out, AIAction& a)
+{
+    do {
+        if (a.player && !a.playerAbilityTarget)
+        {
+            out << "p" + (a.owner->getObserver()->getPlayerId(a.player) + 1) << endl;
+            break;
+        }
+        if (a.ability)
+        {
+            a.logSimpleAct(out, a.click);
+            // we're ignoring ability and we shouldn't
+            if (a.target && !a.mAbilityTargets.size())
+            {
+                a.logSimpleAct(out, a.target);
+                // sounds broken if target is a player ... or not, it's the following case
+                break;
+            }
+            else if(a.playerAbilityTarget && !a.mAbilityTargets.size())
+            {
+                out << "p" + (a.owner->getObserver()->getPlayerId((Player*)a.playerAbilityTarget) + 1) << endl;
+                // with this log we're losing what player clicked on who ... which is bad.
+                break;
+            }
+            if(a.mAbilityTargets.size())
+            {
+                a.logMultiAct(out, a.mAbilityTargets);
+                break;
+            }
+        }
+        else  if(a.mAbilityTargets.size())
+        {
+            a.logMultiAct(out, a.mAbilityTargets);
+            break;
+        }
+        else if (a.click)
+        { //Shouldn't be used, really...
+            assert(0);
+        }
+
+    } while(0);
+
+    return out;
+}
+
 int AIAction::Act()
 {
     GameObserver * g = owner->getObserver();
@@ -105,6 +151,49 @@ int AIAction::Act()
         return 1;
     }
     return 0;
+}
+
+ostream& AIAction::logSimpleAct(ostream& out, MTGCardInstance* click)
+{
+    string currentPlayer = "p" + (owner->getObserver()->getPlayerId(owner) + 1);
+    out << currentPlayer << click->currentZone->getName() << "[" <<  click->currentZone->getIndex(click) << "]" << endl;
+    return out;
+}
+
+ostream& AIAction::logMultiAct(ostream& out, vector<Targetable*>& actionTargets)
+{
+    GameObserver * g = owner->getObserver();
+    TargetChooser * tc = g->getCurrentTargetChooser();
+    do {
+        if(!tc) break;
+        vector<Targetable*>::iterator ite = actionTargets.begin();
+        while(ite != actionTargets.end())
+        {
+            MTGCardInstance * card = ((MTGCardInstance *) (*ite));
+            if(card == (MTGCardInstance*)tc->source)//click source first.
+            {
+                g->cardClick(card);
+                ite = actionTargets.erase(ite);
+                continue;
+            }
+            ++ite;
+        }
+
+        //shuffle to make it less predictable, otherwise ai will always seem to target from right to left. making it very obvious.
+        owner->getRandomGenerator()->random_shuffle(actionTargets.begin(), actionTargets.end());
+
+        for(int k = 0 ;k < int(actionTargets.size()) && k < tc->maxtargets; k++)
+        {
+            if (MTGCardInstance * card = dynamic_cast<MTGCardInstance *>(actionTargets[k]))
+            {
+                if(k+1 == int(actionTargets.size()))
+                    tc->done = true;
+                g->cardClick(card);
+            }
+        }
+        tc->attemptsToFill++;
+    } while (0);
+    return out;
 }
 
 int AIAction::clickMultiAct(vector<Targetable*>& actionTargets)
