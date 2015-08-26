@@ -3777,21 +3777,13 @@ type=Sorcery
 [/card]
 [card]
 name=Arc Mage
-auto={2}{R}{T}:token(-1111113) && damage:1 target(creature,player)
+auto={2}{R}{T}{discard(*|myhand)}:damage:1 target(creature,player) && activate damage:1 target(creature,player)
 text={2}{R}, {T}, Discard a card: Arc Mage deals 2 damage divided as you choose among one or two target creatures and/or players.
 mana={2}{R}
 type=Creature
 subtype=Human Spellshaper
 power=2
 toughness=2
-[/card]
-[card]
-name=Arc Mage's 2nd Damage
-auto=counter(0/0,1,Arc Mage)
-auto=@damaged(creature,player):thisforeach(counter{0/0.1.Arc Mage}>0) damage:1 target(creature,player) && counter(0/0,-1,Arc Mage) && counter(0/0,1,Bury)
-auto=thisforeach(counter{0/0.1.Bury}>0) bury
-id=-1111113
-type=Nothing
 [/card]
 [card]
 name=Arc Runner
@@ -32660,18 +32652,11 @@ toughness=1
 name=Fire at Will
 target=creature[attacking;blocking]
 auto=damage:1
-auto=may damage:1 target(creature[attacking;blocking])
-auto=token(-1111121)
+auto=damage:1 target(creature[attacking;blocking])
+auto=ability$!name(damage) choice target(creature[attacking;blocking]) damage:1!$ controller
 text=Fire at Will deals 3 damage divided as you choose among one, two, or three target attacking or blocking creatures.
 mana={RW}{RW}{RW}
 type=Instant
-[/card]
-[card]
-name=Fire at Will's 3rd Damage
-auto=@movedto(exile) from(this):may damage:1 target(creature,player)
-auto=moveto(exile)
-id=-1111121
-type=Nothing
 [/card]
 [card]
 name=Firebolt
@@ -51042,22 +51027,13 @@ toughness=1
 [card]
 name=Kiora, the Crashing Wave
 auto=counter(0/0,2,loyalty)
-auto={C(0/0,1,Loyalty)}:name(+1: Prevention) token(37852101) controller
+auto={C(0/0,1,Loyalty)}:name(+1: Prevention) target(*|opponentbattlefield) transforms((,newability[preventalldamage from(this)],newability[preventalldamage to(this)])) uynt
 auto={C(0/0,-1,Loyalty)}:name(-1: Draw 1 and Lands +1) draw:1 controller && maxPlay(land)+1 ueot
 auto={C(0/0,-5,Loyalty)}:emblem name(-5: Emblem) transforms((,newability[@each my endofturn:token(-378521) controller])) forever dontremove
 text=+1: Until your next turn, prevent all damage that would be dealt to and dealt by target permanent an opponent controls. -- -1: Draw a card. You may play an additional land this turn. -- -5: You get an emblem with "At the beginning of your end step, put a 9/9 blue Kraken creature token onto the battlefield." -- Starting Loyalty (2)
 mana={2}{G}{U}
 type=Planeswalker
 subtype=Kiora
-[/card]
-[card]
-name=Kiora's Prevention
-abilities=indestructible,shroud
-type=nothing
-text=Until your next turn, prevent all damage that would be dealt to and dealt by target permanent an opponent controls.
-auto=name(Prevention) target(*|opponentbattlefield) transforms((,newability[preventalldamage from(this)],newability[preventalldamage to(this)])) uynt
-auto=@each myuntap:moveto(exile) all(this)
-color=green,blue
 [/card]
 [card]
 name=Kiora's Kraken
