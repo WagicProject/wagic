@@ -99,6 +99,7 @@ public:
     string toString();
     int getCost(int color);
     int getManaSymbols(int color);
+    int getManaSymbolsHybridMerged(int color);
 
     //Returns NULL if i is greater than nbhybrids
     ManaCostHybrid * getHybridCost(unsigned int i);

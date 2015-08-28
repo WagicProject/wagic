@@ -58,6 +58,14 @@ int ManaCostHybrid::getManaSymbols(int color)
     return 0;
 }
 
+int ManaCostHybrid::getManaSymbolsHybridMerged(int color)
+{
+    // we assume that color1 and color2 are different
+    if (color1 == color) return value1;
+    if (color2 == color) return value2;
+    return 0;
+}
+
 int ManaCostHybrid::hasColor(int color)
 {
     if (((color1 == color) && value1) || ((color2 == color) && value2))

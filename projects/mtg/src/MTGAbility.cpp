@@ -2532,6 +2532,16 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         return a;
     }
 
+    //Serum Powder
+    found = s.find("serumpowder");
+    if (found != string::npos)
+    {
+        Targetable * t = spell? spell->getNextTarget() : NULL;
+        MTGAbility * a = NEW AAMulligan(observer, id, card, t, NULL, who);
+        a->oneShot = 1;
+        return a;
+    }
+
     //Remove Mana from ManaPool
     vector<string> splitRemove = parseBetween(s, "removemana(", ")");
     if (splitRemove.size())
@@ -4284,6 +4294,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
         }
         else if (card->alternateCostPaid[ManaCost::MANA_PAID_WITH_BUYBACK] > 0)
         {
+            card->alternateCostPaid[ManaCost::MANA_PAID_WITH_BUYBACK] = 0;
             zones->putInZone(card, zones->stack, Endzones->hand);
         }
         else if (card->alternateCostPaid[ManaCost::MANA_PAID_WITH_FLASHBACK] > 0)

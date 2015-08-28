@@ -159,9 +159,18 @@ ManaCost * ManaCost::parseManaCost(string s, ManaCost * _manaCost, MTGCardInstan
                         { //Mill to exile yourself as a cost (Library 2 Exile)
                             manaCost->addExtraCost(NEW MillExileCost(tc));
                         }
-                        else
+                        else if (value == "l")
                         { //Life cost
                             manaCost->addExtraCost(NEW LifeCost(tc));
+                        }
+                        else
+                        { //Specific Life cost
+                            vector<string>valSplit = parseBetween(value,"l:"," ",false);
+                            if (valSplit.size()) {
+                                WParsedInt* lifetopay = NEW WParsedInt(valSplit[1], NULL, c);
+                                manaCost->addExtraCost(NEW SpecificLifeCost(tc,lifetopay->getValue()));
+                                SAFE_DELETE(lifetopay);
+                            }
                         }
                         break;
                     case 'd': //DiscardRandom cost
@@ -603,6 +612,27 @@ int ManaCost::getManaSymbols(int color)
             if (phyrexianMana)
             {
                 result += phyrexianMana->getManaCost()->getManaSymbols(color);
+            }
+        }
+    }
+    return result;
+}
+
+int ManaCost::getManaSymbolsHybridMerged(int color)
+{
+    int result = cost[color];
+    for (size_t i = 0; i < hybrids.size(); ++i)
+    {
+        result = hybrids[i].getManaSymbolsHybridMerged(color);//removed +
+    }
+    if (extraCosts && extraCosts->costs.size())
+    {
+        for (size_t i = 0; i < extraCosts->costs.size(); ++i)
+        {
+            LifeorManaCost * phyrexianMana = dynamic_cast<LifeorManaCost*>(extraCosts->costs[i]);
+            if (phyrexianMana)
+            {
+                result += phyrexianMana->getManaCost()->getManaSymbolsHybridMerged(color);
             }
         }
     }

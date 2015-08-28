@@ -204,6 +204,7 @@ brass_man.txt
 brass_man_i161.txt
 briarhorn.txt
 bringer_of_the_red_dawn.txt
+buyback.txt
 cage_of_hands.txt
 Call_to_Heel_1.txt
 Call_to_Heel_2.txt
@@ -344,6 +345,7 @@ foratog.txt
 force_of_nature.txt
 force_of_nature2.txt
 force_of_nature3.txt
+formidable.txt
 fountain_of_youth.txt
 Frogmite.txt
 fungus_sliver.txt
@@ -660,6 +662,8 @@ tidal_warrior_i649.txt
 tidal_warrior_i652.txt
 Timely_Reinforcements.txt
 titanic_ultimatum.txt
+tokenizer.txt
+tokenizer2.txt
 torture.txt
 tranquil_domain.txt
 turn_to_slag.txt

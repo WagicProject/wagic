@@ -68,6 +68,7 @@ public:
     MTGInPlay * inPlay();
     ManaPool * getManaPool();
     void takeMulligan();
+    void serumMulligan();
     ManaCost * doesntEmpty;
     ManaCost * poolDoesntEmpty;
     void cleanupPhase();

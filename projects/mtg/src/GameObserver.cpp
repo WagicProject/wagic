@@ -1909,6 +1909,13 @@ void GameObserver::Mulligan(Player* player)
     player->takeMulligan();
 }
 
+void GameObserver::serumMulligan(Player* player)
+{
+    if(!player) player = currentPlayer;
+    logAction(player, "mulligan serum powder");
+    player->serumMulligan();
+}
+
 Player* GameObserver::createPlayer(const string& playerMode
                                 #ifdef TESTSUITE
                                 , TestSuiteGame* testgame

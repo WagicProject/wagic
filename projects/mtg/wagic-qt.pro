@@ -12,6 +12,10 @@ CONFIG(console, graphics|console){
     CONFIG   += console
     CONFIG   -= app_bundle
     DEFINES += TESTSUITE
+
+    QMAKE_CXXFLAGS += -g -fprofile-arcs -ftest-coverage
+    QMAKE_LDFLAGS += -g -fprofile-arcs -ftest-coverage
+    LIBS += -lgcov
 }
 else:CONFIG(graphics, graphics|console){
     folder_01.source = qml/QmlWagic
@@ -19,13 +23,8 @@ else:CONFIG(graphics, graphics|console){
     DEPLOYMENTFOLDERS = folder_01
     QT += core gui opengl network multimedia
     QT -= declarative quick qml
-    #maemo5:DEFINES += QT_WIDGET
     DEFINES += QT_WIDGET
     unix:!symbian:INCLUDEPATH += /usr/include/GL
-
-    # Please do not modify the following two lines. Required for deployment.
-#    !maemo5:include(qml/qmlapplicationviewer/qmlapplicationviewer.pri)
-#    !maemo5:qtcAddDeployment()
 }
 
 #!android:!symbian:QT += phonon
@@ -134,6 +133,28 @@ maemo5: {
     USERDIR = /sdcard/Wagic/Res
     DEFINES += RESDIR=\\\"$$RESDIR\\\"
     DEFINES += USERDIR=\\\"$$USERDIR\\\"
+} else:macx {
+    # Copy the custom Info.plist to the app bundle
+    QMAKE_INFO_PLIST = MacOS/Info.plist
+    # Icon is mandatory for submission
+    ICON = MacOS/wagic.icns
+
+    #Move resource file
+    res.commands = cd $$_PRO_FILE_PWD_/bin/Res; python createResourceZip.py;
+    res.depends = all
+    QMAKE_EXTRA_TARGETS += res
+
+    # Create a dmg file
+    dmg.commands = mkdir wagic.app/Contents/logs; mkdir wagic.app/Contents/Resources/Res; mv $$_PRO_FILE_PWD_/bin/Res/core*.zip wagic.app/Contents/Resources/Res; cp $$_PRO_FILE_PWD_/MacOS/wagic.launcher wagic.app/Contents/MacOS; $$dirname(QMAKE_QMAKE)/macdeployqt wagic.app -dmg
+    dmg.depends = res
+    QMAKE_EXTRA_TARGETS += dmg
+
+    QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.9
+    QMAKE_MAC_SDK = macosx
+
+    # Only Intel binaries are accepted so force this
+    CONFIG += x86
+
 } else:unix {
     # Variables
     BINDIR = /usr/bin

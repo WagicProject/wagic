@@ -153,6 +153,7 @@ class GameObserver{
   bool undo();
   bool isLoading(){ return mLoading; };
   void Mulligan(Player* player = NULL);
+  void serumMulligan(Player* player = NULL);
   Player* getPlayer(size_t index) { return players[index];};
   bool isStarted() { return (mLayers!=NULL);};
   RandomGenerator* getRandomGenerator() { return &randomGenerator; };

@@ -1513,8 +1513,3 @@ primitive=Zephyr Net
 id=142357
 rarity=C
 [/card]
-[card]
-primitive=Avatar Token
-id=-140233
-rarity=T
-[/card]

@@ -42,16 +42,16 @@ int JMusic::getPlayTime(){
 
 JMusic::~JMusic()
 {
-#ifdef QT_CONFIG
-    if(player)
-        delete player;
-    if(playlist)
-        delete playlist;
-#elif defined USE_PHONON
+#if defined USE_PHONON
   if(mOutput)
     delete mOutput;
   if(mMediaObject)
     delete mMediaObject;
+#elif defined QT_CONFIG
+    if(player)
+        delete player;
+    if(playlist)
+        delete playlist;
 #elif defined WITH_FMOD
   JSoundSystem::GetInstance()->StopMusic(this);
   if (mTrack) FSOUND_Sample_Free(mTrack);
@@ -78,7 +78,7 @@ JSample::JSample()
 
 JSample::~JSample()
 {
-#ifdef QT_CONFIG
+#if (defined QT_CONFIG) && (!defined USE_PHONON)
     if(effect) {
         delete effect;
         effect = 0;
@@ -159,7 +159,7 @@ void JSoundSystem::DestroySoundSystem()
 JMusic *JSoundSystem::LoadMusic(const char *fileName)
 {
     JMusic* music = NULL;
-#ifdef QT_CONFIG
+#if (defined QT_CONFIG)  && (!defined USE_PHONON)
     music = new JMusic();
     if (music)
     {
@@ -206,7 +206,7 @@ JMusic *JSoundSystem::LoadMusic(const char *fileName)
 
 void JSoundSystem::PlayMusic(JMusic *music, bool looping)
 {
-#ifdef QT_CONFIG
+#if (defined QT_CONFIG)  && (!defined USE_PHONON)
     if(music && music->player && music->playlist)
     {
         if(looping)
@@ -246,7 +246,7 @@ void JSoundSystem::PlayMusic(JMusic *music, bool looping)
 
 void JSoundSystem::StopMusic(JMusic *music)
 {
-#ifdef QT_CONFIG
+#if (defined QT_CONFIG) && (!defined USE_PHONON)
     if (music && music->player && music->playlist)
     {
         music->player->stop();
@@ -303,7 +303,7 @@ void JSoundSystem::SetSfxVolume(int volume){
 JSample *JSoundSystem::LoadSample(const char *fileName)
 {
     JSample* sample = NULL;
-#ifdef QT_CONFIG
+#if (defined QT_CONFIG) && (!defined USE_PHONON)
     sample = new JSample();
     if (sample)
     {
@@ -351,7 +351,7 @@ JSample *JSoundSystem::LoadSample(const char *fileName)
 
 void JSoundSystem::PlaySample(JSample *sample)
 {
-#ifdef QT_CONFIG
+#if (defined QT_CONFIG) && (!defined USE_PHONON)
     if(sample)
     {
         sample->effect->play();

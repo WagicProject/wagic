@@ -172,6 +172,206 @@ private:
         {
             intValue = target->getManaCost()->getConvertedCost();
         }
+        else if (s == "azorius")//devotion blue white
+        {
+            TargetChooserFactory dtf(card->getObserver());
+            TargetChooser * dtc = dtf.createTargetChooser("*",NULL);
+            for (int i = 0; i < 2; i++)
+            {
+                Player * dp = card->getObserver()->players[i];
+                MTGGameZone * dzones[] = { dp->game->inPlay, dp->game->graveyard, dp->game->hand, dp->game->library };
+                for (int k = 0; k < 4; k++)
+                {
+                    MTGGameZone * zone = dzones[k];
+                    if (dtc->targetsZone(zone, card)&&dp == card->controller())
+                    {
+                        intValue += zone->countDevotion(dtc, 2);
+                        intValue += zone->countDevotion(dtc, 5);
+                    }
+                }
+            }
+            SAFE_DELETE(dtc);
+        }
+        else if (s == "boros")//devotion red white
+        {
+            TargetChooserFactory dtf(card->getObserver());
+            TargetChooser * dtc = dtf.createTargetChooser("*",NULL);
+            for (int i = 0; i < 2; i++)
+            {
+                Player * dp = card->getObserver()->players[i];
+                MTGGameZone * dzones[] = { dp->game->inPlay, dp->game->graveyard, dp->game->hand, dp->game->library };
+                for (int k = 0; k < 4; k++)
+                {
+                    MTGGameZone * zone = dzones[k];
+                    if (dtc->targetsZone(zone, card)&&dp == card->controller())
+                    {
+                        intValue += zone->countDevotion(dtc, 3);
+                        intValue += zone->countDevotion(dtc, 5);
+                    }
+                }
+            }
+            SAFE_DELETE(dtc);
+        }
+        else if (s == "dimir")//devotion blue black
+        {
+            TargetChooserFactory dtf(card->getObserver());
+            TargetChooser * dtc = dtf.createTargetChooser("*",NULL);
+            for (int i = 0; i < 2; i++)
+            {
+                Player * dp = card->getObserver()->players[i];
+                MTGGameZone * dzones[] = { dp->game->inPlay, dp->game->graveyard, dp->game->hand, dp->game->library };
+                for (int k = 0; k < 4; k++)
+                {
+                    MTGGameZone * zone = dzones[k];
+                    if (dtc->targetsZone(zone, card)&&dp == card->controller())
+                    {
+                        intValue += zone->countDevotion(dtc, 2);
+                        intValue += zone->countDevotion(dtc, 4);
+                    }
+                }
+            }
+            SAFE_DELETE(dtc);
+        }
+        else if (s == "golgari")//devotion to green black
+        {
+            TargetChooserFactory dtf(card->getObserver());
+            TargetChooser * dtc = dtf.createTargetChooser("*",NULL);
+            for (int i = 0; i < 2; i++)
+            {
+                Player * dp = card->getObserver()->players[i];
+                MTGGameZone * dzones[] = { dp->game->inPlay, dp->game->graveyard, dp->game->hand, dp->game->library };
+                for (int k = 0; k < 4; k++)
+                {
+                    MTGGameZone * zone = dzones[k];
+                    if (dtc->targetsZone(zone, card)&&dp == card->controller())
+                    {
+                        intValue += zone->countDevotion(dtc, 1);
+                        intValue += zone->countDevotion(dtc, 4);
+                    }
+                }
+            }
+            SAFE_DELETE(dtc);
+        }
+        else if (s == "gruul")//devotion to green red
+        {
+            TargetChooserFactory dtf(card->getObserver());
+            TargetChooser * dtc = dtf.createTargetChooser("*",NULL);
+            for (int i = 0; i < 2; i++)
+            {
+                Player * dp = card->getObserver()->players[i];
+                MTGGameZone * dzones[] = { dp->game->inPlay, dp->game->graveyard, dp->game->hand, dp->game->library };
+                for (int k = 0; k < 4; k++)
+                {
+                    MTGGameZone * zone = dzones[k];
+                    if (dtc->targetsZone(zone, card)&&dp == card->controller())
+                    {
+                        intValue += zone->countDevotion(dtc, 1);
+                        intValue += zone->countDevotion(dtc, 3);
+                    }
+                }
+            }
+            SAFE_DELETE(dtc);
+        }
+        else if (s == "izzet")//devotion to red blue
+        {
+            TargetChooserFactory dtf(card->getObserver());
+            TargetChooser * dtc = dtf.createTargetChooser("*",NULL);
+            for (int i = 0; i < 2; i++)
+            {
+                Player * dp = card->getObserver()->players[i];
+                MTGGameZone * dzones[] = { dp->game->inPlay, dp->game->graveyard, dp->game->hand, dp->game->library };
+                for (int k = 0; k < 4; k++)
+                {
+                    MTGGameZone * zone = dzones[k];
+                    if (dtc->targetsZone(zone, card)&&dp == card->controller())
+                    {
+                        intValue += zone->countDevotion(dtc, 2);
+                        intValue += zone->countDevotion(dtc, 3);
+                    }
+                }
+            }
+            SAFE_DELETE(dtc);
+        }
+        else if (s == "orzhov")//devotion to white black
+        {
+            TargetChooserFactory dtf(card->getObserver());
+            TargetChooser * dtc = dtf.createTargetChooser("*",NULL);
+            for (int i = 0; i < 2; i++)
+            {
+                Player * dp = card->getObserver()->players[i];
+                MTGGameZone * dzones[] = { dp->game->inPlay, dp->game->graveyard, dp->game->hand, dp->game->library };
+                for (int k = 0; k < 4; k++)
+                {
+                    MTGGameZone * zone = dzones[k];
+                    if (dtc->targetsZone(zone, card)&&dp == card->controller())
+                    {
+                        intValue += zone->countDevotion(dtc, 4);
+                        intValue += zone->countDevotion(dtc, 5);
+                    }
+                }
+            }
+            SAFE_DELETE(dtc);
+        }
+        else if (s == "rakdos")//devotion to red black
+        {
+            TargetChooserFactory dtf(card->getObserver());
+            TargetChooser * dtc = dtf.createTargetChooser("*",NULL);
+            for (int i = 0; i < 2; i++)
+            {
+                Player * dp = card->getObserver()->players[i];
+                MTGGameZone * dzones[] = { dp->game->inPlay, dp->game->graveyard, dp->game->hand, dp->game->library };
+                for (int k = 0; k < 4; k++)
+                {
+                    MTGGameZone * zone = dzones[k];
+                    if (dtc->targetsZone(zone, card)&&dp == card->controller())
+                    {
+                        intValue += zone->countDevotion(dtc, 3);
+                        intValue += zone->countDevotion(dtc, 4);
+                    }
+                }
+            }
+            SAFE_DELETE(dtc);
+        }
+        else if (s == "selesnya")//devotion to green white
+        {
+            TargetChooserFactory dtf(card->getObserver());
+            TargetChooser * dtc = dtf.createTargetChooser("*",NULL);
+            for (int i = 0; i < 2; i++)
+            {
+                Player * dp = card->getObserver()->players[i];
+                MTGGameZone * dzones[] = { dp->game->inPlay, dp->game->graveyard, dp->game->hand, dp->game->library };
+                for (int k = 0; k < 4; k++)
+                {
+                    MTGGameZone * zone = dzones[k];
+                    if (dtc->targetsZone(zone, card)&&dp == card->controller())
+                    {
+                        intValue += zone->countDevotion(dtc, 1);
+                        intValue += zone->countDevotion(dtc, 5);
+                    }
+                }
+            }
+            SAFE_DELETE(dtc);
+        }
+        else if (s == "simic")//devotion to green blue
+        {
+            TargetChooserFactory dtf(card->getObserver());
+            TargetChooser * dtc = dtf.createTargetChooser("*",NULL);
+            for (int i = 0; i < 2; i++)
+            {
+                Player * dp = card->getObserver()->players[i];
+                MTGGameZone * dzones[] = { dp->game->inPlay, dp->game->graveyard, dp->game->hand, dp->game->library };
+                for (int k = 0; k < 4; k++)
+                {
+                    MTGGameZone * zone = dzones[k];
+                    if (dtc->targetsZone(zone, card)&&dp == card->controller())
+                    {
+                        intValue += zone->countDevotion(dtc, 1);
+                        intValue += zone->countDevotion(dtc, 2);
+                    }
+                }
+            }
+            SAFE_DELETE(dtc);
+        }
         else if (s.find("type:") != string::npos)
         {
             size_t begins = s.find("type:");
@@ -434,6 +634,17 @@ private:
         else if (s == "ohandcount")
         {
             intValue = target->controller()->opponent()->game->hand->nb_cards;
+        }
+        else if (s == "powertotalinplay")//Count Total Power of Creatures you control... Formidable
+        {
+            intValue = 0;
+            for (int j = card->controller()->game->inPlay->nb_cards - 1; j >= 0; --j)
+            {
+                if (card->controller()->game->inPlay->cards[j]->hasType(Subtypes::TYPE_CREATURE))
+                {
+                intValue += card->controller()->game->inPlay->cards[j]->power;
+                }
+            }
         }
         else
         {
@@ -2929,7 +3140,7 @@ public:
             SAFE_DELETE(NewPow);
             SAFE_DELETE(NewTou);
         }
-        for (int i = 0; i < multiplier->getValue(); ++i)
+        for (int i = 0; i < Tokenizer(); ++i)
         {
             //MTGCardInstance * myToken;
             if (tokenId)
@@ -2988,6 +3199,23 @@ public:
         return 1;
     }
 
+    int Tokenizer()//tokenizer
+    {
+        int tokenize = 1;
+        if (source->controller()->game->battlefield->hasAbility(Constants::TOKENIZER))
+        {
+            int nbcards = source->controller()->game->battlefield->nb_cards;
+            for (int j = 0; j < nbcards; j++)
+            {
+                if (source->controller()->game->battlefield->cards[j]->has(Constants::TOKENIZER))
+                    tokenize *= 2;
+            }
+            return multiplier->getValue()*tokenize;
+        }
+        else
+            return multiplier->getValue();
+    }
+   
     void setTokenOwner()
     {
         switch(who)
@@ -5327,6 +5555,17 @@ public:
     int resolve();
     const string getMenuText();
     AAShuffle * clone() const;
+};
+
+//Mulligan
+class AAMulligan: public ActivatedAbilityTP
+{
+public:
+    AAMulligan(GameObserver* observer, int _id, MTGCardInstance * card, Targetable * _target, ManaCost * _cost = NULL, int who =
+            TargetChooser::UNSET);
+    int resolve();
+    const string getMenuText();
+    AAMulligan * clone() const;
 };
 
 //Remove Mana From ManaPool

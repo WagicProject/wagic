@@ -4149,15 +4149,6 @@ mana={U}{U}
 type=Sorcery
 [/card]
 [card]
-name=Draining Whelk
-text=Flash (You may cast this spell any time you could cast an instant.) -- Flying -- When Draining Whelk enters the battlefield, counter target spell. Put X +1/+1 counters on Draining Whelk, where X is that spell's converted mana cost.
-mana={4}{U}{U}
-type=Creature
-subtype=Illusion
-power=1
-toughness=1
-[/card]
-[card]
 name=Drake Umbra
 mana={4}{U}
 type=Enchantment
@@ -7045,16 +7036,6 @@ mana={2}{G}
 type=Enchantment
 [/card]
 [card]
-name=Heartlash Cinder
-abilities=haste
-text=Haste -- Chroma - When Heartlash Cinder enters the battlefield, it gets +X/+0 until end of turn, where X is the number of red mana symbols in the mana costs of permanents you control.
-mana={1}{R}
-type=Creature
-subtype=Elemental Warrior
-power=1
-toughness=1
-[/card]
-[card]
 name=Heartstone
 text=Activated abilities of creatures cost {1} less to activate. This effect can't reduce the amount of mana an ability costs to activate to less than one mana.
 mana={3}
@@ -7684,12 +7665,6 @@ name=Induce Despair
 mana={2}{B}
 type=Instant
 text=As an additional cost to cast Induce Despair, reveal a creature card from your hand. Target creature gets -X/-X until end of turn, where X is the revealed card's converted mana cost.
-[/card]
-[card]
-name=Induce Paranoia
-text=Counter target spell. If {B} was spent to cast Induce Paranoia, that spell's controller puts the top X cards of his or her library into his or her graveyard, where X is the spell's converted mana cost.
-mana={2}{U}{U}
-type=Instant
 [/card]
 [card]
 name=Inescapable Brute
@@ -11490,15 +11465,6 @@ mana={X}{R}
 type=Instant
 [/card]
 [card]
-name=Outrage Shaman
-text=Chroma - When Outrage Shaman enters the battlefield, it deals damage to target creature equal to the number of red mana symbols in the mana costs of permanents you control.
-mana={3}{R}{R}
-type=Creature
-subtype=Goblin Shaman
-power=2
-toughness=2
-[/card]
-[card]
 name=Outrider en-Kor
 text=Flanking (Whenever a creature without flanking blocks this creature, the blocking creature gets -1/-1 until end of turn.) -- {0}: The next 1 damage that would be dealt to Outrider en-Kor this turn is dealt to target creature you control instead.
 mana={2}{W}
@@ -12350,15 +12316,6 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Primalcrux
-text=Trample -- Chroma - Primalcrux's power and toughness are each equal to the number of green mana symbols in the mana costs of permanents you control.
-mana={G}{G}{G}{G}{G}{G}
-type=Creature
-subtype=Elemental
-power=*
-toughness=*
-[/card]
-[card]
 name=Primitive Etchings
 text=Reveal the first card you draw each turn. Whenever you reveal a creature card this way, draw a card.
 mana={2}{G}{G}
@@ -12903,13 +12860,6 @@ name=Raging River
 text=Whenever one or more creatures you control attack, each defending player divides all creatures without flying he or she controls into a "left" pile and a "right" pile. Then, for each attacking creature you control, choose "left" or "right." That creature can't be blocked this combat except by creatures with flying and creatures in a pile with the chosen label.
 mana={R}{R}
 type=Enchantment
-[/card]
-[card]
-name=Ral Zarek
-text=+1: Tap target permanent, then untap another target permanent. -- -2: Ral Zarek deals 3 damage to target creature or player. -- -7: Flip five coins. Take an extra turn after this one for each coin that comes up heads.
-mana={2}{U}{R}
-type=Planeswalker
-subtype=Ral
 [/card]
 [card]
 name=Raiding Party
@@ -14541,12 +14491,6 @@ mana={W}
 type=Enchantment
 [/card]
 [card]
-name=Serum Powder
-text={T}: Add {1} to your mana pool. -- Any time you could mulligan and Serum Powder is in your hand, you may exile all the cards from your hand, then draw that many cards. (You can do this in addition to taking mulligans.)
-mana={3}
-type=Artifact
-[/card]
-[card]
 name=Serum Visions
 text=Draw a card. -- Scry 2. (To scry 2, look at the top two cards of your library, then put any number of them on the bottom of your library and the rest on top in any order.)
 mana={U}
@@ -15828,15 +15772,6 @@ name=Springjack Pasture
 auto={T}:Add {1}
 text={T}: Add {1} to your mana pool. -- {4}, {T}: Put a 0/1 white Goat creature token onto the battlefield. -- {T}, Sacrifice X Goats: Add X mana of any one color to your mana pool. You gain X life.
 type=Land
-[/card]
-[card]
-name=Springjack Shepherd
-text=Chroma - When Springjack Shepherd enters the battlefield, put a 0/1 white Goat creature token onto the battlefield for each white mana symbol in the mana costs of permanents you control.
-mana={3}{W}
-type=Creature
-subtype=Kithkin Wizard
-power=1
-toughness=2
 [/card]
 [card]
 name=Sprout Swarm
@@ -17629,15 +17564,6 @@ subtype=Human Wizard
 power=2
 toughness=2
 text=Auras attached to permanents you control have totem armor. (If an enchanted permanent you control would be destroyed, instead remove all damage from it and destroy an Aura attached to it.)
-[/card]
-[card]
-name=Umbra Stalker
-text=Chroma - Umbra Stalker's power and toughness are each equal to the number of black mana symbols in the mana costs of cards in your graveyard.
-mana={4}{B}{B}{B}
-type=Creature
-subtype=Elemental
-power=*
-toughness=*
 [/card]
 [card]
 name=Unblinking Bleb
