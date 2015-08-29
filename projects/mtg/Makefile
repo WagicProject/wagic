@@ -86,7 +86,7 @@ all: $(DEFAULT_RULE)
 
 endif
 
-CFLAGS := -Wall -W -Werror -Wno-unused $(CFLAGS)
+CFLAGS := -Wall -W -Wno-unused $(CFLAGS)
 CXXFLAGS += $(CFLAGS)
 # -fno-exceptions
 
