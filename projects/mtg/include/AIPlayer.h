@@ -84,10 +84,10 @@ public:
     {
     };
     int Act();
-    ostream& logSimpleAct(ostream& out, MTGCardInstance* click);
-    ostream& logMultiAct(ostream& out, vector<Targetable*>& actionTargets);
+    ostream& logSimpleAct(ostream& out, MTGCardInstance* click) const;
+    ostream& logMultiAct(ostream& out, const vector<Targetable *> &actionTargets) const;
 
-    friend ostream& operator<<(ostream& out, AIAction& a);
+    friend ostream& operator<<(ostream& out, const AIAction& a);
 };
 
 

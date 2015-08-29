@@ -67,8 +67,7 @@ AIAction::AIAction(AIPlayer * owner, MTGCardInstance * c, MTGCardInstance * t)
     }
 }
 
-// should be "const AIAction& " instead, but compiler is annoying to enable that.
-ostream& operator<<(ostream& out, AIAction& a)
+ostream& operator<<(ostream& out, const AIAction& a)
 {
     do {
         if (a.player && !a.playerAbilityTarget)
@@ -153,42 +152,39 @@ int AIAction::Act()
     return 0;
 }
 
-ostream& AIAction::logSimpleAct(ostream& out, MTGCardInstance* click)
+ostream& AIAction::logSimpleAct(ostream& out, MTGCardInstance* click) const
 {
     string currentPlayer = "p" + (owner->getObserver()->getPlayerId(owner) + 1);
     out << currentPlayer << click->currentZone->getName() << "[" <<  click->currentZone->getIndex(click) << "]" << endl;
     return out;
 }
 
-ostream& AIAction::logMultiAct(ostream& out, vector<Targetable*>& actionTargets)
+ostream& AIAction::logMultiAct(ostream& out, const vector<Targetable*>& actionTargets) const
 {
     GameObserver * g = owner->getObserver();
     TargetChooser * tc = g->getCurrentTargetChooser();
     do {
         if(!tc) break;
-        vector<Targetable*>::iterator ite = actionTargets.begin();
+        vector<Targetable*>::const_iterator ite = actionTargets.begin();
         while(ite != actionTargets.end())
         {
             MTGCardInstance * card = ((MTGCardInstance *) (*ite));
             if(card == (MTGCardInstance*)tc->source)//click source first.
             {
-                g->cardClick(card);
-                ite = actionTargets.erase(ite);
+                logSimpleAct(out, card);
                 continue;
             }
             ++ite;
         }
 
-        //shuffle to make it less predictable, otherwise ai will always seem to target from right to left. making it very obvious.
-        owner->getRandomGenerator()->random_shuffle(actionTargets.begin(), actionTargets.end());
-
+        // this is just wrong, but at least it should compile
         for(int k = 0 ;k < int(actionTargets.size()) && k < tc->maxtargets; k++)
         {
             if (MTGCardInstance * card = dynamic_cast<MTGCardInstance *>(actionTargets[k]))
             {
                 if(k+1 == int(actionTargets.size()))
                     tc->done = true;
-                g->cardClick(card);
+                logSimpleAct(out, card);
             }
         }
         tc->attemptsToFill++;

@@ -63,7 +63,7 @@ void AIPlayerMinMax::LookAround()
     
     stringstream stream;
     stream << *observer;
-    vector<AIAction>::iterator it;
+    vector<AIAction>::const_iterator it;
     for(it = potentialActions.begin(); it != potentialActions.end(); it++)
     {
         stringstream theCommand;
