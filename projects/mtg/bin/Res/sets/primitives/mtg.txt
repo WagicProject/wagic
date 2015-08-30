@@ -25035,7 +25035,7 @@ type=Sorcery
 [card]
 name=Dragon Appeasement
 auto=phasealter(remove,draw,controller)
-auto=@sacrificed(creature|mybattlefield):may draw:1 controller
+auto=@sacrificed(creature|mybattlefield):name(draw) ability$!may draw:1!$ controller
 text=Skip your draw step. -- Whenever you sacrifice a creature, you may draw a card.
 mana={3}{B}{R}{G}
 type=Enchantment
@@ -62189,7 +62189,7 @@ subtype=Equipment
 [/card]
 [card]
 name=Mortician Beetle
-auto=@sacrificed(creature):may counter(1/1,1)
+auto=@sacrificed(creature):name(counter +1/+1) ability$!may counter(1/1,1) all(mystored)!$ controller
 text=Whenever a player sacrifices a creature, you may put a +1/+1 counter on Mortician Beetle.
 mana={B}
 type=Creature
@@ -80738,7 +80738,7 @@ type=Sorcery
 [card]
 name=Savra, Queen of the Golgari
 auto=@sacrificed(creature[black]|mybattlefield):may life:-2 && ability$!sacrifice notatarget(creature|mybattlefield)!$ opponent
-auto=@sacrificed(creature[green]|mybattlefield):life:2 controller
+auto=@sacrificed(creature[green]|mybattlefield):name(gain life) ability$!may life:2!$ controller
 text=Whenever you sacrifice a black creature, you may pay 2 life. If you do, each other player sacrifices a creature. -- Whenever you sacrifice a green creature, you may gain 2 life.
 mana={2}{B}{G}
 type=Legendary Creature
@@ -98048,7 +98048,7 @@ toughness=3
 name=Thraximundar
 abilities=haste
 auto=@combat(attacking) source(this):ability$!name(sacrifice) notatarget(creature|mybattlefield) sacrifice!$ opponent
-auto=@sacrificed(creature):counter(1/1,1)
+auto=@sacrificed(creature):name(counter +1/+1) ability$!may counter(1/1,1) all(mystored)!$ controller
 text=Haste -- Whenever Thraximundar attacks, defending player sacrifices a creature. -- Whenever a player sacrifices a creature, you may put a +1/+1 counter on Thraximundar.
 mana={4}{U}{B}{R}
 type=Legendary Creature
