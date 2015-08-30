@@ -80739,7 +80739,7 @@ type=Sorcery
 [card]
 name=Savra, Queen of the Golgari
 auto=@sacrificed(creature[black]|mybattlefield):may life:-2 && ability$!sacrifice notatarget(creature|mybattlefield)!$ opponent
-auto=@sacrificed(creature[green]|mybattlefield):may life:2 controller
+auto=@sacrificed(creature[green]|mybattlefield):life:2 controller
 text=Whenever you sacrifice a black creature, you may pay 2 life. If you do, each other player sacrifices a creature. -- Whenever you sacrifice a green creature, you may gain 2 life.
 mana={2}{B}{G}
 type=Legendary Creature
