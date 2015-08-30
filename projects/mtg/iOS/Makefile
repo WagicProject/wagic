@@ -1,7 +1,7 @@
 export ARCHS = armv7 armv7s
 export TARGET = iphone:clang:latest:8.0
 
-include theos/makefiles/common.mk
+include ../../../theos/makefiles/common.mk
 
 APPLICATION_NAME = wagic
 wagic_FILES = ../../../JGE/src/iOS/main.m\
@@ -176,7 +176,7 @@ wagic_FILES = ../../../JGE/src/iOS/main.m\
 
 wagic_LDFLAGS = -lz
 wagic_FRAMEWORKS = UIKit CoreGraphics OpenGLES Foundation CFNetwork MobileCoreServices AVFoundation OpenAL AudioToolbox QuartzCore SystemConfiguration
-include $(THEOS_MAKE_PATH)/application.mk
+include ../../../theos/makefile/application.mk
 
 ADDITIONAL_CFLAGS = -I ../include\
     -I ../../../JGE/include\
