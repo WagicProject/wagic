@@ -68025,7 +68025,7 @@ toughness=4
 name=Palace Siege
 auto=choice name(Khans) transforms((,newability[counter(0/0.1.Khans)],newability[@each my upkeep:moveto(myhand) target(creature|mygraveyard)])) forever
 auto=choice name(Dragons) transforms((,newability[counter(0/0.1.Dragons)],newability[@each my upkeep:life:-2 opponent && life:2 controller])) forever
-As Palace Siege enters the battlefield, choose Khans or Dragons. -- ? Khans ? At the beginning of your upkeep, return target creature card from your graveyard to your hand. -- ? Dragons ? At the beginning of your upkeep, each opponent loses 2 life and you gain 2 life.
+text=As Palace Siege enters the battlefield, choose Khans or Dragons. -- ? Khans ? At the beginning of your upkeep, return target creature card from your graveyard to your hand. -- ? Dragons ? At the beginning of your upkeep, each opponent loses 2 life and you gain 2 life.
 mana={3}{B}{B}
 type=Enchantment
 [/card]
@@ -68544,8 +68544,7 @@ subtype=Arcane
 name=Path of Bravery
 auto=this(controllerlife > 19) lord(creature|mybattlefield) 1/1
 auto=@each my blockers:life:type:creature[attacking]|mybattlefield controller
-text=Enchantment. -- As long as your life total is greater than or equal to your starting life total, creatures you control get +1/+1. --
-Whenever one or more creatures you control attack, you gain life equal to the number of attacking creatures.
+text=Enchantment. -- As long as your life total is greater than or equal to your starting life total, creatures you control get +1/+1. -- Whenever one or more creatures you control attack, you gain life equal to the number of attacking creatures.
 mana={2}{W}
 type=Enchantment
 [/card]
