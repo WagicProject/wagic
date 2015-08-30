@@ -176,7 +176,7 @@ wagic_FILES = ../../../JGE/src/iOS/main.m\
 
 wagic_LDFLAGS = -lz
 wagic_FRAMEWORKS = UIKit CoreGraphics OpenGLES Foundation CFNetwork MobileCoreServices AVFoundation OpenAL AudioToolbox QuartzCore SystemConfiguration
-include ../../../theos/makefile/application.mk
+include ../../../theos/makefiles/application.mk
 
 ADDITIONAL_CFLAGS = -I ../include\
     -I ../../../JGE/include\
