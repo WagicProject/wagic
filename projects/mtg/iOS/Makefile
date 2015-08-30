@@ -195,7 +195,7 @@ ADDITIONAL_CFLAGS = -I ../include\
     -Wno-tautological-undefined-compare -Wno-undefined-bool-conversion\
     -Wno-visibility -Wno-deprecated-declarations -Wno-non-literal-null-conversion\
     -Wno-format -Wno-distributed-object-modifiers -Wno-missing-braces\
-    -Wno-unused-const-variable -Wno-unused-function\
+    -Wno-unused-const-variable -Wno-unused-function -Wno-unknown-warning-option\
     -x objective-c++
 
 _THEOS_TARGET_ONLY_OBJCFLAGS :=""
