@@ -503,7 +503,9 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                     if (minus)
                     {
                         cd->setisMultiColored(-1);
-						cd->SetExclusionColor(0);//not multicolored is monocolored not colorless, use iscolorless attribute
+                        cd->SetExclusionColor(0);//not multicolored is monocolored not colorless, use iscolorless attribute
+                        cd->SetExclusionColor(6);//restriction... green, red, blue, black or white colored only
+                        cd->mode = CardDescriptor::CD_OR;
                     }
                     else
                     {
