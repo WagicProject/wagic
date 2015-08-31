@@ -4952,6 +4952,15 @@ int TriggeredAbility::receiveEvent(WEvent * e)
         resolve();
         return 1;
     }
+    if(dynamic_cast<WEventCardSacrifice*>(e))
+    {
+    //sacrificed event
+    //thraximundar vs bloodfore collosus, thraximundar 
+    //must be able to survive a sacrificed bloodfire collosus,
+    //same with mortician beetle vs phyrexian denouncer test
+        resolve();
+        return 1;
+    }
     WEventZoneChange * stackCheck = dynamic_cast<WEventZoneChange*>(e);
     if(stackCheck && (stackCheck->to == game->currentPlayer->game->stack||stackCheck->to == game->currentPlayer->opponent()->game->stack))
     {

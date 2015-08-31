@@ -530,6 +530,7 @@ protomatter_powder.txt
 prowess_of_the_fair.txt
 prowess_of_the_fair2.txt
 prowess_of_the_fair3.txt
+PTInstant.txt
 pygmy_troll.txt
 pyknite_i426.txt
 pyroclasm.txt
@@ -655,6 +656,7 @@ thallid.txt
 the_tabernacle_at_pendrell_vale.txt
 thelon_of_havenwood.txt
 threaten.txt
+thraximundar.txt
 throne_of_bone.txt
 thunder-thrash_elder.txt
 tidal_warrior_i646.txt

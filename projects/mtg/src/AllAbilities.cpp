@@ -4363,6 +4363,7 @@ int PTInstant::resolve()
     APowerToughnessModifier * a = ability->clone();
     GenericInstantAbility * wrapper = NEW GenericInstantAbility(game, 1, source, (Damageable *) (this->target), a);
     wrapper->addToGame();
+    ((Damageable *) (this->target))->afterDamage();//additional check the negative pt after resolving..
     return 1;
 }
 const string PTInstant::getMenuText()

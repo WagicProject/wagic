@@ -3777,21 +3777,13 @@ type=Sorcery
 [/card]
 [card]
 name=Arc Mage
-auto={2}{R}{T}:token(-1111113) && damage:1 target(creature,player)
+auto={2}{R}{T}{discard(*|myhand)}:damage:1 target(creature,player) && activate damage:1 target(creature,player)
 text={2}{R}, {T}, Discard a card: Arc Mage deals 2 damage divided as you choose among one or two target creatures and/or players.
 mana={2}{R}
 type=Creature
 subtype=Human Spellshaper
 power=2
 toughness=2
-[/card]
-[card]
-name=Arc Mage's 2nd Damage
-auto=counter(0/0,1,Arc Mage)
-auto=@damaged(creature,player):thisforeach(counter{0/0.1.Arc Mage}>0) damage:1 target(creature,player) && counter(0/0,-1,Arc Mage) && counter(0/0,1,Bury)
-auto=thisforeach(counter{0/0.1.Bury}>0) bury
-id=-1111113
-type=Nothing
 [/card]
 [card]
 name=Arc Runner
@@ -25043,7 +25035,7 @@ type=Sorcery
 [card]
 name=Dragon Appeasement
 auto=phasealter(remove,draw,controller)
-auto=@sacrificed(creature|mybattlefield):may draw:1 controller
+auto=@sacrificed(creature|mybattlefield):name(draw) ability$!may draw:1!$ controller
 text=Skip your draw step. -- Whenever you sacrifice a creature, you may draw a card.
 mana={3}{B}{R}{G}
 type=Enchantment
@@ -32660,18 +32652,11 @@ toughness=1
 name=Fire at Will
 target=creature[attacking;blocking]
 auto=damage:1
-auto=may damage:1 target(creature[attacking;blocking])
-auto=token(-1111121)
+auto=damage:1 target(creature[attacking;blocking])
+auto=ability$!name(damage) choice target(creature[attacking;blocking]) damage:1!$ controller
 text=Fire at Will deals 3 damage divided as you choose among one, two, or three target attacking or blocking creatures.
 mana={RW}{RW}{RW}
 type=Instant
-[/card]
-[card]
-name=Fire at Will's 3rd Damage
-auto=@movedto(exile) from(this):may damage:1 target(creature,player)
-auto=moveto(exile)
-id=-1111121
-type=Nothing
 [/card]
 [card]
 name=Firebolt
@@ -51042,22 +51027,13 @@ toughness=1
 [card]
 name=Kiora, the Crashing Wave
 auto=counter(0/0,2,loyalty)
-auto={C(0/0,1,Loyalty)}:name(+1: Prevention) token(37852101) controller
+auto={C(0/0,1,Loyalty)}:name(+1: Prevention) target(*|opponentbattlefield) transforms((,newability[preventalldamage from(this)],newability[preventalldamage to(this)])) uynt
 auto={C(0/0,-1,Loyalty)}:name(-1: Draw 1 and Lands +1) draw:1 controller && maxPlay(land)+1 ueot
 auto={C(0/0,-5,Loyalty)}:emblem name(-5: Emblem) transforms((,newability[@each my endofturn:token(-378521) controller])) forever dontremove
 text=+1: Until your next turn, prevent all damage that would be dealt to and dealt by target permanent an opponent controls. -- -1: Draw a card. You may play an additional land this turn. -- -5: You get an emblem with "At the beginning of your end step, put a 9/9 blue Kraken creature token onto the battlefield." -- Starting Loyalty (2)
 mana={2}{G}{U}
 type=Planeswalker
 subtype=Kiora
-[/card]
-[card]
-name=Kiora's Prevention
-abilities=indestructible,shroud
-type=nothing
-text=Until your next turn, prevent all damage that would be dealt to and dealt by target permanent an opponent controls.
-auto=name(Prevention) target(*|opponentbattlefield) transforms((,newability[preventalldamage from(this)],newability[preventalldamage to(this)])) uynt
-auto=@each myuntap:moveto(exile) all(this)
-color=green,blue
 [/card]
 [card]
 name=Kiora's Kraken
@@ -62213,7 +62189,7 @@ subtype=Equipment
 [/card]
 [card]
 name=Mortician Beetle
-auto=@sacrificed(creature):may counter(1/1,1)
+auto=@sacrificed(creature):name(counter +1/+1) ability$!may counter(1/1,1) all(mystored)!$ controller
 text=Whenever a player sacrifices a creature, you may put a +1/+1 counter on Mortician Beetle.
 mana={B}
 type=Creature
@@ -68049,7 +68025,7 @@ toughness=4
 name=Palace Siege
 auto=choice name(Khans) transforms((,newability[counter(0/0.1.Khans)],newability[@each my upkeep:moveto(myhand) target(creature|mygraveyard)])) forever
 auto=choice name(Dragons) transforms((,newability[counter(0/0.1.Dragons)],newability[@each my upkeep:life:-2 opponent && life:2 controller])) forever
-As Palace Siege enters the battlefield, choose Khans or Dragons. -- ? Khans ? At the beginning of your upkeep, return target creature card from your graveyard to your hand. -- ? Dragons ? At the beginning of your upkeep, each opponent loses 2 life and you gain 2 life.
+text=As Palace Siege enters the battlefield, choose Khans or Dragons. -- ? Khans ? At the beginning of your upkeep, return target creature card from your graveyard to your hand. -- ? Dragons ? At the beginning of your upkeep, each opponent loses 2 life and you gain 2 life.
 mana={3}{B}{B}
 type=Enchantment
 [/card]
@@ -68568,8 +68544,7 @@ subtype=Arcane
 name=Path of Bravery
 auto=this(controllerlife > 19) lord(creature|mybattlefield) 1/1
 auto=@each my blockers:life:type:creature[attacking]|mybattlefield controller
-text=Enchantment. -- As long as your life total is greater than or equal to your starting life total, creatures you control get +1/+1. --
-Whenever one or more creatures you control attack, you gain life equal to the number of attacking creatures.
+text=Enchantment. -- As long as your life total is greater than or equal to your starting life total, creatures you control get +1/+1. -- Whenever one or more creatures you control attack, you gain life equal to the number of attacking creatures.
 mana={2}{W}
 type=Enchantment
 [/card]
@@ -78393,7 +78368,7 @@ type=Enchantment
 [/card]
 [card]
 name=Root Spider
-auto=@combat(blocking) source(this):choice 1/0 && first strike ueot
+auto=@combat(blocking) source(this):all(this) 1/0 ueot && all(this) first strike ueot
 text=Whenever Root Spider blocks, it gets +1/+0 and gains first strike until end of turn.
 mana={3}{G}
 type=Creature
@@ -80763,7 +80738,7 @@ type=Sorcery
 [card]
 name=Savra, Queen of the Golgari
 auto=@sacrificed(creature[black]|mybattlefield):may life:-2 && ability$!sacrifice notatarget(creature|mybattlefield)!$ opponent
-auto=@sacrificed(creature[green]|mybattlefield):may life:2 controller
+auto=@sacrificed(creature[green]|mybattlefield):name(gain life) ability$!may life:2!$ controller
 text=Whenever you sacrifice a black creature, you may pay 2 life. If you do, each other player sacrifices a creature. -- Whenever you sacrifice a green creature, you may gain 2 life.
 mana={2}{B}{G}
 type=Legendary Creature
@@ -98073,7 +98048,7 @@ toughness=3
 name=Thraximundar
 abilities=haste
 auto=@combat(attacking) source(this):ability$!name(sacrifice) notatarget(creature|mybattlefield) sacrifice!$ opponent
-auto=@sacrificed(creature):counter(1/1,1)
+auto=@sacrificed(creature):name(counter +1/+1) ability$!may counter(1/1,1) all(mystored)!$ controller
 text=Haste -- Whenever Thraximundar attacks, defending player sacrifices a creature. -- Whenever a player sacrifices a creature, you may put a +1/+1 counter on Thraximundar.
 mana={4}{U}{B}{R}
 type=Legendary Creature

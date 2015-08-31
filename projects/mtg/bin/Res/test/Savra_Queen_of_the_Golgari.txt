@@ -16,6 +16,9 @@ choice 0
 choice 0
 choice 0
 180595
+choice 0
+180595
+choice 1
 eot
 [ASSERT]
 untap

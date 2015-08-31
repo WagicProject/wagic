@@ -1,0 +1,20 @@
+#Bug: thraximundar ability must resolve first... and survives
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:thraximundar,bloodfire colossus
+manapool:{R}
+[PLAYER2]
+[DO]
+bloodfire colossus
+choice 0
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:bloodfire colossus
+inplay:thraximundar
+manapool:{0}
+life:14
+[PLAYER2]
+life:14
+[END]
