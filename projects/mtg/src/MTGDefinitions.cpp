@@ -132,7 +132,8 @@ const char* Constants::MTGBasicAbilities[] = {
     "soulbond",
     "lure",
     "nolegend",
-    "canplayfromgraveyard"
+    "canplayfromgraveyard",
+    "tokenizer"//parallel lives
 };
 
 map<string,int> Constants::MTGBasicAbilitiesMap;

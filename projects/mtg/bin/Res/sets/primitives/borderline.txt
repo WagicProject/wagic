@@ -86,17 +86,6 @@ mana={5}{U}
 type=Sorcery
 [/card]
 [card]
-name=Gravecrawler
-abilities=cantblock
-autograveyard=aslongas(zombie|myBattlefield) {B}:name(cast from graveyard) activate name(cast from graveyard) castcard(normal) assorcery
-text=Gravecrawler can't block. -- You may cast Gravecrawler from your graveyard as long as you control a Zombie.
-mana={B}
-type=Creature
-subtype=Zombie
-power=2
-toughness=1
-[/card]
-[card]
 name=Ivy Seer
 auto={2}{G}{T}:foreach(*[green]|myhand) 1/1 target(creature)
 text={2}{G}, {T}: Reveal any number of green cards in your hand. Target creature gets +X/+X until end of turn, where X is the number of cards revealed this way.

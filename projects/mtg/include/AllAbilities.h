@@ -635,6 +635,17 @@ private:
         {
             intValue = target->controller()->opponent()->game->hand->nb_cards;
         }
+        else if (s == "powertotalinplay")//Count Total Power of Creatures you control... Formidable
+        {
+            intValue = 0;
+            for (int j = card->controller()->game->inPlay->nb_cards - 1; j >= 0; --j)
+            {
+                if (card->controller()->game->inPlay->cards[j]->hasType(Subtypes::TYPE_CREATURE))
+                {
+                intValue += card->controller()->game->inPlay->cards[j]->power;
+                }
+            }
+        }
         else
         {
             intValue = atoi(s.c_str());
@@ -3129,7 +3140,7 @@ public:
             SAFE_DELETE(NewPow);
             SAFE_DELETE(NewTou);
         }
-        for (int i = 0; i < multiplier->getValue(); ++i)
+        for (int i = 0; i < Tokenizer(); ++i)
         {
             //MTGCardInstance * myToken;
             if (tokenId)
@@ -3188,6 +3199,23 @@ public:
         return 1;
     }
 
+    int Tokenizer()//tokenizer
+    {
+        int tokenize = 1;
+        if (source->controller()->game->battlefield->hasAbility(Constants::TOKENIZER))
+        {
+            int nbcards = source->controller()->game->battlefield->nb_cards;
+            for (int j = 0; j < nbcards; j++)
+            {
+                if (source->controller()->game->battlefield->cards[j]->has(Constants::TOKENIZER))
+                    tokenize *= 2;
+            }
+            return multiplier->getValue()*tokenize;
+        }
+        else
+            return multiplier->getValue();
+    }
+   
     void setTokenOwner()
     {
         switch(who)
@@ -5527,6 +5555,17 @@ public:
     int resolve();
     const string getMenuText();
     AAShuffle * clone() const;
+};
+
+//Mulligan
+class AAMulligan: public ActivatedAbilityTP
+{
+public:
+    AAMulligan(GameObserver* observer, int _id, MTGCardInstance * card, Targetable * _target, ManaCost * _cost = NULL, int who =
+            TargetChooser::UNSET);
+    int resolve();
+    const string getMenuText();
+    AAMulligan * clone() const;
 };
 
 //Remove Mana From ManaPool
