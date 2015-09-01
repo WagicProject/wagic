@@ -22,7 +22,7 @@ void PlayerData::init()
     collection = NULL;
 
     //CREDITS
-    credits = 3000; //Default value
+    credits = 10000; //Default value
 
     std::string contents;
     if (JFileSystem::GetInstance()->readIntoString(options.profileFile(PLAYER_SAVEFILE), contents))

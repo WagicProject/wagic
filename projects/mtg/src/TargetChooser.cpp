@@ -364,7 +364,11 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                         attribute = attribute.substr(0, operatorPosition);
                     }
                 }
-
+				//Find position of card in zone
+				if ( attribute.find( "pos" ) != string::npos ) {
+					cd->zonePosition = comparisonCriterion;
+					continue;   //prevent "pos" from being added as a type
+				}
                 //Attacker
                 if (attribute.find("attacking") != string::npos)
                 {
@@ -503,6 +507,9 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                     if (minus)
                     {
                         cd->setisMultiColored(-1);
+                        cd->SetExclusionColor(0);//not multicolored is monocolored not colorless, use iscolorless attribute
+                        cd->SetExclusionColor(6);//restriction... green, red, blue, black or white colored only
+                        cd->mode = CardDescriptor::CD_OR;
                     }
                     else
                     {

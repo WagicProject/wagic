@@ -49,6 +49,7 @@ class CardDescriptor: public MTGCardInstance
   int counterPower;
   int counterToughness;
   int counterNB;
+  int zonePosition;
   string counterName;
   MTGCardInstance * match(MTGCardInstance * card);
   MTGCardInstance * match(MTGGameZone * zone);

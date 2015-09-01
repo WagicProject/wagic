@@ -145,6 +145,8 @@ void GameStateShop::Start()
         pspIcons[i] = WResourceManager::Instance()->RetrieveQuad("iconspsp.png", (float) i * 32, 0, 32, 32, stream.str(), RETRIEVE_MANAGE);
         pspIcons[i]->SetHotSpot(16, 16);
     }
+	
+    GameApp::playMusic("Track1.mp3");
 
     JRenderer::GetInstance()->EnableVSync(true);
 

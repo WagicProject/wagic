@@ -115,6 +115,7 @@ void GuiPhaseBar::Render()
 
     //print phase name
     WFont * font = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
+	font->SetScale(1.5);
     string currentP = _("your turn");
     string interrupt = "";
     if (observer->currentPlayer == mpDuelLayers->getRenderedPlayerOpponent())

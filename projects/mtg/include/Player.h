@@ -119,4 +119,7 @@ public:
     friend ostream& operator<<(ostream&, const HumanPlayer&);
 };
 
+extern int MullPen;
+void ResetMullPen();
+
 #endif

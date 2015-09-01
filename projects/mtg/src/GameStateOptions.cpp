@@ -28,12 +28,12 @@ void GameStateOptions::Start()
     newProfile = "";
     timer = 0;
     mState = SHOW_OPTIONS;
-    JRenderer::GetInstance()->EnableVSync(true);
+//    JRenderer::GetInstance()->EnableVSync(true);
 
     WGuiList * optionsList;
 
     optionsList = NEW WGuiList("Settings");
-
+	
     optionsList->Add(NEW WGuiHeader("General Options"));
     if (GameApp::HasMusic)
         optionsList->Add(NEW WDecoEnum(NEW OptionInteger(Options::MUSICVOLUME, "Music volume", 100, 10, 100),
@@ -48,6 +48,11 @@ void GameStateOptions::Start()
     optionsList->Add(NEW OptionInteger(Options::INTERRUPT_SECONDS, "Seconds to pause for an Interrupt", 20, 1));
     optionsList->Add(NEW OptionInteger(Options::INTERRUPTMYSPELLS, "Interrupt my spells"));
     optionsList->Add(NEW OptionInteger(Options::INTERRUPTMYABILITIES, "Interrupt my abilities"));
+    optionsList->Add(NEW OptionInteger(Options::INTERRUPT_UPKEEP, "Interrupt opponent's Upkeep"));
+    optionsList->Add(NEW OptionInteger(Options::INTERRUPT_FIRSTMAIN, "Interrupt opponent's First Main"));
+    optionsList->Add(NEW OptionInteger(Options::INTERRUPT_BEGINCOMBAT, "Interrupt opponent's Combat Begins"));
+    optionsList->Add(NEW OptionInteger(Options::INTERRUPT_ATTACKERS, "Interrupt after opponent's Attackers"));
+    optionsList->Add(NEW OptionInteger(Options::INTERRUPT_BLOCKERS, "Interrupt after opponent's Blockers"));
     optionsList->Add(NEW OptionInteger(Options::INTERRUPT_SECONDMAIN, "Interrupt opponent's end of turn"));
     optionsTabs = NEW WGuiTabMenu();
     optionsTabs->Add(optionsList);

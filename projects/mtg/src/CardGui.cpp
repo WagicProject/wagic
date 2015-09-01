@@ -267,7 +267,7 @@ void CardGui::Render()
 
     }
     JQuadPtr mor;
-    if(card->isMorphed && !alternate)
+    if(card->isMorphed)// && !alternate)
     {
         mor = card->getObserver()->getResourceManager()->RetrieveTempQuad("morph.jpg");
         if (mor &&  mor->mTex) {
@@ -1242,6 +1242,9 @@ bool CardGui::FilterCard(MTGCard * _card,string filter)
                     if (minus)
                     {
                         cd.setisMultiColored(-1);
+                        cd.SetExclusionColor(0);//not multicolored is monocolored not colorless, use iscolorless attribute
+                        cd.SetExclusionColor(6);//restriction... green, red, blue, black or white colored only
+                        cd.mode = CardDescriptor::CD_OR;
                     }
                     else
                     {

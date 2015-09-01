@@ -2820,7 +2820,7 @@ public:
     int removed(MTGCardInstance * card)
     {
         if (abilities.find(card) != abilities.end()
-            && !(forceDestroy == -1 && forcedAlive == 1)) //only embelms have forcedestroy = -1 and forcedalive = 1
+            && !(forceDestroy == -1 && forcedAlive == 1)) //only emblems have forcedestroy = -1 and forcedalive = 1
         { 
             game->removeObserver(abilities[card]);
             abilities.erase(card);
