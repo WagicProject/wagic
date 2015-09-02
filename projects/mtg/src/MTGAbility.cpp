@@ -4961,6 +4961,44 @@ int TriggeredAbility::receiveEvent(WEvent * e)
         resolve();
         return 1;
     }
+    if(dynamic_cast<WEventLife*>(e))
+    {
+    //check life state... basic prevention for infinite loop of bugs\exquisite_blood_i953.txt test..
+    //exquisite blood and sanguine bond in play will stop looping as long as the triggered player
+    //met this condition... taken from gamestatebasecheck...
+        WEventLife * lifecheck = dynamic_cast<WEventLife*>(e);
+		if ((lifecheck->player->life <= 0)||(lifecheck->player->poisonCount >= 10))
+		{
+            int cantlosers = 0;
+            MTGGameZone * z = lifecheck->player->game->inPlay;
+            int nbcards = z->nb_cards;
+            for (int j = 0; j < nbcards; ++j)
+            {
+                MTGCardInstance * c = z->cards[j];
+                if (c->has(Constants::CANTLOSE) || (c->has(Constants::CANTLIFELOSE) && lifecheck->player->poisonCount < 10))
+                {
+                    cantlosers++;
+                }
+            }
+            MTGGameZone * k = lifecheck->player->opponent()->game->inPlay;
+            int onbcards = k->nb_cards;
+            for (int m = 0; m < onbcards; ++m)
+            {
+                MTGCardInstance * e = k->cards[m];
+                if (e->has(Constants::CANTWIN))
+                {
+                    cantlosers++;
+                }
+            }
+            if (cantlosers < 1)
+            {
+                //lifecheck->player->getObserver()->setLoser(lifecheck->player);
+                return 0;
+            }
+        }
+        fireAbility();
+        return 1;
+    }
     WEventZoneChange * stackCheck = dynamic_cast<WEventZoneChange*>(e);
     if(stackCheck && (stackCheck->to == game->currentPlayer->game->stack||stackCheck->to == game->currentPlayer->opponent()->game->stack))
     {
