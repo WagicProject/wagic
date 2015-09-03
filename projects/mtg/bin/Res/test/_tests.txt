@@ -313,6 +313,7 @@ executioners_swing.txt
 executioners_swing2.txt
 executioners_swing3.txt
 explore.txt
+exquisite_blood_i953.txt
 Faceless_Butcher.txt
 fading.txt
 fangren_pathcutter.txt
