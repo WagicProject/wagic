@@ -4961,6 +4961,30 @@ int TriggeredAbility::receiveEvent(WEvent * e)
         resolve();
         return 1;
     }
+    if(dynamic_cast<WEventLife*>(e))
+    {
+    //check life state on life triger
+    WEventLife * lifecheck = dynamic_cast<WEventLife*>(e);	
+    if (lifecheck->player->DeadLifeState())
+    {
+        return 0;
+    }        
+        fireAbility();
+        return 1;
+    }
+    if(dynamic_cast<WEventDamage*>(e))
+    {
+    //check life state on damage trigger
+    WEventDamage * lifecheck = dynamic_cast<WEventDamage*>(e);	
+    if (lifecheck->damage->target->type_as_damageable == Damageable::DAMAGEABLE_PLAYER)
+    {
+        Player * triggerPlayer = (Player *) lifecheck->damage->target;
+        if(triggerPlayer->DeadLifeState())
+            return 0;
+    }        
+        fireAbility();
+        return 1;
+    }
     WEventZoneChange * stackCheck = dynamic_cast<WEventZoneChange*>(e);
     if(stackCheck && (stackCheck->to == game->currentPlayer->game->stack||stackCheck->to == game->currentPlayer->opponent()->game->stack))
     {

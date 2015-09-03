@@ -233,6 +233,40 @@ void Player::serumMulligan()
          //Draw hand no penalty
 }
 
+bool Player::DeadLifeState()
+{
+    if ((life <= 0)||(poisonCount >= 10))
+    {
+        int cantlosers = 0;
+        MTGGameZone * z = game->inPlay;
+        int nbcards = z->nb_cards;
+        for (int j = 0; j < nbcards; ++j)
+        {
+            MTGCardInstance * c = z->cards[j];
+            if (c->has(Constants::CANTLOSE) || (c->has(Constants::CANTLIFELOSE) && poisonCount < 10))
+            {
+                cantlosers++;
+            }
+        }
+        MTGGameZone * k = opponent()->game->inPlay;
+        int onbcards = k->nb_cards;
+        for (int m = 0; m < onbcards; ++m)
+        {
+            MTGCardInstance * e = k->cards[m];
+            if (e->has(Constants::CANTWIN))
+            {
+            cantlosers++;
+            }
+        }
+        if (cantlosers < 1)
+        {
+            getObserver()->setLoser(this);
+            return true;
+        }
+    }
+    return false;
+}
+
 //Cleanup phase at the end of a turn
 void Player::cleanupPhase()
 {
