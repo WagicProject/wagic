@@ -727,34 +727,7 @@ void GameObserver::gameStateBasedEffects()
         ///////////////////////////////////////////////////////////
         //life checks/poison checks also checks cant win or lose.//
         ///////////////////////////////////////////////////////////
-        if (players[i]->life <= 0 || players[i]->poisonCount >= 10)
-        {
-            int cantlosers = 0;
-            MTGGameZone * z = players[i]->game->inPlay;
-            int nbcards = z->nb_cards;
-            for (int j = 0; j < nbcards; ++j)
-            {
-                MTGCardInstance * c = z->cards[j];
-                if (c->has(Constants::CANTLOSE) || (c->has(Constants::CANTLIFELOSE) && players[i]->poisonCount < 10))
-                {
-                    cantlosers++;
-                }
-            }
-            MTGGameZone * k = players[i]->opponent()->game->inPlay;
-            int onbcards = k->nb_cards;
-            for (int m = 0; m < onbcards; ++m)
-            {
-                MTGCardInstance * e = k->cards[m];
-                if (e->has(Constants::CANTWIN))
-                {
-                    cantlosers++;
-                }
-            }
-            if (cantlosers < 1)
-            {
-                setLoser(players[i]);
-            }
-        }
+        players[i]->DeadLifeState();//refactored
     }
     //////////////////////////////////////////////////////
     //-------------card based states effects------------//
@@ -1837,6 +1810,13 @@ void GameObserver::Mulligan(Player* player)
     if(!player) player = currentPlayer;
     logAction(player, "mulligan");
     player->takeMulligan();
+}
+
+void GameObserver::serumMulligan(Player* player)
+{
+    if(!player) player = currentPlayer;
+    logAction(player, "mulligan serum powder");
+    player->serumMulligan();
 }
 
 Player* GameObserver::createPlayer(const string& playerMode

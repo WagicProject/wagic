@@ -313,6 +313,7 @@ executioners_swing.txt
 executioners_swing2.txt
 executioners_swing3.txt
 explore.txt
+exquisite_blood_i953.txt
 Faceless_Butcher.txt
 fading.txt
 fangren_pathcutter.txt
@@ -530,6 +531,7 @@ protomatter_powder.txt
 prowess_of_the_fair.txt
 prowess_of_the_fair2.txt
 prowess_of_the_fair3.txt
+PTInstant.txt
 pygmy_troll.txt
 pyknite_i426.txt
 pyroclasm.txt
@@ -655,6 +657,7 @@ thallid.txt
 the_tabernacle_at_pendrell_vale.txt
 thelon_of_havenwood.txt
 threaten.txt
+thraximundar.txt
 throne_of_bone.txt
 thunder-thrash_elder.txt
 tidal_warrior_i646.txt
@@ -662,6 +665,8 @@ tidal_warrior_i649.txt
 tidal_warrior_i652.txt
 Timely_Reinforcements.txt
 titanic_ultimatum.txt
+tokenizer.txt
+tokenizer2.txt
 torture.txt
 tranquil_domain.txt
 turn_to_slag.txt

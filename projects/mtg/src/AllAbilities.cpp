@@ -1359,6 +1359,13 @@ int AAFizzler::resolve()
         sCard = sTarget->source;
     if (!sCard || !sTarget || sCard->has(Constants::NOFIZZLE))
         return 0;
+    if (source->alias == 111057 && sTarget)//Draining Whelk
+    {
+        for (int j = sTarget->cost->getConvertedCost(); j > 0; j--)
+        {
+            source->counters->addCounter(1,1);
+        }
+    }
     stack->Fizzle(sTarget, fizzleMode);
     return 1;
 }
@@ -2482,35 +2489,49 @@ int AACloner::resolve()
 
     Player * targetPlayer = who == 1 ? source->controller()->opponent() : source->controller();
 
-    MTGCardInstance * myClone = NEW MTGCardInstance(clone, targetPlayer->game);
-    targetPlayer->game->temp->addCard(myClone);
+    int tokenize = 1;//tokenizer support for cloning
+    if (targetPlayer->game->battlefield->hasAbility(Constants::TOKENIZER))
+    {
+        int nbcards = targetPlayer->game->battlefield->nb_cards;
+        for (int j = 0; j < nbcards; j++)
+        {
+            if (targetPlayer->game->battlefield->cards[j]->has(Constants::TOKENIZER))
+                tokenize *= 2;
+        }
+    }
+
+    for (int i = 0; i < tokenize; ++i)
+    {
+        MTGCardInstance * myClone = NEW MTGCardInstance(clone, targetPlayer->game);
+        targetPlayer->game->temp->addCard(myClone);
                 
-    Spell * spell = NEW Spell(game, myClone);
-    spell->source->isToken = 1;
-    spell->resolve();
-    spell->source->fresh = 1;
-    spell->source->model = spell->source;
-    spell->source->model->data = spell->source;
-    if(_target->isToken)
-    {
-        spell->source->power = _target->origpower;
-        spell->source->toughness = _target->origtoughness;
-        spell->source->life = _target->origtoughness;
+        Spell * spell = NEW Spell(game, myClone);
+        spell->source->isToken = 1;
+        spell->resolve();
+        spell->source->fresh = 1;
+        spell->source->model = spell->source;
+        spell->source->model->data = spell->source;
+        if(_target->isToken)
+        {
+            spell->source->power = _target->origpower;
+            spell->source->toughness = _target->origtoughness;
+            spell->source->life = _target->origtoughness;
+        }
+        list<int>::iterator it;
+        for (it = awith.begin(); it != awith.end(); it++)
+        {
+            spell->source->basicAbilities[*it] = 1;
+        }
+        for (it = colors.begin(); it != colors.end(); it++)
+        {
+            spell->source->setColor(*it);
+        }
+        for (it = typesToAdd.begin(); it != typesToAdd.end(); it++)
+        {
+            spell->source->addType(*it);
+        }
+        delete spell;
     }
-    list<int>::iterator it;
-    for (it = awith.begin(); it != awith.end(); it++)
-    {
-        spell->source->basicAbilities[*it] = 1;
-    }
-    for (it = colors.begin(); it != colors.end(); it++)
-    {
-        spell->source->setColor(*it);
-    }
-    for (it = typesToAdd.begin(); it != typesToAdd.end(); it++)
-    {
-        spell->source->addType(*it);
-    }
-    delete spell;
     return 1;
 
 }
@@ -2939,6 +2960,32 @@ const string AAShuffle::getMenuText()
 AAShuffle * AAShuffle::clone() const
 {
     return NEW AAShuffle(*this);
+}
+
+// Mulligan 
+AAMulligan::AAMulligan(GameObserver* observer, int _id, MTGCardInstance * card, Targetable * _target, ManaCost * _cost, int who) :
+    ActivatedAbilityTP(observer, _id, card, _target, _cost, who)
+{
+}
+
+int AAMulligan::resolve()
+{
+    Player * player = getPlayerFromTarget(getTarget());
+    if (player)
+    {
+            player->serumMulligan();
+    }
+    return 1;
+}
+
+const string AAMulligan::getMenuText()
+{
+    return "Mulligan";
+}
+
+AAMulligan * AAMulligan::clone() const
+{
+    return NEW AAMulligan(*this);
 }
 
 // Remove Mana From ManaPool
@@ -4316,6 +4363,7 @@ int PTInstant::resolve()
     APowerToughnessModifier * a = ability->clone();
     GenericInstantAbility * wrapper = NEW GenericInstantAbility(game, 1, source, (Damageable *) (this->target), a);
     wrapper->addToGame();
+    ((Damageable *) (this->target))->afterDamage();//additional check the negative pt after resolving..
     return 1;
 }
 const string PTInstant::getMenuText()

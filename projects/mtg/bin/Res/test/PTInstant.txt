@@ -1,0 +1,29 @@
+# BUG..cast tundra wolves with soul warden in play, kill soul warden with last gasp, you still get a life because the spell resolved
+# first before Soul Warden goes to graveyard.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Tundra Wolves
+manapool:{W}
+inplay:Soul Warden
+life:20
+[PLAYER2]
+manapool:{B}{B}
+hand:Last Gasp
+[DO]
+Tundra Wolves
+no
+yes
+Last Gasp
+Soul Warden
+endinterruption
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:Soul Warden
+inplay:Tundra Wolves
+life:20
+[PLAYER2]
+graveyard:Last Gasp
+life:20
+[END]

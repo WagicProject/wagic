@@ -2532,6 +2532,16 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         return a;
     }
 
+    //Serum Powder
+    found = s.find("serumpowder");
+    if (found != string::npos)
+    {
+        Targetable * t = spell? spell->getNextTarget() : NULL;
+        MTGAbility * a = NEW AAMulligan(observer, id, card, t, NULL, who);
+        a->oneShot = 1;
+        return a;
+    }
+
     //Remove Mana from ManaPool
     vector<string> splitRemove = parseBetween(s, "removemana(", ")");
     if (splitRemove.size())
@@ -4940,6 +4950,39 @@ int TriggeredAbility::receiveEvent(WEvent * e)
     //@targetted trigger as per mtg rules is a state based trigger
     //that resolves instantly before the event that targetted it.
         resolve();
+        return 1;
+    }
+    if(dynamic_cast<WEventCardSacrifice*>(e))
+    {
+    //sacrificed event
+    //thraximundar vs bloodfore collosus, thraximundar 
+    //must be able to survive a sacrificed bloodfire collosus,
+    //same with mortician beetle vs phyrexian denouncer test
+        resolve();
+        return 1;
+    }
+    if(dynamic_cast<WEventLife*>(e))
+    {
+    //check life state on life triger
+    WEventLife * lifecheck = dynamic_cast<WEventLife*>(e);	
+    if (lifecheck->player->DeadLifeState())
+    {
+        return 0;
+    }        
+        fireAbility();
+        return 1;
+    }
+    if(dynamic_cast<WEventDamage*>(e))
+    {
+    //check life state on damage trigger
+    WEventDamage * lifecheck = dynamic_cast<WEventDamage*>(e);	
+    if (lifecheck->damage->target->type_as_damageable == Damageable::DAMAGEABLE_PLAYER)
+    {
+        Player * triggerPlayer = (Player *) lifecheck->damage->target;
+        if(triggerPlayer->DeadLifeState())
+            return 0;
+    }        
+        fireAbility();
         return 1;
     }
     WEventZoneChange * stackCheck = dynamic_cast<WEventZoneChange*>(e);

@@ -217,6 +217,56 @@ void Player::takeMulligan()
          //Draw hand with 1 less card penalty //almhum
 }
 
+void Player::serumMulligan()
+{
+    MTGPlayerCards * currentPlayerZones = game;
+    int cardsinhand = currentPlayerZones->hand->nb_cards;
+    for (int i = 0; i < cardsinhand; i++) //Exile
+        currentPlayerZones->putInZone(currentPlayerZones->hand->cards[0],
+        currentPlayerZones->hand,
+        currentPlayerZones->exile);
+
+    currentPlayerZones->library->shuffle(); //Shuffle
+    
+    for (int i = 0; i < (cardsinhand); i++)
+        game->drawFromLibrary();
+         //Draw hand no penalty
+}
+
+bool Player::DeadLifeState()
+{
+    if ((life <= 0)||(poisonCount >= 10))
+    {
+        int cantlosers = 0;
+        MTGGameZone * z = game->inPlay;
+        int nbcards = z->nb_cards;
+        for (int j = 0; j < nbcards; ++j)
+        {
+            MTGCardInstance * c = z->cards[j];
+            if (c->has(Constants::CANTLOSE) || (c->has(Constants::CANTLIFELOSE) && poisonCount < 10))
+            {
+                cantlosers++;
+            }
+        }
+        MTGGameZone * k = opponent()->game->inPlay;
+        int onbcards = k->nb_cards;
+        for (int m = 0; m < onbcards; ++m)
+        {
+            MTGCardInstance * e = k->cards[m];
+            if (e->has(Constants::CANTWIN))
+            {
+            cantlosers++;
+            }
+        }
+        if (cantlosers < 1)
+        {
+            getObserver()->setLoser(this);
+            return true;
+        }
+    }
+    return false;
+}
+
 //Cleanup phase at the end of a turn
 void Player::cleanupPhase()
 {
