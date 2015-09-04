@@ -321,6 +321,14 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
         return card; //Error check
 
     int doCopy = 1;
+    //Leyline of the Void, Yawgmoth's Agenda... effect...
+    for(int i = 0; i < 2; ++i)
+	{
+        if ((to == g->players[i]->game->graveyard) && (
+        g->players[i]->game->battlefield->hasAbility(Constants::MYGRAVEEXILER) ||
+        g->players[i]->opponent()->game->battlefield->hasAbility(Constants::OPPGRAVEEXILER)))
+            to = g->players[i]->game->exile;
+    }
     //When a card is moved from inPlay to inPlay (controller change, for example), it is still the same object
     if ((to == g->players[0]->game->inPlay || to == g->players[1]->game->inPlay) && (from == g->players[0]->game->inPlay || from
                     == g->players[1]->game->inPlay))
