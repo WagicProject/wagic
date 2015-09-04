@@ -9371,8 +9371,7 @@ toughness=1
 [/card]
 [card]
 name=Blightsteel Colossus
-abilities=trample,indestructible,infect
-autograveyard=moveTo(ownerlibrary) && shuffle
+abilities=trample,indestructible,infect,shufflelibrarydeath
 text=Trample,infect -- Blightsteel Colossus is indestructible. -- If Blightsteel Colossus would be put into a graveyard from anywhere, reveal Blightsteel Colossus and shuffle it into its owner's library instead.
 mana={12}
 type=Artifact Creature
@@ -21047,8 +21046,7 @@ type=Artifact Land
 [/card]
 [card]
 name=Darksteel Colossus
-abilities=trample,indestructible
-autograveyard=moveTo(ownerlibrary) && shuffle
+abilities=trample,indestructible,shufflelibrarydeath
 text=Trample -- Darksteel Colossus is indestructible. -- If Darksteel Colossus would be put into a graveyard from anywhere, reveal Darksteel Colossus and shuffle it into its owner's library instead.
 mana={11}
 type=Artifact Creature
@@ -34460,6 +34458,14 @@ mana={1}{U}{U}
 type=Instant
 [/card]
 [card]
+name=Forbidden Crypt
+abilities=mygraveexiler
+auto=replacedraw if type(*|mygraveyard)~morethan~0 then moveto(ownerhand) notatarget(*|mygraveyard) else wingame opponent
+text=If you would draw a card, return a card from your graveyard to your hand instead. If you can't, you lose the game. -- If a card would be put into your graveyard from anywhere, exile that card instead.
+mana={3}{B}{B}
+type=Enchantment
+[/card]
+[card]
 name=Forbidden Lore
 target=land
 auto=teach(land) {T}:2/1 target(creature)
@@ -40036,6 +40042,16 @@ type=Creature
 subtype=Giant
 power=6
 toughness=6
+[/card]
+[card]
+name=Gravebane Zombie
+abilities=librarydeath
+text=If Gravebane Zombie would be put into a graveyard from the battlefield, put Gravebane Zombie on top of its owner's library instead.
+mana={3}{B}
+type=Creature
+subtype=Zombie
+power=3
+toughness=2
 [/card]
 [card]
 name=Gravebind
@@ -53686,8 +53702,8 @@ toughness=2
 [/card]
 [card]
 name=Legacy Weapon
+abilities=shufflelibrarydeath
 auto={w}{R}{G}{B}{U}:moveto(exile) target(*|battlefield)
-autograveyard=moveTo(ownerlibrary) && shuffle
 text={w}{R}{G}{B}{U}:Exile target permanent. -- If Legacy Weapon would be put into a graveyard from anywhere, reveal Legacy Weapon and shuffle it into its owner's library instead.
 type=Legendary Artifact
 mana={7}
@@ -53995,12 +54011,10 @@ abilities=leyline
 [/card]
 [card]
 name=Leyline of the Void
-#need to have opponentOwn attribute like auto=lord(*[opponentOwn]) transforms((,newability[exiledeath]))
-auto=@movedTo(*|opponentGraveyard):all(trigger[to]) moveTo(exile)
+abilities=leyline,oppgraveexiler
 text=If Leyline of the Void is in your opening hand, you may begin the game with it on the battlefield. -- If a card would be put into an opponent's graveyard from anywhere, exile it instead.
 mana={2}{B}{B}
 type=Enchantment
-abilities=leyline
 [/card]
 [card]
 name=Leyline Phantom
@@ -72202,8 +72216,8 @@ type=Sorcery
 [/card]
 [card]
 name=Progenitus
+abilities=shufflelibrarydeath
 auto=protection from(*)
-autograveyard=moveTo(ownerlibrary) && shuffle
 text=Protection from everything -- If Progenitus would be put into a graveyard from anywhere, reveal Progenitus and shuffle it into its owner's library instead.
 mana={W}{W}{U}{U}{B}{B}{R}{R}{G}{G}
 type=Legendary Creature
@@ -72584,7 +72598,7 @@ subtype=Arcane
 [card]
 name=Pulmonic Sliver
 auto=lord(sliver) flying
-auto=lord(sliver) transforms((,newability[@movedTo(this|graveyard) from(battlefield):all(trigger[to]) moveTo(ownerlibrary)]))
+auto=lord(sliver) transforms((,newability[librarydeath]))
 text=All Sliver creatures have flying. -- All Slivers have "If this permanent would be put into a graveyard, you may put it on top of its owner's library instead."
 mana={3}{W}{W}
 type=Creature
@@ -76495,6 +76509,14 @@ auto=aslongas(land[fresh]|mybattlefield) life:4
 text=Target player gains 4 life. -- Landfall - If you had a land enter the battlefield under your control this turn, that player gains 8 life instead.
 mana={1}{W}
 type=Instant
+[/card]
+[card]
+name=Rest in Peace
+abilities=mygraveexiler,oppgraveexiler
+auto=moveto(exile) all(*|graveyard)
+text=When Rest in Peace enters the battlefield, exile all cards from all graveyards. -- If a card or token would be put into a graveyard from anywhere, exile it instead.
+mana={1}{W}
+type=Enchantment
 [/card]
 [card]
 name=Restless Apparition
@@ -111044,6 +111066,15 @@ type=Creature
 subtype=Demon
 power=6
 toughness=6
+[/card]
+[card]
+name=Yawgmoth's Agenda
+abilities=mygraveexiler
+auto=lord(*|mygraveyard) canPlayFromGraveyard
+auto=maxCast(*)1
+text=You can't cast more than one spell each turn. -- You may play cards from your graveyard. -- If a card would be put into your graveyard from anywhere, exile it instead.
+mana={3}{B}{B}
+type=Enchantment
 [/card]
 [card]
 name=Yawgmoth's Bargain

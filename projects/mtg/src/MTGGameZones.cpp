@@ -321,6 +321,17 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
         return card; //Error check
 
     int doCopy = 1;
+    bool shufflelibrary = card->basicAbilities[(int)Constants::SHUFFLELIBRARYDEATH];
+    //Darksteel Colossus, Legacy Weapon ... top priority since we replace destination directly automatically...
+    for(int i = 0; i < 2; ++i)
+	{
+        if ((to == g->players[i]->game->graveyard) && (
+        card->basicAbilities[(int)Constants::LIBRARYDEATH]||
+        card->basicAbilities[(int)Constants::SHUFFLELIBRARYDEATH]))
+        {
+            to = g->players[i]->game->library;
+        }
+    }
     //Leyline of the Void, Yawgmoth's Agenda... effect...
     for(int i = 0; i < 2; ++i)
 	{
@@ -392,6 +403,9 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
     }
     if(!asCopy)
     {
+        if(shufflelibrary)
+            copy->owner->game->library->shuffle();
+
     WEvent * e = NEW WEventZoneChange(copy, from, to);
     g->receiveEvent(e);
     }

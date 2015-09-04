@@ -5428,12 +5428,6 @@ mana={2}{G}
 type=Enchantment
 [/card]
 [card]
-name=Forbidden Crypt
-text=If you would draw a card, return a card from your graveyard to your hand instead. If you can't, you lose the game. -- If a card would be put into your graveyard from anywhere, exile that card instead.
-mana={3}{B}{B}
-type=Enchantment
-[/card]
-[card]
 name=Forbidden Ritual
 text=Sacrifice a nontoken permanent. If you do, target opponent loses 2 life unless he or she sacrifices a permanent or discards a card. You may repeat this process any number of times.
 mana={2}{B}{B}
@@ -6596,15 +6590,6 @@ text=You may cast Grave Servitude as though it had flash. If you cast it any tim
 mana={1}{B}
 type=Enchantment
 subtype=Aura
-[/card]
-[card]
-name=Gravebane Zombie
-text=If Gravebane Zombie would be put into a graveyard from the battlefield, put Gravebane Zombie on top of its owner's library instead.
-mana={3}{B}
-type=Creature
-subtype=Zombie
-power=3
-toughness=2
 [/card]
 [card]
 name=Graven Dominator
@@ -13271,15 +13256,6 @@ mana={1}{U}
 type=Sorcery
 [/card]
 [card]
-name=Rest in Peace
-#Note this is replacement effect, I think wagic has no override rule.
-auto=moveto(exile) all(*|graveyard)
-auto=@movedTo(*|graveyard):all(trigger[to]) moveTo(exile)
-text=When Rest in Peace enters the battlefield, exile all cards from all graveyards. -- If a card or token would be put into a graveyard from anywhere, exile it instead.
-mana={1}{W}
-type=Enchantment
-[/card]
-[card]
 name=Restless Dreams
 text=As an additional cost to cast Restless Dreams, discard X cards. -- Return X target creature cards from your graveyard to your hand.
 mana={B}
@@ -18952,12 +18928,6 @@ name=Yare
 text=Target creature defending player controls gets +3/+0 until end of turn. That creature can block up to two additional creatures this turn.
 mana={2}{W}
 type=Instant
-[/card]
-[card]
-name=Yawgmoth's Agenda
-text=You can't cast more than one spell each turn. -- You may play cards from your graveyard. -- If a card would be put into your graveyard from anywhere, exile it instead.
-mana={3}{B}{B}
-type=Enchantment
 [/card]
 [card]
 name=Ydwen Efreet

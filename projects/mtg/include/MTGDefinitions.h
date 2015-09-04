@@ -222,7 +222,9 @@ class Constants
       TOKENIZER = 104,
       MYGRAVEEXILER = 105,
       OPPGRAVEEXILER = 106,
-      NB_BASIC_ABILITIES = 107,
+      LIBRARYDEATH = 107,
+      SHUFFLELIBRARYDEATH = 108,
+      NB_BASIC_ABILITIES = 109,
 
 
     RARITY_S = 'S',   //Special Rarity
