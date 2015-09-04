@@ -540,7 +540,12 @@ ExtraCost("UnTap")
 
 int UnTapCost::isPaymentSet()
 {
-    if (source && !source->isTapped())
+/*602.5a A creature's activated ability with the tap symbol ({T}) or the untap symbol ({Q})
+ * in its activation cost can't be activated unless the creature has been under its
+ * controller's control since the start of his or her most recent turn.
+ * Ignore this rule for creatures with haste (see rule 702.10). As of 6/1/2014 Comprehensive Rules
+ */
+    if (source && (!source->isTapped() || source->hasSummoningSickness()))
     {
         return 0;
     }
