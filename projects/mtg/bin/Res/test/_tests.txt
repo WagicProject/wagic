@@ -374,6 +374,7 @@ goblin_lackey4.txt
 goblin_offensive.txt
 goblin_razerunners.txt
 golgari_germination_i153.txt
+Gravebane_Zombie.txt
 gravedigger.txt
 gravity_well.txt
 gravity_well2.txt
