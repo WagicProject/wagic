@@ -440,6 +440,7 @@ kudzu_i168.txt
 Lethargy_Trap.txt
 Lethargy_Trap2.txt
 leveler.txt
+leyline_of_the_void.txt
 lhurgoyf.txt
 liability.txt
 library_of_alexandria1.txt
@@ -569,6 +570,7 @@ Rending_Vines2.txt
 resounding_roar.txt
 resurrection.txt
 resuscitate_i210.txt
+restinpeace.txt
 righteous_cause.txt
 rise_from_the_grave.txt
 river_kelpie2_i335.txt
