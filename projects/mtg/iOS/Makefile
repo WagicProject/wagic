@@ -186,7 +186,7 @@ ADDITIONAL_CFLAGS = -I ../include\
     -I ../../../Boost\
     -I ../../../JGE/src/iOS\
     -I ../iOS/UI\
-    -I ../iOS/Reachability/Reachability\ 2.0.4ddg/Reachability\
+    -I ../iOS/Reachability/Reachability\
     -I ../iOS/asi-http-request\
     -I ../iOS/ZipArchive\
     -I ../iOS/SoundManager\
