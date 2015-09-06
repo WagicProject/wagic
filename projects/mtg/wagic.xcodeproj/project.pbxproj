@@ -186,10 +186,6 @@
 		12059E3F14980B7300DAC43B /* ASIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 12211E3314931CBB00641703 /* ASIHTTPRequest.m */; };
 		12059E4014980B7300DAC43B /* ASIInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 12211E3714931CBB00641703 /* ASIInputStream.m */; };
 		12059E4114980B7300DAC43B /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 12211E3914931CBB00641703 /* ASINetworkQueue.m */; };
-		12059E4214980B7300DAC43B /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 12211EA214933D4A00641703 /* ioapi.c */; };
-		12059E4314980B7300DAC43B /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = 12211EA414933D4A00641703 /* mztools.c */; };
-		12059E4414980B7300DAC43B /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 12211EA614933D4A00641703 /* unzip.c */; };
-		12059E4514980B7300DAC43B /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = 12211EA814933D4A00641703 /* zip.c */; };
 		12059E4614980B7300DAC43B /* ZipArchive.mm in Sources */ = {isa = PBXBuildFile; fileRef = 12211EAE14933D6600641703 /* ZipArchive.mm */; };
 		12059E4714980B7300DAC43B /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 12211EB61493483C00641703 /* Reachability.m */; };
 		12059E4814980B7300DAC43B /* WagicDownloadProgressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 12211EC81494360C00641703 /* WagicDownloadProgressViewController.m */; };
@@ -222,10 +218,6 @@
 		12211E7E14931CBB00641703 /* ASIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 12211E3314931CBB00641703 /* ASIHTTPRequest.m */; };
 		12211E7F14931CBB00641703 /* ASIInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 12211E3714931CBB00641703 /* ASIInputStream.m */; };
 		12211E8014931CBB00641703 /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 12211E3914931CBB00641703 /* ASINetworkQueue.m */; };
-		12211EAA14933D4A00641703 /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 12211EA214933D4A00641703 /* ioapi.c */; };
-		12211EAB14933D4A00641703 /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = 12211EA414933D4A00641703 /* mztools.c */; };
-		12211EAC14933D4A00641703 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 12211EA614933D4A00641703 /* unzip.c */; };
-		12211EAD14933D4A00641703 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = 12211EA814933D4A00641703 /* zip.c */; };
 		12211EAF14933D6600641703 /* ZipArchive.mm in Sources */ = {isa = PBXBuildFile; fileRef = 12211EAE14933D6600641703 /* ZipArchive.mm */; };
 		12211EB71493483C00641703 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 12211EB61493483C00641703 /* Reachability.m */; };
 		12211EB914934A1900641703 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12211EB814934A1800641703 /* MobileCoreServices.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -277,6 +269,10 @@
 		12DCD02E14DBE1F90023B966 /* JSfx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12DCD02C14DBE1F90023B966 /* JSfx.cpp */; };
 		12DCD03414DBECC50023B966 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12DCD03114DBECC50023B966 /* CoreAudio.framework */; };
 		12DCD03514DBECC50023B966 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12DCD03214DBECC50023B966 /* OpenAL.framework */; };
+		188B71D01B9B9F9400D5522B /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 188B71C41B9B9F9400D5522B /* ioapi.c */; };
+		188B71D11B9B9F9400D5522B /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 188B71C51B9B9F9400D5522B /* unzip.c */; };
+		188B71D21B9B9F9400D5522B /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = 188B71C61B9B9F9400D5522B /* zip.c */; };
+		188B71D61B9B9F9400D5522B /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = 188B71CC1B9B9F9400D5522B /* mztools.c */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		28FD15000DC6FC520079059D /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FD14FF0DC6FC520079059D /* OpenGLES.framework */; };
@@ -474,18 +470,9 @@
 		12211E3914931CBB00641703 /* ASINetworkQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASINetworkQueue.m; sourceTree = "<group>"; };
 		12211E3A14931CBB00641703 /* ASIProgressDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIProgressDelegate.h; sourceTree = "<group>"; };
 		12211E9F14933D0600641703 /* ZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZipArchive.h; path = iOS/ZipArchive/ZipArchive.h; sourceTree = "<group>"; };
-		12211EA114933D4A00641703 /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
-		12211EA214933D4A00641703 /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
-		12211EA314933D4A00641703 /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi.h; sourceTree = "<group>"; };
-		12211EA414933D4A00641703 /* mztools.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mztools.c; sourceTree = "<group>"; };
-		12211EA514933D4A00641703 /* mztools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mztools.h; sourceTree = "<group>"; };
-		12211EA614933D4A00641703 /* unzip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = unzip.c; sourceTree = "<group>"; };
-		12211EA714933D4A00641703 /* unzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unzip.h; sourceTree = "<group>"; };
-		12211EA814933D4A00641703 /* zip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zip.c; sourceTree = "<group>"; };
-		12211EA914933D4A00641703 /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
-		12211EAE14933D6600641703 /* ZipArchive.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ZipArchive.mm; sourceTree = "<group>"; };
-		12211EB51493483C00641703 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = "iOS/Reachability/Reachability 2.0.4ddg/Reachability/Reachability.h"; sourceTree = "<group>"; };
-		12211EB61493483C00641703 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = "iOS/Reachability/Reachability 2.0.4ddg/Reachability/Reachability.m"; sourceTree = "<group>"; };
+		12211EAE14933D6600641703 /* ZipArchive.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ZipArchive.mm; path = iOS/ZipArchive/ZipArchive.mm; sourceTree = "<group>"; };
+		12211EB51493483C00641703 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = iOS/Reachability/Reachability/Reachability.h; sourceTree = "<group>"; };
+		12211EB61493483C00641703 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = iOS/Reachability/Reachability/Reachability.m; sourceTree = "<group>"; };
 		12211EB814934A1800641703 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		12211EBA14934A2C00641703 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		12211EC71494360C00641703 /* WagicDownloadProgressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WagicDownloadProgressViewController.h; path = UI/WagicDownloadProgressViewController.h; sourceTree = "<group>"; };
@@ -570,6 +557,15 @@
 		12DCD03014DBECC40023B966 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
 		12DCD03114DBECC50023B966 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		12DCD03214DBECC50023B966 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
+		188B71C31B9B9F9400D5522B /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = crypt.h; path = unzip/crypt.h; sourceTree = "<group>"; };
+		188B71C41B9B9F9400D5522B /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ioapi.c; path = unzip/ioapi.c; sourceTree = "<group>"; };
+		188B71C51B9B9F9400D5522B /* unzip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = unzip.c; path = unzip/unzip.c; sourceTree = "<group>"; };
+		188B71C61B9B9F9400D5522B /* zip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = zip.c; path = unzip/zip.c; sourceTree = "<group>"; };
+		188B71C71B9B9F9400D5522B /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ioapi.h; path = unzip/ioapi.h; sourceTree = "<group>"; };
+		188B71CC1B9B9F9400D5522B /* mztools.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = mztools.c; path = unzip/mztools.c; sourceTree = "<group>"; };
+		188B71CD1B9B9F9400D5522B /* mztools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mztools.h; path = unzip/mztools.h; sourceTree = "<group>"; };
+		188B71CE1B9B9F9400D5522B /* unzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = unzip.h; path = unzip/unzip.h; sourceTree = "<group>"; };
+		188B71CF1B9B9F9400D5522B /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = zip.h; path = unzip/zip.h; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D6058910D05DD3D006BFB54 /* wagic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wagic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -976,22 +972,6 @@
 			name = ZipArchive;
 			sourceTree = "<group>";
 		};
-		12211EA014933D4A00641703 /* minizip */ = {
-			isa = PBXGroup;
-			children = (
-				12211EA114933D4A00641703 /* crypt.h */,
-				12211EA214933D4A00641703 /* ioapi.c */,
-				12211EA314933D4A00641703 /* ioapi.h */,
-				12211EA414933D4A00641703 /* mztools.c */,
-				12211EA514933D4A00641703 /* mztools.h */,
-				12211EA614933D4A00641703 /* unzip.c */,
-				12211EA714933D4A00641703 /* unzip.h */,
-				12211EA814933D4A00641703 /* zip.c */,
-				12211EA914933D4A00641703 /* zip.h */,
-			);
-			path = minizip;
-			sourceTree = "<group>";
-		};
 		12211EB01493449A00641703 /* Networking Packages */ = {
 			isa = PBXGroup;
 			children = (
@@ -1053,7 +1033,6 @@
 			isa = PBXGroup;
 			children = (
 				128ED372148BAE7B00C58E83 /* GoogleAdMobAdsSDKiOS-5.0.5 */,
-				12211EA014933D4A00641703 /* minizip */,
 				12211E9E14933CC200641703 /* ZipArchive */,
 			);
 			name = Tools;
@@ -1188,6 +1167,22 @@
 				12DCD02C14DBE1F90023B966 /* JSfx.cpp */,
 			);
 			name = ios;
+			sourceTree = "<group>";
+		};
+		188B71C21B9B9F0100D5522B /* unzip */ = {
+			isa = PBXGroup;
+			children = (
+				188B71C31B9B9F9400D5522B /* crypt.h */,
+				188B71C41B9B9F9400D5522B /* ioapi.c */,
+				188B71C51B9B9F9400D5522B /* unzip.c */,
+				188B71C61B9B9F9400D5522B /* zip.c */,
+				188B71C71B9B9F9400D5522B /* ioapi.h */,
+				188B71CC1B9B9F9400D5522B /* mztools.c */,
+				188B71CD1B9B9F9400D5522B /* mztools.h */,
+				188B71CE1B9B9F9400D5522B /* unzip.h */,
+				188B71CF1B9B9F9400D5522B /* zip.h */,
+			);
+			name = unzip;
 			sourceTree = "<group>";
 		};
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
@@ -1591,6 +1586,7 @@
 		CEE232AF128A01F400C34032 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				188B71C21B9B9F0100D5522B /* unzip */,
 				1235D03F14DEAC6A00B02B42 /* psp */,
 				1235D03D14DE397200B02B42 /* android */,
 				12DCD02B14DBE1AF0023B966 /* ios */,
@@ -1947,10 +1943,6 @@
 				12059E3F14980B7300DAC43B /* ASIHTTPRequest.m in Sources */,
 				12059E4014980B7300DAC43B /* ASIInputStream.m in Sources */,
 				12059E4114980B7300DAC43B /* ASINetworkQueue.m in Sources */,
-				12059E4214980B7300DAC43B /* ioapi.c in Sources */,
-				12059E4314980B7300DAC43B /* mztools.c in Sources */,
-				12059E4414980B7300DAC43B /* unzip.c in Sources */,
-				12059E4514980B7300DAC43B /* zip.c in Sources */,
 				12059E4614980B7300DAC43B /* ZipArchive.mm in Sources */,
 				12059E4714980B7300DAC43B /* Reachability.m in Sources */,
 				12059E4814980B7300DAC43B /* WagicDownloadProgressViewController.m in Sources */,
@@ -1996,6 +1988,7 @@
 				CEE23323128A01F400C34032 /* tinystr.cpp in Sources */,
 				CEE23324128A01F400C34032 /* tinyxml.cpp in Sources */,
 				CEE23325128A01F400C34032 /* tinyxmlerror.cpp in Sources */,
+				188B71D01B9B9F9400D5522B /* ioapi.c in Sources */,
 				CEE23326128A01F400C34032 /* tinyxmlparser.cpp in Sources */,
 				CEE23330128A01F400C34032 /* Vector2D.cpp in Sources */,
 				CEE23331128A01F400C34032 /* vram.c in Sources */,
@@ -2018,6 +2011,7 @@
 				CEA377691291C60500B9016A /* Damage.cpp in Sources */,
 				CEA3776A1291C60500B9016A /* DamagerDamaged.cpp in Sources */,
 				CEA3776B1291C60500B9016A /* DeckDataWrapper.cpp in Sources */,
+				188B71D61B9B9F9400D5522B /* mztools.c in Sources */,
 				CEA3776C1291C60500B9016A /* DeckEditorMenu.cpp in Sources */,
 				CEA3776D1291C60500B9016A /* DeckManager.cpp in Sources */,
 				CEA3776E1291C60500B9016A /* DeckMenu.cpp in Sources */,
@@ -2087,6 +2081,7 @@
 				CEA377B41291C60500B9016A /* TextScroller.cpp in Sources */,
 				CEA377B51291C60500B9016A /* ThisDescriptor.cpp in Sources */,
 				CEA377B61291C60500B9016A /* Token.cpp in Sources */,
+				188B71D11B9B9F9400D5522B /* unzip.c in Sources */,
 				CEA377B71291C60500B9016A /* Translate.cpp in Sources */,
 				CEA377B81291C60500B9016A /* TranslateKeys.cpp in Sources */,
 				CEA377B91291C60500B9016A /* Trash.cpp in Sources */,
@@ -2123,6 +2118,7 @@
 				12769488144127380088F6D3 /* TestSuiteAI.cpp in Sources */,
 				12CCA030144A05D100E343A0 /* AbilityParser.cpp in Sources */,
 				12211E7914931CBB00641703 /* ASIAuthenticationDialog.m in Sources */,
+				188B71D21B9B9F9400D5522B /* zip.c in Sources */,
 				12211E7A14931CBB00641703 /* ASIDataCompressor.m in Sources */,
 				12211E7B14931CBB00641703 /* ASIDataDecompressor.m in Sources */,
 				12211E7C14931CBB00641703 /* ASIDownloadCache.m in Sources */,
@@ -2130,10 +2126,6 @@
 				12211E7E14931CBB00641703 /* ASIHTTPRequest.m in Sources */,
 				12211E7F14931CBB00641703 /* ASIInputStream.m in Sources */,
 				12211E8014931CBB00641703 /* ASINetworkQueue.m in Sources */,
-				12211EAA14933D4A00641703 /* ioapi.c in Sources */,
-				12211EAB14933D4A00641703 /* mztools.c in Sources */,
-				12211EAC14933D4A00641703 /* unzip.c in Sources */,
-				12211EAD14933D4A00641703 /* zip.c in Sources */,
 				12211EAF14933D6600641703 /* ZipArchive.mm in Sources */,
 				12211EB71493483C00641703 /* Reachability.m in Sources */,
 				12211EC91494360C00641703 /* WagicDownloadProgressViewController.m in Sources */,
@@ -2273,7 +2265,7 @@
 					"iOS/Reachability/Reachability\\ 2.0.4ddg/DDG\\ Reachability/Classes/",
 				);
 				INFOPLIST_FILE = "wagic-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../admobsdk/iOS/GoogleAdMobAdsSDKiOS-5.0.5\"",
@@ -2315,7 +2307,7 @@
 					"iOS/Reachability/Reachability\\ 2.0.4ddg/DDG\\ Reachability/Classes/",
 				);
 				INFOPLIST_FILE = "wagic-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../admobsdk/iOS/GoogleAdMobAdsSDKiOS-5.0.5\"",

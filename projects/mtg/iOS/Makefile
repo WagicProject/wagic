@@ -26,7 +26,7 @@ wagic_FILES = ../../../JGE/src/iOS/main.m\
     ../../../JGE/src/unzip/unzip.c\
     ../../../JGE/src/unzip/zip.c\
     ../../../JGE/src/unzip/ioapi.c\
-    ../ZipArchive.mm\
+    ../iOS/ZipArchive/ZipArchive.mm\
     ../src/SimpleMenu.cpp\
     ../src/AbilityParser.cpp\
     ../src/ActionElement.cpp\
