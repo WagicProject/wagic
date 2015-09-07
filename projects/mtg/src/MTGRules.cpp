@@ -1032,7 +1032,7 @@ int MTGMorphCostRule::isReactingToClick(MTGCardInstance * card, ManaCost *)
 {
 
     Player * player = game->currentlyActing();
-    Player * currentPlayer = game->currentPlayer;
+    //Player * currentPlayer = game->currentPlayer;
     if (!player->game->hand->hasCard(card))
         return 0;
     if (!card->getManaCost()->getMorph())
