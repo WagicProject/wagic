@@ -1,0 +1,23 @@
+#Testing Rest in Peace vs Disenchant
+#Rest in Peace should be exiled while Disenchant must be put
+#in the owner's graveyard..
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Rest in Peace
+hand:Disenchant
+manapool:{W}{W}
+[PLAYER2]
+[DO]
+Disenchant
+Rest in Peace
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+graveyard:Disenchant
+manapool:{0}
+exile:Rest in Peace
+life:20
+[PLAYER2]
+life:20
+[END]

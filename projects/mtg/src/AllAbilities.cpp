@@ -1328,6 +1328,31 @@ AAFakeAbility * AAFakeAbility::clone() const
     return NEW AAFakeAbility(*this);
 }
 
+//EPIC
+ AAEPIC::AAEPIC(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * _target, string _named,ManaCost * cost):
+    ActivatedAbility(observer, id, source, cost, 0),named(_named)
+{
+    this->target = _target;
+}
+int AAEPIC::resolve()
+{  
+    MTGCardInstance * _target =  (MTGCardInstance *)target;
+    _target->controller()->epic = 1;
+    return 1;
+}
+
+const string AAEPIC::getMenuText()
+{
+    if(named.size())
+        return named.c_str();
+    return "EPIC";
+}
+
+AAEPIC * AAEPIC::clone() const
+{
+    return NEW AAEPIC(*this);
+}
+
 // Fizzler
 AAFizzler::AAFizzler(GameObserver* observer, int _id, MTGCardInstance * card, Spell * _target, ManaCost * _cost) :
 ActivatedAbility(observer, _id, card, _cost, 0)

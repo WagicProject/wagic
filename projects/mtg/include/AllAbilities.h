@@ -599,6 +599,10 @@ private:
         {
             intValue = target->controller()->opponent()->drawCounter;
         }
+        else if (s == "epicactivated")
+        {
+            intValue = target->controller()->epic;
+        }
         else if (s == "p" || s == "power")
         {
             intValue = target->getPower();
@@ -634,6 +638,21 @@ private:
         else if (s == "ohandcount")
         {
             intValue = target->controller()->opponent()->game->hand->nb_cards;
+        }
+        else if (s == "morethanfourcards")
+        {
+            if(card->playerTarget)
+			{//blackvise
+                intValue = 0;
+                if ((card->playerTarget->game->hand->nb_cards - 4)>0)
+                    intValue = (card->playerTarget->game->hand->nb_cards - 4);
+            }
+			else
+            {//viseling
+                intValue = 0;
+                if ((card->controller()->opponent()->game->hand->nb_cards - 4)>0)
+                    intValue = (card->controller()->opponent()->game->hand->nb_cards - 4);
+            }
         }
         else if (s == "powertotalinplay")//Count Total Power of Creatures you control... Formidable
         {
@@ -1333,6 +1352,16 @@ public:
     int resolve();
     const string getMenuText();
     AAFakeAbility * clone() const;
+};
+
+class AAEPIC: public ActivatedAbility
+{
+public:
+    string named;
+    AAEPIC(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target,string _newName, ManaCost * cost = NULL);
+    int resolve();
+    const string getMenuText();
+    AAEPIC * clone() const;
 };
 
 class AAFizzler: public ActivatedAbility
