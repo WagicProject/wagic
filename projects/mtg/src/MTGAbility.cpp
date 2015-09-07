@@ -2408,12 +2408,22 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         return a;
     }
 
-        //Reset damages on cards
+        //Do nothing
     found = s.find("donothing");
     if (found != string::npos)
     {
         
         MTGAbility * a = NEW AAFakeAbility(observer, id, card, target,newName);
+        a->oneShot = 1;
+        return a;
+    }
+
+        //Epic
+    found = s.find("epic");
+    if (found != string::npos)
+    {
+        
+        MTGAbility * a = NEW AAEPIC(observer, id, card, target,newName);
         a->oneShot = 1;
         return a;
     }

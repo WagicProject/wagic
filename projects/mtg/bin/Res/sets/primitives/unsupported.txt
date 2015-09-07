@@ -4509,22 +4509,10 @@ mana={3}{W}
 type=Enchantment
 [/card]
 [card]
-name=Endless Swarm
-text=Put a 1/1 green Snake creature token onto the battlefield for each card in your hand. -- Epic (For the rest of the game, you can't cast spells. At the beginning of each of your upkeeps, copy this spell except for its epic ability.)
-mana={5}{G}{G}{G}
-type=Sorcery
-[/card]
-[card]
 name=Endoskeleton
 text=You may choose not to untap Endoskeleton during your untap step. -- {2}, {T}: Target creature gets +0/+3 for as long as Endoskeleton remains tapped.
 mana={2}
 type=Artifact
-[/card]
-[card]
-name=Enduring Ideal
-text=Search your library for an enchantment card and put it onto the battlefield. Then shuffle your library. -- Epic (For the rest of the game, you can't cast spells. At the beginning of each of your upkeeps, copy this spell except for its epic ability.)
-mana={5}{W}{W}
-type=Sorcery
 [/card]
 [card]
 name=Enduring Renewal
@@ -4705,12 +4693,6 @@ text=Enchant permanent -- If enchanted permanent is red or green, it has "At the
 mana={U}
 type=Enchantment
 subtype=Aura
-[/card]
-[card]
-name=Eternal Dominion
-text=Search target opponent's library for an artifact, creature, enchantment, or land card. Put that card onto the battlefield under your control. Then that player shuffles his or her library. -- Epic (For the rest of the game, you can't cast spells. At the beginning of each of your upkeeps, copy this spell except for its epic ability. You may choose a new target for the copy.)
-mana={7}{U}{U}{U}
-type=Sorcery
 [/card]
 [card]
 name=Etherium-Horn Sorcerer
@@ -10796,12 +10778,6 @@ type=Creature
 subtype=Human Wizard
 power=2
 toughness=2
-[/card]
-[card]
-name=Neverending Torment
-text=Search target player's library for X cards, where X is the number of cards in your hand, and exile them. Then that player shuffles his or her library. -- Epic (For the rest of the game, you can't cast spells. At the beginning of each of your upkeeps, copy this spell except for its epic ability. You may choose a new target for the copy.)
-mana={4}{B}{B}
-type=Sorcery
 [/card]
 [card]
 name=New Benalia

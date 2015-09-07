@@ -318,13 +318,15 @@ int MTGPutInPlayRule::isReactingToClick(MTGCardInstance * card, ManaCost *)
         }
     }
     else if ((card->hasType(Subtypes::TYPE_INSTANT)) || card->has(Constants::FLASH)
-        || (player == currentPlayer && !game->isInterrupting
+        || (player == card->controller() && !game->isInterrupting
         && (game->getCurrentGamePhase() == MTG_PHASE_FIRSTMAIN
         || game->getCurrentGamePhase() == MTG_PHASE_SECONDMAIN))
         )
     {
+        if(card->controller()->epic)
+            return 0;
 
-        if (game->currentActionPlayer->game->playRestrictions->canPutIntoZone(card, game->currentActionPlayer->game->stack) == PlayRestriction::CANT_PLAY)
+        if (card->controller()->game->playRestrictions->canPutIntoZone(card, game->currentActionPlayer->game->stack) == PlayRestriction::CANT_PLAY)
             return 0;
         ManaCost * playerMana = player->getManaPool();
         ManaCost * cost = card->getManaCost();
@@ -650,12 +652,14 @@ int MTGAlternativeCostRule::isReactingToClick(MTGCardInstance * card, ManaCost *
             return 1;
     }
     else if ((card->hasType(Subtypes::TYPE_INSTANT)) || card->has(Constants::FLASH) 
-        || (player == currentPlayer && !game->isInterrupting
+        || (player == card->controller() && !game->isInterrupting
         && (game->getCurrentGamePhase() == MTG_PHASE_FIRSTMAIN
         || game->getCurrentGamePhase() == MTG_PHASE_SECONDMAIN))
         )
     {
-        if (game->currentActionPlayer->game->playRestrictions->canPutIntoZone(card, game->currentActionPlayer->game->stack) == PlayRestriction::CANT_PLAY)
+        if(card->controller()->epic)
+            return 0;
+        if (card->controller()->game->playRestrictions->canPutIntoZone(card, card->controller()->game->stack) == PlayRestriction::CANT_PLAY)
             return 0;
         ManaCost * playerMana = player->getManaPool();
 
@@ -1035,14 +1039,16 @@ int MTGMorphCostRule::isReactingToClick(MTGCardInstance * card, ManaCost *)
         return 0;
     if(!allowedToAltCast(card,player))
         return 0;
+    if(card->controller()->epic)//zoetic cavern... morph is casted for a cost...
+        return 0;
     //note lands can morph too, this is different from other cost types.
-    if ((card->hasType(Subtypes::TYPE_INSTANT)) || card->has(Constants::FLASH) || (player == currentPlayer
+    if ((card->hasType(Subtypes::TYPE_INSTANT)) || card->has(Constants::FLASH) || (player == card->controller()
         && !game->isInterrupting
         && (game->getCurrentGamePhase() == MTG_PHASE_FIRSTMAIN
         || game->getCurrentGamePhase() == MTG_PHASE_SECONDMAIN))
         )
     {
-        if (game->currentActionPlayer->game->playRestrictions->canPutIntoZone(card, game->currentActionPlayer->game->stack) == PlayRestriction::CANT_PLAY)
+        if (card->controller()->game->playRestrictions->canPutIntoZone(card, card->controller()->game->stack) == PlayRestriction::CANT_PLAY)
             return 0;
         ManaCost * playerMana = player->getManaPool();
         ManaCost * morph = card->getManaCost()->getMorph();

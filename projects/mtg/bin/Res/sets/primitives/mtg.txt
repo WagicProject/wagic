@@ -16398,10 +16398,10 @@ type=Land
 [/card]
 [card]
 name=City of Solitude
-auto=this(variable{controllerturn}) maxCast(*)0 opponent
-auto=this(variable{controllerturn}) lord(*|opponentbattlefield) noactivatedability
-auto=this(variable{opponentturn}) maxCast(*)0 controller
-auto=this(variable{opponentturn}) lord(*|mybattlefield) noactivatedability
+auto=this(variable{controllerturn}>0) maxCast(*)0 opponent
+auto=this(variable{controllerturn}>0) lord(*|opponentbattlefield) noactivatedability
+auto=this(variable{opponentturn}>0) maxCast(*)0 controller
+auto=this(variable{opponentturn}>0) lord(*|mybattlefield) noactivatedability
 text=Players can cast spells and activate abilities only during their own turns.
 mana={2}{G}
 type=Enchantment
@@ -24860,8 +24860,8 @@ type=Land
 [/card]
 [card]
 name=Dosan the Falling Leaf
-auto=this(variable{controllerturn}) maxCast(*)0 opponent
-auto=this(variable{opponentturn}) maxCast(*)0 controller
+auto=this(variable{controllerturn}>0) maxCast(*)0 opponent
+auto=this(variable{opponentturn}>0) maxCast(*)0 controller
 text=Players can cast spells only during their own turns.
 mana={1}{G}{G}
 type=Legendary Creature
@@ -29061,6 +29061,14 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Endless Swarm
+auto=token(Snake,Creature Snake,1/1,green)*phandcount
+auto=if compare(epicactivated)~lessthan~1 then emblem transforms((,newability[epic controller],newability[@each my upkeep:castcard(copied named!:Endless Swarm:!)])) forever dontremove
+text=Put a 1/1 green Snake creature token onto the battlefield for each card in your hand. -- Epic (For the rest of the game, you can't cast spells. At the beginning of each of your upkeeps, copy this spell except for its epic ability.)
+mana={5}{G}{G}{G}
+type=Sorcery
+[/card]
+[card]
 name=Endless Whispers
 auto=@each endofturn:moveto(mybattlefield) all(creature[fresh]|opponentgraveyard)
 auto=@each endofturn:moveto(opponentbattlefield) all(creature[fresh]|mygraveyard)
@@ -29111,6 +29119,14 @@ auto=prevent:9999 controller
 text=Prevent all damage that would be dealt to you and permanents you control this turn.
 mana={3}{W}{W}
 type=Instant
+[/card]
+[card]
+name=Enduring Ideal
+auto=moveto(mybattlefield) notatarget(enchantment|mylibrary) and!( transforms((,newability[if cantargetcard(aura) then retarget target(creature|mybattlefield)])) )!
+auto=if compare(epicactivated)~lessthan~1 then emblem transforms((,newability[epic controller],newability[@each my upkeep:castcard(copied named!:Enduring Ideal:!)])) forever dontremove
+text=Search your library for an enchantment card and put it onto the battlefield. Then shuffle your library. -- Epic (For the rest of the game, you can't cast spells. At the beginning of each of your upkeeps, copy this spell except for its epic ability.)
+mana={5}{W}{W}
+type=Sorcery
 [/card]
 [card]
 name=Enemy of the Guildpact
@@ -29979,6 +29995,15 @@ type=Artifact Creature
 subtype=Wizard
 power=0
 toughness=0
+[/card]
+[card]
+name=Eternal Dominion
+target=opponent
+auto=target(*[artifact;creature;enchantment;land]|targetedpersonslibrary) moveto(mybattlefield)
+auto=if compare(epicactivated)~lessthan~1 then emblem transforms((,newability[epic controller],newability[@each my upkeep:castcard(copied named!:Eternal Dominion:!)])) forever dontremove
+text=Search target opponent's library for an artifact, creature, enchantment, or land card. Put that card onto the battlefield under your control. Then that player shuffles his or her library. -- Epic (For the rest of the game, you can't cast spells. At the beginning of each of your upkeeps, copy this spell except for its epic ability. You may choose a new target for the copy.)
+mana={7}{U}{U}{U}
+type=Sorcery
 [/card]
 [card]
 name=Eternal Dragon
@@ -38047,8 +38072,8 @@ toughness=3
 [/card]
 [card]
 name=Glory of Warfare
-auto=this(variable{controllerturn}) lord(creature|mybattlefield) 2/0
-auto=this(variable{opponentturn}) lord(creature|mybattlefield) 0/2
+auto=this(variable{controllerturn}>0) lord(creature|mybattlefield) 2/0
+auto=this(variable{opponentturn}>0) lord(creature|mybattlefield) 0/2
 text=As long as it's your turn, creatures you control get +2/+0. -- As long as it's not your turn, creatures you control get +0/+2.
 mana={2}{R}{W}
 type=Enchantment
@@ -39827,8 +39852,8 @@ type=Artifact
 [/card]
 [card]
 name=Grand Abolisher
-auto=this(variable{controllerturn}) maxCast(*)0 opponent
-auto=this(variable{controllerturn}) lord(*[artifact;enchantment;creature]|opponentbattlefield) noactivatedability
+auto=this(variable{controllerturn}>0) maxCast(*)0 opponent
+auto=this(variable{controllerturn}>0) lord(*[artifact;enchantment;creature]|opponentbattlefield) noactivatedability
 text=During your turn, your opponents can't cast spells or activate abilities of artifacts, creatures, or enchantments.
 mana={W}{W}
 type=Creature
@@ -64511,6 +64536,15 @@ mana={1}{U}
 type=Instant
 [/card]
 [card]
+name=Neverending Torment
+target=player
+auto=moveto(exile) target(<phandcount>*|targetedpersonslibrary)
+auto=if compare(epicactivated)~lessthan~1 then emblem transforms((,newability[epic controller],newability[@each my upkeep:castcard(copied named!:Neverending Torment:!)])) forever dontremove
+text=Search target player's library for X cards, where X is the number of cards in your hand, and exile them. Then that player shuffles his or her library. -- Epic (For the rest of the game, you can't cast spells. At the beginning of each of your upkeeps, copy this spell except for its epic ability. You may choose a new target for the copy.)
+mana={4}{B}{B}
+type=Sorcery
+[/card]
+[card]
 name=Nevermaker
 abilities=flying
 other={3}{U} name(Evoke)
@@ -65912,7 +65946,7 @@ subtype=Equipment
 [/card]
 [card]
 name=Oak Street Innkeeper
-auto=this(variable{opponentturn}) lord(creature[tapped]|mybattlefield) opponentshroud
+auto=this(variable{opponentturn}>0) lord(creature[tapped]|mybattlefield) opponentshroud
 text=As long as it's not your turn, tapped creatures you control have hexproof.
 mana={2}{G}
 type=Creature
@@ -66036,7 +66070,7 @@ type=Artifact
 [/card]
 [card]
 name=Ob Nixilis, the Fallen
-auto=@movedTo(land|myBattlefield):may counter(1/1,3) && life:-3 opponent
+auto=@movedTo(land|myBattlefield):may life:-3 target(player) && counter(1/1,3) all(this)
 text=Landfall - Whenever a land enters the battlefield under your control, you may have target player lose 3 life. If you do, put three +1/+1 counters on Ob Nixilis, the Fallen.
 mana={3}{B}{B}
 type=Legendary Creature
@@ -104694,8 +104728,8 @@ toughness=4
 [/card]
 [card]
 name=Vibrating Sphere
-auto=this(variable{controllerturn}) lord(creature|mybattlefield) 2/0
-auto=this(variable{opponentturn}) lord(creature|mybattlefield) 0/-2
+auto=this(variable{controllerturn}>0) lord(creature|mybattlefield) 2/0
+auto=this(variable{opponentturn}>0) lord(creature|mybattlefield) 0/-2
 text=As long as it's your turn, creatures you control get +2/+0. -- As long as it's not your turn, creatures you control get -0/-2.
 mana={4}
 type=Artifact
@@ -111952,7 +111986,7 @@ toughness=1
 [card]
 name=Zurgo Helmsmasher
 abilities=haste,mustattack
-auto=this(variable{controllerturn}) indestructible
+auto=this(variable{controllerturn}>0) indestructible
 auto=@vampired(creature) from(this):counter(1/1,1) all(this)
 text=Haste. -- Zurgo Helmsmasher attacks each combat if able. -- Zurgo Helmsmasher has indestructible as long as it is your turn. -- Whenever a creature dealt damage by Zurgo Helmsmasher dies, put a +1/+1 counter on Zurgo Helmsmasher.
 mana={2}{R}{W}{B}

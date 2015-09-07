@@ -42,6 +42,7 @@ public:
     int skippingTurn;
     int extraTurn;
     int drawCounter;
+    int epic;
     vector<string> prowledTypes;
     vector<MTGCardInstance*>curses;
     Player(GameObserver *observer, string deckFile, string deckFileSmall, MTGDeck * deck = NULL);

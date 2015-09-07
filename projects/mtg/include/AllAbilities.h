@@ -599,6 +599,10 @@ private:
         {
             intValue = target->controller()->opponent()->drawCounter;
         }
+        else if (s == "epicactivated")
+        {
+            intValue = target->controller()->epic;
+        }
         else if (s == "p" || s == "power")
         {
             intValue = target->getPower();
@@ -1333,6 +1337,16 @@ public:
     int resolve();
     const string getMenuText();
     AAFakeAbility * clone() const;
+};
+
+class AAEPIC: public ActivatedAbility
+{
+public:
+    string named;
+    AAEPIC(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target,string _newName, ManaCost * cost = NULL);
+    int resolve();
+    const string getMenuText();
+    AAEPIC * clone() const;
 };
 
 class AAFizzler: public ActivatedAbility
