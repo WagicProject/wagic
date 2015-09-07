@@ -8883,7 +8883,7 @@ type=Sorcery
 [card]
 name=Black Vise
 auto=name(choose opponent) notatarget(opponent) deplete:0
-auto=@each targetedplayer upkeep:foreach(*|targetedpersonshand) damage:1 targetedplayer >4
+auto=@each targetedplayer upkeep:damage:morethanfourcards targetedplayer
 text=As Black Vise enters the battlefield, choose an opponent. -- At the beginning of the chosen player's upkeep, Black Vise deals X damage to that player, where X is the number of cards in his or her hand minus 4.
 mana={1}
 type=Artifact
@@ -47645,7 +47645,7 @@ type=Artifact
 [/card]
 [card]
 name=Iron Maiden
-auto=@each opponent upkeep:foreach(*|opponenthand) damage:1 opponent >4
+auto=@each opponent upkeep:damage:morethanfourcards opponent
 text=At the beginning of each opponent's upkeep, Iron Maiden deals X damage to that player, where X is the number of cards in his or her hand minus 4.
 mana={3}
 type=Artifact
@@ -76605,6 +76605,13 @@ power=3
 toughness=4
 [/card]
 [card]
+name=Restore the Peace
+auto=all(creature[damager]) moveto(ownerhand)
+text=Return each creature that dealt damage this turn to its owner's hand.
+mana={1}{W}{U}
+type=Instant
+[/card]
+[card]
 name=Restrain
 target=creature[attacking]
 auto=0/0 && fog from(mytgt) oneshot
@@ -105376,7 +105383,7 @@ toughness=3
 [/card]
 [card]
 name=Viseling
-auto=@each opponent upkeep:foreach(*|opponenthand) damage:1 opponent >4
+auto=@each opponent upkeep:damage:morethanfourcards opponent
 text=At the beginning of each opponent's upkeep, Viseling deals X damage to that player, where X is the number of cards in his or her hand minus 4.
 mana={4}
 type=Artifact Creature
