@@ -11637,51 +11637,6 @@ mana={3}{B}{B}
 type=Sorcery
 [/card]
 [card]
-name=Patron of the Akki
-text=Goblin offering (You may cast this card any time you could cast an instant by sacrificing a Goblin and paying the difference in mana costs between this and the sacrificed Goblin. Mana cost includes color.) -- Whenever Patron of the Akki attacks, creatures you control get +2/+0 until end of turn.
-mana={4}{R}{R}
-type=Legendary Creature
-subtype=Spirit
-power=5
-toughness=5
-[/card]
-[card]
-name=Patron of the Kitsune
-text=Fox offering (You may cast this card any time you could cast an instant by sacrificing a Fox and paying the difference in mana costs between this and the sacrificed Fox. Mana cost includes color.) -- Whenever a creature attacks, you may gain 1 life.
-mana={4}{W}{W}
-type=Legendary Creature
-subtype=Spirit
-power=5
-toughness=6
-[/card]
-[card]
-name=Patron of the Moon
-text=Moonfolk offering (You may cast this card any time you could cast an instant by sacrificing a Moonfolk and paying the difference in mana costs between this and the sacrificed Moonfolk. Mana cost includes color.) -- Flying -- {1}: Put up to two land cards from your hand onto the battlefield tapped.
-mana={5}{U}{U}
-type=Legendary Creature
-subtype=Spirit
-power=5
-toughness=4
-[/card]
-[card]
-name=Patron of the Nezumi
-text=Rat offering (You may cast this card any time you could cast an instant by sacrificing a Rat and paying the difference in mana costs between this and the sacrificed Rat. Mana cost includes color.) -- Whenever a permanent is put into an opponent's graveyard, that player loses 1 life.
-mana={5}{B}{B}
-type=Legendary Creature
-subtype=Spirit
-power=6
-toughness=6
-[/card]
-[card]
-name=Patron of the Orochi
-text=Snake offering (You may cast this card any time you could cast an instant by sacrificing a Snake and paying the difference in mana costs between this and the sacrificed Snake. Mana cost includes color.) -- {T}: Untap all Forests and all green creatures. Activate this ability only once each turn.
-mana={6}{G}{G}
-type=Legendary Creature
-subtype=Spirit
-power=7
-toughness=7
-[/card]
-[card]
 name=Pay No Heed
 text=Prevent all damage a source of your choice would deal this turn.
 mana={W}

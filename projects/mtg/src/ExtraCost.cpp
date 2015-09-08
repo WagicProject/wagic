@@ -762,6 +762,65 @@ int Ninja::doPay()
 }
 
 //endbouncetargetcostforninja
+
+//Sacrifice target as cost for Offering
+Offering * Offering::clone() const
+{
+    Offering * ec = NEW Offering(*this);
+    if (tc)
+        ec->tc = tc->clone();
+    return ec;
+}
+
+Offering::Offering(TargetChooser *_tc) :
+ExtraCost("Select creature to offer", _tc)
+{
+}
+
+int Offering::canPay()
+{
+    if (target && (!source->controller()->getManaPool()->canAfford(source->getManaCost()->Diff(target->getManaCost()))))
+    {
+        tc->removeTarget(target);
+        target = NULL;
+        return 0;
+    }
+    if (target && (source->controller()->getManaPool()->canAfford(source->getManaCost()->Diff(target->getManaCost()))))
+        return 1;
+    return 0;
+}
+
+int Offering::isPaymentSet()
+{
+    if (target && (!source->controller()->getManaPool()->canAfford(source->getManaCost()->Diff(target->getManaCost()))))
+    {
+        tc->removeTarget(target);
+        target = NULL;
+        return 0;
+    }
+    if (target && (source->controller()->getManaPool()->canAfford(source->getManaCost()->Diff(target->getManaCost()))))
+        return 1;
+    return 0;
+}
+
+int Offering::doPay()
+{
+    if (target)
+    {
+        target->controller()->getManaPool()->pay(source->getManaCost()->Diff(target->getManaCost()));
+        MTGCardInstance * beforeCard = target;
+        source->storedCard = target->createSnapShot();
+        target->controller()->game->putInGraveyard(target);
+        WEvent * e = NEW WEventCardSacrifice(beforeCard,target);
+        GameObserver * game = target->owner->getObserver();
+        game->receiveEvent(e);
+        target = NULL;
+        if (tc)
+            tc->initTargets();
+        return 1;
+    }
+    return 0;
+}
 //------------------------------------------------------------
 
 SacrificeCost * SacrificeCost::clone() const

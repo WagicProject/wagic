@@ -447,6 +447,12 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
             if(cPhase < MTG_PHASE_COMBATBEGIN ||cPhase > MTG_PHASE_COMBATEND )
                 return 0;
         }
+        check = restriction[i].find("during my main phases");
+        if(check != string::npos)
+        {
+            if( player != observer->currentPlayer && (cPhase != MTG_PHASE_FIRSTMAIN ||cPhase != MTG_PHASE_SECONDMAIN) )
+                return 0;
+        }
         check = restriction[i].find("during my turn");
         if(check != string::npos)
         {
