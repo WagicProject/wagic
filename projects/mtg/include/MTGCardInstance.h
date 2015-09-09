@@ -72,7 +72,9 @@ public:
     int regenerateTokens;
     int isToken;
     int origpower;
+    int basepower;
     int origtoughness;
+    int basetoughness;
     int isMultiColored;
     int isLeveler;
     bool enchanted;
