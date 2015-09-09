@@ -4181,20 +4181,18 @@ for (it = types.begin(); it != types.end(); it++)
         }
     }
     if(newpowerfound )
-    {
+    {//setting p/t only overrides base p/t as of M15 changes
         WParsedInt * val = NEW WParsedInt(newpower,NULL, source);
-        oldpower = _target->power;
-        _target->power += val->getValue();
-        _target->power -= oldpower;
+        oldpowerbonus = _target->power - _target->origpower;//keep bonus if any
+        _target->setPower(oldpowerbonus + val->getValue());
         _target->power += reapplyCountersBonus(_target,false,true);
         delete val;
     }
     if(newtoughnessfound )
-    {
+    {//setting p/t only overrides base p/t as of M15 changes
         WParsedInt * val = NEW WParsedInt(newtoughness,NULL, source);
-        oldtoughness = _target->toughness;
-        _target->addToToughness(val->getValue());
-        _target->addToToughness(-oldtoughness);
+        oldtoughnessbonus = _target->toughness - _target->origtoughness;// keep bonus if any
+        _target->setToughness(oldtoughnessbonus + val->getValue());
         _target->addToToughness(reapplyCountersBonus(_target,true,false));
         _target->life = _target->toughness;
         delete val;
@@ -4283,11 +4281,11 @@ int ATransformer::destroy()
 
         if(newpowerfound )
         {
-            _target->power = oldpower;
+            _target->setPower(oldpowerbonus + _target->origpower);
         }
         if(newtoughnessfound )
         {
-            _target->setToughness(oldtoughness);
+            _target->setToughness(oldtoughnessbonus + _target->origtoughness);
         }
         if(newAbilityFound)
         {

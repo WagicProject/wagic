@@ -30657,7 +30657,7 @@ toughness=4
 [/card]
 [card]
 name=Ethereal Haze
-auto=preventalldamage to(creature) ueot
+auto=preventalldamage from(creature) ueot
 text=Prevent all damage that would be dealt by creatures this turn.
 mana={W}
 type=Instant
@@ -69643,6 +69643,66 @@ type=Creature
 subtype=Kithkin Soldier
 power=1
 toughness=1
+[/card]
+[card]
+name=Patron of the Akki
+other={kgoblin} name(Goblin Offering)
+abilities=offering
+auto=@combat(attacking) source(this):all(creature[attacking]) 2/0 ueot
+text=Goblin offering (You may cast this card any time you could cast an instant by sacrificing a Goblin and paying the difference in mana costs between this and the sacrificed Goblin. Mana cost includes color.) -- Whenever Patron of the Akki attacks, creatures you control get +2/+0 until end of turn.
+mana={4}{R}{R}
+type=Legendary Creature
+subtype=Spirit
+power=5
+toughness=5
+[/card]
+[card]
+name=Patron of the Kitsune
+other={kfox} name(Fox Offering)
+abilities=offering
+auto=@each blockers:may life:type:creature[attacking]:battlefield controller
+text=Fox offering (You may cast this card any time you could cast an instant by sacrificing a Fox and paying the difference in mana costs between this and the sacrificed Fox. Mana cost includes color.) -- Whenever a creature attacks, you may gain 1 life.
+mana={4}{W}{W}
+type=Legendary Creature
+subtype=Spirit
+power=5
+toughness=6
+[/card]
+[card]
+name=Patron of the Moon
+other={kmoonfolk} name(Moonfolk Offering)
+abilities=flying,offering
+auto={1}:name(put 2 lands in play) moveto(mybattlefield) and!(tap)! notatarget(<upto:2>land|myhand)
+text=Moonfolk offering (You may cast this card any time you could cast an instant by sacrificing a Moonfolk and paying the difference in mana costs between this and the sacrificed Moonfolk. Mana cost includes color.) -- Flying -- {1}: Put up to two land cards from your hand onto the battlefield tapped.
+mana={5}{U}{U}
+type=Legendary Creature
+subtype=Spirit
+power=5
+toughness=4
+[/card]
+[card]
+name=Patron of the Nezumi
+other={krat} name(Rat Offering)
+abilities=offering
+auto=@movedto(*|opponentgraveyard) from(battlefield):life:-1 opponent
+text=Rat offering (You may cast this card any time you could cast an instant by sacrificing a Rat and paying the difference in mana costs between this and the sacrificed Rat. Mana cost includes color.) -- Whenever a permanent is put into an opponent's graveyard, that player loses 1 life.
+mana={5}{B}{B}
+type=Legendary Creature
+subtype=Spirit
+power=6
+toughness=6
+[/card]
+[card]
+name=Patron of the Orochi
+other={ksnake} name(Snake Offering)
+abilities=offering
+auto={T}:name(untap all green creatures and forests) untap all(forest) && untap all(creature[green]) limit:1
+text=Snake offering (You may cast this card any time you could cast an instant by sacrificing a Snake and paying the difference in mana costs between this and the sacrificed Snake. Mana cost includes color.) -- {T}: Untap all Forests and all green creatures. Activate this ability only once each turn.
+mana={6}{G}{G}
+type=Legendary Creature
+subtype=Spirit
+power=7
+toughness=7
 [/card]
 [card]
 name=Patron of the Wild
