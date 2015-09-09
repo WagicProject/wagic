@@ -4186,7 +4186,6 @@ for (it = types.begin(); it != types.end(); it++)
         oldpowerbonus = _target->power - _target->basepower;//keep bonus if any
         _target->setPower(oldpowerbonus + val->getValue());
         _target->basepower = val->getValue();
-        //_target->power += reapplyCountersBonus(_target,false,true);
         delete val;
     }
     if(newtoughnessfound )
@@ -4195,7 +4194,6 @@ for (it = types.begin(); it != types.end(); it++)
         oldtoughnessbonus = _target->toughness - _target->basetoughness;// keep bonus if any
         _target->setToughness(oldtoughnessbonus + val->getValue());
         _target->basetoughness = val->getValue();
-        //_target->addToToughness(reapplyCountersBonus(_target,true,false));
         _target->life = _target->toughness;
         delete val;
     }
@@ -4284,10 +4282,12 @@ int ATransformer::destroy()
         if(newpowerfound )
         {
             _target->setPower(oldpowerbonus + _target->basepower);
+            _target->power += reapplyCountersBonus(_target,false,true);
         }
         if(newtoughnessfound )
         {
             _target->setToughness(oldtoughnessbonus + _target->basetoughness);
+            _target->addToToughness(reapplyCountersBonus(_target,true,false));
         }
         if(newAbilityFound)
         {
