@@ -4307,10 +4307,10 @@ public:
     
     string newpower;
     bool newpowerfound;
-    int oldpower;
+    int oldpowerbonus;
     string newtoughness;
     bool newtoughnessfound;
-    int oldtoughness;
+    int oldtoughnessbonus;
     map<Damageable *, vector<MTGAbility *> > newAbilities;
     vector<string> newAbilitiesList;
     bool newAbilityFound;
