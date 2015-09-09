@@ -30657,7 +30657,7 @@ toughness=4
 [/card]
 [card]
 name=Ethereal Haze
-auto=preventalldamage to(creature) ueot
+auto=preventalldamage from(creature) ueot
 text=Prevent all damage that would be dealt by creatures this turn.
 mana={W}
 type=Instant
