@@ -4183,17 +4183,22 @@ for (it = types.begin(); it != types.end(); it++)
     if(newpowerfound )
     {//setting p/t only overrides base p/t as of M15 changes
         WParsedInt * val = NEW WParsedInt(newpower,NULL, source);
-        oldpowerbonus = _target->power - _target->basepower;//keep bonus if any
+        oldpower = _target->power;
+        oldpowerbonus = oldpower - _target->basepower;
         _target->setPower(oldpowerbonus + val->getValue());
         _target->basepower = val->getValue();
+        //?effects that change pt outside this?
+        //_target->power += reapplyCountersBonus(_target,false,true);
         delete val;
     }
     if(newtoughnessfound )
     {//setting p/t only overrides base p/t as of M15 changes
         WParsedInt * val = NEW WParsedInt(newtoughness,NULL, source);
-        oldtoughnessbonus = _target->toughness - _target->basetoughness;// keep bonus if any
+        oldtoughness = _target->toughness;
+        oldtoughnessbonus = oldtoughness - _target->basetoughness;
         _target->setToughness(oldtoughnessbonus + val->getValue());
-        _target->basetoughness = val->getValue();
+		_target->basetoughness = val->getValue();
+        //_target->addToToughness(reapplyCountersBonus(_target,true,false));
         _target->life = _target->toughness;
         delete val;
     }
@@ -4280,14 +4285,17 @@ int ATransformer::destroy()
         }
 
         if(newpowerfound )
-        {
-            _target->setPower(oldpowerbonus + _target->basepower);
-            _target->power += reapplyCountersBonus(_target,false,true);
+        {//override since we changed tha base, the bonus must have changed
+            oldpowerbonus = (_target->power - _target->basepower);//math hurts my head...it's all over the place :P
+            _target->setPower(_target->origpower + oldpowerbonus);
+            _target->basepower = _target->origpower;//revert
         }
         if(newtoughnessfound )
-        {
-            _target->setToughness(oldtoughnessbonus + _target->basetoughness);
-            _target->addToToughness(reapplyCountersBonus(_target,true,false));
+        {//override since we changed tha base, the bonus must have changed
+            oldtoughnessbonus = (_target->toughness - _target->basetoughness);
+            _target->setToughness(_target->origtoughness + oldtoughnessbonus);
+            _target->basetoughness = _target->origtoughness;//revert
+            _target->life = _target->toughness;//update
         }
         if(newAbilityFound)
         {
