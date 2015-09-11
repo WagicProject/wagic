@@ -67,7 +67,7 @@ void DamagerDamaged::clearDamage()
 void DamagerDamaged::Render(CombatStep mode)
 {
     TransientCardView::Render();
-    WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
+    WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MENU_FONT);
     mFont->SetBase(0);
 
     switch (mode)
@@ -75,13 +75,15 @@ void DamagerDamaged::Render(CombatStep mode)
     case BLOCKERS:
     case TRIGGERS:
     case ORDER:
-        mFont->SetColor(ARGB(92,255,255,255));
+		mFont->SetScale(2);
+        mFont->SetColor(ARGB(255,255,0,0));
         break;
     case FIRST_STRIKE:
     case END_FIRST_STRIKE:
     case DAMAGE:
     case END_DAMAGE:
-        mFont->SetColor(ARGB(255, 255, 64, 0));
+		mFont->SetScale(2);
+        mFont->SetColor(ARGB(255,255,0,0));
         break;
     }
 

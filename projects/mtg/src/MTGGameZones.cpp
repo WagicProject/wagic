@@ -146,16 +146,16 @@ void MTGPlayerCards::OptimizedHand(Player * who,int amount, int lands, int creat
                 }
             }
             //----------------first try to optimize a few cards that cost 2 or less.
-            if (_card->getManaCost()->getConvertedCost() <= 2 && optimizedothercards < othercards && !_card->isLand()
-                            && !_card->isCreature())
-            {
-                card = _card;
-                if (card)
-                {
-                    p->game->putInZone(card, p->game->library, p->game->hand);
-                    optimizedothercards += 1;
-                }
-            }
+ //           if (_card->getManaCost()->getConvertedCost() <= 3 && optimizedothercards < othercards && !_card->isLand()
+ //                           && !_card->isCreature())
+ //           {
+ //               card = _card;
+ //               if (card)
+ //               {
+ //                   p->game->putInZone(card, p->game->library, p->game->hand);
+ //                   optimizedothercards += 1;
+ //               }
+ //           }
             if (_card->getManaCost()->getConvertedCost() <= 2 && optimizedcreatures < creatures && _card->isCreature())
             {
                 card = _card;
@@ -164,23 +164,13 @@ void MTGPlayerCards::OptimizedHand(Player * who,int amount, int lands, int creat
                     p->game->putInZone(card, p->game->library, p->game->hand);
                     optimizedcreatures += 1;
                 }
-            }
+           }
         }
         //--------------incase none of them cost 2 or less(which makes for a really poorly crafted Ai deck), try for 3 or less at this point we're accepting anything but lands under 3 mana---
         for (int k = 0; k < z->nb_cards; k++)
         {
             MTGCardInstance * _card = z->cards[k];
 
-            if (_card->getManaCost()->getConvertedCost() <= 3 && optimizedothercards < othercards && (!_card->isLand()
-                            || _card->isCreature()))
-            {
-                card = _card;
-                if (card)
-                {
-                    p->game->putInZone(card, p->game->library, p->game->hand);
-                    optimizedothercards += 1;
-                }
-            }
             if (_card->getManaCost()->getConvertedCost() <= 3 && optimizedcreatures < creatures && (_card->isCreature()
                             || !_card->isLand()))
             {
@@ -189,6 +179,16 @@ void MTGPlayerCards::OptimizedHand(Player * who,int amount, int lands, int creat
                 {
                     p->game->putInZone(card, p->game->library, p->game->hand);
                     optimizedcreatures += 1;
+                }
+            }
+			if (_card->getManaCost()->getConvertedCost() <= 4 && optimizedothercards < othercards && (!_card->isLand()
+                            || !_card->isCreature()))
+            {
+                card = _card;
+                if (card)
+                {
+                    p->game->putInZone(card, p->game->library, p->game->hand);
+                    optimizedothercards += 1;
                 }
             }
         }

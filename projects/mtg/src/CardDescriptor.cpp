@@ -12,6 +12,7 @@ CardDescriptor::CardDescriptor()
     counterPower = 0;
     counterToughness = 0;
     counterNB = 0;
+	zonePosition = 0;
     mode = CD_AND;
     powerComparisonMode = COMPARISON_NONE;
     toughnessComparisonMode = COMPARISON_NONE;
@@ -190,7 +191,21 @@ MTGCardInstance * CardDescriptor::match(MTGCardInstance * card)
     {
         match = match_or(card);
     }
-
+	//Position in zone for reveal
+	if ( zonePosition ) {
+		vector< MTGCardInstance* > zoneCards = card->currentZone->cards;
+		int nZoneCards = static_cast< int >( zoneCards.size() );
+		bool posFound = false;
+		for ( int i = 1; i <= zonePosition; i++ ) {
+			if ( zoneCards[ nZoneCards - i ] == card ) {
+				posFound = true;
+				break;
+			}
+		}
+		if ( !posFound ) {
+			return NULL;
+		}
+	}
     //Abilities
     BasicAbilitiesSet set = basicAbilities & card->basicAbilities;
     if (set != basicAbilities)

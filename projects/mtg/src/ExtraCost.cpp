@@ -46,9 +46,9 @@ void ExtraCost::Render()
     if (!mCostRenderString.empty())
     {
         WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
-        mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
+        mFont->SetScale(2);
         mFont->SetColor(ARGB(255,255,255,255));
-        mFont->DrawString(mCostRenderString, 20, 20, JGETEXT_LEFT);
+        mFont->DrawString(mCostRenderString, 200, 125, JGETEXT_LEFT);
     }
 }
 

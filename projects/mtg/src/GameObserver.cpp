@@ -16,6 +16,7 @@
 #include "DeckManager.h"
 #include "GuiCombat.h"
 #include <algorithm>
+#include "Player.h"
 #ifdef TESTSUITE
 #include "TestSuiteAI.h"
 #endif
@@ -848,9 +849,11 @@ void GameObserver::gameStateBasedEffects()
     if (skipLevel == Constants::ASKIP_SAFE || skipLevel == Constants::ASKIP_FULL)
     {
         if ((opponent()->isAI() && !(isInterrupting)) && ((mCurrentGamePhase == MTG_PHASE_UNTAP)
-            || (mCurrentGamePhase == MTG_PHASE_DRAW) || (mCurrentGamePhase == MTG_PHASE_COMBATBEGIN)
+            || (mCurrentGamePhase == MTG_PHASE_DRAW)
+			|| (mCurrentGamePhase == MTG_PHASE_COMBATBEGIN)
             || ((mCurrentGamePhase == MTG_PHASE_COMBATATTACKERS) && (nrCreatures == 0))
-            || mCurrentGamePhase == MTG_PHASE_COMBATEND || mCurrentGamePhase == MTG_PHASE_ENDOFTURN
+            || mCurrentGamePhase == MTG_PHASE_COMBATEND
+			|| mCurrentGamePhase == MTG_PHASE_ENDOFTURN
             || ((mCurrentGamePhase == MTG_PHASE_CLEANUP) && (currentPlayer->game->hand->nb_cards < 8))))
             userRequestNextGamePhase();
     }

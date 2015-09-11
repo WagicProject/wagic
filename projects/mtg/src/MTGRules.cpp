@@ -1921,7 +1921,7 @@ PermanentAbility(observer, _id)
 int MTGHermitRule::receiveEvent(WEvent * event)
 {
 	WEventPhaseChange * e = dynamic_cast<WEventPhaseChange*>(event);
-        if (e && e->from->id == MTG_PHASE_UNTAP)
+        if ((e && e->from->id == MTG_PHASE_UNTAP) || (e && e->from->id == MTG_PHASE_DRAW && game->turn == 0))
 	{
 		MTGCardInstance * lcard = NULL;
 		vector<MTGCardInstance*>lands = vector<MTGCardInstance*>();

@@ -438,10 +438,15 @@ int OrderedAIAction::getEfficiency()
             //this should help a little, tho ultimately it will be decided later what the best course of action is.
             //eff of drawing ability is calculated by base 20 + the amount of cards in library minus the amount of cards in hand times 7.
             //drawing is never going to return a hundred eff because later eff is multiplied by 1.3 if no cards in hand.
-            efficiency = int(20 + p->game->library->nb_cards) - int(p->game->hand->nb_cards * 7);
-            if (p->game->hand->nb_cards > 8)//reduce by 50 if cards in hand are over 8, high chance ai cant play them.
+            //efficiency = int(20 + p->game->library->nb_cards) - int(p->game->hand->nb_cards * 7);
+            if (p->game->hand->nb_cards < 8)
             {
-                efficiency -= 70;
+            //if the above are not met than ai will draw.
+                efficiency = 100;
+            }
+            if (p->game->hand->nb_cards > 7)//reduce to 20 if cards in hand are over 7, high chance ai cant play them.
+            {
+                efficiency = 0;
             }
             if ((drawer->getNumCards() >= p->game->library->nb_cards && (Targetable*)p == drawer->getTarget()) || (p->game->hand->nb_cards > 10 && (Targetable*)p == drawer->getTarget()))
             {
@@ -520,12 +525,12 @@ int OrderedAIAction::getEfficiency()
             else
             {
             //without a base to start with Wrand % 5 almost always returns 0.
-                efficiency = 10 + (owner->getRandomGenerator()->random() % 20); //Small percentage of chance for unknown abilities
+                efficiency = 100; //Small percentage of chance for unknown abilities
             }
         }
         else
         {
-            efficiency = 10 + (owner->getRandomGenerator()->random() % 30);
+            efficiency = 80 + (owner->getRandomGenerator()->random() % 20);
         }
         break;
     }
@@ -602,10 +607,10 @@ int OrderedAIAction::getEfficiency()
     {
         AIPlayer * chk = (AIPlayer*)p;
         if(may->ability && may->ability->getActionTc() && chk->chooseTarget(may->ability->getActionTc(),NULL,NULL,true))
-        efficiency = 50 + (owner->getRandomGenerator()->random() % 50);
+        efficiency = 80 + (owner->getRandomGenerator()->random() % 20);
     }
-    if (p->game->hand->nb_cards == 0)
-        efficiency = (int) ((float) efficiency * 1.3); //increase chance of using ability if hand is empty
+    if (p->game->hand->nb_cards <= 4)
+        efficiency = (int) ((float) efficiency * 1.3); //increase chance of using ability if hand 4 cards or less
     ManaCost * cost = ability->getCost();
     if (cost)
     {

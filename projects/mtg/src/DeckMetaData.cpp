@@ -105,10 +105,10 @@ void DeckMetaData::LoadStats()
 
 }
 
-// since we only have 100 stock avatar images, we need to recycle the images for deck numbers > 99
+// since we only have 100 stock avatar images, we need to recycle the images for deck numbers > 99 Modded to allow up to 200 avatar images
 int DeckMetaData::getAvatarId()
 {
-    return mDeckId % 100;
+    return mDeckId % 200;
 }
 
 //Accessors

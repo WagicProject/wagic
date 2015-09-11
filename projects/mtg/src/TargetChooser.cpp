@@ -364,7 +364,11 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                         attribute = attribute.substr(0, operatorPosition);
                     }
                 }
-
+				//Find position of card in zone
+				if ( attribute.find( "pos" ) != string::npos ) {
+					cd->zonePosition = comparisonCriterion;
+					continue;   //prevent "pos" from being added as a type
+				}
                 //Attacker
                 if (attribute.find("attacking") != string::npos)
                 {

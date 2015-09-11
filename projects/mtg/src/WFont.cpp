@@ -38,9 +38,9 @@ static PIXEL_TYPE gencolor(int id, PIXEL_TYPE color)
     switch (id)
     {
     case Fonts::MAIN_FONT: // simon 245, 228, 156
-        r0 = 245;
-        g0 = 228;
-        b0 = 156;
+        r0 = 255;
+        g0 = 255;
+        b0 = 255;
         break;
     case Fonts::MENU_FONT: // f3 255, 252, 175
         r0 = 255;

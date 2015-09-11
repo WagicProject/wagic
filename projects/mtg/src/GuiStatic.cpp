@@ -31,8 +31,8 @@ void GuiAvatar::Render()
     JRenderer * r = JRenderer::GetInstance();
     int life = player->life;
     int poisonCount = player->poisonCount;
-    WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MAIN_FONT);
-    mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
+    WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MENU_FONT);
+    mFont->SetScale(1.5);
     //Avatar
     int lifeDiff = life - currentLife;
     if (lifeDiff < 0 && currentLife > 0)
@@ -96,20 +96,82 @@ void GuiAvatar::Render()
 
     //Life
     char buffer[10];
-    sprintf(buffer, "%i", life);
-    switch (corner)
-    {
-    case TOP_LEFT:
-        mFont->SetColor(ARGB((int)actA / 4, 0, 0, 0));
-        mFont->DrawString(buffer, actX + 2, actY + 2);
-        mFont->SetColor(ARGB((int)actA, 255, 255, 255));
-        mFont->DrawString(buffer, actX + 1, actY + 1);
-        break;
-    case BOTTOM_RIGHT:
-        mFont->SetColor(ARGB((int)actA, 255, 255, 255));
-        mFont->DrawString(buffer, actX, actY - 10, JGETEXT_RIGHT);
-        break;
-    }
+	if (life > 14)
+	{
+		sprintf(buffer, "%i", life);
+		switch (corner)
+		{
+		case TOP_LEFT:
+			mFont->SetColor(ARGB((int)actA, 0, 225, 0));
+			mFont->DrawString(buffer, actX + 1, actY -2);
+			break;
+		case BOTTOM_RIGHT:
+			mFont->SetColor(ARGB((int)actA, 0, 225, 0));
+			mFont->DrawString(buffer, actX, actY - 22, JGETEXT_RIGHT);
+			break;
+		}
+	}
+	if (life > 9 && life < 15)
+	{
+		sprintf(buffer, "%i", life);
+		switch (corner)
+		{
+		case TOP_LEFT:
+			mFont->SetColor(ARGB((int)actA, 255, 255, 0));
+			mFont->DrawString(buffer, actX + 1, actY -2);
+			break;
+		case BOTTOM_RIGHT:
+			mFont->SetColor(ARGB((int)actA, 255, 255, 0));
+			mFont->DrawString(buffer, actX, actY - 22, JGETEXT_RIGHT);
+			break;
+		}
+	}
+	if (life > 4 && life < 10)
+	{
+		sprintf(buffer, "%i", life);
+		switch (corner)
+		{
+		case TOP_LEFT:
+			mFont->SetColor(ARGB((int)actA, 255, 165, 0));
+			mFont->DrawString(buffer, actX + 1, actY -2);
+			break;
+		case BOTTOM_RIGHT:
+			mFont->SetColor(ARGB((int)actA, 255, 165, 0));
+			mFont->DrawString(buffer, actX, actY - 22, JGETEXT_RIGHT);
+			break;
+		}
+	}
+	if (life > 0 && life < 5)
+	{
+		sprintf(buffer, "%i", life);
+		switch (corner)
+		{
+		case TOP_LEFT:
+			mFont->SetColor(ARGB((int)actA, 255, 0, 0));
+			mFont->DrawString(buffer, actX + 1, actY -2);
+			break;
+		case BOTTOM_RIGHT:
+			mFont->SetColor(ARGB((int)actA, 255, 0, 0));
+			mFont->DrawString(buffer, actX, actY - 22, JGETEXT_RIGHT);
+			break;
+		}
+	}
+	if (life < 1)
+	{
+		sprintf(buffer, "%i", life);
+		switch (corner)
+		{
+		case TOP_LEFT:
+			mFont->SetColor(ARGB((int)actA, 105, 105, 105));
+			mFont->DrawString(buffer, actX + 1, actY -2);
+			break;
+		case BOTTOM_RIGHT:
+			mFont->SetColor(ARGB((int)actA, 105, 105, 105));
+			mFont->DrawString(buffer, actX, actY - 22, JGETEXT_RIGHT);
+			break;
+		}
+	}
+	
     //poison
     char poison[5];
     if (poisonCount > 0)
@@ -118,12 +180,12 @@ void GuiAvatar::Render()
         switch (corner)
         {
         case TOP_LEFT:
-            mFont->SetColor(ARGB((int)actA / 1, 0, 255, 0));
-            mFont->DrawString(poison, actX + 2, actY + 10);
+            mFont->SetColor(ARGB((int)actA / 1, 148, 0, 211));
+            mFont->DrawString(poison, actX + 1, actY + 13);
             break;
         case BOTTOM_RIGHT:
-            mFont->SetColor(ARGB((int)actA / 1 ,0, 255, 0));
-            mFont->DrawString(poison, actX, actY - 20, JGETEXT_RIGHT);
+            mFont->SetColor(ARGB((int)actA / 1 ,148, 0, 211));
+            mFont->DrawString(poison, actX, actY - 37, JGETEXT_RIGHT);
             break;
         }
     }
