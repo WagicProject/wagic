@@ -1,0 +1,41 @@
+#Testing Turn to Frog to Serra Angel with Glorious Anthem in play.
+#First attack is 2/2 blue Serra Angel affected by Glorious Anthem
+#Second attack is 5/5 Serra Angel affected by Glorious Anthem :)
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Serra Angel, Glorious Anthem
+hand:Turn to Frog
+manapool:{1}{U}
+[PLAYER2]
+[DO]
+Turn to Frog
+Serra Angel
+next
+next
+Serra Angel
+next
+eot
+eot
+#untap
+next
+#upkeep
+next
+#draw
+next
+#main1
+next
+#combat begin
+next
+#attackers
+Serra Angel
+eot
+[ASSERT]
+UNTAP
+[PLAYER1]
+inplay:Serra Angel, Glorious Anthem
+graveyard:Turn to Frog
+manapool:{0}
+[PLAYER2]
+life:13
+[END] 
