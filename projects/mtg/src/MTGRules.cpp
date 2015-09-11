@@ -317,7 +317,7 @@ int MTGPutInPlayRule::isReactingToClick(MTGCardInstance * card, ManaCost *)
             return 1;
         }
     }
-    else if ((card->hasType(Subtypes::TYPE_INSTANT)) || card->has(Constants::FLASH)
+    else if ((card->hasType(Subtypes::TYPE_INSTANT)) || card->has(Constants::FLASH) 
         || (player == card->controller() && !game->isInterrupting
         && (game->getCurrentGamePhase() == MTG_PHASE_FIRSTMAIN
         || game->getCurrentGamePhase() == MTG_PHASE_SECONDMAIN))
@@ -651,7 +651,7 @@ int MTGAlternativeCostRule::isReactingToClick(MTGCardInstance * card, ManaCost *
             )
             return 1;
     }
-    else if ((card->hasType(Subtypes::TYPE_INSTANT)) || card->has(Constants::FLASH) 
+    else if ((card->hasType(Subtypes::TYPE_INSTANT)) || card->has(Constants::FLASH) || card->has(Constants::OFFERING) 
         || (player == card->controller() && !game->isInterrupting
         && (game->getCurrentGamePhase() == MTG_PHASE_FIRSTMAIN
         || game->getCurrentGamePhase() == MTG_PHASE_SECONDMAIN))

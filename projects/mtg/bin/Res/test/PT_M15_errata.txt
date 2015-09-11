@@ -1,0 +1,47 @@
+#Testing Turn to Frog to Serra Angel with Crusade in play.
+#M15 uses base power template, so setting the power/toughness.
+#only affects the base or original power/toughness.
+#Turn to Frog makes Serra Angel a 1/1 blue frog... latest pull
+#request from GIT fixes the issue of Serra Angel dying
+#from crusade because of invalid reduction of P/T :)
+#
+#First attack is 1/1 blue Serra Angel unaffected by Crusade
+#Second attack is 5/5 Serra Angel affected by Crusade :)
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Serra Angel, Crusade
+hand:Turn to Frog
+manapool:{1}{U}
+[PLAYER2]
+[DO]
+Turn to Frog
+Serra Angel
+next
+next
+Serra Angel
+next
+eot
+eot
+#untap
+next
+#upkeep
+next
+#draw
+next
+#main1
+next
+#combat begin
+next
+#attackers
+Serra Angel
+eot
+[ASSERT]
+UNTAP
+[PLAYER1]
+inplay:Serra Angel, Crusade
+graveyard:Turn to Frog
+manapool:{0}
+[PLAYER2]
+life:14
+[END] 

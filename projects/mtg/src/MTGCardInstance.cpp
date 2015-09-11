@@ -36,7 +36,9 @@ MTGCardInstance::MTGCardInstance(MTGCard * card, MTGPlayerCards * arg_belongs_to
     attacker = 0;
     lifeOrig = life;
     origpower = power;
+    basepower = origpower;
     origtoughness = toughness;
+    basetoughness = origtoughness;
     belongs_to = arg_belongs_to;
     owner = NULL;
     if (arg_belongs_to)
