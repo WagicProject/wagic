@@ -170,7 +170,10 @@ private:
         }
         else if (s == "manacost")
         {
-            intValue = target->getManaCost()->getConvertedCost();
+            if (target->currentZone == target->controller()->game->stack)//X is 0 except if it's on the stack
+                intValue = target->getManaCost()->getConvertedCost() + target->castX;
+            else
+                intValue = target->getManaCost()->getConvertedCost();
         }
         else if (s == "azorius")//devotion blue white
         {
