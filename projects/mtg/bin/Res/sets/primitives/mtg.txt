@@ -52665,6 +52665,15 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Konda's Banner
+auto={2}:equip target(creature[legendary]|mybattlefield)
+auto=teach(creature) transforms((,newability[lord(creature[share!color!]) 1/1],newability[lord(creature[share!types!]) 1/1]))
+text=Konda's Banner can be attached only to a legendary creature. -- Creatures that share a color with equipped creature get +1/+1. -- Creatures that share a creature type with equipped creature get +1/+1. -- Equip {2}
+mana={2}
+type=Legendary Artifact
+subtype=Equipment
+[/card]
+[card]
 name=Konda's Hatamoto
 auto=bushido(1/1)
 auto=aslongas(samurai[legendary]|mybattlefield) 1/2
