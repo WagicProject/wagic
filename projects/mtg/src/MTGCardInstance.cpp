@@ -37,8 +37,10 @@ MTGCardInstance::MTGCardInstance(MTGCard * card, MTGPlayerCards * arg_belongs_to
     lifeOrig = life;
     origpower = power;
     basepower = origpower;
+    pbonus = 0;
     origtoughness = toughness;
     basetoughness = origtoughness;
+    tbonus = 0;
     belongs_to = arg_belongs_to;
     owner = NULL;
     if (arg_belongs_to)
@@ -51,6 +53,8 @@ MTGCardInstance::MTGCardInstance(MTGCard * card, MTGPlayerCards * arg_belongs_to
     thatmuch = 0;
     flanked = 0;
     castMethod = Constants::NOT_CAST;
+    isSettingBase = false;
+    isPTswitch = false;
 }
 
   MTGCardInstance * MTGCardInstance::createSnapShot()
@@ -61,6 +65,34 @@ MTGCardInstance::MTGCardInstance(MTGCard * card, MTGPlayerCards * arg_belongs_to
         controller()->game->garbage->addCard(snapShot);
         return snapShot;
     }
+
+void MTGCardInstance::applyPTL()
+{
+    //7a ??how to add cda(Characteristic Defining Ability)??
+    power = origpower;
+    toughness = origtoughness;
+    //7b
+    if (isSettingBase)
+    {
+        power = basepower;
+        toughness = basetoughness;
+    }
+	//7c - 7d shared?
+    power += pbonus;
+    toughness += tbonus;
+    life = toughness;
+    //7e switch is last
+    if (isPTswitch)
+    {
+        oldP = power;
+        oldT = toughness;
+        this->addToToughness(oldP);
+        this->addToToughness(-oldT);
+        this->power = oldT;
+    }
+    /* end */
+    doDamageTest = 1;
+}
 
 void MTGCardInstance::copy(MTGCardInstance * card)
 {

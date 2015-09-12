@@ -73,8 +73,10 @@ public:
     int isToken;
     int origpower;
     int basepower;//to keep origpower intact
+    int pbonus;
     int origtoughness;
     int basetoughness;//to keep origtoughness intact
+    int tbonus;
     int isMultiColored;
     int isLeveler;
     bool enchanted;
@@ -184,6 +186,11 @@ public:
 
     int addToToughness(int value);
     int setToughness(int value);
+    bool isSettingBase;
+    bool isPTswitch;
+    int oldP;
+    int oldT;
+    void applyPTL();
 
     vector<TargetChooser *>protections;
     int addProtection(TargetChooser * tc);

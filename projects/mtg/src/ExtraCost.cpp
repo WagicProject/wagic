@@ -949,8 +949,8 @@ int CounterCost::doPay()
     if (counter->nb >= 0)
     { //Add counters as a cost
         for (int i = 0; i < counter->nb; i++)
-        {
-            target->counters->addCounter(counter->name.c_str(), counter->power, counter->toughness);
+        {//send no event because its a cost not an effect... for doubling season
+            target->counters->addCounter(counter->name.c_str(), counter->power, counter->toughness, true);
         }
         if (tc)
             tc->initTargets();

@@ -3597,9 +3597,9 @@ int AbilityFactory::getAbilities(vector<MTGAbility *> * v, Spell * spell, MTGCar
         if(card->previous && card->previous->morphed && !card->turningOver)
         {
             magicText = card->magicTexts["facedown"];
-            card->power = 2;
+            card->basepower = 2;
             card->life = 2;
-            card->toughness = 2;
+            card->basetoughness = 2;
             card->setColor(0,1);
             card->name = "Morph";
             card->types.clear();
@@ -3607,12 +3607,17 @@ int AbilityFactory::getAbilities(vector<MTGAbility *> * v, Spell * spell, MTGCar
             card->setType(cre.c_str());
             card->basicAbilities.reset();
             card->getManaCost()->resetCosts();
+            card->isSettingBase = true;
+            card->applyPTL();
         }
         else if(card && !card->morphed && card->turningOver)
         {
-            card->power += card->origpower-2;
-            card->life += card->origtoughness-2;
-            card->toughness += card->origtoughness-2;
+            card->isSettingBase = false;
+            card->power = card->origpower;
+            card->basepower = card->origpower;
+            card->life = card->origtoughness;
+            card->toughness = card->origtoughness;
+            card->basetoughness = card->origtoughness;
             card->setColor(0,1);
             card->name = card->model->data->name;
             card->types = card->model->data->types;
@@ -3626,6 +3631,7 @@ int AbilityFactory::getAbilities(vector<MTGAbility *> * v, Spell * spell, MTGCar
             string faceupC= card->magicTexts["faceup"];
             magicText.append("\n");
             magicText.append(faceupC);
+            card->applyPTL();
 
         }
         else if(card && card->hasType(Subtypes::TYPE_EQUIPMENT) && card->target)
