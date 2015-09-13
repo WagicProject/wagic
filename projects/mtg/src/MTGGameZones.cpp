@@ -321,6 +321,33 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
         return card; //Error check
 
     int doCopy = 1;
+    bool shufflelibrary = card->basicAbilities[(int)Constants::SHUFFLELIBRARYDEATH];
+	bool ripToken = false;
+	if (g->players[0]->game->battlefield->hasName("Rest in Peace")||g->players[1]->game->battlefield->hasName("Rest in Peace"))
+        ripToken = true;
+    //Darksteel Colossus, Legacy Weapon ... top priority since we replace destination directly automatically...
+    for(int i = 0; i < 2; ++i)
+	{
+        if ((to == g->players[i]->game->graveyard) && (
+        card->basicAbilities[(int)Constants::LIBRARYDEATH]||
+        card->basicAbilities[(int)Constants::SHUFFLELIBRARYDEATH]))
+        {
+            to = g->players[i]->game->library;
+        }
+    }
+    //Leyline of the Void, Yawgmoth's Agenda... effect...
+    for(int i = 0; i < 2; ++i)
+	{
+        if ((to == g->players[i]->game->graveyard) && (
+        g->players[i]->game->battlefield->hasAbility(Constants::MYGRAVEEXILER) ||
+        g->players[i]->opponent()->game->battlefield->hasAbility(Constants::OPPGRAVEEXILER)))
+		{
+            if ((card->isToken && ripToken))
+                to = g->players[i]->game->exile;
+            if (!card->isToken)
+                to = g->players[i]->game->exile;
+        }
+    }
     //When a card is moved from inPlay to inPlay (controller change, for example), it is still the same object
     if ((to == g->players[0]->game->inPlay || to == g->players[1]->game->inPlay) && (from == g->players[0]->game->inPlay || from
                     == g->players[1]->game->inPlay))
@@ -384,6 +411,9 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
     }
     if(!asCopy)
     {
+        if(shufflelibrary)
+            copy->owner->game->library->shuffle();
+
     WEvent * e = NEW WEventZoneChange(copy, from, to);
     g->receiveEvent(e);
     }

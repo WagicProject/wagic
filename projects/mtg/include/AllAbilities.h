@@ -599,6 +599,10 @@ private:
         {
             intValue = target->controller()->opponent()->drawCounter;
         }
+        else if (s == "epicactivated")
+        {
+            intValue = target->controller()->epic;
+        }
         else if (s == "p" || s == "power")
         {
             intValue = target->getPower();
@@ -634,6 +638,21 @@ private:
         else if (s == "ohandcount")
         {
             intValue = target->controller()->opponent()->game->hand->nb_cards;
+        }
+        else if (s == "morethanfourcards")
+        {
+            if(card->playerTarget)
+			{//blackvise
+                intValue = 0;
+                if ((card->playerTarget->game->hand->nb_cards - 4)>0)
+                    intValue = (card->playerTarget->game->hand->nb_cards - 4);
+            }
+			else
+            {//viseling
+                intValue = 0;
+                if ((card->controller()->opponent()->game->hand->nb_cards - 4)>0)
+                    intValue = (card->controller()->opponent()->game->hand->nb_cards - 4);
+            }
         }
         else if (s == "powertotalinplay")//Count Total Power of Creatures you control... Formidable
         {
@@ -1333,6 +1352,16 @@ public:
     int resolve();
     const string getMenuText();
     AAFakeAbility * clone() const;
+};
+
+class AAEPIC: public ActivatedAbility
+{
+public:
+    string named;
+    AAEPIC(GameObserver* observer, int id, MTGCardInstance * source, MTGCardInstance * target,string _newName, ManaCost * cost = NULL);
+    int resolve();
+    const string getMenuText();
+    AAEPIC * clone() const;
 };
 
 class AAFizzler: public ActivatedAbility
@@ -2231,16 +2260,18 @@ public:
         {
             if(!nonstatic)
                 return;
-            ((MTGCardInstance *) target)->power -= wppt->power.getValue();
-            ((MTGCardInstance *) target)->addToToughness(-wppt->toughness.getValue());
+            ((MTGCardInstance *) target)->pbonus -= wppt->power.getValue();
+            ((MTGCardInstance *) target)->tbonus -= wppt->toughness.getValue();
+            ((MTGCardInstance *) target)->applyPTL();
             if(PT.size())
             {
                 SAFE_DELETE(wppt);
                 wppt = NEW WParsedPT(PT,NULL,(MTGCardInstance *) source);
             }
             MTGCardInstance * _target = (MTGCardInstance *) target;
-            _target->power += wppt->power.getValue();
-            _target->addToToughness(wppt->toughness.getValue());
+            _target->pbonus += wppt->power.getValue();
+            _target->tbonus += wppt->toughness.getValue();
+            _target->applyPTL();
         }
         
     int addToGame()
@@ -2251,8 +2282,9 @@ public:
             SAFE_DELETE(wppt);
             wppt = NEW WParsedPT(PT,NULL,(MTGCardInstance *) source);
         }
-        _target->power += wppt->power.getValue();
-        _target->addToToughness(wppt->toughness.getValue());
+        _target->pbonus += wppt->power.getValue();
+        _target->tbonus += wppt->toughness.getValue();
+        _target->applyPTL();
         if(_target->has(Constants::INDESTRUCTIBLE) && wppt->toughness.getValue() < 0 && _target->toughness <= 0)
         {
         _target->controller()->game->putInGraveyard(_target);
@@ -2262,8 +2294,9 @@ public:
 
     int destroy()
     {
-        ((MTGCardInstance *) target)->power -= wppt->power.getValue();
-        ((MTGCardInstance *) target)->addToToughness(-wppt->toughness.getValue());
+        ((MTGCardInstance *) target)->pbonus -= wppt->power.getValue();
+        ((MTGCardInstance *) target)->tbonus -= wppt->toughness.getValue();
+        ((MTGCardInstance *) target)->applyPTL();
         return 1;
     }
     const string getMenuText()
@@ -3998,8 +4031,6 @@ string menu;
 class ASwapPT: public InstantAbility
 {
 public:
-    int oldpower;
-    int oldtoughness;
     ASwapPT(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target) :
         InstantAbility(observer, _id, _source, _target)
     {
@@ -4013,13 +4044,13 @@ public:
         {
             while (_target->next)
                 _target = _target->next; //This is for cards such as rampant growth
-            oldpower = _target->power;
-            oldtoughness = _target->toughness;
+            
+			if(_target->isPTswitch)
+                _target->isPTswitch = false;
+			else
+                _target->isPTswitch = true;
 
-            _target->addToToughness(oldpower);
-            _target->addToToughness(-oldtoughness);
-            _target->power = oldtoughness;
-
+            _target->applyPTL();
         }
         return 1;
     }
@@ -4031,12 +4062,10 @@ public:
         {
             while (_target->next)
                 _target = _target->next; //This is for cards such as rampant growth
-            oldpower = _target->power;
-            oldtoughness = _target->toughness;
+            
+            _target->isPTswitch = false;
 
-            _target->addToToughness(oldpower);
-            _target->addToToughness(-oldtoughness);
-            _target->power = oldtoughness;
+            _target->applyPTL();
 
         }
         return 1;
@@ -4278,10 +4307,9 @@ public:
     
     string newpower;
     bool newpowerfound;
-    int oldpower;
     string newtoughness;
     bool newtoughnessfound;
-    int oldtoughness;
+
     map<Damageable *, vector<MTGAbility *> > newAbilities;
     vector<string> newAbilitiesList;
     bool newAbilityFound;
@@ -5619,15 +5647,17 @@ public:
         {
             nbOpponents = source->blockers.size();
             if (nbOpponents <= MaxOpponent) return 0;
-            source->power += PowerModifier * (nbOpponents - MaxOpponent);
-            source->addToToughness(ToughnessModifier * (nbOpponents - MaxOpponent));
+            source->pbonus += PowerModifier * (nbOpponents - MaxOpponent);
+            source->tbonus += ToughnessModifier * (nbOpponents - MaxOpponent);
+            source->applyPTL();
         }
         else if (WEventPhaseChange* pe = dynamic_cast<WEventPhaseChange*>(event))
         {
             if (MTG_PHASE_AFTER_EOT == pe->to->id && nbOpponents > MaxOpponent)
             {
-                source->power -= PowerModifier * (nbOpponents - MaxOpponent);
-                source->addToToughness(-ToughnessModifier * (nbOpponents - MaxOpponent));
+                source->pbonus -= PowerModifier * (nbOpponents - MaxOpponent);
+                source->tbonus -= ToughnessModifier * (nbOpponents - MaxOpponent);
+                source->applyPTL();
                 nbOpponents = 0;
             }
         }

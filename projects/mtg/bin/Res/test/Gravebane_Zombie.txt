@@ -1,0 +1,28 @@
+#Testing Gravebane Zombie
+#after gravebane zombie dies, activate archivist
+#and you must draw gravebane zombie if its on the top
+#of your library
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Gravebane Zombie, Archivist
+hand:Wrecking Ball
+library:mountain, plains, swamp
+manapool:{2}{R}{B}
+[PLAYER2]
+[DO]
+Wrecking Ball
+Gravebane Zombie
+Archivist
+[ASSERT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Archivist
+library:mountain, plains, swamp
+hand:Gravebane Zombie
+graveyard:Wrecking Ball
+manapool:{0}
+life:20
+[PLAYER2]
+life:20
+[END]

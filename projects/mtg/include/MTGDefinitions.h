@@ -220,7 +220,12 @@ class Constants
       NOLEGEND = 102,
       CANPLAYFROMGRAVEYARD = 103,
       TOKENIZER = 104,
-      NB_BASIC_ABILITIES = 105,
+      MYGRAVEEXILER = 105,
+      OPPGRAVEEXILER = 106,
+      LIBRARYDEATH = 107,
+      SHUFFLELIBRARYDEATH = 108,
+      OFFERING = 109,
+      NB_BASIC_ABILITIES = 110,
 
 
     RARITY_S = 'S',   //Special Rarity

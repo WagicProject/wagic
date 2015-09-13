@@ -540,7 +540,12 @@ ExtraCost("UnTap")
 
 int UnTapCost::isPaymentSet()
 {
-    if (source && !source->isTapped())
+/*602.5a A creature's activated ability with the tap symbol ({T}) or the untap symbol ({Q})
+ * in its activation cost can't be activated unless the creature has been under its
+ * controller's control since the start of his or her most recent turn.
+ * Ignore this rule for creatures with haste (see rule 702.10). As of 6/1/2014 Comprehensive Rules
+ */
+    if (source && (!source->isTapped() || source->hasSummoningSickness()))
     {
         return 0;
     }
@@ -757,6 +762,65 @@ int Ninja::doPay()
 }
 
 //endbouncetargetcostforninja
+
+//Sacrifice target as cost for Offering
+Offering * Offering::clone() const
+{
+    Offering * ec = NEW Offering(*this);
+    if (tc)
+        ec->tc = tc->clone();
+    return ec;
+}
+
+Offering::Offering(TargetChooser *_tc) :
+ExtraCost("Select creature to offer", _tc)
+{
+}
+
+int Offering::canPay()
+{
+    if (target && (!source->controller()->getManaPool()->canAfford(source->getManaCost()->Diff(target->getManaCost()))))
+    {
+        tc->removeTarget(target);
+        target = NULL;
+        return 0;
+    }
+    if (target && (source->controller()->getManaPool()->canAfford(source->getManaCost()->Diff(target->getManaCost()))))
+        return 1;
+    return 0;
+}
+
+int Offering::isPaymentSet()
+{
+    if (target && (!source->controller()->getManaPool()->canAfford(source->getManaCost()->Diff(target->getManaCost()))))
+    {
+        tc->removeTarget(target);
+        target = NULL;
+        return 0;
+    }
+    if (target && (source->controller()->getManaPool()->canAfford(source->getManaCost()->Diff(target->getManaCost()))))
+        return 1;
+    return 0;
+}
+
+int Offering::doPay()
+{
+    if (target)
+    {
+        target->controller()->getManaPool()->pay(source->getManaCost()->Diff(target->getManaCost()));
+        MTGCardInstance * beforeCard = target;
+        source->storedCard = target->createSnapShot();
+        target->controller()->game->putInGraveyard(target);
+        WEvent * e = NEW WEventCardSacrifice(beforeCard,target);
+        GameObserver * game = target->owner->getObserver();
+        game->receiveEvent(e);
+        target = NULL;
+        if (tc)
+            tc->initTargets();
+        return 1;
+    }
+    return 0;
+}
 //------------------------------------------------------------
 
 SacrificeCost * SacrificeCost::clone() const
@@ -885,8 +949,8 @@ int CounterCost::doPay()
     if (counter->nb >= 0)
     { //Add counters as a cost
         for (int i = 0; i < counter->nb; i++)
-        {
-            target->counters->addCounter(counter->name.c_str(), counter->power, counter->toughness);
+        {//send no event because its a cost not an effect... for doubling season
+            target->counters->addCounter(counter->name.c_str(), counter->power, counter->toughness, true);
         }
         if (tc)
             tc->initTargets();

@@ -374,6 +374,7 @@ goblin_lackey4.txt
 goblin_offensive.txt
 goblin_razerunners.txt
 golgari_germination_i153.txt
+Gravebane_Zombie.txt
 gravedigger.txt
 gravity_well.txt
 gravity_well2.txt
@@ -440,6 +441,7 @@ kudzu_i168.txt
 Lethargy_Trap.txt
 Lethargy_Trap2.txt
 leveler.txt
+leyline_of_the_void.txt
 lhurgoyf.txt
 liability.txt
 library_of_alexandria1.txt
@@ -532,6 +534,8 @@ prowess_of_the_fair.txt
 prowess_of_the_fair2.txt
 prowess_of_the_fair3.txt
 PTInstant.txt
+PT_M15_errata.txt
+PT_M15_errata2.txt
 pygmy_troll.txt
 pyknite_i426.txt
 pyroclasm.txt
@@ -569,6 +573,7 @@ Rending_Vines2.txt
 resounding_roar.txt
 resurrection.txt
 resuscitate_i210.txt
+restinpeace.txt
 righteous_cause.txt
 rise_from_the_grave.txt
 river_kelpie2_i335.txt
