@@ -18,7 +18,7 @@ script:
 - /usr/local/opt/qt5/bin/qmake projects/mtg/wagic-qt.pro CONFIG+=graphics
 - make -j 4 dmg
 - cd projects/mtg/iOS
-- make -j 4
+- make -j 4 package
 
 after_success:
 - python tools/upload-binaries.py -t $GH_TOKEN -s $TRAVIS_COMMIT -l wagic.dmg -r Wagic-macosx.dmg -b $TRAVIS_BRANCH
