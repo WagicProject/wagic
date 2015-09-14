@@ -1,15 +1,25 @@
 language: objective-c
+
 before_install:
 - brew update
 - brew install qt5
 - sudo pip install pyjavaproperties
 - sudo pip install github3.py
+- brew install dpkg
+- curl -s -f -L https://raw.github.com/r-plus/dotfiles/master/install_theos.sh | bash
+- pwd
+- ls
 
 env:
   global:
     secure: "EBzr1+qjQsOhn0s+tcFmXR1jP9B0xiOSXuXbRXWZ1OEHNvp8+A5/pS84LYVFlaZqmxr5dApxvPtwhgLIUbQ3EPXm8LpC3KgSD4dS+9/QMbxhe5TK4oczgFRGcDTMJQZsCzhOh7hp3tbcbJg5Gp+VT7aFjFQSHDGwhzSJXsXwh/8="
+
 script:
 - /usr/local/opt/qt5/bin/qmake projects/mtg/wagic-qt.pro CONFIG+=graphics
 - make -j 4 dmg
+- cd projects/mtg/iOS
+- make -j 4 package
+
 after_success:
 - python tools/upload-binaries.py -t $GH_TOKEN -s $TRAVIS_COMMIT -l wagic.dmg -r Wagic-macosx.dmg -b $TRAVIS_BRANCH
+- python tools/upload-binaries.py -t $GH_TOKEN -s $TRAVIS_COMMIT -l net.wagic_0.19.2-1_iphoneos-arm.deb -r Wagic-iOS.deb -b $TRAVIS_BRANCH
