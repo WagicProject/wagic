@@ -642,6 +642,81 @@ private:
         {
             intValue = target->controller()->opponent()->game->hand->nb_cards;
         }
+        else if (s == "pgbzombie")//Soulless One
+        {
+            intValue = 0;
+            for (int i = 0; i < 2; i++)
+            {
+                Player * p = card->getObserver()->players[i];
+                for (int j = p->game->graveyard->nb_cards - 1; j >= 0; --j)
+                {
+                    if (p->game->graveyard->cards[j]->hasType("zombie"))
+                    {
+                    intValue += 1;
+                    }
+                }
+                for (int j = p->game->inPlay->nb_cards - 1; j >= 0; --j)
+                {
+                    if (p->game->inPlay->cards[j]->hasType("zombie"))
+                    {
+                    intValue += 1;
+                    }
+                }
+            }
+        }
+        else if (s == "pginstantsorcery")//Spellheart Chimera
+        {
+            intValue = 0;
+            for (int j = card->controller()->game->graveyard->nb_cards - 1; j >= 0; --j)
+            {
+                if (card->controller()->game->graveyard->cards[j]->hasType(Subtypes::TYPE_INSTANT)
+                    ||card->controller()->game->graveyard->cards[j]->hasType(Subtypes::TYPE_SORCERY))
+                {
+                intValue += 1;
+                }
+            }
+        }
+        else if (s == "gravecardtypes")//Tarmogoyf
+        {
+            intValue = 0;
+            bool art, cre, enc, ins, lnd, sor, trb, pwk = false;
+            for (int i = 0; i < 2; i++)
+            {
+                Player * p = card->getObserver()->players[i];
+                if(p->game->graveyard->hasType("planeswalker"))
+                    pwk = true;
+                if(p->game->graveyard->hasType("tribal"))
+                    trb = true;
+                if(p->game->graveyard->hasType("sorcery"))
+                    sor = true;
+                if(p->game->graveyard->hasType("land"))
+                    lnd = true;
+                if(p->game->graveyard->hasType("instant"))
+                    ins = true;
+                if(p->game->graveyard->hasType("enchantment"))
+                    enc = true;
+                if(p->game->graveyard->hasType("creature"))
+                    cre = true;
+                if(p->game->graveyard->hasType("artifact"))
+                    art = true;
+            }
+            if (art)
+                intValue += 1;
+            if (cre)
+                intValue += 1;
+            if (enc)
+                intValue += 1;
+            if (ins)
+                intValue += 1;
+            if (lnd)
+                intValue += 1;
+            if (sor)
+                intValue += 1;
+            if (trb)
+                intValue += 1;
+            if (pwk)
+                intValue += 1;
+        }
         else if (s == "morethanfourcards")
         {
             if(card->playerTarget)
@@ -2253,30 +2328,37 @@ public:
     WParsedPT * wppt;
     string PT;
     bool nonstatic;
+    bool cda;
     APowerToughnessModifier(GameObserver* observer, int id, MTGCardInstance * _source, MTGCardInstance * _target, WParsedPT * wppt,string PT,bool nonstatic) :
         MTGAbility(observer, id, _source, _target), wppt(wppt),PT(PT),nonstatic(nonstatic)
     {
         aType = MTGAbility::STANDARD_PUMP;
-    }
-    
-        void Update(float)
+        cda = PT.find("cdaactive") != string::npos;
+    }    
+    void Update(float)
+    {
+        if(!nonstatic)
+            return;
+        if(!((MTGCardInstance *) target)->isSettingBase)
         {
-            if(!nonstatic)
-                return;
-            ((MTGCardInstance *) target)->pbonus -= wppt->power.getValue();
-            ((MTGCardInstance *) target)->tbonus -= wppt->toughness.getValue();
-            ((MTGCardInstance *) target)->applyPTL();
+            ((MTGCardInstance *) target)->power -= wppt->power.getValue();
+            ((MTGCardInstance *) target)->addToToughness(-wppt->toughness.getValue());
             if(PT.size())
             {
                 SAFE_DELETE(wppt);
                 wppt = NEW WParsedPT(PT,NULL,(MTGCardInstance *) source);
             }
             MTGCardInstance * _target = (MTGCardInstance *) target;
-            _target->pbonus += wppt->power.getValue();
-            _target->tbonus += wppt->toughness.getValue();
-            _target->applyPTL();
+            _target->power += wppt->power.getValue();
+            _target->addToToughness(wppt->toughness.getValue());
+            //update
+            if(cda)
+            {//7a update wppt
+                _target->origpower = wppt->power.getValue();
+                _target->origtoughness = wppt->toughness.getValue();
+            }
         }
-        
+    }
     int addToGame()
     {
         MTGCardInstance * _target = (MTGCardInstance *) target;
@@ -2285,21 +2367,36 @@ public:
             SAFE_DELETE(wppt);
             wppt = NEW WParsedPT(PT,NULL,(MTGCardInstance *) source);
         }
-        _target->pbonus += wppt->power.getValue();
-        _target->tbonus += wppt->toughness.getValue();
-        _target->applyPTL();
+        if(cda)
+        {//Characteristic-defining abilities
+            _target->origpower = wppt->power.getValue();
+            _target->origtoughness = wppt->toughness.getValue();
+            _target->applyPTL();
+        }
+		else
+        {
+            _target->pbonus += wppt->power.getValue();
+            _target->tbonus += wppt->toughness.getValue();
+            _target->applyPTL();
+        }
         if(_target->has(Constants::INDESTRUCTIBLE) && wppt->toughness.getValue() < 0 && _target->toughness <= 0)
         {
         _target->controller()->game->putInGraveyard(_target);
         }
         return MTGAbility::addToGame();
     }
-
     int destroy()
     {
+        if(cda)
+		{
+		;
+        }
+		else
+		{
         ((MTGCardInstance *) target)->pbonus -= wppt->power.getValue();
         ((MTGCardInstance *) target)->tbonus -= wppt->toughness.getValue();
         ((MTGCardInstance *) target)->applyPTL();
+        }
         return 1;
     }
     const string getMenuText()
@@ -2318,12 +2415,10 @@ public:
         a->wppt = NEW WParsedPT(*(a->wppt));
         return a;
     }
-
     ~APowerToughnessModifier()
     {
         delete (wppt);
     }
-
 };
 
 class GenericInstantAbility: public InstantAbility, public NestedAbility

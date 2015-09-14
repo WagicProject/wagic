@@ -68,7 +68,7 @@ MTGCardInstance::MTGCardInstance(MTGCard * card, MTGPlayerCards * arg_belongs_to
 
 void MTGCardInstance::applyPTL()
 {
-    //7a ??how to add cda(Characteristic Defining Ability)??
+    //7a ??(Characteristic Defining Ability)??
     power = origpower;
     toughness = origtoughness;
     //7b
@@ -80,17 +80,15 @@ void MTGCardInstance::applyPTL()
 	//7c - 7d shared?
     power += pbonus;
     toughness += tbonus;
-    life = toughness;
     //7e switch is last
     if (isPTswitch)
     {
         oldP = power;
         oldT = toughness;
-        this->addToToughness(oldP);
-        this->addToToughness(-oldT);
-        this->power = oldT;
+        toughness = oldP;
+        power = oldT;
     }
-    /* end */
+    life = toughness;
     doDamageTest = 1;
 }
 

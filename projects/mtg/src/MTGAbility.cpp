@@ -2629,7 +2629,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         int MaxOpponent = atoi(rampageParameters[1].c_str());
         return NEW ARampageAbility(observer, id, card, power, toughness, MaxOpponent);
     }
-    
+
     //evole
     if (s.find("evolve") != string::npos)
     {
@@ -2924,7 +2924,12 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             {
                 return NEW PTInstant(observer, id, card, target, wppt,s,nonstatic);
             }
-            return NEW APowerToughnessModifier(observer, id, card, target, wppt,s,nonstatic);
+			else if(s.find("cdaactive") != string::npos)
+            {
+                return NEW APowerToughnessModifier(observer, id, card, target, wppt,s,true);
+            }
+			else
+                return NEW APowerToughnessModifier(observer, id, card, target, wppt,s,nonstatic);
         }
         return NEW PTInstant(observer, id, card, target, wppt,s,nonstatic);
     }
