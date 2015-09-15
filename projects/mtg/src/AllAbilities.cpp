@@ -4181,19 +4181,23 @@ for (it = types.begin(); it != types.end(); it++)
         }
     }
     if(newpowerfound )
-    {//setting p/t only overrides base p/t as of M15 changes
+    {
         WParsedInt * val = NEW WParsedInt(newpower,NULL, source);
         _target->basepower = val->getValue();
-        _target->isSettingBase = true;
-        _target->applyPTL();
+        _target->power -= _target->pbonus;
+        _target->power = (_target->power + _target->basepower) - _target->power;
+		_target->power += _target->pbonus;
         delete val;
     }
     if(newtoughnessfound )
-    {//setting p/t only overrides base p/t as of M15 changes
+    {//we should consider the damage if there is, if you have a 5/5 creature with 1 damage,
+     //and you turn it into 1/1, the 1 damage is still there and the creature must die...
+     //the toughness is intact but what we see in the game is the life...
         WParsedInt * val = NEW WParsedInt(newtoughness,NULL, source);
 		_target->basetoughness = val->getValue();
-        _target->isSettingBase = true;
-        _target->applyPTL();
+        _target->addToToughness(-_target->tbonus);
+        _target->addToToughness(_target->basetoughness - _target->toughness);
+        _target->addToToughness(_target->tbonus);
         delete val;
     }
 
@@ -4279,16 +4283,20 @@ int ATransformer::destroy()
         }
 
         if(newpowerfound )
-        {//override since we changed tha base, the bonus must have changed
-            _target->isSettingBase = false;
+        {
+            _target->power -= _target->pbonus;
+            _target->power += _target->origpower;
+            _target->power -= _target->basepower;
+            _target->power += _target->pbonus;
             _target->basepower = _target->origpower;
-            _target->applyPTL();
         }
         if(newtoughnessfound )
         {
-            _target->isSettingBase = false;
+            _target->addToToughness(-_target->tbonus);
+            _target->addToToughness(_target->origtoughness);
+            _target->addToToughness(-_target->basetoughness);
+            _target->addToToughness(_target->tbonus);
             _target->basetoughness = _target->origtoughness;
-            _target->applyPTL();
         }
         if(newAbilityFound)
         {

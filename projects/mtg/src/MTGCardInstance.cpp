@@ -53,8 +53,6 @@ MTGCardInstance::MTGCardInstance(MTGCard * card, MTGPlayerCards * arg_belongs_to
     thatmuch = 0;
     flanked = 0;
     castMethod = Constants::NOT_CAST;
-    isSettingBase = false;
-    isPTswitch = false;
 }
 
   MTGCardInstance * MTGCardInstance::createSnapShot()
@@ -65,32 +63,6 @@ MTGCardInstance::MTGCardInstance(MTGCard * card, MTGPlayerCards * arg_belongs_to
         controller()->game->garbage->addCard(snapShot);
         return snapShot;
     }
-
-void MTGCardInstance::applyPTL()
-{
-    //7a ??(Characteristic Defining Ability)??
-    power = origpower;
-    toughness = origtoughness;
-    //7b
-    if (isSettingBase)
-    {
-        power = basepower;
-        toughness = basetoughness;
-    }
-	//7c - 7d shared?
-    power += pbonus;
-    toughness += tbonus;
-    //7e switch is last
-    if (isPTswitch)
-    {
-        oldP = power;
-        oldT = toughness;
-        toughness = oldP;
-        power = oldT;
-    }
-    life = toughness;
-    doDamageTest = 1;
-}
 
 void MTGCardInstance::copy(MTGCardInstance * card)
 {

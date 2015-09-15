@@ -679,43 +679,28 @@ private:
         else if (s == "gravecardtypes")//Tarmogoyf
         {
             intValue = 0;
-            bool art, cre, enc, ins, lnd, sor, trb, pwk = false;
+            int art, cre, enc, ins, lnd, sor, trb, pwk = 0;
             for (int i = 0; i < 2; i++)
             {
                 Player * p = card->getObserver()->players[i];
                 if(p->game->graveyard->hasType("planeswalker"))
-                    pwk = true;
+                    pwk = 1;
                 if(p->game->graveyard->hasType("tribal"))
-                    trb = true;
+                    trb = 1;
                 if(p->game->graveyard->hasType("sorcery"))
-                    sor = true;
+                    sor = 1;
                 if(p->game->graveyard->hasType("land"))
-                    lnd = true;
+                    lnd = 1;
                 if(p->game->graveyard->hasType("instant"))
-                    ins = true;
+                    ins = 1;
                 if(p->game->graveyard->hasType("enchantment"))
-                    enc = true;
+                    enc = 1;
                 if(p->game->graveyard->hasType("creature"))
-                    cre = true;
+                    cre = 1;
                 if(p->game->graveyard->hasType("artifact"))
-                    art = true;
+                    art = 1;
             }
-            if (art)
-                intValue += 1;
-            if (cre)
-                intValue += 1;
-            if (enc)
-                intValue += 1;
-            if (ins)
-                intValue += 1;
-            if (lnd)
-                intValue += 1;
-            if (sor)
-                intValue += 1;
-            if (trb)
-                intValue += 1;
-            if (pwk)
-                intValue += 1;
+            intValue = art + cre + enc + ins + lnd + sor + trb + pwk;
         }
         else if (s == "morethanfourcards")
         {
@@ -2339,24 +2324,28 @@ public:
     {
         if(!nonstatic)
             return;
-        if(!((MTGCardInstance *) target)->isSettingBase)
+        if(!cda)
         {
             ((MTGCardInstance *) target)->power -= wppt->power.getValue();
             ((MTGCardInstance *) target)->addToToughness(-wppt->toughness.getValue());
             if(PT.size())
-            {
-                SAFE_DELETE(wppt);
-                wppt = NEW WParsedPT(PT,NULL,(MTGCardInstance *) source);
-            }
+                {
+                    SAFE_DELETE(wppt);
+                    wppt = NEW WParsedPT(PT,NULL,(MTGCardInstance *) source);
+                }
             MTGCardInstance * _target = (MTGCardInstance *) target;
             _target->power += wppt->power.getValue();
             _target->addToToughness(wppt->toughness.getValue());
-            //update
-            if(cda)
-            {//7a update wppt
-                _target->origpower = wppt->power.getValue();
-                _target->origtoughness = wppt->toughness.getValue();
-            }
+        }
+		else
+        {//CDA 7a update wppt
+            if(PT.size())
+                {
+                    SAFE_DELETE(wppt);
+                    wppt = NEW WParsedPT(PT,NULL,(MTGCardInstance *) source);
+                }
+            ((MTGCardInstance *) target)->origpower = wppt->power.getValue();
+            ((MTGCardInstance *) target)->origtoughness = wppt->toughness.getValue();
         }
     }
     int addToGame()
@@ -2369,15 +2358,23 @@ public:
         }
         if(cda)
         {//Characteristic-defining abilities
-            _target->origpower = wppt->power.getValue();
-            _target->origtoughness = wppt->toughness.getValue();
-            _target->applyPTL();
+            _target->origpower = wppt->power.getValue();//set orig pt
+            _target->origtoughness = wppt->toughness.getValue();         
+            _target->power -= _target->pbonus;//remove current bonuses
+            _target->addToToughness(-_target->tbonus);
+            _target->setPower(_target->origpower);//update PT
+            _target->setToughness(_target->origtoughness);
+            _target->power += _target->pbonus;//add new bonus
+            _target->addToToughness(_target->tbonus);
         }
 		else
         {
-            _target->pbonus += wppt->power.getValue();
+            _target->power -= _target->pbonus;//remove current bonuses
+            _target->addToToughness(-_target->tbonus);
+            _target->pbonus += wppt->power.getValue();//update bonus
             _target->tbonus += wppt->toughness.getValue();
-            _target->applyPTL();
+            _target->power += _target->pbonus;//add new bonus
+            _target->addToToughness(_target->tbonus);
         }
         if(_target->has(Constants::INDESTRUCTIBLE) && wppt->toughness.getValue() < 0 && _target->toughness <= 0)
         {
@@ -2393,9 +2390,12 @@ public:
         }
 		else
 		{
+        ((MTGCardInstance *) target)->power -= ((MTGCardInstance *) target)->pbonus;
+        ((MTGCardInstance *) target)->addToToughness(-((MTGCardInstance *) target)->tbonus);
         ((MTGCardInstance *) target)->pbonus -= wppt->power.getValue();
         ((MTGCardInstance *) target)->tbonus -= wppt->toughness.getValue();
-        ((MTGCardInstance *) target)->applyPTL();
+        ((MTGCardInstance *) target)->power += ((MTGCardInstance *) target)->pbonus;
+        ((MTGCardInstance *) target)->addToToughness(((MTGCardInstance *) target)->tbonus);
         }
         return 1;
     }
@@ -4129,6 +4129,8 @@ string menu;
 class ASwapPT: public InstantAbility
 {
 public:
+    int oldP;
+    int oldT;
     ASwapPT(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target) :
         InstantAbility(observer, _id, _source, _target)
     {
@@ -4143,12 +4145,11 @@ public:
             while (_target->next)
                 _target = _target->next; //This is for cards such as rampant growth
             
-			if(_target->isPTswitch)
-                _target->isPTswitch = false;
-			else
-                _target->isPTswitch = true;
-
-            _target->applyPTL();
+            oldP = _target->power;
+            oldT = _target->toughness;
+            _target->addToToughness(oldP);
+            _target->addToToughness(-oldT);
+            _target->setPower(oldT);
         }
         return 1;
     }
@@ -4161,9 +4162,11 @@ public:
             while (_target->next)
                 _target = _target->next; //This is for cards such as rampant growth
             
-            _target->isPTswitch = false;
-
-            _target->applyPTL();
+            oldP = _target->power;
+            oldT = _target->toughness;
+            _target->addToToughness(oldP);
+            _target->addToToughness(-oldT);
+            _target->setPower(oldT);
 
         }
         return 1;
@@ -5745,17 +5748,23 @@ public:
         {
             nbOpponents = source->blockers.size();
             if (nbOpponents <= MaxOpponent) return 0;
+            source->power -= source->pbonus;
+            source->addToToughness(-source->tbonus);
             source->pbonus += PowerModifier * (nbOpponents - MaxOpponent);
             source->tbonus += ToughnessModifier * (nbOpponents - MaxOpponent);
-            source->applyPTL();
+            source->power += source->pbonus;
+            source->addToToughness(source->tbonus);
         }
         else if (WEventPhaseChange* pe = dynamic_cast<WEventPhaseChange*>(event))
         {
             if (MTG_PHASE_AFTER_EOT == pe->to->id && nbOpponents > MaxOpponent)
             {
+                source->power -= source->pbonus;
+                source->addToToughness(-source->tbonus);
                 source->pbonus -= PowerModifier * (nbOpponents - MaxOpponent);
                 source->tbonus -= ToughnessModifier * (nbOpponents - MaxOpponent);
-                source->applyPTL();
+                source->power += source->pbonus;
+                source->addToToughness(source->tbonus);
                 nbOpponents = 0;
             }
         }

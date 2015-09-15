@@ -186,11 +186,6 @@ public:
 
     int addToToughness(int value);
     int setToughness(int value);
-    bool isSettingBase;
-    bool isPTswitch;
-    int oldP;
-    int oldT;
-    void applyPTL();
 
     vector<TargetChooser *>protections;
     int addProtection(TargetChooser * tc);
