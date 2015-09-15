@@ -19,7 +19,8 @@ script:
 - make -j 4 dmg
 - cd projects/mtg/iOS
 - make -j 4 package
+- cd ../../..
 
 after_success:
 - python tools/upload-binaries.py -t $GH_TOKEN -s $TRAVIS_COMMIT -l wagic.dmg -r Wagic-macosx.dmg -b $TRAVIS_BRANCH
-- python tools/upload-binaries.py -t $GH_TOKEN -s $TRAVIS_COMMIT -l net.wagic_0.19.2-1_iphoneos-arm.deb -r Wagic-iOS.deb -b $TRAVIS_BRANCH
+- python tools/upload-binaries.py -t $GH_TOKEN -s $TRAVIS_COMMIT -l projects/mtg/iOS/net.wagic_0.19.2-1_iphoneos-arm.deb -r Wagic-iOS.deb -b $TRAVIS_BRANCH
