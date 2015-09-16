@@ -2319,7 +2319,17 @@ public:
     {
         aType = MTGAbility::STANDARD_PUMP;
         cda = PT.find("cdaactive") != string::npos;
-    }    
+    }
+    string ReplaceString(string subject, const string& search, const string& replace)
+    {
+        size_t pos = 0;
+        while ((pos = subject.find(search, pos)) != string::npos)
+        {
+             subject.replace(pos, search.length(), replace);
+             pos += replace.length();
+        }
+        return subject;
+    }
     void Update(float)
     {
         if(!nonstatic)
@@ -2331,7 +2341,10 @@ public:
             if(PT.size())
                 {
                     SAFE_DELETE(wppt);
-                    wppt = NEW WParsedPT(PT,NULL,(MTGCardInstance *) source);
+                    if(cda)
+                        wppt = NEW WParsedPT(ReplaceString(PT, "cdaactive", ""),NULL,(MTGCardInstance *) source);
+                    else
+                        wppt = NEW WParsedPT(ReplaceString(PT, "nonstatic", ""),NULL,(MTGCardInstance *) source);
                 }
             MTGCardInstance * _target = (MTGCardInstance *) target;
             _target->power += wppt->power.getValue();
@@ -2342,7 +2355,10 @@ public:
             if(PT.size())
                 {
                     SAFE_DELETE(wppt);
-                    wppt = NEW WParsedPT(PT,NULL,(MTGCardInstance *) source);
+                    if(cda)
+                        wppt = NEW WParsedPT(ReplaceString(PT, "cdaactive", ""),NULL,(MTGCardInstance *) source);
+                    else
+                        wppt = NEW WParsedPT(ReplaceString(PT, "nonstatic", ""),NULL,(MTGCardInstance *) source);
                 }
             ((MTGCardInstance *) target)->origpower = wppt->power.getValue();
             ((MTGCardInstance *) target)->origtoughness = (wppt->toughness.getValue() + ((MTGCardInstance *) target)->life)-((MTGCardInstance *) target)->life;//what?
@@ -2354,7 +2370,10 @@ public:
         if(PT.size())
         {
             SAFE_DELETE(wppt);
-            wppt = NEW WParsedPT(PT,NULL,(MTGCardInstance *) source);
+            if(cda)
+                wppt = NEW WParsedPT(ReplaceString(PT, "cdaactive", ""),NULL,(MTGCardInstance *) source);
+            else
+                wppt = NEW WParsedPT(ReplaceString(PT, "nonstatic", ""),NULL,(MTGCardInstance *) source);
         }
         if(cda)
         {//Characteristic-defining abilities
@@ -2402,7 +2421,10 @@ public:
         if(PT.size())
         {
             SAFE_DELETE(wppt);
-            wppt = NEW WParsedPT(PT,NULL,(MTGCardInstance *) source);
+            if(cda)
+                wppt = NEW WParsedPT(ReplaceString(PT, "cdaactive", ""),NULL,(MTGCardInstance *) source);
+            else
+                wppt = NEW WParsedPT(ReplaceString(PT, "nonstatic", ""),NULL,(MTGCardInstance *) source);
         }
         sprintf(menuText, "%i/%i", wppt->power.getValue(), wppt->toughness.getValue());
         return menuText;

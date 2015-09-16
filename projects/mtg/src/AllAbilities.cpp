@@ -2536,12 +2536,13 @@ int AACloner::resolve()
         spell->source->fresh = 1;
         spell->source->model = spell->source;
         spell->source->model->data = spell->source;
-        if(_target->isToken)
+        //commenting this out fixes some problems when duplicating tokens 9/16/2015
+        /*if(_target->isToken)
         {
             spell->source->power = _target->origpower;
             spell->source->toughness = _target->origtoughness;
             spell->source->life = _target->origtoughness;
-        }
+        }*/
         list<int>::iterator it;
         for (it = awith.begin(); it != awith.end(); it++)
         {
