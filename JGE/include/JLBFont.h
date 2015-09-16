@@ -178,8 +178,6 @@ private:
 	float       mSpacing;
 
 	PIXEL_TYPE		mColor;
-	int			mBlend;
-
 	int			mBase;
 
 };

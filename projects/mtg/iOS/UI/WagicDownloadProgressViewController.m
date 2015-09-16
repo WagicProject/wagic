@@ -21,8 +21,6 @@
 
 #define WAGIC_IOS_RESOURCE_NAME WAGIC_CORE_VERSION_STRING "_iOS.zip"
 
-static NSString *kDownloadUrlPath = @"http://wagic.googlecode.com/files/";
-
 - (void) handleFailedDownload: (NSNotification *) sender
 {
     NSString *downloadType = [sender object];
@@ -103,6 +101,7 @@ static NSString *kDownloadUrlPath = @"http://wagic.googlecode.com/files/";
     NSURL *url = nil;
     NSString *downloadFilename = nil;
     // determine which file to download
+    
     kDownloadFileName = [NSString stringWithCString: WAGIC_RESOURCE_NAME encoding:NSUTF8StringEncoding];
     kDownloadIosUpdateFileName = [NSString stringWithCString: WAGIC_IOS_RESOURCE_NAME encoding:NSUTF8StringEncoding];
 
@@ -118,8 +117,9 @@ static NSString *kDownloadUrlPath = @"http://wagic.googlecode.com/files/";
     {
         NSLog( @"Not Implemented for type: %@", downloadType);
     }
+    
+    url = [NSURL URLWithString: [NSString stringWithCString: WAGIC_RESOURCE_URL encoding:NSUTF8StringEncoding]];
 
-    url = [NSURL URLWithString: [NSString stringWithFormat: @"%@/%@", kDownloadUrlPath, downloadFilename]];
     NSString *downloadFilePath =  [systemResourceDirectory stringByAppendingString: [NSString stringWithFormat: @"/%@",  downloadFilename]];
 
     NSLog(@"Downloading %@", [url absoluteURL]);

@@ -53,28 +53,28 @@
 
 - (void)viewWillAppear:(BOOL)animated {
 	NSLog(@"EAGL ViewController - view Will Appear");
-    [self.view resumeGame];
+    [(id)self.view resumeGame];
 }
 
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    [self.view pauseGame];
+    [(id)self.view pauseGame];
 }
 
 - (void)pauseGame
 {
-    [self.view pauseGame];
+    [(id)self.view pauseGame];
 }
 
 - (void)resumeGame
 {
-    [self.view resumeGame];
+    [(id)self.view resumeGame];
 }
 
 - (void)endGame
 {
-    [self.view endGame];
+    [(id)self.view endGame];
 }
 
 - (void)viewDidAppear:(BOOL)animated {

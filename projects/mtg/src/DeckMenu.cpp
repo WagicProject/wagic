@@ -21,13 +21,10 @@ namespace DeckMenuConst
     const float kDescriptionVerticalBoxPadding = -5;
     const float kDescriptionHorizontalBoxPadding = 5;
 	
-    const float kDefaultFontScale = 1.0f;
     const float kVerticalScrollSpeed = 7.0f;
 
     const int DETAILED_INFO_THRESHOLD = 20;
     const int kDetailedInfoButtonId = 10000;
-
-    const PIXEL_TYPE kRedColor = ARGB(0xFF, 0xFF, 0x00, 0x00);
 }
 
 hgeParticleSystem* DeckMenu::stars = NULL;

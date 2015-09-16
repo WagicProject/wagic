@@ -355,10 +355,9 @@ void SimplePad::Render()
     //This could use some cleaning up to make margins more explicit
     WFont * mFont = WResourceManager::Instance()->GetWFont(Fonts::MENU_FONT);
 
-    float offX = 0, offY = 0;
+    float offY = 0;
     float kH = mFont->GetHeight();
     float hSpacing = mFont->GetStringWidth("W");
-    float rowLen = mFont->GetStringWidth("JKLMNOPQR") + 14 * 7;
     float vSpacing = 0;
     float kW = hSpacing;
 
@@ -401,7 +400,9 @@ void SimplePad::Render()
 
     if (!bShowNumpad) vSpacing -= kH + 12;
 #ifndef IOS
-    
+    float offX = 0;
+    float rowLen = mFont->GetStringWidth("JKLMNOPQR") + 14 * 7;
+
     for (int x = 0; x < nbitems; x++)
         if (keys[x])
         {

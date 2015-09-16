@@ -180,7 +180,7 @@ static void logNetworkStatus_(const char *name, int line, NetworkStatus status) 
 #define logNetworkStatus(status)
 #endif
 
-@interface Reachability (private)
+@interface Reachability ()
 
 - (NetworkStatus) networkStatusForFlags: (SCNetworkReachabilityFlags) flags;
 
