@@ -186,6 +186,7 @@ public:
 
     int addToToughness(int value);
     int setToughness(int value);
+    int isSettingBase;
 
     vector<TargetChooser *>protections;
     int addProtection(TargetChooser * tc);

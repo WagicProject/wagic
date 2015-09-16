@@ -2324,7 +2324,7 @@ public:
     {
         if(!nonstatic)
             return;
-        if(!cda)
+        if(!cda || (cda && (((MTGCardInstance *) target)->isSettingBase < 1)))
         {
             ((MTGCardInstance *) target)->power -= wppt->power.getValue();
             ((MTGCardInstance *) target)->addToToughness(-wppt->toughness.getValue());
@@ -2337,8 +2337,8 @@ public:
             _target->power += wppt->power.getValue();
             _target->addToToughness(wppt->toughness.getValue());
         }
-		else
-        {//CDA 7a update wppt
+		if(cda)
+        {//update but not apply
             if(PT.size())
                 {
                     SAFE_DELETE(wppt);
@@ -2385,11 +2385,11 @@ public:
     int destroy()
     {
         if(cda)
-		{
-		;
+        {
+        ;
         }
-		else
-		{
+        else
+        {
         ((MTGCardInstance *) target)->power -= ((MTGCardInstance *) target)->pbonus;
         ((MTGCardInstance *) target)->addToToughness(-((MTGCardInstance *) target)->tbonus);
         ((MTGCardInstance *) target)->pbonus -= wppt->power.getValue();

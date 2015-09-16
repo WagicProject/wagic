@@ -53,6 +53,7 @@ MTGCardInstance::MTGCardInstance(MTGCard * card, MTGPlayerCards * arg_belongs_to
     thatmuch = 0;
     flanked = 0;
     castMethod = Constants::NOT_CAST;
+    isSettingBase = 0;
 }
 
   MTGCardInstance * MTGCardInstance::createSnapShot()

@@ -4180,6 +4180,8 @@ for (it = types.begin(); it != types.end(); it++)
             }
         }
     }
+    if(newpowerfound || newtoughnessfound)
+        _target->isSettingBase += 1;
     if(newpowerfound )
     {
         WParsedInt * val = NEW WParsedInt(newpower,NULL, source);
@@ -4281,6 +4283,9 @@ int ATransformer::destroy()
         {
             _target->setColor(*it);
         }
+		
+        if(newpowerfound || newtoughnessfound)
+            _target->isSettingBase -= 1;
 
         if(newpowerfound )
         {
