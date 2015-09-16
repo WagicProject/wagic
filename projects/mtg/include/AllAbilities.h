@@ -2345,7 +2345,7 @@ public:
                     wppt = NEW WParsedPT(PT,NULL,(MTGCardInstance *) source);
                 }
             ((MTGCardInstance *) target)->origpower = wppt->power.getValue();
-            ((MTGCardInstance *) target)->origtoughness = wppt->toughness.getValue();
+            ((MTGCardInstance *) target)->origtoughness = (wppt->toughness.getValue() + ((MTGCardInstance *) target)->life)-((MTGCardInstance *) target)->life;//what?
         }
     }
     int addToGame()
@@ -2359,9 +2359,7 @@ public:
         if(cda)
         {//Characteristic-defining abilities
             _target->origpower = wppt->power.getValue();//set orig pt
-            _target->origtoughness = wppt->toughness.getValue();         
-            _target->power -= _target->pbonus;//remove current bonuses
-            _target->addToToughness(-_target->tbonus);
+            _target->origtoughness = wppt->toughness.getValue();
             _target->setPower(_target->origpower);//update PT
             _target->setToughness(_target->origtoughness);
             _target->power += _target->pbonus;//add new bonus
@@ -2386,16 +2384,16 @@ public:
     {
         if(cda)
         {
-        ;
+            /*??Do Nothing??*/;
         }
         else
         {
-        ((MTGCardInstance *) target)->power -= ((MTGCardInstance *) target)->pbonus;
-        ((MTGCardInstance *) target)->addToToughness(-((MTGCardInstance *) target)->tbonus);
-        ((MTGCardInstance *) target)->pbonus -= wppt->power.getValue();
-        ((MTGCardInstance *) target)->tbonus -= wppt->toughness.getValue();
-        ((MTGCardInstance *) target)->power += ((MTGCardInstance *) target)->pbonus;
-        ((MTGCardInstance *) target)->addToToughness(((MTGCardInstance *) target)->tbonus);
+            ((MTGCardInstance *) target)->power -= ((MTGCardInstance *) target)->pbonus;
+            ((MTGCardInstance *) target)->addToToughness(-((MTGCardInstance *) target)->tbonus);
+            ((MTGCardInstance *) target)->pbonus -= wppt->power.getValue();
+            ((MTGCardInstance *) target)->tbonus -= wppt->toughness.getValue();
+            ((MTGCardInstance *) target)->power += ((MTGCardInstance *) target)->pbonus;
+            ((MTGCardInstance *) target)->addToToughness(((MTGCardInstance *) target)->tbonus);
         }
         return 1;
     }
