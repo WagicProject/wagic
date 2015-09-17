@@ -68,6 +68,7 @@ private:
         bool plusone = false;
         bool plustwo = false;
         bool plusthree = false;
+        bool other = false;//othertype:[subtype]
         if (!target) target = card;
         int multiplier = 1;
         if (s[0] == '-')
@@ -133,6 +134,12 @@ private:
             plusthree = true;
             size_t pThree = s.find("plusthree");
             s.erase(pThree,pThree + 9);
+        }
+        if(s.find("othertype") != string::npos)
+        {
+            other = true;
+            size_t oth = s.find("othertype");
+            s.erase(oth,oth + 5);
         }
         if(s == "prex")
         {
@@ -395,6 +402,7 @@ private:
             }
             TargetChooserFactory tf(card->getObserver());
             TargetChooser * tc = tf.createTargetChooser(theType.c_str(),NULL);
+			tc->other = other;
             for (int i = 0; i < 2; i++)
             {
                 Player * p = card->getObserver()->players[i];
@@ -641,6 +649,21 @@ private:
         else if (s == "ohandcount")
         {
             intValue = target->controller()->opponent()->game->hand->nb_cards;
+        }
+        else if (s == "myname")//Plague Rats and others
+        {
+            intValue = 0;
+            for (int i = 0; i < 2; i++)
+            {
+                Player * p = card->getObserver()->players[i];
+                for (int j = p->game->battlefield->nb_cards - 1; j >= 0; --j)
+                {
+                    if (p->game->battlefield->cards[j]->name == card->name)
+                    {
+                    intValue += 1;
+                    }
+                }
+            }
         }
         else if (s == "pgbzombie")//Soulless One
         {
