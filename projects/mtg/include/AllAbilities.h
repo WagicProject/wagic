@@ -402,7 +402,7 @@ private:
             }
             TargetChooserFactory tf(card->getObserver());
             TargetChooser * tc = tf.createTargetChooser(theType.c_str(),NULL);
-			tc->other = other;
+            tc->other = other;
             for (int i = 0; i < 2; i++)
             {
                 Player * p = card->getObserver()->players[i];
@@ -649,6 +649,61 @@ private:
         else if (s == "ohandcount")
         {
             intValue = target->controller()->opponent()->game->hand->nb_cards;
+        }
+        else if (s == "pancientooze")//Ancient Ooze
+        {
+            intValue = 0;
+            for (int j = card->controller()->game->inPlay->nb_cards - 1; j >= 0; --j)
+            {
+                if (card->controller()->game->inPlay->cards[j]->hasType(Subtypes::TYPE_CREATURE) && card->controller()->game->inPlay->cards[j] != card)
+                {
+                intValue += card->controller()->game->inPlay->cards[j]->getManaCost()->getConvertedCost();
+                }
+            }
+        }
+        else if (s == "pdauntless")//Dauntless Dourbark
+        {
+            intValue = 0;
+            for (int j = card->controller()->game->battlefield->nb_cards - 1; j >= 0; --j)
+            {
+                if (card->controller()->game->battlefield->cards[j]->hasType("forest"))
+                {
+                    intValue += 1;
+                }
+                if (card->controller()->game->battlefield->cards[j]->hasType("treefolk"))
+                {
+                    intValue += 1;
+                }
+            }
+        }
+        else if (s == "pbasiclandtypes")//Basic Land types
+        {
+            intValue = 0;
+            int forest, plains, swamp, island, mountain = 0;
+            for (int j = card->controller()->game->battlefield->nb_cards - 1; j >= 0; --j)
+            {
+                if (card->controller()->game->battlefield->cards[j]->hasType("forest"))
+                {
+                    forest = 1;
+                }
+                if (card->controller()->game->battlefield->cards[j]->hasType("plains"))
+                {
+                    plains = 1;
+                }
+                if (card->controller()->game->battlefield->cards[j]->hasType("swamp"))
+                {
+                    swamp = 1;
+                }
+                if (card->controller()->game->battlefield->cards[j]->hasType("island"))
+                {
+                    island = 1;
+                }
+                if (card->controller()->game->battlefield->cards[j]->hasType("mountain"))
+                {
+                    mountain = 1;
+                }
+            }
+            intValue = mountain + island + forest + swamp + plains;
         }
         else if (s == "myname")//Plague Rats and others
         {
