@@ -52,7 +52,7 @@ Token::Token(const Token& source) :
     origpower = source.origpower;
     origtoughness = source.origtoughness;
     basepower = source.origpower;
-    basetoughness = source.origpower;
+    basetoughness = source.origtoughness;
     pbonus = source.pbonus;
     tbonus = source.tbonus;
     rarity = source.rarity;
