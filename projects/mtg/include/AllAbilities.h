@@ -2420,9 +2420,9 @@ public:
                 {
                     SAFE_DELETE(wppt);
                     if(cda)
-                        wppt = NEW WParsedPT(ReplaceString(PT, "cdaactive", ""),NULL,(MTGCardInstance *) source);
+                        wppt = NEW WParsedPT(ReplaceString(PT, " cdaactive", ""),NULL,(MTGCardInstance *) source);
                     else
-                        wppt = NEW WParsedPT(ReplaceString(PT, "nonstatic", ""),NULL,(MTGCardInstance *) source);
+                        wppt = NEW WParsedPT(ReplaceString(PT, " nonstatic", ""),NULL,(MTGCardInstance *) source);
                 }
             MTGCardInstance * _target = (MTGCardInstance *) target;
             _target->power += wppt->power.getValue();
@@ -2434,9 +2434,9 @@ public:
                 {
                     SAFE_DELETE(wppt);
                     if(cda)
-                        wppt = NEW WParsedPT(ReplaceString(PT, "cdaactive", ""),NULL,(MTGCardInstance *) source);
+                        wppt = NEW WParsedPT(ReplaceString(PT, " cdaactive", ""),NULL,(MTGCardInstance *) source);
                     else
-                        wppt = NEW WParsedPT(ReplaceString(PT, "nonstatic", ""),NULL,(MTGCardInstance *) source);
+                        wppt = NEW WParsedPT(ReplaceString(PT, " nonstatic", ""),NULL,(MTGCardInstance *) source);
                 }
             ((MTGCardInstance *) target)->origpower = wppt->power.getValue();
             ((MTGCardInstance *) target)->origtoughness = (wppt->toughness.getValue() + ((MTGCardInstance *) target)->life)-((MTGCardInstance *) target)->life;//what?
@@ -2449,27 +2449,17 @@ public:
         {
             SAFE_DELETE(wppt);
             if(cda)
-                wppt = NEW WParsedPT(ReplaceString(PT, "cdaactive", ""),NULL,(MTGCardInstance *) source);
+                wppt = NEW WParsedPT(ReplaceString(PT, " cdaactive", ""),NULL,(MTGCardInstance *) source);
             else
-                wppt = NEW WParsedPT(ReplaceString(PT, "nonstatic", ""),NULL,(MTGCardInstance *) source);
+                wppt = NEW WParsedPT(ReplaceString(PT, " nonstatic", ""),NULL,(MTGCardInstance *) source);
         }
         if(cda)
         {//Characteristic-defining abilities
-            _target->origpower = wppt->power.getValue();//set orig pt
-            _target->origtoughness = wppt->toughness.getValue();
-            _target->setPower(_target->origpower);//update PT
-            _target->setToughness(_target->origtoughness);
-            _target->power += _target->pbonus;//add new bonus
-            _target->addToToughness(_target->tbonus);
+            _target->cdaPT(wppt->power.getValue(),wppt->toughness.getValue());
         }
 		else
         {
-            _target->power -= _target->pbonus;//remove current bonuses
-            _target->addToToughness(-_target->tbonus);
-            _target->pbonus += wppt->power.getValue();//update bonus
-            _target->tbonus += wppt->toughness.getValue();
-            _target->power += _target->pbonus;//add new bonus
-            _target->addToToughness(_target->tbonus);
+            _target->addptbonus(wppt->power.getValue(),wppt->toughness.getValue());
         }
         if(_target->has(Constants::INDESTRUCTIBLE) && wppt->toughness.getValue() < 0 && _target->toughness <= 0)
         {
@@ -2485,12 +2475,7 @@ public:
         }
         else
         {
-            ((MTGCardInstance *) target)->power -= ((MTGCardInstance *) target)->pbonus;
-            ((MTGCardInstance *) target)->addToToughness(-((MTGCardInstance *) target)->tbonus);
-            ((MTGCardInstance *) target)->pbonus -= wppt->power.getValue();
-            ((MTGCardInstance *) target)->tbonus -= wppt->toughness.getValue();
-            ((MTGCardInstance *) target)->power += ((MTGCardInstance *) target)->pbonus;
-            ((MTGCardInstance *) target)->addToToughness(((MTGCardInstance *) target)->tbonus);
+            ((MTGCardInstance *) target)->removeptbonus(wppt->power.getValue(),wppt->toughness.getValue());
         }
         return 1;
     }
@@ -2500,9 +2485,9 @@ public:
         {
             SAFE_DELETE(wppt);
             if(cda)
-                wppt = NEW WParsedPT(ReplaceString(PT, "cdaactive", ""),NULL,(MTGCardInstance *) source);
+                wppt = NEW WParsedPT(ReplaceString(PT, " cdaactive", ""),NULL,(MTGCardInstance *) source);
             else
-                wppt = NEW WParsedPT(ReplaceString(PT, "nonstatic", ""),NULL,(MTGCardInstance *) source);
+                wppt = NEW WParsedPT(ReplaceString(PT, " nonstatic", ""),NULL,(MTGCardInstance *) source);
         }
         sprintf(menuText, "%i/%i", wppt->power.getValue(), wppt->toughness.getValue());
         return menuText;
@@ -5846,23 +5831,13 @@ public:
         {
             nbOpponents = source->blockers.size();
             if (nbOpponents <= MaxOpponent) return 0;
-            source->power -= source->pbonus;
-            source->addToToughness(-source->tbonus);
-            source->pbonus += PowerModifier * (nbOpponents - MaxOpponent);
-            source->tbonus += ToughnessModifier * (nbOpponents - MaxOpponent);
-            source->power += source->pbonus;
-            source->addToToughness(source->tbonus);
+            source->addptbonus(PowerModifier * (nbOpponents - MaxOpponent),ToughnessModifier * (nbOpponents - MaxOpponent));
         }
         else if (WEventPhaseChange* pe = dynamic_cast<WEventPhaseChange*>(event))
         {
             if (MTG_PHASE_AFTER_EOT == pe->to->id && nbOpponents > MaxOpponent)
             {
-                source->power -= source->pbonus;
-                source->addToToughness(-source->tbonus);
-                source->pbonus -= PowerModifier * (nbOpponents - MaxOpponent);
-                source->tbonus -= ToughnessModifier * (nbOpponents - MaxOpponent);
-                source->power += source->pbonus;
-                source->addToToughness(source->tbonus);
+                source->removeptbonus(PowerModifier * (nbOpponents - MaxOpponent),ToughnessModifier * (nbOpponents - MaxOpponent));
                 nbOpponents = 0;
             }
         }

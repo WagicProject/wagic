@@ -56,12 +56,7 @@ int Counter::added()
 {
     if (power != 0 || toughness != 0)
     {
-        target->power -= target->pbonus;
-        target->addToToughness(-target->tbonus);
-        target->pbonus += power;
-        target->tbonus += toughness;
-        target->power += target->pbonus;
-        target->addToToughness(target->pbonus);
+        target->addcounter(power, toughness);
     }
     return 1;
 }
@@ -70,12 +65,7 @@ int Counter::removed()
 {
     if (power != 0 || toughness != 0)
     {
-        target->power -= target->pbonus;
-        target->addToToughness(-target->tbonus);
-        target->pbonus -= power;
-        target->tbonus -= toughness;
-        target->power += target->pbonus;
-        target->addToToughness(target->pbonus);
+        target->removecounter(power, toughness);
     }
     return 1;
 }

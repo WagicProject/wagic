@@ -599,6 +599,101 @@ int MTGCardInstance::setToughness(int value)
     return 1;
 }
 
+void MTGCardInstance::stripPTbonus()
+{
+    power -= pbonus;
+    addToToughness(-tbonus);
+}
+
+void MTGCardInstance::plusPTbonus(int p, int t)
+{
+    pbonus += p;
+    tbonus += t;
+}
+
+void MTGCardInstance::minusPTbonus(int p, int t)
+{
+    pbonus -= p;
+    tbonus -= t;
+}
+
+void MTGCardInstance::applyPTbonus()
+{
+    power += pbonus;
+    addToToughness(tbonus);
+}
+
+void MTGCardInstance::addcounter(int p, int t)
+{
+    stripPTbonus();
+    plusPTbonus(p,t);
+    applyPTbonus();
+}
+
+void MTGCardInstance::addptbonus(int p, int t)
+{
+    stripPTbonus();
+    plusPTbonus(p,t);
+    applyPTbonus();
+}
+
+void MTGCardInstance::removecounter(int p, int t)
+{
+    stripPTbonus();
+    minusPTbonus(p,t);
+    applyPTbonus();
+}
+
+void MTGCardInstance::removeptbonus(int p, int t)
+{
+    stripPTbonus();
+    minusPTbonus(p,t);
+    applyPTbonus();
+}
+
+void MTGCardInstance::addbaseP(int p)
+{
+    basepower = p;
+    power -= pbonus;
+    power = p;
+    power += pbonus;
+}
+
+void MTGCardInstance::addbaseT(int t)
+{
+    basetoughness = t;
+    addToToughness(-tbonus);
+    addToToughness(t - toughness);
+    addToToughness(tbonus);
+}
+
+void MTGCardInstance::revertbaseP()
+{
+    power -= pbonus;
+    power += origpower;
+    power -= basepower;
+    power += pbonus;
+    basepower = origpower;
+}
+
+void MTGCardInstance::revertbaseT()
+{
+    addToToughness(-tbonus);
+    addToToughness(origtoughness);
+    addToToughness(-basetoughness);
+    addToToughness(tbonus);
+    basetoughness = origtoughness;
+}
+
+void MTGCardInstance::cdaPT(int p, int t)
+{
+    origpower = p;
+    origtoughness = t;
+    setPower(p);
+    setToughness(t);
+    applyPTbonus();
+}
+
 int MTGCardInstance::canBlock()
 {
     if (tapped)

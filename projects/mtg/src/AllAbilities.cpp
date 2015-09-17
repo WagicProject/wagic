@@ -4186,10 +4186,7 @@ for (it = types.begin(); it != types.end(); it++)
     if(newpowerfound )
     {
         WParsedInt * val = NEW WParsedInt(newpower,NULL, source);
-        _target->basepower = val->getValue();
-        _target->power -= _target->pbonus;
-        _target->power = (_target->power + _target->basepower) - _target->power;
-		_target->power += _target->pbonus;
+        _target->addbaseP(val->getValue());
         delete val;
     }
     if(newtoughnessfound )
@@ -4197,10 +4194,7 @@ for (it = types.begin(); it != types.end(); it++)
      //and you turn it into 1/1, the 1 damage is still there and the creature must die...
      //the toughness is intact but what we see in the game is the life...
         WParsedInt * val = NEW WParsedInt(newtoughness,NULL, source);
-		_target->basetoughness = val->getValue();
-        _target->addToToughness(-_target->tbonus);
-        _target->addToToughness(_target->basetoughness - _target->toughness);
-        _target->addToToughness(_target->tbonus);
+		_target->addbaseT(val->getValue());
         delete val;
     }
 
@@ -4290,19 +4284,11 @@ int ATransformer::destroy()
 
         if(newpowerfound )
         {
-            _target->power -= _target->pbonus;
-            _target->power += _target->origpower;
-            _target->power -= _target->basepower;
-            _target->power += _target->pbonus;
-            _target->basepower = _target->origpower;
+            _target->revertbaseP();
         }
         if(newtoughnessfound )
         {
-            _target->addToToughness(-_target->tbonus);
-            _target->addToToughness(_target->origtoughness);
-            _target->addToToughness(-_target->basetoughness);
-            _target->addToToughness(_target->tbonus);
-            _target->basetoughness = _target->origtoughness;
+            _target->revertbaseT();
         }
         if(newAbilityFound)
         {
