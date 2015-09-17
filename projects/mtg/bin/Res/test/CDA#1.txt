@@ -1,0 +1,46 @@
+#Testing CDA Tarmogoyf vs Godhead of Awe
+#Godhead of Awe makes other creatures 1/1 on layer 7b
+#Tarmogoyf's CDA ability is on layer 7a so it will be overriden
+#by Godhead of Awe. Giant Growth's ability is on layer 7c so
+#the +3/+3 bonus is intact. :)
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Concordant Crossroads, Godhead of Awe, Forest
+hand:Tarmogoyf, Giant Growth
+graveyard:mountain, lightning bolt, grizzly bear
+manapool:{1}{G}
+[PLAYER2]
+[DO]
+Tarmogoyf
+next
+next
+Tarmogoyf
+next
+eot
+eot
+#untap
+next
+#upkeep
+next
+#draw
+next
+#main1
+Forest
+Giant Growth
+Tarmogoyf
+next
+#combat begin
+next
+#attackers
+Tarmogoyf
+eot
+[ASSERT]
+UNTAP
+[PLAYER1]
+inplay:Concordant Crossroads, Godhead of Awe, Tarmogoyf, Forest
+graveyard:mountain, lightning bolt, grizzly bear, Giant Growth
+manapool:{0}
+[PLAYER2]
+life:15
+[END] 

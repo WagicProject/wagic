@@ -56,9 +56,7 @@ int Counter::added()
 {
     if (power != 0 || toughness != 0)
     {
-        target->pbonus += power;
-        target->tbonus += toughness;
-        target->applyPTL();
+        target->addcounter(power, toughness);
     }
     return 1;
 }
@@ -67,9 +65,7 @@ int Counter::removed()
 {
     if (power != 0 || toughness != 0)
     {
-        target->pbonus -= power;
-        target->tbonus -= toughness;
-        target->applyPTL();
+        target->removecounter(power, toughness);
     }
     return 1;
 }

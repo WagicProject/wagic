@@ -53,8 +53,7 @@ MTGCardInstance::MTGCardInstance(MTGCard * card, MTGPlayerCards * arg_belongs_to
     thatmuch = 0;
     flanked = 0;
     castMethod = Constants::NOT_CAST;
-    isSettingBase = false;
-    isPTswitch = false;
+    isSettingBase = 0;
 }
 
   MTGCardInstance * MTGCardInstance::createSnapShot()
@@ -65,34 +64,6 @@ MTGCardInstance::MTGCardInstance(MTGCard * card, MTGPlayerCards * arg_belongs_to
         controller()->game->garbage->addCard(snapShot);
         return snapShot;
     }
-
-void MTGCardInstance::applyPTL()
-{
-    //7a ??how to add cda(Characteristic Defining Ability)??
-    power = origpower;
-    toughness = origtoughness;
-    //7b
-    if (isSettingBase)
-    {
-        power = basepower;
-        toughness = basetoughness;
-    }
-	//7c - 7d shared?
-    power += pbonus;
-    toughness += tbonus;
-    life = toughness;
-    //7e switch is last
-    if (isPTswitch)
-    {
-        oldP = power;
-        oldT = toughness;
-        this->addToToughness(oldP);
-        this->addToToughness(-oldT);
-        this->power = oldT;
-    }
-    /* end */
-    doDamageTest = 1;
-}
 
 void MTGCardInstance::copy(MTGCardInstance * card)
 {
@@ -626,6 +597,101 @@ int MTGCardInstance::setToughness(int value)
     life = value;
     doDamageTest = 1;
     return 1;
+}
+
+void MTGCardInstance::stripPTbonus()
+{
+    power -= pbonus;
+    addToToughness(-tbonus);
+}
+
+void MTGCardInstance::plusPTbonus(int p, int t)
+{
+    pbonus += p;
+    tbonus += t;
+}
+
+void MTGCardInstance::minusPTbonus(int p, int t)
+{
+    pbonus -= p;
+    tbonus -= t;
+}
+
+void MTGCardInstance::applyPTbonus()
+{
+    power += pbonus;
+    addToToughness(tbonus);
+}
+
+void MTGCardInstance::addcounter(int p, int t)
+{
+    stripPTbonus();
+    plusPTbonus(p,t);
+    applyPTbonus();
+}
+
+void MTGCardInstance::addptbonus(int p, int t)
+{
+    stripPTbonus();
+    plusPTbonus(p,t);
+    applyPTbonus();
+}
+
+void MTGCardInstance::removecounter(int p, int t)
+{
+    stripPTbonus();
+    minusPTbonus(p,t);
+    applyPTbonus();
+}
+
+void MTGCardInstance::removeptbonus(int p, int t)
+{
+    stripPTbonus();
+    minusPTbonus(p,t);
+    applyPTbonus();
+}
+
+void MTGCardInstance::addbaseP(int p)
+{
+    basepower = p;
+    power -= pbonus;
+    power = p;
+    power += pbonus;
+}
+
+void MTGCardInstance::addbaseT(int t)
+{
+    basetoughness = t;
+    addToToughness(-tbonus);
+    addToToughness(t - toughness);
+    addToToughness(tbonus);
+}
+
+void MTGCardInstance::revertbaseP()
+{
+    power -= pbonus;
+    power += origpower;
+    power -= basepower;
+    power += pbonus;
+    basepower = origpower;
+}
+
+void MTGCardInstance::revertbaseT()
+{
+    addToToughness(-tbonus);
+    addToToughness(origtoughness);
+    addToToughness(-basetoughness);
+    addToToughness(tbonus);
+    basetoughness = origtoughness;
+}
+
+void MTGCardInstance::cdaPT(int p, int t)
+{
+    origpower = p;
+    origtoughness = t;
+    setPower(p);
+    setToughness(t);
+    applyPTbonus();
 }
 
 int MTGCardInstance::canBlock()

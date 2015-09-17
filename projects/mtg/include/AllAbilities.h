@@ -68,6 +68,7 @@ private:
         bool plusone = false;
         bool plustwo = false;
         bool plusthree = false;
+        bool other = false;//othertype:[subtype]
         if (!target) target = card;
         int multiplier = 1;
         if (s[0] == '-')
@@ -134,6 +135,12 @@ private:
             size_t pThree = s.find("plusthree");
             s.erase(pThree,pThree + 9);
         }
+        if(s.find("othertype") != string::npos)
+        {
+            other = true;
+            size_t oth = s.find("othertype");
+            s.erase(oth,oth + 5);
+        }
         if(s == "prex")
         {
             ManaCost * cX = card->controller()->getManaPool()->Diff(card->getManaCost());
@@ -170,7 +177,10 @@ private:
         }
         else if (s == "manacost")
         {
-            intValue = target->getManaCost()->getConvertedCost();
+            if (target->currentZone == target->controller()->game->stack)//X is 0 except if it's on the stack
+                intValue = target->getManaCost()->getConvertedCost() + target->castX;
+            else
+                intValue = target->getManaCost()->getConvertedCost();
         }
         else if (s == "azorius")//devotion blue white
         {
@@ -392,6 +402,7 @@ private:
             }
             TargetChooserFactory tf(card->getObserver());
             TargetChooser * tc = tf.createTargetChooser(theType.c_str(),NULL);
+            tc->other = other;
             for (int i = 0; i < 2; i++)
             {
                 Player * p = card->getObserver()->players[i];
@@ -638,6 +649,136 @@ private:
         else if (s == "ohandcount")
         {
             intValue = target->controller()->opponent()->game->hand->nb_cards;
+        }
+        else if (s == "pancientooze")//Ancient Ooze
+        {
+            intValue = 0;
+            for (int j = card->controller()->game->inPlay->nb_cards - 1; j >= 0; --j)
+            {
+                if (card->controller()->game->inPlay->cards[j]->hasType(Subtypes::TYPE_CREATURE) && card->controller()->game->inPlay->cards[j] != card)
+                {
+                intValue += card->controller()->game->inPlay->cards[j]->getManaCost()->getConvertedCost();
+                }
+            }
+        }
+        else if (s == "pdauntless")//Dauntless Dourbark
+        {
+            intValue = 0;
+            for (int j = card->controller()->game->battlefield->nb_cards - 1; j >= 0; --j)
+            {
+                if (card->controller()->game->battlefield->cards[j]->hasType("forest"))
+                {
+                    intValue += 1;
+                }
+                if (card->controller()->game->battlefield->cards[j]->hasType("treefolk"))
+                {
+                    intValue += 1;
+                }
+            }
+        }
+        else if (s == "pbasiclandtypes")//Basic Land types
+        {
+            intValue = 0;
+            int forest, plains, swamp, island, mountain = 0;
+            for (int j = card->controller()->game->battlefield->nb_cards - 1; j >= 0; --j)
+            {
+                if (card->controller()->game->battlefield->cards[j]->hasType("forest"))
+                {
+                    forest = 1;
+                }
+                if (card->controller()->game->battlefield->cards[j]->hasType("plains"))
+                {
+                    plains = 1;
+                }
+                if (card->controller()->game->battlefield->cards[j]->hasType("swamp"))
+                {
+                    swamp = 1;
+                }
+                if (card->controller()->game->battlefield->cards[j]->hasType("island"))
+                {
+                    island = 1;
+                }
+                if (card->controller()->game->battlefield->cards[j]->hasType("mountain"))
+                {
+                    mountain = 1;
+                }
+            }
+            intValue = mountain + island + forest + swamp + plains;
+        }
+        else if (s == "myname")//Plague Rats and others
+        {
+            intValue = 0;
+            for (int i = 0; i < 2; i++)
+            {
+                Player * p = card->getObserver()->players[i];
+                for (int j = p->game->battlefield->nb_cards - 1; j >= 0; --j)
+                {
+                    if (p->game->battlefield->cards[j]->name == card->name)
+                    {
+                    intValue += 1;
+                    }
+                }
+            }
+        }
+        else if (s == "pgbzombie")//Soulless One
+        {
+            intValue = 0;
+            for (int i = 0; i < 2; i++)
+            {
+                Player * p = card->getObserver()->players[i];
+                for (int j = p->game->graveyard->nb_cards - 1; j >= 0; --j)
+                {
+                    if (p->game->graveyard->cards[j]->hasType("zombie"))
+                    {
+                    intValue += 1;
+                    }
+                }
+                for (int j = p->game->inPlay->nb_cards - 1; j >= 0; --j)
+                {
+                    if (p->game->inPlay->cards[j]->hasType("zombie"))
+                    {
+                    intValue += 1;
+                    }
+                }
+            }
+        }
+        else if (s == "pginstantsorcery")//Spellheart Chimera
+        {
+            intValue = 0;
+            for (int j = card->controller()->game->graveyard->nb_cards - 1; j >= 0; --j)
+            {
+                if (card->controller()->game->graveyard->cards[j]->hasType(Subtypes::TYPE_INSTANT)
+                    ||card->controller()->game->graveyard->cards[j]->hasType(Subtypes::TYPE_SORCERY))
+                {
+                intValue += 1;
+                }
+            }
+        }
+        else if (s == "gravecardtypes")//Tarmogoyf
+        {
+            intValue = 0;
+            int art, cre, enc, ins, lnd, sor, trb, pwk = 0;
+            for (int i = 0; i < 2; i++)
+            {
+                Player * p = card->getObserver()->players[i];
+                if(p->game->graveyard->hasType("planeswalker"))
+                    pwk = 1;
+                if(p->game->graveyard->hasType("tribal"))
+                    trb = 1;
+                if(p->game->graveyard->hasType("sorcery"))
+                    sor = 1;
+                if(p->game->graveyard->hasType("land"))
+                    lnd = 1;
+                if(p->game->graveyard->hasType("instant"))
+                    ins = 1;
+                if(p->game->graveyard->hasType("enchantment"))
+                    enc = 1;
+                if(p->game->graveyard->hasType("creature"))
+                    cre = 1;
+                if(p->game->graveyard->hasType("artifact"))
+                    art = 1;
+            }
+            intValue = art + cre + enc + ins + lnd + sor + trb + pwk;
         }
         else if (s == "morethanfourcards")
         {
@@ -2250,53 +2391,92 @@ public:
     WParsedPT * wppt;
     string PT;
     bool nonstatic;
+    bool cda;
     APowerToughnessModifier(GameObserver* observer, int id, MTGCardInstance * _source, MTGCardInstance * _target, WParsedPT * wppt,string PT,bool nonstatic) :
         MTGAbility(observer, id, _source, _target), wppt(wppt),PT(PT),nonstatic(nonstatic)
     {
         aType = MTGAbility::STANDARD_PUMP;
+        cda = PT.find("cdaactive") != string::npos;
     }
-    
-        void Update(float)
+    string ReplaceString(string subject, const string& search, const string& replace)
+    {
+        size_t pos = 0;
+        while ((pos = subject.find(search, pos)) != string::npos)
         {
-            if(!nonstatic)
-                return;
-            ((MTGCardInstance *) target)->pbonus -= wppt->power.getValue();
-            ((MTGCardInstance *) target)->tbonus -= wppt->toughness.getValue();
-            ((MTGCardInstance *) target)->applyPTL();
-            if(PT.size())
-            {
-                SAFE_DELETE(wppt);
-                wppt = NEW WParsedPT(PT,NULL,(MTGCardInstance *) source);
-            }
-            MTGCardInstance * _target = (MTGCardInstance *) target;
-            _target->pbonus += wppt->power.getValue();
-            _target->tbonus += wppt->toughness.getValue();
-            _target->applyPTL();
+             subject.replace(pos, search.length(), replace);
+             pos += replace.length();
         }
-        
+        return subject;
+    }
+    void Update(float)
+    {
+        if(!nonstatic)
+            return;
+        if(!cda || (cda && (((MTGCardInstance *) target)->isSettingBase < 1)))
+        {
+            ((MTGCardInstance *) target)->power -= wppt->power.getValue();
+            ((MTGCardInstance *) target)->addToToughness(-wppt->toughness.getValue());
+            if(PT.size())
+                {
+                    SAFE_DELETE(wppt);
+                    if(cda)
+                        wppt = NEW WParsedPT(ReplaceString(PT, " cdaactive", ""),NULL,(MTGCardInstance *) source);
+                    else
+                        wppt = NEW WParsedPT(ReplaceString(PT, " nonstatic", ""),NULL,(MTGCardInstance *) source);
+                }
+            MTGCardInstance * _target = (MTGCardInstance *) target;
+            _target->power += wppt->power.getValue();
+            _target->addToToughness(wppt->toughness.getValue());
+        }
+		if(cda)
+        {//update but not apply
+            if(PT.size())
+                {
+                    SAFE_DELETE(wppt);
+                    if(cda)
+                        wppt = NEW WParsedPT(ReplaceString(PT, " cdaactive", ""),NULL,(MTGCardInstance *) source);
+                    else
+                        wppt = NEW WParsedPT(ReplaceString(PT, " nonstatic", ""),NULL,(MTGCardInstance *) source);
+                }
+            ((MTGCardInstance *) target)->origpower = wppt->power.getValue();
+            ((MTGCardInstance *) target)->origtoughness = (wppt->toughness.getValue() + ((MTGCardInstance *) target)->life)-((MTGCardInstance *) target)->life;//what?
+        }
+    }
     int addToGame()
     {
         MTGCardInstance * _target = (MTGCardInstance *) target;
         if(PT.size())
         {
             SAFE_DELETE(wppt);
-            wppt = NEW WParsedPT(PT,NULL,(MTGCardInstance *) source);
+            if(cda)
+                wppt = NEW WParsedPT(ReplaceString(PT, " cdaactive", ""),NULL,(MTGCardInstance *) source);
+            else
+                wppt = NEW WParsedPT(ReplaceString(PT, " nonstatic", ""),NULL,(MTGCardInstance *) source);
         }
-        _target->pbonus += wppt->power.getValue();
-        _target->tbonus += wppt->toughness.getValue();
-        _target->applyPTL();
+        if(cda)
+        {//Characteristic-defining abilities
+            _target->cdaPT(wppt->power.getValue(),wppt->toughness.getValue());
+        }
+		else
+        {
+            _target->addptbonus(wppt->power.getValue(),wppt->toughness.getValue());
+        }
         if(_target->has(Constants::INDESTRUCTIBLE) && wppt->toughness.getValue() < 0 && _target->toughness <= 0)
         {
         _target->controller()->game->putInGraveyard(_target);
         }
         return MTGAbility::addToGame();
     }
-
     int destroy()
     {
-        ((MTGCardInstance *) target)->pbonus -= wppt->power.getValue();
-        ((MTGCardInstance *) target)->tbonus -= wppt->toughness.getValue();
-        ((MTGCardInstance *) target)->applyPTL();
+        if(cda)
+        {
+            /*??Do Nothing??*/;
+        }
+        else
+        {
+            ((MTGCardInstance *) target)->removeptbonus(wppt->power.getValue(),wppt->toughness.getValue());
+        }
         return 1;
     }
     const string getMenuText()
@@ -2304,7 +2484,10 @@ public:
         if(PT.size())
         {
             SAFE_DELETE(wppt);
-            wppt = NEW WParsedPT(PT,NULL,(MTGCardInstance *) source);
+            if(cda)
+                wppt = NEW WParsedPT(ReplaceString(PT, " cdaactive", ""),NULL,(MTGCardInstance *) source);
+            else
+                wppt = NEW WParsedPT(ReplaceString(PT, " nonstatic", ""),NULL,(MTGCardInstance *) source);
         }
         sprintf(menuText, "%i/%i", wppt->power.getValue(), wppt->toughness.getValue());
         return menuText;
@@ -2315,12 +2498,10 @@ public:
         a->wppt = NEW WParsedPT(*(a->wppt));
         return a;
     }
-
     ~APowerToughnessModifier()
     {
         delete (wppt);
     }
-
 };
 
 class GenericInstantAbility: public InstantAbility, public NestedAbility
@@ -4031,6 +4212,8 @@ string menu;
 class ASwapPT: public InstantAbility
 {
 public:
+    int oldP;
+    int oldT;
     ASwapPT(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target) :
         InstantAbility(observer, _id, _source, _target)
     {
@@ -4045,12 +4228,11 @@ public:
             while (_target->next)
                 _target = _target->next; //This is for cards such as rampant growth
             
-			if(_target->isPTswitch)
-                _target->isPTswitch = false;
-			else
-                _target->isPTswitch = true;
-
-            _target->applyPTL();
+            oldP = _target->power;
+            oldT = _target->toughness;
+            _target->addToToughness(oldP);
+            _target->addToToughness(-oldT);
+            _target->setPower(oldT);
         }
         return 1;
     }
@@ -4063,9 +4245,11 @@ public:
             while (_target->next)
                 _target = _target->next; //This is for cards such as rampant growth
             
-            _target->isPTswitch = false;
-
-            _target->applyPTL();
+            oldP = _target->power;
+            oldT = _target->toughness;
+            _target->addToToughness(oldP);
+            _target->addToToughness(-oldT);
+            _target->setPower(oldT);
 
         }
         return 1;
@@ -5647,17 +5831,13 @@ public:
         {
             nbOpponents = source->blockers.size();
             if (nbOpponents <= MaxOpponent) return 0;
-            source->pbonus += PowerModifier * (nbOpponents - MaxOpponent);
-            source->tbonus += ToughnessModifier * (nbOpponents - MaxOpponent);
-            source->applyPTL();
+            source->addptbonus(PowerModifier * (nbOpponents - MaxOpponent),ToughnessModifier * (nbOpponents - MaxOpponent));
         }
         else if (WEventPhaseChange* pe = dynamic_cast<WEventPhaseChange*>(event))
         {
             if (MTG_PHASE_AFTER_EOT == pe->to->id && nbOpponents > MaxOpponent)
             {
-                source->pbonus -= PowerModifier * (nbOpponents - MaxOpponent);
-                source->tbonus -= ToughnessModifier * (nbOpponents - MaxOpponent);
-                source->applyPTL();
+                source->removeptbonus(PowerModifier * (nbOpponents - MaxOpponent),ToughnessModifier * (nbOpponents - MaxOpponent));
                 nbOpponents = 0;
             }
         }

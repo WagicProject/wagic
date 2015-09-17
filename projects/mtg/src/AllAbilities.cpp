@@ -2536,12 +2536,13 @@ int AACloner::resolve()
         spell->source->fresh = 1;
         spell->source->model = spell->source;
         spell->source->model->data = spell->source;
-        if(_target->isToken)
+        //commenting this out fixes some problems when duplicating tokens 9/16/2015
+        /*if(_target->isToken)
         {
             spell->source->power = _target->origpower;
             spell->source->toughness = _target->origtoughness;
             spell->source->life = _target->origtoughness;
-        }
+        }*/
         list<int>::iterator it;
         for (it = awith.begin(); it != awith.end(); it++)
         {
@@ -4180,20 +4181,20 @@ for (it = types.begin(); it != types.end(); it++)
             }
         }
     }
+    if(newpowerfound || newtoughnessfound)
+        _target->isSettingBase += 1;
     if(newpowerfound )
-    {//setting p/t only overrides base p/t as of M15 changes
+    {
         WParsedInt * val = NEW WParsedInt(newpower,NULL, source);
-        _target->basepower = val->getValue();
-        _target->isSettingBase = true;
-        _target->applyPTL();
+        _target->addbaseP(val->getValue());
         delete val;
     }
     if(newtoughnessfound )
-    {//setting p/t only overrides base p/t as of M15 changes
+    {//we should consider the damage if there is, if you have a 5/5 creature with 1 damage,
+     //and you turn it into 1/1, the 1 damage is still there and the creature must die...
+     //the toughness is intact but what we see in the game is the life...
         WParsedInt * val = NEW WParsedInt(newtoughness,NULL, source);
-		_target->basetoughness = val->getValue();
-        _target->isSettingBase = true;
-        _target->applyPTL();
+		_target->addbaseT(val->getValue());
         delete val;
     }
 
@@ -4277,18 +4278,17 @@ int ATransformer::destroy()
         {
             _target->setColor(*it);
         }
+		
+        if(newpowerfound || newtoughnessfound)
+            _target->isSettingBase -= 1;
 
         if(newpowerfound )
-        {//override since we changed tha base, the bonus must have changed
-            _target->isSettingBase = false;
-            _target->basepower = _target->origpower;
-            _target->applyPTL();
+        {
+            _target->revertbaseP();
         }
         if(newtoughnessfound )
         {
-            _target->isSettingBase = false;
-            _target->basetoughness = _target->origtoughness;
-            _target->applyPTL();
+            _target->revertbaseT();
         }
         if(newAbilityFound)
         {

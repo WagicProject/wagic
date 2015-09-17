@@ -186,11 +186,7 @@ public:
 
     int addToToughness(int value);
     int setToughness(int value);
-    bool isSettingBase;
-    bool isPTswitch;
-    int oldP;
-    int oldT;
-    void applyPTL();
+    int isSettingBase;
 
     vector<TargetChooser *>protections;
     int addProtection(TargetChooser * tc);
@@ -223,6 +219,21 @@ public:
     void untap();
     void tap();
     void attemptUntap();
+
+    //cda and other func
+    void stripPTbonus();
+    void minusPTbonus(int p = 0, int t = 0);
+    void plusPTbonus(int p = 0, int t = 0);
+    void applyPTbonus();
+    void addcounter(int p = 0, int t = 0);
+    void removecounter(int p = 0, int t = 0);
+    void addptbonus(int p = 0, int t = 0);
+    void removeptbonus(int p = 0, int t = 0);
+    void addbaseP(int p = 0);
+    void addbaseT(int t = 0);
+    void revertbaseP();
+    void revertbaseT();
+    void cdaPT(int p = 0, int t = 0);
 
     void eventattacked();
     void eventattackedAlone();
