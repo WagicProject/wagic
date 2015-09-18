@@ -285,10 +285,18 @@ void CardGui::Render()
         sprintf(buffer, "%i/%i", card->power, card->life);
         renderer->FillRect(actX - (12 * actZ), actY + 6 * actZ, 25 * actZ, 12 * actZ,
             ARGB(((static_cast<unsigned char>(actA))/2),0,0,0));
-        if(card->wasDealtDamage || card->tbonus < 0)
-            mFont->SetColor(ARGB(static_cast<unsigned char>(actA),220,20,60));//crimson
+        if(card->wasDealtDamage && card->life <= 2)
+            mFont->SetColor(ARGB(static_cast<unsigned char>(actA),255,0,0));//red
         else if(!card->wasDealtDamage && card->pbonus > 0)
-            mFont->SetColor(ARGB(static_cast<unsigned char>(actA),0,255,127));//spring green
+            mFont->SetColor(ARGB(static_cast<unsigned char>(actA),152,251,152));//pale green
+        else if(card->getRarity() == Constants::RARITY_M)
+            mFont->SetColor(ARGB(static_cast<unsigned char>(actA),255,165,0));//orange
+        else if(card->getRarity() == Constants::RARITY_R)
+            mFont->SetColor(ARGB(static_cast<unsigned char>(actA),255,215,0));//gold
+        else if(card->getRarity() == Constants::RARITY_T)
+            mFont->SetColor(ARGB(static_cast<unsigned char>(actA),245,245,245));//smoke
+        else if(card->hasType("legendary") && card->hasType("eldrazi"))
+            mFont->SetColor(ARGB(static_cast<unsigned char>(actA),238,130,238));//violet
 		else
             mFont->SetColor(ARGB(static_cast<unsigned char>(actA),255,255,255));//white
         mFont->SetScale(actZ);
