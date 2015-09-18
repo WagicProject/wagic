@@ -234,6 +234,7 @@ public:
     void revertbaseP();
     void revertbaseT();
     void cdaPT(int p = 0, int t = 0);
+    bool isCDA;
 
     void eventattacked();
     void eventattackedAlone();

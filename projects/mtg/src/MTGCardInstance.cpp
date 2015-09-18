@@ -54,6 +54,7 @@ MTGCardInstance::MTGCardInstance(MTGCard * card, MTGPlayerCards * arg_belongs_to
     flanked = 0;
     castMethod = Constants::NOT_CAST;
     isSettingBase = 0;
+    isCDA = false;
 }
 
   MTGCardInstance * MTGCardInstance::createSnapShot()
