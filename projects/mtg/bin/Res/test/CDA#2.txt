@@ -1,0 +1,38 @@
+#Testing CDA Turn to Frog vs Krosan Cloudscraper
+#Krosan Cloudscraper that is turned into frog with 1 damage
+#from Lightning Dart must die because when you change
+#the power and toughness into 1/1, the 1 point of damage
+#is taken into account...
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+inplay:Krosan Cloudscraper
+[PLAYER2]
+inplay:Mountain, Plains, Swamp, Island
+hand:Lightning Dart, Turn to Frog
+[DO]
+next
+next
+Krosan Cloudscraper
+next
+no
+yes
+Mountain
+Plains
+Lightning Dart
+Krosan Cloudscraper
+Swamp
+Island
+Turn to Frog
+Krosan Cloudscraper
+endinterruption
+eot
+[ASSERT]
+UNTAP
+[PLAYER1]
+graveyard:Krosan Cloudscraper
+[PLAYER2]
+inplay:Mountain, Plains, Swamp, Island
+graveyard:Lightning Dart, Turn to Frog
+life:20
+[END] 

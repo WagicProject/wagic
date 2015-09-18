@@ -210,6 +210,8 @@ Call_to_Heel_1.txt
 Call_to_Heel_2.txt
 castle.txt
 cathodion.txt
+CDA#1.txt
+CDA#2.txt
 celestial_mantle.txt
 celestial_purge.txt
 celestial_sword.txt
