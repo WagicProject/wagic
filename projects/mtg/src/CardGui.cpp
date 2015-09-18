@@ -285,7 +285,12 @@ void CardGui::Render()
         sprintf(buffer, "%i/%i", card->power, card->life);
         renderer->FillRect(actX - (12 * actZ), actY + 6 * actZ, 25 * actZ, 12 * actZ,
             ARGB(((static_cast<unsigned char>(actA))/2),0,0,0));
-        mFont->SetColor(ARGB(static_cast<unsigned char>(actA),255,255,255));
+        if(card->wasDealtDamage || card->tbonus < 0)
+            mFont->SetColor(ARGB(static_cast<unsigned char>(actA),220,20,60));//crimson
+        else if(!card->wasDealtDamage && card->pbonus > 0)
+            mFont->SetColor(ARGB(static_cast<unsigned char>(actA),0,255,127));//spring green
+		else
+            mFont->SetColor(ARGB(static_cast<unsigned char>(actA),255,255,255));//white
         mFont->SetScale(actZ);
         mFont->DrawString(buffer, actX - 10 * actZ, actY + 8 * actZ);
         mFont->SetScale(1);

@@ -2541,7 +2541,7 @@ int AACloner::resolve()
         {
             if(_target->pbonus > 0)
                 spell->source->power = _target->power - _target->pbonus;
-			else
+            else
                 spell->source->power = _target->power + _target->pbonus;
             if(_target->tbonus > 0)
             {
