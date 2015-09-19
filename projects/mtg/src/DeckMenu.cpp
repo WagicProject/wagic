@@ -215,7 +215,10 @@ void DeckMenu::selectRandomDeck(bool isAi)
 {
     DeckManager *deckManager = DeckManager::GetInstance();
     vector<DeckMetaData *> *deckList = isAi ? deckManager->getAIDeckOrderList() : deckManager->getPlayerDeckOrderList();
-    int random = (WRand() * 1000) % deckList->size();
+    //int random = (WRand() * 1000) % deckList->size();
+    int lowest=0, highest = deckList->size();
+    int range=(highest-lowest)+1;
+    int random = lowest+int(range*rand()/(RAND_MAX + 1.0));
     selectDeck( random, isAi );
 }
 
