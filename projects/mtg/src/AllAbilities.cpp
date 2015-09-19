@@ -2536,16 +2536,27 @@ int AACloner::resolve()
         spell->source->fresh = 1;
         spell->source->model = spell->source;
         spell->source->model->data = spell->source;
-        //commenting this out fixes some problems when duplicating tokens 9/16/2015
-        /*if(_target->isToken)
+        //if the token doesn't have cda/dynamic pt then allow this...
+        if((_target->isToken) && (!_target->isCDA))
         {
-            spell->source->power = _target->origpower;
-            spell->source->toughness = _target->origtoughness;
-            spell->source->life = _target->origtoughness;
-        }*/
+            if(_target->pbonus > 0)
+                spell->source->power = _target->power - _target->pbonus;
+            else
+                spell->source->power = _target->power + _target->pbonus;
+            if(_target->tbonus > 0)
+            {
+                spell->source->toughness = _target->toughness - _target->tbonus;
+                spell->source->life = _target->toughness - _target->tbonus;
+            }
+            else
+            {
+                spell->source->toughness = _target->toughness + _target->tbonus;
+                spell->source->life = _target->toughness + _target->tbonus;
+            }
+        }
         list<int>::iterator it;
         for (it = awith.begin(); it != awith.end(); it++)
-        {
+        {//there must be a layer of temporary abilities and original abilities
             spell->source->basicAbilities[*it] = 1;
         }
         for (it = colors.begin(); it != colors.end(); it++)

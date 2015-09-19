@@ -2456,6 +2456,7 @@ public:
         if(cda)
         {//Characteristic-defining abilities
             _target->cdaPT(wppt->power.getValue(),wppt->toughness.getValue());
+            _target->isCDA = true;
         }
 		else
         {
