@@ -235,6 +235,10 @@ public:
     void revertbaseT();
     void cdaPT(int p = 0, int t = 0);
     bool isCDA;
+    void switchPT(bool apply = false);
+    int swapP;
+    int swapT;
+    bool isSwitchedPT;
 
     void eventattacked();
     void eventattackedAlone();

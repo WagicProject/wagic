@@ -302,6 +302,17 @@ void CardGui::Render()
         mFont->SetScale(1);
     }
 
+    if(card->getRarity() == Constants::RARITY_T)
+	{
+        mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
+        char buffer[200];
+        sprintf(buffer, "T");
+        mFont->SetColor(ARGB(static_cast<unsigned char>(actA),255,222,173));//Navajo
+        mFont->SetScale(0.8f);
+        mFont->DrawString(buffer, actX - 10 * actZ, actY - (18 * actZ));
+        mFont->SetScale(1);
+    }
+
     if (card->counters->mCount > 0)
     {
         unsigned c = -1;
