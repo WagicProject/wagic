@@ -1,0 +1,36 @@
+#Testing PT Switch. Windreaver and Screaming Fury... Layer 7e
+#A 1/3 creature is given +0/+1 by an effect. Then another effect switches the
+#creature’s power and toughness. Its new power and toughness is 4/1. A new effect gives
+#the creature +5/+0. Its “unswitched” power and toughness would be 6/4, so its actual
+#power and toughness is 4/6.
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Screaming Fury
+inplay:Windreaver, Mountain, Plains, Swamp, Island, Forest
+[PLAYER2]
+[DO]
+Plains
+Windreaver
+choice 1
+Island
+Windreaver
+choice 0
+Mountain
+Forest
+Swamp
+Screaming Fury
+Windreaver
+next
+next
+Windreaver
+next
+eot
+[ASSERT]
+UNTAP
+[PLAYER1]
+inplay:Windreaver, Mountain, Plains, Swamp, Island, Forest
+graveyard:Screaming Fury
+[PLAYER2]
+life:16
+[END] 

@@ -536,6 +536,7 @@ prowess_of_the_fair.txt
 prowess_of_the_fair2.txt
 prowess_of_the_fair3.txt
 PTInstant.txt
+PTswitch.txt
 PT_M15_errata.txt
 PT_M15_errata2.txt
 pygmy_troll.txt

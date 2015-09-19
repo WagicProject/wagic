@@ -4197,7 +4197,14 @@ for (it = types.begin(); it != types.end(); it++)
     if(newpowerfound )
     {
         WParsedInt * val = NEW WParsedInt(newpower,NULL, source);
-        _target->addbaseP(val->getValue());
+        if(_target->isSwitchedPT)
+        {
+            _target->switchPT(false);
+            _target->addbaseP(val->getValue());
+            _target->switchPT(true);
+        }
+        else
+            _target->addbaseP(val->getValue());
         delete val;
     }
     if(newtoughnessfound )
@@ -4205,7 +4212,14 @@ for (it = types.begin(); it != types.end(); it++)
      //and you turn it into 1/1, the 1 damage is still there and the creature must die...
      //the toughness is intact but what we see in the game is the life...
         WParsedInt * val = NEW WParsedInt(newtoughness,NULL, source);
-		_target->addbaseT(val->getValue());
+        if(_target->isSwitchedPT)
+        {
+            _target->switchPT(false);
+            _target->addbaseT(val->getValue());
+            _target->switchPT(true);
+        }
+        else
+		    _target->addbaseT(val->getValue());
         delete val;
     }
 

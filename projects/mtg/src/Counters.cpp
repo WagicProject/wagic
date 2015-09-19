@@ -56,7 +56,14 @@ int Counter::added()
 {
     if (power != 0 || toughness != 0)
     {
-        target->addcounter(power, toughness);
+        if(target->isSwitchedPT)
+        {
+            target->switchPT(false);
+            target->addcounter(power, toughness);
+            target->switchPT(true);
+        }
+        else
+            target->addcounter(power, toughness);
     }
     return 1;
 }
@@ -65,6 +72,13 @@ int Counter::removed()
 {
     if (power != 0 || toughness != 0)
     {
+        if(target->isSwitchedPT)
+        {
+            target->switchPT(false);
+            target->removecounter(power, toughness);
+            target->switchPT(true);
+        }
+        else
         target->removecounter(power, toughness);
     }
     return 1;

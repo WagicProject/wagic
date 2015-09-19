@@ -2398,45 +2398,42 @@ public:
         aType = MTGAbility::STANDARD_PUMP;
         cda = PT.find("cdaactive") != string::npos;
     }
-    string ReplaceString(string subject, const string& search, const string& replace)
-    {
-        size_t pos = 0;
-        while ((pos = subject.find(search, pos)) != string::npos)
-        {
-             subject.replace(pos, search.length(), replace);
-             pos += replace.length();
-        }
-        return subject;
-    }
+    
     void Update(float)
     {
         if(!nonstatic)
             return;
         if(!cda || (cda && (((MTGCardInstance *) target)->isSettingBase < 1)))
         {
+            if(((MTGCardInstance *) target)->isSwitchedPT)
+                ((MTGCardInstance *) target)->switchPT(false);//revert
+
             ((MTGCardInstance *) target)->power -= wppt->power.getValue();
             ((MTGCardInstance *) target)->addToToughness(-wppt->toughness.getValue());
             if(PT.size())
                 {
                     SAFE_DELETE(wppt);
                     if(cda)
-                        wppt = NEW WParsedPT(ReplaceString(PT, " cdaactive", ""),NULL,(MTGCardInstance *) source);
+                        wppt = NEW WParsedPT(cReplaceString(PT, " cdaactive", ""),NULL,(MTGCardInstance *) source);
                     else
-                        wppt = NEW WParsedPT(ReplaceString(PT, " nonstatic", ""),NULL,(MTGCardInstance *) source);
+                        wppt = NEW WParsedPT(cReplaceString(PT, " nonstatic", ""),NULL,(MTGCardInstance *) source);
                 }
             MTGCardInstance * _target = (MTGCardInstance *) target;
             _target->power += wppt->power.getValue();
             _target->addToToughness(wppt->toughness.getValue());
+
+            if(_target->isSwitchedPT)
+                _target->switchPT(true);//reaapply
         }
-		if(cda)
+        if(cda)
         {//update but not apply
             if(PT.size())
                 {
                     SAFE_DELETE(wppt);
                     if(cda)
-                        wppt = NEW WParsedPT(ReplaceString(PT, " cdaactive", ""),NULL,(MTGCardInstance *) source);
+                        wppt = NEW WParsedPT(cReplaceString(PT, " cdaactive", ""),NULL,(MTGCardInstance *) source);
                     else
-                        wppt = NEW WParsedPT(ReplaceString(PT, " nonstatic", ""),NULL,(MTGCardInstance *) source);
+                        wppt = NEW WParsedPT(cReplaceString(PT, " nonstatic", ""),NULL,(MTGCardInstance *) source);
                 }
             ((MTGCardInstance *) target)->origpower = wppt->power.getValue();
             ((MTGCardInstance *) target)->origtoughness = (wppt->toughness.getValue() + ((MTGCardInstance *) target)->life)-((MTGCardInstance *) target)->life;//what?
@@ -2449,22 +2446,37 @@ public:
         {
             SAFE_DELETE(wppt);
             if(cda)
-                wppt = NEW WParsedPT(ReplaceString(PT, " cdaactive", ""),NULL,(MTGCardInstance *) source);
+                wppt = NEW WParsedPT(cReplaceString(PT, " cdaactive", ""),NULL,(MTGCardInstance *) source);
             else
-                wppt = NEW WParsedPT(ReplaceString(PT, " nonstatic", ""),NULL,(MTGCardInstance *) source);
+                wppt = NEW WParsedPT(cReplaceString(PT, " nonstatic", ""),NULL,(MTGCardInstance *) source);
         }
         if(cda)
         {//Characteristic-defining abilities
-            _target->cdaPT(wppt->power.getValue(),wppt->toughness.getValue());
+            if(_target->isSwitchedPT)
+            {
+                _target->switchPT(false);
+                _target->cdaPT(wppt->power.getValue(),wppt->toughness.getValue());
+                _target->switchPT(true);
+            }
+            else
+                _target->cdaPT(wppt->power.getValue(),wppt->toughness.getValue());
+
             _target->isCDA = true;
         }
-		else
+        else
         {
-            _target->addptbonus(wppt->power.getValue(),wppt->toughness.getValue());
+            if(_target->isSwitchedPT)
+            {
+                _target->switchPT(false);
+                _target->addptbonus(wppt->power.getValue(),wppt->toughness.getValue());
+                _target->switchPT(true);
+            }
+            else
+                _target->addptbonus(wppt->power.getValue(),wppt->toughness.getValue());
         }
         if(_target->has(Constants::INDESTRUCTIBLE) && wppt->toughness.getValue() < 0 && _target->toughness <= 0)
         {
-        _target->controller()->game->putInGraveyard(_target);
+            _target->controller()->game->putInGraveyard(_target);
         }
         return MTGAbility::addToGame();
     }
@@ -2486,9 +2498,9 @@ public:
         {
             SAFE_DELETE(wppt);
             if(cda)
-                wppt = NEW WParsedPT(ReplaceString(PT, " cdaactive", ""),NULL,(MTGCardInstance *) source);
+                wppt = NEW WParsedPT(cReplaceString(PT, " cdaactive", ""),NULL,(MTGCardInstance *) source);
             else
-                wppt = NEW WParsedPT(ReplaceString(PT, " nonstatic", ""),NULL,(MTGCardInstance *) source);
+                wppt = NEW WParsedPT(cReplaceString(PT, " nonstatic", ""),NULL,(MTGCardInstance *) source);
         }
         sprintf(menuText, "%i/%i", wppt->power.getValue(), wppt->toughness.getValue());
         return menuText;
@@ -4213,8 +4225,6 @@ string menu;
 class ASwapPT: public InstantAbility
 {
 public:
-    int oldP;
-    int oldT;
     ASwapPT(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target) :
         InstantAbility(observer, _id, _source, _target)
     {
@@ -4229,11 +4239,16 @@ public:
             while (_target->next)
                 _target = _target->next; //This is for cards such as rampant growth
             
-            oldP = _target->power;
-            oldT = _target->toughness;
-            _target->addToToughness(oldP);
-            _target->addToToughness(-oldT);
-            _target->setPower(oldT);
+            if(!_target->isSwitchedPT)
+            {
+                _target->isSwitchedPT = true;
+                _target->switchPT(true);
+            }
+            else
+            {
+                _target->isSwitchedPT = false;
+                _target->switchPT(false);
+            }
         }
         return 1;
     }
@@ -4246,12 +4261,11 @@ public:
             while (_target->next)
                 _target = _target->next; //This is for cards such as rampant growth
             
-            oldP = _target->power;
-            oldT = _target->toughness;
-            _target->addToToughness(oldP);
-            _target->addToToughness(-oldT);
-            _target->setPower(oldT);
-
+            if(_target->isSwitchedPT)
+            {
+                _target->isSwitchedPT = false;
+                _target->switchPT(false);
+            }
         }
         return 1;
     }
@@ -5832,14 +5846,29 @@ public:
         {
             nbOpponents = source->blockers.size();
             if (nbOpponents <= MaxOpponent) return 0;
-            source->addptbonus(PowerModifier * (nbOpponents - MaxOpponent),ToughnessModifier * (nbOpponents - MaxOpponent));
+            if(source->isSwitchedPT)
+            {
+                source->switchPT(false);
+                source->addptbonus(PowerModifier * (nbOpponents - MaxOpponent),ToughnessModifier * (nbOpponents - MaxOpponent));
+                source->switchPT(true);
+            }
+            else
+                source->addptbonus(PowerModifier * (nbOpponents - MaxOpponent),ToughnessModifier * (nbOpponents - MaxOpponent));
         }
         else if (WEventPhaseChange* pe = dynamic_cast<WEventPhaseChange*>(event))
         {
             if (MTG_PHASE_AFTER_EOT == pe->to->id && nbOpponents > MaxOpponent)
             {
-                source->removeptbonus(PowerModifier * (nbOpponents - MaxOpponent),ToughnessModifier * (nbOpponents - MaxOpponent));
-                nbOpponents = 0;
+                if(source->isSwitchedPT)
+                {
+                    source->switchPT(false);
+                    source->removeptbonus(PowerModifier * (nbOpponents - MaxOpponent),ToughnessModifier * (nbOpponents - MaxOpponent));
+                    source->switchPT(true);
+                }
+                else
+                    source->removeptbonus(PowerModifier * (nbOpponents - MaxOpponent),ToughnessModifier * (nbOpponents - MaxOpponent));
+
+                    nbOpponents = 0;
             }
         }
         return 1;

@@ -55,6 +55,7 @@ MTGCardInstance::MTGCardInstance(MTGCard * card, MTGPlayerCards * arg_belongs_to
     castMethod = Constants::NOT_CAST;
     isSettingBase = 0;
     isCDA = false;
+    isSwitchedPT = false;
 }
 
   MTGCardInstance * MTGCardInstance::createSnapShot()
@@ -693,6 +694,26 @@ void MTGCardInstance::cdaPT(int p, int t)
     setPower(p);
     setToughness(t);
     applyPTbonus();
+}
+
+void MTGCardInstance::switchPT(bool apply)
+{
+    stripPTbonus();
+    swapP = power;
+    swapT = toughness;
+    power += origpower;
+    power -= swapP;
+    addToToughness(origtoughness);
+    addToToughness(-swapT);
+    applyPTbonus();
+    if(apply)
+    {
+        swapP = toughness;
+        swapT = power;
+        addToToughness(swapT);
+        addToToughness(-swapP);
+        setPower(swapP);
+    }
 }
 
 int MTGCardInstance::canBlock()

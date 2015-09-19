@@ -98,6 +98,17 @@ bool FileExists(const string & filename)
     return JFileSystem::GetInstance()->FileExists(filename);
 }
 
+std::string cReplaceString(string subject, const string& search, const string& replace)
+{
+    size_t pos = 0;
+    while ((pos = subject.find(search, pos)) != string::npos)
+    {
+         subject.replace(pos, search.length(), replace);
+         pos += replace.length();
+    }
+    return subject;
+}
+
 /*
 #ifdef LINUX
 
