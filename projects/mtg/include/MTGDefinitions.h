@@ -225,7 +225,8 @@ class Constants
       LIBRARYDEATH = 107,
       SHUFFLELIBRARYDEATH = 108,
       OFFERING = 109,
-      NB_BASIC_ABILITIES = 110,
+      EVADEBIGGER = 110,
+      NB_BASIC_ABILITIES = 111,
 
 
     RARITY_S = 'S',   //Special Rarity

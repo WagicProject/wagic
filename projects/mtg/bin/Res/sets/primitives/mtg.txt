@@ -6267,8 +6267,7 @@ abilities=flying,double strike
 facedown={3}
 autofacedown={4}{W}:morph
 autofaceup=counter(1/1,1)
-text=Flying
-Double strike (This creature deals both first-strike and regular combat damage.) -- Megamorph {4}{W} (You may cast this card face down as a 2/2 creature for {3}. Turn it face up any time for its megamorph cost and put a +1/+1 counter on it.)
+text=Flying -- Double strike (This creature deals both first-strike and regular combat damage.) -- Megamorph {4}{W} (You may cast this card face down as a 2/2 creature for {3}. Turn it face up any time for its megamorph cost and put a +1/+1 counter on it.)
 mana={1}{W}{W}
 type=Creature
 subtype=Bird Warrior
@@ -18318,8 +18317,7 @@ name=Contradict
 target=*|stack
 auto=fizzle
 auto=draw:1 controller
-text=Counter target spell.
-Draw a card.
+text=Counter target spell. Draw a card.
 mana={3}{U}{U}
 type=Instant
 [/card]
@@ -23463,8 +23461,7 @@ facedown={3}
 autofacedown={1}{G}:morph
 autofaceup=counter(1/1,1)
 autofaceup=moveto(ownerhand) target(*|mygraveyard)
-text=Creatures with power less than Den Protector's power can't block it.
-Megamorph {1}{G} (You may cast this card face down as a 2/2 creature for {3}. Turn it face up any time for its megamorph cost and put a +1/+1 counter on it.) -- When Den Protector is turned face up, return target card from your graveyard to your hand.
+text=Creatures with power less than Den Protector's power can't block it. Megamorph {1}{G} (You may cast this card face down as a 2/2 creature for {3}. Turn it face up any time for its megamorph cost and put a +1/+1 counter on it.) -- When Den Protector is turned face up, return target card from your graveyard to your hand.
 mana={1}{G}
 type=Creature
 subtype=Human Warrior
@@ -54467,8 +54464,7 @@ name=Learn from the Past
 target=player
 auto=moveTo(ownerlibrary) and!(shuffle)! all(*|targetedpersonsgraveyard)
 auto=draw:1 controller
-text=Target player shuffles his or her graveyard into his or her library.
-Draw a card.
+text=Target player shuffles his or her graveyard into his or her library. Draw a card.
 mana={3}{U}
 type=Instant
 [/card]
@@ -77324,8 +77320,7 @@ name=Rending Volley
 abilities=nofizzle
 target=creature[white;blue]|battlefield
 auto=damage:4
-text=Rending Volley can't be countered by spells or abilities.
-Rending Volley deals 4 damage to target white or blue creature.
+text=Rending Volley can't be countered by spells or abilities. Rending Volley deals 4 damage to target white or blue creature.
 mana={R}
 type=Instant
 [/card]
@@ -87132,7 +87127,7 @@ toughness=7
 [/card]
 [card]
 name=Silumgar Assassin
-abilities=strong
+abilities=evadebigger
 facedown={3}
 autofacedown={2}{B}:morph
 autofaceup=counter(1/1,1)

@@ -287,29 +287,37 @@ void CardGui::Render()
             ARGB(((static_cast<unsigned char>(actA))/2),0,0,0));
         //damaged or buffed or powered down		
         if(card->wasDealtDamage && card->life <= 2)
-            mFont->SetColor(ARGB(static_cast<unsigned char>(actA),255,0,0));//red
+            mFont->SetColor(ARGB(static_cast<unsigned char>(actA),255,0,0));//red critical and damaged
         else if(!card->wasDealtDamage && card->pbonus < 0)
-            mFont->SetColor(ARGB(static_cast<unsigned char>(actA),216,191,216));//thistle
-        else if(card->getRarity() == Constants::RARITY_T)
-            mFont->SetColor(ARGB(static_cast<unsigned char>(actA),245,245,245));//smoke
+            mFont->SetColor(ARGB(static_cast<unsigned char>(actA),216,191,216));//thistle powered down
+        else if(!card->wasDealtDamage && card->pbonus >= 3)
+            mFont->SetColor(ARGB(static_cast<unsigned char>(actA),255,255,0));//yellow buff
         else if(card->hasType("legendary") && card->hasType("eldrazi"))
-            mFont->SetColor(ARGB(static_cast<unsigned char>(actA),238,130,238));//violet
+            mFont->SetColor(ARGB(static_cast<unsigned char>(actA),238,130,238));//violet legendary eldrazi
 		else
-            mFont->SetColor(ARGB(static_cast<unsigned char>(actA),255,255,255));//white
+            mFont->SetColor(ARGB(static_cast<unsigned char>(actA),255,255,255));//white default
         mFont->SetScale(actZ);
         mFont->SetScale(actZ);
         mFont->DrawString(buffer, actX - 10 * actZ, actY + 8 * actZ);
         mFont->SetScale(1);
     }
 
-    if(card->getRarity() == Constants::RARITY_T)
+    string buff = "";
+    if(card->isToken && !card->isACopier)
+        buff = "T";
+    if(card->isToken && card->isACopier)
+        buff = "CT";
+    if(!card->isToken && card->isACopier)
+        buff = "C";    
+
+    if(!alternate && buff != "")
 	{
         mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
         char buffer[200];
-        sprintf(buffer, "T");
-        mFont->SetColor(ARGB(static_cast<unsigned char>(actA),255,222,173));//Navajo
+        sprintf(buffer, "%s", buff.c_str());
+        mFont->SetColor(ARGB(static_cast<unsigned char>(actA),255,182,193));//Light Pink indicator
         mFont->SetScale(0.8f);
-        mFont->DrawString(buffer, actX - 10 * actZ, actY - (18 * actZ));
+        mFont->DrawString(buffer, actX - 10 * actZ, actY - (16 * actZ));
         mFont->SetScale(1);
     }
 
