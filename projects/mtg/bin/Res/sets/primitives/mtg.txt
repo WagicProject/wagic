@@ -87132,7 +87132,7 @@ toughness=7
 [/card]
 [card]
 name=Silumgar Assassin
-abilities=strong
+abilities=evadebigger
 facedown={3}
 autofacedown={2}{B}:morph
 autofaceup=counter(1/1,1)

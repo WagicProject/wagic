@@ -239,6 +239,7 @@ public:
     int swapP;
     int swapT;
     bool isSwitchedPT;
+    bool isACopier;
 
     void eventattacked();
     void eventattackedAlone();

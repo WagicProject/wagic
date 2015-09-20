@@ -384,6 +384,7 @@ int AACopier::resolve()
     if (_target)
     {
         source->copy(_target);
+        source->isACopier = true;
         return 1;
     }
     return 0;

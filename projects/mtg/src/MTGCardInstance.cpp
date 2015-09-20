@@ -56,6 +56,7 @@ MTGCardInstance::MTGCardInstance(MTGCard * card, MTGPlayerCards * arg_belongs_to
     isSettingBase = 0;
     isCDA = false;
     isSwitchedPT = false;
+    isACopier = false;
 }
 
   MTGCardInstance * MTGCardInstance::createSnapShot()
@@ -749,6 +750,8 @@ int MTGCardInstance::canBlock(MTGCardInstance * opponent)
     if (opponent->basicAbilities[(int)Constants::UNBLOCKABLE])
         return 0;
     if (opponent->basicAbilities[(int)Constants::ONEBLOCKER] && opponent->blocked)
+        return 0;
+    if(opponent->basicAbilities[(int)Constants::EVADEBIGGER] && power > opponent->power)
         return 0;
     if(opponent->basicAbilities[(int)Constants::STRONG] && power < opponent->power)
         return 0;
