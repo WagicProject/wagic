@@ -1857,9 +1857,7 @@ int Tournament::getRandomDeck(bool noEasyDecks)
     while(isDouble && decks.size()>0)
     {
         isDouble=false;
-        int lowest=0, highest = (int)decks.size();
-        int range=(highest-lowest);
-        k = lowest+int(range*rand()/(RAND_MAX + 1.0));
+        k = rand() % (int)decks.size();
         random = decks.at(k);
 
         deckNumber = deckList->at(random)->getDeckId();
