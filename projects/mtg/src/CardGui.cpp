@@ -310,7 +310,7 @@ void CardGui::Render()
     if(!card->isToken && card->isACopier)
         buff = "C";    
 
-    if(!alternate && buff != "")
+	if(!alternate && buff != "" && game->gameType() == GAME_TYPE_CLASSIC)//it seems that other game modes makes cards as tokens!!! hmmm...
 	{
         mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
         char buffer[200];
