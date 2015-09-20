@@ -314,7 +314,7 @@ void CardGui::Render()
 	{
         mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
         char buffer[200];
-        sprintf(buffer, "%c", buff);
+        sprintf(buffer, "%c", buff.c_str());
         mFont->SetColor(ARGB(static_cast<unsigned char>(actA),255,182,193));//Light Pink indicator
         mFont->SetScale(0.8f);
         mFont->DrawString(buffer, actX - 10 * actZ, actY - (16 * actZ));
