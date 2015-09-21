@@ -715,7 +715,22 @@ private:
             }
             intValue = mountain + island + forest + swamp + plains;
         }
-        else if (s == "myname")//Plague Rats and others
+        else if (s == "myname")//Name of the card you control
+        {
+            intValue = 0;
+            for (int i = 0; i < 2; i++)
+            {
+                Player * p = card->getObserver()->players[i];
+                for (int j = p->game->battlefield->nb_cards - 1; j >= 0; --j)
+                {
+                    if (p->game->battlefield->cards[j]->name == card->name && p == card->controller())
+                    {
+                    intValue += 1;
+                    }
+                }
+            }
+        }
+        else if (s == "allmyname")//Plague Rats and others
         {
             intValue = 0;
             for (int i = 0; i < 2; i++)
