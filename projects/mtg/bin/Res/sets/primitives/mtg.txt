@@ -1662,10 +1662,9 @@ subtype=Human Soldier
 power=1
 toughness=1
 [/card]
-#can target opponents creatures only
 [card]
 name=Akroan Conscriptor
-auto=@targeted(this) from(*[instant;sorcery;enchantment]|myhand,mygraveyard):name(gain control of target creature until end of turn) target(creature|opponentbattlefield) transforms((,newability[moveTo(opponentbattlefield)],newability[phaseaction[endofturn sourceinplay] moveTo(ownerbattlefield)],newability[untap],haste)) ueot
+auto=@targeted(this) from(*[instant;sorcery;enchantment]|myhand,mygraveyard):name(gain control of target creature until end of turn) target(other creature|battlefield) moveTo(mybattlefield) and!( transforms((,newability[phaseaction[endofturn sourceinplay] moveTo(ownerbattlefield)],newability[untap],haste)) ueot )!
 text=Heroic — Whenever you cast a spell that targets Akroan Conscriptor, gain control of another target creature until end of turn. Untap that creature. It gains haste until end of turn.
 mana={4}{R}
 type=Creature
