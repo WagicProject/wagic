@@ -546,6 +546,16 @@ private:
         {
             intValue = target->controller()->life;
         }
+        else if (s == "startinglife")
+        {
+            intValue = target->controller()->initLife;
+        }
+        else if (s == "abundantlife")//current life is morethan or equal to starting life
+        {
+            intValue = 0;
+            if (target->controller()->life >= target->controller()->initLife)
+                intValue = 1;
+        }
         else if (s == "highestlifetotal")
         {
             intValue = target->controller()->life <= target->controller()->opponent()->life? target->controller()->opponent()->life:target->controller()->life;
