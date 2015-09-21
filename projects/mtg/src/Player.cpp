@@ -147,6 +147,8 @@ int Player::gainOrLoseLife(int value)
 {
     if (!value)
         return 0; //Don't do anything if there's no actual life change
+    if (value>0 && (opponent()->game->battlefield->hasAbility(Constants::NOLIFEGAINOPPONENT)||game->battlefield->hasAbility(Constants::NOLIFEGAIN)))//nolifegain
+        return 0;
 
     thatmuch = abs(value); //the value that much is a variable to be used with triggered abilities.
     //ie:when ever you gain life, draw that many cards. when used in a trigger draw:thatmuch, will return the value

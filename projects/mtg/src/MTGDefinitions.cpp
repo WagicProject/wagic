@@ -139,7 +139,10 @@ const char* Constants::MTGBasicAbilities[] = {
     "librarydeath",
     "shufflelibrarydeath",
     "offering",
-    "evadebigger"
+    "evadebigger",
+    "spellmastery",
+    "nolifegain",
+    "nolifegainopponent"
 };
 
 map<string,int> Constants::MTGBasicAbilitiesMap;
