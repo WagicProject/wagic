@@ -1662,10 +1662,11 @@ subtype=Human Soldier
 power=1
 toughness=1
 [/card]
+#can target opponents creatures only
 [card]
 name=Akroan Conscriptor
 auto=@targeted(this) from(*[instant;sorcery;enchantment]|myhand,mygraveyard):name(gain control of target creature until end of turn) target(creature|opponentbattlefield) transforms((,newability[moveTo(opponentbattlefield)],newability[phaseaction[endofturn sourceinplay] moveTo(ownerbattlefield)],newability[untap],haste)) ueot
-text=Heroic — Whenever you cast a spell that targets Akroan Conscriptor, gain control of another target creature until end of turn. Untap that creature. It gains haste until end of turn. (WORKAROUND Only can target opponents creatures)
+text=Heroic — Whenever you cast a spell that targets Akroan Conscriptor, gain control of another target creature until end of turn. Untap that creature. It gains haste until end of turn.
 mana={4}{R}
 type=Creature
 subtype=Human Shaman
@@ -25768,11 +25769,13 @@ type=Sorcery
 [/card]
 [card]
 name=Dragon Grip
+other={2}{R} (cast anytime)
+otherrestriction=type(creature[power>=4]|mybattlefield)~morethan~0
+abilities=spellmastery
 target=creature
-autohand={2}{R}: activate castcard(normal) restriction{type(creature[power>=4]|mybattlefield)~morethan~0}
 auto=2/0
 auto=first strike
-text=Ferocious. -- If you control a creature with power 4 or greater, you may cast Dragon Grip as though it had flash. (You may cast it any time you could cast an instant.) (WORKAROUND USES HAND ABILITY CODE) -- Enchant creature. -- Enchanted creature gets +2/+0 and has first strike. 
+text=Ferocious. -- If you control a creature with power 4 or greater, you may cast Dragon Grip as though it had flash. (You may cast it any time you could cast an instant.) -- Enchant creature. -- Enchanted creature gets +2/+0 and has first strike. 
 mana={2}{R}
 type=Enchantment
 subtype=Aura
@@ -30392,11 +30395,10 @@ type=Legendary Enchantment
 ###The 2 cards above should stay together (Flip Card)###
 [card]
 name=Erebos, God of the Dead
-abilities=indestructible
-auto=@lifed(opponent):life:-thatmuch opponent
+abilities=indestructible,nolifegainopponent
 auto={1}{B}{L:2}:Draw:1 controller
 auto=this(variable{type:manab}>4) transforms((Creature,setpower=5,settoughness=7))
-text=Indestructible -- As long as your devotion to black is less than five, Erebos isn't a creature. (Each {B} in the mana costs of permanents you control counts toward your devotion to black.) -- Whenver your opponent gains life, he loses that much (WORKAROUND). -- {1}{B}, Pay 2 life: Draw a card.
+text=Indestructible -- As long as your devotion to black is less than five, Erebos isn't a creature. (Each {B} in the mana costs of permanents you control counts toward your devotion to black.) -- Your opponents can't gain life. -- {1}{B}, Pay 2 life: Draw a card.
 mana={3}{B}
 type=Legendary Enchantment
 subtype=God
@@ -34774,8 +34776,8 @@ type=Land
 [card]
 name=Floodtide Serpent
 abilities=cantattack
-auto={H(enchantment|myBattlefield)}:-cantattack myturnonly
-text=Floodtide Serpent can't attack unless you return an enchantment you control to its owner's hand. (WORKAROUND cost can be payed anytime on your turn) (This cost is paid as attackers are declared.)
+auto={H(enchantment|myBattlefield)}:-cantattack restriction{myattackersonly}
+text=Floodtide Serpent can't attack unless you return an enchantment you control to its owner's hand. (This cost is paid as attackers are declared.)
 mana={4}{U}
 type=Creature
 subtype=Serpent
@@ -58877,8 +58879,8 @@ toughness=4
 name=Mardu Charm
 auto=choice name(4 Damage) damage:4 target(creature)
 auto=choice name(2 Warrior tokens) token(-386593)*2
-auto=choice name(Duress opponent) transforms((,newability[if type(*[-creature;-land]|opponenthand)~lessthan~1 then name(look) donothing notatarget(*|opponenthand) else reject notatarget(*[-creature;-land]|opponenthand)])) forever
-text=Choose one: -- Mardu Charm deals 4 damage to target creature. -- Put two 1/1 white Warrior creature tokens onto the battlefield. They gain first strike until end of turn. -- Target opponent (WORKAROUND DOES NOT TARGET OPPONENT) reveals his or her hand. You choose a noncreature, nonland card from it. That player discards that card. 
+auto=choice name(Duress opponent) target(opponent) donothing && all(this) transforms((,newability[if type(*[-creature;-land]|targetedpersonshand)~lessthan~1 then name(look) donothing notatarget(*|targetedpersonshand) else reject notatarget(*[-creature;-land]|targetedpersonshand)])) oneshot 
+text=Choose one: -- Mardu Charm deals 4 damage to target creature. -- Put two 1/1 white Warrior creature tokens onto the battlefield. They gain first strike until end of turn. -- Target opponent reveals his or her hand. You choose a noncreature, nonland card from it. That player discards that card. 
 mana={R}{W}{B}
 type=Instant
 [/card]
@@ -84334,12 +84336,13 @@ subtype=Spirit
 power=2
 toughness=1
 [/card]
+#creature deals secondary damage not Searing Blood
 [card]
 name=Searing Blood
 target=creature
 auto=damage:2
 auto=transforms((newability[@movedto(this|graveyard) from(battlefield):damage:3 controller])) ueot
-text=Searing Blood deals 2 damage to target creature. When that creature dies this turn, Searing Blood deals 3 damage to the creature's controller. (WORKAROUND creature deals secondary damage not Searing Blood)
+text=Searing Blood deals 2 damage to target creature. When that creature dies this turn, Searing Blood deals 3 damage to the creature's controller.
 mana={R}{R}
 type=Instant
 [/card]
@@ -87806,8 +87809,8 @@ type=Sorcery
 [card]
 name=Silent Sentinel
 abilities=flying
-auto=@combat(attacking) source(this):may moveTo(myBattlefield) target(*[enchantment]|mygraveyard) && transforms((,newability[if cantargetcard(aura) then activate name(cast from graveyard) castcard(normal)])) oneshot
-text=Flying -- Whenever Silent Sentinel attacks, you may return target enchantment card from your graveyard to the battlefield.(WORKAROUND uses a small workaround that recasts aura enchantments so that they can retarget as they should)
+auto=@combat(attacking) source(this):may moveto(mybattlefield) target(enchantment|mygraveyard) and!( transforms((,newability[if cantargetcard(aura) then retarget target(creature|mybattlefield)])) )!
+text=Flying -- Whenever Silent Sentinel attacks, you may return target enchantment card from your graveyard to the battlefield.
 mana={5}{W}{W}
 type=Creature
 subtype=Archon
@@ -89415,6 +89418,16 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Skyraker Giant
+abilities=reach
+text=Reach (This creature can block creatures with flying.)
+mana={2}{R}{R}
+type=Creature
+subtype=Giant
+power=4
+toughness=3
+[/card]
+[card]
 name=Skyreach Manta
 abilities=flying,sunburst
 auto=counter(1/1,sunburst)
@@ -89658,6 +89671,16 @@ type=Creature
 subtype=Beast
 power=*
 toughness=*
+[/card]
+[card]
+name=Skysnare Spider
+abilities=vigilance, reach
+text=Vigilance (Attacking doesn't cause this creature to tap.) -- Reach (This creature can block creatures with flying.)
+mana={4}{G}{G}
+type=Creature
+subtype=Spider
+power=6
+toughness=6
 [/card]
 [card]
 name=Skyspear Cavalry
@@ -91073,6 +91096,17 @@ power=3
 toughness=2
 [/card]
 [card]
+name=Somberwald Alpha
+auto=lord(creature|mybattlefield) rampage(1/1,1)
+auto={1}{G}:trample target(creature|mybattlefield)
+text=Whenever a creature you control becomes blocked, it gets +1/+1 until end of turn. -- {1}{G}: Target creature you control gains trample until end of turn. (It can deal excess combat damage to defending player or planeswalker while attacking.)
+mana={3}{G}
+type=Creature
+subtype=Wolf
+power=3
+toughness=2
+[/card]
+[card]
 name=Somberwald Dryad
 abilities=forestwalk
 text=Forestwalk
@@ -91738,6 +91772,17 @@ auto=counter(1/1,p)
 text=Put X +1/+1 counters on target creature, where X is that creature's power.
 mana={4}{G}
 type=Sorcery
+[/card]
+[card]
+name=Soulblade Djinn
+abilities=flying
+auto=@movedTo(*[-creature]|mystack):all(creature|mybattlefield) 1/1 ueot
+text=Flying -- Whenever you cast a noncreature spell, creatures you control get +1/+1 until end of turn.
+mana={3}{U}{U}
+type=Creature
+subtype=Djinn
+power=4
+toughness=3
 [/card]
 [card]
 name=Soulblast
@@ -94019,6 +94064,17 @@ power=5
 toughness=5
 [/card]
 [card]
+name=Stalwart Aven
+abilities=flying
+auto=@combatdamaged(player) from(this):this(cantargetcard(*[-renown]) && becomes(renown) forever && counter(1/1)
+text=Flying (This creature can't be blocked except by creatures with flying or reach.) -- Renown 1 (When this creature deals combat damage to a player, if it isn't renowned, put a +1/+1 counter on it and it becomes renowned.)
+mana={2}{W}
+type=Creature
+subtype=Bird Soldier
+power=1
+toughness=3
+[/card]
+[card]
 name=Stalwart Shield-Bearers
 abilities=defender
 auto=lord(creature[defender]|myBattlefield) 0/2 other
@@ -94175,6 +94231,28 @@ auto=if cantargetcard(enchantment) then damage:3 targetcontroller
 text=Starfall deals 3 damage to target creature. If that creature is an enchantment, Starfall deals 3 damage to that creature's controller.
 mana={4}{R}
 type=Instant
+[/card]
+[card]
+name=Starfield of Nyx
+auto=@each my upkeep:may moveto(mybattlefield) target(enchantment|mygraveyard) and!( transforms((,newability[if cantargetcard(aura) then retarget target(creature|mybattlefield)])) )!
+auto=aslongas(enchantment|mybattlefield) lord(other enchantment[-aura;manacost=1]) transforms((,newability[becomes(Creature)],setpower=1,settoughness=1)) >4
+auto=aslongas(enchantment|mybattlefield) lord(other enchantment[-aura;manacost=2]) transforms((,newability[becomes(Creature)],setpower=2,settoughness=2)) >4
+auto=aslongas(enchantment|mybattlefield) lord(other enchantment[-aura;manacost=3]) transforms((,newability[becomes(Creature)],setpower=3,settoughness=3)) >4
+auto=aslongas(enchantment|mybattlefield) lord(other enchantment[-aura;manacost=4]) transforms((,newability[becomes(Creature)],setpower=4,settoughness=4)) >4
+auto=aslongas(enchantment|mybattlefield) lord(other enchantment[-aura;manacost=5]) transforms((,newability[becomes(Creature)],setpower=5,settoughness=5)) >4
+auto=aslongas(enchantment|mybattlefield) lord(other enchantment[-aura;manacost=6]) transforms((,newability[becomes(Creature)],setpower=6,settoughness=6)) >4
+auto=aslongas(enchantment|mybattlefield) lord(other enchantment[-aura;manacost=7]) transforms((,newability[becomes(Creature)],setpower=7,settoughness=7)) >4
+auto=aslongas(enchantment|mybattlefield) lord(other enchantment[-aura;manacost=8]) transforms((,newability[becomes(Creature)],setpower=8,settoughness=8)) >4
+auto=aslongas(enchantment|mybattlefield) lord(other enchantment[-aura;manacost=9]) transforms((,newability[becomes(Creature)],setpower=9,settoughness=9)) >4
+auto=aslongas(enchantment|mybattlefield) lord(other enchantment[-aura;manacost=10]) transforms((,newability[becomes(Creature)],setpower=10,settoughness=10)) >4
+auto=aslongas(enchantment|mybattlefield) lord(other enchantment[-aura;manacost=11]) transforms((,newability[becomes(Creature)],setpower=11,settoughness=11)) >4
+auto=aslongas(enchantment|mybattlefield) lord(other enchantment[-aura;manacost=12]) transforms((,newability[becomes(Creature)],setpower=12,settoughness=12)) >4
+auto=aslongas(enchantment|mybattlefield) lord(other enchantment[-aura;manacost=13]) transforms((,newability[becomes(Creature)],setpower=13,settoughness=13)) >4
+auto=aslongas(enchantment|mybattlefield) lord(other enchantment[-aura;manacost=14]) transforms((,newability[becomes(Creature)],setpower=14,settoughness=14)) >4
+auto=aslongas(enchantment|mybattlefield) lord(other enchantment[-aura;manacost=15]) transforms((,newability[becomes(Creature)],setpower=15,settoughness=15)) >4
+text=At the beginning of your upkeep, you may return target enchantment card from your graveyard to the battlefield. As long as you control five or more enchantments, each other non-Aura enchantment you control is a creature in addition to its other types and has base power and base toughness each equal to its converted mana cost.
+mana={4}{W}
+type=Enchantment
 [/card]
 [card]
 name=Starke of Rath
@@ -96043,6 +96121,16 @@ text=Subterranean Hangar enters the battlefield tapped. -- {T}: Put a storage co
 type=Land
 [/card]
 [card]
+name=Subterranean Scout
+auto=target(creature[power<=2]|battlefield) unblockable ueot
+text=When Subterranean Scout enters the battlefield, target creature with power 2 or less can't be blocked this turn.
+mana={1}{R}
+type=Creature
+subtype=Goblin Scout
+power=2
+toughness=1
+[/card]
+[card]
 name=Subterranean Shambler
 auto=damage:1 all(creature[-flying]) && damage:1 all(player)
 auto=@movedTo(this|nonbattlezone) from(battlefield):damage:1 all(creature[-flying]) && damage:1 all(player)
@@ -96765,6 +96853,17 @@ power=2
 toughness=4
 [/card]
 [card]
+name=Suppression Bonds
+target=*[-land]|battlefield
+auto=teach(*) cantattack
+auto=teach(*) cantblock
+auto=teach(*) noactivatedability
+text=Enchant nonland permanent -- Enchanted permanent can't attack or block, and its activated abilities can't be activated.
+mana={3}{W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
 name=Supreme Exemplar
 abilities=flying
 auto=aslongas(other elemental|mybattlefield) choice notatarget(other elemental|mybattlefield) (blink)forsrc oneshot
@@ -97217,6 +97316,17 @@ mana={1}{W}
 type=Instant
 [/card]
 [card]
+name=Swift Reckoning
+abilities=spellmastery
+other={1}{W} name(Spell Mastery)
+otherrestriction=type(*[instant;sorcery]|mygraveyard)~morethan~1
+target=creature[tapped]|battlefield
+auto=destroy
+text=Spell mastery — If there are two or more instant and/or sorcery cards in your graveyard, you may cast Swift Reckoning as though it had flash. (You may cast it any time you could cast an instant.) Destroy target tapped creature.
+mana={1}{W}
+type=Sorcery
+[/card]
+[card]
 name=Swift Silence
 auto=foreach(other *|stack) draw:1
 auto=fizzle all(other *|stack)
@@ -97370,6 +97480,16 @@ auto=@combatdamaged(player) from(mytgt):may moveTo(myhand) target(creature|mygra
 text=Equipped creature gets +2/+2 and has protection from white and from black. -- Whenever equipped creature deals combat damage to a player, you gain 3 life and you may return up to one target creature card from your graveyard to your hand. -- Equip {2}
 mana={3}
 type=Artifact
+subtype=Equipment
+[/card]
+[card]
+name=Sword of the Animist
+auto={2}:equip
+auto=teach(creature) 1/1
+auto=@combat(attacking) source(mytgt):may notatarget(land[basic]|mylibrary) moveto(mybattlefield) and!(tap)!
+text=Equipped creature gets +1/+1. -- Whenever equipped creature attacks, you may search your library for a basic land card, put it onto the battlefield tapped, then shuffle your library. -- Equip {2}
+mana={2}
+type=Legendary Artifact
 subtype=Equipment
 [/card]
 [card]
@@ -100163,6 +100283,17 @@ power=5
 toughness=5
 [/card]
 [card]
+name=Thopter Engineer
+auto=lord(creature[artifact]|mybattlefield) haste
+auto=choice token(Thopter,Artifact Creature Thopter,1/1,flying) controller
+text=When Thopter Engineer enters the battlefield, put a 1/1 colorless Thopter artifact creature token with flying onto the battlefield. -- Artifact creatures you control have haste. (They can attack and {T} as soon as they come under your control.)
+mana={2}{R}
+type=Creature
+subtype=Human Artificer
+power=1
+toughness=3
+[/card]
+[card]
 name=Thopter Foundry
 auto={1}{S(artifact[-token]|myinplay)}:token(Thopter,artifact creature thopter,1/1,blue flying) && life:1
 text={1}, Sacrifice a nontoken artifact: Put a 1/1 blue Thopter artifact creature token with flying onto the battlefield. You gain 1 life.
@@ -100220,6 +100351,16 @@ text=Equipped creature has "{2}, {T}: This creature deals 1 damage to target cre
 mana={2}
 type=Tribal Artifact
 subtype=Shaman Equipment
+[/card]
+[card]
+name=Thornbow Archer
+auto=@combat(attacking) source(this) restriction{type(elf|opponentbattlefield)~lessthan~1}:life:-1 opponent
+text=Whenever Thornbow Archer attacks, each opponent who doesn't control an Elf loses 1 life.
+mana={B}
+type=Creature
+subtype=Elf Archer
+power=1
+toughness=2
 [/card]
 [card]
 name=Thorncaster Sliver
@@ -100986,6 +101127,17 @@ auto=damage:3
 text=You may sacrifice a Mountain rather than pay Thunderclap's mana cost. -- Thunderclap deals 3 damage to target creature.
 mana={2}{R}
 type=Instant
+[/card]
+[card]
+name=Thunderclap Wyvern
+abilities=flash, flying
+auto=lord(other creature[flying]|mybattlefield) 1/1
+text=Flash (You may cast this spell any time you could cast an instant.) -- Flying -- Other creatures you control with flying get +1/+1.
+mana={2}{W}{U}
+type=Creature
+subtype=Drake
+power=2
+toughness=3
 [/card]
 [card]
 name=Thundercloud Elemental
@@ -101959,6 +102111,17 @@ text=Tap an untapped creature you control: Topan Ascetic gets +1/+1 until end of
 mana={2}{G}
 type=Creature
 subtype=Human Monk
+power=2
+toughness=2
+[/card]
+[card]
+name=Topan Freeblade
+abilities=vigilance
+auto=@combatdamaged(player) from(this):this(cantargetcard(*[-renown]) && becomes(renown) forever && counter(1/1)
+text=Vigilance (Attacking doesn't cause this creature to tap.) -- Renown 1 (When this creature deals combat damage to a player, if it isn't renowned, put a +1/+1 counter on it and it becomes renowned.)
+mana={1}{W}
+type=Creature
+subtype=Human Soldier
 power=2
 toughness=2
 [/card]
@@ -104762,6 +104925,16 @@ power=2
 toughness=3
 [/card]
 [card]
+name=Undead Servant
+auto=choice foreach(Undead Servant|mygraveyard) token(Zombie,Creature Zombie,2/2,black) controller
+text=When Undead Servant enters the battlefield, put a 2/2 black Zombie creature token onto the battlefield for each card named Undead Servant in your graveyard.
+mana={3}{B}
+type=Creature
+subtype=Zombie
+power=3
+toughness=2
+[/card]
+[card]
 name=Undead Slayer
 auto={W}{T}:moveTo(Exile) target(Skeleton,Vampire,Zombie)
 text={W}, {T}: Exile target Skeleton, Vampire, or Zombie.
@@ -104792,6 +104965,17 @@ type=Creature
 subtype=Shade
 power=1
 toughness=1
+[/card]
+[card]
+name=Undercity Troll
+auto=@combatdamaged(player) from(this):this(cantargetcard(*[-renown]) && becomes(renown) forever && counter(1/1)
+auto={2}{G}:regenerate
+text=Renown 1 (When this creature deals combat damage to a player, if it isn't renowned, put a +1/+1 counter on it and it becomes renowned.) -- {2}{G}: Regenerate Undercity Troll. (The next time this creature would be destroyed this turn, it isn't. Instead tap it, remove all damage from it, and remove it from combat.)
+mana={1}{G}
+type=Creature
+subtype=Troll
+power=2
+toughness=2
 [/card]
 [card]
 name=Underground River
@@ -105001,6 +105185,15 @@ auto={T}:Add{1}
 auto={B}{T}:moveTo(mylibrary) target(zombie|mygraveyard)
 text={T}: Add {1} to your mana pool. -- {B}, {T}: Put target Zombie card from your graveyard on top of your library.
 type=Land
+[/card]
+[card]
+name=Unholy Hunger
+target=creature
+auto=destroy
+auto=if type(*[instant;sorcery]|mygraveyard)~morethan~1 then life:2 srccontroller
+text=Destroy target creature. -- Spell mastery — If there are two or more instant and/or sorcery cards in your graveyard, you gain 2 life.
+mana={3}{B}{B}
+type=Instant
 [/card]
 [card]
 name=Unholy Strength
@@ -105891,6 +106084,13 @@ type=Creature
 subtype=Incarnation
 power=2
 toughness=2
+[/card]
+[card]
+name=Valor in Akros
+auto=@movedto(creature|mybattlefield):all(creature|mybattlefield) 1/1 ueot
+text=Whenever a creature enters the battlefield under your control, creatures you control get +1/+1 until end of turn.
+mana={3}{W}
+type=Enchantment
 [/card]
 [card]
 name=Valorous Charge
@@ -107121,6 +107321,15 @@ mana={W}
 type=Instant
 [/card]
 [card]
+name=Veteran's Sidearm
+auto={1}:equip
+auto=teach(creature) 1/1
+text=Equipped creature gets +1/+1. -- Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery.)
+mana={2}
+type=Artifact
+subtype=Equipment
+[/card]
+[card]
 name=Veteran's Voice
 target=creature|mybattlefield
 auto=teach(creature) {T}:target(other creature) 2/1 ueot
@@ -107733,6 +107942,13 @@ type=Creature
 subtype=Dryad
 power=1
 toughness=3
+[/card]
+[card]
+name=Vine Snare
+auto=preventAllCombatDamage from(creature[power<=4]) ueot
+text=Prevent all combat damage that would be dealt this turn by creatures with power 4 or less.
+mana={2}{G}
+type=Instant
 [/card]
 [card]
 name=Vine Trellis
@@ -108650,6 +108866,16 @@ type=Land
 subtype=Island Mountain
 [/card]
 [card]
+name=Volcanic Rambler
+auto={2}{R}:damage:1 target(player)
+text={2}{R}: Volcanic Rambler deals 1 damage to target player.
+mana={5}{R}
+type=Creature
+subtype=Elemental
+power=6
+toughness=4
+[/card]
+[card]
 name=Volcanic Rush
 auto=all(creature[attacking]) 2/0 ueot
 auto=all(creature[attacking]) trample ueot
@@ -108969,6 +109195,18 @@ subtype=Assassin
 power=1
 toughness=1
 color=black
+[/card]
+[card]
+name=Vryn Wingmare
+abilities=flying
+auto=lord(*[-creature]|myhand) altercost(colorless,+1)
+auto=lord(*[-creature]|opponenthand) altercost(colorless, +1)
+text=Flying -- Noncreature spells cost {1} more to cast.
+mana={2}{W}
+type=Creature
+subtype=Pegasus
+power=2
+toughness=1
 [/card]
 [card]
 name=Vug Lizard
@@ -110036,12 +110274,30 @@ mana={2}{R}{W}
 type=Instant
 [/card]
 [card]
+name=War Horn
+auto=lord(creature[attacking]|mybattlefield) 1/0
+text=Attacking creatures you control get +1/+0.
+mana={3}
+type=Artifact
+[/card]
+[card]
 name=War Mammoth
 abilities=trample
 text=Trample
 mana={3}{G}
 type=Creature
 subtype=Elephant
+power=3
+toughness=3
+[/card]
+[card]
+name=War Oracle
+abilities=lifelink
+auto=@combatdamaged(player) from(this):this(cantargetcard(*[-renown]) && becomes(renown) forever && counter(1/1)
+text=Lifelink (Damage dealt by this creature also causes you to gain that much life.) -- Renown 1 (When this creature deals combat damage to a player, if it isn't renowned, put a +1/+1 counter on it and it becomes renowned.)
+mana={2}{W}{W}
+type=Creature
+subtype=Human Cleric
 power=3
 toughness=3
 [/card]
@@ -111241,6 +111497,17 @@ power=3
 toughness=3
 [/card]
 [card]
+name=Whirler Rogue
+auto=choice token(Thopter,Artifact Creature Thopter,1/1,flying)*2 controller
+auto={T(artifact[-tapped]|mybattlefield)}{T(artifact[-tapped]|mybattlefield)}:target(creature) unblockable ueot
+text=When Whirler Rogue enters the battlefield, put two 1/1 colorless Thopter artifact creature tokens with flying onto the battlefield. -- Tap two untapped artifacts you control: Target creature can't be blocked this turn.
+mana={2}{U}{U}
+type=Creature
+subtype=Human Rogue Artificer
+power=2
+toughness=2
+[/card]
+[card]
 name=Whirling Catapult
 auto={2}{l2e}{l2e}:damage:1 all(creature[flying]) && damage:1 all(player)
 text={2}, Exile the top two cards of your library: Whirling Catapult deals 1 damage to each creature with flying and each player.
@@ -111647,6 +111914,16 @@ flashback={3}{R}
 text=Target creature gets +3/+1 and gains trample until end of turn. -- Flashback {3}{R}
 mana={2}{G}
 type=Instant
+[/card]
+[card]
+name=Wild Instincts
+target=creature|mybattlefield
+auto=2/2 ueot
+auto=transforms((,newability[target(creature|opponentbattlefield) dynamicability<!powerstrike eachother!>])) ueot
+restriction=type(creature|opponentbattlefield)~morethan~0
+text=Target creature you control gets +2/+2 until end of turn. It fights target creature an opponent controls. (Each deals damage equal to its power to the other.)
+mana={3}{G}
+type=Sorcery
 [/card]
 [card]
 name=Wild Jhovall
@@ -112897,6 +113174,16 @@ text=Equipped creature gets +1/+0. -- Whenever equipped creature blocks or becom
 mana={2}
 type=Artifact
 subtype=Equipment
+[/card]
+[card]
+name=Woodland Bellower
+auto=may moveto(mybattlefield) notatarget(creature[green;manacost<=3;-legendary]|mylibrary)
+text=When Woodland Bellower enters the battlefield, you may search your library for a nonlegendary green creature card with converted mana cost 3 or less, put it onto the battlefield, then shuffle your library.
+mana={4}{G}{G}
+type=Creature
+subtype=Beast
+power=6
+toughness=5
 [/card]
 [card]
 name=Woodland Cemetery
@@ -114230,6 +114517,23 @@ type=Creature
 subtype=Elemental
 power=3
 toughness=3
+[/card]
+[card]
+name=Zendikar Incarnate
+auto=type:land:mybattlefield/4 cdaactive
+text=Zendikar Incarnate's power is equal to the number of lands you control.
+mana={2}{R}{G}
+type=Creature
+subtype=Elemental
+power=*
+toughness=4
+[/card]
+[card]
+name=Zendikar's Roil
+auto=@movedto(land|mybattlefield):token(Elemental,Creature Elemental,2/2,green) controller
+text=Whenever a land enters the battlefield under your control, put a 2/2 green Elemental creature token onto the battlefield.
+mana={3}{G}{G}
+type=Enchantment
 [/card]
 [card]
 name=Zephid
