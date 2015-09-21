@@ -55289,7 +55289,7 @@ type=Instant
 [card]
 name=Lavinia of the Tenth
 abilities=protection from red
-auto=name(detain) all(*[manacost<=4;-land]|opponentBattlefield) transforms((Detained,newability[cantattack],newability[cantblock],newability[noactivatedability])) uynt
+auto=name(detain) transforms((,newability[lord(detained) cantattack],newability[lord(detained) cantblock],newability[lord(detained) noactivatedability],newability[lord(*[manacost<=4]|opponentBattlefield) becomes(detained)])) uynt
 text=Protection from red. -- When Lavinia of the Tenth enters the battlefield, detain each nonland permanent your opponents control with converted mana cost 4 or less.
 mana={3}{W}{U}
 type=Legendary Creature
