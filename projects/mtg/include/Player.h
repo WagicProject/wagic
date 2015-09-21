@@ -43,6 +43,7 @@ public:
     int extraTurn;
     int drawCounter;
     int epic;
+    int initLife;
     vector<string> prowledTypes;
     vector<MTGCardInstance*>curses;
     Player(GameObserver *observer, string deckFile, string deckFileSmall, MTGDeck * deck = NULL);

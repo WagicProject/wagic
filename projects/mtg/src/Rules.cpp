@@ -404,6 +404,7 @@ void Rules::initGame(GameObserver *g, bool currentPlayerSet)
     {
         Player * p = g->players[i];
         p->life = initState.playerData[i].player->life;
+        p->initLife = initState.playerData[i].player->life;
         p->poisonCount = initState.playerData[i].player->poisonCount;
         p->damageCount = initState.playerData[i].player->damageCount;
         p->preventable = initState.playerData[i].player->preventable;
