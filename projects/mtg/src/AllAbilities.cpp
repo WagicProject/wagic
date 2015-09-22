@@ -5428,6 +5428,8 @@ int AEquip::unequip()
         game->removeObserver(currentAbilities[i]);
     }
     currentAbilities.clear();
+    WEvent * e = NEW WEventCardUnattached(source);
+    game->receiveEvent(e);
     return 1;
 }
 

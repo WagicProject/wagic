@@ -617,12 +617,32 @@ void GameObserver::gameStateBasedEffects()
                 card->myPair->myPair = NULL;
                 card->myPair = NULL;
             }
+            ////////////////////////////////////////////////////
+            //Unattach Equipments that dont have valid targets//
+            ////////////////////////////////////////////////////
+            if ((card->target) && card->hasType(Subtypes::TYPE_EQUIPMENT))
+            {
+                if(card->target && isInPlay(card->target) && (card->target)->protectedAgainst(card))//protection from quality
+                {
+                    for (size_t i = 1; i < mLayers->actionLayer()->mObjects.size(); i++)
+                    {
+                        MTGAbility * a = ((MTGAbility *) mLayers->actionLayer()->mObjects[i]);
+                        AEquip * eq = dynamic_cast<AEquip*> (a);
+                        if (eq && eq->source == card)
+                        {
+                            ((AEquip*)a)->unequip();
+                        }
+                    }
+                }
+            }
             ///////////////////////////////////////////////////////
             //Remove auras that don't have a valid target anymore//
             ///////////////////////////////////////////////////////
             if ((card->target||card->playerTarget) && !card->hasType(Subtypes::TYPE_EQUIPMENT))
             {
                 if(card->target && !isInPlay(card->target))
+                players[i]->game->putInGraveyard(card);
+                if(card->target && isInPlay(card->target) && (card->target)->protectedAgainst(card) && !card->has(Constants::AURAWARD))//protection from quality except aura cards like flickering ward
                 players[i]->game->putInGraveyard(card);
             }
             card->enchanted = false;

@@ -406,6 +406,8 @@ int GuiPlay::receiveEventPlus(WEvent * e)
     }
     else if (dynamic_cast<WEventCardChangeType*> (e))
         Replace();
+    else if (dynamic_cast<WEventCardUnattached*> (e))
+        Replace();
     Replace();
     return 0;
 }

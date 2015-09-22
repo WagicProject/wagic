@@ -273,6 +273,12 @@ struct WEventEmptyManaPool : public WEvent {
   WEventEmptyManaPool(ManaPool * source);
 };
 
+//event when card-equipment unattached
+struct WEventCardUnattached : public WEventCardUpdate {
+  WEventCardUnattached(MTGCardInstance * card);
+	virtual Targetable * getTarget(int target);
+};
+
 std::ostream& operator<<(std::ostream&, const WEvent&);
 
 #endif
