@@ -9246,6 +9246,7 @@ type=Artifact
 [/card]
 [card]
 name=Black Ward
+abilities=auraward
 target=creature
 auto=protection from black
 text=Enchant creature -- Enchanted creature has protection from black. This effect doesn't remove Black Ward.
@@ -10887,6 +10888,7 @@ type=Instant
 [/card]
 [card]
 name=Blue Ward
+abilities=auraward
 target=creature
 auto=protection from blue
 text=Enchant creature -- Enchanted creature has protection from blue. This effect doesn't remove Blue Ward.
@@ -16532,6 +16534,7 @@ toughness=2
 [/card]
 [card]
 name=Cho-Manno's Blessing
+abilities=auraward
 target=creature
 abilities=flash
 auto=chooseacolor teach(creature) protection from(*[chosencolor]) chooseend
@@ -26107,7 +26110,7 @@ type=Sorcery
 [/card]
 [card]
 name=Dragon Grip
-other={2}{R} Name(cast anytime)
+other={2}{R} name(cast anytime)
 otherrestriction=type(creature[power>=4]|mybattlefield)~morethan~0
 abilities=spellmastery
 target=creature
@@ -35073,6 +35076,7 @@ toughness=2
 [/card]
 [card]
 name=Flickering Ward
+abilities=auraward
 target=creature
 auto=chooseacolor teach(creature) protection from(*[chosencolor]) chooseend
 auto={W}:moveTo(ownerhand)
@@ -35150,6 +35154,7 @@ toughness=2
 [/card]
 [card]
 name=Floating Shield
+abilities=auraward
 target=creature
 auto=chooseacolor teach(creature) protection from(*[chosencolor]) chooseend
 auto={S}:protection from white target(creature)
@@ -42027,6 +42032,7 @@ subtype=Aura
 [/card]
 [card]
 name=Green Ward
+abilities=auraward
 target=creature
 auto=protection from green
 text=Enchant creature -- Enchanted creature has protection from green. This effect doesn't remove Green Ward.
@@ -71570,6 +71576,7 @@ toughness=3
 [/card]
 [card]
 name=Pentarch Ward
+abilities=auraward
 target=creature
 auto=chooseacolor teach(creature) protection from(*[chosencolor]) chooseend
 auto=draw:1
@@ -73677,6 +73684,7 @@ type=Sorcery
 [/card]
 [card]
 name=Pledge of Loyalty
+abilities=auraward
 target=creature
 auto=aslongas(*[red]|mybattlefield) protection from red
 auto=aslongas(*[green]|mybattlefield) protection from green
@@ -78553,6 +78561,7 @@ type=Sorcery
 [/card]
 [card]
 name=Red Ward
+abilities=auraward
 target=creature
 auto=protection from red
 text=Enchant creature -- Enchanted creature has protection from red. This effect doesn't remove Red Ward.
@@ -99792,6 +99801,7 @@ toughness=1
 [/card]
 [card]
 name=Tattoo Ward
+abilities=auraward
 target=creature
 auto=1/1
 auto=protection from(enchantment)
@@ -112787,6 +112797,7 @@ type=Instant
 [/card]
 [card]
 name=White Ward
+abilities=auraward
 target=creature
 auto=protection from white
 text=Enchant creature -- Enchanted creature has protection from white. This effect doesn't remove White Ward.

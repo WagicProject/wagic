@@ -157,6 +157,11 @@ WEventEmptyManaPool::WEventEmptyManaPool(ManaPool * source) :
 {
 }
 
+WEventCardUnattached::WEventCardUnattached(MTGCardInstance * card) :
+    WEventCardUpdate(card)
+{
+}
+
 WEventCombatStepChange::WEventCombatStepChange(CombatStep step) :
     WEvent(), step(step)
 {
@@ -302,6 +307,12 @@ Targetable * WEventCardTappedForMana::getTarget(int target)
 Targetable * WEventcardDraw::getTarget(Player * player)
 {
     if (player) return player;
+    return NULL;
+}
+
+Targetable * WEventCardUnattached::getTarget(int target)
+{
+    if (target) return card;
     return NULL;
 }
 

@@ -526,6 +526,7 @@ pillory_of_the_sleepless2_i188.txt
 pillory_of_the_sleepless3_i188.txt
 pillory_of_the_sleepless4_i188.txt
 plague_rats.txt
+pledge_protection.txt
 plumes_of_peace_i260.txt
 pouncing_jaguar_i425.txt
 power_armor.txt

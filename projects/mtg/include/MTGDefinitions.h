@@ -229,7 +229,8 @@ class Constants
       SPELLMASTERY = 111,
       NOLIFEGAIN = 112,
       NOLIFEGAINOPPONENT = 113,
-      NB_BASIC_ABILITIES = 114,
+      AURAWARD = 114,
+      NB_BASIC_ABILITIES = 115,
 
 
     RARITY_S = 'S',   //Special Rarity
