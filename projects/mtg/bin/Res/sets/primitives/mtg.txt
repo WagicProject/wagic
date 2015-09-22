@@ -26107,7 +26107,7 @@ type=Sorcery
 [/card]
 [card]
 name=Dragon Grip
-other={2}{R} (cast anytime)
+other={2}{R} Name(cast anytime)
 otherrestriction=type(creature[power>=4]|mybattlefield)~morethan~0
 abilities=spellmastery
 target=creature
