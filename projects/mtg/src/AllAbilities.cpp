@@ -5551,6 +5551,8 @@ void AACastCard::Update(float dt)
        }
    }
    MTGCardInstance * toCheck = (MTGCardInstance*)target;
+   if(putinplay)
+       toCheck->bypassTC = true;
    if(theNamedCard)
        toCheck = theNamedCard;
    if (Spell * checkSpell = dynamic_cast<Spell*>(target))
