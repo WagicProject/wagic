@@ -1337,13 +1337,13 @@ bool PlayerTargetChooser::canTarget(Targetable * target, bool)
         if ((targetter->controller() != targetter->controller()->opponent())
             && (targetter->controller()->opponent()->game->inPlay->hasAbility(Constants::CONTROLLERSHROUD))
             && targetter->controller() != target)
-                return false;
+                return targetter->bypassTC;
         if ((targetter->controller()->opponent()->game->inPlay->hasAbility(Constants::PLAYERSHROUD))
             && targetter->controller()->opponent() == target)
-                return false;
+                return targetter->bypassTC;
         if ((targetter->controller()->game->inPlay->hasAbility(Constants::PLAYERSHROUD))
             && targetter->controller() == target)
-                return false;
+                return targetter->bypassTC;
     }
 
     Player * pTarget = dynamic_cast<Player *>(target);
