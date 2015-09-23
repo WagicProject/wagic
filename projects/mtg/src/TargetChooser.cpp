@@ -855,10 +855,10 @@ bool TargetChooser::canTarget(Targetable * target, bool withoutProtections)
         
         if (source && targetter && card->isInPlay(observer) && !withoutProtections)
         { 
-            if (card->has(Constants::SHROUD)) return false;
-            if (card->protectedAgainst(targetter)) return false;
-            if (card->CantBeTargetby(targetter)) return false;
-            if ((targetter->controller() != card->controller()) && card->has(Constants::OPPONENTSHROUD)) return false;
+            if (card->has(Constants::SHROUD)) return targetter->bypassTC;
+            if (card->protectedAgainst(targetter)) return targetter->bypassTC;
+            if (card->CantBeTargetby(targetter)) return targetter->bypassTC;
+            if ((targetter->controller() != card->controller()) && card->has(Constants::OPPONENTSHROUD)) return targetter->bypassTC;
         }
         return true;
     }

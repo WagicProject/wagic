@@ -1330,7 +1330,12 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         tcString = splitTarget[1];
 
         if (!isTarget)
+        {
+            tc->targetter->bypassTC = true;
             tc->targetter = NULL;
+        }
+        else
+            tc->targetter->bypassTC = false;
         sWithoutTc = splitTarget[0];
         sWithoutTc.append(splitTarget[2]);
     }
