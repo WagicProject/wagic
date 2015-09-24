@@ -10,7 +10,7 @@
 
 #if !defined(QT_CONFIG)
 #include <boost/scoped_ptr.hpp>
-typedef ManaCostPtr boost::scoped_ptr<ManaCost>
+typedef boost::scoped_ptr<ManaCost> ManaCostPtr;
 #else
 #include <QScopedPointer>
 class ManaCostPtr : public QScopedPointer<ManaCost>
