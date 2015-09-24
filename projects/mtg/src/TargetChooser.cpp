@@ -855,10 +855,10 @@ bool TargetChooser::canTarget(Targetable * target, bool withoutProtections)
         
         if (source && targetter && card->isInPlay(observer) && !withoutProtections)
         { 
-            if (card->has(Constants::SHROUD)) return false;
-            if (card->protectedAgainst(targetter)) return false;
-            if (card->CantBeTargetby(targetter)) return false;
-            if ((targetter->controller() != card->controller()) && card->has(Constants::OPPONENTSHROUD)) return false;
+            if (card->has(Constants::SHROUD)) return targetter->bypassTC;
+            if (card->protectedAgainst(targetter)) return targetter->bypassTC;
+            if (card->CantBeTargetby(targetter)) return targetter->bypassTC;
+            if ((targetter->controller() != card->controller()) && card->has(Constants::OPPONENTSHROUD)) return targetter->bypassTC;
         }
         return true;
     }
@@ -1337,13 +1337,13 @@ bool PlayerTargetChooser::canTarget(Targetable * target, bool)
         if ((targetter->controller() != targetter->controller()->opponent())
             && (targetter->controller()->opponent()->game->inPlay->hasAbility(Constants::CONTROLLERSHROUD))
             && targetter->controller() != target)
-                return false;
+                return targetter->bypassTC;
         if ((targetter->controller()->opponent()->game->inPlay->hasAbility(Constants::PLAYERSHROUD))
             && targetter->controller()->opponent() == target)
-                return false;
+                return targetter->bypassTC;
         if ((targetter->controller()->game->inPlay->hasAbility(Constants::PLAYERSHROUD))
             && targetter->controller() == target)
-                return false;
+                return targetter->bypassTC;
     }
 
     Player * pTarget = dynamic_cast<Player *>(target);

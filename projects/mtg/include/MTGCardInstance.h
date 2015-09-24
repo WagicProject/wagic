@@ -240,6 +240,7 @@ public:
     int swapT;
     bool isSwitchedPT;
     bool isACopier;
+    bool bypassTC;
 
     void eventattacked();
     void eventattackedAlone();

@@ -617,6 +617,7 @@ void GameObserver::gameStateBasedEffects()
                 card->myPair->myPair = NULL;
                 card->myPair = NULL;
             }
+            card->bypassTC = false; //turn off bypass
             ////////////////////////////////////////////////////
             //Unattach Equipments that dont have valid targets//
             ////////////////////////////////////////////////////
@@ -642,6 +643,19 @@ void GameObserver::gameStateBasedEffects()
             {
                 if(card->target && !isInPlay(card->target))
                 players[i]->game->putInGraveyard(card);
+                if(card->target && isInPlay(card->target))
+                {
+                    if(card->spellTargetType.find("creature") != string::npos && !card->target->hasType("creature"))
+                        players[i]->game->putInGraveyard(card);
+                    if(card->spellTargetType.find("artifact") != string::npos && !card->target->hasType("artifact"))
+                        players[i]->game->putInGraveyard(card);
+                    if(card->spellTargetType.find("enchantment") != string::npos && !card->target->hasType("enchantment"))
+                        players[i]->game->putInGraveyard(card);
+                    if(card->spellTargetType.find("land") != string::npos && !card->target->hasType("land"))
+                        players[i]->game->putInGraveyard(card);
+                    if(card->spellTargetType.find("planeswalker") != string::npos && !card->target->hasType("planeswalker"))
+                        players[i]->game->putInGraveyard(card);
+                }
                 if(card->target && isInPlay(card->target) && (card->target)->protectedAgainst(card) && !card->has(Constants::AURAWARD))//protection from quality except aura cards like flickering ward
                 players[i]->game->putInGraveyard(card);
             }

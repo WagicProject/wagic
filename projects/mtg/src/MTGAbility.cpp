@@ -1330,7 +1330,12 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         tcString = splitTarget[1];
 
         if (!isTarget)
+        {
+            tc->targetter->bypassTC = true;
             tc->targetter = NULL;
+        }
+        else
+            tc->targetter->bypassTC = false;
         sWithoutTc = splitTarget[0];
         sWithoutTc.append(splitTarget[2]);
     }
@@ -2326,6 +2331,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         bool asCopy = splitCastCard[1].find("copied") != string::npos;
         bool asNormal = splitCastCard[1].find("normal") != string::npos;
         bool sendNoEvent = splitCastCard[1].find("noevent") != string::npos;
+        bool putinplay = splitCastCard[1].find("putinplay") != string::npos;
         string nameCard = "";
         if(splitCastCard[1].find("named!:") != string::npos)
         {
@@ -2335,7 +2341,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
                 nameCard = splitCastName[1];
             }
         }
-        MTGAbility *a = NEW AACastCard(observer, id, card, target,withRestrictions,asCopy,asNormal,nameCard,newName,sendNoEvent);
+        MTGAbility *a = NEW AACastCard(observer, id, card, target,withRestrictions,asCopy,asNormal,nameCard,newName,sendNoEvent,putinplay);
         a->oneShot = false;
         if(splitCastCard[1].find("trigger[to]") != string::npos)
         {

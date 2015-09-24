@@ -5507,8 +5507,8 @@ AEquip * AEquip::clone() const
 }
 
 // casting a card for free, or casting a copy of a card.
-AACastCard::AACastCard(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target,bool _restricted,bool _copied,bool asNormal,string _namedCard,string _name,bool _noEvent) :
-   MTGAbility(observer, _id, _source),restricted(_restricted),asCopy(_copied),normal(asNormal),cardNamed(_namedCard),nameThis(_name),noEvent(_noEvent)
+AACastCard::AACastCard(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target,bool _restricted,bool _copied,bool asNormal,string _namedCard,string _name,bool _noEvent,bool putinplay) :
+   MTGAbility(observer, _id, _source),restricted(_restricted),asCopy(_copied),normal(asNormal),cardNamed(_namedCard),nameThis(_name),noEvent(_noEvent),putinplay(putinplay)
 {
     target = _target;
     andAbility = NULL;
@@ -5525,6 +5525,22 @@ void AACastCard::Update(float dt)
    if(cardNamed.size() && !theNamedCard)
    {
        theNamedCard = makeCard();
+   }
+   if(putinplay)
+   {
+       MTGCardInstance * toCheck = (MTGCardInstance*)target;
+       toCheck->target = NULL;
+       toCheck->playerTarget = NULL;
+       toCheck->bypassTC = true;
+       TargetChooserFactory tcf(game);
+       TargetChooser * atc = tcf.createTargetChooser(toCheck->spellTargetType,toCheck);
+       if (toCheck->hasType(Subtypes::TYPE_AURA) && !atc->validTargetsExist())
+       {
+           processed = true;
+           this->forceDestroy = 1;
+           return ;
+       }
+       SAFE_DELETE(atc);
    }
    if (restricted)
    {
@@ -5633,12 +5649,18 @@ int AACastCard::resolveSpell()
             MTGCardInstance * copy = NULL;
             if (normal ||(!_target->hasType(Subtypes::TYPE_INSTANT) && !_target->hasType(Subtypes::TYPE_SORCERY)))
             {
-                copy =_target->controller()->game->putInZone(_target, _target->currentZone, source->controller()->game->stack,noEvent);
+                if (putinplay && (_target->hasType(Subtypes::TYPE_ARTIFACT)||_target->hasType(Subtypes::TYPE_CREATURE)||_target->hasType(Subtypes::TYPE_ENCHANTMENT)||_target->hasType(Subtypes::TYPE_PLANESWALKER)))
+                    copy =_target->controller()->game->putInZone(_target, _target->currentZone, source->controller()->game->battlefield,noEvent);
+                else
+                    copy =_target->controller()->game->putInZone(_target, _target->currentZone, source->controller()->game->stack,noEvent);
                 copy->changeController(source->controller(),true);
             }
             else
             {
-                copy =_target->controller()->game->putInZone(_target, _target->currentZone, _target->controller()->game->stack,noEvent);
+                if (putinplay && (_target->hasType(Subtypes::TYPE_ARTIFACT)||_target->hasType(Subtypes::TYPE_CREATURE)||_target->hasType(Subtypes::TYPE_ENCHANTMENT)||_target->hasType(Subtypes::TYPE_PLANESWALKER)))
+                    copy =_target->controller()->game->putInZone(_target, _target->currentZone, source->controller()->game->battlefield,noEvent);
+                else
+                    copy =_target->controller()->game->putInZone(_target, _target->currentZone, _target->controller()->game->stack,noEvent);
                 copy->changeController(source->controller(),true);
             }
             if (game->targetChooser)
@@ -5693,6 +5715,8 @@ const string AACastCard::getMenuText()
 {
     if(nameThis.size())
         return nameThis.c_str();
+    if(putinplay)
+        return "Put Into Play";
     return "Cast For Free";
 }
 

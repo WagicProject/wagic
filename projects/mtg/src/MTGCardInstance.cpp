@@ -57,6 +57,7 @@ MTGCardInstance::MTGCardInstance(MTGCard * card, MTGPlayerCards * arg_belongs_to
     isCDA = false;
     isSwitchedPT = false;
     isACopier = false;
+    bypassTC = false;
 }
 
   MTGCardInstance * MTGCardInstance::createSnapShot()
