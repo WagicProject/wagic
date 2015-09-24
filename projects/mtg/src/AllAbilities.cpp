@@ -5529,6 +5529,8 @@ void AACastCard::Update(float dt)
    if(putinplay)
    {
        MTGCardInstance * toCheck = (MTGCardInstance*)target;
+       toCheck->target = NULL;
+       toCheck->playerTarget = NULL;
        toCheck->bypassTC = true;
        TargetChooserFactory tcf(game);
        TargetChooser * atc = tcf.createTargetChooser(toCheck->spellTargetType,toCheck);

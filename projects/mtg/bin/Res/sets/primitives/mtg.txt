@@ -39276,7 +39276,7 @@ toughness=2
 [card]
 name=Glimmerpoint Stag
 abilities=vigilance
-auto=(blink)ueot target(*)
+auto=(blink)ueot target(other *)
 text=Vigilance -- When Glimmerpoint Stag enters the battlefield, exile another target permanent. Return that card to the battlefield under its owner's control at the beginning of the next end step.
 mana={2}{W}{W}
 type=Creature
@@ -70865,7 +70865,7 @@ type=Artifact
 [card]
 name=Parallax Nexus
 auto=fading:5
-auto={C(0/0,-1,Fade)}:target(opponent) ability$!name(exile card from hand) (blink)forsrc target(*|myhand)!$ targetedplayer
+auto={C(0/0,-1,Fade)}:target(opponent) ability$!name(exile card from hand) hand(blink)forsrc target(*|myhand)!$ targetedplayer
 text=Fading 5 (This enchantment enters the battlefield with five fade counters on it. At the beginning of your upkeep, remove a fade counter from it. If you can't, sacrifice it.) -- Remove a fade counter from Parallax Nexus: Target opponent exiles a card from his or her hand. Activate this ability only any time you could cast a sorcery. -- When Parallax Nexus leaves the battlefield, each player returns to his or her hand all cards he or she owns exiled with Parallax Nexus.
 mana={2}{B}
 type=Enchantment
