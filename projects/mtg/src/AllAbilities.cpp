@@ -5526,6 +5526,20 @@ void AACastCard::Update(float dt)
    {
        theNamedCard = makeCard();
    }
+   if(putinplay)
+   {
+       MTGCardInstance * toCheck = (MTGCardInstance*)target;
+       toCheck->bypassTC = true;
+       TargetChooserFactory tcf(game);
+       TargetChooser * atc = tcf.createTargetChooser(toCheck->spellTargetType,toCheck);
+       if (toCheck->hasType(Subtypes::TYPE_AURA) && !atc->validTargetsExist())
+       {
+           processed = true;
+           this->forceDestroy = 1;
+           return ;
+       }
+       SAFE_DELETE(atc);
+   }
    if (restricted)
    {
        MTGCardInstance * toCheck = (MTGCardInstance*)target;
@@ -5551,8 +5565,6 @@ void AACastCard::Update(float dt)
        }
    }
    MTGCardInstance * toCheck = (MTGCardInstance*)target;
-   if(putinplay)
-       toCheck->bypassTC = true;
    if(theNamedCard)
        toCheck = theNamedCard;
    if (Spell * checkSpell = dynamic_cast<Spell*>(target))
