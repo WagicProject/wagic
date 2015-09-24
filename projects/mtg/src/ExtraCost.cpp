@@ -7,7 +7,21 @@
 #include "Player.h"
 #include "Counters.h"
 #include "AllAbilities.h"
+
+#if !defined(QT_CONFIG)
 #include <boost/scoped_ptr.hpp>
+typedef ManaCostPtr boost::scoped_ptr<ManaCost>
+#else
+#include <QScopedPointer>
+class ManaCostPtr : public QScopedPointer<ManaCost>
+{
+public:
+    ManaCostPtr(ManaCost*m) : QScopedPointer(m){
+    };
+    ManaCost* get() const {return data();};
+
+};
+#endif
 
 SUPPORT_OBJECT_ANALYTICS(ExtraCost)
 
@@ -209,7 +223,7 @@ LifeorManaCost::LifeorManaCost(TargetChooser *_tc, string manaType)
     string buildType ="{";
     buildType.append(manaType);
     buildType.append("}");
-    boost::scoped_ptr<ManaCost> cost(ManaCost::parseManaCost(buildType));
+    ManaCostPtr cost(ManaCost::parseManaCost(buildType));
     manaCost.copy(cost.get());
 }
 

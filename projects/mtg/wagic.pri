@@ -39,7 +39,6 @@ windows{
 macx:INCLUDEPATH += /opt/include
 INCLUDEPATH += ../../JGE/include
 INCLUDEPATH += ../../JGE/src/zipFS
-INCLUDEPATH += ../../Boost
 INCLUDEPATH += include
 
 unix:!symbian:LIBS += -lz
