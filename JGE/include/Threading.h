@@ -311,6 +311,7 @@ namespace boost
 
 #include <QMutex>
 #include <QThread>
+#include <QSharedPointer>
 
 #include "../include/JLogger.h"
 
