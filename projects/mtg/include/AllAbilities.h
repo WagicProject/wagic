@@ -141,6 +141,24 @@ private:
             size_t oth = s.find("othertype");
             s.erase(oth,oth + 5);
         }
+        if(s.find("otherpower") != string::npos)
+        {
+            other = true;
+            size_t otp = s.find("otherpower");
+            s.erase(otp,otp + 5);
+        }
+        if(s.find("othertoughness") != string::npos)
+        {
+            other = true;
+            size_t ott = s.find("othertoughness");
+            s.erase(ott,ott + 5);
+        }
+        if(s.find("otherconvertedcost") != string::npos)
+        {
+            other = true;
+            size_t otc = s.find("otherconvertedcost");
+            s.erase(otc,otc + 5);
+        }
         if(s == "prex")
         {
             ManaCost * cX = card->controller()->getManaPool()->Diff(card->getManaCost());
@@ -493,6 +511,7 @@ private:
             }
             TargetChooserFactory tf(card->getObserver());
             TargetChooser * tc = tf.createTargetChooser(theType.c_str(),NULL);
+            tc->other = other;
             int check = 0;
             for (int i = 0; i < 2; i++)
             {
@@ -5777,9 +5796,9 @@ class AADepleter: public ActivatedAbilityTP
 {
 public:
     string nbcardsStr;
-
+    bool toexile;
     AADepleter(GameObserver* observer, int _id, MTGCardInstance * card, Targetable * _target,string nbcardsStr, ManaCost * _cost = NULL,
-            int who = TargetChooser::UNSET);
+            int who = TargetChooser::UNSET, bool toexile = false);
     int resolve();
     const string getMenuText();
     AADepleter * clone() const;

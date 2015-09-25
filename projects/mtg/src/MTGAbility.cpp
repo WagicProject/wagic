@@ -2529,7 +2529,17 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     if (splitDeplete.size())
     {
         Targetable * t = spell ? spell->getNextTarget() : NULL;
-        MTGAbility * a = NEW AADepleter(observer, id, card, t , splitDeplete[1], NULL, who);
+        MTGAbility * a = NEW AADepleter(observer, id, card, t , splitDeplete[1], NULL, who, false);
+        a->oneShot = 1;
+        return a;
+    }
+
+    //Ingest
+    vector<string> splitIngest = parseBetween(s, "ingest:", " ", false);
+    if (splitIngest.size())
+    {
+        Targetable * t = spell ? spell->getNextTarget() : NULL;
+        MTGAbility * a = NEW AADepleter(observer, id, card, t , splitIngest[1], NULL, who, true);
         a->oneShot = 1;
         return a;
     }
@@ -3530,6 +3540,8 @@ int AbilityFactory::abilityEfficiency(MTGAbility * a, Player * p, int mode, Targ
     badAbilities[(int)Constants::ONLYMANA] = true;
     badAbilities[(int)Constants::EXILEDEATH] = true;
     badAbilities[(int)Constants::WEAK] = true;
+    badAbilities[(int)Constants::NOLIFEGAIN] = true;
+    badAbilities[(int)Constants::NOLIFEGAINOPPONENT] = true;
 
     if (AInstantBasicAbilityModifierUntilEOT * abi = dynamic_cast<AInstantBasicAbilityModifierUntilEOT *>(a))
     {
