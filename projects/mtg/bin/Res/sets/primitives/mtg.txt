@@ -223,7 +223,7 @@ type=Land
 [card]
 name=Abattoir Ghoul
 abilities=first strike
-auto=@vampired(creature) from(this):all(trigger[to]) life:toughness controller
+auto=@vampired(creature) from(this):all(trigger[to]) dynamicability<!mytgt toughnesslifegain srccontroller!>
 text=First strike -- Whenever a creature dealt damage by Abattoir Ghoul this turn dies, you gain life equal to that creature's toughness.
 mana={3}{B}
 type=Creature
@@ -7937,8 +7937,9 @@ toughness=1
 [/card]
 [card]
 name=Battering Krasis
+abilities=trample
 auto=evolve
-text=Evolve (Whenever a creature enters the battlefield under your control, if that creature has greater power or toughness than this creature,  put a +1/+1 counter on this creature.)
+text=Trample -- Evolve (Whenever a creature enters the battlefield under your control, if that creature has greater power or toughness than this creature,  put a +1/+1 counter on this creature.)
 mana={2}{G}
 type=Creature
 subtype=Fish Beast
@@ -17915,7 +17916,7 @@ type=Artifact
 [/card]
 [card]
 name=Coalition Victory
-auto=aslongas(plains|myBattlefield)aslongas(island|myBattlefield)aslongas(swamp|myBattlefield)aslongas(mountain|myBattlefield)aslongas(forest|myBattlefield)aslongas(creature[white]|myBattlefield)aslongas(creature[blue]|myBattlefield)aslongas(creature[black]|myBattlefield)aslongas(creature[red]|myBattlefield)aslongas(creature[green]|myBattlefield) winGame
+auto=if type(plains|mybattlefield)~morethan~0 then if type(island|mybattlefield)~morethan~0 then if type(swamp|mybattlefield)~morethan~0 then if type(mountain|mybattlefield)~morethan~0 then if type(forest|mybattlefield)~morethan~0 then if type(creature[white]|mybattlefield)~morethan~0 then if type(creature[blue]|mybattlefield)~morethan~0 then if type(creature[black]|mybattlefield)~morethan~0 then if type(creature[red]|mybattlefield)~morethan~0 then if type(creature[green]|mybattlefield)~morethan~0 then wingame controller else nothing
 text=You win the game if you control a land of each basic land type and a creature of each color.
 mana={3}{W}{U}{B}{R}{G}
 type=Sorcery
@@ -21115,9 +21116,11 @@ subtype=Golem
 power=2
 toughness=5
 [/card]
+#opponent not targetted
 [card]
 name=Custody Battle
 target=creature
+auto=teach(creature) transforms((,newability[@each my upkeep:ability$!name(sacrifice or exchange) if type(land|mybattlefield)~morethan~0 then choice sacrifice notatarget(land|mybattlefield) _ choice name(exchange controller) moveto(opponentbattlefield) all(mystored)!$ controller]))
 text=Enchant creature -- Enchanted creature has "At the beginning of your upkeep, target opponent gains control of this creature unless you sacrifice a land."
 mana={1}{R}
 type=Enchantment
@@ -26294,6 +26297,7 @@ toughness=1
 [/card]
 [card]
 name=Dragonlair Spider
+abilities=reach
 auto=@movedTo(*|opponentstack):token(Insect,Creature Insect, 1/1,green)
 text=Reach -- Whenever an opponent casts a spell, put a 1/1 green Insect creature token onto the battlefield.
 mana={2}{R}{R}{G}{G}
@@ -33160,7 +33164,7 @@ type=Instant
 [/card]
 [card]
 name=Feed the Pack
-auto=@each my endofturn:may name(sacrifice a non-token creature) target(creature[-token]|mybattlefield) transforms((,newability[token(-262857)*p],newability[sacrifice])) forever
+auto=@each my endofturn:may name(sacrifice a non-token creature) target(creature[-token]|mybattlefield) transforms((,newability[token(-262857)*t],newability[sacrifice])) forever
 text=At the beginning of your end step, you may sacrifice a nontoken creature. If you do, put X 2/2 green Wolf creature tokens onto the battlefield where X is the sacrificed creature's toughness.
 mana={5}{G}
 type=Enchantment
@@ -34396,6 +34400,7 @@ type=Sorcery
 [card]
 name=Five-Alarm Fire
 auto=@combatdamaged(player) from(creature|mybattlefield):all(this) counter(0/0,1,Blaze)
+auto=@combatdamaged(creature) from(creature|mybattlefield):all(this) counter(0/0,1,Blaze)
 auto={C(0/0,-5,Blaze)}:damage:5 target(creature,player)
 text=Whenever a creature you control deals combat damage, put a blaze counter on Five-Alarm Fire. -- Remove five blaze counters from Five-Alarm Fire: Five-Alarm Fire deals 5 damage to target creature or player.
 mana={1}{R}{R}
@@ -37681,8 +37686,8 @@ text=Intimidate (This creature can't be blocked except by artifact creatures and
 color=green
 type=Creature
 subtype=Werewolf
-power=4
-toughness=4
+power=3
+toughness=3
 [/card]
 ###The 2 cards above should stay together (Flip Card)###
 [card]
@@ -38106,7 +38111,7 @@ type=Artifact
 name=Geth's Verdict
 target=player
 auto=life:-1
-auto=ability$!name(sacrifice) target(creature|mybattlefield) sacrifice!$ targetedplayer
+auto=ability$!name(sacrifice) notatarget(creature|mybattlefield) sacrifice!$ targetedplayer
 text=Target player sacrifices a creature and loses 1 life.
 mana={B}{B}
 type=Instant
@@ -40905,7 +40910,7 @@ toughness=2
 [card]
 name=Goldnight Redeemer
 abilities=flying
-auto=life:twicetype:other creature:mybattlefield controller
+auto=life:twiceothertype:creature:mybattlefield controller
 text=Flying -- When Goldnight Redeemer enters the battlefield, you gain 2 life for each other creature you control.
 mana={4}{W}{W}
 type=Creature
@@ -67100,23 +67105,27 @@ subtype=Bolas
 name=Night Dealings
 auto=@damaged(opponent) from(*|mybattlefield):counter(0/0,thatmuch,Theft)
 auto=@damaged(opponent) from(*|mystack):counter(0/0,thatmuch,Theft)
-auto=this(counter{0/0.1.Theft}<1) {2}{B}{B}:name(X = 0) (*[-land;manacost=0])
-auto=this(counter{0/0.1.Theft}=) {2}{B}{B}{C(0/0,-1,Theft)}:name(X = 1) moveTo(myhand) target(*[-land;manacost=1]|mylibrary)
-auto=this(counter{0/0.2.Theft}=) {2}{B}{B}{C(0/0,-2,Theft)}:name(X = 2) moveTo(myhand) target(*[-land;manacost=2]|mylibrary)
-auto=this(counter{0/0.3.Theft}=) {2}{B}{B}{C(0/0,-3,Theft)}:name(X = 3) moveTo(myhand) target(*[-land;manacost=3]|mylibrary)
-auto=this(counter{0/0.4.Theft}=) {2}{B}{B}{C(0/0,-4,Theft)}:name(X = 4) moveTo(myhand) target(*[-land;manacost=4]|mylibrary)
-auto=this(counter{0/0.5.Theft}=) {2}{B}{B}{C(0/0,-5,Theft)}:name(X = 5) moveTo(myhand) target(*[-land;manacost=5]|mylibrary)
-auto=this(counter{0/0.6.Theft}=) {2}{B}{B}{C(0/0,-6,Theft)}:name(X = 6) moveTo(myhand) target(*[-land;manacost=6]|mylibrary)
-auto=this(counter{0/0.7.Theft}=) {2}{B}{B}{C(0/0,-7,Theft)}:name(X = 7) moveTo(myhand) target(*[-land;manacost=7]|mylibrary)
-auto=this(counter{0/0.8.Theft}=) {2}{B}{B}{C(0/0,-8,Theft)}:name(X = 8) moveTo(myhand) target(*[-land;manacost=8]|mylibrary)
-auto=this(counter{0/0.9.Theft}=) {2}{B}{B}{C(0/0,-9,Theft)}:name(X = 9) moveTo(myhand) target(*[-land;manacost=9]|mylibrary)
-auto=this(counter{0/0.10.Theft}=) {2}{B}{B}{C(0/0,-10,Theft)}:name(X = 10) moveTo(myhand) target(*[-land;manacost=10]|mylibrary)
-auto=this(counter{0/0.11.Theft}=) {2}{B}{B}{C(0/0,-11,Theft)}:name(X = 11) moveTo(myhand) target(*[-land;manacost=11]|mylibrary)
-auto=this(counter{0/0.12.Theft}=) {2}{B}{B}{C(0/0,-12,Theft)}:name(X = 12) moveTo(myhand) target(*[-land;manacost=12]|mylibrary)
-auto=this(counter{0/0.13.Theft}=) {2}{B}{B}{C(0/0,-13,Theft)}:name(X = 13) moveTo(myhand) target(*[-land;manacost=13]|mylibrary)
-auto=this(counter{0/0.14.Theft}=) {2}{B}{B}{C(0/0,-14,Theft)}:name(X = 14) moveTo(myhand) target(*[-land;manacost=14]|mylibrary)
-auto=this(counter{0/0.15.Theft}=) {2}{B}{B}{C(0/0,-15,Theft)}:name(X = 15) moveTo(myhand) target(*[-land;manacost=15]|mylibrary)
-auto=this(counter{0/0.16.Theft}=) {2}{B}{B}{C(0/0,-16,Theft)}:name(X = 16) moveTo(myhand) target(*[-land;manacost=16]|mylibrary)
+auto={2}{B}{B}:name(X = 0) && moveto(myhand) target(*[-land;manacost=0]|mylibrary)
+auto=this(counter{0/0.1.Theft}=>) {2}{B}{B}{C(0/0,-1,Theft)}:name(X = 1) && moveTo(myhand) target(*[-land;manacost=1]|mylibrary)
+auto=this(counter{0/0.2.Theft}=>) {2}{B}{B}{C(0/0,-2,Theft)}:name(X = 2) && moveTo(myhand) target(*[-land;manacost=2]|mylibrary)
+auto=this(counter{0/0.3.Theft}=>) {2}{B}{B}{C(0/0,-3,Theft)}:name(X = 3) && moveTo(myhand) target(*[-land;manacost=3]|mylibrary)
+auto=this(counter{0/0.4.Theft}=>) {2}{B}{B}{C(0/0,-4,Theft)}:name(X = 4) && moveTo(myhand) target(*[-land;manacost=4]|mylibrary)
+auto=this(counter{0/0.5.Theft}=>) {2}{B}{B}{C(0/0,-5,Theft)}:name(X = 5) && moveTo(myhand) target(*[-land;manacost=5]|mylibrary)
+auto=this(counter{0/0.6.Theft}=>) {2}{B}{B}{C(0/0,-6,Theft)}:name(X = 6) && moveTo(myhand) target(*[-land;manacost=6]|mylibrary)
+auto=this(counter{0/0.7.Theft}=>) {2}{B}{B}{C(0/0,-7,Theft)}:name(X = 7) && moveTo(myhand) target(*[-land;manacost=7]|mylibrary)
+auto=this(counter{0/0.8.Theft}=>) {2}{B}{B}{C(0/0,-8,Theft)}:name(X = 8) && moveTo(myhand) target(*[-land;manacost=8]|mylibrary)
+auto=this(counter{0/0.9.Theft}=>) {2}{B}{B}{C(0/0,-9,Theft)}:name(X = 9) && moveTo(myhand) target(*[-land;manacost=9]|mylibrary)
+auto=this(counter{0/0.10.Theft}=>) {2}{B}{B}{C(0/0,-10,Theft)}:name(X = 10) && moveTo(myhand) target(*[-land;manacost=10]|mylibrary)
+auto=this(counter{0/0.11.Theft}=>) {2}{B}{B}{C(0/0,-11,Theft)}:name(X = 11) && moveTo(myhand) target(*[-land;manacost=11]|mylibrary)
+auto=this(counter{0/0.12.Theft}=>) {2}{B}{B}{C(0/0,-12,Theft)}:name(X = 12) && moveTo(myhand) target(*[-land;manacost=12]|mylibrary)
+auto=this(counter{0/0.13.Theft}=>) {2}{B}{B}{C(0/0,-13,Theft)}:name(X = 13) && moveTo(myhand) target(*[-land;manacost=13]|mylibrary)
+auto=this(counter{0/0.14.Theft}=>) {2}{B}{B}{C(0/0,-14,Theft)}:name(X = 14) && moveTo(myhand) target(*[-land;manacost=14]|mylibrary)
+auto=this(counter{0/0.15.Theft}=>) {2}{B}{B}{C(0/0,-15,Theft)}:name(X = 15) && moveTo(myhand) target(*[-land;manacost=15]|mylibrary)
+auto=this(counter{0/0.16.Theft}=>) {2}{B}{B}{C(0/0,-16,Theft)}:name(X = 16) && moveTo(myhand) target(*[-land;manacost=16]|mylibrary)
+auto=this(counter{0/0.17.Theft}=>) {2}{B}{B}{C(0/0,-17,Theft)}:name(X = 17) && moveTo(myhand) target(*[-land;manacost=17]|mylibrary)
+auto=this(counter{0/0.18.Theft}=>) {2}{B}{B}{C(0/0,-18,Theft)}:name(X = 18) && moveTo(myhand) target(*[-land;manacost=18]|mylibrary)
+auto=this(counter{0/0.19.Theft}=>) {2}{B}{B}{C(0/0,-19,Theft)}:name(X = 19) && moveTo(myhand) target(*[-land;manacost=19]|mylibrary)
+auto=this(counter{0/0.20.Theft}=>) {2}{B}{B}{C(0/0,-20,Theft)}:name(X = 20) && moveTo(myhand) target(*[-land;manacost=20]|mylibrary)
 text=Whenever a source you control deals damage to another player, put that many theft counters on Night Dealings. -- {2}{B}{B}, Remove X theft counters from Night Dealings: Search your library for a nonland card with converted mana cost X, reveal it, and put it into your hand. Then shuffle your library.
 mana={2}{B}{B}
 type=Enchantment
@@ -70304,7 +70313,7 @@ type=Instant
 [/card]
 [card]
 name=Overwhelming Stampede
-auto=all(creature|mybattlefield) power:highest:creature:mybattlefield/power:highest:creature:mybattlefield
+auto=lord(creature|mybattlefield) power:highest:creature:mybattlefield/power:highest:creature:mybattlefield
 auto=all(creature|mybattlefield) trample
 text=Until end of turn, creatures you control gain trample and get +X/+X, where X is the greatest power among creatures you control. (If a creature you control would assign enough damage to its blockers to destroy them, you may have it assign the rest of its damage to defending player or planeswalker.)
 mana={3}{G}{G}
@@ -74609,7 +74618,7 @@ toughness=*
 [/card]
 [card]
 name=Prime Speaker Zegana
-auto=counter(1/1,power:highest:creature:mybattlefield) && draw:power
+auto=counter(1/1,otherpower:highest:creature:mybattlefield) && draw:power
 text=Prime Speaker Zegana enters the battlefield with X +1/+1 counters on it, where X is the greatest power among other creatures you control. -- When Prime Speaker Zegana enters the battlefield, draw cards equal to its power.
 mana={2}{G}{G}{U}{U}
 type=Legendary Creature
@@ -82108,7 +82117,7 @@ target=creature
 auto=teach(creature[red]) 1/1
 auto=teach(creature[red]) double strike
 auto=teach(creature[green]) 1/1
-auto=teach(creature[green]) flying
+auto=teach(creature[green]) trample
 text=Enchant creature -- As long as enchanted creature is red, it gets +1/+1 and has double strike. (It deals both first-strike and regular combat damage.) -- As long as enchanted creature is green, it gets +1/+1 and has trample.
 mana={4}{RG}
 type=Enchantment
@@ -112923,7 +112932,7 @@ toughness=1
 [/card]
 [card]
 name=Wild Beastmaster
-auto=@combat(attacking) source(this):all(other creature|myBattlefield) dynamicability<!powerpumpboth!> ueot
+auto=@combat(attacking) source(this):lord(other creature|myBattlefield) dynamicability<!powerpumpboth!> ueot
 text=Whenever Wild Beastmaster attacks, each other creature you control gets +X/+X until end of turn, where X is Wild Beastmaster's power.
 mana={2}{G}
 type=Creature

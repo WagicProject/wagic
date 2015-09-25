@@ -261,8 +261,8 @@ AADamager * AADamager::clone() const
 
 
 //AADepleter
-AADepleter::AADepleter(GameObserver* observer, int _id, MTGCardInstance * card, Targetable * _target,string nbcardsStr, ManaCost * _cost, int who) :
-    ActivatedAbilityTP(observer, _id, card, _target, _cost, who),nbcardsStr(nbcardsStr)
+AADepleter::AADepleter(GameObserver* observer, int _id, MTGCardInstance * card, Targetable * _target,string nbcardsStr, ManaCost * _cost, int who, bool toexile) :
+    ActivatedAbilityTP(observer, _id, card, _target, _cost, who),nbcardsStr(nbcardsStr),toexile(toexile)
 {
 
 }
@@ -277,7 +277,12 @@ AADepleter::AADepleter(GameObserver* observer, int _id, MTGCardInstance * card, 
             for (int i = 0; i < numCards.getValue(); i++)
             {
                 if (library->nb_cards)
-                    player->game->putInZone(library->cards[library->nb_cards - 1], library, player->game->graveyard);
+                {
+                    if(toexile)
+                        player->game->putInZone(library->cards[library->nb_cards - 1], library, player->game->exile);
+                    else
+                        player->game->putInZone(library->cards[library->nb_cards - 1], library, player->game->graveyard);
+                }
             }
         }
         return 1;
@@ -285,6 +290,8 @@ AADepleter::AADepleter(GameObserver* observer, int _id, MTGCardInstance * card, 
 
 const string AADepleter::getMenuText()
 {
+    if(toexile)
+        return "Ingest";
     return "Deplete";
 }
 
