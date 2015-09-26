@@ -1,0 +1,13 @@
+find_host_program(ANT_EXECUTABLE "ant")
+
+if(ANT_EXECUTABLE)
+    set(ANT_FOUND ON)
+else()
+    set(ANT_FOUND OFF)
+endif()
+
+
+INCLUDE(FindPackageHandleStandardArgs)
+
+FIND_PACKAGE_HANDLE_STANDARD_ARGS(ANT REQUIRED_VARS ANT_EXECUTABLE)
+mark_as_advanced(ANT_EXECUTABLE ANT_FOUND)

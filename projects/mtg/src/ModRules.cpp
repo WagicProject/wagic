@@ -3,7 +3,7 @@
 #include "ModRules.h"
 #include "utils.h"
 #include "GameState.h"
-#include "../../../JGE/src/tinyxml/tinyxml.h"
+#include "tinyxml.h"
 
 
 ModRules gModRules;

@@ -19,7 +19,7 @@
 #include "../include/JFileSystem.h"
 #include "../include/JResourceManager.h"
 
-#include "tinyxml/tinyxml.h"
+#include "tinyxml.h"
 
 //-------------------------------------------------------------------------------------
 

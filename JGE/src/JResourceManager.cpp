@@ -14,7 +14,7 @@
 #include "../include/JResourceManager.h"
 #include "../include/JFileSystem.h"
 #include "../include/JLBFont.h"
-#include "tinyxml/tinyxml.h"
+#include "tinyxml.h"
 
 #if defined (_DEBUG) && defined (WIN32) && (!defined LINUX)
 #include "crtdbg.h"

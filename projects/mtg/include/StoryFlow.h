@@ -5,7 +5,7 @@
 #include <map>
 #include <vector>
 using namespace std;
-#include "../../../JGE/src/tinyxml/tinyxml.h"
+#include "tinyxml.h"
 #include <JGui.h>
 class GameObserver;
 class MTGDeck;

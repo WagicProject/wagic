@@ -13,7 +13,7 @@
 #include "zfsystem.h"
 
 // Debug
-#include "../../include/JLogger.h"
+#include "JLogger.h"
 
 #include "fileio.h"		// I/O facilities
 

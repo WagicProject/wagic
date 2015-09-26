@@ -15,7 +15,7 @@
 #include "../include/JSprite.h"
 #include "../include/JAnimator.h"
 
-#include "tinyxml/tinyxml.h"
+#include "tinyxml.h"
 
 
 //////////////////////////////////////////////////////////////////////////

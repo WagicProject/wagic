@@ -13,7 +13,7 @@
 #include "../include/JFileSystem.h"
 #include "../include/JSpline.h"
 
-#include "tinyxml/tinyxml.h"
+#include "tinyxml.h"
 
 #define SMALL_NUMBER		0.0001f
 
