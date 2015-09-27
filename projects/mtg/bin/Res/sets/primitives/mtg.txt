@@ -85760,7 +85760,7 @@ auto=@movedTo(*[-creature]|mystack):lifelink ueot
 text=Prowess (Whenever you cast a noncreature spell, this creature gets +1/+1 until end of turn.) -- Whenever you cast a noncreature spell, Seeker of the Way gains lifelink until end of turn. 
 mana={1}{W}
 type=Creature
-subtype=Human Monk
+subtype=Human Warrior
 power=2
 toughness=2
 [/card]

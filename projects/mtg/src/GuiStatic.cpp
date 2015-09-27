@@ -96,18 +96,29 @@ void GuiAvatar::Render()
 
     //Life
     char buffer[10];
+    int lx = 255, ly = 255, lz = 255;
+    if(life > 24) { lx = 127; ly = 255; lz = 212; }
+    if(life > 16 && life < 24) { lx = 255; ly = 255; lz = 255; }
+    if(life > 12 && life < 17) { lx = 255; ly = 255; lz = 105; }
+    if(life > 8 && life < 13) { lx = 255; ly = 255; lz = 13; }
+    if(life > 4 && life < 9) { lx = 255; ly = 166; lz = 0; }
+    if(life < 5) { lx = 255; ly = 40; lz = 0; }
     sprintf(buffer, "%i", life);
     switch (corner)
     {
     case TOP_LEFT:
         mFont->SetColor(ARGB((int)actA / 4, 0, 0, 0));
         mFont->DrawString(buffer, actX + 2, actY + 2);
-        mFont->SetColor(ARGB((int)actA, 255, 255, 255));
+        mFont->SetScale(1.3f);
+        mFont->SetColor(ARGB((int)actA, lx, ly, lz));
         mFont->DrawString(buffer, actX + 1, actY + 1);
+        mFont->SetScale(1);
         break;
     case BOTTOM_RIGHT:
-        mFont->SetColor(ARGB((int)actA, 255, 255, 255));
-        mFont->DrawString(buffer, actX, actY - 10, JGETEXT_RIGHT);
+        mFont->SetScale(1.3f);
+        mFont->SetColor(ARGB((int)actA, lx, ly, lz));
+        mFont->DrawString(buffer, actX, actY - 14, JGETEXT_RIGHT);
+        mFont->SetScale(1);
         break;
     }
     //poison
