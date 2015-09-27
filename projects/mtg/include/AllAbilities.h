@@ -708,7 +708,7 @@ private:
         else if (s == "pbasiclandtypes")//Basic Land types
         {
             intValue = 0;
-            int forest, plains, swamp, island, mountain = 0;
+            int forest = 0, plains = 0, swamp = 0, island = 0, mountain = 0;
             for (int j = card->controller()->game->battlefield->nb_cards - 1; j >= 0; --j)
             {
                 if (card->controller()->game->battlefield->cards[j]->hasType("forest"))
@@ -801,7 +801,7 @@ private:
         else if (s == "gravecardtypes")//Tarmogoyf
         {
             intValue = 0;
-            int art, cre, enc, ins, lnd, sor, trb, pwk = 0;
+            int art = 0, cre = 0, enc = 0, ins = 0, lnd = 0, sor = 0, trb = 0, pwk = 0;
             for (int i = 0; i < 2; i++)
             {
                 Player * p = card->getObserver()->players[i];
