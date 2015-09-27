@@ -18,6 +18,7 @@ SET(SOURCE
   pngwutil.c )
   
 add_library(png ${SOURCE})
+include_directories(${ZLIB_INCLUDE_DIR})
 
 if(operating_system_psp)
     #  -DCHROME_PNG_WRITE_SUPPORT \

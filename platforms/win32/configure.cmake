@@ -1,2 +1,0 @@
-add_definitions(-DWIN32)
-add_definitions(COMPILE_DEFINITIONS_DEBUG _CRT_SECURE_NO_WARNINGS) 

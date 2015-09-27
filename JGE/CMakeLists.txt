@@ -115,7 +115,7 @@ if(backend_sdl)
             ${OPENSL_LIBRARIES}) 
     elseif(WIN32)
         set(JGE_INTERNAL_INCLUDE_DIRS ${TINYXML_INCLUDE_DIR} ${ZIPFS_INCLUDE_DIR} ${SDL2_INCLUDE_DIR} 
-            ${UNZIP_INCLUDE_DIR} ${GIF_INCLUDE_DIR} ${Boost_INCLUDE_DIR})
+            ${UNZIP_INCLUDE_DIR} ${GIF_INCLUDE_DIR} ${Boost_INCLUDE_DIRS})
         set(JGE_SOURCES ${JGE_generic_src} ${JGE_graphics_src} ${JGE_linux_src} ${JGE_hge_src})
         set(JGE_LINK_LIBRARIES ${ZIPFS_LIBRARY} ${UNZIP_LIRARY} ${GIF_LIBRARIES} ${JPEG_LIBRARY} 
             ${PNG_LIBRARIES})

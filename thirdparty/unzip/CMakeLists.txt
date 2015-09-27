@@ -5,7 +5,7 @@ SET(SOURCE
     miniunz.c
     unzip.c)
 
-include_directories(${ZLIB_INCLUDE_DIR} ${EXTRA_INCLUDES} ${ZLIB_INCLUDE_DIR})
+include_directories(${ZLIB_INCLUDE_DIR} ${EXTRA_INCLUDES})
 
 add_library(unzip ${SOURCE})
 target_link_libraries(unzip ${ZLIB_LIBRARY})

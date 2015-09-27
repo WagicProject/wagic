@@ -188,7 +188,7 @@ if(backend_sdl)
             ${HGE_LIBRARY})
     elseif(WIN32)
         include_directories(${MTG_INCLUDE_DIRS} ${JGE_INCLUDE_DIRS} ${SDL2_INCLUDE_DIR} ${ZIPFS_INCLUDE_DIR} 
-            ${Boost_INCLUDE_DIR} ${UNZIP_INCLUDE_DIR} ${HGE_INCLUDE_DIR} ${TINYXML_INCLUDE_DIR} 
+            ${Boost_INCLUDE_DIRS} ${UNZIP_INCLUDE_DIR} ${HGE_INCLUDE_DIR} ${TINYXML_INCLUDE_DIR}
             ${ZLIB_INCLUDE_DIR})
         add_executable(wagic ${MTG_generic_src} ${MTG_sdl_src} src/TestSuiteAI.cpp src/AIPlayerBakaB.cpp)
         link_directories(${Boost_LIBRARY_DIR} ${SDL2_LIBRARY_DIR})
