@@ -11,6 +11,8 @@
 #endif
 #include "WFont.h"
 
+#include <typeinfo>
+
 #ifdef FORCE_LOW_CACHE_MEMORY
 //#define FORCE_LOW_CACHE_MEMORY
 const unsigned int kConstrainedCacheLimit = 8 * 1024 * 1024;
