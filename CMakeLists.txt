@@ -90,7 +90,7 @@ if(UNIX AND NOT ANDROID)
 endif()
 
 #third party build options
-WAGIC_OPTION(BUILD_ZLIB    "build zlib from source"    ON)
+WAGIC_OPTION(BUILD_ZLIB    "build zlib from source"    WIN32)
 WAGIC_OPTION(BUILD_JPEG    "build jpeg from source"    (WIN32 OR APPLE OR PSP OR ANDROID))
 WAGIC_OPTION(BUILD_PNG     "build png from source"     (WIN32 OR APPLE OR PSP OR ANDROID))
 WAGIC_OPTION(BUILD_UNZIP   "build unzip from source"   ON)
