@@ -143,7 +143,8 @@ const char* Constants::MTGBasicAbilities[] = {
     "spellmastery",
     "nolifegain",
     "nolifegainopponent",
-    "auraward"
+    "auraward",
+    "madness"
 };
 
 map<string,int> Constants::MTGBasicAbilitiesMap;

@@ -22294,6 +22294,7 @@ text=At the beginning of your upkeep, you lose 1 life. -- At the beginning of yo
 mana={2}{B}{B}{B}
 type=Enchantment
 [/card]
+#tappedformana stack...
 [card]
 name=Dawn's Reflection
 target=land
@@ -33438,6 +33439,7 @@ subtype=Beast
 power=2
 toughness=2
 [/card]
+#tappedformana stack...
 [card]
 name=Fertile Ground
 target=land
@@ -37927,13 +37929,16 @@ type=Artifact
 [card]
 name=Gemstone Mine
 auto=counter(0/0,3,Mining)
-auto={T}{C(0/0,-1,Mining)}:Add{W}
-auto={T}{C(0/0,-1,Mining)}:Add{U}
-auto={T}{C(0/0,-1,Mining)}:Add{B}
-auto={T}{C(0/0,-1,Mining)}:Add{R}
-auto={T}{C(0/0,-1,Mining)}:Add{G}
-auto=@tapped(this):bury all(gemstone mine[-counter{0/0.1.Mining}])
-auto=this(counter{0/0.1.Mining}<1) {0}:sacrifice all(this)
+auto=this(counter{0/0,1,Mining}>1) {T}{C(0/0,-1,Mining)}:Add{G}
+auto=this(counter{0/0,1,Mining}>1) {T}{C(0/0,-1,Mining)}:Add{R}
+auto=this(counter{0/0,1,Mining}>1) {T}{C(0/0,-1,Mining)}:Add{U}
+auto=this(counter{0/0,1,Mining}>1) {T}{C(0/0,-1,Mining)}:Add{B}
+auto=this(counter{0/0,1,Mining}>1) {T}{C(0/0,-1,Mining)}:Add{W}
+auto=this(counter{0/0,1,Mining}=1) {T}{C(0/0,-1,Mining)}:Add{G} && sacrifice
+auto=this(counter{0/0,1,Mining}=1) {T}{C(0/0,-1,Mining)}:Add{R} && sacrifice
+auto=this(counter{0/0,1,Mining}=1) {T}{C(0/0,-1,Mining)}:Add{U} && sacrifice
+auto=this(counter{0/0,1,Mining}=1) {T}{C(0/0,-1,Mining)}:Add{B} && sacrifice
+auto=this(counter{0/0,1,Mining}=1) {T}{C(0/0,-1,Mining)}:Add{W} && sacrifice
 text=Gemstone Mine enters the battlefield with three mining counters on it. -- {T}, Remove a mining counter from Gemstone Mine: Add one mana of any color to your mana pool. If there are no mining counters on Gemstone Mine, sacrifice it.
 type=Land
 [/card]
@@ -45571,9 +45576,8 @@ toughness=2
 name=Hickory Woodlot
 auto=tap
 auto=counter(0/0,2,Depletion)
-auto={T}{C(0/0,-1,Depletion)}:Add{G}{G}
-auto=@tapped(this):bury all(hickory woodlot[-counter{0/0.1.Depletion}])
-auto=this(counter{0/0.1.Depletion}<1) {0}:sacrifice all(this)
+auto=this(counter{0/0,1,Depletion}>1) {T}{C(0/0,-1,Depletion)}:Add{G}{G}
+auto=this(counter{0/0,1,Depletion}=1) {T}{C(0/0,-1,Depletion)}:Add{G}{G} && sacrifice
 text=Hickory Woodlot enters the battlefield tapped with two depletion counters on it. -- {T}, Remove a depletion counter from Hickory Woodlot: Add {G}{G} to your mana pool. If there are no depletion counters on Hickory Woodlot, sacrifice it.
 type=Land
 [/card]
@@ -59969,6 +59973,7 @@ subtype=Insect
 power=2
 toughness=3
 [/card]
+#tappedformana stack...
 [card]
 name=Market Festival
 target=land
@@ -71418,9 +71423,8 @@ toughness=2
 name=Peat Bog
 auto=tap
 auto=counter(0/0,2,Depletion)
-auto={T}{C(0/0,-1,Depletion)}:Add{B}{B}
-auto=@tapped(this):bury all(peat bog[-counter{0/0.1.Depletion}]|myBattlefield)
-auto=this(counter{0/0.1.Depletion}<1) {0}:sacrifice all(this)
+auto=this(counter{0/0,1,Depletion}>1) {T}{C(0/0,-1,Depletion)}:Add{B}{B}
+auto=this(counter{0/0,1,Depletion}=1) {T}{C(0/0,-1,Depletion)}:Add{B}{B} && sacrifice
 text=Peat Bog enters the battlefield tapped with two depletion counters on it. -- {T}, Remove a depletion counter from Peat Bog: Add {B}{B} to your mana pool. If there are no depletion counters on Peat Bog, sacrifice it.
 type=Land
 [/card]
@@ -78998,9 +79002,8 @@ type=Sorcery
 name=Remote Farm
 auto=tap
 auto=counter(0/0,2,Depletion)
-auto={T}{C(0/0,-1,Depletion)}:Add{W}{W}
-auto=@tapped(this):bury all(remote farm[-counter{0/0.1.Depletion}]|myBattlefield)
-auto=this(counter{0/0.1.Depletion}<1) {0}:sacrifice all(this)
+auto=this(counter{0/0,1,Depletion}>1) {T}{C(0/0,-1,Depletion)}:Add{W}{W}
+auto=this(counter{0/0,1,Depletion}=1) {T}{C(0/0,-1,Depletion)}:Add{W}{W} && sacrifice
 text=Remote Farm enters the battlefield tapped with two depletion counters on it. -- {T}, Remove a depletion counter from Remote Farm: Add {W}{W} to your mana pool. If there are no depletion counters on Remote Farm, sacrifice it.
 type=Land
 [/card]
@@ -83233,9 +83236,8 @@ type=Artifact
 name=Sandstone Needle
 auto=tap
 auto=counter(0/0,2,Depletion)
-auto={T}{C(0/0,-1,Depletion)}:Add{R}{R}
-auto=@tapped(this):bury all(sandstone needle[-counter{0/0.1.Depletion}]|myBattlefield)
-auto=this(counter{0/0.1.Depletion}<1) {0}:sacrifice all(this)
+auto=this(counter{0/0,1,Depletion}>1) {T}{C(0/0,-1,Depletion)}:Add{R}{R}
+auto=this(counter{0/0,1,Depletion}=1) {T}{C(0/0,-1,Depletion)}:Add{R}{R} && sacrifice
 text=Sandstone Needle enters the battlefield tapped with two depletion counters on it. -- {T}, Remove a depletion counter from Sandstone Needle: Add {R}{R} to your mana pool. If there are no depletion counters on Sandstone Needle, sacrifice it.
 type=Land
 [/card]
@@ -83471,9 +83473,8 @@ toughness=2
 name=Saprazzan Skerry
 auto=tap
 auto=counter(0/0,2,Depletion)
-auto={T}{C(0/0,-1,Depletion)}:Add{U}{U}
-auto=@tapped(this):bury all(saprazzan skerry[-counter{0/0.1.Depletion}]|myBattlefield)
-auto=this(counter{0/0.1.Depletion}<1) {0}:sacrifice all(this)
+auto=this(counter{0/0,1,Depletion}>1) {T}{C(0/0,-1,Depletion)}:Add{U}{U}
+auto=this(counter{0/0,1,Depletion}=1) {T}{C(0/0,-1,Depletion)}:Add{U}{U} && sacrifice
 text=Saprazzan Skerry enters the battlefield tapped with two depletion counters on it. -- {T}, Remove a depletion counter from Saprazzan Skerry: Add {U}{U} to your mana pool. If there are no depletion counters on Saprazzan Skerry, sacrifice it.
 type=Land
 [/card]
@@ -103853,6 +103854,7 @@ subtype=Spellshaper
 power=1
 toughness=1
 [/card]
+#tappedformana stack...
 [card]
 name=Trace of Abundance
 target=land
@@ -108211,6 +108213,7 @@ subtype=Elemental
 power=7
 toughness=7
 [/card]
+#tappedformana stack...
 [card]
 name=Verdant Haven
 target=land

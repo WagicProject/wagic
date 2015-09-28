@@ -1160,14 +1160,14 @@ int GenericPaidAbility::resolve()
         baseAbility->target = target;
         optionalCost =  ManaCost::parseManaCost(baseCost, NULL, source);
 
-        // hacky way to produce better MenuText
+        /*// hacky way to produce better MenuText
         AAFakeAbility* isFake = dynamic_cast< AAFakeAbility* >( baseAbility );
         size_t findPayN = isFake->named.find(" {value} mana");
         if (isFake && findPayN != string::npos) {
             stringstream parseN;
             parseN << optionalCost->getCost(Constants::MTG_COLOR_ARTIFACT);
             isFake->named.replace(findPayN + 1, 7, parseN.str());
-        }
+        }//commented out, it crashes cards with recover ability*/
 
         MTGAbility * set = baseAbility->clone();
         set->oneShot = true;
@@ -5724,7 +5724,7 @@ const string AACastCard::getMenuText()
         return nameThis.c_str();
     if(putinplay)
         return "Put Into Play";
-    return "Cast For Free";
+    return "Cast Card";
 }
 
 AACastCard * AACastCard::clone() const

@@ -76,7 +76,7 @@ public:
     MTGPutInPlayRule(GameObserver* observer, int _id);
     const string getMenuText()
     {
-        return "cast card normally";
+        return "Cast Card Normally";
     }
     virtual MTGPutInPlayRule * clone() const;
 };
@@ -90,7 +90,7 @@ public:
     MTGKickerRule(GameObserver* observer, int _id);
     const string getMenuText()
     {
-        return "pay kicker";
+        return "Pay Kicker";
     }
     virtual MTGKickerRule * clone() const;
 };
@@ -110,7 +110,7 @@ public:
     {
         if(alternativeName.size())
             return alternativeName.c_str();
-        return "pay alternative cost";
+        return "Pay Alternative Cost";
     }
     virtual MTGAlternativeCostRule * clone() const;
 };
@@ -124,7 +124,7 @@ public:
     MTGBuyBackRule(GameObserver* observer, int _id);
     const string getMenuText()
     {
-        return "cast and buy back";
+        return "Cast and Buyback";
     }
     virtual MTGBuyBackRule * clone() const;
 };
@@ -139,7 +139,7 @@ public:
     MTGFlashBackRule(GameObserver* observer, int _id);
     const string getMenuText()
     {
-        return "flash back";
+        return "Flashback";
     }
     virtual MTGFlashBackRule * clone() const;
 };
@@ -153,7 +153,7 @@ public:
     MTGRetraceRule(GameObserver* observer, int _id);
     const string getMenuText()
     {
-        return "retrace";
+        return "Retrace";
     }
     virtual MTGRetraceRule * clone() const;
 };
@@ -168,7 +168,7 @@ public:
     MTGMorphCostRule(GameObserver* observer, int _id);
     const string getMenuText()
     {
-        return "play morphed";
+        return "Play Morphed";
     }
     virtual MTGMorphCostRule * clone() const;
 };
@@ -182,7 +182,7 @@ public:
     MTGPlayFromGraveyardRule(GameObserver* observer, int _id);
     const string getMenuText()
     {
-        return "cast card from graveyard";
+        return "Cast Card From Graveyard";
     }
     virtual MTGPlayFromGraveyardRule * clone() const;
 };

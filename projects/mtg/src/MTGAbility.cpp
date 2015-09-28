@@ -411,6 +411,13 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
             }
         }
 
+        check = restriction[i].find("discarded");
+        if(check != string::npos)
+        {
+            if(!card->discarded)
+                return 0;
+        }
+
         check = restriction[i].find("ownerscontrol");
         if(check != string::npos)
         {
@@ -3542,6 +3549,9 @@ int AbilityFactory::abilityEfficiency(MTGAbility * a, Player * p, int mode, Targ
     badAbilities[(int)Constants::WEAK] = true;
     badAbilities[(int)Constants::NOLIFEGAIN] = true;
     badAbilities[(int)Constants::NOLIFEGAINOPPONENT] = true;
+    badAbilities[(int)Constants::CANTLOSE] = false;
+    badAbilities[(int)Constants::CANTLIFELOSE] = false;
+    badAbilities[(int)Constants::CANTMILLLOSE] = false;
 
     if (AInstantBasicAbilityModifierUntilEOT * abi = dynamic_cast<AInstantBasicAbilityModifierUntilEOT *>(a))
     {

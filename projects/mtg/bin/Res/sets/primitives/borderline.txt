@@ -1,5 +1,16 @@
 grade=borderline
 [card]
+name=Arrogant Wurm
+abilities=trample,madness
+autoexile=restriction{discarded} pay({2}{G}) name(pay 2G to cast) activate name(pay 2G to cast) castcard(normal)?name(put in graveyard) moveto(ownergraveyard)
+text=Trample -- Madness {2}{G} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
+mana={3}{G}{G}
+type=Creature
+subtype=Wurm
+power=4
+toughness=4
+[/card]
+[card]
 name=Autumn Willow
 abilities=opponentshroud,shroud
 auto={G}:-shroud
@@ -24,6 +35,40 @@ power=2
 toughness=2
 [/card]
 [card]
+name=Basking Rootwalla
+abilities=madness
+autoexile=restriction{discarded} pay({0}) name(pay 0 to cast) activate name(pay 0 to cast) castcard(normal)?name(put in graveyard) moveto(ownergraveyard)
+auto={1}{G}:2/2 limit:1
+text={1}{G}: Basking Rootwalla gets +2/+2 until end of turn. Activate this ability only once each turn. -- Madness {0} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
+mana={G}
+type=Creature
+subtype=Lizard
+power=1
+toughness=1
+[/card]
+[card]
+name=Big Game Hunter
+abilities=madness
+autoexile=restriction{discarded} pay({B}) name(pay B to cast) activate name(pay B to cast) castcard(normal)?name(put in graveyard) moveto(ownergraveyard)
+auto=bury target(creature[power>=4])
+text=When Big Game Hunter enters the battlefield, destroy target creature with power 4 or greater. It can't be regenerated. -- Madness {B} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
+mana={1}{B}{B}
+type=Creature
+subtype=Human Rebel Assassin
+power=1
+toughness=1
+[/card]
+[card]
+name=Call to the Netherworld
+abilities=madness
+autoexile=restriction{discarded} pay({0}) name(pay 0 to cast) activate name(pay 0 to cast) castcard(normal)?name(put in graveyard) moveto(ownergraveyard)
+target=creature[black]|myGraveyard
+auto=moveTo(myHand)
+text=Return target black creature card from your graveyard to your hand. -- Madness {0} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
+mana={B}
+type=Sorcery
+[/card]
+[card]
 name=Cinder Seer
 auto={2}{r}{t}:target(creature,Player) damage:type:*[red]:myhand
 text={2}{R}, {T}: Reveal any number of red cards in your hand. Cinder Seer deals X damage to target creature or player, where X is the number of cards revealed this way.
@@ -44,6 +89,16 @@ mana={1}{B}{G}
 type=Instant
 [/card]
 [card]
+name=Dark Withering
+abilities=madness
+autoexile=restriction{discarded} pay({B}) name(pay B to cast) activate name(pay B to cast) castcard(normal)?name(put in graveyard) moveto(ownergraveyard)
+target=creature[-black]
+auto=destroy
+text=Destroy target nonblack creature. -- Madness {B} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
+mana={4}{B}{B}
+type=Instant
+[/card]
+[card]
 name=Feral Hydra
 type=Creature
 subtype=Hydra Beast
@@ -54,6 +109,26 @@ text=Feral Hydra enters the battlefield with X +1/+1 counters on it. -- {3}: Put
 auto=counter(1/1,X)
 auto={3}:counter(1/1)
 #Not all player can use ability
+[/card]
+[card]
+name=Fiery Temper
+abilities=madness
+autoexile=restriction{discarded} pay({R}) name(pay R to cast) activate name(pay R to cast) castcard(normal)?name(put in graveyard) moveto(ownergraveyard)
+target=creature,player
+auto=damage:3
+text=Fiery Temper deals 3 damage to target creature or player. -- Madness {R} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
+mana={1}{R}{R}
+type=Instant
+[/card]
+[card]
+name=Frantic Purification
+abilities=madness
+autoexile=restriction{discarded} pay({W}) name(pay W to cast) activate name(pay W to cast) castcard(normal)?name(put in graveyard) moveto(ownergraveyard)
+target=enchantment
+auto=destroy
+text=Destroy target enchantment. -- Madness {W} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
+mana={2}{W}
+type=Instant
 [/card]
 [card]
 name=Ghastly Remains
@@ -77,12 +152,35 @@ power=4
 toughness=4
 [/card]
 [card]
+name=Gorgon Recluse
+abilities=madness
+autoexile=restriction{discarded} pay({B}{B}) name(pay BB to cast) activate name(pay BB to cast) castcard(normal)?name(put in graveyard) moveto(ownergraveyard)
+auto=@combat(blocked,blocking) source(this) from(creature):all(trigger[from]) phaseaction[combatends once] destroy
+text=Whenever Gorgon Recluse blocks or becomes blocked by a nonblack creature, destroy that creature at end of combat. -- Madness {B}{B} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
+mana={3}{B}{B}
+type=Creature
+subtype=Gorgon
+power=2
+toughness=4
+[/card]
+[card]
 name=Govern the Guildless
 target=creature[-multicolor]
 auto=moveto(mybattlefield)
 autohand={1}{U}:name(change color/s) ability$!name(choose color/s) choice name(white) target(creature) becomes(,white) ueot _ choice name(blue) target(creature) becomes(,blue) ueot _ choice name(black) target(creature) becomes(,black) ueot _ choice name(red) target(creature) becomes(,red) ueot _ choice name(green) target(creature) becomes(,green) ueot _ choice name(white & blue) target(creature) becomes(,white,blue) ueot _ choice name(blue & black) target(creature) becomes(,black,blue) ueot _ choice name(black & red) target(creature) becomes(,black,red) ueot _ choice name(red & green) target(creature) becomes(,red,green) ueot _ choice name(green & white) target(creature) becomes(,white,green) ueot _ choice name(white & black) target(creature) becomes(,white,black) ueot _ choice name(blue & red) target(creature) becomes(,red,blue) ueot _ choice name(black & green) target(creature) becomes(,black,green) ueot _ choice name(red & white) target(creature) becomes(,white,red) ueot _ choice name(green & blue) target(creature) becomes(,green,blue) ueot _ choice name(green & white & blue) target(creature) becomes(,green,white,blue) ueot _ choice name(white & blue & black) target(creature) becomes(,black,white,blue) ueot _ choice name(blue & black & red) target(creature) becomes(,black,red,blue) ueot _ choice name(black & red & green) target(creature) becomes(,green,black,red) ueot _ choice name(red & green & white) target(creature) becomes(,green,white,red) ueot _ choice name(white & black & green) target(creature) becomes(,green,white,black) ueot _ choice name(blue & red & white) target(creature) becomes(,red,white,blue) ueot _ choice name(black & green & blue) target(creature) becomes(,green,black,blue) ueot _ choice name(red & white & black) target(creature) becomes(,black,white,red) ueot _ choice name(green & blue & red) target(creature) becomes(,green,red,blue) ueot _ choice name(green & red & blue & black) target(creature) becomes(,green,red,blue,black) ueot _ choice name(green & red & blue & white) target(creature) becomes(,green,red,blue,white) ueot _ choice name(white & blue & black & red) target(creature) becomes(,white,red,blue,black) ueot _ choice name(white & blue & black & green) target(creature) becomes(,white,green,blue,black) ueot _ choice name(all colors) target(creature) becomes(,white,red,blue,black,green) ueot!$ controller limit:1 myUpkeepOnly
 text=Gain control of target monocolored creature. -- Forecast - {1}{U}, Reveal Govern the Guildless from your hand: Target creature becomes the color or colors of your choice until end of turn. (Activate this ability only during your upkeep and only once each turn.)
 mana={5}{U}
+type=Sorcery
+[/card]
+[card]
+name=Ichor Slick
+abilities=madness
+autoexile=restriction{discarded} pay({3}{B}) name(pay 3B to cast) activate name(pay 3B to cast) castcard(normal)?name(put in graveyard) moveto(ownergraveyard)
+target=creature
+auto=-3/-3
+autohand=__CYCLING__({2})
+text=Target creature gets -3/-3 until end of turn. -- Cycling {2} ({2}, Discard this card: Draw a card.) -- Madness {3}{B} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
+mana={2}{B}
 type=Sorcery
 [/card]
 [card]
@@ -149,6 +247,15 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Obsessive Search
+abilities=madness
+autoexile=restriction{discarded} pay({U}) name(pay U to cast) activate name(pay U to cast) castcard(normal)?name(put in graveyard) moveto(ownergraveyard)
+auto=draw:1 controller
+text=Draw a card. -- Madness {U} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
+mana={U}
+type=Instant
+[/card]
+[card]
 name=Ogre Marauder
 text=Whenever Ogre Marauder attacks, it gains "Ogre Marauder can't be blocked" until end of turn unless defending player sacrifices a creature.
 auto=@combat(attacking) source(this):ability$!name(choose one) if type(creature|mybattlefield)~morethan~0 then choice sacrifice notatarget(creature|mybattlefield) _ choice all(mystored) unblockable ueot!$ opponent
@@ -157,6 +264,15 @@ type=Creature
 subtype=Ogre Warrior
 power=3
 toughness=1
+[/card]
+[card]
+name=Psychotic Haze
+abilities=madness
+autoexile=restriction{discarded} pay({1}{B}) name(pay 1B to cast) activate name(pay 1B to cast) castcard(normal)?name(put in graveyard) moveto(ownergraveyard)
+auto=damage:1 all(creature,player)
+text=Psychotic Haze deals 1 damage to each creature and each player. -- Madness {1}{B} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
+mana={2}{B}{B}
+type=Instant
 [/card]
 [card]
 name=Rakdos Augermage
@@ -176,6 +292,17 @@ auto=moveto(exile) all(this)
 text=Discard X cards, then return a card from your graveyard to your hand for each card discarded this way. Exile Recall.
 mana={X}{X}{U}
 type=Sorcery
+[/card]
+[card]
+name=Reckless Wurm
+abilities=trample,madness
+autoexile=restriction{discarded} pay({2}{R}) name(pay 2R to cast) activate name(pay 2R to cast) castcard(normal)?name(put in graveyard) moveto(ownergraveyard)
+text=Trample -- Madness {2}{R} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
+mana={3}{R}{R}
+type=Creature
+subtype=Wurm
+power=4
+toughness=4
 [/card]
 [card]
 name=Sacellum Godspeaker
@@ -234,6 +361,30 @@ auto=ability$!target(creature) 1/1 ueot!$ controller
 text=Target creature gets +1/+1 until end of turn. -- Target creature gets +1/+1 until end of turn. -- Target creature gets +1/+1 until end of turn.
 mana={G}{W}
 type=Instant
+[/card]
+[card]
+name=Strength of Isolation
+abilities=madness
+autoexile=restriction{discarded} pay({W}) name(pay W to cast) activate name(pay W to cast) castcard(normal)?name(put in graveyard) moveto(ownergraveyard)
+target=creature
+auto=1/2
+auto=protection from black
+text=Enchant creature -- Enchanted creature gets +1/+2 and has protection from black. -- Madness {W} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
+mana={1}{W}
+type=Enchantment
+subtype=Aura
+[/card]
+[card]
+name=Strength of Lunacy
+abilities=madness
+autoexile=restriction{discarded} pay({B}) name(pay B to cast) activate name(pay B to cast) castcard(normal)?name(put in graveyard) moveto(ownergraveyard)
+target=creature
+auto=2/1
+auto=protection from white
+text=Enchant creature -- Enchanted creature gets +2/+1 and has protection from white. -- Madness {B} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
+mana={1}{B}
+type=Enchantment
+subtype=Aura
 [/card]
 [card]
 name=Zombie Brute
