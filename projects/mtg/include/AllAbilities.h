@@ -556,6 +556,15 @@ private:
                 intValue = card->previous->previous->sunburst;
             }
         }
+        else if (s == "converge")
+        {
+            intValue = 0;
+            for (int i = Constants::MTG_COLOR_GREEN; i <= Constants::MTG_COLOR_WHITE; ++i)
+            {
+                if(card->getManaCost()->getManaUsedToCast()->hasColor(i))
+                    intValue +=1;
+            }
+        }
         else if (s == "targetedcurses")
         {
             if(card->playerTarget)
@@ -2068,6 +2077,7 @@ public:
 
             assert(value < 2);
             _target->basicAbilities.set(ability, value > 0);
+            _target->modifiedbAbi += 1;
             return InstantAbility::addToGame();
         }
 
@@ -2080,7 +2090,10 @@ public:
     {
         MTGCardInstance * _target = (MTGCardInstance *) target;
         if (_target)
+        {
             _target->basicAbilities.set(ability, stateBeforeActivation);
+            _target->modifiedbAbi -= 1;
+        }
         return 1;
     }
 

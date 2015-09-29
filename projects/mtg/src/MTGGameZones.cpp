@@ -325,6 +325,15 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
 	bool ripToken = false;
 	if (g->players[0]->game->battlefield->hasName("Rest in Peace")||g->players[1]->game->battlefield->hasName("Rest in Peace"))
         ripToken = true;
+    //Madness or Put in Play...
+    for(int i = 0; i < 2; ++i)
+	{
+        if (card->discarded && (to == g->players[i]->game->graveyard) && (from == g->players[i]->game->hand))
+        {
+            if(card->basicAbilities[(int)Constants::MADNESS])
+                to = g->players[i]->game->exile;
+        }
+    }
     //Darksteel Colossus, Legacy Weapon ... top priority since we replace destination directly automatically...
     for(int i = 0; i < 2; ++i)
 	{
@@ -360,6 +369,13 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
     if (card->miracle)
     {
         copy->miracle = true;
+    }
+    if (card->discarded)
+    {//set discarded for madness...
+        if(from == g->players[0]->game->hand || from == g->players[1]->game->hand)
+            copy->discarded = true;
+		else//turn off discarded if its previous zone is not in hand...
+            copy->discarded = false;
     }
     if (options[Options::SFXVOLUME].number > 0)
     {

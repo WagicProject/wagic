@@ -58,6 +58,9 @@ MTGCardInstance::MTGCardInstance(MTGCard * card, MTGPlayerCards * arg_belongs_to
     isSwitchedPT = false;
     isACopier = false;
     bypassTC = false;
+    discarded = false;
+    copiedID = getId();
+    modifiedbAbi = 0;
 }
 
   MTGCardInstance * MTGCardInstance::createSnapShot()
@@ -75,6 +78,8 @@ void MTGCardInstance::copy(MTGCardInstance * card)
     CardPrimitive * data = source->data;
 
     basicAbilities = card->basicAbilities;
+    origbasicAbilities = card->origbasicAbilities;
+    modifiedbAbi = card->modifiedbAbi;
     for (size_t i = 0; i < data->types.size(); i++)
     {
         types.push_back(data->types[i]);

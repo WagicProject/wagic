@@ -241,6 +241,9 @@ public:
     bool isSwitchedPT;
     bool isACopier;
     bool bypassTC;
+    bool discarded;
+    int copiedID;
+    int modifiedbAbi;
 
     void eventattacked();
     void eventattackedAlone();

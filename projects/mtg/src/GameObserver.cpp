@@ -824,6 +824,11 @@ void GameObserver::gameStateBasedEffects()
 
                     }
                 }
+                if(c->modifiedbAbi > 0)
+                {
+                    c->modifiedbAbi = 0;
+                    c->basicAbilities = c->origbasicAbilities;
+                }
                 if(nbcards > z->nb_cards)
                 {
                     t = 0;

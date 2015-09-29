@@ -106,6 +106,7 @@ WEventCardSacrifice::WEventCardSacrifice(MTGCardInstance * card, MTGCardInstance
 WEventCardDiscard::WEventCardDiscard(MTGCardInstance * card) :
     WEventCardUpdate(card)
 {
+    card->discarded = true;
 }
 
 WEventCardCycle::WEventCardCycle(MTGCardInstance * card) :
