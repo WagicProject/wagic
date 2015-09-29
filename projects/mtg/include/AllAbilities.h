@@ -556,6 +556,15 @@ private:
                 intValue = card->previous->previous->sunburst;
             }
         }
+        else if (s == "converge")
+        {
+            intValue = 0;
+            for (int i = Constants::MTG_COLOR_GREEN; i <= Constants::MTG_COLOR_WHITE; ++i)
+            {
+                if(card->getManaCost()->getManaUsedToCast()->hasColor(i))
+                    intValue +=1;
+            }
+        }
         else if (s == "targetedcurses")
         {
             if(card->playerTarget)
