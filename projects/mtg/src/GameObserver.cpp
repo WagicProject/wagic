@@ -804,11 +804,6 @@ void GameObserver::gameStateBasedEffects()
                 c->damageToOpponent = false;
                 c->damageToCreature = false;
                 c->isAttacking = NULL;
-                if(c->modifiedbAbi > 0)
-                {
-                    c->modifiedbAbi = 0;
-                    c->basicAbilities = c->origbasicAbilities;
-                }
             }
             for (int t = 0; t < nbcards; t++)
             {
@@ -828,6 +823,11 @@ void GameObserver::gameStateBasedEffects()
                         p->game->putInExile(c);
 
                     }
+                }
+                if(c->modifiedbAbi > 0)
+                {
+                    c->modifiedbAbi = 0;
+                    c->basicAbilities = c->origbasicAbilities;
                 }
                 if(nbcards > z->nb_cards)
                 {
