@@ -41,6 +41,7 @@ CardPrimitive::CardPrimitive(CardPrimitive * source)
     if(!source)
         return;
     basicAbilities = source->basicAbilities;
+    origbasicAbilities = source->basicAbilities;
 
     for (size_t i = 0; i < source->types.size(); ++i)
         types.push_back(source->types[i]);
@@ -76,6 +77,7 @@ CardPrimitive::~CardPrimitive()
 int CardPrimitive::init()
 {
     basicAbilities.reset();
+    origbasicAbilities.reset();
 
     types.clear();
 

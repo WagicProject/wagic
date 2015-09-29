@@ -390,8 +390,20 @@ int AACopier::resolve()
     MTGCardInstance * _target = (MTGCardInstance *) target;
     if (_target)
     {
-        source->copy(_target);
-        source->isACopier = true;
+        if(_target->isACopier)
+        {
+            MTGCard* clone = MTGCollection()->getCardById(_target->copiedID);
+            MTGCardInstance * myClone = NEW MTGCardInstance(clone, source->controller()->game);
+            source->copy(myClone);
+            source->isACopier = true;
+            source->copiedID = _target->copiedID;
+        }
+        else
+        {
+            source->copy(_target);
+            source->isACopier = true;
+            source->copiedID = _target->getId();
+        }
         return 1;
     }
     return 0;
@@ -2520,6 +2532,10 @@ int AACloner::resolve()
     // Use id of the card to have the same image as the original
     MTGCard* clone = (_target->isToken ? _target: MTGCollection()->getCardById(_target->getId()));
 
+    // If its a copier then copy what it is
+    if(_target->isACopier)
+        clone = _target;
+
     Player * targetPlayer = who == 1 ? source->controller()->opponent() : source->controller();
 
     int tokenize = 1;//tokenizer support for cloning
@@ -2575,6 +2591,8 @@ int AACloner::resolve()
         {
             spell->source->addType(*it);
         }
+        spell->source->modifiedbAbi = _target->modifiedbAbi;
+        spell->source->origbasicAbilities = _target->origbasicAbilities;
         delete spell;
     }
     return 1;
@@ -4157,6 +4175,7 @@ for (it = types.begin(); it != types.end(); it++)
     for (it = abilities.begin(); it != abilities.end(); it++)
     {
         _target->basicAbilities.set(*it);
+        _target->modifiedbAbi += 1;
     }
 
     if(newAbilityFound)
@@ -4305,6 +4324,7 @@ int ATransformer::destroy()
         for (it = abilities.begin(); it != abilities.end(); it++)
         {
             _target->basicAbilities.reset(*it);
+            _target->modifiedbAbi -= 1;
         }
 
         for (it = oldcolors.begin(); it != oldcolors.end(); it++)

@@ -2068,6 +2068,7 @@ public:
 
             assert(value < 2);
             _target->basicAbilities.set(ability, value > 0);
+            _target->modifiedbAbi += 1;
             return InstantAbility::addToGame();
         }
 
@@ -2080,7 +2081,10 @@ public:
     {
         MTGCardInstance * _target = (MTGCardInstance *) target;
         if (_target)
+        {
             _target->basicAbilities.set(ability, stateBeforeActivation);
+            _target->modifiedbAbi -= 1;
+        }
         return 1;
     }
 
