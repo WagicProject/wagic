@@ -654,11 +654,11 @@ private:
         }
         else if (s == "p" || s == "power")
         {
-            intValue = target->getPower();
+            intValue = target->getCurrentPower();
         }
         else if (s == "t" || s == "toughness")
         {
-            intValue = target->getToughness();
+            intValue = target->getCurrentToughness();
         }
         else if (s == "kicked")
         {
@@ -5963,6 +5963,37 @@ public:
     AEvolveAbility * clone() const
     {
         return NEW AEvolveAbility(*this);
+    }
+};
+
+//ProduceExtra Mana when tapped for mana
+class AProduceExtraAbility: public MTGAbility
+{
+public:
+    string ManaDescription;
+
+    AProduceExtraAbility(GameObserver* observer, int _id, MTGCardInstance * _source, string _ManaDescription) :
+        MTGAbility(observer, _id, _source)
+    {
+        ManaDescription = _ManaDescription;
+    }
+        int receiveEvent(WEvent * event)
+        {
+            if(WEventCardTappedForMana * isTappedForMana = dynamic_cast<WEventCardTappedForMana *> (event))
+            {
+                if ((isTappedForMana->card == source) && (isTappedForMana->card->controller() == source->controller()))
+                {
+                    AManaProducer *amp = NEW AManaProducer(game, game->mLayers->actionLayer()->getMaxId(), source, source->controller(), ManaCost::parseManaCost(ManaDescription,NULL,source), NULL, 0,"",false);
+                    amp->resolve();
+                    SAFE_DELETE(amp);
+                }
+            }
+            return 1;
+        }
+
+    AProduceExtraAbility * clone() const
+    {
+        return NEW AProduceExtraAbility(*this);
     }
 };
 

@@ -233,6 +233,10 @@ public:
     void addbaseT(int t = 0);
     void revertbaseP();
     void revertbaseT();
+    int getCurrentPower();
+    int LKIpower;
+    int LKItoughness;
+    int getCurrentToughness();
     void cdaPT(int p = 0, int t = 0);
     bool isCDA;
     void switchPT(bool apply = false);

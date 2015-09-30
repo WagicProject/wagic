@@ -2081,16 +2081,16 @@ int AADynamic::resolve()
     switch(type)
     {
     case DYNAMIC_ABILITY_TYPE_POWER:
-        sourceamount = ((MTGCardInstance *) source)->power;
-        targetamount = ((MTGCardInstance *) _target)->power;
+        sourceamount = ((MTGCardInstance *) source)->getCurrentPower();
+        targetamount = ((MTGCardInstance *) _target)->getCurrentPower();
         if(eachother )
-            sourceamount = ((MTGCardInstance *) source)->power;
+            sourceamount = ((MTGCardInstance *) source)->getCurrentPower();
         break;
     case DYNAMIC_ABILITY_TYPE_TOUGHNESS:
-        sourceamount = ((MTGCardInstance *) source)->toughness;
-        targetamount = ((MTGCardInstance *) _target)->toughness;
+        sourceamount = ((MTGCardInstance *) source)->getCurrentToughness();
+        targetamount = ((MTGCardInstance *) _target)->getCurrentToughness();
         if(eachother )
-            sourceamount = ((MTGCardInstance *) source)->toughness;
+            sourceamount = ((MTGCardInstance *) source)->getCurrentToughness();
         break;
     case DYNAMIC_ABILITY_TYPE_MANACOST:
         if(amountsource == 1)

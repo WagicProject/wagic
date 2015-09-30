@@ -2659,6 +2659,12 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         return NEW AEvolveAbility(observer, id, card);
     }
 
+    //produce additional mana when tapped for mana
+    if (s.find("produceextra:") != string::npos)
+    {
+        return NEW AProduceExtraAbility(observer, id, card,s.substr(13));
+    }
+
     //flanking
     if (s.find("flanker") != string::npos)
     {
@@ -4259,7 +4265,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
             if (current->hasType(Subtypes::TYPE_CREATURE))
             {
                 card->controller()->game->putInGraveyard(current);
-                damage += current->power;
+                damage += current->getCurrentPower();
             }
         }
         observer->mLayers->stackLayer()->addDamage(card, target, damage);

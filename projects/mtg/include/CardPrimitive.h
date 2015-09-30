@@ -59,6 +59,7 @@ public:
     typedef std::bitset<Constants::NB_BASIC_ABILITIES> BasicAbilitiesSet;
     BasicAbilitiesSet basicAbilities;
     BasicAbilitiesSet origbasicAbilities;
+    BasicAbilitiesSet LKIbasicAbilities;
 
     map<string,string> magicTexts;
     string magicText;

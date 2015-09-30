@@ -61,6 +61,8 @@ MTGCardInstance::MTGCardInstance(MTGCard * card, MTGPlayerCards * arg_belongs_to
     discarded = false;
     copiedID = getId();
     modifiedbAbi = 0;
+    LKIpower = power;
+    LKItoughness = toughness;
 }
 
   MTGCardInstance * MTGCardInstance::createSnapShot()
@@ -721,6 +723,20 @@ void MTGCardInstance::switchPT(bool apply)
         addToToughness(-swapP);
         setPower(swapP);
     }
+}
+
+int MTGCardInstance::getCurrentPower()
+{
+    if(!isInPlay(observer))
+        return LKIpower;
+    return power;
+}
+
+int MTGCardInstance::getCurrentToughness()
+{
+    if(!isInPlay(observer))
+        return LKItoughness;
+    return toughness;
 }
 
 int MTGCardInstance::canBlock()

@@ -608,6 +608,9 @@ void GameObserver::gameStateBasedEffects()
         for (int j = zone->nb_cards - 1; j >= 0; j--)
         {
             MTGCardInstance * card = zone->cards[j];
+            card->LKIpower = card->power;
+            card->LKItoughness = card->toughness;
+            card->LKIbasicAbilities = card->basicAbilities;
             card->afterDamage();
             card->mPropertiesChangedSinceLastUpdate = false;
             if(card->hasType(Subtypes::TYPE_PLANESWALKER) && (!card->counters||!card->counters->hasCounter("loyalty",0,0)))
