@@ -236,7 +236,7 @@ void Player::serumMulligan()
          //Draw hand no penalty
 }
 
-bool Player::DeadLifeState()
+bool Player::DeadLifeState(bool check)
 {
     if ((life <= 0)||(poisonCount >= 10))
     {
@@ -263,7 +263,21 @@ bool Player::DeadLifeState()
         }
         if (cantlosers < 1)
         {
-            getObserver()->setLoser(this);
+            if(!check)
+			{
+                ActionStack * stack = getObserver()->mLayers->stackLayer();
+                for (int i = stack->mObjects.size() - 1; i >= 0; i--)
+                {
+                    Interruptible * current = ((Interruptible *) stack->mObjects[i]);
+                    Spell * spell = (Spell *) current;
+                    if (current->type == ACTION_SPELL)
+                        spell->source->controller()->game->putInGraveyard(spell->source);
+
+                    current->state = RESOLVED_NOK;
+                }
+            }
+            if(check)
+                game->owner->getObserver()->setLoser(this);
             return true;
         }
     }

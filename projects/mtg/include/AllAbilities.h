@@ -654,11 +654,11 @@ private:
         }
         else if (s == "p" || s == "power")
         {
-            intValue = target->getPower();
+            intValue = target->getCurrentPower();
         }
         else if (s == "t" || s == "toughness")
         {
-            intValue = target->getToughness();
+            intValue = target->getCurrentToughness();
         }
         else if (s == "kicked")
         {
@@ -687,6 +687,13 @@ private:
         else if (s == "ohandcount")
         {
             intValue = target->controller()->opponent()->game->hand->nb_cards;
+        }
+        else if (s == "worshipped")//Worship
+        {
+            if(card->controller()->game->battlefield->hasType("creature"))
+                intValue = card->controller()->life;
+            else
+                intValue = 0;
         }
         else if (s == "pancientooze")//Ancient Ooze
         {
@@ -5963,6 +5970,68 @@ public:
     AEvolveAbility * clone() const
     {
         return NEW AEvolveAbility(*this);
+    }
+};
+
+//ProduceExtra Mana when tapped for mana
+class AProduceExtraAbility: public MTGAbility
+{
+public:
+    string ManaDescription;
+
+    AProduceExtraAbility(GameObserver* observer, int _id, MTGCardInstance * _source, string _ManaDescription) :
+        MTGAbility(observer, _id, _source)
+    {
+        ManaDescription = _ManaDescription;
+    }
+        int receiveEvent(WEvent * event)
+        {
+            if(WEventCardTappedForMana * isTappedForMana = dynamic_cast<WEventCardTappedForMana *> (event))
+            {
+                if ((isTappedForMana->card == source) && (isTappedForMana->card->controller() == source->controller()))
+                {
+                    AManaProducer *amp = NEW AManaProducer(game, game->mLayers->actionLayer()->getMaxId(), source, source->controller(), ManaCost::parseManaCost(ManaDescription,NULL,source), NULL, 0,"",false);
+                    amp->resolve();
+                    SAFE_DELETE(amp);
+                }
+            }
+            return 1;
+        }
+
+    AProduceExtraAbility * clone() const
+    {
+        return NEW AProduceExtraAbility(*this);
+    }
+};
+
+//Reduce to .. Ali from Cairo...
+class AReduceToAbility: public MTGAbility
+{
+public:
+    string life_s;
+
+    AReduceToAbility(GameObserver* observer, int _id, MTGCardInstance * _source, string _life_s) :
+    MTGAbility(observer, _id, _source)
+    {
+        life_s = _life_s;
+    }
+    int receiveEvent(WEvent * event)
+    {
+        if(WEventDamage * isDamaged = dynamic_cast<WEventDamage *> (event))
+        {
+            if (isDamaged->damage->target->type_as_damageable == Damageable::DAMAGEABLE_PLAYER)
+            {
+                Player * p = (Player *) isDamaged->damage->target;
+                WParsedInt lifetoset(life_s, NULL, source);
+                if(p && p == source->controller() && p->life <= lifetoset.getValue())
+                    p->life = lifetoset.getValue();
+            }
+        }
+        return 1;
+    }
+    AReduceToAbility * clone() const
+    {
+        return NEW AReduceToAbility(*this);
     }
 };
 

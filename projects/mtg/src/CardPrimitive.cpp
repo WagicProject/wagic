@@ -42,6 +42,7 @@ CardPrimitive::CardPrimitive(CardPrimitive * source)
         return;
     basicAbilities = source->basicAbilities;
     origbasicAbilities = source->basicAbilities;
+    LKIbasicAbilities = source->basicAbilities;
 
     for (size_t i = 0; i < source->types.size(); ++i)
         types.push_back(source->types[i]);

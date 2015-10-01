@@ -2168,7 +2168,7 @@ toughness=1
 [/card]
 [card]
 name=Ali from Cairo
-auto=@damaged(controller) restriction{compare(lifetotal)~lessthan~1}:this(controllerlife < 1) lifeset:1 controller
+auto=this(controllerlife >= 1) transforms((,newability[reduceto:1]))
 text=Damage that would reduce your life total to less than 1 reduces it to 1 instead.
 mana={2}{R}{R}
 type=Creature
@@ -20600,7 +20600,7 @@ toughness=1
 [card]
 name=Crypt Ghast
 auto=@movedto(*|mystack):pay({WB}) life:-1 opponent && life:1 controller
-auto=@tappedformana(swamp|mybattlefield):Add{B}
+auto=lord(swamp|mybattlefield) transforms((,newability[produceextra:{B}]))
 text=Extort (Whenever you cast a spell, you may pay {WB}. If you do, each opponent loses 1 life and you gain that much life.) -- Whenever you tap a Swamp for mana, add {B} to your mana pool (in addition to the mana the land produces).
 mana={3}{B}
 type=Creature
@@ -28928,7 +28928,7 @@ toughness=6
 name=Elderscale Wurm
 abilities=trample
 auto=if compare(lifetotal)~lessthan~7 then lifeset:7 controller
-auto=this(controllerlife > 6) transforms((,newability[@damaged(controller):if compare(lifetotal)~lessthan~7 then lifeset:7 controller]))
+auto=this(controllerlife >= 7) transforms((,newability[reduceto:7]))
 text=Trample. -- When Elderscale Wurm enters the battlefield, if your life total is less than 7, your life total becomes 7. --  As long as you have 7 or more life, damage that would reduce your life total to less than 7 reduces it to 7 instead.
 mana={4}{G}{G}{G}
 type=Creature
@@ -36160,7 +36160,7 @@ toughness=3
 name=Fortune Thief
 facedown={3}
 autofacedown={R}{R}:morph
-auto=@damaged(controller) restriction{compare(lifetotal)~lessthan~1}:this(controllerlife < 1) lifeset:1 controller
+auto=this(controllerlife >= 1) transforms((,newability[reduceto:1]))
 text=Damage that would reduce your life total to less than 1 reduces it to 1 instead. -- Morph {R}{R} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
 mana={4}{R}
 type=Creature
@@ -37695,8 +37695,7 @@ toughness=3
 [card]
 name=Gauntlet of Might
 auto=lord(creature[red]) 1/1
-auto=@tappedformana(mountain|mybattlefield):Add{R} controller
-auto=@tappedformana(mountain|opponentbattlefield):Add{R} opponent
+auto=lord(mountain|battlefield) transforms((,newability[produceextra:{R}]))
 text=Red creatures get +1/+1. -- Whenever a Mountain is tapped for mana, its controller adds {R} to his or her mana pool (in addition to the mana the land produces).
 mana={4}
 type=Artifact
@@ -45724,7 +45723,7 @@ toughness=4
 [/card]
 [card]
 name=High Tide
-auto=all(island) transforms((,newability[@tappedformana(this):add{U}])) ueot
+auto=all(island) transforms((,newability[produceextra:{U}])) ueot
 text=Until end of turn, whenever a player taps an Island for mana, that player adds {U} to his or her mana pool (in addition to the mana the land produces).
 mana={U}
 type=Instant
@@ -67601,7 +67600,7 @@ toughness=2
 [/card]
 [card]
 name=Nirkana Revenant
-auto=@tappedformana(swamp|mybattlefield):Add{B}
+auto=lord(swamp|mybattlefield) transforms((,newability[produceextra:{B}]))
 auto={B}:1/1
 text=Whenever you tap a Swamp for mana, add {B} to your mana pool (in addition to the mana the land produces). -- {B}:Nirkana Revenant gets +1/+1 until end of turn.
 type=Creature
@@ -70229,7 +70228,7 @@ subtype=Swamp Forest
 [card]
 name=Overgrowth
 target=land
-auto=@tappedformana(mytgt):Add{G}{G} targetcontroller
+auto=teach(land) transforms((,newability[produceextra:{G}{G}]))
 text=Enchant land (Target a land as you cast this. This card enters the battlefield attached to that land.) -- Whenever enchanted land is tapped for mana, its controller adds {G}{G} to his or her mana pool (in addition to the mana the land produces).
 mana={2}{G}
 type=Enchantment
@@ -98228,6 +98227,17 @@ power=2
 toughness=3
 [/card]
 [card]
+name=Sustaining Spirit
+auto=cumulativeupcost[{1}{W}] sacrifice
+auto=this(controllerlife >= 1) transforms((,newability[reduceto:1]))
+text=Cumulative upkeep {1}{W} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- Damage that would reduce your life total to less than 1 reduces it to 1 instead.
+mana={1}{W}
+type=Creature
+subtype=Angel Spirit
+power=0
+toughness=3
+[/card]
+[card]
 name=Sustenance
 auto={1}{S(land|myBattlefield)}:1/1 target(creature)
 text={1}, Sacrifice a land: Target creature gets +1/+1 until end of turn.
@@ -108293,8 +108303,7 @@ toughness=1
 [/card]
 [card]
 name=Vernal Bloom
-auto=@tappedformana(forest|mybattlefield):Add{G} controller
-auto=@tappedformana(forest|opponentbattlefield):Add{G} opponent
+auto=lord(forest|battlefield) transforms((,newability[produceextra:{G}]))
 text=Whenever a Forest is tapped for mana, its controller adds {G} to his or her mana pool (in addition to the mana the land produces).
 mana={3}{G}
 type=Enchantment
@@ -113018,7 +113027,7 @@ toughness=2
 [card]
 name=Wild Growth
 target=land
-auto=@tappedformana(mytgt):add{g} targetcontroller
+auto=teach(land) transforms((,newability[produceextra:{G}]))
 text=Enchant land -- Whenever enchanted land is tapped for mana, its controller adds {G} to his or her mana pool (in addition to the mana the land produces).
 mana={G}
 type=Enchantment
@@ -114654,6 +114663,13 @@ auto=@each opponent upkeep:deplete:1 opponent
 text=At the beginning of each player's upkeep, that player puts the top card of his or her library into his or her graveyard.
 mana={3}
 type=Artifact
+[/card]
+[card]
+name=Worship
+auto=this(variable{worshipped} >= 1) transforms((,newability[reduceto:1]))
+text=If you control a creature, damage that would reduce your life total to less than 1 reduces it to 1 instead.
+mana={3}{W}
+type=Enchantment
 [/card]
 [card]
 name=Worthy Cause

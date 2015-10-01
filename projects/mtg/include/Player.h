@@ -71,7 +71,7 @@ public:
     ManaPool * getManaPool();
     void takeMulligan();
     void serumMulligan();
-    bool DeadLifeState();
+    bool DeadLifeState(bool check = false);
     ManaCost * doesntEmpty;
     ManaCost * poolDoesntEmpty;
     void cleanupPhase();

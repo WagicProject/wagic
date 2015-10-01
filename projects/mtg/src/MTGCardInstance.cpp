@@ -61,6 +61,8 @@ MTGCardInstance::MTGCardInstance(MTGCard * card, MTGPlayerCards * arg_belongs_to
     discarded = false;
     copiedID = getId();
     modifiedbAbi = 0;
+    LKIpower = power;
+    LKItoughness = toughness;
 }
 
   MTGCardInstance * MTGCardInstance::createSnapShot()
@@ -721,6 +723,34 @@ void MTGCardInstance::switchPT(bool apply)
         addToToughness(-swapP);
         setPower(swapP);
     }
+}
+
+int MTGCardInstance::getCurrentPower()
+{
+    if(!isInPlay(observer))
+        return LKIpower;
+    return power;
+}
+
+int MTGCardInstance::getCurrentToughness()
+{
+    if(!isInPlay(observer))
+        return LKItoughness;
+    return toughness;
+}
+
+//check stack
+bool MTGCardInstance::StackIsEmptyandSorcerySpeed()
+{
+    if((getObserver()->mLayers->stackLayer()->count(0, NOT_RESOLVED) == 0) &&
+        (getObserver()->getCurrentGamePhase() == MTG_PHASE_FIRSTMAIN ||
+        getObserver()->getCurrentGamePhase() == MTG_PHASE_SECONDMAIN) &&
+        controller() == getObserver()->currentPlayer &&
+        !getObserver()->isInterrupting)
+    {
+		return true;
+    }
+    return false;
 }
 
 int MTGCardInstance::canBlock()
