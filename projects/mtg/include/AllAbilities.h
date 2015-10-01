@@ -688,6 +688,13 @@ private:
         {
             intValue = target->controller()->opponent()->game->hand->nb_cards;
         }
+        else if (s == "worshipped")//Worship
+        {
+            if(card->controller()->game->battlefield->hasType("creature"))
+                intValue = card->controller()->life;
+            else
+                intValue = 0;
+        }
         else if (s == "pancientooze")//Ancient Ooze
         {
             intValue = 0;
@@ -5994,6 +6001,37 @@ public:
     AProduceExtraAbility * clone() const
     {
         return NEW AProduceExtraAbility(*this);
+    }
+};
+
+//Reduce to .. Ali from Cairo...
+class AReduceToAbility: public MTGAbility
+{
+public:
+    string life_s;
+
+    AReduceToAbility(GameObserver* observer, int _id, MTGCardInstance * _source, string _life_s) :
+    MTGAbility(observer, _id, _source)
+    {
+        life_s = _life_s;
+    }
+    int receiveEvent(WEvent * event)
+    {
+        if(WEventDamage * isDamaged = dynamic_cast<WEventDamage *> (event))
+        {
+            if (isDamaged->damage->target->type_as_damageable == Damageable::DAMAGEABLE_PLAYER)
+            {
+                Player * p = (Player *) isDamaged->damage->target;
+                WParsedInt lifetoset(life_s, NULL, source);
+                if(p && p == source->controller() && p->life <= lifetoset.getValue())
+                    p->life = lifetoset.getValue();
+            }
+        }
+        return 1;
+    }
+    AReduceToAbility * clone() const
+    {
+        return NEW AReduceToAbility(*this);
     }
 };
 

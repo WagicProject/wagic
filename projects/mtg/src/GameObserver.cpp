@@ -578,6 +578,8 @@ void GameObserver::Update(float dt)
         {
             mLayers->actionLayer()->Update(0);
         }
+        players[0]->DeadLifeState();
+        players[1]->DeadLifeState();
         gameStateBasedEffects();
     }
     oldGamePhase = mCurrentGamePhase;
@@ -764,7 +766,7 @@ void GameObserver::gameStateBasedEffects()
         ///////////////////////////////////////////////////////////
         //life checks/poison checks also checks cant win or lose.//
         ///////////////////////////////////////////////////////////
-        players[i]->DeadLifeState();//refactored
+        players[i]->DeadLifeState(true);//refactored
     }
     //////////////////////////////////////////////////////
     //-------------card based states effects------------//

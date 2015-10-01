@@ -739,6 +739,20 @@ int MTGCardInstance::getCurrentToughness()
     return toughness;
 }
 
+//check stack
+bool MTGCardInstance::StackIsEmptyandSorcerySpeed()
+{
+    if((getObserver()->mLayers->stackLayer()->count(0, NOT_RESOLVED) == 0) &&
+        (getObserver()->getCurrentGamePhase() == MTG_PHASE_FIRSTMAIN ||
+        getObserver()->getCurrentGamePhase() == MTG_PHASE_SECONDMAIN) &&
+        controller() == getObserver()->currentPlayer &&
+        !getObserver()->isInterrupting)
+    {
+		return true;
+    }
+    return false;
+}
+
 int MTGCardInstance::canBlock()
 {
     if (tapped)

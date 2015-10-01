@@ -310,18 +310,12 @@ int MTGPutInPlayRule::isReactingToClick(MTGCardInstance * card, ManaCost *)
     {
         if (game->currentActionPlayer->game->playRestrictions->canPutIntoZone(card, game->currentActionPlayer->game->inPlay) == PlayRestriction::CANT_PLAY)
             return 0;
-        if (player == currentPlayer
-            && (game->getCurrentGamePhase() == MTG_PHASE_FIRSTMAIN || game->getCurrentGamePhase() == MTG_PHASE_SECONDMAIN)
-            )
-        {
+        if (card->StackIsEmptyandSorcerySpeed())
             return 1;
-        }
+        else
+            return 0;
     }
-    else if ((card->hasType(Subtypes::TYPE_INSTANT)) || card->has(Constants::FLASH) 
-        || (player == card->controller() && !game->isInterrupting
-        && (game->getCurrentGamePhase() == MTG_PHASE_FIRSTMAIN
-        || game->getCurrentGamePhase() == MTG_PHASE_SECONDMAIN))
-        )
+    else if ((card->hasType(Subtypes::TYPE_INSTANT)) || card->has(Constants::FLASH) || (card->StackIsEmptyandSorcerySpeed()))
     {
         if(card->controller()->epic)
             return 0;
@@ -645,17 +639,12 @@ int MTGAlternativeCostRule::isReactingToClick(MTGCardInstance * card, ManaCost *
     {
         if (game->currentActionPlayer->game->playRestrictions->canPutIntoZone(card, game->currentActionPlayer->game->inPlay) == PlayRestriction::CANT_PLAY)
             return 0;
-        if (player == currentPlayer
-            && (game->getCurrentGamePhase() == MTG_PHASE_FIRSTMAIN
-            || game->getCurrentGamePhase() == MTG_PHASE_SECONDMAIN)
-            )
+        if (card->StackIsEmptyandSorcerySpeed())
             return 1;
+        else
+            return 0;
     }
-    else if ((card->hasType(Subtypes::TYPE_INSTANT)) || card->has(Constants::FLASH) || card->has(Constants::SPELLMASTERY) || card->has(Constants::OFFERING) 
-        || (player == card->controller() && !game->isInterrupting
-        && (game->getCurrentGamePhase() == MTG_PHASE_FIRSTMAIN
-        || game->getCurrentGamePhase() == MTG_PHASE_SECONDMAIN))
-        )
+    else if ((card->hasType(Subtypes::TYPE_INSTANT)) || card->has(Constants::FLASH) || card->has(Constants::SPELLMASTERY) || card->has(Constants::OFFERING) || (card->StackIsEmptyandSorcerySpeed()))
     {
         if(card->controller()->epic)
             return 0;
@@ -1042,11 +1031,7 @@ int MTGMorphCostRule::isReactingToClick(MTGCardInstance * card, ManaCost *)
     if(card->controller()->epic)//zoetic cavern... morph is casted for a cost...
         return 0;
     //note lands can morph too, this is different from other cost types.
-    if ((card->hasType(Subtypes::TYPE_INSTANT)) || card->has(Constants::FLASH) || (player == card->controller()
-        && !game->isInterrupting
-        && (game->getCurrentGamePhase() == MTG_PHASE_FIRSTMAIN
-        || game->getCurrentGamePhase() == MTG_PHASE_SECONDMAIN))
-        )
+    if ((card->hasType(Subtypes::TYPE_INSTANT)) || card->has(Constants::FLASH) || (card->StackIsEmptyandSorcerySpeed()))
     {
         if (card->controller()->game->playRestrictions->canPutIntoZone(card, card->controller()->game->stack) == PlayRestriction::CANT_PLAY)
             return 0;

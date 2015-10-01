@@ -2665,6 +2665,12 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         return NEW AProduceExtraAbility(observer, id, card,s.substr(13));
     }
 
+    //reducelife to specific value
+    if (s.find("reduceto:") != string::npos)
+    {
+        return NEW AReduceToAbility(observer, id, card,s.substr(9));
+    }
+
     //flanking
     if (s.find("flanker") != string::npos)
     {
@@ -4594,6 +4600,8 @@ int ActivatedAbility::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
             return 0;
         if (cPhase != MTG_PHASE_FIRSTMAIN && cPhase != MTG_PHASE_SECONDMAIN)
             return 0;
+        if (player->opponent()->getObserver()->mLayers->stackLayer()->count(0, NOT_RESOLVED) != 0||game->mLayers->stackLayer()->count(0, NOT_RESOLVED) != 0||player->getObserver()->mLayers->stackLayer()->count(0, NOT_RESOLVED) != 0)
+            return 0;
         break;
     }
     if (restrictions >= MY_BEFORE_BEGIN && restrictions <= MY_AFTER_EOT)
@@ -5014,30 +5022,6 @@ int TriggeredAbility::receiveEvent(WEvent * e)
     //must be able to survive a sacrificed bloodfire collosus,
     //same with mortician beetle vs phyrexian denouncer test
         resolve();
-        return 1;
-    }
-    if(dynamic_cast<WEventLife*>(e))
-    {
-    //check life state on life triger
-    WEventLife * lifecheck = dynamic_cast<WEventLife*>(e);	
-    if (lifecheck->player->DeadLifeState())
-    {
-        return 0;
-    }        
-        fireAbility();
-        return 1;
-    }
-    if(dynamic_cast<WEventDamage*>(e))
-    {
-    //check life state on damage trigger
-    WEventDamage * lifecheck = dynamic_cast<WEventDamage*>(e);	
-    if (lifecheck->damage->target->type_as_damageable == Damageable::DAMAGEABLE_PLAYER)
-    {
-        Player * triggerPlayer = (Player *) lifecheck->damage->target;
-        if(triggerPlayer->DeadLifeState())
-            return 0;
-    }        
-        fireAbility();
         return 1;
     }
     WEventZoneChange * stackCheck = dynamic_cast<WEventZoneChange*>(e);

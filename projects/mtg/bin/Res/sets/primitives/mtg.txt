@@ -2168,7 +2168,7 @@ toughness=1
 [/card]
 [card]
 name=Ali from Cairo
-auto=@damaged(controller) restriction{compare(lifetotal)~lessthan~1}:this(controllerlife < 1) lifeset:1 controller
+auto=this(controllerlife >= 1) transforms((,newability[reduceto:1]))
 text=Damage that would reduce your life total to less than 1 reduces it to 1 instead.
 mana={2}{R}{R}
 type=Creature
@@ -28928,7 +28928,7 @@ toughness=6
 name=Elderscale Wurm
 abilities=trample
 auto=if compare(lifetotal)~lessthan~7 then lifeset:7 controller
-auto=this(controllerlife > 6) transforms((,newability[@damaged(controller):if compare(lifetotal)~lessthan~7 then lifeset:7 controller]))
+auto=this(controllerlife >= 7) transforms((,newability[reduceto:7]))
 text=Trample. -- When Elderscale Wurm enters the battlefield, if your life total is less than 7, your life total becomes 7. --  As long as you have 7 or more life, damage that would reduce your life total to less than 7 reduces it to 7 instead.
 mana={4}{G}{G}{G}
 type=Creature
@@ -36160,7 +36160,7 @@ toughness=3
 name=Fortune Thief
 facedown={3}
 autofacedown={R}{R}:morph
-auto=@damaged(controller) restriction{compare(lifetotal)~lessthan~1}:this(controllerlife < 1) lifeset:1 controller
+auto=this(controllerlife >= 1) transforms((,newability[reduceto:1]))
 text=Damage that would reduce your life total to less than 1 reduces it to 1 instead. -- Morph {R}{R} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
 mana={4}{R}
 type=Creature
@@ -98227,6 +98227,17 @@ power=2
 toughness=3
 [/card]
 [card]
+name=Sustaining Spirit
+auto=cumulativeupcost[{1}{W}] sacrifice
+auto=this(controllerlife >= 1) transforms((,newability[reduceto:1]))
+text=Cumulative upkeep {1}{W} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- Damage that would reduce your life total to less than 1 reduces it to 1 instead.
+mana={1}{W}
+type=Creature
+subtype=Angel Spirit
+power=0
+toughness=3
+[/card]
+[card]
 name=Sustenance
 auto={1}{S(land|myBattlefield)}:1/1 target(creature)
 text={1}, Sacrifice a land: Target creature gets +1/+1 until end of turn.
@@ -114652,6 +114663,13 @@ auto=@each opponent upkeep:deplete:1 opponent
 text=At the beginning of each player's upkeep, that player puts the top card of his or her library into his or her graveyard.
 mana={3}
 type=Artifact
+[/card]
+[card]
+name=Worship
+auto=this(variable{worshipped} >= 1) transforms((,newability[reduceto:1]))
+text=If you control a creature, damage that would reduce your life total to less than 1 reduces it to 1 instead.
+mana={3}{W}
+type=Enchantment
 [/card]
 [card]
 name=Worthy Cause

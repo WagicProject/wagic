@@ -16201,15 +16201,6 @@ type=Sorcery
 text=You gain 2 life. Then if you have more life than an opponent, draw a card. Rebound (If you cast this spell from your hand, exile it as it resolves. At the beginning of your next upkeep, you may cast this card from exile without paying its mana cost.)
 [/card]
 [card]
-name=Sustaining Spirit
-text=Cumulative upkeep {1}{W} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- Damage that would reduce your life total to less than 1 reduces it to 1 instead.
-mana={1}{W}
-type=Creature
-subtype=Angel Spirit
-power=0
-toughness=3
-[/card]
-[card]
 name=Sutured Ghoul
 text=Trample -- As Sutured Ghoul enters the battlefield, exile any number of creature cards from your graveyard. -- Sutured Ghoul's power is equal to the total power of the exiled cards and its toughness is equal to their total toughness.
 mana={4}{B}{B}{B}
@@ -18715,12 +18706,6 @@ toughness=6
 name=Worms of the Earth
 text=Players can't play lands. -- If a land would enter the battlefield, instead it doesn't. -- At the beginning of each upkeep, any player may sacrifice two lands or pay 5 life. If a player does either, destroy Worms of the Earth.
 mana={2}{B}{B}{B}
-type=Enchantment
-[/card]
-[card]
-name=Worship
-text=If you control a creature, damage that would reduce your life total to less than 1 reduces it to 1 instead.
-mana={3}{W}
 type=Enchantment
 [/card]
 [card]

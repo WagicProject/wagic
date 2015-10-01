@@ -234,9 +234,9 @@ public:
     void revertbaseP();
     void revertbaseT();
     int getCurrentPower();
+    int getCurrentToughness();
     int LKIpower;
     int LKItoughness;
-    int getCurrentToughness();
     void cdaPT(int p = 0, int t = 0);
     bool isCDA;
     void switchPT(bool apply = false);
@@ -248,6 +248,7 @@ public:
     bool discarded;
     int copiedID;
     int modifiedbAbi;
+    bool StackIsEmptyandSorcerySpeed();
 
     void eventattacked();
     void eventattackedAlone();
