@@ -284,7 +284,6 @@ int MTGPutInPlayRule::isReactingToClick(MTGCardInstance * card, ManaCost *)
 {
     int cardsinhand = game->players[0]->game->hand->nb_cards;
     Player * player = game->currentlyActing();
-    Player * currentPlayer = game->currentPlayer;
     if (!player->game->hand->hasCard(card))
         return 0;
     if ((game->turn < 1) && (cardsinhand != 0) && (card->basicAbilities[(int)Constants::LEYLINE])
@@ -625,7 +624,6 @@ int MTGAlternativeCostRule::isReactingToClick(MTGCardInstance * card, ManaCost *
 int MTGAlternativeCostRule::isReactingToClick(MTGCardInstance * card, ManaCost *, ManaCost *alternateManaCost)
 {
     Player * player = game->currentlyActing();
-    Player * currentPlayer = game->currentPlayer;
 
     if (!alternateManaCost)
         return 0;
