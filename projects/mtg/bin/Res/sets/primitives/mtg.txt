@@ -22294,7 +22294,7 @@ text=At the beginning of your upkeep, you lose 1 life. -- At the beginning of yo
 mana={2}{B}{B}{B}
 type=Enchantment
 [/card]
-#tappedformana stack...
+#tappedformana stack...produceextra:selectmana don't support combination of mana at the moment since it a mayability not a menuability
 [card]
 name=Dawn's Reflection
 target=land
@@ -29463,7 +29463,7 @@ type=Instant
 [card]
 name=Elvish Guidance
 target=land
-auto=@tappedformana(mytgt):foreach(elf|myBattlefield) Add{G} targetcontroller
+auto=transforms((,newability[foreach(elf|battlefield) produceextra:{G}]))
 text=Enchant land -- Whenever enchanted land is tapped for mana, its controller adds {G} to his or her mana pool for each Elf on the battlefield (in addition to the mana the land produces).
 mana={2}{G}
 type=Enchantment
@@ -33016,7 +33016,7 @@ auto=@targeted(this) from(*[instant;sorcery;enchantment]|myhand,mygraveyard):cou
 text=Heroic - Whenever you cast a spell that targets Favored Hoplite, put a +1/+1 counter on Favored Hoplite and prevent all damage that would be dealt to it this turn.
 mana={W}
 type=Creature
-subtype=Human Warrior
+subtype=Human Soldier
 power=1
 toughness=2
 [/card]
@@ -33439,11 +33439,11 @@ subtype=Beast
 power=2
 toughness=2
 [/card]
-#tappedformana stack...
+#produceextra:selectmana when used acts as an observer so the ability must be on the source since its a mayability of mana not a menuability
 [card]
 name=Fertile Ground
 target=land
-auto=teach(land) transforms((,newability[@tappedformana(this):chooseacolor add{chosencolor} chooseend]))
+auto=all(this) transforms((,newability[produceextra:selectmana])) forever
 text=Enchant land -- Whenever enchanted land is tapped for mana, its controller adds one mana of any color to his or her mana pool (in addition to the mana the land produces).
 mana={1}{G}
 type=Enchantment
@@ -37700,13 +37700,14 @@ text=Red creatures get +1/+1. -- Whenever a Mountain is tapped for mana, its con
 mana={4}
 type=Artifact
 [/card]
+#producecolor looks for the color... maybe needs restriction...
 [card]
 name=Gauntlet of Power
-auto=choice name(choose white) all(this) transforms((,newability[lord(creature[white]|battlefield) 1/1],newability[@tappedformana(plains[basic]|mybattlefield):add{W}],newability[@tappedformana(plains[basic]|opponentbattlefield):add{W} opponent])) forever
-auto=choice name(choose blue) all(this) transforms((,newability[lord(creature[blue]|battlefield) 1/1],newability[@tappedformana(island[basic]|mybattlefield):add{U}],newability[@tappedformana(island[basic]|opponentbattlefield):add{U} opponent])) forever
-auto=choice name(choose black) all(this) transforms((,newability[lord(creature[black]|battlefield) 1/1],newability[@tappedformana(swamp[basic]|mybattlefield):add{B}],newability[@tappedformana(swamp[basic]|opponentbattlefield):add{B} opponent])) forever
-auto=choice name(choose red) all(this) transforms((,newability[lord(creature[red]|battlefield) 1/1],newability[@tappedformana(mountain[basic]|mybattlefield):add{R}],newability[@tappedformana(mountain[basic]|opponentbattlefield):add{R} opponent])) forever
-auto=choice name(choose green) all(this) transforms((,newability[lord(creature[green]|battlefield) 1/1],newability[@tappedformana(forest[basic]|mybattlefield):add{G}],newability[@tappedformana(forest[basic]|opponentbattlefield):add{G} opponent])) forever
+auto=choice name(green) all(this) transforms((,newability[lord(creature[green]|battlefield) 1/1],newability[lord(forest[basic]|battlefield) producecolor:green])) forever
+auto=choice name(blue) all(this) transforms((,newability[lord(creature[blue]|battlefield) 1/1],newability[lord(island[basic]|battlefield) producecolor:blue])) forever
+auto=choice name(red) all(this) transforms((,newability[lord(creature[red]|battlefield) 1/1],newability[lord(mountain[basic]|battlefield) producecolor:red])) forever
+auto=choice name(black) all(this) transforms((,newability[lord(creature[black]|battlefield) 1/1],newability[lord(swamp[basic]|battlefield) producecolor:black])) forever
+auto=choice name(white) all(this) transforms((,newability[lord(creature[white]|battlefield) 1/1],newability[lord(plains[basic]|battlefield) producecolor:white])) forever
 text=As Gauntlet of Power enters the battlefield, choose a color. -- Creatures of the chosen color get +1/+1. -- Whenever a basic land is tapped for mana of the chosen color, its controller adds one mana of that color to his or her mana pool (in addition to the mana the land produces).
 mana={5}
 type=Artifact
@@ -59972,7 +59973,7 @@ subtype=Insect
 power=2
 toughness=3
 [/card]
-#tappedformana stack...
+#tappedformana stack...produceextra:selectmana don't support combination of mana at the moment since it a mayability not a menuability
 [card]
 name=Market Festival
 target=land
@@ -61210,7 +61211,7 @@ auto=@movedTo(other creature[power<=2]|myBattlefield):pay({1}) draw:1
 text=Whenever another creature with power 2 or less enters the battlefield under your control, you may pay {1}. If you do, draw a card.
 mana={2}{W}
 type=Creature
-subtype=Human Solider
+subtype=Human Soldier
 power=2
 toughness=2
 [/card]
@@ -103864,12 +103865,12 @@ subtype=Spellshaper
 power=1
 toughness=1
 [/card]
-#tappedformana stack...
+#produceextra:selectmana when used acts as an observer so the ability must be on the source since its a mayability of mana not a menuability
 [card]
 name=Trace of Abundance
 target=land
 auto=shroud
-auto=teach(land) transforms((,newability[@tappedformana(this):chooseacolor add{chosencolor} chooseend]))
+auto=all(this) transforms((,newability[produceextra:selectmana])) forever
 text=Enchant land -- Enchanted land has shroud. (It can't be the target of spells or abilities.) -- Whenever enchanted land is tapped for mana, its controller adds one mana of any color to his or her mana pool (in addition to the mana the land produces).
 mana={RW}{G}
 type=Enchantment
@@ -107039,7 +107040,11 @@ toughness=2
 [card]
 name=Utopia Sprawl
 target=forest
-auto=chooseacolor transforms((,newability[@tappedformana(mytgt):add{chosencolor}])) forever chooseend
+auto=choice name(green) transforms((,newability[produceextra:{g}])) forever
+auto=choice name(blue) transforms((,newability[produceextra:{u}])) forever
+auto=choice name(red) transforms((,newability[produceextra:{r}])) forever
+auto=choice name(black) transforms((,newability[produceextra:{b}])) forever
+auto=choice name(white) transforms((,newability[produceextra:{w}])) forever
 text=Enchant Forest -- As Utopia Sprawl enters the battlefield, choose a color. -- Whenever enchanted Forest is tapped for mana, its controller adds one mana of the chosen color to his or her mana pool (in addition to the mana the land produces).
 mana={G}
 type=Enchantment
@@ -108223,12 +108228,12 @@ subtype=Elemental
 power=7
 toughness=7
 [/card]
-#tappedformana stack...
+#produceextra:selectmana when used acts as an observer so the ability must be on the source since its a mayability of mana not a menuability
 [card]
 name=Verdant Haven
 target=land
 auto=life:2 controller
-auto=teach(land) transforms((,newability[@tappedformana(this):chooseacolor add{chosencolor} chooseend]))
+auto=all(this) transforms((,newability[produceextra:selectmana])) forever
 text=Enchant land -- When Verdant Haven enters the battlefield, you gain 2 life. -- Whenever enchanted land is tapped for mana, its controller adds one mana of any color to his or her mana pool (in addition to the mana the land produces).
 mana={2}{G}
 type=Enchantment
