@@ -45724,7 +45724,7 @@ toughness=4
 [/card]
 [card]
 name=High Tide
-auto=all(island) transforms((,newability[produceextra:{U}])) ueot
+auto=emblem transforms((,newability[lord(island) produceextra:{U}])) ueot
 text=Until end of turn, whenever a player taps an Island for mana, that player adds {U} to his or her mana pool (in addition to the mana the land produces).
 mana={U}
 type=Instant
