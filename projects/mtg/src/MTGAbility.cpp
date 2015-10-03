@@ -2662,7 +2662,13 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     //produce additional mana when tapped for mana
     if (s.find("produceextra:") != string::npos)
     {
-        return NEW AProduceExtraAbility(observer, id, card,s.substr(13));
+        return NEW AProduceMana(observer, id, card,s.substr(13));
+    }
+
+    //produce additional mana when a mana is engaged
+    if (s.find("producecolor:") != string::npos)
+    {
+        return NEW AEngagedManaAbility(observer, id, card,s.substr(13));
     }
 
     //reducelife to specific value

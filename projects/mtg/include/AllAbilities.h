@@ -4800,6 +4800,49 @@ public:
     ~AVanishing();
 };
 
+//Produce Mana when tapped for mana...
+class AProduceMana: public MTGAbility
+{
+public:
+    string ManaDescription;
+    string mana[5];
+
+    AProduceMana(GameObserver* observer, int _id, MTGCardInstance * _source, string _ManaDescription);
+    int receiveEvent(WEvent * event);
+    int produce();
+    const string getMenuText();
+    //virtual ostream& toString(ostream& out) const;
+    AProduceMana * clone() const;
+    ~AProduceMana();
+};
+
+//Produce Mana when a mana is engaged...
+class AEngagedManaAbility: public MTGAbility
+{
+public:
+    string colorname;
+    AEngagedManaAbility(GameObserver* observer, int _id, MTGCardInstance * _source, string _colorname) :
+    MTGAbility(observer, _id, _source)
+    {
+        colorname = _colorname;
+    }
+    int receiveEvent(WEvent * event)
+    {
+        if(WEventEngageMana * isManaProduced = dynamic_cast<WEventEngageMana *> (event))
+        {
+            if ((isManaProduced->card == source) && isManaProduced->color == Constants::GetColorStringIndex(colorname))
+            {
+                source->controller()->getManaPool()->add(Constants::GetColorStringIndex(colorname),1);
+            }
+        }
+        return 1;
+    }
+    AEngagedManaAbility * clone() const
+    {
+        return NEW AEngagedManaAbility(*this);
+    }
+};
+
 //Upkeep Cost
 class AUpkeep: public ActivatedAbility, public NestedAbility
 {
@@ -5970,37 +6013,6 @@ public:
     AEvolveAbility * clone() const
     {
         return NEW AEvolveAbility(*this);
-    }
-};
-
-//ProduceExtra Mana when tapped for mana
-class AProduceExtraAbility: public MTGAbility
-{
-public:
-    string ManaDescription;
-
-    AProduceExtraAbility(GameObserver* observer, int _id, MTGCardInstance * _source, string _ManaDescription) :
-        MTGAbility(observer, _id, _source)
-    {
-        ManaDescription = _ManaDescription;
-    }
-        int receiveEvent(WEvent * event)
-        {
-            if(WEventCardTappedForMana * isTappedForMana = dynamic_cast<WEventCardTappedForMana *> (event))
-            {
-                if ((isTappedForMana->card == source) && (isTappedForMana->card->controller() == source->controller()))
-                {
-                    AManaProducer *amp = NEW AManaProducer(game, game->mLayers->actionLayer()->getMaxId(), source, source->controller(), ManaCost::parseManaCost(ManaDescription,NULL,source), NULL, 0,"",false);
-                    amp->resolve();
-                    SAFE_DELETE(amp);
-                }
-            }
-            return 1;
-        }
-
-    AProduceExtraAbility * clone() const
-    {
-        return NEW AProduceExtraAbility(*this);
     }
 };
 

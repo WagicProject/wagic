@@ -4871,6 +4871,78 @@ AVanishing::~AVanishing()
 {
 }
 
+//Produce Mana
+AProduceMana::AProduceMana(GameObserver* observer, int _id, MTGCardInstance * _source, string ManaDescription) :
+MTGAbility(observer, _id, source),ManaDescription(ManaDescription)
+{
+    source = _source;
+    mana[0] = "{g}"; mana[1] = "{u}"; mana[2] = "{r}"; mana[3] = "{b}"; mana[4] = "{w}";
+}
+
+int AProduceMana::receiveEvent(WEvent * event)
+{
+    if(WEventCardTappedForMana * isTappedForMana = dynamic_cast<WEventCardTappedForMana *> (event))
+    {
+        if ((isTappedForMana->card == source)||(isTappedForMana->card == source->target && ManaDescription == "selectmana"))
+            produce();
+    }
+    return 1;
+}
+
+int AProduceMana::produce()
+{
+    if(ManaDescription == "selectmana")
+    {//I tried menu ability and vector<MTGAbility*abi> to have a shorter code but it crashes wagic at end of turn...
+     //The may ability on otherhand works but the ability is cumulative...
+     //This must be wrapped on menuability so we can use it on successions...
+        AManaProducer *ap0 = NEW AManaProducer(game, game->mLayers->actionLayer()->getMaxId(), source, source->controller(), ManaCost::parseManaCost(mana[0],NULL,source), NULL, 0,"",false);
+        MayAbility *mw0 = NEW MayAbility(game, game->mLayers->actionLayer()->getMaxId(), ap0, source,true);
+        MTGAbility *ga0 = NEW GenericAddToGame(game, game->mLayers->actionLayer()->getMaxId(), source,NULL,mw0);
+
+        AManaProducer *ap1 = NEW AManaProducer(game, game->mLayers->actionLayer()->getMaxId(), source, source->controller(), ManaCost::parseManaCost(mana[1],NULL,source), NULL, 0,"",false);
+        MayAbility *mw1 = NEW MayAbility(game, game->mLayers->actionLayer()->getMaxId(), ap1, source,true);
+        MTGAbility *ga1 = NEW GenericAddToGame(game, game->mLayers->actionLayer()->getMaxId(), source,NULL,mw1);
+
+        AManaProducer *ap2 = NEW AManaProducer(game, game->mLayers->actionLayer()->getMaxId(), source, source->controller(), ManaCost::parseManaCost(mana[2],NULL,source), NULL, 0,"",false);
+        MayAbility *mw2 = NEW MayAbility(game, game->mLayers->actionLayer()->getMaxId(), ap2, source,true);
+        MTGAbility *ga2 = NEW GenericAddToGame(game, game->mLayers->actionLayer()->getMaxId(), source,NULL,mw2);
+
+        AManaProducer *ap3 = NEW AManaProducer(game, game->mLayers->actionLayer()->getMaxId(), source, source->controller(), ManaCost::parseManaCost(mana[3],NULL,source), NULL, 0,"",false);
+        MayAbility *mw3 = NEW MayAbility(game, game->mLayers->actionLayer()->getMaxId(), ap3, source,true);
+        MTGAbility *ga3 = NEW GenericAddToGame(game, game->mLayers->actionLayer()->getMaxId(), source,NULL,mw3);
+
+        AManaProducer *ap4 = NEW AManaProducer(game, game->mLayers->actionLayer()->getMaxId(), source, source->controller(), ManaCost::parseManaCost(mana[4],NULL,source), NULL, 0,"",false);
+        MayAbility *mw4 = NEW MayAbility(game, game->mLayers->actionLayer()->getMaxId(), ap4, source,true);
+        MTGAbility *ga4 = NEW GenericAddToGame(game, game->mLayers->actionLayer()->getMaxId(), source,NULL,mw4);
+
+        ga0->resolve();
+        ga1->resolve();
+        ga2->resolve();
+        ga3->resolve();
+        ga4->resolve();
+    }
+    else
+    {
+        AManaProducer *amp = NEW AManaProducer(game, game->mLayers->actionLayer()->getMaxId(), source, source->controller(), ManaCost::parseManaCost(ManaDescription,NULL,source), NULL, 0,"",false);
+        amp->resolve();
+    }
+    return 1;
+}
+
+const string AProduceMana::getMenuText()
+{
+    return "Produce Mana";
+}
+
+AProduceMana * AProduceMana::clone() const
+{
+    return NEW AProduceMana(*this);
+}
+
+AProduceMana::~AProduceMana()
+{
+}
+
 //AUpkeep
 AUpkeep::AUpkeep(GameObserver* observer, int _id, MTGCardInstance * card, MTGAbility * a, ManaCost * _cost, int restrictions, int _phase,
         int _once,bool Cumulative) :
