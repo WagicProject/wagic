@@ -48,7 +48,7 @@
 #endif
 
 #ifdef WITH_FMOD
-#include "../Dependencies/include/fmod.h"
+#include "fmod.h"
 #endif
 
 //------------------------------------------------------------------------------------------------

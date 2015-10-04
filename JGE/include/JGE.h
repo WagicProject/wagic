@@ -31,7 +31,7 @@ typedef u32 LocalKeySym;
 
 #elif defined(SDL_CONFIG)
 #include <SDL.h>
-typedef SDLKey LocalKeySym;
+typedef SDL_Keycode LocalKeySym;
 #define LOCAL_KEY_NONE SDLK_UNKNOWN
 
 #elif defined(WIN32)

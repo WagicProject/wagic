@@ -67,6 +67,7 @@ set(JGE_psp_src
         src/vram.cpp)
 
 set(JGE_INCLUDE_DIRS include include/hge)
+set(EXTRA_INCLUDE_DIR ../projects/mtg/extra)
 
 #turn moc on
 if(backend_qt_console OR backend_qt_widget)
@@ -80,7 +81,7 @@ if(backend_qt_console)
         set(JGE_INTERNAL_INCLUDE_DIRS ${TINYXML_INCLUDE_DIR} ${ZIPFS_INCLUDE_DIR} 
             ${UNZIP_INCLUDE_DIR} ${QT_MKSPECS_DIR}/default ${Qt5Core_INCLUDE_DIRS} ${Qt5Multimedia_INCLUDE_DIRS})
         set(JGE_SOURCES ${JGE_generic_src} ${JGE_console_src} ${JGE_linux_src} ${JGE_hge_src})
-        set(JGE_LINK_LIBRARIES ${Qt5Core_LIBRARIES} ${Qt5Multimedia_LIBRARIES} ${ZIPFS_LIBRARY} ${UNZIP_LIRARY} ${GIF_LIBRARIES}
+        set(JGE_LINK_LIBRARIES ${Qt5Core_LIBRARIES} ${Qt5Multimedia_LIBRARIES} ${ZIPFS_LIBRARY} ${UNZIP_LIRARY}
             ${JPEG_LIBRARIES} ${PNG_LIBRARIES})
     else()
         message(FATAL_ERROR "qt builds of jge platforms other than linux are not supported")
@@ -93,7 +94,7 @@ if(backend_qt_widget)
             ${UNZIP_INCLUDE_DIR} ${QT_MKSPECS_DIR}/default ${Qt5Core_INCLUDE_DIRS} ${Qt5Multimedia_INCLUDE_DIRS} ${Qt5OpenGL_INCLUDE_DIRS} )
         set(JGE_SOURCES ${JGE_generic_src} ${JGE_graphics_src} ${JGE_linux_src} ${JGE_hge_src})
         set(JGE_LINK_LIBRARIES ${Qt5Core_LIBRARIES} ${Qt5Multimedia_LIBRARIES} ${Qt5OpenGL_LIBRARIES} ${ZIPFS_LIBRARY} ${UNZIP_LIRARY}
-            ${GIF_LIBRARIES} ${JPEG_LIBRARIES} ${PNG_LIBRARIES})
+            ${JPEG_LIBRARIES} ${PNG_LIBRARIES})
     else()
         message(FATAL_ERROR "qt builds of jge platforms other than linux are not supported")
     endif()
@@ -102,23 +103,22 @@ endif()
 if(backend_sdl)
     if(UNIX AND NOT ANDROID)
         set(JGE_INTERNAL_INCLUDE_DIRS ${TINYXML_INCLUDE_DIR} ${ZIPFS_INCLUDE_DIR}   
-            ${SDL2_INCLUDE_DIR} ${UNZIP_INCLUDE_DIR} ${PNG_INCLUDE_DIRS} ${BOOST_INCLUDE_DIRS})
+            ${SDL2_INCLUDE_DIR} ${UNZIP_INCLUDE_DIR} ${PNG_INCLUDE_DIRS} ${BOOST_INCLUDE_DIRS} ${ZLIB_INCLUDE_DIR})
         set(JGE_SOURCES ${JGE_generic_src} ${JGE_graphics_src} ${JGE_linux_src} ${JGE_hge_src})
-        set(JGE_LINK_LIBRARIES ${ZIPFS_LIBRARY} ${UNZIP_LIRARY} ${GIF_LIBRARIES} ${JPEG_LIBRARY} 
+        set(JGE_LINK_LIBRARIES ${ZIPFS_LIBRARY} ${UNZIP_LIRARY} ${JPEG_LIBRARY} 
             ${PNG_LIBRARIES})
     elseif(ANDROID)
         set(JGE_INTERNAL_INCLUDE_DIRS ${BOOST_INCLUDE_DIRS} ${TINYXML_INCLUDE_DIR} ${ZIPFS_INCLUDE_DIR}     
             ${SDL2_INCLUDE_DIR} ${UNZIP_INCLUDE_DIR} ${PNG_INCLUDE_DIRS} ${JPEG_INCLUDE_DIR} 
-            ${OPENSL_INCLUDE_DIR})
+            ${OPENSL_INCLUDE_DIR} ${ZLIB_INCLUDE_DIR})
         set(JGE_SOURCES ${JGE_generic_src} ${JGE_android_src} ${JGE_graphics_src} ${JGE_hge_src})
         set(JGE_LINK_LIBRARIES ${ZIPFS_LIBRARY} ${UNZIP_LIRARY} ${JPEG_LIBRARY} ${PNG_LIBRARIES} 
             ${OPENSL_LIBRARIES}) 
     elseif(WIN32)
-        set(JGE_INTERNAL_INCLUDE_DIRS ${TINYXML_INCLUDE_DIR} ${ZIPFS_INCLUDE_DIR} ${SDL2_INCLUDE_DIR} 
-            ${UNZIP_INCLUDE_DIR} ${GIF_INCLUDE_DIR} ${Boost_INCLUDE_DIRS})
+        set(JGE_INTERNAL_INCLUDE_DIRS ${EXTRA_INCLUDE_DIR} ${TINYXML_INCLUDE_DIR} ${ZIPFS_INCLUDE_DIR} ${SDL2_INCLUDE_DIR} 
+            ${UNZIP_INCLUDE_DIR} ${PNG_INCLUDE_DIRS} ${JPEG_INCLUDE_DIR} ${ZLIB_INCLUDE_DIR} ${CMAKE_SOURCE_DIR}/thirdparty/binary/win/include)
         set(JGE_SOURCES ${JGE_generic_src} ${JGE_graphics_src} ${JGE_linux_src} ${JGE_hge_src})
-        set(JGE_LINK_LIBRARIES ${ZIPFS_LIBRARY} ${UNZIP_LIRARY} ${GIF_LIBRARIES} ${JPEG_LIBRARY} 
-            ${PNG_LIBRARIES})
+        set(JGE_LINK_LIBRARIES ${ZIPFS_LIBRARY} ${UNZIP_LIRARY} ${JPEG_LIBRARY} ${PNG_LIBRARIES})
         set(JGE_LINK_DIRECTORIES ${Boost_LIBRARY_DIR} ${SDL2_LIBRARY_DIR})
     endif()
 endif()

@@ -137,6 +137,7 @@ set(MTG_android_sdl_src
 set(MTG_INCLUDE_DIRS include include/qt)
 set(JGE_INCLUDE_DIRS ../../JGE/include ../../JGE/include/hge)
 set(JGE_LIBRARY jge)
+set(EXTRA_INCLUDE_DIR extra)
     
 #turn moc on
 if(backend_qt_console OR backend_qt_widget)
@@ -187,9 +188,9 @@ if(backend_sdl)
         target_link_libraries(wagic  ${JGE_LIBRARY} ${SDL2_LIBRARY} ${OPENGL_LIBRARIES} ${TINYXML_LIBRARIES} 
             ${HGE_LIBRARY})
     elseif(WIN32)
-        include_directories(${MTG_INCLUDE_DIRS} ${JGE_INCLUDE_DIRS} ${SDL2_INCLUDE_DIR} ${ZIPFS_INCLUDE_DIR} 
+        include_directories(${EXTRA_INCLUDE_DIR} ${MTG_INCLUDE_DIRS} ${JGE_INCLUDE_DIRS} ${SDL2_INCLUDE_DIR} ${ZIPFS_INCLUDE_DIR} 
             ${Boost_INCLUDE_DIRS} ${UNZIP_INCLUDE_DIR} ${HGE_INCLUDE_DIR} ${TINYXML_INCLUDE_DIR}
-            ${ZLIB_INCLUDE_DIR})
+            ${ZLIB_INCLUDE_DIR} ${CMAKE_SOURCE_DIR}/thirdparty/binary/win/include)
         add_executable(wagic ${MTG_generic_src} ${MTG_sdl_src} src/TestSuiteAI.cpp src/AIPlayerBakaB.cpp)
         link_directories(${Boost_LIBRARY_DIR} ${SDL2_LIBRARY_DIR})
         target_link_libraries(wagic  ${JGE_LIBRARY} ${SDL2_LIBRARY} ${OPENGL_LIBRARIES} ${TINYXML_LIBRARIES} 

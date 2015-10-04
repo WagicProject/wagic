@@ -48,15 +48,16 @@ void DownloadRequest::startGet()
     JFileSystem::GetInstance()->Remove(getTempLocalPath());
     JFileSystem::GetInstance()->openForWrite(mFile, getTempLocalPath());
 #ifdef QT_CONFIG
-    connect(mNetworkReply, SIGNAL(downloadProgress(qint64, qint64)),
-                SLOT(downloadProgress(qint64, qint64)));
+    connect(mNetworkReply, SIGNAL(downloadProgress(int64_t, int64_t)),
+                SLOT(downloadProgress(int64_t, int64_t)));
     connect(mNetworkReply, SIGNAL(finished()), SLOT(fileDownloaded()));
 #endif
 }
 
 void DownloadRequest::fileDownloaded()
 {
-    do {
+#ifdef QT_CONFIG
+	do {
         QByteArray eTagByteArray = mNetworkReply->rawHeader("ETag");
         if(!eTagByteArray.isEmpty()) {
             string oldETag = mETag;
@@ -106,11 +107,14 @@ void DownloadRequest::fileDownloaded()
     mNetworkReply->deleteLater();
 
     emit statusChanged((int)mDownloadStatus);
+#endif 
+
 }
 
-void DownloadRequest::downloadProgress(qint64 bytesReceived, qint64 bytesTotal)
+void DownloadRequest::downloadProgress(int64_t bytesReceived, int64_t bytesTotal)
 {
-    QByteArray byteArray = mNetworkReply->readAll();
+#ifdef QT_CONFIG
+	QByteArray byteArray = mNetworkReply->readAll();
     mFile.write(byteArray.constData(), byteArray.size());
     mCurrentSize = bytesReceived;
     mTotalSize = bytesTotal;
@@ -118,6 +122,7 @@ void DownloadRequest::downloadProgress(qint64 bytesReceived, qint64 bytesTotal)
     if(bytesTotal)
         percent = (bytesReceived/bytesTotal)*100;
     emit percentChanged(percent);
+#endif
 }
 
 Downloader* Downloader::mInstance = 0;

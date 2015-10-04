@@ -1,7 +1,7 @@
 #ifndef WRESOURCE_FWD_H
 #define WRESOURCE_FWD_H
 
-#if (__cplusplus > 199711L)
+#if (__cplusplus > 199711L)  || (_MSC_VER >= 1700)
 #include <memory>
 typedef std::shared_ptr<JQuad> JQuadPtr;
 #elif defined(QT_CONFIG)

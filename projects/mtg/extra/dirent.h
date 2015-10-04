@@ -60,13 +60,12 @@
 #include <string.h>
 #include <assert.h>
 
-
 typedef struct dirent {
   /* name of current directory entry (a multi-byte character string) */
   char d_name[MAX_PATH + 1];
 
   /* file attributes */
-  WIN32_FIND_DATAA data;
+  WIN32_FIND_DATAW data;
 } dirent;
 
 
@@ -81,7 +80,7 @@ typedef struct DIR {
   HANDLE search_handle;
 
   /* search pattern (3 = zero terminator + pattern "\\*") */
-  char patt[MAX_PATH + 3];
+  wchar_t patt[MAX_PATH + 3];
 } DIR;
 
 
@@ -91,12 +90,7 @@ static int closedir (DIR *dirp);
 
 
 /* use the new safe string functions introduced in Visual Studio 2005 */
-#if defined(_MSC_VER) && _MSC_VER >= 1400
-# define STRNCPY(dest,src,size) strncpy_s((dest),(size),(src),_TRUNCATE)
-#else
-# define STRNCPY(dest,src,size) strncpy((dest),(src),(size))
-#endif
-
+# define STRNCPY(dest,src,size) wcsncpy_s((dest),(size),(src),_TRUNCATE)
 
 /*
  * Open directory stream DIRNAME for read and return a pointer to the
@@ -114,23 +108,29 @@ opendir(
   /* construct new DIR structure */
   dirp = (DIR*) malloc (sizeof (struct DIR));
   if (dirp != NULL) {
-    char *p;
+    wchar_t *p;
     
     /* take directory name... */
-    STRNCPY (dirp->patt, dirname, sizeof(dirp->patt));
-    dirp->patt[MAX_PATH] = '\0';
+	MultiByteToWideChar( CP_ACP, MB_ERR_INVALID_CHARS, dirname, -1,dirp->patt, strlen(dirname)+1 );
+    dirp->patt[MAX_PATH] = L'\0';
     
     /* ... and append search pattern to it */
-    p = strchr (dirp->patt, '\0');
-    if (dirp->patt < p  &&  *(p-1) != '\\'  &&  *(p-1) != ':') {
-      *p++ = '\\';
+    p = wcschr (dirp->patt, L'\0');
+    if (dirp->patt < p  &&  *(p-1) != L'\\'  &&  *(p-1) != L':') {
+      *p++ = L'\\';
     }
-    *p++ = '*';
-    *p = '\0';
+    *p++ = L'*';
+    *p = L'\0';
 
     /* open stream and retrieve first file */
-    dirp->search_handle = FindFirstFileA (dirp->patt, &dirp->current.data);
-    if (dirp->search_handle == INVALID_HANDLE_VALUE) {
+	dirp->search_handle = FindFirstFileExW( dirp->patt, 
+                 FindExInfoStandard, 
+                 &dirp->current.data, 
+                 FindExSearchNameMatch, 
+                 NULL, 
+                 0 );;
+
+	if (dirp->search_handle == INVALID_HANDLE_VALUE) {
       /* invalid search pattern? */
       free (dirp);
       return NULL;
@@ -168,7 +168,7 @@ readdir(
     dirp->cached = 0;
   } else {
     /* read next directory entry from disk */
-    if (FindNextFileA (dirp->search_handle, &dirp->current.data) == FALSE) {
+    if (FindNextFileW (dirp->search_handle, &dirp->current.data) == FALSE) {
       /* the very last file has been processed or an error occured */
       FindClose (dirp->search_handle);
       dirp->search_handle = INVALID_HANDLE_VALUE;
@@ -177,7 +177,7 @@ readdir(
   }
 
   /* copy as a multibyte character string */
-  STRNCPY (dirp->current.d_name, dirp->current.data.cFileName, sizeof(dirp->current.d_name));
+  WideCharToMultiByte(CP_ACP, 0, dirp->current.data.cFileName, -1, dirp->current.d_name, wcslen(dirp->current.data.cFileName)+1, NULL, NULL);
   dirp->current.d_name[MAX_PATH] = '\0';
   
   return &dirp->current;

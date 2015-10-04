@@ -21,10 +21,10 @@
 
 #include "GameOptions.h"
 
-#if !defined(WP8) && !defined(QT_CONFIG)
-#include <boost/shared_ptr.hpp>
-#include <boost/scoped_ptr.hpp>
-#endif
+//#if !defined(WP8) && !defined(QT_CONFIG)
+//#include <boost/shared_ptr.hpp>
+//#include <boost/scoped_ptr.hpp>
+//#endif
 
 #if defined (WP8) || defined (IOS) || defined (ANDROID) || defined (QT_CONFIG) || defined (SDL_CONFIG)
 #define TOUCH_ENABLED

@@ -8,10 +8,10 @@
 #include "Counters.h"
 #include "AllAbilities.h"
 
-#if !defined(QT_CONFIG)
-#include <boost/scoped_ptr.hpp>
-typedef boost::scoped_ptr<ManaCost> ManaCostPtr;
-#else
+#if (__cplusplus > 199711L)  || (_MSC_VER >= 1700)
+//#include <unique_ptr>
+typedef std::unique_ptr<ManaCost> ManaCostPtr;
+#elif defined(QT_CONFIG)
 #include <QScopedPointer>
 class ManaCostPtr : public QScopedPointer<ManaCost>
 {
@@ -21,6 +21,9 @@ public:
     ManaCost* get() const {return data();};
 
 };
+#else
+#include <boost/scoped_ptr.hpp>
+typedef boost::scoped_ptr<ManaCost> ManaCostPtr;
 #endif
 
 SUPPORT_OBJECT_ANALYTICS(ExtraCost)

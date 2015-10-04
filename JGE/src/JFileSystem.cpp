@@ -16,9 +16,7 @@ User folder is the only one that is really needed to guarantee both read and wri
 The content that users should not be touching.
 */
 
-#ifndef PSP
-#include "PrecompiledHeader.h"
-#endif //PSP
+#include "dirent.h"
 
 #ifdef WIN32
 #pragma warning(disable : 4786)
@@ -32,7 +30,6 @@ The content that users should not be touching.
 #include "../include/JGE.h"
 #include "../include/JFileSystem.h"
 #include "../include/JLogger.h"
-#include <dirent.h>
 
 #ifdef QT_CONFIG
 #include <QDir>

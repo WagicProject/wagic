@@ -26,8 +26,12 @@
 #include "JAudio.h"
 
 #else
-
-#include <stdint.h>
+//#define __STDC_LIMIT_MACROS
+#include <cstdint>
+//#include <stdint.h>
+//the MSC version might only define _MSC_STDINT_H_
+//and that might cause redefinition of standard types
+//#define _STDINT_H_ 
 
 #endif
 

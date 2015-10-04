@@ -41,7 +41,7 @@ class DownloadRequest
 private slots:
 #endif
     void fileDownloaded();
-    void downloadProgress(qint64 bytesReceived, qint64 bytesTotal);
+    void downloadProgress(int64_t bytesReceived, int64_t bytesTotal);
 
 #ifdef QT_CONFIG
 signals:

@@ -851,7 +851,7 @@ void TestSuiteGame::initGame()
         p->life = initState.players[i]->life;
         p->poisonCount = initState.players[i]->poisonCount;
         stringstream stream;
-        stream << initState.players[i]->getRandomGenerator()->saveLoadedRandValues(stream);
+        initState.players[i]->getRandomGenerator()->saveLoadedRandValues(stream);
         p->getRandomGenerator()->loadRandValues(stream.str());
         MTGGameZone * playerZones[] = { p->game->graveyard, p->game->library, p->game->hand, p->game->inPlay };
         MTGGameZone * loadedPlayerZones[] = { initState.players[i]->game->graveyard,
