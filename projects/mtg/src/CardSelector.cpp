@@ -176,7 +176,7 @@ bool CardSelector::CheckUserInput(JButton key)
         return true;
     }
     Target* oldactive = active;
-    timer = 250;
+    timer = 800;
     int x,y;
     JGE* jge = observer->getInput();
     if(!jge) return false;
@@ -306,7 +306,7 @@ switch_active:
     }
     else
     {
-        timer = 250;
+        timer = 800;
     }
     return true;
 }

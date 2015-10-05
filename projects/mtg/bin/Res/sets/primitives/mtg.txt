@@ -1493,7 +1493,7 @@ subtype=Ajani
 [/card]
 [card]
 name=Avatar Token
-auto=controllerlife/controllerlife cdaactive
+auto=lifetotal/lifetotal cdaactive
 type=Creature
 subtype=Avatar
 power=*
@@ -86572,7 +86572,7 @@ toughness=1
 [/card]
 [card]
 name=Serra Avatar
-auto=controllerlife/controllerlife cdaactive
+auto=lifetotal/lifetotal cdaactive
 autograveyard=moveTo(ownerlibrary) && shuffle
 text=Serra Avatar's power and toughness are each equal to your life total. -- When Serra Avatar is put into a graveyard from anywhere, shuffle it into its owner's library.
 mana={4}{W}{W}{W}
@@ -101404,8 +101404,7 @@ toughness=3
 [card]
 name=Thopter Assembly
 abilities=flying
-auto=@each my upkeep restriction{type(other thopter|myBattlefield)~lessthan~1}:token(Thopter,Artifact Creature,1/1,flying)*5
-auto=@each my upkeep restriction{type(other thopter|myBattlefield)~lessthan~1}:moveTo(ownerhand)
+auto=@each my upkeep restriction{type(other thopter|myBattlefield)~lessthan~1}:moveTo(ownerhand) and!(token(Thopter,Artifact Creature,1/1,flying)*5)!
 text=Flying -- At the beginning of your upkeep, if you control no Thopters other than Thopter Assembly, return Thopter Assembly to its owner's hand and put five 1/1 colorless Thopter artifact creature tokens with flying onto the battlefield.
 mana={6}
 type=Artifact Creature
@@ -102240,9 +102239,7 @@ type=Instant
 [card]
 name=Thunderbreak Regent
 abilities=flying
-auto=@targeted(dragon|mybattlefield) from(*|opponentbattlefield):damage:3 opponent
-auto=@targeted(dragon|mybattlefield) from(*|opponenthand):damage:3 opponent
-auto=@targeted(dragon|mybattlefield) from(*|graveyard):damage:3 opponent
+auto=@targeted(dragon|mybattlefield) from(*|opponentbattlefield,opponenthand,opponentstack,opponentgraveyard,opponentexile,opponentlibrary):damage:3 opponent
 text=Flying -- Whenever a Dragon you control becomes the target of a spell or ability an opponent controls, Thunderbreak Regent deals 3 damage to that player.
 mana={2}{R}{R}
 type=Creature
@@ -103406,11 +103403,11 @@ power=6
 toughness=4
 [/card]
 ###The 2 cards above should stay together (Flip Card)###
+#need parser from stack
 [card]
 name=Tormented Hero
 auto=tap
-auto=@targeted(this) from(*[instant;sorcery;enchantment]|myhand,mygraveyard):life:-1 opponent
-auto=@targeted(this) from(*[instant;sorcery;enchantment]|myhand,mygraveyard):life:1 controller
+auto=@targeted(this) from(*|nonbattlezone):life:-1 opponent && life:1 controller
 text=Tormented Hero enters the battlefield tapped. -- Heroic - Whenever you cast a spell that targets Tormented Hero, each opponent loses 1 life. You gain life equal to the life lost this way. 
 mana={B}
 type=Creature
@@ -104162,8 +104159,7 @@ type=Land
 [card]
 name=Transcendence
 abilities=cantlifelose
-auto=this(controllerlife > 19) winGame opponent
-auto=@lifed(controller):this(controllerlife > 19) winGame opponent
+auto=this(controllerlife > 19)while winGame opponent
 auto=@damaged(controller):life:twicethatmuch controller
 auto=@lifeloss(controller):life:twicethatmuch controller
 text=You don't lose the game for having 0 or less life. -- When you have 20 or more life, you lose the game. -- Whenever you lose life, you gain 2 life for each 1 life you lost. (Damage dealt to you causes you to lose life.)

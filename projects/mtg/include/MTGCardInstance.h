@@ -249,6 +249,10 @@ public:
     int copiedID;
     int modifiedbAbi;
     bool StackIsEmptyandSorcerySpeed();
+    bool isTargetted();
+    int cardistargetted;
+    bool isTargetter();
+    int cardistargetter;
 
     void eventattacked();
     void eventattackedAlone();
