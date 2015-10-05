@@ -578,8 +578,6 @@ void GameObserver::Update(float dt)
         {
             mLayers->actionLayer()->Update(0);
         }
-        players[0]->DeadLifeState();
-        players[1]->DeadLifeState();
         gameStateBasedEffects();
     }
     oldGamePhase = mCurrentGamePhase;
@@ -592,6 +590,21 @@ void GameObserver::gameStateBasedEffects()
 {
     if(getCurrentTargetChooser() && int(getCurrentTargetChooser()->getNbTargets()) == getCurrentTargetChooser()->maxtargets)
         getCurrentTargetChooser()->done = true;
+	/////////////////////////////////////
+    for (int d = 0; d < 2; d++)
+    {
+        MTGGameZone * zone = players[d]->game->inPlay;
+        if (mLayers->stackLayer()->count(0, NOT_RESOLVED) == 0)
+		{
+            for (int c = zone->nb_cards - 1; c >= 0; c--)
+            {
+		        zone->cards[c]->cardistargetted = 0;
+		        zone->cards[c]->cardistargetter = 0;
+            }
+        }
+        players[d]->DeadLifeState();
+    }
+    ////////////////////////////////////
 
     if (mLayers->stackLayer()->count(0, NOT_RESOLVED) != 0)
         return;

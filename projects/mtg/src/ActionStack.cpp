@@ -1219,9 +1219,12 @@ void ActionStack::Render()
         mFont->SetColor(ARGB(255,255,255,255));
         JRenderer * renderer = JRenderer::GetInstance();
 
-        renderer->FillRoundRect(x0 + 16, y0 + 16, width + 2, height + 2, 10, ARGB(128,0,0,0));
-        renderer->FillRoundRect(x0 - 5, y0, width + 2, height + 2, 10, ARGB(200,0,0,0));
-        renderer->DrawRoundRect(x0 - 5, y0, width + 2, height + 2, 10, ARGB(255,255,255,255));
+        //stack shadow
+        renderer->FillRoundRect(x0 - 7, y0+2, width + 17, height + 2, 9.0f, ARGB(128,0,0,0));
+        //stack fill
+        renderer->FillRoundRect(x0 - 7, y0+2, width + 17, height + 2, 9.0f, ARGB(200,10,10,10));
+        //stack border
+        renderer->DrawRoundRect(x0 - 7, y0+2, width + 17, height + 2, 9.0f, ARGB(160,240,240,240));
 
         std::ostringstream stream;
         // WALDORF - changed "interrupt ?" to "Interrupt?". Don't display count down

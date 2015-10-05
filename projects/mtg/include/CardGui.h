@@ -33,7 +33,7 @@ protected:
     /*
     ** Tries to render the Big version of a card picture, backups to text version in case of failure
     */
-    static void RenderBig(MTGCard * card, const Pos& pos, bool thumb = false);
+    static void RenderBig(MTGCard * card, const Pos& pos, bool thumb = false, bool noborder = false);
 
     static void RenderCountersBig(MTGCard * card, const Pos& pos, int drawMode = DrawMode::kNormal);
     static void AlternateRender(MTGCard * card, const Pos& pos);
@@ -55,8 +55,8 @@ public:
     virtual void Render();
     virtual void Update(float dt);
 
-    void DrawCard(const Pos& inPosition, int inMode = DrawMode::kNormal, bool thumb = false);
-    static void DrawCard(MTGCard* inCard, const Pos& inPosition, int inMode = DrawMode::kNormal, bool thumb = false);
+    void DrawCard(const Pos& inPosition, int inMode = DrawMode::kNormal, bool thumb = false, bool noborder = false);
+    static void DrawCard(MTGCard* inCard, const Pos& inPosition, int inMode = DrawMode::kNormal, bool thumb = false, bool noborder = false);
 
     static JQuadPtr AlternateThumbQuad(MTGCard * card);
     virtual ostream& toString(ostream&) const;

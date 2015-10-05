@@ -111,17 +111,17 @@ void CardGui::Update(float dt)
     PlayGuiObject::Update(dt);
 }
 
-void CardGui::DrawCard(const Pos& inPosition, int inMode, bool thumb)
+void CardGui::DrawCard(const Pos& inPosition, int inMode, bool thumb, bool noborder)
 {
-    DrawCard(card, inPosition, inMode, thumb);
+    DrawCard(card, inPosition, inMode, thumb, noborder);
 }
 
-void CardGui::DrawCard(MTGCard* inCard, const Pos& inPosition, int inMode, bool thumb)
+void CardGui::DrawCard(MTGCard* inCard, const Pos& inPosition, int inMode, bool thumb, bool noborder)
 {
     switch (inMode)
     {
     case DrawMode::kNormal:
-        RenderBig(inCard, inPosition, thumb);
+        RenderBig(inCard, inPosition, thumb, noborder);
         break;
     case DrawMode::kText:
         AlternateRender(inCard, inPosition);
@@ -237,6 +237,30 @@ void CardGui::Render()
     if (quad)
     {
         quad->SetColor(ARGB(static_cast<unsigned char>(actA),255,255,255));
+        //static border
+        /*if(card->isTapped())
+        {
+            //focus?
+            CardView* cv = dynamic_cast<CardView*>(card->view);
+            if(cv->mHasFocus)
+                renderer->FillRoundRect(actX - (scale * quad->mWidth / 2)-9.0f,actY - (scale * quad->mHeight / 2)+7, (scale * quad->mHeight)-0.02f, (scale * quad->mWidth)-0.02f, 1.0f,ARGB(250,20,20,20));
+            else
+                renderer->FillRoundRect(actX - (scale * quad->mWidth / 2)-7,actY - (scale * quad->mHeight / 2)+5.5f, (scale * quad->mHeight)-0.02f, (scale * quad->mWidth)-0.02f, 1.0f,ARGB(250,20,20,20));
+        }
+        else
+        {
+            renderer->FillRoundRect(actX - (scale * quad->mWidth / 2)-1,actY - (scale * quad->mHeight / 2)-1, (scale * quad->mWidth)-0.02f, (scale * quad->mHeight)-0.02f, 1.0f,ARGB(250,20,20,20));
+        }*///the border needs animation when the card rotates...but how?
+
+        //fake border...
+	    JQuadPtr fakeborder;
+        fakeborder = game? game->getResourceManager()->GetQuad("white"):WResourceManager::Instance()->GetQuad("white");
+	    if(fakeborder)
+	    {
+            fakeborder->SetColor(ARGB(255,15,15,15));
+	        renderer->RenderQuad(fakeborder.get(), actX, actY, actT, (29 * actZ + 1) / 16, 42 * actZ / 16);
+        }
+        //draw the card image
         renderer->RenderQuad(quad.get(), actX, actY, actT, scale, scale);
     }
 
@@ -274,6 +298,40 @@ void CardGui::Render()
             mor->SetHotSpot(static_cast<float> (mor->mTex->mWidth / 2), static_cast<float> (mor->mTex->mHeight / 2));
             mor->SetColor(ARGB(255,255,255,255));
             renderer->RenderQuad(mor.get(), actX, actY, actT,scale, scale);
+        }
+    }
+
+    //draw border?line
+    if (card && card->isTargetted())
+    {
+	    if(card->isTapped())
+        {
+            //focus?
+            CardView* cv = dynamic_cast<CardView*>(card->view);
+            if(cv->mHasFocus)
+                renderer->DrawRoundRect(actX - (scale * quad->mWidth / 2)-10,actY - (scale * quad->mHeight / 2)+6.5f, (scale * quad->mHeight)-0.02f, (scale * quad->mWidth)-0.02f, 1.8f,ARGB(250,255,0,0));
+            else
+                renderer->DrawRoundRect(actX - (scale * quad->mWidth / 2)-8,actY - (scale * quad->mHeight / 2)+4, (scale * quad->mHeight)-0.02f, (scale * quad->mWidth)-0.02f, 1.8f,ARGB(250,255,0,0));
+        }
+        else
+        {
+            renderer->DrawRoundRect(actX - (scale * quad->mWidth / 2)-2,actY - (scale * quad->mHeight / 2)-2, (scale * quad->mWidth)-0.02f, (scale * quad->mHeight)-0.02f, 1.8f,ARGB(250,255,0,0));
+        }
+    }
+    if (card && card->isTargetter())
+    {
+	    if(card->isTapped())
+        {
+            //focus?
+            CardView* cv = dynamic_cast<CardView*>(card->view);
+            if(cv->mHasFocus)
+                renderer->DrawRoundRect(actX - (scale * quad->mWidth / 2)-10,actY - (scale * quad->mHeight / 2)+6.5f, (scale * quad->mHeight)-0.02f, (scale * quad->mWidth)-0.02f, 1.8f,ARGB(250,0,255,0));
+            else
+                renderer->DrawRoundRect(actX - (scale * quad->mWidth / 2)-8,actY - (scale * quad->mHeight / 2)+4, (scale * quad->mHeight)-0.02f, (scale * quad->mWidth)-0.02f, 1.8f,ARGB(250,0,255,0));
+        }
+        else
+        {
+            renderer->DrawRoundRect(actX - (scale * quad->mWidth / 2)-2,actY - (scale * quad->mHeight / 2)-2, (scale * quad->mWidth)-0.02f, (scale * quad->mHeight)-0.02f, 1.8f,ARGB(250,0,255,0));
         }
     }
 
@@ -988,7 +1046,7 @@ void CardGui::TinyCropRender(MTGCard * card, const Pos& pos, JQuad * quad)
 }
 
 //Renders a big card on screen. Defaults to the "alternate" rendering if no image is found
-void CardGui::RenderBig(MTGCard* card, const Pos& pos, bool thumb)
+void CardGui::RenderBig(MTGCard* card, const Pos& pos, bool thumb, bool noborder)
 {
     JRenderer * renderer = JRenderer::GetInstance();
     //GameObserver * game = GameObserver::GetInstance();
@@ -1013,7 +1071,30 @@ void CardGui::RenderBig(MTGCard* card, const Pos& pos, bool thumb)
         }
         quad->SetColor(ARGB(255,255,255,255));
         float scale = pos.actZ * 250.f / quad->mHeight;
-        renderer->RenderQuad(quad.get(), x, pos.actY, pos.actT, scale, scale);
+        //init setname
+        string cardsetname = setlist[card->setId].c_str();
+        if(!noborder)
+        {
+            if(cardsetname == "2ED"||cardsetname == "RV"||cardsetname == "4ED"||cardsetname == "5ED"||cardsetname == "6ED"||cardsetname == "7ED"||cardsetname == "8ED"||cardsetname == "9ED"||cardsetname == "CHR")
+            {
+                //like white border
+                renderer->FillRoundRect(x-92,pos.actY-128, (scale * quad->mWidth)-10, (scale * quad->mHeight)-11, 9.0f,ARGB(255,248,248,255));
+                //black thin line to simulate card edge
+                renderer->DrawRoundRect(x-92,pos.actY-128, (scale * quad->mWidth)-10, (scale * quad->mHeight)-11, 9.0f,ARGB(150,20,20,20));
+            }
+            else
+            {
+                //like black border
+                renderer->FillRoundRect(x-92,pos.actY-128, (scale * quad->mWidth)-10, (scale * quad->mHeight)-11, 9.0f,ARGB(255,10,10,10));
+                //white thin line to simulate card edge
+                renderer->DrawRoundRect(x-92,pos.actY-128, (scale * quad->mWidth)-10, (scale * quad->mHeight)-11, 9.0f,ARGB(50,240,240,240));
+            }
+		    //render card image
+            renderer->RenderQuad(quad.get(), x, pos.actY, pos.actT, scale-0.02f, scale-0.02f);
+        }
+        else
+            renderer->RenderQuad(quad.get(), x, pos.actY, pos.actT, scale, scale);
+
         RenderCountersBig(card, pos);
         return;
     }
