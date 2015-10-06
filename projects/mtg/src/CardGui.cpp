@@ -257,7 +257,7 @@ void CardGui::Render()
         fakeborder = game? game->getResourceManager()->GetQuad("white"):WResourceManager::Instance()->GetQuad("white");
 	    if(fakeborder)
 	    {
-            fakeborder->SetColor(ARGB(255,15,15,15));
+            fakeborder->SetColor(ARGB((int)(actA),15,15,15));
 	        renderer->RenderQuad(fakeborder.get(), actX, actY, actT, (29 * actZ + 1) / 16, 42 * actZ / 16);
         }
         //draw the card image
