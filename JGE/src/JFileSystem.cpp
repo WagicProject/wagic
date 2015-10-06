@@ -30,6 +30,8 @@ The content that users should not be touching.
 #include "../include/JGE.h"
 #include "../include/JFileSystem.h"
 #include "../include/JLogger.h"
+#include "DebugRoutines.h"
+
 
 #ifdef QT_CONFIG
 #include <QDir>
@@ -137,9 +139,9 @@ JFileSystem::JFileSystem(const string & _userPath, const string & _systemPath)
     userPath = QDir::toNativeSeparators(dir.absolutePath()).toStdString();
     systemPath = QDir::toNativeSeparators(sysDir.absolutePath()).toStdString();
 
-    DebugTrace("User path " << userPath);
-    DebugTrace("System path " << systemPath);
-    DebugTrace("Current path " << QDir::currentPath().toStdString());
+    DebugTrace("User path " + userPath);
+    DebugTrace("System path " + systemPath);
+    DebugTrace("Current path " + QDir::currentPath().toStdString());
 #else
     //Find the Res.txt file and matching Res folders for backwards compatibility
     ifstream mfile("Res.txt");

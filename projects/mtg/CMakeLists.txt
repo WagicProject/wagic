@@ -155,9 +155,7 @@ if(backend_qt_console)
     else()
         message(FATAL_ERROR "qt-console bilds are only supported on unix platforms")
     endif()
-endif()
-
-if(backend_qt_widget)
+elseif(backend_qt_widget)
     if(UNIX AND NOT ANDROID)
         include_directories(${MTG_INCLUDE_DIRS} ${JGE_INCLUDE_DIRS} ${ZIPFS_INCLUDE_DIR} ${Qt5Core_INCLUDE_DIRS} ${Qt5Multimedia_INCLUDE_DIRS}
             ${UNZIP_INCLUDE_DIR} ${HGE_INCLUDE_DIR} ${TINYXML_INCLUDE_DIR} ${QT_MKSPECS_DIR}/default)
@@ -167,15 +165,11 @@ if(backend_qt_widget)
     else()
         message(FATAL_ERROR "qt-widget bilds are only supported on unix platforms")
     endif()
-endif()
-
-if(backend_sdl)
+elseif(backend_sdl)
     if(UNIX AND NOT ANDROID)
-        include_directories(${MTG_INCLUDE_DIRS} ${JGE_INCLUDE_DIRS} ${SDL2_INCLUDE_DIR} ${ZIPFS_INCLUDE_DIR} 
-            ${BOOST_INCLUDE_DIRS} ${UNZIP_INCLUDE_DIR} ${HGE_INCLUDE_DIR} ${TINYXML_INCLUDE_DIR})
+        include_directories(${MTG_INCLUDE_DIRS} ${JGE_INCLUDE_DIRS} ${SDL2_INCLUDE_DIR} ${ZIPFS_INCLUDE_DIR} ${UNZIP_INCLUDE_DIR} ${HGE_INCLUDE_DIR} ${TINYXML_INCLUDE_DIR})
         add_executable(wagic ${MTG_generic_src} ${MTG_sdl_src})
-        target_link_libraries(wagic  ${JGE_LIBRARY} ${SDL2_LIBRARY} ${OPENGL_LIBRARIES} ${TINYXML_LIBRARIES} 
-            ${Boost_LIBRARIES} ${HGE_LIBRARY})
+        target_link_libraries(wagic  ${JGE_LIBRARY} ${SDL2_LIBRARY} ${OPENGL_LIBRARIES} ${TINYXML_LIBRARIES} ${HGE_LIBRARY} ${ZLIB_LIBRARIES})
     elseif(ANDROID)
         include_directories(${MTG_INCLUDE_DIRS} ${JGE_INCLUDE_DIRS} ${SDL2_INCLUDE_DIR} ${ZIPFS_INCLUDE_DIR} 
             ${BOOST_INCLUDE_DIRS} ${UNZIP_INCLUDE_DIR} ${HGE_INCLUDE_DIR} ${TINYXML_INCLUDE_DIR})
@@ -190,15 +184,13 @@ if(backend_sdl)
     elseif(WIN32)
         include_directories(${EXTRA_INCLUDE_DIR} ${MTG_INCLUDE_DIRS} ${JGE_INCLUDE_DIRS} ${SDL2_INCLUDE_DIR} ${ZIPFS_INCLUDE_DIR} 
             ${Boost_INCLUDE_DIRS} ${UNZIP_INCLUDE_DIR} ${HGE_INCLUDE_DIR} ${TINYXML_INCLUDE_DIR}
-            ${ZLIB_INCLUDE_DIR} ${CMAKE_SOURCE_DIR}/thirdparty/binary/win/include)
+            ${ZLIB_INCLUDE_DIRS} ${CMAKE_SOURCE_DIR}/thirdparty/binary/win/include)
         add_executable(wagic ${MTG_generic_src} ${MTG_sdl_src} src/TestSuiteAI.cpp src/AIPlayerBakaB.cpp)
         link_directories(${Boost_LIBRARY_DIR} ${SDL2_LIBRARY_DIR})
         target_link_libraries(wagic  ${JGE_LIBRARY} ${SDL2_LIBRARY} ${OPENGL_LIBRARIES} ${TINYXML_LIBRARIES} 
             ${BOOST_date_time} ${HGE_LIBRARY} ${CMAKE_SOURCE_DIR}/thirdparty/binary/win/lib/fmodvc.lib)
     endif()
-endif()
-
-if(backend_psp)
+elseif(backend_psp)
     if(PSP)
         #${PSPSDK_PATH}/include
         include_directories(${MTG_INCLUDE_DIRS} ${JGE_INCLUDE_DIRS} ${TINYXML_INCLUDE_DIR} ${ZIPFS_INCLUDE_DIR} 

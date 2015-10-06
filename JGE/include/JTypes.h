@@ -144,8 +144,13 @@ typedef uint32_t u32;
 #include <GLES/gl.h>
 #include <GLES/glext.h>
 #elif defined (WIN32) || defined (LINUX)
+#if defined(__APPLE__)
+#include <OpenGL/gl.h>
+#include <OpenGL/glu.h>
+#else
 #include <GL/gl.h>
 #include <GL/glu.h>
+#endif
 #endif
 #else
 #include <QtOpenGL>
