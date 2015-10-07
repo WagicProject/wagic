@@ -89,7 +89,7 @@ bool Player::loadAvatar(string file, string resName)
     }
     mAvatarTex = rm->RetrieveTexture(file, RETRIEVE_LOCK, TEXTURE_SUB_AVATAR);
     if (mAvatarTex) {
-        mAvatar = rm->RetrieveQuad(file, 0, 0, 35, 50, resName, RETRIEVE_NORMAL, TEXTURE_SUB_AVATAR);
+        mAvatar = rm->RetrieveQuad(file, 0, 0, 0, 0, resName, RETRIEVE_NORMAL, TEXTURE_SUB_AVATAR);
         return true;
     }
 

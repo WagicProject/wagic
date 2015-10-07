@@ -60,8 +60,8 @@ void GuiAvatar::Render()
     {
         if (corner == BOTTOM_RIGHT)
         {
-            x0 -= player->getIcon()->mWidth * actZ;
-            y0 -= player->getIcon()->mHeight * actZ;
+            x0 -= Width * actZ;
+            y0 -= Height * actZ;
         }
         switch (corner)
         {
@@ -69,14 +69,14 @@ void GuiAvatar::Render()
             player->getIcon()->SetHotSpot(0, 0);
             break;
         case BOTTOM_RIGHT:
-            player->getIcon()->SetHotSpot(35, 50);
+            player->getIcon()->SetHotSpot(player->getIcon()->mWidth, player->getIcon()->mHeight);
             break;
         }
         player->getIcon()->SetColor(ARGB((int)actA, 255, avatarRed, avatarRed));
-        r->RenderQuad(player->getIcon().get(), actX, actY, actT, actZ, actZ);
+        r->RenderQuad(player->getIcon().get(), actX, actY, actT, Width/player->getIcon()->mWidth*actZ, Height/player->getIcon()->mHeight*actZ);
         if (mHasFocus)
         {
-            r->FillRect(x0, x0, player->getIcon()->mWidth * actZ, player->getIcon()->mHeight * actZ, ARGB(abs(128 - wave),255,255,255));
+            r->FillRect(x0, x0, Width/player->getIcon()->mWidth * actZ, Height/player->getIcon()->mHeight * actZ, ARGB(abs(128 - wave),255,255,255));
         }
     }
 
