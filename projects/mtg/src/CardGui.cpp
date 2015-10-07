@@ -237,21 +237,6 @@ void CardGui::Render()
     if (quad)
     {
         quad->SetColor(ARGB(static_cast<unsigned char>(actA),255,255,255));
-        //static border
-        /*if(card->isTapped())
-        {
-            //focus?
-            CardView* cv = dynamic_cast<CardView*>(card->view);
-            if(cv->mHasFocus)
-                renderer->FillRoundRect(actX - (scale * quad->mWidth / 2)-9.0f,actY - (scale * quad->mHeight / 2)+7, (scale * quad->mHeight)-0.02f, (scale * quad->mWidth)-0.02f, 1.0f,ARGB(250,20,20,20));
-            else
-                renderer->FillRoundRect(actX - (scale * quad->mWidth / 2)-7,actY - (scale * quad->mHeight / 2)+5.5f, (scale * quad->mHeight)-0.02f, (scale * quad->mWidth)-0.02f, 1.0f,ARGB(250,20,20,20));
-        }
-        else
-        {
-            renderer->FillRoundRect(actX - (scale * quad->mWidth / 2)-1,actY - (scale * quad->mHeight / 2)-1, (scale * quad->mWidth)-0.02f, (scale * quad->mHeight)-0.02f, 1.0f,ARGB(250,20,20,20));
-        }*///the border needs animation when the card rotates...but how?
-
         //fake border...
 	    JQuadPtr fakeborder;
         fakeborder = game? game->getResourceManager()->GetQuad("white"):WResourceManager::Instance()->GetQuad("white");
@@ -265,41 +250,25 @@ void CardGui::Render()
         {
 	        if(card->isTapped())
             {
-            //focus?
-            CardView* cv = dynamic_cast<CardView*>(card->view);
-            if(cv->mHasFocus)
-                {
+                if(mHasFocus)
                     renderer->FillRoundRect(actX - (scale * quad->mWidth / 2)-10,actY - (scale * quad->mHeight / 2)+6.5f, (scale * quad->mHeight)-0.02f, (scale * quad->mWidth)-0.02f, 1.8f,ARGB(95,255,0,0));
-                }
                 else
-                {
                     renderer->FillRoundRect(actX - (scale * quad->mWidth / 2)-8,actY - (scale * quad->mHeight / 2)+4, (scale * quad->mHeight)-0.02f, (scale * quad->mWidth)-0.02f, 1.8f,ARGB(95,255,0,0));
-                }
             }
             else
-            {
                 renderer->FillRoundRect(actX - (scale * quad->mWidth / 2)-2,actY - (scale * quad->mHeight / 2)-2, (scale * quad->mWidth)-0.02f, (scale * quad->mHeight)-0.02f, 1.8f,ARGB(95,255,0,0));
-            }
         }
         if (card && card->isTargetter())
         {
             if(card->isTapped())
             {
-                //focus?
-                CardView* cv = dynamic_cast<CardView*>(card->view);
-                if(cv->mHasFocus)
-                {
+                if(mHasFocus)
                     renderer->FillRoundRect(actX - (scale * quad->mWidth / 2)-10,actY - (scale * quad->mHeight / 2)+6.5f, (scale * quad->mHeight)-0.02f, (scale * quad->mWidth)-0.02f, 1.8f,ARGB(95,0,245,0));
-                }
                 else
-                {
                     renderer->FillRoundRect(actX - (scale * quad->mWidth / 2)-8,actY - (scale * quad->mHeight / 2)+4, (scale * quad->mHeight)-0.02f, (scale * quad->mWidth)-0.02f, 1.8f,ARGB(95,0,245,0));
-                }
             }
             else
-            {
                 renderer->FillRoundRect(actX - (scale * quad->mWidth / 2)-2,actY - (scale * quad->mHeight / 2)-2, (scale * quad->mWidth)-0.02f, (scale * quad->mHeight)-0.02f, 1.8f,ARGB(95,0,245,0));
-            }
         }
         //draw the card image
         renderer->RenderQuad(quad.get(), actX, actY, actT, scale, scale);
@@ -347,41 +316,25 @@ void CardGui::Render()
     {
 	    if(card->isTapped())
         {
-            //focus?
-            CardView* cv = dynamic_cast<CardView*>(card->view);
-            if(cv->mHasFocus)
-            {
+            if(mHasFocus)
                 renderer->DrawRoundRect(actX - (scale * quad->mWidth / 2)-10,actY - (scale * quad->mHeight / 2)+6.5f, (scale * quad->mHeight)-0.02f, (scale * quad->mWidth)-0.02f, 1.8f,ARGB(250,255,0,0));
-            }
             else
-            {
                 renderer->DrawRoundRect(actX - (scale * quad->mWidth / 2)-8,actY - (scale * quad->mHeight / 2)+4, (scale * quad->mHeight)-0.02f, (scale * quad->mWidth)-0.02f, 1.8f,ARGB(250,255,0,0));
-            }
         }
         else
-        {
             renderer->DrawRoundRect(actX - (scale * quad->mWidth / 2)-2,actY - (scale * quad->mHeight / 2)-2, (scale * quad->mWidth)-0.02f, (scale * quad->mHeight)-0.02f, 1.8f,ARGB(250,255,0,0));
-        }
     }
     if (card && card->isTargetter())
     {
         if(card->isTapped())
         {
-            //focus?
-            CardView* cv = dynamic_cast<CardView*>(card->view);
-            if(cv->mHasFocus)
-            {
+            if(mHasFocus)
                 renderer->DrawRoundRect(actX - (scale * quad->mWidth / 2)-10,actY - (scale * quad->mHeight / 2)+6.5f, (scale * quad->mHeight)-0.02f, (scale * quad->mWidth)-0.02f, 1.8f,ARGB(250,0,255,0));
-            }
             else
-            {
                 renderer->DrawRoundRect(actX - (scale * quad->mWidth / 2)-8,actY - (scale * quad->mHeight / 2)+4, (scale * quad->mHeight)-0.02f, (scale * quad->mWidth)-0.02f, 1.8f,ARGB(250,0,255,0));
-            }
         }
         else
-        {
             renderer->DrawRoundRect(actX - (scale * quad->mWidth / 2)-2,actY - (scale * quad->mHeight / 2)-2, (scale * quad->mWidth)-0.02f, (scale * quad->mHeight)-0.02f, 1.8f,ARGB(250,0,255,0));
-        }
     }
 
     //draws the numbers power/toughness
