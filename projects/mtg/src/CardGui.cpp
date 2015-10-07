@@ -239,36 +239,24 @@ void CardGui::Render()
         quad->SetColor(ARGB(static_cast<unsigned char>(actA),255,255,255));
         //fake border...
 	    JQuadPtr fakeborder;
+	    JQuadPtr highlightborder;
         fakeborder = game? game->getResourceManager()->GetQuad("white"):WResourceManager::Instance()->GetQuad("white");
+        highlightborder = game? game->getResourceManager()->GetQuad("white"):WResourceManager::Instance()->GetQuad("white");
 	    if(fakeborder)
 	    {
             fakeborder->SetColor(ARGB((int)(actA),15,15,15));
 	        renderer->RenderQuad(fakeborder.get(), actX, actY, actT, (29 * actZ + 1) / 16, 42 * actZ / 16);
         }
         //draw border for highlighting
-        if (card && card->isTargetted())
+        if (card && card->isTargetted() && highlightborder)
         {
-	        if(card->isTapped())
-            {
-                if(mHasFocus)
-                    renderer->FillRoundRect(actX - (scale * quad->mWidth / 2)-10,actY - (scale * quad->mHeight / 2)+6.5f, (scale * quad->mHeight)-0.02f, (scale * quad->mWidth)-0.02f, 1.8f,ARGB(95,255,0,0));
-                else
-                    renderer->FillRoundRect(actX - (scale * quad->mWidth / 2)-8,actY - (scale * quad->mHeight / 2)+4, (scale * quad->mHeight)-0.02f, (scale * quad->mWidth)-0.02f, 1.8f,ARGB(95,255,0,0));
-            }
-            else
-                renderer->FillRoundRect(actX - (scale * quad->mWidth / 2)-2,actY - (scale * quad->mHeight / 2)-2, (scale * quad->mWidth)-0.02f, (scale * quad->mHeight)-0.02f, 1.8f,ARGB(95,255,0,0));
+            highlightborder->SetColor(ARGB(95,255,0,0));
+	        renderer->RenderQuad(highlightborder.get(), actX, actY, actT, (30 * actZ + 1) / 16, 43 * actZ / 16);
         }
-        if (card && card->isTargetter())
+        if (card && card->isTargetter() && highlightborder)
         {
-            if(card->isTapped())
-            {
-                if(mHasFocus)
-                    renderer->FillRoundRect(actX - (scale * quad->mWidth / 2)-10,actY - (scale * quad->mHeight / 2)+6.5f, (scale * quad->mHeight)-0.02f, (scale * quad->mWidth)-0.02f, 1.8f,ARGB(95,0,245,0));
-                else
-                    renderer->FillRoundRect(actX - (scale * quad->mWidth / 2)-8,actY - (scale * quad->mHeight / 2)+4, (scale * quad->mHeight)-0.02f, (scale * quad->mWidth)-0.02f, 1.8f,ARGB(95,0,245,0));
-            }
-            else
-                renderer->FillRoundRect(actX - (scale * quad->mWidth / 2)-2,actY - (scale * quad->mHeight / 2)-2, (scale * quad->mWidth)-0.02f, (scale * quad->mHeight)-0.02f, 1.8f,ARGB(95,0,245,0));
+            highlightborder->SetColor(ARGB(95,0,245,0));
+	        renderer->RenderQuad(highlightborder.get(), actX, actY, actT, (30 * actZ + 1) / 16, 43 * actZ / 16);
         }
         //draw the card image
         renderer->RenderQuad(quad.get(), actX, actY, actT, scale, scale);
