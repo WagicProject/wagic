@@ -141,10 +141,10 @@ void GameStateMenu::Start()
     WResourceManager::Instance()->ClearUnlocked();
 
     bgTexture = WResourceManager::Instance()->RetrieveTexture("menutitle.png", RETRIEVE_LOCK);
-    mBg = WResourceManager::Instance()->RetrieveQuad("menutitle.png", 0, 0, 256, 166); // Create background quad for rendering.
+    mBg = WResourceManager::Instance()->RetrieveQuad("menutitle.png", 0, 0, 0, 0); // Create background quad for rendering.
 
     if (mBg)
-        mBg->SetHotSpot(128, 50);
+        mBg->SetHotSpot(0, 0);
 
     if (MENU_STATE_MAJOR_MAINMENU == currentState)
         currentState = currentState | MENU_STATE_MINOR_FADEIN;
@@ -790,7 +790,7 @@ void GameStateMenu::Render()
         scroller->Render();
 
         if (mBg.get())
-            renderer->RenderQuad(mBg.get(), SCREEN_WIDTH / 2, 50);
+            renderer->RenderQuad(mBg.get(), (SCREEN_WIDTH/4)-6, 2, 0, 256 / mBg->mWidth, 166 / mBg->mHeight);
 
         RenderTopMenu();
 
