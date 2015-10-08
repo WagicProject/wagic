@@ -331,8 +331,10 @@ void CardGui::Render()
         mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
         char buffer[200];
         sprintf(buffer, "%i/%i", card->power, card->life);
-        renderer->FillRect(actX - (12 * actZ), actY + 6 * actZ, 25 * actZ, 12 * actZ,
+        renderer->FillRect(actX - (13 * actZ), actY + 4 * actZ, 25.5f * actZ, 14 * actZ,
             ARGB(((static_cast<unsigned char>(actA))/2),0,0,0));
+        renderer->DrawRect(actX - (13 * actZ), actY + 4 * actZ, 25.5f * actZ, 14 * actZ,
+            ARGB(((static_cast<unsigned char>(actA))),20,20,20));
         //damaged or buffed or powered down		
         if(card->wasDealtDamage && card->life <= 2)
             mFont->SetColor(ARGB(static_cast<unsigned char>(actA),255,0,0));//red critical and damaged
@@ -346,7 +348,7 @@ void CardGui::Render()
             mFont->SetColor(ARGB(static_cast<unsigned char>(actA),255,255,255));//white default
         mFont->SetScale(actZ);
         mFont->SetScale(actZ);
-        mFont->DrawString(buffer, actX - 10 * actZ, actY + 8 * actZ);
+        mFont->DrawString(buffer, actX - 10 * actZ, actY + 7 * actZ);
         mFont->SetScale(1);
     }
 
