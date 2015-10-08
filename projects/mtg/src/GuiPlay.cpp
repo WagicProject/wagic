@@ -270,7 +270,7 @@ void GuiPlay::Replace()
     //rerun the iter reattaching planes walkers to the back of the lands.
     for (iterator it = end_spells; it != cards.end(); ++it)
     {
-        if ((*it)->card->hasType(Subtypes::TYPE_PLANESWALKER))
+        if ((*it)->card->hasType(Subtypes::TYPE_PLANESWALKER) && !(*it)->card->isCreature())
         {
             if (mpDuelLayers->getRenderedPlayer() == (*it)->card->controller())
                 selfLands.Enstack(*it);
