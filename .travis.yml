@@ -32,6 +32,7 @@ before_install:
     fi
 
 install:
+- sudo apt-get install --force-yes -qq libtinyxml-dev libjpeg-dev libpng-dev libgif-dev libz-dev libsdl2-dev libboost-system-dev libboost-thread-dev libboost-date-time-dev
 - if [ "$BUILD_PSP" == "YES" ]; then
     tar -x --xz -f sdk.lzma;
   fi
