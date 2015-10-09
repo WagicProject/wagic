@@ -85,10 +85,14 @@ void GameStateMenu::Create()
     {
         for (int j = 0; j < 2; j++)
         {
-            sprintf(buf, "menuicons%d%d", i, j);
-            mIcons[n] = WResourceManager::Instance()->RetrieveQuad("menuicons.png", 2 + i * 36.0f, 2.0f + j * 36.0f, 32.0f, 32.0f, buf);
+            sprintf(buf, "miconslarge%d%d", i, j);
+            mIcons[n] = WResourceManager::Instance()->RetrieveQuad("miconslarge.png", 4 + i * 72.0f, 4.0f + j * 72.0f, 72.0f, 72.0f, buf);
             if (mIcons[n])
+            {
+                mIcons[n]->mHeight = 36.f;
+                mIcons[n]->mWidth = 36.f;
                 mIcons[n]->SetHotSpot(16, 16);
+            }
             n++;
         }
     }

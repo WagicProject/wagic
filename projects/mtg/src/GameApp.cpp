@@ -173,6 +173,7 @@ void GameApp::Create()
     LOG("Loading Textures");
     LOG("--Loading menuicons.png");
     WResourceManager::Instance()->RetrieveTexture("menuicons.png", RETRIEVE_MANAGE);
+    WResourceManager::Instance()->RetrieveTexture("miconslarge.png", RETRIEVE_MANAGE);
     LOG("---Gettings menuicons.png quads");
    
     //Load all icons from gModRules and save in manaIcons -> todo. Change the icons positions on menuicons.png to avoid use item->mColorId
