@@ -19,7 +19,8 @@
  *
  */
  
-#include "../include/decoder_prx.h"
+#include "decoder_prx.h"
+#include <psputility.h>
  
 char *prx_static_init()
 	{
