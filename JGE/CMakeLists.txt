@@ -127,7 +127,7 @@ if(backend_psp)
     if(PSP)        
         #${PSPSDK_PATH}/include should be in system pathes
         set(JGE_INTERNAL_INCLUDE_DIRS ${CMAKE_SOURCE_DIR}/thirdparty/psp/include ${TINYXML_INCLUDE_DIR} 
-            ${ZIPFS_INCLUDE_DIR} ${UNZIP_INCLUDE_DIR} ${BOOST_INCLUDE_DIRS} ${GIF_INCLUDE_DIR})
+            ${ZIPFS_INCLUDE_DIR} ${UNZIP_INCLUDE_DIR} ${BOOST_INCLUDE_DIRS} ${GIF_INCLUDE_DIR} ${PNG_INCLUDE_DIRS} )
         set(JGE_SOURCES ${JGE_generic_src} ${JGE_psp_src} ${JGE_hge_src})
         set(JGE_LINK_LIBRARIES ${TINYXML_LIBRARIES} ${ZIPFS_LIBRARY} ${UNZIP_LIRARY})
     else()
