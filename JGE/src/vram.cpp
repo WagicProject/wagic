@@ -75,7 +75,7 @@ static int __largest_block = __MEM_BLOCKS;
 static int __mem_free = __MEM_BLOCKS;
 
 
-inline void* vrelptr( void *ptr )
+void* vrelptr( void *ptr )
 {
         return (void*)((unsigned int)ptr & ~__MEM_START);
 }

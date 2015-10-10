@@ -32,11 +32,7 @@
 extern "C" {
 #endif
 
-//void* vrelptr( void *ptr );		// make a pointer relative to memory base address (ATTENTION: A NULL rel ptr is not illegal/invalid!)
-inline void* vrelptr(void *ptr)
-{
-	return (void*)((unsigned int)ptr & ~__MEM_START);
-};
+void* vrelptr( void *ptr );		// make a pointer relative to memory base address (ATTENTION: A NULL rel ptr is not illegal/invalid!)
 
 void* vabsptr( void *ptr );		// make a pointer absolute (default return type of valloc)
 
