@@ -52,7 +52,7 @@ macro(FindOrBuildBoost)
     if(PSP OR UNIX OR WIN32)
         #the psp build does not need more than a few headers
         #todo: remove from the repository
-        set(BOOST_INCLUDE_DIRS ${CMAKE_SOURCE_DIR}/thirdparty)    
+        set(BOOST_INCLUDE_DIRS ${CMAKE_SOURCE_DIR}/thirdparty/Boost)    
 #    elseif(WIN32)
         #set BOOST_ROOT to the root of boost
 #        set(Boost_USE_STATIC_LIBS ON)
