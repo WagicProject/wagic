@@ -10,6 +10,7 @@
 #include <pspaudio.h>
 #include <pspmp3.h>
 #include <psputility.h>
+#include <unistd.h>
 
 #else
 #define PSP_AUDIO_VOLUME_MAX 100
