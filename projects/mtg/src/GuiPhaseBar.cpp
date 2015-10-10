@@ -36,9 +36,9 @@ namespace
     const unsigned kPhases = NB_MTG_PHASES - 2; //there are two phases we do not show
 }
 
-void GuiPhaseBar::DrawGlyph(JQuad *inQuad, int phaseId, float x, float y, float scale)
+void GuiPhaseBar::DrawGlyph(JQuad *inQuad, int phaseId, float x, float y, float scale, float z)
 {
-    inQuad->SetTextureRect(phaseId * (kWidth + 1), 0, kWidth, kHeight);
+    inQuad->SetTextureRect(phaseId * (kWidth + 1), z, kWidth, kHeight);
     JRenderer::GetInstance()->RenderQuad(inQuad, x, y - scale * kWidth/2, 0.0f, scale, scale);
 }
 
@@ -110,7 +110,10 @@ void GuiPhaseBar::Render()
         //hint: sin(circPos + PI/2) = cos(circPos)
         const float glyphScale = float(zoomFactor * cosf(circPos) * 0.5f);
 
-        DrawGlyph(quad.get(), (displayedPhaseId - 2 + i + kPhases) % kPhases, 0, glyphY, glyphScale);
+        if (observer->currentPlayer && observer->currentPlayer->isAI() && !observer->currentPlayer->opponent()->isAI())
+            DrawGlyph(quad.get(), (displayedPhaseId - 2 + i + kPhases) % kPhases, 0, glyphY, glyphScale, 29);
+        else
+            DrawGlyph(quad.get(), (displayedPhaseId - 2 + i + kPhases) % kPhases, 0, glyphY, glyphScale, 0);
     }
 
     //print phase name

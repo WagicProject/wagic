@@ -106,7 +106,7 @@ GuiPlay::BattleField::BattleField() :
     attackers(0), height(0.0), red(0), colorFlow(0)
 {
 }
-const float GuiPlay::BattleField::HEIGHT = 80.0f;
+const float GuiPlay::BattleField::HEIGHT = 146.0f;
 void GuiPlay::BattleField::addAttacker(MTGCardInstance*)
 {
     ++attackers;
@@ -160,7 +160,10 @@ void GuiPlay::BattleField::Update(float dt)
 void GuiPlay::BattleField::Render()
 {
     if (height > 3)
-        JRenderer::GetInstance()->FillRect(44, SCREEN_HEIGHT / 2 + 10 - height / 2, 318, height, ARGB(127, red, 0, 0));
+        JRenderer::GetInstance()->FillRect(0, SCREEN_HEIGHT / 2 + 10 - height / 2, 480, height, ARGB(127, red, 0, 0));
+    //JQuadPtr fillblack = WResourceManager::Instance()->RetrieveTempQuad("fillblack.png", TEXTURE_SUB_5551);
+    //if (fillblack.get() && height > 3)//mask
+        //JRenderer::GetInstance()->RenderQuad(fillblack.get(), 0, 70.f, 0, 0.5f, 0.5f);
 }
 
 GuiPlay::GuiPlay(DuelLayers* view) :

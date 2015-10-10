@@ -11,7 +11,7 @@ GuiFrame::GuiFrame(GameObserver* observer)
         if (observer->getResourceManager()->GetTexture("wood.png"))
         {
             wood = observer->getResourceManager()->RetrieveQuad("wood.png", 0, 0, 0, 0);
-            wood->mHeight =32.f;
+            wood->mHeight = 32.f;
             wood->mWidth = 480.f;
         }
         else
