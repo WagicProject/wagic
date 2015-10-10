@@ -201,4 +201,7 @@ public:
     void FormatText(string &s, vector<string>& output);
 };
 
+#if defined (PSP)
+void SwizzlePlot(u8* out, PIXEL_TYPE color, int i, int j, unsigned int width);
+#endif
 #endif

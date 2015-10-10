@@ -247,7 +247,7 @@ WFBFont::~WFBFont()
 }
 
 #if defined (PSP)
-static void SwizzlePlot(u8* out, PIXEL_TYPE color, int i, int j, unsigned int width)
+void SwizzlePlot(u8* out, PIXEL_TYPE color, int i, int j, unsigned int width)
 {
     unsigned int rowblocks = (width >> 4);
 
