@@ -8,7 +8,9 @@ before_install:
   - export BUILD_ANDROID=NO
   - export BUILD_Qt=YES
   - export BUILD_MAC=YES
-  - sudo apt-get update -qq
+  - wget http://www.cmake.org/files/v3.3/cmake-3.3.2-Linux-i386.tar.gz
+  - tar -xzf cmake-3.3.2-Linux-i386.tar.gz
+  - sudo cp -fR cmake-3.3.2-Linux-i386/* /usr
 # Building for PSP here
   - if [ "$BUILD_PSP" == "YES" ]; then
       export PSPDEV="$TRAVIS_BUILD_DIR/opt/pspsdk" &&
