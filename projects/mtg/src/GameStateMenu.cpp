@@ -85,10 +85,14 @@ void GameStateMenu::Create()
     {
         for (int j = 0; j < 2; j++)
         {
-            sprintf(buf, "menuicons%d%d", i, j);
-            mIcons[n] = WResourceManager::Instance()->RetrieveQuad("menuicons.png", 2 + i * 36.0f, 2.0f + j * 36.0f, 32.0f, 32.0f, buf);
+            sprintf(buf, "miconslarge%d%d", i, j);
+            mIcons[n] = WResourceManager::Instance()->RetrieveQuad("miconslarge.png", 4 + i * 72.0f, 4.0f + j * 72.0f, 72.0f, 72.0f, buf);
             if (mIcons[n])
+            {
+                mIcons[n]->mHeight = 36.f;
+                mIcons[n]->mWidth = 36.f;
                 mIcons[n]->SetHotSpot(16, 16);
+            }
             n++;
         }
     }
@@ -141,10 +145,10 @@ void GameStateMenu::Start()
     WResourceManager::Instance()->ClearUnlocked();
 
     bgTexture = WResourceManager::Instance()->RetrieveTexture("menutitle.png", RETRIEVE_LOCK);
-    mBg = WResourceManager::Instance()->RetrieveQuad("menutitle.png", 0, 0, 256, 166); // Create background quad for rendering.
+    mBg = WResourceManager::Instance()->RetrieveQuad("menutitle.png", 0, 0, 0, 0); // Create background quad for rendering.
 
     if (mBg)
-        mBg->SetHotSpot(128, 50);
+        mBg->SetHotSpot(0, 0);
 
     if (MENU_STATE_MAJOR_MAINMENU == currentState)
         currentState = currentState | MENU_STATE_MINOR_FADEIN;
@@ -790,7 +794,7 @@ void GameStateMenu::Render()
         scroller->Render();
 
         if (mBg.get())
-            renderer->RenderQuad(mBg.get(), SCREEN_WIDTH / 2, 50);
+            renderer->RenderQuad(mBg.get(), (SCREEN_WIDTH/4)-6, 2, 0, 256 / mBg->mWidth, 166 / mBg->mHeight);
 
         RenderTopMenu();
 

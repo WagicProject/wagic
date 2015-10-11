@@ -483,6 +483,8 @@ void GuiCombat::Render()
             }
             else
             {
+                observer->opponent()->getIcon()->mHeight = 50.f;
+                observer->opponent()->getIcon()->mWidth = 35.f;
                 observer->opponent()->getIcon()->SetHotSpot(18, 25);
                 enemy_avatar.Render(observer->opponent()->getIcon().get());
             }
