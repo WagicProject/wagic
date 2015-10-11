@@ -1076,19 +1076,19 @@ void CardGui::RenderBig(MTGCard* card, const Pos& pos, bool thumb, bool noborder
             if(cardsetname == "2ED"||cardsetname == "RV"||cardsetname == "4ED"||cardsetname == "5ED"||cardsetname == "6ED"||cardsetname == "7ED"||cardsetname == "8ED"||cardsetname == "9ED"||cardsetname == "CHR")
             {
                 //like white border
-                renderer->FillRoundRect(x-92,pos.actY-128, (scale * quad->mWidth)-10, (scale * quad->mHeight)-11, 9.0f,ARGB(255,248,248,255));
+                renderer->FillRoundRect(x-92,pos.actY-130, (scale * quad->mWidth)-10, (scale * quad->mHeight)-11, 9.0f,ARGB(255,248,248,255));
                 //black thin line to simulate card edge
-                renderer->DrawRoundRect(x-92,pos.actY-128, (scale * quad->mWidth)-10, (scale * quad->mHeight)-11, 9.0f,ARGB(150,20,20,20));
+                renderer->DrawRoundRect(x-92,pos.actY-130, (scale * quad->mWidth)-10, (scale * quad->mHeight)-11, 9.0f,ARGB(150,20,20,20));
             }
             else
             {
                 //like black border
-                renderer->FillRoundRect(x-92,pos.actY-128, (scale * quad->mWidth)-10, (scale * quad->mHeight)-11, 9.0f,ARGB(255,10,10,10));
+                renderer->FillRoundRect(x-92,pos.actY-130, (scale * quad->mWidth)-10, (scale * quad->mHeight)-11, 9.0f,ARGB(255,10,10,10));
                 //white thin line to simulate card edge
-                renderer->DrawRoundRect(x-92,pos.actY-128, (scale * quad->mWidth)-10, (scale * quad->mHeight)-11, 9.0f,ARGB(50,240,240,240));
+                renderer->DrawRoundRect(x-92,pos.actY-130, (scale * quad->mWidth)-10, (scale * quad->mHeight)-11, 9.0f,ARGB(50,240,240,240));
             }
 		    //render card image
-            renderer->RenderQuad(quad.get(), x, pos.actY, pos.actT, scale-0.02f, scale-0.02f);
+            renderer->RenderQuad(quad.get(), x, pos.actY-2, pos.actT, scale-0.02f, scale-0.02f);
         }
         else
             renderer->RenderQuad(quad.get(), x, pos.actY, pos.actT, scale, scale);

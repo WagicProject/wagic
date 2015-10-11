@@ -1222,9 +1222,9 @@ void ActionStack::Render()
         //stack shadow
         //renderer->FillRoundRect(x0 - 7, y0+2, width + 17, height + 2, 9.0f, ARGB(128,0,0,0));
         //stack fill
-        renderer->FillRect(x0 - 7, y0+2, width + 17, height + 2, ARGB(245,10,10,10));
+        renderer->FillRect(x0 - 7, y0+2, width + 17, height + 14, ARGB(215,10,10,10));
         //stack border
-        renderer->DrawRect(x0 - 7, y0+2, width + 17, height + 2, ARGB(160,240,240,240));
+        renderer->DrawRect(x0 - 7, y0+2, width + 17, height + 14, ARGB(180,240,240,240));
 
         std::ostringstream stream;
         // WALDORF - changed "interrupt ?" to "Interrupt?". Don't display count down
