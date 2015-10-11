@@ -5,7 +5,7 @@ branches:
 
 before_install:
   - export BUILD_PSP=YES
-  - export BUILD_ANDROID=NO
+  - export BUILD_ANDROID=YES
   - export BUILD_Qt=YES
   - export BUILD_MAC=YES
   - sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu trusty universe"
