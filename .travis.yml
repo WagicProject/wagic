@@ -40,7 +40,8 @@ before_install:
   - if [ "$BUILD_SDL" == "YES" ]; then
       curl -O https://www.libsdl.org/release/SDL2-2.0.3.tar.gz &&
       tar -xzvf SDL2-2.0.3.tar.gz &&
-      mv SDL2-2.0.3 thirdparty/SDL2;
+      mv SDL2-2.0.3 thirdparty/SDL2 &&
+      export SDL2DIR="$TRAVIS_BUILD_DIR/thirdparty/SDL2";
     fi
 
 install:
