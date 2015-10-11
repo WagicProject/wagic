@@ -38,7 +38,7 @@ before_install:
     fi
 # Building for SDL here
   - if [ "$BUILD_SDL" == "YES" ]; then
-      sudo apt-get install -qq sdl2-dev &&
+      sudo apt-get install -qq sdl2-dev;
     fi
 
 install:
