@@ -71,6 +71,14 @@ if [ "$BUILD_Qt" = "YES" ]; then
     cd ../..
 fi
 
+# we're building a SDL version
+if [ "$BUILD_SDL" = "YES" ]; then
+	mkdir build_SDL
+	cd build_SDL
+	cmake -Dbackend_sdl=ON ..
+	make -j8
+	cd ..
+fi
 # Let's launch de Mac cross-compilation
 if [ "$BUILD_MAC" = "YES" ]; then
     ./tools/build-macos-script.sh

@@ -5,7 +5,8 @@ branches:
 
 before_install:
   - export BUILD_PSP=YES
-  - export BUILD_ANDROID=YES
+  - export BUILD_ANDROID=NO
+  - export BUILD_SDL=YES
   - export BUILD_Qt=YES
   - export BUILD_MAC=YES
   - sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu trusty universe"
@@ -35,12 +36,13 @@ before_install:
       sudo apt-get install -qq qt5-qmake qtbase5-dev qtdeclarative5-dev qttools5-dev qtmultimedia5-dev pulseaudio libpulse-dev &&
       export QMAKE="qmake -qt=qt5";
     fi
+# Building for SDL here
+  - if [ "$BUILD_SDL" == "YES" ]; then
+      sudo apt-get install -qq sdl2-dev &&
+    fi
 
 install:
 - sudo apt-get install --force-yes -qq libtinyxml-dev libjpeg-dev libpng-dev libgif-dev libz-dev libboost-system-dev libboost-thread-dev libboost-date-time-dev
-- curl -O https://www.libsdl.org/release/SDL2-2.0.3.tar.gz
-- tar -xzvf SDL2-2.0.3.tar.gz
-- mv SDL2-2.0.3 thirdparty/SDL2
 - if [ "$BUILD_PSP" == "YES" ]; then
     tar -x --xz -f sdk.lzma;
   fi
