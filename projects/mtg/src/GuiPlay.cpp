@@ -160,10 +160,10 @@ void GuiPlay::BattleField::Update(float dt)
 void GuiPlay::BattleField::Render()
 {
     if (height > 3)
-        JRenderer::GetInstance()->FillRect(0, SCREEN_HEIGHT / 2 + 10 - height / 2, 480, height, ARGB(127, red, 0, 0));
-    //JQuadPtr fillblack = WResourceManager::Instance()->RetrieveTempQuad("fillblack.png", TEXTURE_SUB_5551);
-    //if (fillblack.get() && height > 3)//mask
-        //JRenderer::GetInstance()->RenderQuad(fillblack.get(), 0, 70.f, 0, 0.5f, 0.5f);
+    {
+        JRenderer::GetInstance()->FillRect(0, SCREEN_HEIGHT / 2 + 8.5f - height / 2, 480, height, ARGB(127, red, 0, 0));
+        JRenderer::GetInstance()->DrawRect(0, SCREEN_HEIGHT / 2 + 8.5f - height / 2, 480, height, ARGB(255, 255, 165, 0));        
+    }
 }
 
 GuiPlay::GuiPlay(DuelLayers* view) :

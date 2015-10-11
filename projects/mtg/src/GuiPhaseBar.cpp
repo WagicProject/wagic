@@ -24,7 +24,7 @@
  };
  */
 
-const float GuiPhaseBar::zoom_big = (float)(1.5 * 1.4);
+const float GuiPhaseBar::zoom_big = (float)(1.5 * 1.2);
 const float GuiPhaseBar::zoom_small = 1.5;
 const float GuiPhaseBar::step = M_PI/6.0f;
 
