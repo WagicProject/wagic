@@ -80872,7 +80872,8 @@ toughness=1
 [/card]
 [card]
 name=River of Tears
-auto={t}:name(Add Mana) if type(land[fresh]|mybattlefield)~morethan~0 then add{B} else add{U}
+auto=aslongas(land[fresh]|mybattlefield) {T}:add{B} >0
+auto=aslongas(land[fresh]|mybattlefield) {T}:add{U} <1
 text={T}: Add {U} to your mana pool. If you played a land this turn, add {B} to your mana pool instead.
 type=Land
 [/card]
@@ -106988,21 +106989,27 @@ type=Artifact
 [/card]
 [card]
 name=Urza's Mine
-auto={t}:name(Add Mana) if type(Urza's Tower|mybattlefield)~morethan~0,type(Urza's Power Plant|mybattlefield)~morethan~0 then add{2} else add{1}
+alias=4192
+auto=this(variable{urzatron} >0) produceextra:{1}
+auto={T}:add{1}
 text={T}: Add {1} to your mana pool. If you control an Urza's Power-Plant and an Urza's Tower, add {2} to your mana pool instead.
 type=Land
 subtype=Urza's Mine
 [/card]
 [card]
 name=Urza's Power Plant
-auto={t}:name(Add Mana) if type(Urza's Tower|mybattlefield)~morethan~0,type(Urza's Mine|mybattlefield)~morethan~0 then add{2} else add{1}
+alias=4193
+auto=this(variable{urzatron} >0) produceextra:{1}
+auto={T}:add{1}
 text={T}: Add {1} to your mana pool. If you control an Urza's Mine and an Urza's Tower, add {2} to your mana pool instead.
 type=Land
 subtype=Urza's Power-Plant
 [/card]
 [card]
 name=Urza's Tower
-auto={t}:name(Add Mana) if type(Urza's Power Plant|mybattlefield)~morethan~0,type(Urza's Mine|mybattlefield)~morethan~0 then add{3} else add{1}
+alias=4194
+auto=this(variable{urzatron} >0) produceextra:{2}
+auto={T}:add{1}
 text={T}: Add {1} to your mana pool. If you control an Urza's Mine and an Urza's Power-Plant, add {3} to your mana pool instead.
 type=Land
 subtype=Urza's Tower

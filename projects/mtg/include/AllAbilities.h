@@ -688,6 +688,13 @@ private:
         {
             intValue = target->controller()->opponent()->game->hand->nb_cards;
         }
+        else if (s == "urzatron")//Urza lands
+        {
+            if(card->controller()->game->battlefield->hasAlias(4192) && card->controller()->game->battlefield->hasAlias(4193) && card->controller()->game->battlefield->hasAlias(4194))
+                intValue = 1;
+            else
+                intValue = 0;
+        }
         else if (s == "worshipped")//Worship
         {
             if(card->controller()->game->battlefield->hasType("creature"))

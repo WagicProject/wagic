@@ -103,6 +103,8 @@ class MTGGameZone {
 
     //returns true if one of the cards in the zone has the ability
    bool hasAbility(int ability);
+    //returns true if one of the cards in the zone has the alias
+   bool hasAlias(int alias);
 
    //returns true if one of the cards in the zone has the type
    bool hasType(const char * value);
