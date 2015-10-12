@@ -93,8 +93,21 @@ void Interruptible::Render(MTGCardInstance * source, JQuad * targetQuad, string 
     WFont * mFont = observer->getResourceManager()->GetWFont(Fonts::MAIN_FONT);
     mFont->SetColor(ARGB(255,255,255,255));
     mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
-
-    mFont->DrawString(_(action).c_str(), x + 35, y + GetVerticalTextOffset(), JGETEXT_LEFT);
+    
+    if (!targetQuad)
+    {
+        if(source->controller()->isHuman() && source->controller()->opponent()->isAI() && !alt2.size() && _(action).c_str() == source->name)
+			mFont->DrawString("You play:", x + 35, y-15 + GetVerticalTextOffset(), JGETEXT_LEFT);
+        else if(source->controller()->isAI() && source->controller()->opponent()->isHuman() && !alt2.size() && _(action).c_str() == source->name)
+			mFont->DrawString("Opponent plays:", x + 35, y-15 + GetVerticalTextOffset(), JGETEXT_LEFT);
+        mFont->DrawString(_(action).c_str(), x + 35, y + GetVerticalTextOffset(), JGETEXT_LEFT);
+        //mFont->DrawString(">>>", x + 35, y+5 + GetVerticalTextOffset(), JGETEXT_LEFT);
+    }
+    else
+	{
+        mFont->DrawString(">", x + 32, y + GetVerticalTextOffset(), JGETEXT_LEFT);
+        mFont->DrawString(_(action).c_str(), x + 75, y + GetVerticalTextOffset(), JGETEXT_LEFT);
+    }
     JRenderer * renderer = JRenderer::GetInstance();
     JQuadPtr quad = observer->getResourceManager()->RetrieveCard(source, CACHE_THUMB);
     if (!quad.get())
@@ -123,12 +136,12 @@ void Interruptible::Render(MTGCardInstance * source, JQuad * targetQuad, string 
         targetQuad->SetColor(ARGB(255,255,255,255));
         targetQuad->SetHotSpot(targetQuad->mWidth / 2, targetQuad->mHeight / 2);
         float scale = mHeight / targetQuad->mHeight;
-        renderer->RenderQuad(targetQuad, x + 150, y + ((mHeight - targetQuad->mHeight) / 2) + targetQuad->mHotSpotY, 0, scale, scale);
+        renderer->RenderQuad(targetQuad, x + 55, y + ((mHeight - targetQuad->mHeight) / 2) + targetQuad->mHotSpotY, 0, scale, scale);
         targetQuad->SetHotSpot(backupX, backupY);
     }
     else if (alt2.size())
     {
-        mFont->DrawString(_(alt2).c_str(), x + 120, y + GetVerticalTextOffset());
+        mFont->DrawString(_(alt2).c_str(), x + 35, y+15 + GetVerticalTextOffset());
     }
 }
 
@@ -1241,7 +1254,7 @@ void ActionStack::Render()
         mFont->DrawString(stream.str(), x0 + 5, currenty);
 
 //        static const float kIconVerticalOffset = 24;
-        static const float kIconHorizontalOffset = 9;
+        static const float kIconHorizontalOffset = 10;
         static const float kBeforeIconSpace = 10;
   
         //Render "interrupt?" text + possible actions
