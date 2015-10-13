@@ -8140,7 +8140,7 @@ toughness=2
 [/card]
 [card]
 name=Battleflight Eagle
-auto=target(creature|battlefield) 2/2 ueot && flying ueot
+auto=target(creature|battlefield) transforms((,newability[2/2],newability[flying])) ueot
 abilities=flying
 text=Flying -- When Battleflight Eagle enters the battlefield, target creature gets +2/+2 and gains flying until end of turn.
 mana={4}{W}
@@ -37095,6 +37095,7 @@ toughness=3
 [/card]
 [card]
 name=Fylgja
+target=creature
 auto=all(this) counter(0/0,4,Healing)
 auto={C(0/0,-1,Healing)}:prevent:1
 auto={2}{W}:all(this) counter(0/0,1,Healing)
@@ -45155,7 +45156,7 @@ toughness=5
 [/card]
 [card]
 name=Hellkite Hatchling
-auto=may target(<anyamount>other creature|mybattlefield) sacrifice && counter(1/1,1) all(this) && all(this) transforms((,flying,trample)) forever
+auto=may target(<anyamount>other creature|mybattlefield) sacrifice && counter(1/1,1) all(this) && all(this) transforms((,newability[flying],newability[trample])) forever
 text=Devour 1 (As this enters the battlefield, you may sacrifice any number of creatures. This creature enters the battlefield with that many +1/+1 counters on it.) -- Hellkite Hatchling has flying and trample if it devoured a creature.
 mana={2}{R}{G}
 type=Creature

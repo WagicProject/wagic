@@ -93,22 +93,27 @@ void Interruptible::Render(MTGCardInstance * source, JQuad * targetQuad, string 
     WFont * mFont = observer->getResourceManager()->GetWFont(Fonts::MAIN_FONT);
     mFont->SetColor(ARGB(255,255,255,255));
     mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
+    JRenderer * renderer = JRenderer::GetInstance();
     
     if (!targetQuad)
     {
-        if(source->controller()->isHuman() && source->controller()->opponent()->isAI() && !alt2.size() && _(action).c_str() == source->name)
-			mFont->DrawString("You play:", x + 35, y-15 + GetVerticalTextOffset(), JGETEXT_LEFT);
+        /*if(source->controller()->isHuman() && source->controller()->opponent()->isAI() && !alt2.size() && _(action).c_str() == source->name)
+			mFont->DrawString("You play ", x + 35, y-15 + GetVerticalTextOffset(), JGETEXT_LEFT);
         else if(source->controller()->isAI() && source->controller()->opponent()->isHuman() && !alt2.size() && _(action).c_str() == source->name)
-			mFont->DrawString("Opponent plays:", x + 35, y-15 + GetVerticalTextOffset(), JGETEXT_LEFT);
+			mFont->DrawString("Opponent plays ", x + 35, y-15 + GetVerticalTextOffset(), JGETEXT_LEFT);*/
         mFont->DrawString(_(action).c_str(), x + 35, y + GetVerticalTextOffset(), JGETEXT_LEFT);
-        //mFont->DrawString(">>>", x + 35, y+5 + GetVerticalTextOffset(), JGETEXT_LEFT);
     }
     else
 	{
+        renderer->FillRect(x-2,y-16 + GetVerticalTextOffset(), 73, 43, ARGB(235,10,10,10));
+        /*if(source->controller()->isHuman() && source->controller()->opponent()->isAI())
+            renderer->DrawRect(x-2,y-16 + GetVerticalTextOffset(), 73, 43, ARGB(245,0,255,0));
+        else
+            renderer->DrawRect(x-2,y-16 + GetVerticalTextOffset(), 73, 43, ARGB(245,255,0,0));*/
         mFont->DrawString(">", x + 32, y + GetVerticalTextOffset(), JGETEXT_LEFT);
         mFont->DrawString(_(action).c_str(), x + 75, y + GetVerticalTextOffset(), JGETEXT_LEFT);
     }
-    JRenderer * renderer = JRenderer::GetInstance();
+
     JQuadPtr quad = observer->getResourceManager()->RetrieveCard(source, CACHE_THUMB);
     if (!quad.get())
         quad = CardGui::AlternateThumbQuad(source);
@@ -1235,10 +1240,14 @@ void ActionStack::Render()
         //stack shadow
         //renderer->FillRoundRect(x0 - 7, y0+2, width + 17, height + 2, 9.0f, ARGB(128,0,0,0));
         //stack fill
-        renderer->FillRect(x0 - 7, y0+2, width + 17, height + 14, ARGB(215,10,10,10));
+        renderer->FillRect(x0 - 7, y0+2, width + 17, height + 14, ARGB(225,5,5,5));
+        //stack highlight
+        renderer->FillRect(x0 - 6, y0+3, width + 15, 30, ARGB(255,89,89,89));
+        //another border
+        renderer->DrawRect(x0 - 6, y0+33, width + 15, height - 18, ARGB(255,89,89,89));
         //stack border
-        renderer->DrawRect(x0 - 7, y0+2, width + 17, height + 14, ARGB(180,240,240,240));
-
+        renderer->DrawRect(x0 - 7, y0+2, width + 17, height + 14, ARGB(255,240,240,240));
+		
         std::ostringstream stream;
         // WALDORF - changed "interrupt ?" to "Interrupt?". Don't display count down
         // seconds if the user disables auto progressing interrupts by setting the seconds
@@ -1251,11 +1260,11 @@ void ActionStack::Render()
         else
             stream << _(kInterruptMessageString) << " " << static_cast<int>(timer);
 
-        mFont->DrawString(stream.str(), x0 + 5, currenty);
+        mFont->DrawString(stream.str(), x0 + 5, currenty - 2);
 
 //        static const float kIconVerticalOffset = 24;
         static const float kIconHorizontalOffset = 10;
-        static const float kBeforeIconSpace = 10;
+        static const float kBeforeIconSpace = 12;
   
         //Render "interrupt?" text + possible actions
         {
@@ -1264,25 +1273,25 @@ void ActionStack::Render()
             
             if (gModRules.game.canInterrupt())
             {
-                renderer->RenderQuad(pspIcons[7].get(), currentx, kIconVerticalOffset, 0, kGamepadIconSize, kGamepadIconSize);
+                renderer->RenderQuad(pspIcons[7].get(), currentx, kIconVerticalOffset - 2, 0, kGamepadIconSize, kGamepadIconSize);
                 currentx+= kIconHorizontalOffset;
-                mFont->DrawString(_(kInterruptString), currentx, kIconVerticalOffset - 6);
+                mFont->DrawString(_(kInterruptString), currentx, kIconVerticalOffset - 8);
                 currentx+= mFont->GetStringWidth(_(kInterruptString).c_str()) + kBeforeIconSpace;
             }
 
             noBtnXOffset = static_cast<int>(currentx);
             
-            renderer->RenderQuad(pspIcons[4].get(), currentx, kIconVerticalOffset, 0, kGamepadIconSize, kGamepadIconSize);
+            renderer->RenderQuad(pspIcons[4].get(), currentx, kIconVerticalOffset - 2, 0, kGamepadIconSize, kGamepadIconSize);
             currentx+= kIconHorizontalOffset;
-            mFont->DrawString(_(kNoString), currentx, kIconVerticalOffset - 6);
+            mFont->DrawString(_(kNoString), currentx, kIconVerticalOffset - 8);
             currentx+= mFont->GetStringWidth(_(kNoString).c_str()) + kBeforeIconSpace;
 
             noToAllBtnXOffset = static_cast<int>(currentx);
             if (mObjects.size() > 1)
             {
-                renderer->RenderQuad(pspIcons[6].get(), currentx, kIconVerticalOffset, 0, kGamepadIconSize, kGamepadIconSize);
+                renderer->RenderQuad(pspIcons[6].get(), currentx, kIconVerticalOffset - 2, 0, kGamepadIconSize, kGamepadIconSize);
                 currentx+= kIconHorizontalOffset;
-                mFont->DrawString(_(kNoToAllString), currentx, kIconVerticalOffset - 6);
+                mFont->DrawString(_(kNoToAllString), currentx, kIconVerticalOffset - 8);
                 currentx+= mFont->GetStringWidth(_(kNoToAllString).c_str()) + kBeforeIconSpace;
             }
             
