@@ -764,6 +764,18 @@ bool MTGGameZone::hasAbility(int ability)
     return false;
 }
 
+bool MTGGameZone::hasAlias(int alias)
+{
+    for (int i = 0; i < (nb_cards); i++)
+    {
+        if (cards[i]->alias == alias)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
 int MTGGameZone::seenThisTurn(TargetChooser * tc, int castMethod, bool lastTurn)
 {
     //The following 2 lines modify the passed TargetChooser. Call this function with care :/
