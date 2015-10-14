@@ -39,6 +39,7 @@ bool GameApp::HasMusic = true;
 JMusic * GameApp::music = NULL;
 string GameApp::currentMusicFile = "";
 string GameApp::systemError = "";
+char GameApp::mynbcardsStr[512] = {0};
 
 vector<JQuadPtr > manaIcons;
 

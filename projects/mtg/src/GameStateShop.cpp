@@ -5,6 +5,7 @@
 
 #include <JRenderer.h>
 #include "GameStateShop.h"
+#include "GameStateMenu.h"
 #include "GameApp.h"
 #include "MTGDeck.h"
 #include "MTGPack.h"
@@ -840,6 +841,7 @@ void GameStateShop::ButtonPressed(int controllerId, int controlId)
         mStage = STAGE_SHOP_SHOP;
         mParent->DoTransition(TRANSITION_FADE, GAME_STATE_MENU);
         save();
+        GameStateMenu::genNbCardsStr();
         break;
     case 14:
         mStage = STAGE_SHOP_TASKS;
