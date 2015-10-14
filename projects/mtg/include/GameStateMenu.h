@@ -24,7 +24,6 @@ private:
     float mCreditsYPos;
     int currentState;
     int mVolume;
-    char nbcardsStr[400];
     vector<string> langs;
     vector<string> primitives;
 
@@ -46,7 +45,6 @@ private:
     bool langChoices;
     void runTest(); //!!
     void listPrimitives();
-    void genNbCardsStr(); //computes the contents of nbCardsStr
     void ensureMGuiController(); //creates the MGuiController if it doesn't exist
     string loadRandomWallpaper(); //loads a list of string of textures that can be randolmy shown on the loading screen
 
@@ -66,6 +64,7 @@ public:
 
     int nextSetFolder(const string & root, const string & file); // Retrieves the next directory to have matching file
     void createUsersFirstDeck(int setId);
+    static void genNbCardsStr(); //computes the contents of nbCardsStr
     virtual ostream& toString(ostream& out) const;
 
     enum

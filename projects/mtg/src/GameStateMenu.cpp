@@ -164,22 +164,22 @@ void GameStateMenu::genNbCardsStr()
     PlayerData * playerdata = NEW PlayerData(MTGCollection());
     size_t totalUnique =  MTGCollection()->primitives.size();
     size_t totalPrints = MTGCollection()->totalCards();
-
+	
     if (totalUnique != totalPrints)
     {
         if (playerdata && !options[Options::ACTIVE_PROFILE].isDefault())
-            sprintf(nbcardsStr, _("%s: %i cards (%i) (%i unique)").c_str(), options[Options::ACTIVE_PROFILE].str.c_str(),
+            sprintf(GameApp::mynbcardsStr, _("%s: %i cards (%i) (%i unique)").c_str(), options[Options::ACTIVE_PROFILE].str.c_str(),
                             playerdata->collection->totalCards(), totalPrints,totalUnique);
         else
-            sprintf(nbcardsStr, _("%i cards (%i unique)").c_str(),totalPrints,totalUnique);
+            sprintf(GameApp::mynbcardsStr, _("%i cards (%i unique)").c_str(),totalPrints,totalUnique);
     }
     else
     {
         if (playerdata && !options[Options::ACTIVE_PROFILE].isDefault())
-            sprintf(nbcardsStr, _("%s: %i cards (%i)").c_str(), options[Options::ACTIVE_PROFILE].str.c_str(),
+            sprintf(GameApp::mynbcardsStr, _("%s: %i cards (%i)").c_str(), options[Options::ACTIVE_PROFILE].str.c_str(),
                             playerdata->collection->totalCards(), totalPrints);
         else
-            sprintf(nbcardsStr, _("%i cards").c_str(),totalPrints);
+            sprintf(GameApp::mynbcardsStr, _("%i cards").c_str(),totalPrints);
     }
 
     SAFE_DELETE(playerdata);
@@ -730,7 +730,7 @@ void GameStateMenu::RenderTopMenu()
     mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
     mFont->SetColor(ARGB(128,255,255,255));
     mFont->DrawString(GAME_VERSION, rightTextPos, 5, JGETEXT_RIGHT);
-    mFont->DrawString(nbcardsStr, leftTextPos, 5);
+    mFont->DrawString(GameApp::mynbcardsStr, leftTextPos, 5);
     renderer->FillRect(leftTextPos, 26, 104, 8, ARGB(255, 100, 90, 60));
     renderer->FillRect(leftTextPos + 2, 28, (float)(gamePercentComplete()), 4, ARGB(255,220,200, 125));
     char buf[512];
@@ -964,7 +964,6 @@ ostream& GameStateMenu::toString(ostream& out) const
                  << " ; mCreditsYPos : " << mCreditsYPos
                  << " ; currentState : " << currentState
                  << " ; mVolume : " << mVolume
-                 << " ; nbcardsStr : " << nbcardsStr
                  << " ; mCurrentSetName : " << mCurrentSetName
                  << " ; mCurrentSetFileName : " << mCurrentSetFileName
                  << " ; mReadConf : " << mReadConf

@@ -1,6 +1,7 @@
 #include "PrecompiledHeader.h"
 
 #include "GameStateOptions.h"
+#include "GameStateMenu.h"
 #include "GameApp.h"
 #include "OptionItem.h"
 #include "SimpleMenu.h"
@@ -167,6 +168,7 @@ void GameStateOptions::Update(float dt)
                 JSoundSystem::GetInstance()->SetMusicVolume(options[Options::MUSICVOLUME].number);
                 mParent->DoTransition(TRANSITION_FADE, GAME_STATE_MENU);
                 mState = SHOW_OPTIONS;
+                GameStateMenu::genNbCardsStr();
                 break;
             case WGuiBase::CONFIRM_NEED:
                 optionsTabs->yieldFocus();
