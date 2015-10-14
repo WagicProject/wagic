@@ -90850,7 +90850,7 @@ toughness=1
 [/card]
 [card]
 name=Skywise Teachings
-auto=@movedto(*[-creature]|mystack):pay[{1}{U}] name(Pay 1U mana) token(Djinn Monk,Creature Djinn Monk,2/2,flying,blue) controller
+auto=@movedto(*[-creature]|mystack):pay({1}{U}) name(Pay 1U mana) token(Djinn Monk,Creature Djinn Monk,2/2,flying,blue) controller
 text=Whenever you cast a noncreature spell, you may pay {1}{U}. If you do, put a 2/2 blue Djinn Monk creature token with flying onto the battlefield.
 mana={3}{U}
 type=Enchantment

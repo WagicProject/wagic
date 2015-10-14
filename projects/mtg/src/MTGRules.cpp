@@ -2518,16 +2518,14 @@ int MTGLegendRule::added(MTGCardInstance * card)
         MultiAbility * multi = NEW MultiAbility(game, game->mLayers->actionLayer()->getMaxId(), card, card, NULL);
         for(unsigned int i = 0;i < oldCards.size();i++)
         {
-            AABuryCard *a = NEW AABuryCard(game, game->mLayers->actionLayer()->getMaxId(), card, oldCards[i]);
-            a->menu = "Keep New";
+            AAMover *a = NEW AAMover(game, game->mLayers->actionLayer()->getMaxId(), card, oldCards[i],"ownergraveyard","Keep New");
             a->oneShot = true;
             multi->Add(a);
         }
         multi->oneShot = 1;
         MTGAbility * a1 = multi;
         selection.push_back(a1);
-        AABuryCard *b = NEW AABuryCard(game, game->mLayers->actionLayer()->getMaxId(), card, card);
-        b->menu = "Keep Old";
+        AAMover *b = NEW AAMover(game, game->mLayers->actionLayer()->getMaxId(), card, card,"ownergraveyard","Keep Old");
         b->oneShot = true;
         MTGAbility * b1 = b;
         selection.push_back(b1);
