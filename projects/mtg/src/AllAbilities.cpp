@@ -2566,7 +2566,7 @@ int AACloner::resolve()
             if(_target->pbonus > 0)
                 spell->source->power = _target->power - _target->pbonus;
             else
-                spell->source->power = _target->power + _target->pbonus;
+                spell->source->power = _target->power + abs(_target->pbonus);
             if(_target->tbonus > 0)
             {
                 spell->source->toughness = _target->toughness - _target->tbonus;
@@ -2574,8 +2574,8 @@ int AACloner::resolve()
             }
             else
             {
-                spell->source->toughness = _target->toughness + _target->tbonus;
-                spell->source->life = _target->toughness + _target->tbonus;
+                spell->source->toughness = _target->toughness + abs(_target->tbonus);
+                spell->source->life = _target->toughness + abs(_target->tbonus);
             }
         }
         list<int>::iterator it;
