@@ -5271,7 +5271,7 @@ void ABlink::returnCardIntoPlay(MTGCardInstance* _target) {
             return;
         }
 
-        MTGGameZone * inplay = spell->source->owner->game->inPlay;
+        /*MTGGameZone * inplay = spell->source->owner->game->inPlay;
         spell->source->target = NULL;
         for (int i = game->getRandomGenerator()->random()%inplay->nb_cards;;i = game->getRandomGenerator()->random()%inplay->nb_cards)
         {
@@ -5285,7 +5285,16 @@ void ABlink::returnCardIntoPlay(MTGCardInstance* _target) {
                 this->forceDestroy = 1;
                 return;
             }
-        }
+        }*/
+        //replaced with castcard(putinplay)
+        MTGAbility *a = NEW AACastCard(game, game->mLayers->actionLayer()->getMaxId(), Blinker, Blinker,false,false,false,"","Return to Play",false,true);
+        a->oneShot = false;
+        a->canBeInterrupted = false;
+        a->addToGame();
+        SAFE_DELETE(spell);
+        SAFE_DELETE(tc);
+        this->forceDestroy = 1;
+        return;
     }
     spell->source->power = spell->source->origpower;
     spell->source->toughness = spell->source->origtoughness;
