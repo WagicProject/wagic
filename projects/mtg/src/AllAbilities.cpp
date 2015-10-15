@@ -2566,7 +2566,7 @@ int AACloner::resolve()
             if(_target->pbonus > 0)
                 spell->source->power = _target->power - _target->pbonus;
             else
-                spell->source->power = _target->power + _target->pbonus;
+                spell->source->power = _target->power + abs(_target->pbonus);
             if(_target->tbonus > 0)
             {
                 spell->source->toughness = _target->toughness - _target->tbonus;
@@ -2574,8 +2574,8 @@ int AACloner::resolve()
             }
             else
             {
-                spell->source->toughness = _target->toughness + _target->tbonus;
-                spell->source->life = _target->toughness + _target->tbonus;
+                spell->source->toughness = _target->toughness + abs(_target->tbonus);
+                spell->source->life = _target->toughness + abs(_target->tbonus);
             }
         }
         list<int>::iterator it;
@@ -5271,7 +5271,7 @@ void ABlink::returnCardIntoPlay(MTGCardInstance* _target) {
             return;
         }
 
-        MTGGameZone * inplay = spell->source->owner->game->inPlay;
+        /*MTGGameZone * inplay = spell->source->owner->game->inPlay;
         spell->source->target = NULL;
         for (int i = game->getRandomGenerator()->random()%inplay->nb_cards;;i = game->getRandomGenerator()->random()%inplay->nb_cards)
         {
@@ -5285,7 +5285,16 @@ void ABlink::returnCardIntoPlay(MTGCardInstance* _target) {
                 this->forceDestroy = 1;
                 return;
             }
-        }
+        }*/
+        //replaced with castcard(putinplay)
+        MTGAbility *a = NEW AACastCard(game, game->mLayers->actionLayer()->getMaxId(), Blinker, Blinker,false,false,false,"","Return to Play",false,true);
+        a->oneShot = false;
+        a->canBeInterrupted = false;
+        a->addToGame();
+        SAFE_DELETE(spell);
+        SAFE_DELETE(tc);
+        this->forceDestroy = 1;
+        return;
     }
     spell->source->power = spell->source->origpower;
     spell->source->toughness = spell->source->origtoughness;
