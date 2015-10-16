@@ -5642,7 +5642,7 @@ void AACastCard::Update(float dt)
        toCheck->bypassTC = true;
        TargetChooserFactory tcf(game);
        TargetChooser * atc = tcf.createTargetChooser(toCheck->spellTargetType,toCheck);
-       if (toCheck->hasType(Subtypes::TYPE_AURA) && !atc->validTargetsExist())
+       if ((toCheck->hasType(Subtypes::TYPE_AURA) && !atc->validTargetsExist())||toCheck->isToken)
        {
            processed = true;
            this->forceDestroy = 1;
