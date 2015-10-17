@@ -322,6 +322,7 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
 
     int doCopy = 1;
     bool shufflelibrary = card->basicAbilities[(int)Constants::SHUFFLELIBRARYDEATH];
+    bool inplaytoinplay = false;
 	bool ripToken = false;
 	if (g->players[0]->game->battlefield->hasName("Rest in Peace")||g->players[1]->game->battlefield->hasName("Rest in Peace"))
         ripToken = true;
@@ -362,6 +363,8 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
                     == g->players[1]->game->inPlay))
     {
         doCopy = 0;
+        asCopy = true;//don't send zone change event so it will not destroy the GUI when multiple switching of control...
+        inplaytoinplay = true;//try sending different event...
     }
 
     if (!(copy = from->removeCard(card, doCopy)))
@@ -432,6 +435,11 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
 
     WEvent * e = NEW WEventZoneChange(copy, from, to);
     g->receiveEvent(e);
+    }
+    if(inplaytoinplay)
+    {
+    WEvent * ep = NEW WEventCardControllerChange(copy);
+    g->receiveEvent(ep);
     }
     return ret;
 

@@ -279,6 +279,12 @@ struct WEventCardUnattached : public WEventCardUpdate {
 	virtual Targetable * getTarget(int target);
 };
 
+//event when card moves from player/opponent battlefield to player/opponent battlefield
+struct WEventCardControllerChange : public WEventCardUpdate {
+  WEventCardControllerChange(MTGCardInstance * card);
+	virtual Targetable * getTarget(int target);
+};
+
 std::ostream& operator<<(std::ostream&, const WEvent&);
 
 #endif
