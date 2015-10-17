@@ -292,7 +292,7 @@ void CardGui::Render()
 
     }
     JQuadPtr mor;
-    if(card->isMorphed && !alternate)
+    if((card->isMorphed||(card->name == "Morph" && card->isACopier)) && !alternate)
     {
         mor = card->getObserver()->getResourceManager()->RetrieveTempQuad("morph.jpg");
         if (mor &&  mor->mTex) {

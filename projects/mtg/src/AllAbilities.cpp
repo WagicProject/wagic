@@ -390,19 +390,25 @@ int AACopier::resolve()
     MTGCardInstance * _target = (MTGCardInstance *) target;
     if (_target)
     {
-        if(_target->isACopier)
+        MTGCard* clone = MTGCollection()->getCardById(_target->copiedID);
+        MTGCardInstance * myClone = NEW MTGCardInstance(clone, source->controller()->game);
+        source->copy(myClone);
+        source->isACopier = true;
+        source->copiedID = _target->copiedID;
+        source->modifiedbAbi = _target->modifiedbAbi;
+        source->origbasicAbilities = _target->origbasicAbilities;
+        if(_target->isMorphed)
         {
-            MTGCard* clone = MTGCollection()->getCardById(_target->copiedID);
-            MTGCardInstance * myClone = NEW MTGCardInstance(clone, source->controller()->game);
-            source->copy(myClone);
-            source->isACopier = true;
-            source->copiedID = _target->copiedID;
-        }
-        else
-        {
-            source->copy(_target);
-            source->isACopier = true;
-            source->copiedID = _target->getId();
+            source->power = 2;
+            source->life = 2;
+            source->toughness = 2;
+            source->setColor(0,1);
+            source->name = "Morph";
+            source->types.clear();
+            string cre = "Creature";
+            source->setType(cre.c_str());
+            source->basicAbilities.reset();
+            source->getManaCost()->resetCosts();
         }
         return 1;
     }
@@ -5642,7 +5648,7 @@ void AACastCard::Update(float dt)
        toCheck->bypassTC = true;
        TargetChooserFactory tcf(game);
        TargetChooser * atc = tcf.createTargetChooser(toCheck->spellTargetType,toCheck);
-       if (toCheck->hasType(Subtypes::TYPE_AURA) && !atc->validTargetsExist())
+       if ((toCheck->hasType(Subtypes::TYPE_AURA) && !atc->validTargetsExist())||toCheck->isToken)
        {
            processed = true;
            this->forceDestroy = 1;

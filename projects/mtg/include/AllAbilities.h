@@ -1440,7 +1440,7 @@ public:
     }
 };
 
-//targetted trigger
+//counter trigger
 class TrCounter: public Trigger
 {
 public:
