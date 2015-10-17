@@ -165,6 +165,11 @@ WEventCardUnattached::WEventCardUnattached(MTGCardInstance * card) :
 {
 }
 
+WEventCardControllerChange::WEventCardControllerChange(MTGCardInstance * card) :
+    WEventCardUpdate(card)
+{
+}
+
 WEventCombatStepChange::WEventCombatStepChange(CombatStep step) :
     WEvent(), step(step)
 {
@@ -314,6 +319,12 @@ Targetable * WEventcardDraw::getTarget(Player * player)
 }
 
 Targetable * WEventCardUnattached::getTarget(int target)
+{
+    if (target) return card;
+    return NULL;
+}
+
+Targetable * WEventCardControllerChange::getTarget(int target)
 {
     if (target) return card;
     return NULL;
