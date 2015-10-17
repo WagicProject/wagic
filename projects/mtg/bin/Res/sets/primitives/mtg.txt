@@ -18524,7 +18524,7 @@ subtype=Aura
 [card]
 name=Conquering Manticore
 abilities=flying
-auto=target(creature|opponentbattlefield) transforms((,newability[moveTo(opponentbattlefield)],newability[phaseaction[endofturn sourceinplay] moveTo(ownerbattlefield)],newability[untap],haste)) ueot once
+auto=name(gain control) target(creature|opponentbattlefield) transforms((,newability[moveTo(opponentbattlefield)],newability[phaseaction[endofturn sourceinplay] moveTo(ownerbattlefield)],newability[untap],haste)) ueot once
 text=Flying -- When Conquering Manticore enters the battlefield, gain control of target creature an opponent controls until end of turn. Untap that creature. It gains haste until end of turn.
 mana={4}{R}{R}
 type=Creature
@@ -29970,15 +29970,10 @@ toughness=3
 [/card]
 [card]
 name=Emrakul, the Aeons Torn
-abilities=nofizzle,flying
+abilities=nofizzle,flying,protectionfromcoloredspells
 auto=if casted(this) then turns:+1 controller
 autograveyard=moveTo(ownerlibrary) all(*|ownergraveyard) && shuffle
 auto=@combat(attacking) source(this):name(Annihilate) ability$!name(sacrifice 6 permanents) notatarget(<6>*|mybattlefield) sacrifice!$ opponent
-auto=protection from(*[white]|stack)
-auto=protection from(*[blue]|stack)
-auto=protection from(*[black]|stack)
-auto=protection from(*[red]|stack)
-auto=protection from(*[green]|stack)
 text=Emrakul, the Aeons Torn can't be countered. -- When you cast Emrakul, take an extra turn after this one. -- Flying, protection from colored spells, annihilator 6 -- When Emrakul is put into a graveyard from anywhere, its owner shuffles his or her graveyard into his or her library.
 mana={15}
 type=Legendary Creature
@@ -50645,6 +50640,7 @@ toughness=3
 [card]
 name=Jokulmorder
 abilities=trample,doesnotuntap
+auto=tap
 auto=aslongas(land|mybattlefield) choice target(<5>land|mybattlefield) sacrifice oneshot >4
 auto=choice sacrifice all(this)
 auto=@movedTo(island|mybattlefield):untap
@@ -74514,8 +74510,8 @@ type=Instant
 [card]
 name=Primal Clay
 auto=choice name(enter as 3/3) transforms((,setpower=3,settoughness=3)) forever
-auto=choice name(enter as 2/2 fly) transforms((,flying,setpower=2,settoughness=2)) forever
-auto=choice name(enter as a wall) transforms((Wall,defender,setpower=1,settoughness=6)) forever
+auto=choice name(enter as 2/2 fly) transforms((,newability[flying],setpower=2,settoughness=2)) forever
+auto=choice name(enter as a wall) transforms((Wall,newability[defender],setpower=1,settoughness=6)) forever
 text=As Primal Clay enters the battlefield, it becomes your choice of a 3/3 artifact creature, a 2/2 artifact creature with flying, or a 1/6 Shapeshifter Wall artifact creature with defender.
 mana={4}
 type=Artifact Creature
@@ -111749,7 +111745,7 @@ type=Instant
 [card]
 name=Warrior's Lesson
 target=<upto:2>creature|mybattlefield
-auto=transforms((,newability[@combatdamaged(opponent) from(this):draw:1 controller])) ueot
+auto=transforms((,newability[@combatdamaged(player) from(this):draw:1 controller])) ueot
 text=Until end of turn, up to two target creatures you control each gain "Whenever this creature deals combat damage to a player, draw a card."
 mana={G}
 type=Instant

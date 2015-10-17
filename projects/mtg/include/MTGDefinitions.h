@@ -231,7 +231,8 @@ class Constants
       NOLIFEGAINOPPONENT = 113,
       AURAWARD = 114,
       MADNESS = 115,
-      NB_BASIC_ABILITIES = 116,
+      PROTECTIONFROMCOLOREDSPELLS = 116,
+      NB_BASIC_ABILITIES = 117,
 
 
     RARITY_S = 'S',   //Special Rarity
