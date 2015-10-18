@@ -859,7 +859,7 @@ bool TargetChooser::canTarget(Targetable * target, bool withoutProtections)
             if (card->protectedAgainst(targetter)) return targetter->bypassTC;
             if (card->CantBeTargetby(targetter)) return targetter->bypassTC;
             if ((targetter->controller() != card->controller()) && card->has(Constants::OPPONENTSHROUD)) return targetter->bypassTC;
-	        if (card->has(Constants::PROTECTIONFROMCOLOREDSPELLS))
+            if (card->has(Constants::PROTECTIONFROMCOLOREDSPELLS))
             {//a spell that has no target=criteria means it's not targetted unless its a workaround card...
                 if((targetter->spellTargetType.size()) && (targetter->hasColor(1)||targetter->hasColor(2)||targetter->hasColor(3)||targetter->hasColor(4)||targetter->hasColor(5)))
                     return targetter->bypassTC;
