@@ -144,7 +144,8 @@ const char* Constants::MTGBasicAbilities[] = {
     "nolifegain",
     "nolifegainopponent",
     "auraward",
-    "madness"
+    "madness",
+    "protectionfromcoloredspells"
 };
 
 map<string,int> Constants::MTGBasicAbilitiesMap;

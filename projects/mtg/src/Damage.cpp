@@ -78,6 +78,11 @@ int Damage::resolve()
             damage = 0;
         //rulings = 10/4/2004	The damage prevention ability works even if it has no counters, as long as some effect keeps its toughness above zero.
         //these creature are essentially immune to damage. however 0/-1 effects applied through lords or counters can kill them.
+        if ((_target)->has(Constants::PROTECTIONFROMCOLOREDSPELLS))
+        {//damage is prevented as long as the damage source is a spell on the stack...
+            if((source->currentZone == source->controller()->opponent()->game->stack||source->currentZone == source->controller()->game->stack) && (source->hasColor(1)||source->hasColor(2)||source->hasColor(3)||source->hasColor(4)||source->hasColor(5)))
+                damage = 0;
+        }
         if ((_target)->has(Constants::PHANTOM))
         {
             damage = 0;
