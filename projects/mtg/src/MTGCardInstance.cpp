@@ -65,6 +65,8 @@ MTGCardInstance::MTGCardInstance(MTGCard * card, MTGPlayerCards * arg_belongs_to
     LKItoughness = toughness;
     cardistargetted = 0;
     cardistargetter = 0;
+    opponentTrigger = 0;
+    controllerTrigger = 0;
 }
 
   MTGCardInstance * MTGCardInstance::createSnapShot()

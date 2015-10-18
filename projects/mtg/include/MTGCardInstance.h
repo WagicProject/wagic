@@ -253,6 +253,8 @@ public:
     int cardistargetted;
     bool isTargetter();
     int cardistargetter;
+    int opponentTrigger;
+    int controllerTrigger;
 
     void eventattacked();
     void eventattackedAlone();

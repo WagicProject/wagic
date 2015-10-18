@@ -411,6 +411,20 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
             }
         }
 
+        check = restriction[i].find("opponenttrigger");
+        if(check != string::npos)
+        {
+            if(!card->opponentTrigger)
+                return 0;
+        }
+
+        check = restriction[i].find("controllertrigger");
+        if(check != string::npos)
+        {
+            if(!card->controllerTrigger)
+                return 0;
+        }
+
         check = restriction[i].find("discarded");
         if(check != string::npos)
         {

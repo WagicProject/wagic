@@ -1207,7 +1207,10 @@ public:
         WEventcardDraw * e = dynamic_cast<WEventcardDraw *> (event);
         if (!e) return 0;
         if (!tc->canTarget(e->player)) return 0;
-
+        if(source->controller() == e->player)
+            source->controllerTrigger = 1;
+        else
+            source->opponentTrigger = 1;
         return 1;
     }
 
@@ -1315,6 +1318,18 @@ public:
         if (type == 2 && e->damage->typeOfDamage == Damage::DAMAGE_COMBAT) return 0;
         e->damage->target->thatmuch = e->damage->damage;
         e->damage->source->thatmuch = e->damage->damage;
+        if (e->damage->target->type_as_damageable == Damageable::DAMAGEABLE_PLAYER)
+        {
+            Player * p = (Player *) e->damage->target;
+            if(p && p == source->controller()->opponent())
+            {
+                source->opponentTrigger = 1;
+            }
+            else
+            {
+                source->controllerTrigger = 1;
+            }
+        }
         this->source->thatmuch = e->damage->damage;
         triggeredTurn = game->turn;
 
@@ -1354,6 +1369,10 @@ public:
         if (type == 1 && (e->amount > 0)) return 0;
         if (type == 0 && (e->amount < 0)) return 0;
         e->player->thatmuch = abs(e->amount);
+        if(source->controller() == e->player)
+            source->controllerTrigger = 1;
+        else
+            source->opponentTrigger = 1;
         this->source->thatmuch = abs(e->amount);
 
         return 1;
