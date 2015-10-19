@@ -69828,7 +69828,7 @@ toughness=1
 name=Orgg
 abilities=trample
 auto=cantbeblockerof(creature[white;power>=3])
-auto=aslongas(creature[power>=3;-tapped]|opponentbattlefield]) cantattack
+auto=aslongas(creature[power>=3;-tapped]|opponentbattlefield) cantattack
 text=Trample -- Orgg can't attack if defending player controls an untapped creature with power 3 or greater. -- Orgg can't block creatures with power 3 or greater.
 mana={3}{R}{R}
 type=Creature
