@@ -593,25 +593,15 @@ void GameObserver::gameStateBasedEffects()
 	/////////////////////////////////////
     for (int d = 0; d < 2; d++)
     {
-        MTGGameZone * dzones[] = { players[d]->game->inPlay, players[d]->game->graveyard, players[d]->game->hand, players[d]->game->library };
-        for (int k = 0; k < 4; k++)
-        {
-            MTGGameZone * zone = dzones[k];
-            if (mLayers->stackLayer()->count(0, NOT_RESOLVED) == 0)
+        MTGGameZone * zone = players[d]->game->inPlay;
+        if (mLayers->stackLayer()->count(0, NOT_RESOLVED) == 0)
+		{
+            for (int c = zone->nb_cards - 1; c >= 0; c--)
             {
-                for (int c = zone->nb_cards - 1; c >= 0; c--)
-                {
-		            zone->cards[c]->cardistargetted = 0;
-		            zone->cards[c]->cardistargetter = 0;
-                }
+		        zone->cards[c]->cardistargetted = 0;
+		        zone->cards[c]->cardistargetter = 0;
             }
-            //clear trigger
-            for (int b = zone->nb_cards - 1; b >= 0; b--)
-            {
-		        zone->cards[b]->controllerTrigger = 0;
-		        zone->cards[b]->opponentTrigger = 0;
-            }
-        }//check for losers if its gameover call the statebased action
+        }
         players[d]->DeadLifeState();
     }
     ////////////////////////////////////
