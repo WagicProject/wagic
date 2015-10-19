@@ -232,7 +232,9 @@ class Constants
       AURAWARD = 114,
       MADNESS = 115,
       PROTECTIONFROMCOLOREDSPELLS = 116,
-      NB_BASIC_ABILITIES = 117,
+      MYGCREATUREEXILER = 117,
+      OPPGCREATUREEXILER = 118,
+      NB_BASIC_ABILITIES = 119,
 
 
     RARITY_S = 'S',   //Special Rarity

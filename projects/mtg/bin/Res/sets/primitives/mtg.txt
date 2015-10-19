@@ -2744,8 +2744,8 @@ toughness=2
 [/card]
 [card]
 name=Anafenza, the Foremost
+abilities=oppgcreatureexiler
 auto=@combat(attacking) source(this):counter(1/1,1) target(other creature[tapped]|mybattlefield)
-auto=@movedTo(creature|opponentGraveyard):all(trigger[to]) moveTo(exile)
 text=When Anafenza, the Foremost attacks, put a +1/+1 counter on another target tapped creature you control. -- If a creature card would be put into an opponent's graveyard from anywhere, exile it instead. 
 mana={W}{B}{G}
 type=Legendary Creature
