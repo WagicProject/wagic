@@ -8586,7 +8586,7 @@ toughness=3
 [/card]
 [card]
 name=Bellowing Saddlebrute
-auto=ifnot thisturn(creature[attacking]|mybattlefield)~morethan~0 then life:-4 controller
+auto=ifnot raid then life:-4 controller
 text=Raid — When Bellowing Saddlebrute enters the battlefield, you lose 4 life unless you attacked with a creature this turn.
 mana={3}{B}
 type=Creature
@@ -10685,7 +10685,7 @@ toughness=3
 [card]
 name=Bloodsoaked Champion
 abilities=cantblock
-autograveyard={1}{B}:moveTo(mybattlefield) restriction{thisturn(creature[attacking]|mybattlefield)~morethan~0}
+autograveyard={1}{B}:moveTo(mybattlefield) restriction{raid}
 text=Bloodsoaked Champion can't block. -- Raid — {1}{B}: Return Bloodsoaked Champion from your graveyard to the battlefield. Activate this ability only if you attacked with a creature this turn.
 mana={B}
 type=Creature
@@ -59747,7 +59747,7 @@ toughness=1
 [/card]
 [card]
 name=Mardu Heart-Piercer
-auto=if thisturn(creature[attacking]|mybattlefield)~morethan~0 then damage:2 target(creature,player)
+auto=if raid then damage:2 target(creature,player)
 text=Raid -- When Mardu Heart-Piercer enters the battlefield, if you attacked with a creature this turn, Mardu Heart-Piercer deals 2 damage to target creature or player. 
 mana={3}{R}
 type=Creature
@@ -59757,7 +59757,7 @@ toughness=3
 [/card]
 [card]
 name=Mardu Hordechief
-auto=if thisturn(creature[attacking]|mybattlefield)~morethan~0 then token(Warrior,Creature Warrior,1/1,white)
+auto=if raid then token(Warrior,Creature Warrior,1/1,white)
 text=Raid - When Mardu Hordechief enters the battlefield, if you attacked with a creature this turn, put a 1/1 white Warrior creature token onto the battlefield. 
 mana={2}{W}
 type=Creature
@@ -59811,7 +59811,7 @@ toughness=1
 [card]
 name=Mardu Skullhunter
 auto=tap
-auto=if thisturn(creature[attacking]|mybattlefield)~morethan~0 then target(opponent) ability$!name(discard) target(*|myhand) reject!$ targetedplayer
+auto=if raid then target(opponent) ability$!name(discard) target(*|myhand) reject!$ targetedplayer
 text=Mardu Skullhunter enters the battlefield tapped. -- Raid - When Mardu Skullhunter enters the battlefield, if you attacked with a creature this turn, target opponent discards a card. 
 mana={1}{B}
 type=Creature
@@ -59833,7 +59833,7 @@ toughness=2
 [/card]
 [card]
 name=Mardu Warshrieker
-auto=if thisturn(creature[attacking]|mybattlefield)~morethan~0 then Add{R}{W}{B}
+auto=if raid then Add{R}{W}{B}
 text=Raid - When Mardu Warshrieker enters the battlefield, if you attacked with a creature this turn, add {R}{W}{B} to your mana pool. 
 mana={3}{R}
 type=Creature
@@ -102844,7 +102844,7 @@ type=Sorcery
 [/card]
 [card]
 name=Timely Hordemate
-auto=if thisturn(creature[attacking]|mybattlefield)~morethan~0 then moveTo(mybattlefield) target(creature[manacost<=2]|mygraveyard)
+auto=if raid then moveTo(mybattlefield) target(creature[manacost<=2]|mygraveyard)
 text=Raid - When Timely Hordemate enters the battlefield, if you attacked with a creature this turn, return target creature card with converted mana cost 2 or less from your graveyard to the battlefield. 
 mana={3}{W}
 type=Creature
@@ -111460,7 +111460,7 @@ type=Instant
 [/card]
 [card]
 name=War-Name Aspirant
-auto=if thisturn(creature[attacking]|mybattlefield)~morethan~0 then counter(1/1,1)
+auto=if raid then counter(1/1,1)
 auto=cantbeblockedby(creature[power<=1])
 text=Raid - War-Name Aspirant enters the battlefield with a +1/+1 counter on it if you attacked with a creature this turn. -- War-Name Aspirant can't be blocked by creatures with power 1 or less.
 mana={1}{R}
@@ -113628,7 +113628,7 @@ toughness=1
 [card]
 name=Wingmate Roc
 abilities=flying
-auto=if thisturn(creature[attacking]|mybattlefield)~morethan~0 then token(Bird,Creature Bird,3/4,white,flying)
+auto=if raid then token(Bird,Creature Bird,3/4,white,flying)
 auto=@combat(attacking) source(this):life:type:creature[attacking]:battlefield controller
 text=Flying. -- Raid - When Wingmate Roc enters the battlefield, if you attacked with a creature this turn, put a 3/4 white Bird creature token with flying onto the battlefield. -- Whenever Wingmate Roc attacks, you gain 1 life for each attacking creature.
 mana={3}{W}{W}

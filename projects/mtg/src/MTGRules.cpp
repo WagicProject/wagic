@@ -1398,6 +1398,7 @@ int MTGCombatTriggersRule::receiveEvent(WEvent *e)
                 if (card && card->isAttacker())
                 {
                     card->eventattacked();
+                    card->controller()->raidcount += 1;
                 }
             }
         }
