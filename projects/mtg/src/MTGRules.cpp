@@ -2289,19 +2289,28 @@ int MTGPersistRule::receiveEvent(WEvent * event)
                 Player * p = game->players[i];
                 if (e->to == p->game->graveyard)
                 {
-                    MTGCardInstance * copy = p->game->putInZone(e->card, p->game->graveyard, e->card->owner->game->temp);
+                    MTGCardInstance * copy = e->card;
                     if (!copy)
                     {
                         DebugTrace("MTGRULES: couldn't move card for persist/undying");
                         return 0;
                     }
-                    Spell * spell = NEW Spell(game, copy);
-                    spell->resolve();
+                    string code = "";
+                    bool persist = false;
+                    bool undying = false;
                     if(card->basicAbilities[(int)Constants::PERSIST])
-                        spell->source->counters->addCounter(-1, -1);
+                    {
+                        code = "Persist";
+                        persist = true;
+                    }
                     else
-                        spell->source->counters->addCounter(1,1);
-                    delete spell;
+                    {
+                        code = "Undying";
+                        undying = true;
+                    }
+                    AAMover *putinplay = NEW AAMover(game, game->mLayers->actionLayer()->getMaxId(), copy, copy,"ownerbattlefield",code,NULL,undying,persist);
+                    putinplay->oneShot = true;
+                    putinplay->fireAbility();
                     return 1;
                 }
             }

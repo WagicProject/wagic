@@ -1772,7 +1772,9 @@ public:
     string destination;
     MTGAbility * andAbility;
     string named;
-    AAMover(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target, string dest,string _name, ManaCost * _cost = NULL);
+    bool undying;
+    bool persist;
+    AAMover(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target, string dest,string _name, ManaCost * _cost = NULL, bool undying = false, bool persist = false);
     MTGGameZone * destinationZone(Targetable * target = NULL);
     int resolve();
     const string getMenuText();
