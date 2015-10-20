@@ -34,6 +34,7 @@ Player::Player(GameObserver *observer, string file, string fileSmall, MTGDeck * 
     extraTurn = 0;
     drawCounter = 0;
     epic = 0;
+    raidcount = 0;
     prowledTypes.clear();
     doesntEmpty = NEW ManaCost();
     poolDoesntEmpty = NEW ManaCost();

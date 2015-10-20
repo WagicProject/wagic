@@ -1398,6 +1398,7 @@ int MTGCombatTriggersRule::receiveEvent(WEvent *e)
                 if (card && card->isAttacker())
                 {
                     card->eventattacked();
+                    card->controller()->raidcount += 1;
                 }
             }
         }
@@ -2276,6 +2277,10 @@ int MTGPersistRule::receiveEvent(WEvent * event)
                 if (e->from == p->game->inPlay)
                     ok = 1;
             }
+            if (card->owner->game->battlefield->hasAbility(Constants::MYGRAVEEXILER)||card->owner->opponent()->game->battlefield->hasAbility(Constants::OPPGRAVEEXILER))
+                ok = 0;
+            if ((card->owner->game->battlefield->hasAbility(Constants::MYGCREATUREEXILER)||card->owner->opponent()->game->battlefield->hasAbility(Constants::OPPGCREATUREEXILER))&&(card->isCreature()))
+                ok = 0;
             if (!ok)
                 return 0;
 

@@ -349,6 +349,8 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
     for(int i = 0; i < 2; ++i)
 	{
         if ((to == g->players[i]->game->graveyard) && (
+        (g->players[i]->game->battlefield->hasAbility(Constants::MYGCREATUREEXILER) && card->isCreature()) ||
+        (g->players[i]->opponent()->game->battlefield->hasAbility(Constants::OPPGCREATUREEXILER) && card->isCreature())||
         g->players[i]->game->battlefield->hasAbility(Constants::MYGRAVEEXILER) ||
         g->players[i]->opponent()->game->battlefield->hasAbility(Constants::OPPGRAVEEXILER)))
 		{
