@@ -2734,8 +2734,8 @@ AInstantCastRestrictionUEOT::~AInstantCastRestrictionUEOT()
 
 
 //AAMover
-AAMover::AAMover(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target, string dest,string newName, ManaCost * _cost) :
-    ActivatedAbility(observer, _id, _source, _cost, 0), destination(dest),named(newName)
+AAMover::AAMover(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target, string dest,string newName, ManaCost * _cost, bool undying, bool persist) :
+    ActivatedAbility(observer, _id, _source, _cost, 0), destination(dest),named(newName),undying(undying),persist(persist)
 {
     if (_target)
         target = _target;
@@ -2782,6 +2782,10 @@ int AAMover::resolve()
                             andAbilityClone->addToGame();
                         }
                     }
+                    if(persist)
+                        spell->source->counters->addCounter(-1,-1);
+                    if(undying)
+                        spell->source->counters->addCounter(1,1);
                     delete spell;
                     return 1;
                 }
