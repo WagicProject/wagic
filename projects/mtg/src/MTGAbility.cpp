@@ -871,14 +871,42 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
         return NEW TrDamaged(observer, id, card, tc, fromTc, 0,sourceUntapped,limitOnceATurn,once);
     }
 
-    //Lifed
+    //Lifed current controller
+    if (TargetChooser * tc = parseSimpleTC(s, "lifeof", card))
+    {
+        TargetChooser *fromTc = parseSimpleTC(s, "from", card);
+        return NEW TrLifeGained(observer, id, card, tc, fromTc, 0,sourceUntapped,once,true,false);
+    }
+
+    //Lifed current opponent
+    if (TargetChooser * tc = parseSimpleTC(s, "lifefoeof", card))
+    {
+        TargetChooser *fromTc = parseSimpleTC(s, "from", card);
+        return NEW TrLifeGained(observer, id, card, tc, fromTc, 0,sourceUntapped,once,false,true);
+    }
+
+    //Lifed static
     if (TargetChooser * tc = parseSimpleTC(s, "lifed", card))
     {
         TargetChooser *fromTc = parseSimpleTC(s, "from", card);
         return NEW TrLifeGained(observer, id, card, tc, fromTc, 0,sourceUntapped,once);
     }
 
-    //Life Loss
+    //Life Loss current player
+    if (TargetChooser * tc = parseSimpleTC(s, "lifelostof", card))
+    {
+        TargetChooser *fromTc = parseSimpleTC(s, "from", card);
+        return NEW TrLifeGained(observer, id, card, tc, fromTc,1,sourceUntapped,once,true,false);
+    }
+
+    //Life Loss current opponent
+    if (TargetChooser * tc = parseSimpleTC(s, "lifelostfoeof", card))
+    {
+        TargetChooser *fromTc = parseSimpleTC(s, "from", card);
+        return NEW TrLifeGained(observer, id, card, tc, fromTc,1,sourceUntapped,once,false,true);
+    }
+
+    //Life Loss static
     if (TargetChooser * tc = parseSimpleTC(s, "lifeloss", card))
     {
         TargetChooser *fromTc = parseSimpleTC(s, "from", card);

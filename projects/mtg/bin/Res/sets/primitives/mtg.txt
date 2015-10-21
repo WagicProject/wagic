@@ -1189,7 +1189,7 @@ toughness=2
 [/card]
 [card]
 name=Ageless Entity
-auto=@lifed(controller):all(trigger[to]) dynamicability<!myself thatmuchcountersoneone tosrc!>
+auto=@lifeof(player):all(trigger[to]) dynamicability<!myself thatmuchcountersoneone tosrc!>
 text=Whenever you gain life, put that many +1/+1 counters on Ageless Entity.
 mana={3}{G}{G}
 type=Creature
@@ -1531,7 +1531,7 @@ type=Enchantment
 [/card]
 [card]
 name=Ajani's Pridemate
-auto=@lifed(controller):may counter(1/1,1)
+auto=@lifeof(player):may counter(1/1,1)
 text=Whenever you gain life, you may put a +1/+1 counter on Ajani's Pridemate.
 mana={1}{W}
 type=Creature
@@ -4247,7 +4247,7 @@ toughness=5
 [card]
 name=Archangel of Thune
 abilities=flying,lifelink
-auto=@lifed(controller):all(creature|mybattlefield) counter(1/1,1) 
+auto=@lifeof(player):all(creature|mybattlefield) counter(1/1,1) 
 text=Flying. -- Lifelink. -- Whenever you gain life, put a +1/+1 counter on each creature you control. 
 mana={3}{W}{W}
 type=Creature
@@ -19564,7 +19564,7 @@ toughness=4
 [/card]
 [card]
 name=Cradle of Vitality
-auto=@lifed(controller):pay({1}{W}) counter(1/1,thatmuch) target(creature)
+auto=@lifeof(player):pay({1}{W}) counter(1/1,thatmuch) target(creature)
 text=Whenever you gain life, you may pay {1}{W}. If you do, put a +1/+1 counter on target creature for each 1 life you gained.
 mana={3}{W}
 type=Enchantment
@@ -23118,7 +23118,7 @@ subtype=Aura
 [/card]
 [card]
 name=Debt to the Deathless
-auto=@lifeloss(opponent):life:thatmuch controller
+auto=@lifelostfoeof(player):life:thatmuch controller
 auto=life:-twiceX opponent
 text=Each opponent loses two times X life. You gain life equal to the life lost this way.
 mana={X}{W}{W}{B}{B}
@@ -27105,7 +27105,7 @@ toughness=2
 [card]
 name=Drogskol Reaver
 abilities=flying,double strike,lifelink
-auto=@lifed(controller):draw:1 controller
+auto=@lifeof(player):draw:1 controller
 text=Flying, doublestrike, lifelink -- Whenever you gain life, draw a card.
 mana={5}{W}{U}
 type=Creature
@@ -31831,7 +31831,7 @@ type=Instant
 [/card]
 [card]
 name=Exquisite Blood
-auto=@lifeloss(opponent):life:thatmuch controller
+auto=@lifelostfoeof(player):life:thatmuch controller
 text=Whenever an opponent loses life, you gain that much life.
 mana={4}{B}
 type=Enchantment
@@ -32502,7 +32502,7 @@ toughness=2
 #emblem ueot removes the effect, the ability acts an observer
 [card]
 name=False Cure
-auto=emblem transforms((,newability[@lifed(opponent):life:-twicethatmuch opponent],newability[@lifed(controller):life:-twicethatmuch controller])) ueot
+auto=emblem transforms((,newability[@lifefoeof(player):life:-twicethatmuch opponent],newability[@lifeof(player):life:-twicethatmuch controller])) ueot
 text=Until end of turn, whenever a player gains life, that player loses 2 life for each 1 life he or she gained.
 mana={B}{B}
 type=Instant
@@ -52009,7 +52009,7 @@ toughness=3
 [card]
 name=Kavu Predator
 abilities=trample
-auto=@lifed(opponent):all(trigger[to]) dynamicability<!myfoe thatmuchcountersoneone tosrc!>
+auto=@lifefoeof(player):all(trigger[to]) dynamicability<!myfoe thatmuchcountersoneone tosrc!>
 text=Trample -- Whenever an opponent gains life, put that many +1/+1 counters on Kavu Predator.
 mana={1}{G}
 type=Creature
@@ -56111,7 +56111,7 @@ toughness=2
 [card]
 name=Lich's Tomb
 abilities=cantlifelose
-auto=@lifeloss(controller):ability$!sacrifice notatarget(<storedthatmuch>*|mybattlefield)!$ controller
+auto=@lifelostof(player):ability$!sacrifice notatarget(<storedthatmuch>*|mybattlefield)!$ controller
 text=You don't lose the game for having 0 or less life. -- Whenever you lose life, sacrifice a permanent for each 1 life you lost. (Damage causes loss of life.)
 mana={4}
 type=Artifact
@@ -62319,7 +62319,7 @@ toughness=2
 [/card]
 [card]
 name=Mindcrank
-auto=@lifeloss(opponent):deplete:thatmuch opponent
+auto=@lifelostfoeof(player):deplete:thatmuch opponent
 text=Whenever an opponent loses life, that player puts that many cards from the top of his or her library into his or her graveyard. (Damage dealt by sources without infect causes loss of life.)
 mana={2}
 type=Artifact
@@ -75488,7 +75488,7 @@ type=Instant
 name=Punishing Fire
 target=creature,player
 auto=damage:2
-autograveyard=@lifed(opponent):pay({R}) moveto(ownerhand)
+autograveyard=@lifefoeof(player):pay({R}) moveto(ownerhand)
 text=Punishing Fire deals 2 damage to target creature or player. -- Whenever an opponent gains life, you may pay {R}. If you do, return Punishing Fire from your graveyard to your hand.
 mana={1}{R}
 type=Instant
@@ -83325,7 +83325,7 @@ type=Sorcery
 [/card]
 [card]
 name=Sanguine Bond
-auto=@lifed(controller):dynamicability<!myself thatmuchlifeloss srcopponent!>
+auto=@lifeof(player):dynamicability<!myself thatmuchlifeloss srcopponent!>
 text=Whenever you gain life, target opponent loses that much life.
 mana={3}{B}{B}
 type=Enchantment
@@ -85406,7 +85406,7 @@ type=Sorcery
 [/card]
 [card]
 name=Searing Meditation
-auto=@lifed(controller):pay({2}) target(creature,player) damage:2
+auto=@lifeof(player):pay({2}) target(creature,player) damage:2
 text=Whenever you gain life, you may pay {2}. If you do, Searing Meditation deals 2 damage to target creature or player.
 mana={1}{R}{W}
 type=Enchantment
@@ -97584,7 +97584,7 @@ toughness=5
 [card]
 name=Sunbond
 target=creature
-auto=teach(creature) transforms((,newability[@lifed(controller):dynamicability<!myself thatmuchcountersoneone tosrc!>]))
+auto=teach(creature) transforms((,newability[@lifeof(player):dynamicability<!myself thatmuchcountersoneone tosrc!>]))
 text=Enchant creature -- Enchanted creature has "Whenever you gain life, put that many +1/+1 counters on this creature."
 mana={3}{W}
 type=Enchantment
@@ -104153,7 +104153,7 @@ name=Transcendence
 abilities=cantlifelose
 auto=this(controllerlife > 19)while winGame opponent
 auto=@damaged(controller):life:twicethatmuch controller
-auto=@lifeloss(controller):life:twicethatmuch controller
+auto=@lifelostof(player):life:twicethatmuch controller
 text=You don't lose the game for having 0 or less life. -- When you have 20 or more life, you lose the game. -- Whenever you lose life, you gain 2 life for each 1 life you lost. (Damage dealt to you causes you to lose life.)
 mana={3}{W}{W}{W}
 type=Enchantment
@@ -109620,7 +109620,7 @@ type=Sorcery
 [card]
 name=Vizkopa Guildmage
 auto={1}{W}{B}:target(creature) lifelink ueot
-auto={1}{W}{B}:name(lifeleech) emblem transforms((,newability[@lifed(controller):life:-thatmuch opponent])) ueot
+auto={1}{W}{B}:name(lifeleech) emblem transforms((,newability[@lifeof(player):life:-thatmuch opponent])) ueot
 text={1}{W}{B}: Target creature gains lifelink until end of turn. -- {1}{W}{B}: Whenever you gain life this turn, each opponent loses that much life.
 mana={W}{B}
 type=Creature
@@ -110922,7 +110922,7 @@ toughness=5
 [card]
 name=Wall of Limbs
 abilities=defender
-auto=@lifed(controller):counter(1/1,1)
+auto=@lifeof(player):counter(1/1,1)
 auto={5}{B}{B}{S}:name(Lose Life) target(player) life:-storedpower
 text=Defender (This creature can't attack.) -- Whenever you gain life, put a +1/+1 counter on Wall of Limbs. -- {5}{B}{B}, Sacrifice Wall of Limbs: Target player loses X life, where X is Wall of Limbs's power. 
 mana={2}{B}
