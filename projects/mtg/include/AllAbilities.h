@@ -1300,8 +1300,9 @@ public:
     bool sourceUntapped;
     bool limitOnceATurn;
     int triggeredTurn;
-    TrDamaged(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, TargetChooser * fromTc = NULL, int type = 0,bool sourceUntapped = false,bool limitOnceATurn = false,bool once = false) :
-        Trigger(observer, id, source, once, tc), fromTc(fromTc), type(type) , sourceUntapped(sourceUntapped),limitOnceATurn(limitOnceATurn)
+    bool thiscontroller, thisopponent;
+    TrDamaged(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, TargetChooser * fromTc = NULL, int type = 0,bool sourceUntapped = false,bool limitOnceATurn = false,bool once = false, bool thiscontroller = false, bool thisopponent = false) :
+        Trigger(observer, id, source, once, tc), fromTc(fromTc), type(type) , sourceUntapped(sourceUntapped),limitOnceATurn(limitOnceATurn),thiscontroller(thiscontroller),thisopponent(thisopponent)
     {
         triggeredTurn = -1;
     }
@@ -1318,6 +1319,16 @@ public:
         if (fromTc && !fromTc->canTarget(e->damage->source)) return 0;
         if (type == 1 && e->damage->typeOfDamage != Damage::DAMAGE_COMBAT) return 0;
         if (type == 2 && e->damage->typeOfDamage == Damage::DAMAGE_COMBAT) return 0;
+		if (e->damage->target->type_as_damageable == Damageable::DAMAGEABLE_PLAYER)
+        {
+            Player * p = (Player *) e->damage->target;
+            if(thiscontroller)
+                if(p != source->controller())
+                    return 0;
+            if(thisopponent)
+                if(p == source->controller())
+                    return 0;
+        }
         e->damage->target->thatmuch = e->damage->damage;
         e->damage->source->thatmuch = e->damage->damage;
         this->source->thatmuch = e->damage->damage;

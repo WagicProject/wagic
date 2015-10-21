@@ -850,21 +850,63 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
     if (TargetChooser * tc = parseSimpleTC(s, "cycled", card))
         return NEW TrCardDiscarded(observer, id, card, tc,once,true);
 
-    //Card Damaging non combat
+    //Card Damaging non combat current controller
+    if (TargetChooser * tc = parseSimpleTC(s, "noncombatdamageof", card))
+    {
+        TargetChooser *fromTc = parseSimpleTC(s, "from", card);
+        return NEW TrDamaged(observer, id, card, tc, fromTc, 2,false,false,once,true,false);
+    }
+
+    //Card Damaging non combat current opponent
+    if (TargetChooser * tc = parseSimpleTC(s, "noncombatdamagefoeof", card))
+    {
+        TargetChooser *fromTc = parseSimpleTC(s, "from", card);
+        return NEW TrDamaged(observer, id, card, tc, fromTc, 2,false,false,once,false,true);
+    }
+
+    //Card Damaging non combat static
     if (TargetChooser * tc = parseSimpleTC(s, "noncombatdamaged", card))
     {
         TargetChooser *fromTc = parseSimpleTC(s, "from", card);
         return NEW TrDamaged(observer, id, card, tc, fromTc, 2,once);
     }
 
-    //Card Damaging combat
+    //Card Damaging combat current controller
+    if (TargetChooser * tc = parseSimpleTC(s, "combatdamageof", card))
+    {
+        TargetChooser *fromTc = parseSimpleTC(s, "from", card);
+        return NEW TrDamaged(observer, id, card, tc, fromTc, 1,sourceUntapped,limitOnceATurn,once,true,false);
+    }
+
+    //Card Damaging combat current opponent
+    if (TargetChooser * tc = parseSimpleTC(s, "combatdamagefoeof", card))
+    {
+        TargetChooser *fromTc = parseSimpleTC(s, "from", card);
+        return NEW TrDamaged(observer, id, card, tc, fromTc, 1,sourceUntapped,limitOnceATurn,once,false,true);
+    }
+
+    //Card Damaging combat static
     if (TargetChooser * tc = parseSimpleTC(s, "combatdamaged", card))
     {
         TargetChooser *fromTc = parseSimpleTC(s, "from", card);
         return NEW TrDamaged(observer, id, card, tc, fromTc, 1,sourceUntapped,limitOnceATurn,once);
     }
 
-    //Card Damaging
+    //Card Damaging current controller
+    if (TargetChooser * tc = parseSimpleTC(s, "damageof", card))
+    {
+        TargetChooser *fromTc = parseSimpleTC(s, "from", card);
+        return NEW TrDamaged(observer, id, card, tc, fromTc, 0,sourceUntapped,limitOnceATurn,once,true,false);
+    }
+
+    //Card Damaging current opponent
+    if (TargetChooser * tc = parseSimpleTC(s, "damagefoeof", card))
+    {
+        TargetChooser *fromTc = parseSimpleTC(s, "from", card);
+        return NEW TrDamaged(observer, id, card, tc, fromTc, 0,sourceUntapped,limitOnceATurn,once,false,true);
+    }
+
+    //Card Damaging static
     if (TargetChooser * tc = parseSimpleTC(s, "damaged", card))
     {
         TargetChooser *fromTc = parseSimpleTC(s, "from", card);

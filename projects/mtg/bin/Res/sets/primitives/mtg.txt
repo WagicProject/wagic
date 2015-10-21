@@ -1624,7 +1624,8 @@ toughness=1
 [/card]
 [card]
 name=Akki Underminer
-auto=@combatdamaged(player) from(this):choice name(player sacrifices) ability$!name(sacrifice) notatarget(*|mybattlefield) sacrifice!$ opponent
+auto=@combatdamagefoeof(player) from(this):ability$!name(sacrifice) notatarget(*|mybattlefield) sacrifice!$ opponent
+auto=@combatdamageof(player) from(this):ability$!name(sacrifice) notatarget(*|mybattlefield) sacrifice!$ controller
 text=Whenever Akki Underminer deals combat damage to a player, that player sacrifices a permanent.
 mana={3}{R}
 type=Creature
@@ -4169,7 +4170,7 @@ toughness=0
 [card]
 name=Arcbound Slith
 auto=counter(1/1,1)
-auto=@combatdamaged(opponent) from(this):counter(1/1,1)
+auto=@combatdamaged(player) from(this):counter(1/1,1)
 auto=@movedTo(this|mygraveyard) from(myBattlefield):may thisforeach(counter{1/1.1}) counter(1/1,1) target(creature[artifact])
 text=Whenever Arcbound Slith deals combat damage to a player, put a +1/+1 counter on it. -- Modular 1 (This enters the battlefield with a +1/+1 counter on it. When it's put into a graveyard, you may put its +1/+1 counters on target artifact creature.)
 mana={2}
@@ -5353,7 +5354,8 @@ toughness=3
 [/card]
 [card]
 name=Ashling, the Extinguisher
-auto=@combatdamaged(opponent) from(this):target(creature|opponentbattlefield) sacrifice
+auto=@combatdamagefoeof(player) from(this):target(creature|opponentbattlefield) sacrifice
+auto=@combatdamageof(player) from(this):target(creature|mybattlefield) sacrifice
 text=Whenever Ashling, the Extinguisher deals combat damage to a player, choose target creature that player controls. He or she sacrifices that creature.
 mana={2}{B}{B}
 type=Legendary Creature
@@ -7054,7 +7056,8 @@ toughness=3
 [card]
 name=Balefire Dragon
 abilities=flying
-auto=@combatdamaged(opponent) from(this):all(creature|opponentbattlefield) damage:thatmuch
+auto=@combatdamagefoeof(player) from(this):all(creature|opponentbattlefield) damage:thatmuch
+auto=@combatdamageof(player) from(this):all(creature|mybattlefield) damage:thatmuch
 text=Flying -- Whenever Balefire Dragon deals combat damage to a player, it deals that much damage to each creature that player controls.
 mana={5}{R}{R}
 type=Creature
@@ -9555,7 +9558,8 @@ subtype=Arcane
 [card]
 name=Blazing Specter
 abilities=flying,haste
-auto=@combatdamaged(opponent) from(this):ability$!name(discard) target(*|myhand) reject!$ opponent
+auto=@combatdamagefoeof(player) from(this):ability$!name(discard) target(*|myhand) reject!$ opponent
+auto=@combatdamageof(player) from(this):ability$!name(discard) target(*|myhand) reject!$ controller
 text=Flying, haste -- Whenever Blazing Specter deals combat damage to a player, that player discards a card.
 mana={2}{B}{R}
 type=Creature
@@ -9842,7 +9846,8 @@ toughness=3
 [card]
 name=Blinding Angel
 abilities=flying
-auto=@combatdamaged(opponent) from(this):nextphasealter(remove,combatbegins,opponent) && nextphasealter(remove,combatattackers,opponent) && nextphasealter(remove,combatblockers,opponent) && nextphasealter(remove,combatdamage,opponent) && nextphasealter(remove,combatends,opponent)
+auto=@combatdamagefoeof(player) from(this):nextphasealter(remove,combatbegins,opponent) && nextphasealter(remove,combatattackers,opponent) && nextphasealter(remove,combatblockers,opponent) && nextphasealter(remove,combatdamage,opponent) && nextphasealter(remove,combatends,opponent)
+auto=@combatdamageof(player) from(this):nextphasealter(remove,combatbegins,controller) && nextphasealter(remove,combatattackers,controller) && nextphasealter(remove,combatblockers,controller) && nextphasealter(remove,combatdamage,controller) && nextphasealter(remove,combatends,controller)
 text=Flying (This creature can't be blocked except by creatures with flying or reach.) -- Whenever Blinding Angel deals combat damage to a player, that player skips his or her next combat phase.
 mana={3}{W}{W}
 type=Creature
@@ -10043,7 +10048,8 @@ toughness=5
 [card]
 name=Blizzard Specter
 abilities=flying
-auto=@combatdamaged(player) from(this):all(this) transforms((,newability[choice name(bounce) ability$! target(*|mybattlefield) moveTo(ownerhand) !$opponent],newability[choice name(discard) ability$! target(*|myhand) reject !$opponent])) ueot
+auto=@combatdamagefoeof(player) from(this):all(this) transforms((,newability[choice name(bounce) ability$! target(*|mybattlefield) moveTo(ownerhand) !$opponent],newability[choice name(discard) ability$! target(*|myhand) reject !$opponent])) ueot
+auto=@combatdamageof(player) from(this):all(this) transforms((,newability[choice name(bounce) ability$! target(*|mybattlefield) moveTo(ownerhand) !$controller],newability[choice name(discard) ability$! target(*|myhand) reject !$controller])) ueot
 text=Flying -- Whenever Blizzard Specter deals combat damage to a player, choose one - That player returns a permanent he or she controls to its owner's hand; or that player discards a card.
 mana={2}{U}{B}
 type=Snow Creature
@@ -12874,8 +12880,8 @@ toughness=1
 [/card]
 [card]
 name=Brood Sliver
-auto=@combatdamaged(opponent) from(sliver):may token(Sliver,Creature Sliver,1/1)
-auto=@combatdamaged(controller) from(sliver):may token(Sliver,Creature Sliver,1/1)
+auto=@combatdamagefoeof(player) from(sliver|mybattlefield):token(Sliver,Creature Sliver,1/1) controller
+auto=@combatdamageof(player) from(sliver|opponentbattlefield):token(Sliver,Creature Sliver,1/1) opponent
 text=Whenever a Sliver deals combat damage to a player, its controller may put a 1/1 colorless Sliver creature token onto the battlefield.
 mana={4}{G}
 type=Creature
@@ -13549,7 +13555,8 @@ type=Land
 [/card]
 [card]
 name=Cabal Executioner
-auto=@combatdamaged(player) from(this):ability$!name(sacrifice) notatarget(creature|mybattlefield) sacrifice!$ opponent
+auto=@combatdamagefoeof(player) from(this):ability$!name(sacrifice) notatarget(creature|mybattlefield) sacrifice!$ opponent
+auto=@combatdamageof(player) from(this):ability$!name(sacrifice) notatarget(creature|mybattlefield) sacrifice!$ controller
 facedown={3}
 autofacedown={3}{B}{B}:morph
 text=Whenever Cabal Executioner deals combat damage to a player, that player sacrifices a creature. -- Morph {3}{B}{B} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
@@ -13597,7 +13604,8 @@ type=Instant
 [/card]
 [card]
 name=Cabal Slaver
-auto=@combatdamaged(opponent) from(goblin|mybattlefield):ability$!name(discard) target(*|mybattefield) sacrifice !$ opponent
+auto=@combatdamagefoeof(player) from(goblin|mybattlefield):ability$!name(discard) notatarget(*|myhand) reject!$ opponent
+auto=@combatdamageof(player) from(goblin|opponentbattlefield):ability$!name(discard) notatarget(*|myhand) reject!$ controller
 text=Whenever a Goblin deals combat damage to a player, that player discards a card.
 mana={2}{B}
 type=Creature
@@ -14960,7 +14968,8 @@ subtype=Aura
 [card]
 name=Caustic Wasps
 abilities=flying
-auto=@combatdamaged(player) from(this):may destroy target(artifact|opponentbattlefield)
+auto=@combatdamagefoeof(player) from(this):may destroy target(artifact|opponentbattlefield)
+auto=@combatdamageof(player) from(this):may destroy target(artifact|mybattlefield)
 text=Flying -- Whenever Caustic Wasps deals combat damage to a player, you may destroy target artifact that player controls.
 mana={2}{G}
 type=Creature
@@ -15167,7 +15176,7 @@ toughness=3
 name=Celestial Mantle
 target=creature
 auto=3/3
-auto=@combatdamaged(player) from(mytgt):life:lifetotal owner
+auto=teach(creature) transforms((,newability[@combatdamaged(player) from(this):life:lifetotal controller]))
 text=Enchant creature -- Enchanted creature gets +3/+3. -- Whenever enchanted creature deals combat damage to a player, double its controller's life total.
 mana={3}{W}{W}{W}
 type=Enchantment
@@ -15393,7 +15402,8 @@ type=Land
 [/card]
 [card]
 name=Cephalid Constable
-auto=@combatdamaged(opponent) from(this):name(bounce) ability$!name(bounce) target(<storedthatmuch>*|opponentbattlefield) moveto(ownerhand) !$ controller
+auto=@combatdamagefoeof(player) from(this):name(bounce) ability$!name(bounce) target(<storedthatmuch>*|opponentbattlefield) moveto(ownerhand) !$ controller
+auto=@combatdamageof(player) from(this):name(bounce) ability$!name(bounce) target(<storedthatmuch>*|mybattlefield) moveto(ownerhand) !$ controller
 text=Whenever Cephalid Constable deals combat damage to a player, return up to that many target permanents that player controls to their owners' hands.
 mana={1}{U}{U}
 type=Creature
@@ -15886,7 +15896,7 @@ toughness=2
 [card]
 name=Chandra's Spitfire
 abilities=flying
-auto=@noncombatdamaged(opponent):3/0 ueot
+auto=@noncombatdamagefoeof(player):3/0 ueot
 text=Flying -- Whenever an opponent is dealt noncombat damage, Chandra's Spitfire gets +3/+0 until end of turn.
 mana={2}{R}
 type=Creature
@@ -16375,7 +16385,8 @@ type=Instant
 [card]
 name=Chilling Apparition
 auto={B}:regenerate
-auto=@combatdamaged(opponent) from(this):ability$!name(discard) target(*|myhand) reject!$ opponent
+auto=@combatdamagefoeof(player) from(this):ability$!name(discard) target(*|myhand) reject!$ opponent
+auto=@combatdamageof(player) from(this):ability$!name(discard) target(*|myhand) reject!$ controller
 text={B}: Regenerate Chilling Apparition. -- Whenever Chilling Apparition deals combat damage to a player, that player discards a card.
 mana={2}{B}
 type=Creature
@@ -17947,7 +17958,7 @@ toughness=3
 [/card]
 [card]
 name=Coastal Piracy
-auto=@combatdamaged(opponent) from(creature|myBattlefield):may draw:1 controller
+auto=@combatdamagefoeof(player) from(creature|myBattlefield):may draw:1 controller
 text=Whenever a creature you control deals combat damage to an opponent, you may draw a card.
 mana={2}{U}{U}
 type=Enchantment
@@ -18308,7 +18319,7 @@ color=white
 [card]
 name=Commando Raid
 target=creature|mybattlefield
-auto=transforms((,newability[@combatdamaged(opponent) from(this):may dynamicability<!powerstrike!> target(creature|opponentbattlefield)])) ueot
+auto=transforms((,newability[@combatdamageof(player) from(this):may dynamicability<!powerstrike!> target(creature|mybattlefield)],newability[@combatdamagefoeof(player) from(this):may dynamicability<!powerstrike!> target(creature|opponentbattlefield)])) ueot
 text=Until end of turn, target creature you control gains "When this creature deals combat damage to a player, you may have it deal damage equal to its power to target creature that player controls."
 mana={2}{R}
 type=Instant
@@ -20094,7 +20105,8 @@ type=Instant
 [card]
 name=Crosis, the Purger
 abilities=flying
-auto=@combatdamaged(player) from(this):pay({2}{B}) activatechooseacolor all(*[chosencolor]|opponenthand) reject activatechooseend
+auto=@combatdamagefoeof(player) from(this):pay({2}{B}) activatechooseacolor all(*[chosencolor]|opponenthand) reject activatechooseend
+auto=@combatdamageof(player) from(this):pay({2}{B}) activatechooseacolor all(*[chosencolor]|myhand) reject activatechooseend
 text=Flying -- Whenever Crosis, the Purger deals combat damage to a player, you may pay {2}{B}. If you do, choose a color, then that player reveals his or her hand and discards all cards of that color.
 mana={3}{U}{B}{R}
 type=Legendary Creature
@@ -20151,7 +20163,8 @@ toughness=1
 [/card]
 [card]
 name=Crosstown Courier
-auto=@combatdamaged(player) from(this):deplete:thatmuch opponent
+auto=@combatdamagefoeof(player) from(this):deplete:thatmuch opponent
+auto=@combatdamageof(player) from(this):deplete:thatmuch controller
 text=Whenever Crosstown Courier deals combat damage to a player, that player puts that many cards from the top of his or her library into his or her graveyard.
 mana={1}{U}
 type=Creature
@@ -22345,7 +22358,8 @@ type=Sorcery
 name=Dawning Purist
 facedown={3}
 autofacedown={1}{W}:morph
-auto=@combatdamaged(opponent) from(this):may destroy target(enchantment|opponentbattlefield)
+auto=@combatdamagefoeof(player) from(this):may destroy target(enchantment|opponentbattlefield)
+auto=@combatdamageof(player) from(this):may destroy target(enchantment|mybattlefield)
 text=Whenever Dawning Purist deals combat damage to a player, you may destroy target enchantment that player controls. -- Morph {1}{W} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
 mana={2}{W}
 type=Creature
@@ -24731,7 +24745,8 @@ type=Artifact
 [/card]
 [card]
 name=Dimir Cutpurse
-auto=@combatdamaged(opponent) from(this):ability$!name(discard) target(*|myhand) reject!$ opponent && draw:1 controller
+auto=@combatdamagefoeof(player) from(this):ability$!name(discard) target(*|myhand) reject!$ opponent && draw:1 controller
+auto=@combatdamageof(player) from(this):ability$!name(discard) target(*|myhand) reject!$ controller && draw:1 controller
 text=Whenever Dimir Cutpurse deals combat damage to a player, that player discards a card and you draw a card.
 mana={1}{U}{B}
 type=Creature
@@ -25730,7 +25745,8 @@ toughness=1
 [card]
 name=Doomsday Specter
 abilities=flying
-auto=@combatdamaged(player) from(this|mybattlefield):reject target(*|opponenthand)
+auto=@combatdamagefoeof(player) from(this):reject target(*|opponenthand)
+auto=@combatdamageof(player) from(this):reject target(*|myhand)
 auto=moveTo(ownerhand) notatarget(creature[blue;black]|myBattlefield)
 text=Flying -- When Doomsday Specter enters the battlefield, return a blue or black creature you control to its owner's hand. -- Whenever Doomsday Specter deals combat damage to a player, look at that player's hand and choose a card from it. The player discards that card.
 mana={2}{U}{B}
@@ -27050,8 +27066,7 @@ toughness=1
 [card]
 name=Drinker of Sorrow
 abilities=cantblock
-auto=@combatdamaged(player) from(this):moveto(graveyard) notatarget(*|myBattlefield)
-auto=@combatdamaged(creature) from(this):moveto(graveyard) notatarget(*|myBattlefield)
+auto=@combatdamaged(creature,player) from(this):sacrifice notatarget(*|myBattlefield)
 text=Drinker of Sorrow can't block. -- Whenever Drinker of Sorrow deals combat damage, sacrifice a permanent.
 mana={2}{B}
 type=Creature
@@ -28470,7 +28485,8 @@ toughness=4
 [card]
 name=Ebonblade Reaper
 auto=@combat(attacking) source(this):life:-halfuplifetotal controller
-auto=@combatdamaged(opponent) from(this):life:-halfupopponentlifetotal opponent
+auto=@combatdamagefoeof(player) from(this):life:-halfupopponentlifetotal opponent
+auto=@combatdamageof(player) from(this):life:-halfuplifetotal controller
 facedown={3}
 autofacedown={3}{b}{b}:morph
 text=Whenever Ebonblade Reaper attacks, you lose half your life, rounded up. -- Whenever Ebonblade Reaper deals combat damage to a player, that player loses half his or her life, rounded up. -- Morph {3}{B}{B} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
@@ -28664,7 +28680,7 @@ subtype=Aura
 [/card]
 [card]
 name=Edric, Spymaster of Trest
-auto=@combatdamaged(opponent) from(creature|mybattlefield):may draw:1 controller
+auto=@combatdamagefoeof(player) from(creature|mybattlefield):may draw:1 controller
 text=Whenever a creature deals combat damage to one of your opponents, that creature's controller may draw a card.
 mana={1}{G}{U}
 type=Legendary Creature
@@ -28991,7 +29007,7 @@ type=Instant
 [/card]
 [card]
 name=Electryte
-auto=@combatdamaged(player) from(this):all(creature[blocking]) dynamicability<!powerstrike!>
+auto=@combatdamagefoeof(player) from(this):all(creature[blocking]) dynamicability<!powerstrike!>
 text=Whenever Electryte deals combat damage to defending player, it deals damage equal to its power to each blocking creature.
 mana={3}{R}{R}
 type=Creature
@@ -29922,7 +29938,8 @@ type=Artifact
 [card]
 name=Emissary of Despair
 abilities=flying
-auto=@combatdamaged(player) from(this):life:-type:artifact:opponentbattlefield opponent
+auto=@combatdamagefoeof(player) from(this):life:-type:artifact:opponentbattlefield opponent
+auto=@combatdamageof(player) from(this):life:-type:artifact:mybattlefield controller
 text=Flying -- Whenever Emissary of Despair deals combat damage to a player, that player loses 1 life for each artifact he or she controls.
 mana={1}{B}{B}
 type=Creature
@@ -29933,7 +29950,8 @@ toughness=1
 [card]
 name=Emissary of Hope
 abilities=flying
-auto=@combatdamaged(player) from(this):life:type:artifact:opponentbattlefield controller
+auto=@combatdamagefoeof(player) from(this):life:type:artifact:opponentbattlefield controller
+auto=@combatdamageof(player) from(this):life:type:artifact:mybattlefield controller
 text=Flying -- Whenever Emissary of Hope deals combat damage to a player, you gain 1 life for each artifact that player controls.
 mana={1}{W}{W}
 type=Creature
@@ -30799,7 +30817,7 @@ subtype=God
 [card]
 name=Erdwal Ripper
 abilities=haste
-auto=@combatdamaged(opponent) from(this):counter(1/1,1)
+auto=@combatdamaged(player) from(this):counter(1/1,1)
 text=Haste -- Whenever Erdwal Ripper deals combat damage to a player, put a +1/+1 counter on it.
 mana={1}{R}{R}
 type=Creature
@@ -38155,7 +38173,8 @@ toughness=4
 [card]
 name=Ghastlord of Fugue
 auto=unblockable
-auto=@combatdamaged(player) from(this):moveTo(myexile) target(*|opponenthand)
+auto=@combatdamagefoeof(player) from(this):may moveTo(myexile) target(*|opponenthand)
+auto=@combatdamageof(player) from(this):may moveTo(myexile) target(*|myhand)
 text=Ghastlord of Fugue is unblockable. -- Whenever Ghastlord of Fugue deals combat damage to a player, that player reveals his or her hand. You choose a card from it. That player exiles that card.
 mana={UB}{UB}{UB}{UB}{UB}
 type=Creature
@@ -41572,8 +41591,8 @@ type=Instant
 [card]
 name=Graveblade Marauder
 abilities=deathtouch
-auto=@combatdamaged(opponent) from(this):life:-type:creature:mygraveyard opponent
-auto=@combatdamaged(controller) from(this):life:-type:creature:mygraveyard controller
+auto=@combatdamagefoeof(player) from(this):life:-type:creature:mygraveyard opponent
+auto=@combatdamageof(player) from(this):life:-type:creature:mygraveyard controller
 text=Deathtouch (Any amount of damage this deals to a creature is enough to destroy it.) -- Whenever Graveblade Marauder deals combat damage to a player, that player loses life equal to the number of creature cards in your graveyard.
 mana={2}{B}
 type=Creature
@@ -41918,7 +41937,8 @@ type=Enchantment
 [card]
 name=Greater Harvester
 auto=@each my upkeep:sacrifice notatarget(creature|mybattlefield)
-auto=@combatdamaged(opponent) from(this):ability$!name(sacrifice 2 permanents) target(<2>*|mybattlefield) sacrifice!$ opponent
+auto=@combatdamagefoeof(player) from(this):ability$!name(sacrifice 2 permanents) target(<2>*|mybattlefield) sacrifice!$ opponent
+auto=@combatdamageof(player) from(this):ability$!name(sacrifice 2 permanents) target(<2>*|mybattlefield) sacrifice!$ controller
 text=At the beginning of your upkeep, sacrifice a permanent. -- Whenever Greater Harvester deals combat damage to a player, that player sacrifices two permanents.
 mana={2}{B}{B}{B}
 type=Creature
@@ -43117,7 +43137,8 @@ subtype=Aura
 name=Guul Draz Specter
 abilities=flying
 auto=aslongas(*|opponenthand) 3/3 while <1
-auto=@combatdamaged(opponent) from(this):ability$!name(discard) target(*|myhand) reject!$ opponent
+auto=@combatdamagefoeof(player) from(this):ability$!name(discard) target(*|myhand) reject!$ opponent
+auto=@combatdamageof(player) from(this):ability$!name(discard) target(*|myhand) reject!$ controller
 text=Flying -- Guul Draz Specter gets +3/+3 as long as an opponent has no cards in hand. -- Whenever Guul Draz Specter deals combat damage to a player, that player discards a card.
 mana={2}{B}{B}
 type=Creature
@@ -43655,8 +43676,8 @@ type=Legendary Enchantment Artifact
 name=Hammer of Ruin
 auto={2}:equip
 auto=2/0
-auto=@combatdamaged(controller) from(this):may destroy target(equipment|myBattlefield)
-auto=@combatdamaged(opponent) from(this):may destroy target(equipment|opponentBattlefield)
+auto=teach(creature) transforms((,newability[@combatdamageof(player) from(this):may destroy target(equipment|myBattlefield)]))
+auto=teach(creature) transforms((,newability[@combatdamagefoeof(player) from(this):may destroy target(equipment|opponentBattlefield)]))
 text=Equipped creature gets +2/+0. -- Whenever equipped creature deals combat damage to a player, you may destroy target Equipment that player controls. -- Equip {2}
 mana={2}
 type=Artifact
@@ -44191,7 +44212,8 @@ toughness=3
 [/card]
 [card]
 name=Haunted Cadaver
-auto=@combatdamaged(player) from(this):may ability$!name(discard 3 cards) target(<3>*|myhand) reject!$ opponent && sacrifice all(this)
+auto=@combatdamagefoeof(player) from(this):may ability$!name(discard 3 cards) target(<3>*|myhand) reject!$ opponent && sacrifice all(this)
+auto=@combatdamageof(player) from(this):may ability$!name(discard 3 cards) target(<3>*|myhand) reject!$ controller && sacrifice all(this)
 facedown={3}
 autofacedown={1}{B}:morph
 text=Whenever Haunted Cadaver deals combat damage to a player, you may sacrifice it. If you do, that player discards three cards. -- Morph {1}{B} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
@@ -44405,7 +44427,8 @@ toughness=2
 [/card]
 [card]
 name=Headhunter
-auto=@combatdamaged(opponent) from(this):ability$!name(discard) target(*|myhand) reject!$ opponent
+auto=@combatdamagefoeof(player) from(this):ability$!name(discard) target(*|myhand) reject!$ opponent
+auto=@combatdamageof(player) from(this):ability$!name(discard) target(*|myhand) reject!$ controller
 autofacedown={B}:morph
 facedown={3}
 text=Whenever Headhunter deals combat damage to a player, that player discards a card. -- Morph {B} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
@@ -45178,7 +45201,7 @@ toughness=8
 [card]
 name=Hellkite Tyrant
 abilities=flying,trample
-auto=@combatdamaged(player) from(this):all(artifact|opponentbattlefield) transforms((,newability[moveTo(opponentBattlefield)]))
+auto=@combatdamagefoeof(player) from(this):moveTo(myBattlefield) all(artifact|opponentbattlefield)
 auto=@each my upkeep restriction{type(artifact|myBattlefield)~morethan~19}:winGame
 text=Flying, trample -- Whenever Hellkite Tyrant deals combat damage to a player, gain control of all artifacts that player controls. -- At the beginning of your upkeep, if you control twenty or more artifacts, you win the game.
 mana={4}{R}{R}
@@ -47499,7 +47522,7 @@ type=Sorcery
 [card]
 name=Hypnotic Specter
 abilities=flying
-auto=@damaged(opponent) from(this):discard:1 opponent
+auto=@damagefoeof(player) from(this):discard:1 opponent
 text=Flying -- Whenever Hypnotic Specter deals damage to an opponent, that player discards a card at random.
 mana={1}{B}{B}
 type=Creature
@@ -48865,7 +48888,8 @@ toughness=11
 [card]
 name=Ink-Eyes, Servant of Oni
 autohand={3}{B}{B}{N}:ninjutsu
-auto=@combatdamaged(player) from(this):may moveTo(myBattlefield) target(creature|opponentgraveyard)
+auto=@combatdamagefoeof(player) from(this):may moveTo(myBattlefield) target(creature|opponentgraveyard)
+auto=@combatdamageof(player) from(this):may moveTo(myBattlefield) target(creature|mygraveyard)
 auto={1}{B}:all(this) regenerate
 text=Ninjutsu {3}{B}{B} ({3}{B}{B}, Return an unblocked attacker you control to hand: Put this card onto the battlefield from your hand tapped and attacking.) -- Whenever Ink-Eyes, Servant of Oni deals combat damage to a player, you may put target creature card from that player's graveyard onto the battlefield under your control. -- {1}{B}: Regenerate Ink-Eyes.
 mana={4}{B}{B}
@@ -50041,7 +50065,7 @@ type=Sorcery
 [card]
 name=Jagged Poppet
 auto=@damaged(this):ability$!name(discard) target(<storedthatmuch>*|myhand) reject!$ controller
-auto=@combatdamaged(opponent) from(this) restriction{type(*|myhand)~lessthan~1}:ability$!name(discard) target(<storedthatmuch>*|myhand) reject!$ opponent
+auto=@combatdamagefoeof(player) from(this) restriction{type(*|myhand)~lessthan~1}:ability$!name(discard) target(<storedthatmuch>*|myhand) reject!$ opponent
 text=Whenever Jagged Poppet is dealt damage, discard that many cards. -- Hellbent - Whenever Jagged Poppet deals combat damage to a player, if you have no cards in hand, that player discards cards equal to the damage.
 mana={1}{B}{R}
 type=Creature
@@ -54961,7 +54985,7 @@ toughness=2
 [/card]
 [card]
 name=Silverpelt Werewolf
-auto=@combatdamaged(opponent) from(this):draw:1 controller
+auto=@combatdamaged(player) from(this):draw:1 controller
 auto=@each upkeep restriction{lastturn(*|stack)~morethan~1}:flip(Lambholt Elder)
 text=Whenever Silverpelt Werewolf deals combat damage to a player, draw a card. -- At the beginning of each upkeep, if a player cast two or more spells last turn, transform Silverpelt Werewolf.
 color=green
@@ -55104,7 +55128,8 @@ type=Sorcery
 [/card]
 [card]
 name=Larceny
-auto=@combatdamaged(player) from(creature|mybattlefield):all(trigger[to]) ability$!name(discard) target(*|myhand) reject!$ opponent
+auto=@combatdamagefoeof(player) from(creature|mybattlefield):all(trigger[to]) ability$!name(discard) target(*|myhand) reject!$ opponent
+auto=@combatdamageof(player) from(creature|mybattlefield):all(trigger[to]) ability$!name(discard) target(*|myhand) reject!$ controller
 text=Whenever a creature you control deals combat damage to a player, that player discards a card.
 mana={3}{B}{B}
 type=Enchantment
@@ -56634,7 +56659,8 @@ toughness=1
 [card]
 name=Lightwielder Paladin
 abilities=first strike
-auto=@combatdamaged(player) from(this):may moveTo(exile) target(*[black;red]|opponentBattlefield)
+auto=@combatdamagefoeof(player) from(this):may moveTo(exile) target(*[black;red]|opponentBattlefield)
+auto=@combatdamageof(player) from(this):may moveTo(exile) target(*[black;red]|myBattlefield)
 text=First strike (This creature deals combat damage before creatures without first strike.) -- Whenever Lightwielder Paladin deals combat damage to a player, you may exile target black or red permanent that player controls.
 mana={3}{W}{W}
 type=Creature
@@ -56717,8 +56743,9 @@ type=Enchantment
 [card]
 name=Liliana's Reaver
 abilities=deathtouch
-auto=@combatdamaged(opponent) from(this):token(-370740)
-auto=@combatdamaged(opponent) from(this):ability$!name(discard) notatarget(*|myhand) reject!$ opponent
+auto=@combatdamaged(player) from(this):token(-370740)
+auto=@combatdamagefoeof(player) from(this):ability$!name(discard) notatarget(*|myhand) reject!$ opponent
+auto=@combatdamageof(player) from(this):ability$!name(discard) notatarget(*|myhand) reject!$ controller
 text=Deathtouch. -- Whenever Liliana's Reaver deals combat damage to a player, that player discards a card and you put a 2/2 black Zombie creature token onto the battlefield tapped.
 mana={2}{B}{B}
 type=Creature
@@ -59976,7 +60003,7 @@ subtype=Aura
 [card]
 name=Markov Blademaster
 abilities=double strike
-auto=@combatdamaged(opponent) from(this):counter(1/1,1)
+auto=@combatdamaged(player) from(this):counter(1/1,1)
 text=Double strike -- Whenever Markov Blademaster deals combat damage to a player, put a +1/+1 counter on it.
 mana={1}{R}{R}
 type=Creature
@@ -61809,7 +61836,7 @@ toughness=2
 [/card]
 [card]
 name=Michiko Konda, Truth Seeker
-auto=@combatdamaged(controller) from(creature|opponentbattlefield):ability$!name(sacrifice permanent) notatarget(*|mybattlefield) sacrifice!$ opponent
+auto=@damageof(player) from(*|opponentstack,opponentbattlefield,opponentgraveyard,opponenthand,opponentexile):ability$!name(sacrifice permanent) notatarget(*|mybattlefield) sacrifice!$ opponent
 text=Whenever a source an opponent controls deals damage to you, that player sacrifices a permanent.
 mana={3}{W}
 type=Legendary Creature
@@ -62358,7 +62385,8 @@ toughness=1
 [card]
 name=Mindleech Mass
 abilities=trample
-auto=@combatdamaged(player) from(this):may target(*[-land]|opponenthand) castcard(normal)
+auto=@combatdamagefoeof(player) from(this):may target(*[-land]|opponenthand) castcard(normal)
+auto=@combatdamageof(player) from(this):may target(*[-land]|myhand) castcard(normal)
 text=Trample -- Whenever Mindleech Mass deals combat damage to a player, you may look at that player's hand. If you do, you may cast a nonland card in it without paying that card's mana cost.
 mana={5}{U}{B}{B}
 type=Creature
@@ -62399,7 +62427,7 @@ type=Enchantment
 [card]
 name=Mindscour Dragon
 abilities=flying
-auto=@combatdamaged(opponent) from(this):deplete:4 target(player)
+auto=@combatdamagefoeof(player) from(this):deplete:4 target(player)
 text=Flying -- Whenever Mindscour Dragon deals combat damage to an opponent, target player puts the top 4 cards of his or her library into his or her graveyard.
 mana={4}{U}{U}
 type=Creature
@@ -63057,7 +63085,8 @@ toughness=4
 [card]
 name=Mistblade Shinobi
 autohand={U}{N}:ninjutsu
-auto=@combatdamaged(player) from(this):may moveTo(ownerhand) target(creature|opponentBattlefield)
+auto=@combatdamagefoeof(player) from(this):may moveTo(ownerhand) target(creature|opponentBattlefield)
+auto=@combatdamageof(player) from(this):may moveTo(ownerhand) target(creature|myBattlefield)
 text=Ninjutsu {U} ({U}, Return an unblocked attacker you control to hand: Put this card onto the battlefield from your hand tapped and attacking.) -- Whenever Mistblade Shinobi deals combat damage to a player, you may return target creature that player controls to its owner's hand.
 mana={2}{U}
 type=Creature
@@ -64283,7 +64312,8 @@ type=Sorcery
 name=Mordant Dragon
 abilities=flying
 auto={1}{R}:1/0
-auto=@combatdamaged(opponent) from(this):may name(same amount of damage to opponent's creature) damage:thatmuch target(creature|opponentbattlefield)
+auto=@combatdamagefoeof(player) from(this):may name(same amount of damage to opponent's creature) damage:thatmuch target(creature|opponentbattlefield)
+auto=@combatdamageof(player) from(this):may name(same amount of damage to controller creature) damage:thatmuch target(creature|mybattlefield)
 text=Flying -- {1}{R}: Mordant Dragon gets +1/+0 until end of turn. -- Whenever Mordant Dragon deals combat damage to a player, you may have it deal that much damage to target creature that player controls.
 mana={3}{R}{R}{R}
 type=Creature
@@ -66465,7 +66495,8 @@ type=Enchantment
 [card]
 name=Needle Specter
 abilities=flying,wither
-auto=@combatdamaged(opponent) from(this):ability$!name(discard) target(<storedthatmuch>*|myhand) reject!$ opponent
+auto=@combatdamagefoeof(player) from(this):ability$!name(discard) target(<storedthatmuch>*|myhand) reject!$ opponent
+auto=@combatdamageof(player) from(this):ability$!name(discard) target(<storedthatmuch>*|myhand) reject!$ controller
 text=Flying -- Wither (This deals damage to creatures in the form of -1/-1 counters.) -- Whenever Needle Specter deals combat damage to a player, that player discards that many cards.
 mana={1}{B}{B}
 type=Creature
@@ -68951,7 +68982,8 @@ type=Artifact
 [/card]
 [card]
 name=Okiba-Gang Shinobi
-auto=@combatdamaged(opponent) from(this):ability$!name(discard 2 cards) target(<2>*|myhand) reject!$ opponent
+auto=@combatdamagefoeof(player) from(this):ability$!name(discard 2 cards) target(<2>*|myhand) reject!$ opponent
+auto=@combatdamageof(player) from(this):ability$!name(discard 2 cards) target(<2>*|myhand) reject!$ controller
 autohand={3}{B}{N}:ninjutsu
 text=Ninjutsu {3}{B} ({3}{B}, Return an unblocked attacker you control to hand: Put this card onto the battlefield from your hand tapped and attacking.) -- Whenever Okiba-Gang Shinobi deals combat damage to a player, that player discards two cards.
 mana={3}{B}{B}
@@ -69158,7 +69190,8 @@ type=Artifact
 name=Oona's Blackguard
 abilities=flying
 auto=@movedto(other rogue|myBattlefield):all(trigger[to]) counter(1/1,1)
-auto=@combatdamaged(opponent) from(creature[counter{1/1.1}]|mybattlefield):ability$!name(discard) target(*|myhand) reject!$ opponent
+auto=@combatdamagefoeof(player) from(creature[counter{1/1.1}]|mybattlefield):ability$!name(discard) target(*|myhand) reject!$ opponent
+auto=@combatdamageof(player) from(creature[counter{1/1.1}]|mybattlefield):ability$!name(discard) target(*|myhand) reject!$ controller
 text=Flying -- Each other Rogue creature you control enters the battlefield with an additional +1/+1 counter on it. -- Whenever a creature you control with a +1/+1 counter on it deals combat damage to a player, that player discards a card.
 mana={1}{B}
 type=Creature
@@ -71952,12 +71985,12 @@ subtype=Golem
 power=4
 toughness=2
 [/card]
-##the cantlose on phage only last until the ability checks if she was played from hand enjoy :)
 [card]
 name=Phage the Untouchable
 auto=ifnot casted(this) then wingame opponent
 auto=@combatdamaged(creature) from(this):all(trigger[to]) bury
-auto=@combatdamaged(player) from(this):winGame controller
+auto=@combatdamagefoeof(player) from(this):winGame controller
+auto=@combatdamageof(player) from(this):winGame opponent
 text=When Phage the Untouchable enters the battlefield, if you didn't cast it from your hand, you lose the game. Whenever Phage deals combat damage to a creature, destroy that creature. It can't be regenerated. -- Whenever Phage deals combat damage to a player, that player loses the game.
 mana={3}{B}{B}{B}{B}
 type=Legendary Creature
@@ -76184,8 +76217,7 @@ name=Quietus Spike
 text=Equipped creature has deathtouch. -- Whenever equipped creature deals combat damage to a player, that player loses half his or her life, rounded up. -- Equip {3}
 mana={3}
 auto={3}:equip
-auto=teach(creature) deathtouch
-auto=@combatdamaged(opponent) from(mytgt):life:-halfupopponentlifetotal opponent
+auto=teach(creature) transforms((,newability[deathtouch],newability[@combatdamagefoeof(player) from(this):life:-halfupopponentlifetotal opponent],newability[@combatdamageof(player) from(this):life:-halfuplifetotal controller]))
 type=Artifact
 subtype=Equipment
 [/card]
@@ -76982,8 +77014,8 @@ toughness=3
 [/card]
 [card]
 name=Rakdos Ringleader
-auto=@combatdamaged(opponent) from(this):discard:1 opponent
-auto=@combatdamaged(controller) from(this):discard:1 controller
+auto=@combatdamagefoeof(player) from(this):discard:1 opponent
+auto=@combatdamageof(player) from(this):discard:1 controller
 auto={B}:regenerate
 abilities=first strike
 text=First strike -- Whenever Rakdos Ringleader deals combat damage to a player, that player discards a card at random. -- {B}: Regenerate Rakdos Ringleader.
@@ -77014,8 +77046,8 @@ type=Artifact
 name=Rakdos the Defiler
 abilities=flying,trample
 auto=@combat(attacking) source(this):choice target(<halfuptype:*[-demon]:mybattlefield>*|mybattlefield) sacrifice
-auto=@combatdamaged(opponent) from(this):ability$!name(sacrifice) target(<halfuptype:*[-demon]:opponentbattlefield>*|mybattlefield) sacrifice!$ opponent
-auto=@combatdamaged(controller) from(this):ability$!name(sacrifice) target(<halfuptype:*[-demon]:opponentbattlefield>*|mybattlefield) sacrifice!$ controller
+auto=@combatdamagefoeof(player) from(this):ability$!name(sacrifice) target(<halfuptype:*[-demon]:opponentbattlefield>*|mybattlefield) sacrifice!$ opponent
+auto=@combatdamageof(player) from(this):ability$!name(sacrifice) target(<halfuptype:*[-demon]:opponentbattlefield>*|mybattlefield) sacrifice!$ controller
 text=Flying, trample -- Whenever Rakdos the Defiler attacks, sacrifice half the non-Demon permanents you control, rounded up. -- Whenever Rakdos deals combat damage to a player, that player sacrifices half the non-Demon permanents he or she controls, rounded up.
 mana={2}{B}{B}{R}{R}
 type=Legendary Creature
@@ -77662,7 +77694,8 @@ toughness=4
 name=Raven Guild Master
 facedown={3}
 autofacedown={2}{U}{U}:morph
-auto=@combatdamaged(player) from(this):deplete:10 opponent
+auto=@combatdamagefoeof(player) from(this):deplete:10 opponent
+auto=@combatdamageof(player) from(this):deplete:10 controller
 text=Whenever Raven Guild Master deals combat damage to a player, that player exiles the top ten cards of his or her library. -- Morph {2}{U}{U} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
 mana={1}{U}{U}
 type=Creature
@@ -80526,7 +80559,7 @@ toughness=3
 name=Riptide Entrancer
 facedown={3}
 autofacedown={U}{U}:morph
-auto=@combatdamaged(player) from(this):may moveTo(mybattlefield) target(creature|myBattlefield) && sacrifice all(this)
+auto=@combatdamagefoeof(player) from(this):may moveTo(mybattlefield) target(creature|opponentBattlefield) && sacrifice all(this)
 text=Whenever Riptide Entrancer deals combat damage to a player, you may sacrifice it. If you do, gain control of target creature that player controls. (This effect lasts indefinitely.) -- Morph {U}{U} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
 mana={1}{U}{U}
 type=Creature
@@ -80543,7 +80576,8 @@ type=Land
 [/card]
 [card]
 name=Riptide Pilferer
-auto=@combatdamaged(opponent) from(this):ability$!name(discard) target(*|myhand) reject!$ opponent
+auto=@combatdamagefoeof(player) from(this):ability$!name(discard) target(*|myhand) reject!$ opponent
+auto=@combatdamageof(player) from(this):ability$!name(discard) target(*|myhand) reject!$ controller
 autofacedown={U}:morph
 facedown={3}
 text=Whenever Riptide Pilferer deals combat damage to a player, that player discards a card. -- Morph {U} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
@@ -81530,7 +81564,8 @@ toughness=1
 [card]
 name=Rootwater Thief
 auto={U}:flying
-auto=@combatdamaged(player) from(this):pay({2}) moveto(exile) and!(shuffle)! notatarget(*|opponentlibrary)
+auto=@combatdamagefoeof(player) from(this):pay({2}) moveto(exile) and!(shuffle)! notatarget(*|opponentlibrary)
+auto=@combatdamageof(player) from(this):pay({2}) moveto(exile) and!(shuffle)! notatarget(*|mylibrary)
 text={U}: Rootwater Thief gains flying until end of turn. -- Whenever Rootwater Thief deals combat damage to a player, you may pay {2}. If you do, search that player's library for a card and exile it, then the player shuffles his or her library.
 mana={1}{U}
 type=Creature
@@ -82321,7 +82356,8 @@ toughness=*
 [/card]
 [card]
 name=Rustmouth Ogre
-auto=@combatdamaged(player) from(this):may destroy target(artifact|opponentBattlefield)
+auto=@combatdamagefoeof(player) from(this):may destroy target(artifact|opponentBattlefield)
+auto=@combatdamageof(player) from(this):may destroy target(artifact|myBattlefield)
 text=Whenever Rustmouth Ogre deals combat damage to a player, you may destroy target artifact that player controls.
 mana={4}{R}{R}
 type=Creature
@@ -84343,7 +84379,8 @@ type=Land
 [card]
 name=Scion of Darkness
 abilities=trample
-auto=@combatdamaged(player) from(this):may moveTo(myBattlefield) target(creature|opponentgraveyard)
+auto=@combatdamagefoeof(player) from(this):may moveTo(myBattlefield) target(creature|opponentgraveyard)
+auto=@combatdamageof(player) from(this):may moveTo(myBattlefield) target(creature|mygraveyard)
 autohand=__CYCLING__({3})
 text=Trample -- Whenever Scion of Darkness deals combat damage to a player, you may put target creature card from that player's graveyard onto the battlefield under your control. -- Cycling {3} ({3}, Discard this card: Draw a card.)
 mana={5}{B}{B}{B}
@@ -84906,7 +84943,8 @@ toughness=2
 [card]
 name=Screeching Silcaw
 abilities=flying
-auto=@combatdamaged(player) from(this) restriction{type(artifact|myBattlefield)~morethan~2}:deplete:4 opponent
+auto=@combatdamagefoeof(player) from(this) restriction{type(artifact|myBattlefield)~morethan~2}:deplete:4 opponent
+auto=@combatdamageof(player) from(this) restriction{type(artifact|myBattlefield)~morethan~2}:deplete:4 controller
 text=Flying -- Metalcraft - Whenever Screeching Silcaw deals combat damage to a player, if you control three or more artifacts, that player puts the top four cards of his or her library into his or her graveyard.
 mana={1}{U}
 type=Creature
@@ -85647,7 +85685,8 @@ toughness=2
 [card]
 name=Sedraxis Specter
 abilities=flying
-auto=@combatdamaged(opponent) from(this):ability$!name(discard) target(*|myhand) reject!$ opponent
+auto=@combatdamagefoeof(player) from(this):ability$!name(discard) target(*|myhand) reject!$ opponent
+auto=@combatdamageof(player) from(this):ability$!name(discard) target(*|myhand) reject!$ controller
 autograveyard={1}{B}:moveto(mybattlefield) && transforms((,unearth,haste)) asSorcery forever
 text=Flying -- Whenever Sedraxis Specter deals combat damage to a player, that player discards a card. -- Unearth {1}{B} ({1}{B}: Return this card from your graveyard to the battlefield. It gains haste. Exile it at the beginning of the next end step or if it would leave the battlefield. Unearth only as a sorcery.)
 mana={U}{B}{R}
@@ -87727,8 +87766,9 @@ toughness=0
 [card]
 name=Shimian Specter
 abilities=flying
-auto=@combatdamaged(opponent) from(this) restriction{type(*[-land]|opponenthand)~morethan~0}:name(exile a nonland) notatarget(*[-land]|opponenthand) transforms((,newability[all(*[share!name!]|mylibrary) moveto(exile) and!(shuffle)!],newability[all(*[share!name!]|mygraveyard) moveto(exile)],newability[all(*[share!name!]|myhand) moveto(exile)]))
-auto=@combatdamaged(opponent) from(this) restriction{type(*[-land]|opponenthand)~lessthan~1}:name(look) notatarget(*|opponenthand) donothing
+auto=@combatdamagefoeof(player) from(this) restriction{type(*[-land]|opponenthand)~morethan~0}:name(exile a nonland) notatarget(*[-land]|opponenthand) transforms((,newability[all(*[share!name!]|mylibrary) moveto(exile) and!(shuffle)!],newability[all(*[share!name!]|mygraveyard) moveto(exile)],newability[all(*[share!name!]|myhand) moveto(exile)]))
+auto=@combatdamageof(player) from(this) restriction{type(*[-land]|myhand)~morethan~0}:name(exile a nonland) notatarget(*[-land]|myhand) transforms((,newability[all(*[share!name!]|mylibrary) moveto(exile) and!(shuffle)!],newability[all(*[share!name!]|mygraveyard) moveto(exile)],newability[all(*[share!name!]|myhand) moveto(exile)]))
+auto=@combatdamagefoeof(player) from(this) restriction{type(*[-land]|opponenthand)~lessthan~1}:name(look) notatarget(*|opponenthand) donothing
 text=Flying -- Whenever Shimian Specter deals combat damage to a player, that player reveals his or her hand. You choose a nonland card from it. Search that player's graveyard, hand, and library for all cards with the same name as that card and exile them. Then that player shuffles his or her library.
 mana={2}{B}{B}
 type=Creature
@@ -87919,7 +87959,8 @@ toughness=2
 [card]
 name=Shisato, Whispering Hunter
 auto=@each my upkeep:target(snake|mybattlefield) sacrifice
-auto=@combatdamaged(opponent) from(this):nextphasealter(remove,untap,opponent)
+auto=@combatdamagefoeof(player) from(this):nextphasealter(remove,untap,opponent)
+auto=@combatdamageof(player) from(this):nextphasealter(remove,untap,controller)
 text=At the beginning of your upkeep, sacrifice a Snake. -- Whenever Shisato, Whispering Hunter deals combat damage to a player, that player skips his or her next untap step.
 mana={3}{G}
 type=Legendary Creature
@@ -88113,7 +88154,8 @@ toughness=1
 [card]
 name=Shockmaw Dragon
 abilities=flying
-auto=@combatdamaged(opponent) from(this):all(creature|opponentbattlefield) damage:1
+auto=@combatdamagefoeof(player) from(this):all(creature|opponentbattlefield) damage:1
+auto=@combatdamageof(player) from(this):all(creature|mybattlefield) damage:1
 text=Flying -- Whenever Shockmaw Dragon deals combat damage to a player, it deals 1 damage to each creature that player controls.
 mana={4}{R}{R}
 type=Creature
@@ -88279,7 +88321,8 @@ toughness=3
 [card]
 name=Shriekgeist
 abilities=flying
-auto=@combatdamaged(player) from(this):deplete:2 opponent
+auto=@combatdamagefoeof(player) from(this):deplete:2 opponent
+auto=@combatdamageof(player) from(this):deplete:2 controller
 text=Flying -- Whenever Shriekgeist deals combat damage to a player, that player puts the top two cards of his or her library into his or her graveyard.
 mana={1}{U}
 type=Creature
@@ -88931,7 +88974,8 @@ toughness=6
 [card]
 name=Silent Specter
 abilities=flying
-auto=@combatdamaged(player) from(this):ability$!name(discard 2 cards) target(<2>*|myhand) reject!$ opponent
+auto=@combatdamagefoeof(player) from(this):ability$!name(discard 2 cards) target(<2>*|myhand) reject!$ opponent
+auto=@combatdamageof(player) from(this):ability$!name(discard 2 cards) target(<2>*|myhand) reject!$ controller
 facedown={3}
 autofacedown={3}{B}{B}:morph
 text=Flying -- Whenever Silent Specter deals combat damage to a player, that player discards two cards. -- Morph {3}{B}{B} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
@@ -88944,7 +88988,8 @@ toughness=4
 [card]
 name=Silent-Blade Oni
 autohand={4}{U}{B}{N}:ninjutsu
-auto=@combatdamaged(player) from(this):may target(*[-land]|opponenthand) castcard(normal)
+auto=@combatdamagefoeof(player) from(this):may target(*[-land]|opponenthand) castcard(normal)
+auto=@combatdamageof(player) from(this):may target(*[-land]|myhand) castcard(normal)
 text=Ninjutsu {4}{U}{B} ({4}{U}{B}, Return an unblocked attacker you control to hand: Put this card onto the battlefield from your hand tapped and attacking.) -- Whenever Silent-Blade Oni deals combat damage to a player, look at that player's hand. You may cast a nonland card in it without paying that card's mana cost.
 mana={3}{U}{U}{B}{B}
 type=Creature
@@ -89952,7 +89997,8 @@ toughness=2
 name=Skirk Commando
 facedown={3}
 autofacedown={2}{R}:morph
-auto=@combatdamaged(opponent) from(this):may damage:2 target(creature|opponentbattlefield)
+auto=@combatdamagefoeof(player) from(this):may damage:2 target(creature|opponentbattlefield)
+auto=@combatdamageof(player) from(this):may damage:2 target(creature|mybattlefield)
 text=Whenever Skirk Commando deals combat damage to a player, you may have it deal 2 damage to target creature that player controls. -- Morph {2}{R} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
 mana={1}{R}{R}
 type=Creature
@@ -90298,7 +90344,8 @@ toughness=3
 [card]
 name=Skullsnatcher
 autohand={B}{N}:ninjutsu
-auto=@combatdamaged(player) from(this):may target(<upto:2>*|opponentgraveyard) moveTo(exile)
+auto=@combatdamagefoeof(player) from(this):may target(<upto:2>*|opponentgraveyard) moveTo(exile)
+auto=@combatdamageof(player) from(this):may target(<upto:2>*|mygraveyard) moveTo(exile)
 text=Ninjutsu {B} ({B}, Return an unblocked attacker you control to hand: Put this card onto the battlefield from your hand tapped and attacking.) -- Whenever Skullsnatcher deals combat damage to a player, exile up to two target cards from that player's graveyard.
 mana={1}{B}
 type=Creature
@@ -90983,7 +91030,8 @@ type=Sorcery
 [/card]
 [card]
 name=Slavering Nulls
-auto=@combatdamaged(opponent) from(this) restriction{type(swamp|mybattlefield)~morethan~0}:may name(opponent discard) ability$!name(discard) target(*|myhand) reject!$ opponent
+auto=@combatdamagefoeof(player) from(this) restriction{type(swamp|mybattlefield)~morethan~0}:may name(opponent discard) ability$!name(discard) target(*|myhand) reject!$ opponent
+auto=@combatdamageof(player) from(this) restriction{type(swamp|mybattlefield)~morethan~0}:may name(discard) ability$!name(discard) target(*|myhand) reject!$ controller
 text=Whenever Slavering Nulls deals combat damage to a player, if you control a Swamp, you may have that player discard a card.
 mana={1}{R}
 type=Creature
@@ -91050,7 +91098,7 @@ subtype=Aura
 name=Sleeper's Robe
 target=creature
 auto=fear
-auto=@combatdamaged(opponent) from(mytgt):may draw:1 controller
+auto=@combatdamagefoeof(player) from(mytgt):may draw:1 controller
 text=Enchant creature -- Enchanted creature has fear. (It can't be blocked except by artifact creatures and/or black creatures.) -- Whenever enchanted creature deals combat damage to an opponent, you may draw a card.
 mana={U}{B}
 type=Enchantment
@@ -91683,7 +91731,8 @@ toughness=2
 name=Snapping Thragg
 facedown={3}
 autofacedown={4}{R}{R}:morph
-auto=@combatdamaged(opponent) from(this):may damage:3 target(creature|opponentbattlefield)
+auto=@combatdamagefoeof(player) from(this):may damage:3 target(creature|opponentbattlefield)
+auto=@combatdamageof(player) from(this):may damage:3 target(creature|mybattlefield)
 text=Whenever Snapping Thragg deals combat damage to a player, you may have it deal 3 damage to target creature that player controls. -- Morph {4}{R}{R} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
 mana={4}{R}
 type=Creature
@@ -93117,7 +93166,8 @@ toughness=1
 [/card]
 [card]
 name=Spark Mage
-auto=@combatdamaged(player) from(this):may damage:1 target(creature|opponentBattlefield)
+auto=@combatdamagefoeof(player) from(this):may damage:1 target(creature|opponentBattlefield)
+auto=@combatdamageof(player) from(this):may damage:1 target(creature|myBattlefield)
 text=Whenever Spark Mage deals combat damage to a player, you may have Spark Mage deal 1 damage to target creature that player controls.
 mana={R}
 type=Creature
@@ -98344,7 +98394,7 @@ toughness=1
 [/card]
 [card]
 name=Swarmborn Giant
-auto=@combatdamaged(controller):sacrifice all(this)
+auto=@combatdamageof(player):sacrifice all(this)
 auto=this(cantargetcard(*[-monstrous]) {4}{G}{G}:becomes(monstrous) forever && counter(1/1,2) && transforms((,newAbility[reach])) forever
 text=When you're dealt combat damage, sacrifice Swarmborn Giant. -- {3}{G}{G}: Monstrosity 2. (If this creature isn't monstrous, put two +1/+1 counters on it and it becomes monstrous.) -- As long as Swarmborn Giant is monstrous, it has reach.
 mana={2}{G}{G}
@@ -98907,8 +98957,8 @@ type=Sorcery
 [/card]
 [card]
 name=Synapse Sliver
-auto=@combatdamaged(player) from(sliver|myBattlefield):may draw:1 controller
-auto=@combatdamaged(player) from(sliver|opponentBattlefield):draw:1 opponent
+auto=@combatdamagefoeof(player) from(sliver):ability$!name(Draw) may draw:1!$ opponent
+auto=@combatdamageof(player) from(sliver):ability$!name(Draw) may draw:1!$ controller
 text=Whenever a Sliver deals combat damage to a player, its controller may draw a card.
 mana={4}{U}
 type=Creature
@@ -99015,6 +99065,7 @@ text=Syphon Soul deals 2 damage to each other player. You gain life equal to the
 mana={2}{B}
 type=Sorcery
 [/card]
+#workaround szadek.
 [card]
 name=Szadek, Lord of Secrets
 abilities=flying
@@ -102037,7 +102088,8 @@ type=Sorcery
 [card]
 name=Throat Slitter
 autohand={2}{B}{N}:ninjutsu
-auto=@combatdamaged(player) from(this):destroy target(creature[-black]|opponentbattlefield)
+auto=@combatdamagefoeof(player) from(this):destroy target(creature[-black]|opponentbattlefield)
+auto=@combatdamageof(player) from(this):destroy target(creature[-black]|mybattlefield)
 text=Ninjutsu {2}{B} ({2}{B}, Return an unblocked attacker you control to hand: Put this card onto the battlefield from your hand tapped and attacking.) -- Whenever Throat Slitter deals combat damage to a player, destroy target nonblack creature that player controls.
 mana={4}{B}
 type=Creature
@@ -105195,7 +105247,8 @@ subtype=Equipment
 [card]
 name=Trygon Predator
 abilities=flying
-auto=@combatdamaged(player) from(this):may destroy target(artifact,enchantment|opponentBattlefield)
+auto=@combatdamagefoeof(player) from(this):may destroy target(artifact,enchantment|opponentBattlefield)
+auto=@combatdamageof(player) from(this):may destroy target(artifact,enchantment|myBattlefield)
 text=Flying -- Whenever Trygon Predator deals combat damage to a player, you may destroy target artifact or enchantment that player controls.
 mana={1}{G}{U}
 type=Creature
@@ -108029,8 +108082,7 @@ toughness=2
 [card]
 name=Vengeful Pharaoh
 abilities=deathtouch
-autograveyard=@combatdamaged(controller):moveTo(ownerlibrary)
-autograveyard=@combatdamaged(controller):destroy target(creature[attacking])
+autograveyard=@combatdamaged(player,planeswalker) from(*|opponentbattlefield):and!(destroy target(creature[attacking]))! moveTo(ownerlibrary)
 text=Deathtouch -- Whenever combat damage is dealt to your or a planeswalker you control, if Vengeful Pharaoh is in your graveyard, destroy target attacking creature, then put Vengeful Pharaoh on top of your library.
 mana={2}{B}{B}{B}
 type=Creature
@@ -110319,7 +110371,8 @@ subtype=Vraska
 [/card]
 [card]
 name=Assassin Token
-auto=@combatdamaged(player) from(this):winGame controller
+auto=@combatdamagefoeof(player) from(this):winGame controller
+auto=@combatdamageof(player) from(this):winGame opponent
 type=Creature
 subtype=Assassin
 power=1
@@ -110578,7 +110631,7 @@ type=Sorcery
 [card]
 name=Walker of Secret Ways
 autohand={1}{U}{N}:ninjutsu
-auto=@combatdamaged(player) from(this):name(look at opponents hand) target(*|opponenthand) donothing ueot
+auto=@combatdamagefoeof(player) from(this):name(look at opponents hand) target(*|opponenthand) donothing ueot
 auto={1}{U}:moveTo(myhand) target(ninja|myBattlefield) myTurnOnly
 text=Ninjutsu {1}{U} ({1}{U}, Return an unblocked attacker you control to hand: Put this card onto the battlefield from your hand tapped and attacking.) -- Whenever Walker of Secret Ways deals combat damage to a player, look at that player's hand. -- {1}{U}: Return target Ninja you control to its owner's hand. Activate this ability only during your turn.
 mana={2}{U}
@@ -114814,7 +114867,8 @@ type=Sorcery
 [card]
 name=Wrexial, the Risen Deep
 abilities=islandwalk,swampwalk
-auto=@combatdamaged(player) from(this):may target(*[instant;sorcery]|opponentgraveyard) castcard(normal) and!(transforms((,newability[exiledeath])) forever)!
+auto=@combatdamagefoeof(player) from(this):may target(*[instant;sorcery]|opponentgraveyard) castcard(normal) and!(transforms((,newability[exiledeath])) forever)!
+auto=@combatdamageof(player) from(this):may target(*[instant;sorcery]|mygraveyard) castcard(normal) and!(transforms((,newability[exiledeath])) forever)!
 text=Islandwalk, swampwalk -- Whenever Wrexial, the Risen Deep deals combat damage to a player, you may cast target instant or sorcery card from that player's graveyard without paying its mana cost. If that card would be put into a graveyard this turn, exile it instead.
 mana={3}{U}{U}{B}
 type=Legendary Creature
@@ -116050,7 +116104,8 @@ toughness=3
 [/card]
 [card]
 name=Zombie Cannibal
-auto=@combatdamaged(player) from(this):may moveto(exile) target(*|opponentgraveyard)
+auto=@combatdamagefoeof(player) from(this):may moveto(exile) target(*|opponentgraveyard)
+auto=@combatdamageof(player) from(this):may moveto(exile) target(*|mygraveyard)
 text=Whenever Zombie Cannibal deals combat damage to a player, you may exile target card from that player's graveyard.
 mana={B}
 type=Creature
