@@ -1,0 +1,28 @@
+#Hypnotic Specter vs Control Magic
+#The opponent of the current controller of Hypnotic Specter
+#Must discard at random when combat damage is dealt...
+[INIT]
+FIRSTMAIN
+[PLAYER1]
+hand:Control Magic
+inplay:Concordant Crossroads
+manapool:{B}{B}{U}{U}
+[PLAYER2]
+inplay:Hypnotic Specter
+hand:Forest
+[DO]
+Control Magic
+Hypnotic Specter
+next
+next
+Hypnotic Specter
+next
+eot
+[ASSERT]
+UNTAP
+[PLAYER1]
+inplay:Control Magic, Hypnotic Specter, Concordant Crossroads
+[PLAYER2]
+graveyard:Forest
+life:18
+[END] 
