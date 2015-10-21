@@ -2003,13 +2003,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Aladdin's Lamp
-alias=1092
-text={X}, {T}: The next time you would draw a card this turn, instead look at the top X cards of your library, put all but one of them on the bottom of your library in a random order, then draw a card. X can't be 0.
-mana={10}
-type=Artifact
-[/card]
-[card]
 name=Aladdin's Ring
 auto={8}{T}:damage:4 target(creature,player)
 text={8}, {T}: Aladdin's Ring deals 4 damage to target creature or player.
@@ -16223,7 +16216,7 @@ toughness=3
 [/card]
 [card]
 name=Chasm Skulker
-auto=@drawn(controller):counter(1/1,1)
+auto=@drawof(player):counter(1/1,1)
 auto=@movedTo(this|Graveyard) from(myBattlefield):thisforeach(counter{1/1.1}):token(Squid,Creature Squid,1/1,islandwalk,blue)
 text=Whenever you draw a card, put a +1/+1 counter on Chasm Skulker. -- When Chasm Skulker dies, put X 1/1 blue Squid creature tokens with islandwalk onto the battlefield, where X is the number of +1/+1 counters on Chasm Skulker.
 mana={2}{U}
@@ -18565,7 +18558,7 @@ subtype=Aura
 [card]
 name=Consecrated Sphinx
 abilities=flying
-auto=@drawn(opponent):may draw:2 controller
+auto=@drawfoeof(player):may draw:2 controller
 text=Flying -- Whenever an opponent draws a card, you may draw two cards.
 mana={4}{U}{U}
 type=Creature
@@ -25550,8 +25543,8 @@ type=Instant
 [card]
 name=Diviner's Wand
 auto={3}:equip
-auto=@drawn(controller):1/1 ueot
-auto=@drawn(controller):flying ueot
+auto=@drawof(player):1/1 ueot
+auto=@drawof(player):flying ueot
 auto=teach(creature) {4}:draw:1 controller
 auto=@movedto(creature[wizard]|battlefield):may all(trigger[to]) retarget
 text=Equipped creature has "Whenever you draw a card, this creature gets +1/+1 and gains flying until end of turn" and "{4}: Draw a card." -- Whenever a Wizard creature enters the battlefield, you may attach Diviner's Wand to it. -- Equip {3}
@@ -32875,7 +32868,7 @@ subtype=Aura
 [/card]
 [card]
 name=Fate Unraveler
-auto=@drawn(opponent):damage:1 opponent
+auto=@drawfoeof(player):damage:1 opponent
 text=Whenever an opponent draws a card, Fate Unraveler deals 1 damage to that player.
 mana={3}{B}
 type=Enchantment Creature
@@ -46413,7 +46406,7 @@ toughness=2
 [/card]
 [card]
 name=Hoofprints of the Stag
-auto=@drawn(controller):may counter(0/0,1,Hoofprint)
+auto=@drawof(player):may counter(0/0,1,Hoofprint)
 auto={C(0/0,-4,Hoofprint)}{2}{W}:token(Elemental,Creature Elemental,4/4,flying,white) myTurnOnly
 text=Whenever you draw a card, you may put a hoofprint counter on Hoofprints of the Stag. -- {2}{W}, Remove four hoofprint counters from Hoofprints of the Stag: Put a 4/4 white Elemental creature token with flying onto the battlefield. Activate this ability only during your turn.
 mana={1}{W}
@@ -46477,7 +46470,7 @@ type=Land
 [card]
 name=Horizon Chimera
 abilities=flash,flying,trample
-auto=@drawn(controller):life:1 controller
+auto=@drawof(player):life:1 controller
 text=Flash. -- Flying. -- Trample. -- Whenever you draw a card, you gain 1 life.
 mana={2}{G}{U}
 type=Creature
@@ -49936,7 +49929,7 @@ toughness=2
 [/card]
 [card]
 name=Jace's Erasure
-auto=@drawn(controller):may deplete:1 target(player)
+auto=@drawof(player):may deplete:1 target(player)
 text=Whenever you draw a card, you may have target player put the top card of his or her library into his or her graveyard.
 mana={1}{U}
 type=Enchantment
@@ -52160,7 +52153,7 @@ toughness=5
 [/card]
 [card]
 name=Kederekt Parasite
-auto=@drawn(opponent) restriction{type(*[red]|myBattlefield)~morethan~0}:may damage:1 opponent
+auto=@drawfoeof(player) restriction{type(*[red]|myBattlefield)~morethan~0}:may damage:1 opponent
 text=Whenever an opponent draws a card, if you control a red permanent, you may have Kederekt Parasite deal 1 damage to that player.
 mana={B}
 type=Creature
@@ -54794,7 +54787,7 @@ type=Sorcery
 [card]
 name=Laboratory Maniac
 abilities=cantmilllose
-auto=@drawn(controller) restriction{type(*|mylibrary)~equalto~0}:wingame
+auto=@drawof(player) restriction{type(*|mylibrary)~equalto~0}:wingame
 text=If you would draw a card while your library has no cards in it, you win the game instead.
 mana={2}{U}
 type=Creature
@@ -57521,7 +57514,7 @@ toughness=2
 [/card]
 [card]
 name=Lorescale Coatl
-auto=@drawn(controller):may counter(1/1,1)
+auto=@drawof(player):may counter(1/1,1)
 text=Whenever you draw a card, you may put a +1/+1 counter on Lorescale Coatl.
 mana={1}{G}{U}
 type=Creature
@@ -62123,7 +62116,7 @@ type=Legendary Land
 [/card]
 [card]
 name=Mind's Eye
-auto=@drawn(opponent):pay({1}) draw:1
+auto=@drawfoeof(player):pay({1}) draw:1
 text=Whenever an opponent draws a card, you may pay {1}. If you do, draw a card.
 mana={5}
 type=Artifact
@@ -67682,7 +67675,7 @@ toughness=5
 [card]
 name=Niv-Mizzet, the Firemind
 abilities=flying
-auto=@drawn(controller):damage:1 target(creature,player)
+auto=@drawof(player):damage:1 target(creature,player)
 auto={T}:draw:1
 text=Flying -- Whenever you draw a card, Niv-Mizzet, the Firemind deals 1 damage to target creature or player. -- {T}: Draw a card.
 mana={2}{U}{U}{R}{R}
@@ -72799,8 +72792,8 @@ type=Sorcery
 [/card]
 [card]
 name=Phyrexian Tyranny
-auto=@drawn(opponent):name(pay or lifeloss) ability$!name(pay or lifeloss) pay[[{2}]] name(pay 2 mana) donothing?life:-2!$ opponent
-auto=@drawn(controller):name(pay or lifeloss) ability$!name(pay or lifeloss) pay[[{2}]] name(pay 2 mana) donothing?life:-2!$ controller
+auto=@drawfoeof(player):name(pay or lifeloss) ability$!name(pay or lifeloss) pay[[{2}]] name(pay 2 mana) donothing?life:-2!$ opponent
+auto=@drawof(player):name(pay or lifeloss) ability$!name(pay or lifeloss) pay[[{2}]] name(pay 2 mana) donothing?life:-2!$ controller
 text=Whenever a player draws a card, that player loses 2 life unless he or she pays {2}.
 mana={U}{B}{R}
 type=Enchantment
@@ -75239,8 +75232,9 @@ subtype=Aura
 [/card]
 [card]
 name=Psychic Possession
+target=opponent
 auto=phasealter(remove,draw,controller)
-auto=@drawn(opponent):may draw:1 controller
+auto=@drawn(targetedplayer):may draw:1 controller
 text=Enchant opponent -- Skip your draw step. -- Whenever enchanted opponent draws a card, you may draw a card.
 mana={2}{U}{U}
 type=Enchantment
@@ -75297,7 +75291,7 @@ type=Enchantment
 [card]
 name=Psychosis Crawler
 auto=type:*:myhand/type:*:myhand cdaactive
-auto=@drawn(controller):life:-1 opponent
+auto=@drawof(player):life:-1 opponent
 text=Psychosis Crawler's power and toughness are each equal to the number of cards in your hand. - Whenever you draw a card, each opponent loses 1 life.
 mana={5}
 type=Artifact Creature
@@ -94421,8 +94415,8 @@ subtype=Aura
 name=Spiteful Visions
 auto=@each my draw:draw:1 controller
 auto=@each opponent draw:draw:1 opponent
-auto=@drawn(controller):damage:1 controller
-auto=@drawn(opponent):damage:1 opponent
+auto=@drawof(player):damage:1 controller
+auto=@drawfoeof(player):damage:1 opponent
 text=At the beginning of each player's draw step, that player draws an additional card. -- Whenever a player draws a card, Spiteful Visions deals 1 damage to that player.
 mana={2}{BR}{BR}
 type=Enchantment
@@ -106184,7 +106178,7 @@ subtype=Aura
 [/card]
 [card]
 name=Underworld Dreams
-auto=@drawn(opponent):damage:1 opponent
+auto=@drawfoeof(player):damage:1 opponent
 text=Whenever an opponent draws a card, Underworld Dreams deals 1 damage to him or her.
 mana={B}{B}{B}
 type=Enchantment

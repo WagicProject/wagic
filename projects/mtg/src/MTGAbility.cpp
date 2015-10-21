@@ -825,7 +825,16 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
             attackingTrigger,attackedAloneTrigger,notBlockedTrigger,attackBlockedTrigger,blockingTrigger);
     }
 
-    //Card card is drawn
+
+    //drawn player - controller of card - dynamic version drawof(player) -> returns current controller even with exchange of card controller
+    if (TargetChooser * tc = parseSimpleTC(s, "drawof", card))
+        return NEW TrcardDrawn(observer, id, card, tc,once,true,false);
+
+    //drawn player - opponent of card controller - dynamic version drawfoeof(player) -> returns current opponent even with exchange of card controller
+    if (TargetChooser * tc = parseSimpleTC(s, "drawfoeof", card))
+        return NEW TrcardDrawn(observer, id, card, tc,once,false,true);
+
+    //Card card is drawn - static version - drawn(player) - any player; drawn(controller) - owner forever; drawn(opponent) - opponent forever
     if (TargetChooser * tc = parseSimpleTC(s, "drawn", card))
         return NEW TrcardDrawn(observer, id, card, tc,once);
 
