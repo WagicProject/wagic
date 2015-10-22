@@ -1196,9 +1196,9 @@ public:
 class TrcardDrawn: public Trigger
 {
 public:
-
-    TrcardDrawn(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc,bool once = false) :
-        Trigger(observer, id, source,once, tc)
+	bool thiscontroller, thisopponent;
+    TrcardDrawn(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc,bool once = false, bool thiscontroller = false, bool thisopponent = false) :
+        Trigger(observer, id, source,once, tc),thiscontroller(thiscontroller),thisopponent(thisopponent)
     {
     }
 
@@ -1207,7 +1207,12 @@ public:
         WEventcardDraw * e = dynamic_cast<WEventcardDraw *> (event);
         if (!e) return 0;
         if (!tc->canTarget(e->player)) return 0;
-
+        if(thiscontroller)
+            if(e->player != source->controller())
+                return 0;
+        if(thisopponent)
+            if(e->player == source->controller())
+                return 0;
         return 1;
     }
 
@@ -1295,8 +1300,10 @@ public:
     bool sourceUntapped;
     bool limitOnceATurn;
     int triggeredTurn;
-    TrDamaged(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, TargetChooser * fromTc = NULL, int type = 0,bool sourceUntapped = false,bool limitOnceATurn = false,bool once = false) :
-        Trigger(observer, id, source, once, tc), fromTc(fromTc), type(type) , sourceUntapped(sourceUntapped),limitOnceATurn(limitOnceATurn)
+    bool thiscontroller;
+    bool thisopponent;
+    TrDamaged(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, TargetChooser * fromTc = NULL, int type = 0,bool sourceUntapped = false,bool limitOnceATurn = false,bool once = false, bool thiscontroller = false, bool thisopponent = false) :
+        Trigger(observer, id, source, once, tc), fromTc(fromTc), type(type) , sourceUntapped(sourceUntapped),limitOnceATurn(limitOnceATurn),thiscontroller(thiscontroller),thisopponent(thisopponent)
     {
         triggeredTurn = -1;
     }
@@ -1313,6 +1320,15 @@ public:
         if (fromTc && !fromTc->canTarget(e->damage->source)) return 0;
         if (type == 1 && e->damage->typeOfDamage != Damage::DAMAGE_COMBAT) return 0;
         if (type == 2 && e->damage->typeOfDamage == Damage::DAMAGE_COMBAT) return 0;
+        if (e->damage->target->type_as_damageable == Damageable::DAMAGEABLE_PLAYER)
+        {
+            if(thiscontroller)
+                if(e->damage->target != (Damageable *)source->controller())
+                    return 0;
+            if(thisopponent)
+                if(e->damage->target == (Damageable *)source->controller())
+                    return 0;
+        }
         e->damage->target->thatmuch = e->damage->damage;
         e->damage->source->thatmuch = e->damage->damage;
         this->source->thatmuch = e->damage->damage;
@@ -1337,9 +1353,9 @@ class TrLifeGained: public Trigger
 public:
     TargetChooser * fromTc;
     int type;//this allows damagenoncombat and combatdamage to share this trigger
-    bool sourceUntapped;
-    TrLifeGained(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, TargetChooser * fromTc = NULL, int type = 0,bool sourceUntapped = false,bool once = false) :
-        Trigger(observer, id, source, once , tc),  fromTc(fromTc), type(type) , sourceUntapped(sourceUntapped)
+    bool sourceUntapped, thiscontroller, thisopponent;
+    TrLifeGained(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, TargetChooser * fromTc = NULL, int type = 0,bool sourceUntapped = false,bool once = false, bool thiscontroller = false, bool thisopponent = false) :
+        Trigger(observer, id, source, once , tc),  fromTc(fromTc), type(type) , sourceUntapped(sourceUntapped) , thiscontroller(thiscontroller) , thisopponent(thisopponent)
     {
     }
 
@@ -1353,6 +1369,12 @@ public:
         if (fromTc && !fromTc->canTarget(e->player)) return 0;
         if (type == 1 && (e->amount > 0)) return 0;
         if (type == 0 && (e->amount < 0)) return 0;
+        if(thiscontroller)
+            if(e->player != source->controller())
+                return 0;
+        if(thisopponent)
+            if(e->player == source->controller())
+                return 0;
         e->player->thatmuch = abs(e->amount);
         this->source->thatmuch = abs(e->amount);
 
