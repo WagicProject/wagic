@@ -1319,7 +1319,7 @@ public:
         if (fromTc && !fromTc->canTarget(e->damage->source)) return 0;
         if (type == 1 && e->damage->typeOfDamage != Damage::DAMAGE_COMBAT) return 0;
         if (type == 2 && e->damage->typeOfDamage == Damage::DAMAGE_COMBAT) return 0;
-		if (e->damage->target->type_as_damageable == Damageable::DAMAGEABLE_PLAYER)
+        if (e->damage->target->type_as_damageable == Damageable::DAMAGEABLE_PLAYER)
         {
             Player * p = (Player *) e->damage->target;
             if(thiscontroller)
