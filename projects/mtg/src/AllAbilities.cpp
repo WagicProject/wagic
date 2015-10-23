@@ -1739,8 +1739,8 @@ AAFrozen * AAFrozen::clone() const
 }
 
 // chose a new target for an aura or enchantment and equip it note: VERY basic right now.
-AANewTarget::AANewTarget(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target,bool retarget, ManaCost * _cost) :
-ActivatedAbility(observer, id, card, _cost, 0),retarget(retarget)
+AANewTarget::AANewTarget(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target,bool retarget, ManaCost * _cost, bool reequip, bool newhook) :
+ActivatedAbility(observer, id, card, _cost, 0),retarget(retarget),reequip(reequip),newhook(newhook)
 {
     target = _target;
 }
@@ -1753,7 +1753,7 @@ int AANewTarget::resolve()
         _target = source;
         source = (MTGCardInstance *) target;
     }
-    if (_target)
+    if (_target && !reequip)
     {
         while (_target->next)
             _target = _target->next; 
@@ -1789,6 +1789,37 @@ int AANewTarget::resolve()
             source = _target;
         }
 
+    }
+    if (_target && _target->currentZone == _target->controller()->game->battlefield && reequip)
+    {
+        if(!newhook)
+        {
+            _target = source;
+            source = (MTGCardInstance *) target;  
+        }
+        else
+        {
+            while (_target->next)
+                _target = _target->next;  
+        }
+        if(_target->hasSubtype(Subtypes::TYPE_EQUIPMENT))
+        {
+            for (size_t i = 1; i < game->mLayers->actionLayer()->mObjects.size(); i++)
+            {
+                MTGAbility * a = ((MTGAbility *) game->mLayers->actionLayer()->mObjects[i]);
+                AEquip * eq = dynamic_cast<AEquip*> (a);
+                if (eq && eq->source == _target)
+                {
+                    ((AEquip*)a)->unequip();
+                    ((AEquip*)a)->equip(source);
+                }
+            }
+        }
+        if(!newhook)
+        {		
+            target = source;
+            source = _target;
+        }
     }
     return 1;
 }

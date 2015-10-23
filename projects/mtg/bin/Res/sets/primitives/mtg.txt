@@ -5959,7 +5959,7 @@ toughness=1
 [/card]
 [card]
 name=Auriok Survivors
-auto=may name(move and attach) moveto(mybattlefield) target(equipment|mygraveyard) && newtarget
+auto=may name(move and attach) moveto(mybattlefield) target(equipment|mygraveyard) and!(newhook)!
 text=When Auriok Survivors enters the battlefield, you may return target Equipment card from your graveyard to the battlefield. If you do, you may attach it to Auriok Survivors.
 mana={5}{W}
 type=Creature
@@ -5980,7 +5980,7 @@ toughness=1
 [card]
 name=Auriok Windwalker
 abilities=flying
-auto={T}:target(equipment|mybattlefield) transforms((,newability[retarget target(creature|mybattlefield)])) forever
+auto={T}:target(equipment|mybattlefield) transforms((,newability[rehook target(creature|mybattlefield)])) forever
 text=Flying -- {T}: Attach target Equipment you control to target creature you control.
 mana={3}{W}
 type=Creature
@@ -12283,7 +12283,7 @@ toughness=1
 [/card]
 [card]
 name=Brass Squire
-auto={T}:target(equipment|mybattlefield) transforms((,newability[retarget target(creature|mybattlefield)])) forever
+auto={T}:target(equipment|mybattlefield) transforms((,newability[rehook target(creature|mybattlefield)])) forever
 text={T}: Attach target Equipment you control to target creature you control.
 mana={3}
 type=Artifact Creature
@@ -17311,7 +17311,7 @@ name=Cloak and Dagger
 auto={3}:equip
 auto=2/0
 auto=shroud
-auto=@movedto(creature[rogue]|battlefield):may all(trigger[to]) retarget
+auto=@movedto(creature[rogue]|battlefield):may all(trigger[to]) rehook
 text=Equipped creature gets +2/+0 and has shroud. (It can't be the target of spells or abilities.) -- Whenever a Rogue creature enters the battlefield, you may attach Cloak and Dagger to it. -- Equip {3}
 mana={2}
 type=Tribal Artifact
@@ -19630,7 +19630,7 @@ type=Artifact
 [card]
 name=Cranial Plating
 auto=foreach(artifact|mybattlefield) 1/0
-auto={B}{B}:name(attach) retarget target(creature|mybattlefield)
+auto={B}{B}:name(attach) rehook target(creature|mybattlefield)
 auto={1}:equip
 text=Equipped creature gets +1/+0 for each artifact you control. -- {B}{B}: Attach Cranial Plating to target creature you control. -- Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery.)
 mana={2}
@@ -23084,7 +23084,7 @@ toughness=5
 [card]
 name=Deathrender
 auto=+2/+2
-auto=@movedto(mytgt|graveyard):may moveto(mybattlefield) target(creature|myhand) && all(this) retarget
+auto=@movedto(mytgt|graveyard):may moveto(mybattlefield) target(creature|myhand) and!(rehook)!
 auto={2}:equip
 text=Equipped creature gets +2/+2. -- Whenever equipped creature is put into a graveyard, you may put a creature card from your hand onto the battlefield and attach Deathrender to it. -- Equip {2}
 mana={4}
@@ -25562,7 +25562,7 @@ auto={3}:equip
 auto=@drawof(player):1/1 ueot
 auto=@drawof(player):flying ueot
 auto=teach(creature) {4}:draw:1 controller
-auto=@movedto(creature[wizard]|battlefield):may all(trigger[to]) retarget
+auto=@movedto(creature[wizard]|battlefield):may all(trigger[to]) rehook
 text=Equipped creature has "Whenever you draw a card, this creature gets +1/+1 and gains flying until end of turn" and "{4}: Draw a card." -- Whenever a Wizard creature enters the battlefield, you may attach Diviner's Wand to it. -- Equip {3}
 mana={3}
 type=Tribal Artifact
@@ -42210,7 +42210,7 @@ name=Grifter's Blade
 abilities=flash
 auto={1}:equip
 auto=1/1
-auto=aslongas(parents) retarget target(creature|mybattlefield) <1
+auto=aslongas(parents) rehook target(creature|mybattlefield) <1
 text=Flash -- As Grifter's Blade enters the battlefield, choose a creature you control it could be attached to. If you do, it enters the battlefield attached to that creature. -- Equipped creature gets +1/+1. -- Equip {1}
 mana={3}
 type=Artifact
@@ -44495,7 +44495,7 @@ name=Healer's Headdress
 auto={1}:equip
 auto=0/2
 auto=teach(creature) {T}:prevent:1 target(creature,player)
-auto={W}{W}:name(attach) retarget target(creature|mybattlefield)
+auto={W}{W}:name(attach) rehook target(creature|mybattlefield)
 text=Equipped creature gets +0/+2 and has "{T}: Prevent the next 1 damage that would be dealt to target creature or player this turn." -- {W}{W}: Attach Healer's Headdress to target creature you control. -- Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery.)
 mana={2}
 type=Artifact
@@ -45476,7 +45476,7 @@ toughness=2
 name=Hero's Blade
 auto={4}:equip
 auto=3/2
-auto=@movedto(creature[legendary]|mybattlefield):may all(trigger[to]) retarget
+auto=@movedto(creature[legendary]|mybattlefield):may all(trigger[to]) rehook
 text=Equipped creature gets +3/+2. -- Whenever a legendary creature enters the battlefield under your control, you may attach Hero's Blade to it.
 mana={2}
 type=Artifact
@@ -46574,7 +46574,7 @@ toughness=2
 name=Horned Helm
 auto=1/1
 auto=trample
-auto={G}{G}:name(attach) retarget target(creature|mybattlefield)
+auto={G}{G}:name(attach) rehook target(creature|mybattlefield)
 auto={1}:equip
 text=Equipped creature gets +1/+1 and has trample. -- {G}{G}: Attach Horned Helm to target creature you control. -- Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery.)
 mana={2}
@@ -51376,9 +51376,9 @@ toughness=2
 [/card]
 [card]
 name=Kaldra
-auto=all(helm of kaldra) newtarget
-auto=all(shield of kaldra) newtarget
-auto=all(sword of kaldra) newtarget
+auto=all(helm of kaldra) newhook
+auto=all(shield of kaldra) newhook
+auto=all(sword of kaldra) newhook
 type=Legendary Creature
 subtype=Avatar
 power=4
@@ -53945,7 +53945,7 @@ toughness=1
 [/card]
 [card]
 name=Kor Outfitter
-auto=target(equipment|mybattlefield) transforms((,newability[retarget target(creature|mybattlefield)])) forever
+auto=target(equipment|mybattlefield) transforms((,newability[rehook target(creature|mybattlefield)])) forever
 text=When Kor Outfitter enters the battlefield, you may attach target Equipment you control to target creature you control.
 mana={W}{W}
 type=Creature
@@ -58795,7 +58795,7 @@ type=Enchantment
 [card]
 name=Magnetic Theft
 target=equipment
-auto=transforms((,newability[retarget target(creature)])) forever
+auto=transforms((,newability[rehook target(creature)])) forever
 text=Attach target Equipment to target creature. (Control of the Equipment doesn't change.)
 mana={R}
 type=Instant
@@ -66890,7 +66890,7 @@ toughness=2
 [card]
 name=Neurok Stealthsuit
 auto=teach(creature) shroud
-auto={U}{U}:name(attach) retarget target(creature|mybattlefield)
+auto={U}{U}:name(attach) rehook target(creature|mybattlefield)
 auto={1}:equip
 text=Equipped creature has shroud. (It can't be the target of spells or abilities.) -- {U}{U}: Attach Neurok Stealthsuit to target creature you control. -- Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery.)
 mana={2}
@@ -68625,7 +68625,7 @@ name=Obsidian Battle-Axe
 auto={3}:equip
 auto=2/1
 auto=haste
-auto=@movedto(creature[warrior]|battlefield):may all(trigger[to]) retarget
+auto=@movedto(creature[warrior]|battlefield):may all(trigger[to]) rehook
 text=Equipped creature gets +2/+1 and has haste. -- Whenever a Warrior creature enters the battlefield, you may attach Obsidian Battle-Axe to it. -- Equip {3}
 mana={3}
 type=Tribal Artifact
@@ -73194,7 +73194,7 @@ toughness=3
 [/card]
 [card]
 name=Piston Sledge
-auto=aslongas(parents) retarget target(creature|mybattlefield) <1
+auto=aslongas(parents) rehook target(creature|mybattlefield) <1
 auto=teach(creature) 3/1
 auto={S(artifact|mybattlefield)}:equip
 text=When Piston Sledge enters the battlefield, attach it to target creature you control. -- Equipped creature gets +3/+1. -- Equip - Sacrifice an artifact.
@@ -75579,6 +75579,17 @@ mana={W}
 type=Instant
 [/card]
 [card]
+name=Puresteel Paladin
+auto=@movedTo(equipment|mybattlefield):may draw:1 controller
+auto=lord(equipment|mybattlefield) transforms((,newability[{0}:name(Equip Zero) rehook target(creature|mybattlefield) assorcery restriction{type(artifact|mybattlefield)~morethan~2}]))
+text=Whenever an Equipment enters the battlefield under your control, you may draw a card. -- Metalcraft - As long as you control 3 or more artifacts, each Equipment you control has equip {0}.
+mana={W}{W}
+type=Creature
+subtype=Human Knight
+power=2
+toughness=2
+[/card]
+[card]
 name=Purge
 target=creature[black;artifact]
 auto=bury
@@ -76052,7 +76063,7 @@ type=Enchantment
 [card]
 name=Quest for the Holy Relic
 auto=@movedTo(creature|mystack):may counter(0/0,1,Quest) all(this)
-auto={C(0/0,-5,Quest)}{S}:name(move and attach) target(equipment|mylibrary) transforms((,newability[retarget target(creature|mybattlefield)],newability[moveto(mybattlefield)]))
+auto={C(0/0,-5,Quest)}{S}:name(move and attach) target(equipment|mylibrary) moveto(mybattlefield) and!(transforms((,newability[rehook target(creature|mybattlefield)])))!
 text=Whenever you cast a creature spell, you may put a quest counter on Quest for the Holy Relic. -- Remove five quest counters from Quest for the Holy Relic and sacrifice it: Search your library for an Equipment card, put it onto the battlefield, and attach it to a creature you control. Then shuffle your library.
 mana={W}
 type=Enchantment
@@ -81320,7 +81331,7 @@ toughness=2
 [/card]
 [card]
 name=Ronin Warclub
-auto=@movedto(creature|myBattlefield):choice all(trigger[to]) retarget
+auto=@movedto(creature|myBattlefield):all(trigger[to]) rehook
 auto=+2/+1
 text=Equipped creature gets +2/+1. -- Whenever a creature enters the battlefield under your control, attach Ronin Warclub to that creature. -- Equip {5} ({5}: Attach to target creature you control. Equip only as a sorcery.)
 mana={3}
@@ -82815,7 +82826,7 @@ toughness=6
 name=Sai of the Shinobi
 auto={2}:equip
 auto=1/1
-auto=@movedto(creature|mybattlefield):may all(trigger[to]) retarget
+auto=@movedto(creature|mybattlefield):may all(trigger[to]) rehook
 text=Equipped creature gets +1/+1. -- Whenever a creature enters the battlefield under your control, you may attach Sai of the Shinobi to it. -- Equip {2}
 mana={1}
 type=Artifact
@@ -85159,7 +85170,7 @@ toughness=2
 name=Scythe of the Wretched
 auto=teach(creature) +2/+2
 auto={4}:equip
-auto=@vampired(creature) from(mytgt):all(trigger[to]) moveto(mybattlefield) and!(retarget)!
+auto=@vampired(creature) from(mytgt):all(trigger[to]) moveto(mybattlefield) and!(rehook)!
 text=Equipped creature gets +2/+2. -- Whenever a creature dealt damage by equipped creature this turn is put into a graveyard, return that card to the battlefield under your control. Attach Scythe of the Wretched to that creature. -- Equip {4}
 mana={2}
 type=Artifact
@@ -93235,7 +93246,7 @@ toughness=3
 [card]
 name=Sparring Collar
 auto=first strike
-auto={R}{R}:name(attach) retarget target(creature|mybattlefield)
+auto={R}{R}:name(attach) rehook target(creature|mybattlefield)
 auto={1}:equip
 text=Equipped creature has first strike. -- {R}{R}: Attach Sparring Collar to target creature you control. -- Equip {1} ({1}: Attach to target creature you control. Equip only as a sorcery.)
 mana={2}
@@ -96290,7 +96301,7 @@ subtype=Aura
 [card]
 name=Stonehewer Giant
 abilities=vigilance
-auto={1}{W}{T}:name(move and attach) target(equipment|mylibrary) transforms((,newability[retarget target(creature|mybattlefield)],newability[moveto(mybattlefield)]))
+auto={1}{W}{T}:name(move and attach) target(equipment|mylibrary) moveto(mybattlefield) and!(transforms((,newability[rehook target(creature|mybattlefield)])))!
 text=Vigilance -- {1}{W}, {T}: Search your library for an Equipment card and put it onto the battlefield. Attach it to a creature you control. Then shuffle your library.
 mana={3}{W}{W}
 type=Creature
@@ -96570,7 +96581,7 @@ toughness=3
 name=Stormrider Rig
 auto={2}:equip
 auto=1/1
-auto=@movedto(creature|mybattlefield):may all(trigger[to]) retarget
+auto=@movedto(creature|mybattlefield):may all(trigger[to]) rehook
 text=Equipped creature gets +1/+1. -- Whenever a creature enters the battlefield under your control, you may attach Stormrider Rig to it. -- Equip {2}
 mana={2}
 type=Artifact
@@ -98684,7 +98695,7 @@ subtype=Equipment
 name=Sword of the Meek
 auto={2}:equip
 auto=1/2
-autograveyard=@movedto(creature[power=1;toughness=1]|mybattlefield):may all(trigger[to]) retarget
+autograveyard=@movedto(creature[power=1;toughness=1]|mybattlefield):may all(trigger[to]) rehook
 text=Equipped creature gets +1/+2. -- Equip {2} -- Whenever a 1/1 creature enters the battlefield under your control, you may return Sword of the Meek from your graveyard to the battlefield, then attach it to that creature.
 mana={2}
 type=Artifact
@@ -101512,7 +101523,7 @@ toughness=2
 name=Thornbite Staff
 auto=teach(creature) transforms((,newability[{2}{T}:damage:1 target(creature,player)]))
 auto=@movedto(creature|graveyard) from(creature|battlefield):teach(creature) untap
-auto=@movedto(creature[shaman]|battlefield):may all(trigger[to]) retarget
+auto=@movedto(creature[shaman]|battlefield):may all(trigger[to]) rehook
 auto={4}:equip
 text=Equipped creature has "{2}, {T}: This creature deals 1 damage to target creature or player" and "Whenever a creature dies, untap this creature." -- Whenever a Shaman creature enters the battlefield, you may attach Thornbite Staff to it. -- Equip {4}
 mana={2}
@@ -108420,7 +108431,7 @@ type=Land
 name=Veteran's Armaments
 auto={2}:equip
 auto=@combat(attacking,blocking) source(mytgt) :all(trigger[to]) foreach(creature[attacking]|battlefield) 1/1 ueot
-auto=@movedto(creature[soldier]|battlefield):may all(trigger[to]) retarget
+auto=@movedto(creature[soldier]|battlefield):may all(trigger[to]) rehook
 text=Equipped creature has "Whenever this creature attacks or blocks, it gets +1/+1 until end of turn for each attacking creature." -- Whenever a Soldier creature enters the battlefield, you may attach Veteran's Armaments to it. -- Equip {2}
 mana={2}
 type=Tribal Artifact
@@ -110418,7 +110429,7 @@ subtype=Equipment
 [card]
 name=Vulshok Battlemaster
 abilities=haste
-auto=all(equipment|battlefield) newtarget
+auto=all(equipment|battlefield) newhook
 text=Haste -- When Vulshok Battlemaster enters the battlefield, attach all Equipment on the battlefield to it. (Control of the Equipment doesn't change.)
 mana={4}{R}
 type=Creature
