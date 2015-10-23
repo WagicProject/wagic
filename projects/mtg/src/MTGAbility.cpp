@@ -3194,10 +3194,18 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         return a;
     }
 
-    //get a new target
+    //get a new target - retarget and newtarget makes the card refreshed - from exile to play...
     if ((s.find("retarget") != string::npos) || s.find("newtarget") != string::npos)
     {
         MTGAbility * a = NEW AANewTarget(observer, id, card,target, (s.find("retarget") != string::npos));
+        a->oneShot = 1;
+        return a;
+    }
+
+    //get a new target for puresteel paladin...etc for equipments inplay only.. newhook & rehook supports stone hewer basic... the card is reequipped
+    if ((s.find("rehook") != string::npos) || s.find("newhook") != string::npos)
+    {
+        MTGAbility * a = NEW AANewTarget(observer, id, card,target, false,NULL,true,(s.find("newhook") != string::npos));
         a->oneShot = 1;
         return a;
     }

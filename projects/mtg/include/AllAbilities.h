@@ -4221,7 +4221,9 @@ class AANewTarget: public ActivatedAbility
 {
 public:
 bool retarget;
-    AANewTarget(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target,bool retarget = false, ManaCost * _cost = NULL);
+bool reequip;
+bool newhook;
+    AANewTarget(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target,bool retarget = false, ManaCost * _cost = NULL, bool reequip = false, bool newhook = false);
     int resolve();
     const string getMenuText();
     AANewTarget * clone() const;
