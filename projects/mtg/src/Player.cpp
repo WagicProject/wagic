@@ -34,6 +34,7 @@ Player::Player(GameObserver *observer, string file, string fileSmall, MTGDeck * 
     extraTurn = 0;
     drawCounter = 0;
     epic = 0;
+    raidcount = 0;
     prowledTypes.clear();
     doesntEmpty = NEW ManaCost();
     poolDoesntEmpty = NEW ManaCost();
@@ -89,7 +90,7 @@ bool Player::loadAvatar(string file, string resName)
     }
     mAvatarTex = rm->RetrieveTexture(file, RETRIEVE_LOCK, TEXTURE_SUB_AVATAR);
     if (mAvatarTex) {
-        mAvatar = rm->RetrieveQuad(file, 0, 0, 35, 50, resName, RETRIEVE_NORMAL, TEXTURE_SUB_AVATAR);
+        mAvatar = rm->RetrieveQuad(file, 0, 0, 0, 0, resName, RETRIEVE_NORMAL, TEXTURE_SUB_AVATAR);
         return true;
     }
 
@@ -236,7 +237,7 @@ void Player::serumMulligan()
          //Draw hand no penalty
 }
 
-bool Player::DeadLifeState()
+bool Player::DeadLifeState(bool check)
 {
     if ((life <= 0)||(poisonCount >= 10))
     {
@@ -263,7 +264,21 @@ bool Player::DeadLifeState()
         }
         if (cantlosers < 1)
         {
-            getObserver()->setLoser(this);
+            if(!check)
+			{
+                ActionStack * stack = getObserver()->mLayers->stackLayer();
+                for (int i = stack->mObjects.size() - 1; i >= 0; i--)
+                {
+                    Interruptible * current = ((Interruptible *) stack->mObjects[i]);
+                    Spell * spell = (Spell *) current;
+                    if (current->type == ACTION_SPELL)
+                        spell->source->controller()->game->putInGraveyard(spell->source);
+
+                    current->state = RESOLVED_NOK;
+                }
+            }
+            if(check)
+                game->owner->getObserver()->setLoser(this);
             return true;
         }
     }

@@ -133,13 +133,13 @@ void DeckView::renderCard(int index, int alpha, bool asThumbnail)
             else
             {
                 Pos pos = Pos(cardPosition.x, cardPosition.y, cardPosition.scale * 285 / 250, 0.0, 255);
-                CardGui::DrawCard(cardPosition.card, pos, asThumbnail);
+                CardGui::DrawCard(cardPosition.card, pos, asThumbnail, true);
             }
         }
         else
         {
             Pos pos = Pos(cardPosition.x, cardPosition.y, cardPosition.scale * 285 / 250, 0.0, 255);
-            CardGui::DrawCard(cardPosition.card, pos, DrawMode::kText, asThumbnail);
+            CardGui::DrawCard(cardPosition.card, pos, DrawMode::kText, asThumbnail, true);
         }
     }
     else
@@ -147,9 +147,10 @@ void DeckView::renderCard(int index, int alpha, bool asThumbnail)
         int mode = !options[Options::DISABLECARDS].number ? DrawMode::kNormal : DrawMode::kText;
 
         Pos pos = Pos(cardPosition.x, cardPosition.y, cardPosition.scale * 285 / 250, 0.0, 255);
-        CardGui::DrawCard(cardPosition.card, pos, mode, asThumbnail);
+        CardGui::DrawCard(cardPosition.card, pos, mode, asThumbnail, true);
     }
-
+    //the three DrawCard function above, I intentionally disabled the rendered border when in Deck Editor since the border must be dynamically resized
+    //we can pass variables so the DrawCard method knows what to do to the border but... there must be a better way to do it...
     int quadAlpha = alpha;
     if (!deck()->count(cardPosition.card)) quadAlpha /= 2;
     quadAlpha = 255 - quadAlpha;

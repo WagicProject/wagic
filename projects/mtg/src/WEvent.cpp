@@ -106,6 +106,7 @@ WEventCardSacrifice::WEventCardSacrifice(MTGCardInstance * card, MTGCardInstance
 WEventCardDiscard::WEventCardDiscard(MTGCardInstance * card) :
     WEventCardUpdate(card)
 {
+    card->discarded = true;
 }
 
 WEventCardCycle::WEventCardCycle(MTGCardInstance * card) :
@@ -121,6 +122,8 @@ WEventVampire::WEventVampire(MTGCardInstance * card,MTGCardInstance * source,MTG
 WEventTarget::WEventTarget(MTGCardInstance * card,MTGCardInstance * source) :
     WEventCardUpdate(card),card(card),source(source)
 {
+    card->cardistargetted = 1;
+    source->cardistargetter = 1;
 }
 
 WEventCardChangeType::WEventCardChangeType(MTGCardInstance * card, int type, bool before, bool after) :
@@ -158,6 +161,11 @@ WEventEmptyManaPool::WEventEmptyManaPool(ManaPool * source) :
 }
 
 WEventCardUnattached::WEventCardUnattached(MTGCardInstance * card) :
+    WEventCardUpdate(card)
+{
+}
+
+WEventCardControllerChange::WEventCardControllerChange(MTGCardInstance * card) :
     WEventCardUpdate(card)
 {
 }
@@ -311,6 +319,12 @@ Targetable * WEventcardDraw::getTarget(Player * player)
 }
 
 Targetable * WEventCardUnattached::getTarget(int target)
+{
+    if (target) return card;
+    return NULL;
+}
+
+Targetable * WEventCardControllerChange::getTarget(int target)
 {
     if (target) return card;
     return NULL;

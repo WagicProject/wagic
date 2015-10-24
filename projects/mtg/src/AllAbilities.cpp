@@ -390,8 +390,26 @@ int AACopier::resolve()
     MTGCardInstance * _target = (MTGCardInstance *) target;
     if (_target)
     {
-        source->copy(_target);
+        MTGCard* clone = MTGCollection()->getCardById(_target->copiedID);
+        MTGCardInstance * myClone = NEW MTGCardInstance(clone, source->controller()->game);
+        source->copy(myClone);
         source->isACopier = true;
+        source->copiedID = _target->copiedID;
+        source->modifiedbAbi = _target->modifiedbAbi;
+        source->origbasicAbilities = _target->origbasicAbilities;
+        if(_target->isMorphed)
+        {
+            source->power = 2;
+            source->life = 2;
+            source->toughness = 2;
+            source->setColor(0,1);
+            source->name = "Morph";
+            source->types.clear();
+            string cre = "Creature";
+            source->setType(cre.c_str());
+            source->basicAbilities.reset();
+            source->getManaCost()->resetCosts();
+        }
         return 1;
     }
     return 0;
@@ -1160,14 +1178,14 @@ int GenericPaidAbility::resolve()
         baseAbility->target = target;
         optionalCost =  ManaCost::parseManaCost(baseCost, NULL, source);
 
-        // hacky way to produce better MenuText
+        /*// hacky way to produce better MenuText
         AAFakeAbility* isFake = dynamic_cast< AAFakeAbility* >( baseAbility );
         size_t findPayN = isFake->named.find(" {value} mana");
         if (isFake && findPayN != string::npos) {
             stringstream parseN;
             parseN << optionalCost->getCost(Constants::MTG_COLOR_ARTIFACT);
             isFake->named.replace(findPayN + 1, 7, parseN.str());
-        }
+        }//commented out, it crashes cards with recover ability*/
 
         MTGAbility * set = baseAbility->clone();
         set->oneShot = true;
@@ -1721,8 +1739,8 @@ AAFrozen * AAFrozen::clone() const
 }
 
 // chose a new target for an aura or enchantment and equip it note: VERY basic right now.
-AANewTarget::AANewTarget(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target,bool retarget, ManaCost * _cost) :
-ActivatedAbility(observer, id, card, _cost, 0),retarget(retarget)
+AANewTarget::AANewTarget(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target,bool retarget, ManaCost * _cost, bool reequip, bool newhook) :
+ActivatedAbility(observer, id, card, _cost, 0),retarget(retarget),reequip(reequip),newhook(newhook)
 {
     target = _target;
 }
@@ -1735,7 +1753,7 @@ int AANewTarget::resolve()
         _target = source;
         source = (MTGCardInstance *) target;
     }
-    if (_target)
+    if (_target && !reequip)
     {
         while (_target->next)
             _target = _target->next; 
@@ -1771,6 +1789,37 @@ int AANewTarget::resolve()
             source = _target;
         }
 
+    }
+    if (_target && _target->currentZone == _target->controller()->game->battlefield && reequip)
+    {
+        if(!newhook)
+        {
+            _target = source;
+            source = (MTGCardInstance *) target;  
+        }
+        else
+        {
+            while (_target->next)
+                _target = _target->next;  
+        }
+        if(_target->hasSubtype(Subtypes::TYPE_EQUIPMENT))
+        {
+            for (size_t i = 1; i < game->mLayers->actionLayer()->mObjects.size(); i++)
+            {
+                MTGAbility * a = ((MTGAbility *) game->mLayers->actionLayer()->mObjects[i]);
+                AEquip * eq = dynamic_cast<AEquip*> (a);
+                if (eq && eq->source == _target)
+                {
+                    ((AEquip*)a)->unequip();
+                    ((AEquip*)a)->equip(source);
+                }
+            }
+        }
+        if(!newhook)
+        {		
+            target = source;
+            source = _target;
+        }
     }
     return 1;
 }
@@ -2069,16 +2118,16 @@ int AADynamic::resolve()
     switch(type)
     {
     case DYNAMIC_ABILITY_TYPE_POWER:
-        sourceamount = ((MTGCardInstance *) source)->power;
-        targetamount = ((MTGCardInstance *) _target)->power;
+        sourceamount = ((MTGCardInstance *) source)->getCurrentPower();
+        targetamount = ((MTGCardInstance *) _target)->getCurrentPower();
         if(eachother )
-            sourceamount = ((MTGCardInstance *) source)->power;
+            sourceamount = ((MTGCardInstance *) source)->getCurrentPower();
         break;
     case DYNAMIC_ABILITY_TYPE_TOUGHNESS:
-        sourceamount = ((MTGCardInstance *) source)->toughness;
-        targetamount = ((MTGCardInstance *) _target)->toughness;
+        sourceamount = ((MTGCardInstance *) source)->getCurrentToughness();
+        targetamount = ((MTGCardInstance *) _target)->getCurrentToughness();
         if(eachother )
-            sourceamount = ((MTGCardInstance *) source)->toughness;
+            sourceamount = ((MTGCardInstance *) source)->getCurrentToughness();
         break;
     case DYNAMIC_ABILITY_TYPE_MANACOST:
         if(amountsource == 1)
@@ -2520,6 +2569,10 @@ int AACloner::resolve()
     // Use id of the card to have the same image as the original
     MTGCard* clone = (_target->isToken ? _target: MTGCollection()->getCardById(_target->getId()));
 
+    // If its a copier then copy what it is
+    if(_target->isACopier)
+        clone = _target;
+
     Player * targetPlayer = who == 1 ? source->controller()->opponent() : source->controller();
 
     int tokenize = 1;//tokenizer support for cloning
@@ -2550,7 +2603,7 @@ int AACloner::resolve()
             if(_target->pbonus > 0)
                 spell->source->power = _target->power - _target->pbonus;
             else
-                spell->source->power = _target->power + _target->pbonus;
+                spell->source->power = _target->power + abs(_target->pbonus);
             if(_target->tbonus > 0)
             {
                 spell->source->toughness = _target->toughness - _target->tbonus;
@@ -2558,8 +2611,8 @@ int AACloner::resolve()
             }
             else
             {
-                spell->source->toughness = _target->toughness + _target->tbonus;
-                spell->source->life = _target->toughness + _target->tbonus;
+                spell->source->toughness = _target->toughness + abs(_target->tbonus);
+                spell->source->life = _target->toughness + abs(_target->tbonus);
             }
         }
         list<int>::iterator it;
@@ -2575,6 +2628,8 @@ int AACloner::resolve()
         {
             spell->source->addType(*it);
         }
+        spell->source->modifiedbAbi = _target->modifiedbAbi;
+        spell->source->origbasicAbilities = _target->origbasicAbilities;
         delete spell;
     }
     return 1;
@@ -2710,8 +2765,8 @@ AInstantCastRestrictionUEOT::~AInstantCastRestrictionUEOT()
 
 
 //AAMover
-AAMover::AAMover(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target, string dest,string newName, ManaCost * _cost) :
-    ActivatedAbility(observer, _id, _source, _cost, 0), destination(dest),named(newName)
+AAMover::AAMover(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target, string dest,string newName, ManaCost * _cost, bool undying, bool persist) :
+    ActivatedAbility(observer, _id, _source, _cost, 0), destination(dest),named(newName),undying(undying),persist(persist)
 {
     if (_target)
         target = _target;
@@ -2758,6 +2813,10 @@ int AAMover::resolve()
                             andAbilityClone->addToGame();
                         }
                     }
+                    if(persist)
+                        spell->source->counters->addCounter(-1,-1);
+                    if(undying)
+                        spell->source->counters->addCounter(1,1);
                     delete spell;
                     return 1;
                 }
@@ -4157,6 +4216,7 @@ for (it = types.begin(); it != types.end(); it++)
     for (it = abilities.begin(); it != abilities.end(); it++)
     {
         _target->basicAbilities.set(*it);
+        _target->modifiedbAbi += 1;
     }
 
     if(newAbilityFound)
@@ -4305,6 +4365,7 @@ int ATransformer::destroy()
         for (it = abilities.begin(); it != abilities.end(); it++)
         {
             _target->basicAbilities.reset(*it);
+            _target->modifiedbAbi -= 1;
         }
 
         for (it = oldcolors.begin(); it != oldcolors.end(); it++)
@@ -4851,6 +4912,78 @@ AVanishing::~AVanishing()
 {
 }
 
+//Produce Mana
+AProduceMana::AProduceMana(GameObserver* observer, int _id, MTGCardInstance * _source, string ManaDescription) :
+MTGAbility(observer, _id, source),ManaDescription(ManaDescription)
+{
+    source = _source;
+    mana[0] = "{g}"; mana[1] = "{u}"; mana[2] = "{r}"; mana[3] = "{b}"; mana[4] = "{w}";
+}
+
+int AProduceMana::receiveEvent(WEvent * event)
+{
+    if(WEventCardTappedForMana * isTappedForMana = dynamic_cast<WEventCardTappedForMana *> (event))
+    {
+        if ((isTappedForMana->card == source)||(isTappedForMana->card == source->target && ManaDescription == "selectmana"))
+            produce();
+    }
+    return 1;
+}
+
+int AProduceMana::produce()
+{
+    if(ManaDescription == "selectmana")
+    {//I tried menu ability and vector<MTGAbility*abi> to have a shorter code but it crashes wagic at end of turn...
+     //The may ability on otherhand works but the ability is cumulative...
+     //This must be wrapped on menuability so we can use it on successions...
+        AManaProducer *ap0 = NEW AManaProducer(game, game->mLayers->actionLayer()->getMaxId(), source, source->controller(), ManaCost::parseManaCost(mana[0],NULL,source), NULL, 0,"",false);
+        MayAbility *mw0 = NEW MayAbility(game, game->mLayers->actionLayer()->getMaxId(), ap0, source,true);
+        MTGAbility *ga0 = NEW GenericAddToGame(game, game->mLayers->actionLayer()->getMaxId(), source,NULL,mw0);
+
+        AManaProducer *ap1 = NEW AManaProducer(game, game->mLayers->actionLayer()->getMaxId(), source, source->controller(), ManaCost::parseManaCost(mana[1],NULL,source), NULL, 0,"",false);
+        MayAbility *mw1 = NEW MayAbility(game, game->mLayers->actionLayer()->getMaxId(), ap1, source,true);
+        MTGAbility *ga1 = NEW GenericAddToGame(game, game->mLayers->actionLayer()->getMaxId(), source,NULL,mw1);
+
+        AManaProducer *ap2 = NEW AManaProducer(game, game->mLayers->actionLayer()->getMaxId(), source, source->controller(), ManaCost::parseManaCost(mana[2],NULL,source), NULL, 0,"",false);
+        MayAbility *mw2 = NEW MayAbility(game, game->mLayers->actionLayer()->getMaxId(), ap2, source,true);
+        MTGAbility *ga2 = NEW GenericAddToGame(game, game->mLayers->actionLayer()->getMaxId(), source,NULL,mw2);
+
+        AManaProducer *ap3 = NEW AManaProducer(game, game->mLayers->actionLayer()->getMaxId(), source, source->controller(), ManaCost::parseManaCost(mana[3],NULL,source), NULL, 0,"",false);
+        MayAbility *mw3 = NEW MayAbility(game, game->mLayers->actionLayer()->getMaxId(), ap3, source,true);
+        MTGAbility *ga3 = NEW GenericAddToGame(game, game->mLayers->actionLayer()->getMaxId(), source,NULL,mw3);
+
+        AManaProducer *ap4 = NEW AManaProducer(game, game->mLayers->actionLayer()->getMaxId(), source, source->controller(), ManaCost::parseManaCost(mana[4],NULL,source), NULL, 0,"",false);
+        MayAbility *mw4 = NEW MayAbility(game, game->mLayers->actionLayer()->getMaxId(), ap4, source,true);
+        MTGAbility *ga4 = NEW GenericAddToGame(game, game->mLayers->actionLayer()->getMaxId(), source,NULL,mw4);
+
+        ga0->resolve();
+        ga1->resolve();
+        ga2->resolve();
+        ga3->resolve();
+        ga4->resolve();
+    }
+    else
+    {
+        AManaProducer *amp = NEW AManaProducer(game, game->mLayers->actionLayer()->getMaxId(), source, source->controller(), ManaCost::parseManaCost(ManaDescription,NULL,source), NULL, 0,"",false);
+        amp->resolve();
+    }
+    return 1;
+}
+
+const string AProduceMana::getMenuText()
+{
+    return "Produce Mana";
+}
+
+AProduceMana * AProduceMana::clone() const
+{
+    return NEW AProduceMana(*this);
+}
+
+AProduceMana::~AProduceMana()
+{
+}
+
 //AUpkeep
 AUpkeep::AUpkeep(GameObserver* observer, int _id, MTGCardInstance * card, MTGAbility * a, ManaCost * _cost, int restrictions, int _phase,
         int _once,bool Cumulative) :
@@ -5179,7 +5312,7 @@ void ABlink::returnCardIntoPlay(MTGCardInstance* _target) {
             return;
         }
 
-        MTGGameZone * inplay = spell->source->owner->game->inPlay;
+        /*MTGGameZone * inplay = spell->source->owner->game->inPlay;
         spell->source->target = NULL;
         for (int i = game->getRandomGenerator()->random()%inplay->nb_cards;;i = game->getRandomGenerator()->random()%inplay->nb_cards)
         {
@@ -5193,7 +5326,16 @@ void ABlink::returnCardIntoPlay(MTGCardInstance* _target) {
                 this->forceDestroy = 1;
                 return;
             }
-        }
+        }*/
+        //replaced with castcard(putinplay)
+        MTGAbility *a = NEW AACastCard(game, game->mLayers->actionLayer()->getMaxId(), Blinker, Blinker,false,false,false,"","Return to Play",false,true);
+        a->oneShot = false;
+        a->canBeInterrupted = false;
+        a->addToGame();
+        SAFE_DELETE(spell);
+        SAFE_DELETE(tc);
+        this->forceDestroy = 1;
+        return;
     }
     spell->source->power = spell->source->origpower;
     spell->source->toughness = spell->source->origtoughness;
@@ -5541,7 +5683,7 @@ void AACastCard::Update(float dt)
        toCheck->bypassTC = true;
        TargetChooserFactory tcf(game);
        TargetChooser * atc = tcf.createTargetChooser(toCheck->spellTargetType,toCheck);
-       if (toCheck->hasType(Subtypes::TYPE_AURA) && !atc->validTargetsExist())
+       if ((toCheck->hasType(Subtypes::TYPE_AURA) && !atc->validTargetsExist())||toCheck->isToken)
        {
            processed = true;
            this->forceDestroy = 1;
@@ -5724,7 +5866,7 @@ const string AACastCard::getMenuText()
         return nameThis.c_str();
     if(putinplay)
         return "Put Into Play";
-    return "Cast For Free";
+    return "Cast Card";
 }
 
 AACastCard * AACastCard::clone() const

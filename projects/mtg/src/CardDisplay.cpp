@@ -267,7 +267,7 @@ void CardDisplay::Render()
         int drawMode = DrawMode::kNormal;
         if (observer)
         {
-            pos.actY = 150;
+            pos.actY = 145;
             if (x < (CardGui::BigWidth / 2)) pos.actX = SCREEN_WIDTH - 10 - CardGui::BigWidth / 2;
             drawMode = observer->getCardSelector()->GetDrawMode();
         }

@@ -556,6 +556,15 @@ private:
                 intValue = card->previous->previous->sunburst;
             }
         }
+        else if (s == "converge")
+        {
+            intValue = 0;
+            for (int i = Constants::MTG_COLOR_GREEN; i <= Constants::MTG_COLOR_WHITE; ++i)
+            {
+                if(card->getManaCost()->getManaUsedToCast()->hasColor(i))
+                    intValue +=1;
+            }
+        }
         else if (s == "targetedcurses")
         {
             if(card->playerTarget)
@@ -645,11 +654,11 @@ private:
         }
         else if (s == "p" || s == "power")
         {
-            intValue = target->getPower();
+            intValue = target->getCurrentPower();
         }
         else if (s == "t" || s == "toughness")
         {
-            intValue = target->getToughness();
+            intValue = target->getCurrentToughness();
         }
         else if (s == "kicked")
         {
@@ -678,6 +687,20 @@ private:
         else if (s == "ohandcount")
         {
             intValue = target->controller()->opponent()->game->hand->nb_cards;
+        }
+        else if (s == "urzatron")//Urza lands
+        {
+            if(card->controller()->game->battlefield->hasAlias(4192) && card->controller()->game->battlefield->hasAlias(4193) && card->controller()->game->battlefield->hasAlias(4194))
+                intValue = 1;
+            else
+                intValue = 0;
+        }
+        else if (s == "worshipped")//Worship
+        {
+            if(card->controller()->game->battlefield->hasType("creature"))
+                intValue = card->controller()->life;
+            else
+                intValue = 0;
         }
         else if (s == "pancientooze")//Ancient Ooze
         {
@@ -708,7 +731,7 @@ private:
         else if (s == "pbasiclandtypes")//Basic Land types
         {
             intValue = 0;
-            int forest, plains, swamp, island, mountain = 0;
+            int forest = 0, plains = 0, swamp = 0, island = 0, mountain = 0;
             for (int j = card->controller()->game->battlefield->nb_cards - 1; j >= 0; --j)
             {
                 if (card->controller()->game->battlefield->cards[j]->hasType("forest"))
@@ -801,7 +824,7 @@ private:
         else if (s == "gravecardtypes")//Tarmogoyf
         {
             intValue = 0;
-            int art, cre, enc, ins, lnd, sor, trb, pwk = 0;
+            int art = 0, cre = 0, enc = 0, ins = 0, lnd = 0, sor = 0, trb = 0, pwk = 0;
             for (int i = 0; i < 2; i++)
             {
                 Player * p = card->getObserver()->players[i];
@@ -1173,9 +1196,9 @@ public:
 class TrcardDrawn: public Trigger
 {
 public:
-
-    TrcardDrawn(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc,bool once = false) :
-        Trigger(observer, id, source,once, tc)
+	bool thiscontroller, thisopponent;
+    TrcardDrawn(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc,bool once = false, bool thiscontroller = false, bool thisopponent = false) :
+        Trigger(observer, id, source,once, tc),thiscontroller(thiscontroller),thisopponent(thisopponent)
     {
     }
 
@@ -1184,7 +1207,12 @@ public:
         WEventcardDraw * e = dynamic_cast<WEventcardDraw *> (event);
         if (!e) return 0;
         if (!tc->canTarget(e->player)) return 0;
-
+        if(thiscontroller)
+            if(e->player != source->controller())
+                return 0;
+        if(thisopponent)
+            if(e->player == source->controller())
+                return 0;
         return 1;
     }
 
@@ -1272,8 +1300,10 @@ public:
     bool sourceUntapped;
     bool limitOnceATurn;
     int triggeredTurn;
-    TrDamaged(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, TargetChooser * fromTc = NULL, int type = 0,bool sourceUntapped = false,bool limitOnceATurn = false,bool once = false) :
-        Trigger(observer, id, source, once, tc), fromTc(fromTc), type(type) , sourceUntapped(sourceUntapped),limitOnceATurn(limitOnceATurn)
+    bool thiscontroller;
+    bool thisopponent;
+    TrDamaged(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, TargetChooser * fromTc = NULL, int type = 0,bool sourceUntapped = false,bool limitOnceATurn = false,bool once = false, bool thiscontroller = false, bool thisopponent = false) :
+        Trigger(observer, id, source, once, tc), fromTc(fromTc), type(type) , sourceUntapped(sourceUntapped),limitOnceATurn(limitOnceATurn),thiscontroller(thiscontroller),thisopponent(thisopponent)
     {
         triggeredTurn = -1;
     }
@@ -1290,6 +1320,15 @@ public:
         if (fromTc && !fromTc->canTarget(e->damage->source)) return 0;
         if (type == 1 && e->damage->typeOfDamage != Damage::DAMAGE_COMBAT) return 0;
         if (type == 2 && e->damage->typeOfDamage == Damage::DAMAGE_COMBAT) return 0;
+        if (e->damage->target->type_as_damageable == Damageable::DAMAGEABLE_PLAYER)
+        {
+            if(thiscontroller)
+                if(e->damage->target != (Damageable *)source->controller())
+                    return 0;
+            if(thisopponent)
+                if(e->damage->target == (Damageable *)source->controller())
+                    return 0;
+        }
         e->damage->target->thatmuch = e->damage->damage;
         e->damage->source->thatmuch = e->damage->damage;
         this->source->thatmuch = e->damage->damage;
@@ -1314,9 +1353,9 @@ class TrLifeGained: public Trigger
 public:
     TargetChooser * fromTc;
     int type;//this allows damagenoncombat and combatdamage to share this trigger
-    bool sourceUntapped;
-    TrLifeGained(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, TargetChooser * fromTc = NULL, int type = 0,bool sourceUntapped = false,bool once = false) :
-        Trigger(observer, id, source, once , tc),  fromTc(fromTc), type(type) , sourceUntapped(sourceUntapped)
+    bool sourceUntapped, thiscontroller, thisopponent;
+    TrLifeGained(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc, TargetChooser * fromTc = NULL, int type = 0,bool sourceUntapped = false,bool once = false, bool thiscontroller = false, bool thisopponent = false) :
+        Trigger(observer, id, source, once , tc),  fromTc(fromTc), type(type) , sourceUntapped(sourceUntapped) , thiscontroller(thiscontroller) , thisopponent(thisopponent)
     {
     }
 
@@ -1330,6 +1369,12 @@ public:
         if (fromTc && !fromTc->canTarget(e->player)) return 0;
         if (type == 1 && (e->amount > 0)) return 0;
         if (type == 0 && (e->amount < 0)) return 0;
+        if(thiscontroller)
+            if(e->player != source->controller())
+                return 0;
+        if(thisopponent)
+            if(e->player == source->controller())
+                return 0;
         e->player->thatmuch = abs(e->amount);
         this->source->thatmuch = abs(e->amount);
 
@@ -1417,7 +1462,7 @@ public:
     }
 };
 
-//targetted trigger
+//counter trigger
 class TrCounter: public Trigger
 {
 public:
@@ -1749,7 +1794,9 @@ public:
     string destination;
     MTGAbility * andAbility;
     string named;
-    AAMover(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target, string dest,string _name, ManaCost * _cost = NULL);
+    bool undying;
+    bool persist;
+    AAMover(GameObserver* observer, int _id, MTGCardInstance * _source, MTGCardInstance * _target, string dest,string _name, ManaCost * _cost = NULL, bool undying = false, bool persist = false);
     MTGGameZone * destinationZone(Targetable * target = NULL);
     int resolve();
     const string getMenuText();
@@ -2068,6 +2115,7 @@ public:
 
             assert(value < 2);
             _target->basicAbilities.set(ability, value > 0);
+            _target->modifiedbAbi += 1;
             return InstantAbility::addToGame();
         }
 
@@ -2080,7 +2128,10 @@ public:
     {
         MTGCardInstance * _target = (MTGCardInstance *) target;
         if (_target)
+        {
             _target->basicAbilities.set(ability, stateBeforeActivation);
+            _target->modifiedbAbi -= 1;
+        }
         return 1;
     }
 
@@ -4170,7 +4221,9 @@ class AANewTarget: public ActivatedAbility
 {
 public:
 bool retarget;
-    AANewTarget(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target,bool retarget = false, ManaCost * _cost = NULL);
+bool reequip;
+bool newhook;
+    AANewTarget(GameObserver* observer, int id, MTGCardInstance * card, MTGCardInstance * _target,bool retarget = false, ManaCost * _cost = NULL, bool reequip = false, bool newhook = false);
     int resolve();
     const string getMenuText();
     AANewTarget * clone() const;
@@ -4778,6 +4831,49 @@ public:
     const string getMenuText();
     AVanishing * clone() const;
     ~AVanishing();
+};
+
+//Produce Mana when tapped for mana...
+class AProduceMana: public MTGAbility
+{
+public:
+    string ManaDescription;
+    string mana[5];
+
+    AProduceMana(GameObserver* observer, int _id, MTGCardInstance * _source, string _ManaDescription);
+    int receiveEvent(WEvent * event);
+    int produce();
+    const string getMenuText();
+    //virtual ostream& toString(ostream& out) const;
+    AProduceMana * clone() const;
+    ~AProduceMana();
+};
+
+//Produce Mana when a mana is engaged...
+class AEngagedManaAbility: public MTGAbility
+{
+public:
+    string colorname;
+    AEngagedManaAbility(GameObserver* observer, int _id, MTGCardInstance * _source, string _colorname) :
+    MTGAbility(observer, _id, _source)
+    {
+        colorname = _colorname;
+    }
+    int receiveEvent(WEvent * event)
+    {
+        if(WEventEngageMana * isManaProduced = dynamic_cast<WEventEngageMana *> (event))
+        {
+            if ((isManaProduced->card == source) && isManaProduced->color == Constants::GetColorStringIndex(colorname))
+            {
+                source->controller()->getManaPool()->add(Constants::GetColorStringIndex(colorname),1);
+            }
+        }
+        return 1;
+    }
+    AEngagedManaAbility * clone() const
+    {
+        return NEW AEngagedManaAbility(*this);
+    }
 };
 
 //Upkeep Cost
@@ -5950,6 +6046,37 @@ public:
     AEvolveAbility * clone() const
     {
         return NEW AEvolveAbility(*this);
+    }
+};
+
+//Reduce to .. Ali from Cairo...
+class AReduceToAbility: public MTGAbility
+{
+public:
+    string life_s;
+
+    AReduceToAbility(GameObserver* observer, int _id, MTGCardInstance * _source, string _life_s) :
+    MTGAbility(observer, _id, _source)
+    {
+        life_s = _life_s;
+    }
+    int receiveEvent(WEvent * event)
+    {
+        if(WEventDamage * isDamaged = dynamic_cast<WEventDamage *> (event))
+        {
+            if (isDamaged->damage->target->type_as_damageable == Damageable::DAMAGEABLE_PLAYER)
+            {
+                Player * p = (Player *) isDamaged->damage->target;
+                WParsedInt lifetoset(life_s, NULL, source);
+                if(p && p == source->controller() && p->life <= lifetoset.getValue())
+                    p->life = lifetoset.getValue();
+            }
+        }
+        return 1;
+    }
+    AReduceToAbility * clone() const
+    {
+        return NEW AReduceToAbility(*this);
     }
 };
 

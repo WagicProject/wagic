@@ -262,7 +262,7 @@ void GuiMana::RenderStatic()
     float x0 = x - 20 * totalColors;
     x0 = max(40.f, x0);
     float xEnd = x0 + 20 * totalColors;
-    r->FillRoundRect(x0, y - 5, static_cast<float> (20 * totalColors + 5), 20, 2, ARGB(128,0,0,0));
+    r->FillRoundRect(x0, y - 8, static_cast<float> (20 * totalColors + 5), 20, 2, ARGB(128,0,0,0));
 
     int offset = 0;
     for (int i = 0; i < Constants::NB_Colors; ++i)
@@ -270,10 +270,10 @@ void GuiMana::RenderStatic()
         if (values[i])
         {
             offset -= 20;
-            r->RenderQuad(manaIcons[i].get(), xEnd + 15 + offset, y + 5, 0, 0.7f, 0.7f);
+            r->RenderQuad(manaIcons[i].get(), xEnd + 15 + offset, y + 3, 0, 0.65f, 0.65f);
         }
     }
-    r->FillRoundRect(x0, y, static_cast<float> (20 * totalColors + 5), 8, 2, ARGB(100,0,0,0));
+    //r->DrawRoundRect(x0, y - 8, static_cast<float> (20 * totalColors + 5), 20, 2, ARGB(128,255,255,255));
     offset = 0;
     for (int i = 0; i < Constants::NB_Colors; ++i)
     {
@@ -283,7 +283,7 @@ void GuiMana::RenderStatic()
             char buf[4];
             sprintf(buf, "%i", values[i]);
             mFont->SetColor(ARGB(255,255,255,255));
-            mFont->DrawString(buf, xEnd + offset + 9, y);
+            mFont->DrawString(buf, xEnd + offset + 18, y + 5);
         }
     }
 }

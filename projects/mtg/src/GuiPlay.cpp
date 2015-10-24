@@ -106,7 +106,7 @@ GuiPlay::BattleField::BattleField() :
     attackers(0), height(0.0), red(0), colorFlow(0)
 {
 }
-const float GuiPlay::BattleField::HEIGHT = 80.0f;
+const float GuiPlay::BattleField::HEIGHT = 146.0f;
 void GuiPlay::BattleField::addAttacker(MTGCardInstance*)
 {
     ++attackers;
@@ -160,7 +160,11 @@ void GuiPlay::BattleField::Update(float dt)
 void GuiPlay::BattleField::Render()
 {
     if (height > 3)
-        JRenderer::GetInstance()->FillRect(44, SCREEN_HEIGHT / 2 + 10 - height / 2, 318, height, ARGB(127, red, 0, 0));
+    {
+        JRenderer::GetInstance()->FillRect(0, SCREEN_HEIGHT / 2 + 8.5f - height / 2, 480, height, ARGB(127, red, 0, 0));
+        if(red > 1)
+            JRenderer::GetInstance()->DrawRect(-2, SCREEN_HEIGHT / 2 + 8.5f - height / 2, 484, height, ARGB(255, 255, 165, 0));        
+    }
 }
 
 GuiPlay::GuiPlay(DuelLayers* view) :
@@ -270,7 +274,7 @@ void GuiPlay::Replace()
     //rerun the iter reattaching planes walkers to the back of the lands.
     for (iterator it = end_spells; it != cards.end(); ++it)
     {
-        if ((*it)->card->hasType(Subtypes::TYPE_PLANESWALKER))
+        if ((*it)->card->hasType(Subtypes::TYPE_PLANESWALKER) && !(*it)->card->isCreature())
         {
             if (mpDuelLayers->getRenderedPlayer() == (*it)->card->controller())
                 selfLands.Enstack(*it);
@@ -407,6 +411,8 @@ int GuiPlay::receiveEventPlus(WEvent * e)
     else if (dynamic_cast<WEventCardChangeType*> (e))
         Replace();
     else if (dynamic_cast<WEventCardUnattached*> (e))
+        Replace();
+    else if (dynamic_cast<WEventCardControllerChange*> (e))
         Replace();
     Replace();
     return 0;

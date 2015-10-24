@@ -187,6 +187,13 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Aladdin's Lamp
+alias=1092
+text={X}, {T}: The next time you would draw a card this turn, instead look at the top X cards of your library, put all but one of them on the bottom of your library in a random order, then draw a card. X can't be 0.
+mana={10}
+type=Artifact
+[/card]
+[card]
 name=Alive // Well
 text=Put a 3/3 green Centaur creature token onto the battlefield. --  //  -- You gain 2 life for each creature you control. --  -- Fuse (You may cast one or both halves of this card from your hand.)
 mana={3}{G} // {W}
@@ -468,15 +475,6 @@ text=You may cast Armor of Thorns as though it had flash. If you cast it any tim
 mana={1}{G}
 type=Enchantment
 subtype=Aura
-[/card]
-[card]
-name=Arrogant Wurm
-text=Trample -- Madness {2}{G} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
-mana={3}{G}{G}
-type=Creature
-subtype=Wurm
-power=4
-toughness=4
 [/card]
 [card]
 name=Arrow Volley Trap
@@ -993,15 +991,6 @@ toughness=4
 text=Flying -- Players can't cast spells during combat. {R}: Target creature attacks this turn if able.
 [/card]
 [card]
-name=Basking Rootwalla
-text={1}{G}: Basking Rootwalla gets +2/+2 until end of turn. Activate this ability only once each turn. -- Madness {0} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
-mana={G}
-type=Creature
-subtype=Lizard
-power=1
-toughness=1
-[/card]
-[card]
 name=Baton of Morale
 text={2}: Target creature gains banding until end of turn. (Any creatures with banding, and up to one without, can attack in a band. Bands are blocked as a group. If any creatures with banding a player controls are blocking or being blocked by a creature, that player divides that creature's combat damage, not its controller, among any of the creatures it's being blocked by or is blocking.)
 mana={2}
@@ -1160,15 +1149,6 @@ name=Betrayal of Flesh
 text=Choose one - Destroy target creature; or return target creature card from your graveyard to the battlefield. -- Entwine - Sacrifice three lands. (Choose both if you pay the entwine cost.)
 mana={5}{B}
 type=Instant
-[/card]
-[card]
-name=Big Game Hunter
-text=When Big Game Hunter enters the battlefield, destroy target creature with power 4 or greater. It can't be regenerated. -- Madness {B} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
-mana={1}{B}{B}
-type=Creature
-subtype=Human Rebel Assassin
-power=1
-toughness=1
 [/card]
 [card]
 name=Bind
@@ -1873,12 +1853,6 @@ name=Call to Arms
 text=As Call to Arms enters the battlefield, choose a color and an opponent. -- White creatures get +1/+1 as long as the chosen color is the most common color among nontoken permanents the chosen player controls but isn't tied for most common. -- When the chosen color isn't the most common color among nontoken permanents the chosen player controls or is tied for most common, sacrifice Call to Arms.
 mana={1}{W}
 type=Enchantment
-[/card]
-[card]
-name=Call to the Netherworld
-text=Return target black creature card from your graveyard to your hand. -- Madness {0} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
-mana={B}
-type=Sorcery
 [/card]
 [card]
 name=Callous Deceiver
@@ -3420,12 +3394,6 @@ name=Dark Tutelage
 text=At the beginning of your upkeep, reveal the top card of your library and put that card into your hand. You lose life equal to its converted mana cost.
 mana={2}{B}
 type=Enchantment
-[/card]
-[card]
-name=Dark Withering
-text=Destroy target nonblack creature. -- Madness {B} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
-mana={4}{B}{B}
-type=Instant
 [/card]
 [card]
 name=Darkpact
@@ -5116,12 +5084,6 @@ mana={R}{G}{W}
 type=Sorcery
 [/card]
 [card]
-name=Fiery Temper
-text=Fiery Temper deals 3 damage to target creature or player. -- Madness {R} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
-mana={1}{R}{R}
-type=Instant
-[/card]
-[card]
 name=Fight or Flight
 text=At the beginning of each opponent's combat phase, separate all creatures that player controls into two piles. Only creatures in the pile of his or her choice can attack this turn.
 mana={3}{W}
@@ -5555,12 +5517,6 @@ toughness=3
 text=At the beginning of your upkeep, you may ask target player a yes-or-no question. If you do, that player answers the question truthfully and abides by that answer if able until end of turn.
 [/card]
 [card]
-name=Frantic Purification
-text=Destroy target enchantment. -- Madness {W} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
-mana={2}{W}
-type=Instant
-[/card]
-[card]
 name=Frazzled Editor
 mana={1}{R}
 type=Creature — Human Bureaucrat
@@ -5928,8 +5884,14 @@ subtype=Turtle
 power=2
 toughness=4
 [/card]
+#bug phasealter not turning off
 [card]
 name=Gibbering Descent
+abilities=madness
+autoexile=restriction{discarded} pay({2}{B}{B}) name(pay 2BB to cast) activate name(pay 2BB to cast) castcard(normal)?name(put in graveyard) moveto(ownergraveyard)
+auto=@each my upkeep:life:-1 controller && reject target(*|myhand)
+auto=@each opponentupkeep:life:-1 opponent && ability$!name(discard) target(*|myhand) reject!$ opponent
+auto=this(variable{phandcount} <1) phasealter(remove,upkeep,controller)
 text=At the beginning of each player's upkeep, that player loses 1 life and discards a card. -- Hellbent - Skip your upkeep step if you have no cards in hand. -- Madness {2}{B}{B} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
 mana={4}{B}{B}
 type=Enchantment
@@ -6427,15 +6389,6 @@ type=Creature
 subtype=Jellyfish
 power=0
 toughness=3
-[/card]
-[card]
-name=Gorgon Recluse
-text=Whenever Gorgon Recluse blocks or becomes blocked by a nonblack creature, destroy that creature at end of combat. -- Madness {B}{B} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
-mana={3}{B}{B}
-type=Creature
-subtype=Gorgon
-power=2
-toughness=4
 [/card]
 [card]
 name=Gorilla Berserkers
@@ -7439,12 +7392,6 @@ type=Creature
 subtype=Human Druid
 power=1
 toughness=1
-[/card]
-[card]
-name=Ichor Slick
-text=Target creature gets -3/-3 until end of turn. -- Cycling {2} ({2}, Discard this card: Draw a card.) -- Madness {3}{B} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
-mana={2}{B}
-type=Sorcery
 [/card]
 [card]
 name=Icy Prison
@@ -11068,12 +11015,6 @@ type=Legendary Artifact
 subtype=Equipment
 [/card]
 [card]
-name=Obsessive Search
-text=Draw a card. -- Madness {U} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
-mana={U}
-type=Instant
-[/card]
-[card]
 name=Obstinate Baloth
 auto=life:4
 text=When Obstinate Baloth enters the battlefield, you gain 4 life. -- If a spell or ability an opponent controls causes you to discard Hardheaded Baloth, put it onto the battlefield instead of putting it into your graveyard.
@@ -12425,12 +12366,6 @@ mana={1}{B}{B}
 type=Sorcery
 [/card]
 [card]
-name=Psychotic Haze
-text=Psychotic Haze deals 1 damage to each creature and each player. -- Madness {1}{B} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
-mana={2}{B}{B}
-type=Instant
-[/card]
-[card]
 name=Puca's Mischief
 text=At the beginning of your upkeep, you may exchange control of target nonland permanent you control and target nonland permanent an opponent controls with an equal or lesser converted mana cost.
 mana={3}{U}
@@ -12472,18 +12407,6 @@ text=Enchant creature -- When enchanted creature is put into a graveyard, return
 mana={U}{U}{U}
 type=Enchantment
 subtype=Aura
-[/card]
-[card]
-#to be tested....
-name=Puresteel Paladin
-auto=@movedTo(equipment|mybattlefield):may draw:1 controller
-auto=lord(equipment|mybattlefield) transforms((,newability[{0}:name(equip 0) retarget target(creature|mybattlefield) assorcery restriction{type(artifact|mybattlefield)~morethan~2}]))
-text=Whenever an Equipment enters the battlefield under your control, you may draw a card. -- Metalcraft - As long as you control 3 or more artifacts, each Equipment you control has equip {0}.
-mana={W}{W}
-type=Creature
-subtype=Human Knight
-power=2
-toughness=2
 [/card]
 [card]
 name=Pure // Simple (Pure)
@@ -12981,15 +12904,6 @@ name=Rebuff the Wicked
 text=Counter target spell that targets a permanent you control.
 mana={W}
 type=Instant
-[/card]
-[card]
-name=Reckless Wurm
-text=Trample -- Madness {2}{R} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
-mana={3}{R}{R}
-type=Creature
-subtype=Wurm
-power=4
-toughness=4
 [/card]
 [card]
 name=Reclamation
@@ -16054,20 +15968,6 @@ mana={X}{R}
 type=Instant
 [/card]
 [card]
-name=Strength of Isolation
-text=Enchant creature -- Enchanted creature gets +1/+2 and has protection from black. -- Madness {W} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
-mana={1}{W}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
-name=Strength of Lunacy
-text=Enchant creature -- Enchanted creature gets +2/+1 and has protection from white. -- Madness {B} (If you discard this card, you may cast it for its madness cost instead of putting it into your graveyard.)
-mana={1}{B}
-type=Enchantment
-subtype=Aura
-[/card]
-[card]
 name=Strength of the Tajuru
 text=Multikicker {1} (You may pay an additional {1} any number of times as you cast this spell.) -- Choose target creature, then choose another target creature for each time Strength of the Tajuru was kicked. Put X +1/+1 counters on each of them.
 mana={X}{G}{G}
@@ -16294,15 +16194,6 @@ name=Survival Cache
 mana={2}{W}
 type=Sorcery
 text=You gain 2 life. Then if you have more life than an opponent, draw a card. Rebound (If you cast this spell from your hand, exile it as it resolves. At the beginning of your next upkeep, you may cast this card from exile without paying its mana cost.)
-[/card]
-[card]
-name=Sustaining Spirit
-text=Cumulative upkeep {1}{W} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- Damage that would reduce your life total to less than 1 reduces it to 1 instead.
-mana={1}{W}
-type=Creature
-subtype=Angel Spirit
-power=0
-toughness=3
 [/card]
 [card]
 name=Sutured Ghoul
@@ -18810,12 +18701,6 @@ toughness=6
 name=Worms of the Earth
 text=Players can't play lands. -- If a land would enter the battlefield, instead it doesn't. -- At the beginning of each upkeep, any player may sacrifice two lands or pay 5 life. If a player does either, destroy Worms of the Earth.
 mana={2}{B}{B}{B}
-type=Enchantment
-[/card]
-[card]
-name=Worship
-text=If you control a creature, damage that would reduce your life total to less than 1 reduces it to 1 instead.
-mana={3}{W}
 type=Enchantment
 [/card]
 [card]

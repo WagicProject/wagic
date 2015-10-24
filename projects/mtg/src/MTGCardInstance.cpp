@@ -58,6 +58,13 @@ MTGCardInstance::MTGCardInstance(MTGCard * card, MTGPlayerCards * arg_belongs_to
     isSwitchedPT = false;
     isACopier = false;
     bypassTC = false;
+    discarded = false;
+    copiedID = getId();
+    modifiedbAbi = 0;
+    LKIpower = power;
+    LKItoughness = toughness;
+    cardistargetted = 0;
+    cardistargetter = 0;
 }
 
   MTGCardInstance * MTGCardInstance::createSnapShot()
@@ -75,6 +82,8 @@ void MTGCardInstance::copy(MTGCardInstance * card)
     CardPrimitive * data = source->data;
 
     basicAbilities = card->basicAbilities;
+    origbasicAbilities = card->origbasicAbilities;
+    modifiedbAbi = card->modifiedbAbi;
     for (size_t i = 0; i < data->types.size(); i++)
     {
         types.push_back(data->types[i]);
@@ -574,11 +583,13 @@ Player * MTGCardInstance::controller()
 
 int MTGCardInstance::canAttack()
 {
+    if (basicAbilities[(int)Constants::CANTATTACK])
+        return 0;
     if (tapped)
         return 0;
     if (hasSummoningSickness())
         return 0;
-    if ((basicAbilities[(int)Constants::DEFENSER] || basicAbilities[(int)Constants::CANTATTACK]) && !basicAbilities[(int)Constants::CANATTACK])
+    if (basicAbilities[(int)Constants::DEFENSER] && !basicAbilities[(int)Constants::CANATTACK])
         return 0;
     if (!isCreature())
         return 0;
@@ -716,6 +727,84 @@ void MTGCardInstance::switchPT(bool apply)
         addToToughness(-swapP);
         setPower(swapP);
     }
+}
+
+int MTGCardInstance::getCurrentPower()
+{
+    if(!isInPlay(observer))
+        return LKIpower;
+    return power;
+}
+
+int MTGCardInstance::getCurrentToughness()
+{
+    if(!isInPlay(observer))
+        return LKItoughness;
+    return toughness;
+}
+
+//check stack
+bool MTGCardInstance::StackIsEmptyandSorcerySpeed()
+{
+    if((getObserver()->mLayers->stackLayer()->count(0, NOT_RESOLVED) == 0) &&
+        (getObserver()->getCurrentGamePhase() == MTG_PHASE_FIRSTMAIN ||
+        getObserver()->getCurrentGamePhase() == MTG_PHASE_SECONDMAIN) &&
+        controller() == getObserver()->currentPlayer &&
+        !getObserver()->isInterrupting)
+    {
+		return true;
+    }
+    return false;
+}
+
+//check targetted?
+bool MTGCardInstance::isTargetted()
+{
+    if(getObserver()->mLayers->stackLayer()->count(0, NOT_RESOLVED) != 0)
+    {
+        ActionStack * stack = observer->mLayers->stackLayer();
+        for (int i = stack->mObjects.size() - 1; i >= 0; i--)
+        {
+            Interruptible * current = ((Interruptible *) stack->mObjects[i]);
+            if ((current->type == ACTION_SPELL || current->type == ACTION_ABILITY) && current->state == NOT_RESOLVED)
+            {
+                if(current->type == ACTION_SPELL)
+                {
+                    Spell * spell = (Spell *) current;
+                    if(spell->getNextTarget() && spell->getNextTarget() == (Targetable*)this)
+                        return true;
+                }
+            }
+        }
+    }		
+    if(cardistargetted)
+        return true;
+	return false;
+}
+
+//check targetter?
+bool MTGCardInstance::isTargetter()
+{
+    if(getObserver()->mLayers->stackLayer()->count(0, NOT_RESOLVED) != 0)
+    {
+        ActionStack * stack = observer->mLayers->stackLayer();
+        for (int i = stack->mObjects.size() - 1; i >= 0; i--)
+        {
+            Interruptible * current = ((Interruptible *) stack->mObjects[i]);
+            if ((current->type == ACTION_SPELL || current->type == ACTION_ABILITY) && current->state == NOT_RESOLVED)
+            {
+                if(current->type == ACTION_SPELL)
+                {
+                    Spell * spell = (Spell *) current;
+                    if(spell && spell->source == this)
+                        return true;
+                }
+            }
+        }
+    }		
+    if(cardistargetter)
+        return true;
+	return false;
 }
 
 int MTGCardInstance::canBlock()

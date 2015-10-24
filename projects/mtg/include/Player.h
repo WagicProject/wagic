@@ -44,6 +44,7 @@ public:
     int drawCounter;
     int epic;
     int initLife;
+    int raidcount;
     vector<string> prowledTypes;
     vector<MTGCardInstance*>curses;
     Player(GameObserver *observer, string deckFile, string deckFileSmall, MTGDeck * deck = NULL);
@@ -71,7 +72,7 @@ public:
     ManaPool * getManaPool();
     void takeMulligan();
     void serumMulligan();
-    bool DeadLifeState();
+    bool DeadLifeState(bool check = false);
     ManaCost * doesntEmpty;
     ManaCost * poolDoesntEmpty;
     void cleanupPhase();

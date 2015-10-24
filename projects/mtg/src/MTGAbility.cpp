@@ -411,6 +411,20 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
             }
         }
 
+        check = restriction[i].find("discarded");
+        if(check != string::npos)
+        {
+            if(!card->discarded)
+                return 0;
+        }
+
+        check = restriction[i].find("raid");
+        if(check != string::npos)
+        {
+            if(card->controller()->raidcount < 1)
+                return 0;
+        }
+
         check = restriction[i].find("ownerscontrol");
         if(check != string::npos)
         {
@@ -811,7 +825,16 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
             attackingTrigger,attackedAloneTrigger,notBlockedTrigger,attackBlockedTrigger,blockingTrigger);
     }
 
-    //Card card is drawn
+
+    //drawn player - controller of card - dynamic version drawof(player) -> returns current controller even with exchange of card controller
+    if (TargetChooser * tc = parseSimpleTC(s, "drawof", card))
+        return NEW TrcardDrawn(observer, id, card, tc,once,true,false);
+
+    //drawn player - opponent of card controller - dynamic version drawfoeof(player) -> returns current opponent even with exchange of card controller
+    if (TargetChooser * tc = parseSimpleTC(s, "drawfoeof", card))
+        return NEW TrcardDrawn(observer, id, card, tc,once,false,true);
+
+    //Card card is drawn - static version - drawn(player) - any player; drawn(controller) - owner forever; drawn(opponent) - opponent forever
     if (TargetChooser * tc = parseSimpleTC(s, "drawn", card))
         return NEW TrcardDrawn(observer, id, card, tc,once);
 
@@ -827,35 +850,105 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
     if (TargetChooser * tc = parseSimpleTC(s, "cycled", card))
         return NEW TrCardDiscarded(observer, id, card, tc,once,true);
 
-    //Card Damaging non combat
+    //Card Damaging non combat current controller
+    if (TargetChooser * tc = parseSimpleTC(s, "noncombatdamageof", card))
+    {
+        TargetChooser *fromTc = parseSimpleTC(s, "from", card);
+        return NEW TrDamaged(observer, id, card, tc, fromTc, 2,false,false,once,true,false);
+    }
+
+    //Card Damaging non combat current opponent
+    if (TargetChooser * tc = parseSimpleTC(s, "noncombatdamagefoeof", card))
+    {
+        TargetChooser *fromTc = parseSimpleTC(s, "from", card);
+        return NEW TrDamaged(observer, id, card, tc, fromTc, 2,false,false,once,false,true);
+    }
+
+    //Card Damaging non combat static
     if (TargetChooser * tc = parseSimpleTC(s, "noncombatdamaged", card))
     {
         TargetChooser *fromTc = parseSimpleTC(s, "from", card);
         return NEW TrDamaged(observer, id, card, tc, fromTc, 2,once);
     }
 
-    //Card Damaging combat
+    //Card Damaging combat current controller
+    if (TargetChooser * tc = parseSimpleTC(s, "combatdamageof", card))
+    {
+        TargetChooser *fromTc = parseSimpleTC(s, "from", card);
+        return NEW TrDamaged(observer, id, card, tc, fromTc, 1,sourceUntapped,limitOnceATurn,once,true,false);
+    }
+
+    //Card Damaging combat current opponent
+    if (TargetChooser * tc = parseSimpleTC(s, "combatdamagefoeof", card))
+    {
+        TargetChooser *fromTc = parseSimpleTC(s, "from", card);
+        return NEW TrDamaged(observer, id, card, tc, fromTc, 1,sourceUntapped,limitOnceATurn,once,false,true);
+    }
+
+    //Card Damaging combat static
     if (TargetChooser * tc = parseSimpleTC(s, "combatdamaged", card))
     {
         TargetChooser *fromTc = parseSimpleTC(s, "from", card);
         return NEW TrDamaged(observer, id, card, tc, fromTc, 1,sourceUntapped,limitOnceATurn,once);
     }
 
-    //Card Damaging
+    //Card Damaging current controller
+    if (TargetChooser * tc = parseSimpleTC(s, "damageof", card))
+    {
+        TargetChooser *fromTc = parseSimpleTC(s, "from", card);
+        return NEW TrDamaged(observer, id, card, tc, fromTc, 0,sourceUntapped,limitOnceATurn,once,true,false);
+    }
+
+    //Card Damaging current opponent
+    if (TargetChooser * tc = parseSimpleTC(s, "damagefoeof", card))
+    {
+        TargetChooser *fromTc = parseSimpleTC(s, "from", card);
+        return NEW TrDamaged(observer, id, card, tc, fromTc, 0,sourceUntapped,limitOnceATurn,once,false,true);
+    }
+
+    //Card Damaging static
     if (TargetChooser * tc = parseSimpleTC(s, "damaged", card))
     {
         TargetChooser *fromTc = parseSimpleTC(s, "from", card);
         return NEW TrDamaged(observer, id, card, tc, fromTc, 0,sourceUntapped,limitOnceATurn,once);
     }
 
-    //Lifed
+    //Lifed current controller
+    if (TargetChooser * tc = parseSimpleTC(s, "lifeof", card))
+    {
+        TargetChooser *fromTc = parseSimpleTC(s, "from", card);
+        return NEW TrLifeGained(observer, id, card, tc, fromTc, 0,sourceUntapped,once,true,false);
+    }
+
+    //Lifed current opponent
+    if (TargetChooser * tc = parseSimpleTC(s, "lifefoeof", card))
+    {
+        TargetChooser *fromTc = parseSimpleTC(s, "from", card);
+        return NEW TrLifeGained(observer, id, card, tc, fromTc, 0,sourceUntapped,once,false,true);
+    }
+
+    //Lifed static
     if (TargetChooser * tc = parseSimpleTC(s, "lifed", card))
     {
         TargetChooser *fromTc = parseSimpleTC(s, "from", card);
         return NEW TrLifeGained(observer, id, card, tc, fromTc, 0,sourceUntapped,once);
     }
 
-    //Life Loss
+    //Life Loss current player
+    if (TargetChooser * tc = parseSimpleTC(s, "lifelostof", card))
+    {
+        TargetChooser *fromTc = parseSimpleTC(s, "from", card);
+        return NEW TrLifeGained(observer, id, card, tc, fromTc,1,sourceUntapped,once,true,false);
+    }
+
+    //Life Loss current opponent
+    if (TargetChooser * tc = parseSimpleTC(s, "lifelostfoeof", card))
+    {
+        TargetChooser *fromTc = parseSimpleTC(s, "from", card);
+        return NEW TrLifeGained(observer, id, card, tc, fromTc,1,sourceUntapped,once,false,true);
+    }
+
+    //Life Loss static
     if (TargetChooser * tc = parseSimpleTC(s, "lifeloss", card))
     {
         TargetChooser *fromTc = parseSimpleTC(s, "from", card);
@@ -2652,6 +2745,24 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         return NEW AEvolveAbility(observer, id, card);
     }
 
+    //produce additional mana when tapped for mana
+    if (s.find("produceextra:") != string::npos)
+    {
+        return NEW AProduceMana(observer, id, card,s.substr(13));
+    }
+
+    //produce additional mana when a mana is engaged
+    if (s.find("producecolor:") != string::npos)
+    {
+        return NEW AEngagedManaAbility(observer, id, card,s.substr(13));
+    }
+
+    //reducelife to specific value
+    if (s.find("reduceto:") != string::npos)
+    {
+        return NEW AReduceToAbility(observer, id, card,s.substr(9));
+    }
+
     //flanking
     if (s.find("flanker") != string::npos)
     {
@@ -3083,10 +3194,18 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         return a;
     }
 
-    //get a new target
+    //get a new target - retarget and newtarget makes the card refreshed - from exile to play...
     if ((s.find("retarget") != string::npos) || s.find("newtarget") != string::npos)
     {
         MTGAbility * a = NEW AANewTarget(observer, id, card,target, (s.find("retarget") != string::npos));
+        a->oneShot = 1;
+        return a;
+    }
+
+    //get a new target for puresteel paladin...etc for equipments inplay only.. newhook & rehook supports stone hewer basic... the card is reequipped
+    if ((s.find("rehook") != string::npos) || s.find("newhook") != string::npos)
+    {
+        MTGAbility * a = NEW AANewTarget(observer, id, card,target, false,NULL,true,(s.find("newhook") != string::npos));
         a->oneShot = 1;
         return a;
     }
@@ -3542,6 +3661,9 @@ int AbilityFactory::abilityEfficiency(MTGAbility * a, Player * p, int mode, Targ
     badAbilities[(int)Constants::WEAK] = true;
     badAbilities[(int)Constants::NOLIFEGAIN] = true;
     badAbilities[(int)Constants::NOLIFEGAINOPPONENT] = true;
+    badAbilities[(int)Constants::CANTLOSE] = false;
+    badAbilities[(int)Constants::CANTLIFELOSE] = false;
+    badAbilities[(int)Constants::CANTMILLLOSE] = false;
 
     if (AInstantBasicAbilityModifierUntilEOT * abi = dynamic_cast<AInstantBasicAbilityModifierUntilEOT *>(a))
     {
@@ -4249,7 +4371,7 @@ void AbilityFactory::addAbilities(int _id, Spell * spell)
             if (current->hasType(Subtypes::TYPE_CREATURE))
             {
                 card->controller()->game->putInGraveyard(current);
-                damage += current->power;
+                damage += current->getCurrentPower();
             }
         }
         observer->mLayers->stackLayer()->addDamage(card, target, damage);
@@ -4577,6 +4699,8 @@ int ActivatedAbility::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
         if (player != game->currentPlayer)
             return 0;
         if (cPhase != MTG_PHASE_FIRSTMAIN && cPhase != MTG_PHASE_SECONDMAIN)
+            return 0;
+        if (player->opponent()->getObserver()->mLayers->stackLayer()->count(0, NOT_RESOLVED) != 0||game->mLayers->stackLayer()->count(0, NOT_RESOLVED) != 0||player->getObserver()->mLayers->stackLayer()->count(0, NOT_RESOLVED) != 0)
             return 0;
         break;
     }
@@ -4998,30 +5122,6 @@ int TriggeredAbility::receiveEvent(WEvent * e)
     //must be able to survive a sacrificed bloodfire collosus,
     //same with mortician beetle vs phyrexian denouncer test
         resolve();
-        return 1;
-    }
-    if(dynamic_cast<WEventLife*>(e))
-    {
-    //check life state on life triger
-    WEventLife * lifecheck = dynamic_cast<WEventLife*>(e);	
-    if (lifecheck->player->DeadLifeState())
-    {
-        return 0;
-    }        
-        fireAbility();
-        return 1;
-    }
-    if(dynamic_cast<WEventDamage*>(e))
-    {
-    //check life state on damage trigger
-    WEventDamage * lifecheck = dynamic_cast<WEventDamage*>(e);	
-    if (lifecheck->damage->target->type_as_damageable == Damageable::DAMAGEABLE_PLAYER)
-    {
-        Player * triggerPlayer = (Player *) lifecheck->damage->target;
-        if(triggerPlayer->DeadLifeState())
-            return 0;
-    }        
-        fireAbility();
         return 1;
     }
     WEventZoneChange * stackCheck = dynamic_cast<WEventZoneChange*>(e);

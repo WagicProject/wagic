@@ -322,9 +322,19 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
 
     int doCopy = 1;
     bool shufflelibrary = card->basicAbilities[(int)Constants::SHUFFLELIBRARYDEATH];
+    bool inplaytoinplay = false;
 	bool ripToken = false;
 	if (g->players[0]->game->battlefield->hasName("Rest in Peace")||g->players[1]->game->battlefield->hasName("Rest in Peace"))
         ripToken = true;
+    //Madness or Put in Play...
+    for(int i = 0; i < 2; ++i)
+	{
+        if (card->discarded && (to == g->players[i]->game->graveyard) && (from == g->players[i]->game->hand))
+        {
+            if(card->basicAbilities[(int)Constants::MADNESS])
+                to = g->players[i]->game->exile;
+        }
+    }
     //Darksteel Colossus, Legacy Weapon ... top priority since we replace destination directly automatically...
     for(int i = 0; i < 2; ++i)
 	{
@@ -339,6 +349,8 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
     for(int i = 0; i < 2; ++i)
 	{
         if ((to == g->players[i]->game->graveyard) && (
+        (g->players[i]->game->battlefield->hasAbility(Constants::MYGCREATUREEXILER) && card->isCreature()) ||
+        (g->players[i]->opponent()->game->battlefield->hasAbility(Constants::OPPGCREATUREEXILER) && card->isCreature())||
         g->players[i]->game->battlefield->hasAbility(Constants::MYGRAVEEXILER) ||
         g->players[i]->opponent()->game->battlefield->hasAbility(Constants::OPPGRAVEEXILER)))
 		{
@@ -353,6 +365,8 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
                     == g->players[1]->game->inPlay))
     {
         doCopy = 0;
+        asCopy = true;//don't send zone change event so it will not destroy the GUI when multiple switching of control...
+        inplaytoinplay = true;//try sending different event...
     }
 
     if (!(copy = from->removeCard(card, doCopy)))
@@ -360,6 +374,13 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
     if (card->miracle)
     {
         copy->miracle = true;
+    }
+    if (card->discarded)
+    {//set discarded for madness...
+        if(from == g->players[0]->game->hand || from == g->players[1]->game->hand)
+            copy->discarded = true;
+		else//turn off discarded if its previous zone is not in hand...
+            copy->discarded = false;
     }
     if (options[Options::SFXVOLUME].number > 0)
     {
@@ -416,6 +437,11 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
 
     WEvent * e = NEW WEventZoneChange(copy, from, to);
     g->receiveEvent(e);
+    }
+    if(inplaytoinplay)
+    {
+    WEvent * ep = NEW WEventCardControllerChange(copy);
+    g->receiveEvent(ep);
     }
     return ret;
 
@@ -741,6 +767,18 @@ bool MTGGameZone::hasAbility(int ability)
     for (int i = 0; i < (nb_cards); i++)
     {
         if (cards[i]->basicAbilities[ability])
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool MTGGameZone::hasAlias(int alias)
+{
+    for (int i = 0; i < (nb_cards); i++)
+    {
+        if (cards[i]->alias == alias)
         {
             return true;
         }

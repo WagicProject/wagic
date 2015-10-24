@@ -276,6 +276,8 @@ void DeckMenu::Render()
                     JQuadPtr quad = WResourceManager::Instance()->RetrieveTempQuad(currentAvatarImageName, TEXTURE_SUB_AVATAR);
                     if(quad.get())
                     {
+                        quad->mWidth = 35.f;
+                        quad->mHeight = 50.f;
                         if (currentMenuItem->getText() == "Evil Twin")
                         {
                             JQuad * evil = quad.get();
