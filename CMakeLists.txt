@@ -85,7 +85,7 @@ if(PSP)
     WAGIC_OPTION(backend_psp         "build for psp"          ON)
 endif()
 if(WIN32 OR ANDROID OR UNIX)
-    WAGIC_OPTION(backend_sdl         "build for sdl"          (WIN32 OR ANDROID))
+    WAGIC_OPTION(backend_sdl         "build for sdl"          (WIN32 OR ANDROID OR EMSCRIPTEN))
 endif()
 if(NOT backend_sdl AND UNIX AND NOT ANDROID)
     WAGIC_OPTION(backend_qt_console  "build qt-console version with testsuit" ON)
@@ -93,12 +93,13 @@ if(NOT backend_sdl AND UNIX AND NOT ANDROID)
 endif()
 
 #third party build options
-WAGIC_OPTION(BUILD_ZLIB    "build zlib from source"    WIN32)
-WAGIC_OPTION(BUILD_JPEG    "build jpeg from source"    (WIN32 OR APPLE OR PSP OR ANDROID))
-WAGIC_OPTION(BUILD_PNG     "build png from source"     (WIN32 OR APPLE OR PSP OR ANDROID))
+WAGIC_OPTION(BUILD_ZLIB    "build zlib from source"    WIN32 OR EMSCRIPTEN)
+WAGIC_OPTION(BUILD_JPEG    "build jpeg from source"    (WIN32 OR APPLE OR PSP OR ANDROID OR EMSCRIPTEN))
+WAGIC_OPTION(BUILD_PNG     "build png from source"     (WIN32 OR APPLE OR PSP OR ANDROID OR EMSCRIPTEN))
 WAGIC_OPTION(BUILD_UNZIP   "build unzip from source"   ON)
-WAGIC_OPTION(BUILD_TINYXML "build tinyxml from source" (WIN32 OR APPLE OR PSP OR ANDROID))
+WAGIC_OPTION(BUILD_TINYXML "build tinyxml from source" (WIN32 OR APPLE OR PSP OR ANDROID OR EMSCRIPTEN))
 WAGIC_OPTION(BUILD_ZIPFS   "build zipfs from source"   ON)
+WAGIC_OPTION(BUILD_SDL2    "build SDL2 from source"    (backend_sdl AND (WIN32 OR ANDROID OR EMSCRIPTEN)))
 
 #project options
 if(ANDROID)
@@ -145,6 +146,8 @@ elseif(UNIX)
     include(platforms/unix/configure.cmake)
 elseif(ANDROID)
     include(platforms/android/configure.cmake)
+elseif(EMSCRIPTEN)
+    include(platforms/emscripten/configure.cmake)
 endif()
 
 #set backend dependend configurations
@@ -159,7 +162,6 @@ elseif(backend_sdl)
 endif()
 
 # find or build 3rd party libraries
-
 FindOrBuildZLIB()
 FindOrBuildOpenGL()
 FindOrBuildTinyXML()
@@ -199,4 +201,8 @@ add_subdirectory(projects/mtg)
 
 if(BUILD_ANDROID_PACKAGE)
   add_subdirectory(platforms/android/package)
+endif()
+
+if(EMSCRIPTEN)
+  set(CMAKE_EXECUTABLE_SUFFIX ".html")
 endif()

@@ -12,7 +12,7 @@
 #if (!defined IOS) && (!defined QT_CONFIG)
 #ifdef WIN32
 #pragma warning(disable : 4786)
-#pragma comment( lib, "giflib.lib" )
+//#pragma comment( lib, "giflib.lib" )
 #endif
 
 #include <png.h>

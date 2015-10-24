@@ -101,7 +101,7 @@ if(backend_qt_widget)
 endif()
 
 if(backend_sdl)
-    if(UNIX AND NOT ANDROID)
+    if((UNIX OR EMSCRIPTEN) AND NOT ANDROID)
         set(JGE_INTERNAL_INCLUDE_DIRS ${TINYXML_INCLUDE_DIR} ${ZIPFS_INCLUDE_DIR} ${OPENGL_INCLUDE_DIR}  ${GLUT_INCLUDE_DIR}
             ${SDL2_INCLUDE_DIR} ${UNZIP_INCLUDE_DIR} ${PNG_INCLUDE_DIRS} ${JPEG_INCLUDE_DIR} ${ZLIB_INCLUDE_DIRS})
         set(JGE_SOURCES ${JGE_generic_src} ${JGE_graphics_src} ${JGE_linux_src} ${JGE_hge_src})
@@ -119,7 +119,7 @@ if(backend_sdl)
             ${UNZIP_INCLUDE_DIR} ${PNG_INCLUDE_DIRS} ${JPEG_INCLUDE_DIR} ${ZLIB_INCLUDE_DIRS} ${CMAKE_SOURCE_DIR}/thirdparty/binary/win/include)
         set(JGE_SOURCES ${JGE_generic_src} ${JGE_graphics_src} ${JGE_linux_src} ${JGE_hge_src})
         set(JGE_LINK_LIBRARIES ${ZIPFS_LIBRARY} ${UNZIP_LIRARY} ${JPEG_LIBRARY} ${PNG_LIBRARIES})
-        set(JGE_LINK_DIRECTORIES ${Boost_LIBRARY_DIR} ${SDL2_LIBRARY_DIR})
+        set(JGE_LINK_DIRECTORIES ${Boost_LIBRARY_DIR})
     endif()
 endif()
 
