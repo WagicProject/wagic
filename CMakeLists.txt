@@ -99,7 +99,7 @@ WAGIC_OPTION(BUILD_PNG     "build png from source"     (WIN32 OR APPLE OR PSP OR
 WAGIC_OPTION(BUILD_UNZIP   "build unzip from source"   ON)
 WAGIC_OPTION(BUILD_TINYXML "build tinyxml from source" (WIN32 OR APPLE OR PSP OR ANDROID OR EMSCRIPTEN))
 WAGIC_OPTION(BUILD_ZIPFS   "build zipfs from source"   ON)
-WAGIC_OPTION(BUILD_SDL2    "build SDL2 from source"    (backend_sdl AND (WIN32 OR ANDROID OR EMSCRIPTEN)))
+WAGIC_OPTION(BUILD_SDL2    "build SDL2 from source"    (backend_sdl AND (UNIX OR WIN32 OR ANDROID OR EMSCRIPTEN)))
 
 #project options
 if(ANDROID)
