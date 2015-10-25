@@ -19622,8 +19622,8 @@ toughness=4
 [/card]
 [card]
 name=Cranial Archive
-auto={2}{E}:name(shuffle graveyard) target(player) donothing && moveto(ownerlibrary) and!(shuffle)! all(*|targetedpersonsgraveyard)
-text={2}, Exile Cranial Archive: Target player shuffles his or her graveyard into his or her library.
+auto={2}{E}:name(shuffle graveyard) target(player) donothing && moveto(ownerlibrary) and!(shuffle && draw:1 controller)! all(*|targetedpersonsgraveyard)
+text={2}, Exile Cranial Archive: Target player shuffles his or her graveyard into his or her library. Draw a card.
 mana={2}
 type=Artifact
 [/card]
@@ -74363,6 +74363,7 @@ type=Sorcery
 [/card]
 [card]
 name=Preyseizer Dragon
+abilities=flying
 auto=may target(<anyamount>other creature|mybattlefield) sacrifice && counter(1/1,2) all(this)
 auto=@combat(attacking) source(this)::target(creature,player) dynamicability<!chargestrike!>
 text=Flying -- Devour 2 (As this enters the battlefield, you may sacrifice any number of creatures. This creature enters the battlefield with twice that many +1/+1 counters on it.) -- Whenever Preyseizer Dragon attacks, it deals damage to target creature or player equal to the number of +1/+1 counters on Preyseizer Dragon.
