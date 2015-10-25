@@ -32,10 +32,19 @@ install:
 #---------------------------------#
 
 # build Configuration, i.e. Debug, Release, etc.
+platform: x64
 configuration: Release
 
+# scripts to run before build
+before_build:
+  - echo Running cmake...
+  - mkdir build
+  - cd build
+  - cmake -Dbackend_sdl=ON ..
+  - cd ..
+
 build:
-  project: projects/mtg/mtg_vs2010.sln      # path to Visual Studio solution or project
+  project: build/wagic.sln      # path to Visual Studio solution or project
 
 #---------------------------------#
 #       tests configuration       #
