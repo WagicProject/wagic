@@ -33,7 +33,6 @@ install:
 #---------------------------------#
 
 # build Configuration, i.e. Debug, Release, etc.
-platform: x64
 configuration: Release
 
 # scripts to run before build
