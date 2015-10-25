@@ -5611,6 +5611,8 @@ int AEquip::equip(MTGCardInstance * equipped)
         //we equip...
         a->addToGame();
     }
+    WEvent * e = NEW WEventCardEquipped(source);
+    game->receiveEvent(e);
     return 1;
 }
 

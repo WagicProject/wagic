@@ -7,6 +7,7 @@ struct GuiAvatar;
 class GuiGraveyard;
 class GuiLibrary;
 class GuiOpponentHand;
+class GuiExile;
 class GuiAvatars: public GuiLayer
 {
 protected:
@@ -14,6 +15,7 @@ protected:
     GuiGraveyard* selfGraveyard, *opponentGraveyard;
     GuiLibrary* selfLibrary, *opponentLibrary;
     GuiOpponentHand *opponentHand;
+    GuiExile* selfExile, *opponentExile;
     GuiAvatar* active;
 
 public:

@@ -298,6 +298,52 @@ ostream& GuiGraveyard::toString(ostream& out) const
     return out << "GuiGraveyard :::";
 }
 
+GuiExile::GuiExile(float x, float y, bool hasFocus, Player * player, GuiAvatars* parent) :
+    GuiGameZone(x, y, hasFocus, player->game->exile, parent), player(player)
+{
+    type = GUI_EXILE;
+}
+
+int GuiExile::receiveEventPlus(WEvent* e)
+{
+    if (WEventZoneChange* event = dynamic_cast<WEventZoneChange*>(e))
+        if (event->to == zone)
+        {
+            CardView* t;
+            if (event->card->view)
+                t = NEW CardView(CardView::nullZone, event->card, *(event->card->view));
+            else
+                t = NEW CardView(CardView::nullZone, event->card, x, y);
+            t->x = x + Width / 2;
+            t->y = y + Height / 2;
+            t->zoom = 0.6f;
+            t->alpha = 0;
+            cards.push_back(t);
+            return 1;
+        }
+    return 0;
+}
+
+int GuiExile::receiveEventMinus(WEvent* e)
+{
+    if (WEventZoneChange* event = dynamic_cast<WEventZoneChange*>(e))
+        if (event->from == zone)
+            for (vector<CardView*>::iterator it = cards.begin(); it != cards.end(); ++it)
+                if (event->card->previous == (*it)->card)
+                {
+                    CardView* cv = *it;
+                    cards.erase(it);
+                    zone->owner->getObserver()->mTrash->trash(cv);
+                    return 1;
+                }
+    return 0;
+}
+
+ostream& GuiExile::toString(ostream& out) const
+{
+    return out << "GuiExile :::";
+}
+
 //opponenthand begins
 GuiOpponentHand::GuiOpponentHand(float x, float y, bool hasFocus, Player * player, GuiAvatars* parent) :
     GuiGameZone(x, y, hasFocus, player->game->hand, parent), player(player)
