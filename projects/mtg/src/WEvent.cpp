@@ -165,6 +165,11 @@ WEventCardUnattached::WEventCardUnattached(MTGCardInstance * card) :
 {
 }
 
+WEventCardEquipped::WEventCardEquipped(MTGCardInstance * card) :
+    WEventCardUpdate(card)
+{
+}
+
 WEventCardControllerChange::WEventCardControllerChange(MTGCardInstance * card) :
     WEventCardUpdate(card)
 {
@@ -319,6 +324,12 @@ Targetable * WEventcardDraw::getTarget(Player * player)
 }
 
 Targetable * WEventCardUnattached::getTarget(int target)
+{
+    if (target) return card;
+    return NULL;
+}
+
+Targetable * WEventCardEquipped::getTarget(int target)
 {
     if (target) return card;
     return NULL;

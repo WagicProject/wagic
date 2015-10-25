@@ -73407,8 +73407,7 @@ toughness=*
 [/card]
 [card]
 name=Plague Sliver
-auto=@each my upkeep:life:-type:sliver:mybattlefield controller
-auto=@each opponent upkeep:life:-type:sliver:opponentbattlefield opponent
+auto=lord(sliver) transforms((,newabililty[@each my upkeep:damage:1 controller]))
 text=All Slivers have "At the beginning of your upkeep, this permanent deals 1 damage to you."
 mana={2}{B}{B}
 type=Creature
