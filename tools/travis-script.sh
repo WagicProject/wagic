@@ -55,14 +55,14 @@ if [ "$BUILD_Qt" = "YES" ]; then
 	mkdir build_qt_widget
 	cd build_qt_widget
 	cmake -Dbackend_qt_widget=ON -Dbackend_qt_console=OFF ..
-	make -j8
+	make -j4
 	cd ..
 
     # let's try an Intel linux binary in debug text-mode-only
 	mkdir build_qt_console
 	cd build_qt_console
 	cmake -Dbackend_qt_console=ON ..
-	make -j8
+	make -j4
 	cd ..
 
     # Now we run the testsuite (Res needs to be in the working directory)
@@ -76,7 +76,7 @@ if [ "$BUILD_SDL" = "YES" ]; then
 	mkdir build_SDL
 	cd build_SDL
 	cmake -Dbackend_sdl=ON ..
-	make -j8
+	make -j4
 	cd ..
 fi
 # Let's launch de Mac cross-compilation
