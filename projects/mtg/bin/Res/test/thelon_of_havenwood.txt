@@ -25,6 +25,7 @@ next
 [assert]
 secondmain
 [player1]
+exile:fungusaur
 inplay:Thelon Of Havenwood,Thallid,Deathspore Thallid,forest,swamp
 [player2]
 life:14

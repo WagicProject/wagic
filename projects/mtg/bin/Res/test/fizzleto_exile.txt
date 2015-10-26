@@ -17,6 +17,7 @@ endinterruption
 [ASSERT]
 FIRSTMAIN
 [PLAYER1]
+exile:bad moon
 manapool:{0}
 life:20
 [PLAYER2]

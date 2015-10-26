@@ -15,4 +15,5 @@ FIRSTMAIN
 graveyard:183055
 manapool:{0}
 [PLAYER2]
+exile:184994
 [END]
