@@ -5244,7 +5244,7 @@ void ABlink::Update(float dt)
         resolveBlink();
     }
 
-    if ((blinkueot && currentPhase == MTG_PHASE_ENDOFTURN) || (blinkForSource && !source->isInPlay(game)) && Blinked->blinked)
+    if ((blinkueot && currentPhase == MTG_PHASE_ENDOFTURN) || (blinkForSource && !source->isInPlay(game)) && (Blinked->blinked))
     {
         if (Blinked == NULL)
             MTGAbility::Update(dt);
