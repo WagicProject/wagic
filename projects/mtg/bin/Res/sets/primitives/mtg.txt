@@ -68670,7 +68670,7 @@ type=Sorcery
 [card]
 name=Obzedat, Ghost Council
 auto=ability$!choice life:-2 target(opponent) && life:2 controller!$ controller
-auto=@each my end:may name(exile) all(this) transforms((,newability[moveto(exile)],newability[phaseactionmulti[my upkeep once] moveto(ownerbattlefield) && all(this) haste]))
+auto=@each my end:may name(exile) all(this) transforms((,newability[moveto(exile)],newability[phaseactionmulti[my upkeep once checkex] moveto(ownerbattlefield) && all(this) haste]))
 text=When Obzedat, Ghost Council enters the battlefield, target opponent loses 2 life and you gain 2 life. -- At the beginning of your end step, you may exile Obzedat. If you do, return it to the battlefield under its owner's control at the beginning of your next upkeep. It gains haste.
 mana={1}{W}{W}{B}{B}
 type=Legendary Creature

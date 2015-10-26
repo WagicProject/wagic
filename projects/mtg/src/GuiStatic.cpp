@@ -164,7 +164,10 @@ void GuiGameZone::Render()
     JQuadPtr quad = WResourceManager::Instance()->GetQuad(kGenericCardThumbnailID);
     float scale = defaultHeight / quad->mHeight;
     quad->SetColor(ARGB((int)(actA),255,255,255));
-
+    if(type == GUI_EXILE)
+    {
+        quad->SetColor(ARGB((int)(actA),150,150,150));
+    }
     JRenderer::GetInstance()->RenderQuad(quad.get(), actX, actY, 0.0, scale * actZ, scale * actZ);
 
     float x0 = actX;
@@ -182,7 +185,16 @@ void GuiGameZone::Render()
     mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
     char buffer[11];
     int mAlpha = (int) (actA);
-    sprintf(buffer, "%i", zone->nb_cards);
+    /*if(type == GUI_GRAVEYARD)
+        sprintf(buffer, "%i\ng", zone->nb_cards);
+    else if(type == GUI_LIBRARY)
+        sprintf(buffer, "%i\nl", zone->nb_cards);
+    else if(type == GUI_OPPONENTHAND)
+        sprintf(buffer, "%i\nh", zone->nb_cards);
+    else if(type == GUI_EXILE)
+        sprintf(buffer, "%i\ne", zone->nb_cards);
+    else*/
+        sprintf(buffer, "%i", zone->nb_cards);
     mFont->SetColor(ARGB(mAlpha,0,0,0));
     mFont->DrawString(buffer, x0 + 1, actY + 1);
     if (actA > 120)

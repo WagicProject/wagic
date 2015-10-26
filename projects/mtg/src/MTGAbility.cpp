@@ -558,8 +558,8 @@ int AbilityFactory::countCards(TargetChooser * tc, Player * player, int option)
     {
         if (player && player != observer->players[i])
             continue;
-        MTGGameZone * zones[] = { observer->players[i]->game->inPlay, observer->players[i]->game->graveyard, observer->players[i]->game->hand };
-        for (int k = 0; k < 3; k++)
+        MTGGameZone * zones[] = { observer->players[i]->game->inPlay, observer->players[i]->game->graveyard, observer->players[i]->game->hand, observer->players[i]->game->exile };
+        for (int k = 0; k < 4; k++)
         {
             for (int j = zones[k]->nb_cards - 1; j >= 0; j--)
             {
@@ -3412,6 +3412,7 @@ MTGAbility * AbilityFactory::parsePhaseActionAbility(string s,MTGCardInstance * 
         bool opponentturn = (s1.find("my") == string::npos);
         bool myturn = (s1.find("opponent") == string::npos);
         bool sourceinPlay = (s1.find("sourceinplay") != string::npos);
+        bool checkexile = (s1.find("checkex") != string::npos);
         bool next = (s1.find("next") == string::npos); //Why is this one the opposite of the two others? That's completely inconsistent
         bool once = (s1.find("once") != string::npos);
 
@@ -3420,7 +3421,7 @@ MTGAbility * AbilityFactory::parsePhaseActionAbility(string s,MTGCardInstance * 
             _target = spell->getNextCardTarget();
         if(!_target)
             _target = target;
-          return NEW APhaseActionGeneric(observer, id, card,_target, trim(splitActions[2]), restrictions, phase,sourceinPlay,next,myturn,opponentturn,once);
+          return NEW APhaseActionGeneric(observer, id, card,_target, trim(splitActions[2]), restrictions, phase,sourceinPlay,next,myturn,opponentturn,once,checkexile);
 }
 
 MTGAbility * AbilityFactory::parseChooseActionAbility(string s,MTGCardInstance * card,Spell *,MTGCardInstance * target, int, int id)
@@ -5257,8 +5258,8 @@ void ListMaintainerAbility::updateTargets()
     for (int i = 0; i < 2; i++)
     {
         Player * p = game->players[i];
-        MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->stack };
-        for (int k = 0; k < 5; k++)
+        MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->stack, p->game->exile };
+        for (int k = 0; k < 6; k++)
         {
             MTGGameZone * zone = zones[k];
             if (canTarget(zone))
@@ -5329,8 +5330,8 @@ void ListMaintainerAbility::checkTargets()
     for (int i = 0; i < 2; i++)
     {
         Player * p = game->players[i];
-        MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->stack };
-        for (int k = 0; k < 5; k++)
+        MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->stack, p->game->exile };
+        for (int k = 0; k < 6; k++)
         {
             MTGGameZone * zone = zones[k];
             if (canTarget(zone))

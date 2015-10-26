@@ -518,12 +518,13 @@ bool GameObserver::operator==(const GameObserver& aGame)
         {
             error++;
         }
-        MTGGameZone * aZones[] = { p->game->graveyard, p->game->library, p->game->hand, p->game->inPlay };
+        MTGGameZone * aZones[] = { p->game->graveyard, p->game->library, p->game->hand, p->game->inPlay, p->game->exile };
         MTGGameZone * thisZones[] = { players[i]->game->graveyard,
                                          players[i]->game->library,
                                          players[i]->game->hand,
-                                         players[i]->game->inPlay };
-        for (int j = 0; j < 4; j++)
+                                         players[i]->game->inPlay,
+                                         players[i]->game->exile };
+        for (int j = 0; j < 5; j++)
         {
             MTGGameZone * zone = aZones[j];
             if (zone->nb_cards != thisZones[j]->nb_cards)
@@ -595,8 +596,8 @@ void GameObserver::gameStateBasedEffects()
 	/////////////////////////////////////
     for (int d = 0; d < 2; d++)
     {
-        MTGGameZone * dzones[] = { players[d]->game->inPlay, players[d]->game->graveyard, players[d]->game->hand, players[d]->game->library };
-        for (int k = 0; k < 4; k++)
+        MTGGameZone * dzones[] = { players[d]->game->inPlay, players[d]->game->graveyard, players[d]->game->hand, players[d]->game->library, players[d]->game->exile };
+        for (int k = 0; k < 5; k++)
         {
             MTGGameZone * zone = dzones[k];
             if (mLayers->stackLayer()->count(0, NOT_RESOLVED) == 0)

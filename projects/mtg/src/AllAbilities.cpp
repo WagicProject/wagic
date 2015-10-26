@@ -5092,8 +5092,8 @@ AUpkeep::~AUpkeep()
 }
 
 //A Phase based Action
-APhaseAction::APhaseAction(GameObserver* observer, int _id, MTGCardInstance * card, MTGCardInstance *, string sAbility, int, int _phase,bool forcedestroy,bool next,bool myturn,bool opponentturn,bool once) :
-MTGAbility(observer, _id, card),sAbility(sAbility), phase(_phase),forcedestroy(forcedestroy),next(next),myturn(myturn),opponentturn(opponentturn),once(once)
+APhaseAction::APhaseAction(GameObserver* observer, int _id, MTGCardInstance * card, MTGCardInstance *, string sAbility, int, int _phase,bool forcedestroy,bool next,bool myturn,bool opponentturn,bool once, bool checkexile) :
+MTGAbility(observer, _id, card),sAbility(sAbility), phase(_phase),forcedestroy(forcedestroy),next(next),myturn(myturn),opponentturn(opponentturn),once(once),checkexile(checkexile)
 {
     abilityId = _id;
     abilityOwner = card->controller();
@@ -5110,6 +5110,14 @@ MTGAbility(observer, _id, card),sAbility(sAbility), phase(_phase),forcedestroy(f
 
 void APhaseAction::Update(float dt)
 {
+    if(checkexile)
+    {
+        if(((MTGCardInstance *)target)->next->getCurrentZone() != ((MTGCardInstance *)target)->owner->game->exile)
+        {
+            this->forceDestroy = 1;
+            return;
+        }
+    }
     if (newPhase != currentPhase)
     {
         if((myturn && game->currentPlayer == source->controller())|| 
@@ -5186,11 +5194,11 @@ APhaseAction::~APhaseAction()
 }
 
 // the main ability
-APhaseActionGeneric::APhaseActionGeneric(GameObserver* observer, int _id, MTGCardInstance * card, MTGCardInstance * target, string sAbility, int restrictions, int _phase,bool forcedestroy,bool next,bool myturn,bool opponentturn,bool once) :
+APhaseActionGeneric::APhaseActionGeneric(GameObserver* observer, int _id, MTGCardInstance * card, MTGCardInstance * target, string sAbility, int restrictions, int _phase,bool forcedestroy,bool next,bool myturn,bool opponentturn,bool once, bool checkexile) :
     InstantAbility(observer, _id, card, target)
 {
     MTGCardInstance * _target = target;
-    ability = NEW APhaseAction(game, _id, card,_target, sAbility, restrictions, _phase,forcedestroy,next,myturn,opponentturn,once);
+    ability = NEW APhaseAction(game, _id, card,_target, sAbility, restrictions, _phase,forcedestroy,next,myturn,opponentturn,once,checkexile);
 }
 
 int APhaseActionGeneric::resolve()
@@ -5236,7 +5244,7 @@ void ABlink::Update(float dt)
         resolveBlink();
     }
 
-    if ((blinkueot && currentPhase == MTG_PHASE_ENDOFTURN) || (blinkForSource && !source->isInPlay(game)))
+    if ((blinkueot && currentPhase == MTG_PHASE_ENDOFTURN) || (blinkForSource && !source->isInPlay(game)) && Blinked->blinked)
     {
         if (Blinked == NULL)
             MTGAbility::Update(dt);
@@ -5272,6 +5280,7 @@ void ABlink::resolveBlink()
             return;
         }
         _target = _target->next;
+        _target->blinked = true;
         Blinked = _target;
         if(!blinkueot && !blinkForSource)
         {
@@ -5282,6 +5291,11 @@ void ABlink::resolveBlink()
 
 void ABlink::returnCardIntoPlay(MTGCardInstance* _target) {
     MTGCardInstance * Blinker = NULL;
+	if(!_target->blinked)
+	{
+        this->forceDestroy = 1;
+        return;
+    }
     if (!blinkhand)
         Blinker = _target->controller()->game->putInZone(
             _target,
