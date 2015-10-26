@@ -46,7 +46,7 @@ MTGCardInstance * TestSuiteAI::getCard(string action)
     for (int i = 0; i < 2; i++)
     {
         Player * p = observer->players[i];
-        MTGGameZone * zones[] = { p->game->library, p->game->hand, p->game->inPlay, p->game->graveyard, p->game->exile };
+        MTGGameZone * zones[] = { p->game->library, p->game->hand, p->game->inPlay, p->game->graveyard, p->game->removedFromGame };
         for (int j = 0; j < 5; j++)
         {
             MTGGameZone * zone = zones[j];
@@ -394,12 +394,12 @@ void TestSuiteGame::assertGame()
             error++;
 
         }
-        MTGGameZone * playerZones[] = { p->game->graveyard, p->game->library, p->game->hand, p->game->inPlay, p->game->exile };
+        MTGGameZone * playerZones[] = { p->game->graveyard, p->game->library, p->game->hand, p->game->inPlay, p->game->removedFromGame };
         MTGGameZone * endstateZones[] = { endState.players[i]->game->graveyard,
                                          endState.players[i]->game->library,
                                          endState.players[i]->game->hand,
                                          endState.players[i]->game->inPlay,
-                                         endState.players[i]->game->exile };
+                                         endState.players[i]->game->removedFromGame };
         for (int j = 0; j < 5; j++)
         {
             MTGGameZone * zone = playerZones[j];
@@ -854,12 +854,12 @@ void TestSuiteGame::initGame()
         stringstream stream;
         stream << initState.players[i]->getRandomGenerator()->saveLoadedRandValues(stream);
         p->getRandomGenerator()->loadRandValues(stream.str());
-        MTGGameZone * playerZones[] = { p->game->graveyard, p->game->library, p->game->hand, p->game->inPlay, p->game->exile };
+        MTGGameZone * playerZones[] = { p->game->graveyard, p->game->library, p->game->hand, p->game->inPlay, p->game->removedFromGame };
         MTGGameZone * loadedPlayerZones[] = { initState.players[i]->game->graveyard,
                                               initState.players[i]->game->library,
                                               initState.players[i]->game->hand,
                                               initState.players[i]->game->inPlay,
-                                              initState.players[i]->game->exile };
+                                              initState.players[i]->game->removedFromGame };
         for (int j = 0; j < 5; j++)
         {
             MTGGameZone * zone = playerZones[j];
@@ -912,7 +912,7 @@ MTGPlayerCards * TestSuiteGame::buildDeck(Player* player, int playerId)
         MTGGameZone * loadedPlayerZones[] = { initState.players[playerId]->game->graveyard,
             initState.players[playerId]->game->library,
             initState.players[playerId]->game->hand,
-            initState.players[playerId]->game->exile,
+            initState.players[playerId]->game->removedFromGame,
             initState.players[playerId]->game->inPlay };
 
         for (int j = 0; j < 5; j++)

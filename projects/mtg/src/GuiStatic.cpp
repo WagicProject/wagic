@@ -166,7 +166,7 @@ void GuiGameZone::Render()
     quad->SetColor(ARGB((int)(actA),255,255,255));
     if(type == GUI_EXILE)
     {
-        quad->SetColor(ARGB((int)(actA),150,150,150));
+        quad->SetColor(ARGB((int)(actA),255,240,255));
     }
     JRenderer::GetInstance()->RenderQuad(quad.get(), actX, actY, 0.0, scale * actZ, scale * actZ);
 

@@ -15,18 +15,18 @@ GuiAvatars::GuiAvatars(DuelLayers* duelLayers) :
     Add(selfGraveyard = NEW GuiGraveyard(SCREEN_WIDTH - GuiAvatar::Width - GuiGameZone::Width / 2 - 11, SCREEN_HEIGHT - GuiAvatar::Height - 1, false, mpDuelLayers->getRenderedPlayer(), this));
     Add(selfLibrary = NEW GuiLibrary(SCREEN_WIDTH - GuiAvatar::Width - GuiGameZone::Width / 2 - 11, SCREEN_HEIGHT - GuiAvatar::Height - 5 + GuiGameZone::Height + 5, false, mpDuelLayers->getRenderedPlayer(), this));
 	//myexile
-    Add(selfExile = NEW GuiExile(SCREEN_WIDTH - GuiAvatar::Width - GuiGameZone::Width / 2 + 10, SCREEN_HEIGHT - GuiAvatar::Height, false, mpDuelLayers->getRenderedPlayer(), this));
+    Add(selfExile = NEW GuiExile(SCREEN_WIDTH - GuiAvatar::Width - GuiGameZone::Width / 2 - 11, SCREEN_HEIGHT - GuiAvatar::Height - 30, false, mpDuelLayers->getRenderedPlayer(), this));
 
     Add(opponent = NEW GuiAvatar(0, 0, false, mpDuelLayers->getRenderedPlayerOpponent(), GuiAvatar::TOP_LEFT, this));
     opponent->zoom = 0.9f;
     //opponentExile
     Add(opponentExile = NEW GuiExile(-30 + GuiAvatar::Width * 1.2 - GuiGameZone::Width / 2, 35 + GuiGameZone::Height - 10,
                     false, mpDuelLayers->getRenderedPlayerOpponent(), this));
-    //opponentHand
-    Add(opponentHand = NEW GuiOpponentHand(5 + GuiAvatar::Width * 1.4 - GuiGameZone::Width / 2, 5, false,
-                    mpDuelLayers->getRenderedPlayerOpponent(), this));
     //opponentGraveyard
-    Add(opponentGraveyard = NEW GuiGraveyard(-15 + GuiAvatar::Width * 1.4 - GuiGameZone::Width / 2, 35 + GuiGameZone::Height - 10, false,
+    Add(opponentGraveyard = NEW GuiGraveyard(5 + GuiAvatar::Width * 1.4 - GuiGameZone::Width / 2, 5, false,
+                    mpDuelLayers->getRenderedPlayerOpponent(), this));
+    //opponentHand
+    Add(opponentHand = NEW GuiOpponentHand(-15 + GuiAvatar::Width * 1.4 - GuiGameZone::Width / 2, 35 + GuiGameZone::Height - 10, false,
                     mpDuelLayers->getRenderedPlayerOpponent(), this));
     //opponentLibrary
     Add(opponentLibrary = NEW GuiLibrary(5 + GuiAvatar::Width * 1.4 - GuiGameZone::Width / 2, 5 + GuiGameZone::Height + 5, false,
@@ -149,10 +149,12 @@ void GuiAvatars::Render()
     float h = 54;
     if (opponent == active)
     {
+        r->FillRect(opponent->actX, opponent->actY, 40 * opponent->actZ, h+20 * opponent->actZ, ARGB(200,0,0,0));
         r->FillRect(opponent->actX, opponent->actY, w * opponent->actZ, h * opponent->actZ, ARGB(200,0,0,0));
     }
     else if (self == active)
     {
+        r->FillRect(self->actX - w * self->actZ - 4.5f, self->actY - h-28 * self->actZ, 24 * self->actZ, h+28 * self->actZ, ARGB(200,0,0,0));
         r->FillRect(self->actX - w * self->actZ - 4.5f, self->actY - h * self->actZ, w * self->actZ, h * self->actZ, ARGB(200,0,0,0));
     }
     GuiLayer::Render();
