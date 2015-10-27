@@ -5244,12 +5244,15 @@ void ABlink::Update(float dt)
         resolveBlink();
     }
 
-    if ((blinkueot && currentPhase == MTG_PHASE_ENDOFTURN) || (blinkForSource && !source->isInPlay(game)) && (Blinked->blinked))
+    if ((blinkueot && currentPhase == MTG_PHASE_ENDOFTURN) || (blinkForSource && !source->isInPlay(game)))
     {
-        if (Blinked == NULL)
-            MTGAbility::Update(dt);
-        MTGCardInstance * _target = Blinked;
-        returnCardIntoPlay(_target);
+        if(Blinked->blinked)
+        {
+            if (Blinked == NULL)
+                MTGAbility::Update(dt);
+            MTGCardInstance * _target = Blinked;
+            returnCardIntoPlay(_target);
+        }
     }
     MTGAbility::Update(dt);
 }
@@ -5724,16 +5727,28 @@ void AACastCard::Update(float dt)
            this->forceDestroy = 1;
            return;
        }
-       if(!toCheck->hasType(Subtypes::TYPE_INSTANT) && !(game->getCurrentGamePhase() == MTG_PHASE_FIRSTMAIN || game->getCurrentGamePhase() == MTG_PHASE_SECONDMAIN))
+       /*if(!toCheck->hasType(Subtypes::TYPE_INSTANT) && !(game->getCurrentGamePhase() == MTG_PHASE_FIRSTMAIN || game->getCurrentGamePhase() == MTG_PHASE_SECONDMAIN))
+       {
+           processed = true;
+           this->forceDestroy = 1;
+           return;
+       }*/
+   }
+   MTGCardInstance * toCheck = (MTGCardInstance*)target;
+   if(theNamedCard)
+       toCheck = theNamedCard;
+   if(toCheck && toCheck->spellTargetType.size())
+   {
+       TargetChooserFactory tcf(game);
+       TargetChooser * stc = tcf.createTargetChooser(toCheck->spellTargetType,toCheck);
+       if (!stc->validTargetsExist()||toCheck->isToken)
        {
            processed = true;
            this->forceDestroy = 1;
            return;
        }
+       SAFE_DELETE(stc);
    }
-   MTGCardInstance * toCheck = (MTGCardInstance*)target;
-   if(theNamedCard)
-       toCheck = theNamedCard;
    if (Spell * checkSpell = dynamic_cast<Spell*>(target))
    {
        toCheck = checkSpell->source;

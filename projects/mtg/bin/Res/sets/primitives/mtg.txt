@@ -7313,7 +7313,7 @@ type=Enchantment
 name=Banishing Stroke
 target=*[artifact;creature;enchantment]
 auto=bottomoflibrary
-autohand=restriction{miracle} pay[[{W}]] name(Miracle) activate name(Miracle) castcard(normal)
+autohand=restriction{miracle} pay[[{W}]] name(Miracle) activate name(Miracle) castcard(restricted)
 text=Put target artifact, creature, or enchantment on the bottom of its owner's library. -- Miracle {W} (You may cast this card for its miracle cost when you draw it if it's the first card you drew this turn.)
 mana={5}{W}
 type=Instant
@@ -9657,7 +9657,7 @@ subtype=Aura
 [card]
 name=Blessings of Nature
 auto=ability$!counter(1/1,1) target(creature)!$ controller && ability$!counter(1/1,1) target(creature)!$ controller && ability$!counter(1/1,1) target(creature)!$ controller && ability$!counter(1/1,1) target(creature)!$ controller
-autohand=restriction{miracle} pay[[{G}]] name(Miracle) activate name(Miracle) castcard(normal)
+autohand=restriction{miracle} pay[[{G}]] name(Miracle) activate name(Miracle) castcard(restricted)
 text=Distribute four +1/+1 counters among any number of target creatures. -- Miracle {G} (You may cast this card for its miracle cost when you draw it if it's the first card you drew this turn.)
 mana={4}{G}
 type=Sorcery
@@ -12231,7 +12231,7 @@ type=Instant
 [card]
 name=Brand of Ill Omen
 target=creature
-auto=cumulativeupcost[{R}] sacrifice
+auto=cumulativeupcostmulti[{R}] sacrifice all(this)
 auto=transforms((,newability[maxCast(creature)0 controller]))
 text=Enchant creature -- Cumulative upkeep {R} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- Enchanted creature's controller can't cast creature spells.
 mana={3}{R}
@@ -15829,7 +15829,7 @@ name=Chandra Ablaze
 auto=counter(0/0,5,loyalty)
 auto={C(0/0,1,Loyalty)}:name(discard a card) all(this) transforms((,newability[reject notatarget(*|myhand)],newability[@discarded(*[red]|myhand) once:damage:4 target(*[creature;player])])) ueot
 auto={C(0/0,-2,Loyalty)}:name(discard hand) reject all(*|hand) && draw:3 all(player)
-auto={C(0/0,-7,Loyalty)}:name(cast cards) castcard(normal) target(<anyamount>*[instant;sorcery]|mygraveyard)
+auto={C(0/0,-7,Loyalty)}:name(cast cards) castcard(restricted) target(<anyamount>*[instant;sorcery]|mygraveyard)
 text=+1: Discard a card. If a red card is discarded this way, Chandra Ablaze deals 4 damage to target creature or player. -- -2: Each player discards his or her hand, then draws three cards. -- -7: Cast any number of red instant and/or sorcery cards from your graveyard without paying their mana costs.
 mana={4}{R}{R}
 type=Planeswalker
@@ -24428,7 +24428,7 @@ type=Sorcery
 [card]
 name=Devastation Tide
 auto=moveTo(ownerhand) all(*[-land])
-autohand=restriction{miracle} pay[[{1}{U}]] name(Miracle) activate name(Miracle) castcard(normal)
+autohand=restriction{miracle} pay[[{1}{U}]] name(Miracle) activate name(Miracle) castcard(restricted)
 text=Return all nonland permanents to their owners' hands. -- Miracle {1}{U} (You may cast this card for its miracle cost when you draw it if it's the first card you drew this turn.)
 mana={3}{U}{U}
 type=Sorcery
@@ -24711,7 +24711,7 @@ toughness=1
 [card]
 name=Diluvian Primordial
 abilities=flying
-auto=may target(*[instant;sorcery]|opponentgraveyard) castcard(normal) and!(transforms((,newability[exiledeath])) forever)!
+auto=may target(*[instant;sorcery]|opponentgraveyard) castcard(restricted) and!(transforms((,newability[exiledeath])) forever)!
 text=Flying -- When Diluvian Primordial enters the battlefield, for each opponent, you may cast up to one target instant or sorcery card from that player's graveyard without paying its mana cost. If a card cast this way would be put into a graveyard this turn, exile it instead.
 mana={5}{U}{U}
 type=Creature
@@ -25414,6 +25414,16 @@ auto=moveTo(ownerhand)
 text=Return X target nonland permanents to their owners' hands.
 mana={X}{U}{U}{U}
 type=Sorcery
+[/card]
+[card]
+name=Distortion Strike
+target=creature
+auto=1/0
+auto=unblockable
+auto=if rebound then transforms((,newability[moveto(exile)],newability[phaseaction[endofturn once checkex] activate may activate castcard(restricted)]))
+mana={U}
+type=Sorcery
+text=Target creature gets +1/+0 until end of turn and is unblockable this turn. Rebound (If you cast this spell from your hand, exile it as it resolves. At the beginning of your next upkeep, you may cast this card from exile without paying its mana cost.)
 [/card]
 [card]
 name=Distress
@@ -29901,6 +29911,19 @@ power=2
 toughness=3
 [/card]
 [card]
+name=Emerge Unscathed
+target=creature|mybattlefield
+auto=choice name(green) transforms((,newability[protection from green])) ueot
+auto=choice name(red) transforms((,newability[protection from red])) ueot
+auto=choice name(blue) transforms((,newability[protection from blue])) ueot
+auto=choice name(black) transforms((,newability[protection from black])) ueot
+auto=choice name(white) transforms((,newability[protection from white])) ueot
+auto=if rebound then transforms((,newability[moveto(exile)],newability[phaseaction[endofturn once checkex] activate may activate castcard(restricted)]))
+mana={W}
+type=Instant
+text=Target creature you control gains protection from the color of your choice until end of turn. Rebound (If you cast this spell from your hand, exile it as it resolves. At the beginning of your next upkeep, you may cast this card from exile without paying its mana cost.)
+[/card]
+[card]
 name=Emeria, the Sky Ruin
 auto=tap
 auto={T}:add{W}
@@ -33113,8 +33136,12 @@ type=Instant
 [card]
 name=Feat of Resistance
 target=creature|mybattlefield
+auto=choice name(green) transforms((,newability[protection from green])) ueot
+auto=choice name(red) transforms((,newability[protection from red])) ueot
+auto=choice name(blue) transforms((,newability[protection from blue])) ueot
+auto=choice name(black) transforms((,newability[protection from black])) ueot
+auto=choice name(white) transforms((,newability[protection from white])) ueot
 auto=counter(1/1)
-auto=activatechooseacolor protection from(*[chosencolor]) ueot activatechooseend
 text=Put a +1/+1 counter on target creature you control. It gains protection from the color of your choice until end of turn. 
 mana={1}{W}
 type=Instant
@@ -53638,7 +53665,7 @@ toughness=2
 [card]
 name=Knowledge Exploitation
 target=opponent
-auto=target(*[instant;sorcery]|targetedpersonslibrary) castcard(normal)
+auto=target(*[instant;sorcery]|targetedpersonslibrary) castcard(restricted)
 other={3}{U} name(Prowl)
 otherrestriction=prowl
 text=Prowl {3}{U} (You may cast this for its prowl cost if you dealt combat damage to a player this turn with a Rogue.) -- Search target opponent's library for an instant or sorcery card. You may cast that card without paying its mana cost. Then that player shuffles his or her library.
@@ -54502,7 +54529,7 @@ toughness=1
 name=Krovikan Whispers
 alias=1194
 target=creature
-auto=cumulativeupcost[{U}{B}] sacrifice
+auto=cumulativeupcostmulti[{U}{B}] sacrifice all(this)
 auto=@movedTo(this|graveyard) from(battlefield):thisforeach(counter{0/0.1.Age}) life:-2 controller
 text=Enchant creature -- Cumulative upkeep {U} or {B} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- You control enchanted creature. -- When Krovikan Whispers is put into a graveyard from the battlefield, you lose 2 life for each age counter on it.
 mana={3}{U}
@@ -58425,7 +58452,7 @@ subtype=Mountain
 name=Maddening Wind
 target=creature
 auto=@each targetcontroller upkeep:damage:2 targetController
-auto=cumulativeupcost[{G}] sacrifice
+auto=cumulativeupcostmulti[{G}] sacrifice all(this)
 text=Enchant creature -- Cumulative upkeep {G} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- At the beginning of the upkeep of enchanted creature's controller, Maddening Wind deals 2 damage to that player.
 mana={2}{G}
 type=Enchantment
@@ -58444,7 +58471,7 @@ toughness=4
 [card]
 name=Maelstrom Archangel
 abilities=flying
-auto=@combatdamaged(player) from(this):may target(*[-land]|myhand) castcard(normal)
+auto=@combatdamaged(player) from(this):may target(*[-land]|myhand) castcard(restricted)
 text=Flying -- Whenever Maelstrom Archangel deals combat damage to a player, you may cast a nonland card from your hand without paying its mana cost.
 mana={W}{U}{B}{R}{G}
 type=Creature
@@ -58911,7 +58938,7 @@ toughness=4
 [/card]
 [card]
 name=Magus of the Jar
-auto={T}{S}:name(hand blink) all(*|hand) transforms((,newability[moveto(exile)],newability[phaseaction[endofturn once] reject all(*|hand)],newability[phaseaction[endofturn once] moveTo(ownerhand)])) && draw:7 all(player)
+auto={T}{S}:name(hand blink) all(*|hand) transforms((,newability[moveto(exile)],newability[phaseaction[endofturn once checkex] moveto(ownerhand)])) && ability$!draw:7 all(player) _ phaseaction[endofturn once] reject all(*|hand)!$ controller
 text={T}, Sacrifice Magus of the Jar: Each player exiles all cards from his or her hand face down and draws seven cards. At the beginning of the next end step, each player discards his or her hand and returns to his or her hand each card he or she exiled this way.
 mana={3}{U}{U}
 type=Creature
@@ -61113,7 +61140,7 @@ type=Enchantment
 [/card]
 [card]
 name=Memory Jar
-auto={T}{S}:name(hand blink) all(*|hand) transforms((,newability[moveto(exile)],newability[phaseaction[endofturn once] reject all(*|hand)],newability[phaseaction[endofturn once] moveTo(ownerhand)])) && draw:7 all(player)
+auto={T}{S}:name(hand blink) all(*|hand) transforms((,newability[moveto(exile)],newability[phaseaction[endofturn once checkex] moveto(ownerhand)])) && ability$!draw:7 all(player) _ phaseaction[endofturn once] reject all(*|hand)!$ controller
 text={T}, Sacrifice Memory Jar: Each player exiles all cards from his or her hand face down and draws seven cards. At the beginning of the next end step, each player discards his or her hand and returns to his or her hand each card he or she exiled this way.
 mana={5}
 type=Artifact
@@ -61129,7 +61156,7 @@ type=Instant
 [card]
 name=Memory Plunder
 target=*[instant;sorcery]|opponentgraveyard
-auto=castcard(normal)
+auto=castcard(restricted)
 text=You may cast target instant or sorcery card from an opponent's graveyard without paying its mana cost.
 mana={UB}{UB}{UB}{UB}
 type=Instant
@@ -62175,7 +62202,7 @@ type=Instant
 [card]
 name=Mind Harness
 target=creature(red;green)
-auto=cumulativeupcost[{1}] sacrifice
+auto=cumulativeupcostmulti[{1}] sacrifice all(this)
 text=Enchant red or green creature -- Cumulative upkeep {1} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- You control enchanted creature.
 mana={U}
 type=Enchantment
@@ -62334,7 +62361,7 @@ toughness=1
 [/card]
 [card]
 name=Mindclaw Shaman
-auto=choice name(target opponent) target(opponent) donothing && all(this) transforms((,newability[if type(*[instant;sorcery]|targetedpersonshand)~lessthan~1 then name(look) donothing notatarget(*|targetedpersonshand) else may castcard(normal) notatarget(*[instant;sorcery]|targetedpersonshand)])) forever
+auto=choice name(target opponent) target(opponent) donothing && all(this) transforms((,newability[if type(*[instant;sorcery]|targetedpersonshand)~lessthan~1 then name(look) donothing notatarget(*|targetedpersonshand) else may castcard(restricted) notatarget(*[instant;sorcery]|targetedpersonshand)])) forever
 text=When Mindclaw Shaman enters the battlefield, target opponent reveals his or her hand. You may cast an instant or sorcery card from it without paying its mana cost.
 mana={4}{R}
 type=Creature
@@ -62383,8 +62410,8 @@ toughness=1
 [card]
 name=Mindleech Mass
 abilities=trample
-auto=@combatdamagefoeof(player) from(this):may target(*[-land]|opponenthand) castcard(normal)
-auto=@combatdamageof(player) from(this):may target(*[-land]|myhand) castcard(normal)
+auto=@combatdamagefoeof(player) from(this):may target(*[-land]|opponenthand) castcard(restricted)
+auto=@combatdamageof(player) from(this):may target(*[-land]|myhand) castcard(restricted)
 text=Trample -- Whenever Mindleech Mass deals combat damage to a player, you may look at that player's hand. If you do, you may cast a nonland card in it without paying that card's mana cost.
 mana={5}{U}{B}{B}
 type=Creature
@@ -65603,7 +65630,7 @@ type=Instant
 [card]
 name=Mystic Might
 target=land|myBattlefield
-auto=cumulativeupcost[{1}{U}] sacrifice
+auto=cumulativeupcostmulti[{1}{U}] sacrifice all(this)
 auto=teach(land) {T}:2/2 target(creature)
 text=Enchant land you control -- Cumulative upkeep {1}{U} (At the beginning of your upkeep, put an age counter on this permanent, then sacrifice it unless you pay its upkeep cost for each age counter on it.) -- Enchanted land has "{T}: Target creature gets +2/+2 until end of turn."
 mana={U}
@@ -67874,6 +67901,14 @@ type=Creature
 subtype=Noggle Rogue
 power=2
 toughness=1
+[/card]
+[card]
+name=Nomads' Assembly
+auto=token(Kor Soldier,Creature Kor Soldier,1/1,white)*type:creature:mybattlefield
+auto=if rebound then transforms((,newability[moveto(exile)],newability[phaseaction[endofturn once checkex] activate may activate castcard(restricted)]))
+mana={4}{W}{W}
+type=Sorcery
+text=Put a 1/1 white Kor Soldier creature token onto the battlefield for each creature you control. Rebound (If you cast this spell from your hand, exile it as it resolves. At the beginning of your next upkeep, you may cast this card from exile without paying its mana cost.)
 [/card]
 [card]
 name=Nomad Decoy
@@ -74374,6 +74409,15 @@ power=4
 toughness=4
 [/card]
 [card]
+name=Prey's Vengeance
+target=creature
+auto=2/2
+auto=if rebound then transforms((,newability[moveto(exile)],newability[phaseaction[endofturn once checkex] activate may activate castcard(restricted)]))
+mana={G}
+type=Instant
+text=Target creature gets +2/+2 until end of turn. Rebound (If you cast this spell from your hand, exile it as it resolves. At the beginning of your next upkeep, you may cast this card from exile without paying its mana cost.)
+[/card]
+[card]
 name=Price of Glory
 auto=lord(land) transforms((,newability[@tappedformana(this) restriction{opponentturnonly}:destroy]))
 text=Whenever a player taps a land for mana, if it's not that player's turn, destroy that land.
@@ -78541,6 +78585,15 @@ mana={3}{W}
 type=Instant
 [/card]
 [card]
+name=Recurring Insight
+target=opponent
+auto=draw:type:*:targetedpersonshand controller
+auto=if rebound then transforms((,newability[moveto(exile)],newability[phaseaction[endofturn once checkex] activate may activate castcard(restricted)]))
+mana={4}{U}{U}
+type=Sorcery
+text=Draw cards equal to the number of cards in target opponent's hand. Rebound (If you cast this spell from your hand, exile it as it resolves. At the beginning of your next upkeep, you may cast this card from exile without paying its mana cost.)
+[/card]
+[card]
 name=Recurring Nightmare
 auto={S(creature|myBattlefield)}{H}:moveto(mybattlefield) target(creature|mygraveyard) asSorcery
 text=Sacrifice a creature, Return Recurring Nightmare to its owner's hand: Return target creature card from your graveyard to the battlefield. Activate this ability only any time you could cast a sorcery.
@@ -78702,7 +78755,7 @@ name=Reforge the Soul
 auto=reject all(*|hand)
 auto=draw:7 opponent
 auto=draw:7 controller
-autohand=restriction{miracle} pay[[{1}{R}]] name(Miracle) activate name(Miracle) castcard(normal)
+autohand=restriction{miracle} pay[[{1}{R}]] name(Miracle) activate name(Miracle) castcard(restricted)
 text=Each player discards his or her hand and draws seven cards. -- Miracle {1}{R} (You may cast this card for its miracle cost when you draw it if it's the first card you drew this turn.)
 mana={3}{R}{R}
 type=Sorcery
@@ -79802,7 +79855,7 @@ target=creature
 auto=6/6
 auto=trample
 auto=lure
-autohand=restriction{miracle} pay[[{G}]] name(Miracle) activate name(Miracle) castcard(normal)
+autohand=restriction{miracle} pay[[{G}]] name(Miracle) activate name(Miracle) castcard(restricted)
 text=Until end of turn, target creature gets +6/+6 and gains trample, and all creatures able to block it this turn do so. -- Miracle {G} (You may cast this card for its miracle cost when you draw it if it's the first card you drew this turn.)
 mana={4}{G}{G}
 type=Sorcery
@@ -87501,11 +87554,12 @@ toughness=2
 [/card]
 [card]
 name=Shelter
-auto=choice protection from white target(creature|myBattlefield) ueot
-auto=choice protection from blue target(creature|myBattlefield) ueot
-auto=choice protection from black target(creature|myBattlefield) ueot
-auto=choice protection from red target(creature|myBattlefield) ueot
-auto=choice protection from green target(creature|myBattlefield) ueot
+target=creature|mybattlefield
+auto=choice name(green) transforms((,newability[protection from green])) ueot
+auto=choice name(red) transforms((,newability[protection from red])) ueot
+auto=choice name(blue) transforms((,newability[protection from blue])) ueot
+auto=choice name(black) transforms((,newability[protection from black])) ueot
+auto=choice name(white) transforms((,newability[protection from white])) ueot
 auto=draw:1 controller
 text=Target creature you control gains protection from the color of your choice until end of turn. -- Draw a card.
 mana={1}{W}
@@ -88995,8 +89049,8 @@ toughness=4
 [card]
 name=Silent-Blade Oni
 autohand={4}{U}{B}{N}:ninjutsu
-auto=@combatdamagefoeof(player) from(this):may target(*[-land]|opponenthand) castcard(normal)
-auto=@combatdamageof(player) from(this):may target(*[-land]|myhand) castcard(normal)
+auto=@combatdamagefoeof(player) from(this):may target(*[-land]|opponenthand) castcard(restricted)
+auto=@combatdamageof(player) from(this):may target(*[-land]|myhand) castcard(restricted)
 text=Ninjutsu {4}{U}{B} ({4}{U}{B}, Return an unblocked attacker you control to hand: Put this card onto the battlefield from your hand tapped and attacking.) -- Whenever Silent-Blade Oni deals combat damage to a player, look at that player's hand. You may cast a nonland card in it without paying that card's mana cost.
 mana={3}{U}{U}{B}{B}
 type=Creature
@@ -95173,6 +95227,15 @@ power=0
 toughness=0
 [/card]
 [card]
+name=Staggershock
+target=creature,player
+auto=damage:2
+auto=if rebound then transforms((,newability[moveto(exile)],newability[phaseaction[endofturn once checkex] activate may activate castcard(restricted)]))
+mana={2}{R}
+type=Instant
+text=Staggershock deals 2 damage to target creature or player. Rebound (If you cast this spell from your hand, exile it as it resolves. At the beginning of your next upkeep, you may cast this card from exile without paying its mana cost.)
+[/card]
+[card]
 name=Stalker Hag
 abilities=swampwalk,forestwalk
 text=Swampwalk, forestwalk
@@ -95558,11 +95621,11 @@ toughness=2
 [card]
 name=Stave Off
 target=creature
-auto=choice name(protection from white) target(creature) protection from white
-auto=choice name(protection from blue) target(creature) protection from blue
-auto=choice name(protection from black) target(creature) protection from black
-auto=choice name(protection from red) target(creature) protection from red
-auto=choice name(protection from green) target(creature) protection from green
+auto=choice name(green) transforms((,newability[protection from green])) ueot
+auto=choice name(red) transforms((,newability[protection from red])) ueot
+auto=choice name(blue) transforms((,newability[protection from blue])) ueot
+auto=choice name(black) transforms((,newability[protection from black])) ueot
+auto=choice name(white) transforms((,newability[protection from white])) ueot
 text=Target creature gains protection from the color of your choice until end of turn.
 mana={W}
 type=Instant
@@ -97715,7 +97778,7 @@ toughness=1
 name=Sunforger
 auto={3}:equip
 auto=4/0
-auto=teach(creature) {unattach}{R}{W}:castcard(normal) notatarget(instant[red;white;manacost<=4]|mylibrary)
+auto=teach(creature) {unattach}{R}{W}:castcard(restricted) notatarget(instant[red;white;manacost<=4]|mylibrary)
 text=Equipped creature gets +4/+0. -- {R}{W}, Unattach Sunforger: Search your library for a red or white instant card with converted mana cost 4 or less and cast that card without paying its mana cost. Then shuffle your library. -- Equip {3}
 mana={3}
 type=Artifact
@@ -98223,6 +98286,14 @@ power=2
 toughness=1
 [/card]
 [card]
+name=Surreal Memoir
+auto=moverandom(instant) from(mygraveyard) to(myhand)
+auto=if rebound then transforms((,newability[moveto(exile)],newability[phaseaction[endofturn once checkex] activate may activate castcard(restricted)]))
+mana={3}{R}
+type=Sorcery
+text=Return an instant card at random from your graveyard to your hand. Rebound (If you cast this spell from your hand, exile it as it resolves. At the beginning of your next upkeep, you may cast this card from exile without paying its mana cost.)
+[/card]
+[card]
 name=Surveilling Sprite
 abilities=flying
 auto=@movedto(this|graveyard) from(battlefield):may draw:1
@@ -98240,6 +98311,15 @@ auto=destroy && token(Goblin,Creature Goblin,1/1,red)
 text=Destroy target land. Put a 1/1 red Goblin creature token onto the battlefield.
 mana={4}{R}
 type=Sorcery
+[/card]
+[card]
+name=Survival Cache
+auto=life:2 controller
+auto=if compare(lifetotal)~morethan~compare(opponentlifetotal) then draw:1 controller
+auto=if rebound then transforms((,newability[moveto(exile)],newability[phaseaction[endofturn once checkex] activate may activate castcard(restricted)]))
+mana={2}{W}
+type=Sorcery
+text=You gain 2 life. Then if you have more life than an opponent, draw a card. Rebound (If you cast this spell from your hand, exile it as it resolves. At the beginning of your next upkeep, you may cast this card from exile without paying its mana cost.)
 [/card]
 [card]
 name=Survival of the Fittest
@@ -100425,7 +100505,7 @@ type=Sorcery
 name=Temporal Mastery
 auto=turns:+1 controller
 auto=exiledeath
-autohand=restriction{miracle} pay[[{1}{U}]] name(Miracle) activate name(Miracle) castcard(normal)
+autohand=restriction{miracle} pay[[{1}{U}]] name(Miracle) activate name(Miracle) castcard(restricted)
 text=Take an extra turn after this one. Exile Temporal Mastery. -- Miracle {1}{U} (You may cast this card for its miracle cost when you draw it if it's the first card you drew this turn.)
 mana={5}{U}{U}
 type=Sorcery
@@ -100678,7 +100758,7 @@ type=Instant
 [card]
 name=Terminus
 auto=all(creature) bottomoflibrary
-autohand=restriction{miracle} pay[[{W}]] name(Miracle) activate name(Miracle) castcard(normal)
+autohand=restriction{miracle} pay[[{W}]] name(Miracle) activate name(Miracle) castcard(restricted)
 text=Put all creatures on the bottom of their owners' libraries. -- Miracle {W} (You may cast this card for its miracle cost when you draw it if it's the first card you drew this turn.)
 mana={4}{W}{W}
 type=Sorcery
@@ -102261,7 +102341,7 @@ type=Sorcery
 name=Thunderblade Charge
 target=creature,player
 auto=damage:3
-autograveyard=@combatdamaged(player) from(creature|mybattlefield):pay({2}{R}{R}{R}) name(pay to cast) activate name(pay to cast) castcard(normal)
+autograveyard=@combatdamaged(player) from(creature|mybattlefield):pay({2}{R}{R}{R}) name(pay to cast) activate name(pay to cast) castcard(restricted)
 text=Thunderblade Charge deals 3 damage to target creature or player. -- Whenever one or more creatures you control deal combat damage to a player, if Thunderblade Charge is in your graveyard, you may pay {2}{R}{R}{R}. If you do, you may cast it without paying its mana cost.
 mana={1}{R}{R}
 type=Sorcery
@@ -102405,7 +102485,7 @@ subtype=Aura
 name=Thunderous Wrath
 target=creature,player
 auto=damage:5
-autohand=restriction{miracle} pay[[{R}]] name(Miracle) activate name(Miracle) castcard(normal)
+autohand=restriction{miracle} pay[[{R}]] name(Miracle) activate name(Miracle) castcard(restricted)
 text=Thunderous Wrath deals 5 damage to target creature or player. -- Miracle {R} (You may cast this card for its miracle cost when you draw it if it's the first card you drew this turn.)
 mana={4}{R}{R}
 type=Instant
@@ -103628,7 +103708,7 @@ type=Enchantment
 [/card]
 [card]
 name=Toshiro Umezawa
-auto=@movedto(graveyard) from(creature|opponentBattlefield):may target(*[instant]|mygraveyard) castcard(normal) and!(transforms((,newability[exiledeath])) forever)!
+auto=@movedto(graveyard) from(creature|opponentBattlefield):may target(*[instant]|mygraveyard) castcard(restricted) and!(transforms((,newability[exiledeath])) forever)!
 auto=bushido(1/1)
 text=Bushido 1 (When this blocks or becomes blocked, it gets +1/+1 until end of turn.) -- Whenever a creature an opponent controls is put into a graveyard from the battlefield, you may cast target instant card from your graveyard. If that card would be put into a graveyard this turn, exile it instead.
 mana={1}{B}{B}
@@ -107520,7 +107600,7 @@ subtype=Aura
 name=Vanishment
 target=*[-land]
 auto=moveTo(ownerlibrary)
-autohand=restriction{miracle} pay[[{U}]] name(Miracle) activate name(Miracle) castcard(normal)
+autohand=restriction{miracle} pay[[{U}]] name(Miracle) activate name(Miracle) castcard(restricted)
 text=Put target nonland permanent on top of its owner's library. -- Miracle {U} (You may cast this card for its miracle cost when you draw it if it's the first card you drew this turn.)
 mana={4}{U}
 type=Instant
@@ -109397,6 +109477,16 @@ type=Creature
 subtype=Sliver
 power=1
 toughness=1
+[/card]
+[card]
+name=Virulent Swipe
+target=creature
+auto=2/0
+auto=deathtouch
+auto=if rebound then transforms((,newability[moveto(exile)],newability[phaseaction[endofturn once checkex] activate may activate castcard(restricted)]))
+mana={B}
+type=Instant
+text=Target creature gets +2/+0 and gains deathtouch until end of turn. Rebound (If you cast this spell from your hand, exile it as it resolves. At the beginning of your next upkeep, you may cast this card from exile without paying its mana cost.)
 [/card]
 [card]
 name=Visara the Dreadful
@@ -114872,8 +114962,8 @@ type=Sorcery
 [card]
 name=Wrexial, the Risen Deep
 abilities=islandwalk,swampwalk
-auto=@combatdamagefoeof(player) from(this):may target(*[instant;sorcery]|opponentgraveyard) castcard(normal) and!(transforms((,newability[exiledeath])) forever)!
-auto=@combatdamageof(player) from(this):may target(*[instant;sorcery]|mygraveyard) castcard(normal) and!(transforms((,newability[exiledeath])) forever)!
+auto=@combatdamagefoeof(player) from(this):may target(*[instant;sorcery]|opponentgraveyard) castcard(restricted) and!(transforms((,newability[exiledeath])) forever)!
+auto=@combatdamageof(player) from(this):may target(*[instant;sorcery]|mygraveyard) castcard(restricted) and!(transforms((,newability[exiledeath])) forever)!
 text=Islandwalk, swampwalk -- Whenever Wrexial, the Risen Deep deals combat damage to a player, you may cast target instant or sorcery card from that player's graveyard without paying its mana cost. If that card would be put into a graveyard this turn, exile it instead.
 mana={3}{U}{U}{B}
 type=Legendary Creature

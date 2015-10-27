@@ -3912,12 +3912,6 @@ mana={2}{U}{U}
 type=Sorcery
 [/card]
 [card]
-name=Distortion Strike
-mana={U}
-type=Sorcery
-text=Target creature gets +1/+0 until end of turn and is unblockable this turn. Rebound (If you cast this spell from your hand, exile it as it resolves. At the beginning of your next upkeep, you may cast this card from exile without paying its mana cost.)
-[/card]
-[card]
 name=Divert
 text=Change the target of target spell with a single target unless that spell's controller pays {2}.
 mana={U}
@@ -4442,12 +4436,6 @@ type=Creature — Human Rogue
 power=0
 toughness=1
 text=Whenever another creature comes into play, you may stand up and say in a deep, booming voice "Presenting . . . " and that creature's name. If you do, put a +1/+1 counter on that creature.
-[/card]
-[card]
-name=Emerge Unscathed
-mana={W}
-type=Instant
-text=Target creature you control gains protection from the color of your choice until end of turn. Rebound (If you cast this spell from your hand, exile it as it resolves. At the beginning of your next upkeep, you may cast this card from exile without paying its mana cost.)
 [/card]
 [card]
 name=Empyrial Archangel
@@ -10865,14 +10853,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Nomads' Assembly
-auto=token(Kor Soldier,Creature Kor Soldier,1/1,white)*type:creature:mybattlefield
-auto=@movedto(this|stack) from(myhand) restriction{casted(this)}:moveto(exile) and!( transforms((,newability[@each my upkeep once:may activate castcard(restricted)])) )! forever
-mana={4}{W}{W}
-type=Sorcery
-text=Put a 1/1 white Kor Soldier creature token onto the battlefield for each creature you control. Rebound (If you cast this spell from your hand, exile it as it resolves. At the beginning of your next upkeep, you may cast this card from exile without paying its mana cost.)
-[/card]
-[card]
 name=Norn's Annex
 #cant choose mana or life
 mana={3}{p(W)}{p(W)}
@@ -12141,12 +12121,6 @@ mana={U}
 type=Sorcery
 [/card]
 [card]
-name=Prey's Vengeance
-mana={G}
-type=Instant
-text=Target creature gets +2/+2 until end of turn. Rebound (If you cast this spell from your hand, exile it as it resolves. At the beginning of your next upkeep, you may cast this card from exile without paying its mana cost.)
-[/card]
-[card]
 name=Primal Beyond
 text=As Primal Beyond enters the battlefield, you may reveal an Elemental card from your hand. If you don't, Primal Beyond enters the battlefield tapped. -- {T}: Add {1} to your mana pool. -- {T}: Add one mana of any color to your mana pool. Spend this mana only to cast Elemental spells or activate abilities of Elementals.
 type=Land
@@ -12927,12 +12901,6 @@ name=Recross the Paths
 text=Reveal cards from the top of your library until you reveal a land card. Put that card onto the battlefield and the rest on the bottom of your library in any order. Clash with an opponent. If you win, return Recross the Paths to its owner's hand. (Each clashing player reveals the top card of his or her library, then puts that card on the top or bottom. A player wins if his or her card had a higher converted mana cost.)
 mana={2}{G}
 type=Sorcery
-[/card]
-[card]
-name=Recurring Insight
-mana={4}{U}{U}
-type=Sorcery
-text=Draw cards equal to the number of cards in target opponent's hand. Rebound (If you cast this spell from your hand, exile it as it resolves. At the beginning of your next upkeep, you may cast this card from exile without paying its mana cost.)
 [/card]
 [card]
 name=Recycle
@@ -15679,12 +15647,6 @@ mana={3}
 type=Artifact
 [/card]
 [card]
-name=Staggershock
-mana={2}{R}
-type=Instant
-text=Staggershock deals 2 damage to target creature or player. Rebound (If you cast this spell from your hand, exile it as it resolves. At the beginning of your next upkeep, you may cast this card from exile without paying its mana cost.)
-[/card]
-[card]
 name=Stalking Yeti
 text=When Stalking Yeti enters the battlefield, if it's on the battlefield, it deals damage equal to its power to target creature an opponent controls and that creature deals damage equal to its power to Stalking Yeti. -- {2}{S}i}: Return Stalking Yeti to its owner's hand. Activate this ability only any time you could cast a sorcery. ({S}i} can be paid with one mana from a snow permanent.)
 mana={2}{R}{R}
@@ -16182,18 +16144,6 @@ type=Creature
 subtype=Human Soldier
 power=2
 toughness=1
-[/card]
-[card]
-name=Surreal Memoir
-mana={3}{R}
-type=Sorcery
-text=Return an instant card at random from your graveyard to your hand. Rebound (If you cast this spell from your hand, exile it as it resolves. At the beginning of your next upkeep, you may cast this card from exile without paying its mana cost.)
-[/card]
-[card]
-name=Survival Cache
-mana={2}{W}
-type=Sorcery
-text=You gain 2 life. Then if you have more life than an opponent, draw a card. Rebound (If you cast this spell from your hand, exile it as it resolves. At the beginning of your next upkeep, you may cast this card from exile without paying its mana cost.)
 [/card]
 [card]
 name=Sutured Ghoul
@@ -17806,12 +17756,6 @@ name=Violent Outburst
 text=Cascade (When you cast this spell, exile cards from the top of your library until you exile a nonland card that costs less. You may cast it without paying its mana cost. Put the exiled cards on the bottom in a random order.) -- Creatures you control get +1/+0 until end of turn.
 mana={1}{R}{G}
 type=Instant
-[/card]
-[card]
-name=Virulent Swipe
-mana={B}
-type=Instant
-text=Target creature gets +2/+0 and gains deathtouch until end of turn. Rebound (If you cast this spell from your hand, exile it as it resolves. At the beginning of your next upkeep, you may cast this card from exile without paying its mana cost.)
 [/card]
 [card]
 name=Virulent Wound

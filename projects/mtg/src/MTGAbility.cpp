@@ -310,6 +310,21 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
                     return 0;
             }
         }
+        check = restriction[i].find("rebound");
+        if(check != string::npos)
+        {
+                int count = 0;
+                for(unsigned int k = 0; k < player->game->stack->cardsSeenThisTurn.size(); k++)
+                {
+                    MTGCardInstance * stackCard = player->game->stack->cardsSeenThisTurn[k];
+                    if(stackCard->next && stackCard->next == card && card->previousZone == card->controller()->game->hand)
+                        count++;
+                    if(stackCard == card && card->previousZone == card->controller()->game->hand)
+                        count++;
+                }
+                if(!count)
+                    return 0;
+        }
         check = restriction[i].find("morbid");
         if(check != string::npos)
         {
