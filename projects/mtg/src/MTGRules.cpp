@@ -1139,6 +1139,8 @@ int MTGPlayFromGraveyardRule::isReactingToClick(MTGCardInstance * card, ManaCost
 {
     Player * player = game->currentlyActing();
     ManaCost * cost = card->getManaCost();
+	if (card->has(Constants::PAYZERO))
+        cost = ManaCost::parseManaCost("{0}",NULL,NULL);
 
     if (!player->game->graveyard->hasCard(card))
         return 0;
@@ -1154,7 +1156,8 @@ int MTGPlayFromGraveyardRule::reactToClick(MTGCardInstance * card)
         return 0;
 
     ManaCost * cost = card->getManaCost();
-
+	if (card->has(Constants::PAYZERO))
+        cost = ManaCost::parseManaCost("{0}",NULL,NULL);
     card->paymenttype = MTGAbility::PUT_INTO_PLAY;
 
     return MTGAlternativeCostRule::reactToClick(card, cost, ManaCost::MANA_PAID);
