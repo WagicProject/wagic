@@ -104963,15 +104963,6 @@ mana={5}
 type=Artifact
 [/card]
 [card]
-name=Trinisphere
-auto=this(untapped) lord(*[manacost=0]|hand) altercost(colorless, +3)
-auto=this(untapped) lord(*[manacost=1]|hand) altercost(colorless, +2)
-auto=this(untapped) lord(*[manacost=2]|hand) altercost(colorless, +1)
-text=As long as Trinisphere is untapped, each spell that would cost less than three mana to cast costs three mana to cast. (Additional mana in the cost may be paid with any color of mana or colorless mana. For example, a spell that would cost {1}{B} to cast costs {2}{B} to cast instead.)
-mana={3}
-type=Artifact
-[/card]
-[card]
 name=Trinket Mage
 auto=may moveTo(myhand) target(artifact[manacost<=1]|mylibrary)
 text=When Trinket Mage enters the battlefield, you may search your library for an artifact card with converted mana cost 1 or less, reveal that card, and put it into your hand. If you do, shuffle your library.
@@ -111696,7 +111687,7 @@ toughness=2
 [card]
 name=Warden of Evos Isle
 abilities=flying
-auto=lord(creature[flying]|myhand) altercost(colorless, -1)
+auto=lord(creature[flying]|myhand,mylibrary,mygraveyard,myexile) altercost(colorless, -1)
 text=Flying. -- Creature spells with flying you cast cost 1 less to cast.
 mana={2}{U}
 type=Creature

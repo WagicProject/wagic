@@ -1079,6 +1079,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
                                             MTGGameZone * dest)
 {
     size_t found;
+    bool asAlternate = false;
     trim(s);
     //TODO This block redundant with calling function
     if (!card && spell)
@@ -1088,7 +1089,9 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     MTGCardInstance * target = card->target;
     if (!target)
         target = card;
-
+	//pay and castcard?
+	if(s.find("pay(") != string::npos || s.find("pay[[") != string::npos && s.find("castcard(restricted") != string::npos)
+        asAlternate = true;
     //MTG Specific rules
     //adds the bonus credit system
     found = s.find("bonusrule");
@@ -1586,7 +1589,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     vector<string> splitMayPay = parseBetween(s, "pay(", ")", true);
     if(splitMayPay.size())
     {
-        GenericPaidAbility * a = NEW GenericPaidAbility(observer, id, card, target,newName,castRestriction,splitMayPay[1],storedPayString);
+        GenericPaidAbility * a = NEW GenericPaidAbility(observer, id, card, target,newName,castRestriction,splitMayPay[1],storedPayString,asAlternate);
         a->oneShot = 1;
         a->canBeInterrupted = false;
         return a;
@@ -2091,7 +2094,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     vector<string> splitMayPaysub = parseBetween(s, "pay[[","]]", true);
     if (splitMayPaysub.size())
     {
-        GenericPaidAbility * a = NEW GenericPaidAbility(observer, id, card, target,newName,castRestriction,splitMayPaysub[1],storedPayString);
+        GenericPaidAbility * a = NEW GenericPaidAbility(observer, id, card, target,newName,castRestriction,splitMayPaysub[1],storedPayString,asAlternate);
         a->oneShot = 1;
         a->canBeInterrupted = false;
         return a;

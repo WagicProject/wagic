@@ -235,7 +235,8 @@ class Constants
       MYGCREATUREEXILER = 117,
       OPPGCREATUREEXILER = 118,
       PAYZERO = 119,
-      NB_BASIC_ABILITIES = 120,
+      TRINISPHERE = 120,
+      NB_BASIC_ABILITIES = 121,
 
 
     RARITY_S = 'S',   //Special Rarity

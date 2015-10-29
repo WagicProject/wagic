@@ -17156,6 +17156,15 @@ mana={U}
 type=Instant
 [/card]
 [card]
+name=Trinisphere
+auto=this(untapped) lord(*[manacost=0]|hand) altercost(colorless, +3)
+auto=this(untapped) lord(*[manacost=1]|hand) altercost(colorless, +2)
+auto=this(untapped) lord(*[manacost=2]|hand) altercost(colorless, +1)
+text=As long as Trinisphere is untapped, each spell that would cost less than three mana to cast costs three mana to cast. (Additional mana in the cost may be paid with any color of mana or colorless mana. For example, a spell that would cost {1}{B} to cast costs {2}{B} to cast instead.)
+mana={3}
+type=Artifact
+[/card]
+[card]
 name=Trumpeting Armodon
 text={1}{G}: Target creature blocks Trumpeting Armodon this turn if able.
 mana={3}{G}

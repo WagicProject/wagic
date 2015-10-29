@@ -195,10 +195,11 @@ private:
         }
         else if (s == "manacost")
         {
+            int convertedvalue = card->currentZone == card->controller()->game->battlefield ? card->getManaCost()->getConvertedCost():card->model->data->getManaCost()->getConvertedCost();
             if (target->currentZone == target->controller()->game->stack)//X is 0 except if it's on the stack
                 intValue = target->getManaCost()->getConvertedCost() + target->castX;
             else
-                intValue = target->getManaCost()->getConvertedCost();
+                intValue = convertedvalue;
         }
         else if (s == "azorius")//devotion blue white
         {
@@ -6360,13 +6361,13 @@ class GenericPaidAbility: public ActivatedAbility
 public:
     MTGAbility * baseAbility;
     ManaCost * optionalCost;
-
+    bool asAlternate;
     string newName;
     string restrictions;
     string baseCost;
     string baseAbilityStr;
 
-    GenericPaidAbility(GameObserver* observer, int id, MTGCardInstance * source, Targetable * target,string _newName,string _castRestriction,string _mayCost, string toAdd, ManaCost * cost = NULL);
+    GenericPaidAbility(GameObserver* observer, int id, MTGCardInstance * source, Targetable * target,string _newName,string _castRestriction,string _mayCost, string toAdd, bool asAlternate = false, ManaCost * cost = NULL);
     int resolve();
     const string getMenuText();
     GenericPaidAbility * clone() const;

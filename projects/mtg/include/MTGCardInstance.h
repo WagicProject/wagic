@@ -253,6 +253,8 @@ public:
     int cardistargetted;
     bool isTargetter();
     int cardistargetter;
+    int tmodifier;
+    int tmodifierb;
 
     void eventattacked();
     void eventattackedAlone();

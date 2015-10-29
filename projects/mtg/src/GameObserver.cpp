@@ -604,8 +604,8 @@ void GameObserver::gameStateBasedEffects()
             {
                 for (int c = zone->nb_cards - 1; c >= 0; c--)
                 {
-		            zone->cards[c]->cardistargetted = 0;
-		            zone->cards[c]->cardistargetter = 0;
+    	            zone->cards[c]->cardistargetted = 0;
+    	            zone->cards[c]->cardistargetter = 0;
                 }
             }
         }//check for losers if its GAMEOVER clear the stack to allow gamestateeffects to continue
@@ -878,8 +878,90 @@ void GameObserver::gameStateBasedEffects()
         enchantmentStatus();
         /////////////////////////////
         // Check affinity on a card//
+        //    plus modify costs    //
         /////////////////////////////
         Affinity();
+        //trinisphere?
+        /*for (int td = 0; td < 2; td++)
+        {
+            MTGGameZone * dzones[] = { players[td]->game->graveyard, players[td]->game->hand, players[td]->game->library, players[td]->game->exile };
+            for (int tk = 0; tk < 4; tk++)
+            {
+                MTGGameZone * zone = dzones[tk];
+                for (int ct = zone->nb_cards - 1; ct >= 0; ct--)
+                {
+					if(zone->cards[ct]->has(Constants::TRINISPHERE))
+                    {
+                        if(zone->cards[ct]->getManaCost()->getConvertedCost() == 2)
+                        {
+                            zone->cards[ct]->getManaCost()->add(Constants::MTG_COLOR_ARTIFACT, 1);
+                            zone->cards[ct]->tmodifier = 1;
+                        }
+                        else if(zone->cards[ct]->getManaCost()->getConvertedCost() == 1)
+                        {
+                            zone->cards[ct]->getManaCost()->add(Constants::MTG_COLOR_ARTIFACT, 2);
+                            zone->cards[ct]->tmodifier = 2;
+                        }
+                        else if(zone->cards[ct]->getManaCost()->getConvertedCost() < 1)
+                        {
+                            zone->cards[ct]->getManaCost()->add(Constants::MTG_COLOR_ARTIFACT, 3);
+                            zone->cards[ct]->tmodifier = 3;
+                        }
+                        //alternate
+                        if(zone->cards[ct]->getManaCost()->getAlternative() && zone->cards[ct]->getManaCost()->getAlternative()->getConvertedCost() == 2)
+                        {
+                            zone->cards[ct]->getManaCost()->getAlternative()->add(Constants::MTG_COLOR_ARTIFACT, 1);
+                            zone->cards[ct]->tmodifierb = 1;
+                        }
+                        else if(zone->cards[ct]->getManaCost()->getAlternative() && zone->cards[ct]->getManaCost()->getAlternative()->getConvertedCost() == 1)
+                        {
+                            zone->cards[ct]->getManaCost()->getAlternative()->add(Constants::MTG_COLOR_ARTIFACT, 2);
+                            zone->cards[ct]->tmodifierb = 2;
+                        }
+                        else if(zone->cards[ct]->getManaCost()->getAlternative() && zone->cards[ct]->getManaCost()->getAlternative()->getConvertedCost() < 1)
+                        {
+                            zone->cards[ct]->getManaCost()->getAlternative()->add(Constants::MTG_COLOR_ARTIFACT, 3);
+                            zone->cards[ct]->tmodifierb = 3;
+                        }
+                    }
+					else
+			        {
+			            if(zone->cards[ct]->tmodifier == 1)
+			            {
+                            zone->cards[ct]->getManaCost()->remove(Constants::MTG_COLOR_ARTIFACT, 1);
+                            zone->cards[ct]->tmodifier = 0;
+                        }
+			            else if(zone->cards[ct]->tmodifier == 2)
+			            {
+                            zone->cards[ct]->getManaCost()->remove(Constants::MTG_COLOR_ARTIFACT, 2);
+                            zone->cards[ct]->tmodifier = 0;
+                        }
+			            else if(zone->cards[ct]->tmodifier == 3)
+			            {
+                            zone->cards[ct]->getManaCost()->remove(Constants::MTG_COLOR_ARTIFACT, 3);
+                            zone->cards[ct]->tmodifier = 0;
+                        }
+                        //alternate
+			            if(zone->cards[ct]->tmodifierb == 1)
+			            {
+                            zone->cards[ct]->getManaCost()->getAlternative()->remove(Constants::MTG_COLOR_ARTIFACT, 1);
+                            zone->cards[ct]->tmodifierb = 0;
+                        }
+			            else if(zone->cards[ct]->tmodifierb == 2)
+			            {
+                            zone->cards[ct]->getManaCost()->getAlternative()->remove(Constants::MTG_COLOR_ARTIFACT, 2);
+                            zone->cards[ct]->tmodifierb = 0;
+                        }
+			            else if(zone->cards[ct]->tmodifierb == 3)
+			            {
+                            zone->cards[ct]->getManaCost()->getAlternative()->remove(Constants::MTG_COLOR_ARTIFACT, 3);
+                            zone->cards[ct]->tmodifierb = 0;
+                        }
+                    }
+                }
+            }
+        }*/
+        //end trinisphere
         /////////////////////////////////////
         // Check colored statuses on cards //
         /////////////////////////////////////
@@ -954,46 +1036,140 @@ void GameObserver::enchantmentStatus()
 
 void GameObserver::Affinity()
 {
-    for (int i = 0; i < 2; i++)
+    for (int dd = 0; dd < 2; dd++)
     {
-        MTGGameZone * zone = players[i]->game->hand;
-        for (int k = zone->nb_cards - 1; k >= 0; k--)
+        MTGGameZone * dzones[] = { players[dd]->game->graveyard, players[dd]->game->hand, players[dd]->game->library, players[dd]->game->exile };
+        for (int kk = 0; kk < 4; kk++)
         {
-            MTGCardInstance * card = zone->cards[k];
-            if (!card)
-                continue;
+            MTGGameZone * zone = dzones[kk];
+            for (int cc = zone->nb_cards - 1; cc >= 0; cc--)
+            {//start
+                MTGCardInstance * card = zone->cards[cc];
+                if (!card)
+                    continue;
 
-            int color = 0;
-            string type = "";
-            //only do any of the following if a card with the stated ability is in your hand.
-            ManaCost * original = NEW ManaCost();
-            original->copy(card->model->data->getManaCost());
-            //have to run alter cost before affinity or the 2 cancel each other out.
-            if(card->getIncreasedManaCost()->getConvertedCost()||card->getReducedManaCost()->getConvertedCost())
-            {
-                if(card->getIncreasedManaCost()->getConvertedCost())
-                    original->add(card->getIncreasedManaCost());
-                if(card->getReducedManaCost()->getConvertedCost())
-                    original->remove(card->getReducedManaCost());
-                card->getManaCost()->copy(original);
-                if(card->getManaCost()->extraCosts)
+                int color = 0;
+                string type = "";
+                //only do any of the following if a card with the stated ability is in your hand.
+                ManaCost * original = NEW ManaCost();
+                ManaCost * alternate = NEW ManaCost();
+                original->copy(card->model->data->getManaCost());
+                alternate->copy(card->model->data->getManaCost()->getAlternative());
+                if (card->has(Constants::PAYZERO))
+                    original = ManaCost::parseManaCost("{0}",NULL,card);//can't figure out 2 or more alternative...
+                //have to run alter cost before affinity or the 2 cancel each other out.
+                if(card->getIncreasedManaCost()->getConvertedCost()||card->getReducedManaCost()->getConvertedCost())
                 {
-                    for(unsigned int i = 0; i < card->getManaCost()->extraCosts->costs.size();i++)
+                    if(card->getIncreasedManaCost()->getConvertedCost())
                     {
-                        card->getManaCost()->extraCosts->costs[i]->setSource(card);
+                        original->add(card->getIncreasedManaCost());
+                        for(int kc = Constants::MTG_COLOR_ARTIFACT; kc < Constants::NB_Colors;kc++)
+                        {
+                            if (card->getManaCost()->getAlternative())
+                            {
+                                alternate->add(kc,card->getIncreasedManaCost()->getCost(kc));
+                            }
+                        }
+                    }
+                    if(card->getReducedManaCost()->getConvertedCost())
+					{
+                        original->remove(card->getReducedManaCost());
+                        for(int kc = Constants::MTG_COLOR_ARTIFACT; kc < Constants::NB_Colors;kc++)
+                        {
+                            if (card->getManaCost()->getAlternative())
+                            {
+                                alternate->remove(kc,card->getReducedManaCost()->getCost(kc));
+                            }
+                        }
+                    }
+                    card->getManaCost()->copy(original);
+                    card->getManaCost()->setAlternative(alternate);
+                    if(card->getManaCost()->extraCosts)
+                    {
+                        for(unsigned int i = 0; i < card->getManaCost()->extraCosts->costs.size();i++)
+                        {
+                            card->getManaCost()->extraCosts->costs[i]->setSource(card);
+                        }
                     }
                 }
-            }
-            int reducem = 0;
-            bool resetCost = false;
-            for(unsigned int na = 0; na < card->cardsAbilities.size();na++)
-            {
-                ANewAffinity * newAff = dynamic_cast<ANewAffinity*>(card->cardsAbilities[na]);
-                if(newAff)
+                int reducem = 0;
+                bool resetCost = false;
+                for(unsigned int na = 0; na < card->cardsAbilities.size();na++)
                 {
-                    if(!resetCost)
+                    ANewAffinity * newAff = dynamic_cast<ANewAffinity*>(card->cardsAbilities[na]);
+                    if(newAff)
                     {
-                        resetCost = true;
+                        if(!resetCost)
+                        {
+                            resetCost = true;
+                            card->getManaCost()->copy(original);
+                            if(card->getManaCost()->extraCosts)
+                            {
+                                for(unsigned int i = 0; i < card->getManaCost()->extraCosts->costs.size();i++)
+                                {
+                                    card->getManaCost()->extraCosts->costs[i]->setSource(card);
+                                }
+                            }
+                        }
+                        TargetChooserFactory tf(this);
+                        TargetChooser * tcn = tf.createTargetChooser(newAff->tcString,card,NULL);
+
+                        for (int w = 0; w < 2; ++w)
+                        {
+                            Player *p = this->players[w];
+                            MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->stack, p->game->exile };
+                            for (int k = 0; k < 6; k++)
+                            {
+                                MTGGameZone * z = zones[k];
+                                if (tcn->targetsZone(z))
+                                {
+                                    reducem += z->countByCanTarget(tcn);
+                                }
+                            }
+                        }
+                        SAFE_DELETE(tcn);
+                        ManaCost * removingCost = ManaCost::parseManaCost(newAff->manaString);
+                        for(int j = 0; j < reducem; j++)
+                            card->getManaCost()->remove(removingCost);
+                        SAFE_DELETE(removingCost);
+                    }
+                }
+                if(card->has(Constants::AFFINITYARTIFACTS)||
+                    card->has(Constants::AFFINITYFOREST)||
+                    card->has(Constants::AFFINITYGREENCREATURES)||
+                    card->has(Constants::AFFINITYISLAND)||
+                    card->has(Constants::AFFINITYMOUNTAIN)||
+                    card->has(Constants::AFFINITYPLAINS)||
+                    card->has(Constants::AFFINITYSWAMP)){
+                        if (card->has(Constants::AFFINITYARTIFACTS))
+                        {
+                            type = "artifact";
+                        }
+                        else if (card->has(Constants::AFFINITYSWAMP))
+                        {
+                            type = "swamp";
+                        }
+                        else if (card->has(Constants::AFFINITYMOUNTAIN))
+                        {
+                            type = "mountain";
+                        }
+                        else if (card->has(Constants::AFFINITYPLAINS))
+                        {
+                            type = "plains";
+                        }
+                        else if (card->has(Constants::AFFINITYISLAND))
+                        {
+                            type = "island";
+                        }
+                        else if (card->has(Constants::AFFINITYFOREST))
+                        {
+                            type = "forest";
+                        }
+                        else if (card->has(Constants::AFFINITYGREENCREATURES))
+                        {
+                            color = 1;
+                            type = "creature";
+                        }
                         card->getManaCost()->copy(original);
                         if(card->getManaCost()->extraCosts)
                         {
@@ -1002,94 +1178,27 @@ void GameObserver::Affinity()
                                 card->getManaCost()->extraCosts->costs[i]->setSource(card);
                             }
                         }
-                    }
-                    TargetChooserFactory tf(this);
-                    TargetChooser * tcn = tf.createTargetChooser(newAff->tcString,card,NULL);
-
-                    for (int w = 0; w < 2; ++w)
-                    {
-                        Player *p = this->players[w];
-                        MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->stack, p->game->exile };
-                        for (int k = 0; k < 6; k++)
+                        int reduce = 0;
+                        if(card->has(Constants::AFFINITYGREENCREATURES))
                         {
-                            MTGGameZone * z = zones[k];
-                            if (tcn->targetsZone(z))
-                            {
-                                reducem += z->countByCanTarget(tcn);
-                            }
+                            TargetChooserFactory tf(this);
+                            TargetChooser * tc = tf.createTargetChooser("creature[green]",NULL);
+                            reduce = card->controller()->game->battlefield->countByCanTarget(tc);
+                            SAFE_DELETE(tc);
                         }
-                    }
-                    SAFE_DELETE(tcn);
-                    ManaCost * removingCost = ManaCost::parseManaCost(newAff->manaString);
-                    for(int j = 0; j < reducem; j++)
-                        card->getManaCost()->remove(removingCost);
-                    SAFE_DELETE(removingCost);
+                        else
+                        {
+                            reduce = card->controller()->game->battlefield->countByType(type);
+                        }
+                        for(int i = 0; i < reduce;i++)
+                        {
+                            if(card->getManaCost()->getCost(color) > 0)
+                                card->getManaCost()->remove(color,1);
+                        }
+
                 }
-            }
-            if(card->has(Constants::AFFINITYARTIFACTS)||
-                card->has(Constants::AFFINITYFOREST)||
-                card->has(Constants::AFFINITYGREENCREATURES)||
-                card->has(Constants::AFFINITYISLAND)||
-                card->has(Constants::AFFINITYMOUNTAIN)||
-                card->has(Constants::AFFINITYPLAINS)||
-                card->has(Constants::AFFINITYSWAMP)){
-                    if (card->has(Constants::AFFINITYARTIFACTS))
-                    {
-                        type = "artifact";
-                    }
-                    else if (card->has(Constants::AFFINITYSWAMP))
-                    {
-                        type = "swamp";
-                    }
-                    else if (card->has(Constants::AFFINITYMOUNTAIN))
-                    {
-                        type = "mountain";
-                    }
-                    else if (card->has(Constants::AFFINITYPLAINS))
-                    {
-                        type = "plains";
-                    }
-                    else if (card->has(Constants::AFFINITYISLAND))
-                    {
-                        type = "island";
-                    }
-                    else if (card->has(Constants::AFFINITYFOREST))
-                    {
-                        type = "forest";
-                    }
-                    else if (card->has(Constants::AFFINITYGREENCREATURES))
-                    {
-                        color = 1;
-                        type = "creature";
-                    }
-                    card->getManaCost()->copy(original);
-                    if(card->getManaCost()->extraCosts)
-                    {
-                        for(unsigned int i = 0; i < card->getManaCost()->extraCosts->costs.size();i++)
-                        {
-                            card->getManaCost()->extraCosts->costs[i]->setSource(card);
-                        }
-                    }
-                    int reduce = 0;
-                    if(card->has(Constants::AFFINITYGREENCREATURES))
-                    {
-                        TargetChooserFactory tf(this);
-                        TargetChooser * tc = tf.createTargetChooser("creature[green]",NULL);
-                        reduce = card->controller()->game->battlefield->countByCanTarget(tc);
-                        SAFE_DELETE(tc);
-                    }
-                    else
-                    {
-                        reduce = card->controller()->game->battlefield->countByType(type);
-                    }
-                    for(int i = 0; i < reduce;i++)
-                    {
-                        if(card->getManaCost()->getCost(color) > 0)
-                            card->getManaCost()->remove(color,1);
-                    }
-
-            }
-            SAFE_DELETE(original);
+                SAFE_DELETE(original);
+            }//end
         }
     }
 }
