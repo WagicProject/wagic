@@ -18,7 +18,7 @@ fi
 
 echo RELEASE_NAME = $RELEASE_NAME
 
-if [ "$TRAVIS_OS_NAME” = “linux” ]; then
+if [ "$TRAVIS_OS_NAME" = "linux" ]; then
     # updating versions with the TRAVIS build numbers
     cd projects/mtg/
     ant update > error.txt
@@ -52,7 +52,7 @@ if [ "$BUILD_TYPE" = "ANDROID" ]; then
 fi
 
 # we're building a Qt version with GUI here
-if [ "$BUILD_TYPE” = “Qt” ]; then
+if [ "$BUILD_TYPE" = "Qt" ]; then
     mkdir build_qt_widget
     cd build_qt_widget
     cmake -Dbackend_qt_widget=ON -Dbackend_qt_console=OFF ..
@@ -82,7 +82,7 @@ if [ "$BUILD_TYPE" = "SDL" ]; then
 fi
 
 # Let's launch de iOS cross-compilation
-if [ "$BUILD_TYPE” = “iOS” ]; then
+if [ "$BUILD_TYPE" = "iOS" ]; then
     cd projects/mtg/iOS
     make -j 4 package
     cd ../../..
