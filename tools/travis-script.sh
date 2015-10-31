@@ -18,11 +18,12 @@ fi
 
 echo RELEASE_NAME = $RELEASE_NAME
 
-
-# updating versions with the TRAVIS build numbers
-cd projects/mtg/
-ant update > error.txt
-cd ../..
+if [ "$TRAVIS_OS_NAME” = “linux” ]; then
+    # updating versions with the TRAVIS build numbers
+    cd projects/mtg/
+    ant update > error.txt
+    cd ../..
+fi
 
 # we create resource package
 cd projects/mtg/bin/Res
@@ -33,7 +34,7 @@ mv core_*.zip ../../../../core.zip
 cd ../../../..
 
 # we're building a PSP binary here
-if [ "$BUILD_PSP" = "YES" ]; then
+if [ "$BUILD_TYPE" = "PSP" ]; then
     mkdir build_psp
     cd build_psp
     cmake -DCMAKE_TOOLCHAIN_FILE=../CMakeModules/psp.toolchain.cmake ..
@@ -42,28 +43,28 @@ if [ "$BUILD_PSP" = "YES" ]; then
 fi
 
 # we're building an Android binary here
-if [ "$BUILD_ANDROID" = "YES" ]; then
-	mkdir build_sdl
-	cd build_sdl
-	cmake -DCMAKE_TOOLCHAIN_FILE=../CMakeModules/android.toolchain.cmake -DANDROID_NATIVE_API_LEVEL=android-10
-	make -j8
-	cd ..
+if [ "$BUILD_TYPE" = "ANDROID" ]; then
+    mkdir build_android
+    cd build_android
+    cmake -DCMAKE_TOOLCHAIN_FILE=../CMakeModules/android.toolchain.cmake -DANDROID_NATIVE_API_LEVEL=android-10
+    make -j8
+    cd ..
 fi
 
 # we're building a Qt version with GUI here
-if [ "$BUILD_Qt" = "YES" ]; then
-	mkdir build_qt_widget
-	cd build_qt_widget
-	cmake -Dbackend_qt_widget=ON -Dbackend_qt_console=OFF ..
-	make -j4
-	cd ..
+if [ "$BUILD_TYPE” = “Qt” ]; then
+    mkdir build_qt_widget
+    cd build_qt_widget
+    cmake -Dbackend_qt_widget=ON -Dbackend_qt_console=OFF ..
+    make -j4
+    cd ..
 
     # let's try an Intel linux binary in debug text-mode-only
-	mkdir build_qt_console
-	cd build_qt_console
-	cmake -Dbackend_qt_console=ON ..
-	make -j4
-	cd ..
+    mkdir build_qt_console
+    cd build_qt_console
+    cmake -Dbackend_qt_console=ON ..
+    make -j4
+    cd ..
 
     # Now we run the testsuite (Res needs to be in the working directory)
     cd projects/mtg
@@ -72,14 +73,17 @@ if [ "$BUILD_Qt" = "YES" ]; then
 fi
 
 # we're building a SDL version
-if [ "$BUILD_SDL" = "YES" ]; then
-	mkdir build_SDL
-	cd build_SDL
-	cmake -Dbackend_sdl=ON ..
-	make -j4
-	cd ..
+if [ "$BUILD_TYPE" = "SDL" ]; then
+    mkdir build_SDL
+    cd build_SDL
+    cmake -Dbackend_sdl=ON ..
+    make -j4
+    cd ..
 fi
-# Let's launch de Mac cross-compilation
-if [ "$BUILD_MAC" = "YES" ]; then
-    ./tools/build-macos-script.sh
+
+# Let's launch de iOS cross-compilation
+if [ "$BUILD_TYPE” = “iOS” ]; then
+    cd projects/mtg/iOS
+    make -j 4 package
+    cd ../../..
 fi
