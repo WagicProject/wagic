@@ -2583,6 +2583,15 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         return a;
     }
 
+    //modify hand size - reduce maximum or increase
+    vector<string> splitHandMod = parseBetween(s, "hmodifer:", " ", false);
+    if (splitHandMod.size())
+    {
+        Damageable * t = spell ? spell->getNextDamageableTarget() : NULL;
+        MTGAbility * a = NEW AModifyHand(observer, id, card, t, splitHandMod[1], who);
+        return a;
+    }
+
 	//set hand size
 	vector<string> splitSetHand = parseBetween(s, "sethand:", " ", false);
 	if (splitSetHand.size())

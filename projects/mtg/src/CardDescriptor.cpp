@@ -125,12 +125,11 @@ MTGCardInstance * CardDescriptor::match_or(MTGCardInstance * card)
     }
 
     // Quantified restrictions are always AND-ed:
-	int convertedvalue = card->currentZone == card->controller()->game->battlefield ? card->getManaCost()->getConvertedCost():card->model->data->getManaCost()->getConvertedCost();
     if (powerComparisonMode && !valueInRange(powerComparisonMode, card->getPower(), power))
         return NULL;
     if (toughnessComparisonMode && !valueInRange(toughnessComparisonMode, card->getToughness(), toughness))
         return NULL;
-    if (manacostComparisonMode && !valueInRange(manacostComparisonMode, convertedvalue, convertedManacost))
+    if (manacostComparisonMode && !valueInRange(manacostComparisonMode, card->myconvertedcost, convertedManacost))
         return NULL;
     if (nameComparisonMode && compareName != card->name)
         return NULL;
@@ -166,12 +165,12 @@ MTGCardInstance * CardDescriptor::match_and(MTGCardInstance * card)
         if ((mColorExclusions & card->colors) != 0)
             match = NULL;
     }
-	int convertedvalue = card->currentZone == card->controller()->game->battlefield ? card->getManaCost()->getConvertedCost():card->model->data->getManaCost()->getConvertedCost();
+
     if (powerComparisonMode && !valueInRange(powerComparisonMode, card->getPower(), power))
         match = NULL;
     if (toughnessComparisonMode && !valueInRange(toughnessComparisonMode, card->getToughness(), toughness))
         match = NULL;
-    if (manacostComparisonMode && !valueInRange(manacostComparisonMode, convertedvalue, convertedManacost))
+    if (manacostComparisonMode && !valueInRange(manacostComparisonMode, card->myconvertedcost, convertedManacost))
         match = NULL;
     if(nameComparisonMode && compareName != card->name)
         match = NULL;

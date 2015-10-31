@@ -195,11 +195,10 @@ private:
         }
         else if (s == "manacost")
         {
-            int convertedvalue = card->currentZone == card->controller()->game->battlefield ? card->getManaCost()->getConvertedCost():card->model->data->getManaCost()->getConvertedCost();
             if (target->currentZone == target->controller()->game->stack)//X is 0 except if it's on the stack
-                intValue = target->getManaCost()->getConvertedCost() + target->castX;
+                intValue = target->myconvertedcost + target->castX;
             else
-                intValue = convertedvalue;
+                intValue = target->myconvertedcost;
         }
         else if (s == "azorius")//devotion blue white
         {
@@ -4085,6 +4084,20 @@ public:
         a->td = td->clone();
         return a;
     }
+};
+
+//Modify Hand
+class AModifyHand: public AbilityTP
+{
+public:
+    string hand;
+    AModifyHand(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable * _target, string hand, int who = TargetChooser::UNSET);
+    int addToGame();
+    int destroy();
+    const string getMenuText();
+    AModifyHand * clone() const;
+    //~AModifyHand();
+
 };
 
 //set a players hand size

@@ -255,6 +255,7 @@ public:
     int cardistargetter;
     int tmodifier;
     int tmodifierb;
+    int myconvertedcost;
 
     void eventattacked();
     void eventattackedAlone();

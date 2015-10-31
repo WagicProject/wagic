@@ -2501,6 +2501,49 @@ AALifer * AALifer::clone() const
     return NEW AALifer(*this);
 }
 
+//players modify hand size
+AModifyHand::AModifyHand(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable * _target, string hand, int who) :
+    AbilityTP(observer, _id, _source, _target, who), hand(hand)
+{
+}
+
+int AModifyHand::addToGame()
+{
+    Damageable * _target = (Damageable *) getTarget();
+    Player * p = getPlayerFromDamageable(_target);
+
+    if (!p)
+        return 0;
+
+    WParsedInt handmodifier(hand, NULL, source);
+    p->handmodifier += handmodifier.getValue();
+
+    return MTGAbility::addToGame();
+}
+
+int AModifyHand::destroy()
+{
+    Damageable * _target = (Damageable *) getTarget();
+    Player * p = getPlayerFromDamageable(_target);
+
+    if (!p)
+        return 0;
+	
+    WParsedInt handmodifier(hand, NULL, source);
+    p->handmodifier -= handmodifier.getValue();
+
+    return 1;
+}
+
+const string AModifyHand::getMenuText()
+{
+    return "Modify Hand Size";
+}
+
+AModifyHand * AModifyHand::clone() const
+{
+    return NEW AModifyHand(*this);
+}
 
 //players max hand size
 AASetHand::AASetHand(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable * _target, int hand, ManaCost * _cost,

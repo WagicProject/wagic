@@ -6120,15 +6120,6 @@ mana={G}
 type=Instant
 [/card]
 [card]
-name=Gnat Miser
-text=Each opponent's maximum hand size is reduced by one.
-mana={B}
-type=Creature
-subtype=Rat Shaman
-power=1
-toughness=1
-[/card]
-[card]
 name=Goblin Artisans
 text={T}: Flip a coin. If you win the flip, draw a card. If you lose the flip, counter target artifact spell you control that isn't the target of an ability from another creature named Goblin Artisans.
 mana={R}
@@ -9835,15 +9826,6 @@ name=Mimic Vat
 mana={3}
 type=Artifact
 text=Imprint — Whenever a nontoken creature dies, you may exile that card. If you do, return each other card exiled with Mimic Vat to its owner's graveyard. {3}, {T}: Put a token onto the battlefield that's a copy of the exiled card. It gains haste. Exile it at the beginning of the next end step.
-[/card]
-[card]
-name=Minamo Scrollkeeper
-text=Defender (This creature can't attack.) -- Your maximum hand size is increased by one.
-mana={1}{U}
-type=Creature
-subtype=Human Wizard
-power=2
-toughness=3
 [/card]
 [card]
 name=Minamo's Meddling
@@ -16641,43 +16623,16 @@ power=2
 toughness=2
 [/card]
 [card]
-name=Thought Devourer
-text=Flying -- Your maximum hand size is reduced by four.
-mana={2}{U}{U}
-type=Creature
-subtype=Beast
-power=4
-toughness=4
-[/card]
-[card]
 name=Thought Dissector
 text={X}, {T}: Target opponent reveals cards from the top of his or her library until an artifact card or X cards are revealed, whichever comes first. If an artifact card is revealed this way, put it onto the battlefield under your control and sacrifice Thought Dissector. Put the rest of the revealed cards into that player's graveyard.
 mana={4}
 type=Artifact
 [/card]
 [card]
-name=Thought Eater
-text=Flying -- Your maximum hand size is reduced by three.
-mana={1}{U}
-type=Creature
-subtype=Beast
-power=2
-toughness=2
-[/card]
-[card]
 name=Thought Hemorrhage
 text=Name a nonland card. Target player reveals his or her hand. Thought Hemorrhage deals 3 damage to that player for each card with that name revealed this way. Search that player's graveyard, hand, and library for all cards with that name and exile them. Then that player shuffles his or her library.
 mana={2}{B}{R}
 type=Sorcery
-[/card]
-[card]
-name=Thought Nibbler
-text=Flying -- Your maximum hand size is reduced by two.
-mana={U}
-type=Creature
-subtype=Beast
-power=1
-toughness=1
 [/card]
 [card]
 name=Thought Prison
@@ -17172,15 +17127,6 @@ type=Creature
 subtype=Elephant
 power=3
 toughness=3
-[/card]
-[card]
-name=Trusted Advisor
-text=Your maximum hand size is increased by two. -- At the beginning of your upkeep, return a blue creature you control to its owner's hand.
-mana={U}
-type=Creature
-subtype=Human Advisor
-power=1
-toughness=2
 [/card]
 [card]
 name=Truth or Tale

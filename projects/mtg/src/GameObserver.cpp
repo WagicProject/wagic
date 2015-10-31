@@ -225,8 +225,12 @@ void GameObserver::nextGamePhase()
 
     if (mCurrentGamePhase == MTG_PHASE_AFTER_EOT)
     {
+        int handmodified = 0;
+        handmodified = currentPlayer->handsize+currentPlayer->handmodifier;
         //Auto Hand cleaning, in case the player didn't do it himself
-		while (currentPlayer->game->hand->nb_cards > currentPlayer->handsize && currentPlayer->nomaxhandsize == false)
+        if(handmodified < 0)
+			handmodified = 0;
+		while (currentPlayer->game->hand->nb_cards > handmodified && currentPlayer->nomaxhandsize == false)
         {
             WEvent * e = NEW WEventCardDiscard(currentPlayer->game->hand->cards[0]);
             receiveEvent(e);
@@ -881,86 +885,8 @@ void GameObserver::gameStateBasedEffects()
         //    plus modify costs    //
         /////////////////////////////
         Affinity();
-        //trinisphere?
-        /*for (int td = 0; td < 2; td++)
-        {
-            MTGGameZone * dzones[] = { players[td]->game->graveyard, players[td]->game->hand, players[td]->game->library, players[td]->game->exile };
-            for (int tk = 0; tk < 4; tk++)
-            {
-                MTGGameZone * zone = dzones[tk];
-                for (int ct = zone->nb_cards - 1; ct >= 0; ct--)
-                {
-					if(zone->cards[ct]->has(Constants::TRINISPHERE))
-                    {
-                        if(zone->cards[ct]->getManaCost()->getConvertedCost() == 2)
-                        {
-                            zone->cards[ct]->getManaCost()->add(Constants::MTG_COLOR_ARTIFACT, 1);
-                            zone->cards[ct]->tmodifier = 1;
-                        }
-                        else if(zone->cards[ct]->getManaCost()->getConvertedCost() == 1)
-                        {
-                            zone->cards[ct]->getManaCost()->add(Constants::MTG_COLOR_ARTIFACT, 2);
-                            zone->cards[ct]->tmodifier = 2;
-                        }
-                        else if(zone->cards[ct]->getManaCost()->getConvertedCost() < 1)
-                        {
-                            zone->cards[ct]->getManaCost()->add(Constants::MTG_COLOR_ARTIFACT, 3);
-                            zone->cards[ct]->tmodifier = 3;
-                        }
-                        //alternate
-                        if(zone->cards[ct]->getManaCost()->getAlternative() && zone->cards[ct]->getManaCost()->getAlternative()->getConvertedCost() == 2)
-                        {
-                            zone->cards[ct]->getManaCost()->getAlternative()->add(Constants::MTG_COLOR_ARTIFACT, 1);
-                            zone->cards[ct]->tmodifierb = 1;
-                        }
-                        else if(zone->cards[ct]->getManaCost()->getAlternative() && zone->cards[ct]->getManaCost()->getAlternative()->getConvertedCost() == 1)
-                        {
-                            zone->cards[ct]->getManaCost()->getAlternative()->add(Constants::MTG_COLOR_ARTIFACT, 2);
-                            zone->cards[ct]->tmodifierb = 2;
-                        }
-                        else if(zone->cards[ct]->getManaCost()->getAlternative() && zone->cards[ct]->getManaCost()->getAlternative()->getConvertedCost() < 1)
-                        {
-                            zone->cards[ct]->getManaCost()->getAlternative()->add(Constants::MTG_COLOR_ARTIFACT, 3);
-                            zone->cards[ct]->tmodifierb = 3;
-                        }
-                    }
-					else
-			        {
-			            if(zone->cards[ct]->tmodifier == 1)
-			            {
-                            zone->cards[ct]->getManaCost()->remove(Constants::MTG_COLOR_ARTIFACT, 1);
-                            zone->cards[ct]->tmodifier = 0;
-                        }
-			            else if(zone->cards[ct]->tmodifier == 2)
-			            {
-                            zone->cards[ct]->getManaCost()->remove(Constants::MTG_COLOR_ARTIFACT, 2);
-                            zone->cards[ct]->tmodifier = 0;
-                        }
-			            else if(zone->cards[ct]->tmodifier == 3)
-			            {
-                            zone->cards[ct]->getManaCost()->remove(Constants::MTG_COLOR_ARTIFACT, 3);
-                            zone->cards[ct]->tmodifier = 0;
-                        }
-                        //alternate
-			            if(zone->cards[ct]->tmodifierb == 1)
-			            {
-                            zone->cards[ct]->getManaCost()->getAlternative()->remove(Constants::MTG_COLOR_ARTIFACT, 1);
-                            zone->cards[ct]->tmodifierb = 0;
-                        }
-			            else if(zone->cards[ct]->tmodifierb == 2)
-			            {
-                            zone->cards[ct]->getManaCost()->getAlternative()->remove(Constants::MTG_COLOR_ARTIFACT, 2);
-                            zone->cards[ct]->tmodifierb = 0;
-                        }
-			            else if(zone->cards[ct]->tmodifierb == 3)
-			            {
-                            zone->cards[ct]->getManaCost()->getAlternative()->remove(Constants::MTG_COLOR_ARTIFACT, 3);
-                            zone->cards[ct]->tmodifierb = 0;
-                        }
-                    }
-                }
-            }
-        }*/
+        //trinisphere? buggy...
+        //ComputeTrinisphere();
         //end trinisphere
         /////////////////////////////////////
         // Check colored statuses on cards //
@@ -1082,8 +1008,10 @@ void GameObserver::Affinity()
                             }
                         }
                     }
-                    card->getManaCost()->copy(original);
-                    card->getManaCost()->setAlternative(alternate);
+                    if(card->getManaCost())
+                        card->getManaCost()->copy(original);
+                    if(card->getManaCost()->getAlternative())
+						card->getManaCost()->setAlternative(alternate);
                     if(card->getManaCost()->extraCosts)
                     {
                         for(unsigned int i = 0; i < card->getManaCost()->extraCosts->costs.size();i++)
@@ -1200,6 +1128,79 @@ void GameObserver::Affinity()
                 SAFE_DELETE(original);
             }//end
         }
+    }
+}
+
+void GameObserver::ComputeTrinisphere()
+{
+    for (int td = 0; td < 2; td++)
+    {
+        MTGGameZone * dzones[] = { players[td]->game->graveyard, players[td]->game->hand, players[td]->game->library, players[td]->game->exile };
+        for (int tk = 0; tk < 4; tk++)
+        {
+            MTGGameZone * zone = dzones[tk];
+            for (int ct = zone->nb_cards - 1; ct >= 0; ct--)
+            {
+                if(zone->cards[ct]->has(Constants::TRINISPHERE))
+                {
+                    if(zone->cards[ct]->getManaCost()->getConvertedCost() == 2)
+                    {
+                        zone->cards[ct]->getManaCost()->add(Constants::MTG_COLOR_ARTIFACT, 1);
+                        zone->cards[ct]->tmodifier = 1;
+                    }
+                    else if(zone->cards[ct]->getManaCost()->getConvertedCost() == 1)
+                    {
+                        zone->cards[ct]->getManaCost()->add(Constants::MTG_COLOR_ARTIFACT, 2);
+                        zone->cards[ct]->tmodifier = 2;
+                    }
+                    else if(zone->cards[ct]->getManaCost()->getConvertedCost() < 1)
+                    {
+                        zone->cards[ct]->getManaCost()->add(Constants::MTG_COLOR_ARTIFACT, 3);
+                        zone->cards[ct]->tmodifier = 3;
+                    }
+                    if(zone->cards[ct]->getManaCost()->getAlternative())
+                    {
+                        ManaCost * currentAlternate = NEW ManaCost();
+                        currentAlternate->copy(zone->cards[ct]->getManaCost()->getAlternative());
+                        if(zone->cards[ct]->getManaCost()->getAlternative()->getConvertedCost() ==  2)
+                             zone->cards[ct]->tmodifierb = 1;
+                        else if(zone->cards[ct]->getManaCost()->getAlternative()->getConvertedCost() ==  1)
+                             zone->cards[ct]->tmodifierb = 2;
+                        else if(zone->cards[ct]->getManaCost()->getAlternative()->getConvertedCost() <  1)
+                             zone->cards[ct]->tmodifierb = 3;
+                        currentAlternate->add(Constants::MTG_COLOR_ARTIFACT, zone->cards[ct]->tmodifierb);
+                        zone->cards[ct]->getManaCost()->setAlternative(currentAlternate);
+                    }
+                }
+                else
+                    RemoveTrinisphere(zone->cards[ct]);
+                if(zone->cards[ct]->getManaCost()->extraCosts)
+                {
+                    for(unsigned int i = 0; i < zone->cards[ct]->getManaCost()->extraCosts->costs.size();i++)
+                    {
+                        zone->cards[ct]->getManaCost()->extraCosts->costs[i]->setSource(zone->cards[ct]);
+                    }
+                }
+            }
+        }
+    }
+}
+void GameObserver::RemoveTrinisphere(MTGCardInstance * card)
+{
+    if(card->has(Constants::TRINISPHERE))
+        return;
+    if(card->tmodifier)
+    {
+        card->getManaCost()->remove(Constants::MTG_COLOR_ARTIFACT, card->tmodifier);
+        card->tmodifier = 0;
+    }
+    if(card->getManaCost()->getAlternative() && card->tmodifierb)
+    {
+        ManaCost * newalternate = NEW ManaCost();
+        newalternate->copy(card->getManaCost()->getAlternative());
+        newalternate->remove(Constants::MTG_COLOR_ARTIFACT, card->tmodifierb);
+        card->getManaCost()->setAlternative(newalternate);
+        card->tmodifierb = 0;
     }
 }
 void GameObserver::Render()
@@ -1367,6 +1368,7 @@ int GameObserver::cardClick(MTGCardInstance * card, Targetable * object, bool lo
 {
     Player * clickedPlayer = NULL;
     int toReturn = 0;
+    int handmodified = 0;
     MTGGameZone* zone = NULL;
     size_t index = 0;
     MTGCardInstance* backup = NULL;
@@ -1484,8 +1486,11 @@ int GameObserver::cardClick(MTGCardInstance * card, Targetable * object, bool lo
         }
 
         //Current player's hand
+        handmodified = currentPlayer->handsize+currentPlayer->handmodifier;
+        if(handmodified < 0)
+			handmodified = 0;
         if (currentPlayer->game->hand->hasCard(card) && mCurrentGamePhase == MTG_PHASE_CLEANUP
-                    && currentPlayer->game->hand->nb_cards > currentPlayer->handsize && currentPlayer->nomaxhandsize == false)
+                    && currentPlayer->game->hand->nb_cards > handmodified && currentPlayer->nomaxhandsize == false)
         {
             WEvent * e = NEW WEventCardDiscard(currentPlayer->game->hand->cards[0]);
             receiveEvent(e);
