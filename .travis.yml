@@ -8,9 +8,9 @@ branches:
     - latest-master
 
 before_install:
-  - if [ "$TRAVIS_OS_NAME" == “linux” ]; then
-      sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu trusty universe” &&
-      sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu trusty main” &&
+  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then
+      sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu trusty universe" &&
+      sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu trusty main" &&
       sudo add-apt-repository --yes ppa:ubuntu-toolchain-r/test &&
       sudo add-apt-repository --yes ppa:kalakris/cmake &&
       sudo apt-get -qq update &&
@@ -18,7 +18,7 @@ before_install:
       sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 90 &&
       sudo apt-get -qq install cmake;
     fi
-  - if [ "$TRAVIS_OS_NAME" == “osx” ]; then
+  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then
       brew update &&
       brew install qt5 &&
       brew install dpkg &&
@@ -27,38 +27,38 @@ before_install:
       ls;
     fi    
 # Building for PSP here
-  - if [ "$BUILD_TYPE” == “PSP” ]; then
+  - if [ "$BUILD_TYPE" == "PSP" ]; then
       export PSPDEV="$TRAVIS_BUILD_DIR/opt/pspsdk" &&
       export PSPSDK="$PSPDEV/psp/sdk" &&
       export PATH="$PATH:$PSPDEV/bin:$PSPSDK/bin" &&
       wget -O sdk.lzma http://sourceforge.net/projects/minpspw/files/SDK%20%2B%20devpak/pspsdk%200.11.2/minpspw_0.11.2-amd64.tar.lzma/download;
     fi
 # Building for Android here
-  - if [ "$BUILD_TYPE” == “ANDROID” ]; then
+  - if [ "$BUILD_TYPE" == "ANDROID” ]; then
       export ANDROID="android-sdk-linux/tools/android" &&
       if [ `uname -m` = x86_64 ]; then sudo apt-get install -qq --force-yes libgd2-xpm ia32-libs ia32-libs-multiarch jq; fi &&
       wget http://dl.google.com/android/ndk/android-ndk-r9-linux-x86_64.tar.bz2 -nv &&
       wget http://dl.google.com/android/android-sdk_r24.3.4-linux.tgz -nv;
     fi
 # Building for Qt here
-  - if [ "$BUILD_TYPE” == “Qt” ]; then
+  - if [ "$BUILD_TYPE" == "Qt" ]; then
       sudo apt-get install -qq qt5-qmake qtbase5-dev qtdeclarative5-dev qttools5-dev qtmultimedia5-dev pulseaudio libpulse-dev &&
       export QMAKE="qmake -qt=qt5";
     fi
 # Building for SDL here
-  - if [ "$BUILD_TYPE” == “SDL” ]; then
+  - if [ "$BUILD_TYPE" == "SDL" ]; then
       export SDL2DIR="$TRAVIS_BUILD_DIR/thirdparty/SDL2";
     fi
 
 install:
-  - if [ "$TRAVIS_OS_NAME" == “linux” ]; then
+  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then
       sudo pip install cpp-coveralls &&
       sudo apt-get install --force-yes -qq libtinyxml-dev libjpeg-dev libpng-dev libgif-dev libz-dev libboost-system-dev libboost-thread-dev libboost-date-time-dev;
     fi
-  - if [ "$BUILD_TYPE” == “PSP” ]; then
+  - if [ "$BUILD_TYPE" == "PSP" ]; then
       tar -x --xz -f sdk.lzma;
     fi
-  - if [ "$BUILD_TYPE” == “ANDROID” ]; then
+  - if [ "$BUILD_TYPE" == "ANDROID" ]; then
       tar --absolute-names -jxf android-ndk-r9-linux-x86_64.tar.bz2 &&
       tar -zxf android-sdk_r24.3.4-linux.tgz &&
       $ANDROID list sdk --extended -a &&
