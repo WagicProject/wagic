@@ -18,7 +18,6 @@ before_install:
       sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 90 &&
       sudo apt-get -qq install cmake;
     fi
-
   - if [ "$TRAVIS_OS_NAME" == “osx” ]; then
       brew update &&
       brew install qt5 &&
@@ -27,7 +26,6 @@ before_install:
       pwd &&
       ls;
     fi    
-
 # Building for PSP here
   - if [ "$BUILD_TYPE” == “PSP” ]; then
       export PSPDEV="$TRAVIS_BUILD_DIR/opt/pspsdk" &&
@@ -70,11 +68,11 @@ install:
   - sudo pip install github3.py
 
 env:
-    - BUILD_TYPE=PSP
-    - BUILD_TYPE=ANDROID
-    - BUILD_TYPE=SDL
-    - BUILD_TYPE=Qt
-    - BUILD_TYPE=iOS
+  - BUILD_TYPE=PSP
+  - BUILD_TYPE=ANDROID
+  - BUILD_TYPE=SDL
+  - BUILD_TYPE=Qt
+  - BUILD_TYPE=iOS
   global:
   - secure: "EBzr1+qjQsOhn0s+tcFmXR1jP9B0xiOSXuXbRXWZ1OEHNvp8+A5/pS84LYVFlaZqmxr5dApxvPtwhgLIUbQ3EPXm8LpC3KgSD4dS+9/QMbxhe5TK4oczgFRGcDTMJQZsCzhOh7hp3tbcbJg5Gp+VT7aFjFQSHDGwhzSJXsXwh/8="
   - secure: "X5dTQfofqAutnXxmu11Ep2MQ5QYnMN8m0AITRtwymhEF2UclcOudI1+skPtuhAGbWQnSO+lhunV3cvMfw2/Ml3k/VDz6VdFSKFrzAu7ja1VLJfcxr7chi0s8q30pVBb66tGydjIBac3B+RQyqgmZQW1frbRrhC/kPFQ6wPWOJdQ="
