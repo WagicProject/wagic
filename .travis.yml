@@ -16,7 +16,8 @@ before_install:
       sudo apt-get -qq update &&
       sudo apt-get -qq install g++-4.8 &&
       sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 90 &&
-      sudo apt-get -qq install cmake;
+      sudo apt-get -qq install cmake &&
+      sudo apt-get install -qq qt5-qmake qtbase5-dev qtdeclarative5-dev qttools5-dev qtmultimedia5-dev pulseaudio libpulse-dev;
     fi
   - if [ "$TRAVIS_OS_NAME" == "osx" ]; then
       brew update &&
@@ -42,7 +43,6 @@ before_install:
     fi
 # Building for Qt here
   - if [ "$BUILD_TYPE" == "Qt" ]; then
-      sudo apt-get install -qq qt5-qmake qtbase5-dev qtdeclarative5-dev qttools5-dev qtmultimedia5-dev pulseaudio libpulse-dev &&
       export QMAKE="qmake -qt=qt5";
     fi
 # Building for SDL here
