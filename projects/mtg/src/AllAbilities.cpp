@@ -1146,9 +1146,9 @@ AASetCoin::~AASetCoin()
 
 //paying for an ability as an effect but as a cost
 GenericPaidAbility::GenericPaidAbility(GameObserver* observer, int id, MTGCardInstance * source,
-    Targetable * target, string _newName, string _castRestriction, string mayCost, string _toAdd, ManaCost * cost) :
+    Targetable * target, string _newName, string _castRestriction, string mayCost, string _toAdd, bool asAlternate, ManaCost * cost) :
 ActivatedAbility(observer, id, source, cost, 0),
-    newName(_newName), restrictions(_castRestriction), baseCost(mayCost), baseAbilityStr(_toAdd)
+    newName(_newName), restrictions(_castRestriction), baseCost(mayCost), baseAbilityStr(_toAdd), asAlternate(asAlternate)
 {
     this->GetId();
     baseAbility = NULL;
@@ -1172,6 +1172,8 @@ int GenericPaidAbility::resolve()
     AbilityFactory Af(game);
     vector<string> baseAbilityStrSplit = split(baseAbilityStr,'?');
     vector<MTGAbility*> selection;
+    MTGAbility * nomenuAbility = NULL;
+    bool nomenu = false;
     if (baseAbilityStrSplit.size() > 1)
     {
         baseAbility = Af.parseMagicLine(baseAbilityStrSplit[0], this->GetId(), NULL, source);
@@ -1200,10 +1202,12 @@ int GenericPaidAbility::resolve()
     }
     else
     {
+        nomenu = true;
         baseAbility = Af.parseMagicLine(baseAbilityStrSplit[0], this->GetId(), NULL, source);
         baseAbility->target = target;
         optionalCost =  ManaCost::parseManaCost(baseCost, NULL, source);
         MTGAbility * set = baseAbility->clone();
+        nomenuAbility = baseAbility->clone();
         set->oneShot = true;
         selection.push_back(set);
     }
@@ -1211,10 +1215,37 @@ int GenericPaidAbility::resolve()
     if (selection.size())
     {
         bool must = baseAbilityStrSplit.size() > 1 ? true : false;
-        MenuAbility * a1 = NEW MenuAbility(game, this->GetId(), target, source, must, selection, NULL, newName);
-        a1->optionalCosts.push_back(NEW ManaCost(optionalCost));
-        game->mLayers->actionLayer()->currentActionCard = (MTGCardInstance *)target;
-        a1->resolve();
+        //todo get increased - reduced cost if asAlternate cost to cast using castcard
+        if(asAlternate)
+        {
+            must = true;
+            //cost increase - reduce + trinisphere effect ability todo...
+            if(((MTGCardInstance *)target)->getIncreasedManaCost()->getConvertedCost())
+                optionalCost->add(((MTGCardInstance *)target)->getIncreasedManaCost());
+            if(((MTGCardInstance *)target)->getReducedManaCost()->getConvertedCost())
+                optionalCost->remove(((MTGCardInstance *)target)->getReducedManaCost());
+            //trinisphere effect must be hardcoded...here..
+            /*if(((MTGCardInstance *)target)->has(Constants::TRINISPHERE))
+            {
+                if(optionalCost->getConvertedCost() == 2)
+                    optionalCost->add(Constants::MTG_COLOR_ARTIFACT, 1);
+                else if(optionalCost->getConvertedCost() == 1)
+                    optionalCost->add(Constants::MTG_COLOR_ARTIFACT, 2);
+                else if(optionalCost->getConvertedCost() < 1)
+                    optionalCost->add(Constants::MTG_COLOR_ARTIFACT, 3);
+            }*/
+        }
+        if(nomenu && optionalCost->getConvertedCost() < 1)
+		{
+            nomenuAbility->resolve();
+        }
+        else
+        {
+            MenuAbility * a1 = NEW MenuAbility(game, this->GetId(), target, source, must, selection, NULL, newName);
+            a1->optionalCosts.push_back(NEW ManaCost(optionalCost));
+            game->mLayers->actionLayer()->currentActionCard = (MTGCardInstance *)target;
+            a1->resolve();
+        }
     }
     return 1;
 }
@@ -2470,6 +2501,49 @@ AALifer * AALifer::clone() const
     return NEW AALifer(*this);
 }
 
+//players modify hand size
+AModifyHand::AModifyHand(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable * _target, string hand, int who) :
+    AbilityTP(observer, _id, _source, _target, who), hand(hand)
+{
+}
+
+int AModifyHand::addToGame()
+{
+    Damageable * _target = (Damageable *) getTarget();
+    Player * p = getPlayerFromDamageable(_target);
+
+    if (!p)
+        return 0;
+
+    WParsedInt handmodifier(hand, NULL, source);
+    p->handmodifier += handmodifier.getValue();
+
+    return MTGAbility::addToGame();
+}
+
+int AModifyHand::destroy()
+{
+    Damageable * _target = (Damageable *) getTarget();
+    Player * p = getPlayerFromDamageable(_target);
+
+    if (!p)
+        return 0;
+	
+    WParsedInt handmodifier(hand, NULL, source);
+    p->handmodifier -= handmodifier.getValue();
+
+    return 1;
+}
+
+const string AModifyHand::getMenuText()
+{
+    return "Modify Hand Size";
+}
+
+AModifyHand * AModifyHand::clone() const
+{
+    return NEW AModifyHand(*this);
+}
 
 //players max hand size
 AASetHand::AASetHand(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable * _target, int hand, ManaCost * _cost,
@@ -5092,8 +5166,8 @@ AUpkeep::~AUpkeep()
 }
 
 //A Phase based Action
-APhaseAction::APhaseAction(GameObserver* observer, int _id, MTGCardInstance * card, MTGCardInstance *, string sAbility, int, int _phase,bool forcedestroy,bool next,bool myturn,bool opponentturn,bool once) :
-MTGAbility(observer, _id, card),sAbility(sAbility), phase(_phase),forcedestroy(forcedestroy),next(next),myturn(myturn),opponentturn(opponentturn),once(once)
+APhaseAction::APhaseAction(GameObserver* observer, int _id, MTGCardInstance * card, MTGCardInstance *, string sAbility, int, int _phase,bool forcedestroy,bool next,bool myturn,bool opponentturn,bool once, bool checkexile) :
+MTGAbility(observer, _id, card),sAbility(sAbility), phase(_phase),forcedestroy(forcedestroy),next(next),myturn(myturn),opponentturn(opponentturn),once(once),checkexile(checkexile)
 {
     abilityId = _id;
     abilityOwner = card->controller();
@@ -5110,6 +5184,14 @@ MTGAbility(observer, _id, card),sAbility(sAbility), phase(_phase),forcedestroy(f
 
 void APhaseAction::Update(float dt)
 {
+    if(checkexile)
+    {
+        if(((MTGCardInstance *)target)->next->getCurrentZone() != ((MTGCardInstance *)target)->owner->game->exile)
+        {
+            this->forceDestroy = 1;
+            return;
+        }
+    }
     if (newPhase != currentPhase)
     {
         if((myturn && game->currentPlayer == source->controller())|| 
@@ -5186,11 +5268,11 @@ APhaseAction::~APhaseAction()
 }
 
 // the main ability
-APhaseActionGeneric::APhaseActionGeneric(GameObserver* observer, int _id, MTGCardInstance * card, MTGCardInstance * target, string sAbility, int restrictions, int _phase,bool forcedestroy,bool next,bool myturn,bool opponentturn,bool once) :
+APhaseActionGeneric::APhaseActionGeneric(GameObserver* observer, int _id, MTGCardInstance * card, MTGCardInstance * target, string sAbility, int restrictions, int _phase,bool forcedestroy,bool next,bool myturn,bool opponentturn,bool once, bool checkexile) :
     InstantAbility(observer, _id, card, target)
 {
     MTGCardInstance * _target = target;
-    ability = NEW APhaseAction(game, _id, card,_target, sAbility, restrictions, _phase,forcedestroy,next,myturn,opponentturn,once);
+    ability = NEW APhaseAction(game, _id, card,_target, sAbility, restrictions, _phase,forcedestroy,next,myturn,opponentturn,once,checkexile);
 }
 
 int APhaseActionGeneric::resolve()
@@ -5238,10 +5320,13 @@ void ABlink::Update(float dt)
 
     if ((blinkueot && currentPhase == MTG_PHASE_ENDOFTURN) || (blinkForSource && !source->isInPlay(game)))
     {
-        if (Blinked == NULL)
-            MTGAbility::Update(dt);
-        MTGCardInstance * _target = Blinked;
-        returnCardIntoPlay(_target);
+        if(Blinked->blinked)
+        {
+            if (Blinked == NULL)
+                MTGAbility::Update(dt);
+            MTGCardInstance * _target = Blinked;
+            returnCardIntoPlay(_target);
+        }
     }
     MTGAbility::Update(dt);
 }
@@ -5272,6 +5357,7 @@ void ABlink::resolveBlink()
             return;
         }
         _target = _target->next;
+        _target->blinked = true;
         Blinked = _target;
         if(!blinkueot && !blinkForSource)
         {
@@ -5282,6 +5368,11 @@ void ABlink::resolveBlink()
 
 void ABlink::returnCardIntoPlay(MTGCardInstance* _target) {
     MTGCardInstance * Blinker = NULL;
+	if(!_target->blinked)
+	{
+        this->forceDestroy = 1;
+        return;
+    }
     if (!blinkhand)
         Blinker = _target->controller()->game->putInZone(
             _target,
@@ -5611,6 +5702,8 @@ int AEquip::equip(MTGCardInstance * equipped)
         //we equip...
         a->addToGame();
     }
+    WEvent * e = NEW WEventCardEquipped(source);
+    game->receiveEvent(e);
     return 1;
 }
 
@@ -5708,16 +5801,28 @@ void AACastCard::Update(float dt)
            this->forceDestroy = 1;
            return;
        }
-       if(!toCheck->hasType(Subtypes::TYPE_INSTANT) && !(game->getCurrentGamePhase() == MTG_PHASE_FIRSTMAIN || game->getCurrentGamePhase() == MTG_PHASE_SECONDMAIN))
+       /*if(!toCheck->hasType(Subtypes::TYPE_INSTANT) && !(game->getCurrentGamePhase() == MTG_PHASE_FIRSTMAIN || game->getCurrentGamePhase() == MTG_PHASE_SECONDMAIN))
+       {
+           processed = true;
+           this->forceDestroy = 1;
+           return;
+       }*/
+   }
+   MTGCardInstance * toCheck = (MTGCardInstance*)target;
+   if(theNamedCard)
+       toCheck = theNamedCard;
+   if(toCheck && toCheck->spellTargetType.size())
+   {
+       TargetChooserFactory tcf(game);
+       TargetChooser * stc = tcf.createTargetChooser(toCheck->spellTargetType,toCheck);
+       if (!stc->validTargetsExist()||toCheck->isToken)
        {
            processed = true;
            this->forceDestroy = 1;
            return;
        }
+       SAFE_DELETE(stc);
    }
-   MTGCardInstance * toCheck = (MTGCardInstance*)target;
-   if(theNamedCard)
-       toCheck = theNamedCard;
    if (Spell * checkSpell = dynamic_cast<Spell*>(target))
    {
        toCheck = checkSpell->source;

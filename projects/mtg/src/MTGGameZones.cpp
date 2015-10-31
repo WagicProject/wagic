@@ -1289,6 +1289,10 @@ ostream& operator<<(ostream& out, const MTGPlayerCards& z)
         out << "hand=";
         out << *(z.hand) << endl;
     }
+    if(z.removedFromGame->cards.size()) {
+        out << "exile=";
+        out << *(z.hand) << endl;
+    }
 
     return out;
 }
@@ -1319,6 +1323,11 @@ bool MTGPlayerCards::parseLine(const string& s)
         else if (areaS.compare("inplay") == 0 || areaS.compare("battlefield") == 0)
         {
             battlefield->parseLine(s.substr(limiter+1));
+            return true;
+        }
+        else if (areaS.compare("removedfromgame") == 0 || areaS.compare("exile") == 0)
+        {
+            removedFromGame->parseLine(s.substr(limiter+1));
             return true;
         }
     }

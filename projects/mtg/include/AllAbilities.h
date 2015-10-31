@@ -196,9 +196,9 @@ private:
         else if (s == "manacost")
         {
             if (target->currentZone == target->controller()->game->stack)//X is 0 except if it's on the stack
-                intValue = target->getManaCost()->getConvertedCost() + target->castX;
+                intValue = target->myconvertedcost + target->castX;
             else
-                intValue = target->getManaCost()->getConvertedCost();
+                intValue = target->myconvertedcost;
         }
         else if (s == "azorius")//devotion blue white
         {
@@ -207,8 +207,8 @@ private:
             for (int i = 0; i < 2; i++)
             {
                 Player * dp = card->getObserver()->players[i];
-                MTGGameZone * dzones[] = { dp->game->inPlay, dp->game->graveyard, dp->game->hand, dp->game->library };
-                for (int k = 0; k < 4; k++)
+                MTGGameZone * dzones[] = { dp->game->inPlay, dp->game->graveyard, dp->game->hand, dp->game->library, dp->game->exile };
+                for (int k = 0; k < 5; k++)
                 {
                     MTGGameZone * zone = dzones[k];
                     if (dtc->targetsZone(zone, card)&&dp == card->controller())
@@ -227,8 +227,8 @@ private:
             for (int i = 0; i < 2; i++)
             {
                 Player * dp = card->getObserver()->players[i];
-                MTGGameZone * dzones[] = { dp->game->inPlay, dp->game->graveyard, dp->game->hand, dp->game->library };
-                for (int k = 0; k < 4; k++)
+                MTGGameZone * dzones[] = { dp->game->inPlay, dp->game->graveyard, dp->game->hand, dp->game->library, dp->game->exile };
+                for (int k = 0; k < 5; k++)
                 {
                     MTGGameZone * zone = dzones[k];
                     if (dtc->targetsZone(zone, card)&&dp == card->controller())
@@ -247,8 +247,8 @@ private:
             for (int i = 0; i < 2; i++)
             {
                 Player * dp = card->getObserver()->players[i];
-                MTGGameZone * dzones[] = { dp->game->inPlay, dp->game->graveyard, dp->game->hand, dp->game->library };
-                for (int k = 0; k < 4; k++)
+                MTGGameZone * dzones[] = { dp->game->inPlay, dp->game->graveyard, dp->game->hand, dp->game->library, dp->game->exile };
+                for (int k = 0; k < 5; k++)
                 {
                     MTGGameZone * zone = dzones[k];
                     if (dtc->targetsZone(zone, card)&&dp == card->controller())
@@ -267,8 +267,8 @@ private:
             for (int i = 0; i < 2; i++)
             {
                 Player * dp = card->getObserver()->players[i];
-                MTGGameZone * dzones[] = { dp->game->inPlay, dp->game->graveyard, dp->game->hand, dp->game->library };
-                for (int k = 0; k < 4; k++)
+                MTGGameZone * dzones[] = { dp->game->inPlay, dp->game->graveyard, dp->game->hand, dp->game->library, dp->game->exile };
+                for (int k = 0; k < 5; k++)
                 {
                     MTGGameZone * zone = dzones[k];
                     if (dtc->targetsZone(zone, card)&&dp == card->controller())
@@ -287,8 +287,8 @@ private:
             for (int i = 0; i < 2; i++)
             {
                 Player * dp = card->getObserver()->players[i];
-                MTGGameZone * dzones[] = { dp->game->inPlay, dp->game->graveyard, dp->game->hand, dp->game->library };
-                for (int k = 0; k < 4; k++)
+                MTGGameZone * dzones[] = { dp->game->inPlay, dp->game->graveyard, dp->game->hand, dp->game->library, dp->game->exile };
+                for (int k = 0; k < 5; k++)
                 {
                     MTGGameZone * zone = dzones[k];
                     if (dtc->targetsZone(zone, card)&&dp == card->controller())
@@ -307,8 +307,8 @@ private:
             for (int i = 0; i < 2; i++)
             {
                 Player * dp = card->getObserver()->players[i];
-                MTGGameZone * dzones[] = { dp->game->inPlay, dp->game->graveyard, dp->game->hand, dp->game->library };
-                for (int k = 0; k < 4; k++)
+                MTGGameZone * dzones[] = { dp->game->inPlay, dp->game->graveyard, dp->game->hand, dp->game->library, dp->game->exile };
+                for (int k = 0; k < 5; k++)
                 {
                     MTGGameZone * zone = dzones[k];
                     if (dtc->targetsZone(zone, card)&&dp == card->controller())
@@ -327,8 +327,8 @@ private:
             for (int i = 0; i < 2; i++)
             {
                 Player * dp = card->getObserver()->players[i];
-                MTGGameZone * dzones[] = { dp->game->inPlay, dp->game->graveyard, dp->game->hand, dp->game->library };
-                for (int k = 0; k < 4; k++)
+                MTGGameZone * dzones[] = { dp->game->inPlay, dp->game->graveyard, dp->game->hand, dp->game->library, dp->game->exile };
+                for (int k = 0; k < 5; k++)
                 {
                     MTGGameZone * zone = dzones[k];
                     if (dtc->targetsZone(zone, card)&&dp == card->controller())
@@ -347,8 +347,8 @@ private:
             for (int i = 0; i < 2; i++)
             {
                 Player * dp = card->getObserver()->players[i];
-                MTGGameZone * dzones[] = { dp->game->inPlay, dp->game->graveyard, dp->game->hand, dp->game->library };
-                for (int k = 0; k < 4; k++)
+                MTGGameZone * dzones[] = { dp->game->inPlay, dp->game->graveyard, dp->game->hand, dp->game->library, dp->game->exile };
+                for (int k = 0; k < 5; k++)
                 {
                     MTGGameZone * zone = dzones[k];
                     if (dtc->targetsZone(zone, card)&&dp == card->controller())
@@ -367,8 +367,8 @@ private:
             for (int i = 0; i < 2; i++)
             {
                 Player * dp = card->getObserver()->players[i];
-                MTGGameZone * dzones[] = { dp->game->inPlay, dp->game->graveyard, dp->game->hand, dp->game->library };
-                for (int k = 0; k < 4; k++)
+                MTGGameZone * dzones[] = { dp->game->inPlay, dp->game->graveyard, dp->game->hand, dp->game->library, dp->game->exile };
+                for (int k = 0; k < 5; k++)
                 {
                     MTGGameZone * zone = dzones[k];
                     if (dtc->targetsZone(zone, card)&&dp == card->controller())
@@ -387,8 +387,8 @@ private:
             for (int i = 0; i < 2; i++)
             {
                 Player * dp = card->getObserver()->players[i];
-                MTGGameZone * dzones[] = { dp->game->inPlay, dp->game->graveyard, dp->game->hand, dp->game->library };
-                for (int k = 0; k < 4; k++)
+                MTGGameZone * dzones[] = { dp->game->inPlay, dp->game->graveyard, dp->game->hand, dp->game->library, dp->game->exile };
+                for (int k = 0; k < 5; k++)
                 {
                     MTGGameZone * zone = dzones[k];
                     if (dtc->targetsZone(zone, card)&&dp == card->controller())
@@ -424,8 +424,8 @@ private:
             for (int i = 0; i < 2; i++)
             {
                 Player * p = card->getObserver()->players[i];
-                MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library };
-                for (int k = 0; k < 4; k++)
+                MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->exile };
+                for (int k = 0; k < 5; k++)
                 {
                     MTGGameZone * zone = zones[k];
                     if (tc->targetsZone(zone, card))
@@ -516,8 +516,8 @@ private:
             for (int i = 0; i < 2; i++)
             {
                 Player * p = card->getObserver()->players[i];
-                MTGGameZone * zones[] = { p->game->battlefield, p->game->graveyard, p->game->hand, p->game->library };
-                for (int k = 0; k < 4; k++)
+                MTGGameZone * zones[] = { p->game->battlefield, p->game->graveyard, p->game->hand, p->game->library, p->game->exile };
+                for (int k = 0; k < 5; k++)
                 {
                     MTGGameZone * zone = zones[k];
                     if(tc->targetsZone(zone,target))
@@ -2916,8 +2916,8 @@ public:
         for (int i = 0; i < 2; i++)
         {
             Player * p = game->players[i];
-            MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library };
-            for (int k = 0; k < 4; k++)
+            MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->exile };
+            for (int k = 0; k < 5; k++)
             {
                 MTGGameZone * zone = zones[k];
                 Value = zone->countByCanTarget(tc);
@@ -4086,6 +4086,20 @@ public:
     }
 };
 
+//Modify Hand
+class AModifyHand: public AbilityTP
+{
+public:
+    string hand;
+    AModifyHand(GameObserver* observer, int _id, MTGCardInstance * _source, Targetable * _target, string hand, int who = TargetChooser::UNSET);
+    int addToGame();
+    int destroy();
+    const string getMenuText();
+    AModifyHand * clone() const;
+    //~AModifyHand();
+
+};
+
 //set a players hand size
 class AASetHand: public ActivatedAbilityTP
 {
@@ -4913,10 +4927,11 @@ public:
     bool myturn;
     bool opponentturn;
     bool once;
+    bool checkexile;
     Player * abilityOwner;
 
     APhaseAction(GameObserver* observer, int _id, MTGCardInstance * card, MTGCardInstance * target, string sAbility, int restrictions = 0, int _phase =
-        MTG_PHASE_UPKEEP,bool forcedestroy = false,bool next = true,bool myturn = true,bool opponentturn = true,bool once = false);
+        MTG_PHASE_UPKEEP,bool forcedestroy = false,bool next = true,bool myturn = true,bool opponentturn = true,bool once = false, bool checkexile = false);
     void Update(float dt);
     int resolve();
     const string getMenuText();
@@ -4931,7 +4946,7 @@ public:
     string sAbility;
     APhaseAction * ability;
     APhaseActionGeneric(GameObserver* observer, int _id, MTGCardInstance * card, MTGCardInstance * target, string sAbility, int restrictions = 0, int _phase =
-            MTG_PHASE_UPKEEP,bool forcedestroy = false,bool next = true,bool myturn = false,bool opponentturn = false,bool once = false);
+            MTG_PHASE_UPKEEP,bool forcedestroy = false,bool next = true,bool myturn = false,bool opponentturn = false,bool once = false,bool checkexile = false);
     int resolve();
     const string getMenuText();
     APhaseActionGeneric * clone() const;
@@ -6359,13 +6374,13 @@ class GenericPaidAbility: public ActivatedAbility
 public:
     MTGAbility * baseAbility;
     ManaCost * optionalCost;
-
     string newName;
     string restrictions;
     string baseCost;
     string baseAbilityStr;
+    bool asAlternate;
 
-    GenericPaidAbility(GameObserver* observer, int id, MTGCardInstance * source, Targetable * target,string _newName,string _castRestriction,string _mayCost, string toAdd, ManaCost * cost = NULL);
+    GenericPaidAbility(GameObserver* observer, int id, MTGCardInstance * source, Targetable * target,string _newName,string _castRestriction,string _mayCost, string toAdd, bool asAlternate = false, ManaCost * cost = NULL);
     int resolve();
     const string getMenuText();
     GenericPaidAbility * clone() const;

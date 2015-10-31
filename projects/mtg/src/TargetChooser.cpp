@@ -739,6 +739,10 @@ TargetChooser * TargetChooserFactory::createTargetChooser(string s, MTGCardInsta
                 {
                     return NEW CardTargetChooser(observer, card->storedSourceCard, card, zones, nbzones);
                 }
+                else if (typeName.compare("abilitycontroller") == 0)
+                {
+                    return NEW PlayerTargetChooser(observer, card, 1, card->storedSourceCard->controller());
+                }
                 else
                 {
                     tc = NEW TypeTargetChooser(observer, typeName.c_str(), zones, nbzones, card, maxtargets, other, targetMin);

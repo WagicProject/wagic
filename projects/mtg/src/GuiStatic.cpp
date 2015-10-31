@@ -164,7 +164,10 @@ void GuiGameZone::Render()
     JQuadPtr quad = WResourceManager::Instance()->GetQuad(kGenericCardThumbnailID);
     float scale = defaultHeight / quad->mHeight;
     quad->SetColor(ARGB((int)(actA),255,255,255));
-
+    if(type == GUI_EXILE)
+    {
+        quad->SetColor(ARGB((int)(actA),255,240,255));
+    }
     JRenderer::GetInstance()->RenderQuad(quad.get(), actX, actY, 0.0, scale * actZ, scale * actZ);
 
     float x0 = actX;
@@ -182,7 +185,16 @@ void GuiGameZone::Render()
     mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
     char buffer[11];
     int mAlpha = (int) (actA);
-    sprintf(buffer, "%i", zone->nb_cards);
+    /*if(type == GUI_GRAVEYARD)
+        sprintf(buffer, "%i\ng", zone->nb_cards);
+    else if(type == GUI_LIBRARY)
+        sprintf(buffer, "%i\nl", zone->nb_cards);
+    else if(type == GUI_OPPONENTHAND)
+        sprintf(buffer, "%i\nh", zone->nb_cards);
+    else if(type == GUI_EXILE)
+        sprintf(buffer, "%i\ne", zone->nb_cards);
+    else*/
+        sprintf(buffer, "%i", zone->nb_cards);
     mFont->SetColor(ARGB(mAlpha,0,0,0));
     mFont->DrawString(buffer, x0 + 1, actY + 1);
     if (actA > 120)
@@ -296,6 +308,52 @@ int GuiGraveyard::receiveEventMinus(WEvent* e)
 ostream& GuiGraveyard::toString(ostream& out) const
 {
     return out << "GuiGraveyard :::";
+}
+
+GuiExile::GuiExile(float x, float y, bool hasFocus, Player * player, GuiAvatars* parent) :
+    GuiGameZone(x, y, hasFocus, player->game->exile, parent), player(player)
+{
+    type = GUI_EXILE;
+}
+
+int GuiExile::receiveEventPlus(WEvent* e)
+{
+    if (WEventZoneChange* event = dynamic_cast<WEventZoneChange*>(e))
+        if (event->to == zone)
+        {
+            CardView* t;
+            if (event->card->view)
+                t = NEW CardView(CardView::nullZone, event->card, *(event->card->view));
+            else
+                t = NEW CardView(CardView::nullZone, event->card, x, y);
+            t->x = x + Width / 2;
+            t->y = y + Height / 2;
+            t->zoom = 0.6f;
+            t->alpha = 0;
+            cards.push_back(t);
+            return 1;
+        }
+    return 0;
+}
+
+int GuiExile::receiveEventMinus(WEvent* e)
+{
+    if (WEventZoneChange* event = dynamic_cast<WEventZoneChange*>(e))
+        if (event->from == zone)
+            for (vector<CardView*>::iterator it = cards.begin(); it != cards.end(); ++it)
+                if (event->card->previous == (*it)->card)
+                {
+                    CardView* cv = *it;
+                    cards.erase(it);
+                    zone->owner->getObserver()->mTrash->trash(cv);
+                    return 1;
+                }
+    return 0;
+}
+
+ostream& GuiExile::toString(ostream& out) const
+{
+    return out << "GuiExile :::";
 }
 
 //opponenthand begins

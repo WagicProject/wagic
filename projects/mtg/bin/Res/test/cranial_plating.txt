@@ -19,6 +19,7 @@ Grizzly Bears
 [ASSERT]
 combatattackers
 [PLAYER1]
+exile:Grizzly Bears
 inplay:Cranial Plating,Rod of Ruin
 graveyard:Swords to Plowshares
 life:24

@@ -122,6 +122,8 @@ class GameObserver{
   void gameStateBasedEffects();
   void enchantmentStatus();
   void Affinity();
+  void ComputeTrinisphere();
+  void RemoveTrinisphere(MTGCardInstance *  card);
   void addObserver(MTGAbility * observer);
   bool removeObserver(ActionElement * observer);
   void startGame(GameType, Rules * rules);
