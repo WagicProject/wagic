@@ -6374,11 +6374,11 @@ class GenericPaidAbility: public ActivatedAbility
 public:
     MTGAbility * baseAbility;
     ManaCost * optionalCost;
-    bool asAlternate;
     string newName;
     string restrictions;
     string baseCost;
     string baseAbilityStr;
+    bool asAlternate;
 
     GenericPaidAbility(GameObserver* observer, int id, MTGCardInstance * source, Targetable * target,string _newName,string _castRestriction,string _mayCost, string toAdd, bool asAlternate = false, ManaCost * cost = NULL);
     int resolve();
