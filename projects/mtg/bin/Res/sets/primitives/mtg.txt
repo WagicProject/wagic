@@ -25416,16 +25416,6 @@ mana={X}{U}{U}{U}
 type=Sorcery
 [/card]
 [card]
-name=Distortion Strike
-target=creature
-auto=1/0
-auto=unblockable
-auto=if rebound then transforms((,newability[moveto(exile)],newability[phaseaction[endofturn once checkex] activate may activate castcard(restricted)]))
-mana={U}
-type=Sorcery
-text=Target creature gets +1/+0 until end of turn and is unblockable this turn. Rebound (If you cast this spell from your hand, exile it as it resolves. At the beginning of your next upkeep, you may cast this card from exile without paying its mana cost.)
-[/card]
-[card]
 name=Distress
 target=player
 auto=if type(*[-land]|targetedpersonshand)~lessthan~1 then name(look) donothing notatarget(*|targetedpersonshand) else reject notatarget(*[-land]|targetedpersonshand)
@@ -29909,19 +29899,6 @@ type=Creature
 subtype=Antelope
 power=2
 toughness=3
-[/card]
-[card]
-name=Emerge Unscathed
-target=creature|mybattlefield
-auto=choice name(green) transforms((,newability[protection from green])) ueot
-auto=choice name(red) transforms((,newability[protection from red])) ueot
-auto=choice name(blue) transforms((,newability[protection from blue])) ueot
-auto=choice name(black) transforms((,newability[protection from black])) ueot
-auto=choice name(white) transforms((,newability[protection from white])) ueot
-auto=if rebound then transforms((,newability[moveto(exile)],newability[phaseaction[endofturn once checkex] activate may activate castcard(restricted)]))
-mana={W}
-type=Instant
-text=Target creature you control gains protection from the color of your choice until end of turn. Rebound (If you cast this spell from your hand, exile it as it resolves. At the beginning of your next upkeep, you may cast this card from exile without paying its mana cost.)
 [/card]
 [card]
 name=Emeria, the Sky Ruin
@@ -67924,14 +67901,6 @@ power=2
 toughness=1
 [/card]
 [card]
-name=Nomads' Assembly
-auto=token(Kor Soldier,Creature Kor Soldier,1/1,white)*type:creature:mybattlefield
-auto=if rebound then transforms((,newability[moveto(exile)],newability[phaseaction[endofturn once checkex] activate may activate castcard(restricted)]))
-mana={4}{W}{W}
-type=Sorcery
-text=Put a 1/1 white Kor Soldier creature token onto the battlefield for each creature you control. Rebound (If you cast this spell from your hand, exile it as it resolves. At the beginning of your next upkeep, you may cast this card from exile without paying its mana cost.)
-[/card]
-[card]
 name=Nomad Decoy
 auto={W}{T}:tap target(creature)
 auto=aslongas(*|mygraveyard) {W}{W}{T}:target(<2>creature) tap >6
@@ -74430,15 +74399,6 @@ power=4
 toughness=4
 [/card]
 [card]
-name=Prey's Vengeance
-target=creature
-auto=2/2
-auto=if rebound then transforms((,newability[moveto(exile)],newability[phaseaction[endofturn once checkex] activate may activate castcard(restricted)]))
-mana={G}
-type=Instant
-text=Target creature gets +2/+2 until end of turn. Rebound (If you cast this spell from your hand, exile it as it resolves. At the beginning of your next upkeep, you may cast this card from exile without paying its mana cost.)
-[/card]
-[card]
 name=Price of Glory
 auto=lord(land) transforms((,newability[@tappedformana(this) restriction{opponentturnonly}:destroy]))
 text=Whenever a player taps a land for mana, if it's not that player's turn, destroy that land.
@@ -78604,15 +78564,6 @@ auto=choice:prevent:6 target(creature,player)
 text=Choose one - You gain 6 life; or prevent the next 6 damage that would be dealt to target creature this turn.
 mana={3}{W}
 type=Instant
-[/card]
-[card]
-name=Recurring Insight
-target=opponent
-auto=draw:type:*:targetedpersonshand controller
-auto=if rebound then transforms((,newability[moveto(exile)],newability[phaseaction[endofturn once checkex] activate may activate castcard(restricted)]))
-mana={4}{U}{U}
-type=Sorcery
-text=Draw cards equal to the number of cards in target opponent's hand. Rebound (If you cast this spell from your hand, exile it as it resolves. At the beginning of your next upkeep, you may cast this card from exile without paying its mana cost.)
 [/card]
 [card]
 name=Recurring Nightmare
@@ -95248,15 +95199,6 @@ power=0
 toughness=0
 [/card]
 [card]
-name=Staggershock
-target=creature,player
-auto=damage:2
-auto=if rebound then transforms((,newability[moveto(exile)],newability[phaseaction[endofturn once checkex] activate may activate castcard(restricted)]))
-mana={2}{R}
-type=Instant
-text=Staggershock deals 2 damage to target creature or player. Rebound (If you cast this spell from your hand, exile it as it resolves. At the beginning of your next upkeep, you may cast this card from exile without paying its mana cost.)
-[/card]
-[card]
 name=Stalker Hag
 abilities=swampwalk,forestwalk
 text=Swampwalk, forestwalk
@@ -98307,14 +98249,6 @@ power=2
 toughness=1
 [/card]
 [card]
-name=Surreal Memoir
-auto=moverandom(instant) from(mygraveyard) to(myhand)
-auto=if rebound then transforms((,newability[moveto(exile)],newability[phaseaction[endofturn once checkex] activate may activate castcard(restricted)]))
-mana={3}{R}
-type=Sorcery
-text=Return an instant card at random from your graveyard to your hand. Rebound (If you cast this spell from your hand, exile it as it resolves. At the beginning of your next upkeep, you may cast this card from exile without paying its mana cost.)
-[/card]
-[card]
 name=Surveilling Sprite
 abilities=flying
 auto=@movedto(this|graveyard) from(battlefield):may draw:1
@@ -98332,15 +98266,6 @@ auto=destroy && token(Goblin,Creature Goblin,1/1,red)
 text=Destroy target land. Put a 1/1 red Goblin creature token onto the battlefield.
 mana={4}{R}
 type=Sorcery
-[/card]
-[card]
-name=Survival Cache
-auto=life:2 controller
-auto=if compare(lifetotal)~morethan~compare(opponentlifetotal) then draw:1 controller
-auto=if rebound then transforms((,newability[moveto(exile)],newability[phaseaction[endofturn once checkex] activate may activate castcard(restricted)]))
-mana={2}{W}
-type=Sorcery
-text=You gain 2 life. Then if you have more life than an opponent, draw a card. Rebound (If you cast this spell from your hand, exile it as it resolves. At the beginning of your next upkeep, you may cast this card from exile without paying its mana cost.)
 [/card]
 [card]
 name=Survival of the Fittest
@@ -109533,16 +109458,6 @@ type=Creature
 subtype=Sliver
 power=1
 toughness=1
-[/card]
-[card]
-name=Virulent Swipe
-target=creature
-auto=2/0
-auto=deathtouch
-auto=if rebound then transforms((,newability[moveto(exile)],newability[phaseaction[endofturn once checkex] activate may activate castcard(restricted)]))
-mana={B}
-type=Instant
-text=Target creature gets +2/+0 and gains deathtouch until end of turn. Rebound (If you cast this spell from your hand, exile it as it resolves. At the beginning of your next upkeep, you may cast this card from exile without paying its mana cost.)
 [/card]
 [card]
 name=Visara the Dreadful

@@ -99,6 +99,29 @@ mana={4}{B}{B}
 type=Instant
 [/card]
 [card]
+name=Distortion Strike
+target=creature
+auto=1/0
+auto=unblockable
+auto=if rebound then transforms((,newability[moveto(exile)],newability[phaseaction[endofturn once checkex] activate may activate castcard(restricted)]))
+mana={U}
+type=Sorcery
+text=Target creature gets +1/+0 until end of turn and is unblockable this turn. Rebound (If you cast this spell from your hand, exile it as it resolves. At the beginning of your next upkeep, you may cast this card from exile without paying its mana cost.)
+[/card]
+[card]
+name=Emerge Unscathed
+target=creature|mybattlefield
+auto=choice name(green) transforms((,newability[protection from green])) ueot
+auto=choice name(red) transforms((,newability[protection from red])) ueot
+auto=choice name(blue) transforms((,newability[protection from blue])) ueot
+auto=choice name(black) transforms((,newability[protection from black])) ueot
+auto=choice name(white) transforms((,newability[protection from white])) ueot
+auto=if rebound then transforms((,newability[moveto(exile)],newability[phaseaction[endofturn once checkex] activate may activate castcard(restricted)]))
+mana={W}
+type=Instant
+text=Target creature you control gains protection from the color of your choice until end of turn. Rebound (If you cast this spell from your hand, exile it as it resolves. At the beginning of your next upkeep, you may cast this card from exile without paying its mana cost.)
+[/card]
+[card]
 name=Feral Hydra
 type=Creature
 subtype=Hydra Beast
@@ -247,6 +270,14 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Nomads' Assembly
+auto=token(Kor Soldier,Creature Kor Soldier,1/1,white)*type:creature:mybattlefield
+auto=if rebound then transforms((,newability[moveto(exile)],newability[phaseaction[endofturn once checkex] activate may activate castcard(restricted)]))
+mana={4}{W}{W}
+type=Sorcery
+text=Put a 1/1 white Kor Soldier creature token onto the battlefield for each creature you control. Rebound (If you cast this spell from your hand, exile it as it resolves. At the beginning of your next upkeep, you may cast this card from exile without paying its mana cost.)
+[/card]
+[card]
 name=Obsessive Search
 abilities=madness
 autoexile=restriction{discarded} pay({U}) name(pay U to cast) activate name(pay U to cast) castcard(normal)?name(put in graveyard) moveto(ownergraveyard)
@@ -264,6 +295,15 @@ type=Creature
 subtype=Ogre Warrior
 power=3
 toughness=1
+[/card]
+[card]
+name=Prey's Vengeance
+target=creature
+auto=2/2
+auto=if rebound then transforms((,newability[moveto(exile)],newability[phaseaction[endofturn once checkex] activate may activate castcard(restricted)]))
+mana={G}
+type=Instant
+text=Target creature gets +2/+2 until end of turn. Rebound (If you cast this spell from your hand, exile it as it resolves. At the beginning of your next upkeep, you may cast this card from exile without paying its mana cost.)
 [/card]
 [card]
 name=Psychotic Haze
@@ -303,6 +343,15 @@ type=Creature
 subtype=Wurm
 power=4
 toughness=4
+[/card]
+[card]
+name=Recurring Insight
+target=opponent
+auto=draw:type:*:targetedpersonshand controller
+auto=if rebound then transforms((,newability[moveto(exile)],newability[phaseaction[endofturn once checkex] activate may activate castcard(restricted)]))
+mana={4}{U}{U}
+type=Sorcery
+text=Draw cards equal to the number of cards in target opponent's hand. Rebound (If you cast this spell from your hand, exile it as it resolves. At the beginning of your next upkeep, you may cast this card from exile without paying its mana cost.)
 [/card]
 [card]
 name=Sacellum Godspeaker
@@ -363,6 +412,15 @@ mana={G}{W}
 type=Instant
 [/card]
 [card]
+name=Staggershock
+target=creature,player
+auto=damage:2
+auto=if rebound then transforms((,newability[moveto(exile)],newability[phaseaction[endofturn once checkex] activate may activate castcard(restricted)]))
+mana={2}{R}
+type=Instant
+text=Staggershock deals 2 damage to target creature or player. Rebound (If you cast this spell from your hand, exile it as it resolves. At the beginning of your next upkeep, you may cast this card from exile without paying its mana cost.)
+[/card]
+[card]
 name=Strength of Isolation
 abilities=madness
 autoexile=restriction{discarded} pay({W}) name(pay W to cast) activate name(pay W to cast) castcard(normal)?name(put in graveyard) moveto(ownergraveyard)
@@ -385,6 +443,33 @@ text=Enchant creature -- Enchanted creature gets +2/+1 and has protection from w
 mana={1}{B}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+name=Surreal Memoir
+auto=moverandom(instant) from(mygraveyard) to(myhand)
+auto=if rebound then transforms((,newability[moveto(exile)],newability[phaseaction[endofturn once checkex] activate may activate castcard(restricted)]))
+mana={3}{R}
+type=Sorcery
+text=Return an instant card at random from your graveyard to your hand. Rebound (If you cast this spell from your hand, exile it as it resolves. At the beginning of your next upkeep, you may cast this card from exile without paying its mana cost.)
+[/card]
+[card]
+name=Survival Cache
+auto=life:2 controller
+auto=if compare(lifetotal)~morethan~compare(opponentlifetotal) then draw:1 controller
+auto=if rebound then transforms((,newability[moveto(exile)],newability[phaseaction[endofturn once checkex] activate may activate castcard(restricted)]))
+mana={2}{W}
+type=Sorcery
+text=You gain 2 life. Then if you have more life than an opponent, draw a card. Rebound (If you cast this spell from your hand, exile it as it resolves. At the beginning of your next upkeep, you may cast this card from exile without paying its mana cost.)
+[/card]
+[card]
+name=Virulent Swipe
+target=creature
+auto=2/0
+auto=deathtouch
+auto=if rebound then transforms((,newability[moveto(exile)],newability[phaseaction[endofturn once checkex] activate may activate castcard(restricted)]))
+mana={B}
+type=Instant
+text=Target creature gets +2/+0 and gains deathtouch until end of turn. Rebound (If you cast this spell from your hand, exile it as it resolves. At the beginning of your next upkeep, you may cast this card from exile without paying its mana cost.)
 [/card]
 [card]
 name=Zombie Brute
