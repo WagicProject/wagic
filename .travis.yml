@@ -68,6 +68,7 @@ install:
   - sudo pip install github3.py
 
 env:
+  matrix:
   - BUILD_TYPE=PSP
   - BUILD_TYPE=ANDROID
   - BUILD_TYPE=SDL
