@@ -1090,7 +1090,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     if (!target)
         target = card;
 	//pay and castcard?
-	if(s.find("pay(") != string::npos || s.find("pay[[") != string::npos && s.find("castcard(restricted") != string::npos)
+	if(s.find("castcard(restricted") != string::npos && (s.find("pay(") != string::npos || s.find("pay[[") != string::npos))
         asAlternate = true;
     //MTG Specific rules
     //adds the bonus credit system
