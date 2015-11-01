@@ -16540,6 +16540,7 @@ toughness=2
 [/card]
 [card]
 name=Cho-Manno's Blessing
+alias=0000
 abilities=auraward
 target=creature
 abilities=flash
@@ -18133,6 +18134,7 @@ type=Artifact
 [/card]
 [card]
 name=Coldsteel Heart
+alias=0000
 auto=tap
 auto=chooseacolor {T}:add{chosencolor} chooseend
 text=Coldsteel Heart enters the battlefield tapped. -- As Coldsteel Heart enters the battlefield, choose a color. -- {T}: Add one mana of the chosen color to your mana pool.
@@ -21040,6 +21042,7 @@ subtype=Aura Curse
 [/card]
 [card]
 name=Curse of Wizardry
+alias=0000
 auto=chooseacolor transforms((,newability[@movedto(*[chosencolor]|mystack):life:-1 controller],newability[@movedto(*[chosencolor]|opponentstack):life:-1 opponent])) chooseend
 text=As Curse of Wizardry enters the battlefield, choose a color. -- Whenever a player casts a spell of the chosen color, that player loses 1 life.
 mana={2}{B}{B}
@@ -35093,6 +35096,7 @@ toughness=2
 [/card]
 [card]
 name=Flickering Ward
+alias=0000
 abilities=auraward
 target=creature
 auto=chooseacolor teach(creature) protection from(*[chosencolor]) chooseend
@@ -35171,6 +35175,7 @@ toughness=2
 [/card]
 [card]
 name=Floating Shield
+alias=0000
 abilities=auraward
 target=creature
 auto=chooseacolor teach(creature) protection from(*[chosencolor]) chooseend
@@ -43565,6 +43570,7 @@ toughness=3
 [/card]
 [card]
 name=Hall of Triumph
+alias=0000
 auto=activatechooseacolor transforms((,newability[lord(creature[chosencolor]|mybattlefield) 1/1])) forever activatechooseend
 text=As Hall of Triumph enters the battlefield, choose a color. -- Creatures you control of the chosen color get +1/+1.
 mana={3}
@@ -49384,6 +49390,7 @@ type=Sorcery
 [/card]
 [card]
 name=Iona, Shield of Emeria
+alias=0000
 abilities=flying
 auto=chooseacolor maxCast(*[chosencolor])0 opponent chooseend
 text=Flying -- As Iona, Shield of Emeria enters the battlefield, choose a color. -- Your opponents can't cast spells of the chosen color.
@@ -50520,6 +50527,7 @@ toughness=3
 [/card]
 [card]
 name=Jihad
+alias=0000
 auto=chooseacolor transforms((,newability[aslongas(*[chosencolor]|opponentbattlefield) lord(creature[white]|mybattlefield) 2/1],newability[aslongas(*[chosencolor]|opponentbattlefield) sacrifice <1])) chooseend
 text=As Jihad enters the battlefield, choose a color and an opponent. -- White creatures get +2/+1 as long as the chosen player controls a nontoken permanent of the chosen color. -- When the chosen player controls no nontoken permanents of the chosen color, sacrifice Jihad.
 mana={W}{W}{W}
@@ -54796,7 +54804,7 @@ toughness=2
 [/card]
 [card]
 name=Kytheon's Irregulars
-auto=auto={W}{W}:tap target(creature)
+auto={W}{W}:tap target(creature)
 auto=this(cantargetcard(*[-renown]) transforms((,newability[@combatdamaged(player) from(this):counter(1/1) && becomes(renown) forever]))
 text=Renown 1 (When this creature deals combat damage to a player, if it isn't renowned, put a +1/+1 counter on it and it becomes renowned.) -- {W}{W}: Tap target creature.
 mana={2}{W}{W}
@@ -58209,6 +58217,7 @@ type=Instant
 [/card]
 [card]
 name=Lurebound Scarecrow
+alias=0000
 auto=chooseacolor aslongas(*[chosencolor]|myBattlefield) sacrifice <1 chooseend
 text=As Lurebound Scarecrow enters the battlefield, choose a color. -- When you control no permanents of the chosen color, sacrifice Lurebound Scarecrow.
 mana={3}
@@ -70832,6 +70841,7 @@ subtype=Equipment
 [/card]
 [card]
 name=Paradise Plume
+alias=0000
 auto=chooseacolor transforms((,newability[{T}:add{chosencolor}],newability[@movedto(*[chosencolor]|stack):life:1 controller])) forever chooseend
 text=As Paradise Plume enters the battlefield, choose a color. -- Whenever a player casts a spell of the chosen color, you may gain 1 life. -- {T}: Add one mana of the chosen color to your mana pool.
 mana={4}
@@ -71623,6 +71633,7 @@ type=Artifact
 [/card]
 [card]
 name=Pentarch Paladin
+alias=0000
 abilities=flanking
 auto=chooseacolor {W}{W}{T}:destroy target(*[chosencolor]) chooseend
 text=Flanking (Whenever a creature without flanking blocks this creature, the blocking creature gets -1/-1 until end of turn.) -- As Pentarch Paladin enters the battlefield, choose a color. -- {W}{W}, {T}: Destroy target permanent of the chosen color.
@@ -71634,6 +71645,7 @@ toughness=3
 [/card]
 [card]
 name=Pentarch Ward
+alias=0000
 abilities=auraward
 target=creature
 auto=chooseacolor teach(creature) protection from(*[chosencolor]) chooseend
@@ -74770,7 +74782,8 @@ toughness=4
 [/card]
 [card]
 name=Prism Ring
-auto=auto=activatechooseacolor transforms((,newability[@movedto(*[chosencolor]|mystack):life:1 controller])) forever activatechooseend
+alias=0000
+auto=activatechooseacolor transforms((,newability[@movedto(*[chosencolor]|mystack):life:1 controller])) forever activatechooseend
 text=As Prism Ring enters the battlefield, choose a color. -- Whenever you cast a spell of the chosen color, you gain 1 life.
 mana={1}
 type=Artifact
@@ -75240,6 +75253,7 @@ toughness=2
 [/card]
 [card]
 name=Psychic Allergy
+alias=0000
 auto=upcost[{S(island|mybattlefield)}{S(island|mybattlefield)}] sacrifice
 auto=chooseacolor transforms((,newability[@each opponent upkeep:damage:type:*[-token&chosencolor]:opponentbattlefield opponent])) chooseend
 text=As Psychic Allergy enters the battlefield, choose a color. -- At the beginning of each opponent's upkeep, Psychic Allergy deals X damage to that player, where X is the number of nontoken permanents of the chosen color he or she controls. -- At the beginning of your upkeep, destroy Psychic Allergy unless you sacrifice two Islands.
@@ -76335,6 +76349,7 @@ toughness=1
 [/card]
 [card]
 name=Quirion Elves
+alias=0000
 auto={T}:Add{G}
 auto=chooseacolor {T}:add{chosencolor} chooseend
 text=As Quirion Elves enters the battlefield, choose a color. -- {T}: Add {G} to your mana pool. -- {T}: Add one mana of the chosen color to your mana pool.
@@ -87769,6 +87784,7 @@ toughness=2
 [/card]
 [card]
 name=Shifting Sky
+alias=0000
 auto=chooseacolor lord(*[-land]) becomes(,chosencolor) chooseend
 text=As Shifting Sky enters the battlefield, choose a color. -- All nonland permanents are the chosen color.
 mana={2}{U}
@@ -89053,6 +89069,7 @@ toughness=1
 [/card]
 [card]
 name=Silhana Starfletcher
+alias=0000
 abilities=reach
 auto=activatechooseacolor {T}:add{chosencolor} activatechooseend
 text=Reach (This creature can block creatures with flying.) -- As Silhana Starfletcher enters the battlefield, choose a color. -- {T}: Add one mana of the chosen color to your mana pool.
@@ -91990,6 +92007,7 @@ toughness=3
 [/card]
 [card]
 name=Sol Grail
+alias=0000
 auto=chooseacolor transforms((,newability[{T}:add{chosencolor}])) forever chooseend
 text=As Sol Grail enters the battlefield, choose a color. -- {T}: Add one mana of the chosen color to your mana pool.
 mana={3}
@@ -100081,6 +100099,7 @@ type=Legendary Land
 [/card]
 [card]
 name=Teferi's Moat
+alias=0000
 auto=chooseacolor lord(creature[chosencolor&-flying]|opponentBattlefield) cantattack chooseend
 text=As Teferi's Moat enters the battlefield, choose a color. -- Creatures of the chosen color without flying can't attack you.
 mana={3}{W}{U}
@@ -109849,6 +109868,7 @@ toughness=2
 [/card]
 [card]
 name=Voice of All
+alias=0000
 abilities=flying
 auto=chooseacolor transforms((,newability[protection from(*[chosencolor])],newability[0/0])) forever chooseend
 text=Flying (This creature can't be blocked except by creatures with flying or reach.) -- As Voice of All enters the battlefield, choose a color. -- Voice of All has protection from the chosen color. (It can't be blocked, targeted, dealt damage, or enchanted by anything of the chosen color.)
@@ -111655,6 +111675,7 @@ toughness=1
 [/card]
 [card]
 name=Ward Sliver
+alias=0000
 auto=chooseacolor transforms((,newability[lord(sliver) protection from(*[chosencolor])])) forever chooseend
 text=As Ward Sliver enters the battlefield, choose a color. -- All Slivers have protection from the chosen color.
 mana={4}{W}
