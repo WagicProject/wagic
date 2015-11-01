@@ -1235,7 +1235,7 @@ int GenericPaidAbility::resolve()
                     optionalCost->add(Constants::MTG_COLOR_ARTIFACT, 3);
             }*/
         }
-        if(nomenu && optionalCost->getConvertedCost() < 1)
+        if(asAlternate && nomenu && optionalCost->getConvertedCost() < 1)
 		{
             nomenuAbility->resolve();
         }
