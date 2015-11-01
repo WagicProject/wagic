@@ -1,6 +1,6 @@
 [submodule "thirdparty/zlib"]
 	path = thirdparty/zlib
 	url = https://github.com/madler/zlib
-[submodule ".\\thirdparty\\SDL2"]
-	path = .\\thirdparty\\SDL2
+[submodule "thirdparty/SDL2"]
+	path = thirdparty/SDL2
 	url = https://github.com/spurious/SDL-mirror.git
