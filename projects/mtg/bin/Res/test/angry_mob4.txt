@@ -25,6 +25,7 @@ Angry Mob
 [ASSERT]
 firstmain
 [PLAYER1]
+exile:Angry Mob
 life:22
 [PLAYER2]
 inplay:1373,1374,1375,Plains

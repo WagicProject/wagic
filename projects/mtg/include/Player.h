@@ -45,6 +45,7 @@ public:
     int epic;
     int initLife;
     int raidcount;
+    int handmodifier;
     vector<string> prowledTypes;
     vector<MTGCardInstance*>curses;
     Player(GameObserver *observer, string deckFile, string deckFileSmall, MTGDeck * deck = NULL);

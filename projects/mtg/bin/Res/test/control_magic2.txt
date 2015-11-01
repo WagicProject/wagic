@@ -28,6 +28,7 @@ graveyard:1194
 manapool:{0}
 life:24
 [PLAYER2]
+exile:1366
 graveyard:1367
 inplay:1397
 manapool:{0}

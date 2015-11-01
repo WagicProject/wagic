@@ -65,6 +65,9 @@ MTGCardInstance::MTGCardInstance(MTGCard * card, MTGPlayerCards * arg_belongs_to
     LKItoughness = toughness;
     cardistargetted = 0;
     cardistargetter = 0;
+    tmodifier = 0;
+    tmodifierb = 0;
+    myconvertedcost = getManaCost()->getConvertedCost();
 }
 
   MTGCardInstance * MTGCardInstance::createSnapShot()

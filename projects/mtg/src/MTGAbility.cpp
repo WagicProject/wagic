@@ -310,6 +310,21 @@ int AbilityFactory::parseCastRestrictions(MTGCardInstance * card, Player * playe
                     return 0;
             }
         }
+        check = restriction[i].find("rebound");
+        if(check != string::npos)
+        {
+                int count = 0;
+                for(unsigned int k = 0; k < player->game->stack->cardsSeenThisTurn.size(); k++)
+                {
+                    MTGCardInstance * stackCard = player->game->stack->cardsSeenThisTurn[k];
+                    if(stackCard->next && stackCard->next == card && card->previousZone == card->controller()->game->hand)
+                        count++;
+                    if(stackCard == card && card->previousZone == card->controller()->game->hand)
+                        count++;
+                }
+                if(!count)
+                    return 0;
+        }
         check = restriction[i].find("morbid");
         if(check != string::npos)
         {
@@ -558,8 +573,8 @@ int AbilityFactory::countCards(TargetChooser * tc, Player * player, int option)
     {
         if (player && player != observer->players[i])
             continue;
-        MTGGameZone * zones[] = { observer->players[i]->game->inPlay, observer->players[i]->game->graveyard, observer->players[i]->game->hand };
-        for (int k = 0; k < 3; k++)
+        MTGGameZone * zones[] = { observer->players[i]->game->inPlay, observer->players[i]->game->graveyard, observer->players[i]->game->hand, observer->players[i]->game->exile };
+        for (int k = 0; k < 4; k++)
         {
             for (int j = zones[k]->nb_cards - 1; j >= 0; j--)
             {
@@ -1064,6 +1079,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
                                             MTGGameZone * dest)
 {
     size_t found;
+    bool asAlternate = false;
     trim(s);
     //TODO This block redundant with calling function
     if (!card && spell)
@@ -1073,7 +1089,9 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     MTGCardInstance * target = card->target;
     if (!target)
         target = card;
-
+	//pay and castcard?
+	if(s.find("castcard(restricted") != string::npos && (s.find("pay(") != string::npos || s.find("pay[[") != string::npos))
+        asAlternate = true;
     //MTG Specific rules
     //adds the bonus credit system
     found = s.find("bonusrule");
@@ -1571,7 +1589,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     vector<string> splitMayPay = parseBetween(s, "pay(", ")", true);
     if(splitMayPay.size())
     {
-        GenericPaidAbility * a = NEW GenericPaidAbility(observer, id, card, target,newName,castRestriction,splitMayPay[1],storedPayString);
+        GenericPaidAbility * a = NEW GenericPaidAbility(observer, id, card, target,newName,castRestriction,splitMayPay[1],storedPayString,asAlternate);
         a->oneShot = 1;
         a->canBeInterrupted = false;
         return a;
@@ -2076,7 +2094,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     vector<string> splitMayPaysub = parseBetween(s, "pay[[","]]", true);
     if (splitMayPaysub.size())
     {
-        GenericPaidAbility * a = NEW GenericPaidAbility(observer, id, card, target,newName,castRestriction,splitMayPaysub[1],storedPayString);
+        GenericPaidAbility * a = NEW GenericPaidAbility(observer, id, card, target,newName,castRestriction,splitMayPaysub[1],storedPayString,asAlternate);
         a->oneShot = 1;
         a->canBeInterrupted = false;
         return a;
@@ -2562,6 +2580,15 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         Targetable * t = spell ? spell->getNextTarget() : NULL;
         MTGAbility * a = NEW AADamagePrevent(observer, id, card, t, preventing, NULL, who);
         a->oneShot = 1;
+        return a;
+    }
+
+    //modify hand size - reduce maximum or increase
+    vector<string> splitHandMod = parseBetween(s, "hmodifer:", " ", false);
+    if (splitHandMod.size())
+    {
+        Damageable * t = spell ? spell->getNextDamageableTarget() : NULL;
+        MTGAbility * a = NEW AModifyHand(observer, id, card, t, splitHandMod[1], who);
         return a;
     }
 
@@ -3412,6 +3439,7 @@ MTGAbility * AbilityFactory::parsePhaseActionAbility(string s,MTGCardInstance * 
         bool opponentturn = (s1.find("my") == string::npos);
         bool myturn = (s1.find("opponent") == string::npos);
         bool sourceinPlay = (s1.find("sourceinplay") != string::npos);
+        bool checkexile = (s1.find("checkex") != string::npos);
         bool next = (s1.find("next") == string::npos); //Why is this one the opposite of the two others? That's completely inconsistent
         bool once = (s1.find("once") != string::npos);
 
@@ -3420,7 +3448,7 @@ MTGAbility * AbilityFactory::parsePhaseActionAbility(string s,MTGCardInstance * 
             _target = spell->getNextCardTarget();
         if(!_target)
             _target = target;
-          return NEW APhaseActionGeneric(observer, id, card,_target, trim(splitActions[2]), restrictions, phase,sourceinPlay,next,myturn,opponentturn,once);
+          return NEW APhaseActionGeneric(observer, id, card,_target, trim(splitActions[2]), restrictions, phase,sourceinPlay,next,myturn,opponentturn,once,checkexile);
 }
 
 MTGAbility * AbilityFactory::parseChooseActionAbility(string s,MTGCardInstance * card,Spell *,MTGCardInstance * target, int, int id)
@@ -5257,8 +5285,8 @@ void ListMaintainerAbility::updateTargets()
     for (int i = 0; i < 2; i++)
     {
         Player * p = game->players[i];
-        MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->stack };
-        for (int k = 0; k < 5; k++)
+        MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->stack, p->game->exile };
+        for (int k = 0; k < 6; k++)
         {
             MTGGameZone * zone = zones[k];
             if (canTarget(zone))
@@ -5329,8 +5357,8 @@ void ListMaintainerAbility::checkTargets()
     for (int i = 0; i < 2; i++)
     {
         Player * p = game->players[i];
-        MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->stack };
-        for (int k = 0; k < 5; k++)
+        MTGGameZone * zones[] = { p->game->inPlay, p->game->graveyard, p->game->hand, p->game->library, p->game->stack, p->game->exile };
+        for (int k = 0; k < 6; k++)
         {
             MTGGameZone * zone = zones[k];
             if (canTarget(zone))

@@ -88,4 +88,14 @@ public:
     virtual ostream& toString(ostream& out) const;
 };
 
+class GuiExile: public GuiGameZone
+{
+public:
+    Player * player;
+    GuiExile(float _x, float _y, bool hasFocus, Player * player, GuiAvatars* parent);
+    int receiveEventPlus(WEvent*);
+    int receiveEventMinus(WEvent*);
+    virtual ostream& toString(ostream& out) const;
+};
+
 #endif // _GUISTATIC_H_

@@ -147,7 +147,9 @@ const char* Constants::MTGBasicAbilities[] = {
     "madness",
     "protectionfromcoloredspells",
     "mygcreatureexiler",
-    "oppgcreatureexiler"
+    "oppgcreatureexiler",
+    "payzero",
+    "trinisphere"
 };
 
 map<string,int> Constants::MTGBasicAbilitiesMap;

@@ -19,6 +19,7 @@ endinterruption
 [ASSERT]
 FIRSTMAIN
 [PLAYER1]
+exile:grizzly bears
 graveyard:fists of ironwood
 life:22
 [PLAYER2]
