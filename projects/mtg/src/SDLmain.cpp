@@ -19,6 +19,10 @@
 #include <iostream>
 #include <math.h>
 
+#ifdef __EMSCRIPTEN__
+#include <emscripten.h>
+#endif
+
 #if (defined FORCE_GLES)
 #undef GL_ES_VERSION_2_0
 #undef GL_VERSION_2_0
@@ -101,7 +105,7 @@ class SdlApp
 public: /* For easy interfacing with JGE static functions */
     bool            Running;
     SDL_Window*     window;
-	SDL_GLContext   gl_context;
+    SDL_GLContext   gl_context;
     SDL_Rect        viewPort;
     Uint32          lastMouseUpTime;
     Uint32          lastFingerDownTime;
@@ -112,10 +116,27 @@ public: /* For easy interfacing with JGE static functions */
 
     int mMouseDownX;
     int mMouseDownY;
+    static SdlApp*         sInstance;
 
 public:
     SdlApp() : Running(true), window(NULL), gl_context(NULL), lastMouseUpTime(0), lastFingerDownTime(0), mMouseDownX(0), mMouseDownY(0)
     {
+         sInstance = this;
+    }
+
+    static void OneIter()
+    {
+        SDL_Event Event;
+        if (g_engine)
+        {
+            for (int x = 0; x < 5 && SDL_WaitEventTimeout(&Event, 10); ++x)
+            {
+                if(!g_engine->IsPaused())
+                    sInstance->OnEvent(&Event);
+            }
+            if(!g_engine->IsPaused())
+                sInstance->OnUpdate();
+        }
     }
 
     int OnExecute()
@@ -125,22 +146,14 @@ public:
             return -1;
         }
 
-        SDL_Event Event;
-
+#ifdef __EMSCRIPTEN__
+        emscripten_set_main_loop(OneIter, 60, 1);
+#else
         while(Running)
         {
-            if (g_engine)
-            {
-                for (int x = 0; x < 5 && SDL_WaitEventTimeout(&Event, 10); ++x)
-                {
-                    if(!g_engine->IsPaused())
-                        OnEvent(&Event);
-                }
-                if(!g_engine->IsPaused())
-                    OnUpdate();
-            }
+            OneIter();
         }
-
+#endif
         OnCleanup();
 
         return 0;
@@ -280,6 +293,7 @@ public:
         SDL_Quit();
     }
 };
+SdlApp*  SdlApp::sInstance = 0;
 
 static const struct { LocalKeySym keysym; JButton keycode; } gDefaultBindings[] =
 {  
