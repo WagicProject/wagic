@@ -364,8 +364,20 @@ void CardGui::Render()
     if(card->isToken && card->isACopier)
         buff = "CT";
     if(!card->isToken && card->isACopier)
-        buff = "C";    
-
+        buff = "C";
+    if(card->alias == 0000)
+    {
+        if(card->chooseacolor == 1)
+            buff += "\n-Green";
+        else if(card->chooseacolor == 2)
+            buff += "\n-Blue";
+        else if(card->chooseacolor == 3)
+            buff += "\n-Red";
+        else if(card->chooseacolor == 4)
+            buff += "\n-Black";
+        else if(card->chooseacolor == 5)
+            buff += "\n-White";
+    }
 	if(!alternate && buff != "" && game->gameType() == GAME_TYPE_CLASSIC)//it seems that other game modes makes cards as tokens!!! hmmm...
 	{
         mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);

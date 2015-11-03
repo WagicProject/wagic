@@ -885,9 +885,6 @@ void GameObserver::gameStateBasedEffects()
         //    plus modify costs    //
         /////////////////////////////
         Affinity();
-        //trinisphere? buggy...
-        //ComputeTrinisphere();
-        //end trinisphere
         /////////////////////////////////////
         // Check colored statuses on cards //
         /////////////////////////////////////
@@ -979,10 +976,14 @@ void GameObserver::Affinity()
                 //only do any of the following if a card with the stated ability is in your hand.
                 ManaCost * original = NEW ManaCost();
                 ManaCost * alternate = NEW ManaCost();
+                ManaCost * buyback = NEW ManaCost();
+                ManaCost * flashback = NEW ManaCost();
+                ManaCost * retrace = NEW ManaCost();
                 original->copy(card->model->data->getManaCost());
                 alternate->copy(card->model->data->getManaCost()->getAlternative());
-                if (card->has(Constants::PAYZERO))
-                    original = ManaCost::parseManaCost("{0}",NULL,card);//can't figure out 2 or more alternative...
+                buyback->copy(card->model->data->getManaCost()->getBuyback());
+                flashback->copy(card->model->data->getManaCost()->getFlashback());
+                retrace->copy(card->model->data->getManaCost()->getRetrace());
                 //have to run alter cost before affinity or the 2 cancel each other out.
                 if(card->getIncreasedManaCost()->getConvertedCost()||card->getReducedManaCost()->getConvertedCost())
                 {
@@ -995,10 +996,22 @@ void GameObserver::Affinity()
                             {
                                 alternate->add(kc,card->getIncreasedManaCost()->getCost(kc));
                             }
+                            if (card->getManaCost()->getBuyback())
+                            {
+                                buyback->add(kc,card->getIncreasedManaCost()->getCost(kc));
+                            }
+                            if (card->getManaCost()->getFlashback())
+                            {
+                                flashback->add(kc,card->getIncreasedManaCost()->getCost(kc));
+                            }
+                            if (card->getManaCost()->getRetrace())
+                            {
+                                retrace->add(kc,card->getIncreasedManaCost()->getCost(kc));
+                            }
                         }
                     }
                     if(card->getReducedManaCost()->getConvertedCost())
-					{
+                    {
                         original->remove(card->getReducedManaCost());
                         for(int kc = Constants::MTG_COLOR_ARTIFACT; kc < Constants::NB_Colors;kc++)
                         {
@@ -1006,12 +1019,30 @@ void GameObserver::Affinity()
                             {
                                 alternate->remove(kc,card->getReducedManaCost()->getCost(kc));
                             }
+                            if (card->getManaCost()->getBuyback())
+                            {
+                                buyback->remove(kc,card->getIncreasedManaCost()->getCost(kc));
+                            }
+                            if (card->getManaCost()->getFlashback())
+                            {
+                                flashback->remove(kc,card->getIncreasedManaCost()->getCost(kc));
+                            }
+                            if (card->getManaCost()->getRetrace())
+                            {
+                                retrace->remove(kc,card->getIncreasedManaCost()->getCost(kc));
+                            }
                         }
                     }
                     if(card->getManaCost())
                         card->getManaCost()->copy(original);
                     if(card->getManaCost()->getAlternative())
-						card->getManaCost()->setAlternative(alternate);
+                        card->getManaCost()->setAlternative(alternate);
+                    if(card->getManaCost()->getBuyback())
+                        card->getManaCost()->setBuyback(buyback);
+                    if(card->getManaCost()->getFlashback())
+                        card->getManaCost()->setFlashback(flashback);
+                    if(card->getManaCost()->getRetrace())
+                        card->getManaCost()->setRetrace(retrace);
                     if(card->getManaCost()->extraCosts)
                     {
                         for(unsigned int i = 0; i < card->getManaCost()->extraCosts->costs.size();i++)
@@ -1068,7 +1099,8 @@ void GameObserver::Affinity()
                     card->has(Constants::AFFINITYISLAND)||
                     card->has(Constants::AFFINITYMOUNTAIN)||
                     card->has(Constants::AFFINITYPLAINS)||
-                    card->has(Constants::AFFINITYSWAMP)){
+                    card->has(Constants::AFFINITYSWAMP))
+                    {
                         if (card->has(Constants::AFFINITYARTIFACTS))
                         {
                             type = "artifact";
@@ -1123,86 +1155,13 @@ void GameObserver::Affinity()
                             if(card->getManaCost()->getCost(color) > 0)
                                 card->getManaCost()->remove(color,1);
                         }
-
-                }
-                SAFE_DELETE(original);
+                    }
+                //SAFE_DELETE(original);
             }//end
         }
     }
 }
 
-void GameObserver::ComputeTrinisphere()
-{
-    for (int td = 0; td < 2; td++)
-    {
-        MTGGameZone * dzones[] = { players[td]->game->graveyard, players[td]->game->hand, players[td]->game->library, players[td]->game->exile };
-        for (int tk = 0; tk < 4; tk++)
-        {
-            MTGGameZone * zone = dzones[tk];
-            for (int ct = zone->nb_cards - 1; ct >= 0; ct--)
-            {
-                if(zone->cards[ct]->has(Constants::TRINISPHERE))
-                {
-                    if(zone->cards[ct]->getManaCost()->getConvertedCost() == 2)
-                    {
-                        zone->cards[ct]->getManaCost()->add(Constants::MTG_COLOR_ARTIFACT, 1);
-                        zone->cards[ct]->tmodifier = 1;
-                    }
-                    else if(zone->cards[ct]->getManaCost()->getConvertedCost() == 1)
-                    {
-                        zone->cards[ct]->getManaCost()->add(Constants::MTG_COLOR_ARTIFACT, 2);
-                        zone->cards[ct]->tmodifier = 2;
-                    }
-                    else if(zone->cards[ct]->getManaCost()->getConvertedCost() < 1)
-                    {
-                        zone->cards[ct]->getManaCost()->add(Constants::MTG_COLOR_ARTIFACT, 3);
-                        zone->cards[ct]->tmodifier = 3;
-                    }
-                    if(zone->cards[ct]->getManaCost()->getAlternative())
-                    {
-                        ManaCost * currentAlternate = NEW ManaCost();
-                        currentAlternate->copy(zone->cards[ct]->getManaCost()->getAlternative());
-                        if(zone->cards[ct]->getManaCost()->getAlternative()->getConvertedCost() ==  2)
-                             zone->cards[ct]->tmodifierb = 1;
-                        else if(zone->cards[ct]->getManaCost()->getAlternative()->getConvertedCost() ==  1)
-                             zone->cards[ct]->tmodifierb = 2;
-                        else if(zone->cards[ct]->getManaCost()->getAlternative()->getConvertedCost() <  1)
-                             zone->cards[ct]->tmodifierb = 3;
-                        currentAlternate->add(Constants::MTG_COLOR_ARTIFACT, zone->cards[ct]->tmodifierb);
-                        zone->cards[ct]->getManaCost()->setAlternative(currentAlternate);
-                    }
-                }
-                else
-                    RemoveTrinisphere(zone->cards[ct]);
-                if(zone->cards[ct]->getManaCost()->extraCosts)
-                {
-                    for(unsigned int i = 0; i < zone->cards[ct]->getManaCost()->extraCosts->costs.size();i++)
-                    {
-                        zone->cards[ct]->getManaCost()->extraCosts->costs[i]->setSource(zone->cards[ct]);
-                    }
-                }
-            }
-        }
-    }
-}
-void GameObserver::RemoveTrinisphere(MTGCardInstance * card)
-{
-    if(card->has(Constants::TRINISPHERE))
-        return;
-    if(card->tmodifier)
-    {
-        card->getManaCost()->remove(Constants::MTG_COLOR_ARTIFACT, card->tmodifier);
-        card->tmodifier = 0;
-    }
-    if(card->getManaCost()->getAlternative() && card->tmodifierb)
-    {
-        ManaCost * newalternate = NEW ManaCost();
-        newalternate->copy(card->getManaCost()->getAlternative());
-        newalternate->remove(Constants::MTG_COLOR_ARTIFACT, card->tmodifierb);
-        card->getManaCost()->setAlternative(newalternate);
-        card->tmodifierb = 0;
-    }
-}
 void GameObserver::Render()
 {
     if(mLayers)
