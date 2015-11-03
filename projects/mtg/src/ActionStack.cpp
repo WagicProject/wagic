@@ -301,7 +301,7 @@ bool Spell::FullfilledAlternateCost(const int &costType)
         hasFullfilledAlternateCost = (payResult == ManaCost::MANA_PAID_WITH_RETRACE);
         break;
     case ManaCost::MANA_PAID_WITH_SUSPEND:
-        hasFullfilledAlternateCost = (payResult == ManaCost::MANA_PAID_WITH_RETRACE);
+        hasFullfilledAlternateCost = (payResult == ManaCost::MANA_PAID_WITH_SUSPEND);
         break;
     }
 

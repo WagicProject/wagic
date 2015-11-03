@@ -1132,7 +1132,7 @@ MTGMorphCostRule * MTGMorphCostRule::clone() const
 MTGPlayFromGraveyardRule::MTGPlayFromGraveyardRule(GameObserver* observer, int _id) :
 MTGAlternativeCostRule(observer, _id)
 {
-    aType = MTGAbility::PUT_INTO_PLAY;
+    aType = MTGAbility::CASTINGRAVEYARD_COST;
 }
 
 int MTGPlayFromGraveyardRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
@@ -1155,9 +1155,9 @@ int MTGPlayFromGraveyardRule::reactToClick(MTGCardInstance * card)
 
     ManaCost * cost = card->getManaCost();
 
-    card->paymenttype = MTGAbility::PUT_INTO_PLAY;
+    card->paymenttype = MTGAbility::CASTINGRAVEYARD_COST;
 
-    return MTGAlternativeCostRule::reactToClick(card, cost, ManaCost::MANA_PAID);
+    return MTGAlternativeCostRule::reactToClick(card, cost, ManaCost::MANA_PAID_WITH_OTHERCOST);
 }
 
 ostream& MTGPlayFromGraveyardRule::toString(ostream& out) const

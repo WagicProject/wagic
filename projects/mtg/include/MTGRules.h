@@ -76,6 +76,8 @@ public:
     MTGPutInPlayRule(GameObserver* observer, int _id);
     const string getMenuText()
     {
+        if(game && game->gameType() == GAME_TYPE_MOMIR)
+            return "Play Land";
         return "Cast Card Normally";
     }
     virtual MTGPutInPlayRule * clone() const;

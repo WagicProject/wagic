@@ -47,7 +47,8 @@ public:
         MANA_PAID_WITH_FLASHBACK = 5,
         MANA_PAID_WITH_RETRACE = 6,
         MANA_PAID_WITH_MORPH = 7,
-        MANA_PAID_WITH_SUSPEND = 8
+        MANA_PAID_WITH_SUSPEND = 8,
+        MANA_PAID_WITH_OTHERCOST = 9
     };
     ExtraCosts * extraCosts;
 
