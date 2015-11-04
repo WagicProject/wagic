@@ -1156,7 +1156,7 @@ void GameObserver::Affinity()
                                 card->getManaCost()->remove(color,1);
                         }
                     }
-                //SAFE_DELETE(original);
+                SAFE_DELETE(original);
             }//end
         }
     }
