@@ -23,6 +23,7 @@ Angry Mob
 [ASSERT]
 firstmain
 [PLAYER1]
+exile:Angry Mob
 inplay:Plains
 graveyard:Swords to Plowshares
 life:25

@@ -79,8 +79,8 @@ MTGCardInstance * Rules::getCardByMTGId(GameObserver* g, int mtgid)
     for (int i = 0; i < 2; i++)
     {
         Player * p = g->players[i];
-        MTGGameZone * zones[] = { p->game->library, p->game->hand, p->game->inPlay, p->game->graveyard };
-        for (int j = 0; j < 4; j++)
+        MTGGameZone * zones[] = { p->game->library, p->game->hand, p->game->inPlay, p->game->graveyard, p->game->exile };
+        for (int j = 0; j < 5; j++)
         {
             MTGGameZone * zone = zones[j];
             for (int k = 0; k < zone->nb_cards; k++)
@@ -340,9 +340,10 @@ MTGDeck * Rules::buildDeck(int playerId)
     MTGGameZone * loadedPlayerZones[] = { initState.playerData[playerId].player->game->graveyard,
                                           initState.playerData[playerId].player->game->library,
                                           initState.playerData[playerId].player->game->hand,
-                                          initState.playerData[playerId].player->game->inPlay };
+                                          initState.playerData[playerId].player->game->inPlay,
+                                          initState.playerData[playerId].player->game->exile };
 
-    for (int j = 0; j < 4; j++)
+    for (int j = 0; j < 5; j++)
     {
         for (size_t k = 0; k < loadedPlayerZones[j]->cards.size(); k++)
         {
@@ -412,12 +413,13 @@ void Rules::initGame(GameObserver *g, bool currentPlayerSet)
         {
             p->mAvatarName = initState.playerData[i].player->mAvatarName;
         }
-        MTGGameZone * playerZones[] = { p->game->graveyard, p->game->library, p->game->hand, p->game->inPlay };
+        MTGGameZone * playerZones[] = { p->game->graveyard, p->game->library, p->game->hand, p->game->inPlay, p->game->exile };
         MTGGameZone * loadedPlayerZones[] = { initState.playerData[i].player->game->graveyard,
                                               initState.playerData[i].player->game->library,
                                               initState.playerData[i].player->game->hand,
-                                              initState.playerData[i].player->game->inPlay };
-        for (int j = 0; j < 4; j++)
+                                              initState.playerData[i].player->game->inPlay,
+                                              initState.playerData[i].player->game->exile };
+        for (int j = 0; j < 5; j++)
         {
             MTGGameZone * zone = playerZones[j];
             for (size_t k = 0; k < loadedPlayerZones[j]->cards.size(); k++)

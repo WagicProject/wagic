@@ -10,6 +10,7 @@
 #define GUI_GRAVEYARD 3
 #define GUI_LIBRARY 4
 #define GUI_OPPONENTHAND 5
+#define GUI_EXILE 6
 
 #include <JGui.h>
 #include "WEvent.h"

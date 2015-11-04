@@ -19,6 +19,7 @@ Angry Mob
 [ASSERT]
 firstmain
 [PLAYER1]
+exile:Angry Mob
 graveyard:Swords to Plowshares,Boomerang
 life:24
 [PLAYER2]

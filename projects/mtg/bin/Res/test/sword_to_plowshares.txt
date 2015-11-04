@@ -16,5 +16,6 @@ FIRSTMAIN
 graveyard:1367
 manapool:{0}
 [PLAYER2]
+exile:141935
 life:23
 [END]

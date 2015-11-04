@@ -22,6 +22,7 @@ Angry Mob
 firstmain
 [PLAYER1]
 graveyard:Swords to Plowshares,Annex,Demystify
+exile:Angry Mob
 life:25
 [PLAYER2]
 inplay:1373,1374,1375

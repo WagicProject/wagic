@@ -3,4 +3,4 @@
 	url = https://github.com/madler/zlib
 [submodule "thirdparty/SDL2"]
 	path = thirdparty/SDL2
-	url = https://github.com/emscripten-ports/SDL2.git
+	url = https://github.com/spurious/SDL-mirror.git

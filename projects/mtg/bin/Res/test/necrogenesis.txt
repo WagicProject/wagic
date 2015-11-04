@@ -16,4 +16,5 @@ FIRSTMAIN
 inplay:necrogenesis,*
 manapool:{0}
 [PLAYER2]
+exile:1250
 [END]

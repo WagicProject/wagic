@@ -99,7 +99,7 @@ WAGIC_OPTION(BUILD_PNG     "build png from source"     (WIN32 OR APPLE OR PSP OR
 WAGIC_OPTION(BUILD_UNZIP   "build unzip from source"   ON)
 WAGIC_OPTION(BUILD_TINYXML "build tinyxml from source" (WIN32 OR APPLE OR PSP OR ANDROID OR EMSCRIPTEN))
 WAGIC_OPTION(BUILD_ZIPFS   "build zipfs from source"   ON)
-WAGIC_OPTION(BUILD_SDL2    "build SDL2 from source"    (backend_sdl AND (UNIX OR WIN32 OR ANDROID OR EMSCRIPTEN)))
+WAGIC_OPTION(BUILD_SDL2    "build SDL2 from source"    (backend_sdl AND (UNIX OR WIN32 OR ANDROID) AND (NOT EMSCRIPTEN)))
 
 #project options
 if(ANDROID)
@@ -138,6 +138,8 @@ include(FindOrBuild)
 if(PSP)
     FindOrBuildPSPSDK()
     include(platforms/psp/configure.cmake)
+elseif(EMSCRIPTEN)
+    include(platforms/emscripten/configure.cmake)
 elseif(WIN32)
     include(platforms/win/configure.cmake)
 elseif(APPLE)
@@ -146,8 +148,6 @@ elseif(UNIX)
     include(platforms/unix/configure.cmake)
 elseif(ANDROID)
     include(platforms/android/configure.cmake)
-elseif(EMSCRIPTEN)
-    include(platforms/emscripten/configure.cmake)
 endif()
 
 #set backend dependend configurations
