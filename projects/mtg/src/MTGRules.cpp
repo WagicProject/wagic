@@ -1132,7 +1132,7 @@ MTGMorphCostRule * MTGMorphCostRule::clone() const
 MTGPlayFromGraveyardRule::MTGPlayFromGraveyardRule(GameObserver* observer, int _id) :
 MTGAlternativeCostRule(observer, _id)
 {
-    aType = MTGAbility::CASTINGRAVEYARD_COST;
+    aType = MTGAbility::CASTINGRAVEEXILE_COST;
 }
 
 int MTGPlayFromGraveyardRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
@@ -1140,9 +1140,9 @@ int MTGPlayFromGraveyardRule::isReactingToClick(MTGCardInstance * card, ManaCost
     Player * player = game->currentlyActing();
     ManaCost * cost = card->getManaCost();
 
-    if (!player->game->graveyard->hasCard(card))
+    if (!player->game->graveyard->hasCard(card) && !player->game->exile->hasCard(card))
         return 0;
-    if (!card->has(Constants::CANPLAYFROMGRAVEYARD))
+    if ((!card->has(Constants::CANPLAYFROMGRAVEYARD) && player->game->graveyard->hasCard(card))||(!card->has(Constants::CANPLAYFROMEXILE) && player->game->exile->hasCard(card)))
         return 0;
 
     return MTGAlternativeCostRule::isReactingToClick(card, mana, cost);
@@ -1155,7 +1155,7 @@ int MTGPlayFromGraveyardRule::reactToClick(MTGCardInstance * card)
 
     ManaCost * cost = card->getManaCost();
 
-    card->paymenttype = MTGAbility::CASTINGRAVEYARD_COST;
+    card->paymenttype = MTGAbility::CASTINGRAVEEXILE_COST;
 
     return MTGAlternativeCostRule::reactToClick(card, cost, ManaCost::MANA_PAID_WITH_OTHERCOST);
 }

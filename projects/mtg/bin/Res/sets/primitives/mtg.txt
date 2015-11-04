@@ -99087,11 +99087,10 @@ text=Syphon Soul deals 2 damage to each other player. You gain life equal to the
 mana={2}{B}
 type=Sorcery
 [/card]
-#workaround szadek.
 [card]
 name=Szadek, Lord of Secrets
+alias=89092
 abilities=flying
-auto=@combatdamaged(player) from(this):deplete:thatmuch opponent && life:thatmuch opponent && counter(1/1,thatmuch)
 text=Flying -- If Szadek, Lord of Secrets would deal combat damage to a player, instead put that many +1/+1 counters on Szadek and that player puts that many cards from the top of his or her library into his or her graveyard.
 mana={3}{U}{U}{B}{B}
 type=Legendary Creature
@@ -100970,6 +100969,18 @@ text=Draw two cards, then proliferate.
 color=blue
 mana={3}{p(U)}
 type=Sorcery
+[/card]
+[card]
+name=Thada Adel, Acquisitor
+abilities=islandwalk
+auto=@combatdamagefoeof(player) from(this):name(exile artifact) notatarget(artifact|opponentlibrary) moveto(myexile) and!( transforms((,newability[canplayfromexile],newability[phaseactionmulti[endofturn once] moveto(ownerexile) all(this|exile)])) ueot)!
+auto=@combatdamageof(player) from(this):name(exile artifact) notatarget(artifact|mylibrary) moveto(myexile) and!( transforms((,newability[canplayfromexile],newability[phaseactionmulti[endofturn once] moveto(ownerexile) all(this|exile)])) ueot)!
+text=Islandwalk -- Whenever Thada Adel, Acquisitor deals combat damage to a player, search that player's library for an artifact card and exile it. Then that player shuffles his or her library. Until end of turn, you may play that card.
+mana={1}{U}{U}
+type=Legendary Creature
+subtype=Merfolk Rogue
+power=2
+toughness=2
 [/card]
 [card]
 name=Thalakos Deceiver
@@ -106103,6 +106114,17 @@ text=Enchant nonbasic land -- When enchanted land becomes tapped, destroy it.
 mana={1}{R}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+name=Undead Alchemist
+auto=lord(zombie|mybattlefield) libraryeater
+auto=@movedTo(creature|opponentgraveyard) from(opponentlibrary):all(trigger[to]) moveto(exile) and!(token(Zombie,Creature Zombie,2/2,black) controller)!
+text=If a Zombie you control would deal combat damage to a player, instead that player puts that many cards from the top of his or her library into his or her graveyard. -- Whenever a creature card is put into an opponent's graveyard from his or her library, exile that card and put a 2/2 black Zombie creature token onto the battlefield.
+mana={3}{U}
+type=Creature
+subtype=Zombie
+power=4
+toughness=2
 [/card]
 [card]
 name=Undead Executioner

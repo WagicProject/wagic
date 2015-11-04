@@ -184,7 +184,7 @@ public:
     MTGPlayFromGraveyardRule(GameObserver* observer, int _id);
     const string getMenuText()
     {
-        return "Cast Card From Graveyard";
+        return "Cast Card From This Zone";
     }
     virtual MTGPlayFromGraveyardRule * clone() const;
 };

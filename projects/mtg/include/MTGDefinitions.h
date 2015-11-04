@@ -237,7 +237,8 @@ class Constants
       PAYZERO = 119,
       TRINISPHERE = 120,
       CANPLAYFROMEXILE = 121,
-      NB_BASIC_ABILITIES = 122,
+      LIBRARYEATER = 122,
+      NB_BASIC_ABILITIES = 123,
 
 
     RARITY_S = 'S',   //Special Rarity

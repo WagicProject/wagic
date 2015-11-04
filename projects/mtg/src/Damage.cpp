@@ -126,7 +126,35 @@ int Damage::resolve()
         }
         _target->doDamageTest = 1;
     }
+    if (target->type_as_damageable == Damageable::DAMAGEABLE_PLAYER)
+    {
+        if(source->has(Constants::LIBRARYEATER) && typeOfDamage == 1)
+        {
+            for (int j = damage; j > 0; j--)
+            {
+                if(((Player*)target)->game->library->nb_cards)
+                    ((Player*)target)->game->putInZone(((Player*)target)->game->library->cards[((Player*)target)->game->library->nb_cards - 1], ((Player*)target)->game->library, ((Player*)target)->game->graveyard);
+            }
+            damage = 0;
+        }
+        if(source->alias == 89092 && typeOfDamage == 1)//Szadek Lord of Secrets
+        {
+            for (int j = damage; j > 0; j--)
+            {
+                if(((Player*)target)->game->library->nb_cards)
+                    ((Player*)target)->game->putInZone(((Player*)target)->game->library->cards[((Player*)target)->game->library->nb_cards - 1], ((Player*)target)->game->library, ((Player*)target)->game->graveyard);
 
+                source->counters->addCounter(1, 1);
+            }
+            damage = 0;
+        }
+        if (!damage)
+        {
+            state = RESOLVED_NOK;
+            delete (e);
+            return 0;
+        }
+    }
     int a = damage;
 
     if (target->type_as_damageable == Damageable::DAMAGEABLE_MTGCARDINSTANCE && (source->has(Constants::WITHER) || source->has(
