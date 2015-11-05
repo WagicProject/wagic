@@ -918,6 +918,25 @@ JQuadPtr MTGCardInstance::getIcon()
     return WResourceManager::Instance()->RetrieveCard(this, CACHE_THUMB);
 }
 
+ManaCost * MTGCardInstance::computeNewCost(MTGCardInstance * card,ManaCost * oldCost)
+{
+    if(card->isLand())
+        return oldCost;
+
+    if(!card)
+        return oldCost;
+        //use forcedalive//
+        //pay zero costs//
+		//kicker???...//
+        //morph cost todo//
+        //trinisphere must be here below//
+    if(card->has(Constants::TRINISPHERE))
+        for(int jj = oldCost->getConvertedCost(); jj < 3; jj++)
+            oldCost->add(Constants::MTG_COLOR_ARTIFACT, 1);
+
+    return oldCost;
+}
+
 MTGCardInstance * MTGCardInstance::getNextPartner()
 {
     MTGInPlay * inplay = controller()->game->inPlay;

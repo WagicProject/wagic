@@ -1159,7 +1159,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     found = s.find("playfromgraveyardrule");
     if(found != string::npos)
     {
-        observer->addObserver(NEW MTGPlayFromGraveyardRule(observer, -1));
+        observer->addObserver(NEW MTGPayZeroRule(observer, -1));
         return NULL;
     }
     //this rule handles attacking ability during attacker phase

@@ -148,7 +148,7 @@ const char* Constants::MTGBasicAbilities[] = {
     "protectionfromcoloredspells",
     "mygcreatureexiler",
     "oppgcreatureexiler",
-    "payzero",
+    "zerocast",
     "trinisphere",
     "canplayfromexile",
     "libraryeater"

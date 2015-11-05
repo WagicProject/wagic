@@ -175,18 +175,21 @@ public:
     virtual MTGMorphCostRule * clone() const;
 };
 
-class MTGPlayFromGraveyardRule: public MTGAlternativeCostRule
+class MTGPayZeroRule: public MTGAlternativeCostRule
 {
 public:
     int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
     int reactToClick(MTGCardInstance * card);
+	string CustomName;
     virtual ostream& toString(ostream& out) const;
-    MTGPlayFromGraveyardRule(GameObserver* observer, int _id);
+    MTGPayZeroRule(GameObserver* observer, int _id);
     const string getMenuText()
     {
-        return "Cast Card From This Zone";
+        if(CustomName.size())
+            return CustomName.c_str();
+        return "Pay Zero To Cast";
     }
-    virtual MTGPlayFromGraveyardRule * clone() const;
+    virtual MTGPayZeroRule * clone() const;
 };
 
 

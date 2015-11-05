@@ -631,7 +631,7 @@ int OrderedAIAction::getEfficiency()
     {
         efficiency += 55;
     }
-    else if (dynamic_cast<MTGPlayFromGraveyardRule *>(a))
+    else if (dynamic_cast<MTGPayZeroRule *>(a))
     {
         efficiency += 45;
     }
