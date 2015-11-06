@@ -3080,7 +3080,11 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             }
 			else if(s.find("cdaactive") != string::npos)
             {
-                return NEW APowerToughnessModifier(observer, id, card, target, wppt,s,true);
+                MTGAbility * a = NEW APowerToughnessModifier(observer, id, card, target, wppt,s,true);
+                a->forcedAlive = 1;
+                a->forceDestroy = -1;
+                return a;
+                //return NEW APowerToughnessModifier(observer, id, card, target, wppt,s,true);
             }
 			else
                 return NEW APowerToughnessModifier(observer, id, card, target, wppt,s,nonstatic);
@@ -3751,7 +3755,7 @@ int AbilityFactory::getAbilities(vector<MTGAbility *> * v, Spell * spell, MTGCar
             if (dest == zones->exile)
             {
                 magicText = card->magicTexts["exile"];
-                 card->exileEffects = true;
+                card->exileEffects = true;
                 break;
             }
             if (dest == zones->library)
