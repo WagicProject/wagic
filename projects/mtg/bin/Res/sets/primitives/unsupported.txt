@@ -12498,6 +12498,7 @@ text=Pyrotechnics deals 4 damage divided as you choose among any number of targe
 mana={4}{R}
 type=Sorcery
 [/card]
+#anyzone is basic for now and used for cdaactive
 [card]
 name=Qasali Ambusher
 text=Reach -- If a creature is attacking you and you control a Forest and a Plains, you may cast Qasali Ambusher without paying its mana cost and as though it had flash.
@@ -12812,6 +12813,7 @@ mana={2}{U}
 type=Enchantment
 subtype=Aura
 [/card]
+#needs suspend ability not suspend activated ability
 [card]
 name=Reality Strobe
 text=Return target permanent to its owner's hand. Exile Reality Strobe with three time counters on it. -- Suspend 3 - {2}{U} (Rather than cast this card from your hand, you may pay {2}{U} and exile it with three time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.)
@@ -13490,6 +13492,7 @@ subtype=Elemental
 power=3
 toughness=2
 [/card]
+#seems possible
 [card]
 name=Roiling Horror
 text=Roiling Horror's power and toughness are each equal to your life total minus the life total of an opponent with the most life. -- Suspend X - {X}{B}{B}{B}. X can't be 0. (Rather than cast this card from your hand, you may pay {X}{B}{B}{B} and exile it with X time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost. It has haste.) -- Whenever a time counter is removed from Roiling Horror while it's exiled, target player loses 1 life and you gain 1 life.
@@ -13939,6 +13942,7 @@ subtype=Giant Warrior
 power=4
 toughness=5
 [/card]
+#modded ingest
 [card]
 name=Scalpelexis
 text=Flying (This creature can't be blocked except by creatures with flying or reach.) -- Whenever Scalpelexis deals combat damage to a player, that player exiles the top four cards of his or her library. If two or more of those cards have the same name, repeat this process.
@@ -14093,6 +14097,7 @@ text=Look at the top X cards of target opponent's library. Exile one of those ca
 mana={X}{U}{B}
 type=Sorcery
 [/card]
+#moverandom?
 [card]
 name=Search for Survivors
 text=Reorder your graveyard at random. An opponent chooses a card at random in your graveyard. If it's a creature card, put it onto the battlefield. Otherwise, exile it.
@@ -14480,6 +14485,7 @@ mana={3}{U}
 type=Instant
 subtype=Arcane
 [/card]
+#phaseactionmulti?
 [card]
 name=Shifty Doppelganger
 text={3}{U}, Exile Shifty Doppelganger: You may put a creature card from your hand onto the battlefield. If you do, that creature gains haste until end of turn. At the beginning of the next end step, sacrifice that creature. If you do, return Shifty Doppelganger to the battlefield.
@@ -14944,6 +14950,7 @@ type=Enchantment
 subtype=Aura
 text=Enchant creature Enchanted creature gets +1/+1 and has "Whenever this creature deals damage to an opponent, you may draw a card." Totem armor (If enchanted creature would be destroyed, instead remove all damage from it and destroy this Aura.)
 [/card]
+#manaflashback rule
 [card]
 name=Snapcaster Mage
 abilities=flash
@@ -16224,12 +16231,6 @@ type=Sorcery
 text=Put a 1/1 colorless Expansion-Symbol creature token into play for each different expansion symbol among permanents you control.
 [/card]
 [card]
-name=Syncopate
-text=Counter target spell unless its controller pays {X}. If that spell is countered this way, exile it instead of putting it into its owner's graveyard.
-mana={X}{U}
-type=Instant
-[/card]
-[card]
 name=Synod Artificer
 text={X}, {T}: Tap X target noncreature artifacts. -- {X}, {T}: Untap X target noncreature artifacts.
 mana={2}{U}
@@ -16488,15 +16489,6 @@ text=+1: Look at the top five cards of your library. You may reveal an artifact 
 mana={2}{U}{B}
 type=Planeswalker
 subtype=Tezzeret
-[/card]
-[card]
-name=Thada Adel, Acquisitor
-text=Islandwalk -- Whenever Thada Adel, Acquisitor deals combat damage to a player, search that player's library for an artifact card and exile it. Then that player shuffles his or her library. Until end of turn, you may play that card.
-mana={1}{U}{U}
-type=Legendary Creature
-subtype=Merfolk Rogue
-power=2
-toughness=2
 [/card]
 [card]
 name=Thalakos Dreamsower
@@ -17282,17 +17274,6 @@ name=Uncovered Clues
 text=Look at the top four cards of your library. You may reveal up to two instant and/or sorcery cards from among them and put the revealed cards into your hand. Put the rest on the bottom of your library in any order.
 mana={2}{U}
 type=Sorcery
-[/card]
-[card]
-name=Undead Alchemist
-auto=@combatdamaged(player) from(zombie|mybattlefield):deplete:thatmuch opponent && life:thatmuch opponent
-auto=@movedTo(creature|opponentgraveyard) from(opponentlibrary):token(Zombie,Creature Zombie,2/2,black)
-text=If a Zombie you control would deal combat damage to a player, instead that player puts that many cards from the top of his or her library into his or her graveyard. -- Whenever a creature card is put into an opponent's graveyard from his or her library, exile that card and put a 2/2 black Zombie creature token onto the battlefield.
-mana={3}{U}
-type=Creature
-subtype=Zombie
-power=4
-toughness=2
 [/card]
 [card]
 name=Undercity Informer

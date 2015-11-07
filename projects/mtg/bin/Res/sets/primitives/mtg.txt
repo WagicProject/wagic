@@ -2,7 +2,7 @@
 #Please keep these card alphabetized, and try to have the "name=" line at the top of each card
 [card]
 name=Aeon Chronicler
-auto=phandcount/phandcount cdaactive
+anyzone=phandcount/phandcount cdaactive
 autoexile=@counterremoved(0/0,1,Time) from(sourcecard) suspended:draw:1
 suspend(0)={X}{3}{U}
 text=Aeon Chronicler's power and toughness are each equal to the number of cards in your hand. -- Suspend X - {X}{3}{U}. X can't be 0. (Rather than cast this card from your hand, you may pay {X}{3}{U} and exile it with X time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost. It has haste.) -- Whenever a time counter is removed from Aeon Chronicler while it's exiled, draw a card.
@@ -878,7 +878,7 @@ type=Instant
 [/card]
 [card]
 name=Adamaro, First to Desire
-auto=type:*:opponenthand/type:*:opponenthand cdaactive
+anyzone=type:*:opponenthand/type:*:opponenthand cdaactive
 text=Adamaro, First to Desire's power and toughness are each equal to the number of cards in the hand of the opponent with the most cards in hand.
 mana={1}{R}{R}
 type=Legendary Creature
@@ -1493,7 +1493,7 @@ subtype=Ajani
 [/card]
 [card]
 name=Avatar Token
-auto=lifetotal/lifetotal cdaactive
+anyzone=lifetotal/lifetotal cdaactive
 type=Creature
 subtype=Avatar
 power=*
@@ -2351,7 +2351,7 @@ toughness=1
 [card]
 name=Altar Golem
 abilities=trample,doesnotuntap
-auto=type:creature:battlefield/type:creature:battlefield cdaactive
+anyzone=type:creature:battlefield/type:creature:battlefield cdaactive
 auto={T(creature|myBattlefield)}{T(creature|myBattlefield)}{T(creature|myBattlefield)}{T(creature|myBattlefield)}{T(creature|myBattlefield)}:untap
 text=Trample -- Altar Golem's power and toughness are each equal to the number of creatures on the battlefield. -- Altar Golem doesn't untap during your untap step. -- Tap five untapped creatures you control: Untap Altar Golem.
 mana={7}
@@ -2937,7 +2937,7 @@ toughness=3
 [/card]
 [card]
 name=Ancient Ooze
-auto=pancientooze/pancientooze cdaactive
+anyzone=pancientooze/pancientooze cdaactive
 text=Ancient Ooze's power and toughness are each equal to the total converted mana cost of other creatures you control.
 mana={5}{G}{G}
 type=Creature
@@ -8068,7 +8068,7 @@ toughness=2
 [card]
 name=Battle Squadron
 abilities=flying
-auto=type:creature:myBattlefield/type:creature:myBattlefield cdaactive
+anyzone=type:creature:myBattlefield/type:creature:myBattlefield cdaactive
 text=Flying -- Battle Squadron's power and toughness are each equal to the number of creatures you control.
 mana={3}{R}{R}
 type=Creature
@@ -8381,7 +8381,7 @@ type=Enchantment
 [/card]
 [card]
 name=Beast of Burden
-auto=type:creature:Battlefield/type:creature:Battlefield cdaactive
+anyzone=type:creature:Battlefield/type:creature:Battlefield cdaactive
 text=Beast of Burden's power and toughness are each equal to the number of creatures on the battlefield.
 mana={6}
 type=Artifact Creature
@@ -8671,7 +8671,7 @@ toughness=2
 [/card]
 [card]
 name=Benalish Commander
-auto=type:soldier:mybattlefield/type:soldier:mybattlefield cdaactive
+anyzone=type:soldier:mybattlefield/type:soldier:mybattlefield cdaactive
 autoexile=@counterremoved(0/0,1,Time) from(sourcecard) suspended:token(Soldier,Creature Soldier,1/1,white)
 suspend(0)={X}{W}{W}
 text=Benalish Commander's power and toughness are each equal to the number of Soldiers you control. -- Suspend X - {X}{W}{W}. X can't be 0. (Rather than cast this card from your hand, you may pay {X}{W}{W} and exile it with X time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost. It has haste.) -- Whenever a time counter is removed from Benalish Commander while it's exiled, put a 1/1 white Soldier creature token onto the battlefield.
@@ -11580,7 +11580,8 @@ toughness=2
 [/card]
 [card]
 name=Boneyard Wurm
-auto=type:creature:mygraveyard/type:creature:mygraveyard cdaactive
+alias=001100
+anyzone=type:creature:mygraveyard/type:creature:mygraveyard cdaactive
 text=Boneyard Wurm's power and toughness are each equal to the number of creature cards in your graveyard.
 mana={1}{G}
 type=Creature
@@ -12926,7 +12927,7 @@ toughness=4
 [card]
 name=Broodstar
 abilities=affinityartifacts,flying
-auto=type:artifact:mybattlefield/type:artifact:mybattlefield cdaactive
+anyzone=type:artifact:mybattlefield/type:artifact:mybattlefield cdaactive
 text=Affinity for artifacts (This spell costs {1} less to cast for each artifact you control.) -- Flying -- Broodstar's power and toughness are each equal to the number of artifacts you control.
 mana={8}{U}{U}
 type=Creature
@@ -14097,8 +14098,9 @@ type=Sorcery
 [/card]
 [card]
 name=Cantivore
+alias=001100
 abilities=vigilance
-auto=type:enchantment:graveyard/type:enchantment:graveyard cdaactive
+anyzone=type:enchantment:graveyard/type:enchantment:graveyard cdaactive
 text=Vigilance -- Cantivore's power and toughness are each equal to the number of enchantment cards in all graveyards.
 mana={1}{W}{W}
 type=Creature
@@ -18065,8 +18067,9 @@ type=Instant
 [/card]
 [card]
 name=Cognivore
+alias=001100
 abilities=flying
-auto=type:instant:graveyard/type:instant:graveyard cdaactive
+anyzone=type:instant:graveyard/type:instant:graveyard cdaactive
 text=Flying -- Cognivore's power and toughness are each equal to the number of instant cards in all graveyards.
 mana={6}{U}{U}
 type=Creature
@@ -18086,7 +18089,7 @@ toughness=1
 [/card]
 [card]
 name=Coiling Woodworm
-auto=type:forest:battlefield/1 cdaactive
+anyzone=type:forest:battlefield/1 cdaactive
 text=Coiling Woodworm's power is equal to the number of Forests on the battlefield.
 mana={2}{G}
 type=Creature
@@ -20220,7 +20223,7 @@ toughness=4
 [card]
 name=Crowd of Cinders
 abilities=fear
-auto=type:*[black]:myBattlefield/type:*[black]:myBattlefield cdaactive
+anyzone=type:*[black]:myBattlefield/type:*[black]:myBattlefield cdaactive
 text=Fear (This creature can't be blocked except by artifact creatures and/or black creatures.) -- Crowd of Cinders's power and toughness are each equal to the number of black permanents you control.
 mana={3}{B}
 type=Creature
@@ -20455,7 +20458,7 @@ type=Enchantment
 [/card]
 [card]
 name=Crusader of Odric
-auto=type:creature:mybattlefield/type:creature:mybattlefield cdaactive
+anyzone=type:creature:mybattlefield/type:creature:mybattlefield cdaactive
 text=Crusader of Odric's power and toughness are each equal to the number of creatures you control.
 mana={2}{W}
 type=Creature
@@ -21338,7 +21341,7 @@ subtype=Aura
 [/card]
 [card]
 name=Dakkon Blackblade
-auto=type:land:myBattlefield/type:land:myBattlefield cdaactive
+anyzone=type:land:myBattlefield/type:land:myBattlefield cdaactive
 text=Dakkon Blackblade's power and toughness are each equal to the number of lands you control.
 mana={2}{W}{U}{U}{B}
 type=Legendary Creature
@@ -21401,7 +21404,7 @@ toughness=1
 [/card]
 [card]
 name=Dakmor Sorceress
-auto=type:swamp:myBattlefield/4 cdaactive
+anyzone=type:swamp:myBattlefield/4 cdaactive
 text=Dakmor Sorceress's power is equal to the number of Swamps you control.
 mana={5}{B}
 type=Creature
@@ -21917,7 +21920,7 @@ type=Artifact
 [card]
 name=Darksteel Juggernaut
 abilities=mustattack,indestructible
-auto=type:artifact:mybattlefield/type:artifact:mybattlefield cdaactive
+anyzone=type:artifact:mybattlefield/type:artifact:mybattlefield cdaactive
 text=Darksteel Juggernaut's power and toughness are equal to the number of artifacts you control. -- Darksteel Juggernaut is indestructible and attacks each turn if able.
 mana={5}
 type=Artifact Creature
@@ -22113,7 +22116,7 @@ toughness=3
 [/card]
 [card]
 name=Dauntless Dourbark
-auto=pdauntless/pdauntless cdaactive
+anyzone=pdauntless/pdauntless cdaactive
 auto=aslongas(other treefolk|myBattlefield) trample
 text=Dauntless Dourbark's power and toughness are each equal to the number of Forests you control plus the number of Treefolk you control. -- Dauntless Dourbark has trample as long as you control another Treefolk.
 mana={3}{G}
@@ -22257,7 +22260,7 @@ toughness=1
 [card]
 name=Dauthi Warlord
 abilities=shadow
-auto=type:creature[shadow]:battlefield/1 cdaactive
+anyzone=type:creature[shadow]:battlefield/1 cdaactive
 text=Shadow (This creature can block or be blocked by only creatures with shadow.) -- Dauthi Warlord's power is equal to the number of creatures with shadow on the battlefield.
 mana={1}{B}
 type=Creature
@@ -24371,7 +24374,8 @@ text=Destroy target artifact with converted mana cost X. It can't be regenerated
 [/card]
 [card]
 name=Detritivore
-auto=type:land[-basic]:opponentgraveyard/type:land[-basic]:opponentgraveyard cdaactive
+alias=001100
+anyzone=type:land[-basic]:opponentgraveyard/type:land[-basic]:opponentgraveyard cdaactive
 autoexile=@counterremoved(0/0,1,Time) from(sourcecard) suspended:destroy target(land[-basic])
 suspend(0)={X}{3}{R}
 text=Detritivore's power and toughness are each equal to the number of nonbasic land cards in your opponents' graveyards. -- Suspend X - {X}{3}{R}. X can't be 0. (Rather than cast this card from your hand, you may pay {X}{3}{R} and exile it with X time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost. It has haste.) -- Whenever a time counter is removed from Detritivore while it's exiled, destroy target nonbasic land.
@@ -25844,7 +25848,7 @@ type=Artifact
 [card]
 name=Doubtless One
 auto=spiritlink
-auto=type:cleric:battlefield/type:cleric:battlefield cdaactive
+anyzone=type:cleric:battlefield/type:cleric:battlefield cdaactive
 text=Doubtless One's power and toughness are each equal to the number of Clerics on the battlefield. -- Whenever Doubtless One deals damage, you gain that much life.
 mana={3}{W}
 type=Creature
@@ -26976,7 +26980,7 @@ toughness=5
 [card]
 name=Drift of the Dead
 abilities=defender
-auto=type:land[snow]:myBattlefield/type:land[snow]:myBattlefield cdaactive
+anyzone=type:land[snow]:myBattlefield/type:land[snow]:myBattlefield cdaactive
 text=Defender (This creature can't attack.) -- Drift of the Dead's power and toughness are each equal to the number of snow lands you control.
 mana={3}{B}
 type=Creature
@@ -27335,7 +27339,7 @@ toughness=1
 [card]
 name=Drove of Elves
 abilities=opponentshroud
-auto=type:*[green]:myBattlefield/type:*[green]:myBattlefield cdaactive
+anyzone=type:*[green]:myBattlefield/type:*[green]:myBattlefield cdaactive
 text=Drove of Elves's power and toughness are each equal to the number of green permanents you control. -- Drove of Elves can't be the target of spells or abilities your opponents control.
 mana={3}{G}
 type=Creature
@@ -27686,7 +27690,7 @@ toughness=1
 [card]
 name=Dungrove Elder
 abilities=opponentshroud
-auto=type:forest:mybattlefield/type:forest:mybattlefield cdaactive
+anyzone=type:forest:mybattlefield/type:forest:mybattlefield cdaactive
 text=Hexproof (This creature can't be the target of spells or abilities your opponents control.) -- Dungrove Elder's power and toughness are each equal to the number of Forests you control.
 mana={2}{G}
 type=Creature
@@ -29051,7 +29055,7 @@ type=Sorcery
 name=Elephant T1
 type=Creature
 subtype=Elephant
-auto=type:creature:mygraveyard/type:creature:mygraveyard cdaactive
+anyzone=type:creature:mygraveyard/type:creature:mygraveyard cdaactive
 text=This creature's power and toughness are each equal to the number of creature cards in its controller's graveyard.
 power=*
 toughness=*
@@ -30620,7 +30624,7 @@ toughness=2
 [/card]
 [card]
 name=Entropic Specter
-auto=type:*:opponenthand/type:*:opponenthand cdaactive
+anyzone=type:*:opponenthand/type:*:opponenthand cdaactive
 auto=@damageof(player) from(this):ability$!name(discard) target(*|myhand) reject!$ controller
 auto=@damagefoeof(player) from(this):ability$!name(discard) target(*|myhand) reject!$ opponent
 text=Flying -- As Entropic Specter enters the battlefield, choose an opponent. -- Entropic Specter's power and toughness are each equal to the number of cards in the chosen player's hand. -- Whenever Entropic Specter deals damage to a player, that player discards a card.
@@ -32256,7 +32260,7 @@ toughness=1
 [card]
 name=Faerie Swarm
 abilities=flying
-auto=type:*[blue]:myBattlefield/type:*[blue]:myBattlefield cdaactive
+anyzone=type:*[blue]:myBattlefield/type:*[blue]:myBattlefield cdaactive
 text=Flying -- Faerie Swarm's power and toughness are each equal to the number of blue permanents you control.
 mana={3}{U}
 type=Creature
@@ -37804,7 +37808,7 @@ type=Instant
 name=Geist-Honored Monk
 abilities=vigilance
 auto=token(Spirit,Creature Spirit,1/1,white,flying)*2
-auto=type:creature:mybattlefield/type:creature:mybattlefield cdaactive
+anyzone=type:creature:mybattlefield/type:creature:mybattlefield cdaactive
 text=Vigilance -- Geist-Honored Monk's power and toughness are each equal to the number of creatures you control. -- When Geist-Honored Monk enters the battlefield, put two 1/1 white Spirit creature tokens with flying onto the battlefield.
 mana={3}{W}{W}
 type=Creature
@@ -41603,7 +41607,7 @@ toughness=3
 [card]
 name=Gravecrawler
 abilities=cantblock
-autograveyard=aslongas(zombie|myBattlefield) transforms((,newability[CanPlayFromGraveyard]))
+autograveyard=aslongas(zombie|myBattlefield) CanPlayFromGraveyard
 text=Gravecrawler can't block. -- You may cast Gravecrawler from your graveyard as long as you control a Zombie.
 mana={B}
 type=Creature
@@ -44933,7 +44937,7 @@ subtype=Arcane
 [card]
 name=Heedless One
 abilities=trample
-auto=type:elf:battlefield/type:elf:battlefield cdaactive
+anyzone=type:elf:battlefield/type:elf:battlefield cdaactive
 text=Trample -- Heedless One's power and toughness are each equal to the number of Elves on the battlefield.
 mana={3}{G}
 type=Creature
@@ -50066,7 +50070,7 @@ toughness=4
 [/card]
 [card]
 name=Jagged-Scar Archers
-auto=type:elf:myBattlefield/type:elf:myBattlefield cdaactive
+anyzone=type:elf:myBattlefield/type:elf:myBattlefield cdaactive
 auto={T}:target(creature[flying]) dynamicability<!powerstrike!>
 text=Jagged-Scar Archers's power and toughness are each equal to the number of Elves you control. -- {T}: Jagged-Scar Archers deals damage equal to its power to target creature with flying.
 mana={1}{G}{G}
@@ -51346,7 +51350,7 @@ abilities=defender
 [/card]
 [card]
 name=Kagemaro, First to Suffer
-auto=type:*:myhand/type:*:myhand cdaactive
+anyzone=type:*:myhand/type:*:myhand cdaactive
 auto={B}{S}:-type:*:myhand/-type:*:myhand all(creature)
 text=Kagemaro, First to Suffer's power and toughness are each equal to the number of cards in your hand. -- {B}, Sacrifice Kagemaro: All creatures get -X/-X until end of turn, where X is the number of cards in your hand.
 mana={3}{B}{B}
@@ -51417,7 +51421,7 @@ toughness=3
 [/card]
 [card]
 name=Kalonian Twingrove
-auto=type:forest:mybattlefield/type:forest:mybattlefield cdaactive
+anyzone=type:forest:mybattlefield/type:forest:mybattlefield cdaactive
 auto=token(-383290)
 text=Kalonian Twingrove's power and toughness are each equal to the number of Forests you control. -- When Kalonian Twingrove enters the battlefield, put a green Treefolk Warrior creature token onto the battlefield with "this creature's power and toughness are each equal to the number of forests you control."
 mana={5}{G}
@@ -51428,7 +51432,7 @@ toughness=*
 [/card]
 [card]
 name=Treefolk Warrior
-auto=type:forest:mybattlefield/type:forest:mybattlefield cdaactive
+anyzone=type:forest:mybattlefield/type:forest:mybattlefield cdaactive
 text=This creature's power and toughness are each equal to the number of forests you control.
 color=green
 type=Creature
@@ -52469,7 +52473,7 @@ toughness=1
 [/card]
 [card]
 name=Keldon Warlord
-auto=type:creature[-wall]:myBattlefield/type:creature[-wall]:myBattlefield cdaactive
+anyzone=type:creature[-wall]:myBattlefield/type:creature[-wall]:myBattlefield cdaactive
 text=Keldon Warlord's power and toughness are each equal to the number of non-Wall creatures you control.
 mana={2}{R}{R}
 type=Creature
@@ -53129,7 +53133,7 @@ toughness=2
 [card]
 name=Kithkin Rabble
 abilities=vigilance
-auto=type:*[white]:myBattlefield/type:*[white]:myBattlefield cdaactive
+anyzone=type:*[white]:myBattlefield/type:*[white]:myBattlefield cdaactive
 text=Vigilance -- Kithkin Rabble's power and toughness are each equal to the number of white permanents you control.
 mana={3}{W}
 type=Creature
@@ -53253,7 +53257,7 @@ toughness=1
 [/card]
 [card]
 name=Kiyomaro, First to Stand
-auto=type:*:myhand/type:*:myhand cdaactive
+anyzone=type:*:myhand/type:*:myhand cdaactive
 auto=aslongas(*|myhand) vigilance >3
 auto=@damaged(creature,player) from(this) restriction{type(*|myhand)~morethan~6}:if type(*|myhand)~morethan~6 then life:7 controller
 text=Kiyomaro, First to Stand's power and toughness are each equal to the number of cards in your hand. -- As long as you have four or more cards in hand, Kiyomaro has vigilance. -- Whenever Kiyomaro deals damage, if you have seven or more cards in hand, you gain 7 life.
@@ -53756,7 +53760,7 @@ toughness=1
 [card]
 name=Kolaghan Forerunners
 abilities=trample
-auto=type:creature:mybattlefield/3 cdaactive
+anyzone=type:creature:mybattlefield/3 cdaactive
 other={R}{2} name(Dash)
 auto=if paid(alternative) then transforms((,newability[haste],newability[phaseaction[endofturn sourceinplay] moveto(ownerhand) all(this)])) forever
 text=Trample -- Kolaghan Forerunners's power is equal to the number of creatures you control. -- Dash {2}{R} (You may cast this spell for its dash cost. If you do, it gains haste, and it's returned from the battlefield to its owner's hand at the beginning of the next end step.)
@@ -53990,7 +53994,7 @@ toughness=1
 [card]
 name=Korlash Heir to Blackblade
 auto={discard(korlash heir to blackblade|myhand)}:moveto(mybattlefield) and!(tap)! target(<upto:2>swamp|mylibrary)
-auto=type:swamp:mybattlefield/type:swamp:mybattlefield cdaactive
+anyzone=type:swamp:mybattlefield/type:swamp:mybattlefield cdaactive
 auto={1}{B}:regenerate
 text=Korlash, Heir to Blackblade's power and toughness are each equal to the number of Swamps you control. -- {1}{B}: Regenerate Korlash. -- Grandeur - Discard another card named Korlash, Heir to Blackblade: Search your library for up to two Swamp cards, put them onto the battlefield tapped, then shuffle your library.
 mana={2}{B}{B}
@@ -54444,7 +54448,7 @@ subtype=Aura
 [card]
 name=Krovikan Mist
 abilities=flying
-auto=type:illusion:battlefield/type:illusion:battlefield cdaactive
+anyzone=type:illusion:battlefield/type:illusion:battlefield cdaactive
 text=Flying -- Krovikan Mist's power and toughness are each equal to the number of Illusions on the battlefield.
 mana={1}{U}
 type=Creature
@@ -56072,7 +56076,8 @@ toughness=5
 [/card]
 [card]
 name=Lhurgoyf
-auto=type:creature:graveyard/plusonetype:creature:graveyard cdaactive
+alias=001100
+anyzone=type:creature:graveyard/plusonetype:creature:graveyard cdaactive
 text=Lhurgoyf's power is equal to the number of creature cards in all graveyards and its toughness is equal to that number plus 1.
 mana={2}{G}{G}
 type=Creature
@@ -57452,7 +57457,8 @@ toughness=2
 [/card]
 [card]
 name=Lord of Extinction
-auto=type:*:graveyard/type:*:graveyard cdaactive
+alias=001100
+anyzone=type:*:graveyard/type:*:graveyard cdaactive
 text=Lord of Extinction's power and toughness are each equal to the number of cards in all graveyards.
 mana={3}{B}{G}
 type=Creature
@@ -58816,8 +58822,9 @@ toughness=6
 [/card]
 [card]
 name=Magnivore
+alias=001100
 abilities=haste
-auto=type:sorcery:graveyard/type:sorcery:graveyard cdaactive
+anyzone=type:sorcery:graveyard/type:sorcery:graveyard cdaactive
 text=Haste (This creature can attack the turn it comes under your control.) -- Magnivore's power and toughness are each equal to the number of sorcery cards in all graveyards.
 mana={2}{R}{R}
 type=Creature
@@ -59639,7 +59646,7 @@ toughness=3
 [/card]
 [card]
 name=Maraxus of Keld
-auto=type:*[-tapped&-enchantment;-tapped&-planeswalker]/type:*[-tapped&-enchantment;-tapped&-planeswalker] cdaactive
+anyzone=type:*[-tapped&-enchantment;-tapped&-planeswalker]/type:*[-tapped&-enchantment;-tapped&-planeswalker] cdaactive
 text=Maraxus of Keld's power and toughness are each equal to the number of untapped artifacts, creatures, and lands you control.
 mana={4}{R}{R}
 type=Legendary Creature
@@ -60025,7 +60032,7 @@ toughness=4
 [/card]
 [card]
 name=Maro
-auto=type:*:myhand/type:*:myhand cdaactive
+anyzone=type:*:myhand/type:*:myhand cdaactive
 text=Maro's power and toughness are each equal to the number of cards in your hand.
 mana={2}{G}{G}
 type=Creature
@@ -60558,7 +60565,7 @@ toughness=2
 [card]
 name=Master of Etherium
 auto=lord(other creature[artifact]|mybattlefield) 1/1
-auto=type:artifact:mybattlefield/type:artifact:mybattlefield cdaactive
+anyzone=type:artifact:mybattlefield/type:artifact:mybattlefield cdaactive
 text=Master of Etherium's power and toughness are each equal to the number of artifacts you control. -- Other artifact creatures you control get +1/+1.
 mana={2}{U}
 type=Artifact Creature
@@ -60663,7 +60670,7 @@ toughness=4
 [/card]
 [card]
 name=Masumaro, First to Live
-auto=twicetype:*:myhand/twicetype:*:myhand cdaactive
+anyzone=twicetype:*:myhand/twicetype:*:myhand cdaactive
 text=Masumaro, First to Live's power and toughness are each equal to twice the number of cards in your hand.
 mana={3}{G}{G}{G}
 type=Legendary Creature
@@ -60673,7 +60680,7 @@ toughness=*
 [/card]
 [card]
 name=Matca Rioters
-auto=pbasiclandtypes/pbasiclandtypes cdaactive
+anyzone=pbasiclandtypes/pbasiclandtypes cdaactive
 text=Domain - Matca Rioters's power and toughness are each equal to the number of basic land types among lands you control.
 mana={2}{G}
 type=Creature
@@ -63699,7 +63706,7 @@ toughness=8
 [card]
 name=Molimo, Maro-Sorcerer
 abilities=trample
-auto=type:land:myBattlefield/type:land:myBattlefield cdaactive
+anyzone=type:land:myBattlefield/type:land:myBattlefield cdaactive
 text=Trample (If this creature would deal enough damage to its blockers to destroy them, you may have it deal the rest of its damage to defending player or planeswalker.) -- Molimo, Maro-Sorcerer's power and toughness are each equal to the number of lands you control.
 mana={4}{G}{G}{G}
 type=Legendary Creature
@@ -64584,8 +64591,9 @@ toughness=2
 [/card]
 [card]
 name=Mortivore
+alias=001100
 auto={B}:regenerate
-auto=type:creature:graveyard/type:creature:graveyard cdaactive
+anyzone=type:creature:graveyard/type:creature:graveyard cdaactive
 text=Mortivore's power and toughness are each equal to the number of creature cards in all graveyards. -- {B}: Regenerate Mortivore. (The next time this creature would be destroyed this turn, it isn't. Instead tap it, remove all damage from it, and remove it from combat.)
 mana={2}{B}{B}
 type=Creature
@@ -64980,7 +64988,7 @@ toughness=2
 [card]
 name=Multani, Maro-Sorcerer
 abilities=shroud
-auto=type:*:hand/type:*:hand cdaactive
+anyzone=type:*:hand/type:*:hand cdaactive
 text=Shroud (This permanent can't be the target of spells or abilities.) -- Multani's power and toughness are each equal to the total number of cards in all players' hands.
 mana={4}{G}{G}
 type=Legendary Creature
@@ -65793,7 +65801,7 @@ subtype=Shapeshifter
 name=Nameless One
 facedown={3}
 autofacedown={2}{U}:morph
-auto=type:wizard:battlefield/type:wizard:battlefield cdaactive
+anyzone=type:wizard:battlefield/type:wizard:battlefield cdaactive
 text=Nameless One's power and toughness are each equal to the number of Wizards on the battlefield. -- Morph {2}{U} (You may cast this face down as a 2/2 creature for {3}. Turn it face up any time for its morph cost.)
 mana={3}{U}
 type=Creature
@@ -67248,7 +67256,7 @@ type=Sorcery
 [card]
 name=Nightmare
 abilities=flying
-auto=type:swamp:mybattlefield/type:swamp:mybattlefield cdaactive
+anyzone=type:swamp:mybattlefield/type:swamp:mybattlefield cdaactive
 text=Flying -- Nightmare's power and toughness are each equal to the number of Swamps you control.
 mana={5}{B}
 type=Creature
@@ -67366,7 +67374,7 @@ toughness=4
 [/card]
 [card]
 name=Nightstalker Engine
-auto=type:creature:myGraveyard/3 cdaactive
+anyzone=type:creature:myGraveyard/3 cdaactive
 text=Nightstalker Engine's power is equal to the number of creature cards in your graveyard.
 mana={4}{B}
 type=Creature
@@ -70197,7 +70205,7 @@ toughness=2
 [/card]
 [card]
 name=Overbeing of Myth
-auto=type:*:myhand/type:*:myhand cdaactive
+anyzone=type:*:myhand/type:*:myhand cdaactive
 auto=@each my draw:draw:1
 text=Overbeing of Myth's power and toughness are each equal to the number of cards in your hand. -- At the beginning of your draw step, draw an additional card.
 mana={GU}{GU}{GU}{GU}{GU}
@@ -70450,7 +70458,7 @@ type=Sorcery
 [/card]
 [card]
 name=Pack Rat
-auto=type:rat:mybattlefield/type:rat:mybattlefield cdaactive
+anyzone=type:rat:mybattlefield/type:rat:mybattlefield cdaactive
 auto={2}{B}{discard(*|myhand)}:token(253624)
 text=Pack Rat's power and toughness are each equal to the number of Rats you control. -- {2}{B}, Discard a card: Put a token onto the battlefield that's a copy of Pack Rat.
 mana={1}{B}
@@ -70694,7 +70702,7 @@ toughness=4
 [/card]
 [card]
 name=Pallimud
-auto=type:land[tapped]:opponentbattlefield/3 cdaactive
+anyzone=type:land[tapped]:opponentbattlefield/3 cdaactive
 text=As Pallimud enters the battlefield, choose an opponent. -- Pallimud's power is equal to the number of tapped lands the chosen player controls.
 mana={2}{R}
 type=Creature
@@ -71900,7 +71908,7 @@ toughness=6
 [/card]
 [card]
 name=Pestilence Rats
-auto=othertype:rat:battlefield/3 cdaactive
+anyzone=othertype:rat:battlefield/3 cdaactive
 text=Pestilence Rats's power is equal to the number of other Rats on the battlefield. (For example, as long as there are two other Rats on the battlefield, Pestilence Rats's power and toughness are 2/3.)
 mana={2}{B}
 type=Creature
@@ -73404,7 +73412,7 @@ toughness=1
 [/card]
 [card]
 name=Plague Rats
-auto=allmyname/allmyname cdaactive
+anyzone=allmyname/allmyname cdaactive
 text=Plague Rats's power and toughness are each equal to the number of creatures named Plague Rats on the battlefield.
 mana={2}{B}
 type=Creature
@@ -74639,7 +74647,7 @@ subtype=Aura
 [card]
 name=Primalcrux
 abilities=trample
-auto=type:manag:mybattlefield/type:manag:mybattlefield cdaactive
+anyzone=type:manag:mybattlefield/type:manag:mybattlefield cdaactive
 text=Trample -- Chroma - Primalcrux's power and toughness are each equal to the number of green mana symbols in the mana costs of permanents you control.
 mana={G}{G}{G}{G}{G}{G}
 type=Creature
@@ -75329,7 +75337,7 @@ type=Enchantment
 [/card]
 [card]
 name=Psychosis Crawler
-auto=type:*:myhand/type:*:myhand cdaactive
+anyzone=type:*:myhand/type:*:myhand cdaactive
 auto=@drawof(player):life:-1 opponent
 text=Psychosis Crawler's power and toughness are each equal to the number of cards in your hand. - Whenever you draw a card, each opponent loses 1 life.
 mana={5}
@@ -78392,7 +78400,7 @@ toughness=2
 [card]
 name=Reckless One
 abilities=haste
-auto=type:goblin:battlefield/type:goblin:battlefield cdaactive
+anyzone=type:goblin:battlefield/type:goblin:battlefield cdaactive
 text=Haste -- Reckless One's power and toughness are each equal to the number of Goblins on the battlefield.
 mana={3}{R}
 type=Creature
@@ -79780,8 +79788,9 @@ type=Artifact
 [/card]
 [card]
 name=Revenant
+alias=001100
 abilities=flying
-auto=type:creature:mygraveyard/type:creature:mygraveyard cdaactive
+anyzone=type:creature:mygraveyard/type:creature:mygraveyard cdaactive
 text=Flying -- Revenant's power and toughness are each equal to the number of creature cards in your graveyard.
 mana={4}{B}
 type=Creature
@@ -81838,7 +81847,7 @@ toughness=3
 [/card]
 [card]
 name=Rubblehulk
-auto=type:land:mybattlefield/type:land:mybattlefield cdaactive
+anyzone=type:land:mybattlefield/type:land:mybattlefield cdaactive
 autohand={1}{R}{G}{discard}:name(bloodrush) target(creature[attacking]) type:land:mybattlefield/type:land:mybattlefield ueot
 text=Rubblehulk's power and toughness are each equal to the number of lands you control. -- Bloodrush — {1}{R}{G}, Discard Rubblehulk: Target attacking creature gets +X/+X until end of turn, where X is the number of lands you control.
 mana={4}{R}{G}
@@ -82362,7 +82371,7 @@ type=Artifact
 [card]
 name=Rusting Golem
 auto=fading:5
-auto=counter{0%0.1.Fade}/counter{0%0.1.Fade} cdaactive
+anyzone=counter{0%0.1.Fade}/counter{0%0.1.Fade} cdaactive
 text=Fading 5 (This creature enters the battlefield with five fade counters on it. At the beginning of your upkeep, remove a fade counter from it. If you can't, sacrifice it.) -- Rusting Golem's power and toughness are each equal to the number of fade counters on it.
 mana={4}
 type=Artifact Creature
@@ -84429,7 +84438,7 @@ toughness=1
 [/card]
 [card]
 name=Scion of the Wild
-auto=type:creature:myBattlefield/type:creature:myBattlefield cdaactive
+anyzone=type:creature:myBattlefield/type:creature:myBattlefield cdaactive
 text=Scion of the Wild's power and toughness are each equal to the number of creatures you control.
 mana={1}{G}{G}
 type=Creature
@@ -86546,7 +86555,7 @@ toughness=3
 name=Serpent of the Endless Sea
 abilities=cantattack
 auto=aslongas(island|opponentBattlefield) -cantattack
-auto=type:island:myBattlefield/type:island:myBattlefield cdaactive
+anyzone=type:island:myBattlefield/type:island:myBattlefield cdaactive
 text=Serpent of the Endless Sea's power and toughness are each equal to the number of Islands you control. -- Serpent of the Endless Sea can't attack unless defending player controls an Island.
 mana={4}{U}
 type=Creature
@@ -86619,7 +86628,7 @@ toughness=1
 [/card]
 [card]
 name=Serra Avatar
-auto=lifetotal/lifetotal cdaactive
+anyzone=lifetotal/lifetotal cdaactive
 autograveyard=moveTo(ownerlibrary) && shuffle
 text=Serra Avatar's power and toughness are each equal to your life total. -- When Serra Avatar is put into a graveyard from anywhere, shuffle it into its owner's library.
 mana={4}{W}{W}{W}
@@ -89377,7 +89386,7 @@ toughness=5
 [/card]
 [card]
 name=Sima Yi, Wei Field Marshal
-auto=type:swamp:myBattlefield/4 cdaactive
+anyzone=type:swamp:myBattlefield/4 cdaactive
 text=Sima Yi, Wei Field Marshal's power is equal to the number of Swamps you control.
 mana={5}{B}
 type=Legendary Creature
@@ -90842,7 +90851,7 @@ toughness=3
 [card]
 name=Skyshroud War Beast
 abilities=trample
-auto=type:land[-basic]:opponentBattlefield/type:land[-basic]:opponentBattlefield cdaactive
+anyzone=type:land[-basic]:opponentBattlefield/type:land[-basic]:opponentBattlefield cdaactive
 text=Trample -- As Skyshroud War Beast enters the battlefield, choose an opponent. -- Skyshroud War Beast's power and toughness are each equal to the number of nonbasic lands the chosen player controls.
 mana={1}{G}
 type=Creature
@@ -90926,7 +90935,8 @@ toughness=3
 [/card]
 [card]
 name=Slag Fiend
-auto=type:artifact:graveyard/type:artifact:graveyard cdaactive
+alias=001100
+anyzone=type:artifact:graveyard/type:artifact:graveyard cdaactive
 text=Slag Fiend's power and toughness are each equal to the number of artifact cards in all graveyards.
 mana={R}
 type=Creature
@@ -92448,7 +92458,7 @@ toughness=1
 [card]
 name=Soramaro, First to Dream
 abilities=flying
-auto=type:*:myhand/type:*:myhand cdaactive
+anyzone=type:*:myhand/type:*:myhand cdaactive
 auto={4}{H(land|myBattlefield)}:draw:1
 text=Flying -- Soramaro, First to Dream's power and toughness are each equal to the number of cards in your hand. -- {4}, Return a land you control to its owner's hand: Draw a card.
 mana={4}{U}{U}
@@ -93035,7 +93045,7 @@ toughness=2
 [/card]
 [card]
 name=Soulless One
-auto=pgbzombie/pgbzombie cdaactive
+anyzone=pgbzombie/pgbzombie cdaactive
 text=Soulless One's power and toughness are each equal to the number of Zombies on the battlefield plus the number of Zombie cards in all graveyards.
 mana={3}{B}
 type=Creature
@@ -93092,7 +93102,7 @@ type=Instant
 [card]
 name=Soulsurge Elemental
 abilities=first strike
-auto=type:creature:myBattlefield/1 cdaactive
+anyzone=type:creature:myBattlefield/1 cdaactive
 text=First strike -- Soulsurge Elemental's power is equal to the number of creatures you control.
 mana={3}{R}
 type=Creature
@@ -93637,7 +93647,7 @@ toughness=1
 [card]
 name=Spellheart Chimera
 abilities=flying,trample
-auto=pginstantsorcery/3 cdaactive
+anyzone=pginstantsorcery/3 cdaactive
 text=Flying. -- Trample. -- Spellheart Chimera's power is equal to the number of instant and sorcery cards in your graveyard. 
 mana={1}{U}{R}
 type=Creature
@@ -94631,8 +94641,9 @@ color=green
 [/card]
 [card]
 name=Splinterfright
+alias=001100
 abilities=trample
-auto=type:creature:mygraveyard/type:creature:mygraveyard cdaactive
+anyzone=type:creature:mygraveyard/type:creature:mygraveyard cdaactive
 auto=@each my upkeep:deplete:2 controller
 text=Trample -- Splinterfright's power and toughness are each equal to the number of creature cards in your graveyard -- At the beginning of your upkeep, put the top two cards of your library into your graveyard.
 mana={2}{G}
@@ -95035,7 +95046,7 @@ type=Enchantment
 [/card]
 [card]
 name=Squelching Leeches
-auto=type:swamp:myBattlefield/type:swamp:myBattlefield cdaactive
+anyzone=type:swamp:myBattlefield/type:swamp:myBattlefield cdaactive
 text=Squelching Leeches's power and toughness are each equal to the number of Swamps you control.
 mana={2}{B}{B}
 type=Creature
@@ -97237,7 +97248,7 @@ toughness=6
 [card]
 name=Sturmgeist
 abilities=flying
-auto=type:*:myhand/type:*:myhand cdaactive
+anyzone=type:*:myhand/type:*:myhand cdaactive
 auto=@combatdamaged(player) from(this):draw:1 controller
 text=Flying -- Sturmgeist's power and toughness are each equal to the number of cards in your hand. -- Whenever Sturmgeist deals combat damage to a player, draw a card.
 mana={3}{U}{U}
@@ -98406,7 +98417,7 @@ toughness=0
 [/card]
 [card]
 name=Swarm of Rats
-auto=type:rat:mybattlefield/1 cdaactive
+anyzone=type:rat:mybattlefield/1 cdaactive
 text=Swarm of Rats's power is equal to the number of Rats you control.
 mana={1}{B}
 type=Creature
@@ -98894,7 +98905,7 @@ type=Sorcery
 [/card]
 [card]
 name=Sylvan Yeti
-auto=type:*:myhand/4 cdaactive
+anyzone=type:*:myhand/4 cdaactive
 text=Sylvan Yeti's power is equal to the number of cards in your hand.
 mana={2}{G}{G}
 type=Creature
@@ -99087,11 +99098,10 @@ text=Syphon Soul deals 2 damage to each other player. You gain life equal to the
 mana={2}{B}
 type=Sorcery
 [/card]
-#workaround szadek.
 [card]
 name=Szadek, Lord of Secrets
+alias=89092
 abilities=flying
-auto=@combatdamaged(player) from(this):deplete:thatmuch opponent && life:thatmuch opponent && counter(1/1,thatmuch)
 text=Flying -- If Szadek, Lord of Secrets would deal combat damage to a player, instead put that many +1/+1 counters on Szadek and that player puts that many cards from the top of his or her library into his or her graveyard.
 mana={3}{U}{U}{B}{B}
 type=Legendary Creature
@@ -99741,7 +99751,7 @@ toughness=7
 [/card]
 [card]
 name=Tarmogoyf
-auto=gravecardtypes/plusonegravecardtypes cdaactive
+anyzone=gravecardtypes/plusonegravecardtypes cdaactive
 text=Tarmogoyf's power is equal to the number of card types among cards in all graveyards and its toughness is equal to that number plus 1. (The card types are artifact, creature, enchantment, instant, land, planeswalker, sorcery, and tribal.)
 mana={1}{G}
 type=Creature
@@ -100774,8 +100784,9 @@ type=Artifact
 [/card]
 [card]
 name=Terravore
+alias=001100
 abilities=trample
-auto=type:land:graveyard/type:land:graveyard cdaactive
+anyzone=type:land:graveyard/type:land:graveyard cdaactive
 text=Trample -- Terravore's power and toughness are each equal to the number of land cards in all graveyards.
 mana={1}{G}{G}
 type=Creature
@@ -100970,6 +100981,18 @@ text=Draw two cards, then proliferate.
 color=blue
 mana={3}{p(U)}
 type=Sorcery
+[/card]
+[card]
+name=Thada Adel, Acquisitor
+abilities=islandwalk
+auto=@combatdamagefoeof(player) from(this):name(exile artifact) notatarget(artifact|opponentlibrary) moveto(myexile) and!( transforms((,newability[canplayfromexile],newability[phaseactionmulti[endofturn once] moveto(ownerexile) all(this|exile)])) ueot)!
+auto=@combatdamageof(player) from(this):name(exile artifact) notatarget(artifact|mylibrary) moveto(myexile) and!( transforms((,newability[canplayfromexile],newability[phaseactionmulti[endofturn once] moveto(ownerexile) all(this|exile)])) ueot)!
+text=Islandwalk -- Whenever Thada Adel, Acquisitor deals combat damage to a player, search that player's library for an artifact card and exile it. Then that player shuffles his or her library. Until end of turn, you may play that card.
+mana={1}{U}{U}
+type=Legendary Creature
+subtype=Merfolk Rogue
+power=2
+toughness=2
 [/card]
 [card]
 name=Thalakos Deceiver
@@ -102682,7 +102705,7 @@ toughness=5
 [card]
 name=Tidewalker
 auto=foreach(island|myBattlefield) counter(0/0,1,Time) oneshot
-auto=counter{0%0.1.Time}/counter{0%0.1.Time} cdaactive
+anyzone=counter{0%0.1.Time}/counter{0%0.1.Time} cdaactive
 auto=vanishing:0
 text=Tidewalker enters the battlefield with a time counter on it for each Island you control. -- Vanishing (At the beginning of your upkeep, remove a time counter from this permanent. When the last is removed, sacrifice it.) -- Tidewalker's power and toughness are each equal to the number of time counters on it.
 mana={2}{U}
@@ -105849,7 +105872,7 @@ toughness=2
 [/card]
 [card]
 name=Uktabi Wildcats
-auto=type:forest:mybattlefield/type:forest:mybattlefield cdaactive
+anyzone=type:forest:mybattlefield/type:forest:mybattlefield cdaactive
 auto={G}{S(forest|myBattlefield)}:regenerate
 text=Uktabi Wildcats's power and toughness are each equal to the number of Forests you control. -- {G}, Sacrifice a Forest: Regenerate Uktabi Wildcats.
 mana={4}{G}
@@ -105987,7 +106010,8 @@ type=Artifact
 [/card]
 [card]
 name=Umbra Stalker
-auto=type:manab:mygraveyard/type:manab:mygraveyard cdaactive
+alias=001100
+anyzone=type:manab:mygraveyard/type:manab:mygraveyard cdaactive
 text=Chroma - Umbra Stalker's power and toughness are each equal to the number of black mana symbols in the mana costs of cards in your graveyard.
 mana={4}{B}{B}{B}
 type=Creature
@@ -106103,6 +106127,17 @@ text=Enchant nonbasic land -- When enchanted land becomes tapped, destroy it.
 mana={1}{R}
 type=Enchantment
 subtype=Aura
+[/card]
+[card]
+name=Undead Alchemist
+auto=lord(zombie|mybattlefield) libraryeater
+auto=@movedTo(creature|opponentgraveyard) from(opponentlibrary):all(trigger[to]) moveto(exile) and!(token(Zombie,Creature Zombie,2/2,black) controller)!
+text=If a Zombie you control would deal combat damage to a player, instead that player puts that many cards from the top of his or her library into his or her graveyard. -- Whenever a creature card is put into an opponent's graveyard from his or her library, exile that card and put a 2/2 black Zombie creature token onto the battlefield.
+mana={3}{U}
+type=Creature
+subtype=Zombie
+power=4
+toughness=2
 [/card]
 [card]
 name=Undead Executioner
@@ -109886,7 +109921,7 @@ toughness=2
 name=Elemental
 type=Creature
 subtype=Elemental
-auto=type:creature:mybattlefield/type:creature:mybattlefield cdaactive
+anyzone=type:creature:mybattlefield/type:creature:mybattlefield cdaactive
 text=This creature's power and toughness are each equal to the number of creature cards in its controller's battlefield.
 power=*
 toughness=*
@@ -112163,7 +112198,7 @@ toughness=3
 [/card]
 [card]
 name=Wayfaring Temple
-auto=type:creature:mybattlefield/type:creature:mybattlefield cdaactive
+anyzone=type:creature:mybattlefield/type:creature:mybattlefield cdaactive
 auto=@combatdamaged(player) from(this) restriction{type(creature[token]|mybattlefield)~morethan~0}:name(populate) clone notatarget(creature[token]|mybattlefield)
 text=Wayfaring Temple's power and toughness are each equal to the number of creatures you control. -- Whenever Wayfaring Temple deals combat damage to a player, populate. (Put a token onto the battlefield that's a copy of a creature token you control.)
 mana={1}{G}{W}
@@ -113235,7 +113270,7 @@ toughness=4
 [card]
 name=Wilderness Elemental
 abilities=trample
-auto=type:land[-basic]:opponentbattlefield/3 cdaactive
+anyzone=type:land[-basic]:opponentbattlefield/3 cdaactive
 text=Trample -- Wilderness Elemental's power is equal to the number of nonbasic lands your opponents control.
 mana={1}{R}{G}
 type=Creature
@@ -115332,7 +115367,7 @@ type=Legendary Land
 [/card]
 [card]
 name=Yavimaya Kavu
-auto=type:creature[red]:battlefield/type:creature[green]:battlefield cdaactive
+anyzone=type:creature[red]:battlefield/type:creature[green]:battlefield cdaactive
 text=Yavimaya Kavu's power is equal to the number of red creatures on the battlefield. -- Yavimaya Kavu's toughness is equal to the number of green creatures on the battlefield.
 mana={2}{R}{G}
 type=Creature
@@ -115754,7 +115789,7 @@ toughness=3
 [/card]
 [card]
 name=Zendikar Incarnate
-auto=type:land:mybattlefield/4 cdaactive
+anyzone=type:land:mybattlefield/4 cdaactive
 text=Zendikar Incarnate's power is equal to the number of lands you control.
 mana={2}{R}{G}
 type=Creature

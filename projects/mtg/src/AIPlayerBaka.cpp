@@ -627,6 +627,10 @@ int OrderedAIAction::getEfficiency()
     {
         efficiency += 65;
     }
+    else if (dynamic_cast<MTGAlternativeCostRule *>(a))
+    {
+        efficiency += 55;
+    }
     SAFE_DELETE(transAbility);
     return efficiency;
 }
@@ -1726,6 +1730,310 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
     cd.setType(type);
     card = NULL;
     gotPayments = vector<MTGAbility*>();
+    //canplayfromgraveyard
+    while ((card = cd.nextmatch(game->graveyard, card))&& card->has(Constants::CANPLAYFROMGRAVEYARD))
+    {
+        if (!CanHandleCost(card->getManaCost(),card))
+            continue;
+
+        if (card->hasType(Subtypes::TYPE_LAND))
+        {
+            if (game->playRestrictions->canPutIntoZone(card, game->inPlay) == PlayRestriction::CANT_PLAY)
+                continue;
+        }
+        else
+        {
+            if (game->playRestrictions->canPutIntoZone(card, game->stack) == PlayRestriction::CANT_PLAY)
+                continue;
+        }
+
+        if (card->hasType(Subtypes::TYPE_LEGENDARY) && game->inPlay->findByName(card->name))
+            continue;
+
+        if (card->hasType(Subtypes::TYPE_PLANESWALKER) && card->types.size() > 0 && game->inPlay->hasTypeSpecificInt(Subtypes::TYPE_PLANESWALKER,card->types[1]))
+            continue;
+        
+        if(hints && hints->HintSaysItsForCombo(observer,card))
+        {
+            if(hints->canWeCombo(observer,card,this))
+            {
+                AbilityFactory af(observer);
+                int canPlay = af.parseCastRestrictions(card,card->controller(),card->getRestrictions());
+                if(!canPlay)
+                    continue;
+                nextCardToPlay = card;
+                gotPayments.clear();
+                if((!pMana->canAfford(nextCardToPlay->getManaCost()) || nextCardToPlay->getManaCost()->getKicker()))
+                    gotPayments = canPayMana(nextCardToPlay,nextCardToPlay->getManaCost());
+                return activateCombo();
+            }
+            else
+            {
+                nextCardToPlay = NULL;
+                    continue;
+            }
+        }
+        int currentCost = card->getManaCost()->getConvertedCost();
+        int hasX = card->getManaCost()->hasX();
+        gotPayments.clear();
+        if((!pMana->canAfford(card->getManaCost()) || card->getManaCost()->getKicker()))
+            gotPayments = canPayMana(card,card->getManaCost());
+            //for preformence reason we only look for specific mana if the payment couldn't be made with pmana.
+        if ((currentCost > maxCost || hasX) && (gotPayments.size() || pMana->canAfford(card->getManaCost())))
+        {
+            TargetChooserFactory tcf(observer);
+            TargetChooser * tc = tcf.createTargetChooser(card);
+            int shouldPlayPercentage = 0;
+            if (tc)
+            {
+                int hasTarget = chooseTarget(tc,NULL,NULL,true);
+                if(
+                    (tc->maxtargets > hasTarget && tc->maxtargets > 1 && !tc->targetMin && tc->maxtargets != TargetChooser::UNLITMITED_TARGETS) ||//target=<3>creature
+                    (tc->maxtargets == TargetChooser::UNLITMITED_TARGETS && hasTarget < 1)//target=creatures
+                    )
+                    hasTarget = 0;
+                if (!hasTarget)//single target covered here.
+                {
+                    SAFE_DELETE(tc);
+                    continue;
+                }
+                shouldPlayPercentage = 90;
+                if(tc->targetMin && hasTarget < tc->maxtargets)
+                    shouldPlayPercentage = 0;
+                if(tc->maxtargets > 1 && tc->maxtargets != TargetChooser::UNLITMITED_TARGETS && hasTarget <= tc->maxtargets)
+                {
+                    int maxA = hasTarget-tc->maxtargets;
+                    shouldPlayPercentage += (10*maxA);//reduce the chances of playing multitarget if we are not above max targets.
+                }
+                if(tc->maxtargets == TargetChooser::UNLITMITED_TARGETS)
+                {
+                    shouldPlayPercentage = 40 + (10*hasTarget);
+                    int totalCost = pMana->getConvertedCost()-currentCost;
+                    int totalTargets = hasTarget+hasTarget;
+                    if(hasX &&  totalCost <= totalTargets)// {x} spell with unlimited targeting tend to divide damage, we want atleast 1 damage per target before casting.
+                    {
+                        shouldPlayPercentage = 0;
+                    }
+                }
+                SAFE_DELETE(tc);
+            }
+            else
+            {
+                int shouldPlay = effectBadOrGood(card);
+                if (shouldPlay == BAKA_EFFECT_GOOD)
+                {
+                    shouldPlayPercentage = 90;
+                }
+                else if (BAKA_EFFECT_DONTKNOW == shouldPlay)
+                {
+                    //previously shouldPlayPercentage = 80;, I found this a little to high
+                    //for cards which AI had no idea how to use.
+                    shouldPlayPercentage = 60;
+                }
+                else if (card->isLand())
+                {
+                    shouldPlayPercentage = 90;
+                }
+                else if (!card->isLand() && card->has(Constants::PAYZERO))
+                {
+                    shouldPlayPercentage = 70;
+                }
+                else
+                {
+                    // shouldPlay == baka_effect_bad giving it a 1 for odd ball lottery chance.
+                    shouldPlayPercentage = 1;
+                }
+
+            }
+            //Reduce the chances of playing a spell with X cost if available mana is low
+            if (hasX)
+            {
+                int xDiff = pMana->getConvertedCost() - currentCost;
+                if (xDiff < 0)
+                    xDiff = 0;
+                shouldPlayPercentage = shouldPlayPercentage - static_cast<int> ((shouldPlayPercentage * 1.9f) / (1 + xDiff));
+            }
+            if(card->getManaCost() && card->getManaCost()->getKicker() && card->getManaCost()->getKicker()->isMulti)
+            {
+                shouldPlayPercentage = 10* size_t(gotPayments.size())/int(1+(card->getManaCost()->getConvertedCost()+card->getManaCost()->getKicker()->getConvertedCost()));
+                if(shouldPlayPercentage <= 10)
+                    shouldPlayPercentage = shouldPlayPercentage/3;
+            }
+            DebugTrace("Should I play " << (card ? card->name : "Nothing" ) << "?" << endl 
+                <<"shouldPlayPercentage = "<< shouldPlayPercentage);
+            if(card->getRestrictions().size())
+            {
+                AbilityFactory af(observer);
+                int canPlay = af.parseCastRestrictions(card,card->controller(),card->getRestrictions());
+                if(!canPlay)
+                    continue;
+            }
+            int randomChance = randomGenerator.random();
+            int chance = randomChance % 100;
+            if (chance > shouldPlayPercentage)
+                continue;
+            if(shouldPlayPercentage <= 10)
+            {
+                DebugTrace("shouldPlayPercentage was less than 10 this was a lottery roll on RNG");
+            }
+            nextCardToPlay = card;
+            maxCost = currentCost;
+            if (hasX)
+                maxCost = pMana->getConvertedCost();
+        }
+    }
+    //canplayfromexile
+    while ((card = cd.nextmatch(game->exile, card))&& card->has(Constants::CANPLAYFROMEXILE))
+    {
+        if (!CanHandleCost(card->getManaCost(),card))
+            continue;
+
+        if (card->hasType(Subtypes::TYPE_LAND))
+        {
+            if (game->playRestrictions->canPutIntoZone(card, game->inPlay) == PlayRestriction::CANT_PLAY)
+                continue;
+        }
+        else
+        {
+            if (game->playRestrictions->canPutIntoZone(card, game->stack) == PlayRestriction::CANT_PLAY)
+                continue;
+        }
+
+        if (card->hasType(Subtypes::TYPE_LEGENDARY) && game->inPlay->findByName(card->name))
+            continue;
+
+        if (card->hasType(Subtypes::TYPE_PLANESWALKER) && card->types.size() > 0 && game->inPlay->hasTypeSpecificInt(Subtypes::TYPE_PLANESWALKER,card->types[1]))
+            continue;
+        
+        if(hints && hints->HintSaysItsForCombo(observer,card))
+        {
+            if(hints->canWeCombo(observer,card,this))
+            {
+                AbilityFactory af(observer);
+                int canPlay = af.parseCastRestrictions(card,card->controller(),card->getRestrictions());
+                if(!canPlay)
+                    continue;
+                nextCardToPlay = card;
+                gotPayments.clear();
+                if((!pMana->canAfford(nextCardToPlay->getManaCost()) || nextCardToPlay->getManaCost()->getKicker()))
+                    gotPayments = canPayMana(nextCardToPlay,nextCardToPlay->getManaCost());
+                return activateCombo();
+            }
+            else
+            {
+                nextCardToPlay = NULL;
+                    continue;
+            }
+        }
+        int currentCost = card->getManaCost()->getConvertedCost();
+        int hasX = card->getManaCost()->hasX();
+        gotPayments.clear();
+        if((!pMana->canAfford(card->getManaCost()) || card->getManaCost()->getKicker()))
+            gotPayments = canPayMana(card,card->getManaCost());
+            //for preformence reason we only look for specific mana if the payment couldn't be made with pmana.
+        if ((currentCost > maxCost || hasX) && (gotPayments.size() || pMana->canAfford(card->getManaCost())))
+        {
+            TargetChooserFactory tcf(observer);
+            TargetChooser * tc = tcf.createTargetChooser(card);
+            int shouldPlayPercentage = 0;
+            if (tc)
+            {
+                int hasTarget = chooseTarget(tc,NULL,NULL,true);
+                if(
+                    (tc->maxtargets > hasTarget && tc->maxtargets > 1 && !tc->targetMin && tc->maxtargets != TargetChooser::UNLITMITED_TARGETS) ||//target=<3>creature
+                    (tc->maxtargets == TargetChooser::UNLITMITED_TARGETS && hasTarget < 1)//target=creatures
+                    )
+                    hasTarget = 0;
+                if (!hasTarget)//single target covered here.
+                {
+                    SAFE_DELETE(tc);
+                    continue;
+                }
+                shouldPlayPercentage = 90;
+                if(tc->targetMin && hasTarget < tc->maxtargets)
+                    shouldPlayPercentage = 0;
+                if(tc->maxtargets > 1 && tc->maxtargets != TargetChooser::UNLITMITED_TARGETS && hasTarget <= tc->maxtargets)
+                {
+                    int maxA = hasTarget-tc->maxtargets;
+                    shouldPlayPercentage += (10*maxA);//reduce the chances of playing multitarget if we are not above max targets.
+                }
+                if(tc->maxtargets == TargetChooser::UNLITMITED_TARGETS)
+                {
+                    shouldPlayPercentage = 40 + (10*hasTarget);
+                    int totalCost = pMana->getConvertedCost()-currentCost;
+                    int totalTargets = hasTarget+hasTarget;
+                    if(hasX &&  totalCost <= totalTargets)// {x} spell with unlimited targeting tend to divide damage, we want atleast 1 damage per target before casting.
+                    {
+                        shouldPlayPercentage = 0;
+                    }
+                }
+                SAFE_DELETE(tc);
+            }
+            else
+            {
+                int shouldPlay = effectBadOrGood(card);
+                if (shouldPlay == BAKA_EFFECT_GOOD)
+                {
+                    shouldPlayPercentage = 90;
+                }
+                else if (BAKA_EFFECT_DONTKNOW == shouldPlay)
+                {
+                    //previously shouldPlayPercentage = 80;, I found this a little to high
+                    //for cards which AI had no idea how to use.
+                    shouldPlayPercentage = 60;
+                }
+                else if (card->isLand())
+                {
+                    shouldPlayPercentage = 90;
+                }
+                else if (!card->isLand() && card->has(Constants::PAYZERO))
+                {
+                    shouldPlayPercentage = 70;
+                }
+                else
+                {
+                    // shouldPlay == baka_effect_bad giving it a 1 for odd ball lottery chance.
+                    shouldPlayPercentage = 1;
+                }
+
+            }
+            //Reduce the chances of playing a spell with X cost if available mana is low
+            if (hasX)
+            {
+                int xDiff = pMana->getConvertedCost() - currentCost;
+                if (xDiff < 0)
+                    xDiff = 0;
+                shouldPlayPercentage = shouldPlayPercentage - static_cast<int> ((shouldPlayPercentage * 1.9f) / (1 + xDiff));
+            }
+            if(card->getManaCost() && card->getManaCost()->getKicker() && card->getManaCost()->getKicker()->isMulti)
+            {
+                shouldPlayPercentage = 10* size_t(gotPayments.size())/int(1+(card->getManaCost()->getConvertedCost()+card->getManaCost()->getKicker()->getConvertedCost()));
+                if(shouldPlayPercentage <= 10)
+                    shouldPlayPercentage = shouldPlayPercentage/3;
+            }
+            DebugTrace("Should I play " << (card ? card->name : "Nothing" ) << "?" << endl 
+                <<"shouldPlayPercentage = "<< shouldPlayPercentage);
+            if(card->getRestrictions().size())
+            {
+                AbilityFactory af(observer);
+                int canPlay = af.parseCastRestrictions(card,card->controller(),card->getRestrictions());
+                if(!canPlay)
+                    continue;
+            }
+            int randomChance = randomGenerator.random();
+            int chance = randomChance % 100;
+            if (chance > shouldPlayPercentage)
+                continue;
+            if(shouldPlayPercentage <= 10)
+            {
+                DebugTrace("shouldPlayPercentage was less than 10 this was a lottery roll on RNG");
+            }
+            nextCardToPlay = card;
+            maxCost = currentCost;
+            if (hasX)
+                maxCost = pMana->getConvertedCost();
+        }
+    }
     while ((card = cd.nextmatch(game->hand, card)))
     {
         if (!CanHandleCost(card->getManaCost(),card))
@@ -1828,6 +2136,10 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
                 else if (card->isLand())
                 {
                     shouldPlayPercentage = 90;
+                }
+                else if (!card->isLand() && card->has(Constants::PAYZERO))
+                {
+                    shouldPlayPercentage = 70;
                 }
                 else
                 {
@@ -2109,6 +2421,56 @@ int AIPlayerBaka::computeActions()
                             nextCardToPlay = NULL;
                         count++;
                     }
+
+                    if(nextCardToPlay == NULL)//check if there is a free card to play, play it....
+                    {//TODO: add potential mana if we can pay if there is a cost increaser in play
+                        CardDescriptor cd;
+                        if (game->hand->hasAbility(Constants::PAYZERO))
+                        {
+                            //Attempt to put free cards into play
+                            cd.init();
+                            cd.SetExclusionColor(Constants::MTG_COLOR_LAND);
+                            MTGCardInstance *freecard = cd.match(game->hand);
+                            int canCastCard = game->playRestrictions->canPutIntoZone(freecard, game->inPlay);
+                            if (freecard && (canCastCard == PlayRestriction::CAN_PLAY) && freecard->has(Constants::PAYZERO) && (freecard->getIncreasedManaCost()->getConvertedCost() < 1))
+                            {
+                                MTGAbility * castFreeCard = observer->mLayers->actionLayer()->getAbility(MTGAbility::PAYZERO_COST);
+                                AIAction * aa = NEW AIAction(this, castFreeCard, freecard); //TODO putinplay action
+                                clickstream.push(aa);
+                                break;
+                            }
+                        }
+                        if (game->graveyard->hasAbility(Constants::PAYZERO) && game->graveyard->hasAbility(Constants::CANPLAYFROMGRAVEYARD))
+                        {
+                            //Attempt to put free cards into play
+                            cd.init();
+                            cd.SetExclusionColor(Constants::MTG_COLOR_LAND);
+                            MTGCardInstance *freecard = cd.match(game->graveyard);
+                            int canCastCard = game->playRestrictions->canPutIntoZone(freecard, game->inPlay);
+                            if (freecard && (canCastCard == PlayRestriction::CAN_PLAY) && freecard->has(Constants::PAYZERO) && freecard->has(Constants::CANPLAYFROMGRAVEYARD) && (freecard->getIncreasedManaCost()->getConvertedCost() < 1) && (freecard->alias != 001100))
+                            {
+                                MTGAbility * castFreeCard = observer->mLayers->actionLayer()->getAbility(MTGAbility::PAYZERO_COST);
+                                AIAction * aa = NEW AIAction(this, castFreeCard, freecard); //TODO putinplay action
+                                clickstream.push(aa);
+                                break;
+                            }
+                        }
+                        if (game->exile->hasAbility(Constants::PAYZERO) && game->exile->hasAbility(Constants::CANPLAYFROMEXILE))
+                        {
+                            //Attempt to put free cards into play
+                            cd.init();
+                            cd.SetExclusionColor(Constants::MTG_COLOR_LAND);
+                            MTGCardInstance *freecard = cd.match(game->exile);
+                            int canCastCard = game->playRestrictions->canPutIntoZone(freecard, game->inPlay);
+                            if (freecard && (canCastCard == PlayRestriction::CAN_PLAY) && freecard->has(Constants::PAYZERO) && freecard->has(Constants::CANPLAYFROMEXILE) && (freecard->getIncreasedManaCost()->getConvertedCost() < 1) && (freecard->alias != 001100))
+                            {
+                                MTGAbility * castFreeCard = observer->mLayers->actionLayer()->getAbility(MTGAbility::PAYZERO_COST);
+                                AIAction * aa = NEW AIAction(this, castFreeCard, freecard); //TODO putinplay action
+                                clickstream.push(aa);
+                                break;
+                            }
+                        }
+                    }//end
                 }
 
                 SAFE_DELETE(currentMana);

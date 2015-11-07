@@ -284,8 +284,10 @@ int MTGPutInPlayRule::isReactingToClick(MTGCardInstance * card, ManaCost *)
 {
     int cardsinhand = game->players[0]->game->hand->nb_cards;
     Player * player = game->currentlyActing();
-    if (!player->game->hand->hasCard(card))
-        return 0;
+    if (!player->game->hand->hasCard(card) && !player->game->graveyard->hasCard(card) && !player->game->exile->hasCard(card))
+ 		return 0;
+	if ((player->game->graveyard->hasCard(card) && !card->has(Constants::CANPLAYFROMGRAVEYARD)) || (player->game->exile->hasCard(card) && !card->has(Constants::CANPLAYFROMEXILE)))
+ 		return 0;
     if ((game->turn < 1) && (cardsinhand != 0) && (card->basicAbilities[(int)Constants::LEYLINE])
         && game->getCurrentGamePhase() == MTG_PHASE_FIRSTMAIN
         && game->players[0]->game->graveyard->nb_cards == 0
@@ -295,7 +297,7 @@ int MTGPutInPlayRule::isReactingToClick(MTGCardInstance * card, ManaCost *)
 
         if (card->basicAbilities[(int)Constants::LEYLINE])
         {
-            MTGCardInstance * copy = player->game->putInZone(card, player->game->hand, player->game->temp);
+            MTGCardInstance * copy = player->game->putInZone(card, card->currentZone, player->game->temp);
             Spell * spell = NEW Spell(game, copy);
             spell->resolve();
             delete spell;
@@ -412,7 +414,7 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card)
     delete previousManaPool;
     if (card->isLand())
     {
-        MTGCardInstance * copy = player->game->putInZone(card, player->game->hand, player->game->temp);
+        MTGCardInstance * copy = player->game->putInZone(card, card->currentZone, player->game->temp);
         Spell * spell = NEW Spell(game, 0,copy,NULL,NULL, payResult);
         spell->resolve();
         delete spellCost;
@@ -421,7 +423,7 @@ int MTGPutInPlayRule::reactToClick(MTGCardInstance * card)
     else
     {
         Spell * spell = NULL;
-        MTGCardInstance * copy = player->game->putInZone(card, player->game->hand, player->game->stack);
+        MTGCardInstance * copy = player->game->putInZone(card, card->currentZone, player->game->stack);
         if (game->targetChooser)
         {
             spell = game->mLayers->stackLayer()->addSpell(copy, game->targetChooser, spellCost, payResult, 0);
@@ -475,8 +477,10 @@ int MTGKickerRule::isReactingToClick(MTGCardInstance * card, ManaCost *)
     if(OptionKicker::KICKER_ALWAYS == options[Options::KICKERPAYMENT].number)
         return 0;
     Player * player = game->currentlyActing();
-    if(!player->game->hand->hasCard(card))
-		return 0;
+    if (!player->game->hand->hasCard(card) && !player->game->graveyard->hasCard(card) && !player->game->exile->hasCard(card))
+ 		return 0;
+	if ((player->game->graveyard->hasCard(card) && !card->has(Constants::CANPLAYFROMGRAVEYARD)) || (player->game->exile->hasCard(card) && !card->has(Constants::CANPLAYFROMEXILE)))
+ 		return 0;
     ManaCost * kicker = card->getManaCost()->getKicker();
     if(!kicker)
     {
@@ -484,8 +488,12 @@ int MTGKickerRule::isReactingToClick(MTGCardInstance * card, ManaCost *)
         return 0;
     }
     ManaCost * playerMana = player->getManaPool();
-    ManaCost * withKickerCost= NEW ManaCost(card->getManaCost());
-    withKickerCost->add(withKickerCost->getKicker());
+    ManaCost * withKickerCost= NEW ManaCost(card->model->data->getManaCost());
+    if(card->getIncreasedManaCost()->getConvertedCost())
+        withKickerCost->add(card->getIncreasedManaCost());
+    if(card->getReducedManaCost()->getConvertedCost())
+        withKickerCost->remove(card->getReducedManaCost());
+    withKickerCost->add(card->model->data->getManaCost()->getKicker());
     if(!playerMana->canAfford(withKickerCost))
     {
         delete withKickerCost;
@@ -503,12 +511,16 @@ int MTGKickerRule::reactToClick(MTGCardInstance * card)
         return 0;
         
     Player * player = game->currentlyActing();
-    ManaCost * withKickerCost= NEW ManaCost(card->getManaCost());//using pointers here alters the real cost of the card.
-    if (card->getManaCost()->getKicker()->isMulti)
+    ManaCost * withKickerCost= NEW ManaCost(card->model->data->getManaCost());//using pointers here alters the real cost of the card.
+    if(card->getIncreasedManaCost()->getConvertedCost())
+        withKickerCost->add(card->getIncreasedManaCost());
+    if(card->getReducedManaCost()->getConvertedCost())
+        withKickerCost->remove(card->getReducedManaCost());
+    if (card->model->data->getManaCost()->getKicker()->isMulti)
     {
         while(player->getManaPool()->canAfford(withKickerCost))
         {
-            withKickerCost->add(withKickerCost->getKicker());
+            withKickerCost->add(card->model->data->getManaCost()->getKicker());
             card->kicked += 1;
         }
         card->kicked -= 1;
@@ -518,7 +530,7 @@ int MTGKickerRule::reactToClick(MTGCardInstance * card)
     }
     else
     {
-        withKickerCost->add(withKickerCost->getKicker());
+        withKickerCost->add(card->model->data->getManaCost()->getKicker());
         card->paymenttype = MTGAbility::PUT_INTO_PLAY_WITH_KICKER;
     }
     if (withKickerCost->isExtraPaymentSet())
@@ -545,7 +557,7 @@ int MTGKickerRule::reactToClick(MTGCardInstance * card)
     delete previousManaPool;
     if (card->isLand())
     {
-        MTGCardInstance * copy = player->game->putInZone(card, player->game->hand, player->game->temp);
+        MTGCardInstance * copy = player->game->putInZone(card, card->currentZone, player->game->temp);
         Spell * spell = NEW Spell(game, 0,copy,NULL,NULL, ManaCost::MANA_PAID_WITH_KICKER);
         spell->resolve();
         delete spellCost;
@@ -554,7 +566,7 @@ int MTGKickerRule::reactToClick(MTGCardInstance * card)
     else
     {
         Spell * spell = NULL;
-        MTGCardInstance * copy = player->game->putInZone(card, player->game->hand, player->game->stack);
+        MTGCardInstance * copy = player->game->putInZone(card, card->currentZone, player->game->stack);
         if (game->targetChooser)
         {
             spell = game->mLayers->stackLayer()->addSpell(copy, game->targetChooser, spellCost, ManaCost::MANA_PAID_WITH_KICKER, 0);
@@ -616,7 +628,9 @@ PermanentAbility(observer, _id)
 int MTGAlternativeCostRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
 {
 	ManaCost * alternateCost = card->getManaCost()->getAlternative();
-	if (!game->currentlyActing()->game->hand->hasCard(card))
+	if (!game->currentlyActing()->game->hand->hasCard(card) && !game->currentlyActing()->game->graveyard->hasCard(card) && !game->currentlyActing()->game->exile->hasCard(card))
+ 		return 0;
+	if ((game->currentlyActing()->game->graveyard->hasCard(card) && !card->has(Constants::CANPLAYFROMGRAVEYARD)) || (game->currentlyActing()->game->exile->hasCard(card) && !card->has(Constants::CANPLAYFROMEXILE)))
  		return 0;
     return isReactingToClick( card, mana, alternateCost );
 }
@@ -630,7 +644,12 @@ int MTGAlternativeCostRule::isReactingToClick(MTGCardInstance * card, ManaCost *
     if(!allowedToAltCast(card,player))
         return 0;
 
-    if(card->model->data->getManaCost()->getAlternative() && card->model->data->getManaCost()->getAlternative()->alternativeName.size())
+
+	if(card->has(Constants::CANPLAYFROMGRAVEYARD))
+        alternativeName = "Alternate Cast From Graveyard";
+    else if(card->has(Constants::CANPLAYFROMEXILE))
+        alternativeName = "Alternate Cast From Exile";
+    else if(card->model->data->getManaCost()->getAlternative() && card->model->data->getManaCost()->getAlternative()->alternativeName.size())
         alternativeName = card->model->data->getManaCost()->getAlternative()->alternativeName;
 
     if (card->isLand())
@@ -763,8 +782,10 @@ MTGAlternativeCostRule(observer, _id)
 int MTGBuyBackRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
 {
     Player * player = game->currentlyActing();
-    if (!player->game->hand->hasCard(card))
-        return 0;
+    if (!player->game->hand->hasCard(card) && !player->game->graveyard->hasCard(card) && !player->game->exile->hasCard(card))
+ 		return 0;
+	if ((player->game->graveyard->hasCard(card) && !card->has(Constants::CANPLAYFROMGRAVEYARD)) || (player->game->exile->hasCard(card) && !card->has(Constants::CANPLAYFROMEXILE)))
+ 		return 0;
     if(!allowedToCast(card,player))
         return 0;
     return MTGAlternativeCostRule::isReactingToClick( card, mana, card->getManaCost()->getBuyback() );
@@ -1129,46 +1150,60 @@ MTGMorphCostRule * MTGMorphCostRule::clone() const
 //-------------------------------------------------------------------------
 //-------------------------------------------------------------------------
 
-MTGPlayFromGraveyardRule::MTGPlayFromGraveyardRule(GameObserver* observer, int _id) :
+MTGPayZeroRule::MTGPayZeroRule(GameObserver* observer, int _id) :
 MTGAlternativeCostRule(observer, _id)
 {
-    aType = MTGAbility::CASTINGRAVEYARD_COST;
+    aType = MTGAbility::PAYZERO_COST;
 }
 
-int MTGPlayFromGraveyardRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
+int MTGPayZeroRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
 {
     Player * player = game->currentlyActing();
-    ManaCost * cost = card->getManaCost();
+    ManaCost * cost = NEW ManaCost(ManaCost::parseManaCost("{0}",NULL,NULL));
+    if(card->getIncreasedManaCost()->getConvertedCost())
+        cost->add(card->getIncreasedManaCost());
+    if(card->getReducedManaCost()->getConvertedCost())
+        cost->remove(card->getReducedManaCost());
 
-    if (!player->game->graveyard->hasCard(card))
+    if(card->isLand())
         return 0;
-    if (!card->has(Constants::CANPLAYFROMGRAVEYARD))
+    if(!card->has(Constants::PAYZERO))
         return 0;
-
+    if (!player->game->graveyard->hasCard(card) && !player->game->exile->hasCard(card) && !player->game->hand->hasCard(card))
+        return 0;
+    if ((!card->has(Constants::CANPLAYFROMGRAVEYARD) && player->game->graveyard->hasCard(card))||(!card->has(Constants::CANPLAYFROMEXILE) && player->game->exile->hasCard(card)))
+        return 0;
+	if(card->has(Constants::CANPLAYFROMGRAVEYARD))
+        CustomName = "Zero Cast From Graveyard";
+    else if(card->has(Constants::CANPLAYFROMEXILE))
+        CustomName = "Zero Cast From Exile";
+    else
+        CustomName = "Zero Cast From Anywhere";
+    
     return MTGAlternativeCostRule::isReactingToClick(card, mana, cost);
 }
 
-int MTGPlayFromGraveyardRule::reactToClick(MTGCardInstance * card)
+int MTGPayZeroRule::reactToClick(MTGCardInstance * card)
 {
     if (!isReactingToClick(card))
         return 0;
 
-    ManaCost * cost = card->getManaCost();
+    ManaCost * cost = NEW ManaCost(ManaCost::parseManaCost("{0}",NULL,NULL));
 
-    card->paymenttype = MTGAbility::CASTINGRAVEYARD_COST;
+    card->paymenttype = MTGAbility::PAYZERO_COST;
 
-    return MTGAlternativeCostRule::reactToClick(card, cost, ManaCost::MANA_PAID_WITH_OTHERCOST);
+    return MTGAlternativeCostRule::reactToClick(card, cost, ManaCost::MANA_PAID);
 }
 
-ostream& MTGPlayFromGraveyardRule::toString(ostream& out) const
+ostream& MTGPayZeroRule::toString(ostream& out) const
 {
-    out << "MTGPlayFromGraveyardRule ::: (";
+    out << "MTGPayZeroRule ::: (";
     return MTGAbility::toString(out) << ")";
 }
 
-MTGPlayFromGraveyardRule * MTGPlayFromGraveyardRule::clone() const
+MTGPayZeroRule * MTGPayZeroRule::clone() const
 {
-    return NEW MTGPlayFromGraveyardRule(*this);
+    return NEW MTGPayZeroRule(*this);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1718,7 +1753,7 @@ int MTGMomirRule::reactToClick(MTGCardInstance * card_to_discard, int cardId)
     ManaCost * cost = player->getManaPool();
     player->getManaPool()->pay(cost);
     MTGCardInstance * card = genCreature(cardId);
-    player->game->putInZone(card_to_discard, player->game->hand, player->game->graveyard);
+    player->game->putInZone(card_to_discard, card_to_discard->currentZone, player->game->graveyard);
 
     player->game->stack->addCard(card);
     Spell * spell = NEW Spell(game, card);

@@ -254,24 +254,7 @@ public:
     bool isTargetter();
     int cardistargetter;
     int myconvertedcost;
-    ManaCost * computeNewCost(MTGCardInstance * card,ManaCost * oldCost)
-    {
-        if(card->isLand())
-            return oldCost;
-
-        if(!card)
-            return NULL;
-        //i don't know why this method doesn't affect cards in hand, but is working on other zones....//
-        //pay zero costs//
-		//kicker???...//
-        //morph cost todo//
-		//trinisphere must be here below//
-		if(card->has(Constants::TRINISPHERE))
-            for(int jj = oldCost->getConvertedCost(); jj < 3; jj++)
-                oldCost->add(Constants::MTG_COLOR_ARTIFACT, 1);
-
-        return oldCost;
-    };
+    ManaCost * computeNewCost(MTGCardInstance * card,ManaCost * oldCost);
 
     void eventattacked();
     void eventattackedAlone();

@@ -1156,10 +1156,10 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         observer->addObserver(NEW MTGMorphCostRule(observer, -1));
         return NULL;
     }
-    found = s.find("playfromgraveyardrule");
+    found = s.find("payzerorule");
     if(found != string::npos)
     {
-        observer->addObserver(NEW MTGPlayFromGraveyardRule(observer, -1));
+        observer->addObserver(NEW MTGPayZeroRule(observer, -1));
         return NULL;
     }
     //this rule handles attacking ability during attacker phase
@@ -3080,7 +3080,11 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             }
 			else if(s.find("cdaactive") != string::npos)
             {
-                return NEW APowerToughnessModifier(observer, id, card, target, wppt,s,true);
+                MTGAbility * a = NEW APowerToughnessModifier(observer, id, card, target, wppt,s,true);
+                a->forcedAlive = 1;
+                a->forceDestroy = -1;
+                return a;
+                //return NEW APowerToughnessModifier(observer, id, card, target, wppt,s,true);
             }
 			else
                 return NEW APowerToughnessModifier(observer, id, card, target, wppt,s,nonstatic);
@@ -3689,9 +3693,6 @@ int AbilityFactory::abilityEfficiency(MTGAbility * a, Player * p, int mode, Targ
     badAbilities[(int)Constants::WEAK] = true;
     badAbilities[(int)Constants::NOLIFEGAIN] = true;
     badAbilities[(int)Constants::NOLIFEGAINOPPONENT] = true;
-    badAbilities[(int)Constants::CANTLOSE] = false;
-    badAbilities[(int)Constants::CANTLIFELOSE] = false;
-    badAbilities[(int)Constants::CANTMILLLOSE] = false;
 
     if (AInstantBasicAbilityModifierUntilEOT * abi = dynamic_cast<AInstantBasicAbilityModifierUntilEOT *>(a))
     {
@@ -3754,7 +3755,7 @@ int AbilityFactory::getAbilities(vector<MTGAbility *> * v, Spell * spell, MTGCar
             if (dest == zones->exile)
             {
                 magicText = card->magicTexts["exile"];
-                 card->exileEffects = true;
+                card->exileEffects = true;
                 break;
             }
             if (dest == zones->library)
