@@ -298,15 +298,15 @@ public:
 class MTGDredgeRule: public PermanentAbility, public ReplacementEffect
 {
 public:
-    vector<MTGCardInstance*>soulbonders;
+    //vector<MTGCardInstance*>soulbonders;
     TargetChooser * tcb;
-    MTGAbility * dredgeAbility;
-    MTGAbility * targetAbility;
-    MTGAbility * targetAbilityAdder;
-    MTGAbility * targetAbility1;
-    MTGAbility * mod;
-    MTGAbility * activateDredge;
-    vector<MTGAbility*>pairing;
+    //MTGAbility * dredgeAbility;
+    //MTGAbility * targetAbility;
+    //MTGAbility * targetAbilityAdder;
+    //MTGAbility * targetAbility1;
+    //MTGAbility * mod;
+    //MTGAbility * activateDredge;
+    //vector<MTGAbility*>pairing;
     MTGDredgeRule(GameObserver* observer, int _id);
     WEvent * replace(WEvent *e);
     virtual ostream& toString(ostream& out) const;

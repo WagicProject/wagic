@@ -1189,6 +1189,10 @@ int MTGPayZeroRule::reactToClick(MTGCardInstance * card)
         return 0;
 
     ManaCost * cost = NEW ManaCost(ManaCost::parseManaCost("{0}",NULL,NULL));
+    if(card->getIncreasedManaCost()->getConvertedCost())
+        cost->add(card->getIncreasedManaCost());
+    if(card->getReducedManaCost()->getConvertedCost())
+        cost->remove(card->getReducedManaCost());
 
     card->paymenttype = MTGAbility::PAYZERO_COST;
 
@@ -2190,9 +2194,9 @@ MTGDredgeRule::MTGDredgeRule(GameObserver* observer, int _id) :
 PermanentAbility(observer, _id)
 {
     tcb = NULL;
-    dredgeAbility = NULL;
-    targetAbility = NULL;
-    mod = NULL;
+    //dredgeAbility = NULL;
+    //targetAbility = NULL;
+    //mod = NULL;
 }
 ;
 
@@ -2249,26 +2253,26 @@ WEvent * MTGDredgeRule::replace(WEvent * event)
                     }
 
                     //there is a memleak here that i have no idea what causes it.
-                    dredgeAbility = NEW dredgeCard(game, game->mLayers->actionLayer()->getMaxId(), card,NULL);
-                    dredgeAbility->oneShot = true;
-                    targetAbility = NEW GenericTargetAbility(game, "Dredge A Card","",game->mLayers->actionLayer()->getMaxId(), card,tcb->clone(),dredgeAbility->clone());
-                    targetAbility->oneShot = true;
-                    SAFE_DELETE(dredgeAbility);
+                    dredgeCard *dc = NEW dredgeCard(game, game->mLayers->actionLayer()->getMaxId(), card,NULL);
+                    dc->oneShot = true;
+                    GenericTargetAbility *gta = NEW GenericTargetAbility(game, "Dredge A Card","",game->mLayers->actionLayer()->getMaxId(), card,tcb->clone(),dc->clone());
+                    gta->oneShot = true;
+                    //SAFE_DELETE(dredgeAbility);
 
-                    targetAbilityAdder = NEW GenericAddToGame(game, game->mLayers->actionLayer()->getMaxId(), card,NULL,targetAbility->clone());
-                    targetAbilityAdder->oneShot = true;
-                    SAFE_DELETE(targetAbility);
-                    MTGAbility * setDredge = targetAbilityAdder->clone();
-                    SAFE_DELETE(targetAbilityAdder);
-                    setDredge->oneShot = true;
+                    GenericAddToGame *gatg = NEW GenericAddToGame(game, game->mLayers->actionLayer()->getMaxId(), card,NULL,gta->clone());
+                    gatg->oneShot = true;
+                    //SAFE_DELETE(targetAbility);
+                    //MTGAbility * setDredge = targetAbilityAdder->clone();
+                    //SAFE_DELETE(targetAbilityAdder);
+                    //setDredge->oneShot = true;
 
-                    selection.push_back(setDredge);
-                    targetAbility1 = NEW AADrawer(game, this->GetId(), card,card,NULL, "1",TargetChooser::CONTROLLER,true);
-                    selection.push_back(targetAbility1);
-                    MTGAbility * menuChoice = NEW MenuAbility(game, this->GetId(), card, card,true,selection,card->controller(),"Dredge or Draw");
+                    selection.push_back(gatg);
+                    AADrawer *ad = NEW AADrawer(game, game->mLayers->actionLayer()->getMaxId(), card,card,NULL, "1",TargetChooser::CONTROLLER,true);
+                    selection.push_back(ad);
+                    MenuAbility * menuChoice = NEW MenuAbility(game, game->mLayers->actionLayer()->getMaxId(), card, card,true,selection,card->controller(),"Dredge or Draw");
 
                     menuChoice->addToGame();
-                    SAFE_DELETE(tcb);
+                    //SAFE_DELETE(tcb);
                 }
                 
                 SAFE_DELETE(event);

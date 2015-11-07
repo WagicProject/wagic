@@ -2405,6 +2405,14 @@ mana={1}{B}{S(creature|mybattlefield)}
 type=Instant
 [/card]
 [card]
+name=Aluren
+auto=lord(creature[manacost<=3]|hand,exile,graveyard) zerocast forcedalive
+auto=lord(creature[manacost<=3]|hand,exile,graveyard) spellmastery forcedalive
+text=Any player may play creature cards with converted mana cost 3 or less without paying their mana cost and as though they had flash.
+mana={2}{G}{G}
+type=Enchantment
+[/card]
+[card]
 name=Amass the Components
 auto=draw:3 controller
 auto=bottomoflibrary notatarget(*|myhand)
@@ -69045,6 +69053,13 @@ type=Creature
 subtype=Frog
 power=3
 toughness=3
+[/card]
+[card]
+name=Omniscience
+auto=lord(*[-land]|myhand) zerocast forcedalive
+text=You may cast nonland cards from your hand without paying their mana costs.
+mana={7}{U}{U}{U}
+type=Enchantment
 [/card]
 [card]
 name=Ondu Cleric
