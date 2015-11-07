@@ -12498,6 +12498,7 @@ text=Pyrotechnics deals 4 damage divided as you choose among any number of targe
 mana={4}{R}
 type=Sorcery
 [/card]
+#anyzone is basic for now and used for cdaactive
 [card]
 name=Qasali Ambusher
 text=Reach -- If a creature is attacking you and you control a Forest and a Plains, you may cast Qasali Ambusher without paying its mana cost and as though it had flash.
@@ -12812,6 +12813,7 @@ mana={2}{U}
 type=Enchantment
 subtype=Aura
 [/card]
+#needs suspend ability not suspend activated ability
 [card]
 name=Reality Strobe
 text=Return target permanent to its owner's hand. Exile Reality Strobe with three time counters on it. -- Suspend 3 - {2}{U} (Rather than cast this card from your hand, you may pay {2}{U} and exile it with three time counters on it. At the beginning of your upkeep, remove a time counter. When the last is removed, cast it without paying its mana cost.)
