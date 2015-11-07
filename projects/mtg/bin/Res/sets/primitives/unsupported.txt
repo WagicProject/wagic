@@ -224,12 +224,6 @@ mana={1}{U}
 type=Instant
 [/card]
 [card]
-name=Aluren
-text=Any player may play creature cards with converted mana cost 3 or less without paying their mana cost and as though they had flash.
-mana={2}{G}{G}
-type=Enchantment
-[/card]
-[card]
 name=Amber Prison
 text=You may choose not to untap Amber Prison during your untap step. -- {4}, {T}: Tap target artifact, creature, or land. That permanent doesn't untap during its controller's untap step for as long as Amber Prison remains tapped.
 mana={4}
@@ -3954,6 +3948,7 @@ subtype=Djinn
 power=3
 toughness=5
 [/card]
+#needs alias borderline
 [card]
 name=Djinn of Wishes
 text=Flying -- Djinn of Wishes enters the battlefield with three wish counters on it. -- {2}{U}{U}, Remove a wish counter from Djinn of Wishes: Reveal the top card of your library. You may play that card without paying its mana cost. If you don't, exile it.
@@ -8742,6 +8737,7 @@ text=Look at the top five cards of your library. You may reveal any number of cr
 mana={2}{G}
 type=Sorcery
 [/card]
+#needs alias borderline
 [card]
 name=Leaf-Crowned Elder
 text=Kinship - At the beginning of your upkeep, you may look at the top card of your library. If it shares a creature type with Leaf-Crowned Elder, you may reveal it. If you do, you may play that card without paying its mana cost.
@@ -9863,6 +9859,7 @@ text=Each opponent reveals cards from the top of his or her library until he or 
 mana={X}{U}{B}
 type=Sorcery
 [/card]
+#needs alias
 [card]
 name=Mind's Desire
 text=Shuffle your library. Then exile the top card of your library. Until end of turn, you may play that card without paying its mana cost. (If it has X in its mana cost, X is 0.) -- Storm (When you cast this spell, copy it for each spell cast before it this turn.)
@@ -11075,6 +11072,7 @@ text=Look at the top three cards of your library, then put them back in any orde
 mana={1}{U}
 type=Sorcery
 [/card]
+#needs alias
 [card]
 name=Omen Machine
 mana={6}
