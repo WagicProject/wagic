@@ -1156,7 +1156,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         observer->addObserver(NEW MTGMorphCostRule(observer, -1));
         return NULL;
     }
-    found = s.find("playfromgraveyardrule");
+    found = s.find("payzerorule");
     if(found != string::npos)
     {
         observer->addObserver(NEW MTGPayZeroRule(observer, -1));

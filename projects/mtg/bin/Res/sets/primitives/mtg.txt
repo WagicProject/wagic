@@ -11580,6 +11580,7 @@ toughness=2
 [/card]
 [card]
 name=Boneyard Wurm
+alias=001100
 anyzone=type:creature:mygraveyard/type:creature:mygraveyard cdaactive
 text=Boneyard Wurm's power and toughness are each equal to the number of creature cards in your graveyard.
 mana={1}{G}
@@ -14097,6 +14098,7 @@ type=Sorcery
 [/card]
 [card]
 name=Cantivore
+alias=001100
 abilities=vigilance
 anyzone=type:enchantment:graveyard/type:enchantment:graveyard cdaactive
 text=Vigilance -- Cantivore's power and toughness are each equal to the number of enchantment cards in all graveyards.
@@ -18065,6 +18067,7 @@ type=Instant
 [/card]
 [card]
 name=Cognivore
+alias=001100
 abilities=flying
 anyzone=type:instant:graveyard/type:instant:graveyard cdaactive
 text=Flying -- Cognivore's power and toughness are each equal to the number of instant cards in all graveyards.
@@ -24371,6 +24374,7 @@ text=Destroy target artifact with converted mana cost X. It can't be regenerated
 [/card]
 [card]
 name=Detritivore
+alias=001100
 anyzone=type:land[-basic]:opponentgraveyard/type:land[-basic]:opponentgraveyard cdaactive
 autoexile=@counterremoved(0/0,1,Time) from(sourcecard) suspended:destroy target(land[-basic])
 suspend(0)={X}{3}{R}
@@ -56072,6 +56076,7 @@ toughness=5
 [/card]
 [card]
 name=Lhurgoyf
+alias=001100
 anyzone=type:creature:graveyard/plusonetype:creature:graveyard cdaactive
 text=Lhurgoyf's power is equal to the number of creature cards in all graveyards and its toughness is equal to that number plus 1.
 mana={2}{G}{G}
@@ -57452,6 +57457,7 @@ toughness=2
 [/card]
 [card]
 name=Lord of Extinction
+alias=001100
 anyzone=type:*:graveyard/type:*:graveyard cdaactive
 text=Lord of Extinction's power and toughness are each equal to the number of cards in all graveyards.
 mana={3}{B}{G}
@@ -58816,6 +58822,7 @@ toughness=6
 [/card]
 [card]
 name=Magnivore
+alias=001100
 abilities=haste
 anyzone=type:sorcery:graveyard/type:sorcery:graveyard cdaactive
 text=Haste (This creature can attack the turn it comes under your control.) -- Magnivore's power and toughness are each equal to the number of sorcery cards in all graveyards.
@@ -64584,6 +64591,7 @@ toughness=2
 [/card]
 [card]
 name=Mortivore
+alias=001100
 auto={B}:regenerate
 anyzone=type:creature:graveyard/type:creature:graveyard cdaactive
 text=Mortivore's power and toughness are each equal to the number of creature cards in all graveyards. -- {B}: Regenerate Mortivore. (The next time this creature would be destroyed this turn, it isn't. Instead tap it, remove all damage from it, and remove it from combat.)
@@ -79780,6 +79788,7 @@ type=Artifact
 [/card]
 [card]
 name=Revenant
+alias=001100
 abilities=flying
 anyzone=type:creature:mygraveyard/type:creature:mygraveyard cdaactive
 text=Flying -- Revenant's power and toughness are each equal to the number of creature cards in your graveyard.
@@ -90926,6 +90935,7 @@ toughness=3
 [/card]
 [card]
 name=Slag Fiend
+alias=001100
 anyzone=type:artifact:graveyard/type:artifact:graveyard cdaactive
 text=Slag Fiend's power and toughness are each equal to the number of artifact cards in all graveyards.
 mana={R}
@@ -94631,6 +94641,7 @@ color=green
 [/card]
 [card]
 name=Splinterfright
+alias=001100
 abilities=trample
 anyzone=type:creature:mygraveyard/type:creature:mygraveyard cdaactive
 auto=@each my upkeep:deplete:2 controller
@@ -100773,6 +100784,7 @@ type=Artifact
 [/card]
 [card]
 name=Terravore
+alias=001100
 abilities=trample
 anyzone=type:land:graveyard/type:land:graveyard cdaactive
 text=Trample -- Terravore's power and toughness are each equal to the number of land cards in all graveyards.
@@ -105998,6 +106010,7 @@ type=Artifact
 [/card]
 [card]
 name=Umbra Stalker
+alias=001100
 anyzone=type:manab:mygraveyard/type:manab:mygraveyard cdaactive
 text=Chroma - Umbra Stalker's power and toughness are each equal to the number of black mana symbols in the mana costs of cards in your graveyard.
 mana={4}{B}{B}{B}

@@ -631,10 +631,6 @@ int OrderedAIAction::getEfficiency()
     {
         efficiency += 55;
     }
-    else if (dynamic_cast<MTGPayZeroRule *>(a))
-    {
-        efficiency += 45;
-    }
     SAFE_DELETE(transAbility);
     return efficiency;
 }
@@ -1838,6 +1834,10 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
                 {
                     shouldPlayPercentage = 90;
                 }
+                else if (!card->isLand() && card->has(Constants::PAYZERO))
+                {
+                    shouldPlayPercentage = 70;
+                }
                 else
                 {
                     // shouldPlay == baka_effect_bad giving it a 1 for odd ball lottery chance.
@@ -1986,6 +1986,10 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
                 {
                     shouldPlayPercentage = 90;
                 }
+                else if (!card->isLand() && card->has(Constants::PAYZERO))
+                {
+                    shouldPlayPercentage = 70;
+                }
                 else
                 {
                     // shouldPlay == baka_effect_bad giving it a 1 for odd ball lottery chance.
@@ -2132,6 +2136,10 @@ MTGCardInstance * AIPlayerBaka::FindCardToPlay(ManaCost * pMana, const char * ty
                 else if (card->isLand())
                 {
                     shouldPlayPercentage = 90;
+                }
+                else if (!card->isLand() && card->has(Constants::PAYZERO))
+                {
+                    shouldPlayPercentage = 70;
                 }
                 else
                 {
@@ -2413,6 +2421,56 @@ int AIPlayerBaka::computeActions()
                             nextCardToPlay = NULL;
                         count++;
                     }
+
+                    if(nextCardToPlay == NULL)//check if there is a free card to play, play it....
+                    {//TODO: add potential mana if we can pay if there is a cost increaser in play
+                        CardDescriptor cd;
+                        if (game->hand->hasAbility(Constants::PAYZERO))
+                        {
+                            //Attempt to put free cards into play
+                            cd.init();
+                            cd.SetExclusionColor(Constants::MTG_COLOR_LAND);
+                            MTGCardInstance *freecard = cd.match(game->hand);
+                            int canCastCard = game->playRestrictions->canPutIntoZone(freecard, game->inPlay);
+                            if (freecard && (canCastCard == PlayRestriction::CAN_PLAY) && freecard->has(Constants::PAYZERO) && (freecard->getIncreasedManaCost()->getConvertedCost() < 1))
+                            {
+                                MTGAbility * castFreeCard = observer->mLayers->actionLayer()->getAbility(MTGAbility::PAYZERO_COST);
+                                AIAction * aa = NEW AIAction(this, castFreeCard, freecard); //TODO putinplay action
+                                clickstream.push(aa);
+                                break;
+                            }
+                        }
+                        if (game->graveyard->hasAbility(Constants::PAYZERO) && game->graveyard->hasAbility(Constants::CANPLAYFROMGRAVEYARD))
+                        {
+                            //Attempt to put free cards into play
+                            cd.init();
+                            cd.SetExclusionColor(Constants::MTG_COLOR_LAND);
+                            MTGCardInstance *freecard = cd.match(game->graveyard);
+                            int canCastCard = game->playRestrictions->canPutIntoZone(freecard, game->inPlay);
+                            if (freecard && (canCastCard == PlayRestriction::CAN_PLAY) && freecard->has(Constants::PAYZERO) && freecard->has(Constants::CANPLAYFROMGRAVEYARD) && (freecard->getIncreasedManaCost()->getConvertedCost() < 1) && (freecard->alias != 001100))
+                            {
+                                MTGAbility * castFreeCard = observer->mLayers->actionLayer()->getAbility(MTGAbility::PAYZERO_COST);
+                                AIAction * aa = NEW AIAction(this, castFreeCard, freecard); //TODO putinplay action
+                                clickstream.push(aa);
+                                break;
+                            }
+                        }
+                        if (game->exile->hasAbility(Constants::PAYZERO) && game->exile->hasAbility(Constants::CANPLAYFROMEXILE))
+                        {
+                            //Attempt to put free cards into play
+                            cd.init();
+                            cd.SetExclusionColor(Constants::MTG_COLOR_LAND);
+                            MTGCardInstance *freecard = cd.match(game->exile);
+                            int canCastCard = game->playRestrictions->canPutIntoZone(freecard, game->inPlay);
+                            if (freecard && (canCastCard == PlayRestriction::CAN_PLAY) && freecard->has(Constants::PAYZERO) && freecard->has(Constants::CANPLAYFROMEXILE) && (freecard->getIncreasedManaCost()->getConvertedCost() < 1) && (freecard->alias != 001100))
+                            {
+                                MTGAbility * castFreeCard = observer->mLayers->actionLayer()->getAbility(MTGAbility::PAYZERO_COST);
+                                AIAction * aa = NEW AIAction(this, castFreeCard, freecard); //TODO putinplay action
+                                clickstream.push(aa);
+                                break;
+                            }
+                        }
+                    }//end
                 }
 
                 SAFE_DELETE(currentMana);

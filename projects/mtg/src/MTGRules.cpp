@@ -489,7 +489,11 @@ int MTGKickerRule::isReactingToClick(MTGCardInstance * card, ManaCost *)
     }
     ManaCost * playerMana = player->getManaPool();
     ManaCost * withKickerCost= NEW ManaCost(card->model->data->getManaCost());
-    withKickerCost->add(withKickerCost->getKicker());
+    if(card->getIncreasedManaCost()->getConvertedCost())
+        withKickerCost->add(card->getIncreasedManaCost());
+    if(card->getReducedManaCost()->getConvertedCost())
+        withKickerCost->remove(card->getReducedManaCost());
+    withKickerCost->add(card->model->data->getManaCost()->getKicker());
     if(!playerMana->canAfford(withKickerCost))
     {
         delete withKickerCost;
@@ -508,11 +512,15 @@ int MTGKickerRule::reactToClick(MTGCardInstance * card)
         
     Player * player = game->currentlyActing();
     ManaCost * withKickerCost= NEW ManaCost(card->model->data->getManaCost());//using pointers here alters the real cost of the card.
-    if (card->getManaCost()->getKicker()->isMulti)
+    if(card->getIncreasedManaCost()->getConvertedCost())
+        withKickerCost->add(card->getIncreasedManaCost());
+    if(card->getReducedManaCost()->getConvertedCost())
+        withKickerCost->remove(card->getReducedManaCost());
+    if (card->model->data->getManaCost()->getKicker()->isMulti)
     {
         while(player->getManaPool()->canAfford(withKickerCost))
         {
-            withKickerCost->add(withKickerCost->getKicker());
+            withKickerCost->add(card->model->data->getManaCost()->getKicker());
             card->kicked += 1;
         }
         card->kicked -= 1;
@@ -522,7 +530,7 @@ int MTGKickerRule::reactToClick(MTGCardInstance * card)
     }
     else
     {
-        withKickerCost->add(withKickerCost->getKicker());
+        withKickerCost->add(card->model->data->getManaCost()->getKicker());
         card->paymenttype = MTGAbility::PUT_INTO_PLAY_WITH_KICKER;
     }
     if (withKickerCost->isExtraPaymentSet())
@@ -638,9 +646,9 @@ int MTGAlternativeCostRule::isReactingToClick(MTGCardInstance * card, ManaCost *
 
 
 	if(card->has(Constants::CANPLAYFROMGRAVEYARD))
-        alternativeName = "Alternate Cast Card From Graveyard";
+        alternativeName = "Alternate Cast From Graveyard";
     else if(card->has(Constants::CANPLAYFROMEXILE))
-        alternativeName = "Alternate Cast Card From Exile";
+        alternativeName = "Alternate Cast From Exile";
     else if(card->model->data->getManaCost()->getAlternative() && card->model->data->getManaCost()->getAlternative()->alternativeName.size())
         alternativeName = card->model->data->getManaCost()->getAlternative()->alternativeName;
 
@@ -1145,7 +1153,7 @@ MTGMorphCostRule * MTGMorphCostRule::clone() const
 MTGPayZeroRule::MTGPayZeroRule(GameObserver* observer, int _id) :
 MTGAlternativeCostRule(observer, _id)
 {
-    aType = MTGAbility::CASTINGRAVEEXILE_COST;
+    aType = MTGAbility::PAYZERO_COST;
 }
 
 int MTGPayZeroRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
@@ -1166,11 +1174,11 @@ int MTGPayZeroRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
     if ((!card->has(Constants::CANPLAYFROMGRAVEYARD) && player->game->graveyard->hasCard(card))||(!card->has(Constants::CANPLAYFROMEXILE) && player->game->exile->hasCard(card)))
         return 0;
 	if(card->has(Constants::CANPLAYFROMGRAVEYARD))
-        CustomName = "Pay Zero To Cast From Graveyard";
+        CustomName = "Zero Cast From Graveyard";
     else if(card->has(Constants::CANPLAYFROMEXILE))
-        CustomName = "Pay Zero To Cast From Exile";
+        CustomName = "Zero Cast From Exile";
     else
-        CustomName = "Pay Zero To Cast";
+        CustomName = "Zero Cast From Anywhere";
     
     return MTGAlternativeCostRule::isReactingToClick(card, mana, cost);
 }
@@ -1182,7 +1190,7 @@ int MTGPayZeroRule::reactToClick(MTGCardInstance * card)
 
     ManaCost * cost = NEW ManaCost(ManaCost::parseManaCost("{0}",NULL,NULL));
 
-    card->paymenttype = MTGAbility::CASTINGRAVEEXILE_COST;
+    card->paymenttype = MTGAbility::PAYZERO_COST;
 
     return MTGAlternativeCostRule::reactToClick(card, cost, ManaCost::MANA_PAID);
 }
