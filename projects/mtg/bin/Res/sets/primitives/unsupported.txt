@@ -1217,6 +1217,7 @@ text=Blazing Salvo deals 3 damage to target creature unless that creature's cont
 mana={R}
 type=Instant
 [/card]
+#blazing torch is source of damage but the equipped creature has the activated ability... weird
 [card]
 name=Blazing Torch
 text=Equipped creature can't be blocked by Vampires or Zombies. -- Equipped creature has "{T}, Sacrifice Blazing Torch: Blazing Torch deals 2 damage to target creature or player." -- Equip {1}
