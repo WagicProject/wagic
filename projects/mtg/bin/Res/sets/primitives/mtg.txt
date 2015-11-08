@@ -31743,6 +31743,16 @@ mana={4}{B}
 type=Sorcery
 [/card]
 [card]
+name=Exotic Orchard
+auto=this(variable{olandg}>0) {t}:add{g}
+auto=this(variable{olandu}>0) {t}:add{u}
+auto=this(variable{olandr}>0) {t}:add{r}
+auto=this(variable{olandb}>0) {t}:add{b}
+auto=this(variable{olandw}>0) {t}:add{w}
+text={T}: Add to your mana pool one mana of any color that a land an opponent controls could produce.
+type=Land
+[/card]
+[card]
 name=Expedition Map
 auto={2}{T}{S}:moveTo(ownerhand) target(land|myLibrary)
 text={2}, {T}, Sacrifice Expedition Map: Search your library for a land card, reveal it, and put it into your hand. Then shuffle your library.
@@ -33223,6 +33233,17 @@ power=4
 toughness=6
 [/card]
 [card]
+name=Fellwar Stone
+auto=this(variable{olandg}>0) {t}:add{g}
+auto=this(variable{olandu}>0) {t}:add{u}
+auto=this(variable{olandr}>0) {t}:add{r}
+auto=this(variable{olandb}>0) {t}:add{b}
+auto=this(variable{olandw}>0) {t}:add{w}
+text={T}: Add to your mana pool one mana of any color that a land an opponent controls could produce.
+mana={2}
+type=Artifact
+[/card]
+[card]
 name=Femeref Archers
 auto={T}:damage:4 target(creature[attacking;flying])
 text={T}: Femeref Archers deals 4 damage to target attacking creature with flying.
@@ -34520,6 +34541,15 @@ type=Creature
 subtype=Elemental Spirit
 power=2
 toughness=3
+[/card]
+[card]
+name=Flame Wave
+target=player
+auto=damage:4
+auto=damage:4 all(creature|targetedpersonsbattlefield)
+text=Flame Wave deals 4 damage to target player and each creature he or she controls.
+mana={3}{R}{R}{R}{R}
+type=Sorcery
 [/card]
 [card]
 name=Flameblast Dragon
@@ -36843,7 +36873,7 @@ type=Sorcery
 [/card]
 [card]
 name=Fumiko the Lowblood
-auto=bushido(type:creature[attacking]:battlefield/type:creature[attacking]:battlefield)
+auto=aslongas(creature[attacking]) bushido(type:creature[attacking]:battlefield/type:creature[attacking]:battlefield)
 auto=lord(creature|opponentBattlefield) mustattack
 text=Fumiko the Lowblood has bushido X, where X is the number of attacking creatures. (When this blocks or becomes blocked, it gets +X/+X until end of turn.) -- Creatures your opponents control attack each turn if able.
 mana={2}{R}{R}
@@ -44120,6 +44150,20 @@ type=Creature
 subtype=Wurm
 power=3
 toughness=2
+[/card]
+[card]
+name=Harvester Druid
+auto=this(variable{plandg}>0) {t}:add{g}
+auto=this(variable{plandu}>0) {t}:add{u}
+auto=this(variable{plandr}>0) {t}:add{r}
+auto=this(variable{plandb}>0) {t}:add{b}
+auto=this(variable{plandw}>0) {t}:add{w}
+text={T}: Add to your mana pool one mana of any color that a land you control could produce.
+mana={1}{G}
+type=Creature
+subtype=Human Druid
+power=1
+toughness=1
 [/card]
 [card]
 name=Harvester of Souls
@@ -76353,6 +76397,20 @@ power=1
 toughness=1
 [/card]
 [card]
+name=Quirion Explorer
+auto=this(variable{olandg}>0) {t}:add{g}
+auto=this(variable{olandu}>0) {t}:add{u}
+auto=this(variable{olandr}>0) {t}:add{r}
+auto=this(variable{olandb}>0) {t}:add{b}
+auto=this(variable{olandw}>0) {t}:add{w}
+text={T}: Add to your mana pool one mana of any color that a land an opponent controls could produce.
+mana={1}{G}
+type=Creature
+subtype=Elf Druid Scout
+power=1
+toughness=1
+[/card]
+[card]
 name=Quirion Ranger
 auto={H(forest|myBattlefield)}:untap target(creature) limit:1
 text=Return a Forest you control to its owner's hand: Untap target creature. Activate this ability only once each turn.
@@ -78701,6 +78759,16 @@ type=Creature
 subtype=Merfolk Shaman
 power=0
 toughness=2
+[/card]
+[card]
+name=Reflecting Pool
+auto=this(variable{plandg}>0) {t}:add{g}
+auto=this(variable{plandu}>0) {t}:add{u}
+auto=this(variable{plandr}>0) {t}:add{r}
+auto=this(variable{plandb}>0) {t}:add{b}
+auto=this(variable{plandw}>0) {t}:add{w}
+text={T}: Add to your mana pool one mana of any type that a land you control could produce.
+type=Land
 [/card]
 [card]
 name=Reflex Sliver
@@ -98927,6 +98995,20 @@ type=Creature
 subtype=Yeti
 power=*
 toughness=4
+[/card]
+[card]
+name=Sylvok Explorer
+auto=this(variable{olandg}>0) {t}:add{g}
+auto=this(variable{olandu}>0) {t}:add{u}
+auto=this(variable{olandr}>0) {t}:add{r}
+auto=this(variable{olandb}>0) {t}:add{b}
+auto=this(variable{olandw}>0) {t}:add{w}
+text={T}: Add to your mana pool one mana of any color that a land an opponent controls could produce.
+mana={1}{G}
+type=Creature
+subtype=Human Druid
+power=1
+toughness=1
 [/card]
 [card]
 name=Sylvok Lifestaff

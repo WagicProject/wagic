@@ -365,6 +365,8 @@ void CardGui::Render()
         buff = "CT";
     if(!card->isToken && card->isACopier)
         buff = "C";
+    if(game && card->has(Constants::PAYZERO) && ((card->currentZone == card->controller()->game->hand) || (card->has(Constants::CANPLAYFROMGRAVEYARD) && card->currentZone == card->controller()->game->graveyard) || (card->has(Constants::CANPLAYFROMEXILE) && card->currentZone == card->controller()->game->exile)))
+		buff += "Z";
     if(card->alias == 0000)
     {
         if(card->chooseacolor == 1)

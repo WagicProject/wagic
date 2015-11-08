@@ -668,6 +668,116 @@ private:
         {
             intValue = target->controller()->handsize;
         }
+        else if (s == "olandg")
+        {
+            intValue = 0;
+            for (size_t i = 0; i < target->getObserver()->mLayers->actionLayer()->manaObjects.size(); i++)
+            {//start
+                MTGAbility * a = ((MTGAbility *) target->getObserver()->mLayers->actionLayer()->manaObjects[i]);
+                AManaProducer * amp = dynamic_cast<AManaProducer*> (a);
+                if (amp && amp->source->isLand() && amp->source->controller() == target->controller()->opponent() && amp->output->hasColor(1))
+                    intValue = 1;
+            }//end
+        }
+        else if (s == "olandu")
+        {
+            intValue = 0;
+            for (size_t i = 0; i < target->getObserver()->mLayers->actionLayer()->manaObjects.size(); i++)
+            {//start
+                MTGAbility * a = ((MTGAbility *) target->getObserver()->mLayers->actionLayer()->manaObjects[i]);
+                AManaProducer * amp = dynamic_cast<AManaProducer*> (a);
+                if (amp && amp->source->isLand() && amp->source->controller() == target->controller()->opponent() && amp->output->hasColor(2))
+                    intValue = 1;
+            }//end
+        }
+        else if (s == "olandr")
+        {
+            intValue = 0;
+            for (size_t i = 0; i < target->getObserver()->mLayers->actionLayer()->manaObjects.size(); i++)
+            {//start
+                MTGAbility * a = ((MTGAbility *) target->getObserver()->mLayers->actionLayer()->manaObjects[i]);
+                AManaProducer * amp = dynamic_cast<AManaProducer*> (a);
+                if (amp && amp->source->isLand() && amp->source->controller() == target->controller()->opponent() && amp->output->hasColor(3))
+                    intValue = 1;
+            }//end
+        }
+        else if (s == "olandb")
+        {
+            intValue = 0;
+            for (size_t i = 0; i < target->getObserver()->mLayers->actionLayer()->manaObjects.size(); i++)
+            {//start
+                MTGAbility * a = ((MTGAbility *) target->getObserver()->mLayers->actionLayer()->manaObjects[i]);
+                AManaProducer * amp = dynamic_cast<AManaProducer*> (a);
+                if (amp && amp->source->isLand() && amp->source->controller() == target->controller()->opponent() && amp->output->hasColor(4))
+                    intValue = 1;
+            }//end
+        }
+        else if (s == "olandw")
+        {
+            intValue = 0;
+            for (size_t i = 0; i < target->getObserver()->mLayers->actionLayer()->manaObjects.size(); i++)
+            {//start
+                MTGAbility * a = ((MTGAbility *) target->getObserver()->mLayers->actionLayer()->manaObjects[i]);
+                AManaProducer * amp = dynamic_cast<AManaProducer*> (a);
+                if (amp && amp->source->isLand() && amp->source->controller() == target->controller()->opponent() && amp->output->hasColor(5))
+                    intValue = 1;
+            }//end
+        }
+        else if (s == "plandg")
+        {
+            intValue = 0;
+            for (size_t i = 0; i < target->getObserver()->mLayers->actionLayer()->manaObjects.size(); i++)
+            {//start
+                MTGAbility * a = ((MTGAbility *) target->getObserver()->mLayers->actionLayer()->manaObjects[i]);
+                AManaProducer * amp = dynamic_cast<AManaProducer*> (a);
+                if (amp && amp->source->isLand() && amp->source->controller() == target->controller() && amp->output->hasColor(1))
+                    intValue = 1;
+            }//end
+        }
+        else if (s == "plandu")
+        {
+            intValue = 0;
+            for (size_t i = 0; i < target->getObserver()->mLayers->actionLayer()->manaObjects.size(); i++)
+            {//start
+                MTGAbility * a = ((MTGAbility *) target->getObserver()->mLayers->actionLayer()->manaObjects[i]);
+                AManaProducer * amp = dynamic_cast<AManaProducer*> (a);
+                if (amp && amp->source->isLand() && amp->source->controller() == target->controller() && amp->output->hasColor(2))
+                    intValue = 1;
+            }//end
+        }
+        else if (s == "plandr")
+        {
+            intValue = 0;
+            for (size_t i = 0; i < target->getObserver()->mLayers->actionLayer()->manaObjects.size(); i++)
+            {//start
+                MTGAbility * a = ((MTGAbility *) target->getObserver()->mLayers->actionLayer()->manaObjects[i]);
+                AManaProducer * amp = dynamic_cast<AManaProducer*> (a);
+                if (amp && amp->source->isLand() && amp->source->controller() == target->controller() && amp->output->hasColor(3))
+                    intValue = 1;
+            }//end
+        }
+        else if (s == "plandb")
+        {
+            intValue = 0;
+            for (size_t i = 0; i < target->getObserver()->mLayers->actionLayer()->manaObjects.size(); i++)
+            {//start
+                MTGAbility * a = ((MTGAbility *) target->getObserver()->mLayers->actionLayer()->manaObjects[i]);
+                AManaProducer * amp = dynamic_cast<AManaProducer*> (a);
+                if (amp && amp->source->isLand() && amp->source->controller() == target->controller() && amp->output->hasColor(4))
+                    intValue = 1;
+            }//end
+        }
+        else if (s == "plandw")
+        {
+            intValue = 0;
+            for (size_t i = 0; i < target->getObserver()->mLayers->actionLayer()->manaObjects.size(); i++)
+            {//start
+                MTGAbility * a = ((MTGAbility *) target->getObserver()->mLayers->actionLayer()->manaObjects[i]);
+                AManaProducer * amp = dynamic_cast<AManaProducer*> (a);
+                if (amp && amp->source->isLand() && amp->source->controller() == target->controller() && amp->output->hasColor(5))
+                    intValue = 1;
+            }//end
+        }
         else if (s == "controllerturn")//intvalue = 1 if its your turn this(variable{controllerturn})
         {
             intValue = 0;

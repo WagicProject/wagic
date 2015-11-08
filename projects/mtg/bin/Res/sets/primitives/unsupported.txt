@@ -4763,11 +4763,6 @@ power=1
 toughness=2
 [/card]
 [card]
-name=Exotic Orchard
-text={T}: Add to your mana pool one mana of any color that a land an opponent controls could produce.
-type=Land
-[/card]
-[card]
 name=Experiment Kraj
 text=Experiment Kraj has all activated abilities of each other creature with a +1/+1 counter on it. -- {T}: Put a +1/+1 counter on target creature.
 mana={2}{G}{G}{U}{U}
@@ -4984,12 +4979,6 @@ text=Enchant creature -- Enchanted creature has lifelink. -- {1}{W}: Attach Feli
 mana={1}{W}
 type=Enchantment
 subtype=Aura
-[/card]
-[card]
-name=Fellwar Stone
-text={T}: Add to your mana pool one mana of any color that a land an opponent controls could produce.
-mana={2}
-type=Artifact
 [/card]
 [card]
 name=Feral Contest
@@ -6857,15 +6846,6 @@ text={G}, {T}, Discard a card: Until end of turn, if you tap a land for mana, it
 mana={G}
 type=Creature
 subtype=Human Spellshaper
-power=1
-toughness=1
-[/card]
-[card]
-name=Harvester Druid
-text={T}: Add to your mana pool one mana of any color that a land you control could produce.
-mana={1}{G}
-type=Creature
-subtype=Human Druid
 power=1
 toughness=1
 [/card]
@@ -12614,15 +12594,6 @@ mana={1}{U}
 type=Sorcery
 [/card]
 [card]
-name=Quirion Explorer
-text={T}: Add to your mana pool one mana of any color that a land an opponent controls could produce.
-mana={1}{G}
-type=Creature
-subtype=Elf Druid Scout
-power=1
-toughness=1
-[/card]
-[card]
 name=R&D's Secret Lair
 mana=
 type=Legendary Land
@@ -12921,11 +12892,6 @@ name=Reflecting Mirror
 text={X}, {T}: Change the target of target spell with a single target if that target is you. The new target must be a player. X is twice the converted mana cost of that spell.
 mana={4}
 type=Artifact
-[/card]
-[card]
-name=Reflecting Pool
-text={T}: Add to your mana pool one mana of any type that a land you control could produce.
-type=Land
 [/card]
 [card]
 name=Refraction Trap
@@ -15570,6 +15536,7 @@ subtype=Monger
 power=3
 toughness=3
 [/card]
+#needs alias
 [card]
 name=Squandered Resources
 text=Sacrifice a land: Add to your mana pool one mana of any type the sacrificed land could produce.
@@ -16212,15 +16179,6 @@ type=Creature
 subtype=Elf
 power=2
 toughness=2
-[/card]
-[card]
-name=Sylvok Explorer
-text={T}: Add to your mana pool one mana of any color that a land an opponent controls could produce.
-mana={1}{G}
-type=Creature
-subtype=Human Druid
-power=1
-toughness=1
 [/card]
 [card]
 name=Symbol Status
