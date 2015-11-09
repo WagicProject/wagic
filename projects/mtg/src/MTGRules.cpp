@@ -632,6 +632,8 @@ int MTGAlternativeCostRule::isReactingToClick(MTGCardInstance * card, ManaCost *
  		return 0;
 	if ((game->currentlyActing()->game->graveyard->hasCard(card) && !card->has(Constants::CANPLAYFROMGRAVEYARD)) || (game->currentlyActing()->game->exile->hasCard(card) && !card->has(Constants::CANPLAYFROMEXILE)))
  		return 0;
+    if (card->alias == 110000)
+        return 0;//overload has its own rule
     return isReactingToClick( card, mana, alternateCost );
 }
 
@@ -693,11 +695,16 @@ int MTGAlternativeCostRule::reactToClick(MTGCardInstance * card)
     return reactToClick(card, alternateCost, ManaCost::MANA_PAID_WITH_ALTERNATIVE);
 }
 
-int MTGAlternativeCostRule::reactToClick(MTGCardInstance * card, ManaCost *alternateCost, int alternateCostType){
+int MTGAlternativeCostRule::reactToClick(MTGCardInstance * card, ManaCost *alternateCost, int alternateCostType, bool overload){
 
     Player * player = game->currentlyActing();
     ManaPool * playerMana = player->getManaPool();
     //this handles extra cost payments at the moment a card is played.
+
+    if(overload)
+        card->spellTargetType = "";
+	else if(card->model->data->spellTargetType.size())
+        card->spellTargetType = card->model->data->spellTargetType;
 
     assert(alternateCost);
     if (alternateCost->isExtraPaymentSet() )
@@ -1208,6 +1215,60 @@ ostream& MTGPayZeroRule::toString(ostream& out) const
 MTGPayZeroRule * MTGPayZeroRule::clone() const
 {
     return NEW MTGPayZeroRule(*this);
+}
+
+MTGOverloadRule::MTGOverloadRule(GameObserver* observer, int _id) :
+MTGAlternativeCostRule(observer, _id)
+{
+    aType = MTGAbility::OVERLOAD_COST;
+}
+
+int MTGOverloadRule::isReactingToClick(MTGCardInstance * card, ManaCost * mana)
+{
+    Player * player = game->currentlyActing();
+    ManaCost * cost = NEW ManaCost(card->model->data->getManaCost()->getAlternative());
+    if(card->getIncreasedManaCost()->getConvertedCost())
+        cost->add(card->getIncreasedManaCost());
+    if(card->getReducedManaCost()->getConvertedCost())
+        cost->remove(card->getReducedManaCost());
+
+    if (card->isLand())
+        return 0;
+    if (card->alias != 110000)
+        return 0;
+    if (!player->game->graveyard->hasCard(card) && !player->game->exile->hasCard(card) && !player->game->hand->hasCard(card))
+        return 0;
+    if ((!card->has(Constants::CANPLAYFROMGRAVEYARD) && player->game->graveyard->hasCard(card))||(!card->has(Constants::CANPLAYFROMEXILE) && player->game->exile->hasCard(card)))
+        return 0;
+    
+    return MTGAlternativeCostRule::isReactingToClick(card, mana, cost);
+}
+
+int MTGOverloadRule::reactToClick(MTGCardInstance * card)
+{
+    if (!isReactingToClick(card))
+        return 0;
+
+    ManaCost * cost = NEW ManaCost(card->model->data->getManaCost()->getAlternative());
+    if(card->getIncreasedManaCost()->getConvertedCost())
+        cost->add(card->getIncreasedManaCost());
+    if(card->getReducedManaCost()->getConvertedCost())
+        cost->remove(card->getReducedManaCost());
+
+    card->paymenttype = MTGAbility::OVERLOAD_COST;
+
+    return MTGAlternativeCostRule::reactToClick(card, cost, ManaCost::MANA_PAID_WITH_OVERLOAD, true);
+}
+
+ostream& MTGOverloadRule::toString(ostream& out) const
+{
+    out << "MTGOverloadRule ::: (";
+    return MTGAbility::toString(out) << ")";
+}
+
+MTGOverloadRule * MTGOverloadRule::clone() const
+{
+    return NEW MTGOverloadRule(*this);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////

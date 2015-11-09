@@ -39,7 +39,9 @@ const string kAlternateCostKeywords[] =
     "flashback", 
     "retrace", 
     "facedown",
-    "suspended"
+    "suspended",
+    "overload",
+    "bestow"
 }; 
 const int kAlternateCostIds[] = 
 {
@@ -51,7 +53,9 @@ const int kAlternateCostIds[] =
     ManaCost::MANA_PAID_WITH_FLASHBACK,
     ManaCost::MANA_PAID_WITH_RETRACE,
     ManaCost::MANA_PAID_WITH_MORPH,
-    ManaCost::MANA_PAID_WITH_SUSPEND
+    ManaCost::MANA_PAID_WITH_SUSPEND,
+    ManaCost::MANA_PAID_WITH_OVERLOAD,
+    ManaCost::MANA_PAID_WITH_BESTOW
 };
 
 //Used for "dynamic ability" parsing
@@ -1160,6 +1164,12 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     if(found != string::npos)
     {
         observer->addObserver(NEW MTGPayZeroRule(observer, -1));
+        return NULL;
+    }
+    found = s.find("overloadrule");
+    if(found != string::npos)
+    {
+        observer->addObserver(NEW MTGOverloadRule(observer, -1));
         return NULL;
     }
     //this rule handles attacking ability during attacker phase

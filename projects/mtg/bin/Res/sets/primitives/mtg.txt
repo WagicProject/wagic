@@ -10933,6 +10933,17 @@ power=2
 toughness=1
 [/card]
 [card]
+name=Blustersquall
+alias=110000
+other={3}{U} name(Overload)
+target=creature|opponentbattlefield
+auto=overload tap all(creature|opponentbattlefield)
+auto=paidmana tap
+text=Tap target creature you don't control. -- Overload {3}{U} (You may cast this spell for its overload cost. If you do, change its text by replacing all instances of "target" with "each.")
+mana={U}
+type=Instant
+[/card]
+[card]
 name=Boa Constrictor
 auto={T}:3/3
 text={T}: Boa Constrictor gets +3/+3 until end of turn.
@@ -16254,6 +16265,19 @@ mana={G}
 type=Sorcery
 [/card]
 [card]
+name=Chemister's Trick
+alias=110000
+other={3}{U}{R} name(Overload)
+target=creature|opponentbattlefield
+auto=paidmana -2/0
+auto=paidmana mustattack
+auto=overload -2/0 all(creature|opponentbattlefield)
+auto=overload mustattack all(creature|opponentbattlefield)
+text=Target creature you don't control gets -2/-0 until end of turn and attacks this turn if able. -- Overload {3}{U}{R} (You may cast this spell for its overload cost. If you do, change its text by replacing all instances of "target" with "each.")
+mana={U}{R}
+type=Instant
+[/card]
+[card]
 name=Chief of the Edge
 auto=lord(other warrior|myBattlefield) 1/0
 text=Other Warrior creatures you control get +1/+0.
@@ -19374,6 +19398,18 @@ mana={3}{U}{U}
 type=Instant
 [/card]
 [card]
+name=Counterflux
+alias=110000
+other={1}{U}{U}{R} name(Overload)
+abilities=nofizzle
+target=*|opponentstack
+auto=paidmana fizzle
+auto=overload fizzle all(*|opponentstack)
+text=Counterflux can't be countered by spells or abilities. -- Counter target spell you don't control. -- Overload {1}{U}{U}{R} (You may cast this spell for its overload cost. If you do, change its text by replacing all instances of "target" with "each.")
+mana={U}{U}{R}
+type=Instant
+[/card]
+[card]
 name=Counterintelligence
 target=<upto:2>creature
 auto=moveTo(ownerhand)
@@ -21167,6 +21203,17 @@ auto=1/1 ueot
 auto=lifelink ueot
 text=Up to two target creatures each get +1/+1 and gain lifelink until end of turn.
 mana={3}{B}
+type=Instant
+[/card]
+[card]
+name=Cyclonic Rift
+alias=110000
+other={6}{U} name(Overload)
+target=*[-land]|opponentbattlefield
+auto=overload moveto(ownerhand) all(*[-land]|opponentbattlefield)
+auto=paidmana moveto(ownerhand)
+text=Return target nonland permanent you don't control to its owner's hand. -- Overload {6}{U} (You may cast this spell for its overload cost. If you do, change its text by replacing all instances of "target" with "each.")
+mana={1}{U}
 type=Instant
 [/card]
 [card]
@@ -25946,6 +25993,17 @@ mana={1}{U}
 type=Instant
 [/card]
 [card]
+name=Downsize
+alias=110000
+other={2}{U} name(Overload)
+target=creature|opponentbattlefield
+auto=overload -4/0 all(creature|opponentbattlefield)
+auto=paidmana -4/0
+text=Target creature you don't control gets -4/-0 until end of turn. -- Overload {2}{U} (You may cast this spell for its overload cost. If you do, change its text by replacing all instances of "target" with "each.")
+mana={U}
+type=Instant
+[/card]
+[card]
 name=Dowsing Shaman
 auto={2}{G}{T}:moveTo(myhand) target(enchantment|mygraveyard)
 text={2}{G}, {T}: Return target enchantment card from your graveyard to your hand.
@@ -28225,6 +28283,17 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Dynacharge
+alias=110000
+other={2}{R} name(Overload)
+target=creature|mybattlefield
+auto=paidmana 2/0
+auto=overload all(creature|mybattlefield) 2/0
+text=Target creature you control gets +2/+0 until end of turn. -- Overload {2}{R} (You may cast this spell for its overload cost. If you do, change its text by replacing all instances of "target" with "each.")
+mana={R}
+type=Instant
+[/card]
+[card]
 name=Dystopia
 auto=cumulativeupcost[{L}] sacrifice
 auto=@each opponent upkeep:ability$!name(sacrifice) notatarget(creature[green;white]|mybattlefield) sacrifice !$ opponent
@@ -28972,6 +29041,17 @@ type=Creature
 subtype=Fish
 power=1
 toughness=1
+[/card]
+[card]
+name=Electrickery
+alias=110000
+other={1}{R} name(Overload)
+target=creature|opponentbattlefield
+auto=paidmana damage:1
+auto=overload damage:1 all(creature|opponentbattlefield)
+text=Electrickery deals 1 damage to target creature you don't control. -- Overload {1}{R} (You may cast this spell for its overload cost. If you do, change its text by replacing all instances of "target" with "each.")
+mana={R}
+type=Instant
 [/card]
 [card]
 name=Electrolyze
@@ -63401,6 +63481,30 @@ power=4
 toughness=4
 [/card]
 [card]
+name=Mizzium Mortars
+alias=110000
+other={3}{R}{R}{R} name(Overload)
+target=creature|opponentbattlefield
+auto=paidmana damage:4
+auto=overload damage:4 all(creature|opponentbattlefield)
+text=Mizzium Mortars deals 4 damage to target creature you don't control. -- Overload {3}{R}{R}{R} (You may cast this spell for its overload cost. If you do, change its text by replacing all instances of "target" with "each.")
+mana={1}{R}
+type=Sorcery
+[/card]
+[card]
+name=Mizzium Skin
+alias=110000
+other={1}{U} name(Overload)
+target=creature|mybattlefield
+auto=paidmana 0/1
+auto=paidmana opponentshroud
+auto=overload all(creature|mybattlefield) 0/1
+auto=overload all(creature|mybattlefield) opponentshroud
+text=Target creature you control gets +0/+1 and gains hexproof until end of turn. -- Overload {1}{U} (You may cast this spell for its overload cost. If you do, change its text by replacing all instances of "target" with "each.")
+mana={U}
+type=Instant
+[/card]
+[card]
 name=Mnemonic Nexus
 auto=moveto(opponentlibrary) all(*|opponentgraveyard) && shuffle opponent
 auto=moveto(mylibrary) all(*|mygraveyard) && shuffle controller
@@ -96955,6 +97059,17 @@ power=3
 toughness=4
 [/card]
 [card]
+name=Street Spasm
+alias=110000
+other={X}{X}{R}{R} name(Overload)
+target=creature[-flying]|opponentbattlefield
+auto=paidmana damage:X
+auto=overload damage:XX all(creature[-flying]|opponentbattlefield)
+text=Street Spasm deals X damage to target creature without flying you don't control. -- Overload {X}{X}{R}{R} (You may cast this spell for its overload cost. If you do, change its text by replacing all instances of "target" with "each.")
+mana={X}{R}
+type=Instant
+[/card]
+[card]
 name=Streetbreaker Wurm
 mana={3}{R}{G}
 type=Creature
@@ -100363,6 +100478,19 @@ auto=unblockable
 text=Cast Teleport only after attackers are declared and before blockers are declared. -- Target creature is unblockable this turn.
 mana={U}{U}{U}
 type=Instant
+[/card]
+[card]
+name=Teleportal
+alias=110000
+other={3}{U}{R} name(Overload)
+target=creature|mybattlefield
+auto=paidmana 1/0
+auto=paidmana unblockable
+auto=overload all(creature|mybattlefield) 1/0
+auto=overload all(creature|mybattlefield) unblockable
+text=Target creature you control gets +1/+0 until end of turn and is unblockable this turn. -- Overload {3}{U}{R} (You may cast this spell for its overload cost. If you do, change its text by replacing all instances of "target" with "each.")
+mana={U}{R}
+type=Sorcery
 [/card]
 [card]
 name=Telethopter
@@ -107662,6 +107790,17 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
+name=Vandalblast
+alias=110000
+other={4}{R} name(Overload)
+target=artifact|opponentbattlefield
+auto=overload destroy all(artifact|opponentbattlefield)
+auto=paidmana destroy
+text=Destroy target artifact you don't control. -- Overload {4}{R} (You may cast this spell for its overload cost. If you do, change its text by replacing all instances of "target" with "each.")
+mana={R}
+type=Sorcery
+[/card]
+[card]
 name=Vanguard of Brimaz
 abilities=vigilance
 auto=@targeted(this) from(*[instant;sorcery;enchantment]|myhand,mygraveyard):token(Cat Soldier,Creature Cat Soldier,1/1,white,vigilance) controller
@@ -112351,6 +112490,19 @@ auto=lord(creature[attacking]) -1/0
 text=Attacking creatures get -1/-0.
 mana={4}
 type=Artifact
+[/card]
+[card]
+name=Weapon Surge
+alias=110000
+other={1}{R} name(Overload)
+target=creature|mybattlefield
+auto=paidmana 1/0
+auto=paidmana first strike
+auto=overload all(creature|mybattlefield) 1/0
+auto=overload all(creature|mybattlefield) first strike
+text=Target creature you control gets +1/+0 and gains first strike until end of turn. -- Overload {1}{R} (You may cast this spell for its overload cost. If you do, change its text by replacing all instances of "target" with "each.")
+mana={R}
+type=Instant
 [/card]
 [card]
 name=Weathered Wayfarer

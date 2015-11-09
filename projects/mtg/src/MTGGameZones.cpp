@@ -546,7 +546,7 @@ MTGCardInstance * MTGGameZone::removeCard(MTGCardInstance * card, int createCopy
                 copy->kicked = card->kicked;
                 copy->storedCard = card->storedCard;
                 copy->storedSourceCard = card->storedSourceCard;
-                for (int i = 0; i < ManaCost::MANA_PAID_WITH_SUSPEND +1; i++)
+                for (int i = 0; i < ManaCost::MANA_PAID_WITH_BESTOW +1; i++)
                     copy->alternateCostPaid[i] = card->alternateCostPaid[i];
 
                 //stupid bug with tokens...

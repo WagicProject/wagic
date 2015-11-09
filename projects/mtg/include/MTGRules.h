@@ -101,7 +101,7 @@ class MTGAlternativeCostRule: public PermanentAbility
 {
 protected:
     int isReactingToClick(MTGCardInstance * card, ManaCost * mana, ManaCost *alternateManaCost);
-    int reactToClick(MTGCardInstance * card, ManaCost * alternateManaCost, int paymentType = ManaCost::MANA_PAID);
+    int reactToClick(MTGCardInstance * card, ManaCost * alternateManaCost, int paymentType = ManaCost::MANA_PAID, bool overload = false);
     string alternativeName;
 public:
     int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
@@ -192,6 +192,19 @@ public:
     virtual MTGPayZeroRule * clone() const;
 };
 
+class MTGOverloadRule: public MTGAlternativeCostRule
+{
+public:
+    int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
+    int reactToClick(MTGCardInstance * card);
+    virtual ostream& toString(ostream& out) const;
+    MTGOverloadRule(GameObserver* observer, int _id);
+    const string getMenuText()
+    {
+        return "Overload";
+    }
+    virtual MTGOverloadRule * clone() const;
+};
 
 class MTGSuspendRule: public MTGAlternativeCostRule
 {

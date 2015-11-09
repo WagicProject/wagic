@@ -214,6 +214,8 @@ public:
 		PUT_INTO_PLAY_WITH_KICKER = 31,
 		STANDARD_FIZZLER = 32,
         PAYZERO_COST = 33,
+        OVERLOAD_COST = 34,
+        BESTOW_COST = 35,
     };
 };
 
