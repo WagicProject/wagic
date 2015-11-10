@@ -627,12 +627,12 @@ void GameStateShop::Update(float dt)
         else if (btn == JGE_BTN_CANCEL)
             options[Options::DISABLECARDS].number = !options[Options::DISABLECARDS].number;
         else if (btn == JGE_BTN_SEC)
-		{
+        {
             bListCards = !bListCards;
             disablePurchase = false;
             clearInput = true;
             return;
-		}
+        }
         else if (shopMenu)
         {
 #if defined (IOS) || defined (ANDROID)
@@ -770,7 +770,7 @@ void GameStateShop::Render()
 
 #ifndef TOUCH_ENABLED
     float len = 4 + mFont->GetStringWidth(kOtherCardsString.c_str());
-	r->RenderQuad(pspIcons[6].get(), SCREEN_WIDTH - len - 0.5 - 10, SCREEN_HEIGHT - 8, 0, kPspIconScaleFactor, kPspIconScaleFactor);
+    r->RenderQuad(pspIcons[6].get(), SCREEN_WIDTH - len - 0.5 - 10, SCREEN_HEIGHT - 8, 0, kPspIconScaleFactor, kPspIconScaleFactor);
     mFont->DrawString(kOtherCardsString, SCREEN_WIDTH - len, SCREEN_HEIGHT - 14);
 #else
     enableButtons();

@@ -37,18 +37,18 @@ WResourceManager* WResourceManager::sInstance = NULL;
 
 WResourceManager* WResourceManager::Instance()
 {
-	if (sInstance == NULL)
-	{
-		sInstance = NEW ResourceManagerImpl;
-	}
+    if (sInstance == NULL)
+    {
+        sInstance = NEW ResourceManagerImpl;
+    }
 
-	return sInstance;
+    return sInstance;
 }
 
 void WResourceManager::Terminate()
 {
-	if (sInstance)
-		SAFE_DELETE(sInstance);
+    if (sInstance)
+        SAFE_DELETE(sInstance);
 }
 
 
@@ -1040,12 +1040,12 @@ cacheItem* WCache<cacheItem, cacheActual>::AttemptNew(const string& filename, in
             SAFE_DELETE(item);
             return NULL;
         }
-		else
+        else
         {
             DebugTrace("AttemptNew failed to load (not a 404 error). Deleting cache item " << ToHex(item));
             SAFE_DELETE(item);
             mError = CACHE_ERROR_BAD;
-        	return NULL;
+            return NULL;
         }
     }
 

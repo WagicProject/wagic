@@ -281,7 +281,7 @@ int MTGAllCards::processConfLine(string &s, MTGCard *card, CardPrimitive * primi
                 {
                     string value = val;
                     std::transform(value.begin(), value.end(), value.begin(), ::tolower);
-					cost->setSuspend(ManaCost::parseManaCost(value));
+                    cost->setSuspend(ManaCost::parseManaCost(value));
                     primitive->suspendedTime = suspendTime;
                 }
                 

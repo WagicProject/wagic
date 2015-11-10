@@ -359,7 +359,7 @@ int WFBFont::PreCacheChar(const u8 *ch)
 #else
     x = (int)mSprites[index]->mX;
     y = (int)mSprites[index]->mY;
-	mTexture->UpdateBits(x, y, mFontSize, mFontSize, mCharBuffer);
+    mTexture->UpdateBits(x, y, mFontSize, mFontSize, mCharBuffer);
 #endif
     return index;
 }
@@ -758,7 +758,7 @@ int WGBKFont::PreCacheChar(const u8 *ch)
 #else
     x = (int)mSprites[index]->mX;
     y = (int)mSprites[index]->mY;
-	mTexture->UpdateBits(x, y, mFontSize, mFontSize, mCharBuffer);
+    mTexture->UpdateBits(x, y, mFontSize, mFontSize, mCharBuffer);
 #endif
     return index;
 }

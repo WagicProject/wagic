@@ -276,21 +276,21 @@ class Constants
     GRADE_UNSUPPORTED = 4,
     GRADE_DANGEROUS = 5,
 
-	ASKIP_NONE=0,
-	ASKIP_SAFE=1,
-	ASKIP_FULL=2,
-	
-	WHO_P=0,
-	WHO_O=1,
-	WHO_R=2,
-	
-	KICKER_ALWAYS=0,
-	KICKER_CHOICE=1,
-	
+    ASKIP_NONE=0,
+    ASKIP_SAFE=1,
+    ASKIP_FULL=2,
+    
+    WHO_P=0,
+    WHO_O=1,
+    WHO_R=2,
+    
+    KICKER_ALWAYS=0,
+    KICKER_CHOICE=1,
+    
   };
 
     enum
-	{
+    {
         NOT_CAST = 0,
         CAST_NORMALLY = 1,
         CAST_WITH_KICKER = 2,

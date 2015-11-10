@@ -69,7 +69,7 @@ bool Unlockable::tryToUnlock(GameObserver * game) {
     string id = getValue("id");
     assert(id.size() > 0);
 
-	GameOptionAward* goa = (GameOptionAward*) &options[id]; 
+    GameOptionAward* goa = (GameOptionAward*) &options[id]; 
     goa->giveAward();
     return true;
 }

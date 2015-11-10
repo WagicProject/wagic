@@ -960,12 +960,12 @@ private:
         else if (s == "morethanfourcards")
         {
             if(card->playerTarget)
-			{//blackvise
+            {//blackvise
                 intValue = 0;
                 if ((card->playerTarget->game->hand->nb_cards - 4)>0)
                     intValue = (card->playerTarget->game->hand->nb_cards - 4);
             }
-			else
+            else
             {//viseling
                 intValue = 0;
                 if ((card->controller()->opponent()->game->hand->nb_cards - 4)>0)
@@ -1306,7 +1306,7 @@ public:
 class TrcardDrawn: public Trigger
 {
 public:
-	bool thiscontroller, thisopponent;
+    bool thiscontroller, thisopponent;
     TrcardDrawn(GameObserver* observer, int id, MTGCardInstance * source, TargetChooser * tc,bool once = false, bool thiscontroller = false, bool thisopponent = false) :
         Trigger(observer, id, source,once, tc),thiscontroller(thiscontroller),thisopponent(thisopponent)
     {
@@ -4721,7 +4721,7 @@ public:
     vector<int> dontremove;
     bool addNewColors;
     bool remove;
-	bool removeCreatureSubtypes;
+    bool removeCreatureSubtypes;
     bool removeTypes;
     string menu;
     

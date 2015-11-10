@@ -1304,12 +1304,6 @@ type=Enchantment
 text=Each noncreature, non-Equipment artifact is an Equipment with equip {X} and "Equipped creature gets +X/+0," where X is that artifact's converted mana cost.
 [/card]
 [card]
-name=Blustersquall
-text=Tap target creature you don't control. -- Overload {3}{U} (You may cast this spell for its overload cost. If you do, change its text by replacing all instances of "target" with "each.")
-mana={U}
-type=Instant
-[/card]
-[card]
 name=Boar Umbra
 mana={2}{G}
 type=Enchantment
@@ -2380,12 +2374,6 @@ type=Enchantment
 text=Whenever any spell is played, counter that spell if each player, other than the caster and his or her teammates, agrees to choose and discard a card. Those players must discard those cards after agreeing. Checks and Balances may be played only in a game with three or more players.
 [/card]
 [card]
-name=Chemister's Trick
-text=Target creature you don't control gets -2/-0 until end of turn and attacks this turn if able. -- Overload {3}{U}{R} (You may cast this spell for its overload cost. If you do, change its text by replacing all instances of "target" with "each.")
-mana={U}{R}
-type=Instant
-[/card]
-[card]
 name=Chicken Egg
 mana={1}{R}
 type=Summon — Egg
@@ -2995,12 +2983,6 @@ mana={U}{U}
 type=Enchantment
 [/card]
 [card]
-name=Counterflux
-text=Counterflux can't be countered by spells or abilities. -- Counter target spell you don't control. -- Overload {1}{U}{U}{R} (You may cast this spell for its overload cost. If you do, change its text by replacing all instances of "target" with "each.")
-mana={U}{U}{R}
-type=Instant
-[/card]
-[card]
 name=Countryside Crusher
 text=At the beginning of your upkeep, reveal the top card of your library. If it's a land card, put it into your graveyard and repeat this process. -- Whenever a land card is put into your graveyard from anywhere, put a +1/+1 counter on Countryside Crusher.
 mana={1}{R}{R}
@@ -3298,12 +3280,6 @@ name=Cyclone
 text=At the beginning of your upkeep, put a wind counter on Cyclone, then sacrifice Cyclone unless you pay {G} for each wind counter on it. If you pay, Cyclone deals damage equal to the number of wind counters on it to each creature and each player.
 mana={2}{G}{G}
 type=Enchantment
-[/card]
-[card]
-name=Cyclonic Rift
-text=Return target nonland permanent you don't control to its owner's hand. -- Overload {6}{U} (You may cast this spell for its overload cost. If you do, change its text by replacing all instances of "target" with "each.")
-mana={1}{U}
-type=Instant
 [/card]
 [card]
 name=Cyclopean Giant
@@ -4071,12 +4047,6 @@ mana={3}{B} // {2}{G}
 type=Sorcery // Sorcery
 [/card]
 [card]
-name=Downsize
-text=Target creature you don't control gets -4/-0 until end of turn. -- Overload {2}{U} (You may cast this spell for its overload cost. If you do, change its text by replacing all instances of "target" with "each.")
-mana={U}
-type=Instant
-[/card]
-[card]
 name=Draco
 text=Domain - Draco costs {2} less to cast for each basic land type among lands you control. -- Flying -- Domain - At the beginning of your upkeep, sacrifice Draco unless you pay {1}0}. This cost is reduced by {2} for each basic land type among lands you control.
 mana={16}
@@ -4278,12 +4248,6 @@ power=1
 toughness=1
 [/card]
 [card]
-name=Dynacharge
-text=Target creature you control gets +2/+0 until end of turn. -- Overload {2}{R} (You may cast this spell for its overload cost. If you do, change its text by replacing all instances of "target" with "each.")
-mana={R}
-type=Instant
-[/card]
-[card]
 name=Echo Chamber
 text={4}, {T}: An opponent chooses target creature he or she controls. Put a token that's a copy of that creature onto the battlefield. That token gains haste until end of turn. Exile the token at the beginning of the next end step. Activate this ability only any time you could cast a sorcery.
 mana={4}
@@ -4332,12 +4296,6 @@ toughness=4
 name=Eldrazi Temple
 type=Land
 text={T}: Add {1} to your mana pool. {T}: Add {2} to your mana pool. Spend this mana only to cast colorless Eldrazi spells or activate abilities of colorless Eldrazi.
-[/card]
-[card]
-name=Electrickery
-text=Electrickery deals 1 damage to target creature you don't control. -- Overload {1}{R} (You may cast this spell for its overload cost. If you do, change its text by replacing all instances of "target" with "each.")
-mana={R}
-type=Instant
 [/card]
 [card]
 name=Electropotence
@@ -10073,18 +10031,6 @@ name=Mitotic Manipulation
 text=Look at the top seven cards of your library. You may put one of those cards onto the battlefield if it has the same name as a permanent. Put the rest on the bottom of your library in any order.
 mana={1}{U}{U}
 type=Sorcery
-[/card]
-[card]
-name=Mizzium Mortars
-text=Mizzium Mortars deals 4 damage to target creature you don't control. -- Overload {3}{R}{R}{R} (You may cast this spell for its overload cost. If you do, change its text by replacing all instances of "target" with "each.")
-mana={1}{R}
-type=Sorcery
-[/card]
-[card]
-name=Mizzium Skin
-text=Target creature you control gets +0/+1 and gains hexproof until end of turn. -- Overload {1}{U} (You may cast this spell for its overload cost. If you do, change its text by replacing all instances of "target" with "each.")
-mana={U}
-type=Instant
 [/card]
 [card]
 name=Mizzium Transreliquat
@@ -15879,12 +15825,6 @@ type=Enchantment
 subtype=Aura
 [/card]
 [card]
-name=Street Spasm
-text=Street Spasm deals X damage to target creature without flying you don't control. -- Overload {X}{X}{R}{R} (You may cast this spell for its overload cost. If you do, change its text by replacing all instances of "target" with "each.")
-mana={X}{R}
-type=Instant
-[/card]
-[card]
 name=Strength of the Tajuru
 text=Multikicker {1} (You may pay an additional {1} any number of times as you cast this spell.) -- Choose target creature, then choose another target creature for each time Strength of the Tajuru was kicked. Put X +1/+1 counters on each of them.
 mana={X}{G}{G}
@@ -16366,12 +16306,6 @@ name=Telepathy
 text=Your opponents play with their hands revealed.
 mana={U}
 type=Enchantment
-[/card]
-[card]
-name=Teleportal
-text=Target creature you control gets +1/+0 until end of turn and is unblockable this turn. -- Overload {3}{U}{R} (You may cast this spell for its overload cost. If you do, change its text by replacing all instances of "target" with "each.")
-mana={U}{R}
-type=Sorcery
 [/card]
 [card]
 name=Telling Time
@@ -17392,12 +17326,6 @@ type=Creature
 subtype=Vampire
 power=3
 toughness=3
-[/card]
-[card]
-name=Vandalblast
-text=Destroy target artifact you don't control. -- Overload {4}{R} (You may cast this spell for its overload cost. If you do, change its text by replacing all instances of "target" with "each.")
-mana={R}
-type=Sorcery
 [/card]
 [card]
 name=Vanguard's Shield

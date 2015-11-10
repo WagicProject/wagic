@@ -89,7 +89,7 @@ DuelLayers::DuelLayers(GameObserver* go, int playerViewIndex) :
     nbitems(0), mPlayerViewIndex(playerViewIndex)
 {
     observer = go;
-	observer->mLayers = this;
+    observer->mLayers = this;
     mCardSelector = NEW CardSelector(go, this);
     //1 Action Layer
     action = NEW ActionLayer(go);
@@ -98,8 +98,8 @@ DuelLayers::DuelLayers(GameObserver* go, int playerViewIndex) :
     //Other display elements
     action->Add(NEW HUDDisplay(go, -1));
 
-	Add(NEW GuiMana(20, 20, getRenderedPlayerOpponent()));
-	Add(NEW GuiMana(440, 20, getRenderedPlayer()));
+    Add(NEW GuiMana(20, 20, getRenderedPlayerOpponent()));
+    Add(NEW GuiMana(440, 20, getRenderedPlayer()));
     Add(stack = NEW ActionStack(go));
     Add(combat = NEW GuiCombat(go));
     Add(action);
@@ -216,10 +216,10 @@ float DuelLayers::RightBoundary()
 
 Player* DuelLayers::getRenderedPlayer()
 {
-	return observer->players[mPlayerViewIndex]; 
+    return observer->players[mPlayerViewIndex]; 
 };
 
 Player* DuelLayers::getRenderedPlayerOpponent()
 { 
-	return observer->players[mPlayerViewIndex]->opponent(); 
+    return observer->players[mPlayerViewIndex]->opponent(); 
 };

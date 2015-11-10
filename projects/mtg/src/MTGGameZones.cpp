@@ -323,12 +323,12 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
     int doCopy = 1;
     bool shufflelibrary = card->basicAbilities[(int)Constants::SHUFFLELIBRARYDEATH];
     bool inplaytoinplay = false;
-	bool ripToken = false;
-	if (g->players[0]->game->battlefield->hasName("Rest in Peace")||g->players[1]->game->battlefield->hasName("Rest in Peace"))
+    bool ripToken = false;
+    if (g->players[0]->game->battlefield->hasName("Rest in Peace")||g->players[1]->game->battlefield->hasName("Rest in Peace"))
         ripToken = true;
     //Madness or Put in Play...
     for(int i = 0; i < 2; ++i)
-	{
+    {
         if (card->discarded && (to == g->players[i]->game->graveyard) && (from == g->players[i]->game->hand))
         {
             if(card->basicAbilities[(int)Constants::MADNESS])
@@ -337,7 +337,7 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
     }
     //Darksteel Colossus, Legacy Weapon ... top priority since we replace destination directly automatically...
     for(int i = 0; i < 2; ++i)
-	{
+    {
         if ((to == g->players[i]->game->graveyard) && (
         card->basicAbilities[(int)Constants::LIBRARYDEATH]||
         card->basicAbilities[(int)Constants::SHUFFLELIBRARYDEATH]))
@@ -347,13 +347,13 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
     }
     //Leyline of the Void, Yawgmoth's Agenda... effect...
     for(int i = 0; i < 2; ++i)
-	{
+    {
         if ((to == g->players[i]->game->graveyard) && (
         (g->players[i]->game->battlefield->hasAbility(Constants::MYGCREATUREEXILER) && card->isCreature()) ||
         (g->players[i]->opponent()->game->battlefield->hasAbility(Constants::OPPGCREATUREEXILER) && card->isCreature())||
         g->players[i]->game->battlefield->hasAbility(Constants::MYGRAVEEXILER) ||
         g->players[i]->opponent()->game->battlefield->hasAbility(Constants::OPPGRAVEEXILER)))
-		{
+        {
             if ((card->isToken && ripToken))
                 to = g->players[i]->game->exile;
             if (!card->isToken)
@@ -379,7 +379,7 @@ MTGCardInstance * MTGPlayerCards::putInZone(MTGCardInstance * card, MTGGameZone 
     {//set discarded for madness...
         if(from == g->players[0]->game->hand || from == g->players[1]->game->hand)
             copy->discarded = true;
-		else//turn off discarded if its previous zone is not in hand...
+        else//turn off discarded if its previous zone is not in hand...
             copy->discarded = false;
     }
     if (options[Options::SFXVOLUME].number > 0)
@@ -546,7 +546,7 @@ MTGCardInstance * MTGGameZone::removeCard(MTGCardInstance * card, int createCopy
                 copy->kicked = card->kicked;
                 copy->storedCard = card->storedCard;
                 copy->storedSourceCard = card->storedSourceCard;
-                for (int i = 0; i < ManaCost::MANA_PAID_WITH_SUSPEND +1; i++)
+                for (int i = 0; i < ManaCost::MANA_PAID_WITH_BESTOW +1; i++)
                     copy->alternateCostPaid[i] = card->alternateCostPaid[i];
 
                 //stupid bug with tokens...
@@ -742,7 +742,7 @@ bool MTGGameZone::hasColor(int value)
 {
     for (int i = 0; i < (nb_cards); i++)
     {
-			if (cards[i]->getManaCost()->hasColor(value) && cards[i]->getManaCost()->getConvertedCost() > 0)
+            if (cards[i]->getManaCost()->hasColor(value) && cards[i]->getManaCost()->getConvertedCost() > 0)
         {
             return true;
         }

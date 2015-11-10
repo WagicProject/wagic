@@ -169,7 +169,7 @@ void GameStateMenu::genNbCardsStr()
     PlayerData * playerdata = NEW PlayerData(MTGCollection());
     size_t totalUnique =  MTGCollection()->primitives.size();
     size_t totalPrints = MTGCollection()->totalCards();
-	
+    
     if (totalUnique != totalPrints)
     {
         if (playerdata && !options[Options::ACTIVE_PROFILE].isDefault())
@@ -481,7 +481,7 @@ void GameStateMenu::Update(float dt)
                 mParent->mpNetwork->connect(mParent->mServerAddress);
                 // we let the server choose the game mode
                 mParent->gameType = GAME_TYPE_SLAVE;
-			          // just to select one, the HOST is in control here.
+                      // just to select one, the HOST is in control here.
                 mParent->rules = Rules::getRulesByFilename("classic.txt");
                 hasChosenGameType = true;
                 subMenuController->Close();
@@ -599,16 +599,16 @@ void GameStateMenu::Update(float dt)
     case MENU_STATE_NETWORK_DEFINE:
         if(MENU_STATE_MINOR_NONE == (currentState & MENU_STATE_MINOR))
         {
-			currentState = MENU_STATE_MAJOR_SUBMENU;
+            currentState = MENU_STATE_MAJOR_SUBMENU;
             subMenuController = NEW SimpleMenu(JGE::GetInstance(), WResourceManager::Instance(), MENU_FIRST_DUEL_SUBMENU, this, Fonts::MENU_FONT, 150, 60);
-			if (subMenuController)
-			{
-				subMenuController->Add(SUBMENUITEM_HOST_GAME, "Host a game");
-				subMenuController->Add(SUBMENUITEM_JOIN_GAME, "Join a game");
-				subMenuController->Add(SUBMENUITEM_CANCEL, "Cancel");
-			}
-		}
-		break;
+            if (subMenuController)
+            {
+                subMenuController->Add(SUBMENUITEM_HOST_GAME, "Host a game");
+                subMenuController->Add(SUBMENUITEM_JOIN_GAME, "Join a game");
+                subMenuController->Add(SUBMENUITEM_CANCEL, "Cancel");
+            }
+        }
+        break;
     case MENU_STATE_NETWORK_WAIT:
         if(MENU_STATE_MINOR_NONE == (currentState & MENU_STATE_MINOR))
         {
@@ -619,9 +619,9 @@ void GameStateMenu::Update(float dt)
             }
             else if(!subMenuController)
             {
-				string aString;
-				mParent->mpNetwork->getServerIp(aString);
-				aString = "Waiting for connection to " + aString;
+                string aString;
+                mParent->mpNetwork->getServerIp(aString);
+                aString = "Waiting for connection to " + aString;
 
                 subMenuController = NEW SimpleMenu(JGE::GetInstance(), WResourceManager::Instance(), MENU_FIRST_DUEL_SUBMENU, this, Fonts::MENU_FONT, 150, 60, aString.c_str());
                 if (subMenuController)
@@ -918,7 +918,7 @@ void GameStateMenu::ButtonPressed(int controllerId, int controlId)
                 subMenuController->Close();
             }
 #ifdef NETWORK_SUPPORT
-			SAFE_DELETE(mParent->mpNetwork);
+            SAFE_DELETE(mParent->mpNetwork);
 #endif //NETWORK_SUPPORT
             currentState = MENU_STATE_MAJOR_MAINMENU | MENU_STATE_MINOR_SUBMENU_CLOSING;
             break;

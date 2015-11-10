@@ -330,4 +330,4 @@ int GuiHandOpponent::receiveEventMinus(WEvent* e)
 
 // I wanna write it like that. GCC doesn't want me to without -O.
 // I'm submitting a bug report.
-//	  it->x = (it->x + (flip ? RightRowX : LeftRowX)) / 2;
+//      it->x = (it->x + (flip ? RightRowX : LeftRowX)) / 2;

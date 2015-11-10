@@ -39,7 +39,9 @@ const string kAlternateCostKeywords[] =
     "flashback", 
     "retrace", 
     "facedown",
-    "suspended"
+    "suspended",
+    "overload",
+    "bestow"
 }; 
 const int kAlternateCostIds[] = 
 {
@@ -51,7 +53,9 @@ const int kAlternateCostIds[] =
     ManaCost::MANA_PAID_WITH_FLASHBACK,
     ManaCost::MANA_PAID_WITH_RETRACE,
     ManaCost::MANA_PAID_WITH_MORPH,
-    ManaCost::MANA_PAID_WITH_SUSPEND
+    ManaCost::MANA_PAID_WITH_SUSPEND,
+    ManaCost::MANA_PAID_WITH_OVERLOAD,
+    ManaCost::MANA_PAID_WITH_BESTOW
 };
 
 //Used for "dynamic ability" parsing
@@ -726,8 +730,8 @@ TriggeredAbility * AbilityFactory::parseTrigger(string s, string, int id, Spell 
     bool limitOnceATurn = (s.find("turnlimited") != string::npos);
     bool isSuspended = (s.find("suspended") != string::npos);
     bool opponentPoisoned = (s.find("opponentpoisoned") != string::npos);
-	bool lifelost = (s.find("foelost(") != string::npos);
-	int lifeamount = lifelost ? atoi(s.substr(s.find("foelost(") + 8,')').c_str()) : 0;
+    bool lifelost = (s.find("foelost(") != string::npos);
+    int lifeamount = lifelost ? atoi(s.substr(s.find("foelost(") + 8,')').c_str()) : 0;
     bool neverRemove = (s.find("dontremove") != string::npos);
 
     //Card Changed Zone
@@ -1059,12 +1063,12 @@ MTGAbility * AbilityFactory::getCoreAbility(MTGAbility * a)
     if (MultiAbility * abi = dynamic_cast<MultiAbility*>(a))
         return getCoreAbility(abi->abilities[0]);
 
-	if (NestedAbility * na = dynamic_cast<NestedAbility*> (a))
-	{
-		if(na->ability)
-			//only atempt to return a nestedability if it contains a valid ability. example where this causes a bug otherwise. AEquip is considered nested, but contains no ability.
-			return getCoreAbility(na->ability);
-	}
+    if (NestedAbility * na = dynamic_cast<NestedAbility*> (a))
+    {
+        if(na->ability)
+            //only atempt to return a nestedability if it contains a valid ability. example where this causes a bug otherwise. AEquip is considered nested, but contains no ability.
+            return getCoreAbility(na->ability);
+    }
     
     if (MenuAbility * ma = dynamic_cast<MenuAbility*>(a))
         return getCoreAbility(ma->abilities[0]);
@@ -1089,8 +1093,8 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     MTGCardInstance * target = card->target;
     if (!target)
         target = card;
-	//pay and castcard?
-	if(s.find("castcard(restricted") != string::npos && (s.find("pay(") != string::npos || s.find("pay[[") != string::npos))
+    //pay and castcard?
+    if(s.find("castcard(restricted") != string::npos && (s.find("pay(") != string::npos || s.find("pay[[") != string::npos))
         asAlternate = true;
     //MTG Specific rules
     //adds the bonus credit system
@@ -1160,6 +1164,12 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     if(found != string::npos)
     {
         observer->addObserver(NEW MTGPayZeroRule(observer, -1));
+        return NULL;
+    }
+    found = s.find("overloadrule");
+    if(found != string::npos)
+    {
+        observer->addObserver(NEW MTGOverloadRule(observer, -1));
         return NULL;
     }
     //this rule handles attacking ability during attacker phase
@@ -1816,7 +1826,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
 
     found = string::npos;
     i = -1;
-	for (size_t j = 0; j < kLordKeywordsCount; ++j)
+    for (size_t j = 0; j < kLordKeywordsCount; ++j)
     {
         size_t found2 = s.find(kLordKeywords[j]);
         if (found2 != string::npos && ((found == string::npos) || found2 < found))
@@ -2592,16 +2602,16 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
         return a;
     }
 
-	//set hand size
-	vector<string> splitSetHand = parseBetween(s, "sethand:", " ", false);
-	if (splitSetHand.size())
-	{
-		int hand = atoi(splitSetHand[1].c_str());
-		Damageable * t = spell ? spell->getNextDamageableTarget() : NULL;
+    //set hand size
+    vector<string> splitSetHand = parseBetween(s, "sethand:", " ", false);
+    if (splitSetHand.size())
+    {
+        int hand = atoi(splitSetHand[1].c_str());
+        Damageable * t = spell ? spell->getNextDamageableTarget() : NULL;
                 MTGAbility * a = NEW AASetHand(observer, id, card, t, hand, NULL, who);
-		a->oneShot = 1;
-		return a;
-	}
+        a->oneShot = 1;
+        return a;
+    }
 
     //set life total
     vector<string> splitLifeset = parseBetween(s, "lifeset:", " ", false);
@@ -2713,7 +2723,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     }
 
     //Cast/Play Restrictions
-	for (size_t i = 0; i < kMaxCastKeywordsCount; ++i)
+    for (size_t i = 0; i < kMaxCastKeywordsCount; ++i)
     {
         vector<string> splitCast = parseBetween(s, kMaxCastKeywords[i], ")");
         if (splitCast.size())
@@ -2929,9 +2939,9 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
     {
         vector<string> becomesParameters = split(splitBecomes[1], ',');
         string stypes = becomesParameters[0];
-		string newPower = "";
+        string newPower = "";
         string newToughness = "";
-		bool ptFound = false;
+        bool ptFound = false;
         if(becomesParameters.size() >1)
         {
             vector<string> pt = split(becomesParameters[1], '/');
@@ -2942,17 +2952,17 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
                 ptFound = true;
             }
         }
-		string sabilities = "";
+        string sabilities = "";
         unsigned int becomesSize = ptFound?2:1;
-		if(becomesParameters.size() > becomesSize)
-		{
-			for(unsigned int i = becomesSize;i < becomesParameters.size();i++)
-			{ 
-				sabilities.append(becomesParameters[i].c_str());
-				if(i+1 < becomesParameters.size())
-					sabilities.append(",");
-			}
-		}
+        if(becomesParameters.size() > becomesSize)
+        {
+            for(unsigned int i = becomesSize;i < becomesParameters.size();i++)
+            { 
+                sabilities.append(becomesParameters[i].c_str());
+                if(i+1 < becomesParameters.size())
+                    sabilities.append(",");
+            }
+        }
         if (oneShot || forceUEOT || forceForever)
             return NEW ATransformerInstant(observer, id, card, target, stypes, sabilities,newPower,ptFound,newToughness,ptFound,vector<string>(),false,forceForever,untilYourNextTurn);
 
@@ -3034,14 +3044,14 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
                 newtoughnessfound = true;
                 newtoughness = splitToughness[1];
             }
-			if(abilities[j].find("newability[") != string::npos)
-			{
-				size_t NewSkill = abilities[j].find("newability[");
-				size_t NewSkillEnd = abilities[j].find_last_of("]");
-				string newAbilities = abilities[j].substr(NewSkill + 11,NewSkillEnd - NewSkill - 11);
-				newAbilitiesList.push_back(newAbilities);
-				newAbilityFound = true;
-			}
+            if(abilities[j].find("newability[") != string::npos)
+            {
+                size_t NewSkill = abilities[j].find("newability[");
+                size_t NewSkillEnd = abilities[j].find_last_of("]");
+                string newAbilities = abilities[j].substr(NewSkill + 11,NewSkillEnd - NewSkill - 11);
+                newAbilitiesList.push_back(newAbilities);
+                newAbilityFound = true;
+            }
         }
 
         if (oneShot || forceUEOT || forceForever)
@@ -3078,7 +3088,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             {
                 return NEW PTInstant(observer, id, card, target, wppt,s,nonstatic);
             }
-			else if(s.find("cdaactive") != string::npos)
+            else if(s.find("cdaactive") != string::npos)
             {
                 MTGAbility * a = NEW APowerToughnessModifier(observer, id, card, target, wppt,s,true);
                 a->forcedAlive = 1;
@@ -3086,7 +3096,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
                 return a;
                 //return NEW APowerToughnessModifier(observer, id, card, target, wppt,s,true);
             }
-			else
+            else
                 return NEW APowerToughnessModifier(observer, id, card, target, wppt,s,nonstatic);
         }
         return NEW PTInstant(observer, id, card, target, wppt,s,nonstatic);

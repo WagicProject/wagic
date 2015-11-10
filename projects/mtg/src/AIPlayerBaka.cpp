@@ -128,7 +128,7 @@ int OrderedAIAction::getEfficiency()
             break;
         }
     case MTGAbility::STANDARD_PREVENT:
-		{
+        {
             efficiency = 0;//starts out low to avoid spamming it when its not needed.
 
             if (!target)
@@ -1521,12 +1521,12 @@ int AIPlayerBaka::chooseTarget(TargetChooser * _tc, Player * forceTarget,MTGCard
     if (tc->Owner != observer->currentlyActing())
     {
         observer->currentActionPlayer = tc->Owner;
-		//this is a hack, but if we hit this condition we are locked in a infinate loop
-		//so lets give the tc to its owner
-		//todo:find the root cause of this.
-		DebugTrace("AIPLAYER: Error, was asked to chose targets but I don't own the source of the targetController\n");
-		return 0;
-	}
+        //this is a hack, but if we hit this condition we are locked in a infinate loop
+        //so lets give the tc to its owner
+        //todo:find the root cause of this.
+        DebugTrace("AIPLAYER: Error, was asked to chose targets but I don't own the source of the targetController\n");
+        return 0;
+    }
     Player * target = forceTarget;
     int playerTargetedZone = 1;
     if (!target)

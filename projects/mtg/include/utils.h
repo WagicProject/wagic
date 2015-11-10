@@ -79,7 +79,7 @@ public:
     ostream& saveUsedRandValues(ostream& out) const;
     ostream& saveLoadedRandValues(ostream& out);
     int random();
-	void setSeed(unsigned int seed) { srand(seed); };
+    void setSeed(unsigned int seed) { srand(seed); };
     template<typename Iter> void random_shuffle(Iter first, Iter last)
     {
         ptrdiff_t i, n;

@@ -101,7 +101,7 @@ class MTGAlternativeCostRule: public PermanentAbility
 {
 protected:
     int isReactingToClick(MTGCardInstance * card, ManaCost * mana, ManaCost *alternateManaCost);
-    int reactToClick(MTGCardInstance * card, ManaCost * alternateManaCost, int paymentType = ManaCost::MANA_PAID);
+    int reactToClick(MTGCardInstance * card, ManaCost * alternateManaCost, int paymentType = ManaCost::MANA_PAID, bool overload = false);
     string alternativeName;
 public:
     int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
@@ -180,7 +180,7 @@ class MTGPayZeroRule: public MTGAlternativeCostRule
 public:
     int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
     int reactToClick(MTGCardInstance * card);
-	string CustomName;
+    string CustomName;
     virtual ostream& toString(ostream& out) const;
     MTGPayZeroRule(GameObserver* observer, int _id);
     const string getMenuText()
@@ -192,6 +192,19 @@ public:
     virtual MTGPayZeroRule * clone() const;
 };
 
+class MTGOverloadRule: public MTGAlternativeCostRule
+{
+public:
+    int isReactingToClick(MTGCardInstance * card, ManaCost * mana = NULL);
+    int reactToClick(MTGCardInstance * card);
+    virtual ostream& toString(ostream& out) const;
+    MTGOverloadRule(GameObserver* observer, int _id);
+    const string getMenuText()
+    {
+        return "Overload";
+    }
+    virtual MTGOverloadRule * clone() const;
+};
 
 class MTGSuspendRule: public MTGAlternativeCostRule
 {
@@ -423,28 +436,28 @@ private:
     vector<int> pool[20];
     int initialized;
 public:
-	MTGAllCards * collection;
-	MTGCardInstance * genEquip(int id);
+    MTGAllCards * collection;
+    MTGCardInstance * genEquip(int id);
     MTGStoneHewerRule(GameObserver* observer, int _id, MTGAllCards * _collection);
-	int receiveEvent(WEvent * event);
-	const string getMenuText()
-	{
-		return "Stone Hewer";
-	}
-	virtual ostream& toString(ostream& out) const;
-	virtual MTGStoneHewerRule * clone() const;
+    int receiveEvent(WEvent * event);
+    const string getMenuText()
+    {
+        return "Stone Hewer";
+    }
+    virtual ostream& toString(ostream& out) const;
+    virtual MTGStoneHewerRule * clone() const;
 };
 //Hermit Druid avatar mode
 class MTGHermitRule: public PermanentAbility
 {
 public:
     MTGHermitRule(GameObserver* observer, int _id);
-	int receiveEvent(WEvent * event);
-	const string getMenuText()
-	{
-		return "Hermit";
-	}
-	virtual MTGHermitRule * clone() const;
+    int receiveEvent(WEvent * event);
+    const string getMenuText()
+    {
+        return "Hermit";
+    }
+    virtual MTGHermitRule * clone() const;
 };
 //
 /* LifeLink */

@@ -57,17 +57,17 @@ public:
     };
 
     string bg;
-	string filename;
+    string filename;
     GameType gamemode;
     bool hidden;
-	string displayName;
-	int unlockOption;
+    string displayName;
+    int unlockOption;
     string mUnlockOptionString;
-	static vector<Rules *> RulesList;
+    static vector<Rules *> RulesList;
 
     Rules(string bg = "");
     int load(string _filename);
-	static int loadAllRules();
+    static int loadAllRules();
     static void unloadAllRules();
     static Rules * getRulesByFilename(string _filename);
     void initPlayers(GameObserver *observer);

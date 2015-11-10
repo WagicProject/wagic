@@ -18,9 +18,9 @@ vector<Rules *> Rules::RulesList = vector<Rules *>();
 
 //Sorting by displayName
 struct RulesMenuCmp{
-	bool operator()(const Rules * a,const Rules * b) const{
+    bool operator()(const Rules * a,const Rules * b) const{
         return a->displayName < b->displayName;
-	}
+    }
 } RulesMenuCmp_;
 
 Rules * Rules::getRulesByFilename(string _filename)
@@ -391,12 +391,12 @@ void Rules::initGame(GameObserver *g, bool currentPlayerSet)
         if(OptionWhosFirst::WHO_O == options[Options::FIRSTPLAYER].number)
             initState.player = 1;
     }
-	if(!currentPlayerSet)
-	{
-		g->currentPlayerId = initState.player;
-	}
-	g->currentPlayer =  g->players[g->currentPlayerId];
-	g->currentActionPlayer = g->currentPlayer;
+    if(!currentPlayerSet)
+    {
+        g->currentPlayerId = initState.player;
+    }
+    g->currentPlayer =  g->players[g->currentPlayerId];
+    g->currentActionPlayer = g->currentPlayer;
     g->phaseRing->goToPhase(0, g->currentPlayer, false);
     g->phaseRing->goToPhase(initState.phase, g->currentPlayer);
     g->setCurrentGamePhase(initState.phase);
@@ -623,7 +623,7 @@ GameType Rules::strToGameMode(string s)
     if (s.compare("random1") == 0) return GAME_TYPE_RANDOM1;
     if (s.compare("random2") == 0) return GAME_TYPE_RANDOM2;
     if (s.compare("story") == 0) return GAME_TYPE_STORY;
-	if (s.compare("stonehewer") == 0) return GAME_TYPE_STONEHEWER;
-	if (s.compare("hermit") == 0) return GAME_TYPE_HERMIT;
+    if (s.compare("stonehewer") == 0) return GAME_TYPE_STONEHEWER;
+    if (s.compare("hermit") == 0) return GAME_TYPE_HERMIT;
     return GAME_TYPE_CLASSIC;
 }

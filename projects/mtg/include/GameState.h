@@ -1,7 +1,7 @@
 #ifndef _GAME_STATE_H_
 #define _GAME_STATE_H_
 
-#define FADING_SPEED		350.0f
+#define FADING_SPEED        350.0f
 
 class JGE;
 

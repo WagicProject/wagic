@@ -361,8 +361,8 @@ int ActionLayer::reactToClick(MTGCardInstance * card)
     }
 
 #ifdef WIN32
-	// if we hit this, then something strange has happened with the click logic - reactToClick()
-	// should never be called if isReactingToClick() previously didn't have an object return true
+    // if we hit this, then something strange has happened with the click logic - reactToClick()
+    // should never be called if isReactingToClick() previously didn't have an object return true
     assert(!mReactions.empty());
 #endif
 
