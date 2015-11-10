@@ -173,7 +173,7 @@ protected:
     int *mGBCode;
     int mCurr;
 
-	PIXEL_TYPE* mCharBuffer;
+    PIXEL_TYPE* mCharBuffer;
     virtual int PreCacheChar(const u8 *ch);
 };
 

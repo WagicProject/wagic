@@ -4,8 +4,8 @@
 #include "WResourceManager.h"
 #include "WFont.h"
 
-#define SCALE_SELECTED		1.2f
-#define SCALE_NORMAL		1.0f
+#define SCALE_SELECTED      1.2f
+#define SCALE_NORMAL        1.0f
 
  IconButtonsController::IconButtonsController(JGE* jge, float x, float y): JGuiController(jge, 0, NULL), mX(x), mY(y)
  {

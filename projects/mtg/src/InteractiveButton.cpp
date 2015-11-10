@@ -80,7 +80,7 @@ void InteractiveButton::Render()
     mYOffset += 2;
 #endif
 
-	float buttonXOffset = getX() - mXOffset;
+    float buttonXOffset = getX() - mXOffset;
     float buttonYOffset = getY() + mYOffset;
     if (buttonImage != NULL)
     {

@@ -753,7 +753,7 @@ bool MTGCardInstance::StackIsEmptyandSorcerySpeed()
         controller() == getObserver()->currentPlayer &&
         !getObserver()->isInterrupting)
     {
-		return true;
+        return true;
     }
     return false;
 }
@@ -777,10 +777,10 @@ bool MTGCardInstance::isTargetted()
                 }
             }
         }
-    }		
+    }        
     if(cardistargetted)
         return true;
-	return false;
+    return false;
 }
 
 //check targetter?
@@ -802,10 +802,10 @@ bool MTGCardInstance::isTargetter()
                 }
             }
         }
-    }		
+    }        
     if(cardistargetter)
         return true;
-	return false;
+    return false;
 }
 
 int MTGCardInstance::canBlock()
@@ -927,7 +927,7 @@ ManaCost * MTGCardInstance::computeNewCost(MTGCardInstance * card,ManaCost * old
         return oldCost;
         //use forcedalive//
         //pay zero costs//
-		//kicker???...//
+        //kicker???...//
         //morph cost todo//
         //trinisphere must be here below//
     if(card->has(Constants::TRINISPHERE))

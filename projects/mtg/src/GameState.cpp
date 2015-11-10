@@ -70,7 +70,7 @@ vector<DeckMetaData *> GameState::BuildDeckList(const string& path, const string
                 {
                     std::ostringstream aiStatsDeckName;
                     aiStatsDeckName << smallDeckPrefix << "_deck" << nbDecks;
-				    meta->mStatsFilename = aiStatsDeckName.str();
+                    meta->mStatsFilename = aiStatsDeckName.str();
                     meta->mIsAI = true;
                     if (meta->mPlayerDeck != statsPlayer->GetCurrentDeckStatsFile())
                     {
@@ -100,7 +100,7 @@ vector<DeckMetaData *> GameState::BuildDeckList(const string& path, const string
         meta = NULL;
     }
 
-	std::sort(retList.begin(), retList.end(), sortByName);
+    std::sort(retList.begin(), retList.end(), sortByName);
     return retList;
 
 }

@@ -43,11 +43,11 @@ namespace
 }
 
 CardGui::CardGui(MTGCardInstance* card, float x, float y)
-	: PlayGuiObject(Height, x, y, 0, false), card(card)
+    : PlayGuiObject(Height, x, y, 0, false), card(card)
 {
 }
 CardGui::CardGui(MTGCardInstance* card, const Pos& ref)
-	: PlayGuiObject(Height, ref, 0, false), card(card)
+    : PlayGuiObject(Height, ref, 0, false), card(card)
 {
 }
 
@@ -69,7 +69,7 @@ float CardView::GetCenterY()
 
 
 CardView::CardView(const SelectorZone owner, MTGCardInstance* card, float x, float y)
-	: CardGui(card, x, y), owner(owner)
+    : CardGui(card, x, y), owner(owner)
 {
     const Pos* ref = card->view;
     while (card)
@@ -81,7 +81,7 @@ CardView::CardView(const SelectorZone owner, MTGCardInstance* card, float x, flo
 }
 
 CardView::CardView(const SelectorZone owner, MTGCardInstance* card, const Pos& ref)
-	: CardGui(card, ref), owner(owner)
+    : CardGui(card, ref), owner(owner)
 {
     const Pos* r = card->view;
     while (card)
@@ -238,14 +238,14 @@ void CardGui::Render()
     {
         quad->SetColor(ARGB(static_cast<unsigned char>(actA),255,255,255));
         //fake border...
-	    JQuadPtr fakeborder;
-	    JQuadPtr highlightborder;
+        JQuadPtr fakeborder;
+        JQuadPtr highlightborder;
         fakeborder = game? game->getResourceManager()->GetQuad("white"):WResourceManager::Instance()->GetQuad("white");
         highlightborder = game? game->getResourceManager()->GetQuad("white"):WResourceManager::Instance()->GetQuad("white");
-	    if(fakeborder)
-	    {
+        if(fakeborder)
+        {
             fakeborder->SetColor(ARGB((int)(actA),15,15,15));
-	        renderer->RenderQuad(fakeborder.get(), actX, actY, actT, (29 * actZ + 1) / 16, 42 * actZ / 16);
+            renderer->RenderQuad(fakeborder.get(), actX, actY, actT, (29 * actZ + 1) / 16, 42 * actZ / 16);
         }
         //draw border for highlighting
         if (game)
@@ -253,12 +253,12 @@ void CardGui::Render()
             if (card && card->isTargetted() && highlightborder)
             {
                 highlightborder->SetColor(ARGB(95,255,0,0));
-	            renderer->RenderQuad(highlightborder.get(), actX, actY, actT, (30 * actZ + 1) / 16, 43 * actZ / 16);
+                renderer->RenderQuad(highlightborder.get(), actX, actY, actT, (30 * actZ + 1) / 16, 43 * actZ / 16);
             }
             if (card && card->isTargetter() && highlightborder)
             {
                 highlightborder->SetColor(ARGB(95,0,245,0));
-	            renderer->RenderQuad(highlightborder.get(), actX, actY, actT, (30 * actZ + 1) / 16, 43 * actZ / 16);
+                renderer->RenderQuad(highlightborder.get(), actX, actY, actT, (30 * actZ + 1) / 16, 43 * actZ / 16);
             }
         }
         //draw the card image
@@ -307,7 +307,7 @@ void CardGui::Render()
     {
         if (card && card->isTargetted())
         {
-	        if(card->isTapped())
+            if(card->isTapped())
             {
                 if(mHasFocus)
                     renderer->DrawRoundRect(actX - (scale * quad->mWidth / 2)-10,actY - (scale * quad->mHeight / 2)+6.5f, (scale * quad->mHeight)-0.02f, (scale * quad->mWidth)-0.02f, 1.8f,ARGB(250,255,0,0));
@@ -341,7 +341,7 @@ void CardGui::Render()
             ARGB(((static_cast<unsigned char>(actA))/2),0,0,0));
         renderer->DrawRect(actX - (13 * actZ), actY + 4 * actZ, 25.5f * actZ, 14 * actZ,
             ARGB(((static_cast<unsigned char>(actA))),20,20,20));
-        //damaged or buffed or powered down		
+        //damaged or buffed or powered down        
         if(card->wasDealtDamage && card->life <= 2)
             mFont->SetColor(ARGB(static_cast<unsigned char>(actA),255,0,0));//red critical and damaged
         else if(!card->wasDealtDamage && card->pbonus < 0)
@@ -350,7 +350,7 @@ void CardGui::Render()
             mFont->SetColor(ARGB(static_cast<unsigned char>(actA),255,255,0));//yellow buff
         else if(card->hasType("legendary") && card->hasType("eldrazi"))
             mFont->SetColor(ARGB(static_cast<unsigned char>(actA),238,130,238));//violet legendary eldrazi
-		else
+        else
             mFont->SetColor(ARGB(static_cast<unsigned char>(actA),255,255,255));//white default
         mFont->SetScale(actZ);
         mFont->SetScale(actZ);
@@ -366,7 +366,7 @@ void CardGui::Render()
     if(!card->isToken && card->isACopier)
         buff = "C";
     if(game && card->has(Constants::PAYZERO) && ((card->currentZone == card->controller()->game->hand) || (card->has(Constants::CANPLAYFROMGRAVEYARD) && card->currentZone == card->controller()->game->graveyard) || (card->has(Constants::CANPLAYFROMEXILE) && card->currentZone == card->controller()->game->exile)))
-		buff += "Z";
+        buff += "Z";
     if(card->alias == 0000)
     {
         if(card->chooseacolor == 1)
@@ -380,8 +380,8 @@ void CardGui::Render()
         else if(card->chooseacolor == 5)
             buff += "\n-White";
     }
-	if(!alternate && buff != "" && game->gameType() == GAME_TYPE_CLASSIC)//it seems that other game modes makes cards as tokens!!! hmmm...
-	{
+    if(!alternate && buff != "" && game->gameType() == GAME_TYPE_CLASSIC)//it seems that other game modes makes cards as tokens!!! hmmm...
+    {
         mFont->SetScale(DEFAULT_MAIN_FONT_SCALE);
         char buffer[200];
         sprintf(buffer, "%s", buff.c_str());
@@ -1101,7 +1101,7 @@ void CardGui::RenderBig(MTGCard* card, const Pos& pos, bool thumb, bool noborder
                 //white thin line to simulate card edge
                 renderer->DrawRoundRect(x-92,pos.actY-130, (scale * quad->mWidth)-10, (scale * quad->mHeight)-11, 9.0f,ARGB(50,240,240,240));
             }
-		    //render card image
+            //render card image
             renderer->RenderQuad(quad.get(), x, pos.actY-2, pos.actT, scale-0.02f, scale-0.02f);
         }
         else

@@ -82,7 +82,7 @@ WCachedTexture::WCachedTexture()
 WCachedTexture::~WCachedTexture()
 {
     if (texture)
-    	SAFE_DELETE(texture);
+        SAFE_DELETE(texture);
 }
 
 JTexture * WCachedTexture::Actual()
@@ -113,27 +113,27 @@ JQuadPtr WCachedTexture::GetQuad(float offX, float offY, float width, float heig
             resource = kPlaceholderID;
     }
 
-	std::map<string, JQuadPtr>::iterator iter = mTrackedQuads.find(resource);
-	if (iter != mTrackedQuads.end())
-		return iter->second;
+    std::map<string, JQuadPtr>::iterator iter = mTrackedQuads.find(resource);
+    if (iter != mTrackedQuads.end())
+        return iter->second;
 
-	JQuadPtr quad(NEW JQuad(texture, offX, offY, width, height));
+    JQuadPtr quad(NEW JQuad(texture, offX, offY, width, height));
 
     //Update JQ's values to what we called this with.
     quad->SetTextureRect(offX, offY, width, height);
-	mTrackedQuads.insert(std::pair<string, JQuadPtr>(resource, quad));
+    mTrackedQuads.insert(std::pair<string, JQuadPtr>(resource, quad));
     return quad;
 
 }
 
 JQuadPtr WCachedTexture::GetQuad(const string& resname)
 {
-	JQuadPtr result;
- 	std::map<string, JQuadPtr>::iterator iter = mTrackedQuads.find(resname);
-	if (iter != mTrackedQuads.end())
-		result = iter->second;
+    JQuadPtr result;
+     std::map<string, JQuadPtr>::iterator iter = mTrackedQuads.find(resname);
+    if (iter != mTrackedQuads.end())
+        result = iter->second;
 
-	return result;
+    return result;
 }
 
 JQuadPtr WCachedTexture::GetCard(float offX, float offY, float width, float height, const string& resname)
@@ -192,7 +192,7 @@ bool WCachedTexture::Attempt(const string& filename, int submode, int & error)
     string realname = filename;
 
     //Form correct filename.
-	if (submode & TEXTURE_SUB_CARD)
+    if (submode & TEXTURE_SUB_CARD)
     {
         if (submode & TEXTURE_SUB_THUMB)
         {

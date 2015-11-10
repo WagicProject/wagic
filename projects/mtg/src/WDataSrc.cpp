@@ -56,13 +56,13 @@ WSrcCards::WSrcCards(float delay)
 
 JQuadPtr WSrcCards::getImage(int offset)
 {
-	if (!WResourceManager::Instance()->IsThreaded())
-	{	
+    if (!WResourceManager::Instance()->IsThreaded())
+    {    
         if (mDelay && mLastInput < mDelay)
         {
             return WResourceManager::Instance()->RetrieveCard(getCard(offset), RETRIEVE_EXISTING);
         }
-	}
+    }
 
     return WResourceManager::Instance()->RetrieveCard(getCard(offset));
 }

@@ -144,7 +144,7 @@ void SimpleMenu::Render()
         float scaleFactor = titleFont->GetScale();
         titleFont->SetScale(SCALE_NORMAL);
         if ((!title.empty()) && (mWidth < titleFont->GetStringWidth(title.c_str()))) 
-			mWidth = titleFont->GetStringWidth(title.c_str());
+            mWidth = titleFont->GetStringWidth(title.c_str());
          titleFont->SetScale(scaleFactor);
         mWidth += 2 * SimpleMenuConst::kHorizontalMargin;
 

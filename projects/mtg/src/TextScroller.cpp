@@ -32,7 +32,7 @@ void TextScroller::setRandom(int mode)
 void TextScroller::Add(string text)
 {
     if (!strings.size()) 
-		mText = text;
+        mText = text;
     strings.push_back(text);
 }
 
@@ -67,21 +67,21 @@ void TextScroller::Update(float dt)
 void TextScroller::Render()
 {
     WFont * mFont = WResourceManager::Instance()->GetWFont(fontId);
-	mFont->DrawString(mText.c_str(), mX, mY, JGETEXT_LEFT, start, mWidth);
+    mFont->DrawString(mText.c_str(), mX, mY, JGETEXT_LEFT, start, mWidth);
 }
 
 ostream& TextScroller::toString(ostream& out) const
 {
     return out << "TextScroller ::: mText : " << mText 
-				<< " ; tempText : " << tempText 
-				<< " ; mWidth : " << mWidth
+                << " ; tempText : " << tempText 
+                << " ; mWidth : " << mWidth
                 << " ; mSpeed : " << mScrollSpeed 
-				<< " ; mX,mY : " << mX << "," << mY 
-				<< " ; start : " << start 
-				<< " ; timer : " << timer 
-				<< " ; strings : ?" 
-				<< " ; currentId : " << currentId 
-				<< " ; mRandom : " << mRandom;
+                << " ; mX,mY : " << mX << "," << mY 
+                << " ; start : " << start 
+                << " ; timer : " << timer 
+                << " ; strings : ?" 
+                << " ; currentId : " << currentId 
+                << " ; mRandom : " << mRandom;
 }
 
 
@@ -93,28 +93,28 @@ ostream& TextScroller::toString(ostream& out) const
 VerticalTextScroller::VerticalTextScroller(int fontId, float x, float y, float width, float height, float scrollSpeed, size_t numItemsShown) :
 TextScroller( fontId, x, y, width, scrollSpeed)
 {
-	mHeight = height;
-	mNbItemsShown = numItemsShown;
-	mMarginX = 0;
-	timer=0;
-	WFont *mFont = WResourceManager::Instance()->GetWFont(fontId);
-	mOriginalY = mY;
-	mMarginY = mY - mFont->GetHeight();
-	Add("\n"); // initialize the scroller with a blank line
+    mHeight = height;
+    mNbItemsShown = numItemsShown;
+    mMarginX = 0;
+    timer=0;
+    WFont *mFont = WResourceManager::Instance()->GetWFont(fontId);
+    mOriginalY = mY;
+    mMarginY = mY - mFont->GetHeight();
+    Add("\n"); // initialize the scroller with a blank line
 
 }
 
 
 void VerticalTextScroller::Add( string text )
 {
-	strings.push_back( text );
-	string wrappedText =  wordWrap(text, mWidth, fontId);
-	mText.append(wrappedText);
+    strings.push_back( text );
+    string wrappedText =  wordWrap(text, mWidth, fontId);
+    mText.append(wrappedText);
 }
 
 /*
-	Updates happen everytime the top line disappears from view.  
-	The top line is then moved to the end of the file and the scrolling resumes where it left off
+    Updates happen everytime the top line disappears from view.  
+    The top line is then moved to the end of the file and the scrolling resumes where it left off
 
 */
 void VerticalTextScroller::Update(float dt)
@@ -145,5 +145,5 @@ void VerticalTextScroller::Update(float dt)
 void VerticalTextScroller::Render()
 {
     WFont * mFont = WResourceManager::Instance()->GetWFont(fontId);
-	mFont->DrawString(mText.c_str(), mX, mY);
+    mFont->DrawString(mText.c_str(), mX, mY);
 }

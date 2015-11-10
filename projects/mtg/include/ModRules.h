@@ -109,11 +109,11 @@ public:
     int mFontSize;
     bool mFont;
     PIXEL_TYPE mFontColor;
-	/*Icons attributes*/
+    /*Icons attributes*/
     int mSizeIcon;
-	int mIconPosX;
-	int mIconPosY;
-	string mFileName;
+    int mIconPosX;
+    int mIconPosY;
+    string mFileName;
     ModRulesRenderCardGuiItem(string name, int posX, int posY, string formattedData, string filter, bool font, int fontSize, PIXEL_TYPE fontColor, int SizeIcon,int IconPosX,int IconPosY,string FileName);
    
 };

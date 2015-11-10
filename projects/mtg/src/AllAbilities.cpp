@@ -1236,7 +1236,7 @@ int GenericPaidAbility::resolve()
             }*/
         }
         if(asAlternate && nomenu && optionalCost->getConvertedCost() < 1)
-		{
+        {
             nomenuAbility->resolve();
         }
         else
@@ -1414,7 +1414,7 @@ AAEPIC * AAEPIC::clone() const
 AAFizzler::AAFizzler(GameObserver* observer, int _id, MTGCardInstance * card, Spell * _target, ManaCost * _cost) :
 ActivatedAbility(observer, _id, card, _cost, 0)
 {
-	aType = MTGAbility::STANDARD_FIZZLER;
+    aType = MTGAbility::STANDARD_FIZZLER;
     target = _target;
 
     // by default we put the spell to graveyard after fizzling
@@ -1847,7 +1847,7 @@ int AANewTarget::resolve()
             }
         }
         if(!newhook)
-        {		
+        {
             target = source;
             source = _target;
         }
@@ -2528,7 +2528,7 @@ int AModifyHand::destroy()
 
     if (!p)
         return 0;
-	
+    
     WParsedInt handmodifier(hand, NULL, source);
     p->handmodifier -= handmodifier.getValue();
 
@@ -4175,12 +4175,12 @@ ATransformer::ATransformer(GameObserver* observer, int id, MTGCardInstance * sou
     myCurrentTurn = 1000;
     //this subkeyword adds a color without removing the existing colors.
     addNewColors = (sabilities.find("newcolors") != string::npos);
-	remove = (stypes.find("removealltypes") != string::npos);
-	removeCreatureSubtypes = (stypes.find("removecreaturesubtypes") != string::npos);
+    remove = (stypes.find("removealltypes") != string::npos);
+    removeCreatureSubtypes = (stypes.find("removecreaturesubtypes") != string::npos);
     removeTypes = (stypes.find("removetypes") != string::npos);
 
-	if (stypes.find("allsubtypes") != string::npos || stypes.find("removecreaturesubtypes") != string::npos)
-	{  
+    if (stypes.find("allsubtypes") != string::npos || stypes.find("removecreaturesubtypes") != string::npos)
+    {  
         const vector<string> values = MTGAllCards::getValuesById();
         for (size_t i = 0; i <values.size(); ++i)
         {
@@ -4189,7 +4189,7 @@ ATransformer::ATransformer(GameObserver* observer, int id, MTGCardInstance * sou
 
             types.push_back(i);
         }
-	}
+    }
     else
     {
         if(stypes.find("chosentype") != string::npos)
@@ -4251,17 +4251,17 @@ int ATransformer::addToGame()
         for (int i = 0; i < Subtypes::LAST_TYPE; ++ i)
             _target->removeType(i,1);
     }
-	else if (remove)
-	{
-		for (it = oldtypes.begin(); it != oldtypes.end(); it++)
-		{
-			_target->removeType(*it);
-		}
-	}
-	else
-	{
+    else if (remove)
+    {
+        for (it = oldtypes.begin(); it != oldtypes.end(); it++)
+        {
+            _target->removeType(*it);
+        }
+    }
+    else
+    {
 for (it = types.begin(); it != types.end(); it++)
-		{
+        {
 
             if(removeCreatureSubtypes)
             {
@@ -4280,8 +4280,8 @@ for (it = types.begin(); it != types.end(); it++)
             {
                 _target->addType(*it);
             }
-		}
-	}
+        }
+    }
     for (it = colors.begin(); it != colors.end(); it++)
     {
         _target->setColor(*it);
@@ -4361,7 +4361,7 @@ for (it = types.begin(); it != types.end(); it++)
             _target->switchPT(true);
         }
         else
-		    _target->addbaseT(val->getValue());
+            _target->addbaseT(val->getValue());
         delete val;
     }
 
@@ -4446,7 +4446,7 @@ int ATransformer::destroy()
         {
             _target->setColor(*it);
         }
-		
+        
         if(newpowerfound || newtoughnessfound)
             _target->isSettingBase -= 1;
 
@@ -4473,22 +4473,22 @@ int ATransformer::destroy()
                 newAbilities.erase(_target);
             }
         }
-		if (remove || removeCreatureSubtypes)
-		{
-			for (it = oldtypes.begin(); it != oldtypes.end(); it++)
-			{
+        if (remove || removeCreatureSubtypes)
+        {
+            for (it = oldtypes.begin(); it != oldtypes.end(); it++)
+            {
                 if(!_target->hasSubtype(*it))
                     _target->addType(*it);
-			}
-		}
-		////in the case that we removed or added types to a card, so that it retains its original name when the effect is removed.
-		//if(_target->model->data->name.size())//tokens don't have a model name.
-		//    _target->setName(_target->model->data->name.c_str());
+            }
+        }
+        ////in the case that we removed or added types to a card, so that it retains its original name when the effect is removed.
+        //if(_target->model->data->name.size())//tokens don't have a model name.
+        //    _target->setName(_target->model->data->name.c_str());
 
         //edit: this ability shouldn't have to reset the name on a card becuase removing a subtype changes the name of a land.
         //that should be handled in addType...not here.
         //im sure commenting this out will reintroduce a bug somewhere but it needs to be handled correctly. furthermore, why does adding and removing a type touch the name of a card?
-	}
+    }
     return 1;
 }
 
@@ -4697,8 +4697,8 @@ int ALoseAbilities::addToGame()
         if (al->mObjects[i])
         {
             MTGAbility * currentAction = (MTGAbility *) al->mObjects[i];
-			ALord * l = dynamic_cast<ALord*> (currentAction);
-			if(l)
+            ALord * l = dynamic_cast<ALord*> (currentAction);
+            if(l)
                 lordsInGame.push_back(l);
         }
     }
@@ -4708,9 +4708,9 @@ int ALoseAbilities::addToGame()
         if (al->mObjects[i])
         {
             MTGAbility * currentAction = (MTGAbility *) al->mObjects[i];
-			ALoseAbilities * la = dynamic_cast<ALoseAbilities*> (currentAction);
-			if(la)
-				continue;
+            ALoseAbilities * la = dynamic_cast<ALoseAbilities*> (currentAction);
+            if(la)
+                continue;
             if (currentAction->source == _target)
             {
                 bool canRemove = true;
@@ -4751,20 +4751,20 @@ int ALoseAbilities::destroy()
         MTGAbility * a = storedAbilities[i];
         //OneShot abilities are not supposed to stay in the game for long.
         // If we copied one, something wrong probably happened
-		if (a->oneShot)
-		{
+        if (a->oneShot)
+        {
             DebugTrace("ALLABILITIES: Ability should not be one shot");
-			continue;
+            continue;
         }
 
         //Avoid inifinite loop of removing/putting back abilities
         if (dynamic_cast<ALoseAbilities*> (a))
         {
-			DebugTrace("ALLABILITIES: loseability won't be put in the loseability list");
-			continue;
-		}
+            DebugTrace("ALLABILITIES: loseability won't be put in the loseability list");
+            continue;
+        }
 
- 		a->addToGame();
+         a->addToGame();
     }
     storedAbilities.clear();
     return 1;
@@ -5368,8 +5368,8 @@ void ABlink::resolveBlink()
 
 void ABlink::returnCardIntoPlay(MTGCardInstance* _target) {
     MTGCardInstance * Blinker = NULL;
-	if(!_target->blinked)
-	{
+    if(!_target->blinked)
+    {
         this->forceDestroy = 1;
         return;
     }
@@ -5659,7 +5659,7 @@ int AEquip::unequip()
     {
         MTGAbility * a = currentAbilities[i];
         if (dynamic_cast<AEquip *> (a) || dynamic_cast<ATeach *> (a) || dynamic_cast<AAConnect *> (a)
-			|| dynamic_cast<AANewTarget *> (AbilityFactory::getCoreAbility(a))
+            || dynamic_cast<AANewTarget *> (AbilityFactory::getCoreAbility(a))
             || (a->aType == MTGAbility::STANDARD_TOKENCREATOR && a->oneShot))
         {
             SAFE_DELETE(a);
@@ -6013,7 +6013,7 @@ ATutorialMessage::ATutorialMessage(GameObserver* observer, MTGCardInstance * sou
         else
         {
             mMessage = _(message); //translate directly here, remove this and translate at rendering time if it bites us
-			ReplaceString(mMessage, "\\n", "\n");
+            ReplaceString(mMessage, "\\n", "\n");
         }
     }
 
@@ -6143,7 +6143,7 @@ void ATutorialMessage::Render()
 
             if (options[Options::SFXVOLUME].number > 0)
             {
-				game->getResourceManager()->PlaySample("tutorial.wav");
+                game->getResourceManager()->PlaySample("tutorial.wav");
             }
         }
         else
