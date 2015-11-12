@@ -10934,7 +10934,7 @@ toughness=1
 [/card]
 [card]
 name=Blustersquall
-alias=110000
+alias=11000
 other={3}{U} name(Overload)
 target=creature|opponentbattlefield
 auto=overload tap all(creature|opponentbattlefield)
@@ -11599,7 +11599,7 @@ toughness=2
 [/card]
 [card]
 name=Boneyard Wurm
-alias=001100
+alias=1111
 anyzone=type:creature:mygraveyard/type:creature:mygraveyard cdaactive
 text=Boneyard Wurm's power and toughness are each equal to the number of creature cards in your graveyard.
 mana={1}{G}
@@ -14117,7 +14117,7 @@ type=Sorcery
 [/card]
 [card]
 name=Cantivore
-alias=001100
+alias=1111
 abilities=vigilance
 anyzone=type:enchantment:graveyard/type:enchantment:graveyard cdaactive
 text=Vigilance -- Cantivore's power and toughness are each equal to the number of enchantment cards in all graveyards.
@@ -16266,7 +16266,7 @@ type=Sorcery
 [/card]
 [card]
 name=Chemister's Trick
-alias=110000
+alias=11000
 other={3}{U}{R} name(Overload)
 target=creature|opponentbattlefield
 auto=paidmana -2/0
@@ -16564,7 +16564,7 @@ toughness=2
 [/card]
 [card]
 name=Cho-Manno's Blessing
-alias=0000
+alias=1000
 abilities=auraward
 target=creature
 abilities=flash
@@ -18099,7 +18099,7 @@ type=Instant
 [/card]
 [card]
 name=Cognivore
-alias=001100
+alias=1111
 abilities=flying
 anyzone=type:instant:graveyard/type:instant:graveyard cdaactive
 text=Flying -- Cognivore's power and toughness are each equal to the number of instant cards in all graveyards.
@@ -18159,7 +18159,7 @@ type=Artifact
 [/card]
 [card]
 name=Coldsteel Heart
-alias=0000
+alias=1000
 auto=tap
 auto=chooseacolor {T}:add{chosencolor} chooseend
 text=Coldsteel Heart enters the battlefield tapped. -- As Coldsteel Heart enters the battlefield, choose a color. -- {T}: Add one mana of the chosen color to your mana pool.
@@ -19399,7 +19399,7 @@ type=Instant
 [/card]
 [card]
 name=Counterflux
-alias=110000
+alias=11000
 other={1}{U}{U}{R} name(Overload)
 abilities=nofizzle
 target=*|opponentstack
@@ -21069,7 +21069,7 @@ subtype=Aura Curse
 [/card]
 [card]
 name=Curse of Wizardry
-alias=0000
+alias=1000
 auto=chooseacolor transforms((,newability[@movedto(*[chosencolor]|mystack):life:-1 controller],newability[@movedto(*[chosencolor]|opponentstack):life:-1 opponent])) chooseend
 text=As Curse of Wizardry enters the battlefield, choose a color. -- Whenever a player casts a spell of the chosen color, that player loses 1 life.
 mana={2}{B}{B}
@@ -21207,7 +21207,7 @@ type=Instant
 [/card]
 [card]
 name=Cyclonic Rift
-alias=110000
+alias=11000
 other={6}{U} name(Overload)
 target=*[-land]|opponentbattlefield
 auto=overload moveto(ownerhand) all(*[-land]|opponentbattlefield)
@@ -24429,7 +24429,7 @@ text=Destroy target artifact with converted mana cost X. It can't be regenerated
 [/card]
 [card]
 name=Detritivore
-alias=001100
+alias=1111
 anyzone=type:land[-basic]:opponentgraveyard/type:land[-basic]:opponentgraveyard cdaactive
 autoexile=@counterremoved(0/0,1,Time) from(sourcecard) suspended:destroy target(land[-basic])
 suspend(0)={X}{3}{R}
@@ -25994,7 +25994,7 @@ type=Instant
 [/card]
 [card]
 name=Downsize
-alias=110000
+alias=11000
 other={2}{U} name(Overload)
 target=creature|opponentbattlefield
 auto=overload -4/0 all(creature|opponentbattlefield)
@@ -28284,7 +28284,7 @@ subtype=Aura
 [/card]
 [card]
 name=Dynacharge
-alias=110000
+alias=11000
 other={2}{R} name(Overload)
 target=creature|mybattlefield
 auto=paidmana 2/0
@@ -29044,7 +29044,7 @@ toughness=1
 [/card]
 [card]
 name=Electrickery
-alias=110000
+alias=11000
 other={1}{R} name(Overload)
 target=creature|opponentbattlefield
 auto=paidmana damage:1
@@ -35188,7 +35188,7 @@ toughness=2
 [/card]
 [card]
 name=Flickering Ward
-alias=0000
+alias=1000
 abilities=auraward
 target=creature
 auto=chooseacolor teach(creature) protection from(*[chosencolor]) chooseend
@@ -35267,7 +35267,7 @@ toughness=2
 [/card]
 [card]
 name=Floating Shield
-alias=0000
+alias=1000
 abilities=auraward
 target=creature
 auto=chooseacolor teach(creature) protection from(*[chosencolor]) chooseend
@@ -43662,7 +43662,7 @@ toughness=3
 [/card]
 [card]
 name=Hall of Triumph
-alias=0000
+alias=1000
 auto=activatechooseacolor transforms((,newability[lord(creature[chosencolor]|mybattlefield) 1/1])) forever activatechooseend
 text=As Hall of Triumph enters the battlefield, choose a color. -- Creatures you control of the chosen color get +1/+1.
 mana={3}
@@ -49496,7 +49496,7 @@ type=Sorcery
 [/card]
 [card]
 name=Iona, Shield of Emeria
-alias=0000
+alias=1000
 abilities=flying
 auto=chooseacolor maxCast(*[chosencolor])0 opponent chooseend
 text=Flying -- As Iona, Shield of Emeria enters the battlefield, choose a color. -- Your opponents can't cast spells of the chosen color.
@@ -50633,7 +50633,7 @@ toughness=3
 [/card]
 [card]
 name=Jihad
-alias=0000
+alias=1000
 auto=chooseacolor transforms((,newability[aslongas(*[chosencolor]|opponentbattlefield) lord(creature[white]|mybattlefield) 2/1],newability[aslongas(*[chosencolor]|opponentbattlefield) sacrifice <1])) chooseend
 text=As Jihad enters the battlefield, choose a color and an opponent. -- White creatures get +2/+1 as long as the chosen player controls a nontoken permanent of the chosen color. -- When the chosen player controls no nontoken permanents of the chosen color, sacrifice Jihad.
 mana={W}{W}{W}
@@ -56208,7 +56208,7 @@ toughness=5
 [/card]
 [card]
 name=Lhurgoyf
-alias=001100
+alias=1111
 anyzone=type:creature:graveyard/plusonetype:creature:graveyard cdaactive
 text=Lhurgoyf's power is equal to the number of creature cards in all graveyards and its toughness is equal to that number plus 1.
 mana={2}{G}{G}
@@ -57589,7 +57589,7 @@ toughness=2
 [/card]
 [card]
 name=Lord of Extinction
-alias=001100
+alias=1111
 anyzone=type:*:graveyard/type:*:graveyard cdaactive
 text=Lord of Extinction's power and toughness are each equal to the number of cards in all graveyards.
 mana={3}{B}{G}
@@ -58325,7 +58325,7 @@ type=Instant
 [/card]
 [card]
 name=Lurebound Scarecrow
-alias=0000
+alias=1000
 auto=chooseacolor aslongas(*[chosencolor]|myBattlefield) sacrifice <1 chooseend
 text=As Lurebound Scarecrow enters the battlefield, choose a color. -- When you control no permanents of the chosen color, sacrifice Lurebound Scarecrow.
 mana={3}
@@ -58954,7 +58954,7 @@ toughness=6
 [/card]
 [card]
 name=Magnivore
-alias=001100
+alias=1111
 abilities=haste
 anyzone=type:sorcery:graveyard/type:sorcery:graveyard cdaactive
 text=Haste (This creature can attack the turn it comes under your control.) -- Magnivore's power and toughness are each equal to the number of sorcery cards in all graveyards.
@@ -63482,7 +63482,7 @@ toughness=4
 [/card]
 [card]
 name=Mizzium Mortars
-alias=110000
+alias=11000
 other={3}{R}{R}{R} name(Overload)
 target=creature|opponentbattlefield
 auto=paidmana damage:4
@@ -63493,7 +63493,7 @@ type=Sorcery
 [/card]
 [card]
 name=Mizzium Skin
-alias=110000
+alias=11000
 other={1}{U} name(Overload)
 target=creature|mybattlefield
 auto=paidmana 0/1
@@ -64747,7 +64747,7 @@ toughness=2
 [/card]
 [card]
 name=Mortivore
-alias=001100
+alias=1111
 auto={B}:regenerate
 anyzone=type:creature:graveyard/type:creature:graveyard cdaactive
 text=Mortivore's power and toughness are each equal to the number of creature cards in all graveyards. -- {B}: Regenerate Mortivore. (The next time this creature would be destroyed this turn, it isn't. Instead tap it, remove all damage from it, and remove it from combat.)
@@ -70982,7 +70982,7 @@ subtype=Equipment
 [/card]
 [card]
 name=Paradise Plume
-alias=0000
+alias=1000
 auto=chooseacolor transforms((,newability[{T}:add{chosencolor}],newability[@movedto(*[chosencolor]|stack):life:1 controller])) forever chooseend
 text=As Paradise Plume enters the battlefield, choose a color. -- Whenever a player casts a spell of the chosen color, you may gain 1 life. -- {T}: Add one mana of the chosen color to your mana pool.
 mana={4}
@@ -71774,7 +71774,7 @@ type=Artifact
 [/card]
 [card]
 name=Pentarch Paladin
-alias=0000
+alias=1000
 abilities=flanking
 auto=chooseacolor {W}{W}{T}:destroy target(*[chosencolor]) chooseend
 text=Flanking (Whenever a creature without flanking blocks this creature, the blocking creature gets -1/-1 until end of turn.) -- As Pentarch Paladin enters the battlefield, choose a color. -- {W}{W}, {T}: Destroy target permanent of the chosen color.
@@ -71786,7 +71786,7 @@ toughness=3
 [/card]
 [card]
 name=Pentarch Ward
-alias=0000
+alias=1000
 abilities=auraward
 target=creature
 auto=chooseacolor teach(creature) protection from(*[chosencolor]) chooseend
@@ -74923,7 +74923,7 @@ toughness=4
 [/card]
 [card]
 name=Prism Ring
-alias=0000
+alias=1000
 auto=activatechooseacolor transforms((,newability[@movedto(*[chosencolor]|mystack):life:1 controller])) forever activatechooseend
 text=As Prism Ring enters the battlefield, choose a color. -- Whenever you cast a spell of the chosen color, you gain 1 life.
 mana={1}
@@ -75394,7 +75394,7 @@ toughness=2
 [/card]
 [card]
 name=Psychic Allergy
-alias=0000
+alias=1000
 auto=upcost[{S(island|mybattlefield)}{S(island|mybattlefield)}] sacrifice
 auto=chooseacolor transforms((,newability[@each opponent upkeep:damage:type:*[-token&chosencolor]:opponentbattlefield opponent])) chooseend
 text=As Psychic Allergy enters the battlefield, choose a color. -- At the beginning of each opponent's upkeep, Psychic Allergy deals X damage to that player, where X is the number of nontoken permanents of the chosen color he or she controls. -- At the beginning of your upkeep, destroy Psychic Allergy unless you sacrifice two Islands.
@@ -76490,7 +76490,7 @@ toughness=1
 [/card]
 [card]
 name=Quirion Elves
-alias=0000
+alias=1000
 auto={T}:Add{G}
 auto=chooseacolor {T}:add{chosencolor} chooseend
 text=As Quirion Elves enters the battlefield, choose a color. -- {T}: Add {G} to your mana pool. -- {T}: Add one mana of the chosen color to your mana pool.
@@ -79975,7 +79975,7 @@ type=Artifact
 [/card]
 [card]
 name=Revenant
-alias=001100
+alias=1111
 abilities=flying
 anyzone=type:creature:mygraveyard/type:creature:mygraveyard cdaactive
 text=Flying -- Revenant's power and toughness are each equal to the number of creature cards in your graveyard.
@@ -87950,7 +87950,7 @@ toughness=2
 [/card]
 [card]
 name=Shifting Sky
-alias=0000
+alias=1000
 auto=chooseacolor lord(*[-land]) becomes(,chosencolor) chooseend
 text=As Shifting Sky enters the battlefield, choose a color. -- All nonland permanents are the chosen color.
 mana={2}{U}
@@ -89235,7 +89235,7 @@ toughness=1
 [/card]
 [card]
 name=Silhana Starfletcher
-alias=0000
+alias=1000
 abilities=reach
 auto=activatechooseacolor {T}:add{chosencolor} activatechooseend
 text=Reach (This creature can block creatures with flying.) -- As Silhana Starfletcher enters the battlefield, choose a color. -- {T}: Add one mana of the chosen color to your mana pool.
@@ -91122,7 +91122,7 @@ toughness=3
 [/card]
 [card]
 name=Slag Fiend
-alias=001100
+alias=1111
 anyzone=type:artifact:graveyard/type:artifact:graveyard cdaactive
 text=Slag Fiend's power and toughness are each equal to the number of artifact cards in all graveyards.
 mana={R}
@@ -92174,7 +92174,7 @@ toughness=3
 [/card]
 [card]
 name=Sol Grail
-alias=0000
+alias=1000
 auto=chooseacolor transforms((,newability[{T}:add{chosencolor}])) forever chooseend
 text=As Sol Grail enters the battlefield, choose a color. -- {T}: Add one mana of the chosen color to your mana pool.
 mana={3}
@@ -94828,7 +94828,7 @@ color=green
 [/card]
 [card]
 name=Splinterfright
-alias=001100
+alias=1111
 abilities=trample
 anyzone=type:creature:mygraveyard/type:creature:mygraveyard cdaactive
 auto=@each my upkeep:deplete:2 controller
@@ -97060,7 +97060,7 @@ toughness=4
 [/card]
 [card]
 name=Street Spasm
-alias=110000
+alias=11000
 other={X}{X}{R}{R} name(Overload)
 target=creature[-flying]|opponentbattlefield
 auto=paidmana damage:X
@@ -100291,7 +100291,7 @@ type=Legendary Land
 [/card]
 [card]
 name=Teferi's Moat
-alias=0000
+alias=1000
 auto=chooseacolor lord(creature[chosencolor&-flying]|opponentBattlefield) cantattack chooseend
 text=As Teferi's Moat enters the battlefield, choose a color. -- Creatures of the chosen color without flying can't attack you.
 mana={3}{W}{U}
@@ -100481,7 +100481,7 @@ type=Instant
 [/card]
 [card]
 name=Teleportal
-alias=110000
+alias=11000
 other={3}{U}{R} name(Overload)
 target=creature|mybattlefield
 auto=paidmana 1/0
@@ -101009,7 +101009,7 @@ type=Artifact
 [/card]
 [card]
 name=Terravore
-alias=001100
+alias=1111
 abilities=trample
 anyzone=type:land:graveyard/type:land:graveyard cdaactive
 text=Trample -- Terravore's power and toughness are each equal to the number of land cards in all graveyards.
@@ -106235,7 +106235,7 @@ type=Artifact
 [/card]
 [card]
 name=Umbra Stalker
-alias=001100
+alias=1111
 anyzone=type:manab:mygraveyard/type:manab:mygraveyard cdaactive
 text=Chroma - Umbra Stalker's power and toughness are each equal to the number of black mana symbols in the mana costs of cards in your graveyard.
 mana={4}{B}{B}{B}
@@ -107791,7 +107791,7 @@ subtype=Aura
 [/card]
 [card]
 name=Vandalblast
-alias=110000
+alias=11000
 other={4}{R} name(Overload)
 target=artifact|opponentbattlefield
 auto=overload destroy all(artifact|opponentbattlefield)
@@ -110092,7 +110092,7 @@ toughness=2
 [/card]
 [card]
 name=Voice of All
-alias=0000
+alias=1000
 abilities=flying
 auto=chooseacolor transforms((,newability[protection from(*[chosencolor])],newability[0/0])) forever chooseend
 text=Flying (This creature can't be blocked except by creatures with flying or reach.) -- As Voice of All enters the battlefield, choose a color. -- Voice of All has protection from the chosen color. (It can't be blocked, targeted, dealt damage, or enchanted by anything of the chosen color.)
@@ -111899,7 +111899,7 @@ toughness=1
 [/card]
 [card]
 name=Ward Sliver
-alias=0000
+alias=1000
 auto=chooseacolor transforms((,newability[lord(sliver) protection from(*[chosencolor])])) forever chooseend
 text=As Ward Sliver enters the battlefield, choose a color. -- All Slivers have protection from the chosen color.
 mana={4}{W}
@@ -112493,7 +112493,7 @@ type=Artifact
 [/card]
 [card]
 name=Weapon Surge
-alias=110000
+alias=11000
 other={1}{R} name(Overload)
 target=creature|mybattlefield
 auto=paidmana 1/0

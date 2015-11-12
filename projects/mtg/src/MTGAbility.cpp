@@ -3092,7 +3092,7 @@ MTGAbility * AbilityFactory::parseMagicLine(string s, int id, Spell * spell, MTG
             {
                 MTGAbility * a = NEW APowerToughnessModifier(observer, id, card, target, wppt,s,true);
                 a->forcedAlive = 1;
-                a->forceDestroy = -1;
+                //a->forceDestroy = -1;
                 return a;
                 //return NEW APowerToughnessModifier(observer, id, card, target, wppt,s,true);
             }
